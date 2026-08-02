@@ -8,7 +8,7 @@
   "\"GREETINGS. WE'RE THE WIZARDS OF THE WIZARD'S FEDERATION.\"": [
     "dm:antagonists"
   ],
-  "\"Is": [
+  "\"Is {0} the best nation?\"": [
     "tgui:AntagInfoSeparatist"
   ],
   "\"Laws Updated\" Alert": [
@@ -26,29 +26,11 @@
   "\"When enabled, the Nova Sector logo will be displayed next to your name in OOC if you're a donator.": [
     "tgui:donator_status"
   ],
-  "% OFF)": [
-    "tgui:NtosCouponMaster"
-  ],
-  "% when infected with viruses.": [
-    "tgui:Microscope"
-  ],
-  "' to proceed.": [
-    "tgui:Adminhelp"
-  ],
   "'Dagger' Designer Mantle": [
     "dm:labels"
   ],
   "'Zero' Ponytail": [
     "dm:labels"
-  ],
-  "'d atom in the relevent client's screen contents.": [
-    "tgui:PlaneMenus"
-  ],
-  "'s HP:": [
-    "tgui:BattleArcade"
-  ],
-  "'s MP:": [
-    "tgui:BattleArcade"
   ],
   "(Change)": [
     "tgui:DynamicAdmin"
@@ -77,9 +59,6 @@
   "(HACKED)": [
     "tgui:RemoteRobotControl"
   ],
-  "(Has": [
-    "tgui:NtosSpaceBetting"
-  ],
   "(If you are unsure what to get or are new to the Federation, go to the \"Wizard Approved Loadouts\" section. There you will find some kits that work fairly well for new wizards.)": [
     "tgui:AntagInfoWizard"
   ],
@@ -107,9 +86,6 @@
   "(YOU)": [
     "tgui:MafiaPanel"
   ],
-  "(auto)": [
-    "tgui:SolarControl"
-  ],
   "(e.g. coughing, sneezing)": [
     "tgui:IDCBook"
   ],
@@ -128,49 +104,16 @@
   "(none)": [
     "tgui:EditableText"
   ],
-  ")) * ticks_elapsed": [
-    "tgui:Tutorial"
-  ],
-  ", Col": [
-    "tgui:NtosNotepad"
-  ],
-  ", Current Opt-In status:": [
-    "tgui:OpposingForcePanel"
-  ],
-  ", Ideal Opt-In status:": [
-    "tgui:OpposingForcePanel"
-  ],
-  ", but be careful: Pulsing it will produce a heartbeat sound that nearby people may hear. This action is tied to your": [
-    "tgui:AntagInfoHeretic"
-  ],
-  ", by starting a message with": [
-    "tgui:AntagInfoChangeling"
+  "({0}{1}of 12 total)": [
+    "tgui:index"
   ],
   ", including tools unless their readme specifies otherwise. See": [
     "tgui:Changelog"
   ],
-  ", level:": [
-    "tgui:AntagInfoHeretic"
-  ],
   ", recent GitHub contributors can be found": [
     "tgui:Changelog"
   ],
-  ", since we might want to relay more then one plane master.": [
-    "tgui:PlaneMenus"
-  ],
-  ", the": [
-    "tgui:AntagInfoRevolution"
-  ],
-  ", which is gotten from sacrificing living beings to a": [
-    "tgui:ClockworkSlab"
-  ],
-  ", you can see how much you have with the HUD on the left side of the screen. You may also hover your cursor over it to see the maximum amount of chemicals you can hold. This number can increase by": [
-    "tgui:AntagInfoChangeling"
-  ],
-  ", you'll need to manage your resources:": [
-    "tgui:OrionGame"
-  ],
-  "- Accumulating a total of": [
+  "- Accumulating a total of {0} {1} will manifest a visible aura of {2} around you. This aura will be visible to all those around you and will mark you as a Heretic. Consider the risks before accumulating too much knowledge!": [
     "tgui:AntagInfoHeretic"
   ],
   "- Admin Mode -": [
@@ -182,13 +125,13 @@
   "- Convert the crew to your cause with a flash - any flash will work.": [
     "tgui:AntagInfoRevolution"
   ],
-  "- Draw a": [
+  "- Draw a {0} by using a drawing tool (a pen or crayon) on the floor while having {1} active in your other hand. This rune allows you to complete rituals and sacrifices.": [
     "tgui:AntagInfoHeretic"
   ],
-  "- Find reality smashing": [
+  "- Find reality smashing {0} around the station invisible to the normal eye and {1} on them to harvest them for {2}. Tapping them makes them visible to all after a short time. Dreaming of Mansus may help to find them.": [
     "tgui:AntagInfoHeretic"
   ],
-  "- Follow your": [
+  "- Follow your {0} to find your targets. Bring them back to a {1} in critical or worse condition to {2} them for {3}. The Mansus{4}{5} accepts targets pointed to by the {6}.": [
     "tgui:AntagInfoHeretic"
   ],
   "- Further the goals of any other organization you are a part of using the power granted to you.": [
@@ -199,9 +142,6 @@
   ],
   "- Help your cause. Do not harm your fellow freedom fighters.": [
     "tgui:AntagInfoRevolution"
-  ],
-  "- Location:": [
-    "tgui:ServerControl"
   ],
   "- Mindshields will prevent conversion. You can identify them via the flashing blue border around their job icon.": [
     "tgui:AntagInfoRevolution"
@@ -221,13 +161,10 @@
   "- There are multiple leaders of the revolution. It is recommended to work together and establish a plan BEFORE you start converting the crew - being outed early can prove extremely detrimental.": [
     "tgui:AntagInfoRevolution"
   ],
-  "- Total blood consumed:": [
+  "- Total blood consumed: {0} units{1}- Total times reproduced: {2} times": [
     "tgui:AntagInfoBloodWorm"
   ],
-  "- Total times reproduced:": [
-    "tgui:AntagInfoBloodWorm"
-  ],
-  "- Use your": [
+  "- Use your {0} to track down {1}, but be careful: Pulsing it will produce a heartbeat sound that nearby people may hear. This action is tied to your {2} - if you lose it, you must complete a ritual to regain it.": [
     "tgui:AntagInfoHeretic"
   ],
   "- You are a lone leader of the revolution. It is recommended to act swiftly and decisively - when the revolution is sufficiently large, more leaders will be promoted.": [
@@ -236,71 +173,29 @@
   "- You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons.": [
     "tgui:AntagInfoRevolution"
   ],
-  "- if you lose it, you must complete a ritual to regain it.": [
-    "tgui:AntagInfoHeretic"
+  "- {0}, the {1}": [
+    "tgui:AntagInfoRevolution"
   ],
   ". All code before that commit is licensed under": [
     "tgui:Changelog"
   ],
-  ". Ballistic defense is frowned upon. Style is paramount.": [
-    "tgui:AntagInfoGlitch"
-  ],
-  ". It allows the conversion of all materials into power, which can be used to create floors, walls, and airlocks. The airlocks will shock all non-cultists.": [
-    "tgui:ClockworkSlab"
-  ],
-  ". Leaving the arena mid-fight is a violation.": [
-    "tgui:SparringContract"
-  ],
   ". Rights are currently extended to": [
     "tgui:Changelog"
   ],
-  ". Tapping them makes them visible to all after a short time. Dreaming of Mansus may help to find them.": [
-    "tgui:AntagInfoHeretic"
-  ],
-  ". The Mansus": [
-    "tgui:AntagInfoHeretic"
-  ],
-  ". There is no greater humiliation.": [
-    "tgui:AntagInfoChangeling"
-  ],
-  ". Use your Slab to link traps and triggers together.": [
-    "tgui:ClockworkSlab"
-  ],
-  ". Work together, and you will bring the station to new heights of terror.": [
-    "tgui:AntagInfoChangeling"
-  ],
-  ". You can find more crew on your journey, and lose them as fast as you found 'em.": [
-    "tgui:OrionGame"
-  ],
-  ". You may communicate to other Changelings under your mental alias,": [
-    "tgui:AntagInfoChangeling"
-  ],
-  "...a shapeshifting abomination that can eat almost anything. You may take the form of anything you can see by": [
+  "...a shapeshifting abomination that can eat almost anything. You may take the form of anything you can see by{0}{1}{2}{3}{4}While morphed, you move faster, but are unable to attack creatures or eat anything. In addition,{5}{6}You can attack any item or dead creature to consume it -{7}{8}Finally, you can restore yourself to your original form while morphed by{9}{10}{11}": [
     "tgui:AntagInfoMorph"
   ],
-  "...aka \"": [
+  "...aka \"{0}\"": [
     "tgui:DSMBook"
   ],
-  "...at [": [
+  "...at [{0}]...": [
     "tgui:index"
   ],
-  "...for": [
+  "...for {0} second{1}...": [
     "tgui:index"
   ],
   "...is not filled out properly!!!": [
     "tgui:GamePreferencesPage"
-  ],
-  ".LIFE !=": [
-    "tgui:AntagInfoGlitch"
-  ],
-  "/ Rng:": [
-    "tgui:Portagrav"
-  ],
-  "/12 valid players signed up.": [
-    "tgui:MafiaPanel"
-  ],
-  "/3 Liked": [
-    "tgui:FoodPreferences"
   ],
   "/atom": [
     "tgui:PlaneMenus"
@@ -323,10 +218,10 @@
   "1 point,": [
     "tgui:LanguagesMenu"
   ],
-  "1. Load a dead creature into the machine. This is what you're infusing from.": [
+  "1. Load a dead creature into the machine. This is what you're infusing from.{0}2. Enter the machine, like you would the DNA scanner.{1}3. Have someone activate the machine externally.{2}{3}": [
     "tgui:InfuserBook"
   ],
-  "1. Turn the dial left to the first number.": [
+  "1. Turn the dial left to the first number.{0}2. Turn the dial right to the second number.{1}3. Continue repeating this process for each number, switching between left and right each time.{2}4. Open the safe.": [
     "tgui:Safe"
   ],
   "10 Food, 10 Fuel for Crew": [
@@ -334,24 +229,6 @@
   ],
   "100% Composition": [
     "tgui:Supermatter"
-  ],
-  "2. Enter the machine, like you would the DNA scanner.": [
-    "tgui:InfuserBook"
-  ],
-  "2. Turn the dial right to the second number.": [
-    "tgui:Safe"
-  ],
-  "3. Continue repeating this process for each number, switching between left and right each time.": [
-    "tgui:Safe"
-  ],
-  "3. Have someone activate the machine externally.": [
-    "tgui:InfuserBook"
-  ],
-  "4 uses to teleport wherever you want. You will not be able to come back to the den, so be sure you have everything ready before departing.": [
-    "tgui:AntagInfoWizard"
-  ],
-  "4. Open the safe.": [
-    "tgui:Safe"
   ],
   "5 Food -> 5 Fuel": [
     "tgui:OrionGame"
@@ -368,15 +245,6 @@
   "5 Fuel for Hull Plates": [
     "tgui:OrionGame"
   ],
-  ": Used to repair breakdowns. Nobody likes wasting time on repairs!": [
-    "tgui:OrionGame"
-  ],
-  ": You use 5u of fuel with every movement. Don't let it run out.": [
-    "tgui:OrionGame"
-  ],
-  ": Your crewmembers consume it. More crew means this goes down faster!": [
-    "tgui:OrionGame"
-  ],
   ":g": [
     "tgui:AntagInfoChangeling"
   ],
@@ -391,12 +259,6 @@
   ],
   "> Unlink Rack": [
     "tgui:LawRack"
-  ],
-  ">>N": [
-    "tgui:AntagInfoMalf"
-  ],
-  ">Report to Nanotrasen?": [
-    "tgui:AntagInfoMalf"
   ],
   "A": [
     "tgui:ColorPicker"
@@ -474,12 +336,6 @@
   "A midround changeling does not receive a crew identity, instead arriving from space. This will be more difficult than being a round-start changeling!": [
     "dm:antagonists"
   ],
-  "A pause may be denoted by an empty chord:": [
-    "tgui:InstrumentEditor"
-  ],
-  "A powerful shell that can deflect attacks and delivers a strong blow in close quarter combat.": [
-    "tgui:ClockworkSlab"
-  ],
   "A question is currently being asked!": [
     "tgui:EightBallVote"
   ],
@@ -510,14 +366,8 @@
   "A solo nuclear operative that has a higher chance of spawning the longer the nuclear authentication disk stays in one place.": [
     "dm:antagonists"
   ],
-  "A song may only contain up to": [
-    "tgui:InstrumentEditor"
-  ],
   "A unique id for the article. Article will not publish if set ID is in use.": [
     "tgui:StoryManager"
-  ],
-  "A variety of invaluable structures are available to you, allowing effective defense of your sanctum. Use your Slab on a structure to gain extra information.": [
-    "tgui:ClockworkSlab"
   ],
   "A+": [
     "dm:labels"
@@ -615,9 +465,6 @@
   "AK-105 modernization kit": [
     "dm:labels"
   ],
-  "ALL MATERIALS ARE NOW WORTHLESS": [
-    "tgui:MatMarket"
-  ],
   "ANCHOR": [
     "tgui:NuclearBomb"
   ],
@@ -645,7 +492,7 @@
   "ASCENDED": [
     "tgui:AntagInfoHeretic"
   ],
-  "ATTENTION! THE MARKET HAS CRASHED": [
+  "ATTENTION! THE MARKET HAS CRASHED{0} {1}ALL MATERIALS ARE NOW WORTHLESS{2} {3}TRADING CIRCUIT BREAKER HAS BEEN ENGAGED FOR ALL TRADERS{4} {5}{6}": [
     "tgui:MatMarket"
   ],
   "ATTENTION:": [
@@ -816,7 +663,7 @@
     "tgui:CargoRequests",
     "tgui:UsersScreen"
   ],
-  "Account balance:": [
+  "Account balance: {0} credit{1}": [
     "tgui:NtosPay"
   ],
   "Account made": [
@@ -965,7 +812,7 @@
   "Active Interviews": [
     "tgui:InterviewManager"
   ],
-  "Active Players:": [
+  "Active Players: {0}": [
     "tgui:IntensityCredits"
   ],
   "Active Power Cost (Watts)": [
@@ -974,10 +821,7 @@
   "Active Rulesets": [
     "tgui:DynamicAdmin"
   ],
-  "Active Tablets": [
-    "tgui:NtosNetMonitor"
-  ],
-  "Active Turfs:": [
+  "Active Turfs: {0}": [
     "tgui:AtmosControlPanel"
   ],
   "Active Vote": [
@@ -1073,13 +917,13 @@
   "Add to queue": [
     "tgui:DynamicAdmin"
   ],
-  "Added by": [
+  "Added by {0}.": [
     "tgui:Loadouts"
   ],
   "Addict": [
     "dm:labels"
   ],
-  "Addicted to": [
+  "Addicted to {0}": [
     "tgui:MedicalKiosk"
   ],
   "Addiction": [
@@ -1091,9 +935,6 @@
   ],
   "Addiction Types": [
     "tgui:ChemMaster"
-  ],
-  "Adding a new relay is simple, you just need to hit the + button, and select a plane by name to relay onto.": [
-    "tgui:PlaneMenus"
   ],
   "Additional Status Display Options": [
     "tgui:AiStatusDisplayPicker"
@@ -1276,11 +1117,8 @@
   "Afropuff, Right": [
     "dm:labels"
   ],
-  "After a long and destructive war, Rat'Var has been imprisoned inside a dimension of suffering.": [
+  "After a long and destructive war, Rat'Var has been imprisoned inside a dimension of suffering.{0}You are one of his last remaining, most loyal servants. {1}You are very weak and have little power, with most of your scriptures unable to function.{2}{3}{4}": [
     "tgui:ClockworkSlab"
-  ],
-  "After a note has an accidental placed, it will be remembered:": [
-    "tgui:InstrumentEditor"
   ],
   "After lifespan has elapsed, how long a particle spends fading out in ticks. Can use a generator.": [
     "tgui:Tutorial"
@@ -1390,8 +1228,7 @@
     "tgui:BorgShaker"
   ],
   "Alert": [
-    "dm:labels",
-    "tgui:Main"
+    "dm:labels"
   ],
   "Alert Amber": [
     "dm:labels"
@@ -1426,7 +1263,7 @@
   "All Blanks": [
     "tgui:Photocopier"
   ],
-  "All Changelings, regardless of origin, are linked together by the": [
+  "All Changelings, regardless of origin, are linked together by the{0}{1}. You may communicate to other Changelings under your mental alias,{2}{3}, by starting a message with {4}. Work together, and you will bring the station to new heights of terror.": [
     "tgui:AntagInfoChangeling"
   ],
   "All Cyborgs": [
@@ -1450,7 +1287,7 @@
   "All The Fuzz": [
     "dm:labels"
   ],
-  "All abilities require using": [
+  "All abilities require using{0}{1}, you can see how much you have with the HUD on the left side of the screen. You may also hover your cursor over it to see the maximum amount of chemicals you can hold. This number can increase by{2} other Changelings.": [
     "tgui:AntagInfoChangeling"
   ],
   "All areas powered": [
@@ -1462,7 +1299,7 @@
   "All assets including icons and sound are under a": [
     "tgui:Changelog"
   ],
-  "All at once it makes sense: you know what you are and who you are! Self awareness is yours!": [
+  "All at once it makes sense: you know what you are and who you are! Self awareness is yours!{0}{1}": [
     "tgui:AntagInfoSentient"
   ],
   "All code after": [
@@ -1476,9 +1313,6 @@
   ],
   "All nearby instruments with the same ID will start playing the same song when any one starts playing.": [
     "tgui:InstrumentEditor"
-  ],
-  "All new purchases will include the cost of the shipped crate, which may be recycled afterwards.": [
-    "tgui:MatMarket"
   ],
   "All vending machines stocked!": [
     "tgui:RestockTracker"
@@ -1526,7 +1360,7 @@
   "Aloof": [
     "dm:labels"
   ],
-  "Alpha (": [
+  "Alpha ({0})": [
     "tgui:PlaneEditor"
   ],
   "Alpha Atelier Pilot Jacket": [
@@ -1540,9 +1374,6 @@
   ],
   "Alt Click": [
     "tgui:index"
-  ],
-  "Alt Click = Remove Blob": [
-    "tgui:AntagInfoBlob"
   ],
   "Alter Form": [
     "dm:labels"
@@ -1562,7 +1393,7 @@
   "Alternate names": [
     "tgui:names"
   ],
-  "Alternately, complete the": [
+  "Alternately, complete the{0}{1}by invoking a ritual circle at several nexuses of power.{2}You must complete the ritual{3} more times.{4}Your next ritual location is the{5}.": [
     "tgui:AntagInfoWizard"
   ],
   "Alternative to TTS: When enabled, be able to hear players' vocal barks when they are speaking (including your own).": [
@@ -1614,7 +1445,7 @@
   "Amount of tritium remaining in the current rod. Assuming a sane operator, 9 moles can produce 1 MW for 3 hours. We have calculated for 5, 10, and 15 minutes to give colored warnings.": [
     "tgui:RBMK2"
   ],
-  "Amount:": [
+  "Amount: {0}": [
     "tgui:OreContainer"
   ],
   "AmpCheck": [
@@ -1733,7 +1564,7 @@
   "Anosmia": [
     "dm:labels"
   ],
-  "Another day at a meaningless job. You feel a": [
+  "Another day at a meaningless job. You feel a {0} around you, as a realization of something {1} in the air unfolds. You look inwards and discover something that will change your life.": [
     "tgui:AntagInfoHeretic"
   ],
   "Antag Events": [
@@ -1766,7 +1597,7 @@
   "Anthromorphic Insect": [
     "dm:labels"
   ],
-  "Anti-Tamper Bomb will activate": [
+  "Anti-Tamper Bomb will activate {0}": [
     "tgui:AbandonedCrate"
   ],
   "Antibodies": [
@@ -1832,7 +1663,7 @@
   "Application Status": [
     "tgui:OpposingForcePanel"
   ],
-  "Applied chromosome:": [
+  "Applied chromosome: {0}": [
     "tgui:MutationInfo"
   ],
   "Applied to particles when it spawns; determines how many ticks before this particle starts despawning. Can use a generator.": [
@@ -1868,7 +1699,7 @@
   "Applying effects": [
     "tgui:PlaneMenus"
   ],
-  "Applying the": [
+  "Applying the {0} preset will replace all your current markings. Are you sure?": [
     "tgui:LimbsPage"
   ],
   "Apprentice": [
@@ -1883,7 +1714,7 @@
   "Apprentice Roboticist": [
     "dm:labels"
   ],
-  "Approval is": [
+  "Approval is {0} required to join": [
     "tgui:Soulcatcher"
   ],
   "Approve": [
@@ -2065,8 +1896,7 @@
     "dm:labels"
   ],
   "Arousal": [
-    "tgui:GenitalLayeringTab",
-    "tgui:InfoSection"
+    "tgui:GenitalLayeringTab"
   ],
   "Art": [
     "dm:labels"
@@ -2141,11 +1971,13 @@
   "Assignment Information": [
     "tgui:NtosSelfServe"
   ],
-  "Assignment Locked!": [
+  "Assignment Locked!{0}{1}Security and Command members must visit an appropriate Command member to punch in!": [
     "tgui:NtosSelfServe"
   ],
   "Assignment:": [
-    "tgui:NtosCard",
+    "tgui:NtosCard"
+  ],
+  "Assignment:{0}{1}": [
     "tgui:NtosMain"
   ],
   "Assistance and Summoning": [
@@ -2159,9 +1991,6 @@
   ],
   "Assistant's Formal Uniform": [
     "dm:labels"
-  ],
-  "Association": [
-    "tgui:NtosSkillTracker"
   ],
   "Assume Control": [
     "tgui:ExodroneConsole"
@@ -2181,9 +2010,6 @@
   "Astolfo": [
     "dm:labels"
   ],
-  "At": [
-    "tgui:Supermatter"
-  ],
   "At any point in the middle of the shift, be strucken with an infection that will turn you into the terrifying blob.": [
     "dm:antagonists"
   ],
@@ -2192,6 +2018,9 @@
   ],
   "At the edge of the Sol system lies a treacherous asteroid belt. Many have been crushed by stray asteroids and misguided judgement.": [
     "tgui:OrionGame"
+  ],
+  "At {0} gives:": [
+    "tgui:Supermatter"
   ],
   "Athletic": [
     "dm:labels"
@@ -2330,7 +2159,7 @@
   "Authorized personnel only": [
     "tgui:BankMachine"
   ],
-  "Authorized personnel only.": [
+  "Authorized personnel only.{0}": [
     "tgui:ApcControl"
   ],
   "Auto": [
@@ -2476,7 +2305,7 @@
   "Available bandwidth for new connections.": [
     "tgui:QuantumConsole"
   ],
-  "Available prize money:": [
+  "Available prize money:{0}{1}": [
     "tgui:SlotMachine"
   ],
   "Average size": [
@@ -2513,9 +2342,6 @@
   "Awaiting response...": [
     "tgui:SyndContractor",
     "tgui:SyndicateContractor"
-  ],
-  "Awaiting system reboot.": [
-    "tgui:Apc"
   ],
   "Away": [
     "tgui:OrbitTooltip"
@@ -2574,9 +2400,6 @@
   ],
   "BOTH": [
     "tgui:index"
-  ],
-  "BPM": [
-    "tgui:InstrumentEditor"
   ],
   "BSOD": [
     "dm:labels"
@@ -2661,7 +2484,7 @@
     "tgui:SlotMachine",
     "tgui:UsersScreen"
   ],
-  "Balance:": [
+  "Balance: {0} cr.": [
     "tgui:MatMarket"
   ],
   "Bald": [
@@ -2851,12 +2674,16 @@
     "tgui:MassSpec"
   ],
   "Beaker:": [
-    "tgui:ChemSeparator",
-    "tgui:MilkingMachine",
-    "tgui:RecipeLibrary"
+    "tgui:ChemSeparator"
   ],
   "Beaker: none": [
     "tgui:MilkingMachine"
+  ],
+  "Beaker: {0}": [
+    "tgui:MilkingMachine"
+  ],
+  "Beaker: {0}{1}{2}{3}{4}{5}": [
+    "tgui:RecipeLibrary"
   ],
   "Beanie (Black)": [
     "dm:labels"
@@ -3356,7 +3183,7 @@
   "Blend Mode": [
     "tgui:PlaneEditor"
   ],
-  "Blend mode:": [
+  "Blend mode: {0}": [
     "tgui:Port"
   ],
   "Blind": [
@@ -3465,9 +3292,6 @@
   "Blood-red Pajamas": [
     "dm:labels"
   ],
-  "Bloodtype:": [
-    "tgui:NtosRecords"
-  ],
   "Bloody": [
     "dm:labels"
   ],
@@ -3494,9 +3318,6 @@
   ],
   "Blue Ushanka": [
     "dm:labels"
-  ],
-  "Blue nodes are relays, so drawing one plane onto another. Purple ones are filter based connections.": [
-    "tgui:PlaneMenus"
   ],
   "Blue-Silvered Coat": [
     "dm:labels"
@@ -3798,9 +3619,6 @@
   ],
   "Bottom - Switch": [
     "dm:labels"
-  ],
-  "Boulders cannot be smelted directly, and will require additional manual processing - strike them with a pickaxe to break them down further.": [
-    "tgui:LaborClaimConsole"
   ],
   "Bouncer": [
     "dm:labels"
@@ -4706,7 +4524,7 @@
   "Buy Privately": [
     "tgui:CargoCatalog"
   ],
-  "Buy orders for material sheets placed here will be ordered on the next cargo shipment.": [
+  "Buy orders for material sheets placed here will be ordered on the next cargo shipment.{0} {1}To sell materials, please insert sheets or similar stacks of materials. All minerals sold on the market directly are subject to a scaling value decrease per material, but this will recover over time. To prevent market manipulation, all registered traders can buy a total of 10 full stacks of materials at a time.{2} {3}When selling materials, prices will be decreased based on the elastic modifier of the material, which will recover over time.{4} {5}All new purchases will include the cost of the shipped crate, which may be recycled afterwards.": [
     "tgui:MatMarket"
   ],
   "Buzzcut": [
@@ -4715,9 +4533,6 @@
   "Buzzwords": [
     "dm:labels"
   ],
-  "By default, every note is natural and in octave 3. Defining otherwise is remembered for each note.": [
-    "tgui:InstrumentEditor"
-  ],
   "By name": [
     "tgui:CreateObject",
     "tgui:index"
@@ -4725,10 +4540,10 @@
   "By type": [
     "tgui:CreateObject"
   ],
-  "By:": [
+  "By: [REDACTED]. {0} .": [
     "tgui:Newscaster"
   ],
-  "By: [REDACTED].": [
+  "By: {0} at {1}": [
     "tgui:Newscaster"
   ],
   "Byond version": [
@@ -4808,7 +4623,7 @@
     "tgui:SyndContractor",
     "tgui:SyndicateContractor"
   ],
-  "CRISPR [": [
+  "CRISPR [{0}]": [
     "tgui:MutationInfo"
   ],
   "CTF": [
@@ -4823,7 +4638,7 @@
   "CTF voters": [
     "tgui:CTFPanel"
   ],
-  "CURRENT SPEED:": [
+  "CURRENT SPEED: {0} GQ/s": [
     "tgui:NtosNetDos"
   ],
   "C_Eigenstasium degradation reduction": [
@@ -4841,9 +4656,6 @@
   "Cabin Air": [
     "tgui:ModulesPane",
     "tgui:index"
-  ],
-  "Cabin Open": [
-    "tgui:ModulesPane"
   ],
   "Cabin Pressure": [
     "tgui:ModulesPane"
@@ -4949,9 +4761,6 @@
   "Camphor Pill": [
     "dm:labels"
   ],
-  "Can": [
-    "tgui:LanguagesMenu"
-  ],
   "Can be IC or OOC. Viewable by certain antagonists/OPFOR users, as well as ghosts. Generally contains things like weaknesses, strengths, important background, trigger words, etc. It ALSO may contain things like antagonist preferences, e.g. if you want to be antagonized, by whom, with what, etc.": [
     "tgui:species_features"
   ],
@@ -4961,14 +4770,14 @@
   "Can be changed in-round.": [
     "tgui:species_features"
   ],
-  "Can do more basic stuff too, setting a plane's color matrix can be quite powerful.": [
-    "tgui:PlaneMenus"
-  ],
   "Can make only": [
     "tgui:index"
   ],
   "Can only be used on ghosts": [
     "tgui:PlayerPanel"
+  ],
+  "Can {0}": [
+    "tgui:LanguagesMenu"
   ],
   "Can't delete the default loadout entry.": [
     "tgui:index"
@@ -5541,7 +5350,7 @@
   "Channel Name": [
     "tgui:Newscaster"
   ],
-  "Channel made by:": [
+  "Channel made by: {0}": [
     "tgui:Newspaper"
   ],
   "Channels": [
@@ -5620,7 +5429,7 @@
     "tgui:GravityGenerator",
     "tgui:Smes"
   ],
-  "Charge:": [
+  "Charge:{0}{1}Chassis Integrity:{2}": [
     "tgui:NtosRobotact"
   ],
   "Charging": [
@@ -5632,9 +5441,6 @@
   ],
   "Chassis": [
     "dm:labels"
-  ],
-  "Chassis Integrity:": [
-    "tgui:NtosRobotact"
   ],
   "Chastity Belt": [
     "dm:labels"
@@ -5699,7 +5505,7 @@
   "Checkout": [
     "tgui:ProduceConsole"
   ],
-  "Checkout (": [
+  "Checkout ({0})": [
     "tgui:index"
   ],
   "Checkout list:": [
@@ -5866,9 +5672,6 @@
   "Choose Option": [
     "tgui:MessageMonitor"
   ],
-  "Choose a destination and click OK.": [
-    "tgui:CargoHelp"
-  ],
   "Choose between a variety of powerful spells in order to cause chaos among Space Station 13.": [
     "dm:antagonists"
   ],
@@ -5880,12 +5683,6 @@
   ],
   "Choose which sound prompt to play on getting ghost polls.": [
     "tgui:sounds"
-  ],
-  "Choose your MULE.": [
-    "tgui:CargoHelp"
-  ],
-  "Chords can be played simply by seperating each note with a hyphon:": [
-    "tgui:InstrumentEditor"
   ],
   "Christianity": [
     "dm:labels"
@@ -5901,9 +5698,6 @@
   ],
   "Chronological Age": [
     "tgui:RecordView"
-  ],
-  "Chronological Age:": [
-    "tgui:NtosRecords"
   ],
   "Chronological age represents how long your character has actually existed in the universe since birth. Includes time spent in cryo-sleep and/or in areas of gravity/speed-induced time dilation.": [
     "tgui:chronological_age"
@@ -5968,7 +5762,7 @@
   "Citations": [
     "tgui:WarrantConsole"
   ],
-  "Citations:": [
+  "Citations: {0}": [
     "tgui:CrimeWatcher"
   ],
   "Civil Protection Officer": [
@@ -6104,10 +5898,7 @@
   "Clears the custom dropoff location. Reverse pods will instead dropoff at the selected bay.": [
     "tgui:ReverseMenu"
   ],
-  "Click": [
-    "tgui:CargoHelp"
-  ],
-  "Click = Expand Blob": [
+  "Click = Expand Blob {0}Middle Mouse Click = Rally Spores {1}Ctrl Click = Create Shield Blob {2}Alt Click = Remove Blob {3}": [
     "tgui:AntagInfoBlob"
   ],
   "Click [+] to define a new preset. They are persistent across rounds/servers!": [
@@ -6118,9 +5909,6 @@
   ],
   "Click a target...": [
     "tgui:ControlBar"
-  ],
-  "Click on": [
-    "tgui:CargoHelp"
   ],
   "Click on a gene to reveal it.": [
     "tgui:DnaConsoleSequencer"
@@ -6307,8 +6095,10 @@
     "tgui:AntagInfoTraitor"
   ],
   "Code:": [
-    "tgui:AntagInfoTraitor",
     "tgui:Signaler"
+  ],
+  "Code: {0}": [
+    "tgui:AntagInfoTraitor"
   ],
   "Coders:": [
     "tgui:Changelog"
@@ -6404,7 +6194,7 @@
   "Collar Key": [
     "dm:labels"
   ],
-  "Collect boulders and ores from the mining area and bring them to the unloading machine. Then, pull the lever to smelt them into sheets. Use the production console to dispense the sheets, and then bring bring them to the claim console to earn points.": [
+  "Collect boulders and ores from the mining area and bring them to the unloading machine. Then, pull the lever to smelt them into sheets. Use the production console to dispense the sheets, and then bring bring them to the claim console to earn points.{0}{1}Boulders cannot be smelted directly, and will require additional manual processing - strike them with a pickaxe to break them down further.{2}{3}Sheets smelted from the labor camp's furnace will be stamped with an official seal of quality. Only stamped sheets can be claimed for points - so don't bother trying to strip down tables and chairs for bonus metal.": [
     "tgui:LaborClaimConsole"
   ],
   "Collected Samples": [
@@ -6486,9 +6276,6 @@
   "Combed Bob": [
     "dm:labels"
   ],
-  "Combined, an example is:": [
-    "tgui:InstrumentEditor"
-  ],
   "Combover": [
     "dm:labels"
   ],
@@ -6549,9 +6336,6 @@
   "Commend Behavior": [
     "tgui:PlayerPanel"
   ],
-  "Comments cannot be read at this time.": [
-    "tgui:Newscaster"
-  ],
   "Commie Boxers": [
     "dm:labels"
   ],
@@ -6595,7 +6379,7 @@
   "Compassionate": [
     "dm:labels"
   ],
-  "Compatible with:": [
+  "Compatible with: {0}": [
     "tgui:MutationInfo"
   ],
   "Complete Craft": [
@@ -6615,9 +6399,11 @@
     "tgui:MODsuit",
     "tgui:SkillStation"
   ],
-  "Complexity:": [
-    "tgui:AntagInfoHeretic",
+  "Complexity: {0}": [
     "tgui:RecipeContent"
+  ],
+  "Complexity:{0}{1}": [
+    "tgui:AntagInfoHeretic"
   ],
   "Component": [
     "dm:labels"
@@ -6718,7 +6504,7 @@
   "Confirmation Prompt": [
     "tgui:Adminhelp"
   ],
-  "Conflict Opt-In:": [
+  "Conflict Opt-In:{0}{1}{2}": [
     "tgui:index"
   ],
   "Congratulations, agent. You have been chosen to join the Syndicate Nuclear Operative strike team. Your mission, whether or not you choose to accept it, is to destroy Nanotrasen's most advanced research facility! That's right, you're going to Space Station 13.": [
@@ -6753,7 +6539,7 @@
   "Connected Clients": [
     "tgui:QuantumConsole"
   ],
-  "Connected to": [
+  "Connected to {0}": [
     "tgui:Port"
   ],
   "Connection Secure": [
@@ -6813,13 +6599,13 @@
   "Construction Mode": [
     "tgui:ModulesPane"
   ],
-  "Consume": [
+  "Consume {0} units of every nutrient per second to grow by {1}%.": [
     "tgui:Microscope"
   ],
   "Contact": [
     "tgui:IDCBook"
   ],
-  "Contact the Professional": [
+  "Contact the Professional {0} Association": [
     "tgui:NtosSkillTracker"
   ],
   "Contacting syndicate database...": [
@@ -6838,7 +6624,7 @@
   "Containers": [
     "dm:labels"
   ],
-  "Contains the design for": [
+  "Contains the design for {0}:{1}{2}": [
     "tgui:disks"
   ],
   "Content:": [
@@ -6873,8 +6659,10 @@
     "dm:labels"
   ],
   "Contractor Status": [
-    "tgui:SyndContractor",
     "tgui:SyndicateContractor"
+  ],
+  "Contractor Status{0}": [
+    "tgui:SyndContractor"
   ],
   "Contracts": [
     "tgui:SyndContractor"
@@ -7088,11 +6876,8 @@
     "tgui:ServerControl",
     "tgui:SubsystemDialog"
   ],
-  "Cost estimate:": [
+  "Cost estimate:{0}{1}": [
     "tgui:ExoscannerConsole"
-  ],
-  "Costs": [
-    "tgui:ReligiousTool"
   ],
   "Costumes": [
     "dm:labels"
@@ -7218,7 +7003,7 @@
   "Created On": [
     "tgui:EngravedMessage"
   ],
-  "Created from infusing": [
+  "Created from infusing{0}{1}{2}DNA into a subject.": [
     "tgui:InfuserBook"
   ],
   "Creates a vaccine bottle.": [
@@ -7249,9 +7034,6 @@
   "Creature Plushie": [
     "dm:labels"
   ],
-  "Credits": [
-    "tgui:CivCargoHoldTerminal"
-  ],
   "Credits in account": [
     "tgui:NtosNifsoftCatalog"
   ],
@@ -7280,7 +7062,7 @@
   "Crewcut": [
     "dm:labels"
   ],
-  "Crimes:": [
+  "Crimes: {0}": [
     "tgui:CrimeWatcher"
   ],
   "Criminal Activity": [
@@ -7289,14 +7071,11 @@
   "Criminal Name": [
     "tgui:Newscaster"
   ],
-  "Criminal Name:": [
+  "Criminal Name: {0}": [
     "tgui:Newspaper"
   ],
   "Criminal Status": [
     "tgui:GulagTeleporterConsole"
-  ],
-  "Criminal Status:": [
-    "tgui:NtosRecords"
   ],
   "Crippled Bull": [
     "dm:labels"
@@ -7364,12 +7143,6 @@
   "Crystal Destabilization": [
     "dm:labels"
   ],
-  "Ctrl Click = Create Shield Blob": [
-    "tgui:AntagInfoBlob"
-  ],
-  "Ctrl+Click on the gene to set it to X. Right Click to cycle in reverse.": [
-    "tgui:DnaConsoleSequencer"
-  ],
   "Ctrl-click a button to select *any* item instead of what will probably fit in that slot.": [
     "tgui:OutfitEditor"
   ],
@@ -7434,13 +7207,13 @@
   "Current AI Core Display": [
     "tgui:AiCoreDisplayPicker"
   ],
-  "Current Alert Level :": [
+  "Current Alert Level : {0}": [
     "tgui:TimeClock"
   ],
   "Current Area:": [
     "tgui:ShuttleBlueprints"
   ],
-  "Current Assignment:": [
+  "Current Assignment: {0}": [
     "tgui:NtosSelfServe"
   ],
   "Current Balance": [
@@ -7452,7 +7225,7 @@
   "Current Buffer": [
     "tgui:Crayon"
   ],
-  "Current Buffer:": [
+  "Current Buffer: {0}": [
     "tgui:Telecomms"
   ],
   "Current Call": [
@@ -7464,9 +7237,6 @@
   "Current Damper": [
     "tgui:Controls"
   ],
-  "Current Deathrattle Group:": [
-    "tgui:ImplantPad"
-  ],
   "Current Display": [
     "tgui:AiStatusDisplayPicker"
   ],
@@ -7476,7 +7246,7 @@
   "Current Job": [
     "tgui:TimeClock"
   ],
-  "Current Level:": [
+  "Current Level: {0}": [
     "tgui:NtosVirtualPet"
   ],
   "Current Location": [
@@ -7508,7 +7278,7 @@
     "tgui:SyndContractor",
     "tgui:SyndicateContractor"
   ],
-  "Current Status:": [
+  "Current Status: {0}": [
     "tgui:NtosSelfServe"
   ],
   "Current Stories": [
@@ -7528,7 +7298,7 @@
   "Current User": [
     "tgui:NtosShipping"
   ],
-  "Current jackpot:": [
+  "Current jackpot:{0}{1}": [
     "tgui:SlotMachine"
   ],
   "Current output": [
@@ -7546,7 +7316,7 @@
   "Currently active crew": [
     "tgui:OpposingForcePanel"
   ],
-  "Currently on": [
+  "Currently on {0} Alert": [
     "tgui:Main"
   ],
   "Currently selected:": [
@@ -7574,7 +7344,6 @@
     "dm:labels"
   ],
   "Custom": [
-    "tgui:DecalPainter",
     "tgui:PlayerPanel"
   ],
   "Custom Amount": [
@@ -7797,7 +7566,7 @@
     "tgui:NtosCyborgRemoteMonitor",
     "tgui:PortableTurret"
   ],
-  "Cyborgs (": [
+  "Cyborgs ({0})": [
     "tgui:RoboticsControlConsole"
   ],
   "Cycle between sorting methods.": [
@@ -7896,10 +7665,7 @@
   "DAWN": [
     "tgui:AntagInfoHeretic"
   ],
-  "DEAD": [
-    "tgui:AntagInfoGlitch"
-  ],
-  "DELAY": [
+  "DELAY {0} / {1}": [
     "tgui:AdventureBrowser"
   ],
   "DELETED": [
@@ -7914,7 +7680,6 @@
   ],
   "DNA": [
     "tgui:Beaker",
-    "tgui:CellularEmporium",
     "tgui:PaiCard",
     "tgui:RecordView",
     "tgui:System"
@@ -7928,7 +7693,7 @@
   "DNA Infusion Manual": [
     "tgui:InfuserBook"
   ],
-  "DNA Infusion is the practice of integrating dead creature DNA into yourself, mutating one of your organs into a genetic slurry that sits somewhere between being yours or the creature's. While this does bring you further away from being human, and gives a slew of... unfortunate side effects, it also grants new capabilities.": [
+  "DNA Infusion is the practice of integrating dead creature DNA into yourself, mutating one of your organs into a genetic slurry that sits somewhere between being yours or the creature's. While this does bring you further away from being human, and gives a slew of... unfortunate side effects, it also grants new capabilities.{0}{1}": [
     "tgui:InfuserBook"
   ],
   "DNA Lock": [
@@ -7943,9 +7708,6 @@
   ],
   "DNA Vault Database": [
     "tgui:DnaVault"
-  ],
-  "DNA into a subject.": [
-    "tgui:InfuserBook"
   ],
   "DO NOT MESS WITH EXISTING FILTERS IF YOU DO NOT KNOW THE CONSEQUENCES. YOU HAVE BEEN WARNED.": [
     "tgui:Filterrific"
@@ -8088,8 +7850,7 @@
     "tgui:DnaScanner",
     "tgui:HypnoChair",
     "tgui:ImplantChair",
-    "tgui:OrbitContent",
-    "tgui:Seed"
+    "tgui:OrbitContent"
   ],
   "Dead Space": [
     "tgui:OrionGame"
@@ -8433,8 +8194,13 @@
   "Description:": [
     "tgui:DSMBook",
     "tgui:IDCBook",
-    "tgui:Newspaper",
     "tgui:NtosCamera"
+  ],
+  "Description: {0}": [
+    "tgui:Newspaper"
+  ],
+  "Description{0}": [
+    "tgui:OpposingForcePanel"
   ],
   "Design Disk Inserted": [
     "tgui:Content"
@@ -8502,7 +8268,6 @@
     "tgui:GenericUplink"
   ],
   "Details": [
-    "tgui:CrimeWatcher",
     "tgui:NtosMain",
     "tgui:NtosSupermatter",
     "tgui:PaiSubmit",
@@ -8514,11 +8279,11 @@
     "tgui:CrimeWatcher",
     "tgui:NtosCard"
   ],
+  "Details{0}": [
+    "tgui:CrimeWatcher"
+  ],
   "Detected": [
     "tgui:ModulesPane"
-  ],
-  "Detected Messengers": [
-    "tgui:index"
   ],
   "Detected Network Entities": [
     "tgui:TelecommsMonitor"
@@ -8661,7 +8426,7 @@
   "Dictates character's blood type.": [
     "tgui:blood_type"
   ],
-  "Did you know freon catches fire at low temperatures?": [
+  "Did you know freon catches fire at low temperatures?{0}{1}It even forms hot ice between 120K and 160K!{2}{3}Remember you can always turn the engine room air alarm to contaminated to assist in removing harmful gases!": [
     "tgui:DelamProcedure"
   ],
   "Difficulty": [
@@ -8850,7 +8615,6 @@
     "dm:labels"
   ],
   "Disk": [
-    "tgui:DiskMenu",
     "tgui:DnaConsoleStorage",
     "tgui:index"
   ],
@@ -8937,7 +8701,7 @@
   "Distance Travelled": [
     "tgui:TramPlaque"
   ],
-  "Distance:": [
+  "Distance: {0}": [
     "tgui:BluespaceLocator"
   ],
   "Distills into:": [
@@ -8964,7 +8728,7 @@
   "Do you want the ghosts of others to show up as their own setting, as their default sprites, or always as the default white ghost?": [
     "tgui:ghost"
   ],
-  "Do you want to save changes to": [
+  "Do you want to save changes to {0}?": [
     "tgui:NtosNotepad"
   ],
   "Do you want to see tooltips when hovering over items?": [
@@ -9008,9 +8772,6 @@
   ],
   "Don't Save": [
     "tgui:NtosNotepad"
-  ],
-  "Don't worry, saving the day is just a few steps away!": [
-    "tgui:DelamProcedure"
   ],
   "Done": [
     "tgui:HoloPay",
@@ -9109,12 +8870,6 @@
   ],
   "Drag me onto the circuit's grid to make a setter for this variable": [
     "tgui:VariableMenu"
-  ],
-  "Drag the crate on top of MULEbot. It should load on.": [
-    "tgui:CargoHelp"
-  ],
-  "Drag the crate you want to deliver next to the MULEbot.": [
-    "tgui:CargoHelp"
   ],
   "Drag the cursor from the drip and drop it on an object to connect.": [
     "tgui:IVDrip"
@@ -9259,7 +9014,7 @@
   "Drones": [
     "tgui:NtosRoboControl"
   ],
-  "Drones (": [
+  "Drones ({0})": [
     "tgui:RoboticsControlConsole"
   ],
   "Drop": [
@@ -9333,7 +9088,7 @@
   "Dynamic Admin Panel": [
     "tgui:DynamicAdmin"
   ],
-  "Dynamic Opt-In:": [
+  "Dynamic Opt-In:{0}{1}{2}": [
     "tgui:index"
   ],
   "Dynamic Weight Tester": [
@@ -9420,9 +9175,6 @@
     "tgui:AppearanceInfo",
     "tgui:EmergencyShuttleConsole"
   ],
-  "ERROR:": [
-    "tgui:ThermoElectricGenerator"
-  ],
   "ERROR: CONNECTION REFUSED": [
     "tgui:index"
   ],
@@ -9432,13 +9184,19 @@
   "ERROR: INTERFACE UNRESPONSIVE": [
     "tgui:MODsuit"
   ],
+  "ERROR: {0}": [
+    "tgui:ThermoElectricGenerator"
+  ],
   "ERT Generic": [
     "dm:labels"
   ],
   "ESTOP": [
     "tgui:TramController"
   ],
-  "ETA:": [
+  "ETA: {0}{1}": [
+    "tgui:ExodroneConsole"
+  ],
+  "ETA:{0}{1}{2}": [
     "tgui:ExodroneConsole"
   ],
   "EVA Technician": [
@@ -9457,14 +9215,8 @@
   "Each department on the station will order crates from their own personal consoles. These orders are ENTIRELY FREE! They do not come out of cargo's budget, and rather put the consoles on cooldown. So here's where you come in: The ordered crates will show up on your supply console, and you need to deliver the crates to the orderers. You'll actually be paid the full value of the department crate on delivery if the crate was not tampered with, making the system a good source of income.": [
     "tgui:CargoHelp"
   ],
-  "Each individual piece of research can only be done in a specific location, and will take time to finish. In that time, your presence will be exceedingly obvious.": [
-    "tgui:ClockworkSlab"
-  ],
   "Each option corresponds to an area on centcom. Launched pods will be filled with items in these areas according to the \"Load from Bay\" options at the top left.": [
     "tgui:PodBays"
-  ],
-  "Each plane can be viewed more closely by clicking the little button in it's top right corner. This opens a sidebar, and displays a lot of more general info about the plane and its purpose, alongside exposing some useful buttons and interesting values.": [
-    "tgui:PlaneMenus"
   ],
   "Eagerness": [
     "tgui:index"
@@ -9475,7 +9227,7 @@
   "Earmuffs": [
     "dm:labels"
   ],
-  "Earned Tickets:": [
+  "Earned Tickets: {0}": [
     "tgui:NtosArcade"
   ],
   "Ears": [
@@ -9576,7 +9328,7 @@
   "Editing disabled by CentCom!": [
     "tgui:AutomatedAnnouncement"
   ],
-  "Editing the": [
+  "Editing the {0} value for {1}...": [
     "tgui:AlarmModal"
   ],
   "Edits the name that is sent when emoting and saying.": [
@@ -9712,7 +9464,7 @@
   "Ejects the item currently inside the machine.": [
     "tgui:DestructiveAnalyzer"
   ],
-  "Elasticity:": [
+  "Elasticity: {0}%": [
     "tgui:MatMarket"
   ],
   "Elderwood Garment": [
@@ -9779,8 +9531,7 @@
     "tgui:StripMenu"
   ],
   "Emergency Maintenance Access": [
-    "tgui:KeycardAuth",
-    "tgui:Main"
+    "tgui:KeycardAuth"
   ],
   "Emergency Medical": [
     "dm:labels"
@@ -9858,7 +9609,7 @@
   "Employer": [
     "tgui:AntagInfoTraitor"
   ],
-  "Employer thoughts:": [
+  "Employer thoughts:{0}": [
     "tgui:AntagInfoTraitor"
   ],
   "Employment Officer": [
@@ -10171,8 +9922,7 @@
     "dm:labels"
   ],
   "Engineering Override Access": [
-    "tgui:KeycardAuth",
-    "tgui:Main"
+    "tgui:KeycardAuth"
   ],
   "Engineering Response Officer": [
     "dm:labels"
@@ -10231,10 +9981,10 @@
   "Enter channel description here:": [
     "tgui:Newscaster"
   ],
-  "Enter channel name here:": [
+  "Enter channel name here:{0}": [
     "tgui:Newscaster"
   ],
-  "Enter comment:": [
+  "Enter comment:{0}": [
     "tgui:Newscaster"
   ],
   "Enter machine ID...": [
@@ -10379,7 +10129,7 @@
   "Espatier Captain Fox Plushie": [
     "dm:labels"
   ],
-  "Estimated Time:": [
+  "Estimated Time: {0}.": [
     "tgui:ExoscannerConsole"
   ],
   "Ethereal": [
@@ -10421,9 +10171,6 @@
   "Even": [
     "tgui:Board"
   ],
-  "Even just setting alpha to show and hide things can be quite useful.": [
-    "tgui:PlaneMenus"
-  ],
   "Event": [
     "tgui:EventPanel",
     "tgui:OrionGame"
@@ -10440,9 +10187,6 @@
   "Events and Midround Rulesets": [
     "tgui:GhostPoolProtection"
   ],
-  "Every note in a chord will play together, with chord timed by the tempo.": [
-    "tgui:InstrumentEditor"
-  ],
   "Everyone gets brain damage": [
     "tgui:Secrets"
   ],
@@ -10454,12 +10198,6 @@
   ],
   "Evolution Tree": [
     "tgui:BorerEvolution"
-  ],
-  "Examine a department order crate to get specific details about where the crate needs to go.": [
-    "tgui:CargoHelp"
-  ],
-  "Example:": [
-    "tgui:InstrumentEditor"
   ],
   "Excavator": [
     "dm:labels"
@@ -10476,7 +10214,7 @@
   "Excitable!": [
     "dm:labels"
   ],
-  "Excited Groups:": [
+  "Excited Groups: {0}": [
     "tgui:AtmosControlPanel"
   ],
   "Exclaim!": [
@@ -10484,9 +10222,6 @@
   ],
   "Execute this ruleset": [
     "tgui:DynamicAdmin"
-  ],
-  "Executing software reboot in": [
-    "tgui:Apc"
   ],
   "Executive Officer": [
     "dm:labels"
@@ -10527,7 +10262,7 @@
   "Exosuit Fabricator": [
     "tgui:ExosuitFabricator"
   ],
-  "Exp Progress:": [
+  "Exp Progress:{0}": [
     "tgui:NtosVirtualPet"
   ],
   "Expand": [
@@ -10593,7 +10328,7 @@
     "tgui:ProbingConsole",
     "tgui:index"
   ],
-  "Experiments (": [
+  "Experiments ({0}/{1})": [
     "tgui:TechNode"
   ],
   "Explicitly set icon:": [
@@ -10629,7 +10364,7 @@
   "Exposed": [
     "tgui:index"
   ],
-  "Express:": [
+  "Express: {0}{1}{2}": [
     "tgui:ProduceConsole"
   ],
   "Expunge record data.": [
@@ -10662,7 +10397,7 @@
   "Extinguisher": [
     "tgui:ModulesPane"
   ],
-  "Extra View Distance:": [
+  "Extra View Distance:{0}": [
     "tgui:GhostMenu"
   ],
   "Extract": [
@@ -10816,7 +10551,7 @@
   "Failed reagent": [
     "tgui:ReagentLookup"
   ],
-  "Failsafe:": [
+  "Failsafe: {0}": [
     "tgui:AntagInfoTraitor"
   ],
   "Fairy": [
@@ -10975,7 +10710,7 @@
   "Feathery (Greyscale)": [
     "dm:labels"
   ],
-  "Feature": [
+  "Feature {0} is not recognized.": [
     "tgui:MainPage"
   ],
   "Features": [
@@ -11040,7 +10775,7 @@
   "Fennec Large Flat Sharp": [
     "dm:labels"
   ],
-  "Fibers": [
+  "Fibers {0}/{1}": [
     "tgui:ForensicsSpoofer"
   ],
   "Fig": [
@@ -11080,16 +10815,13 @@
   "Filter by recommended tool. Right click to reset.": [
     "tgui:PatientStateView"
   ],
-  "Filter from moderator mix:": [
-    "tgui:Controls"
-  ],
   "Filter out robotic surgeries.": [
     "tgui:SurgeryProceduresView"
   ],
   "Filter results...": [
     "tgui:NtosRecords"
   ],
-  "Filter type:": [
+  "Filter type: {0}": [
     "tgui:Port"
   ],
   "Filtered Frequencies": [
@@ -11122,12 +10854,6 @@
   "Finally, revel in the satisfaction of knowing that you've single-handedly prevented a delamination. But, of course, don't forget to feel guilty because SAFETY MOTH Knows. SAFETY MOTH knows everything. It's always watching, judging, and probably taking notes for its next safety briefing. So bask in the glory of your heroism, but know that the all-knowing Moff is onto you.": [
     "tgui:DelamProcedure"
   ],
-  "Finally, we place the": [
-    "tgui:PlaneMenus"
-  ],
-  "Finally, you can restore yourself to your original form while morphed by": [
-    "tgui:AntagInfoMorph"
-  ],
   "Find Plane": [
     "tgui:index"
   ],
@@ -11141,7 +10867,7 @@
     "tgui:CrimeWatcher",
     "tgui:WarrantConsole"
   ],
-  "Fine (leave blank to arrest)": [
+  "Fine (leave blank to arrest){0}": [
     "tgui:CrimeWatcher"
   ],
   "Fingerless Gloves (Colorable)": [
@@ -11150,12 +10876,11 @@
   "Fingerprint": [
     "tgui:RecordView"
   ],
-  "Fingerprint Hash:": [
-    "tgui:NtosRecords"
-  ],
   "Fingerprints": [
-    "tgui:ForensicsSpoofer",
     "tgui:MODsuit"
+  ],
+  "Fingerprints {0}/{1}": [
+    "tgui:ForensicsSpoofer"
   ],
   "Fingerwave": [
     "dm:labels"
@@ -11163,7 +10888,7 @@
   "Fire Alarm": [
     "tgui:AlarmStatus"
   ],
-  "Fire Cnt:": [
+  "Fire Cnt: {0}": [
     "tgui:AtmosControlPanel"
   ],
   "Fire Employee?": [
@@ -11189,9 +10914,6 @@
   ],
   "First joined server": [
     "tgui:PlayerPanel"
-  ],
-  "First things off there are 3 variable you care about: POSITION, VELOCITY and ACCELERATION. Position is where you are in a 3D space, velocity is how fast you are moving in x/y/z directions, and acceleration is how much velocity is being changed by. Shortly summarized this is": [
-    "tgui:Tutorial"
   ],
   "Fish": [
     "dm:labels",
@@ -11606,17 +11328,14 @@
   "For every lesson we teach, we grow in power. We can convert walls into glass to allow us to reach even further.": [
     "tgui:AntagInfoVoidwalker"
   ],
-  "For only": [
+  "For only{0}{1}{2}credit{3}!{4}{5}": [
     "tgui:SlotMachine"
   ],
   "For people creating a sneaky event: If you toggle Station Created Sentience, people may catch on that admins have disabled roles for your event...": [
     "tgui:GhostPoolProtection"
   ],
-  "For the Sake of": [
+  "For the Sake of {0}": [
     "tgui:Print"
-  ],
-  "For this reason, there are some effects that are pretty much impossible with planes.": [
-    "tgui:PlaneMenus"
   ],
   "For use on Space Facilities only!": [
     "tgui:Newspaper"
@@ -11819,9 +11538,6 @@
   "Frequency:": [
     "tgui:Signaler"
   ],
-  "Frequently Asked Questions:": [
-    "tgui:AntagInfoSeparatist"
-  ],
   "Fried food": [
     "dm:labels"
   ],
@@ -11917,7 +11633,7 @@
   "Full Random": [
     "tgui:Randomize"
   ],
-  "Full Random will give you anything. There's no going back, either! Guaranteed to have": [
+  "Full Random will give you anything. There's no going back, either! Guaranteed to have {0} points worth of spells.": [
     "tgui:Randomize"
   ],
   "Full Toolbox": [
@@ -11935,9 +11651,6 @@
   ],
   "Fully Immerse Everyone": [
     "tgui:Secrets"
-  ],
-  "Fully destroy APCs when possible. Instead of hunting lights that can be fixed, hunt the APCs which are harder to repair.": [
-    "tgui:AntagInfoNightmare"
   ],
   "Fun": [
     "tgui:PlayerPanel",
@@ -12038,13 +11751,6 @@
   ],
   "GPLv3.txt": [
     "tgui:Changelog"
-  ],
-  "GQ": [
-    "tgui:NtnetRelay",
-    "tgui:NtosNetDownloader"
-  ],
-  "GQ/s": [
-    "tgui:NtosNetDos"
   ],
   "Galactic Common": [
     "dm:labels"
@@ -12164,9 +11870,6 @@
   "Gender (Silicon)": [
     "tgui:silicon_gender"
   ],
-  "Gender:": [
-    "tgui:NtosRecords"
-  ],
   "Genderfluid": [
     "dm:labels"
   ],
@@ -12231,9 +11934,6 @@
   "Genetic Mutation": [
     "dm:labels",
     "tgui:genetic_freak"
-  ],
-  "Genetic makeup transfer ready in...": [
-    "tgui:DnaConsoleEnzymes"
   ],
   "Genetic sequence corrupted. Subject diagnostic report: DECEASED.": [
     "tgui:DnaConsoleSequencer"
@@ -12369,9 +12069,6 @@
   ],
   "Gibbering": [
     "dm:labels"
-  ],
-  "Gibtonite is not accepted.": [
-    "tgui:OreBox"
   ],
   "Gimme some!": [
     "dm:interactions"
@@ -12530,7 +12227,7 @@
   "GoldenEye Subversion Progress": [
     "tgui:AntagInfoAssaultops"
   ],
-  "GoldeneEye Defnet": [
+  "GoldeneEye Defnet {0}": [
     "tgui:AntagInfoAssaultops"
   ],
   "Golem": [
@@ -12638,7 +12335,7 @@
   "Green \\\"Newbie\\\" Pin": [
     "dm:labels"
   ],
-  "Greetings Valued Employee! Please select a desired automatic health check procedure. Diagnosis costs": [
+  "Greetings Valued Employee! Please select a desired automatic health check procedure. Diagnosis costs {0}": [
     "tgui:MedicalKiosk"
   ],
   "Grey": [
@@ -12818,12 +12515,6 @@
   "HEY FUCKOS, these filters are based off VERY OLD and VERY FLAWED matrixes.": [
     "tgui:ColorBlindTester"
   ],
-  "HP": [
-    "tgui:NtosArcade"
-  ],
-  "HP:": [
-    "tgui:BattleArcade"
-  ],
   "HUD": [
     "tgui:AntagInfoBlob"
   ],
@@ -12832,9 +12523,6 @@
   ],
   "HUMANS_ONLY": [
     "dm:labels"
-  ],
-  "Ha! What a loser. :3": [
-    "tgui:IntensityCredits"
   ],
   "Hack": [
     "tgui:MessageMonitor",
@@ -12968,11 +12656,8 @@
   "Haori": [
     "dm:labels"
   ],
-  "Happiness:": [
+  "Happiness:{0}": [
     "tgui:NtosVirtualPet"
-  ],
-  "Hard": [
-    "tgui:QuantumConsole"
   ],
   "Hard Fault": [
     "tgui:NtosCyborgRemoteMonitor",
@@ -12980,6 +12665,9 @@
   ],
   "Hard drive": [
     "tgui:NtosNetDownloader"
+  ],
+  "Hard {0}{1}": [
+    "tgui:QuantumConsole"
   ],
   "Hardcore random": [
     "tgui:randomization"
@@ -13188,7 +12876,7 @@
   "Headphones": [
     "dm:labels"
   ],
-  "Heads Up! We do not allow you to fully delete books in game": [
+  "Heads Up! We do not allow you to fully delete books in game{0}What you're doing here is a \"don't show this to anyone\" button{1}If you for whatever reason need to fully wipe a book, please speak to your database administrator": [
     "tgui:Modify"
   ],
   "Headshot": [
@@ -13219,7 +12907,7 @@
   "Health Sensor": [
     "tgui:HealthSensor"
   ],
-  "Health:": [
+  "Health:{0}{1}": [
     "tgui:FishAnalyzer"
   ],
   "Healthy": [
@@ -13348,7 +13036,7 @@
   "Herbalist": [
     "dm:labels"
   ],
-  "Here, you can learn languages using a point system. The": [
+  "Here, you can learn languages using a point system. The {0}{1}neutral quirk will give you one extra point.{2}Languages may be either {3} or{4}{5}{6}One language is worth {7} even if that language is only understood and not spoken.{8}You must have at least one known language, and you must understand Sol Common to play most station jobs. {9}It does not cost points to toggle speech of a language—it only costs points to add an entirely new language.": [
     "tgui:LanguagesMenu"
   ],
   "Heretic": [
@@ -13393,7 +13081,7 @@
   "Hey, no! Stop translating this!": [
     "tgui:AntagInfoBrainwashed"
   ],
-  "Hi,": [
+  "Hi, {0}.": [
     "tgui:NtosPay"
   ],
   "Hibiscus": [
@@ -13481,10 +13169,10 @@
   "Highheels": [
     "dm:labels"
   ],
-  "Highpop Multiplier:": [
+  "Highpop Multiplier: {0}x": [
     "tgui:IntensityCredits"
   ],
-  "Highpop Threshold:": [
+  "Highpop Threshold: {0}": [
     "tgui:IntensityCredits"
   ],
   "Hightight": [
@@ -13687,7 +13375,7 @@
   "Hosts are practically meatshields for you, just keep track of any fires, bleeding wounds, cremators or gibbing mechanisms. Remember to also heal your host periodically using Inject Blood whenever they get too low.": [
     "tgui:AntagInfoBloodWorm"
   ],
-  "Hot loop": [
+  "Hot loop{0}": [
     "tgui:ThermoElectricGenerator"
   ],
   "Hotdogs": [
@@ -13702,7 +13390,7 @@
   "Hotkeys": [
     "tgui:HotkeysHelp"
   ],
-  "Hotspots:": [
+  "Hotspots: {0}": [
     "tgui:AtmosControlPanel"
   ],
   "House Balance:": [
@@ -13831,9 +13519,11 @@
   "Humanoid": [
     "dm:labels"
   ],
-  "Hunger:": [
-    "tgui:FishAnalyzer",
+  "Hunger:{0}": [
     "tgui:NtosVirtualPet"
+  ],
+  "Hunger:{0}{1}": [
+    "tgui:FishAnalyzer"
   ],
   "Hungry": [
     "dm:labels"
@@ -13886,17 +13576,11 @@
   "I Feel Lucky": [
     "tgui:NovaCharacterDirectory"
   ],
-  "I am an elite operative executing a co-ordinated strike for the benefit of": [
+  "I am an elite operative executing a co-ordinated strike for the benefit of{0}{1}!": [
     "tgui:AntagInfoNinja"
-  ],
-  "I won't get into every effect we do here, you can learn more about each plane by clicking on the little button in their top right.": [
-    "tgui:PlaneMenus"
   ],
   "I'm sold! How do I do it?": [
     "tgui:InfuserBook"
-  ],
-  "I/O regulators have malfunctioned!": [
-    "tgui:Apc"
   ],
   "IC Description:": [
     "tgui:PaiCard"
@@ -13931,7 +13615,7 @@
   "ID Management": [
     "tgui:PrisonerManagement"
   ],
-  "ID Name:": [
+  "ID Name:{0}{1}": [
     "tgui:NtosMain"
   ],
   "ID Scan": [
@@ -14022,7 +13706,7 @@
   "If a gradient is defined, change the color value by this value every tick. Can use a generator. See gradient for details.": [
     "tgui:Tutorial"
   ],
-  "If a subject infuses with enough DNA,": [
+  "If a subject infuses with enough DNA, {0}": [
     "tgui:InfuserBook"
   ],
   "If blank, will use the mob's default description.": [
@@ -14061,9 +13745,6 @@
   "If selected, you will not be selected by the \"Employee Birthday\" station trait.": [
     "tgui:birthday_opt_out"
   ],
-  "If that": [
-    "tgui:PlaneMenus"
-  ],
   "If the chosen taur body has a penis sprite, it will be used instead of the usual.": [
     "tgui:genitals"
   ],
@@ -14094,9 +13775,6 @@
   "If you are the AI, the default image displayed on all AI displays on station.": [
     "tgui:ai_emote_display"
   ],
-  "If you are the blob infection, you can place the core where you are standing by pressing the pop button on the top left corner of the screen.": [
-    "tgui:AntagInfoBlob"
-  ],
   "If you cannot reach any of your apprentices today, you can feed the contract back into your spellbook to refund it.": [
     "tgui:ApprenticeContract"
   ],
@@ -14112,9 +13790,6 @@
   "If you do not have any ideas, check #player-submitted-opfors on the Discord for inspiration.": [
     "tgui:AntagInfoOpfor"
   ],
-  "If you for whatever reason need to fully wipe a book, please speak to your database administrator": [
-    "tgui:Modify"
-  ],
   "If you have any bets, this will remove them and refund the money.": [
     "tgui:NtosSpaceBetting"
   ],
@@ -14124,10 +13799,7 @@
   "If you play, you can still possibly be returned to your body (No Guarantees)!": [
     "tgui:DeathmatchPanel"
   ],
-  "If you run out of food or crew, it's": [
-    "tgui:OrionGame"
-  ],
-  "If you want to make it to": [
+  "If you want to make it to {0}, you'll need to manage your resources:{1}{2}: Your crewmembers consume it. More crew means this goes down faster!{3}{4}: You use 5u of fuel with every movement. Don't let it run out.{5}{6}: Used to repair breakdowns. Nobody likes wasting time on repairs!": [
     "tgui:OrionGame"
   ],
   "If you've already signed but you want to renegotiate the terms, you can clear out the signatures with this button.": [
@@ -14276,7 +13948,7 @@
   "In the 2200's, the Orion trail was established as a dangerous yet opportunistic trail through space for those willing to risk it. Many pioneers seeking new lives on the galactic frontier would find exactly what they were seeking... or lose their lives on the way.": [
     "tgui:OrionGame"
   ],
-  "In the Name of": [
+  "In the Name of {0}": [
     "tgui:Print"
   ],
   "Inactive": [
@@ -14353,7 +14025,7 @@
   "Inherit Modifiers": [
     "tgui:RaptorDex"
   ],
-  "Inheritance:": [
+  "Inheritance: {0}%": [
     "tgui:FishAnalyzer"
   ],
   "Inherited Traits": [
@@ -14365,7 +14037,7 @@
   "Initialize Group": [
     "tgui:ImplantPad"
   ],
-  "Initialize(": [
+  "Initialize({0})": [
     "tgui:AntagInfoGlitch"
   ],
   "Inject": [
@@ -14377,13 +14049,10 @@
     "tgui:AtmosControlConsole",
     "tgui:IVDrip"
   ],
-  "Injection control:": [
-    "tgui:Gases"
-  ],
   "Injector": [
     "tgui:BorerChem"
   ],
-  "Injector on cooldown (": [
+  "Injector on cooldown ({0}s)": [
     "tgui:index"
   ],
   "Innocent": [
@@ -14398,7 +14067,7 @@
     "tgui:Smes",
     "tgui:StackingConsole"
   ],
-  "Input '": [
+  "Input '{0}' to proceed.{1}": [
     "tgui:Adminhelp"
   ],
   "Input Cause of Death...": [
@@ -14573,8 +14242,10 @@
     "tgui:SeedTable"
   ],
   "Install": [
-    "tgui:ClockworkSlab",
     "tgui:Installed"
+  ],
+  "Install {0}to unlock more scriptures and siphon power!": [
+    "tgui:ClockworkSlab"
   ],
   "Installed": [
     "tgui:Installed",
@@ -14587,9 +14258,6 @@
   "Instructions": [
     "tgui:MatMarket",
     "tgui:OrionGame"
-  ],
-  "Instrument Definition Error!": [
-    "tgui:InstrumentEditor"
   ],
   "Instrument Using": [
     "tgui:InstrumentEditor"
@@ -14632,10 +14300,10 @@
   "Intensity": [
     "tgui:OpposingForcePanel"
   ],
-  "Intensity Credits:": [
+  "Intensity Credits: {0}": [
     "tgui:IntensityCredits"
   ],
-  "Intensity:": [
+  "Intensity: {0}": [
     "tgui:OpposingForcePanel"
   ],
   "Interaction Priorities": [
@@ -14654,14 +14322,19 @@
     "dm:labels"
   ],
   "Interface": [
-    "tgui:RemoteRobotControl",
-    "tgui:routes"
+    "tgui:RemoteRobotControl"
   ],
   "Interface Rejection Syndrome": [
     "dm:labels"
   ],
   "Interface lock status:": [
     "tgui:InterfaceLockNoticeBox"
+  ],
+  "Interface {0} is missing an export.": [
+    "tgui:routes"
+  ],
+  "Interface {0} was not found.": [
+    "tgui:routes"
   ],
   "Interior Door": [
     "tgui:AirlockController"
@@ -14708,7 +14381,7 @@
   "Invalid": [
     "dm:labels"
   ],
-  "Invalid RegEx:": [
+  "Invalid RegEx: {0}": [
     "tgui:LogViewer"
   ],
   "Invalid Target": [
@@ -14737,7 +14410,6 @@
     "tgui:InfraredEmitter"
   ],
   "Invoke": [
-    "tgui:ClockworkSlab",
     "tgui:ReligiousTool"
   ],
   "Iron Coin": [
@@ -14794,28 +14466,10 @@
   "Issue the player with all approved equipment.": [
     "tgui:OpposingForcePanel"
   ],
-  "It": [
-    "tgui:PlaneMenus"
-  ],
-  "It also effects the layering of objects on the map.": [
-    "tgui:PlaneMenus"
-  ],
-  "It also provices some tools for editing and messing with them.": [
-    "tgui:PlaneMenus"
-  ],
-  "It can be recharged by right clicking on station APCs or other power sources, in order to drain their battery.": [
-    "tgui:AntagInfoNinja"
-  ],
-  "It does not cost points to toggle speech of a language—it only costs points to add an entirely new language.": [
-    "tgui:LanguagesMenu"
-  ],
-  "It even forms hot ice between 120K and 160K!": [
-    "tgui:DelamProcedure"
-  ],
   "It has cooled and is safe to handle.": [
     "tgui:GlassBlowing"
   ],
-  "It is currently": [
+  "It is currently {0} into the shift.": [
     "tgui:JobSelection"
   ],
   "It is focusing on a single purpose...": [
@@ -14824,23 +14478,14 @@
   "It is now time to vote, vote the accused innocent or guilty!": [
     "tgui:MafiaPanel"
   ],
-  "It is per client too, which makes it quite powerful. This is done using the": [
-    "tgui:PlaneMenus"
-  ],
-  "It is too early to return to your assignment!": [
+  "It is too early to return to your assignment!{0}Time remaining: {1}{2}{3}Please visit the HoP window or your departmental Command member for an override.": [
     "tgui:NtosSelfServe"
-  ],
-  "It is worth noting that the": [
-    "tgui:PlaneMenus"
   ],
   "It's too late for the emergency shuttle to be recalled.": [
     "tgui:Main"
   ],
   "It's too late to revert station traits, the round has already started.": [
     "tgui:StationTraitsPanel"
-  ],
-  "It's worth noting that render sources are often used by filters, normally to apply some displacement or mask.": [
-    "tgui:PlaneMenus"
   ],
   "It/Its": [
     "dm:labels"
@@ -14999,7 +14644,7 @@
   "Job Playtime Exempt": [
     "tgui:TrackedPlaytime"
   ],
-  "Job Title:": [
+  "Job Title: {0}": [
     "tgui:NtosSelfServe"
   ],
   "Jobs": [
@@ -15025,7 +14670,7 @@
   "Joker": [
     "dm:labels"
   ],
-  "Joker on cooldown (": [
+  "Joker on cooldown ({0}s)": [
     "tgui:DnaConsoleSequencer"
   ],
   "Jolly": [
@@ -15123,6 +14768,9 @@
   "Justification": [
     "tgui:OpposingForcePanel"
   ],
+  "Justification{0}": [
+    "tgui:OpposingForcePanel"
+  ],
   "Jómsvíking Coat": [
     "dm:labels"
   ],
@@ -15131,13 +14779,9 @@
     "tgui:ChemAcclimator",
     "tgui:Cryo",
     "tgui:RBMK2",
-    "tgui:ThermoElectricGenerator",
     "tgui:ThermoMachine",
     "tgui:Thermometer",
     "tgui:TurbineComputer"
-  ],
-  "K / Outlet:": [
-    "tgui:ThermoElectricGenerator"
   ],
   "KEEP_APART": [
     "tgui:AppearanceBox"
@@ -15372,7 +15016,7 @@
   "L": [
     "tgui:StripMenu"
   ],
-  "LAST SAVED RESULT": [
+  "LAST SAVED RESULT{0}{1}": [
     "tgui:NtosPhysScanner"
   ],
   "LAUNCH": [
@@ -15393,7 +15037,7 @@
   "LIZARED Underwear": [
     "dm:labels"
   ],
-  "LMB - Vend selected amount": [
+  "LMB - Vend selected amount{0}RMB - Vend all": [
     "tgui:SmartVend"
   ],
   "LO-PRI": [
@@ -15464,9 +15108,6 @@
   "Lamp Power": [
     "tgui:NtosRobotact"
   ],
-  "Lamp power usage:": [
-    "tgui:NtosRobotact"
-  ],
   "Landing Location": [
     "tgui:CargoExpress"
   ],
@@ -15486,9 +15127,6 @@
   "Languages": [
     "tgui:PlayerPanel",
     "tgui:index"
-  ],
-  "Languages may be either": [
-    "tgui:LanguagesMenu"
   ],
   "Lannese Dress": [
     "dm:labels"
@@ -15529,7 +15167,7 @@
   "Last Known Data": [
     "tgui:OrbitTooltip"
   ],
-  "Last Output:": [
+  "Last Output: {0}": [
     "tgui:ThermoElectricGenerator"
   ],
   "Last Page": [
@@ -15784,14 +15422,16 @@
     "tgui:TurretControl"
   ],
   "Level": [
-    "tgui:AntagInfoHeretic",
     "tgui:NtosSkillTracker",
     "tgui:Symptom"
   ],
   "Level Progress": [
     "tgui:NtosSkillTracker"
   ],
-  "Level: [": [
+  "Level {0}{1}{2}": [
+    "tgui:AntagInfoHeretic"
+  ],
+  "Level: [{0}]": [
     "tgui:SkillPanel"
   ],
   "Lewd Items": [
@@ -15947,16 +15587,13 @@
   "Limper": [
     "dm:labels"
   ],
-  "Line": [
-    "tgui:InstrumentEditor"
-  ],
   "Line Cook": [
     "dm:labels"
   ],
-  "Lines are a series of chords, separated by commas (,), each with notes separated by hyphens (-).": [
+  "Line {0}:{1}{2}{3}": [
     "tgui:InstrumentEditor"
   ],
-  "Lines may be up to": [
+  "Lines are a series of chords, separated by commas (,), each with notes separated by hyphens (-).{0}Every note in a chord will play together, with chord timed by the tempo.{1}Notes are played by the names of the note, and optionally, the accidental, and/or the octave number.{2}By default, every note is natural and in octave 3. Defining otherwise is remembered for each note.{3}Example: {4} will play a C major scale.{5}After a note has an accidental placed, it will be remembered:{6}{7} is {8}{9}Chords can be played simply by seperating each note with a hyphon:{10}{11}{12}A pause may be denoted by an empty chord: {13}{14}To make a chord be a different time, end it with /x, where the chord length will be length{15}defined by tempo / x: {16}{17}Combined, an example is: {18}{19}Lines may be up to {20} characters.{21}A song may only contain up to {22} lines.{23}": [
     "tgui:InstrumentEditor"
   ],
   "Linguist": [
@@ -16095,19 +15732,21 @@
   "Lizardskin Shoes": [
     "dm:labels"
   ],
-  "Ln": [
+  "Ln {0}, Col {1}": [
     "tgui:NtosNotepad"
   ],
   "Load": [
     "tgui:Mule",
-    "tgui:ShuttleManipulator",
-    "tgui:index"
+    "tgui:ShuttleManipulator"
   ],
   "Load Client Character Prefs Onto Mob": [
     "tgui:PlayerPanel"
   ],
   "Load an outfit from a file": [
     "tgui:OutfitManager"
+  ],
+  "Load {0}{1}more...": [
+    "tgui:index"
   ],
   "Loaded": [
     "tgui:ModulesPane"
@@ -16138,9 +15777,6 @@
   ],
   "Loadout Item Preference": [
     "tgui:loadout_override_preference"
-  ],
-  "Loadout Preset": [
-    "tgui:index"
   ],
   "Loads preset": [
     "tgui:PresetsPage"
@@ -16450,14 +16086,11 @@
   "Lorecaster Manager": [
     "tgui:StoryManager"
   ],
-  "Lorecaster story manager": [
+  "Lorecaster story manager{0}{1}{2}{3}": [
     "tgui:StoryManager"
   ],
   "Loss of libido": [
     "dm:labels"
-  ],
-  "Lots of stuff it turns out. Filters are quite powerful, and we use them quite a bit.": [
-    "tgui:PlaneMenus"
   ],
   "Loudmode Off": [
     "tgui:AiVoiceChanger"
@@ -16503,10 +16136,10 @@
   "Lowered": [
     "tgui:AiAirlock"
   ],
-  "Lowpop Multiplier:": [
+  "Lowpop Multiplier: {0}x": [
     "tgui:IntensityCredits"
   ],
-  "Lowpop Threshold:": [
+  "Lowpop Threshold: {0}": [
     "tgui:IntensityCredits"
   ],
   "Loyal": [
@@ -16617,9 +16250,6 @@
   ],
   "MODsuit Stays Deployed (Soft DNR)": [
     "tgui:entombed"
-  ],
-  "MP": [
-    "tgui:NtosArcade"
   ],
   "MTR": [
     "tgui:SeedTable"
@@ -16774,14 +16404,11 @@
   "Major Disabilities": [
     "tgui:RecordView"
   ],
-  "Major Disabilities:": [
-    "tgui:NtosRecords"
-  ],
   "Make": [
     "tgui:Limbgrower",
     "tgui:RecipeContent"
   ],
-  "Make Announcement": [
+  "Make Announcement {0}": [
     "tgui:RequestsConsoleMainScreen"
   ],
   "Make N.E.R.D.": [
@@ -16798,9 +16425,6 @@
   ],
   "Make group into antagonists?": [
     "tgui:SentienceFunBalloon"
-  ],
-  "Make sure to have a defensible base of operations! You're significantly stronger while on brass tiles, so make your home indefensible.": [
-    "tgui:ClockworkSlab"
   ],
   "Makes TGUI buttons less traditional, more functional.": [
     "tgui:tgui"
@@ -17031,9 +16655,6 @@
   "Masked Roboticist Plushie": [
     "dm:labels"
   ],
-  "Masking one thing while also drawing that thing in the correct order with other objects on the map is a good example of this.": [
-    "tgui:PlaneMenus"
-  ],
   "Masochism": [
     "dm:labels"
   ],
@@ -17094,7 +16715,7 @@
   "Material": [
     "tgui:index"
   ],
-  "Material price critical!": [
+  "Material price critical!{0} {1}": [
     "tgui:MatMarket"
   ],
   "Materials": [
@@ -17540,19 +17161,16 @@
   "Middle": [
     "dm:labels"
   ],
-  "Middle Mouse Click = Rally Spores": [
-    "tgui:AntagInfoBlob"
-  ],
   "Midnight Gown": [
     "dm:labels"
   ],
   "Midori Cigarette Pack": [
     "dm:labels"
   ],
-  "Midpop Multiplier:": [
+  "Midpop Multiplier: {0}x": [
     "tgui:IntensityCredits"
   ],
-  "Midpop Threshold:": [
+  "Midpop Threshold: {0}": [
     "tgui:IntensityCredits"
   ],
   "Midway Boxers": [
@@ -17660,9 +17278,6 @@
   "Minor Disabilities": [
     "tgui:RecordView"
   ],
-  "Minor Disabilities:": [
-    "tgui:NtosRecords"
-  ],
   "Miqo'te": [
     "dm:labels"
   ],
@@ -17766,9 +17381,6 @@
   "Moderator Gases": [
     "tgui:Gases"
   ],
-  "Moderator filtering rate:": [
-    "tgui:Controls"
-  ],
   "Modern": [
     "dm:labels"
   ],
@@ -17862,16 +17474,13 @@
   "Molecular Biologist": [
     "dm:labels"
   ],
-  "Moles": [
-    "tgui:RBMK2"
-  ],
   "Molten Glass": [
     "tgui:GlassBlowing"
   ],
   "Monarch": [
     "dm:labels"
   ],
-  "Money Available:": [
+  "Money Available: {0}cr": [
     "tgui:NtosSpaceBetting"
   ],
   "Money Piece": [
@@ -17931,7 +17540,7 @@
   "Moon Fly": [
     "dm:labels"
   ],
-  "Morality Core Report:": [
+  "Morality Core Report:{0}": [
     "tgui:AntagInfoMalf"
   ],
   "Morning": [
@@ -17949,10 +17558,10 @@
   "Mortician": [
     "dm:labels"
   ],
-  "Most recent shuttle call/recall traced to:": [
+  "Most recent shuttle call/recall traced to:{0}{1}": [
     "tgui:Main"
   ],
-  "Most scriptures require": [
+  "Most scriptures require {0} to unlock.{1}Invoke {2}to summon an Integration Cog, which can be placed into any {3}on the station.{4}Slice open the {5}with the {6}and then insert it in to begin siphoning power. However, you will only gain a cog after the Integration Cog has been inside the APC for 5 minutes.{7}": [
     "tgui:ClockworkSlab"
   ],
   "Moth (Atlas Greyscale)": [
@@ -18236,9 +17845,6 @@
   "Move job to backpack": [
     "dm:labels"
   ],
-  "Move often. The station will be hunting you after you are discovered, so don't stay in one area for long.": [
-    "tgui:AntagInfoNightmare"
-  ],
   "Move shuttle": [
     "tgui:LaborClaimConsole"
   ],
@@ -18439,9 +18045,6 @@
   "NOT CONFIGURED": [
     "tgui:NtosRobotact"
   ],
-  "NOTE: Custom sounds from outside the base game files will not save! :(": [
-    "tgui:PresetsPage"
-  ],
   "NOTICE: ATTEMPTING TO DEACTIVATE WHILE REACTION SAYS 'MELTDOWN' WILL RESULT IN A JAM.": [
     "tgui:RBMK2"
   ],
@@ -18451,7 +18054,7 @@
   "NOTICE: REACTOR CANNOT BE DEACTIVATED DURING MELTDOWN": [
     "tgui:RBMK2"
   ],
-  "NOTICE: The vents must be off to change directions.": [
+  "NOTICE: The vents must be off to change directions.{0}{1}": [
     "tgui:RBMK2"
   ],
   "NOW": [
@@ -18519,7 +18122,6 @@
     "tgui:CircuitSignalHandler",
     "tgui:CodexGigas",
     "tgui:CrewConsole",
-    "tgui:CrimeWatcher",
     "tgui:CryopodConsole",
     "tgui:DeathmatchLobby",
     "tgui:DnaConsoleStorage",
@@ -18570,10 +18172,15 @@
   ],
   "Name:": [
     "tgui:CreateObjectSettings",
-    "tgui:MilkingMachine",
     "tgui:NtosCamera",
     "tgui:PaiCard",
     "tgui:PlayerPanel"
+  ],
+  "Name: {0}": [
+    "tgui:MilkingMachine"
+  ],
+  "Name{0}": [
+    "tgui:CrimeWatcher"
   ],
   "Nanite Implant Framework": [
     "tgui:index"
@@ -18629,9 +18236,6 @@
   ],
   "Nar'Sian": [
     "dm:labels"
-  ],
-  "Nar'sian cultists are your greatest foe! Some of your spells are less effective on them, and vice-versa. What remains of Ratvar may reward a vitality sacrifice of such heresy.": [
-    "tgui:ClockworkSlab"
   ],
   "Nar'sie Plushie": [
     "dm:labels"
@@ -18797,7 +18401,6 @@
   ],
   "New": [
     "tgui:ColorSetter",
-    "tgui:NoteKeeper",
     "tgui:index"
   ],
   "New Area Name": [
@@ -18832,7 +18435,7 @@
   "New You": [
     "dm:labels"
   ],
-  "New access to restricted channels has provided you with intercepted syndicate codewords. Syndicate agents will respond as if you're one of their own. Proceed with caution, however, as everyone is a potential foe.": [
+  "New access to restricted channels has provided you with intercepted syndicate codewords. Syndicate agents will respond as if you're one of their own. Proceed with caution, however, as everyone is a potential foe.{0}": [
     "tgui:AntagInfoMalf"
   ],
   "New filter": [
@@ -18849,7 +18452,7 @@
   "Newspaper": [
     "dm:labels"
   ],
-  "Next Event:": [
+  "Next Event: {0}": [
     "tgui:IntensityCredits"
   ],
   "Next Fire": [
@@ -18902,7 +18505,6 @@
   ],
   "No": [
     "dm:labels",
-    "tgui:CrimeWatcher",
     "tgui:NanopaintConfirmDialog",
     "tgui:SentienceFunBalloon",
     "tgui:TurretControl"
@@ -19322,7 +18924,7 @@
   "No input signal": [
     "tgui:CameraConsole"
   ],
-  "No item loaded!": [
+  "No item loaded! {0}Put any item inside to see what it's capable of!": [
     "tgui:DestructiveAnalyzer"
   ],
   "No item present in experimentation chamber. Please insert one.": [
@@ -19411,7 +19013,7 @@
   "No options": [
     "tgui:SideDropdown"
   ],
-  "No options found matching \"": [
+  "No options found matching \"{0}\"": [
     "tgui:AiCoreDisplayPicker",
     "tgui:AiStatusDisplayPicker"
   ],
@@ -19644,6 +19246,9 @@
   "No yield modifier": [
     "tgui:Tray"
   ],
+  "No {0} found.": [
+    "tgui:CrimeWatcher"
+  ],
   "No, don't delete": [
     "tgui:DeleteCharacterPopup"
   ],
@@ -19801,9 +19406,6 @@
   "Normal range": [
     "tgui:AtmosControls"
   ],
-  "Normally, planes will just group, apply an effect, and then draw directly to the game.": [
-    "tgui:PlaneMenus"
-  ],
   "North": [
     "tgui:AirlockElectronics"
   ],
@@ -19905,7 +19507,7 @@
   "Note": [
     "tgui:RecordView"
   ],
-  "Note: You can right click on this": [
+  "Note: You can right click on this{0}blueprint pod and edit vars directly": [
     "tgui:Tabs"
   ],
   "Notepad": [
@@ -19913,18 +19515,11 @@
     "tgui:NtosNotepad"
   ],
   "Notes": [
-    "tgui:MafiaPanel",
     "tgui:NoteKeeper",
     "tgui:PlayerPanel"
   ],
-  "Notes Contd:": [
-    "tgui:NtosRecords"
-  ],
-  "Notes are played by the names of the note, and optionally, the accidental, and/or the octave number.": [
-    "tgui:InstrumentEditor"
-  ],
-  "Notes:": [
-    "tgui:NtosRecords"
+  "Notes{0}": [
+    "tgui:MafiaPanel"
   ],
   "Nothing": [
     "tgui:BeakerDisplay"
@@ -19949,9 +19544,6 @@
   ],
   "Nothing installed!": [
     "tgui:Installed"
-  ],
-  "Nothing says \"I'm dealing with a potentially catastrophic situation\" like engaging in some whimsical shenanigans.": [
-    "tgui:DelamProcedure"
   ],
   "Nothing selected.": [
     "tgui:RecordView"
@@ -19988,9 +19580,6 @@
   ],
   "Nova Stars Only": [
     "tgui:JobsPage"
-  ],
-  "Now while this is all nice and dandy how does it look like in practice? If you look at only one direction then movement will look like this:": [
-    "tgui:Tutorial"
   ],
   "NtNet": [
     "tgui:NtosNetMonitor"
@@ -20041,7 +19630,7 @@
   "Number of floor tiles contained in the bot.": [
     "tgui:SimpleBot"
   ],
-  "Number of players:": [
+  "Number of players:{0}": [
     "tgui:DynamicTester"
   ],
   "Nun": [
@@ -20195,7 +19784,7 @@
   "Observe": [
     "tgui:DeathmatchLobby"
   ],
-  "Observer:": [
+  "Observer: {0} — highlighted nodes would be cancelled. Click node again to deselect.{1}": [
     "tgui:index"
   ],
   "Observing": [
@@ -20213,7 +19802,7 @@
   "Occult Collector's Outfit": [
     "dm:labels"
   ],
-  "Occupancy Limit:": [
+  "Occupancy Limit: {0}": [
     "tgui:BuyingShuttle"
   ],
   "Occupant": [
@@ -20358,12 +19947,6 @@
   "Ok": [
     "tgui:NtosNotepad"
   ],
-  "Ok so we can group and relay planes, but what can we actually do with that?": [
-    "tgui:PlaneMenus"
-  ],
-  "Ok so we can relay a plane master onto some other atom, but how do we get it on another plane master? We can't just draw it with": [
-    "tgui:PlaneMenus"
-  ],
   "Old": [
     "dm:labels"
   ],
@@ -20443,7 +20026,7 @@
   "On Cooldown": [
     "tgui:StateLawUi"
   ],
-  "On Cooldown:": [
+  "On Cooldown: {0}s": [
     "tgui:NtosJobManager"
   ],
   "On Silent Mode this device will make the same sounds and sights as an actual Forensics Scanner.": [
@@ -20467,9 +20050,6 @@
   ],
   "One Shoulder": [
     "dm:labels"
-  ],
-  "One language is worth": [
-    "tgui:LanguagesMenu"
   ],
   "One more game couldn't hurt.": [
     "tgui:NtosArcade"
@@ -20501,9 +20081,6 @@
     "tgui:ServerControl",
     "tgui:TurbineComputer"
   ],
-  "Only": [
-    "tgui:SlotMachine"
-  ],
   "Only Fun For You": [
     "tgui:Secrets"
   ],
@@ -20530,6 +20107,9 @@
   ],
   "Only works for synths.": [
     "tgui:species_features"
+  ],
+  "Only{0}{1}{2}credit{3} for a chance{4}to win {5}!": [
+    "tgui:SlotMachine"
   ],
   "Open": [
     "tgui:AiAirlock",
@@ -20587,9 +20167,6 @@
   ],
   "Open this plane's VV menu": [
     "tgui:PlaneEditor"
-  ],
-  "Open your PDA.": [
-    "tgui:CargoHelp"
   ],
   "Opened": [
     "tgui:Soulcatcher"
@@ -20715,7 +20292,7 @@
   "Order via Cargo Budget?": [
     "tgui:MatMarket"
   ],
-  "Order:": [
+  "Order: {0} cr.": [
     "tgui:MatMarket"
   ],
   "Orderer": [
@@ -20748,16 +20325,16 @@
   "Ores & Boulders": [
     "tgui:OreBox"
   ],
-  "Ores can be loaded here via a mining satchel or by hand. Boulders can also be stored here": [
+  "Ores can be loaded here via a mining satchel or by hand. Boulders can also be stored here{0}Gibtonite is not accepted.": [
     "tgui:OreBox"
   ],
   "Organ control": [
     "tgui:MilkingMachine"
   ],
-  "Organ:": [
+  "Organ: none": [
     "tgui:MilkingMachine"
   ],
-  "Organ: none": [
+  "Organ: {0}": [
     "tgui:MilkingMachine"
   ],
   "Organic Liver": [
@@ -20800,7 +20377,7 @@
     "dm:labels",
     "tgui:PlayerPanel"
   ],
-  "Other Changelings are strong allies, but some Changelings may betray you. Changelings grow in power greatly by absorbing their kind, and getting absorbed by another Changeling will leave you as a": [
+  "Other Changelings are strong allies, but some Changelings may betray you. Changelings grow in power greatly by absorbing their kind, and getting absorbed by another Changeling will leave you as a{0}{1}. There is no greater humiliation.": [
     "tgui:AntagInfoChangeling"
   ],
   "Other Limbs": [
@@ -20823,9 +20400,6 @@
   ],
   "Otusian": [
     "dm:labels"
-  ],
-  "Our students expell our essence regularly. We can use this to go where we could otherwise not, but we reabsorb this when we use it to leave. (You can dive in space vomit.)": [
-    "tgui:AntagInfoVoidwalker"
   ],
   "Out of Combat Field of View Darkness": [
     "tgui:out_of_combat_fov_darkness"
@@ -20924,11 +20498,8 @@
   "Overall Progress": [
     "tgui:NtosSkillTracker"
   ],
-  "Overall Sentience Coherence Grade: FAILING.": [
+  "Overall Sentience Coherence Grade: FAILING.{0}": [
     "tgui:AntagInfoMalf"
-  ],
-  "Overall Skill Progress: [": [
-    "tgui:SkillPanel"
   ],
   "Overall danger posed by the disease.": [
     "tgui:Virus"
@@ -20961,7 +20532,7 @@
   "Overdose Threshold": [
     "tgui:ChemMaster"
   ],
-  "Overdosing on": [
+  "Overdosing on {0}": [
     "tgui:MedicalKiosk"
   ],
   "Overdue": [
@@ -21098,10 +20669,6 @@
   "PRIORITY": [
     "tgui:RequestsConsoleHeader"
   ],
-  "PT": [
-    "tgui:AuditScreen",
-    "tgui:index"
-  ],
   "PTN": [
     "tgui:SeedTable"
   ],
@@ -21138,19 +20705,18 @@
   "Paddy": [
     "dm:labels"
   ],
-  "Page": [
-    "tgui:InfuserBook",
-    "tgui:Newspaper"
-  ],
-  "Page not implemented:": [
+  "Page not implemented: {0}": [
     "tgui:index"
+  ],
+  "Page {0}/{1}": [
+    "tgui:InfuserBook"
+  ],
+  "Page {0}: {1}": [
+    "tgui:Newspaper"
   ],
   "Paid": [
     "tgui:CrimeWatcher",
     "tgui:WarrantConsole"
-  ],
-  "Pain": [
-    "tgui:InfoSection"
   ],
   "Paint PDA": [
     "tgui:PaintingMachine"
@@ -21378,7 +20944,10 @@
   "Parts not connected, close all mantainence panels/use a multitool on the rotor before trying again": [
     "tgui:TurbineComputer"
   ],
-  "Passive:": [
+  "Passive: {0}": [
+    "tgui:AntagInfoHeretic"
+  ],
+  "Passive: {0}, level: {1}": [
     "tgui:AntagInfoHeretic"
   ],
   "Password": [
@@ -21457,7 +21026,6 @@
     "tgui:SimpleBot"
   ],
   "Pay": [
-    "tgui:HoloPay",
     "tgui:UsersScreen",
     "tgui:WarrantConsole"
   ],
@@ -21470,11 +21038,11 @@
   "Payload Status": [
     "tgui:NtosRevelation"
   ],
-  "Payout:": [
+  "Payout: {0} cr": [
     "tgui:CivCargoHoldTerminal",
     "tgui:NtosCivCargoHoldTerminal"
   ],
-  "Pays to the account of": [
+  "Pays to the account of {0}.": [
     "tgui:Vendatray"
   ],
   "Peaceful": [
@@ -21788,14 +21356,11 @@
   "Phototrasen Images - Tap (right-click) with your tablet to snap a photo!": [
     "tgui:NtosCamera"
   ],
-  "Phrases:": [
+  "Phrases: {0}": [
     "tgui:AntagInfoRevolution"
   ],
   "Physical Age": [
     "tgui:RecordView"
-  ],
-  "Physical Age:": [
-    "tgui:NtosRecords"
   ],
   "Physical Scanner": [
     "dm:labels"
@@ -21838,12 +21403,6 @@
   ],
   "Pick an extension...": [
     "tgui:NtosNotepad"
-  ],
-  "Pick unfair fights. Look for inattentive targets and strike at them when they don't expect you.": [
-    "tgui:AntagInfoVoidwalker"
-  ],
-  "Pick unfair fights. You are incredibly strong in one versus one situations, use it. The more you fight, the harder it will be to keep it dark.": [
-    "tgui:AntagInfoNightmare"
   ],
   "Pick up...": [
     "tgui:index"
@@ -21929,9 +21488,6 @@
   "Pinnacle": [
     "tgui:calculateDangerLevel"
   ],
-  "Pinned": [
-    "tgui:PatientStateView"
-  ],
   "Pipe": [
     "dm:labels"
   ],
@@ -22004,9 +21560,6 @@
   "Plane masters are stored in groups, based off where they came from. MAIN is the main group, but if you open something that displays atoms in a new window, it'll show up here.": [
     "tgui:index"
   ],
-  "Planes are aligned based off their initial setup. If you end up breaking things byond repair, or just want to reset things, you can hit the recycle button in the top left to totally refresh your plane masters.": [
-    "tgui:PlaneMenus"
-  ],
   "Plant DNA": [
     "tgui:DnaVault"
   ],
@@ -22057,14 +21610,13 @@
   ],
   "Play": [
     "tgui:AdventureBrowser",
-    "tgui:BotAnnouncement",
     "tgui:ChemRecipeDebug",
     "tgui:Jukebox"
   ],
   "Play Sound To": [
     "tgui:PlayerPanel"
   ],
-  "Playback Settings:": [
+  "Playback Settings:{0}{1}{2}": [
     "tgui:InstrumentEditor"
   ],
   "Player & Round Info": [
@@ -22088,7 +21640,7 @@
   "Player is a Veteran.": [
     "tgui:NovaCharacterDirectory"
   ],
-  "Player stats": [
+  "Player stats {0} HP:{1}{2}{3}| MP:{4}{5}{6}| {7}G {8}{9}{10}": [
     "tgui:BattleArcade"
   ],
   "Players": [
@@ -22117,6 +21669,9 @@
   "Playtimes": [
     "tgui:PlayerPanel"
   ],
+  "Play{0}{1}": [
+    "tgui:BotAnnouncement"
+  ],
   "Please Insert Your ID": [
     "tgui:NtosSelfServe"
   ],
@@ -22127,7 +21682,7 @@
     "tgui:CivCargoHoldTerminal",
     "tgui:NtosCivCargoHoldTerminal"
   ],
-  "Please answer the following questions.": [
+  "Please answer the following questions.{0}": [
     "tgui:Interview"
   ],
   "Please be aware that this process is very expensive, and abuse will lead to...termination.": [
@@ -22179,14 +21734,8 @@
   "Please sync this application to a valid techweb to upload progress!": [
     "tgui:NtosScipaper"
   ],
-  "Please visit the HoP window or your departmental Command member for an override.": [
-    "tgui:NtosSelfServe"
-  ],
   "Please wait...": [
     "tgui:LoadingScreen"
-  ],
-  "Pleasure": [
-    "tgui:InfoSection"
   ],
   "Plexagon Access Management": [
     "dm:labels"
@@ -22511,7 +22060,7 @@
   "Possum": [
     "dm:labels"
   ],
-  "Posted by": [
+  "Posted by{0}{1}": [
     "tgui:Newscaster"
   ],
   "Poster": [
@@ -22623,7 +22172,7 @@
   "Prefabrication": [
     "tgui:Telecomms"
   ],
-  "Preferences are Valid! |": [
+  "Preferences are Valid! | {0}/3 Liked": [
     "tgui:FoodPreferences"
   ],
   "Preferred map": [
@@ -22632,7 +22181,7 @@
   "Prefix": [
     "tgui:CodexGigas"
   ],
-  "Prefrences are Invalid!": [
+  "Prefrences are Invalid!{0}{1} |{2}{3}": [
     "tgui:FoodPreferences"
   ],
   "Premium": [
@@ -22644,7 +22193,7 @@
   "Prepare for the impending suppression of the supermatter engine room, because things are about to get real quiet. Just make sure everyone has evacuated, or else they'll be in for a surprise. The system needs its space, and it's not known for being the friendliest neighbour.": [
     "tgui:DelamProcedure"
   ],
-  "Prerequisites:": [
+  "Prerequisites: {0}": [
     "tgui:BuyingShuttle"
   ],
   "Preset Name": [
@@ -22675,7 +22224,7 @@
     "tgui:TankCompressor",
     "tgui:ThermoMachine"
   ],
-  "Pressure Inlet:": [
+  "Pressure Inlet: {0} kPa / Outlet:{1}{2} kPa": [
     "tgui:ThermoElectricGenerator"
   ],
   "Pressure Regulator": [
@@ -22719,9 +22268,6 @@
   ],
   "Previous Fusion Level": [
     "tgui:Temperatures"
-  ],
-  "Previous Messages": [
-    "tgui:index"
   ],
   "Previous Page": [
     "tgui:Newspaper",
@@ -23069,7 +22615,7 @@
   "Provided catalog had no icons!": [
     "tgui:MainPage"
   ],
-  "Provides a discount of": [
+  "Provides a discount of {0} points to all required point pools.": [
     "tgui:TechNode"
   ],
   "Provides huge amounts of energy and radiation. Can cause dangerous electrical storms even from a healthy HFR core when present in more than trace amounts. Wear appropriate electrical protection when handling.": [
@@ -23138,7 +22684,7 @@
   "Publish Papers": [
     "tgui:NtosScipaper"
   ],
-  "Publishing Date:": [
+  "Publishing Date: {0}": [
     "tgui:StoryManager"
   ],
   "Puffer Jacket": [
@@ -23155,9 +22701,6 @@
   ],
   "Pulse duration": [
     "tgui:DnaConsoleEnzymes"
-  ],
-  "Pulse in progress...": [
-    "tgui:index"
   ],
   "Pump": [
     "tgui:PipeScrubber"
@@ -23190,13 +22733,16 @@
   "Purchase Shuttle": [
     "tgui:Main"
   ],
-  "Purchase for": [
+  "Purchase for {0} rewards points": [
     "tgui:NtosNifsoftCatalog"
   ],
-  "Purchase:": [
+  "Purchase for {0}cr": [
+    "tgui:NtosNifsoftCatalog"
+  ],
+  "Purchase: {0}{1}{2}": [
     "tgui:ProduceConsole"
   ],
-  "Purchasing this item will give you:": [
+  "Purchasing this item will give you:{0}{1} rewards points": [
     "tgui:NtosNifsoftCatalog"
   ],
   "Purge": [
@@ -23225,9 +22771,6 @@
   "Pushover": [
     "dm:labels"
   ],
-  "Put any item inside to see what it's capable of!": [
-    "tgui:DestructiveAnalyzer"
-  ],
   "Put the sample into a Growing Vat and pour the required reagents.": [
     "tgui:Microscope"
   ],
@@ -23246,7 +22789,7 @@
   "Quadruple Amputee": [
     "dm:labels"
   ],
-  "Qualities:": [
+  "Qualities:{0}": [
     "tgui:InfuserBook"
   ],
   "Quantity": [
@@ -23283,7 +22826,7 @@
   "Queen Insect": [
     "dm:labels"
   ],
-  "Query and cache:": [
+  "Query and cache: {0}{1}{2}": [
     "tgui:PlayerTicketHistory"
   ],
   "Questionnaire": [
@@ -23353,14 +22896,8 @@
   "RGB": [
     "dm:labels"
   ],
-  "RMB - Vend all": [
-    "tgui:SmartVend"
-  ],
   "RPLY": [
     "tgui:RequestManager"
-  ],
-  "RPM": [
-    "tgui:TurbineComputer"
   ],
   "RQST": [
     "tgui:TramController"
@@ -23408,7 +22945,7 @@
   "Radioactive Microlaser": [
     "tgui:RadioactiveMicrolaser"
   ],
-  "Radius": [
+  "Radius {0}/{1}": [
     "tgui:ModularShieldGen"
   ],
   "Rag": [
@@ -23537,11 +23074,10 @@
   "Ranged Weapons": [
     "dm:labels"
   ],
-  "Ranged weaponry is": [
+  "Ranged weaponry is {0}. Ballistic defense is frowned upon. Style is paramount.": [
     "tgui:AntagInfoGlitch"
   ],
   "Rank:": [
-    "tgui:NtosRecords",
     "tgui:PlayerPanel"
   ],
   "Rankpin (Bar)": [
@@ -23644,7 +23180,7 @@
   "Razor Claws": [
     "dm:labels"
   ],
-  "Re-enter": [
+  "Re-enter {0}": [
     "tgui:GhostMenu"
   ],
   "React": [
@@ -23705,7 +23241,7 @@
   "Read": [
     "tgui:index"
   ],
-  "Readapt (": [
+  "Readapt ({0})": [
     "tgui:CellularEmporium"
   ],
   "Reading:": [
@@ -23719,7 +23255,7 @@
   "Ready - All parts in place": [
     "tgui:ParticleAccelerator"
   ],
-  "Ready for another order in": [
+  "Ready for another order in {0}...": [
     "tgui:NtosDeptOrder"
   ],
   "Ready to scan vents": [
@@ -23866,9 +23402,6 @@
   "Recolor": [
     "tgui:Soulcatcher"
   ],
-  "Recommended next step": [
-    "tgui:PatientStateView"
-  ],
   "Reconnect": [
     "tgui:AtmosControlConsole",
     "tgui:GulagTeleporterConsole"
@@ -23879,9 +23412,6 @@
   ],
   "Recorder": [
     "tgui:Holopad"
-  ],
-  "Recording": [
-    "tgui:ChemDispenser"
   ],
   "Recording biometric data...": [
     "tgui:SyndContractor",
@@ -23960,7 +23490,7 @@
   "Redeemed Coupons": [
     "tgui:NtosCouponMaster"
   ],
-  "Reduced by": [
+  "Reduced by {0}% when infected with viruses.": [
     "tgui:Microscope"
   ],
   "Reduces growth of other cell lines when not suppressed by Spaceacillin.": [
@@ -24036,10 +23566,12 @@
     "dm:labels"
   ],
   "Regeneration": [
-    "tgui:AntagInfoBloodWorm",
-    "tgui:ModularShieldGen"
+    "tgui:AntagInfoBloodWorm"
   ],
   "Regeneration and Radius": [
+    "tgui:ModularShieldGen"
+  ],
+  "Regeneration {0}/{1}": [
     "tgui:ModularShieldGen"
   ],
   "Regime": [
@@ -24140,17 +23672,11 @@
   "Remaining Points:": [
     "tgui:ArmamentStation"
   ],
-  "Remaining soul capacity:": [
+  "Remaining soul capacity: {0}": [
     "tgui:Soulcatcher"
   ],
   "Remember that you are physically linked to this presence. You are a foreign body in a hostile environment. It will attempt to forcefully eject you.": [
     "tgui:AvatarHelp"
-  ],
-  "Remember you can always turn the engine room air alarm to contaminated to assist in removing harmful gases!": [
-    "tgui:DelamProcedure"
-  ],
-  "Remember, these are mostly suggestions, and you are encouraged to roleplay liking meals that your character likes, even if you don't have it's food type liked here!": [
-    "tgui:FoodPreferences"
   ],
   "Remember: Do not forget to prepare your spells.": [
     "tgui:AntagInfoWizard"
@@ -24257,9 +23783,6 @@
   "Rendered on top of everything you wear.": [
     "tgui:GenitalLayeringTab"
   ],
-  "Rendering one thing onto another is actually not that complex.": [
-    "tgui:PlaneMenus"
-  ],
   "Renders a faint scanline flicker across your body (not visible until you spawn).": [
     "tgui:species_features"
   ],
@@ -24268,9 +23791,6 @@
   ],
   "Renegotiate Contract": [
     "tgui:PrimaryObjectiveMenu"
-  ],
-  "Rep": [
-    "tgui:SyndContractor"
   ],
   "Repair": [
     "tgui:AlertPane",
@@ -24296,7 +23816,7 @@
   "Repeating": [
     "tgui:Timer"
   ],
-  "Repeats Left:": [
+  "Repeats Left:{0}": [
     "tgui:InstrumentEditor"
   ],
   "Replace": [
@@ -24364,7 +23884,7 @@
     "tgui:MessageMonitor",
     "tgui:RequestManager"
   ],
-  "Requests (": [
+  "Requests ({0})": [
     "tgui:index"
   ],
   "Require All": [
@@ -24373,7 +23893,7 @@
   "Require Any": [
     "tgui:index"
   ],
-  "Required (": [
+  "Required ({0}/{1})": [
     "tgui:detail"
   ],
   "Required Account Age": [
@@ -24385,7 +23905,7 @@
   "Required Experiments": [
     "tgui:TechNode"
   ],
-  "Required Keycards:": [
+  "Required Keycards: {0}": [
     "tgui:AntagInfoAssaultops"
   ],
   "Required Radius": [
@@ -24643,10 +24163,10 @@
   "Responses": [
     "tgui:CircuitSignalHandler"
   ],
-  "Responses:": [
+  "Responses: {0}": [
     "tgui:AntagInfoRevolution"
   ],
-  "Rest": [
+  "Rest {0}G": [
     "tgui:BattleArcade"
   ],
   "Restore": [
@@ -24736,7 +24256,9 @@
     "tgui:QuantumConsole"
   ],
   "Reward:": [
-    "tgui:CivCargoHoldTerminal",
+    "tgui:CivCargoHoldTerminal"
+  ],
+  "Reward: {0}": [
     "tgui:SpyUplink"
   ],
   "Rewards Points": [
@@ -24828,9 +24350,6 @@
   "Right click to search for this recipe.": [
     "tgui:ChemDispenser"
   ],
-  "Right clicking on some kinds of machines or items wearing your suit will hack them, to varying effect. Experiment and find out what you can do!": [
-    "tgui:AntagInfoNinja"
-  ],
   "Right leg": [
     "dm:labels"
   ],
@@ -24885,7 +24404,7 @@
   "Ripped Black Thigh-highs": [
     "dm:labels"
   ],
-  "Rites": [
+  "Rites {0}": [
     "tgui:ReligiousTool"
   ],
   "Ritual Completed": [
@@ -24963,7 +24482,7 @@
   "Role": [
     "tgui:OpposingForcePanel"
   ],
-  "Role list": [
+  "Role list{0}": [
     "tgui:MafiaPanel"
   ],
   "Roleplay only": [
@@ -25097,7 +24616,7 @@
   "Runner Bun": [
     "dm:labels"
   ],
-  "Runtime at": [
+  "Runtime at {0}:{1}: {2}{3}": [
     "tgui:Log"
   ],
   "S": [
@@ -25365,7 +24884,7 @@
   "Saved": [
     "tgui:Interview"
   ],
-  "Saved Deathrattle Group:": [
+  "Saved Deathrattle Group: {0}{1}Current Deathrattle Group: {2}": [
     "tgui:ImplantPad"
   ],
   "Saves preset": [
@@ -25427,7 +24946,7 @@
   "Scan Reagents": [
     "tgui:RadioactiveMicrolaser"
   ],
-  "Scan a cyborg to download stored logs.": [
+  "Scan a cyborg to download stored logs.{0}": [
     "tgui:NtosCyborgRemoteMonitor"
   ],
   "Scan all nearby vents": [
@@ -25631,7 +25150,7 @@
   "Scorpion Plug": [
     "dm:labels"
   ],
-  "Scramble DNA": [
+  "Scramble DNA{0}": [
     "tgui:DnaScanner"
   ],
   "Scrambled Codes": [
@@ -25708,9 +25227,6 @@
   ],
   "Search Fish...": [
     "tgui:FishAnalyzer"
-  ],
-  "Search For User": [
-    "tgui:index"
   ],
   "Search Material...": [
     "tgui:OreRedemptionMachine"
@@ -25863,10 +25379,10 @@
   "Secrets Panel": [
     "tgui:Secrets"
   ],
-  "Sect": [
+  "Sect Select": [
     "tgui:ReligiousTool"
   ],
-  "Sect Select": [
+  "Sect{0}{1}": [
     "tgui:ReligiousTool"
   ],
   "SecurEye": [
@@ -25875,7 +25391,7 @@
   "Secure Trenchcoat": [
     "dm:labels"
   ],
-  "Secure Your Workspace.": [
+  "Secure Your Workspace.{0}": [
     "tgui:PrisonerManagement",
     "tgui:index"
   ],
@@ -26026,9 +25542,6 @@
   "Security Utility Uniform": [
     "dm:labels"
   ],
-  "Security and Command members must visit an appropriate Command member to punch in!": [
-    "tgui:NtosSelfServe"
-  ],
   "Security department": [
     "tgui:security_department"
   ],
@@ -26068,7 +25581,6 @@
     "tgui:BorgHypo",
     "tgui:ColorBlindTester",
     "tgui:OpposingForcePanel",
-    "tgui:ReligiousTool",
     "tgui:ShuttleManipulator"
   ],
   "Select Area": [
@@ -26119,6 +25631,9 @@
   "Select trait to add...": [
     "tgui:StationTraitsPanel"
   ],
+  "Select {0}": [
+    "tgui:ReligiousTool"
+  ],
   "Selected": [
     "tgui:RapidDecorationDevice",
     "tgui:ShuttleManipulator"
@@ -26138,7 +25653,7 @@
   "Selected Research": [
     "tgui:ClockworkResearch"
   ],
-  "Selected:": [
+  "Selected: {0}": [
     "tgui:DynamicAdmin"
   ],
   "Self Destruct": [
@@ -26156,7 +25671,7 @@
   "Semi-Randomize": [
     "tgui:Randomize"
   ],
-  "Semi-Randomize will ensure you at least get some mobility and lethality. Guaranteed to have": [
+  "Semi-Randomize will ensure you at least get some mobility and lethality. Guaranteed to have {0} points worth of spells.": [
     "tgui:Randomize"
   ],
   "Semver": [
@@ -26205,9 +25720,6 @@
   "Send Thought": [
     "dm:labels"
   ],
-  "Send To All": [
-    "tgui:index"
-  ],
   "Send To Cryo": [
     "tgui:PlayerPanel"
   ],
@@ -26226,7 +25738,7 @@
   "Send a message to have our decoy brain speak.": [
     "tgui:LingMMITalk"
   ],
-  "Send a message to station in": [
+  "Send a message to station in {0} sector": [
     "tgui:Main"
   ],
   "Send announcement": [
@@ -26238,9 +25750,6 @@
   "Send message": [
     "tgui:MessageWriteTab"
   ],
-  "Send message to": [
-    "tgui:Main"
-  ],
   "Send message to everyone...": [
     "tgui:index"
   ],
@@ -26249,6 +25758,9 @@
   ],
   "Send message to user(s)": [
     "tgui:AdminPDA"
+  ],
+  "Send message to {0}": [
+    "tgui:Main"
   ],
   "Send to Chat": [
     "tgui:MafiaPanel"
@@ -26404,7 +25916,7 @@
   "Set Central Command name": [
     "tgui:CommandReport"
   ],
-  "Set Channel as Public or Private": [
+  "Set Channel as Public or Private{0}": [
     "tgui:Newscaster"
   ],
   "Set Current ID": [
@@ -26520,7 +26032,7 @@
     "tgui:Telecomms",
     "tgui:index"
   ],
-  "Settings for": [
+  "Settings for {0}:": [
     "tgui:NtosNetChat"
   ],
   "Settler": [
@@ -26719,9 +26231,6 @@
   ],
   "Sheathed Pair": [
     "dm:labels"
-  ],
-  "Sheets smelted from the labor camp's furnace will be stamped with an official seal of quality. Only stamped sheets can be claimed for points - so don't bother trying to strip down tables and chairs for bonus metal.": [
-    "tgui:LaborClaimConsole"
   ],
   "Shell": [
     "tgui:AirlockElectronics"
@@ -27596,9 +27105,6 @@
   "Sleeps": [
     "tgui:TaskManager"
   ],
-  "Slice open the": [
-    "tgui:ClockworkSlab"
-  ],
   "Slightly Long Hair": [
     "dm:labels"
   ],
@@ -27827,17 +27333,11 @@
   "Snowy Owl Plush": [
     "dm:labels"
   ],
-  "So far people have spun": [
+  "So far people have spun{0}{1}": [
     "tgui:SlotMachine"
   ],
-  "So when talking about particles this amounts to:": [
-    "tgui:Tutorial"
-  ],
-  "So you've found yourself in a bit of a pickle with a delamination of a supermatter reactor.": [
+  "So you've found yourself in a bit of a pickle with a delamination of a supermatter reactor.{0}{1}Don't worry, saving the day is just a few steps away!": [
     "tgui:DelamProcedure"
-  ],
-  "So your overall position after time is": [
-    "tgui:Tutorial"
   ],
   "Social Anxiety": [
     "dm:labels"
@@ -27890,7 +27390,7 @@
   "Sombrero": [
     "dm:labels"
   ],
-  "Some scriptures and equipment take more than simply cogs to unlock.": [
+  "Some scriptures and equipment take more than simply cogs to unlock.{0}The {1}can be used to research normally-locked equipment and abilities, but not easily.{2}Each individual piece of research can only be done in a specific location, and will take time to finish. In that time, your presence will be exceedingly obvious.{3}": [
     "tgui:ClockworkSlab"
   ],
   "SomethingAwful Goons": [
@@ -27991,12 +27491,6 @@
   "SpaceBet": [
     "dm:labels"
   ],
-  "SpaceMessenger V6.5.3": [
-    "tgui:index"
-  ],
-  "SpaceMessenger V6.5.4": [
-    "tgui:index"
-  ],
   "Spacer": [
     "dm:labels"
   ],
@@ -28068,18 +27562,12 @@
   "Special Scan Condtions": [
     "tgui:ExoscannerConsole"
   ],
-  "Special effect on consumption.": [
-    "tgui:RecipeContent"
-  ],
   "Species": [
     "tgui:MainPage",
     "tgui:NovaCharacterDirectory",
     "tgui:PlayerPanel",
     "tgui:RecordView",
     "tgui:ScannerGate"
-  ],
-  "Species:": [
-    "tgui:NtosRecords"
   ],
   "Specimen": [
     "tgui:Specimen"
@@ -28392,7 +27880,7 @@
     "tgui:NtosRobotact",
     "tgui:StateLawUi"
   ],
-  "State:": [
+  "State: {0}": [
     "tgui:MilkingMachine"
   ],
   "States": [
@@ -28420,7 +27908,7 @@
   "Station Intelligence": [
     "dm:labels"
   ],
-  "Station Time :": [
+  "Station Time : {0}": [
     "tgui:TimeClock"
   ],
   "Statistics": [
@@ -28482,8 +27970,10 @@
   ],
   "Status:": [
     "tgui:BasketballPanel",
-    "tgui:InstrumentEditor",
     "tgui:MafiaPanel"
+  ],
+  "Status:{0}": [
+    "tgui:InstrumentEditor"
   ],
   "Stealth": [
     "tgui:AbductorConsole",
@@ -28523,17 +28013,11 @@
   "Steps Remaining:": [
     "tgui:GlassBlowing"
   ],
-  "Steps:": [
-    "tgui:NtosVirtualPet"
-  ],
   "Sterile Mask (Colorable)": [
     "dm:labels"
   ],
   "Stethoscope": [
     "dm:labels"
-  ],
-  "Stick it on the conveyor and let the system handle it.": [
-    "tgui:CargoHelp"
   ],
   "Sticky Ban": [
     "tgui:PlayerPanel"
@@ -28639,6 +28123,9 @@
   ],
   "Stop drying": [
     "tgui:SmartVend"
+  ],
+  "Stop {0}": [
+    "tgui:index"
   ],
   "Stopping": [
     "tgui:index"
@@ -28770,9 +28257,6 @@
   ],
   "Stun": [
     "tgui:TurretControl"
-  ],
-  "Stuntwaffle, Showtime, Pantaloons, Nannek, Keelin, Exadv1, hobnob, Justicefries, 0staf, sniperchance, AngriestIBM, BrianOBlivion": [
-    "tgui:Changelog"
   ],
   "Style": [
     "tgui:ChemPress",
@@ -29001,14 +28485,11 @@
   "SuperMax Security Prisoner": [
     "dm:labels"
   ],
-  "Superconductors:": [
+  "Superconductors: {0}": [
     "tgui:AtmosControlPanel"
   ],
   "Supernatural": [
     "dm:labels"
-  ],
-  "Supernorn, Haruhi, Stuntwaffle, Pantaloons, Rho, SynthOrange, I Said No": [
-    "tgui:Changelog"
   ],
   "Superstar Cop Uniform": [
     "dm:labels"
@@ -29140,9 +28621,6 @@
   "Swimsuit Top - Strapless": [
     "dm:labels"
   ],
-  "Swipe": [
-    "tgui:InterfaceLockNoticeBox"
-  ],
   "Swipe ID": [
     "tgui:Main"
   ],
@@ -29152,7 +28630,7 @@
   "Swipe a Cargo Technician-level ID card to unlock this interface.": [
     "tgui:CargoExpress"
   ],
-  "Swipe an ID card to": [
+  "Swipe an ID card to {0} this interface.": [
     "tgui:PortableTurret"
   ],
   "Swipe an ID card with a connected account to spin!": [
@@ -29160,6 +28638,9 @@
   ],
   "Swipe your card to authenticate yourself": [
     "tgui:AnnouncementTab"
+  ],
+  "Swipe {0} to {1} this interface.": [
+    "tgui:InterfaceLockNoticeBox"
   ],
   "Swirl Curls Alt": [
     "dm:labels"
@@ -29376,7 +28857,7 @@
   "System Info": [
     "tgui:System"
   ],
-  "System Integrity Report:": [
+  "System Integrity Report:{0}": [
     "tgui:AntagInfoMalf"
   ],
   "System Log": [
@@ -29444,9 +28925,6 @@
   "TP": [
     "tgui:RequestManager"
   ],
-  "TRADING CIRCUIT BREAKER HAS BEEN ENGAGED FOR ALL TRADERS": [
-    "tgui:MatMarket"
-  ],
   "TRUE": [
     "tgui:index"
   ],
@@ -29472,7 +28950,7 @@
   "Table of Contents:": [
     "tgui:Newspaper"
   ],
-  "Tablets (": [
+  "Tablets ({0})": [
     "tgui:NtosNetMonitor"
   ],
   "Taco": [
@@ -29522,9 +29000,6 @@
   ],
   "Tag": [
     "tgui:Gps"
-  ],
-  "Tag the package.": [
-    "tgui:CargoHelp"
   ],
   "TagMaster 2.4": [
     "tgui:DestinationTagger"
@@ -29791,7 +29266,7 @@
   "Teasable fox plushie": [
     "dm:labels"
   ],
-  "Tech (": [
+  "Tech ({0}/{1})": [
     "tgui:TechNode"
   ],
   "Tech Disk Inserted": [
@@ -29859,7 +29334,7 @@
     "tgui:Supermatter",
     "tgui:ThermoMachine"
   ],
-  "Temperature Inlet:": [
+  "Temperature Inlet: {0} K / Outlet:{1}{2} K": [
     "tgui:ThermoElectricGenerator"
   ],
   "Temperature Limit": [
@@ -29868,7 +29343,7 @@
   "Template Sizes": [
     "tgui:NanopaintNewDialog"
   ],
-  "Template:": [
+  "Template: {0}": [
     "tgui:LightController",
     "tgui:LightSpawn"
   ],
@@ -29879,7 +29354,7 @@
   "Templates require a trim already applied to the card. Please use an ID Painter to apply a trim.": [
     "tgui:NtosCard"
   ],
-  "Tempo:": [
+  "Tempo:{0}{1}{2}{3} BPM{4}{5}": [
     "tgui:InstrumentEditor"
   ],
   "Temporary": [
@@ -30069,27 +29544,8 @@
   "Thanatorenasia": [
     "dm:labels"
   ],
-  "Thank you for your understanding, and have a secure day.": [
-    "tgui:Newscaster"
-  ],
   "Thanks to:": [
     "tgui:Changelog"
-  ],
-  "That ends up being about what we do.": [
-    "tgui:PlaneMenus"
-  ],
-  "That said, it also supports editing plane masters, adding and removing relays, and provides easy access to color matrix/filter/alpha/vv editing.": [
-    "tgui:PlaneMenus"
-  ],
-  "That sets up the bare minimum.": [
-    "tgui:PlaneMenus"
-  ],
-  "The": [
-    "tgui:AntagInfoBlob",
-    "tgui:AntagInfoChangeling",
-    "tgui:AntagInfoHeretic",
-    "tgui:ClockworkSlab",
-    "tgui:FilingCabinet"
   ],
   "The 'E' is for 'Emissive' — does it glow? Green = glow, Red = no glow.": [
     "tgui:LimbsPage"
@@ -30133,16 +29589,13 @@
   "The Port is under high security. Any possibility of purchasing goods has long since sailed.": [
     "tgui:OrionGame"
   ],
-  "The Replica Fabricator is one of the strongest tools available to you, via the": [
-    "tgui:ClockworkSlab"
-  ],
   "The Ryddid": [
     "dm:labels"
   ],
   "The Spider Clan are a small and mysterious faction, said to be neutrally aligned yet often carry out the most dangerous contracts available in the sector. Cybersun Industries persues Nanotrasen's technological advances closely, making a name for itself as their most feared competitor. The Spider Clan bushido are happy to oblige in driving that point home...": [
     "dm:antagonists"
   ],
-  "The TGS DMAPI API is licensed as a subproject under the MIT license.": [
+  "The TGS DMAPI API is licensed as a subproject under the MIT license.{0}{1}{2}{3}{4}": [
     "tgui:Changelog"
   ],
   "The Wizard Federation has locked this page.": [
@@ -30181,7 +29634,7 @@
   "The contents of the article itself.": [
     "tgui:StoryManager"
   ],
-  "The current alert level is:": [
+  "The current alert level is: {0}": [
     "tgui:JobSelection"
   ],
   "The current alert level. Indicator becomes more intense when there is a threat, moreso if your department is responsible for handling it.": [
@@ -30208,7 +29661,7 @@
   "The fax couldn't detect any other faxes on the network.": [
     "tgui:Fax"
   ],
-  "The first thing to understand before we dive into how generators is motion. These basics assume you fell asleep during physics class so you can skip this if you didnt.": [
+  "The first thing to understand before we dive into how generators is motion. These basics assume you fell asleep during physics class so you can skip this if you didnt.{0}{1}First things off there are 3 variable you care about: POSITION, VELOCITY and ACCELERATION. Position is where you are in a 3D space, velocity is how fast you are moving in x/y/z directions, and acceleration is how much velocity is being changed by. Shortly summarized this is{2}{3}{4} {5}{6} {7}{8}{9} So your overall position after time is{10}{11}{12}{13}{14}So when talking about particles this amounts to: {15}{16}{17}{18}{19}Now while this is all nice and dandy how does it look like in practice? If you look at only one direction then movement will look like this:{20}{21}{22}": [
     "tgui:Tutorial"
   ],
   "The floor is lava! (DANGEROUS: extremely lame)": [
@@ -30247,10 +29700,10 @@
   "The likelihood of the plant to randomize stats or mutate. Affects quality of resulting food & drinks.": [
     "tgui:Seed"
   ],
-  "The lobby currently has": [
+  "The lobby currently has {0}/12 valid players signed up.": [
     "tgui:MafiaPanel"
   ],
-  "The lobby has": [
+  "The lobby has {0} players signed up. The minigame is for {1} to {2} players.": [
     "tgui:BasketballPanel"
   ],
   "The master blueprint for this shuttle still exists. Whoever has it can copy it to this set of blueprints.": [
@@ -30340,7 +29793,7 @@
   "The total number of global bounties will go up by 1 for every 3 completed!": [
     "tgui:CivCargoHoldTerminal"
   ],
-  "The tram is travelling to": [
+  "The tram is travelling to {0}!": [
     "tgui:TramControl"
   ],
   "The transport page has mobility spells, very important aspect of staying alive and getting things done.": [
@@ -30364,6 +29817,12 @@
   "The volume that the text-to-speech sounds will play at.": [
     "tgui:sounds"
   ],
+  "The {0} is empty!": [
+    "tgui:FilingCabinet"
+  ],
+  "The {0} open up to your mind.": [
+    "tgui:AntagInfoHeretic"
+  ],
   "Their sprites": [
     "dm:labels"
   ],
@@ -30372,9 +29831,6 @@
   ],
   "Themeify": [
     "dm:labels"
-  ],
-  "Then we mirror the same": [
-    "tgui:PlaneMenus"
   ],
   "Theoretical Physicist": [
     "dm:labels"
@@ -30441,6 +29897,12 @@
   ],
   "They/Them": [
     "dm:labels"
+  ],
+  "The{0} is where you purchase more abilities beyond your starting kit. You have 10 genetic points to spend on abilities and you are able to readapt after absorbing a body, refunding your points for different kits.": [
+    "tgui:AntagInfoChangeling"
+  ],
+  "The{0}{1}{2}reagent {3}": [
+    "tgui:AntagInfoBlob"
   ],
   "Thick": [
     "dm:labels"
@@ -30556,12 +30018,6 @@
   "This NIFSoft carries between shifts": [
     "tgui:NtosNifsoftCatalog"
   ],
-  "This UI exists primarially as a visualizer, mostly because this info is quite obscure, and I want it to be easier to understand.": [
-    "tgui:PlaneMenus"
-  ],
-  "This UI exists to help visualize plane masters, the backbone of our rendering system.": [
-    "tgui:PlaneMenus"
-  ],
   "This action requires Head of Staff access!": [
     "tgui:NtosDeptOrder"
   ],
@@ -30577,7 +30033,7 @@
   "This channel has been deemed as threatening to the welfare of the station, and marked with a Nanotrasen D-Notice.": [
     "tgui:Newscaster"
   ],
-  "This cyborg is linked to \"": [
+  "This cyborg is linked to \"{0}\".": [
     "tgui:Lawpanel"
   ],
   "This determines whether we automatically resolve any weakrefs in lists.": [
@@ -30598,7 +30054,7 @@
   "This experiment has not been discovered yet, continue researching nodes in the tree to discover the contents of this experiment.": [
     "tgui:LockedExperiment"
   ],
-  "This fight will take place in the": [
+  "This fight will take place in the {0}. Leaving the arena mid-fight is a violation.": [
     "tgui:SparringContract"
   ],
   "This folder is empty!": [
@@ -30649,7 +30105,7 @@
   "This is appended to any deployed pieces of MODsuit gear, like the chest, helmet, etc. The default is 'fused' - try to use an adjective, if you can.": [
     "tgui:entombed"
   ],
-  "This is the beginning of your chat with": [
+  "This is the beginning of your chat with {0}.": [
     "tgui:ChatScreen"
   ],
   "This is the current config read by the dynamic system when running rulesets. If you want to edit these values temporarily, you can do so via View Variables. (Note: Editing tier configs has no effect after roundstart)": [
@@ -30667,7 +30123,7 @@
   "This is the selected destination.": [
     "tgui:TramControl"
   ],
-  "This is the status panel for your pioneers. Each one requires 1 food every time you continue towards": [
+  "This is the status panel for your pioneers. Each one requires 1 food every time you continue towards {0}. You can find more crew on your journey, and lose them as fast as you found 'em.{1}{2}If you run out of food or crew, it's{3}{4} for you!": [
     "tgui:OrionGame"
   ],
   "This is the tram's current location.": [
@@ -30712,7 +30168,7 @@
   "This memory pretty bland. It would make for some pretty mediocre art and is not likely to pass to future generations.": [
     "tgui:MemoryPanel"
   ],
-  "This message was deemed dangerous to the general welfare of the station and therefore marked with a": [
+  "This message was deemed dangerous to the general welfare of the station and therefore marked with a {0}.": [
     "tgui:Newscaster"
   ],
   "This modifies how the Dynamic targeting system selects you as a target. No will prevent you from being a target for antagonist objectives. Inconvenience will make you a target for antagonist objectives that are usually not lethal. Kill will make you a target for all lethal antagonist objectives. Round Remove will make you a target for round removal. Enabling any non-ghost antagonists (Revenant, Contractor, etc.) will force your opt-in to be, at minimum, \"Inconvenience\".": [
@@ -30754,10 +30210,10 @@
   "This region of space is particularly devoid of matter. Such low-density pockets are known to exist, but the vastness of it is astounding.": [
     "tgui:OrionGame"
   ],
-  "This ritual must occur in the": [
+  "This ritual must occur in the{0}{1}.": [
     "tgui:ClockworkResearch"
   ],
-  "This ritual occurred in the": [
+  "This ritual occurred in the{0}{1}.": [
     "tgui:ClockworkResearch"
   ],
   "This server has disabled tracking.": [
@@ -30820,7 +30276,7 @@
   "Thong - Zebra": [
     "dm:labels"
   ],
-  "Thread:": [
+  "Thread: {0}": [
     "tgui:ListMapper"
   ],
   "Threat": [
@@ -30829,10 +30285,7 @@
   "Threat Parameters": [
     "tgui:TacVisorEyesMenu"
   ],
-  "Threat determines what items you can purchase.": [
-    "tgui:index"
-  ],
-  "Threat passively increases by": [
+  "Threat passively increases by{0}{1} every minute": [
     "tgui:index"
   ],
   "Threshold": [
@@ -30875,7 +30328,7 @@
   "Ticket ping": [
     "tgui:ticket_ping"
   ],
-  "Tickets in order of most recent to oldest:": [
+  "Tickets in order of most recent to oldest:{0}{1}{2}{3}": [
     "tgui:PlayerTicketHistory"
   ],
   "Tickling Feather": [
@@ -31019,9 +30472,6 @@
   "Tie - Ugly": [
     "dm:labels"
   ],
-  "Tier": [
-    "tgui:AntagInfoHeretic"
-  ],
   "Tier (required)": [
     "tgui:NtosScipaper"
   ],
@@ -31064,7 +30514,10 @@
   "Tier 6": [
     "tgui:Recipes"
   ],
-  "Tier:": [
+  "Tier {0}{1}{2}": [
+    "tgui:AntagInfoHeretic"
+  ],
+  "Tier:{0}": [
     "tgui:DynamicTester"
   ],
   "Tiger": [
@@ -31088,25 +30541,22 @@
   "Time Left": [
     "tgui:Checkout"
   ],
-  "Time Left:": [
+  "Time Left: {0}": [
     "tgui:SkillStation"
   ],
-  "Time Received:": [
+  "Time Received: {0}": [
     "tgui:NifSoulPoem"
   ],
   "Time left": [
     "tgui:ExoscannerConsole"
   ],
-  "Time remaining:": [
-    "tgui:NtosSelfServe"
-  ],
-  "Time until refresh:": [
+  "Time until refresh: {0}": [
     "tgui:SpyUplink"
   ],
   "Timed": [
     "tgui:SolarControl"
   ],
-  "Timer:": [
+  "Timer: {0}": [
     "tgui:BeakerPanel"
   ],
   "Timestamp": [
@@ -31174,7 +30624,7 @@
   "To Who?": [
     "tgui:AdminPDA"
   ],
-  "To assist your task, your program has been loaded with cutting edge": [
+  "To assist your task, your program has been loaded with cutting edge{0}{1} skills.": [
     "tgui:AntagInfoGlitch"
   ],
   "To avoid singeing your eyebrows off, consider enlisting the help of a synth or a trusty borg. After all, nothing says \"safety first\" like outsourcing your firefighting to non-living, non-breathing assistants.": [
@@ -31189,15 +30639,6 @@
   ],
   "To lock fully, turn the dial to the left after closing the safe.": [
     "tgui:Safe"
-  ],
-  "To make a chord be a different time, end it with /x, where the chord length will be length": [
-    "tgui:InstrumentEditor"
-  ],
-  "To sell materials, please insert sheets or similar stacks of materials. All minerals sold on the market directly are subject to a scaling value decrease per material, but this will recover over time. To prevent market manipulation, all registered traders can buy a total of 10 full stacks of materials at a time.": [
-    "tgui:MatMarket"
-  ],
-  "To start off with, each little circle represents a": [
-    "tgui:PlaneMenus"
   ],
   "Toaster Implant": [
     "dm:labels"
@@ -31324,7 +30765,7 @@
   "Toggles Fullscreen for the game, can also be toggled with F11.": [
     "tgui:screen_size"
   ],
-  "Toggles if these food preferences will be applied to your character on spawn.": [
+  "Toggles if these food preferences will be applied to your character on spawn.{0}Remember, these are mostly suggestions, and you are encouraged to roleplay liking meals that your character likes, even if you don't have it's food type liked here!": [
     "tgui:FoodPreferences"
   ],
   "Toggles if to take power from cable.": [
@@ -31435,9 +30876,6 @@
     "tgui:SeedTable",
     "tgui:TrackedPlaytime"
   ],
-  "Total Experience: [": [
-    "tgui:SkillPanel"
-  ],
   "Total Health": [
     "tgui:MedicalKiosk"
   ],
@@ -31530,19 +30968,16 @@
   "Trader": [
     "dm:labels"
   ],
-  "Trading at": [
+  "Trading at {0}{1} cr.": [
     "tgui:MatMarket"
   ],
   "Trading temporarily suspended.": [
     "tgui:MatMarket"
   ],
-  "Traditional Games 13, Skyrat Station 13, Baystation 12, /vg/station, NTstation, CDK Station devs, FacepunchStation, GoonStation devs, the original Space Station 13 developers, Invisty for the title image and the countless others who have contributed to the game.": [
-    "tgui:Changelog"
-  ],
   "Traditional Games Space Station 13 License": [
     "tgui:Changelog"
   ],
-  "Traditional Games Space Station 13 is thankful to the GoonStation 13 Development Team for its work on the game up to the": [
+  "Traditional Games Space Station 13 is thankful to the GoonStation 13 Development Team for its work on the game up to the{0}{1}.": [
     "tgui:Changelog"
   ],
   "Trainee Pharmacist": [
@@ -31587,9 +31022,6 @@
   "Transaction History": [
     "tgui:NtosPay"
   ],
-  "Transfer": [
-    "tgui:DnaConsoleEnzymes"
-  ],
   "Transfer Money": [
     "tgui:NtosPay"
   ],
@@ -31599,6 +31031,9 @@
   ],
   "Transfer a soul to another room": [
     "tgui:Soulcatcher"
+  ],
+  "Transfer{0}": [
+    "tgui:DnaConsoleEnzymes"
   ],
   "Transform": [
     "tgui:AntagInfoChangeling",
@@ -31628,9 +31063,6 @@
   "Trap:": [
     "tgui:SlotMachine"
   ],
-  "Traps are useful contraptions, able to be created at a": [
-    "tgui:ClockworkSlab"
-  ],
   "Traps:": [
     "tgui:ClockworkSlab"
   ],
@@ -31649,7 +31081,7 @@
   "Travel Home.": [
     "tgui:NtosRoboControl"
   ],
-  "Travel Time:": [
+  "Travel Time: {0}": [
     "tgui:ExodroneConsole"
   ],
   "Traveler": [
@@ -31745,16 +31177,31 @@
   "Trigger Phrase": [
     "tgui:HypnoChair"
   ],
-  "Trigger if the person scanned": [
+  "Trigger if the person scanned is {0} a {1}.": [
     "tgui:ScannerGate"
   ],
-  "Trigger if the person scanned is": [
+  "Trigger if the person scanned is {0} of the{1}{2} species.{3}": [
+    "tgui:ScannerGate"
+  ],
+  "Trigger if the person scanned {0} a disease equal or worse than {1}.": [
+    "tgui:ScannerGate"
+  ],
+  "Trigger if the person scanned {0} a mindshield.": [
+    "tgui:ScannerGate"
+  ],
+  "Trigger if the person scanned {0} any guns.": [
+    "tgui:ScannerGate"
+  ],
+  "Trigger if the person scanned {0} any warrants for their arrest.": [
+    "tgui:ScannerGate"
+  ],
+  "Trigger if the person scanned {0} the{1}{2} nutrition level.": [
     "tgui:ScannerGate"
   ],
   "Trim Flat": [
     "dm:labels"
   ],
-  "Trim:": [
+  "Trim:{0}{1}": [
     "tgui:AccessList"
   ],
   "Trimmed": [
@@ -31826,7 +31273,7 @@
   "Turret Status": [
     "tgui:TurretControl"
   ],
-  "Turrets (": [
+  "Turrets ({0})": [
     "tgui:AuxBaseConsole"
   ],
   "Turtleneck w/ Overalls": [
@@ -32036,9 +31483,6 @@
   "Undesignate Area": [
     "tgui:ShuttleBlueprints"
   ],
-  "Undiscovered Experiment": [
-    "tgui:LockedExperiment"
-  ],
   "Undo Tower of Babel": [
     "tgui:Secrets"
   ],
@@ -32084,10 +31528,6 @@
   "Unit": [
     "tgui:AuxBaseConsole",
     "tgui:NtosRobotact"
-  ],
-  "Units": [
-    "tgui:RapidConstructionDevice",
-    "tgui:RapidDecorationDevice"
   ],
   "Units Left": [
     "tgui:RapidConstructionDevice",
@@ -32158,7 +31598,7 @@
   "Unlocking Scriptures": [
     "tgui:ClockworkSlab"
   ],
-  "Unlocks (": [
+  "Unlocks ({0})": [
     "tgui:detail"
   ],
   "Unlocks the safety protocols.": [
@@ -32272,7 +31712,7 @@
   "Upload and Run": [
     "tgui:index"
   ],
-  "Uploaded Keycards:": [
+  "Uploaded Keycards: {0}": [
     "tgui:AntagInfoAssaultops"
   ],
   "Upstart Noble's Cap": [
@@ -32335,9 +31775,6 @@
   "Use template": [
     "tgui:LightController"
   ],
-  "Use the destinations tagger to choose where to send it.": [
-    "tgui:CargoHelp"
-  ],
   "Use this key in your message to speak in this language.": [
     "tgui:LanguageMenu"
   ],
@@ -32349,9 +31786,6 @@
   ],
   "Used Cargo Space": [
     "tgui:ExosuitControlConsole"
-  ],
-  "Used to cast most spells. Your spellbook will let you know which spells cannot be cast without a garb.": [
-    "tgui:AntagInfoWizard"
   ],
   "User": [
     "tgui:OreSilo"
@@ -32375,11 +31809,13 @@
   "User Status": [
     "tgui:MODsuit"
   ],
-  "Userdata:": [
+  "Userdata: {0}": [
     "tgui:ListMapper"
   ],
   "Username:": [
-    "tgui:NtosNetChat",
+    "tgui:NtosNetChat"
+  ],
+  "Username: {0}": [
     "tgui:NtosSpaceBetting"
   ],
   "Ushanka": [
@@ -32674,7 +32110,7 @@
   "View Message Logs": [
     "tgui:MessageMonitor"
   ],
-  "View Messages": [
+  "View Messages {0}": [
     "tgui:RequestsConsoleMainScreen"
   ],
   "View Mirroring": [
@@ -32717,9 +32153,6 @@
   ],
   "View image": [
     "tgui:ChatScreen"
-  ],
-  "View them here": [
-    "tgui:KitchenSink"
   ],
   "View wire color legend": [
     "tgui:Blueprints"
@@ -32806,7 +32239,7 @@
   "Visual help": [
     "tgui:Tutorial"
   ],
-  "Visualization:": [
+  "Visualization:{0}": [
     "tgui:ShuttleBlueprints"
   ],
   "Visuals": [
@@ -32911,7 +32344,7 @@
     "tgui:Seed",
     "tgui:Tray"
   ],
-  "Volume Dropoff Threshold:": [
+  "Volume Dropoff Threshold:{0}": [
     "tgui:InstrumentEditor"
   ],
   "Volume Mulx": [
@@ -32932,12 +32365,14 @@
   "Volume of vocal AI announcements (also known as \"VOX\").": [
     "tgui:sounds"
   ],
-  "Volume:": [
-    "tgui:InstrumentEditor",
-    "tgui:MilkingMachine"
-  ],
   "Volume: n/a": [
     "tgui:MilkingMachine"
+  ],
+  "Volume: {0} /{1}{2}": [
+    "tgui:MilkingMachine"
+  ],
+  "Volume:{0}": [
+    "tgui:InstrumentEditor"
   ],
   "Voodoo Doll": [
     "dm:labels"
@@ -33177,9 +32612,6 @@
   "WITHDRAW": [
     "tgui:PaiSubmit"
   ],
-  "WORLD MAP": [
-    "tgui:BattleArcade"
-  ],
   "WahCoon": [
     "dm:labels"
   ],
@@ -33287,13 +32719,7 @@
   "Waste Multiplier": [
     "tgui:Supermatter"
   ],
-  "Waste remove:": [
-    "tgui:Controls"
-  ],
-  "Watch your power upkeep! You're dependent on your cogged APCs to stay powered, and a lot of structures can drain it quickly.": [
-    "tgui:ClockworkSlab"
-  ],
-  "Watching:": [
+  "Watching: {0}": [
     "tgui:index"
   ],
   "Water": [
@@ -33312,14 +32738,8 @@
   "Wavy": [
     "dm:labels"
   ],
-  "We can set the": [
-    "tgui:PlaneMenus"
-  ],
   "We can't find information about even the approximate contents of this order.": [
     "tgui:CargoCatalog"
-  ],
-  "We first create an atom with an appearance flag that contains": [
-    "tgui:PlaneMenus"
   ],
   "Weaknesses": [
     "tgui:AntagInfoBloodWorm"
@@ -33433,9 +32853,6 @@
   "What drink would you like inside your lunchbox?": [
     "tgui:lunchbox_quirk"
   ],
-  "What if we wanted to draw": [
-    "tgui:PlaneMenus"
-  ],
   "What is a plane master?": [
     "tgui:PlaneMenus"
   ],
@@ -33468,9 +32885,6 @@
   ],
   "What would you like the background for the character preview in the character creator to be?": [
     "tgui:character_preview_background"
-  ],
-  "What you're doing here is a \"don't show this to anyone\" button": [
-    "tgui:Modify"
   ],
   "What your character is attracted to. This is displayed in the Directory.": [
     "tgui:species_features"
@@ -33601,11 +33015,8 @@
   "When enabled, you will receive regular pings from unhandled tickets.": [
     "tgui:ticket_ping"
   ],
-  "When it comes time for your second attempt at starting the SM: Take this sign, give it a good toss towards the crystal, and watch it soar through the air.": [
+  "When it comes time for your second attempt at starting the SM: Take this sign, give it a good toss towards the crystal, and watch it soar through the air. {0}{1}Nothing says \"I'm dealing with a potentially catastrophic situation\" like engaging in some whimsical shenanigans.": [
     "tgui:DelamProcedure"
-  ],
-  "When selling materials, prices will be decreased based on the elastic modifier of the material, which will recover over time.": [
-    "tgui:MatMarket"
   ],
   "When spawned, spawns with this velocity. Can use a generator.": [
     "tgui:Tutorial"
@@ -33682,9 +33093,6 @@
   "While inside of a host, your host doesn't need vital organs to survive, except for a brain. Lungs let you speak, and a liver lets you process chems. You can insert organs into your host by picking them up and right-clicking on your host with them. This works for cybernetics too.": [
     "tgui:AntagInfoBloodWorm"
   ],
-  "While morphed, you move faster, but are unable to attack creatures or eat anything. In addition,": [
-    "tgui:AntagInfoMorph"
-  ],
   "While off-duty, any restricted items will be transferred to a crew equipment lockbox, to be returned upon punching in.": [
     "tgui:NtosSelfServe"
   ],
@@ -33730,11 +33138,8 @@
   "Who's Horns": [
     "dm:labels"
   ],
-  "Why do you want to": [
+  "Why do you want to {0} this book?": [
     "tgui:Modify"
-  ],
-  "Why not relay it to another atom then? and then well, set that atom's": [
-    "tgui:PlaneMenus"
   ],
   "Wide Elf": [
     "dm:labels"
@@ -33847,9 +33252,6 @@
   "Wipe criminal record data.": [
     "tgui:RecordTabs"
   ],
-  "Wire Configuration": [
-    "tgui:Wires"
-  ],
   "WireCarp": [
     "dm:labels"
   ],
@@ -33947,7 +33349,7 @@
   "Work Jacket - Supply": [
     "dm:labels"
   ],
-  "Work together or work against them: The choice is yours, but": [
+  "Work together or work against them: The choice is yours, but{0}{1}": [
     "tgui:AntagInfoSpy"
   ],
   "Workboots (Black)": [
@@ -33964,9 +33366,6 @@
   ],
   "Worn Corporate Cloak": [
     "dm:labels"
-  ],
-  "Wrap your item/crate in packaging paper.": [
-    "tgui:CargoHelp"
   ],
   "Wraps (Blue)": [
     "dm:labels"
@@ -33989,20 +33388,20 @@
   "Write": [
     "tgui:index"
   ],
-  "Write Message": [
+  "Write Message {0}": [
     "tgui:RequestsConsoleMainScreen"
   ],
   "Write your response here, max of 500 characters. Press enter to submit.": [
     "tgui:Interview"
   ],
-  "Written by:": [
+  "Written by: {0}": [
     "tgui:Newspaper"
   ],
   "X": [
     "tgui:InstrumentEditor",
     "tgui:MatrixMathTester"
   ],
-  "X Coordinate:": [
+  "X Coordinate:{0}{1}": [
     "tgui:AdminFax"
   ],
   "X Offset": [
@@ -34010,12 +33409,6 @@
   ],
   "X,Y,Z coordinates for where this particle spawns. Can use a generator.": [
     "tgui:Tutorial"
-  ],
-  "XP To Next Level:": [
-    "tgui:SkillPanel"
-  ],
-  "XP]": [
-    "tgui:SkillPanel"
   ],
   "Xeno": [
     "dm:labels"
@@ -34133,7 +33526,7 @@
     "tgui:AntagInfoDemon",
     "tgui:MatrixMathTester"
   ],
-  "Y Coordinate:": [
+  "Y Coordinate:{0}{1}": [
     "tgui:AdminFax"
   ],
   "Y Offset": [
@@ -34207,16 +33600,13 @@
   "You and a partner will become the abductor scientist and agent duo. As an agent, abduct unassuming victims and bring them back to your UFO. As a scientist, scout out victims for your agent, keep them safe, and operate on whoever they bring back.": [
     "dm:antagonists"
   ],
-  "You are": [
-    "tgui:AntagInfoChangeling"
-  ],
   "You are a Blood Worm!": [
     "tgui:AntagInfoBloodWorm"
   ],
   "You are a Nightmare.": [
     "tgui:AntagInfoNightmare"
   ],
-  "You are a creature from beyond the stars that has incredibly strong powers in the darkness, becoming nigh unbeatable. Unfortunately, you wither and burn away in the light. You must use your": [
+  "You are a creature from beyond the stars that has incredibly strong powers in the darkness, becoming nigh unbeatable. Unfortunately, you wither and burn away in the light. You must use your{0} to dim the station, making hunting easier.": [
     "tgui:AntagInfoNightmare"
   ],
   "You are a creature from the void between stars. You were attracted to the radio signals being broadcasted by this station.": [
@@ -34240,7 +33630,7 @@
   "You are an OPFOR candidate!": [
     "tgui:AntagInfoOpfor"
   ],
-  "You are an advanced combat unit. You have been outfitted with": [
+  "You are an advanced combat unit. You have been outfitted with{0}{1}.": [
     "tgui:AntagInfoGlitch"
   ],
   "You are an ancient voidwalker, having been caught in a supernova. You are altered, and hateful.": [
@@ -34252,10 +33642,10 @@
   "You are banned from using urgent ahelps.": [
     "tgui:Adminhelp"
   ],
-  "You are bound to the will of": [
+  "You are bound to the will of {0}!": [
     "tgui:AntagInfoShade"
   ],
-  "You are crafting a": [
+  "You are crafting a {0}.{1}{2}": [
     "tgui:GlassBlowing"
   ],
   "You are currently dead. You may speak with the Chaplain at night, if there is one.": [
@@ -34276,20 +33666,12 @@
   "You are not authorized for item management.": [
     "tgui:CryopodConsole"
   ],
-  "You are not logged in.": [
+  "You are not logged in.{0}": [
     "tgui:PrisonerManagement",
     "tgui:index"
   ],
   "You are not on a shuttle frame.": [
     "tgui:ShuttleBlueprints"
-  ],
-  "You are one of his last remaining, most loyal servants.": [
-    "tgui:ClockworkSlab"
-  ],
-  "You are the": [
-    "tgui:AntagInfoBrother",
-    "tgui:AntagInfoGeneric",
-    "tgui:MafiaPanel"
   ],
   "You are the Blob!": [
     "tgui:AntagInfoBlob"
@@ -34297,7 +33679,7 @@
   "You are the Heretic!": [
     "tgui:AntagInfoHeretic"
   ],
-  "You are the Separatist for a free": [
+  "You are the Separatist for a free {0}!": [
     "tgui:AntagInfoSeparatist"
   ],
   "You are the Space Wizard!": [
@@ -34309,14 +33691,15 @@
   "You are the Voidwalker": [
     "tgui:AntagInfoVoidwalker"
   ],
-  "You are very weak and have little power, with most of your scriptures unable to function.": [
-    "tgui:ClockworkSlab"
+  "You are the {0}": [
+    "tgui:MafiaPanel"
   ],
-  "You can attack any item or dead creature to consume it -": [
-    "tgui:AntagInfoMorph"
+  "You are the {0}!": [
+    "tgui:AntagInfoBrother",
+    "tgui:AntagInfoGeneric"
   ],
-  "You can dive in and out of blood to travel anywhere you need to be. You will gain a speed boost upon leaving the jaunt for surprise attacks. You can drag victims you have disabled through the blood, consuming them and restoring health.": [
-    "tgui:AntagInfoDemon"
+  "You are {0} from the{1}.": [
+    "tgui:AntagInfoChangeling"
   ],
   "You can edit your answers until you press the submit button.": [
     "tgui:Interview"
@@ -34342,9 +33725,6 @@
   "You can hit this integrated circuit onto a component printer to link it so that you're able to remotely create and add components to this circuit.": [
     "tgui:ComponentMenu"
   ],
-  "You can launch a devastating slam attack by right-clicking, capable of smashing bones in one strike. Great for preventing the escape of your victims, as their wounds will slow them.": [
-    "tgui:AntagInfoDemon"
-  ],
   "You can leave your host to surprise attack people, which is especially effective as an adult. Be sure to block off any paths of escape first, as it takes 3 seconds to leave your host.": [
     "tgui:AntagInfoBloodWorm"
   ],
@@ -34364,12 +33744,6 @@
   "You can print redeemed coupons by right-clicking a photocopier.": [
     "tgui:NtosCouponMaster"
   ],
-  "You can tell where a node starts and ends based on the side of the plane it's on.": [
-    "tgui:PlaneMenus"
-  ],
-  "You can think of a plane master as a way to group a set of objects onto one rendering slate.": [
-    "tgui:PlaneMenus"
-  ],
   "You can think of this as the 'layer' this plane is on. We make duplicates of each plane for each layer, so we can make multiz work": [
     "tgui:PlaneEditor"
   ],
@@ -34378,9 +33752,6 @@
   ],
   "You can upgrade normal blobs into the following types of blob:": [
     "tgui:AntagInfoBlob"
-  ],
-  "You can use filters to mask one plane with another, or use one plane as a distortion source for another.": [
-    "tgui:PlaneMenus"
   ],
   "You can't have any more positive quirks!": [
     "tgui:QuirksPage"
@@ -34422,29 +33793,25 @@
     "tgui:AntagInfoBloodWorm"
   ],
   "You have": [
-    "tgui:AntagInfoHeretic",
-    "tgui:BorerEvolution"
+    "tgui:AntagInfoHeretic"
   ],
-  "You have a spellbook which is bound to you. You can use it to choose a magical arsenal.": [
+  "You have a spellbook which is bound to you. You can use it to choose a magical arsenal.{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}": [
     "tgui:AntagInfoWizard"
   ],
   "You have a wide range of structures and powers that will be vital in defending your grounds.": [
     "tgui:ClockworkSlab"
   ],
-  "You have been equipped with a special uplink device disguised as": [
+  "You have been equipped with a special uplink device disguised as{0}{1} that will allow you to steal from the station.": [
     "tgui:AntagInfoSpy"
   ],
   "You have come into range of the first man-made structure in this region of space. It has been constructed not by travellers from Sol, but by colonists from Orion. It stands as a monument to the colonists' success.": [
     "tgui:OrionGame"
   ],
-  "You have made a total of": [
+  "You have made a total of {0} {1}.": [
     "tgui:AntagInfoHeretic"
   ],
   "You have made it to Orion! Congratulations! Your crew is one of the few to start a new foothold for mankind!": [
     "tgui:OrionGame"
-  ],
-  "You have memorized the codewords, allowing you to recognise them when heard.": [
-    "tgui:AntagInfoTraitor"
   ],
   "You have new unread": [
     "tgui:RequestsConsoleHeader"
@@ -34473,8 +33840,12 @@
   "You have the supernatural ability to turn into blood upon command. This allows you to enter a corpse, taking it as your host.": [
     "tgui:AntagInfoBloodWorm"
   ],
-  "You have unrivaled freedom. Remain in space and no one can stop you. You can move through windows, so stay near them to always have a way out.": [
-    "tgui:AntagInfoVoidwalker"
+  "You have {0} {1}.": [
+    "tgui:AntagInfoHeretic"
+  ],
+  "You have {0} {1}{2}to spend.": [
+    "tgui:AntagInfoHeretic",
+    "tgui:BorerEvolution"
   ],
   "You haven't revealed your true form yet!": [
     "tgui:AntagInfoBlob"
@@ -34493,12 +33864,6 @@
   ],
   "You must be standing on the shuttle frame you wish to expand the shuttle with.": [
     "tgui:ShuttleBlueprints"
-  ],
-  "You must complete the ritual": [
-    "tgui:AntagInfoWizard"
-  ],
-  "You must have at least one known language, and you must understand Sol Common to play most station jobs.": [
-    "tgui:LanguagesMenu"
   ],
   "You must kill or exile the heads of staff:": [
     "tgui:AntagInfoRevolution"
@@ -34544,9 +33909,6 @@
   "You need to use shears.": [
     "tgui:GlassBlowing"
   ],
-  "You need vitality to create": [
-    "tgui:ClockworkSlab"
-  ],
   "You ruined my cool font effect.": [
     "tgui:AntagInfoBrainwashed"
   ],
@@ -34562,10 +33924,10 @@
   "You take the breath right from their lungs and quickly take down even the strongest opponents. Should they resist, right-click allows you to do some raw damage. Your arms are otherwise not very sophisticated, and are not good for much more than just grabbing things.": [
     "tgui:AntagInfoVoidwalker"
   ],
-  "You thought there would be something useful here?": [
+  "You thought there would be something useful here?{0}Ha! What a loser. :3": [
     "tgui:IntensityCredits"
   ],
-  "You will be able to manually place your blob core by pressing the Place Blob Core button in the bottom right corner of the screen.": [
+  "You will be able to manually place your blob core by pressing the Place Blob Core button in the bottom right corner of the screen.{0}{1}{2}If you are the blob infection, you can place the core where you are standing by pressing the pop button on the top left corner of the screen.": [
     "tgui:AntagInfoBlob"
   ],
   "You will fight with your fists only. Any weapons will be considered a violation.": [
@@ -34583,9 +33945,6 @@
   "You...": [
     "tgui:InfoSection"
   ],
-  "Your": [
-    "tgui:AntagInfoChangeling"
-  ],
   "Your Base:": [
     "tgui:ClockworkSlab"
   ],
@@ -34595,19 +33954,16 @@
   "Your Primary Objectives are as follows. Complete these at all costs.": [
     "tgui:PrimaryObjectiveMenu"
   ],
-  "Your Unsettle ability stuns and drains your targets. Knock them out with your draining slash, take them to space (or nebula vomit) and enlighten them.": [
-    "tgui:AntagInfoVoidwalker"
-  ],
   "Your admin button here, coder!": [
     "tgui:Secrets"
   ],
-  "Your advanced ninja suit contains many powerful modules.": [
+  "Your advanced ninja suit contains many powerful modules.{0} It can be recharged by right clicking on station APCs or other power sources, in order to drain their battery.{1}Right clicking on some kinds of machines or items wearing your suit will hack them, to varying effect. Experiment and find out what you can do!": [
     "tgui:AntagInfoNinja"
   ],
-  "Your allegiances:": [
+  "Your allegiances:{0}": [
     "tgui:AntagInfoTraitor"
   ],
-  "Your answers have been submitted. You are position": [
+  "Your answers have been submitted. You are position {0} in queue.": [
     "tgui:Interview"
   ],
   "Your attacks deal great burn damage and ignite those hit.": [
@@ -34616,7 +33972,7 @@
   "Your benefactors see you unfit to complete this.": [
     "tgui:SpyUplink"
   ],
-  "Your blob reagent is:": [
+  "Your blob reagent is:{0}{1}": [
     "tgui:AntagInfoBlob"
   ],
   "Your body temperature can be set different from the standard, with the highest temp of 70 being equivalent to a skrell or as low as -20 with being equivalent to a plasmaman. Note that your safety is not guaranteed within the extremes, be mindful of your existence.": [
@@ -34643,7 +33999,7 @@
   "Your current objectives": [
     "tgui:Objectives"
   ],
-  "Your employer provided you with the following codewords to identify fellow agents. Use the codewords during regular conversation to identify other agents. Proceed with caution, however, as everyone is a potential foe.": [
+  "Your employer provided you with the following codewords to identify fellow agents. Use the codewords during regular conversation to identify other agents. Proceed with caution, however, as everyone is a potential foe.{0}": [
     "tgui:AntagInfoTraitor"
   ],
   "Your food preferences are disabled!": [
@@ -34676,10 +34032,7 @@
   "Your natural camouflage makes you invisible in space, as well as mending any wounds your body might have sustained. You can move through glass freely, but are slowed in gravity.": [
     "tgui:AntagInfoVoidwalker"
   ],
-  "Your next ritual location is the": [
-    "tgui:AntagInfoWizard"
-  ],
-  "Your pay token is": [
+  "Your pay token is {0}.": [
     "tgui:NtosPay"
   ],
   "Your reward for playing 5k+ hours. Don a fancy cloak only wearable by fellow super-veterans.": [
@@ -34702,6 +34055,15 @@
   ],
   "Your very skin heats the air around you, while the vacuum of space mends any wounds your body might have sustained. You can move through glass freely, but are slowed in gravity.": [
     "tgui:AntagInfoSunwalker"
+  ],
+  "Your{0} ability allows you to change into the form of those you have collected DNA from, lethally and nonlethally. It will also mimic (NOT REAL CLOTHING) the clothing they were wearing for every slot you have open.": [
+    "tgui:AntagInfoChangeling"
+  ],
+  "Your{0} ability allows you to revive. It means nothing short of a complete body destruction can stop you! Obviously, this is loud and so should not be done in front of people you are not planning on silencing.": [
+    "tgui:AntagInfoChangeling"
+  ],
+  "Your{0} ability allows you to steal the DNA and memories of a victim. The{1} ability also steals the DNA of a victim, and is undetectable, but does not grant you their memories or speech patterns.": [
+    "tgui:AntagInfoChangeling"
   ],
   "Yukata (Black)": [
     "dm:labels"
@@ -34765,7 +34127,7 @@
     "tgui:Canvas",
     "tgui:index"
   ],
-  "Zoom:": [
+  "Zoom: {0}x": [
     "tgui:ControlBar"
   ],
   "Zorgoia tail": [
@@ -34783,10 +34145,10 @@
   "[DC]": [
     "tgui:RequestManager"
   ],
-  "[Department x": [
+  "[Department x {0}]": [
     "tgui:CargoCart"
   ],
-  "[Door is": [
+  "[Door is {0}{1}{2}!]": [
     "tgui:AiAirlock"
   ],
   "[MAXXED]": [
@@ -34795,7 +34157,7 @@
   "[Permanent]": [
     "tgui:AiAirlock"
   ],
-  "[Private x": [
+  "[Private x {0}]": [
     "tgui:CargoCart"
   ],
   "[UNKNOWN]": [
@@ -34807,41 +34169,11 @@
   "[initial(language.name)] manual": [
     "dm:labels"
   ],
-  "a": [
-    "tgui:ScannerGate"
-  ],
-  "a disease equal or worse than": [
-    "tgui:ScannerGate"
-  ],
-  "a mindshield.": [
-    "tgui:ScannerGate"
-  ],
-  "ability allows you to change into the form of those you have collected DNA from, lethally and nonlethally. It will also mimic (NOT REAL CLOTHING) the clothing they were wearing for every slot you have open.": [
-    "tgui:AntagInfoChangeling"
-  ],
-  "ability allows you to revive. It means nothing short of a complete body destruction can stop you! Obviously, this is loud and so should not be done in front of people you are not planning on silencing.": [
-    "tgui:AntagInfoChangeling"
-  ],
-  "ability allows you to steal the DNA and memories of a victim. The": [
-    "tgui:AntagInfoChangeling"
-  ],
-  "ability also steals the DNA of a victim, and is undetectable, but does not grant you their memories or speech patterns.": [
-    "tgui:AntagInfoChangeling"
-  ],
   "absorbing": [
     "tgui:AntagInfoChangeling"
   ],
-  "accepts targets pointed to by the": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "access": [
-    "tgui:OreSilo"
-  ],
   "action.": [
     "tgui:AntagInfoGlitch"
-  ],
-  "active in your other hand. This rune allows you to complete rituals and sacrifices.": [
-    "tgui:AntagInfoHeretic"
   ],
   "albino": [
     "dm:labels"
@@ -34865,48 +34197,14 @@
     "tgui:AiAirlock",
     "tgui:Changelog"
   ],
-  "and give it a": [
-    "tgui:PlaneMenus"
-  ],
-  "and then insert it in to begin siphoning power. However, you will only gain a cog after the Integration Cog has been inside the APC for 5 minutes.": [
-    "tgui:ClockworkSlab"
-  ],
-  "and won": [
-    "tgui:SlotMachine"
-  ],
-  "any guns.": [
-    "tgui:ScannerGate"
-  ],
-  "any warrants for their arrest.": [
-    "tgui:ScannerGate"
-  ],
   "anyone within three tiles will note an uncanny wrongness if examining you.": [
     "tgui:AntagInfoMorph"
   ],
   "appearance_flags": [
     "tgui:AppearanceInfo"
   ],
-  "around the station invisible to the normal eye and": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "around you, as a realization of something": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "around you. This aura will be visible to all those around you and will mark you as a Heretic. Consider the risks before accumulating too much knowledge!": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "as": [
-    "tgui:JobsPage",
-    "tgui:QuantumConsole"
-  ],
   "assistive anti-gravity ambulator": [
     "dm:labels"
-  ],
-  "at": [
-    "tgui:Newscaster"
-  ],
-  "available languages": [
-    "tgui:LanguagesMenu"
   ],
   "avian tongue": [
     "dm:labels"
@@ -34926,12 +34224,6 @@
   "back": [
     "tgui:ScannerGate"
   ],
-  "based connection.": [
-    "tgui:PlaneMenus"
-  ],
-  "be drawn to the actual client view, and instead just relayed.": [
-    "tgui:PlaneMenus"
-  ],
   "beat": [
     "tgui:Jukebox"
   ],
@@ -34947,17 +34239,11 @@
   "blend_mode": [
     "tgui:AppearanceInfo"
   ],
-  "blueprint pod and edit vars directly": [
-    "tgui:Tabs"
-  ],
   "blur": [
     "dm:labels"
   ],
   "bolted": [
     "tgui:AiAirlock"
-  ],
-  "bount": [
-    "tgui:CivCargoHoldTerminal"
   ],
   "box": [
     "tgui:Tutorial"
@@ -34971,24 +34257,6 @@
   "burning red eyes": [
     "dm:labels"
   ],
-  "by invoking a ritual circle at several nexuses of power.": [
-    "tgui:AntagInfoWizard"
-  ],
-  "by using a drawing tool (a pen or crayon) on the floor while having": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "called! RETA may open doors in area to them.": [
-    "tgui:RequestsConsoleHeader"
-  ],
-  "can be used to research normally-locked equipment and abilities, but not easily.": [
-    "tgui:ClockworkSlab"
-  ],
-  "changed:": [
-    "tgui:Changelog"
-  ],
-  "characters.": [
-    "tgui:InstrumentEditor"
-  ],
   "chemicals": [
     "tgui:AntagInfoChangeling"
   ],
@@ -34998,10 +34266,6 @@
   ],
   "citations": [
     "tgui:CrimeWatcher"
-  ],
-  "cm": [
-    "tgui:FishAnalyzer",
-    "tgui:FishCatalog"
   ],
   "code/__DEFINES/tgs.dm": [
     "tgui:Changelog"
@@ -35031,14 +34295,8 @@
   "commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at 4:38 PM PST": [
     "tgui:Changelog"
   ],
-  "complexity used": [
-    "tgui:MODsuit"
-  ],
-  "const": [
+  "const {0} ={1}": [
     "tgui:AntagInfoGlitch"
-  ],
-  "cooldown.": [
-    "tgui:NtosDeptOrder"
   ],
   "core": [
     "dm:labels"
@@ -35050,27 +34308,7 @@
     "tgui:AntagInfoMorph"
   ],
   "cr": [
-    "tgui:AuditScreen",
-    "tgui:BankMachine",
-    "tgui:BuyingShuttle",
-    "tgui:CivCargoHoldTerminal",
-    "tgui:CrimeWatcher",
-    "tgui:HoloPay",
-    "tgui:NtosCivCargoHoldTerminal",
-    "tgui:NtosNifsoftCatalog",
-    "tgui:NtosSpaceBetting",
-    "tgui:SlotMachine",
-    "tgui:UsersScreen",
-    "tgui:Vendatray"
-  ],
-  "cr bet on it)": [
-    "tgui:NtosSpaceBetting"
-  ],
-  "cr on": [
-    "tgui:BetTable"
-  ],
-  "cr.": [
-    "tgui:MatMarket"
+    "tgui:BankMachine"
   ],
   "creation date": [
     "tgui:PaintingAdminPanel"
@@ -35084,19 +34322,11 @@
   "creator name": [
     "tgui:PaintingAdminPanel"
   ],
-  "credit": [
-    "tgui:NtosPay",
-    "tgui:SlotMachine"
-  ],
   "credit value": [
     "tgui:PaintingAdminPanel"
   ],
   "credits": [
-    "tgui:CargoExpress",
-    "tgui:CargoHoldTerminal"
-  ],
-  "credits.": [
-    "tgui:MedicalKiosk"
+    "tgui:CargoExpress"
   ],
   "crimes": [
     "tgui:CrimeWatcher"
@@ -35113,20 +34343,11 @@
   "dated Espatier holster": [
     "dm:labels"
   ],
-  "day": [
-    "tgui:JobsPage"
-  ],
-  "days left": [
-    "tgui:AntagsPage"
-  ],
   "debug_finder": [
     "dm:labels"
   ],
   "default": [
     "dm:labels"
-  ],
-  "defined by tempo / x:": [
-    "tgui:InstrumentEditor"
   ],
   "deluxe [initial(language.name)] manual": [
     "dm:labels"
@@ -35146,9 +34367,6 @@
   "does not have": [
     "tgui:ScannerGate"
   ],
-  "does not have any invocations.": [
-    "tgui:ReligiousTool"
-  ],
   "dronespeak manual": [
     "dm:labels"
   ],
@@ -35161,32 +34379,17 @@
   "endoplasmic reticulum": [
     "dm:labels"
   ],
-  "even if that language is only understood and not spoken.": [
-    "tgui:LanguagesMenu"
-  ],
-  "every minute": [
-    "tgui:index"
-  ],
-  "evolution point": [
+  "evolution point{0}": [
     "tgui:BorerEvolution"
   ],
   "extended [initial(language.name)] manual": [
     "dm:labels"
   ],
-  "failed attempts)": [
-    "tgui:DynamicAdmin"
-  ],
   "false": [
     "tgui:Fax"
   ],
-  "favor.": [
-    "tgui:ReligiousTool"
-  ],
   "filters": [
     "tgui:AppearanceInfo"
-  ],
-  "for a chance": [
-    "tgui:SlotMachine"
   ],
   "for more details.": [
     "tgui:Changelog"
@@ -35194,20 +34397,11 @@
   "for the MIT license.": [
     "tgui:Changelog"
   ],
-  "for you!": [
-    "tgui:OrionGame"
-  ],
   "forbidden": [
     "tgui:AntagInfoGlitch"
   ],
   "forked cybernetic tongue": [
     "dm:labels"
-  ],
-  "found.": [
-    "tgui:CrimeWatcher"
-  ],
-  "from the": [
-    "tgui:AntagInfoChangeling"
   ],
   "function": [
     "tgui:Log"
@@ -35217,9 +34411,6 @@
   ],
   "ghoulish tongue": [
     "dm:labels"
-  ],
-  "gives:": [
-    "tgui:Supermatter"
   ],
   "golgi apparatus": [
     "dm:labels"
@@ -35258,9 +34449,6 @@
   "height": [
     "tgui:PaintingAdminPanel"
   ],
-  "height=": [
-    "tgui:ArmamentStation"
-  ],
   "here": [
     "tgui:Changelog"
   ],
@@ -35279,26 +34467,17 @@
   "icon": [
     "tgui:AppearanceInfo"
   ],
-  "icon:": [
+  "icon: {0}": [
     "tgui:AppearanceBox"
   ],
   "icon_state": [
     "tgui:AppearanceInfo"
   ],
-  "icon_state:": [
+  "icon_state: {0}": [
     "tgui:AppearanceBox"
   ],
   "ies": [
     "tgui:CivCargoHoldTerminal"
-  ],
-  "in critical or worse condition to": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "in queue.": [
-    "tgui:Interview"
-  ],
-  "in the air unfolds. You look inwards and discover something that will change your life.": [
-    "tgui:AntagInfoHeretic"
   ],
   "influences": [
     "tgui:AntagInfoHeretic"
@@ -35315,9 +34494,6 @@
   "internal vocal sacs": [
     "dm:labels"
   ],
-  "into the shift.": [
-    "tgui:JobSelection"
-  ],
   "invalid": [
     "dm:labels"
   ],
@@ -35325,35 +34501,10 @@
     "tgui:AppearanceInfo"
   ],
   "is": [
-    "tgui:InstrumentEditor",
     "tgui:PlaneMenus"
-  ],
-  "is a crime. Your mission:": [
-    "tgui:AntagInfoGlitch"
-  ],
-  "is empty!": [
-    "tgui:FilingCabinet"
   ],
   "is licensed under": [
     "tgui:Changelog"
-  ],
-  "is missing an export.": [
-    "tgui:routes"
-  ],
-  "is not recognized.": [
-    "tgui:MainPage"
-  ],
-  "is preceeded by *, it will": [
-    "tgui:PlaneMenus"
-  ],
-  "is trending": [
-    "tgui:MatMarket"
-  ],
-  "is where you purchase more abilities beyond your starting kit. You have 10 genetic points to spend on abilities and you are able to readapt after absorbing a body, refunding your points for different kits.": [
-    "tgui:AntagInfoChangeling"
-  ],
-  "jackpot": [
-    "tgui:SlotMachine"
   ],
   "just understood.": [
     "tgui:LanguagesMenu"
@@ -35364,59 +34515,30 @@
   "k -": [
     "tgui:FishAnalyzer"
   ],
-  "kHz": [
-    "tgui:Telecomms"
-  ],
   "kPa": [
-    "tgui:AirlockController",
     "tgui:PortableAtmos",
-    "tgui:RBMK2",
-    "tgui:ThermoElectricGenerator",
     "tgui:ThermoMachine"
-  ],
-  "kPa / Outlet:": [
-    "tgui:ThermoElectricGenerator"
-  ],
-  "keys /": [
-    "tgui:InstrumentEditor"
-  ],
-  "kiloclam": [
-    "tgui:FishAnalyzer",
-    "tgui:FishCatalog"
-  ],
-  "km": [
-    "tgui:TramPlaque"
-  ],
-  "knowledge point": [
-    "tgui:AntagInfoHeretic"
   ],
   "knowledge points": [
     "tgui:AntagInfoHeretic"
   ],
-  "known languages": [
-    "tgui:LanguagesMenu"
+  "knowledge point{0}": [
+    "tgui:AntagInfoHeretic"
   ],
   "layer": [
     "tgui:AppearanceInfo"
   ],
-  "layer:": [
+  "layer:{0}": [
     "tgui:AppearanceBox"
   ],
   "leave empty for initial": [
     "tgui:CreateObjectSettings"
-  ],
-  "left": [
-    "tgui:JobsPage",
-    "tgui:Vending"
   ],
   "lethal weaponry": [
     "tgui:AntagInfoGlitch"
   ],
   "light eater": [
     "tgui:AntagInfoNightmare"
-  ],
-  "lines.": [
-    "tgui:InstrumentEditor"
   ],
   "list": [
     "dm:labels"
@@ -35427,7 +34549,7 @@
   "location": [
     "tgui:Log"
   ],
-  "location = initial location + (initial velocity * time) + (0.5 * acceleration * time": [
+  "location = initial location + (initial velocity * time) + (0.5 * acceleration * time{0})": [
     "tgui:Tutorial"
   ],
   "lock": [
@@ -35461,9 +34583,6 @@
   "medium": [
     "tgui:PaintingAdminPanel"
   ],
-  "member": [
-    "tgui:CTFPanel"
-  ],
   "mentoring book": [
     "dm:labels"
   ],
@@ -35479,26 +34598,14 @@
   "middle": [
     "dm:labels"
   ],
-  "more times.": [
-    "tgui:AntagInfoWizard"
-  ],
-  "more...": [
-    "tgui:index"
-  ],
   "mouse_opacity": [
     "tgui:AppearanceInfo"
-  ],
-  "ms": [
-    "tgui:SubsystemDialog"
   ],
   "mushroom cap": [
     "dm:labels"
   ],
   "nanite leg reinforcement": [
     "dm:labels"
-  ],
-  "neutral quirk will give you one extra point.": [
-    "tgui:LanguagesMenu"
   ],
   "nil": [
     "tgui:ListMapper"
@@ -35517,53 +34624,11 @@
   "num": [
     "tgui:Tutorial"
   ],
-  "nutrition level.": [
-    "tgui:ScannerGate"
-  ],
-  "octaves": [
-    "tgui:InstrumentEditor"
-  ],
-  "of 12 total)": [
-    "tgui:index"
-  ],
-  "of the": [
-    "tgui:ScannerGate"
-  ],
-  "on bounty targets to steal them.": [
-    "tgui:AntagInfoSpy"
-  ],
-  "on the station.": [
-    "tgui:ClockworkSlab"
-  ],
-  "on them to harvest them for": [
-    "tgui:AntagInfoHeretic"
-  ],
   "only understand": [
     "tgui:LanguagesMenu"
   ],
   "only.": [
     "tgui:Changelog"
-  ],
-  "onto other planes then?": [
-    "tgui:PlaneMenus"
-  ],
-  "open up to your mind.": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "or": [
-    "tgui:LanguagesMenu"
-  ],
-  "organic intruders to maintain the integrity of the system.": [
-    "tgui:AntagInfoGlitch"
-  ],
-  "organic life at any cost.": [
-    "tgui:AntagInfoGlitch"
-  ],
-  "other Changelings.": [
-    "tgui:AntagInfoChangeling"
-  ],
-  "other module(s) are being loaded remotely.": [
-    "tgui:LawRack"
   ],
   "pAI": [
     "dm:labels",
@@ -35588,11 +34653,8 @@
     "tgui:ChemMaster",
     "tgui:ReagentLookup"
   ],
-  "pH:": [
+  "pH:{0}": [
     "tgui:BeakerDisplay"
-  ],
-  "panicked at": [
-    "tgui:Log"
   ],
   "patron ckey": [
     "tgui:PaintingAdminPanel"
@@ -35612,7 +34674,7 @@
   "photosensitive eyespots": [
     "dm:labels"
   ],
-  "pixel_location = position + (velocity * ticks_elapsed) +(0.5 * (average_drift_during_ticks + gravity - (velocity * friction": [
+  "pixel_location = position + (velocity * ticks_elapsed) +(0.5 * (average_drift_during_ticks + gravity - (velocity * friction{0})) * ticks_elapsed{1})": [
     "tgui:Tutorial"
   ],
   "pixel_x/y/w/z": [
@@ -35622,38 +34684,14 @@
     "tgui:AppearanceInfo",
     "tgui:PlaneMenus"
   ],
-  "plane:": [
+  "plane:{0}": [
     "tgui:AppearanceBox"
   ],
   "planes": [
     "tgui:PlaneMenus"
   ],
-  "players signed up. The minigame is for": [
-    "tgui:BasketballPanel"
-  ],
-  "players.": [
-    "tgui:BasketballPanel"
-  ],
-  "point": [
-    "tgui:CTFPanel"
-  ],
-  "points": [
-    "tgui:SpellTabDisplay"
-  ],
-  "points to all required point pools.": [
-    "tgui:TechNode"
-  ],
-  "points worth of spells.": [
-    "tgui:Randomize"
-  ],
   "position = average velocity * time": [
     "tgui:Tutorial"
-  ],
-  "possible to do, but it's quite disruptive.": [
-    "tgui:PlaneMenus"
-  ],
-  "preset will replace all your current markings. Are you sure?": [
-    "tgui:LimbsPage"
   ],
   "pullover": [
     "dm:labels"
@@ -35667,18 +34705,8 @@
   "re:": [
     "tgui:SpawnSearch"
   ],
-  "reagent": [
-    "tgui:AntagInfoBlob"
-  ],
-  "reagent capacity used.": [
-    "tgui:Limbgrower"
-  ],
   "recharge SMESs": [
     "tgui:Secrets"
-  ],
-  "remaining": [
-    "tgui:SpawnersMenu",
-    "tgui:SyndContractor"
   ],
   "render_source": [
     "tgui:AppearanceInfo",
@@ -35687,15 +34715,6 @@
   "render_target": [
     "tgui:AppearanceInfo",
     "tgui:PlaneMenus"
-  ],
-  "required to join": [
-    "tgui:Soulcatcher"
-  ],
-  "returned": [
-    "tgui:Log"
-  ],
-  "rewards points": [
-    "tgui:NtosNifsoftCatalog"
   ],
   "right click": [
     "tgui:AntagInfoHeretic",
@@ -35711,16 +34730,10 @@
     "tgui:AntagInfoHeretic",
     "tgui:BorerEvolution",
     "tgui:CTFPanel",
-    "tgui:DnaConsoleEnzymes",
     "tgui:JobsPage",
-    "tgui:NtosJobManager",
     "tgui:NtosPay",
     "tgui:Puzzgrid",
     "tgui:VotePanel",
-    "tgui:index"
-  ],
-  "s)": [
-    "tgui:DnaConsoleSequencer",
     "tgui:index"
   ],
   "sacrifice": [
@@ -35735,23 +34748,6 @@
   "screen_loc": [
     "tgui:AppearanceInfo"
   ],
-  "second": [
-    "tgui:index"
-  ],
-  "seconds": [
-    "tgui:DopplerArray",
-    "tgui:Graft",
-    "tgui:MatMarket"
-  ],
-  "seconds...": [
-    "tgui:Apc"
-  ],
-  "sector": [
-    "tgui:Main"
-  ],
-  "served": [
-    "tgui:CivCargoHoldTerminal"
-  ],
   "shadowling tumor": [
     "dm:labels"
   ],
@@ -35761,20 +34757,8 @@
   "sheets": [
     "tgui:OreRedemptionMachine"
   ],
-  "sheets of": [
-    "tgui:MatMarket"
-  ],
-  "sheets ordered.": [
-    "tgui:MatMarket"
-  ],
   "shimmer": [
     "tgui:AntagInfoHeretic"
-  ],
-  "shipped.": [
-    "tgui:CivCargoHoldTerminal"
-  ],
-  "skills.": [
-    "tgui:AntagInfoGlitch"
   ],
   "skrell liver": [
     "dm:labels"
@@ -35790,9 +34774,6 @@
   ],
   "skunk": [
     "dm:labels"
-  ],
-  "slept.": [
-    "tgui:Log"
   ],
   "slot available": [
     "tgui:JobSelection"
@@ -35812,9 +34793,6 @@
   "speak": [
     "tgui:LanguagesMenu"
   ],
-  "species.": [
-    "tgui:ScannerGate"
-  ],
   "sphere": [
     "tgui:Tutorial"
   ],
@@ -35828,7 +34806,7 @@
     "dm:labels",
     "tgui:Tutorial"
   ],
-  "src=": [
+  "src={0}height={1} width={2} style={3}": [
     "tgui:ArmamentStation"
   ],
   "starlight singer bikini": [
@@ -35858,12 +34836,6 @@
   "striped": [
     "dm:labels"
   ],
-  "structural data": [
-    "tgui:Blueprints"
-  ],
-  "style=": [
-    "tgui:ArmamentStation"
-  ],
   "switchcomb": [
     "dm:labels"
   ],
@@ -35878,12 +34850,6 @@
   ],
   "terminate_intruders([0x70cf4020])": [
     "tgui:AntagInfoGlitch"
-  ],
-  "that will allow you to steal from the station.": [
-    "tgui:AntagInfoSpy"
-  ],
-  "the": [
-    "tgui:ScannerGate"
   ],
   "the Captain": [
     "dm:labels"
@@ -35906,75 +34872,17 @@
   "the Research Director": [
     "dm:labels"
   ],
-  "the best nation?\"": [
-    "tgui:AntagInfoSeparatist"
-  ],
   "the same bounty cannot be claimed twice.": [
     "tgui:AntagInfoSpy"
-  ],
-  "them for": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "this book?": [
-    "tgui:Modify"
-  ],
-  "this interface.": [
-    "tgui:InterfaceLockNoticeBox",
-    "tgui:PortableTurret"
   ],
   "ticks_elapsed": [
     "tgui:Tutorial"
   ],
-  "time": [
-    "tgui:SlotMachine"
-  ],
-  "times": [
-    "tgui:AntagInfoBloodWorm"
-  ],
   "title": [
     "tgui:PaintingAdminPanel"
   ],
-  "to": [
-    "tgui:BasketballPanel",
-    "tgui:FishCatalog",
-    "tgui:InterfaceLockNoticeBox"
-  ],
-  "to access your uplink, and": [
-    "tgui:AntagInfoSpy"
-  ],
-  "to dim the station, making hunting easier.": [
-    "tgui:AntagInfoNightmare"
-  ],
-  "to find your targets. Bring them back to a": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "to ghosts": [
-    "tgui:Soulcatcher"
-  ],
-  "to spend.": [
-    "tgui:AntagInfoHeretic",
-    "tgui:BorerEvolution"
-  ],
-  "to summon an Integration Cog, which can be placed into any": [
-    "tgui:ClockworkSlab"
-  ],
-  "to track down": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "to unlock more scriptures and siphon power!": [
-    "tgui:ClockworkSlab"
-  ],
-  "to unlock.": [
-    "tgui:ClockworkSlab"
-  ],
-  "to win": [
-    "tgui:SlotMachine"
-  ],
   "tongue": [
     "dm:labels"
-  ],
-  "trading.": [
-    "tgui:MatMarket"
   ],
   "transform": [
     "tgui:AppearanceInfo"
@@ -36003,22 +34911,6 @@
   "ui_style had no icons!": [
     "tgui:ui_style"
   ],
-  "units": [
-    "tgui:AntagInfoBloodWorm",
-    "tgui:BeakerDisplay",
-    "tgui:MassSpec"
-  ],
-  "units of": [
-    "tgui:BeakerDisplay",
-    "tgui:MedicalKiosk",
-    "tgui:SmokeMachine"
-  ],
-  "units of every nutrient per second to grow by": [
-    "tgui:Microscope"
-  ],
-  "units/second": [
-    "tgui:ChemMaster"
-  ],
   "unknown": [
     "tgui:DisplayName"
   ],
@@ -36029,9 +34921,6 @@
     "tgui:InterfaceLockNoticeBox",
     "tgui:PortableTurret"
   ],
-  "until next update": [
-    "tgui:MatMarket"
-  ],
   "using the \"Assume Form\" ability on yourself. You can also shift-click yourself.": [
     "tgui:AntagInfoMorph"
   ],
@@ -36041,32 +34930,11 @@
   "v": [
     "tgui:Sort"
   ],
-  "value for": [
-    "tgui:AlarmModal"
-  ],
-  "value on all the atoms we want to render in this group.": [
-    "tgui:PlaneMenus"
-  ],
-  "value.": [
-    "tgui:PlaneMenus"
-  ],
   "vampire heart": [
     "dm:labels"
   ],
   "vampire teeth": [
     "dm:labels"
-  ],
-  "var does not only effect this rendering grouping behavior.": [
-    "tgui:PlaneMenus"
-  ],
-  "var to the plane master we want?": [
-    "tgui:PlaneMenus"
-  ],
-  "variable of": [
-    "tgui:PlaneMenus"
-  ],
-  "variable of an atom to relay it to some": [
-    "tgui:PlaneMenus"
   ],
   "vector": [
     "tgui:Tutorial"
@@ -36080,13 +34948,10 @@
   "vox tongue": [
     "dm:labels"
   ],
-  "was not found.": [
-    "tgui:routes"
-  ],
   "welded": [
     "tgui:AiAirlock"
   ],
-  "while": [
+  "while {0}.LIFE !={1}{2}DEAD": [
     "tgui:AntagInfoGlitch"
   ],
   "whisper": [
@@ -36095,28 +34960,11 @@
   "width": [
     "tgui:PaintingAdminPanel"
   ],
-  "width=": [
-    "tgui:ArmamentStation"
-  ],
-  "will manifest a visible aura of": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "will play a C major scale.": [
-    "tgui:InstrumentEditor"
-  ],
-  "wires:": [
-    "tgui:Blueprints"
-  ],
-  "with the": [
-    "tgui:ClockworkSlab"
-  ],
   "x": [
     "tgui:Autolathe",
     "tgui:CargoCatalog",
-    "tgui:ControlBar",
     "tgui:Flatpacker",
     "tgui:GlassBlowing",
-    "tgui:IntensityCredits",
     "tgui:Log",
     "tgui:OreRedemptionMachine",
     "tgui:SmartVend",
@@ -36135,14 +34983,461 @@
   "yellow": [
     "dm:labels"
   ],
-  "yielded": [
-    "tgui:Log"
-  ],
   "zipup": [
     "dm:labels"
   ],
-  "| MP:": [
+  "{0} (Has {1}cr bet on it){2}": [
+    "tgui:NtosSpaceBetting"
+  ],
+  "{0} (auto)": [
+    "tgui:SolarControl"
+  ],
+  "{0} ({1}% OFF)": [
+    "tgui:NtosCouponMaster"
+  ],
+  "{0} / Rng: {1}/{2}": [
+    "tgui:Portagrav"
+  ],
+  "{0} / {1} complexity used": [
+    "tgui:MODsuit"
+  ],
+  "{0} / {1} reagent capacity used.": [
+    "tgui:Limbgrower"
+  ],
+  "{0} / {1} shipped.": [
+    "tgui:CivCargoHoldTerminal"
+  ],
+  "{0} / {1} units": [
+    "tgui:BeakerDisplay",
+    "tgui:MassSpec"
+  ],
+  "{0} 4 uses to teleport wherever you want. You will not be able to come back to the den, so be sure you have everything ready before departing.{1}{2} Used to cast most spells. Your spellbook will let you know which spells cannot be cast without a garb.": [
+    "tgui:AntagInfoWizard"
+  ],
+  "{0} Arousal": [
+    "tgui:InfoSection"
+  ],
+  "{0} Comments cannot be read at this time.{1}Thank you for your understanding, and have a secure day.": [
+    "tgui:Newscaster"
+  ],
+  "{0} Costs{1}{2} favor.": [
+    "tgui:ReligiousTool"
+  ],
+  "{0} Ctrl+Click on the gene to set it to X. Right Click to cycle in reverse.": [
+    "tgui:DnaConsoleSequencer"
+  ],
+  "{0} Disk": [
+    "tgui:DiskMenu"
+  ],
+  "{0} Emergency Maintenance Access": [
+    "tgui:Main"
+  ],
+  "{0} Engineering Override Access": [
+    "tgui:Main"
+  ],
+  "{0} Frequently Asked Questions:": [
+    "tgui:AntagInfoSeparatist"
+  ],
+  "{0} GQ": [
+    "tgui:NtosNetDownloader"
+  ],
+  "{0} GQ{1}{2} GQ": [
+    "tgui:NtnetRelay"
+  ],
+  "{0} Loadout Preset": [
+    "tgui:index"
+  ],
+  "{0} Moles": [
+    "tgui:RBMK2"
+  ],
+  "{0} New": [
+    "tgui:NoteKeeper"
+  ],
+  "{0} PT": [
+    "tgui:AuditScreen",
+    "tgui:index"
+  ],
+  "{0} Pain": [
+    "tgui:InfoSection"
+  ],
+  "{0} Pleasure": [
+    "tgui:InfoSection"
+  ],
+  "{0} RPM": [
+    "tgui:TurbineComputer"
+  ],
+  "{0} Rep": [
+    "tgui:SyndContractor"
+  ],
+  "{0} Threat determines what items you can purchase. {1}{2}": [
+    "tgui:index"
+  ],
+  "{0} Units": [
+    "tgui:RapidConstructionDevice"
+  ],
+  "{0} Vote": [
+    "tgui:VotePanel"
+  ],
+  "{0} WORLD MAP{1}{2}": [
     "tgui:BattleArcade"
+  ],
+  "{0} Wire Configuration": [
+    "tgui:Wires"
+  ],
+  "{0} You can dive in and out of blood to travel anywhere you need to be. You will gain a speed boost upon leaving the jaunt for surprise attacks. You can drag victims you have disabled through the blood, consuming them and restoring health.": [
+    "tgui:AntagInfoDemon"
+  ],
+  "{0} You can launch a devastating slam attack by right-clicking, capable of smashing bones in one strike. Great for preventing the escape of your victims, as their wounds will slow them.": [
+    "tgui:AntagInfoDemon"
+  ],
+  "{0} as {1}": [
+    "tgui:JobsPage"
+  ],
+  "{0} as{1}{2}": [
+    "tgui:QuantumConsole"
+  ],
+  "{0} available languages": [
+    "tgui:LanguagesMenu"
+  ],
+  "{0} bount{1} served{2}": [
+    "tgui:CivCargoHoldTerminal"
+  ],
+  "{0} called! RETA may open doors in area to them.": [
+    "tgui:RequestsConsoleHeader"
+  ],
+  "{0} changed:": [
+    "tgui:Changelog"
+  ],
+  "{0} cm": [
+    "tgui:FishAnalyzer",
+    "tgui:FishCatalog"
+  ],
+  "{0} cooldown.": [
+    "tgui:NtosDeptOrder"
+  ],
+  "{0} cr": [
+    "tgui:AuditScreen",
+    "tgui:BuyingShuttle",
+    "tgui:SlotMachine",
+    "tgui:UsersScreen",
+    "tgui:Vendatray"
+  ],
+  "{0} cr on {1}": [
+    "tgui:BetTable"
+  ],
+  "{0} cr {1}": [
+    "tgui:HoloPay"
+  ],
+  "{0} credits": [
+    "tgui:CargoHoldTerminal"
+  ],
+  "{0} credits.": [
+    "tgui:MedicalKiosk"
+  ],
+  "{0} credit{1}": [
+    "tgui:SlotMachine"
+  ],
+  "{0} credit{1}!": [
+    "tgui:SlotMachine"
+  ],
+  "{0} days left": [
+    "tgui:AntagsPage"
+  ],
+  "{0} day{1} left": [
+    "tgui:JobsPage"
+  ],
+  "{0} does not have any invocations.": [
+    "tgui:ReligiousTool"
+  ],
+  "{0} is a crime. Your mission: {1}{2}organic intruders to maintain the integrity of the system.": [
+    "tgui:AntagInfoGlitch"
+  ],
+  "{0} is trending{1}{2}.": [
+    "tgui:MatMarket"
+  ],
+  "{0} jackpot{1}!": [
+    "tgui:SlotMachine"
+  ],
+  "{0} kHz": [
+    "tgui:Telecomms"
+  ],
+  "{0} kPa": [
+    "tgui:RBMK2"
+  ],
+  "{0} kPa {1}": [
+    "tgui:AirlockController"
+  ],
+  "{0} kiloclam": [
+    "tgui:FishAnalyzer",
+    "tgui:FishCatalog"
+  ],
+  "{0} km": [
+    "tgui:TramPlaque"
+  ],
+  "{0} left": [
+    "tgui:Vending"
+  ],
+  "{0} member{1}": [
+    "tgui:CTFPanel"
+  ],
+  "{0} organic life at any cost.": [
+    "tgui:AntagInfoGlitch"
+  ],
+  "{0} other module(s) are being loaded remotely.": [
+    "tgui:LawRack"
+  ],
+  "{0} panicked at {1}:{2}: {3}": [
+    "tgui:Log"
+  ],
+  "{0} points": [
+    "tgui:SpellTabDisplay"
+  ],
+  "{0} point{1}": [
+    "tgui:CTFPanel"
+  ],
+  "{0} remaining": [
+    "tgui:SpawnersMenu",
+    "tgui:SyndContractor"
+  ],
+  "{0} returned{1}.{2}": [
+    "tgui:Log"
+  ],
+  "{0} seconds": [
+    "tgui:DopplerArray",
+    "tgui:Graft",
+    "tgui:MatMarket"
+  ],
+  "{0} sheets of{1}{2} trading.{3}": [
+    "tgui:MatMarket"
+  ],
+  "{0} sheets ordered.": [
+    "tgui:MatMarket"
+  ],
+  "{0} slept.": [
+    "tgui:Log"
+  ],
+  "{0} structural data": [
+    "tgui:Blueprints"
+  ],
+  "{0} time{1}": [
+    "tgui:SlotMachine"
+  ],
+  "{0} to access your uplink, and{1}{2} on bounty targets to steal them.": [
+    "tgui:AntagInfoSpy"
+  ],
+  "{0} to ghosts": [
+    "tgui:Soulcatcher"
+  ],
+  "{0} to {1}": [
+    "tgui:FishCatalog"
+  ],
+  "{0} units of {1}": [
+    "tgui:MedicalKiosk"
+  ],
+  "{0} units of{1}{2}": [
+    "tgui:BeakerDisplay",
+    "tgui:SmokeMachine"
+  ],
+  "{0} units/second": [
+    "tgui:ChemMaster"
+  ],
+  "{0} until next update": [
+    "tgui:MatMarket"
+  ],
+  "{0} wires:": [
+    "tgui:Blueprints"
+  ],
+  "{0} yielded{1}.{2}": [
+    "tgui:Log"
+  ],
+  "{0} {1} Credits": [
+    "tgui:CivCargoHoldTerminal"
+  ],
+  "{0} {1} DNA": [
+    "tgui:CellularEmporium"
+  ],
+  "{0}% ({1} failed attempts)": [
+    "tgui:DynamicAdmin"
+  ],
+  "{0}'s HP: {1}/{2}": [
+    "tgui:BattleArcade"
+  ],
+  "{0}'s MP: {1}": [
+    "tgui:BattleArcade"
+  ],
+  "{0}/{1} Units": [
+    "tgui:RapidDecorationDevice"
+  ],
+  "{0}/{1} units": [
+    "tgui:BeakerDisplay"
+  ],
+  "{0}/{1}{2}known languages": [
+    "tgui:LanguagesMenu"
+  ],
+  "{0}>Report to Nanotrasen?{1}>>N": [
+    "tgui:AntagInfoMalf"
+  ],
+  "{0}Active Tablets": [
+    "tgui:NtosNetMonitor"
+  ],
+  "{0}Cabin Open": [
+    "tgui:ModulesPane"
+  ],
+  "{0}Custom": [
+    "tgui:DecalPainter"
+  ],
+  "{0}Dead": [
+    "tgui:Seed"
+  ],
+  "{0}Detected Messengers": [
+    "tgui:index"
+  ],
+  "{0}Filter from moderator mix:": [
+    "tgui:Controls"
+  ],
+  "{0}Genetic makeup transfer ready in...{1}{2}s": [
+    "tgui:DnaConsoleEnzymes"
+  ],
+  "{0}HP": [
+    "tgui:NtosArcade"
+  ],
+  "{0}I/O regulators have malfunctioned! {1}Awaiting system reboot.{2}Executing software reboot in {3} seconds...{4}{5}{6}": [
+    "tgui:Apc"
+  ],
+  "{0}Injection control:": [
+    "tgui:Gases"
+  ],
+  "{0}Instrument Definition Error!": [
+    "tgui:InstrumentEditor"
+  ],
+  "{0}Lamp power usage: {1}": [
+    "tgui:NtosRobotact"
+  ],
+  "{0}MP": [
+    "tgui:NtosArcade"
+  ],
+  "{0}Moderator filtering rate:": [
+    "tgui:Controls"
+  ],
+  "{0}Move often. The station will be hunting you after you are discovered, so don't stay in one area for long.{1}{2}Pick unfair fights. You are incredibly strong in one versus one situations, use it. The more you fight, the harder it will be to keep it dark.{3}{4}Fully destroy APCs when possible. Instead of hunting lights that can be fixed, hunt the APCs which are harder to repair.": [
+    "tgui:AntagInfoNightmare"
+  ],
+  "{0}Pay": [
+    "tgui:HoloPay"
+  ],
+  "{0}Pay {1}": [
+    "tgui:HoloPay"
+  ],
+  "{0}Pinned": [
+    "tgui:PatientStateView"
+  ],
+  "{0}Previous Messages": [
+    "tgui:index"
+  ],
+  "{0}Pulse in progress...{1}{2}s": [
+    "tgui:index"
+  ],
+  "{0}Recommended next step": [
+    "tgui:PatientStateView"
+  ],
+  "{0}Recording": [
+    "tgui:ChemDispenser"
+  ],
+  "{0}Search For User": [
+    "tgui:index"
+  ],
+  "{0}Send To All": [
+    "tgui:index"
+  ],
+  "{0}SpaceMessenger V6.5.3": [
+    "tgui:index"
+  ],
+  "{0}SpaceMessenger V6.5.4": [
+    "tgui:index"
+  ],
+  "{0}Special effect on consumption.": [
+    "tgui:RecipeContent"
+  ],
+  "{0}Steps: {1}": [
+    "tgui:NtosVirtualPet"
+  ],
+  "{0}Stuntwaffle, Showtime, Pantaloons, Nannek, Keelin, Exadv1, hobnob, Justicefries, 0staf, sniperchance, AngriestIBM, BrianOBlivion": [
+    "tgui:Changelog"
+  ],
+  "{0}Supernorn, Haruhi, Stuntwaffle, Pantaloons, Rho, SynthOrange, I Said No": [
+    "tgui:Changelog"
+  ],
+  "{0}This UI exists to help visualize plane masters, the backbone of our rendering system. {1}It also provices some tools for editing and messing with them. {2}{3}{4} {5}This UI exists primarially as a visualizer, mostly because this info is quite obscure, and I want it to be easier to understand.{6}{7}That said, it also supports editing plane masters, adding and removing relays, and provides easy access to color matrix/filter/alpha/vv editing. {8}{9}To start off with, each little circle represents a{10}{11} based connection.{12}Blue nodes are relays, so drawing one plane onto another. Purple ones are filter based connections. {13}You can tell where a node starts and ends based on the side of the plane it's on. {14}{15}Adding a new relay is simple, you just need to hit the + button, and select a plane by name to relay onto. {16}{17}Each plane can be viewed more closely by clicking the little button in it's top right corner. This opens a sidebar, and displays a lot of more general info about the plane and its purpose, alongside exposing some useful buttons and interesting values. {18}{19}Planes are aligned based off their initial setup. If you end up breaking things byond repair, or just want to reset things, you can hit the recycle button in the top left to totally refresh your plane masters.{20}{21}{22}{23}You can think of a plane master as a way to group a set of objects onto one rendering slate. {24}It is per client too, which makes it quite powerful. This is done using the {25} variable of {26}. {27}{28}We first create an atom with an appearance flag that contains{29}{30} and give it a {31} value. {32}Then we mirror the same {33} value on all the atoms we want to render in this group.{34}{35}Finally, we place the {36}'d atom in the relevent client's screen contents. {37}That sets up the bare minimum.{38}{39}It is worth noting that the {40} var does not only effect this rendering grouping behavior. {41}It also effects the layering of objects on the map. {42}{43}For this reason, there are some effects that are pretty much impossible with planes. {44}Masking one thing while also drawing that thing in the correct order with other objects on the map is a good example of this.{45}It {46} possible to do, but it's quite disruptive.{47}{48}Normally, planes will just group, apply an effect, and then draw directly to the game.{49}What if we wanted to draw {50} onto other planes then? {51}{52}{53}{54}Rendering one thing onto another is actually not that complex. {55}We can set the {56} variable of an atom to relay it to some {57}.{58}{59}If that {60} is preceeded by *, it will{61} be drawn to the actual client view, and instead just relayed.{62}{63}{64}Ok so we can relay a plane master onto some other atom, but how do we get it on another plane master? We can't just draw it with{65}{66}, since we might want to relay more then one plane master.{67}{68}Why not relay it to another atom then? and then well, set that atom's {69} var to the plane master we want? {70}{71}That ends up being about what we do. {72}It's worth noting that render sources are often used by filters, normally to apply some displacement or mask.{73}{74}{75} {76}Ok so we can group and relay planes, but what can we actually do with that? {77}{78}Lots of stuff it turns out. Filters are quite powerful, and we use them quite a bit. {79}You can use filters to mask one plane with another, or use one plane as a distortion source for another. {80}{81}Can do more basic stuff too, setting a plane's color matrix can be quite powerful. {82}Even just setting alpha to show and hide things can be quite useful.{83}{84}{85}I won't get into every effect we do here, you can learn more about each plane by clicking on the little button in their top right. {86}{87}": [
+    "tgui:PlaneMenus"
+  ],
+  "{0}Traditional Games 13, Skyrat Station 13, Baystation 12, /vg/station, NTstation, CDK Station devs, FacepunchStation, GoonStation devs, the original Space Station 13 developers, Invisty for the title image and the countless others who have contributed to the game.": [
+    "tgui:Changelog"
+  ],
+  "{0}Undiscovered Experiment": [
+    "tgui:LockedExperiment"
+  ],
+  "{0}View them here{1}{2}": [
+    "tgui:KitchenSink"
+  ],
+  "{0}Waste remove:": [
+    "tgui:Controls"
+  ],
+  "{0}You have memorized the codewords, allowing you to recognise them when heard.": [
+    "tgui:AntagInfoTraitor"
+  ],
+  "{0}You have unrivaled freedom. Remain in space and no one can stop you. You can move through windows, so stay near them to always have a way out.{1}{2}{3}Pick unfair fights. Look for inattentive targets and strike at them when they don't expect you.{4}{5}{6}Your Unsettle ability stuns and drains your targets. Knock them out with your draining slash, take them to space (or nebula vomit) and enlighten them.{7}{8}{9}Our students expell our essence regularly. We can use this to go where we could otherwise not, but we reabsorb this when we use it to leave. (You can dive in space vomit.)": [
+    "tgui:AntagInfoVoidwalker"
+  ],
+  "{0}You need vitality to create{1}{2}, which is gotten from sacrificing living beings to a{3}{4}.{5}{6}Watch your power upkeep! You're dependent on your cogged APCs to stay powered, and a lot of structures can drain it quickly.{7}{8}Make sure to have a defensible base of operations! You're significantly stronger while on brass tiles, so make your home indefensible.{9}{10}The Replica Fabricator is one of the strongest tools available to you, via the {11}. It allows the conversion of all materials into power, which can be used to create floors, walls, and airlocks. The airlocks will shock all non-cultists.{12}{13}Nar'sian cultists are your greatest foe! Some of your spells are less effective on them, and vice-versa. What remains of Ratvar may reward a vitality sacrifice of such heresy.{14}{15}": [
+    "tgui:ClockworkSlab"
+  ],
+  "{0}cr {1}": [
+    "tgui:CrimeWatcher"
+  ],
+  "{0}keys / {1} octaves": [
+    "tgui:InstrumentEditor"
+  ],
+  "{0}ms": [
+    "tgui:SubsystemDialog"
+  ],
+  "{0}{1} - Location:{2}{3}{4}": [
+    "tgui:ServerControl"
+  ],
+  "{0}{1}NOTE: Custom sounds from outside the base game files will not save! :(": [
+    "tgui:PresetsPage"
+  ],
+  "{0}{1}Physical Age: {2}{3}Chronological Age: {4}{5}Bloodtype: {6}{7}Minor Disabilities: {8}{9}Major Disabilities: {10}{11}{12}Notes: {13}{14}Notes Contd: {15}": [
+    "tgui:NtosRecords"
+  ],
+  "{0}{1}Rank: {2}{3}Species: {4}{5}Gender: {6}{7}Physical Age: {8}{9}Chronological Age: {10}{11}Fingerprint Hash: {12}{13}{14}Criminal Status: {15}": [
+    "tgui:NtosRecords"
+  ],
+  "{0}{1}access": [
+    "tgui:OreSilo"
+  ],
+  "{0}{1}and won{2}{3}": [
+    "tgui:SlotMachine"
+  ],
+  "{0}{1}km": [
+    "tgui:TramPlaque"
+  ],
+  "{0}{1}{2}, Current Opt-In status:{3}{4}, Ideal Opt-In status:{5}{6}": [
+    "tgui:OpposingForcePanel"
+  ],
+  "{0}{1}{2}A variety of invaluable structures are available to you, allowing effective defense of your sanctum. Use your Slab on a structure to gain extra information.{3}{4}Traps are useful contraptions, able to be created at a{5}{6}. Use your Slab to link traps and triggers together.{7}{8}A powerful shell that can deflect attacks and delivers a strong blow in close quarter combat.{9}{10}": [
+    "tgui:ClockworkSlab"
+  ],
+  "{0}{1}{2}Examine a department order crate to get specific details about where the crate needs to go.": [
+    "tgui:CargoHelp"
+  ],
+  "{0}{1}{2}{3} Drag the crate you want to deliver next to the MULEbot.{4}{5} Drag the crate on top of MULEbot. It should load on.{6}{7} Open your PDA.{8}{9} Click {10}.{11}{12} Click {13}.{14}{15} Choose your MULE.{16}{17} Click on {18}.{19}{20} Choose a destination and click OK.{21}{22} Click {23}.": [
+    "tgui:CargoHelp"
+  ],
+  "{0}{1}{2}{3} Wrap your item/crate in packaging paper.{4}{5} Use the destinations tagger to choose where to send it.{6}{7} Tag the package.{8}{9} Stick it on the conveyor and let the system handle it.{10}": [
+    "tgui:CargoHelp"
+  ],
+  "{0}{1}{2}{3}Total Experience: [{4} XP]{5}XP To Next Level:{6}{7}Overall Skill Progress: [{8} / {9}]{10}{11}{12}{13}{14}{15}{16}": [
+    "tgui:SkillPanel"
   ],
   "© NT Corporation. All rights reserved.": [
     "tgui:NtosNotepad"
@@ -36155,9 +35450,6 @@
   ],
   "émincer": [
     "dm:labels"
-  ],
-  "— highlighted nodes would be cancelled. Click node again to deselect.": [
-    "tgui:index"
   ],
   "∞ minutes": [
     "tgui:ExoscannerConsole"

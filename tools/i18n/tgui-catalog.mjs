@@ -946,6 +946,73 @@ function extractAntagonistLabels(catalog) {
   }
 }
 
+
+// ---------------------------------------------------------------------------
+// 混合 children 的占位符模板
+//
+// `<Box>Reduced by {n}% when infected with viruses.</Box>` 在 React 里的 children 是
+// ["Reduced by ", n, "% when infected with viruses."]。逐段抽、逐段翻，渲染时仍按英文语序
+// 拼回去 → 「减少了 2 感染病毒时的%。」。中文语序和英文不同，碎片翻译必然拼错，
+// 比不翻还糟。改为整条抽成带占位符的模板（与 DM 侧 LANG 模板同一思路），运行时整条查表、
+// 再把占位符换回原来的非字符串 children。
+// ---------------------------------------------------------------------------
+
+/// 复现 JSX transform 对 JSXText 的空白处理（Babel cleanJSXElementLiteralChild 同款）：
+/// 含换行的首尾空白删掉，行间换行+缩进折成一个空格。抽取期算出的串必须与运行时 children
+/// 里的字符串逐字节一致，否则查表必 miss。
+function jsxTextValue(raw) {
+  const lines = raw.split(/\r\n|\n|\r/);
+  let lastNonEmptyLine = 0;
+  for (let i = 0; i < lines.length; i++) {
+    if (/[^ \t]/.test(lines[i])) lastNonEmptyLine = i;
+  }
+  let out = '';
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i].replace(/\t/g, ' ');
+    if (i !== 0) line = line.replace(/^ +/, '');
+    if (i !== lines.length - 1) line = line.replace(/ +$/, '');
+    if (line) {
+      if (i !== lastNonEmptyLine) line += ' ';
+      out += line;
+    }
+  }
+  return out;
+}
+
+/// children 里「会在运行时占一个数组位」的节点：文本（空白节点被 transform 丢掉）与表达式。
+/// 注释表达式 `{/* … */}` 不产生 child。
+function templateChildren(children) {
+  const out = [];
+  for (const child of children) {
+    if (ts.isJsxText(child)) {
+      const value = jsxTextValue(decodeJsxEntities(child.text));
+      if (value) out.push({ text: value });
+    } else if (ts.isJsxExpression(child)) {
+      if (!child.expression) continue; // {/* comment */}
+      out.push({ slot: true });
+    } else {
+      out.push({ slot: true }); // 嵌套元素
+    }
+  }
+  return out;
+}
+
+/// 把混合 children 拼成 `Reduced by {0}% when infected with viruses.` 这样的模板。
+/// 只在**既有文本又有占位**、且文本部分含真正词句时才产出——纯占位或纯文本走原来的路径。
+function childrenTemplate(children) {
+  const parts = templateChildren(children);
+  if (!parts.some((p) => p.text) || !parts.some((p) => p.slot)) return null;
+  let slot = 0;
+  let template = '';
+  for (const part of parts) {
+    template += part.text !== undefined ? part.text : `{${slot++}}`;
+  }
+  template = template.replace(/\s+/g, ' ').trim();
+  // 至少要有一个字母词，且不是纯标点/数字外壳（`{0}%`、`({0})` 之流不值得进目录）。
+  if (!/[A-Za-z]{2}/.test(template)) return null;
+  return template;
+}
+
 function extractCatalog() {
   const catalog = {};
   // 这三个来源不是界面文件，语境按来源种类记（够用来把它们和界面串区分开）。
@@ -969,9 +1036,24 @@ function extractCatalog() {
 
     const isFeatureDef = filePath.includes(FEATURE_DEF_DIR);
 
+    // 已被 children 模板吃掉的 JsxText 节点：不再单独入目录，否则那些碎片仍会被
+    // 运行时逐段替换、拼出语序错乱的中文。
+    const templatedText = new Set();
+
     function visit(node) {
+      if ((ts.isJsxElement(node) || ts.isJsxFragment(node)) && node.children) {
+        const template = childrenTemplate(node.children);
+        if (template) {
+          addText(catalog, template);
+          for (const child of node.children) {
+            if (ts.isJsxText(child)) templatedText.add(child);
+          }
+        }
+      }
       if (ts.isJsxText(node)) {
-        addText(catalog, decodeJsxEntities(node.text));
+        if (!templatedText.has(node)) {
+          addText(catalog, decodeJsxEntities(node.text));
+        }
       } else if (ts.isJsxAttribute(node)) {
         const name = node.name.getText(sourceFile);
         if (TRANSLATABLE_PROPS.has(name)) {

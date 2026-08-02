@@ -119,3 +119,6 @@ Known trap classes:
 - `. += span_notice("A") + "\n" + span_notice("B")` 这类**拼接链**，整条 `build_template` 会把兄弟片段变成 `{0}/{1}`，抽出改写侧永远跳过的废键（一行多个字面量无从定位）。按操作数拆开逐段抽。
 - 英式/美式拼写会让 SINK_VARS 看着已覆盖实则全漏：`flavor_text` 在表里、`flavour_text`（幽灵角色入场文字）整类没抽到。
 - 译文里的 DM 复数宏 `\s` 要**去掉**——中文名词后会渲染出多余的 "s"。目录既有约定即如此。
+- **TGUI 混排 children 必须整条抽成模板** — `<Box>Reduced by {n}% when infected.</Box>` 的 children 是 `["Reduced by ", n, "% when infected."]`。逐段翻会按英文语序拼回去（「减少了 2 感染病毒时的%。」），中文语序不同 → 碎片翻译必错，比不翻更糟。`tgui-catalog.mjs childrenTemplate` 整条抽成 `Reduced by {0}% …`，`localize.ts localizeChildrenTemplate` 整条查表再回填占位符；占位符数量对不上就整条保持英文，绝不回退逐段翻。抽取期的空白处理要与 JSX transform 逐字节一致（`jsxTextValue`，Babel 同款规则）。
+- `build_template` 对「去标签后不含字母」的表达式返回 `None`，这是一道**正经防线**（挡住 `VV_DROPDOWN_OPTION` 那种把 admin 操作标识符夹在 HTML 里的写法）。绕过它去拆内插时，必须限死「整条就是一个内插」的形状（lead 与各段尾巴皆空），否则会把 VV 面板的标识符抽进目录。
+- 目录只合并、从不裁剪：跑坏一次抽取留下的脏键会一直留着（含新建的 `<ns>.json` 未跟踪文件）。改抽取规则时先 `git checkout strings/i18n/en` 再重抽，并用 `git status` 查未跟踪的新命名空间文件。

@@ -190,6 +190,40 @@ pub fn is_examine_accumulator(id: &str) -> bool {
 /// 标点收尾（排除 `"{0}: {1}\" class=\"tooltip\">{2}"` 这种 HTML 属性片段与半截从句）。
 /// 把 `a + b + c` 的字符串拼接链摊平成各操作数；非拼接表达式返回空（调用方另有整条链的处理）。
 /// 只在链里**确实有多段文本**时才拆——单段链整条抽就够了，拆了反而多出重复键。
+/// 摊平 `"[span_notice("…")]"` —— 内插串里嵌着的表达式。
+///
+/// `. += "[span_notice("[desc] - growth progress: [growth]%")]"` 这种写法，整条
+/// `build_template` 只会得到一个光杆 `{0}`（内插位置就是占位符），真正的句子藏在被插的表达式里，
+/// 于是整行漏抽。把嵌入表达式拿出来各自抽一遍。
+fn split_interp_parts(expr: &Expression) -> Vec<&Expression> {
+    let Expression::Base { term, follow } = expr else {
+        return Vec::new();
+    };
+    if !follow.is_empty() {
+        return Vec::new();
+    }
+    let Term::InterpString(lead, parts) = &term.elem else {
+        return Vec::new();
+    };
+    // **只认「整条就是一个内插」这一种形状**（`"[span_notice("…")]"`：lead 与各段尾巴都是空的）。
+    //
+    // 放宽到任意内插会捅穿 build_template 的一道正经防线：它对整条去标签后不含字母的表达式返回
+    // None。VV 管理面板的 `VV_DROPDOWN_OPTION` 展开成 `"<option value='…[cmd]…'>[name]</option>"`,
+    // 正是靠这条被挡在目录外——里面的 [cmd] 是 admin 操作标识符，抽进目录、再被反查改掉就等于
+    // 把 VV 面板弄坏。那种形状 lead 非空，这里直接不碰。
+    if !lead.as_str().trim().is_empty() {
+        return Vec::new();
+    }
+    if parts.iter().any(|(_, lit)| !lit.trim().is_empty()) {
+        return Vec::new();
+    }
+    let embedded: Vec<&Expression> = parts.iter().filter_map(|(opt, _)| opt.as_ref()).collect();
+    if embedded.len() != 1 {
+        return Vec::new();
+    }
+    embedded
+}
+
 fn split_concat_parts(expr: &Expression) -> Vec<&Expression> {
     fn flatten<'e>(e: &'e Expression, out: &mut Vec<&'e Expression>) {
         if let Expression::BinaryOp { op: dm::ast::BinaryOp::Add, lhs, rhs } = e {
@@ -1285,6 +1319,17 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                 if let Expression::Base { term, follow } = lhs.as_ref() {
                     if follow.is_empty() {
                         if let Term::Ident(id) = &term.elem {
+                            // 内插里嵌的表达式是**整条** span_*() 消息（`. += "[span_notice("…")]"`）。
+                            // 这一步必须在 build_template 之外做：整条渲染出来是个光杆 `{0}`，
+                            // 去标签后不含字母 → build_template 返回 None → 下面整块都进不去，
+                            // 于是「{0} - growth progress: {1}%」这类整行 examine 一条都没抽到。
+                            if (id == "." && !ctx.ident) || is_examine_accumulator(id) {
+                                for part in split_interp_parts(rhs) {
+                                    if let Some(t) = build_template(part) {
+                                        emit(catalog, ns, &t);
+                                    }
+                                }
+                            }
                             if let Some(template) = build_template(rhs) {
                                 // 裸 `.` 与 examine 信号处理器的累加器（examine_list/text/strings）：
                                 // examine 输出，必玩家可见 → 全抽（含插值，供 LANG）。其它具名累加器只抽静态句供 AC。
@@ -1298,11 +1343,11 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                                     // `"{0}\n{1}\nIt can also be…"` 这种废键——改写侧永远跳过它
                                     // （一行里多个字面量，无从判断该换哪个），于是整段 examine
                                     // 卡在英文。拆开逐段抽，各自成条，显示交给聊天 AC 子串层。
+                                    // 拼接链拆出来的段要过整句闸门：链里另一半往往是
+                                    // `"\n- "`、`"there is a "` 这种续写碎片，单独入目录后会被
+                                    // 聊天 AC 层在半句处替换，拼出语序错乱的中文。
                                     for part in split_concat_parts(rhs) {
                                         if let Some(t) = build_template(part) {
-                                            // 拆出来的段要过整句闸门：链里另一半往往是
-                                            // `"\n- "`、`"there is a "` 这种续写碎片，单独入目录
-                                            // 后会被聊天 AC 层在半句处替换，拼出语序错乱的中文。
                                             if is_examine_sentence(&t) {
                                                 emit(catalog, ns, &t);
                                             }

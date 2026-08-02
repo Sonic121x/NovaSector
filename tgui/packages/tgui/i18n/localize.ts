@@ -57,6 +57,63 @@ function translateText(text: string): string {
   return `${leading}${body}${trailing}`;
 }
 
+// 混合 children 的占位符模板。
+//
+// `<Box>Reduced by {n}% when infected with viruses.</Box>` 的 children 是
+// ["Reduced by ", n, "% when infected with viruses."]。逐段查表会按**英文语序**把中文碎片
+// 拼回去（「减少了 2 感染病毒时的%。」）——中文语序与英文不同，碎片翻译必错，比不翻更糟。
+// 抽取期（tgui-catalog.mjs childrenTemplate）已把整条存成
+// `Reduced by {0}% when infected with viruses.`，这里整条查、再把占位符换回原来的非字符串
+// children，语序由译文决定。
+//
+// 查不到就**整条保持英文**，绝不回退到逐段翻译——那正是要根除的乱序来源。
+function localizeChildrenTemplate(children: unknown[]): unknown[] | null {
+  let slots = 0;
+  let hasText = false;
+  let template = '';
+  for (const child of children) {
+    if (typeof child === 'string') {
+      hasText = true;
+      template += child;
+    } else {
+      template += `{${slots++}}`;
+    }
+  }
+  if (!hasText || slots === 0) {
+    return null;
+  }
+  const lookup = template.replace(/\s+/g, ' ').trim();
+  if (NO_AUTO_TRANSLATE.has(lookup)) {
+    return null;
+  }
+  const translated = translateCurrent(lookup);
+  if (translated === lookup) {
+    return null;
+  }
+  // 占位符必须一一对上，否则说明目录条目与这处 children 形状不符（例如 `{cond && <X/>}`
+  // 运行期塌成 false、少了一个位）——宁可整条不翻，也不能错位重组。
+  const seen = new Set<number>();
+  const pieces = translated.split(/\{(\d+)\}/);
+  const rebuilt: unknown[] = [];
+  for (let i = 0; i < pieces.length; i++) {
+    if (i % 2 === 0) {
+      if (pieces[i]) rebuilt.push(pieces[i]);
+      continue;
+    }
+    const index = Number.parseInt(pieces[i], 10);
+    const slotChildren = children.filter((c) => typeof c !== 'string');
+    if (!Number.isInteger(index) || index < 0 || index >= slotChildren.length) {
+      return null;
+    }
+    seen.add(index);
+    rebuilt.push(slotChildren[index]);
+  }
+  if (seen.size !== slots) {
+    return null;
+  }
+  return rebuilt;
+}
+
 export function localizeNode(value: unknown): unknown {
   if (typeof value === 'string') {
     return translateText(value);
@@ -130,7 +187,19 @@ export function localizeProps(props: unknown): unknown {
   for (const [propName, propValue] of Object.entries(nextProps)) {
     let localized: unknown = propValue;
     if (propName === 'children') {
-      localized = localizeNode(propValue);
+      if (Array.isArray(propValue)) {
+        // 文本与表达式混排：先试整条模板；成功即用，失败则整条保持英文（不逐段翻）。
+        const templated = localizeChildrenTemplate(propValue);
+        if (templated) {
+          localized = templated;
+        } else if (propValue.some((c) => typeof c !== 'string')) {
+          localized = propValue;
+        } else {
+          localized = localizeNode(propValue);
+        }
+      } else {
+        localized = localizeNode(propValue);
+      }
     } else if (propName === 'options') {
       localized = localizeOptions(propValue);
     } else if (TRANSLATABLE_PROPS.has(propName)) {

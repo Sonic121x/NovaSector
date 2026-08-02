@@ -79,7 +79,12 @@
 	var/list/reagent_list = list()
 	for(var/i in reagents) //Convert from assoc to normal. Yeah very shit.
 		var/datum/reagent/reagent = i
-		reagent_list["[initial(reagent.name)]"] = reagents[i] * SSMACHINES_DT
+		// NOVA EDIT CHANGE - I18N - ORIGINAL: reagent_list["[initial(reagent.name)]"] = reagents[i] * SSMACHINES_DT
+		// 试剂名在这里是**关联键**，而 P1 的 lang_reverse_tree 只本地化「值」——键一律当标识符放过，
+		// 所以显微镜里的试剂名永远是英文，哪怕目录里早有译文。这份表纯粹是给前端显示的
+		// （Microscope.tsx 只 Object.keys 出来渲染，act 只有 eject_petridish，键从不回传服务端），
+		// 所以在这里就把键翻掉是安全的。
+		reagent_list["[lang_reverse_text("[initial(reagent.name)]")]"] = reagents[i] * SSMACHINES_DT
 	return reagent_list
 
 /obj/structure/microscope/ui_act(action, params, datum/tgui/ui)
