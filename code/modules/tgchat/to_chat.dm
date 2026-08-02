@@ -32,7 +32,7 @@
 
 	// NOVA EDIT ADDITION START - i18n - 聊天层 AC 子串兜底（默认关，config I18N_CHAT_FALLBACK 开；英文服/未开启 no-op）。跳过玩家/管理员自己输入的频道（按类型）与显式 skip_i18n_fallback（玩家发言），避免误翻玩家原话。
 	if(GLOB.i18n_chat_fallback && GLOB.i18n_server_locale != DEFAULT_UI_LOCALE && !skip_i18n_fallback && !GLOB.i18n_player_chat_types[type])
-		if(html) html = lang_fallback_apply(html)
+		if(html) html = lang_fallback_apply_html(html)
 		if(text) text = lang_fallback_apply(text)
 	// NOVA EDIT ADDITION END
 
@@ -85,7 +85,7 @@
 
 	// NOVA EDIT ADDITION START - i18n - 聊天层 AC 子串兜底（默认关，config I18N_CHAT_FALLBACK 开；英文服/未开启 no-op）。跳过玩家/管理员自己输入的频道（按类型）与显式 skip_i18n_fallback（玩家发言），避免误翻玩家原话。
 	if(GLOB.i18n_chat_fallback && GLOB.i18n_server_locale != DEFAULT_UI_LOCALE && !skip_i18n_fallback && !GLOB.i18n_player_chat_types[type])
-		if(html) html = lang_fallback_apply(html)
+		if(html) html = lang_fallback_apply_html(html)
 		if(text) text = lang_fallback_apply(text)
 	// NOVA EDIT ADDITION END
 

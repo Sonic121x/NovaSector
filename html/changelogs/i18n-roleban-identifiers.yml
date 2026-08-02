@@ -1,4 +1,4 @@
 author: "Sernseek"
 delete-after: True
 changes:
-  - bugfix: "修复中文服职业封禁岗位名被翻译后无法阻止玩家选择对应职业的问题。"
+  - bugfix: "修复中文翻译改写旧式 HTML 页面和聊天操作链接中的岗位名等机器参数，导致职业封禁、职位名额管理等操作失效的问题。"

@@ -27,6 +27,7 @@
 	var/html = {"<form data-role='[JOB_HEAD_OF_SECURITY]'>
 		<input type='checkbox' name='[role_field]' class='[group_field]' value='1'>
 		<span>[JOB_HEAD_OF_SECURITY]</span>
+		<a href='byond://?src=admin;addjobslot=[JOB_HEAD_OF_SECURITY]'>[JOB_HEAD_OF_SECURITY]</a>
 		<textarea name='reason'>[JOB_HEAD_OF_SECURITY]</textarea>
 		<script>const role = '[JOB_HEAD_OF_SECURITY]';</script>
 		<style>.role::after { content: '[JOB_HEAD_OF_SECURITY]'; }</style>
@@ -37,6 +38,8 @@
 	TEST_ASSERT(findtext(localized_html, "name='[role_field]'"), "Encoded role field changed during browse localization")
 	TEST_ASSERT(findtext(localized_html, "class='[group_field]'"), "Stable group field changed during browse localization")
 	TEST_ASSERT(findtext(localized_html, "<span>[I18N_ROLEBAN_TRANSLATED_TITLE]</span>"), "Visible role label was not localized")
+	TEST_ASSERT(findtext(localized_html, "href='byond://?src=admin;addjobslot=[JOB_HEAD_OF_SECURITY]'"), "Manage Job Slots href value was localized")
+	TEST_ASSERT(findtext(localized_html, ">[I18N_ROLEBAN_TRANSLATED_TITLE]</a>"), "Manage Job Slots visible role label was not localized")
 	TEST_ASSERT(findtext(localized_html, "<textarea name='reason'>[JOB_HEAD_OF_SECURITY]</textarea>"), "Textarea form value was localized")
 	TEST_ASSERT(findtext(localized_html, "const role = '[JOB_HEAD_OF_SECURITY]'"), "Script body was localized")
 	TEST_ASSERT(findtext(localized_html, "content: '[JOB_HEAD_OF_SECURITY]'"), "Style body was localized")
