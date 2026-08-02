@@ -37,7 +37,11 @@
 	for (var/datum/data/vending_product/record as anything in records)
 		var/list/static_record = list(
 			path = SANITIZED_PATH(record.product_path),
-			name = record.name,
+			// NOVA EDIT CHANGE - I18N - ORIGINAL: name = record.name,
+			// 商品名是**纯显示**（act('vend') 用 ref、分类过滤用 category）。P1 的 lang_reverse_tree 有
+			// 「必须含空格」的多词门槛，单词名（syringe/dropper/…）永远进不去，前端目录里又没有它们
+			// → 货柜里夹着一堆英文单词商品。这里直接整串反查（无词数门槛），未命中原样返回。
+			name = lang_reverse_text(record.name),
 			price = record.price,
 			ref = REF(record),
 			colorable = record.colorable,
