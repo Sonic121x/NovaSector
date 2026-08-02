@@ -110,3 +110,8 @@ Debug i18n by category, not by patching isolated strings:
 2. If translated UI text breaks an action, inspect identifier/display separation and `policy.json`.
 3. If cataloged text stays English, identify whether the render path bypasses LANG/P1, extraction missed the source class, the translation is partial, or the build is stale.
 4. Fix recurring misses in the extractor, rewrite rules, label sources, or policy rather than adding one-off entries.
+
+Known trap classes:
+
+- **Catalog entry exists but the UI still shows English** — compare the key byte-for-byte with what the runtime actually looks up. TGUI keys must be the *post-JSX-transform* string: `tgui-catalog.mjs` decodes HTML entities (`&apos;` `&nbsp;` `&ensp;` …) because `JsxText.text` keeps them raw while React does not. An entity in a catalog key is a dead key; an entity in a translation renders literally to the player. `tgui-catalog.mjs extract` warns on both.
+- The TGUI English catalog is `new ∪ historical` and never prunes, so a bad-key class survives every re-extract until it is migrated explicitly.

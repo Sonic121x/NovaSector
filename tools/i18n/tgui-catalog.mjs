@@ -452,6 +452,43 @@ function walk(dir, out = []) {
   return out;
 }
 
+// JSX 文本节点与 JSX 属性字符串里的 HTML 实体，编译期由 JSX transform 解码：源码写
+// `you&apos;re`，运行时 React 拿到的是 `you're`。TS 的 `JsxText.text` / 属性字面量 `.text`
+// **不解码**，直接拿来当 key 就会造出一批永远查不到的死键（`I&apos;m sold!…`），表现为
+// 「目录里明明有译文、界面照旧显示英文」。所以抽取时按 JSX 语义先解码再算 key。
+// 注意 `&nbsp;` 解成 U+00A0，会被 normalizeText 的 `\s+` 折叠/trim 掉——与运行时
+// localize.ts 的同款折叠一致，两端仍然对得上。
+const JSX_ENTITIES = {
+  amp: '&',
+  apos: "'",
+  bull: '•',
+  copy: '©',
+  ensp: ' ',
+  gt: '>',
+  rarr: '→',
+  times: '×',
+  lt: '<',
+  nbsp: ' ',
+  quot: '"',
+};
+
+function decodeJsxEntities(text) {
+  if (typeof text !== 'string' || !text.includes('&')) {
+    return text;
+  }
+  return text.replace(/&(#x[0-9a-fA-F]+|#\d+|[a-zA-Z]+);/g, (match, body) => {
+    if (body[0] === '#') {
+      const code =
+        body[1] === 'x' || body[1] === 'X'
+          ? Number.parseInt(body.slice(2), 16)
+          : Number.parseInt(body.slice(1), 10);
+      return Number.isFinite(code) ? String.fromCodePoint(code) : match;
+    }
+    const mapped = JSX_ENTITIES[body.toLowerCase()];
+    return mapped ?? match;
+  });
+}
+
 function normalizeText(text) {
   if (typeof text !== 'string') {
     return null;
@@ -922,11 +959,20 @@ function extractCatalog() {
 
     function visit(node) {
       if (ts.isJsxText(node)) {
-        addText(catalog, node.text);
+        addText(catalog, decodeJsxEntities(node.text));
       } else if (ts.isJsxAttribute(node)) {
         const name = node.name.getText(sourceFile);
         if (TRANSLATABLE_PROPS.has(name)) {
-          addDisplayExpr(catalog, node.initializer); // 含三元/|| 两支（content={x?'Retract':'Deploy'}）
+          // 属性初始值若是 JSX 直写的字符串（title="Don&apos;t"），实体同样由 transform 解码。
+          const initializer =
+            node.initializer && ts.isStringLiteral(node.initializer)
+              ? decodeJsxEntities(node.initializer.text)
+              : node.initializer;
+          if (typeof initializer === 'string') {
+            addText(catalog, initializer);
+          } else {
+            addDisplayExpr(catalog, initializer); // 含三元/|| 两支（content={x?'Retract':'Deploy'}）
+          }
         }
       } else if (ts.isPropertyAssignment(node)) {
         const name = propertyName(node.name);
@@ -1036,8 +1082,33 @@ function extract() {
 
   writeJson(stringsCatalogPath('en'), enCatalog);
   writeJson(stringsCatalogPath('zh-Hans'), zhCatalog);
+  warnHtmlEntities(enCatalog, zhCatalog);
   writeTguiScopes(enCatalog);
   sync();
+}
+
+// 目录里出现 HTML 实体 = 两类真 bug，且都**静默**：
+//   key 带实体   → 抽取时漏解码，运行时永远查不到（界面显示英文，但目录里看着「已翻」）；
+//   value 带实体 → 译文当文本子节点渲染，玩家会看到字面的 `&nbsp;` / `&quot;`。
+// enCatalog 是「新抽取 ∪ 历史键」——历史键从不裁剪，所以旧的坏键只能靠这里报出来。
+function warnHtmlEntities(enCatalog, zhCatalog) {
+  const ENTITY = /&(#x[0-9a-fA-F]+|#\d+|[a-zA-Z]+);/;
+  const badKeys = Object.keys(enCatalog).filter((key) => ENTITY.test(key));
+  const badValues = Object.entries(zhCatalog).filter(([, value]) =>
+    ENTITY.test(value),
+  );
+  if (!badKeys.length && !badValues.length) {
+    return;
+  }
+  console.warn(
+    `tgui 目录含 HTML 实体：key ${badKeys.length} 条（死键，运行时查不到）、译文 ${badValues.length} 条（会字面显示）`,
+  );
+  for (const key of badKeys.slice(0, 10)) {
+    console.warn(`   key ${JSON.stringify(key)}`);
+  }
+  for (const [key, value] of badValues.slice(0, 10)) {
+    console.warn(`   val ${JSON.stringify(key)} -> ${JSON.stringify(value)}`);
+  }
 }
 
 /**

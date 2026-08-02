@@ -8,8 +8,20 @@
   "\"GREETINGS. WE'RE THE WIZARDS OF THE WIZARD'S FEDERATION.\"": [
     "dm:antagonists"
   ],
+  "\"Is": [
+    "tgui:AntagInfoSeparatist"
+  ],
   "\"Laws Updated\" Alert": [
     "tgui:Lawpanel"
+  ],
+  "\"The first rule of adminbuse is: you don't talk about the adminbuse.\"": [
+    "tgui:Secrets"
+  ],
+  "\"What am I supposed to do?\"": [
+    "tgui:AntagInfoSeparatist"
+  ],
+  "\"What even IS a Separatist?\"": [
+    "tgui:AntagInfoSeparatist"
   ],
   "\"When enabled, the Nova Sector logo will be displayed next to your name in OOC if you're a donator.": [
     "tgui:donator_status"
@@ -20,150 +32,23 @@
   "% when infected with viruses.": [
     "tgui:Microscope"
   ],
-  "&apos; to proceed.": [
+  "' to proceed.": [
     "tgui:Adminhelp"
-  ],
-  "&apos;d atom in the relevent client&apos;s screen contents.": [
-    "tgui:PlaneMenus"
-  ],
-  "&apos;s HP:": [
-    "tgui:BattleArcade"
-  ],
-  "&apos;s MP:": [
-    "tgui:BattleArcade"
-  ],
-  "&bull;": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "&copy; NT Corporation. All rights reserved.": [
-    "tgui:NtosNotepad"
-  ],
-  "&ensp;": [
-    "tgui:NtosDeptOrder"
-  ],
-  "&ensp;Absorb DNA": [
-    "tgui:AntagInfoChangeling"
-  ],
-  "&ensp;Cellular Emporium": [
-    "tgui:AntagInfoChangeling"
-  ],
-  "&ensp;Extract DNA Sting": [
-    "tgui:AntagInfoChangeling"
-  ],
-  "&ensp;Reviving Stasis": [
-    "tgui:AntagInfoChangeling"
-  ],
-  "&ensp;The speech recognition subsystem has been configured to flag these codewords.": [
-    "tgui:AntagInfoMalf"
-  ],
-  "&ensp;This process will alert any nearby observers.": [
-    "tgui:AntagInfoMorph"
-  ],
-  "&ensp;Transform": [
-    "tgui:AntagInfoChangeling"
-  ],
-  "&ensp;absorbing": [
-    "tgui:AntagInfoChangeling"
-  ],
-  "&ensp;anyone within three tiles will note an uncanny wrongness if examining you.": [
-    "tgui:AntagInfoMorph"
-  ],
-  "&ensp;corpses will restore your health.": [
-    "tgui:AntagInfoMorph"
-  ],
-  "&ensp;light eater": [
-    "tgui:AntagInfoNightmare"
-  ],
-  "&gt;": [
-    "tgui:AntagInfoMalf",
-    "tgui:LawRack"
-  ],
-  "&gt; Manage Connections": [
-    "tgui:LawRack"
-  ],
-  "&gt; New Connection": [
-    "tgui:LawRack"
-  ],
-  "&gt; New Link": [
-    "tgui:LawRack"
-  ],
-  "&gt; Unlink Rack": [
-    "tgui:LawRack"
-  ],
-  "&gt;&gt;N": [
-    "tgui:AntagInfoMalf"
-  ],
-  "&gt;Report to Nanotrasen?": [
-    "tgui:AntagInfoMalf"
-  ],
-  "&nbsp;": [
-    "tgui:AntagInfoHeretic",
-    "tgui:ArmamentStation",
-    "tgui:BorerEvolution",
-    "tgui:DynamicAdmin",
-    "tgui:FoodPreferences",
-    "tgui:RapidConstructionDevice",
-    "tgui:SurgeryProceduresView",
-    "tgui:Temperatures",
-    "tgui:index"
-  ],
-  "&nbsp;active in your other hand. This rune allows you to complete rituals and sacrifices.": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "&nbsp;around the station invisible to the normal eye and&nbsp;": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "&nbsp;around you, as a realization of something&nbsp;": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "&nbsp;every minute": [
-    "tgui:index"
-  ],
-  "&nbsp;in the air unfolds. You look inwards and discover something that will change your life.": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "&nbsp;open up to your mind.": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "&nbsp;to track down&nbsp;": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "&nbsp;will manifest a visible aura of&nbsp;": [
-    "tgui:AntagInfoHeretic"
-  ],
-  "&nbsp;x": [
-    "tgui:GlassBlowing"
-  ],
-  "&quot;": [
-    "tgui:BountyBoard",
-    "tgui:EightBallVote",
-    "tgui:QuantumConsole"
-  ],
-  "&quot;.": [
-    "tgui:Lawpanel"
-  ],
-  "&quot;Is": [
-    "tgui:AntagInfoSeparatist"
-  ],
-  "&quot;The first rule of adminbuse is: you don&apos;t talk about the adminbuse.&quot;": [
-    "tgui:Secrets"
-  ],
-  "&quot;What am I supposed to do?&quot;": [
-    "tgui:AntagInfoSeparatist"
-  ],
-  "&quot;What even IS a Separatist?&quot;": [
-    "tgui:AntagInfoSeparatist"
-  ],
-  "&times;": [
-    "tgui:Autolathe",
-    "tgui:Fabricator",
-    "tgui:MaterialAccessBar"
   ],
   "'Dagger' Designer Mantle": [
     "dm:labels"
   ],
   "'Zero' Ponytail": [
     "dm:labels"
+  ],
+  "'d atom in the relevent client's screen contents.": [
+    "tgui:PlaneMenus"
+  ],
+  "'s HP:": [
+    "tgui:BattleArcade"
+  ],
+  "'s MP:": [
+    "tgui:BattleArcade"
   ],
   "(Change)": [
     "tgui:DynamicAdmin"
@@ -195,10 +80,10 @@
   "(Has": [
     "tgui:NtosSpaceBetting"
   ],
-  "(If you are unsure what to get or are new to the Federation, go to the &quot;Wizard Approved Loadouts&quot; section. There you will find some kits that work fairly well for new wizards.)": [
+  "(If you are unsure what to get or are new to the Federation, go to the \"Wizard Approved Loadouts\" section. There you will find some kits that work fairly well for new wizards.)": [
     "tgui:AntagInfoWizard"
   ],
-  "(If you&apos;re new, you may want to set your name in the bottom left!)": [
+  "(If you're new, you may want to set your name in the bottom left!)": [
     "tgui:NtosNetChat"
   ],
   "(Inherited)": [
@@ -282,11 +167,8 @@
   ", you can see how much you have with the HUD on the left side of the screen. You may also hover your cursor over it to see the maximum amount of chemicals you can hold. This number can increase by": [
     "tgui:AntagInfoChangeling"
   ],
-  ", you&apos;ll need to manage your resources:": [
+  ", you'll need to manage your resources:": [
     "tgui:OrionGame"
-  ],
-  ",&nbsp;": [
-    "tgui:index"
   ],
   "- Accumulating a total of": [
     "tgui:AntagInfoHeretic"
@@ -300,10 +182,10 @@
   "- Convert the crew to your cause with a flash - any flash will work.": [
     "tgui:AntagInfoRevolution"
   ],
-  "- Draw a&nbsp;": [
+  "- Draw a": [
     "tgui:AntagInfoHeretic"
   ],
-  "- Find reality smashing&nbsp;": [
+  "- Find reality smashing": [
     "tgui:AntagInfoHeretic"
   ],
   "- Follow your": [
@@ -345,7 +227,7 @@
   "- Total times reproduced:": [
     "tgui:AntagInfoBloodWorm"
   ],
-  "- Use your&nbsp;": [
+  "- Use your": [
     "tgui:AntagInfoHeretic"
   ],
   "- You are a lone leader of the revolution. It is recommended to act swiftly and decisively - when the revolution is sufficiently large, more leaders will be promoted.": [
@@ -387,7 +269,7 @@
   ". Work together, and you will bring the station to new heights of terror.": [
     "tgui:AntagInfoChangeling"
   ],
-  ". You can find more crew on your journey, and lose them as fast as you found &apos;em.": [
+  ". You can find more crew on your journey, and lose them as fast as you found 'em.": [
     "tgui:OrionGame"
   ],
   ". You may communicate to other Changelings under your mental alias,": [
@@ -441,7 +323,7 @@
   "1 point,": [
     "tgui:LanguagesMenu"
   ],
-  "1. Load a dead creature into the machine. This is what you&apos;re infusing from.": [
+  "1. Load a dead creature into the machine. This is what you're infusing from.": [
     "tgui:InfuserBook"
   ],
   "1. Turn the dial left to the first number.": [
@@ -489,7 +371,7 @@
   ": Used to repair breakdowns. Nobody likes wasting time on repairs!": [
     "tgui:OrionGame"
   ],
-  ": You use 5u of fuel with every movement. Don&apos;t let it run out.": [
+  ": You use 5u of fuel with every movement. Don't let it run out.": [
     "tgui:OrionGame"
   ],
   ": Your crewmembers consume it. More crew means this goes down faster!": [
@@ -497,6 +379,24 @@
   ],
   ":g": [
     "tgui:AntagInfoChangeling"
+  ],
+  "> Manage Connections": [
+    "tgui:LawRack"
+  ],
+  "> New Connection": [
+    "tgui:LawRack"
+  ],
+  "> New Link": [
+    "tgui:LawRack"
+  ],
+  "> Unlink Rack": [
+    "tgui:LawRack"
+  ],
+  ">>N": [
+    "tgui:AntagInfoMalf"
+  ],
+  ">Report to Nanotrasen?": [
+    "tgui:AntagInfoMalf"
   ],
   "A": [
     "tgui:ColorPicker"
@@ -712,6 +612,9 @@
   "ANCHOR": [
     "tgui:NuclearBomb"
   ],
+  "APC": [
+    "tgui:ClockworkSlab"
+  ],
   "APC Control Panel": [
     "tgui:ApcControl"
   ],
@@ -720,9 +623,6 @@
   ],
   "APC cover can be pried open with a crowbar.": [
     "tgui:Apc"
-  ],
-  "APC&nbsp;": [
-    "tgui:ClockworkSlab"
   ],
   "ARE YOU SURE?": [
     "tgui:Filterrific"
@@ -760,7 +660,7 @@
   "Abandon Quest": [
     "tgui:BattleArcade"
   ],
-  "Abduct:&ensp;": [
+  "Abduct:": [
     "tgui:AntagInfoVoidwalker"
   ],
   "Abductor": [
@@ -840,6 +740,9 @@
   ],
   "Absolute": [
     "tgui:CreateObjectSettings"
+  ],
+  "Absorb DNA": [
+    "tgui:AntagInfoChangeling"
   ],
   "Absorb a victim first!": [
     "tgui:AntagInfoChangeling"
@@ -1357,7 +1260,7 @@
   "Afropuff, Right": [
     "dm:labels"
   ],
-  "After a long and destructive war, Rat&#39;Var has been imprisoned inside a dimension of suffering.": [
+  "After a long and destructive war, Rat'Var has been imprisoned inside a dimension of suffering.": [
     "tgui:ClockworkSlab"
   ],
   "After a note has an accidental placed, it will be remembered:": [
@@ -1598,7 +1501,7 @@
     "tgui:OreRedemptionMachine",
     "tgui:ProcessingConsole"
   ],
-  "Almost all of these are all built to help me debug the game (ow, debugging a 12 player game!) So they are rudamentary and prone to breaking at the drop of a hat. Make sure you know what you&apos;re doing when you press one. Also because an admin did it: do not gib/delete/dust anyone! It will runtime the game to death": [
+  "Almost all of these are all built to help me debug the game (ow, debugging a 12 player game!) So they are rudamentary and prone to breaking at the drop of a hat. Make sure you know what you're doing when you press one. Also because an admin did it: do not gib/delete/dust anyone! It will runtime the game to death": [
     "tgui:MafiaPanel"
   ],
   "Aloof": [
@@ -1730,7 +1633,7 @@
   "And if you do not wish to OPFOR, simply press the button below to remove your status.": [
     "tgui:AntagInfoOpfor"
   ],
-  "And you&apos;re done! Note that the infusion source will be obliterated in the process.": [
+  "And you're done! Note that the infusion source will be obliterated in the process.": [
     "tgui:InfuserBook"
   ],
   "Android": [
@@ -1805,7 +1708,7 @@
   "Anosmia": [
     "dm:labels"
   ],
-  "Another day at a meaningless job. You feel a&nbsp;": [
+  "Another day at a meaningless job. You feel a": [
     "tgui:AntagInfoHeretic"
   ],
   "Antag Events": [
@@ -4991,7 +4894,7 @@
   "Can be changed in-round.": [
     "tgui:species_features"
   ],
-  "Can do more basic stuff too, setting a plane&apos;s color matrix can be quite powerful.": [
+  "Can do more basic stuff too, setting a plane's color matrix can be quite powerful.": [
     "tgui:PlaneMenus"
   ],
   "Can make only": [
@@ -5413,6 +5316,9 @@
   ],
   "Cell Timer": [
     "tgui:BrigTimer"
+  ],
+  "Cellular Emporium": [
+    "tgui:AntagInfoChangeling"
   ],
   "Censor Author": [
     "tgui:Newscaster"
@@ -6173,7 +6079,7 @@
   "Clock Out": [
     "tgui:TimeClock"
   ],
-  "Clockwork Marauder:&nbsp;": [
+  "Clockwork Marauder:": [
     "tgui:ClockworkSlab"
   ],
   "Clockwork Marauders": [
@@ -7868,7 +7774,7 @@
   "DNA Infusion Manual": [
     "tgui:InfuserBook"
   ],
-  "DNA Infusion is the practice of integrating dead creature DNA into yourself, mutating one of your organs into a genetic slurry that sits somewhere between being yours or the creature&apos;s. While this does bring you further away from being human, and gives a slew of... unfortunate side effects, it also grants new capabilities.": [
+  "DNA Infusion is the practice of integrating dead creature DNA into yourself, mutating one of your organs into a genetic slurry that sits somewhere between being yours or the creature's. While this does bring you further away from being human, and gives a slew of... unfortunate side effects, it also grants new capabilities.": [
     "tgui:InfuserBook"
   ],
   "DNA Lock": [
@@ -8137,7 +8043,7 @@
   "Deer Plushie": [
     "dm:labels"
   ],
-  "DefOS 1.0 &copy; Nanotrasen-Deforest Corporation. All rights reserved.": [
+  "DefOS 1.0 © Nanotrasen-Deforest Corporation. All rights reserved.": [
     "tgui:index"
   ],
   "Default": [
@@ -8788,11 +8694,11 @@
     "tgui:DnaConsoleStorage",
     "tgui:index"
   ],
-  "Disk &rarr; Web": [
-    "tgui:DiskMenu"
-  ],
   "Disk Player": [
     "tgui:Holopad"
+  ],
+  "Disk → Web": [
+    "tgui:DiskMenu"
   ],
   "Disliked": [
     "tgui:FoodPreferences"
@@ -8889,7 +8795,7 @@
   "Do an emote inside of the room.": [
     "tgui:Soulcatcher"
   ],
-  "Do not mess with this unless you know what you&apos;re doing.": [
+  "Do not mess with this unless you know what you're doing.": [
     "tgui:StoryManager"
   ],
   "Do not randomize": [
@@ -8940,10 +8846,10 @@
   "Don gamer cloak": [
     "tgui:playtime_reward_cloak"
   ],
-  "Don&apos;t Save": [
+  "Don't Save": [
     "tgui:NtosNotepad"
   ],
-  "Don&apos;t worry, saving the day is just a few steps away!": [
+  "Don't worry, saving the day is just a few steps away!": [
     "tgui:DelamProcedure"
   ],
   "Done": [
@@ -9382,7 +9288,7 @@
     "tgui:MessageWriteTab",
     "tgui:RequestsConsoleHeader"
   ],
-  "Each department (nation) has an objective. It&apos;s a freeform objective, so try your best to follow it as you would a freeform abductor objective. From experience, eventually nations conflict and devolve into war. As long as both departments know what and why conflict is starting, that&apos;s a green light to attack opposing nations.": [
+  "Each department (nation) has an objective. It's a freeform objective, so try your best to follow it as you would a freeform abductor objective. From experience, eventually nations conflict and devolve into war. As long as both departments know what and why conflict is starting, that's a green light to attack opposing nations.": [
     "tgui:AntagInfoSeparatist"
   ],
   "Each department on the station will order crates from their own personal consoles. These orders are ENTIRELY FREE! They do not come out of cargo's budget, and rather put the consoles on cooldown. So here's where you come in: The ordered crates will show up on your supply console, and you need to deliver the crates to the orderers. You'll actually be paid the full value of the department crate on delivery if the crate was not tampered with, making the system a good source of income.": [
@@ -9394,7 +9300,7 @@
   "Each option corresponds to an area on centcom. Launched pods will be filled with items in these areas according to the \"Load from Bay\" options at the top left.": [
     "tgui:PodBays"
   ],
-  "Each plane can be viewed more closely by clicking the little button in it&apos;s top right corner. This opens a sidebar, and displays a lot of more general info about the plane and its purpose, alongside exposing some useful buttons and interesting values.": [
+  "Each plane can be viewed more closely by clicking the little button in it's top right corner. This opens a sidebar, and displays a lot of more general info about the plane and its purpose, alongside exposing some useful buttons and interesting values.": [
     "tgui:PlaneMenus"
   ],
   "Eagerness": [
@@ -10554,6 +10460,9 @@
   "Extract": [
     "tgui:SkillStation"
   ],
+  "Extract DNA Sting": [
+    "tgui:AntagInfoChangeling"
+  ],
   "Extract Major Activation": [
     "dm:labels"
   ],
@@ -10884,7 +10793,7 @@
   "Feeding Interval": [
     "tgui:Aquarium"
   ],
-  "Feel free to browse our wares, or take a nap. I&apos;ll be here to ensure you&apos;ll get a good night&apos;s rest without worry of ambushing or robbery.": [
+  "Feel free to browse our wares, or take a nap. I'll be here to ensure you'll get a good night's rest without worry of ambushing or robbery.": [
     "tgui:BattleArcade"
   ],
   "Feline": [
@@ -10999,7 +10908,7 @@
   "Finalize results as the checked answer being the winner.": [
     "tgui:NtosSpaceBetting"
   ],
-  "Finally, revel in the satisfaction of knowing that you&apos;ve single-handedly prevented a delamination. But, of course, don&apos;t forget to feel guilty because SAFETY MOTH Knows. SAFETY MOTH knows everything. It&apos;s always watching, judging, and probably taking notes for its next safety briefing. So bask in the glory of your heroism, but know that the all-knowing Moff is onto you.": [
+  "Finally, revel in the satisfaction of knowing that you've single-handedly prevented a delamination. But, of course, don't forget to feel guilty because SAFETY MOTH Knows. SAFETY MOTH knows everything. It's always watching, judging, and probably taking notes for its next safety briefing. So bask in the glory of your heroism, but know that the all-knowing Moff is onto you.": [
     "tgui:DelamProcedure"
   ],
   "Finally, we place the": [
@@ -11787,7 +11696,7 @@
   "Full Random": [
     "tgui:Randomize"
   ],
-  "Full Random will give you anything. There&apos;s no going back, either! Guaranteed to have": [
+  "Full Random will give you anything. There's no going back, either! Guaranteed to have": [
     "tgui:Randomize"
   ],
   "Full Toolbox": [
@@ -12382,7 +12291,7 @@
   "GoldenEye Subversion Progress": [
     "tgui:AntagInfoAssaultops"
   ],
-  "GoldeneEye Defnet &nbsp;": [
+  "GoldeneEye Defnet": [
     "tgui:AntagInfoAssaultops"
   ],
   "Golem": [
@@ -13489,7 +13398,7 @@
   "Hopeful Horns": [
     "dm:labels"
   ],
-  "Hopefully you&apos;ll never need to do this. However, good luck!": [
+  "Hopefully you'll never need to do this. However, good luck!": [
     "tgui:DelamProcedure"
   ],
   "Horizontal Split": [
@@ -13684,7 +13593,7 @@
   "Hungry": [
     "dm:labels"
   ],
-  "Hunt:&ensp;": [
+  "Hunt:": [
     "tgui:AntagInfoVoidwalker"
   ],
   "Husky": [
@@ -13735,10 +13644,10 @@
   "I am an elite operative executing a co-ordinated strike for the benefit of": [
     "tgui:AntagInfoNinja"
   ],
-  "I won&apos;t get into every effect we do here, you can learn more about each plane by clicking on the little button in their top right.": [
+  "I won't get into every effect we do here, you can learn more about each plane by clicking on the little button in their top right.": [
     "tgui:PlaneMenus"
   ],
-  "I&apos;m sold! How do I do it?": [
+  "I'm sold! How do I do it?": [
     "tgui:InfuserBook"
   ],
   "I/O regulators have malfunctioned!": [
@@ -13967,7 +13876,7 @@
   "If you play, you can still possibly be returned to your body (No Guarantees)!": [
     "tgui:DeathmatchPanel"
   ],
-  "If you run out of food or crew, it&apos;s": [
+  "If you run out of food or crew, it's": [
     "tgui:OrionGame"
   ],
   "If you want to make it to": [
@@ -14110,7 +14019,7 @@
   "In chemistry, pH is a scale used to specify the acidity or basicity of an aqueous solution. Acidic solutions are measured to have lower pH values than basic or alkaline solutions. The pH scale is logarithmic and inversely indicates the concentration of hydrogen ions in the solution.": [
     "tgui:ChemReactionChamber"
   ],
-  "In the 2200&apos;s, the Orion trail was established as a dangerous yet opportunistic trail through space for those willing to risk it. Many pioneers seeking new lives on the galactic frontier would find exactly what they were seeking... or lose their lives on the way.": [
+  "In the 2200's, the Orion trail was established as a dangerous yet opportunistic trail through space for those willing to risk it. Many pioneers seeking new lives on the galactic frontier would find exactly what they were seeking... or lose their lives on the way.": [
     "tgui:OrionGame"
   ],
   "In the Name of": [
@@ -14234,7 +14143,7 @@
     "tgui:Smes",
     "tgui:StackingConsole"
   ],
-  "Input &apos;": [
+  "Input '": [
     "tgui:Adminhelp"
   ],
   "Input Cause of Death...": [
@@ -14409,10 +14318,8 @@
     "tgui:SeedTable"
   ],
   "Install": [
+    "tgui:ClockworkSlab",
     "tgui:Installed"
-  ],
-  "Install&nbsp;": [
-    "tgui:ClockworkSlab"
   ],
   "Installed": [
     "tgui:Installed",
@@ -14447,10 +14354,10 @@
   "Integrated Circuit Shell": [
     "tgui:AirlockElectronics"
   ],
-  "Integration Cog&nbsp;": [
+  "Integration Cog": [
     "tgui:ClockworkSlab"
   ],
-  "Integration Cogs&nbsp;": [
+  "Integration Cogs": [
     "tgui:ClockworkSlab"
   ],
   "Integrity": [
@@ -14575,10 +14482,8 @@
     "tgui:InfraredEmitter"
   ],
   "Invoke": [
+    "tgui:ClockworkSlab",
     "tgui:ReligiousTool"
-  ],
-  "Invoke&nbsp;": [
-    "tgui:ClockworkSlab"
   ],
   "Iron Coin": [
     "dm:labels"
@@ -14673,14 +14578,14 @@
   "It is worth noting that the": [
     "tgui:PlaneMenus"
   ],
-  "It&apos;s worth noting that render sources are often used by filters, normally to apply some displacement or mask.": [
-    "tgui:PlaneMenus"
-  ],
   "It's too late for the emergency shuttle to be recalled.": [
     "tgui:Main"
   ],
   "It's too late to revert station traits, the round has already started.": [
     "tgui:StationTraitsPanel"
+  ],
+  "It's worth noting that render sources are often used by filters, normally to apply some displacement or mask.": [
+    "tgui:PlaneMenus"
   ],
   "It/Its": [
     "dm:labels"
@@ -14994,13 +14899,13 @@
   "Keen Nose": [
     "dm:labels"
   ],
-  "Keep an eye out for fires and the infamous air mix. It&apos;s always an adventure trying to strike the perfect balance between breathable air and potential suffocation. Remember, oxygen plus a spark equals fireworks - the kind you definitely don&apos;t want inside a reactor.": [
+  "Keep an eye out for fires and the infamous air mix. It's always an adventure trying to strike the perfect balance between breathable air and potential suffocation. Remember, oxygen plus a spark equals fireworks - the kind you definitely don't want inside a reactor.": [
     "tgui:DelamProcedure"
   ],
   "Keep blank to not include a subheader": [
     "tgui:CommandReport"
   ],
-  "Keep in mind: Orbit does not update automatically. You will need to click the &quot;Refresh&quot; button to see the latest data.": [
+  "Keep in mind: Orbit does not update automatically. You will need to click the \"Refresh\" button to see the latest data.": [
     "tgui:OrbitBlade"
   ],
   "Key": [
@@ -16007,7 +15912,7 @@
   "Local Status": [
     "tgui:AlarmStatus"
   ],
-  "Locate the ever-elusive red emergency stop button. It&apos;s probably hiding in plain sight, so take your time, have a laugh, and enjoy the anticipation. Remember, it&apos;s like a treasure hunt, only with the added bonus of preventing a nuclear disaster.": [
+  "Locate the ever-elusive red emergency stop button. It's probably hiding in plain sight, so take your time, have a laugh, and enjoy the anticipation. Remember, it's like a treasure hunt, only with the added bonus of preventing a nuclear disaster.": [
     "tgui:DelamProcedure"
   ],
   "Location": [
@@ -16611,7 +16516,7 @@
   "Make group into antagonists?": [
     "tgui:SentienceFunBalloon"
   ],
-  "Make sure to have a defensible base of operations! You&apos;re significantly stronger while on brass tiles, so make your home indefensible.": [
+  "Make sure to have a defensible base of operations! You're significantly stronger while on brass tiles, so make your home indefensible.": [
     "tgui:ClockworkSlab"
   ],
   "Makes TGUI buttons less traditional, more functional.": [
@@ -17981,7 +17886,7 @@
   "Move job to backpack": [
     "dm:labels"
   ],
-  "Move often. The station will be hunting you after you are discovered, so don&apos;t stay in one area for long.": [
+  "Move often. The station will be hunting you after you are discovered, so don't stay in one area for long.": [
     "tgui:AntagInfoNightmare"
   ],
   "Move shuttle": [
@@ -18372,17 +18277,17 @@
   "Nanotrasen is not responsible for any injuries or fatalities caused by usage of the tram.": [
     "tgui:TramController"
   ],
-  "Nar&apos;sian cultists are your greatest foe! Some of your spells are less effective on them, and vice-versa. What remains of Ratvar may reward a vitality sacrifice of such heresy.": [
-    "tgui:ClockworkSlab"
-  ],
-  "Nar&apos;sie:&nbsp;": [
-    "tgui:ClockworkSlab"
-  ],
   "Nar'Sian": [
     "dm:labels"
   ],
+  "Nar'sian cultists are your greatest foe! Some of your spells are less effective on them, and vice-versa. What remains of Ratvar may reward a vitality sacrifice of such heresy.": [
+    "tgui:ClockworkSlab"
+  ],
   "Nar'sie Plushie": [
     "dm:labels"
+  ],
+  "Nar'sie:": [
+    "tgui:ClockworkSlab"
   ],
   "Narcolepsy": [
     "dm:labels"
@@ -18577,7 +18482,7 @@
   "New You": [
     "dm:labels"
   ],
-  "New access to restricted channels has provided you with intercepted syndicate codewords. Syndicate agents will respond as if you&apos;re one of their own. Proceed with caution, however, as everyone is a potential foe.": [
+  "New access to restricted channels has provided you with intercepted syndicate codewords. Syndicate agents will respond as if you're one of their own. Proceed with caution, however, as everyone is a potential foe.": [
     "tgui:AntagInfoMalf"
   ],
   "New filter": [
@@ -19695,7 +19600,7 @@
   "Nothing installed!": [
     "tgui:Installed"
   ],
-  "Nothing says &quot;I&apos;m dealing with a potentially catastrophic situation&quot; like engaging in some whimsical shenanigans.": [
+  "Nothing says \"I'm dealing with a potentially catastrophic situation\" like engaging in some whimsical shenanigans.": [
     "tgui:DelamProcedure"
   ],
   "Nothing selected.": [
@@ -20103,7 +20008,7 @@
   "Ok so we can group and relay planes, but what can we actually do with that?": [
     "tgui:PlaneMenus"
   ],
-  "Ok so we can relay a plane master onto some other atom, but how do we get it on another plane master? We can&apos;t just draw it with": [
+  "Ok so we can relay a plane master onto some other atom, but how do we get it on another plane master? We can't just draw it with": [
     "tgui:PlaneMenus"
   ],
   "Old": [
@@ -20200,7 +20105,7 @@
   "Once you enter your final stage of growth as an adult, you can reproduce to create 3 new hatchlings, in exchange for reverting into one yourself.": [
     "tgui:AntagInfoBloodWorm"
   ],
-  "Once you&apos;ve uncovered the button, muster all your courage and push it like there&apos;s no tomorrow. Well, actually, you&apos;re pushing it to ensure there is a tomorrow. But hey, who doesn&apos;t love a little paradoxical button-pushing?": [
+  "Once you've uncovered the button, muster all your courage and push it like there's no tomorrow. Well, actually, you're pushing it to ensure there is a tomorrow. But hey, who doesn't love a little paradoxical button-pushing?": [
     "tgui:DelamProcedure"
   ],
   "One": [
@@ -21568,7 +21473,7 @@
   "Pick an extension...": [
     "tgui:NtosNotepad"
   ],
-  "Pick unfair fights. Look for inattentive targets and strike at them when they don&apos;t expect you.": [
+  "Pick unfair fights. Look for inattentive targets and strike at them when they don't expect you.": [
     "tgui:AntagInfoVoidwalker"
   ],
   "Pick unfair fights. You are incredibly strong in one versus one situations, use it. The more you fight, the harder it will be to keep it dark.": [
@@ -22325,7 +22230,7 @@
   "Power switch": [
     "tgui:PortableGenerator"
   ],
-  "Power:&nbsp;": [
+  "Power:": [
     "tgui:ClockworkSlab"
   ],
   "Powers": [
@@ -22364,7 +22269,7 @@
   "Premium Cigar Case": [
     "dm:labels"
   ],
-  "Prepare for the impending suppression of the supermatter engine room, because things are about to get real quiet. Just make sure everyone has evacuated, or else they&apos;ll be in for a surprise. The system needs its space, and it&apos;s not known for being the friendliest neighbour.": [
+  "Prepare for the impending suppression of the supermatter engine room, because things are about to get real quiet. Just make sure everyone has evacuated, or else they'll be in for a surprise. The system needs its space, and it's not known for being the friendliest neighbour.": [
     "tgui:DelamProcedure"
   ],
   "Prerequisites:": [
@@ -22945,7 +22850,7 @@
   "Pushover": [
     "dm:labels"
   ],
-  "Put any item inside to see what it&apos;s capable of!": [
+  "Put any item inside to see what it's capable of!": [
     "tgui:DestructiveAnalyzer"
   ],
   "Put the sample into a Growing Vat and pour the required reagents.": [
@@ -23003,7 +22908,7 @@
   "Queen Insect": [
     "dm:labels"
   ],
-  "Query and cache:&nbsp;": [
+  "Query and cache:": [
     "tgui:PlayerTicketHistory"
   ],
   "Questionnaire": [
@@ -23489,7 +23394,7 @@
   "Really Flee?": [
     "tgui:BattleArcade"
   ],
-  "Reap:&ensp;": [
+  "Reap:": [
     "tgui:AntagInfoVoidwalker"
   ],
   "Rear Admiral": [
@@ -23860,7 +23765,7 @@
   "Remember you can always turn the engine room air alarm to contaminated to assist in removing harmful gases!": [
     "tgui:DelamProcedure"
   ],
-  "Remember, these are mostly suggestions, and you are encouraged to roleplay liking meals that your character likes, even if you don&apos;t have it&apos;s food type liked here!": [
+  "Remember, these are mostly suggestions, and you are encouraged to roleplay liking meals that your character likes, even if you don't have it's food type liked here!": [
     "tgui:FoodPreferences"
   ],
   "Remember: Do not forget to prepare your spells.": [
@@ -24026,7 +23931,7 @@
   "Replay": [
     "tgui:Holopad"
   ],
-  "Replica Fabricator:&nbsp;": [
+  "Replica Fabricator:": [
     "tgui:ClockworkSlab"
   ],
   "Replica Parade Jacket": [
@@ -24431,6 +24336,9 @@
   ],
   "Revert": [
     "tgui:StationTraitsPanel"
+  ],
+  "Reviving Stasis": [
+    "tgui:AntagInfoChangeling"
   ],
   "Revoke Drone Access": [
     "tgui:NtosRoboControl"
@@ -25935,7 +25843,7 @@
   "Sending": [
     "tgui:Smes"
   ],
-  "Sends a custom message to the user&apos;s PDA": [
+  "Sends a custom message to the user's PDA": [
     "tgui:MessageMonitor"
   ],
   "Sends your message to chat.": [
@@ -27242,7 +27150,7 @@
   "Sleeps": [
     "tgui:TaskManager"
   ],
-  "Slice open the&nbsp;": [
+  "Slice open the": [
     "tgui:ClockworkSlab"
   ],
   "Slightly Long Hair": [
@@ -27479,7 +27387,7 @@
   "So when talking about particles this amounts to:": [
     "tgui:Tutorial"
   ],
-  "So you&apos;ve found yourself in a bit of a pickle with a delamination of a supermatter reactor.": [
+  "So you've found yourself in a bit of a pickle with a delamination of a supermatter reactor.": [
     "tgui:DelamProcedure"
   ],
   "So your overall position after time is": [
@@ -28399,7 +28307,7 @@
     "tgui:AntagInfoBlob",
     "tgui:RecipeContent"
   ],
-  "Structures:&nbsp;": [
+  "Structures:": [
     "tgui:ClockworkSlab"
   ],
   "Stubby": [
@@ -28690,7 +28598,7 @@
   "Surprise Worms": [
     "tgui:AntagInfoBloodWorm"
   ],
-  "Survive:&ensp;": [
+  "Survive:": [
     "tgui:AntagInfoVoidwalker"
   ],
   "Sushi": [
@@ -29422,7 +29330,7 @@
   "Tech Disk Inserted": [
     "tgui:Content"
   ],
-  "Technologist&apos;s Lectern&nbsp;": [
+  "Technologist's Lectern": [
     "tgui:ClockworkSlab"
   ],
   "Technology Sharing": [
@@ -29704,6 +29612,7 @@
     "tgui:AntagInfoBlob",
     "tgui:AntagInfoChangeling",
     "tgui:AntagInfoHeretic",
+    "tgui:ClockworkSlab",
     "tgui:FilingCabinet"
   ],
   "The 'E' is for 'Emissive' — does it glow? Green = glow, Red = no glow.": [
@@ -29928,6 +29837,9 @@
   "The sound that's played when unlocking an achievement. If disabled, no sound will be played.": [
     "tgui:sounds"
   ],
+  "The speech recognition subsystem has been configured to flag these codewords.": [
+    "tgui:AntagInfoMalf"
+  ],
   "The summoning page has summoning and other helpful spells for not fighting alone. Careful, not every summon is on your side.": [
     "tgui:AntagInfoWizard"
   ],
@@ -29976,9 +29888,6 @@
   "The volume that the text-to-speech sounds will play at.": [
     "tgui:sounds"
   ],
-  "The&nbsp;": [
-    "tgui:ClockworkSlab"
-  ],
   "Their sprites": [
     "dm:labels"
   ],
@@ -30018,13 +29927,13 @@
   "There is NO GOOD WAY to do proper color blind simulation in BYOND, because we have no way to extract the gamma of a pixel without iterating all pixels on the screen, which we need to do to properly correct for the human eye.": [
     "tgui:ColorBlindTester"
   ],
-  "There is a pen integrated into the clipboard&apos;s clip.": [
+  "There is a pen integrated into the clipboard's clip.": [
     "tgui:Clipboard"
   ],
   "There will be no lessons or enlightenment, they wont survive to learn from it.": [
     "tgui:AntagInfoSunwalker"
   ],
-  "There&apos;s currently no active polls to bet on, create one below!": [
+  "There's currently no active polls to bet on, create one below!": [
     "tgui:NtosSpaceBetting"
   ],
   "There's only one option... It's the sword.": [
@@ -30192,7 +30101,7 @@
   "This channel has been deemed as threatening to the welfare of the station, and marked with a Nanotrasen D-Notice.": [
     "tgui:Newscaster"
   ],
-  "This cyborg is linked to &quot;": [
+  "This cyborg is linked to \"": [
     "tgui:Lawpanel"
   ],
   "This determines whether we automatically resolve any weakrefs in lists.": [
@@ -30297,7 +30206,7 @@
   "This is your notes, anything you want to write can be saved for future reference. You can also send it to chat with a button.": [
     "tgui:MafiaPanel"
   ],
-  "This item can&apos;t be deconstructed!": [
+  "This item can't be deconstructed!": [
     "tgui:DestructiveAnalyzer"
   ],
   "This item item has already been deconstructed, and will not give any additional information.": [
@@ -30338,6 +30247,9 @@
   ],
   "This page intentionally left blank.": [
     "tgui:PaginatedBook"
+  ],
+  "This process will alert any nearby observers.": [
+    "tgui:AntagInfoMorph"
   ],
   "This product is licensed under the NT Corporation Terms to:": [
     "tgui:NtosNotepad"
@@ -30441,7 +30353,7 @@
   "Threat Parameters": [
     "tgui:TacVisorEyesMenu"
   ],
-  "Threat determines what items you can purchase.&nbsp;": [
+  "Threat determines what items you can purchase.": [
     "tgui:index"
   ],
   "Threat passively increases by": [
@@ -30697,7 +30609,7 @@
   "Timed": [
     "tgui:SolarControl"
   ],
-  "Timer:&nbsp;": [
+  "Timer:": [
     "tgui:BeakerPanel"
   ],
   "Timestamp": [
@@ -30713,7 +30625,7 @@
   "Tin Man": [
     "dm:labels"
   ],
-  "Tinkerer&apos;s Cache": [
+  "Tinkerer's Cache": [
     "tgui:ClockworkSlab"
   ],
   "Tiny Overwatch": [
@@ -30725,13 +30637,13 @@
   "Tiny-Feathery": [
     "dm:labels"
   ],
-  "Tip #1:&ensp;": [
+  "Tip #1:": [
     "tgui:AntagInfoNightmare"
   ],
-  "Tip #2:&ensp;": [
+  "Tip #2:": [
     "tgui:AntagInfoNightmare"
   ],
-  "Tip #3:&ensp;": [
+  "Tip #3:": [
     "tgui:AntagInfoNightmare"
   ],
   "Tip:": [
@@ -30768,7 +30680,7 @@
   "To assist your task, your program has been loaded with cutting edge": [
     "tgui:AntagInfoGlitch"
   ],
-  "To avoid singeing your eyebrows off, consider enlisting the help of a synth or a trusty borg. After all, nothing says &quot;safety first&quot; like outsourcing your firefighting to non-living, non-breathing assistants.": [
+  "To avoid singeing your eyebrows off, consider enlisting the help of a synth or a trusty borg. After all, nothing says \"safety first\" like outsourcing your firefighting to non-living, non-breathing assistants.": [
     "tgui:DelamProcedure"
   ],
   "To begin, insert your ID into the console.": [
@@ -31189,6 +31101,7 @@
     "tgui:Soulcatcher"
   ],
   "Transform": [
+    "tgui:AntagInfoChangeling",
     "tgui:PlayerPanel"
   ],
   "Transform yourself or others into different identities, and buy from an arsenal of biological weaponry with the DNA you collect.": [
@@ -31218,7 +31131,7 @@
   "Traps are useful contraptions, able to be created at a": [
     "tgui:ClockworkSlab"
   ],
-  "Traps:&nbsp;": [
+  "Traps:": [
     "tgui:ClockworkSlab"
   ],
   "Trauma Team Responder": [
@@ -31826,7 +31739,7 @@
     "tgui:NtosCyborgRemoteMonitor",
     "tgui:NtosRobotact"
   ],
-  "Upgrading strong blobs creates reflective blobs, capable of reflecting most projectiles at the cost of the strong blob&apos;s extra health.": [
+  "Upgrading strong blobs creates reflective blobs, capable of reflecting most projectiles at the cost of the strong blob's extra health.": [
     "tgui:AntagInfoBlob"
   ],
   "Uplift Smooth Cigarette Pack": [
@@ -32396,7 +32309,7 @@
   "Vitality Sigil": [
     "tgui:ClockworkSlab"
   ],
-  "Vitality:&nbsp;": [
+  "Vitality:": [
     "tgui:ClockworkSlab"
   ],
   "Vitals": [
@@ -32868,7 +32781,7 @@
   "Waste remove:": [
     "tgui:Controls"
   ],
-  "Watch your power upkeep! You&apos;re dependent on your cogged APCs to stay powered, and a lot of structures can drain it quickly.": [
+  "Watch your power upkeep! You're dependent on your cogged APCs to stay powered, and a lot of structures can drain it quickly.": [
     "tgui:ClockworkSlab"
   ],
   "Watching:": [
@@ -32923,11 +32836,11 @@
   "Weather inhibitors are recharging.": [
     "tgui:AnomalousWeatherTower"
   ],
-  "Web &rarr; Disk": [
-    "tgui:DiskMenu"
-  ],
   "Web View": [
     "tgui:Overview"
+  ],
+  "Web → Disk": [
+    "tgui:DiskMenu"
   ],
   "Webbing - Basic": [
     "dm:labels"
@@ -33035,7 +32948,7 @@
   "What would you like the background for the character preview in the character creator to be?": [
     "tgui:character_preview_background"
   ],
-  "What you&apos;re doing here is a &quot;don&apos;t show this to anyone&quot; button": [
+  "What you're doing here is a \"don't show this to anyone\" button": [
     "tgui:Modify"
   ],
   "What your character is attracted to. This is displayed in the Directory.": [
@@ -33299,7 +33212,7 @@
   "Why do you want to": [
     "tgui:Modify"
   ],
-  "Why not relay it to another atom then? and then well, set that atom&apos;s": [
+  "Why not relay it to another atom then? and then well, set that atom's": [
     "tgui:PlaneMenus"
   ],
   "Wide Elf": [
@@ -33890,7 +33803,7 @@
   "You can grow by using Leech Blood or Invade Corpse to consume blood, but synthetic blood, such as from monkeys, has a limit. You can see blood levels at a glance using your HUD, and examining targets yields advanced information on their blood.": [
     "tgui:AntagInfoBloodWorm"
   ],
-  "You can hit this integrated circuit onto a component printer to link it so that you&apos;re able to remotely create and add components to this circuit.": [
+  "You can hit this integrated circuit onto a component printer to link it so that you're able to remotely create and add components to this circuit.": [
     "tgui:ComponentMenu"
   ],
   "You can launch a devastating slam attack by right-clicking, capable of smashing bones in one strike. Great for preventing the escape of your victims, as their wounds will slow them.": [
@@ -33915,7 +33828,7 @@
   "You can print redeemed coupons by right-clicking a photocopier.": [
     "tgui:NtosCouponMaster"
   ],
-  "You can tell where a node starts and ends based on the side of the plane it&apos;s on.": [
+  "You can tell where a node starts and ends based on the side of the plane it's on.": [
     "tgui:PlaneMenus"
   ],
   "You can think of a plane master as a way to group a set of objects onto one rendering slate.": [
@@ -33988,7 +33901,7 @@
   "You have come into range of the first man-made structure in this region of space. It has been constructed not by travellers from Sol, but by colonists from Orion. It stands as a monument to the colonists' success.": [
     "tgui:OrionGame"
   ],
-  "You have made a total of&nbsp;": [
+  "You have made a total of": [
     "tgui:AntagInfoHeretic"
   ],
   "You have made it to Orion! Congratulations! Your crew is one of the few to start a new foothold for mankind!": [
@@ -34027,7 +33940,7 @@
   "You have unrivaled freedom. Remain in space and no one can stop you. You can move through windows, so stay near them to always have a way out.": [
     "tgui:AntagInfoVoidwalker"
   ],
-  "You haven&apos;t revealed your true form yet!": [
+  "You haven't revealed your true form yet!": [
     "tgui:AntagInfoBlob"
   ],
   "You may not be alone: There may be other spies on the station.": [
@@ -34125,11 +34038,11 @@
   "You will not be able to edit your answers after submitting.": [
     "tgui:Interview"
   ],
-  "You&apos;re using a race which isn&apos;t affected by food preferences!": [
-    "tgui:FoodPreferences"
-  ],
   "You're obsessed with someone! Your obsession may begin to notice their personal items are stolen and their coworkers have gone missing, but will they realize they are your next victim in time?": [
     "dm:antagonists"
+  ],
+  "You're using a race which isn't affected by food preferences!": [
+    "tgui:FoodPreferences"
   ],
   "You...": [
     "tgui:InfoSection"
@@ -34137,7 +34050,7 @@
   "Your": [
     "tgui:AntagInfoChangeling"
   ],
-  "Your Base:&nbsp;": [
+  "Your Base:": [
     "tgui:ClockworkSlab"
   ],
   "Your Preferences": [
@@ -34379,7 +34292,10 @@
   "ability also steals the DNA of a victim, and is undetectable, but does not grant you their memories or speech patterns.": [
     "tgui:AntagInfoChangeling"
   ],
-  "accepts targets pointed to by the&nbsp;": [
+  "absorbing": [
+    "tgui:AntagInfoChangeling"
+  ],
+  "accepts targets pointed to by the": [
     "tgui:AntagInfoHeretic"
   ],
   "access": [
@@ -34387,6 +34303,9 @@
   ],
   "action.": [
     "tgui:AntagInfoGlitch"
+  ],
+  "active in your other hand. This rune allows you to complete rituals and sacrifices.": [
+    "tgui:AntagInfoHeretic"
   ],
   "albino": [
     "dm:labels"
@@ -34425,8 +34344,17 @@
   "any warrants for their arrest.": [
     "tgui:ScannerGate"
   ],
+  "anyone within three tiles will note an uncanny wrongness if examining you.": [
+    "tgui:AntagInfoMorph"
+  ],
   "appearance_flags": [
     "tgui:AppearanceInfo"
+  ],
+  "around the station invisible to the normal eye and": [
+    "tgui:AntagInfoHeretic"
+  ],
+  "around you, as a realization of something": [
+    "tgui:AntagInfoHeretic"
   ],
   "around you. This aura will be visible to all those around you and will mark you as a Heretic. Consider the risks before accumulating too much knowledge!": [
     "tgui:AntagInfoHeretic"
@@ -34510,7 +34438,7 @@
   "by invoking a ritual circle at several nexuses of power.": [
     "tgui:AntagInfoWizard"
   ],
-  "by using a drawing tool (a pen or crayon) on the floor while having&nbsp;": [
+  "by using a drawing tool (a pen or crayon) on the floor while having": [
     "tgui:AntagInfoHeretic"
   ],
   "called! RETA may open doors in area to them.": [
@@ -34581,6 +34509,9 @@
   ],
   "core audiosomes": [
     "dm:labels"
+  ],
+  "corpses will restore your health.": [
+    "tgui:AntagInfoMorph"
   ],
   "cr": [
     "tgui:AuditScreen",
@@ -34696,6 +34627,9 @@
   ],
   "even if that language is only understood and not spoken.": [
     "tgui:LanguagesMenu"
+  ],
+  "every minute": [
+    "tgui:index"
   ],
   "evolution point": [
     "tgui:BorerEvolution"
@@ -34821,11 +34755,14 @@
   "ies": [
     "tgui:CivCargoHoldTerminal"
   ],
-  "in critical or worse condition to&nbsp;": [
+  "in critical or worse condition to": [
     "tgui:AntagInfoHeretic"
   ],
   "in queue.": [
     "tgui:Interview"
+  ],
+  "in the air unfolds. You look inwards and discover something that will change your life.": [
+    "tgui:AntagInfoHeretic"
   ],
   "influences": [
     "tgui:AntagInfoHeretic"
@@ -34938,6 +34875,9 @@
   ],
   "lethal weaponry": [
     "tgui:AntagInfoGlitch"
+  ],
+  "light eater": [
+    "tgui:AntagInfoNightmare"
   ],
   "lines.": [
     "tgui:InstrumentEditor"
@@ -35059,7 +34999,7 @@
   "on the station.": [
     "tgui:ClockworkSlab"
   ],
-  "on them to harvest them for&nbsp;": [
+  "on them to harvest them for": [
     "tgui:AntagInfoHeretic"
   ],
   "only understand": [
@@ -35070,6 +35010,9 @@
   ],
   "onto other planes then?": [
     "tgui:PlaneMenus"
+  ],
+  "open up to your mind.": [
+    "tgui:AntagInfoHeretic"
   ],
   "or": [
     "tgui:LanguagesMenu"
@@ -35170,7 +35113,7 @@
   "position = average velocity * time": [
     "tgui:Tutorial"
   ],
-  "possible to do, but it&apos;s quite disruptive.": [
+  "possible to do, but it's quite disruptive.": [
     "tgui:PlaneMenus"
   ],
   "preset will replace all your current markings. Are you sure?": [
@@ -35427,13 +35370,13 @@
   "the Research Director": [
     "dm:labels"
   ],
-  "the best nation?&quot;": [
+  "the best nation?\"": [
     "tgui:AntagInfoSeparatist"
   ],
   "the same bounty cannot be claimed twice.": [
     "tgui:AntagInfoSpy"
   ],
-  "them for&nbsp;": [
+  "them for": [
     "tgui:AntagInfoHeretic"
   ],
   "this book?": [
@@ -35466,7 +35409,7 @@
   "to dim the station, making hunting easier.": [
     "tgui:AntagInfoNightmare"
   ],
-  "to find your targets. Bring them back to a&nbsp;": [
+  "to find your targets. Bring them back to a": [
     "tgui:AntagInfoHeretic"
   ],
   "to ghosts": [
@@ -35476,8 +35419,11 @@
     "tgui:AntagInfoHeretic",
     "tgui:BorerEvolution"
   ],
-  "to summon an Integration Cog, which can be placed into any&nbsp;": [
+  "to summon an Integration Cog, which can be placed into any": [
     "tgui:ClockworkSlab"
+  ],
+  "to track down": [
+    "tgui:AntagInfoHeretic"
   ],
   "to unlock more scriptures and siphon power!": [
     "tgui:ClockworkSlab"
@@ -35550,10 +35496,10 @@
   "until next update": [
     "tgui:MatMarket"
   ],
-  "using the &quot;Assume Form&quot; ability on yourself. You can also shift-click yourself.": [
+  "using the \"Assume Form\" ability on yourself. You can also shift-click yourself.": [
     "tgui:AntagInfoMorph"
   ],
-  "using your &quot;Assume Form&quot; ability on it. Shift-clicking the object in question will also work.": [
+  "using your \"Assume Form\" ability on it. Shift-clicking the object in question will also work.": [
     "tgui:AntagInfoMorph"
   ],
   "v": [
@@ -35616,13 +35562,16 @@
   "width=": [
     "tgui:ArmamentStation"
   ],
+  "will manifest a visible aura of": [
+    "tgui:AntagInfoHeretic"
+  ],
   "will play a C major scale.": [
     "tgui:InstrumentEditor"
   ],
   "wires:": [
     "tgui:Blueprints"
   ],
-  "with the&nbsp;": [
+  "with the": [
     "tgui:ClockworkSlab"
   ],
   "x": [
@@ -35630,6 +35579,7 @@
     "tgui:CargoCatalog",
     "tgui:ControlBar",
     "tgui:Flatpacker",
+    "tgui:GlassBlowing",
     "tgui:IntensityCredits",
     "tgui:Log",
     "tgui:OreRedemptionMachine",
@@ -35657,6 +35607,9 @@
   ],
   "| MP:": [
     "tgui:BattleArcade"
+  ],
+  "© NT Corporation. All rights reserved.": [
+    "tgui:NtosNotepad"
   ],
   "°C": [
     "tgui:SpaceHeater"
