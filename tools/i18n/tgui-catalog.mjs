@@ -732,6 +732,18 @@ const DM_LABEL_SOURCES = [
   // {cuisine}/{dish}/{meal} 文本节点；前端按英文值过滤（activeFoodCuisine.includes(recipe.cuisine_category)）
   // → 仅翻显示文本节点（act/filter 用英文原值）→ 译之安全（含单词类）。
   ['code/__DEFINES/crafting.dm', false, /#define\s+(?:CUISINE|DISH|MEAL)_\w+\s+"([^"]+)"/g],
+  // 研究/制造机（部门原型机、外骨骼制造机、殖民地制造机…）的分类与**子分类**名
+  // （RND_CATEGORY_* / RND_SUBCATEGORY_* 定义值，如 "/Tools"、"/Atmospherics Tools"）：
+  // DM 发的 design.categories 是拼好的路径串（"Tools/Atmospherics Tools"），DesignBrowser.tsx 按 '/'
+  // 切成树、只渲染 {category.title} 文本节点翻显示；选中/锚点/过滤全用英文原 title → 译之安全。
+  // 顶层分类（Tools→工具）此前靠别处同名串偶然覆盖，子分类没有任何来源 → 二级菜单全英文。
+  // 前导 '/' 是路径分隔符不是名字的一部分，用 `\/?` 吃掉，别抽进 key。
+  // 只取首字母大写的值：小写的三个（initial/hacked/digitigrade）是**元分类**，DesignBrowser 的
+  // BLACKLISTED_CATEGORIES 直接跳过、玩家永远看不到；抽进目录反而会让运行时把界面里任何
+  // 等于 "hacked"/"initial" 的裸文本节点一起翻掉。
+  ['code/__DEFINES/research', true, /#define\s+RND_(?:SUB)?CATEGORY_\w+\s+"\/?([A-Z][^"]*)"/g],
+  ['code/__DEFINES/~nova_defines', true, /#define\s+RND_(?:SUB)?CATEGORY_\w+\s+"\/?([A-Z][^"]*)"/g],
+  ['modular_nova', true, /#define\s+RND_(?:SUB)?CATEGORY_\w+\s+"\/?([A-Z][^"]*)"/g],
   // 待接：反派名散在 code/modules/antagonists 各处，整目录抽会混入目标/技能等海量非偏好名，需专门源。
 ];
 

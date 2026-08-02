@@ -564,11 +564,17 @@
   "AI Connection Port": [
     "tgui:CyborgBootDebug"
   ],
+  "AI Construction": [
+    "dm:labels"
+  ],
   "AI Core Display Options": [
     "tgui:AiCoreDisplayPicker"
   ],
   "AI Emotions": [
     "tgui:AiStatusDisplayPicker"
+  ],
+  "AI Law Manipulation": [
+    "dm:labels"
   ],
   "AI Manager & Restorer": [
     "dm:labels"
@@ -578,6 +584,9 @@
   ],
   "AI Status Display Options": [
     "tgui:AiStatusDisplayPicker"
+  ],
+  "AI Upgrades": [
+    "dm:labels"
   ],
   "AI VOX announcements volume": [
     "tgui:sounds"
@@ -910,6 +919,7 @@
     "dm:labels"
   ],
   "Action": [
+    "dm:labels",
     "tgui:MatrixMathTester",
     "tgui:Modify"
   ],
@@ -1190,8 +1200,14 @@
   "Advanced Cyberdeck Interface": [
     "dm:labels"
   ],
+  "Advanced Digitigrade": [
+    "dm:labels"
+  ],
   "Advanced Injectors": [
     "tgui:DnaConsoleStorage"
+  ],
+  "Advanced Raptoral": [
+    "dm:labels"
   ],
   "Advanced settings": [
     "tgui:CreateObjectSettings",
@@ -1413,6 +1429,9 @@
   "All Changelings, regardless of origin, are linked together by the": [
     "tgui:AntagInfoChangeling"
   ],
+  "All Cyborgs": [
+    "dm:labels"
+  ],
   "All Designs": [
     "tgui:DesignBrowser"
   ],
@@ -1579,6 +1598,9 @@
   "Ammo": [
     "tgui:ModulesPane"
   ],
+  "Ammunition": [
+    "dm:labels"
+  ],
   "Amnt.:": [
     "tgui:CreateObjectSettings"
   ],
@@ -1643,6 +1665,9 @@
     "dm:labels"
   ],
   "Android Head": [
+    "dm:labels"
+  ],
+  "Android Organs": [
     "dm:labels"
   ],
   "Andromorph": [
@@ -1785,6 +1810,9 @@
   ],
   "Aphrodisiacs": [
     "tgui:erp_preferences"
+  ],
+  "Apparel": [
+    "dm:labels"
   ],
   "Appears on examine. If left blank, you will use your default species name (E.g. Human, Lizardperson).": [
     "tgui:species_features"
@@ -2024,6 +2052,9 @@
   "Armed with blood magic, convert crew members to the Blood Cult, sacrifice those who get in the way, and summon Nar-Sie.": [
     "dm:antagonists"
   ],
+  "Armor & Repair Modules": [
+    "dm:labels"
+  ],
   "Armor Vest (Colorable)": [
     "dm:labels"
   ],
@@ -2042,6 +2073,9 @@
   ],
   "Art Galaxy": [
     "tgui:NtosPortraitPrinter"
+  ],
+  "Artificial Intelligence": [
+    "dm:labels"
   ],
   "Artist": [
     "dm:labels"
@@ -2184,6 +2218,15 @@
     "dm:labels"
   ],
   "Atmospherics": [
+    "dm:labels"
+  ],
+  "Atmospherics Equipment": [
+    "dm:labels"
+  ],
+  "Atmospherics Machines": [
+    "dm:labels"
+  ],
+  "Atmospherics Tools": [
     "dm:labels"
   ],
   "Atom": [
@@ -2508,6 +2551,9 @@
   "BASE LOCKED": [
     "tgui:ShuttleConsole"
   ],
+  "BCI": [
+    "dm:labels"
+  ],
   "BEGIN": [
     "tgui:TrainingMachine"
   ],
@@ -2671,6 +2717,12 @@
   ],
   "Banned": [
     "tgui:JobsPage"
+  ],
+  "Bar & Kitchen Equipment": [
+    "dm:labels"
+  ],
+  "Bar Machines": [
+    "dm:labels"
   ],
   "Bar Manager": [
     "dm:labels"
@@ -3455,6 +3507,9 @@
   "Bluespace Artillery Unlock": [
     "tgui:KeycardAuth"
   ],
+  "Bluespace Equipment": [
+    "dm:labels"
+  ],
   "Bluespace artillery is currently locked.": [
     "tgui:BluespaceArtillery",
     "tgui:BluespaceArtilleryNova"
@@ -3548,6 +3603,9 @@
   ],
   "Body type": [
     "tgui:body_type"
+  ],
+  "Bodyparts": [
+    "dm:labels"
   ],
   "Bold": [
     "tgui:PlayerPanel"
@@ -3694,6 +3752,15 @@
     "dm:labels"
   ],
   "Botanist's Tailcoat": [
+    "dm:labels"
+  ],
+  "Botany Machines": [
+    "dm:labels"
+  ],
+  "Botany Tools": [
+    "dm:labels"
+  ],
+  "Botany Tools (Advanced)": [
     "dm:labels"
   ],
   "Both containers must be beakers!": [
@@ -5145,10 +5212,19 @@
   "Cargo Bay": [
     "tgui:CargoExpress"
   ],
+  "Cargo Consoles": [
+    "dm:labels"
+  ],
+  "Cargo Cyborgs": [
+    "dm:labels"
+  ],
   "Cargo Express": [
     "tgui:CargoExpress"
   ],
   "Cargo Gorilla": [
+    "dm:labels"
+  ],
+  "Cargo Machines": [
     "dm:labels"
   ],
   "Cargo Pad": [
@@ -5179,6 +5255,9 @@
     "dm:labels"
   ],
   "Cargo Technician's Skirt (Short)": [
+    "dm:labels"
+  ],
+  "Cargo Tools": [
     "dm:labels"
   ],
   "Cargo Turtleneck": [
@@ -5551,6 +5630,9 @@
   "Charging Cord Implant": [
     "dm:labels"
   ],
+  "Chassis": [
+    "dm:labels"
+  ],
   "Chassis Integrity:": [
     "tgui:NtosRobotact"
   ],
@@ -5648,6 +5730,7 @@
     "tgui:MedicalKiosk"
   ],
   "Chemicals": [
+    "dm:labels",
     "tgui:index"
   ],
   "Chemist": [
@@ -5663,6 +5746,12 @@
     "dm:labels"
   ],
   "Chemistry": [
+    "dm:labels"
+  ],
+  "Chemistry Equipment": [
+    "dm:labels"
+  ],
+  "Chemistry Machines": [
     "dm:labels"
   ],
   "Chemtaur": [
@@ -5852,6 +5941,12 @@
   "Circuit Admin Panel": [
     "tgui:CircuitAdminPanel"
   ],
+  "Circuit Components": [
+    "dm:labels"
+  ],
+  "Circuit Shells": [
+    "dm:labels"
+  ],
   "Circuit name": [
     "tgui:CircuitAdminPanel"
   ],
@@ -5904,6 +5999,9 @@
   ],
   "Claim points": [
     "tgui:LaborClaimConsole"
+  ],
+  "Clarke": [
+    "dm:labels"
   ],
   "Class": [
     "tgui:ServerMonitor"
@@ -6159,6 +6257,9 @@
   "Clown Ass-ailant": [
     "dm:antagonists"
   ],
+  "Clown Designs": [
+    "dm:labels"
+  ],
   "Clown Enjoyer": [
     "dm:labels"
   ],
@@ -6373,6 +6474,9 @@
     "tgui:AbductorConsole",
     "tgui:MineBot"
   ],
+  "Combat Cybernetic Organs": [
+    "dm:labels"
+  ],
   "Combat Mode": [
     "tgui:index"
   ],
@@ -6413,6 +6517,9 @@
     "dm:labels"
   ],
   "Command Cadet": [
+    "dm:labels"
+  ],
+  "Command Consoles": [
     "dm:labels"
   ],
   "Command Intern": [
@@ -6462,6 +6569,9 @@
   ],
   "Comms": [
     "tgui:AntagInfoBlob"
+  ],
+  "Communications Equipment": [
+    "dm:labels"
   ],
   "Communicator": [
     "tgui:Holopad"
@@ -6516,6 +6626,7 @@
     "tgui:ComponentMenu"
   ],
   "Components": [
+    "dm:labels",
     "tgui:KitchenSink"
   ],
   "Composite Filtration Mask": [
@@ -6526,6 +6637,9 @@
   ],
   "Compressor": [
     "tgui:TankCompressor"
+  ],
+  "Computer Boards": [
+    "dm:labels"
   ],
   "Concierge": [
     "dm:labels"
@@ -6690,6 +6804,9 @@
   "Constructed": [
     "tgui:TramPlaque"
   ],
+  "Construction": [
+    "dm:labels"
+  ],
   "Construction Guard": [
     "dm:labels"
   ],
@@ -6770,6 +6887,9 @@
     "tgui:Gps",
     "tgui:OpposingForcePanel",
     "tgui:PlayerPanel"
+  ],
+  "Control Interfaces": [
+    "dm:labels"
   ],
   "Control Panel": [
     "tgui:ChemDisposer"
@@ -6868,7 +6988,11 @@
     "tgui:ApcControl"
   ],
   "Core": [
+    "dm:labels",
     "tgui:MODsuit"
+  ],
+  "Core AI Modules": [
+    "dm:labels"
   ],
   "Core charge": [
     "tgui:AnomalousWeatherTower"
@@ -7522,16 +7646,28 @@
   "Cybernetic": [
     "dm:labels"
   ],
+  "Cybernetic Advanced Limbs": [
+    "dm:labels"
+  ],
+  "Cybernetic Combat Implants": [
+    "dm:labels"
+  ],
   "Cybernetic Feline": [
     "dm:labels"
   ],
   "Cybernetic Feline (Inverted)": [
     "dm:labels"
   ],
+  "Cybernetic Health Implants": [
+    "dm:labels"
+  ],
   "Cybernetic Horse": [
     "dm:labels"
   ],
   "Cybernetic Horse (Inverted)": [
+    "dm:labels"
+  ],
+  "Cybernetic Implanting Tools": [
     "dm:labels"
   ],
   "Cybernetic Limb Mounts": [
@@ -7543,7 +7679,16 @@
   "Cybernetic Lizard (Inverted)": [
     "dm:labels"
   ],
+  "Cybernetic Miscellaneous Implants": [
+    "dm:labels"
+  ],
   "Cybernetic Naga": [
+    "dm:labels"
+  ],
+  "Cybernetic Security Implants": [
+    "dm:labels"
+  ],
+  "Cybernetic Utility Implants": [
     "dm:labels"
   ],
   "Cybernetic Wolf": [
@@ -7591,13 +7736,22 @@
   "Cyberneticist": [
     "dm:labels"
   ],
+  "Cybernetics": [
+    "dm:labels"
+  ],
   "Cybersun Industries": [
     "tgui:AntagInfoNinja"
   ],
   "Cyborg": [
     "dm:labels"
   ],
+  "Cyborg Chassis": [
+    "dm:labels"
+  ],
   "Cyborg Mask": [
+    "dm:labels"
+  ],
+  "Cyborg Modules": [
     "dm:labels"
   ],
   "Cyborg chest": [
@@ -7840,6 +7994,9 @@
   ],
   "Danger Below": [
     "tgui:Thresholds"
+  ],
+  "Dangerous AI Modules": [
+    "dm:labels"
   ],
   "Dangerous Programs": [
     "tgui:Holodeck"
@@ -8522,6 +8679,9 @@
   "Digital Magnification Optics (x3)": [
     "dm:labels"
   ],
+  "Digitigrade": [
+    "dm:labels"
+  ],
   "Digitigrade Legs": [
     "dm:labels"
   ],
@@ -9146,6 +9306,9 @@
   "Duplicate": [
     "tgui:CircuitAdminPanel"
   ],
+  "Durand": [
+    "dm:labels"
+  ],
   "Duration": [
     "tgui:ChemPress"
   ],
@@ -9558,6 +9721,9 @@
   "EldritchRelics Inc. will take no responsibility for this choice": [
     "tgui:Forbidden"
   ],
+  "Electrical Assemblies": [
+    "dm:labels"
+  ],
   "Electrical Engineer": [
     "dm:labels"
   ],
@@ -9572,6 +9738,9 @@
   ],
   "Electrify": [
     "tgui:AiAirlock"
+  ],
+  "Electronics": [
+    "dm:labels"
   ],
   "Electronics: 1": [
     "tgui:OrionGame"
@@ -9612,6 +9781,9 @@
   "Emergency Maintenance Access": [
     "tgui:KeycardAuth",
     "tgui:Main"
+  ],
+  "Emergency Medical": [
+    "dm:labels"
   ],
   "Emergency Medical Responder": [
     "dm:labels"
@@ -9977,10 +10149,25 @@
   "Engineering": [
     "dm:labels"
   ],
+  "Engineering & Atmospherics Consoles": [
+    "dm:labels"
+  ],
+  "Engineering Cyborgs": [
+    "dm:labels"
+  ],
+  "Engineering Equipment": [
+    "dm:labels"
+  ],
   "Engineering Foreman": [
     "dm:labels"
   ],
   "Engineering Guard": [
+    "dm:labels"
+  ],
+  "Engineering Machines": [
+    "dm:labels"
+  ],
+  "Engineering Modules": [
     "dm:labels"
   ],
   "Engineering Override Access": [
@@ -9994,6 +10181,15 @@
     "dm:labels"
   ],
   "Engineering Supervisor": [
+    "dm:labels"
+  ],
+  "Engineering Tools": [
+    "dm:labels"
+  ],
+  "Engineering Tools (Advanced)": [
+    "dm:labels"
+  ],
+  "Engineering Tools (Alien)": [
     "dm:labels"
   ],
   "Engineering Utility Uniform": [
@@ -10060,6 +10256,9 @@
     "dm:labels"
   ],
   "Entertainment Response Officer": [
+    "dm:labels"
+  ],
+  "Entity": [
     "dm:labels"
   ],
   "Entity Information": [
@@ -10271,6 +10470,9 @@
   "Except where otherwise noted, Goon Station 13 is licensed under a": [
     "tgui:Changelog"
   ],
+  "Exchange Devices": [
+    "dm:labels"
+  ],
   "Excitable!": [
     "dm:labels"
   ],
@@ -10315,6 +10517,12 @@
   ],
   "Existing Shuttle: None": [
     "tgui:ShuttleManipulator"
+  ],
+  "Exosuit Boards": [
+    "dm:labels"
+  ],
+  "Exosuit Equipment": [
+    "dm:labels"
   ],
   "Exosuit Fabricator": [
     "tgui:ExosuitFabricator"
@@ -10555,6 +10763,9 @@
     "tgui:SlotMachine"
   ],
   "FTU 'Deckhand' Toolset Implant": [
+    "dm:labels"
+  ],
+  "Fabricators": [
     "dm:labels"
   ],
   "Face": [
@@ -10967,6 +11178,9 @@
   "Firewatch (Greyscale)": [
     "dm:labels"
   ],
+  "Firing Pins": [
+    "dm:labels"
+  ],
   "First": [
     "tgui:MCDependencyDebug"
   ],
@@ -11373,6 +11587,7 @@
     "tgui:PlayerPanel"
   ],
   "Food": [
+    "dm:labels",
     "tgui:OrionGame"
   ],
   "Food Allergy": [
@@ -11548,6 +11763,12 @@
     "dm:labels"
   ],
   "Frail": [
+    "dm:labels"
+  ],
+  "Frames": [
+    "dm:labels"
+  ],
+  "Frames & Mounts": [
     "dm:labels"
   ],
   "Freak Brothers' Special Cigarette Pack": [
@@ -11892,6 +12113,12 @@
   "Gas Synthesis Technician": [
     "dm:labels"
   ],
+  "Gas Tank Equipment": [
+    "dm:labels"
+  ],
+  "Gas Tanks": [
+    "dm:labels"
+  ],
   "Gases": [
     "tgui:Crystallizer",
     "tgui:Supermatter",
@@ -11961,6 +12188,9 @@
   "General Markets:": [
     "tgui:OrionGame"
   ],
+  "General Modules": [
+    "dm:labels"
+  ],
   "General Practitioner": [
     "dm:labels"
   ],
@@ -12018,6 +12248,15 @@
     "dm:labels"
   ],
   "Geneticist's Tailcoat": [
+    "dm:labels"
+  ],
+  "Genetics Consoles": [
+    "dm:labels"
+  ],
+  "Genetics Equipment": [
+    "dm:labels"
+  ],
+  "Genetics Machines": [
     "dm:labels"
   ],
   "Geniculate Antenna": [
@@ -12561,11 +12800,17 @@
   "Guns": [
     "tgui:ScannerGate"
   ],
+  "Gygax": [
+    "dm:labels"
+  ],
   "Gynomorph": [
     "dm:labels"
   ],
   "H": [
     "tgui:ColorPicker"
+  ],
+  "H.O.N.K.": [
+    "dm:labels"
   ],
   "H:": [
     "tgui:ColorSetter"
@@ -13670,6 +13915,9 @@
     "tgui:Search",
     "tgui:StoryManager"
   ],
+  "ID Access": [
+    "dm:labels"
+  ],
   "ID Card": [
     "tgui:NtosRoboControl"
   ],
@@ -13903,6 +14151,9 @@
   "Ignore Command": [
     "tgui:PortableTurret"
   ],
+  "Illegal Designs": [
+    "dm:labels"
+  ],
   "Illiterate": [
     "dm:labels"
   ],
@@ -13985,6 +14236,9 @@
   ],
   "Import from disk": [
     "tgui:DnaConsoleEnzymes"
+  ],
+  "Imported Designs": [
+    "dm:labels"
   ],
   "Imprint": [
     "tgui:PaiCard"
@@ -14090,6 +14344,7 @@
     "tgui:index"
   ],
   "Ingredients": [
+    "dm:labels",
     "tgui:RecipeContent"
   ],
   "Inhand": [
@@ -14660,7 +14915,16 @@
   "Janitor's Tailcoat": [
     "dm:labels"
   ],
+  "Janitorial Cyborgs": [
+    "dm:labels"
+  ],
+  "Janitorial Equipment": [
+    "dm:labels"
+  ],
   "Janitorial Response Officer": [
+    "dm:labels"
+  ],
+  "Janitorial Tools": [
     "dm:labels"
   ],
   "Japanese": [
@@ -14956,6 +15220,9 @@
     "dm:labels"
   ],
   "Kinky Shocker": [
+    "dm:labels"
+  ],
+  "Kitchen Machines": [
     "dm:labels"
   ],
   "Kitchen Sink": [
@@ -15637,6 +15904,9 @@
   "Lighter - Zippo": [
     "dm:labels"
   ],
+  "Lighting": [
+    "dm:labels"
+  ],
   "Lighting power": [
     "tgui:PowerMonitor"
   ],
@@ -16263,6 +16533,9 @@
   "Lustrous": [
     "dm:labels"
   ],
+  "Luxuries": [
+    "dm:labels"
+  ],
   "Luxury Blindfold": [
     "dm:labels"
   ],
@@ -16299,6 +16572,12 @@
   ],
   "MOD Interface Panel": [
     "tgui:MODsuit"
+  ],
+  "MOD Modules": [
+    "dm:labels"
+  ],
+  "MOD Suits": [
+    "dm:labels"
   ],
   "MOD active module key": [
     "tgui:mod_select"
@@ -16357,6 +16636,9 @@
   "Machine": [
     "tgui:OreSilo"
   ],
+  "Machine Boards": [
+    "dm:labels"
+  ],
   "Machine Report": [
     "tgui:ProbingConsole"
   ],
@@ -16367,6 +16649,7 @@
     "tgui:MilkingMachine"
   ],
   "Machinery": [
+    "dm:labels",
     "tgui:RecipeContent"
   ],
   "Machinist": [
@@ -16815,6 +17098,7 @@
     "tgui:MatMarket"
   ],
   "Materials": [
+    "dm:labels",
     "tgui:Autolathe",
     "tgui:OreRedemptionMachine",
     "tgui:OreSilo",
@@ -16822,8 +17106,14 @@
     "tgui:RecipeContent",
     "tgui:RepairBot"
   ],
+  "Materials & Alloys": [
+    "dm:labels"
+  ],
   "Materials for sale": [
     "tgui:MatMarket"
+  ],
+  "Mathematics": [
+    "dm:labels"
   ],
   "Matrix Size": [
     "tgui:Filterrific"
@@ -17004,6 +17294,15 @@
   "Medical Administrator": [
     "dm:labels"
   ],
+  "Medical Ammunition": [
+    "dm:labels"
+  ],
+  "Medical Consoles": [
+    "dm:labels"
+  ],
+  "Medical Cyborgs": [
+    "dm:labels"
+  ],
   "Medical Director": [
     "dm:labels"
   ],
@@ -17014,6 +17313,9 @@
     "dm:labels"
   ],
   "Medical Doctor's Jumpsuit": [
+    "dm:labels"
+  ],
+  "Medical Equipment": [
     "dm:labels"
   ],
   "Medical Escort": [
@@ -17055,6 +17357,12 @@
   "Medical Kit - Robotics": [
     "dm:labels"
   ],
+  "Medical Machines": [
+    "dm:labels"
+  ],
+  "Medical Modules": [
+    "dm:labels"
+  ],
   "Medical Officer": [
     "dm:labels"
   ],
@@ -17074,7 +17382,19 @@
   "Medical Supervisor": [
     "dm:labels"
   ],
+  "Medical Tools": [
+    "dm:labels"
+  ],
+  "Medical Tools (Advanced)": [
+    "dm:labels"
+  ],
+  "Medical Tools (Alien)": [
+    "dm:labels"
+  ],
   "Medical Utility Uniform": [
+    "dm:labels"
+  ],
+  "Medicine": [
     "dm:labels"
   ],
   "Medicines": [
@@ -17104,6 +17424,9 @@
     "dm:labels"
   ],
   "Megamoth": [
+    "dm:labels"
+  ],
+  "Melee Weapons": [
     "dm:labels"
   ],
   "Melon Plushie": [
@@ -17319,6 +17642,15 @@
   "Mining": [
     "dm:labels"
   ],
+  "Mining Cyborgs": [
+    "dm:labels"
+  ],
+  "Mining Equipment": [
+    "dm:labels"
+  ],
+  "Mining Tools": [
+    "dm:labels"
+  ],
   "Minions": [
     "tgui:AntagInfoBlob"
   ],
@@ -17352,8 +17684,23 @@
     "dm:labels",
     "tgui:PlayerPanel"
   ],
+  "Miscellaneous AI Items": [
+    "dm:labels"
+  ],
+  "Miscellaneous Cybernetic Organs": [
+    "dm:labels"
+  ],
+  "Miscellaneous Equipment": [
+    "dm:labels"
+  ],
   "Miscellaneous Features": [
     "tgui:PlayerPanel"
+  ],
+  "Miscellaneous Parts": [
+    "dm:labels"
+  ],
+  "Miscellaneous Tools": [
+    "dm:labels"
   ],
   "Misshapen": [
     "dm:labels"
@@ -17463,6 +17810,9 @@
   ],
   "Modify your application, this will reset all authorisations.": [
     "tgui:OpposingForcePanel"
+  ],
+  "Modular Computers": [
+    "dm:labels"
   ],
   "Modular Laptop": [
     "dm:labels"
@@ -19895,6 +20245,9 @@
   "Odds": [
     "tgui:DynamicTester"
   ],
+  "Odysseus": [
+    "dm:labels"
+  ],
   "Off": [
     "tgui:AiVoiceChanger",
     "tgui:Apc",
@@ -20450,6 +20803,9 @@
   "Other Changelings are strong allies, but some Changelings may betray you. Changelings grow in power greatly by absorbing their kind, and getting absorbed by another Changeling will leave you as a": [
     "tgui:AntagInfoChangeling"
   ],
+  "Other Limbs": [
+    "dm:labels"
+  ],
   "Otie": [
     "dm:labels"
   ],
@@ -20720,6 +21076,9 @@
   "PK: Permaghost at maximum degradation": [
     "tgui:death_degradation"
   ],
+  "PKA Modkits": [
+    "dm:labels"
+  ],
   "PLANE_MASTER": [
     "tgui:PlaneMenus"
   ],
@@ -20775,6 +21134,9 @@
   ],
   "Paddle": [
     "tgui:GlassBlowing"
+  ],
+  "Paddy": [
+    "dm:labels"
   ],
   "Page": [
     "tgui:InfuserBook",
@@ -21010,6 +21372,7 @@
     "tgui:knotting"
   ],
   "Parts": [
+    "dm:labels",
     "tgui:OrionGame"
   ],
   "Parts not connected, close all mantainence panels/use a multitool on the rotor before trying again": [
@@ -21395,6 +21758,9 @@
     "dm:labels"
   ],
   "Pharmacologist": [
+    "dm:labels"
+  ],
+  "Phazon": [
     "dm:labels"
   ],
   "Phobia": [
@@ -21837,6 +22203,9 @@
   "Plug": [
     "dm:labels"
   ],
+  "Plumbing Tools": [
+    "dm:labels"
+  ],
   "Plural": [
     "dm:labels"
   ],
@@ -22192,6 +22561,9 @@
   ],
   "Power Cell": [
     "tgui:Apc"
+  ],
+  "Power Cells": [
+    "dm:labels"
   ],
   "Power Channels": [
     "tgui:Apc"
@@ -22703,6 +23075,9 @@
   "Provides huge amounts of energy and radiation. Can cause dangerous electrical storms even from a healthy HFR core when present in more than trace amounts. Wear appropriate electrical protection when handling.": [
     "tgui:Gases"
   ],
+  "Provision": [
+    "dm:labels"
+  ],
   "Provocateur": [
     "dm:antagonists"
   ],
@@ -23159,6 +23534,9 @@
   "Range Control": [
     "tgui:Portagrav"
   ],
+  "Ranged Weapons": [
+    "dm:labels"
+  ],
   "Ranged weaponry is": [
     "tgui:AntagInfoGlitch"
   ],
@@ -23188,6 +23566,9 @@
     "dm:labels"
   ],
   "RaptorDex": [
+    "dm:labels"
+  ],
+  "Raptoral": [
     "dm:labels"
   ],
   "Raptoral cybernetic chest": [
@@ -23526,6 +23907,9 @@
   ],
   "Records - Security": [
     "tgui:species_features"
+  ],
+  "Records Consoles": [
+    "dm:labels"
   ],
   "Recover": [
     "tgui:AvatarHelp"
@@ -24053,6 +24437,7 @@
     "dm:labels"
   ],
   "Research Consoles": [
+    "dm:labels",
     "tgui:ServerControl"
   ],
   "Research Director": [
@@ -24072,6 +24457,9 @@
   ],
   "Research History": [
     "tgui:ServerControl"
+  ],
+  "Research Machines": [
+    "dm:labels"
   ],
   "Research Name": [
     "tgui:ServerControl"
@@ -24239,6 +24627,7 @@
     "tgui:RepairbotResources"
   ],
   "Resources": [
+    "dm:labels",
     "tgui:OrionGame"
   ],
   "Respiratory": [
@@ -24490,6 +24879,9 @@
   "Ringer: On": [
     "tgui:index"
   ],
+  "Ripley": [
+    "dm:labels"
+  ],
   "Ripped Black Thigh-highs": [
     "dm:labels"
   ],
@@ -24533,6 +24925,12 @@
     "dm:labels"
   ],
   "Robotics": [
+    "dm:labels"
+  ],
+  "Robotics Consoles": [
+    "dm:labels"
+  ],
+  "Robotics Machines": [
     "dm:labels"
   ],
   "Roboverlord": [
@@ -24917,6 +25315,9 @@
   "Sauces": [
     "dm:labels"
   ],
+  "Savannah-Ivanov": [
+    "dm:labels"
+  ],
   "Save": [
     "tgui:AdminFax",
     "tgui:ChemDispenser",
@@ -25179,6 +25580,9 @@
   "Science": [
     "dm:labels"
   ],
+  "Science Equipment": [
+    "dm:labels"
+  ],
   "Science Guard": [
     "dm:labels"
   ],
@@ -25195,6 +25599,9 @@
     "dm:labels"
   ],
   "Science HUD - Sunglasses": [
+    "dm:labels"
+  ],
+  "Science Modules": [
     "dm:labels"
   ],
   "Science Shark Plushie": [
@@ -25504,7 +25911,16 @@
   "Security Commander": [
     "dm:labels"
   ],
+  "Security Consoles": [
+    "dm:labels"
+  ],
+  "Security Cyborgs": [
+    "dm:labels"
+  ],
   "Security Director": [
+    "dm:labels"
+  ],
+  "Security Equipment": [
     "dm:labels"
   ],
   "Security Formal Uniform": [
@@ -25546,10 +25962,16 @@
   "Security Jumpsuit": [
     "dm:labels"
   ],
+  "Security Machines": [
+    "dm:labels"
+  ],
   "Security Miniskirt": [
     "dm:labels"
   ],
   "Security Miniskirt (Blue)": [
+    "dm:labels"
+  ],
+  "Security Modules": [
     "dm:labels"
   ],
   "Security Officer": [
@@ -25588,6 +26010,9 @@
   ],
   "Security Systems": [
     "tgui:NtosNetMonitor"
+  ],
+  "Security Tools": [
+    "dm:labels"
   ],
   "Security Trousers": [
     "dm:labels"
@@ -25858,6 +26283,9 @@
   "Sensitive Snout": [
     "dm:labels"
   ],
+  "Sensor": [
+    "dm:labels"
+  ],
   "Sensor Overlay": [
     "tgui:NtosRobotact"
   ],
@@ -25943,7 +26371,25 @@
   "Service": [
     "dm:labels"
   ],
+  "Service Consoles": [
+    "dm:labels"
+  ],
+  "Service Cyborgs": [
+    "dm:labels"
+  ],
+  "Service Equipment": [
+    "dm:labels"
+  ],
   "Service Guard": [
+    "dm:labels"
+  ],
+  "Service Machines": [
+    "dm:labels"
+  ],
+  "Service Modules": [
+    "dm:labels"
+  ],
+  "Service Tools": [
     "dm:labels"
   ],
   "Serviette Pack": [
@@ -28098,6 +28544,9 @@
   "Stock %": [
     "tgui:RestockTracker"
   ],
+  "Stock Parts": [
+    "dm:labels"
+  ],
   "Stockings (Blue)": [
     "dm:labels"
   ],
@@ -28267,6 +28716,9 @@
     "dm:labels"
   ],
   "Strict short": [
+    "dm:labels"
+  ],
+  "String": [
     "dm:labels"
   ],
   "Strip accessory": [
@@ -28577,11 +29029,17 @@
   "Supply Guard": [
     "dm:labels"
   ],
+  "Supply Modules": [
+    "dm:labels"
+  ],
   "Supply Pod Menu (Use against Helen Weinstein)": [
     "tgui:index"
   ],
   "Supply Type": [
     "tgui:CargoCart"
+  ],
+  "Supported Equipment": [
+    "dm:labels"
   ],
   "Supress Runtime Logging": [
     "tgui:index"
@@ -28780,6 +29238,9 @@
   "Syndix Main Menu": [
     "tgui:NtosMain"
   ],
+  "Synth": [
+    "dm:labels"
+  ],
   "Synth Antenna": [
     "tgui:species_features"
   ],
@@ -28803,6 +29264,12 @@
   ],
   "Synth Head Selection": [
     "tgui:species_features"
+  ],
+  "Synthesized Blood": [
+    "dm:labels"
+  ],
+  "Synthesized Seeds": [
+    "dm:labels"
   ],
   "Synthesizing": [
     "tgui:ModulesPane"
@@ -29351,6 +29818,12 @@
   "Telecomms Technician": [
     "dm:labels"
   ],
+  "Telecommunications Machines": [
+    "dm:labels"
+  ],
+  "Telecommunications Parts": [
+    "dm:labels"
+  ],
   "Telepathic": [
     "dm:labels"
   ],
@@ -29362,6 +29835,9 @@
   ],
   "Teleportation": [
     "tgui:PlayerPanel"
+  ],
+  "Teleportation Machines": [
+    "dm:labels"
   ],
   "Teleporter Console": [
     "tgui:GulagTeleporterConsole"
@@ -30552,14 +31028,35 @@
   "Tier 1": [
     "tgui:Recipes"
   ],
+  "Tier 1 Cybernetic Organs": [
+    "dm:labels"
+  ],
+  "Tier 1 Parts": [
+    "dm:labels"
+  ],
   "Tier 2": [
     "tgui:Recipes"
+  ],
+  "Tier 2 Cybernetic Organs": [
+    "dm:labels"
+  ],
+  "Tier 2 Parts": [
+    "dm:labels"
   ],
   "Tier 3": [
     "tgui:Recipes"
   ],
+  "Tier 3 Cybernetic Organs": [
+    "dm:labels"
+  ],
+  "Tier 3 Parts": [
+    "dm:labels"
+  ],
   "Tier 4": [
     "tgui:Recipes"
+  ],
+  "Tier 4 Parts": [
+    "dm:labels"
   ],
   "Tier 5": [
     "tgui:Recipes"
@@ -30919,6 +31416,9 @@
     "dm:labels"
   ],
   "Top Hat": [
+    "dm:labels"
+  ],
+  "Top-Secret Equipment": [
     "dm:labels"
   ],
   "Topic": [
@@ -31304,6 +31804,9 @@
   ],
   "Turbine Integrity": [
     "tgui:TurbineComputer"
+  ],
+  "Turbine Parts": [
+    "dm:labels"
   ],
   "Turbine Speed": [
     "tgui:TurbineComputer"
@@ -31893,6 +32396,12 @@
   ],
   "Usually a standard color string. However, when using a gradient this value can be a number. Can use a generator. See gradient for details.": [
     "tgui:Tutorial"
+  ],
+  "Utensils": [
+    "dm:labels"
+  ],
+  "Utility": [
+    "dm:labels"
   ],
   "Utility Uniform": [
     "dm:labels"
@@ -32818,7 +33327,19 @@
   "Weapon Ammo": [
     "dm:labels"
   ],
+  "Weapon Fabrication Kits": [
+    "dm:labels"
+  ],
+  "Weapon Parts": [
+    "dm:labels"
+  ],
+  "Weaponry": [
+    "dm:labels"
+  ],
   "Weapons": [
+    "dm:labels"
+  ],
+  "Weapons & Ammunition": [
     "dm:labels"
   ],
   "Weapons Melee": [
@@ -33520,6 +34041,18 @@
   "Xenoarchaeologist": [
     "dm:labels"
   ],
+  "Xenoarchaeology Equipment": [
+    "dm:labels"
+  ],
+  "Xenoarchaeology Machinery": [
+    "dm:labels"
+  ],
+  "Xenoarchaeology Tools": [
+    "dm:labels"
+  ],
+  "Xenoarchaeology Tools (Advanced)": [
+    "dm:labels"
+  ],
   "Xenobiological Recontainment Officer": [
     "dm:labels"
   ],
@@ -33527,6 +34060,9 @@
     "dm:labels"
   ],
   "Xenobiologist": [
+    "dm:labels"
+  ],
+  "Xenobiology Equipment": [
     "dm:labels"
   ],
   "Xenodorsal": [
