@@ -322,27 +322,47 @@ GLOBAL_VAR_INIT(i18n_armor_classes_loaded, FALSE)
 						GLOB.i18n_armor_classes[class_name] = for_locale[class_name]
 	return GLOB.i18n_armor_classes[name] || name
 
-/// 史莱姆颜色（SLIME_TYPE_* 的值）的显示译名。
-/// 顶层 slime_colours.json，**不进全局反查表**：这些值同时是 icon_state / 突变表键 / switch 标识符，
-/// 而且是 blue/purple/gold 这种通用单词，进反查表必然误伤（lint 的单词类碰撞就有 purple/yellow）。
-/// 只在扫描仪、异种生物学控制台等显示落地点用。同 lang_armor_class。
-GLOBAL_LIST_EMPTY(i18n_slime_colours)
-GLOBAL_VAR_INIT(i18n_slime_colours_loaded, FALSE)
+/// 「域内显示表」的通用加载器。
+///
+/// 顶层 `strings/i18n/<file>.json`（形如 `{"zh-Hans": {"英文": "译名"}}`）**不被 build_i18n_cache
+/// 合并进全局反查表**——表里的值往往同时是 icon_state / assoc 键 / switch 标识符，而且多是
+/// blue、Fire、Power 这类通用单词，进反查表必然误伤（见 `nova-i18n lint` 的单词类碰撞）。
+/// 按域分表而不是合成一张大表：同一个词在不同域可以译得不一样，也不会互相污染。
+///
+/// 新增一个域：放一个 json + 写一个三行的 `lang_xxx()` 包装即可。
+/// （armor_classes / voice_of_god / phobia / statpanel 几张老表各有自己的加载逻辑，暂未并过来。）
+GLOBAL_LIST_EMPTY(i18n_scoped_tables)
+/proc/lang_scoped_table(file_name)
+	var/list/cached = GLOB.i18n_scoped_tables[file_name]
+	if(islist(cached))
+		return cached
+	var/list/table = list()
+	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
+	if(locale != DEFAULT_UI_LOCALE)
+		var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/[file_name]"
+		if(fexists(path))
+			var/list/decoded = json_decode(file2text(path))
+			var/list/for_locale = islist(decoded) ? decoded[locale] : null
+			if(islist(for_locale))
+				for(var/entry in for_locale)
+					table[entry] = for_locale[entry]
+	GLOB.i18n_scoped_tables[file_name] = table
+	return table
+
+/// 史莱姆颜色（SLIME_TYPE_* 的值）的显示译名。颜色同时是 icon_state 与突变表键，不能进反查表。
 /proc/lang_slime_colour(colour)
 	if(!istext(colour))
 		return colour
-	if(!GLOB.i18n_slime_colours_loaded)
-		GLOB.i18n_slime_colours_loaded = TRUE
-		var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
-		if(locale != DEFAULT_UI_LOCALE)
-			var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/slime_colours.json"
-			if(fexists(path))
-				var/list/decoded = json_decode(file2text(path))
-				var/list/for_locale = islist(decoded) ? decoded[locale] : null
-				if(islist(for_locale))
-					for(var/entry in for_locale)
-						GLOB.i18n_slime_colours[entry] = for_locale[entry]
-	return GLOB.i18n_slime_colours[colour] || colour
+	var/list/table = lang_scoped_table("slime_colours.json")
+	return table[colour] || colour
+
+/// 警报类别（ALARM_* 的值）的显示译名。这些值是 `alarm_types_show/clear` 的 assoc **键**，
+/// 且是 Fire/Power/Camera/Motion 这种通用单词，同样不能进反查表。
+/proc/lang_alarm_type(alarm_type)
+	if(!istext(alarm_type))
+		return alarm_type
+	var/list/table = lang_scoped_table("alarm_types.json")
+	return table[alarm_type] || alarm_type
 
 /// 反查后的文本要当**关联列表的 key**（= 显示标签）时的防撞车包装。
 ///

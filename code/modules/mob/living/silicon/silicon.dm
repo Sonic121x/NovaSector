@@ -160,7 +160,7 @@
 
 		var/msg = "--- "
 		for(var/alarm_type in alarm_types_show)
-			msg += "[uppertext(alarm_type)]: [alarm_types_show[alarm_type]] alarms detected. - "
+			msg += LANG("mob.fef5e58f", list(uppertext(lang_alarm_type(alarm_type)), alarm_types_show[alarm_type])) // NOVA EDIT - I18N: 类别名走域内表（ALARM_* 同时是 assoc 键，不能进反查表）
 
 		msg += "<A href=byond://?src=[REF(src)];showalerts=1'>\[Show Alerts\]</a>"
 		to_chat(src, msg)
@@ -173,7 +173,7 @@
 		var/msg = "--- "
 
 		for(var/alarm_type in alarm_types_clear)
-			msg += "[uppertext(alarm_type)]: [alarm_types_clear[alarm_type]] alarms cleared. - "
+			msg += LANG("mob.eb212485", list(uppertext(lang_alarm_type(alarm_type)), alarm_types_clear[alarm_type])) // NOVA EDIT - I18N: 同上
 
 		msg += "<A href=byond://?src=[REF(src)];showalerts=1'>\[Show Alerts\]</a>"
 		to_chat(src, msg)

@@ -1,0 +1,11 @@
+{
+	"_comment": "警报类别（ALARM_* 的值）的显示译名。顶层放置=不被 build_i18n_cache 合并进全局反查表——这些值是 silicon 的 alarm_types_show/clear 的 assoc **键**，且是 Fire/Power/Camera/Motion 这类通用单词，进反查表必然误伤。由 lang_alarm_type() 只在赛博格/AI 的警报汇总行落地点用。同 slime_colours.json。",
+	"zh-Hans": {
+		"Atmosphere": "大气",
+		"Fire": "火灾",
+		"Power": "电力",
+		"Camera": "监控",
+		"Burglar": "防盗",
+		"Motion": "运动"
+	}
+}

@@ -468,7 +468,7 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "移至顶部", null)
 
 /obj/item/proc/research_scan(mob/user)
 	/// Research prospects, including boostable nodes and point values. Deliver to a console to know whether the boosts have already been used.
-	var/list/research_msg = list("<font color='purple'>Research prospects:</font> ")
+	var/list/research_msg = list("<font color='purple'>[LANG("obj.533d7aa9", null)]</font> ") // NOVA EDIT - I18N
 	///Separator between the items on the list
 	var/sep = ""
 	///Nodes that can be boosted
@@ -490,7 +490,7 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "移至顶部", null)
 		research_msg += "None"
 
 	// Extractable materials. Only shows the names, not the amounts.
-	research_msg += ".<br><font color='purple'>Extractable materials:</font> "
+	research_msg += ".<br><font color='purple'>[LANG("obj.19d9ab4c", null)]</font> " // NOVA EDIT - I18N
 	if (length(custom_materials))
 		sep = ""
 		for(var/mat in custom_materials)
