@@ -104,6 +104,13 @@
 
 	if(ispath(keyslot))
 		keyslot = new keyslot(src)
+	// NOVA EDIT ADDITION START - 密钥必须在 contents 里，否则拆不干净
+	// 有些定义直接在变量初值里写 `keyslot = new /obj/...`（不带 loc），实例 loc 为 null、
+	// 根本不在 contents 中 → 螺丝刀拆下时把它放进手里，但 Exited() 永不触发 → keyslot 不置空、
+	// recalculateChannels() 不跑 → 频道照旧可用，而拆出来的密钥还被原耳机引用着。
+	else if(istype(keyslot) && keyslot.loc != src)
+		keyslot.forceMove(src)
+	// NOVA EDIT ADDITION END
 		recalculateChannels()
 
 	perform_update_icon = FALSE

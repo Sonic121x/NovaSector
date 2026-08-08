@@ -17,7 +17,8 @@
 		"destinationsList",
 		"accesses",
 		"icon_data",
-		"shownColor"
+		"shownColor",
+		"shop_items"
 	],
 	"_pref_desc_keys": "偏好菜单常量 asset 里可安全整串反查的纯显示字段（绝非 act 标识符）；name/title/choices 等一律不进此表。",
 	"pref_desc_keys": [

@@ -3,6 +3,7 @@ import { Box, Button, Image, Section } from 'tgui-core/components';
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import { translateCurrent } from '../i18n/catalog'; // NOVA EDIT - I18N
 
 type Data = {
   all_worlds: string[];
@@ -103,7 +104,8 @@ const ShopPanel = (props) => {
           width="100%"
           onClick={() => act('buy_item', { purchasing_item: item })}
         >
-          {item}: {cost_of_items * unlocked_world_modifier}G
+          {/* NOVA EDIT - I18N: item 是 act 回传键、必须保英文；只翻显示 */}
+          {translateCurrent(item)}: {cost_of_items * unlocked_world_modifier}G
         </Button>
       ))}
       <Button icon="bed" width="100%" onClick={() => act('sleep')}>

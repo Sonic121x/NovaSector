@@ -125,8 +125,19 @@
 		// Store the instances of what we will use for recipe.check_requirements() for requirement_path
 		var/list/instances_list = list()
 		for(var/instance_path, item_instance in item_instances)
-			if(ispath(instance_path, requirement_path))
-				instances_list += item_instance
+			if(!ispath(instance_path, requirement_path))
+				continue
+			// NOVA EDIT ADDITION START - 实例收集要和上面的数量统计用同一套过滤
+			// 数量那一层排除了 blacklist 与「配方自身产物」，这一层原来没排，于是
+			// check_requirements 拿到的 collected_requirements[...][1] 可能正是那把被 blacklist
+			// 的成品枪。M64 大修套件即此：身上带着已改造的 Nachtreiher 时，配方去检查它的余弹、
+			// 非零就拒绝，玩家看到的是「枪明明是空的却做不了」。
+			if(instance_path in recipe.blacklist)
+				continue
+			if(recipe_result && instance_path == recipe_result)
+				continue
+			// NOVA EDIT ADDITION END
+			instances_list += item_instance
 
 		requirements_list[requirement_path] = instances_list
 
