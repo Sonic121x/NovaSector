@@ -478,6 +478,20 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 				var/unescaped_key = lang_unescape_source(en_text)
 				if(unescaped_key != en_text && !reverse[unescaped_key])
 					reverse[unescaped_key] = lang_unescape_source(translated)
+			// 首字母大小写对齐：DM 里「小写存、显示时 capitalize()」是通用写法（手术名
+			// `capitalize(operation.name)`、伤口/器官/试剂名、`"[capitalize(x.name)]"` 拼句…）。
+			// 目录键保留源码原样的小写形态，运行期送来的却是首字母大写的串 → 精确反查与 AC 字典
+			// 双双 miss，整类「目录里明明有译文却显英文」（外科处理机列出的 Tend wounds/Lobotomize
+			// 即此）。这里额外登记首字母大写的变体键，指向同一译文；已有精确键优先，不覆盖。
+			// 中文无大小写，值不用变。
+			// **只做多词键**：单词键几乎全是标识符形态（"move"/"add"/"clear"/"ready"…），
+			// 给它们登记大写变体会把 `switch("Add")`、`if(pick == "Clear")` 这类比较拖进反查面
+			// —— 与 P1 的多词门槛、AC 字典的多词过滤是同一条安全线，此处保持一致。
+			var/first_char = copytext(en_text, 1, 2)
+			if(findtext(en_text, " ") && findtextEx("abcdefghijklmnopqrstuvwxyz", first_char))
+				var/capitalized_key = uppertext(first_char) + copytext(en_text, 2)
+				if(!reverse[capitalized_key])
+					reverse[capitalized_key] = translated
 
 	GLOB.i18n_reverse[locale] = reverse
 	return reverse

@@ -684,6 +684,9 @@
   "Achievements Admin Panel": [
     "tgui:AchievementsAdminPanel"
   ],
+  "Acidic Flesh": [
+    "dm:labels"
+  ],
   "Acidic pH limit": [
     "tgui:ChemReactionChamber"
   ],
@@ -765,6 +768,9 @@
   "Acrador Long (Alt 4)": [
     "dm:labels"
   ],
+  "Acromegaly": [
+    "dm:labels"
+  ],
   "Action": [
     "dm:labels",
     "tgui:MatrixMathTester",
@@ -836,6 +842,9 @@
   "Activity": [
     "tgui:ExodroneConsole",
     "tgui:RBMK2"
+  ],
+  "Adaptation": [
+    "dm:labels"
   ],
   "Adapted Lungs": [
     "dm:labels",
@@ -1030,6 +1039,9 @@
     "dm:labels"
   ],
   "Admiral's Coat": [
+    "dm:labels"
+  ],
+  "Adrenaline Rush": [
     "dm:labels"
   ],
   "Adv. Controls": [
@@ -1630,6 +1642,9 @@
   "Antagonists": [
     "tgui:index"
   ],
+  "Antenna": [
+    "dm:labels"
+  ],
   "Anthromorph": [
     "dm:labels"
   ],
@@ -1652,6 +1667,9 @@
     "dm:labels"
   ],
   "Anthromorphic Insect": [
+    "dm:labels"
+  ],
+  "Anti-Glow": [
     "dm:labels"
   ],
   "Anti-Noblium": [
@@ -2330,6 +2348,9 @@
   "Automation": [
     "tgui:CrimeWatcher",
     "tgui:ModulesPane"
+  ],
+  "Autotomy": [
+    "dm:labels"
   ],
   "Available": [
     "tgui:Overview",
@@ -3191,6 +3212,9 @@
   "Biorobotics Director": [
     "dm:labels"
   ],
+  "Biotech Compatibility": [
+    "dm:labels"
+  ],
   "Bisexual": [
     "dm:labels"
   ],
@@ -3327,6 +3351,9 @@
   ],
   "Blindfold color": [
     "tgui:blindfold_color"
+  ],
+  "Blindness": [
+    "dm:labels"
   ],
   "Blips Only": [
     "dm:labels"
@@ -3991,6 +4018,7 @@
     "dm:labels"
   ],
   "Breathless": [
+    "dm:labels",
     "tgui:AntagInfoBloodWorm"
   ],
   "Bridge Assistant": [
@@ -5396,6 +5424,9 @@
   "Chamber Selection": [
     "tgui:AtmosControlConsole"
   ],
+  "Chameleon": [
+    "dm:labels"
+  ],
   "Chance of a heavy midround ruleset being selected on next dynamic tick": [
     "tgui:DynamicAdmin"
   ],
@@ -5608,6 +5639,9 @@
   "Chat messages will show above objects when they speak.": [
     "tgui:runechat"
   ],
+  "Chav": [
+    "dm:labels"
+  ],
   "Check Centcom": [
     "tgui:Interview"
   ],
@@ -5664,6 +5698,12 @@
     "dm:labels"
   ],
   "Chef's Tailcoat": [
+    "dm:labels"
+  ],
+  "Chem Spike": [
+    "dm:labels"
+  ],
+  "Chemical Allergy": [
     "dm:labels"
   ],
   "Chemical Contents": [
@@ -5866,6 +5906,9 @@
   "Cigar": [
     "dm:labels"
   ],
+  "Cindikinesis": [
+    "dm:labels"
+  ],
   "Circle": [
     "dm:labels"
   ],
@@ -6044,6 +6087,9 @@
   "Clears the custom dropoff location. Reverse pods will instead dropoff at the selected bay.": [
     "tgui:ReverseMenu"
   ],
+  "Clever": [
+    "dm:labels"
+  ],
   "Click = Expand Blob {0}Middle Mouse Click = Rally Spores {1}Ctrl Click = Create Shield Blob {2}Alt Click = Remove Blob {3}": [
     "tgui:AntagInfoBlob"
   ],
@@ -6213,6 +6259,9 @@
   "Clown's Tailcoat": [
     "dm:labels"
   ],
+  "Clumsiness": [
+    "dm:labels"
+  ],
   "Clumsy": [
     "dm:labels"
   ],
@@ -6275,6 +6324,9 @@
     "dm:labels"
   ],
   "Coily": [
+    "dm:labels"
+  ],
+  "Cold Adaptation": [
     "dm:labels"
   ],
   "Cold Glasses": [
@@ -7049,6 +7101,9 @@
   "Cotton (Alt)": [
     "dm:labels"
   ],
+  "Cough": [
+    "dm:labels"
+  ],
   "Could not retrieve task info.": [
     "tgui:index"
   ],
@@ -7299,6 +7354,9 @@
     "dm:labels"
   ],
   "Crutch": [
+    "dm:labels"
+  ],
+  "Cryokinesis": [
     "dm:labels"
   ],
   "Cryopod Console": [
@@ -8028,6 +8086,9 @@
   "Deaf": [
     "dm:labels"
   ],
+  "Deafness": [
+    "dm:labels"
+  ],
   "Death Commando": [
     "dm:labels"
   ],
@@ -8551,6 +8612,9 @@
     "dm:labels"
   ],
   "Devillock": [
+    "dm:labels"
+  ],
+  "Dextrous": [
     "dm:labels"
   ],
   "Diagnosis:": [
@@ -9255,6 +9319,9 @@
   "Dwarf Shark Plushie": [
     "dm:labels"
   ],
+  "Dwarfism": [
+    "dm:labels"
+  ],
   "Dynamic Admin Panel": [
     "tgui:DynamicAdmin"
   ],
@@ -9634,6 +9701,9 @@
   "Ejects the item currently inside the machine.": [
     "tgui:DestructiveAnalyzer"
   ],
+  "Elastic Arms": [
+    "dm:labels"
+  ],
   "Elasticity: {0}%": [
     "tgui:MatMarket"
   ],
@@ -9681,6 +9751,9 @@
   ],
   "Eliminate": [
     "tgui:AntagInfoGlitch"
+  ],
+  "Elvis": [
+    "dm:labels"
   ],
   "Emagged": [
     "tgui:BorgPanel"
@@ -10233,6 +10306,9 @@
   "Epidemiologist": [
     "dm:labels"
   ],
+  "Epilepsy": [
+    "dm:labels"
+  ],
   "Eqp": [
     "tgui:ApcControl",
     "tgui:PowerMonitor"
@@ -10606,6 +10682,12 @@
   "Extreme [allergy_string] Allergies": [
     "dm:labels"
   ],
+  "Extremely Comely": [
+    "dm:labels"
+  ],
+  "Extremely Unsightly": [
+    "dm:labels"
+  ],
   "Extroverted": [
     "dm:labels"
   ],
@@ -10817,6 +10899,9 @@
   "Fannypack (Yellow)": [
     "dm:labels"
   ],
+  "Farsight": [
+    "dm:labels"
+  ],
   "Fast": [
     "tgui:OverviewSection"
   ],
@@ -10951,6 +11036,9 @@
   "Fibers {0}/{1}": [
     "tgui:ForensicsSpoofer"
   ],
+  "Fiery Sweat": [
+    "dm:labels"
+  ],
   "Fig": [
     "dm:labels"
   ],
@@ -11061,11 +11149,17 @@
   "Fire Alarm": [
     "tgui:AlarmStatus"
   ],
+  "Fire Breath": [
+    "dm:labels"
+  ],
   "Fire Cnt: {0}": [
     "tgui:AtmosControlPanel"
   ],
   "Fire Employee?": [
     "tgui:NtosCard"
+  ],
+  "Fire Immunity": [
+    "dm:labels"
   ],
   "Firefighter": [
     "dm:labels"
@@ -12045,6 +12139,9 @@
   "Geist Gazers": [
     "dm:labels"
   ],
+  "Geladikinesis": [
+    "dm:labels"
+  ],
   "Gelled Back": [
     "dm:labels"
   ],
@@ -12258,6 +12355,9 @@
   "Gibbering": [
     "dm:labels"
   ],
+  "Gigantism": [
+    "dm:labels"
+  ],
   "Gimme some!": [
     "dm:interactions"
   ],
@@ -12369,6 +12469,9 @@
     "dm:labels"
   ],
   "Glowing Shoes (Colorable)": [
+    "dm:labels"
+  ],
+  "Glowy": [
     "dm:labels"
   ],
   "Glowy Shibari Ropes": [
@@ -12702,6 +12805,9 @@
   ],
   "H": [
     "tgui:ColorPicker"
+  ],
+  "H.A.R.S.": [
+    "dm:labels"
   ],
   "H.O.N.K.": [
     "dm:labels"
@@ -13150,6 +13256,9 @@
     "tgui:ChemHeater",
     "tgui:SpaceHeater"
   ],
+  "Heat Adaptation": [
+    "dm:labels"
+  ],
   "Heat Glasses": [
     "dm:labels"
   ],
@@ -13182,6 +13291,9 @@
     "dm:labels"
   ],
   "Heavyset": [
+    "dm:labels"
+  ],
+  "Heckacious Larincks": [
     "dm:labels"
   ],
   "Heckin Bnuuy": [
@@ -13674,6 +13786,15 @@
   "Huggable Bee Plushie": [
     "dm:labels"
   ],
+  "Hulk": [
+    "dm:labels"
+  ],
+  "Hulk (Magical)": [
+    "dm:labels"
+  ],
+  "Hulk (Super)": [
+    "dm:labels"
+  ],
   "Hull Parts: 1": [
     "tgui:OrionGame"
   ],
@@ -13796,6 +13917,9 @@
   ],
   "Hyper-noblium": [
     "tgui:constants"
+  ],
+  "Hypermetabolic Blood": [
+    "dm:labels"
   ],
   "Hypersensitive": [
     "dm:labels"
@@ -14229,6 +14353,9 @@
   "Industrious": [
     "dm:labels"
   ],
+  "Inexorable": [
+    "dm:labels"
+  ],
   "Infectious Zombie": [
     "dm:labels"
   ],
@@ -14510,6 +14637,9 @@
   "Instruments volume": [
     "tgui:sounds"
   ],
+  "Insulated": [
+    "dm:labels"
+  ],
   "Intake Regulator": [
     "tgui:TurbineComputer"
   ],
@@ -14605,6 +14735,9 @@
   ],
   "Internal Implants": [
     "tgui:LimbsPage"
+  ],
+  "Internal Martyrdom": [
+    "dm:labels"
   ],
   "Internal Target": [
     "tgui:AtmosControls"
@@ -15390,6 +15523,9 @@
   ],
   "Laser Cooldown": [
     "tgui:RadioactiveMicrolaser"
+  ],
+  "Laser Eyes": [
+    "dm:labels"
   ],
   "Laser Pointer (Blue)": [
     "dm:labels"
@@ -17296,6 +17432,9 @@
   "Medicines": [
     "tgui:Sleeper"
   ],
+  "Medieval": [
+    "dm:labels"
+  ],
   "Medihound Plushie": [
     "dm:labels"
   ],
@@ -17340,6 +17479,9 @@
   ],
   "Mend": [
     "tgui:Wires"
+  ],
+  "Mending Touch": [
+    "dm:labels"
   ],
   "Mental Status": [
     "tgui:RecordView"
@@ -17485,6 +17627,9 @@
     "tgui:DeathmatchLobby"
   ],
   "Mind Collar": [
+    "dm:labels"
+  ],
+  "Mind Reader": [
     "dm:labels"
   ],
   "Mindless Infectious Zombie": [
@@ -17777,6 +17922,9 @@
     "dm:labels"
   ],
   "Monkey Scream": [
+    "dm:labels"
+  ],
+  "Monkified": [
     "dm:labels"
   ],
   "Mono Eye": [
@@ -18546,6 +18694,9 @@
   "Naval Officer Cap": [
     "dm:labels"
   ],
+  "Near Sightness": [
+    "dm:labels"
+  ],
   "Nearsighted": [
     "dm:labels"
   ],
@@ -18610,6 +18761,9 @@
     "dm:labels"
   ],
   "Nervous Tremble": [
+    "dm:labels"
+  ],
+  "Nervousness": [
     "dm:labels"
   ],
   "Net Pod": [
@@ -20661,6 +20815,9 @@
   "Orion Prime": [
     "tgui:OrionGame"
   ],
+  "Ork": [
+    "dm:labels"
+  ],
   "Ornate Cross": [
     "dm:labels"
   ],
@@ -21195,6 +21352,9 @@
   "Params": [
     "tgui:EmotePanel"
   ],
+  "Paranoia": [
+    "dm:labels"
+  ],
   "Paranoid": [
     "dm:labels"
   ],
@@ -21708,6 +21868,9 @@
   "Pie": [
     "dm:labels"
   ],
+  "Pig Latin": [
+    "dm:labels"
+  ],
   "Pigtails": [
     "dm:labels"
   ],
@@ -21898,6 +22061,9 @@
     "dm:labels"
   ],
   "Plasmaman right leg": [
+    "dm:labels"
+  ],
+  "Plasmocile": [
     "dm:labels"
   ],
   "Plasteel": [
@@ -22534,6 +22700,9 @@
     "tgui:TankCompressor",
     "tgui:ThermoMachine"
   ],
+  "Pressure Adaptation": [
+    "dm:labels"
+  ],
   "Pressure Inlet: {0} kPa / Outlet:{1}{2} kPa": [
     "tgui:ThermoElectricGenerator"
   ],
@@ -23115,6 +23284,9 @@
   "Put the sample into a Growing Vat and pour the required reagents.": [
     "tgui:Microscope"
   ],
+  "Pyrokinesis": [
+    "dm:labels"
+  ],
   "Qipao": [
     "dm:labels"
   ],
@@ -23189,6 +23361,12 @@
   ],
   "Queued Rulesets": [
     "tgui:DynamicAdmin"
+  ],
+  "Quick": [
+    "dm:labels"
+  ],
+  "Quick Recovery": [
+    "dm:labels"
   ],
   "Quick Reply": [
     "tgui:MessageViewTab"
@@ -23288,6 +23466,9 @@
   ],
   "Radioactive Microlaser": [
     "tgui:RadioactiveMicrolaser"
+  ],
+  "Radioactivity": [
+    "dm:labels"
   ],
   "Radius {0}/{1}": [
     "tgui:ModularShieldGen"
@@ -23910,6 +24091,7 @@
     "dm:labels"
   ],
   "Regeneration": [
+    "dm:labels",
     "tgui:AntagInfoBloodWorm"
   ],
   "Regeneration and Radius": [
@@ -24529,6 +24711,9 @@
   "Rest {0}G": [
     "tgui:BattleArcade"
   ],
+  "Restorative Metabolism": [
+    "dm:labels"
+  ],
   "Restore": [
     "tgui:AiAirlock",
     "tgui:Search"
@@ -24819,6 +25004,12 @@
     "dm:labels"
   ],
   "Robust Gold Cigarette Pack": [
+    "dm:labels"
+  ],
+  "Rock Absorber": [
+    "dm:labels"
+  ],
+  "Rock Eater": [
     "dm:labels"
   ],
   "Rod Pressure": [
@@ -26758,6 +26949,9 @@
   "Shock Collar": [
     "dm:labels"
   ],
+  "Shock Touch": [
+    "dm:labels"
+  ],
   "Shockwave Radius": [
     "tgui:DopplerArray"
   ],
@@ -27888,6 +28082,12 @@
   "Sparkle aspect (Emotes)": [
     "dm:labels"
   ],
+  "Spastic": [
+    "dm:labels"
+  ],
+  "Spatial Instability": [
+    "dm:labels"
+  ],
   "Spatial Sea-tongue": [
     "dm:labels"
   ],
@@ -28407,6 +28607,9 @@
   "Sticky Ban": [
     "tgui:PlayerPanel"
   ],
+  "Stimmed": [
+    "dm:labels"
+  ],
   "Stock": [
     "tgui:OreContainer"
   ],
@@ -28462,6 +28665,9 @@
     "tgui:AntagInfoChangeling"
   ],
   "Stomach": [
+    "dm:labels"
+  ],
+  "Stoner": [
     "dm:labels"
   ],
   "Stop": [
@@ -28579,6 +28785,9 @@
     "dm:labels"
   ],
   "Strapless Striped Swimsuit": [
+    "dm:labels"
+  ],
+  "Strength": [
     "dm:labels"
   ],
   "Strict": [
@@ -28995,6 +29204,9 @@
     "dm:labels"
   ],
   "Sweater Vest": [
+    "dm:labels"
+  ],
+  "Swedish": [
     "dm:labels"
   ],
   "Swept Back Hair": [
@@ -29687,7 +29899,13 @@
   "Telecommunications Parts": [
     "dm:labels"
   ],
+  "Telekinesis": [
+    "dm:labels"
+  ],
   "Telepathic": [
+    "dm:labels"
+  ],
+  "Telepathy": [
     "dm:labels"
   ],
   "Teleport": [
@@ -30270,6 +30488,12 @@
   ],
   "There's only one option... It's the sword.": [
     "tgui:NtosCursor"
+  ],
+  "Thermal Adaptation": [
+    "dm:labels"
+  ],
+  "Thermal Vision": [
+    "dm:labels"
   ],
   "Thermostat": [
     "tgui:SpaceHeater"
@@ -31240,6 +31464,9 @@
   "Tongue": [
     "dm:labels"
   ],
+  "Tongue Spike": [
+    "dm:labels"
+  ],
   "Tool Selection": [
     "tgui:ExodroneConsole"
   ],
@@ -31310,6 +31537,12 @@
     "dm:labels"
   ],
   "Touchy": [
+    "dm:labels"
+  ],
+  "Tough": [
+    "dm:labels"
+  ],
+  "Tourette's Syndrome": [
     "dm:labels"
   ],
   "Tourist": [
@@ -31433,6 +31666,9 @@
   ],
   "Transaction History": [
     "tgui:NtosPay"
+  ],
+  "Transcendent Olfaction": [
+    "dm:labels"
   ],
   "Transfer Money": [
     "tgui:NtosPay"
@@ -31730,6 +31966,9 @@
   "Twintails 2": [
     "dm:labels"
   ],
+  "Two Left Feet": [
+    "dm:labels"
+  ],
   "Type": [
     "tgui:AppearanceInfo",
     "tgui:Beaker",
@@ -31928,6 +32167,9 @@
   "Uninstall?": [
     "tgui:NifProgram"
   ],
+  "Unintelligible": [
+    "dm:labels"
+  ],
   "Union Associate": [
     "dm:labels"
   ],
@@ -32066,6 +32308,9 @@
     "tgui:AntagInfoVoidwalker"
   ],
   "Unstable": [
+    "dm:labels"
+  ],
+  "Unstable DNA": [
     "dm:labels"
   ],
   "Unsteady": [
@@ -32387,6 +32632,9 @@
   ],
   "Venom Type": [
     "tgui:venomous_bite"
+  ],
+  "Venomous": [
+    "dm:labels"
   ],
   "Venomous Bite": [
     "dm:labels"
@@ -32755,6 +33003,9 @@
   "Void": [
     "tgui:CrimeWatcher"
   ],
+  "Void Magnet": [
+    "dm:labels"
+  ],
   "Voided by": [
     "tgui:CrimeWatcher"
   ],
@@ -33055,6 +33306,9 @@
   "WITHDRAW": [
     "tgui:PaiSubmit"
   ],
+  "Wacky": [
+    "dm:labels"
+  ],
   "WahCoon": [
     "dm:labels"
   ],
@@ -33242,6 +33496,9 @@
     "dm:labels"
   ],
   "Webbing - Vest": [
+    "dm:labels"
+  ],
+  "Webbing Production": [
     "dm:labels"
   ],
   "Webbing aspect (Emotes)": [
@@ -33882,6 +34139,9 @@
   ],
   "X Offset": [
     "tgui:NtosFileManager"
+  ],
+  "X Ray Vision": [
+    "dm:labels"
   ],
   "X,Y,Z coordinates for where this particle spawns. Can use a generator.": [
     "tgui:Tutorial"
@@ -35102,6 +35362,9 @@
     "tgui:AppearanceInfo"
   ],
   "mushroom cap": [
+    "dm:labels"
+  ],
+  "mutation": [
     "dm:labels"
   ],
   "nanite leg reinforcement": [

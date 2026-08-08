@@ -36,6 +36,11 @@ const TYPE_VAR_RULES: &[(&str, &str)] = &[
     ("/datum/loadout_category", "category_name"),
     ("/datum/preference/name", "explanation"),
     ("/datum/job", "title"),
+    // 基因突变名：DNA 控制台把 `mutation.name` 原样下发成 `Name`，前端既显示又拿它当标识符
+    // （`mutations.find(m => m.Name === name)` 取 ByondRef、`Name !== 'Monkified'` 分支判断），
+    // 所以 P1 绝不能改数据；而 name 多为单词（"Monkified"/"Dwarfism"），连 P1 的多词门槛都过不了。
+    // 译文早在 datum.json 里躺着，缺的只是让它进前端目录、由 TS 端只翻显示。
+    ("/datum/mutation", "name"),
 ];
 
 /// 具名变量（任意类型上）→ 取其 assoc list 的**值**（key 是 act 标识符不抽，值是显示名）。

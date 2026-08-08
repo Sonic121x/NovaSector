@@ -372,7 +372,7 @@
 	//list of downloaded surgeries' names
 	var/list/surgeries_names = list()
 	for(var/datum/surgery_operation/downloaded_surgery as anything in GLOB.operations.get_instances_from(loaded_surgeries))
-		surgeries_names += "[capitalize(downloaded_surgery.name)]"
+		surgeries_names += "[capitalize(lang_localize_display_name(downloaded_surgery.name))]" // NOVA EDIT CHANGE - I18N: 手术名在目录里是源码原样的小写（"tend wounds"），capitalize() 后整串再也查不到；先反查再 capitalize（中文无大小写，capitalize 是 no-op）。ORIGINAL: surgeries_names += "[capitalize(downloaded_surgery.name)]"
 	. += span_notice("[english_list(surgeries_names)]")
 
 /obj/item/surgical_processor/equipped(mob/user, slot, initial)

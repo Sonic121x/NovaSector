@@ -523,6 +523,15 @@ fn lint_identifier_collisions(
     let mut translatable_values: BTreeSet<String> = BTreeSet::new();
     for v in en.values() {
         if !v.contains('{') {
+            // lang_build_reverse 还会为首字母小写的键额外登记**首字母大写变体**（DM 里
+            // 「小写存、`capitalize()` 显示」是通用写法）。变体同样会被反查变异，所以标识符
+            // 碰撞面也跟着变大 —— 这里必须同步登记，否则 `"Move"` 这类比较会绕过门禁。
+            if let Some(first) = v.chars().next() {
+                if first.is_ascii_lowercase() && v.contains(' ') {
+                    translatable_values
+                        .insert(first.to_ascii_uppercase().to_string() + &v[first.len_utf8()..]);
+                }
+            }
             translatable_values.insert(v.clone());
         }
     }
