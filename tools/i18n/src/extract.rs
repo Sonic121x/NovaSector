@@ -1095,6 +1095,149 @@ fn block_is_pure(block: &[dm::ast::Spanned<Statement>]) -> bool {
 }
 
 /// `type_path` = 完整 DM 类型路径（flavor.rs 等无类型来源传裸命名空间名，见 Catalog::insert）。
+/// LANG 实参里的英文字面量。
+///
+/// 改写把 `"The [x ? "bolt" : "screw"] is [state]."` 变成 `LANG(key, list(x ? "bolt" : "screw", state))`
+/// —— 模板进了目录，**被抬成实参的那些字面量却没有任何抽取路径**（它们不再是 sink 实参，也不是
+/// 累加器右值）。运行期 `lang_localize_arg` 会拿实参去反查，目录里没有键 → 整句译文里嵌着一截
+/// 英文。全仓 800+ 个 LANG 调用点属于这一类（"is secured and ready to be used!"、"hurts!"、
+/// "weighs you down." …）。这里把这些字面量按 LANG 的命名空间补进目录，反查即通。
+///
+/// 必须绕开的两类**非显示**字面量：
+///   - 下标键（`ded["name"]`、`data["role"]`）——是程序用的键名，翻了就查不到值。故不下探 `Follow::Index`。
+///   - 嵌套 LANG 的 key 本身（`LANG("datum.eb109e14", …)`）——形如 `<ns>.<hash>`，翻了目录就崩。
+fn collect_lang_arg_literals(expr: &Expression, out: &mut Vec<String>) {
+    match expr {
+        Expression::Base { term, follow } => {
+            collect_lang_arg_literals_term(&term.elem, out);
+            for f in follow.iter() {
+                // Follow::Index 的下标是键名，不是文案 —— 整支跳过。
+                if let Follow::Call(_, name, args) = &f.elem {
+                    let key_idx = lang_format_key_index(name.as_str());
+                    for (i, a) in args.iter().enumerate() {
+                        if Some(i) == key_idx {
+                            continue;
+                        }
+                        collect_lang_arg_literals(a, out);
+                    }
+                }
+            }
+        }
+        Expression::BinaryOp { lhs, rhs, .. } => {
+            collect_lang_arg_literals(lhs, out);
+            collect_lang_arg_literals(rhs, out);
+        }
+        Expression::AssignOp { rhs, .. } => collect_lang_arg_literals(rhs, out),
+        Expression::TernaryOp { cond, if_, else_ } => {
+            collect_lang_arg_literals(cond, out);
+            collect_lang_arg_literals(if_, out);
+            collect_lang_arg_literals(else_, out);
+        }
+    }
+}
+
+fn collect_lang_arg_literals_term(term: &Term, out: &mut Vec<String>) {
+    match term {
+        Term::String(s) => out.push(s.clone()),
+        Term::Expr(inner) => collect_lang_arg_literals(inner, out),
+        Term::List(args) => {
+            for a in args.iter() {
+                collect_lang_arg_literals(a, out);
+            }
+        }
+        Term::Call(name, args) => {
+            let key_idx = lang_format_key_index(name.as_str());
+            for (i, a) in args.iter().enumerate() {
+                if Some(i) == key_idx {
+                    continue;
+                }
+                collect_lang_arg_literals(a, out);
+            }
+        }
+        Term::InterpString(_, parts) => {
+            for (expr, _) in parts.iter() {
+                if let Some(e) = expr {
+                    collect_lang_arg_literals(e, out);
+                }
+            }
+        }
+        _ => {}
+    }
+}
+
+/// `lang_format(key, args)` / `lang_format_for(user, key, args)` 的 key 实参下标（LANG/LANGU
+/// 是 #define，AST 里已展开成这两个名字）。非 LANG 调用返回 None。
+fn lang_format_key_index(name: &str) -> Option<usize> {
+    match name {
+        "lang_format" => Some(0),
+        "lang_format_for" => Some(1),
+        _ => None,
+    }
+}
+
+/// 去掉 HTML 标签（含 `<span class='notice'>` 这种源码里被截断成半截的开标签）。
+/// 只用于「这串里还有没有真文案」的判断，不改写入目录的内容。
+fn strip_html_tags(s: &str) -> String {
+    let mut out = String::with_capacity(s.len());
+    let mut depth = 0usize;
+    for c in s.chars() {
+        match c {
+            '<' => depth += 1,
+            '>' => depth = depth.saturating_sub(1),
+            _ if depth == 0 => out.push(c),
+            _ => {}
+        }
+    }
+    out
+}
+
+/// LANG 实参字面量是否值得进目录。
+///
+/// 挡掉三类噪音：语法碎片（复数 "s"、空串、纯标点/空白）、目录 key 形态（嵌套 LANG 漏网时的兜底）、
+/// 以及一眼是标识符的串（含 `{}` 占位符的模板片段由 LANG 自己管，不在这里重复抽）。
+fn is_lang_arg_text(s: &str) -> bool {
+    let t = s.trim();
+    if t.len() < 3 || t.contains('{') {
+        return false;
+    }
+    // `<ns>.<8 位十六进制>` = 目录 key，绝不能当文案抽。
+    if let Some((ns, hash)) = t.split_once('.') {
+        if !ns.is_empty()
+            && ns.chars().all(|c| c.is_ascii_lowercase() || c == '_')
+            && hash.len() == 8
+            && hash.chars().all(|c| c.is_ascii_hexdigit())
+        {
+            return false;
+        }
+    }
+    // **只收多词**。单 token 的 LANG 实参里标识符浓度极高：act/topic/wire 键（`activate`、`attach`、
+    // `unlock`、`datumedit`、`targetvar`）、黑板键与 var 名（`all_damage`、`turbine_max_rpm`）、存档路径、
+    // 全大写常量（`APC`/`LMB`/`NULL`）。放进目录 = 反查表把它们变异成中文，`switch`/下标比较当场失效
+    // ——`nova-i18n lint` 一次就报出 12 条高置信 + 98 条单词类碰撞。而单词类实参本来就有专门的精确
+    // 表兜底（`lang_localize_arg` 第一步查 `_state_words.json`：open/closed/lit…），不靠这条路径。
+    // 与 P1 多词门槛、AC 字典多词过滤、首字母大写变体是同一条安全线。
+    if !t.chars().any(char::is_whitespace) {
+        return false;
+    }
+    // 只有标记、没有文案的串（`span_*` 宏在 AST 里展开成的 `"<span class='notice'>"` 这类半截
+    // 标签）必须挡掉：翻了就是把 class 名译成中文、样式直接失效。判据是**剥掉标签之后**还剩不剩字。
+    let without_tags = strip_html_tags(t);
+    let t = without_tags.trim();
+    // 至少要有一段连续两个以上的字母，挡掉 "s"/"es"/"%"/"1/5" 之流。
+    let mut run = 0usize;
+    for c in t.chars() {
+        if c.is_alphabetic() {
+            run += 1;
+            if run >= 2 {
+                return true;
+            }
+        } else {
+            run = 0;
+        }
+    }
+    false
+}
+
 pub(crate) fn emit(catalog: &mut Catalog, type_path: &str, template: &str) {
     if !template.chars().any(|c| c.is_alphabetic()) {
         return;
@@ -1246,14 +1389,24 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                 // 注意匹配的是**宏展开后**的名字：LANG/LANGU 是 `#define`
                 // （code/__DEFINES/~nova_defines/i18n.dm），SpacemanDMM 的预处理器在建 AST
                 // 之前就把它们展开成 lang_format/lang_format_for 了，AST 里根本没有 "LANG"。
-                let key_arg = match name.as_str() {
-                    "lang_format" => Some(0),
-                    "lang_format_for" => Some(1), // LANGU(user, key, args)
-                    _ => None,
-                };
+                let key_arg = lang_format_key_index(name.as_str());
                 if let Some(idx) = key_arg {
                     if let Some(key) = args.get(idx).and_then(plain_string) {
                         catalog.note_scope(&key, ns);
+                    }
+                    // 被改写抬成实参的英文字面量：模板译了、实参还是英文。见
+                    // collect_lang_arg_literals 的说明。
+                    let mut literals = Vec::new();
+                    for (i, a) in args.iter().enumerate() {
+                        if i <= idx {
+                            continue; // key 及其之前的实参（LANGU 的 user）不是文案
+                        }
+                        collect_lang_arg_literals(a, &mut literals);
+                    }
+                    for literal in literals {
+                        if is_lang_arg_text(&literal) {
+                            emit(catalog, ns, literal.trim());
+                        }
                     }
                 }
             }
