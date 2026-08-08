@@ -41,6 +41,10 @@ const TYPE_VAR_RULES: &[(&str, &str)] = &[
     // 所以 P1 绝不能改数据；而 name 多为单词（"Monkified"/"Dwarfism"），连 P1 的多词门槛都过不了。
     // 译文早在 datum.json 里躺着，缺的只是让它进前端目录、由 TS 端只翻显示。
     ("/datum/mutation", "name"),
+    // 战斗街机的商店装备名：`battle_arcade_gear_list[name]` 既是显示又是 act("buy_item") 的
+    // 回传键。P1 译多词名（"Leather Armor"）→ 回传中文 → 查表 miss，玩家表现为「中文名的装备
+    // 买不了、单词名的能买」。值保英文（进 payload_skip_keys），显示走这条桥。
+    ("/datum/battle_arcade_gear", "name"),
 ];
 
 /// 具名变量（任意类型上）→ 取其 assoc list 的**值**（key 是 act 标识符不抽，值是显示名）。

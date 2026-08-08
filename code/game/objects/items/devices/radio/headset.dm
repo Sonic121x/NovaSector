@@ -84,7 +84,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/Initialize(mapload)
 	. = ..()
 	if(ispath(keyslot2))
-		keyslot2 = new keyslot2()
+		keyslot2 = new keyslot2(src) // NOVA EDIT CHANGE - 原来没传 loc，密钥不在 contents 里 → 拆不干净（见 radio.dm 同处注释）。ORIGINAL: keyslot2 = new keyslot2()
+	// NOVA EDIT ADDITION START - 同 radio.dm：变量初值里 `keyslot2 = new /obj/...` 的实例要挪进 contents
+	else if(istype(keyslot2) && keyslot2.loc != src)
+		keyslot2.forceMove(src)
+	// NOVA EDIT ADDITION END
 	set_listening(TRUE)
 	set_broadcasting(TRUE)
 	recalculateChannels()

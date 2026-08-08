@@ -69,10 +69,26 @@
 			if(I == target)
 				victim.visible_message(span_danger(LANG("datum.61694db5", list(living_pawn, target, victim))), span_userdanger(LANG("datum.ef984e8a", list(living_pawn, target))))
 				if(victim.temporarilyRemoveItemFromInventory(target))
-					if(!QDELETED(target) && !equip_item(controller))
-						target.forceMove(living_pawn.drop_location())
-						success = TRUE
+					// NOVA EDIT CHANGE START - 抢夺中途猴子被打死会把武器留在 nullspace（永久消失）
+					// temporarilyRemoveItemFromInventory 先把物品挪进 nullspace，之后每一环都依赖
+					// living_pawn 还有效：猴子这时被打死/删除，drop_location() 是 null、forceMove(null)
+					// 等于扔进虚空；而 equip_item 的「更好的武器」分支又忽略 put_in_hands 的返回值、
+					// 无条件返回 TRUE，失手时外层连兜底 forceMove 都不会跑。
+					// 改为守住不变量：物品离开背包后必须落到某个真实位置，落点依次退化到
+					// 猴子 → 受害者 → 受害者所在 turf。
+					// ORIGINAL: if(!QDELETED(target) && !equip_item(controller))
+					//               target.forceMove(living_pawn.drop_location())
+					//               success = TRUE
+					//               break
+					if(!QDELETED(target))
+						if(!equip_item(controller))
+							success = TRUE
+						if(isnull(target.loc))
+							var/atom/fallback = (QDELETED(living_pawn) ? null : living_pawn.drop_location()) || victim.drop_location() || get_turf(victim)
+							if(fallback)
+								target.forceMove(fallback)
 						break
+					// NOVA EDIT CHANGE END
 				else
 					victim.visible_message(span_danger(LANG("datum.99c53414", list(living_pawn, target, victim))), span_userdanger(LANG("datum.0782927d", list(living_pawn, target))))
 
