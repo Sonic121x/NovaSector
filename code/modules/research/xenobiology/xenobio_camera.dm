@@ -478,11 +478,16 @@
 		return
 
 	var/render_list = list()
-	render_list += "<b>Click shortcuts:</b>"
-	render_list += "&bull; Shift-click a slime to pick it up, or the floor to drop all held slimes."
-	render_list += "&bull; Ctrl-click a slime to scan it."
-	render_list += "&bull; Alt-click a slime to feed it a potion."
-	render_list += "&bull; Ctrl-click or a dead monkey to recycle it, or the floor to place a new monkey."
+	// NOVA EDIT CHANGE START - I18N: 逐行 LANG 化。具名累加器 + 非 examine proc → 抽取器整句闸挡在
+	// 目录外，只有 Alt-click 那行被聊天 AC 层从**半句**处替换掉（「Alt-点击黏击以feed it a potion。」），
+	// 正是碎片入目录会造成的语序错乱。整行成条才治得住。
+	// ORIGINAL: render_list += "<b>Click shortcuts:</b>" 起五行英文字面量。
+	render_list += "<b>[LANG("datum.5372def5", null)]</b>"
+	render_list += LANG("datum.35c91b95", null)
+	render_list += LANG("datum.eace4378", null)
+	render_list += LANG("datum.bdeabe47", null)
+	render_list += LANG("datum.9d6aa669", null)
+	// NOVA EDIT CHANGE END
 
 	to_chat(owner, boxed_message(jointext(render_list, "\n")))
 

@@ -43,6 +43,10 @@ const SINK_VARS: &[&str] = &[
     // 其它可靠的玩家可见显示字段（type 变量；非 desc 的别名 / 专有显示串）。
     "description",      // /datum/reagent 等用 description（非 desc）——之前完全漏抽。
     "taste_description", // 试剂味道（"It tastes of …"）。
+    // /datum/disease 的两个纯显示字段：form（"Advanced Disease"，医疗扫描的「Warning: … detected」）、
+    // agent（"advance microbes"，病毒学面板的病原体名）。全仓无 `== ` 比较，翻显示安全。
+    "agent",
+    "form",
     // 污染物气味（Nova pollution 模块）："空气里飘着淡淡的 [scent]" 那句的插值值。纯显示，
     // 与 taste_description 同类。descriptor 那一侧是 #define 常量、走 _state_words。
     "scent",
@@ -1554,9 +1558,12 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                     // proc 内运行期 `desc = "<字面量>"` 赋值（含插值）：examine 显示点反查只救非插值串,
                     // 插值 desc（"A [dried?…]trail of [X]."）整串非目录键 → 在此抽模板、由 rewrite 改 LANG。
                     // 仅 desc（display-only,安全）；不动 name（常被 `if(name=="…")` 比较,LANG 化会破坏比较）。
+                    // spread_text 同理：它在 /datum/disease/advance/set_spread() 里按 flag **在 proc 内**
+                    // 重新赋值（"Fluids"/"Skin contact"/"Respiration"…），类型变量初值那条路抽不到，
+                    // 而 New() 的反查早在赋值之前就跑完了 → 医疗扫描的「Type:」整类显英文。
                     else if follow.is_empty() {
                         if let Term::Ident(id) = &term.elem {
-                            if id == "desc" {
+                            if id == "desc" || id == "spread_text" {
                                 if let Some(template) = build_template(rhs) {
                                     if !template.trim().is_empty() {
                                         emit(catalog, ns, &template);

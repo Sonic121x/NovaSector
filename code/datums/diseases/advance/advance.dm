@@ -262,6 +262,9 @@
 		if(DISEASE_SPREAD_AIRBORNE)
 			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_AIRBORNE)
 			spread_text = "Respiration"
+	// NOVA EDIT ADDITION - I18N: 这些赋值发生在 New() 的反查之后（set_spread 由 Refresh 调用），
+	// 所以要在收尾处再反查一次；lang_reverse_text 对已是中文的值是 no-op，重复调用安全。
+	spread_text = lang_reverse_text(spread_text)
 
 /datum/disease/advance/proc/set_severity(level_sev)
 

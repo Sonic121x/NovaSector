@@ -322,6 +322,28 @@ GLOBAL_VAR_INIT(i18n_armor_classes_loaded, FALSE)
 						GLOB.i18n_armor_classes[class_name] = for_locale[class_name]
 	return GLOB.i18n_armor_classes[name] || name
 
+/// 史莱姆颜色（SLIME_TYPE_* 的值）的显示译名。
+/// 顶层 slime_colours.json，**不进全局反查表**：这些值同时是 icon_state / 突变表键 / switch 标识符，
+/// 而且是 blue/purple/gold 这种通用单词，进反查表必然误伤（lint 的单词类碰撞就有 purple/yellow）。
+/// 只在扫描仪、异种生物学控制台等显示落地点用。同 lang_armor_class。
+GLOBAL_LIST_EMPTY(i18n_slime_colours)
+GLOBAL_VAR_INIT(i18n_slime_colours_loaded, FALSE)
+/proc/lang_slime_colour(colour)
+	if(!istext(colour))
+		return colour
+	if(!GLOB.i18n_slime_colours_loaded)
+		GLOB.i18n_slime_colours_loaded = TRUE
+		var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
+		if(locale != DEFAULT_UI_LOCALE)
+			var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/slime_colours.json"
+			if(fexists(path))
+				var/list/decoded = json_decode(file2text(path))
+				var/list/for_locale = islist(decoded) ? decoded[locale] : null
+				if(islist(for_locale))
+					for(var/entry in for_locale)
+						GLOB.i18n_slime_colours[entry] = for_locale[entry]
+	return GLOB.i18n_slime_colours[colour] || colour
+
 /// 反查后的文本要当**关联列表的 key**（= 显示标签）时的防撞车包装。
 ///
 /// 不同英文标题完全可能译成同一个中文——`wooden barrel` 和 `wooden bucket` 都是「木桶」——

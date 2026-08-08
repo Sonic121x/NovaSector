@@ -222,9 +222,9 @@
 
 		var/datum/physiology/physiology = humantarget.physiology
 		if (physiology.brute_mod != 1)
-			render_list += "<span class='danger ml-1'>Subject takes [(physiology.brute_mod) * 100]% brute damage.</span>\n"
+			render_list += "<span class='danger ml-1'>[LANG("obj.d01c84c0", list((physiology.brute_mod) * 100))]</span>\n" // NOVA EDIT - I18N
 		if (physiology.burn_mod != 1)
-			render_list += "<span class='danger ml-1'>Subject takes [(physiology.burn_mod) * 100]% burn damage.</span>\n"
+			render_list += "<span class='danger ml-1'>[LANG("obj.6b92d557", list((physiology.burn_mod) * 100))]</span>\n" // NOVA EDIT - I18N
 	// NOVA EDIT ADDITION END
 	// Body part damage report
 	if(iscarbon(target))
@@ -470,14 +470,14 @@
 			cure_text = advanced_disease.generate_cure_text(cure_count)
 		else
 			cure_text = disease.cure_text
+		// NOVA EDIT CHANGE START - I18N: 整块改 LANG。原为逐行拼插值，整串非目录键、AC 只会在半句
+		// 处替换。ORIGINAL: 见 git 历史（"<b>Warning: [disease.form] detected</b>" 起的续行块）。
 		render_list += "<span class='alert ml-1'>\
-			[conditional_tooltip("<b>Warning: [disease.form] detected</b>", "Supply listed cure or [/datum/reagent/medicine/spaceacillin::name], or treat with food and rest.", tochat)]<br>\
+			[conditional_tooltip("<b>[LANG("obj.91316a71", list(disease.form))]</b>", LANG("obj.42f2953a", list(/datum/reagent/medicine/spaceacillin::name)), tochat)]<br>\
 			<div class='ml-2'>\
-			Name: [disease.name].<br>\
-			Type: [disease.spread_text].<br>\
-			Stage: [disease.stage]/[disease.max_stages].<br>\
-			Cure: [cure_text]</div>\
+			[LANG("obj.f9ef6cb2", list(disease.name, disease.spread_text, disease.stage, disease.max_stages, cure_text))]</div>\
 			</span>"
+		// NOVA EDIT CHANGE END
 	// NOVA EDIT ADDITION - Mutant stuff + death consequences quirk
 	if(iscarbon(target))
 		if(target.GetComponent(/datum/component/mutant_infection))
@@ -640,7 +640,7 @@
 			if(istype(quirky, /datum/quirk/item_quirk/allergic))
 				var/datum/quirk/item_quirk/allergic/allergies_quirk = quirky
 				var/allergies = allergies_quirk.allergy_string
-				render_list += "<span class='alert ml-1'>Subject is extremely allergic to the following chemicals:</span><br>"
+				render_list += "<span class='alert ml-1'>[LANG("obj.3baac8ac", null)]</span><br>" // NOVA EDIT - I18N
 				render_list += "<span class='alert ml-2'>[allergies]</span><br>"
 
 		// we handled the last <br> so we don't need handholding
@@ -857,9 +857,11 @@
 			if(istype(disease, /datum/disease/advance))
 				var/datum/disease/advance/advanced_disease = disease
 				disease_cure = advanced_disease.generate_cure_text(1)
-			render += "<span class='alert ml-1'><b>Warning: [disease.form] detected</b><br>\
-			<div class='ml-2'>Name: [disease.name].<br>Type: [disease.spread_text].<br>Stage: [disease.stage]/[disease.max_stages].<br>Cure: [disease_cure]</div>\
+			// NOVA EDIT CHANGE START - I18N: 同上，与 healthscan 共用同一批模板。
+			render += "<span class='alert ml-1'><b>[LANG("obj.91316a71", list(disease.form))]</b><br>\
+			<div class='ml-2'>[LANG("obj.f9ef6cb2", list(disease.name, disease.spread_text, disease.stage, disease.max_stages, disease_cure))]</div>\
 			</span>"
+			// NOVA EDIT CHANGE END
 
 	if(!length(render))
 		playsound(scanner, 'sound/machines/ping.ogg', 50, FALSE)

@@ -1,0 +1,27 @@
+{
+	"_comment": "史莱姆颜色（SLIME_TYPE_* 的值）的显示译名。顶层放置=不被 build_i18n_cache 合并进全局反查表——这些值同时是 icon_state / 突变表键 / switch 标识符，且是 blue/purple/gold 这类通用单词，进反查表必然误伤（nova-i18n lint 的单词类碰撞）。由 lang_slime_colour() 按 locale 单独读，只在史莱姆扫描仪、异种生物学控制台一类**显示落地点**用。同 armor_classes.json / voice_of_god.json 思路。",
+	"zh-Hans": {
+		"adamantine": "精金",
+		"black": "黑色",
+		"blue": "蓝色",
+		"bluespace": "蓝空间",
+		"cerulean": "蔚蓝",
+		"dark-blue": "深蓝",
+		"dark-purple": "深紫",
+		"gold": "金色",
+		"green": "绿色",
+		"grey": "灰色",
+		"light-pink": "浅粉",
+		"metal": "金属",
+		"oil": "油质",
+		"orange": "橙色",
+		"pink": "粉色",
+		"purple": "紫色",
+		"pyrite": "黄铁",
+		"rainbow": "彩虹",
+		"red": "红色",
+		"sepia": "棕褐",
+		"silver": "银色",
+		"yellow": "黄色"
+	}
+}

@@ -68,6 +68,8 @@
 		desc = lang_reverse_text(desc)
 		cure_text = lang_reverse_text(cure_text)
 		spread_text = lang_reverse_text(spread_text)
+		form = lang_reverse_text(form)
+		agent = lang_reverse_text(agent)
 	// NOVA EDIT ADDITION END
 
 /datum/disease/Destroy()
