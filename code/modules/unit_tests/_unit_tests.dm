@@ -381,6 +381,7 @@
 #include "~nova\i18n_ac_longest.dm"
 #include "~nova\i18n_miss_log.dm"
 #include "~nova\i18n_phobia.dm"
+#include "~nova\i18n_real_catalog.dm"
 #include "~nova\i18n_roleban.dm"
 #include "~nova\i18n_suffixed.dm"
 #include "~nova\i18n_template.dm"

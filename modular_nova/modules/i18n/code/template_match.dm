@@ -161,9 +161,15 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 		anchor_ids += list(anchors[anchor])
 	GLOB.i18n_tpl_records[locale] = records
 	GLOB.i18n_tpl_anchor_ids[locale] = anchor_ids
-	// 3 参标准形（与 fallback.dm 的字面 AC 一致）：仅做锚「检测」，重叠锚被另一锚遮蔽
-	// 的罕见情形只是少收一个候选，验证阶段兜底，不影响正确性。
-	rustg_setup_acreplace("i18n_tpl_[locale]", patterns, replacements)
+	// **必须 LeftmostLongest**。默认的 Standard 在同一起点取**最短**匹配，而锚之间大量互为前缀：
+	// "{0} begins to make an incision in {1}." 的锚 " begins to make an incision in " 会把
+	// "{0} begins to make an incision in the organs within {1}." 那条更长的锚整个遮住，甚至更短的
+	// 通用锚（" begins to "…）会把两条都遮住。被遮住的锚**不进候选**，于是唯一能匹配的那条模板
+	// 根本不会被尝试，整句原样留英文——手术台上每一步的可见消息就是这么全程没翻（i18n_real_catalog
+	// 守这条）。原注释说「只是少收一个候选、不影响正确性」，不成立：少收的正是对的那个。
+	// 与 fallback.dm 的字面 AC 同款选项。
+	var/static/list/tpl_ac_options = list("match_kind" = "LeftmostLongest")
+	rustg_setup_acreplace_with_options("i18n_tpl_[locale]", tpl_ac_options, patterns, replacements)
 	GLOB.i18n_tpl_state[locale] = "ready"
 	return TRUE
 

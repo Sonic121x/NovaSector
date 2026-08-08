@@ -769,6 +769,14 @@ fn sink_message_args(name: &str) -> Option<&'static [usize]> {
         "notify_ghosts" => Some(&[0]),
         // 机器打印到纸上的正文（字面量实参必是作者写的印刷体；玩家书写永远是变量）。与 rewrite.rs 同表。
         "add_raw_text" => Some(&[0]),
+        // 手术每一步的可见/痛觉消息。整个 surgery 模块的玩家可见文本几乎都从这两个 proc 出去，
+        // 而它们只是包了一层 visible_message/to_chat，通用 sink 检测看不穿 → 整模块没进目录。
+        // display_results(surgeon, target, self_message, detailed_message, vague_message, …)
+        // display_pain(target, pain_message, …)
+        // **只加在 extract 侧**：这些消息全是插值句，进目录后由聊天层的模板逆匹配引擎
+        // （lang_template_apply）落地，不需要改写调用点。rewrite.rs 不加，就不会生成目录外的 key。
+        "display_results" => Some(&[2, 3, 4]),
+        "display_pain" => Some(&[1]),
         _ => None,
     }
 }
