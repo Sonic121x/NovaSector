@@ -1,810 +1,236 @@
-//ÍÃ¶ú
-/datum/loadout_item/head/playbunnyearsgreyscale
-	name = "¿ÉÈ¾É«ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/greyscale
+//å…”è€³å¤´é¥°
 
 /datum/loadout_item/head/playbunnyearssyndicate
-	name = "Î±ĞÁµÏ¼ÓÍÃ
+	name = "è¾›è¿ªåŠ å…”è€³å‘ç®"
 	item_path = /obj/item/clothing/head/playbunnyears/syndicate
 
-/datum/loadout_item/head/playbunnyearscentcom
-	name = "CentcomÍÃ¶úÍ·
-	item_path = /obj/item/clothing/head/playbunnyears/centcom
-	restricted_roles = list(JOB_NT_REP)
-
-/datum/loadout_item/head/playbunnyearsbritish
-	name = "Ó¢Ê½ÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/british
-
-/datum/loadout_item/head/playbunnyearscommunist
-	name = "ºìÉ«ÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/communist
-
-/datum/loadout_item/head/playbunnyearsusa
-	name = "ÃÀÊ½ÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/usa
-
-/datum/loadout_item/head/playbunnyearsbunnyears_captain
-	name = "½¢³¤ÍÃ¶ú
-	item_path = /obj/item/clothing/head/hats/caphat/playbunnyears/bunnyears_captain
-	restricted_roles = list(JOB_CAPTAIN)
-
-/datum/loadout_item/head/playbunnyearsquartermaster
-	name = "¾üĞè¹ÙÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/quartermaster
-	restricted_roles = list(JOB_QUARTERMASTER)
-
-/datum/loadout_item/head/playbunnyearscargo
-	name = "»õ²ÖÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/cargo
-
 /datum/loadout_item/head/playbunnyearsminer
-	name = "¿ó¹¤ÍÃ¶ú
+	name = "çŸ¿å·¥å…”è€³å‘ç®"
 	item_path = /obj/item/clothing/head/playbunnyears/miner
 
-/datum/loadout_item/head/playbunnyearsmailman
-	name = "ÓÊ²îÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/mailman
-
-/datum/loadout_item/head/playbunnyearsbitrunner
-	name = "Ç±ÍøÔ±ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/bitrunner
-
-/datum/loadout_item/head/playbunnyearsengineer
-	name = "¹¤³ÌÊ¦ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/engineer
-
-/datum/loadout_item/head/playbunnyearsatmos_tech
-	name = "´óÆø¼¼ÊõÔ±
-	item_path = /obj/item/clothing/head/playbunnyears/atmos_tech
-
-/datum/loadout_item/head/playbunnyearsce
-	name = "¹¤³Ì²¿³¤ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/ce
-	restricted_roles = list(JOB_CHIEF_ENGINEER)
-
-/datum/loadout_item/head/playbunnyearsdoctor
-	name = "Ò½ÉúÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/doctor
-
-/datum/loadout_item/head/playbunnyearsparamedic
-	name = "¼±¾ÈÔ±ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/paramedic
-
-/datum/loadout_item/head/playbunnyearschemist
-	name = "»¯Ñ§¼ÒÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/chemist
-
-/datum/loadout_item/head/playbunnyearspathologist
-	name = "²¡¶¾Ñ§¼ÒÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/pathologist
-
-/datum/loadout_item/head/playbunnyearscoroner
-	name = "ÑéÊ¬¹ÙÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/coroner
-
-/datum/loadout_item/head/playbunnyearscmo
-	name = "Ò½ÁÆ²¿³¤ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/cmo
-	restricted_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
-
-/datum/loadout_item/head/playbunnyearsscientist
-	name = "¿ÆÑ§¼ÒÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/scientist
-
-/datum/loadout_item/head/playbunnyearsroboticist
-	name = "»úĞµÑ§¼ÒÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/roboticist
-
-/datum/loadout_item/head/playbunnyearsgeneticist
-	name = "»ùÒòÑ§¼ÒÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/geneticist
-
-/datum/loadout_item/head/playbunnyearsrd
-	name = "¿ÆÑĞ²¿³¤ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/rd
-	restricted_roles = list(JOB_RESEARCH_DIRECTOR)
-
-/datum/loadout_item/head/playbunnyearssecurity
-	name = "°²±£ÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/security
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/head/playbunnyearssecurity/assistant
-	name = "°²±£ÖúÊÖÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/security/assistant
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/head/playbunnyearswarden
-	name = "µäÓü³¤ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/warden
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/head/playbunnyearsbrig_phys
-	name = "¼àÓüÒ½Ê¦ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/brig_phys
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/head/playbunnyearsdetective
-	name = "ÕìÌ½ÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/detective
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/head/playbunnyearsdetective/noir
-	name = "ºÚÉ«ÕìÌ½ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/detective/noir
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/head/playbunnyearsprisoner
-	name = "Çô·¸ÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/prisoner
-
-/datum/loadout_item/head/playbunnyearshos
-	name = "°²±£²¿³¤ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/hos
-	restricted_roles = list(JOB_HEAD_OF_SECURITY)
-
-/datum/loadout_item/head/playbunnyearshop
-	name = "ÈËÊÂ²¿³¤ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/hop
-	restricted_roles = list(JOB_HEAD_OF_PERSONNEL)
-
-/datum/loadout_item/head/playbunnyearsjanitor
-	name = "Çå½à¹¤ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/janitor
-
-/datum/loadout_item/head/playbunnyearsbartender
-	name = "¾Æ±£ÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/bartender
-
-/datum/loadout_item/head/playbunnyearscook
-	name = "³øÊ¦ÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/cook
-
-/datum/loadout_item/head/playbunnyearsbotanist
-	name = "Ö²ÎïÑ§¼ÒÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/botanist
-
-/datum/loadout_item/head/playbunnyearsclown
-	name = "Ğ¡³óÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/clown
-	restricted_roles = list(JOB_CLOWN)
-
-/datum/loadout_item/head/playbunnyearsmime
-	name = "Ä¬¾çÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/mime
-	restricted_roles = list(JOB_MIME)
-
-/datum/loadout_item/head/playbunnyearschaplain
-	name = "ÄÁÊ¦ÍÃ¶ú
-	item_path = /obj/item/clothing/head/playbunnyears/chaplain
-
-/datum/loadout_item/head/playbunnyearscurator_red
-	name = "ºìÉ«²ßÕ¹ÈË
-	item_path = /obj/item/clothing/head/playbunnyears/curator_red
-
-/datum/loadout_item/head/playbunnyearscurator_green
-	name = "ÂÌÉ«²ßÕ¹ÈË
-	item_path = /obj/item/clothing/head/playbunnyears/curator_green
-
-/datum/loadout_item/head/playbunnyearscurator_teal
-	name = "ÇàÂÌ²ßÕ¹ÈË
-	item_path = /obj/item/clothing/head/playbunnyears/curator_teal
-
-/datum/loadout_item/head/playbunnyearslawyer_black
-	name = "ºÚÉ«ÂÉÊ¦ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/lawyer_black
-
-/datum/loadout_item/head/playbunnyearslawyer_blue
-	name = "À¶É«ÂÉÊ¦ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/lawyer_blue
-
-/datum/loadout_item/head/playbunnyearslawyer_red
-	name = "ºìÉ«ÂÉÊ¦ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/lawyer_red
-
-/datum/loadout_item/head/playbunnyearslawyer_good
-	name = "ÕıÒåÂÉÊ¦ÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/lawyer_good
-
-/datum/loadout_item/head/playbunnyearspsychologist
-	name = "ĞÄÀíÑ§¼ÒÍÃ
-	item_path = /obj/item/clothing/head/playbunnyears/psychologist
-
-//Áì
-
+//å…”è€³é¢†ç»“
 /datum/loadout_item/neck/bunnytiegreyscale
-	name = "¿ÉÈ¾É«
-	item_path = /obj/item/clothing/neck/tie/bunnytie/greyscale
+	name = "ç°åº¦å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/greyscale
 
 /datum/loadout_item/neck/bunnytiesyndicate
-	name = "Î±ĞÁµÏ¼Ó
-	item_path = /obj/item/clothing/neck/tie/bunnytie/syndicate
+	name = "è¾›è¿ªåŠ å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/syndicate
 
 /datum/loadout_item/neck/bunnytiecentcom
-	name = "CentcomÁìÈ¦
-	item_path = /obj/item/clothing/neck/tie/bunnytie/centcom
+	name = "ä¸­å¤®å¸ä»¤éƒ¨å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/centcom
 	restricted_roles = list(JOB_NT_REP)
 
 /datum/loadout_item/neck/bunnytiecommunist
-	name = "ºìÉ«Áì
-	item_path = /obj/item/clothing/neck/tie/bunnytie/communist
+	name = "çº¢è‰²é˜µè¥å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/communist
 
 /datum/loadout_item/neck/bunnytieblue
-	name = "À¶É«Áì
-	item_path = /obj/item/clothing/neck/tie/bunnytie/blue
+	name = "è“è‰²å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/blue
 
 /datum/loadout_item/neck/bunnytiebunnyears_captain
-	name = "½¢³¤Áì
-	item_path = /obj/item/clothing/neck/tie/bunnytie/captain
+	name = "èˆ¹é•¿å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/captain
 	restricted_roles = list(JOB_CAPTAIN)
 
 /datum/loadout_item/neck/bunnytiecargo
-	name = "»õ²ÖÁì
-	item_path = /obj/item/clothing/neck/tie/bunnytie/cargo
+	name = "è´§è¿å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/cargo
 
 /datum/loadout_item/neck/bunnytieminer
-	name = "¿ó¹¤Áì
-	item_path = /obj/item/clothing/neck/tie/bunnytie/miner
+	name = "çŸ¿å·¥å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/miner
 
 /datum/loadout_item/neck/bunnytiemailman
-	name = "ÓÊ²îÁì
-	item_path = /obj/item/clothing/neck/tie/bunnytie/mailman
+	name = "é‚®é€’å‘˜å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/mailman
 
 /datum/loadout_item/neck/bunnytiebitrunner
-	name = "Ç±ÍøÔ±
-	item_path = /obj/item/clothing/neck/tie/bunnytie/bitrunner
+	name = "æ•°æ®è¡Œè€…å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/bitrunner
 
 /datum/loadout_item/neck/bunnytieengineer
-	name = "¹¤³ÌÊ¦
-	item_path = /obj/item/clothing/neck/tie/bunnytie/engineer
+	name = "å·¥ç¨‹å¸ˆå…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/engineer
 
 /datum/loadout_item/neck/bunnytieatmos_tech
-	name = "´óÆø¼¼Êõ
-	item_path = /obj/item/clothing/neck/tie/bunnytie/atmos_tech
+	name = "å¤§æ°”æŠ€æœ¯å‘˜å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/atmos_tech
 
 /datum/loadout_item/neck/bunnytiece
-	name = "¹¤³Ì²¿³¤
-	item_path = /obj/item/clothing/neck/tie/bunnytie/ce
+	name = "æ€»å·¥ç¨‹å¸ˆå…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/ce
 	restricted_roles = list(JOB_CHIEF_ENGINEER)
 
 /datum/loadout_item/neck/bunnytiedoctor
-	name = "Ò½ÉúÁì
-	item_path = /obj/item/clothing/neck/tie/bunnytie/doctor
+	name = "åŒ»å¸ˆå…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/doctor
 
 /datum/loadout_item/neck/bunnytieparamedic
-	name = "¼±¾ÈÔ±
-	item_path = /obj/item/clothing/neck/tie/bunnytie/paramedic
+	name = "æ€¥æ•‘å‘˜å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/paramedic
 
 /datum/loadout_item/neck/bunnytiechemist
-	name = "»¯Ñ§¼Ò
-	item_path = /obj/item/clothing/neck/tie/bunnytie/chemist
+	name = "è¯å‰‚å¸ˆå…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/chemist
 
 /datum/loadout_item/neck/bunnytiepathologist
-	name = "²¡¶¾Ñ§¼Ò
-	item_path = /obj/item/clothing/neck/tie/bunnytie/pathologist
+	name = "ç—…ç†å­¦å®¶å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/pathologist
 
 /datum/loadout_item/neck/bunnytiecoroner
-	name = "ÑéÊ¬¹Ù
-	item_path = /obj/item/clothing/neck/tie/bunnytie/coroner
+	name = "éªŒå°¸å®˜å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/coroner
 
 /datum/loadout_item/neck/bunnytiecmo
-	name = "Ò½ÁÆ²¿³¤
-	item_path = /obj/item/clothing/neck/tie/bunnytie/cmo
+	name = "åŒ»ç–—ä¸»ç®¡å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/cmo
 	restricted_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/loadout_item/neck/bunnytiescientist
-	name = "¿ÆÑ§¼Ò
-	item_path = /obj/item/clothing/neck/tie/bunnytie/scientist
+	name = "ç§‘ç ”å‘˜å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/scientist
 
 /datum/loadout_item/neck/bunnytieroboticist
-	name = "»úĞµÑ§¼Ò
-	item_path = /obj/item/clothing/neck/tie/bunnytie/roboticist
+	name = "æœºå™¨äººå­¦å®¶å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/roboticist
 
-/obj/item/clothing/neck/bunnytie/geneticist
-	name = "»ùÒòÑ§¼Ò
-	item_path = /obj/item/clothing/neck/tie/bunnytie/geneticist
+//ä¿®å¤åŸä»£ç é”™è¯¯è·¯å¾„ï¼Œæ”¹ä¸ºæ ‡å‡†loadoutæ¡ç›®
+/datum/loadout_item/neck/bunnytiegeneticist
+	name = "é—ä¼ å­¦å®¶å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/geneticist
 
 /datum/loadout_item/neck/bunnytierd
-	name = "¿ÆÑĞ²¿³¤
-	item_path = /obj/item/clothing/neck/tie/bunnytie/rd
+	name = "ç§‘ç ”ä¸»ç®¡å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/rd
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR)
 
 /datum/loadout_item/neck/bunnytiesecurity
-	name = "°²±£Áì
-	item_path = /obj/item/clothing/neck/tie/bunnytie/security
+	name = "å®‰ä¿å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/security
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
 
 /datum/loadout_item/neck/bunnytiesecurity/assistant
-	name = "°²±£ÖúÊÖ
-	item_path = /obj/item/clothing/neck/tie/bunnytie/security_assistant
+	name = "å®‰ä¿åŠ©ç†å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/security_assistant
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
 
 /datum/loadout_item/neck/bunnytiebrig_phys
-	name = "¼àÓüÒ½Ê¦
-	item_path = /obj/item/clothing/neck/tie/bunnytie/brig_phys
+	name = "ç¦é—­åŒºåŒ»å¸ˆå…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/brig_phys
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
 
 /datum/loadout_item/neck/bunnytiedetective
-	name = "ÕìÌ½Áì
-	item_path = /obj/item/clothing/neck/tie/bunnytie/detective
+	name = "æ¢å‘˜å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/detective
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
 
 /datum/loadout_item/neck/bunnytieprisoner
-	name = "Çô·¸Áì
-	item_path = /obj/item/clothing/neck/tie/bunnytie/prisoner
-
-/datum/loadout_item/neck/bunnytiehos
-	name = "°²±£²¿³¤
-	item_path = /obj/item/clothing/head/playbunnyears/hos
-	restricted_roles = list(JOB_HEAD_OF_SECURITY)
+	name = "å›šçŠ¯å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/prisoner
 
 /datum/loadout_item/neck/bunnytiehop
-	name = "ÈËÊÂ²¿³¤
-	item_path = /obj/item/clothing/neck/tie/bunnytie/hop
+	name = "äººäº‹ä¸»ç®¡å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/hop
 	restricted_roles = list(JOB_HEAD_OF_PERSONNEL)
 
 /datum/loadout_item/neck/bunnytiejanitor
-	name = "Çå½à¹¤
-	item_path = /obj/item/clothing/neck/tie/bunnytie/janitor
+	name = "ä¿æ´å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/janitor
 
 /datum/loadout_item/neck/bunnytiebartender
-	name = "¾Æ±£Áì
-	item_path = /obj/item/clothing/neck/tie/bunnytie/bartender
+	name = "é…’ä¿å…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/bartender
 
 /datum/loadout_item/neck/bunnytiecook
-	name = "³øÊ¦Áì
-	item_path = /obj/item/clothing/neck/tie/bunnytie/cook
+	name = "å¨å¸ˆå…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/cook
 
 /datum/loadout_item/neck/bunnytiebotanist
-	name = "Ö²ÎïÑ§¼Ò
-	item_path = /obj/item/clothing/neck/tie/bunnytie/botanist
-
-/datum/loadout_item/neck/bunnytieclown
-	name = "Ğ¡³óÁì
-	item_path = /obj/item/clothing/neck/tie/clown
-	restricted_roles = list(JOB_CLOWN)
-
-/datum/loadout_item/neck/bunnytiechaplain
-	name = "ÄÁÊ¦×¹
-	item_path = /obj/item/clothing/neck/bunny_pendant
+	name = "æ¤åŸ¹å¸ˆå…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/botanist
 
 /datum/loadout_item/neck/bunnytielawyer_black
-	name = "ºÚÉ«ÂÉÊ¦
-	item_path = /obj/item/clothing/neck/tie/bunnytie/lawyer_black
+	name = "é»‘è‰²å¾‹å¸ˆå…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/lawyer_black
 
 /datum/loadout_item/neck/bunnytielawyer_blue
-	name = "À¶É«ÂÉÊ¦
-	item_path = /obj/item/clothing/neck/tie/bunnytie/lawyer_blue
+	name = "è“è‰²å¾‹å¸ˆå…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/lawyer_blue
 
 /datum/loadout_item/neck/bunnytielawyer_red
-	name = "ºìÉ«ÂÉÊ¦
-	item_path = /obj/item/clothing/neck/tie/bunnytie/lawyer_red
+	name = "çº¢è‰²å¾‹å¸ˆå…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/lawyer_red
 
 /datum/loadout_item/neck/bunnytielawyer_good
-	name = "ÕıÒåÂÉÊ¦
-	item_path = /obj/item/clothing/neck/tie/bunnytie/lawyer_good
+	name = "æ­£ä¹‰å¾‹å¸ˆå…”è€³é¢†ç»“"
+	item_path = /obj/item/clothing/neck/bunny/bunnytie/lawyer_good
 
-//ÑàÎ²
-
-/datum/loadout_item/suit/tailcoatgreyscale
-	name = "¿ÉÈ¾É«Ñà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/greyscale
+//ç‡•å°¾ç¤¼æœ
 
 /datum/loadout_item/suit/tailcoatsyndicate
-	name = "Î±ĞÁµÏ¼Ó
+	name = "è¾›è¿ªåŠ ç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/jacket/tailcoat/syndicate
 
-/datum/loadout_item/suit/tailcoatcentcom
-	name = "CentcomÑàÎ²
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/centcom
-	restricted_roles = list(JOB_NT_REP)
-
-/datum/loadout_item/suit/tailcoatbritish
-	name = "Ó¢Ê½Ñà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/british
-
-/datum/loadout_item/suit/tailcoatcommunist
-	name = "ºìÉ«Ñà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/communist
-
-/datum/loadout_item/suit/tailcoatusa
-	name = "ÃÀÊ½Ñà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/usa
-
 /datum/loadout_item/suit/tailcoatplasmaman
-	name = "µÈÀë×ÓÑà
+	name = "ç­‰ç¦»å­ä½“äººç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/jacket/tailcoat/plasmaman
 
-/datum/loadout_item/suit/tailcoatbunnyears_captain
-	name = "½¢³¤Ñà
-	item_path = /obj/item/clothing/suit/armor/vest/capcarapace/tailcoat_captain
-	restricted_roles = list(JOB_CAPTAIN)
-
-/datum/loadout_item/suit/tailcoatquartermaster
-	name = "¾üĞè¹ÙÑà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/quartermaster
-	restricted_roles = list(JOB_QUARTERMASTER)
-
-/datum/loadout_item/suit/tailcoatcargo
-	name = "»õ²ÖÑà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/cargo
-
 /datum/loadout_item/suit/tailcoatminer
-	name = "¿ó¹¤Ñà
+	name = "çŸ¿å·¥ç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/jacket/tailcoat/miner
 
-/datum/loadout_item/suit/tailcoatbitrunner
-	name = "Ç±ÍøÔ±Ñà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/bitrunner
-
-/datum/loadout_item/suit/tailcoatengineer
-	name = "¹¤³ÌÊ¦Ñà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/engineer
-
-/datum/loadout_item/suit/tailcoatatmos_tech
-	name = "´óÆø¼¼ÊõÔ±
-	item_path = /obj/item/clothing/suit/utility/fire/atmos_tech_tailcoat
-
-/datum/loadout_item/suit/tailcoatce
-	name = "¹¤³Ì²¿³¤
-	item_path = /obj/item/clothing/suit/utility/fire/ce_tailcoat
-	restricted_roles = list(JOB_CHIEF_ENGINEER)
-
-/datum/loadout_item/suit/tailcoatdoctor
-	name = "Ò½ÉúÑà
-	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat
-
 /datum/loadout_item/suit/tailcoatparamedic
-	name = "¼±¾ÈÔ±Ñà
+	name = "æ€¥æ•‘å‘˜ç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/paramedic
 
 /datum/loadout_item/suit/tailcoatchemist
-	name = "»¯Ñ§¼ÒÑà
+	name = "è¯å‰‚å¸ˆç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/chemist
 
 /datum/loadout_item/suit/tailcoatpathologist
-	name = "²¡¶¾Ñ§¼Ò
+	name = "ç—…ç†å­¦å®¶ç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/pathologist
 
 /datum/loadout_item/suit/tailcoatcoroner
-	name = "ÑéÊ¬¹ÙÑà
+	name = "éªŒå°¸å®˜ç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/coroner
 
 /datum/loadout_item/suit/tailcoatcmo
-	name = "Ò½ÁÆ²¿³¤
+	name = "åŒ»ç–—ä¸»ç®¡ç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/cmo
 	restricted_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/loadout_item/suit/tailcoatscientist
-	name = "¿ÆÑ§¼ÒÑà
+	name = "ç§‘ç ”å‘˜ç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/science
 
 /datum/loadout_item/suit/tailcoatroboticist
-	name = "»úĞµÑ§¼Ò
+	name = "æœºå™¨äººå­¦å®¶ç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/science/robotics
 
 /datum/loadout_item/suit/tailcoatgeneticist
-	name = "»ùÒòÑ§¼Ò
+	name = "é—ä¼ å­¦å®¶ç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/science/genetics
 
 /datum/loadout_item/suit/tailcoatrd
-	name = "¿ÆÑĞ²¿³¤
+	name = "ç§‘ç ”ä¸»ç®¡ç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/jacket/research_director/tailcoat
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR)
 
-/datum/loadout_item/suit/tailcoatsecurity
-	name = "°²±£Ñà
-	item_path = /obj/item/clothing/suit/armor/security_tailcoat
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/suit/tailcoatsecurity/assistant
-	name = "°²±£ÖúÊÖ
-	item_path = /obj/item/clothing/suit/armor/security_tailcoat/assistant
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/suit/tailcoatwarden
-	name = "µäÓü³¤Ñà
-	item_path = /obj/item/clothing/suit/armor/security_tailcoat/warden
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
 /datum/loadout_item/suit/tailcoatbrig_phys
-	name = "¼àÓüÒ½Ê¦
+	name = "ç¦é—­åŒºåŒ»å¸ˆç‡•å°¾ç¤¼æœ"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/sec
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
 
-/datum/loadout_item/suit/tailcoatdetective
-	name = "ÕìÌ½Ñà
-	item_path =/obj/item/clothing/suit/jacket/det_suit/tailcoat
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/suit/tailcoatdetective/noir
-	name = "ºÚÉ«ÕìÌ½
-	item_path = /obj/item/clothing/suit/jacket/det_suit/tailcoat/noir
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/suit/tailcoathos
-	name = "°²±£²¿³¤
-	item_path = /obj/item/clothing/suit/armor/hos_tailcoat
-	restricted_roles = list(JOB_HEAD_OF_SECURITY)
-
-/datum/loadout_item/suit/tailcoathop
-	name = "ÈËÊÂ²¿³¤
-	item_path = /obj/item/clothing/suit/armor/hop_tailcoat
-	restricted_roles = list(JOB_HEAD_OF_PERSONNEL)
-
-/datum/loadout_item/suit/tailcoatjanitor
-	name = "Çå½à¹¤Ñà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/janitor
-
-/datum/loadout_item/suit/tailcoatbartender
-	name = "¾Æ±£Ñà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/bartender
-
-/datum/loadout_item/suit/tailcoatcook
-	name = "³øÊ¦Ñà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/cook
-
-/datum/loadout_item/suit/tailcoatbotanist
-	name = "Ö²ÎïÑ§¼Ò
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/botanist
-
-/datum/loadout_item/suit/tailcoatclown
-	name = "Ğ¡³óÑà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/clown
-	restricted_roles = list(JOB_CLOWN)
-
-/datum/loadout_item/suit/tailcoatmime
-	name = "Ä¬¾çÑà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/mime
-	restricted_roles = list(JOB_MIME)
-
-/datum/loadout_item/suit/tailcoatchaplain
-	name = "ÄÁÊ¦Ñà
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/chaplain
-
-/datum/loadout_item/suit/tailcoatcurator_red
-	name = "ºìÉ«²ßÕ¹ÈË
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/curator_red
-
-/datum/loadout_item/suit/tailcoatcurator_green
-	name = "ÂÌÉ«²ßÕ¹ÈË
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/curator_green
-
-/datum/loadout_item/suit/tailcoatcurator_teal
-	name = "ÇàÂÌ²ßÕ¹ÈË
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/curator_teal
-
-/datum/loadout_item/suit/tailcoatlawyer_black
-	name = "ºÚÉ«ÂÉÊ¦
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/lawyer_black
-
-/datum/loadout_item/suit/tailcoatlawyer_blue
-	name = "À¶É«ÂÉÊ¦
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/lawyer_blue
-
-/datum/loadout_item/suit/tailcoatlawyer_red
-	name = "ºìÉ«ÂÉÊ¦
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/lawyer_red
-
-/datum/loadout_item/suit/tailcoatlawyer_good
-	name = "ÕıÒåÂÉÊ¦
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/lawyer_good
-
-/datum/loadout_item/suit/tailcoatpsychologist
-	name = "ĞÄÀíÑ§¼Ò
-	item_path = /obj/item/clothing/suit/jacket/tailcoat/psychologist
-
-//½ôÉí
-
-/datum/loadout_item/under/playbunnysuitgreyscale
-	name = "¿ÉÈ¾É«ÍÃÎ²
-	item_path = /obj/item/clothing/under/costume/playbunnysuit/greyscale
+//å…”å¥³éƒç´§èº«è¡£
 
 /datum/loadout_item/under/playbunnysuitsyndicate
-	name = "Î±ĞÁµÏ¼ÓÍÃ
-	item_path = /obj/item/clothing/under/syndicate/syndiplaybunnysuit
-
-/datum/loadout_item/under/playbunnysuitcentcom
-	name = "CentcomÍÃÎ²½ô
-	item_path = /obj/item/clothing/under/costume/playbunnysuit/centcom
-	restricted_roles = list(JOB_NT_REP)
-
-/datum/loadout_item/under/playbunnysuitbritish
-	name = "Ó¢Ê½ÍÃÎ²
-	item_path = /obj/item/clothing/under/costume/playbunnysuit/british
-
-/datum/loadout_item/under/playbunnysuitcommunist
-	name = "ºìÉ«ÍÃÎ²
-	item_path = /obj/item/clothing/under/costume/playbunnysuit/communist
-
-/datum/loadout_item/under/playbunnysuitusa
-	name = "ÃÀÊ½ÍÃÎ²
-	item_path = /obj/item/clothing/under/costume/playbunnysuit/usa
-
-/datum/loadout_item/under/playbunnysuitbunnyears_captain
-	name = "½¢³¤ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/captain/playbunnysuit
-	restricted_roles = list(JOB_CAPTAIN)
-
-/datum/loadout_item/under/playbunnysuitquartermaster
-	name = "¾üĞè¹ÙÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/cargo/quartermaster_playbunnysuit
-	restricted_roles = list(JOB_QUARTERMASTER)
-
-/datum/loadout_item/under/playbunnysuitcargo
-	name = "»õ²ÖÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/cargo/cargo_playbunnysuit
+	name = "è¾›è¿ªåŠ å…”å¥³éƒç´§èº«è¡£"
+	item_path = /obj/item/clothing/under/syndicate/syndibunny
 
 /datum/loadout_item/under/playbunnysuitminer
-	name = "¿ó¹¤ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/cargo/miner/playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitmailman
-	name = "ÓÊ²îÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/cargo/mailman_playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitbitrunner
-	name = "Ç±ÍøÔ±ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/cargo/bitrunner/playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitengineer
-	name = "¹¤³ÌÊ¦ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/engineering/engineer_playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitatmos_tech
-	name = "´óÆø¼¼ÊõÔ±ÍÃ
-	item_path = /obj/item/clothing/under/rank/engineering/atmos_tech_playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitce
-	name = "¹¤³Ì²¿³¤ÍÃ
-	item_path = /obj/item/clothing/under/rank/engineering/chief_engineer/playbunnysuit
-	restricted_roles = list(JOB_CHIEF_ENGINEER)
-
-/datum/loadout_item/under/playbunnysuitdoctor
-	name = "Ò½ÉúÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/medical/doctor_playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitparamedic
-	name = "¼±¾ÈÔ±ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/medical/paramedic_playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitchemist
-	name = "»¯Ñ§¼ÒÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/medical/chemist/playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitpathologist
-	name = "²¡¶¾Ñ§¼ÒÍÃ
-	item_path = /obj/item/clothing/under/rank/medical/pathologist_playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitcoroner
-	name = "ÑéÊ¬¹ÙÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/medical/coroner_playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitcmo
-	name = "Ò½ÁÆ²¿³¤ÍÃ
-	item_path = /obj/item/clothing/under/rank/medical/cmo_playbunnysuit
-	restricted_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
-
-/datum/loadout_item/under/playbunnysuitscientist
-	name = "¿ÆÑ§¼ÒÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/rnd/scientist/playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitroboticist
-	name = "»úĞµÑ§¼ÒÍÃ
-	item_path = /obj/item/clothing/under/rank/rnd/scientist/roboticist_playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitgeneticist
-	name = "»ùÒòÑ§¼ÒÍÃ
-	item_path = /obj/item/clothing/under/rank/rnd/geneticist/playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitrd
-	name = "¿ÆÑĞ²¿³¤ÍÃ
-	item_path = /obj/item/clothing/under/rank/rnd/research_director/playbunnysuit
-	restricted_roles = list(JOB_RESEARCH_DIRECTOR)
-
-/datum/loadout_item/under/playbunnysuitsecurity
-	name = "°²±£ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/security/security_playbunnysuit
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/under/playbunnysuitsecurity/assistant
-	name = "°²±£ÖúÊÖÍÃ
-	item_path = /obj/item/clothing/under/rank/security/security_assistant_playbunnysuit
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/under/playbunnysuitwarden
-	name = "µäÓü³¤ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/security/warden_playbunnysuit
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/under/playbunnysuitbrig_phys
-	name = "¼àÓüÒ½Ê¦ÍÃ
-	item_path = /obj/item/clothing/under/rank/security/brig_phys_playbunnysuit
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/under/playbunnysuitdetective
-	name = "ÕìÌ½ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/security/detective_playbunnysuit
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/under/playbunnysuitdetective/noir
-	name = "ºÚÉ«ÕìÌ½ÍÃ
-	item_path = /obj/item/clothing/under/rank/security/detective_playbunnysuit/noir
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
-
-/datum/loadout_item/under/playbunnysuitprisoner
-	name = "Çô·¸ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/security/prisoner_playbunnysuit
-
-/datum/loadout_item/under/playbunnysuithos
-	name = "°²±£²¿³¤ÍÃ
-	item_path = /obj/item/clothing/under/rank/security/head_of_security/playbunnysuit
-	restricted_roles = list(JOB_HEAD_OF_SECURITY)
-
-/datum/loadout_item/under/playbunnysuithop
-	name = "ÈËÊÂ²¿³¤ÍÃ
-	item_path = /obj/item/clothing/under/rank/civilian/hop_playbunnysuit
-	restricted_roles = list(JOB_HEAD_OF_PERSONNEL)
-
-/datum/loadout_item/under/playbunnysuitjanitor
-	name = "Çå½à¹¤ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/civilian/janitor/playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitbartender
-	name = "¾Æ±£ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/civilian/bartender_playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitcook
-	name = "³øÊ¦ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/civilian/cook_playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitbotanist
-	name = "Ö²ÎïÑ§¼ÒÍÃ
-	item_path = /obj/item/clothing/under/rank/civilian/hydroponics/playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitclown
-	name = "Ğ¡³óÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/civilian/clown/clown_playbunnysuit
-	restricted_roles = list(JOB_CLOWN)
-
-/datum/loadout_item/under/playbunnysuitmime
-	name = "Ä¬¾çÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/civilian/mime_playbunnysuit
-	restricted_roles = list(JOB_MIME)
-
-/datum/loadout_item/under/playbunnysuitchaplain
-	name = "ÄÁÊ¦ÍÃÎ²
-	item_path = /obj/item/clothing/under/rank/civilian/chaplain_playbunnysuit
-
-/datum/loadout_item/under/playbunnysuitcurator_red
-	name = "ºìÉ«²ßÕ¹ÈËÍÃ
-	item_path = /obj/item/clothing/under/rank/civilian/curator_playbunnysuit_red
-
-/datum/loadout_item/under/playbunnysuitcurator_green
-	name = "ÂÌÉ«²ßÕ¹ÈËÍÃ
-	item_path = /obj/item/clothing/under/rank/civilian/curator_playbunnysuit_green
-
-/datum/loadout_item/under/playbunnysuitcurator_teal
-	name = "ÇàÂÌ²ßÕ¹ÈËÍÃ
-	item_path = /obj/item/clothing/under/rank/civilian/curator_playbunnysuit_teal
-
-/datum/loadout_item/under/playbunnysuitlawyer_black
-	name = "ºÚÉ«ÂÉÊ¦ÍÃ
-	item_path = /obj/item/clothing/under/rank/civilian/lawyer_playbunnysuit_black
-
-/datum/loadout_item/under/playbunnysuitlawyer_blue
-	name = "À¶É«ÂÉÊ¦ÍÃ
-	item_path = /obj/item/clothing/under/rank/civilian/lawyer_playbunnysuit_blue
-
-/datum/loadout_item/under/playbunnysuitlawyer_red
-	name = "ºìÉ«ÂÉÊ¦ÍÃ
-	item_path = /obj/item/clothing/under/rank/civilian/lawyer_playbunnysuit_red
-
-/datum/loadout_item/under/playbunnysuitlawyer_good
-	name = "ÕıÒåÂÉÊ¦ÍÃ
-	item_path = /obj/item/clothing/under/rank/civilian/lawyer_playbunnysuit_good
-
-/datum/loadout_item/under/playbunnysuitpsychologist
-	name = "ĞÄÀíÑ§¼ÒÍÃ
-	item_path = /obj/item/clothing/under/rank/civilian/psychologist_playbunnysuit
+	name = "çŸ¿å·¥å…”å¥³éƒç´§èº«è¡£"
+	item_path = /obj/item/clothing/under/rank/cargo/miner/bunnysuit

@@ -22,7 +22,6 @@
 	held_state = "lanhongqiu"
 	melee_damage_lower = 0
 	melee_damage_upper = 0
-	can_be_held = TRUE
 	pass_flags = PASSTABLE
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
@@ -48,6 +47,7 @@
 
 /mob/living/basic/pet/lanhongqiu/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/can_be_held) // 上游 #96917 把 var/can_be_held 重构成 element
 	charge = new charge_type(src)
 	charge.Grant(src)
 

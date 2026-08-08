@@ -463,10 +463,10 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "检查炸弹威力", "See what the effe
 				SSexplosions.medturf += explode
 			if(EXPLODE_LIGHT)
 				SSexplosions.lowturf += explode
-		//NOVA EDIT ADDITION
+		/*//NOVA EDIT ADDITION
 		for(var/obj/machinery/light/iterating_light in explode)
 			iterating_light.start_flickering()
-		//NOVA EDIT END
+		*///NOVA EDIT END
 
 		if(prob(40) && dist < flame_range && !isspaceturf(explode) && !explode.density)
 			flameturf += explode

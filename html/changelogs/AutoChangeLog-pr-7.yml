@@ -1,0 +1,5 @@
+author: "araeotu"
+delete-after: True
+changes:
+  - rscadd: "circuit_drone now can change icon by attack in secondary hand"
+  - rscadd: "4 new plushes"

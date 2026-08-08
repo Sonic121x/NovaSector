@@ -30,7 +30,7 @@
     if(!mod?.wearer)
         return
 
-    if(mod.wearer.stat >= UNCONSCIOUS)
+    if(IS_UNCONSCIOUS_OR_CRIT(mod.wearer))
         to_chat(mod.wearer, span_warning("护盾结构不稳定！"))
         return FALSE
 
@@ -45,7 +45,7 @@
 
     RegisterSignal(mod.wearer, COMSIG_MOVABLE_MOVED, .proc/update_shields_position)
     RegisterSignal(mod.wearer, COMSIG_ATOM_DIR_CHANGE, .proc/on_wearer_dir_change)
-    RegisterSignal(mod.wearer, COMSIG_MOB_STATCHANGE, .proc/on_wearer_stat_change)
+    RegisterSignals(mod.wearer, list(COMSIG_MOB_STATCHANGE, SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT)), PROC_REF(on_wearer_stat_change))
 
     shield_regen_timer = addtimer(CALLBACK(src, .proc/shield_regen_tick), 5 SECONDS, TIMER_LOOP | TIMER_STOPPABLE)
 
@@ -59,7 +59,8 @@
     UnregisterSignal(mod.wearer, list(
         COMSIG_MOVABLE_MOVED,
         COMSIG_ATOM_DIR_CHANGE,
-        COMSIG_MOB_STATCHANGE
+		COMSIG_MOB_STATCHANGE,
+		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT)
     ))
 
     if(shield_regen_timer)
@@ -87,8 +88,9 @@
         var/time_left = timeleft(cooldown_timer)
         . += "[DisplayTimeText(time_left, 1)] 冷却时间"
 
-/obj/item/mod/module/blue_shield/proc/on_wearer_stat_change(mob/living/carbon/human/source, new_stat, old_stat)
-    if(new_stat >= UNCONSCIOUS && active)
+/obj/item/mod/module/blue_shield/proc/on_wearer_stat_change(mob/living/carbon/human/source)
+    SIGNAL_HANDLER
+    if(IS_UNCONSCIOUS_OR_CRIT(source) && active)
         to_chat(source, span_danger("护盾结构失稳！"))
         on_deactivation()
 

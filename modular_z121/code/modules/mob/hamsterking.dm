@@ -5,7 +5,6 @@
 	icon_state = "hamsterking_crown"
 	icon_living = "hamsterking_crown"
 	icon_dead = "hamsterking_dead"
-	can_be_held = FALSE
 	butcher_results = list(/obj/item/food/meat/slab/mouse = 2, /obj/item/clothing/head/costume/crown = 1)
 	obj_damage = 0
 	melee_damage_lower = 10

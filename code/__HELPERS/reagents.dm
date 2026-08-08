@@ -188,8 +188,8 @@
 		var/datum/reagent/R = GLOB.chemical_reagents_list[X]
 		// NOVA EDIT CHANGE - I18N - match the compile-time english name (runtime R.name may be locale-translated) - ORIGINAL: if(ckey(chem_name) == ckey(LOWER_TEXT(R.name)))
 		var/english_name = LOWER_TEXT(initial(R.name))
-		// exact full-string match first: reagents can have non-ascii names (downstream modules sometimes hardcode
-		// CJK names like "奶茶") that ckey() collapses to "" — matching them only by exact name keeps them findable.
+		// exact full-string match first: reagents can have non-ascii names (modular_z121 hardcodes CJK names like
+		// "奶茶") that ckey() collapses to "" — matching them only by exact name keeps them findable.
 		if(LOWER_TEXT(chem_name) == english_name || LOWER_TEXT(canonical_name) == english_name)
 			return X
 		// ckey (case/punctuation-insensitive) fallback, but skip empty keys: a CJK-only name ckeys to "" and would

@@ -394,7 +394,6 @@
 
 	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
-	slot_flags = ITEM_SLOT_BACK
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/aa12
 	spawnwithmagazine = TRUE
@@ -403,9 +402,6 @@
 	fire_delay = 0.5 SECONDS
 	actions_types = list()
 	spread = 0
-
-	//  0.75x 伤害修正
-	projectile_damage_multiplier = 0.75
 
 	//  开膛待击
 	bolt_type = BOLT_TYPE_OPEN
@@ -416,7 +412,7 @@
 
 /obj/item/ammo_box/magazine/aa12
 	name = "AA12 弹匣"
-	desc = "可容纳5发霰弹的弹匣，它看上去有点大"
+	desc = "可容纳8发霰弹的弹匣，它看上去有点大"
 
 	icon = 'modular_z121/icons/obj/guns/weapon_addtion/ammo.dmi'
 	icon_state = "aa12_standard"
@@ -427,7 +423,7 @@
 
 	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
 	caliber = CALIBER_SHOTGUN
-	max_ammo = 5
+	max_ammo = 8
 
 /obj/item/ammo_box/magazine/aa12/starts_empty
 	start_empty = TRUE

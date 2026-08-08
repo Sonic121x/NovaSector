@@ -9,20 +9,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/costume/playbunnysuit/greyscale
-	name = "bunny suit"
-	desc = "The staple of any bunny themed waiters and the like. It has a little cottonball tail too."
-	icon = 'modular_z121/icons/obj/clothing/bunny/under/bunnycostume.dmi'
-	worn_icon = 'modular_z121/icons/mob/clothing/bunny/under/bunnycostume.dmi'
-	worn_icon_digi = 'modular_z121/icons/mob/clothing/bunny/under/bunnycostume_digi.dmi'
-	icon_state = "playbunny"
-	greyscale_colors = "#39393f"
-	greyscale_config = /datum/greyscale_config/bunnysuit
-	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
-	greyscale_config_worn_digi = /datum/greyscale_config/bunnysuit_worn/digi
-	flags_1 = IS_PLAYER_COLORABLE_1
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/syndicate/syndibunny //heh
 	name = "blood-red bunny suit"

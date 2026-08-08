@@ -1,3 +1,6 @@
+#define SPECIES_MOORMAN "moorman"
+
+
 /datum/species/moorman
 	name = "\improper Moorman"
 	id = SPECIES_MOORMAN
@@ -77,7 +80,8 @@
 	if(drunk_oxygen >= drunk_oxygen_max)
 		breather.Unconscious(10 SECONDS)
 		if(drunk_oxygen > drunk_oxygen_max)
-			var/ratio = (breath.gases[/datum/gas/oxygen][MOLES] / safe_oxygen_max) * 10
+			// 上游把 gas_mixture 的 gases[type][MOLES] 重构成 moles[type]
+			var/ratio = ((breath.moles[/datum/gas/oxygen] || 0) / safe_oxygen_max) * 10
 			breather.apply_damage(clamp(ratio, oxy_breath_dam_min, oxy_breath_dam_max), oxy_damage_type, spread_damage = TRUE)
 
 	else

@@ -1,0 +1,6 @@
+author: "WitherVictor"
+delete-after: True
+changes:
+  - rscadd: "包子和饺子现在合成是生的，需要后续加工。"
+  - rscadd: "生包子可以被烘焙箱蒸熟，饺子可以被汤锅加水煮熟。"
+  - rscadd: "生包子可以煎熟成生煎包，煮熟的饺子可以被煎成煎饺。"

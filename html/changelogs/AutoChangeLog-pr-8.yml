@@ -1,0 +1,7 @@
+author: "WitherVictor"
+delete-after: True
+changes:
+  - rscadd: "添加了武器十字弩"
+  - rscadd: "添加了十字弩弹药：钢制弩箭"
+  - image: "添加了十字弩的物品，手持，背挂贴图"
+  - image: "添加了钢制弩箭的物品和弹射物贴图"

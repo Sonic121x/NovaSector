@@ -1,12 +1,11 @@
 /mob/living/basic/pet/yuusatsuki
 	name = "yuusatsuki"
-	desc = "¿É°®Ğ¡¼¦,ËıÉíÉÏ´©×ÅµÄÒÂ·şËÆºõÊÇÁÙÊ±¸ÄºÏÉíµÄ"
+	desc = "ï¿½É°ï¿½Ğ¡ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½Åµï¿½ï¿½Â·ï¿½ï¿½Æºï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Äºï¿½ï¿½ï¿½ï¿½ï¿½"
 	gender = FEMALE
 	icon = 'modular_z121/icons/mob/pets.dmi'
 	icon_state = "yuusatsuki_jumpsuit"
 	icon_living = "yuusatsuki_jumpsuit"
 	icon_dead = "yuusatsuki_dead"
-	can_be_held = FALSE
 	see_in_dark = 6
 	pass_flags = PASSTABLE
 	mob_size = MOB_SIZE_SMALL
