@@ -159,5 +159,8 @@
 	"shuttle": "穿梭机",
 	"connectable": "可连接",
 	"atmospheric-thermal": "大气热成像",
-	"area-blueprints": "区域蓝图"
+	"area-blueprints": "区域蓝图",
+	"smell": "气味",
+	"odour": "异味",
+	"fragrance": "香气"
 }

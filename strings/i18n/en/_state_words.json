@@ -20,5 +20,8 @@
   "shuttle": "shuttle",
   "connectable": "connectable",
   "atmospheric-thermal": "atmospheric-thermal",
-  "area-blueprints": "area-blueprints"
+  "area-blueprints": "area-blueprints",
+  "smell": "smell",
+  "odour": "odour",
+  "fragrance": "fragrance"
 }

@@ -43,6 +43,9 @@ const SINK_VARS: &[&str] = &[
     // 其它可靠的玩家可见显示字段（type 变量；非 desc 的别名 / 专有显示串）。
     "description",      // /datum/reagent 等用 description（非 desc）——之前完全漏抽。
     "taste_description", // 试剂味道（"It tastes of …"）。
+    // 污染物气味（Nova pollution 模块）："空气里飘着淡淡的 [scent]" 那句的插值值。纯显示，
+    // 与 taste_description 同类。descriptor 那一侧是 #define 常量、走 _state_words。
+    "scent",
     "display_name",     // 机器/发射台等的展示名。
     "wiki_desc",        // wiki 界面描述。
     "war_declaration",  // 核弹战争宣言（全员公告）。
