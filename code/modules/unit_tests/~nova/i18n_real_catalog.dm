@@ -47,5 +47,7 @@
 	TEST_ASSERT_NOTEQUAL(lang_slime_colour("purple"), "purple", "史莱姆颜色应经域内表翻译")
 	TEST_ASSERT_EQUAL(lang_reverse_text("purple"), "purple", "史莱姆颜色**不应**进全局反查表（会误伤 icon_state/switch）")
 	TEST_ASSERT_NOTEQUAL(lang_alarm_type("Power"), "Power", "警报类别应经域内表翻译")
+	TEST_ASSERT_NOTEQUAL(lang_wire_colour("crimson"), "crimson", "线缆颜色应经域内表翻译")
+	TEST_ASSERT_EQUAL(lang_reverse_text("crimson"), "crimson", "线缆颜色**不应**进全局反查表（同时是 CSS 颜色名与 act 标识符）")
 
 	GLOB.i18n_server_locale = saved_locale

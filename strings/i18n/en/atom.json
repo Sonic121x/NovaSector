@@ -23,6 +23,7 @@
   "atom.058b487e": "Health Level",
   "atom.05e3026f": "rest",
   "atom.06abdc5b": "The nose always knows.",
+  "atom.07017f27": "<br><font size=3><b>Current Bloodthirst: {0}</b></font><br>Becomes undroppable at <b>{1}</b><br>Will consume you at <b>{2}</b>",
   "atom.073c0960": "Attempt to place your blob core at this location.",
   "atom.075e719d": "Selected Item",
   "atom.07b0a06d": "Start Now (LOCALHOST ONLY)",

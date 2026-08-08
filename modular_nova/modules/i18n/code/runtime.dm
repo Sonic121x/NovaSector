@@ -372,6 +372,17 @@ GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 	var/list/table = lang_scoped_table("slime_colours.json")
 	return table[colour] || colour
 
+/// 线缆颜色的显示译名。颜色值同时是 act 回传标识符（`wire.color`）与 CSS 颜色名
+/// （前端 `labelColor={shownColor.replace(' ','')}`），所以值本身必须留英文；
+/// ui_data 里另发一个 shownColorLabel 供前端当 label 用。
+/// **不能**图省事塞进 tgui.json：那份也被 build_i18n_cache 读进全局反查表，
+/// blue/purple/gold 进去就毒化整个 DM 侧（i18n_real_catalog 抓到过一次）。
+/proc/lang_wire_colour(colour)
+	if(!istext(colour))
+		return colour
+	var/list/table = lang_scoped_table("wire_colours.json")
+	return table[colour] || colour
+
 /// 警报类别（ALARM_* 的值）的显示译名。这些值是 `alarm_types_show/clear` 的 assoc **键**，
 /// 且是 Fire/Power/Camera/Motion 这种通用单词，同样不能进反查表。
 /proc/lang_alarm_type(alarm_type)

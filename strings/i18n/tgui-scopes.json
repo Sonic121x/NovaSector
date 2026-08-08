@@ -230,6 +230,9 @@
   "2 to 1": [
     "tgui:Board"
   ],
+  "4-Way Manifold": [
+    "dm:labels"
+  ],
   "5 Food -> 5 Fuel": [
     "tgui:OrionGame"
   ],
@@ -3188,6 +3191,12 @@
   "Bimbofication": [
     "tgui:erp_preferences"
   ],
+  "Bin": [
+    "dm:labels"
+  ],
+  "Binary": [
+    "dm:labels"
+  ],
   "Binder": [
     "dm:labels"
   ],
@@ -4028,6 +4037,9 @@
     "dm:labels"
   ],
   "Bridge Officer": [
+    "dm:labels"
+  ],
+  "Bridge Pipe": [
     "dm:labels"
   ],
   "Brief outfit": [
@@ -5903,6 +5915,9 @@
   "Chunky Twin Buns": [
     "dm:labels"
   ],
+  "Chute": [
+    "dm:labels"
+  ],
   "Cigar": [
     "dm:labels"
   ],
@@ -6431,6 +6446,9 @@
     "tgui:RapidPipeDispenser",
     "tgui:cosglow"
   ],
+  "Color Adapter": [
+    "dm:labels"
+  ],
   "Color Blindness Testing": [
     "tgui:ColorBlindTester"
   ],
@@ -6765,6 +6783,9 @@
   ],
   "Connectivity to this web is maintained by the following servers...": [
     "tgui:ExperimentConfigure"
+  ],
+  "Connector": [
+    "dm:labels"
   ],
   "Connects to the server": [
     "tgui:MessageMonitor"
@@ -7554,6 +7575,9 @@
     "dm:labels"
   ],
   "Curved Rabbit Ears (Large)": [
+    "dm:labels"
+  ],
+  "Curved Tube": [
     "dm:labels"
   ],
   "Custodial Locator": [
@@ -8608,6 +8632,9 @@
   "Device Tools": [
     "dm:labels"
   ],
+  "Devices": [
+    "dm:labels"
+  ],
   "Devil Lock": [
     "dm:labels"
   ],
@@ -8648,6 +8675,12 @@
   "Diagonal Bangs Alt": [
     "dm:labels"
   ],
+  "Diagonal Tube": [
+    "dm:labels"
+  ],
+  "Diagonal Tube with Crossing": [
+    "dm:labels"
+  ],
   "Dialing...": [
     "tgui:Holopad"
   ],
@@ -8673,6 +8706,9 @@
     "dm:labels"
   ],
   "Digital Magnification Optics (x3)": [
+    "dm:labels"
+  ],
+  "Digital Valve": [
     "dm:labels"
   ],
   "Digitigrade": [
@@ -8915,6 +8951,9 @@
   "Disposal Controls": [
     "tgui:PortableChemMixer"
   ],
+  "Disposal Pipes": [
+    "dm:labels"
+  ],
   "Disposals Delivery System": [
     "tgui:CargoHelp"
   ],
@@ -9069,6 +9108,9 @@
     "dm:labels"
   ],
   "Double Skirt Dress": [
+    "dm:labels"
+  ],
+  "Down Turn": [
     "dm:labels"
   ],
   "Download": [
@@ -12072,6 +12114,7 @@
     "dm:labels"
   ],
   "Gas Filter": [
+    "dm:labels",
     "tgui:AtmosFilter"
   ],
   "Gas Input": [
@@ -12092,8 +12135,14 @@
   "Gas Mask - Glass": [
     "dm:labels"
   ],
+  "Gas Mixer": [
+    "dm:labels"
+  ],
   "Gas Monitoring": [
     "tgui:Temperatures"
+  ],
+  "Gas Pump": [
+    "dm:labels"
   ],
   "Gas Reactions": [
     "tgui:GasmixParser"
@@ -13259,6 +13308,12 @@
   "Heat Adaptation": [
     "dm:labels"
   ],
+  "Heat Exchange": [
+    "dm:labels"
+  ],
+  "Heat Exchanger": [
+    "dm:labels"
+  ],
   "Heat Glasses": [
     "dm:labels"
   ],
@@ -14422,6 +14477,7 @@
     "tgui:IVDrip"
   ],
   "Injector": [
+    "dm:labels",
     "tgui:BorerChem"
   ],
   "Injector on cooldown ({0}s)": [
@@ -15119,6 +15175,9 @@
   "Jumpsuit - Random": [
     "dm:labels"
   ],
+  "Junction": [
+    "dm:labels"
+  ],
   "Jungle": [
     "dm:labels"
   ],
@@ -15663,6 +15722,9 @@
   "Layer": [
     "tgui:RapidPipeDispenser",
     "tgui:RapidPlumbingDevice"
+  ],
+  "Layer Adapter": [
+    "dm:labels"
   ],
   "Layer Mode": [
     "tgui:NovaTumsPrefs"
@@ -16954,6 +17016,9 @@
   "Mandibles (Top)": [
     "dm:labels"
   ],
+  "Manifold": [
+    "dm:labels"
+  ],
   "Manipulator Interface": [
     "tgui:index"
   ],
@@ -16994,6 +17059,9 @@
   ],
   "Manual Control": [
     "tgui:PortableTurret"
+  ],
+  "Manual Valve": [
+    "dm:labels"
   ],
   "Manual control - unlocks the layering options.": [
     "tgui:GenitalLayeringTab"
@@ -17558,6 +17626,9 @@
     "tgui:ReagentLookup"
   ],
   "Metallic-Hydrogen Robes": [
+    "dm:labels"
+  ],
+  "Meter": [
     "dm:labels"
   ],
   "Mexican": [
@@ -18300,6 +18371,9 @@
   ],
   "Multi": [
     "tgui:RapidPipeDispenser"
+  ],
+  "Multi-Deck Adapter": [
+    "dm:labels"
   ],
   "Multi-Z Depth": [
     "tgui:multiz_performance"
@@ -20879,6 +20953,9 @@
   "Outfit Manager": [
     "tgui:OutfitManager"
   ],
+  "Outlet": [
+    "dm:labels"
+  ],
   "Output": [
     "tgui:ManufacturingSorter",
     "tgui:PortableGenerator",
@@ -21401,6 +21478,12 @@
   ],
   "Parts not connected, close all mantainence panels/use a multitool on the rotor before trying again": [
     "tgui:TurbineComputer"
+  ],
+  "Passive Gate": [
+    "dm:labels"
+  ],
+  "Passive Vent": [
+    "dm:labels"
   ],
   "Passive: {0}": [
     "tgui:AntagInfoHeretic"
@@ -21957,6 +22040,9 @@
   ],
   "Pipenet Port": [
     "tgui:ModulesPane"
+  ],
+  "Pipes": [
+    "dm:labels"
   ],
   "Pirate Bandana": [
     "dm:labels"
@@ -22709,6 +22795,9 @@
   "Pressure Regulator": [
     "tgui:AtmosControls",
     "tgui:Tank"
+  ],
+  "Pressure Valve": [
+    "dm:labels"
   ],
   "Pressures above 4500 kPa begin to increasingly slow down the reaction, with the slowest speed by 18,000 kPa. Safety systems will trigger at pressures exceeding 9000 kPa.": [
     "tgui:RBMK2"
@@ -25098,6 +25187,9 @@
   "Rotation Angle": [
     "tgui:AdminFax"
   ],
+  "Rotator": [
+    "dm:labels"
+  ],
   "Round": [
     "dm:labels"
   ],
@@ -25726,6 +25818,9 @@
     "tgui:LawRack"
   ],
   "Scroll": [
+    "dm:labels"
+  ],
+  "Scrubber": [
     "dm:labels"
   ],
   "Scrubber Controls": [
@@ -27975,6 +28070,9 @@
   "Song Player": [
     "tgui:Jukebox"
   ],
+  "Sort Junction": [
+    "dm:labels"
+  ],
   "Sort by:": [
     "tgui:ApcControl",
     "tgui:PowerMonitor"
@@ -28490,6 +28588,9 @@
   "Station Engineer": [
     "dm:labels"
   ],
+  "Station Equipment": [
+    "dm:labels"
+  ],
   "Station Intelligence": [
     "dm:labels"
   ],
@@ -28767,6 +28868,12 @@
     "dm:labels"
   ],
   "Straight Tail": [
+    "dm:labels"
+  ],
+  "Straight Tube": [
+    "dm:labels"
+  ],
+  "Straight Tube with Crossing": [
     "dm:labels"
   ],
   "Straight Tuux": [
@@ -29940,11 +30047,17 @@
     "tgui:Supermatter",
     "tgui:ThermoMachine"
   ],
+  "Temperature Gate": [
+    "dm:labels"
+  ],
   "Temperature Inlet: {0} K / Outlet:{1}{2} K": [
     "tgui:ThermoElectricGenerator"
   ],
   "Temperature Limit": [
     "tgui:Supermatter"
+  ],
+  "Temperature Pump": [
+    "dm:labels"
   ],
   "Template Sizes": [
     "tgui:NanopaintNewDialog"
@@ -30014,6 +30127,12 @@
   ],
   "Terminate Employment": [
     "tgui:NtosCard"
+  ],
+  "Terminus Tube Dispenser Station": [
+    "dm:labels"
+  ],
+  "Terminus Tube Station": [
+    "dm:labels"
   ],
   "Terran": [
     "dm:labels"
@@ -30934,6 +31053,12 @@
   "Thresholds": [
     "tgui:Symptom"
   ],
+  "Through Tube Dispenser Station": [
+    "dm:labels"
+  ],
+  "Through Tube Station": [
+    "dm:labels"
+  ],
   "Throw Range": [
     "tgui:index"
   ],
@@ -31696,6 +31821,12 @@
   "Transhumanist": [
     "dm:labels"
   ],
+  "Transit Tube Pod": [
+    "dm:labels"
+  ],
+  "Transit Tubes": [
+    "dm:labels"
+  ],
   "Translate": [
     "tgui:MatrixMathTester"
   ],
@@ -31894,6 +32025,9 @@
     "tgui:SoulcatcherUser",
     "tgui:Telecomms"
   ],
+  "Trunk": [
+    "dm:labels"
+  ],
   "Trying to click the sword again? It's still the sword.": [
     "tgui:NtosCursor"
   ],
@@ -32048,6 +32182,9 @@
   ],
   "Unable to trace most recent shuttle/recall signal.": [
     "tgui:Main"
+  ],
+  "Unary Vent": [
+    "dm:labels"
   ],
   "Unassigned Crewmember": [
     "dm:labels"
@@ -32336,6 +32473,9 @@
   ],
   "Unvote for CTF": [
     "tgui:CTFPanel"
+  ],
+  "Up Turn": [
+    "dm:labels"
   ],
   "Update List": [
     "tgui:CivCargoHoldTerminal"
@@ -33037,6 +33177,9 @@
   ],
   "Volume Mulx": [
     "tgui:ChemRecipeDebug"
+  ],
+  "Volume Pump": [
+    "dm:labels"
   ],
   "Volume of admin musics.": [
     "tgui:sounds"
@@ -34268,6 +34411,9 @@
   "Y Offset": [
     "tgui:NtosFileManager"
   ],
+  "Y-Junction": [
+    "dm:labels"
+  ],
   "YLD": [
     "tgui:SeedTable"
   ],
@@ -34963,6 +35109,9 @@
   "at": [
     "tgui:index"
   ],
+  "atmos_pipe_recipes": [
+    "dm:labels"
+  ],
   "avian tongue": [
     "dm:labels"
   ],
@@ -35119,6 +35268,9 @@
     "tgui:AppearanceInfo"
   ],
   "disability card": [
+    "dm:labels"
+  ],
+  "disposal_pipe_recipes": [
     "dm:labels"
   ],
   "distort": [
@@ -35649,6 +35801,9 @@
   ],
   "transform": [
     "tgui:AppearanceInfo"
+  ],
+  "transit_tube_recipes": [
+    "dm:labels"
   ],
   "transmutation rune": [
     "tgui:AntagInfoHeretic"

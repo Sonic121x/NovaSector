@@ -47,6 +47,9 @@ const SINK_VARS: &[&str] = &[
     // agent（"advance microbes"，病毒学面板的病原体名）。全仓无 `== ` 比较，翻显示安全。
     "agent",
     "form",
+    // 实验扫描仪的进度行覆盖文案（/datum/experiment/scanning 的 scan_message）：纯显示，
+    // 经 TGUI 负载下发，由边界模板引擎落地。
+    "scan_message",
     // 污染物气味（Nova pollution 模块）："空气里飘着淡淡的 [scent]" 那句的插值值。纯显示，
     // 与 taste_description 同类。descriptor 那一侧是 #define 常量、走 _state_words。
     "scent",
@@ -183,6 +186,13 @@ pub fn is_examine_proc(proc_name: &str) -> bool {
 /// 比按变量名穷举稳。
 pub fn is_display_descriptor_proc(proc_name: &str) -> bool {
     matches!(proc_name, "get_descriptor" | "get_tooltip")
+}
+
+/// 玩家可见的「显示字段」名：这些字段在 proc 里被 `+=` 追加时，追加内容一定是给玩家看的
+/// （desc 补充说明、幽灵角色入场文字的分支段落…），不受整句闸的首字母大写要求限制。
+/// `name` 不在其中——它常被 `if(name == "…")` 比较。
+pub fn is_display_accumulator_var(id: &str) -> bool {
+    matches!(id, "desc" | "description" | "flavour_text" | "flavor_text")
 }
 
 pub fn is_examine_accumulator(id: &str) -> bool {
@@ -1511,7 +1521,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                 if let Expression::Base { term: _, follow } = lhs.as_ref() {
                     if let Some(last) = follow.last() {
                         if let Follow::Field(_, field) = &last.elem {
-                            if field.as_str() == "desc" || field.as_str() == "description" {
+                            if is_display_accumulator_var(field.as_str()) {
                                 if let Some(template) = build_template(rhs) {
                                     emit(catalog, ns, &template);
                                 }
@@ -1531,6 +1541,15 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                                     if let Some(t) = build_template(part) {
                                         emit(catalog, ns, &t);
                                     }
+                                }
+                            }
+                            // SINK_VARS 里的**显示字段**在 proc 里 `+=` 追加：整句闸（要求首字母大写）
+                            // 会把「续写句」全挡掉——幽灵角色入场文字就是 `flavour_text += "you're an
+                            // exile from…"`，是完整句子却以小写开头，四个变体一条都没进目录，玩家看到
+                            // 的是「译好的基础段 + 整段英文」。这些字段本就是玩家可见的，无条件抽。
+                            if is_display_accumulator_var(id) {
+                                if let Some(template) = build_template(rhs) {
+                                    emit(catalog, ns, &template);
                                 }
                             }
                             if let Some(template) = build_template(rhs) {

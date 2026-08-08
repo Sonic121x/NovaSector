@@ -17,7 +17,7 @@ use anyhow::{Context as _, Result};
 use std::collections::BTreeSet;
 use std::path::Path;
 
-use dm::ast::{Expression, Spanned, Statement, Term};
+use dm::ast::{Expression, Follow, Spanned, Statement, Term};
 
 use crate::template::build_template;
 
@@ -60,6 +60,19 @@ const FILE_FLAT_DIRS: &[&str] = &["alternative_job_titles"];
 /// 形态：(proc 名后缀去掉 "InitGlobal" = 全局名, 抽取模式)。
 const GLOBAL_INIT_ASSOC_VALUES: &[&str] = &["skin_tone_names"];
 const GLOBAL_INIT_ASSOC_KEYS: &[&str] = &["food_ic_flag_to_bitflag"];
+
+/// GLOBAL_LIST_INIT(X, …) 里**所有**字符串字面量都是显示名的全局表。
+/// 管道分发器的三张配方表就是这形态：assoc 键是分类名（"Pipes"/"Binary"/"Devices"），值是
+/// `new /datum/pipe_info/pipe("Gas Filter", /obj/…, TRUE)` —— 名字是**构造实参**，既不是 var
+/// 初值也不是 assoc 值，前面几条规则一条都够不着。表里除了名字与分类名没有别的字符串
+/// （其余实参是类型路径与布尔），整表全收是安全的。
+/// cat_name 在前端既显示又当标识符（`ICON_BY_CATEGORY_NAME[cat_name]`、act 的 category 实参），
+/// 所以走「进前端目录、TS 只翻显示」这条路，绝不能让 P1 改负载。
+const GLOBAL_INIT_ALL_STRINGS: &[&str] = &[
+    "atmos_pipe_recipes",
+    "disposal_pipe_recipes",
+    "transit_tube_recipes",
+];
 
 /// 从一个「选项 list」表达式抽 choiced **显示**串：flat 元素 → 元素本身 + capitalizeFirst（前端
 /// dropdowns.tsx 用 `capitalizeFirst(choice)` 作显示与查表键，故小写值 "male" 的查表键是 "Male"）；
@@ -301,6 +314,8 @@ pub fn run(dme: &Path, out: &Path) -> Result<()> {
                             collect_global_init(block, &mut labels, collect_assoc_values);
                         } else if GLOBAL_INIT_ASSOC_KEYS.contains(&global) {
                             collect_global_init(block, &mut labels, collect_assoc_keys);
+                        } else if GLOBAL_INIT_ALL_STRINGS.contains(&global) {
+                            collect_global_init(block, &mut labels, collect_all_strings);
                         }
                     }
                 }
@@ -321,6 +336,57 @@ pub fn run(dme: &Path, out: &Path) -> Result<()> {
         .with_context(|| format!("写 labels JSON 失败：{}", out.display()))?;
     eprintln!("抽取 {} 条 DM 显示标签 → {}", labels.len(), out.display());
     Ok(())
+}
+
+/// 收表达式子树里**所有**字符串字面量（含 `new /path("显示名", …)` 的构造实参）。
+/// 仅供 GLOBAL_INIT_ALL_STRINGS 登记过的表使用——对任意表放开会把类型路径旁的标识符一起吞进来。
+fn collect_all_strings(expr: &Expression, out: &mut BTreeSet<String>) {
+    match expr {
+        Expression::Base { term, follow } => {
+            match &term.elem {
+                Term::String(s) => add_label(s, out),
+                Term::Expr(inner) => collect_all_strings(inner, out),
+                Term::List(args) => {
+                    for a in args.iter() {
+                        collect_all_strings(a, out);
+                    }
+                }
+                Term::Call(_, args) => {
+                    for a in args.iter() {
+                        collect_all_strings(a, out);
+                    }
+                }
+                // `new /datum/pipe_info/pipe("Gas Filter", …)`：显示名是构造实参。
+                Term::NewPrefab { args, .. } | Term::NewImplicit { args, .. } => {
+                    if let Some(args) = args {
+                        for a in args.iter() {
+                            collect_all_strings(a, out);
+                        }
+                    }
+                }
+                _ => {}
+            }
+            for f in follow.iter() {
+                if let Follow::Call(_, _, args) = &f.elem {
+                    for a in args.iter() {
+                        collect_all_strings(a, out);
+                    }
+                }
+            }
+        }
+        Expression::AssignOp { lhs, rhs, .. } => {
+            collect_all_strings(lhs, out);
+            collect_all_strings(rhs, out);
+        }
+        Expression::BinaryOp { lhs, rhs, .. } => {
+            collect_all_strings(lhs, out);
+            collect_all_strings(rhs, out);
+        }
+        Expression::TernaryOp { if_, else_, .. } => {
+            collect_all_strings(if_, out);
+            collect_all_strings(else_, out);
+        }
+    }
 }
 
 /// 从 InitGlobal<X> proc 体抽全局 list：对体内每个 `<var> = <list>` 赋值的 RHS 应用 extractor

@@ -1,0 +1,24 @@
+{
+	"_comment": "线缆颜色（/datum/wires/default_possible_colors 的键与灰度别名）的显示译名。顶层放置=不被 build_i18n_cache 合并进全局反查表——blue/purple/gold 这类单词进反查表会毒化整个 DM 侧（史莱姆 icon_state、各种 switch）。**也不能**进 tgui.json：那份同样被 build_i18n_cache 读进反查表（i18n_real_catalog 当场抓到过一次）。由 lang_wire_colour() 在 ui_data 里生成一个**单独的显示字段** shownColorLabel，前端用它作 label，而 shownColor 继续当 CSS 颜色名、wire.color 继续当 act 回传值。",
+	"zh-Hans": {
+		"blue": "蓝色",
+		"brown": "棕色",
+		"crimson": "绯红",
+		"cyan": "青色",
+		"gold": "金色",
+		"green": "绿色",
+		"grey": "灰色",
+		"lime": "青柠色",
+		"magenta": "品红",
+		"orange": "橙色",
+		"pink": "粉色",
+		"purple": "紫色",
+		"red": "红色",
+		"silver": "银色",
+		"violet": "紫罗兰色",
+		"white": "白色",
+		"yellow": "黄色",
+		"dim grey": "暗灰",
+		"light grey": "浅灰"
+	}
+}
