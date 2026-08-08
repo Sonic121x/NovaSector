@@ -1469,6 +1469,23 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
             // 等，self-examine、descriptor 等）仅抽「静态句子型」串供聊天 AC 兜底——span 是宏、AST 判不出
             // 包裹，故用内容启发式；插值模板(含 {0})排除（那需 LANG 改写）。
             if matches!(op, AssignOp::AddAssign) {
+                // 运行期往**别的对象**的显示字段上追加的后缀：`new_bounty.description += "…high
+                // priority…"`、器官手术 desc 的「每个器官只能做一次」等。追加发生在 proc 里、目标是
+                // `X.desc` 而不是裸标识符，上面那套累加器规则（只认 `Term::Ident` + 空 follow）看不到，
+                // 于是后缀整类没进目录：基础句译好了，拼上后缀之后**整串不再是目录键**，精确反查连
+                // 基础句一起 miss → 玩家看到整条英文（三条高优先赏金即此）。
+                // 只收 desc/description 这种纯显示字段；`name` 常被 `if(name == "…")` 比较，不能碰。
+                if let Expression::Base { term: _, follow } = lhs.as_ref() {
+                    if let Some(last) = follow.last() {
+                        if let Follow::Field(_, field) = &last.elem {
+                            if field.as_str() == "desc" || field.as_str() == "description" {
+                                if let Some(template) = build_template(rhs) {
+                                    emit(catalog, ns, &template);
+                                }
+                            }
+                        }
+                    }
+                }
                 if let Expression::Base { term, follow } = lhs.as_ref() {
                     if follow.is_empty() {
                         if let Term::Ident(id) = &term.elem {

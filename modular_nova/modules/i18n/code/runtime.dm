@@ -587,6 +587,9 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 /// 故在**使用点**（如手术计算机）用 lang_reverse_suffixed 拆开 base + 后缀分别精确反查（避免 AC 蚕食）。
 GLOBAL_LIST_INIT(i18n_appended_suffixes, list(
 	"This procedure can only be performed once per organ.",
+	// 高优先级赏金说明：`update_global_bounty_list()` 在 description 后面追加。三条被上报的
+	// 高优先级赏金整条显英文就是它拖的——基础句本身早就译好了。
+	"</br>This bounty is marked as <b>high priority</b>, and will reward <b>1.5x</b> the normal payout!",
 ))
 
 /// 反查「base + 已知追加后缀」型字符串：先整串精确（rnd_desc 等无后缀的直接命中）；miss 时若以某
@@ -597,11 +600,26 @@ GLOBAL_LIST_INIT(i18n_appended_suffixes, list(
 	. = lang_reverse_text(text)
 	if(. != text)
 		return . // 整串精确命中
+	// 追加点的分隔各式各样：手术 desc 是一个空格，赏金是 `"</br>\<换行><制表符>…"`（DM 续行把制表符
+	// 并进串里）。先把空白折叠成单空格再比（目录键本身就是折叠形态），分隔空格按原样还回拼接处。
+	var/collapsed = lang_collapse_ws(text)
+	var/collapsed_length = length(collapsed)
 	for(var/suffix in GLOB.i18n_appended_suffixes)
-		var/appended = " [suffix]" // 追加时带前导空格
-		var/alen = length(appended)
-		if(length(text) > alen && copytext(text, length(text) - alen + 1) == appended)
-			return "[lang_reverse_text(copytext(text, 1, length(text) - alen + 1))] [lang_reverse_text(suffix)]"
+		// 目录键与运行期串的**接缝空白**不保证一致：手术那条源码里自带前导空格，赏金那条靠 DM 续行
+		// （`"</br>\` + 换行 + 制表符），抽取器把续行空白吃掉了、运行期不一定。所以两种形态都试。
+		var/list/needles = list(lang_collapse_ws(suffix), " [lang_collapse_ws(suffix)]")
+		for(var/needle in needles)
+			var/needle_length = length(needle)
+			if(collapsed_length <= needle_length)
+				continue
+			if(copytext(collapsed, collapsed_length - needle_length + 1) != needle)
+				continue
+			var/base = copytext(collapsed, 1, collapsed_length - needle_length + 1)
+			var/separator = ""
+			if(copytext(needle, 1, 2) == " ")
+				needle = copytext(needle, 2)
+				separator = " "
+			return "[lang_reverse_text(base)][separator][lang_reverse_text(needle)]"
 	return .
 
 /// 完整句聊天行反查：用于「先 `list += span_*("整句")` 累加、再 jointext 进一个 boxed_message
@@ -824,7 +842,10 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 	if(islist(GLOB.i18n_tgui_strings) && GLOB.i18n_tgui_strings[text])
 		. = text
 	else
-		. = lang_reverse_text(text)
+		// lang_reverse_suffixed 而非裸 lang_reverse_text：TGUI 负载里同样有「基础句 + 运行期追加
+		// 后缀」的值（赏金 description 加高优先级说明、手术 desc 加「每器官一次」），整串不是目录键，
+		// 精确反查会连基础句一起 miss。无后缀时它就是 lang_reverse_text，零行为变化。
+		. = lang_reverse_suffixed(text)
 	// 整串精确反查未命中的多词串：很多是**运行期拼接/插值后才成形**的句子（Orion 事件 text、研究要求
 	// "Scan unique individuals with [desc]." 等经 ui_data 下发的动态串）——exact 反查够不着。补一道边界
 	// 模板逆匹配引擎：目录里已译的 {0} 模板按字面段在原串上命中、捕获实参反查后按 zh 模板填充。这样
