@@ -26,9 +26,36 @@
 		"neg_gameplay_description",
 		"neut_gameplay_description"
 	],
+	"_translatable_props": "TGUI JSX 中「值是给玩家看的文案」的 prop 名。抽取器（tgui-catalog.mjs）与运行时（localize.ts）必须读同一份：两处各存一份清单时，新加的 prop 只改一边 → 目录里有键但界面不翻（或界面翻了但目录没键、被 MT 漏掉）。新增 prop 只改这里。",
+	"translatable_props": [
+		"aria-label",
+		"buttonText",
+		"confirmContent",
+		"content",
+		"displayText",
+		"header",
+		"help",
+		"label",
+		"message",
+		"notice",
+		"placeholder",
+		"problemHeader",
+		"text",
+		"title",
+		"titleMessage",
+		"tooltip"
+	],
+	"_option_text_props": "对象型下拉/列表选项里纯显示的字段名（`{value, displayText}` 的 displayText 一侧）。value 一律保持英文标识符，绝不入此表。",
+	"option_text_props": [
+		"displayText",
+		"label",
+		"text",
+		"title"
+	],
 	"_no_auto_translate": "TGUI 前端 auto-localize 的豁免串：en 目录里 identity 存在、但 MT 跨命名空间复用会误译的代码 token。",
 	"no_auto_translate": [
-		"const"
+		"const",
+		"Gur Fbeprere"
 	],
 	"_identifier_dot_procs": "构建 icon_state/日志键/act 键的 proc：其内 bare-`.` 累加串不是玩家可见文本，抽取/改写会破坏图像与交互（{0}_mag 被译 → 弹匣 overlay 消失；StripMenu 键被译 → 蓝屏）。整 proc 排除抽取与改写。",
 	"identifier_dot_procs": [

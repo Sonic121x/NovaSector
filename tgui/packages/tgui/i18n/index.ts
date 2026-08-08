@@ -29,7 +29,7 @@ export function createElement(
   const localizedChildren = children.map((child) => localizeNode(child));
   return reactCreateElement(
     type as never,
-    localizeProps(props) as never,
+    localizeProps(props, type) as never,
     ...(localizedChildren as never[]),
   );
 }

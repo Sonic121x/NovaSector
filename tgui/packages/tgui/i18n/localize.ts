@@ -1,22 +1,17 @@
 // THIS IS A NOVA SECTOR UI FILE
 // Shared helpers for automatic TGUI JSX localization.
 
+import { Dropdown } from 'tgui-core/components';
+
 import { translateCurrent } from './catalog';
 import policy from './policy.json';
 
-const TRANSLATABLE_PROPS = new Set([
-  'aria-label',
-  'content',
-  'displayText',
-  'header',
-  'label',
-  'message',
-  'placeholder',
-  'title',
-  'tooltip',
-]);
+// 可翻 prop 名来自三端策略单一来源 strings/i18n/policy.json（`tgui-catalog.mjs sync` 复制到本
+// 目录）。抽取器读同一份 —— 两边各存一份清单时，新增 prop 只改一边会出现「目录里有键但界面不
+// 翻」或「界面翻了但目录没键、MT 永远漏译」的静默半覆盖。
+const TRANSLATABLE_PROPS = new Set<string>(policy.translatable_props);
 
-const OPTION_TEXT_PROPS = new Set(['displayText', 'label', 'text', 'title']);
+const OPTION_TEXT_PROPS = new Set<string>(policy.option_text_props);
 
 // 例外清单：这些英文串**绝不**自动翻译。
 //
@@ -178,7 +173,68 @@ function localizeOptions(value: unknown): unknown {
   return changed ? localized : value;
 }
 
-export function localizeProps(props: unknown): unknown {
+// tgui-core Dropdown 专用：**裸字符串选项**既是显示又是回传值（`m(o) = o`），所以
+// localizeOption 一律不翻它们——翻了 onSelected 就回传中文，调用方/服务端按英文匹配全部失效。
+// 但整个界面里下拉往往是唯一还在显示英文的控件（ID 饰边压印机的饰边表、管道分配器的管件表…）。
+//
+// Dropdown 自己支持对象选项 `{value, displayText}`：菜单渲染 displayText、onSelected 回传 value。
+// 所以这里在**运行时**把裸字符串升级成对象——value 保留原英文标识符，只有显示换成译文。调用方
+// 代码一行不用改，整类「下拉不翻」一次解决。识别靠**组件标识**（`type === Dropdown`）而不是
+// 「有 options prop」：界面里自定义组件也叫 options（AdminFax/LogViewer 的 `string[]`），
+// 按 prop 名猜会把对象塞给只会渲染字符串的组件。
+//
+// 另一半是**收起时的按钮文字**：Dropdown 显示 `displayText || selected`，而 selected 由调用方
+// 传的是 value（英文标识符）→ 菜单已是中文、按钮仍是英文。调用方没显式给 displayText 时，
+// 这里按 selected 补一个译文；selected 本身不动，findIndex/高亮/回传全部照旧按英文匹配。
+function localizeDropdownProps(
+  props: Record<string, unknown>,
+): Record<string, unknown> {
+  let next = props;
+
+  const options = props.options;
+  if (Array.isArray(options)) {
+    let changed = false;
+    const localized = options.map((option) => {
+      if (typeof option !== 'string') {
+        return option;
+      }
+      const translated = translateText(option);
+      if (translated === option) {
+        return option;
+      }
+      changed = true;
+      return { value: option, displayText: translated };
+    });
+    if (changed) {
+      next = { ...next, options: localized };
+    }
+  }
+
+  if (next.displayText === undefined || next.displayText === null) {
+    const selected = props.selected;
+    let selectedText: string | null = null;
+    if (typeof selected === 'string') {
+      const translated = translateText(selected);
+      if (translated !== selected) {
+        selectedText = translated;
+      }
+    } else if (selected && typeof selected === 'object') {
+      // 对象选项的 selected：Dropdown 收起时显示的是 value 而非 displayText，同样要补。
+      const display = (selected as Record<string, unknown>).displayText;
+      if (typeof display === 'string') {
+        selectedText = translateText(display);
+      }
+    }
+    if (selectedText !== null) {
+      next = next === props ? { ...next } : next;
+      next.displayText = selectedText;
+    }
+  }
+
+  return next;
+}
+
+export function localizeProps(props: unknown, type?: unknown): unknown {
   if (!props || typeof props !== 'object' || Array.isArray(props)) {
     return props;
   }
@@ -214,6 +270,10 @@ export function localizeProps(props: unknown): unknown {
       nextProps = { ...nextProps };
     }
     nextProps[propName] = localized;
+  }
+
+  if (type === Dropdown) {
+    return localizeDropdownProps(nextProps);
   }
 
   return nextProps;

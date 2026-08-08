@@ -12,9 +12,9 @@ import { localizeProps } from './localize';
 export { Fragment };
 
 export function jsx(type: unknown, props: unknown, key?: string) {
-  return reactJsx(type as never, localizeProps(props) as never, key);
+  return reactJsx(type as never, localizeProps(props, type) as never, key);
 }
 
 export function jsxs(type: unknown, props: unknown, key?: string) {
-  return reactJsxs(type as never, localizeProps(props) as never, key);
+  return reactJsxs(type as never, localizeProps(props, type) as never, key);
 }

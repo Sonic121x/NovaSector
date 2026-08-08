@@ -18,19 +18,13 @@ const TGUI_PACKAGE_I18N_DIR = path.join(ROOT, 'tgui/packages/tgui/i18n');
 const STRINGS_I18N_DIR = path.join(ROOT, 'strings/i18n');
 const TGUI_NAMESPACE = 'tgui';
 
-const TRANSLATABLE_PROPS = new Set([
-  'aria-label',
-  'content',
-  'displayText',
-  'header',
-  'label',
-  'message',
-  'placeholder',
-  'title',
-  'tooltip',
-]);
-
-const OPTION_TEXT_PROPS = new Set(['displayText', 'label', 'text', 'title']);
+// 可翻 prop 名的**单一来源**是 strings/i18n/policy.json：抽取器与运行时 localize.ts 各存一份
+// 时，新增 prop 只改一边就会出现「目录有键界面不翻」/「界面翻了目录没键」的静默半覆盖。
+const POLICY = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'strings/i18n/policy.json'), 'utf8'),
+);
+const TRANSLATABLE_PROPS = new Set(POLICY.translatable_props);
+const OPTION_TEXT_PROPS = new Set(POLICY.option_text_props);
 
 // 偏好「feature 定义」里的 name/description（如 height_scaling.tsx 的 `name: 'Body Height'`）。
 // 这些是对象字面量属性、非 JSX 文本，但 PreferencesMenu 渲染 feature.name 时经自动本地化 runtime
@@ -556,8 +550,48 @@ function addDisplayExpr(catalog, node) {
     ) {
       addDisplayExpr(catalog, node.left);
       addDisplayExpr(catalog, node.right);
+      return;
+    }
+    if (op === ts.SyntaxKind.PlusToken) {
+      // 纯字面量拼接（`'WARNING: This is destructive' + ' and will wipe ALL access.'`）：
+      // 源码里为了绕 80 列而折行，JS 求值后就是**一整串**，运行时按整串查表。逐个操作数抽出
+      // 的半句永远查不到（且半句译文本身也没用），整条不抽则是死键——必须按求值结果折叠成
+      // 一个 key，与运行时看到的字节完全一致。
+      const folded = foldStringConcat(node);
+      if (folded !== null) {
+        addText(catalog, folded);
+        return;
+      }
+      // 含表达式的拼接（`'Giver Tank (' + moles + ' moles at '`）运行期才成串、形状不可复原
+      // （运行时只看得到成品字符串，无从知道哪几段是字面量）：整条**不抽**。抽半句只会留下
+      // 永远查不到的死键，还会被 MT 译成拼不回去的碎片——与混排 children 同一道理。
     }
   }
+}
+
+/// 把「操作数全是字符串字面量」的 `+` 链求值成一整串；含任何非字面量则返回 null。
+function foldStringConcat(node) {
+  if (ts.isParenthesizedExpression(node)) {
+    return foldStringConcat(node.expression);
+  }
+  if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) {
+    return node.text;
+  }
+  if (
+    ts.isBinaryExpression(node) &&
+    node.operatorToken.kind === ts.SyntaxKind.PlusToken
+  ) {
+    const left = foldStringConcat(node.left);
+    if (left === null) {
+      return null;
+    }
+    const right = foldStringConcat(node.right);
+    if (right === null) {
+      return null;
+    }
+    return left + right;
+  }
+  return null;
 }
 
 /// 剥离 DM 语法宏（\improper/\proper），使抽出的串与运行时 TGUI 收到的（宏已解析）对齐。
@@ -904,6 +938,57 @@ function tsFilesUnder(dir, out = []) {
   return out;
 }
 
+// 共享常量表里的显示字段。`walk()` 只扫 .tsx/.jsx，界面**共用**的查表数据却住在 .ts 里
+// （constants.ts 的 GASES → `getGasLabel(gas_id)` 渲染进 AtmosFilter/PortablePump/管道等一整
+// 排界面）。这些串运行期才由函数返回、界面文件里根本没有字面量 → 全类漏抽，界面越多漏得越广。
+//
+// 不整体放开 .ts：backend.ts/logging.ts 之流里的 name/label 多是标识符。按「文件 + 表名 + 字段」
+// 三重定点登记，同类新表加一行即可。id/path 是 act() 回传标识符，永不入表。
+const CONSTANT_LABEL_TABLES = [
+  { file: 'constants.ts', table: 'GASES', props: ['name', 'label'] },
+];
+
+function extractConstantTableLabels(catalog) {
+  for (const { file, table, props } of CONSTANT_LABEL_TABLES) {
+    const filePath = path.join(TGUI_SOURCE_DIR, file);
+    let source;
+    try {
+      source = fs.readFileSync(filePath, 'utf8');
+    } catch {
+      continue;
+    }
+    const sf = ts.createSourceFile(
+      filePath,
+      source,
+      ts.ScriptTarget.Latest,
+      true,
+      ts.ScriptKind.TS,
+    );
+    const wanted = new Set(props);
+    const visit = (node) => {
+      if (
+        ts.isVariableDeclaration(node) &&
+        ts.isIdentifier(node.name) &&
+        node.name.text === table
+      ) {
+        const collect = (inner) => {
+          if (ts.isPropertyAssignment(inner)) {
+            const name = propertyName(inner.name);
+            if (wanted.has(name)) {
+              addText(catalog, literalText(inner.initializer));
+            }
+          }
+          ts.forEachChild(inner, collect);
+        };
+        collect(node);
+        return;
+      }
+      ts.forEachChild(node, visit);
+    };
+    visit(sf);
+  }
+}
+
 function extractAntagonistLabels(catalog) {
   for (const file of tsFilesUnder(ANTAG_DEF_DIR)) {
     let source;
@@ -1022,6 +1107,8 @@ function extractCatalog() {
   extractAntagonistLabels(catalog);
   currentScope = 'dm:interactions';
   extractInteractionLabels(catalog);
+  currentScope = 'tgui:constants';
+  extractConstantTableLabels(catalog);
   for (const filePath of walk(TGUI_SOURCE_DIR)) {
     // 界面名即语境。`interfaces/ChemReactionChamber.tsx` -> `tgui:ChemReactionChamber`。
     currentScope = `tgui:${path.basename(filePath).replace(/\.(tsx|jsx|ts|js)$/, '')}`;

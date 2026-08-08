@@ -16,7 +16,7 @@ export function jsxDEV(
 ) {
   return reactJsxDEV(
     type as never,
-    localizeProps(props) as never,
+    localizeProps(props, type) as never,
     key,
     isStaticChildren,
     source as never,
