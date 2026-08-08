@@ -619,6 +619,101 @@ fn lint_identifier_collisions(
 // ---------------------------------------------------------------------------
 
 #[allow(clippy::too_many_arguments)]
+/// C. **悬空 LANG key**：源码里 `LANG("obj.abc12345")` 而目录里没有这个 key。
+///
+/// 抽取与改写是**两个独立通道**：改写把字面量换成 LANG(key)，抽取负责把模板写进目录。任何一条
+/// 让抽取跳过、而改写不跳过的规则（典型：具名累加器的整句闸——`available_channels += "<li>…</li>"`
+/// 过不了句末标点闸，改写却照改不误），都会产出悬空 key。此时 `lang_resolve` 兜底**返回 key 本身**，
+/// 玩家在耳机 examine 里看到的就是 `obj.b045da9c` 这串乱码——比不翻译严重得多。
+///
+/// 一次实测：全仓三万余处 LANG 调用里有 76 个悬空 key（耳机频率表、无人机分发器、血虫技能、
+/// 音乐技能芯片、雇佣合同…）。故列为**错误**而非告警：这是坏显示，不是缺翻译。
+fn lint_dangling_lang_keys(root: &Path, catalog_root: &Path, report: &mut Report) {
+    let en = load_catalog(&catalog_root.join("en"));
+    if en.is_empty() {
+        return; // lint_catalog 已就此告警
+    }
+    let mut dangling: BTreeMap<String, String> = BTreeMap::new();
+    let mut scanned = 0usize;
+    for dir in ["code", "modular_nova"] {
+        collect_dm_files(&root.join(dir), &mut |path: &Path, text: &str| {
+            for (lineno, line) in text.lines().enumerate() {
+                for key in lang_keys_in_line(line) {
+                    scanned += 1;
+                    if !en.contains_key(&key) {
+                        dangling
+                            .entry(key)
+                            .or_insert_with(|| format!("{}:{}", path.display(), lineno + 1));
+                    }
+                }
+            }
+        });
+    }
+    for (key, loc) in &dangling {
+        report.error(format!(
+            "[dangling] LANG(\"{key}\") 在 en 目录里没有对应条目（见 {loc}）\n\
+             \t→ 运行期 lang_resolve 兜底返回 key 本身，玩家看到的就是这串 key。\n\
+             \t成因几乎总是「改写改了、抽取没抽」：某条规则让 extract 跳过而 rewrite 没跳过。\n\
+             \t修法：从引入该 LANG 调用的 commit 的 diff 里取回原字面量（用本 key 的 hash 校验），\n\
+             \t写回 en/zh 目录；同时补齐 extract 侧的准入规则，否则下次抽取还会漏。"
+        ));
+    }
+    eprintln!("悬空 key 扫描：{scanned} 处 LANG 调用，{} 个悬空。", dangling.len());
+}
+
+/// 一行里出现的所有 `LANG("<ns>.<8 位十六进制>"` / `LANGU(…, "<key>"` 的 key。
+/// 手写扫描而非正则：这个 crate 没有 regex 依赖，而形态固定得很简单。
+fn lang_keys_in_line(line: &str) -> Vec<String> {
+    let bytes = line.as_bytes();
+    let mut out = Vec::new();
+    let mut i = 0usize;
+    while let Some(pos) = line[i..].find("LANG") {
+        let start = i + pos;
+        i = start + 4;
+        // LANG(" 或 LANGU(... 之后的**第一个**字符串字面量即 key 位（LANGU 的 user 实参不是字面量）。
+        let rest = &line[i..];
+        let Some(quote) = rest.find('"') else { break };
+        let after = &rest[quote + 1..];
+        let Some(close) = after.find('"') else { break };
+        let candidate = &after[..close];
+        if is_catalog_key(candidate) {
+            out.push(candidate.to_string());
+        }
+        i += quote + 1 + close + 1;
+        let _ = bytes; // 仅为可读性保留切片边界推进
+    }
+    out
+}
+
+/// `<ns>.<8 位十六进制>` 形态。
+fn is_catalog_key(s: &str) -> bool {
+    let Some((ns, hash)) = s.split_once('.') else {
+        return false;
+    };
+    !ns.is_empty()
+        && ns.chars().all(|c| c.is_ascii_lowercase() || c == '_')
+        && hash.len() == 8
+        && hash.chars().all(|c| c.is_ascii_hexdigit())
+}
+
+/// 递归遍历 .dm 文件并回调 (path, 内容)。
+fn collect_dm_files(dir: &Path, visit: &mut dyn FnMut(&Path, &str)) {
+    let Ok(entries) = std::fs::read_dir(dir) else {
+        return;
+    };
+    let mut paths: Vec<PathBuf> = entries.flatten().map(|e| e.path()).collect();
+    paths.sort();
+    for path in paths {
+        if path.is_dir() {
+            collect_dm_files(&path, visit);
+        } else if path.extension().is_some_and(|e| e == "dm") {
+            if let Ok(text) = std::fs::read_to_string(&path) {
+                visit(&path, &text);
+            }
+        }
+    }
+}
+
 pub fn run(
     dme: &Path,
     catalog_root: &Path,
@@ -631,6 +726,7 @@ pub fn run(
 
     lint_catalog(catalog_root, locale, &mut report)?;
     lint_policy(catalog_root, &mut report);
+    lint_dangling_lang_keys(Path::new("."), catalog_root, &mut report);
     if !skip_ast {
         lint_identifier_collisions(
             dme,

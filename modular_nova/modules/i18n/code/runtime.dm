@@ -349,6 +349,22 @@ GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 	GLOB.i18n_scoped_tables[file_name] = table
 	return table
 
+/// `english_list()` 的本地化版：**逐项**过 lang_localize_arg（状态词表 → 反查 → 冠词剥离），
+/// 再用中文顿号连接。
+///
+/// 这类「形容词/状态词列表拼成一句」的写法（鱼的健康警告、材料属性详检、伤情列表…）整句永远
+/// 不是目录键，而 `english_list` 拼出来的成品里每个词都还是英文——只能逐项翻。连接词也要换：
+/// 英文的 " and " 直接留在中文句子里很难看，中文用「、」。locale==en 时原样调 english_list，零变化。
+/proc/lang_english_list(list/items, nothing_text = "nothing")
+	if(GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
+		return english_list(items, nothing_text)
+	if(!length(items))
+		return lang_localize_arg(nothing_text)
+	var/list/localized = list()
+	for(var/item in items)
+		localized += lang_localize_arg("[item]")
+	return jointext(localized, "、")
+
 /// 史莱姆颜色（SLIME_TYPE_* 的值）的显示译名。颜色同时是 icon_state 与突变表键，不能进反查表。
 /proc/lang_slime_colour(colour)
 	if(!istext(colour))

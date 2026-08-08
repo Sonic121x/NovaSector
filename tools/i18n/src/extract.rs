@@ -162,6 +162,8 @@ const SINK_VARS: &[&str] = &[
 pub struct ProcCtx {
     /// update_overlays 等：裸 `.` 累加的是 icon_state/标识符，不是文案。
     pub ident: bool,
+    /// 「显示描述符」proc：整个 proc 的 return 字面量都是给玩家看的短语。
+    pub display_return: bool,
     /// examine 家族：proc 体内**任何**具名累加器收到的字面量都是给玩家看的 examine 行。
     /// 原来只认一张手写的变量名白名单（examine_list/combined_msg/…），于是
     /// `how_cool_are_your_threads += "[src]'s storage opens when…"` 这种局部名一路漏到
@@ -173,6 +175,14 @@ pub struct ProcCtx {
 pub fn is_examine_proc(proc_name: &str) -> bool {
     matches!(proc_name, "examine" | "examine_more" | "examine_tags")
         || proc_name.starts_with("on_examine")
+}
+
+/// 「显示描述符」proc：材料属性等把玩家可见短语从 switch 里 `return` 出来（"very rigid"、
+/// "slightly reactive"…）。这些短语无句末标点、首字母小写，激进 pass 的整句闸一律挡掉，于是
+/// 材料详检那一长串形容词整类没进目录。按 **proc 名**界定（同 examine 家族的做法），
+/// 比按变量名穷举稳。
+pub fn is_display_descriptor_proc(proc_name: &str) -> bool {
+    matches!(proc_name, "get_descriptor" | "get_tooltip")
 }
 
 pub fn is_examine_accumulator(id: &str) -> bool {
@@ -875,7 +885,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             // 自定义 examine 文本变量（dry_desc 类）、pick 表、未列入 SINK_VARS 的长尾自动入目录
             // （句末标点闸门挡住标识符/枚举名）；显示靠反查表/字面 AC/模板逆匹配引擎。
             if let Some(expr) = &type_var.value.expression {
-                let var_ctx = ProcCtx { ident: false, examine: false };
+                let var_ctx = ProcCtx { ident: false, examine: false, display_return: false };
                 visit_expr(expr, &var_scope, &mut catalog, suppress_aggressive, var_ctx);
             }
             if !is_sink && !is_config_default && !is_aas_template && !is_law_list && !is_slogan
@@ -932,6 +942,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                     let ctx = ProcCtx {
                         ident: is_identifier_dot_proc(proc_name),
                         examine: is_examine_proc(proc_name),
+                        display_return: is_display_descriptor_proc(proc_name),
                     };
                     visit_block(block, &proc_scope, &mut catalog, suppress_aggressive, ctx);
                     // verb 命令面板显示名：`set name = "X"`（Statement::Setting）。非 sink、非类型变量，
@@ -1273,7 +1284,14 @@ fn visit_block(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog: &mut Ca
 fn visit_stmt(stmt: &Statement, ns: &str, catalog: &mut Catalog, suppress: bool, ctx: ProcCtx) {
     match stmt {
         Statement::Expr(e) => visit_expr(e, ns, catalog, suppress, ctx),
-        Statement::Return(Some(e)) => visit_expr(e, ns, catalog, suppress, ctx),
+        Statement::Return(Some(e)) => {
+            if ctx.display_return {
+                if let Some(template) = build_template(e) {
+                    emit(catalog, ns, &template);
+                }
+            }
+            visit_expr(e, ns, catalog, suppress, ctx)
+        }
         Statement::While { condition, block } => {
             visit_expr(condition, ns, catalog, suppress, ctx);
             visit_block(block, ns, catalog, suppress, ctx);

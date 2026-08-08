@@ -187,10 +187,10 @@
 			var/descriptor = property?.get_descriptor(prop_value)
 			var/tooltip_hint = property?.get_tooltip(prop_value)
 			if (descriptor) // Overriden derivative property?
-				material_string += span_tooltip("[property]: [tooltip_hint]", descriptor)
+				material_string += span_tooltip("[lang_localize_arg("[property]")]: [lang_localize_arg(tooltip_hint)]", lang_localize_arg(descriptor)) // NOVA EDIT - I18N: 描述符/提示逐项翻（get_descriptor 的 return 字面量已进目录）
 
 		if (length(material_string))
-			. += span_info(LANG("atom.120458d2", list(capitalize(material.name), english_list(material_string))))
+			. += span_info(LANG("atom.120458d2", list(capitalize(material.name), lang_english_list(material_string)))) // NOVA EDIT - I18N
 
 /**
  * Get the name of this object for examine

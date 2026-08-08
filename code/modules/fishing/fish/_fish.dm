@@ -594,7 +594,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 			warnings += "mostly healthy"
 
 	if(length(warnings))
-		. += span_warning("[p_Theyre()] [english_list(warnings)].")
+		. += span_warning("[p_Theyre()] [lang_english_list(warnings)].") // NOVA EDIT - I18N: 逐项翻状态词（整句拼完不是目录键）
 
 	return .
 
