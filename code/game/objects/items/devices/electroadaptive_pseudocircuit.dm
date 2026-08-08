@@ -26,9 +26,13 @@
 /obj/item/electroadaptive_pseudocircuit/examine(mob/user)
 	. = ..()
 	if(iscyborg(user))
-		. += "[span_notice("It has material for <b>[circuits]</b> circuit[circuits == 1 ? "" : "s"]. Use the pseudocircuit on existing circuits to gain material.")]\n"+\
-		"[span_notice("Serves as a substitute for <b>fire/air alarm</b>, <b>firelock</b>, and <b>APC</b> electronics.")]\n"+\
-		span_notice("It can also be used on an APC with no power cell to <b>fabricate a low-capacity cell</b> at a high power cost.")
+		// NOVA EDIT CHANGE START - I18N: 原本是 `. += A + "\n" + B + "\n" + C` 拼接链——整条抽出来是
+		// `{0}\n{1}\n…` 的废键，逐段拆分又被整句闸挡掉前两句，于是只有第三句进了目录。逐句 LANG。
+		// ORIGINAL: 三句 span_notice 用 + "\n" + 串起来，见 git 历史。
+		. += "[span_notice(LANG("obj.7cc773b1", list(circuits, circuits == 1 ? "" : "s")))]\n"+\
+		"[span_notice(LANG("obj.35847d7e", null))]\n"+\
+		span_notice(LANG("obj.340338b0", null))
+		// NOVA EDIT CHANGE END
 
 /obj/item/electroadaptive_pseudocircuit/proc/adapt_circuit(mob/living/silicon/robot/R, circuit_cost = 0)
 	if(QDELETED(R) || !istype(R))
