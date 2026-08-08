@@ -25,7 +25,7 @@
 	return ..()
 
 /obj/machinery/abductor/experiment/mouse_drop_receive(mob/target, mob/user, params)
-	if(!ishuman(target) || isabductor(target))
+	if(!ishuman(target) || HAS_MIND_TRAIT(target, TRAIT_ABDUCTOR_KNOWLEDGE))
 		return
 	close_machine(target)
 
@@ -34,8 +34,8 @@
 		..()
 
 /obj/machinery/abductor/experiment/close_machine(mob/target, density_to_set = TRUE)
-	for(var/A in loc)
-		if(isabductor(A))
+	for(var/mob/living/mob in loc)
+		if(HAS_MIND_TRAIT(mob, TRAIT_ABDUCTOR_KNOWLEDGE))
 			return
 	if(state_open && !panel_open)
 		..(target)

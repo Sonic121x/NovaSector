@@ -6,6 +6,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
@@ -16,6 +17,7 @@ type Data = {
   powerStatus: BooleanLike;
   cellPercent: number | null;
   load: BooleanLike;
+  loadName : string | null;
   locked: BooleanLike;
   siliconUser: BooleanLike;
   mode: string;
@@ -37,6 +39,7 @@ const MuleControls = (props) => {
   const { act, data } = useBackend<Data>();
   const {
     load,
+    loadName,
     autoReturn,
     autoPickup,
     reportDelivery,
@@ -86,28 +89,6 @@ const MuleControls = (props) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Settings">
-        <Button.Checkbox checked={autoReturn} onClick={() => act('autored')}>
-          Auto-Return
-        </Button.Checkbox>
-        <br />
-        <Button.Checkbox checked={autoPickup} onClick={() => act('autopick')}>
-          Auto-Pickup
-        </Button.Checkbox>
-        <br />
-        <Button.Checkbox checked={reportDelivery} onClick={() => act('report')}>
-          Report-Delivery
-        </Button.Checkbox>
-        <br />
-        {!!allowPossession && (
-          <Button.Checkbox
-            checked={possessionEnabled}
-            onClick={() => act('toggle_personality')}
-          >
-            Download Personality
-          </Button.Checkbox>
-        )}
-      </Section>
       <Section title="Actions">
         <Stack style={{ padding: '0px 30px' }}>
           <Stack.Item grow>
@@ -137,6 +118,28 @@ const MuleControls = (props) => {
           </Stack.Item>
         </Stack>
       </Section>
+      <Section title="Settings">
+        <Button.Checkbox checked={autoReturn} onClick={() => act('autored')}>
+          Auto-Return
+        </Button.Checkbox>
+        <br />
+        <Button.Checkbox checked={autoPickup} onClick={() => act('autopick')}>
+          Auto-Pickup
+        </Button.Checkbox>
+        <br />
+        <Button.Checkbox checked={reportDelivery} onClick={() => act('report')}>
+          Report-Delivery
+        </Button.Checkbox>
+        <br />
+        {!!allowPossession && (
+          <Button.Checkbox
+            checked={possessionEnabled}
+            onClick={() => act('toggle_personality')}
+          >
+            Download Personality
+          </Button.Checkbox>
+        )}
+      </Section>
     </>
   );
 };
@@ -147,6 +150,7 @@ export const Mule = (props) => {
     powerStatus,
     cellPercent,
     load,
+    loadName,
     mode,
     modeStatus,
     locked,
@@ -156,7 +160,7 @@ export const Mule = (props) => {
   const mulebotLocked = locked && !siliconUser;
 
   return (
-    <Window width={350} height={500}>
+    <Window width={350} height={540}>
       <Window.Content scrollable>
         <InterfaceLockNoticeBox />
         <Section
@@ -182,21 +186,17 @@ export const Mule = (props) => {
             value={cellPercent ? cellPercent / 100 : 0}
             color={cellPercent ? 'good' : 'bad'}
           />
-          <Stack mt={1}>
+          <Stack mt={1} vertical>
             <Stack.Item grow>
               <LabeledList>
                 <LabeledList.Item label="Mode" color={modeStatus}>
                   {mode}
                 </LabeledList.Item>
-              </LabeledList>
-            </Stack.Item>
-            <Stack.Item grow ml="40%">
-              <LabeledList>
                 <LabeledList.Item
                   label="Load"
                   color={load ? 'good' : 'average'}
                 >
-                  {load || 'None'}
+                  {load ? capitalize(loadName ?? '') : 'None'}
                 </LabeledList.Item>
               </LabeledList>
             </Stack.Item>

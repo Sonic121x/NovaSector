@@ -208,7 +208,7 @@ Regenerative extracts:
 		target.visible_message(span_warning(LANG("obj.15949140", list(target))))
 		var/mob/living/basic/slime/target_slime = target
 		target_slime.set_slime_type()
-	if(isjellyperson(target))
+	if(target.mob_biotypes & MOB_SLIME)
 		target.reagents.add_reagent(/datum/reagent/mutationtoxin/jelly,5)
 
 /obj/item/slimecross/regenerative/pink

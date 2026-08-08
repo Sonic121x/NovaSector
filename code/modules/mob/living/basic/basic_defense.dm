@@ -23,7 +23,7 @@
 		to_chat(user, span_warning(LANG("mob.450cd43a", list(src))))
 		return TRUE
 	var/obj/item/bodypart/arm/active_arm = user.get_active_hand()
-	var/damage = (basic_mob_flags & IMMUNE_TO_FISTS) ? 0 : rand(active_arm.unarmed_damage_low, active_arm.unarmed_damage_high)
+	var/damage = rand(active_arm.unarmed_damage_low, active_arm.unarmed_damage_high)
 	if(check_block(user, damage, "[user]'s punch", UNARMED_ATTACK, 0, BRUTE))
 		return
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)

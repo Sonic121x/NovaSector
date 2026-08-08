@@ -232,14 +232,14 @@
 	var/owner_needs_us = owner?.needs_heart()
 
 	if(owner_needs_us && !COOLDOWN_FINISHED(src, severe_cooldown)) //So we cant just spam emp to kill people.
-		owner.set_dizzy_if_lower(20 SECONDS)
+		owner.set_dizzy_if_lower(15 SECONDS / severity)
 		owner.losebreath += 10
-		COOLDOWN_START(src, severe_cooldown, 20 SECONDS)
+		COOLDOWN_START(src, severe_cooldown, 15 SECONDS)
 
 	if(prob(emp_vulnerability/severity)) //Chance of permanent effects
 		organ_flags |= ORGAN_EMP //Starts organ faliure - gonna need replacing soon.
 		Stop()
-		addtimer(CALLBACK(src, PROC_REF(Restart)), 10 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Restart)), 10 SECONDS / severity)
 		if(owner_needs_us)
 			owner.visible_message(
 				span_danger(LANG("obj.32fa6902", list(owner, owner.p_their(), owner.p_their()))),

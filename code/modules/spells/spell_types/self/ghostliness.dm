@@ -31,18 +31,18 @@
 /datum/action/cooldown/spell/ghostliness/cast(mob/living/carbon/human/cast_on)
 	. = ..()
 
-	if(isspirit(cast_on))
-		to_chat(cast_on, span_green(LANG("datum.7d9286bd", null)))
+	if(HAS_TRAIT(cast_on, TRAIT_GHOSTLY_MOB))
+		to_chat(cast_on, span_green("You begin to focus on loosening the bonds holding you to the material plane."))
 	else
 		to_chat(cast_on, span_green(LANG("datum.f918b45f", null)))
 	if(!do_after(cast_on, 5 SECONDS))
-		if(isspirit(cast_on))
-			to_chat(cast_on, span_warning(LANG("datum.7df38b8b", null)))
+		if(HAS_TRAIT(cast_on, TRAIT_GHOSTLY_MOB))
+			to_chat(cast_on, span_warning("Your focus is broken, and you feel your material bindings snap tight once more."))
 		else
 			to_chat(cast_on, span_warning(LANG("datum.b3b88428", null)))
 		return
-	if(isspirit(cast_on))
-		to_chat(cast_on, span_green(LANG("datum.ae7b212d", null)))
+	if(HAS_TRAIT(cast_on, TRAIT_GHOSTLY_MOB))
+		to_chat(cast_on, span_green("You successfully loosen your bonds to the material plane, and can now slip partially out of it."))
 	else
 		to_chat(cast_on, span_danger(LANG("datum.61c28d4b", null)))
 		var/mob/living/carbon/human/soulless_husk = new(cast_on.drop_location())

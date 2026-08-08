@@ -80,7 +80,7 @@
 	if(marked == target)
 		to_chat(user, span_warning(LANG("obj.972f9b4d", null)))
 		return
-	if(isabductor(target) || iscow(target))
+	if(HAS_TRAIT(target, TRAIT_ABDUCTOR_QUICK_SCAN))
 		marked_target_weakref = WEAKREF(target)
 		to_chat(user, span_notice(LANG("obj.197c9883", list(target))))
 	else
@@ -242,7 +242,7 @@
 	fail_message = span_abductor("Firing error, please contact Command.")
 
 /obj/item/firing_pin/abductor/pin_auth(mob/living/user)
-	. = isabductor(user)
+	return HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_KNOWLEDGE)
 
 /obj/item/gun/energy/alien
 	name = "alien pistol"

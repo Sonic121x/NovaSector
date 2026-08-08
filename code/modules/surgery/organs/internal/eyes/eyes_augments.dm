@@ -13,7 +13,7 @@
 	. = ..()
 	if((. & EMP_PROTECT_SELF) || !owner)
 		return
-	if(prob(10 * severity))
+	if(prob(100 / severity))
 		return
 	to_chat(owner, span_warning(LANG("obj.f5f60c63", null)))
 	owner.flash_act(visual = 1)

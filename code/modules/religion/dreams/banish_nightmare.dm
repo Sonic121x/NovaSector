@@ -18,7 +18,7 @@
 /datum/religion_rites/banish_nightmare/perform_rite(mob/living/user, atom/religious_tool)
 	var/has_nightmare = FALSE
 	for(var/mob/living/carbon/human/nightmare in get_turf(religious_tool))
-		if(isnightmare(nightmare))
+		if(HAS_TRAIT(nightmare, TRAIT_NIGHTMARISH))
 			has_nightmare = TRUE
 			break
 
@@ -38,7 +38,7 @@
 	var/favor = 0
 	var/give_heart = FALSE
 	for(var/mob/living/carbon/human/nightmare in get_turf(religious_tool))
-		if(!isnightmare(nightmare))
+		if(!HAS_TRAIT(nightmare, TRAIT_NIGHTMARISH))
 			continue
 
 		if(istype(nightmare.get_organ_slot(ORGAN_SLOT_HEART), /obj/item/organ/heart/nightmare))
