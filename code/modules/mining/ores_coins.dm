@@ -187,12 +187,12 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 	var/sand_to_use = min(floor(cement.volume / cement.units_per_aggregate), amount)
 	if (!sand_to_use)
-		to_chat(user, span_warning("You don't have enough [cement.name] to mix with [src]."))
+		to_chat(user, span_warning(LANG("obj.c44337e6", list(cement.name, src))))
 		return ITEM_INTERACT_BLOCKING
 
 	use(sand_to_use)
 	target.reagents.convert_reagent(cement.type, cement.concrete_type, conversion_volume = sand_to_use * cement.units_per_aggregate)
-	user.visible_message(span_warning("[user] slips something into [target]!"), span_notice("You dissolve [src] in [target]."), null, 2)
+	user.visible_message(span_warning(LANG("obj.17fceef6", list(user, target))), span_notice(LANG("obj.a6017650", list(src, target))), null, 2)
 	playsound(target, 'sound/effects/bubbles/bubbles.ogg', 50, TRUE)
 	return ITEM_INTERACT_SUCCESS
 

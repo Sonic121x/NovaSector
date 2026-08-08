@@ -202,7 +202,7 @@
 	if(. || !HAS_TRAIT(user, TRAIT_VOMIT_SLURPER))
 		return
 	playsound(get_turf(src), 'sound/items/drink.ogg', 50, TRUE) //slurp
-	user.visible_message(span_alert("[user] extends a small proboscis into the vomit pool, sucking it with a slurping sound."))
+	user.visible_message(span_alert(LANG("obj.5bfdb828", list(user))))
 	lazy_init_reagents()?.trans_to(user, reagents.total_volume, transferred_by = user, methods = INGEST)
 	qdel(src)
 

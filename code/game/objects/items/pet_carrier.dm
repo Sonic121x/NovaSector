@@ -113,7 +113,7 @@
 	if(target.mob_size > max_occupant_weight)
 		if(ishuman(target))
 			if(isfeline(target) || HAS_TRAIT(target, TRAIT_CATLIKE_INSTINCT))
-				to_chat(user, span_warning("You'd need a lot of catnip and treats, plus maybe a laser pointer, for that to work."))
+				to_chat(user, span_warning(LANG("obj.6dd75ce0", null)))
 			else
 				to_chat(user, span_warning(LANG("obj.6b4e5a5e", null)))
 		else

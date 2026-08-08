@@ -118,7 +118,7 @@
 	var/obj/item/bodypart/consumed_limb = target.get_bodypart(pick(limbs_to_consume))
 	consumed_limb.drop_limb()
 
-	to_chat(target, span_userdanger("Your [consumed_limb.name] is drawn back into your body, unable to maintain its shape!"))
+	to_chat(target, span_userdanger(LANG("datum.66645a3a", list(consumed_limb.name))))
 	qdel(consumed_limb)
 	target.adjust_blood_volume(65 * target.physiology.blood_regen_mod) // NOVA EDIT CHANGE - This is because losing a limb now costs 60 blood, so this refunds it with a bit extra; ORIGINAL: target.adjust_blood_volume(20 * target.physiology.blood_regen_mod)
 

@@ -245,7 +245,7 @@ GAME_VERB_HIDDEN(/client, drop_item, "drop item")
 					to_chat(L, span_warning(LANG("client.570f77d7", null)))
 					return
 				if(HAS_TRAIT(stepTurf, TRAIT_TURF_BLESSED))
-					to_chat(L, span_warning("Holy energies block your path!"))
+					to_chat(L, span_warning(LANG("client.1fa44391", null)))
 					return
 
 				L.forceMove(stepTurf)

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /turf/closed/wall/concrete
 	name = "concrete wall"
 	desc = "A thick wall made of concrete, poured around steel supports."
@@ -30,14 +31,14 @@
 
 /turf/closed/wall/concrete/deconstruction_hints(mob/user)
 	. = list()
-	. += span_notice("[p_They()] look[p_s()] like you could smash [p_them()] with <b>[tool_behaviour_name(TOOL_MINING)]</b>.")
+	. += span_notice(LANG("turf.7d30cd47", list(p_They(), p_s(), p_them(), tool_behaviour_name(TOOL_MINING))))
 	switch(harden_lvl)
 		if(0.8 to 0.99)
-			. += "[p_They()] look[p_s()] nearly dry."
+			. += LANG("turf.14f1b427", list(p_They(), p_s()))
 		if(0.4 to 0.8)
-			. += "[p_They()] look[p_s()] a little wet."
+			. += LANG("turf.ca7a1c2d", list(p_They(), p_s()))
 		if(0 to 0.4)
-			. += "[p_They()] look[p_s()] freshly poured."
+			. += LANG("turf.b21ffc9d", list(p_They(), p_s()))
 	return
 
 /turf/closed/wall/concrete/try_clean(obj/item/W, mob/living/user)
@@ -46,12 +47,12 @@
 
 /turf/closed/wall/concrete/try_decon(obj/item/I, mob/user)
 	if (I.tool_behaviour == TOOL_MINING)
-		to_chat(user, span_notice("You begin breaking the wall..."))
+		to_chat(user, span_notice(LANG("turf.5626c5b3", null)))
 		if(I.use_tool(src, user, slicing_duration, volume=100))
 			// break_prob decreases linearly from 100 to hardness as it cures
 			var/break_prob = hardness + (1 - harden_lvl) * (100 - hardness)
 			if(prob(break_prob))
-				to_chat(user, span_notice("You break the wall."))
+				to_chat(user, span_notice(LANG("turf.3baf5056", null)))
 				dismantle_wall()
 				new /obj/effect/decal/cleanable/concrete_dust(src)
 			else

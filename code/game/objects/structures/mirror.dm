@@ -481,7 +481,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 			user.set_hairstyle(random_hairstyle(user.gender))
 			user.set_facial_hairstyle(random_facial_hairstyle(user.gender))
 		if(CHANGE_RACE)
-			to_chat(user, span_hypnophrase("The body - no, the body is all wrong - [pick("I must become anew", "I need to be different", "I want to be something else")]..."))
+			to_chat(user, span_hypnophrase(LANG("obj.f408e7ef", list(pick("I must become anew", "I need to be different", "I want to be something else")))))
 			var/list/options = assoc_to_values(selectable_races) - user.dna.species.type
 			var/datum/species/newrace = GLOB.species_prototypes[pick(options)]
 			on_species_change(user, newrace)

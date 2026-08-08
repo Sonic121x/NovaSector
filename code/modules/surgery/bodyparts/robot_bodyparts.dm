@@ -143,9 +143,9 @@
 		return
 	if(prob(80 / severity))
 		if(owner.body_position == LYING_DOWN) // So the message isn't duplicated. If they were stunned beforehand by something else, then the message not showing makes more sense anyways.
-			to_chat(owner, span_danger("Your [plaintext_zone] suddenly malfunctions!"))
+			to_chat(owner, span_danger(LANG("obj.873485fe", list(plaintext_zone))))
 		else
-			to_chat(owner, span_danger("As your [plaintext_zone] suddenly malfunctions, it causes you to fall to the ground!"))
+			to_chat(owner, span_danger(LANG("obj.c38277e6", list(plaintext_zone))))
 		owner.Knockdown(AUGGED_LEG_EMP_KNOCKDOWN_TIME)
 	owner.adjust_staggered(STAGGERED_SLOWDOWN_LENGTH * 3 / severity)
 	owner.client?.move_delay = max(owner.client?.move_delay, world.time)
@@ -199,9 +199,9 @@
 		return
 	if(prob(80 / severity))
 		if(owner.body_position == LYING_DOWN) // So the message isn't duplicated. If they were stunned beforehand by something else, then the message not showing makes more sense anyways.
-			to_chat(owner, span_danger("Your [plaintext_zone] suddenly malfunctions!"))
+			to_chat(owner, span_danger(LANG("obj.873485fe", list(plaintext_zone))))
 		else
-			to_chat(owner, span_danger("As your [plaintext_zone] suddenly malfunctions, it causes you to fall to the ground!"))
+			to_chat(owner, span_danger(LANG("obj.c38277e6", list(plaintext_zone))))
 		owner.Knockdown(AUGGED_LEG_EMP_KNOCKDOWN_TIME)
 	owner.adjust_staggered(STAGGERED_SLOWDOWN_LENGTH * 3 / severity)
 	owner.client?.move_delay = max(owner.client?.move_delay, world.time)
@@ -261,7 +261,7 @@
 		return
 	var/damage_percent_to_max = (get_damage() / max_damage)
 	if(damage_percent_to_max >= robotic_emp_paralyze_damage_percent_threshold)
-		to_chat(owner, span_danger("Your [plaintext_zone]'s logic boards temporarily become unresponsive!"))
+		to_chat(owner, span_danger(LANG("obj.2e4cb3e9", list(plaintext_zone))))
 		owner.Stun(AUGGED_CHEST_EMP_STUN_TIME / severity)
 	owner.adjust_jitter(AUGGED_CHEST_EMP_SHAKE_TIME / severity)
 
@@ -432,7 +432,7 @@
 	. = ..()
 	if(!. || isnull(owner))
 		return
-	to_chat(owner, span_danger("Your [plaintext_zone] hurts..."))
+	to_chat(owner, span_danger(LANG("obj.8a5b62ff", list(plaintext_zone))))
 	QDEL_IN(owner.add_client_colour(/datum/client_colour/malfunction, HEAD_TRAIT), (AUGGED_HEAD_EMP_GLITCH_DURATION / severity))
 	owner.adjust_confusion(AUGGED_HEAD_EMP_GLITCH_DURATION / severity)
 

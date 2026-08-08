@@ -281,9 +281,9 @@
 			continue
 		target_cat.setDir(get_dir(target_cat, targloc)) // kitty always looks at the light
 		if(target_cat.body_position == STANDING_UP)
-			target_cat.visible_message(span_notice("[target_cat] looks briefly distracted by the light."), span_warning("You're briefly tempted by the shiny light..."))
+			target_cat.visible_message(span_notice(LANG("obj.89766f76", list(target_cat))), span_warning(LANG("obj.958edba3", null)))
 		else
-			target_cat.visible_message(span_notice("[target_cat] stares at the light."), span_warning("You stare at the light..."))
+			target_cat.visible_message(span_notice(LANG("obj.22e5e7c7", list(target_cat))), span_warning(LANG("obj.dda3d809", null)))
 	//The pointer is shining, change its sprite to show
 	icon_state = "pointer_[pointer_icon_state]"
 

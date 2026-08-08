@@ -260,14 +260,14 @@
 		if(!gibbing && length(deleted_part_names))
 			var/parts_text = english_list(deleted_part_names)
 			rockman.investigate_log("had [rockman.p_their()] [parts_text] which all had BIO_STONE biological state) destroyed by a [src]", INVESTIGATE_CARGO)
-			rockman.visible_message(span_warning("[rockman] is processed by [src]!"), span_userdanger("Your [parts_text] are shred into bits by [src]!"))
+			rockman.visible_message(span_warning(LANG("obj.6107e3a2", list(rockman, src))), span_userdanger(LANG("obj.fc868f5a", list(parts_text, src))))
 
 	if(gibbing)
 		gib_mob(rockman)
 
 ///Called at the end of main_mob() if they were a bodyparts-less mob or their chest was made of stone...
 /obj/machinery/bouldertech/proc/gib_mob(mob/living/rockman)
-	rockman.visible_message(span_warning("[rockman] is processed by [src]!"), span_userdanger("You get processed into bits by [src]!"))
+	rockman.visible_message(span_warning(LANG("obj.6107e3a2", list(rockman, src))), span_userdanger(LANG("obj.9a29a339", list(src))))
 	rockman.investigate_log("was gibbed by [src] for having the MOB_MINERAL mob biotype", INVESTIGATE_DEATHS)
 	rockman.gib(DROP_ALL_REMAINS)
 

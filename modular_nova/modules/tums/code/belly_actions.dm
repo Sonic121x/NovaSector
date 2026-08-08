@@ -103,7 +103,7 @@
 		if(owner in my_belly.nommeds)
 			my_belly.free_target(owner)
 		else
-			to_chat(owner, span_danger("You're not supposed to be able to use this action!"))
+			to_chat(owner, span_danger(LANG("datum.43b174c4", null)))
 			Remove(owner)
 		return TRUE
 
@@ -139,7 +139,7 @@
 
 	/// Query the host if applicable.  This belly has to be configured to QUERY or ALWAYS mode; otherwise we exit early as the pred doesn't want this.
 	if(pred_mode == "Query")
-		var/mode_select = tgui_alert(user, "Try to vore [target]?", "Nomnom?", list_yesno)
+		var/mode_select = tgui_alert(user, LANG("obj.de8c2618", list(target)), LANG("obj.b1b21808", null), list_yesno)
 		if(isnull(mode_select) || QDELETED(user) || QDELETED(src))
 			return
 		consent_pred = (mode_select == "Yes") ? TRUE : FALSE
@@ -150,7 +150,7 @@
 	var/prey_mode = target.client?.prefs?.read_preference(/datum/preference/choiced/erp_vore_prey_pref)
 	if(consent_pred)
 		if(prey_mode == "Query")
-			var/mode_select = tgui_alert(target, "Allow [user] to vore you?", "Nomnom?", list_yesno)
+			var/mode_select = tgui_alert(target, LANG("obj.ac0d8372", list(user)), LANG("obj.b1b21808", null), list_yesno)
 			if(isnull(mode_select) || QDELETED(target) || QDELETED(src))
 				return
 			consent_prey = (mode_select == "Yes") ? TRUE : FALSE
@@ -162,7 +162,7 @@
 		do_nom(target, user)
 	/// ...or if the target says no, display the standard interact deny message.
 	else if(consent_pred && !consent_prey)
-		to_chat(user, span_danger("[target] doesn't want you to do that."))
+		to_chat(user, span_danger(LANG("obj.8d0a0182", list(target))))
 
 /// This is where the magic happens to actually nom someone.
 /// *Do not call this outside of debug*, it doesn't have consent checks.
@@ -171,8 +171,8 @@
 	if((target.loc in user.contents) || (user.loc in target.contents) || (target.loc.loc == user) || (user.loc.loc == target) || (user == target))
 		return FALSE
 	// Step 1: put them in the list (your belly)
-	to_chat(target, span_danger("[user] gulps you down!"))
-	to_chat(user, span_danger("You gulp down [target]!"))
+	to_chat(target, span_danger(LANG("obj.f447dce5", list(user))))
+	to_chat(user, span_danger(LANG("obj.dcc34dd6", list(target))))
 	LAZYADD(nommeds, target)
 	LAZYSET(nommed_sizes, target, endo_size)
 

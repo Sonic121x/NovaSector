@@ -141,7 +141,7 @@
 
 /datum/status_effect/golem/on_remove()
 	if(mineral_name)
-		to_chat(owner, span_warning("The effect of the [mineral_name] fades."))
+		to_chat(owner, span_warning(LANG("datum.8322c37b", list(mineral_name))))
 	QDEL_LIST(active_overlays)
 	owner.remove_filter("[id]_filter")
 	return ..()

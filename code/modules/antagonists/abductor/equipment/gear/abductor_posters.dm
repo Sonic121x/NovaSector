@@ -14,7 +14,7 @@
 
 /obj/structure/sign/poster/abductor/tear_poster(mob/user)
 	if(!HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_KNOWLEDGE))
-		balloon_alert(user, "it won't budge!")
+		balloon_alert(user, LANG("obj.73bdfe0e", null))
 		return
 	return ..()
 

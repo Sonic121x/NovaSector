@@ -169,7 +169,7 @@
 		var/mob/living/carbon/human/human_owner = owner
 		if(human_owner.stat != DEAD && prob(50 / severity) && human_owner.can_heartattack())
 			human_owner.set_heartattack(TRUE)
-			to_chat(human_owner, span_userdanger("You feel a horrible agony in your chest!"))
+			to_chat(human_owner, span_userdanger(LANG("obj.21af2a52", null)))
 			addtimer(CALLBACK(src, PROC_REF(undo_heart_attack)), 50 SECONDS / severity)
 
 /obj/item/organ/cyberimp/chest/reviver/proc/undo_heart_attack()

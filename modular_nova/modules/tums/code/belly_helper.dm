@@ -203,13 +203,13 @@
 	for(var/text in release_list)
 		opt_list += text
 
-	var/adjustment_mode = tgui_input_list(user, "Select ", "Belly Control", opt_list)
+	var/adjustment_mode = tgui_input_list(user, LANG("obj.c1edca89", null), LANG("obj.6dd9ccf7", null), opt_list)
 	switch(adjustment_mode)
 		if("Edit Settings")
 			GLOB.erp_belly_prefshelper.ui_interact(user)
 		else
 			if(adjustment_mode in extra_size_list)
-				var/temp_size = tgui_input_number(user, "What size do you want [extra_size_list[adjustment_mode].name] to be?  (0.0-infinity, 1000 is typically same-sizeish)", "Endo Size")
+				var/temp_size = tgui_input_number(user, LANG("obj.1fee15b9", list(extra_size_list[adjustment_mode].name)), LANG("obj.fc318029", null))
 				if(isnull(temp_size) || QDELETED(user) || QDELETED(src))
 					return
 				LAZYSET(nommed_sizes, extra_size_list[adjustment_mode], temp_size)
@@ -269,7 +269,7 @@
 /obj/item/belly_function/proc/update_layer_mode(new_layer_mode)
 	layer_mode = new_layer_mode
 	horizontal_layer = layer_options[layer_mode]
-	to_chat(lastuser, span_notice("Setting belly layer mode to [layer_mode], with calculated layer [horizontal_layer]"))
+	to_chat(lastuser, span_notice(LANG("obj.6541ba34", list(layer_mode, horizontal_layer))))
 	south_layer = layer_options[layer_mode]
 
 /// This is where the magic happens for calculating sizes, triggering noise, etc.

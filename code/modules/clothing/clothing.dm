@@ -452,13 +452,13 @@
 		if(body_parts_covered & (LEGS|FEET))
 			parts_covered += "legs"
 		if(length(parts_covered))
-			readout += "It covers the wearer's [english_list(parts_covered)]."
+			readout += LANG("obj.764d8ebd", list(english_list(parts_covered)))
 
 		if((clothing_flags & STOPSPRESSUREDAMAGE) || (visor_flags & STOPSPRESSUREDAMAGE))
 			var/output_string = "It"
 			if(!(clothing_flags & STOPSPRESSUREDAMAGE))
 				output_string = "When sealed, it"
-			readout += "[output_string] will protect the wearer's bodyparts that it covers from [span_tooltip("The extremely low pressure is the biggest danger posed by the vacuum of space.", "low pressure")]."
+			readout += LANG("obj.2c17a02e", list(output_string, span_tooltip("The extremely low pressure is the biggest danger posed by the vacuum of space.", "low pressure")))
 
 		var/heat_prot
 		switch (max_heat_protection_temperature)

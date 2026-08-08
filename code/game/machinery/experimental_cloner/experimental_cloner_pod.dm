@@ -132,7 +132,7 @@ GLOBAL_VAR_INIT(experimental_cloner_fuckup_chance, 50)
 
 	chosen_one.log_message("took control of experimental clone of [result].", LOG_GAME)
 	result.PossessByPlayer(chosen_one.ckey)
-	to_chat(result, span_boldnotice("You are [loaded_record.name]! You aren't quite sure where you are or how you got here, though."))
+	to_chat(result, span_boldnotice(LANG("obj.d31fbab4", list(loaded_record.name))))
 	var/policy = get_policy(ROLE_EXPERIMENTAL_CLONER)
 	if (policy)
 		to_chat(result, span_notice(policy))

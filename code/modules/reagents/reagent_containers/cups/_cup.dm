@@ -215,18 +215,18 @@
 	if (!pour_amount)
 		return NONE
 	if (concrete.volume < pour_amount)
-		user.balloon_alert(user, "not enough to pour")
+		user.balloon_alert(user, LANG("obj.67f80a7f", null))
 		return ITEM_INTERACT_FAILURE
-	user.balloon_alert(user, "pouring...")
+	user.balloon_alert(user, LANG("obj.2d9bfdba", null))
 	user.visible_message(
-		span_notice("[user] starts pouring concrete onto \a [target]."),
-		span_notice("You start pouring concrete onto \a [target]..."),
+		span_notice(LANG("obj.f81f95ec", list(user, target))),
+		span_notice(LANG("obj.fb79679f", list(target))),
 	)
 	if (!do_after(user, 1 SECONDS, target=target))
-		user.balloon_alert(user, "interrupted")
+		user.balloon_alert(user, LANG("obj.0c4ac08a", null))
 		return ITEM_INTERACT_FAILURE
 	if(concrete.volume < pour_amount) // check if volume has changed during do_after
-		user.balloon_alert(user, "not enough to pour")
+		user.balloon_alert(user, LANG("obj.67f80a7f", null))
 		return ITEM_INTERACT_FAILURE
 	playsound(src, 'sound/effects/slosh.ogg', 25, TRUE)
 	concrete.expose_atom(target, pour_amount, TOUCH)

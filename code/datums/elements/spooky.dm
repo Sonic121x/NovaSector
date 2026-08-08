@@ -27,7 +27,7 @@
 
 	if(!HAS_TRAIT(user, TRAIT_SPOOKY_INSTRUMENT_PLAYER)) //this weapon wasn't meant for mortals.
 		if(rattle_bones(user, stam_dam_mult = stam_damage_mult * 2))
-			to_chat(user, span_userdanger("Your ears weren't meant for this spectral sound."))
+			to_chat(user, span_userdanger(LANG("datum.6daed1e7", null)))
 			if(ishuman(user))
 				INVOKE_ASYNC(src, PROC_REF(spectral_change), user, user, source)
 		return

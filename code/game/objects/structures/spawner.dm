@@ -204,13 +204,13 @@
 
 /obj/structure/spawner/nether/examine(mob/user)
 	. = ..()
-	. += "A direct link to another dimension full of creatures not very happy to see you. [span_warning("Entering the link would be a very bad idea.")]"
+	. += LANG("obj.98bc5219", list(span_warning("Entering the link would be a very bad idea.")))
 
 /obj/structure/spawner/nether/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	user.visible_message(
-		span_warning("[user] is violently pulled into the link!"),
-		span_userdanger("Touching the portal, you are quickly pulled through into a world of unimaginable horror!")
+		span_warning(LANG("obj.0a35c4b6", list(user))),
+		span_userdanger(LANG("obj.0293a5ce", null))
 	)
 	contents.Add(user)
 

@@ -349,8 +349,8 @@
 		distance = 0
 	else if(message)
 		visible_message(
-			span_danger("[src] throws up!"),
-			span_userdanger("You throw up!"),
+			span_danger(LANG("mob.c7a485c5", list(src))),
+			span_userdanger(LANG("mob.f5b2717a", null)),
 		)
 		if(!HAS_TRAIT(src, TRAIT_VOMIT_SLURPER))
 			add_mood_event("vomit", /datum/mood_event/vomit)

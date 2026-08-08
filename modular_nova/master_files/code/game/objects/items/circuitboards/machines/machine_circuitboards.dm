@@ -26,7 +26,7 @@
 	. = ..()
 	if(is_special_type)
 		return
-	. += span_info("[src] is registered for [skillsofts_name_paths[build_path]] chamber material. You can use a screwdriver to reconfigure it.")
+	. += span_info(LANG("obj.9ef97ecf", list(src, skillsofts_name_paths[build_path])))
 
 // Megacell Charger
 /obj/item/circuitboard/machine/megacell_charger

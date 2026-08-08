@@ -92,7 +92,7 @@
 		return
 
 	if(HAS_TRAIT(M, TRAIT_REQUIRED_ADV_HEALTH_SCANNER) && scanpower < SCANPOWER_ADVANCED)
-		to_chat(user, span_info("[M]'s biological structure is too complex for the health analyzer."))
+		to_chat(user, span_info(LANG("obj.58992497", list(M))))
 		return
 
 	user.visible_message(span_notice(LANG("obj.e9abb56d", list(user, M))))

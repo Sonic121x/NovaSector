@@ -255,5 +255,5 @@
 	SIGNAL_HANDLER
 
 	if(new_loc && HAS_TRAIT(new_loc, TRAIT_TURF_BLESSED))
-		to_chat(source, span_warning("Holy energies block your path!"))
+		to_chat(source, span_warning(LANG("datum.1fa44391", null)))
 		return COMSIG_MOB_CLIENT_BLOCK_PRE_LIVING_MOVE

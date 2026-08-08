@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * Wall supports are designed to help you safely deconstruct walls, without fear
  * of all wall-mounted equipment like APCs or light fixtures falling off.
@@ -32,9 +33,9 @@
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	if(anchored)
-		. += span_notice("It's secured in place with [EXAMINE_HINT("screws")]. The rods look like they could be [EXAMINE_HINT("cut")] through.")
+		. += span_notice(LANG("obj.2e0de192", list(EXAMINE_HINT("screws"), EXAMINE_HINT("cut"))))
 	else
-		. += span_notice("The anchoring screws are [EXAMINE_HINT("unscrewed")]. The rods look like they could be [EXAMINE_HINT("cut")] through.")
+		. += span_notice(LANG("obj.3119bad7", list(EXAMINE_HINT("unscrewed"), EXAMINE_HINT("cut"))))
 
 /obj/structure/wall_support/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -60,7 +61,7 @@
 		return FALSE
 	set_anchored(!anchored)
 	user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] [src]."), \
-		span_notice("You [anchored ? "fasten [src] to" : "unfasten [src] from"] the floor."))
+		span_notice(LANG("obj.1175c81a", list(anchored ? "fasten [src] to" : "unfasten [src] from"))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/wall_support/play_attack_sound(...)

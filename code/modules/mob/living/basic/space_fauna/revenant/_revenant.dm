@@ -425,7 +425,7 @@
 		return FALSE
 
 	if(HAS_TRAIT(step_turf, TRAIT_TURF_BLESSED))
-		to_chat(src, span_warning("Holy energies block your path!"))
+		to_chat(src, span_warning(LANG("mob.1fa44391", null)))
 		return FALSE
 
 	return TRUE

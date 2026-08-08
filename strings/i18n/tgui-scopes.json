@@ -188,9 +188,6 @@
   "...aka \"{0}\"": [
     "tgui:DSMBook"
   ],
-  "...at [{0}]...": [
-    "tgui:index"
-  ],
   "...for {0} second{1}...": [
     "tgui:index"
   ],
@@ -966,6 +963,9 @@
   "Adjuster Implant": [
     "dm:labels"
   ],
+  "Adjusts belly layering order.": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Adjusts the HFR core's internal cooling space. A smaller space will provide less cooling internally, but will move most of the coolant outside of the HFR core, where it can be rapidly cooled when not needed.": [
     "tgui:Controls"
   ],
@@ -1326,6 +1326,9 @@
   "Allow Emissives": [
     "tgui:species_features"
   ],
+  "Allow Full Groans": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Allow Genital Parts": [
     "tgui:species_features"
   ],
@@ -1337,6 +1340,54 @@
   ],
   "Allow Mismatched Parts": [
     "tgui:species_features"
+  ],
+  "Allow Movement Creaks": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Allow Movement Sloshes": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Allow Sound: Full Groans": [
+    "tgui:belly_preferences"
+  ],
+  "Allow Sound: Full Movement Creaks": [
+    "tgui:belly_preferences"
+  ],
+  "Allow Sound: Stuffed Gurgles": [
+    "tgui:belly_preferences"
+  ],
+  "Allow Sound: Stuffed Movement Sloshes": [
+    "tgui:belly_preferences"
+  ],
+  "Allow Stuffed Gurgles": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Allow emitting full groans?": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Allow emitting movement groans?": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Allow emitting movement sloshes?": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Allow emitting stuffed gurgles?": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Allow hearing full groans?": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Allow hearing movement groans?": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Allow hearing movement sloshes?": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Allow hearing stuffed gurgles?": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Allow seeing bellies at all?": [
+    "tgui:NovaTumsPrefs"
   ],
   "Allow shuttle docking": [
     "tgui:Blueprints"
@@ -1398,6 +1449,9 @@
   ],
   "Alternative to TTS: When enabled, be able to hear players' vocal barks when they are speaking (including your own).": [
     "tgui:character_voice"
+  ],
+  "Always": [
+    "dm:labels"
   ],
   "Always Human as Operative": [
     "tgui:operative_species"
@@ -2589,6 +2643,18 @@
   "Base Launch Controls": [
     "tgui:ShuttleConsole"
   ],
+  "Base Size": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Base Size - Cosmetic": [
+    "tgui:belly_preferences"
+  ],
+  "Base Size - Fullness": [
+    "tgui:belly_preferences"
+  ],
+  "Base Size - Stuffed": [
+    "tgui:belly_preferences"
+  ],
   "Basic": [
     "tgui:Crayon"
   ],
@@ -2853,6 +2919,9 @@
   "Begin Cloning": [
     "tgui:ExperimentalCloner"
   ],
+  "Begin Deployment": [
+    "tgui:BluespaceArtillery"
+  ],
   "Begin Enhanced Interrogation": [
     "tgui:HypnoChair"
   ],
@@ -2889,6 +2958,42 @@
   ],
   "Beige": [
     "dm:labels"
+  ],
+  "Belly Color": [
+    "tgui:belly_preferences"
+  ],
+  "Belly Prefs": [
+    "tgui:belly_preferences"
+  ],
+  "Belly Sizemod": [
+    "tgui:belly_preferences"
+  ],
+  "Belly Sizemod - Audio": [
+    "tgui:belly_preferences"
+  ],
+  "Belly Sizemod - Nutrition": [
+    "tgui:belly_preferences"
+  ],
+  "Belly Uses Skintone": [
+    "tgui:belly_preferences"
+  ],
+  "Belly Visibility": [
+    "tgui:belly_preferences"
+  ],
+  "Belly coloration. Match this to your skin, Augments+ or Mutant Colors to make it look smooth, and toggle 'Use Skin tone' if your torso uses a skintone spritesheet.": [
+    "tgui:belly_preferences"
+  ],
+  "Belly sound toggles - these affect what sounds your belly can make, distinct from what sounds you're opted into hearing (see Global Prefs)": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Belly sound toggles - these affect what your client actually can hear.": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Belly sprite color & variant selection": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Belly sprite visibility - these affect what you can see.": [
+    "tgui:NovaTumsPrefs"
   ],
   "Belt": [
     "dm:labels"
@@ -2984,6 +3089,9 @@
     "dm:labels"
   ],
   "Big Beak Short": [
+    "dm:labels"
+  ],
+  "Big Boned": [
     "dm:labels"
   ],
   "Big Brother": [
@@ -3929,6 +4037,9 @@
   "Brings up a color pick window to replace this color group.": [
     "tgui:GreyscaleModifyMenu"
   ],
+  "Brings up a color picker to change the main sprite color.": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Brit's Tailcoat": [
     "dm:labels"
   ],
@@ -4790,6 +4901,7 @@
   ],
   "Cancel": [
     "tgui:BlackMarketUplink",
+    "tgui:BluespaceArtillery",
     "tgui:CallModal",
     "tgui:ExodroneConsole",
     "tgui:InputButtons",
@@ -5279,7 +5391,9 @@
   ],
   "Change": [
     "tgui:BorgPanel",
-    "tgui:base"
+    "tgui:NovaTumsPrefs",
+    "tgui:base",
+    "tgui:belly_button"
   ],
   "Change Bomb Cap": [
     "tgui:Secrets"
@@ -5387,6 +5501,9 @@
   ],
   "Character Laugh": [
     "tgui:character_laugh"
+  ],
+  "Character Prefs": [
+    "tgui:NovaTumsPrefs"
   ],
   "Character Preview": [
     "tgui:LimbsPage",
@@ -6242,8 +6359,14 @@
   "Color Matrix Editor": [
     "tgui:ColorMatrixEditor"
   ],
+  "Color belly with uniform?": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Color code the reagents by pH": [
     "tgui:ChemDispenser"
+  ],
+  "Color with Uniform": [
+    "tgui:NovaTumsPrefs"
   ],
   "Color-Block Hoodie": [
     "dm:labels"
@@ -6386,7 +6509,6 @@
     "tgui:GlassBlowing"
   ],
   "Complete Deployment": [
-    "tgui:BluespaceArtillery",
     "tgui:BluespaceArtilleryNova"
   ],
   "Complete Spy Bounties to earn rewards from your employer. Use these rewards to sow chaos and mischief!": [
@@ -6491,6 +6613,9 @@
     "tgui:PlaneMenus",
     "tgui:PresetsPage",
     "tgui:SelectEquipment"
+  ],
+  "Confirm Position": [
+    "tgui:BluespaceArtillery"
   ],
   "Confirm Purchase?": [
     "tgui:Loadouts"
@@ -6670,6 +6795,9 @@
   "Contracts Completed": [
     "tgui:SyndContractor",
     "tgui:SyndicateContractor"
+  ],
+  "Contributions to the Stuffed Size from your Nutrition and stomach contents are multiplied by this. Good if you'd rather have manual control for a scene, or don't want to suddenly look stuffed from taking the average veteran chemist's heal-all pill.": [
+    "tgui:NovaTumsPrefs"
   ],
   "Control": [
     "tgui:Gps",
@@ -7572,9 +7700,6 @@
   "Cycle between sorting methods.": [
     "tgui:SurgeryProceduresView"
   ],
-  "Cycle object category": [
-    "tgui:index"
-  ],
   "Cycle overflow behaviour": [
     "tgui:index"
   ],
@@ -8367,6 +8492,12 @@
   "Determines what sexual content you see, limited use. None will show all content.": [
     "tgui:erp_preferences"
   ],
+  "Determines whether or not you can vore people as a pred with the belly. Never means you can never be a pred, query means you always get queried before trying, always means you always try.": [
+    "tgui:belly_preferences"
+  ],
+  "Determines whether or not you partake in the belly system to engage in vore as a prey. 'Never' means you can never be a prey, 'Query' means you always get queried before someone tries to take you, 'Always' means you always consent.": [
+    "tgui:belly_preferences"
+  ],
   "Determines which language you speak naturally, without using the 'key'.": [
     "tgui:LanguageMenu"
   ],
@@ -8550,6 +8681,9 @@
     "tgui:Thresholds",
     "tgui:TurretControl",
     "tgui:index"
+  ],
+  "Disables the window limit for TGUI windows. Having more than 5 windows open can tank performance on lower end computers.": [
+    "tgui:tgui"
   ],
   "Discard": [
     "tgui:ChemDispenser"
@@ -9857,6 +9991,9 @@
   ],
   "End the current vote and execute the winning event.": [
     "tgui:EventPanel"
+  ],
+  "Endosoma settings - ignore if you're not into nomming/being nommed!": [
+    "tgui:NovaTumsPrefs"
   ],
   "Endurance": [
     "tgui:Graft",
@@ -11636,6 +11773,9 @@
   "Full Random will give you anything. There's no going back, either! Guaranteed to have {0} points worth of spells.": [
     "tgui:Randomize"
   ],
+  "Full Size": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Full Toolbox": [
     "dm:labels"
   ],
@@ -12111,11 +12251,17 @@
   "Global": [
     "tgui:CircuitSignalHandler"
   ],
+  "Global Belly Visibility": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Global Narrate": [
     "tgui:PlayerPanel"
   ],
   "Global Positioning System": [
     "tgui:Gps"
+  ],
+  "Global Prefs": [
+    "tgui:NovaTumsPrefs"
   ],
   "Globals": [
     "tgui:index"
@@ -12913,6 +13059,18 @@
   "Healthy": [
     "tgui:Sleeper"
   ],
+  "Hear Belly Sound: Full Groans": [
+    "tgui:belly_preferences"
+  ],
+  "Hear Belly Sound: Full Movement Creaks": [
+    "tgui:belly_preferences"
+  ],
+  "Hear Belly Sound: Stuffed Gurgles": [
+    "tgui:belly_preferences"
+  ],
+  "Hear Belly Sound: Stuffed Movement Sloshes": [
+    "tgui:belly_preferences"
+  ],
   "Hear all messages": [
     "tgui:legacy_chat_toggles"
   ],
@@ -13103,14 +13261,23 @@
   "Hide Mechanic": [
     "tgui:SurgeryProceduresView"
   ],
+  "Hide belly with uniform?": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Hide offline/paused": [
     "tgui:index"
   ],
   "Hide values under 1": [
     "tgui:index"
   ],
+  "Hide with Uniform": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Hide/Show mutant parts": [
     "dm:labels"
+  ],
+  "Hides your belly if you're wearing a uniform or suit that would hide your torso. Not always reliable due to inconsistent bitflag application across undersuits!": [
+    "tgui:NovaTumsPrefs"
   ],
   "High": [
     "dm:labels",
@@ -15277,6 +15444,9 @@
     "tgui:RapidPipeDispenser",
     "tgui:RapidPlumbingDevice"
   ],
+  "Layer Mode": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Layer Source": [
     "tgui:GreyscaleModifyMenu"
   ],
@@ -15430,6 +15600,9 @@
   ],
   "Level {0}{1}{2}": [
     "tgui:AntagInfoHeretic"
+  ],
+  "Level:": [
+    "tgui:IDCBook"
   ],
   "Level: [{0}]": [
     "tgui:SkillPanel"
@@ -15814,6 +15987,9 @@
   ],
   "Local Drive": [
     "tgui:NanopaintSelectDialog"
+  ],
+  "Local Prefs": [
+    "tgui:NovaTumsPrefs"
   ],
   "Local Status": [
     "tgui:AlarmStatus"
@@ -16381,6 +16557,9 @@
   "Main Node": [
     "tgui:AtmosMixer"
   ],
+  "Main Sprite Color": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Maintenance": [
     "tgui:BluespaceArtillery",
     "tgui:BluespaceArtilleryNova",
@@ -16768,6 +16947,9 @@
   "Max Share": [
     "tgui:AtmosControlPanel"
   ],
+  "Max Sprite Size": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Max Temperature": [
     "tgui:TurbineComputer"
   ],
@@ -16777,8 +16959,17 @@
   "Max chat length": [
     "tgui:runechat"
   ],
+  "Max sprite size for this belly to be capable of reaching, agnostic of actual rendered sprites for other users. Can't go above this value, even with higher max rendering prefs!": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Max sprite size to render locally. If you have a belly, it can go above this size; you just won't see it!": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Max temperature": [
     "tgui:Recipes"
+  ],
+  "Maximum Belly Size": [
+    "tgui:belly_preferences"
   ],
   "Maximum Security Prisoner": [
     "dm:labels"
@@ -18396,6 +18587,9 @@
   "Neutral": [
     "tgui:FoodPreferences"
   ],
+  "Never": [
+    "dm:labels"
+  ],
   "Never rendered, no matter what.": [
     "tgui:GenitalLayeringTab"
   ],
@@ -18703,9 +18897,6 @@
   ],
   "No Track Selected": [
     "tgui:Jukebox"
-  ],
-  "No Uses Left": [
-    "tgui:index"
   ],
   "No abilities found.": [
     "tgui:CellularEmporium"
@@ -19388,9 +19579,6 @@
   "Normal - Red Candy Cane": [
     "dm:labels"
   ],
-  "Normal / Single use / Empty hand": [
-    "tgui:index"
-  ],
   "Normal Blobs will expand your reach and can be upgraded into special blobs that perform certain functions. Bear in mind that expanding into space has an 80% chance of failing!": [
     "tgui:AntagInfoBlob"
   ],
@@ -19669,6 +19857,9 @@
   "Nutrition Drain Enabled": [
     "tgui:NifSettings"
   ],
+  "Nutrition Size Modifier": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Nuts": [
     "dm:labels"
   ],
@@ -19757,9 +19948,6 @@
   "Object": [
     "tgui:CargoRequests",
     "tgui:IVDrip"
-  ],
-  "Object Type": [
-    "tgui:index"
   ],
   "Objective": [
     "tgui:OrionGame"
@@ -22169,6 +22357,12 @@
   "Precision is my weapon. Shadows are my armor. Without them, I am nothing.": [
     "tgui:AntagInfoNinja"
   ],
+  "Pred Mode": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Pred Preference": [
+    "tgui:belly_preferences"
+  ],
   "Prefabrication": [
     "tgui:Telecomms"
   ],
@@ -22272,6 +22466,9 @@
   "Previous Page": [
     "tgui:Newspaper",
     "tgui:SpellResults"
+  ],
+  "Prey Mode": [
+    "tgui:NovaTumsPrefs"
   ],
   "Pride Flag - Asexual": [
     "dm:labels"
@@ -22615,6 +22812,15 @@
   "Provided catalog had no icons!": [
     "tgui:MainPage"
   ],
+  "Provides a baseline cosmetic belly size with gentle fullness creaks & groans.": [
+    "tgui:belly_preferences"
+  ],
+  "Provides a baseline cosmetic belly size with gurgles, churns & sloshes from stuffed fullness.": [
+    "tgui:belly_preferences"
+  ],
+  "Provides a baseline cosmetic belly size with no noises.": [
+    "tgui:belly_preferences"
+  ],
   "Provides a discount of {0} points to all required point pools.": [
     "tgui:TechNode"
   ],
@@ -22696,6 +22902,9 @@
   "Pull": [
     "tgui:LaunchpadConsole"
   ],
+  "Pullover": [
+    "dm:labels"
+  ],
   "Pulse": [
     "tgui:Wires"
   ],
@@ -22744,6 +22953,15 @@
   ],
   "Purchasing this item will give you:{0}{1} rewards points": [
     "tgui:NtosNifsoftCatalog"
+  ],
+  "Purely cosmetic belly size; adds visual size. Final size = base size + full size + stuffed size. Note that the final size calculation is volumetric- it takes exponentially more to increase the sprite size the bigger you go!": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Purely cosmetic fullness size; adds additional base size and full creaks/groans, if you have them enabled. Final contribution to fullness sounds = full size + stuffed size.": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Purely cosmetic stuffed size; adds additional fullness size, and stuffed gurgles/churns, if you have them enabled.": [
+    "tgui:NovaTumsPrefs"
   ],
   "Purge": [
     "tgui:ModulesPane",
@@ -22824,6 +23042,9 @@
     "dm:labels"
   ],
   "Queen Insect": [
+    "dm:labels"
+  ],
+  "Query": [
     "dm:labels"
   ],
   "Query and cache: {0}{1}{2}": [
@@ -26009,6 +26230,12 @@
   "Sets TGUI Say to use a light mode.": [
     "tgui:tgui"
   ],
+  "Sets the maximum size of belly sprite you are willing to see. Size 4 and beyond are large, size 8 and beyond are hyper, size 11 and beyond are very hyper.": [
+    "tgui:belly_preferences"
+  ],
+  "Sets the maximum size of belly sprite your belly will ever reach. Size 4 and beyond are large, size 8 and beyond are hyper, size 11 and beyond are very hyper.": [
+    "tgui:belly_preferences"
+  ],
   "Setting up a MULEbot is easy:": [
     "tgui:CargoHelp"
   ],
@@ -26664,6 +26891,9 @@
   "Show in Directory": [
     "tgui:show_in_directory"
   ],
+  "Show/Hide Belly Preferences": [
+    "tgui:belly_preferences"
+  ],
   "Show/Hide Erotic Roleplay Preferences": [
     "tgui:erp_preferences"
   ],
@@ -26924,6 +27154,18 @@
   ],
   "Size Collar (Interlink Only)": [
     "dm:labels"
+  ],
+  "Size Modifiers": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Size multiplier - all belly size sources are multiplied by this for determining overall impact.": [
+    "tgui:belly_preferences"
+  ],
+  "Size multiplier - applies to the contribution of your nutrition & stomach reagents to autocalculated stuffed size.": [
+    "tgui:belly_preferences"
+  ],
+  "Size multiplier for audio - all belly size sources are multiplied by this for determining audio intensity.": [
+    "tgui:belly_preferences"
   ],
   "Skaag Plushie": [
     "dm:labels"
@@ -27414,6 +27656,9 @@
   ],
   "Sound": [
     "tgui:EmotePanel"
+  ],
+  "Sound Size Modifier": [
+    "tgui:NovaTumsPrefs"
   ],
   "Sounds": [
     "tgui:PodSounds"
@@ -28254,6 +28499,9 @@
   ],
   "Study the area and do what needs to be done to recover the crate. Pay close attention to domain information and context clues.": [
     "tgui:AvatarHelp"
+  ],
+  "Stuffed Size": [
+    "tgui:NovaTumsPrefs"
   ],
   "Stun": [
     "tgui:TurretControl"
@@ -29649,6 +29897,9 @@
   "The deadly page has the offensive spells, to destroy your enemies.": [
     "tgui:AntagInfoWizard"
   ],
+  "The default size for a new bellyguest. You can change their present size in-game using the belly settings verb.": [
+    "tgui:NovaTumsPrefs"
+  ],
   "The defensive page has defensive spells, to keep yourself alive. Remember, you may be powerful, but you are still only human.": [
     "tgui:AntagInfoWizard"
   ],
@@ -29709,6 +29960,9 @@
   "The master blueprint for this shuttle still exists. Whoever has it can copy it to this set of blueprints.": [
     "tgui:ShuttleBlueprints"
   ],
+  "The master visibility toggle disables being able to see belly sprites, period. If you have a belly, it can have a sprite; you just won't see it!": [
+    "tgui:NovaTumsPrefs"
+  ],
   "The maximum length a Runechat message will show as.": [
     "tgui:runechat"
   ],
@@ -29762,6 +30016,9 @@
   ],
   "The shape in which your ghost will orbit. Requires BYOND membership.": [
     "tgui:ghost"
+  ],
+  "The skintone sprite palette matches up with skintone parts; humans, felinids, et al. You can use a distinct color from your selected skintone while the palette is active!": [
+    "tgui:NovaTumsPrefs"
   ],
   "The sound that's played when unlocking an achievement. If disabled, no sound will be played.": [
     "tgui:sounds"
@@ -29876,6 +30133,9 @@
   ],
   "These achievements are present in the database but are missing definitions in code. Most likely these were removed and can be cleaned up safely. If you're sharing the same database on multiple servers it's possible these come from a server with later version of the code than this one.": [
     "tgui:AchievementsAdminPanel"
+  ],
+  "These are in-round preferences; they will not be saved!": [
+    "tgui:NovaTumsPrefs"
   ],
   "These are targets you have extracted a GoldenEye keycard from. They cannot be extracted again.": [
     "tgui:AntagInfoAssaultops"
@@ -30099,6 +30359,12 @@
   "This is a key memory. It contains important information you may want to double-check in the future.": [
     "tgui:MemoryPanel"
   ],
+  "This is a multiplier applied to all size sources when calculating how intense belly sounds should be. Applied separate from the visual size modifier, for fine tuning. Good if you're playing a critter with a particularly cranky *or* calm belly.": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "This is a multiplier applied to all size sources when calculating the sprite size. Good if you're playing a shorter critter who should be more heavily impacted- or vice-versa. Stacks multiplicatively with the nutrition size mod.": [
+    "tgui:NovaTumsPrefs"
+  ],
   "This is a panel for blocking certain connection directions for the smart pipes. The button in the center resets to default (all directions can connect)": [
     "tgui:RapidPipeDispenser"
   ],
@@ -30221,6 +30487,9 @@
   ],
   "This shows/hides ERP preferences.": [
     "tgui:erp_preferences"
+  ],
+  "This shows/hides belly-kink content specific preferences.": [
+    "tgui:belly_preferences"
   ],
   "This shows/hides the animated overlays displayed on emotes for yourself.": [
     "tgui:emote_overlay"
@@ -31171,6 +31440,9 @@
   "Tricks": [
     "tgui:NtosVirtualPet"
   ],
+  "Tries to color your belly to match your equipped undersuit. This won't always be reliable- not all uniforms provide colors for fallback generation!": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Trigger Outbreak": [
     "tgui:Secrets"
   ],
@@ -31421,6 +31693,9 @@
   ],
   "Unbuckle the worker": [
     "tgui:index"
+  ],
+  "Uncap TGUI window limit": [
+    "tgui:tgui"
   ],
   "Uncategorized": [
     "dm:labels"
@@ -31745,6 +32020,9 @@
   "Use Params": [
     "tgui:EmotePanel"
   ],
+  "Use Skintone": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Use Subtler": [
     "tgui:index"
   ],
@@ -31772,8 +32050,14 @@
   "Use modern player panel": [
     "tgui:admin"
   ],
+  "Use skintone spritesheets for better matching coloration on human-esque characters.": [
+    "tgui:belly_preferences"
+  ],
   "Use template": [
     "tgui:LightController"
+  ],
+  "Use the skintone sprite palette?": [
+    "tgui:NovaTumsPrefs"
   ],
   "Use this key in your message to speak in this language.": [
     "tgui:LanguageMenu"
@@ -32236,6 +32520,9 @@
   "Visor Image": [
     "tgui:TacVisorEyesMenu"
   ],
+  "Visual Size Modifier": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Visual help": [
     "tgui:Tutorial"
   ],
@@ -32382,6 +32669,9 @@
   ],
   "Vore": [
     "tgui:NovaCharacterDirectory"
+  ],
+  "Vore Prey Preference": [
+    "tgui:belly_preferences"
   ],
   "Voskhod": [
     "dm:labels"
@@ -32874,9 +33164,6 @@
   "What snack would you like inside the lunchbox": [
     "tgui:lunchbox_quirk"
   ],
-  "What to do when nothing left to interact with": [
-    "tgui:index"
-  ],
   "What was written in fax log?": [
     "tgui:AdminFax"
   ],
@@ -32915,6 +33202,33 @@
   ],
   "When enabled, action buttons will be locked in place.": [
     "tgui:buttons_locked"
+  ],
+  "When enabled, allows you to hear the creaks from a full belly being jostled by movement.": [
+    "tgui:belly_preferences"
+  ],
+  "When enabled, allows you to hear the groans from a full belly.": [
+    "tgui:belly_preferences"
+  ],
+  "When enabled, allows you to hear the gurgles from a stuffed belly.": [
+    "tgui:belly_preferences"
+  ],
+  "When enabled, allows you to hear the sloshes from a stuffed belly being jostled by movement.": [
+    "tgui:belly_preferences"
+  ],
+  "When enabled, allows you to see belly sprites.": [
+    "tgui:belly_preferences"
+  ],
+  "When enabled, allows your belly to emit creaks from being jostled by movement while full.": [
+    "tgui:belly_preferences"
+  ],
+  "When enabled, allows your belly to emit creaks while full.": [
+    "tgui:belly_preferences"
+  ],
+  "When enabled, allows your belly to emit gurgles while stuffed.": [
+    "tgui:belly_preferences"
+  ],
+  "When enabled, allows your belly to emit sloshes from being jostled by movement while stuffed.": [
+    "tgui:belly_preferences"
   ],
   "When enabled, be able to hear text-to-speech sounds in game over radio channels. When set to \"Departmental Radio Only\", text to speech over the radio will only play for departmental radio channels. Anything that isn't Common. When disabled, text to speech will not play over radio sources.": [
     "tgui:sounds"
@@ -33063,6 +33377,12 @@
   "Whether or not to always remain an admin when spawned in CentCom.": [
     "tgui:admin"
   ],
+  "Whether or not you want to engage in endosoma as a pred on this character. Query asks first, Always will always try.": [
+    "tgui:NovaTumsPrefs"
+  ],
+  "Whether or not you want to engage in endosoma as prey on this character. Query asks first, Always will always consent.": [
+    "tgui:NovaTumsPrefs"
+  ],
   "Whether this airlock can have an integrated circuit placed inside of it or not.": [
     "tgui:AirlockElectronics"
   ],
@@ -33186,10 +33506,10 @@
   "Wings Selection": [
     "tgui:species_features"
   ],
-  "Winter Coat": [
+  "Winter Coat (Colorable)": [
     "dm:labels"
   ],
-  "Winter Coat (Colorable)": [
+  "Winter Coat (Departmental)": [
     "dm:labels"
   ],
   "Winter Coat - Assistant's Formal": [
@@ -33354,9 +33674,6 @@
   ],
   "Workboots (Black)": [
     "dm:labels"
-  ],
-  "Worker Action": [
-    "tgui:index"
   ],
   "World Time": [
     "tgui:OverviewSection"
@@ -34107,6 +34424,9 @@
   "Zippo Lighter": [
     "dm:labels"
   ],
+  "Zipup": [
+    "dm:labels"
+  ],
   "Zoey": [
     "dm:labels"
   ],
@@ -34206,6 +34526,9 @@
   "assistive anti-gravity ambulator": [
     "dm:labels"
   ],
+  "at": [
+    "tgui:index"
+  ],
   "avian tongue": [
     "dm:labels"
   ],
@@ -34255,6 +34578,9 @@
     "dm:labels"
   ],
   "burning red eyes": [
+    "dm:labels"
+  ],
+  "bwelly": [
     "dm:labels"
   ],
   "chemicals": [
@@ -34693,9 +35019,6 @@
   "position = average velocity * time": [
     "tgui:Tutorial"
   ],
-  "pullover": [
-    "dm:labels"
-  ],
   "pulsating tumor": [
     "dm:labels"
   ],
@@ -34881,6 +35204,9 @@
   "title": [
     "tgui:PaintingAdminPanel"
   ],
+  "to": [
+    "tgui:index"
+  ],
   "tongue": [
     "dm:labels"
   ],
@@ -34981,9 +35307,6 @@
     "tgui:CivCargoHoldTerminal"
   ],
   "yellow": [
-    "dm:labels"
-  ],
-  "zipup": [
     "dm:labels"
   ],
   "{0} (Has {1}cr bet on it){2}": [

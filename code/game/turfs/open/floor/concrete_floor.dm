@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /turf/open/floor/concrete
 	name = "concrete floor"
 	desc = "Cold, bare concrete flooring."
@@ -42,14 +43,14 @@
 
 /turf/open/floor/concrete/examine(mob/user)
 	. = ..()
-	. += span_notice("[p_They()] look[p_s()] like you could smash [p_them()] with <b>[tool_behaviour_name(TOOL_MINING)]</b>.")
+	. += span_notice(LANG("turf.7d30cd47", list(p_They(), p_s(), p_them(), tool_behaviour_name(TOOL_MINING))))
 	switch(harden_lvl)
 		if(0.8 to 0.99)
-			. += "[p_They()] look[p_s()] nearly dry."
+			. += LANG("turf.14f1b427", list(p_They(), p_s()))
 		if(0.4 to 0.8)
-			. += "[p_They()] look[p_s()] a little wet."
+			. += LANG("turf.ca7a1c2d", list(p_They(), p_s()))
 		if(0 to 0.4)
-			. += "[p_They()] look[p_s()] freshly poured."
+			. += LANG("turf.b21ffc9d", list(p_They(), p_s()))
 	return
 
 /turf/open/floor/concrete/add_footprint(mob/living/carbon/human/walker, movement_direction)
@@ -67,11 +68,11 @@
 	if(.)
 		return
 	if(I.tool_behaviour == TOOL_MINING)
-		to_chat(user, span_notice("You start smashing [src]..."))
+		to_chat(user, span_notice(LANG("turf.b9d6dad4", list(src))))
 		var/adj_time = (broken || burnt) ? smash_time/2 : smash_time
 		if(I.use_tool(src, user, adj_time, volume=30))
 			new /obj/effect/decal/cleanable/concrete_dust(src)
-			to_chat(user, span_notice("You break [src]."))
+			to_chat(user, span_notice(LANG("turf.52470c73", list(src))))
 			playsound(src, 'sound/effects/break_stone.ogg', 30, TRUE)
 			remove_tile(silent=TRUE)
 			return TRUE
@@ -129,7 +130,7 @@
 	)
 	if(!choice)
 		return FALSE
-	to_chat(user, "You reshape [src].")
+	to_chat(user, LANG("turf.23f5c7a0", list(src)))
 	var/old_harden = harden_lvl
 	var/turf/open/floor/concrete/newconc = ChangeTurf(choice, flags = CHANGETURF_INHERIT_AIR)
 	newconc.harden_lvl = old_harden
