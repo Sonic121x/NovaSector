@@ -2,7 +2,7 @@
 #
 # BYOND 是 Dantom 发布的闭源预编译 Linux 二进制，且为 **32 位 i386**
 # （解释器 /lib/ld-linux.so.2），无法直接在 NixOS 上运行。这里：
-#   1. 用 fetchzip 拉取与 dependencies.sh 对齐的版本 (516.1659)；
+#   1. 用 fetchzip 拉取与 dependencies.sh 对齐的版本 (516.1686)；
 #   2. 用 i686 包集 + autoPatchelfHook 把二进制的解释器与 RPATH 重写到 Nix 的 32 位库
 #      （比 buildFHSEnv 的 multiarch 更确定，且产出可直接运行的真实二进制）；
 #   3. 暴露 DreamMaker / DreamDaemon 到 PATH —— tools/build/lib/byond.ts 在 Linux 上会
@@ -19,7 +19,7 @@
 let
   # 与 dependencies.sh 的 BYOND_MAJOR / BYOND_MINOR 保持一致。
   major = "516";
-  minor = "1659";
+  minor = "1686";
   version = "${major}.${minor}";
 
   # 解包 + autoPatchelf 后的 BYOND 树（byond/bin/{DreamDaemon,DreamMaker,*.so,...}）。
@@ -30,8 +30,8 @@ let
 
     src = fetchzip {
       url = "https://www.byond.com/download/build/${major}/${version}_byond_linux.zip";
-      # 516.1659_byond_linux.zip 解包后（stripRoot=false）的 NAR 哈希。
-      hash = "sha256-eclavAUYr3y/A9Uz0l9NECsS7exmOLVVLKc8XSlbeDA=";
+      # 516.1686_byond_linux.zip 解包后（stripRoot=false）的 NAR 哈希。
+      hash = "sha256-qyIARHT3XhrZRjYxokCaRKbapKhfLO1Xcqb/OmO2do0=";
       stripRoot = false;
     };
 
