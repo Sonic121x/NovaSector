@@ -976,6 +976,27 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                         display_return: is_display_descriptor_proc(proc_name),
                     };
                     visit_block(block, &proc_scope, &mut catalog, suppress_aggressive, ctx);
+                    // **形参默认值**里的玩家可见文案。SINK_VARS 走的是类型变量声明，够不着这一类：
+                    // `Initialize(revive_title = "a recovered crewmember", spawn_text = "Recovered Crew",
+                    //  you_are_text = "…", flavor_text = "…")` 这种把整套招募文案写在形参默认值里的
+                    // 组件（ghostrole_on_revive 等），一条都抽不到 → 玩家看到「你想扮演a recovered
+                    // crewmember吗？」这种句子里嵌着英文。
+                    // 闸门比 SINK_VARS 本身更严：形参名作 `name`/`message` 时标识符浓度远高于
+                    // 作类型变量时（`proc/f(message = "some_key")`），所以再加一道**多词**判定
+                    // （复用 LANG 实参那条 is_lang_arg_text），单 token 默认值一律不收。
+                    for param in proc_value.parameters.iter() {
+                        if !SINK_VARS.contains(&param.name.as_str()) {
+                            continue;
+                        }
+                        let Some(default) = &param.default else {
+                            continue;
+                        };
+                        if let Some(t) = build_template(default) {
+                            if !t.contains('{') && is_lang_arg_text(&t) {
+                                emit(&mut catalog, &namespace, t.trim());
+                            }
+                        }
+                    }
                     // verb 命令面板显示名：`set name = "X"`（Statement::Setting）。非 sink、非类型变量，
                     // 单独抽。仅安全显示名（is_safe_verb_name 排除 .click/body-chest 等 keybind 标识符）。
                     // 编译期由 rewrite::run_verbs 注入译文（verb 名无法运行时本地化）。
