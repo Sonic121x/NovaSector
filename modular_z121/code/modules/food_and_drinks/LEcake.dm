@@ -18,7 +18,7 @@
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 25,
 		/datum/reagent/consumable/nutriment/vitamin = 5,
-		/datum/reagent/consumable/liquidelectricity/enriched = 15,
+		/datum/reagent/consumable/liquidelectricity = 15,
 	)
 	tastes = list("cake" = 4, "sweetness" = 1, "metal" = 2, "electricity" = 3)
 	foodtypes = GRAIN | DAIRY | TOXIC | SUGAR
@@ -41,7 +41,7 @@
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 5,
 		/datum/reagent/consumable/nutriment/vitamin = 1,
-		/datum/reagent/consumable/liquidelectricity/enriched = 3,
+		/datum/reagent/consumable/liquidelectricity = 3,
 	)
 	tastes = list("cake" = 4, "sweetness" = 1, "metal" = 2, "electricity" = 3)
 	foodtypes = GRAIN | DAIRY | TOXIC | SUGAR
