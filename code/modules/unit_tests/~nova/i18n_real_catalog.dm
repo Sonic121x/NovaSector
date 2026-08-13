@@ -35,6 +35,28 @@
 	var/incision_out = lang_fallback_apply_html(incision)
 	TEST_ASSERT_NOTEQUAL(incision_out, incision, "带 span 的整条同样应被翻译（聊天落地形态）")
 
+	// ①b 同一把锚下的**短模板**。上面那条是「organs within」长模板，它自带一段极长的独占锚，
+	// 就算候选排序出问题也容易蒙对；真正脆的是共用前缀锚 " begins to make an incision in " 的
+	// 那一组——候选里按字面量总长排在前面的是 "…{1}'s reagent processor…"，必须先验证失败、
+	// 再轮到通用的那条。玩家实报「Default Cyborg-973 begins to make an incision in Orange's head.」
+	// 整句留英文，就是这一格塌了；organs within 那条同时还是好的，所以只测长模板看不出来。
+	var/list/short_lines = list(
+		"Default Cyborg-973 begins to make an incision in Orange's head.",
+		"Default Cyborg-973 begins to retract the skin in Orange's head.",
+		"Default Cyborg-973 begins to mend the incision in Orange's chest.",
+		"Default Cyborg-973 searches for implants in Orange.",
+		"Default Cyborg-973 succeeds!",
+	)
+	for(var/line in short_lines)
+		var/out = lang_template_apply(line, LANGUAGE_LOCALE_ZH_HANS)
+		TEST_ASSERT_NOTEQUAL(out, line, "手术可见消息应被模板逆匹配翻译，实得原文：[line]")
+
+	// ②a 碎片**绝不能**在单词内部开火（见 i18n_ac_fragment 的闸门）。这里用真目录再守一道：
+	// 线上表现是「But n其中一只 its eggs hatched!」「searches for植入了in Orange」。
+	var/eggs = "But none of its eggs hatched!"
+	TEST_ASSERT(!findtext(lang_fallback_apply(eggs), "n其中一只"), \
+		"碎片 pattern 在单词内部开火：[lang_fallback_apply(eggs)]")
+
 	// ② 纯串：被改写抬成 LANG 实参的碎片，经 lang_localize_arg 的整串反查。
 	TEST_ASSERT_NOTEQUAL(lang_localize_arg("is secured and ready to be used!"), "is secured and ready to be used!", "LANG 实参碎片应整串反查命中")
 

@@ -62,6 +62,18 @@ function translateText(text: string): string {
 // children，语序由译文决定。
 //
 // 查不到就**整条保持英文**，绝不回退到逐段翻译——那正是要根除的乱序来源。
+// React 对 null/undefined/boolean 型 children **什么都不渲染**。它们几乎都来自
+// `{cond && <X/>}` 在 cond 为假时的求值结果，在 children 数组里只是个空位。
+//
+// 把它们当成占位符建模板，是整类「目录里有译文、界面却永远英文」的根因：反派介绍 tooltip
+// 的 `<div>{text}{index !== last && <Divider/>}</div>`，最后一段（多数反派只有一段）的
+// children 是 `[介绍原文, false]` → 模板变成 `…station.{0}`，目录里当然没有 → 整条回退
+// 英文；连带下面「混排就整条保持英文」的保守分支也一起把它焊死。渲染不出东西的空位必须
+// 在建模板前就剔除，剩下的才是真正参与语序的片段。
+function isIgnorableChild(child: unknown): boolean {
+  return child === null || child === undefined || typeof child === 'boolean';
+}
+
 function localizeChildrenTemplate(children: unknown[]): unknown[] | null {
   let slots = 0;
   let hasText = false;
@@ -244,14 +256,18 @@ export function localizeProps(props: unknown, type?: unknown): unknown {
     let localized: unknown = propValue;
     if (propName === 'children') {
       if (Array.isArray(propValue)) {
+        // 先剔除渲染不出东西的空位（`{cond && <X/>}` 为假时的 false 等），它们既不参与语序、
+        // 也不该占占位符——否则整条模板必然查不到、整段回退英文。
+        const rendered = propValue.filter((c) => !isIgnorableChild(c));
         // 文本与表达式混排：先试整条模板；成功即用，失败则整条保持英文（不逐段翻）。
-        const templated = localizeChildrenTemplate(propValue);
+        const templated = localizeChildrenTemplate(rendered);
         if (templated) {
           localized = templated;
-        } else if (propValue.some((c) => typeof c !== 'string')) {
+        } else if (rendered.some((c) => typeof c !== 'string')) {
           localized = propValue;
         } else {
-          localized = localizeNode(propValue);
+          const localizedText = localizeNode(rendered);
+          localized = localizedText === rendered ? propValue : localizedText;
         }
       } else {
         localized = localizeNode(propValue);

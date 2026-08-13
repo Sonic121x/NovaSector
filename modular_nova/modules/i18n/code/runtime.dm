@@ -505,6 +505,15 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 /// 两种来源都要剥：① 运行时 name/desc 里是**编译期标记字节**（DM 源写 "\improper" 即该字节，
 /// 故 replacetext 用 "\improper" 能匹配）；② 目录 JSON 里存的是**字面** "\improper"（反斜杠+improper，
 /// 用 "\\improper" 匹配）。规整到无宏并 trim，使两端对齐（否则带 \improper 的名永远查不中）。
+/// 剥掉 HTML 标签，只留可见文本，并把标签留下的空白折叠/修边。
+/// 用于给「键里嵌着标签」的目录条目登记一个能被 lang_fallback_apply_html 切块后命中的变体键。
+/proc/lang_strip_html_tags(text)
+	if(!istext(text))
+		return text
+	var/static/regex/html_tag = regex(@"<[^>]*>", "g")
+	var/static/regex/ws_run = regex(@"[ \t]+", "g")
+	return trim(ws_run.Replace(html_tag.Replace(text, ""), " "))
+
 /proc/lang_strip_grammar_macros(text)
 	if(!istext(text))
 		return text
@@ -556,6 +565,20 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 			// **只做多词键**：单词键几乎全是标识符形态（"move"/"add"/"clear"/"ready"…），
 			// 给它们登记大写变体会把 `switch("Add")`、`if(pick == "Clear")` 这类比较拖进反查面
 			// —— 与 P1 的多词门槛、AC 字典的多词过滤是同一条安全线，此处保持一致。
+			// HTML 标签对齐：聊天/浏览器落地走 lang_fallback_apply_html，它**按标签切块**、只把
+			// 标签之间的纯文本送进反查与 AC。而目录键是照抄源码字面量的，标签就嵌在键里
+			// （`"<b>But none of its eggs hatched!</b>"`、`"There is a sticker displaying the <b>…</b>"`、
+			// `"<span class='notice ml-1'>Subject contains no neuroware in their brain.</span>"`）。
+			// 于是运行期送来的是**裸句**、目录里躺着**带标签的键**，两边永远对不上：整句回退英文，
+			// 更糟的是接着被字面 AC 从中间咬开（「But n其中一只 its eggs hatched!」）。
+			// 这里登记「剥标签」变体键，值同样剥标签——切块后的裸文本就能命中，外层标签由切块器
+			// 自己原样保留，格式不丢。
+			// 与上面几条变体同一条安全线：**只做多词**（单词剥完多是标识符形态），且不覆盖已有精确键。
+			if(findtext(en_text, "<") && findtext(en_text, ">"))
+				var/stripped_tags_key = lang_strip_html_tags(en_text)
+				if(stripped_tags_key != en_text && findtext(stripped_tags_key, " ") && !reverse[stripped_tags_key])
+					reverse[stripped_tags_key] = lang_strip_html_tags(translated)
+
 			var/first_char = copytext(en_text, 1, 2)
 			if(findtext(en_text, " ") && findtextEx("abcdefghijklmnopqrstuvwxyz", first_char))
 				var/capitalized_key = uppertext(first_char) + copytext(en_text, 2)

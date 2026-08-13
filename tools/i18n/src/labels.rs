@@ -33,6 +33,11 @@ const TYPE_VAR_RULES: &[(&str, &str)] = &[
     ("/datum/laugh_type", "name"),
     ("/datum/scream_type", "name"),
     ("/datum/loadout_item", "name"),
+    // 配装项的分组小标题（"Improvised Ballistics"/"Forge Weapons"…）。前端把它当**分组键**用
+    // （`groups.find(g => g.title === item.group)`）之后才渲染成 `<h3>{group.title}</h3>`，
+    // 分组在渲染前完成、译文只发生在 jsx 那一跳，所以走「进前端目录、TS 只翻显示」这条桥是安全的；
+    // 多词名还会被 P1 按「本身是 tgui 目录键」保留英文，负载侧不受影响。
+    ("/datum/loadout_item", "group"),
     ("/datum/loadout_category", "category_name"),
     ("/datum/preference/name", "explanation"),
     ("/datum/job", "title"),

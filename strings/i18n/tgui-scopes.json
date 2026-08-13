@@ -1980,6 +1980,9 @@
   "Arousal": [
     "tgui:GenitalLayeringTab"
   ],
+  "Arrest. Target must have valid crimes to set this status.": [
+    "tgui:constants"
+  ],
   "Art": [
     "dm:labels"
   ],
@@ -2072,6 +2075,9 @@
     "dm:labels"
   ],
   "Assistant's Formal Uniform": [
+    "dm:labels"
+  ],
+  "Assorted Weapons": [
     "dm:labels"
   ],
   "Assume Control": [
@@ -4549,6 +4555,12 @@
   "Bunny Suit (White)": [
     "dm:labels"
   ],
+  "Bunny Suits": [
+    "dm:labels"
+  ],
+  "Bunny Ties": [
+    "dm:labels"
+  ],
   "Bureaucrat's 'Jacent' Toolset Implant": [
     "dm:labels"
   ],
@@ -5268,6 +5280,9 @@
     "dm:labels"
   ],
   "Cassette Tape": [
+    "dm:labels"
+  ],
+  "Casualwear": [
     "dm:labels"
   ],
   "Cat": [
@@ -6170,6 +6185,9 @@
   "Cloak (Colorable)": [
     "dm:labels"
   ],
+  "Cloaks and Shrouds": [
+    "dm:labels"
+  ],
   "Clock In": [
     "tgui:TimeClock"
   ],
@@ -6509,6 +6527,9 @@
     "dm:labels"
   ],
   "Comet": [
+    "dm:labels"
+  ],
+  "Comfort": [
     "dm:labels"
   ],
   "Comfy Fox Plushie": [
@@ -7091,6 +7112,9 @@
   ],
   "Cosmetic Recoil Strength": [
     "tgui:accessibility"
+  ],
+  "Cosmetics": [
+    "dm:labels"
   ],
   "Cosmic Blue": [
     "dm:labels"
@@ -8688,6 +8712,9 @@
   "Dialing...": [
     "tgui:Holopad"
   ],
+  "Dice": [
+    "dm:labels"
+  ],
   "Dice Bag": [
     "dm:labels"
   ],
@@ -8833,6 +8860,9 @@
   ],
   "Discard message": [
     "tgui:MessageWriteTab"
+  ],
+  "Discharged. Individual has been acquitted from wrongdoing.": [
+    "tgui:constants"
   ],
   "Discharging": [
     "tgui:GravityGenerator"
@@ -11734,6 +11764,9 @@
   "Forensics Spoofing Device": [
     "tgui:ForensicsSpoofer"
   ],
+  "Forge Weapons": [
+    "dm:labels"
+  ],
   "Forget": [
     "tgui:LanguagesMenu"
   ],
@@ -11774,6 +11807,9 @@
     "dm:labels"
   ],
   "Formal Pen Skirt": [
+    "dm:labels"
+  ],
+  "Formalwear": [
     "dm:labels"
   ],
   "Formats": [
@@ -12771,6 +12807,9 @@
   ],
   "Growth Stages": [
     "tgui:AntagInfoBloodWorm"
+  ],
+  "Guard": [
+    "dm:labels"
   ],
   "Guard Beret": [
     "dm:labels"
@@ -14382,6 +14421,9 @@
   "Imprint ID Trim": [
     "tgui:PaintingMachine"
   ],
+  "Improvised Ballistics": [
+    "dm:labels"
+  ],
   "Impulsive": [
     "dm:labels"
   ],
@@ -14420,6 +14462,9 @@
   ],
   "Inbound Platform": [
     "tgui:CrossingSignal"
+  ],
+  "Incarcerated. Individual is currently serving a sentence.": [
+    "tgui:constants"
   ],
   "Include Abstract Types": [
     "tgui:SpawnSearch"
@@ -15007,6 +15052,9 @@
   "Jackal": [
     "dm:labels"
   ],
+  "Jackets": [
+    "dm:labels"
+  ],
   "Jackpot:": [
     "tgui:SlotMachine"
   ],
@@ -15122,7 +15170,11 @@
   "Job Title: {0}": [
     "tgui:NtosSelfServe"
   ],
+  "Job-Locked": [
+    "dm:labels"
+  ],
   "Jobs": [
+    "dm:labels",
     "tgui:TrackedPlaytime"
   ],
   "Jockstrap": [
@@ -15659,6 +15711,9 @@
   ],
   "Last client:": [
     "tgui:PlayerPanel"
+  ],
+  "Latejoin": [
+    "tgui:AntagsPage"
   ],
   "Latejoin Chance": [
     "tgui:DynamicAdmin"
@@ -17411,6 +17466,9 @@
   "Medal - Shield (Hollow)": [
     "dm:labels"
   ],
+  "Medals": [
+    "dm:labels"
+  ],
   "Medbay Buffet": [
     "tgui:AntagInfoBloodWorm"
   ],
@@ -17701,6 +17759,9 @@
   ],
   "Midpop Threshold: {0}": [
     "tgui:IntensityCredits"
+  ],
+  "Midround": [
+    "tgui:AntagsPage"
   ],
   "Midway Boxers": [
     "dm:labels"
@@ -21481,6 +21542,9 @@
   "Park above atmospherics connector port to connect inernal air tank with a gas network.": [
     "tgui:ModulesPane"
   ],
+  "Parole. Released from prison, but still under supervision.": [
+    "tgui:constants"
+  ],
   "Parted": [
     "dm:labels"
   ],
@@ -22211,6 +22275,9 @@
   "Playback Settings:{0}{1}{2}": [
     "tgui:InstrumentEditor"
   ],
+  "Playbunny Ears": [
+    "dm:labels"
+  ],
   "Player & Round Info": [
     "tgui:GhostMenu"
   ],
@@ -22387,6 +22454,9 @@
     "dm:labels"
   ],
   "Plush (human)": [
+    "dm:labels"
+  ],
+  "Plushies": [
     "dm:labels"
   ],
   "Pluto": [
@@ -22796,6 +22866,9 @@
   ],
   "Prerequisites: {0}": [
     "tgui:BuyingShuttle"
+  ],
+  "Prescription": [
+    "dm:labels"
   ],
   "Preset Name": [
     "tgui:PresetsPage"
@@ -25249,6 +25322,9 @@
   ],
   "Round already started!": [
     "tgui:DynamicAdmin"
+  ],
+  "Roundstart": [
+    "tgui:AntagsPage"
   ],
   "Rouny Plushie": [
     "dm:labels"
@@ -27951,6 +28027,9 @@
   "Smoker": [
     "dm:labels"
   ],
+  "Smoking": [
+    "dm:labels"
+  ],
   "Smooth": [
     "dm:labels"
   ],
@@ -28303,6 +28382,9 @@
     "tgui:PlayerPanel",
     "tgui:RecordView",
     "tgui:ScannerGate"
+  ],
+  "Species-Unique": [
+    "dm:labels"
   ],
   "Specimen": [
     "tgui:Specimen"
@@ -29299,6 +29381,9 @@
   "Sushi": [
     "dm:labels"
   ],
+  "Suspected. Monitor closely for criminal activity.": [
+    "tgui:constants"
+  ],
   "Suspenders (Colorable)": [
     "dm:labels"
   ],
@@ -29786,6 +29871,9 @@
     "tgui:species_features"
   ],
   "Tailcoat": [
+    "dm:labels"
+  ],
+  "Tailcoats": [
     "dm:labels"
   ],
   "Tailmaw": [
@@ -34297,6 +34385,9 @@
     "tgui:AntagInfoSpy"
   ],
   "Workboots (Black)": [
+    "dm:labels"
+  ],
+  "Workwear": [
     "dm:labels"
   ],
   "World Time": [

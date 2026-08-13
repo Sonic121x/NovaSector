@@ -53,6 +53,13 @@ const SINK_VARS: &[&str] = &[
     // 污染物气味（Nova pollution 模块）："空气里飘着淡淡的 [scent]" 那句的插值值。纯显示，
     // 与 taste_description 同类。descriptor 那一侧是 #define 常量、走 _state_words。
     "scent",
+    // NIFSoft 程序描述（modular_nova 植入物模块，19 处）：在植入物界面里整段展示给玩家，
+    // 与 /datum/reagent 的 description 同类，只是换了个变量名 → 整类没进目录
+    // （"Connects the user's brain to a database containing the current monetary values…"）。
+    "program_desc",
+    // ghostrole_on_revive 的招募标题（"a recovered crewmember"）：渲染进「你想扮演 X 吗？」
+    // 的询问句，是纯显示短语。
+    "revive_title",
     "display_name",     // 机器/发射台等的展示名。
     "wiki_desc",        // wiki 界面描述。
     "war_declaration",  // 核弹战争宣言（全员公告）。
@@ -724,6 +731,20 @@ fn walk_examine_tags(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog: &
                     if is_dot_index {
                         if let Some(t) = build_template(rhs) {
                             emit(catalog, ns, &t);
+                        }
+                        // **下标键也是玩家可见文案**。这是全仓唯一一处「assoc 键是显示串」的
+                        // 合法形状：examine_tags 返回的 list 里，键是检查面板上那颗标签的文字、
+                        // 值是它的悬停 tooltip（既有的 EXAMINE_TAG_* 宏同样是标签文字，早就在
+                        // 目录里 —— 只有直接写字面量当键的写法整类漏掉，如 empprotection 的
+                        // `examine_list["partially EMP blocking"] = …`）。
+                        // 别处的下标键一律是程序查表用的键名，绝不能抽（见 visit_expr 里对
+                        // Follow::Index 的整支跳过），所以这条只开在本 proc 语境内。
+                        if let Follow::Index(_, idx) = &follow[0].elem {
+                            if let Some(t) = build_template(idx) {
+                                if !t.contains('{') {
+                                    emit(catalog, ns, &t);
+                                }
+                            }
                         }
                     }
                 }

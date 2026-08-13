@@ -379,6 +379,8 @@
 #include "~nova\accessory_layers.dm"
 #include "~nova\augment_items.dm"
 #include "~nova\automapper.dm"
+#include "~nova\i18n_ac_fragment.dm"
+#include "~nova\i18n_html_tag_keys.dm"
 #include "~nova\i18n_ac_longest.dm"
 #include "~nova\i18n_miss_log.dm"
 #include "~nova\i18n_phobia.dm"

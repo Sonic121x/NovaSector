@@ -59,6 +59,23 @@ describe('localizeProps', () => {
     expect(props.displayText).toBe('custom');
   });
 
+  // 反派介绍 tooltip 的真实形状：`<div>{text}{cond && <Divider/>}</div>`。
+  // 最后一段（绝大多数反派只有一段）的 `cond &&` 求值成 false，React 不渲染它，
+  // 但它仍占着 children 的一个位置。若按「非字符串 = 一个占位符」建模板，整条会变成
+  // `…station.{0}`，目录里没有这条 → 整段回退英文（混排 children 的保守规则），
+  // 于是**目录里明明有译文的整类文案在界面上永远是英文**。
+  test('不渲染的 children（false/null/undefined）不占占位符', () => {
+    const desc =
+      'Team up with other crew members as blood brothers to combine the strengths of your departments, break each other out of prison, and overwhelm the station.';
+    const descZh = (zhHans as Record<string, string>)[desc];
+    expect(descZh).toBeTruthy();
+    const props = localizeProps({ children: [desc, false] }) as Record<
+      string,
+      unknown
+    >;
+    expect(props.children).toEqual([descZh]);
+  });
+
   test('目录里没有的选项保持裸字符串', () => {
     const unknownOption = 'zzz-not-in-catalog-zzz';
     const props = localizeProps(
