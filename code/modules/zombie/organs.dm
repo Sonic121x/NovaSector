@@ -59,9 +59,7 @@
 	if(owner.stat != DEAD && !converts_living)
 		return
 	if(!owner.has_status_effect(/datum/status_effect/zombie))
-		to_chat(owner, span_cult_large("You can feel your heart stopping, but something isn't right... \
-		life has not abandoned your broken form. You can only feel a deep and immutable hunger that \
-		not even death can stop, you will rise again!"))
+		to_chat(owner, span_cult_large(LANG("obj.35245f8e", null)))
 	var/revive_time = rand(revive_time_min, revive_time_max)
 	var/flags = TIMER_STOPPABLE
 	timer_id = addtimer(CALLBACK(src, PROC_REF(zombify), owner), revive_time, flags)

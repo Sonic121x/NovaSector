@@ -1,4 +1,4 @@
-GAME_VERB(/mob/living/carbon/human, lick, "Lick", "IC")
+GAME_VERB(/mob/living/carbon/human, lick, "舔", "IC")
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_VIEW, /mob/living/carbon/human)
 	if(!istype(target) || !(target in get_adjacent_humans()))
 		return FALSE
@@ -17,7 +17,7 @@ GAME_VERB(/mob/living/carbon/human, lick, "Lick", "IC")
 	to_chat(target, span_notice(LANG("mob.c262fc2b", list(src))))
 	return TRUE
 
-GAME_VERB(/mob/living/carbon/human, smell, "Smell", "IC")
+GAME_VERB(/mob/living/carbon/human, smell, "闻", "IC")
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_VIEW, /mob/living/carbon/human)
 	if(!istype(target) || !(target in get_adjacent_humans()))
 		return FALSE

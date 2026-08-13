@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Causes the owner to spontaneously combust when exposed to oxygen
 /datum/status_effect/grouped/bodypart_effect/plasma_based
 	tick_interval = 1 SECONDS
@@ -43,4 +44,4 @@
 
 	owner.adjust_fire_stacks(fire_stacks_per_second * seconds_between_ticks * length(bodyparts))
 	if(owner.ignite_mob())
-		owner.visible_message(span_danger("[owner]'s body reacts with the atmosphere and bursts into flames!"), span_userdanger("Your body reacts with the atmosphere and bursts into flame!"))
+		owner.visible_message(span_danger(LANG("datum.a939c72d", list(owner))), span_userdanger(LANG("datum.2cb997a2", null)))

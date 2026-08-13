@@ -197,6 +197,9 @@
   "/atom": [
     "tgui:PlaneMenus"
   ],
+  "/datum/...": [
+    "tgui:AdminVerbPanel"
+  ],
   "/s": [
     "tgui:RBMK2"
   ],
@@ -372,23 +375,11 @@
   "A unique id for the article. Article will not publish if set ID is in use.": [
     "tgui:StoryManager"
   ],
-  "A+": [
-    "dm:labels"
-  ],
-  "A-": [
-    "dm:labels"
-  ],
   "A-C#,Cn-E,E-G#,Gn-B": [
     "tgui:InstrumentEditor"
   ],
   "A:": [
     "tgui:Generators"
-  ],
-  "AB+": [
-    "dm:labels"
-  ],
-  "AB-": [
-    "dm:labels"
   ],
   "ACTIVATE": [
     "tgui:NtosRevelation",
@@ -1028,6 +1019,9 @@
   ],
   "Admin Prison": [
     "tgui:PlayerPanel"
+  ],
+  "Admin Verb Panel": [
+    "tgui:AdminVerbPanel"
   ],
   "Admin chat color": [
     "tgui:admin"
@@ -2457,12 +2451,6 @@
   ],
   "B": [
     "tgui:ColorPicker"
-  ],
-  "B+": [
-    "dm:labels"
-  ],
-  "B-": [
-    "dm:labels"
   ],
   "B:": [
     "tgui:ColorSetter",
@@ -4777,6 +4765,9 @@
   "CIN Combat Uniform": [
     "dm:labels"
   ],
+  "CKey": [
+    "tgui:AdminVerbPanel"
+  ],
   "CMCP Mask": [
     "dm:labels"
   ],
@@ -5339,6 +5330,7 @@
     "tgui:RecipeLookup"
   ],
   "Categories": [
+    "tgui:AdminVerbPanel",
     "tgui:ArmamentStation",
     "tgui:DesignBrowser",
     "tgui:LogViewer"
@@ -10787,6 +10779,9 @@
   "FAULT": [
     "tgui:TramController"
   ],
+  "FE": [
+    "dm:labels"
+  ],
   "FIGHT!": [
     "tgui:SparringContract"
   ],
@@ -11001,6 +10996,9 @@
   "Favourite bait": [
     "tgui:FishCatalog"
   ],
+  "Favourites": [
+    "tgui:AdminVerbPanel"
+  ],
   "Fax Menu": [
     "tgui:AdminFax"
   ],
@@ -11147,6 +11145,9 @@
   ],
   "Filter type: {0}": [
     "tgui:Port"
+  ],
+  "Filter...": [
+    "tgui:AdminVerbPanel"
   ],
   "Filtered Frequencies": [
     "tgui:Telecomms"
@@ -14447,9 +14448,6 @@
   "Inexorable": [
     "dm:labels"
   ],
-  "Infectious Zombie": [
-    "dm:labels"
-  ],
   "Inferior Biology": [
     "tgui:AntagInfoBloodWorm"
   ],
@@ -15110,6 +15108,7 @@
   ],
   "Job": [
     "dm:labels",
+    "tgui:AdminVerbPanel",
     "tgui:CryopodConsole",
     "tgui:OrbitTooltip",
     "tgui:RecordView"
@@ -15484,9 +15483,6 @@
     "dm:labels"
   ],
   "Kotahi Deck": [
-    "dm:labels"
-  ],
-  "Krokodil Human": [
     "dm:labels"
   ],
   "Kusanagi Hair": [
@@ -17745,9 +17741,6 @@
   "Mind Reader": [
     "dm:labels"
   ],
-  "Mindless Infectious Zombie": [
-    "dm:labels"
-  ],
   "Mindshield": [
     "tgui:ScannerGate"
   ],
@@ -18659,6 +18652,7 @@
   ],
   "Name": [
     "dm:labels",
+    "tgui:AdminVerbPanel",
     "tgui:AnomalyRefinery",
     "tgui:ApcControl",
     "tgui:ChemMaster",
@@ -18991,6 +18985,9 @@
   ],
   "New access to restricted channels has provided you with intercepted syndicate codewords. Syndicate agents will respond as if you're one of their own. Proceed with caution, however, as everyone is a potential foe.{0}": [
     "tgui:AntagInfoMalf"
+  ],
+  "New category...": [
+    "tgui:AdminVerbPanel"
   ],
   "New filter": [
     "tgui:ManufacturingSorter"
@@ -20243,12 +20240,6 @@
   ],
   "O": [
     "tgui:AntagInfoDemon"
-  ],
-  "O+": [
-    "dm:labels"
-  ],
-  "O-": [
-    "dm:labels"
   ],
   "OBS": [
     "tgui:index"
@@ -23424,6 +23415,12 @@
   "Pyrokinesis": [
     "dm:labels"
   ],
+  "Pyromania": [
+    "dm:labels"
+  ],
+  "Pyrophobia": [
+    "dm:labels"
+  ],
   "Qipao": [
     "dm:labels"
   ],
@@ -26030,6 +26027,7 @@
     "tgui:ComponentMenu"
   ],
   "Search...": [
+    "tgui:AdminVerbPanel",
     "tgui:BotAnnouncement",
     "tgui:CellularEmporium",
     "tgui:ForceEvent",
@@ -26309,6 +26307,9 @@
   ],
   "Select a template...": [
     "tgui:NtosCard"
+  ],
+  "Select a verb from the list.": [
+    "tgui:AdminVerbPanel"
   ],
   "Select an outfit": [
     "tgui:NetpodOutfits"
@@ -28140,6 +28141,9 @@
   "Sound Size Modifier": [
     "tgui:NovaTumsPrefs"
   ],
+  "Sound input not yet supported": [
+    "tgui:AdminVerbPanel"
+  ],
   "Sounds": [
     "tgui:PodSounds"
   ],
@@ -29901,6 +29905,7 @@
     "dm:labels"
   ],
   "Target": [
+    "tgui:AdminVerbPanel",
     "tgui:BluespaceArtillery",
     "tgui:BluespaceArtilleryNova",
     "tgui:ChemHeater",
@@ -32416,6 +32421,9 @@
   "Unknown Trait": [
     "tgui:Seed"
   ],
+  "Unknown arg type": [
+    "tgui:AdminVerbPanel"
+  ],
   "Unleash": [
     "tgui:PaiCard"
   ],
@@ -32542,7 +32550,7 @@
     "tgui:NtosCyborgRemoteMonitor",
     "tgui:NtosRobotact"
   ],
-  "Upgrading strong blobs creates reflective blobs, capable of reflecting most projectiles at the cost of the strong blob's extra health.": [
+  "Upgrading strong blobs creates reflective blobs, capable of reflecting most projectiles at the cost of reduced resistance to explosions.": [
     "tgui:AntagInfoBlob"
   ],
   "Uplift Smooth Cigarette Pack": [
@@ -36378,7 +36386,7 @@
   "{0}{1}NOTE: Custom sounds from outside the base game files will not save! :(": [
     "tgui:PresetsPage"
   ],
-  "{0}{1}Physical Age: {2}{3}Chronological Age: {4}{5}Bloodtype: {6}{7}Minor Disabilities: {8}{9}Major Disabilities: {10}{11}{12}Notes: {13}{14}Notes Contd: {15}": [
+  "{0}{1}Physical Age: {2}{3}Chronological Age: {4}{5}Bloodtype: {6}{7}Minor Disabilities:{8}Major Disabilities:{9}{10}Notes: {11}": [
     "tgui:NtosRecords"
   ],
   "{0}{1}Rank: {2}{3}Species: {4}{5}Gender: {6}{7}Physical Age: {8}{9}Chronological Age: {10}{11}Fingerprint Hash: {12}{13}{14}Criminal Status: {15}": [

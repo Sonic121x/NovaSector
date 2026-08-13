@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Causes the owner to glow based on their bodypart/mutant color, turns them into a disco ball when emagged
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow
 	id = "ethereal_glow"
@@ -117,7 +118,7 @@
 		return
 	disrupted = TRUE
 	refresh_light_color()
-	to_chat(source, span_notice("You feel the light of your body leave you."))
+	to_chat(source, span_notice(LANG("datum.a1ed9d60", null)))
 	switch(severity)
 		if(EMP_LIGHT)
 			addtimer(CALLBACK(src, PROC_REF(stop_emp), source), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) // We're out for 10 seconds
@@ -127,7 +128,7 @@
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow/proc/hit_by_saboteur(mob/living/carbon/human/source, disrupt_duration)
 	disrupted = TRUE
 	refresh_light_color()
-	to_chat(source, span_warning("Something inside of you crackles in a bad way."))
+	to_chat(source, span_warning(LANG("datum.9da7c5ff", null)))
 	source.take_bodypart_damage(burn = 3, wound_bonus = CANT_WOUND)
 	addtimer(CALLBACK(src, PROC_REF(stop_emp), source), disrupt_duration, TIMER_UNIQUE|TIMER_OVERRIDE)
 	return TRUE
@@ -138,8 +139,8 @@
 		return FALSE
 	emageffect = TRUE
 	if(user)
-		to_chat(user, span_notice("You tap [source] on the back with your card."))
-	source.visible_message(span_danger("[source] starts flickering in an array of colors!"))
+		to_chat(user, span_notice(LANG("datum.faaba625", list(source))))
+	source.visible_message(span_danger(LANG("datum.d9a905be", list(source))))
 	handle_emag()
 	// Disco mode for 2 minutes! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
 	addtimer(CALLBACK(src, PROC_REF(stop_emag), source), 2 MINUTES)
@@ -154,7 +155,7 @@
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow/proc/stop_emp(mob/living/carbon/human/ethereal)
 	disrupted = FALSE
 	refresh_light_color()
-	to_chat(ethereal, span_notice("You feel more energized as your shine comes back."))
+	to_chat(ethereal, span_notice(LANG("datum.01c0869b", null)))
 
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow/proc/handle_emag(mob/living/carbon/human/ethereal)
 	if(!emageffect)
@@ -166,7 +167,7 @@
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow/proc/stop_emag(mob/living/carbon/human/ethereal)
 	emageffect = FALSE
 	refresh_light_color()
-	ethereal.visible_message(span_danger("[ethereal] stops flickering and goes back to their normal state!"))
+	ethereal.visible_message(span_danger(LANG("datum.b91d4100", list(ethereal))))
 
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow/proc/handle_glow_emote(power, range, flare = FALSE, duration = 5 SECONDS, flare_time = 0)
 	powermult = power
@@ -190,7 +191,7 @@
 	powermult = 1
 	rangemult = 1
 	disrupted = TRUE
-	to_chat(ethereal, span_warning("Your shine flickers and fades."))
+	to_chat(ethereal, span_warning(LANG("datum.2c378c8b", null)))
 	addtimer(CALLBACK(src, PROC_REF(stop_emp), ethereal), flare_time, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow/proc/handle_flicker(flickmin = 1, flickmax = 4)

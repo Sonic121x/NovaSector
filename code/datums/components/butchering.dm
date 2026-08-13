@@ -164,7 +164,7 @@
 
 	var/list/target_butcher_drops = target.get_butcher_drops()
 	if (!LAZYLEN(target_butcher_drops))
-		to_chat(user, span_warning("There is nothing left inside [limb_descriptor]!"))
+		to_chat(user, span_warning(LANG("datum.a72ceb7d", list(limb_descriptor))))
 		return
 
 	if (target.body_zone == BODY_ZONE_CHEST && target.owner)
@@ -173,7 +173,7 @@
 			if(limb == target)
 				continue
 			if (LAZYLEN(limb.get_butcher_drops()) && limb.butcher_replacement)
-				to_chat(user, span_warning("You need to butcher all other limbs first!"))
+				to_chat(user, span_warning(LANG("datum.1d14c47e", null)))
 				return
 
 	user.visible_message(span_warning(LANG("datum.2b07cd8a", list(user, limb_descriptor))), span_notice(LANG("datum.4d769be6", list(limb_descriptor))), ignored_mobs = target.owner)

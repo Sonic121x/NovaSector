@@ -789,13 +789,13 @@
 			var/replacement_type = owner.dna.species.get_mutant_organ_type_for_slot(pick(missing_important_organs))
 			var/obj/item/organ/replacement = new replacement_type()
 			replacement.Insert(owner, special = TRUE)
-			to_chat(owner, span_green("The tingling feeling builds to a climax, until ultimately you feel [replacement.gender == PLURAL ? "some" : "a"] new [replacement.name] where your old one[replacement.gender == PLURAL ? "s were" : " was"]!"))
+			to_chat(owner, span_green(LANG("datum.a5e24d60", list(replacement.gender == PLURAL ? "some" : "a", replacement.name, replacement.gender == PLURAL ? "s were" : " was"))))
 		else
 			var/replacing_zone = pick(missing_limbs)
 			owner.regenerate_limb(replacing_zone)
 			var/obj/item/bodypart/replacement = owner.get_bodypart(replacing_zone)
-			to_chat(owner, span_green("The tingling feeling builds to a climax, until ultimately you feel [replacement.gender == PLURAL ? "some" : "a"] new [replacement.plaintext_zone] where your old one[replacement.gender == PLURAL ? "s were" : " was"]!"))
-			owner.visible_message(span_warning("[owner]'s [replacement.plaintext_zone] reforms, making a loud, grotesque sound!"), ignored_mobs = list(owner))
+			to_chat(owner, span_green(LANG("datum.a5e24d60", list(replacement.gender == PLURAL ? "some" : "a", replacement.plaintext_zone, replacement.gender == PLURAL ? "s were" : " was"))))
+			owner.visible_message(span_warning(LANG("datum.36b6e280", list(owner, replacement.plaintext_zone))), ignored_mobs = list(owner))
 		owner.adjust_nutrition(-NUTRITION_LEVEL_FULL * 0.5 * GET_MUTATION_SYNCHRONIZER(src))
 		playsound(owner, 'sound/effects/magic/demon_consume.ogg', 33, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		return
@@ -805,9 +805,9 @@
 		var/replacement_type = pick(missing_special_organs)
 		var/obj/item/organ/replacement = new replacement_type()
 		replacement.Insert(owner, special = TRUE)
-		to_chat(owner, span_green("The tingling feeling builds to a climax, until ultimately you feel [replacement.gender == PLURAL ? "some" : "a"] new [replacement.name] where your old one[replacement.gender == PLURAL ? "s were" : " was"]!"))
+		to_chat(owner, span_green(LANG("datum.a5e24d60", list(replacement.gender == PLURAL ? "some" : "a", replacement.name, replacement.gender == PLURAL ? "s were" : " was"))))
 		if(replacement.organ_flags & ORGAN_EXTERNAL)
-			owner.visible_message(span_warning("[owner]'s [replacement.name] reforms, making a loud, grotesque sound!"), ignored_mobs = list(owner))
+			owner.visible_message(span_warning(LANG("datum.36b6e280", list(owner, replacement.name))), ignored_mobs = list(owner))
 		owner.adjust_nutrition(-NUTRITION_LEVEL_FULL * 0.3 * GET_MUTATION_SYNCHRONIZER(src))
 		playsound(owner, 'sound/effects/magic/demon_consume.ogg', 33, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		return

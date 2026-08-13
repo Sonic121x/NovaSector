@@ -172,26 +172,26 @@
 	if(!istype(tool, required_anomaly))
 		return NONE
 	if(!isnull(core))
-		balloon_alert(user, "core already in!")
+		balloon_alert(user, LANG("obj.e3ef097d", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "core installed")
+	balloon_alert(user, LANG("obj.1a2673f9", null))
 	playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/organ/heart/cybernetic/anomalock/screwdriver_act(mob/living/user, obj/item/tool)
 	if(isnull(core))
-		balloon_alert(user, "no core!")
+		balloon_alert(user, LANG("obj.9c969525", null))
 		return ITEM_INTERACT_BLOCKING
 	if((organ_flags & ORGAN_FAILING) || !core_removable)
-		balloon_alert(user, "can't remove core!")
+		balloon_alert(user, LANG("obj.2c698594", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "removing core...")
+	balloon_alert(user, LANG("obj.4afc363a", null))
 	if(!do_after(user, 3 SECONDS, target = src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, LANG("obj.c67b5d27", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "core removed")
+	balloon_alert(user, LANG("obj.8b10ca6a", null))
 	user.put_in_hands(core)
 	return ITEM_INTERACT_SUCCESS
 
@@ -247,7 +247,7 @@
 	owner.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	owner.reagents.add_reagent(/datum/reagent/medicine/coagulant, 5)
 	owner.add_filter("emp_shield", 2, outline_filter(1, "#639BFF"))
-	to_chat(owner, span_revendanger("You feel a burst of energy! It's do or die!"))
+	to_chat(owner, span_revendanger(LANG("datum.b51ae5e3", null)))
 	owner.add_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA), TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/voltaic_overdrive/on_remove()
@@ -255,7 +255,7 @@
 	UnregisterSignal(owner, COMSIG_CARBON_LOSE_ORGAN)
 	owner.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	owner.remove_filter("emp_shield")
-	owner.balloon_alert(owner, "your heart weakens")
+	owner.balloon_alert(owner, LANG("datum.76bbdcf0", null))
 	owner.remove_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA), TRAIT_STATUS_EFFECT(id))
 
 /// Called when an organ is lost in the owner. In the event the owner just lost their voltaic (presumably, the one giving this effect), ends the buff and clears the overlay.

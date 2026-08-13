@@ -4,7 +4,7 @@
  * Returns the entry if all organs were successfully replaced.
  * If no infusion was picked, the infusion had no organs, or if one or more organs could not be granted, returns FALSE
 */
-GAME_VERB_PROC(/client, grant_dna_infusion, "Apply DNA Infusion", "Debug")
+GAME_VERB_PROC(/client, grant_dna_infusion, "应用 DNA 灌注", "Debug")
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living/carbon/human)
 
 	var/list/infusions = list()

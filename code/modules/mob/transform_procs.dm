@@ -180,7 +180,7 @@
 	if(!new_xeno)
 		return
 
-	to_chat(new_xeno, span_boldnotice("You are now an alien. Hiss."))
+	to_chat(new_xeno, span_boldnotice(LANG("mob.8a7c4e6e", null)))
 
 /mob/proc/slimeize(reproduce)
 	var/mob/living/basic/slime/new_slime = transform_into_mob(/mob/living/basic/slime)
@@ -194,14 +194,14 @@
 			step_away(brainless_child, new_slime)
 
 	new_slime.set_combat_mode(TRUE)
-	to_chat(new_slime, span_boldnotice("You are now a slime. Blorble."))
+	to_chat(new_slime, span_boldnotice(LANG("mob.a14d4f0c", null)))
 
 /mob/proc/corgize()
 	var/mob/living/basic/pet/dog/corgi/new_corgi = transform_into_mob(/mob/living/basic/pet/dog/corgi)
 	if(!new_corgi)
 		return
 	new_corgi.set_combat_mode(TRUE)
-	to_chat(new_corgi, span_boldnotice("You are now a Corgi. Yap Yap!"))
+	to_chat(new_corgi, span_boldnotice(LANG("mob.2c57593a", null)))
 
 /**
  * Turns the source atom into a crab crab, the peak of evolutionary design.
@@ -210,7 +210,7 @@
 	var/mob/living/basic/crab/new_crab = transform_into_mob(/mob/living/basic/crab)
 	if(!new_crab)
 		return
-	to_chat(new_crab, span_boldnotice("You have evolved into a crab!"))
+	to_chat(new_crab, span_boldnotice(LANG("mob.c463c654", null)))
 	new_crab.set_combat_mode(TRUE)
 
 /mob/proc/gorillize(genetics_gorilla = FALSE)
@@ -218,13 +218,13 @@
 	if(!ideal_body)
 		return
 	SSblackbox.record_feedback("amount", "gorillas_created", 1)
-	to_chat(ideal_body, span_boldnotice("You are now a gorilla. Ooga ooga!"))
+	to_chat(ideal_body, span_boldnotice(LANG("mob.8f8f1128", null)))
 	ideal_body.set_combat_mode(TRUE)
 	return ideal_body
 
 /mob/proc/Animalize()
 	var/list/mobtypes = valid_typesof(/mob/living/simple_animal) + valid_typesof(/mob/living/basic)
-	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", sort_list(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+	var/mobpath = tgui_input_list(usr, LANG("mob.12b851bf", list(src)), LANG("mob.6ae5a861", null), sort_list(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 	if(isnull(mobpath))
 		return
 

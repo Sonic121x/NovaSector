@@ -28,7 +28,7 @@
 /obj/structure/closet/crate/large/attack_hand(mob/user, list/modifiers)
 	add_fingerprint(user)
 	if(!tear_manifest(user))
-		to_chat(user, span_warning("You need a crowbar to pry this open!"))
+		to_chat(user, span_warning(LANG("obj.310b3e22", null)))
 
 /obj/structure/closet/crate/large/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(user.combat_mode)

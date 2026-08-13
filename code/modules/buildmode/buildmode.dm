@@ -171,7 +171,7 @@
 	mode.handle_click(user.client, params, object)
 	return TRUE // no doing underlying actions
 
-GAME_VERB_GLOBAL_PROC(togglebuildmode, "Toggle Build Mode", "", "Event")
+GAME_VERB_GLOBAL_PROC(togglebuildmode, "切换建造模式", "", "Event")
 	VERB_ARG_TYPED(M, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 
 	if(M.client)

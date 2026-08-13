@@ -969,7 +969,7 @@
 	SIGNAL_HANDLER
 
 	var/num_nutriment = our_plant.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
-	our_plant.visible_message(span_notice("[our_plant] releases freezing air, consuming its nutriments to heat its contents."))
+	our_plant.visible_message(span_notice(LANG("datum.5e6389f1", list(our_plant))))
 	our_plant.reagents.remove_reagent(/datum/reagent/consumable/nutriment, num_nutriment)
 	our_plant.reagents.chem_temp = min(1000, (our_plant.reagents.chem_temp + num_nutriment * 25))
 	our_plant.reagents.handle_reactions()
@@ -998,7 +998,7 @@
 	SIGNAL_HANDLER
 
 	var/num_nutriment = our_plant.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
-	our_plant.visible_message(span_notice("[our_plant] releases a blast of hot air, consuming its nutriments to cool its contents."))
+	our_plant.visible_message(span_notice(LANG("datum.bff687f3", list(our_plant))))
 	our_plant.reagents.remove_reagent(/datum/reagent/consumable/nutriment, num_nutriment)
 	our_plant.reagents.chem_temp = max(3, (our_plant.reagents.chem_temp + num_nutriment * -5))
 	our_plant.reagents.handle_reactions()

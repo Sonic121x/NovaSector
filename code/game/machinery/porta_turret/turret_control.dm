@@ -134,7 +134,7 @@
 
 /obj/machinery/turretid/ui_interact(mob/user, datum/tgui/ui)
 	if(is_ai_locked(user))
-		to_chat(user, span_warning("There seems to be a firewall preventing you from accessing this device!"))
+		to_chat(user, span_warning(LANG("obj.46887bb4", null)))
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)

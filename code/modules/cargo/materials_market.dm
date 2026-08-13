@@ -365,12 +365,12 @@
 	var/quantity = custom_materials[export_mat] / SHEET_MATERIAL_AMOUNT
 
 	if(fluid)
-		. += span_warning("\The [src] is currently liquid! Its value is based on the market price.")
+		. += span_warning(LANG("obj.5ea310a2", list(src)))
 		update_value()
 	else
 		. += span_notice(LANG("obj.679c8ca4", list(src, span_boldnotice("locked in"), span_boldnotice("Sell it"))))
 
-	. += span_notice("\The [src] is worth [quantity * export_value] [MONEY_SYMBOL], from selling [quantity] sheets of [export_mat.name].")
+	. += span_notice(LANG("obj.2b7be03c", list(src, quantity * export_value, MONEY_SYMBOL, quantity, export_mat.name)))
 
 /// Creates a visible effect warning nearby players that a stock block is beginning to become liquid in price.
 /obj/item/stock_block/proc/value_warning()

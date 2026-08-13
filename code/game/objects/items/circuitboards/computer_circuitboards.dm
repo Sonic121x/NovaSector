@@ -397,23 +397,23 @@
 
 /obj/item/circuitboard/computer/tram_controls/examine(mob/user)
 	. = ..()
-	. += span_info("The board is configured for tram ID [specific_transport_id] and a [install_type] installation.")
-	. += span_notice("The tram ID can be changed with a [EXAMINE_HINT("multitool")]. The installation mode can be changed with a [EXAMINE_HINT("screwdriver")].")
+	. += span_info(LANG("obj.8fdb2d9a", list(specific_transport_id, install_type)))
+	. += span_notice(LANG("obj.ecf3b0e1", list(EXAMINE_HINT("multitool"), EXAMINE_HINT("screwdriver"))))
 
 /obj/item/circuitboard/computer/tram_controls/screwdriver_act(mob/living/user)
-	var/selected_install_type = tgui_input_list(user, "Window mounted or standalone?", "Off the rails", list(NORMAL_WINDOW, SPLIT_WINDOW, STANDALONE))
+	var/selected_install_type = tgui_input_list(user, LANG("obj.1129f40e", null), LANG("obj.818db524", null), list(NORMAL_WINDOW, SPLIT_WINDOW, STANDALONE))
 	if(isnull(selected_install_type))
 		return NONE
 	install_type = selected_install_type
-	to_chat(user, span_notice("[src] is now aligned in installation mode [install_type]."))
+	to_chat(user, span_notice(LANG("obj.eca553b4", list(src, install_type))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/circuitboard/computer/tram_controls/multitool_act(mob/living/user)
-	var/selected_transport_id = tgui_input_list(user, "Which tram?", "Off the rails", SStransport.debug_tram_list)
+	var/selected_transport_id = tgui_input_list(user, LANG("obj.36d2dca9", null), LANG("obj.818db524", null), SStransport.debug_tram_list)
 	if(isnull(selected_transport_id))
 		return NONE
 	specific_transport_id = selected_transport_id
-	to_chat(user, span_notice("[src] is now programmed to control [specific_transport_id]."))
+	to_chat(user, span_notice(LANG("obj.39c2b472", list(src, specific_transport_id))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/circuitboard/computer/terminal

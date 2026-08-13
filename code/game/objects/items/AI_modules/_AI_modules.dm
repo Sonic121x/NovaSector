@@ -219,7 +219,7 @@
 		// removing core laws temporarily stuns the silicon to let people swap cores without immediately getting blasted
 		if(!parent_rack.rack_stun(bot))
 			continue
-		to_chat(bot, span_userdanger("Core module removed. Recalculating directives..."))
+		to_chat(bot, span_userdanger(LANG("obj.76556ff2", null)))
 
 /obj/item/ai_module/law/core/full
 	var/law_id // if non-null, loads the laws from the ai_laws datums

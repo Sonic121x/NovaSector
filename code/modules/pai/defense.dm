@@ -71,7 +71,7 @@
 	if(holochassis_health < 0)
 		fold_in(force = TRUE)
 	if(amount > 0)
-		to_chat(src, span_userdanger("The impact degrades your holochassis!"))
+		to_chat(src, span_userdanger(LANG("mob.006119b7", null)))
 	update_health_hud()
 	return amount
 

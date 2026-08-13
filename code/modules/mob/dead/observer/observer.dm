@@ -679,7 +679,7 @@ GAME_VERB(/mob/dead/observer, restore_ghost_appearance, "恢复幽灵角色", nu
 	if (!isnull(client) && !isnull(client.eye))
 		reset_perspective(null)
 
-GAME_VERB_HIDDEN(/mob/dead/observer, add_view_range, "Add View Range")
+GAME_VERB_HIDDEN(/mob/dead/observer, add_view_range, "增加视野范围")
 	VERB_ARG(input, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
 
 	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !client?.holder)

@@ -20,7 +20,7 @@ GAME_VERB_HIDDEN(/mob/living, navigate, "导航")
 		balloon_alert(src, LANG("mob.782a8c41", null))
 		return
 	if(navigating)
-		balloon_alert(src, "busy navigating!")
+		balloon_alert(src, LANG("mob.0fe1fed5", null))
 		return
 	if(!COOLDOWN_FINISHED(src, navigate_cooldown))
 		balloon_alert(src, LANG("mob.68863d58", null))
@@ -81,7 +81,7 @@ GAME_VERB_HIDDEN(/mob/living, navigate, "导航")
 	var/datum/callback/await = list(CALLBACK(src, PROC_REF(finish_navigation), navigate_target, finding_zchange))
 	if(!SSpathfinder.pathfind(src, navigate_target, MAX_NAVIGATE_RANGE, mintargetdist = 1, access = get_access(), skip_first = FALSE, on_finish = await))
 		navigating = FALSE
-		balloon_alert(src, "failed to begin navigation!")
+		balloon_alert(src, LANG("mob.7734a1ee", null))
 
 /mob/living/proc/finish_navigation(turf/navigate_target, finding_zchange, list/path)
 	navigating = FALSE

@@ -232,9 +232,9 @@
 	owner.Immobilize(forced_roll_duration)
 	owner.Knockdown(forced_roll_duration)
 	if(owner.has_status_effect(/datum/status_effect/stop_drop_roll))
-		to_chat(owner, span_warning("You panic, and focus everything into rolling the fire out!"))
+		to_chat(owner, span_warning(LANG("datum.69d9cd1d", null)))
 	else
-		to_chat(owner, span_warning("You panic and immediately drop to the ground, trying to roll the fire out!"))
+		to_chat(owner, span_warning(LANG("datum.9cb78ee3", null)))
 		owner.apply_status_effect(/datum/status_effect/stop_drop_roll, TRUE)
 
 	return -1 * TERROR_BUILDUP_PASSIVE_DECREASE // + immediate terror decrease because you think it's helping!

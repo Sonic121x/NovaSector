@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
 #define DENY_SOUND_COOLDOWN (2 SECONDS)
 
@@ -34,7 +35,7 @@
 /// adds a note to the examine text saying its account-locked
 /datum/component/locked_to_account/proc/on_examine(obj/structure/closet/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_warning("An account lock prevents this from opening except by the purchasing account holder.")
+	examine_list += span_warning(LANG("datum.44d25152", null))
 
 /**
  * runs when someone tries to open the crate, checks their ID against buyer_account
@@ -50,11 +51,11 @@
 
 	var/obj/item/card/id/id_card = user.get_idcard(TRUE) // the ID card the user is holding/wearing, used to check their linked bank account
 	if(isnull(id_card))
-		deny(source, user, "No ID detected!")
+		deny(source, user, LANG("datum.f1378ade", null)) // NOVA EDIT CHANGE - I18N - ORIGINAL: deny(source, user, "No ID detected!")
 		return BLOCK_OPEN
 
 	if(!id_card.registered_account)
-		deny(source, user, "No linked bank account detected!")
+		deny(source, user, LANG("datum.4a3a3d6d", null)) // NOVA EDIT CHANGE - I18N - ORIGINAL: deny(source, user, "No linked bank account detected!")
 		return BLOCK_OPEN
 
 	var/is_department = istype(buyer_account, /datum/bank_account/department) // department orders check the user's paycheck department instead of a personal account match.  TRUE if this user is allowed to open the crate
@@ -64,7 +65,7 @@
 		: (id_card.registered_account == buyer_account)
 
 	if(!account_matches)
-		deny(source, user, "Bank account does not match with buyer!")
+		deny(source, user, LANG("datum.1a0bc426", null)) // NOVA EDIT CHANGE - I18N - ORIGINAL: deny(source, user, "Bank account does not match with buyer!")
 		return BLOCK_OPEN
 
 	if(iscarbon(user))
@@ -81,13 +82,13 @@
 /// emag skips this whole check and goes straight to remove_lock
 /datum/component/locked_to_account/proc/on_emag(obj/structure/closet/source, mob/emagger)
 	SIGNAL_HANDLER
-	emagger.balloon_alert(emagger, "account lock bypassed")
+	emagger.balloon_alert(emagger, LANG("datum.dbf58af7", null))
 	remove_lock(source, emagger)
 
 /// unlocks the crate  and removes this component
 /datum/component/locked_to_account/proc/remove_lock(obj/structure/closet/source, mob/user)
-	source.visible_message(span_notice("[source]'s account lock disengages with a soft click."))
-	to_chat(user, span_notice("You unlock [source]."))
+	source.visible_message(span_notice(LANG("datum.ea3b89af", list(source))))
+	to_chat(user, span_notice(LANG("datum.e85c8e13", list(source))))
 	source.update_appearance()
 	qdel(src)
 

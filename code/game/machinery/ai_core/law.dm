@@ -887,7 +887,7 @@
 	for(var/mob/living/silicon/linked in assoc_to_values(linked_mobs))
 		if(!can_link_to(linked) || !rack_stun(linked))
 			continue
-		to_chat(linked, span_userdanger("Rack connection lost. Recalculating directives..."))
+		to_chat(linked, span_userdanger(LANG("obj.a4a5d1a5", null)))
 		unlink_silicon(linked)
 
 /obj/machinery/ai_law_rack/base/proc/link_silicon(mob/living/silicon/new_bot, announce = TRUE)
@@ -945,7 +945,7 @@
 	for(var/mob/living/silicon/bot in assoc_to_values(linked_mobs))
 		if(!rack_stun(bot))
 			continue
-		to_chat(bot, span_userdanger("Rack connection lost. Recalculating directives..."))
+		to_chat(bot, span_userdanger(LANG("obj.a4a5d1a5", null)))
 		unlink_silicon(bot)
 
 /// Attempts to stun a linked bot and prevent it from interacting with certain devices

@@ -320,10 +320,10 @@
 ///Toggles the Cyborg's cover lock, user is provided only if it's someone else doing it (not the borg itself)
 /mob/living/silicon/robot/proc/toggle_cover(mob/user)
 	locked = !locked
-	balloon_alert(src, "cover [locked ? "locked" : "unlocked"]")
+	balloon_alert(src, LANG("mob.79db4d42", list(locked ? "locked" : "unlocked")))
 	update_icons()
 	if(user)
-		balloon_alert(user, "chassis cover [emagged ? "lock glitches" : "[locked ? "locked" : "unlocked"]"]")
+		balloon_alert(user, LANG("mob.6750ac57", list(emagged ? "lock glitches" : "[locked ? "locked" : "unlocked"]")))
 	logevent("[emagged ? "ChÃ¥vÃis" : "Chassis"] cover lock has been [locked ? "engaged" : "released"]")
 
 /mob/living/silicon/robot/regenerate_icons()

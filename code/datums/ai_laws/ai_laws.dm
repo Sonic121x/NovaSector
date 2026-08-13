@@ -290,13 +290,15 @@ GLOBAL_VAR(round_default_lawset)
 	var/number = 1
 	for(var/law, is_ioned in inherent)
 		if (length(law) > 0)
-			data += "[show_numbers ? "[is_ioned ? ion_num() : number]:" : ""] [law]"
+			var/show_law = translate_laws ? lang_reverse_text(law) : law // NOVA EDIT - i18n
+			data += "[show_numbers ? "[is_ioned ? ion_num() : number]:" : ""] [show_law]" // NOVA EDIT - i18n: ORIGINAL used [law]
 			if(!is_ioned)
 				number++
 
 	for(var/law, is_ioned in supplied)
 		if (length(law) > 0)
-			data += "[show_numbers ? "[is_ioned ? ion_num() : number]:" : ""] [render_html ? "<font color='#990099'>[law]</font>" : law]"
+			var/show_law = translate_laws ? lang_reverse_text(law) : law // NOVA EDIT - i18n
+			data += "[show_numbers ? "[is_ioned ? ion_num() : number]:" : ""] [render_html ? "<font color='#990099'>[show_law]</font>" : show_law]" // NOVA EDIT - i18n: ORIGINAL used [law]
 			if(!is_ioned)
 				number++
 

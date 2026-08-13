@@ -857,7 +857,7 @@
 
 	if(cell_powered && (isnull(cell) || !cell.charge))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-		balloon_alert(cooker, "no power draw!")
+		balloon_alert(cooker, LANG("obj.3aacf146", null))
 		return
 
 	if(!vampire_charge_amount || !length(ingredients) || vampire_charge_amount < 25)

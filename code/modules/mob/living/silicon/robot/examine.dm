@@ -32,12 +32,12 @@
 	if(opened)
 		. += span_warning(LANG("mob.2d2c85ca", list(p_Their(), cell ? "installed" : "missing")))
 	else
-		var/cover_message = "[p_Their()] cover is closed"
+		var/cover_message = LANG("mob.5b9a280a", list(p_Their())) // NOVA EDIT CHANGE - I18N - ORIGINAL: var/cover_message = "[p_Their()] cover is closed"
 		if(locked)
 			if(user == src)
-				cover_message += ", though <a href='byond://?src=[REF(src)];unlock_self=1'>you may unlock it</a>"
+				cover_message += LANG("mob.4b3e8678", list(REF(src)))
 		else
-			cover_message += ", and looks unlocked"
+			cover_message += LANG("mob.d62571f4", null)
 		. += span_notice("[cover_message].")
 
 	if(cell && cell.charge <= 0)

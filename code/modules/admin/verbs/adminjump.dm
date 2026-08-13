@@ -1,4 +1,5 @@
-ADMIN_VERB(jump_to_area, R_ADMIN, "Jump To Area", "Jumps to the specified area.", ADMIN_CATEGORY_GAME)
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+ADMIN_VERB(jump_to_area, R_ADMIN, "跳转到区域", "Jumps to the specified area.", ADMIN_CATEGORY_GAME)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_AREA, VERB_ARG_SOURCE_WORLD, /area)
 	var/turf/drop_location
 	top_level:
@@ -18,21 +19,21 @@ ADMIN_VERB(jump_to_area, R_ADMIN, "Jump To Area", "Jumps to the specified area."
 	message_admins("[key_name_admin(user)] jumped to [AREACOORD(drop_location)]")
 	BLACKBOX_LOG_ADMIN_VERB("Jump To Area")
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(jump_to_turf, R_ADMIN, "Jump To Turf", /turf)
+ADMIN_VERB_ONLY_CONTEXT_MENU(jump_to_turf, R_ADMIN, "跳转到地块", /turf)
 	VERB_ARG_TYPED(locale, VERB_ARG_TYPE_TURF, VERB_ARG_SOURCE_WORLD, /turf)
 	log_admin("[key_name(user)] jumped to [AREACOORD(locale)]")
 	message_admins("[key_name_admin(user)] jumped to [AREACOORD(locale)]")
 	user.mob.abstract_move(locale)
 	BLACKBOX_LOG_ADMIN_VERB("Jump To Turf")
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(jump_to_mob, R_ADMIN, "Jump To Mob", /mob)
+ADMIN_VERB_ONLY_CONTEXT_MENU(jump_to_mob, R_ADMIN, "跳转到生物", /mob)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	user.mob.abstract_move(target.loc)
 	log_admin("[key_name(user)] jumped to [key_name(target)]")
 	message_admins("[key_name_admin(user)] jumped to [ADMIN_LOOKUPFLW(target)] at [AREACOORD(target)]")
 	BLACKBOX_LOG_ADMIN_VERB("Jump To Mob")
 
-ADMIN_VERB(jump_to_coord, R_ADMIN, "Jump To Coordinate", "Jump to a specific coordinate in the game world.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(jump_to_coord, R_ADMIN, "跳转到坐标", "Jump to a specific coordinate in the game world.", ADMIN_CATEGORY_GAME)
 	VERB_ARG(cx, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
 	VERB_ARG(cy, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
 	VERB_ARG(cz, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
@@ -77,7 +78,7 @@ ADMIN_VERB(jump_to_ghost, R_ADMIN, "身体跳转到幽灵处", "Jump your body t
 	SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/admin_ghost)
 	BLACKBOX_LOG_ADMIN_VERB("Jump To Ghost")
 
-ADMIN_VERB_AND_CONTEXT_MENU(get_mob, R_ADMIN, "Get Mob", "Teleport a mob to your location.", ADMIN_CATEGORY_GAME, /mob)
+ADMIN_VERB_AND_CONTEXT_MENU(get_mob, R_ADMIN, "抓取 Mob", "Teleport a mob to your location.", ADMIN_CATEGORY_GAME, /mob)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	var/atom/loc = get_turf(user.mob)
 	target.admin_teleport(loc)
@@ -119,7 +120,7 @@ ADMIN_VERB(get_key, R_ADMIN, "抓取 Key", "Teleport the player with the provide
 		M.forceMove(get_turf(user))
 		BLACKBOX_LOG_ADMIN_VERB("Get Key")
 
-ADMIN_VERB_AND_CONTEXT_MENU(send_mob, R_ADMIN, "Send Mob", "Teleport the specified mob to an area of your choosing.", ADMIN_CATEGORY_GAME, /mob)
+ADMIN_VERB_AND_CONTEXT_MENU(send_mob, R_ADMIN, "发送 Mob", "Teleport the specified mob to an area of your choosing.", ADMIN_CATEGORY_GAME, /mob)
 	VERB_ARG_TYPED(jumper, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	var/list/sorted_areas = get_sorted_areas()
 	if(!length(sorted_areas))

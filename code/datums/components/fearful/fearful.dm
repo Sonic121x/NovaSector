@@ -184,9 +184,9 @@
 
 	if(terror_buildup >= TERROR_BUILDUP_TERROR)
 		source.visible_message(
-			span_notice("[source] seems to relax as [hugger] gives [source.p_them()] a comforting hug."),
-			span_nicegreen("You feel yourself calm down as [hugger] gives you a reassuring hug."),
-			span_hear("You hear shuffling and a sigh of relief."),
+			span_notice(LANG("datum.74f8d4ef", list(source, hugger, source.p_them()))),
+			span_nicegreen(LANG("datum.b8be0ae7", list(hugger))),
+			span_hear(LANG("datum.5197d49c", null)),
 		)
 	terror_buildup -= HUG_TERROR_AMOUNT
 

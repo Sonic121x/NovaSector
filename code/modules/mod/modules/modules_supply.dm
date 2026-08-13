@@ -69,7 +69,7 @@
 			return
 		playsound(src, 'sound/vehicles/mecha/hydraulic.ogg', 25, TRUE)
 		if(!do_after(mod.wearer, load_time, target))
-			balloon_alert(mod.wearer, "interrupted!")
+			balloon_alert(mod.wearer, LANG("obj.c67b5d27", null))
 			return
 		if(!check_crate_pickup(picked_crate))
 			return
@@ -85,7 +85,7 @@
 			return
 		playsound(src, 'sound/vehicles/mecha/hydraulic.ogg', 25, TRUE)
 		if(!do_after(mod.wearer, load_time, target))
-			balloon_alert(mod.wearer, "interrupted!")
+			balloon_alert(mod.wearer, LANG("obj.c67b5d27", null))
 			return
 		if(target_turf.is_blocked_turf())
 			return
@@ -97,7 +97,7 @@
 		drain_power(use_energy_cost)
 		return
 
-	balloon_alert(mod.wearer, "invalid target!")
+	balloon_alert(mod.wearer, LANG("obj.5c77b90d", null))
 
 /obj/item/mod/module/clamp/on_part_deactivation(deleting = FALSE)
 	if(deleting)

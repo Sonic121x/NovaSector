@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/quirk/pyromania
 	name = "Pyromania"
 	desc = "Fire is fascinating to you. You feel happier when around fire, and are generally a bit more resilient to heat and flames."
@@ -48,7 +49,7 @@
 		for(var/obj/item/lighter/lighter in quirk_holder.held_items)
 			if(lighter.lit)
 				continue
-			to_chat(quirk_holder, span_warning("You impulsively strike [lighter], trying to start a flame..."))
+			to_chat(quirk_holder, span_warning(LANG("datum.d8bf3716", list(lighter))))
 			lighter.attack_self(quirk_holder)
 			COOLDOWN_START(src, start_fire_cd, 4 SECONDS)
 			break

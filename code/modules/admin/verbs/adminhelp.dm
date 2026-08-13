@@ -843,7 +843,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 
 	new /datum/admin_help(message, user_client, FALSE, null, urgent) // NOVA EDIT - Handling tickets - ORIGINAL: new /datum/admin_help(message, user_client, FALSE, urgent)
 
-GAME_VERB_HIDDEN(/client, no_tgui_adminhelp, "NoTguiAdminhelp")
+GAME_VERB_HIDDEN(/client, no_tgui_adminhelp, "无 TGUI 管理员帮助")
 	VERB_ARG(message, VERB_ARG_TYPE_MESSAGE, VERB_ARG_SOURCE_INPUT)
 	if(adminhelptimerid)
 		return

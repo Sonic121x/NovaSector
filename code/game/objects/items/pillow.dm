@@ -77,10 +77,10 @@
 	if(victim.is_mouth_covered() || !victim.get_bodypart(BODY_ZONE_HEAD))
 		return
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_notice("You can't bring yourself to harm [victim]"))
+		to_chat(user, span_notice(LANG("obj.45ea45fd", list(victim))))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(can_smother(victim, user))
-		user.visible_message("[user] starts to smother [victim]!", span_notice("You begin smothering [victim]!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		user.visible_message(LANG("obj.eba55494", list(user, victim)), span_notice(LANG("obj.bb5b659b", list(victim))), vision_distance = COMBAT_MESSAGE_RANGE)
 		INVOKE_ASYNC(src, PROC_REF(smothering), user, victim)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 

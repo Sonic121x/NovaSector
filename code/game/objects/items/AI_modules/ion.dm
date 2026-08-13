@@ -45,6 +45,6 @@ CONTAINS:
 	. = TRUE
 	laws.Cut()
 	laws[generate_ion_law()] = TRUE
-	to_chat(user, span_notice("You press the button on [src]."))
+	to_chat(user, span_notice(LANG("obj.fccd964e", list(src))))
 	playsound(user, 'sound/machines/click.ogg', 20, TRUE)
 	src.loc.visible_message(span_warning("[icon2html(src, viewers(loc))] [laws[1]]"))

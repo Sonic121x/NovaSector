@@ -86,7 +86,7 @@
 
 	var/turf/play_turf = get_turf(src)
 	if(play_turf?.check_lumcount_above(0.2))
-		to_chat(ghost, span_warning("It's too bright here to use [src]!"))
+		to_chat(ghost, span_warning(LANG("obj.80b7b758", list(src))))
 		return FALSE
 
 	if(required_user_count > 0)

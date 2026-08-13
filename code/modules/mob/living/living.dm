@@ -564,7 +564,7 @@
 
 //mob verbs are a lot faster than object verbs
 //for more info on why this is not atom/pull, see examinate() in mob.dm
-GAME_VERB_CONTEXT(/mob/living, pulled, "Pull", "", null, /atom/movable)
+GAME_VERB_CONTEXT(/mob/living, pulled, "拖拽", "", null, /atom/movable)
 	VERB_ARG_TYPED(thing_pulled, VERB_ARG_TYPE_MOB | VERB_ARG_TYPE_OBJ, VERB_ARG_SOURCE_VIEW, /atom/movable)
 	if(istype(thing_pulled) && Adjacent(thing_pulled))
 		start_pulling(thing_pulled)
@@ -2473,7 +2473,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	//down needs to check this floor
 	var/turf/check_turf = get_step_multiz(src, direction == DOWN ? NONE : direction)
 	if(!get_step_multiz(src, direction)) //We are at the edge z-level.
-		to_chat(src, span_warning("There's nothing interesting there."))
+		to_chat(src, span_warning(LANG("mob.774a72d2", null)))
 		return null
 	if(!istransparentturf(check_turf) && !HAS_TRAIT(src, TRAIT_XRAY_VISION)) //There is no turf we can look through above us
 		var/turf/front_hole = get_step(check_turf, dir)
@@ -2485,7 +2485,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 					check_turf = checkhole
 					break
 		if(!istransparentturf(check_turf))
-			to_chat(src, span_warning("You can't see through the floor [direction == DOWN ? "below" : "above"] you."))
+			to_chat(src, span_warning(LANG("mob.8ebc6459", list(direction == DOWN ? "below" : "above"))))
 			return null
 	return direction == DOWN ? get_step_multiz(check_turf, DOWN) : check_turf
 

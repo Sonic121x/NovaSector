@@ -155,7 +155,7 @@
 			charge_cell(charging_cell.chargerate * recharge_coeff * seconds_per_tick, charging_cell)
 			if(charging_cell.charge >= charging_cell.maxcharge) //Inserted thing is at max charge/ammo, notify those around us
 				playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
-				say("[charging] has finished recharging!")
+				say(LANG("obj.53fdf44c", list(charging)))
 				// Modular computers (mainly PDAs) can remain on and drain their cell while charging.
 				// Unless we stop, the computer will constantly spam the finished recharging message.
 				if(istype(charging, /obj/item/modular_computer))

@@ -120,8 +120,8 @@
 	if(length(modifiers))
 		var/list/modifier_names = list()
 		for(var/datum/deathmatch_modifier/modifier_path as anything in modifiers)
-			modifier_names += uppertext(initial(modifier_path.name))
-		announce(span_boldnicegreen("THIS MATCH MODIFIERS: [english_list(modifier_names, and_text = " ,")]."))
+			modifier_names += uppertext(lang_reverse_text(initial(modifier_path.name))) // NOVA EDIT CHANGE - I18N - ORIGINAL: modifier_names += uppertext(initial(modifier_path.name))
+		announce(span_boldnicegreen(LANG("datum.2505d0df", list(english_list(modifier_names, and_text = " ,"))))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_boldnicegreen("THIS MATCH MODIFIERS: [english_list(modifier_names, and_text = " ,")]."))
 	return TRUE
 
 /datum/deathmatch_lobby/proc/spawn_observer_as_player(ckey, loc)
@@ -402,8 +402,9 @@
 		var/localize_mods = GLOB.i18n_server_locale != DEFAULT_UI_LOCALE
 		var/list/mod_names = list()
 		for(var/datum/deathmatch_modifier/modifier_path as anything in modifiers)
-			mod_names += modifier_path::name
-		data["active_mods"] = "Selected modifiers: [english_list(mod_names)]"
+			mod_names += localize_mods ? lang_reverse_text(modifier_path::name) : modifier_path::name
+		data["active_mods"] = LANG("datum.056a34d3", list(localize_mods ? jointext(mod_names, "、") : english_list(mod_names)))
+		// NOVA EDIT CHANGE END
 
 	if(is_player && !isnull(players[user.ckey]["loadout"]))
 		var/datum/outfit/deathmatch_loadout/loadout = players[user.ckey]["loadout"]

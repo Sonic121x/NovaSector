@@ -268,9 +268,9 @@
 
 	if(HAS_TRAIT(src, TRAIT_HUSK))
 		if(HAS_TRAIT_FROM(src, TRAIT_HUSK, /datum/status_effect/zombie::id))
-			. += span_warning("[t_His] skin has rotted into a sickly green color.") // future todo: lizards don't have skin, they have scales
+			. += span_warning(LANG("mob.49f57ffc", list(t_His))) // future todo: lizards don't have skin, they have scales
 		else
-			. += span_warning("This body has been reduced to a grotesque husk.")
+			. += span_warning(LANG("mob.e8e8db67", null))
 	if(HAS_MIND_TRAIT(user, TRAIT_MORBID))
 		if(HAS_TRAIT(src, TRAIT_DISSECTED))
 			. += span_notice(LANG("mob.3467cf10", list(t_He, p_s())))

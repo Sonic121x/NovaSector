@@ -1,4 +1,5 @@
-ADMIN_VERB(admin_verb_panel, R_NONE, "Admin Verb Panel", "Browse and invoke admin verbs.", ADMIN_CATEGORY_EVENTS)
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+ADMIN_VERB(admin_verb_panel, R_NONE, "管理员指令面板", "Browse and invoke admin verbs.", ADMIN_CATEGORY_EVENTS)
 	if(user.admin_verb_panel)
 		var/datum/tgui/existing = SStgui.get_open_ui(user.mob, user.admin_verb_panel)
 		if(existing)
