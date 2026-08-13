@@ -42,3 +42,14 @@
 ## Force tab indents on dm files
 *.dm whitespace=indent-with-non-tab
 
+
+## i18n 译文目录：以上游汉化仓 (sernseek) 为唯一源头，合并时永远取上游版本。
+## 下游若在这些文件里产生本地改动，合并会整文件冲突（实测 obj.json 5 万行）——
+## 而这些文件是工具生成的，本就不该在下游手改：本地内容跑一次
+## `bash tools/i18n/resync.sh` 就会重新抽取补回。
+##
+## ⚠️ merge=theirs **不是** git 内置驱动，只加这一行无效（git 会静默退回默认三方合并）。
+## 每个克隆都要执行一次（.git/config 不入库）：
+##     git config merge.theirs.name "always take the incoming version"
+##     git config merge.theirs.driver "cp -f %B %A"
+strings/i18n/** merge=theirs
