@@ -7832,6 +7832,7 @@
 #include "modular_nova\master_files\code\modules\mod\modules\modules_general.dm"
 #include "modular_nova\master_files\code\modules\mod\modules\modules_science.dm"
 #include "modular_nova\master_files\code\modules\mod\modules\modules_supply.dm"
+#include "modular_nova\master_files\code\modules\modular_computers\computers\item\computer.dm"
 #include "modular_nova\master_files\code\modules\modular_computers\computers\item\laptop_presets.dm"
 #include "modular_nova\master_files\code\modules\modular_computers\computers\machinery\modular_computer.dm"
 #include "modular_nova\master_files\code\modules\modular_computers\file_system\programs\budgetordering.dm"
