@@ -34758,6 +34758,9 @@
   "You are {0} from the{1}.": [
     "tgui:AntagInfoChangeling"
   ],
+  "You are {0}.": [
+    "tgui:PersonalityPage"
+  ],
   "You can edit your answers until you press the submit button.": [
     "tgui:Interview"
   ],

@@ -174,6 +174,19 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 /proc/lang_localize_arg(arg)
 	if(!length(arg))
 		return arg
+	// span_*() 包裹的实参：改写后的调用形如
+	// `LANG(key, list(span_bold("[read_only ? "protected" : "unprotected"]")))`，
+	// 运行期传进来的是 `<b>unprotected</b>` —— 整串既不是状态词也不是目录键，下面每一步精确
+	// 匹配都会 miss，于是中文句子里嵌着一个英文状态词（软盘的「写保护标签设置为unprotected。」）。
+	// 剥掉首尾标签、对内层递归本地化，命中后把标签原样套回去（加粗等排版不丢）。
+	// 内层已无标签，递归必然终止。
+	if(findtext(arg, "<"))
+		var/static/regex/wrapped_arg = regex(@"^((?:<[^>]+>)+)(.*?)((?:</[^>]+>)+)$")
+		if(wrapped_arg.Find(arg))
+			var/inner = wrapped_arg.group[2]
+			var/inner_translated = lang_localize_arg(inner)
+			if(inner_translated != inner)
+				return wrapped_arg.group[1] + inner_translated + wrapped_arg.group[3]
 	var/list/state_words = lang_state_words()
 	var/translated = state_words[arg]
 	if(translated)

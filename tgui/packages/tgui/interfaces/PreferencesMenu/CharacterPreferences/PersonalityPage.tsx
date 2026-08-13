@@ -11,6 +11,8 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
+import { configAtom, store } from '../../../events/store';
+import { translateCurrent } from '../../../i18n/catalog';
 import type { Personality, PreferencesMenuData } from '../types';
 import { useServerPrefs } from '../useServerPrefs';
 
@@ -241,22 +243,42 @@ function getAllSelectedPersonalitiesString(
     return 'You have no personality.';
   }
   personalityNames.sort((a, b) => (a < b ? -1 : 1));
-  let finalString = '';
-  for (let i = 0; i < personalityNames.length; i++) {
-    finalString += personalityNames[i];
-    if (i < personalityNames.length - 1) {
-      if (personalityNames.length > 2) {
-        finalString += ', ';
+  // i18n：**逐个**查表再拼，不能整句拼完再查。
+  // 这句是运行期拼出来的，整串永远不是目录键；而个性名是**单词**（Compassionate/Diligent…），
+  // 按本仓库的安全线单词也不进字面 AC 字典 → 两条落地路径都够不着，整句只能留英文。
+  // 个性名本身早由 labels.rs 的 `/datum/personality name` 桥进了前端目录，缺的只是在这里逐个查。
+  const localizedNames = personalityNames.map((name) => translateCurrent(name));
+  // 连接符也得按 locale 走：中文用顿号、且没有 "and"。英文语序的 ", " / " and " 直接套到中文上
+  // 就是「甲, 乙, and 丙」这种半中半英，比不翻更难看。
+  const chinese = (store.get(configAtom)?.locale ?? 'en').startsWith('zh');
+  let finalString: string;
+  if (chinese) {
+    finalString = localizedNames.join('、');
+  } else {
+    finalString = '';
+    for (let i = 0; i < localizedNames.length; i++) {
+      finalString += localizedNames[i];
+      if (i < localizedNames.length - 1) {
+        if (localizedNames.length > 2) {
+          finalString += ', ';
+        }
       }
-    }
-    if (i === personalityNames.length - 2) {
-      if (finalString[finalString.length - 1] !== ' ') {
-        finalString += ' ';
+      if (i === localizedNames.length - 2) {
+        if (finalString[finalString.length - 1] !== ' ') {
+          finalString += ' ';
+        }
+        finalString += 'and ';
       }
-      finalString += 'and ';
     }
   }
-  return `You are ${finalString}.`;
+  // 外框走 **children 模板**（抽取器把它收成 `You are {0}.`，运行时 localizeChildrenTemplate
+  // 整条查表后按中文语序回填）。把已拼好的名字串包进一个元素，它才算一个占位符——直接写成
+  // `You are {finalString}.` 的话三个 children 全是字符串、会被并成一整条查不到的文本。
+  return (
+    <>
+      You are <span>{finalString}</span>.
+    </>
+  );
 }
 
 export function PersonalityPage() {
