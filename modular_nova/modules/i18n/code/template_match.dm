@@ -53,6 +53,11 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 		text = replacetext(text, "\\\"", "\"")
 		text = replacetext(text, "\\n", "\n")
 		text = replacetext(text, "\\t", "\t")
+		// DM 源码里 `\[` / `\]` 是「字面方括号」的转义（否则会被当成内插）。目录照抄源码形态，
+		// 运行时字符串里却是裸括号 —— 不归一则整条模板的字面段永远对不上
+		// （正电子脑的 `Personality requested: \[{0}\]` 即此）。与 lang_unescape_source 同一处理。
+		text = replacetext(text, "\\\[", "\[")
+		text = replacetext(text, "\\\]", "\]")
 		text = replacetext(text, "\\improper", "")
 		text = replacetext(text, "\\proper", "")
 	return text
@@ -94,6 +99,53 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 			return FALSE
 	return TRUE
 
+/// 字面段里是否**只有排版类** HTML 标签（至少有一个标签，且没有 `<a>`）。
+/// `<a>` 携带的是功能（`<a href='byond://…'>here</a>` 是投票入口），剥掉就把功能弄没了，
+/// 这类模板宁可整条保持英文，也不登记剥标签变体。
+/proc/lang_tpl_formatting_tags_only(list/segs)
+	var/saw_tag = FALSE
+	for(var/seg in segs)
+		if(!findtext(seg, "<"))
+			continue
+		saw_tag = TRUE
+		var/lowered = LOWER_TEXT(seg)
+		if(findtext(lowered, "<a ") || findtext(lowered, "<a>") || findtext(lowered, "</a"))
+			return FALSE
+	return saw_tag
+
+/// 只删标签、**不 trim 也不折叠空白**。字面段是靠 findtext 精确定位的，
+/// 段首/段尾那个把占位符和词分开的空格一旦被 trim 掉，整条模板就再也匹配不上。
+/proc/lang_strip_html_tags_raw(text)
+	if(!istext(text))
+		return text
+	var/static/regex/html_tag_raw = regex(@"<[^>]*>", "g")
+	return html_tag_raw.Replace(text, "")
+
+/// 把一条逆模板登记进 records/anchors（相邻占位符、锚长门槛、半翻译自匹配三道校验在此）。
+/proc/lang_tpl_register(list/records, list/anchors, list/segs, list/order, zh_runtime)
+	var/nsegs = length(segs)
+	var/lit_len = 0
+	var/anchor = ""
+	for(var/i in 1 to nsegs)
+		var/seg = segs[i]
+		var/seg_len = length(seg)
+		lit_len += seg_len
+		if(!seg_len && i != 1 && i != nsegs) // 相邻占位符：捕获边界不可定
+			return
+		if(seg_len > length(anchor) && findtext(seg, " "))
+			anchor = seg
+	if(length(anchor) < I18N_TPL_MIN_ANCHOR)
+		return
+	if(findtext(zh_runtime, anchor)) // 半翻译（zh 仍含英文锚段，bad-MT 类）：替换无意义且会自匹配
+		return
+	records += list(list(segs, order, zh_runtime, lit_len))
+	var/id = length(records)
+	var/list/ids = anchors[anchor]
+	if(ids)
+		ids += id
+	else
+		anchors[anchor] = list(id)
+
 /// 惰性构建某 locale 的逆模板库与锚自动机；返回是否可用。
 /proc/lang_tpl_setup(locale)
 	var/state = GLOB.i18n_tpl_state[locale]
@@ -118,33 +170,25 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 		var/list/order = parsed[2]
 		if(!length(order))
 			continue
-		var/nsegs = length(segs)
-		var/bad = FALSE
-		var/lit_len = 0
-		var/anchor = ""
-		for(var/i in 1 to nsegs)
-			var/seg = segs[i]
-			var/seg_len = length(seg)
-			lit_len += seg_len
-			if(!seg_len && i != 1 && i != nsegs) // 相邻占位符：捕获边界不可定
-				bad = TRUE
-				break
-			if(seg_len > length(anchor) && findtext(seg, " "))
-				anchor = seg
-		if(bad || length(anchor) < I18N_TPL_MIN_ANCHOR)
-			continue
 		var/zh_runtime = zh_t
 		if(findtext(zh_runtime, "\\"))
 			zh_runtime = lang_process_text_escapes(zh_runtime)
-		if(findtext(zh_runtime, anchor)) // 半翻译（zh 仍含英文锚段，bad-MT 类）：替换无意义且会自匹配
-			continue
-		records += list(list(segs, order, zh_runtime, lit_len))
-		var/id = length(records)
-		var/list/ids = anchors[anchor]
-		if(ids)
-			ids += id
-		else
-			anchors[anchor] = list(id)
+		lang_tpl_register(records, anchors, segs, order, zh_runtime)
+		// **字面段里嵌着 HTML 标签的模板，在聊天路径上永远验证不过**：`lang_fallback_apply_html`
+		// 先按标签切块，送进来的是**纯文本块**，而模板要求逐段 findtext 命中带标签的字面段。
+		// 全仓 15906 条已译插值模板里有 859 条（5.4%）是这形状——高级健康扫描仪整页
+		// （`<span class='info ml-1'>Genetic Stability: {0}%.</span><br>`）、回合总结经济行
+		// （`There were {0} {1} collected by crew this shift.<br>`）都在其中，**译文早就有**，
+		// 只是这条通道根本走不通。
+		// 解法：再登记一条**剥标签变体**记录，让它去匹配切块后的纯文本；外层标签由切块器自己
+		// 原样保留，排版不丢。
+		// **含 `<a>` 的一律不登记**（71 条）：剥掉链接会把「点击此处投票」这类**功能**弄没，
+		// 宁可整条保持英文。
+		if(lang_tpl_formatting_tags_only(segs))
+			var/list/stripped_segs = list()
+			for(var/seg in segs)
+				stripped_segs += lang_strip_html_tags_raw(seg)
+			lang_tpl_register(records, anchors, stripped_segs, order, lang_strip_html_tags_raw(zh_runtime))
 	if(!length(anchors))
 		GLOB.i18n_tpl_state[locale] = "none"
 		return FALSE

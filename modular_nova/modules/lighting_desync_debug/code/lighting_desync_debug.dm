@@ -33,7 +33,7 @@
 
 GAME_VERB_DESC(/client, fix_lighting, "修复光照bug", "Forces static lighting in view to redraw, for when teleporting leaves the screen greyed out.", "OOC")
 	if(!COOLDOWN_FINISHED(src, lighting_resync_cooldown))
-		to_chat(src, span_warning("光照刚刷新过，稍等一下再试。"))
+		to_chat(src, span_warning(LANG("client.e3b7e6fe", null)))
 		return
 	var/turf/center = get_turf(eye) || get_turf(mob)
 	if(!isturf(center))
@@ -51,13 +51,13 @@ GAME_VERB_DESC(/client, fix_lighting, "修复光照bug", "Forces static lighting
 		light.color = null
 
 	if(!length(touched))
-		to_chat(src, span_notice("视野内没有需要刷新的静态光照。"))
+		to_chat(src, span_notice(LANG("client.c69c470e", null)))
 		return
 
 	// 必须跨 tick。同一 tick 内改了又改回，BYOND 会把两次写入合并成「没有变化」，
 	// 于是既不重发也不重绘，等于什么都没做。
 	addtimer(CALLBACK(src, PROC_REF(finish_lighting_resync), touched), 1)
-	to_chat(src, span_notice("已刷新视野内的光照。"))
+	to_chat(src, span_notice(LANG("client.d9ac69f4", null)))
 
 /// 第二趟：还原真实光照。update() 会按当前 corner 重算出正确外观。
 /client/proc/finish_lighting_resync(list/touched)

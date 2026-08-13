@@ -167,7 +167,7 @@
 	if(!can_buy(BLOB_UPGRADE_REFLECTOR_COST))
 		return
 
-	to_chat(src, span_warning(LANG("mob.6a3296a3", null)))
+	to_chat(src, span_warning(LANG("mob.27b5a840", null)))
 	shield = shield.change_to(/obj/structure/blob/shield/reflective, src)
 	shield.balloon_alert(src, LANG("mob.8908bb9e", list(shield.name)))
 

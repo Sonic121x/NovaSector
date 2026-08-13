@@ -45,8 +45,6 @@ GLOBAL_REAL(Master, /datum/controller/master)
 	/// makes the mc main loop runtime
 	var/make_runtime = FALSE
 
-	var/initializations_finished_with_no_players_logged_in //I wonder what this could be?
-
 	/// The type of the last subsystem to be fire()'d.
 	var/last_type_processed
 
@@ -461,7 +459,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "控制器概览", "View th
 	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
 	to_chat(world, span_boldannounce("[msg]"), MESSAGE_TYPE_DEBUG)
 	log_world(msg)
-	SSticker.start_at = world.time + (CONFIG_GET(number/lobby_countdown) * (1 SECONDS))
+	SSticker.timeLeft = SSticker.start_at
 
 
 	if(world.system_type == MS_WINDOWS && CONFIG_GET(flag/toast_notification_on_init) && !length(GLOB.clients))
@@ -469,7 +467,6 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "控制器概览", "View th
 
 	// Set world options.
 	world.change_fps(CONFIG_GET(number/fps))
-	var/initialized_tod = REALTIMEOFDAY
 
 	if(tgs_prime)
 		world.TgsInitializationComplete()
@@ -480,7 +477,6 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "控制器概览", "View th
 
 	if(sleep_offline_after_initializations && CONFIG_GET(flag/resume_after_initializations))
 		world.sleep_offline = FALSE
-	initializations_finished_with_no_players_logged_in = initialized_tod < REALTIMEOFDAY - 10
 
 /**
  * Initialize a given subsystem and handle the results.

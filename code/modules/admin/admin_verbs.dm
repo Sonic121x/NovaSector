@@ -350,7 +350,8 @@ ADMIN_VERB(test_cardpack_distribution, R_DEBUG, "测试卡包分发", "Test the 
 ADMIN_VERB(print_cards, R_DEBUG, "输出卡牌列表", "Print all cards to chat.", ADMIN_CATEGORY_DEBUG)
 	SStrading_card_game.printAllCards()
 
-ADMIN_VERB(give_mob_action, R_FUN, "给予生物动作", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/ability_recipient)
+ADMIN_VERB(give_mob_action, R_FUN, "给予生物动作", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+	VERB_ARG_TYPED(ability_recipient, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	var/static/list/all_mob_actions = sort_list(subtypesof(/datum/action/cooldown/mob_cooldown), GLOBAL_PROC_REF(cmp_typepaths_asc))
 	var/static/list/actions_by_name = list()
 	if (!length(actions_by_name))
@@ -396,7 +397,8 @@ ADMIN_VERB(give_mob_action, R_FUN, "给予生物动作", ADMIN_VERB_NO_DESCRIPTI
 	log_admin("[key_name(user)] added mob ability [ability_type] to mob [ability_recipient].")
 	BLACKBOX_LOG_ADMIN_VERB("Add Mob Ability")
 
-ADMIN_VERB(remove_mob_action, R_FUN, "移除生物动作", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/removal_target)
+ADMIN_VERB(remove_mob_action, R_FUN, "移除生物动作", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+	VERB_ARG_TYPED(removal_target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	var/list/target_abilities = list()
 	for(var/datum/action/cooldown/mob_cooldown/ability in removal_target.actions)
 		target_abilities[ability.name] = ability
@@ -416,7 +418,8 @@ ADMIN_VERB(remove_mob_action, R_FUN, "移除生物动作", ADMIN_VERB_NO_DESCRIP
 	message_admins("[key_name_admin(user)] removed the ability [chosen_ability] from [key_name_admin(removal_target)].")
 	BLACKBOX_LOG_ADMIN_VERB("Remove Mob Ability")
 
-ADMIN_VERB(give_spell, R_FUN, "给予法术", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/spell_recipient)
+ADMIN_VERB(give_spell, R_FUN, "给予法术", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+	VERB_ARG_TYPED(spell_recipient, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	var/which = tgui_alert(user, LANG("datum.f926544a", null), LANG("datum.1967f954", null), list("Name", "Typepath"))
 	if(!which)
 		return
@@ -462,7 +465,8 @@ ADMIN_VERB(give_spell, R_FUN, "给予法术", ADMIN_VERB_NO_DESCRIPTION, ADMIN_C
 	if(!spell_recipient.mind)
 		to_chat(user, span_userdanger(LANG("datum.f13c244a", null)))
 
-ADMIN_VERB(remove_spell, R_FUN, "移除法术", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/removal_target)
+ADMIN_VERB(remove_spell, R_FUN, "移除法术", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+	VERB_ARG_TYPED(removal_target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	var/list/target_spell_list = list()
 	for(var/datum/action/cooldown/spell/spell in removal_target.actions)
 		target_spell_list[spell.name] = spell
@@ -482,7 +486,8 @@ ADMIN_VERB(remove_spell, R_FUN, "移除法术", ADMIN_VERB_NO_DESCRIPTION, ADMIN
 	message_admins("[key_name_admin(user)] removed the spell [chosen_spell] from [key_name_admin(removal_target)].")
 	BLACKBOX_LOG_ADMIN_VERB("Remove Spell")
 
-ADMIN_VERB(give_disease, R_FUN, "给予疾病", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/victim)
+ADMIN_VERB(give_disease, R_FUN, "给予疾病", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+	VERB_ARG_TYPED(victim, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living)
 	var/datum/disease/disease = tgui_input_list(user, LANG("datum.1bc99a53", null), LANG("datum.75cd3f6d", null), sort_list(SSdisease.diseases, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 	if(!disease)
 		return
@@ -491,7 +496,8 @@ ADMIN_VERB(give_disease, R_FUN, "给予疾病", ADMIN_VERB_NO_DESCRIPTION, ADMIN
 	log_admin("[key_name(user)] gave [key_name(victim)] the disease [disease].")
 	message_admins(span_adminnotice("[key_name_admin(user)] gave [key_name_admin(victim)] the disease [disease]."))
 
-ADMIN_VERB_AND_CONTEXT_MENU(object_say, R_FUN, "OOC 发言", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, obj/speaker)
+ADMIN_VERB_AND_CONTEXT_MENU(object_say, R_FUN, "OOC 发言", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, /obj)
+	VERB_ARG_TYPED(speaker, VERB_ARG_TYPE_OBJ, VERB_ARG_SOURCE_WORLD, /obj)
 	var/message = tgui_input_text(user, LANG("datum.43f83808", null), LANG("datum.f119adcc", null), encode = FALSE)
 	if(!message)
 		return
@@ -538,7 +544,8 @@ ADMIN_VERB(deadmin, R_NONE, "卸任管理员", "Shed your admin powers.", ADMIN_
 	message_admins("[key_name_admin(user)] deadminned themselves.")
 	BLACKBOX_LOG_ADMIN_VERB("Deadmin")
 
-ADMIN_VERB(populate_world, R_DEBUG, "填充世界", "Populate the world with test mobs.", ADMIN_CATEGORY_DEBUG, amount = 50 as num)
+ADMIN_VERB(populate_world, R_DEBUG, "填充世界", "Populate the world with test mobs.", ADMIN_CATEGORY_DEBUG)
+	VERB_ARG(amount, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
 	for (var/i in 1 to amount)
 		var/turf/tile = get_safe_random_station_turf_equal_weight()
 		var/mob/living/carbon/human/hooman = new(tile)
@@ -727,7 +734,8 @@ ADMIN_VERB(create_mob_worm, R_FUN, "创建 Mob 蠕虫", "Attach a linked list of
 		segment.AddComponent(/datum/component/mob_chain, front = previous)
 		previous = segment
 
-ADMIN_VERB(give_ai_controller, R_FUN, "授予 AI 控制器", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/my_guy)
+ADMIN_VERB(give_ai_controller, R_FUN, "授予 AI 控制器", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+	VERB_ARG_TYPED(my_guy, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living)
 	var/static/list/controllers = subtypesof(/datum/admin_ai_template)
 	var/static/list/controllers_by_name = list()
 	if (!length(controllers_by_name))
@@ -771,7 +779,8 @@ ADMIN_VERB(open_event_logger, R_DEBUG, "打开事件记录器", "Open the event 
 ADMIN_VERB(view_behavior_tree, R_DEBUG, "查看行为树", "Inspect the AI behavior tree of a mob.", ADMIN_CATEGORY_DEBUG)
 	GLOB.bt_viewer.ui_interact(user.mob)
 
-ADMIN_VERB(new_blackmarket_item, R_BUILD, "创建黑市物品", "Add an item to the black market for purchase.", ADMIN_CATEGORY_EVENTS, object as text)
+ADMIN_VERB(new_blackmarket_item, R_BUILD, "创建黑市物品", "Add an item to the black market for purchase.", ADMIN_CATEGORY_EVENTS)
+	VERB_ARG(object, VERB_ARG_TYPE_TYPEPATH, VERB_ARG_SOURCE_INPUT)
 	if(!object)
 		to_chat(user, span_boldwarning(LANG("datum.6793d2b8", null)))
 		return

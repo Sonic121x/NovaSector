@@ -97,6 +97,13 @@
 	else
 		CRASH("Attempted a girder wall recipe with an invalid wall type ([recipe.wall_type])")
 
+	if(istype(wall, /turf/closed/wall))
+		var/turf/closed/wall/griderholder = wall
+		griderholder.girder_type = structure.type
+	if(istype(wall, /obj/structure/falsewall))
+		var/obj/structure/falsewall/griderholder = wall
+		griderholder.girder_type = structure.type
+
 	user.visible_message(
 		message = span_notice(LANG("datum.b4810c15", list(user, user.p_es(), wall, structure))),
 		self_message = span_notice(LANG("datum.2fcdbcf5", list(wall, structure))),

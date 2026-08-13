@@ -12,6 +12,7 @@
   "1st Floor": "1层",
   "24-Seven": "24-7",
   "24-Stops": "24-停靠站",
+  "2560 Core Set": "2560核心系列",
   "2nd Floor": "2层",
   "3 Peaks Radio": "3 Peaks Radio",
   "3rd Floor": "3层",
@@ -137,6 +138,7 @@
     ],
     "note": "同义/词形变化计入 alts"
   },
+  "Assistant Shredder": "助理碎纸机",
   "Asteroid": "小行星",
   "Astrum": "星芒",
   "Atlas Greyscale": "Atlas Greyscale",
@@ -519,6 +521,7 @@
   "Cogitandi Fidis": "Cogitandi Fidis",
   "Cognitive Saturation": "认知饱和",
   "Cohiba Robusto": "Cohiba Robusto",
+  "Colonel100Stars": "百星上校",
   "Color-Block Hoodie": "拼色连帽衫",
   "Colossus": "巨像",
   "Colt Detective Special": "柯尔特侦探特制型",
@@ -573,6 +576,7 @@
   "Cosmosis": "宇宙共融",
   "Counsels-The-Patients": "Counsels-The-Patients",
   "Courier": "信使",
+  "Crash Cart Classic": "经典急救车",
   "Crashed Ship": "坠毁飞船",
   "Crashes-Byond-Client": "Crashes-Byond-Client",
   "Cream": {
@@ -1312,6 +1316,7 @@
   "KOTH": "KOTH",
   "Kaleido": "Kaleido",
   "Karl Barx": "Karl Barx",
+  "Kat-Kea": "卡特凯亚",
   "Katyusha Shotgun": "喀秋莎霰弹枪",
   "Kaza Ruk": {
     "zh": "卡扎·鲁克",
@@ -2040,6 +2045,7 @@
     "note": "按目录主流写法修正（原条目是少数派或中英混排）"
   },
   "Proxima Centauri": "比邻星",
+  "Pseudoalchemical Hemodecompositional Maintenance System": "伪炼金血液分解维修系统",
   "Psi-Echo Demoralizer Device": "Psi-Echo Demoralizer Device",
   "Psicodine": "赛可定",
   "PsychoRot": "PsychoRot",
@@ -2462,6 +2468,7 @@
   },
   "Space Geneva Convention": "太空日内瓦公约",
   "Space Guard": "太空警卫队",
+  "Space IRS": "太空国税局",
   "Space Life": "太空生活",
   "Space Lube": {
     "zh": "太空润滑剂",
@@ -2722,6 +2729,7 @@
     "zh": "贵族",
     "note": "原为「保持英文」条目，但目录里早已有稳定中文译法——保留英文只会制造假违规"
   },
+  "The Ark": "方舟",
   "The Bucket": "桶子",
   "The Cantina": "食堂",
   "The Cathulker": "卡苏尔克",
@@ -2743,6 +2751,7 @@
   "The Lizards Gas": "蜥蜴人天然气",
   "The Loose Goose": "散漫鹅号",
   "The Lungbuster": "The Lungbuster",
+  "The Lustrous": "光辉号",
   "The Muffin Man": {
     "zh": "松饼人",
     "note": "原为「保持英文」条目，但目录里早已有稳定中文译法——保留英文只会制造假违规"

@@ -190,7 +190,7 @@
 	. += LANG("mob.b11c561f", list(essence_excess))
 	. += LANG("mob.e3158766", list(perfectsouls))
 
-/mob/living/basic/revenant/update_health_hud()
+/mob/living/basic/revenant/update_health_hud(healthpercent)
 	if(isnull(hud_used))
 		return
 

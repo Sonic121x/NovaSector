@@ -174,6 +174,19 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 /proc/lang_localize_arg(arg)
 	if(!length(arg))
 		return arg
+	// span_*() 包裹的实参：改写后的调用形如
+	// `LANG(key, list(span_bold("[read_only ? "protected" : "unprotected"]")))`，
+	// 运行期传进来的是 `<b>unprotected</b>` —— 整串既不是状态词也不是目录键，下面每一步精确
+	// 匹配都会 miss，于是中文句子里嵌着一个英文状态词（软盘的「写保护标签设置为unprotected。」）。
+	// 剥掉首尾标签、对内层递归本地化，命中后把标签原样套回去（加粗等排版不丢）。
+	// 内层已无标签，递归必然终止。
+	if(findtext(arg, "<"))
+		var/static/regex/wrapped_arg = regex(@"^((?:<[^>]+>)+)(.*?)((?:</[^>]+>)+)$")
+		if(wrapped_arg.Find(arg))
+			var/inner = wrapped_arg.group[2]
+			var/inner_translated = lang_localize_arg(inner)
+			if(inner_translated != inner)
+				return wrapped_arg.group[1] + inner_translated + wrapped_arg.group[3]
 	var/list/state_words = lang_state_words()
 	var/translated = state_words[arg]
 	if(translated)
@@ -505,6 +518,15 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 /// 两种来源都要剥：① 运行时 name/desc 里是**编译期标记字节**（DM 源写 "\improper" 即该字节，
 /// 故 replacetext 用 "\improper" 能匹配）；② 目录 JSON 里存的是**字面** "\improper"（反斜杠+improper，
 /// 用 "\\improper" 匹配）。规整到无宏并 trim，使两端对齐（否则带 \improper 的名永远查不中）。
+/// 剥掉 HTML 标签，只留可见文本，并把标签留下的空白折叠/修边。
+/// 用于给「键里嵌着标签」的目录条目登记一个能被 lang_fallback_apply_html 切块后命中的变体键。
+/proc/lang_strip_html_tags(text)
+	if(!istext(text))
+		return text
+	var/static/regex/html_tag = regex(@"<[^>]*>", "g")
+	var/static/regex/ws_run = regex(@"[ \t]+", "g")
+	return trim(ws_run.Replace(html_tag.Replace(text, ""), " "))
+
 /proc/lang_strip_grammar_macros(text)
 	if(!istext(text))
 		return text
@@ -556,6 +578,20 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 			// **只做多词键**：单词键几乎全是标识符形态（"move"/"add"/"clear"/"ready"…），
 			// 给它们登记大写变体会把 `switch("Add")`、`if(pick == "Clear")` 这类比较拖进反查面
 			// —— 与 P1 的多词门槛、AC 字典的多词过滤是同一条安全线，此处保持一致。
+			// HTML 标签对齐：聊天/浏览器落地走 lang_fallback_apply_html，它**按标签切块**、只把
+			// 标签之间的纯文本送进反查与 AC。而目录键是照抄源码字面量的，标签就嵌在键里
+			// （`"<b>But none of its eggs hatched!</b>"`、`"There is a sticker displaying the <b>…</b>"`、
+			// `"<span class='notice ml-1'>Subject contains no neuroware in their brain.</span>"`）。
+			// 于是运行期送来的是**裸句**、目录里躺着**带标签的键**，两边永远对不上：整句回退英文，
+			// 更糟的是接着被字面 AC 从中间咬开（「But n其中一只 its eggs hatched!」）。
+			// 这里登记「剥标签」变体键，值同样剥标签——切块后的裸文本就能命中，外层标签由切块器
+			// 自己原样保留，格式不丢。
+			// 与上面几条变体同一条安全线：**只做多词**（单词剥完多是标识符形态），且不覆盖已有精确键。
+			if(findtext(en_text, "<") && findtext(en_text, ">"))
+				var/stripped_tags_key = lang_strip_html_tags(en_text)
+				if(stripped_tags_key != en_text && findtext(stripped_tags_key, " ") && !reverse[stripped_tags_key])
+					reverse[stripped_tags_key] = lang_strip_html_tags(translated)
+
 			var/first_char = copytext(en_text, 1, 2)
 			if(findtext(en_text, " ") && findtextEx("abcdefghijklmnopqrstuvwxyz", first_char))
 				var/capitalized_key = uppertext(first_char) + copytext(en_text, 2)
@@ -880,6 +916,8 @@ GLOBAL_LIST_INIT(i18n_autopsy_labels, list(
 GLOBAL_LIST_INIT(i18n_tgui_strings, build_tgui_string_set())
 
 #define I18N_TGUI_PHRASE_CACHE_MAX 4096
+/// P1 里允许过字面 AC 的最短长度。短值一律不走 AC —— 那是标识符浓度最高的区间。
+#define I18N_TGUI_PROSE_MIN_LENGTH 80
 /// 跨 payload 复用精确/模板反查结果；有界且满后不淘汰，避免动态值造成持续分配。
 GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 
@@ -893,6 +931,14 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 		for(var/key in decoded)
 			result[key] = TRUE
 	return result
+
+/// 该 TGUI 负载值是否「长散文」——够长、含句末标点。只有这类才允许过字面 AC（子串替换）：
+/// act() 回传标识符、图标名、黑板键之类永远不是这个形状，从而把误伤面压到零。
+/proc/lang_tgui_prose_candidate(text)
+	if(length(text) < I18N_TGUI_PROSE_MIN_LENGTH)
+		return FALSE
+	return findtext(text, ". ") || findtext(text, "! ") || findtext(text, "? ") \
+		|| findtext(text, ".", -1) || findtext(text, "!", -1) || findtext(text, "?", -1)
 
 /// TGUI 负载专用反查：若该串属于 TGUI 前端目录（TS 端会翻显示），P1 跳过不动数据（保住标识符）；
 /// 否则走多词反查（datum 描述等不在前端目录的长文本）。
@@ -921,9 +967,20 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 	// TGUI 负载里的拼接句与聊天/browse 共享同一引擎。en locale / 无锚命中时引擎走快路径原样返回（零开销）。
 	if(. == text)
 		. = lang_template_apply(text, locale)
-		// 漏翻采集：反查 + 模板引擎都没命中的多词 TGUI 负载值（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
-		if(GLOB.i18n_log_misses && . == text && locale != DEFAULT_UI_LOCALE)
-			lang_log_miss_scan(text, "tgui")
+	if(. == text)
+		// 最后一道：**长散文**才过字面 AC。
+		// 「基础句 + 运行期追加的后缀」在 TGUI 负载里不止 lang_reverse_suffixed 那种可枚举形态：
+		// 幽灵生成器的 flavour_text 是 `基础句` + `switch(rand(1,4))` 四选一的身世段（其中一段还带
+		// `pick(...)` 内插），后缀根本没法手工登记。但**两半各自都是目录键、也都译好了**，字面 AC
+		// 的子串替换正好能把它们分别换掉，接缝原样保留 —— 聊天路径一直是这么做的，P1 少了这一步，
+		// 于是「名字是中文、正文整段英文」（生成器菜单的「指令」栏即此）。
+		// 闸门必须严：AC 是子串替换，绝不能碰标识符型负载值。长度 ≥ 80 且含句末标点的串是散文，
+		// 不可能是 act 回传标识符；短值一律不走这条。
+		if(lang_tgui_prose_candidate(text) && lang_fallback_setup(locale))
+			. = rustg_acreplace("i18n_[locale]", text)
+	// 漏翻采集：反查 + 模板引擎 + AC 都没命中的多词 TGUI 负载值（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
+	if(GLOB.i18n_log_misses && . == text && locale != DEFAULT_UI_LOCALE)
+		lang_log_miss_scan(text, "tgui")
 	if(cache_ready && length(phrase_cache) < I18N_TGUI_PHRASE_CACHE_MAX)
 		phrase_cache[text] = .
 
@@ -995,6 +1052,7 @@ GLOBAL_LIST_INIT(i18n_payload_skip_keys, build_i18n_policy_set("payload_skip_key
 	return data
 
 #undef I18N_TGUI_PHRASE_CACHE_MAX
+#undef I18N_TGUI_PROSE_MIN_LENGTH
 
 /// 偏好菜单「常量数据 asset」(/datum/asset/json/preferences) 是服务器启动生成一次的静态资源，
 /// **不经 get_payload**，故 lang_reverse_tree 永远碰不到它。此 pass 专供该 asset：只反查

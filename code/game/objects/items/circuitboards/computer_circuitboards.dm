@@ -392,20 +392,29 @@
 /obj/item/circuitboard/computer/tram_controls
 	name = "Tram Controls"
 	build_path = /obj/machinery/computer/tram_controls
-	var/split_mode = FALSE
-
-/obj/item/circuitboard/computer/tram_controls/split
-	split_mode = TRUE
+	var/install_type = NORMAL_WINDOW
+	var/specific_transport_id = TRAMSTATION_LINE_1
 
 /obj/item/circuitboard/computer/tram_controls/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.41638856", list(split_mode ? "split window" : "normal window")))
-	. += span_notice(LANG("obj.eb1ace56", list(EXAMINE_HINT("multitool"))))
+	. += span_info(LANG("obj.8fdb2d9a", list(specific_transport_id, install_type)))
+	. += span_notice(LANG("obj.ecf3b0e1", list(EXAMINE_HINT("multitool"), EXAMINE_HINT("screwdriver"))))
+
+/obj/item/circuitboard/computer/tram_controls/screwdriver_act(mob/living/user)
+	var/selected_install_type = tgui_input_list(user, LANG("obj.1129f40e", null), LANG("obj.818db524", null), list(NORMAL_WINDOW, SPLIT_WINDOW, STANDALONE))
+	if(isnull(selected_install_type))
+		return NONE
+	install_type = selected_install_type
+	to_chat(user, span_notice(LANG("obj.eca553b4", list(src, install_type))))
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/circuitboard/computer/tram_controls/multitool_act(mob/living/user)
-	split_mode = !split_mode
-	to_chat(user, span_notice(LANG("obj.d5721e95", list(src, split_mode ? "split window" : "normal window"))))
-	return TRUE
+	var/selected_transport_id = tgui_input_list(user, LANG("obj.36d2dca9", null), LANG("obj.818db524", null), SStransport.debug_tram_list)
+	if(isnull(selected_transport_id))
+		return NONE
+	specific_transport_id = selected_transport_id
+	to_chat(user, span_notice(LANG("obj.39c2b472", list(src, specific_transport_id))))
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/circuitboard/computer/terminal
 	name = "Terminal"

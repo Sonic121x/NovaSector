@@ -5,7 +5,8 @@ GLOBAL_LIST_EMPTY(ckey_to_aooc_name)
 #define AOOC_LISTEN_PLAYER 1
 #define AOOC_LISTEN_ADMIN 2
 
-GAME_VERB(/client, aooc, "反派 OOC", "OOC", msg as text)
+GAME_VERB(/client, aooc, "反派 OOC", "OOC")
+	VERB_ARG(msg, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger(LANG("client.b79ad8a3", null)))
 		return

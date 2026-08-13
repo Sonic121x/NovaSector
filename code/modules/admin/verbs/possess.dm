@@ -1,6 +1,7 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
-ADMIN_VERB_AND_CONTEXT_MENU(possess, R_POSSESS, "附身物体", "Possess an object.", ADMIN_CATEGORY_FUN, obj/target)
+ADMIN_VERB_AND_CONTEXT_MENU(possess, R_POSSESS, "附身物体", "Possess an object.", ADMIN_CATEGORY_FUN, /obj)
+	VERB_ARG_TYPED(target, VERB_ARG_TYPE_OBJ, VERB_ARG_SOURCE_WORLD, /obj)
 	if(isnull(target.loc))
 		return
 

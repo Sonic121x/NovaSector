@@ -1,0 +1,4 @@
+author: "Sernseek"
+delete-after: True
+changes:
+  - bugfix: "修复 Alt+Tab 切出游戏后 TGUI 窗口卡在「任意位置均可拖动」状态、导致弹窗文本无法选中复制的问题。"

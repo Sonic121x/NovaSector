@@ -1,5 +1,6 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
-ADMIN_VERB(cmd_admin_say, R_NONE, "管理员发言", "Send a message to other admins", ADMIN_CATEGORY_MAIN, message as text)
+ADMIN_VERB(cmd_admin_say, R_NONE, "管理员发言", "Send a message to other admins", ADMIN_CATEGORY_MAIN)
+	VERB_ARG(message, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	message = emoji_parse(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message)
 		return

@@ -125,17 +125,25 @@
 	locked = FALSE
 	return TRUE
 
-/obj/machinery/turretid/attack_ai(mob/user)
-	if(!ailock || isAdminGhostAI(user))
-		return attack_hand(user)
-	else
-		to_chat(user, span_warning(LANG("obj.46887bb4", null)))
+/obj/machinery/turretid/proc/is_ai_locked(mob/user)
+	if(!issilicon(user))
+		return FALSE
+	if(ailock || user.has_status_effect(/datum/status_effect/firewalled))
+		return TRUE
+	return FALSE
 
 /obj/machinery/turretid/ui_interact(mob/user, datum/tgui/ui)
+	if(is_ai_locked(user))
+		to_chat(user, span_warning(LANG("obj.46887bb4", null)))
+		return
+
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TurretControl", name)
 		ui.open()
+
+/obj/machinery/turretid/ui_status(mob/user, datum/ui_state/state)
+	return is_ai_locked(user) ? UI_CLOSE : ..()
 
 /obj/machinery/turretid/ui_data(mob/user)
 	var/list/data = list()
@@ -152,6 +160,8 @@
 		return
 
 	var/mob/user = ui.user
+	if(is_ai_locked(user))
+		return
 
 	switch(action)
 		if("lock")

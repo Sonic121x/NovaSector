@@ -1,6 +1,8 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ADMIN_VERB_VISIBILITY(manipulate_organs, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(manipulate_organs, R_DEBUG, "操作器官", "Manipulate the organs of a living carbon.", ADMIN_CATEGORY_DEBUG, mob/living/carbon/carbon_victim)
+
+ADMIN_VERB(manipulate_organs, R_DEBUG, "操作器官", "Manipulate the organs of a living carbon.", ADMIN_CATEGORY_DEBUG)
+	VERB_ARG_TYPED(carbon_victim, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living/carbon)
 	var/operation = tgui_input_list(user, LANG("datum.08de2f6e", null), LANG("datum.c883f126", null), list("Add organ", "Add implant", "Drop organ/implant", "Remove organ/implant"))
 	if (isnull(operation))
 		return

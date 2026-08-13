@@ -91,7 +91,7 @@
 	comms.implant(src)
 	assign_access()
 
-/mob/living/basic/mining_drone/set_combat_mode(new_mode, silent = TRUE)
+/mob/living/basic/mining_drone/set_combat_mode(new_mode, silent = TRUE, force = FALSE)
 	. = ..()
 	icon_state = combat_mode ? "mining_drone_offense" : "mining_drone"
 	balloon_alert(src, LANG("mob.f35c4f6c", list(combat_mode ? "attacking" : "collecting")))

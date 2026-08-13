@@ -196,7 +196,8 @@ SUBSYSTEM_DEF(ipintel)
 	QDEL_NULL(query)
 
 
-ADMIN_VERB(ipintel_allow, R_BAN, "将玩家 VPN 加入白名单", "Allow a player to connect even if they are using a VPN.", ADMIN_CATEGORY_IPINTEL, ckey as text)
+ADMIN_VERB(ipintel_allow, R_BAN, "将玩家 VPN 加入白名单", "Allow a player to connect even if they are using a VPN.", ADMIN_CATEGORY_IPINTEL)
+	VERB_ARG(ckey, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if (!SSipintel.is_enabled())
 		to_chat(user, LANG("datum.3dfb690a", null))
 	if(SSipintel.is_whitelisted(ckey))
@@ -220,7 +221,8 @@ ADMIN_VERB(ipintel_allow, R_BAN, "将玩家 VPN 加入白名单", "Allow a playe
 	QDEL_NULL(query)
 	message_admins("IPINTEL: [key_name_admin(user)] has whitelisted '[ckey]'")
 
-ADMIN_VERB(ipintel_revoke, R_BAN, "撤销玩家 VPN 白名单", "Revoke a player's VPN whitelist.", ADMIN_CATEGORY_IPINTEL, ckey as text)
+ADMIN_VERB(ipintel_revoke, R_BAN, "撤销玩家 VPN 白名单", "Revoke a player's VPN whitelist.", ADMIN_CATEGORY_IPINTEL)
+	VERB_ARG(ckey, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if (!SSipintel.is_enabled())
 		to_chat(user, LANG("datum.3dfb690a", null))
 	if(!SSipintel.is_whitelisted(ckey))

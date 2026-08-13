@@ -14,7 +14,8 @@ ADMIN_VERB(air_status, R_DEBUG, "所在位置空气状态", "Gets the air status
 	atmos_scan(user.mob, user_turf, silent = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Air Status In Location")
 
-ADMIN_VERB(cmd_admin_robotize, R_FUN, "制造赛博格", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/target)
+ADMIN_VERB(cmd_admin_robotize, R_FUN, "制造赛博格", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(!SSticker.HasRoundStarted())
 		tgui_alert(user, LANG("datum.f838a6c3", null))
 		return
@@ -38,7 +39,9 @@ ADMIN_VERB(cmd_admin_robotize, R_FUN, "制造赛博格", ADMIN_VERB_NO_DESCRIPTI
 		return
 	return types[key]
 
-ADMIN_VERB(cmd_del_all, R_DEBUG|R_SPAWN, "删除全部", "Delete all datums with the specified type.", ADMIN_CATEGORY_DEBUG, object as text)
+ADMIN_VERB(cmd_del_all, R_DEBUG|R_SPAWN, "删除全部", "Delete all datums with the specified type.", ADMIN_CATEGORY_DEBUG)
+
+	VERB_ARG(object, VERB_ARG_TYPE_TYPEPATH, VERB_ARG_SOURCE_INPUT)
 	var/type_to_del = user.poll_type_to_del(object)
 	if(!type_to_del)
 		return
@@ -53,7 +56,9 @@ ADMIN_VERB(cmd_del_all, R_DEBUG|R_SPAWN, "删除全部", "Delete all datums with
 	message_admins("[key_name_admin(user)] has deleted all ([counter]) instances of [type_to_del].")
 	BLACKBOX_LOG_ADMIN_VERB("Delete All")
 
-ADMIN_VERB(cmd_del_all_force, R_DEBUG|R_SPAWN, "强制删除全部", "Forcibly delete all datums with the specified type.", ADMIN_CATEGORY_DEBUG, object as text)
+ADMIN_VERB(cmd_del_all_force, R_DEBUG|R_SPAWN, "强制删除全部", "Forcibly delete all datums with the specified type.", ADMIN_CATEGORY_DEBUG)
+
+	VERB_ARG(object, VERB_ARG_TYPE_TYPEPATH, VERB_ARG_SOURCE_INPUT)
 	var/type_to_del = user.poll_type_to_del(object)
 	if(!type_to_del)
 		return
@@ -68,7 +73,9 @@ ADMIN_VERB(cmd_del_all_force, R_DEBUG|R_SPAWN, "强制删除全部", "Forcibly d
 	message_admins("[key_name_admin(user)] has force-deleted all ([counter]) instances of [type_to_del].")
 	BLACKBOX_LOG_ADMIN_VERB("Force-Delete All")
 
-ADMIN_VERB(cmd_del_all_hard, R_DEBUG|R_SPAWN, "硬删除全部", "Hard delete all datums with the specified type.", ADMIN_CATEGORY_DEBUG, object as text)
+ADMIN_VERB(cmd_del_all_hard, R_DEBUG|R_SPAWN, "硬删除全部", "Hard delete all datums with the specified type.", ADMIN_CATEGORY_DEBUG)
+
+	VERB_ARG(object, VERB_ARG_TYPE_TYPEPATH, VERB_ARG_SOURCE_INPUT)
 	var/type_to_del = user.poll_type_to_del(object)
 	if(!type_to_del)
 		return
@@ -115,7 +122,8 @@ ADMIN_VERB(cmd_debug_make_powernets, R_DEBUG|R_SERVER, "生成电网", "Regenera
 	BLACKBOX_LOG_ADMIN_VERB("Make Powernets")
 
 ADMIN_VERB_VISIBILITY(cmd_admin_grantfullaccess, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(cmd_admin_grantfullaccess, R_DEBUG, "授予全部权限", "Grant full access to a mob.", ADMIN_CATEGORY_DEBUG, mob/M)
+ADMIN_VERB(cmd_admin_grantfullaccess, R_DEBUG, "授予全部权限", "Grant full access to a mob.", ADMIN_CATEGORY_DEBUG)
+	VERB_ARG_TYPED(M, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(!SSticker.HasRoundStarted())
 		tgui_alert(user, LANG("datum.f838a6c3", null))
 		return
@@ -156,7 +164,8 @@ ADMIN_VERB(cmd_admin_grantfullaccess, R_DEBUG, "授予全部权限", "Grant full
 	log_admin("[key_name(user)] has granted [M.key] full access.")
 	message_admins(span_adminnotice("[key_name_admin(user)] has granted [M.key] full access."))
 
-ADMIN_VERB(cmd_assume_direct_control, R_ADMIN, "直接接管控制", "Assume direct control of a mob.", ADMIN_CATEGORY_DEBUG, mob/M)
+ADMIN_VERB(cmd_assume_direct_control, R_ADMIN, "直接接管控制", "Assume direct control of a mob.", ADMIN_CATEGORY_DEBUG)
+	VERB_ARG_TYPED(M, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(M.ckey)
 		if(tgui_alert(user,LANG("datum.cc755301", list(M.key, M.key)),,list("Yes","No")) != "Yes")
 			return
@@ -176,7 +185,8 @@ ADMIN_VERB(cmd_assume_direct_control, R_ADMIN, "直接接管控制", "Assume dir
 		qdel(adminmob)
 	BLACKBOX_LOG_ADMIN_VERB("Assume Direct Control")
 
-ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "授予直接控制", "Give direct control of a mob to another player.", ADMIN_CATEGORY_GAME, mob/M)
+ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "授予直接控制", "Give direct control of a mob to another player.", ADMIN_CATEGORY_GAME)
+	VERB_ARG_TYPED(M, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(!M)
 		return
 	if(M.ckey)
@@ -204,7 +214,9 @@ ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "授予直接控制", "Give direct 
 	BLACKBOX_LOG_ADMIN_VERB("Give Direct Control")
 
 ADMIN_VERB_VISIBILITY(cmd_admin_areatest, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "测试区域", "Tests the areas for various machinery.", ADMIN_CATEGORY_MAPPING, on_station as num, filter_maint as num)
+ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "测试区域", "Tests the areas for various machinery.", ADMIN_CATEGORY_MAPPING)
+	VERB_ARG(on_station, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
+	VERB_ARG(filter_maint, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
 	var/list/dat = list()
 	var/list/areas_all = list()
 	var/list/areas_with_APC = list()
@@ -457,7 +469,8 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "测试区域（全部）", "Tests t
 
 	return dresscode
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN, "复苏", mob/living/M)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN, "复苏", /mob/living)
+	VERB_ARG_TYPED(M, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living)
 	if(!istype(M))
 		tgui_alert(user,LANG("datum.df33f692", null))
 		return
@@ -469,10 +482,12 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN, "复苏", mob/living
 	admin_ticket_log(M, msg)
 	BLACKBOX_LOG_ADMIN_VERB("Rejuvenate")
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_delete, R_DEBUG|R_SPAWN, "删除", atom/target as obj|mob|turf)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_delete, R_DEBUG|R_SPAWN, "删除", /atom)
+	VERB_ARG_TYPED(target, VERB_ARG_TYPE_OBJ | VERB_ARG_TYPE_MOB | VERB_ARG_TYPE_TURF, VERB_ARG_SOURCE_WORLD, /atom)
 	user.admin_delete(target)
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_check_contents, R_ADMIN, "检查内容物", mob/living/mob)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_check_contents, R_ADMIN, "检查内容物", /mob/living)
+	VERB_ARG_TYPED(mob, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living)
 	var/list/mob_contents = mob.get_contents()
 	for(var/content in mob_contents)
 		to_chat(user, "[content] [ADMIN_VV(content)] [ADMIN_TAG(content)]", confidential = TRUE)
@@ -571,7 +586,8 @@ ADMIN_VERB(debug_plane_masters, R_DEBUG, "编辑/调试渲染平面", "Edit and 
 		holder.plane_debug.set_mirroring(FALSE)
 	holder.plane_debug.ui_interact(mob)
 
-ADMIN_VERB(debug_huds, R_DEBUG, "调试 HUD", "Debug the data or antag HUDs.", ADMIN_CATEGORY_DEBUG, i as num)
+ADMIN_VERB(debug_huds, R_DEBUG, "调试 HUD", "Debug the data or antag HUDs.", ADMIN_CATEGORY_DEBUG)
+	VERB_ARG(i, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
 	user.debug_variables(GLOB.huds[i])
 
 ADMIN_VERB(jump_to_ruin, R_DEBUG, "跳转到废墟", "Displays a list of all placed ruins to teleport to.", ADMIN_CATEGORY_DEBUG)
@@ -644,7 +660,8 @@ ADMIN_VERB(place_ruin, R_DEBUG, "生成废墟", "Attempt to randomly place a spe
 ADMIN_VERB(unload_ctf, R_DEBUG, "卸载 CTF", "Despawns the majority of CTF.", ADMIN_CATEGORY_DEBUG)
 	toggle_id_ctf(user, CTF_GHOST_CTF_GAME_ID, unload=TRUE)
 
-ADMIN_VERB(run_empty_query, R_DEBUG, "运行空查询", "Runs a specified number of empty queries.", ADMIN_CATEGORY_DEBUG, val as num)
+ADMIN_VERB(run_empty_query, R_DEBUG, "运行空查询", "Runs a specified number of empty queries.", ADMIN_CATEGORY_DEBUG)
+	VERB_ARG(val, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
 	var/list/queries = list()
 	for(var/i in 1 to val)
 		var/datum/db_query/query = SSdbcore.NewQuery("NULL")

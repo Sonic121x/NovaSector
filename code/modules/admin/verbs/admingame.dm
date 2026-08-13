@@ -2,7 +2,8 @@
 ADMIN_VERB(cmd_player_panel, R_ADMIN, "玩家面板", "See all players and their Player Panel.", ADMIN_CATEGORY_GAME)
 	user.holder.player_panel_new()
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "显示玩家面板", mob/player)
+ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "显示玩家面板", /mob)
+	VERB_ARG_TYPED(player, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	log_admin("[key_name(user)] checked the individual player panel for [key_name(player)][isobserver(user.mob)?"":" while in game"].")
 
 	if(!player)
@@ -177,7 +178,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "显示玩家面板", m
 	user << browse(body, "window=adminplayeropts-[REF(player)];size=550x540")
 	BLACKBOX_LOG_ADMIN_VERB("Player Panel")
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(show_occupants_player_panel, R_ADMIN, "显示乘员玩家面板", obj/target)
+ADMIN_VERB_ONLY_CONTEXT_MENU(show_occupants_player_panel, R_ADMIN, "显示乘员玩家面板", /obj)
+	VERB_ARG_TYPED(target, VERB_ARG_TYPE_OBJ, VERB_ARG_SOURCE_WORLD, /obj)
 	var/list/options = list()
 
 	// Vehicles
@@ -247,7 +249,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_occupants_player_panel, R_ADMIN, "显示乘员
 			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/show_player_panel, selected_mob)
 		return
 
-GAME_VERB_PROC(/client, cmd_admin_godmode, "上帝模式", "Admin.Game", mob/mob)
+GAME_VERB_PROC(/client, cmd_admin_godmode, "上帝模式", "Admin.Game")
+	VERB_ARG_TYPED(mob, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(!check_rights(R_ADMIN))
 		return
 
@@ -470,7 +473,8 @@ ADMIN_VERB(combo_hud, R_ADMIN, "切换组合 HUD", "Toggles the Admin Combo HUD.
 
 #undef ADMIN_HUDS
 
-ADMIN_VERB(show_traitor_panel, R_ADMIN, "显示叛徒面板", "Edit mobs's memory and role", ADMIN_CATEGORY_GAME, mob/target_mob)
+ADMIN_VERB(show_traitor_panel, R_ADMIN, "显示叛徒面板", "Edit mobs's memory and role", ADMIN_CATEGORY_GAME)
+	VERB_ARG_TYPED(target_mob, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	var/datum/mind/target_mind = target_mob.mind
 	if(!target_mind)
 		to_chat(user, LANG("datum.61c768df", null), confidential = TRUE)
@@ -481,7 +485,8 @@ ADMIN_VERB(show_traitor_panel, R_ADMIN, "显示叛徒面板", "Edit mobs's memor
 	target_mind.traitor_panel()
 	BLACKBOX_LOG_ADMIN_VERB("Traitor Panel")
 
-ADMIN_VERB(show_skill_panel, R_ADMIN, "显示技能面板", "Edit mobs's experience and skill levels", ADMIN_CATEGORY_GAME, mob/target_mob)
+ADMIN_VERB(show_skill_panel, R_ADMIN, "显示技能面板", "Edit mobs's experience and skill levels", ADMIN_CATEGORY_GAME)
+	VERB_ARG_TYPED(target_mob, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	var/datum/mind/target_mind
 	if(istype(target_mob, /datum/mind))
 		target_mind = target_mob

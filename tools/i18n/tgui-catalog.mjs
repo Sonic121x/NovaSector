@@ -944,12 +944,47 @@ function tsFilesUnder(dir, out = []) {
 //
 // 不整体放开 .ts：backend.ts/logging.ts 之流里的 name/label 多是标识符。按「文件 + 表名 + 字段」
 // 三重定点登记，同类新表加一行即可。id/path 是 act() 回传标识符，永不入表。
+// 组件专属的「这个 prop 是给玩家看的文案」登记表。
+//
+// 全局可翻 prop 表（policy.json translatable_props）**同时**驱动运行时 localizeProps，往里加
+// `name` 会把 `<Icon name="cog">`、`<Input name=…>` 一起翻掉——图标名是标识符，翻了图标就没了。
+// 但少数自定义组件确实拿 `name` 当纯标题用，且中转到某个真正可翻的 prop 上：反派页的
+// `<AntagSelection name="Roundstart">` 内部渲染成 `<Section title={props.name}>`，运行时在
+// Section 那一跳就能 auto-localize（title 在全局表里），**缺的只有抽取**——三个分类标题因此
+// 从没进过目录，界面永远是英文。这里只做抽取侧的定点登记，运行时一行不用改。
+const COMPONENT_TEXT_PROPS = [{ component: 'AntagSelection', props: ['name'] }];
+
+function isComponentTextProp(attributeNode, propName) {
+  const opening = attributeNode.parent && attributeNode.parent.parent;
+  if (
+    !opening ||
+    (!ts.isJsxOpeningElement(opening) && !ts.isJsxSelfClosingElement(opening))
+  ) {
+    return false;
+  }
+  const tag = opening.tagName.getText();
+  return COMPONENT_TEXT_PROPS.some(
+    ({ component, props }) => component === tag && props.includes(propName),
+  );
+}
+
+// `props` = 只收这些字段名的值（表项是对象，字段名固定）。
+// `values: true` = 收表里**所有**字符串值、不看键——用于「键是回传标识符、值是显示文案」的映射表
+// （`CRIMESTATUS2DESC` 的键 Arrest/Parole/… 正是 act 回传值，绝不能抽；值才是悬停说明）。
 const CONSTANT_LABEL_TABLES = [
   { file: 'constants.ts', table: 'GASES', props: ['name', 'label'] },
+  // 安保记录里 N/S/A/I/P/D 那排状态按钮的悬停说明。住在 .ts 里 → walk() 只扫 .tsx/.jsx，整类漏抽；
+  // 渲染侧 `tooltip={CRIMESTATUS2DESC[button]}` 的 tooltip 本就在 translatable_props 里，
+  // 缺的只有抽取。
+  {
+    file: 'interfaces/SecurityRecords/constants.ts',
+    table: 'CRIMESTATUS2DESC',
+    values: true,
+  },
 ];
 
 function extractConstantTableLabels(catalog) {
-  for (const { file, table, props } of CONSTANT_LABEL_TABLES) {
+  for (const { file, table, props, values } of CONSTANT_LABEL_TABLES) {
     const filePath = path.join(TGUI_SOURCE_DIR, file);
     let source;
     try {
@@ -964,7 +999,7 @@ function extractConstantTableLabels(catalog) {
       true,
       ts.ScriptKind.TS,
     );
-    const wanted = new Set(props);
+    const wanted = new Set(props ?? []);
     const visit = (node) => {
       if (
         ts.isVariableDeclaration(node) &&
@@ -974,7 +1009,7 @@ function extractConstantTableLabels(catalog) {
         const collect = (inner) => {
           if (ts.isPropertyAssignment(inner)) {
             const name = propertyName(inner.name);
-            if (wanted.has(name)) {
+            if (values || wanted.has(name)) {
               addText(catalog, literalText(inner.initializer));
             }
           }
@@ -1074,6 +1109,20 @@ function templateChildren(children) {
       if (value) out.push({ text: value });
     } else if (ts.isJsxExpression(child)) {
       if (!child.expression) continue; // {/* comment */}
+      // `{' '}` / `{'Search…'}`：JSX 表达式里是**字符串字面量**时，React 渲染出来的是一个
+      // 字符串 child，运行时 localizeChildrenTemplate 会把它并进模板文本；抽取期若记成占位符，
+      // 算出的 key 就比运行时多一个 `{N}` → 整条模板永远查不到 → 整段回退英文。
+      // prettier 换行时到处插 `{' '}`（`The <b>Linguist</b>{' '}\n neutral quirk …`），所以这
+      // 一条会静默毒掉一大批混排 children 的模板：偏好菜单语言页、反派介绍页整段英文即此，
+      // 而其中的 `<b>Linguist</b>` 因为自己是独立 jsx 节点照常被译 → 表现为「只有加粗的词是中文」。
+      const literal = child.expression;
+      if (
+        ts.isStringLiteral(literal) ||
+        ts.isNoSubstitutionTemplateLiteral(literal)
+      ) {
+        out.push({ text: literal.text });
+        continue;
+      }
       out.push({ slot: true });
     } else {
       out.push({ slot: true }); // 嵌套元素
@@ -1143,7 +1192,7 @@ function extractCatalog() {
         }
       } else if (ts.isJsxAttribute(node)) {
         const name = node.name.getText(sourceFile);
-        if (TRANSLATABLE_PROPS.has(name)) {
+        if (TRANSLATABLE_PROPS.has(name) || isComponentTextProp(node, name)) {
           // 属性初始值若是 JSX 直写的字符串（title="Don&apos;t"），实体同样由 transform 解码。
           const initializer =
             node.initializer && ts.isStringLiteral(node.initializer)

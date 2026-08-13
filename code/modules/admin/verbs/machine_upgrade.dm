@@ -1,5 +1,6 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
-ADMIN_VERB_ONLY_CONTEXT_MENU(machine_upgrade, R_DEBUG, "调整组件评级", obj/machinery/machine)
+ADMIN_VERB_ONLY_CONTEXT_MENU(machine_upgrade, R_DEBUG, "调整组件评级", /obj/machinery)
+	VERB_ARG_TYPED(machine, VERB_ARG_TYPE_OBJ, VERB_ARG_SOURCE_WORLD, /obj/machinery)
 	if(!ismachinery(machine))
 		return
 	var/new_rating = tgui_input_number(user, "", LANG("datum.c202dd0a", null))

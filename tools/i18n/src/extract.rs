@@ -18,7 +18,7 @@ use dm::ast::{AssignOp, Expression, Follow, Statement, Term};
 
 use crate::catalog::Catalog;
 use crate::keys::{make_key, namespace_for};
-use crate::template::build_template;
+use crate::template::{build_template, placeholder_count};
 
 /// 视为玩家可见的变量名。
 /// message_* 系列是 /datum/emote 的各形态表情模板（人形/默剧/外星/AI/机器人等），玩家在聊天
@@ -53,6 +53,13 @@ const SINK_VARS: &[&str] = &[
     // 污染物气味（Nova pollution 模块）："空气里飘着淡淡的 [scent]" 那句的插值值。纯显示，
     // 与 taste_description 同类。descriptor 那一侧是 #define 常量、走 _state_words。
     "scent",
+    // NIFSoft 程序描述（modular_nova 植入物模块，19 处）：在植入物界面里整段展示给玩家，
+    // 与 /datum/reagent 的 description 同类，只是换了个变量名 → 整类没进目录
+    // （"Connects the user's brain to a database containing the current monetary values…"）。
+    "program_desc",
+    // ghostrole_on_revive 的招募标题（"a recovered crewmember"）：渲染进「你想扮演 X 吗？」
+    // 的询问句，是纯显示短语。
+    "revive_title",
     "display_name",     // 机器/发射台等的展示名。
     "wiki_desc",        // wiki 界面描述。
     "war_declaration",  // 核弹战争宣言（全员公告）。
@@ -725,6 +732,20 @@ fn walk_examine_tags(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog: &
                         if let Some(t) = build_template(rhs) {
                             emit(catalog, ns, &t);
                         }
+                        // **下标键也是玩家可见文案**。这是全仓唯一一处「assoc 键是显示串」的
+                        // 合法形状：examine_tags 返回的 list 里，键是检查面板上那颗标签的文字、
+                        // 值是它的悬停 tooltip（既有的 EXAMINE_TAG_* 宏同样是标签文字，早就在
+                        // 目录里 —— 只有直接写字面量当键的写法整类漏掉，如 empprotection 的
+                        // `examine_list["partially EMP blocking"] = …`）。
+                        // 别处的下标键一律是程序查表用的键名，绝不能抽（见 visit_expr 里对
+                        // Follow::Index 的整支跳过），所以这条只开在本 proc 语境内。
+                        if let Follow::Index(_, idx) = &follow[0].elem {
+                            if let Some(t) = build_template(idx) {
+                                if !t.contains('{') {
+                                    emit(catalog, ns, &t);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -955,6 +976,27 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                         display_return: is_display_descriptor_proc(proc_name),
                     };
                     visit_block(block, &proc_scope, &mut catalog, suppress_aggressive, ctx);
+                    // **形参默认值**里的玩家可见文案。SINK_VARS 走的是类型变量声明，够不着这一类：
+                    // `Initialize(revive_title = "a recovered crewmember", spawn_text = "Recovered Crew",
+                    //  you_are_text = "…", flavor_text = "…")` 这种把整套招募文案写在形参默认值里的
+                    // 组件（ghostrole_on_revive 等），一条都抽不到 → 玩家看到「你想扮演a recovered
+                    // crewmember吗？」这种句子里嵌着英文。
+                    // 闸门比 SINK_VARS 本身更严：形参名作 `name`/`message` 时标识符浓度远高于
+                    // 作类型变量时（`proc/f(message = "some_key")`），所以再加一道**多词**判定
+                    // （复用 LANG 实参那条 is_lang_arg_text），单 token 默认值一律不收。
+                    for param in proc_value.parameters.iter() {
+                        if !SINK_VARS.contains(&param.name.as_str()) {
+                            continue;
+                        }
+                        let Some(default) = &param.default else {
+                            continue;
+                        };
+                        if let Some(t) = build_template(default) {
+                            if !t.contains('{') && is_lang_arg_text(&t) {
+                                emit(&mut catalog, &namespace, t.trim());
+                            }
+                        }
+                    }
                     // verb 命令面板显示名：`set name = "X"`（Statement::Setting）。非 sink、非类型变量，
                     // 单独抽。仅安全显示名（is_safe_verb_name 排除 .click/body-chest 等 keybind 标识符）。
                     // 编译期由 rewrite::run_verbs 注入译文（verb 名无法运行时本地化）。
@@ -1170,6 +1212,70 @@ fn collect_lang_arg_literals(expr: &Expression, out: &mut Vec<String>) {
             collect_lang_arg_literals(else_, out);
         }
     }
+}
+
+/// LANG 实参里**本身就是插值句**的那些（`ask_role ? "Personality requested: \[[ask_role]\]" : ""`）。
+///
+/// 上面的字面量收集器对 `Term::InterpString` **只下探内插表达式、把字面文本整个丢掉**，所以
+/// 这类实参一个字都进不了目录：模板译好了，句子中间却嵌着一截英文（正电子脑的
+/// 「Personality requested: \[…\]」即此）。这里按**模板形态**（`Personality requested: {0}`）
+/// 补进目录——运行期由整行模板引擎命中，它会捕获角色名再递归本地化。
+///
+/// 只收模板：带占位符的串**永远不进反查表**，且模板要求全部字面段按序命中，
+/// 比裸串反查安全得多；再加一道「去占位符后须多词」的闸门挡住 act/黑板键那类短标识符。
+fn collect_lang_arg_templates(expr: &Expression, out: &mut Vec<String>) {
+    match expr {
+        Expression::Base { term, follow } => {
+            match &term.elem {
+                Term::InterpString(..) => {
+                    if let Some(t) = build_template(expr) {
+                        out.push(t);
+                    }
+                }
+                Term::Expr(inner) => collect_lang_arg_templates(inner, out),
+                Term::List(args) => {
+                    for a in args.iter() {
+                        collect_lang_arg_templates(a, out);
+                    }
+                }
+                Term::Call(name, args) => {
+                    let key_idx = lang_format_key_index(name.as_str());
+                    for (i, a) in args.iter().enumerate() {
+                        if Some(i) == key_idx {
+                            continue;
+                        }
+                        collect_lang_arg_templates(a, out);
+                    }
+                }
+                _ => {}
+            }
+            // 下标键是程序用的键名，与字面量收集器同样整支跳过。
+            let _ = follow;
+        }
+        Expression::TernaryOp { cond, if_, else_ } => {
+            collect_lang_arg_templates(cond, out);
+            collect_lang_arg_templates(if_, out);
+            collect_lang_arg_templates(else_, out);
+        }
+        Expression::AssignOp { rhs, .. } => collect_lang_arg_templates(rhs, out),
+        _ => {}
+    }
+}
+
+/// 模板形态的 LANG 实参能否入目录：须有占位符，且去掉占位符/标签后是**多词**自然语言。
+fn is_lang_arg_template(template: &str) -> bool {
+    if placeholder_count(template) == 0 {
+        return false;
+    }
+    let mut text = strip_html_tags(template);
+    while let Some(start) = text.find('{') {
+        match text[start..].find('}') {
+            Some(rel) => text.replace_range(start..start + rel + 1, " "),
+            None => break,
+        }
+    }
+    let words: Vec<&str> = text.split_whitespace().collect();
+    words.len() >= 2 && text.chars().any(|c| c.is_alphabetic())
 }
 
 fn collect_lang_arg_literals_term(term: &Term, out: &mut Vec<String>) {
@@ -1449,6 +1555,19 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                     for literal in literals {
                         if is_lang_arg_text(&literal) {
                             emit(catalog, ns, literal.trim());
+                        }
+                    }
+                    // 实参本身就是插值句的那一类（见 collect_lang_arg_templates）。
+                    let mut templates = Vec::new();
+                    for (i, a) in args.iter().enumerate() {
+                        if i <= idx {
+                            continue;
+                        }
+                        collect_lang_arg_templates(a, &mut templates);
+                    }
+                    for template in templates {
+                        if is_lang_arg_template(&template) {
+                            emit(catalog, ns, template.trim());
                         }
                     }
                 }

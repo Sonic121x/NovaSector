@@ -154,8 +154,7 @@
 		var/unlit_tiles = 0
 
 		for(var/turf/open/turf_to_check in range(1, source))
-			var/light_amount = turf_to_check.get_lumcount()
-			if(light_amount > LIGHTING_TILE_IS_DARK)
+			if(turf_to_check.check_lumcount_above(LIGHTING_TILE_IS_DARK))
 				lit_tiles++
 			else
 				unlit_tiles++
@@ -183,12 +182,13 @@
 			)
 		return COMPONENT_BLOCK_MISC_HELP
 
+	if(terror_buildup >= TERROR_BUILDUP_TERROR)
+		source.visible_message(
+			span_notice(LANG("datum.74f8d4ef", list(source, hugger, source.p_them()))),
+			span_nicegreen(LANG("datum.b8be0ae7", list(hugger))),
+			span_hear(LANG("datum.5197d49c", null)),
+		)
 	terror_buildup -= HUG_TERROR_AMOUNT
-	source.visible_message(
-		span_notice(LANG("datum.74f8d4ef", list(source, hugger, source.p_them()))),
-		span_nicegreen(LANG("datum.b8be0ae7", list(hugger))),
-		span_hear(LANG("datum.5197d49c", null)),
-	)
 
 /// Remove all terror buildup when we become fearless
 /datum/component/fearful/proc/fearless_added(datum/source)

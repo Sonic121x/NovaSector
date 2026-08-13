@@ -308,7 +308,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	if(blobstrain)
 		. += LANG("mob.a1e2b6e4", list(blobstrain.color, blobstrain.name))
 
-/mob/eye/blob/update_health_hud()
+/mob/eye/blob/update_health_hud(healthpercent)
 	if(!blob_core)
 		return FALSE
 	var/current_health = round((blob_core.get_integrity() / blob_core.max_integrity) * 100)

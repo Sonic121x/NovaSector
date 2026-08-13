@@ -1,5 +1,6 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
-ADMIN_VERB(spawn_obj_as_mob, R_SPAWN, "生成物体-生物", "Spawn an object as if it were a mob.", ADMIN_CATEGORY_DEBUG, object as text)
+ADMIN_VERB(spawn_obj_as_mob, R_SPAWN, "生成物体-生物", "Spawn an object as if it were a mob.", ADMIN_CATEGORY_DEBUG)
+	VERB_ARG(object, VERB_ARG_TYPE_TYPEPATH, VERB_ARG_SOURCE_INPUT)
 	var/chosen = pick_closest_path(object, make_types_fancy(subtypesof(/obj)))
 
 	if (!chosen)

@@ -166,7 +166,7 @@
 		visible_message(span_info(LANG("mob.b1d243f2", list(src))), \
 						LANG("mob.55fd4187", null))
 		to_chat(src, span_info(LANG("mob.169876d7", null)))
-		laws = initial(laws)
+		laws = get_default_laws()
 		to_chat(src, laws)
 		to_chat(src, LANG("mob.b8c50d3a", null))
 		hacked = FALSE

@@ -303,10 +303,6 @@
 			set_self_sustaining(FALSE)
 			visible_message(span_warning(LANG("obj.643b2c28", list(name))))
 
-	if(isturf(loc))
-		var/turf/currentTurf = loc
-		light_level = currentTurf.get_lumcount()
-
 	if(world.time > (lastcycle + cycledelay))
 		lastcycle = world.time
 		if(myseed && plant_status != HYDROTRAY_PLANT_DEAD)
@@ -336,7 +332,7 @@
 
 //Photosynthesis/////////////////////////////////////////////////////////
 			// Lack of light hurts non-mushrooms
-			if(light_level < (is_fungus ? 0.2 : 0.4))
+			if(astype(loc, /turf)?.check_lumcount_below(is_fungus ? 0.2 : 0.4))
 				adjust_plant_health((is_fungus ? -1 : -2) / rating)
 
 //Water//////////////////////////////////////////////////////////////////

@@ -1,14 +1,7 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ADMIN_VERB(reset_tram, R_DEBUG|R_ADMIN, "重置电车", "Reset a tram controller or its contents.", ADMIN_CATEGORY_DEBUG)
-	var/static/list/debug_tram_list = list(
-		TRAMSTATION_LINE_1,
-		BIRDSHOT_LINE_1,
-		BIRDSHOT_LINE_2,
-		HILBERT_LINE_1,
-	)
-
 	var/datum/transport_controller/linear/tram/broken_controller
-	var/selected_transport_id = tgui_input_list(user, LANG("datum.36d2dca9", null), LANG("datum.818db524", null), debug_tram_list)
+	var/selected_transport_id = tgui_input_list(user, LANG("datum.36d2dca9", null), LANG("datum.818db524", null), SStransport.debug_tram_list)
 	if(isnull(selected_transport_id))
 		return
 	var/reset_type = tgui_input_list(user, LANG("datum.bb13dd40", null), LANG("datum.d87b2099", null), list("Clear Tram Contents", "Controller", "Controller and Contents", "Delete Datum", "Cancel"))

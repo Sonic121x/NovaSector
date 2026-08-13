@@ -71,9 +71,9 @@ I18N_SERVER_LOCALE zh-Hans
 # longer）的译文接错——接错比漏译贵（漏译 MT 会补），故只放行标点/虚词级差异。
 cargo run --release --manifest-path tools/i18n/Cargo.toml -- \
   extract --dme tgstation.dme --out strings/i18n/en
-# 2026-07 新增专项源：`new /datum/stack_recipe*("标题",…)` 第 0 构造实参（StackCrafting 菜单，~640 条）、
-# setup_access_descriptions 的 `desc_by_access[…] = "…"` 赋值（门禁权限显示名，~200 条）、
-# /datum/crafting_recipe 的 steps 列表（合成步骤行）。三者都无句末标点，激进 pass 抽不到。
+# 专项源（都无句末标点，激进 pass 抽不到，故各自登记）：`new /datum/stack_recipe*("标题",…)` 的第 0
+# 构造实参（StackCrafting 菜单）、setup_access_descriptions 的 `desc_by_access[…] = "…"` 赋值
+# （门禁权限显示名）、/datum/crafting_recipe 的 steps 列表、`.dmm` 里的 desc 覆盖（见 map-descs.mjs）。
 
 # 只把新出现的消息调用点改成 LANG()/LANGU()
 # 已知事项：rewrite 的语句遍历目前不进 for(x in list)/for(k,v in)/for(range)/do-while/try-catch
@@ -495,18 +495,6 @@ some_command_that_dumps_ui | node tools/i18n/pseudo-scan.mjs --min 5
 > pass**（`SSair`/`SSmaterials`/`SSreagents` 等，幂等、locale==en 零开销）。这是规范模式：**新出现
 > 一个早期 datum 家族就在其 SS Init 加一遍反查**（一行），不引入运行期 pending-replay 框架（会给
 > 热路径 Initialize/New 加成本、且现有家族已覆盖）。
-
-## 路线图（对应已批准计划的阶段）
-
-- **阶段 0（当前）**：基建打通。抽取器可解析全树（实测 ~52,986 条 name/desc 类字符串）；
-  运行时库 + 全服 TGUI locale 注入就绪；`packages/tgui` 静态 JSX 文本会自动查前端目录，
-  TGUI 源翻译统一进入 `strings/i18n/<locale>/tgui.json`，
-  `ammo_workbench` 仍保留端到端显式 helper 样例。
-- **阶段 1**：扩展抽取到 proc 体内 `to_chat` / `visible_message` / `balloon_alert` 等汇聚点；
-  把内插字符串 (`Term::InterpString`) 转 `{0}/{1}` 占位符模板。
-- **阶段 2**：`rewrite` 子命令——幂等批量改写调用点为 `LANG/LANGU`（分域合入，每域编译/单测）。
-- **阶段 3**：运行时 AC 兜底（`fallback.dm`）+ TGUI 前端静态文本全量抽取/翻译补全。
-- **阶段 4**：CI 持续抽取/同步；人工校对推进覆盖率至 100%；合并上游后重跑工具。
 
 ## 注意
 

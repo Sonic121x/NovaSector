@@ -23,7 +23,8 @@ ADMIN_VERB(spawn_liquid, R_ADMIN, "生成液体", "Spawns an amount of chosen li
 	message_admins("[ADMIN_LOOKUPFLW(user)] spawned liquid at [epicenter.loc] ([choice] - [volume]).")
 	log_admin("[key_name(user)] spawned liquid at [epicenter.loc] ([choice] - [volume]).")
 
-ADMIN_VERB_AND_CONTEXT_MENU(remove_liquid, R_ADMIN, "移除液体", "Removes all liquids in specified radius.", ADMIN_CATEGORY_GAME, turf/epicenter in world)
+ADMIN_VERB_AND_CONTEXT_MENU(remove_liquid, R_ADMIN, "移除液体", "Removes all liquids in specified radius.", ADMIN_CATEGORY_GAME, /turf)
+	VERB_ARG_TYPED(epicenter, VERB_ARG_TYPE_TURF, VERB_ARG_SOURCE_WORLD, /turf)
 	var/range = tgui_input_number(user, LANG("datum.55b07550", null), LANG("datum.bc37ad53", null), 2)
 
 	for(var/obj/effect/abstract/liquid_turf/liquid in range(range, epicenter))

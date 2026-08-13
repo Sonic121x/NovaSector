@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /mob/living/basic/blood_worm
 	icon = 'icons/mob/nonhuman-player/blood_worm_32x32.dmi'
 
@@ -268,6 +269,14 @@
 /obj/effect/temp_visual/blood_worm_invade_host/Initialize(mapload, effect_name)
 	. = ..()
 	icon_state = "invade-[effect_name]"
+
+/mob/living/basic/blood_worm/lazarus_revive(mob/living/reviver, malfunctioning)
+	if(!IS_BLOODWORM(src)) //checks to see if this isn't just a poly'd bloodworm
+		return ..()
+
+	revive(HEAL_ALL)
+	to_chat(reviver, span_userdanger(LANG("mob.517bec8e", list(src))))
+	balloon_alert(reviver, LANG("mob.4af409be", null))
 
 /mob/living/basic/blood_worm/hatchling
 	name = "hatchling blood worm"

@@ -86,7 +86,8 @@
 		if(display_messages)
 			to_chat(captor, span_warning(LANG("obj.9eb18c65", list(released_mob))))
 		captor.dropItemToGround(src)
-	released_mob.forceMove(drop_location())
+	else
+		released_mob.forceMove(drop_location())
 	released_mob.reset_perspective()
 	released_mob.setDir(SOUTH)
 	if(display_messages)
