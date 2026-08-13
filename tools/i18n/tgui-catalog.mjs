@@ -1109,6 +1109,20 @@ function templateChildren(children) {
       if (value) out.push({ text: value });
     } else if (ts.isJsxExpression(child)) {
       if (!child.expression) continue; // {/* comment */}
+      // `{' '}` / `{'Search…'}`：JSX 表达式里是**字符串字面量**时，React 渲染出来的是一个
+      // 字符串 child，运行时 localizeChildrenTemplate 会把它并进模板文本；抽取期若记成占位符，
+      // 算出的 key 就比运行时多一个 `{N}` → 整条模板永远查不到 → 整段回退英文。
+      // prettier 换行时到处插 `{' '}`（`The <b>Linguist</b>{' '}\n neutral quirk …`），所以这
+      // 一条会静默毒掉一大批混排 children 的模板：偏好菜单语言页、反派介绍页整段英文即此，
+      // 而其中的 `<b>Linguist</b>` 因为自己是独立 jsx 节点照常被译 → 表现为「只有加粗的词是中文」。
+      const literal = child.expression;
+      if (
+        ts.isStringLiteral(literal) ||
+        ts.isNoSubstitutionTemplateLiteral(literal)
+      ) {
+        out.push({ text: literal.text });
+        continue;
+      }
       out.push({ slot: true });
     } else {
       out.push({ slot: true }); // 嵌套元素
