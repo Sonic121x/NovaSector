@@ -346,6 +346,15 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 	// （script/style/textarea 的内容绝不能碰）——浏览器整页走原来的切块路径。
 	if(locale != DEFAULT_UI_LOCALE && length(html) <= I18N_INLINE_RUN_MAX_LENGTH \
 		&& !findtext(html, "<script") && !findtext(html, "<style") && !findtext(html, "<textarea"))
+		// **先在「还没切块」的整行上跑一遍模板引擎。** 目录模板的字面段里带着标签
+		// （`{0}<br>Type <b>vote</b> or click <a href='byond://…'>here</a> to place your votes.…`），
+		// 只有在这个作用域里它们才与原文逐字节对得上；一旦按标签切块，字面段就再也拼不回来。
+		// 这条路对**含 `<a>` 的模板**尤其重要：剥标签变体（见 template_match.dm）会把链接弄没，
+		// 所以那 71 条一律不登记变体；而在整行作用域上匹配，zh 模板连同它自己的 `<a href>`
+		// 一起填回去，链接与排版都保住。
+		var/templated = lang_template_apply(html, locale)
+		if(templated != html)
+			html = templated
 		var/inlined = lang_localize_inline_runs(html, locale)
 		if(!isnull(inlined))
 			html = inlined

@@ -68,10 +68,28 @@
 		TEST_ASSERT_NOTEQUAL(out, rendered, \
 			"字面段含 HTML 标签的模板没能匹配切块后的纯文本：[rendered]")
 
-	// ④ 含 <a> 链接的模板**不得**登记剥标签变体：剥掉链接会把「点击此处投票」的功能弄没，
-	// 宁可整条保持英文。
-	var/vote_line = "Type vote or click here to place your votes."
-	TEST_ASSERT_EQUAL(lang_template_apply(vote_line, LANGUAGE_LOCALE_ZH_HANS), vote_line, \
-		"含 <a> 的模板被剥标签登记了——那会让投票链接消失。")
+	// ④ 含 `<a>` 的模板：**不登记剥标签变体**（剥掉链接 = 投票入口消失），改为在
+	// 「还没切块」的整行作用域上匹配——那时标签还完整，zh 模板连同自己的 `<a href>` 一起填回去。
+	// 正反两面都要验，否则很容易「翻是翻了、链接没了」还以为修好了。
+	var/bare_vote = "Type vote or click here to place your votes."
+	TEST_ASSERT_EQUAL(lang_template_apply(bare_vote, LANGUAGE_LOCALE_ZH_HANS), bare_vote, \
+		"含 <a> 的模板被登记了剥标签变体——那会让投票链接消失。")
+
+	var/vote_key
+	for(var/key in en_cache)
+		var/en_text = en_cache[key]
+		if(findtext(en_text, "to place your votes.") && findtext(en_text, "<a href") && copytext(en_text, 1, 4) == "{0}")
+			vote_key = key
+			break
+	TEST_ASSERT(vote_key, "目录里应有带 <a> 的投票模板（上游改了文案就更新本测试）")
+	// 按真实渲染形态构造：模板实参填回去、外面套 span_infoplain 那层。
+	var/vote_line = replacetext(replacetext(lang_tpl_normalize(en_cache[vote_key]), \
+		"{0}", "<b>Transfer vote started by automatic transfer.</b>"), "{1}", "1 minute")
+	vote_line = "<span class='infoplain'>[vote_line]</span>"
+	var/vote_out = lang_fallback_apply_html(vote_line)
+	TEST_ASSERT(!findtext(vote_out, "to place your votes"), \
+		"整行作用域上含 <a> 的模板仍未命中：[vote_out]")
+	TEST_ASSERT(findtext(vote_out, "byond://winset?command=vote"), \
+		"译文把投票链接弄丢了——玩家将无法点击投票：[vote_out]")
 
 	GLOB.i18n_server_locale = saved_locale
