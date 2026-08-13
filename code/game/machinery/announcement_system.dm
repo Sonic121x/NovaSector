@@ -265,7 +265,14 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	// NOVA EDIT ADDITION END
 	// Replace variables with their value
 	for(var/variable in vars_and_tooltips_map)
-		announcement_message = replacetext_char(announcement_message, "%[variable]", variables_map[variable] || "\[NO DATA\]")
+		// NOVA EDIT CHANGE - i18n - 值也要本地化：模板早就译好了（上面那行反查），但 %RANK/%LOCATION
+		// 这些**值**由调用方传入英文，于是玩家看到「Feng Xin Zi 已注册为 Detective」这种半中半英。
+		// 职位名多为单词，既进不了字面 AC 字典（安全线：单词会从词内开火、污染 name== 比较），
+		// 公告整串又是运行期拼的、不是目录键 —— 两条落地路径都够不着，只能在这里逐个值查。
+		// lang_localize_arg 全程精确匹配（状态词→代词→整串反查→剥冠词），查不到原样返回；
+		// 公告是纯显示、无 act() 回传，值被译不会破坏任何比较。locale==en 时整链 no-op。
+		// ORIGINAL: announcement_message = replacetext_char(announcement_message, "%[variable]", variables_map[variable] || "\[NO DATA\]")
+		announcement_message = replacetext_char(announcement_message, "%[variable]", lang_localize_arg(variables_map[variable]) || "\[NO DATA\]")
 	return announcement_message
 
 /// Called when the announcement system is emagged or EMPed.
