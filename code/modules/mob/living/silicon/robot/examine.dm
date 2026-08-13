@@ -32,7 +32,13 @@
 	if(opened)
 		. += span_warning(LANG("mob.2d2c85ca", list(p_Their(), cell ? "installed" : "missing")))
 	else
-		. += LANG("mob.9883c04b", list(p_Their(), locked ? "" : ", and looks unlocked"))
+		var/cover_message = "[p_Their()] cover is closed"
+		if(locked)
+			if(user == src)
+				cover_message += ", though <a href='byond://?src=[REF(src)];unlock_self=1'>you may unlock it</a>"
+		else
+			cover_message += ", and looks unlocked"
+		. += span_notice("[cover_message].")
 
 	if(cell && cell.charge <= 0)
 		. += span_warning(LANG("mob.1269489e", list(p_Their())))

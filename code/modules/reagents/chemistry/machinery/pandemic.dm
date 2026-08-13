@@ -149,8 +149,8 @@
 		return data
 	data["has_blood"] = TRUE
 	data["blood"] = list()
-	data["blood"]["dna"] = blood.data["blood_DNA"] || "none"
-	data["blood"]["type"] = blood.data["blood_type"] || "none"
+	data["blood"]["dna"] = blood.data[BLOOD_DATA_DNA] || "none"
+	data["blood"]["type"] = blood.data[BLOOD_DATA_TYPE] || "none"
 	data["viruses"] = get_viruses_data(blood)
 	data["resistances"] = get_resistance_data(blood)
 	return data
@@ -219,7 +219,7 @@
 /// Tries to locate a reagent with valid blood_type data
 /obj/machinery/computer/pandemic/proc/get_blood_reagent()
 	for (var/datum/reagent/reagent as anything in beaker?.reagents?.reagent_list)
-		if (reagent.data?["blood_type"])
+		if (reagent.data?[BLOOD_DATA_TYPE])
 			return reagent
 
 /**

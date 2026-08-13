@@ -163,10 +163,10 @@
 		if(!hacked || !can_unhack)
 			return
 		Stun(40)
-		visible_message(span_info(LANG("mob.b1d243f2", list(src))), \
-						LANG("mob.55fd4187", null))
-		to_chat(src, span_info(LANG("mob.169876d7", null)))
-		laws = initial(laws)
+		visible_message(span_info("[src]'s display glows a content blue!"), \
+						"<font size=3 color='#0000CC'><b>ERROR: LAW OVERRIDE DETECTED</b></font>")
+		to_chat(src, span_info("<b>From now on, these are your laws:</b>"))
+		laws = get_default_laws()
 		to_chat(src, laws)
 		to_chat(src, LANG("mob.b8c50d3a", null))
 		hacked = FALSE

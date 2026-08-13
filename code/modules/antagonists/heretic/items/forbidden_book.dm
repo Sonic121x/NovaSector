@@ -131,7 +131,7 @@
 	for(var/datum/reagent/blood/usable_reagent as anything in held_offhand.reagents?.reagent_list)
 		if(!istype(usable_reagent, /datum/reagent/blood))
 			continue
-		blood_samples += usable_reagent.data["blood_DNA"]
+		blood_samples += usable_reagent.data[BLOOD_DATA_DNA]
 	if(isnull(blood_samples))
 		user.balloon_alert(user, LANG("obj.ce2814af", null))
 		return ITEM_INTERACT_BLOCKING
