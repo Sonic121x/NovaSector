@@ -903,6 +903,8 @@ GLOBAL_LIST_INIT(i18n_autopsy_labels, list(
 GLOBAL_LIST_INIT(i18n_tgui_strings, build_tgui_string_set())
 
 #define I18N_TGUI_PHRASE_CACHE_MAX 4096
+/// P1 里允许过字面 AC 的最短长度。短值一律不走 AC —— 那是标识符浓度最高的区间。
+#define I18N_TGUI_PROSE_MIN_LENGTH 80
 /// 跨 payload 复用精确/模板反查结果；有界且满后不淘汰，避免动态值造成持续分配。
 GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 
@@ -916,6 +918,14 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 		for(var/key in decoded)
 			result[key] = TRUE
 	return result
+
+/// 该 TGUI 负载值是否「长散文」——够长、含句末标点。只有这类才允许过字面 AC（子串替换）：
+/// act() 回传标识符、图标名、黑板键之类永远不是这个形状，从而把误伤面压到零。
+/proc/lang_tgui_prose_candidate(text)
+	if(length(text) < I18N_TGUI_PROSE_MIN_LENGTH)
+		return FALSE
+	return findtext(text, ". ") || findtext(text, "! ") || findtext(text, "? ") \
+		|| findtext(text, ".", -1) || findtext(text, "!", -1) || findtext(text, "?", -1)
 
 /// TGUI 负载专用反查：若该串属于 TGUI 前端目录（TS 端会翻显示），P1 跳过不动数据（保住标识符）；
 /// 否则走多词反查（datum 描述等不在前端目录的长文本）。
@@ -944,9 +954,20 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 	// TGUI 负载里的拼接句与聊天/browse 共享同一引擎。en locale / 无锚命中时引擎走快路径原样返回（零开销）。
 	if(. == text)
 		. = lang_template_apply(text, locale)
-		// 漏翻采集：反查 + 模板引擎都没命中的多词 TGUI 负载值（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
-		if(GLOB.i18n_log_misses && . == text && locale != DEFAULT_UI_LOCALE)
-			lang_log_miss_scan(text, "tgui")
+	if(. == text)
+		// 最后一道：**长散文**才过字面 AC。
+		// 「基础句 + 运行期追加的后缀」在 TGUI 负载里不止 lang_reverse_suffixed 那种可枚举形态：
+		// 幽灵生成器的 flavour_text 是 `基础句` + `switch(rand(1,4))` 四选一的身世段（其中一段还带
+		// `pick(...)` 内插），后缀根本没法手工登记。但**两半各自都是目录键、也都译好了**，字面 AC
+		// 的子串替换正好能把它们分别换掉，接缝原样保留 —— 聊天路径一直是这么做的，P1 少了这一步，
+		// 于是「名字是中文、正文整段英文」（生成器菜单的「指令」栏即此）。
+		// 闸门必须严：AC 是子串替换，绝不能碰标识符型负载值。长度 ≥ 80 且含句末标点的串是散文，
+		// 不可能是 act 回传标识符；短值一律不走这条。
+		if(lang_tgui_prose_candidate(text) && lang_fallback_setup(locale))
+			. = rustg_acreplace("i18n_[locale]", text)
+	// 漏翻采集：反查 + 模板引擎 + AC 都没命中的多词 TGUI 负载值（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
+	if(GLOB.i18n_log_misses && . == text && locale != DEFAULT_UI_LOCALE)
+		lang_log_miss_scan(text, "tgui")
 	if(cache_ready && length(phrase_cache) < I18N_TGUI_PHRASE_CACHE_MAX)
 		phrase_cache[text] = .
 
@@ -1018,6 +1039,7 @@ GLOBAL_LIST_INIT(i18n_payload_skip_keys, build_i18n_policy_set("payload_skip_key
 	return data
 
 #undef I18N_TGUI_PHRASE_CACHE_MAX
+#undef I18N_TGUI_PROSE_MIN_LENGTH
 
 /// 偏好菜单「常量数据 asset」(/datum/asset/json/preferences) 是服务器启动生成一次的静态资源，
 /// **不经 get_payload**，故 lang_reverse_tree 永远碰不到它。此 pass 专供该 asset：只反查
