@@ -53,6 +53,11 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 		text = replacetext(text, "\\\"", "\"")
 		text = replacetext(text, "\\n", "\n")
 		text = replacetext(text, "\\t", "\t")
+		// DM 源码里 `\[` / `\]` 是「字面方括号」的转义（否则会被当成内插）。目录照抄源码形态，
+		// 运行时字符串里却是裸括号 —— 不归一则整条模板的字面段永远对不上
+		// （正电子脑的 `Personality requested: \[{0}\]` 即此）。与 lang_unescape_source 同一处理。
+		text = replacetext(text, "\\\[", "\[")
+		text = replacetext(text, "\\\]", "\]")
 		text = replacetext(text, "\\improper", "")
 		text = replacetext(text, "\\proper", "")
 	return text

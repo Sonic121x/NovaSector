@@ -18,7 +18,7 @@ use dm::ast::{AssignOp, Expression, Follow, Statement, Term};
 
 use crate::catalog::Catalog;
 use crate::keys::{make_key, namespace_for};
-use crate::template::build_template;
+use crate::template::{build_template, placeholder_count};
 
 /// 视为玩家可见的变量名。
 /// message_* 系列是 /datum/emote 的各形态表情模板（人形/默剧/外星/AI/机器人等），玩家在聊天
@@ -1193,6 +1193,70 @@ fn collect_lang_arg_literals(expr: &Expression, out: &mut Vec<String>) {
     }
 }
 
+/// LANG 实参里**本身就是插值句**的那些（`ask_role ? "Personality requested: \[[ask_role]\]" : ""`）。
+///
+/// 上面的字面量收集器对 `Term::InterpString` **只下探内插表达式、把字面文本整个丢掉**，所以
+/// 这类实参一个字都进不了目录：模板译好了，句子中间却嵌着一截英文（正电子脑的
+/// 「Personality requested: \[…\]」即此）。这里按**模板形态**（`Personality requested: {0}`）
+/// 补进目录——运行期由整行模板引擎命中，它会捕获角色名再递归本地化。
+///
+/// 只收模板：带占位符的串**永远不进反查表**，且模板要求全部字面段按序命中，
+/// 比裸串反查安全得多；再加一道「去占位符后须多词」的闸门挡住 act/黑板键那类短标识符。
+fn collect_lang_arg_templates(expr: &Expression, out: &mut Vec<String>) {
+    match expr {
+        Expression::Base { term, follow } => {
+            match &term.elem {
+                Term::InterpString(..) => {
+                    if let Some(t) = build_template(expr) {
+                        out.push(t);
+                    }
+                }
+                Term::Expr(inner) => collect_lang_arg_templates(inner, out),
+                Term::List(args) => {
+                    for a in args.iter() {
+                        collect_lang_arg_templates(a, out);
+                    }
+                }
+                Term::Call(name, args) => {
+                    let key_idx = lang_format_key_index(name.as_str());
+                    for (i, a) in args.iter().enumerate() {
+                        if Some(i) == key_idx {
+                            continue;
+                        }
+                        collect_lang_arg_templates(a, out);
+                    }
+                }
+                _ => {}
+            }
+            // 下标键是程序用的键名，与字面量收集器同样整支跳过。
+            let _ = follow;
+        }
+        Expression::TernaryOp { cond, if_, else_ } => {
+            collect_lang_arg_templates(cond, out);
+            collect_lang_arg_templates(if_, out);
+            collect_lang_arg_templates(else_, out);
+        }
+        Expression::AssignOp { rhs, .. } => collect_lang_arg_templates(rhs, out),
+        _ => {}
+    }
+}
+
+/// 模板形态的 LANG 实参能否入目录：须有占位符，且去掉占位符/标签后是**多词**自然语言。
+fn is_lang_arg_template(template: &str) -> bool {
+    if placeholder_count(template) == 0 {
+        return false;
+    }
+    let mut text = strip_html_tags(template);
+    while let Some(start) = text.find('{') {
+        match text[start..].find('}') {
+            Some(rel) => text.replace_range(start..start + rel + 1, " "),
+            None => break,
+        }
+    }
+    let words: Vec<&str> = text.split_whitespace().collect();
+    words.len() >= 2 && text.chars().any(|c| c.is_alphabetic())
+}
+
 fn collect_lang_arg_literals_term(term: &Term, out: &mut Vec<String>) {
     match term {
         Term::String(s) => out.push(s.clone()),
@@ -1470,6 +1534,19 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                     for literal in literals {
                         if is_lang_arg_text(&literal) {
                             emit(catalog, ns, literal.trim());
+                        }
+                    }
+                    // 实参本身就是插值句的那一类（见 collect_lang_arg_templates）。
+                    let mut templates = Vec::new();
+                    for (i, a) in args.iter().enumerate() {
+                        if i <= idx {
+                            continue;
+                        }
+                        collect_lang_arg_templates(a, &mut templates);
+                    }
+                    for template in templates {
+                        if is_lang_arg_template(&template) {
+                            emit(catalog, ns, template.trim());
                         }
                     }
                 }
