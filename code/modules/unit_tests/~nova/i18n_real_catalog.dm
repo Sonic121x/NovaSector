@@ -57,6 +57,22 @@
 	TEST_ASSERT(!findtext(lang_fallback_apply(eggs), "n其中一只"), \
 		"碎片 pattern 在单词内部开火：[lang_fallback_apply(eggs)]")
 
+	// ①c 整串精确反查必须**赢过**泛化模板。目录里同时存在整句键和「三两个词 + 占位符」的骨架
+	// 模板时，若模板先跑就会劫持整句、把捕获到的英文塞回中文脚手架：
+	//   `It appears to {0}`→`它看起来像{0}` 把正电子脑那句吃成「它看起来像be completely inactive.」
+	//   `{0} produces a {1}.`→`{0}产出{1}。` 把金史莱姆那句吃成「Fully heals the target and产出random coin。」
+	// 两句的整句译文一直都在目录里，只是排在模板之后永远轮不到。
+	var/list/whole_sentences = list(
+		"It appears to be completely inactive. The reset light is blinking.",
+		"Fully heals the target and produces a random coin.",
+	)
+	var/regex/ascii_letters = GLOB.i18n_ascii_letter_regex
+	for(var/sentence in whole_sentences)
+		var/out = lang_fallback_apply(sentence)
+		TEST_ASSERT_NOTEQUAL(out, sentence, "整句在目录里却没被翻译：[sentence]")
+		TEST_ASSERT(!ascii_letters.Find(out), \
+			"整句被泛化模板劫持、译文里还裹着英文残句：[out]")
+
 	// ② 纯串：被改写抬成 LANG 实参的碎片，经 lang_localize_arg 的整串反查。
 	TEST_ASSERT_NOTEQUAL(lang_localize_arg("is secured and ready to be used!"), "is secured and ready to be used!", "LANG 实参碎片应整串反查命中")
 

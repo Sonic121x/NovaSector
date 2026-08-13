@@ -164,8 +164,28 @@ GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
 		if(GLOB.i18n_fallback_single_state[locale] == "ready")
 			text = rustg_acreplace("i18n_single_[locale]", text)
 		return lang_fallback_cache_store(locale, source_text, text)
-	// 先过模板逆匹配（插值句：目录里已译的 {0} 模板按字面段在原文上命中、捕获实参反查后按
-	// zh 模板重排填充，见 template_match.dm），再过字面 AC 收剩余短语。
+	// **整串精确反查必须排在模板引擎之前**：目录里若正好有这一整句，它是最具体的证据，比任何
+	// 「通用模板 + 捕获实参」都可靠。否则先跑的模板引擎会被泛化骨架劫持——`It appears to {0}`
+	// （译 `它看起来像{0}`）和 `{0} produces a {1}.`（译 `{0}产出{1}。`）这类三两个词的模板会
+	// 吞掉任意同形句子，把捕获到的英文原样塞回中文脚手架：
+	//   「It appears to be completely inactive. The reset light is blinking.」
+	//     → 「它看起来像be completely inactive.」
+	//   「Fully heals the target and produces a random coin.」
+	//     → 「Fully heals the target and产出random coin。」
+	// 两句的**整句译文一直都在目录里**，只是排在模板之后、永远轮不到。这比不翻更难看（中文脚手架
+	// 里裹着英文、语序还是错的），且无法靠收紧模板锚解决——真正长的手术类锚同样以介词结尾，
+	// 按词数/虚词去卡会把它们一起误杀。让最具体的匹配优先才是正解。
+	var/list/whole_reverse = GLOB.i18n_reverse[locale] || lang_build_reverse(locale)
+	if(length(whole_reverse))
+		var/trimmed = trim(text)
+		var/whole = length(trimmed) ? whole_reverse[trimmed] : null
+		if(whole)
+			var/at = findtext(text, trimmed)
+			if(at)
+				text = copytext(text, 1, at) + whole + copytext(text, at + length(trimmed))
+				return lang_fallback_cache_store(locale, source_text, text)
+	// 再过模板逆匹配（插值句：目录里已译的 {0} 模板按字面段在原文上命中、捕获实参反查后按
+	// zh 模板重排填充，见 template_match.dm），最后过字面 AC 收剩余短语。
 	text = lang_template_apply(text, locale)
 	text = rustg_acreplace("i18n_[locale]", text)
 	// 漏翻采集：所有层过完仍残留的多词英文 run（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
