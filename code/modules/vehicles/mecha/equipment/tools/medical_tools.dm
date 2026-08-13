@@ -20,7 +20,10 @@
 	var/list/contained_reagents = list()
 	if(length(reagent_list))
 		for(var/datum/reagent/reagent as anything in reagent_list)
-			contained_reagents += list(list("name" = reagent.name, "volume" = round(reagent.volume, 0.01))) // list in a list because Byond merges the first list...
+			// NOVA EDIT CHANGE - I18N - ORIGINAL: contained_reagents += list(list("name" = reagent.name, "volume" = round(reagent.volume, 0.01)))
+			// "id" 是 policy.json payload_skip_keys 成员，P1 不反查 → 保持英文标识符供 gear_action 回传；
+			// "name" 照旧本地化，只做显示。
+			contained_reagents += list(list("id" = reagent.name, "name" = reagent.name, "volume" = round(reagent.volume, 0.01))) // list in a list because Byond merges the first list...
 	return contained_reagents
 
 //---- Mecha sleeper, medical subtype has the chemical functionality
@@ -248,7 +251,8 @@
 		var/enabled = FALSE
 		if(known_reagents[i] in processed_reagents)
 			enabled = TRUE
-		analyzed_reagents += list((list("name" = known_reagents[i].name, "enabled" = enabled)))
+		// NOVA EDIT CHANGE - I18N - ORIGINAL: analyzed_reagents += list((list("name" = known_reagents[i].name, "enabled" = enabled)))
+		analyzed_reagents += list((list("id" = known_reagents[i].name, "name" = known_reagents[i].name, "enabled" = enabled)))
 	var/list/data = list(
 		"snowflake_id" = MECHA_SNOWFLAKE_ID_SYRINGE,
 		"mode" = mode == FIRE_SYRINGE_MODE ? "Launch" : "Analyze",
