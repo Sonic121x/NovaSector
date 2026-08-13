@@ -55,4 +55,23 @@
 	TEST_ASSERT(findtext(sticker_out, "<span class='notice'>"), \
 		"外层 span 被前置 pass 吃掉了，聊天配色会丢：[sticker_out]")
 
+	// ③ **模板**的字面段里嵌着标签时同理走不通：聊天层先按标签切块，送进模板引擎的是纯文本块，
+	// 而模板要求逐段 findtext 命中带标签的字面段 → 整条永远验证不过。全仓 859 条已译模板是这
+	// 形状（高级健康扫描仪整页、回合总结经济行…），译文早就有、只是这条通道走不通。
+	// 登记剥标签变体后，切块出来的纯文本应当命中。
+	var/list/tag_templates = list(
+		"Genetic Stability: 87%." = "遗传",
+		"There were 206628 credits collected by crew this shift." = "本班次",
+	)
+	for(var/rendered in tag_templates)
+		var/out = lang_template_apply(rendered, LANGUAGE_LOCALE_ZH_HANS)
+		TEST_ASSERT_NOTEQUAL(out, rendered, \
+			"字面段含 HTML 标签的模板没能匹配切块后的纯文本：[rendered]")
+
+	// ④ 含 <a> 链接的模板**不得**登记剥标签变体：剥掉链接会把「点击此处投票」的功能弄没，
+	// 宁可整条保持英文。
+	var/vote_line = "Type vote or click here to place your votes."
+	TEST_ASSERT_EQUAL(lang_template_apply(vote_line, LANGUAGE_LOCALE_ZH_HANS), vote_line, \
+		"含 <a> 的模板被剥标签登记了——那会让投票链接消失。")
+
 	GLOB.i18n_server_locale = saved_locale
