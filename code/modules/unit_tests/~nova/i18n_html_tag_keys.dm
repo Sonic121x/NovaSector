@@ -68,6 +68,18 @@
 		TEST_ASSERT_NOTEQUAL(out, rendered, \
 			"字面段含 HTML 标签的模板没能匹配切块后的纯文本：[rendered]")
 
+	// ③b 字面段**不含**标签、但**渲染出来的句子被标签切开**的子情形。
+	// `lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [target].")`
+	// 渲染成 `You can <b>凑近细看</b> to learn a little more about M64 霰弹枪.`——两个实参早就
+	// 各自译好了（EXAMINE_HINT 自带 lang_reverse_text），可切块后 "You can " 和
+	// " to learn a little more about " 分落两个 chunk，模板要求两段同时命中 → 整条框架留英文。
+	// 玩家看到的正是「你可以 凑近细看 to learn a little more about M64 霰弹枪.」这种半中半英。
+	// 只有在**未切块的整行**上跑模板才够得着。
+	var/lore_line = "<span class='notice'>You can <b>凑近细看</b> to learn a little more about M64 霰弹枪.</span>"
+	var/lore_out = lang_fallback_apply_html(lore_line)
+	TEST_ASSERT(!findtext(lore_out, "to learn a little more about"), \
+		"模板框架被 <b> 切成两半、整条没命中：[lore_out]")
+
 	// ④ 含 `<a>` 的模板：**不登记剥标签变体**（剥掉链接 = 投票入口消失），改为在
 	// 「还没切块」的整行作用域上匹配——那时标签还完整，zh 模板连同自己的 `<a href>` 一起填回去。
 	// 正反两面都要验，否则很容易「翻是翻了、链接没了」还以为修好了。
