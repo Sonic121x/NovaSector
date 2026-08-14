@@ -5,6 +5,7 @@ import { Dropdown } from 'tgui-core/components';
 import { configAtom, store } from '../events/store';
 import type { Config } from '../events/types';
 import { localizeProps } from './localize';
+import propTemplates from './prop-templates.json';
 import zhHans from './zh-Hans.json';
 
 // 用真目录里已有的条目做断言，避免测试自带一套假目录、掩盖「目录键与运行时查表键不一致」。
@@ -99,6 +100,59 @@ describe('localizeProps', () => {
       .filter((c) => typeof c === 'string')
       .join('');
     expect(text).toContain('所有能力都需要');
+  });
+
+  // 运行期文案 + 图标/分隔线的混排：整条模板永远不在目录里（字符串是运行期数据），
+  // 但字符串本身是独立目录条目。旧的「混排就整条保持英文」把整类焊死成英文：
+  // 配装页分类页签 `<Box>{icon}{tab.name}</Box>`、反派介绍 tooltip 的非末段
+  // `<div>{desc}<Divider/></div>`、中途加入菜单的部门标题 `<>{name}<span>…</span></>`。
+  test('整条模板未命中时，完整独立目录条目仍逐段翻', () => {
+    const el = { type: 'i' }; // <Icon />
+    const props = localizeProps({ children: [el, 'Head'] }) as Record<
+      string,
+      unknown
+    >;
+    expect(props.children).toEqual([el, (zhHans as any).Head]);
+  });
+
+  // 反面一：整条模板未命中、且某段查不到 → 整条保持英文（那是拼句碎片的形态）。
+  test('有段落查不到时整条保持英文', () => {
+    const el = { type: 'i' };
+    const children = ['Confirm', el, ' zzz-not-in-catalog-zzz'];
+    const props = localizeProps({ children }) as Record<string, unknown>;
+    expect(props.children).toBe(children);
+  });
+
+  // 反面二：目录里确实躺着大量拼句碎片（'and give it a'、'a mindshield.' …）——它们各自都能
+  // 命中，逐段翻却会按英文语序拼回去。首字符是小写/标点的续接碎片一律不走逐段翻。
+  test('小写开头的续接碎片不走逐段翻', () => {
+    const el = { type: 'i' };
+    const fragment = 'and give it a';
+    expect((zhHans as Record<string, string>)[fragment]).toBeTruthy();
+    const children = ['Confirm', el, fragment];
+    const props = localizeProps({ children }) as Record<string, unknown>;
+    expect(props.children).toBe(children);
+  });
+
+  // prop 里 JS 拼出来的整串（`` title={`Reading: ${x}`} ``）永远不是目录键 → 精确查表必 miss。
+  // 抽取器按 `Reading: {0}` 收进目录 + sidecar，这里按字面段逆匹配还原、填回捕获值。
+  test('prop 模板逆匹配：框架词翻译、捕获值原样保留', () => {
+    const key = 'Reading: {0}';
+    expect(propTemplates).toContain(key);
+    const zh = (zhHans as Record<string, string>)[key];
+    expect(zh).toBeTruthy();
+    const props = localizeProps({ title: 'Reading: Zzyzx Manifesto' }) as Record<
+      string,
+      string
+    >;
+    expect(props.title).toBe(zh.replace('{0}', 'Zzyzx Manifesto'));
+  });
+
+  // 逆匹配是整串匹配，形状对不上就不该动（否则等于子串替换、会从句子中间开火）。
+  test('形状不符的串不被 prop 模板改动', () => {
+    const text = 'He was reading: Zzyzx Manifesto in the library.';
+    const props = localizeProps({ title: text }) as Record<string, string>;
+    expect(props.title).toBe(text);
   });
 
   test('目录里没有的选项保持裸字符串', () => {

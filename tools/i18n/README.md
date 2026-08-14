@@ -245,6 +245,7 @@ cargo run --release --manifest-path tools/i18n/Cargo.toml -- labels --dme tgstat
 node tools/i18n/tgui-catalog.mjs extract
 
 # 只同步：strings/i18n/<locale>/tgui.json -> tgui/packages/tgui/i18n/<locale>.json
+# （同时把 policy.json 与 tgui-prop-templates.json 复制进前端，供 localize.ts 静态 import）
 node tools/i18n/tgui-catalog.mjs sync
 
 # 查看 TGUI 待译
@@ -279,6 +280,13 @@ return <Button>{t('tgui.print_amount', [amount])}</Button>;
 ```json
 "tgui.print_amount": "打印 {0} 个"
 ```
+
+没写成 `useT()` 的**运行期拼接 prop**（`` title={`Reading: ${x}`} ``、`content={'Food: ' + n}`）也能落地：抽取器
+按 `Reading: {0}` 的模板收进 `tgui.json`，并把这批 key 记进 `strings/i18n/tgui-prop-templates.json`（sync
+时复制成 `tgui/packages/tgui/i18n/prop-templates.json`）。运行时 `localize.ts` 在**整串精确查表 miss 之后**
+才对这批模板做逆匹配。这份 sidecar **每次抽取全量重写、不合并**——它是「允许被逆匹配的面」，多留一条
+就是多一处误翻面（普通目录相反：只合并不裁剪，少一条就是漏译）。新增 prop 拼接不需要任何登记，跑
+`extract` 即可；改动逆匹配闸门后请用「拿目录里全部非模板 key 过一遍引擎」的方式复核误翻面。
 
 ### 人工校对：在线本地化平台（自选）
 

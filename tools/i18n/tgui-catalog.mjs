@@ -569,6 +569,78 @@ function addDisplayExpr(catalog, node) {
   }
 }
 
+/**
+ * prop 值里的**运行期拼接**（`` title={`Reading: ${data.title}`} ``、`content={'Food: ' + n}`）。
+ *
+ * 这类整串是运行期产物、永远不是目录键，`addDisplayExpr` 按「形状不可复原」整条不抽 → 框架词
+ * （`Reading:` / `Mutant` / `Food Left:`）永远英文。全仓 151 处。
+ *
+ * 与混排 children 同一个解法：按 `Reading: {0}` 的**模板**入目录。区别在落地——children 的形状
+ * 运行时还看得见（数组），prop 只剩一个成品字符串，所以要在 TS 侧按字面段做**逆匹配**还原。
+ * 逆匹配是子串定位，比整串查表危险，故这里同时把合格模板记进 sidecar，运行时只对这批做逆匹配，
+ * 不碰目录里那 590 多条 children 模板（`- {0}, the {1}` / `{0} of 12 total` 之流泛化骨架一旦
+ * 进逆匹配面，就会把整句劫持成「中文脚手架裹英文」——DM 侧栽过这一跤）。
+ */
+function propTemplate(node) {
+  const parts = templateParts(node);
+  if (!parts) return null;
+  if (!parts.some((p) => p.slot) || !parts.some((p) => p.text)) return null;
+  let slot = 0;
+  let template = '';
+  let literal = '';
+  for (const part of parts) {
+    if (part.text !== undefined) {
+      template += part.text;
+      literal += part.text;
+    } else {
+      template += `{${slot++}}`;
+    }
+  }
+  template = template.replace(/\s+/g, ' ').trim();
+  // 逆匹配安全线：字面段要能当锚。太短或没有真词的骨架（`{0} - {1}`、`{0}: {1}`、`({0})`）
+  // 会匹配上任何同形状的串，把捕获到的英文塞进中文脚手架 —— 比不翻更难看。
+  if (literal.replace(/\s+/g, ' ').trim().length < 5) return null;
+  if (!/[A-Za-z]{3}/.test(literal)) return null;
+  // 字面段全是虚词/标点的骨架（`{0} from {1}, {2}` —— 锚只有 " from " 和 ", "）会匹配上任何
+  // 含这几个词的整句：实测能吃掉目录里 27 条正常句子。必须有一个**实词**锚才算可定位。
+  if (!/\b(?!(?:the|a|an|and|or|of|to|in|on|at|by|for|from|with|is|are|as|it)\b)[A-Za-z]{3,}\b/i.test(literal)) {
+    return null;
+  }
+  return template;
+}
+
+/// 模板字面量 / 含表达式的 `+` 链 → [{text}|{slot}] 段序列；其它形状返回 null。
+function templateParts(node) {
+  if (!node) return null; // 布尔属性（`fitted`）没有 initializer
+  if (ts.isJsxExpression(node) || ts.isParenthesizedExpression(node)) {
+    return node.expression ? templateParts(node.expression) : null;
+  }
+  if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) {
+    return [{ text: node.text }];
+  }
+  if (ts.isTemplateExpression(node)) {
+    const out = [];
+    if (node.head.text) out.push({ text: node.head.text });
+    for (const span of node.templateSpans) {
+      out.push({ slot: true });
+      if (span.literal.text) out.push({ text: span.literal.text });
+    }
+    return out;
+  }
+  if (
+    ts.isBinaryExpression(node) &&
+    node.operatorToken.kind === ts.SyntaxKind.PlusToken
+  ) {
+    const left = templateParts(node.left);
+    if (!left) return null;
+    const right = templateParts(node.right);
+    if (!right) return null;
+    return [...left, ...right];
+  }
+  // 任意其它表达式（标识符、调用、三元…）在成品串里就是一段不可知文本 → 占位符。
+  return [{ slot: true }];
+}
+
 /// 把「操作数全是字符串字面量」的 `+` 链求值成一整串；含任何非字面量则返回 null。
 function foldStringConcat(node) {
   if (ts.isParenthesizedExpression(node)) {
@@ -617,6 +689,14 @@ let currentScope = null;
  * 得让前端按界面取不同译文，那是另一套改动。
  */
 const textScopes = {};
+
+/**
+ * 允许运行时**逆匹配**的模板 key（只收 prop 里的运行期拼接，见 propTemplate）。
+ *
+ * 目录里另有 590+ 条 children 模板，它们运行时按整条精确查表、不需要也**不应**进逆匹配面：
+ * `- {0}, the {1}` / `{0} of 12 total` 这类泛化骨架会把任意同形状的整句劫持成中文脚手架裹英文。
+ */
+const propTemplates = new Set();
 
 function noteScope(normalized) {
   if (!currentScope || !normalized) return;
@@ -1202,6 +1282,13 @@ function extractCatalog() {
             addText(catalog, initializer);
           } else {
             addDisplayExpr(catalog, initializer); // 含三元/|| 两支（content={x?'Retract':'Deploy'}）
+            // 运行期拼接（`` title={`Reading: ${x}`} ``）：addDisplayExpr 按「形状不可复原」
+            // 整条不抽，改按模板收，运行时由 localize.ts 的逆匹配还原。
+            const template = propTemplate(initializer);
+            if (template) {
+              addText(catalog, template);
+              propTemplates.add(normalizeText(stripGrammarMacros(template)));
+            }
           }
         }
       } else if (ts.isPropertyAssignment(node)) {
@@ -1314,6 +1401,7 @@ function extract() {
   writeJson(stringsCatalogPath('zh-Hans'), zhCatalog);
   warnHtmlEntities(enCatalog, zhCatalog);
   writeTguiScopes(enCatalog);
+  writePropTemplates();
   sync();
 }
 
@@ -1370,6 +1458,19 @@ function writeTguiScopes(enCatalog) {
   }
 }
 
+/**
+ * 落盘「可逆匹配模板」sidecar（strings/i18n/tgui-prop-templates.json，locale 目录之外）。
+ *
+ * 与目录相反，这份**每次全量重写、不合并**：它不是译文（丢了会漏译），而是运行时逆匹配的
+ * **准入面**（多了会误翻）。调用点删掉后模板若还留在面上，就可能去匹配别处成品串。译文本身
+ * 仍留在 tgui.json 里，将来调用点回来会被重新收进面。
+ */
+function writePropTemplates() {
+  const outPath = path.join(STRINGS_I18N_DIR, 'tgui-prop-templates.json');
+  const out = [...propTemplates].filter(Boolean).sort();
+  fs.writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`);
+}
+
 function sync() {
   const enSource = readJson(stringsCatalogPath('en'));
   for (const locale of LOCALES) {
@@ -1394,6 +1495,12 @@ function sync() {
   const policyTarget = path.join(TGUI_PACKAGE_I18N_DIR, 'policy.json');
   if (fs.existsSync(policySource)) {
     fs.copyFileSync(policySource, policyTarget);
+  }
+  // 逆匹配准入面同理（localize.ts 静态 import，两份都提交）。
+  const tplSource = path.join(STRINGS_I18N_DIR, 'tgui-prop-templates.json');
+  const tplTarget = path.join(TGUI_PACKAGE_I18N_DIR, 'prop-templates.json');
+  if (fs.existsSync(tplSource)) {
+    fs.copyFileSync(tplSource, tplTarget);
   }
 }
 

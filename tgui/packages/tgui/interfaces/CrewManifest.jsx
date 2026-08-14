@@ -28,10 +28,17 @@ export const CrewManifest = (props) => {
             key={dept}
             style={{'--department-color': positions[dept].color}}
             title={
-              dept +
-              (dept !== 'Misc'
-                ? ` (${positions[dept].open} positions open)`
-                : '')
+              // NOVA EDIT CHANGE - i18n: ORIGINAL: title={dept + (dept !== 'Misc' ? ` (${positions[dept].open} positions open)` : '')}
+              // 整串原来是 JS 拼接的运行期产物，永远不是目录键 → 部门名与括号里的文案都翻不到。
+              // 拆成 children 模板：部门名包进元素当占位符（自身作为独立目录键 auto-localize），
+              // 外框整条抽成 `{0} ({1} positions open)` 由 localizeChildrenTemplate 按中文语序回填。
+              dept !== 'Misc' ? (
+                <>
+                  <span>{dept}</span> ({positions[dept].open} positions open)
+                </>
+              ) : (
+                dept
+              )
             }
           >
             <Table>
