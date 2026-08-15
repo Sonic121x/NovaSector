@@ -53,3 +53,8 @@
 ##     git config merge.theirs.name "always take the incoming version"
 ##     git config merge.theirs.driver "cp -f %B %A"
 strings/i18n/** merge=theirs
+## 同类的工具生成物散落在 strings/i18n/ 之外，同样只认 sernseek：
+## `*.json` 精确匹配到本目录的生成物（en/zh-Hans/prop-templates/policy），
+## 不会波及同目录手写的 localize.ts / catalog.ts 等源码。
+tgui/packages/tgui/i18n/*.json merge=theirs
+tools/i18n/dm_labels.json merge=theirs
