@@ -1,5 +1,5 @@
 /datum/crafting_recipe/food/liquid_electric_cake
-	name = "lecake"
+	name = "液电蛋糕"
 	reqs = list(
 		/obj/item/food/flatdough = 1,
 		/obj/item/stock_parts/power_store/cell = 1,

@@ -237,7 +237,7 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/bunny/bunnytie/bitrunner
-	name = "bitrunner's bowtie"
+	name = "比特奔行者的领结"
 	desc = "Bitrunners were told that wearing a novelty shirt with a printed bow tie wasn't enough for formal events."
 	icon_state = "bowtie_collar_bitrunner_tied"
 	tie_type = "bowtie_collar_bitrunner"

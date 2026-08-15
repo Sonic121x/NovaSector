@@ -112,7 +112,7 @@
 
 /obj/item/clothing/head/playbunnyears/paramedic
 	name = "paramedic's bunny ears"
-	desc = "Blue and white bunny ears attached to a headband. Marks you clearly as a bunny first responder, allowing you a high degree of respect and deference°≠ yeah right."
+	desc = "Blue and white bunny ears attached to a headband. Marks you clearly as a bunny first responder, allowing you a high degree of respect and deference‚Ä¶ yeah right."
 	icon_state = "paramedic"
 
 /obj/item/clothing/head/playbunnyears/chemist
@@ -200,7 +200,7 @@
 
 /obj/item/clothing/head/playbunnyears/prisoner
 	name = "prisoner's bunny ears"
-	desc = "Black and orange bunny ears attached to a headband. This outfit was long ago outlawed under the space geneva convention for being a cruel and unusual punishment."
+	desc = "Black and orange bunny ears attached to a headband. This outfit was long ago outlawed under the space geneva convention for being a ‚Äúcruel and unusual punishment‚Äù."
 	icon_state = "prisoner"
 
 /obj/item/clothing/head/playbunnyears/hos

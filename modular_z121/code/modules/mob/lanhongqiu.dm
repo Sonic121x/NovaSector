@@ -114,6 +114,6 @@
 
 /obj/item/summon_beacon/donatepet/lanhongqiu
 	name = "蓝红球召唤信标"
-	desc = "Summons Pet!snack not included"
+	desc = "召唤宠物！不含零食"
 	selectable_atoms = list(/mob/living/basic/pet/lanhongqiu)
 

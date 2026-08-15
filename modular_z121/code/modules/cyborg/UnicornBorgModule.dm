@@ -33,14 +33,14 @@
 */
 //ARCD
 /obj/item/construction/rcd/arcd/mattermanipulator/admin
-	name = "admin matter manipulator"
+	name = "管理员物质操纵器"
 	max_matter = INFINITY
 	matter = INFINITY
 	construction_upgrades = RCD_UPGRADE_FRAMES | RCD_UPGRADE_SIMPLE_CIRCUITS | RCD_UPGRADE_FURNISHING
 
 //Material
 /datum/robot_energy_storage/Meta
-	name = "Meta Synthesizer"
+	name = "元合成器"
 	max_energy = 100000
 	recharge_rate = 100
 
@@ -156,7 +156,7 @@
 		)
 
 /obj/item/construction/plumbing/admin
-	name = "Centcom plumbing constructor"
+	name = "中央指挥部管道建造器"
 	//icon = 'modular_nova/modules/aesthetics/tools/icons/tools.dmi'
 	icon_state = "plumberer_engi"
 	max_matter = INFINITY
@@ -245,7 +245,7 @@
 	upgrade_flags = RPD_UPGRADE_UNWRENCH
 
 /obj/item/construction/rld/admin
-	name = "Admin Rapid Lighting Device (RLD)"
+	name = "管理员快速照明装置（RLD）"
 	max_matter = INFINITY
 	matter = INFINITY
 
@@ -294,8 +294,8 @@
 	powerdevice = /obj/item/stock_parts/power_store/cell/infinite
 
 /obj/item/cyborg_clamp
-	name = "cyborg loading clamp"
-	desc = "Equipment for supply cyborgs. Lifts objects and loads them into cargo. Will not carry living beings."
+	name = "赛博格装载夹"
+	desc = "补给型赛博格的装备。抬起物体并装入货运。无法搬运活物。"
 	icon = 'icons/obj/devices/mecha_equipment.dmi'
 	icon_state = "mecha_clamp"
 	tool_behaviour = TOOL_RETRACTOR
@@ -359,8 +359,8 @@
 	return ..()
 
 /obj/item/gripper
-	name = "engineering gripper"
-	desc = "A simple grasping tool for interacting with various engineering related items, such as circuits, gas tanks, conveyer belts and more. Alt click to drop instead of use."
+	name = "工程夹持器"
+	desc = "一件简易抓取工具，用于操作电路板、气罐、传送带等各类工程物品。Alt 点击可放下而非使用。"
 	icon = 'modular_z121/icons/obj/121device.dmi'
 	icon_state = "gripper"
 
@@ -538,8 +538,8 @@
 	. = ..()
 
 /obj/item/gripper/utility
-	name = "cyborg utility arm"
-	desc = "A complex grasping tool for interacting with suppose everything."
+	name = "赛博格多用途机械臂"
+	desc = "一件复杂的抓取工具，几乎能与任何东西交互。"
 	icon_state = "gripper_utility"
 	can_hold = list(
 		/obj/item
@@ -657,7 +657,7 @@
 
 /obj/item/extinguisher/mini/cyborg
 	name = "extinguisher nozzle"
-	desc = "A heavy duty nozzle attached to cyborg water srouce."
+	desc = "接在赛博格水源上的重型喷嘴。"
 	icon = 'modular_z121/icons/obj/121device.dmi'
 	icon_state = "atmos_nozzle_0"
 	//inhand_icon_state = "nozzleatmos"
@@ -747,7 +747,7 @@
 #undef RESIN_FOAM
 
 /obj/item/storage/bag/trash/bluespace/cyborg/vi
-	name = "ultrash bag of holding"
+	name = "超级次元垃圾袋"
 
 /obj/item/storage/bag/trash/bluespace/cyborg/vi/Initialize(mapload)
 	. = ..()
@@ -758,7 +758,7 @@
 //BORGBeaker
 /obj/item/borg/apparatus/beaker/vi
 	name = "beaker storage apparatus"
-	desc = "A special apparatus for carrying beakers without spilling the contents."
+	desc = "一种特殊装置，携带烧杯时不会洒出内容物。"
 	icon_state = "borg_beaker_apparatus"
 	storable = list(/obj/item/reagent_containers/cup,
 					/obj/item/reagent_containers/condiment)

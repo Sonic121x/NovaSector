@@ -1,6 +1,6 @@
 /mob/living/basic/pet/yuusatsuki
-	name = "yuusatsuki"
-	desc = "�ɰ�С��,�����ϴ��ŵ��·��ƺ�����ʱ�ĺ�����"
+	name = "悠皋月"
+	desc = "可爱小鸡,她身上穿着的衣服似乎是临时改合身的"
 	gender = FEMALE
 	icon = 'modular_z121/icons/mob/pets.dmi'
 	icon_state = "yuusatsuki_jumpsuit"

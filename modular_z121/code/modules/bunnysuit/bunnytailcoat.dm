@@ -74,7 +74,7 @@
 	)
 
 /obj/item/clothing/suit/armor/security_tailcoat/centcom
-	name = "Centcom tailcoat"
+	name = "centcom tailcoat"
 	desc = "An official coat usually worn by bunny themed executives. The inside is lined with comfortable yet tasteful bunny fluff."
 	icon_state = "tailcoat_centcom"
 	armor_type = /datum/armor/armor_centcom_formal_nt_consultant
@@ -153,7 +153,7 @@
 
 
 /obj/item/clothing/suit/jacket/tailcoat/bitrunner
-	name = "bitrunner tailcoat"
+	name = "比特奔行者燕尾服"
 	desc = "A black and gold coat worn by bunny themed cargo technicians. Open your Space Colas and let's fuckin' game!"
 	icon_state = "bitrunner"
 
@@ -467,6 +467,6 @@
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
 
 /obj/item/clothing/suit/armor/security_tailcoat/syndi
-	name = "syndie's tailcoat"
-	desc = "A reinforced tailcoat worn by illegal bunnies. Stylishly holds hidden flak plates."
+	name = "辛迪加的燕尾服"
+	desc = "非法兔子穿着的加固燕尾服。时髦地藏着隐蔽的防弹插板。"
 	icon_state = "tailcoat_syndi"

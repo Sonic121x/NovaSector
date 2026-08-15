@@ -1,6 +1,6 @@
 /mob/living/basic/hamsterking
-	name = "hamsterking"
-	desc = "A geneticly modified hamster,its big enough to carry you on their back."
+	name = "仓鼠王"
+	desc = "一只经过基因改造的仓鼠，大到足以驮着你走。"
 	icon = 'modular_z121/icons/mob/pets.dmi'
 	icon_state = "hamsterking_crown"
 	icon_living = "hamsterking_crown"
@@ -47,6 +47,6 @@
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/cow)
 
 /obj/item/summon_beacon/donatepet/hamster
-	name = "Pet beacon"
-	desc = "Summons Pet!snack not included"
+	name = "宠物信标"
+	desc = "召唤宠物！不含零食"
 	selectable_atoms = list(/mob/living/basic/hamsterking)

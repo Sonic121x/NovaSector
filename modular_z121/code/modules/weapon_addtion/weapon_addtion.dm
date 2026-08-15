@@ -164,7 +164,7 @@
 	. += "[icon_state]_hammer[cocked ? "_back": ""]"
 
 /obj/item/ammo_box/magazine/internal/cylinder/bfr500
-	name = "bfr500 cylinder"
+	name = "bfr500 弹巢"
 	ammo_type = /obj/item/ammo_casing/c357
 	caliber = CALIBER_357
 	max_ammo = 5

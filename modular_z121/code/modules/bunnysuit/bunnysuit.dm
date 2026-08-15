@@ -238,7 +238,7 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/rnd/geneticist/bunnysuit
-	desc = "The staple of any bunny themed geneticists. Doesn¡¯t go great with an abominable green muscled physique, but then again, what does?"
+	desc = "The staple of any bunny themed geneticists. Doesn't go great with an abominable green muscled physique, but then again, what does?"
 	name = "geneticist's bunnysuit"
 	icon_state = "bunnysuit_genetics"
 	icon = 'modular_z121/icons/obj/clothing/bunny/under/bunnycostume.dmi'
@@ -348,7 +348,7 @@
 
 /obj/item/clothing/under/rank/civilian/hop_bunnysuit
 	name = "head of personnel's bunny suit"
-	desc = "The staple of any bunny themed bureaucrats. It has a spare pocket for holding extra pens and paper."
+	desc = "The staple of any bunny themed bureaucrats. It has a spare “pocket” for holding extra pens and paper."
 	icon_state = "bunnysuit_hop"
 	inhand_icon_state = null
 	icon = 'modular_z121/icons/obj/clothing/bunny/under/bunnycostume.dmi'
@@ -415,7 +415,7 @@
 
 /obj/item/clothing/under/rank/civilian/mime_bunnysuit
 	name = "mime's bunny suit"
-	desc = "The staple of any bunny themed mimes. Includes black and white stockings in order to comply with mime federation outfit regulations."
+	desc = "The staple of any bunny themed mimes. Includes black and white stockings in order to comply with Mime Federation outfit regulations."
 	icon_state = "bunnysuit_mime"
 	inhand_icon_state = null
 	icon = 'modular_z121/icons/obj/clothing/bunny/under/bunnycostume.dmi'
