@@ -107,6 +107,9 @@
   "({0} of 12 total)": [
     "tgui:index"
   ],
+  "+{0}% growth/sec.": [
+    "tgui:Microscope"
+  ],
   ", including tools unless their readme specifies otherwise. See": [
     "tgui:Changelog"
   ],
@@ -391,6 +394,9 @@
   ],
   "ADMIN CONTROLS": [
     "tgui:MafiaPanel"
+  ],
+  "ADMIN MODE: {0}": [
+    "tgui:NtosNetChat"
   ],
   "ADMINISTRATOR OVERRIDE": [
     "tgui:NtnetRelay"
@@ -917,6 +923,9 @@
   "Add one max ruleset of this type": [
     "tgui:DynamicAdmin"
   ],
+  "Add relay from {0}": [
+    "tgui:PlaneMenus"
+  ],
   "Add to Queue": [
     "tgui:ExosuitFabricator"
   ],
@@ -925,6 +934,9 @@
   ],
   "Added by {0}.": [
     "tgui:Loadouts"
+  ],
+  "Added by: {0}": [
+    "tgui:Content"
   ],
   "Addict": [
     "dm:labels"
@@ -1177,6 +1189,12 @@
   "Air Status": [
     "tgui:AlarmStatus"
   ],
+  "Air pressure: {0} kPa": [
+    "tgui:index"
+  ],
+  "Air temperature: {0}°C": [
+    "tgui:index"
+  ],
   "Airborne": [
     "tgui:IDCBook"
   ],
@@ -1202,6 +1220,9 @@
     "dm:labels"
   ],
   "Akula (Generic)": [
+    "dm:labels"
+  ],
+  "Akula Highlight": [
     "dm:labels"
   ],
   "Akula chest": [
@@ -1521,7 +1542,8 @@
     "tgui:RBMK2"
   ],
   "Amount: {0}": [
-    "tgui:OreContainer"
+    "tgui:OreContainer",
+    "tgui:StackCrafting"
   ],
   "AmpCheck": [
     "dm:labels"
@@ -1608,7 +1630,16 @@
   "Animals": [
     "dm:labels"
   ],
+  "Anime Eyes (Inner)": [
+    "dm:labels"
+  ],
+  "Anime Eyes (Outer)": [
+    "dm:labels"
+  ],
   "Anime Protagonist": [
+    "dm:labels"
+  ],
+  "Anklet": [
     "dm:labels"
   ],
   "Announce": [
@@ -1731,6 +1762,9 @@
   ],
   "Apparel": [
     "dm:labels"
+  ],
+  "Appearance Debug: {0}": [
+    "tgui:AppearanceInfo"
   ],
   "Appears on examine. If left blank, you will use your default species name (E.g. Human, Lizardperson).": [
     "tgui:species_features"
@@ -2158,6 +2192,9 @@
   "Attach": [
     "tgui:Wires"
   ],
+  "Attach Virus: {0}": [
+    "tgui:index"
+  ],
   "Attach photo": [
     "tgui:Newscaster"
   ],
@@ -2393,6 +2430,9 @@
   "Available Software": [
     "tgui:Available"
   ],
+  "Available System Memory: {0}": [
+    "tgui:Available"
+  ],
   "Available Targets": [
     "tgui:AntagInfoAssaultops"
   ],
@@ -2410,6 +2450,9 @@
   ],
   "Average weight": [
     "tgui:FishCatalog"
+  ],
+  "Average: {0} Second(s)": [
+    "tgui:OverviewSection"
   ],
   "Avg Usage Per Tick": [
     "tgui:SubsystemDialog"
@@ -2535,6 +2578,9 @@
     "tgui:NovaCharacterDirectory",
     "tgui:NtosSupermatter"
   ],
+  "Back Stripe": [
+    "dm:labels"
+  ],
   "Back to Main Menu": [
     "tgui:OrionGame"
   ],
@@ -2632,6 +2678,12 @@
   "Banded Uniform": [
     "dm:labels"
   ],
+  "Bands and Stripes": [
+    "dm:labels"
+  ],
+  "Bands and Stripes (Alt)": [
+    "dm:labels"
+  ],
   "Banishment": [
     "tgui:PlayerPanel"
   ],
@@ -2724,6 +2776,9 @@
     "dm:labels"
   ],
   "Bat (Short)": [
+    "dm:labels"
+  ],
+  "Bat Mark": [
     "dm:labels"
   ],
   "Battlecruiser Captain": [
@@ -3002,8 +3057,14 @@
   "Beige": [
     "dm:labels"
   ],
+  "Belly": [
+    "dm:labels"
+  ],
   "Belly Color": [
     "tgui:belly_preferences"
+  ],
+  "Belly Outline": [
+    "dm:labels"
   ],
   "Belly Prefs": [
     "tgui:belly_preferences"
@@ -3017,11 +3078,23 @@
   "Belly Sizemod - Nutrition": [
     "tgui:belly_preferences"
   ],
+  "Belly Slim": [
+    "dm:labels"
+  ],
+  "Belly Slim (Alt) + Tonage": [
+    "dm:labels"
+  ],
+  "Belly Slim Alternative": [
+    "dm:labels"
+  ],
   "Belly Uses Skintone": [
     "tgui:belly_preferences"
   ],
   "Belly Visibility": [
     "tgui:belly_preferences"
+  ],
+  "Belly and Butt": [
+    "dm:labels"
   ],
   "Belly coloration. Match this to your skin, Augments+ or Mutant Colors to make it look smooth, and toggle 'Use Skin tone' if your torso uses a skintone spritesheet.": [
     "tgui:belly_preferences"
@@ -3310,10 +3383,19 @@
   "Blank Objective": [
     "tgui:OpposingForcePanel"
   ],
+  "Blank Round Face, Alt": [
+    "dm:labels"
+  ],
+  "Blank Round Face, Flat": [
+    "dm:labels"
+  ],
   "Blank State": [
     "tgui:GreyscaleModifyMenu"
   ],
   "Blank White": [
+    "dm:labels"
+  ],
+  "Blank round face (use with monster mouth)": [
     "dm:labels"
   ],
   "Blanks": [
@@ -3585,6 +3667,15 @@
   "Body Text": [
     "tgui:StoryManager"
   ],
+  "Body Tonage": [
+    "dm:labels"
+  ],
+  "Body Weight": [
+    "dm:labels"
+  ],
+  "Body Weight (Greyscale)": [
+    "dm:labels"
+  ],
   "Body type": [
     "tgui:body_type"
   ],
@@ -3812,6 +3903,12 @@
     "dm:labels"
   ],
   "Bouquet - Sunflower": [
+    "dm:labels"
+  ],
+  "Bovine": [
+    "dm:labels"
+  ],
+  "Bovine Spot": [
     "dm:labels"
   ],
   "Bovinæ Overcoat": [
@@ -4155,6 +4252,9 @@
     "dm:labels"
   ],
   "Brown (Greyscale)": [
+    "dm:labels"
+  ],
+  "Brows": [
     "dm:labels"
   ],
   "Brush": [
@@ -4599,6 +4699,9 @@
   "Burnt Off": [
     "dm:labels"
   ],
+  "Burnt Off Grayscale": [
+    "dm:labels"
+  ],
   "Burrito": [
     "dm:labels"
   ],
@@ -4624,6 +4727,9 @@
     "dm:labels"
   ],
   "Butcher": [
+    "dm:labels"
+  ],
+  "Butt": [
     "dm:labels"
   ],
   "Butt Choice": [
@@ -5011,6 +5117,9 @@
   "Cancel the current vote and reset the voting system.": [
     "tgui:EventPanel"
   ],
+  "Candidate {0}": [
+    "tgui:PaiCard"
+  ],
   "Candy": [
     "dm:labels"
   ],
@@ -5350,6 +5459,9 @@
     "tgui:RecipeContent",
     "tgui:RecipeLookup"
   ],
+  "Catalyst{0}": [
+    "tgui:ChemDispenser"
+  ],
   "Categories": [
     "tgui:AdminVerbPanel",
     "tgui:ArmamentStation",
@@ -5368,6 +5480,9 @@
   ],
   "Category Name": [
     "dm:labels"
+  ],
+  "Category Viewer{0}": [
+    "tgui:LogViewer"
   ],
   "Cattleman Hat": [
     "dm:labels"
@@ -5874,6 +5989,9 @@
     "dm:labels",
     "tgui:chipped"
   ],
+  "Chitin": [
+    "dm:labels"
+  ],
   "Chitinclick": [
     "dm:labels"
   ],
@@ -6036,6 +6154,9 @@
     "tgui:hotkeys"
   ],
   "Claustrophobia": [
+    "dm:labels"
+  ],
+  "Claw Tips": [
     "dm:labels"
   ],
   "Claws": [
@@ -6280,6 +6401,9 @@
   "Clown Ass-ailant": [
     "dm:antagonists"
   ],
+  "Clown Cross": [
+    "dm:labels"
+  ],
   "Clown Designs": [
     "dm:labels"
   ],
@@ -6287,6 +6411,9 @@
     "dm:labels"
   ],
   "Clown Laugh": [
+    "dm:labels"
+  ],
+  "Clown Lips": [
     "dm:labels"
   ],
   "Clown Operative": [
@@ -6477,10 +6604,19 @@
   "Color Adapter": [
     "dm:labels"
   ],
+  "Color Bands": [
+    "dm:labels"
+  ],
+  "Color Bands (Foot)": [
+    "dm:labels"
+  ],
   "Color Blindness Testing": [
     "tgui:ColorBlindTester"
   ],
   "Color Configuration": [
+    "tgui:GreyscaleModifyMenu"
+  ],
+  "Color Group {0}": [
     "tgui:GreyscaleModifyMenu"
   ],
   "Color Matrix Editor": [
@@ -6491,6 +6627,9 @@
   ],
   "Color code the reagents by pH": [
     "tgui:ChemDispenser"
+  ],
+  "Color scheme: {0}": [
+    "tgui:OrbitSearchBar"
   ],
   "Color with Uniform": [
     "tgui:NovaTumsPrefs"
@@ -6881,6 +7020,9 @@
     "tgui:IVDrip",
     "tgui:RecipeLookup"
   ],
+  "Container {0}": [
+    "tgui:BeakerPanel"
+  ],
   "Containers": [
     "dm:labels"
   ],
@@ -7048,6 +7190,9 @@
   "Core charge": [
     "tgui:AnomalousWeatherTower"
   ],
+  "Corgi": [
+    "dm:labels"
+  ],
   "Corgi Plushie": [
     "dm:labels"
   ],
@@ -7114,6 +7259,9 @@
   "Corvid Beak (Top)": [
     "dm:labels"
   ],
+  "Corvid Talon": [
+    "dm:labels"
+  ],
   "Cosmetic Recoil Strength": [
     "tgui:accessibility"
   ],
@@ -7144,6 +7292,9 @@
   ],
   "Cost estimate: {0}": [
     "tgui:ExoscannerConsole"
+  ],
+  "Costs {0} {1} per order": [
+    "tgui:ProduceConsole"
   ],
   "Costumes": [
     "dm:labels"
@@ -7372,6 +7523,9 @@
   ],
   "Criticality": [
     "tgui:RBMK2"
+  ],
+  "Critter Legs": [
+    "dm:labels"
   ],
   "Crocin Bottle": [
     "dm:labels"
@@ -7877,6 +8031,9 @@
   "Cycling Id": [
     "tgui:AirlockElectronics"
   ],
+  "Cyclopean Eye": [
+    "dm:labels"
+  ],
   "Cytologist": [
     "dm:labels"
   ],
@@ -8008,6 +8165,9 @@
   "Dairy products": [
     "dm:labels"
   ],
+  "Dalmatian": [
+    "dm:labels"
+  ],
   "Damage": [
     "tgui:PlayerPanel"
   ],
@@ -8102,6 +8262,9 @@
   "Data unit": [
     "tgui:Tutorial"
   ],
+  "Datashark": [
+    "dm:labels"
+  ],
   "Date": [
     "tgui:StoryManager"
   ],
@@ -8152,6 +8315,12 @@
     "dm:labels"
   ],
   "Death Degradation Disorder": [
+    "dm:labels"
+  ],
+  "Deathhead": [
+    "dm:labels"
+  ],
+  "Deathhead Grayscale": [
     "dm:labels"
   ],
   "Deathmatch": [
@@ -8234,6 +8403,9 @@
     "dm:labels"
   ],
   "Deer 2": [
+    "dm:labels"
+  ],
+  "Deer Hoof": [
     "dm:labels"
   ],
   "Deer II": [
@@ -8332,6 +8504,9 @@
   ],
   "Delete connection": [
     "tgui:Port"
+  ],
+  "Delete from {0}": [
+    "tgui:MutationInfo"
   ],
   "Delete job items": [
     "dm:labels"
@@ -8883,6 +9058,9 @@
   "Disconnect Sensor": [
     "tgui:Home"
   ],
+  "Disconnect {0}.": [
+    "tgui:OreSilo"
+  ],
   "Disconnected": [
     "tgui:Canister",
     "tgui:ModulesPane",
@@ -8890,6 +9068,9 @@
   ],
   "Discount-Eligible Experiments": [
     "tgui:TechNode"
+  ],
+  "Discount: {0}": [
+    "tgui:NtosScipaper"
   ],
   "Discover!": [
     "tgui:Experimentor"
@@ -9063,7 +9244,13 @@
   "Doesn't send items. Afer landing, returns to dropoff turf (or bay if none specified).": [
     "tgui:ReverseMenu"
   ],
+  "Dog": [
+    "dm:labels"
+  ],
   "Dog Person": [
+    "dm:labels"
+  ],
+  "Dog Spot": [
     "dm:labels"
   ],
   "Dog, Long": [
@@ -9237,6 +9424,12 @@
     "dm:labels"
   ],
   "Drake (Old)": [
+    "dm:labels"
+  ],
+  "Drake Bone": [
+    "dm:labels"
+  ],
+  "Drake Eyes": [
     "dm:labels"
   ],
   "Draw": [
@@ -9645,6 +9838,9 @@
   "Edit this outfit on a VV window": [
     "tgui:OutfitEditor"
   ],
+  "Edit: {0}": [
+    "tgui:index"
+  ],
   "Editing disabled by CentCom!": [
     "tgui:AutomatedAnnouncement"
   ],
@@ -9820,6 +10016,9 @@
   "Electronics: 1": [
     "tgui:OrionGame"
   ],
+  "Electronics: {0}": [
+    "tgui:OrionGame"
+  ],
   "Elegant Bun": [
     "dm:labels"
   ],
@@ -9913,6 +10112,9 @@
   ],
   "EmojiPedia": [
     "dm:labels"
+  ],
+  "Emojipedia V3.7.10{0}": [
+    "tgui:NtosEmojipedia"
   ],
   "Emote": [
     "tgui:Soulcatcher"
@@ -10215,6 +10417,9 @@
     "dm:labels"
   ],
   "Engine Parts: 1": [
+    "tgui:OrionGame"
+  ],
+  "Engine Parts: {0}": [
     "tgui:OrionGame"
   ],
   "Engine Technician": [
@@ -10594,6 +10799,9 @@
   "Existing Shuttle: None": [
     "tgui:ShuttleManipulator"
   ],
+  "Existing Shuttle: {0}": [
+    "tgui:ShuttleManipulator"
+  ],
   "Exosuit Boards": [
     "dm:labels"
   ],
@@ -10624,6 +10832,9 @@
     "tgui:ShuttleBlueprints"
   ],
   "Expand the selected area with the connected section of the default area.": [
+    "tgui:ShuttleBlueprints"
+  ],
+  "Expand the selected area with the connected section of the default area.{0}": [
     "tgui:ShuttleBlueprints"
   ],
   "Expanded Disk": [
@@ -10786,11 +10997,17 @@
   "Eye Antenna": [
     "dm:labels"
   ],
+  "Eye Bags": [
+    "dm:labels"
+  ],
   "Eye Emissives": [
     "tgui:species_features"
   ],
   "Eye color": [
     "tgui:species_features"
+  ],
+  "Eyeliner": [
+    "dm:labels"
   ],
   "Eyepatch": [
     "dm:labels"
@@ -11130,6 +11347,9 @@
   ],
   "Fennec Large Flat Sharp": [
     "dm:labels"
+  ],
+  "Ferments into: {0}": [
+    "tgui:SeedTable"
   ],
   "Fibers {0}/{1}": [
     "tgui:ForensicsSpoofer"
@@ -11474,6 +11694,15 @@
   "Float onto the station and complete as many contracts for your employer as you can!": [
     "dm:antagonists"
   ],
+  "Floof": [
+    "dm:labels"
+  ],
+  "Floofer": [
+    "dm:labels"
+  ],
+  "Floofer Sock": [
+    "dm:labels"
+  ],
   "Floor": [
     "tgui:ElevatorPanel"
   ],
@@ -11612,6 +11841,9 @@
   "Flush Buffer": [
     "tgui:TelecommsMonitor"
   ],
+  "Flushed Cheeks": [
+    "dm:labels"
+  ],
   "Fly": [
     "dm:labels",
     "tgui:ShuttleManipulator"
@@ -11685,6 +11917,9 @@
     "tgui:food_allergy"
   ],
   "Food Left: 80": [
+    "tgui:OrionGame"
+  ],
+  "Food Left: {0}": [
     "tgui:OrionGame"
   ],
   "Foods": [
@@ -11843,6 +12078,9 @@
   "Four Ears 3": [
     "dm:labels"
   ],
+  "Four Eyes": [
+    "dm:labels"
+  ],
   "Fox": [
     "dm:labels"
   ],
@@ -11856,6 +12094,9 @@
     "dm:labels"
   ],
   "Fox Plushie": [
+    "dm:labels"
+  ],
+  "Fox Sock": [
     "dm:labels"
   ],
   "Fragility": [
@@ -11951,6 +12192,9 @@
   "Frizzy Sidecut": [
     "dm:labels"
   ],
+  "Frog": [
+    "dm:labels"
+  ],
   "From Who?": [
     "tgui:AdminPDA"
   ],
@@ -11986,6 +12230,9 @@
     "tgui:ModulesPane"
   ],
   "Fuel Left: 60": [
+    "tgui:OrionGame"
+  ],
+  "Fuel Left: {0}": [
     "tgui:OrionGame"
   ],
   "Fuel Source:": [
@@ -12620,6 +12867,12 @@
   "Goal": [
     "tgui:PrisonerManagement"
   ],
+  "Goat": [
+    "dm:labels"
+  ],
+  "Goat Hoof": [
+    "dm:labels"
+  ],
   "Goatee": [
     "dm:labels"
   ],
@@ -12695,7 +12948,13 @@
   "Gothic": [
     "dm:labels"
   ],
+  "Gothic Grayscale": [
+    "dm:labels"
+  ],
   "Gourmand": [
+    "dm:labels"
+  ],
+  "Gradient": [
     "dm:labels"
   ],
   "Graduate Student": [
@@ -12703,6 +12962,9 @@
   ],
   "Graft gains the following trait:": [
     "tgui:SeedTable"
+  ],
+  "Graft: {0}": [
+    "tgui:Graft"
   ],
   "Grain": [
     "dm:labels"
@@ -12911,6 +13173,9 @@
   "Guilmon": [
     "dm:labels"
   ],
+  "Guilmon Mark": [
+    "dm:labels"
+  ],
   "Guilty": [
     "tgui:MafiaPanel"
   ],
@@ -13082,6 +13347,9 @@
     "dm:labels",
     "tgui:EmotePanel"
   ],
+  "Hands Feet": [
+    "dm:labels"
+  ],
   "Handshake": [
     "dm:interactions"
   ],
@@ -13137,6 +13405,12 @@
   "Harebell": [
     "dm:labels"
   ],
+  "Harlequin": [
+    "dm:labels"
+  ],
+  "Harlequin Reversed": [
+    "dm:labels"
+  ],
   "Harpy": [
     "dm:labels"
   ],
@@ -13179,10 +13453,19 @@
   "Harpy (Top)": [
     "dm:labels"
   ],
+  "Harpy Claws": [
+    "dm:labels"
+  ],
   "Harpy Fluff": [
     "dm:labels"
   ],
+  "Harpy Lower Legs": [
+    "dm:labels"
+  ],
   "Harpy Top (Alt) Reshade": [
+    "dm:labels"
+  ],
+  "Harpy Upper Legs": [
     "dm:labels"
   ],
   "Harpy left leg": [
@@ -13222,6 +13505,9 @@
     "dm:labels"
   ],
   "Hawk": [
+    "dm:labels"
+  ],
+  "Hawk Talon": [
     "dm:labels"
   ],
   "Hazard Jacket (Colorable)": [
@@ -13625,6 +13911,9 @@
   "High Scores": [
     "tgui:Achievements"
   ],
+  "High volume {0}": [
+    "tgui:Radio"
+  ],
   "High-Functioning Zombie": [
     "dm:labels"
   ],
@@ -13936,6 +14225,9 @@
   "Hull Parts: 1": [
     "tgui:OrionGame"
   ],
+  "Hull Parts: {0}": [
+    "tgui:OrionGame"
+  ],
   "Human": [
     "dm:labels"
   ],
@@ -14042,6 +14334,9 @@
     "dm:labels"
   ],
   "Hyena": [
+    "dm:labels"
+  ],
+  "Hyena Side": [
     "dm:labels"
   ],
   "Hyena mane": [
@@ -14629,6 +14924,9 @@
   "Insect (Underbelly)": [
     "dm:labels"
   ],
+  "Insect Antennae": [
+    "dm:labels"
+  ],
   "Insect Laugh (Moth)": [
     "dm:labels"
   ],
@@ -14675,6 +14973,9 @@
     "dm:labels"
   ],
   "Insectoid II": [
+    "dm:labels"
+  ],
+  "Insectoid Trim": [
     "dm:labels"
   ],
   "Insert": [
@@ -14825,6 +15126,9 @@
   ],
   "Intensity: {0}": [
     "tgui:OpposingForcePanel"
+  ],
+  "Interact - {0}": [
+    "tgui:index"
   ],
   "Interaction Priorities": [
     "tgui:index"
@@ -15062,6 +15366,12 @@
   "Jackal": [
     "dm:labels"
   ],
+  "Jackal Back Fur": [
+    "dm:labels"
+  ],
+  "Jackal Back Fur Accents": [
+    "dm:labels"
+  ],
   "Jackets": [
     "dm:labels"
   ],
@@ -15161,6 +15471,9 @@
   "Jester Suit (Alt)": [
     "dm:labels"
   ],
+  "Jettison {0}": [
+    "tgui:ExodroneConsole"
+  ],
   "Jewish Kippah": [
     "dm:labels"
   ],
@@ -15225,6 +15538,9 @@
   "Juices into:": [
     "tgui:Seed"
   ],
+  "Juicing result: {0}": [
+    "tgui:SeedTable"
+  ],
   "Jukebox volume": [
     "tgui:sounds"
   ],
@@ -15279,6 +15595,9 @@
     "dm:labels"
   ],
   "Jungle (Greyscale)": [
+    "dm:labels"
+  ],
+  "Jungle Grayscale": [
     "dm:labels"
   ],
   "Junior Botanist": [
@@ -15360,6 +15679,9 @@
     "tgui:Achievements",
     "tgui:HotkeysHelp",
     "tgui:LanguageMenu"
+  ],
+  "Key enzyme: {0}": [
+    "tgui:index"
   ],
   "Keybindings": [
     "tgui:index"
@@ -15674,6 +15996,9 @@
   "Lantern": [
     "dm:labels"
   ],
+  "Large Eyes": [
+    "dm:labels"
+  ],
   "Laser Cooldown": [
     "tgui:RadioactiveMicrolaser"
   ],
@@ -15940,6 +16265,9 @@
   "Left sided Black Thigh-highs": [
     "dm:labels"
   ],
+  "Leg Band": [
+    "dm:labels"
+  ],
   "Leg type": [
     "tgui:species_features"
   ],
@@ -15962,6 +16290,9 @@
     "tgui:GlassBlowing"
   ],
   "Leopard": [
+    "dm:labels"
+  ],
+  "Leopard (alt)": [
     "dm:labels"
   ],
   "Leporid": [
@@ -16662,6 +16993,9 @@
   "Lovers (Greyscale)": [
     "dm:labels"
   ],
+  "Lovers Grayscale": [
+    "dm:labels"
+  ],
   "Low": [
     "dm:labels",
     "tgui:JobsPage",
@@ -16689,6 +17023,9 @@
     "dm:labels"
   ],
   "Low wings": [
+    "dm:labels"
+  ],
+  "Lower Limb": [
     "dm:labels"
   ],
   "Lowered": [
@@ -17675,6 +18012,9 @@
   "Merge the current area into the default area.": [
     "tgui:ShuttleBlueprints"
   ],
+  "Merge the current area into the default area.{0}": [
+    "tgui:ShuttleBlueprints"
+  ],
   "Mermaid": [
     "dm:labels"
   ],
@@ -17717,6 +18057,9 @@
     "tgui:index"
   ],
   "Message to send to allied station": [
+    "tgui:Main"
+  ],
+  "Message to transmit to {0} via quantum entanglement": [
     "tgui:Main"
   ],
   "Messages": [
@@ -18119,6 +18462,18 @@
   "Monophobia": [
     "dm:labels"
   ],
+  "Monster Mouth": [
+    "dm:labels"
+  ],
+  "Monster Mouth (White)": [
+    "dm:labels"
+  ],
+  "Monster Mouth (White, eye-compatible)": [
+    "dm:labels"
+  ],
+  "Monster Mouth 2": [
+    "dm:labels"
+  ],
   "Monstrous strike:": [
     "tgui:AntagInfoDemon"
   ],
@@ -18144,6 +18499,12 @@
     "dm:labels"
   ],
   "Moon Fly": [
+    "dm:labels"
+  ],
+  "Moonfly": [
+    "dm:labels"
+  ],
+  "Moonfly Grayscale": [
     "dm:labels"
   ],
   "Morality Core Report:{0}": [
@@ -18554,6 +18915,9 @@
     "dm:antagonists",
     "dm:labels"
   ],
+  "Mutates into: {0}": [
+    "tgui:SeedTable"
+  ],
   "Mutation Info": [
     "tgui:DnaConsoleStorage"
   ],
@@ -18632,6 +18996,9 @@
   ],
   "NIFSoft Catalog": [
     "dm:labels"
+  ],
+  "NIFSoft Programs ({0} slot{1} available)": [
+    "tgui:NifProgramList"
   ],
   "NO CELL": [
     "tgui:Portagrav"
@@ -20034,6 +20401,9 @@
   "North": [
     "tgui:AirlockElectronics"
   ],
+  "Nose Blemish": [
+    "dm:labels"
+  ],
   "Nose Lick": [
     "dm:labels"
   ],
@@ -20376,7 +20746,13 @@
   "Oak Worm": [
     "dm:labels"
   ],
+  "Oakworm": [
+    "dm:labels"
+  ],
   "Oakworm (Greyscale)": [
+    "dm:labels"
+  ],
+  "Oakworm Grayscale": [
     "dm:labels"
   ],
   "Obfuscate Name...": [
@@ -20841,6 +21217,9 @@
   "Opfor Policy": [
     "tgui:OpposingForcePanel"
   ],
+  "Opposing Force: {0}": [
+    "tgui:OpposingForcePanel"
+  ],
   "Opt-Out Of Random Birthdays": [
     "tgui:birthday_opt_out"
   ],
@@ -20859,6 +21238,9 @@
   ],
   "Optimal temperature": [
     "tgui:ChemDispenser"
+  ],
+  "Optimal {0} Amount - Tier {1}": [
+    "tgui:NtosScipaper"
   ],
   "Option": [
     "tgui:MessageMonitor"
@@ -21027,7 +21409,13 @@
   "Otie Smile (Top)": [
     "dm:labels"
   ],
+  "Otie Spot": [
+    "dm:labels"
+  ],
   "Otter": [
+    "dm:labels"
+  ],
+  "Otter Head": [
     "dm:labels"
   ],
   "Otusian": [
@@ -21117,6 +21505,9 @@
   ],
   "Over eye": [
     "dm:labels"
+  ],
+  "OverFlayer{0}{1}": [
+    "tgui:index"
   ],
   "OverSeer": [
     "dm:labels"
@@ -21388,6 +21779,9 @@
     "tgui:Home"
   ],
   "Pansexual": [
+    "dm:labels"
+  ],
+  "Panther": [
     "dm:labels"
   ],
   "Panties": [
@@ -22107,7 +22501,11 @@
     "tgui:ChemPress"
   ],
   "Pilot": [
+    "dm:labels",
     "tgui:ExosuitControlConsole"
+  ],
+  "Pilot Jaw": [
+    "dm:labels"
   ],
   "Pin": [
     "tgui:MODsuit"
@@ -22214,6 +22612,12 @@
   "Plane": [
     "tgui:PlaneEditor"
   ],
+  "Plane Debugging: {0}": [
+    "tgui:index"
+  ],
+  "Plane Master: {0}": [
+    "tgui:PlaneEditor"
+  ],
   "Plane masters are stored in groups, based off where they came from. MAIN is the main group, but if you open something that displays atoms in a new window, it'll show up here.": [
     "tgui:index"
   ],
@@ -22307,6 +22711,9 @@
     "tgui:CircuitAdminPanel"
   ],
   "Player Ticket History": [
+    "tgui:PlayerTicketHistory"
+  ],
+  "Player Ticket History{0}": [
     "tgui:PlayerTicketHistory"
   ],
   "Player is a Veteran.": [
@@ -22539,6 +22946,9 @@
   "Poison (Greyscale)": [
     "dm:labels"
   ],
+  "Poison Grayscale": [
+    "dm:labels"
+  ],
   "Police Whistle": [
     "dm:labels"
   ],
@@ -22735,6 +23145,9 @@
   "Possum": [
     "dm:labels"
   ],
+  "Possum Sock": [
+    "dm:labels"
+  ],
   "Posted by {0}": [
     "tgui:Newscaster"
   ],
@@ -22834,6 +23247,9 @@
     "tgui:AntagInfoNightmare",
     "tgui:AntagInfoSunwalker",
     "tgui:AntagInfoVoidwalker"
+  ],
+  "Powers {0} the bot.": [
+    "tgui:SimpleBot"
   ],
   "Prayer": [
     "dm:labels"
@@ -22949,6 +23365,9 @@
     "tgui:PaintingAdminPanel",
     "tgui:ShuttleManipulator",
     "tgui:index"
+  ],
+  "Preview ({0})": [
+    "tgui:GreyscaleModifyMenu"
   ],
   "Preview Sound": [
     "tgui:EmotePanel"
@@ -23100,6 +23519,9 @@
   ],
   "Printout List": [
     "tgui:CivCargoHoldTerminal"
+  ],
+  "Prints a poster with mugshot and crimes.{0}": [
+    "tgui:RecordPrint"
   ],
   "Prints a poster with mugshot and description.": [
     "tgui:RecordPrint"
@@ -23304,6 +23726,15 @@
     "dm:labels"
   ],
   "Protogen - With Bolt": [
+    "dm:labels"
+  ],
+  "Protogen Arm": [
+    "dm:labels"
+  ],
+  "Protogen Chest": [
+    "dm:labels"
+  ],
+  "Protogen Leg - Digitigrade": [
     "dm:labels"
   ],
   "Prototype": [
@@ -23562,6 +23993,9 @@
   "Query and cache: {0}{1}{2}": [
     "tgui:PlayerTicketHistory"
   ],
+  "Question {0}": [
+    "tgui:Interview"
+  ],
   "Questionnaire": [
     "tgui:Interview"
   ],
@@ -23659,6 +24093,12 @@
   "Rabbit Necklace": [
     "dm:labels"
   ],
+  "Raccoon": [
+    "dm:labels"
+  ],
+  "Raccoon Spot": [
+    "dm:labels"
+  ],
   "Rad Fiend": [
     "dm:labels"
   ],
@@ -23694,6 +24134,9 @@
     "dm:labels"
   ],
   "Ragged": [
+    "dm:labels"
+  ],
+  "Ragged Grayscale": [
     "dm:labels"
   ],
   "Raid": [
@@ -23888,6 +24331,12 @@
   "Rat Catcher": [
     "dm:labels"
   ],
+  "Rat Paw": [
+    "dm:labels"
+  ],
+  "Rat Spot": [
+    "dm:labels"
+  ],
   "Rate profile": [
     "tgui:RecipeLookup"
   ],
@@ -23988,6 +24437,9 @@
   ],
   "Reading:": [
     "tgui:ChemHeater"
+  ],
+  "Reading: {0}": [
+    "tgui:AdminBookViewer"
   ],
   "Ready": [
     "tgui:InstrumentEditor",
@@ -24214,6 +24666,9 @@
   "Red Panda": [
     "dm:labels"
   ],
+  "Red Panda Head": [
+    "dm:labels"
+  ],
   "Red Text": [
     "dm:labels"
   ],
@@ -24224,6 +24679,9 @@
     "dm:labels"
   ],
   "Reddish": [
+    "dm:labels"
+  ],
+  "Reddish Grayscale": [
     "dm:labels"
   ],
   "Redecorate": [
@@ -24353,6 +24811,9 @@
   "Relations": [
     "tgui:NtosScipaper"
   ],
+  "Relations: {0}": [
+    "tgui:NtosScipaper"
+  ],
   "Relative": [
     "tgui:CreateObjectSettings"
   ],
@@ -24455,6 +24916,9 @@
   ],
   "Remove Status": [
     "tgui:AntagInfoOpfor"
+  ],
+  "Remove all empty space from the shuttle.{0}": [
+    "tgui:ShuttleBlueprints"
   ],
   "Remove attachment": [
     "tgui:ChatScreen"
@@ -24631,6 +25095,9 @@
     "tgui:MessageWriteTab"
   ],
   "Request an update from the admins.": [
+    "tgui:OpposingForcePanel"
+  ],
+  "Request an update from the admins.{0}": [
     "tgui:OpposingForcePanel"
   ],
   "Request more candidates from beyond.": [
@@ -25366,6 +25833,9 @@
   "Royal Curls": [
     "dm:labels"
   ],
+  "Royal Grayscale": [
+    "dm:labels"
+  ],
   "Royal Purple": [
     "dm:labels"
   ],
@@ -25484,6 +25954,9 @@
     "tgui:Apc"
   ],
   "Sabitsuki": [
+    "dm:labels"
+  ],
+  "Sabresune": [
     "dm:labels"
   ],
   "Sadako": [
@@ -25912,10 +26385,16 @@
   "Scientist's Tailcoat": [
     "dm:labels"
   ],
+  "Sclera": [
+    "dm:labels"
+  ],
   "Scolipede": [
     "dm:labels"
   ],
   "Scolipede (Top)": [
+    "dm:labels"
+  ],
+  "Scolipede Spikes": [
     "dm:labels"
   ],
   "Score": [
@@ -26075,6 +26554,9 @@
   ],
   "Search here...": [
     "tgui:CreateObject"
+  ],
+  "Search in {0}{1}": [
+    "tgui:index"
   ],
   "Search item...": [
     "tgui:ProduceConsole"
@@ -26413,6 +26895,7 @@
     "tgui:StationTraitsPanel"
   ],
   "Select {0}": [
+    "tgui:MainPage",
     "tgui:ReligiousTool"
   ],
   "Selected": [
@@ -26544,6 +27027,9 @@
   "Send message to {0}": [
     "tgui:Main"
   ],
+  "Send message to {0}...": [
+    "tgui:ChatScreen"
+  ],
   "Send to Chat": [
     "tgui:MafiaPanel"
   ],
@@ -26609,6 +27095,9 @@
   ],
   "Sequence unreadable due to unpredictable mutation.": [
     "tgui:DnaConsoleSequencer"
+  ],
+  "Sequence {0}": [
+    "tgui:NtosVirtualPet"
   ],
   "Sequencer": [
     "tgui:index"
@@ -26791,6 +27280,9 @@
   "Sets TGUI Say to use a light mode.": [
     "tgui:tgui"
   ],
+  "Sets the direction of the preview sprite to {0}": [
+    "tgui:GreyscaleModifyMenu"
+  ],
   "Sets the maximum size of belly sprite you are willing to see. Size 4 and beyond are large, size 8 and beyond are hyper, size 11 and beyond are very hyper.": [
     "tgui:belly_preferences"
   ],
@@ -26822,6 +27314,9 @@
   ],
   "Settings for {0}:": [
     "tgui:NtosNetChat"
+  ],
+  "Settings: {0}": [
+    "tgui:PaiCard"
   ],
   "Settler": [
     "dm:labels"
@@ -27030,6 +27525,9 @@
     "dm:labels"
   ],
   "Shepherd": [
+    "dm:labels"
+  ],
+  "Shepherd Spot": [
     "dm:labels"
   ],
   "Sheriff": [
@@ -27706,6 +28204,9 @@
   "Site Supervisor": [
     "dm:labels"
   ],
+  "Six Nips": [
+    "dm:labels"
+  ],
   "Six-Pack - Beer": [
     "dm:labels"
   ],
@@ -28004,6 +28505,12 @@
   "Slot Size": [
     "tgui:SkillStation"
   ],
+  "Sloth": [
+    "dm:labels"
+  ],
+  "Sloth Head": [
+    "dm:labels"
+  ],
   "Slots": [
     "tgui:NtosJobManager"
   ],
@@ -28215,6 +28722,9 @@
     "tgui:ApcControl",
     "tgui:PowerMonitor"
   ],
+  "Sort by: {0}": [
+    "tgui:index"
+  ],
   "Sorted by Key": [
     "tgui:HotkeysHelp"
   ],
@@ -28229,6 +28739,9 @@
   ],
   "Sound Size Modifier": [
     "tgui:NovaTumsPrefs"
+  ],
+  "Sound Volume:{0}": [
+    "tgui:PodSounds"
   ],
   "Sound input not yet supported": [
     "tgui:AdminVerbPanel"
@@ -28509,6 +29022,12 @@
   ],
   "Split admin tabs": [
     "tgui:legacy_toggles"
+  ],
+  "Splotches": [
+    "dm:labels"
+  ],
+  "Splotches Swapped": [
+    "dm:labels"
   ],
   "Spooky Scary Skeleton": [
     "dm:labels"
@@ -29005,6 +29524,9 @@
   "Stored Packets": [
     "tgui:ServerMonitor"
   ],
+  "Stored Photos ({0})": [
+    "tgui:NtosRobotact"
+  ],
   "Stored Subject": [
     "tgui:ExperimentalCloner"
   ],
@@ -29082,6 +29604,9 @@
   ],
   "Striped Vertical": [
     "dm:labels"
+  ],
+  "Stripping {0}": [
+    "tgui:StripMenu"
   ],
   "Strong Blobs": [
     "tgui:AntagInfoBlob"
@@ -29168,11 +29693,17 @@
   "Submit your application for review.": [
     "tgui:OpposingForcePanel"
   ],
+  "Submit your application for review.{0}": [
+    "tgui:OpposingForcePanel"
+  ],
   "Submitted": [
     "tgui:Interview"
   ],
   "Subspace Radio": [
     "tgui:Intellicard"
+  ],
+  "Subspace Tx {0}": [
+    "tgui:Radio"
   ],
   "Subsystem Dependency Graph": [
     "tgui:MCDependencyDebug"
@@ -29606,11 +30137,32 @@
   "Synth Chassis Selection": [
     "tgui:species_features"
   ],
+  "Synth Chest Lights": [
+    "dm:labels"
+  ],
+  "Synth Collar Lights": [
+    "dm:labels"
+  ],
   "Synth Head Colors": [
     "tgui:species_features"
   ],
   "Synth Head Selection": [
     "tgui:species_features"
+  ],
+  "Synth Lights": [
+    "dm:labels"
+  ],
+  "Synth Pecs": [
+    "dm:labels"
+  ],
+  "Synth Pecs Lights": [
+    "dm:labels"
+  ],
+  "Synth Plates": [
+    "dm:labels"
+  ],
+  "Synth Scutes": [
+    "dm:labels"
   ],
   "Synthesized Blood": [
     "dm:labels"
@@ -30094,6 +30646,39 @@
   "Tasks": [
     "tgui:index"
   ],
+  "Tattoo - Butterfly": [
+    "dm:labels"
+  ],
+  "Tattoo - Circuit": [
+    "dm:labels"
+  ],
+  "Tattoo - Heart": [
+    "dm:labels"
+  ],
+  "Tattoo - Heart (Groin)": [
+    "dm:labels"
+  ],
+  "Tattoo - Hive": [
+    "dm:labels"
+  ],
+  "Tattoo - Infinity": [
+    "dm:labels"
+  ],
+  "Tattoo - Nightling": [
+    "dm:labels"
+  ],
+  "Tattoo - Silverburgh": [
+    "dm:labels"
+  ],
+  "Tattoo - Tiger": [
+    "dm:labels"
+  ],
+  "Tattoo - Tiger (Foot)": [
+    "dm:labels"
+  ],
+  "Tattoo - Tiger (Groin)": [
+    "dm:labels"
+  ],
   "Tau Ceti Beta": [
     "tgui:OrionGame"
   ],
@@ -30315,6 +30900,15 @@
   "Teshari (Thin)": [
     "dm:labels"
   ],
+  "Teshari Coat": [
+    "dm:labels"
+  ],
+  "Teshari Feathers (Female)": [
+    "dm:labels"
+  ],
+  "Teshari Feathers (Male)": [
+    "dm:labels"
+  ],
   "Teshari Feathers Backstrafe": [
     "dm:labels"
   ],
@@ -30363,6 +30957,9 @@
   "Teshari Feathers Upright": [
     "dm:labels"
   ],
+  "Teshari Lashes": [
+    "dm:labels"
+  ],
   "Teshari Mane": [
     "dm:labels"
   ],
@@ -30375,10 +30972,19 @@
   "Teshari Mohawk Alt": [
     "dm:labels"
   ],
+  "Teshari Plain": [
+    "dm:labels"
+  ],
   "Teshari Regular": [
     "dm:labels"
   ],
   "Teshari Regular Alt": [
+    "dm:labels"
+  ],
+  "Teshari Short": [
+    "dm:labels"
+  ],
+  "Teshari Underfluff": [
     "dm:labels"
   ],
   "Test Fire": [
@@ -31206,6 +31812,9 @@
   "Threat passively increases by {0} every minute": [
     "tgui:index"
   ],
+  "Three Eyes": [
+    "dm:labels"
+  ],
   "Threshold": [
     "tgui:ChemAutomaticBuffer",
     "tgui:Thresholds"
@@ -31445,6 +32054,12 @@
     "tgui:DynamicTester"
   ],
   "Tiger": [
+    "dm:labels"
+  ],
+  "Tiger Spot": [
+    "dm:labels"
+  ],
+  "Tiger Stripe": [
     "dm:labels"
   ],
   "Tiles": [
@@ -31762,6 +32377,9 @@
     "dm:labels",
     "tgui:RecipeContent"
   ],
+  "Tools: {0}": [
+    "tgui:RecipeContent"
+  ],
   "Tooltip delay (in milliseconds)": [
     "tgui:tooltips"
   ],
@@ -31784,6 +32402,9 @@
     "dm:labels"
   ],
   "Top Hat": [
+    "dm:labels"
+  ],
+  "Top Surgery Scars": [
     "dm:labels"
   ],
   "Top-Secret Equipment": [
@@ -32188,6 +32809,10 @@
     "tgui:SoulcatcherUser",
     "tgui:Telecomms"
   ],
+  "True plane: {0}": [
+    "tgui:AppearanceBox",
+    "tgui:AppearanceInfo"
+  ],
   "Trunk": [
     "dm:labels"
   ],
@@ -32491,6 +33116,9 @@
   "Unique Identifier": [
     "tgui:GeneticMakeupInfo"
   ],
+  "Unique {0}": [
+    "tgui:DnaConsoleEnzymes"
+  ],
   "Unit": [
     "tgui:AuxBaseConsole",
     "tgui:NtosRobotact"
@@ -32690,6 +33318,9 @@
   ],
   "Uploaded Keycards: {0}": [
     "tgui:AntagInfoAssaultops"
+  ],
+  "Upper Limb": [
+    "dm:labels"
   ],
   "Upstart Noble's Cap": [
     "dm:labels"
@@ -33429,6 +34060,18 @@
   "Vox Emperor Quills": [
     "dm:labels"
   ],
+  "Vox Heart": [
+    "dm:labels"
+  ],
+  "Vox Heart Tattoo": [
+    "dm:labels"
+  ],
+  "Vox Hive": [
+    "dm:labels"
+  ],
+  "Vox Hive Tattoo": [
+    "dm:labels"
+  ],
   "Vox Horns": [
     "dm:labels"
   ],
@@ -33451,6 +34094,12 @@
     "dm:labels"
   ],
   "Vox Neck Quills": [
+    "dm:labels"
+  ],
+  "Vox Nightling": [
+    "dm:labels"
+  ],
+  "Vox Nightling Tattoo": [
     "dm:labels"
   ],
   "Vox Nights": [
@@ -33483,6 +34132,9 @@
   "Vox Primalis Dreads": [
     "dm:labels"
   ],
+  "Vox Primalis Drone": [
+    "dm:labels"
+  ],
   "Vox Primalis Kingly": [
     "dm:labels"
   ],
@@ -33490,6 +34142,12 @@
     "dm:labels"
   ],
   "Vox Primalis Kingly Long": [
+    "dm:labels"
+  ],
+  "Vox Primalis Larva": [
+    "dm:labels"
+  ],
+  "Vox Primalis Leader": [
     "dm:labels"
   ],
   "Vox Primalis Long": [
@@ -33501,10 +34159,22 @@
   "Vox Primalis Punk": [
     "dm:labels"
   ],
+  "Vox Primalis Raider": [
+    "dm:labels"
+  ],
   "Vox Primalis Razor": [
     "dm:labels"
   ],
+  "Vox Primalis Reaver": [
+    "dm:labels"
+  ],
   "Vox Primalis Rome": [
+    "dm:labels"
+  ],
+  "Vox Primalis Scavenger": [
+    "dm:labels"
+  ],
+  "Vox Primalis Servirtor": [
     "dm:labels"
   ],
   "Vox Primalis Shortquills": [
@@ -33552,7 +34222,16 @@
   "Vox Tail": [
     "dm:labels"
   ],
+  "Vox Talon": [
+    "dm:labels"
+  ],
   "Vox Tiel Quills": [
+    "dm:labels"
+  ],
+  "Vox Tiger": [
+    "dm:labels"
+  ],
+  "Vox Tiger Tattoo": [
     "dm:labels"
   ],
   "Vox Tip": [
@@ -33839,6 +34518,9 @@
   ],
   "Welcome to the Virtual Domain.": [
     "tgui:AvatarHelp"
+  ],
+  "Welcome to your NIF, {0}": [
+    "tgui:index"
   ],
   "Welcome valued employee.": [
     "tgui:CivCargoHoldTerminal",
@@ -34177,7 +34859,13 @@
   "White ghosts": [
     "dm:labels"
   ],
+  "Whitefly": [
+    "dm:labels"
+  ],
   "Whitefly (Greyscale)": [
+    "dm:labels"
+  ],
+  "Whitefly Grayscale": [
     "dm:labels"
   ],
   "Whitelist": [
@@ -34327,7 +35015,13 @@
   "Witch Wing": [
     "dm:labels"
   ],
+  "Witchwing": [
+    "dm:labels"
+  ],
   "Witchwing (Greyscale)": [
+    "dm:labels"
+  ],
+  "Witchwing Grayscale": [
     "dm:labels"
   ],
   "With a law zero to complete your objectives at all costs, combine your omnipotence and malfunction modules to wreak havoc across the station. Go delta to destroy the station and all those who opposed you.": [
@@ -34374,6 +35068,9 @@
     "dm:labels"
   ],
   "Wolf Mask": [
+    "dm:labels"
+  ],
+  "Wolf Spot": [
     "dm:labels"
   ],
   "Wolfcut": [
@@ -34468,6 +35165,7 @@
     "dm:labels"
   ],
   "Xeno Head": [
+    "dm:labels",
     "tgui:species_features"
   ],
   "Xeno Head Colors": [
@@ -34755,6 +35453,9 @@
     "tgui:AntagInfoBrother",
     "tgui:AntagInfoGeneric"
   ],
+  "You are the {0}.": [
+    "tgui:AntagInfoSpy"
+  ],
   "You are {0} from the{1}.": [
     "tgui:AntagInfoChangeling"
   ],
@@ -34797,6 +35498,9 @@
   ],
   "You can only fight with ceremonial weapons. You will be at a severe disadvantage without one!": [
     "tgui:SparringContract"
+  ],
+  "You can only partially understand {0}.": [
+    "tgui:LanguageMenu"
   ],
   "You can press enter key or the save button to save an answer.": [
     "tgui:Interview"
@@ -35001,6 +35705,9 @@
   ],
   "You will not be able to edit your answers after submitting.": [
     "tgui:Interview"
+  ],
+  "You'll receive a cut of {0} Credits.": [
+    "tgui:CivCargoHoldTerminal"
   ],
   "You're obsessed with someone! Your obsession may begin to notice their personal items are stolen and their coworkers have gone missing, but will they realize they are your next victim in time?": [
     "dm:antagonists"
@@ -35237,6 +35944,11 @@
   ],
   "[MAXXED]": [
     "tgui:SkillPanel"
+  ],
+  "[Max: {0}]": [
+    "tgui:Autolathe",
+    "tgui:Fabricator",
+    "tgui:OreRedemptionMachine"
   ],
   "[Permanent]": [
     "tgui:AiAirlock"
@@ -36088,11 +36800,29 @@
   "{0} (Has {1}cr bet on it){2}": [
     "tgui:NtosSpaceBetting"
   ],
+  "{0} (Pick {1})": [
+    "tgui:ArmamentStation"
+  ],
+  "{0} (Scripture)": [
+    "tgui:ClockworkResearch"
+  ],
+  "{0} (Tinker's Design)": [
+    "tgui:ClockworkResearch"
+  ],
   "{0} (auto)": [
     "tgui:SolarControl"
   ],
+  "{0} ({1} positions open)": [
+    "tgui:CrewManifest"
+  ],
   "{0} ({1}% OFF)": [
     "tgui:NtosCouponMaster"
+  ],
+  "{0} - Constructed {1}": [
+    "tgui:TramPlaque"
+  ],
+  "{0} - Created by {1}": [
+    "tgui:NtosSpaceBetting"
   ],
   "{0} - Location: {1}": [
     "tgui:ServerControl"
@@ -36164,11 +36894,20 @@
   "{0} GQ / {1} GQ": [
     "tgui:NtnetRelay"
   ],
+  "{0} Information": [
+    "tgui:MedicalKiosk"
+  ],
+  "{0} Levels": [
+    "tgui:MedicalKiosk"
+  ],
   "{0} Loadout Preset": [
     "tgui:index"
   ],
   "{0} Moles": [
     "tgui:RBMK2"
+  ],
+  "{0} Mutant": [
+    "tgui:InfuserBook"
   ],
   "{0} New": [
     "tgui:NoteKeeper"
@@ -36180,6 +36919,9 @@
   "{0} Pain": [
     "tgui:InfoSection"
   ],
+  "{0} Player Panel": [
+    "tgui:PlayerPanel"
+  ],
   "{0} Pleasure": [
     "tgui:InfoSection"
   ],
@@ -36189,14 +36931,26 @@
   "{0} Rep": [
     "tgui:SyndContractor"
   ],
+  "{0} Requests Console": [
+    "tgui:index"
+  ],
   "{0} Resetting...": [
     "tgui:ApcControl"
+  ],
+  "{0} Ruleset Count": [
+    "tgui:DynamicAdmin"
+  ],
+  "{0} TILES": [
+    "tgui:index"
   ],
   "{0} Threat determines what items you can purchase. {1}{2}": [
     "tgui:index"
   ],
   "{0} Units": [
     "tgui:RapidConstructionDevice"
+  ],
+  "{0} Vault": [
+    "tgui:BankMachine"
   ],
   "{0} Vote": [
     "tgui:VotePanel"
@@ -36216,12 +36970,21 @@
   "{0} access": [
     "tgui:OreSilo"
   ],
+  "{0} amount is {1}": [
+    "tgui:Photocopier"
+  ],
   "{0} as {1}": [
     "tgui:JobsPage",
     "tgui:QuantumConsole"
   ],
+  "{0} automatic station patrol.": [
+    "tgui:SimpleBot"
+  ],
   "{0} available languages": [
     "tgui:LanguagesMenu"
+  ],
+  "{0} blueprints": [
+    "tgui:Blueprints"
   ],
   "{0} bount{1} served{2}": [
     "tgui:CivCargoHoldTerminal"
@@ -36317,6 +37080,9 @@
   "{0} other module(s) are being loaded remotely.": [
     "tgui:LawRack"
   ],
+  "{0} overclocking": [
+    "tgui:AtmosControls"
+  ],
   "{0} panicked at {1}:{2}: {3}": [
     "tgui:Log"
   ],
@@ -36330,13 +37096,22 @@
     "tgui:SpawnersMenu",
     "tgui:SyndContractor"
   ],
+  "{0} remote access via console.": [
+    "tgui:SimpleBot"
+  ],
   "{0} returned{1}.{2}": [
     "tgui:Log"
+  ],
+  "{0} scan at {1}": [
+    "tgui:ForensicLogs"
   ],
   "{0} seconds": [
     "tgui:DopplerArray",
     "tgui:Graft",
     "tgui:MatMarket"
+  ],
+  "{0} sheets": [
+    "tgui:PortableGenerator"
   ],
   "{0} sheets of {1} trading.": [
     "tgui:MatMarket"
@@ -36350,6 +37125,9 @@
   "{0} structural data": [
     "tgui:Blueprints"
   ],
+  "{0} the control panel.": [
+    "tgui:SimpleBot"
+  ],
   "{0} time{1}": [
     "tgui:SlotMachine"
   ],
@@ -36361,6 +37139,9 @@
   ],
   "{0} to {1}": [
     "tgui:FishCatalog"
+  ],
+  "{0} turns to:": [
+    "tgui:MODpaint"
   ],
   "{0} units of {1}": [
     "tgui:BeakerDisplay",
@@ -36385,14 +37166,30 @@
   "{0} {1} DNA": [
     "tgui:CellularEmporium"
   ],
+  "{0} | Published {1}/{2}/{3}": [
+    "tgui:NtosNewsArchive",
+    "tgui:StoryManager"
+  ],
   "{0}% ({1} failed attempts)": [
     "tgui:DynamicAdmin"
+  ],
+  "{0}% growth/sec.": [
+    "tgui:Microscope"
   ],
   "{0}'s HP: {1}/{2}": [
     "tgui:BattleArcade"
   ],
   "{0}'s MP: {1}": [
     "tgui:BattleArcade"
+  ],
+  "{0}'s objectives:": [
+    "tgui:AntagInfoSeparatist"
+  ],
+  "{0}'s particles": [
+    "tgui:index"
+  ],
+  "{0}.prg downloaded": [
+    "tgui:NtosNetDownloader"
   ],
   "{0}/{1} Units": [
     "tgui:RapidDecorationDevice"
@@ -36402,6 +37199,9 @@
   ],
   "{0}/{1} units": [
     "tgui:BeakerDisplay"
+  ],
+  "{0}: Lighting": [
+    "tgui:LightController"
   ],
   "{0}: {1}, Current Opt-In status: {2}, Ideal Opt-In status: {3}": [
     "tgui:OpposingForcePanel"
@@ -36414,6 +37214,9 @@
   ],
   "{0}Cabin Open": [
     "tgui:ModulesPane"
+  ],
+  "{0}Component Printer": [
+    "tgui:ComponentPrinter"
   ],
   "{0}Custom": [
     "tgui:DecalPainter"
@@ -36525,6 +37328,9 @@
   ],
   "{0}ms": [
     "tgui:SubsystemDialog"
+  ],
+  "{0}{1} - Notepad": [
+    "tgui:NtosNotepad"
   ],
   "{0}{1}NOTE: Custom sounds from outside the base game files will not save! :(": [
     "tgui:PresetsPage"

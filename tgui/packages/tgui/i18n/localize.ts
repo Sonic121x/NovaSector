@@ -5,6 +5,7 @@ import { Dropdown } from 'tgui-core/components';
 
 import { translateCurrent } from './catalog';
 import policy from './policy.json';
+import propTemplateKeys from './prop-templates.json';
 
 // 可翻 prop 名来自三端策略单一来源 strings/i18n/policy.json（`tgui-catalog.mjs sync` 复制到本
 // 目录）。抽取器读同一份 —— 两边各存一份清单时，新增 prop 只改一边会出现「目录里有键但界面不
@@ -21,6 +22,161 @@ const OPTION_TEXT_PROPS = new Set<string>(policy.option_text_props);
 // 清单来自三端策略单一来源 strings/i18n/policy.json 的 `no_auto_translate`
 // （`tgui-catalog.mjs sync` 复制到本目录供打包）。新增豁免改 policy.json 后跑 sync。
 const NO_AUTO_TRANSLATE = new Set<string>(policy.no_auto_translate);
+
+// 运行期在 TS 里拼出来的 prop 值（`` title={`Reading: ${data.title}`} ``）的落地层。
+//
+// 整串是运行期产物、永远不是目录键，所以精确查表必然 miss，框架词（`Reading:` / `Mutant` /
+// `Food Left:`）永远英文。抽取器已按 `Reading: {0}` 的模板把它们收进目录（见 tgui-catalog.mjs
+// propTemplate），这里做**逆匹配**：按字面段还原出模板 → 查译文 → 把捕获值填回中文语序。
+//
+// 三条安全线，每一条 DM 侧都栽过：
+//  ① 准入面只有 sidecar 里那批 prop 模板。目录里另有 590+ 条 children 模板，它们运行时按整条
+//     精确查表；把 `- {0}, the {1}` / `{0} of 12 total` 这种泛化骨架放进逆匹配面，会把任意
+//     同形状的整句劫持成「中文脚手架裹着英文」——比不翻更难看。
+//  ② **整串精确查表永远排在逆匹配之前**（见 translateText 的调用顺序）：最具体的证据优先，
+//     命中就直接返回，不给骨架模板抢先的机会。
+//  ③ 逆匹配是**整串**匹配（`^…$`），不是子串替换；多条同时匹配时取字面段最长的那条（最具体）。
+type PropTemplate = {
+  key: string;
+  pattern: RegExp;
+  anchor: string; // 最长字面段，用作 includes() 预筛
+  literalLength: number;
+  slots: number[]; // 按出现顺序的占位符编号
+  trailingLiteral: boolean[]; // 第 i 个占位符后面是否还有字面段
+};
+
+let propTemplateIndex: PropTemplate[] | null = null;
+const propTemplateCache = new Map<string, string | null>();
+
+function escapeRegExp(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function buildPropTemplateIndex(): PropTemplate[] {
+  const out: PropTemplate[] = [];
+  for (const key of propTemplateKeys as string[]) {
+    const pieces = key.split(/\{(\d+)\}/);
+    if (pieces.length < 3) continue;
+    let pattern = '^';
+    let anchor = '';
+    let literalLength = 0;
+    const slots: number[] = [];
+    const trailingLiteral: boolean[] = [];
+    for (let i = 0; i < pieces.length; i++) {
+      if (i % 2 === 0) {
+        pattern += escapeRegExp(pieces[i]);
+        literalLength += pieces[i].length;
+        if (pieces[i].length > anchor.length) anchor = pieces[i];
+        if (pieces[i] && trailingLiteral.length) {
+          trailingLiteral[trailingLiteral.length - 1] = true;
+        }
+      } else {
+        slots.push(Number.parseInt(pieces[i], 10));
+        trailingLiteral.push(false);
+        pattern += '([\\s\\S]*?)';
+      }
+    }
+    pattern += '$';
+    if (!anchor) continue;
+    out.push({
+      key,
+      pattern: new RegExp(pattern),
+      anchor,
+      literalLength,
+      slots,
+      trailingLiteral,
+    });
+  }
+  // 最具体的先试。
+  out.sort((a, b) => b.literalLength - a.literalLength);
+  return out;
+}
+
+/**
+ * 占位符代表的是一个**值**（名字、数量、状态词），不是一段散文。
+ *
+ * 这是逆匹配最关键的一道闸门，而且只能设在运行期：抽取期看不出 `Select {0}` 的 `{0}` 将来会
+ * 被喂进什么。`Select {0}` 的锚 "Select " 是正经实词，却是极常见的句子开头 —— 目录里就有 17 条
+ * 「Select a policy to view. These policies are…」这样的整句能匹配上，一旦放行就会被改写成
+ * 「选择a policy to view.…」这种中文脚手架裹英文的东西，比不翻更难看。
+ *
+ * 判据按「值 vs 散文」分：值不长、不跨句、不以小写词开头（名字/数字/状态词都是大写或数字），
+ * 也不会自带句末标点（除非模板本身在它后面还有字面段）。
+ */
+function capturesLookLikeValues(
+  match: RegExpExecArray,
+  tpl: PropTemplate,
+): boolean {
+  for (let i = 0; i < tpl.slots.length; i++) {
+    const captured = (match[i + 1] ?? '').trim();
+    if (!captured) {
+      continue;
+    }
+    if (captured.length > 60) {
+      return false;
+    }
+    if (/[.!?][\s ]/.test(captured)) {
+      return false; // 跨句
+    }
+    const words = captured.split(/\s+/);
+    if (words.length > 1 && /^\p{Ll}/u.test(captured)) {
+      return false; // 小写开头的多词 = 半句散文
+    }
+    if (words.length > 8) {
+      return false;
+    }
+    if (/[.!?]$/.test(captured) && !tpl.trailingLiteral[i]) {
+      return false; // 模板末尾直接吞掉了一句带句号的话
+    }
+  }
+  return true;
+}
+
+function matchPropTemplate(text: string): string | null {
+  const cached = propTemplateCache.get(text);
+  if (cached !== undefined) {
+    return cached;
+  }
+  propTemplateIndex ??= buildPropTemplateIndex();
+  let result: string | null = null;
+  for (const tpl of propTemplateIndex) {
+    if (!text.includes(tpl.anchor)) {
+      continue;
+    }
+    const match = tpl.pattern.exec(text);
+    if (!match) {
+      continue;
+    }
+    const translated = translateCurrent(tpl.key);
+    if (translated === tpl.key) {
+      continue; // 未译：还原出模板也没有收益，继续找更长的（或放弃）。
+    }
+    // 译文丢了占位符就会丢内容（人名、数量…），宁可整条保持英文。
+    if (tpl.slots.some((slot) => !translated.includes(`{${slot}}`))) {
+      continue;
+    }
+    if (!capturesLookLikeValues(match, tpl)) {
+      continue;
+    }
+    let filled = translated;
+    for (let i = 0; i < tpl.slots.length; i++) {
+      // 捕获值本身也可能是目录条目（物品名/语言名/部门名…）——只做**整串精确**查表，
+      // 未命中就原样填回（玩家名、数字之类本就不该翻）。
+      const captured = match[i + 1] ?? '';
+      const localized = captured ? translateCurrent(captured) : captured;
+      filled = filled.split(`{${tpl.slots[i]}}`).join(localized);
+    }
+    result = filled;
+    break;
+  }
+  // 逆匹配跑在每次「精确查表 miss」上（多为逐帧重渲染的同一批串），缓存必要；但键是任意
+  // 运行期串（含变动的数量/名字），不设上限会随界面刷新无限长。
+  if (propTemplateCache.size > 2000) {
+    propTemplateCache.clear();
+  }
+  propTemplateCache.set(text, result);
+  return result;
+}
 
 function translateText(text: string): string {
   const match = text.match(/^(\s*)([\s\S]*\S)(\s*)$/);
@@ -47,6 +203,11 @@ function translateText(text: string): string {
     if (baseTranslated !== altMatch[1]) {
       return `${leading}${baseTranslated} (Alt)${trailing}`;
     }
+  }
+  // 精确查表 miss 之后才轮到 prop 模板逆匹配（顺序见 matchPropTemplate 的安全线 ②）。
+  const templated = matchPropTemplate(lookup);
+  if (templated !== null) {
+    return `${leading}${templated}${trailing}`;
   }
   // 未命中时保留原始 body（含原排版），不改动。
   return `${leading}${body}${trailing}`;
@@ -119,6 +280,54 @@ function localizeChildrenTemplate(children: unknown[]): unknown[] | null {
     return null;
   }
   return rebuilt;
+}
+
+// 混排 children 里，「整条模板查不到就整条保持英文」这条保守分支挡住的是**拼句碎片**
+// （"Reduced by " / "% when infected."）——它们各自只是半句，单独翻会按英文语序拼回去。
+//
+// 但同样形状里还有一类**完整独立文本**：它不是静态 JSX 拼句的一半，而是运行期塞进来的一整条
+// 文案，兄弟节点只是图标/分隔线之类的非文本装饰：
+//   `<Box>{icon && <Icon/>}{tab.name}</Box>`      配装页分类页签（"Head"）
+//   `<div>{desc}{notLast && <Divider/>}</div>`    反派介绍 tooltip（非末段）
+//   `<>{name}<span>{n} slots available</span></>` 中途加入菜单的部门标题
+// 这些整条模板永远不会在目录里（字符串是运行期数据、不是抽取得到的字面量），于是全部被保守
+// 分支焊死成英文——而它们各自的英文原文**本来就是独立目录键**、译文一直躺在目录里。
+//
+// 判据用「每个非空白字符串 child 都能整条精确命中目录」：碎片按定义不是独立键（抽取器只存整条
+// 模板），命中不了 → 仍走保守分支。再加一道形态闸门挡掉「碰巧也是键」的续接碎片：以小写字母
+// 或标点开头的片段一律视为半句。
+function isSelfContainedText(text: string): boolean {
+  const body = text.trim();
+  if (!body) {
+    return true; // 纯空白（prettier 换行插的 `{' '}` 等）不参与判定，原样保留。
+  }
+  // 续接碎片形态：", and "、"% when infected." —— 首字符是小写字母或标点。
+  return !/^[\p{Ll}\p{P}\p{S}]/u.test(body);
+}
+
+function localizeChildrenSegments(children: unknown[]): unknown[] | null {
+  let changed = false;
+  const localized: unknown[] = [];
+  for (const child of children) {
+    if (typeof child !== 'string') {
+      localized.push(child);
+      continue;
+    }
+    if (!isSelfContainedText(child)) {
+      return null;
+    }
+    const next = translateText(child);
+    if (next === child) {
+      // 空白 child 翻不动是正常的；有实义却查不到，说明它是碎片 → 整条保持英文。
+      if (child.trim()) {
+        return null;
+      }
+    } else {
+      changed = true;
+    }
+    localized.push(next);
+  }
+  return changed ? localized : null;
 }
 
 export function localizeNode(value: unknown): unknown {
@@ -264,7 +473,10 @@ export function localizeProps(props: unknown, type?: unknown): unknown {
         if (templated) {
           localized = templated;
         } else if (rendered.some((c) => typeof c !== 'string')) {
-          localized = propValue;
+          // 整条模板未命中：只有在每个字符串 child 都是**完整独立目录条目**时才逐段翻
+          // （运行期文案 + 图标/分隔线的形状），否则整条保持英文。
+          const segments = localizeChildrenSegments(rendered);
+          localized = segments ?? propValue;
         } else {
           const localizedText = localizeNode(rendered);
           localized = localizedText === rendered ? propValue : localizedText;

@@ -50,6 +50,14 @@ const TYPE_VAR_RULES: &[(&str, &str)] = &[
     // 回传键。P1 译多词名（"Leather Armor"）→ 回传中文 → 查表 miss，玩家表现为「中文名的装备
     // 买不了、单词名的能买」。值保英文（进 payload_skip_keys），显示走这条桥。
     ("/datum/battle_arcade_gear", "name"),
+    // 强化+ 页的体表标记名：`build_marking_choices()` 把 name 既当下拉显示又当 act("change_marking")
+    // 的 `marking_name` 回传键（`GLOB.body_markings[marking_name]` 查表），所以 P1 绝不能改数据。
+    // 这类 name 从没进过任何目录（SINK_VARS 够不着 /datum/body_marking），故整个下拉永远英文。
+    // LimbsPage 已把它渲染成对象选项 `{value: 英文, displayText: 英文}`，只缺让 displayText
+    // 能在前端目录里查到。预设下拉（`filteredMarkingPresets`）是裸字符串，由 localizeDropdownProps
+    // 运行时升级成对象，同样只需要这条桥。
+    ("/datum/body_marking", "name"),
+    ("/datum/body_marking_set", "name"),
 ];
 
 /// 具名变量（任意类型上）→ 取其 assoc list 的**值**（key 是 act 标识符不抽，值是显示名）。
