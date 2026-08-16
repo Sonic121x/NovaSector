@@ -12,7 +12,12 @@
 
   # BYOND 仅发布 Linux 构建，且要 buildFHSEnv（Linux-only）封装；故只暴露 x86_64-linux。
   outputs =
-    { self, nixpkgs, flake-utils, rust-overlay }:
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      rust-overlay,
+    }:
     flake-utils.lib.eachSystem [ "x86_64-linux" ] (
       system:
       let
@@ -25,6 +30,13 @@
 
         byond = pkgs.callPackage ./nix/byond.nix { };
         rust-g = pkgs.callPackage ./nix/rust_g.nix { };
+        bun_1_3_5 = pkgs.bun.overrideAttrs (_old: {
+          version = "1.3.5";
+          src = pkgs.fetchurl {
+            url = "https://github.com/oven-sh/bun/releases/download/bun-v1.3.5/bun-linux-x64.zip";
+            hash = "sha256-cFHYapJK7+o+C5YhO1/Y95wHk/nK5lNCM+Yn5cPbRmk=";
+          };
+        });
       in
       {
         packages = {
@@ -32,7 +44,10 @@
           default = byond;
         };
 
-        devShells.default = pkgs.callPackage ./nix/devshell.nix { inherit byond rust-g; };
+        devShells.default = pkgs.callPackage ./nix/devshell.nix {
+          inherit byond rust-g;
+          bun = bun_1_3_5;
+        };
       }
     );
 }
