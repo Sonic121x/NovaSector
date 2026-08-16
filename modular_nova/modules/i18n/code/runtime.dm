@@ -151,17 +151,43 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 
 /// 把模板里的 {0}/{1}… 用 args 依次替换（args 为 /list，元素按位置对应）。
 /// 文本实参经 lang_localize_arg 本地化链（仅全服 locale≠en；en 零额外开销）。
+///
+/// **单趟扫描，不是「每个实参跑一遍 replacetext」**。旧写法按序替换 {0}、{1}…，于是**上一个实参
+/// 的内容会被下一轮当成模板的一部分再扫一次**：只要某个实参的值里恰好含 `{1}`（纸张文本、玩家
+/// 起的物品名、任何玩家可控串都做得到），它就会被后一个实参的值顶掉，输出一句错乱的话。
+/// 单趟扫描时实参写进输出后不再参与匹配，这类自吞死掉；顺带还省掉了「模板里根本没有该占位符时
+/// 仍然白跑一遍 lang_localize_arg + 全串 replacetext」的开销（LANG 是全仓三万余处调用的热点）。
 /proc/lang_interpolate(template, list/args)
-	if(!length(args))
+	var/arg_count = length(args)
+	if(!arg_count || !findtext(template, "{"))
 		return template
 	var/localize = GLOB.i18n_server_locale != DEFAULT_UI_LOCALE
-	var/result = template
-	for(var/i in 1 to length(args))
-		var/arg = args[i]
+	var/list/output = list()
+	var/template_length = length(template)
+	var/cursor = 1
+	while(cursor <= template_length)
+		var/brace = findtext(template, "{", cursor)
+		if(!brace)
+			break
+		var/close = findtext(template, "}", brace + 1)
+		// 非 {N}/{NN} 形态（含未闭合、过长）：按字面处理，越过这个 `{` 继续找。
+		if(!close || close - brace > 3 || !lang_tpl_all_digits(copytext(template, brace + 1, close)))
+			output += copytext(template, cursor, brace + 1)
+			cursor = brace + 1
+			continue
+		var/index = text2num(copytext(template, brace + 1, close)) + 1
+		if(index < 1 || index > arg_count) // 越界占位符：与旧行为一致，原样留在输出里
+			output += copytext(template, cursor, close + 1)
+			cursor = close + 1
+			continue
+		output += copytext(template, cursor, brace)
+		var/arg = args[index]
 		if(localize && istext(arg))
 			arg = lang_localize_arg(arg)
-		result = replacetext(result, "{[i - 1]}", "[arg]")
-	return result
+		output += "[arg]"
+		cursor = close + 1
+	output += copytext(template, cursor)
+	return output.Join()
 
 /// LANG 实参/引擎捕获的统一本地化链：状态词 → 代词/系动词 → 整串反查 → 冠词剥离反查。
 /// 解决「模板译了、运行期填进来的实参却是英文」的四类：
