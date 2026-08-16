@@ -361,6 +361,24 @@ NOTIFY_NEW_PLAYER_ACCOUNT_AGE 1
 ##Name of the place to send people rejected by the bunker
 #PANIC_SERVER_NAME [Put the name here]
 
+## NOVA EDIT ADDITION START - REGION_NEWBIE_GUARD
+## 新人软管制：对「游戏时长不足 + 连接来源不在地区表内」的玩家施加和平化与破坏类操作限制，
+## 而不是拒绝连接。管理员可用「切换新人软管制」verb 在线开关，这里的值是服务器启动时的默认。
+## 地区数据表随仓库发布（modular_nova/modules/region_newbie_guard/data/allowed_regions.json），开箱即用，
+## 跟着仓库更新走。表缺失或损坏时本功能自动失效（放行所有人）。
+## 详见 modular_nova/modules/region_newbie_guard/readme.md
+#NEWBIE_GUARD
+
+## 存活游戏时长（分钟）达到此值的玩家永不受管制。设为 0 表示不按时长豁免。
+#NEWBIE_GUARD_PLAYTIME 60
+
+## 受管制玩家在本回合存活满多少分钟后，限制自动全部解除。
+#NEWBIE_GUARD_SURVIVAL 30
+
+## 管理员批准申诉后的永久豁免保留多少天。
+#NEWBIE_GUARD_BYPASS_DAYS 30
+## NOVA EDIT ADDITION END
+
 ## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
 #AGGRESSIVE_CHANGELOG
 

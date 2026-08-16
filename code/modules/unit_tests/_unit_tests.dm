@@ -394,6 +394,8 @@
 #include "~nova\digi_underclothes.dm"
 #include "~nova\liver_nova.dm"
 #include "~nova\neuroware_chips.dm"
+#include "~nova\newbie_guard_geoip.dm"
+#include "~nova\newbie_guard_refusal.dm"
 #include "~nova\opposing_force.dm"
 #include "~nova\shuttle.dm"
 // NOVA EDIT END
