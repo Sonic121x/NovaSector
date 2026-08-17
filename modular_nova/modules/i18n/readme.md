@@ -73,6 +73,24 @@ TGUI 的 `config.locale` 同源注入。
   材料容器的 `id` 顺手从 `lang_unreverse_text(material.name)` 简化成 `material.name`——实例名现在
   本就是英文，不必再倒查。
 
+**「name 兼作 act 标识符」的单词名走前端目录桥**（`labels.rs SINGLE_WORD_TYPE_VAR_RULES`）：
+`/datum/vote`、`/datum/ai_module`、`/datum/chemical_reaction`、`/datum/design`、`/datum/material`、
+`/datum/reagent` 的 name 在 TGUI 里既显示又当回传键/客户端比较键（`act('buy', {name})`、`voteName`、
+置顶反应列表、`recipe.name === selected_recipe`、`MATERIAL_ICONS[name]`），所以 DM 端不能改数据。
+落地路径按词数分叉，这条桥**只收单词**：
+
+- **多词** name 由 P1 在负载里就地翻好，已经能显示中文。塞进前端目录只会让 P1 按「本身是 tgui 目录键」
+  跳过、改由 TS 只翻显示；一旦某界面把它渲染在非可翻位置（模板串、非 translatable prop），就从中文退化成英文。
+- **单词** name 连 P1 的多词门槛都过不了，本来恒为英文 → 进前端目录是纯增益（实测新增 545 条标签、
+  目录新增 506 键）。
+
+两道安全线：① 单词键的译文**只允许沿用其它命名空间的既有词对**（`tgui-catalog.mjs extract` 里
+`reverseZh`；`phraseTranslation` 现编的值对单词键一律不收）——`tgui.json` 会被 `build_i18n_cache`
+一并扫进 DM 侧**全局反查表**，凭空多出的单词词对等于扩大整个 DM 侧误翻面，而单词正是 act/topic/黑板键
+浓度最高的形态；② 查不到译文就留英文，`sync()` 会把「值等于英文」的键滤掉，等于不存在。
+落地实测：506 条新键里 462 条沿用既有译文、**0 条新造词对、0 条与既有译文冲突**，`nova-i18n lint`
+告警数不变（27，全是既有 ident 碰撞基线）。
+
 已补上的两处宽覆盖边界：
 
 - `tgui_input_list`（`code/modules/tgui_input/list.dm`）：选项文本整串反查（无词数门槛），

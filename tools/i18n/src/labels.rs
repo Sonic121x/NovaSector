@@ -60,6 +60,34 @@ const TYPE_VAR_RULES: &[(&str, &str)] = &[
     ("/datum/body_marking_set", "name"),
 ];
 
+/// 同 TYPE_VAR_RULES，但**只收单词**（trim 后不含空白）的显示名。
+///
+/// 为什么要分成两张表：这些类型族的 name 在 TGUI 里既显示又当标识符/客户端比较键用
+/// （`act('buy', {name})`、`voteName`、`reaction.name` 参与置顶列表、`recipe.name === selected_recipe`），
+/// 所以 DM 端不能改数据。而落地路径按词数分叉：
+///   - **多词** name 由 P1（`lang_reverse_phrase_tgui`）在负载里就地翻好 → 已经能显示中文。把它们也塞进
+///     前端目录反而会让 P1 按「本身是 tgui 目录键」**跳过**，改由 TS 只翻显示；一旦某界面把它渲染在
+///     非可翻位置（模板串、非 translatable prop），就从「能显示中文」退化成英文。所以多词一律不进这张表。
+///   - **单词** name 连 P1 的多词门槛都过不了，本来就永远是英文 → 进前端目录是纯增益。
+///
+/// 另一条安全线在 seeding 侧：`tools/i18n/seed-tgui-labels.mjs` 只把**其它命名空间里已有的译文**搬进
+/// tgui.json，不新造词对。`build_i18n_cache` 会把 tgui.json 一并扫进 DM 侧全局反查表，新造词对等于
+/// 扩大误翻面（线缆颜色那次被 `i18n_real_catalog` 抓过）。
+const SINGLE_WORD_TYPE_VAR_RULES: &[(&str, &str)] = &[
+    // 投票名（"Restart"/"Map"/"Custom"）：`act('toggleVote', {voteName: option.name})` 的回传键。
+    ("/datum/vote", "name"),
+    // 恶意 AI 模块名：`act('buy', {name: item.name})` 的回传键。
+    ("/datum/ai_module", "name"),
+    // 化学反应名：前端置顶列表按 name 存取、并与 `chem.title` 比较。
+    ("/datum/chemical_reaction", "name"),
+    // 设计名：铺砖器按 `recipe.name === selected_recipe` 判选中态。
+    ("/datum/design", "name"),
+    // 材料名（iron/glass/…）：前端 MATERIAL_ICONS/MATERIAL_RARITY 按英文名查表。
+    ("/datum/material", "name"),
+    // 试剂名（Water/Epinephrine/…）：机甲/borg 那批把它拼进 gear_action，各处也常用作查表键。
+    ("/datum/reagent", "name"),
+];
+
 /// 具名变量（任意类型上）→ 取其 assoc list 的**值**（key 是 act 标识符不抽，值是显示名）。
 /// 如 skin_tone_names（key=肤色 id，value=显示）、height_scaling_strings（CHOICED_PREFERENCE_DISPLAY_NAMES）。
 const ASSOC_VALUE_VARS: &[&str] = &["skin_tone_names", "height_scaling_strings"];
@@ -274,6 +302,21 @@ pub fn run(dme: &Path, out: &Path) -> Result<()> {
                     if let Some(expr) = &tv.value.expression {
                         if let Some(t) = build_template(expr) {
                             if !t.contains('{') {
+                                add_label(&t, &mut labels);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // 1b) 同上，但只收单词值（多词交给 P1，见 SINGLE_WORD_TYPE_VAR_RULES 的说明）。
+        for (prefix, var_name) in SINGLE_WORD_TYPE_VAR_RULES {
+            if ty.path == *prefix || ty.path.starts_with(&format!("{prefix}/")) {
+                if let Some(tv) = ty.vars.get(*var_name) {
+                    if let Some(expr) = &tv.value.expression {
+                        if let Some(t) = build_template(expr) {
+                            if !t.contains('{') && !t.trim().contains(char::is_whitespace) {
                                 add_label(&t, &mut labels);
                             }
                         }

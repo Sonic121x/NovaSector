@@ -1,0 +1,6 @@
+author: "sernseek"
+
+delete-after: True
+
+changes:
+  - bugfix: "投票、恶意 AI 模块、化学反应、设计图、材料与试剂里那些单词名称（此前界面上恒为英文）现在会显示译名，按钮与查表仍按原名工作。"

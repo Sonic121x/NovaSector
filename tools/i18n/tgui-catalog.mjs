@@ -1394,6 +1394,15 @@ function extract() {
       zhCatalog[key] = existing;
       continue;
     }
+    // 单词键**只允许沿用既有词对**（reverseZh = 其它命名空间已有译文），不许 phraseTranslation 现编。
+    // 理由：tgui.json 会被 DM 侧 build_i18n_cache 一并扫进**全局反查表**，凭空多出的
+    // 「单词 -> 译文」词对等于扩大整个 DM 侧的误翻面（线缆颜色那次被 i18n_real_catalog 当场抓住），
+    // 而单词恰恰是 act/topic/黑板键浓度最高的形态。多词键不受此限：phraseTranslation 本就是为它们准备的。
+    // 查不到就留英文——sync() 会把「值等于英文」的键滤掉，等于不存在。审计：audit-tgui-label-pairs.mjs。
+    if (!/\s/.test(key)) {
+      zhCatalog[key] = reverseZh[key] ?? key;
+      continue;
+    }
     zhCatalog[key] = phraseTranslation(key) ?? reverseZh[key] ?? key;
   }
 

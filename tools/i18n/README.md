@@ -232,6 +232,12 @@ I18N_CODEX_STDIO=inherit
   由 `tgui-catalog.mjs extract` 合并进 tgui 目录。优势——`init_possible_values()` 返回值经预处理器展开
   → **自动覆盖所有 choiced 下拉（含 #define 定义的选项）**，新增下拉**不必再加规则**；类型作用域的
   name/title 对上游移动文件免疫。`resync.sh` 会刷新它。
+- **单词专用层（`labels.rs` 的 `SINGLE_WORD_TYPE_VAR_RULES`）**：投票/恶意 AI 模块/化学反应/设计/材料/
+  试剂的 name **只收单词值**。多词 name 由 DM 侧 P1 在负载里就地翻好，进了前端目录反而会让 P1 跳过、
+  改由 TS 只翻显示，一旦该界面把它渲染在非可翻位置就退化成英文；单词 name 过不了 P1 的多词门槛、
+  本来恒为英文，进目录是纯增益。`extract` 里配套一道守门：**单词键的译文只许沿用其它命名空间的既有
+  词对**（`reverseZh`），`phraseTranslation` 现编的值不收——`tgui.json` 会被 DM 侧 `build_i18n_cache`
+  扫进**全局反查表**，凭空多出的单词词对就是扩大全局误翻面。改动这批规则后按下面的审计命令验一遍。
 - **正则层（`tgui-catalog.mjs` 的 `DM_LABEL_SOURCES`，残留/兜底）**：覆盖 AST 够不着的路径作用域数据
   （配装/服装 obj 名按目录界定）与无法枚举的宏（DefineMap 无公开迭代器 → JOB_*/AUGMENT_SLOT_* 等
   #define 值仍走正则文件扫描）。两层 **addText 合并去重**，正则保证零回归。
@@ -239,6 +245,10 @@ I18N_CODEX_STDIO=inherit
 ```sh
 # 刷新 AST 显示标签（resync.sh 已含；单独跑）
 cargo run --release --manifest-path tools/i18n/Cargo.toml -- labels --dme tgstation.dme
+
+# 审计：抽取后新增的 tgui 键有没有引入「凭空的 en -> zh 词对」（会进 DM 侧全局反查表）
+# 退出码非 0 = 有新造/冲突词对，逐条确认不是标识符形态后再提交
+bun tools/i18n/audit-tgui-label-pairs.mjs
 
 # 抽取 TGUI 静态 JSX 文本到 strings/i18n/en/tgui.json（合并上面的 AST 标签 + JSX 文本），
 # 复用已有中文译文/术语，并同步 tgui/packages/tgui/i18n/*.json
