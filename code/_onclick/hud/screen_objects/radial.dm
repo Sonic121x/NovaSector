@@ -260,7 +260,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	E.cut_overlays()
 	E.vis_contents.Cut()
 	if(choice_id == NEXT_PAGE_ID)
-		E.name = "Next Page"
+		E.name = lang_localize_display_name("Next Page") // NOVA EDIT - I18N: tooltip 标题，纯显示。ORIGINAL: E.name = "Next Page"
 		E.next_page = TRUE
 		E.icon_state = "radial_slice" // Resets the bg icon state to the default for next page buttons.
 		E.add_overlay("radial_next")
@@ -277,6 +277,10 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		else
 			var/atom/movable/AM = choices_values[choice_id] //Movables only
 			E.name = AM.name
+		// NOVA EDIT ADDITION START - I18N: 径向菜单切片的 name 只当悬停 tooltip 标题用（标识符走 E.choice），
+		// 是纯显示。整串精确反查 + 复合名 AC；单词名（手术名、帽子名…）也能命中。locale==en no-op。
+		E.name = lang_localize_display_name(E.name)
+		// NOVA EDIT ADDITION END
 		E.choice = choice_id
 		E.tooltip_theme = choice_datum?.tooltip_theme
 		E.maptext = null

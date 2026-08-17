@@ -1307,8 +1307,7 @@
 
 /obj/item/card/id/advanced/update_label()
 	if(inherent_assigned_name && registered_name == inherent_assigned_name)
-		// NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
-		name = "[lang_reverse_text(initial(name))][(!assignment || assignment == inherent_assigned_name) ? "" : " ([assignment])"]"
+		name = "[initial(name)][(!assignment || assignment == inherent_assigned_name) ? "" : " ([assignment])"]"
 		return
 
 	return ..()

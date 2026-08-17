@@ -4,7 +4,7 @@
 // 子串替换。字典两来源：
 //   1. 主字典——内存反查表 lang_build_reverse(locale)（即已翻译的 name/desc/message/title 等
 //      无占位符整串），**仅取含空格的多词短语**：单词做子串替换会误伤（"Door"→"Doorknob"），
-//      单词类名靠源头 lang_reverse_text 整串反查覆盖（见 runtime.dm / 各 New() 反查）。
+//      单词类名靠 examine/hover/TGUI 等显示边界调用 lang_reverse_text 精确反查覆盖（见 runtime.dm）。
 //   2. 可选人工补充——strings/i18n/<locale>/_fallback.json，扁平 {"english": "中文"}（不受多词
 //      过滤限制，人工显式覆盖）。
 // 注意：纯子串替换，不保证语序正确，仅用于过渡期与长尾「不漏英文」。已被 LANG 处理过的

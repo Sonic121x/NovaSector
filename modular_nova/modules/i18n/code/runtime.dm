@@ -242,11 +242,10 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 			return translated
 	return arg
 
-/// **逆向**反查：把「已被反查成译文」的显示串还原回英文原文。用于 act 回传/按英文建键的查表
-/// 场景——UI 把翻译过的 name 回传给英文键表（如 GLOB.name2reagent 用 initial(name) 建键，而
-/// 实例 name 已被 New() 反查成中文 → 直接查必 miss）。惰性从反查表倒置构建（一对多取首个）；
-/// locale==en 或查不到原样返回。**消费侧惯用法**：`map[x] || map[lang_unreverse_text(x)]`
-/// （先原样查保英文路径零变化）。
+/// **逆向**反查：把显示边界产生的译名还原成英文原文。用于 act 回传/按英文建键的查表场景——
+/// TGUI 只翻显示字段，但部分旧界面仍会把显示名回传给 canonical English 键表；直接查会 miss。
+/// 惰性从反查表倒置构建（一对多取首个）；locale==en 或查不到原样返回。
+/// **消费侧惯用法**：`map[x] || map[lang_unreverse_text(x)]`（先原样查保英文路径零变化）。
 GLOBAL_LIST_EMPTY(i18n_unreverse)
 /proc/lang_unreverse_text(text)
 	if(!istext(text) || !length(text))
@@ -533,11 +532,11 @@ GLOBAL_VAR_INIT(i18n_text_macro_regex, regex(@"\\(improper|proper|themselves|the
 
 // ---- 反查表（name/desc 等「变量类」文本接入运行时）----
 //
-// 变量初始化（name = "..."）无法改写成 LANG()（DM 变量初值需常量），所以改为：在 Initialize
-// 期把英文整串反查成译文。反查表 = 英文原文 -> 译文，仅含「无占位符的纯字符串」（name/desc
-// 几乎都是纯字符串）。译文随 Codex/Tolgee 落地自动生效，无需再改代码。
+// 变量初始化（name = "..."）无法改写成 LANG()（DM 变量初值需常量）。atom/turf 实例保持
+// canonical English，避免改写 BYOND appearance；examine、hover 与纯显示 TGUI 字段在输出边界
+// 用此表把英文整串映射为译文。表只含「无占位符的纯字符串」。
 
-/// locale -> (英文原文 -> 译文)。惰性构建（写 GLOB，仅供 /atom/Initialize 等非纯路径调用）。
+/// locale -> (英文原文 -> 译文)。惰性构建并缓存到 GLOB，供各显示边界复用。
 GLOBAL_LIST_EMPTY(i18n_reverse)
 
 /// 剥掉 BYOND 文法宏 \improper/\proper，得到「显示形态」串。
@@ -712,6 +711,23 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 	. = lang_reverse_text(text)
 	if(. == text) // 精确 miss → 复合名走 AC 子串
 		. = lang_fallback_apply(text)
+
+/// Localize an atom name only when it is still a static type label. Runtime/player-assigned identity names
+/// must remain byte-for-byte unchanged even when they collide with a catalog phrase.
+/atom/proc/lang_localize_name_for_display(display_name)
+	if(HAS_TRAIT(src, TRAIT_WAS_RENAMED))
+		return display_name
+	return lang_localize_display_name(display_name)
+
+/// mob 的 `name` 是**身份**（角色名、宠物挂牌名、赛博编号、ERT 头衔…），一律不翻——哪怕它恰好
+/// 撞上目录短语。判据只用「是否仍等于类型声明的初值」：任何运行期赋值（`fully_replace_character_name`
+/// 与各处裸 `name = …`）都会偏离 initial(name)；而被改回 initial(name) 的（宠物摘掉项圈还原）此刻
+/// 又确实是类型标签、该翻。不另设标志位：标志位只能覆盖走 proc 的那条改名路径，还得跟父级的
+/// early-return 保持同步，反而比这条判据弱。
+/mob/lang_localize_name_for_display(display_name)
+	if(display_name != initial(name))
+		return display_name
+	return ..()
 
 /// 已知会被运行期 `desc +=` 追加的固定后缀（trim 形态）。base + 后缀都是各自独立的目录键，但拼接后
 /// 整串非目录键 → exact 反查 miss。这些追加发生在 New()/早期（i18n_cache 未就绪、原地反查会空转），
