@@ -15,6 +15,8 @@ type BorgShakerContext = {
 
 type Reagent = {
   name: string;
+  // NOVA EDIT ADDITION - I18N: localized label; `name` stays the act identifier
+  display_name?: string;
   volume: number;
   description: string;
 };
@@ -112,13 +114,15 @@ const ReagentDisplay = (props) => {
   if (reagents.length === 0) {
     return <NoticeBox>No reagents available!</NoticeBox>;
   }
+  // NOVA EDIT CHANGE - I18N: 显示用 display_name（DM 侧本地化），act/选中态比较仍用英文 name。
+  // ORIGINAL: content={reagent.name}
   return reagents.map((reagent) => (
     <Button
       key={reagent.id}
       icon="tint"
       width="150px"
       lineHeight={1.75}
-      content={reagent.name}
+      content={reagent.display_name ?? reagent.name}
       color={reagent.name === selected ? 'green' : 'default'}
       disabled={reagent.volume < minimum}
       onClick={() => act(reagent.name)}

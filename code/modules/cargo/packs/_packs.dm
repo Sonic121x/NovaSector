@@ -41,7 +41,7 @@
 	var/list/data = list()
 	for(var/obj/item/item as anything in contains)
 		var/list/item_data = list(
-			"name" = item.name,
+			"name" = lang_localize_display_name(item.name), // NOVA EDIT - I18N: 货运包名纯显示（act 走 pack.id）。ORIGINAL: "name" = item.name,
 			"icon" = item.greyscale_config ? null : item.icon,
 			"icon_state" = item.greyscale_config ? null : item.icon_state,
 			"amount" = contains[item]

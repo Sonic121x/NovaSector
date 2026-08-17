@@ -131,7 +131,7 @@
 	var/list/data = list()
 
 	data["focused_research"] = list(
-		"name" = selected_research.name,
+		"name" = lang_localize_display_name(selected_research.name), // i18n: 纯显示，act 走 path
 		"desc" = selected_research.desc,
 		"lore" = selected_research.lore,
 		"researched" = selected_research.researched,
@@ -160,7 +160,7 @@
 
 		if(research.starting)
 			data["starting_research"] = list(
-				"name" = research.name,
+				"name" = lang_localize_display_name(research.name), // i18n: 纯显示，act 走 path
 				"desc" = research.desc,
 				"lore" = research.lore,
 				"researched" = research.researched,
@@ -180,7 +180,7 @@
 			continue
 
 		data["research_tiers"][research.tier] += list(list(
-			"name" = research.name,
+			"name" = lang_localize_display_name(research.name), // i18n: 纯显示，act 走 path
 			"desc" = research.desc,
 			"lore" = research.lore,
 			"researched" = research.researched,

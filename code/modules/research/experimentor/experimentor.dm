@@ -186,7 +186,7 @@
 				is_available = !is_discover
 			available_experiments += list(list(
 				"id" = scantype,
-				"name" = handler.name || capitalize(scantype),
+				"name" = lang_localize_display_name(handler.name || capitalize(scantype)), // NOVA EDIT - I18N: 纯显示。ORIGINAL: "name" = handler.name || capitalize(scantype),
 				"fa_icon" = handler.fa_icon || "question",
 				"isAvailable" = is_available,
 				"isDiscover" = is_discover

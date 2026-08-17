@@ -259,7 +259,7 @@
 	data["storage"] = "[inserted_disk?.used_capacity] / [inserted_disk?.max_capacity] GQ"
 	for(var/datum/data/tachyon_record/singular_record in records)
 		var/list/record_data = list(
-			"name" = singular_record.name,
+			"name" = lang_localize_display_name(singular_record.name), // NOVA EDIT - I18N: 记录名纯显示（选中态只在前端本地比较，同一份列表内一致）。ORIGINAL: "name" = singular_record.name,
 			"timestamp" = singular_record.timestamp,
 			"coordinates" = singular_record.coordinates,
 			"displacement" = singular_record.displacement,

@@ -237,7 +237,7 @@
 
 		. += list(list(
 			path = stocked_hash,
-			name = target.name,
+			name = target.lang_localize_name_for_display(target.name), // NOVA EDIT - I18N: 售货名纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: name = target.name,
 			price = target.custom_price,
 			category = "Products",
 			ref = stocked_hash,

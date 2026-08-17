@@ -23,7 +23,7 @@
 			// NOVA EDIT CHANGE - I18N - ORIGINAL: contained_reagents += list(list("name" = reagent.name, "volume" = round(reagent.volume, 0.01)))
 			// "id" 是 policy.json payload_skip_keys 成员，P1 不反查 → 保持英文标识符供 gear_action 回传；
 			// "name" 照旧本地化，只做显示。
-			contained_reagents += list(list("id" = reagent.name, "name" = reagent.name, "volume" = round(reagent.volume, 0.01))) // list in a list because Byond merges the first list...
+			contained_reagents += list(list("id" = reagent.name, "name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, 0.01))) // list in a list because Byond merges the first list... // NOVA EDIT - I18N: id 保英文供 gear_action 拼串，name 只做显示
 	return contained_reagents
 
 //---- Mecha sleeper, medical subtype has the chemical functionality

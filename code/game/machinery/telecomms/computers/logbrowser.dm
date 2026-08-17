@@ -36,7 +36,7 @@
 			// If there are servers in the buffer, send them
 			var/list/found_servers = list()
 			for (var/obj/machinery/telecomms/server/server in servers)
-				found_servers += list(list("ref"=REF(server), "name"=server.name, "id"=server.id))
+				found_servers += list(list("ref"=REF(server), "name"=server.lang_localize_name_for_display(server.name), "id"=server.id)) // NOVA EDIT - I18N: 名字纯显示（act 走 ref/id）；atom 版守玩家改名
 			data["servers"] = found_servers
 		if(SERVER_VIEW)
 			// Send selected server data

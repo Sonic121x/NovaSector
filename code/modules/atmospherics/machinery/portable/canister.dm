@@ -603,7 +603,7 @@
 	if (holding)
 		var/datum/gas_mixture/holding_mix = holding.return_air()
 		.["holdingTank"] = list(
-			"name" = holding.name,
+			"name" = holding.lang_localize_name_for_display(holding.name), // NOVA EDIT - I18N: 内置罐名纯显示；atom 版守玩家改名。ORIGINAL: "name" = holding.name,
 			"tankPressure" = round(holding_mix.return_pressure())
 		)
 	else

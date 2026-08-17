@@ -256,7 +256,7 @@
 			var/sheet_amount = amount / SHEET_MATERIAL_AMOUNT
 			var/obj/sheet_type = material.sheet_type
 			data["materials"] += list(list(
-				"name" = material.name,
+				"name" = lang_localize_display_name(material.name), // NOVA EDIT - I18N: 材料名纯显示（act 走同条负载的 id）。ORIGINAL: "name" = material.name,
 				"id" = REF(material),
 				"amount" = sheet_amount,
 				"category" = "material",
@@ -269,7 +269,7 @@
 			var/datum/design/alloy = SSresearch.techweb_design_by_id(research)
 			var/obj/alloy_type = alloy.build_path
 			data["materials"] += list(list(
-				"name" = alloy.name,
+				"name" = lang_localize_display_name(alloy.name), // NOVA EDIT - I18N: 合金名纯显示（act 走同条负载的 id）。ORIGINAL: "name" = alloy.name,
 				"id" = alloy.id,
 				"category" = "alloy",
 				"amount" = can_smelt_alloy(alloy),

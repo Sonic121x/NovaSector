@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(exploration_sites)
 		var/list/event_data = list()
 		for(var/datum/exploration_event/event in events)
 			if(event.visited && event.is_targetable())
-				event_data += list(list("name"=event.name,"ref"=ref(event)))
+				event_data += list(list("name"=lang_localize_display_name(event.name),"ref"=ref(event))) // NOVA EDIT - I18N: 事件名纯显示（act 走 ref）
 		.["events"] = event_data
 
 /// Helper proc for exploration site listings in ui.

@@ -245,7 +245,7 @@
 		var/datum/gas_recipe/recipe = GLOB.gas_recipe_meta[path]
 		if(recipe.machine_type != "Crystallizer")
 			continue
-		data["selected_recipes"] += list(list("name" = recipe.name, "id" = recipe.id))
+		data["selected_recipes"] += list(list("name" = lang_localize_display_name(recipe.name), "id" = recipe.id)) // NOVA EDIT - I18N: 名字纯显示，act 走同条负载里的 id。ORIGINAL: "name" = recipe.name
 	return data
 
 /obj/machinery/atmospherics/components/binary/crystallizer/ui_data()

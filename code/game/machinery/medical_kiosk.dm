@@ -307,9 +307,9 @@
 			var/datum/reagent/reagent = r
 			if(reagent.chemical_flags & REAGENT_INVISIBLE) //Don't show hidden chems
 				continue
-			chemical_list += list(list("name" = reagent.name, "volume" = round(reagent.volume, 0.01)))
+			chemical_list += list(list("name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, 0.01))) // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name
 			if(reagent.overdosed)
-				overdose_list += list(list("name" = reagent.name))
+				overdose_list += list(list("name" = lang_localize_display_name(reagent.name))) // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name
 	var/obj/item/organ/stomach/belly = patient.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(belly?.reagents.reagent_list.len) //include the stomach contents if it exists
 		for(var/bile in belly.reagents.reagent_list)
@@ -317,11 +317,11 @@
 			if(bit.chemical_flags & REAGENT_INVISIBLE) //Don't show hidden chems
 				continue
 			if(!belly.food_reagents[bit.type])
-				chemical_list += list(list("name" = bit.name, "volume" = round(bit.volume, 0.01)))
+				chemical_list += list(list("name" = lang_localize_display_name(bit.name), "volume" = round(bit.volume, 0.01))) // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = bit.name
 			else
 				var/bit_vol = bit.volume - belly.food_reagents[bit.type]
 				if(bit_vol > 0)
-					chemical_list += list(list("name" = bit.name, "volume" = round(bit_vol, 0.01)))
+					chemical_list += list(list("name" = lang_localize_display_name(bit.name), "volume" = round(bit_vol, 0.01))) // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = bit.name
 	for(var/datum/addiction/addiction_type as anything in patient.mind.active_addictions)
 		addict_list += list(list("name" = initial(addiction_type.name)))
 

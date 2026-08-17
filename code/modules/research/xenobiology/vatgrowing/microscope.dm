@@ -51,7 +51,7 @@
 			var/atom/resulting_atom = cell_line.resulting_atom
 			var/list/organism_data = list(
 				type = "cell line",
-				name = cell_line.name,
+				name = lang_localize_display_name(cell_line.name), // NOVA EDIT - I18N: 细胞系名纯显示。ORIGINAL: name = cell_line.name,
 				desc = cell_line.desc,
 				icon = resulting_atom ? initial(resulting_atom.icon) : "",
 				icon_state = resulting_atom ? initial(resulting_atom.icon_state) : "",
@@ -68,7 +68,7 @@
 			var/datum/micro_organism/virus/virus = organism
 			var/list/virus_data = list(
 				type = "virus",
-				name = virus.name,
+				name = lang_localize_display_name(virus.name), // NOVA EDIT - I18N: 病毒名纯显示。ORIGINAL: name = virus.name,
 				desc = virus.desc
 			)
 			data["cell_lines"] += list(virus_data)

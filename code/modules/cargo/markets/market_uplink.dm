@@ -94,7 +94,7 @@
 		var/datum/market/BM = SSmarket.markets[M]
 		data["markets"] += list(list(
 			"id" = M,
-			"name" = BM.name
+			"name" = lang_localize_display_name(BM.name) // NOVA EDIT - I18N: 黑市名纯显示（act 走同条负载的 id；配送方式名另一条负载，仍保英文）
 		))
 	return data
 

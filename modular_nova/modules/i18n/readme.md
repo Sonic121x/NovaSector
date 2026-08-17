@@ -57,6 +57,22 @@ TGUI 的 `config.locale` 同源注入。
 - 这次改动真正影响的只有**「obj/turf 的 name 直接进 TGUI 负载」**这一小类；高流量的那些
   （售货机、LootPanel、MOD、传真、电梯、骡车、材料、手术、储物袋可容纳列表）早已有定点本地化。
 
+**逐界面补齐（2026-08-17）**：按「该处 act 是否用 name」机械筛过全仓 181 个
+`"name" = x.name` 形状的负载点，改掉 67 处、明确跳过其余。判据与常见误伤：
+
+- **跳过**：管理/调试面板（MC、动态规则、事件日志、生成面板、外观调试、wiremod 端口——端口名在电路
+  里当连接标识符）、身份名（角色/机组记录/通缉/囚犯 ID/pAI/虚拟宠物/赛博/无人机/soulcatcher 的灵魂）、
+  玩家自己输入的文本（侦探板的案件名）、**日志负载**（`mob_helpers.dm` 的手持物名进的是
+  `logger.Log`，不是 UI）、以及 name 本身就是回传标识符的（法架 `link_act(ref, name)`、
+  机器人公告 `picked: button.name`、外星探索无人机的 `tool_type: cargo.name`、恶意 AI 模块选择器、
+  街机装备、偏好菜单的个性/增强件——后两类已由 `labels.rs` 桥进前端目录）。
+- **name 是 act 动作串又必须显示译文**的，另发字段：borg 注射器/调酒器前端写的是 `act(reagent.name)`，
+  所以 DM 加发 `display_name`、TSX 渲染 `display_name ?? name`，`act()` 与选中态比较仍走英文
+  （同 `medical_tools.dm` 的 `id`/`name` 拆法）。
+- **同一负载里已有 id/ref 的**（材料容器、结晶器、弹药工作台、货运包、试剂查询…）直接翻 `name`；
+  材料容器的 `id` 顺手从 `lang_unreverse_text(material.name)` 简化成 `material.name`——实例名现在
+  本就是英文，不必再倒查。
+
 已补上的两处宽覆盖边界：
 
 - `tgui_input_list`（`code/modules/tgui_input/list.dm`）：选项文本整串反查（无词数门槛），

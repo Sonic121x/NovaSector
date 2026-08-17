@@ -259,7 +259,7 @@
 		if(data["listBounty"]["name"] == global_bounty.name)
 			continue
 		data["listBounty"] += list(list(
-			"name" = global_bounty.name,
+			"name" = lang_localize_display_name(global_bounty.name), // NOVA EDIT - I18N: 赏金名纯显示。ORIGINAL: "name" = global_bounty.name,
 			"description" = global_bounty.description,
 			"reward" = global_bounty.get_bounty_reward(),
 			"claimed" = global_bounty.claimed,

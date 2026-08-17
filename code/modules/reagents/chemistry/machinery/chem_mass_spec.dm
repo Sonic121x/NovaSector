@@ -318,7 +318,7 @@
 					log = "Cannot purify above [round(initial_purity * 100)]%"
 
 			beakerContents += list(list(
-				"name" = target.name,
+				"name" = lang_localize_display_name(target.name), // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = target.name,
 				"volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING),
 				"mass" = target.mass,
 				"purity" = round(purity * 100),
@@ -342,7 +342,7 @@
 		var/list/beakerContents = list()
 		for(var/datum/reagent/reagent as anything in beaker_2_reagents.reagent_list)
 			beakerContents += list(list(
-				"name" = reagent.name,
+				"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
 				"volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING),
 				"mass" = reagent.mass,
 				"purity" = round(reagent.purity * 100),

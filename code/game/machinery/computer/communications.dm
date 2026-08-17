@@ -668,7 +668,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 						continue
 
 					shuttles += list(list(
-						"name" = shuttle_template.name,
+						"name" = lang_localize_display_name(shuttle_template.name), // NOVA EDIT - I18N: 纯显示（act 走 shuttle id）。ORIGINAL: "name" = shuttle_template.name,
 						"description" = shuttle_template.description,
 						"occupancy_limit" = shuttle_template.occupancy_limit,
 						"creditCost" = shuttle_template.credit_cost,

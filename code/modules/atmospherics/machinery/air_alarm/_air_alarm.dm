@@ -354,7 +354,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			if(!(obj_flags & EMAGGED) && mode.emag)
 				continue
 			data["modes"] += list(list(
-				"name" = mode.name,
+				"name" = lang_localize_display_name(mode.name), // NOVA EDIT - I18N: 模式名纯显示（act 走 mode.path）。ORIGINAL: "name" = mode.name,
 				"desc" = mode.desc,
 				"danger" = mode.danger,
 				"path" = mode.type

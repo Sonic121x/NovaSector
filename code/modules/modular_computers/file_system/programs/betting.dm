@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 	data["active_bets"] = list()
 	for(var/datum/active_bet/bets as anything in GLOB.active_bets)
 		data["active_bets"] += list(list(
-			"name" = bets.name,
+			"name" = lang_localize_display_name(bets.name), // NOVA EDIT - I18N: 纯显示。ORIGINAL: "name" = bets.name,
 			"description" = bets.description,
 			"owner" = bets == created_bet,
 			"creator" = bets.bet_owner,

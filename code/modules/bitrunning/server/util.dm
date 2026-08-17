@@ -23,7 +23,7 @@
 
 		hosted_avatars += list(list(
 			"health" = creature.health,
-			"name" = creature.name,
+			"name" = creature.lang_localize_name_for_display(creature.name), // NOVA EDIT - I18N: 纯显示；mob 版只翻仍等于 initial(name) 的类型名。ORIGINAL: "name" = creature.name,
 			"pilot" = pilot,
 			"brute" = creature.get_brute_loss(),
 			"burn" = creature.get_fire_loss(),

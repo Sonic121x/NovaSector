@@ -319,7 +319,7 @@
 		var/list/beakerContents = list()
 		if(length(beaker.reagents.reagent_list))
 			for(var/datum/reagent/reagent as anything in beaker.reagents.reagent_list)
-				beakerContents += list(list("name" = reagent.name, "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // list in a list because Byond merges the first list...
+				beakerContents += list(list("name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // list in a list because Byond merges the first list... // NOVA EDIT - I18N: 烧杯内容物名纯显示。ORIGINAL: "name" = reagent.name
 		beaker_data["contents"] = beakerContents
 	.["beaker"] = beaker_data
 

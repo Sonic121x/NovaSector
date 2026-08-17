@@ -19,6 +19,8 @@ type BorgHypoContext = {
 
 type Reagent = {
   name: string;
+  // NOVA EDIT ADDITION - I18N: localized label; `name` stays the act identifier
+  display_name?: string;
   volume: number;
   description: string;
 };
@@ -56,7 +58,8 @@ const ReagentDisplay = (props) => {
         <ProgressBar value={reagent.volume / maxVolume}>
           <Flex>
             <Flex.Item grow textAlign={'left'}>
-              {reagent.name}
+              {/* NOVA EDIT CHANGE - I18N - ORIGINAL: {reagent.name} */}
+              {reagent.display_name ?? reagent.name}
             </Flex.Item>
             <Flex.Item>{`${toFixed(reagent.volume)}u`}</Flex.Item>
           </Flex>

@@ -18,7 +18,7 @@
 				keys += emote.key
 				emotes += list(list(
 					"key" = emote.key,
-					"name" = emote.name,
+					"name" = lang_localize_display_name(emote.name), // NOVA EDIT - I18N: 纯显示，act 走同条负载的 emote_key。ORIGINAL: "name" = emote.name,
 					"hands" = emote.hands_use_check,
 					"visible" = emote.emote_type & EMOTE_VISIBLE,
 					"audible" = emote.emote_type & EMOTE_AUDIBLE,

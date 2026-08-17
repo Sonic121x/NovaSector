@@ -327,7 +327,7 @@
 	for (var/datum/data/compressor_record/record in compressor_record)
 		var/list/single_record_data = list(
 			"ref" = REF(record),
-			"name" = record.name,
+			"name" = lang_localize_display_name(record.name), // NOVA EDIT - I18N: 记录名纯显示。ORIGINAL: "name" = record.name,
 			"source" = record.experiment_source,
 			"timestamp" = record.timestamp,
 			"gases" = list()

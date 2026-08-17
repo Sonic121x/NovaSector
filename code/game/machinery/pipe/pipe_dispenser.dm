@@ -51,7 +51,7 @@
 		var/list/r = list()
 		for(var/i in 1 to cat.len)
 			var/datum/pipe_info/info = cat[i]
-			r += list(list("pipe_name" = info.name, "pipe_index" = i, "all_layers" = info.all_layers, "dir" = NORTH))
+			r += list(list("pipe_name" = lang_localize_display_name(info.name), "pipe_index" = i, "all_layers" = info.all_layers, "dir" = NORTH)) // NOVA EDIT - I18N: 管件名纯显示（act 走 pipe_index）。ORIGINAL: "pipe_name" = info.name
 			// if this is bendable, add the bent version of the pipe (disposals)
 			if (info.dirtype == PIPE_BENDABLE)
 				r += list(list("pipe_name" = "Bent " + info.name, "pipe_index" = i, "all_layers" = info.all_layers, "dir" = NORTHEAST))

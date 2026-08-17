@@ -76,7 +76,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, 32)
 	data["items"] = list()
 	for(var/obj/item/content in contents)
 		var/list/content_data = list(
-			name = content.name,
+			name = content.lang_localize_name_for_display(content.name), // NOVA EDIT - I18N: 纸张名纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: name = content.name,
 			ref = REF(content)
 		)
 		data["items"] += list(content_data)

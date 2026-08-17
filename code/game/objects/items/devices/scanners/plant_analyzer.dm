@@ -224,7 +224,7 @@
 			"plant_health" = tray.plant_health,
 			"plant_age" = tray.age,
 			"is_dead" = tray.plant_status == HYDROTRAY_PLANT_DEAD,
-			"name" = tray.name,
+			"name" = tray.lang_localize_name_for_display(tray.name), // NOVA EDIT - I18N: 纯显示（Section 标题）；atom 版守玩家改名。ORIGINAL: "name" = tray.name,
 			"icon" = tray.icon,
 			"icon_state" = tray.icon_state,
 			"water" = tray.waterlevel,
@@ -245,7 +245,7 @@
 		)
 		for(var/datum/reagent/reagent as anything in tray.reagents.reagent_list)
 			last_scan_data["tray_data"]["reagents"] += list(list(
-				"name" = reagent.name,
+				"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
 				"volume" = round(reagent.volume, CHEMICAL_QUANTISATION_LEVEL),
 				"color" = reagent.color,
 			))
@@ -259,14 +259,14 @@
 		)
 		for(var/datum/reagent/reagent as anything in target.reagents.reagent_list)
 			last_scan_data["plant_data"]["reagents"] += list(list(
-				"name" = reagent.name,
+				"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
 				"volume" = round(reagent.volume, CHEMICAL_QUANTISATION_LEVEL),
 				"color" = reagent.color,
 			))
 
 	if(graft)
 		last_scan_data["graft_data"] = list(
-			"name" = graft.plant_dna.name,
+			"name" = lang_localize_display_name(graft.plant_dna.name), // NOVA EDIT - I18N: 嫁接体名纯显示。ORIGINAL: "name" = graft.plant_dna.name,
 			"icon" = graft.icon,
 			"icon_state" = graft.icon_state,
 			"yield" = graft.plant_dna.yield,
@@ -317,7 +317,7 @@
 	seed_data["reagents"] = list()
 	for(var/datum/plant_gene/reagent/reagent in seed.genes)
 		seed_data["reagents"] += list(list(
-			"name" = reagent.name,
+			"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
 			"rate" = reagent.rate
 		))
 	var/datum/plant_gene/trait/maxchem/volume_trait = locate(/datum/plant_gene/trait/maxchem) in seed.genes

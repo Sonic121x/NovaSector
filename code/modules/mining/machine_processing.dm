@@ -215,7 +215,7 @@
 		var/datum/design/design = SSresearch.techweb_design_by_id(research)
 		data["alloys"] += list(
 			list(
-				"name" = design.name,
+				"name" = lang_localize_display_name(design.name), // NOVA EDIT - I18N: 设计名纯显示（act 走 id/path）。ORIGINAL: "name" = design.name,
 				"id" = design.id,
 				)
 			)

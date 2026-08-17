@@ -75,7 +75,7 @@
 	for(var/obj/item/stack/managed_stack in user.contents)
 		data["stacks"] += list(list(
 			"stack_reference" = REF(managed_stack),
-			"stack_name" = managed_stack.name,
+			"stack_name" = managed_stack.lang_localize_name_for_display(managed_stack.name), // NOVA EDIT - I18N: 纯显示；atom 版守玩家改名。ORIGINAL: "stack_name" = managed_stack.name,
 			"stack_amount" = managed_stack.amount,
 			"stack_maximum_amount" = managed_stack.max_amount,
 			"stack_icon" = managed_stack.icon,
