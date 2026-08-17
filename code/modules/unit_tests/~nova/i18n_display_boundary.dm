@@ -106,6 +106,18 @@
 	TEST_ASSERT_EQUAL(test_mouse.name, I18N_DISPLAY_TEST_NAME, "mob Initialize 不应原地翻译 name")
 	// user 必须非空：/mob/living/get_examine_name 会 SEND_SIGNAL(user, …)。
 	TEST_ASSERT(findtext(test_mouse.get_examine_name(test_human), "焊接燃料"), "静态 mob 类型名应在显示边界翻译")
+	// `set_name()` 形态：「类型名 (编号)」的前缀该翻、后缀原样保留（异种/蜂/无人机等都走这条）。
+	TEST_ASSERT_EQUAL(
+		test_mouse.lang_localize_name_for_display("[I18N_DISPLAY_TEST_NAME] (123)"),
+		"焊接燃料 (123)",
+		"类型名 + 括号后缀应翻前缀、留后缀",
+	)
+	// 但换成别的形状就必须当身份名保护住（前缀不等于 initial(name) / 没有括号后缀）。
+	TEST_ASSERT_EQUAL(
+		test_mouse.lang_localize_name_for_display("[I18N_DISPLAY_TEST_NAME] Junior"),
+		"[I18N_DISPLAY_TEST_NAME] Junior",
+		"非括号后缀的运行期名不得翻译",
+	)
 
 	// tgui_input_list 的显示串↔原值往返：选项文本翻成译文，items_map 用同一个显示串作键，
 	// 回传后仍取回**原始值**。这条一旦回归就是「中文选项点了没反应」的静默失效。

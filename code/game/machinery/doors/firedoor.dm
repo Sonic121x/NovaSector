@@ -188,7 +188,7 @@
 	. = ..()
 	if(!my_area || !id_tag)
 		return
-	name = "[get_area_name(my_area)] [lang_reverse_text(initial(name))] [id_tag]" // NOVA EDIT - i18n: reverse-localize the type name (no-op on en)
+	name = "[get_area_name(my_area)] [initial(name)] [id_tag]" // NOVA EDIT - I18N: 同 firealarm，实例名保持英文，显示走边界
 
 /**
  * Calculates what areas we should worry about.

@@ -120,7 +120,7 @@
 
 /obj/machinery/firealarm/update_name(updates)
 	. = ..()
-	name = "[get_area_name(my_area)] [lang_reverse_text(initial(name))] [id_tag]" // NOVA EDIT - i18n: reverse-localize the type name (no-op on en)
+	name = "[get_area_name(my_area)] [initial(name)] [id_tag]" // NOVA EDIT - I18N: 实例名保持 canonical English（区域前缀要能按英文解析），显示由 examine/hover 边界翻译
 
 /obj/machinery/firealarm/on_exit_area(datum/source, area/area_to_unregister)
 	//we cannot unregister from an area we never registered to in the first place

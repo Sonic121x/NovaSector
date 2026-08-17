@@ -55,7 +55,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else if(broken)
 		name = "broken [initial(name)]"
 	else
-		name = "[lang_reverse_text(initial(name))]"  // NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)]"
+		name = "[initial(name)]"
 
 /obj/item/match/update_desc(updates)
 	. = ..()

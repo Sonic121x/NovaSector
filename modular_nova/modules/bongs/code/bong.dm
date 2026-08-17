@@ -119,7 +119,7 @@
 		packed_item = FALSE
 		icon_state = icon_off
 		inhand_icon_state = icon_off
-		name = "[lang_reverse_text(initial(name))]"  // i18n: initial(name) 会覆盖掉已反查的中文名
+		name = "[initial(name)]"
 		reagents.clear_reagents() //just to make sure
 
 /obj/item/bong/proc/light(flavor_text = null)

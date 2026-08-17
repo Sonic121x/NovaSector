@@ -189,7 +189,7 @@ Des: Removes all infected images from the alien.
 
 	if(old_identifier != 0)
 		identifier = old_identifier
-		name = lang_reverse_text(initial(name)) // prevent chicanery like two different numerical identifiers tied to the same mob // NOVA EDIT - i18n: reverse-localize the reset caste name (no-op on en)
+		name = initial(name) // prevent chicanery like two different numerical identifiers tied to the same mob
 
 	set_name()
 

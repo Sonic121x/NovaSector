@@ -725,9 +725,22 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 /// 又确实是类型标签、该翻。不另设标志位：标志位只能覆盖走 proc 的那条改名路径，还得跟父级的
 /// early-return 保持同步，反而比这条判据弱。
 /mob/lang_localize_name_for_display(display_name)
-	if(display_name != initial(name))
+	if(display_name == initial(name))
+		return ..()
+	// `set_name()` 家族把类型名拼成 `"alien larva (123)"`（异种/蜂/皮层蠕虫/无人机/血虫…都走这条），
+	// 整串不等于 initial(name)、按上面的判据会被当身份名拒翻 → 例检里显英文。这里只放行一种形态：
+	// **前缀与 initial(name) 逐字节相同、其余部分是括号后缀**。玩家自己起的名字不可能满足这个形状
+	// （除非他刚好把名字起成「类型名 (…)」，那时翻前缀也无害），所以不放宽身份名的保护面。
+	var/base = initial(name)
+	var/base_length = length(base)
+	if(!base_length || length(display_name) <= base_length + 2)
 		return display_name
-	return ..()
+	if(copytext(display_name, 1, base_length + 1) != base)
+		return display_name
+	var/suffix = copytext(display_name, base_length + 1)
+	if(copytext(suffix, 1, 3) != " (" || copytext(suffix, -1) != ")")
+		return display_name
+	return lang_localize_display_name(base) + suffix
 
 /// 已知会被运行期 `desc +=` 追加的固定后缀（trim 形态）。base + 后缀都是各自独立的目录键，但拼接后
 /// 整串非目录键 → exact 反查 miss。这些追加发生在 New()/早期（i18n_cache 未就绪、原地反查会空转），

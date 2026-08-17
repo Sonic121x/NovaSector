@@ -62,9 +62,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 /obj/machinery/barsign/update_name()
 	. = ..()
 	if(chosen_sign && chosen_sign.rename_area)
-		name = "[lang_reverse_text(initial(name))] ([chosen_sign.name])"  // NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)] ([chosen_sign.name])"
+		name = "[initial(name)] ([chosen_sign.name])"
 	else
-		name = "[lang_reverse_text(initial(name))]"  // NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)]"
+		name = "[initial(name)]"
 
 /obj/machinery/barsign/update_overlays()
 	. = ..()

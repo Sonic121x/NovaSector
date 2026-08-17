@@ -27,6 +27,29 @@
 
 	/// Client does NOT have tgui_input on: Returns regular input
 	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
+		// NOVA EDIT ADDITION START - I18N: 原生 input() 回退分支同样要本地化（否则关掉 tgui 输入的玩家
+		// 看到的是英文选项）。做法与 tgui 分支一致：显示串是纯显示，用「显示串 -> 原值」的 assoc 表兜回原值。
+		// `input() ... in assoc_list` 的返回值在不同写法下可能是键也可能是值，两种都接住（少一个分支就是
+		// 「选了没反应」）。查不到译名的项原样入表，行为与改动前一致。
+		if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
+			var/list/localized_items = list()
+			var/localized_default
+			for(var/item in items)
+				if(isnull(item))
+					continue
+				var/label = lang_localize_display_name("[item]")
+				if(localized_items[label]) // 两个英文名可能译成同一个中文：后者退回原样，保证不吞选项
+					label = "[item]"
+				localized_items[label] = item
+				if(isnull(localized_default) && !isnull(default) && (item == default || "[item]" == "[default]"))
+					localized_default = label
+			var/picked = input(user, message, title, localized_default || default) as null|anything in localized_items
+			if(isnull(picked))
+				return null
+			if(istext(picked) && !isnull(localized_items[picked]))
+				return localized_items[picked]
+			return picked
+		// NOVA EDIT ADDITION END
 		return input(user, message, title, default) as null|anything in items
 	var/datum/tgui_list_input/input = new(user, message, title, items, default, timeout, ui_state)
 	if(input.invalid)
