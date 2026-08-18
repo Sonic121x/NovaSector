@@ -1,0 +1,6 @@
+author: "sernseek"
+
+delete-after: True
+
+changes:
+  - server: "恐慌地堡提示里的 Discord 邀请链接改为读取配置项 DISCORD_LINK，各服可自行设置。"
