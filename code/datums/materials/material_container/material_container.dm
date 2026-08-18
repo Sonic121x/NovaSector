@@ -761,11 +761,11 @@
 		var/amount = materials[material]
 
 		data += list(list(
-			"name" = material.name,
-			// NOVA EDIT ADDITION - I18N: 前端 MATERIAL_ICONS/MATERIAL_RARITY 按**英文材料名**查表（铁/玻璃单词被
-			// P1 多词门槛跳过=英文、能命中；"bluespace crystal" 多词会被 P1 译成中文 → 查表 miss → 显示「?」图标）。
-			// 故另发英文 id（"id" 是 i18n_payload_skip_keys 成员、P1 永不翻），前端图标/稀有度按 id 查；name 仍可译做显示。
-			"id" = lang_unreverse_text(material.name),
+			"name" = lang_localize_display_name(material.name), // NOVA EDIT - I18N: 显示名（单词材料名 P1 的多词门槛够不着）；标识符走下面那条英文 id。ORIGINAL: "name" = material.name,
+			// NOVA EDIT ADDITION - I18N: 前端 MATERIAL_ICONS/MATERIAL_RARITY 按**英文材料名**查表，所以另发一个
+			// 英文 id（"id" 在 i18n_payload_skip_keys 里、P1 永不翻），name 只做显示。material.name 本身
+			// 已是 canonical English（不再有 Initialize 期原地反查），故这里直接取值、不必再 unreverse。
+			"id" = material.name,
 			"ref" = REF(material),
 			"amount" = amount,
 			"color" = material.greyscale_color || material.color

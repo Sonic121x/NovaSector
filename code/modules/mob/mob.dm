@@ -1647,7 +1647,7 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	for(var/memory_key in user?.mind.memories)
 		var/datum/memory/memory = user.mind.memories[memory_key]
-		memories += list(list("name" = memory.name, "quality" = memory.story_value))
+		memories += list(list("name" = lang_localize_display_name(memory.name), "quality" = memory.story_value)) // NOVA EDIT - I18N: 记忆名纯显示。ORIGINAL: "name" = memory.name
 
 	data["memories"] = memories
 	return data

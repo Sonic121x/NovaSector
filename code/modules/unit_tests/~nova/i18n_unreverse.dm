@@ -1,12 +1,12 @@
 /// i18n 反查 / 逆向反查（lang_reverse_text ↔ lang_unreverse_text）的往返不变量测试。
 ///
-/// 守护「UI 把译名回传、消费侧按英文键查表」这类解药（chem dispenser/plumbing/portable mixer 等：
-/// name2reagent 用 initial(name) 英文建键，而实例 name 已被 P1b 反查成中文 → 直接查必 miss，
-/// 靠 `map[x] || map[lang_unreverse_text(x)]` 兜）。若 lang_unreverse_text 的倒置逻辑回归（一对多
-/// 取错、locale 门控失误、空表毒化），这些 UI 会静默失效（中文名按了没反应）——此测试在编译期拦截。
+/// 守护「UI 显示边界把 name 翻成译文、旧消费侧仍按英文键查表」这类兼容路径（chem dispenser/
+/// plumbing/portable mixer 等）。name2reagent 用 initial(name) 建 canonical English 键；若界面把显示译名
+/// 回传，直接查必 miss，靠 `map[x] || map[lang_unreverse_text(x)]` 兜。若倒置逻辑回归（一对多取错、
+/// locale 门控失误、空表毒化），这些 UI 会静默失效（中文名按了没反应）。
 ///
 /// 向 i18n 缓存注入合成 en/测试 locale 对，临时切到测试 locale，断言：
-///   ① lang_reverse_text 把英文整串变异为译文（P1b/Initialize 的反查方向）；
+///   ① lang_reverse_text 把英文整串变为显示译文；
 ///   ② lang_unreverse_text 把译文还原回英文（消费侧解药方向）；
 ///   ③ locale==en 时两者皆 no-op（默认态零行为变化）；
 ///   ④ 查不到的串原样返回（玩家名/动态数据零误伤）。
@@ -44,7 +44,7 @@
 	GLOB.i18n_reverse -= I18N_TEST_LOCALE
 	GLOB.i18n_unreverse -= I18N_TEST_LOCALE
 
-	// ① 正向反查：英文整串 → 译文（P1b/Initialize 方向）。
+	// ① 正向反查：英文整串 → 译文（examine/hover/P1 等显示边界的方向）。
 	TEST_ASSERT_EQUAL(lang_reverse_text("Welding Fuel"), "焊接燃料", "正向反查应把英文名变异为译文")
 	TEST_ASSERT_EQUAL(lang_reverse_text("Carbon Dioxide"), "二氧化碳", "正向反查应把英文名变异为译文")
 

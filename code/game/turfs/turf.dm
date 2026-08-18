@@ -136,15 +136,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
 
-	// NOVA EDIT ADDITION START - I18N - turf 不走 /atom/Initialize（SHOULD_CALL_PARENT(FALSE)），
-	// master_files/code/game/atoms.dm 的 name/desc 反查永远碰不到 turf（墙/地板 examine 显英文即此）→ 在此单独接。
-	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
-		if(name)
-			name = lang_reverse_text(name)
-		if(desc)
-			desc = lang_reverse_text(desc)
-	// NOVA EDIT ADDITION END
-
 	/// We do NOT use the shortcut here, because this is faster
 	if(SSmapping.max_plane_offset)
 		if(!SSmapping.plane_offset_blacklist["[plane]"])

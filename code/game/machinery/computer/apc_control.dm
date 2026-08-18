@@ -130,7 +130,7 @@
 		if(check_apc(apc))
 			var/has_cell = (apc.cell) ? TRUE : FALSE
 			data["apcs"] += list(list(
-					"name" = apc.area.name,
+					"name" = lang_localize_display_name(apc.area.name), // NOVA EDIT - I18N: 区域名纯显示（act 走 ref）。ORIGINAL: "name" = apc.area.name,
 					"operating" = apc.operating,
 					"charge" = (has_cell) ? apc.cell.percent() : "NOCELL",
 					"load" = display_power(apc.lastused_total),

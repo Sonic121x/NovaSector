@@ -105,7 +105,7 @@
 				else
 					cell_charge = A.cell.percent()
 				data["areas"] += list(list(
-					"name" = A.area.name,
+					"name" = lang_localize_display_name(A.area.name), // NOVA EDIT - I18N: 区域名纯显示（act 走 ref）。ORIGINAL: "name" = A.area.name,
 					"charge" = cell_charge,
 					"load" = display_power(A.lastused_total),
 					"charging" = A.charging,

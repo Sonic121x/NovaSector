@@ -28,6 +28,85 @@ Module ID: I18N
 （`GLOB.i18n_server_locale`）——广播类文本一条字符串展示给多名观察者，无法按单人区分。
 TGUI 的 `config.locale` 同源注入。
 
+**atom/turf name 与 desc 不原地翻译**：`name`、`desc` 都是 BYOND `appearance` 字段，在每个
+`/atom/Initialize` 与 `/turf/Initialize` 里改写它们，等于让地图加载期对每个实例各做两次外观变更
+（appearance 本身是内化 + 引用计数的，同型实例仍共享一份，所以代价是 **churn**，不是「每实例一份外观」）。
+详见 `modular_nova/modules/lighting_desync_debug/readme.md`。实例因此保留 canonical English，
+显示边界才翻：
+
+- `/atom/get_examine_name`（examine 名）、`/atom/examine` 的 `desc`、`/atom/MouseEntered` 的 hover
+  screentip，统一走 `lang_localize_name_for_display`（精确反查 → 复合名 AC）。
+- `/mob` 覆盖该 proc：`name` 偏离 `initial(name)` 即视为**身份名**（角色名、宠物挂牌、赛博编号、
+  ERT 头衔）一律不翻，哪怕撞上目录短语；仍等于 `initial(name)` 的才是类型标签。
+- 普通 atom 的 `TRAIT_WAS_RENAMED` 继续保护 item/loadout 玩家改名。
+- 其余 TGUI 显示字段仍由既有 P1（`lang_reverse_phrase_tgui`）与各界面定点 `lang_localize_display_name`
+  负责，这次没有新增。
+
+**聊天不受影响**（容易误判成缺口，写清楚免得下次又绕回来）：`[src]` 出现在句子里时，rewrite 已经把它
+抬成 LANG 实参（`LANG("obj.…", list(src))`，仅 `list(src` 这一形状全仓 3000+ 处），运行期由
+`lang_localize_arg` 逐个实参精确反查——**它没有多词门槛**，单词名照样命中。所以名字保持英文之后，
+聊天/`visible_message`/balloon 反而走上了更干净的一条路（此前实例名已是中文，这一步是空转）。
+
+**缺口的实际范围（比初判小）**：名字不作为 LANG 实参、而是整串出现在**非边界路径**时，只剩字面 AC
+与 P1 兜，而这**两条都是多词门槛**（`lang_reverse_phrase_tgui` 见到无空格的值直接原样返回；
+`lang_fallback_pattern_safe` 要求 trim 后多词）。但要分清两件事：
+
+- **`/datum` 的 name 从来不走 atom 那个钩子**（材料、试剂、设计、配方、货运包…），所以那些界面里的
+  单词名是**既有状态**，与这次改动无关，历来靠逐界面定点本地化解决（`material_container.dm` 的
+  `id`/`name` 分离、`_vending.dm` 的 `lang_reverse_text(record.name)` 等）。
+- 这次改动真正影响的只有**「obj/turf 的 name 直接进 TGUI 负载」**这一小类；高流量的那些
+  （售货机、LootPanel、MOD、传真、电梯、骡车、材料、手术、储物袋可容纳列表）早已有定点本地化。
+
+**逐界面补齐（2026-08-17）**：按「该处 act 是否用 name」机械筛过全仓 181 个
+`"name" = x.name` 形状的负载点，改掉 67 处、明确跳过其余。判据与常见误伤：
+
+- **跳过**：管理/调试面板（MC、动态规则、事件日志、生成面板、外观调试、wiremod 端口——端口名在电路
+  里当连接标识符）、身份名（角色/机组记录/通缉/囚犯 ID/pAI/虚拟宠物/赛博/无人机/soulcatcher 的灵魂）、
+  玩家自己输入的文本（侦探板的案件名）、**日志负载**（`mob_helpers.dm` 的手持物名进的是
+  `logger.Log`，不是 UI）、以及 name 本身就是回传标识符的（法架 `link_act(ref, name)`、
+  机器人公告 `picked: button.name`、外星探索无人机的 `tool_type: cargo.name`、恶意 AI 模块选择器、
+  街机装备、偏好菜单的个性/增强件——后两类已由 `labels.rs` 桥进前端目录）。
+- **name 是 act 动作串又必须显示译文**的，另发字段：borg 注射器/调酒器前端写的是 `act(reagent.name)`，
+  所以 DM 加发 `display_name`、TSX 渲染 `display_name ?? name`，`act()` 与选中态比较仍走英文
+  （同 `medical_tools.dm` 的 `id`/`name` 拆法）。
+- **同一负载里已有 id/ref 的**（材料容器、结晶器、弹药工作台、货运包、试剂查询…）直接翻 `name`；
+  材料容器的 `id` 顺手从 `lang_unreverse_text(material.name)` 简化成 `material.name`——实例名现在
+  本就是英文，不必再倒查。
+
+**「name 兼作 act 标识符」的单词名走前端目录桥**（`labels.rs SINGLE_WORD_TYPE_VAR_RULES`）：
+`/datum/vote`、`/datum/ai_module`、`/datum/chemical_reaction`、`/datum/design`、`/datum/material`、
+`/datum/reagent` 的 name 在 TGUI 里既显示又当回传键/客户端比较键（`act('buy', {name})`、`voteName`、
+置顶反应列表、`recipe.name === selected_recipe`、`MATERIAL_ICONS[name]`），所以 DM 端不能改数据。
+落地路径按词数分叉，这条桥**只收单词**：
+
+- **多词** name 由 P1 在负载里就地翻好，已经能显示中文。塞进前端目录只会让 P1 按「本身是 tgui 目录键」
+  跳过、改由 TS 只翻显示；一旦某界面把它渲染在非可翻位置（模板串、非 translatable prop），就从中文退化成英文。
+- **单词** name 连 P1 的多词门槛都过不了，本来恒为英文 → 进前端目录是纯增益（实测新增 545 条标签、
+  目录新增 506 键）。
+
+两道安全线：① 单词键的译文**只允许沿用其它命名空间的既有词对**（`tgui-catalog.mjs extract` 里
+`reverseZh`；`phraseTranslation` 现编的值对单词键一律不收）——`tgui.json` 会被 `build_i18n_cache`
+一并扫进 DM 侧**全局反查表**，凭空多出的单词词对等于扩大整个 DM 侧误翻面，而单词正是 act/topic/黑板键
+浓度最高的形态；② 查不到译文就留英文，`sync()` 会把「值等于英文」的键滤掉，等于不存在。
+落地实测：506 条新键里 462 条沿用既有译文、**0 条新造词对、0 条与既有译文冲突**，`nova-i18n lint`
+告警数不变（27，全是既有 ident 碰撞基线）。
+
+已补上的两处宽覆盖边界：
+
+- `tgui_input_list`（`code/modules/tgui_input/list.dm`）：选项文本整串反查（无词数门槛），
+  `items_map` 用**同一个显示串**作键，回传后取回原值；`default` 一并换成显示形态，否则前端预选落空。
+  `items` 在 P1 的 `payload_skip_keys` 里，所以这里是唯一的本地化点。往返由 `i18n_display_boundary` 守。
+- 径向菜单（`code/_onclick/hud/screen_objects/radial.dm`）：切片 `name` 只当 tooltip 标题
+  （标识符走 `E.choice`），在 `setup_menu` 里过 `lang_localize_display_name`。
+
+量级参考：obj/mob/turf/atom/area 命名空间下「名字形」（无句末标点、≤4 词、≤40 字符）已译条目中
+单词占 **约 10%**（2122 / 21174）；多词名（"cable coil"、"medical kit"，SS13 的绝对多数）在这些路径上
+仍由 AC/P1 覆盖。剩余长尾的补法是**逐界面**在 ui_data 里过 `lang_localize_display_name`（前提：该处
+act 走 ref/id，不拿 name 拼动作串），或按类型桥进前端目录（`labels.rs TYPE_VAR_RULES`）。
+**不要**为此放宽 P1 的多词门槛或往字面 AC 字典里塞单词——那两条是安全线。往前端目录桥单词时还要确认
+该英文串**已在 DM 侧目录里有译文**：`tgui.json` 同样被 `build_i18n_cache` 扫进全局反查表，塞进从未
+出现过的新词对等于扩大 DM 侧的误翻面（线缆颜色那次就是被 `i18n_real_catalog` 当场抓住的）。
+
 **目录位置**：`strings/i18n/<locale>/<namespace>.json`。必须在 `strings/`（已被 git 跟踪）；
 不可用 `data/`（被 .gitignore 忽略）。
 
@@ -64,14 +143,15 @@ TGUI 的 `config.locale` 同源注入。
 绝大多数汉化逻辑在 `tools/i18n/`、本模块与 `modular_nova/master_files/`。核心 `code/` 的改动只有两类，
 都带 `NOVA EDIT` 标记：
 
-1. **落地钩子**——把输出边界接进兜底层：`modules/tgchat/to_chat.dm`（聊天）、`datums/browser.dm`（browse）、
+1. **落地钩子**——把输出边界接进兜底层：`game/atom/atom_examine.dm`（examine name/desc）、
+   `game/atom/_atom.dm`（hover screentip）、`modules/tgchat/to_chat.dm`（聊天）、`datums/browser.dm`（browse）、
    `controllers/subsystem/statpanel.dm`（状态栏）、`_onclick/hud/screen_objects/new_player.dm`（大厅 maptext）、
    `__HELPERS/priority_announce.dm`（公告）、`modules/tgui/tgui.dm`（注入 `config.locale` + P1）。
 2. **运行期拼串处的定点反查**——整串是运行期产物、不可能是目录键的地方（公告 `%VAR` 值、ID 卡职务、
    emote 派发、书本内容、`EXAMINE_HINT` 宏…）。
 
 `modular_nova/master_files/` 下的 core override 走 `. = ..()` 覆盖而非复制上游 proc
-（storage 的可容纳列表、PDA/便衣 ID 的显示名、config entries、atoms 的 name/desc 反查…）。
+（storage 的可容纳列表、PDA/便衣 ID 的显示名、config entries 等）。
 
 ### Defines:
 

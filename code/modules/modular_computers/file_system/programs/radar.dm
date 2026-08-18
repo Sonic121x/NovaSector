@@ -359,7 +359,7 @@
 	for(var/obj/machinery/nuclearbomb/nuke as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb))
 		var/list/nuke_info = list(
 			ref = REF(nuke),
-			name = nuke.name,
+			name = nuke.lang_localize_name_for_display(nuke.name), // NOVA EDIT - I18N: 纯显示；atom 版守玩家改名。ORIGINAL: name = nuke.name,
 			)
 		objects += list(nuke_info)
 

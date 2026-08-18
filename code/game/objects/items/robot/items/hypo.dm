@@ -223,6 +223,8 @@
 	for(var/datum/reagent/reagent in stored_reagents.reagent_list)
 		available_reagents.Add(list(list(
 			"name" = reagent.name,
+			// NOVA EDIT ADDITION - I18N: `name` 是 act 动作串本体（前端 `act(reagent.name)`）也是选中态比较值，必须保持英文；显示走 display_name。
+			"display_name" = lang_localize_display_name(reagent.name),
 			"volume" = round(reagent.volume, 0.01) - 1,
 			"description" = reagent.description,
 		))) // list in a list because Byond merges the first list...
@@ -381,11 +383,15 @@ NOVA EDIT REMOVAL END */
 		if(istype(reagent, /datum/reagent/consumable/ethanol))
 			alcohol_reagents.Add(list(list(
 				"name" = reagent.name,
+				// NOVA EDIT ADDITION - I18N: 见上，name 是 act 动作串，显示走 display_name。
+				"display_name" = lang_localize_display_name(reagent.name),
 				"volume" = round(reagent.volume, 0.01) - 1,
 			))) // list in a list because Byond merges the first list...
 		else
 			drink_reagents.Add(list(list(
 				"name" = reagent.name,
+				// NOVA EDIT ADDITION - I18N: 见上，name 是 act 动作串，显示走 display_name。
+				"display_name" = lang_localize_display_name(reagent.name),
 				"volume" = round(reagent.volume, 0.01) - 1,
 			)))
 
@@ -456,6 +462,8 @@ NOVA EDIT REMOVAL END */
 	for(var/datum/reagent/reagent in stored_reagents.reagent_list)
 		condiments.Add(list(list(
 			"name" = reagent.name,
+			// NOVA EDIT ADDITION - I18N: 见上，name 是 act 动作串，显示走 display_name。
+			"display_name" = lang_localize_display_name(reagent.name),
 			"volume" = round(reagent.volume, 0.01) - 1,
 			"description" = reagent.description,
 		))) // list in a list because Byond merges the first list...

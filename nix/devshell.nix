@@ -5,6 +5,7 @@
 # 之后 `tools/build/build.sh`、`bun run tgui:*`、以及 `cargo`（用于 tools/i18n 抽取工具）
 # 均可直接使用；DreamMaker / DreamDaemon 也在 PATH 上。
 {
+  lib,
   mkShell,
   rust-bin,
   bun,
@@ -58,6 +59,7 @@ mkShell {
   # DM_EXE 作为兜底，避免命名版本文件干扰。
   DM_EXE = "${byond}/bin/DreamMaker";
   BYOND_SYSTEM = byond.passthru.home;
+  LD_LIBRARY_PATH = lib.makeLibraryPath [ zlib ];
 
   shellHook = ''
     # rust-g 原生库：detect 逻辑优先找仓库根的 ./librust_g.so（见 code/__DEFINES/rust_g.dm）。

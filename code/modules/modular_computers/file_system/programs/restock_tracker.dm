@@ -21,7 +21,7 @@
 		if((!total_legal_stock[2] || (total_legal_stock[1] >= total_legal_stock[2])) && !vendor.credits_contained)
 			continue
 		vending_list += list(list(
-			"name" = vendor.name,
+			"name" = vendor.lang_localize_name_for_display(vendor.name), // NOVA EDIT - I18N: 售货机名纯显示；atom 版守玩家改名。ORIGINAL: "name" = vendor.name,
 			"location" = get_area_name(vendor),
 			"credits" = vendor.credits_contained,
 			"percentage" = (total_legal_stock[1] / total_legal_stock[2]) * 100,

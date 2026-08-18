@@ -151,17 +151,43 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 
 /// 把模板里的 {0}/{1}… 用 args 依次替换（args 为 /list，元素按位置对应）。
 /// 文本实参经 lang_localize_arg 本地化链（仅全服 locale≠en；en 零额外开销）。
+///
+/// **单趟扫描，不是「每个实参跑一遍 replacetext」**。旧写法按序替换 {0}、{1}…，于是**上一个实参
+/// 的内容会被下一轮当成模板的一部分再扫一次**：只要某个实参的值里恰好含 `{1}`（纸张文本、玩家
+/// 起的物品名、任何玩家可控串都做得到），它就会被后一个实参的值顶掉，输出一句错乱的话。
+/// 单趟扫描时实参写进输出后不再参与匹配，这类自吞死掉；顺带还省掉了「模板里根本没有该占位符时
+/// 仍然白跑一遍 lang_localize_arg + 全串 replacetext」的开销（LANG 是全仓三万余处调用的热点）。
 /proc/lang_interpolate(template, list/args)
-	if(!length(args))
+	var/arg_count = length(args)
+	if(!arg_count || !findtext(template, "{"))
 		return template
 	var/localize = GLOB.i18n_server_locale != DEFAULT_UI_LOCALE
-	var/result = template
-	for(var/i in 1 to length(args))
-		var/arg = args[i]
+	var/list/output = list()
+	var/template_length = length(template)
+	var/cursor = 1
+	while(cursor <= template_length)
+		var/brace = findtext(template, "{", cursor)
+		if(!brace)
+			break
+		var/close = findtext(template, "}", brace + 1)
+		// 非 {N}/{NN} 形态（含未闭合、过长）：按字面处理，越过这个 `{` 继续找。
+		if(!close || close - brace > 3 || !lang_tpl_all_digits(copytext(template, brace + 1, close)))
+			output += copytext(template, cursor, brace + 1)
+			cursor = brace + 1
+			continue
+		var/index = text2num(copytext(template, brace + 1, close)) + 1
+		if(index < 1 || index > arg_count) // 越界占位符：与旧行为一致，原样留在输出里
+			output += copytext(template, cursor, close + 1)
+			cursor = close + 1
+			continue
+		output += copytext(template, cursor, brace)
+		var/arg = args[index]
 		if(localize && istext(arg))
 			arg = lang_localize_arg(arg)
-		result = replacetext(result, "{[i - 1]}", "[arg]")
-	return result
+		output += "[arg]"
+		cursor = close + 1
+	output += copytext(template, cursor)
+	return output.Join()
 
 /// LANG 实参/引擎捕获的统一本地化链：状态词 → 代词/系动词 → 整串反查 → 冠词剥离反查。
 /// 解决「模板译了、运行期填进来的实参却是英文」的四类：
@@ -216,11 +242,10 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 			return translated
 	return arg
 
-/// **逆向**反查：把「已被反查成译文」的显示串还原回英文原文。用于 act 回传/按英文建键的查表
-/// 场景——UI 把翻译过的 name 回传给英文键表（如 GLOB.name2reagent 用 initial(name) 建键，而
-/// 实例 name 已被 New() 反查成中文 → 直接查必 miss）。惰性从反查表倒置构建（一对多取首个）；
-/// locale==en 或查不到原样返回。**消费侧惯用法**：`map[x] || map[lang_unreverse_text(x)]`
-/// （先原样查保英文路径零变化）。
+/// **逆向**反查：把显示边界产生的译名还原成英文原文。用于 act 回传/按英文建键的查表场景——
+/// TGUI 只翻显示字段，但部分旧界面仍会把显示名回传给 canonical English 键表；直接查会 miss。
+/// 惰性从反查表倒置构建（一对多取首个）；locale==en 或查不到原样返回。
+/// **消费侧惯用法**：`map[x] || map[lang_unreverse_text(x)]`（先原样查保英文路径零变化）。
 GLOBAL_LIST_EMPTY(i18n_unreverse)
 /proc/lang_unreverse_text(text)
 	if(!istext(text) || !length(text))
@@ -507,11 +532,11 @@ GLOBAL_VAR_INIT(i18n_text_macro_regex, regex(@"\\(improper|proper|themselves|the
 
 // ---- 反查表（name/desc 等「变量类」文本接入运行时）----
 //
-// 变量初始化（name = "..."）无法改写成 LANG()（DM 变量初值需常量），所以改为：在 Initialize
-// 期把英文整串反查成译文。反查表 = 英文原文 -> 译文，仅含「无占位符的纯字符串」（name/desc
-// 几乎都是纯字符串）。译文随 Codex/Tolgee 落地自动生效，无需再改代码。
+// 变量初始化（name = "..."）无法改写成 LANG()（DM 变量初值需常量）。atom/turf 实例保持
+// canonical English，避免改写 BYOND appearance；examine、hover 与纯显示 TGUI 字段在输出边界
+// 用此表把英文整串映射为译文。表只含「无占位符的纯字符串」。
 
-/// locale -> (英文原文 -> 译文)。惰性构建（写 GLOB，仅供 /atom/Initialize 等非纯路径调用）。
+/// locale -> (英文原文 -> 译文)。惰性构建并缓存到 GLOB，供各显示边界复用。
 GLOBAL_LIST_EMPTY(i18n_reverse)
 
 /// 剥掉 BYOND 文法宏 \improper/\proper，得到「显示形态」串。
@@ -686,6 +711,36 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 	. = lang_reverse_text(text)
 	if(. == text) // 精确 miss → 复合名走 AC 子串
 		. = lang_fallback_apply(text)
+
+/// Localize an atom name only when it is still a static type label. Runtime/player-assigned identity names
+/// must remain byte-for-byte unchanged even when they collide with a catalog phrase.
+/atom/proc/lang_localize_name_for_display(display_name)
+	if(HAS_TRAIT(src, TRAIT_WAS_RENAMED))
+		return display_name
+	return lang_localize_display_name(display_name)
+
+/// mob 的 `name` 是**身份**（角色名、宠物挂牌名、赛博编号、ERT 头衔…），一律不翻——哪怕它恰好
+/// 撞上目录短语。判据只用「是否仍等于类型声明的初值」：任何运行期赋值（`fully_replace_character_name`
+/// 与各处裸 `name = …`）都会偏离 initial(name)；而被改回 initial(name) 的（宠物摘掉项圈还原）此刻
+/// 又确实是类型标签、该翻。不另设标志位：标志位只能覆盖走 proc 的那条改名路径，还得跟父级的
+/// early-return 保持同步，反而比这条判据弱。
+/mob/lang_localize_name_for_display(display_name)
+	if(display_name == initial(name))
+		return ..()
+	// `set_name()` 家族把类型名拼成 `"alien larva (123)"`（异种/蜂/皮层蠕虫/无人机/血虫…都走这条），
+	// 整串不等于 initial(name)、按上面的判据会被当身份名拒翻 → 例检里显英文。这里只放行一种形态：
+	// **前缀与 initial(name) 逐字节相同、其余部分是括号后缀**。玩家自己起的名字不可能满足这个形状
+	// （除非他刚好把名字起成「类型名 (…)」，那时翻前缀也无害），所以不放宽身份名的保护面。
+	var/base = initial(name)
+	var/base_length = length(base)
+	if(!base_length || length(display_name) <= base_length + 2)
+		return display_name
+	if(copytext(display_name, 1, base_length + 1) != base)
+		return display_name
+	var/suffix = copytext(display_name, base_length + 1)
+	if(copytext(suffix, 1, 3) != " (" || copytext(suffix, -1) != ")")
+		return display_name
+	return lang_localize_display_name(base) + suffix
 
 /// 已知会被运行期 `desc +=` 追加的固定后缀（trim 形态）。base + 后缀都是各自独立的目录键，但拼接后
 /// 整串非目录键 → exact 反查 miss。这些追加发生在 New()/早期（i18n_cache 未就绪、原地反查会空转），

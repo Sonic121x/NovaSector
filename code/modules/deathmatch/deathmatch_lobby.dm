@@ -570,7 +570,7 @@
 		var/datum/deathmatch_modifier/mod = GLOB.deathmatch_game.modifiers[modifier_path]
 
 		UNTYPED_LIST_ADD(modifier_list, list(
-			"name" = mod.name,
+			"name" = lang_localize_display_name(mod.name), // NOVA EDIT - I18N: 修正器名纯显示。ORIGINAL: "name" = mod.name,
 			"desc" = mod.description,
 			"modpath" = "[modifier_path]",
 			"selected" = (modifier_path in modifiers),

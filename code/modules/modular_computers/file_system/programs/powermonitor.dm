@@ -94,7 +94,7 @@
 			var/obj/machinery/power/apc/A = term.master
 			if(istype(A))
 				data["areas"] += list(list(
-					"name" = A.area.name,
+					"name" = lang_localize_display_name(A.area.name), // NOVA EDIT - I18N: 区域名纯显示。ORIGINAL: "name" = A.area.name,
 					"charge" = A.cell ? A.cell.percent() : 0,
 					"load" = display_power(A.lastused_total),
 					"charging" = A.charging,

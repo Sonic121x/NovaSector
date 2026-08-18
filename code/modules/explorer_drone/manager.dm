@@ -56,7 +56,7 @@
 		adventure_data += list(list(
 			"ref" = ref(db_entry),
 			"filename" = db_entry.filename,
-			"name" = db_entry.name,
+			"name" = lang_localize_display_name(db_entry.name), // NOVA EDIT - I18N: 冒险条目名纯显示（act 走 ref）。ORIGINAL: "name" = db_entry.name,
 			"version" = db_entry.version,
 			"uploader" = db_entry.uploader,
 			"approved" = db_entry.approved,

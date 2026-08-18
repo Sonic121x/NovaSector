@@ -623,7 +623,7 @@
 			continue
 		.["propData"] += list(list(
 			"prop_ref" = REF(item),
-			"prop_name" = item.name,
+			"prop_name" = item.lang_localize_name_for_display(item.name), // NOVA EDIT - I18N: 纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: "prop_name" = item.name,
 			"prop_icon" = item::icon,
 			"prop_icon_state" = item::icon_state,
 		))

@@ -91,7 +91,7 @@
 	else
 		var/list/exodrones = list()
 		for(var/obj/item/exodrone/drone in GLOB.exodrones)
-			exodrones += list(list("name"=drone.name,"controlled"=drone.controlled,"description"=drone.ui_description(),"ref"=ref(drone)))
+			exodrones += list(list("name"=drone.lang_localize_name_for_display(drone.name),"controlled"=drone.controlled,"description"=drone.ui_description(),"ref"=ref(drone))) // NOVA EDIT - I18N: 无人机名纯显示（act 走 ref）；atom 版守玩家改名
 		.["all_drones"] = exodrones
 
 /obj/machinery/computer/exodrone_control_console/update_overlays()

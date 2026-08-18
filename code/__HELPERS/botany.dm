@@ -18,7 +18,7 @@
 	seed_data["reagents"] = list()
 	for(var/datum/plant_gene/reagent/reagent in seeds.genes)
 		seed_data["reagents"] += list(list(
-			"name" = reagent.name,
+			"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
 			"rate" = reagent.rate
 		))
 

@@ -108,7 +108,7 @@
 		if(isnull(data[achievement_type])) //We're still loading
 			continue
 		var/list/award_data = list(
-			"name" = award.name,
+			"name" = lang_localize_display_name(award.name), // NOVA EDIT - I18N: 成就名纯显示。ORIGINAL: "name" = award.name,
 			"desc" = award.desc,
 			"category" = award.category,
 			"icon_class" = assets.icon_class_name("achievement-[award.icon_state]"),
@@ -128,7 +128,7 @@
 				.["progresses"] += list(prog_data)
 		if(!score.track_high_scores || !length(score.high_scores))
 			continue
-		.["highscores"] += list(list("name" = score.name, "scores" = score.high_scores))
+		.["highscores"] += list(list("name" = lang_localize_display_name(score.name), "scores" = score.high_scores)) // NOVA EDIT - I18N: 榜单名纯显示。ORIGINAL: "name" = score.name
 
 GAME_VERB_DESC(/client, checkachievements, "查看成就", "See all of your achievements!", "OOC")
 

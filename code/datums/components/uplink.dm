@@ -193,7 +193,7 @@
 		var/atom/actual_item = item.item
 		extra_purchasable += list(list(
 			"id" = item.type,
-			"name" = item.name,
+			"name" = lang_localize_display_name(item.name), // NOVA EDIT - I18N: 纯显示（act('buy') 走 item.id/ref）。ORIGINAL: "name" = item.name,
 			"icon" = actual_item.icon,
 			"icon_state" = actual_item.icon_state,
 			"cost" = item.cost,

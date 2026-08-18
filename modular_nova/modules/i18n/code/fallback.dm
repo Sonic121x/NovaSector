@@ -4,7 +4,7 @@
 // 子串替换。字典两来源：
 //   1. 主字典——内存反查表 lang_build_reverse(locale)（即已翻译的 name/desc/message/title 等
 //      无占位符整串），**仅取含空格的多词短语**：单词做子串替换会误伤（"Door"→"Doorknob"），
-//      单词类名靠源头 lang_reverse_text 整串反查覆盖（见 runtime.dm / 各 New() 反查）。
+//      单词类名靠 examine/hover/TGUI 等显示边界调用 lang_reverse_text 精确反查覆盖（见 runtime.dm）。
 //   2. 可选人工补充——strings/i18n/<locale>/_fallback.json，扁平 {"english": "中文"}（不受多词
 //      过滤限制，人工显式覆盖）。
 // 注意：纯子串替换，不保证语序正确，仅用于过渡期与长尾「不漏英文」。已被 LANG 处理过的
@@ -194,33 +194,48 @@ GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
 	return lang_fallback_cache_store(locale, source_text, text)
 
 /// Finds the closing `>` for an HTML tag without treating a quoted `>` as the end of the tag.
+///
+/// PERF：原实现按**字节**推进（`copytext(html, i, i+1)` 每字节分配一个新字符串），而本 proc 是
+/// `lang_fallback_apply_html` 的内循环——每条 to_chat、每个浏览器页面的**每一个标签**都要跑一遍，
+/// 且跑两遍（内联 run 前置 pass + 切块器各一次）。记录台/健康扫描那种几十 KB、上千标签的页面，
+/// 光这里就是几十万次字符串分配。改成用 findtext 直接跳到下一个 `>` / 引号：native 扫描、
+/// 每个标签常数次调用，逐字节行为等价（引号内的 `>` 仍不算结束）。
 /proc/lang_html_tag_end(html, tag_start)
-	var/quote
-	for(var/index in tag_start + 1 to length(html))
-		var/character = copytext(html, index, index + 1)
-		if(quote)
-			if(character == quote)
-				quote = null
-			continue
-		if(character == "'" || character == "\"")
-			quote = character
-		else if(character == ">")
-			return index
+	var/index = tag_start + 1
+	while(TRUE)
+		var/close = findtext(html, ">", index)
+		if(!close)
+			return
+		// 取 `>` 之前最早出现的引号；没有（或在 `>` 之后）说明这个 `>` 就是标签结束。
+		var/single_quote = findtext(html, "'", index)
+		var/double_quote = findtext(html, "\"", index)
+		var/quote_at
+		if(single_quote && (!double_quote || single_quote < double_quote))
+			quote_at = single_quote
+		else
+			quote_at = double_quote
+		if(!quote_at || quote_at > close)
+			return close
+		// 引号先开：整段引号内容跳过（属性值里的 `>` 不是标签结束）。
+		var/quote_end = findtext(html, copytext(html, quote_at, quote_at + 1), quote_at + 1)
+		if(!quote_end)
+			return
+		index = quote_end + 1
+
+/// 标签名允许的字符集，喂给 native 的 spantext（见下）。
+#define I18N_TAG_NAME_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+#define I18N_TAG_LEAD_WHITESPACE " \t\n"
 
 /// Returns the name of an HTML raw-text element whose body must never be localized.
+///
+/// PERF：同 lang_html_tag_end——原实现逐字节 `copytext` 扫名字。`spantext(串, 字符集, 起点)`
+/// 是 native 的「从起点开始有多少个连续字符属于该集合」，一次调用顶掉整个循环，零中间分配。
 /proc/lang_html_raw_text_tag_name(tag)
-	var/index = 2
-	while(index <= length(tag) && findtext(" \t\n", copytext(tag, index, index + 1)))
-		index++
+	var/index = 2 + spantext(tag, I18N_TAG_LEAD_WHITESPACE, 2)
 	var/first_character = copytext(tag, index, index + 1)
 	if(first_character == "/" || first_character == "!" || first_character == "?")
 		return
-	var/name_end = index
-	while(name_end <= length(tag))
-		var/character = copytext(tag, name_end, name_end + 1)
-		if(!findtext("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", character))
-			break
-		name_end++
+	var/name_end = index + spantext(tag, I18N_TAG_NAME_CHARS, index)
 	var/tag_name = LOWER_TEXT(copytext(tag, index, name_end))
 	switch(tag_name)
 		if("script", "style", "textarea")
@@ -239,12 +254,7 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 	if(copytext(tag, index, index + 1) == "/")
 		closing = TRUE
 		index++
-	var/name_end = index
-	while(name_end <= length(tag))
-		var/character = copytext(tag, name_end, name_end + 1)
-		if(!findtext("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", character))
-			break
-		name_end++
+	var/name_end = index + spantext(tag, I18N_TAG_NAME_CHARS, index) // PERF: native 扫名字，见 lang_html_raw_text_tag_name
 	return list(LOWER_TEXT(copytext(tag, index, name_end)), closing)
 
 /// 目录键里**夹着内联标签**的整句，切块后两半都查不到。
@@ -302,7 +312,9 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 			// —— 让它成为边界、run 从它之后重新开始；这样它的闭合标签也会在 depth==0 时收尾。
 			// 已经有文本之后遇到的开标签才是句中排版（`… the <b>SEAL</b>`），吸收进 run。
 			if(!closing)
-				if(length(trim(copytext(html, run_start, tag_start))))
+				// PERF：只需判断「run 至今有没有非空白文本」，原写法为此切一份子串再 trim 一份
+				// （每条聊天行的每个内联开标签两次分配）。spantext 直接在原串上数空白，无分配。
+				if(run_start + spantext(html, I18N_TAG_LEAD_WHITESPACE, run_start) < tag_start)
 					depth++
 					saw_inline_tag = TRUE
 					breaks_run = FALSE
@@ -395,3 +407,5 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 #undef I18N_FALLBACK_CACHE_MAX
 #undef I18N_FALLBACK_CACHE_MAX_LENGTH
 #undef I18N_INLINE_RUN_MAX_LENGTH
+#undef I18N_TAG_NAME_CHARS
+#undef I18N_TAG_LEAD_WHITESPACE

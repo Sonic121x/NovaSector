@@ -159,7 +159,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 	//2 scriptures accessible at the same time will cause issues
 	for(var/datum/scripture/scripture as anything in GLOB.clock_scriptures)
 		var/list/scripture_data = list(
-			"name" = scripture.name,
+			"name" = lang_localize_display_name(scripture.name), // i18n: 纯显示，act 走 scriptureType
 			"desc" = scripture.desc,
 			"type" = scripture.category,
 			"tip" = scripture.tip,

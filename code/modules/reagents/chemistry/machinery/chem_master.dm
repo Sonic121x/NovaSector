@@ -300,7 +300,7 @@
 			for(var/datum/reagent/reagent as anything in beaker.reagents.reagent_list)
 				beakerContents += list(list(
 					"ref" = "[reagent.type]",
-					"name" = reagent.name,
+					"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示（act 走 reagentRef）。ORIGINAL: "name" = reagent.name,
 					"volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING),
 					"pH" = reagent.ph,
 					"color" = reagent.color,
@@ -322,7 +322,7 @@
 		for(var/datum/reagent/reagent as anything in reagents.reagent_list)
 			beakerContents += list(list(
 				"ref" = "[reagent.type]",
-				"name" = reagent.name,
+				"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示（act 走 reagentRef）。ORIGINAL: "name" = reagent.name,
 				"volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING),
 				"pH" = reagent.ph,
 				"color" = reagent.color,

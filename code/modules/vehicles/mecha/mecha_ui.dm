@@ -132,7 +132,7 @@
 					data += list(list(
 						"slot" = category,
 						"icon" = module.icon_state,
-						"name" = module.name,
+						"name" = lang_localize_display_name(module.name), // NOVA EDIT - I18N: 模块名纯显示（act 走 ref/gear_action 用 id）。ORIGINAL: "name" = module.name,
 						"desc" = module.desc,
 						"detachable" = module.detachable,
 						"integrity" = (module.get_integrity()/module.max_integrity),

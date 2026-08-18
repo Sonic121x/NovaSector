@@ -56,7 +56,7 @@
 /datum/component/golem_food/proc/create_golem_snack(atom/source)
 	golem_snack = new(null)
 	golem_snack.setup(
-		name = source.name,
+		name = source.lang_localize_name_for_display(source.name), // NOVA EDIT - I18N: 纯显示；atom 版守玩家改名。ORIGINAL: name = source.name,
 		consume_food = consume_on_eat,
 		food_buff = snack_type,
 		owner = parent,

@@ -89,15 +89,11 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 	segs += copytext(template, seg_start) // 末段（可为空串）
 	return list(segs, order)
 
+/// PERF：native 的 spantext 一次算出「开头有多少个连续数字」，顶掉逐字节的 text2ascii 循环。
+/// 本 proc 现在也在 lang_interpolate 的热路径上（每个 LANG 占位符都过一次）。
 /proc/lang_tpl_all_digits(text)
 	var/len = length(text)
-	if(!len)
-		return FALSE
-	for(var/i in 1 to len)
-		var/ch = text2ascii(text, i)
-		if(ch < 48 || ch > 57)
-			return FALSE
-	return TRUE
+	return len && spantext(text, "0123456789") == len
 
 /// 字面段里是否**只有排版类** HTML 标签（至少有一个标签，且没有 `<a>`）。
 /// `<a>` 携带的是功能（`<a href='byond://…'>here</a>` 是投票入口），剥掉就把功能弄没了，

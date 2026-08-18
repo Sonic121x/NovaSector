@@ -1,0 +1,7 @@
+author: "sernseek"
+
+delete-after: True
+
+changes:
+  - bugfix: "修复本地化文本填充：当某个参数的值本身含有 `{1}` 这类占位符形态（纸张文本、玩家自定义命名等）时，它会被后一个参数顶掉，导致整句显示错乱。"
+  - code_imp: "本地化 HTML 落地层（每条聊天消息与每个浏览器页面都会经过）改用 BYOND 原生的 spantext/findtext 扫描标签，取代逐字节 copytext 循环，显著减少大页面（记录台、健康扫描报告等）的字符串分配。"

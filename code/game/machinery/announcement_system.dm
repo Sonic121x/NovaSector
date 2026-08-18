@@ -108,7 +108,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	var/list/configs = list()
 	for(var/datum/aas_config_entry/config in config_entries)
 		configs += list(list(
-			name = config.name,
+			name = lang_localize_display_name(config.name), // NOVA EDIT - I18N: 纯显示（act 走 entryRef/lineKey）。ORIGINAL: name = config.name,
 			entryRef = REF(config),
 			enabled = config.enabled,
 			modifiable = config.modifiable,

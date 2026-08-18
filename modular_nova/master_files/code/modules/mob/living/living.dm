@@ -49,6 +49,8 @@
 	if(ckey && is_banned_from(ckey, BAN_PACIFICATION))
 		ADD_TRAIT(src, TRAIT_PACIFISM, ROUNDSTART_TRAIT)
 
+	newbie_guard_on_login(src) // REGION_NEWBIE_GUARD
+
 	set_ssd_indicator(FALSE)
 
 	if(isnull(mind) || isnull(client?.prefs))

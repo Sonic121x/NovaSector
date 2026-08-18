@@ -43,7 +43,7 @@
 	for(var/obj/item/mod/module/module as anything in modules)
 		module_custom_status += module.add_ui_data()
 		module_info += list(list(
-			"module_name" = module.name,
+			"module_name" = lang_localize_display_name(module.name), // NOVA EDIT - I18N: 模块名纯显示（act 走 module_ref）。ORIGINAL: "module_name" = module.name,
 			"description" = module.desc,
 			"module_type" = module.module_type,
 			"module_active" = module.active,

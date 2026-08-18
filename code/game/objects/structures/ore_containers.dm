@@ -27,7 +27,7 @@
 	for(var/obj/item/stack/ore/ore_item in contents)
 		ores += list(list(
 			"id" = REF(ore_item),
-			"name" = ore_item.name,
+			"name" = ore_item.lang_localize_name_for_display(ore_item.name), // NOVA EDIT - I18N: 矿石名纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: "name" = ore_item.name,
 			"amount" = ore_item.amount,
 			"icon" = ore_item::icon,
 			"icon_state" = ore_item::icon_state,

@@ -1,0 +1,9 @@
+author: "sernseek"
+
+delete-after: True
+
+changes:
+  - rscadd: "新增「新人软管制」：游戏时长不足且连接来源不在地区名单内的玩家会被临时和平化，并暂时无法拆解设备或操作火警、大气、APC、核弹等高危设施。检查、对话、移动、开门与使用电脑均不受影响。"
+  - rscadd: "受管制的玩家在本回合存活满设定时间后，限制会自动全部解除；也可以在提示中直接提交申诉，管理员批准后永久豁免。"
+  - admin: "新增管理员 verb：切换新人软管制、新人软管制名单、豁免新人软管制、重载地区数据表。"
+  - config: "新增 NEWBIE_GUARD、NEWBIE_GUARD_PLAYTIME、NEWBIE_GUARD_SURVIVAL、NEWBIE_GUARD_BYPASS_DAYS 配置项。"

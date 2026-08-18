@@ -27,6 +27,29 @@
 
 	/// Client does NOT have tgui_input on: Returns regular input
 	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
+		// NOVA EDIT ADDITION START - I18N: 原生 input() 回退分支同样要本地化（否则关掉 tgui 输入的玩家
+		// 看到的是英文选项）。做法与 tgui 分支一致：显示串是纯显示，用「显示串 -> 原值」的 assoc 表兜回原值。
+		// `input() ... in assoc_list` 的返回值在不同写法下可能是键也可能是值，两种都接住（少一个分支就是
+		// 「选了没反应」）。查不到译名的项原样入表，行为与改动前一致。
+		if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
+			var/list/localized_items = list()
+			var/localized_default
+			for(var/item in items)
+				if(isnull(item))
+					continue
+				var/label = lang_localize_display_name("[item]")
+				if(localized_items[label]) // 两个英文名可能译成同一个中文：后者退回原样，保证不吞选项
+					label = "[item]"
+				localized_items[label] = item
+				if(isnull(localized_default) && !isnull(default) && (item == default || "[item]" == "[default]"))
+					localized_default = label
+			var/picked = input(user, message, title, localized_default || default) as null|anything in localized_items
+			if(isnull(picked))
+				return null
+			if(istext(picked) && !isnull(localized_items[picked]))
+				return localized_items[picked]
+			return picked
+		// NOVA EDIT ADDITION END
 		return input(user, message, title, default) as null|anything in items
 	var/datum/tgui_list_input/input = new(user, message, title, items, default, timeout, ui_state)
 	if(input.invalid)
@@ -81,14 +104,33 @@
 	// (舰 U+8230, 近 U+8FD1, 调 U+8C03 …; CJK Unified Ideographs span U+4E00-U+9FFF) -> every list-input option
 	// with such a char silently lost it ("最近的下行通道"->"最的下行通道"). Extend to \uffff to keep all BMP/CJK.
 	var/static/regex/whitelistedWords = regex(@{"([^\u0020-\uffff]+)"})
+	// NOVA EDIT ADDITION START - I18N: 选项文本是**纯显示**——回传的 entry 只用来在 items_map 里取回原值，
+	// 所以把显示串整串反查（含单词名，走精确反查不经 AC），items_map 用同一个显示串作键，往返仍然对得上。
+	// `items` 在 P1 的 payload_skip_keys 里（值兼回传标识符），故此处是唯一的本地化点。
+	// 注意 default 也要跟着换成显示形态，否则前端按 init_value 预选会落空。
+	var/localized_default
+	// NOVA EDIT ADDITION END
 	for(var/i in items)
 		if(!i)
 			continue
 		var/string_key = whitelistedWords.Replace("[i]", "")
+		// NOVA EDIT ADDITION START - I18N
+		var/original_key = string_key
+		string_key = lang_localize_display_name(string_key) // locale==en 时 no-op
+		// NOVA EDIT ADDITION END
 		//avoids duplicated keys E.g: when areas have the same name
 		string_key = avoid_assoc_duplicate_keys(string_key, repeat_items)
 		src.items += string_key
 		src.items_map[string_key] = i
+		// NOVA EDIT ADDITION START - I18N: 去重在本地化之后跑（两个英文名可能译成同一个中文），
+		// 所以 default 的显示形态只能在这里回收。
+		if(isnull(localized_default) && !isnull(default) && (i == default || original_key == "[default]"))
+			localized_default = string_key
+		// NOVA EDIT ADDITION END
+	// NOVA EDIT ADDITION START - I18N
+	if(!isnull(localized_default))
+		src.default = localized_default
+	// NOVA EDIT ADDITION END
 
 	if(length(src.items) == 0)
 		invalid = TRUE

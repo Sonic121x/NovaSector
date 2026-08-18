@@ -187,7 +187,7 @@
 			var/datum/pipe_info/info = subcategory_recipes[i]
 
 			available_recipe += list(list(
-				"pipe_name" = info.name,
+				"pipe_name" = lang_localize_display_name(info.name), // NOVA EDIT - I18N: 管件名纯显示（act 走 pipe_index；**分类名 cat_name 是回传标识符，不能翻**）。ORIGINAL: "pipe_name" = info.name,
 				"pipe_index" = i,
 				"previews" = info.get_preview(p_dir, info == recipe)
 			))

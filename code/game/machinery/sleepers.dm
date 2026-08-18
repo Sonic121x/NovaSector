@@ -174,7 +174,7 @@
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
 		data["chems"] += list(
 			list(
-				"name" = R.name,
+				"name" = lang_localize_display_name(R.name), // NOVA EDIT - I18N: 试剂名纯显示（act('inject') 走 chem.id）。ORIGINAL: "name" = R.name,
 				"id" = R.type,
 				"allowed" = chem_allowed(chem),
 			),
@@ -226,7 +226,7 @@
 					continue
 				data["occupant"]["reagents"] += list(
 					list(
-						"name" = R.name,
+						"name" = lang_localize_display_name(R.name), // NOVA EDIT - I18N: 试剂名纯显示（act 走 chem.id）。ORIGINAL: "name" = R.name,
 						"volume" = R.volume,
 					),
 				)

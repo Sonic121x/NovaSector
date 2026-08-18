@@ -17,9 +17,9 @@
 	. = list()
 	. += get_name_chaser(user)
 	if(desc)
-		// NOVA EDIT CHANGE - i18n: 在显示点反查 desc,覆盖**运行时动态赋值/重置**的 desc(血迹变干 desc=dry_desc、
-		// desc=initial(desc) 还原成编译期英文等)——Initialize 的反查只作用于初始值,运行时改写后会丢。
-		// gated locale≠en、已是中文则查不中原样返回(幂等)。ORIGINAL: . += "<i>[desc]</i>"
+		// NOVA EDIT CHANGE - i18n: desc 保持 canonical English，避免在每个 atom 初始化时改写 appearance；
+		// 只在 examine 显示边界反查。运行时动态赋值/重置的 desc 也由同一条路径覆盖。
+		// locale==en 或查不到时原样返回。ORIGINAL: . += "<i>[desc]</i>"
 		. += "<i>[lang_reverse_text(desc)]</i>"
 
 	var/list/tags_list = examine_tags(user)
@@ -199,7 +199,12 @@
  * [COMSIG_ATOM_GET_EXAMINE_NAME] signal
  */
 /atom/proc/get_examine_name(mob/user)
-	var/list/override = list(article, null, "<em>[get_visible_name()]</em>")
+	var/visible_name = get_visible_name()
+	// NOVA EDIT ADDITION START - i18n: name 保持 canonical English，避免全图 atom/turf 在初始化时各生成一份
+	// locale 专属 appearance。显示边界只翻译仍来自类型声明的静态名；运行时身份名和玩家改名保留原文。
+	visible_name = lang_localize_name_for_display(visible_name)
+	// NOVA EDIT ADDITION END
+	var/list/override = list(article, null, "<em>[visible_name]</em>")
 	SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override)
 
 	// NOVA EDIT ADDITION START - i18n: 中文无冠词。丢弃 article 槽与 \a 前缀，只留 before + 名字
@@ -220,6 +225,9 @@
 
 /mob/living/get_examine_name(mob/user)
 	var/visible_name = get_visible_name()
+	// NOVA EDIT ADDITION START - i18n: living 覆盖了 /atom 版本，使用同一个静态名/身份名边界。
+	visible_name = lang_localize_name_for_display(visible_name)
+	// NOVA EDIT ADDITION END
 	var/list/name_override = list(visible_name)
 	if(SEND_SIGNAL(user, COMSIG_LIVING_PERCEIVE_EXAMINE_NAME, src, visible_name, name_override) & COMPONENT_EXAMINE_NAME_OVERRIDEN)
 		return name_override[1]

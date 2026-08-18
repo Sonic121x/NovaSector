@@ -251,7 +251,7 @@
 		data["machines"] += list(
 			list(
 				"icon" = icon2base64(icon(initial(parent.icon), initial(parent.icon_state), frame = 1)),
-				"name" = parent.name,
+				"name" = parent.lang_localize_name_for_display(parent.name), // NOVA EDIT - I18N: 机器名纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: "name" = parent.name,
 				"on_hold" = !!holds[remote],
 				"location" = get_area_name(parent, TRUE),
 			)

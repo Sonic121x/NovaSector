@@ -152,7 +152,7 @@
 			var/datum/material/material = mat
 			var/sheet_amount = amount / SHEET_MATERIAL_AMOUNT
 			var/ref = REF(material)
-			data["materials"] += list(list("name" = material.name, "id" = ref, "amount" = sheet_amount))
+			data["materials"] += list(list("name" = lang_localize_display_name(material.name), "id" = ref, "amount" = sheet_amount)) // i18n: 名字纯显示，act 走同条负载里的 id
 
 	if(error_message)
 		data["error"] = error_message

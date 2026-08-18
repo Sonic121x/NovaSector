@@ -95,7 +95,7 @@
 				subcategory_items += list(list(
 					"ref" = REF(armament_entry),
 					"icon" = armament_entry.cached_base64,
-					"name" = armament_entry.name,
+					"name" = lang_localize_display_name(armament_entry.name), // i18n: 纯显示，act 走 armament_ref
 					"cost" = armament_entry.cost,
 					"buyable_ammo" = armament_entry.magazine ? TRUE : FALSE,
 					"magazine_cost" = armament_entry.magazine_cost,

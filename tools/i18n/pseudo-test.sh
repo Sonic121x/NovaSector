@@ -90,12 +90,10 @@ TEST_FAILS=$(python3 -c "
 import json
 # 已知失败白名单：**必须逐条写明为何与 i18n 回归无关**，否则就是在掩盖问题。
 # 新增条目前先确认它在 locale=en 下也失败（或纯属 i18n 设计的既定后果）。
-KNOWN = {
-    # i18n 设计的既定后果，非回归：/atom/Initialize 把 name 反查成译文，而 initial(name) 是
-    # **编译期英文**，所以 name == initial(name) 这类断言在任何非 en locale 下都必然失败。
-    # 上游此测试意在防「id label 逻辑改名」，与本地化无关；en 构建照常通过。
-    '/datum/unit_test/spare_id_name',
-}
+KNOWN = set()
+# 白名单**必须为空或逐条写明为何与 i18n 回归无关**。历史条目 spare_id_name 已随
+# 「name 不再原地反查」一起解决（`/obj/item/card/id/advanced/update_label()` 的
+# lang_reverse_text 包裹已撤回上游写法，name 保持 canonical English），不要再加回来。
 import os, sys
 if not os.path.exists('data/unit_tests.json'):
     print('data/unit_tests.json 不存在——单测没跑完/没写出结果，判失败（绝不沿用上一轮结果）', file=sys.stderr)

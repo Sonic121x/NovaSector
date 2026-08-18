@@ -83,7 +83,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/auxiliary_base, 32)
 		else
 			turret_status = "All Clear"
 		var/list/turret_data = list(
-			name = base_turret.name,
+			name = base_turret.lang_localize_name_for_display(base_turret.name), // NOVA EDIT - I18N: 纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: name = base_turret.name,
 			integrity = turret_integrity,
 			status = turret_status,
 			direction = dir2text(get_dir(src, base_turret)),

@@ -28,7 +28,7 @@
 				xp_req_to_level = SKILL_EXP_LIST[lvl_num+1] - SKILL_EXP_LIST[lvl_num]
 
 			var/list/skilldata = list(
-				"name" = skill.name,
+				"name" = lang_localize_display_name(skill.name), // NOVA EDIT - I18N: 技能名纯显示。ORIGINAL: "name" = skill.name,
 				"desc" = skill.desc,
 				"title" = skill.title,
 				"lvl_name" = lvl_name
