@@ -738,7 +738,14 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey] && !(ckey in GLOB.bunker_passthrough))
 			log_access("Failed Login: [key] - [address] - New account attempting to connect during panic bunker")
 			message_admins(span_adminnotice("Failed Login: [key] - [address] - New account attempting to connect during panic bunker"))
-			to_chat_immediate(src, span_notice("Hi! We have temporarily enabled safety measures that prevents new players from joining currently. <br>Please try again later, or contact a staff on Discord if you have any questions. <br> <br> To join our community, check out our Discord! To gain full access to our Discord, read the rules and post a request in the #access-requests channel under the \"Landing Zone\" category in the Discord server linked here: <a href='https://discord.gg/novasector'>https://discord.gg/novasector</a>"))
+			// NOVA EDIT CHANGE START - 邀请链接改走 config（config.txt 的 DISCORD_LINK），下游各服在自己的
+			// config 里设即可，不必为了换链接去改核心文件。未设置时沿用上游原链接，行为不变。
+			var/discord_invite = CONFIG_GET(string/discord_link)
+			if(!discord_invite || discord_invite == /datum/config_entry/string/discord_link::config_entry_value)
+				discord_invite = "https://discord.gg/novasector"
+			to_chat_immediate(src, span_notice("Hi! We have temporarily enabled safety measures that prevents new players from joining currently. <br>Please try again later, or contact a staff on Discord if you have any questions. <br> <br> To join our community, check out our Discord! To gain full access to our Discord, read the rules and post a request in the #access-requests channel under the \"Landing Zone\" category in the Discord server linked here: <a href='[discord_invite]'>[discord_invite]</a>"))
+			// ORIGINAL: to_chat_immediate(src, span_notice("… <a href='https://discord.gg/novasector'>https://discord.gg/novasector</a>"))
+			// NOVA EDIT CHANGE END
 			var/list/connectiontopic_a = params2list(connectiontopic)
 			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
 			if(panic_addr && !connectiontopic_a["redirect"])
