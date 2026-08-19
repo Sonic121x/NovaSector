@@ -296,13 +296,19 @@
 	var/static_data = with_static_data && src_object.ui_static_data(user)
 	if(static_data)
 		json_data["static_data"] = static_data
-	// NOVA EDIT ADDITION START - i18n - 全服中文时把 ui_data/ui_static_data 里的多词字符串反查为译文
-	// （非 atom datum 的 name/desc/说明等动态内容；只反查含空白的多词串，避免单词碰撞）。
+	// NOVA EDIT ADDITION START - i18n - 全服中文时本地化 ui_data/ui_static_data 里的多词字符串。
+	// **默认不动数据**：只把「英文 → 译文」记进 overlay 随负载下发，由 TS 在渲染期查表显示，于是
+	// 回传值与服务端持有的字符串逐字节相同 —— 「显示文本被当标识符回传」那一整类静默故障（点了
+	// 没反应、无报错）在结构上不可能发生。只有 policy.json 的 payload_prose_keys（证明不可能是
+	// 标识符的长散文）仍就地改写，因为那类常被渲染在 auto-localize 够不到的位置。
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
+		var/list/i18n_overlay = list()
 		if(islist(json_data["data"]))
-			lang_reverse_tree(json_data["data"])
+			lang_reverse_tree(json_data["data"], null, i18n_overlay)
 		if(islist(json_data["static_data"]))
-			lang_reverse_tree(json_data["static_data"])
+			lang_reverse_tree(json_data["static_data"], null, i18n_overlay)
+		if(length(i18n_overlay))
+			json_data["i18n"] = i18n_overlay
 	// NOVA EDIT ADDITION END
 	if(src_object.tgui_shared_states)
 		json_data["shared"] = src_object.tgui_shared_states

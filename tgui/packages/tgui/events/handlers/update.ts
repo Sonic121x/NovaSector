@@ -1,5 +1,7 @@
 import { perf } from 'common/perf';
 import { setupDrag } from '../../drag';
+// NOVA EDIT ADDITION - I18N
+import { mergeCatalogOverlay } from '../../i18n/catalog';
 import { logger } from '../../logging';
 import { resumeRenderer } from '../../renderer';
 import {
@@ -16,6 +18,8 @@ import type { BackendState } from '../types';
 
 type UpdatePayload = Omit<BackendState<Record<string, unknown>>, 'act'> & {
   static_data: Record<string, unknown>;
+  // NOVA EDIT ADDITION - I18N: 负载 overlay（英文 → 译文），见 i18n/catalog.ts
+  i18n?: Record<string, string>;
 };
 
 export function update(payload: UpdatePayload): void {
@@ -64,6 +68,13 @@ function updateData(payload: UpdatePayload): void {
       ...payload.config,
     }));
   }
+
+  // NOVA EDIT ADDITION START - I18N: 负载值保持 canonical English，译文走 overlay，渲染期查表。
+  // 必须在 data/static_data 落库**之前**合并：同一帧的渲染会立刻用到这批译文。
+  if (payload.i18n) {
+    mergeCatalogOverlay(payload.i18n);
+  }
+  // NOVA EDIT ADDITION END
 
   if (payload.static_data) {
     store.set(gameStaticDataAtom, (prev) => ({

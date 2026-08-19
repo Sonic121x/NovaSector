@@ -385,6 +385,7 @@
 #include "~nova\i18n_html_tag_keys.dm"
 #include "~nova\i18n_interpolate.dm"
 #include "~nova\i18n_miss_log.dm"
+#include "~nova\i18n_payload_overlay.dm"
 #include "~nova\i18n_phobia.dm"
 #include "~nova\i18n_real_catalog.dm"
 #include "~nova\i18n_roleban.dm"

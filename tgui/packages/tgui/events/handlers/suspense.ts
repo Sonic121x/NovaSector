@@ -1,4 +1,6 @@
 import { focusMap } from '../../focus';
+// NOVA EDIT ADDITION - I18N
+import { resetCatalogOverlay } from '../../i18n/catalog';
 import { logger } from '../../logging';
 import { suspendRenderer } from '../../renderer';
 import {
@@ -17,6 +19,10 @@ let suspendInterval: NodeJS.Timeout | null = null;
 export function suspend(): void {
   suspendRenderer();
   resetStore();
+  // NOVA EDIT ADDITION - I18N: 负载 overlay 与负载同生命周期。窗口被复用给另一个界面时不清，
+  // 上一个界面的「英文 → 译文」词对会留下来，成为一小片会话内的误翻面。
+  // 挂这里而不是 resetStore() 里：catalog.ts 要读 store 取 locale，反向 import 会成循环依赖。
+  resetCatalogOverlay();
 
   if (suspendInterval) clearInterval(suspendInterval);
 

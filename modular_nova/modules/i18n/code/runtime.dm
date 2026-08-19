@@ -1127,6 +1127,10 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 /// `payload_skip_keys`（三端策略单一来源），不要改这里。
 GLOBAL_LIST_INIT(i18n_payload_skip_keys, build_i18n_policy_set("payload_skip_keys"))
 
+/// P1 允许**就地改写**的键（其余值不动数据、只进 overlay 交给 TS 渲染期翻）。
+/// 见 strings/i18n/policy.json 的 `_payload_prose_keys`：只有「证明不可能是标识符」的长散文才配留在这里。
+GLOBAL_LIST_INIT(i18n_payload_prose_keys, build_i18n_policy_set("payload_prose_keys"))
+
 /// 从策略单一来源 strings/i18n/policy.json 读一个字符串数组字段，转关联 set（值=TRUE）。
 /// 三端（DM/TS/Rust）共读同一份 policy —— 新增登记只改 policy.json（见其 _comment）。
 /proc/build_i18n_policy_set(field)
@@ -1143,9 +1147,32 @@ GLOBAL_LIST_INIT(i18n_payload_skip_keys, build_i18n_policy_set("payload_skip_key
 			result[value] = TRUE
 	return result
 
+/// 把一个负载字符串的译文「落地」：散文键（或无 overlay 的旧调用）就地改写；其余只登记进 overlay。
+/// `index` 对关联项是键、对 flat 元素是下标 —— 两者都能直接给 `data[index] = …` 用。
+/proc/lang_payload_localize(list/data, index, text, list/overlay, in_place)
+	var/localized = lang_reverse_phrase_tgui(text)
+	if(localized == text)
+		return
+	if(in_place || isnull(overlay))
+		data[index] = localized
+		return
+	overlay[text] = localized
+
 /// 递归把一个 list（含嵌套 list / 关联 list）里的字符串「值」按多词门槛反查为全服 locale 译文。
 /// 用于 TGUI 的 ui_data/ui_static_data 负载：把非 atom datum 的 name/desc/说明等动态内容本地化。
-/// key 不动（程序用的标识）；就地改写并返回。幂等（已译的中文不会再匹配英文 key）。
+/// key 不动（程序用的标识）。幂等（已译的中文不会再匹配英文 key）。
+///
+/// **两种落地方式，由 `overlay` 决定**：
+///   · `overlay` 为 null（早期 string_cache 那类调用）→ 一律就地改写，行为与从前完全一致。
+///   · 传了 `overlay`（TGUI 负载）→ 只有 `i18n_payload_prose_keys` 里的散文键就地改写，其余把
+///     「英文 → 译文」记进 overlay、**值原样不动**，由 TS 在渲染期查表显示。
+///
+/// 为什么要分这一刀：就地改写是**破坏性**的——负载里那些「既是显示又是回传标识符」的值（`name`、
+/// 扁平串列表…）一旦变成中文，客户端回传的就是中文，而服务端仍拿英文比较/查表 → `ui_act` 静默
+/// 失败、连报错都没有（出生管理器、DNA 染色体、大气警报清除都栽在这上面）。启发式再准也挡不住这类，
+/// 因为猜错的代价被放大成了功能故障；不动数据则代价退回「某处没翻」。散文键是唯一的例外：它们
+/// 常被渲染在 auto-localize 够不到的位置（模板串、dangerouslySetInnerHTML），而散文不可能被
+/// `act()` 拿去比较，就地翻是安全的。
 ///
 /// 循环引用防护（visited）：TGUI 负载是任意游戏状态 list，BYOND 的 list 可以自引用/互引用成**环**
 /// （tgstation 亦承认此事，见 /proc/deep_copy_without_cycles、/proc/prepare_lua_editor_list）。原来
@@ -1155,7 +1182,7 @@ GLOBAL_LIST_INIT(i18n_payload_skip_keys, build_i18n_policy_set("payload_skip_key
 /// 跳过。比深度上限更准：不截断任何合法有限嵌套，只在真正成环处停手。
 /// 注意：本 proc 只是**不再自己崩**；环仍留在 data 里，后续 json_encode 依旧会碰到（tgui 管线对环
 /// 不安全，故 tgstation 送 tgui 前会 deep_copy_without_cycles 剥环）。根治须打断产生环的源头。
-/proc/lang_reverse_tree(list/data, list/visited)
+/proc/lang_reverse_tree(list/data, list/visited, list/overlay)
 	if(!islist(data))
 		return data
 	if(isnull(visited))
@@ -1173,15 +1200,16 @@ GLOBAL_LIST_INIT(i18n_payload_skip_keys, build_i18n_policy_set("payload_skip_key
 				continue
 			// 关联项：key -> value，只本地化 value
 			if(islist(value))
-				lang_reverse_tree(value, visited)
+				lang_reverse_tree(value, visited, overlay)
 			else if(istext(value))
-				data[key] = lang_reverse_phrase_tgui(value)
+				lang_payload_localize(data, key, value, overlay, istext(key) && GLOB.i18n_payload_prose_keys?[key])
 		else
 			// flat 元素（无关联值）
 			if(islist(key))
-				lang_reverse_tree(key, visited)
+				lang_reverse_tree(key, visited, overlay)
 			else if(istext(key))
-				data[i] = lang_reverse_phrase_tgui(key)
+				// flat 元素没有键语境 → 一律按「可能是标识符」处理（大气警报的区域名列表即此）。
+				lang_payload_localize(data, i, key, overlay, FALSE)
 	return data
 
 #undef I18N_TGUI_PHRASE_CACHE_MAX

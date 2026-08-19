@@ -4,6 +4,7 @@ import { Dropdown } from 'tgui-core/components';
 
 import { configAtom, store } from '../events/store';
 import type { Config } from '../events/types';
+import { mergeCatalogOverlay, resetCatalogOverlay } from './catalog';
 import { localizeProps } from './localize';
 import propTemplates from './prop-templates.json';
 import zhHans from './zh-Hans.json';
@@ -141,10 +142,9 @@ describe('localizeProps', () => {
     expect(propTemplates).toContain(key);
     const zh = (zhHans as Record<string, string>)[key];
     expect(zh).toBeTruthy();
-    const props = localizeProps({ title: 'Reading: Zzyzx Manifesto' }) as Record<
-      string,
-      string
-    >;
+    const props = localizeProps({
+      title: 'Reading: Zzyzx Manifesto',
+    }) as Record<string, string>;
     expect(props.title).toBe(zh.replace('{0}', 'Zzyzx Manifesto'));
   });
 
@@ -163,5 +163,55 @@ describe('localizeProps', () => {
     ) as Record<string, unknown>;
     expect(props.options).toEqual([unknownOption]);
     expect(props.displayText).toBeUndefined();
+  });
+});
+
+// 负载 overlay：运行期才成形的值（atom 名、datum 描述、拼接句）不可能在编译期抽取的静态目录里。
+// DM 侧把它们随负载下发（`json_data["i18n"]`），值本身保持 canonical English —— 于是 act() 回传
+// 与服务端持有的字符串逐字节相同。这几条守「overlay 真的接进了查表链」以及它的生命周期。
+describe('负载 overlay', () => {
+  const RUNTIME = 'Zxqv Thranok Unit';
+  const RUNTIME_ZH = '兹克夫单元';
+
+  test('overlay 里的运行期值在可翻 prop 上被替换', () => {
+    mergeCatalogOverlay({ [RUNTIME]: RUNTIME_ZH });
+    const props = localizeProps({ content: RUNTIME }) as Record<string, string>;
+    expect(props.content).toBe(RUNTIME_ZH);
+    resetCatalogOverlay();
+  });
+
+  test('overlay 合并而非替换：static_data 只在开窗时下发一次', () => {
+    mergeCatalogOverlay({ [RUNTIME]: RUNTIME_ZH });
+    mergeCatalogOverlay({ Other: '其它' });
+    const props = localizeProps({ content: RUNTIME }) as Record<string, string>;
+    expect(props.content).toBe(RUNTIME_ZH);
+    resetCatalogOverlay();
+  });
+
+  test('窗口挂起后清空：复用给别的界面时不留误翻面', () => {
+    mergeCatalogOverlay({ [RUNTIME]: RUNTIME_ZH });
+    resetCatalogOverlay();
+    const props = localizeProps({ content: RUNTIME }) as Record<string, string>;
+    expect(props.content).toBe(RUNTIME);
+  });
+
+  test('大小写包装（capitalize/toTitleCase）仍能命中', () => {
+    mergeCatalogOverlay({ 'power chromosome': '力量染色体' });
+    // 界面写的是 capitalize(x) / toTitleCase(x)，渲染到的串与负载原值只差大小写。
+    for (const wrapped of ['Power chromosome', 'Power Chromosome']) {
+      const props = localizeProps({ content: wrapped }) as Record<
+        string,
+        string
+      >;
+      expect(props.content).toBe('力量染色体');
+    }
+    resetCatalogOverlay();
+  });
+
+  test('静态目录条目不受 overlay 影响', () => {
+    mergeCatalogOverlay({ [RUNTIME]: RUNTIME_ZH });
+    const props = localizeProps({ content: SAMPLE }) as Record<string, string>;
+    expect(props.content).toBe(SAMPLE_ZH);
+    resetCatalogOverlay();
   });
 });
