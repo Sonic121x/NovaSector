@@ -36,8 +36,65 @@ function normalizeOverlayKey(key: string): string {
   return key.toLowerCase();
 }
 
+/// overlay 键的子串匹配器（按长度降序，最长优先）。界面里大量运行期值是被**拼进**一个更大的串
+/// 再渲染的：`` {`${mode.name} - ${mode.desc}`} ``、`` title={`${x.name} (${n})`} `` 之类（全仓
+/// 五十余处，还不含经解构/中间变量到达渲染点、静态扫描看不见的那些）。整串永远不是目录键，
+/// 精确查表必 miss → 整条回退英文。
+///
+/// 子串替换在 DM 侧（字面 AC）是出过事的——无词边界概念，拼句碎片会从单词内部开火。这里安全得多，
+/// 因为**两条性质是结构性的**，不是约定：
+///   · overlay 的键全部来自 P1，而 P1 有**多词门槛**（`findtext(text, " ")`），所以键必然是多词
+///     短语——单词碎片根本进不了这张表；
+///   · 匹配面只有**本次负载**里那几十条已确认的显示值，不是整个目录。
+/// 再加一道词边界检查（前后不得是字母/数字），把 "Water Bottle" 咬进 "Water Bottled" 这类挡掉。
+let overlayMatcher: RegExp | null = null;
+let overlayMatcherStale = true;
+
+function escapeRegExp(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function getOverlayMatcher(): RegExp | null {
+  if (!overlayMatcherStale) {
+    return overlayMatcher;
+  }
+  overlayMatcherStale = false;
+  // 最长优先：交替分支按顺序试，短键排前面会把长键遮住（DM 侧 AC 的 LeftmostLongest 踩过两次）。
+  const keys = Object.keys(overlay).sort((a, b) => b.length - a.length);
+  overlayMatcher = keys.length
+    ? new RegExp(keys.map(escapeRegExp).join('|'), 'g')
+    : null;
+  return overlayMatcher;
+}
+
+function isWordChar(char: string | undefined): boolean {
+  return !!char && /[A-Za-z0-9]/.test(char);
+}
+
+/// 用 overlay 的键在串里做子串替换。没有任何键命中时返回 null（调用方保持原串）。
+export function substituteOverlay(text: string): string | null {
+  const matcher = getOverlayMatcher();
+  if (!matcher) {
+    return null;
+  }
+  let changed = false;
+  matcher.lastIndex = 0;
+  const result = text.replace(matcher, (match, offset: number) => {
+    const before = text[offset - 1];
+    const after = text[offset + match.length];
+    // 词边界：命中处紧邻字母/数字说明咬进了另一个词的中间。
+    if (isWordChar(before) || isWordChar(after)) {
+      return match;
+    }
+    changed = true;
+    return overlay[match];
+  });
+  return changed ? result : null;
+}
+
 export function mergeCatalogOverlay(entries: Catalog): void {
   overlay = { ...overlay, ...entries };
+  overlayMatcherStale = true;
   for (const key of Object.keys(entries)) {
     overlayNormalized[normalizeOverlayKey(key)] = entries[key];
   }
@@ -45,6 +102,7 @@ export function mergeCatalogOverlay(entries: Catalog): void {
 
 export function resetCatalogOverlay(): void {
   overlay = {};
+  overlayMatcherStale = true;
   overlayNormalized = {};
 }
 

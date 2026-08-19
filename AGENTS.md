@@ -191,3 +191,9 @@ Known trap classes:
   · **AST 里没有 "LANG"**：`LANG`/`LANGU` 是 `#define`，预处理器建 AST 前已展开成 `lang_format`/`lang_format_for`，按 "LANG" 匹配永远 0 命中。
   · **判据必须是「值位置」而非「出现过」**：`name = tgui_input_text(user, LANG(提示), LANG(标题), …)` 里 LANG 只是别人的实参，赋进 name 的是玩家输入。按「出现过 LANG」判会误报（`admin_verbs.dm:387` 当场中招）。`expr_yields_lang` 只认 LANG 本身、`+` 拼接的分支、三元的分支、内插串里的内插项。
   · 门禁写完要**造一次违规验证它真的开火**（两条规则各造一处，确认报错后还原）——不会开火的门禁等于没有。
+- **TGUI 负载改成「不动数据 + overlay」之后，覆盖面要靠三条各自独立的补丁撑住** — P1 不再就地改写负载值（只剩 `payload_prose_keys` 那批散文），译文改随 `json_data["i18n"]` 下发、TS 渲染期查表。回传值与服务端逐字节相同，「显示文本当标识符回传」整类静默故障结构性消失；但**从前"值到浏览器时已经是中文"顺带覆盖掉的位置**会一次性退回英文，实测三类，都补在 `catalog.ts`/`localize.ts` 而不是逐个界面改（静态扫描只认 JSX 里的 `X.prop`，经解构/中间变量到达渲染点的一概看不见，逐处改必漏）：
+  · **大小写包装**（`capitalize(x)`/`toTitleCase(x)`/`capitalizeAll(x)`，约 29 处）：包装后的串与负载原值只差大小写，精确查表必 miss → overlay 额外建一张**小写归一化索引**。只对 overlay 建、不碰静态目录：overlay 的条目都是本次负载里已确认的显示值，静态目录里混着标识符形态的短键。
+  · **拼进更大的串**（`` {`${x.name} - ${x.desc}`} ``、`` title={`${name} (${n})`} ``，五十余处）：整串永远不是目录键 → `substituteOverlay` 做**子串替换**。子串替换在 DM 侧（字面 AC）出过事，这里安全线是**结构性**的而非约定：overlay 的键全部经 P1 而 P1 有多词门槛（`findtext(text, " ")`），单词碎片根本进不了表；匹配面只有本次负载的几十条。再加词边界检查（前后不得是字母/数字，挡 `Water Bottle` 咬进 `Water Bottled`）与最长优先（正则交替按顺序试，短键排前面会遮住长键——DM 侧 LeftmostLongest 踩过两次）。
+  · **混排 children 的碎片闸门连坐**：`localizeChildrenSegments` 原本「任一字符串 child 查不到 → 整条保持英文」。负载值现在也走这条路，于是 `["某物名", " costs ", 5, " credits"]` 会因为 `" costs "` 不是目录键而整条退回英文——而从前那个名字本来就是中文的。改成两遍：overlay 替换（永远安全、不动语序）与逐段查表（受闸门约束、全有或全无）分开，闸门中止时**回退到只做了替换的版本**，不把已替换的成果一起丢掉。这条是测试逼出来的：只在替换分支上放行不够，中止路径才是丢覆盖的地方。
+  `localize.test.ts` 的「负载 overlay」一组守这三条（含词边界与最长优先的反例）。DM 侧 `i18n_payload_overlay` 守「值不动 / 散文键就地翻 / skip keys 不碰 / 不传 overlay 时行为不变」。
+  仍未覆盖、需实测确认的只剩 `dangerouslySetInnerHTML`（5 处：赏金说明、证物、PDA/新闻正文）——HTML 注入 auto-localize 够不到，其中散文类走 DM 侧 `payload_prose_keys`（`description` 已在表内），玩家自写内容本就不该翻。

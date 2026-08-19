@@ -3,7 +3,7 @@
 
 import { Dropdown } from 'tgui-core/components';
 
-import { translateCurrent } from './catalog';
+import { substituteOverlay, translateCurrent } from './catalog';
 import policy from './policy.json';
 import propTemplateKeys from './prop-templates.json';
 
@@ -209,6 +209,13 @@ function translateText(text: string): string {
   if (templated !== null) {
     return `${leading}${templated}${trailing}`;
   }
+  // 最后一道：负载 overlay 的子串替换。整串查不到、模板也不匹配的，多半是界面把运行期值**拼进**了
+  // 一个更大的串（`` `${x.name} - ${x.desc}` ``、`` `${name} (${n})` ``）。overlay 的键全是多词短语
+  // （P1 的多词门槛所致）、匹配面只有本次负载，再加词边界检查，见 catalog.ts substituteOverlay。
+  const substituted = substituteOverlay(body);
+  if (substituted !== null) {
+    return `${leading}${substituted}${trailing}`;
+  }
   // 未命中时保留原始 body（含原排版），不改动。
   return `${leading}${body}${trailing}`;
 }
@@ -306,21 +313,42 @@ function isSelfContainedText(text: string): boolean {
 }
 
 function localizeChildrenSegments(children: unknown[]): unknown[] | null {
-  let changed = false;
+  // 两遍，因为两件事的安全性不同：
+  //   ① overlay 替换：只把本次负载里那几十条已确认的显示值就地换成译文，不动语序，永远安全；
+  //   ② 逐段查表：受碎片闸门约束，全有或全无（半句碎片按英文语序拼回去比不翻更糟）。
+  // 关键是闸门中止时**不能把 ① 的成果一起丢掉** —— 从前 P1 就地改写负载时，混排 children 里的
+  // 名字本来就已经是中文（周围碎片是英文）。一个查不到的静态碎片把整条打回英文，就是把那份覆盖赔掉。
+  const substituted: unknown[] = [];
+  const substitutedIndices = new Set<number>();
+  children.forEach((child, index) => {
+    if (typeof child === 'string') {
+      const next = substituteOverlay(child);
+      if (next !== null) {
+        substitutedIndices.add(index);
+        substituted.push(next);
+        return;
+      }
+    }
+    substituted.push(child);
+  });
+
+  let changed = substitutedIndices.size > 0;
+  const fallback = changed ? substituted : null;
   const localized: unknown[] = [];
-  for (const child of children) {
-    if (typeof child !== 'string') {
+  for (let index = 0; index < substituted.length; index++) {
+    const child = substituted[index];
+    if (typeof child !== 'string' || substitutedIndices.has(index)) {
       localized.push(child);
       continue;
     }
     if (!isSelfContainedText(child)) {
-      return null;
+      return fallback;
     }
     const next = translateText(child);
     if (next === child) {
-      // 空白 child 翻不动是正常的；有实义却查不到，说明它是碎片 → 整条保持英文。
+      // 空白 child 翻不动是正常的；有实义却查不到，说明它是碎片 → 逐段翻整条放弃。
       if (child.trim()) {
-        return null;
+        return fallback;
       }
     } else {
       changed = true;

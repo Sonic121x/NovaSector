@@ -208,6 +208,53 @@ describe('负载 overlay', () => {
     resetCatalogOverlay();
   });
 
+  test('拼进更大串里的运行期值靠子串替换落地', () => {
+    mergeCatalogOverlay({
+      'Zxqv Thranok Unit': '兹克夫单元',
+      'quiet dark drift': '静暗漂流',
+    });
+    // `` {`${x.name} - ${x.desc}`} `` 这种整串永远不是目录键。
+    const props = localizeProps({
+      content: 'Zxqv Thranok Unit - quiet dark drift',
+    }) as Record<string, string>;
+    expect(props.content).toBe('兹克夫单元 - 静暗漂流');
+    resetCatalogOverlay();
+  });
+
+  test('子串替换有词边界：不得咬进另一个词中间', () => {
+    mergeCatalogOverlay({ 'Zxqv Thranok': '兹克夫' });
+    const props = localizeProps({ content: 'Zxqv Thranoks' }) as Record<
+      string,
+      string
+    >;
+    expect(props.content).toBe('Zxqv Thranoks');
+    resetCatalogOverlay();
+  });
+
+  test('子串替换最长优先：短键不得遮住长键', () => {
+    mergeCatalogOverlay({
+      'Zxqv Thranok': '兹克夫',
+      'Zxqv Thranok Unit': '兹克夫单元',
+    });
+    const props = localizeProps({
+      content: 'Zxqv Thranok Unit: 5u',
+    }) as Record<string, string>;
+    expect(props.content).toBe('兹克夫单元: 5u');
+    resetCatalogOverlay();
+  });
+
+  test('混排 children 里的负载值不受碎片闸门连坐', () => {
+    mergeCatalogOverlay({ 'Zxqv Thranok Unit': '兹克夫单元' });
+    // ["Zxqv Thranok Unit", " costs ", 5, " credits"]：碎片 " costs " 永远不是目录键，
+    // 从前靠 P1 就地改写、名字本来就是中文；整条闸门不能把它一起打回英文。
+    const props = localizeProps({
+      children: ['Zxqv Thranok Unit', ' costs ', 5, ' credits'],
+    }) as Record<string, unknown>;
+    expect((props.children as unknown[])[0]).toBe('兹克夫单元');
+    expect((props.children as unknown[])[1]).toBe(' costs ');
+    resetCatalogOverlay();
+  });
+
   test('静态目录条目不受 overlay 影响', () => {
     mergeCatalogOverlay({ [RUNTIME]: RUNTIME_ZH });
     const props = localizeProps({ content: SAMPLE }) as Record<string, string>;
