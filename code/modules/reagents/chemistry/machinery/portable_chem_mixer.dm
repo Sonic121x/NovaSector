@@ -211,7 +211,7 @@
 			return TRUE
 
 		if("dispense")
-			var/datum/reagent/reagent = GLOB.name2reagent[params["reagent"]] || GLOB.name2reagent[lang_unreverse_text(params["reagent"])] // NOVA EDIT CHANGE - i18n - ORIGINAL: var/datum/reagent/reagent = GLOB.name2reagent[params["reagent"]]
+			var/datum/reagent/reagent = GLOB.name2reagent[params["reagent"]]
 			if(isnull(reagent))
 				return
 

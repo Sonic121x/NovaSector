@@ -147,9 +147,7 @@
 				buyable_items += possible_gear[category]
 			for(var/key in buyable_items)
 				var/datum/abductor_gear/AG = buyable_items[key]
-				// NOVA EDIT CHANGE - I18N: 前端回传的是英文 id，但对译名再兜一层（老客户端/残留 P1 翻译）
-				// ORIGINAL: if(AG.name == item_name)
-				if(AG.name == item_name || AG.name == lang_unreverse_text(item_name))
+				if(AG.name == item_name)
 					Dispense(AG.build_path, AG.cost)
 					return TRUE
 		if("teleporter_send")

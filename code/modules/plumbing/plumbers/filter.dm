@@ -63,7 +63,7 @@
 					return TRUE
 
 		if("remove")
-			var/chem_id = GLOB.name2reagent[params["reagent"]] || GLOB.name2reagent[lang_unreverse_text(params["reagent"])] // NOVA EDIT CHANGE - i18n - ORIGINAL: var/chem_id = GLOB.name2reagent[params["reagent"]]
+			var/chem_id = GLOB.name2reagent[params["reagent"]]
 			if(!chem_id)
 				return FALSE
 

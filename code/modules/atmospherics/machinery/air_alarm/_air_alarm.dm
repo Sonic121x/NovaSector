@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 	// NOVA EDIT CHANGE - i18n: name is reverse-localized at Initialize so it won't == the english initial(name) → the
 	// "[area]" prefix was dropped and every air alarm showed the bare translated type name. Accept the un-reversed form,
 	// and reverse-localize the type name (no-op on en). - ORIGINAL: if(name == initial(name)) / name = "[get_area_name(src)] Air Alarm"
-	if(name == initial(name) || lang_unreverse_text(name) == initial(name))
+	if(name == initial(name))
 		name = "[get_area_name(src)] [lang_reverse_text("Air Alarm")]"
 
 	tlv_collection = list()

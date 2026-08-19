@@ -69,9 +69,8 @@
 	switch(action)
 		if("buy")
 			var/item_name = params["name"]
-			var/english_name = lang_unreverse_text(item_name) // NOVA EDIT - i18n: the ui_data module name is P1 reverse-localized, so the client returns the localized name; map it back to english for the match. no-op on en.
 			for(var/datum/ai_module/module as anything in possible_modules)
-				if(module.name == item_name || module.name == english_name)
+				if(module.name == item_name)
 					purchase_module(usr, module)
 					return TRUE
 

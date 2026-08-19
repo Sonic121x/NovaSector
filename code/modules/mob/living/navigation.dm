@@ -51,7 +51,7 @@ GAME_VERB_HIDDEN(/mob/living, navigate, "导航")
 		return
 
 	var/platform_code = tgui_input_list(src, LANG("mob.0e4a2fa4", null), LANG("mob.5abb374f", null), sort_list(destination_list))
-	var/atom/navigate_target = destination_list[platform_code] || destination_list[lang_unreverse_text(platform_code)] // NOVA EDIT - I18N - tolerate any residual P1 translation on names not covered by _map_names (translated picks already match the localized key directly)
+	var/atom/navigate_target = destination_list[platform_code]
 
 	if(isnull(navigate_target) || incapacitated)
 		return

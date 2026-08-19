@@ -118,7 +118,7 @@
 
 		cart_list[order.pack.name] = list(list(
 			"cost_type" = order.cost_type,
-			"object" = lang_reverse_text(order.pack.name), // NOVA EDIT CHANGE - I18N - ORIGINAL: "object" = order.pack.name, （显示用译名；act 回传经 lang_unreverse_text 还原英文比较，见 name_to_id/remove/modify）
+			"object" = order.pack.name,
 			"cost" = order.get_final_cost(),
 			"id" = order.id,
 			"amount" = 1,
@@ -136,7 +136,7 @@
 	for(var/datum/supply_order/order in SSshuttle.request_list)
 		var/datum/supply_pack/pack = order.pack
 		data["requests"] += list(list(
-			"object" = lang_reverse_text(pack.name), // NOVA EDIT CHANGE - I18N - ORIGINAL: "object" = pack.name,
+			"object" = pack.name,
 			"cost" = pack.get_cost(),
 			"orderer" = order.orderer,
 			"reason" = order.reason,
@@ -157,7 +157,7 @@
 		if(!length(available_packs)) // Somehow????
 			continue
 		data["supplies"][group] = list(
-			"name" = lang_reverse_text(group), // NOVA EDIT CHANGE - I18N - ORIGINAL: "name" = group, （分类名仅前端状态键，整串译显示=安全；单词类如 Armory 也覆盖）
+			"name" = group,
 			"packs" = available_packs,
 		)
 
@@ -202,10 +202,10 @@
 			packs_by_group[pack.group] = packs
 
 		packs += list(list(
-			"name" = lang_reverse_text(pack.name), // NOVA EDIT CHANGE - I18N - ORIGINAL: "name" = pack.name, （目录显示用译名；add 走 id、openContents/搜索按此 name 在本地数据内匹配=译名一致安全；单词类 auto_name 包如 binoculars 也覆盖）
+			"name" = pack.name,
 			"cost" = pack.get_cost() * get_discount(),
 			"id" = pack_id,
-			"desc" = lang_reverse_text(pack.desc || pack.name), // NOVA EDIT CHANGE - I18N: reverse the pack desc (SINK_VAR, display-only tooltip; exact match). ORIGINAL: "desc" = pack.desc || pack.name, // If there is a description, use it. Otherwise use the pack's name.
+			"desc" = pack.desc || pack.name, // If there is a description, use it. Otherwise use the pack's name.
 			"first_item_icon" = first_item?.icon,
 			"first_item_icon_state" = first_item?.icon_state,
 			"goody" = (pack.order_flags & ORDER_GOODY),
@@ -397,10 +397,7 @@
 /obj/machinery/computer/cargo/proc/name_to_id(order_name)
 	for(var/pack in SSshuttle.supply_packs)
 		var/datum/supply_pack/supply = SSshuttle.supply_packs[pack]
-		// NOVA EDIT CHANGE - I18N - ORIGINAL: if(order_name == supply.name)
-		// 前端显示用译名（见 ui_data/ui_static_data 的 lang_reverse_text），回传的 order_name 可能是中文；
-		// lang_unreverse_text 把它映回英文再比较（locale==en 时原样返回 → 与原逻辑等价）。
-		if(order_name == supply.name || lang_unreverse_text(order_name) == supply.name)
+		if(order_name == supply.name)
 			return pack
 	return null
 
@@ -482,7 +479,7 @@
 			var/order_name = params["order_name"]
 			//try removing at least one item with the specified name. An order may not be removed if it was from the department
 			for(var/datum/supply_order/order in SSshuttle.shopping_list)
-				if(order.pack.name != order_name && order.pack.name != lang_unreverse_text(order_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: if(order.pack.name != order_name) （译名回传，还原英文比较）
+				if(order.pack.name != order_name)
 					continue
 				if(remove_item(order.id))
 					return TRUE
@@ -493,7 +490,7 @@
 
 			//clear out all orders with the above mentioned order_name name to make space for the new amount
 			for(var/datum/supply_order/order in SSshuttle.shopping_list) //find corresponding order id for the order name
-				if(order.pack.name == order_name || order.pack.name == lang_unreverse_text(order_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: if(order.pack.name == order_name) （译名回传，还原英文比较）
+				if(order.pack.name == order_name)
 					remove_item(order.id)
 
 			//now add the new amount stuff

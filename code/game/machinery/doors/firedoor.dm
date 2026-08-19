@@ -79,7 +79,7 @@
 	soundloop = new(src, FALSE)
 	CalculateAffectingAreas()
 	my_area = get_area(src)
-	if(name == initial(name) || lang_unreverse_text(name) == initial(name)) // NOVA EDIT - i18n: name is reverse-localized at Initialize, so also accept the un-reversed form (else the "[area]" prefix is dropped)
+	if(name == initial(name))
 		update_name()
 	if(!merger_typecache)
 		merger_typecache = typecacheof(/obj/machinery/door/firedoor)

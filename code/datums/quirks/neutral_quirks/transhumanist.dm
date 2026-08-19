@@ -163,7 +163,7 @@
 		return
 	if(isbodypart(old_part))
 		to_chat(quirk_holder, span_bolddanger(LANG("datum.0cfb445a", list(slot_string))))
-	else if (old_part.name == "eyes" || lang_unreverse_text(old_part.name) == "eyes") // NOVA EDIT - i18n: organ name is reverse-localized
+	else if (old_part.name == "eyes")
 		to_chat(quirk_holder, span_bolddanger(LANG("datum.a1daab4a", null)))
 	else if (isorgan(old_part))
 		to_chat(quirk_holder, span_bolddanger(LANG("datum.fbe890d5", list(slot_string))))

@@ -135,14 +135,10 @@ SUBSYSTEM_DEF(vote)
 	if(CONFIG_GET(flag/no_dead_vote) && voter.stat == DEAD && !voter.client?.holder)
 		return
 
-	// NOVA EDIT ADDITION START - I18N: 老客户端（或任何残留 P1 翻译）可能回传译名。译名不在 choices
-	// 里，直接 ++ 会建出幽灵条目、真键永远 0 票。先反查回英文键；反查不出来的按未知选项丢弃，
-	// 不再污染计票表。
+	// NOVA EDIT ADDITION START - I18N: 未知选项直接丢弃，不再 ++ 出幽灵条目、把真键的票数吃掉。
+	// （从前这里还要先把译名反查回英文——负载不再被就地改写之后，回传的永远是英文键。）
 	if(!(their_vote in current_vote.choices))
-		var/unreversed = lang_unreverse_text(their_vote)
-		if(!(unreversed in current_vote.choices))
-			return
-		their_vote = unreversed
+		return
 	// NOVA EDIT ADDITION END
 
 	// If user has already voted, remove their specific vote
@@ -172,14 +168,10 @@ SUBSYSTEM_DEF(vote)
 	else
 		voted += voter.ckey
 
-	// NOVA EDIT ADDITION START - I18N: 老客户端（或任何残留 P1 翻译）可能回传译名。译名不在 choices
-	// 里，直接 ++ 会建出幽灵条目、真键永远 0 票。先反查回英文键；反查不出来的按未知选项丢弃，
-	// 不再污染计票表。
+	// NOVA EDIT ADDITION START - I18N: 未知选项直接丢弃，不再 ++ 出幽灵条目、把真键的票数吃掉。
+	// （从前这里还要先把译名反查回英文——负载不再被就地改写之后，回传的永远是英文键。）
 	if(!(their_vote in current_vote.choices))
-		var/unreversed = lang_unreverse_text(their_vote)
-		if(!(unreversed in current_vote.choices))
-			return
-		their_vote = unreversed
+		return
 	// NOVA EDIT ADDITION END
 
 	if(current_vote.choices_by_ckey[voter.ckey + their_vote] == 1)

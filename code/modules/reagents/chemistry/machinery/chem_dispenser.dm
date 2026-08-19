@@ -355,7 +355,7 @@
 				return
 			var/reagent_name = params["reagent"]
 			if(!recording_recipe)
-				var/reagent = GLOB.name2reagent[reagent_name] || GLOB.name2reagent[lang_unreverse_text(reagent_name)] // NOVA EDIT CHANGE - i18n - 实例 name 已译、表键是英文，逆向反查兜底 - ORIGINAL: var/reagent = GLOB.name2reagent[reagent_name]
+				var/reagent = GLOB.name2reagent[reagent_name]
 				if(beaker && dispensable_reagents.Find(reagent))
 					var/datum/reagents/holder = beaker.reagents
 					var/to_dispense = max(0, min(amount, holder.maximum_volume - holder.total_volume))
@@ -401,7 +401,7 @@
 			if(!LAZYLEN(chemicals_to_dispense))
 				return
 			for(var/key in chemicals_to_dispense)
-				var/reagent = GLOB.name2reagent[key] || GLOB.name2reagent[lang_unreverse_text(key)] // NOVA EDIT CHANGE - i18n - ORIGINAL: var/reagent = GLOB.name2reagent[key]
+				var/reagent = GLOB.name2reagent[key]
 				var/dispense_amount = chemicals_to_dispense[key]
 				if(!dispensable_reagents.Find(reagent))
 					return
@@ -442,7 +442,7 @@
 				return
 			if(name && recording_recipe)
 				for(var/reagent in recording_recipe)
-					var/reagent_id = GLOB.name2reagent[reagent] || GLOB.name2reagent[lang_unreverse_text(reagent)] // NOVA EDIT CHANGE - i18n - ORIGINAL: var/reagent_id = GLOB.name2reagent[reagent]
+					var/reagent_id = GLOB.name2reagent[reagent]
 					if(!dispensable_reagents.Find(reagent_id))
 						visible_message(span_warning(LANG("obj.9f1f2989", list(src))), span_hear(LANG("obj.c2e63776", null)))
 						to_chat(ui.user, span_warning(LANG("obj.69924594", list(src, reagent))))

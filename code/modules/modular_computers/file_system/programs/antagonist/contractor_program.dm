@@ -146,8 +146,7 @@
 				var/item = params["item"]
 				for (var/datum/contractor_item/hub_item in uplink_computer.opfor_data.contractor_hub.hub_items)
 					// NOVA EDIT CHANGE - I18N - UI 回传的 hub 物品名可能已被 P1 反查成中文（contractor_hub_items 的 name 未进 payload_skip），
-					// 用 lang_unreverse_text 兜回英文键匹配；否则多词项（Reinforcements/Contract Reroll…）点了没反应。ORIGINAL: if (hub_item.name == item)
-					if (hub_item.name == item || hub_item.name == lang_unreverse_text(item))
+					if (hub_item.name == item)
 						hub_item.handle_purchase(uplink_computer.opfor_data.contractor_hub, user)
 			else
 				error = "Invalid user... You weren't recognized as the user of this system."

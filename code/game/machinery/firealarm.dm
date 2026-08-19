@@ -63,7 +63,7 @@
 	if(!mapload)
 		buildstage = FIRE_ALARM_BUILD_NO_CIRCUIT
 		set_panel_open(TRUE)
-	if(name == initial(name) || lang_unreverse_text(name) == initial(name)) // NOVA EDIT - i18n: name is reverse-localized at Initialize, so also accept the un-reversed form (else the "[area]" prefix is dropped)
+	if(name == initial(name))
 		update_name()
 	my_area = get_area(src)
 	LAZYADD(my_area.firealarms, src)

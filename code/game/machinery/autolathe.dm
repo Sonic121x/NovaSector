@@ -157,7 +157,7 @@
 			var/mat_cost = design.materials[mat]
 			var/design_cost = OPTIMAL_COST(mat_cost * coeff)
 			if(istype(mat))
-				cost[lang_unreverse_text(mat.name)] = design_cost // NOVA EDIT CHANGE - I18N - key cost by the english material name; P1 translates the available-materials display value but not assoc keys, so both sides must stay english for multi-word mats (e.g. "bluespace crystal") to match - ORIGINAL: cost[mat.name] = design_cost
+				cost[mat.name] = design_cost
 				customMaterials = FALSE
 				continue
 

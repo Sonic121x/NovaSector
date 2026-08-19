@@ -255,6 +255,20 @@ describe('负载 overlay', () => {
     resetCatalogOverlay();
   });
 
+  test('单词键只做整串精确查表，不参与子串替换', () => {
+    // P1 的多词门槛放开后单词值也进 overlay（「TGUI 单词名恒为英文」那类才有解），
+    // 但单词做子串替换会从另一个词内部开火 —— 这条界线必须在 TS 侧显式守住。
+    mergeCatalogOverlay({ Zxqv: '兹克夫' });
+    const exact = localizeProps({ content: 'Zxqv' }) as Record<string, string>;
+    expect(exact.content).toBe('兹克夫');
+    const inside = localizeProps({ content: 'Zxqv Thranok reactor' }) as Record<
+      string,
+      string
+    >;
+    expect(inside.content).toBe('Zxqv Thranok reactor');
+    resetCatalogOverlay();
+  });
+
   test('静态目录条目不受 overlay 影响', () => {
     mergeCatalogOverlay({ [RUNTIME]: RUNTIME_ZH });
     const props = localizeProps({ content: SAMPLE }) as Record<string, string>;

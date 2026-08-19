@@ -1068,9 +1068,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module/malf))
 				return FALSE
 
 			var/found = FALSE
-			var/unreversed_selection = lang_unreverse_text(selection) // NOVA EDIT - I18N - tolerate translated dropdown value
 			for(var/option in voice_options)
-				if(option == selection || option == unreversed_selection) // NOVA EDIT - I18N
+				if(option == selection)
 					found = TRUE
 					selection = option // NOVA EDIT - I18N - use canonical english value
 					break

@@ -1042,28 +1042,12 @@ GLOBAL_LIST_INIT(i18n_autopsy_labels, list(
 		return text
 	return lang_reverse_text(text)
 
-/// TGUI 前端目录（en/tgui.json）里的英文串集合。这些串由 TS 端 auto-localize **只翻显示**，
-/// 故 P1（lang_reverse_tree）必须跳过它们——很多是 act() 标识符（职业名/怪癖名/配件名…），
-/// 改了 ui_data 值会破坏操作；交给 TS 端翻显示、数据保持英文最安全。同时这也覆盖了**单词类**
-/// 标识符名（P1 的多词门槛本就漏掉、但 TS 端无门槛能翻）。启动加载、运行只读。
-GLOBAL_LIST_INIT(i18n_tgui_strings, build_tgui_string_set())
 
 #define I18N_TGUI_PHRASE_CACHE_MAX 4096
 /// P1 里允许过字面 AC 的最短长度。短值一律不走 AC —— 那是标识符浓度最高的区间。
 #define I18N_TGUI_PROSE_MIN_LENGTH 80
 /// 跨 payload 复用精确/模板反查结果；有界且满后不淘汰，避免动态值造成持续分配。
 GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
-
-/proc/build_tgui_string_set()
-	var/list/result = list()
-	var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/[DEFAULT_UI_LOCALE]/tgui.json"
-	if(!fexists(path))
-		return result
-	var/list/decoded = json_decode(file2text(path))
-	if(islist(decoded))
-		for(var/key in decoded)
-			result[key] = TRUE
-	return result
 
 /// 该 TGUI 负载值是否「长散文」——够长、含句末标点。只有这类才允许过字面 AC（子串替换）：
 /// act() 回传标识符、图标名、黑板键之类永远不是这个形状，从而把误伤面压到零。
@@ -1073,32 +1057,34 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 	return findtext(text, ". ") || findtext(text, "! ") || findtext(text, "? ") \
 		|| findtext(text, ".", -1) || findtext(text, "!", -1) || findtext(text, "?", -1)
 
-/// TGUI 负载专用反查：若该串属于 TGUI 前端目录（TS 端会翻显示），P1 跳过不动数据（保住标识符）；
-/// 否则走多词反查（datum 描述等不在前端目录的长文本）。
+/// TGUI 负载专用本地化：返回该串的译文（**调用方决定**是就地改写还是记进 overlay，见 lang_reverse_tree）。
+///
+/// 从前这里有两道闸门，都是为了「不把标识符改坏」——负载改成不动数据之后，两道都失去了理由：
+///   · **多词门槛**（`findtext(text, " ")`）：单词值一律不查。它挡的是「把 `Water`/`Move` 这类
+///     标识符改成中文导致回传对不上」，而现在回传的永远是英文原值。放开之后，「TGUI 里单词名
+///     恒为英文」那一整类（线缆颜色、突变名、试剂/材料/设计名…）第一次有解。
+///   · **「值本身是 tgui 目录键就原样返回」**：那是把显示权交给 TS、以保住数据；现在数据本来就
+///     不动，跳过只会让这批值进不了 overlay、白白多绕一圈静态目录。
+///
+/// 单词值只走**整串精确反查**：模板逆匹配与字面 AC 都是给句子用的，单词过去只会徒增误伤。
 /proc/lang_reverse_phrase_tgui(text)
-	if(!istext(text) || !findtext(text, " "))
+	if(!istext(text) || length(text) < 2)
 		return text
+	var/multiword = findtext(text, " ")
 	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
 	var/list/phrase_cache = GLOB.i18n_tgui_phrase_cache
-	var/cache_ready = !GLOB.i18n_log_misses && islist(phrase_cache) && islist(GLOB.i18n_tgui_strings) && islist(GLOB.i18n_cache[locale])
+	var/cache_ready = !GLOB.i18n_log_misses && islist(phrase_cache) && islist(GLOB.i18n_cache[locale])
 	if(cache_ready && (text in phrase_cache))
 		return phrase_cache[text]
-	// islist 守卫：i18n_tgui_strings 是 GLOBAL_LIST_INIT，极早期（如 construct_phobia_regex 等全局变量
-	// 初始化期）调用 load_strings_file→lang_reverse_tree 时它可能尚未就绪，直接索引会 bad index 崩溃，
-	// 进而把加载的串写成 null、破坏 phobia 等早期数据。未就绪时跳过跳过集判断，走多词反查
-	// （lang_build_reverse 已加固：cache 未就绪返回空表、原样返回，不崩不污染）。
-	if(islist(GLOB.i18n_tgui_strings) && GLOB.i18n_tgui_strings[text])
-		. = text
-	else
-		// lang_reverse_suffixed 而非裸 lang_reverse_text：TGUI 负载里同样有「基础句 + 运行期追加
-		// 后缀」的值（赏金 description 加高优先级说明、手术 desc 加「每器官一次」），整串不是目录键，
-		// 精确反查会连基础句一起 miss。无后缀时它就是 lang_reverse_text，零行为变化。
-		. = lang_reverse_suffixed(text)
+	// lang_reverse_suffixed 而非裸 lang_reverse_text：TGUI 负载里同样有「基础句 + 运行期追加
+	// 后缀」的值（赏金 description 加高优先级说明、手术 desc 加「每器官一次」），整串不是目录键，
+	// 精确反查会连基础句一起 miss。无后缀时它就是 lang_reverse_text，零行为变化。
+	. = lang_reverse_suffixed(text)
 	// 整串精确反查未命中的多词串：很多是**运行期拼接/插值后才成形**的句子（Orion 事件 text、研究要求
 	// "Scan unique individuals with [desc]." 等经 ui_data 下发的动态串）——exact 反查够不着。补一道边界
 	// 模板逆匹配引擎：目录里已译的 {0} 模板按字面段在原串上命中、捕获实参反查后按 zh 模板填充。这样
 	// TGUI 负载里的拼接句与聊天/browse 共享同一引擎。en locale / 无锚命中时引擎走快路径原样返回（零开销）。
-	if(. == text)
+	if(. == text && multiword)
 		. = lang_template_apply(text, locale)
 	if(. == text)
 		// 最后一道：**长散文**才过字面 AC。
@@ -1109,7 +1095,7 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 		// 于是「名字是中文、正文整段英文」（生成器菜单的「指令」栏即此）。
 		// 闸门必须严：AC 是子串替换，绝不能碰标识符型负载值。长度 ≥ 80 且含句末标点的串是散文，
 		// 不可能是 act 回传标识符；短值一律不走这条。
-		if(lang_tgui_prose_candidate(text) && lang_fallback_setup(locale))
+		if(multiword && lang_tgui_prose_candidate(text) && lang_fallback_setup(locale))
 			. = rustg_acreplace("i18n_[locale]", text)
 	// 漏翻采集：反查 + 模板引擎 + AC 都没命中的多词 TGUI 负载值（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
 	if(GLOB.i18n_log_misses && . == text && locale != DEFAULT_UI_LOCALE)

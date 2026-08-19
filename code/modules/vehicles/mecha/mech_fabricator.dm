@@ -366,7 +366,7 @@
 		var/cost = list()
 		var/list/materials = design.materials
 		for(var/datum/material/mat in materials)
-			cost[lang_unreverse_text(mat.name)] = OPTIMAL_COST(materials[mat] * component_coeff) // NOVA EDIT CHANGE - I18N - key cost by the english material name so it matches the available map (P1 doesn't translate assoc keys) - ORIGINAL: cost[mat.name] = OPTIMAL_COST(materials[mat] * component_coeff)
+			cost[mat.name] = OPTIMAL_COST(materials[mat] * component_coeff)
 
 		var/icon_size = spritesheet.icon_size_id(design.id)
 		designs[design.id] = list(

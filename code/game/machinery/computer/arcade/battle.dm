@@ -467,7 +467,7 @@
 					// 会送中文进来，此处必须先兜一次逆向反查、再拒绝未知键——原来直接 `gear.world_available`
 					// 在查不到时是 null 解引用 runtime。ORIGINAL: var/datum/battle_arcade_gear/gear = battle_arcade_gear_list[params["purchasing_item"]]
 					var/purchasing_item = params["purchasing_item"]
-					var/datum/battle_arcade_gear/gear = battle_arcade_gear_list[purchasing_item] || battle_arcade_gear_list[lang_unreverse_text(purchasing_item)]
+					var/datum/battle_arcade_gear/gear = battle_arcade_gear_list[purchasing_item]
 					if(isnull(gear))
 						return TRUE
 					// NOVA EDIT CHANGE END

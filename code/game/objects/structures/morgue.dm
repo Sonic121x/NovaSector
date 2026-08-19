@@ -407,7 +407,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	. = ..()
 	underlays.Cut()
 
-	if(name != initial(name) && lang_unreverse_text(name) != initial(name)) // NOVA EDIT - i18n: a reverse-localized default name isn't a rename (else every morgue gets the label overlay)
+	if(name != initial(name))
 		. += "[base_icon_state]_label"
 
 #undef MORGUE_EMPTY

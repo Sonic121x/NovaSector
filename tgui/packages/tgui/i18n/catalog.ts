@@ -41,12 +41,12 @@ function normalizeOverlayKey(key: string): string {
 /// 五十余处，还不含经解构/中间变量到达渲染点、静态扫描看不见的那些）。整串永远不是目录键，
 /// 精确查表必 miss → 整条回退英文。
 ///
-/// 子串替换在 DM 侧（字面 AC）是出过事的——无词边界概念，拼句碎片会从单词内部开火。这里安全得多，
-/// 因为**两条性质是结构性的**，不是约定：
-///   · overlay 的键全部来自 P1，而 P1 有**多词门槛**（`findtext(text, " ")`），所以键必然是多词
-///     短语——单词碎片根本进不了这张表；
-///   · 匹配面只有**本次负载**里那几十条已确认的显示值，不是整个目录。
-/// 再加一道词边界检查（前后不得是字母/数字），把 "Water Bottle" 咬进 "Water Bottled" 这类挡掉。
+/// 子串替换在 DM 侧（字面 AC）是出过事的——无词边界概念，拼句碎片会从单词内部开火。这里靠三条守住：
+///   · **只收多词键**（见 getOverlayMatcher 的过滤）。单词键仍在 overlay 里、照常做整串精确查表，
+///     但绝不参与子串替换——单词从另一个词内部开火正是 DM 侧那些事故的形态。
+///     （这条从前由 P1 的多词门槛顺带保证；门槛放开、单词值也进 overlay 之后，必须在这里显式挡。）
+///   · 匹配面只有**本次负载**里那几十条已确认的显示值，不是整个目录；
+///   · 词边界检查（前后不得是字母/数字），把 "Water Bottle" 咬进 "Water Bottled" 这类挡掉。
 let overlayMatcher: RegExp | null = null;
 let overlayMatcherStale = true;
 
@@ -59,8 +59,10 @@ function getOverlayMatcher(): RegExp | null {
     return overlayMatcher;
   }
   overlayMatcherStale = false;
-  // 最长优先：交替分支按顺序试，短键排前面会把长键遮住（DM 侧 AC 的 LeftmostLongest 踩过两次）。
-  const keys = Object.keys(overlay).sort((a, b) => b.length - a.length);
+  // 只收多词键；最长优先（交替分支按顺序试，短键排前面会把长键遮住——DM 侧 AC 的 LeftmostLongest 踩过两次）。
+  const keys = Object.keys(overlay)
+    .filter((key) => key.includes(' '))
+    .sort((a, b) => b.length - a.length);
   overlayMatcher = keys.length
     ? new RegExp(keys.map(escapeRegExp).join('|'), 'g')
     : null;

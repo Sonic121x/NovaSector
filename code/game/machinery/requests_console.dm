@@ -348,8 +348,6 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
 ///Sends the message from the request console
 /obj/machinery/requests_console/proc/send_message(recipient, message, priority, request_type)
-	// NOVA EDIT ADDITION - I18N - the quick-reply path passes the P1-translated sender_department (e.g. 研究实验室); route by the english department name so the receiving console's `recipient_department == department` match works (no-op for the english dropdown path / en locale)
-	recipient = lang_unreverse_text(recipient)
 	var/radio_channel
 	// They all naming them wrong, all the time... I'll probably rewrite this later in separate PR.
 	// Automatically from areas or via mapping helpers. (ther is no "Cargobay Request Console" in any map)

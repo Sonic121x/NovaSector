@@ -203,7 +203,7 @@
 	if(isMotion())
 		return
 
-	if(name == initial(name) || lang_unreverse_text(name) == initial(name)) // NOVA EDIT - i18n: name is reverse-localized at Initialize
+	if(name == initial(name))
 		name = lang_reverse_text("motion-sensitive security camera") // NOVA EDIT - i18n: reverse-localize the new name (no-op on en)
 	if(!proximity_monitor)
 		proximity_monitor = new(src)
@@ -212,7 +212,7 @@
 	calculate_active_power()
 
 /obj/machinery/camera/proc/removeMotion()
-	if(name == "motion-sensitive security camera" || lang_unreverse_text(name) == "motion-sensitive security camera") // NOVA EDIT - i18n: name is reverse-localized (matches upgradeMotion)
+	if(name == "motion-sensitive security camera")
 		name = lang_reverse_text("security camera") // NOVA EDIT - i18n: reverse-localize (no-op on en)
 	camera_upgrade_bitflags &= ~CAMERA_UPGRADE_MOTION
 	if(!area_motion)
