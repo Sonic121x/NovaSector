@@ -37,6 +37,109 @@ impl Report {
     }
 }
 
+/// 允许在运行期把译文写进 `name` 的调用点（上游本来就在运行期拼这些名字，且它们是**复合身份名**、
+/// 不参与任何英文比较；显示边界的 `name == initial(name)` 判据本就把它们排除在类型标签之外）。
+///   · edible.dm     —— `"slice of [x]"`
+///   · mail.dm       —— `"[initial(name)] for [收件人] ([职位])"`
+/// 新增前先问：这个 name 有没有可能被拿去比较/当查表键？有 → 不该固化译文。
+const NAME_LANG_ASSIGN_ALLOWLIST: &[&str] = &[
+    "code/datums/components/food/edible.dm",
+    "code/game/objects/items/mail.dm",
+];
+
+/// 表达式的**值**是否就是 LANG 的产物（译文串）。
+///
+/// 语义刻意比「出现过 LANG」严：`name = tgui_input_text(user, LANG(提示), LANG(标题), …)` 里
+/// LANG 只是别人的实参，赋进 name 的是管理员输入 —— 按「出现过」判会当场误报（admin_verbs.dm
+/// 就是这形状）。只认值位置：LANG 本身、拼接/三元的分支、内插串里的内插项。
+///
+/// 注意匹配的是**宏展开后**的名字：`LANG`/`LANGU` 是 `#define`，SpacemanDMM 的预处理器在建 AST
+/// 之前就把它们展开成 `lang_format`/`lang_format_for` 了，AST 里根本没有 "LANG"（与 extract.rs
+/// 里那处注释同源）。
+fn expr_yields_lang(expr: &Expression) -> bool {
+    match expr {
+        Expression::Base { term, follow } => follow.is_empty() && term_yields_lang(&term.elem),
+        Expression::BinaryOp { op, lhs, rhs } => {
+            matches!(op, BinaryOp::Add) && (expr_yields_lang(lhs) || expr_yields_lang(rhs))
+        }
+        Expression::AssignOp { rhs, .. } => expr_yields_lang(rhs),
+        Expression::TernaryOp { if_, else_, .. } => {
+            expr_yields_lang(if_) || expr_yields_lang(else_)
+        }
+    }
+}
+
+fn term_yields_lang(term: &Term) -> bool {
+    match term {
+        Term::Call(name, _) => matches!(name.as_str(), "lang_format" | "lang_format_for"),
+        Term::Expr(inner) => expr_yields_lang(inner),
+        Term::InterpString(_, parts) => parts
+            .iter()
+            .any(|(part, _)| part.as_ref().is_some_and(expr_yields_lang)),
+        _ => false,
+    }
+}
+
+/// 收集 `name = <含 LANG 的表达式>` / `X.name = <含 LANG 的表达式>` 的位置（含 if/for 等嵌套块）。
+fn collect_name_lang_assigns(block: &[Spanned<Statement>], out: &mut Vec<dm::Location>) {
+    for stmt in block.iter() {
+        if let Statement::Expr(Expression::AssignOp { op, lhs, rhs }) = &stmt.elem {
+            if matches!(op, dm::ast::AssignOp::Assign)
+                && assign_target_is_name(lhs)
+                && expr_yields_lang(rhs)
+            {
+                out.push(stmt.location);
+            }
+        }
+        visit_nested_blocks(&stmt.elem, &mut |inner| collect_name_lang_assigns(inner, out));
+    }
+}
+
+/// 遍历语句里嵌套的子块（if/else/for/while/switch/do…）。只关心「块」，条件表达式不下探——
+/// 赋值不会出现在条件里。
+fn visit_nested_blocks(stmt: &Statement, sink: &mut impl FnMut(&[Spanned<Statement>])) {
+    match stmt {
+        Statement::If { arms, else_arm } => {
+            for (_, block) in arms.iter() {
+                sink(block);
+            }
+            if let Some(block) = else_arm {
+                sink(block);
+            }
+        }
+        Statement::ForLoop { block, .. }
+        | Statement::While { block, .. }
+        | Statement::DoWhile { block, .. } => sink(block),
+        Statement::ForList(for_list) => sink(&for_list.block),
+        Statement::ForRange(for_range) => sink(&for_range.block),
+        Statement::Switch { cases, default, .. } => {
+            for (_, block) in cases.iter() {
+                sink(block);
+            }
+            if let Some(block) = default {
+                sink(block);
+            }
+        }
+        Statement::TryCatch { try_block, catch_block, .. } => {
+            sink(try_block);
+            sink(catch_block);
+        }
+        Statement::Spawn { block, .. } => sink(block),
+        _ => {}
+    }
+}
+
+/// 赋值左侧是否是 `name` 或 `<something>.name`。
+fn assign_target_is_name(lhs: &Expression) -> bool {
+    let Expression::Base { term, follow } = lhs else {
+        return false;
+    };
+    if let Some(last) = follow.last() {
+        return matches!(&last.elem, Follow::Field(_, field) if field.as_str() == "name");
+    }
+    matches!(&term.elem, Term::Ident(ident) if ident.as_str() == "name")
+}
+
 /// 手写的 locale-only 目录文件（无 en 对应是设计如此）：状态词表与人工 AC 兜底。
 /// 这些不参与「陈旧 key / 占位符 parity」检查（它们本就没有英文源串）。
 const MANUAL_ONLY_FILES: &[&str] = &["_state_words", "_fallback"];
@@ -513,6 +616,63 @@ fn lint_identifier_collisions(
                 }
             }
         }
+    }
+
+    // 规则 C：**数据不许被翻**。
+    //
+    // 整条显示边界方案（类型显示名表 / 运行期反查）都建立在一个不变量上：实例的 name/desc 始终是
+    // canonical English，`if(X.name == "…")`、`GLOB.foo[X.name]`、act 回传比较才不会当场坏掉。
+    // 今天这条不变量靠 rewrite 的结构（只遍历 ty.procs，够不到类型变量声明）保证，但那是「碰巧
+    // 成立」——谁把类型变量也纳入改写，或谁手写一句 `name = LANG(...)`，破坏都是静默的。
+    // 这里把它变成编译期门禁。
+    let mut data_translation = Vec::new();
+    for ty in tree.iter_types() {
+        // C1：类型变量声明里不得出现 LANG —— 那等于把译文固化成实例数据。
+        for (var_name, type_var) in ty.vars.iter() {
+            if !matches!(var_name.as_str(), "name" | "desc") {
+                continue;
+            }
+            let Some(expr) = &type_var.value.expression else {
+                continue;
+            };
+            if expr_yields_lang(expr) {
+                let loc = type_var.value.location;
+                data_translation.push(format!(
+                    "{}:{} 类型变量声明 `{}` 含 LANG()：实例数据会变成译文，name/desc 的比较与查表会静默失效",
+                    context.file_path(loc.file).display(),
+                    loc.line,
+                    var_name
+                ));
+            }
+        }
+        // C2：proc 体内 `name = LANG(...)` 只允许白名单（上游本就在运行期拼的复合名）。
+        for (_proc_name, type_proc) in ty.procs.iter() {
+            for proc_value in type_proc.value.iter() {
+                let Some(block) = &proc_value.code else {
+                    continue;
+                };
+                let mut hits = Vec::new();
+                collect_name_lang_assigns(block, &mut hits);
+                for loc in hits {
+                    let path = context.file_path(loc.file);
+                    let path_str = path.display().to_string().replace('\\', "/");
+                    if NAME_LANG_ASSIGN_ALLOWLIST
+                        .iter()
+                        .any(|allowed| path_str.ends_with(allowed))
+                    {
+                        continue;
+                    }
+                    data_translation.push(format!(
+                        "{}:{} 运行期 `name = LANG(...)`：实例名会变成译文。纯显示请走显示边界（lang_localize_name_for_display），确需固化请加进 NAME_LANG_ASSIGN_ALLOWLIST 并说明理由",
+                        path.display(),
+                        loc.line
+                    ));
+                }
+            }
+        }
+    }
+    for msg in data_translation {
+        report.error(msg);
     }
 
     // en 目录里「会被 DM 反查表变异」的值集合：无占位符的纯串（与 lang_build_reverse 一致）。

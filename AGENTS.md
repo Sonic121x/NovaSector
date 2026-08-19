@@ -187,3 +187,7 @@ Known trap classes:
   · **继承必须可截断**：子类型自己声明了 `name` 但抽不出键（非字面量/含占位符）时，继承链在该类型**中止**——沿用祖先的键会把父类型的名字挂到子类型上，而 `initial(name)` 取的是子类型自己的值。`TypeVarKeys::opaque` 守这条。
   · **表与目录必须同源**：表里的 key 由与 `emit` 完全相同的 `build_template` + `var_scope` 算出；两边算法一旦漂移，运行期是**静默永不命中**（不是报错）。`i18n_type_labels` ① 拿真表逐条断言 key 在 en 目录里存在。
   · **单测 fixture 不进目录**：`/obj/item/xxx_test` 这类声明在 `unit_tests/` 里但类型路径不在 `/datum/unit_test` 下，`suppress_aggressive` 挡不住 → 「Welding Fuel」这种纯测试串会进只增不减的目录。extract 按**声明所在文件路径**排除（`in_unit_tests`；注意 DM 的 file list 用反斜杠，`Path::components()` 认不出，要先归一）。连带后果：fixture 类型不在表里，所以行为层断言只能注入合成条目，真表只验完整性。
+- **「数据不许被翻」现在是编译期门禁（`nova-i18n lint` 规则 C）** — 整条显示边界方案的地基是「实例的 name/desc 永远是 canonical English」，今天靠 rewrite 的结构（只遍历 `ty.procs`，够不到类型变量声明）保证——那是**碰巧成立**，不是设计。C1 禁止类型变量声明含 LANG；C2 的 proc 体内 `name = LANG(...)` 只放行 `NAME_LANG_ASSIGN_ALLOWLIST`（`edible.dm` 的 `"slice of [x]"`、`mail.dm` 的 `"[name] for [收件人] ([职位])"`，都是上游本就在运行期拼的复合身份名）。两个坑：
+  · **AST 里没有 "LANG"**：`LANG`/`LANGU` 是 `#define`，预处理器建 AST 前已展开成 `lang_format`/`lang_format_for`，按 "LANG" 匹配永远 0 命中。
+  · **判据必须是「值位置」而非「出现过」**：`name = tgui_input_text(user, LANG(提示), LANG(标题), …)` 里 LANG 只是别人的实参，赋进 name 的是玩家输入。按「出现过 LANG」判会误报（`admin_verbs.dm:387` 当场中招）。`expr_yields_lang` 只认 LANG 本身、`+` 拼接的分支、三元的分支、内插串里的内插项。
+  · 门禁写完要**造一次违规验证它真的开火**（两条规则各造一处，确认报错后还原）——不会开火的门禁等于没有。
