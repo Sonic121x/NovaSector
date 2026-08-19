@@ -712,12 +712,89 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 	if(. == text) // 精确 miss → 复合名走 AC 子串
 		. = lang_fallback_apply(text)
 
+/// 类型显示名/描述表：`strings/i18n/type_vars.json`（`nova-i18n extract` 产出，DM 继承已在 build 期展开）。
+/// `type` → 目录 key。显示边界拿到的 name/desc 若仍是类型标签，就**按类型直接取键**走正向目录，
+/// 而不是拿运行期字符串倒查反查表。三点收益：
+///   · 没有多词门槛 —— 单词名（`limb`/`beaker`/`Water`）第一次能落地，反查侧那条闸门永远够不到它们；
+///   · 没有同形异义碰撞 —— 键由类型决定，`smell`（名词/动词）、`Clear`/`Move` 这类不再需要定点表钉词性；
+///   · O(1)，不经模板引擎与字面 AC。
+///
+/// **实例数据永不改写**：类型变量声明不在 rewrite 的遍历范围内（rewrite 只走 `ty.procs`），
+/// `X.name` 在任何比较/查表处都还是 canonical English。这张表只在显示边界产出**新字符串**。
+/// 该不变量由 `nova-i18n lint` 的「类型变量声明不得含 LANG」规则守。
+///
+/// 惰性加载并按 locale 短路：locale==en 时整张表不建（json 约 4MB / 5 万余条），
+/// 且必须等 `i18n_locale_resolved`——GLOB 阶段 locale 还没读，此时钉死会得到空表。
+/// name 与 desc **一次解析同时建好**：分开各读一次就是把这几 MB 解析跑两遍。
+GLOBAL_LIST_EMPTY(i18n_type_name_keys)
+GLOBAL_LIST_EMPTY(i18n_type_desc_keys)
+GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
+
+/proc/lang_load_type_var_tables()
+	if(GLOB.i18n_type_var_tables_loaded)
+		return
+	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
+	if(locale == DEFAULT_UI_LOCALE)
+		return
+	var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/type_vars.json"
+	if(fexists(path))
+		var/list/decoded = json_decode(file2text(path))
+		if(islist(decoded))
+			lang_fill_type_var_table(decoded["name"], GLOB.i18n_type_name_keys)
+			lang_fill_type_var_table(decoded["desc"], GLOB.i18n_type_desc_keys)
+	GLOB.i18n_type_var_tables_loaded = TRUE
+
+/// JSON 里的键是类型**文本**，运行期查表用的是 `A.type`（路径）。一次性转成路径键，省掉每次
+/// 查表的 `"[type]"` 插值分配（hover screentip 是每次 MouseEntered 都走的路径）。
+/// 解析不出路径的条目（上游删过的类型等）直接丢，绝不留文本键——那会静默永不命中。
+/proc/lang_fill_type_var_table(list/entries, list/target)
+	if(!islist(entries) || !islist(target))
+		return
+	for(var/type_text in entries)
+		var/type_path = text2path(type_text)
+		if(isnull(type_path))
+			continue
+		target[type_path] = entries[type_text]
+
+/proc/lang_type_name_keys()
+	lang_load_type_var_tables()
+	return GLOB.i18n_type_name_keys
+
+/proc/lang_type_desc_keys()
+	lang_load_type_var_tables()
+	return GLOB.i18n_type_desc_keys
+
+/// 按类型取译文。无表项 / 该 key 在当前 locale 没有译文 → 返回 null，调用方回落既有反查链
+/// （形态不在表里的：地图实例覆盖、运行期拼接、子类型自己声明了非字面量…）。
+/proc/lang_type_display_text(atom/target, list/table)
+	if(GLOB.i18n_server_locale == DEFAULT_UI_LOCALE || !length(table))
+		return null
+	var/key = table[target.type]
+	if(!key)
+		return null
+	return lang_template(key, GLOB.i18n_server_locale)
+
 /// Localize an atom name only when it is still a static type label. Runtime/player-assigned identity names
 /// must remain byte-for-byte unchanged even when they collide with a catalog phrase.
 /atom/proc/lang_localize_name_for_display(display_name)
 	if(HAS_TRAIT(src, TRAIT_WAS_RENAMED))
 		return display_name
+	// 仍等于类型初值 = 类型标签 → 按类型取键（精确、含单词名）。其余形态（地图实例覆盖 desc/name、
+	// 运行期拼接名）表里没有，回落既有反查链，行为与从前一致。
+	if(display_name == initial(name))
+		var/typed_name = lang_type_display_text(src, lang_type_name_keys())
+		if(typed_name)
+			return typed_name
 	return lang_localize_display_name(display_name)
+
+/// examine 的 desc 显示边界。与 name 同构：仍等于类型初值 → 按类型取键；其余（地图实例覆盖的
+/// desc、运行期 `desc = …` / `desc +=`）回落既有反查链，行为与从前一致。
+/atom/proc/lang_localize_desc_for_display(display_desc)
+	if(display_desc == initial(desc))
+		var/typed_desc = lang_type_display_text(src, lang_type_desc_keys())
+		if(typed_desc)
+			return typed_desc
+	return lang_reverse_text(display_desc)
 
 /// mob 的 `name` 是**身份**（角色名、宠物挂牌名、赛博编号、ERT 头衔…），一律不翻——哪怕它恰好
 /// 撞上目录短语。判据只用「是否仍等于类型声明的初值」：任何运行期赋值（`fully_replace_character_name`
@@ -740,7 +817,8 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 	var/suffix = copytext(display_name, base_length + 1)
 	if(copytext(suffix, 1, 3) != " (" || copytext(suffix, -1) != ")")
 		return display_name
-	return lang_localize_display_name(base) + suffix
+	// 递归回本边界：base 此刻等于 initial(name)，走类型表那条快路（前缀单词名也能翻）。
+	return lang_localize_name_for_display(base) + suffix
 
 /// 已知会被运行期 `desc +=` 追加的固定后缀（trim 形态）。base + 后缀都是各自独立的目录键，但拼接后
 /// 整串非目录键 → exact 反查 miss。这些追加发生在 New()/早期（i18n_cache 未就绪、原地反查会空转），

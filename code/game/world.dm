@@ -159,6 +159,9 @@ GLOBAL_VAR(restart_counter)
 	// 并补反查那些在 GLOB 阶段就建好、当时翻不了的 flavor 字符串表。
 	GLOB.i18n_locale_resolved = TRUE
 	lang_relocalize_early_string_lists()
+	// 类型显示名表（strings/i18n/type_vars.json）在此预热：惰性加载本身没问题，但首次触发点是
+	// 玩家的第一次 examine/hover，把 3.8MB json 解析摊在那一帧上没必要。locale==en 时是空操作。
+	lang_type_name_keys()
 	// NOVA EDIT ADDITION END
 
 	// Try to set round ID

@@ -23,6 +23,27 @@ use crate::template::{build_template, placeholder_count};
 /// 视为玩家可见的变量名。
 /// message_* 系列是 /datum/emote 的各形态表情模板（人形/默剧/外星/AI/机器人等），玩家在聊天
 /// 高频可见；它们是 var 赋值而非 sink 调用，靠抽取进目录 + /datum/emote/New() 整串反查落地。
+/// 显示名/描述的「类型 → 目录 key」表（产出 strings/i18n/type_vars.json）。
+///
+/// 运行期在**显示边界**按类型直接取键、走正向目录，替代「拿运行期字符串倒查目录」那条路：
+/// 无多词门槛（单词名第一次能落地）、无同形异义碰撞、O(1)。**数据本身永不改写** ——
+/// 类型变量声明不在 rewrite 的遍历范围内（rewrite 只走 ty.procs），实例的 name/desc 始终是
+/// canonical English，`if(X.name == "…")` / `GLOB.foo[X.name]` 逐字节不变。
+const TYPE_VAR_TABLE_VARS: &[&str] = &["name", "desc"];
+
+/// 只展开 atom 子树：/datum 的 name 多是标识符或走前端目录桥（labels.rs），不经显示边界。
+const TYPE_VAR_TABLE_ROOTS: &[&str] = &["/obj", "/turf", "/mob", "/area"];
+
+/// 收集「类型#变量 → key」，供继承展开。
+#[derive(Default)]
+struct TypeVarKeys {
+    /// 本类型自己声明、且抽到了目录 key。
+    declared: std::collections::BTreeMap<(String, String), String>,
+    /// 本类型声明了该变量但**抽不出键**（非字面量/含占位符/无字母）。继承链必须在此截断：
+    /// 沿用祖先的键会把父类型的名字挂到子类型上（`initial(name)` 取的是子类型自己的值）。
+    opaque: HashSet<(String, String)>,
+}
+
 const SINK_VARS: &[&str] = &[
     "name",
     "desc",
@@ -865,6 +886,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
     }
 
     let mut catalog = Catalog::new();
+    let mut type_var_keys = TypeVarKeys::default();
     for ty in tree.iter_types() {
         // **完整类型路径**往下传（不是压扁后的命名空间）：命名空间由 Catalog::insert 推导，
         // 完整路径同时被记进 scopes.json 供术语表按语境消歧（`Base` 在 /datum/reagent 下是
@@ -874,6 +896,15 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
         // 单元测试类型只在 UNIT_TESTS 编译期存在，断言消息玩家永不可见 → 不进激进抽取
         // （既有 sink 路径不变，避免目录 churn）。
         let suppress_aggressive = ty.path.starts_with("/datum/unit_test");
+        // 单测 fixture（`/obj/item/i18n_..._test` 这类）声明在 unit_tests 目录里，但类型路径不在
+        // /datum/unit_test 之下，suppress_aggressive 挡不住它们 —— 于是「Welding Fuel」这种
+        // 纯测试串会进目录（目录只合并从不裁剪，一旦进去就永远留着）。按**声明所在文件**排除。
+        let in_unit_tests = |loc: dm::Location| -> bool {
+            context
+                .file_path(loc.file)
+                .components()
+                .any(|c| c.as_os_str() == "unit_tests")
+        };
 
         // 1) 变量初始化（name/desc 等）。
         for (var_name, type_var) in ty.vars.iter() {
@@ -881,6 +912,9 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             // （整句），`#message` 是发给玩家的话。模型光看类型路径分不出这个，于是
             // 常把物品名翻成一句话。`#` 不影响命名空间推导（namespace_for 按 `/` 取首段），
             // 所以目录 key 不变。
+            if in_unit_tests(type_var.value.location) {
+                continue;
+            }
             let var_scope = format!("{}#{}", ty.path, var_name);
             let mut is_sink = SINK_VARS.contains(&var_name.as_str());
             // ADMIN_VERB 宏展开成 `/datum/admin_verb/xxx { name = ##verb_name; … }`，所以管理员
@@ -890,6 +924,23 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             // 同一个污染级联，只是第二扇门。verb 名走 `set name` 那条路抽即可，这里让开。
             if var_name == "name" && ty.path.starts_with("/datum/admin_verb") {
                 is_sink = false;
+            }
+            // 类型显示名/描述表：与下面 emit 的 key 完全同源（同一个 build_template + 同一个
+            // var_scope），否则表里的键会指向目录里不存在的条目。
+            if is_sink && TYPE_VAR_TABLE_VARS.contains(&var_name.as_str()) {
+                let entry = (ty.path.clone(), var_name.clone());
+                match type_var.value.expression.as_ref() {
+                    None => {}
+                    Some(expr) => match build_template(expr) {
+                        Some(t) if !t.contains('{') && t.chars().any(|c| c.is_alphabetic()) => {
+                            let key = make_key(&namespace_for(&var_scope), &t);
+                            type_var_keys.declared.insert(entry, key);
+                        }
+                        _ => {
+                            type_var_keys.opaque.insert(entry);
+                        }
+                    },
+                }
             }
             // config_entry 的 default：玩家可见公告/模板（安全等级公告、提示等，从配置加载、非 sink 调用）。
             // 仅 /datum/config_entry 类型且「句子型」default 才抽，避开数字/标志/路径等非显示默认值。
@@ -1161,7 +1212,93 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             scopes_path.display(),
             catalog.scope_count()
         );
+        // 类型显示名表（继承已展开）。与 scopes.json 同级：**不能**放进 locale 目录，
+        // build_i18n_cache 会把 locale 目录下每个 .json 全量并进反查表。
+        let table = expand_type_var_table(&tree, &type_var_keys);
+        let type_vars_path = out.parent().unwrap_or(out).join("type_vars.json");
+        write_type_var_table(&type_vars_path, &table)?;
+        let counts: Vec<String> = TYPE_VAR_TABLE_VARS
+            .iter()
+            .map(|v| format!("{}={}", v, table.get(*v).map_or(0, |m| m.len())))
+            .collect();
+        eprintln!(
+            "已写入类型显示名表: {}（声明 {} 条，展开后 {}）",
+            type_vars_path.display(),
+            type_var_keys.declared.len(),
+            counts.join(" ")
+        );
     }
+    Ok(())
+}
+
+/// 把「自己声明了 name/desc」的类型表按 DM 继承语义展开到每个 atom 子类型。
+///
+/// 展开而不是运行期向上走父类型：DM 侧拿不到类型的 parent_type，运行期只能 O(1) 查表。
+/// 截断规则见 TypeVarKeys::opaque —— 子类型自己声明了但抽不出键时，绝不沿用祖先的键。
+fn expand_type_var_table(
+    tree: &dm::objtree::ObjectTree,
+    keys: &TypeVarKeys,
+) -> std::collections::BTreeMap<String, std::collections::BTreeMap<String, String>> {
+    let mut out: std::collections::BTreeMap<String, std::collections::BTreeMap<String, String>> =
+        std::collections::BTreeMap::new();
+    for ty in tree.iter_types() {
+        if !TYPE_VAR_TABLE_ROOTS.iter().any(|root| {
+            ty.path == *root || ty.path.starts_with(&format!("{root}/"))
+        }) {
+            continue;
+        }
+        for var in TYPE_VAR_TABLE_VARS {
+            let mut cur = Some(ty);
+            while let Some(t) = cur {
+                let entry = (t.path.clone(), (*var).to_string());
+                if keys.opaque.contains(&entry) {
+                    break;
+                }
+                if let Some(key) = keys.declared.get(&entry) {
+                    out.entry((*var).to_string())
+                        .or_default()
+                        .insert(ty.path.clone(), key.clone());
+                    break;
+                }
+                cur = t.parent_type_without_root();
+            }
+        }
+    }
+    out
+}
+
+fn write_type_var_table(
+    path: &Path,
+    table: &std::collections::BTreeMap<String, std::collections::BTreeMap<String, String>>,
+) -> Result<()> {
+    if let Some(dir) = path.parent() {
+        std::fs::create_dir_all(dir)?;
+    }
+    let mut buf = String::from("{\n");
+    let last_var = table.len().saturating_sub(1);
+    for (i, (var, entries)) in table.iter().enumerate() {
+        buf.push_str("  ");
+        buf.push_str(&serde_json::to_string(var)?);
+        buf.push_str(": {\n");
+        let last = entries.len().saturating_sub(1);
+        for (j, (ty, key)) in entries.iter().enumerate() {
+            buf.push_str("    ");
+            buf.push_str(&serde_json::to_string(ty)?);
+            buf.push_str(": ");
+            buf.push_str(&serde_json::to_string(key)?);
+            if j != last {
+                buf.push(',');
+            }
+            buf.push('\n');
+        }
+        buf.push_str("  }");
+        if i != last_var {
+            buf.push(',');
+        }
+        buf.push('\n');
+    }
+    buf.push_str("}\n");
+    std::fs::write(path, buf)?;
     Ok(())
 }
 

@@ -116,6 +116,11 @@ act 走 ref/id，不拿 name 拼动作串），或按类型桥进前端目录（
 - `strings/i18n/<locale>/*.json` —— 译文目录。DM 运行时从 `STRING_DIRECTORY/i18n/` 加载。
   `_` 前缀的是**手维护**表（`_state_words` 状态词、`_fallback` 人工 AC 补充、`_map_names` 地图名、
   `_map_descs` 地图 desc、`_wires` 电线名…）。
+- `strings/i18n/type_vars.json` —— **类型显示名/描述表**（`extract` 产出，勿手改）：`type → 目录 key`，
+  DM 继承已在 build 期展开。显示边界（`lang_localize_name_for_display` / `lang_localize_desc_for_display`）
+  在 `name/desc` 仍等于类型初值时按**类型**直取键走正向目录，不再拿运行期字符串倒查——没有多词门槛
+  （单词名也能落地）、没有同形异义碰撞。miss 时回落原有反查链。**实例数据永不改写**，该不变量由
+  `nova-i18n lint` 规则 C 守（类型变量声明不得含 LANG；运行期 `name = LANG(...)` 只放行白名单）。
 - `strings/i18n/policy.json` —— **三端标识符策略单一来源**：DM（`payload_skip_keys`/`pref_desc_keys`）、
   TS（`translatable_props`/`option_text_props`/`no_auto_translate`，经 `tgui-catalog.mjs sync` 复制到
   `tgui/packages/tgui/i18n/policy.json`，两份都提交）、Rust（`identifier_dot_procs`）共读。

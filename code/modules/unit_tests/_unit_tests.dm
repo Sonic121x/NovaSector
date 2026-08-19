@@ -390,6 +390,7 @@
 #include "~nova\i18n_roleban.dm"
 #include "~nova\i18n_suffixed.dm"
 #include "~nova\i18n_template.dm"
+#include "~nova\i18n_type_labels.dm"
 #include "~nova\i18n_unreverse.dm"
 #include "~nova\digi_underclothes.dm"
 #include "~nova\liver_nova.dm"

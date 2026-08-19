@@ -18,9 +18,10 @@
 	. += get_name_chaser(user)
 	if(desc)
 		// NOVA EDIT CHANGE - i18n: desc 保持 canonical English，避免在每个 atom 初始化时改写 appearance；
-		// 只在 examine 显示边界反查。运行时动态赋值/重置的 desc 也由同一条路径覆盖。
+		// 只在 examine 显示边界翻。desc 仍等于类型初值时按**类型**取目录 key（精确、含单词描述），
+		// 否则（地图实例覆盖、运行期赋值/追加）回落整串反查。
 		// locale==en 或查不到时原样返回。ORIGINAL: . += "<i>[desc]</i>"
-		. += "<i>[lang_reverse_text(desc)]</i>"
+		. += "<i>[lang_localize_desc_for_display(desc)]</i>"
 
 	var/list/tags_list = examine_tags(user)
 	var/list/post_descriptor = examine_post_descriptor(user)
