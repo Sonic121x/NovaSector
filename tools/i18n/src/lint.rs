@@ -140,6 +140,116 @@ fn assign_target_is_name(lhs: &Expression) -> bool {
     matches!(&term.elem, Term::Ident(ident) if ident.as_str() == "name")
 }
 
+/// 规则 D：**目录里有、源码里却还是裸字面量**。
+///
+/// 抽取与改写是两条独立通道。上游把一段文案搬进新写法时，extract 常常照样抽得到（于是目录里
+/// 有键、还被翻译了），而 rewrite 认不出那个 sink（比如上游把板条箱隐私锁重构成组件后，消息经
+/// 项目自定义的 `deny(source, user, msg)` 下发）→ 源码里留着裸英文，玩家看到的就是英文，而
+/// 目录里那条译文永远查不到调用点。这类**现有 lint 一条都查不出**：`nova-i18n lint` 的悬空 key
+/// 规则查的是反方向（有 key 没原文）。
+///
+/// 判据刻意收紧到「**这段文字已经在 en 目录里**」：那说明抽取器认得它、译文多半也在，唯一缺的
+/// 就是改写。纯启发式的「proc 里出现英文句子」噪音太大，没法当门禁。
+struct BareLiteralCollector<'ctx> {
+    context: &'ctx dm::Context,
+    hits: BTreeMap<String, String>,
+}
+
+impl<'ctx> BareLiteralCollector<'ctx> {
+    fn visit_block(&mut self, block: &[Spanned<Statement>]) {
+        for stmt in block.iter() {
+            self.visit_stmt(&stmt.elem, stmt.location);
+            visit_nested_blocks(&stmt.elem, &mut |inner| self.visit_block(inner));
+        }
+    }
+
+    fn visit_stmt(&mut self, stmt: &Statement, loc: dm::Location) {
+        match stmt {
+            Statement::Expr(e) => self.visit_expr(e, loc),
+            Statement::Return(Some(e)) => self.visit_expr(e, loc),
+            Statement::Var(v) => {
+                if let Some(e) = &v.value {
+                    self.visit_expr(e, loc);
+                }
+            }
+            _ => {}
+        }
+    }
+
+    fn visit_expr(&mut self, expr: &Expression, loc: dm::Location) {
+        match expr {
+            Expression::Base { term, follow } => {
+                self.visit_term(&term.elem, term.location);
+                for f in follow.iter() {
+                    match &f.elem {
+                        Follow::Index(_, idx) => self.visit_expr(idx, loc),
+                        Follow::Call(_, _, args) => {
+                            for a in args.iter() {
+                                self.visit_expr(a, loc);
+                            }
+                        }
+                        _ => {}
+                    }
+                }
+            }
+            Expression::BinaryOp { lhs, rhs, .. } | Expression::AssignOp { lhs, rhs, .. } => {
+                self.visit_expr(lhs, loc);
+                self.visit_expr(rhs, loc);
+            }
+            Expression::TernaryOp { cond, if_, else_ } => {
+                self.visit_expr(cond, loc);
+                self.visit_expr(if_, loc);
+                self.visit_expr(else_, loc);
+            }
+        }
+    }
+
+    fn visit_term(&mut self, term: &Term, loc: dm::Location) {
+        match term {
+            // LANG 调用整棵子树跳过：key 是 `<ns>.<hash>`，实参里的字面量是**故意**留成裸串的
+            // （运行期由 lang_localize_arg 逐实参反查），报它们只会淹掉真正的漏网之鱼。
+            Term::Call(name, args) => {
+                if matches!(name.as_str(), "lang_format" | "lang_format_for") {
+                    return;
+                }
+                for a in args.iter() {
+                    self.visit_expr(a, loc);
+                }
+            }
+            Term::String(text) => {
+                if !self.hits.contains_key(text.as_str()) {
+                    let path = self.context.file_path(loc.file);
+                    self.hits
+                        .insert(text.to_string(), format!("{}:{}", path.display(), loc.line));
+                }
+            }
+            Term::Expr(inner) => self.visit_expr(inner, loc),
+            Term::SelfCall(args) | Term::ParentCall(args) | Term::List(args) => {
+                for a in args.iter() {
+                    self.visit_expr(a, loc);
+                }
+            }
+            Term::InterpString(_, parts) => {
+                for (opt, _) in parts.iter() {
+                    if let Some(e) = opt {
+                        self.visit_expr(e, loc);
+                    }
+                }
+            }
+            _ => {}
+        }
+    }
+}
+
+/// 「句子型」：含空格且以句末标点收尾。挡掉标识符、图标名、路径片段这些同样可能出现在目录里的短串。
+fn is_sentence_shaped(text: &str) -> bool {
+    let trimmed = text.trim();
+    if !trimmed.contains(' ') || trimmed.len() < 12 {
+        return false;
+    }
+    trimmed.ends_with(['.', '!', '?'])
+}
+
 /// 手写的 locale-only 目录文件（无 en 对应是设计如此）：状态词表与人工 AC 兜底。
 /// 这些不参与「陈旧 key / 占位符 parity」检查（它们本就没有英文源串）。
 const MANUAL_ONLY_FILES: &[&str] = &["_state_words", "_fallback"];
@@ -673,6 +783,45 @@ fn lint_identifier_collisions(
     }
     for msg in data_translation {
         report.error(msg);
+    }
+
+    // 规则 D：目录里有、源码里却还是裸字面量（extract 认得、rewrite 不认的 sink）。
+    let mut bare = BareLiteralCollector {
+        context: &context,
+        hits: BTreeMap::new(),
+    };
+    for ty in tree.iter_types() {
+        for (_proc_name, type_proc) in ty.procs.iter() {
+            for proc_value in type_proc.value.iter() {
+                if let Some(block) = &proc_value.code {
+                    bare.visit_block(block);
+                }
+            }
+        }
+    }
+    let en_full = load_catalog(&catalog_root.join("en"));
+    let catalog_sentences: BTreeSet<&str> = en_full
+        .values()
+        .filter(|v| !v.contains('{') && is_sentence_shaped(v))
+        .map(|v| v.as_str())
+        .collect();
+    let mut bare_hits: Vec<(String, String)> = bare
+        .hits
+        .into_iter()
+        .filter(|(text, _)| catalog_sentences.contains(text.as_str()))
+        .collect();
+    bare_hits.sort();
+    if !bare_hits.is_empty() {
+        eprintln!(
+            "[bare/裸英文] {} 条已进目录的句子在源码里仍是裸字面量（extract 认得、rewrite 不认的 sink）",
+            bare_hits.len()
+        );
+        for (text, loc) in bare_hits.iter().take(40) {
+            eprintln!("    {loc}  {:?}", text);
+        }
+        if bare_hits.len() > 40 {
+            eprintln!("    …… 其余 {} 条略", bare_hits.len() - 40);
+        }
     }
 
     // en 目录里「会被 DM 反查表变异」的值集合：无占位符的纯串（与 lang_build_reverse 一致）。
