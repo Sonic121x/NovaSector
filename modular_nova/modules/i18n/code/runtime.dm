@@ -182,8 +182,18 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 			continue
 		output += copytext(template, cursor, brace)
 		var/arg = args[index]
-		if(localize && istext(arg))
-			arg = lang_localize_arg(arg)
+		if(localize)
+			if(istext(arg))
+				arg = lang_localize_arg(arg)
+			else if(isatom(arg))
+				// **非文本实参从前完全没被本地化**：rewrite 把 `[src]` 抬成 LANG 实参时给的是 atom
+				// 本身（`list(src)` 一种形状全仓 3000+ 处），而这里只对 istext 分支调 lang_localize_arg
+				// → `"[arg]"` 插进去的是**英文名**，只能指望聊天层的字面 AC 去捞（那条有多词门槛，
+				// 单词名永远捞不着，于是「你仔细查看The floor」）。
+				// 顺带解决冠词：`"[atom]"` 会让 BYOND 自己补 "The "（模板里的 `\the` 是另一回事，
+				// 由 lang_process_text_escapes 剥），中文不需要冠词，走显示边界拿到的就是干净的名字。
+				var/atom/atom_arg = arg
+				arg = atom_arg.lang_localize_name_for_display(atom_arg.name)
 		output += "[arg]"
 		cursor = close + 1
 	output += copytext(template, cursor)
@@ -473,7 +483,14 @@ GLOBAL_VAR_INIT(i18n_statpanel_tab_labels_loaded, FALSE)
 /// 已转义的反斜杠（\\）开头不会被这里的单反斜杠模式吃掉。只列已知文法宏，不碰 \n \t \" 等真转义。
 // 末尾的 es|s 是 BYOND 复数后缀宏 \s/\es（"[n] apple\s" → 引擎按数量补 "s"）：runtime 构建的 LANG
 // 串不被引擎处理 → 字面 \s 漏出（如「30 cable piece\s」）。中文无复数，直接剥除（与冠词/代词宏同处理）。
-GLOBAL_VAR_INIT(i18n_text_macro_regex, regex(@"\\(improper|proper|themselves|theirs|himself|herself|itself|their|them|they|roman|Roman|the|The|hers|she|She|her|his|him|its|it|It|he|He|an|An|a|A|es|s)\b", "g"))
+GLOBAL_VAR_INIT(i18n_text_macro_regex, regex(@"\\(themselves|theirs|himself|herself|itself|their|them|they|roman|Roman|hers|she|She|her|his|him|its|it|It|he|He|es|s)\b", "g"))
+
+/// 冠词/专名前缀宏单独一条，因为要**连同后面那个空格一起吃掉**：`\improper 兹克夫单元` 剥完
+/// 若只去宏就剩「 兹克夫单元」（玩家实测里的「那是  地板.」「你拉了拉  某物」双空格即此）。
+/// 中文不需要冠词，宏与其分隔空格一起消失才是正确形态。
+/// **不能**把这条规则套到上面那张表：`\s`（复数）紧贴单词、后面那个空格是句子本身的
+/// （`"[n] wire\s are"` → 吃掉就成了「wireare」）。
+GLOBAL_VAR_INIT(i18n_article_macro_regex, regex(@"\\(improper|proper|the|The|an|An|a|A)\b ?", "g"))
 
 /// 处理从 JSON 模板带出的 BYOND 转义/文法宏（rewrite 把编译期字面量改成 LANG 后，这些转义不再被引擎
 /// 处理）：① 剥文法宏；② 还原转义引号 \" → "；③ 还原 \n → 换行、\t → 制表符。
@@ -495,6 +512,8 @@ GLOBAL_VAR_INIT(i18n_text_macro_regex, regex(@"\\(improper|proper|themselves|the
 /proc/lang_process_text_escapes(text)
 	if(!istext(text))
 		return text
+	var/regex/article_re = GLOB.i18n_article_macro_regex
+	text = article_re.Replace(text, "")
 	var/regex/macro_re = GLOB.i18n_text_macro_regex
 	text = macro_re.Replace(text, "")
 	text = replacetext(text, "\\\"", "\"") // \" → "
@@ -651,7 +670,7 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 	var/list/reverse = GLOB.i18n_reverse[locale] || lang_build_reverse(locale) // PERF: read the cached table directly; only call the builder before it's ready — saves a proc call per atom name/desc reverse at init (~550k calls)
 	. = reverse[text]
 	if(!isnull(.))
-		return .
+		return lang_display_value(.)
 	// 未直接命中：若含文法宏标记字节，剥宏后再查一次（对齐目录里的剥宏形态键）。
 	if(findtext(text, "\improper") || findtext(text, "\proper"))
 		. = reverse[lang_strip_grammar_macros(text)]
@@ -772,7 +791,16 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 	var/key = table[target.type]
 	if(!key)
 		return null
-	return lang_template(key, GLOB.i18n_server_locale)
+	return lang_display_value(lang_template(key, GLOB.i18n_server_locale))
+
+/// 把「直接取自目录的值」变成可以显示的串：目录里存的是**源码字面形态**，含 `\improper`、`\n`、
+/// `\[` 这类 BYOND 转义/文法宏。它们只在编译期字面量里被引擎处理；运行期从 JSON 取回后是**字面
+/// 字符**，直接显示就是「\improper 太阳系精品热饮」。LANG 路径早有这道处理（lang_resolve 末尾），
+/// 按类型取键这条新路当时漏了。仅在含反斜杠时才跑。
+/proc/lang_display_value(text)
+	if(istext(text) && findtext(text, "\\"))
+		return lang_process_text_escapes(text)
+	return text
 
 /// Localize an atom name only when it is still a static type label. Runtime/player-assigned identity names
 /// must remain byte-for-byte unchanged even when they collide with a catalog phrase.

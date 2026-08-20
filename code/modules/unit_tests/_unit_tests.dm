@@ -382,6 +382,7 @@
 #include "~nova\i18n_ac_fragment.dm"
 #include "~nova\i18n_ac_longest.dm"
 #include "~nova\i18n_display_boundary.dm"
+#include "~nova\i18n_display_leaks.dm"
 #include "~nova\i18n_html_tag_keys.dm"
 #include "~nova\i18n_interpolate.dm"
 #include "~nova\i18n_miss_log.dm"

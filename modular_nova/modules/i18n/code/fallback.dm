@@ -31,6 +31,16 @@ GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
 	"a", "an", "the", "and", "or", "of", "in", "on", "at", "to", "is", "are",
 	"was", "were", "be", "by", "for", "with", "from", "as", "it", "its",
 	"one", "no", "not", "but", "that", "this", "their", "his", "her",
+	// 代词 + 情态/助动词。少了这批，`"You can"→"你可以"` 这种**没有句末标点的两词碎片**会进 AC 字典，
+	// 然后在任意句子中间开火：`You can|'t stop me, Owl!` → 「你可以't stop me, Owl!」。
+	// 判据同上：碎片留在目录里供各自调用点精确查表，只是不再获得在任意文本上开火的权力。
+	"you", "your", "yours", "i", "we", "our", "they", "them", "he", "she", "him",
+	"can", "cant", "will", "wont", "would", "could", "should", "shall", "may",
+	"might", "must", "do", "does", "did", "done", "have", "has", "had", "am",
+	"been", "being", "get", "gets", "got", "let", "lets", "make", "makes",
+	"if", "when", "while", "then", "there", "here", "what", "which", "who",
+	"how", "why", "all", "any", "some", "more", "most", "very", "just", "also",
+	"too", "so", "such", "about", "into", "onto", "out", "up", "down", "off", "over",
 ))
 
 /// 某条已译目录项能否进**字面 AC 子串字典**。
