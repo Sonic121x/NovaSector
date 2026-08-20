@@ -16,6 +16,8 @@ import {
   type ServerData,
 } from './types';
 import { RandomToggleState } from './useRandomToggleState';
+// NOVA EDIT ADDITION - I18N
+import { mergeCatalogOverlay } from '../../i18n/catalog';
 import { ServerPrefs } from './useServerPrefs';
 // NOVA EDIT ADDITION START
 import type { AugmentsTab } from './CharacterPreferences/LimbsPage';
@@ -62,6 +64,11 @@ function PrefsWindowInner(props: {
     fetchRetry(resolveAsset('preferences.json'))
       .then((response) => response.json())
       .then((data) => {
+        // NOVA EDIT ADDITION - I18N: 这个 asset 单独 fetch、不经负载，译文随它一起下发
+        // （值本身保持 canonical English），在这里并进目录 overlay 供渲染期查表。
+        if (data?.i18n) {
+          mergeCatalogOverlay(data.i18n);
+        }
         setServerData(data);
       })
       .catch((error) => {

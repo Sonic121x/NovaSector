@@ -34,13 +34,6 @@
 		"summary",
 		"details"
 	],
-	"_pref_desc_keys": "偏好菜单常量 asset 里可安全整串反查的纯显示字段（绝非 act 标识符）；name/title/choices 等一律不进此表。",
-	"pref_desc_keys": [
-		"description",
-		"pos_gameplay_description",
-		"neg_gameplay_description",
-		"neut_gameplay_description"
-	],
 	"_translatable_props": "TGUI JSX 中「值是给玩家看的文案」的 prop 名。抽取器（tgui-catalog.mjs）与运行时（localize.ts）必须读同一份：两处各存一份清单时，新加的 prop 只改一边 → 目录里有键但界面不翻（或界面翻了但目录没键、被 MT 漏掉）。新增 prop 只改这里。",
 	"translatable_props": [
 		"aria-label",

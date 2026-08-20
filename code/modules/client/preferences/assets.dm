@@ -55,11 +55,17 @@
 		if (!isnull(data))
 			preference_data[preference_entry.savefile_key] = data
 
-	// NOVA EDIT ADDITION START - i18n - 此 asset 不经 get_payload，lang_reverse_tree 够不着；
-	// 全服中文时把偏好常量数据里的纯显示描述（job/quirk/personality 的 description 等）反查为译文。
-	// 只翻非标识符显示字段，name/choices/department 等保持英文（见 lang_reverse_pref_descriptions）。
+	// NOVA EDIT ADDITION START - i18n - 此 asset 是单独 fetch 的静态资源（前端 resolveAsset
+	// ('preferences.json')），不经 get_payload，所以 TGUI 负载那条路够不着它。
+	// 走**同一套 overlay 机制**：值一律不动（name/choices/department 这些既是显示又是标识符），
+	// 只把「英文 → 译文」收进 data["i18n"]，由前端在渲染期查表。
+	// 从前这里是一张手写白名单（pref_desc_keys）+ 就地改写，只覆盖 description 一类；overlay 没有
+	// 这个限制，且不动数据，所以覆盖面更大、风险更小。
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
-		lang_reverse_pref_descriptions(preference_data)
+		var/list/i18n_overlay = list()
+		lang_reverse_tree(preference_data, null, i18n_overlay)
+		if(length(i18n_overlay))
+			preference_data["i18n"] = i18n_overlay
 	// NOVA EDIT ADDITION END
 
 	return preference_data

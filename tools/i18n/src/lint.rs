@@ -341,9 +341,8 @@ fn has_bad_control_char(s: &str) -> bool {
 /// 校验三端策略单一来源 strings/i18n/policy.json：必须存在、可解析、
 /// 各策略字段为字符串数组且无重复（三端消费者对坏 JSON 都是静默降级 → 必须在门禁挡住）。
 fn lint_policy(catalog_root: &Path, report: &mut Report) {
-    const FIELDS: [&str; 5] = [
+    const FIELDS: [&str; 4] = [
         "payload_skip_keys",
-        "pref_desc_keys",
         "no_auto_translate",
         "identifier_dot_procs",
         "identifier_dot_proc_suffixes",
