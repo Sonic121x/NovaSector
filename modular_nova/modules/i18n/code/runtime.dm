@@ -813,7 +813,45 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 		var/typed_name = lang_type_display_text(src, lang_type_name_keys())
 		if(typed_name)
 			return typed_name
+	else
+		// 运行期把**区域名**拼进 name 的那批（APC 的 `"\improper [区域名] APC"`、空气警报的
+		// `"[区域名] Air Alarm"`、火警器与防火门的 `"[区域名] [类型名] [id]"`）：整串既不是目录键、
+		// 又常以单词结尾，精确反查与字面 AC 双双够不着 → 实测里的「Courtroom APC」「Brig 空气警报」。
+		// 按区域名拆开分别翻，拼回原样。
+		var/split_name = lang_localize_area_prefixed_name(src, display_name)
+		if(split_name)
+			return split_name
 	return lang_localize_display_name(display_name)
+
+/// 拆「区域名 + 其余」型实例名并分别本地化；不是这个形状时返回 null（调用方回落原链）。
+///
+/// 三段各有各的译法，混在一起整串查是查不到的：
+///   · 区域名 —— 区域也是 atom，走它自己的显示边界（类型表 / `_map_names` 手工表都在那条路上）；
+///   · 类型名 —— 优先按**本类型**取键（`APC` 这种单词只有类型表够得着），miss 再整串反查；
+///   · 尾巴（`id_tag` 之类）—— 原样保留，它本来就不是文案。
+/atom/proc/lang_localize_area_prefixed_name(atom/source, display_name)
+	var/area/source_area = get_area(source)
+	if(isnull(source_area))
+		return null
+	var/area_name = source_area.name
+	if(!length(area_name))
+		return null
+	var/at = findtext(display_name, area_name)
+	if(at != 1) // 只认前缀形态；出现在中间的多半是巧合
+		return null
+	var/rest = copytext(display_name, length(area_name) + 1)
+	if(!length(rest))
+		return null
+	var/localized_area = source_area.lang_localize_name_for_display(area_name)
+	// 其余部分：先看是不是「类型名 + 尾巴」（火警器 `[区域] [类型名] [id]`）。
+	var/base = initial(name)
+	var/trimmed_rest = trim(rest)
+	if(length(base) && findtext(trimmed_rest, base) == 1)
+		var/tail = copytext(trimmed_rest, length(base) + 1)
+		var/localized_base = lang_type_display_text(source, lang_type_name_keys()) || lang_localize_display_name(base)
+		return "[localized_area] [localized_base][tail]"
+	var/localized_rest = lang_localize_display_name(trimmed_rest)
+	return "[localized_area] [localized_rest]"
 
 /// examine 的 desc 显示边界。与 name 同构：仍等于类型初值 → 按类型取键；其余（地图实例覆盖的
 /// desc、运行期 `desc = …` / `desc +=`）回落既有反查链，行为与从前一致。

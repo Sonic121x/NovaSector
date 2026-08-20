@@ -9,6 +9,8 @@
 ///   ② **目录原值含 BYOND 字面转义/文法宏**（`\improper`、`\n`、`\[`）。它们只在编译期字面量里被
 ///      引擎处理；从 JSON 取回后是字面字符 → 「\improper 太阳系精品热饮」。LANG 路径末尾早有这道
 ///      处理，按类型取键那条新路当时漏了。
+///   ④ **运行期把区域名拼进 name 的那批**（APC / 空气警报 / 火警器）：整串既不是目录键、又常以
+///      单词结尾，精确反查与字面 AC 双双够不着（实测「Courtroom APC」「Brig 空气警报」）。
 ///   ③ **两词碎片进字面 AC 字典**会在句子中间开火：`"You can"→"你可以"` 把
 ///      `You can't stop me, Owl!` 咬成「你可以't stop me, Owl!」。
 /datum/unit_test/i18n_display_leaks
@@ -82,6 +84,26 @@
 	TEST_ASSERT(!findtext(line, I18N_LEAK_NAME), "LANG 的 atom 实参没有本地化，插进去的还是英文名：[line]")
 	TEST_ASSERT(!findtext(line, "The "), "atom 实参带出了 BYOND 自动补的冠词：[line]")
 	TEST_ASSERT(findtext(line, "兹克夫单元"), "atom 实参没有落到译名：[line]")
+
+	// ④ 「区域名 + 类型名」合成实例名：两段分别翻、尾巴原样。
+	var/area/test_area = get_area(subject)
+	if(!isnull(test_area))
+		var/saved_area_name = test_area.name
+		test_area.name = "Zxqv Sector"
+		en_cache["unittest.leak_area"] = "Zxqv Sector"
+		locale_cache["unittest.leak_area"] = "兹克夫星区"
+		injected_en_keys["unittest.leak_area"] = TRUE
+		GLOB.i18n_reverse -= I18N_LEAK_LOCALE
+		var/list/area_table = lang_type_name_keys()
+		area_table[test_area.type] = "unittest.leak_area"
+		subject.name = "Zxqv Sector Zxqv Thranok Unit tag9"
+		TEST_ASSERT_EQUAL(
+			subject.lang_localize_name_for_display(subject.name),
+			"兹克夫星区 兹克夫单元 tag9",
+			"「区域名 + 类型名 + id」合成名没有被分段本地化",
+		)
+		subject.name = I18N_LEAK_NAME
+		test_area.name = saved_area_name
 
 	// ③ 没有句末标点的两词碎片不得进字面 AC 字典（否则在句子中间开火）。
 	TEST_ASSERT(!lang_fallback_pattern_safe(I18N_LEAK_FRAGMENT), "两词碎片仍被放进 AC 字典，会从单词内部开火")
