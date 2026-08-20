@@ -698,6 +698,7 @@ fn lint_identifier_collisions(
     dme: &Path,
     catalog_root: &Path,
     baseline: Option<&Path>,
+    bare_baseline: Option<&Path>,
     update_baseline: bool,
     report: &mut Report,
 ) -> Result<()> {
@@ -811,18 +812,58 @@ fn lint_identifier_collisions(
         .filter(|(text, _)| catalog_sentences.contains(text.as_str()))
         .collect();
     bare_hits.sort();
-    if !bare_hits.is_empty() {
-        eprintln!(
-            "[bare/裸英文] {} 条已进目录的句子在源码里仍是裸字面量（extract 认得、rewrite 不认的 sink）",
-            bare_hits.len()
-        );
-        for (text, loc) in bare_hits.iter().take(40) {
-            eprintln!("    {loc}  {:?}", text);
-        }
-        if bare_hits.len() > 40 {
-            eprintln!("    …… 其余 {} 条略", bare_hits.len() - 40);
+    // 基线：绝大多数命中是**有意**留给反查路径的（speak 词池、examine 累加器、desc 变量…），
+    // 所以这条规则只对「基线里没有的新增」失败 —— 那才是「上游换了 sink、rewrite 跟不上」的信号。
+    let bare_baseline_set = match bare_baseline {
+        Some(p) if p.exists() => std::fs::read_to_string(p)
+            .unwrap_or_default()
+            .lines()
+            // **不能 trim**：这条规则的键是句子原文，行首空格是内容的一部分（`" Administrators
+            // have been informed."` 这种拼句片段），trim 掉就永远匹配不上、每次都报成新增。
+            .map(|l| l.strip_suffix('\r').unwrap_or(l))
+            .filter(|l| !l.trim().is_empty() && !l.trim_start().starts_with('#'))
+            .map(|l| l.to_string())
+            .collect::<BTreeSet<String>>(),
+        _ => BTreeSet::new(),
+    };
+    if update_baseline {
+        if let Some(p) = bare_baseline {
+            let mut content = String::from(
+                "# nova-i18n「目录里有、源码里仍是裸字面量」基线（`nova-i18n lint --update-baseline` 生成）。\n                 # 每行一条已进 en 目录、但调用点没被 rewrite 改成 LANG 的句子。多数是有意留给反查\n                 # 路径的（speak 词池 / examine 累加器 / desc 变量）；CI 只对**不在此表**的新增失败 ——\n                 # 那通常意味着上游把消息挪进了 rewrite 不认识的 sink，译文会永远查不到调用点。\n",
+            );
+            for (text, _) in bare_hits.iter() {
+                content.push_str(&text.replace('\n', "\\n"));
+                content.push('\n');
+            }
+            std::fs::write(p, content)
+                .with_context(|| format!("写裸英文基线失败：{}", p.display()))?;
+            eprintln!(
+                "已写入裸英文基线：{}（{} 条）",
+                p.display(),
+                bare_hits.len()
+            );
         }
     }
+    let new_bare: Vec<&(String, String)> = bare_hits
+        .iter()
+        .filter(|(text, _)| !bare_baseline_set.contains(text.replace('\n', "\\n").as_str()))
+        .collect();
+    if !new_bare.is_empty() {
+        for (text, loc) in new_bare.iter().take(20) {
+            report.error(format!(
+                "{loc} 已进 en 目录的句子在源码里仍是裸字面量：{text:?}\n                 　　→ 译文躺在目录里但这个调用点永远查不到它（上游换了 sink、rewrite 认不出即此）。\n                 　　修法：① 让 rewrite 认得该 sink（tools/i18n/src/rewrite.rs 的 SINK_CALLS）后重跑 `nova-i18n rewrite`；\n                 　　② 确认该处本就该走反查路径（词池/累加器）→ `nova-i18n lint --update-baseline` 收进基线。"
+            ));
+        }
+        if new_bare.len() > 20 {
+            report.error(format!("…… 另有 {} 条同类新增裸英文", new_bare.len() - 20));
+        }
+    }
+    eprintln!(
+        "[bare/裸英文] 命中 {} 条（基线 {} 条，新增 {} 条）",
+        bare_hits.len(),
+        bare_baseline_set.len(),
+        new_bare.len()
+    );
 
     // en 目录里「会被 DM 反查表变异」的值集合：无占位符的纯串（与 lang_build_reverse 一致）。
     // **排除 tgui.json**：前端目录的值是「TS 端翻显示、DM 保留英文值」机制（act/比较用英文，P1 经
@@ -1028,6 +1069,7 @@ pub fn run(
     catalog_root: &Path,
     locale: &str,
     baseline: Option<PathBuf>,
+    bare_baseline: Option<PathBuf>,
     update_baseline: bool,
     skip_ast: bool,
 ) -> Result<()> {
@@ -1041,6 +1083,7 @@ pub fn run(
             dme,
             catalog_root,
             baseline.as_deref(),
+            bare_baseline.as_deref(),
             update_baseline,
             &mut report,
         )?;

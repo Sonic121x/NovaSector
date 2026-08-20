@@ -83,6 +83,9 @@ enum Cmd {
         /// 标识符碰撞基线文件（只对不在基线里的新碰撞失败）。
         #[arg(long, default_value = "tools/i18n/identifier-baseline.txt")]
         baseline: PathBuf,
+        /// 「目录里有、源码里仍是裸字面量」的基线（只对新增失败）。
+        #[arg(long, default_value = "tools/i18n/bare-english-baseline.txt")]
+        bare_baseline: PathBuf,
         /// 用当前全部碰撞重写基线（首次采纳 / 修复后刷新）。
         #[arg(long)]
         update_baseline: bool,
@@ -135,9 +138,10 @@ fn main() -> Result<()> {
             catalog,
             locale,
             baseline,
+            bare_baseline,
             update_baseline,
             no_ast,
-        } => lint::run(&dme, &catalog, &locale, Some(baseline), update_baseline, no_ast),
+        } => lint::run(&dme, &catalog, &locale, Some(baseline), Some(bare_baseline), update_baseline, no_ast),
         Cmd::Pseudo { catalog, locale } => pseudo::run(&catalog, &locale),
         Cmd::Labels { dme, out } => labels::run(&dme, &out),
         Cmd::Key {
