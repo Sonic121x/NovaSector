@@ -10,6 +10,11 @@
 // 注意：纯子串替换，不保证语序正确，仅用于过渡期与长尾「不漏英文」。已被 LANG 处理过的
 // 文本不应再过此层（中文不匹配英文 pattern，天然 no-op，但仍尽量避免二次过）。
 
+/// lang_localize_chain 的 AC 放行档位，见其文档。
+#define I18N_AC_NONE 0
+#define I18N_AC_PROSE 1
+#define I18N_AC_FULL 2
+
 #define I18N_FALLBACK_CACHE_MAX 2048
 #define I18N_FALLBACK_CACHE_MAX_LENGTH 512
 /// 「跨内联标签整段查表」前置 pass 的输入上限：聊天行/检查行量级。浏览器整页不走这条路。
@@ -141,6 +146,35 @@ GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
 	return translated_text
 
 /// 对一段文本应用兜底替换。locale 为 null 时用全服 locale；缺省 locale（英文）直接返回。
+/// 三条落地链共用的核心：**整串精确 → 模板逆匹配 → 字面 AC**，按 scope 决定放行到哪一层。
+///
+/// 从前聊天、TGUI 负载（P1）、显示边界各写了一遍这个顺序，于是：
+///   · 顺序只在一处修对过（「整串精确必须排在模板之前」那条，其余两处曾各自被泛化骨架模板劫持）；
+///   · 聊天链手写的精确查表只看 exact 表，归一表那批键在聊天路径上永远查不到（本次实测抓到）。
+/// 现在顺序只有这一处，三个调用点只是传不同的 scope。
+///
+/// `ac_mode`：
+///   · `I18N_AC_NONE`  —— 不过字面 AC。显示边界用这个：名字要么整串命中、要么是「区域名 + 类型名」
+///     那种可拆的合成名（各自精确翻），子串替换在这里只会带来误伤（AC 无词边界概念）。
+///   · `I18N_AC_PROSE` —— 只有长散文（≥80 字符且有句末标点）才过 AC。TGUI 负载用这个：
+///     act() 回传标识符、图标名、黑板键永远不是这个形状。
+///   · `I18N_AC_FULL`  —— 聊天/浏览器用这个：整行文本本来就是散文。
+/proc/lang_localize_chain(text, locale, allow_template, ac_mode)
+	. = lang_reverse_text_in(text, locale)
+	if(. != text)
+		return
+	if(allow_template)
+		. = lang_template_apply(text, locale)
+		if(. != text)
+			return
+	if(ac_mode == I18N_AC_NONE)
+		return text
+	if(ac_mode == I18N_AC_PROSE && !lang_tgui_prose_candidate(text))
+		return text
+	if(!lang_fallback_setup(locale))
+		return text
+	return rustg_acreplace("i18n_[locale]", text)
+
 /proc/lang_fallback_apply(text, locale)
 	if(!istext(text) || !length(text))
 		return text
@@ -174,30 +208,11 @@ GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
 		if(GLOB.i18n_fallback_single_state[locale] == "ready")
 			text = rustg_acreplace("i18n_single_[locale]", text)
 		return lang_fallback_cache_store(locale, source_text, text)
-	// **整串精确反查必须排在模板引擎之前**：目录里若正好有这一整句，它是最具体的证据，比任何
-	// 「通用模板 + 捕获实参」都可靠。否则先跑的模板引擎会被泛化骨架劫持——`It appears to {0}`
-	// （译 `它看起来像{0}`）和 `{0} produces a {1}.`（译 `{0}产出{1}。`）这类三两个词的模板会
-	// 吞掉任意同形句子，把捕获到的英文原样塞回中文脚手架：
-	//   「It appears to be completely inactive. The reset light is blinking.」
-	//     → 「它看起来像be completely inactive.」
-	//   「Fully heals the target and produces a random coin.」
-	//     → 「Fully heals the target and产出random coin。」
-	// 两句的**整句译文一直都在目录里**，只是排在模板之后、永远轮不到。这比不翻更难看（中文脚手架
-	// 里裹着英文、语序还是错的），且无法靠收紧模板锚解决——真正长的手术类锚同样以介词结尾，
-	// 按词数/虚词去卡会把它们一起误杀。让最具体的匹配优先才是正解。
-	var/list/whole_reverse = GLOB.i18n_reverse[locale] || lang_build_reverse(locale)
-	if(length(whole_reverse))
-		var/trimmed = trim(text)
-		var/whole = length(trimmed) ? whole_reverse[trimmed] : null
-		if(whole)
-			var/at = findtext(text, trimmed)
-			if(at)
-				text = copytext(text, 1, at) + whole + copytext(text, at + length(trimmed))
-				return lang_fallback_cache_store(locale, source_text, text)
-	// 再过模板逆匹配（插值句：目录里已译的 {0} 模板按字面段在原文上命中、捕获实参反查后按
-	// zh 模板重排填充，见 template_match.dm），最后过字面 AC 收剩余短语。
-	text = lang_template_apply(text, locale)
-	text = rustg_acreplace("i18n_[locale]", text)
+	// 整串精确 → 模板逆匹配 → 字面 AC，顺序由 lang_localize_chain 统一定义。
+	// **整串精确必须排在模板之前**：目录里若正好有这一整句，它是最具体的证据。否则先跑的模板
+	// 引擎会被泛化骨架劫持——`It appears to {0}`、`{0} produces a {1}.` 这类三两个词的模板会
+	// 吞掉任意同形句子，把捕获到的英文原样塞回中文脚手架（「它看起来像be completely inactive.」）。
+	text = lang_localize_chain(text, locale, allow_template = TRUE, ac_mode = I18N_AC_FULL)
 	// 漏翻采集：所有层过完仍残留的多词英文 run（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
 	if(GLOB.i18n_log_misses)
 		lang_log_miss_scan(text, "fallback")
@@ -283,13 +298,16 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 /// `<span class='notice'>` 的 `</span>`）时，run 到此为止，外层标签仍由切块器原样输出。
 /// 一段 run 的整段查表。命中返回译文；不该查或查不到返回 null（调用方原样保留）。
 /// 只查**含内联标签且标签配平**的多词整段——单词段与不配平段交还切块器，避免新增误翻面。
-/proc/lang_inline_run_lookup(run_text, saw_inline_tag, depth, list/reverse)
+/proc/lang_inline_run_lookup(run_text, saw_inline_tag, depth, locale)
 	if(!saw_inline_tag || depth || !length(run_text))
 		return null
 	var/stripped = lang_strip_html_tags(run_text)
 	if(!length(stripped) || !findtext(stripped, " "))
 		return null
-	return reverse[stripped]
+	// 走 lang_reverse_text_in 而不是直接索引 exact 表：归一表（剥标签/剥宏/大小写…）也要能命中，
+	// 否则「目录键里嵌着标签、运行期送来的是裸句」那一类在这条前置 pass 上照样查不到。
+	var/hit = lang_reverse_text_in(stripped, locale)
+	return hit == stripped ? null : hit
 
 /proc/lang_localize_inline_runs(html, locale)
 	var/list/reverse = GLOB.i18n_reverse[locale] || lang_build_reverse(locale)
@@ -334,7 +352,7 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 				breaks_run = FALSE
 		if(breaks_run)
 			var/run_text = copytext(html, run_start, tag_start)
-			var/translated = lang_inline_run_lookup(run_text, saw_inline_tag, depth, reverse)
+			var/translated = lang_inline_run_lookup(run_text, saw_inline_tag, depth, locale)
 			if(translated)
 				output += translated
 				changed = TRUE
@@ -347,7 +365,7 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 		cursor = tag_end + 1
 
 	var/tail = copytext(html, run_start)
-	var/tail_translated = lang_inline_run_lookup(tail, saw_inline_tag, depth, reverse)
+	var/tail_translated = lang_inline_run_lookup(tail, saw_inline_tag, depth, locale)
 	if(tail_translated)
 		output += tail_translated
 		changed = TRUE

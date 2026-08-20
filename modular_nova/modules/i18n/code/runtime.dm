@@ -581,6 +581,42 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 	return trim(text)
 
 /// 惰性构建某 locale 的反查表（从已加载的 GLOB.i18n_cache 读取）。
+/// 反查表的**归一化形态**表：`normalize(英文) → 可直接显示的译文`。
+///
+/// 从前这里是四条各自为政的「变体键」登记（剥文法宏 / 去源码转义 / 剥 HTML 标签 / 首字母大写），
+/// 每加一种运行期形态就再加一条。问题不只是行数：变体之间**不能组合**——一个既带 `\improper`
+/// 又被 `capitalize()` 过的名字，两条变体各自登记过，合起来的形态却谁都没登记。
+/// 改成「键与查询走同一个 normalize」之后，这些形态天然互相组合，且新增形态只需改一个函数。
+GLOBAL_LIST_EMPTY(i18n_reverse_norm)
+
+/// 反查用的归一化：把「同一句话的各种运行期形态」压到同一个键上。
+///
+/// 每一条都对应一类**实测踩过的**形态差异（详见各自注释）：
+///   · 文法宏：目录存字面 `\improper`，运行期是控制字节；
+///   · 源码转义：目录存字面 `\n`/`\t`/`\"`/`\[`，运行期已是真换行/裸引号/字面括号；
+///   · 空白：DM 的 `\` 续行会把前导制表符并进串里，抽取器归一成单空格；
+///   · 首尾空白与成对单引号：strings/ 数据文件的值常带这些，目录里存的是 trim/去引号形态；
+///   · 首字母大小写：DM 惯例「小写存、显示时 `capitalize()`」。**只对多词生效**——单词键几乎全是
+///     标识符形态（move/clear/ready），给它们做大小写归一会把 `switch("Clear")` 这类比较拖进反查面。
+///     这条安全线与 P1、AC 字典、`lint.rs` 的碰撞集合是同一条，改动要一起改。
+/proc/lang_normalize_lookup(text)
+	if(!istext(text) || !length(text))
+		return text
+	if(findtext(text, "\improper") || findtext(text, "\proper") || findtext(text, "\\improper") || findtext(text, "\\proper"))
+		text = lang_strip_grammar_macros(text)
+	if(findtext(text, "\\"))
+		text = lang_unescape_source(text)
+	if(findtext(text, "\t") || findtext(text, "  "))
+		text = lang_collapse_ws(text)
+	text = trim(text)
+	var/length_of_text = length(text)
+	if(length_of_text > 2 && text2ascii(text, 1) == 39 && text2ascii(text, length_of_text) == 39)
+		text = copytext(text, 2, length_of_text)
+	var/first_char = copytext(text, 1, 2)
+	if(findtext(text, " ") && findtextEx("ABCDEFGHIJKLMNOPQRSTUVWXYZ", first_char))
+		text = LOWER_TEXT(first_char) + copytext(text, 2)
+	return text
+
 /proc/lang_build_reverse(locale)
 	if(GLOB.i18n_reverse[locale])
 		return GLOB.i18n_reverse[locale]
@@ -592,57 +628,28 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 	if(!islist(english) || !islist(localized))
 		return list()
 	var/list/reverse = list()
+	var/list/reverse_norm = list()
 	for(var/key in english)
 		var/en_text = english[key]
 		if(findtext(en_text, "{")) // 带占位符的走 LANG 调用，不走反查
 			continue
 		var/translated = localized[key]
-		if(translated && translated != en_text)
-			reverse[en_text] = translated
-			// 文法宏对齐：额外登记「剥宏」形态键，让运行时带标记字节的 name（如
-			// "\improper Space Cigarettes packet"）也能命中（值同样剥宏，去掉中文里多余的 \improper）。
-			if(findtext(en_text, "\\improper") || findtext(en_text, "\\proper"))
-				var/stripped_key = lang_strip_grammar_macros(en_text)
-				if(stripped_key && !reverse[stripped_key])
-					reverse[stripped_key] = lang_strip_grammar_macros(translated)
-			// 源码转义对齐：dreammaker 解析器把 `\"`/`\n`/`\t`/`\[`/`\]` 原样保留在目录里（字面反斜杠序列），
-			// 但 BYOND 运行时字符串里这些已被解析成裸引号/换行/制表符/字面方括号。反查输入=运行时串 → 查带字面
-			// 转义的 key 永不命中 → 额外登记「去转义」形态键（译文同样去转义）。影响所有含这些转义的 name/desc/
-			// lore，尤其**多行 desc 的 \n**（如采矿订购台物品描述：目录已译却因换行不匹配而显英文）。
-			if(findtext(en_text, "\\"))
-				var/unescaped_key = lang_unescape_source(en_text)
-				if(unescaped_key != en_text && !reverse[unescaped_key])
-					reverse[unescaped_key] = lang_unescape_source(translated)
-			// 首字母大小写对齐：DM 里「小写存、显示时 capitalize()」是通用写法（手术名
-			// `capitalize(operation.name)`、伤口/器官/试剂名、`"[capitalize(x.name)]"` 拼句…）。
-			// 目录键保留源码原样的小写形态，运行期送来的却是首字母大写的串 → 精确反查与 AC 字典
-			// 双双 miss，整类「目录里明明有译文却显英文」（外科处理机列出的 Tend wounds/Lobotomize
-			// 即此）。这里额外登记首字母大写的变体键，指向同一译文；已有精确键优先，不覆盖。
-			// 中文无大小写，值不用变。
-			// **只做多词键**：单词键几乎全是标识符形态（"move"/"add"/"clear"/"ready"…），
-			// 给它们登记大写变体会把 `switch("Add")`、`if(pick == "Clear")` 这类比较拖进反查面
-			// —— 与 P1 的多词门槛、AC 字典的多词过滤是同一条安全线，此处保持一致。
-			// HTML 标签对齐：聊天/浏览器落地走 lang_fallback_apply_html，它**按标签切块**、只把
-			// 标签之间的纯文本送进反查与 AC。而目录键是照抄源码字面量的，标签就嵌在键里
-			// （`"<b>But none of its eggs hatched!</b>"`、`"There is a sticker displaying the <b>…</b>"`、
-			// `"<span class='notice ml-1'>Subject contains no neuroware in their brain.</span>"`）。
-			// 于是运行期送来的是**裸句**、目录里躺着**带标签的键**，两边永远对不上：整句回退英文，
-			// 更糟的是接着被字面 AC 从中间咬开（「But n其中一只 its eggs hatched!」）。
-			// 这里登记「剥标签」变体键，值同样剥标签——切块后的裸文本就能命中，外层标签由切块器
-			// 自己原样保留，格式不丢。
-			// 与上面几条变体同一条安全线：**只做多词**（单词剥完多是标识符形态），且不覆盖已有精确键。
-			if(findtext(en_text, "<") && findtext(en_text, ">"))
-				var/stripped_tags_key = lang_strip_html_tags(en_text)
-				if(stripped_tags_key != en_text && findtext(stripped_tags_key, " ") && !reverse[stripped_tags_key])
-					reverse[stripped_tags_key] = lang_strip_html_tags(translated)
-
-			var/first_char = copytext(en_text, 1, 2)
-			if(findtext(en_text, " ") && findtextEx("abcdefghijklmnopqrstuvwxyz", first_char))
-				var/capitalized_key = uppertext(first_char) + copytext(en_text, 2)
-				if(!reverse[capitalized_key])
-					reverse[capitalized_key] = translated
+		if(!translated || translated == en_text)
+			continue
+		reverse[en_text] = translated
+		var/norm_key = lang_normalize_lookup(en_text)
+		if(norm_key != en_text && !reverse_norm[norm_key])
+			reverse_norm[norm_key] = lang_display_value(translated)
+		// 剥标签形态单独登记一次：聊天/浏览器落地按标签**切块**，送进反查的是标签之间的纯文本，
+		// 而目录键是照抄源码的、标签就嵌在键里（`"<b>But none of its eggs hatched!</b>"`）。
+		// 值同样剥标签——外层标签由切块器自己保留，排版不丢。只做多词（单词剥完多是标识符形态）。
+		if(findtext(en_text, "<") && findtext(en_text, ">"))
+			var/bare_key = lang_normalize_lookup(lang_strip_html_tags(en_text))
+			if(length(bare_key) && findtext(bare_key, " ") && !reverse[bare_key] && !reverse_norm[bare_key])
+				reverse_norm[bare_key] = lang_strip_html_tags(lang_display_value(translated))
 
 	GLOB.i18n_reverse[locale] = reverse
+	GLOB.i18n_reverse_norm[locale] = reverse_norm
 	return reverse
 
 /// 把一段英文整串反查为全服 locale 的译文；查不到/缺省 locale 时原样返回。
@@ -664,60 +671,49 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 	if(!GLOB.i18n_locale_resolved && GLOB.i18n_early_reverse_warnings < I18N_MAX_EARLY_WARNINGS)
 		GLOB.i18n_early_reverse_warnings++
 		stack_trace("i18n: lang_reverse_text() 在 config 加载前被调用——此刻 locale 恒为 en，本次及此前所有反查都原样返回了英文。若这是 datum 母版表的初始化钩子，它是死代码，应改到显示边界或 SS Initialize 里做。")
-	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
-	if(locale == DEFAULT_UI_LOCALE)
+	return lang_reverse_text_in(text, GLOB.i18n_server_locale || DEFAULT_UI_LOCALE)
+
+/// 整串精确反查的 **locale 参数化**核心。聊天链带着自己的 locale 参数（单测注入合成 locale 靠它），
+/// 从前它手写了一份「只查 exact 表」的查表，于是归一表那批键在聊天路径上永远查不到 —— 三条落地链
+/// 各写一遍同一件事的典型代价。
+/proc/lang_reverse_text_in(text, locale)
+	if(!text || locale == DEFAULT_UI_LOCALE)
 		return text
 	var/list/reverse = GLOB.i18n_reverse[locale] || lang_build_reverse(locale) // PERF: read the cached table directly; only call the builder before it's ready — saves a proc call per atom name/desc reverse at init (~550k calls)
 	. = reverse[text]
 	if(!isnull(.))
 		return lang_display_value(.)
-	// 未直接命中：若含文法宏标记字节，剥宏后再查一次（对齐目录里的剥宏形态键）。
-	if(findtext(text, "\improper") || findtext(text, "\proper"))
-		. = reverse[lang_strip_grammar_macros(text)]
-		if(!isnull(.))
-			return .
-	// 仍未命中：DM 把 "\" 续行的前导制表符/空格并入字符串、抽取器却归一成单空格 → 折叠后再查一次
-	// （不止 \t：多空格续行也会漏）。PERF：collapse_ws 正则只在含 \t 或连续 2+ 空格时才改动文本，
-	// 而它是每次反查 miss 都跑的热点（启动期每个 atom name/desc 都过这里）——先用廉价 findtext 守卫，
-	// 简单单行名（绝大多数 atom）直接跳过正则。行为等价：守卫覆盖了 collapse_ws 会改动的全部情形。
-	if(findtext(text, "\t") || findtext(text, "  "))
-		var/collapsed = lang_collapse_ws(text)
-		if(collapsed != text)
-			. = reverse[collapsed]
-			if(!isnull(.))
-				return .
-	// 仍未命中：strings/ 数据文件的值偶带首尾空白（如 ion_laws.json 的 "BILLION … SHAB-AB-DOOD-ILLION "），
-	// 抽取器入目录时按 trim 形态存 → 运行时原样值精确反查失手（strings 加载处反查/模板实参反查都路过这里）。
-	// trim 后再查一次，命中则把原首尾空白拼回（离子法则等下游拼接依赖这些空格）。
-	// 廉价守卫：首/尾字节是空白才走（513+ 文本 proc 按字节偏移，空白必为 ASCII，UTF-8 续字节 >127 不误伤）。
-	var/textlen = length(text)
-	if(text2ascii(text, 1) <= 32 || text2ascii(text, textlen) <= 32)
-		var/start = 1
-		while(start <= textlen && text2ascii(text, start) <= 32)
-			start++
-		var/end = textlen
-		while(end >= start && text2ascii(text, end) <= 32)
-			end--
-		if(end >= start)
-			. = reverse[copytext(text, start, end + 1)]
-			if(!isnull(.))
-				return copytext(text, 1, start) + . + copytext(text, end + 1)
-	// 仍未命中：strings/ 数据值偶带**成对单引号**（ion_laws.json 词池 "'PRETZELS'"），抽取器
-	// 入目录存去引号形 → 原样精确失手（暗号生成、离子法则实参都路过）。剥引号再查，命中直接
-	// 返回译文（zh 不需要英文式引号强调；与 'Clown'→小丑 的既有目录行为一致）。
-	if(textlen > 2 && text2ascii(text, 1) == 39 && text2ascii(text, textlen) == 39)
-		. = reverse[copytext(text, 2, textlen)]
-		if(!isnull(.))
-			return .
+	// 精确 miss → 归一化后再查一次。归一表把「同一句话的各种运行期形态」（文法宏 / 源码转义 /
+	// 续行空白 / 首尾空白 / 成对单引号 / capitalize 过的首字母）压到同一个键上；从前这里是五段
+	// 各自为政的重试、建表侧还有四条变体登记，且**变体之间不能组合**。
+	// 注意**不能**加「归一化后与原串相同就跳过」的短路：归一表里还有一类键本身就是归一化产物
+	// （剥标签形态），查询侧是裸句、归一化对它是恒等变换 —— 跳过就等于那类永远查不到。
+	var/normalized = lang_normalize_lookup(text)
+	var/list/reverse_norm = GLOB.i18n_reverse_norm[locale]
+	if(islist(reverse_norm))
+		var/hit = reverse_norm[normalized]
+		if(!isnull(hit))
+			// 归一化会吃掉首尾空白：命中后按原串的首尾空白拼回（离子法则等下游拼接依赖那些空格）。
+			var/text_length = length(text)
+			if(text2ascii(text, 1) <= 32 || text2ascii(text, text_length) <= 32)
+				var/start_index = 1
+				while(start_index <= text_length && text2ascii(text, start_index) <= 32)
+					start_index++
+				var/end_index = text_length
+				while(end_index >= start_index && text2ascii(text, end_index) <= 32)
+					end_index--
+				return copytext(text, 1, start_index) + hit + copytext(text, end_index + 1)
+			return hit
 	// 仍未命中：`desc = span_alert("…")` 类编译期包裹 → 运行时值带 <span> 外壳，目录存的是内层
-	// （抽取器解 span_* 宏）。剥单层 span 反查内层，命中回包（保留原样式）。廉价守卫：< 开头才走正则。
+	// （抽取器解 span_* 宏）。剥单层 span 反查内层，命中**回包**（保留原样式）——所以它不能并进
+	// 归一化那条路：那条会把标签直接吃掉、配色就丢了。
 	if(text2ascii(text, 1) == 60)
 		var/static/regex/reverse_span_re = regex("^(<span class='\[^']*'>)(.*)(</span>)$")
 		if(reverse_span_re.Find(text))
 			var/inner = reverse_span_re.group[2]
-			var/inner_hit = reverse[inner]
+			var/inner_hit = reverse[inner] || GLOB.i18n_reverse_norm[locale]?[lang_normalize_lookup(inner)]
 			if(!isnull(inner_hit))
-				return reverse_span_re.group[1] + inner_hit + reverse_span_re.group[3]
+				return reverse_span_re.group[1] + lang_display_value(inner_hit) + reverse_span_re.group[3]
 	return text
 
 /// 显示用「物件名」本地化：先整串精确反查（命中堆叠/单词名/已译名幂等），miss 再走 AC 子串兜
@@ -727,9 +723,10 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 /proc/lang_localize_display_name(text)
 	if(!istext(text) || GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
 		return text
-	. = lang_reverse_text(text)
-	if(. == text) // 精确 miss → 复合名走 AC 子串
-		. = lang_fallback_apply(text)
+	// 显示边界**不过字面 AC**：名字要么整串命中、要么是「区域名 + 类型名」那种可拆的合成名
+	// （lang_localize_area_prefixed_name 分段精确翻）。AC 是无词边界的子串替换，在这么短的串上
+	// 只会带来误伤（「You can」咬进「You can't」那一类的名字版）。
+	. = lang_localize_chain(text, GLOB.i18n_server_locale || DEFAULT_UI_LOCALE, allow_template = TRUE, ac_mode = I18N_AC_NONE)
 
 /// 类型显示名/描述表：`strings/i18n/type_vars.json`（`nova-i18n extract` 产出，DM 继承已在 build 期展开）。
 /// `type` → 目录 key。显示边界拿到的 name/desc 若仍是类型标签，就**按类型直接取键**走正向目录，
@@ -1146,23 +1143,10 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 	// 后缀」的值（赏金 description 加高优先级说明、手术 desc 加「每器官一次」），整串不是目录键，
 	// 精确反查会连基础句一起 miss。无后缀时它就是 lang_reverse_text，零行为变化。
 	. = lang_reverse_suffixed(text)
-	// 整串精确反查未命中的多词串：很多是**运行期拼接/插值后才成形**的句子（Orion 事件 text、研究要求
-	// "Scan unique individuals with [desc]." 等经 ui_data 下发的动态串）——exact 反查够不着。补一道边界
-	// 模板逆匹配引擎：目录里已译的 {0} 模板按字面段在原串上命中、捕获实参反查后按 zh 模板填充。这样
-	// TGUI 负载里的拼接句与聊天/browse 共享同一引擎。en locale / 无锚命中时引擎走快路径原样返回（零开销）。
-	if(. == text && multiword)
-		. = lang_template_apply(text, locale)
 	if(. == text)
-		// 最后一道：**长散文**才过字面 AC。
-		// 「基础句 + 运行期追加的后缀」在 TGUI 负载里不止 lang_reverse_suffixed 那种可枚举形态：
-		// 幽灵生成器的 flavour_text 是 `基础句` + `switch(rand(1,4))` 四选一的身世段（其中一段还带
-		// `pick(...)` 内插），后缀根本没法手工登记。但**两半各自都是目录键、也都译好了**，字面 AC
-		// 的子串替换正好能把它们分别换掉，接缝原样保留 —— 聊天路径一直是这么做的，P1 少了这一步，
-		// 于是「名字是中文、正文整段英文」（生成器菜单的「指令」栏即此）。
-		// 闸门必须严：AC 是子串替换，绝不能碰标识符型负载值。长度 ≥ 80 且含句末标点的串是散文，
-		// 不可能是 act 回传标识符；短值一律不走这条。
-		if(multiword && lang_tgui_prose_candidate(text) && lang_fallback_setup(locale))
-			. = rustg_acreplace("i18n_[locale]", text)
+		// 精确（含后缀拆分）miss → 交给共用链跑模板与 AC。单词值只走精确：模板逆匹配与字面 AC
+		// 都是给句子用的，单词过去只会徒增误伤。
+		. = lang_localize_chain(text, locale, allow_template = multiword, ac_mode = multiword ? I18N_AC_PROSE : I18N_AC_NONE)
 	// 漏翻采集：反查 + 模板引擎 + AC 都没命中的多词 TGUI 负载值（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
 	if(GLOB.i18n_log_misses && . == text && locale != DEFAULT_UI_LOCALE)
 		lang_log_miss_scan(text, "tgui")
