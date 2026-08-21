@@ -260,7 +260,7 @@ GLOBAL_LIST_INIT(command_strings, list(
 	to_chat(src, span_warning(LANG("mob.7b8db25c", null)))
 	ghostize(can_reenter_corpse = FALSE)
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
-	speak("Personality matrix reset!")
+	speak(LANG("mob.fd1e8846", null))
 	key = null
 
 /// Returns true if this mob can be controlled
@@ -272,7 +272,7 @@ GLOBAL_LIST_INIT(command_strings, list(
 /// Fired after something takes control of this mob
 /mob/living/basic/bot/proc/post_possession()
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
-	speak("New personality installed successfully!")
+	speak(LANG("mob.28e57792", null))
 	rename(src)
 
 /// Allows renaming the bot to something else
@@ -765,7 +765,7 @@ GLOBAL_LIST_INIT(command_strings, list(
 /mob/living/basic/bot/proc/eject_pai_remote(mob/user)
 	if(!allowed(user) || !paicard)
 		return
-	speak("Ejecting personality chip.", radio_channel)
+	speak(LANG("mob.14738d01", null), radio_channel)
 	ejectpai(user)
 
 /mob/living/basic/bot/Login()

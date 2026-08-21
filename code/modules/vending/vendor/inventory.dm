@@ -163,7 +163,7 @@
 		message_admins("Vending machine exploit attempted by [ADMIN_LOOKUPFLW(user)]!")
 		return
 	if (item_record.amount <= 0)
-		speak("Sold out of [item_record.name].")
+		speak(LANG("obj.54ca6252", list(item_record.name)))
 		flick(icon_deny, src)
 		return
 	if(!all_products_free)
@@ -174,11 +174,11 @@
 			living_user = user
 			card_used = living_user.get_idcard(TRUE)
 		if(QDELETED(card_used))
-			speak("You do not possess an ID to purchase [item_record.name].")
+			speak(LANG("obj.ba9e4262", list(item_record.name)))
 			return
 
 		if(age_restrictions && item_record.age_restricted && (!card_used.registered_age || card_used.registered_age < AGE_MINOR))
-			speak("You are not of legal age to purchase [item_record.name].")
+			speak(LANG("obj.8aa78326", list(item_record.name)))
 			if(!(user in GLOB.narcd_underages))
 				aas_config_announce(/datum/aas_config_entry/vendomat_age_control, list(
 					"PERSON" = usr.name,
@@ -286,7 +286,7 @@
 	if(!discountless && account.account_job?.paycheck_department == payment_department)
 		price_to_use = max(round(price_to_use * DEPARTMENT_DISCOUNT), 1) //No longer free, but signifigantly cheaper.
 	if(attempt_charge(src, mob_paying, price_to_use) & COMPONENT_OBJ_CANCEL_CHARGE)
-		speak("You do not possess the funds to purchase [product_to_vend.name].")
+		speak(LANG("obj.b8076add", list(product_to_vend.name)))
 		flick(icon_deny,src)
 		return FALSE
 

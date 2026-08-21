@@ -77,6 +77,11 @@ fn sink_message_args(name: &str) -> Option<&'static [usize]> {
         // 纸张**玩家书写**的内容不该译，但 add_raw_text 的字符串**字面量**实参全是作者写的印刷体，
         // 玩家输入永远是变量。纸张渲染路径不过反查（见 i18n readme），所以只能靠 LANG 改写。
         "add_raw_text" => Some(&[0]),
+        // 机器人播报（beepsky 的逮捕通报、医疗机器人的巡逻语、清洁机器人…）。`speak` 是常见 proc 名，
+        // 首参未必是消息：`/datum/brain_trauma/special/godwoken/proc/speak(type, …)` 收的是 `"unstun"`
+        // 这种 switch 键，改写成 LANG 会当场把它弄坏。所以这个 sink 额外过一道**多词闸门**
+        // （见 is_wordy_sink）：单 token 字面量一律不动，标识符键天然被挡在外面。
+        "speak" => Some(&[0]),
         _ => None,
     }
 }
@@ -121,6 +126,12 @@ fn keyword_arg_name(arg: &Expression) -> Option<String> {
 }
 
 /// 公告类 sink：只在**插值**消息上改写（非插值留给运行时反查，避免改写遍布各处的公告调用点）。
+/// 该 sink 只改写**多词**字面量。用于 proc 名常见、首参未必是消息的汇聚点（`speak`）：
+/// 单 token 实参里 switch 键/标识符浓度极高，与 LANG 实参那条多词闸门同一条安全线。
+fn is_wordy_sink(name: &str) -> bool {
+    matches!(name, "speak")
+}
+
 fn is_announce_sink(name: &str) -> bool {
     matches!(
         name,
@@ -593,14 +604,14 @@ impl<'a> Rewriter<'a> {
         if let Expression::Base { term, follow } = expr {
             if let Term::Call(name, args) = &term.elem {
                 if let Some(indices) = sink_message_args(name.as_str()) {
-                    self.try_rewrite_call(term.location, args, indices, ns, is_announce_sink(name.as_str()), name.as_str());
+                    self.try_rewrite_call(term.location, args, indices, ns, is_announce_sink(name.as_str()), is_wordy_sink(name.as_str()), name.as_str());
                 }
             }
             // input() 是 dreammaker 的专用 Term::Input（因 `as type in list` 语法），不是 Call。
             // 复用同一套实参定位（term.location 指向 input 关键字，find_open_paren 找其 `(`）。
             if let Term::Input { args, .. } = &term.elem {
                 if let Some(indices) = sink_message_args("input") {
-                    self.try_rewrite_call(term.location, args, indices, ns, false, "input");
+                    self.try_rewrite_call(term.location, args, indices, ns, false, false, "input");
                 }
             }
             self.recurse_term(&term.elem, ns);
@@ -609,7 +620,7 @@ impl<'a> Rewriter<'a> {
                 // 改写消息参数。裸调用走上面的 Term::Call 分支；方法调用是 Follow::Call，此前完全漏改。
                 if let Follow::Call(_, name, fargs) = &f.elem {
                     if let Some(indices) = sink_message_args(name.as_str()) {
-                        self.try_rewrite_call(f.location, fargs, indices, ns, is_announce_sink(name.as_str()), name.as_str());
+                        self.try_rewrite_call(f.location, fargs, indices, ns, is_announce_sink(name.as_str()), is_wordy_sink(name.as_str()), name.as_str());
                     }
                 }
                 self.recurse_follow(&f.elem, ns);
@@ -681,6 +692,7 @@ impl<'a> Rewriter<'a> {
         indices: &[usize],
         ns: &str,
         interp_only: bool,
+        wordy_only: bool,
         sink: &str,
     ) {
         // 原生 alert/input 的 [2]：有 usr 时是标题（该译），无 usr 时是按钮/默认值（绝不能译）。
@@ -743,6 +755,13 @@ impl<'a> Rewriter<'a> {
             // locale≠en 返回译文，emote 解析必失败。此类串留给运行时反查翻显示。
             if template.starts_with('*') {
                 continue;
+            }
+            // 多词闸门（is_wordy_sink）：去掉占位符后仍须含空格，挡掉 `speak("unstun")` 这类 switch 键。
+            if wordy_only {
+                let bare = template.replace(|c: char| c == '{' || c == '}', " ");
+                if !bare.trim().contains(' ') {
+                    continue;
+                }
             }
             let ph = placeholder_count(&template);
             // 公告类：非插值（ph==0）留给运行时整串反查，不改写（零额外 churn）；只改插值公告（反查/AC 够不着）。

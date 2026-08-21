@@ -10,11 +10,6 @@
 // 注意：纯子串替换，不保证语序正确，仅用于过渡期与长尾「不漏英文」。已被 LANG 处理过的
 // 文本不应再过此层（中文不匹配英文 pattern，天然 no-op，但仍尽量避免二次过）。
 
-/// lang_localize_chain 的 AC 放行档位，见其文档。
-#define I18N_AC_NONE 0
-#define I18N_AC_PROSE 1
-#define I18N_AC_FULL 2
-
 #define I18N_FALLBACK_CACHE_MAX 2048
 #define I18N_FALLBACK_CACHE_MAX_LENGTH 512
 /// 「跨内联标签整段查表」前置 pass 的输入上限：聊天行/检查行量级。浏览器整页不走这条路。

@@ -306,7 +306,7 @@
 	tipper = WEAKREF(user)
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 50)
 	if(prob(10))
-		speak("PSYCH ALERT: Crewmember [user.name] recorded displaying antisocial tendencies torturing bots in [get_area(src)]. Please schedule psych evaluation.", radio_channel)
+		speak(LANG("mob.1a6c9fc9", list(user.name, get_area(src))), radio_channel)
 
 /mob/living/basic/bot/medbot/explode()
 	var/atom/our_loc = drop_location()

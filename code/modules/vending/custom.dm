@@ -88,15 +88,15 @@
 /obj/machinery/vending/custom/canLoadItem(obj/item/loaded_item, mob/user, send_message = TRUE)
 	if(loaded_item.flags_1 & HOLOGRAM_1)
 		if(send_message)
-			speak("This vendor cannot accept nonexistent items.")
+			speak(LANG("obj.de7f3ed5", null))
 		return FALSE
 	if(isstack(loaded_item))
 		if(send_message)
-			speak("Loose items may cause problems, try to use it inside wrapping paper.")
+			speak(LANG("obj.633e9f44", null))
 		return FALSE
 	if(!loaded_item.custom_price)
 		if(send_message)
-			speak("Item needs to have a custom price set.")
+			speak(LANG("obj.350befa4", null))
 		return FALSE
 	return TRUE
 
@@ -105,7 +105,7 @@
 		return FALSE
 
 	if(loaded_items() == max_loaded_items)
-		speak("There are too many items in stock.")
+		speak(LANG("obj.190129d4", null))
 		return FALSE
 
 	if(!user.transferItemToLoc(inserted_item, src))
@@ -197,11 +197,11 @@
 		if(card_used?.registered_account)
 			if(!linked_account)
 				linked_account = card_used.registered_account
-				speak("\The [src] has been linked to [card_used].")
+				speak(LANG("obj.2bf10928", list(src, card_used)))
 				return ITEM_INTERACT_SUCCESS
 			else if(linked_account == card_used.registered_account)
 				linked_account = null
-				speak("account unlinked.")
+				speak(LANG("obj.e3254b55", null))
 				return ITEM_INTERACT_SUCCESS
 			else
 				to_chat(user, LANG("obj.992c4175", null))
@@ -301,7 +301,7 @@
 		/// Make an alert
 		var/ref = REF(user)
 		if(last_shopper != ref || purchase_message_cooldown < world.time)
-			speak("Thank you for your patronage [user]!")
+			speak(LANG("obj.69baa45e", list(user)))
 			purchase_message_cooldown = world.time + 5 SECONDS
 			last_shopper = ref
 

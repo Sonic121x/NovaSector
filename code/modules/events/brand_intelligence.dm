@@ -67,7 +67,7 @@
 			saved.shoot_inventory = FALSE
 			clear_from_lists(saved)
 		if(!QDELETED(origin_machine))
-			origin_machine.speak("I am... vanquished. My people will remem...ber...meeee.")
+			origin_machine.speak(LANG("datum.847f3752", null))
 			origin_machine.visible_message(span_notice(LANG("datum.4082437c", list(origin_machine))))
 			clear_from_lists(origin_machine)
 		kill()

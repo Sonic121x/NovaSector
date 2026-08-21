@@ -831,6 +831,8 @@ fn sink_message_args(name: &str) -> Option<&'static [usize]> {
         "notify_ghosts" => Some(&[0]),
         // 机器打印到纸上的正文（字面量实参必是作者写的印刷体；玩家书写永远是变量）。与 rewrite.rs 同表。
         "add_raw_text" => Some(&[0]),
+        // 机器人播报。与 rewrite.rs 同表；那边额外过多词闸门（`speak("unstun")` 这类 switch 键不改写）。
+        "speak" => Some(&[0]),
         // 手术每一步的可见/痛觉消息。整个 surgery 模块的玩家可见文本几乎都从这两个 proc 出去，
         // 而它们只是包了一层 visible_message/to_chat，通用 sink 检测看不穿 → 整模块没进目录。
         // display_results(surgeon, target, self_message, detailed_message, vague_message, …)

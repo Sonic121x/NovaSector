@@ -149,7 +149,7 @@
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		user.visible_message(span_notice(LANG("mob.b90dd7e1", list(user, src, p_them()))), \
 			span_notice(LANG("mob.cfaad9c8", list(src, p_them()))), span_hear(LANG("mob.cf9e616d", null)), DEFAULT_MESSAGE_RANGE, user)
-		speak("Taunted by pacifist scumbag [RUNECHAT_BOLD("[user]")] in [get_area(src)].", radio_channel)
+		speak(LANG("mob.b9c06d4d", list(RUNECHAT_BOLD("[user]"), get_area(src))), radio_channel)
 
 		// Interrupt the attack chain. We've already handled this scenario for pacifists.
 		return
@@ -179,7 +179,7 @@
 	var/threat = ai_controller.blackboard[BB_CURRENT_CRIMINAL_ASSESSMENT] || 5
 	if(security_mode_flags & SECBOT_DECLARE_ARRESTS)
 		var/area/location = get_area(src)
-		speak("[security_mode_flags & SECBOT_HANDCUFF_TARGET ? "Arresting" : "Detaining"] level [threat] scumbag [RUNECHAT_BOLD("[current_target]")] in [location].", radio_channel)
+		speak(LANG("mob.8c643727", list(security_mode_flags & SECBOT_HANDCUFF_TARGET ? "Arresting" : "Detaining", threat, RUNECHAT_BOLD("[current_target]"), location)), radio_channel)
 	payment_check(current_target)
 	update_bot_mode(new_mode = BOT_PREP_ARREST)
 

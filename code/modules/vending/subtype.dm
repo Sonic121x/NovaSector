@@ -39,13 +39,13 @@
 		return
 
 	if(!user.client?.holder?.check_for_rights(R_SERVER|R_DEBUG))
-		speak("Hey! You can't use this! Get outta here!")
+		speak(LANG("obj.b790a393", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	var/type_to_vend_now = tgui_input_text(user, LANG("obj.844c89cc", null), LANG("obj.cc819309", null), "/obj/item/toy/plush")
 	type_to_vend_now = text2path(type_to_vend_now)
 	if(!ispath(type_to_vend_now))
-		speak("That's not a real path, dumbass! Try again!")
+		speak(LANG("obj.fe935936", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	type_to_vend = type_to_vend_now

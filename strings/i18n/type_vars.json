@@ -40401,6 +40401,7 @@
     "/obj/item/hypospray/mkii/piercing": "obj.cf45b6ba",
     "/obj/item/hypospray/mkii/piercing/atropine": "obj.cf45b6ba",
     "/obj/item/i18n_display_boundary_test": "obj.e6e6f017",
+    "/obj/item/i18n_display_leak_test": "obj.e6e6f017",
     "/obj/item/i18n_type_label_test": "obj.e6e6f017",
     "/obj/item/ice_energy_crystal": "obj.1861bb88",
     "/obj/item/immortality_talisman": "obj.f1506021",
