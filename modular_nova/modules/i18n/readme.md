@@ -35,21 +35,25 @@ TGUI 的 `config.locale` 同源注入。
 显示边界才翻：
 
 - `/atom/get_examine_name`（examine 名）、`/atom/examine` 的 `desc`、`/atom/MouseEntered` 的 hover
-  screentip，统一走 `lang_localize_name_for_display`（精确反查 → 复合名 AC）。
+  screentip，统一走 `lang_localize_name_for_display`（**按类型取键** → 精确反查 → 「区域名 + 类型名」
+  分段翻；显示边界不过字面 AC）。
 - `/mob` 覆盖该 proc：`name` 偏离 `initial(name)` 即视为**身份名**（角色名、宠物挂牌、赛博编号、
   ERT 头衔）一律不翻，哪怕撞上目录短语；仍等于 `initial(name)` 的才是类型标签。
 - 普通 atom 的 `TRAIT_WAS_RENAMED` 继续保护 item/loadout 玩家改名。
-- 其余 TGUI 显示字段仍由既有 P1（`lang_reverse_phrase_tgui`）与各界面定点 `lang_localize_display_name`
-  负责，这次没有新增。
+- TGUI 负载不再被就地改写：P1（`lang_reverse_phrase_tgui`）只把「英文 → 译文」收进 overlay
+  （`json_data["i18n"]`），值保持 canonical English，由前端渲染期查表。只有 `payload_prose_keys`
+  那批散文仍就地翻。
 
-**聊天不受影响**（容易误判成缺口，写清楚免得下次又绕回来）：`[src]` 出现在句子里时，rewrite 已经把它
-抬成 LANG 实参（`LANG("obj.…", list(src))`，仅 `list(src` 这一形状全仓 3000+ 处），运行期由
-`lang_localize_arg` 逐个实参精确反查——**它没有多词门槛**，单词名照样命中。所以名字保持英文之后，
-聊天/`visible_message`/balloon 反而走上了更干净的一条路（此前实例名已是中文，这一步是空转）。
+**聊天曾经有一处结构性缺口，2026-08-20 才修**（这里原来写着「聊天不受影响」，是错的，留作教训）：
+`[src]` 出现在句子里时 rewrite 会把它抬成 LANG 实参（`LANG("obj.…", list(src))`，仅 `list(src` 这一
+形状全仓 3000+ 处），但 `lang_interpolate` **只对 `istext(arg)` 的实参**调 `lang_localize_arg` ——
+atom 实参走的是 `"[arg]"`，插进去的是**英文名**，还会被 BYOND 自动补一个 "The "。所以真实表现是
+「你仔细查看The floor，但没发现什么值得注意的……」，只能指望聊天层字面 AC 去捞，而 AC 有多词门槛、
+单词名永远捞不着。现在 atom 实参统一走显示边界 `lang_localize_name_for_display`。
 
-**缺口的实际范围（比初判小）**：名字不作为 LANG 实参、而是整串出现在**非边界路径**时，只剩字面 AC
-与 P1 兜，而这**两条都是多词门槛**（`lang_reverse_phrase_tgui` 见到无空格的值直接原样返回；
-`lang_fallback_pattern_safe` 要求 trim 后多词）。但要分清两件事：
+**其余缺口的范围**：名字不作为 LANG 实参、而是整串出现在**非边界路径**时，只剩字面 AC 与 P1 兜。
+P1 的多词门槛已随「不动数据」一起撤掉（单词值只走整串精确反查），AC 仍要求 trim 后多词。
+但要分清两件事：
 
 - **`/datum` 的 name 从来不走 atom 那个钩子**（材料、试剂、设计、配方、货运包…），所以那些界面里的
   单词名是**既有状态**，与这次改动无关，历来靠逐界面定点本地化解决（`material_container.dm` 的
@@ -121,7 +125,7 @@ act 走 ref/id，不拿 name 拼动作串），或按类型桥进前端目录（
   在 `name/desc` 仍等于类型初值时按**类型**直取键走正向目录，不再拿运行期字符串倒查——没有多词门槛
   （单词名也能落地）、没有同形异义碰撞。miss 时回落原有反查链。**实例数据永不改写**，该不变量由
   `nova-i18n lint` 规则 C 守（类型变量声明不得含 LANG；运行期 `name = LANG(...)` 只放行白名单）。
-- `strings/i18n/policy.json` —— **三端标识符策略单一来源**：DM（`payload_skip_keys`/`pref_desc_keys`）、
+- `strings/i18n/policy.json` —— **三端标识符策略单一来源**：DM（`payload_skip_keys`/`payload_prose_keys`）、
   TS（`translatable_props`/`option_text_props`/`no_auto_translate`，经 `tgui-catalog.mjs sync` 复制到
   `tgui/packages/tgui/i18n/policy.json`，两份都提交）、Rust（`identifier_dot_procs`）共读。
   **新增「值兼标识符」登记只改这一个文件。**

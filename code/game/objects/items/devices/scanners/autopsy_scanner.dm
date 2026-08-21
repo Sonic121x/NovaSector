@@ -240,7 +240,7 @@
 
 	autopsy_information += "<b>Coroner's Notes:</b>" //Bottom of the page, anything past here is player-written
 
-	final_report_text += jointext(autopsy_information, "")
+	final_report_text += lang_localize_autopsy(jointext(autopsy_information, "")) // NOVA EDIT CHANGE - i18n: localize composed report structural labels (bypasses sink/P1; same as health_analyzer) - ORIGINAL: final_report_text += jointext(autopsy_information, "")
 	autopsy_report.add_raw_text(final_report_text, advanced_html = TRUE)
 	autopsy_report.update_appearance()
 	user.put_in_hands(autopsy_report)
