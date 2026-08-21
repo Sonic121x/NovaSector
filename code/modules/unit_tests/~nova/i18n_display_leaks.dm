@@ -105,6 +105,16 @@
 		subject.name = I18N_LEAK_NAME
 		test_area.name = saved_area_name
 
+	// ⑤ 说话者名字：聊天行里的名字被包在 `<span class='name'>` 里**独立成块**经过落地层，
+	// 整句反查与模板引擎都够不着它，只剩字面 AC —— 而 AC 有多词门槛，单词名（wolf/animal）永远
+	// 捞不着，玩家看到「The wolf 说，「……」」。而且它到达 compose_message 时**已经带了冠词**
+	// （`get_voice()` 返回 `"[src]"`，BYOND 对非专名自动补 "The"），所以不能直接喂给显示边界
+	// ——那条按 `name == initial(name)` 判身份名，带冠词的串会被当身份名拒翻。
+	var/obj/item/i18n_display_leak_test/speaker_probe = allocate(/obj/item/i18n_display_leak_test)
+	var/composed = subject.compose_message(speaker_probe, null, "test", null, null)
+	TEST_ASSERT(findtext(composed, "兹克夫单元"), "说话者名字没有本地化：[composed]")
+	TEST_ASSERT(!findtext(composed, I18N_LEAK_NAME), "说话者名字仍是英文：[composed]")
+
 	// ③ 没有句末标点的两词碎片不得进字面 AC 字典（否则在句子中间开火）。
 	TEST_ASSERT(!lang_fallback_pattern_safe(I18N_LEAK_FRAGMENT), "两词碎片仍被放进 AC 字典，会从单词内部开火")
 	var/sentence = lang_fallback_apply("Zxqv can't stop me, Owl!", I18N_LEAK_LOCALE)

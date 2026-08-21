@@ -22,13 +22,15 @@ GLOBAL_LIST_EMPTY(i18n_miss_counts)
 #define I18N_MISS_MAX_UNIQUE 4096
 /// 单条记录最大长度：更长的多为玩家书写/超长拼接，截断意义不大，直接跳过。
 #define I18N_MISS_MAX_LENGTH 240
+/// 首次记录时附带的「整行上下文」最大长度。
+#define I18N_MISS_CONTEXT_LENGTH 200
 // token 分类（lang_i18n_token_kind 返回值）
 #define I18N_TOKEN_WORD 1
 #define I18N_TOKEN_NEUTRAL 2
 #define I18N_TOKEN_BREAK 3
 
 /// 记录一条 miss（去重计数；首次与 10/100/1000 次时写日志行）。
-/proc/lang_log_miss(text, source)
+/proc/lang_log_miss(text, source, context)
 	if(!istext(text) || length(text) > I18N_MISS_MAX_LENGTH)
 		return
 	var/list/counts = GLOB.i18n_miss_counts
@@ -37,7 +39,11 @@ GLOBAL_LIST_EMPTY(i18n_miss_counts)
 		if(length(counts) >= I18N_MISS_MAX_UNIQUE)
 			return
 		counts[text] = 1
-		WRITE_LOG("[GLOB.log_directory]/i18n_misses.log", "n=1 src=[source] | [text]")
+		// **首次记录带上整行**：只记英文 run 的话，`The wolf` 这样的片段完全指不出调用点，
+		// 排查得靠在源码里 grep 猜（实测为了定位一条 `The mi-go` 翻遍了 emote/say/attack 三条链）。
+		// 整行里那些已经翻好的中文正是最强的线索——一眼就能认出是哪句话。
+		// 只在首次记，后续 10/100/1000 那几条仍只记 run：整行往往很长，全记会把日志撑爆。
+		WRITE_LOG("[GLOB.log_directory]/i18n_misses.log", "n=1 src=[source] | [text][context ? " || 整行: [context]" : ""]")
 		return
 	n++
 	counts[text] = n
@@ -123,11 +129,17 @@ GLOBAL_VAR_INIT(i18n_miss_tag_regex, regex(@"<[^>]*>|&[#A-Za-z0-9]+;", "g"))
 	// 有效 run 至少有两个词；无任何分隔符时避免 regex.Replace + splittext 分配。
 	if(!istext(text) || (!findtext(text, " ") && !findtext(text, "\t") && !findtext(text, "\n")))
 		return
+	// 整行做上下文：剥掉标签与多余空白，截断到可读长度（日志一行装得下、又足够认出是哪句话）。
+	var/regex/tag_regex = GLOB.i18n_miss_tag_regex
+	var/context = trim(tag_regex.Replace(text, " "))
+	if(length(context) > I18N_MISS_CONTEXT_LENGTH)
+		context = copytext(context, 1, I18N_MISS_CONTEXT_LENGTH) + "…"
 	for(var/run in lang_i18n_extract_runs(text))
-		lang_log_miss(run, source)
+		lang_log_miss(run, source, context)
 
 #undef I18N_TOKEN_WORD
 #undef I18N_TOKEN_NEUTRAL
 #undef I18N_TOKEN_BREAK
 #undef I18N_MISS_MAX_UNIQUE
 #undef I18N_MISS_MAX_LENGTH
+#undef I18N_MISS_CONTEXT_LENGTH
