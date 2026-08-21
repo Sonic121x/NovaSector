@@ -57,12 +57,25 @@ DreamMaker -DCBT -DCIBUILDING tgstation.test.dme
 
 echo "==> 跑测试套件（locale=$HARVEST_LOCALE，漏翻采集开）"
 rm -rf data/logs/ci
+rm -f data/unit_tests.json  # 不清就会拿上一轮的结果当本轮的（pseudo-test.sh 里那条假绿注释同源）
 # **必须指定单测地图**：多数单测的 test_flags 是 UNIT_TEST_BASIC == UNIT_TEST_DEBUG_MAP_ONLY，
 # 不在 is_unit_test_map 的地图上会被整批跳过 —— 那样采集到的交互面只剩十几个基建测试，
 # 看着"没几条漏翻"其实是根本没跑（与 pseudo-test.sh 里那条假绿注释同一个坑）。
 mkdir -p data
 cp _maps/runtimestation_minimal.json data/next_map.json
-DreamDaemon tgstation.test.dmb -close -trusted -verbose -params "log-directory=ci" 2>&1 | tail -3 || true
+# **硬超时**：开了 I18N_LOG_MISSES 之后 P1 短语缓存被关掉、每条串还要多跑一遍 miss 扫描，整轮
+# 比 pseudo-test 慢得多；万一套件卡住（实测遇到过一次，测试停在 screenshot 之后、游戏却还在 tick），
+# 没有超时就会无声无息地挂上几十分钟。超时后打印最后进展，方便直接定位卡在哪。
+if ! timeout -k 30 1200 DreamDaemon tgstation.test.dmb -close -trusted -verbose -params "log-directory=ci" 2>&1 | tail -3; then
+	echo "!! 测试套件超时或异常退出（上限 20 分钟）"
+	echo "   tests.log 最后写入：$(stat -c %y data/logs/ci/tests.log 2>/dev/null || echo 无)"
+	echo "   最后几行："
+	tail -3 data/logs/ci/tests.log 2>/dev/null | cut -c1-140
+	pkill -9 -f "tgstation.test.dmb" 2>/dev/null || true
+fi
+if [[ ! -f data/unit_tests.json ]]; then
+	echo "!! 单测结果未产出 —— 套件没跑完，下面的漏翻数据是**不完整**的，别拿它下结论"
+fi
 
 if [[ ! -f $MISS_LOG ]]; then
 	echo "==> 没有产出 $MISS_LOG（可能一条漏翻都没有，或采集未生效）"

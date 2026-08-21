@@ -29,8 +29,14 @@
 	TEST_ASSERT(!isnull(stutter), "口吃状态效果未能施加")
 	// 断言要确定性：两档概率都拉满。按字采样那档（cjk_char_chance）默认 25%，13 个字全落空的
 	// 概率约 2.4% —— 不拉满就是一条**偶发红**的 flaky 测试（本轮实测撞上过一次）。
+	// **每一层概率都要拉满**才是确定性的。这条测试红过两次，两次都是漏了一层：
+	//   ① stutter_prob —— 该词要不要口吃；
+	//   ② cjk_char_chance —— 按字切时该字参不参与（默认 25%，13 个字全落空约 2.4%）；
+	//   ③ two/three/four_char_chance —— stutter_char() 内部还有一层，默认 two 只有 90%，
+	//      也就是说即使前两层都过了，仍有 10% 概率原样返回。
 	stutter.stutter_prob = 100
 	stutter.cjk_char_chance = 100
+	stutter.two_char_chance = 100
 
 	// ② 单个汉字必须能被口吃处理（原正则靠 \b + 拉丁字母定位，汉字匹配不上）。
 	var/single = stutter.apply_speech("我", 1)
