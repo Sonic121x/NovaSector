@@ -1688,6 +1688,23 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                 emit_list_strings(rhs, ns, catalog);
             }
         }
+        // 具名实参 `AddComponent(…, end_string = ", mate")`：语音突变的**无条件后缀**。词表的 key 是
+        // 英文单词、在中文句子里永不匹配，所以中文服上这类突变只剩这条尾巴 —— 它必须进目录。
+        // 具名实参是 AssignOp（lhs 是标识符而非字符串），激进 pass 的整句闸门收不到这种短后缀。
+        if let Expression::Base { term, follow } = &**lhs {
+            if follow.is_empty() {
+                if let Term::Ident(name) = &term.elem {
+                    if name.as_str() == "end_string" {
+                        emit_list_strings(rhs, ns, catalog);
+                        if let Some(template) = build_template(rhs) {
+                            if !template.contains('{') {
+                                emit(catalog, ns, &template);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     match expr {
         Expression::Base { term, follow } => {

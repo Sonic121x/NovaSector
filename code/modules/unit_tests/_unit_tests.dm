@@ -390,6 +390,7 @@
 #include "~nova\i18n_phobia.dm"
 #include "~nova\i18n_real_catalog.dm"
 #include "~nova\i18n_roleban.dm"
+#include "~nova\i18n_speech_effects.dm"
 #include "~nova\i18n_suffixed.dm"
 #include "~nova\i18n_template.dm"
 #include "~nova\i18n_type_labels.dm"

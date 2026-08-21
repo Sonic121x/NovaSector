@@ -207,6 +207,20 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 ///   ④ 带英文冠词的名字（"\the [src]"/"\a [x]" 渲染出的 "The wall"/"a Monkey"——剥冠词反查
 ///      余下部分（再试小写），命中则丢冠词：中文无冠词）。
 /// 全部是精确匹配，查不到原样保留（玩家名/数字/已中文串零误伤）。
+/// 当前全服 locale 是否是**中文**。
+///
+/// 判据不能写成「locale != en」：伪 locale（qps-ploc）与将来任何其它语言都会命中那条，于是
+/// 中文专用的拟声替换表会被套到英文文本上 —— 上游的 speech_modifiers 单测当场抓到过一次
+/// （蜥蜴人的 `s→sss` 断言在伪 locale 下拿到了未变形的英文）。
+/// 文本里是否含中日韩统一表意文字。用于「按字切」这类**形态判据**（比 locale 判据稳：
+/// 中英混排、伪 locale 都不会误伤）。
+/proc/lang_contains_cjk(text)
+	var/static/regex/cjk_regex = regex(@"[一-鿿]")
+	return istext(text) && cjk_regex.Find(text)
+
+/proc/lang_locale_is_chinese()
+	return findtext(GLOB.i18n_server_locale, "zh") == 1
+
 /proc/lang_localize_arg(arg)
 	if(!length(arg))
 		return arg

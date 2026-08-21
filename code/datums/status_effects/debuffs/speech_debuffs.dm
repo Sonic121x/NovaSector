@@ -34,11 +34,30 @@
 		return
 
 	var/final_phrase = ""
-	var/list/words = splittext(phrase, " ")
+	// NOVA EDIT ADDITION START - I18N - 中文没有词间空格，整句会被当成**一个词**，于是口吃/脑损
+	// 这类逐词生效的语音效果在中文服上一句话只触发一次（「我-我-我们今天…」之后再无变化）。
+	// 中文按**字**切、以空串重新拼接；apply_speech 的每词概率对单字来说太高，故只把一部分字送进去。
+	var/separator = " "
+	var/list/words
+	// 判据只看**文本形态**（没有词间空格 + 含中日韩字符），与 locale 无关：中英混排、伪 locale、
+	// 以及将来别的语言都不会被误伤。
+	if(!findtext(phrase, " ") && lang_contains_cjk(phrase))
+		separator = ""
+		words = list()
+		for(var/i in 1 to length_char(phrase))
+			words += copytext_char(phrase, i, i + 1)
+	else
+		words = splittext(phrase, " ")
+	// NOVA EDIT ADDITION END
 	var/list/new_words = list()
 	for(var/i in 1 to length(words))
+		// NOVA EDIT ADDITION - I18N - 按字切之后，效果自带的「每词概率」对单字而言太密（75% 的字
+		// 都口吃就没法读了）。这里先抽掉四分之三的字，让密度回到接近逐词的观感。
+		if(separator == "" && !prob(25))
+			new_words += words[i]
+			continue
 		new_words += apply_speech(words[i], i)
-	final_phrase = jointext(new_words, " ")
+	final_phrase = jointext(new_words, separator) // NOVA EDIT CHANGE - I18N - 中文按字切时不能用空格拼回。ORIGINAL: final_phrase = jointext(new_words, " ")
 
 	if(final_phrase == phrase)
 		return // No change was done, whatever
@@ -87,6 +106,13 @@
 	if(!prob(stutter_prob))
 		return original_word
 
+	// NOVA EDIT ADDITION START - I18N - 中文口吃是**重复整字**（「我-我-我们」），而上面那条正则靠
+	// `\b` 和拉丁字母定位首字母，对单个汉字匹配不上、会原样返回 = 效果完全不触发。
+	// 判据用「不含 ASCII 字母」，避免误伤中英混排里的英文词。
+	var/regex/ascii_letters = GLOB.i18n_ascii_letter_regex
+	if(!ascii_letters.Find(original_word))
+		return stutter_char(original_word)
+	// NOVA EDIT ADDITION END
 	if(stutter_regex.Find(original_word))
 		return "[stutter_regex.group[1]][stutter_char(stutter_regex.group[2])][stutter_regex.group[3]]"
 
