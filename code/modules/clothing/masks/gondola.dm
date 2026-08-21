@@ -8,4 +8,4 @@
 
 /obj/item/clothing/mask/gondola/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/speechmod, replacements = strings("spurdo_replacement.json", "spurdo"), slots = ITEM_SLOT_MASK)
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("spurdo_replacement.json", "spurdo"), slots = ITEM_SLOT_MASK)

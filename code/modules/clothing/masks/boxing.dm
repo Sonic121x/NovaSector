@@ -41,7 +41,7 @@
 
 /obj/item/clothing/mask/luchador/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/speechmod, replacements = strings("luchador_replacement.json", "luchador"), end_string = " OLE!", end_string_chance = 25, uppercase = TRUE, slots = ITEM_SLOT_MASK)
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("luchador_replacement.json", "luchador"), end_string = " OLE!", end_string_chance = 25, uppercase = TRUE, slots = ITEM_SLOT_MASK)
 
 /obj/item/clothing/mask/luchador/tecnicos
 	name = "Tecnicos Mask"

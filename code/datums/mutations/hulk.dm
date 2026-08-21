@@ -290,6 +290,6 @@
 	conflicts = list(/datum/mutation/hulk)
 
 /datum/mutation/hulk/ork/add_speechmod()
-	AddComponent(/datum/component/speechmod, replacements = strings("ork_replacement.json", "ork"), end_string = "!!", uppercase = TRUE)
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("ork_replacement.json", "ork"), end_string = "!!", uppercase = TRUE)
 
 #undef HULK_TAILTHROW_STEPS

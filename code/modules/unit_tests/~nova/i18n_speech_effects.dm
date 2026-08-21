@@ -42,8 +42,21 @@
 	TEST_ASSERT_NOTEQUAL(treated, "我们现在就去医疗部治疗伤员", "中文整句没有被口吃处理")
 	TEST_ASSERT(!findtext(treated, " "), "中文按字切之后不能用空格拼回：[treated]")
 
+	// ④ 词表突变：中文表按 `<名>.<locale>.json` 取，取不到才退回英文表。
+	// 英文表的键是英文单词，在中文句子里永不匹配 —— 不取中文表就等于整类突变空转。
+	var/list/chinese_table = lang_speech_replacements("chav_replacement.json", "chav")
+	TEST_ASSERT(length(chinese_table) > 0, "中文语音替换表取不到")
+	var/found_chinese_key = FALSE
+	for(var/replacement_key in chinese_table)
+		if(lang_contains_cjk(replacement_key))
+			found_chinese_key = TRUE
+			break
+	TEST_ASSERT(found_chinese_key, "取到的仍是英文键的表：中文句子里永不匹配，突变整类空转")
+
 	// ③ 英文仍走原逻辑（按空格切词），中文改动不得影响英文服。
 	GLOB.i18n_server_locale = DEFAULT_UI_LOCALE
 	var/list/english_args = list("we should go to medbay", "", "")
 	stutter.handle_message(speaker, english_args)
 	TEST_ASSERT(findtext(english_args[TREAT_MESSAGE_ARG], " "), "英文路径被中文改动破坏了词间空格")
+	var/list/english_table = lang_speech_replacements("chav_replacement.json", "chav")
+	TEST_ASSERT(!lang_contains_cjk(english_table[english_table[1]]), "英文 locale 下不应取到中文表")

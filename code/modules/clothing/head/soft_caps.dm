@@ -163,7 +163,7 @@ GAME_VERB(/obj/item/clothing/head/soft, flipcap, "翻转盖子", null)
 
 /obj/item/clothing/head/soft/fishing_hat/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/speechmod, replacements = strings("crustacean_replacement.json", "crustacean")) //you asked for this.
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("crustacean_replacement.json", "crustacean")) //you asked for this.
 	AddElement(/datum/element/skill_reward, /datum/skill/fishing)
 	AddElement(/datum/element/adjust_fishing_difficulty, -5)
 

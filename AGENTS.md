@@ -243,3 +243,7 @@ Known trap classes:
   · **拟声替换表**（`speechmod` 组件的 `replacements`）：`s→sss` / `s→z` 在中文上零命中。仓库里已有**俄语版先例**（同表加西里尔映射），中文照此加一张，但**不能硬换字**（中文没有对应音字母，换字会毁词义）→ 改成**标点锚定**：句末补一声「嘶/嗞」，已有的拟声字拉长。
   · 词表突变（chav/elvis/ork/法语…）的 key 是英文单词，中文里永不匹配，整类仍是空转；但它们的 **`end_string` 是无条件追加的**（`", mate"`、`" OLE!"`、`", bork"`），所以中文服的实际表现是「中文句子后挂一条英文尾巴」。在 `speechmod` 组件里一处收口反查（13 个调用点共用），并让 extract 收具名实参 `end_string = …`（AssignOp 的 lhs 是**标识符**而非字符串，激进 pass 的整句闸门也收不到这种短后缀）。
 - **判据写成「locale != en」是错的，要写「locale 是中文」** — 伪 locale（`qps-ploc`）与将来任何第二语言都会命中前者，于是中文专用的拟声表被套到英文文本上，**上游的 `speech_modifiers` 单测当场抓住**（蜥蜴人的 `s→sss` 断言拿到了未变形的英文）。用 `lang_locale_is_chinese()`。更稳的一层：能用**文本形态**判据就别用 locale 判据——「按字切」那处改判「无词间空格且含 CJK」（`lang_contains_cjk`），中英混排、伪 locale、将来的其它语言都不会误伤。
+- **语音替换词表按 locale 取表：`lang_speech_replacements()`** — chav/elvis/ork/crustacean 等 13 张表的**键是英文单词**，靠 `replacetextEx` 子串替换；中文句子里那些键永不出现 → 整类突变空转。中文表按 `<名>.<locale>.json` 与英文表**同目录**放（`chav_replacement.zh-Hans.json`），有就用、没有就退回英文表 —— 新增语言只加文件、不改调用点。两条约束：
+  · **不能放 `strings/<locale>/` 子目录**：`GLOB.string_cache` 只按**文件名**索引、不含目录，同名文件会互相覆盖，谁先加载谁赢、另一边静默拿到错表。
+  · 中文表的键必须是**多字词**：`replacetextEx` 无词边界，拿单字当键（「下」「是」）会在词内开火，把「下面」「不是」一起改掉 —— 与字面 AC 那些事故同形。
+- **`visible_message` 形态拿不到语料，别再找了** — 生产日志类型逐个看过：`attack.log` 是日志自己的措辞（不是渲染文本）、`hallucinations.html` 只记幻觉**类型**、`paper.log` 是玩家自写。这个形态**不进任何日志**。要数据只有两条路：真实回合开 `I18N_LOG_MISSES`，或写生成器（但 visible_message 需要模拟交互，比 examine 抽样难得多）。在此之前不要拿"AC 只贡献 4.4%"去删聊天 AC —— 那个数字只覆盖 NPC say/emote 一种形态。

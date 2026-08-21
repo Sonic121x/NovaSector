@@ -218,6 +218,27 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 	var/static/regex/cjk_regex = regex(@"[一-鿿]")
 	return istext(text) && cjk_regex.Find(text)
 
+/// 语音替换词表的**按 locale 取表**入口（`speechmod` 组件的 `replacements`）。
+///
+/// 这批表（chav/elvis/ork/crustacean…）的**键是英文单词**，靠 `replacetextEx` 在消息里做子串替换。
+/// 中文句子里那些键永不出现 → 整类突变在中文服上是空转（而它们的 `end_string` 后缀却照常追加，
+/// 于是表现为「中文句子后挂一条英文尾巴」）。中文表放在 `strings/zh-Hans/` 下同名文件，
+/// 有就用、没有就退回英文表 —— 这样新增一门语言只是加文件，不用改任何调用点。
+///
+/// 中文表的键必须是**多字词**：`replacetextEx` 是无词边界的子串替换，拿单字当键（「下」「是」）
+/// 会在词内开火，把「下面」「不是」也一起改掉 —— 与字面 AC 那些事故同一个形态。
+/proc/lang_speech_replacements(filepath, key)
+	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
+		// **同目录、locale 后缀命名**（`chav_replacement.zh-Hans.json`），不能放 `strings/<locale>/` 下：
+		// `GLOB.string_cache` 只按**文件名**索引、不含目录，同名文件会互相覆盖 —— 谁先加载谁赢，
+		// 另一边静默拿到错表。
+		var/localized_path = "[copytext(filepath, 1, findtextEx(filepath, ".json"))].[GLOB.i18n_server_locale].json"
+		if(fexists("[STRING_DIRECTORY]/[localized_path]"))
+			var/list/localized = strings(localized_path, key)
+			if(length(localized))
+				return localized
+	return strings(filepath, key)
+
 /proc/lang_locale_is_chinese()
 	return findtext(GLOB.i18n_server_locale, "zh") == 1
 

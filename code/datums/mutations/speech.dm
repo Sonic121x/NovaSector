@@ -197,7 +197,7 @@
 
 /datum/mutation/chav/New(datum/mutation/copymut)
 	. = ..()
-	AddComponent(/datum/component/speechmod, replacements = strings("chav_replacement.json", "chav"), end_string = ", mate", end_string_chance = 30)
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("chav_replacement.json", "chav"), end_string = ", mate", end_string_chance = 30)
 
 /datum/mutation/elvis
 	name = "Elvis"
@@ -210,7 +210,7 @@
 
 /datum/mutation/elvis/New(datum/mutation/copymut)
 	. = ..()
-	AddComponent(/datum/component/speechmod, replacements = strings("elvis_replacement.json", "elvis"))
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("elvis_replacement.json", "elvis"))
 
 /datum/mutation/elvis/on_life(seconds_per_tick)
 	switch(pick(1,2))

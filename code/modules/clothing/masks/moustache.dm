@@ -13,4 +13,4 @@
 
 /obj/item/clothing/mask/fakemoustache/italian/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/speechmod, replacements = strings("italian_replacement.json", "italian"), end_string = list(" Ravioli, ravioli, give me the formuoli!"," Mamma-mia!"," Mamma-mia! That's a spicy meat-ball!", " La la la la la funiculi funicula!"), end_string_chance = 3, slots = ITEM_SLOT_MASK)
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("italian_replacement.json", "italian"), end_string = list(" Ravioli, ravioli, give me the formuoli!"," Mamma-mia!"," Mamma-mia! That's a spicy meat-ball!", " La la la la la funiculi funicula!"), end_string_chance = 3, slots = ITEM_SLOT_MASK)

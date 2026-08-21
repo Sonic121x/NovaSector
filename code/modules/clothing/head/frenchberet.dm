@@ -6,4 +6,4 @@
 
 /obj/item/clothing/head/beret/frenchberet/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/speechmod, replacements = strings("french_replacement.json", "french"), end_string = list(" Honh honh honh!"," Honh!"," Zut Alors!"), end_string_chance = 3, slots = ITEM_SLOT_HEAD)
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("french_replacement.json", "french"), end_string = list(" Honh honh honh!"," Honh!"," Zut Alors!"), end_string_chance = 3, slots = ITEM_SLOT_HEAD)
