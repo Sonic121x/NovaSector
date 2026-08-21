@@ -232,3 +232,8 @@ Known trap classes:
   · `变成 3 生肉片s` → 模板 `It can be turned into {0} {1}{2} with {3}!` 的 `{2}` 是**运行期传进来的英文复数后缀**（`amount > 1 ? "s" : ""`）。中文名词不加复数，正解是让 **zh 模板不引用该实参**（`lang_interpolate` 对模板里没出现的占位符直接忽略），而不是去改数据。
   · 制造商名（`Akhter Company Frontier Equipment` 等）是专名，保持英文正确。
 - **`talk_into` 与 `speak` 同属「未注册 sink」类** — 电台播报（超物质分层警报 `CRYSTAL DELAMINATION IMMINENT! Integrity: [x]%`、AI 播报、机器人电台）走 `talk_into(speaker, message, channel)`，消息在 **[1]**。它和 `speak` 一样要过多词闸门（proc 名常见）。判据仍是那条：**同一句话在聊天里正常、在别处英文**，或「目录里有模板、源码里是裸插值串」。
+- **叫声/拟声词的三个来源，各自要专门收** — 生产日志里 92 条没进目录的拟声词，全出在抽取器的三个盲区，而它们**都过不了激进 pass 的整句闸门**（单词感叹词），所以只能按形态专门收：
+  · `blackboard = list(BB_EMOTE_SAY = list("Borf!", "Bork!"))` —— AI 黑板的发声词池是 list 字面量里的**关联项**，而 `is_speech_pool` 只认类型变量名（`speak`/`emote_hear`/`emote_see`）。`BB_EMOTE_*` 是 `#define`，AST 里已展开成 `"emote_say"` 等字符串，按这个键收（`is_speech_blackboard_key`）。全仓 31 处。
+  · `animal_sounds` / `animal_sounds_alt` —— 动物面具的叫声池，23 处，加进 `is_speech_pool` 即可。
+  · 剩下仍不在目录的多是**玩家自己打的字**（日志里 `*no key*` 只说明该 mob 没有 ckey，不代表内容是目录来的），本就不该翻。
+  收进来之后 MT 会给出中文拟声（`Bork! → 汪！`、`Oink! → 哼！`、`buzzes. → 嗡嗡作响。`），与 emote 的处理一致。

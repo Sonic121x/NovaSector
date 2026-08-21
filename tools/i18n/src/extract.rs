@@ -975,7 +975,12 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             // 基础 mob 闲聊池：`speak/emote_hear/emote_see = list("…")`（~120 处）。表情行小写动词
             // 开头（"jumps in a circle."）→ 激进 pass 首字母大写闸挡掉，且 list 初值走 build_template
             // 返回 None → 必须逐元素抽。显示经 say/manual_emote → 聊天 AC 兜底翻。
-            let is_speech_pool = matches!(var_name.as_str(), "speak" | "emote_hear" | "emote_see");
+            // 动物面具的叫声池（`animal_sounds = list("Oink!", …)`，23 处）与 AI 行为的发声池同类：
+            // 元素是单词感叹词，过不了激进 pass 的整句闸门，必须按变量名专门收。
+            let is_speech_pool = matches!(
+                var_name.as_str(),
+                "speak" | "emote_hear" | "emote_see" | "animal_sounds" | "animal_sounds_alt"
+            );
             // 合成配方步骤列表（/datum/crafting_recipe steps = list("步骤1", …)，crafting UI "steps"
             // 字段直发显示、P1 反查）。无句末标点居多 → 逐元素抽。
             let is_steps_list = var_name == "steps" && ty.path.starts_with("/datum/crafting_recipe");
@@ -1666,7 +1671,24 @@ fn visit_stmt(stmt: &Statement, ns: &str, catalog: &mut Catalog, suppress: bool,
     }
 }
 
+/// AI 黑板里的发声词池键（`BB_EMOTE_SAY` 等是 `#define`，AST 里已展开成这些字符串）。
+///
+/// `speak`/`emote_hear`/`emote_see` 那条 is_speech_pool 分支只认**类型变量名**，够不着
+/// `blackboard = list(BB_EMOTE_SAY = list("Borf!", "Bork!"))` 这种**关联项**形态 —— 全仓 31 处、
+/// 而它正是宠物/简单生物叫声的主要来源（生产日志里 92 条没进目录的拟声词几乎全出自这里）。
+/// 词池元素是单词感叹词，过不了激进 pass 的整句闸门，所以必须专门收。
+fn is_speech_blackboard_key(key: &str) -> bool {
+    matches!(key, "emote_say" | "emote_hear" | "emote_see")
+}
+
 fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool, ctx: ProcCtx) {
+    if let Expression::AssignOp { lhs, rhs, .. } = expr {
+        if let Some(key) = plain_string(lhs) {
+            if is_speech_blackboard_key(&key) {
+                emit_list_strings(rhs, ns, catalog);
+            }
+        }
+    }
     match expr {
         Expression::Base { term, follow } => {
             // 激进 pass：独立字符串/插值串字面量，句子型即入目录（含 {N} 模板）。

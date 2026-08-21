@@ -215,7 +215,6 @@ A catch-all category for diseases that are too complex to document in their enti
 A client was Del()'d without a persistent_client! This should not be happening.
 A coherent nanomachine swarm shaped into humanoid form. Fragile but unkillable, Proteans retreat into their modsuit core when critically damaged and sustain themselves by consuming metal.
 A confusing species, plasmamen are truly \"a fungus among us\". What appears to be a singular being is actually a colony of millions of organisms surrounding a found (or provided) skeletal structure.
-A cortical borer has been trapped in {0}.
 A custom soup recipe, allowing you to throw whatever you want in the pot.
 A dark temptation has passed from this world!
 A deadly illness has been contracted! {0} was killed by the disease.
@@ -697,10 +696,7 @@ Cyborg {0} ( {1} ) was somehow missing their integrated tablet. Please make a bu
 Cyborg {0} ( {1} ) was somehow missing their self-manage app in their tablet. A new copy has been created.
 Cycling sequence overriden by docking sequence.
 Cycling timed out, bolts unlocked.
-DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.
-DANGER: HYPERSTRUCTURE OSCILLATION FREQUENCY OUT OF BOUNDS.
 DEBUG: The bug where mob transfers or transforms sometimes kick unrelated people out of mobs has happened again. mob {0}({1})\ref{2} owned by {3} is being changed into a {4} but has a mind owned by {5}.
-DISTRESS SIGNAL REPEATING: Requesting immediate assistance. Patrol vessel under sustained combat operations. All available units respond.
 DNA too complicated to infuse. The machine needs to infuse simpler DNA first.
 DO NOT ISSUE WEAPON PERMITS. Subject has suspected links to covert criminal elements.
 DO: Early overflow roles assigned.
@@ -746,7 +742,6 @@ Disable and cause malfunctions in as many machines as possible.
 Disabling night lighting: Station is in a state of emergency.
 Discovered {0} at {1}.
 Disk loaded successfully.
-Distress signal deactivated.
 Do not interfere with the operations of the Syndicate.
 Do not taunt.
 Do not use your \"{0}\" alt title as an excuse to forego your duties as a {1}.
@@ -800,9 +795,6 @@ Dynamic config for {0} encountered a negative tier value, below DYNAMIC_TIER_GRE
 Dynamic config for {0} encountered a tier value exceeding DYNAMIC_TIER_HIGH!
 Dynamic: Latejoin {0} executed, but the latejoiner was not in its selected minds list!
 ELEVATED THREAT/VIOLATION OF PROTOCOL. One or more Standard Procedures have been violated, or anomalous but not yet overtly hostile activity is detected. All personnel must draw weapons and hold them at low-ready. Ship thrusters are to be kept spooled for immediate maneuver. Defensive shields are raised to tactical strength. High alert. Inspection may be halted and teams recalled to the ship or ordered to hold position and fortify.
-EMERGENCY DISTRESS SIGNAL ACTIVATED. Requesting immediate assistance. Patrol vessel under sustained combat operations. All available units respond.
-ENCRYPTED BURST: OBSIDIAN. Self-destruct and denial protocols initiated. All assets to be denied to enemy.
-ENCRYPTED BURST: OBSIDIAN. Self-destruct and denial protocols initiated. All assets to be denied to the enemy.
 ENGINEERING EMERGENCY in %LOCATION %CALLER %RETA!!!
 ERROR! Cannot calculate suitable movement path.
 ERROR-ERROR: ERROR landmark missing!
@@ -955,7 +947,6 @@ Flow rate restored.
 Flush in progress!
 Flypeople are a curious species with a striking resemblance to the insect order of Diptera, commonly known as flies. With no publically known origin, flypeople are rumored to be a side effect of bluespace travel, despite statements from Nanotrasen officials.
 Flypeople are often feared or avoided among other species, their appearance often described as unclean or frightening in some cases, and their eating habits even more so with an insufferable accent to top it off.
-Fog is down, prepare for contact.
 Follow the orders of Big Brother.
 Follow your orders. Assist agents in this mission area.
 Following the dismantling of a restricted cult aboard {0}, we would like to remind all employees that worship outside of the Chapel is strictly prohibited, and cause for termination.
@@ -983,7 +974,6 @@ Freon is produced at a rate that scales with the sum of a quadratic exponential 
 Frequent crashing.
 From the shadows, all shall perish.
 Fucking stupid machine.
-Fugitive has triggered this trap in the {0}!
 Fugitive locator tried to locate a fugitive antag datum with no owner.
 Fully heals the target and produces a random coin.
 Further changes occur in the host: the symbiont is heavily reliant on extremely rapid cell regeneration to sustain itself, which is disrupted by the presence of UV light. As a result, the host can start to experience heightened irritation in the presence of light and especially sunlight.
@@ -1931,7 +1921,6 @@ SSshuttle.beacon_list have null entry!
 SSshuttle.stationary_docking_ports have null entry!
 STANDBY/ADMINISTRATIVE. The patrol is in a secure, non-hostile environment. This includes being docked at a Coalition-controlled starbase, in transit through fully secured Coalition space, or undergoing maintenance and resupply in a friendly port. The threat of hostile action is assessed as negligible. All personal weapons are to be secured in the armory. Ship-based defensive systems may be powered down to standby mode to conserve energy.
 SUBMISSION: {0} has submitted their OPFOR application. They are number {1} in the queue.
-SUPERMATTER EMERGENCY STOP BUTTON ARMED!
 SUSTAINED COMBAT OPERATIONS. The patrol is engaged in a full-scale battle. Escape may not be immediately possible, and the patrol must fight its way out. Total warfare. All weapons and systems are to be used to their maximum effectiveness. Damage control teams are active. The focus is on neutralizing targets of opportunity and creating an opening for extraction. The primary objective is to neutralize all threats to the patrol to allow for extraction.
 SWING AND A MISS!
 Sacrifice at least {0} crewmembers.
@@ -2740,7 +2729,6 @@ WARNING - The explosion will likely cover a big part of the station and the comi
 WARNING! podspawn vareditting \"{0}\" to \"{1}\" was rejected by the pod!
 WARNING: An unknown minetype '{0}' was set! This is being ignored! Update the maploader code!
 WARNING: Invalid research design with ID {0} detected and removed.
-WARNING: Projected time until full crystal delamination significantly lower than expected. Please inspect crystal for structural abnormalities or sabotage!
 WARNING: Projectile {0} deleted due to being unable to resolve a target after angle was null!
 WARNING: Projectile {0} fired from nullspace.
 WARNING: Projectile {0} fired without a target or mouse parameters to aim with.
@@ -2755,15 +2743,10 @@ WHEN YOU NEED A SLICE OF JOY IN YOUR LIFE!
 WHY DID WE STOP MOVING?! ARE YOU GOING TO LEAVE ME?!!
 WUH WHERE DID EVERYONE GOOOOOOHHHHHHH WAHHH!!
 Want to bring your innocent pet to a giant metal deathtrap? Click here to customize it!
-Warning! Fuel mix moles reaching critical levels!
-Warning! Iron amount inside the core is increasing!
-Warning! Iron shards are damaging the internal core shielding!
-Warning! Shield destabilizing due to excessive power!
 Warning, becuase overlay lights are basically never used on turfs, since they don't move,vis contents replacement has not yet been implemented for them (see changeturf for why this is needed)!
 Warning, profiling stopped manually before dump.
 Warning, sendmaps profiling stopped manually before dump.
 Warning. Tampering of meteor satellites puts the station at risk of exotic, deadly meteor collisions. Please intervene by checking your GPS devices for strange signals, and dismantling the tampered meteor shields.
-Warning: Critical coolant mass reached.
 Warning: Language spritesheets could not be created because language subsystem has not been loaded yet. This should not happen--adjust the init_order in master_files/code/controllers/subsystem/language.dm.
 Warning: Navigational route fails \"IS_AUTHORIZED\". Please try againNN{0}.
 Warning: Patient is harboring some form of viral disease. Seek further medical attention.
@@ -3593,10 +3576,16 @@ Zombies have long lasting beef with Botanists. Their last incident involving a l
 \n\nThese have undergone a special honing process; they'll kill people even faster than they used to.
 \n{0} seem{1} hardier against the void of space.
 access denied!
+flaps its wings!
 is secured and ready to be used!
 it won't budge!
+jumps around!
+licks its fur!
 nothing happens!
 on cooldown!
+pecks at the ground!
+shakes its feathers!
+sweeps its tail!
 you were a doctor on one of Nanotrasen's space stations, but you left behind that damn corporation's tyranny and everything it stood for. From a metaphorical hell to a literal one, you find yourself nonetheless missing the recycled air and warm floors of what you left behind... but you'd still rather be here than there.
 you were a {0}'s assistant on a small trading station several sectors from here. Raiders attacked, and there was only one pod left when you got to the escape bay. You took it and launched it alone, and the crowd of terrified faces crowding at the airlock door as your pod's engines burst to life and sent you to this hell are forever branded into your memory.
 you were always joked about by your friends for \"not playing with a full deck\", as they so kindly put it. It seems that they were right when you, on a tour at one of Nanotrasen's state-of-the-art research facilities, were in one of the escape pods alone and saw the red button. It was big and shiny, and it caught your eye. You pressed it, and after a terrifying and fast ride for days, you landed here. You've had time to wisen up since then, and you think that your old friends wouldn't be laughing now.
@@ -3625,7 +3614,6 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} - {1} lacks symptom information!
 {0} - {1} lacks {2} information!
 {0} <B>:</B> The {1} @ location ({2},{3},{4}) transmitted the following signal <B>:</B> {5}/{6} via the radio circuit component.
-{0} Failsafe has been disengaged.
 {0} Grace protects you from the stun!
 {0} However, this one appears to be less wild in nature, and calmer around people.
 {0} IS NOW NAMED {1}.
