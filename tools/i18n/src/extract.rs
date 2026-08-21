@@ -48,6 +48,15 @@ const SINK_VARS: &[&str] = &[
     "name",
     "desc",
     "message",
+    // 生物死亡消息（`death_message = "snarls its last and perishes."`，74 处）。它经
+    // visible_message 广播、场上所有人可见，是**漏翻采集里出现频次最高的一类**（计数直接打满上限）。
+    // 从前只靠激进 pass 的整句闸门捡漏：以小写动词开头的（"snarls its last…"）一条都过不了。
+    "death_message",
+    // 同族：`deathmessage`（老写法）与 gib/分解消息。
+    "deathmessage",
+    // 配装预览名（`preview_name = "Croptop Bomber Jacket Plain"`，363 处）：偏好菜单里逐件显示，
+    // 漏翻采集在 tgui 那一侧大量命中。名字型短语过不了激进 pass 的整句闸门。
+    "preview_name",
     // /datum/emote 的按物种/形态分支消息：select_message_type() 按 user 选用哪一条，最终都汇到
     // run_emote 的输出边界反查。只列了 message 而漏掉这些分支 → 哑剧演员/异形/赛博格/AI/猴子
     // 的表情整类没进目录、runechat 全英文。不含 message_param（含 %t，由 select_param 在运行期
@@ -1540,6 +1549,13 @@ fn is_lang_arg_text(s: &str) -> bool {
 
 pub(crate) fn emit(catalog: &mut Catalog, type_path: &str, template: &str) {
     if !template.chars().any(|c| c.is_alphabetic()) {
+        return;
+    }
+    // 单字符串（`preview_name = "X"` 这种）永远不是值得翻译的文案，却是**标识符碰撞的高发区**：
+    // 进目录之后反查表会把任何恰好等于 "X" 的显示值改掉，而 `switch("X")` 这类比较随处都是
+    // （lint 的碰撞规则当场抓到 admin/topic.dm）。按字符数（不是字节）判，中文单字同样挡掉——
+    // 单个汉字的显示串也只可能是标识符或图标标签。
+    if template.trim().chars().count() < 2 {
         return;
     }
     // key 必须仍按**命名空间**算（`<ns>.<hash>`），否则全目录 key 变更 = 丢光全部译文。

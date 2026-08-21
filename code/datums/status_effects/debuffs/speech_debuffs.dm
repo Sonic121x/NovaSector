@@ -8,6 +8,10 @@
 	var/make_tts_message_original = FALSE
 	/// If set, this will be appended to the TTS filter of the message
 	var/tts_filter = ""
+	/// NOVA EDIT ADDITION - I18N - 中文按**字**切之后，效果自带的每词概率对单字太密（口吃 75% ⇒
+	/// 几乎每个字都结巴）。这一档决定有多大比例的字参与，独立于效果自身的概率。
+	/// 设成变量而不是写死：单测要确定性（拉到 100），调风格时也只改一处。
+	var/cjk_char_chance = 25
 
 /datum/status_effect/speech/on_creation(mob/living/new_owner, duration = 10 SECONDS)
 	src.duration = duration
@@ -53,7 +57,7 @@
 	for(var/i in 1 to length(words))
 		// NOVA EDIT ADDITION - I18N - 按字切之后，效果自带的「每词概率」对单字而言太密（75% 的字
 		// 都口吃就没法读了）。这里先抽掉四分之三的字，让密度回到接近逐词的观感。
-		if(separator == "" && !prob(25))
+		if(separator == "" && !prob(cjk_char_chance))
 			new_words += words[i]
 			continue
 		new_words += apply_speech(words[i], i)

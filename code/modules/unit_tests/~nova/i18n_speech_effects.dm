@@ -27,7 +27,10 @@
 	var/mob/living/carbon/human/consistent/speaker = allocate(/mob/living/carbon/human/consistent)
 	var/datum/status_effect/speech/stutter/stutter = speaker.apply_status_effect(/datum/status_effect/speech/stutter, 10 MINUTES)
 	TEST_ASSERT(!isnull(stutter), "口吃状态效果未能施加")
-	stutter.stutter_prob = 100 // 断言要确定性：概率拉满，只留「按字切」这一个变量
+	// 断言要确定性：两档概率都拉满。按字采样那档（cjk_char_chance）默认 25%，13 个字全落空的
+	// 概率约 2.4% —— 不拉满就是一条**偶发红**的 flaky 测试（本轮实测撞上过一次）。
+	stutter.stutter_prob = 100
+	stutter.cjk_char_chance = 100
 
 	// ② 单个汉字必须能被口吃处理（原正则靠 \b + 拉丁字母定位，汉字匹配不上）。
 	var/single = stutter.apply_speech("我", 1)
