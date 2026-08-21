@@ -82,6 +82,9 @@ fn sink_message_args(name: &str) -> Option<&'static [usize]> {
         // 这种 switch 键，改写成 LANG 会当场把它弄坏。所以这个 sink 额外过一道**多词闸门**
         // （见 is_wordy_sink）：单 token 字面量一律不动，标识符键天然被挡在外面。
         "speak" => Some(&[0]),
+        // 电台播报（超物质分层警报、AI 播报、机器人电台）：talk_into(speaker, message, channel, …)。
+        // 与 speak 同样过多词闸门（proc 名常见，首参是 speaker、消息在 [1]）。
+        "talk_into" => Some(&[1]),
         _ => None,
     }
 }
@@ -129,7 +132,7 @@ fn keyword_arg_name(arg: &Expression) -> Option<String> {
 /// 该 sink 只改写**多词**字面量。用于 proc 名常见、首参未必是消息的汇聚点（`speak`）：
 /// 单 token 实参里 switch 键/标识符浓度极高，与 LANG 实参那条多词闸门同一条安全线。
 fn is_wordy_sink(name: &str) -> bool {
-    matches!(name, "speak")
+    matches!(name, "speak" | "talk_into")
 }
 
 fn is_announce_sink(name: &str) -> bool {

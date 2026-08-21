@@ -68,7 +68,7 @@
 	opened = FALSE
 	if(internal_radio)
 		var/area/src_area = get_area(src)
-		internal_radio.talk_into(src, "A cortical borer has been trapped in [src_area].", RADIO_CHANNEL_COMMON)
+		internal_radio.talk_into(src, LANG("obj.4b28d589", list(src_area)), RADIO_CHANNEL_COMMON)
 	playsound(src, 'sound/machines/airlock/boltsup.ogg', 30, TRUE)
 	update_appearance()
 

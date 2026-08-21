@@ -227,3 +227,8 @@ Known trap classes:
   · 剩下 176 条里 266→有 266 条根本不在目录（动物拟声词那类本就不必翻，机器人播报那类是 rewrite 漏了 sink）。
 - **`speak` 类 sink 要按「多词闸门」注册，不能整体放开** — 机器人播报（beepsky 逮捕通报、自定义售货机、mulebot…）走 `/mob/living/basic/bot/proc/speak(message)`，而 `speak` 是常见 proc 名：`/datum/brain_trauma/special/godwoken/proc/speak(type)` 收的是 `"unstun"`/`"heal"` 这种 **switch 键**，整体注册会当场把它改写成 LANG、逻辑当场坏。`rewrite.rs` 的 `is_wordy_sink` 给这类 sink 加一道多词闸门（去占位符后须含空格），单 token 实参一律不动 —— 与 LANG 实参、AC 字典的多词安全线同源。
 - **顺序陷阱：必须 extract 在前、rewrite 在后** — 反过来跑会产出**悬空 key**：rewrite 先把字面量换成 `LANG(key)`，extract 再跑时源码里已经没有那条字面量，键永远发不出来（本次 `custom.dm` 两条中招）。恢复：从 rewrite 的 diff 取原文 → `nova-i18n key <ns> <tpl>` 校验哈希 → 写回 en/zh 目录。
+- **examine 面可以离线枚举，不需要玩家** — examine 从不进日志，但它能被程序化产生：抽样实例化 atom → `examine(viewer)` → 过 `lang_fallback_apply_html` → 落盘离线分析。实测抽样 4155 个类型，去标签后只剩 **61 条**去重残留英文片段——这一面已经很干净，而剩下的那 61 条**每一条都指向一个具体机制缺口**，比任何静态扫描都准：
+  · `a cutting tool`（命中 38 次）→ `tool_behaviour_name()` 的 switch **返回值**，被当 LANG 实参包在 `span_bold` 里显示。proc 返回值不是 sink 实参也不是类型变量，抽取器整类够不着 → 加进 `is_display_descriptor_proc`。同类还有餐厅顾客点单的 `get_order_line()`。
+  · `变成 3 生肉片s` → 模板 `It can be turned into {0} {1}{2} with {3}!` 的 `{2}` 是**运行期传进来的英文复数后缀**（`amount > 1 ? "s" : ""`）。中文名词不加复数，正解是让 **zh 模板不引用该实参**（`lang_interpolate` 对模板里没出现的占位符直接忽略），而不是去改数据。
+  · 制造商名（`Akhter Company Frontier Equipment` 等）是专名，保持英文正确。
+- **`talk_into` 与 `speak` 同属「未注册 sink」类** — 电台播报（超物质分层警报 `CRYSTAL DELAMINATION IMMINENT! Integrity: [x]%`、AI 播报、机器人电台）走 `talk_into(speaker, message, channel)`，消息在 **[1]**。它和 `speak` 一样要过多词闸门（proc 名常见）。判据仍是那条：**同一句话在聊天里正常、在别处英文**，或「目录里有模板、源码里是裸插值串」。

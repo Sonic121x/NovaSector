@@ -337,7 +337,7 @@
 	// You thought you could sneak this one by your coworkers?
 	button_stage = BUTTON_ARMED
 	update_appearance()
-	radio.talk_into(src, "SUPERMATTER EMERGENCY STOP BUTTON ARMED!", RADIO_CHANNEL_ENGINEERING)
+	radio.talk_into(src, LANG("obj.c3201768", null), RADIO_CHANNEL_ENGINEERING)
 	visible_message(span_danger(LANG("obj.638ae7b3", list(user, src))))
 
 	// Let the admins know someone's fucked up

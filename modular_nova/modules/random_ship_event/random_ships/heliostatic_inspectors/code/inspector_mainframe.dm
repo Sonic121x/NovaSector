@@ -115,9 +115,9 @@
 
 	// Send special messages when special statuses are active
 	if(current_alert_level == "Status Obsidian")
-		radio.talk_into(src, "ENCRYPTED BURST: OBSIDIAN. Self-destruct and denial protocols initiated. All assets to be denied to enemy.", RADIO_CHANNEL_GUILD)
+		radio.talk_into(src, LANG("obj.772a1240", null), RADIO_CHANNEL_GUILD)
 	else
-		radio.talk_into(src, "DISTRESS SIGNAL REPEATING: Requesting immediate assistance. Patrol vessel under sustained combat operations. All available units respond.", RADIO_CHANNEL_GUILD)
+		radio.talk_into(src, LANG("obj.5ae3254e", null), RADIO_CHANNEL_GUILD)
 
 	// Cancel any existing timer before creating a new one to prevent stacking
 	if(sos_timer_id)
@@ -178,7 +178,7 @@
 
 	current_alert_level = level_name
 	to_chat(user, span_notice(LANG("obj.9e4c98b7", list(level_name))))
-	radio.talk_into(src, "ALERT LEVEL CHANGED: [level_name] - [level_description]", RADIO_CHANNEL_GUILD)
+	radio.talk_into(src, LANG("obj.9dd59e39", list(level_name, level_description)), RADIO_CHANNEL_GUILD)
 	balloon_alert(user, LANG("obj.270c75ba", null))
 	playsound(src, 'sound/machines/terminal/terminal_prompt.ogg', 50, TRUE)
 	update_appearance()
@@ -201,9 +201,9 @@
 		balloon_alert(user, LANG("obj.05d6c59b", null))
 		playsound(src, 'modular_nova/modules/random_ship_event/random_ships/heliostatic_inspectors/sounds/alarm_small_09.ogg', 75, TRUE)
 		if(current_alert_level == "Status Obsidian")
-			radio.talk_into(src, "ENCRYPTED BURST: OBSIDIAN. Self-destruct and denial protocols initiated. All assets to be denied to the enemy.", RADIO_CHANNEL_GUILD)
+			radio.talk_into(src, LANG("obj.461124d5", null), RADIO_CHANNEL_GUILD)
 		else
-			radio.talk_into(src, "EMERGENCY DISTRESS SIGNAL ACTIVATED. Requesting immediate assistance. Patrol vessel under sustained combat operations. All available units respond.", RADIO_CHANNEL_GUILD)
+			radio.talk_into(src, LANG("obj.867559d8", null), RADIO_CHANNEL_GUILD)
 		addtimer(CALLBACK(src, PROC_REF(broadcast_sos_signal)), 30 SECONDS, TIMER_STOPPABLE)
 	else
 		if(!cargo_disruption_active)
@@ -215,7 +215,7 @@
 		to_chat(user, span_notice(LANG("obj.f2145b45", null)))
 		balloon_alert(user, LANG("obj.dd34cf20", null))
 		playsound(src, 'sound/machines/terminal/terminal_prompt.ogg', 50, TRUE)
-		radio.talk_into(src, "Distress signal deactivated.", RADIO_CHANNEL_GUILD)
+		radio.talk_into(src, LANG("obj.1dcb5bc0", null), RADIO_CHANNEL_GUILD)
 	update_appearance()
 
 /obj/machinery/inspector_mainframe/update_icon_state()

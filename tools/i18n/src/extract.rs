@@ -213,7 +213,18 @@ pub fn is_examine_proc(proc_name: &str) -> bool {
 /// 材料详检那一长串形容词整类没进目录。按 **proc 名**界定（同 examine 家族的做法），
 /// 比按变量名穷举稳。
 pub fn is_display_descriptor_proc(proc_name: &str) -> bool {
-    matches!(proc_name, "get_descriptor" | "get_tooltip")
+    matches!(
+        proc_name,
+        "get_descriptor"
+            | "get_tooltip"
+            // 工具用途显示名（`tool_behaviour_name(TOOL_KNIFE)` → "a cutting tool"）：这批 switch
+            // 返回值被当作 LANG 实参包在 span_bold 里显示（「它可以用 **a cutting tool** 变成…」），
+            // examine 抽样里是残留英文的头号来源（4155 个类型里命中 38 次）。
+            | "tool_behaviour_name"
+            // 餐厅顾客的点单台词（`"I'll take a [份量] of [试剂名]"`）：整句经 say() 说出来，
+            // 但它是 proc 返回值、不是 sink 实参，抽取器够不着。
+            | "get_order_line"
+    )
 }
 
 /// 玩家可见的「显示字段」名：这些字段在 proc 里被 `+=` 追加时，追加内容一定是给玩家看的
@@ -833,6 +844,9 @@ fn sink_message_args(name: &str) -> Option<&'static [usize]> {
         "add_raw_text" => Some(&[0]),
         // 机器人播报。与 rewrite.rs 同表；那边额外过多词闸门（`speak("unstun")` 这类 switch 键不改写）。
         "speak" => Some(&[0]),
+        // 电台播报（超物质分层警报、AI 播报、机器人电台）：talk_into(speaker, message, channel, …)。
+        // 与 speak 同样过多词闸门（proc 名常见，首参是 speaker、消息在 [1]）。
+        "talk_into" => Some(&[1]),
         // 手术每一步的可见/痛觉消息。整个 surgery 模块的玩家可见文本几乎都从这两个 proc 出去，
         // 而它们只是包了一层 visible_message/to_chat，通用 sink 检测看不穿 → 整模块没进目录。
         // display_results(surgeon, target, self_message, detailed_message, vague_message, …)

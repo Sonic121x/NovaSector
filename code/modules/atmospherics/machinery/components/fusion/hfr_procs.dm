@@ -348,7 +348,7 @@
 		alarm()
 
 		if(critical_threshold_proximity > emergency_point)
-			radio.talk_into(src, "[emergency_alert] Integrity: [get_integrity_percent()]%", common_channel)
+			radio.talk_into(src, LANG("obj.c25eee73", list(emergency_alert, get_integrity_percent())), common_channel)
 			lastwarning = REALTIMEOFDAY
 			if(!has_reached_emergency)
 				investigate_log("has reached the emergency point for the first time.", INVESTIGATE_HYPERTORUS)
@@ -356,11 +356,11 @@
 				has_reached_emergency = TRUE
 			send_radio_explanation()
 		else if(critical_threshold_proximity >= critical_threshold_proximity_archived) // The damage is still going up
-			radio.talk_into(src, "[warning_alert] Integrity: [get_integrity_percent()]%", engineering_channel)
+			radio.talk_into(src, LANG("obj.c25eee73", list(warning_alert, get_integrity_percent())), engineering_channel)
 			lastwarning = REALTIMEOFDAY - (WARNING_TIME_DELAY * 5)
 			send_radio_explanation()
 		else // Phew, we're safe
-			radio.talk_into(src, "[safe_alert] Integrity: [get_integrity_percent()]%", engineering_channel)
+			radio.talk_into(src, LANG("obj.c25eee73", list(safe_alert, get_integrity_percent())), engineering_channel)
 			lastwarning = REALTIMEOFDAY
 
 	//Melt
@@ -392,13 +392,13 @@
 		return
 
 	if(warning_damage_flags & HYPERTORUS_FLAG_HIGH_POWER_DAMAGE)
-		radio.talk_into(src, "Warning! Shield destabilizing due to excessive power!", engineering_channel)
+		radio.talk_into(src, LANG("obj.f11c63f9", null), engineering_channel)
 	if(warning_damage_flags & HYPERTORUS_FLAG_IRON_CONTENT_DAMAGE)
-		radio.talk_into(src, "Warning! Iron shards are damaging the internal core shielding!", engineering_channel)
+		radio.talk_into(src, LANG("obj.d852f14d", null), engineering_channel)
 	if(warning_damage_flags & HYPERTORUS_FLAG_HIGH_FUEL_MIX_MOLE)
-		radio.talk_into(src, "Warning! Fuel mix moles reaching critical levels!", engineering_channel)
+		radio.talk_into(src, LANG("obj.62025bce", null), engineering_channel)
 	if(warning_damage_flags & HYPERTORUS_FLAG_IRON_CONTENT_INCREASE)
-		radio.talk_into(src, "Warning! Iron amount inside the core is increasing!", engineering_channel)
+		radio.talk_into(src, LANG("obj.84c285c7", null), engineering_channel)
 
 /**
  * Called by check_alert() in this file
@@ -428,7 +428,7 @@
 
 	for(var/i in HYPERTORUS_COUNTDOWN_TIME to 0 step -10)
 		if(critical_threshold_proximity < melting_point) // Cutting it a bit close there engineers
-			radio.talk_into(src, "[safe_alert] Failsafe has been disengaged.", common_channel)
+			radio.talk_into(src, LANG("obj.3e4a414a", list(safe_alert)), common_channel)
 			final_countdown = FALSE
 			return
 		else if((i % 50) != 0 && i > 50) // A message once every 5 seconds until the final 5 seconds which count down individually
