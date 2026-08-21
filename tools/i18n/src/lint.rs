@@ -156,6 +156,14 @@ struct BareLiteralCollector<'ctx> {
 }
 
 impl<'ctx> BareLiteralCollector<'ctx> {
+    fn record(&mut self, text: &str, loc: dm::Location) {
+        if !self.hits.contains_key(text) {
+            let path = self.context.file_path(loc.file);
+            self.hits
+                .insert(text.to_string(), format!("{}:{}", path.display(), loc.line));
+        }
+    }
+
     fn visit_block(&mut self, block: &[Spanned<Statement>]) {
         for stmt in block.iter() {
             self.visit_stmt(&stmt.elem, stmt.location);
@@ -217,10 +225,18 @@ impl<'ctx> BareLiteralCollector<'ctx> {
                 }
             }
             Term::String(text) => {
-                if !self.hits.contains_key(text.as_str()) {
-                    let path = self.context.file_path(loc.file);
-                    self.hits
-                        .insert(text.to_string(), format!("{}:{}", path.display(), loc.line));
+                self.record(text, loc);
+            }
+            // 插值串同样要查：`speak("[mode] level [threat] scumbag [name] in [area].")` 的**模板形态**
+            // （`{0} level {1} scumbag {2} in {3}.`）早就在目录里、也译好了，缺的只是 rewrite 不认那个
+            // sink。只看纯字面量会整类漏掉——beepsky 的逮捕播报就是这么在目录里躺了很久的。
+            Term::InterpString(..) => {
+                let expr = Expression::Base {
+                    term: Box::new(Spanned::new(loc, term.clone())),
+                    follow: Box::new([]),
+                };
+                if let Some(template) = crate::template::build_template(&expr) {
+                    self.record(&template, loc);
                 }
             }
             Term::Expr(inner) => self.visit_expr(inner, loc),
@@ -248,6 +264,11 @@ fn is_sentence_shaped(text: &str) -> bool {
         return false;
     }
     trimmed.ends_with(['.', '!', '?'])
+}
+
+/// 目录值里也要放行**插值模板**（含 `{N}`）：规则 D 现在同时比对插值串的模板形态。
+fn is_catalog_candidate(value: &str) -> bool {
+    is_sentence_shaped(value)
 }
 
 /// 手写的 locale-only 目录文件（无 en 对应是设计如此）：状态词表与人工 AC 兜底。
@@ -802,7 +823,7 @@ fn lint_identifier_collisions(
     let en_full = load_catalog(&catalog_root.join("en"));
     let catalog_sentences: BTreeSet<&str> = en_full
         .values()
-        .filter(|v| !v.contains('{') && is_sentence_shaped(v))
+        .filter(|v| is_catalog_candidate(v))
         .map(|v| v.as_str())
         .collect();
     let mut bare_hits: Vec<(String, String)> = bare
