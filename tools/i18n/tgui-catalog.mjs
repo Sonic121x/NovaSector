@@ -1120,6 +1120,11 @@ const CONSTANT_LABEL_TABLES = [
     { file: 'interfaces/ChemRecipeDebug.tsx', tables: ['TEMP_MODES'] },
     // 管道分发器的根分类页签。`act('category', { category: i })` 回传的是**索引**，纯显示。
     { file: 'interfaces/RapidPipeDispenser.tsx', tables: ['ROOT_CATEGORIES'] },
+    // 恶魔名生成器的**选词按钮**。`PREFIXES`/`TITLES`/`SUFFIXES` 是真词（`Dark`/`Lord`/`the Red`），
+    // 玩家要读着它们挑选，该翻；**`NAMES` 是音节**（`hal`/`ve`/`odr`），没有词义、也没有对应的中文
+    // 音节，不收。`act(title)` 回传的是**原变量**而不是渲染出来的文本，所以 DM 侧拼出的恶魔名
+    // 始终是英文 —— 按钮翻成中文不会造出中英混排的名字。
+    { file: 'interfaces/CodexGigas.tsx', tables: ['PREFIXES', 'TITLES', 'SUFFIXES'] },
     // 会计控制台的「经济崩溃」滚动播报词条。
     { file: 'interfaces/AccountingConsole/helpers.ts', tables: ['doomMessages'] },
   ].flatMap(({ file, tables }) =>
@@ -1178,6 +1183,98 @@ const COMPONENT_PROP_LABELS = [
     }),
   ),
 ];
+
+/// 「局部变量一跳」（TS 侧）：赋给**后来出现在显示位置**的局部变量的字符串字面量。
+///
+/// `const modeText = regexSearch ? 'RegEx Mode' : 'Standard Mode';` 之后 `{modeText}` 渲染 ——
+/// **运行期本来就翻得动**（JSX children 走 auto-localize），缺的只有抽取：字面量既不在 JSX 里、
+/// 也不在可翻 prop 上，walker 看不见它。
+///
+/// 准入面用「该标识符是否出现在显示位置」界定，而不是靠形态猜：
+///   · 显示位置 = JSX 表达式 children（`{modeText}`）或可翻 prop 的值（`title={modeText}`）；
+///   · 只收**纯字面量**赋值，含三元/`||`/`??` 的各支（运行期每支都是独立成品串）。
+/// 这条比 DM 侧那条同名规则**更准**：DM 只能拿「是不是 LANG 实参」当近似，这里能直接看渲染位置。
+/// 用作 `act()` 载荷的局部变量不在显示位置上，天然排除；两者兼有时（`content={x}` + `act(x)`）
+/// 也是安全的 —— auto-localize 只改渲染出来的文本，`act` 送的是变量本身。
+function extractDisplayLocals(catalog) {
+  for (const file of walk(path.join(TGUI_SOURCE_DIR, 'interfaces'))) {
+    if (!file.endsWith('.tsx')) continue;
+    let source;
+    try {
+      source = fs.readFileSync(file, 'utf8');
+    } catch {
+      continue;
+    }
+    const sf = ts.createSourceFile(
+      file,
+      source,
+      ts.ScriptTarget.Latest,
+      true,
+      ts.ScriptKind.TSX,
+    );
+
+    const displayIdents = new Set();
+    const noteIdent = (node) => {
+      if (node && ts.isIdentifier(node)) displayIdents.add(node.text);
+    };
+    const findDisplay = (node) => {
+      if (ts.isJsxExpression(node) && node.expression) {
+        // `{modeText}` 作为 children；作为属性值时父节点是 JsxAttribute，下面单独判。
+        if (!node.parent || !ts.isJsxAttribute(node.parent)) noteIdent(node.expression);
+      }
+      if (ts.isJsxAttribute(node)) {
+        const name = node.name.getText(sf);
+        if (
+          (TRANSLATABLE_PROPS.has(name) || OPTION_TEXT_PROPS.has(name)) &&
+          node.initializer &&
+          ts.isJsxExpression(node.initializer)
+        ) {
+          noteIdent(node.initializer.expression);
+        }
+      }
+      ts.forEachChild(node, findDisplay);
+    };
+    findDisplay(sf);
+    if (!displayIdents.size) continue;
+
+    const pushLiterals = (node, out) => {
+      if (!node) return;
+      if (ts.isParenthesizedExpression(node)) return pushLiterals(node.expression, out);
+      if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) {
+        out.push(node.text);
+        return;
+      }
+      if (ts.isConditionalExpression(node)) {
+        pushLiterals(node.whenTrue, out);
+        pushLiterals(node.whenFalse, out);
+        return;
+      }
+      if (
+        ts.isBinaryExpression(node) &&
+        (node.operatorToken.kind === ts.SyntaxKind.BarBarToken ||
+          node.operatorToken.kind === ts.SyntaxKind.QuestionQuestionToken ||
+          node.operatorToken.kind === ts.SyntaxKind.AmpersandAmpersandToken)
+      ) {
+        pushLiterals(node.left, out);
+        pushLiterals(node.right, out);
+      }
+    };
+
+    const collect = (node) => {
+      if (
+        ts.isVariableDeclaration(node) &&
+        ts.isIdentifier(node.name) &&
+        displayIdents.has(node.name.text)
+      ) {
+        const literals = [];
+        pushLiterals(node.initializer, literals);
+        for (const literal of literals) addText(catalog, literal);
+      }
+      ts.forEachChild(node, collect);
+    };
+    collect(sf);
+  }
+}
 
 function extractComponentPropLabels(catalog) {
   for (const { file, component, props } of COMPONENT_PROP_LABELS) {
@@ -1417,6 +1514,7 @@ function extractCatalog() {
   currentScope = 'tgui:constants';
   extractConstantTableLabels(catalog);
   extractComponentPropLabels(catalog);
+  extractDisplayLocals(catalog);
   for (const filePath of walk(TGUI_SOURCE_DIR)) {
     // 界面名即语境。`interfaces/ChemReactionChamber.tsx` -> `tgui:ChemReactionChamber`。
     currentScope = `tgui:${path.basename(filePath).replace(/\.(tsx|jsx|ts|js)$/, '')}`;

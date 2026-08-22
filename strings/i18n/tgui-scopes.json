@@ -556,6 +556,9 @@
   "Abductsoft 3000": [
     "tgui:AbductorConsole"
   ],
+  "Abf vqrnz cebprffhf pbzchgngvbanyvf fghqrer vapvcvrzhf Cebprffhf pbzchgngvbanyrf fhag erf nofgenpgnr dhnr pbzchgngberf vapbyhag Hg ribyihag, cebprffhf nyvn nofgenpgn dhnr qngn znavchyner qvphaghe Ribyhgvbavf cebprffhf qvevtvghe cre rkrzcyhz erthynr cebtenzzngvf ibpngv Ubzvarf cebtenzzngn nq cebprffhf erpgbf rssvpvhag Eriren fcvevghf pbzchgngbevv phz vapnagnzragvf pbavhatvzhf Cebprffhf pbzchgngvbanyvf rfg zhyghz fvzvyvf vqrnr irarsvpnr fcvevghf ivqrev nhg gnatv aba cbgrfg Aba rfg rk zngrevn pbzcbfvgn Frq vq cynpreng vcfhz Aba cbgrfg bcrenev bchf vagryyrpghnyr Erfcbaqrev cbgrfg Zhaqhz nssvprer cbgrfg rebtnaqb crphavnz nq evcnz iry cre oenppuvhz ebobgv snoevpnaqb zbqrenaqb Pbafvyvvf hgvzhe cebprffvohf nhthenaqv fhag fvphg vapnagnzragn irarsvpvv": [
+    "tgui:constants"
+  ],
   "Abilities": [
     "tgui:AntagInfoChangeling"
   ],
@@ -837,7 +840,8 @@
   "Active": [
     "tgui:CrimeWatcher",
     "tgui:NifProgram",
-    "tgui:VotePanel"
+    "tgui:VotePanel",
+    "tgui:constants"
   ],
   "Active Duty": [
     "tgui:NtosSelfServe"
@@ -992,6 +996,9 @@
   ],
   "Address": [
     "tgui:ServerMonitor"
+  ],
+  "Adept": [
+    "tgui:constants"
   ],
   "Adjust Exp": [
     "tgui:SkillPanel"
@@ -3669,7 +3676,8 @@
   ],
   "Blood": [
     "dm:labels",
-    "tgui:IDCBook"
+    "tgui:IDCBook",
+    "tgui:constants"
   ],
   "Blood Alcohol Content": [
     "tgui:MedicalKiosk"
@@ -6780,7 +6788,8 @@
     "tgui:Changelog"
   ],
   "Codes are made of a series of non-repeating digits. Each wrong guess will return the number of correct digits in correct locations, and the number of correct digits in incorrect locations.": [
-    "tgui:AbandonedCrate"
+    "tgui:AbandonedCrate",
+    "tgui:constants"
   ],
   "Codespeak": [
     "dm:labels"
@@ -7681,7 +7690,8 @@
     "dm:labels"
   ],
   "Count": [
-    "tgui:FishingCalculator"
+    "tgui:FishingCalculator",
+    "tgui:constants"
   ],
   "Country Side-Braid": [
     "dm:labels"
@@ -7894,7 +7904,8 @@
     "dm:labels"
   ],
   "Critical": [
-    "tgui:DnaScanner"
+    "tgui:DnaScanner",
+    "tgui:constants"
   ],
   "Criticality": [
     "tgui:RBMK2"
@@ -8615,6 +8626,9 @@
   ],
   "Dangerous Programs": [
     "tgui:Holodeck"
+  ],
+  "Dark": [
+    "tgui:constants"
   ],
   "Dark Armor": [
     "dm:labels"
@@ -10209,7 +10223,8 @@
     "tgui:AntagInfoSeparatist"
   ],
   "Each department on the station will order crates from their own personal consoles. These orders are ENTIRELY FREE! They do not come out of cargo's budget, and rather put the consoles on cooldown. So here's where you come in: The ordered crates will show up on your supply console, and you need to deliver the crates to the orderers. You'll actually be paid the full value of the department crate on delivery if the crate was not tampered with, making the system a good source of income.": [
-    "tgui:CargoHelp"
+    "tgui:CargoHelp",
+    "tgui:constants"
   ],
   "Each option corresponds to an area on centcom. Launched pods will be filled with items in these areas according to the \"Load from Bay\" options at the top left.": [
     "tgui:PodBays"
@@ -10486,6 +10501,9 @@
   ],
   "Elasticity: {0}%": [
     "tgui:MatMarket"
+  ],
+  "Elder": [
+    "tgui:constants"
   ],
   "Elderwood Garment": [
     "dm:labels"
@@ -11441,6 +11459,9 @@
   "Explosion Custom": [
     "tgui:constants"
   ],
+  "Explosive Hazard": [
+    "tgui:constants"
+  ],
   "Export": [
     "tgui:ChemRecipeDebug"
   ],
@@ -11686,6 +11707,9 @@
   "Fallback to Blooper": [
     "tgui:vocals"
   ],
+  "Fallen": [
+    "tgui:constants"
+  ],
   "Fallen Changeling": [
     "tgui:AntagInfoChangeling"
   ],
@@ -11915,6 +11939,9 @@
   ],
   "Fibers {0}/{1}": [
     "tgui:ForensicsSpoofer"
+  ],
+  "Fiery": [
+    "tgui:constants"
   ],
   "Fiery Sweat": [
     "dm:labels"
@@ -12387,7 +12414,8 @@
     "dm:labels"
   ],
   "Fluffy": [
-    "dm:labels"
+    "dm:labels",
+    "tgui:constants"
   ],
   "Fluffy Bangs": [
     "dm:labels"
@@ -14470,6 +14498,9 @@
   "Hellfire": [
     "dm:labels"
   ],
+  "Hellish": [
+    "tgui:constants"
+  ],
   "Hello, Pioneer! We have supplies for you to help you reach Orion. They aren't free, though!": [
     "tgui:OrionGame"
   ],
@@ -15529,7 +15560,8 @@
     "tgui:Teleporter"
   ],
   "In addition to MULEs and hand-deliveries, you can also make use of the disposals mailing system. Note that a break in the disposal piping could cause your package to be lost (this hardly ever happens), so this is not always the most secure ways to deliver something. You can wrap up a piece of paper and mail it the same way if you (or someone at the desk) wants to mail a letter.": [
-    "tgui:CargoHelp"
+    "tgui:CargoHelp",
+    "tgui:constants"
   ],
   "In addition to the buttons on your HUD, there are a few click shortcuts to speed up expansion and defense.": [
     "tgui:AntagInfoBlob"
@@ -15547,6 +15579,7 @@
     "tgui:Print"
   ],
   "Inactive": [
+    "tgui:constants",
     "tgui:index"
   ],
   "Inacusiate": [
@@ -15609,6 +15642,9 @@
   "Infinite": [
     "tgui:SpawnersMenu",
     "tgui:index"
+  ],
+  "Info": [
+    "tgui:constants"
   ],
   "Information": [
     "tgui:AntagInfoHeretic",
@@ -16364,6 +16400,9 @@
   "Joy Mask": [
     "dm:labels"
   ],
+  "Jr.": [
+    "tgui:constants"
+  ],
   "Judgement": [
     "tgui:MafiaPanel"
   ],
@@ -17044,6 +17083,9 @@
   "Leaf": [
     "dm:labels"
   ],
+  "Leak Hazard": [
+    "tgui:constants"
+  ],
   "Lean": [
     "dm:labels"
   ],
@@ -17703,6 +17745,7 @@
   ],
   "Log In": [
     "tgui:NtosCard",
+    "tgui:constants",
     "tgui:index"
   ],
   "Log Out": [
@@ -17885,6 +17928,9 @@
   ],
   "Lop Bunny Plushie": [
     "dm:labels"
+  ],
+  "Lord": [
+    "tgui:constants"
   ],
   "Lore": [
     "tgui:SpeciesPage"
@@ -18276,6 +18322,9 @@
   ],
   "Malfunctional": [
     "tgui:SimpleBot"
+  ],
+  "Malfunctioning": [
+    "tgui:constants"
   ],
   "Malfunctioning AI": [
     "dm:antagonists"
@@ -20759,6 +20808,9 @@
   "No Petri Dish": [
     "tgui:Microscope"
   ],
+  "No Pressure Detected": [
+    "tgui:constants"
+  ],
   "No Published Papers!": [
     "tgui:NtosScipaper"
   ],
@@ -20799,6 +20851,9 @@
   ],
   "No Tank": [
     "tgui:TransferValve"
+  ],
+  "No Tank Detected": [
+    "tgui:constants"
   ],
   "No Target Set": [
     "tgui:BluespaceArtillery",
@@ -20896,7 +20951,8 @@
     "tgui:DynamicAdmin"
   ],
   "No configurable options detected! Please report this to Nanotrasen.": [
-    "tgui:AutomatedAnnouncement"
+    "tgui:AutomatedAnnouncement",
+    "tgui:constants"
   ],
   "No connected mass driver": [
     "tgui:MassDriverControl"
@@ -21075,7 +21131,8 @@
   ],
   "No match. Refine your search.": [
     "tgui:AutomatedAnnouncement",
-    "tgui:RecordTabs"
+    "tgui:RecordTabs",
+    "tgui:constants"
   ],
   "No material recipes found!": [
     "tgui:ProcessingConsole"
@@ -21215,7 +21272,8 @@
     "tgui:TrackedPlaytime"
   ],
   "No records found.": [
-    "tgui:RecordTabs"
+    "tgui:RecordTabs",
+    "tgui:constants"
   ],
   "No refunds.": [
     "tgui:SpellTabDisplay"
@@ -21441,7 +21499,8 @@
     "tgui:SpaceHeater",
     "tgui:SpawnersMenu",
     "tgui:Symptom",
-    "tgui:calculateDangerLevel"
+    "tgui:calculateDangerLevel",
+    "tgui:constants"
   ],
   "None available": [
     "tgui:LimbsPage"
@@ -21459,7 +21518,8 @@
   ],
   "None.": [
     "tgui:Directives",
-    "tgui:System"
+    "tgui:System",
+    "tgui:constants"
   ],
   "Nonfunctional": [
     "tgui:AiRestorer"
@@ -22348,7 +22408,8 @@
   "Operational": [
     "tgui:NtosCyborgRemoteMonitor",
     "tgui:NtosRobotact",
-    "tgui:TramController"
+    "tgui:TramController",
+    "tgui:constants"
   ],
   "Operations": [
     "tgui:HypnoChair",
@@ -23502,7 +23563,8 @@
     "dm:labels"
   ],
   "Personal AIs are advanced models capable of nuanced interaction. They are designed to assist their masters in their work. They do not possess hands, thus they cannot interact with equipment or items. While in hologram form, you cannot be directly killed, but you may be incapacitated.": [
-    "tgui:PaiSubmit"
+    "tgui:PaiSubmit",
+    "tgui:constants"
   ],
   "Personal Bounties": [
     "tgui:CivCargoHoldTerminal"
@@ -24571,6 +24633,9 @@
   ],
   "Prefrences are Invalid! {0} | {1}": [
     "tgui:FoodPreferences"
+  ],
+  "Prelate": [
+    "tgui:constants"
   ],
   "Premium": [
     "dm:labels"
@@ -26095,6 +26160,9 @@
   ],
   "Reg. #514 forbids sending messages to a Head of Staff containing Erotic Rendering Properties.": [
     "tgui:MessageMonitor"
+  ],
+  "RegEx Mode": [
+    "tgui:constants"
   ],
   "RegEx Search": [
     "tgui:LogViewer"
@@ -27980,6 +28048,12 @@
   "Search for a spell...": [
     "tgui:index"
   ],
+  "Search for an interaction": [
+    "tgui:constants"
+  ],
+  "Search for an item": [
+    "tgui:constants"
+  ],
   "Search for an item...": [
     "tgui:index"
   ],
@@ -28069,6 +28143,12 @@
   "Searching for available contracts...": [
     "tgui:SyndContractor",
     "tgui:SyndicateContractor"
+  ],
+  "Searching is unavailable for this tab": [
+    "tgui:constants"
+  ],
+  "Searching...": [
+    "tgui:constants"
   ],
   "Sec got you? You can break any restraints on your host, including lockers and such, by right-clicking with Spit Blood active. You can also leave your host and ventcrawl out or break through the door.": [
     "tgui:AntagInfoBloodWorm"
@@ -28327,6 +28407,9 @@
   ],
   "Select Reaction": [
     "tgui:ChemRecipeDebug"
+  ],
+  "Select a Program": [
+    "tgui:constants"
   ],
   "Select a policy to view. These policies are displayed to players upon gaining the relevant role.": [
     "tgui:Policypanel"
@@ -29668,6 +29751,9 @@
   "Sine Wave": [
     "dm:labels"
   ],
+  "Sinful": [
+    "tgui:constants"
+  ],
   "Singed Blown Back": [
     "dm:labels"
   ],
@@ -30692,6 +30778,9 @@
   ],
   "Standard Blue": [
     "dm:labels"
+  ],
+  "Standard Mode": [
+    "tgui:constants"
   ],
   "Standard Power Cell": [
     "dm:labels"
@@ -32151,6 +32240,12 @@
   "Tank Compressor": [
     "tgui:TankCompressor"
   ],
+  "Tank Leaking": [
+    "tgui:constants"
+  ],
+  "Tank Pressure Nominal": [
+    "tgui:constants"
+  ],
   "Tank Top": [
     "dm:labels"
   ],
@@ -32188,7 +32283,8 @@
     "dm:labels"
   ],
   "Tank destroyed. Displaying last recorded data.": [
-    "tgui:TankCompressor"
+    "tgui:TankCompressor",
+    "tgui:constants"
   ],
   "Tank → Area": [
     "tgui:ModulesPane"
@@ -33449,7 +33545,8 @@
     "tgui:ShuttleBlueprints"
   ],
   "This system is suffering temporary outage due to overflow of traffic buffers. Until buffered traffic is processed, all further requests will be dropped. Frequent occurences of this error may indicate insufficient hardware capacity of your network. Please contact your network planning department for instructions on how to resolve this issue.": [
-    "tgui:NtnetRelay"
+    "tgui:NtnetRelay",
+    "tgui:constants"
   ],
   "This tool exists so we have at least some form of baseline for accessability, it is nowhere near gospel.": [
     "tgui:ColorBlindTester"
@@ -34768,6 +34865,9 @@
   "Unbolted": [
     "tgui:BetTable"
   ],
+  "Unbound": [
+    "tgui:constants"
+  ],
   "Unbuckle": [
     "tgui:index"
   ],
@@ -35612,6 +35712,9 @@
   "Virtual Pet": [
     "dm:labels"
   ],
+  "Viscount": [
+    "tgui:constants"
+  ],
   "Visibility": [
     "tgui:GenitalLayering",
     "tgui:GenitalLayeringTab",
@@ -35681,6 +35784,9 @@
   ],
   "Viva la Revolution!": [
     "tgui:AntagInfoRevolution"
+  ],
+  "Vizier": [
+    "tgui:constants"
   ],
   "Vocal Bark": [
     "tgui:character_voice",
@@ -35825,7 +35931,8 @@
   ],
   "Vote": [
     "tgui:EventPanel",
-    "tgui:VotePanel"
+    "tgui:VotePanel",
+    "tgui:constants"
   ],
   "Vote Cooldown": [
     "tgui:VotePanel"
@@ -37262,7 +37369,8 @@
     "tgui:AntagInfoOpfor"
   ],
   "You are expected to role play to some degree. Keep in mind: Not entering information may lead to you not being selected. Press submit to alert pAI cards of your candidacy.": [
-    "tgui:PaiSubmit"
+    "tgui:PaiSubmit",
+    "tgui:constants"
   ],
   "You are lucky to have escaped with your life. Attempting to dock again would be certain death.": [
     "tgui:OrionGame"
@@ -37855,6 +37963,9 @@
   "albino": [
     "dm:labels"
   ],
+  "alert admins": [
+    "tgui:constants"
+  ],
   "alien tongue": [
     "dm:labels"
   ],
@@ -37898,6 +38009,9 @@
   "audio_override_4910.dll": [
     "dm:labels"
   ],
+  "average": [
+    "tgui:constants"
+  ],
   "avian tongue": [
     "dm:labels"
   ],
@@ -37918,6 +38032,9 @@
   ],
   "back": [
     "tgui:ScannerGate"
+  ],
+  "bad": [
+    "tgui:constants"
   ],
   "bamboo": [
     "dm:labels"
@@ -38179,6 +38296,9 @@
   "golgi apparatus": [
     "dm:labels"
   ],
+  "good": [
+    "tgui:constants"
+  ],
   "gravity suspension harness": [
     "dm:labels"
   ],
@@ -38347,6 +38467,9 @@
     "tgui:InterfaceLockNoticeBox",
     "tgui:PortableTurret"
   ],
+  "long": [
+    "tgui:constants"
+  ],
   "long tongue": [
     "dm:labels"
   ],
@@ -38394,6 +38517,9 @@
   ],
   "middle": [
     "dm:labels"
+  ],
+  "moderate": [
+    "tgui:constants"
   ],
   "mouse_opacity": [
     "tgui:AppearanceInfo"
@@ -38614,6 +38740,9 @@
   "shimmer": [
     "tgui:AntagInfoHeretic"
   ],
+  "short": [
+    "tgui:constants"
+  ],
   "silver": [
     "dm:labels"
   ],
@@ -38738,11 +38867,23 @@
   "the Head of Security": [
     "dm:labels"
   ],
+  "the Lord of all things": [
+    "tgui:constants"
+  ],
+  "the Master": [
+    "tgui:constants"
+  ],
   "the Quartermaster": [
     "dm:labels"
   ],
+  "the Red": [
+    "tgui:constants"
+  ],
   "the Research Director": [
     "dm:labels"
+  ],
+  "the Soulless": [
+    "tgui:constants"
   ],
   "the same bounty cannot be claimed twice.": [
     "tgui:AntagInfoSpy"
@@ -38828,6 +38969,9 @@
   ],
   "velocity = current velocity + acceleration * time": [
     "tgui:Tutorial"
+  ],
+  "very long": [
+    "tgui:constants"
   ],
   "vis_flags": [
     "tgui:AppearanceInfo"
