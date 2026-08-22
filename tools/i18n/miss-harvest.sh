@@ -38,7 +38,11 @@ restore() {
 	fi
 	sed -i "s@^// MISS-HARVEST-DISABLED $GAGS_DEFINE@$GAGS_DEFINE@" "$COMPILE_OPTS"
 	rm -f tgstation.test.dme tgstation.test.dmb tgstation.test.rsc
-	echo "==> 已还原 $CONFIG 与 $COMPILE_OPTS"
+	rm -f data/next_map.json # 单测地图指定，别留给正常起服用
+	# 禁掉 rustg iconforge 之后地图预览图标改由 DM 回退生成，像素与已提交 .dmi 有差 —— 不还原
+	# 就会把它们当成本次改动一起提交（pseudo-test.sh 早就在还原，这里漏了）。
+	git checkout --quiet -- icons/map_icons/ 2>/dev/null || true
+	echo "==> 已还原 $CONFIG、$COMPILE_OPTS 与 icons/map_icons/"
 }
 trap restore EXIT
 

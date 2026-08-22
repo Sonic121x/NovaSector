@@ -823,7 +823,18 @@ fn for_each_statement_block(stmt: &Statement, f: &mut impl FnMut(&[dm::ast::Span
 /// 两趟：先收集「在 LANG 实参位置出现过的裸标识符」，再收集赋给这些标识符的字面量。
 /// 闸门复用 LANG 实参那条 `is_lang_arg_text`（去标签后须多词）—— 局部变量名下的标识符浓度
 /// 比类型变量高得多（`var/action = "toggle"`），单 token 一律不收。
-fn walk_lang_arg_locals(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog: &mut Catalog) {
+fn walk_lang_arg_locals(
+    block: &[dm::ast::Spanned<Statement>],
+    ns: &str,
+    catalog: &mut Catalog,
+    in_unit_tests: bool,
+) {
+    // 单测里的断言字面量（`"SSShe isss ssso sssasssy"`）同样是「赋给局部变量、再插进一条消息」的
+    // 形状。step 1 的类型变量那条路早就按**声明所在文件**排除了 unit_tests，proc 体这条路没有 ——
+    // 不挡就会把测试夹具串永久写进只增不减的目录。
+    if in_unit_tests {
+        return;
+    }
     let mut names = std::collections::HashSet::new();
     collect_lang_arg_idents_block(block, &mut names);
     if names.is_empty() {
@@ -838,11 +849,61 @@ fn walk_lang_arg_locals(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog
     }
 }
 
+/// 收集**插值串的槽**里的裸标识符（穿过 `span_*()` 之类的包装调用）。
+/// 与 `collect_bare_idents` 的区别：那个收的是整棵实参子树里的裸 ident，这个只下探到插值槽。
+fn collect_interp_slot_idents(expr: &Expression, out: &mut std::collections::HashSet<String>) {
+    match expr {
+        Expression::Base { term, .. } => match &term.elem {
+            Term::InterpString(_, parts) => {
+                for (opt, _) in parts.iter() {
+                    if let Some(e) = opt {
+                        collect_bare_idents(e, out);
+                    }
+                }
+            }
+            // `span_warning("…[x]…")` / `"[a]" + "[b]"` 之类的包装。
+            Term::Call(_, args) | Term::List(args) => {
+                for a in args.iter() {
+                    collect_interp_slot_idents(a, out);
+                }
+            }
+            Term::Expr(inner) => collect_interp_slot_idents(inner, out),
+            _ => {}
+        },
+        Expression::BinaryOp { lhs, rhs, .. } => {
+            collect_interp_slot_idents(lhs, out);
+            collect_interp_slot_idents(rhs, out);
+        }
+        Expression::TernaryOp { if_, else_, .. } => {
+            collect_interp_slot_idents(if_, out);
+            collect_interp_slot_idents(else_, out);
+        }
+        _ => {}
+    }
+}
+
 fn collect_lang_arg_idents_block(
     block: &[dm::ast::Spanned<Statement>],
     out: &mut std::collections::HashSet<String>,
 ) {
     for stmt in block.iter() {
+        // `gain_text = span_warning("You can't feel [subject] anymore!")`：赋给 **SINK_VARS 同名
+        // 变量**的插值串同样会进目录（那批变量名就是「玩家可见文案」的定义），槽里的局部变量照收。
+        if let Statement::Expr(Expression::AssignOp { lhs, rhs, .. }) = &stmt.elem {
+            if let Expression::Base { term, follow } = lhs.as_ref() {
+                let name = match &term.elem {
+                    Term::Ident(name) if follow.is_empty() => Some(name.as_str()),
+                    Term::Ident(_) => match follow.first().map(|f| &f.elem) {
+                        Some(Follow::Field(_, field)) => Some(field.as_str()),
+                        _ => None,
+                    },
+                    _ => None,
+                };
+                if name.is_some_and(|n| SINK_VARS.contains(&n)) {
+                    collect_interp_slot_idents(rhs, out);
+                }
+            }
+        }
         for_each_statement_expr(&stmt.elem, &mut |e| collect_lang_arg_idents_expr(e, out));
         for_each_statement_block(&stmt.elem, &mut |b| collect_lang_arg_idents_block(b, out));
     }
@@ -855,6 +916,19 @@ fn collect_lang_arg_idents_expr(
     match expr {
         Expression::Base { term, follow } => {
             if let Term::Call(name, args) = &term.elem {
+                // 插值槽里的局部变量：`gain_text = span_warning("You can't feel [subject] anymore!")`。
+                // 整句作为模板早就在目录里、也译好了，运行期由模板引擎逆匹配捕获 `{0}` 再递归本地化
+                // —— 但捕获到的是 `subject` 里那个**英文字面量**，而它从没进过目录。
+                //
+                // 准入面**必须限死在「本来就会进目录的显示模板」上**：一开始写成「proc 里任何插值串
+                // 的槽」，一次抽取就混进单测断言串（`SSShe isss ssso sssasssy`）、单位格式化的期望值
+                // （`535 mA`）、管理面板 HTML 骨架、`callback.object is null.` 这类调试串 —— 而目录
+                // 只增不减，脏键进去就永久留着。只认 sink 调用的实参这一种形状。
+                if sink_message_args(name.as_str()).is_some() {
+                    for a in args.iter() {
+                        collect_interp_slot_idents(a, out);
+                    }
+                }
                 if let Some(idx) = lang_format_key_index(name.as_str()) {
                     for (i, a) in args.iter().enumerate() {
                         if i > idx {
@@ -869,6 +943,7 @@ fn collect_lang_arg_idents_expr(
             if let Term::Expr(inner) = &term.elem {
                 collect_lang_arg_idents_expr(inner, out);
             }
+
             if let Term::List(args) | Term::SelfCall(args) | Term::ParentCall(args) = &term.elem {
                 for a in args.iter() {
                     collect_lang_arg_idents_expr(a, out);
@@ -1350,7 +1425,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                     // 运行时在 species.dm 的 compile_constant_data 反查落地。
                     // 「局部变量一跳」：赋给 LANG 实参标识符的字面量（见 walk_lang_arg_locals）。
                     // 与下面按 proc 名分派的规则正交，所有 proc 都要走一遍。
-                    walk_lang_arg_locals(block, &namespace, &mut catalog);
+                    walk_lang_arg_locals(block, &namespace, &mut catalog, suppress_aggressive || in_unit_tests(proc_value.location));
 
                     match proc_name.as_str() {
                         "get_species_description" => {

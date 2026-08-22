@@ -52,6 +52,15 @@ export function isMissCandidate(text: string): boolean {
   return true;
 }
 
+/** 立即发走已攒的 miss。离线扫掠用它在**每个界面之后**收口 —— 靠攒批定时器的话，
+ * 所有条目都会在扫掠末尾一次性发出，来源标签全变成最后那个界面。 */
+export function flushMisses(): void {
+  if (flushTimer !== null) {
+    clearTimeout(flushTimer);
+  }
+  flush();
+}
+
 function flush(): void {
   flushTimer = null;
   if (!pending.length) {

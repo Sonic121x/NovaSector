@@ -77,4 +77,11 @@
 	stutter.handle_message(speaker, english_args)
 	TEST_ASSERT(findtext(english_args[TREAT_MESSAGE_ARG], " "), "英文路径被中文改动破坏了词间空格")
 	var/list/english_table = lang_speech_replacements("chav_replacement.json", "chav")
-	TEST_ASSERT(!lang_contains_cjk(english_table[english_table[1]]), "英文 locale 下不应取到中文表")
+	// 判据只能看**键**，不能看值。`load_strings_file` 在非英文 locale 下对 strings/ 数据做**就地**
+	// 反查（`lang_reverse_tree`），英文表的值在加载那一刻就被换成中文了、而且缓存是全局的、一局只加载
+	// 一次 —— 拿值来断言等于在断言「这个文件是在切 locale 之前还是之后第一次被读的」，跑真 zh-Hans
+	// 必红。键从不被反查碰，才是「取的是哪张表」的可靠证据。
+	// 这条在伪 locale 门禁下是**假绿**：qps-ploc 把值包成 ⟦…⟧，不含 CJK，断言照样过。
+	// 而且要断言**一个中文键都没有**：叠加之后英文键排在前面，只看第一条区分不出 en 与 zh。
+	for(var/replacement_key in english_table)
+		TEST_ASSERT(!lang_contains_cjk(replacement_key), "英文 locale 下取到了中文表的键：[replacement_key]")

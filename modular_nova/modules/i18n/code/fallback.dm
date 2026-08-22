@@ -158,6 +158,21 @@ GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
 	. = lang_reverse_text_in(text, locale)
 	if(. != text)
 		return
+	// 整串 miss 之后、模板之前：**剥掉英文冠词再精确查一次**。
+	//
+	// BYOND 对非专有名词自动补 "The"/"a"（`"[atom]"` 的渲染），于是名字到达落地层时是
+	// `The mi-go`、`a wrench` —— 整串不是目录键，而剥掉冠词的余下部分早就在目录里。
+	// 从前只有 `lang_localize_arg` 和聊天的 name-span 分支各自做了这件事，于是「名字独立成块、
+	// 但包在 name span 以外的标签里」（`<b>[src]</b>` 那类）整块落不了地：实测 `The mi-go` /
+	// `The alien runner` 各 100 次打满计数，判据是漏翻记录里**片段与整块逐字节相同**。
+	// 与其继续猜是哪个标签，不如把这条并进共用链 —— 它要求**余下部分整串精确命中目录**，
+	// 比模板逆匹配和字面 AC 都保守，放在这个位置不会抢走任何更具体的证据。中文无冠词，丢掉即可。
+	var/stripped = lang_strip_article(text)
+	if(stripped)
+		. = lang_reverse_text_in(stripped, locale)
+		if(. != stripped)
+			return
+		. = text
 	if(allow_template)
 		. = lang_template_apply(text, locale)
 		if(. != text)

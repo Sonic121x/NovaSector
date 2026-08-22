@@ -156,6 +156,12 @@
 	// 反面：单数查不到时**不许**做任何形态猜测，原样返回。
 	TEST_ASSERT_EQUAL(lang_localize_arg("Zxqvurbs"), "Zxqvurbs", "单数查不到时不应改写实参")
 
+	// ⑪ 带冠词的名字整块（`The mi-go`）：BYOND 对非专名自动补 "The"，整串不是目录键。
+	// 落地链在整串 miss 之后要剥冠词再精确查一次 —— 这条从前只在 LANG 实参和聊天 name-span
+	// 两处各写了一遍，于是名字包在 `<b>` 之类别的标签里时整块落不了地。
+	var/articled = lang_localize_chain("The [I18N_LEAK_NAME]", I18N_LEAK_LOCALE, allow_template = FALSE, ac_mode = I18N_AC_NONE)
+	TEST_ASSERT_EQUAL(articled, "兹克夫单元", "带冠词的名字整块没有落地：[articled]")
+
 	// ③ 没有句末标点的两词碎片不得进字面 AC 字典（否则在句子中间开火）。
 	TEST_ASSERT(!lang_fallback_pattern_safe(I18N_LEAK_FRAGMENT), "两词碎片仍被放进 AC 字典，会从单词内部开火")
 	var/sentence = lang_fallback_apply("Zxqv can't stop me, Owl!", I18N_LEAK_LOCALE)

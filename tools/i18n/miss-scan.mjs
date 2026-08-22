@@ -38,7 +38,8 @@ for (let i = 0; i < args.length; i++) {
 }
 
 // ---- 读日志，跨文件聚合 ----
-const LINE_RE = /n=(\d+) src=(\w+) \| (.*)$/;
+// src 允许连字符：`tgui-ui` 用 `\w+` 匹配不到，整类会被静默丢掉（不是报 0 条，是**一行都不解析**）。
+const LINE_RE = /n=(\d+) src=([\w-]+) \| (.*)$/;
 /** text -> { count, sources:Set } */
 const misses = new Map();
 
