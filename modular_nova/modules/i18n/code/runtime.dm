@@ -21,7 +21,6 @@ GLOBAL_VAR_INIT(i18n_locale_resolved, FALSE)
 /// 早调用告警计数。上限见 I18N_MAX_EARLY_WARNINGS：一次启动最多报这么多条，
 /// 既能一轮把存量调用点全列出来（每轮只报一条要跑很多轮），又不至于刷屏。
 GLOBAL_VAR_INIT(i18n_early_reverse_warnings, 0)
-#define I18N_MAX_EARLY_WARNINGS 10
 
 /// `strings/` 下的**匹配表**：靠字面比对驱动功能，翻译=替换=破坏匹配，一律不反查。
 /// （展示型 flavor 表不在此列；口音替换表虽也保英文，但那是内容取舍、不是功能损坏，不登记在这。）
@@ -1571,4 +1570,3 @@ GLOBAL_LIST_INIT(i18n_payload_prose_keys, build_i18n_policy_set("payload_prose_k
 		text = word_re.Replace(text, name_subs[word_re])
 	return text
 
-#undef I18N_MAX_EARLY_WARNINGS

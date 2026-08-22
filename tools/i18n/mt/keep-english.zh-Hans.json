@@ -818,17 +818,5 @@
   "【新人软管制 / New Player Safeguard】限制已解除。Restrictions lifted.<br>{0}": "【新人软管制 / New Player Safeguard】限制已解除。Restrictions lifted.<br>{0}",
   "【新人软管制】再存活 {0} 分钟，限制就会自动解除。<br>{1} more minutes alive and the limits lift.": "【新人软管制】再存活 {0} 分钟，限制就会自动解除。<br>{1} more minutes alive and the limits lift.",
   "你刚刚已经提交过申诉，请等待 {0} 秒后再试。<br>You just filed an appeal; try again in {1} seconds.": "你刚刚已经提交过申诉，请等待 {0} 秒后再试。<br>You just filed an appeal; try again in {1} seconds.",
-  "你当前没有受到新人软管制，无需申诉。<br>You are not under the newbie safeguard; there is nothing to appeal.": "你当前没有受到新人软管制，无需申诉。<br>You are not under the newbie safeguard; there is nothing to appeal.",
-  "Clone": "Clone",
-  "Fall": "Fall",
-  "Floors": "Floors",
-  "Land": "Land",
-  "Mechs": "Mechs",
-  "Pre": "Pre",
-  "Quiet": "Quiet",
-  "Under-Floor": "Under-Floor",
-  "Wall-Mounted": "Wall-Mounted",
-  "Walls": "Walls",
-  "Introduction": "Introduction",
-  "Reprogram": "Reprogram"
+  "你当前没有受到新人软管制，无需申诉。<br>You are not under the newbie safeguard; there is nothing to appeal.": "你当前没有受到新人软管制，无需申诉。<br>You are not under the newbie safeguard; there is nothing to appeal."
 }

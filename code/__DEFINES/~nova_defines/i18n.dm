@@ -30,6 +30,11 @@
 #define I18N_AC_PROSE 1
 #define I18N_AC_FULL 2
 
+/// 早调用告警上限：一次启动最多报这么多条。runtime.dm 的反查哨兵与 fallback.dm 的
+/// AC 建表哨兵**共用**这一个上限，所以它住在共享 defines 里（单文件 define 会被
+/// 文件底部的 #undef 挡在另一个文件之外）。
+#define I18N_MAX_EARLY_WARNINGS 10
+
 /// LANG 实参的 HTML 兜底最多下探几层（那条路经模板引擎会绕回 lang_localize_arg 自身）。
 /// 每跳都是更短的子串、理论上必然收敛，钉上限只是不让聊天热路径有爆栈的可能。
 #define I18N_ARG_HTML_MAX_DEPTH 3

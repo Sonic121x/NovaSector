@@ -581,6 +581,38 @@ function addDisplayExpr(catalog, node) {
  * 不碰目录里那 590 多条 children 模板（`- {0}, the {1}` / `{0} of 12 total` 之流泛化骨架一旦
  * 进逆匹配面，就会把整句劫持成「中文脚手架裹英文」——DM 侧栽过这一跤）。
  */
+/// 属性值里可以各自成模板的分支。
+///
+/// `tooltip={min ? \`Min (${min})\` : 'Min'}` 里 `templateParts` 对三元直接返回一个纯占位符
+/// （没有 text 段）→ `propTemplate` 返回 null，**三元包一层就整条不抽**，sidecar 里根本没有
+/// `Min ({0})`。三元/`||`/`&&` 的每一支在运行期都是独立的成品串，各自当模板收即可；
+/// 每支仍要各自过 propTemplate 的三道安全线，准入面不放宽。
+function propTemplateBranches(node) {
+  if (!node) return [];
+  if (ts.isJsxExpression(node) || ts.isParenthesizedExpression(node)) {
+    return node.expression ? propTemplateBranches(node.expression) : [];
+  }
+  if (ts.isConditionalExpression(node)) {
+    return [
+      ...propTemplateBranches(node.whenTrue),
+      ...propTemplateBranches(node.whenFalse),
+    ];
+  }
+  if (
+    ts.isBinaryExpression(node) &&
+    (node.operatorToken.kind === ts.SyntaxKind.BarBarToken ||
+      node.operatorToken.kind === ts.SyntaxKind.AmpersandAmpersandToken ||
+      node.operatorToken.kind === ts.SyntaxKind.QuestionQuestionToken)
+  ) {
+    // `+` 链不在此列：那是一整串的组成部分，templateParts 自己会拼。
+    return [
+      ...propTemplateBranches(node.left),
+      ...propTemplateBranches(node.right),
+    ];
+  }
+  return [node];
+}
+
 function propTemplate(node) {
   const parts = templateParts(node);
   if (!parts) return null;
@@ -1072,6 +1104,13 @@ const CONSTANT_LABEL_TABLES = [
   // （`['Lord','Prelate','Count',…]`）与这里的 `weaponlist` 形状完全一样，但前者是**恶魔名
   // 生成器的音节/头衔表**，翻了就毁掉名字生成。既然形态分不开，就只登记确认过的。
   { file: 'interfaces/NovaTumsPrefs.tsx', table: 'SOUND_TOOLTIPS', values: true },
+  // 轨道面板的视图页签：**键是页签文字、值是图标名**（`heart`/`ghost`/`id-badge`）。
+  // 判据来自漏翻报告里的「同形不同待遇」——`Health` 页签是中文而 `Orbiters` 是英文。
+  { file: 'interfaces/Orbit/constants.ts', table: 'VIEWMODE', keys: true },
+  // 法术书的页签定义（`title` 是页签文字、`blurb` 是说明；`component` 是 React 组件引用）。
+  { file: 'interfaces/Spellbook/constants.ts', table: 'TAB2NAME', props: ['title', 'blurb'] },
+  // 生成面板的列表标题（**值**是文案，键 Objects/Turfs/Mobs 是查表用的）。
+  { file: 'interfaces/SpawnPanel/constants.tsx', table: 'listNames', values: true },
   // 管道分发器的模式复选框。`act('mode', { mode: tool.bitmask })` 回传的是**位掩码**，
   // `name` 纯显示；`bitmask` 是数字、不会被 props 白名单收进来。
   { file: 'interfaces/RapidPipeDispenser.tsx', table: 'TOOLS', props: ['name'] },
@@ -1081,6 +1120,8 @@ const CONSTANT_LABEL_TABLES = [
     { file: 'interfaces/ChemRecipeDebug.tsx', tables: ['TEMP_MODES'] },
     // 管道分发器的根分类页签。`act('category', { category: i })` 回传的是**索引**，纯显示。
     { file: 'interfaces/RapidPipeDispenser.tsx', tables: ['ROOT_CATEGORIES'] },
+    // 会计控制台的「经济崩溃」滚动播报词条。
+    { file: 'interfaces/AccountingConsole/helpers.ts', tables: ['doomMessages'] },
   ].flatMap(({ file, tables }) =>
     tables.map((table) => ({ file, table, elements: true })),
   ),
@@ -1114,6 +1155,28 @@ const COMPONENT_PROP_LABELS = [
     component: 'SingleLoadout',
     props: ['name', 'blurb'],
   },
+  // 反派「改写目标」按钮：6 个反派界面各传一个 `button_title`，组件内部渲染成
+  // `content={button_title}`（`content` 是可翻 prop，渲染期照常本地化），缺的只有抽取。
+  ...[
+    'AntagInfoChangeling',
+    'AntagInfoMalf',
+    'AntagInfoNinja',
+    'AntagInfoSpy',
+    'AntagInfoWizard',
+    'AntagInfoTraitor',
+  ].map((file) => ({
+    file: `interfaces/${file}.tsx`,
+    component: 'ReplaceObjectivesButton',
+    props: ['button_title', 'button_tooltip'],
+  })),
+  // 烧杯显示组件的标题：`title_label` 传进去后渲染成 children，同样只缺抽取。
+  ...['ChemDispenser', 'ChemRecipeDebug', 'ChemHeater', 'ChemMaster'].map(
+    (file) => ({
+      file: `interfaces/${file}.tsx`,
+      component: 'BeakerSectionDisplay',
+      props: ['title_label'],
+    }),
+  ),
 ];
 
 function extractComponentPropLabels(catalog) {
@@ -1157,7 +1220,7 @@ function extractComponentPropLabels(catalog) {
 }
 
 function extractConstantTableLabels(catalog) {
-  for (const { file, table, props, values, elements } of CONSTANT_LABEL_TABLES) {
+  for (const { file, table, props, values, elements, keys } of CONSTANT_LABEL_TABLES) {
     const filePath = path.join(TGUI_SOURCE_DIR, file);
     let source;
     try {
@@ -1196,6 +1259,13 @@ function extractConstantTableLabels(catalog) {
           // `elements`：**裸字符串数组**（`const weaponlist = ['Fist Fight', …]`）。
           // 这类常量住在 .tsx 里但不在 JSX 中，walk() 看不见；渲染时 `{w}` 作 children
           // 由 auto-localize 落地，所以缺的只有抽取这一步。
+          // `keys`：**assoc 的键才是文案、值是标识符**。`VIEWMODE = {Health:'heart', …}` 的键
+          // 渲染成页签文字、值是图标名 —— 与 examine_tags 那条「键即文案」同形，与绝大多数
+          // 「键是查表名」的表恰好相反，所以只能逐表登记、不能按形态放开。
+          if (keys && ts.isPropertyAssignment(inner)) {
+            const key = propertyName(inner.name);
+            if (key) addText(catalog, normalizeText(key));
+          }
           if (elements && ts.isArrayLiteralExpression(inner)) {
             for (const element of inner.elements) {
               addText(catalog, literalText(element));
@@ -1393,10 +1463,12 @@ function extractCatalog() {
             addDisplayExpr(catalog, initializer); // 含三元/|| 两支（content={x?'Retract':'Deploy'}）
             // 运行期拼接（`` title={`Reading: ${x}`} ``）：addDisplayExpr 按「形状不可复原」
             // 整条不抽，改按模板收，运行时由 localize.ts 的逆匹配还原。
-            const template = propTemplate(initializer);
-            if (template) {
-              addText(catalog, template);
-              propTemplates.add(normalizeText(stripGrammarMacros(template)));
+            for (const branch of propTemplateBranches(initializer)) {
+              const template = propTemplate(branch);
+              if (template) {
+                addText(catalog, template);
+                propTemplates.add(normalizeText(stripGrammarMacros(template)));
+              }
             }
           }
         }

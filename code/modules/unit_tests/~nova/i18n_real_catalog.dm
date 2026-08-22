@@ -95,4 +95,49 @@
 	TEST_ASSERT_NOTEQUAL(objective_out, objective_line, "反派目标行应被模板逆匹配整条翻译")
 	TEST_ASSERT(!findtext(objective_out, "from escaping alive"), "不应只翻一半、留下英文残句：[objective_out]")
 
+	// ⑥ 两段**运行期追加后缀**被 jointext 拼在一起（职业描述的 antag opt-in 段）。两段各自都是
+	// 目录键、也都译好了，拼起来的整串不是键 → 只能靠字面 AC 分别做子串替换。分层断言：
+	// 先确认闸门放行（能进 AC 字典），再确认整条真的被替换。
+	// 漏翻采集里它长期以「基础句已是中文、后缀整段英文」的形态出现。
+	TEST_ASSERT(lang_fallback_pattern_safe(" Targetable by contractors."), "该后缀应能进 AC 字典（多词 + 句末标点）")
+	var/joined_suffix = " Targetable by contractors. Targetable by heretics."
+	var/joined_out = lang_fallback_apply(joined_suffix, LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(joined_out, "Targetable by"), "拼接后的两段后缀应各自被 AC 替换：[joined_out]")
+	// ⑥b 真实形态是「基础句 + 两段后缀」拼成一整行。基础句是**带占位符的模板**，模板引擎会命中它；
+	// 而链在模板命中后**提前返回**、不再跑 AC → 同一串里剩下的英文永远落不了地。
+	// 症状：基础句已是中文、后缀整段英文（漏翻采集里长期就是这个形态）。
+	var/opt_in_line = "Forces a minimum of Yes - Kill antag opt-in. Targetable by contractors. Targetable by heretics."
+	var/opt_in_out = lang_fallback_apply(opt_in_line, LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(opt_in_out, "Targetable by"), "模板命中之后，同一串里剩下的英文仍应过 AC：[opt_in_out]")
+	// ⑥b2 **带前导空格**的同一串。目录模板是 `" Forces a minimum of {0} antag opt-in."`（前导空格是
+	// 字面段的一部分），少一个空格锚就匹配不上、于是上面那条走了 AC 全都翻掉、看着是通过的。
+	// 真实调用（lang_localize_job_description 把三段后缀一起喂进来）带着那个空格 → 模板命中
+	// → 链**提前返回**、AC 不再跑 → 后两段纯串后缀永远英文。
+	// 一个空格的差别就能让测试走另一条路 —— 照抄真实形态，别手写等价物。
+	var/opt_in_spaced = " Forces a minimum of Yes - Kill antag opt-in. Targetable by contractors. Targetable by heretics."
+	var/opt_in_spaced_out = lang_fallback_apply(opt_in_spaced, LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(opt_in_spaced_out, "Targetable by"), "模板命中之后，同一串里剩下的英文仍应过 AC：[opt_in_spaced_out]")
+	// ⑥c 漏翻日志里**逐字节**的那一行：基础句已经由 LANG 路径翻成中文，后缀还是英文。
+	// 前两条都过而线上仍漏，说明差别就在「输入里已经混着中文」这一点上——照抄真实形态才测得出。
+	var/mixed_line = "强制至少是 - 杀死名玩家选择反派身份。 Targetable by contractors. Targetable by heretics."
+	var/mixed_out = lang_fallback_apply(mixed_line, LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(mixed_out, "Targetable by"), "中英混排行里的英文后缀仍应被 AC 替换：[mixed_out]")
+
+	// ⑥d AC 字典的**建表时序**：i18n_cache 还没就绪时 lang_build_reverse 会「返回空表但不缓存」，
+	// 而 lang_fallback_setup 从前拿到空表就把 state 钉成 "none" —— 那是**永久**的，整局字面 AC
+	// 无声关闭。这里模拟那一刻：清掉 state 与 cache 再 setup，必须**不写 state**（留待下次重试）。
+	var/list/saved_cache = GLOB.i18n_cache[LANGUAGE_LOCALE_ZH_HANS]
+	// 这一格**故意**制造「目录未就绪」，会撞响 lang_fallback_setup 的早调用哨兵；
+	// 而 stack_trace 在单测里算 runtime = 直接判失败。先把告警配额打满，测完复原。
+	var/saved_warnings = GLOB.i18n_fallback_early_warnings
+	GLOB.i18n_fallback_early_warnings = I18N_MAX_EARLY_WARNINGS
+	GLOB.i18n_fallback_state -= LANGUAGE_LOCALE_ZH_HANS
+	GLOB.i18n_cache -= LANGUAGE_LOCALE_ZH_HANS
+	TEST_ASSERT(!lang_fallback_setup(LANGUAGE_LOCALE_ZH_HANS), "目录未就绪时 setup 应返回 FALSE")
+	TEST_ASSERT(isnull(GLOB.i18n_fallback_state[LANGUAGE_LOCALE_ZH_HANS]), "目录未就绪时**不得**把 state 钉成 none —— 那会让整局 AC 永久关闭")
+	GLOB.i18n_cache[LANGUAGE_LOCALE_ZH_HANS] = saved_cache
+	GLOB.i18n_fallback_state -= LANGUAGE_LOCALE_ZH_HANS
+	TEST_ASSERT(lang_fallback_setup(LANGUAGE_LOCALE_ZH_HANS), "目录就绪后 setup 应能重新建起字典")
+	GLOB.i18n_fallback_early_warnings = saved_warnings
+
 	GLOB.i18n_server_locale = saved_locale

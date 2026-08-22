@@ -100,14 +100,14 @@
 			var/tissue_text = hit_bodypart.get_external_description()
 			extra_wound_details = ", [weapon.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] at the remaining [tissue_text]"
 
-	var/attack_message_spectator = "[src] [message_verb_continuous][message_hit_area] with [weapon][extra_wound_details]!"
-	var/attack_message_victim = "You're [message_verb_continuous][message_hit_area] with [weapon][extra_wound_details]!"
-	var/attack_message_attacker = "You [message_verb_simple] [src][message_hit_area] with [weapon][extra_wound_details]!"
+	var/attack_message_spectator = LANG("mob.26ba31da", list(src, message_verb_continuous, message_hit_area, weapon, extra_wound_details)) // NOVA EDIT CHANGE - I18N - carbon **覆盖**了 /mob/living 的同名消息组，六条全是局部变量赋插值串（codemod 够不着），而人类被打走的正是这条。ORIGINAL: var/attack_message_spectator = "[src] [message_verb_continuous][message_hit_area] with [weapon][extra_wound_details]!"
+	var/attack_message_victim = LANG("mob.dc380739", list(message_verb_continuous, message_hit_area, weapon, extra_wound_details)) // NOVA EDIT CHANGE - I18N - ORIGINAL: var/attack_message_victim = "You're [message_verb_continuous][message_hit_area] with [weapon][extra_wound_details]!"
+	var/attack_message_attacker = LANG("mob.718222af", list(message_verb_simple, src, message_hit_area, weapon, extra_wound_details)) // NOVA EDIT CHANGE - I18N - ORIGINAL: var/attack_message_attacker = "You [message_verb_simple] [src][message_hit_area] with [weapon][extra_wound_details]!"
 	if(user in viewers(src, null))
-		attack_message_spectator = "[user] [message_verb_continuous] [src][message_hit_area] with [weapon][extra_wound_details]!"
-		attack_message_victim = "[user] [message_verb_continuous] you[message_hit_area] with [weapon][extra_wound_details]!"
+		attack_message_spectator = LANG("mob.0aee5ce1", list(user, message_verb_continuous, src, message_hit_area, weapon, extra_wound_details)) // NOVA EDIT CHANGE - I18N - ORIGINAL: attack_message_spectator = "[user] [message_verb_continuous] [src][message_hit_area] with [weapon][extra_wound_details]!"
+		attack_message_victim = LANG("mob.6bbcb5fb", list(user, message_verb_continuous, message_hit_area, weapon, extra_wound_details)) // NOVA EDIT CHANGE - I18N - ORIGINAL: attack_message_victim = "[user] [message_verb_continuous] you[message_hit_area] with [weapon][extra_wound_details]!"
 	if(user == src)
-		attack_message_victim = "You [message_verb_simple] yourself[message_hit_area] with [weapon][extra_wound_details]!"
+		attack_message_victim = LANG("mob.1b7aa6f9", list(message_verb_simple, message_hit_area, weapon, extra_wound_details)) // NOVA EDIT CHANGE - I18N - ORIGINAL: attack_message_victim = "You [message_verb_simple] yourself[message_hit_area] with [weapon][extra_wound_details]!"
 	visible_message(span_danger("[attack_message_spectator]"),\
 		span_userdanger("[attack_message_victim]"), null, COMBAT_MESSAGE_RANGE, user)
 	if(user != src)

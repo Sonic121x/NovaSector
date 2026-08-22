@@ -73,12 +73,28 @@ GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
 		return FALSE
 	return TRUE
 
+/// AC 字典的早调用告警计数（与 lang_reverse_text 那个哨兵同源，上限同一个 define）。
+GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
+
 /// 惰性为某 locale 注册 AC 字典；返回是否可用。
 /proc/lang_fallback_setup(locale)
 	var/state = GLOB.i18n_fallback_state[locale]
 	if(state)
 		return state == "ready"
 	GLOB.i18n_fallback_cache[locale] = list()
+
+	// **i18n_cache 未就绪时必须直接退出、且不写 state**。`lang_build_reverse` 在那种情况下
+	// 特意「返回空表但不缓存」（免得把空反查表钉死），可这里拿到空表会一路走到下面把 state 钉成
+	// "none" —— 那是**永久**的：`lang_fallback_setup` 此后一律返回 FALSE，整局的字面 AC 层
+	// 无声关闭。同一个「别把未就绪状态缓存起来」的道理，上一层做了、这一层漏了。
+	if(!islist(GLOB.i18n_cache[DEFAULT_UI_LOCALE]) || !islist(GLOB.i18n_cache[locale]))
+		// **静默失败在这里是最坏的形态**：AC 层不跑、文本原样返回、玩家看到英文，而日志上
+		// 只表现为「某几条串没翻」——与「目录里没这条」长得一模一样，查起来会一路查到目录去。
+		// 拿真目录写的四条断言全过而线上照漏，就是被这个形态骗了一轮。把调用点打出来。
+		if(GLOB.i18n_fallback_early_warnings < I18N_MAX_EARLY_WARNINGS)
+			GLOB.i18n_fallback_early_warnings++
+			stack_trace("i18n: lang_fallback_setup([locale]) 在目录就绪前被调用——本次字面 AC 层不跑，该文本会原样留英文。若这是启动期的某个渲染点，它应改到 SS Initialize 之后，或改走 LANG。")
+		return FALSE
 
 	// 主字典：内存反查表里「含空格的多词短语」（单词排除，避免子串误伤）。
 	var/list/dict = list()
@@ -173,17 +189,28 @@ GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
 		if(. != stripped)
 			return
 		. = text
+	// 模板命中**不再提前返回**（只在 AC 不跑的两个 scope 下直接返回）。
+	//
+	// 一整行里可以既有「带占位符的模板」又有「纯串」：职业描述的 antag opt-in 段就是三段后缀
+	// 拼在一起——第一段 `" Forces a minimum of {0} antag opt-in."` 是模板、后两段
+	// `" Targetable by contractors."` / `" Targetable by heretics."` 是纯串。模板命中就返回，
+	// 后两段永远轮不到 AC，玩家看到「第一段中文、后两段英文」。
+	// 已翻好的中文部分不含拉丁字母，AC 不会再碰它；剩下的英文正是该它管的。
+	var/templated = FALSE
 	if(allow_template)
-		. = lang_template_apply(text, locale)
-		if(. != text)
-			return
+		var/after_template = lang_template_apply(text, locale)
+		if(after_template != text)
+			text = after_template
+			templated = TRUE
 	if(ac_mode == I18N_AC_NONE)
 		return text
 	if(ac_mode == I18N_AC_PROSE && !lang_tgui_prose_candidate(text))
 		return text
 	if(!lang_fallback_setup(locale))
 		return text
-	return rustg_acreplace("i18n_[locale]", text)
+	. = rustg_acreplace("i18n_[locale]", text)
+	// AC 一无所获时把模板那一步的成果原样交出去（`.` 与 text 此刻相同，写清楚免得读者以为丢了）。
+	return templated || . != text ? . : text
 
 /proc/lang_fallback_apply(text, locale)
 	if(!istext(text) || !length(text))
