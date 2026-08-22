@@ -1174,13 +1174,19 @@ const COMPONENT_PROP_LABELS = [
     component: 'ReplaceObjectivesButton',
     props: ['button_title', 'button_tooltip'],
   })),
+  // 传真机的印章下拉：`selected="Choose stamp(optional)"` 是**占位提示文字**，
+  // 运行期由 localizeDropdownProps 翻（它认 `selected`），缺的只有抽取。
+  // 只按「这个文件里的 Dropdown」登记：别处的 `selected={data.x}` 不是字面量，收不到也不该收。
+  { file: 'interfaces/AdminFax.tsx', component: 'Dropdown', props: ['selected'] },
   // 烧杯显示组件的标题：`title_label` 传进去后渲染成 children，同样只缺抽取。
-  ...['ChemDispenser', 'ChemRecipeDebug', 'ChemHeater', 'ChemMaster'].map(
-    (file) => ({
-      file: `interfaces/${file}.tsx`,
-      component: 'BeakerSectionDisplay',
-      props: ['title_label'],
-    }),
+  ...['ChemDispenser', 'ChemRecipeDebug', 'ChemHeater', 'ChemMaster'].flatMap(
+    (file) =>
+      // 两个组件名都用（`BeakerDisplay` 与包了一层 Section 的 `BeakerSectionDisplay`）。
+      ['BeakerDisplay', 'BeakerSectionDisplay'].map((component) => ({
+        file: `interfaces/${file}.tsx`,
+        component,
+        props: ['title_label'],
+      })),
   ),
 ];
 
@@ -1214,8 +1220,17 @@ function extractDisplayLocals(catalog) {
     );
 
     const displayIdents = new Set();
+    // 显示位置上的**函数调用**（`{check_attempts(attempts_left)}`）：它的 return 字面量同样是
+    // 玩家可见文案，而它既不在 JSX 里也不是变量赋值。记下被调用者的名字，下面收它的 return。
+    // 这是 DM 侧 `is_display_descriptor_proc` 的 TS 版，但准入面更准：那边靠 proc 名白名单，
+    // 这边直接看「它的返回值有没有被渲染」。
+    const displayCallees = new Set();
     const noteIdent = (node) => {
-      if (node && ts.isIdentifier(node)) displayIdents.add(node.text);
+      if (!node) return;
+      if (ts.isIdentifier(node)) displayIdents.add(node.text);
+      if (ts.isCallExpression(node) && ts.isIdentifier(node.expression)) {
+        displayCallees.add(node.expression.text);
+      }
     };
     const findDisplay = (node) => {
       if (ts.isJsxExpression(node) && node.expression) {
@@ -1260,14 +1275,43 @@ function extractDisplayLocals(catalog) {
       }
     };
 
+    const collectReturns = (node, out) => {
+      if (ts.isReturnStatement(node) && node.expression) {
+        pushLiterals(node.expression, out);
+      }
+      ts.forEachChild(node, (child) => collectReturns(child, out));
+    };
+
     const collect = (node) => {
+      if (ts.isVariableDeclaration(node) && ts.isIdentifier(node.name)) {
+        const name = node.name.text;
+        if (displayIdents.has(name)) {
+          const literals = [];
+          pushLiterals(node.initializer, literals);
+          for (const literal of literals) addText(catalog, literal);
+        }
+        if (displayCallees.has(name) && node.initializer) {
+          const literals = [];
+          // 箭头函数的简写体（`=> cond ? 'a' : 'b'`）没有 return 语句。
+          if (
+            ts.isArrowFunction(node.initializer) &&
+            !ts.isBlock(node.initializer.body)
+          ) {
+            pushLiterals(node.initializer.body, literals);
+          } else {
+            collectReturns(node.initializer, literals);
+          }
+          for (const literal of literals) addText(catalog, literal);
+        }
+      }
       if (
-        ts.isVariableDeclaration(node) &&
-        ts.isIdentifier(node.name) &&
-        displayIdents.has(node.name.text)
+        ts.isFunctionDeclaration(node) &&
+        node.name &&
+        displayCallees.has(node.name.text) &&
+        node.body
       ) {
         const literals = [];
-        pushLiterals(node.initializer, literals);
+        collectReturns(node.body, literals);
         for (const literal of literals) addText(catalog, literal);
       }
       ts.forEachChild(node, collect);
@@ -1303,11 +1347,11 @@ function extractComponentPropLabels(catalog) {
         for (const attribute of opening.attributes.properties) {
           if (!ts.isJsxAttribute(attribute)) continue;
           if (!wanted.has(attribute.name.getText(sf))) continue;
-          addText(
-            catalog,
-            literalText(attribute.initializer) ??
-              foldStringConcat(attribute.initializer),
-          );
+          // 值可能包在三元 / `&&` / `||` 里（`title_label={recording && 'Virtual beaker'}`）。
+          // 每一支在运行期都是独立的成品串，逐支收。
+          for (const branch of propTemplateBranches(attribute.initializer)) {
+            addText(catalog, literalText(branch) ?? foldStringConcat(branch));
+          }
         }
       }
       ts.forEachChild(node, visit);

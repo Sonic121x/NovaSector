@@ -2147,6 +2147,9 @@
   "Armor Vest (Colorable)": [
     "dm:labels"
   ],
+  "Armor module": [
+    "tgui:constants"
+  ],
   "Aro/Ace": [
     "dm:labels"
   ],
@@ -6317,6 +6320,9 @@
   "Choose fax machine...": [
     "tgui:AdminFax"
   ],
+  "Choose stamp(optional)": [
+    "tgui:constants"
+  ],
   "Choose where messages using the soulcatcher verbs are sent.": [
     "tgui:Soulcatcher"
   ],
@@ -7074,6 +7080,9 @@
   ],
   "Common cures:": [
     "tgui:IDCBook"
+  ],
+  "Common module": [
+    "tgui:constants"
   ],
   "Comms": [
     "tgui:AntagInfoBlob"
@@ -17169,6 +17178,9 @@
   "Left Leg": [
     "dm:labels"
   ],
+  "Left arm module": [
+    "tgui:constants"
+  ],
   "Left click to pin this recipe.": [
     "tgui:ChemDispenser"
   ],
@@ -21167,6 +21179,9 @@
   "No objectives selected.": [
     "tgui:OpposingForcePanel"
   ],
+  "No one": [
+    "tgui:constants"
+  ],
   "No operations available": [
     "tgui:PatientStateView"
   ],
@@ -24580,6 +24595,9 @@
   "Power generation is influenced by pressure and temperature. If unsure, view those meters for further explanations.": [
     "tgui:RBMK2"
   ],
+  "Power module": [
+    "tgui:constants"
+  ],
   "Power off": [
     "tgui:NtosWindow"
   ],
@@ -27011,6 +27029,9 @@
   "Right Leg": [
     "dm:labels"
   ],
+  "Right arm module": [
+    "tgui:constants"
+  ],
   "Right click opens operation info.": [
     "tgui:PatientStateView"
   ],
@@ -28382,7 +28403,8 @@
     "tgui:BorgHypo",
     "tgui:ColorBlindTester",
     "tgui:OpposingForcePanel",
-    "tgui:ShuttleManipulator"
+    "tgui:ShuttleManipulator",
+    "tgui:constants"
   ],
   "Select Area": [
     "tgui:ShuttleBlueprints"
@@ -28441,6 +28463,9 @@
   "Select {0}": [
     "tgui:MainPage",
     "tgui:ReligiousTool"
+  ],
+  "Select...": [
+    "tgui:SideDropdown"
   ],
   "Selected": [
     "tgui:RapidDecorationDevice",
@@ -34028,7 +34053,8 @@
     "tgui:Installed",
     "tgui:ModularShieldConsole",
     "tgui:ModulesPane",
-    "tgui:PaiCard"
+    "tgui:PaiCard",
+    "tgui:constants"
   ],
   "Toggle Array": [
     "tgui:EntriesGenerators"
@@ -35214,6 +35240,9 @@
   "Urban Coat": [
     "dm:labels"
   ],
+  "Use": [
+    "tgui:constants"
+  ],
   "Use Custom Food Preferences": [
     "tgui:FoodPreferences"
   ],
@@ -35334,6 +35363,9 @@
   ],
   "Utility Uniform": [
     "dm:labels"
+  ],
+  "Utility module": [
+    "tgui:constants"
   ],
   "V": [
     "tgui:ColorPicker"
@@ -35711,6 +35743,9 @@
   ],
   "Virtual Pet": [
     "dm:labels"
+  ],
+  "Virtual beaker": [
+    "tgui:constants"
   ],
   "Viscount": [
     "tgui:constants"
@@ -37559,7 +37594,8 @@
     "tgui:MemoryPanel"
   ],
   "You have no personality.": [
-    "tgui:PersonalityPage"
+    "tgui:PersonalityPage",
+    "tgui:constants"
   ],
   "You have no records.": [
     "tgui:TrackedPlaytime"
@@ -38536,6 +38572,9 @@
   "nanite leg reinforcement": [
     "dm:labels"
   ],
+  "never": [
+    "tgui:constants"
+  ],
   "nil": [
     "tgui:ListMapper"
   ],
@@ -38561,6 +38600,9 @@
   ],
   "num": [
     "tgui:Tutorial"
+  ],
+  "on next failed access attempt.": [
+    "tgui:constants"
   ],
   "only understand": [
     "tgui:LanguagesMenu"
@@ -38708,6 +38750,7 @@
     "tgui:NtosPay",
     "tgui:Puzzgrid",
     "tgui:VotePanel",
+    "tgui:constants",
     "tgui:index"
   ],
   "sacrifice": [
