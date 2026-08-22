@@ -65,8 +65,8 @@ export const MassSpec = (props) => {
       <Window.Content scrollable>
         {!!processing && (
           <Dimmer fontSize="32px">
-            <Icon name="cog" spin={1} />
-            {` Purifying... ${round(eta, 0)}s`}
+            <Icon name="cog" spin={1} /> Purifying...{' '}
+            <span>{round(eta, 0)}</span>s
           </Dimmer>
         )}
         <Section
@@ -141,7 +141,9 @@ export const MassSpec = (props) => {
             beaker={beaker1}
           />
           {!!beaker_1_has_contents && (
-            <Box>{`Eta of selection: ${round(eta, 0)} seconds`}</Box>
+            <Box>
+              Eta of selection: <span>{round(eta, 0)}</span> seconds
+            </Box>
           )}
         </Section>
         <Section

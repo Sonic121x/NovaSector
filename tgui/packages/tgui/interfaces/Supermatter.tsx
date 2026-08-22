@@ -257,7 +257,7 @@ export const SupermatterContent = (props: SupermatterProps) => {
                     bad: [1800, Infinity],
                   }}
                 >
-                  {`${toFixed(gas_total_moles, 2)} Moles`}
+                  <span>{toFixed(gas_total_moles, 2)}</span> Moles
                 </ProgressBar>
               }
             />

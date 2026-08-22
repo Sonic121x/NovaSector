@@ -115,9 +115,15 @@ const AchievementTable = (props) => {
             {achievement.desc}
             {(achievement.score && (
               <Box color={achievement.value > 0 ? 'good' : 'bad'}>
-                {achievement.value > 0
-                  ? `Earned ${achievement.value} times`
-                  : 'Locked'}
+                {/* NOVA EDIT CHANGE - i18n: ORIGINAL: {achievement.value > 0 ? `Earned ${achievement.value} times` : 'Locked'}
+                    拼出来的整串永远不是目录键 → 拆成 children 模板 `Earned {0} times`。 */}
+                {achievement.value > 0 ? (
+                  <>
+                    Earned <span>{achievement.value}</span> times
+                  </>
+                ) : (
+                  'Locked'
+                )}
               </Box>
             )) || (
               <Box color={achievement.value ? 'good' : 'bad'}>

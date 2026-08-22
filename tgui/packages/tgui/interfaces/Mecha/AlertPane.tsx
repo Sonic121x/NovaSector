@@ -58,11 +58,16 @@ export const AlertPane = (props) => {
                     : 'good')
               }
             >
-              {overclock_mode
-                ? `Overclocking (${Math.round(
-                    overclock_temp_percentage * 100,
-                  )}%)`
-                : 'Overclock'}
+              {/* NOVA EDIT CHANGE - i18n: ORIGINAL: {overclock_mode ? `Overclocking (${Math.round(overclock_temp_percentage * 100)}%)` : 'Overclock'}
+                  拼出来的整串永远不是目录键 → 拆成 children 模板 `Overclocking ({0}%)`。 */}
+              {overclock_mode ? (
+                <>
+                  Overclocking (
+                  <span>{Math.round(overclock_temp_percentage * 100)}</span>%)
+                </>
+              ) : (
+                'Overclock'
+              )}
             </Button>
             {!!overclock_safety_available && (
               <Button

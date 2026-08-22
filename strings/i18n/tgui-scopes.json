@@ -68,6 +68,12 @@
   "(Inherited)": [
     "tgui:AppearanceInfo"
   ],
+  "(Max: {0})": [
+    "tgui:CheckboxInput"
+  ],
+  "(Min: {0})": [
+    "tgui:CheckboxInput"
+  ],
   "(Modular)": [
     "tgui:QuantumConsole"
   ],
@@ -115,6 +121,12 @@
   ],
   ", recent GitHub contributors can be found": [
     "tgui:Changelog"
+  ],
+  ", {0} DNA": [
+    "tgui:CellularEmporium"
+  ],
+  ", {0} absorptions": [
+    "tgui:CellularEmporium"
   ],
   "- Accumulating a total of {0} {1} will manifest a visible aura of {2} around you. This aura will be visible to all those around you and will mark you as a Heretic. Consider the risks before accumulating too much knowledge!": [
     "tgui:AntagInfoHeretic"
@@ -334,16 +346,19 @@
     "tgui:MafiaPanel"
   ],
   "A lethal match with the loser's soul becoming under ownership of the winner.": [
-    "tgui:SparringContract"
+    "tgui:SparringContract",
+    "tgui:constants"
   ],
   "A list of GoldenEye keycards currently in existence. Select one to track where it is using your hud.": [
     "tgui:AntagInfoAssaultops"
   ],
   "A match for the chaplain's deity. The Chaplain suffers large consequences for failure, but advances their sect by winning.": [
-    "tgui:SparringContract"
+    "tgui:SparringContract",
+    "tgui:constants"
   ],
   "A match with money on the line. Whomever wins takes all the money of whomever loses.": [
-    "tgui:SparringContract"
+    "tgui:SparringContract",
+    "tgui:constants"
   ],
   "A midround changeling does not receive a crew identity, instead arriving from space. This will be more difficult than being a round-start changeling!": [
     "dm:antagonists"
@@ -1056,6 +1071,9 @@
   "Admin music volume": [
     "tgui:sounds"
   ],
+  "Adminbus Explosion What are they gonna do, ban you?": [
+    "tgui:constants"
+  ],
   "Adminordrazine": [
     "dm:labels"
   ],
@@ -1646,6 +1664,9 @@
   "Ananas Aversion": [
     "dm:labels"
   ],
+  "Anchored Objects": [
+    "tgui:constants"
+  ],
   "Ancient Crew": [
     "dm:labels"
   ],
@@ -1820,6 +1841,12 @@
   "Anus Choice": [
     "tgui:genitals"
   ],
+  "Any Descent Angle": [
+    "tgui:constants"
+  ],
+  "Any Weapons": [
+    "tgui:constants"
+  ],
   "Any atoms in the world with the same plane will be drawn to this plane master": [
     "tgui:PlaneEditor"
   ],
@@ -1924,6 +1951,9 @@
   ],
   "Apprentice Roboticist": [
     "dm:labels"
+  ],
+  "Apprentice of Destruction": [
+    "tgui:ApprenticeContract"
   ],
   "Approval is {0} required to join": [
     "tgui:Soulcatcher"
@@ -2274,7 +2304,8 @@
     "dm:labels"
   ],
   "Atmospherics": [
-    "dm:labels"
+    "dm:labels",
+    "tgui:constants"
   ],
   "Atmospherics Equipment": [
     "dm:labels"
@@ -4870,6 +4901,9 @@
   "Burrito": [
     "dm:labels"
   ],
+  "Burst Launch": [
+    "tgui:constants"
+  ],
   "Bus": [
     "tgui:Telecomms"
   ],
@@ -5595,6 +5629,9 @@
   "Cassette Tape": [
     "dm:labels"
   ],
+  "Cast {0} times.": [
+    "tgui:SpellTabDisplay"
+  ],
   "Casualwear": [
     "dm:labels"
   ],
@@ -5761,6 +5798,9 @@
   ],
   "Central Command": [
     "dm:labels"
+  ],
+  "Ceremonial Weapons": [
+    "tgui:constants"
   ],
   "Certain features require an ID card login.": [
     "tgui:NtosCyborgRemoteMonitor"
@@ -6564,6 +6604,9 @@
   "Clockwork Slab": [
     "tgui:ClockworkSlab"
   ],
+  "Clone": [
+    "tgui:constants"
+  ],
   "Cloning Pod": [
     "tgui:ExperimentalCloner"
   ],
@@ -6602,6 +6645,9 @@
   ],
   "Close selected blank category": [
     "tgui:Photocopier"
+  ],
+  "Close {0}": [
+    "tgui:AirlockButtonController"
   ],
   "Closed": [
     "tgui:AiAirlock",
@@ -7169,7 +7215,8 @@
   ],
   "Connect": [
     "tgui:ExperimentConfigure",
-    "tgui:ServerControlPanel"
+    "tgui:ServerControlPanel",
+    "tgui:constants"
   ],
   "Connect Scanner": [
     "tgui:DnaScanner"
@@ -7569,6 +7616,9 @@
   "Cost estimate: {0}": [
     "tgui:ExoscannerConsole"
   ],
+  "Cost: {0} DNA": [
+    "tgui:CellularEmporium"
+  ],
   "Costs {0} {1} per order": [
     "tgui:ProduceConsole"
   ],
@@ -7704,6 +7754,9 @@
   ],
   "Create paper": [
     "tgui:AdminFax"
+  ],
+  "Create sparks; May cause fires if there is plasma in the air": [
+    "tgui:constants"
   ],
   "Created On": [
     "tgui:EngravedMessage"
@@ -8094,6 +8147,9 @@
   "Custom Amount": [
     "tgui:ChemDispenser"
   ],
+  "Custom Damage": [
+    "tgui:constants"
+  ],
   "Custom Dildo": [
     "dm:labels"
   ],
@@ -8340,6 +8396,9 @@
   ],
   "Cycle to Interior Airlock": [
     "tgui:AirlockController"
+  ],
+  "Cycle to {0}": [
+    "tgui:AirlockButtonController"
   ],
   "Cycling Id": [
     "tgui:AirlockElectronics"
@@ -8858,7 +8917,8 @@
     "tgui:delete_sparks"
   ],
   "Delimb": [
-    "tgui:PlayerPanel"
+    "tgui:PlayerPanel",
+    "tgui:constants"
   ],
   "Delivery Bot Control": [
     "tgui:CargoHelp"
@@ -9026,7 +9086,8 @@
     "tgui:CargoHelp"
   ],
   "Destroy": [
-    "tgui:SkillStation"
+    "tgui:SkillStation",
+    "tgui:constants"
   ],
   "Destroying reagents": [
     "tgui:ChemMaster"
@@ -9480,7 +9541,8 @@
     "dm:labels"
   ],
   "Dispense": [
-    "tgui:ChemDispenser"
+    "tgui:ChemDispenser",
+    "tgui:constants"
   ],
   "Dispense Controls": [
     "tgui:PortableChemMixer"
@@ -9518,6 +9580,9 @@
   ],
   "Disposal Pipes": [
     "dm:labels"
+  ],
+  "Disposals": [
+    "tgui:constants"
   ],
   "Disposals Delivery System": [
     "tgui:CargoHelp"
@@ -9935,6 +10000,9 @@
   "Duration": [
     "tgui:ChemPress"
   ],
+  "Duration of pods falling animation": [
+    "tgui:constants"
+  ],
   "During map rotation, prefer this map be chosen. This does not affect the map vote, only random rotation when a vote is not held.": [
     "tgui:preferred_map"
   ],
@@ -10059,6 +10127,9 @@
   "ERROR: {0}": [
     "tgui:ThermoElectricGenerator"
   ],
+  "ERT": [
+    "tgui:constants"
+  ],
   "ERT Generic": [
     "dm:labels"
   ],
@@ -10098,6 +10169,9 @@
   ],
   "Earned Tickets: {0}": [
     "tgui:NtosArcade"
+  ],
+  "Earned {0} times": [
+    "tgui:Achievements"
   ],
   "Ears": [
     "dm:labels",
@@ -10413,6 +10487,9 @@
   ],
   "Emagged": [
     "tgui:BorgPanel"
+  ],
+  "Embrace the dark, and tap into your soul. You can recharge very long recharge spells like Ei Nath by jumping into new bodies with Mind Swap and starting Soul Tap anew.": [
+    "tgui:constants"
   ],
   "Emergency": [
     "tgui:ElevatorPanel"
@@ -11058,6 +11135,9 @@
   "Estimated Time: {0}.": [
     "tgui:ExoscannerConsole"
   ],
+  "Eta of selection: {0} seconds": [
+    "tgui:MassSpec"
+  ],
   "Ethanol": [
     "dm:labels"
   ],
@@ -11194,6 +11274,9 @@
   "Existing Shuttle: {0}": [
     "tgui:ShuttleManipulator"
   ],
+  "Exit": [
+    "tgui:constants"
+  ],
   "Exosuit Boards": [
     "dm:labels"
   ],
@@ -11289,6 +11372,9 @@
   ],
   "Explosion": [
     "tgui:PlayerPanel"
+  ],
+  "Explosion Custom": [
+    "tgui:constants"
   ],
   "Export": [
     "tgui:ChemRecipeDebug"
@@ -11529,6 +11615,9 @@
   "Fake name": [
     "tgui:AiVoiceChanger"
   ],
+  "Fall": [
+    "tgui:constants"
+  ],
   "Fallback to Blooper": [
     "tgui:vocals"
   ],
@@ -11606,6 +11695,9 @@
   ],
   "Fannypack (Yellow)": [
     "dm:labels"
+  ],
+  "Fantastical Army": [
+    "tgui:constants"
   ],
   "Farsight": [
     "dm:labels"
@@ -11949,6 +12041,9 @@
   "Fission360": [
     "dm:labels"
   ],
+  "Fist Fight": [
+    "tgui:constants"
+  ],
   "Fistbump": [
     "dm:interactions"
   ],
@@ -12120,6 +12215,9 @@
   ],
   "Floorlength Bedhead": [
     "dm:labels"
+  ],
+  "Floors": [
+    "tgui:constants"
   ],
   "Flopped Rabbit Ears (Large)": [
     "dm:labels"
@@ -12405,6 +12503,9 @@
   ],
   "Forced Hidden": [
     "tgui:PlaneEditor"
+  ],
+  "Forced Temp": [
+    "tgui:constants"
   ],
   "Forced gender change": [
     "tgui:erp_preferences"
@@ -12711,6 +12812,12 @@
   ],
   "Full accessories": [
     "dm:labels"
+  ],
+  "Full creaks emit while moving on high fullness; fullness comes from the base cosmetic full size, cosmetic stuffed size, nommed guests, and high nutrition.": [
+    "tgui:constants"
+  ],
+  "Full groans emit over time with high fullness; fullness comes from the base cosmetic full size, cosmetic stuffed size, nommed guests, and high nutrition.": [
+    "tgui:constants"
   ],
   "Full name of account.": [
     "tgui:NtosPay"
@@ -13158,6 +13265,9 @@
   ],
   "Giant Scarf": [
     "dm:labels"
+  ],
+  "Gib": [
+    "tgui:constants"
   ],
   "Gibbering": [
     "dm:labels"
@@ -13930,6 +14040,9 @@
   "Harlequin Reversed": [
     "dm:labels"
   ],
+  "Harmful Effects": [
+    "tgui:constants"
+  ],
   "Harpy": [
     "dm:labels"
   ],
@@ -14588,6 +14701,9 @@
   ],
   "Holster (Thigh, Colorable)": [
     "dm:labels"
+  ],
+  "Holy Match": [
+    "tgui:constants"
   ],
   "Home": [
     "tgui:DiskMenu",
@@ -15822,6 +15938,9 @@
     "tgui:AntagInfoMalf",
     "tgui:AntagInfoTraitor"
   ],
+  "Introduction": [
+    "tgui:constants"
+  ],
   "Introverted": [
     "dm:labels"
   ],
@@ -16623,6 +16742,9 @@
   "Lamp Power": [
     "tgui:NtosRobotact"
   ],
+  "Land": [
+    "tgui:constants"
+  ],
   "Landing Location": [
     "tgui:CargoExpress"
   ],
@@ -16744,6 +16866,15 @@
   ],
   "Launch (Mech Only)": [
     "tgui:MechpadConsole"
+  ],
+  "Launch All Turfs": [
+    "tgui:constants"
+  ],
+  "Launch Turf Ordered": [
+    "tgui:constants"
+  ],
+  "Launch Whole Turf": [
+    "tgui:constants"
   ],
   "Launchpad Closed": [
     "tgui:LaunchpadRemote"
@@ -17321,10 +17452,14 @@
   ],
   "Load": [
     "tgui:Mule",
-    "tgui:ShuttleManipulator"
+    "tgui:ShuttleManipulator",
+    "tgui:constants"
   ],
   "Load Client Character Prefs Onto Mob": [
     "tgui:PlayerPanel"
+  ],
+  "Load From": [
+    "tgui:constants"
   ],
   "Load an outfit from a file": [
     "tgui:OutfitManager"
@@ -18392,6 +18527,9 @@
     "tgui:AtmosTempPump",
     "tgui:NumberInputModal"
   ],
+  "Max ({0})": [
+    "tgui:NumberInputModal"
+  ],
   "Max Antags": [
     "tgui:DynamicTester"
   ],
@@ -18487,6 +18625,9 @@
   ],
   "Mechatronic Engineer": [
     "dm:labels"
+  ],
+  "Mechs": [
+    "tgui:constants"
   ],
   "Med": [
     "tgui:JobsPage"
@@ -18710,6 +18851,9 @@
   "Megamoth": [
     "dm:labels"
   ],
+  "Melee Only": [
+    "tgui:constants"
+  ],
   "Melee Weapons": [
     "dm:labels"
   ],
@@ -18900,6 +19044,9 @@
   "Min": [
     "tgui:NumberInputModal"
   ],
+  "Min ({0})": [
+    "tgui:NumberInputModal"
+  ],
   "Min Antags": [
     "tgui:DynamicTester"
   ],
@@ -18941,6 +19088,9 @@
   ],
   "Minimum Security Prisoner": [
     "dm:labels"
+  ],
+  "Minimum Temp": [
+    "tgui:constants"
   ],
   "Minimum damage required to knock you down.": [
     "tgui:unsteady"
@@ -19023,6 +19173,9 @@
   "Misshapen": [
     "dm:labels"
   ],
+  "Missile Mode": [
+    "tgui:constants"
+  ],
   "Missing": [
     "tgui:RecordPrint"
   ],
@@ -19047,11 +19200,17 @@
   "Mjolnir": [
     "dm:labels"
   ],
+  "Mjolnir's Power": [
+    "tgui:constants"
+  ],
   "Mob": [
     "tgui:PlayerPanel"
   ],
   "Mob Type:": [
     "tgui:PlayerPanel"
+  ],
+  "Mobs": [
+    "tgui:constants"
   ],
   "Modafinil": [
     "dm:labels"
@@ -19200,6 +19359,9 @@
   ],
   "Money Available: {0}cr": [
     "tgui:NtosSpaceBetting"
+  ],
+  "Money Match": [
+    "tgui:constants"
   ],
   "Money Piece": [
     "dm:labels"
@@ -19601,6 +19763,9 @@
   ],
   "Move through space and pull people into the void. Declare solars an independent nation.": [
     "dm:antagonists"
+  ],
+  "Move {0}:": [
+    "tgui:PetBuilder"
   ],
   "Move-Speak": [
     "dm:labels"
@@ -20129,6 +20294,9 @@
   "Neo-Flapper Dress": [
     "dm:labels"
   ],
+  "Neophyte of Restoration": [
+    "tgui:ApprenticeContract"
+  ],
   "Neruwhine": [
     "dm:labels"
   ],
@@ -20427,6 +20595,9 @@
   "No Generators Connected": [
     "tgui:ModularShieldConsole"
   ],
+  "No Ghost Alert (If you dont want to entertain bored ghosts)": [
+    "tgui:constants"
+  ],
   "No Guns": [
     "dm:labels"
   ],
@@ -20523,6 +20694,9 @@
   ],
   "No Space": [
     "tgui:NtosNetDownloader"
+  ],
+  "No Stakes": [
+    "tgui:constants"
   ],
   "No Status": [
     "tgui:GulagTeleporterConsole"
@@ -21005,7 +21179,8 @@
     "tgui:SearchSpells"
   ],
   "No stakes, just for fun. Who doesn't love some recreational sparring?": [
-    "tgui:SparringContract"
+    "tgui:SparringContract",
+    "tgui:constants"
   ],
   "No station traits will run next round.": [
     "tgui:StationTraitsPanel"
@@ -21229,6 +21404,9 @@
   ],
   "Normal Blobs will expand your reach and can be upgraded into special blobs that perform certain functions. Bear in mind that expanding into space has an 80% chance of failing!": [
     "tgui:AntagInfoBlob"
+  ],
+  "Normal Effects": [
+    "tgui:constants"
   ],
   "Normal Legs": [
     "dm:labels"
@@ -22003,6 +22181,7 @@
     "tgui:Sleeper",
     "tgui:TransferValve",
     "tgui:Vendatray",
+    "tgui:constants",
     "tgui:index"
   ],
   "Open Config": [
@@ -22040,6 +22219,9 @@
   ],
   "Open this plane's VV menu": [
     "tgui:PlaneEditor"
+  ],
+  "Open {0}": [
+    "tgui:AirlockButtonController"
   ],
   "Opened": [
     "tgui:Soulcatcher"
@@ -22100,6 +22282,9 @@
   ],
   "Optimal": [
     "tgui:Teleporter"
+  ],
+  "Optimal Temp": [
+    "tgui:constants"
   ],
   "Optimal pH range": [
     "tgui:ChemDispenser",
@@ -22415,6 +22600,9 @@
     "tgui:AlertPane",
     "tgui:RBMK2"
   ],
+  "Overclocking ({0}%)": [
+    "tgui:AlertPane"
+  ],
   "Overclocking will allow the vent to overpower extreme pressure conditions. However, it will also cause the vent to become damaged over time and eventually fail. The lower the integrity, the less effective the vent will be when in normal operation.": [
     "tgui:AtmosControls"
   ],
@@ -22438,6 +22626,9 @@
   ],
   "Overflow": [
     "tgui:index"
+  ],
+  "Overheat Temp": [
+    "tgui:constants"
   ],
   "Overload": [
     "tgui:Apc",
@@ -23359,6 +23550,12 @@
   "Pick Mob": [
     "tgui:index"
   ],
+  "Pick Random Item": [
+    "tgui:constants"
+  ],
+  "Pick Random Turf": [
+    "tgui:constants"
+  ],
   "Pick Target": [
     "tgui:ControlBar"
   ],
@@ -23684,6 +23881,18 @@
   "Playing Card Deck": [
     "dm:labels"
   ],
+  "Plays after pod lands": [
+    "tgui:constants"
+  ],
+  "Plays during fall, ends on land": [
+    "tgui:constants"
+  ],
+  "Plays when pod leaves": [
+    "tgui:constants"
+  ],
+  "Plays when pod opens": [
+    "tgui:constants"
+  ],
   "Playsuit (Recolorable)": [
     "dm:labels"
   ],
@@ -23851,6 +24060,9 @@
   ],
   "Pod Jockey": [
     "dm:labels"
+  ],
+  "Pod Stays": [
+    "tgui:constants"
   ],
   "Pod chest": [
     "dm:labels"
@@ -24217,6 +24429,9 @@
   ],
   "Prayer": [
     "dm:labels"
+  ],
+  "Pre": [
+    "tgui:constants"
   ],
   "Preacher": [
     "dm:labels"
@@ -24624,6 +24839,9 @@
   "Project: Zul-E": [
     "dm:labels"
   ],
+  "Projectile Cloud": [
+    "tgui:constants"
+  ],
   "Promote To Master Blueprint": [
     "tgui:ShuttleBlueprints"
   ],
@@ -25022,6 +25240,9 @@
   "Quickbind": [
     "tgui:ClockworkSlab"
   ],
+  "Quiet": [
+    "tgui:constants"
+  ],
   "Quiff": [
     "dm:labels"
   ],
@@ -25405,6 +25626,9 @@
   ],
   "Reaction Suppression Enabled": [
     "tgui:PipeScrubber"
+  ],
+  "Reaction Temp": [
+    "tgui:constants"
   ],
   "Reaction activity": [
     "tgui:Parameters"
@@ -26067,6 +26291,9 @@
   "Reproduction": [
     "tgui:AntagInfoBloodWorm"
   ],
+  "Reprogram": [
+    "tgui:constants"
+  ],
   "Request": [
     "tgui:PaiCard"
   ],
@@ -26252,6 +26479,9 @@
     "tgui:Signaler",
     "tgui:Signalvib",
     "tgui:index"
+  ],
+  "Reset ({0})": [
+    "tgui:NumberInputModal"
   ],
   "Reset Account": [
     "tgui:BountyBoard"
@@ -26656,6 +26886,9 @@
   ],
   "Riva Family Cookbook": [
     "dm:labels"
+  ],
+  "Robeless Pupil": [
+    "tgui:ApprenticeContract"
   ],
   "RoboTact": [
     "dm:labels"
@@ -29863,6 +30096,9 @@
   "Soul Info": [
     "tgui:SoulcatcherUser"
   ],
+  "Soul Tapper": [
+    "tgui:constants"
+  ],
   "Souls": [
     "tgui:SoulcatcherUser"
   ],
@@ -30049,6 +30285,9 @@
   ],
   "Species-Unique": [
     "dm:labels"
+  ],
+  "Specific Target": [
+    "tgui:constants"
   ],
   "Specimen": [
     "tgui:Specimen"
@@ -30492,7 +30731,8 @@
   "Stealth": [
     "tgui:AbductorConsole",
     "tgui:Symptom",
-    "tgui:Virus"
+    "tgui:Virus",
+    "tgui:constants"
   ],
   "Stealth Mode": [
     "tgui:RadioactiveMicrolaser"
@@ -30802,14 +31042,24 @@
   "Stubby": [
     "dm:labels"
   ],
+  "Student of Translocation": [
+    "tgui:ApprenticeContract"
+  ],
   "Study the area and do what needs to be done to recover the crate. Pay close attention to domain information and context clues.": [
     "tgui:AvatarHelp"
   ],
   "Stuffed Size": [
     "tgui:NovaTumsPrefs"
   ],
+  "Stuffed gurgles emit over time with high stuffedness; stuffedness comes from the base cosmetic stuffed size, and high nutrition.": [
+    "tgui:constants"
+  ],
+  "Stuffed sloshes emit while moving on high stuffedness; stuffedness comes from the base cosmetic stuffed size, and high nutrition.": [
+    "tgui:constants"
+  ],
   "Stun": [
-    "tgui:TurretControl"
+    "tgui:TurretControl",
+    "tgui:constants"
   ],
   "Style": [
     "tgui:ChemPress",
@@ -32291,6 +32541,9 @@
   "The Chaplain's Deity wishes for honorable fighting. As such, it uses contracts. Signing your name will set the terms for the battle. Then, the person you intend to spar with must sign the other side. If terms are changed on an already signed contract, the signatures will erase and the new terms must be re-agreed upon.": [
     "tgui:SparringContract"
   ],
+  "The Classic Wizard": [
+    "tgui:constants"
+  ],
   "The DeForest corporation has engineered single-use devices for detecting blood worms. They can be ordered by security and take no time to use, but using them is painful for the target and they're really expensive.": [
     "tgui:AntagInfoBloodWorm"
   ],
@@ -32488,6 +32741,9 @@
   ],
   "The plant withers when the light is below 40%. Mushrooms need only 20%.": [
     "tgui:Tray"
+  ],
+  "The power of the mighty Mjolnir! Best not to lose it. This loadout has Summon Item, Mutate, Blink, Force Wall, Tesla Blast, and Mjolnir. Mutate is your utility in this case: Use it for limited ranged fire and getting out of bad blinks.": [
+    "tgui:constants"
   ],
   "The rate at which new fuel is added from the fuel input port.": [
     "tgui:Gases"
@@ -32873,6 +33129,9 @@
   "This is the beginning of your chat with {0}.": [
     "tgui:ChatScreen"
   ],
+  "This is the classic wizard, crazy popular in the 2550's. Comes with Fireball, Magic Missile, Ei Nath, and Ethereal Jaunt. The key here is that every part of this kit is very easy to pick up and use.": [
+    "tgui:constants"
+  ],
   "This is the current config read by the dynamic system when running rulesets. If you want to edit these values temporarily, you can do so via View Variables. (Note: Editing tier configs has no effect after roundstart)": [
     "tgui:DynamicAdmin"
   ],
@@ -33252,8 +33511,14 @@
   "Tier (required)": [
     "tgui:NtosScipaper"
   ],
+  "Tier 0 - Lesser Mutants": [
+    "tgui:constants"
+  ],
   "Tier 1": [
     "tgui:Recipes"
+  ],
+  "Tier 1 - Regular Mutants": [
+    "tgui:constants"
   ],
   "Tier 1 Cybernetic Organs": [
     "dm:labels"
@@ -33264,6 +33529,9 @@
   "Tier 2": [
     "tgui:Recipes"
   ],
+  "Tier 2 - Greater Mutants": [
+    "tgui:constants"
+  ],
   "Tier 2 Cybernetic Organs": [
     "dm:labels"
   ],
@@ -33272,6 +33540,9 @@
   ],
   "Tier 3": [
     "tgui:Recipes"
+  ],
+  "Tier 3 - Abberations - RESTRICTED": [
+    "tgui:constants"
   ],
   "Tier 3 Cybernetic Organs": [
     "dm:labels"
@@ -33333,8 +33604,26 @@
   "Time Received: {0}": [
     "tgui:NifSoulPoem"
   ],
+  "Time Spent: {0}ms": [
+    "tgui:GreyscaleModifyMenu"
+  ],
+  "Time for pod to leave after opening": [
+    "tgui:constants"
+  ],
+  "Time it takes pod to open after landing": [
+    "tgui:constants"
+  ],
   "Time left": [
     "tgui:ExoscannerConsole"
+  ],
+  "Time remaining: {0}s": [
+    "tgui:VotePanel"
+  ],
+  "Time until pod appears above dropoff point": [
+    "tgui:constants"
+  ],
+  "Time until pod gets to station": [
+    "tgui:constants"
   ],
   "Time until refresh: {0}": [
     "tgui:SpyUplink"
@@ -33881,7 +34170,8 @@
     "dm:labels"
   ],
   "Transit Tubes": [
-    "dm:labels"
+    "dm:labels",
+    "tgui:constants"
   ],
   "Translate": [
     "tgui:MatrixMathTester"
@@ -34255,6 +34545,9 @@
   "Unable to trace most recent shuttle/recall signal.": [
     "tgui:Main"
   ],
+  "Unanchored Objects": [
+    "tgui:constants"
+  ],
   "Unary Vent": [
     "dm:labels"
   ],
@@ -34320,6 +34613,9 @@
   ],
   "Under construction.": [
     "tgui:Trophycase"
+  ],
+  "Under-Floor": [
+    "tgui:constants"
   ],
   "Undercut": [
     "dm:labels"
@@ -35007,11 +35303,15 @@
     "tgui:StationTraitsPanel",
     "tgui:ViewTabHolder"
   ],
+  "View Bay": [
+    "tgui:constants"
+  ],
   "View Crew Manifest": [
     "tgui:GhostMenu"
   ],
   "View Dropoff Location": [
-    "tgui:ViewTabHolder"
+    "tgui:ViewTabHolder",
+    "tgui:constants"
   ],
   "View Experiments": [
     "tgui:ExoscannerConsole"
@@ -35039,7 +35339,8 @@
     "tgui:OrbitBlade"
   ],
   "View Pod": [
-    "tgui:ViewTabHolder"
+    "tgui:ViewTabHolder",
+    "tgui:constants"
   ],
   "View Request Console Logs": [
     "tgui:MessageMonitor"
@@ -35642,8 +35943,14 @@
   "Waitstaff's Toolset Implant": [
     "dm:labels"
   ],
+  "Wall-Mounted": [
+    "tgui:constants"
+  ],
   "Wallet": [
     "dm:labels"
+  ],
+  "Walls": [
+    "tgui:constants"
   ],
   "Walnut": [
     "dm:labels"
@@ -36190,6 +36497,9 @@
   "Why do you want to {0} this book?": [
     "tgui:Modify"
   ],
+  "Why kill when others will gladly do it for you? Embrace chaos with your kit: Soulshards, Staff of Change, Necro Stone, Teleport, and Jaunt! Remember, no offense spells!": [
+    "tgui:constants"
+  ],
   "Wide Elf": [
     "dm:labels"
   ],
@@ -36630,6 +36940,9 @@
   "Yank's Tailcoat": [
     "dm:labels"
   ],
+  "Yeet Organs": [
+    "tgui:constants"
+  ],
   "Yell!!": [
     "tgui:custom_tongue"
   ],
@@ -36809,10 +37122,12 @@
     "tgui:AntagInfoBlob"
   ],
   "You can fight with any and all weapons as you please. Try not to kill them, okay?": [
-    "tgui:SparringContract"
+    "tgui:SparringContract",
+    "tgui:constants"
   ],
   "You can fight with weapons, or fists if you have none. Ranged weapons are a violation.": [
-    "tgui:SparringContract"
+    "tgui:SparringContract",
+    "tgui:constants"
   ],
   "You can fix all your problems!": [
     "tgui:SlotMachine"
@@ -36834,7 +37149,8 @@
     "tgui:ShuttleBlueprints"
   ],
   "You can only fight with ceremonial weapons. You will be at a severe disadvantage without one!": [
-    "tgui:SparringContract"
+    "tgui:SparringContract",
+    "tgui:constants"
   ],
   "You can only partially understand {0}.": [
     "tgui:LanguageMenu"
@@ -37038,7 +37354,8 @@
     "tgui:AntagInfoBlob"
   ],
   "You will fight with your fists only. Any weapons will be considered a violation.": [
-    "tgui:SparringContract"
+    "tgui:SparringContract",
+    "tgui:constants"
   ],
   "You will not be able to edit your answers after submitting.": [
     "tgui:Interview"
@@ -37069,6 +37386,9 @@
   ],
   "Your Primary Objectives are as follows. Complete these at all costs.": [
     "tgui:PrimaryObjectiveMenu"
+  ],
+  "Your Soul": [
+    "tgui:constants"
   ],
   "Your admin button here, coder!": [
     "tgui:Secrets"
@@ -37609,6 +37929,9 @@
   "extended [initial(language.name)] manual": [
     "dm:labels"
   ],
+  "exterior door": [
+    "tgui:AirlockButtonController"
+  ],
   "false": [
     "tgui:Fax"
   ],
@@ -37738,6 +38061,9 @@
   ],
   "interactions": [
     "tgui:InteractionsTab"
+  ],
+  "interior door": [
+    "tgui:AirlockButtonController"
   ],
   "internal joint torsion adaptation": [
     "dm:labels"
@@ -38392,6 +38718,7 @@
   ],
   "{0} / {1} units": [
     "tgui:BeakerDisplay",
+    "tgui:ChemDispenser",
     "tgui:MassSpec"
   ],
   "{0} 4 uses to teleport wherever you want. You will not be able to come back to the den, so be sure you have everything ready before departing.{1}{2} Used to cast most spells. Your spellbook will let you know which spells cannot be cast without a garb.": [
@@ -38418,8 +38745,14 @@
   "{0} Costs {1} favor.": [
     "tgui:ReligiousTool"
   ],
+  "{0} Credits": [
+    "tgui:AbductorConsole"
+  ],
   "{0} Ctrl+Click on the gene to set it to X. Right Click to cycle in reverse.": [
     "tgui:DnaConsoleSequencer"
+  ],
+  "{0} DNA": [
+    "tgui:CellularEmporium"
   ],
   "{0} Disk": [
     "tgui:DiskMenu"
@@ -38455,7 +38788,8 @@
     "tgui:index"
   ],
   "{0} Moles": [
-    "tgui:RBMK2"
+    "tgui:RBMK2",
+    "tgui:Supermatter"
   ],
   "{0} Mutant": [
     "tgui:InfuserBook"
@@ -38475,6 +38809,9 @@
   ],
   "{0} Pleasure": [
     "tgui:InfoSection"
+  ],
+  "{0} Purifying... {1}s": [
+    "tgui:MassSpec"
   ],
   "{0} RPM": [
     "tgui:TurbineComputer"
@@ -38504,6 +38841,9 @@
     "tgui:BankMachine"
   ],
   "{0} Vote": [
+    "tgui:VotePanel"
+  ],
+  "{0} Votes": [
     "tgui:VotePanel"
   ],
   "{0} WORLD MAP {1}": [
@@ -38556,6 +38896,7 @@
   "{0} cr": [
     "tgui:AuditScreen",
     "tgui:BankMachine",
+    "tgui:BlackMarketUplink",
     "tgui:BuyingShuttle",
     "tgui:SlotMachine",
     "tgui:UsersScreen",
@@ -38588,6 +38929,9 @@
   ],
   "{0} does not have any invocations.": [
     "tgui:ReligiousTool"
+  ],
+  "{0} in stock": [
+    "tgui:BlackMarketUplink"
   ],
   "{0} interactions": [
     "tgui:InteractionsTab"
@@ -38624,6 +38968,9 @@
   ],
   "{0} member{1}": [
     "tgui:CTFPanel"
+  ],
+  "{0} of {1} units": [
+    "tgui:Biogenerator"
   ],
   "{0} organic life at any cost.": [
     "tgui:AntagInfoGlitch"
@@ -38694,6 +39041,9 @@
   "{0} turns to:": [
     "tgui:MODpaint"
   ],
+  "{0} units": [
+    "tgui:Biogenerator"
+  ],
   "{0} units of {1}": [
     "tgui:BeakerDisplay",
     "tgui:MedicalKiosk",
@@ -38724,8 +39074,14 @@
   "{0}% ({1} failed attempts)": [
     "tgui:DynamicAdmin"
   ],
+  "{0}% consumed while active": [
+    "tgui:NifProgram"
+  ],
   "{0}% growth/sec.": [
     "tgui:Microscope"
+  ],
+  "{0}% per activation": [
+    "tgui:NifProgram"
   ],
   "{0}'s HP: {1}/{2}": [
     "tgui:BattleArcade"
@@ -38879,6 +39235,9 @@
   ],
   "{0}ms": [
     "tgui:SubsystemDialog"
+  ],
+  "{0}s Cooldown": [
+    "tgui:SpellTabDisplay"
   ],
   "{0}{1} - Notepad": [
     "tgui:NtosNotepad"

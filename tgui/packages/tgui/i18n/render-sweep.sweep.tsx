@@ -204,13 +204,18 @@ for (const file of files) {
   cleanup();
 }
 
-// 扫掠自身的产物不是漏翻：合成串、以及 mock 的窗口标题。
+// 扫掠自身的产物不是漏翻：合成串、mock 的窗口标题，以及**合成数据算出来的串**。
+// 后一类最容易被当成真缺口：界面把负载值拼进显示文本（`${moles} Moles`、`${x} units of ${y}`），
+// 喂进去的是合成值，拼出来的整串当然不在目录里 —— 但真实对局里那串也不会在目录里，
+// 它本来就该走「模板 + 运行期值」那条路。`null` / `undefined` / `NaN` 是这类的指纹。
 const ARTIFACTS = /^(Test UI|Sweep)$/;
+const SYNTHETIC_VALUE = /\b(null|undefined|NaN)\b/;
 const seen = new Set<string>();
 const lines: string[] = [];
 for (const { text, where } of collected) {
   if (seen.has(text)) continue;
   if (text.includes(SYNTH_TEXT) || ARTIFACTS.test(text)) continue;
+  if (SYNTHETIC_VALUE.test(text)) continue;
   seen.add(text);
   // 与 miss_log.dm 同格式，好让 tools/i18n/miss-scan.mjs 直接吃。
   lines.push(`[sweep] n=1 src=tgui-ui | ${text} || 来源: ${where}`);
@@ -219,6 +224,16 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, `${lines.join('\n')}\n`);
 
 console.log(`界面 ${files.length} 个，渲染成功 ${rendered}，未渲染 ${failed.length}`);
+// 覆盖面要说清楚，否则「扫掠通过」会被当成「前端全译了」：
+//   收得到 —— 静态 JSX 文本、可翻 prop、children 模板、**下拉框选项（收起状态也算，
+//             localizeDropdownProps 在 prop 阶段就跑）**、挂载时就渲染的页签标签。
+//   收不到 —— ① 上面这 ${failed.length} 个渲染不起来的界面；
+//             ② **要交互才出现的内容**：模态框、未选中的页签正文、Collapsible 的展开体、
+//                点击后才渲染的东西 —— 这一面只有真人开界面时的 missLog 回传才够得着。
+console.log(
+  '覆盖：静态文本 / 可翻 prop / children 模板 / 下拉选项（含收起）。' +
+    '交互后才渲染的（模态框、未选中页签、Collapsible 展开体）不在其中。',
+);
 console.log(`漏翻 ${seen.size} 条唯一串 → ${OUT}`);
 console.log('归类：node tools/i18n/miss-scan.mjs data/logs/tgui_misses.log');
 if (failed.length) {

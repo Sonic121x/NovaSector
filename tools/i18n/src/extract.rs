@@ -806,6 +806,60 @@ fn for_each_statement_block(stmt: &Statement, f: &mut impl FnMut(&[dm::ast::Span
     }
 }
 
+/// proc 体内的 `name = "字面量"` / `desc = "…"` 赋值。
+///
+/// 类型变量那条路（SINK_VARS）只看**声明**，够不着 `switch(caste)` 里按分支改名的那批：
+/// `if(ALIEN_RAVAGER) name = "alien ravager"`。实例名偏离 `initial(name)` 之后，显示边界的类型表
+/// 也对不上（那张表按 `initial(name)` 取键）→ 只剩整串反查，而这串从没进过目录，玩家看到
+/// 「The alien ravager」（实测计数直接打满）。
+///
+/// 两道闸门：
+///   · **多词**：`name = "Show"` / `"Hide"` / `"Zip"` 这类是 UI 开关词与标识符，单词一律不收；
+///   · **类型是 atom**（`/obj`|`/mob`|`/turf`|`/area`）：atom 的 name/desc 按定义是显示文本，
+///     而 `/datum/...` 的 name 里标识符浓度很高（verb 元数据、资源 id）—— 与 MT 那条 atom-scope
+///     判据同源，都是「`#name` 本身不足以证明它是文案」。
+fn walk_name_assignments(
+    block: &[dm::ast::Spanned<Statement>],
+    ns: &str,
+    catalog: &mut Catalog,
+) {
+    for stmt in block.iter() {
+        for_each_statement_expr(&stmt.elem, &mut |expr| {
+            let Expression::AssignOp { lhs, rhs, .. } = expr else {
+                return;
+            };
+            let Expression::Base { term, follow } = lhs.as_ref() else {
+                return;
+            };
+            let target = match (&term.elem, follow.first().map(|f| &f.elem)) {
+                (Term::Ident(name), None) => Some(name.as_str()),
+                // `src.name = …` / `holder.name = …`
+                (_, Some(Follow::Field(_, field))) => Some(field.as_str()),
+                _ => None,
+            };
+            if !matches!(target, Some("name") | Some("desc")) {
+                return;
+            }
+            let Expression::Base { term: value, follow: value_follow } = rhs.as_ref() else {
+                return;
+            };
+            if !value_follow.is_empty() {
+                return;
+            }
+            let Term::String(text) = &value.elem else {
+                return;
+            };
+            if !text.trim().contains(' ') {
+                return;
+            }
+            emit(catalog, ns, text.trim());
+        });
+        for_each_statement_block(&stmt.elem, &mut |inner| {
+            walk_name_assignments(inner, ns, catalog)
+        });
+    }
+}
+
 /// 「局部变量一跳」：proc 里赋给**后来被当作 LANG 实参**的局部变量的字符串字面量。
 ///
 /// 这是复发过好几次的一类。上游把一句话拆成
@@ -1426,6 +1480,16 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                     // 「局部变量一跳」：赋给 LANG 实参标识符的字面量（见 walk_lang_arg_locals）。
                     // 与下面按 proc 名分派的规则正交，所有 proc 都要走一遍。
                     walk_lang_arg_locals(block, &namespace, &mut catalog, suppress_aggressive || in_unit_tests(proc_value.location));
+                    // 运行期改名（`switch(caste)` 里的 `name = "alien ravager"`）。只对 atom 开。
+                    if !suppress_aggressive
+                        && !in_unit_tests(proc_value.location)
+                        && matches!(
+                            ty.path.split('/').nth(1),
+                            Some("obj") | Some("mob") | Some("turf") | Some("area")
+                        )
+                    {
+                        walk_name_assignments(block, &namespace, &mut catalog);
+                    }
 
                     match proc_name.as_str() {
                         "get_species_description" => {

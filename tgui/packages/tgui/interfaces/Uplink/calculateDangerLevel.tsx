@@ -79,7 +79,6 @@ export const dangerLevelsTooltip = (
           lastMinutesThan = 0;
         }
         const progression = calculateProgression(lastMinutesThan * 600);
-        const text = `${value.title} (${progression})`;
 
         lastMinutesThan = value.minutesLessThan;
         return (
@@ -94,7 +93,11 @@ export const dangerLevelsTooltip = (
               px={0.8}
               py={0.6}
             >
-              {text}
+              {/* NOVA EDIT CHANGE - I18N: 等级名单独包一层元素才是自己的目录条目
+                  （`Pinnacle` 等词早已在目录里）；整串 `Miniscule (50)` 是运行期产物、
+                  永远不是键，而 `(50)` 只是数值、不参与翻译。
+                  ORIGINAL: const text = `${value.title} (${progression})`; … {text} */}
+              <span>{value.title}</span> ({progression})
             </Box>
           </Flex.Item>
         );
@@ -126,7 +129,8 @@ export const calculateDangerLevel = (
   if (textOnly) {
     return (
       <Box as="span">
-        {dangerLevel.title} ({displayedProgression})
+        {/* NOVA EDIT CHANGE - I18N - ORIGINAL: {dangerLevel.title} ({displayedProgression}) */}
+        <span>{dangerLevel.title}</span> ({displayedProgression})
       </Box>
     );
   }
@@ -142,7 +146,8 @@ export const calculateDangerLevel = (
       py={0.6}
       textAlign="center"
     >
-      {dangerLevel.title} ({displayedProgression})
+      {/* NOVA EDIT CHANGE - I18N - ORIGINAL: {dangerLevel.title} ({displayedProgression}) */}
+      <span>{dangerLevel.title}</span> ({displayedProgression})
     </Box>
   );
 };

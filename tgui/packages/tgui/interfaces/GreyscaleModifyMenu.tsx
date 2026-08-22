@@ -227,7 +227,14 @@ const PreviewDisplay = (props) => {
           )}
         </Table.Row>
       </Table>
-      {!!data.unlocked && `Time Spent: ${data.sprites.time_spent}ms`}
+      {/* NOVA EDIT CHANGE - I18N: 数值包成占位符，整条按 children 模板
+          `Time Spent: {0}ms` 进目录
+          ORIGINAL: {!!data.unlocked && `Time Spent: ${data.sprites.time_spent}ms`} */}
+      {!!data.unlocked && (
+        <Box>
+          Time Spent: <span>{data.sprites.time_spent}</span>ms
+        </Box>
+      )}
       <Divider />
       {!data.refreshing && (
         <Table>

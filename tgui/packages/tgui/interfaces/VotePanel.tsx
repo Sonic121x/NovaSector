@@ -254,7 +254,13 @@ const ChoicesPanel = (props) => {
                   (choice.id ?? choice.name) === user.singleSelection && (
                     <Icon align="right" mr={2} color="green" name="vote-yea" />
                   )}
-                {(currentVote.displayStatistics || user.isLowerAdmin) ? `${choice.votes} Votes` : null}
+                {/* NOVA EDIT CHANGE - i18n: ORIGINAL: {(currentVote.displayStatistics || user.isLowerAdmin) ? `${choice.votes} Votes` : null}
+                    拼出来的整串永远不是目录键 → 拆成 children 模板 `{0} Votes`。 */}
+                {currentVote.displayStatistics || user.isLowerAdmin ? (
+                  <>
+                    <span>{choice.votes}</span> Votes
+                  </>
+                ) : null}
               </LabeledList.Item>
               <LabeledList.Divider />
             </Box>
@@ -295,7 +301,14 @@ const ChoicesPanel = (props) => {
                   <Icon align="right" mr={2} color="blue" name="vote-yea" />
                 ) : null}
                 {/* // NOVA EDIT REMOVAL choice.votes} Votes */ }
-                {user.isLowerAdmin ? `${choice.votes} Votes` : '' /* NOVA EDIT ADDITION */}
+                {/* NOVA EDIT ADDITION - i18n: children 模板 `{0} Votes`（整串拼接不是目录键） */}
+                {user.isLowerAdmin ? (
+                  <>
+                    <span>{choice.votes}</span> Votes
+                  </>
+                ) : (
+                  ''
+                )}
               </LabeledList.Item>
               <LabeledList.Divider />
             </Box>
@@ -315,9 +328,15 @@ const TimePanel = (props) => {
     <Stack.Item>
       <Stack justify="space-between">
         <Box fontSize={1.5}>
-          {currentVote
-            ? `Time remaining: ${currentVote.timeRemaining}s`
-            : 'No current vote'}
+          {/* NOVA EDIT CHANGE - i18n: ORIGINAL: {currentVote ? `Time remaining: ${currentVote.timeRemaining}s` : 'No current vote'}
+              拼出来的整串永远不是目录键 → 拆成 children 模板 `Time remaining: {0}s`。 */}
+          {currentVote ? (
+            <>
+              Time remaining: <span>{currentVote.timeRemaining}</span>s
+            </>
+          ) : (
+            'No current vote'
+          )}
         </Box>
         {!!user.isLowerAdmin && (
           <Stack>

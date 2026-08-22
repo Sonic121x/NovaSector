@@ -1061,10 +1061,63 @@ const CONSTANT_LABEL_TABLES = [
     table: 'CRIMESTATUS2DESC',
     values: true,
   },
+  // 中心指挥投送舱（管理员界面）的整排选项标签。同样住在 .ts 里 → walk() 只扫 .tsx/.jsx，
+  // 整类漏抽；离线渲染扫掠里 PodStatusPage 一个界面就贡献 17 条。
+  // 只收 `title`/`label`/`alt_label`：同一批对象里的 `act`/`key`/`selected`/`icon` 是回传标识符
+  // 与图标名，绝不能进目录（`option.key || option.title` 那处用 title 兜底当回传值，但那读的是
+  // **对象属性**、不是渲染出来的串，auto-localize 只翻显示，回传仍是英文）。
+  // 界面里的**裸字符串数组**常量（`const weaponlist = ['Fist Fight', …]`）。
+  //
+  // **只能逐表登记，没有能一次覆盖的形态规则**：`CodexGigas` 的 `TITLES`
+  // （`['Lord','Prelate','Count',…]`）与这里的 `weaponlist` 形状完全一样，但前者是**恶魔名
+  // 生成器的音节/头衔表**，翻了就毁掉名字生成。既然形态分不开，就只登记确认过的。
+  { file: 'interfaces/NovaTumsPrefs.tsx', table: 'SOUND_TOOLTIPS', values: true },
+  // 管道分发器的模式复选框。`act('mode', { mode: tool.bitmask })` 回传的是**位掩码**，
+  // `name` 纯显示；`bitmask` 是数字、不会被 props 白名单收进来。
+  { file: 'interfaces/RapidPipeDispenser.tsx', table: 'TOOLS', props: ['name'] },
+  ...[
+    { file: 'interfaces/SparringContract.tsx', tables: ['weaponlist', 'stakelist', 'weaponblurb', 'stakesblurb'] },
+    { file: 'interfaces/InfuserBook.tsx', tables: ['tabs'] },
+    { file: 'interfaces/ChemRecipeDebug.tsx', tables: ['TEMP_MODES'] },
+    // 管道分发器的根分类页签。`act('category', { category: i })` 回传的是**索引**，纯显示。
+    { file: 'interfaces/RapidPipeDispenser.tsx', tables: ['ROOT_CATEGORIES'] },
+  ].flatMap(({ file, tables }) =>
+    tables.map((table) => ({ file, table, elements: true })),
+  ),
+  ...[
+    'TABPAGES',
+    'REVERSE_OPTIONS',
+    'DELAYS',
+    'REV_DELAYS',
+    'SOUNDS',
+    'BAYS',
+    'EFFECTS_LOAD',
+    'EFFECTS_NORMAL',
+    'EFFECTS_HARM',
+    'EFFECTS_ALL',
+  ].map((table) => ({
+    file: 'interfaces/CentcomPodLauncher/constants.ts',
+    table,
+    props: ['title', 'label', 'alt_label', 'tooltip'],
+  })),
 ];
 
-function extractConstantTableLabels(catalog) {
-  for (const { file, table, props, values } of CONSTANT_LABEL_TABLES) {
+/// 自定义组件上**不在 translatable_props 里**的显示文案 prop。
+///
+/// `<SingleLoadout name="The Classic Wizard" blurb="…" />`：`name` 全局不可翻（标识符浓度太高），
+/// 但这个组件内部是 `<Section title={name}>` —— `title` 在 translatable_props 里，**渲染期照常
+/// 本地化**，缺的只有抽取。所以按「组件 + prop」定点登记，不动全局 prop 清单。
+/// `author` 不收：那是贡献者署名（`Archchancellor Gray`），专名。
+const COMPONENT_PROP_LABELS = [
+  {
+    file: 'interfaces/Spellbook/Loadouts.tsx',
+    component: 'SingleLoadout',
+    props: ['name', 'blurb'],
+  },
+];
+
+function extractComponentPropLabels(catalog) {
+  for (const { file, component, props } of COMPONENT_PROP_LABELS) {
     const filePath = path.join(TGUI_SOURCE_DIR, file);
     let source;
     try {
@@ -1077,7 +1130,48 @@ function extractConstantTableLabels(catalog) {
       source,
       ts.ScriptTarget.Latest,
       true,
-      ts.ScriptKind.TS,
+      ts.ScriptKind.TSX,
+    );
+    const wanted = new Set(props);
+    const visit = (node) => {
+      const opening = ts.isJsxSelfClosingElement(node)
+        ? node
+        : ts.isJsxElement(node)
+          ? node.openingElement
+          : null;
+      if (opening && opening.tagName.getText(sf) === component) {
+        for (const attribute of opening.attributes.properties) {
+          if (!ts.isJsxAttribute(attribute)) continue;
+          if (!wanted.has(attribute.name.getText(sf))) continue;
+          addText(
+            catalog,
+            literalText(attribute.initializer) ??
+              foldStringConcat(attribute.initializer),
+          );
+        }
+      }
+      ts.forEachChild(node, visit);
+    };
+    visit(sf);
+  }
+}
+
+function extractConstantTableLabels(catalog) {
+  for (const { file, table, props, values, elements } of CONSTANT_LABEL_TABLES) {
+    const filePath = path.join(TGUI_SOURCE_DIR, file);
+    let source;
+    try {
+      source = fs.readFileSync(filePath, 'utf8');
+    } catch {
+      continue;
+    }
+    const sf = ts.createSourceFile(
+      filePath,
+      source,
+      ts.ScriptTarget.Latest,
+      true,
+      // 按扩展名选 ScriptKind：用 TS 解析 .tsx 会把 `<Foo>` 当成类型断言，整个文件的 AST 就错了。
+      filePath.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
     );
     const wanted = new Set(props ?? []);
     const visit = (node) => {
@@ -1090,7 +1184,21 @@ function extractConstantTableLabels(catalog) {
           if (ts.isPropertyAssignment(inner)) {
             const name = propertyName(inner.name);
             if (values || wanted.has(name)) {
-              addText(catalog, literalText(inner.initializer));
+              // 值可能是 `'…' + '…'` 的折行拼接（prettier 对长句的常规排版）。
+              // literalText 只认单个字面量，不折叠 —— 不折就整条抽不到。
+              addText(
+                catalog,
+                literalText(inner.initializer) ??
+                  foldStringConcat(inner.initializer),
+              );
+            }
+          }
+          // `elements`：**裸字符串数组**（`const weaponlist = ['Fist Fight', …]`）。
+          // 这类常量住在 .tsx 里但不在 JSX 中，walk() 看不见；渲染时 `{w}` 作 children
+          // 由 auto-localize 落地，所以缺的只有抽取这一步。
+          if (elements && ts.isArrayLiteralExpression(inner)) {
+            for (const element of inner.elements) {
+              addText(catalog, literalText(element));
             }
           }
           ts.forEachChild(inner, collect);
@@ -1238,6 +1346,7 @@ function extractCatalog() {
   extractInteractionLabels(catalog);
   currentScope = 'tgui:constants';
   extractConstantTableLabels(catalog);
+  extractComponentPropLabels(catalog);
   for (const filePath of walk(TGUI_SOURCE_DIR)) {
     // 界面名即语境。`interfaces/ChemReactionChamber.tsx` -> `tgui:ChemReactionChamber`。
     currentScope = `tgui:${path.basename(filePath).replace(/\.(tsx|jsx|ts|js)$/, '')}`;

@@ -867,18 +867,50 @@ function flushKeepEnglish(): void {
 }
 
 /** 该 key 是否需要（重新）翻译。 */
+/**
+ * 该 key 是不是**某个 atom 的 name/desc**（scope 形如 `/obj/item/...#name`）。
+ *
+ * 形态判据挡不住的一整类：`stripNoise` 把 kebab-case 当标识符剥掉（`walking-aid`/`body-l-leg`
+ * 那些确实是标识符，这条规则该留），可它同一条也挡掉了 `bowler-hat`/`top-hat`/`flip-flops`/
+ * `mi-go` 这批**连字符显示名** —— 它们在目录里、有 scope、却永远 zh==en。
+ *
+ * **不能只看 `#name`**：`/datum/verb_metadata/client/body_groin#name` 是 verb 标识符、
+ * `/datum/asset/spritesheet/…#name` 是资源 id，翻了会坏东西（46 条 kebab 未译里有 29 条是这种）。
+ * 判据必须再加一条「类型路径是 atom」：`/obj`、`/mob`、`/turf`、`/area` 的 name/desc 按定义就是
+ * 给玩家看的显示文本。加上这条之后剩下 17 条，全是食物/衣物/器官的真名字。
+ */
+const ATOM_SCOPE_RE = /^\/(obj|mob|turf|area)\b/;
+function isAtomDisplayName(key: string | undefined, enVal: string): boolean {
+  if (key == null) return false;
+  // 蛇形值在 atom 上照样是标识符：`to_suit` / `held_tk_effect` / `bird_1`（导航信标编号）。
+  // 实测放开一次就把它们全翻了，`bird_1 → 一号停机位` 还是错的 —— 而且这些词会进全局反查表。
+  if (/[a-z0-9]_[a-z0-9]/.test(enVal)) return false;
+  return (scopesByKey[key] ?? []).some(
+    (scope) =>
+      ATOM_SCOPE_RE.test(scope) &&
+      // `/obj/effect/*` 按构造就是不可见的（临时视觉、地标、抽象持有物），它们的 name 是给
+      // 程序看的。放着不管的话，这条规则最先捞上来的就是这一批。
+      !scope.startsWith('/obj/effect') &&
+      (scope.endsWith('#name') || scope.endsWith('#desc')),
+  );
+}
+
 function needsTranslation(
   enVal: string,
   zhVal: string | undefined,
   key?: string,
 ): boolean {
-  if (zhVal == null || zhVal === '') return hasTranslatableEnglish(enVal); // 缺失（key 不存在或空值）
+  if (zhVal == null || zhVal === '') {
+    return hasTranslatableEnglish(enVal) || isAtomDisplayName(key, enVal); // 缺失（key 不存在或空值）
+  }
   // 与英文逐字相同 = 没翻成功的「占位译文」，语义上等同未译 → 始终补译（即使 missing-only）。
   // 这是「整体翻译一遍后仍有 key 显示英文」（如 "Chest":"Chest"）的根因：旧逻辑里 missing-only
   // 把「有任何值」都当已译跳过，占位英文永远不会被重试。纯代码/符号（hasEnglishWord=false）不补。
   // 例外：已登记「保持英文」（专名/cult 咒语/程序名/base64…）的 key 不再重送模型。
   if (zhVal === enVal) {
     if (key != null && isKeepEnglish(key, enVal)) return false;
+    // atom 的 name/desc 按定义是显示文本，`looksLikeCodeIdentifier` 的形态判据在这里让位。
+    if (isAtomDisplayName(key, enVal)) return true;
     return hasTranslatableEnglish(enVal) && !looksLikeCodeIdentifier(enVal);
   }
   if (MISSING_ONLY) return false; // 只补缺失/失败：已有「≠英文」的真译文都不动（不重判刻意保留的中英混杂）

@@ -20,16 +20,28 @@ type Props = {
   pointOffset?: number;
 };
 
+// NOVA EDIT CHANGE - i18n: ORIGINAL: 两条分支各自 `return `Cast ${entry.times} times.`` /
+// `return `${entry.cooldown}s Cooldown``。整串在 TS 里拼出来、永远不是目录键，两条落地路径
+// 都够不着。改为返回 children 模板形态（数值包进元素当占位符），由 localizeChildrenTemplate
+// 整条查表后按中文语序回填。
 function getTimeOrCat(entry: SpellEntry) {
   if (entry.cat === SpellCategory.Rituals) {
     if (entry.times) {
-      return `Cast ${entry.times} times.`;
+      return (
+        <>
+          Cast <span>{entry.times}</span> times.
+        </>
+      );
     } else {
       return 'Not cast yet.';
     }
   } else {
     if (entry.cooldown) {
-      return `${entry.cooldown}s Cooldown`;
+      return (
+        <>
+          <span>{entry.cooldown}</span>s Cooldown
+        </>
+      );
     } else {
       return '';
     }
