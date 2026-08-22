@@ -57,6 +57,10 @@ const SINK_VARS: &[&str] = &[
     // 配装预览名（`preview_name = "Croptop Bomber Jacket Plain"`，363 处）：偏好菜单里逐件显示，
     // 漏翻采集在 tgui 那一侧大量命中。名字型短语过不了激进 pass 的整句闸门。
     "preview_name",
+    // 物种复数名（`plural_form = "Flypeople"`）。它进 LANG 实参（物种 perk 描述、地面残留物
+    // 检查）与偏好菜单，是纯显示串。没写的那些由 `"[name]\s"` 在运行期拼出来，那一类靠
+    // lang_localize_arg 的复数回退落地（中文无复数，去词尾查单数）。
+    "plural_form",
     // /datum/emote 的按物种/形态分支消息：select_message_type() 按 user 选用哪一条，最终都汇到
     // run_emote 的输出边界反查。只列了 message 而漏掉这些分支 → 哑剧演员/异形/赛博格/AI/猴子
     // 的表情整类没进目录、runechat 全英文。不含 message_param（含 %t，由 select_param 在运行期
@@ -757,9 +761,245 @@ fn walk_ion_templates(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog: 
     }
 }
 
+/// 语句里的顶层表达式（不下探子块）。给 walk_lang_arg_locals 的两趟扫描共用。
+fn for_each_statement_expr(stmt: &Statement, f: &mut impl FnMut(&Expression)) {
+    match stmt {
+        Statement::Expr(e) => f(e),
+        Statement::Return(Some(e)) | Statement::Throw(e) | Statement::Del(e) => f(e),
+        Statement::If { arms, .. } => {
+            for (cond, _) in arms.iter() {
+                f(&cond.elem);
+            }
+        }
+        Statement::Switch { input, .. } => f(input),
+        Statement::While { condition, .. } => f(condition),
+        Statement::DoWhile { condition, .. } => f(&condition.elem),
+        _ => {}
+    }
+}
+
+/// 语句里的子块（控制流）。
+fn for_each_statement_block(stmt: &Statement, f: &mut impl FnMut(&[dm::ast::Spanned<Statement>])) {
+    match stmt {
+        Statement::If { arms, else_arm } => {
+            for (_c, blk) in arms.iter() {
+                f(blk);
+            }
+            if let Some(blk) = else_arm {
+                f(blk);
+            }
+        }
+        Statement::Switch { cases, default, .. } => {
+            for (_c, blk) in cases.iter() {
+                f(blk);
+            }
+            if let Some(blk) = default {
+                f(blk);
+            }
+        }
+        Statement::While { block, .. }
+        | Statement::DoWhile { block, .. }
+        | Statement::ForInfinite { block }
+        | Statement::ForLoop { block, .. }
+        | Statement::Spawn { block, .. } => f(block),
+        _ => {}
+    }
+}
+
+/// 「局部变量一跳」：proc 里赋给**后来被当作 LANG 实参**的局部变量的字符串字面量。
+///
+/// 这是复发过好几次的一类。上游把一句话拆成
+/// ```dm
+/// var/subject
+/// switch(kind)
+///     if("left")  subject = "the left side of your body"
+/// to_chat(user, LANG("mob.xxxx", list(subject)))
+/// ```
+/// 之后：模板抽到了、也译了，而 `subject` 的那几个字面量既不是 sink 实参、也不是类型变量、
+/// 更不是 LANG 实参子树里的字面量（子树里只有标识符 `subject`）→ **一条都进不了目录**，
+/// 玩家看到的是「你的{中文模板}the left side of your body」。
+/// 同形的还有 `suffixes += " Targetable by contractors."` 这类局部累加器。
+///
+/// 两趟：先收集「在 LANG 实参位置出现过的裸标识符」，再收集赋给这些标识符的字面量。
+/// 闸门复用 LANG 实参那条 `is_lang_arg_text`（去标签后须多词）—— 局部变量名下的标识符浓度
+/// 比类型变量高得多（`var/action = "toggle"`），单 token 一律不收。
+fn walk_lang_arg_locals(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog: &mut Catalog) {
+    let mut names = std::collections::HashSet::new();
+    collect_lang_arg_idents_block(block, &mut names);
+    if names.is_empty() {
+        return;
+    }
+    let mut literals = Vec::new();
+    collect_local_assign_literals(block, &names, &mut literals);
+    for literal in literals {
+        if is_lang_arg_text(&literal) {
+            emit(catalog, ns, literal.trim());
+        }
+    }
+}
+
+fn collect_lang_arg_idents_block(
+    block: &[dm::ast::Spanned<Statement>],
+    out: &mut std::collections::HashSet<String>,
+) {
+    for stmt in block.iter() {
+        for_each_statement_expr(&stmt.elem, &mut |e| collect_lang_arg_idents_expr(e, out));
+        for_each_statement_block(&stmt.elem, &mut |b| collect_lang_arg_idents_block(b, out));
+    }
+}
+
+fn collect_lang_arg_idents_expr(
+    expr: &Expression,
+    out: &mut std::collections::HashSet<String>,
+) {
+    match expr {
+        Expression::Base { term, follow } => {
+            if let Term::Call(name, args) = &term.elem {
+                if let Some(idx) = lang_format_key_index(name.as_str()) {
+                    for (i, a) in args.iter().enumerate() {
+                        if i > idx {
+                            collect_bare_idents(a, out);
+                        }
+                    }
+                }
+                for a in args.iter() {
+                    collect_lang_arg_idents_expr(a, out);
+                }
+            }
+            if let Term::Expr(inner) = &term.elem {
+                collect_lang_arg_idents_expr(inner, out);
+            }
+            if let Term::List(args) | Term::SelfCall(args) | Term::ParentCall(args) = &term.elem {
+                for a in args.iter() {
+                    collect_lang_arg_idents_expr(a, out);
+                }
+            }
+            for f in follow.iter() {
+                if let Follow::Call(_, name, args) = &f.elem {
+                    if let Some(idx) = lang_format_key_index(name.as_str()) {
+                        for (i, a) in args.iter().enumerate() {
+                            if i > idx {
+                                collect_bare_idents(a, out);
+                            }
+                        }
+                    }
+                    for a in args.iter() {
+                        collect_lang_arg_idents_expr(a, out);
+                    }
+                }
+            }
+        }
+        Expression::BinaryOp { lhs, rhs, .. } => {
+            collect_lang_arg_idents_expr(lhs, out);
+            collect_lang_arg_idents_expr(rhs, out);
+        }
+        Expression::AssignOp { rhs, .. } => collect_lang_arg_idents_expr(rhs, out),
+        Expression::TernaryOp { cond, if_, else_ } => {
+            collect_lang_arg_idents_expr(cond, out);
+            collect_lang_arg_idents_expr(if_, out);
+            collect_lang_arg_idents_expr(else_, out);
+        }
+    }
+}
+
+/// LANG 实参子树里的**裸标识符**（`subject`、`suffix`）。`x.y` 这种带 follow 的不收：
+/// 那是别人的字段，赋值点不在本 proc 里，回收它只会把无关字面量拖进来。
+fn collect_bare_idents(expr: &Expression, out: &mut std::collections::HashSet<String>) {
+    match expr {
+        Expression::Base { term, follow } => {
+            if follow.is_empty() {
+                if let Term::Ident(name) = &term.elem {
+                    out.insert(name.clone());
+                }
+            }
+            match &term.elem {
+                Term::Expr(inner) => collect_bare_idents(inner, out),
+                Term::List(args) => {
+                    for a in args.iter() {
+                        collect_bare_idents(a, out);
+                    }
+                }
+                Term::Call(name, args) => {
+                    let key_idx = lang_format_key_index(name.as_str());
+                    for (i, a) in args.iter().enumerate() {
+                        if Some(i) == key_idx {
+                            continue;
+                        }
+                        collect_bare_idents(a, out);
+                    }
+                }
+                _ => {}
+            }
+        }
+        Expression::BinaryOp { lhs, rhs, .. } => {
+            collect_bare_idents(lhs, out);
+            collect_bare_idents(rhs, out);
+        }
+        Expression::AssignOp { rhs, .. } => collect_bare_idents(rhs, out),
+        Expression::TernaryOp { cond, if_, else_ } => {
+            collect_bare_idents(cond, out);
+            collect_bare_idents(if_, out);
+            collect_bare_idents(else_, out);
+        }
+    }
+}
+
+/// `name = "…"` / `name += "…"`（含 `var/name = "…"` 声明初值）里赋给目标标识符的字面量。
+fn collect_local_assign_literals(
+    block: &[dm::ast::Spanned<Statement>],
+    names: &std::collections::HashSet<String>,
+    out: &mut Vec<String>,
+) {
+    for stmt in block.iter() {
+        if let Statement::Var(var_stmt) = &stmt.elem {
+            if names.contains(&var_stmt.name) {
+                if let Some(value) = &var_stmt.value {
+                    push_assigned_literals(value, out);
+                }
+            }
+        }
+        for_each_statement_expr(&stmt.elem, &mut |e| {
+            if let Expression::AssignOp { lhs, rhs, .. } = e {
+                if let Expression::Base { term, follow } = lhs.as_ref() {
+                    if follow.is_empty() {
+                        if let Term::Ident(name) = &term.elem {
+                            if names.contains(name) {
+                                push_assigned_literals(rhs, out);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        for_each_statement_block(&stmt.elem, &mut |b| {
+            collect_local_assign_literals(b, names, out)
+        });
+    }
+}
+
+fn push_assigned_literals(expr: &Expression, out: &mut Vec<String>) {
+    match expr {
+        Expression::Base { term, follow } if follow.is_empty() => match &term.elem {
+            Term::String(text) => out.push(text.clone()),
+            Term::Expr(inner) => push_assigned_literals(inner, out),
+            _ => {}
+        },
+        Expression::TernaryOp { if_, else_, .. } => {
+            push_assigned_literals(if_, out);
+            push_assigned_literals(else_, out);
+        }
+        _ => {}
+    }
+}
+
 /// 走 examine_tags proc 体，抽 `.["tag"] = "悬浮提示文本"` 的字符串值。examine 标签的 hover
 /// tooltip（玩家可见），是 IndexAssign 到返回列表 `.`（非 sink/累加器，常规 visit 漏掉）。递归穿控制流。
-fn walk_examine_tags(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog: &mut Catalog) {
+fn walk_examine_tags(
+    block: &[dm::ast::Spanned<Statement>],
+    ns: &str,
+    catalog: &mut Catalog,
+    emit_keys: bool,
+) {
     for stmt in block.iter() {
         match &stmt.elem {
             Statement::Expr(Expression::AssignOp { lhs, rhs, .. }) => {
@@ -780,10 +1020,15 @@ fn walk_examine_tags(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog: &
                         // `examine_list["partially EMP blocking"] = …`）。
                         // 别处的下标键一律是程序查表用的键名，绝不能抽（见 visit_expr 里对
                         // Follow::Index 的整支跳过），所以这条只开在本 proc 语境内。
-                        if let Follow::Index(_, idx) = &follow[0].elem {
-                            if let Some(t) = build_template(idx) {
-                                if !t.contains('{') {
-                                    emit(catalog, ns, &t);
+                        // `emit_keys=false` 的 proc（loadout 的 get_item_information）下标键是
+                        // **图标标识符**（`FA_ICON_*` 宏展开成 "fa-hat-cowboy" 这类串），抽进目录
+                        // 就是往反查表里塞标识符。键当文案只在 examine_tags 那一族成立。
+                        if emit_keys {
+                            if let Follow::Index(_, idx) = &follow[0].elem {
+                                if let Some(t) = build_template(idx) {
+                                    if !t.contains('{') {
+                                        emit(catalog, ns, &t);
+                                    }
                                 }
                             }
                         }
@@ -792,24 +1037,24 @@ fn walk_examine_tags(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog: &
             }
             Statement::If { arms, else_arm } => {
                 for (_c, blk) in arms.iter() {
-                    walk_examine_tags(blk, ns, catalog);
+                    walk_examine_tags(blk, ns, catalog, emit_keys);
                 }
                 if let Some(blk) = else_arm {
-                    walk_examine_tags(blk, ns, catalog);
+                    walk_examine_tags(blk, ns, catalog, emit_keys);
                 }
             }
             Statement::Switch { cases, default, .. } => {
                 for (_c, blk) in cases.iter() {
-                    walk_examine_tags(blk, ns, catalog);
+                    walk_examine_tags(blk, ns, catalog, emit_keys);
                 }
                 if let Some(blk) = default {
-                    walk_examine_tags(blk, ns, catalog);
+                    walk_examine_tags(blk, ns, catalog, emit_keys);
                 }
             }
             Statement::While { block, .. }
             | Statement::ForInfinite { block }
             | Statement::ForLoop { block, .. }
-            | Statement::Spawn { block, .. } => walk_examine_tags(block, ns, catalog),
+            | Statement::Spawn { block, .. } => walk_examine_tags(block, ns, catalog, emit_keys),
             _ => {}
         }
     }
@@ -988,7 +1233,14 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             // 元素是单词感叹词，过不了激进 pass 的整句闸门，必须按变量名专门收。
             let is_speech_pool = matches!(
                 var_name.as_str(),
-                "speak" | "emote_hear" | "emote_see" | "animal_sounds" | "animal_sounds_alt"
+                "speak"
+                    | "emote_hear"
+                    | "emote_see"
+                    | "animal_sounds"
+                    | "animal_sounds_alt"
+                    // 说话动词池（`speak_emote = list("brays")`）。走 say.dm 的 `lang_reverse_text(say_mod)`
+                    // 落地，是**整串精确**反查，所以单词条目在这里安全（不进字面 AC 的多词字典）。
+                    | "speak_emote"
             );
             // 合成配方步骤列表（/datum/crafting_recipe steps = list("步骤1", …)，crafting UI "steps"
             // 字段直发显示、P1 反查）。无句末标点居多 → 逐元素抽。
@@ -1096,6 +1348,10 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                     // 物种「描述」与「背景设定」：经偏好物种常量 asset 展示的玩家可见文本，
                     // 但来源是 proc **返回值**（各物种覆盖 get_species_description/lore），非 sink/SINK_VARS。
                     // 运行时在 species.dm 的 compile_constant_data 反查落地。
+                    // 「局部变量一跳」：赋给 LANG 实参标识符的字面量（见 walk_lang_arg_locals）。
+                    // 与下面按 proc 名分派的规则正交，所有 proc 都要走一遍。
+                    walk_lang_arg_locals(block, &namespace, &mut catalog);
+
                     match proc_name.as_str() {
                         "get_species_description" => {
                             let mut rets = Vec::new();
@@ -1166,7 +1422,14 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                         // examine 标签的 hover tooltip：`.["tag"] = "提示"`（运行时 atom_examine 反查显示）。
                         // get_examine_info：slapcrafting 的 `examine_list["crafting component"] = "You think…"`
                         // tooltip（插值模板，手接 LANG）。
-                        "examine_tags" | "get_examine_info" | "get_examine_tags" => walk_examine_tags(block, &namespace, &mut catalog),
+                        "examine_tags" | "get_examine_info" | "get_examine_tags" => {
+                            walk_examine_tags(block, &namespace, &mut catalog, true)
+                        }
+                        // 配装项的补充信息：`.[FA_ICON_*] = "Top of Head"`，**键是图标标识符、
+                        // 值才是玩家可见标签** —— 与 examine_tags 正好相反，故只抽值。
+                        "get_item_information" => {
+                            walk_examine_tags(block, &namespace, &mut catalog, false)
+                        }
                         // 重量等级 tooltip：examine_tags 里 `.[…] = weight_class_to_tooltip(w_class)`，值是 proc
                         // **返回**的字面量（"This item can fit into pockets…"），非 sink/index-assign → 抽返回值。
                         "weight_class_to_tooltip" => {

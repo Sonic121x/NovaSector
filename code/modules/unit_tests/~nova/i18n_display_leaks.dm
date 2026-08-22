@@ -115,6 +115,47 @@
 	TEST_ASSERT(findtext(composed, "兹克夫单元"), "说话者名字没有本地化：[composed]")
 	TEST_ASSERT(!findtext(composed, I18N_LEAK_NAME), "说话者名字仍是英文：[composed]")
 
+	// ⑥ examine 名不得多出前导空格。`get_examine_name` 的中文分支要丢掉冠词槽，从前写成
+	// `override -= null`——DM 的 Remove **只删第一个**匹配项，而这里有两个空槽（被清掉的 article
+	// 与本就为空的 before），剩下那个被 jointext 连成前导空格：玩家看到「那是  核心模块架」。
+	var/examine_name = subject.get_examine_name(null)
+	TEST_ASSERT_EQUAL(examine_name, "<em>兹克夫单元</em>", "examine 名多出了空槽拼出来的空格")
+
+	// ⑦ 纯英文动词一致性记号（p_do()→"does"、p_s()→"s"）在中文里没有对应成分，必须落成空串。
+	// 从前 lang_pronoun 用 `pmap[...] || word` 取值，空串在 DM 里为假 → 永远当 miss 返回英文，
+	// 于是玩家看到「他does似乎不太在意寒冷」（模板译好了、实参漏出来）。
+	TEST_ASSERT_EQUAL(lang_localize_arg("does"), "", "p_do() 的 \"does\" 没有被吃掉")
+	TEST_ASSERT_EQUAL(lang_localize_arg("it"), "它", "代词映射被空串分支带坏了")
+
+	// ⑧ 运行期在类型名两侧加缀的实例名（法则架的 `"\proper core module rack 'alpha'"`）：
+	// 整串既不是目录键、类型表按 initial(name) 也对不上 → 只剩字面 AC。按 initial(name) 作前缀拆开。
+	subject.name = "\proper [I18N_LEAK_NAME] 'alpha'"
+	TEST_ASSERT_EQUAL(
+		subject.lang_localize_name_for_display(subject.name),
+		"兹克夫单元 'alpha'",
+		"类型名加缀的实例名没有按前缀拆开本地化（标记字节与它后面的空格也要一起剥）",
+	)
+	subject.name = I18N_LEAK_NAME
+
+	// ⑨ 「裸文本 + span 包裹」的混合 LANG 实参：剥外壳那条分支要求整串首尾都是标签，多一个前导
+	// " and " 就整条 miss，连里面译好的半句一起留成英文（法则架例检的「固定于地面 and 用金属线缆固定」）。
+	en_cache["unittest.leak_join"] = " and "
+	locale_cache["unittest.leak_join"] = " 和 "
+	injected_en_keys["unittest.leak_join"] = TRUE
+	GLOB.i18n_reverse -= I18N_LEAK_LOCALE
+	GLOB.i18n_reverse_norm -= I18N_LEAK_LOCALE
+	GLOB.i18n_fallback_state -= I18N_LEAK_LOCALE
+	GLOB.i18n_fallback_cache -= I18N_LEAK_LOCALE
+	var/mixed_arg = lang_localize_arg(" and <span class='notice'>[I18N_LEAK_NAME]</span>")
+	TEST_ASSERT(findtext(mixed_arg, " 和 "), "混合实参的裸文本段没有被翻译：[mixed_arg]")
+	TEST_ASSERT(findtext(mixed_arg, "兹克夫单元"), "混合实参的标签内容没有被翻译：[mixed_arg]")
+
+	// ⑩ 英文复数实参回退到单数。物种的 `plural_form = "[name]\s"` 与各处 `"[x]s"` 是运行期拼的，
+	// 整串永远不是目录键；中文没有复数，去掉词尾查单数即可（采集里 Golems/Ethereals/Skrells 一整排）。
+	TEST_ASSERT_EQUAL(lang_localize_arg("[I18N_LEAK_NAME]s"), "兹克夫单元", "英文复数实参没有回退到单数")
+	// 反面：单数查不到时**不许**做任何形态猜测，原样返回。
+	TEST_ASSERT_EQUAL(lang_localize_arg("Zxqvurbs"), "Zxqvurbs", "单数查不到时不应改写实参")
+
 	// ③ 没有句末标点的两词碎片不得进字面 AC 字典（否则在句子中间开火）。
 	TEST_ASSERT(!lang_fallback_pattern_safe(I18N_LEAK_FRAGMENT), "两词碎片仍被放进 AC 字典，会从单词内部开火")
 	var/sentence = lang_fallback_apply("Zxqv can't stop me, Owl!", I18N_LEAK_LOCALE)

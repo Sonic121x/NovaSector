@@ -29,3 +29,7 @@
 #define I18N_AC_NONE 0
 #define I18N_AC_PROSE 1
 #define I18N_AC_FULL 2
+
+/// LANG 实参的 HTML 兜底最多下探几层（那条路经模板引擎会绕回 lang_localize_arg 自身）。
+/// 每跳都是更短的子串、理论上必然收敛，钉上限只是不让聊天热路径有爆栈的可能。
+#define I18N_ARG_HTML_MAX_DEPTH 3

@@ -48,16 +48,26 @@ function ingest(content) {
   for (const line of content.split('\n')) {
     const m = LINE_RE.exec(line);
     if (!m) continue;
-    const [, n, src, text] = m;
+    const [, n, src, rest] = m;
+    // **首次记录那行带着 ` || 整行: …` / ` || 来源: …` 上下文**（miss_log.dm 写的）。切掉再当键：
+    // 不切的话 n=1 那行的键带着上下文，与 en 目录永远对不上，整批首次记录会被误判成「没进目录」
+    // —— 而绝大多数串只出现一次，等于整份报告的分类全错。
+    const sep = rest.indexOf(' || ');
+    const text = sep < 0 ? rest : rest.slice(0, sep);
+    const hint = sep < 0 ? '' : rest.slice(sep + 4);
     const prev = perFile.get(text);
     const count = Number(n);
-    if (!prev || count > prev.count) perFile.set(text, { count, src });
-    else prev.src = prev.src || src;
+    if (!prev || count > prev.count) perFile.set(text, { count, src, hint });
+    else {
+      prev.src = prev.src || src;
+      prev.hint = prev.hint || hint;
+    }
   }
-  for (const [text, { count, src }] of perFile) {
-    const entry = misses.get(text) ?? { count: 0, sources: new Set() };
+  for (const [text, { count, src, hint }] of perFile) {
+    const entry = misses.get(text) ?? { count: 0, sources: new Set(), hints: new Set() };
     entry.count += count;
     entry.sources.add(src);
+    if (hint) entry.hints.add(hint);
     misses.set(text, entry);
   }
 }
@@ -117,8 +127,17 @@ const CSS_PROP_RE =
   /\b(px|rem|rgba?\(|linear-gradient|radial-gradient|font-(size|family|weight)|margin|padding|border|background|display|position|letter-spacing|text-align|box-shadow|align-items|justify-content|overflow|pointer-events|box-sizing|transition|text-shadow|background-(size|repeat|clip))\b/;
 const ADMIN_LOG_RE =
   /\( ?(JMP|FLW|VV|SM|TP|LOGS|SMITE|PP) ?\)|has entered build mode|deadminned|deadmined|re-adminned|admin ghosted|took longer than .* seconds to delete|Explosion with size|EMP with size \(|- Playing as |is a (Game Admin|Host|Coder|Admin)\b|was selected\.$|reset the thunderdome/;
+// 3. ckey / 贡献者名单：`pyritechimera, gabenyfox, draegonlore` —— 逗号分隔的全小写标识符串，
+//    是人名不是文案。它们每局都会出现在偏好菜单/致谢页的负载里。
+const CKEY_LIST_RE = /^[a-z0-9]+(?:, [a-z0-9]+)+$/;
+// 4. 单测夹具的名字：套件驱动的漏翻采集里，被打的假人、被造的赛博格都叫这些名字。真实对局里
+//    不存在，收进报告只会挤占位置（`John Doe` 还会顺带把 `You attack John` 这类整行拖进来）。
+const TEST_FIXTURE_RE = /\b(Test Dummy|John Doe|Default Cyborg-\d+|consistent)\b/;
 const isNoise = (text) =>
-  (/[:;]/.test(text) && CSS_PROP_RE.test(text)) || ADMIN_LOG_RE.test(text);
+  (/[:;]/.test(text) && CSS_PROP_RE.test(text)) ||
+  ADMIN_LOG_RE.test(text) ||
+  CKEY_LIST_RE.test(text) ||
+  TEST_FIXTURE_RE.test(text);
 
 // ---- 归类 ----
 const buckets = {
@@ -129,9 +148,15 @@ const buckets = {
   词池保英文: [], // 口音替换词池 → 有意不译，纯降噪展示
   噪音: [], // CSS 声明/管理员日志印记 → 有意不译，纯降噪展示
 };
-for (const [text, { count, sources }] of misses) {
+for (const [text, { count, sources, hints }] of misses) {
   if (count < minCount) continue;
-  const row = { text, count, sources: [...sources].join(','), catalog: null };
+  const row = {
+    text,
+    count,
+    sources: [...sources].join(','),
+    hints: [...(hints ?? [])],
+    catalog: null,
+  };
   const hit = enValues.get(text);
   if (hit) {
     row.catalog = `${hit.ns}#${hit.key}`;
@@ -186,6 +211,41 @@ for (const [name, rows] of Object.entries(buckets)) {
   for (const row of rows) {
     const loc = row.catalog ? `  [${row.catalog}]` : '';
     console.log(`  ${String(row.count).padStart(5)}×  (${row.sources})${loc}  ${row.text}`);
+    // 首次记录带的上下文（整行 / 调用点类型）是定位调用点最强的线索，别只打片段。
+    for (const hint of row.hints) console.log(`           ↳ ${hint}`);
+  }
+}
+
+// ---- 显示边界缺口按**类型**聚合 ----
+// `display`/`desc` 两个来源带着 `src.type`（miss_log.dm 的 origin）。同一个类型下的漏翻是同一条
+// 修法：往 labels.rs 的 TYPE_VAR_RULES 补一条，或确认该类型的 name/desc 根本没进过抽取。
+// 按类型聚合之后，一条一条的名字变成「补哪几条规则」，这是这份报告里最直接可行动的一节。
+{
+  const byType = new Map();
+  for (const rows of Object.values(buckets)) {
+    for (const row of rows) {
+      if (!/\b(display|desc)\b/.test(row.sources)) continue;
+      for (const hint of row.hints) {
+        const m = /^来源: (\/.+)$/.exec(hint);
+        if (!m) continue;
+        const list = byType.get(m[1]) ?? [];
+        list.push(row);
+        byType.set(m[1], list);
+      }
+    }
+  }
+  if (byType.size) {
+    const ordered = [...byType].sort((a, b) => b[1].length - a[1].length);
+    console.log(`\n=== 显示边界缺口按类型聚合（${byType.size} 个类型）===`);
+    console.log(
+      '    每个类型一条修法：labels.rs TYPE_VAR_RULES 补一条（按类型路径，覆盖全部子类型），' +
+        '或确认该类型的 name/desc 压根没进抽取（拿英文名 grep strings/i18n/en/ 一条都没有 = 整类漏抽）',
+    );
+    for (const [type, rows] of ordered) {
+      console.log(`  ${String(rows.length).padStart(4)} 条  ${type}`);
+      for (const row of rows.slice(0, 5)) console.log(`           · ${row.text}`);
+      if (rows.length > 5) console.log(`           … 另有 ${rows.length - 5} 条`);
+    }
   }
 }
 const total = Object.values(buckets).reduce((sum, rows) => sum + rows.length, 0);

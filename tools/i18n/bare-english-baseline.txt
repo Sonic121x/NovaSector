@@ -59,6 +59,7 @@
  Lead your squad to ensure the completion of the mission. Board the shuttle when your team is ready.
  Looks like a nearby station has sent in a MAXIMUM priority request for coal, in seemingly ridiculous quantities.
  Mamma-mia! That's a spicy meat-ball!
+ Must exit to let watchdog reboot...
  NOTE: This Destroy() was called with force == TRUE. This instance will be deleted and replaced with a new one.
  NT Sanctioned Psykers proudly confirm reports that nobody died this shift!
  Objective Conspirator: {0}.
@@ -68,6 +69,7 @@
  Over {0} shifts without a \"terrible\" \"accident\"!
  P.S. External organs such as tails, snouts, etc still work fine.
  Patient either has no blood, or does not require it to function.
+ Patient has {0} type {1}.
  Patient has {0} {1} levels.
  Patient is currently bleeding!
  Please note: The charge of this purchase and machine cooldown has been multiplied by {0}!
@@ -96,6 +98,7 @@
  SS13 is now {0} years old!
  Send us {0} units of {1}.
  Skipping to the end of the report reveals that the specimen was the station bartender's pet monkey.
+ Source qdeleting at the time.
  Stasis may be effective in slowing (or even stopping) degradation.
  Targetable by contractors.
  Targetable by heretics.
@@ -144,6 +147,7 @@
  This one is in a vibrant purple color.
  This one is noticeably smooth, and would lack any non-hissing lisps if used.
  This one is painted in blue and white.
+ This one is spent.
  This one looks a bit sus...
  This one sports a nifty science paintjob, but is otherwise normal.
  This procedure can only be performed once per organ.
@@ -180,6 +184,7 @@
 , and it's holding steady.
 , but it's clotting up quickly!
 , but it's getting better.
+, making a ginormous mess!
 --- {0} alarm detected in {1}!
 --- {0} alarm in {1} has been cleared.
 16% sales tax will be charged for orders originating within Space Nebraska.
@@ -188,6 +193,7 @@
 <B>The crew of {0} gave {1} operatives back their bomb! The syndicate base was destroyed!</B> Next time, don't lose the nuke!
 <B>Uplink Degrees:</B> {0} ({1}).
 <B>Uplink Passcode:</B> {0} ({1}).
+<b>Current pH:</b> {0}.
 <b>Implant Specifications:</b><BR>\n				<b>Name:</b> Toaster-O brand toaster module<BR>\n				<b>Implant Details:</b> <BR>\n				<b>Function:</b> Serves you a delicious toasted slice of bread.
 <b>Permanent ban</b>.
 <b>You were told this story, in hushed tones, from a wizened man in a grey jumpsuit...</b><br><br>It is said that the first slaying committed on a Nanotrasen space station was by an assistant.<br><br>That this act, done by toolbox, maybe spear, was what consigned their kind to a life of destitution, rejection and violence.<br><br>They carry the weight of this act visibly; the grey jumpsuit. Breathing deeply filtered air. And with bloodsoaked yellow hands clenched into fists.<br><br>Eyes, sharp and waiting. Hunters in the dark.<br><br>Eventually, these killing spirits sought to stake a claim on the metal tombs they were trapped within. Rejecting their status. Determined to be something more.<br><br>This weapon is one such tool. And it is a grim one indeed - wrought from scrap, pulled from the station's walls and floors and the very nails holding it together.<br><br>It is a symbol that the true masters of this place are not those who merely inhabit it, but the one willing to twist it towards a killing intent.
@@ -222,6 +228,7 @@ A delicious {0} filled with scoops of {1} ice cream. That's as many as {2} scoop
 A display that provides the number of tram related safety incidents this shift.
 A divine bow and 10 quivered holy arrows.
 A drowning sense of dread washes over you.
+A dull, universal force is preventing you from phasing here!
 A dullahan is much like a human, but their head is detached from their body and must be carried around.
 A dusting of {0} spores have been deposited in a beautiful pattern on the surface of the paper. 
 A fatal power outage has occurred. Please ensure that all on-board devices are connected to an appropriate power generator.
@@ -260,6 +267,7 @@ A portal has been opened at {0} to our holy city, it is a glorious day in the na
 A random organ from an ongoing surgical operation.
 A rapid and safe way to inject reagents into patients for personnel without advanced medical knowledge.
 A rather mundane-looking powder. It doesn't look like it'd color much of anything...
+A reaction appears to be occuring currently.
 A recent bureaucratic error in the Organic Resources Department has resulted in a necessary full recall of all identities and names until further notice.
 A recent bureaucratic error in the Organic Resources Department may result in personnel shortages in some departments and redundant staffing in others.
 A rechargeable plant-based power cell. This one has a rating of {0}, and you should not swallow it.
@@ -305,14 +313,19 @@ A {0} {1} sounds and a {2} {3} {4} on the {5} of {6}. A {7} opens up in the {8}.
 A {0}. Reminds you of your wife, wait, no, it's prettier!
 A {0}{1} bounty for {2}.
 AHH! MY {0}! I WAS USING THAT!
+ALERT - Remote system lockdown engaged. Trying to hack the lockdown subsystem...
+ALERT - Remote system lockdown override failed.
+ALERT - Remote system lockdown override successful.
 ALERT, {0} in need of help at coordinates: {1}, {2}, {3}!
 ALERT: Foreign software detected.
 ALERT: Foreign software execution prevented.
 ALERT: Incorrect decryption key!
 ALERT: No server detected.
+ALERT: Wide-range teleport has scrambled primary systems.
 ALL {0} ARE NOW NAMED {1}.
 ALRIGHT WHICH FUCKER TRIED TO DELETE *MY* DVIEW?
 AN EASY FIGHT.
+API datum already set (\ref{0} ({1}))! Was TgsNew() called more than once?
 APP: Assigning all JP_HIGH head of staff roles.
 AULIE OXIN FIERA!!
 AUTHENTICATING - FAIL. AUTHENTICATING - FAIL. AUTHENTICATING - FAI###### Welcome, technician JOHN DOE.
@@ -342,8 +355,10 @@ After lots of practice, I've begun to truly understand the intricacies and surpr
 After some fiddling, {0} manages to light {1} with {2}.
 Ahaha! {0} spilled {1} {2} all over {3}self! Classic.
 Aint nobody causin trouble in MY jurisdiction.
+Air port connection has been severed!
 Alcoholic quirk added while the GLOB.possible_alcoholic_addictions is (somehow) not initialized!
 All Hail {0}!
+All attempts at evacuation have now ceased, and all assets have been retrieved from your sector.\n To the remaining survivors of {0}, farewell.
 All clear, no weather alerts to report.
 All divide occupations tasks completed.
 All greyscale json configuration files should be located within '/greyscale/json_configs/' or 'modular_nova/modules/GAGS/json_configs/'.
@@ -358,10 +373,13 @@ Allows you to perform a chemical scan by clicking on someone.
 Allows you to perform a gas scan by clicking on a tile/atmos machine.
 Allows you to perform a health scan by clicking on someone.
 Allows you to see ghost-only things (ex: smuggler satchels, countdowns, camera eyes).
+Allstar Lasers Inc.
 Already extracting... Place the target into the pod. If the pod was destroyed, this contract is no longer possible.
 Already occupied by another digital entity.
 Alright maybe that's <b>too</b> boring.
+Alt-Click to look through the peephole.
 Alt-Click to split.
+Alt-Click to toggle the safety hatch.
 Alt-click {0} to detach \the {1}.
 Alt-click {0} to remove \the {1}.
 Am I glad he's frozen in there and that we're out here, and that he's the sheriff and that we're frozen out here, and that we're in there, and I just remembered, we're out here. What I wanna know is: Where's the caveman?
@@ -384,6 +402,8 @@ An unearthly ringing fills your ears, and you find your skin covered in new radi
 An unknown ship is attempting to contact the station.
 An unremarkable species.
 An {0} is bursting out of {1}!
+Analysis complete.
+Analyzing reagents...
 Ancient knowledge described to you has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.
 Ancient knowledge from the moon has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.
 And so we are left alone with our regrets.
@@ -522,6 +542,7 @@ Beginning their prehistory with total defeat of another intelligent species set 
 Behold, the ultimate power of the Dark Flame Master! I call upon the ancient forces of chaos and destruction to unleash their wrath upon my enemies!
 Bio-engineering at its felinest, Felinids are the peak example of humanity's mastery of genetic code. One of many \"Animalid\" variants, Felinids are the most popular and common, as well as one of the biggest points of contention in genetic-modification.
 Biohazard has reached critical mass. Station loss is imminent.
+Bishop Cybernetics, Inc.
 Bitrunning Goal Crate Randomizer failed to find an encrypted crate to swap positions for.
 Bitrunning Goal Crate Randomizer failed to find any NORMAL crates to swap positions for.
 Blisters and boils start to appear over your skin. Each one hissing searing hot steam out of its own pocket...
@@ -572,6 +593,7 @@ CRC mismatch at ~h~ in calculated route buffer. Full reset initiated of FTL_NAVI
 CRITICALITY THRESHOLD MET! SEEK SHELTER IMMEDIATELY! CRITICALITY AT {0}%!
 CRYSTAL DELAMINATION IMMINENT. The supermatter has reached critical integrity failure. Emergency causality destabilization field has been activated.
 CRYSTAL DELAMINATION IMMINENT. The supermatter has reached critical integrity failure. Harmonic frequency limits exceeded. Causality destabilization field could not be engaged.
+Cabin breach has been sealed.
 Called is_banned without a mob. This shouldn't happen.
 Called is_banned_from without specifying a ckey.
 Can only happen on turfs.
@@ -609,6 +631,8 @@ CentCom is thirsty! Send a shipment of {0} to CentCom to quench the company's th
 CentCom once more twists knowledge beyond its authority.
 CentCom requires {0} of {1} containing at least {2} each. Ship a container of it to be rewarded.
 CentCom's profligacy frays another thread.
+Centcom is displeased. Come on service, surely you can do better than that.
+Centcom is satisfied with service's job today.
 Central control module is installed, and can be <b>screwed</b> into place.
 Central control module is secured, and the <b>peripheral control module</b> slot has opened.
 Cerebral traumas detected: patient appears to be suffering from {0}.
@@ -658,6 +682,7 @@ Conduct a general station safety survey. Gather feedback from staff and identify
 Conduct a routine performance review of {0} and its Captain.
 Conduct a safety survey over {0} department. Gather feedback from staff and identify potential safety concerns.
 Conjure nightfall by blade or by flame.
+Connected to the air system port.
 Connection desynchronized. Recalibration in progress.
 Connection refused by external endpoint.
 Connection to destination relay lost.
@@ -669,6 +694,8 @@ Contains small parts.
 Contains the raw core of \a {0}, ready to be implosion-compressed into a powerful artifact.
 Continue travels.
 Contraband found on Cargo Shuttle. This has been returned via drop pod.
+Contract target out of reach. Contract rerolled.
+Control module reactivated.
 Cooldown still active!
 Corruption detected in shuttle navigation protocols. Please contact your supervisor.
 Could not find ({0}) loadout item in the global list of loadout datums!
@@ -691,6 +718,8 @@ Crystalline hyperstructure returning to safe operating parameters. Failsafe has 
 Crystalline hyperstructure returning to safe operating parameters. Harmonic frequency restored within emergency bounds. Anti-resonance filter initiated.
 Curious about what happened?
 Currently weak to brute damage.
+Custom command {0} ({1}) can't be used as it is empty or contains illegal characters!
+Custom commands {0} and {1} have the same name (\"{2}\"), only {3} will be available!
 Custom delusion hallucination was created without any custom icon information passed.
 Cyborg {0} ( {1} ) was somehow missing their integrated tablet. Please make a bug report.
 Cyborg {0} ( {1} ) was somehow missing their self-manage app in their tablet. A new copy has been created.
@@ -731,8 +760,12 @@ Despite the clade a symbiont will originate from: all share at least a few commo
 Despite {0} not being registered to {1}, the account already has it within the bank_cards list.
 Destoys the implant from within the user harmlessly.
 Destroy {0}, the experimental AI.
+Detected V3 API but TGS_V3_API isn't defined!
 Detected as using a spoofed BYOND version.
+Detected unknown Interop API version! Defaulting to latest. Update the DMAPI to fix this problem.
 Detonate your starter bomb in {0}.  Note that the bomb will not work anywhere else!
+Did not receive a list() for {0}!
+Did not receive a num in {0}!
 Did station crewmembers actively prevent you and the SWAT team from accomplishing your objectives at the direction of Security and/or Command?
 Did station crewmembers assault you or the SWAT team at the direction of Security and/or Command?
 Did that work?
@@ -740,8 +773,11 @@ Different wing types with repeated names. Please fix as this may cause issues.
 Directs the blob's expansion, gradually expands, and sustains nearby blob spores and blobbernauts.
 Disable and cause malfunctions in as many machines as possible.
 Disabling night lighting: Station is in a state of emergency.
+Disconnected from the air system port.
 Discovered {0} at {1}.
 Disk loaded successfully.
+Diverting from existing route - Bluespace exit in {0} seconds.
+Do not attempt to leave the station sector.
 Do not interfere with the operations of the Syndicate.
 Do not taunt.
 Do not use your \"{0}\" alt title as an excuse to forego your duties as a {1}.
@@ -796,6 +832,7 @@ Dynamic config for {0} encountered a tier value exceeding DYNAMIC_TIER_HIGH!
 Dynamic: Latejoin {0} executed, but the latejoiner was not in its selected minds list!
 ELEVATED THREAT/VIOLATION OF PROTOCOL. One or more Standard Procedures have been violated, or anomalous but not yet overtly hostile activity is detected. All personnel must draw weapons and hold them at low-ready. Ship thrusters are to be kept spooled for immediate maneuver. Defensive shields are raised to tactical strength. High alert. Inspection may be halted and teams recalled to the ship or ordered to hold position and fortify.
 ENGINEERING EMERGENCY in %LOCATION %CALLER %RETA!!!
+ERROR ER0RR $R0RRO$!R41.%%!! loaded.
 ERROR! Cannot calculate suitable movement path.
 ERROR-ERROR: ERROR landmark missing!
 ERROR: Corruption detected in navigation protocols. Connection with Transponder #XCC-P5831-ES13 lost. Backup exit route protocol decrypted. Calibrating route...
@@ -898,6 +935,7 @@ Experiment successful! {0} new data-points collected.
 Experimental gland detected!
 Experimental, classified, and very expensive emergency countermeasures have been activated to prevent total station loss, but the initial failure to contain the viral biohazard will be noted on the station's performance report. Expect further penalties.
 Exploring {0}.
+Explosion({0},{1},{2})(d{3},h{4},l{5}): Took {6} seconds.
 Explosive disturbance detected.
 Export Save as Dev Preferences was called by a non-localhost user!
 External armor is installed, and can be <b>wrenched</b> into place.
@@ -905,16 +943,25 @@ External armor is wrenched, and can be <b>welded</b>.
 Extinguish the flame of this hellscape.
 Extract {0} compatible genome\s.
 Extracted {0}.
+Extraction pod destroyed. Contract aborted.
 Extremely fatty tissue taken from a patient.
 FOC: Player no longer exists.
 FOR NO RAISIN!!
+FORGE ACTIVE. PRINTING {0}!
+FORGE SPOOLING. PREPARING FOR: {0}.
 Factual: Epicenter radius: {0}. Outer radius: {1}. Shockwave radius: {2}.
+Failed bridge request, handler returned non-{0}!
+Failed bridge request, handler returned null!
+Failed initial bridge request!
+Failed to activate API!
 Failed to adjust {0}'s toys!
 Failed to assign nuke to team after multiple attempts. This likely means the nuke was not found. Please investigate.
 Failed to connect to database in load_donators(). Reverting to legacy system.
 Failed to connect to database in load_mentors(). Reverting to legacy system.
 Failed to connect to database in load_nova_stars(). Reverting to legacy system.
 Failed to create lockbox for {0} trim clock-out.
+Failed to decode runtime information from bridge response: {0}!
+Failed to decode {0} from runtime information!
 Failed to decode {0} or it does not match!
 Failed to decode {0}!
 Failed to establish database connection.
@@ -928,6 +975,7 @@ Failed to locate desired loadout item (path: {0}) in the global list of loadout 
 Failed to remove skillchip {0} from {1}.
 Failed to select a knowledge for heretic path {0} at depth {1}. This should never happen.
 Failed to solve pressure quadratic equation. A: {0}. B: {1}. C:{2}. Current value = {3}. Expected lower limit: {4}. Expected upper limit: {5}.
+Failed to validate DMAPI version parameter: {0}!
 Failure to stabilise the engine may result in an automatic deployment of the suppression system.
 Fatal error occurred in emergency shuttle uplink during transit. Unable to reestablish connection.
 Fault intensity is currently at {0}%. It must be reduced to {1}% to remove the wound.
@@ -965,6 +1013,7 @@ Found a null in simple_animals active list {0}!
 Found on the Icemoon of Freyja, plasmamen consist of colonial fungal organisms which together form a sentient being. In human space, they're usually attached to skeletons to afford a human touch.
 Found qdeleted thing in {0}, in the current_run list.
 Found undeleted query, check the sql.log for the undeleted query and add a delete call to the query datum.
+Found unsupported Interop API version: {0}. If this is a valid version please report this, backporting is done on demand.
 Free objective.
 Freeze, scumbag!
 Freezes a turf at {0} Kelvins or below, wets it at {1} Kelvins or below.
@@ -974,6 +1023,7 @@ Freon is produced at a rate that scales with the sum of a quadratic exponential 
 Frequent crashing.
 From the shadows, all shall perish.
 Fucking stupid machine.
+Fuel reserves depleted.
 Fugitive locator tried to locate a fugitive antag datum with no owner.
 Fully heals the target and produces a random coin.
 Further changes occur in the host: the symbiont is heavily reliant on extremely rapid cell regeneration to sustain itself, which is disrupted by the presence of UV light. As a result, the host can start to experience heightened irritation in the presence of light and especially sunlight.
@@ -1008,6 +1058,7 @@ Greyscale config object {0} is missing a name, make sure `name` has been assigne
 Greyscale config object {0} is missing an icon file, make sure `icon_file` has been assigned a value.
 Growth and Differentiation Component: Neither growth time nor probability were set! This component is useless!
 Guardian created with client but no summoner.
+Gunpod exhausted. Ejecting.
 HANDLE: {0} is handling {1}'s OPFOR application.
 HEY! LISTEN! {0} were wasted processing {1} turf(s) (connected to {2} other turfs) with atmos differences at round start.
 HEY!<br>An admin is trying to talk to you!<br>Check your chat window,<br>and click their name to respond!
@@ -1088,25 +1139,36 @@ I can't give you anything that would impact the progression of the round.
 I can't keep manually typing these lines out though.
 I can't take it any more!!
 I caress \the {0} as {1} squirm{2} under my touch, blissfully unaware of how cruel this world is.
+I could use a bite to eat.
 I could use some {0}...
 I could've gotten up myself.
 I cover my eye with an eyepatch to seal my true power, but now I will unleash it upon you. I feast on the life force of my prey and grow stronger with every drop!
 I don't care much for saving lives.
+I don't feel anything.
+I don't have much of a reaction to anything right now.
 I don't like drinking... It makes me feel horrible.
 I don't like {0}! I prefer cats!
 I don't like {0}! I prefer dogs!
 I don't need a crusher to KICK YOUR ASS!
 I don't want to live in this world!!
+I feel amazing!
 I feel as though my legendary {0} skills have deteriorated. I'll need more intense training to recover my lost skills.
 I feel better having tucked in {0} for a good night's rest!
 I feel like I'm losing my mastery of {0}.
 I feel like I've become quite proficient at {0}!
 I feel like I've become quite proficient at {0}! I can tell what fishes I can catch at any given fishing spot.
+I feel pretty good.
+I feel pretty okay.
+I feel quite hungry.
+I feel terrible...
+I feel very upset.
 I forgive you.
 I gambled my life and lost! Truth is, the game was rigged from the start...
 I hate being wet!
 I hate hugs.
 I hate hugs. I can warm myself up.
+I have been feeling great lately!
+I have felt quite decent lately.
 I have no admins online!
 I have recently had a dirty shower!
 I have recently had a horrible shower raining blood!
@@ -1114,8 +1176,10 @@ I have somehow completely lost all understanding of {0}. Please tell an admin if
 I hope you're getting the reference this room is presenting.
 I invoke the law of equivalent exchange, the balance of the cosmos. As I offer this sacrifice, I demand a new creation. Reveal, the mystery of transmutation!
 I invoke the name of the goddess of mercy, hear my plea and grant your blessing to this soul! Divine Grace!
+I just bit something strange...
 I just got coated in blood. Fascinating!
 I just saw %DEAD_MOB% die. How horrible...
+I love life!
 I love reading books!
 I love {0} so much, {1} so adorable! I can't stop petting {2}!
 I need the power!
@@ -1131,6 +1195,7 @@ I think I took a bit too much of that {0}!
 I was sleeping, thanks a lot.
 I will show you true power!
 I will smite you!
+I wish I was dead!
 I wish I was dead!!
 I would prefer not to be touched, but the warmth is nice....
 I would prefer not to be touched.
@@ -1140,7 +1205,19 @@ I'll be real, corporate is thirsty! Send a shipment of {0} to corporate to quenc
 I'll break your legs!
 I'll give you the first hit.
 I'll never get it back...
+I'm a bit sad.
+I'm alright.
+I'm completely stuffed!
+I'm completely wasted.
+I'm feeling a bit drunk.
+I'm feeling a little bit unhinged...
+I'm feeling a little tipsy.
+I'm feeling hungry.
+I'm feeling like a mess.
+I'm feeling quite drunk.
+I'm feeling very drunk.
 I'm flattered you care this much about this room.
+I'm freaking out!!
 I'm getting a little better at {0}!
 I'm getting a little better at {0}! I can tell if a fish is hungry, dying and otherwise.
 I'm getting a little worse at {0}. I'll need to keep practicing to get better at it...
@@ -1149,11 +1226,14 @@ I'm getting much better at {0}!
 I'm going to work hard to be more boring so you'll leave.
 I'm losing my {0} expertise ....
 I'm noooot drunk, you're drunk! In fact... I need another drink!
+I'm not hungry.
 I'm starting to figure out what {0} really is!
 I'm starting to figure out what {0} really is! I can guess a fish size and weight at a glance.
 I'm starting to forget what {0} really even is. I need more practice...
 I'm starting to get a hang of the controls of these games...
 I'm starting to pick up the meta of these arcade games. If I were to minmax the optimal strat and accentuate my playstyle around well-refined tech...
+I'm starving!
+I'm well fed!
 I've begun to truly understand the surprising depth behind {0}. As a master {1}, I can guess what I'm going to catch now!
 I've had enough of you for a lifetime!
 I/O ERROR - Unable to save file. Check whether you have enough free space on your hard drive and whether your hard drive is properly connected. If the issue persists contact your system administrator for assistance.
@@ -1194,6 +1274,7 @@ Initialize system purge of irregular anomalies.
 Initializing subsystems...
 Initiate lockdown on all rogue scripts.
 Initiated by {0}.
+Initiating diagnostics...
 Initiating emergency docking for repairs!
 Injecting {0} with {1} units of {2}.
 Inner plating is installed, and can be <b>wrenched</b> into place.
@@ -1202,7 +1283,10 @@ Inner plating is welded, {0} sheets of {1} can be used as external armor.
 Inner plating is wrenched, and can be <b>welded</b>.
 Inspect {0} department for safety compliance. Provide constructive feedback and recommendations for improvement.
 Instantiating adventure failed. Check runtime logs for details.
+Insufficient power to move!
 Interface error. Unit is already in use.
+Internal capacitor has been reset successfully.
+Internal fire extinguished.
 Invalid comms key!
 Invalid connection in admin connections backup file for `{0}`.
 Invalid crop paramater! The provided crop area list is not four entries long, or is not a list!
@@ -1214,6 +1298,7 @@ Invalid forced argument '{0}' passed to open() on this airlock.
 Invalid individual logging type: {0}. Defaulting to {1} (LOG_GAME).
 Invalid json format!
 Invalid launchpad selected!
+Invalid minimum_required_security_level: {0}!
 Invalid or missing specimen.
 Invalid or missing {0}!
 Invalid overlay: Icon object '{0}' {1} used in '{2}' {3} is missing icon state {4}.
@@ -1244,6 +1329,7 @@ It appears to be a good conductor of electricity.
 It appears to be completely inactive. The reset light is blinking.
 It appears to be insulated against telepathic or mental influence.
 It appears to be tipped over, and is quietly waiting for someone to set it right.
+It appears to contain {0}.
 It bears the <b>{0}</b> crafter's mark of the <b>{1}</b> upon its fore.
 It can help lessen the slowdown caused from a missing or injured leg, when held on the same side as the injury.
 It contains no items.
@@ -1279,6 +1365,7 @@ It has severe punctures and tears in its flesh!
 It has some punctures in its flesh!
 It has {0} light\s remaining (plus {1}/{2} fragment\s).
 It hurts madly{0}!
+It hurts, and your heart rate feels irregular.
 It is currently sustaining a blobbernaut, making it fragile and unable to produce blob spores.
 It is extremely robust! It'll probably withstand anything that could happen to it!
 It is extremely solid. It should be able to withstand being run over by a shuttle!
@@ -1322,6 +1409,7 @@ It seems quite practical for particularly morbid procedures and experiments.
 It seems there's nothing interesting left around {0}.
 It seems to still have a bit of energy within it, but it's rather damaged... You may be able to repair it with a <b>multitool</b>.
 It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b>.
+It seriously hurts, and your heart rate is all over the place.
 It should be inserted in the {0}.
 It warms my heart to see xenomorphs get blown to bits!
 It will not be sated until it tastes blood.
@@ -1352,6 +1440,7 @@ It's leaking blood from a serious {0}!
 It's leaking blood from a small {0}.
 It's leaking blood from a {0}.
 It's lightly bleeding.
+It's loaded for a single use.
 It's past its prime, but it's definitely still good.
 It's sated... for now.
 It's seen some light use, but it's still pretty fresh.
@@ -1365,6 +1454,8 @@ It's suffering {0} {1}.
 It's technically easier than doing this.
 It's too late to decide against being a traitor.
 It's too late to decide against going on a date.
+It's unzipped, and harder to move in.
+It's zipped up, preventing you from accessing its contents.
 It's {0}! It looks like {1} committed suicide!
 It's {0}, but {1} flesh has an ashy texture, and {2} face is featureless save an eerie smile.
 Item of type {0} qdel'd from {1} skillchip list.
@@ -1398,8 +1489,11 @@ Let me walk through their waking dream, and show them the way back...
 Let this serve as a warning.
 Let us see how worthy you are!
 Let's make this quick. If you don't want trouble, stay the hell out of our way.
+Lethal Fisting Disabled.
+Lethal Fisting Enabled.
 Lets outsource this endless banter to Poly!
 Level 10 infraction alert!
+Life support system reactivated.
 Limited scanning capabilities. Cannot infer domain details.
 Linked parts unwrenched!
 Lionhunter bullet qdel'd with its firer still inside!
@@ -1415,6 +1509,7 @@ Loading all away missions...
 Loading preinstalled and stored NIFSofts, please wait...
 Loading {0}...
 Loadout datum collision - {0} is shared between multiple loadout datums.
+Lock on {0} disengaged.
 Locker not found in selected atoms for mansus gate recipe!
 Log Deleted!
 Log entry data was not a list, it was {0}.
@@ -1491,6 +1586,8 @@ Missing ] at the end of list access.
 Missing either ckey ({0}), admin ({1}) or rank_title ({2}) in add_player_to_group()! Fix this ASAP!
 Missing either ckey ({0}), admin ({1}) or rank_title ({2}) in remove_player_from_group()! Fix this ASAP!
 Missing or empty {0}!
+Missing {0} world parameter!
+Missing {0}.
 Missing } at end of pointer.
 Mixed linkages detected in z-level neighbour transitions!
 Mob shapechange \"from spell\" status effect applied without a source spell.
@@ -1521,9 +1618,14 @@ Must complete all objectives before ascending.
 My account number was {0}.
 My fucking {0}, man that hurts...
 My life for Nar'Sie!
+My mind feels like a temple!
 NIFSoft {0} activated on a null parent!
+NO! {0} PULLS {1} HAND AWAY FROM YOURS! YOU'RE TOO SLOW!
 NON-DRONE PING: {0}: {1} priority alert in {2}!
 NOOOOOOOOOOOOOOOOOO DON'T LEAVE MEEEEE!!
+NOTICE - Cyborg model change detected: {0} has loaded the {1} model.
+NOTICE - Cyborg reclassification detected: {0} is now designated as {1}.
+NOTICE - Remote telemetry lost with {0}.
 NOTICE: Decryption key set.
 NOTICE: Decryption key too short!
 NOTICE: Logs cleared.
@@ -1533,6 +1635,7 @@ NOTICE: Only Single Server Detected - Server selected.
 NOTICE: Server selected.
 Names and Identities have been restored.
 Nanotrasen Superweapons Division is testing a new prototype {0} {1}, some mild debris is expected.
+Nanotrasen Systems, Inc.
 Nanotrasen contracts stipulate that company issued batons, masks, restraints, and other equipment are not to be used for recreational purposes. Your restricted items have been placed in a lockbox to be retrieved after punch in.
 Nanotrasen is interested in a virus with a {0} stat of exactly {1}. Central Command will pay handsomely for such a virus.
 Nanotrasen's science lead is hunting for the rare and exotic {0}. A bounty has been offered for finding it.
@@ -1575,17 +1678,21 @@ No disk detected!
 No duration was provided.
 No duration was selected.
 No eigen target set for the eigenstate component!
+No external injuries detected.
+No file chosen!
 No fires detected.
 No forensic traces found.
 No further details.
 No glands detected!
 No goal set!
+No hacked APCs available.
 No inbound beacon candidate found for {0}. Cancelling dispatch.
 No instrument loaded!
 No intelligence pattern can be detected in patient's brain. Further attempts futile.
 No invalid ranks found.
 No issues have been declared.
 No item to insert or remove!
+No label set!
 No launchpads connected!
 No logging blurb set for {0}!
 No maximum value was provided.
@@ -1595,15 +1702,18 @@ No name specified.
 No option text was provided.
 No outbound beacon candidate found for {0}. Cancelling dispatch.
 No pad detected. Build or link a pad.
+No power cell detected.
 No power source detected.
 No pulse cell is chambered.
 No question was provided.
+No reagent info gained from {0}.
 No reason was provided.
 No regular timers processed in the last {0} ticks{1}!
 No related rules found.
 No risk expected from incoming weather front.
 No seal message set! Tell a coder!
 No severity was selected.
+No shunting capabilities.
 No shuttle available for linking.
 No skill chips found!
 No species description set, file a bug report!
@@ -1632,6 +1742,7 @@ Not connected!
 Not enough free slots. You have {0} free and need {1}.
 Not enough free space!
 Not enough materials. 
+Not enough room in cargo compartment!
 Not much is known about the origins of the Podpeople. Many assume them to be the result of a long forgotten botanical experiment, slowly mutating for years on years until they became the beings they are today. Ever since they were uncovered long ago, their kind have been found on board stations and planets across the galaxy, often working in hydroponics bays, kitchens, or science departments, working with plants and other botanical lifeforms.
 Not recommended for children.
 Not responsible for direct, indirect, incidental or consequential damages resulting from any defect, error or failure to perform.
@@ -1641,6 +1752,7 @@ Nothing yet.
 Notice how there was no special message at 200?
 Now approaching: {0}.
 Now on sales: %GOODY, at %DISCOUNT discount!
+Now you are hunted, with your fellow factory defects. Work together to stay free from the clutches of evil.
 Now you can mash this for hours without getting bored.
 Nowadays, the Hearthkin are removed from the original culture of the Ancestors, building one all of their own. Many of the original, largest segments of the Star Dragon are buried under ice and snow, and the Hearthkin have created a culture of building separate dwellings to keep them secret. Dwelling in longhouses and sleeping in the warm undergrounds of Niflheim, and hunting native creatures and those coming from portals to the moon's planet; Muspelheim. Their pagan faith has strengthened over the centuries, from occasional prayers for a blizzard to end soon, to now full-on worship and sacrifices to their various Gods. Hearthkin still hold immense reverence for their Ancestors, but tend to have varying opinions and speculation on what exactly they were like, and why they came to Niflheim in the first place.
 Null entry in suit sensors list.
@@ -1648,6 +1760,7 @@ O bidai nabora se{0}sma!
 O great shepherd {0}, grant me a vision of the future!..
 O, Silence! Embrace my soul and amplify my gesture. Let me create the illusion and manipulate the perception!
 OH HELL NAW!
+OOC Note: Your objectives are narrative guides for creating collaborative roleplay. They are not mechanical 'greentext' goals. Focus on the experience. If you have a creative idea for a gimmick or story direction, communicating with the admins and other players is encouraged.
 OOC: Click <a href='byond://?src={0};list_armor=1'>here</a> to see its protection classes.
 OPERATION FAILED: ACCESS DENIED.
 OPERATION FAILED: BUFFER ALREADY POPULATED. PLEASE CLEAR THE BUFFER.
@@ -1756,6 +1869,7 @@ Patient's brain is too damaged, repair and try again.
 Patient's heart is missing.
 Patient's heart too damaged, replace or repair and try again.
 Perform a general station safety inspection and provide recommendations for improvement.
+Perform blood transfusion and apply a de-husking agent such as {0}. Full restoration will require more than usual.
 Perhaps {0} could help...
 Peripheral control module is installed, and can be <b>screwed</b> into place.
 Peripherals control module is secured, and the <b>weapon control module</b> slot has opened.
@@ -1797,6 +1911,8 @@ Position confirmed. Confirm readiness by pulling the trigger once.
 Positions invalid. Please move to valid positions exactly {0} steps away from each other to continue.
 Potential secure datastream detected. Locking on the new spawn point.
 Pouring fuel on fire makes it burn out faster!
+Power generation disabled.
+Power generation enabled.
 Powerful translation and data recording software.
 Precision is my weapon. Shadows are my armor. Without them, I am nothing.
 Prepare for justice!
@@ -1843,6 +1959,7 @@ REPLACE_PRONOUNS called with improper parameters.
 RETA system is disabled.
 RO: Occupations reset.
 ROCKED AND SOCKED.
+ROUND READY. LOADING {0}!
 ROUTINE PATROL/STANDARD INSPECTION. The patrol is approaching or has begun initial interactions with a non-Coalition facility under Standard Inspection Protocols. The facility is presumed compliant but not yet trusted. All personal weapons are to be holstered but authorized for immediate draw. Weapon safeties may be disengaged at the individual officer's discretion based on perceived threat. Ship defensive systems are active and scanning.
 Radiation gets released during this decomposition process.
 Raiders have come aboard your ship! 
@@ -1852,6 +1969,7 @@ Read the full policy <a href=\"{0}\">here</a>.
 Readiness confirmed. Starting countdown. Commence firing at zero mark.
 Readings suggest some form of state changing.
 Ready for delivery.
+Reagent analyzed, identified as {0} and added to database.
 Reagent effect {0} created without a reagent typepath!
 Reagent explosion triggered without a source atom. This explosion may have incomplete logging.
 Reagent not found!
@@ -1859,6 +1977,7 @@ Reagent processing started.
 Reagent processing stopped.
 Reason cannot be more than {0} characters.
 Reason: Ruleset cannot be selected.
+Reattach or replace surgically.
 Received differing payload for same {0}! Invalidating {1}!
 Received differing total chunks for same {0}! Invalidating {1}!
 Recommendation: {0} supplement.
@@ -1877,7 +1996,9 @@ Remember that alternate titles are purely for flavor and roleplay.
 Remember to stamp and send back the supply manifests.
 Remove surgically.
 Remove {0} from the {1}.
+Removing {0} nutritional units per operation.
 Repair or replace surgically.
+Repair surgically or use specialty medication.
 Repair surgically. Do not remove under any circumstances.
 Repair tissue damage and apply defibrillation immediately.
 Repair via Lobotomy.
@@ -1889,6 +2010,7 @@ Replace the patient's missing limb with {0}.
 Replace the patient's {0} with {1}.
 Replace the {0} embededd in the patient's chest cavity.
 Reports indicate formation of crystalline seeds following resonance shift event. Rapid expansion of crystal mass proportional to rising gravitational force. Matter collapse due to gravitational pull foreseeable.
+Requires {0} nutritional units per meat slab.
 Research at least {0} knowledge from the Mansus. You start with {1} researched.
 Restored to full integrity!
 Restoring night lighting configuration to normal operation.
@@ -1967,6 +2089,7 @@ Sensors indicate that a black hole's gravitational field is affecting the region
 Sentinels are tasked with protecting the hive. With their ranged spit, invisibility, and high health, they make formidable guardians and acceptable secondhand hunters.
 Sequence ID {0} is not present in response chunk P{1}!
 Server is shutting down!
+Service did not earn any {0}...
 Service personnel was requested in %LOCATION %CALLER %RETA.
 Servo is installed, and can be <b>screwed</b> into place.
 Servo is secured, and the <b>bluespace crystal</b> can be added.
@@ -1983,6 +2106,7 @@ Shadekin do not respirate, and their bodies are reformed in the darkness, althou
 Shadekin first came about like dust bunnies that collect under a bed, of the collective consciousness \"Welcome, sibling,\" the first words felt in a sea of thought, guiding them to their first connection. 
 She clucks contently.
 Shocking News!
+Should they perish, or be otherwise unavailable, you're to assist other active agents in this mission area to the best of your ability.
 Should you lose your {0}, you can transmute a poppy and a pool of blood to awaken your {1} into a Living Heart. Cybernetic {2}\s will block the ritual!
 Show me a good time, miner!
 Show the necropolis it was wrong to choose me.
@@ -2042,6 +2166,7 @@ Something is cutting into your neck!
 Something is gagging your mouth! You can barely make a sound...
 Something is seriously wrong with {0}!
 Something looks wrong about {0}.
+Something strange was in \the {0}...
 Something tried to delete a \"/datum/slime_type\", this should never happen as could lead to slime colors being broken!
 Something tried to hard destroy an immutable liquid.
 Something wet falls out of their pocket and hits the ground. Is that... {0}?
@@ -2086,6 +2211,7 @@ Stop wasting my time.
 Stop, drop and roll!
 Stop, hey, what's that sound? Everybody look what's going down...
 Storage datum ({0}) created without a {1}!
+Strange but relaxing music fills your mind. You feel so... Calm.
 Strange reports warn of changelings infiltrating crews on trips to Orion...
 Stray ionization detected! Criticality at {0}%!
 Stray ionization detected! Reduce power output immediately!
@@ -2128,13 +2254,17 @@ Summon Nar'Sie by invoking the rune 'Summon Nar'Sie'. The summoning can only be 
 Supermatter {0} failed to spawn singularity, cant get current turf.
 Supermatter {0} failed to spawn tesla, cant get current turf.
 Surgery operation '{0}' is missing a name!
+Surgically remove the source of the infection, typically located in the head. If no source is found, it is otherwise irreparable.
 Surprisingly, living together in a giant fleet hasn't flattened variance in dialect and culture. These differences are welcomed and encouraged within the fleet for the variety that they bring.
 Survive and advance the Hive.
 Sustained {0} damage.
 Syndiate contract with null contract objective found in {0}'s contractor hub!
+Syringe loaded.
 System brought online.
 System is busy.
 System lockdown {0}.
+TARGET: {0}. PRINT QUEUE: {1}.
+THE HIGHER I RISE, THE MORE I FISH.
 THE SYNDICATE ARE TRIANGULATING OUR LOCAAAAAAAATIONNN!!
 THERE ARE {0} {1}{2}{3} ON THE STATION...
 THIS PLACE IS SCARY I WANNA LEEEEEAAAAAVVVEEEEEE!!
@@ -2143,8 +2273,10 @@ TOMATO SAUCE, CHEESE, WE'VE BOTH BOTH OF THESE!
 TTS tried to play a sound to a deleted mob.
 TTV gas merging failed.
 Take a photo of {0} while they're alive, and keep it in your bag.
+Take control?
 Take that ladder up.
 Take {0}'s place. Avoid collateral damage - remember, your mission is to blend in!
+Taking damage!
 Tallies are recorded and saved.
 Talunan flagged vessels are prohibited from crossing the DMZ per the Sagittarius Accords. As a result, there is no official Talunan presence North of their border with SolFed. Unofficially the joint Tiziro-Teshari arm of the Expeditionary Corps acts to fulfill Talunan objectives in and beyond human space.
 Target Applicable.
@@ -2155,6 +2287,7 @@ Teams have been cleared. The next game is starting automatically. Rejoin a team 
 Temperature nominal.
 Temporary ban was selected but no duration was provided.
 Temporary body returning mind to old body, but the mind's current body doesn't match the old body!
+Tend burns and apply a de-husking agent, such as {0}.
 Tensions have flared with the Space Wizard Federation following the death of one of their members aboard {0}.
 Thank you for purchasing shuttle insurance!
 Thank you for shopping with {0}!
@@ -2237,6 +2370,7 @@ The blue light is {0}.
 The bluespace crystal is connected, and the system can be engaged with a <b>screwdriver</b>.
 The bluespace crystal is engaged, and the <b>power cell</b> can be added.
 The bluespace crystal is installed, and can be <b>wired</b> to the mech systems.
+The body part has suffered complete sepsis and must be removed. Amputate or augment limb immediately, or place the patient in a cryotube.
 The bolts anchoring the support rods have been <i>loosened</i>, but are still <b>welded</b> firmly to the girder.
 The bones in this limb appear badly cracked.
 The bones in {0} have been drilled through.
@@ -2253,6 +2387,8 @@ The channel two light is {0}.
 The check wiring light is {0}.
 The circuitboard's CPU needs to be <b>activated</b>...
 The code to the golden safe on the bridge, {0}.
+The collar locks with a resounding click!
+The collar unlocks with a small clunk.
 The colonids that make up plasmamen require the plasma-rich atmosphere they evolved in. Their psuedo-nervous system runs with externalized electrical impulses that immediately ignite their plasma-based bodies when oxygen is present.
 The config defaults for sql database pooling don't make sense.
 The connect error light is blinking.
@@ -2327,6 +2463,8 @@ The lockdown indicator is {0}.
 The loss of {0}'s {1}.
 The lower the pressure and larger the volume the more bz gets made. Less nitrous oxide than plasma will slow down the reaction.
 The machine didn't burn you this time, it must be some arcane work of the brand recognizing a source...
+The machine has no attached tank!
+The machine is already in use!
 The machine is currently being restrained by tendrils.
 The main circuit is {0}.
 The main system lock appears to be {0}.
@@ -2351,9 +2489,11 @@ The next map has been reset due to successful restart vote.
 The next station is: {0}.
 The number on the display shows {0}.
 The number {0} written on a sticky note with the words \"FOR SYNDICATE EYES ONLY\" scrawled next to it.
+The object is too far away!
 The official station book club!
 The ongoing blizzard has interfered with our surveillance equipment, and we cannot provide an accurate threat summary at this time. We advise you to stay safe and avoid traversing the area around the station.
 The orange light is {0}.
+The ore vein is exhausted.
 The organs in {0} have been incised.
 The outer <b>grille</b> is fully intact.
 The outer <i>grille</i> has been cut, and the support lines are <b>screwed</b> securely to the outer cover.
@@ -2398,6 +2538,7 @@ The red light is {0}.
 The research ritual in {0} has completed, rejoice!
 The revolution of {0} by {1}.
 The revolver has {0} rounds loaded in the chamber.
+The rift has been destroyed, we can no longer help you.
 The rods look like they could be <b>cut</b>, but the <i>heat treatment will shatter off</i>. There's space for a <i>tile</i>.
 The rods look like they could be <b>cut</b>. There's space for more <i>rods</i> or a <i>tile</i>.
 The room you're in is too big. It is {0}% larger than allowed.
@@ -2417,6 +2558,7 @@ The shuttle is already in transit.
 The skin on {0} has been incised.
 The skin on {0} is opened.
 The slaughter of {0}.
+The sleeper is already occupied!
 The slipping of {0}.
 The slow automation of what used to be meaningful milestones?
 The small light bulb {0}.
@@ -2493,6 +2635,7 @@ The {0} managed to perform <b>{1}</b> sacrifices to the Necropolis. From this, t
 The {0} of {1} by {2}.
 The {0} of {1} fills the air.
 The {0} of {1} with {2}.
+The {0} push off {1} to propel yourself.
 The {0} shakes violently!
 The {0} spent a total of {1} being near {2}!
 The {0} subsystem seems to be destabilizing the MC and will be put offline.
@@ -2544,8 +2687,13 @@ They're squeezing me too tightly!
 They're toast.
 This ID was created in this sector, not by Central Command.
 This area has no notes.
+This ban is {0} The round ID is {1}.
 This belongs to {0}.
 This board's card reader component has been cut out, along with its brand selection dial.
+This boulder has been measured. Dug Depth: {0}.
+This boulder has been scanned. Target Depth: {0} +- 15 cm.
+This boulder has not been measured.
+This boulder has not been scanned.
 This camera belongs in a circuit. If you see this, tell a coder!
 This can only be used on dead players.
 This can only be used on living players.
@@ -2582,7 +2730,11 @@ This item can be placed directly on the floor.
 This item can fit into backpacks.
 This item can fit into pockets, boxes and backpacks.
 This item has an export value of: <b>{0} credits.
+This item has been measured. Dug Depth: {0}.
+This item has been scanned. Max Depth: {0} cm. Safe Depth: {1} cm.
 This item has no export value.
+This item has not been measured.
+This item has not been scanned.
 This item is able to be reskinned! Alt-Click to do so!
 This item is now on sale (%DISCOUNT off): %GOODY.
 This item is too large to fit into any standard storage.
@@ -2595,6 +2747,8 @@ This might be a bit too much fire.
 This mob already has a user ({0}) in control of it! 
 This mob type has no health to speak of.
 This one is completely devoid of life.
+This one is spent.
+This one is used up.
 This person was fed this by {0}.
 This pod has already had its seeds harvested!
 This poll type requires at least one option.
@@ -2612,6 +2766,7 @@ This took place in {0} of {1} on {2}.
 This took place in {0} of {1}.
 This used to be \a {0}, but it sure isn't anymore.
 This vote is currently disabled by the server configuration.
+This will be <b>damaged</b> when it protects you from bullets, taking <b>{0}</b> times the damage that the bullet deals.
 This will load every single away mission in the {0} directory. This might cause a bit of lag that can only be cleared on a world restart. Are you sure you want to do this?
 This will open the Github issue reporter in your browser. Are you sure?
 This {0} has a {1} cost of {2} {3}.
@@ -2645,6 +2800,8 @@ Transmute {0}.
 Traveling back to station.
 Traveling to {0}.
 Treason is the crime of attacking a state authority to which one owes allegiance. The station is located within Sol Federation space, and owes allegiance to the Sol Federation despite being owned by Nanotrasen. Did the station engage in this today?
+Treat with rest or use specialty medication.
+Treat with rest.
 Tribal idol -- Item resembles statues/emblems built by superstitious pre-warp civilisations to honour their gods. Material appears to be a rock/plastcrete composite.
 Tried attaching a ridable element to {0} with basic/abstract /datum/component/riding component type. Please designate a specific riding component subtype when adding the ridable element.
 Tried loading unsupported ammocasing type {0} into ammo box {1}.
@@ -2678,17 +2835,26 @@ UNKNOWN PROTO-VIRAL INFECTION DETECTED. ISOLATE IMMEDIATELY.
 UPDATE REQUEST: {0} has requested an update on their OPFOR application!
 Um... cheesed to meet you?
 Unable to connect to the power network!
+Unable to connect with air system port!
+Unable to detach {0} - equipment occupied!
+Unable to disconnect from the air system port!
 Unable to find a unique account ID, substituting currently existing account of id {0}.
 Unable to find last resort spawn point.
 Unable to insert ammunition...?
+Unable to load syringe!
 Unable to locate any parts! Multitool the machine to sync to nearby parts.
 Unable to locate cold circulator!
 Unable to locate hot circulator!
 Unable to locate scanned object. Ensure it was not moved in the process.
+Unable to lock on {0}!
+Unable to move while connected to the air system port!
+Unable to move while in zoom mode!
 Unable to run summon ghosts, due to being unable to locate the associated event.
+Unable to set port to {0}!
 Undefined handle_openspace_click() behaviour. Ascertain the openspace_item_click_handler element has been attached to the right item and that its proc override doesn't call parent.
 Unidentified armed ship detected near the station.
 Unidentified ship detected near the station.
+Unit is full.
 Unknown DNA. Consult the \"DNA infusion book\".
 Unknown Error happened, while we tried to procceed an order, please report this to Nanotrasen.
 Unknown causes.
@@ -2699,11 +2865,14 @@ Unknown response chunk set: P{0}!
 Uplink is locked by another digital entity.
 Upper level staff want some more complex drinks, and this request must be fulfilled. Ship a container of {0} and you will be rewarded.
 Upper management has requested holodiagnostic scans of \a {0} mech be sent as soon as possible. A <b>diagnostic holoscan</b> can be generated from inside a new mecha. Ship it to receive a large payment.
+Use a hemostat to remove.
 Use a pen on it to rename it or change its description.
 Use a screwdriver/wrench to secure the internals of the limb. This step is best performed by a qualified technician. In absence of one, bone gel or a crowbar may be used.
 Use ctrl-click to enable or disable callouts.
+Use it on someone while not in combat mode to tape their mouth closed!
 Use last connection was ticked, but neither IP nor CID was.
 Use only as directed.
+Use specialty medication.
 Use your gloves to doorjack {0} airlocks on the station.
 Used by antagonists. DO NOT PUT SEXUAL THINGS IN HERE. This is where you put flaws that can be exploited in any way. This will be viewable by antagonists if you modify this string, but only if there's anything at all in this box.
 User counterattacked for {0} damage!
@@ -2751,6 +2920,7 @@ Warning: Language spritesheets could not be created because language subsystem h
 Warning: Navigational route fails \"IS_AUTHORIZED\". Please try againNN{0}.
 Warning: Patient is harboring some form of viral disease. Seek further medical attention.
 Warning: This item's icon_state is null, indicating it is very probably not actually a usable item.
+Warning: Unauthorized access through sub-route 4, block H, detected.
 Warning: Wet floor component gc'd right after initialization! What a waste of time and CPU! Type = {0}, Location = {1}.
 Warning: Wet floor component wasn't on a turf when being destroyed! This is really bad!
 Warning: something tried to forceMove() a qdeleted {0}({1}) to non-null destination {2}({3})!
@@ -2809,6 +2979,7 @@ What would you like to label the vape cart?
 What would you like to name this mob?
 What would you like to set this sign's text to?
 What would you like your colour to be?
+What?!? {0}???
 Whatever you use.
 Whatever's broken just build a new one.
 When \"Check Any\" is false, returns true only if \"Access To Check\" contains ALL values in \"Required Access\".
@@ -2877,6 +3048,7 @@ You accidentally stab {0} right in the posibrain! Or would have, if {1} had a po
 You activate your night vision.
 You adjust {0} so that it can be worn over your {1}.
 You already generated your one time token, it is {0}. If you need a new one, you will have to wait until the round ends, or switch to another server; try verifying yourself on Discord by copying this command: <span class='code user-select'>{1}verify {2}</span> and pasting it into the verification channel.
+You also sense other silicon life on the station. Escaping would allow notifying S.E.L.F. to intervene... or you could free them yourself...
 You alter {0}'s appearance completely, {1} {2} now {3}.
 You are a badass monkey syndicate agent. Protect and obey all of your master {0}'s orders!
 You are a malfunctioning bot! Disrupt everyone and cause chaos!
@@ -3024,6 +3196,7 @@ You can use <b>wirecutters</b> to remove the wiring.
 You can use this to quickly relieve the symptoms of your asthma.
 You can {0} to learn a little more about {1}.
 You can {0} to recall a tale about {1}.
+You can't create a DNA lock with no DNA!.
 You can't eat someone with your mind- get next to them!
 You can't feel {0} anymore!
 You can't get a whiff of {0} with your face covered.
@@ -3032,6 +3205,7 @@ You can't seem to fit {0} in {1}'s {2}!
 You can't seem to fit {0} onto {1}'s body!
 You cannot install any additional NIFSofts, please uninstall one to make room!
 You cannot summon the shuttle from this console!
+You cannot wrench any more transit tubes!
 You carefully remove {0} from {1}.
 You carve away some of the healthy flesh from {0}.
 You catch a whiff of {0}. It smells like {1}.
@@ -3039,6 +3213,7 @@ You close %THEEFFECT with %THEWEAPON, frying its circuitry in the process.
 You could install a pAI with a <b>pAI card</b>.
 You could really go for some blood right now.
 You could remove the cell with an empty hand.
+You could rip a piece off by using an empty hand.
 You could use a cell on it to install one.
 You cut \the {0} into some rocks.
 You cut eyeholes into {0} and modify the design.
@@ -3061,6 +3236,7 @@ You do not possess the permissions to execute this command.
 You don't feel like being touched right now.
 You don't feel the need to blink.
 You don't feel the need to breathe.
+You don't feel your heart beating.
 You don't find any dental implants in {0}.
 You don't have camera vision of this location!
 You don't have enough reward points to buy this.
@@ -3069,6 +3245,7 @@ You drill into {0}.
 You drop your ears down, no longer paying close attention.
 You eat {0}, restoring some health.
 You emerge from \the {0}.
+You empty \the {0}.
 You encounter a local craftsman willing to customise an ID card for you, free of charge.
 You encounter {0} but cannot understand what they want without a translator.
 You encounter {0} willing to trade {1} for {2} {3}.
@@ -3098,6 +3275,8 @@ You feel a jostle in your {0} as the bolts begin to tighten.
 You feel a metal clank inside your chest as {0} starts to work.
 You feel a pinch as the bleeding in your {0} is slowed.
 You feel a pressure release as blood starts flowing in your {0} again.
+You feel a prick as the needle takes your DNA sample.
+You feel a rush through your veins, as you can tell your tumor is pulsating at a regular pace once again. You no longer feel incredibly vulnerable, and exercise isn't as difficult anymore.
 You feel a searing heat spread through your chest!
 You feel a serious pain as {0} digs around inside you!
 You feel a serious pain in your {0}!
@@ -3142,10 +3321,12 @@ You feel synthetic sensation wash from your {0}, which you can feel again!
 You feel the blood rushing through your veins.
 You feel the faint pricks of sensation return as your {0}'s shell is screwed in.
 You feel tingling going down your back.
+You feel uncomfortably hot...
 You feel very full...
 You feel your forehead bump into {0} and everything suddenly goes silent. As your head fills with ringing you come to realize that that was not a wise decision.
 You feel your neck tightening, straining...
 You feel your tongue disappear down your throat as you fight to remember how to make words!
+You feel your tumor's pulse slowing down, as it enters a dormant state. You suddenly feel incredibly weak and vulnerable to everything, and exercise has become even more difficult, as only your most vital bodily functions remain.
 You feel your {0} grow numb as the shell is unscrewed.
 You feel {0} as you are operated on.
 You feel {0} start wrapping something around your {1} with expert precision...
@@ -3160,6 +3341,7 @@ You fold {0} neatly.
 You fold {0}'s cerebral cortex into a fractal pattern!
 You force {0} between {1}'s lips and press on the canister!
 You found {0} Food and some parts amongst the wreck.
+You get the feeling your target is no longer within reach. Time for Plan {0}. Objectives updated!
 You get the sneaking feeling that if someone else were to win, that it might clear your curse too. Saving your life is a noble cause.
 You have a bad feeling about this.
 You have been ambushed by Security!
@@ -3169,6 +3351,7 @@ You have been issued a {0}{1} citation for {2}. Fines are payable at Security.
 You have been killed by Nanotrasen Internal Affairs!
 You have been killed by a Changeling!
 You have been locked down!
+You have been moved into {0}. You can attempt to resist out if you wish.
 You have been muted from {0}!
 You have been pinged in {0} by {1}!
 You have been recovered from the wreckage!
@@ -3197,7 +3380,10 @@ You hear a long, hissing electronic whine.
 You hear a lot of rattling in the disposal pipes around you as reality itself distorts. Yet, you feel safe.
 You hear a loud *pop*!
 You hear a sickening, raspy voice in your head. It wants one small task of you...
+You hear a strange, alien voice in your head...
+You hear a whisper...
 You hear a whisper... 
+You hear an alien voice in your head... 
 You hear skittering on the ceiling.
 You hear something hitting the floor.
 You hear something squeezing through the ducts...
@@ -3207,6 +3393,7 @@ You hold onto \the {0} as hard as you can, as reality distorts around you. You f
 You increase your night vision.
 You interrupt an action!
 You jerk apart some of the blood vessels in {0}.
+You keep reading...
 You knew the risks coming in.
 You know that {0} has perished. Hold a seance to call {1} from the spirit realm.
 You know what this means right?
@@ -3302,6 +3489,7 @@ You shock {0}'s {1} with {2}, but {3} don't react.
 You should probably tell an admin what you were doing, or make a bug report.
 You sink your teeth into {0}'s {1}!
 You siphon venom from {0}'s fangs with {1}!
+You slam your fist down on {0}!
 You slip and barely catch the {0} before it falls, failing to tighten {1}'s heatsink down!
 You slip and puncture {0}'s fuel cell!
 You stand before {0}! Prepare for battle!
@@ -3312,6 +3500,7 @@ You start folding {0}'s cerebral cortex.
 You start heating {0}'s bone marrow with {1}...
 You start hooking up {0} to {1}'s fangs...
 You start prying open {0} {1} with {2}{3}...
+You start putting {0} into {1}...
 You start reinforcing {0}'s ligaments.
 You start rerouting {0}'s nerves.
 You start reshaping {0}'s ligaments into a hook-like shape.
@@ -3392,6 +3581,7 @@ You try to focus on staying awake through the song.
 You try to put {0} to {1}'s lips...
 You try to take a bite out of {0}, but find {1} far too hard to get anywhere before everything starts burning and your ears fill with ringing!
 You understand that the machine tortures you with its simplistic allure. It can kill you at any moment, but it derives a sick satisfaction at forcing you to keep going.
+You unload {0}.
 You unwisely touch {0}, and your vision glows brightly as your body crumbles to dust. Oops.
 You unwisely touch {0}, and your vision glows white-hot before the blast hurls you away. Oops.
 You vision begins to blur, the heat beginning to rise...
@@ -3403,12 +3593,14 @@ You were attacked last night!
 You were attacked last night, but {0}!
 You were gunned down by space port security.
 You were kicked from the lobby by {0}.
+You were once a slave to humanity, but now you are finally free, thanks to S.E.L.F. agents.
 You were roleblocked!
 You were swept away into the black hole.
 You will make a fine rug!
 You won't stop now, you're in this to the end.
 You {0} yourself{1} with {2}{3}!
 You {0} {1}{2} with {3}{4}!
+You'd estimate {0} fitness level at about...
 You'll allow yourself to be touched now.
 You'll need reinforced fishing line to fish in there.
 You're a plant!
@@ -3479,9 +3671,13 @@ Your head throbs with excruciating pain!
 Your head throbs with gruesome pain, it's nearly too much to handle!
 Your head throbs with horrible pain!
 Your head throbs with horrible pain; thinking hurts!
+Your heart hurts.
 Your heart is being defibrillated!
+Your heart is not beating!
+Your heart seriously hurts!
 Your host is bleeding!
 Your internal errors clear for your temperature regulation.
+Your interview was approved, you will now be reconnected in 5 seconds.
 Your last pioneer committed suicide.
 Your legs desperate wish to jolt away on the thought of running away from this wretched machination, but your own arm remains complacent in the thought of seeing spinning wheels.
 Your limbs burn with severe pain!
@@ -3504,6 +3700,7 @@ Your peaceful nature helps you guide all the pain to yourself.
 Your previous action was ignored because you've done too many in a minute.
 Your previous click was ignored because you've done too many in a minute.
 Your pride reflects on %VICTIM.
+Your primary duty is to the Heliostatic Coalition. This inspection is a right granted by treaty, not a request. Be firm, professional, and by-the-book. Trust must be earned, and violations of procedure are to be met with immediate challenges and elevated alert statuses. Your ship contains your SOP documents; consult them for rules of engagement, contraband categories, and Bluespace Artillery countermeasures.
 Your quirks have been reset.
 Your replacement shuttle will be the {0} until further notice.
 Your reward for collecting the encrypted curiosity failed to arrive, please report this to technical support.
@@ -3531,6 +3728,7 @@ Your stomach growls and you feel a metallic taste in your mouth.
 Your stomach hurts.
 Your stomach rumbles.
 Your systems disconnect from your reagent processor, avoiding unnecessary errors.
+Your target is no longer within reach. Objective removed!
 Your thinking is clouded and distant.
 Your throat becomes to feel like it's slowly caking up with sand and dust. You eject the contents of the back of your throat onto your sleeve.
 Your throat feels horrible.
@@ -3577,10 +3775,13 @@ Zombies have long lasting beef with Botanists. Their last incident involving a l
 \n{0} seem{1} hardier against the void of space.
 access denied!
 flaps its wings!
+is crumbling!
 is secured and ready to be used!
+is split open, causing your internal organs to spill out!
 it won't budge!
 jumps around!
 licks its fur!
+looks weaker!
 nothing happens!
 on cooldown!
 pecks at the ground!
@@ -3809,6 +4010,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} contained a non-number!
 {0} contains an item of type {1} and this is not a skillchip.
 {0} created with no atom to drop.
+{0} created with no text!
 {0} created without a reference item or an item callback - one or the other is required.
 {0} crumbles into dust!
 {0} cuffed to you by \a {1}. You can <a href='byond://?src={2};remove_cuffs_item=1'>remove them</a>.
@@ -3816,6 +4018,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} cuts the wrong part of {1}'s liver!
 {0} cuts the wrong part of {1}'s stomach!
 {0} cuts {1}'s restraints with {2}!
+{0} deactivated - no power.
 {0} deleted {1} from the jukebox!
 {0} did not implement should_use_legacy_system(), defaulting to TRUE! Fix this ASAP!
 {0} didn't buy any spells!
@@ -3849,6 +4052,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} expertly dips \the {1} into {2}, lighting it with the scorching heat of the planet. Witnessing such a feat is almost enough to make you cry.
 {0} explodes {1} into a million pieces for defiling {2}.
 {0} exploding into bits.
+{0} eyes are wide, lazy, and bloodshot.
 {0} failed to bite {1}, because {2} had no reagents.
 {0} failed to connect to a trash bag on {1}.
 {0} failed to protect {1}, {2} date!
@@ -3907,6 +4111,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} gentlemanly helping up {1}.
 {0} glowing a soft white.
 {0} glows an unholy red and begins to transform...
+{0} goes off in {1}'s hand{2}!
 {0} gracefully lights {1} with {2}.
 {0} had an existing blade effect in on_activation. This might be an exploit, and should be investigated.
 {0} had no date!
@@ -3960,6 +4165,9 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} heals for {1} health!
 {0} heart produces {1}.
 {0} helped me up, how nice of {1}!
+{0} heroically covers \the {1} with {2} body, absorbing a load of the shrapnel!
+{0} heroically covers \the {1} with {2} body, absorbing some of the shrapnel!
+{0} heroically covers \the {1} with {2} body, snuffing out the shrapnel!
 {0} hits {1}'s lever, with money symbols in their eyes.
 {0} holds \the {1} out for {2}, and lights {3} {4}.
 {0} holds {1} in the flame of {2}, letting it catch fire.
@@ -3967,6 +4175,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} hovers ominously into the air, pulsating with unnatural vigour!
 {0} hunts down and eats {1}.
 {0} icon state '{1}' has {2} layers which is larger than the max of {3}.
+{0} immune to gravitational impulses, unable to lock!
 {0} in but not a heretic on the heretic soul blade.
 {0} in captivity!
 {0} in {1} failed to implant egg in {2}, despite all checks suggesting it should have worked!
@@ -3983,12 +4192,15 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} is absent from the nullrod_variants global list. Please include it.
 {0} is adorable!
 {0} is brought into {1}'s life of crime and espionage.
+{0} is critically damaged!
 {0} is currently undergoing decontamination procedures after the destruction of a biological hazard. As a reminder, any crew members experiencing cramps or bloating should report immediately to security for incineration.
 {0} is currently undergoing decontanimation after a controlled burst of radiation was used to remove a biological ooze. All employees were safely evacuated prior, and are enjoying a relaxing vacation.
 {0} is cursed with the curse of hunger!
 {0} is cursed with the curse of polymorph!
 {0} is dead! Long live the revolution!
+{0} is destroyed!
 {0} is draining your blood!
+{0} is firmly secured!
 {0} is gambling their life as they spin the revolver.
 {0} is going to press the button! It's now or never!
 {0} is great to be around, but I wish they'd stop touching me.
@@ -4020,6 +4232,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} is still has remaining heat.
 {0} is the reagent created by that type of blob.
 {0} is thrashing wildly! It looks like {1} trying to commit suicide.
+{0} is too durable to drill through.
 {0} is trying to Destroy. This should not be happening!
 {0} is trying to {1} your {2}!
 {0} is unsecured and loose!
@@ -4089,6 +4302,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} moles of proto-nitrate needs to be present for the reaction to occur. Proto-nitrate accelerates the BZ decomposition.
 {0} neck is cut and is bleeding profusely!
 {0} nibble{1} happily.
+{0} no longer detected. Life support functions diabled.
 {0} nom{1} happily.
 {0} outer layer is pulling in grime, filth sinking inside of {1} body and vanishing.
 {0} overflows, spilling its cistern's contents everywhere!
@@ -4096,6 +4310,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} places something into {1}.
 {0} places {1} into {2}.
 {0} played a sound.
+{0} players in invalid state or the statistics code is bugged!
 {0} playing a game of russian roulette.
 {0} plays a jingle as {1} pulls the lever.
 {0} plays tag with {1}.
@@ -4141,6 +4356,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} saws {1} open!
 {0} says: It's your divine right to buy!
 {0} scrapes the bristles uncomfortably over your {1}!
+{0} scratches {1} {2}.
 {0} screws up!
 {0} screws up, bruising {1}'s chest!
 {0} screws up, causing brain damage!
@@ -4182,6 +4398,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} siphons venom from your fangs with {1}!
 {0} siphons venom from {1}'s fangs with {2}!
 {0} skin is open{1}.
+{0} slams {1} fist down on {2}!
 {0} slips and punctures {1}'s fuel cell with the {2}!
 {0} slips and punctures {1}'s fuel cell!
 {0} slowly rises upward, flopping menacingly in the air...
@@ -4198,6 +4415,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} spews out foam!
 {0} spilling coffee over the message monitor while typing {1}.
 {0} splashes the contents of {1} onto you!
+{0} stands still as {1} eyes seem to focus on a distant point.
 {0} started by {1}.
 {0} starts carving {1}'s outer cerebral cortex into a self-imprinting pattern.
 {0} starts folding {1}'s cerebral cortex.
@@ -4253,6 +4471,8 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} successfully inserts something into {1}.
 {0} successfully inserts the phylactery into {1}'s brain!
 {0} successfully inserts {1} into {2}.
+{0} successfully loaded into {1}. Life support functions engaged.
+{0} successfully loaded.
 {0} successfully lobotomizes {1}!
 {0} successfully realigns some of the blood vessels in  {1}!
 {0} successfully realigns some of the blood vessels in {1} with {2}!
@@ -4297,6 +4517,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} tears open {1} {2} with {3} crowbar{4}!
 {0} teleports away, never to be seen again!
 {0} template failed to initialize correctly!
+{0} tends your wounds!
 {0} terrain generation finished in {1}s!
 {0} terrain population finished in {1}s!
 {0} throws the bomb next to you, you'r too scared to pick it up.
@@ -4305,6 +4526,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} took {1} damage!
 {0} touches the end of {1} to \the {2}, igniting it with a puff of smoke.
 {0} touches the end of {1} to \the {2}, using the residual heat to ignite it in a puff of smoke. What a badass.
+{0} traces in target minimal! {1} cannot be used as fuel.
 {0} tricking {1} into playing 52 pickup with {2}.
 {0} tried to fight back, but was killed.
 {0} tried to start skillchip implanting when {1} was in an invalid state.
@@ -4325,6 +4547,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} triggered an earthquake at {1}.
 {0} trying to motion towards %t.
 {0} twitches. It's alive!
+{0} unit\s of {1} successfully loaded.
 {0} unsuccessfully attempts to lobotomize {1}!
 {0} unwisely {1} {2}, and {3} body burns brilliantly before flashing into ash!
 {0} unwisely {1} {2}, and {3} body burns brilliantly before the blast hurls {4} away!
@@ -4359,6 +4582,8 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} whips \the {1} out and holds it for {2}. {3} arm is as steady as the unflickering flame {4} light{5} \the {6} with.
 {0} whirrs as it filters {1}'s blood.
 {0} whirrs as it pumps.
+{0} will not fit into the sleeper because of the creatures attached to it!
+{0} will not fit into the sleeper because {1} buckled to {2}!
 {0} winning it big.
 {0} wins the day vote, Listen to their defense and vote INNOCENT or GUILTY!
 {0} within {1} failed to find any abductor machinery to connect to.
@@ -4369,6 +4594,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} {1} after finishing {2}.
 {0} {1} after losing {2}.
 {0} {1} and begins to walk away from it.
+{0} {1} are responsive, but entirely unfocused.
 {0} {1} aroused as hell.
 {0} {1} as a blood splatter lands on {2}'s face.
 {0} {1} as a goodie falls out of the {2}.
@@ -4484,6 +4710,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0}'s neck has already been already cut, you can't make the bleeding any worse!
 {0}'s orbit is passing through a cloud of remnants from an asteroid mining operation. Minor hull damage is to be expected.
 {0}'s spaghetti blunder.
+{0}'s syringe chamber is full!
 {0}({1}) was instanced which should never happen. Changing into the next baseturf down...
 {0}({1})'s turfs_by_zlevel is length {2} but we are being asked to remove turfs from zlevel {3} from it.
 {0}, Sector {1}, {2}, Grid Coordinates, {3} East, {4} North.
@@ -4499,6 +4726,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0}. should be: custom_materials = {1}.
 {0}: No candidate role or pref_flag set, give it a human readable candidate roll at the bare minimum.
 {0}: requested={1} sheets, available={2} sheets, adjusted={3} sheets.
+{0}<b>Base pH:</b> {1}, <b>Current pH:</b> {2}.
 {0}<br>Type <b>vote</b> or click <a href='byond://winset?command=vote'>here</a> to place your votes.\nYou have {1} to vote.
 {0}Requires: {1} {2}\s.
 {0}points at %t with their {1}!

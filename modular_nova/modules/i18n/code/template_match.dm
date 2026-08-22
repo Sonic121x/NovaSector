@@ -387,7 +387,12 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 	if(zh != capture)
 		return zh
 	if(findtext(capture, " ") && lang_fallback_setup(locale))
-		return rustg_acreplace("i18n_[locale]", capture)
+		var/ac = rustg_acreplace("i18n_[locale]", capture)
+		if(ac != capture)
+			return ac
+	// 漏翻采集：模板命中了、捕获值却没翻 —— 表现为「中文句式里嵌着英文词」，和 LANG 实参漏出
+	// 同形，但成因在另一条链上（模板逆匹配捕获 vs 调用点实参），所以要分开记。
+	lang_log_miss_value(capture, "capture")
 	return capture
 
 #undef I18N_TPL_MIN_ANCHOR

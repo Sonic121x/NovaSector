@@ -213,6 +213,28 @@ GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
 		lang_log_miss_scan(text, "fallback")
 	return lang_fallback_cache_store(locale, source_text, text)
 
+/// `<span class='name'>` 里那一整块的本地化。只做**整串精确**反查（外加剥冠词后再试一次），
+/// 不过模板引擎、不过字面 AC：这里的内容要么是类型标签（该翻），要么是玩家角色名（绝不能碰），
+/// 子串替换在这么短的串上只有误伤。名字到达这里时常常已经带了 BYOND 自动补的冠词
+/// （`get_voice()` 返回 `"[src]"`，引擎对非专名补 "The"）—— 而玩家角色名是专名、永不带冠词，
+/// 所以「带冠词」本身就证明了它不是身份名。
+/proc/lang_localize_name_chunk(text, locale)
+	if(!istext(text) || !length(text) || locale == DEFAULT_UI_LOCALE)
+		return text
+	. = lang_reverse_text_in(text, locale)
+	if(. != text)
+		return
+	var/stripped = lang_strip_article(text)
+	if(!stripped)
+		return text
+	. = lang_reverse_text_in(stripped, locale)
+	if(. != stripped)
+		return
+	// 漏翻采集：聊天里的说话者/emote 名字整块没翻。单词名（wolf/animal）在这里最常见，
+	// 而 run 采集器的多词门槛正好把它们全挡了 —— 这一类只有在这里才看得见。
+	lang_log_miss_value(text, "namespan")
+	return text
+
 /// Finds the closing `>` for an HTML tag without treating a quoted `>` as the end of the tag.
 ///
 /// PERF：原实现按**字节**推进（`copytext(html, i, i+1)` 每字节分配一个新字符串），而本 proc 是
@@ -396,13 +418,20 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 	var/list/output = list()
 	var/cursor = 1
 	var/html_length = length(html)
+	// 上一个发出的标签是不是 `span_name()` 的开标签。聊天行里的名字被包在里面**独立成块**经过
+	// 切块器：整句反查与模板引擎都碰不到它（它自己就是一整块），只剩字面 AC —— 而 AC 有多词
+	// 门槛，`wolf`/`animal` 这种单词名永远捞不着，玩家看到「The wolf 说，「……」」。
+	// 逐个改那 54 个 span_name() 调用点是走不完的（而且新调用点随时会加），所以在**切块器**里
+	// 认这个形状：整块就是一个名字 → 走整串精确反查（含剥冠词），不经 AC。
+	var/in_name_span = FALSE
 	while(cursor <= html_length)
 		var/tag_start = findtext(html, "<", cursor)
 		if(!tag_start)
 			output += lang_fallback_apply(copytext(html, cursor), locale)
 			break
 		if(tag_start > cursor)
-			output += lang_fallback_apply(copytext(html, cursor, tag_start), locale)
+			var/chunk = copytext(html, cursor, tag_start)
+			output += in_name_span ? lang_localize_name_chunk(chunk, locale) : lang_fallback_apply(chunk, locale)
 		var/tag_end = lang_html_tag_end(html, tag_start)
 		if(!tag_end)
 			output += lang_fallback_apply(copytext(html, tag_start), locale)
@@ -410,6 +439,7 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 		var/tag = copytext(html, tag_start, tag_end + 1)
 		output += tag
 		cursor = tag_end + 1
+		in_name_span = findtext(tag, "class='name'") || findtext(tag, "class=\"name\"")
 
 		var/raw_text_tag = lang_html_raw_text_tag_name(tag)
 		if(!raw_text_tag)

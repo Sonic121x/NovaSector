@@ -227,9 +227,11 @@
 		"！" = "嘶！",
 		"？" = "嘶？",
 		"，" = "嘶，",
-		"." = "嘶.",
-		"!" = "嘶!",
-		"?" = "嘶?",
+		// 半角标点**必须锚定前一个汉字**：合并英文表之后，裸的 "."/"!"/"?" 会在英文句子上开火，
+		// 把 "She is so sassy." 变成 "…sassy嘶."。锚定之后它只在中文字后面触发。
+		new /regex("(\[一-鿿\])\\.", "g") = "$1嘶.",
+		new /regex("(\[一-鿿\])!", "g") = "$1嘶!",
+		new /regex("(\[一-鿿\])\\?", "g") = "$1嘶?",
 	)
 	// NOVA EDIT ADDITION END
 	// NOVA EDIT ADDITION START - Russian version - yes copy pasted from above because static lists are great.
@@ -250,8 +252,15 @@
 
 /obj/item/organ/tongue/lizard/Initialize(mapload)
 	. = ..()
-	// NOVA EDIT CHANGE - I18N - 全服中文时改用中文拟声表（字母级替换在中文文本上空转）
-	AddComponent(/datum/component/speechmod, replacements = lang_locale_is_chinese() ? chinese_speech_replacements : (CONFIG_GET(flag/russian_text_formation) ? russian_speech_replacements : speech_replacements), should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech))) // NOVA EDIT CHANGE - ORIGINAL: AddComponent(/datum/component/speechmod, replacements = speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech)))
+	// NOVA EDIT CHANGE START - I18N - 中文拟声表**叠加**在英文表之上（不是替换）。
+	// 两套规则管的是两种文本形态：`s→sss` 只在拉丁字母上开火、`。→嘶。` 只在中文标点上开火，
+	// 合在一张表里互不干扰。整张替换掉的写法会让中文服上的英文发言丢掉效果，
+	// 也会让上游的 speech_modifiers 单测直接红（它断言的正是英文输入的变形结果）。
+	var/static/list/chinese_merged
+	if(lang_locale_is_chinese() && isnull(chinese_merged))
+		chinese_merged = lang_merge_speech_replacements(speech_replacements, chinese_speech_replacements)
+	AddComponent(/datum/component/speechmod, replacements = chinese_merged || (CONFIG_GET(flag/russian_text_formation) ? russian_speech_replacements : speech_replacements), should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech))) // NOVA EDIT CHANGE - ORIGINAL: AddComponent(/datum/component/speechmod, replacements = speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech)))
+	// NOVA EDIT CHANGE END
 
 /obj/item/organ/tongue/lizard/silver
 	name = "silver tongue"

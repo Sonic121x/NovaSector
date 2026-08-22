@@ -236,11 +236,32 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 		if(fexists("[STRING_DIRECTORY]/[localized_path]"))
 			var/list/localized = strings(localized_path, key)
 			if(length(localized))
-				return localized
+				// **叠加而非替换**：英文键只在拉丁文本上匹配、中文键只在中文文本上匹配，两套规则
+				// 互不干扰。整张换掉会让中文服上的英文发言（玩家打英文、机器播报）丢掉整个效果
+				// —— 与蜥蜴/苍蝇拟声表那条同一个道理，见 lang_merge_speech_replacements。
+				return lang_merge_speech_replacements(strings(filepath, key), localized)
 	return strings(filepath, key)
+
+/// 中文拟声表**叠加**在英文表之上，而不是替换它。
+///
+/// 这两张表是**字母级**与**汉字级**两套互不相干的规则：`s→sss` 只在拉丁字母上开火，`。→嘶。`
+/// 只在中文标点上开火。原来写成「中文服就整张换掉英文表」，代价有两个，第二个是硬伤：
+///   · 中文服上的英文发言（玩家打英文、机器播报）丢掉了效果；
+///   · **上游的 speech_modifiers 单测直接红**——它断言蜥蜴人把 "She is so sassy" 念成
+///     "SSShe isss ssso sssasssy"，而那条断言在中文 locale 下拿到的是未变形的原句。
+/// 叠加之后两套规则各管各的文本形态，互不干扰（半角标点那三条已按前置汉字锚定，见各自的表）。
+///
+/// 不能用 `base + extra`：DM 的 list `+` 对关联列表只并键、**不带值**，合出来的表每条规则都映到 null。
+/proc/lang_merge_speech_replacements(list/base, list/extra)
+	. = base.Copy()
+	for(var/key in extra)
+		.[key] = extra[key]
 
 /proc/lang_locale_is_chinese()
 	return findtext(GLOB.i18n_server_locale, "zh") == 1
+
+/// 见 lang_localize_arg 末尾的 HTML 兜底：那条路会经模板引擎绕回自身，用它挡住失控下探。
+GLOBAL_VAR_INIT(i18n_arg_html_depth, 0)
 
 /proc/lang_localize_arg(arg)
 	if(!length(arg))
@@ -285,6 +306,38 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 		translated = lang_reverse_text(capped)
 		if(translated != capped)
 			return translated
+	// 「裸文本 + span 包裹」的混合实参（`" and [EXAMINE_HINT("secured with metal cables")]"`）：
+	// 上面那条剥外壳的分支要求整串**首尾**都是标签，多一个前导 " and " 就整条 miss，于是连里面
+	// 那句本来译得好好的也一起留成英文。这类形状交给聊天路径同款的切块器：按标签切开、每块各自
+	// 精确反查（" and " 这种连接碎片在目录里有独立条目，整串反查够得着；AC 的词内开火风险由
+	// lang_fallback_apply 自己的多词闸门挡）。仅在含标签时才跑，普通实参零额外开销。
+	// 英文复数形式：中文没有复数，去掉词尾再精确查一次。运行期拼出来的复数（物种的
+	// `plural_form = "[name]\s"` → `Voxs`/`Akulae`、各种 `"[x]s"`）整串永远不是目录键，而单数
+	// 早就在目录里 —— 采集里 `Golems`/`Ethereals`/`Skrells` 一整排都是这一类。
+	// 安全线是「**单数必须整串精确命中目录**」：碰不上就原样返回，不做任何形态猜测。
+	var/length_of_arg = length(arg)
+	if(length_of_arg > 2 && text2ascii(arg, length_of_arg) == 115) // 以 s 结尾
+		var/singular = copytext(arg, 1, length_of_arg)
+		translated = lang_reverse_text(singular)
+		if(translated != singular)
+			return translated
+		if(copytext(arg, -2) == "es")
+			singular = copytext(arg, 1, length_of_arg - 1)
+			translated = lang_reverse_text(singular)
+			if(translated != singular)
+				return translated
+	// 深度守卫：这条路存在一个**环**（arg → 切块器 → 模板逆匹配 → 捕获值又回到 lang_localize_arg）。
+	// 每一跳处理的都是严格更短的子串，理论上必然收敛；但它跑在聊天热路径上，栈爆的代价太大，
+	// 所以显式钉一个上限，超了就不再下探（退化成原样返回，行为与从前一致）。
+	if(findtext(arg, "<") && GLOB.i18n_arg_html_depth < I18N_ARG_HTML_MAX_DEPTH)
+		GLOB.i18n_arg_html_depth++
+		translated = lang_fallback_apply_html(arg, GLOB.i18n_server_locale)
+		GLOB.i18n_arg_html_depth--
+		if(translated != arg)
+			return translated
+	// 漏翻采集：整条链都没命中的 LANG 实参。**模板译好了、实参漏出来**是「中文句子里嵌英文词」
+	// 的头号成因，而实参多半是单词（状态词、单词名），旧的 run 采集器按多词门槛结构性看不见。
+	lang_log_miss_value(arg, "arg")
 	return arg
 
 /// **逆向**反查：把显示边界产生的译名还原成英文原文。用于 act 回传/按英文建键的查表场景——
@@ -755,13 +808,18 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 /// 复合名（如 "Robotics Lab APC" → 区域名子串 "Robotics Lab" 被换）。与 screentip（_atom.dm）同款
 /// 两步，抽成共用 proc 供「绕过 examine/AC 路径、只发 atom.name 的 UI」复用（如 LootPanel）。
 /// 仅用于**纯显示**的名字（act/回传用 ref/path、不用 name 处），翻名不破标识符。locale==en no-op。
-/proc/lang_localize_display_name(text)
+/proc/lang_localize_display_name(text, origin)
 	if(!istext(text) || GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
 		return text
 	// 显示边界**不过字面 AC**：名字要么整串命中、要么是「区域名 + 类型名」那种可拆的合成名
 	// （lang_localize_area_prefixed_name 分段精确翻）。AC 是无词边界的子串替换，在这么短的串上
 	// 只会带来误伤（「You can」咬进「You can't」那一类的名字版）。
 	. = lang_localize_chain(text, GLOB.i18n_server_locale || DEFAULT_UI_LOCALE, allow_template = TRUE, ac_mode = I18N_AC_NONE)
+	// 漏翻采集：显示边界（examine 名/描述、悬停 screentip、径向菜单、tgui_input_list 选项）整条
+	// miss。这一面的缺口几乎全是**单词名**，run 采集器看不到；而它又最容易行动 —— 拿 origin 里的
+	// 类型路径直接对着 labels.rs TYPE_VAR_RULES / type_vars.json 补一条即可。
+	if(GLOB.i18n_log_misses && . == text)
+		lang_log_miss_value(text, "display", origin)
 
 /// 类型显示名/描述表：`strings/i18n/type_vars.json`（`nova-i18n extract` 产出，DM 继承已在 build 期展开）。
 /// `type` → 目录 key。显示边界拿到的 name/desc 若仍是类型标签，就**按类型直接取键**走正向目录，
@@ -853,7 +911,31 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 		var/split_name = lang_localize_area_prefixed_name(src, display_name)
 		if(split_name)
 			return split_name
-	return lang_localize_display_name(display_name)
+		var/affixed_name = lang_localize_type_affixed_name(display_name)
+		if(affixed_name)
+			return affixed_name
+	return lang_localize_display_name(display_name, "[type]")
+
+/// 运行期在**类型名两侧加缀**的实例名：AI 法则架的 `"\proper core module rack 'alpha'"`、
+/// 贴标机改过的 `"beaker (盐)"`、各种 `"[name] #3"`。整串不是目录键，类型表按 `initial(name)`
+/// 判定也对不上 → 精确反查与类型表双双 miss，只剩聊天层的字面 AC（多词才走、无词边界）。
+///
+/// 判据只有一条：**去掉文法宏之后，initial(name) 逐字节地是它的前缀**。前缀走类型表（单词名也能翻），
+/// 其余原样保留。mob 侧另有一条更严的同类规则（只放行 `" (…)"` 后缀）——那里 name 是身份，
+/// 不能放宽；obj/turf 的 name 从来只是类型标签，按前缀拆是安全的。
+/atom/proc/lang_localize_type_affixed_name(display_name)
+	var/base = initial(name)
+	var/base_length = length(base)
+	if(!base_length)
+		return null
+	// `"\proper [name] '…'"` 运行时是**标记字节 + 空格 + 名字**；不剥掉就永远匹配不上前缀，
+	// 而且那个空格会一路漏到玩家眼前（examine 的「那是  核心模块架」）。
+	var/stripped = lang_strip_grammar_macros(display_name)
+	if(length(stripped) <= base_length || findtext(stripped, base) != 1)
+		return null
+	var/tail = copytext(stripped, base_length + 1)
+	var/localized_base = lang_type_display_text(src, lang_type_name_keys()) || lang_localize_display_name(base, "[type]")
+	return "[localized_base][tail]"
 
 /// 拆「区域名 + 其余」型实例名并分别本地化；不是这个形状时返回 null（调用方回落原链）。
 ///
@@ -880,9 +962,9 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 	var/trimmed_rest = trim(rest)
 	if(length(base) && findtext(trimmed_rest, base) == 1)
 		var/tail = copytext(trimmed_rest, length(base) + 1)
-		var/localized_base = lang_type_display_text(source, lang_type_name_keys()) || lang_localize_display_name(base)
+		var/localized_base = lang_type_display_text(source, lang_type_name_keys()) || lang_localize_display_name(base, "[source.type]")
 		return "[localized_area] [localized_base][tail]"
-	var/localized_rest = lang_localize_display_name(trimmed_rest)
+	var/localized_rest = lang_localize_display_name(trimmed_rest, "[source.type]")
 	return "[localized_area] [localized_rest]"
 
 /// examine 的 desc 显示边界。与 name 同构：仍等于类型初值 → 按类型取键；其余（地图实例覆盖的
@@ -892,7 +974,9 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 		var/typed_desc = lang_type_display_text(src, lang_type_desc_keys())
 		if(typed_desc)
 			return typed_desc
-	return lang_reverse_text(display_desc)
+	. = lang_reverse_text(display_desc)
+	if(GLOB.i18n_log_misses && . == display_desc)
+		lang_log_miss_value(display_desc, "desc", "[type]")
 
 /// mob 的 `name` 是**身份**（角色名、宠物挂牌名、赛博编号、ERT 头衔…），一律不翻——哪怕它恰好
 /// 撞上目录短语。判据只用「是否仍等于类型声明的初值」：任何运行期赋值（`fully_replace_character_name`
@@ -1417,6 +1501,11 @@ GLOBAL_LIST_INIT(i18n_payload_prose_keys, build_i18n_policy_set("payload_prose_k
 		"his" = "他的", "hers" = "她的", "its" = "它的", "their" = "他们的", "theirs" = "他们的",
 		"himself" = "他自己", "herself" = "她自己", "itself" = "它自己", "themselves" = "他们自己",
 		"is" = "是", "are" = "是", "has" = "有", "have" = "有", "was" = "是", "were" = "是",
+		// 纯**英文动词一致性**记号（`p_do()`→"does"、`p_s()`/`p_es()` 的复数后缀）：中文没有对应成分，
+		// 译成任何词都是多余的。映到空串，由下面的 isnull 判定放行（DM 里空串为假，`||` 会当 miss）。
+		// 中文模板本来也可以干脆不引用该占位符（lang_interpolate 会忽略模板里没出现的实参），
+		// 但那要求每条译文都记得删——留在这里收口，漏删的那些也不会漏出「他does似乎不太在意寒冷」。
+		"do" = "", "does" = "", "s" = "", "es" = "",
 		// 代词缩写（p_theyre()/p_theyve()/p_theyll() 等输出 "it's"/"they're"/"he's"/"they've"…）：
 		// 中文模板已含系动词/无需，统一映到**裸代词**（"It's 45cm long" → "它长45厘米"）。
 		"it's" = "它", "he's" = "他", "she's" = "她", "they're" = "他们",
@@ -1425,7 +1514,8 @@ GLOBAL_LIST_INIT(i18n_payload_prose_keys, build_i18n_policy_set("payload_prose_k
 		"it'll" = "它", "they'll" = "他们", "he'll" = "他", "she'll" = "她",
 		"it'd" = "它", "they'd" = "他们", "he'd" = "他", "she'd" = "她",
 	)
-	return pmap[LOWER_TEXT(word)] || word
+	var/mapped = pmap[LOWER_TEXT(word)]
+	return isnull(mapped) ? word : mapped
 
 /// 物种「描述」可能是字符串（多数物种 `return placeholder_description` / 单段裸串）或字符串列表
 /// （shadekin 等多段 `return list("段1","段2")`）——按类型分派反查。get_species_description 两种返回

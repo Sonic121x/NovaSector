@@ -287,6 +287,10 @@
 		),
 		// NOVA EDIT ADDITION START - i18n - 注入全服界面语言供 TGUI 本地化 (config.locale)
 		"locale" = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE,
+		// 前端漏翻采集开关。**TGUI 是 DM 侧完全看不见的一面**：静态 JSX 文本、prop、children 模板
+		// 都在浏览器里查表，查不到就原样显示，服务端无从知晓。开关打开时 TS 把 miss 攒批经
+		// `i18n/miss` 消息回传（见 on_message），汇进同一份 i18n_misses.log。
+		"i18nLogMisses" = GLOB.i18n_log_misses,
 		// NOVA EDIT ADDITION END
 	)
 	var/data = custom_data || with_data && src_object.ui_data(user)
@@ -387,6 +391,18 @@
 		if("log")
 			if(href_list["fatal"])
 				close(can_be_suspended = FALSE)
+		// NOVA EDIT ADDITION START - i18n - 前端漏翻回传（config.i18nLogMisses 为真时 TS 才发）。
+		if("i18n/miss")
+			if(!GLOB.i18n_log_misses)
+				return
+			var/list/entries = payload?["misses"]
+			if(!islist(entries))
+				return
+			for(var/entry in entries)
+				if(istext(entry))
+					lang_log_miss_value(entry, "tgui-ui", "[src_object?.type]")
+			return
+		// NOVA EDIT ADDITION END
 		if("setSharedState")
 			if(status != UI_INTERACTIVE)
 				return

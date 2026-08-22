@@ -4,6 +4,7 @@
 import { Dropdown } from 'tgui-core/components';
 
 import { substituteOverlay, translateCurrent } from './catalog';
+import { recordMiss } from './missLog';
 import policy from './policy.json';
 import propTemplateKeys from './prop-templates.json';
 
@@ -216,6 +217,9 @@ function translateText(text: string): string {
   if (substituted !== null) {
     return `${leading}${substituted}${trailing}`;
   }
+  // 漏翻采集：整条链（精确 → Alt 后缀 → prop 模板逆匹配 → overlay 子串）都没命中。
+  // 这是 DM 侧看不到的那一面 —— 界面文本查表失败在浏览器里，服务端毫无痕迹。默认关闭。
+  recordMiss(body);
   // 未命中时保留原始 body（含原排版），不改动。
   return `${leading}${body}${trailing}`;
 }
@@ -263,6 +267,10 @@ function localizeChildrenTemplate(children: unknown[]): unknown[] | null {
   }
   const translated = translateCurrent(lookup);
   if (translated === lookup) {
+    // 漏翻采集：整条 children 模板查不到 —— 这一类的症状是「整段英文、但段落里的 <b>/<span>
+    // 词是中文」（那些是独立 jsx 节点、各自命中）。记的是**模板形态**（`The {0} neutral quirk`），
+    // 那正好是该去目录里补的键，比记渲染后的整句有用得多。
+    recordMiss(lookup);
     return null;
   }
   // 占位符必须一一对上，否则说明目录条目与这处 children 形状不符（例如 `{cond && <X/>}`

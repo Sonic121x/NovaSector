@@ -230,7 +230,7 @@ impl<'ctx> BareLiteralCollector<'ctx> {
             // 插值串同样要查：`speak("[mode] level [threat] scumbag [name] in [area].")` 的**模板形态**
             // （`{0} level {1} scumbag {2} in {3}.`）早就在目录里、也译好了，缺的只是 rewrite 不认那个
             // sink。只看纯字面量会整类漏掉——beepsky 的逮捕播报就是这么在目录里躺了很久的。
-            Term::InterpString(..) => {
+            Term::InterpString(_, parts) => {
                 let expr = Expression::Base {
                     term: Box::new(Spanned::new(loc, term.clone())),
                     follow: Box::new([]),
@@ -238,18 +238,19 @@ impl<'ctx> BareLiteralCollector<'ctx> {
                 if let Some(template) = crate::template::build_template(&expr) {
                     self.record(&template, loc);
                 }
+                // 内插表达式里还可能嵌着自己的字面量（`"… [x ? "bar baz." : ""] …"`）。
+                // 从前这一支只记模板就 return 了，另有一条同名 arm 想做下探却因排在后面**永不可达**
+                // （编译器的 unreachable_pattern 警告一直在报）——整类嵌套字面量因此不在规则 D 视野里。
+                for (opt, _) in parts.iter() {
+                    if let Some(e) = opt {
+                        self.visit_expr(e, loc);
+                    }
+                }
             }
             Term::Expr(inner) => self.visit_expr(inner, loc),
             Term::SelfCall(args) | Term::ParentCall(args) | Term::List(args) => {
                 for a in args.iter() {
                     self.visit_expr(a, loc);
-                }
-            }
-            Term::InterpString(_, parts) => {
-                for (opt, _) in parts.iter() {
-                    if let Some(e) = opt {
-                        self.visit_expr(e, loc);
-                    }
                 }
             }
             _ => {}

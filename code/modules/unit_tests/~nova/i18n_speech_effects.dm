@@ -62,6 +62,15 @@
 			break
 	TEST_ASSERT(found_chinese_key, "取到的仍是英文键的表：中文句子里永不匹配，突变整类空转")
 
+	// ⑤ 中文表**叠加**在英文表之上，不是替换。整张换掉会让中文服上的英文发言丢掉效果，
+	// 也会让上游的 speech_modifiers 单测直接红（它断言的正是英文输入 "She is so sassy" 的变形）。
+	var/found_english_key = FALSE
+	for(var/replacement_key in chinese_table)
+		if(istext(replacement_key) && !lang_contains_cjk(replacement_key))
+			found_english_key = TRUE
+			break
+	TEST_ASSERT(found_english_key, "中文表把英文表整张替换掉了：中文服上的英文发言会丢掉整个效果")
+
 	// ③ 英文仍走原逻辑（按空格切词），中文改动不得影响英文服。
 	GLOB.i18n_server_locale = DEFAULT_UI_LOCALE
 	var/list/english_args = list("we should go to medbay", "", "")

@@ -84,4 +84,16 @@ fi
 echo "==> 漏翻 $(wc -l < "$MISS_LOG") 行，按来源聚合："
 awk -F'src=' '{split($2,a," "); print a[1]}' "$MISS_LOG" | sort | uniq -c | sort -rn
 echo
-echo "==> 明细见 $MISS_LOG；离线归类：node tools/i18n/miss-scan.mjs"
+echo "   来源含义（见 miss_log.dm）："
+echo "     fallback  聊天/浏览器/公告/状态栏/气泡整行里残留的英文 run（多词门槛）"
+echo "     arg       LANG 实参整条链 miss —— 模板译了、填进去的值是英文（单词也收）"
+echo "     capture   模板逆匹配命中了、捕获值没翻"
+echo "     display   examine 名/悬停/径向菜单/tgui_input_list 的显示边界 miss（带调用点类型）"
+echo "     desc      examine 描述的显示边界 miss（带调用点类型）"
+echo "     namespan  聊天里 span_name() 包着的说话者/emote 名字整块没翻"
+echo "     tgui      TGUI **负载值**（服务端 P1）miss"
+echo "     tgui-ui   TGUI **前端**查表 miss —— 只有真人开界面才会产生，单测跑不出来"
+echo
+echo "==> 明细见 $MISS_LOG；离线归类：node tools/i18n/miss-scan.mjs $MISS_LOG"
+echo "    只翻玩家真的看到的那批：node tools/i18n/miss-scan.mjs --emit-pending $MISS_LOG \\"
+echo "      && I18N_ONLY_KEYS=tools/i18n/mt/.pending/miss-priority.json bun tools/i18n/mt/i18n-mt.ts"

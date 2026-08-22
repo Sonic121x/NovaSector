@@ -792,7 +792,17 @@ function hasEnglishWord(s: string): boolean {
  */
 function hasTranslatableEnglish(s: string): boolean {
   if (hasEnglishWord(s)) return true;
-  const words = stripNoise(s)
+  const stripped = stripNoise(s);
+  // 单个全大写词里混着一整类**该译**的东西：拟声/呐喊（HONK!!、AUUUUUU、EHEHEHEHEH、HISSSSS，
+  // 动物与小丑的 speak 池全在这儿）与带标点的界面短标签（OBJECTIVES:）。它们过不了「多词」那条
+  // 门槛，于是整类从没进过待译队列 —— 玩家在聊天里看到的就是一串英文大写字母。
+  // 判据只用**形态**，不猜词义：句末标点（缩写不带 !/?/:）或同一字母连出 3 个以上（拟声的特征）。
+  // 纯字母的短缩写（APC/RCD/ODST/RGB）两条都不满足，仍旧不译。
+  const shout = stripped.trim();
+  // 首字符必须是字母：`'s HP:` 这种**所有格拼句碎片**同样以 `:` 收尾，翻了只会在句中拼出病句。
+  if (/^[A-Za-z]/.test(shout) && (/[!?:]$/.test(shout) || /([A-Za-z])\1{2,}/.test(shout)))
+    return true;
+  const words = stripped
     .split(/\s+/)
     .filter((w) => /[A-Z]{2,}/.test(w));
   return words.length >= 2;
