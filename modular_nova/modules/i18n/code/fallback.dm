@@ -368,6 +368,40 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 	var/hit = lang_reverse_text_in(stripped, locale)
 	return hit == stripped ? null : hit
 
+/// 整行是不是「**单独一个**纯文本块、且它本身就是目录键」。
+///
+/// 只被整行模板 pass 用作闸门。要解决的是泛化骨架抢在整块精确查表之前命中：
+/// `You feel like {0}.` 把 `<span class='notice'>You feel like you could be safe on your own.</span>`
+/// 吃成「你感觉像you could be safe on your own。」——整句译文一直躺在目录里，只是轮不到。
+///
+/// **判据必须是「整行只有这一个文本块」，不能是「存在某个块命中」**：目录里躺着 `You can` 这类
+/// 拼句碎片（当年字面 AC 那几起事故的主角），按「存在即否决」写会把**正经**跨块模板一并否掉——
+/// `You can <b>examine closely</b> to learn a little more about {0}.` 的框架分落三个 chunk，
+/// 只有整行 pass 够得着它，而 `You can` 恰好命中 → 模板被否 → 玩家看到「你可以 凑近细看 to learn…」。
+/// 单块时切块器一定翻得动整行、模板不可能做得更好；多块时模板跨块工作，该让它赢。
+/// （i18n_html_tag_keys ③ 与 i18n_real_catalog ①c2 正反两面各守一边。）
+/proc/lang_line_is_single_exact_chunk(html, locale)
+	var/html_length = length(html)
+	var/cursor = 1
+	var/seen_text = FALSE
+	var/hit = FALSE
+	while(cursor <= html_length)
+		var/tag_start = findtext(html, "<", cursor)
+		var/chunk = trim(copytext(html, cursor, tag_start || 0))
+		if(length(chunk))
+			if(seen_text)
+				return FALSE // 多于一个文本块 → 交给整行模板
+			seen_text = TRUE
+			// 与 lang_inline_run_lookup 同一条安全线：只认多词整句。
+			hit = findtext(chunk, " ") && lang_reverse_text_in(chunk, locale) != chunk
+		if(!tag_start)
+			break
+		var/tag_end = lang_html_tag_end(html, tag_start)
+		if(!tag_end)
+			break
+		cursor = tag_end + 1
+	return hit
+
 /proc/lang_localize_inline_runs(html, locale)
 	var/list/reverse = GLOB.i18n_reverse[locale] || lang_build_reverse(locale)
 	if(!length(reverse))
@@ -445,18 +479,34 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 	// （script/style/textarea 的内容绝不能碰）——浏览器整页走原来的切块路径。
 	if(locale != DEFAULT_UI_LOCALE && length(html) <= I18N_INLINE_RUN_MAX_LENGTH \
 		&& !findtext(html, "<script") && !findtext(html, "<style") && !findtext(html, "<textarea"))
-		// **先在「还没切块」的整行上跑一遍模板引擎。** 目录模板的字面段里带着标签
+		// **整串精确必须排在模板之前——这条在「整行」这个作用域上曾经漏掉。**
+		// lang_localize_inline_runs 跨内联标签把整段文本连起来**整段精确查表**，是这一层里最具体
+		// 的证据；而下面那条整行模板 pass 会让目录里「三两个词 + 占位符」的泛化骨架抢先命中，把
+		// 捕获到的英文原样塞进中文脚手架：`You feel like {0}.` 把
+		// `<span class='notice'>You feel like you could be safe on your own.</span>` 吃成
+		// 「你感觉像you could be safe on your own。」——**整句译文一直都在目录里**，只是轮不到。
+		// 这与 lang_localize_chain 里那条同源（见 i18n_real_catalog ①c），当时只修了块作用域。
+		var/inlined = lang_localize_inline_runs(html, locale)
+		if(!isnull(inlined))
+			html = inlined
+		// 整行模板 pass：目录模板的字面段里带着标签
 		// （`{0}<br>Type <b>vote</b> or click <a href='byond://…'>here</a> to place your votes.…`），
 		// 只有在这个作用域里它们才与原文逐字节对得上；一旦按标签切块，字面段就再也拼不回来。
 		// 这条路对**含 `<a>` 的模板**尤其重要：剥标签变体（见 template_match.dm）会把链接弄没，
 		// 所以那 71 条一律不登记变体；而在整行作用域上匹配，zh 模板连同它自己的 `<a href>`
-		// 一起填回去，链接与排版都保住。
+		// 一起填回去，链接与排版都保住。整段精确没命中时它才有机会跑（上面那 pass 未命中会
+		// 原样交还），所以两条并不互斥。
 		var/templated = lang_template_apply(html, locale)
-		if(templated != html)
+		// **整串精确赢过泛化模板**，在整行作用域上同样成立。上面那条前置 pass 只管「被内联标签
+		// 切开的句子」（lang_inline_run_lookup 要求 saw_inline_tag），而绝大多数聊天行是
+		// `<span class='notice'>整句</span>` 这种**没被切开**的形态 —— 它本该由下面的切块器整块
+		// 精确查表，却被这条整行模板 pass 抢先吃掉：`You feel like {0}.` 把
+		// 「You feel like you could be safe on your own.」变成「你感觉像you could be safe on your own。」，
+		// 而整句译文一直躺在目录里。
+		// 闸门放在**模板已经命中之后**：只有那时才多走一趟切块扫描去确认「有没有哪一块本来就是
+		// 目录键」，命中就丢掉模板结果、把这一行交还给切块器。没有模板命中的行（绝大多数）零额外开销。
+		if(templated != html && !lang_line_is_single_exact_chunk(html, locale))
 			html = templated
-		var/inlined = lang_localize_inline_runs(html, locale)
-		if(!isnull(inlined))
-			html = inlined
 	var/list/output = list()
 	var/cursor = 1
 	var/html_length = length(html)

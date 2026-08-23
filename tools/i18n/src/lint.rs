@@ -159,6 +159,14 @@ impl<'ctx> BareLiteralCollector<'ctx> {
     fn record(&mut self, text: &str, loc: dm::Location) {
         if !self.hits.contains_key(text) {
             let path = self.context.file_path(loc.file);
+            // 单元测试里的英文串是**夹具**：i18n 的落地层测试必须照抄真实渲染形态（见 AGENTS 里
+            // 「照抄真实形态，别手写等价物」那条），于是每写一条回归断言就会被这条规则报成新增
+            // 裸字面量。抽取侧早有同样的排除（extract.rs 的 in_unit_tests），这里漏了。
+            // 注意 DM 的 file list 用反斜杠，Path::components() 认不出，按归一后的字符串判。
+            let normalized = path.to_string_lossy().replace('\\', "/");
+            if normalized.contains("/unit_tests/") || normalized.starts_with("unit_tests/") {
+                return;
+            }
             self.hits
                 .insert(text.to_string(), format!("{}:{}", path.display(), loc.line));
         }

@@ -156,7 +156,17 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 /// 起的物品名、任何玩家可控串都做得到），它就会被后一个实参的值顶掉，输出一句错乱的话。
 /// 单趟扫描时实参写进输出后不再参与匹配，这类自吞死掉；顺带还省掉了「模板里根本没有该占位符时
 /// 仍然白跑一遍 lang_localize_arg + 全串 replacetext」的开销（LANG 是全仓三万余处调用的热点）。
-/proc/lang_interpolate(template, list/args)
+/// 「扫过这段字面文本之后，光标是不是落在某个 HTML 标签内部」。见 lang_interpolate 里
+/// 「占位符落在标签内部 = 实参是标识符」那条：状态要跨字面段累积，所以单独抽出来。
+/// 段内没有 `<`/`>` 时状态不变；有则以**最后出现**的那个为准。
+/proc/lang_tag_state_after(text, in_tag)
+	var/last_open = findlasttext(text, "<")
+	var/last_close = findlasttext(text, ">")
+	if(!last_open && !last_close)
+		return in_tag
+	return last_open > last_close
+
+/proc/lang_interpolate(template, list/args, origin)
 	var/arg_count = length(args)
 	if(!arg_count || !findtext(template, "{"))
 		return template
@@ -164,6 +174,14 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 	var/list/output = list()
 	var/template_length = length(template)
 	var/cursor = 1
+	// **占位符落在标签内部时，实参是标识符而不是文案**：幻觉心灵感应那条模板长这样
+	// `<span class='{0}'>…</span><span class='{1}'> {2}</span>`，{0}/{1} 收的是 span 的 CSS 类名
+	// （`boldnotice`/`alien`）。把它们送进 lang_localize_arg 轻则在漏翻日志里刷噪音，重则某天目录里
+	// 恰好有个同形条目 —— 中文就被写进 class 属性，聊天配色当场全丢。调用点无从分辨（同一条模板里
+	// {2} 才是真文案），但**形态**分得清：只有 `<` 与 `>` 之间的占位符是属性值。
+	// has_tags 预判一次，无标签的模板（绝大多数）零额外开销。
+	var/has_tags = findtext(template, "<")
+	var/in_tag = FALSE
 	while(cursor <= template_length)
 		var/brace = findtext(template, "{", cursor)
 		if(!brace)
@@ -179,11 +197,14 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 			output += copytext(template, cursor, close + 1)
 			cursor = close + 1
 			continue
-		output += copytext(template, cursor, brace)
+		var/lead = copytext(template, cursor, brace)
+		output += lead
+		if(has_tags)
+			in_tag = lang_tag_state_after(lead, in_tag)
 		var/arg = args[index]
-		if(localize)
+		if(localize && !in_tag)
 			if(istext(arg))
-				arg = lang_localize_arg(arg)
+				arg = lang_localize_arg(arg, origin)
 			else if(isatom(arg))
 				// **非文本实参从前完全没被本地化**：rewrite 把 `[src]` 抬成 LANG 实参时给的是 atom
 				// 本身（`list(src)` 一种形状全仓 3000+ 处），而这里只对 istext 分支调 lang_localize_arg
@@ -226,6 +247,40 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 ///
 /// 中文表的键必须是**多字词**：`replacetextEx` 是无词边界的子串替换，拿单字当键（「下」「是」）
 /// 会在词内开火，把「下面」「不是」也一起改掉 —— 与字面 AC 那些事故同一个形态。
+/// 词池（`world.file2list` 读的纯文本表）按 locale 取表：`<名>.<locale>.txt` 与英文表同目录，
+/// 有就用、没有就退回英文表 —— 新增语言只加文件、不改调用点。与 lang_speech_replacements 同一
+/// 条路子（那是 strings/ 的 JSON 版），但**不能走 GLOB.string_cache**：这些表是 file2list 直接
+/// 读的，不经 load_strings_file。
+///
+/// 为什么不把词入目录：这些池子是**极常见的英文单词**（`hot`/`in`/`real`/`kind`/`solid`…），
+/// 进全局反查表就是凭空扩大整个 DM 侧的误翻面（线缆颜色那次事故的形态）。而它们的用途是纯
+/// flavor 拼句，按 locale 换整张表既覆盖完全、又零全局风险。
+///
+/// **必须惰性**：GLOBAL_LIST_INIT 跑在 locale 读入之前（见 memory「i18n 初始化时序死钩子」），
+/// 在 GLOB 初始化期按 locale 选表只会静默拿到英文表。
+GLOBAL_LIST_EMPTY(i18n_word_pools)
+
+/proc/lang_word_pool(filepath, list/fallback)
+	if(GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
+		return fallback
+	var/cache_key = "[filepath]|[GLOB.i18n_server_locale]"
+	var/list/cached = GLOB.i18n_word_pools[cache_key]
+	if(cached)
+		return cached
+	var/list/pool = fallback
+	var/localized_path = "[copytext(filepath, 1, findtextEx(filepath, ".txt"))].[GLOB.i18n_server_locale].txt"
+	if(fexists(localized_path))
+		var/list/localized = world.file2list(localized_path)
+		// file2list 会把末尾换行读成一个空元素，pick() 抽到就是一句空文本。
+		// **循环着删**：DM 的 `Remove()` 每个实参只摘一个实例（`list -= null` 那条同源），
+		// 文件里有两处空行就会漏掉一个。
+		while(("" in localized))
+			localized -= ""
+		if(length(localized))
+			pool = localized
+	GLOB.i18n_word_pools[cache_key] = pool
+	return pool
+
 /proc/lang_speech_replacements(filepath, key)
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		// **同目录、locale 后缀命名**（`chav_replacement.zh-Hans.json`），不能放 `strings/<locale>/` 下：
@@ -262,7 +317,7 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 /// 见 lang_localize_arg 末尾的 HTML 兜底：那条路会经模板引擎绕回自身，用它挡住失控下探。
 GLOBAL_VAR_INIT(i18n_arg_html_depth, 0)
 
-/proc/lang_localize_arg(arg)
+/proc/lang_localize_arg(arg, origin)
 	if(!length(arg))
 		return arg
 	// span_*() 包裹的实参：改写后的调用形如
@@ -275,7 +330,7 @@ GLOBAL_VAR_INIT(i18n_arg_html_depth, 0)
 		var/static/regex/wrapped_arg = regex(@"^((?:<[^>]+>)+)(.*?)((?:</[^>]+>)+)$")
 		if(wrapped_arg.Find(arg))
 			var/inner = wrapped_arg.group[2]
-			var/inner_translated = lang_localize_arg(inner)
+			var/inner_translated = lang_localize_arg(inner, origin)
 			if(inner_translated != inner)
 				return wrapped_arg.group[1] + inner_translated + wrapped_arg.group[3]
 	var/list/state_words = lang_state_words()
@@ -336,7 +391,7 @@ GLOBAL_VAR_INIT(i18n_arg_html_depth, 0)
 			return translated
 	// 漏翻采集：整条链都没命中的 LANG 实参。**模板译好了、实参漏出来**是「中文句子里嵌英文词」
 	// 的头号成因，而实参多半是单词（状态词、单词名），旧的 run 采集器按多词门槛结构性看不见。
-	lang_log_miss_value(arg, "arg")
+	lang_log_miss_value(arg, "arg", origin)
 	return arg
 
 /// **逆向**反查：把显示边界产生的译名还原成英文原文。用于 act 回传/按英文建键的查表场景——
@@ -624,7 +679,7 @@ GLOBAL_VAR_INIT(i18n_article_macro_regex, regex(@"\\(improper|proper|the|The|an|
 	if(isnull(template))
 		return key // 兜底：返回 key，避免崩溃
 
-	. = lang_interpolate(template, args)
+	. = lang_interpolate(template, args, key)
 	if(findtext(., "\\")) // 仅含反斜杠（文法宏/转义）时才处理，绝大多数消息直接返回
 		. = lang_process_text_escapes(.)
 

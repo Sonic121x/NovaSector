@@ -73,6 +73,23 @@
 		TEST_ASSERT(!ascii_letters.Find(out), \
 			"整句被泛化模板劫持、译文里还裹着英文残句：[out]")
 
+	// ①c2 同一条规则在**整行（未切块）作用域**上也必须成立。lang_fallback_apply_html 为了让
+	// 「字面段里带标签」的模板（含 `<a href>` 的投票行）能匹配，会先在整行上跑一遍模板引擎；
+	// 那条 pass 一度排在整段精确查表**之前**，于是 `You feel like {0}.` 把这两句整句劫持成
+	// 「你感觉像you could be safe on your own。」——译文一直在目录里，只是轮不到。
+	// **按真实渲染形态构造**（span_notice 包裹），别手写等价物：少一层标签就走不到那条 pass。
+	var/list/wrapped_sentences = list(
+		span_notice("You feel like you could be safe on your own."),
+		span_notice("You feel like a fog was lifted from your mind."),
+	)
+	for(var/wrapped in wrapped_sentences)
+		var/out = lang_fallback_apply_html(wrapped)
+		TEST_ASSERT_NOTEQUAL(out, wrapped, "带 span 的整句在目录里却没被翻译：[wrapped]")
+		TEST_ASSERT(findtext(out, "<span class='notice'>"), \
+			"整行 pass 把 span 外壳吃掉了：[out]")
+		TEST_ASSERT(!ascii_letters.Find(lang_strip_html_tags_raw(out)), \
+			"整句被整行模板 pass 劫持、中文脚手架里裹着英文：[out]")
+
 	// ② 纯串：被改写抬成 LANG 实参的碎片，经 lang_localize_arg 的整串反查。
 	TEST_ASSERT_NOTEQUAL(lang_localize_arg("is secured and ready to be used!"), "is secured and ready to be used!", "LANG 实参碎片应整串反查命中")
 
@@ -80,6 +97,14 @@
 	// lang_localize_arg 再用顿号连接。断言的是**这条通道**，不是 AC——拿裸碎片喂 AC 本来就不该命中。
 	TEST_ASSERT_NOTEQUAL(lang_localize_arg("drowning"), "drowning", "鱼的状态词应经 _state_words 翻译")
 	TEST_ASSERT_NOTEQUAL(lang_english_list(list("starving", "drowning")), "starving and drowning", "状态词列表应逐项翻并用顿号连接")
+
+	// ②b **落在标签内部的占位符收的是标识符，不能翻**。幻觉心灵感应那条模板是
+	// `<span class='{0}'>…</span><span class='{1}'> {2}</span>`，{0}/{1} 是 span 的 CSS 类名 ——
+	// 一旦被当文案翻掉，中文就写进 class 属性、聊天配色当场全丢。这里故意拿一个**确实翻得动**的
+	// 值（上一行刚断言过 "drowning" 会被译）当类名：不翻才说明闸门生效，换个查不到的词就测不出东西。
+	var/tagged = lang_interpolate("<span class='{0}'>{1}</span>", list("drowning", "drowning"))
+	TEST_ASSERT(findtext(tagged, "class='drowning'"), "标签属性里的实参被当文案翻掉了：[tagged]")
+	TEST_ASSERT(!findtext(tagged, ">drowning<"), "标签**外**的实参反而没翻：[tagged]")
 
 	// ④ 域内表：这些**故意**不在全局反查表里，只能经各自的 lang_* 落地。
 	TEST_ASSERT_NOTEQUAL(lang_slime_colour("purple"), "purple", "史莱姆颜色应经域内表翻译")

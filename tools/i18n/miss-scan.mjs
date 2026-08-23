@@ -249,5 +249,38 @@ for (const [name, rows] of Object.entries(buckets)) {
     }
   }
 }
+// ---- LANG 实参缺口按**模板 key** 聚合 ----
+// `arg` 来源现在带着它所属的 LANG key（runtime.dm 把 lang_resolve 的 key 一路传到
+// lang_localize_arg）。没有它的时候每一条都要拿片段去全仓 grep —— 而片段往往来自 pick() 词池、
+// 源码里根本搜不到那个字面量。有了 key 就能 `grep -rn '<key>' --include=*.dm` 一步定位调用点，
+// 同一个 key 下的一堆实参也就是同一条修法（多半是某张词池表整张没进目录）。
+{
+  const byKey = new Map();
+  for (const rows of Object.values(buckets)) {
+    for (const row of rows) {
+      if (!/\barg\b/.test(row.sources)) continue;
+      for (const hint of row.hints) {
+        const m = /^来源: ([a-z_]+\.[0-9a-f]{8})$/.exec(hint);
+        if (!m) continue;
+        const list = byKey.get(m[1]) ?? [];
+        list.push(row);
+        byKey.set(m[1], list);
+      }
+    }
+  }
+  if (byKey.size) {
+    const ordered = [...byKey].sort((a, b) => b[1].length - a[1].length);
+    console.log(`\n=== LANG 实参缺口按模板 key 聚合（${byKey.size} 个 key）===`);
+    console.log(
+      "    定位调用点：grep -rn '<key>' --include=*.dm code modular_nova —— " +
+        '同一个 key 下的多条实参通常是同一张词池表整张没进目录',
+    );
+    for (const [key, rows] of ordered) {
+      console.log(`  ${String(rows.length).padStart(4)} 条  ${key}`);
+      for (const row of rows.slice(0, 5)) console.log(`           · ${row.text}`);
+      if (rows.length > 5) console.log(`           … 另有 ${rows.length - 5} 条`);
+    }
+  }
+}
 const total = Object.values(buckets).reduce((sum, rows) => sum + rows.length, 0);
 console.log(`\n共 ${total} 条唯一漏翻（阈值 ≥${minCount} 次）`);

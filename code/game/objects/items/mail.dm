@@ -230,10 +230,13 @@
 		))
 
 	// NOVA EDIT CHANGE START - I18N - junk 邮件名与 important 前缀走 LANG 模板（动态拼接绕过所有翻译层）
+	// 形容词槽走 lang_word_pool：GLOB.adjectives 是 375 个极常见英文单词，进目录就是扩大全局
+	// 误翻面，所以按 locale 换整张表（strings/names/adjectives.zh-Hans.txt）。见 lang_word_pool。
+	var/list/adjective_pool = lang_word_pool("strings/names/adjectives.txt", GLOB.adjectives)
 	var/list/junk_names = list(
-		/obj/item/paper/pamphlet/gateway = LANG("obj.475d43c5", list(initial(name), pick(GLOB.adjectives))),
+		/obj/item/paper/pamphlet/gateway = LANG("obj.475d43c5", list(initial(name), pick(adjective_pool))),
 		/obj/item/paper/pamphlet/violent_video_games = LANG("obj.624cd388", list(initial(name))),
-		/obj/item/paper/fluff/junkmail_redpill = LANG("obj.aeb10bfe", list(initial(name), pick(GLOB.adjectives))),
+		/obj/item/paper/fluff/junkmail_redpill = LANG("obj.aeb10bfe", list(initial(name), pick(adjective_pool))),
 		/obj/effect/decal/cleanable/ash = LANG("obj.d175bb60", list(initial(name))),
 	)
 

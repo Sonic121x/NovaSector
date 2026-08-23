@@ -880,6 +880,21 @@ function flushKeepEnglish(): void {
  * 给玩家看的显示文本。加上这条之后剩下 17 条，全是食物/衣物/器官的真名字。
  */
 const ATOM_SCOPE_RE = /^\/(obj|mob|turf|area)\b/;
+/**
+ * 「这个 key 的 scope 说明它按定义就是玩家可见文案」的第二条判据：动词池。
+ *
+ * `attack_verb_continuous` / `attack_verb_simple` 是纯显示（战斗消息里 `[user] [verb] [target]`），
+ * 不参与任何比较——所以形态判据一律让位。少了这条会漏掉两类，且症状看着像「个别词漏译」：
+ *   · kebab-case 被 stripNoise 当标识符剥掉（`shin-dig` / `power-punch` / `scruggs-style`）；
+ *   · 单个全大写词被当缩写（`HONK` / `MEAT` / `SQUEEZE`，小丑与肉类武器的攻击动词）。
+ * 与 isAtomDisplayName 同一条路子：**scope 是比字符串形态更强的证据**。
+ */
+const VERB_POOL_SCOPE_RE = /#attack_verb_(continuous|simple)$/;
+function isVerbPoolText(key: string | undefined): boolean {
+  if (key == null) return false;
+  return (scopesByKey[key] ?? []).some((scope) => VERB_POOL_SCOPE_RE.test(scope));
+}
+
 function isAtomDisplayName(key: string | undefined, enVal: string): boolean {
   if (key == null) return false;
   // 蛇形值在 atom 上照样是标识符：`to_suit` / `held_tk_effect` / `bird_1`（导航信标编号）。
@@ -901,7 +916,11 @@ function needsTranslation(
   key?: string,
 ): boolean {
   if (zhVal == null || zhVal === '') {
-    return hasTranslatableEnglish(enVal) || isAtomDisplayName(key, enVal); // 缺失（key 不存在或空值）
+    return (
+      hasTranslatableEnglish(enVal) ||
+      isAtomDisplayName(key, enVal) ||
+      isVerbPoolText(key)
+    ); // 缺失（key 不存在或空值）
   }
   // 与英文逐字相同 = 没翻成功的「占位译文」，语义上等同未译 → 始终补译（即使 missing-only）。
   // 这是「整体翻译一遍后仍有 key 显示英文」（如 "Chest":"Chest"）的根因：旧逻辑里 missing-only
@@ -910,7 +929,7 @@ function needsTranslation(
   if (zhVal === enVal) {
     if (key != null && isKeepEnglish(key, enVal)) return false;
     // atom 的 name/desc 按定义是显示文本，`looksLikeCodeIdentifier` 的形态判据在这里让位。
-    if (isAtomDisplayName(key, enVal)) return true;
+    if (isAtomDisplayName(key, enVal) || isVerbPoolText(key)) return true;
     return hasTranslatableEnglish(enVal) && !looksLikeCodeIdentifier(enVal);
   }
   if (MISSING_ONLY) return false; // 只补缺失/失败：已有「≠英文」的真译文都不动（不重判刻意保留的中英混杂）

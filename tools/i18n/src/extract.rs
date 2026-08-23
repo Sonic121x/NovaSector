@@ -44,6 +44,21 @@ struct TypeVarKeys {
     opaque: HashSet<(String, String)>,
 }
 
+/// 攻击动词池里**同时被当标识符用**的那批（`nova-i18n lint` 的碰撞规则实测报出来的 37 条）。
+///
+/// 它们进主目录就等于往**全局反查表**里塞 `scan`/`heal`/`ban`/`update` 这种词对 —— 线缆颜色那次
+/// 事故的形态：运行期 `switch("scan")` 拿到的值被反查成中文，比较永远不相等、功能静默失效。
+/// 攻击动词的正确去处是 `strings/i18n/<locale>/_state_words.json`（手维护的**域内**表，只在
+/// LANG 实参/模板捕获这个受限范围内生效，从不写回数据），所以这里只是把它们挡在主目录之外。
+///
+/// **维护方式是可证伪的**：改动这张表之后跑 `nova-i18n lint`，碰撞告警数不许比基线多。
+const ATTACK_VERB_IDENT_BLOCKLIST: &[&str] = &[
+    "ban", "beep", "burn", "call", "calls", "charge", "colour", "dump", "filter", "filters",
+    "grind", "hack", "hammer", "heal", "hug", "nuke", "pierce", "plants", "play", "plays",
+    "probe", "scan", "shear", "shred", "siphon", "smite", "socks", "stamp", "stomp", "strike",
+    "stun", "surgeries", "surgery", "swords", "tong", "update", "warn",
+];
+
 const SINK_VARS: &[&str] = &[
     "name",
     "desc",
@@ -192,6 +207,11 @@ const SINK_VARS: &[&str] = &[
     "treat_text_short", // 健康分析仪伤口条的悬浮治疗提示（scanner tooltip）——漏抽（其它 *treat_text 都在）。
     "simple_treat_text",
     "homemade_treat_text",
+    // 披萨盒标签（/obj/item/food/pizza 的 boxtag，"Margherita Deluxe"/"Honolulu Chew"…）：
+    // 盒子的 desc 由 `LANG(key, list(desc, "top box", box.boxtag))` 拼出，boxtag 走 lang_localize_arg
+    // 的整串精确反查落地。它既不是 name/desc 也不在任何 sink 调用里 → 整类没进目录，玩家看到
+    // 中文描述里嵌着英文标签。玩家自己写的标签（tgui_input_text 追加）查不到、原样保留。
+    "boxtag",
 ];
 // 注：基础 mob 闲聊池 speak/emote_hear/emote_see 不在 SINK_VARS——它们是 list 初值，
 // 走专门的 is_speech_pool 分支（emit_list_strings 逐元素抽），见变量抽取处。
@@ -617,6 +637,40 @@ fn collect_returns<'a>(block: &'a [dm::ast::Spanned<Statement>], out: &mut Vec<&
 }
 
 /// 抽取 list 字面量里的全部字符串元素（物种 lore：`return list("段1", "段2", …)`，每段一条）。
+/// emit_list_strings 的带黑名单变体：攻击动词池用它挡掉「同时被当标识符」的那批
+/// （见 ATTACK_VERB_IDENT_BLOCKLIST）。
+fn emit_list_strings_filtered(
+    expr: &Expression,
+    ns: &str,
+    catalog: &mut Catalog,
+    blocklist: &[&str],
+) {
+    let Expression::Base { term, follow } = expr else {
+        return;
+    };
+    if !follow.is_empty() {
+        return;
+    }
+    let args = match &term.elem {
+        Term::List(args) => args,
+        Term::Call(name, args) if name == "list" => args,
+        _ => return,
+    };
+    for arg in args.iter() {
+        let val = if let Expression::AssignOp { rhs, .. } = arg {
+            rhs.as_ref()
+        } else {
+            arg
+        };
+        if let Some(t) = build_template(val) {
+            if blocklist.contains(&t.as_str()) {
+                continue;
+            }
+            emit(catalog, ns, &t);
+        }
+    }
+}
+
 fn emit_list_strings(expr: &Expression, ns: &str, catalog: &mut Catalog) {
     let Expression::Base { term, follow } = expr else {
         return;
@@ -1273,7 +1327,6 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
     let mut pure_procs: HashSet<String> = HashSet::new();
     for ty in tree.iter_types() {
         for (proc_name, type_proc) in ty.procs.iter() {
-            let proc_scope = format!("{}#{}()", ty.path, proc_name);
             for proc_value in type_proc.value.iter() {
                 if let Some(block) = &proc_value.code {
                     if block_is_pure(block) {
@@ -1371,6 +1424,14 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                     // 落地，是**整串精确**反查，所以单词条目在这里安全（不进字面 AC 的多词字典）。
                     | "speak_emote"
             );
+            // 攻击动词池（`attack_verb_continuous = list("smashes", "bashes", …)`）。这两个变量**已经在
+            // SINK_VARS 里**，看着像早就覆盖了——但 SINK_VARS 那条路对 list 初值走 build_template，
+            // 而 build_template 对 list 返回 None；激进 pass 又要求句末标点，小写单词动词一条都过不了。
+            // 于是「表里有名字、目录里没条目」，战斗消息里动词整片英文（漏翻采集 mob.26ba31da 下的
+            // strikes/roasts/scorches 即此）。落地与 speak_emote 同路：作为 LANG 实参走**整串精确**反查
+            // （lang_localize_arg 无多词门槛），不进字面 AC 的多词字典，所以单词条目在这里安全。
+            let is_attack_verb_pool =
+                matches!(var_name.as_str(), "attack_verb_continuous" | "attack_verb_simple");
             // 合成配方步骤列表（/datum/crafting_recipe steps = list("步骤1", …)，crafting UI "steps"
             // 字段直发显示、P1 反查）。无句末标点居多 → 逐元素抽。
             let is_steps_list = var_name == "steps" && ty.path.starts_with("/datum/crafting_recipe");
@@ -1382,7 +1443,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                 visit_expr(expr, &var_scope, &mut catalog, suppress_aggressive, var_ctx);
             }
             if !is_sink && !is_config_default && !is_aas_template && !is_law_list && !is_slogan
-                && !is_speech_pool && !is_steps_list
+                && !is_speech_pool && !is_steps_list && !is_attack_verb_pool
             {
                 continue;
             }
@@ -1393,6 +1454,15 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                 }
                 if is_steps_list {
                     emit_list_strings(expr, &var_scope, &mut catalog);
+                    continue;
+                }
+                if is_attack_verb_pool {
+                    emit_list_strings_filtered(
+                        expr,
+                        &var_scope,
+                        &mut catalog,
+                        ATTACK_VERB_IDENT_BLOCKLIST,
+                    );
                     continue;
                 }
                 if is_law_list || is_speech_pool {
