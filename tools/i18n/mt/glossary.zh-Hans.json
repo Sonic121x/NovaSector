@@ -268,6 +268,13 @@
   "Blast Cannon": "爆破炮",
   "BlenderTech": "BlenderTech",
   "Blizzard Brew": "暴雪酿",
+  "Blob": {
+    "zh": "团块",
+    "alts": [
+      "血泡"
+    ],
+    "note": "反派：增殖型团块生物；不是「泡泡」"
+  },
   "Blob Infection": "Blob 感染",
   "Blob Minion": "Blob 仆从",
   "Blood Brothers": "血亲兄弟",
@@ -459,6 +466,7 @@
   "Chappy": "Chappy",
   "Charles Morlbaro": "查尔斯·莫尔巴罗",
   "Charlie Station": "查理站",
+  "Chateau De Baton": "巴顿城堡",
   "Chateu De Baton": "巴顿城堡",
   "Cheese-O-Rama": "芝士狂欢",
   "Cheesie Honker OG Kush": "Cheesie Honker OG Kush",
@@ -2107,6 +2115,7 @@
   "RTG": "RTG",
   "RUSTBRINGER": "RUSTBRINGER",
   "RX-78": "RX-78",
+  "Rabid Bear": "狂熊",
   "Radstorm Shelter": "辐射风暴避难所",
   "Raider Corvette": "袭击者轻型护卫舰",
   "Ramatan": "拉马坦",
@@ -3282,12 +3291,5 @@
   "Žaibas-A": "扎伊巴斯-A",
   "Žaibas-Aštrus": "扎伊巴斯-阿什特鲁斯",
   "邦妮短型2": "邦妮短型2",
-  "鸦鸣3号": "鸦鸣3号",
-  "Blob": {
-    "zh": "团块",
-    "alts": [
-      "血泡"
-    ],
-    "note": "反派：增殖型团块生物；不是「泡泡」"
-  }
+  "鸦鸣3号": "鸦鸣3号"
 }

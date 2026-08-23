@@ -2171,6 +2171,30 @@ fn is_speech_blackboard_key(key: &str) -> bool {
 
 /// `"显示名" = /类型/路径` 里的 rhs 是不是**光秃秃的类型路径**（无构造实参、无后续下标）。
 /// 见 visit_expr 里那条规则：值是类型路径就证明键是展示标签而不是数据键。
+/// 走 `name`/`label`/`title` 槽位、但**同时被当标识符**用的值（`nova-i18n lint` 碰撞规则实测）。
+/// `FISH_SOURCE_AUTOWIKI_NAME = "Other Stuff"` 是 autowiki（文档生成）的分组键，不是玩家可见文案，
+/// 而 `FISH_SOURCE_AUTOWIKI_OTHER` 拿同一个串做比较。
+/// **维护方式可证伪**：改这张表之后跑 `nova-i18n lint`，碰撞告警数不许比基线多。
+const DISPLAY_SLOT_BLOCKLIST: &[&str] = &["Other Stuff"];
+
+/// 「这个串是选项表里的**显示标签**」：多词 + **首字母大写**。
+///
+/// 首字母大写这道闸是实测逼出来的：只要求「多词」时一次抽取涌进 868 条，里面混着机甲日志碎片
+/// （`secured servo`、`added smile`、`removed weapon control module`）、乐谱字符串（`BPM: 200\nC4/0,14,…`）
+/// 这类同样「一边像标识符、另一边是多词」的形状。菜单标签在这个代码库里一律是 Title Case，
+/// 日志碎片一律小写开头 —— 这条把两者分得很干净。
+fn is_option_label(s: &str) -> bool {
+    if !is_lang_arg_text(s) {
+        return false;
+    }
+    let t = s.trim();
+    // 含换行/制表的多半是数据块（乐谱、模板文本），不是菜单标签。
+    if t.contains('\n') || t.contains('\t') || t.contains("\\n") {
+        return false;
+    }
+    t.chars().next().is_some_and(|c| c.is_ascii_uppercase())
+}
+
 fn rhs_is_bare_type_path(rhs: &Expression) -> bool {
     let Expression::Base { term, follow } = rhs else {
         return false;
@@ -2179,6 +2203,35 @@ fn rhs_is_bare_type_path(rhs: &Expression) -> bool {
         return false;
     }
     matches!(&term.elem, Term::Prefab(prefab) if prefab.vars.is_empty())
+}
+
+/// rhs 是不是「一张全是类型路径的小表」——
+/// `"Caccavo Guaranteed Quality Tequila" = list("bottlepath" = /obj/…, "reagent" = /datum/…)`。
+/// 与 rhs_is_bare_type_path 同一条判据的一层嵌套版：**值全是类型路径**同样证明外层键是展示标签。
+/// 内层的 `"bottlepath"`/`"reagent"` 是数据键，但它们是单 token，被 `is_lang_arg_text` 的多词闸门
+/// 挡住（那条规则对每个 AssignOp 都会跑一遍，包括内层这些）。
+fn rhs_is_type_path_table(rhs: &Expression) -> bool {
+    if rhs_is_bare_type_path(rhs) {
+        return true;
+    }
+    let Expression::Base { term, follow } = rhs else {
+        return false;
+    };
+    if !follow.is_empty() {
+        return false;
+    }
+    let args = match &term.elem {
+        Term::List(args) => args,
+        Term::Call(name, args) if name == "list" => args,
+        _ => return false,
+    };
+    if args.is_empty() {
+        return false;
+    }
+    args.iter().all(|a| match a {
+        Expression::AssignOp { rhs, .. } => rhs_is_bare_type_path(rhs),
+        other => rhs_is_bare_type_path(other),
+    })
 }
 
 fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool, ctx: ProcCtx) {
@@ -2197,8 +2250,24 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
             // 「标签 → 类型」的展示表（`examine_tags` 那条「assoc 键即文案」的另一种形态）。
             // 键同时被当 act 回传标识符用（`GLOB.x[value]`）不影响——负载不动数据，译文随 overlay
             // 下发，前端只翻显示。仍走多词闸门：单 token 键标识符浓度太高。
-            if !suppress && is_lang_arg_text(&key) && rhs_is_bare_type_path(rhs) {
+            if !suppress && is_lang_arg_text(&key) && rhs_is_type_path_table(rhs) {
                 emit(catalog, ns, &key);
+            }
+            // **显示槽位键**：`list("name" = "Plastic Jungle Rocks", "path" = /obj/…)`。
+            // RCD/RTD 这类手持造物设备的菜单是一张张「记录」，`name` 槽就是玩家在界面上看到的名字，
+            // 而它是**assoc 值**、不是类型变量，也不在任何 sink 实参位置 → 整类没进目录。
+            //
+            // **只认 `name`/`label`/`title` 这几个槽位名**。一开始写成对称形状判据（「一边是单
+            // token 标识符、另一边是多词文本，多词那边就是标签」），一次抽取 686 条，`nova-i18n
+            // lint` 当场报 **1 个错误 + 20 条新碰撞**：化学反应的参数标签（`Optimal Max Ph` =
+            // `optimal_max_ph`）、性能面板（`SendMaps: Cleanup` = `cleanup`）都长这个形状，而它们
+            // 的「标签」正是程序拿去查表的键。槽位名把这些一条不落地挡在外面。
+            if !suppress && matches!(key.as_str(), "name" | "label" | "title") {
+                if let Some(value) = plain_string(rhs) {
+                    if is_option_label(&value) && !DISPLAY_SLOT_BLOCKLIST.contains(&value.as_str()) {
+                        emit(catalog, ns, &value);
+                    }
+                }
             }
         }
         // 具名实参 `AddComponent(…, end_string = ", mate")`：语音突变的**无条件后缀**。词表的 key 是

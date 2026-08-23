@@ -45,6 +45,24 @@ const FLAVOR_FILES: &[&str] = &[
 /// 往目录塞单字符噪音、翻译还会破坏生成逻辑。句子 section 里的 `@pick(x)` 宏逐字保留（译者同）。
 const FLAVOR_JSON_SECTIONS: &[(&str, &[&str])] = &[
     (
+        // 探索无人机（exodrone）的事件文本与星球描述——整段经 TGUI 显示给玩家。
+        // **不收 `probe_names`**（Cassini/Galileo 是探测器专名）与 `trading_station_names`
+        // （"Big Bill Hells's used mechs" 这类商号专名，而且被 `name = "\"[x]\" trading station"`
+        // 拼进一个英文框架里 —— 只译商号会得到「"中文" trading station」这种半截货）。
+        // `planet_types` 是 `{name, description, habitable…}` 的对象数组，collect_json_strings 只
+        // 收字符串叶子，布尔字段与 assoc 键天然不进目录。
+        // `alien_fauna` 被 replacetext 填进 description 的 BEAST 占位（description 本身在目录里）。
+        "exodrone.json",
+        &[
+            "planet_types",
+            "alien_fauna",
+            "fluff_generic",
+            "fluff_space",
+            "fluff_trading",
+            "fluff_ruins",
+        ],
+    ),
+    (
         // 幻觉假聊天/心灵感应台词（玩家在幻觉里"听到"的整句）。**只收整句 section**：
         //   · `weird` 是乱码（`#@§*&£` / `EEEeeeeEEEE`），翻不得；
         //   · `add_name` 只有 `%TARGETNAME% ` 这类占位前缀，没有可译文本；
@@ -82,7 +100,25 @@ const FLAVOR_JSON_SECTIONS: &[(&str, &[&str])] = &[
     (
     // 脑创伤呓语（brain_damage：胡话整句）+ 神明幻觉 ALLCAPS 台词（god_*）。
     "traumas.json",
-    &["brain_damage", "god_foe", "god_aggressive", "god_neutral", "god_unstun", "god_heal"],
+    &[
+        "brain_damage",
+        "god_foe",
+        "god_aggressive",
+        "god_neutral",
+        "god_unstun",
+        "god_heal",
+        // brain_damage 的句子里用 `@pick(x)` 拼进来的**子池**。框架早就译好了（`@pick(george)
+        // @pick(mellens) 在搞我，救命！！！`），子池没译就是中文句子里嵌着英文碎片。
+        // 收这四个：都是「拼错的真词」（`abdoocters`=abductors、`eppilapse`=epilepsy、
+        // `deth squads`、`sheadow lings`），在句中当名词/动词用。
+        "create_nouns",
+        "create_verbs",
+        "mutations",
+        "bug",
+        // **不收** `servers`（basil/sybil/terry/colonel hall 是 /tg/ 服务器专名）、`george`/`mellens`
+        // （人名），以及 `random_gibberish`/`y_replacements`/`semicolon` —— 后三者是**字母级**
+        // 变换表（`y`→`i`/`e`、`;`），翻了当场把拼错效果弄坏。
+    ],
 )];
 
 /// 递归纳入其下所有 .json 的 flavor 子目录。
@@ -280,8 +316,12 @@ fn extract_flavor_file(path: &Path, catalog: &mut Catalog) {
 /// 这几个词在幻觉里显英文只是少译一处，弄坏查表则是功能故障 —— 取舍很清楚。
 ///
 /// **维护方式是可证伪的**：改这张表之后跑 `nova-i18n lint`，碰撞告警数不许比基线多。
-const FLAVOR_IDENT_BLOCKLIST: &[&str] =
-    &["Air", "cargo", "cult", "Energy", "hulk", "Infinity"];
+const FLAVOR_IDENT_BLOCKLIST: &[&str] = &[
+    // 幻觉地点/威胁/化学品池
+    "Air", "cargo", "cult", "Energy", "hulk", "Infinity",
+    // 脑损伤 create_verbs（`gib` 是 proc 名，`spawn` 是 DM 关键字兼 act 键）
+    "gib", "spawn",
+];
 
 fn collect_json_strings(value: &serde_json::Value, catalog: &mut Catalog) {
     match value {
