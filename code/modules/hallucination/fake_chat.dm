@@ -80,16 +80,23 @@
 	// If we didn't have a preset one, let's make one up.
 	if(!chosen)
 		if(is_radio)
-			chosen = pick(list("Help!",
-				"Help [pick_list_replacements(HALLUCINATION_FILE, "location")][prob(50)?"!":"!!"]",
-				"[pick_list_replacements(HALLUCINATION_FILE, "people")] is [pick_list_replacements(HALLUCINATION_FILE, "accusations")]!",
-				"[pick_list_replacements(HALLUCINATION_FILE, "people")] has [pick_list_replacements(HALLUCINATION_FILE, "contraband")]!",
-				"[pick_list_replacements(HALLUCINATION_FILE, "threat")] in [pick_list_replacements(HALLUCINATION_FILE, "location")][prob(50)?"!":"!!"]",
-				"[pick("Where's [first_name(hallucinator.name)]?", "Set [first_name(hallucinator.name)] to arrest!")]",
-				"[pick("C","Ai, c","Someone c","Rec")]all the shuttle!",
-				"AI [pick("rogue", "is dead")]!!",
-				"Borgs rogue!",
+			// NOVA EDIT CHANGE START - I18N - 无线电幻觉句式整条走 LANG。碎片池（people/accusations/
+			// contraband/threat/location）本身已进目录，但**框架是裸字面量、按英文语序拼**，只译碎片
+			// 会产出「舰长 is 叛徒!」，比全英文更糟。中文语序在译文侧调（威胁那条是 `{1}有{0}`）。
+			// `[pick("C","Ai, c","Someone c","Rec")]all the shuttle!` 是**拼字母**的写法
+			// （"C"+"all"、"Rec"+"all"），碎片没有词义、翻不了 —— 改成四条完整句子各自入目录。
+			// ORIGINAL: chosen = pick(list("Help!", "Help [pick_list_replacements(...)]…", …))
+			chosen = pick(list(LANG("datum.68a3aa0f", null),
+				"[LANG("datum.5323dc0a", list(pick_list_replacements(HALLUCINATION_FILE, "location")))][prob(50)?"!":"!!"]",
+				LANG("datum.5e95ccda", list(pick_list_replacements(HALLUCINATION_FILE, "people"), pick_list_replacements(HALLUCINATION_FILE, "accusations"))),
+				LANG("datum.2cb135c6", list(pick_list_replacements(HALLUCINATION_FILE, "people"), pick_list_replacements(HALLUCINATION_FILE, "contraband"))),
+				"[LANG("datum.28e3a12e", list(pick_list_replacements(HALLUCINATION_FILE, "threat"), pick_list_replacements(HALLUCINATION_FILE, "location")))][prob(50)?"!":"!!"]",
+				pick(LANG("datum.b3bc35ba", list(first_name(hallucinator.name))), LANG("datum.d4451f20", list(first_name(hallucinator.name)))),
+				pick(LANG("datum.16a7dd0b", null), LANG("datum.db7d06e8", null), LANG("datum.16abfb12", null), LANG("datum.6a43d8b9", null)),
+				pick(LANG("datum.a582d547", null), LANG("datum.13e86212", null)),
+				LANG("datum.dc655fa0", null),
 			))
+			// NOVA EDIT CHANGE END
 		else
 			chosen = pick(list("[pick_list_replacements(HALLUCINATION_FILE, "suspicion")]",
 				"[pick_list_replacements(HALLUCINATION_FILE, "conversation")]",

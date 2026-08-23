@@ -66,6 +66,17 @@ const FLAVOR_JSON_SECTIONS: &[(&str, &[&str])] = &[
             "help",
             "infection_advice",
             "suspicion",
+            // 碎片池：被 fake_chat.dm 的句式框架拼成整句。**框架已接 LANG 并在译文侧调好语序**
+            // （威胁那条是 `{1}有{0}`），所以这些碎片现在译了是对的 —— 在框架还是裸字面量的时候
+            // 译它们只会产出「舰长 is 叛徒!」，两者必须同时做。
+            "people",
+            "accusations",
+            "contraband",
+            "threat",
+            "location",
+            "sublocation",
+            // 化学合成器随机吐出的药品名（synthesizer.dm 直接当显示名用）。
+            "chemicals",
         ],
     ),
     (
@@ -262,11 +273,21 @@ fn extract_flavor_file(path: &Path, catalog: &mut Catalog) {
 }
 
 /// 递归取 JSON 的字符串叶子（数组元素 / 关联值）；key 不取（程序标识）。
+/// flavor 碎片池里**同时被当 DM 标识符**用的那批（`nova-i18n lint` 的碰撞规则实测报出来的）。
+///
+/// 幻觉的地点/威胁/化学品池全是短名词（`cargo`/`Air`/`hulk`），进目录就等于往**全局反查表**里
+/// 塞这些词对：运行期任何恰好等于该串的显示值都会被反查成中文，而它们同时是 `switch`/下标键。
+/// 这几个词在幻觉里显英文只是少译一处，弄坏查表则是功能故障 —— 取舍很清楚。
+///
+/// **维护方式是可证伪的**：改这张表之后跑 `nova-i18n lint`，碰撞告警数不许比基线多。
+const FLAVOR_IDENT_BLOCKLIST: &[&str] =
+    &["Air", "cargo", "cult", "Energy", "hulk", "Infinity"];
+
 fn collect_json_strings(value: &serde_json::Value, catalog: &mut Catalog) {
     match value {
         serde_json::Value::String(s) => {
             let s = s.trim();
-            if !s.is_empty() {
+            if !s.is_empty() && !FLAVOR_IDENT_BLOCKLIST.contains(&s) {
                 emit(catalog, "strings", s);
             }
         }

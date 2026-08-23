@@ -106,6 +106,16 @@
 	TEST_ASSERT(findtext(tagged, "class='drowning'"), "标签属性里的实参被当文案翻掉了：[tagged]")
 	TEST_ASSERT(!findtext(tagged, ">drowning<"), "标签**外**的实参反而没翻：[tagged]")
 
+	// ②c 幻觉无线电句式：碎片池与框架**必须同时到位**。框架从前是裸字面量、按英文语序拼
+	// （`"[threat] in [location]!"`），只译碎片会产出「舰长 is 叛徒!」，比全英文更糟。
+	// 威胁那条的中文语序与英文相反（"Bomb in cargo" → 「货舱有炸弹」），所以这里同时验两件事：
+	// 译文确实是中文，且**占位符被调了序**（{1} 排在 {0} 前面）—— 只断言"是中文"的话，
+	// 有人把 zh 模板改回 `{0}在{1}` 也照样过。
+	var/threat_line = LANG("datum.28e3a12e", list("Zxqv", "Qwrp"))
+	TEST_ASSERT(findtext(threat_line, "Qwrp") < findtext(threat_line, "Zxqv"), \
+		"威胁句式的占位符没有按中文语序调换：[threat_line]")
+	TEST_ASSERT_NOTEQUAL(lang_reverse_text("a changeling"), "a changeling", "幻觉指控碎片应已入目录并译出")
+
 	// ④ 域内表：这些**故意**不在全局反查表里，只能经各自的 lang_* 落地。
 	TEST_ASSERT_NOTEQUAL(lang_slime_colour("purple"), "purple", "史莱姆颜色应经域内表翻译")
 	TEST_ASSERT_EQUAL(lang_reverse_text("purple"), "purple", "史莱姆颜色**不应**进全局反查表（会误伤 icon_state/switch）")
