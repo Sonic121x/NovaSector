@@ -159,12 +159,12 @@
 		// if they're stamcrit, sleep them
 		if(stamcritted_target)
 			living_guy.AdjustSleeping(10 SECONDS) // long naptime for you, buddy
-			to_chat(living_guy, span_warning(LANG("obj.575bae6b", list(src))))
+			to_chat(living_guy, span_warning(LANG("obj.575bae6baea0bd9a", list(src))))
 			return
 		// or, if they're exhausted, roll to sleep them for a very short time
 		else if(prob(stamina_ratio))
 			living_guy.AdjustSleeping(1 SECONDS * mitigate_percent) // short naptime but it throws them off something fierce
-			to_chat(living_guy, span_warning(LANG("obj.607c355a", list(src))))
+			to_chat(living_guy, span_warning(LANG("obj.607c355ab754c3de", list(src))))
 			return
 
 // 4.6x30mm

@@ -6,4 +6,4 @@
 /datum/smite/puzzle/effect(client/user, mob/living/target)
 	. = ..()
 	if(!puzzle_imprison(target))
-		to_chat(user, span_warning(LANG("datum.526aa4cf", null)), confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.526aa4cfd4ce4708", null)), confidential = TRUE)

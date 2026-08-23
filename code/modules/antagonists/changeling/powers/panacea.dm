@@ -11,7 +11,7 @@
 
 //Heals the things that the other regenerative abilities don't.
 /datum/action/changeling/panacea/sting_action(mob/user)
-	to_chat(user, span_notice(LANG("datum.8dee382f", null)))
+	to_chat(user, span_notice(LANG("datum.8dee382f8942fe46", null)))
 	..()
 	var/list/bad_organs = list(
 		user.get_organ_by_type(/obj/item/organ/empowered_borer_egg), // NOVA EDIT ADDITION

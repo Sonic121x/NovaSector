@@ -18,10 +18,10 @@
 	. = ..()
 	if(wash_count <= 5)
 		transform *= TRANSFORM_USING_VARIABLE(0.8, 1)
-		washer.visible_message(LANG("obj.49ca493f", list(src)))
+		washer.visible_message(LANG("obj.49ca493f1667f783", list(src)))
 		wash_count += 1
 	else
-		washer.visible_message(LANG("obj.5d0711a6", list(src)))
+		washer.visible_message(LANG("obj.5d0711a6e8d8e957", list(src)))
 		qdel(src)
 
 /obj/item/clothing/suit/costume/wellworn_shirt/skub

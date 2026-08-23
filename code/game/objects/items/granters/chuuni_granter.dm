@@ -19,14 +19,14 @@
 	if (!isliving(user))
 		return
 	if (user.GetComponent(/datum/component/chuunibyou))
-		to_chat(user, span_warning(LANG("obj.1c540067", null)))
+		to_chat(user, span_warning(LANG("obj.1c5400674eac7359", null)))
 		return
 	return TRUE
 
 /obj/item/book/granter/chuunibyou/recoil(mob/living/user)
-	to_chat(user, span_warning(LANG("obj.242c908a", null)))
+	to_chat(user, span_warning(LANG("obj.242c908aa00ecaf2", null)))
 
 /obj/item/book/granter/chuunibyou/on_reading_finished(mob/living/user)
 	..()
-	to_chat(user, span_notice(LANG("obj.a6de916f", null)))
+	to_chat(user, span_notice(LANG("obj.a6de916f44fbab93", null)))
 	user.AddComponent(/datum/component/chuunibyou/no_healing)

@@ -82,15 +82,15 @@
 	if(IS_WIZARD(user) || isobserver(user))
 		if(user.mind == lich_mind)
 			var/time_to_revive = base_respawn_time + (num_resurrections * time_per_resurrection)
-			examine_list += span_green(LANG("datum.23966f08", list(time_to_revive / 10 / 60)))
+			examine_list += span_green(LANG("datum.23966f08c1a55841", list(time_to_revive / 10 / 60)))
 		else
-			examine_list += span_green(LANG("datum.934e5966", list(lich_mind)))
+			examine_list += span_green(LANG("datum.934e59660a2160fc", list(lich_mind)))
 
 		if(num_resurrections > 0)
-			examine_list += span_green(LANG("datum.1869a55e", list(num_resurrections)))
+			examine_list += span_green(LANG("datum.1869a55e26b6ed21", list(num_resurrections)))
 
 	else
-		examine_list += span_green(LANG("datum.78cd1e88", null))
+		examine_list += span_green(LANG("datum.78cd1e88840bfe05", null))
 
 /**
  * Signal proc for [COMSIG_QDELETING] registered on the lich's mind.
@@ -133,7 +133,7 @@
 	// Start revival
 	var/time_to_revive = base_respawn_time + (num_resurrections * time_per_resurrection)
 	revive_timer = addtimer(CALLBACK(src, PROC_REF(revive_lich), died), time_to_revive, TIMER_UNIQUE|TIMER_STOPPABLE)
-	to_chat(died, span_green(LANG("datum.a230dd6d", list(time_to_revive / 10 / 60))))
+	to_chat(died, span_green(LANG("datum.a230dd6df01833ee", list(time_to_revive / 10 / 60))))
 
 /**
  * Signal proc for [COMSIG_LIVING_REVIVE].
@@ -189,7 +189,7 @@
 	lich.set_species(/datum/species/skeleton)
 	lich.dna.generate_unique_enzymes()
 
-	to_chat(lich, span_green(LANG("datum.f7e38132", null)))
+	to_chat(lich, span_green(LANG("datum.f7e381323c804370", null)))
 	num_resurrections++
 	lich.Paralyze(stun_per_resurrection * num_resurrections)
 
@@ -210,7 +210,7 @@
 		var/turf/body_turf = get_turf(corpse)
 		var/wheres_wizdo = dir2text(get_dir(body_turf, parent_turf))
 		if(wheres_wizdo)
-			corpse.visible_message(span_warning(LANG("datum.d0251ff3", list(corpse.name, wheres_wizdo))))
+			corpse.visible_message(span_warning(LANG("datum.d0251ff3c9944fb6", list(corpse.name, wheres_wizdo))))
 			body_turf.Beam(parent_turf, icon_state = "lichbeam", time = 1 SECONDS * (num_resurrections + 1))
 
 		corpse.dust(drop_items = TRUE)

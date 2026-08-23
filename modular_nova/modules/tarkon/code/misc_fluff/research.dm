@@ -172,7 +172,7 @@
 
 /obj/machinery/rnd/server/tarkon/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.28988d07", null))
+	. += span_notice(LANG("obj.28988d0798431dd0", null))
 
 /obj/machinery/rnd/server/tarkon/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/research_notes) && stored_research)

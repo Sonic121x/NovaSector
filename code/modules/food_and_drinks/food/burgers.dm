@@ -35,7 +35,7 @@
 		return
 	new/obj/effect/particle_effect/fluid/smoke(get_turf(src))
 	playsound(src, 'sound/effects/smoke.ogg', 50, TRUE)
-	visible_message(span_warning(LANG("obj.889bd3c1", list(src))))
+	visible_message(span_warning(LANG("obj.889bd3c129a79b3b", list(src))))
 	name = "steamed ham"
 	desc = pick("Ahh, Head of Personnel, welcome. I hope you're prepared for an unforgettable luncheon!",
 		"And you call these steamed hams despite the fact that they are obviously microwaved?",
@@ -248,7 +248,7 @@
 	var/paranormal_activity = rand(100)
 	switch(paranormal_activity)
 		if(97 to 100)
-			audible_message(LANG("obj.180c86cb", list(src)))
+			audible_message(LANG("obj.180c86cb07c0812f", list(src)))
 			playsound(loc, 'sound/misc/chain_rattling.ogg', 300, TRUE)
 		if(91 to 96)
 			say(pick("OoOoOoo.", "OoooOOooOoo!!"))
@@ -263,7 +263,7 @@
 		if(62 to 64)
 			playsound(loc, SFX_HALLUCINATION_I_SEE_YOU, 50, TRUE, ignore_walls = FALSE)
 		if(61)
-			visible_message(LANG("obj.e9d44c5e", list(src)))
+			visible_message(LANG("obj.e9d44c5ee1614b10", list(src)))
 			new /obj/effect/decal/cleanable/greenglow/ecto(loc)
 			playsound(loc, 'sound/effects/splat.ogg', 200, TRUE)
 
@@ -473,7 +473,7 @@
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/burger/superbite/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.d38c7d7c", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.d38c7d7cda86f4a9", list(user, src, user.p_theyre()))))
 	var/datum/component/edible/component = GetComponent(/datum/component/edible)
 	component?.TakeBite(user, user)
 	return OXYLOSS

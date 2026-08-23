@@ -46,12 +46,12 @@
 				armed = TRUE
 				if(!user.put_in_hands(gun))
 					armed = FALSE
-					to_chat(user, span_warning(LANG("obj.30e01171", null)))
+					to_chat(user, span_warning(LANG("obj.30e01171252c817c", null)))
 					return
 				update_appearance()
 				user.update_worn_back()
 		else
-			to_chat(user, span_warning(LANG("obj.4cddbf0e", null)))
+			to_chat(user, span_warning(LANG("obj.4cddbf0e37b40939", null)))
 	else
 		..()
 
@@ -77,9 +77,9 @@
 	gun.forceMove(src)
 	armed = FALSE
 	if(user)
-		to_chat(user, span_notice(LANG("obj.5dacccb1", list(gun, src))))
+		to_chat(user, span_notice(LANG("obj.5dacccb16aee529c", list(gun, src))))
 	else
-		src.visible_message(span_warning(LANG("obj.88c24102", list(gun, src))))
+		src.visible_message(span_warning(LANG("obj.88c241021b941223", list(gun, src))))
 	update_appearance()
 	user.update_worn_back()
 
@@ -128,7 +128,7 @@
 
 /obj/item/gun/energy/minigun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(ammo_pack && ammo_pack.overheat >= ammo_pack.overheat_max)
-		to_chat(user, span_warning(LANG("obj.bce027d4", null)))
+		to_chat(user, span_warning(LANG("obj.bce027d4eaff8518", null)))
 		return
 	. = ..()
 	if(!.)
@@ -141,7 +141,7 @@
 
 /obj/item/gun/energy/minigun/try_fire_gun(atom/target, mob/living/user, params)
 	if(!ammo_pack || ammo_pack.loc != user)
-		to_chat(user, span_warning(LANG("obj.8816c13b", null)))
+		to_chat(user, span_warning(LANG("obj.8816c13b6dbb2d71", null)))
 		return FALSE
 	return ..()
 

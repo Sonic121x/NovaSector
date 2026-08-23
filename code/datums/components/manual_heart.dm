@@ -61,12 +61,12 @@
 		START_PROCESSING(SSdcs, src)
 		COOLDOWN_START(src, heart_timer, pump_delay)
 
-	to_chat(parent, span_userdanger(LANG("datum.fc97aac5", null)))
+	to_chat(parent, span_userdanger(LANG("datum.fc97aac590c35e14", null)))
 
 /datum/component/manual_heart/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_CARBON_GAIN_ORGAN, COMSIG_CARBON_LOSE_ORGAN, COMSIG_HEART_MANUAL_PULSE, COMSIG_LIVING_REVIVE, COMSIG_LIVING_DEATH, COMSIG_LIVING_UPDATE_BLOOD_STATUS))
 
-	to_chat(parent, span_userdanger(LANG("datum.6ee11eb3", null)))
+	to_chat(parent, span_userdanger(LANG("datum.6ee11eb38f52a9c1", null)))
 	var/mob/living/carbon/carbon_parent = parent
 	if(istype(carbon_parent))
 		carbon_parent.remove_client_colour(REF(src))
@@ -116,7 +116,7 @@
 		return
 
 	carbon_parent.adjust_blood_volume(-blood_loss)
-	to_chat(carbon_parent, span_userdanger(LANG("datum.d4245d68", null)))
+	to_chat(carbon_parent, span_userdanger(LANG("datum.d4245d686ffeb3f5", null)))
 	COOLDOWN_START(src, heart_timer, MANUAL_HEART_GRACE_PERIOD) //give two full seconds before losing more blood
 	if(add_colour)
 		carbon_parent.add_client_colour(/datum/client_colour/manual_heart_blood, REF(src))

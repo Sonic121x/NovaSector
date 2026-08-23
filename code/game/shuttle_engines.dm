@@ -73,11 +73,11 @@
 	. = ..()
 	switch(engine_state)
 		if(ENGINE_UNWRENCHED)
-			. += span_notice(LANG("obj.6069f641", list(src)))
+			. += span_notice(LANG("obj.6069f6411d1b4deb", list(src)))
 		if(ENGINE_WRENCHED)
-			. += span_notice(LANG("obj.43e866e2", list(src)))
+			. += span_notice(LANG("obj.43e866e23fc6ac75", list(src)))
 		if(ENGINE_WELDED)
-			. += span_notice(LANG("obj.a96c6f0f", list(src)))
+			. += span_notice(LANG("obj.a96c6f0f603fb2a1", list(src)))
 
 /obj/machinery/power/shuttle_engine/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(held_item?.tool_behaviour == TOOL_WELDER && engine_state == ENGINE_WRENCHED)
@@ -103,7 +103,7 @@
 /obj/machinery/power/shuttle_engine/can_be_unfasten_wrench(mob/user, silent)
 	if(engine_state == ENGINE_WELDED)
 		if(!silent)
-			to_chat(user, span_warning(LANG("obj.9092e2c6", list(src))))
+			to_chat(user, span_warning(LANG("obj.9092e2c6bd6db4b5", list(src))))
 		return FAILED_UNFASTEN
 	return ..()
 
@@ -132,31 +132,31 @@
 	. = ..()
 	switch(engine_state)
 		if(ENGINE_UNWRENCHED)
-			to_chat(user, span_warning(LANG("obj.077f2570", list(src))))
+			to_chat(user, span_warning(LANG("obj.077f257026920e9f", list(src))))
 		if(ENGINE_WRENCHED)
 			if(!tool.tool_start_check(user, heat_required = HIGH_TEMPERATURE_REQUIRED))
 				return TRUE
 
-			user.visible_message(span_notice(LANG("obj.9449da47", list(user.name, src))), \
-				span_notice(LANG("obj.f64483b9", list(src))), \
-				span_hear(LANG("obj.1aa82fa3", null)))
+			user.visible_message(span_notice(LANG("obj.9449da477015e3e3", list(user.name, src))), \
+				span_notice(LANG("obj.f64483b9a2aa34d0", list(src))), \
+				span_hear(LANG("obj.1aa82fa3545466eb", null)))
 
 			if(tool.use_tool(src, user, ENGINE_WELDTIME, volume = 50))
 				engine_state = ENGINE_WELDED
-				to_chat(user, span_notice(LANG("obj.290f680d", list(src))))
+				to_chat(user, span_notice(LANG("obj.290f680d87f083c3", list(src))))
 				alter_engine_power(engine_power)
 
 		if(ENGINE_WELDED)
 			if(!tool.tool_start_check(user, heat_required = HIGH_TEMPERATURE_REQUIRED))
 				return TRUE
 
-			user.visible_message(span_notice(LANG("obj.62651aed", list(user.name, src))), \
-				span_notice(LANG("obj.bf750eff", list(src))), \
-				span_hear(LANG("obj.1aa82fa3", null)))
+			user.visible_message(span_notice(LANG("obj.62651aed81728dfd", list(user.name, src))), \
+				span_notice(LANG("obj.bf750efffa794f7c", list(src))), \
+				span_hear(LANG("obj.1aa82fa3545466eb", null)))
 
 			if(tool.use_tool(src, user, ENGINE_WELDTIME, volume = 50))
 				engine_state = ENGINE_WRENCHED
-				to_chat(user, span_notice(LANG("obj.0568c93c", list(src))))
+				to_chat(user, span_notice(LANG("obj.0568c93c9ccf7e64", list(src))))
 				alter_engine_power(-engine_power)
 	return TRUE
 

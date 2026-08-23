@@ -47,7 +47,7 @@
 		var/new_tape_gag = new tape_gag(src)
 		user.put_in_hands(new_tape_gag)
 		use(1)
-		to_chat(user, span_notice(LANG("obj.575861a5", null)))
+		to_chat(user, span_notice(LANG("obj.575861a59e75bd16", null)))
 		playsound(user, 'sound/items/duct_tape/duct_tape_snap.ogg', 50, TRUE)
 		return TRUE
 	return ..()
@@ -61,10 +61,10 @@
 		return NONE
 
 	if(target.get_embed()?.type == conferred_embed)
-		to_chat(user, span_warning(LANG("obj.63bbf11d", list(target, src))))
+		to_chat(user, span_warning(LANG("obj.63bbf11d47b05427", list(target, src))))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.5adaa140", list(user, target, src))), span_notice(LANG("obj.11152b64", list(target, src))))
+	user.visible_message(span_notice(LANG("obj.5adaa140f0a68a12", list(user, target, src))), span_notice(LANG("obj.11152b64ae39c1cc", list(target, src))))
 	playsound(user, 'sound/items/duct_tape/duct_tape_rip.ogg', 50, TRUE)
 
 	if(!do_after(user, 3 SECONDS, target=target))
@@ -74,17 +74,17 @@
 	use(1)
 	if(istype(target, /obj/item/clothing/gloves/fingerless))
 		var/obj/item/clothing/gloves/tackler/offbrand/O = new /obj/item/clothing/gloves/tackler/offbrand
-		to_chat(user, span_notice(LANG("obj.d1ab6cd7", list(target, O, src))))
+		to_chat(user, span_notice(LANG("obj.d1ab6cd77f7ca734", list(target, O, src))))
 		QDEL_NULL(target)
 		user.put_in_hands(O)
 		return ITEM_INTERACT_SUCCESS
 
 	if(target.get_embed()?.type == conferred_embed)
-		to_chat(user, span_warning(LANG("obj.63bbf11d", list(target, src))))
+		to_chat(user, span_warning(LANG("obj.63bbf11d47b05427", list(target, src))))
 		return ITEM_INTERACT_BLOCKING
 
 	target.set_embed(conferred_embed)
-	to_chat(user, span_notice(LANG("obj.47afed3b", list(target, src))))
+	to_chat(user, span_notice(LANG("obj.47afed3bdb31847b", list(target, src))))
 	target.name = "[prefix] [target.name]"
 
 	if(isgrenade(target))
@@ -182,10 +182,10 @@
 		var/robot_is_damaged = robotic_pal.get_brute_loss()
 
 		if(!robot_is_damaged)
-			user.balloon_alert(user, LANG("obj.b9e59558", list(robotic_pal)))
+			user.balloon_alert(user, LANG("obj.b9e5955868785d23", list(robotic_pal)))
 			return ITEM_INTERACT_BLOCKING
 
-		user.visible_message(span_notice(LANG("obj.23cbd9d2", list(user, robotic_pal, src))), span_notice(LANG("obj.df18f3f5", list(robotic_pal, src))))
+		user.visible_message(span_notice(LANG("obj.23cbd9d2a773e2bf", list(user, robotic_pal, src))), span_notice(LANG("obj.df18f3f5b3631940", list(robotic_pal, src))))
 		playsound(user, 'sound/items/duct_tape/duct_tape_rip.ogg', 50, TRUE)
 
 		if(!do_after(user, 3 SECONDS, target = robotic_pal))
@@ -193,24 +193,24 @@
 
 		robotic_pal.adjust_brute_loss(-object_repair_value)
 		use(1)
-		to_chat(user, span_notice(LANG("obj.b27c63e2", list(interacting_with, src))))
+		to_chat(user, span_notice(LANG("obj.b27c63e23be2ff8e", list(interacting_with, src))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!isobj(interacting_with) || iseffect(interacting_with))
 		return NONE
 
 	if(HAS_TRAIT(interacting_with, TRAIT_DUCT_TAPE_UNREPAIRABLE))
-		user.balloon_alert(user, LANG("obj.6edc0a3a", null))
+		user.balloon_alert(user, LANG("obj.6edc0a3a7bd8c6c8", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/object_to_repair = interacting_with
 	var/object_is_damaged = object_to_repair.get_integrity() < object_to_repair.max_integrity
 
 	if(!object_is_damaged)
-		user.balloon_alert(user, LANG("obj.b9e59558", list(object_to_repair)))
+		user.balloon_alert(user, LANG("obj.b9e5955868785d23", list(object_to_repair)))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.23cbd9d2", list(user, object_to_repair, src))), span_notice(LANG("obj.df18f3f5", list(object_to_repair, src))))
+	user.visible_message(span_notice(LANG("obj.23cbd9d2a773e2bf", list(user, object_to_repair, src))), span_notice(LANG("obj.df18f3f5b3631940", list(object_to_repair, src))))
 	playsound(user, 'sound/items/duct_tape/duct_tape_rip.ogg', 50, TRUE)
 
 	if(!do_after(user, 3 SECONDS, target = object_to_repair))
@@ -223,5 +223,5 @@
 		object_to_repair.repair_damage(object_repair_value)
 
 	use(1)
-	to_chat(user, span_notice(LANG("obj.b27c63e2", list(interacting_with, src))))
+	to_chat(user, span_notice(LANG("obj.b27c63e23be2ff8e", list(interacting_with, src))))
 	return ITEM_INTERACT_SUCCESS

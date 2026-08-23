@@ -88,12 +88,12 @@
 	SIGNAL_HANDLER
 
 	if(isnull(bayonet))
-		examine_list += LANG("datum.746915cb", null)
+		examine_list += LANG("datum.746915cb4043997c", null)
 		return
 
-	examine_list += LANG("datum.1aad168c", list(bayonet, removable ? "" : "permanently "))
+	examine_list += LANG("datum.1aad168c651572ef", list(bayonet, removable ? "" : "permanently "))
 	if(removable)
-		examine_list += span_info(LANG("datum.241c08c2", list(bayonet, bayonet)))
+		examine_list += span_info(LANG("datum.241c08c2330e7b6a", list(bayonet, bayonet)))
 
 /datum/component/bayonet_attachable/proc/on_pre_attack(obj/item/source, atom/target, mob/living/user, list/modifiers)
 	SIGNAL_HANDLER
@@ -112,14 +112,14 @@
 		return
 
 	if(bayonet)
-		source.balloon_alert(attacker, LANG("datum.8af97977", list(bayonet)))
+		source.balloon_alert(attacker, LANG("datum.8af97977277f7a5f", list(bayonet)))
 		return
 
 	if(!attacker.transferItemToLoc(attacking_item, source))
 		return
 
 	add_bayonet(attacking_item, attacker)
-	source.balloon_alert(attacker, LANG("datum.b0ad167d", null))
+	source.balloon_alert(attacker, LANG("datum.b0ad167d3c297e25", null))
 	return COMPONENT_NO_AFTERATTACK
 
 /datum/component/bayonet_attachable/proc/add_bayonet(obj/item/new_bayonet, mob/attacher)
@@ -163,7 +163,7 @@
 
 /datum/component/bayonet_attachable/proc/unscrew_bayonet(obj/item/source, mob/user, obj/item/tool)
 	tool?.play_tool_sound(source)
-	source.balloon_alert(user, LANG("datum.874b70af", list(bayonet)))
+	source.balloon_alert(user, LANG("datum.874b70af495e7411", list(bayonet)))
 
 	var/obj/item/to_remove = bayonet
 	to_remove.forceMove(source.drop_location())
@@ -205,7 +205,7 @@
 
 	if (!bayonet || allow_sawnoff)
 		return
-	source.balloon_alert(user, LANG("datum.9708f54d", null))
+	source.balloon_alert(user, LANG("datum.9708f54d86264c43", null))
 	return COMPONENT_CANCEL_SAWING_OFF
 
 /datum/component/bayonet_attachable/proc/on_sawn_off(obj/item/source, mob/user)

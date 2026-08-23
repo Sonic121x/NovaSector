@@ -194,7 +194,7 @@
 	do_electrocution()
 
 	if (print_message)
-		parent_as_movable.visible_message(span_danger(LANG("datum.10488955", list(parent_as_movable))), span_hear(LANG("datum.c81dbe96", null)))
+		parent_as_movable.visible_message(span_danger(LANG("datum.10488955f019b355", list(parent_as_movable))), span_hear(LANG("datum.c81dbe96bedcc38f", null)))
 
 /// Zap whoever is buckled to us
 /datum/component/electrified_buckle/proc/do_electrocution()
@@ -236,11 +236,11 @@
 	if(shock_on_loop)
 		shock_on_loop = FALSE
 		STOP_PROCESSING(SSprocessing, src)
-		parent_as_movable.visible_message(span_notice(LANG("datum.3299d393", list(parent_as_movable))))
+		parent_as_movable.visible_message(span_notice(LANG("datum.3299d393e67a3259", list(parent_as_movable))))
 	else
 		shock_on_loop = TRUE
 		START_PROCESSING(SSprocessing, src)
-		parent_as_movable.visible_message(span_notice(LANG("datum.f9e9930f", list(parent_as_movable))))
+		parent_as_movable.visible_message(span_notice(LANG("datum.f9e9930f7923a35a", list(parent_as_movable))))
 
 #undef ELECTRIC_BUCKLE_SHOCK_STRENGTH_DIVISOR
 #undef ELECTRIC_BUCKLE_MINUMUM_POWERNET_STRENGTH

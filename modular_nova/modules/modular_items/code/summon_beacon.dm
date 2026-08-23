@@ -33,8 +33,8 @@
 
 /obj/item/summon_beacon/examine()
 	. = ..()
-	. += span_warning(LANG("obj.006565ab", list(area_string)))
-	. += span_notice(LANG("obj.e7fa7fe1", list(selected_atom ? initial(selected_atom.name) : "None")))
+	. += span_warning(LANG("obj.006565ab045e0a17", list(area_string)))
+	. += span_notice(LANG("obj.e7fa7fe1da063758", list(selected_atom ? initial(selected_atom.name) : "None")))
 
 /obj/item/summon_beacon/attack_self(mob/user)
 	if(!can_use_beacon(user))
@@ -95,15 +95,15 @@
 
 /obj/item/summon_beacon/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!selected_atom)
-		balloon_alert(user, LANG("obj.fc601c42", null))
+		balloon_alert(user, LANG("obj.fc601c42a48f5499", null))
 		return NONE
 	var/turf/target_turf = get_turf(interacting_with)
 	var/area/target_area = get_area(interacting_with)
 	if(!area_check(target_area, target_turf))
-		balloon_alert(user, LANG("obj.df944ab2", null))
+		balloon_alert(user, LANG("obj.df944ab2e459451c", null))
 		return NONE
 
-	var/confirmed = tgui_alert(user, LANG("obj.e9453223", list(initial(selected_atom.name))), LANG("obj.15bc27b6", null), list("Yes", "No"))
+	var/confirmed = tgui_alert(user, LANG("obj.e94532235a469c33", list(initial(selected_atom.name))), LANG("obj.15bc27b6fe454546", null), list("Yes", "No"))
 	if(confirmed != "Yes")
 		return ITEM_INTERACT_BLOCKING
 
@@ -111,7 +111,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	uses -= 1
-	balloon_alert(user, LANG("obj.de782adb", list(uses, uses == 1 ? "" : "s")))
+	balloon_alert(user, LANG("obj.de782adb79afea31", list(uses, uses == 1 ? "" : "s")))
 
 	podspawn(list(
 		"target" = target_turf,
@@ -123,7 +123,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		if(istype(human_user.ears, /obj/item/radio/headset))
-			to_chat(user, span_notice(LANG("obj.9248b3c7", list(span_bold("Request received. Pod inbound, please stand back from the landing site.")))))
+			to_chat(user, span_notice(LANG("obj.9248b3c7e22a19ae", list(span_bold("Request received. Pod inbound, please stand back from the landing site.")))))
 
 	if(!uses)
 		qdel(src)

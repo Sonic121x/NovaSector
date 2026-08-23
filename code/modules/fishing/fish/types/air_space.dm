@@ -113,14 +113,14 @@
 	DO_FLOATING_ANIM(src)
 
 /obj/item/fish/starfish/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.360419eb", list(user, src))))
+	user.visible_message(span_suicide(LANG("obj.360419ebccadf733", list(user, src))))
 	if (prob(20))
-		user.say(LANG("obj.70a1562d", null), forced = "starfish suicide")
+		user.say(LANG("obj.70a1562d7c9286ae", null), forced = "starfish suicide")
 	addtimer(CALLBACK(src, PROC_REF(ascension), user), 1 SECONDS)
 	return MANUAL_SUICIDE
 
 /obj/item/fish/starfish/proc/ascension(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.e22fdb1c", list(user, user.p_their()))))
+	user.visible_message(span_suicide(LANG("obj.e22fdb1c8b5821b2", list(user, user.p_their()))))
 	user.drop_everything()
 	user.add_filter("space", 1, layering_filter(icon = icon('icons/mob/human/textures.dmi', "spacey"), blend_mode = BLEND_INSET_OVERLAY))
 	user.apply_status_effect(/datum/status_effect/go_away/deletes_mob)
@@ -172,16 +172,16 @@
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/item/fish/baby_carp/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.f34c2d31", list(user, src))))
+	user.visible_message(span_suicide(LANG("obj.f34c2d31553ec34d", list(user, src))))
 	src.forceMove(user)
 	if(status == FISH_DEAD)
 		user.emote("gasp")
-		user.visible_message(span_suicide(LANG("obj.e761eba3", list(user, src))))
+		user.visible_message(span_suicide(LANG("obj.e761eba3c5d67c38", list(user, src))))
 		return OXYLOSS
 
 	// the fish grows
 	addtimer(CALLBACK(src, PROC_REF(gestation), user), 20 SECONDS)
-	user.visible_message(span_suicide(LANG("obj.bad8ec5d", list(user))))
+	user.visible_message(span_suicide(LANG("obj.bad8ec5d64dded09", list(user))))
 
 	var/matrix/M = matrix()
 	M.Scale(1.8, 1.2)

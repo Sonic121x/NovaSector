@@ -55,7 +55,7 @@
 /obj/machinery/processor/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.4575ee25", list(rating_amount, rating_speed*100)))
+		. += span_notice(LANG("obj.4575ee252781ea9f", list(rating_amount, rating_speed*100)))
 
 /obj/machinery/processor/Exited(atom/movable/gone, direction)
 	..()
@@ -87,7 +87,7 @@
 
 /obj/machinery/processor/wrench_act(mob/living/user, obj/item/tool)
 	if(processing)
-		to_chat(user, span_warning(LANG("obj.13e106fb", list(src))))
+		to_chat(user, span_warning(LANG("obj.13e106fbc94ac979", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	default_unfasten_wrench(user, tool)
@@ -95,14 +95,14 @@
 
 /obj/machinery/processor/screwdriver_act(mob/living/user, obj/item/tool)
 	if(processing)
-		to_chat(user, span_warning(LANG("obj.13e106fb", list(src))))
+		to_chat(user, span_warning(LANG("obj.13e106fbc94ac979", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/processor/crowbar_act(mob/living/user, obj/item/tool)
 	if(processing)
-		to_chat(user, span_warning(LANG("obj.13e106fb", list(src))))
+		to_chat(user, span_warning(LANG("obj.13e106fbc94ac979", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	return default_pry_open(user, tool, close_after_pry = TRUE, deconstruct_on_fail = TRUE)
@@ -112,7 +112,7 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(processing)
-		to_chat(user, span_warning(LANG("obj.13e106fb", list(src))))
+		to_chat(user, span_warning(LANG("obj.13e106fbc94ac979", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/storage/bag/tray))
@@ -126,20 +126,20 @@
 				LAZYADD(processor_contents, content_item)
 				loaded++
 		if(loaded)
-			to_chat(user, span_notice(LANG("obj.4f9950f4", list(loaded, src))))
+			to_chat(user, span_notice(LANG("obj.4f9950f4226c874c", list(loaded, src))))
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
 
 	var/datum/food_processor_process/recipe = PROCESSOR_SELECT_RECIPE(tool)
 	if(recipe && user.transferItemToLoc(tool, src))
 		user.visible_message(
-			span_notice(LANG("obj.7f48475c", list(user, tool, src))),
-			span_notice(LANG("obj.6635fb59", list(tool, src))),
+			span_notice(LANG("obj.7f48475cf161fffa", list(user, tool, src))),
+			span_notice(LANG("obj.6635fb59f38784e0", list(tool, src))),
 		)
 		LAZYADD(processor_contents, tool)
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_warning(LANG("obj.111868ff", null)))
+	to_chat(user, span_warning(LANG("obj.111868ff4c4de0d7", null)))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/processor/update_icon_state()
@@ -148,24 +148,24 @@
 
 /obj/machinery/processor/interact(mob/user)
 	if(processing)
-		to_chat(user, span_warning(LANG("obj.13e106fb", list(src))))
+		to_chat(user, span_warning(LANG("obj.13e106fbc94ac979", list(src))))
 		return TRUE
 	if(ismob(user.pulling) && PROCESSOR_SELECT_RECIPE(user.pulling))
 		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, span_warning(LANG("obj.d5471d98", null)))
+			to_chat(user, span_warning(LANG("obj.d5471d9857d59e0e", null)))
 			return
 		var/mob/living/pushed_mob = user.pulling
-		visible_message(span_warning(LANG("obj.a6a57d11", list(user, pushed_mob, src))))
+		visible_message(span_warning(LANG("obj.a6a57d110f93fddf", list(user, pushed_mob, src))))
 		pushed_mob.forceMove(src)
 		LAZYADD(processor_contents, pushed_mob)
 		user.stop_pulling()
 		return
 	if(!LAZYLEN(processor_contents))
-		to_chat(user, span_warning(LANG("obj.02d482cc", list(src))))
+		to_chat(user, span_warning(LANG("obj.02d482cc1aef0cef", list(src))))
 		return TRUE
-	user.visible_message(span_notice(LANG("obj.96d11239", list(user, src))), \
-		span_notice(LANG("obj.11cd7563", list(src))), \
-		span_hear(LANG("obj.94eba160", null)))
+	user.visible_message(span_notice(LANG("obj.96d1123903230929", list(user, src))), \
+		span_notice(LANG("obj.11cd75631ed337a9", list(src))), \
+		span_hear(LANG("obj.94eba16061308796", null)))
 	processing()
 
 
@@ -197,7 +197,7 @@
 			continue
 		process_food(recipe, content_item)
 	processing = FALSE
-	visible_message(span_notice(LANG("obj.263a22a3", list(src))))
+	visible_message(span_notice(LANG("obj.263a22a30d2ffcc4", list(src))))
 
 GAME_VERB_SRC(/obj/machinery/processor, eject, oview(1), "弹出内容物", null)
 
@@ -214,7 +214,7 @@ GAME_VERB_SRC(/obj/machinery/processor, eject, oview(1), "弹出内容物", null
 
 /obj/machinery/processor/container_resist_act(mob/living/user)
 	user.forceMove(drop_location())
-	user.visible_message(span_notice(LANG("obj.ab46cb0e", list(user))))
+	user.visible_message(span_notice(LANG("obj.ab46cb0e0a80bb0d", list(user))))
 
 /obj/machinery/processor/slime
 	name = "slime processor"
@@ -264,7 +264,7 @@ GAME_VERB_SRC(/obj/machinery/processor, eject, oview(1), "弹出内容物", null
 			break
 	if(!LAZYLEN(picked_slimes))
 		return
-	visible_message(span_notice(LANG("obj.30a46bf6", list(jointext(picked_slimes, ", "), LAZYLEN(picked_slimes) > 1 ? "are" : "is", src))))
+	visible_message(span_notice(LANG("obj.30a46bf66794645e", list(jointext(picked_slimes, ", "), LAZYLEN(picked_slimes) > 1 ? "are" : "is", src))))
 	for(var/mob/living/basic/slime/slime_to_add in picked_slimes)
 		LAZYADD(processor_contents, slime_to_add)
 		slime_to_add.forceMove(src)
@@ -276,7 +276,7 @@ GAME_VERB_SRC(/obj/machinery/processor, eject, oview(1), "弹出内容物", null
 
 	if(processed_slime.stat != DEAD)
 		processed_slime.forceMove(drop_location())
-		processed_slime.balloon_alert_to_viewers(LANG("obj.bc0c8b35", null))
+		processed_slime.balloon_alert_to_viewers(LANG("obj.bc0c8b35f4780fc8", null))
 		return
 
 	var/core_count = processed_slime.cores

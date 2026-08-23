@@ -36,7 +36,7 @@
 			"You feel your thoughts focusing on this phrase... you can't seem to get it out of your head.",
 			"Your head hurts, but this is all you can think of. It must be vitally important.",
 	))]"))
-	to_chat(owner, span_boldwarning(LANG("datum.37d7dc9d", null)))
+	to_chat(owner, span_boldwarning(LANG("datum.37d7dc9dee4f922f", null)))
 	var/atom/movable/screen/alert/hypnosis/hypno_alert = owner.throw_alert(ALERT_HYPNOSIS, /atom/movable/screen/alert/hypnosis)
 	owner.mind.add_antag_datum(/datum/antagonist/hypnotized)
 	antagonist = owner.mind.has_antag_datum(/datum/antagonist/hypnotized)
@@ -54,7 +54,7 @@
 /datum/brain_trauma/hypnosis/on_lose()
 	message_admins("[ADMIN_LOOKUPFLW(owner)] is no longer hypnotized with the phrase '[hypnotic_phrase]'.")
 	owner.log_message("is no longer hypnotized with the phrase '[hypnotic_phrase]'.", LOG_GAME)
-	to_chat(owner, span_userdanger(LANG("datum.5defe236", list(hypnotic_phrase))))
+	to_chat(owner, span_userdanger(LANG("datum.5defe236c1f40864", list(hypnotic_phrase))))
 	owner.clear_alert(ALERT_HYPNOSIS)
 	..()
 	if (!isnull(antagonist))

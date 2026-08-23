@@ -29,7 +29,7 @@
 
 /obj/structure/broken_flooring/crowbar_act(mob/living/user, obj/item/I)
 	I.play_tool_sound(src, 80)
-	balloon_alert(user, LANG("obj.45ea115f", null))
+	balloon_alert(user, LANG("obj.45ea115f9134d05c", null))
 	new /obj/item/stack/tile/iron(get_turf(src))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

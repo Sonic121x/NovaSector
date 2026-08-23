@@ -112,7 +112,7 @@
 	var/mood_color = "#5ec7e4"
 	var/obj/item/organ/ears/shadekin/user_ears = user.get_organ_slot(ORGAN_SLOT_EARS)
 	var/mode = istype(user_ears)
-	user.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", LANG("obj.366ccd6e", null))
+	user.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", LANG("obj.366ccd6e51ada910", null))
 
 	switch(shadekin_mood)
 		if(SANITY_LEVEL_GREAT)
@@ -153,7 +153,7 @@
 		blacklisted_areas = typecacheof(GLOB.ghost_cafe_areas)
 	var/area/user_area = get_area(user)
 	if(is_type_in_typecache(user_area, blacklisted_areas))
-		to_chat(user, span_warning(LANG("obj.2b128bac", null)))
+		to_chat(user, span_warning(LANG("obj.2b128bac764557ef", null)))
 		return
 	if(empathy_interrupted)
 		message = full_capitalize(rot13(message))
@@ -173,7 +173,7 @@
 		to_chat(living_mob, rendered)
 		if(living_mob != user)
 			var/mode = istype(target_ears)
-			living_mob.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", LANG("obj.e67bb6f2", null))
+			living_mob.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", LANG("obj.e67bb6f2ebbc74ca", null))
 
 	for(var/mob/dead_mob as anything in GLOB.dead_mob_list)
 		if(isnull(dead_mob.client) || isnewplayer(dead_mob))

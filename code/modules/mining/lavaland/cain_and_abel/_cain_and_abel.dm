@@ -89,11 +89,11 @@
 		return NONE
 
 	if(!check_wield(user))
-		user.balloon_alert(user, LANG("obj.9ec3aa89", null))
+		user.balloon_alert(user, LANG("obj.9ec3aa89dee2003f", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!length(current_wisps))
-		user.balloon_alert(user, LANG("obj.970c8cee", null))
+		user.balloon_alert(user, LANG("obj.970c8ceea34c1f84", null))
 		return ITEM_INTERACT_BLOCKING
 
 	for(var/index in 0 to (length(current_wisps) - 1))
@@ -105,7 +105,7 @@
 	if (.)
 		return
 	if(!check_wield(user))
-		user.balloon_alert(user, LANG("obj.9ec3aa89", null))
+		user.balloon_alert(user, LANG("obj.9ec3aa89dee2003f", null))
 		return TRUE
 
 /obj/item/cain_and_abel/attack(mob/living/target, mob/living/carbon/human/user)
@@ -126,7 +126,7 @@
 	if(.)
 		return TRUE
 	throw_mode = (throw_mode == THROW_MODE_CRYSTALS) ? THROW_MODE_LAUNCH : THROW_MODE_CRYSTALS
-	user.balloon_alert(user, LANG("obj.b4bbf4f4", list(throw_mode == THROW_MODE_CRYSTALS ? "activated" : "deactivated")))
+	user.balloon_alert(user, LANG("obj.b4bbf4f4326f1a1f", list(throw_mode == THROW_MODE_CRYSTALS ? "activated" : "deactivated")))
 	return TRUE
 
 /obj/item/cain_and_abel/proc/set_combo(new_value, mob/living/user, instant = FALSE)

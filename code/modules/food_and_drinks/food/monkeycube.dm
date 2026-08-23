@@ -40,7 +40,7 @@
 		if (LAZYLEN(SSmobs.cubemonkeys) < cap)
 			bananas = new spawned_mob(drop_location(), TRUE)
 		else if (spammer)
-			to_chat(spammer, span_warning(LANG("obj.d675af0d", list(cap))))
+			to_chat(spammer, span_warning(LANG("obj.d675af0d315c1ec8", list(cap))))
 	else
 		bananas = new spawned_mob(drop_location())
 
@@ -48,7 +48,7 @@
 		ADD_TRAIT(bananas, TRAIT_SPAWNED_MOB, INNATE_TRAIT)
 		SET_FACTION_AND_ALLIES_FROM(bananas, src)
 
-		visible_message(span_notice(LANG("obj.580ca13b", list(src))))
+		visible_message(span_notice(LANG("obj.580ca13b8274f423", list(src))))
 		bananas.log_message("spawned via [src], Last attached mob: [key_name(spammer)].", LOG_ATTACK)
 
 		var/alpha_to = bananas.alpha
@@ -58,23 +58,23 @@
 		animate(bananas, 0.5 SECONDS, alpha = alpha_to, transform = scale_to, easing = QUAD_EASING|EASE_OUT)
 
 	else if (!spammer) // Visible message in case there are no fingerprints
-		visible_message(span_notice(LANG("obj.206b414f", list(src))))
+		visible_message(span_notice(LANG("obj.206b414f6ba1afbd", list(src))))
 		return
 
 	animate(src, 0.4 SECONDS, alpha = 0, transform = transform.Scale(0), easing = QUAD_EASING|EASE_IN)
 	QDEL_IN(src, 0.5 SECONDS)
 
 /obj/item/food/monkeycube/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.54641d90", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.54641d90b1c0a056", list(user, src, user.p_their(), user.p_theyre()))))
 	var/eating_success = do_after(user, 1 SECONDS, src)
 	if(QDELETED(user)) //qdeletion: the nuclear option of self-harm
 		return SHAME
 	if(!eating_success || QDELETED(src)) //checks if src is gone or if they failed to wait for a second
-		user.visible_message(span_suicide(LANG("obj.700a662c", list(user))))
+		user.visible_message(span_suicide(LANG("obj.700a662c5fd205f0", list(user))))
 		return SHAME
 	if(HAS_TRAIT(user, TRAIT_NOHUNGER)) //plasmamen don't have saliva/stomach acid
-		user.visible_message(span_suicide(LANG("obj.b51c9f89", list(user, user.p_their(), src)))
-		,span_warning(LANG("obj.5aea6245", list(src))))
+		user.visible_message(span_suicide(LANG("obj.b51c9f89ecfb7ab7", list(user, user.p_their(), src)))
+		,span_warning(LANG("obj.5aea62457a591b4d", list(src))))
 		return SHAME
 	playsound(user, 'sound/items/eatfood.ogg', rand(10, 50), TRUE)
 	user.temporarilyRemoveItemFromInventory(src) //removes from hands, keeps in M
@@ -85,15 +85,15 @@
 	if(QDELETED(user) || QDELETED(src))
 		return
 	if(src.loc != user) //how the hell did you manage this
-		to_chat(user, span_warning(LANG("obj.c1a8e53e", list(src))))
+		to_chat(user, span_warning(LANG("obj.c1a8e53ec6a85ac7", list(src))))
 		return
 	Expand()
-	user.visible_message(span_danger(LANG("obj.28cf210b", list(user))))
+	user.visible_message(span_danger(LANG("obj.28cf210b3b10d968", list(user))))
 	user.gib(DROP_BRAIN|DROP_BODYPARTS|DROP_ITEMS) // just remove the organs
 
 /obj/item/food/monkeycube/proc/on_mail_unwrap(atom/source, mob/user, obj/item/mail/traitor/letter)
 	SIGNAL_HANDLER
-	to_chat(user, span_danger(LANG("obj.d8fcb125", list(letter))))
+	to_chat(user, span_danger(LANG("obj.d8fcb125ddbc6eb1", list(letter))))
 	Expand()
 	return COMPONENT_TRAITOR_MAIL_HANDLED
 

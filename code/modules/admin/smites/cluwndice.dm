@@ -7,7 +7,7 @@
 	. = ..()
 
 	if (!iscarbon(target))
-		to_chat(user, span_warning(LANG("datum.0c41c4cf", null)), confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.0c41c4cfc5eec94d", null)), confidential = TRUE)
 		return
 
 	var/mob/living/carbon/carbon_target = target

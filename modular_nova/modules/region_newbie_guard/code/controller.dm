@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(newbie_guard_active)
 	if(target_client)
 		to_chat(
 			target_client,
-			span_greenannounce(LANG("datum.e88bfb97", list(reason))),
+			span_greenannounce(LANG("datum.e88bfb9728dade44", list(reason))),
 			type = MESSAGE_TYPE_ADMINPM,
 			skip_i18n_fallback = TRUE,
 		)
@@ -194,7 +194,7 @@ GLOBAL_LIST_EMPTY(newbie_guard_active)
 		if(owner?.client)
 			to_chat(
 				owner,
-				span_greenannounce(LANG("datum.16b37a46", null)),
+				span_greenannounce(LANG("datum.16b37a46ed6e99a2", null)),
 				type = MESSAGE_TYPE_ADMINPM,
 				skip_i18n_fallback = TRUE,
 			)
@@ -240,7 +240,7 @@ GLOBAL_LIST_EMPTY(newbie_guard_active)
 		if(target_client)
 			to_chat(
 				target_client,
-				span_warning(LANG("datum.ecc7f169", null)),
+				span_warning(LANG("datum.ecc7f169da72640e", null)),
 				type = MESSAGE_TYPE_ADMINPM,
 				skip_i18n_fallback = TRUE,
 			)
@@ -256,13 +256,13 @@ GLOBAL_LIST_EMPTY(newbie_guard_active)
 
 	var/mob/living/appealing_living = appealing.mob
 	if(!istype(appealing_living) || !appealing_living.GetComponent(/datum/component/newbie_guard))
-		to_chat(appealing, span_warning(LANG("datum.806ad025", null)), type = MESSAGE_TYPE_ADMINPM, skip_i18n_fallback = TRUE)
+		to_chat(appealing, span_warning(LANG("datum.806ad025ce2d7e0d", null)), type = MESSAGE_TYPE_ADMINPM, skip_i18n_fallback = TRUE)
 		return
 
 	var/last_appeal = GLOB.newbie_guard_appeal_time[appealing.ckey]
 	if(last_appeal && (world.time - last_appeal) < NEWBIE_GUARD_APPEAL_COOLDOWN)
 		var/wait_seconds = round((NEWBIE_GUARD_APPEAL_COOLDOWN - (world.time - last_appeal)) / 10)
-		to_chat(appealing, span_warning(LANG("datum.7ebb4fa8", list(wait_seconds, wait_seconds))), type = MESSAGE_TYPE_ADMINPM, skip_i18n_fallback = TRUE)
+		to_chat(appealing, span_warning(LANG("datum.7ebb4fa81cb09f39", list(wait_seconds, wait_seconds))), type = MESSAGE_TYPE_ADMINPM, skip_i18n_fallback = TRUE)
 		return
 
 	GLOB.newbie_guard_appeal_time[appealing.ckey] = world.time
@@ -271,7 +271,7 @@ GLOBAL_LIST_EMPTY(newbie_guard_active)
 	var/deny_link = "<a href='byond://?src=[REF(src)];newbie_guard_deny=[appealing.ckey]'>驳回</a>"
 	message_admins("【新人软管制申诉】[key_name_admin(appealing)]（IP [appealing.address]）请求解除限制。 \[[approve_link]\] \[[deny_link]\]")
 	log_admin("[key_name(appealing)] filed a newbie guard appeal.")
-	to_chat(appealing, span_notice(LANG("datum.cc258d66", null)), type = MESSAGE_TYPE_ADMINPM, skip_i18n_fallback = TRUE)
+	to_chat(appealing, span_notice(LANG("datum.cc258d6648e499e8", null)), type = MESSAGE_TYPE_ADMINPM, skip_i18n_fallback = TRUE)
 
 /// Called from /mob/living/Login().
 /proc/newbie_guard_on_login(mob/living/target)

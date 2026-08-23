@@ -63,7 +63,7 @@
 		// to try to land in a NOTELEPORT zone after it is created, AKA trying to exploit.
 		if(isliving(jaunter))
 			var/mob/living/living_cheaterson = jaunter
-			to_chat(living_cheaterson, span_userdanger(LANG("obj.f5e38bf8", null)))
+			to_chat(living_cheaterson, span_userdanger(LANG("obj.f5e38bf8f9e819a0", null)))
 			if(ishuman(living_cheaterson))
 				shake_camera(living_cheaterson, 20, 1)
 				addtimer(CALLBACK(living_cheaterson, TYPE_PROC_REF(/mob/living/carbon, vomit)), 2 SECONDS)
@@ -110,10 +110,10 @@
 		return null
 
 	if(newloc.turf_flags & NOJAUNT)
-		to_chat(user, span_warning(LANG("obj.570f77d7", null)))
+		to_chat(user, span_warning(LANG("obj.570f77d7c2b7eea1", null)))
 		return
 	if(destination_area.area_flags & NOTELEPORT || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
-		to_chat(user, span_danger(LANG("obj.d52b3c72", null)))
+		to_chat(user, span_danger(LANG("obj.d52b3c72c8100305", null)))
 		return
 	if (direction == UP || direction == DOWN)
 		newloc = can_z_move(direction, get_turf(src), newloc, ZMOVE_INCAPACITATED_CHECKS | ZMOVE_FEEDBACK | ZMOVE_ALLOW_ANCHORED, user)

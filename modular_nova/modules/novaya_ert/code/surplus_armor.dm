@@ -75,7 +75,7 @@
 /obj/item/clothing/head/helmet/cin_surplus_helmet/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.38ad9672", null)
+	. += LANG("obj.38ad967281b786f0", null)
 
 	return .
 
@@ -172,7 +172,7 @@
 /obj/item/clothing/suit/armor/vest/cin_surplus_vest/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.26b90a59", null)
+	. += LANG("obj.26b90a59fb427ff9", null)
 
 	return .
 

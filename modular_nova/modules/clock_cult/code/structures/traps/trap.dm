@@ -32,10 +32,10 @@
 		if(!istype(trap, result_path))
 			continue
 
-		user.balloon_alert(user, LANG("obj.fc2d6d6d", null))
+		user.balloon_alert(user, LANG("obj.fc2d6d6da6b94faa", null))
 		return
 
-	to_chat(user, span_brass(LANG("obj.9da76c9d", list(src))))
+	to_chat(user, span_brass(LANG("obj.9da76c9dc2a1e92e", list(src))))
 	var/obj/new_obj = new result_path(target)
 	new_obj.setDir(user.dir)
 
@@ -79,12 +79,12 @@
 
 /obj/structure/destructible/clockwork/trap/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
-	balloon_alert(user, LANG("obj.2e66bdcd", null))
+	balloon_alert(user, LANG("obj.2e66bdcd6d772968", null))
 
 	if(!do_after(user, 5 SECONDS, target = src))
 		return
 
-	balloon_alert(user, LANG("obj.cf015430", list(src)))
+	balloon_alert(user, LANG("obj.cf015430d468dcda", list(src)))
 	new unwrench_path(get_turf(src))
 
 	qdel(src)
@@ -146,22 +146,22 @@
 	if(slab.buffer)
 
 		if(takes_input)
-			to_chat(user, span_brass(LANG("datum.809d0b8e", list(slab.buffer.parent, parent))))
+			to_chat(user, span_brass(LANG("datum.809d0b8eab85faf4", list(slab.buffer.parent, parent))))
 			add_output(slab.buffer)
 			slab.buffer = null
 
 		else
-			to_chat(user, span_brass(LANG("datum.f3ce5c37", null)))
+			to_chat(user, span_brass(LANG("datum.f3ce5c371217f789", null)))
 
 	else
 
 		if(sends_input)
-			to_chat(user, span_brass(LANG("datum.db8d38f0", list(parent))))
+			to_chat(user, span_brass(LANG("datum.db8d38f004c09ddf", list(parent))))
 			slab.buffer = src
 
 		else
 
-			to_chat(user, span_brass(LANG("datum.53c778d4", null)))
+			to_chat(user, span_brass(LANG("datum.53c778d41df27ea8", null)))
 
 /// Sends a signal to activate to every outputting component in `outputs`
 /datum/component/clockwork_trap/proc/trigger_connected()

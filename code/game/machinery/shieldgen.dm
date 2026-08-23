@@ -120,7 +120,7 @@
 		if(QDELING(parent_rune))
 			parent_rune = null
 			return ..()
-		parent_rune.visible_message(span_danger(LANG("obj.dd8bb783", list(parent_rune, src))))
+		parent_rune.visible_message(span_danger(LANG("obj.dd8bb783b8eed183", list(parent_rune, src))))
 		QDEL_NULL(parent_rune)
 	return ..()
 
@@ -192,50 +192,50 @@
 	if(.)
 		return
 	if(locked && !HAS_SILICON_ACCESS(user))
-		to_chat(user, span_warning(LANG("obj.d7b22fd5", null)))
+		to_chat(user, span_warning(LANG("obj.d7b22fd526fb8bac", null)))
 		return
 	if(panel_open)
-		to_chat(user, span_warning(LANG("obj.9997c08a", null)))
+		to_chat(user, span_warning(LANG("obj.9997c08a050a2bea", null)))
 		return
 
 	if (active)
-		user.visible_message(span_notice(LANG("obj.b32c9118", list(user, src))), \
-			span_notice(LANG("obj.03d7907e", list(src))), \
-			span_hear(LANG("obj.90862691", null)))
+		user.visible_message(span_notice(LANG("obj.b32c9118f6a37659", list(user, src))), \
+			span_notice(LANG("obj.03d7907e8d038ced", list(src))), \
+			span_hear(LANG("obj.9086269104272964", null)))
 		shields_down()
 	else
 		if(anchored)
-			user.visible_message(span_notice(LANG("obj.dacba0d2", list(user, src))), \
-				span_notice(LANG("obj.41ddd503", list(src))), \
-				span_hear(LANG("obj.b290d1db", null)))
+			user.visible_message(span_notice(LANG("obj.dacba0d20bad8156", list(user, src))), \
+				span_notice(LANG("obj.41ddd5031269c4e0", list(src))), \
+				span_hear(LANG("obj.b290d1dbddfa4c7a", null)))
 			shields_up()
 		else
-			to_chat(user, span_warning(LANG("obj.110e25bd", null)))
+			to_chat(user, span_warning(LANG("obj.110e25bd69930bc5", null)))
 	return
 
 /obj/machinery/shieldgen/screwdriver_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 100)
 	toggle_panel_open()
 	if(panel_open)
-		to_chat(user, span_notice(LANG("obj.ad3bc85a", null)))
+		to_chat(user, span_notice(LANG("obj.ad3bc85a10697623", null)))
 	else
-		to_chat(user, span_notice(LANG("obj.2e62c6a4", null)))
+		to_chat(user, span_notice(LANG("obj.2e62c6a4a5755594", null)))
 	return TRUE
 
 /obj/machinery/shieldgen/wrench_act(mob/living/user, obj/item/tool)
 	. = TRUE
 	if(locked)
-		to_chat(user, span_warning(LANG("obj.a629fd23", null)))
+		to_chat(user, span_warning(LANG("obj.a629fd236f27680c", null)))
 		return
 	if(!anchored && !isinspace())
 		tool.play_tool_sound(src, 100)
-		balloon_alert(user, LANG("obj.065f7e36", null))
+		balloon_alert(user, LANG("obj.065f7e364c491117", null))
 		set_anchored(TRUE)
 	else if(anchored)
 		tool.play_tool_sound(src, 100)
-		balloon_alert(user, LANG("obj.fb79114b", null))
+		balloon_alert(user, LANG("obj.fb79114b4e3e9cc4", null))
 		if(active)
-			to_chat(user, span_notice(LANG("obj.5e249c74", list(src))))
+			to_chat(user, span_notice(LANG("obj.5e249c743f7da5d2", list(src))))
 			shields_down()
 		set_anchored(FALSE)
 
@@ -244,9 +244,9 @@
 	if(istype(tool, /obj/item/stack/cable_coil) && (machine_stat & BROKEN) && panel_open)
 		var/obj/item/stack/cable_coil/coil = tool
 		if (coil.get_amount() < 1)
-			to_chat(user, span_warning(LANG("obj.fa918fad", list(src))))
+			to_chat(user, span_warning(LANG("obj.fa918fadf0bd24e4", list(src))))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.e9ac56d2", null)))
+		to_chat(user, span_notice(LANG("obj.e9ac56d2fef827ad", null)))
 		if(!do_after(user, 3 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 		if(coil.get_amount() < 1)
@@ -254,31 +254,31 @@
 		coil.use(1)
 		atom_integrity = max_integrity
 		set_machine_stat(machine_stat & ~BROKEN)
-		to_chat(user, span_notice(LANG("obj.67ccfd18", list(src))))
+		to_chat(user, span_notice(LANG("obj.67ccfd183f4402bd", list(src))))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
 	if(tool.GetID())
 		if(obj_flags & EMAGGED)
-			to_chat(user, span_danger(LANG("obj.f61e0e57", null)))
+			to_chat(user, span_danger(LANG("obj.f61e0e57aaf1b770", null)))
 			return ITEM_INTERACT_BLOCKING
 		if(!allowed(user))
-			to_chat(user, span_danger(LANG("obj.077f9b52", null)))
+			to_chat(user, span_danger(LANG("obj.077f9b52c530e7f8", null)))
 			return ITEM_INTERACT_BLOCKING
 		locked = !locked
-		to_chat(user, span_notice(LANG("obj.d47371c2", list(locked ? "lock" : "unlock"))))
+		to_chat(user, span_notice(LANG("obj.d47371c2916c7c06", list(locked ? "lock" : "unlock"))))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
 
 /obj/machinery/shieldgen/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning(LANG("obj.794fad72", null)))
+		to_chat(user, span_warning(LANG("obj.794fad72fd607ed8", null)))
 		return FALSE
 	obj_flags |= EMAGGED
 	locked = FALSE
 	playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, LANG("obj.72faa602", null))
+	balloon_alert(user, LANG("obj.72faa6022466ed59", null))
 	return TRUE
 
 /obj/machinery/shieldgen/update_icon_state()
@@ -378,9 +378,9 @@
 		if(!active_power_usage || surplus() >= active_power_usage)
 			add_load(active_power_usage)
 		else
-			visible_message(span_danger(LANG("obj.f8a193c6", list(src))), \
-				LANG("obj.79b34f35", null),
-				span_hear(LANG("obj.90862691", null)))
+			visible_message(span_danger(LANG("obj.f8a193c60df4ffea", list(src))), \
+				LANG("obj.79b34f35b87bc65e", null),
+				span_hear(LANG("obj.9086269104272964", null)))
 			deactivate()
 			log_game("[src] deactivated due to lack of power at [AREACOORD(src)]")
 	else
@@ -443,7 +443,7 @@
 /obj/machinery/power/shieldwallgen/can_be_unfasten_wrench(mob/user, silent)
 	if(active)
 		if(!silent)
-			to_chat(user, span_warning(LANG("obj.246c72eb", null)))
+			to_chat(user, span_warning(LANG("obj.246c72ebfd4e70a4", null)))
 		return FAILED_UNFASTEN
 	return ..()
 
@@ -457,7 +457,7 @@
 
 /obj/machinery/power/shieldwallgen/screwdriver_act(mob/user, obj/item/tool)
 	if(!panel_open && locked)
-		balloon_alert(user, LANG("obj.08c1dea0", null))
+		balloon_alert(user, LANG("obj.08c1dea07efd53e9", null))
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
@@ -471,10 +471,10 @@
 /obj/machinery/power/shieldwallgen/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.GetID())
 		if(obj_flags & EMAGGED)
-			balloon_alert(user, LANG("obj.4156ec52", null))
+			balloon_alert(user, LANG("obj.4156ec52c91e0fae", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!allowed(user))
-			balloon_alert(user, LANG("obj.ddafd752", null))
+			balloon_alert(user, LANG("obj.ddafd75296a2dc2d", null))
 			return ITEM_INTERACT_BLOCKING
 		locked = !locked
 		balloon_alert(user, "[locked ? "locked!" : "unlocked"]")
@@ -493,40 +493,40 @@
 	if(.)
 		return
 	if(!anchored)
-		balloon_alert(user, LANG("obj.801f0be9", null))
+		balloon_alert(user, LANG("obj.801f0be9a529882b", null))
 		return
 	if(locked && !HAS_SILICON_ACCESS(user))
-		balloon_alert(user, LANG("obj.5d71bae2", null))
+		balloon_alert(user, LANG("obj.5d71bae27aaf9422", null))
 		return
 	if(!powernet)
-		balloon_alert(user, LANG("obj.bb35438a", null))
+		balloon_alert(user, LANG("obj.bb35438acefaac91", null))
 		return
 	if(panel_open)
-		balloon_alert(user, LANG("obj.2a428bad", null))
+		balloon_alert(user, LANG("obj.2a428bad1848a353", null))
 		return
 
 	if(active)
-		user.visible_message(span_notice(LANG("obj.a3f2f5d9", list(user, src))), \
-			span_notice(LANG("obj.67caf9d4", list(src))), \
-			span_hear(LANG("obj.90862691", null)))
+		user.visible_message(span_notice(LANG("obj.a3f2f5d90ab78004", list(user, src))), \
+			span_notice(LANG("obj.67caf9d4c6eb6ddb", list(src))), \
+			span_hear(LANG("obj.9086269104272964", null)))
 		deactivate()
 		user.log_message("deactivated [src].", LOG_GAME)
 	else
-		user.visible_message(span_notice(LANG("obj.876889d5", list(user, src))), \
-			span_notice(LANG("obj.756bfe56", list(src))), \
-			span_hear(LANG("obj.b290d1db", null)))
+		user.visible_message(span_notice(LANG("obj.876889d5b6196aab", list(user, src))), \
+			span_notice(LANG("obj.756bfe56e94355cb", list(src))), \
+			span_hear(LANG("obj.b290d1dbddfa4c7a", null)))
 		activate()
 		user.log_message("activated [src].", LOG_GAME)
 	add_fingerprint(user)
 
 /obj/machinery/power/shieldwallgen/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning(LANG("obj.794fad72", null)))
+		to_chat(user, span_warning(LANG("obj.794fad72fd607ed8", null)))
 		return FALSE
 	obj_flags |= EMAGGED
 	locked = FALSE
 	playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, LANG("obj.72faa602", null))
+	balloon_alert(user, LANG("obj.72faa6022466ed59", null))
 	return TRUE
 
 /// Turn the machine on with side effects
@@ -566,7 +566,7 @@
 		needs_power = TRUE
 		setDir(get_dir(gen_primary, gen_secondary))
 	for(var/mob/living/L in get_turf(src))
-		visible_message(span_danger(LANG("obj.5453fa21", list(src, L))))
+		visible_message(span_danger(LANG("obj.5453fa218be69593", list(src, L))))
 		L.investigate_log("has been gibbed by [src].", INVESTIGATE_DEATHS)
 		L.gib(DROP_ALL_REMAINS)
 	RegisterSignal(src, COMSIG_ATOM_SINGULARITY_TRY_MOVE, PROC_REF(block_singularity))

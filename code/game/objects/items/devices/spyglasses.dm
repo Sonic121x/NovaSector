@@ -10,7 +10,7 @@
 	if(!cool_guy)
 		return
 	if(!linked_bug)
-		user.audible_message(span_warning(LANG("obj.849e2c19", list(src))))
+		user.audible_message(span_warning(LANG("obj.849e2c19b872625e", list(src))))
 		return
 	if(cool_guy.screen_maps["spypopup_map"]) //alright, the popup this object uses is already IN use, so the window is open. no point in doing any other work here, so we're good.
 		return

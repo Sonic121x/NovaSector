@@ -214,13 +214,13 @@
 /obj/machinery/computer/records/security/proc/add_crime(mob/user, datum/record/crew/target, list/params)
 	var/input_name = strip_html_full(params["name"], MAX_CRIME_NAME_LEN)
 	if(!input_name)
-		to_chat(usr, span_warning(LANG("obj.7ede0525", null)))
+		to_chat(usr, span_warning(LANG("obj.7ede05252584deef", null)))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 75, TRUE)
 		return FALSE
 
 	var/max = CONFIG_GET(number/maxfine)
 	if(params["fine"] > max)
-		to_chat(usr, span_warning(LANG("obj.8c6a3d77", list(max, MONEY_NAME))))
+		to_chat(usr, span_warning(LANG("obj.8c6a3d7761236500", list(max, MONEY_NAME))))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 75, TRUE)
 		return FALSE
 
@@ -343,12 +343,12 @@
 /// Handles printing records via UI. Takes the params from UI_act.
 /obj/machinery/computer/records/security/proc/print_record(mob/user, datum/record/crew/target, list/params)
 	if(printing)
-		balloon_alert(user, LANG("obj.0e053e73", null))
+		balloon_alert(user, LANG("obj.0e053e738bc59bb7", null))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
 	printing = TRUE
-	balloon_alert(user, LANG("obj.9390106f", null))
+	balloon_alert(user, LANG("obj.9390106fbf0f739e", null))
 	playsound(src, 'sound/machines/printer.ogg', 100, TRUE)
 
 	var/obj/item/printable
@@ -366,7 +366,7 @@
 		if("wanted")
 			var/list/crimes = target.crimes
 			if(!length(crimes))
-				balloon_alert(user, LANG("obj.8a6e6cf1", null))
+				balloon_alert(user, LANG("obj.8a6e6cf17bed9e32", null))
 				return FALSE
 
 			input_description += "\n\n<b>WANTED FOR:</b>"

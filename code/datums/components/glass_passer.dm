@@ -36,7 +36,7 @@
 	if(istype(crosser, /obj/structure/grille))
 		var/obj/structure/grille/grillefriend = crosser
 		if(grillefriend.is_shocked()) //prevent passage of shocked
-			crosser.balloon_alert(passer, LANG("datum.b5c33e7b", null))
+			crosser.balloon_alert(passer, LANG("datum.b5c33e7b11c3a03f", null))
 			return COMPONENT_BLOCK_CROSS
 
 	return null

@@ -21,11 +21,11 @@
 
 /obj/item/gun/magic/wand/pax/zap_self(mob/living/user, suicide = FALSE)
 	if (!suicide)
-		user.visible_message(span_notice(LANG("obj.e4689f86", list(user, user.p_their()))))
+		user.visible_message(span_notice(LANG("obj.e4689f86cc45af81", list(user, user.p_their()))))
 
 /obj/item/gun/magic/wand/pax/do_suicide(mob/living/user)
 	. = ..()
-	user.visible_message(span_suicide(LANG("obj.0d2dcbf7", list(user, user.p_themselves()))))
+	user.visible_message(span_suicide(LANG("obj.0d2dcbf7ba3caa23", list(user, user.p_themselves()))))
 	return SHAME
 
 /obj/item/ammo_casing/magic/pax
@@ -52,7 +52,7 @@
 
 /datum/status_effect/pacify/visible/on_apply()
 	if (!HAS_TRAIT(owner, TRAIT_PACIFISM))
-		owner.visible_message(span_notice(LANG("datum.0309816f", list(owner))), span_notice(LANG("datum.242a2de2", null)))
+		owner.visible_message(span_notice(LANG("datum.0309816fa652907e", list(owner))), span_notice(LANG("datum.242a2de271a8cdea", null)))
 	return ..()
 
 /datum/status_effect/pacify/visible/on_remove()
@@ -60,7 +60,7 @@
 	// Might have it from somewhere else
 	if (HAS_TRAIT(owner, TRAIT_PACIFISM))
 		return
-	owner.visible_message(span_warning(LANG("datum.8a97c00b", list(owner))), span_notice(LANG("datum.20d89dc3", null)))
+	owner.visible_message(span_warning(LANG("datum.8a97c00be76c520a", list(owner))), span_notice(LANG("datum.20d89dc307059552", null)))
 
 /atom/movable/screen/alert/status_effect/pacified
 	name = "Pacified"

@@ -51,7 +51,7 @@
 	if(check_access(id_card))
 		return TRUE
 	if(!silent)
-		balloon_alert(user, LANG("obj.1bd3ceeb", null))
+		balloon_alert(user, LANG("obj.1bd3ceeb3a56d0d5", null))
 	return FALSE
 
 /obj/item/storage/lockbox/proc/toggle_locked(mob/living/user)
@@ -73,16 +73,16 @@
 	if(!broken)
 		broken = TRUE
 		atom_storage.set_locked(STORAGE_NOT_LOCKED)
-		balloon_alert(user, LANG("obj.c20bce4a", null))
+		balloon_alert(user, LANG("obj.c20bce4a91712e62", null))
 		if (emag_card && user)
-			user.visible_message(span_warning(LANG("obj.3c26167e", list(user, emag_card, src))))
+			user.visible_message(span_warning(LANG("obj.3c26167e7115e3e0", list(user, emag_card, src))))
 		return TRUE
 	return FALSE
 
 /obj/item/storage/lockbox/examine(mob/user)
 	. = ..()
 	if(broken)
-		. += span_notice(LANG("obj.11410718", null))
+		. += span_notice(LANG("obj.11410718d87a46af", null))
 
 /obj/item/storage/lockbox/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -129,7 +129,7 @@
 /obj/item/storage/lockbox/medal/examine(mob/user)
 	. = ..()
 	if(!atom_storage.locked)
-		. += span_notice(LANG("obj.b66c3082", list(open ? "close":"open")))
+		. += span_notice(LANG("obj.b66c3082524bf3a8", list(open ? "close":"open")))
 
 /obj/item/storage/lockbox/medal/click_alt(mob/user)
 	if(!atom_storage.locked)
@@ -284,7 +284,7 @@
 		return TRUE
 	//NOVA EDIT ADDITION END
 	if(!silent)
-		balloon_alert(user, LANG("obj.f38773c9", null))
+		balloon_alert(user, LANG("obj.f38773c9884dc747", null))
 	return FALSE
 
 /obj/item/storage/lockbox/dueling

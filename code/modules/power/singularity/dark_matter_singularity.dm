@@ -29,11 +29,11 @@
 /obj/singularity/dark_matter/examine(mob/user)
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, initial_explosion_immunity))
-		. += span_warning(LANG("obj.52056b49", list(src, DisplayTimeText(COOLDOWN_TIMELEFT(src, initial_explosion_immunity)))))
+		. += span_warning(LANG("obj.52056b49331aec82", list(src, DisplayTimeText(COOLDOWN_TIMELEFT(src, initial_explosion_immunity)))))
 	if(consumed_supermatter)
-		. += span_userdanger(LANG("obj.aad79db2", null))
+		. += span_userdanger(LANG("obj.aad79db2c6a2eed4", null))
 	else
-		. += span_warning(LANG("obj.f9560945", null))
+		. += span_warning(LANG("obj.f9560945677625e7", null))
 
 /obj/singularity/dark_matter/ex_act(severity, target)
 	if(!COOLDOWN_FINISHED(src, initial_explosion_immunity))
@@ -44,7 +44,7 @@
 	var/datum/component/singularity/resolved_singularity = singularity_component.resolve()
 	resolved_singularity.chance_to_move_to_target += DARK_MATTER_SUPERMATTER_CHANCE_BONUS
 	name = "Dark Lord Singuloth"
-	desc = LANG("obj.262052f4", null)
+	desc = LANG("obj.262052f467bf7257", null)
 	consumed_supermatter = TRUE
 
 ///For 20 seconds, the singularity has buffed tracking to ensure it actually makes its way to the station, normalizes after 20 seconds

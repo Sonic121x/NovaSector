@@ -38,7 +38,7 @@
 		return .
 
 	if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-		to_chat(owner, span_notice(LANG("datum.ef858651", null)))
+		to_chat(owner, span_notice(LANG("datum.ef858651a28796d3", null)))
 	owner.add_traits(list(TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_FLOORED), STAMINA)
 	return .
 
@@ -67,8 +67,8 @@
 		return NONE
 
 	if(COOLDOWN_FINISHED(src, warn_cd) && !IS_UNCONSCIOUS_OR_CRIT(owner))
-		to_chat(owner, span_notice(LANG("datum.e2cc0c22", null)))
-		owner.visible_message(span_warning(LANG("datum.eb815f68", list(owner))), ignored_mobs = owner)
+		to_chat(owner, span_notice(LANG("datum.e2cc0c2229676358", null)))
+		owner.visible_message(span_warning(LANG("datum.eb815f68e0a00a04", list(owner))), ignored_mobs = owner)
 		COOLDOWN_START(src, warn_cd, 2.5 SECONDS)
 
 	return COMPONENT_IGNORE_CHANGE

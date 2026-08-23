@@ -39,7 +39,7 @@
 	for (var/mob/living/leaner as anything in leaning_mobs)
 		leaner.stop_leaning()
 		if(fall)
-			to_chat(leaner, span_danger(LANG("datum.d7e81dc8", null)))
+			to_chat(leaner, span_danger(LANG("datum.d7e81dc8280a1169", null)))
 			leaner.Paralyze(0.5 SECONDS)
 	leaning_mobs.Cut()
 
@@ -97,8 +97,8 @@
 	add_offsets(LEANING_TRAIT, x_add = new_x, y_add = new_y)
 	add_traits(list(TRAIT_UNDENSE, TRAIT_EXPANDED_FOV), LEANING_TRAIT)
 	visible_message(
-		span_notice(LANG("mob.9e729369", list(src, lean_target))),
-		span_notice(LANG("mob.85647b7e", list(lean_target))),
+		span_notice(LANG("mob.9e7293698b896b32", list(src, lean_target))),
+		span_notice(LANG("mob.85647b7eb9c51ade", list(lean_target))),
 	)
 	RegisterSignals(src, list(
 		COMSIG_MOB_CLIENT_PRE_MOVE,
@@ -117,7 +117,7 @@
 	// Make sure we unregister signal handlers and reset animation
 	stop_leaning()
 	// -1000 aura
-	visible_message(span_notice(LANG("mob.3b8bce5e", list(src, p_their(), p_their()))), span_warning(LANG("mob.37932786", null)))
+	visible_message(span_notice(LANG("mob.3b8bce5e9237fc65", list(src, p_their(), p_their()))), span_warning(LANG("mob.37932786934b27e2", null)))
 	Knockdown(3 SECONDS)
 
 /mob/living/proc/stop_leaning()

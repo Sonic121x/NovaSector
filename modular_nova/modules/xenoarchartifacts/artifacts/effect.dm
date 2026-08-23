@@ -225,48 +225,48 @@
 	. = "<b>"
 	switch(type_name)
 		if(ARTIFACT_EFFECT_ENERGY)
-			. += LANG("datum.8e470fa4", null)
+			. += LANG("datum.8e470fa4c5cf357c", null)
 		if(ARTIFACT_EFFECT_PSIONIC)
-			. += LANG("datum.6ec27538", null)
+			. += LANG("datum.6ec275387462f935", null)
 		if(ARTIFACT_EFFECT_ELECTRO)
-			. += LANG("datum.ab34e1c7", null)
+			. += LANG("datum.ab34e1c75c1e8131", null)
 		if(ARTIFACT_EFFECT_PARTICLE)
-			. += LANG("datum.217b41ac", null)
+			. += LANG("datum.217b41acf6fee033", null)
 		if(ARTIFACT_EFFECT_ORGANIC)
-			. += LANG("datum.94053b41", null)
+			. += LANG("datum.94053b41be412f1e", null)
 		if(ARTIFACT_EFFECT_BLUESPACE)
-			. += LANG("datum.61a27f21", null)
+			. += LANG("datum.61a27f2102d278a5", null)
 		if(ARTIFACT_EFFECT_SYNTH)
-			. += LANG("datum.3bff8118", null)
+			. += LANG("datum.3bff8118a63c36bb", null)
 		else
-			. += LANG("datum.ef7f7400", null)
+			. += LANG("datum.ef7f74007126c068", null)
 
-	. += LANG("datum.9676fec0", null)
+	. += LANG("datum.9676fec07e14bb6f", null)
 
 	switch(release_method)
 		if(ARTIFACT_EFFECT_TOUCH)
-			. += LANG("datum.958720ee", null)
+			. += LANG("datum.958720eed4439ef8", null)
 		if(ARTIFACT_EFFECT_AURA)
-			. += LANG("datum.188b6f62", null)
+			. += LANG("datum.188b6f6253e7639d", null)
 		if(ARTIFACT_EFFECT_PULSE)
-			. += LANG("datum.24c8b4f9", null)
+			. += LANG("datum.24c8b4f92b97072f", null)
 		else
-			. += LANG("datum.1f0a74dc", null)
+			. += LANG("datum.1f0a74dccedd89a3", null)
 
 	. += "</b>"
 
 	switch(trigger)
 		if(TRIGGER_TOUCH, TRIGGER_WATER, TRIGGER_ACID, TRIGGER_VOLATILE, TRIGGER_TOXIN)
-			. += LANG("datum.56412fde", null)
+			. += LANG("datum.56412fdee43581c4", null)
 		if(TRIGGER_FORCE, TRIGGER_ENERGY, TRIGGER_HEAT, TRIGGER_COLD)
-			. += LANG("datum.59d10d6d", null)
+			. += LANG("datum.59d10d6d7fc73ff5", null)
 		if(TRIGGER_PLASMA, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
-			. += LANG("datum.6aba8b24", null)
+			. += LANG("datum.6aba8b24ce47c804", null)
 		else
-			. += LANG("datum.fdd55645", null)
+			. += LANG("datum.fdd55645aebee9f3", null)
 
 	if(istype(src, /datum/artifact_effect/machinery_mess) && prob(50))
-		. += LANG("datum.b8fb5e78", null)
+		. += LANG("datum.b8fb5e7885ea2a36", null)
 		. += " [pick(MACHINERY_MESS_MOCKING)]</font></b>"
 
 /**

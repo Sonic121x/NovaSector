@@ -31,9 +31,9 @@
 	if(charges > 0)
 		new /obj/effect/rend(get_turf(user), spawn_type, spawn_amt, rend_desc, spawn_fast)
 		charges--
-		user.visible_message(span_bolddanger(LANG("obj.33a2326f", list(src, user, activate_descriptor))))
+		user.visible_message(span_bolddanger(LANG("obj.33a2326fb37a5a7d", list(src, user, activate_descriptor))))
 	else
-		to_chat(user, span_danger(LANG("obj.993da849", null)))
+		to_chat(user, span_danger(LANG("obj.993da849429c51c0", null)))
 
 /obj/effect/rend
 	name = "tear in the fabric of reality"
@@ -68,7 +68,7 @@
 	if(!HAS_TRAIT(tool, TRAIT_NULLROD_ITEM))
 		return NONE
 
-	user.visible_message(span_danger(LANG("obj.432b0b21", list(user, src, tool))))
+	user.visible_message(span_danger(LANG("obj.432b0b211f2a55f3", list(user, src, tool))))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -144,7 +144,7 @@
 	var/mob/living/carbon/jedi = user
 	if(jedi.mob_mood.sanity < 15)
 		return //they've already seen it and are about to die, or are just too insane to care
-	to_chat(jedi, span_userdanger(LANG("obj.b973cd4c", null)))
+	to_chat(jedi, span_userdanger(LANG("obj.b973cd4c59a2800b", null)))
 	jedi.mob_mood.sanity = 0
 	for(var/lore in typesof(/datum/brain_trauma/severe))
 		jedi.gain_trauma(lore)
@@ -189,7 +189,7 @@
 	var/mob/holder = get(loc, /mob)
 	if(current_owner && current_owner != holder)
 
-		to_chat(current_owner, span_notice(LANG("obj.d27cbfb7", null)))
+		to_chat(current_owner, span_notice(LANG("obj.d27cbfb79af3bb14", null)))
 
 		current_owner.remove_traits(list(TRAIT_SIXTHSENSE, TRAIT_XRAY_VISION), SCRYING_ORB)
 
@@ -198,12 +198,12 @@
 	if(!current_owner && holder)
 		current_owner = holder
 
-		to_chat(current_owner, span_notice(LANG("obj.b1affb03", null)))
+		to_chat(current_owner, span_notice(LANG("obj.b1affb0303fcdf52", null)))
 
 		current_owner.add_traits(list(TRAIT_SIXTHSENSE, TRAIT_XRAY_VISION), SCRYING_ORB)
 
 /obj/item/scrying/attack_self(mob/user)
-	visible_message(span_danger(LANG("obj.d74be6dd", list(user, src))))
+	visible_message(span_danger(LANG("obj.d74be6dd65dfb237", list(user, src))))
 	user.ghostize(1)
 
 /////////////////////////////////////////Necromantic Stone///////////////////
@@ -238,7 +238,7 @@
 		return
 
 	if(target.stat != DEAD)
-		to_chat(user, span_warning(LANG("obj.a1209c97", null)))
+		to_chat(user, span_warning(LANG("obj.a1209c978bd9f516", null)))
 		return
 
 	for(var/mob/dead/observer/ghost in GLOB.dead_mob_list) //excludes new players
@@ -247,19 +247,19 @@
 			break
 
 	if(!target.mind || !target.client)
-		to_chat(user, span_warning(LANG("obj.2b2fa2ce", null)))
+		to_chat(user, span_warning(LANG("obj.2b2fa2ce437215e6", null)))
 		return
 
 	check_spooky()//clean out/refresh the list
 	if(spooky_scaries.len >= max_thralls && !unlimited)
-		to_chat(user, span_warning(LANG("obj.0d01ee09", list(convert_integer_to_words(max_thralls)))))
+		to_chat(user, span_warning(LANG("obj.0d01ee09f15a5adc", list(convert_integer_to_words(max_thralls)))))
 		return
 	if(applied_species)
 		target.set_species(applied_species, icon_update=0)
 	target.revive(ADMIN_HEAL_ALL)
 	spooky_scaries |= target
-	to_chat(target, span_userdanger(LANG("obj.a9d6bd67", list(user.real_name))))
-	to_chat(target, span_userdanger(LANG("obj.d04d4f96", list(user.p_Theyre(), user.p_them()))))
+	to_chat(target, span_userdanger(LANG("obj.a9d6bd670f6d2650", list(user.real_name))))
+	to_chat(target, span_userdanger(LANG("obj.d04d4f96a8b19789", list(user.p_Theyre(), user.p_them()))))
 	var/datum/antagonist/wizard/antag_datum = user.mind.has_antag_datum(/datum/antagonist/wizard)
 	if(antag_datum)
 		if(!antag_datum.wiz_team)
@@ -271,7 +271,7 @@
 /obj/item/necromantic_stone/examine(mob/user)
 	. = ..()
 	if(!unlimited)
-		. += span_notice(LANG("obj.5b30877c", list(spooky_scaries.len, max_thralls)))
+		. += span_notice(LANG("obj.5b30877c89988b88", list(spooky_scaries.len, max_thralls)))
 
 /obj/item/necromantic_stone/proc/check_spooky()
 	if(unlimited) //no point, the list isn't used.
@@ -329,7 +329,7 @@
 
 /obj/item/warp_whistle/attack_self(mob/user)
 	if(whistler)
-		to_chat(user, span_warning(LANG("obj.a6cb3e18", list(src))))
+		to_chat(user, span_warning(LANG("obj.a6cb3e1864ac8a35", list(src))))
 		return
 
 	whistler = user
@@ -437,7 +437,7 @@
 
 /obj/item/runic_vendor_scepter/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(scepter_is_busy_recharging)
-		user.balloon_alert(user, LANG("obj.8df72942", null))
+		user.balloon_alert(user, LANG("obj.8df72942c63f9092", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!check_allowed_items(interacting_with, not_inside = TRUE))
 		return NONE
@@ -451,30 +451,30 @@
 		vendor_on_turf.runic_explosion()
 		return  ITEM_INTERACT_SUCCESS
 	if(!summon_vendor_charges)
-		user.balloon_alert(user, LANG("obj.cfa89008", null))
+		user.balloon_alert(user, LANG("obj.cfa89008ef0113c3", null))
 		return ITEM_INTERACT_BLOCKING
 	if(get_dist(afterattack_turf,src) > max_summon_range)
-		user.balloon_alert(user, LANG("obj.f5e75781", null))
+		user.balloon_alert(user, LANG("obj.f5e75781e8f1dc46", null))
 		return ITEM_INTERACT_BLOCKING
 	if(get_turf(src) == afterattack_turf)
-		user.balloon_alert(user, LANG("obj.079a7d8b", null))
+		user.balloon_alert(user, LANG("obj.079a7d8b98f17deb", null))
 		return ITEM_INTERACT_BLOCKING
 	if(scepter_is_busy_summoning)
-		user.balloon_alert(user, LANG("obj.59d84c5b", null))
+		user.balloon_alert(user, LANG("obj.59d84c5bdc73e01e", null))
 		return ITEM_INTERACT_BLOCKING
 	if(afterattack_turf.is_blocked_turf(TRUE))
-		user.balloon_alert(user, LANG("obj.62d831a3", null))
+		user.balloon_alert(user, LANG("obj.62d831a3dbaf3612", null))
 		return ITEM_INTERACT_BLOCKING
 	if(summoning_time)
 		scepter_is_busy_summoning = TRUE
-		user.balloon_alert(user, LANG("obj.1e53ebe5", null))
+		user.balloon_alert(user, LANG("obj.1e53ebe5fcb08d8f", null))
 		if(!do_after(user, summoning_time, target = interacting_with))
 			scepter_is_busy_summoning = FALSE
 			return ITEM_INTERACT_BLOCKING
 		scepter_is_busy_summoning = FALSE
 	if(summon_vendor_charges)
 		playsound(src,'sound/items/weapons/resonator_fire.ogg',50,TRUE)
-		user.visible_message(span_warning(LANG("obj.21432950", list(user))))
+		user.visible_message(span_warning(LANG("obj.214329508f7434ec", list(user))))
 		new /obj/machinery/vending/runic_vendor(afterattack_turf)
 		summon_vendor_charges--
 		user.changeNext_move(CLICK_CD_MELEE)
@@ -483,12 +483,12 @@
 
 /obj/item/runic_vendor_scepter/attack_self(mob/user, modifiers)
 	. = ..()
-	user.balloon_alert(user, LANG("obj.2e29b52d", null))
+	user.balloon_alert(user, LANG("obj.2e29b52d8d0de3cc", null))
 	scepter_is_busy_recharging = TRUE
 	if(!do_after(user, 5 SECONDS))
 		scepter_is_busy_recharging = FALSE
 		return
-	user.balloon_alert(user, LANG("obj.2a34860b", null))
+	user.balloon_alert(user, LANG("obj.2a34860b654dd615", null))
 	scepter_is_busy_recharging = FALSE
 	summon_vendor_charges = RUNIC_SCEPTER_MAX_CHARGES
 

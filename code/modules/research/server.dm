@@ -112,7 +112,7 @@
 	if(!stored_research)
 		return
 	tool.set_buffer(stored_research)
-	balloon_alert(user, LANG("obj.84afb909", null))
+	balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
 	return TRUE
 
 /// Master R&D server. As long as this still exists and still holds the HDD for the theft objective, research points generate at normal speed. Destroy it or an antag steals the HDD? Half research speed.
@@ -147,15 +147,15 @@
 
 	switch(deconstruction_state)
 		if(HDD_PANEL_CLOSED)
-			. += LANG("obj.3d193e85", null)
+			. += LANG("obj.3d193e8591c51efb", null)
 		if(HDD_PANEL_OPEN)
-			. += LANG("obj.6fd85e29", null)
+			. += LANG("obj.6fd85e29021562e6", null)
 		if(HDD_PRIED)
-			. += LANG("obj.96d69275", null)
+			. += LANG("obj.96d692752445681a", null)
 		if(HDD_CUT_LOOSE)
-			. += LANG("obj.241a3dea", null)
+			. += LANG("obj.241a3dea9d4c76a7", null)
 		if(HDD_OVERLOADED)
-			. += LANG("obj.60d7daf0", null)
+			. += LANG("obj.60d7daf09b91fbbb", null)
 
 /obj/machinery/rnd/server/master/tool_act(mob/living/user, obj/item/tool, list/modifiers)
 	if(!tool.tool_behaviour)
@@ -164,7 +164,7 @@
 	if(!user.is_antag())
 		if(user.combat_mode)
 			return ITEM_INTERACT_SKIP_TO_ATTACK
-		balloon_alert(user, LANG("obj.1e52c3a6", null))
+		balloon_alert(user, LANG("obj.1e52c3a6512b8af9", null))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -173,29 +173,29 @@
 		return NONE
 	switch(deconstruction_state)
 		if(HDD_PANEL_CLOSED)
-			balloon_alert(user, LANG("obj.a25d70e1", null))
+			balloon_alert(user, LANG("obj.a25d70e1cb98d10b", null))
 		if(HDD_PANEL_OPEN)
-			balloon_alert(user, LANG("obj.7af774c3", null))
+			balloon_alert(user, LANG("obj.7af774c3462b02a0", null))
 		if(HDD_PRIED)
-			balloon_alert(user, LANG("obj.2f71f57c", null))
+			balloon_alert(user, LANG("obj.2f71f57c6cd8c9a7", null))
 		if(HDD_CUT_LOOSE)
-			balloon_alert(user, LANG("obj.92f20bf3", null))
+			balloon_alert(user, LANG("obj.92f20bf37619bc36", null))
 		if(HDD_OVERLOADED)
-			balloon_alert(user, LANG("obj.a226ff1b", null))
+			balloon_alert(user, LANG("obj.a226ff1bd91c1b7d", null))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/rnd/server/master/screwdriver_act(mob/living/user, obj/item/tool)
 	if(deconstruction_state != HDD_PANEL_CLOSED || user.combat_mode)
 		return NONE
 
-	to_chat(user, span_notice(LANG("obj.da387278", list(front_panel_screws, front_panel_screws == 1 ? "it" : "them"))))
+	to_chat(user, span_notice(LANG("obj.da3872784a148ee5", list(front_panel_screws, front_panel_screws == 1 ? "it" : "them"))))
 	while(tool.use_tool(src, user, 7.5 SECONDS, volume=100))
 		front_panel_screws--
 		if(front_panel_screws > 0)
-			to_chat(user, span_notice(LANG("obj.fec45e7e", list(front_panel_screws))))
+			to_chat(user, span_notice(LANG("obj.fec45e7e9d6c9f74", list(front_panel_screws))))
 			continue
 		deconstruction_state = HDD_PANEL_OPEN
-		to_chat(user, span_notice(LANG("obj.78caab63", list(src))))
+		to_chat(user, span_notice(LANG("obj.78caab63843013a3", list(src))))
 		add_overlay("RD-server-hdd-panel-open")
 		break
 	return ITEM_INTERACT_SUCCESS
@@ -204,9 +204,9 @@
 	if(deconstruction_state != HDD_PANEL_OPEN || user.combat_mode)
 		return FALSE
 
-	to_chat(user, span_notice(LANG("obj.bf1d9f3e", list(source_code_hdd))))
+	to_chat(user, span_notice(LANG("obj.bf1d9f3edb317faf", list(source_code_hdd))))
 	if(tool.use_tool(src, user, 15 SECONDS, volume=100))
-		to_chat(user, span_notice(LANG("obj.9142def4", list(source_code_hdd))))
+		to_chat(user, span_notice(LANG("obj.9142def47bac8e68", list(source_code_hdd))))
 		deconstruction_state = HDD_PRIED
 	return TRUE
 
@@ -214,18 +214,18 @@
 	if(deconstruction_state != HDD_PRIED || user.combat_mode)
 		return FALSE
 
-	to_chat(user, span_notice(LANG("obj.6bb43787", list(hdd_wires, source_code_hdd, hdd_wires == 1 ? "it" : "them"))))
+	to_chat(user, span_notice(LANG("obj.6bb43787c77d95fe", list(hdd_wires, source_code_hdd, hdd_wires == 1 ? "it" : "them"))))
 	while(tool.use_tool(src, user, 7.5 SECONDS, volume=100))
 		hdd_wires--
 
 		if(hdd_wires <= 0)
 			deconstruction_state = HDD_CUT_LOOSE
-			to_chat(user, span_notice(LANG("obj.8abb8524", list(source_code_hdd))))
+			to_chat(user, span_notice(LANG("obj.8abb852428634809", list(source_code_hdd))))
 			try_put_in_hand(source_code_hdd, user)
 			source_code_hdd = null
 			stored_research.income_modifier *= 0.5
 			return TRUE
-		to_chat(user, span_notice(LANG("obj.03bcb324", list(hdd_wires))))
+		to_chat(user, span_notice(LANG("obj.03bcb324790b4bd4", list(hdd_wires))))
 	return TRUE
 
 /obj/machinery/rnd/server/master/on_deconstruction(disassembled)

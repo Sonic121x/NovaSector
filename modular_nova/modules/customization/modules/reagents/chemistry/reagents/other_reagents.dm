@@ -46,7 +46,7 @@
 	if(scarred.stat == DEAD)
 		show_message = FALSE
 	if(show_message)
-		to_chat(scarred, span_danger(LANG("datum.2265cb5e", null)))
+		to_chat(scarred, span_danger(LANG("datum.2265cb5e0f17dc12", null)))
 	if(reac_volume >= DERMAGEN_SCAR_FIX_AMOUNT)
 		QDEL_LAZYLIST(scarred.all_scars)
 

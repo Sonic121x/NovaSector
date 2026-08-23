@@ -10,7 +10,7 @@
 	if(!.)
 		return
 	do_drugs(user, 60)
-	to_chat(user, span_hypnophrase(LANG("datum.8bdb8fb2", null)))
+	to_chat(user, span_hypnophrase(LANG("datum.8bdb8fb2ece52278", null)))
 
 /datum/artifact_effect/drugs/do_effect_aura(seconds_per_tick)
 	. = ..()
@@ -21,7 +21,7 @@
 		if(!SPT_PROB(10, seconds_per_tick))
 			continue
 		do_drugs(living_mob, 10 * seconds_per_tick)
-		to_chat(living_mob, span_hypnophrase(LANG("datum.bc20dff0", null)))
+		to_chat(living_mob, span_hypnophrase(LANG("datum.bc20dff0f458e9f0", null)))
 
 /datum/artifact_effect/drugs/do_effect_pulse(seconds_per_tick)
 	. = ..()
@@ -32,13 +32,13 @@
 		if(!SPT_PROB(25, seconds_per_tick))
 			continue
 		do_drugs(living_mob, 20 * seconds_per_tick)
-		to_chat(living_mob, span_hypnophrase(LANG("datum.b6ea6ea7", null)))
+		to_chat(living_mob, span_hypnophrase(LANG("datum.b6ea6ea702c57e03", null)))
 
 /datum/artifact_effect/drugs/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/living_mob in range(range+3, curr_turf))
 		do_drugs(living_mob, 120)
-		to_chat(living_mob, span_hypnophrase(LANG("datum.1a253c39", null)))
+		to_chat(living_mob, span_hypnophrase(LANG("datum.1a253c39b217ced7", null)))
 
 /**
  * Applies drugginess to mob

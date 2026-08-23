@@ -32,8 +32,8 @@
 
 /obj/machinery/atmospherics/components/binary/tank_compressor/examine()
 	. = ..()
-	. += LANG("obj.c54b28c4", list(TANK_COMPRESSOR_PRESSURE_LIMIT))
-	. += LANG("obj.770b1cd8", null)
+	. += LANG("obj.c54b28c46124d6e5", list(TANK_COMPRESSOR_PRESSURE_LIMIT))
+	. += LANG("obj.770b1cd823ce3d2c", null)
 
 /// Stores the record of the gas data for a significant enough tank leak
 /datum/data/compressor_record
@@ -50,7 +50,7 @@
 	if(istype(tool, /obj/item/disk/computer))
 		eject_disk(user)
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, LANG("obj.f84f0f5d", null))
+			balloon_alert(user, LANG("obj.f84f0f5d8dcd2ecb", null))
 			return ITEM_INTERACT_BLOCKING
 		inserted_disk = tool
 		return ITEM_INTERACT_SUCCESS
@@ -60,11 +60,11 @@
 
 	if(inserted_tank)
 		if(!eject_tank(user))
-			balloon_alert(user, LANG("obj.f67ca0ec", null))
+			balloon_alert(user, LANG("obj.f67ca0ec9d4199b1", null))
 			return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
-		balloon_alert(user, LANG("obj.f84f0f5d", null))
+		balloon_alert(user, LANG("obj.f84f0f5d8dcd2ecb", null))
 		return ITEM_INTERACT_BLOCKING
 
 	inserted_tank = tool
@@ -146,7 +146,7 @@
 /// Use this to absorb explosions.
 /obj/machinery/atmospherics/components/binary/tank_compressor/proc/explosion_handle(atom/source, list/arguments)
 	SIGNAL_HANDLER
-	say(LANG("obj.3e837476", null))
+	say(LANG("obj.3e8374767641feb8", null))
 	SSexplosions.shake_the_room(get_turf(src), 1, 8, 0.5, 0.25, FALSE)
 	return COMSIG_CANCEL_EXPLOSION
 
@@ -160,10 +160,10 @@
 	if(leaked_gas_buffer.total_moles() > SIGNIFICANT_AMOUNT_OF_MOLES)
 		record_data()
 	else
-		say(LANG("obj.067e719c", list(SIGNIFICANT_AMOUNT_OF_MOLES)))
+		say(LANG("obj.067e719ccf48c4e7", list(SIGNIFICANT_AMOUNT_OF_MOLES)))
 	var/datum/gas_mixture/removed = leaked_gas_buffer.remove_ratio(1)
 	airs[1].merge(removed)
-	say(LANG("obj.fca10db9", null))
+	say(LANG("obj.fca10db9d9b37eab", null))
 
 /// This proc should be called whenever we want to store our buffer data.
 /obj/machinery/atmospherics/components/binary/tank_compressor/proc/record_data()
@@ -176,7 +176,7 @@
 
 	compressor_record += new_record
 	record_number += 1
-	say(LANG("obj.8869d055", null))
+	say(LANG("obj.8869d055cc694440", null))
 
 /obj/machinery/atmospherics/components/binary/tank_compressor/proc/apply_experiments(datum/data/compressor_record/record)
 	var/list/passed_experiments = list()

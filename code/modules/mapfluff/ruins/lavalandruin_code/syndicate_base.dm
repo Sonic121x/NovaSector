@@ -31,7 +31,7 @@
 
 /obj/machinery/power/supermatter_crystal/shard/syndicate/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/scalpel/supermatter)) //You can already yoink the docs as a free objective win, another would be just gross
-		to_chat(user, span_danger(LANG("obj.432c81aa", null)))
+		to_chat(user, span_danger(LANG("obj.432c81aa7f036873", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	return NONE

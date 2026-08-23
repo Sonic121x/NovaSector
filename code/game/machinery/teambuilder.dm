@@ -28,7 +28,7 @@
 
 /obj/machinery/teambuilder/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.61a99b8e", null))
+	. += span_notice(LANG("obj.61a99b8e57ebbf7a", null))
 
 /obj/machinery/teambuilder/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER

@@ -365,12 +365,12 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 /obj/machinery/exodrone_launcher/examine(user)
 	. = ..()
 	if(fuel_canister)
-		. += span_notice(LANG("obj.c8a82353", list(fuel_canister)))
+		. += span_notice(LANG("obj.c8a82353b41b0f2b", list(fuel_canister)))
 
 /obj/machinery/exodrone_launcher/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/fuel_pellet))
 		if(fuel_canister)
-			to_chat(user, span_warning(LANG("obj.34b52583", list(src))))
+			to_chat(user, span_warning(LANG("obj.34b525837f55765b", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
@@ -392,7 +392,7 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 	if(!fuel_canister)
 		return
 
-	to_chat(user, span_notice(LANG("obj.cbed3266", list(fuel_canister, src))))
+	to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(fuel_canister, src))))
 	fuel_canister.forceMove(drop_location())
 	fuel_canister = null
 	update_icon()

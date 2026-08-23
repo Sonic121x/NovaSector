@@ -237,7 +237,7 @@
 /datum/wound/electrical_damage/proc/get_heat_healing(do_message = prob(heat_heal_message_chance))
 	var/healing_amount = max((victim.bodytemperature - heat_thresh_to_heal), 0) * heat_differential_healing_mult
 	if (do_message && healing_amount)
-		to_chat(victim, span_notice(LANG("datum.789ede95", list(limb.plaintext_zone, name))))
+		to_chat(victim, span_notice(LANG("datum.789ede95e146cc81", list(limb.plaintext_zone, name))))
 
 	return healing_amount
 
@@ -270,7 +270,7 @@
 	if (intensity_mult < 0.2 || (victim.stat == DEAD))
 		return
 
-	. += LANG("datum.8fe6a58c", null)
+	. += LANG("datum.8fe6a58ccf03b909", null)
 
 	var/extra
 	switch (intensity_mult)
@@ -288,12 +288,12 @@
 /datum/wound/electrical_damage/get_scanner_description(mob/user)
 	. = ..()
 
-	. += LANG("datum.a6893bf4", list(get_wound_status_info()))
+	. += LANG("datum.a6893bf4cda6fd35", list(get_wound_status_info()))
 
 /datum/wound/electrical_damage/get_simple_scanner_description(mob/user)
 	. = ..()
 
-	. += LANG("datum.a6893bf4", list(get_wound_status_info()))
+	. += LANG("datum.a6893bf4cda6fd35", list(get_wound_status_info()))
 
 /// Returns a string with our fault intensity and threshold to removal for use in health analyzers.
 /datum/wound/electrical_damage/proc/get_wound_status_info()
@@ -363,23 +363,23 @@
 	var/your_or_other = (user == victim ? "your" : "[victim]'s")
 	var/replacing_or_suturing = (is_suture ? "repairing some" : "replacing")
 	while (suturing_item.tool_start_check())
-		user?.visible_message(span_danger(LANG("datum.4f5c8ea4", list(user, replacing_or_suturing, their_or_other, limb.plaintext_zone, suturing_item))), \
-			span_notice(LANG("datum.d5a0e373", list(replacing_or_suturing, your_or_other, limb.plaintext_zone, suturing_item))))
+		user?.visible_message(span_danger(LANG("datum.4f5c8ea48685f7d7", list(user, replacing_or_suturing, their_or_other, limb.plaintext_zone, suturing_item))), \
+			span_notice(LANG("datum.d5a0e373b00b353f", list(replacing_or_suturing, your_or_other, limb.plaintext_zone, suturing_item))))
 		if (!suturing_item.use_tool(target = victim, user = user, delay = ELECTRICAL_DAMAGE_SUTURE_WIRE_BASE_DELAY * delay_mult, amount = 1, volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 			return
 
 		if (user != victim && user.combat_mode)
-			user?.visible_message(span_danger(LANG("datum.cc9d4da3", list(user, their_or_other, limb.plaintext_zone))), \
-				span_danger(LANG("datum.926fdc30", list(your_or_other, limb.plaintext_zone))), ignored_mobs = victim)
-			to_chat(victim, span_userdanger(LANG("datum.7da79057", list(capitalize(your_or_other), limb.plaintext_zone))))
+			user?.visible_message(span_danger(LANG("datum.cc9d4da32d4f128e", list(user, their_or_other, limb.plaintext_zone))), \
+				span_danger(LANG("datum.926fdc30a6792bfa", list(your_or_other, limb.plaintext_zone))), ignored_mobs = victim)
+			to_chat(victim, span_userdanger(LANG("datum.7da79057bc562007", list(capitalize(your_or_other), limb.plaintext_zone))))
 			adjust_intensity(change * 2)
 		else
 			var/repairs_or_replaces = (is_suture ? "repairs" : "replaces")
 			var/repair_or_replace = (is_suture ? "repair" : "replace")
-			user?.visible_message(span_notice(LANG("datum.7eaaab3f", list(user, repairs_or_replaces, their_or_other, limb.plaintext_zone))), \
-				span_notice(LANG("datum.c133083d", list(repair_or_replace, your_or_other, limb.plaintext_zone))))
+			user?.visible_message(span_notice(LANG("datum.7eaaab3ff0e50bcd", list(user, repairs_or_replaces, their_or_other, limb.plaintext_zone))), \
+				span_notice(LANG("datum.c133083d7409881c", list(repair_or_replace, your_or_other, limb.plaintext_zone))))
 			adjust_intensity(-change)
-			victim?.balloon_alert(user, LANG("datum.acf95ff0", list(get_intensity_mult() * 100)))
+			victim?.balloon_alert(user, LANG("datum.acf95ff02a50bcec", list(get_intensity_mult() * 100)))
 
 		if (fixed())
 			return
@@ -427,21 +427,21 @@
 	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
 	var/your_or_other = (user == victim ? "your" : "[victim]'s")
 	while (wirecutting_tool.tool_start_check())
-		user?.visible_message(span_danger(LANG("datum.58e07bd4", list(user, their_or_other, limb.plaintext_zone))), \
-			span_notice(LANG("datum.e44b0df5", list(your_or_other, limb.plaintext_zone))))
+		user?.visible_message(span_danger(LANG("datum.58e07bd4d247c074", list(user, their_or_other, limb.plaintext_zone))), \
+			span_notice(LANG("datum.e44b0df569e28bc7", list(your_or_other, limb.plaintext_zone))))
 		if (!wirecutting_tool.use_tool(target = victim, user = user, delay = ELECTRICAL_DAMAGE_WIRECUTTER_BASE_DELAY * delay_mult, volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 			return
 
 		if (user != victim && user.combat_mode)
-			user?.visible_message(span_danger(LANG("datum.cc9d4da3", list(user, their_or_other, limb.plaintext_zone))), \
-				span_danger(LANG("datum.926fdc30", list(your_or_other, limb.plaintext_zone))), ignored_mobs = victim)
-			to_chat(victim, span_userdanger(LANG("datum.7da79057", list(capitalize(your_or_other), limb.plaintext_zone))))
+			user?.visible_message(span_danger(LANG("datum.cc9d4da32d4f128e", list(user, their_or_other, limb.plaintext_zone))), \
+				span_danger(LANG("datum.926fdc30a6792bfa", list(your_or_other, limb.plaintext_zone))), ignored_mobs = victim)
+			to_chat(victim, span_userdanger(LANG("datum.7da79057bc562007", list(capitalize(your_or_other), limb.plaintext_zone))))
 			adjust_intensity(change * 2)
 		else
-			user?.visible_message(span_notice(LANG("datum.28dc76b8", list(user, their_or_other, limb.plaintext_zone))), \
-				span_notice(LANG("datum.168ac4fe", list(your_or_other, limb.plaintext_zone))))
+			user?.visible_message(span_notice(LANG("datum.28dc76b8997d2139", list(user, their_or_other, limb.plaintext_zone))), \
+				span_notice(LANG("datum.168ac4fecf5417d0", list(your_or_other, limb.plaintext_zone))))
 			adjust_intensity(-change)
-			victim?.balloon_alert(user, LANG("datum.acf95ff0", list(get_intensity_mult() * 100)))
+			victim?.balloon_alert(user, LANG("datum.acf95ff02a50bcec", list(get_intensity_mult() * 100)))
 
 		if (fixed())
 			return
@@ -449,7 +449,7 @@
 /// If fixed() is true, we remove ourselves and return TRUE. FALSE otherwise.
 /datum/wound/electrical_damage/proc/remove_if_fixed()
 	if (fixed())
-		to_chat(victim, span_green(LANG("datum.27658c73", list(limb.plaintext_zone, name))))
+		to_chat(victim, span_green(LANG("datum.27658c73c027cd75", list(limb.plaintext_zone, name))))
 		remove_wound()
 		return TRUE
 	return FALSE
@@ -488,7 +488,7 @@
 	if (!message)
 		flags |= SHOCK_SUPPRESS_MESSAGE
 		if (tell_victim_if_no_message && target == victim)
-			to_chat(target, span_warning(LANG("datum.9966a1b0", list(limb.plaintext_zone))))
+			to_chat(target, span_warning(LANG("datum.9966a1b0dab79cef", list(limb.plaintext_zone))))
 	if (ignore_immunity)
 		flags |= SHOCK_IGNORE_IMMUNITY
 	if (delay_stun)

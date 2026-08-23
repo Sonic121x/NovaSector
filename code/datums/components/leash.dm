@@ -105,7 +105,7 @@
 		return NONE
 
 	if (ismob(source) && !silent)
-		source.balloon_alert(source, LANG("datum.f5e75781", null))
+		source.balloon_alert(source, LANG("datum.f5e75781e8f1dc46", null))
 
 	return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
@@ -182,7 +182,7 @@
 	if (ismob(movable_parent))
 		SSblackbox.record_feedback("tally", "leash_force_teleport_back", 1, reason)
 		if(!silent)
-			movable_parent.balloon_alert(movable_parent, LANG("datum.463074bf", null))
+			movable_parent.balloon_alert(movable_parent, LANG("datum.463074bf8e2c858e", null))
 
 	SEND_SIGNAL(parent, COMSIG_LEASH_FORCE_TELEPORT)
 

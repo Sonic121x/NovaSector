@@ -84,8 +84,8 @@
 		edible_bodypart.dismember()
 
 	living_target.visible_message(
-		span_warning(LANG("mob.097c1377", list(src, living_target))),
-		span_userdanger(LANG("mob.5e8b5fb9", list(src, edible_bodypart || "body"))),
+		span_warning(LANG("mob.097c1377038132f2", list(src, living_target))),
+		span_userdanger(LANG("mob.5e8b5fb9fccb2e8b", list(src, edible_bodypart || "body"))),
 	)
 
 	return COMPONENT_HOSTILE_NO_ATTACK
@@ -95,7 +95,7 @@
 	if (!COOLDOWN_FINISHED(src, gleam_cooldown))
 		return
 	visible_message(
-		span_danger(LANG("mob.84468ce4", list(src, p_their()))),
+		span_danger(LANG("mob.84468ce4e876bff5", list(src, p_their()))),
 	)
 	COOLDOWN_START(src, gleam_cooldown, gleam_delay)
 
@@ -137,5 +137,5 @@
 			eaten = TRUE
 
 	if(eaten && prob(10))
-		say(LANG("mob.306ecd7c", null)) // bon appetit
+		say(LANG("mob.306ecd7c0d273ffe", null)) // bon appetit
 		playsound(src, 'sound/items/eatfood.ogg', rand(30, 50), TRUE)

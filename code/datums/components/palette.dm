@@ -47,8 +47,8 @@
 /datum/component/palette/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice(LANG("datum.281dcaa5", null))
-	examine_list += span_notice(LANG("datum.91a65b8a", null))
+	examine_list += span_notice(LANG("datum.281dcaa5c4a17dc0", null))
+	examine_list += span_notice(LANG("datum.91a65b8ab4a751c1", null))
 
 /datum/component/palette/proc/on_attack_self_secondary(datum/source, mob/user)
 	SIGNAL_HANDLER

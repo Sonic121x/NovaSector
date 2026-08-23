@@ -1,0 +1,12 @@
+{
+	"_comment": "lang_english_list() 的 locale-neutral 连接格式。separator 用于非末项，default_conjunction 用于未知 and_text；conjunctions 的键是移除逗号并 trim 后的 canonical 英文连接词。顶层放置，格式 token 不进入全局反查。新增 locale 只需增加同级对象。",
+	"zh-Hans": {
+		"separator": "、",
+		"default_conjunction": "、",
+		"conjunctions": {
+			"and": "、",
+			"or": "或",
+			"OR": "或"
+		}
+	}
+}

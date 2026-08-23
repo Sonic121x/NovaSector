@@ -79,7 +79,7 @@
 		if(ghost.essence_excess >= unlock_amount)
 			return NONE
 		if(feedback)
-			to_chat(ghost, span_revenwarning(LANG("datum.2054040e", list(initial(source.name)))))
+			to_chat(ghost, span_revenwarning(LANG("datum.2054040e1793e20e", list(initial(source.name)))))
 		return SPELL_CANCEL_CAST
 
 	if(!ghost.cast_check(cast_amount, deduct_essence = FALSE, silent = !feedback))
@@ -96,11 +96,11 @@
 
 	if(locked)
 		if(ghost.unlock(unlock_amount))
-			to_chat(ghost, span_revennotice(LANG("datum.4ac471c8", list(initial(source.name)))))
+			to_chat(ghost, span_revennotice(LANG("datum.4ac471c865a8756b", list(initial(source.name)))))
 			locked = FALSE
 			update_spell_name()
 		else
-			to_chat(ghost, span_revenwarning(LANG("datum.2054040e", list(initial(source.name)))))
+			to_chat(ghost, span_revenwarning(LANG("datum.2054040e1793e20e", list(initial(source.name)))))
 		return SPELL_CANCEL_CAST
 
 	if(!ghost.cast_check(cast_amount, deduct_essence = TRUE, silent = FALSE))

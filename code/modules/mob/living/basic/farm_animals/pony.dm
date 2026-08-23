@@ -64,7 +64,7 @@
 	. = ..()
 	playsound(src, 'sound/mobs/non-humanoids/pony/snort.ogg', 50)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/pony)
-	visible_message(span_notice(LANG("mob.8285ee71", list(src))))
+	visible_message(span_notice(LANG("mob.8285ee71346310e3", list(src))))
 	new /obj/effect/temp_visual/heart(loc)
 	var/static/list/tamed_emotes = list(
 		BB_EMOTE_HEAR = list("snorts."),
@@ -99,7 +99,7 @@
 	set_greyscale(colors = ponycolors)
 
 /mob/living/basic/pony/proc/whinny_angrily()
-	manual_emote(LANG("mob.50fd58a2", null))
+	manual_emote(LANG("mob.50fd58a276b35528", null))
 
 	playsound(src, pick(list(
 		'sound/mobs/non-humanoids/pony/whinny01.ogg',

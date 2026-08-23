@@ -13,4 +13,4 @@
 
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 		H.reagents.add_reagent(/datum/reagent/medicine/adminordrazine, 40) //100 ticks of absolute invinciblity (barring gibs)
-		to_chat(H, span_notice(LANG("datum.7441bf3d", null)))
+		to_chat(H, span_notice(LANG("datum.7441bf3dad3b2360", null)))

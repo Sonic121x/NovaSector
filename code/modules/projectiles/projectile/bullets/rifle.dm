@@ -217,7 +217,7 @@
 
 /obj/projectile/bullet/rebar/supermatter/proc/dust_feedback(atom/target)
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
-	visible_message(span_danger(LANG("obj.f60decc2", list(target, src, target.p_them()))))
+	visible_message(span_danger(LANG("obj.f60decc2391fde10", list(target, src, target.p_them()))))
 
 /obj/projectile/bullet/paperball
 	desc = "Doink!"

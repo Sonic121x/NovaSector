@@ -36,9 +36,9 @@
 	hit_plant.adjust_tox_loss(rand(3, 6))
 	hit_plant.Paralyze(10 SECONDS)
 	hit_plant.visible_message(
-		span_warning(LANG("obj.9a2daf76", list(hit_plant, hit_plant.p_their()))),
-		span_userdanger(LANG("obj.0e35dfbb", null)),
-		span_hear(LANG("obj.444c8b17", null)),
+		span_warning(LANG("obj.9a2daf767d5a3201", list(hit_plant, hit_plant.p_their()))),
+		span_userdanger(LANG("obj.0e35dfbb73d86deb", null)),
+		span_hear(LANG("obj.444c8b174c9b4569", null)),
 	)
 	if(iscarbon(hit_plant) && hit_plant.has_dna())
 		var/mob/living/carbon/carbon_plant = hit_plant

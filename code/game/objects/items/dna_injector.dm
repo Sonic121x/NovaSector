@@ -61,7 +61,7 @@
 	if(!target.can_mutate())
 		return FALSE
 	if(target.stat == DEAD) //prevents dead people from having their DNA changed
-		to_chat(user, span_notice(LANG("obj.054bc038", list(target, target.p_theyre()))))
+		to_chat(user, span_notice(LANG("obj.054bc03817a32b82", list(target, target.p_theyre()))))
 		return FALSE
 	for(var/removed_mutation in remove_mutations)
 		target.dna.remove_mutation(removed_mutation, GLOB.standard_mutation_sources)
@@ -84,10 +84,10 @@
 
 /obj/item/dnainjector/attack(mob/target, mob/user)
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning(LANG("obj.e8ba50af", null)))
+		to_chat(user, span_warning(LANG("obj.e8ba50af79992c6d", null)))
 		return
 	if(used)
-		to_chat(user, span_warning(LANG("obj.0908413d", null)))
+		to_chat(user, span_warning(LANG("obj.0908413d5a07c2ac", null)))
 		return
 	if(ishuman(target))
 		var/mob/living/carbon/human/humantarget = target
@@ -96,20 +96,20 @@
 	log_combat(user, target, "attempted to inject", src)
 
 	if(target != user)
-		target.visible_message(span_danger(LANG("obj.acdf6580", list(user, target, src))), \
-			span_userdanger(LANG("obj.8938b767", list(user, src))))
+		target.visible_message(span_danger(LANG("obj.acdf65809760e840", list(user, target, src))), \
+			span_userdanger(LANG("obj.8938b76708e5f455", list(user, src))))
 		if(!do_after(user, 3 SECONDS, target) || used)
 			return
-		target.visible_message(span_danger(LANG("obj.0fc297a4", list(user, target, src))), \
-						span_userdanger(LANG("obj.72963ac3", list(user, src))))
+		target.visible_message(span_danger(LANG("obj.0fc297a4fb2ee7fa", list(user, target, src))), \
+						span_userdanger(LANG("obj.72963ac3c3afca26", list(user, src))))
 
 	else
-		to_chat(user, span_notice(LANG("obj.56f3e92c", list(src))))
+		to_chat(user, span_notice(LANG("obj.56f3e92c1b1a4c8b", list(src))))
 
 	log_combat(user, target, "injected", src)
 
 	if(!inject(target, user)) //Now we actually do the heavy lifting.
-		to_chat(user, span_notice(LANG("obj.9aff5ae3", list(target))))
+		to_chat(user, span_notice(LANG("obj.9aff5ae31c886498", list(target))))
 		return
 
 	used = TRUE

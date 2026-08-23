@@ -28,7 +28,7 @@
 		return
 
 	if(isobserver(movable_atom))
-		visible_message(span_warning(LANG("mob.f091d1d0", list(src))))
+		visible_message(span_warning(LANG("mob.f091d1d0de638cc2", list(src))))
 		movable_atom.forceMove(src)
 		RegisterSignal(movable_atom, COMSIG_MOVABLE_MOVED, PROC_REF(ghost_moved))
 
@@ -57,6 +57,6 @@
 ///Handles the ghosts moving out from the mule
 /mob/living/basic/bot/mulebot/paranormal/proc/ghost_moved()
 	SIGNAL_HANDLER
-	visible_message(span_notice(LANG("mob.312774c5", null)))
+	visible_message(span_notice(LANG("mob.312774c5fbde10c6", null)))
 	UnregisterSignal(load, COMSIG_MOVABLE_MOVED)
 	unload()

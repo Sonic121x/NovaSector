@@ -77,7 +77,7 @@
 	. = ..()
 	if (!. || !phasing)
 		return
-	balloon_alert(user, LANG("obj.54100eb7", null))
+	balloon_alert(user, LANG("obj.54100eb7d99a11b8", null))
 	return FALSE
 
 /datum/action/vehicle/sealed/mecha/mech_switch_damtype
@@ -94,13 +94,13 @@
 	switch(chassis.damtype)
 		if(TOX)
 			new_damtype = BRUTE
-			chassis.balloon_alert(owner, LANG("datum.35e2aec5", null))
+			chassis.balloon_alert(owner, LANG("datum.35e2aec508af7bf8", null))
 		if(BRUTE)
 			new_damtype = BURN
-			chassis.balloon_alert(owner, LANG("datum.b16d1bd1", null))
+			chassis.balloon_alert(owner, LANG("datum.b16d1bd1b8c0469d", null))
 		if(BURN)
 			new_damtype = TOX
-			chassis.balloon_alert(owner,LANG("datum.c8de675d", null))
+			chassis.balloon_alert(owner,LANG("datum.c8de675d5e0b431e", null))
 	chassis.damtype = new_damtype
 	button_icon_state = "mech_damtype_[new_damtype]"
 	playsound(chassis, 'sound/vehicles/mecha/mechmove01.ogg', 50, TRUE)
@@ -119,5 +119,5 @@
 	var/obj/vehicle/sealed/mecha/phazon/phazon = chassis
 	phazon.phasing = !phazon.phasing
 	button_icon_state = "mech_phasing_[phazon.phasing ? "on" : "off"]"
-	phazon.balloon_alert(owner, LANG("datum.bef273b1", list(phazon.phasing ? "enabled" : "disabled")))
+	phazon.balloon_alert(owner, LANG("datum.bef273b1ddbde9da", list(phazon.phasing ? "enabled" : "disabled")))
 	build_all_button_icons()

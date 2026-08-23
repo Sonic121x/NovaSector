@@ -118,19 +118,19 @@
 /obj/item/gun/energy/e_gun/dragnet/proc/link_beacon(mob/living/user, obj/item/dragnet_beacon/our_beacon)
 	if(linked_beacon)
 		if(our_beacon == linked_beacon)
-			balloon_alert(user, LANG("obj.042ff745", null))
+			balloon_alert(user, LANG("obj.042ff745d1a9b441", null))
 			return
 		else
 			UnregisterSignal(linked_beacon, COMSIG_QDELETING) //You're getting overridden dude.
 
 	linked_beacon = our_beacon
-	balloon_alert(user, LANG("obj.09cb1c6d", null))
+	balloon_alert(user, LANG("obj.09cb1c6d804173ea", null))
 	RegisterSignal(our_beacon, COMSIG_QDELETING, PROC_REF(handle_beacon_disable))
 
 ///Handles clearing the linked_beacon reference in the event that it is deleted.
 /obj/item/gun/energy/e_gun/dragnet/proc/handle_beacon_disable(datum/source)
 	SIGNAL_HANDLER
-	visible_message(span_warning(LANG("obj.d72be90c", list(src))))
+	visible_message(span_warning(LANG("obj.d72be90ce854a1f9", list(src))))
 	linked_beacon = null
 
 /obj/item/gun/energy/e_gun/turret
@@ -185,12 +185,12 @@
 			if(0 to 200)
 				fail_tick += (2*(fail_chance))
 				M.adjust_fire_loss(3)
-				to_chat(M, span_userdanger(LANG("obj.c79c28b6", list(name))))
+				to_chat(M, span_userdanger(LANG("obj.c79c28b6a4f08a45", list(name))))
 			if(201 to INFINITY)
 				SSobj.processing.Remove(src)
 				M.adjust_fire_loss(10)
 				reactor_overloaded = TRUE
-				to_chat(M, span_userdanger(LANG("obj.a9d1d97f", list(name))))
+				to_chat(M, span_userdanger(LANG("obj.a9d1d97f78ef6efd", list(name))))
 
 /obj/item/gun/energy/e_gun/nuclear/emp_act(severity)
 	. = ..()

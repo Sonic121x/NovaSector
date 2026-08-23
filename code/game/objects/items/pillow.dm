@@ -77,34 +77,34 @@
 	if(victim.is_mouth_covered() || !victim.get_bodypart(BODY_ZONE_HEAD))
 		return
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_notice(LANG("obj.45ea45fd", list(victim))))
+		to_chat(user, span_notice(LANG("obj.45ea45fda37f7b60", list(victim))))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(can_smother(victim, user))
-		user.visible_message(LANG("obj.eba55494", list(user, victim)), span_notice(LANG("obj.bb5b659b", list(victim))), vision_distance = COMBAT_MESSAGE_RANGE)
+		user.visible_message(LANG("obj.eba55494b2352ff3", list(user, victim)), span_notice(LANG("obj.bb5b659ba5732979", list(victim))), vision_distance = COMBAT_MESSAGE_RANGE)
 		INVOKE_ASYNC(src, PROC_REF(smothering), user, victim)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/pillow/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!bricked && istype(tool, /obj/item/stack/sheet/mineral/sandstone))
 		var/obj/item/stack/sheet/mineral/sandstone/brick = tool
-		balloon_alert(user, LANG("obj.120da198", null))
+		balloon_alert(user, LANG("obj.120da1985d3c5c2b", null))
 		if(!do_after(user, 2 SECONDS, src))
 			return ITEM_INTERACT_BLOCKING
 		if(!brick.use(1))
-			balloon_alert(user, LANG("obj.ee0a5208", null))
+			balloon_alert(user, LANG("obj.ee0a5208878342e2", null))
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, LANG("obj.9c9d0693", null))
+		balloon_alert(user, LANG("obj.9c9d0693c2ad5f20", null))
 		become_bricked()
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/clothing/neck/pillow_tag))
 		if(pillow_trophy)
-			balloon_alert(user, LANG("obj.550f3414", null))
+			balloon_alert(user, LANG("obj.550f3414a1e1fdbd", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		pillow_trophy = tool
-		balloon_alert(user, LANG("obj.37337285", null))
+		balloon_alert(user, LANG("obj.3733728520faaa1b", null))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -113,24 +113,24 @@
 /obj/item/pillow/examine(mob/user)
 	. = ..()
 	if(bricked)
-		. += span_info(LANG("obj.84981abc", list(p_They(), p_s())))
+		. += span_info(LANG("obj.84981abc5269000d", list(p_They(), p_s())))
 	if(pillow_trophy)
-		. += span_notice(LANG("obj.e8241411", null))
+		. += span_notice(LANG("obj.e82414113cc9a030", null))
 
 /obj/item/pillow/click_alt(mob/user)
 	if(!user.can_hold_items(src))
 		return CLICK_ACTION_BLOCKING
 	if(!pillow_trophy)
-		balloon_alert(user, LANG("obj.0b2a43af", null))
+		balloon_alert(user, LANG("obj.0b2a43af4ed5fc60", null))
 		return CLICK_ACTION_BLOCKING
-	balloon_alert(user, LANG("obj.eb107e22", null))
+	balloon_alert(user, LANG("obj.eb107e2299394195", null))
 	if(!do_after(user, 2 SECONDS, src))
 		return CLICK_ACTION_BLOCKING
 	if(last_fighter)
 		pillow_trophy.desc = "A pillow tag taken from [last_fighter] after a gruesome pillow fight."
 	user.put_in_hands(pillow_trophy)
 	pillow_trophy = null
-	balloon_alert(user, LANG("obj.4000825a", null))
+	balloon_alert(user, LANG("obj.4000825a0520d0ef", null))
 	playsound(user,'sound/items/poster/poster_ripped.ogg', 50)
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
@@ -138,11 +138,11 @@
 /obj/item/pillow/update_appearance(updates)
 	. = ..()
 	if(!pillow_trophy)
-		desc = LANG("obj.6d8c9b43", list(tag_desc))
+		desc = LANG("obj.6d8c9b432529dc8b", list(tag_desc))
 		icon_state = "pillow_[variation]"
 		inhand_icon_state = "pillow_no_t"
 	else
-		desc = LANG("obj.ee635fb5", null)
+		desc = LANG("obj.ee635fb5af10b0ad", null)
 		icon_state = "pillow_[variation]_t"
 		inhand_icon_state = "pillow_t"
 
@@ -163,7 +163,7 @@
 		if(!do_after(user, 1 SECONDS, victim))
 			break
 		victim.losebreath += 1
-	victim.visible_message(LANG("obj.76407c7e", list(victim)), span_notice(LANG("obj.9384be67", null)), vision_distance = COMBAT_MESSAGE_RANGE)
+	victim.visible_message(LANG("obj.76407c7e0fb6a1a5", list(victim)), span_notice(LANG("obj.9384be6708c56431", null)), vision_distance = COMBAT_MESSAGE_RANGE)
 
 /obj/item/pillow/random
 

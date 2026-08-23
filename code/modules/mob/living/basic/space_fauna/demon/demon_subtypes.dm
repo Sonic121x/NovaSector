@@ -71,11 +71,11 @@
 		return
 
 	if(!Adjacent(attack_target))
-		to_chat(src, span_warning(LANG("mob.82030ef1", list(attack_target))))
+		to_chat(src, span_warning(LANG("mob.82030ef1811d668b", list(attack_target))))
 		return
 
 	if(!COOLDOWN_FINISHED(src, slam_cooldown))
-		to_chat(src, span_warning(LANG("mob.b46fc824", null)))
+		to_chat(src, span_warning(LANG("mob.b46fc824b207182a", null)))
 		return
 
 	face_atom(attack_target)
@@ -84,11 +84,11 @@
 	victim.take_bodypart_damage(brute = 20, wound_bonus = wound_bonus) // don't worry, there's more punishment when they hit something
 
 	visible_message(
-		span_danger(LANG("mob.7218ea34", list(src, victim))),
-		span_danger(LANG("mob.18afa105", list(victim))),
+		span_danger(LANG("mob.7218ea34370427b8", list(src, victim))),
+		span_danger(LANG("mob.18afa105e1a5ddfb", list(victim))),
 		ignored_mobs = victim,
 	)
-	to_chat(victim, span_userdanger(LANG("mob.a6fc435b", list(src))))
+	to_chat(victim, span_userdanger(LANG("mob.a6fc435b958652aa", list(src))))
 
 	var/turf/yeet_target = get_edge_target_turf(victim, dir)
 	victim.throw_at(yeet_target, 10, 5, src)

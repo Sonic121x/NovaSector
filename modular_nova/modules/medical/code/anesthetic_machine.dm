@@ -18,11 +18,11 @@
 /obj/machinery/anesthetic_machine/examine(mob/user)
 	. = ..()
 
-	. += LANG("obj.4e8b0863", null)
+	. += LANG("obj.4e8b08638526c039", null)
 	if(mask_out)
-		. += LANG("obj.e5d52495", null)
+		. += LANG("obj.e5d524953dc0a2dc", null)
 	if(attached_tank)
-		. += LANG("obj.4d2d032b", list(attached_tank))
+		. += LANG("obj.4d2d032ba8e5aad0", list(attached_tank))
 
 /obj/machinery/anesthetic_machine/Initialize(mapload)
 	. = ..()
@@ -34,16 +34,16 @@
 		return ..()
 
 	if(mask_out)
-		to_chat(user, span_warning(LANG("obj.c7bf1a64", list(src))))
+		to_chat(user, span_warning(LANG("obj.c7bf1a64c46d9372", list(src))))
 		return TRUE
 
 	if(attached_tank)
-		to_chat(user, span_warning(LANG("obj.74a68849", list(attached_tank, src))))
+		to_chat(user, span_warning(LANG("obj.74a6884918048271", list(attached_tank, src))))
 		return TRUE
 
 	new /obj/item/anesthetic_machine_kit(get_turf(src))
 	tool.play_tool_sound(user)
-	to_chat(user, span_notice(LANG("obj.ba57ad95", list(src))))
+	to_chat(user, span_notice(LANG("obj.ba57ad95e4a7b32b", list(src))))
 	qdel(src)
 	return TRUE
 
@@ -64,7 +64,7 @@
 	. = ..()
 	if(!retract_mask())
 		return FALSE
-	visible_message(span_notice(LANG("obj.9d9d530a", list(user, attached_mask, src))))
+	visible_message(span_notice(LANG("obj.9d9d530abfbd462e", list(user, attached_mask, src))))
 
 /obj/machinery/anesthetic_machine/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/tank))
@@ -74,7 +74,7 @@
 		attached_tank.forceMove(loc)
 
 	tool.forceMove(src) // Put new tank in, set it as attached tank
-	visible_message(span_notice(LANG("obj.05c6f8ca", list(user, tool, src))))
+	visible_message(span_notice(LANG("obj.05c6f8cadd77b915", list(user, tool, src))))
 	attached_tank = tool
 	update_icon()
 	return ITEM_INTERACT_SUCCESS
@@ -84,7 +84,7 @@
 		return CLICK_ACTION_BLOCKING
 
 	attached_tank.forceMove(loc)
-	to_chat(user, span_notice(LANG("obj.c8aaf6b8", list(attached_tank))))
+	to_chat(user, span_notice(LANG("obj.c8aaf6b84bdf8296", list(attached_tank))))
 	attached_tank = null
 	update_icon()
 	if(mask_out)
@@ -126,14 +126,14 @@
 		attached_mask = new /obj/item/clothing/mask/breath/anesthetic(src)
 		update_icon()
 
-	user.visible_message(span_warning(LANG("obj.89d6fd63", list(user, attached_mask, over))), span_notice(LANG("obj.43d09dd9", list(attached_mask, over))))
+	user.visible_message(span_warning(LANG("obj.89d6fd633a1a8895", list(user, attached_mask, over))), span_notice(LANG("obj.43d09dd98b661433", list(attached_mask, over))))
 	if(!do_after(user, 5 SECONDS, over))
 		return
 	if(!over.equip_to_appropriate_slot(attached_mask))
-		to_chat(user, span_warning(LANG("obj.0630635e", list(attached_mask, over))))
+		to_chat(user, span_warning(LANG("obj.0630635ec1ed0e09", list(attached_mask, over))))
 		return
 
-	user.visible_message(span_warning(LANG("obj.f1a6aa58", list(user, attached_mask, over))), span_notice(LANG("obj.1fcfc481", list(attached_mask, over))))
+	user.visible_message(span_warning(LANG("obj.f1a6aa584af9705e", list(user, attached_mask, over))), span_notice(LANG("obj.1fcfc481a850e8d3", list(attached_mask, over))))
 
 	// Open the tank externally
 	over.open_internals(attached_tank, is_external = TRUE)
@@ -147,7 +147,7 @@
 
 	var/mob/living/carbon/carbon_target = attached_mask.loc
 	if(get_dist(src, get_turf(attached_mask)) > 1) // If too far away, detach
-		to_chat(carbon_target, span_warning(LANG("obj.791d0917", list(attached_mask))))
+		to_chat(carbon_target, span_warning(LANG("obj.791d09175c4d44f1", list(attached_mask))))
 		retract_mask()
 		return PROCESS_KILL
 
@@ -208,7 +208,7 @@
 		return
 
 	if(loc != our_machine) //If it isn't in the machine, then it retracts when dropped
-		to_chat(user, span_notice(LANG("obj.0d40a496", list(src, our_machine))))
+		to_chat(user, span_notice(LANG("obj.0d40a4965ddaaadf", list(src, our_machine))))
 		our_machine.retract_mask()
 
 /obj/item/clothing/mask/breath/anesthetic/adjust_visor(mob/living/carbon/user)

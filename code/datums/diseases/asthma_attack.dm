@@ -151,7 +151,7 @@
 
 	if (stage < 4 || !SPT_PROB(10, seconds_per_tick))
 		return
-	to_chat(affected_mob, span_warning(LANG("datum.7578fe97", null)))
+	to_chat(affected_mob, span_warning(LANG("datum.7578fe97c1dbc0fb", null)))
 	affected_mob.losebreath++
 
 
@@ -190,7 +190,7 @@
 
 	if (stage < 4 || !SPT_PROB(15, seconds_per_tick))
 		return
-	to_chat(affected_mob, span_warning(LANG("datum.7578fe97", null)))
+	to_chat(affected_mob, span_warning(LANG("datum.7578fe97c1dbc0fb", null)))
 	affected_mob.losebreath++
 
 /datum/disease/asthma_attack/critical
@@ -228,7 +228,7 @@
 
 	var/wheeze_chance
 	if (!warned_user && stage >= 5)
-		to_chat(affected_mob, span_userdanger(LANG("datum.743cf751", null)))
+		to_chat(affected_mob, span_userdanger(LANG("datum.743cf751ad79ecc6", null)))
 		warned_user = TRUE
 
 	switch (stage)
@@ -247,7 +247,7 @@
 		if (6)
 			if (!max_stage_reached)
 				max_stage_reached = TRUE
-				to_chat(affected_mob, span_userdanger(LANG("datum.371978e8", null)))
+				to_chat(affected_mob, span_userdanger(LANG("datum.371978e867a5a21b", null)))
 			wheeze_chance = 0
 			if (SPT_PROB(10, seconds_per_tick))
 				affected_mob.emote("gag")
@@ -259,5 +259,5 @@
 
 	if (stage < 4 || !SPT_PROB(15, seconds_per_tick))
 		return
-	to_chat(affected_mob, span_warning(LANG("datum.7578fe97", null)))
+	to_chat(affected_mob, span_warning(LANG("datum.7578fe97c1dbc0fb", null)))
 	affected_mob.losebreath++

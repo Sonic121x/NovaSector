@@ -218,7 +218,7 @@
 		ADD_TRAIT(parent, TRAIT_AQUARIUM_PANEL_OPEN, AQUARIUM_TRAIT)
 		source.reagents.flags |= TRANSPARENT|REFILLABLE
 
-	source.balloon_alert(user, LANG("datum.a741c12e", list(closing ? "closed" : "open")))
+	source.balloon_alert(user, LANG("datum.a741c12ee0655743", list(closing ? "closed" : "open")))
 	source.update_appearance()
 	return CLICK_ACTION_SUCCESS
 
@@ -230,14 +230,14 @@
 		if(source.reagents && HAS_TRAIT(source, TRAIT_AQUARIUM_PANEL_OPEN))
 			return //don't block, we'll be transferring reagents to the feed storage.
 		if(!item.reagents.total_volume)
-			source.balloon_alert(user, LANG("datum.02d482cc", list(item)))
+			source.balloon_alert(user, LANG("datum.02d482cc1aef0cef", list(item)))
 			return ITEM_INTERACT_BLOCKING
 		var/list/fishes = get_fishes()
 		if(!length(fishes))
-			source.balloon_alert(user, LANG("datum.3404f9eb", null))
+			source.balloon_alert(user, LANG("datum.3404f9ebcfebd47d", null))
 			return ITEM_INTERACT_BLOCKING
 		feed_fishes(item, fishes)
-		source.balloon_alert(user, LANG("datum.e297cdf6", null))
+		source.balloon_alert(user, LANG("datum.e297cdf66e7013df", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!HAS_TRAIT(item, TRAIT_AQUARIUM_CONTENT) || (!isitem(parent) && user.combat_mode))
@@ -247,12 +247,12 @@
 	if(!can_insert(source, item, user))
 		return ITEM_INTERACT_BLOCKING
 	if(broken)
-		source.balloon_alert(user, LANG("datum.37a2dde4", null))
+		source.balloon_alert(user, LANG("datum.37a2dde4445ca1d5", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(item, source))
-		user.balloon_alert(user, LANG("datum.edd6b8ce", null))
+		user.balloon_alert(user, LANG("datum.edd6b8cef2ef1cd1", null))
 		return ITEM_INTERACT_BLOCKING
-	source.balloon_alert(user, LANG("datum.b706dd54", null))
+	source.balloon_alert(user, LANG("datum.b706dd54b29f04ca", null))
 	source.update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -287,25 +287,25 @@
 /datum/component/aquarium/proc/on_plunger_act(atom/movable/source, obj/item/plunger/plunger, mob/living/user, reinforced)
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(source, TRAIT_AQUARIUM_PANEL_OPEN))
-		source.balloon_alert(user, LANG("datum.a59b2c79", null))
+		source.balloon_alert(user, LANG("datum.a59b2c79dd1c6362", null))
 		return
 	INVOKE_ASYNC(src, PROC_REF(do_plunging), source, user)
 	return COMPONENT_NO_AFTERATTACK
 
 /datum/component/aquarium/proc/do_plunging(atom/movable/source, mob/living/user)
-	user.balloon_alert_to_viewers(LANG("datum.137d3098", null))
+	user.balloon_alert_to_viewers(LANG("datum.137d309854f31bcb", null))
 	if(do_after(user, 3 SECONDS, target = source))
-		user.balloon_alert_to_viewers(LANG("datum.670c9c2c", null))
+		user.balloon_alert_to_viewers(LANG("datum.670c9c2c9c8b5fe6", null))
 		source.reagents.expose(get_turf(source), TOUCH) //splash on the floor
 		source.reagents.clear_reagents()
 
 /datum/component/aquarium/proc/on_examine(atom/movable/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice(LANG("datum.e95b15de", list(EXAMINE_HINT("[fluid_temp] K"), EXAMINE_HINT(fluid_type))))
+	examine_list += span_notice(LANG("datum.e95b15dead56f973", list(EXAMINE_HINT("[fluid_temp] K"), EXAMINE_HINT(fluid_type))))
 	var/panel_open = HAS_TRAIT(source, TRAIT_AQUARIUM_PANEL_OPEN)
-	examine_list += span_notice(LANG("datum.ec61de44", list(EXAMINE_HINT("Alt-click"), panel_open ? "close" : "open")))
+	examine_list += span_notice(LANG("datum.ec61de44814f864f", list(EXAMINE_HINT("Alt-click"), panel_open ? "close" : "open")))
 	if(panel_open && source.reagents.total_volume)
-		examine_list += span_notice(LANG("datum.2aae1d90", null))
+		examine_list += span_notice(LANG("datum.2aae1d900d849595", null))
 
 ///Check if an item can be inserted into the aquarium
 /datum/component/aquarium/proc/can_insert(atom/movable/source, obj/item/item, mob/living/user)
@@ -320,7 +320,7 @@
 			if(content == item)
 				continue
 			if(content.type == item.type)
-				source.balloon_alert(user, LANG("datum.f6d9e3eb", null))
+				source.balloon_alert(user, LANG("datum.f6d9e3eb2824c937", null))
 				return FALSE
 	return TRUE
 
@@ -671,7 +671,7 @@
 		if("remove_item")
 			var/atom/movable/item = locate(params["item_reference"]) in movable.contents
 			item?.forceMove(movable.drop_location())
-			to_chat(user, span_notice(LANG("datum.0b17bc84", list(item, movable))))
+			to_chat(user, span_notice(LANG("datum.0b17bc8467640555", list(item, movable))))
 		if("rename_fish")
 			var/new_name = sanitize_name(params["chosen_name"])
 			var/atom/movable/fish = locate(params["fish_reference"]) in movable.contents
@@ -700,7 +700,7 @@
 /datum/component/aquarium/proc/admire(atom/movable/source, mob/living/user)
 	if(!isliving(user))
 		return
-	source.balloon_alert(user, LANG("datum.41885c21", null))
+	source.balloon_alert(user, LANG("datum.41885c21f0cb01e8", null))
 	if(!do_after(user, 5 SECONDS, target = source))
 		return
 	var/alive_fish = 0

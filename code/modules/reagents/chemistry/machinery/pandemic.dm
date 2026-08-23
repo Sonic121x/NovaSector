@@ -54,11 +54,11 @@
 	if(beaker)
 		var/is_close
 		if(Adjacent(user)) //don't reveal exactly what's inside unless they're close enough to see the UI anyway.
-			. += LANG("obj.eaca0139", list(beaker))
+			. += LANG("obj.eaca0139f8d2f814", list(beaker))
 			is_close = TRUE
 		else
-			. += LANG("obj.41c3a8a2", null)
-		. += span_info(LANG("obj.afc489c0", list(is_close ? beaker : "the beaker")))
+			. += LANG("obj.41c3a8a23f7ee8db", null)
+		. += span_info(LANG("obj.afc489c028f1c666", list(is_close ? beaker : "the beaker")))
 
 /obj/machinery/computer/pandemic/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -86,7 +86,7 @@
 	//Advanced science! Precision instruments (eg droppers and syringes) are precise enough to modify the loaded sample!
 	if(istype(tool, /obj/item/reagent_containers/dropper) || istype(tool, /obj/item/reagent_containers/syringe))
 		if(!beaker)
-			balloon_alert(user, LANG("obj.b5e2be5f", null))
+			balloon_alert(user, LANG("obj.b5e2be5f1bf154ce", null))
 			return ITEM_INTERACT_BLOCKING
 		if(istype(tool, /obj/item/reagent_containers/syringe) && LAZYACCESS(modifiers, RIGHT_CLICK))
 			tool.interact_with_atom_secondary(beaker, user)
@@ -100,10 +100,10 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return ITEM_INTERACT_BLOCKING
 	if(beaker)
-		balloon_alert(user, LANG("obj.56d43536", null))
+		balloon_alert(user, LANG("obj.56d43536318890a4", null))
 		try_put_in_hand(beaker, usr)
 	else
-		balloon_alert(user, LANG("obj.78ea91ff", null))
+		balloon_alert(user, LANG("obj.78ea91ff57d4d1f4", null))
 	user.transferItemToLoc(tool, src)
 	beaker = tool
 	update_appearance()
@@ -199,7 +199,7 @@
 	var/datum/disease/advance/adv_disease = SSdisease.archive_diseases[id]
 
 	if(!istype(adv_disease) || !adv_disease.mutable)
-		to_chat(usr, span_warning(LANG("obj.afdb4276", null)))
+		to_chat(usr, span_warning(LANG("obj.afdb42768c1f52f5", null)))
 		return FALSE
 	use_energy(active_power_usage)
 	adv_disease = adv_disease.Copy()

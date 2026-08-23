@@ -37,7 +37,7 @@
 /obj/machinery/oven/primitive/examine(mob/user)
 	. = ..()
 
-	. += span_notice(LANG("obj.01fa2e71", null))
+	. += span_notice(LANG("obj.01fa2e713cdec9b7", null))
 
 /obj/machinery/oven/primitive/add_tray_to_oven(obj/item/plate/oven_tray, mob/baker)
 	used_tray = oven_tray
@@ -59,7 +59,7 @@
 		particles.position = list(0, 10, 0)
 
 /obj/machinery/oven/primitive/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers(LANG("obj.b5ba9871", null))
+	user.balloon_alert_to_viewers(LANG("obj.b5ba987161d1a2e3", null))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 	deconstruct(TRUE)

@@ -138,10 +138,10 @@
 
 /obj/machinery/pdapainter/welder_act(mob/living/user, obj/item/tool)
 	if(!(machine_stat & BROKEN) && (atom_integrity >= max_integrity))
-		balloon_alert(user, LANG("obj.202cf30a", null))
+		balloon_alert(user, LANG("obj.202cf30a3f4d3cff", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!tool.tool_start_check(user, amount = 1))
-		balloon_alert(user, LANG("obj.161985b7", null))
+		balloon_alert(user, LANG("obj.161985b727572120", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.use_tool(src, user, 40, volume = 50))
@@ -149,7 +149,7 @@
 
 	set_machine_stat(machine_stat & ~BROKEN)
 	atom_integrity = max_integrity
-	balloon_alert(user, LANG("obj.65ced1e8", null))
+	balloon_alert(user, LANG("obj.65ced1e8b5b56733", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/pdapainter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -186,7 +186,7 @@
 
 	if(stored_pda)
 		eject_pda(user)
-		balloon_alert(user, LANG("obj.c58bb764", null))
+		balloon_alert(user, LANG("obj.c58bb76422062b99", null))
 
 	stored_pda = new_pda
 	new_pda.add_fingerprint(user)
@@ -219,9 +219,9 @@
  */
 /obj/machinery/pdapainter/proc/insert_id_card(obj/item/card/id/new_id_card, mob/living/user)
 	if(!new_id_card.trim_changeable)
-		balloon_alert(user, LANG("obj.c10edb67", null))
+		balloon_alert(user, LANG("obj.c10edb676d93174f", null))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
-		to_chat(user, span_warning(LANG("obj.afdaa584", null)))
+		to_chat(user, span_warning(LANG("obj.afdaa5841a02777e", null)))
 		return FALSE
 
 	if(user && !user.transferItemToLoc(new_id_card, src, silent = FALSE))
@@ -231,7 +231,7 @@
 
 	if(stored_id_card)
 		eject_id_card(user)
-		balloon_alert(user, LANG("obj.c58bb764", null))
+		balloon_alert(user, LANG("obj.c58bb76422062b99", null))
 
 	stored_id_card = new_id_card
 	new_id_card.add_fingerprint(user)
@@ -361,7 +361,7 @@
 				if(SSid_access.apply_trim_to_card(stored_id_card, path, copy_access = FALSE))
 					return TRUE
 
-				to_chat(usr, span_warning(LANG("obj.51b56078", list(stored_id_card))))
+				to_chat(usr, span_warning(LANG("obj.51b5607835ab8d03", list(stored_id_card))))
 
 			return TRUE
 		if("reset_card")

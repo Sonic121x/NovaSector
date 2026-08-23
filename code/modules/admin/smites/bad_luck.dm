@@ -10,8 +10,8 @@
 	var/incidents
 
 /datum/smite/bad_luck/configure(client/user)
-	silent = tgui_alert(user, LANG("datum.c5311705", null), LANG("datum.d2553aea", null), list("Notify", "Silent")) == "Silent"
-	incidents = tgui_input_number(user, LANG("datum.d285fd8d", null), LANG("datum.fe7116d6", null), default = 0, round_value = 1)
+	silent = tgui_alert(user, LANG("datum.c5311705fc5c309a", null), LANG("datum.d2553aea1224a89e", null), list("Notify", "Silent")) == "Silent"
+	incidents = tgui_input_number(user, LANG("datum.d285fd8da4e6d55d", null), LANG("datum.fe7116d6cab25e4b", null), default = 0, round_value = 1)
 	if(incidents == 0)
 		incidents = INFINITY
 
@@ -28,9 +28,9 @@
 	)
 	if(silent)
 		return
-	to_chat(target, span_warning(LANG("datum.b1f835cf", null)))
+	to_chat(target, span_warning(LANG("datum.b1f835cf5c2e503d", null)))
 	if(incidents == INFINITY)
-		to_chat(target, span_warning(LANG("datum.d475bfb9", null)))
+		to_chat(target, span_warning(LANG("datum.d475bfb9505f55ac", null)))
 
 /datum/smite/bad_luck/proc/on_death(datum/component/omen/omen)
 	if(omen.incidents_left == INFINITY)

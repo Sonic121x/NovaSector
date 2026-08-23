@@ -52,8 +52,8 @@
 	var/mob/living/living_target = target
 	if (prob(paralyze_chance))
 		living_target.Paralyze(paralyze_duration)
-		living_target.visible_message(span_danger(LANG("mob.0366de36", list(src, target))), \
-			span_userdanger(LANG("mob.3d2fe270", list(src))))
+		living_target.visible_message(span_danger(LANG("mob.0366de36bb029e70", list(src, target))), \
+			span_userdanger(LANG("mob.3d2fe2704bb6a233", list(src))))
 
 /datum/ai_controller/basic_controller/faithless
 	behavior_tree_json = "code/modules/mob/living/basic/space_fauna/faithless.bt.json"

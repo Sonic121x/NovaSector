@@ -16,7 +16,7 @@
 
 /obj/item/gun/magic/wand/repulse/zap_self(mob/living/user, suicide = FALSE)
 	. = ..()
-	user.visible_message(span_warning(LANG("obj.4b037228", list(user, user.p_themselves()))))
+	user.visible_message(span_warning(LANG("obj.4b037228ffaa6ec3", list(user, user.p_themselves()))))
 	user.adjust_brute_loss(30)
 	user.Paralyze(10 SECONDS)
 

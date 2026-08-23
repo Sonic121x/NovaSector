@@ -3,7 +3,7 @@
 	// warning for unanesthetized surgery
 	var/mob/living/patient = get_patient(operating_on)
 	if(!(HAS_TRAIT(patient, TRAIT_ANALGESIA) || IS_UNCONSCIOUS(patient)))
-		patient.balloon_alert(surgeon, LANG("datum.197444b2", null))
+		patient.balloon_alert(surgeon, LANG("datum.197444b25dbb0e0a", null))
 
 /// Makes the organ operable again
 /datum/surgery_operation/organ/proc/make_operable(obj/item/organ/organ)

@@ -37,7 +37,7 @@
 /datum/embedding/tether_projectile/anti_teleport/proc/on_teleport(mob/living/teleportee, atom/destination, channel)
 	SIGNAL_HANDLER
 
-	to_chat(teleportee, span_holoparasite(LANG("datum.e8d0980b", null)))
+	to_chat(teleportee, span_holoparasite(LANG("datum.e8d0980b7739bada", null)))
 	penalize(teleportee)
 
 	return TRUE
@@ -46,7 +46,7 @@
 /datum/embedding/tether_projectile/anti_teleport/proc/on_jaunt(mob/living/jaunter)
 	SIGNAL_HANDLER
 
-	to_chat(jaunter, span_holoparasite(LANG("datum.d9efb15c", null)))
+	to_chat(jaunter, span_holoparasite(LANG("datum.d9efb15c6936f64c", null)))
 	penalize(jaunter)
 
 	return COMPONENT_BLOCK_JAUNT

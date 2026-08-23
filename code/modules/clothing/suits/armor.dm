@@ -828,7 +828,7 @@
 	)
 
 /obj/item/clothing/suit/armor/durability/holymelon/proc/drain_antimagic(mob/user)
-	to_chat(user, span_warning(LANG("obj.86aa8c51", list(src))))
+	to_chat(user, span_warning(LANG("obj.86aa8c514eaacd1c", list(src))))
 
 /obj/item/clothing/suit/armor/durability/holymelon/proc/decay()
 	take_damage(8, BRUTE, 0, 0)

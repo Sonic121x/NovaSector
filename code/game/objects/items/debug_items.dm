@@ -30,7 +30,7 @@
 	. = ..()
 	if(!user.client)
 		return
-	var/choice = input(LANG("obj.2dc4c8fd", null), LANG("obj.1df368e5", null), null) in sortTim(GLOB.species_list, GLOBAL_PROC_REF(cmp_text_asc))
+	var/choice = input(LANG("obj.2dc4c8fd22952ece", null), LANG("obj.1df368e50e666881", null), null) in sortTim(GLOB.species_list, GLOBAL_PROC_REF(cmp_text_asc))
 	selected_species = GLOB.species_list[choice]
 
 /obj/item/debug/omnitool
@@ -47,7 +47,7 @@
 
 /obj/item/debug/omnitool/examine()
 	. = ..()
-	. += LANG("obj.ddeb8de7", list(tool_behaviour))
+	. += LANG("obj.ddeb8de7cd6b787f", list(tool_behaviour))
 
 /obj/item/debug/omnitool/proc/check_menu(mob/user)
 	if(!istype(user))
@@ -74,24 +74,24 @@
 /obj/item/debug/omnitool/item_spawner/attack_self(mob/user)
 	if(!user || !user.client)
 		return
-	var/path = text2path(tgui_input_text(user, LANG("obj.9bed81f6", null), LANG("obj.14b0d4d3", null)))
+	var/path = text2path(tgui_input_text(user, LANG("obj.9bed81f614de1205", null), LANG("obj.14b0d4d3b3867a8e", null)))
 	if(!path)
 		return
-	var/choice = tgui_alert(user, LANG("obj.8fd665a9", null),, list("Yes", "No"))
+	var/choice = tgui_alert(user, LANG("obj.8fd665a9a54f0b07", null),, list("Yes", "No"))
 	if(!choice)
 		return
 	if(!user.client.holder)
 		if(!isliving(user))
 			return
 		var/mob/living/living_user = user
-		to_chat(user, span_warning(LANG("obj.241e9faf", list(src))))
+		to_chat(user, span_warning(LANG("obj.241e9faf50f7b51a", list(src))))
 		playsound(src, 'sound/effects/dimensional_rend.ogg')
 		sleep(4 SECONDS)
-		var/confirmation = tgui_alert(user, LANG("obj.436da715", null), LANG("obj.be528354", null), list("Yes", "No"))
+		var/confirmation = tgui_alert(user, LANG("obj.436da71547b842b2", null), LANG("obj.be528354052e2699", null), list("Yes", "No"))
 		if(!confirmation || confirmation == ("No"))
 			return
 		if(!user.client.holder) //safety if the admin readmined to save their ass lol.
-			to_chat(user, span_reallybig(LANG("obj.df7c67c6", null)))
+			to_chat(user, span_reallybig(LANG("obj.df7c67c6264b9c17", null)))
 			playsound(src, 'sound/mobs/non-humanoids/cyborg/borg_deathsound.ogg')
 			sleep(3 SECONDS)
 			living_user.investigate_log("has been gibbed by [src].", INVESTIGATE_DEATHS)

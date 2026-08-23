@@ -36,14 +36,14 @@
 
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice(LANG("obj.85309f7b", list(buckler, src))),
-			span_notice(LANG("obj.d0af88a6", list(src))),
+			span_notice(LANG("obj.85309f7b11835af2", list(buckler, src))),
+			span_notice(LANG("obj.d0af88a6c6fb6c41", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_buckled.visible_message(
-			span_notice(LANG("obj.0dca1482", list(buckler, being_buckled, src))),
-			span_notice(LANG("obj.83fa8dc3", list(buckler, src))),
+			span_notice(LANG("obj.0dca148273752b54", list(buckler, being_buckled, src))),
+			span_notice(LANG("obj.83fa8dc371173faa", list(buckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -53,22 +53,22 @@
 
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice(LANG("obj.fadd2c44", list(unbuckler, src))),
-			span_notice(LANG("obj.bc2d43fc", list(src))),
+			span_notice(LANG("obj.fadd2c44e98cb7e3", list(unbuckler, src))),
+			span_notice(LANG("obj.bc2d43fcde50b337", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_notice(LANG("obj.ba63b455", list(unbuckler, being_unbuckled, src))),
-			span_notice(LANG("obj.8516925d", list(unbuckler, src))),
+			span_notice(LANG("obj.ba63b455ea139cbf", list(unbuckler, being_unbuckled, src))),
+			span_notice(LANG("obj.8516925dfafeef8f", list(unbuckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
 /obj/structure/chair/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.c0bf1b5b", null))
+	. += span_notice(LANG("obj.c0bf1b5b495d6f3f", null))
 	if(!has_buckled_mobs() && can_buckle)
-		. += span_notice(LANG("obj.aac14093", list(src, src)))
+		. += span_notice(LANG("obj.aac14093535a3523", list(src, src)))
 
 ///This proc adds the rotate component, overwrite this if you for some reason want to change some specific args.
 /obj/structure/chair/proc/MakeRotate()
@@ -122,10 +122,10 @@
 		AddComponent(/datum/component/electrified_buckle, (SHOCK_REQUIREMENT_ITEM | SHOCK_REQUIREMENT_LIVE_CABLE | SHOCK_REQUIREMENT_SIGNAL_RECEIVED_TOGGLE), input_shock_kit, overlays_from_child_procs, FALSE)
 
 	if(HAS_TRAIT(src, TRAIT_ELECTRIFIED_BUCKLE))
-		to_chat(user, span_notice(LANG("obj.7c0e1607", list(src))))
+		to_chat(user, span_notice(LANG("obj.7c0e160721a49e99", list(src))))
 	else
 		user.put_in_active_hand(input_shock_kit)
-		to_chat(user, span_notice(LANG("obj.20d7ee7a", list(src))))
+		to_chat(user, span_notice(LANG("obj.20d7ee7a490421bb", list(src))))
 
 
 /obj/structure/chair/wrench_act_secondary(mob/living/user, obj/item/weapon)
@@ -159,7 +159,7 @@
 	handle_layer()
 	//NOVA EDIT ADDITION
 	if(HAS_TRAIT(M, TRAIT_OVERSIZED))
-		visible_message(span_warning(LANG("obj.5ea20cbf", list(src, M))))
+		visible_message(span_warning(LANG("obj.5ea20cbf4ea35db5", list(src, M))))
 		playsound(src, 'modular_nova/modules/oversized/sound/chair_break.ogg', 70, TRUE)
 		deconstruct()
 	//NOVA EDIT END
@@ -257,28 +257,28 @@
 /obj/structure/chair/comfy/shuttle/buckle_feedback(mob/living/being_buckled, mob/buckler)
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice(LANG("obj.fe9b25bf", list(buckler, src, buckler.p_them()))),
-			span_notice(LANG("obj.416f98d3", list(src))),
+			span_notice(LANG("obj.fe9b25bf269476e5", list(buckler, src, buckler.p_them()))),
+			span_notice(LANG("obj.416f98d3674ca154", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_buckled.visible_message(
-			span_notice(LANG("obj.2f43e760", list(buckler, being_buckled, src, buckler.p_them()))),
-			span_notice(LANG("obj.9b9d2a62", list(buckler, src))),
+			span_notice(LANG("obj.2f43e7604a472d6c", list(buckler, being_buckled, src, buckler.p_them()))),
+			span_notice(LANG("obj.9b9d2a62a9f24ad2", list(buckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
 /obj/structure/chair/comfy/shuttle/unbuckle_feedback(mob/living/being_unbuckled, mob/unbuckler)
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice(LANG("obj.ab9ab4fa", list(unbuckler, src))),
-			span_notice(LANG("obj.f7d914d1", list(src))),
+			span_notice(LANG("obj.ab9ab4fa7e2c7161", list(unbuckler, src))),
+			span_notice(LANG("obj.f7d914d1f27db7b1", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_notice(LANG("obj.58d70c01", list(unbuckler, being_unbuckled, src))),
-			span_notice(LANG("obj.03cabe7b", list(unbuckler, src))),
+			span_notice(LANG("obj.58d70c0121576ec8", list(unbuckler, being_unbuckled, src))),
+			span_notice(LANG("obj.03cabe7b84035496", list(unbuckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -357,11 +357,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool, 0)
 	if(!item_chair || has_buckled_mobs())
 		return
 	if(flags_1 & HOLOGRAM_1)
-		to_chat(user, span_notice(LANG("obj.a1bd76a2", list(src))))
+		to_chat(user, span_notice(LANG("obj.a1bd76a240b82271", list(src))))
 		qdel(src)
 		return
 
-	user.visible_message(span_notice(LANG("obj.5f24b041", list(user, src.name))), span_notice(LANG("obj.760c23e6", list(src.name))))
+	user.visible_message(span_notice(LANG("obj.5f24b04123643408", list(user, src.name))), span_notice(LANG("obj.760c23e6bc0fd03b", list(src.name))))
 	var/obj/item/chair_item = new item_chair(loc)
 	chair_item.set_custom_materials(custom_materials)
 	TransferComponents(chair_item)
@@ -426,7 +426,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	AddElement(/datum/element/cuffable_item)
 
 /obj/item/chair/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.f23ad8a4", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.f23ad8a42dd4fa93", list(user, user.p_them(), src, user.p_theyre()))))
 	playsound(src,hitsound,50,TRUE)
 	return BRUTELOSS
 
@@ -441,25 +441,25 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 /obj/item/chair/proc/plant(mob/user)
 	var/turf/turf = user.loc
 	if(!istype(turf) || isgroundlessturf(turf))
-		to_chat(user, span_warning(LANG("obj.7f9ba459", null)))
+		to_chat(user, span_warning(LANG("obj.7f9ba4599cbc3ab6", null)))
 		return
 	if(!user.dropItemToGround(src))
-		to_chat(user, span_warning(LANG("obj.1dbf8014", list(src))))
+		to_chat(user, span_warning(LANG("obj.1dbf8014c030d016", list(src))))
 		return
 	if(flags_1 & HOLOGRAM_1)
-		to_chat(user, span_notice(LANG("obj.549809dc", list(src))))
+		to_chat(user, span_notice(LANG("obj.549809dc1b9755b7", list(src))))
 		qdel(src)
 		return
 
 	for(var/obj/object in turf)
 		if(istype(object, /obj/structure/chair))
-			to_chat(user, span_warning(LANG("obj.6c8ecb3d", null)))
+			to_chat(user, span_warning(LANG("obj.6c8ecb3dc4c00a46", null)))
 			return
 		if(object.density && !(object.flags_1 & ON_BORDER_1))
-			to_chat(user, span_warning(LANG("obj.9a588ecb", null)))
+			to_chat(user, span_warning(LANG("obj.9a588ecb932acc9a", null)))
 			return
 
-	user.visible_message(span_notice(LANG("obj.89422f52", list(user, src.name))), span_notice(LANG("obj.484f791c", list(name))))
+	user.visible_message(span_notice(LANG("obj.89422f526a918a94", list(user, src.name))), span_notice(LANG("obj.484f791ced4813e1", list(name))))
 	var/obj/structure/chair/chair = new origin_type(turf)
 	chair.set_custom_materials(custom_materials)
 	TransferComponents(chair)
@@ -482,7 +482,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 
 /obj/item/chair/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == UNARMED_ATTACK && prob(hit_reaction_chance) || attack_type == LEAP_ATTACK && prob(hit_reaction_chance))
-		owner.visible_message(span_danger(LANG("obj.cfbf8289", list(owner, attack_text, src))))
+		owner.visible_message(span_danger(LANG("obj.cfbf8289de242338", list(owner, attack_text, src))))
 		if(take_chair_damage(damage, damage_type, MELEE)) // Our chair takes our incoming damage for us, which can result in it smashing.
 			smash(owner)
 		return TRUE
@@ -503,7 +503,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	if(!take_chair_damage(damage_to_inflict, damtype, MELEE)) // If we would do enough damage to bring our chair's integrity to 0, we instead go past the check to smash it against our target
 		return
 
-	user.visible_message(span_danger(LANG("obj.28d873bb", list(user, src, give_this_fucker_the_chair))))
+	user.visible_message(span_danger(LANG("obj.28d873bb73835003", list(user, src, give_this_fucker_the_chair))))
 	if(!HAS_TRAIT(give_this_fucker_the_chair, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED))
 		if(vulnerable_hit || give_this_fucker_the_chair.get_timed_status_effect_duration(/datum/status_effect/staggered))
 			give_this_fucker_the_chair.Knockdown(2 SECONDS, daze_amount = daze_amount)
@@ -609,12 +609,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 /obj/structure/chair/bronze/click_alt(mob/user)
 	turns = 0
 	if(!(datum_flags & DF_ISPROCESSING))
-		user.visible_message(span_notice(LANG("obj.9991bacd", list(user, src))), \
-		span_notice(LANG("obj.fb5f96d5", null)))
+		user.visible_message(span_notice(LANG("obj.9991bacd5711ba10", list(user, src))), \
+		span_notice(LANG("obj.fb5f96d5721304c1", null)))
 		START_PROCESSING(SSfastprocess, src)
 	else
-		user.visible_message(span_notice(LANG("obj.deb66cc6", list(user, src))), \
-		span_notice(LANG("obj.35c4805a", list(src))))
+		user.visible_message(span_notice(LANG("obj.deb66cc6d24c077b", list(user, src))), \
+		span_notice(LANG("obj.35c4805a41436129", list(src))))
 		STOP_PROCESSING(SSfastprocess, src)
 	return CLICK_ACTION_SUCCESS
 
@@ -663,9 +663,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 
 /obj/structure/chair/plastic/proc/snap_check(mob/living/carbon/Mob)
 	if (Mob.nutrition >= NUTRITION_LEVEL_FAT)
-		to_chat(Mob, span_warning(LANG("obj.c3601e04", null)))
+		to_chat(Mob, span_warning(LANG("obj.c3601e0488791965", null)))
 		if(do_after(Mob, 6 SECONDS, show_progress = FALSE))
-			Mob.visible_message(span_notice(LANG("obj.8fdc71aa", list(Mob))))
+			Mob.visible_message(span_notice(LANG("obj.8fdc71aa2b5e812d", list(Mob))))
 			new /obj/effect/decal/cleanable/plastic(loc)
 			qdel(src)
 
@@ -739,8 +739,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 /obj/structure/handrail/proc/stop_buckle(mob/living/source, ...)
 	SIGNAL_HANDLER
 	source.visible_message(
-		span_warning(LANG("obj.830a2f0e", list(source, source.p_their(), src))),
-		span_warning(LANG("obj.e8ba9f01", list(src))),
+		span_warning(LANG("obj.830a2f0e174ff58c", list(source, source.p_their(), src))),
+		span_warning(LANG("obj.e8ba9f0179390cb4", list(src))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		vision_distance = COMBAT_MESSAGE_RANGE,
 	)
@@ -748,8 +748,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 
 /obj/structure/handrail/buckle_feedback(mob/living/being_buckled, mob/buckler)
 	buckler.visible_message(
-		span_notice(LANG("obj.f6b05cb8", list(buckler, src, buckler.p_them()))),
-		span_notice(LANG("obj.90e89038", list(src))),
+		span_notice(LANG("obj.f6b05cb8bf19f5d1", list(buckler, src, buckler.p_them()))),
+		span_notice(LANG("obj.90e890382b14f816", list(src))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		vision_distance = COMBAT_MESSAGE_RANGE,
 	)
@@ -757,15 +757,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 /obj/structure/handrail/unbuckle_feedback(mob/living/being_unbuckled, mob/unbuckler)
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice(LANG("obj.d977c187", list(unbuckler, src))),
-			span_notice(LANG("obj.0a116260", list(src))),
+			span_notice(LANG("obj.d977c18740df8050", list(unbuckler, src))),
+			span_notice(LANG("obj.0a116260f9d9582f", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = COMBAT_MESSAGE_RANGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_warning(LANG("obj.46538d36", list(unbuckler, being_unbuckled, src))),
-			span_warning(LANG("obj.fa1d8857", list(unbuckler, src))),
+			span_warning(LANG("obj.46538d368c2ee2cd", list(unbuckler, being_unbuckled, src))),
+			span_warning(LANG("obj.fa1d8857a270e6e6", list(unbuckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = COMBAT_MESSAGE_RANGE,
 		)

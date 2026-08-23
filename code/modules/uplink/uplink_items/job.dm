@@ -296,7 +296,7 @@
 	var/obj/vehicle/sealed/car/clowncar/car = ..()
 	car.enforce_clown_role = FALSE
 	var/obj/item/key = new car.key_type(user.loc)
-	car.visible_message(span_notice(LANG("datum.b774e223", list(key, car))))
+	car.visible_message(span_notice(LANG("datum.b774e223d20011a1", list(key, car))))
 	return car
 
 /datum/uplink_item/role_restricted/his_grace

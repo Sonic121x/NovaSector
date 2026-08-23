@@ -15,7 +15,7 @@
 /obj/machinery/computer/shuttle/custom_shuttle/proc/on_loc_added_to_shuttle(turf/source, obj/docking_port/mobile/custom/port)
 	SIGNAL_HANDLER
 	if(!istype(port))
-		say(LANG("obj.70714a10", null))
+		say(LANG("obj.70714a10b5f99655", null))
 	else
 		if(connect_to_shuttle(TRUE, port))
 			RemoveElement(/datum/element/connect_loc, connections)
@@ -24,7 +24,7 @@
 	var/obj/docking_port/mobile/custom/custom_port = port
 	if(istype(custom_port))
 		if(custom_port.control_console?.resolve())
-			say(LANG("obj.92116f97", null))
+			say(LANG("obj.92116f97fde232ac", null))
 			return FALSE
 	. = ..()
 	if(!.)
@@ -57,7 +57,7 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/custom/proc/on_loc_added_to_shuttle(turf/source, obj/docking_port/mobile/custom/port)
 	SIGNAL_HANDLER
 	if(!istype(port))
-		say(LANG("obj.70714a10", null))
+		say(LANG("obj.70714a10b5f99655", null))
 	else
 		if(connect_to_shuttle(TRUE, port))
 			RemoveElement(/datum/element/connect_loc, connections)
@@ -78,7 +78,7 @@
 	var/obj/docking_port/mobile/custom/custom_port = port
 	if(istype(custom_port))
 		if(custom_port.navigation_console?.resolve())
-			say(LANG("obj.629cee0c", null))
+			say(LANG("obj.629cee0c9ca8b107", null))
 			return FALSE
 	. = ..()
 	if(!.)
@@ -149,7 +149,7 @@
 		return	//Only way this would happen is if someone else delinks the console while in use somehow
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	if(M?.mode != SHUTTLE_IDLE)
-		to_chat(usr, LANG("obj.8f355a7a", null))
+		to_chat(usr, LANG("obj.8f355a7a1c8b7227", null))
 		return
 	..()
 
@@ -166,7 +166,7 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/custom/attack_hand(mob/user)
 	if(!shuttleId)
-		to_chat(user, LANG("obj.27ed08df", null))
+		to_chat(user, LANG("obj.27ed08dfd26b0d13", null))
 		return
 	return ..()
 

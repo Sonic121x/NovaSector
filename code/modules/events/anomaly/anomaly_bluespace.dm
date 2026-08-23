@@ -17,4 +17,4 @@
 /datum/round_event/anomaly/anomaly_bluespace/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce(LANG("datum.698e3958", list(ANOMALY_ANNOUNCE_MEDIUM_TEXT, impact_area.name)), "Anomaly Alert", ANNOUNCER_MASSIVEBSPACEANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: 	priority_announce("Bluespace instability detected on [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce(LANG("datum.698e3958714d10df", list(ANOMALY_ANNOUNCE_MEDIUM_TEXT, impact_area.name)), "Anomaly Alert", ANNOUNCER_MASSIVEBSPACEANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: 	priority_announce("Bluespace instability detected on [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [impact_area.name].", "Anomaly Alert")

@@ -77,16 +77,16 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice(LANG("obj.e69769dd", null))
-	. += span_notice(LANG("obj.9583a516", list(max_part_tier)))
-	. += span_notice(LANG("obj.3df70193", list(materials.max_amount)))
-	. += span_notice(LANG("obj.83037b36", list(creation_efficiency * 100)))
+	. += span_notice(LANG("obj.e69769dde0bfcc79", null))
+	. += span_notice(LANG("obj.9583a516606b940b", list(max_part_tier)))
+	. += span_notice(LANG("obj.3df7019346567bf3", list(materials.max_amount)))
+	. += span_notice(LANG("obj.83037b3636b8eac1", list(creation_efficiency * 100)))
 
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "close" : "open")))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "close" : "open")))
 	if(panel_open)
-		. += span_notice(LANG("obj.fa5fc796", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.fa5fc7965e12e9d0", list(EXAMINE_HINT("pried"))))
 	if(!QDELETED(inserted_board))
-		. += span_notice(LANG("obj.160d08bc", list(EXAMINE_HINT("Ctrl Click"))))
+		. += span_notice(LANG("obj.160d08bc7c459346", list(EXAMINE_HINT("Ctrl Click"))))
 		if(length(inserted_board.flatpack_components))
 			var/list/obj/item/to_insert
 			for(var/obj/item/component as anything in inserted_board.flatpack_components)
@@ -96,7 +96,7 @@
 					continue
 				LAZYADDASSOC(to_insert, get_flatpack_component_name(component), "[inserted]/[required]")
 			if(length(to_insert))
-				. += span_warning(LANG("obj.1b0e461f", null))
+				. += span_warning(LANG("obj.1b0e461f9850d854", null))
 				for(var/component_name in to_insert)
 					. += span_warning("[component_name]: [to_insert[component_name]].")
 
@@ -225,7 +225,7 @@
 
 	if(istype(attacking_item, /obj/item/circuitboard/machine))
 		if(busy)
-			balloon_alert(user, LANG("obj.8df72942", null))
+			balloon_alert(user, LANG("obj.8df72942c63f9092", null))
 			return ITEM_INTERACT_BLOCKING
 		if (!user.transferItemToLoc(attacking_item, src))
 			return ITEM_INTERACT_BLOCKING
@@ -250,11 +250,11 @@
 		return ITEM_INTERACT_SUCCESS
 	else if(!QDELETED(inserted_board) && (attacking_item.type in inserted_board.flatpack_components))
 		if(get_flatpack_component_count(attacking_item.type) == inserted_board.req_components[attacking_item.type])
-			balloon_alert(user, LANG("obj.e2976023", null))
+			balloon_alert(user, LANG("obj.e29760231041a641", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(attacking_item, src))
-			to_chat(user, span_warning(LANG("obj.dccaca76", list(attacking_item))))
+			to_chat(user, span_warning(LANG("obj.dccaca761333c7d0", list(attacking_item))))
 			return ITEM_INTERACT_BLOCKING
 
 		LAZYADD(flatpacked_components, attacking_item)
@@ -336,14 +336,14 @@
 			if(QDELETED(inserted_board))
 				return
 			if(print_tier > max_part_tier)
-				say(LANG("obj.77f3272f", null))
+				say(LANG("obj.77f3272f2b56eef5", null))
 				return
 			for(var/obj/item/component as anything in inserted_board.flatpack_components)
 				if(inserted_board.req_components[component] != get_flatpack_component_count(component))
-					say(LANG("obj.14e00f6d", list(get_flatpack_component_name(component))))
+					say(LANG("obj.14e00f6dc8e3391d", list(get_flatpack_component_name(component))))
 					return
 			if(!materials.has_materials(needed_mats, creation_efficiency))
-				say(LANG("obj.f818a085", null))
+				say(LANG("obj.f818a0852c2f3b7b", null))
 				return
 			playsound(src, 'sound/items/tools/rped.ogg', 50, TRUE)
 
@@ -371,7 +371,7 @@
 
 			//we use initial(active_power_usage) because higher tier parts will have higher active usage but we have no benefit from it
 			if(!directly_use_energy(ROUND_UP((amount / MAX_STACK_SIZE) * 0.4 * initial(active_power_usage))))
-				say(LANG("obj.c98ac214", null))
+				say(LANG("obj.c98ac2147c20335f", null))
 				return
 
 			materials.retrieve_stack(amount, material)

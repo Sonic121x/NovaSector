@@ -109,8 +109,8 @@
 /// Small little taunt when we epically troll someone
 /mob/living/basic/boss/proc/celebrate_kill(mob/living/poor_sap)
 	visible_message(
-		span_danger(LANG("mob.31196d77", list(src, poor_sap))),
-		span_userdanger(LANG("mob.fbff77e5", list(poor_sap))),
+		span_danger(LANG("mob.31196d7793b833f0", list(src, poor_sap))),
+		span_userdanger(LANG("mob.fbff77e5bf364e78", list(poor_sap))),
 	)
 
 /// Handles adding all relevant achievements when applicable (probably when we are defeated)

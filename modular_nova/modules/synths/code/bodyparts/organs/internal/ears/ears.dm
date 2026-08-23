@@ -22,11 +22,11 @@
 	switch(severity)
 		if(EMP_HEAVY)
 			owner.sound_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, SYNTH_DEAF_STACKS)
-			to_chat(owner, span_warning(LANG("obj.5d616e37", null)))
+			to_chat(owner, span_warning(LANG("obj.5d616e3705f5552b", null)))
 
 		if(EMP_LIGHT)
 			owner.sound_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, SYNTH_DEAF_STACKS)
-			to_chat(owner, span_warning(LANG("obj.2849d453", null)))
+			to_chat(owner, span_warning(LANG("obj.2849d4531b7fdc28", null)))
 
 /datum/design/synth_ears
 	name = "Auditory Sensors"

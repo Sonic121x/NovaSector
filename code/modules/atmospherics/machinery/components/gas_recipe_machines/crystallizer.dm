@@ -90,10 +90,10 @@
 	if(!is_operational)
 		return CLICK_ACTION_BLOCKING
 	if(panel_open)
-		balloon_alert(user, LANG("obj.4337ae3e", null))
+		balloon_alert(user, LANG("obj.4337ae3ee9e4930a", null))
 		return CLICK_ACTION_BLOCKING
 	set_on(!on)
-	balloon_alert(user, LANG("obj.8fcfde3c", list(on ? "on" : "off")))
+	balloon_alert(user, LANG("obj.8fcfde3cd8c5cffd", list(on ? "on" : "off")))
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 	return CLICK_ACTION_SUCCESS
 

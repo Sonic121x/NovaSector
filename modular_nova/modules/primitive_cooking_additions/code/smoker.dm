@@ -41,7 +41,7 @@
 
 ///Helper proc to add to the fuel variable when fuel is added to the machine.
 /obj/machinery/smartfridge/drying/rack/smoker/proc/add_fuel(obj/item/fuel, mob/user)
-	user.visible_message(LANG("obj.6c2ccb8d", list(user)))
+	user.visible_message(LANG("obj.6c2ccb8d6eb221ee", list(user)))
 
 	if(!do_after(user, 2 SECONDS, target = src))
 		return FALSE
@@ -55,7 +55,7 @@
 	else if(istype(fuel, /obj/item/grown/log))
 		fuel_time_left += 20 SECONDS
 		qdel(fuel)
-	user.visible_message(LANG("obj.6a7c729e", list(user)))
+	user.visible_message(LANG("obj.6a7c729e3d730e39", list(user)))
 	return TRUE
 
 /obj/machinery/smartfridge/drying/rack/smoker/toggle_drying(forceoff, mob/user)
@@ -67,7 +67,7 @@
 
 	if(fuel_time_left <= 0)
 		if(user)
-			to_chat(user, span_warning(LANG("obj.edc110ca", null)))
+			to_chat(user, span_warning(LANG("obj.edc110ca473d2da2", null)))
 		drying = FALSE
 		update_appearance()
 		return
@@ -116,11 +116,11 @@
 	if(in_range(user, src) || isobserver(user))
 		if(fuel_time_left > 0)
 			if(drying)
-				. += span_notice(LANG("obj.d10ac8bd", list(round(fuel_time_left / (1 SECONDS)))))
+				. += span_notice(LANG("obj.d10ac8bd1549b496", list(round(fuel_time_left / (1 SECONDS)))))
 			else
-				. += span_notice(LANG("obj.40782788", null))
+				. += span_notice(LANG("obj.407827885e9e17f1", null))
 		else
-			. += span_warning(LANG("obj.9b1909b4", null))
+			. += span_warning(LANG("obj.9b1909b4eebb5f2c", null))
 
 /datum/crafting_recipe/primitive_smoker
 	name = "Primitive Smoker"

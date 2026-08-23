@@ -119,7 +119,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 	if(!soulcatcher_owner)
 		return FALSE
 
-	if(tgui_alert(soulcatcher_owner, LANG("datum.77f800aa", list(joiner_name)), name, list("Yes", "No"), autofocus = FALSE) != "Yes")
+	if(tgui_alert(soulcatcher_owner, LANG("datum.77f800aa89f76292", list(joiner_name)), name, list("Yes", "No"), autofocus = FALSE) != "Yes")
 		return FALSE
 
 	return TRUE
@@ -131,13 +131,13 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 
 	var/signal_result = SEND_SIGNAL(parent_body, COMSIG_SOULCATCHER_SCAN_BODY, parent_body)
 	if(!signal_result)
-		to_chat(user, span_warning(LANG("datum.f1a321a6", list(parent_body))))
+		to_chat(user, span_warning(LANG("datum.f1a321a6f7add667", list(parent_body))))
 		return FALSE
 
 	if(istype(parent, /obj/item/handheld_soulcatcher))
 		var/obj/item/handheld_soulcatcher/parent_device = parent
 		playsound(parent_device, 'modular_nova/modules/modular_implants/sounds/default_good.ogg', 50, FALSE, ignore_walls = FALSE)
-		parent_device.visible_message(span_notice(LANG("datum.1f4444cd", list(parent_device, parent_body))))
+		parent_device.visible_message(span_notice(LANG("datum.1f4444cd4b27c35e", list(parent_device, parent_body))))
 
 	return TRUE
 
@@ -241,11 +241,11 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 		if(!new_soul.body_scan_needed)
 			new_soul.soul_desc = preferences.read_preference(/datum/preference/text/flavor_text)
 
-	to_chat(new_soul, span_cyan_nova(LANG("datum.c58d3494", list(name))))
+	to_chat(new_soul, span_cyan_nova(LANG("datum.c58d3494aa234e65", list(name))))
 	to_chat(new_soul, span_notice(room_description))
-	to_chat(new_soul, span_doyourjobidiot(LANG("datum.3cf794d2", null)))
-	to_chat(new_soul, span_notice(LANG("datum.d48516b3", null)))
-	to_chat(new_soul, span_notice(LANG("datum.30f996e6", null)))
+	to_chat(new_soul, span_doyourjobidiot(LANG("datum.3cf794d261870fe3", null)))
+	to_chat(new_soul, span_notice(LANG("datum.d48516b311c621b4", null)))
+	to_chat(new_soul, span_notice(LANG("datum.30f996e621854f39", null)))
 
 	var/atom/parent_atom = parent_object
 	if(istype(parent_atom))
@@ -285,7 +285,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 	current_souls -= target_soul
 	target_room.current_souls += target_soul
 
-	to_chat(target_soul, span_cyan_nova(LANG("datum.e4e264c8", list(target_room))))
+	to_chat(target_soul, span_cyan_nova(LANG("datum.e4e264c83d7e7edc", list(target_room))))
 	to_chat(target_soul, span_notice(target_room.room_description))
 
 	return TRUE
@@ -432,10 +432,10 @@ GAME_VERB(/mob/dead/observer, join_soulcatcher, "进入灵魂捕手", null)
 		joinable_soulcatchers += soulcatcher
 
 	if(!length(joinable_soulcatchers))
-		to_chat(src, span_warning(LANG("mob.12c11998", null)))
+		to_chat(src, span_warning(LANG("mob.12c1199864abe5be", null)))
 		return FALSE
 
-	var/datum/component/soulcatcher/soulcatcher_to_join = tgui_input_list(src, LANG("mob.08d0cbc9", null), LANG("mob.0327af66", null), joinable_soulcatchers)
+	var/datum/component/soulcatcher/soulcatcher_to_join = tgui_input_list(src, LANG("mob.08d0cbc922869bc1", null), LANG("mob.0327af66ab6a844a", null), joinable_soulcatchers)
 	if(!soulcatcher_to_join || !(soulcatcher_to_join in joinable_soulcatchers))
 		return FALSE
 
@@ -448,17 +448,17 @@ GAME_VERB(/mob/dead/observer, join_soulcatcher, "进入灵魂捕手", null)
 
 	var/datum/soulcatcher_room/room_to_join
 	if(length(rooms_to_join) < 1)
-		to_chat(src, span_warning(LANG("mob.929fb5d2", null)))
+		to_chat(src, span_warning(LANG("mob.929fb5d2cb7aa885", null)))
 		return FALSE
 
 	if(length(rooms_to_join) == 1)
 		room_to_join = rooms_to_join[1]
 
 	else
-		room_to_join = tgui_input_list(src, LANG("mob.4df897d1", null), LANG("mob.fc0082d2", null), rooms_to_join)
+		room_to_join = tgui_input_list(src, LANG("mob.4df897d12bc51396", null), LANG("mob.fc0082d23b32d36d", null), rooms_to_join)
 
 	if(!room_to_join)
-		to_chat(src, span_warning(LANG("mob.929fb5d2", null)))
+		to_chat(src, span_warning(LANG("mob.929fb5d2cb7aa885", null)))
 		return FALSE
 
 	if(soulcatcher_to_join.require_approval)
@@ -467,7 +467,7 @@ GAME_VERB(/mob/dead/observer, join_soulcatcher, "进入灵魂捕手", null)
 			ghost_name = "unknown"
 
 		if(!soulcatcher_to_join.get_approval(ghost_name))
-			to_chat(src, span_warning(LANG("mob.a629390d", list(soulcatcher_to_join.name))))
+			to_chat(src, span_warning(LANG("mob.a629390dff4bf1cf", list(soulcatcher_to_join.name))))
 			return FALSE
 
 	room_to_join.add_soul_from_ghost(src)

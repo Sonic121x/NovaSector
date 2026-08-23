@@ -81,7 +81,7 @@
 				for(var/datum/sortrouter_filter/to_do as anything in subtypesof(/datum/sortrouter_filter))
 					filter_by_name[initial(to_do.name)] = to_do
 				filter_by_name = sort_list(filter_by_name)
-			var/target_type = tgui_input_list(usr, LANG("obj.1c55d561", null), LANG("obj.c4e67daa", null), filter_by_name)
+			var/target_type = tgui_input_list(usr, LANG("obj.1c55d561e0d7e5b7", null), LANG("obj.c4e67daa805d697e", null), filter_by_name)
 			if(isnull(target_type)|| !usr.can_perform_action(src, ALLOW_SILICON_REACH))
 				return
 			target_type = filter_by_name[target_type]

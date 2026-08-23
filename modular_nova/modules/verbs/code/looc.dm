@@ -8,7 +8,7 @@ GAME_VERB_DESC(/client, looc_wallpierce, "LOOC(Wallpierce)", "Local OOC, seen by
 
 /client/proc/looc_message(msg, wall_pierce)
 	if(GLOB.say_disabled)
-		to_chat(usr, span_danger(LANG("client.b79ad8a3", null)))
+		to_chat(usr, span_danger(LANG("client.b79ad8a388d1b3a4", null)))
 		return
 
 	if(!mob)
@@ -20,25 +20,25 @@ GAME_VERB_DESC(/client, looc_wallpierce, "LOOC(Wallpierce)", "Local OOC, seen by
 
 	if(!holder)
 		if(!GLOB.looc_allowed)
-			to_chat(src, span_danger(LANG("client.0ac8d871", null)))
+			to_chat(src, span_danger(LANG("client.0ac8d871ec557817", null)))
 			return
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, span_boldannounce(LANG("client.79757764", null)))
+			to_chat(src, span_boldannounce(LANG("client.79757764083cac05", null)))
 			log_admin("[key_name(src)] has attempted to advertise in LOOC: [msg]")
 			return
 		if(prefs.muted & MUTE_LOOC)
-			to_chat(src, span_danger(LANG("client.ef695a82", null)))
+			to_chat(src, span_danger(LANG("client.ef695a827f17ce96", null)))
 			return
 		if(is_banned_from(ckey, BAN_LOOC))
-			to_chat(src, span_warning(LANG("client.a65462e3", null)))
+			to_chat(src, span_warning(LANG("client.a65462e36457a2c9", null)))
 			return
 		if(mob.stat == DEAD)
-			to_chat(src, span_danger(LANG("client.ccffee2a", null)))
+			to_chat(src, span_danger(LANG("client.ccffee2a65fad185", null)))
 			return
 		if(istype(mob, /mob/dead))
-			to_chat(src, span_danger(LANG("client.a156ab3b", null)))
+			to_chat(src, span_danger(LANG("client.a156ab3bb4f30d1a", null)))
 			return
 
 	msg = emoji_parse(msg)
@@ -83,10 +83,10 @@ GAME_VERB_DESC(/client, looc_wallpierce, "LOOC(Wallpierce)", "Local OOC, seen by
 		if (is_holder)
 			continue //admins are handled afterwards
 
-		to_chat(hearing_client, span_looc(span_prefix(LANG("client.a8a84979", list(wall_pierce ? " (WALL PIERCE)" : "", src.mob.name, msg)))), avoid_highlighting = (hearing_client == src))
+		to_chat(hearing_client, span_looc(span_prefix(LANG("client.a8a8497952cfab3d", list(wall_pierce ? " (WALL PIERCE)" : "", src.mob.name, msg)))), avoid_highlighting = (hearing_client == src))
 
 	for(var/client/cli_client as anything in GLOB.admins)
 		if (admin_seen[cli_client])
-			to_chat(cli_client, span_looc(LANG("client.ddee0ba1", list(ADMIN_FLW(usr), wall_pierce ? " (WALL PIERCE)" : "", src.key, src.mob.name, msg))), avoid_highlighting = (cli_client == src))
+			to_chat(cli_client, span_looc(LANG("client.ddee0ba1f4b4d727", list(ADMIN_FLW(usr), wall_pierce ? " (WALL PIERCE)" : "", src.key, src.mob.name, msg))), avoid_highlighting = (cli_client == src))
 		else if (cli_client.prefs.read_preference(/datum/preference/toggle/admin/see_looc))
-			to_chat(cli_client, span_rlooc(LANG("client.a21ff7fd", list(ADMIN_FLW(usr), wall_pierce ? " (WALL PIERCE)" : "", src.key, src.mob.name, msg))), avoid_highlighting = (cli_client == src))
+			to_chat(cli_client, span_rlooc(LANG("client.a21ff7fd649bce92", list(ADMIN_FLW(usr), wall_pierce ? " (WALL PIERCE)" : "", src.key, src.mob.name, msg))), avoid_highlighting = (cli_client == src))

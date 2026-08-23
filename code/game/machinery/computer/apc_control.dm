@@ -32,7 +32,7 @@
 
 /obj/machinery/computer/apc_control/attack_ai(mob/user)
 	if(!isAdminGhostAI(user))
-		to_chat(user,span_warning(LANG("obj.3396f972", list(src)))) //You already have APC access, cheater!
+		to_chat(user,span_warning(LANG("obj.3396f9728ae30317", list(src)))) //You already have APC access, cheater!
 		return
 	return ..()
 
@@ -42,7 +42,7 @@
 	obj_flags |= EMAGGED
 	if (user)
 		user.log_message("emagged [src].", LOG_ATTACK, color="red")
-		balloon_alert(user, LANG("obj.72faa602", null))
+		balloon_alert(user, LANG("obj.72faa6022466ed59", null))
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 
@@ -65,7 +65,7 @@
 	if(isnull(apc))
 		return
 	if(apc.remote_control_user)
-		to_chat(user, span_warning(LANG("obj.a7cefd42", list(apc))))
+		to_chat(user, span_warning(LANG("obj.a7cefd42322c4a46", list(apc))))
 		return
 	if(active_apc)
 		disconnect_apc()
@@ -171,7 +171,7 @@
 					auth_id = "[user_id_card.registered_name] ([user_id_card.assignment]):"
 					log_activity("[auth_id] attempted to log into the terminal")
 					playsound(src, 'sound/machines/terminal/terminal_error.ogg', 50, FALSE)
-					say(LANG("obj.20a665ea", null))
+					say(LANG("obj.20a665ea38cf25ec", null))
 				return
 			auth_id = "Unknown (Unknown):"
 			log_activity("[auth_id] attempted to log into the terminal")

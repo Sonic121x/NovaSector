@@ -89,7 +89,7 @@
 
 /// Called when you have been successfully raised from the dead
 /datum/surgery_operation/basic/revival/proc/on_revived(mob/living/surgeon, mob/living/patient)
-	patient.visible_message(span_notice(LANG("datum.d19064c1", list(patient))))
+	patient.visible_message(span_notice(LANG("datum.d19064c1737028fa", list(patient))))
 	patient.emote("gasp")
 	if(HAS_MIND_TRAIT(surgeon, TRAIT_MORBID)) // Contrary to their typical hatred of resurrection, it wouldn't be very thematic if morbid people didn't love playing god
 		surgeon.add_mood_event("morbid_revival_success", /datum/mood_event/morbid_revival_success)
@@ -97,7 +97,7 @@
 
 /// Called when revival fails
 /datum/surgery_operation/basic/revival/proc/on_no_revive(mob/living/surgeon, mob/living/patient)
-	patient.visible_message(span_warning(LANG("datum.72d74f48", list(patient.p_they(), patient.p_s(), patient.p_s()))))
+	patient.visible_message(span_warning(LANG("datum.72d74f480af1694e", list(patient.p_they(), patient.p_s(), patient.p_s()))))
 	patient.adjust_organ_loss(ORGAN_SLOT_BRAIN, 50, 199) // MAD SCIENCE
 
 /datum/surgery_operation/basic/revival/on_failure(mob/living/patient, mob/living/surgeon, obj/item/tool, list/operation_args)

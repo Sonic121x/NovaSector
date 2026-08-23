@@ -82,16 +82,16 @@
 
 	switch(solved_type)
 		if(GIZMO_PUZZLE_WRONG)
-			holder.balloon_alert(user, LANG("datum.98f1a8f1", null))
+			holder.balloon_alert(user, LANG("datum.98f1a8f184df764b", null))
 			playsound(holder, 'sound/machines/buzz/buzz-sigh.ogg', 30, FALSE)
 		if(GIZMO_PUZZLE_CORRECT)
-			holder.balloon_alert(user, LANG("datum.5fea9116", null))
+			holder.balloon_alert(user, LANG("datum.5fea9116ba9b9bd2", null))
 			playsound(holder, 'sound/machines/ping.ogg', 30, FALSE)
 		if(GIZMO_PUZZLE_SOLVED)
-			holder.balloon_alert(user, LANG("datum.edc67b7d", null))
+			holder.balloon_alert(user, LANG("datum.edc67b7d2d5e1370", null))
 			playsound(holder, 'sound/machines/creak.ogg', 30, FALSE)
 		if(GIZMO_PUZZLE_SOLVED_MODE_CONTROL)
-			holder.balloon_alert(user, LANG("datum.5f0bb7fd", null))
+			holder.balloon_alert(user, LANG("datum.5f0bb7fdde8f59da", null))
 			playsound(holder, 'sound/machines/machine_vend.ogg', 30, FALSE)
 
 /// Sequences can be a bit shorter since you have to constantly type and scream them

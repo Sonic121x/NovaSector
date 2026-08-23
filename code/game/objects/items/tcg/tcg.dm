@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 		var/datum/card/template = extract_datum()
 		desc = "<i>[template.desc]</i>"
 	else
-		desc = LANG("obj.729d8435", null)
+		desc = LANG("obj.729d8435c040a4eb", null)
 
 /obj/item/tcgcard/update_icon_state()
 	if(flipped)
@@ -143,7 +143,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	if(istype(tool, /obj/item/tcgcard_deck))
 		var/obj/item/tcgcard_deck/old_deck = tool
 		if(length(old_deck.contents) >= 30)
-			to_chat(user, span_notice(LANG("obj.144f42a1", null)))
+			to_chat(user, span_notice(LANG("obj.144f42a1e34e9875", null)))
 			return ITEM_INTERACT_BLOCKING
 		user.transferItemToLoc(src, old_deck)
 		flipped = old_deck.flipped
@@ -170,10 +170,10 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	animate(src, transform = ntransform, time = 2, easing = SINE_EASING)
 
 /obj/item/tcgcard/proc/flip_card(mob/user)
-	to_chat(user, span_notice(LANG("obj.3e45ade6", null)))
+	to_chat(user, span_notice(LANG("obj.3e45ade604dd0535", null)))
 	if(!flipped)
 		name = "Trading Card"
-		desc = LANG("obj.729d8435", null)
+		desc = LANG("obj.729d8435c040a4eb", null)
 		icon_state = "cardback"
 	else
 		var/datum/card/template = extract_datum()
@@ -222,7 +222,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 
 /obj/item/tcgcard_deck/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.51de612c", list(src, contents.len)))
+	. += span_notice(LANG("obj.51de612cb0009728", list(src, contents.len)))
 
 /obj/item/tcgcard_deck/attack_hand(mob/user, list/modifiers)
 	var/list/choices = list(
@@ -263,7 +263,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	if(!istype(tool, /obj/item/tcgcard))
 		return NONE
 	if(contents.len >= 30)
-		to_chat(user, span_notice(LANG("obj.144f42a1", null)))
+		to_chat(user, span_notice(LANG("obj.144f42a1e34e9875", null)))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/tcgcard/new_card = tool
 	new_card.flipped = flipped
@@ -284,8 +284,8 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	user.put_in_hands(drawn_card)
 	drawn_card.flipped = flipped //If it's a face down deck, it'll be drawn face down, if it's a face up pile you'll draw it face up.
 	drawn_card.update_icon_state()
-	user.visible_message(span_notice(LANG("obj.4ba8743a", list(user, src))), \
-					span_notice(LANG("obj.dd975292", list(src))))
+	user.visible_message(span_notice(LANG("obj.4ba8743ad5bf3d02", list(user, src))), \
+					span_notice(LANG("obj.dd975292b1799659", list(src))))
 	if(contents.len <= 1)
 		var/obj/item/tcgcard/final_card = contents[1]
 		user.transferItemToLoc(final_card, drop_location())
@@ -304,8 +304,8 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	if(user.active_storage)
 		user.active_storage.hide_contents(user)
 	if(visable)
-		user.visible_message(span_notice(LANG("obj.99badea6", list(user, src))), \
-						span_notice(LANG("obj.12d2bb6d", list(src))))
+		user.visible_message(span_notice(LANG("obj.99badea66e24775e", list(user, src))), \
+						span_notice(LANG("obj.12d2bb6d0c9134f8", list(src))))
 
 
 /**
@@ -404,11 +404,11 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	for(var/template in cards)
 		//Makes a new card based of the series of the pack.
 		new /obj/item/tcgcard(get_turf(user), series, template)
-	to_chat(user, span_notice(LANG("obj.c05f2479", null)))
+	to_chat(user, span_notice(LANG("obj.c05f2479b951a763", null)))
 	new /obj/effect/decal/cleanable/wrapping(get_turf(user))
 	playsound(loc, 'sound/items/poster/poster_ripped.ogg', 20, TRUE)
 	if(prob(contains_coin))
-		to_chat(user, span_notice(LANG("obj.31604725", null)))
+		to_chat(user, span_notice(LANG("obj.3160472515d6d05b", null)))
 		new /obj/item/coin/thunderdome(get_turf(user))
 	qdel(src)
 

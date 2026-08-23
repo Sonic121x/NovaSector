@@ -19,12 +19,12 @@
 	..()
 	active = !active
 	if(active)
-		to_chat(user, span_notice(LANG("datum.3f17efd8", null)))
+		to_chat(user, span_notice(LANG("datum.3f17efd8eddc7e68", null)))
 	else
 		user.remove_movespeed_modifier(/datum/movespeed_modifier/strained_muscles)
-		to_chat(user, span_notice(LANG("datum.00429e8c", null)))
+		to_chat(user, span_notice(LANG("datum.00429e8cebf88e9d", null)))
 		if(stacks >= 5) // NOVA EDIT CHANGE - 5, instead of 10, means it only lasts half as long (instead of like, 50 seconds straight) - ORIGINAL: if(stacks >= 10)
-			to_chat(user, span_danger(LANG("datum.f920c28c", null)))
+			to_chat(user, span_danger(LANG("datum.f920c28c805bfdf8", null)))
 			user.Paralyze(60)
 			user.emote("gasp")
 
@@ -44,7 +44,7 @@
 		user.add_movespeed_modifier(/datum/movespeed_modifier/strained_muscles)
 		if(IS_UNCONSCIOUS_OR_CRIT(user) || user.staminaloss >= 90)
 			active = !active
-			to_chat(user, span_notice(LANG("datum.ff5e350b", null)))
+			to_chat(user, span_notice(LANG("datum.ff5e350b0d0d0b8e", null)))
 			user.Paralyze(40)
 			user.remove_movespeed_modifier(/datum/movespeed_modifier/strained_muscles)
 			break
@@ -54,7 +54,7 @@
 		user.adjust_stamina_loss(stacks * 1.3) //At first the changeling may regenerate stamina fast enough to nullify fatigue, but it will stack
 
 		if(stacks == 11) //Warning message that the stacks are getting too high
-			to_chat(user, span_warning(LANG("datum.c19b98bc", null)))
+			to_chat(user, span_warning(LANG("datum.c19b98bc3a1c1751", null)))
 
 		sleep(4 SECONDS)
 

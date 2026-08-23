@@ -56,7 +56,7 @@
 			holy_bible.icon_state = GLOB.bible_icon_state
 		if(GLOB.bible_inhand_icon_state)
 			holy_bible.inhand_icon_state = GLOB.bible_inhand_icon_state
-		to_chat(human_spawned, span_boldnotice(LANG("datum.efcdb3e7", list(GLOB.deity))))
+		to_chat(human_spawned, span_boldnotice(LANG("datum.efcdb3e716c1bd42", list(GLOB.deity))))
 		human_spawned.equip_to_storage(holy_bible, ITEM_SLOT_BACK, indirect_action = TRUE, del_on_fail = TRUE)
 		var/nrt = GLOB.holy_weapon_type || /obj/item/nullrod
 		var/obj/item/nullrod/nullrod = new nrt(human_spawned)

@@ -55,7 +55,7 @@
 	if(!length(tool.contents))
 		return TRUE
 	// Prevents quickly filling someone with high-tier organs by augmenting them with a pre-stuffed limb
-	to_chat(surgeon, span_warning(LANG("datum.078e1a30", list(tool))))
+	to_chat(surgeon, span_warning(LANG("datum.078e1a3003fd1479", list(tool))))
 	return FALSE
 
 /datum/surgery_operation/limb/replace_limb/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/bodypart/tool, list/operation_args)

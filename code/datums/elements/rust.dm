@@ -37,7 +37,7 @@
 /datum/element/rust/proc/handle_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 
-	examine_text += span_notice(LANG("datum.e04dd69f", list(source)))
+	examine_text += span_notice(LANG("datum.e04dd69f6e3e9fd6", list(source)))
 
 /datum/element/rust/proc/apply_rust_overlay(atom/parent_atom, list/overlays)
 	SIGNAL_HANDLER
@@ -59,11 +59,11 @@
 			if(!item.tool_start_check(user, amount=1))
 				return
 
-			user.balloon_alert(user, LANG("datum.b78f59e6", null))
+			user.balloon_alert(user, LANG("datum.b78f59e67be26adf", null))
 
 			if(!item.use_tool(source, user, 5 SECONDS))
 				return
-			user.balloon_alert(user, LANG("datum.dc2bae26", null))
+			user.balloon_alert(user, LANG("datum.dc2bae26a74ca967", null))
 			Detach(source)
 			return
 
@@ -71,10 +71,10 @@
 		if(TOOL_RUSTSCRAPER)
 			if(!item.tool_start_check(user))
 				return
-			user.balloon_alert(user, LANG("datum.6191683f", null))
+			user.balloon_alert(user, LANG("datum.6191683f03345c41", null))
 			if(!item.use_tool(source, user, 2 SECONDS))
 				return
-			user.balloon_alert(user, LANG("datum.1d4849bb", null))
+			user.balloon_alert(user, LANG("datum.1d4849bb13f7ba4d", null))
 			Detach(source)
 			return
 
@@ -91,7 +91,7 @@
 /datum/element/rust/proc/on_interaction(datum/source, mob/user, obj/item/tool, modifiers)
 	SIGNAL_HANDLER
 	if(istype(tool, /obj/item/stack/tile) || istype(tool, /obj/item/stack/rods))
-		user.balloon_alert(user, LANG("datum.6f21e441", null))
+		user.balloon_alert(user, LANG("datum.6f21e441bf65bdb8", null))
 		return ITEM_INTERACT_BLOCKING
 
 /// For rust applied by heretics

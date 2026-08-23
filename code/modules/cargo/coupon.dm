@@ -76,19 +76,19 @@
 		return
 
 	name = "coupon - fuck you"
-	desc = LANG("obj.0786ad86", null)
+	desc = LANG("obj.0786ad86a30e19d6", null)
 
 	var/mob/cursed = user || loc
 	if(!ismob(cursed))
 		return FALSE
 
-	to_chat(cursed, span_warning(LANG("obj.bc0d736d", null)))
+	to_chat(cursed, span_warning(LANG("obj.bc0d736d27cc9813", null)))
 
 	if(!cursed.GetComponent(/datum/component/omen))
 		cursed.AddComponent(/datum/component/omen, src, 1)
 		return TRUE
 	if(HAS_TRAIT(cursed, TRAIT_CURSED))
-		to_chat(cursed, span_warning(LANG("obj.89afa55a", null)))
+		to_chat(cursed, span_warning(LANG("obj.89afa55a1bc944d2", null)))
 	addtimer(CALLBACK(src, PROC_REF(curse_heart), cursed), 5 SECONDS, TIMER_UNIQUE | TIMER_STOPPABLE)
 
 /obj/item/coupon/update_name()
@@ -104,26 +104,26 @@
 
 	var/mob/living/carbon/player = cursed
 	INVOKE_ASYNC(player, TYPE_PROC_REF(/mob, emote), "scream")
-	to_chat(player, span_mind_control(LANG("obj.025b90fa", null)))
-	to_chat(player, span_userdanger(LANG("obj.d1473e7f", null)))
+	to_chat(player, span_mind_control(LANG("obj.025b90fa1a64270d", null)))
+	to_chat(player, span_userdanger(LANG("obj.d1473e7f1b3ad514", null)))
 	player.set_heartattack(status = TRUE)
 	burn_evilly()
 
 /obj/item/coupon/proc/burn_evilly()
-	visible_message(span_warning(LANG("obj.0b1457c3", list(src))))
+	visible_message(span_warning(LANG("obj.0b1457c304f2106f", list(src))))
 	burn()
 
 /obj/item/coupon/attack_atom(obj/attacked_obj, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!istype(attacked_obj, /obj/machinery/computer/cargo))
 		return ..()
 	if(discount_pct_off == COUPON_OMEN)
-		to_chat(user, span_warning(LANG("obj.8fe8cd2d", list(attacked_obj))))
-		attacked_obj.say(LANG("obj.75ad4e01", null))
+		to_chat(user, span_warning(LANG("obj.8fe8cd2d1c5fed41", list(attacked_obj))))
+		attacked_obj.say(LANG("obj.75ad4e01b2f6baf0", null))
 		return
 
 	inserted_console = attacked_obj
 	LAZYADD(inserted_console.loaded_coupons, src)
-	inserted_console.say(LANG("obj.2fd860df", list(initial(discounted_pack.name))))
+	inserted_console.say(LANG("obj.2fd860df43597592", list(initial(discounted_pack.name))))
 	forceMove(inserted_console)
 
 /obj/item/coupon/Destroy()

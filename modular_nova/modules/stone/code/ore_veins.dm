@@ -44,23 +44,23 @@
 
 /obj/structure/ore_vein/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.tool_behaviour != TOOL_MINING)
-		to_chat(user, span_notice(LANG("obj.a3b6c444", null)))
+		to_chat(user, span_notice(LANG("obj.a3b6c444daae5ad7", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(!ore_type)
-		to_chat(user, span_notice(LANG("obj.e0d4fcb3", null)))
+		to_chat(user, span_notice(LANG("obj.e0d4fcb35195007f", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(!ore_amount)
-		to_chat(user, span_notice(LANG("obj.9610c6a6", list(src, ore_descriptor))))
+		to_chat(user, span_notice(LANG("obj.9610c6a623f3b9a2", list(src, ore_descriptor))))
 		return ITEM_INTERACT_BLOCKING
 	if(depleted == TRUE)
-		to_chat(user, span_notice(LANG("obj.8c006937", null)))
+		to_chat(user, span_notice(LANG("obj.8c0069379644c451", null)))
 		return ITEM_INTERACT_BLOCKING
 	// Our early return checks to tell the user what went wrong.
-	to_chat(user, span_notice(LANG("obj.9cbceb3b", list(ore_descriptor))))
+	to_chat(user, span_notice(LANG("obj.9cbceb3b2e2e3c2e", list(ore_descriptor))))
 	if(!tool.use_tool(src, user, src.mining_time, volume=50))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.af78a03f", list(ore_descriptor))))
+	to_chat(user, span_notice(LANG("obj.af78a03fb8de1948", list(ore_descriptor))))
 	if(ore_type && ore_amount && depleted == FALSE)
 		new ore_type(loc, ore_amount)
 	SSblackbox.record_feedback("tally", "pick_used_mining", 1, tool.type)

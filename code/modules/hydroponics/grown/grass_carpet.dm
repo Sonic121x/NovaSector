@@ -32,7 +32,7 @@
 	wine_power = 15
 
 /obj/item/food/grown/grass/attack_self(mob/user)
-	to_chat(user, span_notice(LANG("obj.f638855c", null)))
+	to_chat(user, span_notice(LANG("obj.f638855c8cfdd2b0", null)))
 	var/grassAmt = 1 + round(seed.potency * tile_coefficient) // The grass we're holding
 	for(var/obj/item/food/grown/grass/G in user.loc) // The grass on the floor
 		if(G.type != type)

@@ -26,11 +26,11 @@
 	if (!isliving(user))
 		return
 	if (occupied)
-		balloon_alert(user, LANG("obj.e2478aef", null))
+		balloon_alert(user, LANG("obj.e2478aef43510749", null))
 		return
 	var/mob/living/living_user = user
 	occupied = TRUE
-	living_user.balloon_alert_to_viewers(LANG("obj.39a2d5e6", null))
+	living_user.balloon_alert_to_viewers(LANG("obj.39a2d5e6a1c02c41", null))
 
 	var/boulder_lift_speed = 8 SECONDS
 
@@ -49,6 +49,6 @@
 	var/obj/item/boulder/gulag_boulder = new spawned_boulder(get_turf(living_user))
 	gulag_boulder.platform_lifespan = PLATFORM_LIFE_GULAG
 
-	living_user.visible_message(span_notice(LANG("obj.87567b52", list(living_user, src))))
+	living_user.visible_message(span_notice(LANG("obj.87567b52a95fb470", list(living_user, src))))
 	living_user.apply_damage(stamina_damage_to_inflict, STAMINA)
 	playsound(src, 'sound/items/weapons/genhit.ogg', vol = 50, vary = TRUE)

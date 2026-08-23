@@ -14,15 +14,15 @@
 /datum/unit_test/i18n_speech_effects/Destroy()
 	if(!isnull(saved_locale))
 		GLOB.i18n_server_locale = saved_locale
-		GLOB.i18n_locale_resolved = saved_resolved
+		GLOB.i18n_runtime_state = saved_resolved
 		saved_locale = null
 	return ..()
 
 /datum/unit_test/i18n_speech_effects/Run()
 	saved_locale = GLOB.i18n_server_locale
-	saved_resolved = GLOB.i18n_locale_resolved
+	saved_resolved = GLOB.i18n_runtime_state
 	GLOB.i18n_server_locale = "zh-Hans"
-	GLOB.i18n_locale_resolved = TRUE
+	GLOB.i18n_runtime_state = I18N_RUNTIME_READY
 
 	var/mob/living/carbon/human/consistent/speaker = allocate(/mob/living/carbon/human/consistent)
 	var/datum/status_effect/speech/stutter/stutter = speaker.apply_status_effect(/datum/status_effect/speech/stutter, 10 MINUTES)

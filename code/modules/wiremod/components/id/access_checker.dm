@@ -59,7 +59,7 @@
 
 /obj/item/circuit_component/compare/access/ui_perform_action(mob/user, action)
 	if(LAZYLEN(required_accesses.connected_ports))
-		balloon_alert(user, LANG("obj.e46cede6", null))
+		balloon_alert(user, LANG("obj.e46cede6b3434350", null))
 		return
 	interact(user)
 

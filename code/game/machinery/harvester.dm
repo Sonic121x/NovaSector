@@ -64,7 +64,7 @@
 /obj/machinery/harvester/click_alt(mob/user)
 	if(panel_open)
 		output_dir = turn(output_dir, -90)
-		to_chat(user, span_notice(LANG("obj.c4f8242e", list(src, dir2text(output_dir)))))
+		to_chat(user, span_notice(LANG("obj.c4f8242ef18e911f", list(src, dir2text(output_dir)))))
 		return CLICK_ACTION_SUCCESS
 	if(harvesting || state_open || !can_harvest())
 		return CLICK_ACTION_BLOCKING
@@ -79,15 +79,15 @@
 	if(!allow_clothing)
 		for(var/obj/item/abiotic_item in carbon_occupant.held_items + carbon_occupant.get_equipped_items())
 			if(!(HAS_TRAIT(abiotic_item, TRAIT_NODROP)))
-				say(LANG("obj.be964350", null))
+				say(LANG("obj.be9643502ec04ad9", null))
 				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 				return
 	if(!(carbon_occupant.mob_biotypes & MOB_ORGANIC))
-		say(LANG("obj.d320b37b", null))
+		say(LANG("obj.d320b37b88569bd7", null))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		return
 	if(!allow_living && !IS_DEAD_OR_FAKING(carbon_occupant))
-		say(LANG("obj.511831da", null))
+		say(LANG("obj.511831daccfe9b8b", null))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		return
 	return TRUE
@@ -100,7 +100,7 @@
 
 	if(carbon_occupant.client && carbon_occupant.stat <= HARD_CRIT)
 		notify_ghosts(
-			LANG("obj.281fe5b2", list(carbon_occupant.real_name)),
+			LANG("obj.281fe5b24c60461a", list(carbon_occupant.real_name)),
 			source = src,
 			header = "Gruesome!",
 		)
@@ -108,8 +108,8 @@
 	operation_order = reverse_range(carbon_occupant.get_bodyparts())   //Chest and head are first in bodyparts, so we invert it to make them suffer more
 	warming_up = TRUE
 	harvesting = TRUE
-	visible_message(span_notice(LANG("obj.c05a8920", list(src))))
-	say(LANG("obj.c364a0af", null))
+	visible_message(span_notice(LANG("obj.c05a89205360e7c2", list(src))))
+	say(LANG("obj.c364a0afc785aa68", null))
 	update_appearance()
 	addtimer(CALLBACK(src, PROC_REF(harvest)), interval)
 
@@ -144,18 +144,18 @@
 	harvesting = FALSE
 	open_machine()
 	if (!success)
-		say(LANG("obj.8c1ae0b5", null))
+		say(LANG("obj.8c1ae0b5e9cfa051", null))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 	else
-		say(LANG("obj.8a027a84", null))
+		say(LANG("obj.8a027a84ee3f8f37", null))
 		playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 
 /obj/machinery/harvester/screwdriver_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		to_chat(user, span_warning(LANG("obj.29741746", list(src))))
+		to_chat(user, span_warning(LANG("obj.297417466fc8e075", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(state_open)
-		to_chat(user, span_warning(LANG("obj.2bc99427", list(src, panel_open ? "close" : "open"))))
+		to_chat(user, span_warning(LANG("obj.2bc99427122c999f", list(src, panel_open ? "close" : "open"))))
 		return ITEM_INTERACT_BLOCKING
 	return default_deconstruction_screwdriver(user, tool)
 
@@ -171,16 +171,16 @@
 	obj_flags |= EMAGGED
 	allow_living = TRUE
 	allow_clothing = TRUE
-	balloon_alert(user, LANG("obj.163a7261", null))
+	balloon_alert(user, LANG("obj.163a7261d2a26b47", null))
 	return TRUE
 
 /obj/machinery/harvester/container_resist_act(mob/living/user)
 	if(!harvesting)
-		visible_message(span_notice(LANG("obj.8616ec7e", list(occupant, src))),
-			span_notice(LANG("obj.adaf0a2d", list(src))))
+		visible_message(span_notice(LANG("obj.8616ec7ef6eb4cb4", list(occupant, src))),
+			span_notice(LANG("obj.adaf0a2d27164b52", list(src))))
 		open_machine()
 	else
-		to_chat(user,span_warning(LANG("obj.961e2fcf", list(src)))) //rip
+		to_chat(user,span_warning(LANG("obj.961e2fcf6988927b", list(src)))) //rip
 
 /obj/machinery/harvester/Exited(atom/movable/gone, direction)
 	if (!state_open && gone == occupant)
@@ -196,8 +196,8 @@
 	if(machine_stat & BROKEN)
 		return
 	if(state_open)
-		. += span_notice(LANG("obj.c1b07864", list(src)))
+		. += span_notice(LANG("obj.c1b07864c70291f2", list(src)))
 	else if(!harvesting)
-		. += span_notice(LANG("obj.f42562cb", list(src)))
+		. += span_notice(LANG("obj.f42562cbaad98ab9", list(src)))
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.9cffdaf6", list(interval*0.1, dir2text(output_dir))))
+		. += span_notice(LANG("obj.9cffdaf6fb2ee2ac", list(interval*0.1, dir2text(output_dir))))

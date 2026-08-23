@@ -27,8 +27,8 @@
 
 /obj/structure/cannon/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.e09bf8fb", list(src)))
-	. += span_warning(LANG("obj.106fec92", null))
+	. += span_notice(LANG("obj.e09bf8fb7241c49f", list(src)))
+	. += span_warning(LANG("obj.106fec926b6441ec", null))
 
 /obj/structure/cannon/proc/fire()
 	for(var/mob/shaken_mob in urange(10, src))
@@ -57,18 +57,18 @@
 
 /obj/structure/cannon/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(charge_ignited)
-		balloon_alert(user, LANG("obj.1c773770", null))
+		balloon_alert(user, LANG("obj.1c773770405557cc", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/stack/cannonball))
 		if(loaded_cannonball)
-			balloon_alert(user, LANG("obj.e79a422e", null))
+			balloon_alert(user, LANG("obj.e79a422e90aa6613", null))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/cannonball/cannoneers_balls = tool
 		loaded_cannonball = new cannoneers_balls.type(src, 1)
 		loaded_cannonball.copy_evidences(cannoneers_balls)
-		balloon_alert(user, LANG("obj.2294b398", list(cannoneers_balls.singular_name)))
+		balloon_alert(user, LANG("obj.2294b3983ce2663e", list(cannoneers_balls.singular_name)))
 		cannoneers_balls.use(1, transfer = TRUE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -76,7 +76,7 @@
 
 	if(ignition_message)
 		if(!reagents.has_reagent(/datum/reagent/gunpowder,charge_size) && !reagents.has_reagent(/datum/reagent/fuel,charge_size))
-			balloon_alert(user, LANG("obj.e41b16fe", list(reagents.maximum_volume)))
+			balloon_alert(user, LANG("obj.e41b16feca84f728", list(reagents.maximum_volume)))
 			return ITEM_INTERACT_BLOCKING
 
 		visible_message(ignition_message)
@@ -95,28 +95,28 @@
 			return NONE
 
 		if(!powder_keg.reagents.total_volume)
-			balloon_alert(user, LANG("obj.02d482cc", list(powder_keg)))
+			balloon_alert(user, LANG("obj.02d482cc1aef0cef", list(powder_keg)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(reagents.total_volume == reagents.maximum_volume)
-			balloon_alert(user, LANG("obj.21d5a38a", list(src)))
+			balloon_alert(user, LANG("obj.21d5a38ae9e8687a", list(src)))
 			return ITEM_INTERACT_BLOCKING
 
 		var/has_enough_gunpowder = powder_keg.reagents.has_reagent(/datum/reagent/gunpowder, charge_size)
 		var/has_enough_alt_fuel = powder_keg.reagents.has_reagent(/datum/reagent/fuel, charge_size)
 		if(!has_enough_gunpowder && !has_enough_alt_fuel)
-			balloon_alert(user, LANG("obj.6a4ec4bb", list(powder_keg)))
-			to_chat(user, span_warning(LANG("obj.dc0d76ae", list(powder_keg, src))))
+			balloon_alert(user, LANG("obj.6a4ec4bb0e7aa1ee", list(powder_keg)))
+			to_chat(user, span_warning(LANG("obj.dc0d76aecc797fb9", list(powder_keg, src))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(has_enough_gunpowder)
 			powder_keg.reagents.trans_to(src, charge_size, target_id = /datum/reagent/gunpowder)
-			balloon_alert(user, LANG("obj.2074aeed", list(src)))
+			balloon_alert(user, LANG("obj.2074aeedae5e9baf", list(src)))
 			return ITEM_INTERACT_SUCCESS
 
 		//if(has_enough_alt_fuel) but we already know it does if we're here
 		powder_keg.reagents.trans_to(src, charge_size, target_id = /datum/reagent/fuel)
-		balloon_alert(user, LANG("obj.2e2a3059", list(src)))
+		balloon_alert(user, LANG("obj.2e2a305909da8ec0", list(src)))
 		return ITEM_INTERACT_SUCCESS
 	return NONE
 
@@ -139,11 +139,11 @@
 	if(used_alt_fuel)
 		fires_before_deconstruction--
 	if(prob(explode_chance))
-		visible_message(span_userdanger(LANG("obj.e64b7ad7", list(src))))
+		visible_message(span_userdanger(LANG("obj.e64b7ad721a42632", list(src))))
 		explosion(src, heavy_impact_range = 1, light_impact_range = 5, flame_range = 5)
 		return
 	if(fires_before_deconstruction <= 0)
-		visible_message(span_warning(LANG("obj.4c7cd0c4", list(src))))
+		visible_message(span_warning(LANG("obj.4c7cd0c4ab28be9e", list(src))))
 		qdel(src)
 
 /obj/structure/cannon/trash/Destroy()

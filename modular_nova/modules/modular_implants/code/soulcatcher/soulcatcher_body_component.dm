@@ -34,7 +34,7 @@
 	if(!target_soul || !target_soul.body_scan_needed)
 		return FALSE
 
-	to_chat(target_soul, span_cyan_nova(LANG("datum.2848b77d", null)))
+	to_chat(target_soul, span_cyan_nova(LANG("datum.2848b77dc651da16", null)))
 	target_soul.name = source_mob.real_name
 	target_soul.body_scan_needed = FALSE
 

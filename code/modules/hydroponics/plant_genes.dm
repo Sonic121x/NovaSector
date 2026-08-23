@@ -256,7 +256,7 @@
 		misc_smudge.name = "[our_plant.name] smudge"
 		misc_smudge.color = "#82b900"
 
-	our_plant.visible_message(span_warning(LANG("datum.78677814", list(our_plant))),span_hear(LANG("datum.70c6d120", null)))
+	our_plant.visible_message(span_warning(LANG("datum.78677814c1e9c872", list(our_plant))),span_hear(LANG("datum.70c6d120728aef99", null)))
 	SEND_SIGNAL(our_plant, COMSIG_PLANT_ON_SQUASH, target)
 
 	our_plant.reagents?.expose(our_turf)
@@ -365,7 +365,7 @@
 /datum/plant_gene/trait/cell_charge/proc/recharge_cells(obj/item/our_plant, mob/living/eater, mob/feeder)
 	SIGNAL_HANDLER
 
-	to_chat(eater, span_notice(LANG("datum.1992c555", list(our_plant))))
+	to_chat(eater, span_notice(LANG("datum.1992c555a7b1e3f0", list(our_plant))))
 	var/batteries_recharged = FALSE
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
 	for(var/obj/item/stock_parts/power_store/found_cell in assoc_to_values(eater.get_all_cells()))
@@ -378,7 +378,7 @@
 			found_cell.update_appearance()
 			batteries_recharged = TRUE
 	if(batteries_recharged)
-		to_chat(eater, span_notice(LANG("datum.60fc4fdc", null)))
+		to_chat(eater, span_notice(LANG("datum.60fc4fdc4d9b3de5", null)))
 
 /*
  * Makes the plant glow. Makes the plant in tray glow, too.
@@ -515,7 +515,7 @@
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
 	var/teleport_radius = max(round(our_seed.potency / 10), 1)
 	var/turf/T = get_turf(target)
-	to_chat(target, span_warning(LANG("datum.42393405", null)))
+	to_chat(target, span_warning(LANG("datum.4239340550b7c379", null)))
 	do_teleport(target, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
 	if(prob(50))
 		do_teleport(our_plant, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
@@ -621,10 +621,10 @@
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
 	var/obj/item/stack/cable_coil/cabling = hit_item
 	if(!cabling.use(cables_needed_per_battery))
-		to_chat(user, span_warning(LANG("datum.6460ab85", list(our_plant))))
+		to_chat(user, span_warning(LANG("datum.6460ab85f7ede782", list(our_plant))))
 		return
 
-	to_chat(user, span_notice(LANG("datum.a468ce65", list(our_plant))))
+	to_chat(user, span_notice(LANG("datum.a468ce6520dce86c", list(our_plant))))
 	var/obj/item/stock_parts/power_store/cell/potato/pocell = new /obj/item/stock_parts/power_store/cell/potato(user.loc)
 	pocell.icon = our_plant.icon // Just in case the plant icons get spread out in different files eventually, this trait won't cause error sprites (also yay downstreams)
 	pocell.icon_state = our_plant.icon_state
@@ -677,7 +677,7 @@
 	if(living_target.reagents && living_target.can_inject())
 		var/injecting_amount = max(1, our_seed.potency * 0.2) // Minimum of 1, max of 20
 		our_plant.reagents.trans_to(living_target, injecting_amount, methods = INJECT)
-		to_chat(target, LANG("datum.9c1adc1c", list(our_plant)))
+		to_chat(target, LANG("datum.9c1adc1cee6efca6", list(our_plant)))
 		log_combat(our_plant, living_target, "pricked and attempted to inject reagents from [our_plant] to [living_target]. Last touched by: [our_plant.fingerprintslast].")
 		our_plant.investigate_log("pricked and injected [key_name(living_target)] and injected [injecting_amount] reagents at [AREACOORD(living_target)]. Last touched by: [our_plant.fingerprintslast].", INVESTIGATE_BOTANY)
 
@@ -777,7 +777,7 @@
 	if(target_tray.myseed) // Check if there's another seed in the next tray.
 		if(target_tray.myseed.type == origin_tray.myseed.type && target_tray.plant_status != HYDROTRAY_PLANT_DEAD)
 			return FALSE // It should not destroy its own kind.
-		target_tray.visible_message(span_warning(LANG("datum.213b699b", list(target_tray.myseed.plantname, origin_tray.myseed.plantname))))
+		target_tray.visible_message(span_warning(LANG("datum.213b699b36f08b65", list(target_tray.myseed.plantname, origin_tray.myseed.plantname))))
 		QDEL_NULL(target_tray.myseed)
 	target_tray.set_seed(origin_tray.myseed.Copy())
 	target_tray.age = 0
@@ -785,7 +785,7 @@
 	target_tray.lastcycle = world.time
 	target_tray.set_weedlevel(0, update_icon = FALSE) // Reset
 	target_tray.set_pestlevel(0) // Reset
-	target_tray.visible_message(span_warning(LANG("datum.4cf6adef", list(origin_tray.myseed.plantname))))
+	target_tray.visible_message(span_warning(LANG("datum.4cf6adef998850c6", list(origin_tray.myseed.plantname))))
 	if(target_tray.myseed)
 		target_tray.name = "[initial(target_tray.name)] ([target_tray.myseed.plantname])"
 	else
@@ -882,7 +882,7 @@
 /datum/plant_gene/trait/plant_laughter/proc/laughter(obj/item/our_plant, atom/target)
 	SIGNAL_HANDLER
 
-	our_plant.audible_message(span_notice(LANG("datum.d1656910", list(our_plant))))
+	our_plant.audible_message(span_notice(LANG("datum.d165691049d08117", list(our_plant))))
 	playsound(our_plant, pick(sounds), 100, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /**
@@ -969,7 +969,7 @@
 	SIGNAL_HANDLER
 
 	var/num_nutriment = our_plant.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
-	our_plant.visible_message(span_notice(LANG("datum.5e6389f1", list(our_plant))))
+	our_plant.visible_message(span_notice(LANG("datum.5e6389f1867bc95d", list(our_plant))))
 	our_plant.reagents.remove_reagent(/datum/reagent/consumable/nutriment, num_nutriment)
 	our_plant.reagents.chem_temp = min(1000, (our_plant.reagents.chem_temp + num_nutriment * 25))
 	our_plant.reagents.handle_reactions()
@@ -998,7 +998,7 @@
 	SIGNAL_HANDLER
 
 	var/num_nutriment = our_plant.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
-	our_plant.visible_message(span_notice(LANG("datum.bff687f3", list(our_plant))))
+	our_plant.visible_message(span_notice(LANG("datum.bff687f312204f0f", list(our_plant))))
 	our_plant.reagents.remove_reagent(/datum/reagent/consumable/nutriment, num_nutriment)
 	our_plant.reagents.chem_temp = max(3, (our_plant.reagents.chem_temp + num_nutriment * -5))
 	our_plant.reagents.handle_reactions()

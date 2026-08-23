@@ -111,11 +111,11 @@
 				if("value")
 					path_list = list_element["value"]
 				else
-					to_chat(usr, span_warning(LANG("datum.d2e9cb42", list(path_element["type"]))))
+					to_chat(usr, span_warning(LANG("datum.d2e9cb42d99857e0", list(path_element["type"]))))
 					return
 			// The element we are entering SHOULD be a list, unless we're at the end of the path
 			if(!islist(path_list) && LAZYLEN(path))
-				to_chat(usr, span_warning(LANG("datum.e910b902", list(path_list))))
+				to_chat(usr, span_warning(LANG("datum.e910b902d51f072c", list(path_list))))
 				return
 			current_list = path_list
 		return current_list
@@ -139,7 +139,7 @@
 	if(!check_rights_for(user.client, R_DEBUG))
 		return
 	if(action == "runCodeFile")
-		params["code"] = file2text(input(user, LANG("datum.02b08ff6", null)) as null|file)
+		params["code"] = file2text(input(user, LANG("datum.02b08ff64c7d7727", null)) as null|file)
 		if(isnull(params["code"]))
 			return
 		action = "runCode"
@@ -168,7 +168,7 @@
 			run_code(params["code"])
 			return TRUE
 		if("runFile")
-			var/code_file = input(user, LANG("datum.128042e8", null), LANG("datum.d70f5010", null)) as file|null
+			var/code_file = input(user, LANG("datum.128042e84fc83959", null), LANG("datum.d70f50104f9bb5e2", null)) as file|null
 			if(!code_file)
 				return TRUE
 			var/code = file2text(code_file)
@@ -217,7 +217,7 @@
 				var/list/variant_pair = current_variants[index]
 				var/key_variant = variant_pair["key"]
 				if(key_variant == "function" || key_variant == "thread" || key_variant == "userdata" || key_variant == "error_as_value")
-					to_chat(user, span_warning(LANG("datum.e4a4a572", list(key, key_variant))))
+					to_chat(user, span_warning(LANG("datum.e4a4a57224fa9fa2", list(key, key_variant))))
 					return
 				function += key
 				if(islist(value))
@@ -225,7 +225,7 @@
 					current_variants = variant_pair["value"]
 				else
 					if(variant_pair["value"] != "function")
-						to_chat(user, span_warning(LANG("datum.8b0dab5d", list(value))))
+						to_chat(user, span_warning(LANG("datum.8b0dab5dcfbec96b", list(value))))
 						return
 			var/result = current_state.call_function(arglist(list(function) + arguments))
 			current_state.log_result(result)
@@ -288,5 +288,5 @@ ADMIN_VERB(lua_editor, R_DEBUG, "打开 Lua 编辑器", "Its codin' time.", ADMI
 	var/datum/lua_editor/editor = new
 	editor.ui_interact(user.mob)
 #else
-	to_chat(user, span_warning(LANG("datum.dbad1e88", null)), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE) // doing this instead of just disabling the verb entirely so it's clear WHY it doesn't work.
+	to_chat(user, span_warning(LANG("datum.lua_disabled", null)), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE) // NOVA EDIT CHANGE - i18n: stable manual key survives builds where this branch is preprocessed out. ORIGINAL: to_chat(user, span_warning(LANG("datum.dbad1e8826e3e08e", null)), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE)
 #endif

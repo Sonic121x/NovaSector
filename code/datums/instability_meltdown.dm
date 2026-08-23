@@ -26,7 +26,7 @@
 /datum/instability_meltdown/paraplegic/meltdown(mob/living/carbon/human/victim)
 	victim.gain_trauma(/datum/brain_trauma/severe/paralysis/paraplegic)
 	new /obj/vehicle/ridden/wheelchair(get_turf(victim))
-	to_chat(victim, span_warning(LANG("datum.8b0fd5c0", null)))
+	to_chat(victim, span_warning(LANG("datum.8b0fd5c0d46bf81f", null)))
 
 /// Turns you into a corgi
 /datum/instability_meltdown/corgi
@@ -38,13 +38,13 @@
 /datum/instability_meltdown/alright
 
 /datum/instability_meltdown/alright/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_notice(LANG("datum.6a8cf261", null)))
+	to_chat(victim, span_notice(LANG("datum.6a8cf261d6811e9a", null)))
 
 /// Gives you the same text as above but now when you're hit you take 200 times more damage
 /datum/instability_meltdown/not_alright
 
 /datum/instability_meltdown/not_alright/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_notice(LANG("datum.6a8cf261", null)))
+	to_chat(victim, span_notice(LANG("datum.6a8cf261d6811e9a", null)))
 	victim.physiology.damage_resistance -= 20000 //you thought
 	victim.log_message("has received x200 damage multiplier from [type] genetic meltdown")
 
@@ -52,7 +52,7 @@
 /datum/instability_meltdown/slime
 
 /datum/instability_meltdown/slime/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_notice(LANG("datum.6a8cf261", null)))
+	to_chat(victim, span_notice(LANG("datum.6a8cf261d6811e9a", null)))
 	victim.reagents.add_reagent(/datum/reagent/aslimetoxin, 10)
 
 /// Makes you phase through walls into a random direction
@@ -65,7 +65,7 @@
 /datum/instability_meltdown/decloning
 
 /datum/instability_meltdown/decloning/meltdown(mob/living/carbon/human/victim)
-	to_chat(src, span_notice(LANG("datum.6a8cf261", null)))
+	to_chat(src, span_notice(LANG("datum.6a8cf261d6811e9a", null)))
 	victim.ForceContractDisease(new /datum/disease/decloning) // slow acting, non-viral GBS
 
 /// Makes you vomit up a random organ
@@ -81,7 +81,7 @@
 		return
 	var/obj/item/organ/picked_organ = pick(elligible_organs)
 	picked_organ.Remove(src)
-	victim.visible_message(span_danger(LANG("datum.280bea13", list(victim, p_their(), picked_organ.name))), span_danger(LANG("datum.76b3f770", list(picked_organ.name)))) //no "vomit up your heart"
+	victim.visible_message(span_danger(LANG("datum.280bea1300a4d056", list(victim, p_their(), picked_organ.name))), span_danger(LANG("datum.76b3f7707c86ea8d", list(picked_organ.name)))) //no "vomit up your heart"
 	picked_organ.forceMove(victim.drop_location())
 	if(prob(20))
 		picked_organ.animate_atom_living()
@@ -91,14 +91,14 @@
 	meltdown_weight = 2
 
 /datum/instability_meltdown/snail/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_notice(LANG("datum.6a8cf261", null)))
+	to_chat(victim, span_notice(LANG("datum.6a8cf261d6811e9a", null)))
 	victim.ForceContractDisease(new/datum/disease/gastrolosis())
 
 /// Turns you into the ultimate lifeform
 /datum/instability_meltdown/crab
 
 /datum/instability_meltdown/crab/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_notice(LANG("datum.3ac8f3ac", null)))
+	to_chat(victim, span_notice(LANG("datum.3ac8f3acd29ed6a0", null)))
 	victim.crabize()
 
 // Fatal meltdowns
@@ -145,7 +145,7 @@
 /datum/instability_meltdown/fatal/skeletonize
 
 /datum/instability_meltdown/fatal/skeletonize/meltdown(mob/living/carbon/human/victim)
-	victim.visible_message(span_warning(LANG("datum.4de22ba2", list(victim))), span_boldwarning(LANG("datum.4f37cb37", null)))
+	victim.visible_message(span_warning(LANG("datum.4de22ba2899671d5", list(victim))), span_boldwarning(LANG("datum.4f37cb37da567ffd", null)))
 	victim.spawn_gibs()
 	victim.set_species(/datum/species/skeleton)
 	if(prob(90))
@@ -155,7 +155,7 @@
 /datum/instability_meltdown/fatal/ceiling
 
 /datum/instability_meltdown/fatal/ceiling/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_phobia(LANG("datum.a00813c5", null)))
+	to_chat(victim, span_phobia(LANG("datum.a00813c53d93f2e6", null)))
 	addtimer(CALLBACK(victim, TYPE_PROC_REF(/mob/living/carbon/human, something_horrible_mindmelt)), 3 SECONDS)
 
 /// Slowly turns you into a psyker

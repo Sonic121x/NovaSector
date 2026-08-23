@@ -39,7 +39,7 @@
 		AddElement(/datum/element/wearable_client_colour, glass_colour_type, ITEM_SLOT_EYES, GLASSES_TRAIT, forced = forced_glass_color, comsig_toggle = COMSIG_CLICK_ALT_SECONDARY)
 
 /obj/item/clothing/glasses/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.193ac0a3", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.193ac0a399066e52", list(user, src, user.p_their(), user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/clothing/glasses/visor_toggling()
@@ -89,7 +89,7 @@
 		var/obj/item/organ/eyes/eyes = H.get_organ_slot(ORGAN_SLOT_EYES)
 		if(!H.is_blind())
 			if(H.glasses == src)
-				to_chat(H, span_danger(LANG("obj.2e0a3fb0", list(src))))
+				to_chat(H, span_danger(LANG("obj.2e0a3fb07ca68d48", list(src))))
 				H.flash_act(visual = 1)
 				H.adjust_temp_blindness(6 SECONDS)
 				H.set_eye_blur_if_lower(10 SECONDS)
@@ -119,7 +119,7 @@
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/clothing/glasses/meson/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.79703eaf", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.79703eaf712a4279", list(user, src, user.p_their(), user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/clothing/glasses/meson/night
@@ -172,7 +172,7 @@
 	acid = 100
 
 /obj/item/clothing/glasses/science/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.a3a46f2d", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.a3a46f2dd6f181f9", list(user, src, user.p_their(), user.p_theyre()))))
 	return OXYLOSS
 
 /obj/item/clothing/glasses/science/night
@@ -364,7 +364,7 @@
 		var/mob/living/crusher = movable
 		if(crusher.move_intent != MOVE_INTENT_WALK && (!(crusher.movement_type & MOVETYPES_NOT_TOUCHING_GROUND) || crusher.buckled))
 			playsound(src, 'sound/effects/footstep/glass_step.ogg', 30, TRUE)
-			visible_message(span_warning(LANG("obj.81ee3210", list(crusher, src))))
+			visible_message(span_warning(LANG("obj.81ee3210e176de17", list(crusher, src))))
 			take_damage(100, sound_effect = FALSE)
 
 /obj/item/clothing/glasses/regular/atom_destruction(damage_flag)
@@ -378,8 +378,8 @@
 	if(!I.tool_start_check(user, amount=1))
 		return
 	if(I.use_tool(src, user, 10, volume=30))
-		user.visible_message(span_notice(LANG("obj.87b384c0", list(user, src))),\
-					span_notice(LANG("obj.b545682c", list(src))))
+		user.visible_message(span_notice(LANG("obj.87b384c0e55ebfe0", list(user, src))),\
+					span_notice(LANG("obj.b545682cc76e85bd", list(src))))
 		repair()
 		return TRUE
 
@@ -508,16 +508,16 @@
 /obj/item/syndicate_contacts/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!user.get_organ_slot(ORGAN_SLOT_EYES))
-		to_chat(user, span_warning(LANG("obj.71907987", null)))
+		to_chat(user, span_warning(LANG("obj.719079871668c41b", null)))
 		return
 	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 
-	to_chat(user, span_notice(LANG("obj.34843ebd", null)))
+	to_chat(user, span_notice(LANG("obj.34843ebd05aaa2c3", null)))
 	if(!do_after(user, 3 SECONDS, src))
 		return
-	to_chat(user, span_notice(LANG("obj.e7c4a490", null)))
+	to_chat(user, span_notice(LANG("obj.e7c4a4904c2a0ec2", null)))
 	eyes.flash_protect += FLASH_PROTECTION_WELDER
-	to_chat(user, span_warning(LANG("obj.f3f00ed6", list(src))))
+	to_chat(user, span_warning(LANG("obj.f3f00ed6e866be0f", list(src))))
 	qdel(src)
 
 /obj/item/clothing/glasses/welding
@@ -797,7 +797,7 @@
 	SIGNAL_HANDLER
 	if(amount < SANITY_UNSTABLE)
 		icon_state = "salesman_fzz"
-		desc = LANG("obj.3eb10867", null)
+		desc = LANG("obj.3eb10867529782a1", null)
 		bigshot.update_worn_glasses()
 	else
 		icon_state = initial(icon_state)

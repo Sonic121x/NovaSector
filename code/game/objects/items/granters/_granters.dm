@@ -26,10 +26,10 @@
 
 /obj/item/book/granter/attack_self(mob/living/user)
 	if(reading)
-		to_chat(user, span_warning(LANG("obj.595d9033", null)))
+		to_chat(user, span_warning(LANG("obj.595d90333c47f59f", null)))
 		return FALSE
 	if(user.is_blind())
-		to_chat(user, span_warning(LANG("obj.2977ae45", null)))
+		to_chat(user, span_warning(LANG("obj.2977ae45da0096b8", null)))
 		return FALSE
 	if(!isliving(user) || !user.can_read(src))
 		return FALSE
@@ -57,16 +57,16 @@
 
 /// Called when the user starts to read the granter.
 /obj/item/book/granter/proc/on_reading_start(mob/living/user)
-	to_chat(user, span_notice(LANG("obj.fd42730e", list(name))))
+	to_chat(user, span_notice(LANG("obj.fd42730e5aee107b", list(name))))
 	return TRUE
 
 /// Called when the reading is interrupted without finishing.
 /obj/item/book/granter/proc/on_reading_stopped(mob/living/user)
-	to_chat(user, span_notice(LANG("obj.321eaf6a", null)))
+	to_chat(user, span_notice(LANG("obj.321eaf6a1ea8c9ba", null)))
 
 /// Called when the reading is completely finished. This is where the actual granting should happen.
 /obj/item/book/granter/proc/on_reading_finished(mob/living/user)
-	to_chat(user, span_notice(LANG("obj.cf8e2207", list(name))))
+	to_chat(user, span_notice(LANG("obj.cf8e2207a87ee4e1", list(name))))
 
 /// The actual "turning over of the page" flavor bit that happens while someone is reading the granter.
 /obj/item/book/granter/proc/turn_page(mob/living/user)
@@ -96,16 +96,16 @@
 	if(!granted_action)
 		CRASH("Someone attempted to learn [type], which did not have an action set.")
 	if(locate(granted_action) in user.actions)
-		to_chat(user, span_warning(LANG("obj.bfb0a95d", list(action_name))))
+		to_chat(user, span_warning(LANG("obj.bfb0a95db4206606", list(action_name))))
 		return FALSE
 	return TRUE
 
 /obj/item/book/granter/action/on_reading_start(mob/living/user)
-	to_chat(user, span_notice(LANG("obj.cecd2f7c", list(action_name))))
+	to_chat(user, span_notice(LANG("obj.cecd2f7c61000711", list(action_name))))
 	return TRUE
 
 /obj/item/book/granter/action/on_reading_finished(mob/living/user)
-	to_chat(user, span_notice(LANG("obj.eadb4671", list(action_name))))
+	to_chat(user, span_notice(LANG("obj.eadb46718d918e12", list(action_name))))
 	// Action goes on the mind as the user actually learns the thing in your brain
 	var/datum/action/new_action = new granted_action(user.mind || user)
 	new_action.Grant(user)

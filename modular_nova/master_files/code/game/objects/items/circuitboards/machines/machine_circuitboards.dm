@@ -19,14 +19,14 @@
 	var/position = skillsofts_name_paths.Find(build_path, skillsofts_name_paths)
 	position = (position == length(skillsofts_name_paths)) ? 1 : (position + 1)
 	build_path = skillsofts_name_paths[position]
-	to_chat(user, span_notice(LANG("obj.50b88af4", list(skillsofts_name_paths[build_path]))))
+	to_chat(user, span_notice(LANG("obj.50b88af413a5838b", list(skillsofts_name_paths[build_path]))))
 	return TRUE
 
 /obj/item/circuitboard/machine/skill_station/examine(mob/user)
 	. = ..()
 	if(is_special_type)
 		return
-	. += span_info(LANG("obj.9ef97ecf", list(src, skillsofts_name_paths[build_path])))
+	. += span_info(LANG("obj.9ef97ecf7ae01e96", list(src, skillsofts_name_paths[build_path])))
 
 // Megacell Charger
 /obj/item/circuitboard/machine/megacell_charger

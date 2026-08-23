@@ -52,14 +52,14 @@
 	else if(user.is_mouth_covered(ITEM_SLOT_MASK))
 		covered = "mask"
 	if(covered)
-		to_chat(user, span_warning(LANG("obj.9f5fad6f", list(covered))))
+		to_chat(user, span_warning(LANG("obj.9f5fad6f715a086d", list(covered))))
 	var/obj/item/organ/lungs/lungs = user.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if(isnull(lungs) || istype(lungs, /obj/item/organ/lungs/synth))
-		to_chat(user, span_warning(LANG("obj.ffe7fde3", null)))
+		to_chat(user, span_warning(LANG("obj.ffe7fde35ddce20d", null)))
 		return
-	user.visible_message(span_notice(LANG("obj.3a5b305f", list(user, src))))
+	user.visible_message(span_notice(LANG("obj.3a5b305fa6690ee4", list(user, src))))
 	if(do_after(user, 30))
-		to_chat(user, span_notice(LANG("obj.88742f46", list(src))))
+		to_chat(user, span_notice(LANG("obj.88742f4661dfff78", list(src))))
 		if(reagents.total_volume)
 			reagents.trans_to(user, reagents.total_volume, transferred_by = user, methods = INGEST)
 		qdel(src)
@@ -92,9 +92,9 @@
 
 
 /obj/item/reagent_containers/cocainebrick/attack_self(mob/user)
-	user.visible_message(span_notice(LANG("obj.2c94b9ca", list(user, src))))
+	user.visible_message(span_notice(LANG("obj.2c94b9cac2485db3", list(user, src))))
 	if(do_after(user,10))
-		to_chat(user, span_notice(LANG("obj.eb1bbccb", list(src))))
+		to_chat(user, span_notice(LANG("obj.eb1bbccb3849e180", list(src))))
 		for(var/i = 1 to 5)
 			new /obj/item/reagent_containers/cocaine(user.loc)
 		qdel(src)

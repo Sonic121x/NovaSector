@@ -67,7 +67,7 @@
 	if (!food.has_material_type(/datum/material/plastic))
 		return NONE
 
-	visible_message(span_boldwarning(LANG("mob.c5952ed1", list(src, food))))
+	visible_message(span_boldwarning(LANG("mob.c5952ed1199efd79", list(src, food))))
 	food.forceMove(src)
 	choke(food)
 
@@ -102,7 +102,7 @@
 	// 5% chance every round to have anarchy mode deadchat control on birdboat.
 	if (!prob(5))
 		return
-	desc = LANG("mob.cd2783df", list(initial(desc)))
+	desc = LANG("mob.cd2783dff481d227", list(initial(desc)))
 	deadchat_plays()
 
 /mob/living/basic/goose/vomit/Destroy()
@@ -117,13 +117,13 @@
 
 /mob/living/basic/goose/vomit/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("mob.5fbbe0ae", null))
+	. += span_notice(LANG("mob.5fbbe0ae7a9cada2", null))
 
 /mob/living/basic/goose/vomit/on_gobbled(atom/source, obj/item/food, mob/feeder)
 	if (length(contents) > GOOSE_SATIATED)
 		if (COOLDOWN_FINISHED(src, eat_fail_feedback_cooldown))
 			if (feeder)
-				visible_message(span_notice(LANG("mob.3345e698", list(src, food))))
+				visible_message(span_notice(LANG("mob.3345e69872f5aee5", list(src, food))))
 			COOLDOWN_START(src, eat_fail_feedback_cooldown, 5 SECONDS)
 		return COMSIG_MOB_TERMINATE_EAT
 
@@ -142,8 +142,8 @@
 /mob/living/basic/goose/vomit/choke(obj/item/not_food_after_all)
 	if (prob(75))
 		return ..()
-	visible_message(span_warning(LANG("mob.71058a1c", list(src, not_food_after_all))))
-	manual_emote(LANG("mob.14f3b89b", null))
+	visible_message(span_warning(LANG("mob.71058a1cae73f100", list(src, not_food_after_all))))
+	manual_emote(LANG("mob.14f3b89b082af1a0", null))
 	addtimer(CALLBACK(src, PROC_REF(vomit)), 5 SECONDS)
 
 /// Start making a mess

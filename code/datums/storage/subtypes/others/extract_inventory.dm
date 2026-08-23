@@ -37,6 +37,6 @@
 	var/cores = rand(1,4)
 	playsound(parentSlimeExtract, 'sound/effects/splat.ogg', 40, TRUE)
 	parentSlimeExtract.last_produce = world.time
-	to_chat(user, span_notice(LANG("datum.f7687f43", list(parentSlimeExtract, cores, cores > 1 ? "s":""))))
+	to_chat(user, span_notice(LANG("datum.f7687f438bf87c7d", list(parentSlimeExtract, cores, cores > 1 ? "s":""))))
 	for(var/i in 1 to cores)
 		new parentSlimeExtract.extract_type(parentSlimeExtract.drop_location())

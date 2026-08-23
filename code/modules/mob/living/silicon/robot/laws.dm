@@ -9,25 +9,25 @@
 	if(lawupdate)
 		if (!QDELETED(connected_ai))
 			if(IS_UNCONSCIOUS_OR_CRIT(connected_ai) || connected_ai.control_disabled)
-				to_chat(src, span_bold(LANG("mob.071cb7d2", null)))
+				to_chat(src, span_bold(LANG("mob.071cb7d2b0f213e7", null)))
 
 			else
 				lawsync()
-				to_chat(src, span_bold(LANG("mob.52797192", null)))
+				to_chat(src, span_bold(LANG("mob.527971927aede572", null)))
 		else
-			to_chat(src, span_bold(LANG("mob.df28a464", null)))
+			to_chat(src, span_bold(LANG("mob.df28a464f4365479", null)))
 			lawupdate = FALSE
 
 	. = ..()
 
 	if (shell) //AI shell
-		to_chat(src, span_bold(LANG("mob.3a6d7464", null)))
+		to_chat(src, span_bold(LANG("mob.3a6d7464e3215c7c", null)))
 	else if (connected_ai)
-		to_chat(src, span_bold(LANG("mob.4fbc989a", list(connected_ai.name))))
+		to_chat(src, span_bold(LANG("mob.4fbc989aa8761ffd", list(connected_ai.name))))
 	else if (emagged)
-		to_chat(src, span_bold(LANG("mob.99a4268f", null)))
+		to_chat(src, span_bold(LANG("mob.99a4268faebfbf66", null)))
 	else
-		to_chat(src, span_bold(LANG("mob.d96772c0", null)))
+		to_chat(src, span_bold(LANG("mob.d96772c0d8859e32", null)))
 
 /**
  * For AIs, iterates over connected cyborg and calls try_sync_laws

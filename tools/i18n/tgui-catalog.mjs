@@ -17,6 +17,10 @@ const TGUI_SOURCE_DIR = path.join(ROOT, 'tgui/packages/tgui');
 const TGUI_PACKAGE_I18N_DIR = path.join(ROOT, 'tgui/packages/tgui/i18n');
 const STRINGS_I18N_DIR = path.join(ROOT, 'strings/i18n');
 const TGUI_NAMESPACE = 'tgui';
+const CONTEXT_SEPARATOR = '\u0004';
+const CONTEXT_PATTERN = /^[a-z][a-z0-9]*(?:[._/-][a-z0-9]+)*$/;
+const CHECK_MODE = process.argv.slice(3).includes('--check');
+const staleGeneratedFiles = [];
 
 // 可翻 prop 名的**单一来源**是 strings/i18n/policy.json：抽取器与运行时 localize.ts 各存一份
 // 时，新增 prop 只改一边就会出现「目录有键界面不翻」/「界面翻了目录没键」的静默半覆盖。
@@ -407,13 +411,33 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
-function writeJson(filePath, data) {
+function emitGenerated(filePath, content) {
+  const expected = Buffer.isBuffer(content) ? content : Buffer.from(content);
+  if (CHECK_MODE) {
+    const actual = fs.existsSync(filePath) ? fs.readFileSync(filePath) : null;
+    if (!actual || !actual.equals(expected)) {
+      staleGeneratedFiles.push({
+        filePath,
+        actualBytes: actual?.length ?? null,
+        expectedBytes: expected.length,
+      });
+    }
+    return;
+  }
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, expected);
+}
+
+function sortedJson(data, indent = '\t') {
   const sorted = {};
   for (const key of Object.keys(data).sort((a, b) => a.localeCompare(b))) {
     sorted[key] = data[key];
   }
-  fs.writeFileSync(filePath, `${JSON.stringify(sorted, null, '\t')}\n`);
+  return `${JSON.stringify(sorted, null, indent)}\n`;
+}
+
+function writeJson(filePath, data) {
+  emitGenerated(filePath, sortedJson(data));
 }
 
 function stringsCatalogPath(locale) {
@@ -715,10 +739,9 @@ let currentScope = null;
  * 英文串 -> 出现过的来源集合。与 DM 侧的 strings/i18n/scopes.json 同一用途（语境消歧），
  * 但**分开落盘**：那个文件归 nova-i18n extract（Rust）写，两个写者共用一个文件迟早互相覆盖。
  *
- * 注意 TGUI 目录的 key **就是英文原文**，所以一个 key 可能同时属于多个界面
- * （`"Basic"` 在 Crayon 里是「基础」色系分组，在化学界面里该是「碱性」）。
- * scope 能**报出**这种冲突，但解决不了——同一个 key 只能有一个译文。真要分开译，
- * 得让前端按界面取不同译文，那是另一套改动。
+ * Legacy automatic entries use English source keys, so scopes report ambiguous sharing but cannot
+ * resolve it. Application-owned ambiguous text must use `defineMessage(context, source)`, whose
+ * composite keys are independently translatable and recorded in tgui-contexts.json.
  */
 const textScopes = {};
 
@@ -729,6 +752,9 @@ const textScopes = {};
  * `- {0}, the {1}` / `{0} of 12 total` 这类泛化骨架会把任意同形状的整句劫持成中文脚手架裹英文。
  */
 const propTemplates = new Set();
+
+/** Explicit contextual key -> deterministic authoring metadata. */
+const contextualMessages = new Map();
 
 function noteScope(normalized) {
   if (!currentScope || !normalized) return;
@@ -1032,7 +1058,7 @@ const ANTAG_DEF_DIR = path.join(
   'interfaces/PreferencesMenu/antagonists',
 );
 
-function tsFilesUnder(dir, out = []) {
+function scriptFilesUnder(dir, out = []) {
   let entries;
   try {
     entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -1040,10 +1066,17 @@ function tsFilesUnder(dir, out = []) {
     return out;
   }
   for (const entry of entries) {
+    if (entry.name === 'node_modules') {
+      continue;
+    }
     const entryPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      tsFilesUnder(entryPath, out);
-    } else if (entry.name.endsWith('.ts') || entry.name.endsWith('.tsx')) {
+      scriptFilesUnder(entryPath, out);
+    } else if (
+      /\.(?:[jt]sx?)$/.test(entry.name) &&
+      !entry.name.includes('.test.') &&
+      !entry.name.includes('.sweep.')
+    ) {
       out.push(entryPath);
     }
   }
@@ -1424,7 +1457,7 @@ function extractConstantTableLabels(catalog) {
 }
 
 function extractAntagonistLabels(catalog) {
-  for (const file of tsFilesUnder(ANTAG_DEF_DIR)) {
+  for (const file of scriptFilesUnder(ANTAG_DEF_DIR)) {
     let source;
     try {
       source = fs.readFileSync(file, 'utf8');
@@ -1465,6 +1498,105 @@ function extractAntagonistLabels(catalog) {
   }
 }
 
+function defineMessageImports(sourceFile) {
+  const names = new Set();
+  for (const statement of sourceFile.statements) {
+    if (
+      !ts.isImportDeclaration(statement) ||
+      !ts.isStringLiteral(statement.moduleSpecifier) ||
+      !/(?:^|\/)i18n(?:\/messages)?$/.test(statement.moduleSpecifier.text)
+    ) {
+      continue;
+    }
+    const bindings = statement.importClause?.namedBindings;
+    if (!bindings || !ts.isNamedImports(bindings)) {
+      continue;
+    }
+    for (const element of bindings.elements) {
+      if ((element.propertyName ?? element.name).text === 'defineMessage') {
+        names.add(element.name.text);
+      }
+    }
+  }
+  return names;
+}
+
+function scriptKind(file) {
+  if (file.endsWith('.tsx')) return ts.ScriptKind.TSX;
+  if (file.endsWith('.jsx')) return ts.ScriptKind.JSX;
+  if (file.endsWith('.js')) return ts.ScriptKind.JS;
+  return ts.ScriptKind.TS;
+}
+
+function directStringLiteral(node) {
+  return node &&
+    (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node))
+    ? node.text
+    : null;
+}
+
+/**
+ * Extract explicit `defineMessage(context, source)` declarations from TS/JS.
+ * Dynamic arguments are hard errors: a runtime-only key could never reach translators.
+ */
+function extractContextMessages(catalog) {
+  for (const file of scriptFilesUnder(TGUI_SOURCE_DIR)) {
+    const source = fs.readFileSync(file, 'utf8');
+    const sourceFile = ts.createSourceFile(
+      file,
+      source,
+      ts.ScriptTarget.Latest,
+      true,
+      scriptKind(file),
+    );
+    const callNames = defineMessageImports(sourceFile);
+    if (!callNames.size) {
+      continue;
+    }
+    currentScope = `tgui:${path
+      .relative(TGUI_SOURCE_DIR, file)
+      .replace(/\\/g, '/')
+      .replace(/\.[^.]+$/, '')}`;
+
+    function visit(node) {
+      if (
+        ts.isCallExpression(node) &&
+        ts.isIdentifier(node.expression) &&
+        callNames.has(node.expression.text)
+      ) {
+        const context = directStringLiteral(node.arguments[0]);
+        const sourceText = directStringLiteral(node.arguments[1]);
+        if (node.arguments.length !== 2 || context === null || sourceText === null) {
+          throw new Error(
+            `${path.relative(ROOT, file)}:${sourceFile.getLineAndCharacterOfPosition(node.getStart()).line + 1}: defineMessage requires two direct string literals`,
+          );
+        }
+        if (!CONTEXT_PATTERN.test(context)) {
+          throw new Error(
+            `${path.relative(ROOT, file)}: invalid translation context ${JSON.stringify(context)}`,
+          );
+        }
+        if (!sourceText.trim() || sourceText.includes(CONTEXT_SEPARATOR)) {
+          throw new Error(
+            `${path.relative(ROOT, file)}: invalid contextual message source`,
+          );
+        }
+        const key = `${context}${CONTEXT_SEPARATOR}${sourceText}`;
+        catalog[key] = sourceText;
+        noteScope(key);
+        const metadata = contextualMessages.get(key) ?? {
+          context,
+          source: sourceText,
+          scopes: new Set(),
+        };
+        metadata.scopes.add(currentScope);
+        contextualMessages.set(key, metadata);
+      }
+      ts.forEachChild(node, visit);
+    }
+    visit(sourceFile);
+  }
+}
 
 // ---------------------------------------------------------------------------
 // 混合 children 的占位符模板
@@ -1548,6 +1680,7 @@ function childrenTemplate(children) {
 
 function extractCatalog() {
   const catalog = {};
+  extractContextMessages(catalog);
   // 这三个来源不是界面文件，语境按来源种类记（够用来把它们和界面串区分开）。
   currentScope = 'dm:labels';
   extractDmLabels(catalog);
@@ -1572,6 +1705,7 @@ function extractCatalog() {
     );
 
     const isFeatureDef = filePath.includes(FEATURE_DEF_DIR);
+    const contextCallNames = defineMessageImports(sourceFile);
 
     // 已被 children 模板吃掉的 JsxText 节点：不再单独入目录，否则那些碎片仍会被
     // 运行时逐段替换、拼出语序错乱的中文。
@@ -1639,8 +1773,13 @@ function extractCatalog() {
         // 如 PersonalityPage 的 'You have no personality.'）。运行时 auto-localize 会按英文原文翻这些
         // 渲染出的串，缺的只是把它们抽进目录。保守启发式（含空格 + 首字母大写 + 句末标点 + 无
         // </>/{}/=/_ 等标识符/标签字符）只取自然语句，避开 className/key/路径/act 标识符。
+        const isContextArgument =
+          ts.isCallExpression(node.parent) &&
+          ts.isIdentifier(node.parent.expression) &&
+          contextCallNames.has(node.parent.expression.text);
         const t = node.text;
         if (
+          !isContextArgument &&
           /\s/.test(t) &&
           /^[A-Z]/.test(t) &&
           /[.!?]$/.test(t) &&
@@ -1709,32 +1848,44 @@ function extract() {
   const zhCatalog = {};
 
   for (const key of Object.keys(enCatalog)) {
+    const english = enCatalog[key] ?? key;
     const existing = existingZh[key];
-    // 用户已有译文**最优先**，绝不被自动生成覆盖。否则每次 extract 都会把整句人工译文降级为
-    // phraseTranslation/reverse 的词级重组（如「创建指挥报告」→「创建指挥 Report」）。
-    // 只有「尚无译文」的新键才用自动生成回填。
-    if (existing && existing !== key) {
+    // 用户已有译文**最优先**，绝不被自动生成覆盖。Contextual entries 的 catalog key
+    // 是 `context\u0004source`，但 English value 始终是 source。
+    if (existing && existing !== english) {
       zhCatalog[key] = existing;
       continue;
     }
-    // 单词键**只允许沿用既有词对**（reverseZh = 其它命名空间已有译文），不许 phraseTranslation 现编。
-    // 理由：tgui.json 会被 DM 侧 build_i18n_cache 一并扫进**全局反查表**，凭空多出的
-    // 「单词 -> 译文」词对等于扩大整个 DM 侧的误翻面（线缆颜色那次被 i18n_real_catalog 当场抓住），
-    // 而单词恰恰是 act/topic/黑板键浓度最高的形态。多词键不受此限：phraseTranslation 本就是为它们准备的。
-    // 查不到就留英文——sync() 会把「值等于英文」的键滤掉，等于不存在。审计：audit-tgui-label-pairs.mjs。
-    if (!/\s/.test(key)) {
-      zhCatalog[key] = reverseZh[key] ?? key;
+    // First migration into an explicit context inherits the legacy source-key translation. Once
+    // translators edit the composite key, the branch above wins and contexts may diverge.
+    const legacyContextTranslation = key.includes(CONTEXT_SEPARATOR)
+      ? existingZh[english]
+      : undefined;
+    if (
+      legacyContextTranslation &&
+      legacyContextTranslation !== english
+    ) {
+      zhCatalog[key] = legacyContextTranslation;
       continue;
     }
-    zhCatalog[key] = phraseTranslation(key) ?? reverseZh[key] ?? key;
+    // Legacy automatic source lookup keeps single words conservative because they are highly
+    // ambiguous with UI identifiers. Explicit contextual messages can still receive independent
+    // translations through their composite keys.
+    if (!/\s/.test(english)) {
+      zhCatalog[key] = reverseZh[english] ?? english;
+      continue;
+    }
+    zhCatalog[key] =
+      phraseTranslation(english) ?? reverseZh[english] ?? english;
   }
 
   writeJson(stringsCatalogPath('en'), enCatalog);
   writeJson(stringsCatalogPath('zh-Hans'), zhCatalog);
   warnHtmlEntities(enCatalog, zhCatalog);
   writeTguiScopes(enCatalog);
-  writePropTemplates();
-  sync();
+  writeTguiContexts();
+  const propTemplatesContent = writePropTemplates();
+  sync({ en: enCatalog, 'zh-Hans': zhCatalog }, propTemplatesContent);
 }
 
 // 目录里出现 HTML 实体 = 两类真 bug，且都**静默**：
@@ -1762,10 +1913,8 @@ function warnHtmlEntities(enCatalog, zhCatalog) {
 }
 
 /**
- * 落盘 TGUI 语境 sidecar，并报出**跨界面共用**的 key。
- *
- * 放 strings/i18n/tgui-scopes.json（locale 目录之外——build_i18n_cache 会把 locale 目录里
- * 每个 .json 全量并进反查表，见 DM 侧 scopes.json 的同款注意事项）。
+ * Generated metadata lives outside locale directories so it cannot be mistaken for an
+ * authoring catalog or loaded into any runtime translation domain.
  */
 function writeTguiScopes(enCatalog) {
   const out = {};
@@ -1774,13 +1923,16 @@ function writeTguiScopes(enCatalog) {
     if (scopes && scopes.size) out[key] = [...scopes].sort();
   }
   const outPath = path.join(STRINGS_I18N_DIR, 'tgui-scopes.json');
-  fs.writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`);
+  emitGenerated(outPath, `${JSON.stringify(out, null, 2)}\n`);
   // 这个函数跑在**每次 tgui 构建**里，所以默认只出一行。
   // 跨界面共用的短 key（如 "Basic"：Crayon 的色系分组 vs 化学的碱性）只能有一个译文，
   // 各界面语义不同时必然有一边错——但那是需要专门排查的事，不该每次构建都刷屏。
   // 要看明细：I18N_SCOPE_REPORT=1 node tools/i18n/tgui-catalog.mjs extract
   const shared = Object.entries(out).filter(
-    ([key, sc]) => sc.length > 1 && key.split(/\s+/).length <= 2,
+    ([key, sc]) =>
+      !key.includes(CONTEXT_SEPARATOR) &&
+      sc.length > 1 &&
+      key.split(/\s+/).length <= 2,
   );
   console.log(
     `tgui 语境 sidecar: ${Object.keys(out).length} 条（跨界面共用短 key ${shared.length}）`,
@@ -1788,6 +1940,31 @@ function writeTguiScopes(enCatalog) {
   if (process.env.I18N_SCOPE_REPORT) {
     for (const [key, sc] of shared) console.log(`   ${JSON.stringify(key)} ${sc.join(', ')}`);
   }
+}
+
+/** Pure deterministic representation used by extract and freshness checks. */
+function buildTguiContexts() {
+  const out = {};
+  for (const key of [...contextualMessages.keys()].sort()) {
+    const { context, source, scopes } = contextualMessages.get(key);
+    out[key] = {
+      context,
+      source,
+      scopes: [...scopes].sort(),
+    };
+  }
+  return out;
+}
+
+function writeTguiContexts() {
+  const contexts = buildTguiContexts();
+  writeJson(
+    path.join(STRINGS_I18N_DIR, 'tgui-contexts.json'),
+    contexts,
+  );
+  console.log(
+    `tgui contextual messages: ${Object.keys(contexts).length} entries`,
+  );
 }
 
 /**
@@ -1800,17 +1977,21 @@ function writeTguiScopes(enCatalog) {
 function writePropTemplates() {
   const outPath = path.join(STRINGS_I18N_DIR, 'tgui-prop-templates.json');
   const out = [...propTemplates].filter(Boolean).sort();
-  fs.writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`);
+  const content = `${JSON.stringify(out, null, 2)}\n`;
+  emitGenerated(outPath, content);
+  return content;
 }
 
-function sync() {
-  const enSource = readJson(stringsCatalogPath('en'));
+function sync(sourceCatalogs = {}, propTemplatesContent = null) {
+  const enSource = sourceCatalogs.en ?? readJson(stringsCatalogPath('en'));
   for (const locale of LOCALES) {
     const sourcePath = stringsCatalogPath(locale);
     const fallbackPath = packageCatalogPath(locale);
-    const source = fs.existsSync(sourcePath)
-      ? readJson(sourcePath)
-      : readJson(fallbackPath);
+    const source =
+      sourceCatalogs[locale] ??
+      (fs.existsSync(sourcePath)
+        ? readJson(sourcePath)
+        : readJson(fallbackPath));
     const runtimeCatalog = {};
 
     for (const [key, value] of Object.entries(source)) {
@@ -1826,23 +2007,71 @@ function sync() {
   const policySource = path.join(STRINGS_I18N_DIR, 'policy.json');
   const policyTarget = path.join(TGUI_PACKAGE_I18N_DIR, 'policy.json');
   if (fs.existsSync(policySource)) {
-    fs.copyFileSync(policySource, policyTarget);
+    emitGenerated(policyTarget, fs.readFileSync(policySource));
+  } else if (CHECK_MODE) {
+    staleGeneratedFiles.push({
+      filePath: policySource,
+      actualBytes: null,
+      expectedBytes: null,
+      reason: 'missing canonical source',
+    });
   }
   // 逆匹配准入面同理（localize.ts 静态 import，两份都提交）。
   const tplSource = path.join(STRINGS_I18N_DIR, 'tgui-prop-templates.json');
   const tplTarget = path.join(TGUI_PACKAGE_I18N_DIR, 'prop-templates.json');
-  if (fs.existsSync(tplSource)) {
-    fs.copyFileSync(tplSource, tplTarget);
+  if (propTemplatesContent !== null) {
+    emitGenerated(tplTarget, propTemplatesContent);
+  } else if (fs.existsSync(tplSource)) {
+    emitGenerated(tplTarget, fs.readFileSync(tplSource));
+  } else if (CHECK_MODE) {
+    staleGeneratedFiles.push({
+      filePath: tplSource,
+      actualBytes: null,
+      expectedBytes: null,
+      reason: 'missing canonical source',
+    });
   }
 }
 
 const command = process.argv[2] ?? 'sync';
+const flags = process.argv.slice(3);
+if (flags.some((flag) => flag !== '--check')) {
+  console.error(
+    `Unknown flags: ${flags.filter((flag) => flag !== '--check').join(' ')}`,
+  );
+  console.error(
+    'Usage: node tools/i18n/tgui-catalog.mjs [extract|sync] [--check]',
+  );
+  process.exit(1);
+}
 if (command === 'extract') {
   extract();
 } else if (command === 'sync') {
   sync();
 } else {
   console.error(`Unknown command: ${command}`);
-  console.error('Usage: node tools/i18n/tgui-catalog.mjs [extract|sync]');
+  console.error(
+    'Usage: node tools/i18n/tgui-catalog.mjs [extract|sync] [--check]',
+  );
   process.exit(1);
+}
+
+if (CHECK_MODE) {
+  if (staleGeneratedFiles.length) {
+    console.error(
+      `Generated i18n artifacts are stale (${staleGeneratedFiles.length}):`,
+    );
+    for (const stale of staleGeneratedFiles) {
+      const relative = path.relative(ROOT, stale.filePath);
+      const detail = stale.reason
+        ? stale.reason
+        : `${stale.actualBytes ?? 'missing'} bytes on disk, ${stale.expectedBytes} expected`;
+      console.error(`  ${relative}: ${detail}`);
+    }
+    process.exitCode = 1;
+  } else {
+    console.log(
+      'Generated i18n artifacts are fresh (check mode; no files written).',
+    );
+  }
 }

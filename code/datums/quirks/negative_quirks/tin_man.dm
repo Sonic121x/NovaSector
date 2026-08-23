@@ -34,4 +34,4 @@
 		new_organ.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/quirk/tin_man/post_add()
-	to_chat(quirk_holder, span_bolddanger(LANG("datum.3969249e", null)))
+	to_chat(quirk_holder, span_bolddanger(LANG("datum.3969249eb075d429", null)))

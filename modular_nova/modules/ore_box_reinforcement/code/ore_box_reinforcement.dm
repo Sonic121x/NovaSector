@@ -17,7 +17,7 @@
 
 	var/obj/structure/ore_box/our_box = interacting_with
 	if(length(our_box.contents))
-		balloon_alert(user, LANG("obj.b033ee84", null))
+		balloon_alert(user, LANG("obj.b033ee84f76ca235", null))
 		return NONE
 
 	playsound(src, 'sound/items/tools/drill_use.ogg', 80, TRUE, -1)

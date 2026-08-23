@@ -27,7 +27,7 @@
 /datum/action/cooldown/mob_cooldown/resurface/proc/burrow(mob/living/burrower, atom/target, force = FALSE)
 	var/turf/unburrow_turf = get_unburrow_turf(burrower, target)
 	if (!unburrow_turf) // means all the turfs nearby are station turfs or something, not lavaland
-		to_chat(burrower, span_warning(LANG("datum.3503e05c", null)))
+		to_chat(burrower, span_warning(LANG("datum.3503e05cdf380380", null)))
 		if(burrower.ai_controller?.ai_status == AI_STATUS_ON)
 			//this is a valid reason to give up on a target
 			burrower.ai_controller.clear_blackboard_key(BB_CURRENT_TARGET)
@@ -220,7 +220,7 @@
 
 		hit_something = TRUE
 		victim.apply_damage(damage, BURN, null, blocked, wound_bonus = CANT_WOUND)
-		to_chat(victim, span_userdanger(LANG("obj.33f28339", list(src))))
+		to_chat(victim, span_userdanger(LANG("obj.33f28339161e1e19", list(src))))
 
 	for (var/obj/thing in target)
 		if (!thing.uses_integrity || !thing.density)
@@ -270,21 +270,21 @@
 
 /datum/action/cooldown/mob_cooldown/devour/Activate(atom/target_atom)
 	if(target_atom == owner)
-		to_chat(owner, span_warning(LANG("datum.ba014ab7", null)))
+		to_chat(owner, span_warning(LANG("datum.ba014ab787a637c4", null)))
 		return
 	if(!isliving(target_atom))
-		to_chat(owner, span_warning(LANG("datum.6fb636e1", null)))
+		to_chat(owner, span_warning(LANG("datum.6fb636e1a34b00eb", null)))
 		return
 	var/mob/living/living_target = target_atom
 	if(!IS_UNCONSCIOUS(living_target))
-		to_chat(owner, span_warning(LANG("datum.c04e4681", null)))
+		to_chat(owner, span_warning(LANG("datum.c04e4681f72bb5c6", null)))
 		return
 	burrow_and_devour(owner, living_target)
 
 /datum/action/cooldown/mob_cooldown/devour/proc/burrow_and_devour(mob/living/devourer, mob/living/target)
 	var/turf/devour_turf = get_turf(target)
 	if(!istype(devour_turf, /turf/open/misc)) // means all the turfs nearby are station turfs or something, not lavaland
-		to_chat(devourer, span_warning(LANG("datum.11169ac9", null)))
+		to_chat(devourer, span_warning(LANG("datum.11169ac9e556fb29", null)))
 		return //this will give up on devouring the target which is fine by me
 	playsound(devourer, 'sound/effects/break_stone.ogg', 50, TRUE)
 	new /obj/effect/temp_visual/mook_dust(get_turf(devourer))
@@ -298,10 +298,10 @@
 	REMOVE_TRAIT(devourer, TRAIT_GODMODE, REF(src))
 	devourer.RemoveInvisibility(type)
 	if(!(target in devour_turf))
-		to_chat(devourer, span_warning(LANG("datum.b7811aa5", null)))
+		to_chat(devourer, span_warning(LANG("datum.b7811aa5f1996651", null)))
 		return
-	to_chat(target, span_userdanger(LANG("datum.b17b4d8a", list(devourer))))
-	devourer.visible_message(span_warning(LANG("datum.5b0a8f33", list(devourer, target))))
+	to_chat(target, span_userdanger(LANG("datum.b17b4d8ad3e456c6", list(devourer))))
+	devourer.visible_message(span_warning(LANG("datum.5b0a8f33e34d69a7", list(devourer, target))))
 	devourer.fully_heal()
 	playsound(devourer, 'sound/effects/splat.ogg', 50, TRUE)
 	//to be received on death

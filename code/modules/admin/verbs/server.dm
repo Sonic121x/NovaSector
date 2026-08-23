@@ -35,10 +35,10 @@ ADMIN_VERB(restart, R_SERVER, "重启世界", "Restarts the world immediately.",
 		options += TGS_RESTART;
 
 	if(SSticker.admin_delay_notice)
-		if(alert(user, LANG("datum.94dee4b3", list(SSticker.admin_delay_notice)), LANG("datum.15bc27b6", null), "Yes", "No") != "Yes")
+		if(alert(user, LANG("datum.94dee4b3a151c7a9", list(SSticker.admin_delay_notice)), LANG("datum.15bc27b6fe454546", null), "Yes", "No") != "Yes")
 			return FALSE
 
-	var/result = input(user, LANG("datum.d218dc1f", null), LANG("datum.f801363f", null), options[1]) as null|anything in options
+	var/result = input(user, LANG("datum.d218dc1f070c6291", null), LANG("datum.f801363f1b2645fe", null), options[1]) as null|anything in options
 	if(isnull(result))
 		return
 
@@ -48,11 +48,11 @@ ADMIN_VERB(restart, R_SERVER, "重启世界", "Restarts the world immediately.",
 		if(REGULAR_RESTART, REGULAR_RESTART_DELAYED, NO_EVENT_RESTART)
 			var/delay = 1
 			if(result == REGULAR_RESTART_DELAYED)
-				delay = input(LANG("datum.14beaff1", null), LANG("datum.d3863989", null), 5) as num|null
+				delay = input(LANG("datum.14beaff10ae1470c", null), LANG("datum.d38639891b9aa50e", null), 5) as num|null
 			if(!delay)
 				return FALSE
 			if(!user.is_localhost())
-				if(alert(user,LANG("datum.83714097", null),LANG("datum.311a780e", null), "Restart", "Cancel") != "Restart")
+				if(alert(user,LANG("datum.83714097a79e2030", null),LANG("datum.311a780e45ff353b", null), "Restart", "Cancel") != "Restart")
 					return FALSE
 
 			if (result != NO_EVENT_RESTART)
@@ -60,13 +60,13 @@ ADMIN_VERB(restart, R_SERVER, "重启世界", "Restarts the world immediately.",
 
 			SSticker.Reboot(init_by, "admin reboot - by [user.key] [user.holder.fakekey ? "(stealth)" : ""]", delay * 10)
 		if(HARD_RESTART)
-			to_chat(world, LANG("datum.4a152bc2", list(init_by)))
+			to_chat(world, LANG("datum.4a152bc2563e0ecb", list(init_by)))
 			world.Reboot()
 		if(HARDEST_RESTART)
-			to_chat(world, LANG("datum.ffaeb44e", list(init_by)))
+			to_chat(world, LANG("datum.ffaeb44ecc3d2c15", list(init_by)))
 			world.Reboot(fast_track = TRUE)
 		if(TGS_RESTART)
-			to_chat(world, LANG("datum.589a8707", list(init_by)))
+			to_chat(world, LANG("datum.589a87071082d554", list(init_by)))
 			world.TgsEndProcess()
 
 #undef REGULAR_RESTART
@@ -83,7 +83,7 @@ ADMIN_VERB(cancel_reboot, R_SERVER, "取消重启", "Cancels a pending world reb
 	message_admins("[key_name_admin(user)] cancelled the pending world reboot.")
 
 ADMIN_VERB(end_round, R_SERVER, "结束回合", "Forcibly ends the round and allows the server to restart normally.", ADMIN_CATEGORY_SERVER)
-	var/confirm = tgui_alert(user, LANG("datum.35cf047f", null), LANG("datum.90364329", null), list("Yes", "Cancel"))
+	var/confirm = tgui_alert(user, LANG("datum.35cf047fba4ac479", null), LANG("datum.9036432955ff5e0f", null), list("Yes", "Cancel"))
 	if(confirm != "Yes")
 		return
 	SSticker.force_ending = FORCE_END_ROUND
@@ -107,20 +107,20 @@ ADMIN_VERB(toggle_vote_dead, R_ADMIN, "切换死者投票", "Toggle the vote for
 ADMIN_VERB(start_now, R_SERVER, "立即开始", "Start the round RIGHT NOW.", ADMIN_CATEGORY_SERVER)
 	var/static/list/waiting_states = list(GAME_STATE_PREGAME, GAME_STATE_STARTUP)
 	if(!(SSticker.current_state in waiting_states))
-		to_chat(user, span_warning(span_red(LANG("datum.5aae0bb8", null))))
+		to_chat(user, span_warning(span_red(LANG("datum.5aae0bb8c8fca60c", null))))
 		return
 
 	if(SSticker.start_immediately)
 		SSticker.start_immediately = FALSE
 		SSticker.SetTimeLeft(3 MINUTES)
-		to_chat(world, span_big(span_notice(LANG("datum.b6af2aca", null))))
+		to_chat(world, span_big(span_notice(LANG("datum.b6af2acaeba6a787", null))))
 		SEND_SOUND(world, sound('sound/announcer/default/attention.ogg'))
 		message_admins(span_adminnotice("[key_name_admin(user)] has cancelled immediate game start. Game will start in 3 minutes."))
 		log_admin("[key_name(user)] has cancelled immediate game start.")
 		return
 
 	if(!user.is_localhost())
-		var/response = tgui_alert(user, LANG("datum.fc7fa821", null), LANG("datum.4aef6455", null), list("Start Now", "Cancel"))
+		var/response = tgui_alert(user, LANG("datum.fc7fa821e5a1ba7c", null), LANG("datum.4aef6455021d99c1", null), list("Start Now", "Cancel"))
 		if(response != "Start Now")
 			return
 	SSticker.start_immediately = TRUE
@@ -133,16 +133,16 @@ ADMIN_VERB(start_now, R_SERVER, "立即开始", "Start the round RIGHT NOW.", AD
 
 ADMIN_VERB(delay_round_end, R_ADMIN, "延迟回合结束", "Prevent the server from restarting.", ADMIN_CATEGORY_SERVER) // NOVA EDIT CHANGE - Admins can delay the round end - ORIGINAL: ADMIN_VERB(delay_round_end, R_SERVER, "Delay Round End", "Prevent the server from restarting.", ADMIN_CATEGORY_SERVER)
 	if(SSticker.delay_end)
-		tgui_alert(user, LANG("datum.cc553680", list(SSticker.admin_delay_notice)), LANG("datum.055c248b", null), list("Ok"))
+		tgui_alert(user, LANG("datum.cc55368012fc0adf", list(SSticker.admin_delay_notice)), LANG("datum.055c248babf1d3c0", null), list("Ok"))
 		return
 
-	var/delay_reason = input(user, LANG("datum.dfaedb85", null), LANG("datum.3ec40d76", null)) as null|text
+	var/delay_reason = input(user, LANG("datum.dfaedb853a0c4186", null), LANG("datum.3ec40d76f7178728", null)) as null|text
 
 	if(isnull(delay_reason))
 		return
 
 	if(SSticker.delay_end)
-		tgui_alert(user, LANG("datum.cc553680", list(SSticker.admin_delay_notice)), LANG("datum.055c248b", null), list("Ok"))
+		tgui_alert(user, LANG("datum.cc55368012fc0adf", list(SSticker.admin_delay_notice)), LANG("datum.055c248babf1d3c0", null), list("Ok"))
 		return
 
 	SSticker.delay_end = TRUE
@@ -166,9 +166,9 @@ ADMIN_VERB(toggle_ai, R_SERVER, "切换可选 AI 职位", "Toggle the ability to
 	var/alai = CONFIG_GET(flag/allow_ai)
 	CONFIG_SET(flag/allow_ai, !alai)
 	if (alai)
-		to_chat(world, span_bold(LANG("datum.07e8e149", null)), confidential = TRUE)
+		to_chat(world, span_bold(LANG("datum.07e8e149a124752d", null)), confidential = TRUE)
 	else
-		to_chat(world, LANG("datum.889c06c6", null), confidential = TRUE)
+		to_chat(world, LANG("datum.889c06c62fd13edc", null), confidential = TRUE)
 	log_admin("[key_name(user)] toggled AI allowed.")
 	world.update_status()
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle AI", "[!alai ? "Disabled" : "Enabled"]")) // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
@@ -181,23 +181,23 @@ ADMIN_VERB(toggle_respawn, R_SERVER, "切换重生", "Toggle the ability to resp
 		if(RESPAWN_FLAG_DISABLED) // respawn currently disabled
 			new_state = RESPAWN_FLAG_FREE
 			new_state_text = "Enabled"
-			to_chat(world, span_bold(LANG("datum.53d44fc6", null)), confidential = TRUE)
+			to_chat(world, span_bold(LANG("datum.53d44fc6f9ee1afc", null)), confidential = TRUE)
 
 		if(RESPAWN_FLAG_FREE) // respawn currently enabled
 			new_state = RESPAWN_FLAG_NEW_CHARACTER
 			new_state_text = "Enabled, Different Slot"
-			to_chat(world, span_bold(LANG("datum.abc943d4", null)), confidential = TRUE)
+			to_chat(world, span_bold(LANG("datum.abc943d4ae386cee", null)), confidential = TRUE)
 
 		if(RESPAWN_FLAG_NEW_CHARACTER) // respawn currently enabled for different slot characters only
 			new_state = RESPAWN_FLAG_DISABLED
 			new_state_text = "Disabled"
-			to_chat(world, span_bold(LANG("datum.3e39f8b5", null)), confidential = TRUE)
+			to_chat(world, span_bold(LANG("datum.3e39f8b5d0f2177e", null)), confidential = TRUE)
 
 		else
 			WARNING("Invalid respawn state in config: [respawn_state]")
 
 	if(new_state == -1)
-		to_chat(user, span_warning(LANG("datum.9418c297", null)))
+		to_chat(user, span_warning(LANG("datum.9418c297ed1ad878", null)))
 		new_state = RESPAWN_FLAG_DISABLED
 		new_state_text = "Disabled"
 
@@ -210,19 +210,19 @@ ADMIN_VERB(toggle_respawn, R_SERVER, "切换重生", "Toggle the ability to resp
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Respawn", "[new_state_text]")) // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 
 ADMIN_VERB(delay, R_SERVER, "延迟开局", "Delay the game start.", ADMIN_CATEGORY_SERVER)
-	var/newtime = input(user, LANG("datum.623c5ef9", null), LANG("datum.8f2b8869", null), round(SSticker.GetTimeLeft()/10)) as num|null
+	var/newtime = input(user, LANG("datum.623c5ef916d5c8fe", null), LANG("datum.8f2b8869f7dce83f", null), round(SSticker.GetTimeLeft()/10)) as num|null
 	if(!newtime)
 		return
 	if(SSticker.current_state > GAME_STATE_PREGAME)
-		return tgui_alert(user, LANG("datum.d5a7f84f", null))
+		return tgui_alert(user, LANG("datum.d5a7f84f735b0cdd", null))
 	newtime = newtime*10
 	SSticker.SetTimeLeft(newtime)
 	SSticker.start_immediately = FALSE
 	if(newtime < 0)
-		to_chat(world, span_infoplain(LANG("datum.0f805894", null)), confidential = TRUE)
+		to_chat(world, span_infoplain(LANG("datum.0f80589498694679", null)), confidential = TRUE)
 		log_admin("[key_name(user)] delayed the round start.")
 	else
-		to_chat(world, span_infoplain(span_bold(LANG("datum.c3cc2de3", list(DisplayTimeText(newtime))))), confidential = TRUE)
+		to_chat(world, span_infoplain(span_bold(LANG("datum.c3cc2de3ef150039", list(DisplayTimeText(newtime))))), confidential = TRUE)
 		SEND_SOUND(world, sound('sound/announcer/default/attention.ogg'))
 		log_admin("[key_name(user)] set the pre-game delay to [DisplayTimeText(newtime)].")
 	BLACKBOX_LOG_ADMIN_VERB("Delay Game Start")
@@ -230,8 +230,8 @@ ADMIN_VERB(delay, R_SERVER, "延迟开局", "Delay the game start.", ADMIN_CATEG
 ADMIN_VERB(set_admin_notice, R_SERVER, "设置管理员通知", "Set an announcement that appears to everyone who joins the server. Only lasts this round.", ADMIN_CATEGORY_SERVER)
 	var/new_admin_notice = input(
 		user,
-		LANG("datum.7baedd28", null),
-		LANG("datum.b8478097", null),
+		LANG("datum.7baedd287d44749c", null),
+		LANG("datum.b8478097891100d8", null),
 		GLOB.admin_notice,
 	) as message|null
 	if(new_admin_notice == null)
@@ -244,7 +244,7 @@ ADMIN_VERB(set_admin_notice, R_SERVER, "设置管理员通知", "Set an announce
 	else
 		message_admins("[key_name(user)] set the admin notice.")
 		log_admin("[key_name(user)] set the admin notice:\n[new_admin_notice]")
-		to_chat(world, span_adminnotice(LANG("datum.1a3c22d3", list(new_admin_notice))), confidential = TRUE)
+		to_chat(world, span_adminnotice(LANG("datum.1a3c22d3931861cd", list(new_admin_notice))), confidential = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Set Admin Notice")
 	GLOB.admin_notice = new_admin_notice
 
@@ -252,9 +252,9 @@ ADMIN_VERB(toggle_guests, R_SERVER, "切换访客", "Toggle the ability for gues
 	var/new_guest_ban = !CONFIG_GET(flag/guest_ban)
 	CONFIG_SET(flag/guest_ban, new_guest_ban)
 	if (new_guest_ban)
-		to_chat(world, span_bold(LANG("datum.caea4e05", null)), confidential = TRUE)
+		to_chat(world, span_bold(LANG("datum.caea4e050bc7c28c", null)), confidential = TRUE)
 	else
-		to_chat(world, LANG("datum.f9b477be", null), confidential = TRUE)
+		to_chat(world, LANG("datum.f9b477bee105b80d", null), confidential = TRUE)
 	log_admin("[key_name(user)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed.")
 	message_admins(span_adminnotice("[key_name_admin(user)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed."))
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Guests", "[!new_guest_ban ? "Enabled" : "Disabled"]")) // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!

@@ -54,14 +54,14 @@
 	var/mode_display = lang_reverse_text(mode)
 	if(voluntary)
 		if(mode)
-			to_chat(user, span_notice(LANG("obj.969144e1", list(mode_display))))
+			to_chat(user, span_notice(LANG("obj.969144e1616938ee", list(mode_display))))
 		else
-			to_chat(user, span_notice(LANG("obj.155a89d7", null)))
+			to_chat(user, span_notice(LANG("obj.155a89d7845d0339", null)))
 	else
 		if(mode)
-			to_chat(user, span_warning(LANG("obj.c95f404e", list(mode_display))))
+			to_chat(user, span_warning(LANG("obj.c95f404e33f53550", list(mode_display))))
 		else
-			to_chat(user, span_warning(LANG("obj.1cbc3828", null)))
+			to_chat(user, span_warning(LANG("obj.1cbc382889bd0b4e", null)))
 	// NOVA EDIT CHANGE END
 	if(connection_images.len)
 		connection_images.Cut()

@@ -200,7 +200,7 @@
 /datum/action/cooldown/mob_cooldown/belly_flop/Activate(atom/target)
 	var/turf/target_turf = get_turf(target)
 	if(isclosedturf(target_turf) || isspaceturf(target_turf))
-		owner.balloon_alert(owner, LANG("datum.dc0a2636", null))
+		owner.balloon_alert(owner, LANG("datum.dc0a2636a79a98ac", null))
 		return FALSE
 	new /obj/effect/temp_visual/leaper_crush(target_turf)
 	owner.throw_at(target = target_turf, range = 7, speed = 1, spin = FALSE, callback = CALLBACK(src, PROC_REF(flop_on_turf), target_turf))
@@ -218,7 +218,7 @@
 		var/throw_dir = victim.loc == owner.loc ? get_dir(owner, victim) : pick(GLOB.alldirs)
 		var/throwtarget = get_edge_target_turf(victim, throw_dir)
 		victim.throw_at(target = throwtarget, range = 3, speed = 1)
-		victim.visible_message(span_warning(LANG("datum.65b13390", list(victim, owner))))
+		victim.visible_message(span_warning(LANG("datum.65b13390ac2beebd", list(victim, owner))))
 
 // flop ability effects
 /obj/effect/temp_visual/leaper_crush

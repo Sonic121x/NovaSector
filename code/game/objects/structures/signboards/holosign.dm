@@ -51,9 +51,9 @@
 /obj/structure/signboard/holosign/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning(LANG("obj.78d0678a", null))
+		. += span_warning(LANG("obj.78d0678a38f6c31e", null))
 	else if(registered_owner)
-		. += span_info(LANG("obj.97ed1460", list(span_name(registered_owner))))
+		. += span_info(LANG("obj.97ed146022b9ed88", list(span_name(registered_owner))))
 
 /obj/structure/signboard/holosign/update_overlays()
 	. = ..()
@@ -75,19 +75,19 @@
 
 	var/trimmed_id_name = trimtext(id.registered_name)
 	if(!trimmed_id_name)
-		balloon_alert(user, LANG("obj.8e228ee3", null))
+		balloon_alert(user, LANG("obj.8e228ee32b78c19a", null))
 		return ITEM_INTERACT_BLOCKING
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.5507b2af", null))
+		balloon_alert(user, LANG("obj.5507b2af7675c48f", null))
 		return ITEM_INTERACT_BLOCKING
 	if(registered_owner)
 		if(!check_locked(user))
 			registered_owner = null
-			balloon_alert(user, LANG("obj.f5905563", null))
+			balloon_alert(user, LANG("obj.f590556377f551e8", null))
 			investigate_log("([key_name(user)]) removed id lock", INVESTIGATE_SIGNBOARD)
 	else
 		registered_owner = trimmed_id_name
-		balloon_alert(user, LANG("obj.21abc832", null))
+		balloon_alert(user, LANG("obj.21abc83299509f9b", null))
 		investigate_log("([key_name(user)]) added id lock for \"[registered_owner]\"", INVESTIGATE_SIGNBOARD)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -121,16 +121,16 @@
 		return
 	var/new_color = sanitize_color(tgui_color_picker(user, "Set Sign Color", full_capitalize(name), current_color))
 	if(new_color && is_color_dark_with_saturation(new_color, 25))
-		balloon_alert(user, LANG("obj.0fd0d32e", null))
+		balloon_alert(user, LANG("obj.0fd0d32e41da9ec8", null))
 		return
 	if(check_locked(user))
 		return
 	INVOKE_ASYNC(src, PROC_REF(set_color), new_color)
 	if(new_color)
-		balloon_alert(user, LANG("obj.b5237a14", list(new_color)))
+		balloon_alert(user, LANG("obj.b5237a14b0838aa4", list(new_color)))
 		investigate_log("([key_name(user)]) set the color to [new_color || "(none)"]", INVESTIGATE_SIGNBOARD)
 	else
-		balloon_alert(user, LANG("obj.e3fcb1a0", null))
+		balloon_alert(user, LANG("obj.e3fcb1a021ea2598", null))
 		investigate_log("([key_name(user)]) cleared the color", INVESTIGATE_SIGNBOARD)
 
 /obj/structure/signboard/holosign/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -138,7 +138,7 @@
 		return FALSE
 	playsound(src, SFX_SPARKS, vol = 100, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 	do_sparks(3, cardinal_only = FALSE, source = src)
-	balloon_alert(user, LANG("obj.8d2c7e01", null))
+	balloon_alert(user, LANG("obj.8d2c7e01472b3089", null))
 	investigate_log("was emagged by [key_name(user)] (previous owner: [registered_owner || "(none)"])", INVESTIGATE_SIGNBOARD)
 	registered_owner = null
 	obj_flags |= EMAGGED

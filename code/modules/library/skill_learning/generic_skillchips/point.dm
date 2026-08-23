@@ -62,14 +62,14 @@
 	if(!arrow_color)
 		pick_color(user)
 		return
-	var/choice = tgui_alert(owner, LANG("datum.16eaf835", null),LANG("datum.254993df", null), list("Reset","Update"))
+	var/choice = tgui_alert(owner, LANG("datum.16eaf835d1394a3b", null),LANG("datum.254993dfd6719664", null), list("Reset","Update"))
 	if(user != owner || !choice || !IsAvailable(feedback = TRUE))
 		return
 	if(choice == "Update")
 		pick_color(user)
 	else
 		arrow_color = null
-		owner.balloon_alert(owner, LANG("datum.3c26934e", null))
+		owner.balloon_alert(owner, LANG("datum.3c26934e68a0ac38", null))
 		build_all_button_icons(update_flags = UPDATE_BUTTON_ICON, force = TRUE)
 
 /datum/action/change_pointer_color/proc/pick_color(mob/user)
@@ -77,7 +77,7 @@
 	if(user != owner || !IsAvailable(feedback = TRUE))
 		return
 	arrow_color = ncolor
-	owner.balloon_alert(owner, LANG("datum.37ec70c9", null))
+	owner.balloon_alert(owner, LANG("datum.37ec70c9f2a830b3", null))
 	build_all_button_icons(update_flags = UPDATE_BUTTON_ICON, force = TRUE)
 
 /datum/action/change_pointer_color/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force = FALSE)

@@ -11,10 +11,10 @@
 
 /obj/item/taster/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!interacting_with.reagents)
-		to_chat(user, span_notice(LANG("obj.fee6fe95", list(src, interacting_with, interacting_with.p_they(), interacting_with.p_have()))))
+		to_chat(user, span_notice(LANG("obj.fee6fe950b6c815e", list(src, interacting_with, interacting_with.p_they(), interacting_with.p_have()))))
 	else if(interacting_with.reagents.total_volume == 0)
-		to_chat(user, span_notice(LANG("obj.31ccd34e", list(src, interacting_with, interacting_with.p_they(), interacting_with.p_are()))))
+		to_chat(user, span_notice(LANG("obj.31ccd34eea4127ca", list(src, interacting_with, interacting_with.p_they(), interacting_with.p_are()))))
 	else
 		var/message = interacting_with.reagents.generate_taste_message(user, taste_sensitivity)
-		to_chat(user, span_notice(LANG("obj.53fb6750", list(src, message, interacting_with))))
+		to_chat(user, span_notice(LANG("obj.53fb6750b04ad6ae", list(src, message, interacting_with))))
 	return user.combat_mode ? NONE : ITEM_INTERACT_SUCCESS

@@ -22,16 +22,16 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 /obj/item/extraction_pack/examine()
 	. = ..()
-	. += span_infoplain(LANG("obj.4b3096b5", list(uses_left)))
+	. += span_infoplain(LANG("obj.4b3096b554bb3ee7", list(uses_left)))
 
 	var/obj/structure/extraction_point/beacon = beacon_ref?.resolve()
 
 	if(isnull(beacon))
 		beacon_ref = null
-		. += span_infoplain(LANG("obj.1208c516", null))
+		. += span_infoplain(LANG("obj.1208c5166d4a1f5c", null))
 		return
 
-	. += span_infoplain(LANG("obj.956250e4", list(beacon.name)))
+	. += span_infoplain(LANG("obj.956250e48b505645", list(beacon.name)))
 
 /obj/item/extraction_pack/attack_self(mob/user)
 	var/list/possible_beacons = list()
@@ -44,15 +44,15 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			possible_beacons += extraction_point
 
 	if(!length(possible_beacons))
-		balloon_alert(user, LANG("obj.29e70654", null))
+		balloon_alert(user, LANG("obj.29e70654dcd978f6", null))
 		return
 
-	var/chosen_beacon = tgui_input_list(user, LANG("obj.533cc7a1", null), LANG("obj.761ae691", null), sort_names(possible_beacons))
+	var/chosen_beacon = tgui_input_list(user, LANG("obj.533cc7a194ce2c4c", null), LANG("obj.761ae691f97ec53d", null), sort_names(possible_beacons))
 	if(isnull(chosen_beacon))
 		return
 
 	beacon_ref = WEAKREF(chosen_beacon)
-	balloon_alert(user, LANG("obj.f6c856f7", null))
+	balloon_alert(user, LANG("obj.f6c856f74a0a1b4e", null))
 
 /obj/item/extraction_pack/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!ismovable(interacting_with))
@@ -65,43 +65,43 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 	var/obj/structure/extraction_point/beacon = beacon_ref?.resolve()
 	if(isnull(beacon))
-		balloon_alert(user, LANG("obj.59204d3b", null))
+		balloon_alert(user, LANG("obj.59204d3b7513ec6b", null))
 		beacon_ref = null
 		return ITEM_INTERACT_BLOCKING
 	var/area/area = get_area(thing)
 	if(!can_use_indoors)
 		if(!area.outdoors)
-			balloon_alert(user, LANG("obj.b52dfbf9", null))
+			balloon_alert(user, LANG("obj.b52dfbf943f47979", null))
 			return ITEM_INTERACT_BLOCKING
 	if(area.area_flags & NOTELEPORT)
-		balloon_alert(user, LANG("obj.03bbb84b", null))
+		balloon_alert(user, LANG("obj.03bbb84b6cc4a4eb", null))
 		return ITEM_INTERACT_BLOCKING
 	var/area/target_area = get_area(beacon)
 	if(area != target_area && ((area.area_flags & LOCAL_TELEPORT) || (target_area.area_flags & LOCAL_TELEPORT)))
-		balloon_alert(user, LANG("obj.03bbb84b", null))
+		balloon_alert(user, LANG("obj.03bbb84b6cc4a4eb", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!safe_for_living_creatures && check_for_living_mobs(thing))
-		to_chat(user, span_warning(LANG("obj.2a82b470", list(src))))
-		balloon_alert(user, LANG("obj.6c5fb3e2", null))
+		to_chat(user, span_warning(LANG("obj.2a82b470c4a95cf5", list(src))))
+		balloon_alert(user, LANG("obj.6c5fb3e2026b9872", null))
 		return ITEM_INTERACT_BLOCKING
 	if(thing.move_resist > max_force_fulton)
-		balloon_alert(user, LANG("obj.5e148cfa", null))
+		balloon_alert(user, LANG("obj.5e148cfadd1df692", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert_to_viewers(LANG("obj.41dea7e7", null))
+	balloon_alert_to_viewers(LANG("obj.41dea7e7e48edf1d", null))
 	playsound(thing, 'sound/items/zip/zip.ogg', vol = 50, vary = TRUE)
 	if(isliving(thing))
 		var/mob/living/creature = thing
 		if(creature.mind)
-			to_chat(thing, span_userdanger(LANG("obj.3bbd7eff", null)))
+			to_chat(thing, span_userdanger(LANG("obj.3bbd7effdb64a769", null)))
 
 	if(!do_after(user, 5 SECONDS, target = thing))
 		return ITEM_INTERACT_BLOCKING
 
 	if(QDELETED(beacon))
-		balloon_alert(user, LANG("obj.f4aa3550", null))
+		balloon_alert(user, LANG("obj.f4aa35507cf0bbfd", null))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert_to_viewers(LANG("obj.4d30849c", null))
+	balloon_alert_to_viewers(LANG("obj.4d30849cb3f59133", null))
 	if(loc == user && ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		human_user.back?.atom_storage?.attempt_insert(src, user, force = STORAGE_SOFT_LOCKED)
@@ -200,7 +200,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 /obj/item/fulton_core/attack_self(mob/user)
 	var/area/user_area = get_area(user)
 	if(user_area.area_flags & NOTELEPORT)
-		balloon_alert(user, LANG("obj.f682dab4", null))
+		balloon_alert(user, LANG("obj.f682dab4cf0ed82c", null))
 		return
 
 	if(!do_after(user, 1.5 SECONDS, target = user) || QDELETED(src))
@@ -228,7 +228,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 /obj/structure/extraction_point/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	balloon_alert_to_viewers(LANG("obj.d8917abe", null))
+	balloon_alert_to_viewers(LANG("obj.d8917abe3239fc3a", null))
 	if(!do_after(user, 1.5 SECONDS, src))
 		return
 	new /obj/item/fulton_core(drop_location())

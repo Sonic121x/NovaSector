@@ -31,10 +31,10 @@
 		return
 
 	if(plank.get_amount() < PLANK_BARRICADE_AMOUNT)
-		source.balloon_alert(user, LANG("datum.717afaa7", list(PLANK_BARRICADE_AMOUNT, plank)))
+		source.balloon_alert(user, LANG("datum.717afaa7e4d18f26", list(PLANK_BARRICADE_AMOUNT, plank)))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
-	source.balloon_alert(user, LANG("datum.0603afcf", null))
+	source.balloon_alert(user, LANG("datum.0603afcf34f5b875", null))
 	playsound(source, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
 	INVOKE_ASYNC(src, PROC_REF(barricade), source, plank, user, params) //signal handlers can't have do_afters inside of them
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -44,7 +44,7 @@
 	if(!do_after(user, 5 SECONDS, target = source) || !plank.use(2) || (locate(/obj/structure/barricade/wooden/crude) in source.loc))
 		return
 
-	source.balloon_alert(user, LANG("datum.e32f847c", null))
+	source.balloon_alert(user, LANG("datum.e32f847cf4b70856", null))
 	var/obj/structure/barricade/wooden/crude/barricade = new (source.loc)
 	barricade.add_fingerprint(user)
 

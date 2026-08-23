@@ -81,7 +81,7 @@
 
 	playsound(source, 'sound/effects/chipbagpop.ogg', 100)
 
-	popper.visible_message(span_danger(LANG("datum.1ae974c2", list(popper, source))), span_danger(LANG("datum.58599103", list(source))), span_danger(LANG("datum.8f332c66", null)), COMBAT_MESSAGE_RANGE)
+	popper.visible_message(span_danger(LANG("datum.1ae974c201ab56f5", list(popper, source))), span_danger(LANG("datum.58599103688b9f12", list(source))), span_danger(LANG("datum.8f332c668d8a85f8", null)), COMBAT_MESSAGE_RANGE)
 	INVOKE_ASYNC(src, PROC_REF(async_generate_trash), source)
 	qdel(source)
 
@@ -89,7 +89,7 @@
 /datum/element/food_trash/proc/open_trash(datum/source, mob/user)
 	SIGNAL_HANDLER
 
-	to_chat(user, span_notice(LANG("datum.16be886a", list(source, initial(trash.name)))))
+	to_chat(user, span_notice(LANG("datum.16be886afe41d93d", list(source, initial(trash.name)))))
 
 	INVOKE_ASYNC(src, PROC_REF(async_generate_trash), source)
 	qdel(source)

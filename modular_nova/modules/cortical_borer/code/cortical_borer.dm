@@ -272,7 +272,7 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	if(!deathgasp_once)
 		deathgasp_once = TRUE
 		for(var/borers in GLOB.cortical_borers)
-			to_chat(borers, span_boldwarning(LANG("mob.c25a819e", list(src))))
+			to_chat(borers, span_boldwarning(LANG("mob.c25a819e2c598ba6", list(src))))
 	if(gibbed)
 		QDEL_NULL(reagent_holder)
 	return ..()
@@ -280,17 +280,17 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 //so we can add some stuff to status, making it easier to read... maybe some hud some day
 /mob/living/basic/cortical_borer/get_status_tab_items()
 	. = ..()
-	. += LANG("mob.b30780e7", list(chemical_storage, max_chemical_storage))
-	. += LANG("mob.19f71564", list(chemical_evolution))
-	. += LANG("mob.61c7d4be", list(stat_evolution))
+	. += LANG("mob.b30780e70466213f", list(chemical_storage, max_chemical_storage))
+	. += LANG("mob.19f7156479844bd0", list(chemical_evolution))
+	. += LANG("mob.61c7d4be3f8cf79f", list(stat_evolution))
 	. += ""
 	if(host_sugar())
-		. += LANG("mob.ceb5139c", null)
+		. += LANG("mob.ceb5139cc1125e1e", null)
 		. += ""
-	. += LANG("mob.350e88a2", null)
-	. += LANG("mob.d84844d9", list(GLOB.objective_egg_borer_number, GLOB.objective_egg_egg_number, GLOB.successful_egg_number, GLOB.objective_egg_borer_number))
-	. += LANG("mob.d3a51354", list(GLOB.objective_willing_hosts, length(GLOB.willing_hosts), GLOB.objective_willing_hosts))
-	. += LANG("mob.bdc02ee8", list(GLOB.objective_blood_borer, GLOB.objective_blood_chem, GLOB.successful_blood_chem, GLOB.objective_blood_borer))
+	. += LANG("mob.350e88a2e7210017", null)
+	. += LANG("mob.d84844d92ed88541", list(GLOB.objective_egg_borer_number, GLOB.objective_egg_egg_number, GLOB.successful_egg_number, GLOB.objective_egg_borer_number))
+	. += LANG("mob.d3a51354e63ec8b7", list(GLOB.objective_willing_hosts, length(GLOB.willing_hosts), GLOB.objective_willing_hosts))
+	. += LANG("mob.bdc02ee870dfd717", list(GLOB.objective_blood_borer, GLOB.objective_blood_chem, GLOB.successful_blood_chem, GLOB.objective_blood_borer))
 
 /mob/living/basic/cortical_borer/Life(seconds_per_tick)
 	. = ..()
@@ -333,13 +333,13 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 		return
 	if(stat == DEAD)
 		return
-	var/choice = tgui_input_list(usr, LANG("mob.95784ba5", list(src)), LANG("mob.15bc27b6", null), list("Yes", "No"))
+	var/choice = tgui_input_list(usr, LANG("mob.95784ba545cb33b9", list(src)), LANG("mob.15bc27b6fe454546", null), list("Yes", "No"))
 	if(choice != "Yes")
 		return
 	if(ckey || key)
 		return
-	to_chat(user, span_warning(LANG("mob.70e87326", null)))
-	to_chat(user, span_warning(LANG("mob.4caf4163", null)))
+	to_chat(user, span_warning(LANG("mob.70e8732690d84fd9", null)))
+	to_chat(user, span_warning(LANG("mob.4caf4163855c521a", null)))
 	ckey = user.ckey
 	if(mind)
 		mind.add_antag_datum(/datum/antagonist/cortical_borer)
@@ -390,7 +390,7 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 
 //borers shouldnt be able to whisper...
 /mob/living/basic/cortical_borer/whisper(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language, ignore_spam = FALSE, forced, filterproof)
-	to_chat(src, span_warning(LANG("mob.41174de8", null)))
+	to_chat(src, span_warning(LANG("mob.41174de8ad006f68", null)))
 	return FALSE
 
 //previously had borers unable to emote... but that means less RP, and we want that
@@ -410,7 +410,7 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	list/message_mods = list(),
 )
 	if(!inside_human())
-		to_chat(src, span_warning(LANG("mob.7bfda57f", null)))
+		to_chat(src, span_warning(LANG("mob.7bfda57f30bf7da2", null)))
 		return
 	if(host_sugar())
 		message = scramble_message_replace_chars(message, 10)
@@ -421,26 +421,26 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	if(split_message[1] == ";")
 		message = copytext(message, 2)
 		for(var/borer in GLOB.cortical_borers)
-			to_chat(borer, span_purple(LANG("mob.aca854ea", list(src, message))))
+			to_chat(borer, span_purple(LANG("mob.aca854ea8f709005", list(src, message))))
 		for(var/mob/dead_mob in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(dead_mob, src)
-			to_chat(dead_mob, span_purple(LANG("mob.ce36f069", list(link, src, message))))
+			to_chat(dead_mob, span_purple(LANG("mob.ce36f069a9e0324b", list(link, src, message))))
 		var/logging_textone = "[key_name(src)] spoke into the hivemind: [message]"
 		log_say(logging_textone)
 		return
 
 	//this is when they speak normally
-	to_chat(human_host, span_purple(LANG("mob.5f7cdf19", list(src, message))))
+	to_chat(human_host, span_purple(LANG("mob.5f7cdf198547fce6", list(src, message))))
 	var/logging_texttwo = "[key_name(src)] spoke to [key_name(human_host)]: [message]"
 	log_say(logging_texttwo)
-	to_chat(src, span_purple(LANG("mob.5f7cdf19", list(src, message))))
+	to_chat(src, span_purple(LANG("mob.5f7cdf198547fce6", list(src, message))))
 	for(var/mob/dead_mob in GLOB.dead_mob_list)
 		var/link = FOLLOW_LINK(dead_mob, src)
-		to_chat(dead_mob, span_purple(LANG("mob.b57aa67f", list(link, src, human_host, message))))
+		to_chat(dead_mob, span_purple(LANG("mob.b57aa67f046bb99e", list(link, src, human_host, message))))
 
 //borers should not be able to pull anything
 /mob/living/basic/cortical_borer/start_pulling(atom/movable/AM, state, force, supress_message)
-	to_chat(src, span_warning(LANG("mob.8d65fa79", null)))
+	to_chat(src, span_warning(LANG("mob.8d65fa79b958628f", null)))
 	return
 
 /// Called on Life() for the borer to age a bit
@@ -463,15 +463,15 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	if(maturity_age == maturity_threshold)
 		if(chemical_evolution < limited_borer) //you can only have a default of 10 at a time
 			chemical_evolution++
-			to_chat(src, span_notice(LANG("mob.bcbaa000", null)))
+			to_chat(src, span_notice(LANG("mob.bcbaa00063b2e109", null)))
 		else
-			to_chat(src, span_warning(LANG("mob.83ac3e7a", null)))
+			to_chat(src, span_warning(LANG("mob.83ac3e7ae440e1b5", null)))
 	if(maturity_age >= (maturity_threshold * 2))
 		if(stat_evolution < limited_borer)
 			stat_evolution++
-			to_chat(src, span_notice(LANG("mob.bed4978e", null)))
+			to_chat(src, span_notice(LANG("mob.bed4978e4e70f930", null)))
 		else
-			to_chat(src, span_warning(LANG("mob.e9bb5c5b", null)))
+			to_chat(src, span_warning(LANG("mob.e9bb5c5bb4ab0c40", null)))
 		maturity_age = 0
 
 /// Use to recalculate a borer's health and chemical stats when something retroactively affects them

@@ -36,7 +36,7 @@
 	AddElement(/datum/element/falling_hazard, damage = force, wound_bonus = wound_bonus, hardhat_safety = TRUE, crushes = FALSE, impact_sound = hitsound)
 
 /obj/item/crowbar/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.7fa5d3e5", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.7fa5d3e579f2aa61", list(user, user.p_them(), src, user.p_theyre()))))
 	playsound(loc, 'sound/items/weapons/genhit.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
@@ -182,7 +182,7 @@
 
 /obj/item/crowbar/power/examine()
 	. = ..()
-	. += LANG("obj.ce18620c", list(tool_behaviour == first_tool_behavior ? inactive_text : active_text))
+	. += LANG("obj.ce18620c8f36725b", list(tool_behaviour == first_tool_behavior ? inactive_text : active_text))
 
 /*
  * Signal proc for [COMSIG_TRANSFORMING_ON_TRANSFORM].
@@ -194,7 +194,7 @@
 
 	tool_behaviour = (active ? second_tool_behavior : first_tool_behavior)
 	if(user)
-		balloon_alert(user, LANG("obj.07b7e630", list(tool_behaviour == first_tool_behavior ? inactive_text : active_text)))
+		balloon_alert(user, LANG("obj.07b7e630c2be57ee", list(tool_behaviour == first_tool_behavior ? inactive_text : active_text)))
 	playsound(src, 'sound/items/tools/change_jaws.ogg', 50, TRUE)
 	if(tool_behaviour != TOOL_WIRECUTTER)
 		RemoveElement(/datum/element/cuffsnapping, snap_time_weak_handcuffs, snap_time_strong_handcuffs)
@@ -220,7 +220,7 @@
 		for(var/possible_blacklisted_access in collective_access)
 			if(possible_blacklisted_access in blacklisted_access)
 				playsound(src.loc, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-				user.balloon_alert(user, LANG("obj.3de46b79", null))
+				user.balloon_alert(user, LANG("obj.3de46b791b5b5d83", null))
 				return COMPONENT_TOOL_DO_NOT_ALLOW_FORCE_OPEN
 
 	if(radio_alert && COOLDOWN_FINISHED(src, alert_cooldown))
@@ -257,10 +257,10 @@
 
 /obj/item/crowbar/power/suicide_act(mob/living/user)
 	if(tool_behaviour == TOOL_CROWBAR)
-		user.visible_message(span_suicide(LANG("obj.93cb7ae7", list(user, user.p_their(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.93cb7ae77dff847d", list(user, user.p_their(), src, user.p_theyre()))))
 		playsound(loc, 'sound/items/tools/jaws_pry.ogg', 50, TRUE, -1)
 	else
-		user.visible_message(span_suicide(LANG("obj.37945c89", list(user, src, user.p_their(), user.p_theyre(), user.p_their()))))
+		user.visible_message(span_suicide(LANG("obj.37945c89927384f8", list(user, src, user.p_their(), user.p_theyre(), user.p_their()))))
 		playsound(loc, 'sound/items/tools/jaws_cut.ogg', 50, TRUE, -1)
 		if(iscarbon(user))
 			var/mob/living/carbon/suicide_victim = user
@@ -388,21 +388,21 @@
 
 /obj/item/crowbar/mechremoval/proc/empty_mech(obj/vehicle/sealed/mecha/mech, mob/user)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
-		mech.balloon_alert(user, LANG("obj.5b73fdc6", null))
+		mech.balloon_alert(user, LANG("obj.5b73fdc6ebfd9ae1", null))
 		return
 	var/obj/item/mecha_parts/mecha_equipment/sleeper/mech_sleeper = locate() in mech
 	if((!LAZYLEN(mech.occupants) || (LAZYLEN(mech.occupants) == 1 && mech.mecha_flags & SILICON_PILOT)) && (!mech_sleeper || !mech_sleeper.patient)) //if no occupants, or only an ai
-		mech.balloon_alert(user, LANG("obj.76a90f7c", null))
+		mech.balloon_alert(user, LANG("obj.76a90f7c0f5ea424", null))
 		return
 	var/list/log_list_before = LAZYCOPY(mech.occupants)
 	if(mech_sleeper?.patient)
 		log_list_before += mech_sleeper.patient
 	user.log_message("tried to pry open [mech], located at [loc_name(mech)], which is occupied by [log_list_before.Join(", ")].", LOG_ATTACK)
 	var/mech_dir = mech.dir
-	mech.balloon_alert(user, LANG("obj.f1667472", null))
+	mech.balloon_alert(user, LANG("obj.f1667472a4b94dc0", null))
 	playsound(mech, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE)
 	if(!use_tool(mech, user, (mech.mecha_flags & IS_ENCLOSED) ? 5 SECONDS : 3 SECONDS, volume = 0, extra_checks = CALLBACK(src, PROC_REF(extra_checks), mech, mech_dir, mech_sleeper)))
-		mech.balloon_alert(user, LANG("obj.c67b5d27", null))
+		mech.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return
 	var/list/log_list_after = LAZYCOPY(mech.occupants)
 	if(mech_sleeper?.patient)

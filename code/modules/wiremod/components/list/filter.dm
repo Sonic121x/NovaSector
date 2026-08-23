@@ -77,7 +77,7 @@
 		index += 1
 		var/list/result = SScircuit_component.execute_instant_run()
 		if(!result)
-			balloon_alert_to_viewers(LANG("obj.a2c150c1", list(src)))
+			balloon_alert_to_viewers(LANG("obj.a2c150c1d01cb99a", list(src)))
 			on_failed.set_output(COMPONENT_SIGNAL)
 			return
 		if(result["accept_entry"])

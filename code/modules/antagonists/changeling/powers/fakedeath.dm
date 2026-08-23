@@ -30,9 +30,9 @@
 	if(!enable_fakedeath(user, duration_modifier = death_duration_mod))
 		CRASH("Changeling revive failed to enter fakedeath when it should have been in a valid state to.")
 
-	to_chat(user, span_changeling(LANG("datum.23bc9468", null)))
+	to_chat(user, span_changeling(LANG("datum.23bc94683a34d431", null)))
 	if(death_duration_mod > 1)
-		to_chat(user, span_changeling(span_bold(LANG("datum.bba34719", list(death_duration_mod >= 5 ? "far ":"")))))
+		to_chat(user, span_changeling(span_bold(LANG("datum.bba34719796cf843", list(death_duration_mod >= 5 ? "far ":"")))))
 	return TRUE
 
 /// Used to enable fakedeath and register relevant signals / start timers
@@ -89,7 +89,7 @@
 		return
 
 	source.cure_fakedeath(CHANGELING_TRAIT)
-	to_chat(source, span_changeling(LANG("datum.c80848b9", null)))
+	to_chat(source, span_changeling(LANG("datum.c80848b9131bbe93", null)))
 	reset_chemical_cost()
 
 /datum/action/changeling/fakedeath/proc/revive(mob/living/carbon/user)
@@ -103,7 +103,7 @@
 	var/flags_to_heal = (HEAL_DAMAGE|HEAL_BODY|HEAL_STATUS|HEAL_CC_STATUS)
 	// but leave out limbs so we can do it specially
 	user.revive(flags_to_heal & ~HEAL_LIMBS)
-	to_chat(user, span_changeling(LANG("datum.0e4fd12d", null)))
+	to_chat(user, span_changeling(LANG("datum.0e4fd12df0bc85e3", null)))
 
 	var/static/list/dont_regenerate = list(BODY_ZONE_HEAD) // headless changelings are funny
 	if(!length(user.get_missing_limbs() - dont_regenerate))
@@ -111,9 +111,9 @@
 
 	playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	user.visible_message(
-		span_warning(LANG("datum.dcde9284", list(user))),
-		span_userdanger(LANG("datum.eebb0cd6", null)),
-		span_hear(LANG("datum.581bebe7", null)),
+		span_warning(LANG("datum.dcde928414fd695a", list(user))),
+		span_userdanger(LANG("datum.eebb0cd6068ec92e", null)),
+		span_hear(LANG("datum.581bebe73d25d191", null)),
 	)
 	user.emote("scream")
 	// Manually call this (outside of revive/fullheal) so we can pass our blacklist
@@ -129,7 +129,7 @@
 	if(!HAS_TRAIT_FROM(user, TRAIT_DEATHCOMA, CHANGELING_TRAIT))
 		return
 
-	to_chat(user, span_changeling(LANG("datum.b2f35ffc", null)))
+	to_chat(user, span_changeling(LANG("datum.b2f35ffcb2183c1c", null)))
 	enable_revive(user)
 
 /datum/action/changeling/fakedeath/can_sting(mob/living/user)
@@ -140,7 +140,7 @@
 		return
 	//Confirmation for living changelings if they want to fake their death
 	if(user.stat != DEAD)
-		if(tgui_alert(user, LANG("datum.50ad749c", null), LANG("datum.497dae9f", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, LANG("datum.50ad749ce1cfa470", null), LANG("datum.497dae9fafabe60b", null), list("Yes", "No")) != "Yes")
 			return
 		if(QDELETED(user) || QDELETED(src) || !can_enter_stasis(user))
 			return
@@ -157,17 +157,17 @@
 
 /datum/action/changeling/fakedeath/proc/can_enter_stasis(mob/living/user)
 	if(HAS_TRAIT_FROM(user, TRAIT_DEATHCOMA, CHANGELING_TRAIT))
-		user.balloon_alert(user, LANG("datum.2a02d01c", null))
+		user.balloon_alert(user, LANG("datum.2a02d01c11d84afa", null))
 		return FALSE
 	return TRUE
 
 /datum/action/changeling/fakedeath/update_button_name(atom/movable/screen/movable/action_button/button, force)
 	if(revive_ready)
 		name = "Revive"
-		desc = LANG("datum.e91c0a3e", null)
+		desc = LANG("datum.e91c0a3e8eedd9e7", null)
 	else
 		name = "Reviving Stasis"
-		desc = LANG("datum.f87402fd", null)
+		desc = LANG("datum.f87402fde1247bb7", null)
 	return ..()
 
 /datum/action/changeling/fakedeath/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force)

@@ -50,10 +50,10 @@
 		return
 
 	if(!attempt_slide(source_atom, user))
-		source_atom.balloon_alert(user, LANG("datum.a7d57b22", null))
+		source_atom.balloon_alert(user, LANG("datum.a7d57b22f2a09f4e", null))
 		return
 
-	source_atom.balloon_alert_to_viewers(LANG("datum.6d03cee8", null))
+	source_atom.balloon_alert_to_viewers(LANG("datum.6d03cee8f08263f0", null))
 
 /datum/element/sliding_under/proc/attempt_slide(atom/source_atom, mob/user)
 	var/turf/destination = get_turf(source_atom)
@@ -77,7 +77,7 @@
 	if(!is_type_in_typecache(user, allowed_mobs))
 		return
 
-	examine_list += span_warning(LANG("datum.da090843", list(source)))
+	examine_list += span_warning(LANG("datum.da090843c2d46232", list(source)))
 
 // Loads our drone under door slide component dependency
 /obj/machinery/door/Initialize(mapload)

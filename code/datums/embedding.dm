@@ -193,8 +193,8 @@
 
 	chance -= armor
 	if (chance < 0)
-		victim.visible_message(span_danger(LANG("datum.9d419a18", list(parent, victim))),
-			span_notice(LANG("datum.61b9f878", list(parent))), vision_distance = COMBAT_MESSAGE_RANGE)
+		victim.visible_message(span_danger(LANG("datum.9d419a18597ab54c", list(parent, victim))),
+			span_notice(LANG("datum.61b9f878ee4dd1b7", list(parent))), vision_distance = COMBAT_MESSAGE_RANGE)
 		return FALSE
 
 	return prob(chance)
@@ -223,8 +223,8 @@
 	parent.forceMove(owner)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(weapon_disappeared))
 	RegisterSignal(parent, COMSIG_MAGIC_RECALL, PROC_REF(magic_pull))
-	owner.visible_message(span_danger(LANG("datum.6c0eecf7", list(parent, is_harmless() ? "sticks itself to" : "embeds itself in", owner, owner_limb.plaintext_zone))),
-		span_userdanger(LANG("datum.15e80c55", list(parent, is_harmless() ? "sticks itself to" : "embeds itself in", owner_limb.plaintext_zone))))
+	owner.visible_message(span_danger(LANG("datum.6c0eecf7c834dbbc", list(parent, is_harmless() ? "sticks itself to" : "embeds itself in", owner, owner_limb.plaintext_zone))),
+		span_userdanger(LANG("datum.15e80c55728e9688", list(parent, is_harmless() ? "sticks itself to" : "embeds itself in", owner_limb.plaintext_zone))))
 
 	var/damage = parent.throwforce
 	if (!is_harmless(consider_stamina = TRUE))
@@ -325,12 +325,12 @@
 	if (jack_the_ripper != owner)
 		time_taken *= RIPPING_OUT_HELP_TIME_MULTIPLIER
 		damage_mult *= RIPPING_OUT_HELP_DAMAGE_MULTIPLIER
-		owner.visible_message(span_warning(LANG("datum.369aa688", list(jack_the_ripper, parent, owner, owner_limb.plaintext_zone))),
-			span_userdanger(LANG("datum.a8ebd43f", list(jack_the_ripper, parent, owner_limb.plaintext_zone))), ignored_mobs = jack_the_ripper)
-		to_chat(jack_the_ripper, span_notice(LANG("datum.081bfb01", list(parent, owner, owner_limb.plaintext_zone))))
+		owner.visible_message(span_warning(LANG("datum.369aa688d008b017", list(jack_the_ripper, parent, owner, owner_limb.plaintext_zone))),
+			span_userdanger(LANG("datum.a8ebd43f06cf8e86", list(jack_the_ripper, parent, owner_limb.plaintext_zone))), ignored_mobs = jack_the_ripper)
+		to_chat(jack_the_ripper, span_notice(LANG("datum.081bfb01999635eb", list(parent, owner, owner_limb.plaintext_zone))))
 	else
-		owner.visible_message(span_warning(LANG("datum.0b26e7d3", list(owner, parent, owner.p_their(), owner_limb.plaintext_zone))),
-			span_notice(LANG("datum.89d281c4", list(parent, owner_limb.plaintext_zone))))
+		owner.visible_message(span_warning(LANG("datum.0b26e7d3c6e9d3fe", list(owner, parent, owner.p_their(), owner_limb.plaintext_zone))),
+			span_notice(LANG("datum.89d281c4d3a525e2", list(parent, owner_limb.plaintext_zone))))
 
 	if (!do_after(jack_the_ripper, time_taken, owner, extra_checks = CALLBACK(src, PROC_REF(still_in))))
 		return
@@ -339,12 +339,12 @@
 		return
 
 	if (jack_the_ripper == owner)
-		owner.visible_message(span_notice(LANG("datum.086291b9", list(owner, parent, is_harmless() ? "off" : "out", owner.p_their(), owner_limb.plaintext_zone))),
-			span_notice(LANG("datum.16db121b", list(parent, owner_limb.plaintext_zone))))
+		owner.visible_message(span_notice(LANG("datum.086291b94482c694", list(owner, parent, is_harmless() ? "off" : "out", owner.p_their(), owner_limb.plaintext_zone))),
+			span_notice(LANG("datum.16db121bfb23d078", list(parent, owner_limb.plaintext_zone))))
 	else
-		owner.visible_message(span_notice(LANG("datum.250f2365", list(jack_the_ripper, parent, is_harmless() ? "off" : "out", owner, owner_limb.plaintext_zone))),
-			span_userdanger(LANG("datum.7b3e24c9", list(jack_the_ripper, parent, owner_limb.plaintext_zone))), ignored_mobs = jack_the_ripper)
-		to_chat(jack_the_ripper, span_notice(LANG("datum.c63a49bc", list(parent, owner, owner_limb.plaintext_zone))))
+		owner.visible_message(span_notice(LANG("datum.250f23650c68f41c", list(jack_the_ripper, parent, is_harmless() ? "off" : "out", owner, owner_limb.plaintext_zone))),
+			span_userdanger(LANG("datum.7b3e24c9fb7dd105", list(jack_the_ripper, parent, owner_limb.plaintext_zone))), ignored_mobs = jack_the_ripper)
+		to_chat(jack_the_ripper, span_notice(LANG("datum.c63a49bcb9718357", list(parent, owner, owner_limb.plaintext_zone))))
 
 	if (!is_harmless())
 		damaging_removal_effect(damage_mult)
@@ -405,9 +405,9 @@
 	)
 
 	if(stealthy_embed)
-		to_chat(owner, span_danger(LANG("datum.db736d5d", list(owner_limb.plaintext_zone))))
+		to_chat(owner, span_danger(LANG("datum.db736d5d27ba57e9", list(owner_limb.plaintext_zone))))
 	else
-		to_chat(owner, span_userdanger(LANG("datum.57c54a6a", list(parent, owner_limb.plaintext_zone))))
+		to_chat(owner, span_userdanger(LANG("datum.57c54a6ab4779b39", list(parent, owner_limb.plaintext_zone))))
 	jostle_effects()
 
 /// Effects which should occur when the owner moves, sometimes
@@ -476,9 +476,9 @@
 		damagetype = STAMINA,
 	)
 	if(stealthy_embed)
-		to_chat(owner, span_danger(LANG("datum.b7eff8bb", list(owner_limb.plaintext_zone, pain_stam_pct < 1 ? "hurts!" : "weighs you down."))))
+		to_chat(owner, span_danger(LANG("datum.b7eff8bbaffdeb8b", list(owner_limb.plaintext_zone, pain_stam_pct < 1 ? "hurts!" : "weighs you down."))))
 	else
-		to_chat(owner, span_userdanger(LANG("datum.07b6bce8", list(parent, owner_limb.plaintext_zone, pain_stam_pct < 1 ? "hurts!" : "weighs you down."))))
+		to_chat(owner, span_userdanger(LANG("datum.07b6bce8873870af", list(parent, owner_limb.plaintext_zone, pain_stam_pct < 1 ? "hurts!" : "weighs you down."))))
 
 /// Called every process, return TRUE in order to abort further processing - if it falls out, etc
 /datum/embedding/proc/process_effect(seconds_per_tick)
@@ -499,19 +499,19 @@
 		pluck_time *= 1.5
 
 	if (self_pluck)
-		owner.visible_message(span_danger(LANG("datum.18bdc113", list(owner, parent, owner.p_their(), owner_limb.plaintext_zone, tool))),
-			span_notice(LANG("datum.bbba334e", list(parent, owner_limb.plaintext_zone, tool))), visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE)
+		owner.visible_message(span_danger(LANG("datum.18bdc113607d631c", list(owner, parent, owner.p_their(), owner_limb.plaintext_zone, tool))),
+			span_notice(LANG("datum.bbba334ed84d192d", list(parent, owner_limb.plaintext_zone, tool))), visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE)
 	else
-		user.visible_message(span_danger(LANG("datum.0fed37b8", list(user, parent, owner, owner_limb.plaintext_zone, tool))),
-			span_notice(LANG("datum.92574b47", list(parent, owner, owner_limb.plaintext_zone, tool))), ignored_mobs = owner)
-		to_chat(owner, span_userdanger(LANG("datum.8bf6dee7", list(user, parent, owner_limb.plaintext_zone, tool))))
+		user.visible_message(span_danger(LANG("datum.0fed37b850d62df9", list(user, parent, owner, owner_limb.plaintext_zone, tool))),
+			span_notice(LANG("datum.92574b4797431602", list(parent, owner, owner_limb.plaintext_zone, tool))), ignored_mobs = owner)
+		to_chat(owner, span_userdanger(LANG("datum.8bf6dee7d42a6ed5", list(user, parent, owner_limb.plaintext_zone, tool))))
 
 	if (!do_after(user, pluck_time, owner, extra_checks = CALLBACK(src, PROC_REF(still_in))))
 		if (self_pluck)
-			to_chat(user, span_danger(LANG("datum.879d4044", list(parent, owner_limb.plaintext_zone))))
+			to_chat(user, span_danger(LANG("datum.879d4044095db9a0", list(parent, owner_limb.plaintext_zone))))
 		else
-			to_chat(user, span_danger(LANG("datum.70dff646", list(parent, owner, owner_limb.plaintext_zone))))
-			to_chat(owner, span_danger(LANG("datum.6b45314b", list(user, parent, owner_limb.plaintext_zone))))
+			to_chat(user, span_danger(LANG("datum.70dff646a3bbc7e5", list(parent, owner, owner_limb.plaintext_zone))))
+			to_chat(owner, span_danger(LANG("datum.6b45314be6083ff2", list(user, parent, owner_limb.plaintext_zone))))
 		return
 
 	if (self_pluck)
@@ -525,8 +525,8 @@
 /// Called when then item randomly falls out of a carbon. This handles the damage and descriptors, then calls remove_embedding()
 /datum/embedding/proc/fall_out()
 	if(is_harmless())
-		owner.visible_message(span_warning(LANG("datum.bb7b5186", list(parent, owner.name, owner_limb.plaintext_zone))),
-			span_warning(LANG("datum.6faed24d", list(parent, owner_limb.plaintext_zone))))
+		owner.visible_message(span_warning(LANG("datum.bb7b5186bda997cf", list(parent, owner.name, owner_limb.plaintext_zone))),
+			span_warning(LANG("datum.6faed24d97622086", list(parent, owner_limb.plaintext_zone))))
 		remove_embedding()
 		return
 
@@ -545,8 +545,8 @@
 		damagetype = STAMINA,
 	)
 
-	owner.visible_message(span_danger(LANG("datum.5c6c727d", list(parent, owner.name, owner_limb.plaintext_zone))),
-		span_userdanger(LANG("datum.d9d5546f", list(parent, owner_limb.plaintext_zone))))
+	owner.visible_message(span_danger(LANG("datum.5c6c727daf901b46", list(parent, owner.name, owner_limb.plaintext_zone))),
+		span_userdanger(LANG("datum.d9d5546f93ff5e47", list(parent, owner_limb.plaintext_zone))))
 	remove_embedding()
 
 /// Whenever the parent item is forcefully moved by some weird means
@@ -554,7 +554,7 @@
 	SIGNAL_HANDLER
 	// If something moved it to their limb, its not really *disappearing*, is it?
 	if (owner && parent.loc != owner_limb)
-		to_chat(owner, span_userdanger(LANG("datum.f8aee623", list(parent, owner_limb.plaintext_zone))))
+		to_chat(owner, span_userdanger(LANG("datum.f8aee623c1ccfe5c", list(parent, owner_limb.plaintext_zone))))
 	stop_embedding()
 
 /// So the sticky grenades chain-detonate, because mobs are very careful with which of their contents they blow up
@@ -576,7 +576,7 @@
 	SIGNAL_HANDLER
 
 	if(is_harmless())
-		owner.visible_message(span_danger(LANG("datum.9ebc03f5", list(parent, owner, owner_limb.plaintext_zone))), span_userdanger(LANG("datum.b46fdd8e", list(parent, owner_limb.plaintext_zone))))
+		owner.visible_message(span_danger(LANG("datum.9ebc03f51ffe502f", list(parent, owner, owner_limb.plaintext_zone))), span_userdanger(LANG("datum.b46fdd8e08e506a2", list(parent, owner_limb.plaintext_zone))))
 		return
 
 	var/damage = parent.w_class * remove_pain_mult
@@ -600,12 +600,12 @@
 
 	var/dist = get_dist(caster, owner) //Check if the caster is close enough to yank them in
 	if(dist >= 7)
-		owner.visible_message(span_danger(LANG("datum.e2331f75", list(parent, owner, owner_limb.plaintext_zone))), span_userdanger(LANG("datum.cc0c9671", list(parent, owner_limb.plaintext_zone))))
+		owner.visible_message(span_danger(LANG("datum.e2331f7578504e2a", list(parent, owner, owner_limb.plaintext_zone))), span_userdanger(LANG("datum.cc0c9671218e43db", list(parent, owner_limb.plaintext_zone))))
 		return
 
 	owner.throw_at(caster, get_dist(owner, caster) - 1, 1, caster)
 	owner.Paralyze(1 SECONDS)
-	owner.visible_message(span_alert(LANG("datum.d7a6ec2e", list(owner, caster, parent))), span_alert(LANG("datum.b55ff6c9", list(caster, parent))))
+	owner.visible_message(span_alert(LANG("datum.d7a6ec2eabc5cafc", list(owner, caster, parent))), span_alert(LANG("datum.b55ff6c941bf6900", list(caster, parent))))
 
 /datum/embedding/proc/still_in()
 	if (parent.loc != owner)

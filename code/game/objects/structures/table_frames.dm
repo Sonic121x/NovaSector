@@ -41,7 +41,7 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/table_frame/wrench_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, LANG("obj.44f0e678", null))
+	balloon_alert(user, LANG("obj.44f0e678d88c8044", null))
 	tool.play_tool_sound(src)
 	if(!tool.use_tool(src, user, 3 SECONDS))
 		return ITEM_INTERACT_BLOCKING
@@ -61,7 +61,7 @@
 		return NONE
 
 	if(our_stack.get_amount() < 1)
-		balloon_alert(user, LANG("obj.e3e0372f", null))
+		balloon_alert(user, LANG("obj.e3e0372f4cc5c61c", null))
 		return ITEM_INTERACT_BLOCKING
 
 	// Check if the turf is blocked by dense objects or objects that block construction
@@ -69,10 +69,10 @@
 		if(object.pass_flags & PASSTABLE)
 			continue
 		if((object.density && !(object.obj_flags & IGNORE_DENSITY)) || object.obj_flags & BLOCKS_CONSTRUCTION)
-			balloon_alert(user, LANG("obj.f4935eb9", list(object.name)))
+			balloon_alert(user, LANG("obj.f4935eb907e08bb0", list(object.name)))
 			return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.47414101", null))
+	balloon_alert(user, LANG("obj.47414101e9c850de", null))
 	if(!do_after(user, 2 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
@@ -81,7 +81,7 @@
 		if(object.pass_flags & PASSTABLE)
 			continue
 		if((object.density && !(object.obj_flags & IGNORE_DENSITY)) || object.obj_flags & BLOCKS_CONSTRUCTION)
-			balloon_alert(user, LANG("obj.f4935eb9", list(object.name)))
+			balloon_alert(user, LANG("obj.f4935eb907e08bb0", list(object.name)))
 			return ITEM_INTERACT_BLOCKING
 
 	if(!our_stack.use(1))

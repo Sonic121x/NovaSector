@@ -61,15 +61,15 @@
 	var/turf/start_turf = get_turf(user)
 	var/turf/target_turf = get_turf(interacting_with)
 	if(get_dist(start_turf, target_turf) > max_tp_range)
-		user.balloon_alert(user, LANG("obj.f5e75781", null))
+		user.balloon_alert(user, LANG("obj.f5e75781e8f1dc46", null))
 		return .
 
 	if(!(target_turf in view(user, user.client?.view || world.view)))
-		user.balloon_alert(user, LANG("obj.1af28010", null))
+		user.balloon_alert(user, LANG("obj.1af2801026ce2def", null))
 		return .
 
 	if(target_turf.is_blocked_turf(exclude_mobs = TRUE, source_atom = user))
-		user.balloon_alert(user, LANG("obj.e959af4e", null))
+		user.balloon_alert(user, LANG("obj.e959af4e55b7e49f", null))
 		return .
 
 	var/tp_result = do_teleport(
@@ -81,7 +81,7 @@
 	)
 
 	if(!tp_result)
-		user.balloon_alert(user, LANG("obj.62054e04", null))
+		user.balloon_alert(user, LANG("obj.62054e04bd973eff", null))
 		return .
 
 	. = ITEM_INTERACT_SUCCESS
@@ -110,7 +110,7 @@
 
 	if(user.has_status_effect(/datum/status_effect/teleport_flux))
 		// The status effect handles the damage, but we'll add a special pop up for rod usage specifically
-		user.balloon_alert(user, LANG("obj.b0540d2d", null))
+		user.balloon_alert(user, LANG("obj.b0540d2d0df56058", null))
 
 	user.apply_status_effect(/datum/status_effect/teleport_flux)
 	return .

@@ -84,15 +84,15 @@
 
 /obj/machinery/atmospherics/components/unary/vent_pump/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.7c45378c", null))
+	. += span_notice(LANG("obj.7c45378c4d9c5fc3", null))
 
 	if(fan_overclocked)
-		. += span_warning(LANG("obj.23c202f4", null))
+		. += span_warning(LANG("obj.23c202f4bae315f2", null))
 
 	if(get_integrity() > 0)
 		. += span_notice(examine_condition)
 	else
-		. += span_warning(LANG("obj.ff01afc0", null))
+		. += span_warning(LANG("obj.ff01afc0add7c1ab", null))
 
 /obj/machinery/atmospherics/components/unary/vent_pump/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
 	if(istype(multi_tool.buffer, /obj/machinery/air_sensor))
@@ -101,7 +101,7 @@
 		sensor.multitool_act(user, multi_tool)
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, LANG("obj.a13d1d13", null))
+	balloon_alert(user, LANG("obj.a13d1d13fc308b7f", null))
 	multi_tool.set_buffer(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -110,13 +110,13 @@
 	if(!time_to_repair)
 		return FALSE
 
-	balloon_alert(user, LANG("obj.1d794945", null))
+	balloon_alert(user, LANG("obj.1d794945c0aff1d3", null))
 	if(do_after(user, time_to_repair, src))
-		balloon_alert(user, LANG("obj.602d2703", null))
+		balloon_alert(user, LANG("obj.602d270384dfe5a8", null))
 		repair_damage(max_integrity)
 
 	else
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/atmospherics/components/unary/vent_pump/atom_fix()
@@ -320,13 +320,13 @@
 	..()
 	if(!welder.tool_start_check(user, amount=1))
 		return TRUE
-	to_chat(user, span_notice(LANG("obj.df6124ff", null)))
+	to_chat(user, span_notice(LANG("obj.df6124ff16ce6d5e", null)))
 	if(welder.use_tool(src, user, 20, volume=50))
 		if(!welded)
-			user.visible_message(span_notice(LANG("obj.5119a0c2", list(user))), span_notice(LANG("obj.ff218103", null)), span_hear(LANG("obj.1aa82fa3", null)))
+			user.visible_message(span_notice(LANG("obj.5119a0c2d7d22499", list(user))), span_notice(LANG("obj.ff21810362d467de", null)), span_hear(LANG("obj.1aa82fa3545466eb", null)))
 			welded = TRUE
 		else
-			user.visible_message(span_notice(LANG("obj.199af01d", list(user))), span_notice(LANG("obj.d53fb270", null)), span_hear(LANG("obj.1aa82fa3", null)))
+			user.visible_message(span_notice(LANG("obj.199af01d388dc55b", list(user))), span_notice(LANG("obj.d53fb27088ac4757", null)), span_hear(LANG("obj.1aa82fa3545466eb", null)))
 			welded = FALSE
 		update_appearance(UPDATE_ICON)
 		pipe_vision_img = image(src, loc, dir = dir)
@@ -338,13 +338,13 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, span_warning(LANG("obj.a6e44f07", list(src))))
+		to_chat(user, span_warning(LANG("obj.a6e44f07b2cb8ca0", list(src))))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/examine(mob/user)
 	. = ..()
 	if(welded)
-		. += LANG("obj.717685e0", null)
+		. += LANG("obj.717685e07bde5f57", null)
 
 /obj/machinery/atmospherics/components/unary/vent_pump/power_change()
 	. = ..()
@@ -353,7 +353,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/attack_alien(mob/user, list/modifiers)
 	if(!welded || !(do_after(user, 2 SECONDS, target = src)))
 		return
-	user.visible_message(span_warning(LANG("obj.66d277ff", list(user, src))), span_notice(LANG("obj.488de2de", null)), span_hear(LANG("obj.94e00bf8", null)))
+	user.visible_message(span_warning(LANG("obj.66d277ffdcbbc8c3", list(user, src))), span_notice(LANG("obj.488de2deedc6915f", null)), span_hear(LANG("obj.94e00bf828aa7a81", null)))
 	welded = FALSE
 	update_appearance(UPDATE_ICON)
 	pipe_vision_img = image(src, loc, dir = dir)

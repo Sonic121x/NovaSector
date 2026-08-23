@@ -123,14 +123,14 @@
 
 	on_state = TRUE
 	update_appearance(UPDATE_ICON)
-	visible_message(span_smallnoticeital(LANG("obj.d7b3eac1", list(src))))
+	visible_message(span_smallnoticeital(LANG("obj.d7b3eac106340e8f", list(src))))
 
 /obj/machinery/gizmo/toggle/proc/off_state(datum/source)
 	SIGNAL_HANDLER
 
 	on_state = FALSE
 	update_appearance(UPDATE_ICON)
-	visible_message(span_smallnoticeital(LANG("obj.fcb962ca", list(src))))
+	visible_message(span_smallnoticeital(LANG("obj.fcb962ca66279b78", list(src))))
 
 /// A gizmo with a voice activated interface
 /obj/machinery/gizmo/voice

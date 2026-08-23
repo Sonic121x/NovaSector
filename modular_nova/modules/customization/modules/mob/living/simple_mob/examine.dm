@@ -5,4 +5,4 @@
 		if(length_char(temporary_flavor_text) <= 40)
 			. += span_notice("[temporary_flavor_text]")
 		else
-			. += span_notice(LANG("mob.42501836", list(copytext_char(temporary_flavor_text, 1, 37), REF(src))))
+			. += span_notice(LANG("mob.425018369937f479", list(copytext_char(temporary_flavor_text, 1, 37), REF(src))))

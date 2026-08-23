@@ -168,6 +168,6 @@
 
 /atom/movable/screen/alert/aura_healing/update_desc(updates)
 	. = ..()
-	desc = LANG("atom.f413a98b", list(master_ref?.resolve()))
+	desc = LANG("atom.f413a98bb38d662d", list(master_ref?.resolve()))
 
 #undef HEAL_EFFECT_COOLDOWN

@@ -795,7 +795,7 @@
 	var/mob/living/living_user = user
 	if(istype(living_user))
 		living_user.add_mood_event("hug", /datum/mood_event/warmhug/rubi, src)
-	user.visible_message(span_notice(LANG("obj.2d2f787f", list(user, src))), span_notice(LANG("obj.790280e8", list(src))))
+	user.visible_message(span_notice(LANG("obj.2d2f787f7217bfd2", list(user, src))), span_notice(LANG("obj.790280e8d4e3d525", list(src))))
 
 /datum/mood_event/warmhug/rubi
 	description = span_nicegreen("Warm cozy bee hugs are the best!")

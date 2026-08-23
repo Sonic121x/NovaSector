@@ -38,15 +38,15 @@
 		return NONE
 
 	for(var/obj/structure/transit_tube_pod/pod in loc)
-		to_chat(user, span_warning(LANG("obj.0b6b632e", null)))
+		to_chat(user, span_warning(LANG("obj.0b6b632eafaced42", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.0e82a036", list(user, src))), \
-						span_notice(LANG("obj.fcbdc7bc", list(src))))
+	user.visible_message(span_notice(LANG("obj.0e82a0363c4bac15", list(user, src))), \
+						span_notice(LANG("obj.fcbdc7bc39154250", list(src))))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume=50))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.ca737bae", list(src))))
+	to_chat(user, span_notice(LANG("obj.ca737baee05b1e8c", list(src))))
 	var/obj/structure/c_transit_tube/husk = new tube_construction(loc)
 	husk.setDir(dir)
 	transfer_fingerprints_to(husk)

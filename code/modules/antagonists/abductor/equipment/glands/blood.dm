@@ -14,7 +14,7 @@
 	if(!ishuman(owner) || !owner.dna.species)
 		return
 	var/mob/living/carbon/human/owner_mob = owner
-	to_chat(owner_mob, span_warning(LANG("obj.c7d57c8f", null)))
+	to_chat(owner_mob, span_warning(LANG("obj.c7d57c8fbd273384", null)))
 	var/datum/reagent/new_blood_reagent = get_random_reagent_id()
 	// Try to find a corresponding blood type for this reagent
 	var/datum/blood_type/new_blood_type = get_blood_type(new_blood_reagent)

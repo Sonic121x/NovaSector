@@ -25,7 +25,7 @@
 
 /turf/open/floor/wood/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("turf.a7c285e4", null))
+	. += span_notice(LANG("turf.a7c285e42d07641d", null))
 
 /turf/open/floor/wood/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
@@ -54,15 +54,15 @@
 		broken = FALSE
 		burnt = FALSE
 		if(user && !silent)
-			to_chat(user, span_notice(LANG("turf.42453c0c", null)))
+			to_chat(user, span_notice(LANG("turf.42453c0c4d9b448b", null)))
 	else
 		if(make_tile)
 			if(user && !silent)
-				to_chat(user, span_notice(LANG("turf.34469d3f", null)))
+				to_chat(user, span_notice(LANG("turf.34469d3fb7884185", null)))
 			spawn_tile()
 		else
 			if(user && !silent)
-				to_chat(user, span_notice(LANG("turf.404b553d", null)))
+				to_chat(user, span_notice(LANG("turf.404b553d292ed540", null)))
 	return make_plating(force_plating)
 
 /turf/open/floor/wood/cold
@@ -294,7 +294,7 @@
 
 /turf/open/floor/carpet/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("turf.ff9d66d1", null))
+	. += span_notice(LANG("turf.ff9d66d17aebc7c4", null))
 
 /turf/open/floor/carpet/Initialize(mapload)
 	. = ..()

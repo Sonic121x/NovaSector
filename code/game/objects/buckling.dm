@@ -24,7 +24,7 @@
 		return
 	if(can_buckle && has_buckled_mobs())
 		if(length(buckled_mobs) > 1)
-			var/mob/living/unbuckled = tgui_input_list(user, LANG("atom.15d59dc6", null), LANG("atom.768fd2d4", null), sort_names(buckled_mobs))
+			var/mob/living/unbuckled = tgui_input_list(user, LANG("atom.15d59dc6aa6d243f", null), LANG("atom.768fd2d45c48132d", null), sort_names(buckled_mobs))
 			if(isnull(unbuckled))
 				return
 			if(user_unbuckle_mob(unbuckled,user))
@@ -40,7 +40,7 @@
 		return
 	if(Adjacent(user) && can_buckle && has_buckled_mobs())
 		if(length(buckled_mobs) > 1)
-			var/mob/living/unbuckled = tgui_input_list(user, LANG("atom.15d59dc6", null), LANG("atom.768fd2d4", null), sort_names(buckled_mobs))
+			var/mob/living/unbuckled = tgui_input_list(user, LANG("atom.15d59dc6aa6d243f", null), LANG("atom.768fd2d45c48132d", null), sort_names(buckled_mobs))
 			if(isnull(unbuckled))
 				return
 			return user_unbuckle_mob(unbuckled,user)
@@ -322,9 +322,9 @@
 	// If the mob we're attempting to buckle is not stood on this atom's turf and it isn't the user buckling themselves,
 	// we'll try it with a 2 second do_after delay.
 	if(M != user && (get_turf(M) != get_turf(src)))
-		M.visible_message(span_warning(LANG("atom.fd9e0033", list(user, M, src))),\
-			span_userdanger(LANG("atom.1b8e86bd", list(user, src))),\
-			span_hear(LANG("atom.4ea246f9", null)))
+		M.visible_message(span_warning(LANG("atom.fd9e0033b392397a", list(user, M, src))),\
+			span_userdanger(LANG("atom.1b8e86bdd51562de", list(user, src))),\
+			span_hear(LANG("atom.4ea246f9d4c98190", null)))
 		if(!do_after(user, buckle_delay, M))
 			return FALSE
 
@@ -341,15 +341,15 @@
 /atom/movable/proc/buckle_feedback(mob/living/being_buckled, mob/buckler)
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice(LANG("atom.f1739c3c", list(buckler, buckler.p_them(), src))),
-			span_notice(LANG("atom.32a7c99f", list(src))),
-			span_hear(LANG("atom.4ea246f9", null)),
+			span_notice(LANG("atom.f1739c3c81e1b50d", list(buckler, buckler.p_them(), src))),
+			span_notice(LANG("atom.32a7c99f6565f647", list(src))),
+			span_hear(LANG("atom.4ea246f9d4c98190", null)),
 		)
 	else
 		being_buckled.visible_message(
-			span_warning(LANG("atom.c98a73f6", list(buckler, being_buckled, src))),
-			span_warning(LANG("atom.a6670714", list(buckler, src))),
-			span_hear(LANG("atom.4ea246f9", null)),
+			span_warning(LANG("atom.c98a73f6a5208d0e", list(buckler, being_buckled, src))),
+			span_warning(LANG("atom.a6670714ee5d7803", list(buckler, src))),
+			span_hear(LANG("atom.4ea246f9d4c98190", null)),
 		)
 
 /**
@@ -377,13 +377,13 @@
 /atom/movable/proc/unbuckle_feedback(mob/living/unbuckled_mob, mob/unbuckler)
 	if(unbuckled_mob == unbuckler)
 		unbuckled_mob.visible_message(
-			span_notice(LANG("atom.4d9602b6", list(unbuckler, unbuckler.p_them(), src))),
-			span_notice(LANG("atom.bd5bbd6c", list(src))),
-			span_hear(LANG("atom.4ea246f9", null)),
+			span_notice(LANG("atom.4d9602b6fcfb4230", list(unbuckler, unbuckler.p_them(), src))),
+			span_notice(LANG("atom.bd5bbd6c6da394e8", list(src))),
+			span_hear(LANG("atom.4ea246f9d4c98190", null)),
 		)
 	else
 		unbuckled_mob.visible_message(
-			span_notice(LANG("atom.c58c7a9a", list(unbuckler, unbuckled_mob, src))),
-			span_notice(LANG("atom.8a13b258", list(unbuckler, src))),
-			span_hear(LANG("atom.4ea246f9", null)),
+			span_notice(LANG("atom.c58c7a9a6886c982", list(unbuckler, unbuckled_mob, src))),
+			span_notice(LANG("atom.8a13b258f2a1952b", list(unbuckler, src))),
+			span_hear(LANG("atom.4ea246f9d4c98190", null)),
 		)

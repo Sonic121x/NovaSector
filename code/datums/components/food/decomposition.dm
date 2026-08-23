@@ -124,7 +124,7 @@
 			result.reagents.clear_reagents()
 			decomp.reagents.trans_to(result, decomp.reagents.total_volume)
 		SEND_SIGNAL(result, COMSIG_OBJ_DECOMPOSITION_RESULT, decomp)
-	decomp.visible_message(span_warning(LANG("datum.c40de04e", list(decomp, produce_ants ? " and ants":""))))
+	decomp.visible_message(span_warning(LANG("datum.c40de04e981d4ed8", list(decomp, produce_ants ? " and ants":""))))
 	qdel(decomp)
 	return
 
@@ -133,11 +133,11 @@
 	var/time_d = get_time()
 	switch(time_d / original_time)
 		if(0.5 to 0.75) // 25% rotten
-			examine_list += span_notice(LANG("datum.df72183b", list(parent)))
+			examine_list += span_notice(LANG("datum.df72183b310f2ec9", list(parent)))
 		if(0.25 to 0.5) // 50% rotten
-			examine_list += span_notice(LANG("datum.3391c9aa", list(parent)))
+			examine_list += span_notice(LANG("datum.3391c9aaf0717c01", list(parent)))
 		if(0 to 0.25) // 75% rotten
-			examine_list += span_danger(LANG("datum.678e3408", list(parent)))
+			examine_list += span_danger(LANG("datum.678e3408040fdcc4", list(parent)))
 
 #undef DECOMPOSITION_TIME
 #undef DECOMPOSITION_TIME_GROSS

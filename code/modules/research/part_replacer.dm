@@ -104,7 +104,7 @@
 		if(target_holder.total_volume)
 			target_holder.force_stop_reacting()
 			target_holder.clear_reagents()
-			to_chat(usr, span_notice(LANG("obj.cb7b836a", list(src, inserted_component))))
+			to_chat(usr, span_notice(LANG("obj.cb7b836a854c9ffa", list(src, inserted_component))))
 		RegisterSignal(target_holder, COMSIG_REAGENTS_PRE_ADD_REAGENT, PROC_REF(on_insered_component_reagent_pre_add))
 
 /// Hooks [COMSIG_REAGENTS_PRE_ADD_REAGENT] to block adding any form of reagent to component beakers inside the RPED

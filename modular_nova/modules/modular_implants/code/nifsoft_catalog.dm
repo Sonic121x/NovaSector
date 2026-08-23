@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(purchasable_nifsofts, list(
 			var/rewards_purchase = (params["rewards_purchase"])
 
 			if(!target_nif)
-				paying_account.bank_card_talk(LANG("datum.2f16e1a5", null))
+				paying_account.bank_card_talk(LANG("datum.2f16e1a53c1305c6", null))
 				return FALSE
 
 			var/obj/item/organ/cyberimp/brain/nif/buyer_nif = target_nif.resolve()
@@ -122,16 +122,16 @@ GLOBAL_LIST_INIT(purchasable_nifsofts, list(
 					return FALSE
 
 			else if(!paying_account.has_money(amount_to_charge))
-				paying_account.bank_card_talk(LANG("datum.1b897e7a", null))
+				paying_account.bank_card_talk(LANG("datum.1b897e7ac4ab218d", null))
 				return FALSE
 
 			if(!ispath(product_to_buy, /datum/nifsoft) || !buyer_nif)
-				paying_account.bank_card_talk(LANG("datum.a96f6685", null))
+				paying_account.bank_card_talk(LANG("datum.a96f668522cc36c4", null))
 				return FALSE
 
 			var/datum/nifsoft/installed_nifsoft = new product_to_buy(buyer_nif, rewards_purchase)
 			if(!installed_nifsoft.parent_nif)
-				paying_account.bank_card_talk(LANG("datum.55a4e702", null))
+				paying_account.bank_card_talk(LANG("datum.55a4e7023e91f176", null))
 				return FALSE
 
 			if(rewards_purchase)
@@ -139,6 +139,6 @@ GLOBAL_LIST_INIT(purchasable_nifsofts, list(
 				buyer_nif.send_message("Purchase completed, [amount_to_charge] reward points have been removed from your NIF")
 			else
 				paying_account.adjust_money(-amount_to_charge, "NIFSoft purchase")
-				paying_account.bank_card_talk(LANG("datum.703535da", list(amount_to_charge)))
+				paying_account.bank_card_talk(LANG("datum.703535da93b14d7f", list(amount_to_charge)))
 
 			return TRUE

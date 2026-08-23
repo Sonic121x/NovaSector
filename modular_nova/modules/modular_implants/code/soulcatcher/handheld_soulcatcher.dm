@@ -45,30 +45,30 @@
 		return TRUE
 
 	if(!target_mob.mind)
-		to_chat(user, span_warning(LANG("obj.119d191c", null)))
+		to_chat(user, span_warning(LANG("obj.119d191c0dbf5eb4", null)))
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, rsd_scan_cooldown))
 		var/time_left = round((COOLDOWN_TIMELEFT(src, rsd_scan_cooldown)) / (1 MINUTES), 0.01)
-		to_chat(user, span_warning(LANG("obj.efe1d824", list(target_mob, time_left))))
+		to_chat(user, span_warning(LANG("obj.efe1d824d361ea71", list(target_mob, time_left))))
 		return FALSE
 
 	if(target_mob.stat == DEAD) //We can temporarily store souls of dead mobs.
 		target_mob.ghostize(TRUE) //Incase they are staying in the body.
 		var/mob/dead/observer/target_ghost = target_mob.get_ghost(TRUE, TRUE)
 		if(!target_ghost)
-			to_chat(user, span_warning(LANG("obj.fc5e7ca0", list(target_mob))))
+			to_chat(user, span_warning(LANG("obj.fc5e7ca0a4f4f226", list(target_mob))))
 			return FALSE
 
-		var/datum/soulcatcher_room/target_room = tgui_input_list(user, LANG("obj.7b18270f", list(target_mob)), name, linked_soulcatcher.soulcatcher_rooms, timeout = 30 SECONDS)
+		var/datum/soulcatcher_room/target_room = tgui_input_list(user, LANG("obj.7b18270f18f7eded", list(target_mob)), name, linked_soulcatcher.soulcatcher_rooms, timeout = 30 SECONDS)
 		if(!target_room)
 			return FALSE
 
 		SEND_SOUND(target_ghost, 'sound/announcer/notice/notice2.ogg')
 		window_flash(target_ghost.client)
 
-		if(tgui_alert(target_ghost, LANG("obj.b5cb76d3", list(user, target_room)), name, list("Yes", "No"), 30 SECONDS, autofocus = FALSE) != "Yes")
-			to_chat(user, span_warning(LANG("obj.8aba20fa", list(target_mob))))
+		if(tgui_alert(target_ghost, LANG("obj.b5cb76d36c149f60", list(user, target_room)), name, list("Yes", "No"), 30 SECONDS, autofocus = FALSE) != "Yes")
+			to_chat(user, span_warning(LANG("obj.8aba20fa98bdd9f3", list(target_mob))))
 			COOLDOWN_START(src, rsd_scan_cooldown, RSD_ATTEMPT_COOLDOWN)
 			return FALSE
 
@@ -83,16 +83,16 @@
 		linked_soulcatcher.scan_body(target_mob, user)
 		return TRUE
 
-	var/datum/soulcatcher_room/target_room = tgui_input_list(user, LANG("obj.7b18270f", list(target_mob)), name, linked_soulcatcher.soulcatcher_rooms, timeout = 30 SECONDS)
+	var/datum/soulcatcher_room/target_room = tgui_input_list(user, LANG("obj.7b18270f18f7eded", list(target_mob)), name, linked_soulcatcher.soulcatcher_rooms, timeout = 30 SECONDS)
 	if(!target_room)
 		return FALSE
 
 	SEND_SOUND(target_mob, 'sound/announcer/notice/notice2.ogg')
 	window_flash(target_mob.client)
 
-	if((tgui_alert(target_mob, LANG("obj.879b416d", list(target_room)), name, list("Yes", "No"), 30 SECONDS, FALSE) != "Yes") || (tgui_alert(target_mob, LANG("obj.f56e50aa", null), name, list("Yes", "No"), 30 SECONDS, FALSE) != "Yes"))
+	if((tgui_alert(target_mob, LANG("obj.879b416dfaacf225", list(target_room)), name, list("Yes", "No"), 30 SECONDS, FALSE) != "Yes") || (tgui_alert(target_mob, LANG("obj.f56e50aa77067fc7", null), name, list("Yes", "No"), 30 SECONDS, FALSE) != "Yes"))
 		COOLDOWN_START(src, rsd_scan_cooldown, RSD_ATTEMPT_COOLDOWN)
-		to_chat(user, span_warning(LANG("obj.8aba20fa", list(target_mob))))
+		to_chat(user, span_warning(LANG("obj.8aba20fa98bdd9f3", list(target_mob))))
 		return FALSE
 
 	if(!target_mob.mind)
@@ -100,7 +100,7 @@
 
 	target_room.add_soul(target_mob.mind, TRUE)
 	playsound(src, 'modular_nova/modules/modular_implants/sounds/default_good.ogg', 50, FALSE, ignore_walls = FALSE)
-	visible_message(span_notice(LANG("obj.72e579dc", list(src, target_mob))))
+	visible_message(span_notice(LANG("obj.72e579dcd2851a89", list(src, target_mob))))
 
 	if(!target_mob.GetComponent(/datum/component/previous_body))
 		return FALSE
@@ -118,15 +118,15 @@
 
 	var/obj/item/organ/brain/target_brain = target_mob.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!istype(target_brain))
-		to_chat(user, span_warning(LANG("obj.6eb05746", list(target_mob))))
+		to_chat(user, span_warning(LANG("obj.6eb05746b6d4e33d", list(target_mob))))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(!HAS_TRAIT(target_brain, TRAIT_RSD_COMPATIBLE))
-		to_chat(user, span_warning(LANG("obj.6f212148", list(target_mob))))
+		to_chat(user, span_warning(LANG("obj.6f2121486417c274", list(target_mob))))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(target_mob.mind || target_mob.ckey || target_mob.GetComponent(/datum/component/previous_body))
-		to_chat(user, span_warning(LANG("obj.3c59dc45", list(target_mob))))
+		to_chat(user, span_warning(LANG("obj.3c59dc45953e6567", list(target_mob))))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	var/list/soul_list = list()
@@ -138,10 +138,10 @@
 			soul_list += soul
 
 	if(!length(soul_list))
-		to_chat(user, span_warning(LANG("obj.fde8f7a0", list(target_mob))))
+		to_chat(user, span_warning(LANG("obj.fde8f7a0ed1f7a44", list(target_mob))))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-	var/mob/living/soulcatcher_soul/chosen_soul = tgui_input_list(user, LANG("obj.e8cb7960", null), name, soul_list)
+	var/mob/living/soulcatcher_soul/chosen_soul = tgui_input_list(user, LANG("obj.e8cb79604bc06516", null), name, soul_list)
 	if(!chosen_soul)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -154,7 +154,7 @@
 
 	chosen_soul.mind.transfer_to(target_mob, TRUE)
 	playsound(src, 'modular_nova/modules/modular_implants/sounds/default_good.ogg', 50, FALSE, ignore_walls = FALSE)
-	visible_message(span_notice(LANG("obj.e18fd770", list(src))))
+	visible_message(span_notice(LANG("obj.e18fd7703b2ff3d8", list(src))))
 	log_admin("[src] was used by [user] to transfer [chosen_soul]'s soulcatcher soul to [target_mob].")
 
 	qdel(chosen_soul)

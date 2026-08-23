@@ -199,9 +199,9 @@ SUBSYSTEM_DEF(ipintel)
 ADMIN_VERB(ipintel_allow, R_BAN, "将玩家 VPN 加入白名单", "Allow a player to connect even if they are using a VPN.", ADMIN_CATEGORY_IPINTEL)
 	VERB_ARG(ckey, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if (!SSipintel.is_enabled())
-		to_chat(user, LANG("datum.3dfb690a", null))
+		to_chat(user, LANG("datum.3dfb690acf5ce967", null))
 	if(SSipintel.is_whitelisted(ckey))
-		to_chat(user, LANG("datum.0df4ee88", null))
+		to_chat(user, LANG("datum.0df4ee8818a02c86", null))
 		return
 
 	var/datum/db_query/query = SSdbcore.NewQuery(
@@ -224,9 +224,9 @@ ADMIN_VERB(ipintel_allow, R_BAN, "将玩家 VPN 加入白名单", "Allow a playe
 ADMIN_VERB(ipintel_revoke, R_BAN, "撤销玩家 VPN 白名单", "Revoke a player's VPN whitelist.", ADMIN_CATEGORY_IPINTEL)
 	VERB_ARG(ckey, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if (!SSipintel.is_enabled())
-		to_chat(user, LANG("datum.3dfb690a", null))
+		to_chat(user, LANG("datum.3dfb690acf5ce967", null))
 	if(!SSipintel.is_whitelisted(ckey))
-		to_chat(user, LANG("datum.c83eaa7a", null))
+		to_chat(user, LANG("datum.c83eaa7aea308825", null))
 		return
 	var/datum/db_query/query = SSdbcore.NewQuery(
 		"DELETE FROM [format_table_name("ipintel_whitelist")] WHERE ckey = :ckey", list(

@@ -3,7 +3,7 @@
 	if(ooc_prefs)
 		write_preference(GLOB.preference_entries[/datum/preference/text/ooc_notes], ooc_prefs)
 
-	to_chat(parent, boxed_message(span_greentext(LANG("datum.1647717e", null))))
+	to_chat(parent, boxed_message(span_greentext(LANG("datum.1647717e38d44427", null))))
 	tgui_prefs_migration = TRUE
 	nova_data["tgui_prefs_migration"] = tgui_prefs_migration
 

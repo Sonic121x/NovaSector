@@ -37,7 +37,7 @@
 		if(initial(loadout.name) == choice)
 			granted_loadout = new loadout()
 
-	balloon_alert(user, LANG("obj.f52a7dba", null))
+	balloon_alert(user, LANG("obj.f52a7dba801411b1", null))
 	playsound(user, 'sound/items/click.ogg', 50, TRUE)
 	choice_made = choice
 

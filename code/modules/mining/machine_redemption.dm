@@ -78,7 +78,7 @@
 /obj/machinery/mineral/ore_redemption/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += span_notice(LANG("obj.d531c5c9", null))
+		. += span_notice(LANG("obj.d531c5c963902945", null))
 
 
 /obj/machinery/mineral/ore_redemption/proc/silo_redeem_points(obj/machinery/mineral/ore_redemption/machine, container, obj/item/stack/ore/gathered_ore)
@@ -233,7 +233,7 @@
 		return CLICK_ACTION_BLOCKING
 	input_dir = turn(input_dir, -90)
 	output_dir = turn(output_dir, -90)
-	to_chat(user, span_notice(LANG("obj.ac6ad34e", list(src, dir2text(input_dir), dir2text(output_dir)))))
+	to_chat(user, span_notice(LANG("obj.ac6ad34ec20d8383", list(src, dir2text(input_dir), dir2text(output_dir)))))
 	unregister_input_turf() // someone just rotated the input and output directions, unregister the old turf
 	register_input_turf() // register the new one
 	update_appearance(UPDATE_OVERLAYS)
@@ -322,7 +322,7 @@
 				var/mob/living/user = usr
 				user_id_card = user.get_idcard(TRUE)
 			if(isnull(user_id_card))
-				say(LANG("obj.73f9bb56", null))
+				say(LANG("obj.73f9bb560352d1ad", null))
 				return FALSE
 
 			//we have points
@@ -338,7 +338,7 @@
 			if(!materials.can_use_resource(user_data = ID_DATA(usr)))
 				return
 			else if(!allowed(usr)) //Check the ID inside, otherwise check the user
-				to_chat(usr, span_warning(LANG("obj.b4807c07", null)))
+				to_chat(usr, span_warning(LANG("obj.b4807c07f1e107fb", null)))
 			else
 				var/datum/material/mat = locate(params["id"])
 
@@ -377,7 +377,7 @@
 					output = alloy.create_result(src)
 				unload_mineral(output)
 			else
-				to_chat(usr, span_warning(LANG("obj.b4807c07", null)))
+				to_chat(usr, span_warning(LANG("obj.b4807c07f1e107fb", null)))
 			return TRUE
 
 /obj/machinery/mineral/ore_redemption/ex_act(severity, target)

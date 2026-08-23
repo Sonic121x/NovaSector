@@ -108,7 +108,7 @@
 
 						var/obj/structure/disposalconstruct/disposal_out = new (loc, p_type)
 						if(!disposal_out.can_place())
-							to_chat(usr, span_warning(LANG("obj.661530b5", null)))
+							to_chat(usr, span_warning(LANG("obj.661530b523c9f61e", null)))
 							qdel(disposal_out)
 							return
 
@@ -139,7 +139,7 @@
 			if (ISNOTSTUB(target_dir))
 				p_init_dir = target_dir
 			else
-				to_chat(usr, span_warning(LANG("obj.0c06b2dc", list(src))))
+				to_chat(usr, span_warning(LANG("obj.0c06b2dcf1e127b4", list(src))))
 
 		if("init_reset")
 			p_init_dir = ALL_CARDINALS
@@ -156,7 +156,7 @@
 	add_fingerprint(user)
 	if (!istype(tool, /obj/item/pipe) && !istype(tool, /obj/item/pipe_meter))
 		return NONE
-	to_chat(usr, span_notice(LANG("obj.99c70bb4", list(tool, src))))
+	to_chat(usr, span_notice(LANG("obj.99c70bb46d9fa6a6", list(tool, src))))
 	qdel(tool)
 	return ITEM_INTERACT_SUCCESS
 

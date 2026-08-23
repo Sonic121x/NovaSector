@@ -72,7 +72,7 @@
 	if(!target.get_organ_slot(ORGAN_SLOT_EYES))
 		return
 
-	to_chat(target, span_danger(LANG("datum.04f5d845", null)))
+	to_chat(target, span_danger(LANG("datum.04f5d845d3da20b0", null)))
 	target.adjust_organ_loss(ORGAN_SLOT_EYES, 15)
 	target.set_eye_blur_if_lower(20 SECONDS)
 

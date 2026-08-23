@@ -10,7 +10,7 @@
 	if(!istype(synth_species))
 		return
 
-	var/new_ipc_screen = tgui_input_list(usr, LANG("datum.d2d44744", null), LANG("datum.a6100a89", null), SSaccessories.sprite_accessories[FEATURE_SYNTH_SCREEN])
+	var/new_ipc_screen = tgui_input_list(usr, LANG("datum.d2d447441f4c421b", null), LANG("datum.a6100a891bfa438a", null), SSaccessories.sprite_accessories[FEATURE_SYNTH_SCREEN])
 
 	if(!new_ipc_screen)
 		return

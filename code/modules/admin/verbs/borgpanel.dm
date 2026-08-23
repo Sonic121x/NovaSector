@@ -72,7 +72,7 @@ ADMIN_VERB(borg_panel, R_ADMIN, "显示机器人面板", ADMIN_VERB_NO_DESCRIPTI
 		return
 	switch (action)
 		if ("set_charge")
-			var/newcharge = tgui_input_number(usr, LANG("datum.fa7fa66f", null), borg.name, borg.cell.charge, borg.cell.maxcharge)
+			var/newcharge = tgui_input_number(usr, LANG("datum.fa7fa66fe401fb8a", null), borg.name, borg.cell.charge, borg.cell.maxcharge)
 			if(isnull(newcharge))
 				return
 			borg.cell.charge = newcharge
@@ -128,7 +128,7 @@ ADMIN_VERB(borg_panel, R_ADMIN, "显示机器人面板", ADMIN_VERB_NO_DESCRIPTI
 				message_admins("[key_name_admin(user)] disabled scrambled codes on [ADMIN_LOOKUPFLW(borg)].")
 				log_silicon("[key_name(user)] disabled scrambled codes on [key_name(borg)].")
 		if ("rename")
-			var/new_name = sanitize_name(tgui_input_text(user, LANG("datum.4a18dab4", null), LANG("datum.5d267af8", null), borg.real_name, MAX_NAME_LEN), allow_numbers = TRUE)
+			var/new_name = sanitize_name(tgui_input_text(user, LANG("datum.4a18dab499aacdd8", null), LANG("datum.5d267af8b128b7a8", null), borg.real_name, MAX_NAME_LEN), allow_numbers = TRUE)
 			if(!new_name)
 				return
 			message_admins("[key_name_admin(user)] renamed [ADMIN_LOOKUPFLW(borg)] to [new_name].")

@@ -34,7 +34,7 @@
 /obj/machinery/dna_scannernew/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.3b2be51b", list(precision_coeff**2, damage_coeff**2)))
+		. += span_notice(LANG("obj.3b2be51b720c6f74", list(precision_coeff**2, damage_coeff**2)))
 
 /obj/machinery/dna_scannernew/update_icon_state()
 	//no power or maintenance
@@ -57,7 +57,7 @@
 
 /obj/machinery/dna_scannernew/proc/toggle_open(mob/user)
 	if(panel_open)
-		to_chat(user, span_notice(LANG("obj.0358adf3", null)))
+		to_chat(user, span_notice(LANG("obj.0358adf39518d281", null)))
 		return
 
 	if(state_open)
@@ -65,7 +65,7 @@
 		return
 
 	else if(locked)
-		to_chat(user, span_notice(LANG("obj.3d9ccd00", null)))
+		to_chat(user, span_notice(LANG("obj.3d9ccd003f8df7c4", null)))
 		return
 
 	open_machine()
@@ -79,15 +79,15 @@
 
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice(LANG("obj.485787b2", list(user, src))), \
-		span_notice(LANG("obj.43ad33b1", list(src, DisplayTimeText(breakout_time)))), \
-		span_hear(LANG("obj.a1d9c573", list(src))))
+	user.visible_message(span_notice(LANG("obj.485787b2b8d67ec7", list(user, src))), \
+		span_notice(LANG("obj.43ad33b141e25411", list(src, DisplayTimeText(breakout_time)))), \
+		span_hear(LANG("obj.a1d9c5733c600b1c", list(src))))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || state_open || !locked || HAS_TRAIT(user, TRAIT_PRIMITIVE) || user.ai_controller)
 			return
 		locked = FALSE
-		user.visible_message(span_warning(LANG("obj.37696909", list(user, src))), \
-			span_notice(LANG("obj.81c31f6b", list(src))))
+		user.visible_message(span_warning(LANG("obj.37696909131e91b5", list(user, src))), \
+			span_notice(LANG("obj.81c31f6b9b00625a", list(src))))
 		open_machine()
 
 /obj/machinery/dna_scannernew/proc/locate_computer(type_)
@@ -128,7 +128,7 @@
 	if(IS_UNCONSCIOUS_OR_CRIT(user) || locked)
 		if(message_cooldown <= world.time)
 			message_cooldown = world.time + 50
-			to_chat(user, span_warning(LANG("obj.c4e897cb", list(src))))
+			to_chat(user, span_warning(LANG("obj.c4e897cb78099448", list(src))))
 		return
 	open_machine()
 

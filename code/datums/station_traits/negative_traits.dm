@@ -676,7 +676,7 @@
 			var/obj/machinery/nebula_shielding/emergency/rad_shield = /obj/machinery/nebula_shielding/emergency/radiation
 
 			priority_announce(
-				LANG("datum.d8cfd5e6", list(initial(rad_shield.detonate_in) / (1 MINUTES)))
+				LANG("datum.d8cfd5e6ef7ebd19", list(initial(rad_shield.detonate_in) / (1 MINUTES)))
 			)
 
 			addtimer(CALLBACK(src, PROC_REF(send_care_package)), 10 SECONDS)

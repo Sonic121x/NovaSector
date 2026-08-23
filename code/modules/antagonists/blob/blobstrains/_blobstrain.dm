@@ -99,8 +99,8 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 		blob_mob.maxHealth *= max_mob_health_multiplier
 		blob_mob.health *= max_mob_health_multiplier
 		blob_mob.update_icons() //If it's getting a new strain, tell it what it does!
-		to_chat(blob_mob, LANG("datum.a5c98ff8", list(color, name)))
-		to_chat(blob_mob, LANG("datum.085481ce", list(color, name, shortdesc ? "[shortdesc]" : "[description]")))
+		to_chat(blob_mob, LANG("datum.a5c98ff862d84699", list(color, name)))
+		to_chat(blob_mob, LANG("datum.085481ce4f52a4d6", list(color, name, shortdesc ? "[shortdesc]" : "[description]")))
 
 /datum/blobstrain/proc/on_lose()
 	if(overmind.blob_core)

@@ -107,7 +107,7 @@
 
 		// Deliberately the same message framing as ghost deathrattle
 		var/mob/living/recipient = implant.imp_in
-		to_chat(recipient, LANG("datum.dabd65ca", list(span_robot("<b>[name]</b> has died at <b>[area_name]</b>."))))
+		to_chat(recipient, LANG("datum.dabd65ca808cce08", list(span_robot("<b>[name]</b> has died at <b>[area_name]</b>."))))
 		recipient.playsound_local(get_turf(recipient), sound, vol = 75, vary = FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 
 /obj/item/implant/deathrattle
@@ -134,7 +134,7 @@
 
 /obj/item/implant/deathrattle/can_be_implanted_in(mob/living/target)
 	if(!current_group)
-		balloon_alert(target, LANG("obj.1142b55d", null))
+		balloon_alert(target, LANG("obj.1142b55d2b2829fd", null))
 		return FALSE
 	// Can be implanted in anything that's a mob. Syndicate cyborgs, talking fish, humans...
 	return TRUE

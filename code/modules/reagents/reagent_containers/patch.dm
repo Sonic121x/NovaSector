@@ -21,11 +21,11 @@
 	var/obj/item/bodypart/affecting = carbon_eater.get_bodypart(check_zone(user.zone_selected))
 
 	if(!affecting)
-		to_chat(user, span_warning(LANG("obj.fc2e5421", null)))
+		to_chat(user, span_warning(LANG("obj.fc2e5421ecac7cb8", null)))
 		return FALSE
 
 	if(!IS_ORGANIC_LIMB(affecting))
-		to_chat(user, span_notice(LANG("obj.e93f8c2b", null)))
+		to_chat(user, span_notice(LANG("obj.e93f8c2bb714d6f6", null)))
 		return FALSE
 
 	return TRUE
@@ -211,7 +211,7 @@
 	var/mob/living/carbon/carbies = eater
 	if(HAS_TRAIT_FROM(carbies, TRAIT_HUSK, BURN) && carbies.get_fire_loss() > UNHUSK_DAMAGE_THRESHOLD * 2.5)
 		// give them a warning if the mob is a husk but synthflesh won't unhusk yet
-		carbies.visible_message(span_boldwarning(LANG("obj.b7d1172b", list(carbies))))
+		carbies.visible_message(span_boldwarning(LANG("obj.b7d1172b4fc87af9", list(carbies))))
 
 /obj/item/reagent_containers/applicator/patch/ondansetron
 	name = "ondansetron patch"

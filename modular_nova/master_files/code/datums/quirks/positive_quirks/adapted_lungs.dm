@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(possible_adapted_lungs, list(
 
 /datum/quirk/adapted_lungs/add_unique(client/client_source)
 	if(!quirk_holder.get_organ_slot(ORGAN_SLOT_LUNGS))
-		to_chat(quirk_holder, span_warning(LANG("datum.2a6bf56c", list(name))))
+		to_chat(quirk_holder, span_warning(LANG("datum.2a6bf56c32012697", list(name))))
 		qdel(src)
 		return
 

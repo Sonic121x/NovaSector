@@ -1,6 +1,6 @@
 /obj/machinery/power/rbmk2/multitool_act(mob/living/user, obj/item/multitool/tool)
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.2152c7cd", null))
+		balloon_alert(user, LANG("obj.2152c7cd805774d4", null))
 		return ITEM_INTERACT_BLOCKING
 
 	wires.interact(user)
@@ -8,7 +8,7 @@
 
 /obj/machinery/power/rbmk2/wirecutter_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.2152c7cd", null))
+		balloon_alert(user, LANG("obj.2152c7cd805774d4", null))
 		return ITEM_INTERACT_BLOCKING
 
 	wires.interact(user)
@@ -20,7 +20,7 @@
 		force_unjam(tool, user, 25)
 		return ITEM_INTERACT_SUCCESS
 	if(stored_rod)
-		balloon_alert(user, LANG("obj.23cbc8c2", null))
+		balloon_alert(user, LANG("obj.23cbc8c2d62f51db", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!meltdown && default_deconstruction_crowbar(user, tool))
 		if(user)
@@ -37,7 +37,7 @@
 //Toggle the reactor on/off.
 /obj/machinery/power/rbmk2/wrench_act(mob/living/user, obj/item/tool)
 	if(jammed)
-		balloon_alert(user, LANG("obj.1059e89c", null))
+		balloon_alert(user, LANG("obj.1059e89cda730aa5", null))
 		return ITEM_INTERACT_BLOCKING
 
 	toggle_active(user)
@@ -46,22 +46,22 @@
 
 /obj/machinery/power/rbmk2/welder_act(mob/living/user, obj/item/tool)
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, LANG("obj.88cc0c7c", null))
+		balloon_alert(user, LANG("obj.88cc0c7c9991f538", null))
 		return ITEM_INTERACT_BLOCKING
 	if (machine_stat & BROKEN)
-		balloon_alert(user, LANG("obj.6a314f11", null))
+		balloon_alert(user, LANG("obj.6a314f11fac591f6", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!tool.tool_start_check(user, amount = 1))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.b52342a8", null))
+	balloon_alert(user, LANG("obj.b52342a8e93a2ba2", null))
 	if(tool.use_tool(src, user, 4 SECONDS, volume = 50))
 		update_integrity(min(atom_integrity + 50, max_integrity))
 
 		if(atom_integrity >= max_integrity)
-			balloon_alert(user, LANG("obj.9717d1a3", null))
+			balloon_alert(user, LANG("obj.9717d1a33f0fc9b4", null))
 		else
-			balloon_alert(user, LANG("obj.05360c87", null))
+			balloon_alert(user, LANG("obj.05360c87e806ce4b", null))
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -111,7 +111,7 @@
 	playsound(src, SFX_SPARKS, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	safety = FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, LANG("obj.03b9f4d7", null))
+	balloon_alert(user, LANG("obj.03b9f4d740e10838", null))
 
 	if(user)
 		var/turf/our_turf = get_turf(src)

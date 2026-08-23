@@ -27,7 +27,7 @@
 		. = UPDATE_MOB_HEALTH
 
 	if(SPT_PROB(10, seconds_per_tick))
-		to_chat(affected_mob, LANG("datum.826c8945", null))
+		to_chat(affected_mob, LANG("datum.826c89458c575a02", null))
 		if(prob(30))
 			SEND_SOUND(affected_mob, sound('sound/items/weapons/flash_ring.ogg'))
 

@@ -64,7 +64,7 @@
 	if(ability)
 		INVOKE_ASYNC(ability, TYPE_PROC_REF(/datum/action, Trigger), living_target)
 	var/mob/living/living_pawn = controller.pawn
-	living_pawn.manual_emote(LANG("datum.7a01e7ea", list(living_target)))
+	living_pawn.manual_emote(LANG("datum.7a01e7ead1892c7d", list(living_target)))
 	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/mob, emote), "flip")
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 

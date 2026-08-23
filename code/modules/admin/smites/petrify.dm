@@ -7,7 +7,7 @@
 	. = ..()
 
 	if(!ishuman(target))
-		to_chat(user, span_warning(LANG("datum.34cdb548", null)), confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.34cdb548b229379a", null)), confidential = TRUE)
 		return
 	var/mob/living/carbon/human/human_target = target
 	human_target.petrify(statue_timer = INFINITY, save_brain = FALSE)

@@ -9,7 +9,7 @@
 	. = ..()
 
 	if (was_working_synth)
-		to_chat(affected_mob, span_warning(LANG("datum.0b3cb379", null)))
+		to_chat(affected_mob, span_warning(LANG("datum.0b3cb379b48b000e", null)))
 
 /datum/reagent/medicine/coagulant/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -22,7 +22,7 @@
 
 	if (zappiest_wound)
 		if (!was_working_synth)
-			to_chat(affected_mob, span_warning(LANG("datum.c7c45698", null)))
+			to_chat(affected_mob, span_warning(LANG("datum.c7c4569865469c46", null)))
 			was_working_synth = TRUE
 		zappiest_wound.adjust_intensity(-clot_rate * CLOT_RATE_INTENSITY_MULT * seconds_per_tick)
 	else

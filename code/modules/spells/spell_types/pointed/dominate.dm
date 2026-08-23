@@ -41,8 +41,8 @@
 /datum/action/cooldown/spell/pointed/dominate/cast(mob/living/simple_animal/cast_on)
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
-		to_chat(cast_on, span_warning(LANG("datum.1899ee96", null)))
-		to_chat(owner, span_warning(LANG("datum.80b4e871", list(cast_on))))
+		to_chat(cast_on, span_warning(LANG("datum.1899ee9609add39a", null)))
+		to_chat(owner, span_warning(LANG("datum.80b4e871e943741e", list(cast_on))))
 		return FALSE
 
 	var/turf/cast_turf = get_turf(cast_on)

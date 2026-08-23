@@ -224,7 +224,7 @@
 	victim.Immobilize(CREWMATE_SUMMON_TELEPORT_DELAY)
 	victim.AddElement(/datum/element/forced_gravity, 0)
 	victim.add_filter("teleport_glow", 2, list("type" = "outline", "color" = "#de3aff48", "size" = 2))
-	victim.visible_message(span_warning(LANG("datum.822fc5de", list(victim))), span_warning(LANG("datum.db969a7e", null)))
+	victim.visible_message(span_warning(LANG("datum.822fc5dea6c353d0", list(victim))), span_warning(LANG("datum.db969a7e17cf3a67", null)))
 	addtimer(CALLBACK(src, PROC_REF(summon_crewmate), victim, landing_pos), CREWMATE_SUMMON_TELEPORT_DELAY)
 
 #undef CREWMATE_SUMMON_TELEPORT_DELAY
@@ -237,9 +237,9 @@
 	if (do_teleport(victim, destination, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_MAGIC))
 		var/obj/effect/particle_effect/fluid/smoke/poof = new(was_position)
 		poof.lifetime = 2 SECONDS
-		was_position.visible_message(span_warning(LANG("datum.36f1f522", list(victim))))
+		was_position.visible_message(span_warning(LANG("datum.36f1f52250c4ddf1", list(victim))))
 	else
-		victim.visible_message(span_notice(LANG("datum.552421d4", list(victim))))
+		victim.visible_message(span_notice(LANG("datum.552421d4a4423e5b", list(victim))))
 
 /// Create colourful smoke
 /datum/grand_side_effect/smoke

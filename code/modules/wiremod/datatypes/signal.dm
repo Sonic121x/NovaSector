@@ -14,7 +14,7 @@
 /datum/circuit_datatype/signal/handle_manual_input(datum/port/input/port, mob/user, user_input)
 	var/atom/parent = port.connected_component
 	if(parent)
-		parent.balloon_alert(user, LANG("datum.1580fc33", list(port.name)))
+		parent.balloon_alert(user, LANG("datum.1580fc33a8b21559", list(port.name)))
 	return COMPONENT_SIGNAL
 
 /datum/circuit_datatype/signal/instant_signal

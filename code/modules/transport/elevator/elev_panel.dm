@@ -119,7 +119,7 @@
 		elevator_door.obj_flags |= EMAGGED
 
 	playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, LANG("obj.bd40a80f", null))
+	balloon_alert(user, LANG("obj.bd40a80f973c0a5b", null))
 	return TRUE
 
 /obj/machinery/elevator_control_panel/multitool_act(mob/living/user)
@@ -127,10 +127,10 @@
 	if(!lift)
 		return
 
-	balloon_alert(user, LANG("obj.4fb9c04e", null))
+	balloon_alert(user, LANG("obj.4fb9c04e114d8023", null))
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, TRUE)
 	if(!do_after(user, 6 SECONDS, src))
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return TRUE
 
 	if(QDELETED(lift) || !length(lift.transport_modules))
@@ -159,7 +159,7 @@
 	reset_doors()
 
 	// Be vague about whether something was accomplished or not
-	balloon_alert(user, LANG("obj.1467320e", null))
+	balloon_alert(user, LANG("obj.1467320ede208cf5", null))
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, TRUE)
 
 	return TRUE
@@ -312,7 +312,7 @@
 	switch(action)
 		if("move_lift")
 			if(!allowed(usr))
-				balloon_alert(usr, LANG("obj.1bd3ceeb", null))
+				balloon_alert(usr, LANG("obj.1bd3ceeb3a56d0d5", null))
 				return
 
 			var/desired_z = params["z"]

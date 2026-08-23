@@ -44,11 +44,11 @@ SUBSYSTEM_DEF(pai)
 	var/mob/user = ui.user
 	var/datum/pai_candidate/candidate = candidates[user.ckey]
 	if(is_banned_from(user.ckey, ROLE_PAI))
-		to_chat(user, span_warning(LANG("datum.c2f3c23d", null)))
+		to_chat(user, span_warning(LANG("datum.c2f3c23d9d9c5e00", null)))
 		ui.close()
 		return FALSE
 	if(isnull(candidate))
-		to_chat(user, span_warning(LANG("datum.0c95533a", null)))
+		to_chat(user, span_warning(LANG("datum.0c95533a82a104c5", null)))
 		ui.close()
 		return FALSE
 	switch(action)
@@ -73,10 +73,10 @@ SUBSYSTEM_DEF(pai)
 			return TRUE
 		if("withdraw")
 			if(!candidate.ready)
-				to_chat(user, span_warning(LANG("datum.ab879adb", null)))
+				to_chat(user, span_warning(LANG("datum.ab879adbc5e3bb41", null)))
 				return FALSE
 			candidate.ready = FALSE
-			to_chat(user, span_notice(LANG("datum.98d3bf02", null)))
+			to_chat(user, span_notice(LANG("datum.98d3bf028740250c", null)))
 			return TRUE
 	return FALSE
 
@@ -100,12 +100,12 @@ SUBSYSTEM_DEF(pai)
  */
 /datum/controller/subsystem/pai/proc/submit_alert(mob/user)
 	if(submit_spam)
-		to_chat(user, span_warning(LANG("datum.9fe7fcf2", null)))
+		to_chat(user, span_warning(LANG("datum.9fe7fcf26777c76d", null)))
 		return FALSE
 	submit_spam = TRUE
 	for(var/obj/item/pai_card/pai_card as anything in pai_card_list)
 		if(!pai_card.pai)
 			pai_card.alert_update()
-	to_chat(user, span_notice(LANG("datum.cced6a3c", null)))
+	to_chat(user, span_notice(LANG("datum.cced6a3c8e38154d", null)))
 	addtimer(VARSET_CALLBACK(src, submit_spam, FALSE), PAI_SPAM_TIME, TIMER_UNIQUE|TIMER_DELETE_ME)
 	return TRUE

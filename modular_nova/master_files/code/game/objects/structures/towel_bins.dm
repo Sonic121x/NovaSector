@@ -24,9 +24,9 @@
 /obj/structure/towel_bin/examine(mob/user)
 	. = ..()
 	if(amount <= 0)
-		. += LANG("obj.e7cf5721", null)
+		. += LANG("obj.e7cf57215f7d0145", null)
 	else
-		. += LANG("obj.c911e914", list(amount == 1 ? "is one towel" : "are [amount] towels"))
+		. += LANG("obj.c911e9144b3f2f32", list(amount == 1 ? "is one towel" : "are [amount] towels"))
 
 
 /obj/structure/towel_bin/update_icon_state()
@@ -50,11 +50,11 @@
 
 /obj/structure/towel_bin/screwdriver_act(mob/living/user, obj/item/tool)
 	if(amount)
-		to_chat(user, span_warning(LANG("obj.c4f74ff0", list(src))))
+		to_chat(user, span_warning(LANG("obj.c4f74ff0cd65bc6d", list(src))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(tool.use_tool(src, user, 0.5 SECONDS, volume = 50))
-		to_chat(user, span_notice(LANG("obj.fd5c1c1d", list(src))))
+		to_chat(user, span_notice(LANG("obj.fd5c1c1d92627348", list(src))))
 		if(!(obj_flags & NO_DEBRIS_AFTER_DECONSTRUCTION))
 			new /obj/item/stack/rods(loc, 2)
 		qdel(src)
@@ -73,16 +73,16 @@
 			return ITEM_INTERACT_BLOCKING
 		LAZYADD(towels, tool)
 		amount++
-		to_chat(user, span_notice(LANG("obj.de7df645", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.de7df6459b40f465", list(tool, src))))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
 	else if(amount && !hidden && tool.w_class < WEIGHT_CLASS_BULKY) //make sure there's sheets to hide it among, make sure nothing else is hidden in there.
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning(LANG("obj.5bd9a4b3", list(tool))))
+			to_chat(user, span_warning(LANG("obj.5bd9a4b3c3e5b4d1", list(tool))))
 			return ITEM_INTERACT_BLOCKING
 		hidden = tool
-		to_chat(user, span_notice(LANG("obj.98e101de", list(tool))))
+		to_chat(user, span_notice(LANG("obj.98e101dea5a24720", list(tool))))
 		return ITEM_INTERACT_SUCCESS
 
 	return ITEM_INTERACT_BLOCKING
@@ -121,7 +121,7 @@
  */
 /obj/structure/towel_bin/proc/take_towel_out(mob/user, tk = FALSE)
 	if(amount <= 0)
-		to_chat(user, span_warning(LANG("obj.4707dc21", list(src))))
+		to_chat(user, span_warning(LANG("obj.4707dc2160db288e", list(src))))
 		return
 
 	amount--
@@ -136,12 +136,12 @@
 		towel = new (loc)
 
 	towel.forceMove(drop_location())
-	to_chat(user, span_notice(LANG("obj.82db7dcc", list(tk ? "telekinetically remove" : "take", towel, src))))
+	to_chat(user, span_notice(LANG("obj.82db7dcc700cba40", list(tk ? "telekinetically remove" : "take", towel, src))))
 	update_appearance()
 
 	if(hidden)
 		if(!tk)
-			to_chat(user, span_notice(LANG("obj.733a1772", list(hidden, towel))))
+			to_chat(user, span_notice(LANG("obj.733a1772bdbd824f", list(hidden, towel))))
 
 		hidden.forceMove(drop_location())
 		hidden = null

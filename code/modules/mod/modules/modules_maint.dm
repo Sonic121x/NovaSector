@@ -48,7 +48,7 @@
 	if (!found_part)
 		return
 
-	to_chat(mod.wearer, span_danger(LANG("obj.241fbfbe", list(src))))
+	to_chat(mod.wearer, span_danger(LANG("obj.241fbfbe0dfe380d", list(src))))
 	playsound(src, 'sound/items/modsuit/springlock.ogg', 75, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(snap_shut)), rand(3 SECONDS, 5 SECONDS))
 	RegisterSignals(mod, list(COMSIG_MOD_ACTIVATE, COMSIG_MOD_PART_RETRACTING), PROC_REF(on_activate_spring_block))
@@ -75,7 +75,7 @@
 ///Signal fired when wearer attempts to activate/deactivate suits
 /obj/item/mod/module/springlock/proc/on_activate_spring_block(datum/source, user)
 	SIGNAL_HANDLER
-	balloon_alert(user, LANG("obj.bf17c5de", null))
+	balloon_alert(user, LANG("obj.bf17c5de76a6b5b2", null))
 	return MOD_CANCEL_ACTIVATE
 
 ///Delayed death proc of the suit after the wearer is exposed to reagents
@@ -83,7 +83,7 @@
 	UnregisterSignal(mod, list(COMSIG_MOD_ACTIVATE, COMSIG_MOD_PART_RETRACTING))
 	if(!mod.wearer) //while there is a guaranteed user when on_wearer_exposed() fires, that isn't the same case for this proc
 		return
-	mod.wearer.visible_message(LANG("obj.0db3f31d", list(src, mod.wearer, mod.name)), span_userdanger(LANG("obj.38655778", null)))
+	mod.wearer.visible_message(LANG("obj.0db3f31da49ce0cd", list(src, mod.wearer, mod.name)), span_userdanger(LANG("obj.386557789f712dd9", null)))
 	mod.wearer.emote("scream")
 	playsound(mod.wearer, 'sound/effects/snap.ogg', 75, TRUE, frequency = 0.5)
 	playsound(mod.wearer, 'sound/effects/splat.ogg', 50, TRUE, frequency = 0.5)
@@ -257,7 +257,7 @@
 
 	var/obj/structure/table/nearby_table = locate() in range(1, mod.wearer)
 	playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
-	balloon_alert(mod.wearer, LANG("obj.1b845bf5", list(nearby_table ? " onto table":"")))
+	balloon_alert(mod.wearer, LANG("obj.1b845bf5e787c236", list(nearby_table ? " onto table":"")))
 
 	mod.wearer.put_in_hands(crisp_paper)
 	if(nearby_table)
@@ -268,7 +268,7 @@
 		if(crisp_paper in mod.wearer.held_items)
 			mod.wearer.dropItemToGround(crisp_paper, force = TRUE)
 		crisp_paper.balloon_alert(mod.wearer, UNLINT("PC LOAD LETTER!"))
-		crisp_paper.visible_message(span_warning(LANG("obj.4c06339b", list(crisp_paper))))
+		crisp_paper.visible_message(span_warning(LANG("obj.4c06339b497b06aa", list(crisp_paper))))
 		crisp_paper.fire_act(1000, 100)
 
 	drain_power(use_energy_cost)
@@ -333,7 +333,7 @@
 /obj/item/mod/module/atrocinator/on_activation(mob/activator)
 	// Auto-unbuckle anyone being carried to avoid lag issues
 	if(length(mod.wearer.buckled_mobs))
-		mod.wearer.visible_message(LANG("obj.2b2ff57d", list(mod.wearer, mod.wearer.buckled_mobs[1], mod.wearer.p_their())))
+		mod.wearer.visible_message(LANG("obj.2b2ff57dd719c5c3", list(mod.wearer, mod.wearer.buckled_mobs[1], mod.wearer.p_their())))
 		mod.wearer.unbuckle_all_mobs()
 
 	playsound(src, 'sound/effects/curse/curseattack.ogg', 50)
@@ -347,7 +347,7 @@
 
 /obj/item/mod/module/atrocinator/deactivate(mob/activator, display_message = TRUE, deleting = FALSE)
 	if(you_fucked_up && !deleting)
-		to_chat(activator, span_danger(LANG("obj.b4850579", null)))
+		to_chat(activator, span_danger(LANG("obj.b48505792ef41d8e", null)))
 		return FALSE
 	return ..()
 
@@ -403,7 +403,7 @@
 /obj/item/mod/module/atrocinator/proc/fly_away()
 	you_fucked_up = TRUE
 	playsound(src, 'sound/effects/whirthunk.ogg', 75)
-	to_chat(mod.wearer, span_userdanger(LANG("obj.1831b0c3", null)))
+	to_chat(mod.wearer, span_userdanger(LANG("obj.1831b0c389c00827", null)))
 	investigate_log("has flown off into space due to the [src].", INVESTIGATE_DEATHS)
 	mod.wearer.Stun(FLY_TIME, ignore_canstun = TRUE)
 	animate(mod.wearer, FLY_TIME, pixel_z = 256, alpha = 0)
@@ -418,7 +418,7 @@
 /// Prevent someone from being buckled to the wearer while atrocinator is active
 /obj/item/mod/module/atrocinator/proc/on_someone_buckled(datum/source, mob/living/buckled_mob, mob/living/buckler)
 	SIGNAL_HANDLER
-	balloon_alert(buckler, LANG("obj.8868232b", list(buckler == mod.wearer ? "you're" : "they're")))
+	balloon_alert(buckler, LANG("obj.8868232b0c1ec354", list(buckler == mod.wearer ? "you're" : "they're")))
 	return COMPONENT_BLOCK_BUCKLE
 
 

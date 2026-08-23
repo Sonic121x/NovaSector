@@ -15,7 +15,7 @@
 /datum/export/crate/total_printout(datum/export_report/ex, notes = TRUE) // That's why a goddamn metal crate costs that much.
 	. = ..()
 	if(. && notes)
-		. += LANG("datum.03ccc944", null)
+		. += LANG("datum.03ccc94413ae3cd9", null)
 
 /datum/export/crate/wooden
 	cost = CARGO_CRATE_VALUE / 5

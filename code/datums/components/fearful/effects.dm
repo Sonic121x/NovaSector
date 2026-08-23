@@ -28,7 +28,7 @@
 		return
 
 	if (COOLDOWN_FINISHED(src, message_cd) && !owner.has_status_effect(/datum/status_effect/jitter)) // Don't display the message if we're already shaking
-		to_chat(owner, span_warning(LANG("datum.49a14aaa", null)))
+		to_chat(owner, span_warning(LANG("datum.49a14aaaa3eb75c4", null)))
 		COOLDOWN_START(src, message_cd, TERROR_MESSAGE_CD)
 
 	owner.set_jitter_if_lower(20 SECONDS)
@@ -73,15 +73,15 @@
 			return
 		COOLDOWN_START(src, message_cd, TERROR_MESSAGE_CD)
 		if (terror_buildup < TERROR_BUILDUP_FEAR)
-			to_chat(owner, span_warning(LANG("datum.9cfe197b", null)))
+			to_chat(owner, span_warning(LANG("datum.9cfe197bbd44ec99", null)))
 		else
-			to_chat(owner, span_userdanger(LANG("datum.00620900", null)))
+			to_chat(owner, span_userdanger(LANG("datum.006209003f3c3fc4", null)))
 		return
 
 	owner.visible_message(
-		span_warning(LANG("datum.9290185c", list(owner, owner.p_their()))),
-		span_alert(LANG("datum.c57c064d", null)),
-		span_hear(LANG("datum.a632fb77", null)),
+		span_warning(LANG("datum.9290185c2767d1d5", list(owner, owner.p_their()))),
+		span_alert(LANG("datum.c57c064ddf500c2d", null)),
+		span_hear(LANG("datum.a632fb775dfeed9a", null)),
 	)
 	owner.apply_status_effect(/datum/status_effect/heart_attack)
 	owner.Unconscious(20 SECONDS)
@@ -99,7 +99,7 @@
 		return
 
 	if (SPT_PROB((terror_buildup >= TERROR_BUILDUP_PANIC) ? 3 : 1, seconds_per_tick))
-		to_chat(owner, span_warning(LANG("datum.7220d46a", null)))
+		to_chat(owner, span_warning(LANG("datum.7220d46a9dd730c6", null)))
 		// Vomit blood if we're *really* freaking out
 		addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob/living/carbon, vomit), terror_buildup >= TERROR_BUILDUP_PASSIVE_MAXIMUM), 5 SECONDS)
 
@@ -143,7 +143,7 @@
 
 	if (!active)
 		active = TRUE
-		to_chat(owner, span_userdanger(LANG("datum.90ff785f", null)))
+		to_chat(owner, span_userdanger(LANG("datum.90ff785f00310735", null)))
 		owner.add_fov_trait(type, FOV_270_DEGREES) // Terror induced tunnel vision
 
 	owner.playsound_local(owner, 'sound/effects/health/slowbeat.ogg', 40, FALSE, channel = CHANNEL_HEARTBEAT, use_reverb = FALSE)
@@ -163,7 +163,7 @@
 	owner.Knockdown(0.5 SECONDS)
 	breath_loop.start()
 	panic_end_timer = addtimer(CALLBACK(src, PROC_REF(stop_panic_attack)), rand(3 SECONDS, 5 SECONDS), TIMER_UNIQUE|TIMER_STOPPABLE)
-	owner.visible_message(span_warning(LANG("datum.10e292a5", list(owner))), span_alert(LANG("datum.9cdc8d0a", null)))
+	owner.visible_message(span_warning(LANG("datum.10e292a504029c5b", list(owner))), span_alert(LANG("datum.9cdc8d0a5ac16902", null)))
 	return PANIC_ATTACK_TERROR_AMOUNT
 
 /datum/terror_handler/panic/proc/stop_panic_attack()
@@ -192,23 +192,23 @@
 	COOLDOWN_START(src, startle_cd, TERROR_STARTLE_COOLDOWN)
 	switch (rand(1, 3))
 		if (1)
-			to_chat(owner, span_warning(LANG("datum.c2110630", null)))
+			to_chat(owner, span_warning(LANG("datum.c2110630c1348441", null)))
 			owner.emote("jump")
 			owner.Immobilize(0.1 SECONDS * (terror_buildup / TERROR_BUILDUP_FEAR))
 
 		if (2)
 			owner.emote("scream")
-			owner.say(LANG("datum.3aaaabb4", null), forced = "phobia")
+			owner.say(LANG("datum.3aaaabb4c817ca48", null), forced = "phobia")
 			if (!prob(15 * (terror_buildup / TERROR_BUILDUP_FEAR)))
 				return
 			var/held_item = owner.get_active_held_item()
 			if (owner.dropItemToGround(held_item))
 				owner.visible_message(
-					span_danger(LANG("datum.654b1725", list(owner.name, held_item))),
-					span_warning(LANG("datum.bbdacc31", list(held_item))), null, COMBAT_MESSAGE_RANGE)
+					span_danger(LANG("datum.654b172517839dcc", list(owner.name, held_item))),
+					span_warning(LANG("datum.bbdacc315fa5700b", list(held_item))), null, COMBAT_MESSAGE_RANGE)
 
 		if (3)
-			to_chat(owner, span_warning(LANG("datum.03e28c7a", null)))
+			to_chat(owner, span_warning(LANG("datum.03e28c7a09820428", null)))
 			owner.adjust_staggered_up_to(2 SECONDS * (terror_buildup / TERROR_BUILDUP_FEAR), 20 SECONDS)
 			owner.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/spooked)
 			addtimer(CALLBACK(src, PROC_REF(speed_up)), 3 SECONDS, TIMER_STOPPABLE | TIMER_DELETE_ME)
@@ -232,9 +232,9 @@
 	owner.Immobilize(forced_roll_duration)
 	owner.Knockdown(forced_roll_duration)
 	if(owner.has_status_effect(/datum/status_effect/stop_drop_roll))
-		to_chat(owner, span_warning(LANG("datum.69d9cd1d", null)))
+		to_chat(owner, span_warning(LANG("datum.69d9cd1d0246fa03", null)))
 	else
-		to_chat(owner, span_warning(LANG("datum.9cb78ee3", null)))
+		to_chat(owner, span_warning(LANG("datum.9cb78ee344599882", null)))
 		owner.apply_status_effect(/datum/status_effect/stop_drop_roll, TRUE)
 
 	return -1 * TERROR_BUILDUP_PASSIVE_DECREASE // + immediate terror decrease because you think it's helping!

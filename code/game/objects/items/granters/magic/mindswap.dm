@@ -18,7 +18,7 @@
 
 /obj/item/book/granter/action/spell/mindswap/on_reading_finished()
 	. = ..()
-	visible_message(span_notice(LANG("obj.96b6ac3f", list(src))))
+	visible_message(span_notice(LANG("obj.96b6ac3f36eedf9d", list(src))))
 	action_name = pick(
 		"fireball",
 		"smoke",
@@ -36,23 +36,23 @@
 	var/mob/living/real_stored_swap = stored_swap_ref?.resolve()
 	if(QDELETED(real_stored_swap))
 		stored_swap_ref = WEAKREF(user)
-		to_chat(user, span_warning(LANG("obj.caba989d", null)))
+		to_chat(user, span_warning(LANG("obj.caba989d100ae61b", null)))
 		return
 	if(real_stored_swap.stat == DEAD)
 		stored_swap_ref = null
 		return
 	if(real_stored_swap == user)
-		to_chat(user, span_notice(LANG("obj.18ac145b", null)))
+		to_chat(user, span_notice(LANG("obj.18ac145b15ad720a", null)))
 		return
 
 	var/datum/action/cooldown/spell/pointed/mind_transfer/swapper = new(src)
 
 	if(swapper.swap_minds(user, real_stored_swap))
-		to_chat(user, span_warning(LANG("obj.0f4b7eea", null)))
-		to_chat(real_stored_swap, span_warning(LANG("obj.ab14d389", list(src))))
+		to_chat(user, span_warning(LANG("obj.0f4b7eeaf96fb001", null)))
+		to_chat(real_stored_swap, span_warning(LANG("obj.ab14d389c94e0cac", list(src))))
 
 	else
 		// if the mind_transfer failed to transfer mobs (likely due to the target being catatonic).
-		user.visible_message(span_warning(LANG("obj.d5cc56a3", list(src))))
+		user.visible_message(span_warning(LANG("obj.d5cc56a348bda81e", list(src))))
 
 	stored_swap_ref = null

@@ -5,8 +5,8 @@
 
 /datum/hallucination/telepathy/start()
 	var/datum/action/cooldown/spell/list_target/telepathy/mimiced_type = pick(typesof(/datum/action/cooldown/spell/list_target/telepathy))
-	hallucinator.balloon_alert(hallucinator, LANG("datum.d955e950", null))
-	to_chat(hallucinator, LANG("datum.ff930a65", list(initial(mimiced_type.bold_telepathy_span), initial(mimiced_type.telepathy_span), get_telepath_message())))
+	hallucinator.balloon_alert(hallucinator, LANG("datum.d955e9509c93251b", null))
+	to_chat(hallucinator, LANG("datum.ff930a6510f9fa1c", list(initial(mimiced_type.bold_telepathy_span), initial(mimiced_type.telepathy_span), get_telepath_message())))
 	return TRUE
 
 /datum/hallucination/telepathy/proc/get_telepath_message()

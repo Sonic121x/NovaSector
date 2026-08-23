@@ -280,7 +280,7 @@
 		return FALSE
 	var/datum/targeting_strategy/targeter = GET_TARGETING_STRATEGY(parent.ai_controller.blackboard[targeting_strategy_key])
 	if(!targeter?.is_valid_target(parent, target))
-		parent.balloon_alert_to_viewers(LANG("datum.04da7f9f", null))
+		parent.balloon_alert_to_viewers(LANG("datum.04da7f9f0fd1f7c9", null))
 		return FALSE
 	return ..()
 

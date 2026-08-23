@@ -82,7 +82,7 @@
 
 /mob/living/basic/cow/tamed(mob/living/tamer, atom/food)
 	. = ..()
-	visible_message(LANG("mob.705b395a", list(src, tame_message, tamer)), LANG("mob.a328a518", list(self_tame_message, tamer)))
+	visible_message(LANG("mob.705b395ad5c7abba", list(src, tame_message, tamer)), LANG("mob.a328a518f780a82c", list(self_tame_message, tamer)))
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/cow)
 
 /*

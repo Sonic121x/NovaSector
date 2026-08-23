@@ -60,7 +60,7 @@
 	if (!.)
 		return
 	var/mob/living/basic/guardian/standard/stand = owner
-	var/input = tgui_input_text(owner, LANG("datum.545047b8", null), LANG("datum.ede1244d", null), max_length = max_length)
+	var/input = tgui_input_text(owner, LANG("datum.545047b85ef49744", null), LANG("datum.ede1244dd2bb0fa8", null), max_length = max_length)
 	if(!input)
 		return
 	stand.battlecry = input

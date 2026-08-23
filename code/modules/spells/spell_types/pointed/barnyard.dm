@@ -33,18 +33,18 @@
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
 		cast_on.visible_message(
-			span_danger(LANG("datum.b8eb8e4b", list(cast_on, cast_on.p_them()))),
-			span_danger(LANG("datum.d6a4377f", null)),
+			span_danger(LANG("datum.b8eb8e4bd9e8c181", list(cast_on, cast_on.p_them()))),
+			span_danger(LANG("datum.d6a4377ff2a66602", null)),
 		)
-		to_chat(owner, span_warning(LANG("datum.2ce7047e", null)))
+		to_chat(owner, span_warning(LANG("datum.2ce7047e239a5e7e", null)))
 		return FALSE
 
 	var/chosen_type = pick(GLOB.cursed_animal_masks)
 	var/obj/item/clothing/mask/animal/cursed_mask = new chosen_type(get_turf(target))
 
 	cast_on.visible_message(
-		span_danger(LANG("datum.392d8383", list(target))),
-		span_userdanger(LANG("datum.556606cc", list(cursed_mask.animal_type))),
+		span_danger(LANG("datum.392d838348aef0b1", list(target))),
+		span_userdanger(LANG("datum.556606ccc8f46f97", list(cursed_mask.animal_type))),
 	)
 
 	// Can't drop? Nuke it

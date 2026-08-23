@@ -84,7 +84,7 @@
 	min_choices = 0
 
 /datum/event_admin_setup/multiple_choice/spacevine/prompt_admins()
-	var/customize_mutations = tgui_alert(usr, LANG("datum.62e9e805", null), event_control.name, list("Custom", "Random", "Cancel"))
+	var/customize_mutations = tgui_alert(usr, LANG("datum.62e9e80557bfcab9", null), event_control.name, list("Custom", "Random", "Cancel"))
 	switch(customize_mutations)
 		if("Custom")
 			return ..()

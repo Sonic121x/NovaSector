@@ -27,9 +27,9 @@
 /obj/machinery/quantum_server/examine(mob/user)
 	. = ..()
 	if(max_anchors >= 1)
-		. += span_infoplain(LANG("obj.bd2cad97", list(max_anchors)))
-	. += span_notice(LANG("obj.9c572844", null))
-	. += span_notice(LANG("obj.0903de93", list(message_protected ? "enabled" : "disabled")))
+		. += span_infoplain(LANG("obj.bd2cad97d6a0a526", list(max_anchors)))
+	. += span_notice(LANG("obj.9c572844770d158a", null))
+	. += span_notice(LANG("obj.0903de9317685ee4", list(message_protected ? "enabled" : "disabled")))
 
 /obj/machinery/quantum_server/RefreshParts()
 	. = ..()
@@ -47,12 +47,12 @@
 		return
 
 	if(message_protected)
-		balloon_alert(user, LANG("obj.51f2a1ea", null))
+		balloon_alert(user, LANG("obj.51f2a1eadfe8d218", null))
 		return
 
 	for(var/player_key in spam_queue)
 		if(player_key == user.ckey)
-			balloon_alert(user, LANG("obj.6f07ac27", null))
+			balloon_alert(user, LANG("obj.6f07ac27557cc41b", null))
 			return
 	ghost_mark(user)
 
@@ -62,17 +62,17 @@
 		return
 
 	message_protected = !message_protected
-	balloon_alert(user, LANG("obj.c141f0fb", list(message_protected ? "enabled" : "disabled")))
+	balloon_alert(user, LANG("obj.c141f0fb7adf5c45", list(message_protected ? "enabled" : "disabled")))
 
 /// 'Marks' the server with the ghost's presence: their custom-written message, and the ckey added to the spam-prevention list.
 /obj/machinery/quantum_server/proc/ghost_mark(mob/activator)
 	if(message_protected)
-		balloon_alert(activator, LANG("obj.51f2a1ea", null))
+		balloon_alert(activator, LANG("obj.51f2a1eadfe8d218", null))
 		return
-	var/messenger = tgui_input_text(activator, LANG("obj.11375e02", null), LANG("obj.ce720437", null), max_length = MAX_NAME_LEN)
+	var/messenger = tgui_input_text(activator, LANG("obj.11375e0295dc363c", null), LANG("obj.ce720437bb48169c", null), max_length = MAX_NAME_LEN)
 	if(!messenger)
 		messenger = pick(GLOB.hacker_aliases)
-	var/message = tgui_input_text(activator, LANG("obj.9f141b4e", null), LANG("obj.ce720437", null), max_length = MAX_PLAQUE_LEN)
+	var/message = tgui_input_text(activator, LANG("obj.9f141b4ea100a9e8", null), LANG("obj.ce720437bb48169c", null), max_length = MAX_PLAQUE_LEN)
 	if(!message)
 		return
 	playsound(loc, 'sound/machines/ectoscope_beep.ogg', 75)
@@ -88,4 +88,4 @@
 	var/mob/ghost = get_mob_by_ckey(ghost_ckey)
 	if(!ghost || isliving(ghost))
 		return
-	to_chat(ghost, LANG("obj.b2f8d6fa", list(FOLLOW_LINK(ghost, src), src)))
+	to_chat(ghost, LANG("obj.b2f8d6fa9d560f13", list(FOLLOW_LINK(ghost, src), src)))

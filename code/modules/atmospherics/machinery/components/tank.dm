@@ -135,10 +135,10 @@
 	. = ..()
 	var/wrench_hint = EXAMINE_HINT("wrench")
 	if(!initialize_directions)
-		. += span_notice(LANG("obj.1bcdeba1", list(wrench_hint)))
+		. += span_notice(LANG("obj.1bcdeba196121b67", list(wrench_hint)))
 	else
-		. += span_notice(LANG("obj.f2bdaf3f", list(wrench_hint)))
-	. += span_notice(LANG("obj.58b03ef8", list(siunit_pressure(max_pressure, 0))))
+		. += span_notice(LANG("obj.f2bdaf3fd26d4ff0", list(wrench_hint)))
+	. += span_notice(LANG("obj.58b03ef8124b2632", list(siunit_pressure(max_pressure, 0))))
 
 /obj/machinery/atmospherics/components/tank/finalize_material_effects(list/materials)
 	. = ..()
@@ -399,18 +399,18 @@
 		return
 	if(!tool.tool_start_check(user, amount = 0, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return
-	to_chat(user, span_notice(LANG("obj.976fddd9", null)))
+	to_chat(user, span_notice(LANG("obj.976fddd9c5427f82", null)))
 	var/repair_amount = max_integrity / 10
 	do
 		if(!tool.use_tool(src, user, 2.5 SECONDS, volume = 40))
 			return
 	while(repair_damage(repair_amount))
-	to_chat(user, span_notice(LANG("obj.db9524a4", null)))
+	to_chat(user, span_notice(LANG("obj.db9524a46e7655ab", null)))
 
 /obj/machinery/atmospherics/components/tank/welder_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	. = TRUE
-	to_chat(user, span_notice(LANG("obj.41065b5f", null)))
+	to_chat(user, span_notice(LANG("obj.41065b5f14d79993", null)))
 	var/turf/current_location = get_turf(src)
 	var/datum/gas_mixture/airmix = current_location.return_air()
 
@@ -420,7 +420,7 @@
 	var/internal_pressure = air_contents.return_pressure() - airmix.return_pressure()
 	if(internal_pressure > 2 * ONE_ATMOSPHERE)
 		time_taken *= 2
-		to_chat(user, span_warning(LANG("obj.286b7798", null)))
+		to_chat(user, span_warning(LANG("obj.286b779875ab7c46", null)))
 		unsafe = TRUE
 
 	if(!tool.use_tool(src, user, time_taken, volume = 60))
@@ -429,7 +429,7 @@
 	if(unsafe)
 		unsafe_pressure_release(user, internal_pressure)
 	deconstruct(disassembled=TRUE)
-	to_chat(user, span_notice(LANG("obj.91383303", null)))
+	to_chat(user, span_notice(LANG("obj.913833035d688006", null)))
 
 /obj/machinery/atmospherics/components/tank/on_deconstruction(disassembled)
 	var/turf/location = drop_location()
@@ -572,19 +572,19 @@
 	var/wrenched_hint = EXAMINE_HINT("wrenched")
 
 	if(!anchored)
-		. += span_notice(LANG("obj.bcd730d7", list(src, wrenched_hint)))
+		. += span_notice(LANG("obj.bcd730d75a7843c8", list(src, wrenched_hint)))
 	else
-		. += span_notice(LANG("obj.e3af3cad", list(src, wrenched_hint)))
+		. += span_notice(LANG("obj.e3af3cade4f509b1", list(src, wrenched_hint)))
 
 	switch(construction_state)
 		if(TANK_FRAME)
 			var/screwed_hint = EXAMINE_HINT("screwed")
 			var/plating_hint = EXAMINE_HINT("metal plating")
-			. += span_notice(LANG("obj.7c901f23", list(src, screwed_hint, plating_hint)))
+			. += span_notice(LANG("obj.7c901f23f3961a43", list(src, screwed_hint, plating_hint)))
 		if(TANK_PLATING_UNSECURED)
 			var/crowbar_hint = EXAMINE_HINT("crowbar")
 			var/welder_hint = EXAMINE_HINT("welder")
-			. += span_notice(LANG("obj.672e92af", list(crowbar_hint, welder_hint)))
+			. += span_notice(LANG("obj.672e92af53dde4f3", list(crowbar_hint, welder_hint)))
 
 /obj/structure/tank_frame/atom_deconstruct(disassembled)
 	if(disassembled)
@@ -618,23 +618,23 @@
 	if(construction_state != TANK_FRAME)
 		return
 	. = TRUE
-	to_chat(user, span_notice(LANG("obj.40506102", list(src))))
+	to_chat(user, span_notice(LANG("obj.405061027de64f87", list(src))))
 	if(!tool.use_tool(src, user, 1 SECONDS))
 		return
 	deconstruct(TRUE)
-	to_chat(user, span_notice(LANG("obj.1ff26ff4", list(src))))
+	to_chat(user, span_notice(LANG("obj.1ff26ff418de3617", list(src))))
 
 /obj/structure/tank_frame/proc/add_plating(mob/living/user, obj/item/stack/stack)
 	. = FALSE
 	if(!stack.material_type)
-		balloon_alert(user, LANG("obj.c8041e78", null))
+		balloon_alert(user, LANG("obj.c8041e7893c6c129", null))
 	var/datum/material/stack_mat = SSmaterials.get_material(stack.material_type)
 	if(!(stack_mat.mat_flags & MATERIAL_CLASS_RIGID))
-		to_chat(user, span_notice(LANG("obj.75b64e60", null)))
+		to_chat(user, span_notice(LANG("obj.75b64e600e925fc8", null)))
 		return
 
 	. = TRUE
-	to_chat(user, span_notice(LANG("obj.73bd44b3", list(stack, src))))
+	to_chat(user, span_notice(LANG("obj.73bd44b34e89111a", list(stack, src))))
 	if(!stack.use_tool(src, user, 3 SECONDS))
 		return
 	if(!stack.use(TANK_PLATING_SHEETS))
@@ -652,20 +652,20 @@
 				amount_more = "just a bit more"
 			else
 				amount_more = "an indeterminate amount more"
-		to_chat(user, span_notice(LANG("obj.5cab9919", list(stack, amount_more))))
+		to_chat(user, span_notice(LANG("obj.5cab99199b5cc084", list(stack, amount_more))))
 		return
 
 	material_end_product = stack_mat
 	construction_state = TANK_PLATING_UNSECURED
 	update_appearance(UPDATE_ICON)
-	to_chat(user, span_notice(LANG("obj.94647205", list(stack, src))))
+	to_chat(user, span_notice(LANG("obj.94647205665b4239", list(stack, src))))
 
 /obj/structure/tank_frame/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	if(construction_state != TANK_PLATING_UNSECURED)
 		return
 	. = TRUE
-	to_chat(user, span_notice(LANG("obj.d59312a2", null)))
+	to_chat(user, span_notice(LANG("obj.d59312a2f3156c2c", null)))
 	if(!tool.use_tool(src, user, 2 SECONDS))
 		return
 	construction_state = TANK_FRAME
@@ -679,11 +679,11 @@
 		return
 	. = TRUE
 	if(!anchored)
-		to_chat(user, span_notice(LANG("obj.193c3420", list(src))))
+		to_chat(user, span_notice(LANG("obj.193c34207dbe9957", list(src))))
 		return
 	if(!tool.tool_start_check(user, amount = 0, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return
-	to_chat(user, span_notice(LANG("obj.88595329", null)))
+	to_chat(user, span_notice(LANG("obj.885953297f460349", null)))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 60))
 		return
 
@@ -694,7 +694,7 @@
 	var/list/new_custom_materials = list((material_end_product) = TANK_PLATING_SHEETS * SHEET_MATERIAL_AMOUNT)
 	new_tank.set_custom_materials(new_custom_materials)
 	new_tank.on_construction(user, new_tank.pipe_color, new_tank.piping_layer)
-	to_chat(user, span_notice(LANG("obj.1c91a8c5", list(new_tank))))
+	to_chat(user, span_notice(LANG("obj.1c91a8c57153b846", list(new_tank))))
 	qdel(src)
 
 #undef TANK_PLATING_SHEETS

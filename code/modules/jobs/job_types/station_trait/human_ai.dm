@@ -83,7 +83,7 @@
 /datum/job/human_ai/announce_job(mob/living/joining_mob)
 	. = ..()
 	if(SSticker.HasRoundStarted())
-		minor_announce(LANG("datum.606407f8", list(joining_mob, AREACOORD(joining_mob))))
+		minor_announce(LANG("datum.606407f802ff5148", list(joining_mob, AREACOORD(joining_mob))))
 
 /datum/job/human_ai/get_radio_information()
 	return "<b>Prefix your message with :b to speak with cyborgs.</b>"
@@ -173,9 +173,9 @@
 	var/area/current_area = get_area(user)
 	var/static/list/allowed_areas = typecacheof(list(/area/station/ai/satellite/chamber))
 	if(!is_type_in_typecache(current_area, allowed_areas))
-		user.balloon_alert(user, LANG("obj.c62154d4", null))
+		user.balloon_alert(user, LANG("obj.c62154d4eb79bc87", null))
 		return
-	user.balloon_alert(user, LANG("obj.55353aa3", null))
+	user.balloon_alert(user, LANG("obj.55353aa3667973ef", null))
 	if(!do_after(user, 5 SECONDS, src))
 		return
 	playsound(src, 'sound/items/tools/drill_use.ogg', 40, TRUE)

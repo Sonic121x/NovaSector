@@ -16,7 +16,7 @@
 	else
 		icon_state = initial(icon_state)
 	update_appearance(UPDATE_ICON_STATE)
-	to_chat(user, span_notice(LANG("obj.9bca142d", list(name, vertical ? "vertically" : "horizontally"))))
+	to_chat(user, span_notice(LANG("obj.9bca142d217ef1e9", list(name, vertical ? "vertically" : "horizontally"))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/structure/sign/flag/pride/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
@@ -82,7 +82,7 @@
 
 /obj/item/sign/flag/pride/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.f35e9229", list(EXAMINE_HINT("wall"))))
+	. += span_notice(LANG("obj.f35e9229aa7c99bc", list(EXAMINE_HINT("wall"))))
 
 /obj/item/sign/flag/pride/gay
 	name = "folded gay pride flag"

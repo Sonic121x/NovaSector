@@ -38,14 +38,14 @@
 	START_PROCESSING(SSdcs, src)
 	last_blink = world.time
 	if (display_message)
-		to_chat(carbon_parent, span_notice(LANG("datum.cf393347", null)))
+		to_chat(carbon_parent, span_notice(LANG("datum.cf39334731e4a617", null)))
 
 /datum/component/manual_blinking/Destroy(force)
 	REMOVE_TRAIT(parent, TRAIT_PREVENT_BLINK_LOOPS, REF(src))
 	parent_eyes = null
 	STOP_PROCESSING(SSdcs, src)
 	if (display_message)
-		to_chat(parent, span_notice(LANG("datum.729807fd", null)))
+		to_chat(parent, span_notice(LANG("datum.729807fdcf89f933", null)))
 	var/mob/living/carbon/carbon_parent = parent
 	carbon_parent.cure_blind(REF(src))
 	carbon_parent.update_eyes()
@@ -75,12 +75,12 @@
 /datum/component/manual_blinking/process()
 	if(world.time > (last_blink + warning_delay + grace_period))
 		if(!warn_dying)
-			to_chat(parent, span_userdanger(LANG("datum.38086a24", null)))
+			to_chat(parent, span_userdanger(LANG("datum.38086a249d0eaf05", null)))
 			warn_dying = TRUE
 		parent_eyes.apply_organ_damage(damage_rate)
 	else if(world.time > (last_blink + warning_delay))
 		if(!warn_grace)
-			to_chat(parent, span_danger(LANG("datum.9ee3434d", null)))
+			to_chat(parent, span_danger(LANG("datum.9ee3434d07aa94d4", null)))
 			warn_grace = TRUE
 
 /datum/component/manual_blinking/proc/check_added_organ(mob/who_cares, obj/item/organ/added_organ)

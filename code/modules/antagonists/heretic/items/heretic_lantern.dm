@@ -42,7 +42,7 @@
 		update_weight_class(WEIGHT_CLASS_BULKY)
 		var/atom/message_loc = isturf(loc) ? src : loc
 		message_loc.visible_message(
-			span_notice(LANG("obj.cbf74e09", list(isturf(loc) ? src : "[loc]'s [src]")))
+			span_notice(LANG("obj.cbf74e0943ee0ca9", list(isturf(loc) ? src : "[loc]'s [src]")))
 		)
 	else
 		STOP_PROCESSING(SSobj, src)
@@ -51,7 +51,7 @@
 		update_weight_class(WEIGHT_CLASS_NORMAL)
 		var/atom/message_loc = isturf(loc) ? src : loc
 		message_loc.visible_message(
-			span_notice(LANG("obj.ab43112b", list(isturf(loc) ? src : "[loc]'s [src]")))
+			span_notice(LANG("obj.ab43112b464826a2", list(isturf(loc) ? src : "[loc]'s [src]")))
 		)
 
 /obj/item/flashlight/lantern/heretic/equipped(mob/user, slot, initial)
@@ -130,15 +130,15 @@
 	var/seer_stam = seer.get_stamina_loss()
 	switch(seer_eye_prot)
 		if(FLASH_PROTECTION_WELDER_SENSITIVE to INFINITY)
-			to_chat(seer, span_notice(LANG("obj.6d04ba56", list((src == center) ? src : "[center]'s [src]"))))
+			to_chat(seer, span_notice(LANG("obj.6d04ba563b16e87c", list((src == center) ? src : "[center]'s [src]"))))
 			return
 
 		if(FLASH_PROTECTION_WELDER)
-			to_chat(seer, span_danger(LANG("obj.dcf07212", list((src == center) ? src : "[center]'s [src]"))))
+			to_chat(seer, span_danger(LANG("obj.dcf072126f94e404", list((src == center) ? src : "[center]'s [src]"))))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 3, maximum = 30)
 
 		if(FLASH_PROTECTION_FLASH)
-			to_chat(seer, span_danger(LANG("obj.dcf07212", list((src == center) ? src : "[center]'s [src]"))))
+			to_chat(seer, span_danger(LANG("obj.dcf072126f94e404", list((src == center) ? src : "[center]'s [src]"))))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 4, maximum = 40)
 			seer.adjust_eye_blur(2 SECONDS)
 			if(tick_count > 2 && (seer_stam < 60 || (tick_count > 8 && seer_stam < 100)))
@@ -147,7 +147,7 @@
 				seer.adjust_confusion(2 SECONDS)
 
 		if(FLASH_PROTECTION_NONE)
-			to_chat(seer, span_danger(LANG("obj.c012712e", list((src == center) ? src : "[center]'s [src]"))))
+			to_chat(seer, span_danger(LANG("obj.c012712e89d4ab4f", list((src == center) ? src : "[center]'s [src]"))))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 5)
 			seer.adjust_temp_blindness(1 SECONDS)
 			seer.adjust_eye_blur(4 SECONDS)
@@ -157,7 +157,7 @@
 				seer.adjust_confusion(4 SECONDS)
 
 		if(FLASH_PROTECTION_SENSITIVE)
-			to_chat(seer, span_danger(LANG("obj.fd20d578", list((src == center) ? src : "[center]'s [src]"))))
+			to_chat(seer, span_danger(LANG("obj.fd20d57865e5337a", list((src == center) ? src : "[center]'s [src]"))))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 8)
 			seer.adjust_temp_blindness(2 SECONDS)
 			seer.adjust_eye_blur(8 SECONDS)
@@ -167,7 +167,7 @@
 				seer.adjust_confusion(tick_count > 3 ? 8 SECONDS : 4 SECONDS)
 
 		if(-INFINITY to FLASH_PROTECTION_HYPER_SENSITIVE)
-			to_chat(seer, span_danger(LANG("obj.fd20d578", list((src == center) ? src : "[center]'s [src]"))))
+			to_chat(seer, span_danger(LANG("obj.fd20d57865e5337a", list((src == center) ? src : "[center]'s [src]"))))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 15)
 			seer.adjust_temp_blindness(4 SECONDS)
 			seer.adjust_eye_blur(12 SECONDS)

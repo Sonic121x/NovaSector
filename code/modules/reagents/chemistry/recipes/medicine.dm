@@ -81,12 +81,12 @@
 
 ///Calls it over and over
 /datum/chemical_reaction/medicine/inacusiate/overheated(datum/reagents/holder, datum/equilibrium/equilibrium, vol_added)
-	holder.my_atom.audible_message(span_notice(LANG("datum.b06c8ccf", list(icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src)), holder.my_atom))))
+	holder.my_atom.audible_message(span_notice(LANG("datum.b06c8ccf84c038d9", list(icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src)), holder.my_atom))))
 	explode_deafen(holder, equilibrium, 0.5, 10, 3)
 
 /datum/chemical_reaction/medicine/inacusiate/overly_impure(datum/reagents/holder, datum/equilibrium/equilibrium, vol_added)
 	var/power = equilibrium.reacted_vol/10
-	holder.my_atom.audible_message(span_notice(LANG("datum.bfb2dc60", list(icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src)), holder.my_atom))))
+	holder.my_atom.audible_message(span_notice(LANG("datum.bfb2dc606ee6b209", list(icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src)), holder.my_atom))))
 	explode_deafen(holder, equilibrium, power/2, power*2, max(power/2, 3))
 	clear_products(holder)
 

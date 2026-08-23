@@ -20,7 +20,7 @@
 	var/on = FALSE
 
 /obj/item/t_scanner/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.ac1a8e4f", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.ac1a8e4f00c64998", list(user, user.p_their(), src, user.p_theyre()))))
 	return TOXLOSS
 
 /obj/item/t_scanner/proc/toggle_on()

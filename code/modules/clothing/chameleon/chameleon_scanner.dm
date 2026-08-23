@@ -41,9 +41,9 @@
 		return
 	// similar to context, we don't want a bunch of text revealing "THIS IS A DISGUISED ITEM" to everyone on examine.
 	// despite the fact that anyone can use it, we'll only show it to traitors, everyone else just has to figure it out.
-	. += span_red(LANG("obj.4a0be3a7", null))
-	. += span_red(LANG("obj.5aad88bd", list(scan_range)))
-	. += span_red(LANG("obj.1d3dafe6", null))
+	. += span_red(LANG("obj.4a0be3a7f8d35f18", null))
+	. += span_red(LANG("obj.5aad88bd17b757eb", list(scan_range)))
+	. += span_red(LANG("obj.1d3dafe60eb711ee", null))
 
 /obj/item/chameleon_scanner/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	return scan_target(interacting_with, user) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
@@ -88,10 +88,10 @@
 		return
 
 	if(!COOLDOWN_FINISHED(src, scan_cooldown))
-		balloon_alert(scanner, LANG("obj.7f0aa913", null))
+		balloon_alert(scanner, LANG("obj.7f0aa91375d7a021", null))
 		return
 	if(get_dist(scanner, mob_copying) > scan_range)
-		balloon_alert(scanner, LANG("obj.a462ee7c", null))
+		balloon_alert(scanner, LANG("obj.a462ee7cec0ddb47", null))
 		return
 	// Very short scan timer, keep you on your toes
 	if(!do_after(scanner, 0.5 SECONDS, scanned, cog_icon = null))
@@ -109,7 +109,7 @@
 			all_scanned_items |= thing.type
 
 	if(!length(all_scanned_items))
-		scanned.balloon_alert(scanner, LANG("obj.b9e6ec3c", null))
+		scanned.balloon_alert(scanner, LANG("obj.b9e6ec3c4862723c", null))
 		return
 
 	playsound(src, 'sound/machines/ping.ogg', vol = 30, vary = TRUE, extrarange = SILENCED_SOUND_EXTRARANGE)

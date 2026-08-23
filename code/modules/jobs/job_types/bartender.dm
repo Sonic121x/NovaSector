@@ -70,4 +70,4 @@
 	var/obj/item/card/id/W = H.wear_id
 	if(H.age < AGE_MINOR)
 		W.registered_age = AGE_MINOR
-		to_chat(H, span_notice(LANG("datum.cefa5a00", list(AGE_MINOR))))
+		to_chat(H, span_notice(LANG("datum.cefa5a00b79bae52", list(AGE_MINOR))))

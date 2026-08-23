@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 		return
 	if(!GLOB.wizardstart.len)
 		SSjob.send_to_late_join(owner.current)
-		to_chat(owner, LANG("datum.8cff2ba6", null))
+		to_chat(owner, LANG("datum.8cff2ba6a1a969f5", null))
 	owner.current.forceMove(pick(GLOB.wizardstart))
 
 /datum/antagonist/wizard/proc/create_objectives()
@@ -225,7 +225,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	var/wizard_name_second = pick(GLOB.wizard_second)
 	var/randomname = "[wizard_name_first] [wizard_name_second]"
 	var/mob/living/wiz_mob = owner.current
-	var/newname = sanitize_name(reject_bad_text(tgui_input_text(wiz_mob, LANG("datum.6e4644d1", list(name)), LANG("datum.b4bf4c54", null), randomname, MAX_NAME_LEN)))
+	var/newname = sanitize_name(reject_bad_text(tgui_input_text(wiz_mob, LANG("datum.6e4644d1a3ea6300", list(name)), LANG("datum.b4bf4c54d223e79b", null), randomname, MAX_NAME_LEN)))
 
 	if (!newname)
 		newname = randomname
@@ -273,7 +273,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	wiz_age = APPRENTICE_AGE_MIN
 
 /datum/antagonist/wizard/apprentice/greet()
-	to_chat(owner, LANG("datum.264c55f9", list(master.current.real_name, master.p_their(), master.p_them(), master.p_their())))
+	to_chat(owner, LANG("datum.264c55f93023880f", list(master.current.real_name, master.p_their(), master.p_them(), master.p_their())))
 	owner.announce_objectives()
 
 /datum/antagonist/wizard/apprentice/assign_ritual()
@@ -293,14 +293,14 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 				/datum/action/cooldown/spell/aoe/magic_missile,
 				/datum/action/cooldown/spell/pointed/projectile/fireball,
 			)
-			to_chat(owner, span_bold(LANG("datum.193a7517", list(master.current.real_name))))
+			to_chat(owner, span_bold(LANG("datum.193a7517c3b383fd", list(master.current.real_name))))
 
 		if(APPRENTICE_BLUESPACE)
 			spells_to_grant = list(
 				/datum/action/cooldown/spell/teleport/area_teleport/wizard,
 				/datum/action/cooldown/spell/jaunt/ethereal_jaunt,
 			)
-			to_chat(owner, span_bold(LANG("datum.6dbd2910", list(master.current.real_name))))
+			to_chat(owner, span_bold(LANG("datum.6dbd291060159bf8", list(master.current.real_name))))
 
 		if(APPRENTICE_HEALING)
 			spells_to_grant = list(
@@ -310,13 +310,13 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 			items_to_grant = list(
 				/obj/item/gun/magic/staff/healing,
 			)
-			to_chat(owner, span_bold(LANG("datum.fcc49e0b", list(master.current.real_name))))
+			to_chat(owner, span_bold(LANG("datum.fcc49e0b8fe609a0", list(master.current.real_name))))
 		if(APPRENTICE_ROBELESS)
 			spells_to_grant = list(
 				/datum/action/cooldown/spell/aoe/knock,
 				/datum/action/cooldown/spell/pointed/mind_transfer,
 			)
-			to_chat(owner, span_bold(LANG("datum.6df261e9", list(master.current.real_name))))
+			to_chat(owner, span_bold(LANG("datum.6df261e90baaeb96", list(master.current.real_name))))
 
 	for(var/spell_type in spells_to_grant)
 		var/datum/action/cooldown/spell/new_spell = new spell_type(owner)
@@ -342,7 +342,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 
 /datum/antagonist/wizard/apprentice/imposter/greet()
 	. = ..()
-	to_chat(owner, LANG("datum.e369c0fb", null))
+	to_chat(owner, LANG("datum.e369c0fb3d2ba823", null))
 	owner.announce_objectives()
 
 /datum/antagonist/wizard/apprentice/imposter/equip_wizard()

@@ -41,7 +41,7 @@
 /turf/open/misc/ice/examine(mob/user)
 	. = ..()
 	if(can_make_hole)
-		. += span_info(LANG("turf.9746b9b2", list(EXAMINE_HINT("shovel"), EXAMINE_HINT("pick"))))
+		. += span_info(LANG("turf.9746b9b29be2c317", list(EXAMINE_HINT("shovel"), EXAMINE_HINT("pick"))))
 
 /turf/open/misc/ice/attack_animal(mob/living/animal, list/modifiers)
 	. = ..()
@@ -57,11 +57,11 @@
 /turf/open/misc/ice/proc/dig_hole(mob/living/user)
 	if(!can_make_hole)
 		return FALSE
-	balloon_alert(user, LANG("turf.a8f0e832", null))
+	balloon_alert(user, LANG("turf.a8f0e8323f5959f2", null))
 	playsound(src, 'sound/effects/shovel_dig.ogg', 50, TRUE)
 	if(!do_after(user, 5 SECONDS, src))
 		return FALSE
-	balloon_alert(user, LANG("turf.8ec53194", null))
+	balloon_alert(user, LANG("turf.8ec531942c092336", null))
 	spawn_hole()
 	return TRUE
 

@@ -17,9 +17,9 @@
 /obj/machinery/computer/aifixer/screwdriver_act(mob/living/user, obj/item/I)
 	if(occupier)
 		if(machine_stat & (NOPOWER|BROKEN))
-			to_chat(user, span_warning(LANG("obj.cf827b15", list(name))))
+			to_chat(user, span_warning(LANG("obj.cf827b15d07e0130", list(name))))
 		else
-			to_chat(user, span_warning(LANG("obj.98b60a60", list(name))))
+			to_chat(user, span_warning(LANG("obj.98b60a607f573771", list(name))))
 	else
 		return ..()
 
@@ -59,7 +59,7 @@
 	switch(action)
 		if("PRG_beginReconstruction")
 			if(occupier?.health < 100)
-				to_chat(usr, span_notice(LANG("obj.66296f84", null)))
+				to_chat(usr, span_notice(LANG("obj.66296f84aa8c3a76", null)))
 				playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 25, FALSE)
 				restoring = TRUE
 				occupier.notify_revival("Your core files are being restored!", source = src)
@@ -67,7 +67,7 @@
 
 /obj/machinery/computer/aifixer/proc/Fix()
 	if(!use_energy(active_power_usage, force = TRUE))
-		say(LANG("obj.bc331d21", null))
+		say(LANG("obj.bc331d214e62226e", null))
 		return FALSE
 	var/need_mob_update = FALSE
 	need_mob_update += occupier.adjust_oxy_loss(-5, updating_health = FALSE)
@@ -79,7 +79,7 @@
 		occupier.revive()
 		if(!occupier.radio_enabled)
 			occupier.radio_enabled = TRUE
-			to_chat(occupier, span_warning(LANG("obj.b59f30db", null)))
+			to_chat(occupier, span_warning(LANG("obj.b59f30dbbc571ee1", null)))
 	return occupier.health < 100
 
 /obj/machinery/computer/aifixer/process()
@@ -113,29 +113,29 @@
 	//Downloading AI from card to terminal.
 	if(interaction == AI_TRANS_FROM_CARD)
 		if(machine_stat & (NOPOWER|BROKEN))
-			to_chat(user, span_alert(LANG("obj.ef380c0a", list(src))))
+			to_chat(user, span_alert(LANG("obj.ef380c0a7ec960ab", list(src))))
 			return
 		AI.forceMove(src)
 		occupier = AI
 		AI.set_control_disabled(TRUE)
 		AI.radio_enabled = FALSE
-		to_chat(AI, span_alert(LANG("obj.798fb85f", null)))
-		to_chat(user, LANG("obj.8779c42c", list(span_notice("Transfer successful"), AI.name, rand(1000,9999))))
+		to_chat(AI, span_alert(LANG("obj.798fb85fd6f2b3bd", null)))
+		to_chat(user, LANG("obj.8779c42caea32b69", list(span_notice("Transfer successful"), AI.name, rand(1000,9999))))
 		card.AI = null
 		update_appearance()
 
 	else //Uploading AI from terminal to card
 		if(occupier && !restoring)
-			to_chat(occupier, span_notice(LANG("obj.4521d3fb", null)))
-			to_chat(user, LANG("obj.473c4459", list(span_notice("Transfer successful"), occupier.name, rand(1000,9999))))
+			to_chat(occupier, span_notice(LANG("obj.4521d3fb6d6295db", null)))
+			to_chat(user, LANG("obj.473c445982b94f87", list(span_notice("Transfer successful"), occupier.name, rand(1000,9999))))
 			occupier.forceMove(card)
 			card.AI = occupier
 			occupier = null
 			update_appearance()
 		else if (restoring)
-			to_chat(user, span_alert(LANG("obj.c10d8537", null)))
+			to_chat(user, span_alert(LANG("obj.c10d85373518ca43", null)))
 		else if (!occupier)
-			to_chat(user, span_alert(LANG("obj.67703819", null)))
+			to_chat(user, span_alert(LANG("obj.6770381983d82948", null)))
 
 /obj/machinery/computer/aifixer/Destroy()
 	if(occupier)

@@ -15,7 +15,7 @@
 /datum/action/changeling/resonant_shriek/sting_action(mob/user)
 	..()
 	if(user.movement_type & VENTCRAWLING)
-		user.balloon_alert(user, LANG("datum.b47e559c", null))
+		user.balloon_alert(user, LANG("datum.b47e559cbdd94726", null))
 		return FALSE
 	playsound(user, 'sound/effects/screech.ogg', 100)
 	for(var/mob/living/living in get_hearers_in_view(4, user))
@@ -45,7 +45,7 @@
 /datum/action/changeling/dissonant_shriek/sting_action(mob/user)
 	..()
 	if(user.movement_type & VENTCRAWLING)
-		user.balloon_alert(user, LANG("datum.b47e559c", null))
+		user.balloon_alert(user, LANG("datum.b47e559cbdd94726", null))
 		return FALSE
 	empulse(get_turf(user), 2, 5, 1, emp_source = src)
 	for(var/obj/machinery/light/L in range(5, usr))

@@ -108,10 +108,10 @@
 		return
 
 	if(tip_time > 0)
-		to_chat(tipper, span_warning(LANG("datum.6b2cdc4a", list(tipped_mob))))
+		to_chat(tipper, span_warning(LANG("datum.6b2cdc4a7f1ea0e4", list(tipped_mob))))
 		tipped_mob.visible_message(
-			span_warning(LANG("datum.e3192b73", list(tipper, tipped_mob))),
-			span_userdanger(LANG("datum.bb15c33e", list(tipper))),
+			span_warning(LANG("datum.e3192b7357a54a50", list(tipper, tipped_mob))),
+			span_userdanger(LANG("datum.bb15c33e4d29046e", list(tipper))),
 			ignored_mobs = tipper
 		)
 
@@ -119,7 +119,7 @@
 			if(!isnull(tipped_mob.client))
 				tipped_mob.log_message("was attempted to tip over by [key_name(tipper)]", LOG_VICTIM, log_globally = FALSE)
 				tipper.log_message("failed to tip over [key_name(tipped_mob)]", LOG_ATTACK)
-			to_chat(tipper, span_danger(LANG("datum.d88454b1", list(tipped_mob))))
+			to_chat(tipper, span_danger(LANG("datum.d88454b15f6ace02", list(tipped_mob))))
 			return
 	do_tip(tipped_mob, tipper)
 
@@ -137,13 +137,13 @@
 	if (is_tipped) // sanity check in case multiple people try to tip at the same time
 		return
 
-	to_chat(tipper, span_warning(LANG("datum.02cd1013", list(tipped_mob))))
+	to_chat(tipper, span_warning(LANG("datum.02cd1013dbcc8e8b", list(tipped_mob))))
 	if (!isnull(tipped_mob.client))
 		tipped_mob.log_message("has been tipped over by [key_name(tipper)].", LOG_ATTACK)
 		tipper.log_message("has tipped over [key_name(tipped_mob)].", LOG_ATTACK)
 	tipped_mob.visible_message(
-		span_warning(LANG("datum.4453010c", list(tipper, tipped_mob))),
-		span_userdanger(LANG("datum.423cedf4", list(tipper))),
+		span_warning(LANG("datum.4453010cc01f4ece", list(tipper, tipped_mob))),
+		span_userdanger(LANG("datum.423cedf4b5f31748", list(tipper))),
 		ignored_mobs = tipper
 		)
 
@@ -165,15 +165,15 @@
  */
 /datum/component/tippable/proc/try_untip(mob/living/tipped_mob, mob/untipper)
 	if(untip_time > 0)
-		to_chat(untipper, span_notice(LANG("datum.0c010732", list(tipped_mob))))
+		to_chat(untipper, span_notice(LANG("datum.0c010732b9c65924", list(tipped_mob))))
 		tipped_mob.visible_message(
-			span_notice(LANG("datum.6f0a085c", list(untipper, tipped_mob))),
-			span_notice(LANG("datum.93254bb3", list(untipper))),
+			span_notice(LANG("datum.6f0a085c62350e7e", list(untipper, tipped_mob))),
+			span_notice(LANG("datum.93254bb3a1d98d9a", list(untipper))),
 			ignored_mobs = untipper
 		)
 
 		if(!do_after(untipper, untip_time, target = tipped_mob))
-			to_chat(untipper, span_warning(LANG("datum.dbcf115e", list(tipped_mob))))
+			to_chat(untipper, span_warning(LANG("datum.dbcf115e27ba523f", list(tipped_mob))))
 			return
 
 	do_untip(tipped_mob, untipper)
@@ -191,10 +191,10 @@
 	if (!is_tipped) // sanity check in case multiple people try to untip at the same time
 		return
 
-	to_chat(untipper, span_notice(LANG("datum.692d18ff", list(tipped_mob))))
+	to_chat(untipper, span_notice(LANG("datum.692d18ff3cd3c481", list(tipped_mob))))
 	tipped_mob.visible_message(
-		span_notice(LANG("datum.94a4bfcc", list(untipper, tipped_mob))),
-		span_notice(LANG("datum.2f5ff94e", list(untipper))),
+		span_notice(LANG("datum.94a4bfccdc6bdb5d", list(untipper, tipped_mob))),
+		span_notice(LANG("datum.2f5ff94e16948a7e", list(untipper))),
 		ignored_mobs = untipper
 		)
 
@@ -217,8 +217,8 @@
 	post_untipped_callback?.Invoke()
 
 	tipped_mob.visible_message(
-		span_notice(LANG("datum.0eceadcc", list(tipped_mob))),
-		span_notice(LANG("datum.11daa230", null))
+		span_notice(LANG("datum.0eceadcc4ba0ec32", list(tipped_mob))),
+		span_notice(LANG("datum.11daa2300aaeddbf", null))
 		)
 
 /**

@@ -48,7 +48,7 @@
 
 /obj/item/armament_points_card/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.0cc6aa35", list(points)))
+	. += span_notice(LANG("obj.0cc6aa3564f88865", list(points)))
 
 /obj/item/armament_points_card/proc/use_points(points_to_use)
 	if(points_to_use > points)
@@ -69,9 +69,9 @@
 
 	var/obj/item/armament_points_card/attacking_card = tool
 	if(!attacking_card.points)
-		to_chat(user, span_warning(LANG("obj.c883815d", list(attacking_card))))
+		to_chat(user, span_warning(LANG("obj.c883815d83279718", list(attacking_card))))
 		return ITEM_INTERACT_BLOCKING
-	var/points_to_transfer = clamp(tgui_input_number(user, LANG("obj.ac788a70", null), LANG("obj.bfebd140", null), 1, attacking_card.points, 1), 0, attacking_card.points)
+	var/points_to_transfer = clamp(tgui_input_number(user, LANG("obj.ac788a706ebc4f01", null), LANG("obj.bfebd14087fd650b", null), 1, attacking_card.points, 1), 0, attacking_card.points)
 
 	if(!points_to_transfer)
 		return ITEM_INTERACT_BLOCKING
@@ -84,5 +84,5 @@
 
 	points += points_to_transfer
 	update_maptext()
-	to_chat(user, span_notice(LANG("obj.a0c2e8f2", list(points_to_transfer, src))))
+	to_chat(user, span_notice(LANG("obj.a0c2e8f2e706f60f", list(points_to_transfer, src))))
 	return ITEM_INTERACT_SUCCESS

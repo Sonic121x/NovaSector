@@ -300,7 +300,7 @@ SUBSYSTEM_DEF(shuttle)
 		CRASH("Emergency shuttle block was called, but missing a value for the lockout duration")
 	if(admin_emergency_no_recall)
 		priority_announce(
-			text = LANG("datum.514b17c2", list(DisplayTimeText(lockout_timer, round_seconds_to = 60))),
+			text = LANG("datum.514b17c299f986bf", list(DisplayTimeText(lockout_timer, round_seconds_to = 60))),
 			title = "Uplink Interference",
 			sound = ANNOUNCER_SHUTTLE, // NOVA EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
 			sender_override = "Emergency Shuttle Uplink Alert",
@@ -394,7 +394,7 @@ SUBSYSTEM_DEF(shuttle)
 		return
 
 	if(length(trim(call_reason)) < CALL_SHUTTLE_REASON_LENGTH && SSsecurity_level.get_current_level_as_number() > SEC_LEVEL_GREEN)
-		to_chat(user, span_alert(LANG("datum.a757e034", null)))
+		to_chat(user, span_alert(LANG("datum.a757e03469596e75", null)))
 		return
 
 	var/area/signal_origin = get_area(user)
@@ -526,8 +526,8 @@ SUBSYSTEM_DEF(shuttle)
 	if(admin_emergency_no_recall)
 		var/admin_no_recall_alert = tgui_alert(
 			user,
-			LANG("datum.8ddaa020", null),
-			LANG("datum.0e62521f", null),
+			LANG("datum.8ddaa020e387116d", null),
+			LANG("datum.0e62521f11b7b078", null),
 			list("Yes", "No"),
 		)
 		if(admin_no_recall_alert == "Yes")
@@ -538,8 +538,8 @@ SUBSYSTEM_DEF(shuttle)
 	if(emergency_no_recall)
 		var/general_no_recall_alert = tgui_alert(
 			user,
-			LANG("datum.c67b0991", null),
-			LANG("datum.dbc06ac8", null),
+			LANG("datum.c67b0991a813011c", null),
+			LANG("datum.dbc06ac8c0ee09f7", null),
 			list("Yes", "No"),
 		)
 		if(general_no_recall_alert == "Yes")
@@ -632,7 +632,7 @@ SUBSYSTEM_DEF(shuttle)
 		emergency.mode = SHUTTLE_DOCKED
 		emergency.setTimer(emergency_dock_time)
 		priority_announce(
-			text = LANG("datum.3625392e", list(DisplayTimeText(emergency_dock_time))),
+			text = LANG("datum.3625392e25818743", list(DisplayTimeText(emergency_dock_time))),
 			title = "Hostile Environment Resolved",
 			sound = ANNOUNCER_SHUTTLE, // NOVA EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
 			sender_override = "Emergency Shuttle Uplink Alert",
@@ -1225,7 +1225,7 @@ SUBSYSTEM_DEF(shuttle)
 					SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[mdp.name]")
 				shuttle_loading = FALSE
 				if(emergency == mdp) //you just changed the emergency shuttle, there are events in game + captains that can change your snowflake choice.
-					var/set_purchase = tgui_alert(usr, LANG("datum.b9394bcd", null), LANG("datum.aef9d770", null), list("Yes, disable purchases/events", "No, I want to possibly get owned"))
+					var/set_purchase = tgui_alert(usr, LANG("datum.b9394bcdd529a6d3", null), LANG("datum.aef9d77011943477", null), list("Yes, disable purchases/events", "No, I want to possibly get owned"))
 					if(set_purchase == "Yes, disable purchases/events")
 						SSshuttle.shuttle_purchased = SHUTTLEPURCHASE_FORCED
 

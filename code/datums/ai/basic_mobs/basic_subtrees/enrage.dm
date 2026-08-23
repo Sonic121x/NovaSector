@@ -19,9 +19,9 @@
 		basic_pawn.melee_attack_cooldown = current_cooldown / 2
 
 		if(controller.blackboard_key_exists(BB_CURRENT_TARGET))
-			basic_pawn.visible_message(span_danger(LANG("datum.d0016a6e", list(basic_pawn, controller.blackboard[BB_CURRENT_TARGET]))))
+			basic_pawn.visible_message(span_danger(LANG("datum.d0016a6e004fa17e", list(basic_pawn, controller.blackboard[BB_CURRENT_TARGET]))))
 		else
-			basic_pawn.visible_message(span_danger(LANG("datum.db98787e", list(basic_pawn))))
+			basic_pawn.visible_message(span_danger(LANG("datum.db98787eebc2f05f", list(basic_pawn))))
 		return AI_BEHAVIOR_SUCCEEDED
 
 	if(!low_health && is_enraged)

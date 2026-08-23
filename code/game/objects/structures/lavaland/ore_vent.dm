@@ -113,7 +113,7 @@
 		return NONE
 
 	if(tapped)
-		balloon_alert_to_viewers(LANG("obj.632e0d0a", null))
+		balloon_alert_to_viewers(LANG("obj.632e0d0a5b5155d7", null))
 		return ITEM_INTERACT_BLOCKING
 
 	scan_and_confirm(user)
@@ -126,9 +126,9 @@
 	if(!HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
 		return
 	if(!discovered)
-		to_chat(user, span_notice(LANG("obj.dab21379", list(src))))
+		to_chat(user, span_notice(LANG("obj.dab21379e460efde", list(src))))
 		return
-	to_chat(user, span_notice(LANG("obj.531862fe", list(src))))
+	to_chat(user, span_notice(LANG("obj.531862feeec6dc3e", list(src))))
 	for(var/i in 1 to 3)
 		/* // NOVA EDIT REMOVAL START - ORIGINAL:
 		if(do_after(user, boulder_size * 1 SECONDS, src))
@@ -137,14 +137,14 @@
 		*/ // NOVA EDIT REMOVAL END
 		// NOVA EDIT ADDITION START
 		if(!do_after(user, boulder_size * 1 SECONDS, src))
-			user.balloon_alert(user, LANG("obj.ba531013", null))
+			user.balloon_alert(user, LANG("obj.ba53101344abf0e3", null))
 			return
 		user.balloon_alert(user, i > 2 ? "got one!" : "digging around...")
 		user.apply_damage(20, STAMINA)
 		playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 		// NOVA EDIT ADDITION END
 	produce_boulder(TRUE)
-	visible_message(span_notice(LANG("obj.24a0e503", null)))
+	visible_message(span_notice(LANG("obj.24a0e5036ea1f799", null)))
 
 /obj/structure/ore_vent/attack_basic_mob(mob/user, list/modifiers)
 	. = ..()
@@ -164,15 +164,15 @@
 	if(discovered)
 		switch(boulder_size)
 			if(BOULDER_SIZE_SMALL)
-				. += span_notice(LANG("obj.e76905f2", list(span_bold("small"), ore_string)))
+				. += span_notice(LANG("obj.e76905f2d457c7cd", list(span_bold("small"), ore_string)))
 			if(BOULDER_SIZE_MEDIUM)
-				. += span_notice(LANG("obj.e76905f2", list(span_bold("medium"), ore_string)))
+				. += span_notice(LANG("obj.e76905f2d457c7cd", list(span_bold("medium"), ore_string)))
 			if(BOULDER_SIZE_LARGE)
-				. += span_notice(LANG("obj.e76905f2", list(span_bold("large"), ore_string)))
+				. += span_notice(LANG("obj.e76905f2d457c7cd", list(span_bold("large"), ore_string)))
 	else
-		. += span_notice(LANG("obj.93755b0f", list(span_bold("Mining Scanner"))))
+		. += span_notice(LANG("obj.93755b0fbf412934", list(span_bold("Mining Scanner"))))
 	if(artifact_chance)
-		. += span_notice(LANG("obj.986e8ed5", list(span_bold("artifact boulder."))))
+		. += span_notice(LANG("obj.986e8ed5f6b5d6a5", list(span_bold("artifact boulder."))))
 
 /obj/structure/ore_vent/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(is_type_in_list(held_item, scanning_equipment))
@@ -241,7 +241,7 @@
  * This confirms that the user wants to start the wave defense event, and that they can start it.
  */
 /obj/structure/ore_vent/proc/pre_wave_defense(mob/user, spawn_drone = TRUE, mech_scan = FALSE)
-	if(tgui_alert(user, excavation_warning, LANG("obj.b7a016b4", null), list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, excavation_warning, LANG("obj.b7a016b4c4bf7ac4", null), list("Yes", "No")) != "Yes")
 		return FALSE
 	if(!can_interact(user) && !mech_scan)
 		return FALSE
@@ -355,7 +355,7 @@
 	if(!forced)
 		log_game("Ore vent [key_name_and_tag(src)] was tapped")
 		SSblackbox.record_feedback("tally", "ore_vent_completed", 1, type)
-		balloon_alert_to_viewers(LANG("obj.632e0d0a", null))
+		balloon_alert_to_viewers(LANG("obj.632e0d0a5b5155d7", null))
 
 	update_appearance(UPDATE_ICON_STATE)
 	add_tapped_visual()
@@ -375,7 +375,7 @@
 		var/point_reward_val = (MINER_POINT_MULTIPLIER * (boulder_size + 2)) - MINER_POINT_MULTIPLIER // We remove the base value of discovering the vent
 		if(user_id_card.registered_account)
 			user_id_card.registered_account.mining_points += point_reward_val
-			user_id_card.registered_account.bank_card_talk(LANG("obj.a6dd1fb0", list(point_reward_val)))
+			user_id_card.registered_account.bank_card_talk(LANG("obj.a6dd1fb075564cf1", list(point_reward_val)))
 
 /obj/structure/ore_vent/proc/add_tapped_visual()
 	if (vent_visual)
@@ -483,22 +483,22 @@
  */
 /obj/structure/ore_vent/proc/scan_and_confirm(mob/living/user, mech_scan = FALSE)
 	if(tapped)
-		balloon_alert_to_viewers(LANG("obj.632e0d0a", null))
+		balloon_alert_to_viewers(LANG("obj.632e0d0a5b5155d7", null))
 		return
 	if(!COOLDOWN_FINISHED(src, wave_cooldown) || node) //We're already defending the vent, so don't scan it again.
-		balloon_alert_to_viewers(LANG("obj.2b34c514", null))
+		balloon_alert_to_viewers(LANG("obj.2b34c514fe465b75", null))
 		return
 	if(!discovered)
 		if(DOING_INTERACTION_WITH_TARGET(user, src))
-			balloon_alert(user, LANG("obj.ca13ca70", null))
+			balloon_alert(user, LANG("obj.ca13ca70bce035e4", null))
 			return
-		balloon_alert(user, LANG("obj.9ef11a33", null))
+		balloon_alert(user, LANG("obj.9ef11a33f0292426", null))
 		playsound(src, 'sound/items/timer.ogg', 30, TRUE)
 		if(!do_after(user, 4 SECONDS, src))
 			return
 
 		discovered = TRUE
-		balloon_alert(user, LANG("obj.eec90e8d", null))
+		balloon_alert(user, LANG("obj.eec90e8d28eaaa9a", null))
 		generate_description(user)
 		AddComponent(/datum/component/gps, name)
 		var/obj/item/card/id/user_id_card = user.get_idcard(TRUE)
@@ -506,7 +506,7 @@
 			return
 		if(user_id_card.registered_account)
 			user_id_card.registered_account.mining_points += (MINER_POINT_MULTIPLIER)
-			user_id_card.registered_account.bank_card_talk(LANG("obj.c8ab03df", list(MINER_POINT_MULTIPLIER)))
+			user_id_card.registered_account.bank_card_talk(LANG("obj.c8ab03dffce32cd1", list(MINER_POINT_MULTIPLIER)))
 		return
 
 	if(!pre_wave_defense(user, spawn_drone_on_tap, mech_scan))
@@ -759,7 +759,7 @@
 			boss_string = "A bloody drillmark"
 		if(/mob/living/simple_animal/hostile/megafauna/wendigo/noportal)
 			boss_string = "A chilling skull"
-	. += span_notice(LANG("obj.3984b488", list(boss_string)))
+	. += span_notice(LANG("obj.3984b488f1f13178", list(boss_string)))
 
 /obj/structure/ore_vent/boss/start_wave_defense()
 	if(!COOLDOWN_FINISHED(src, wave_cooldown))
@@ -800,23 +800,23 @@
 
 /obj/structure/ore_vent/debug/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	var/datum/material/choice = tgui_input_list(user, LANG("obj.cefe22c2", null), LANG("obj.faf8cd1e", null), subtypesof(/datum/material))
+	var/datum/material/choice = tgui_input_list(user, LANG("obj.cefe22c275848732", null), LANG("obj.faf8cd1e9457f0c5", null), subtypesof(/datum/material))
 	if(!choice)
 		return
 	if(mineral_breakdown[choice])
 		mineral_breakdown -= choice
-		balloon_alert_to_viewers(LANG("obj.c6b4aa68", list(choice::name)))
+		balloon_alert_to_viewers(LANG("obj.c6b4aa687c2eb2c1", list(choice::name)))
 		return
 	mineral_breakdown += choice
-	balloon_alert_to_viewers(LANG("obj.84f4a0c3", list(choice::name)))
-	var/value = tgui_input_number(user, LANG("obj.1e9ff560", null), LANG("obj.db0a4d77", null), 1, 100, 1)
+	balloon_alert_to_viewers(LANG("obj.84f4a0c34b731bbc", list(choice::name)))
+	var/value = tgui_input_number(user, LANG("obj.1e9ff5601132b28d", null), LANG("obj.db0a4d77e59a2133", null), 1, 100, 1)
 	mineral_breakdown[choice] = value
-	balloon_alert_to_viewers(LANG("obj.15a6cbba", list(value)))
+	balloon_alert_to_viewers(LANG("obj.15a6cbba14f2e3f6", list(value)))
 	generate_description()
 
 /obj/structure/ore_vent/debug/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
-	var/choice = tgui_input_list(user, LANG("obj.abcee23a", null), LANG("obj.1ca125c4", null), list(SMALL_VENT_TYPE, MEDIUM_VENT_TYPE, LARGE_VENT_TYPE))
+	var/choice = tgui_input_list(user, LANG("obj.abcee23aab35f427", null), LANG("obj.1ca125c40013c1cb", null), list(SMALL_VENT_TYPE, MEDIUM_VENT_TYPE, LARGE_VENT_TYPE))
 	if(!choice)
 		return
 	vent_size_setup(random = FALSE, force_size = choice, map_loading = FALSE)

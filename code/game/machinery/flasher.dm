@@ -69,12 +69,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 	if (!istype(tool, /obj/item/assembly/flash/handheld))
 		return NONE
 	if (bulb)
-		to_chat(user, span_warning(LANG("obj.d9edcff9", list(src))))
+		to_chat(user, span_warning(LANG("obj.d9edcff9b04441dd", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.64a6a66a", list(user, tool, src))), \
-						span_notice(LANG("obj.a0a1d9da", list(tool, src))))
+	user.visible_message(span_notice(LANG("obj.64a6a66a59aaec6c", list(user, tool, src))), \
+						span_notice(LANG("obj.a0a1d9da7a47a97b", list(tool, src))))
 	power_change()
 	return ITEM_INTERACT_SUCCESS
 
@@ -83,10 +83,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 	add_fingerprint(user)
 	if(!bulb)
 		return NONE
-	user.visible_message(span_notice(LANG("obj.927df81d", list(user, src))), span_notice(LANG("obj.0620343f", list(src))))
+	user.visible_message(span_notice(LANG("obj.927df81db34334e1", list(user, src))), span_notice(LANG("obj.0620343f76520938", list(src))))
 	if(!tool.use_tool(src, user, 30, volume=50) || !bulb)
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.c7b7ccaf", list(user, src))), span_notice(LANG("obj.195778e3", list(src))))
+	user.visible_message(span_notice(LANG("obj.c7b7ccaf80c3189b", list(user, src))), span_notice(LANG("obj.195778e3f5d8fab4", list(src))))
 	bulb.forceMove(loc)
 	power_change()
 	return ITEM_INTERACT_SUCCESS
@@ -94,12 +94,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 /obj/machinery/flasher/wrench_act(mob/living/user, obj/item/tool)
 	add_fingerprint(user)
 	if(bulb)
-		to_chat(user, span_warning(LANG("obj.b06b8865", list(src))))
+		to_chat(user, span_warning(LANG("obj.b06b88658e49cebb", list(src))))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.ead0e0f7", null)))
+	to_chat(user, span_notice(LANG("obj.ead0e0f7a2125e3c", null)))
 	if(!tool.use_tool(src, user, 40, volume=50))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.4b8870f0", null)))
+	to_chat(user, span_notice(LANG("obj.4b8870f08640678e", null)))
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -203,14 +203,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 /obj/machinery/flasher/portable/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 100)
 	if (!anchored && !isinspace())
-		to_chat(user, span_notice(LANG("obj.99e806e9", list(src))))
+		to_chat(user, span_notice(LANG("obj.99e806e93720df10", list(src))))
 		add_overlay("[base_icon_state]-s")
 		set_anchored(TRUE)
 		power_change()
 		proximity_monitor.set_range(flash_range)
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_notice(LANG("obj.37738ee6", list(src))))
+	to_chat(user, span_notice(LANG("obj.37738ee6a9b0be8f", list(src))))
 	cut_overlays()
 	set_anchored(FALSE)
 	power_change()
@@ -228,7 +228,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 
 /obj/item/wallframe/flasher/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.7150d501", list(id)))
+	. += span_notice(LANG("obj.7150d501b36712cd", list(id)))
 
 /obj/item/wallframe/flasher/after_attach(obj/attached_to)
 	..()

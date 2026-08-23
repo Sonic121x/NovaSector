@@ -45,7 +45,7 @@
 	var/turf/origin_turf = get_turf(organ)
 	playsound(organ, 'sound/effects/magic/forcewall.ogg', vol = 100)
 	new /obj/effect/temp_visual/curse_blast(origin_turf)
-	organ.visible_message(span_revenwarning(LANG("datum.2bd3ee8a", list(organ))))
+	organ.visible_message(span_revenwarning(LANG("datum.2bd3ee8a0c0b35e1", list(organ))))
 	for(var/mob/living/target in range(1, origin_turf))
 		var/armor = target.run_armor_check(attack_flag = BOMB)
 		target.apply_damage(30, damagetype = BURN, blocked = armor, spread_damage = TRUE)

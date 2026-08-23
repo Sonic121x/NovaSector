@@ -42,14 +42,14 @@
 		user.ignite_mob()
 		if(user.on_fire)
 			user.visible_message(
-				span_warning(LANG("datum.6ef9bfb7", list(user, user.p_them()))),
-				span_userdanger(LANG("datum.72ea9a27", list(src))),
+				span_warning(LANG("datum.6ef9bfb7349da901", list(user, user.p_them()))),
+				span_userdanger(LANG("datum.72ea9a2753009426", list(src))),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		else
 			user.visible_message(
-				span_warning(LANG("datum.1be980e1", list(user, user.p_them()))),
-				span_userdanger(LANG("datum.439e9503", list(src))),
+				span_warning(LANG("datum.1be980e180100fec", list(user, user.p_them()))),
+				span_userdanger(LANG("datum.439e95039214c37b", list(src))),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		return ITEM_INTERACT_SUCCESS

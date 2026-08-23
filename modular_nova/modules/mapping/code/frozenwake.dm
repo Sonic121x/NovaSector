@@ -5,7 +5,7 @@
 
 /obj/item/paper/crumpled/bloody/fluff/stations/lavaland/frozenwake/ui_status(mob/user, datum/ui_state/state)
 	if(!user.has_language(/datum/language/primitive_catgirl))
-		to_chat(user, span_warning(LANG("obj.d785ed85", null)))
+		to_chat(user, span_warning(LANG("obj.d785ed854451902e", null)))
 		return UI_CLOSE
 	. = ..()
 
@@ -163,7 +163,7 @@
 	if (frozenwake_area.frozenwake_stasis_target)
 		var/turf/reward_loc = get_turf(frozenwake_area.frozenwake_stasis_target)
 		for (var/mob/emoted in view(7, reward_loc))
-			to_chat(emoted, span_notice(LANG("datum.3af077c5", null)))
+			to_chat(emoted, span_notice(LANG("datum.3af077c5259cf43e", null)))
 		qdel(frozenwake_area.frozenwake_stasis_target)
 		new /obj/item/kinetic_crusher/runic_greatsword/vidrhefjandi(reward_loc)
 
@@ -172,9 +172,9 @@
 	var/area/ruin/unpowered/frozenwake/puzzle_area = get_frozenwake_puzzle_area(src)
 	if (puzzle_area)
 		puzzle_area.frozenwake_puzzle_controller.register_click(puzzle_id, puzzle_area)
-		to_chat(user, LANG("obj.ad8e49ed", null))
+		to_chat(user, LANG("obj.ad8e49ed91a143e6", null))
 	else
-		to_chat(user, LANG("obj.51656ba4", null))
+		to_chat(user, LANG("obj.51656ba48c9ceb85", null))
 
 
 //Initializing the glow for the steles.

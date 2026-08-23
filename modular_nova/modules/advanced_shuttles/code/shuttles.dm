@@ -54,7 +54,7 @@
 		waiting = FALSE
 
 		if(console && console.last_cancel_announce + CONSOLE_ANNOUNCE_COOLDOWN <= world.time)
-			console.say(LANG("obj.cc98e814", null))
+			console.say(LANG("obj.cc98e814b4286c65", null))
 			console.last_cancel_announce = world.time
 
 		return
@@ -66,7 +66,7 @@
 	waiting = TRUE
 
 	if(console && console.last_depart_announce + CONSOLE_ANNOUNCE_COOLDOWN <= world.time)
-		console.say(LANG("obj.f4791af7", list(wait_time / 10)))
+		console.say(LANG("obj.f4791af7ea993327", list(wait_time / 10)))
 		console.last_depart_announce = world.time
 
 /obj/docking_port/mobile/arrivals_nova/getModeStr()

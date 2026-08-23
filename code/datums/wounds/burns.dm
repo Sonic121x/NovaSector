@@ -44,7 +44,7 @@
 	if(strikes_to_lose_limb <= 0) // we've already hit sepsis, nothing more to do
 		victim.adjust_tox_loss(0.25 * seconds_per_tick)
 		if(SPT_PROB(0.5, seconds_per_tick))
-			victim.visible_message(span_danger(LANG("datum.dcd29bc1", list(victim, limb.plaintext_zone))), span_warning(LANG("datum.3f8ed01c", list(limb.plaintext_zone))), vision_distance = COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger(LANG("datum.dcd29bc10531ac13", list(victim, limb.plaintext_zone))), span_warning(LANG("datum.3f8ed01c2c66d1d2", list(limb.plaintext_zone))), vision_distance = COMBAT_MESSAGE_RANGE)
 		return
 
 	for(var/datum/reagent/reagent as anything in victim.reagents.reagent_list)
@@ -74,7 +74,7 @@
 
 	// here's the check to see if we're cleared up
 	if((flesh_damage <= 0) && (infection <= WOUND_INFECTION_MODERATE))
-		to_chat(victim, span_green(LANG("datum.bd29dc7c", list(limb.plaintext_zone))))
+		to_chat(victim, span_green(LANG("datum.bd29dc7c79632e6d", list(limb.plaintext_zone))))
 		qdel(src)
 		return
 
@@ -94,16 +94,16 @@
 			if(SPT_PROB(15, seconds_per_tick))
 				victim.adjust_tox_loss(0.2)
 				if(prob(6))
-					to_chat(victim, span_warning(LANG("datum.c8eb2eb0", list(limb.plaintext_zone))))
+					to_chat(victim, span_warning(LANG("datum.c8eb2eb00a10c708", list(limb.plaintext_zone))))
 
 		if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
 			if(!disabling)
 				if(SPT_PROB(1, seconds_per_tick))
-					to_chat(victim, span_warning(LANG("datum.79160caf", list(limb.plaintext_zone))))
+					to_chat(victim, span_warning(LANG("datum.79160caf97bd1952", list(limb.plaintext_zone))))
 					set_disabling(TRUE)
 					return
 			else if(SPT_PROB(4, seconds_per_tick))
-				to_chat(victim, span_notice(LANG("datum.be234a2e", list(limb.plaintext_zone))))
+				to_chat(victim, span_notice(LANG("datum.be234a2e43964cb8", list(limb.plaintext_zone))))
 				set_disabling(FALSE)
 				return
 
@@ -113,17 +113,17 @@
 		if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
 			if(!disabling)
 				if(SPT_PROB(1.5, seconds_per_tick))
-					to_chat(victim, span_warning(LANG("datum.1619323d", list(limb.plaintext_zone))))
+					to_chat(victim, span_warning(LANG("datum.1619323d70ee1a2d", list(limb.plaintext_zone))))
 					set_disabling(TRUE)
 					return
 			else if(SPT_PROB(1.5, seconds_per_tick))
-				to_chat(victim, span_notice(LANG("datum.5a66e4e7", list(limb.plaintext_zone))))
+				to_chat(victim, span_notice(LANG("datum.5a66e4e79a2c90bb", list(limb.plaintext_zone))))
 				set_disabling(FALSE)
 				return
 
 			if(SPT_PROB(2.48, seconds_per_tick))
 				if(prob(20))
-					to_chat(victim, span_warning(LANG("datum.b38357b1", list(limb.plaintext_zone))))
+					to_chat(victim, span_warning(LANG("datum.b38357b121a27938", list(limb.plaintext_zone))))
 					victim.adjust_tox_loss(0.75)
 				else
 					victim.adjust_tox_loss(1)
@@ -133,11 +133,11 @@
 				strikes_to_lose_limb--
 				switch(strikes_to_lose_limb)
 					if(2 to INFINITY)
-						to_chat(victim, span_deadsay(LANG("datum.e444e6b2", list(limb.plaintext_zone))))
+						to_chat(victim, span_deadsay(LANG("datum.e444e6b2b64f64eb", list(limb.plaintext_zone))))
 					if(1)
-						to_chat(victim, span_deadsay(LANG("datum.be9fc50a", list(limb.plaintext_zone))))
+						to_chat(victim, span_deadsay(LANG("datum.be9fc50a29ee3c4f", list(limb.plaintext_zone))))
 					if(0)
-						to_chat(victim, span_deadsay(LANG("datum.f42815aa", list(limb.plaintext_zone))))
+						to_chat(victim, span_deadsay(LANG("datum.f42815aa226e1f62", list(limb.plaintext_zone))))
 						threshold_penalty *= 2 // piss easy to destroy
 						set_disabling(TRUE)
 
@@ -188,7 +188,7 @@
 	// (reverse-looked-up via strings/i18n/*/_wound_burn.json) so the zh reads naturally ("无感染"/"完全感染")
 	// instead of the word-by-word fragments the shared LANG keys produced ("否 感染"/"总计 感染"). lang_reverse_text
 	// no-ops on en, so english output is byte-identical.
-	// ORIGINAL: . += LANG("datum.e254fbcf") (" Burn / "), a switch appending the bare infection level, then LANG("datum.c0f84c4e") (" Infection")
+	// ORIGINAL: . += LANG("datum.e254fbcfed653c67") (" Burn / "), a switch appending the bare infection level, then LANG("datum.c0f84c4e5b20e98d") (" Infection")
 	var/infection_suffix = ""
 	switch(infection)
 		if(-INFINITY to WOUND_INFECTION_MODERATE)
@@ -213,22 +213,22 @@
 	. += "<div class='ml-3'>"
 
 	if(infection <= sanitization && flesh_damage <= flesh_healing)
-		. += LANG("datum.7174ce99", null)
+		. += LANG("datum.7174ce994e055ca0", null)
 	else
 		switch(infection)
 			if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
-				. += LANG("datum.dcd0bfae", null)
+				. += LANG("datum.dcd0bfae079db23b", null)
 			if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
-				. += LANG("datum.e341cc73", null)
+				. += LANG("datum.e341cc73bf94496a", null)
 			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
-				. += LANG("datum.7232a45f", list(span_deadsay("CRITICAL")))
+				. += LANG("datum.7232a45f1cfe456a", list(span_deadsay("CRITICAL")))
 			if(WOUND_INFECTION_SEPTIC to INFINITY)
-				. += LANG("datum.7232a45f", list(span_deadsay("LOSS IMMINENT")))
+				. += LANG("datum.7232a45f1cfe456a", list(span_deadsay("LOSS IMMINENT")))
 		if(infection > sanitization)
-			. += LANG("datum.a90463d2", null)
+			. += LANG("datum.a90463d2d9c010cd", null)
 
 		if(flesh_damage > 0)
-			. += LANG("datum.d76514c7", null)
+			. += LANG("datum.d76514c72a6d9407", null)
 	. += "</div>"
 
 /*
@@ -246,13 +246,13 @@
 /// Paramedic UV penlights
 /datum/wound/burn/flesh/proc/uv(obj/item/flashlight/pen/paramedic/I, mob/user)
 	if(!COOLDOWN_FINISHED(I, uv_cooldown))
-		to_chat(user, span_notice(LANG("datum.824415d7", list(I))))
+		to_chat(user, span_notice(LANG("datum.824415d74717f100", list(I))))
 		return
 	if(infection <= 0 || infection < sanitization)
-		to_chat(user, span_notice(LANG("datum.f23d71a7", list(victim, limb.plaintext_zone))))
+		to_chat(user, span_notice(LANG("datum.f23d71a7ff988038", list(victim, limb.plaintext_zone))))
 		return
 
-	user.visible_message(span_notice(LANG("datum.bafa12fe", list(user, victim, limb, I))), span_notice(LANG("datum.86c01f42", list(user == victim ? "your" : "[victim]'s", limb.plaintext_zone, I))), vision_distance=COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_notice(LANG("datum.bafa12fea4f99f22", list(user, victim, limb, I))), span_notice(LANG("datum.86c01f4236b90c1d", list(user == victim ? "your" : "[victim]'s", limb.plaintext_zone, I))), vision_distance=COMBAT_MESSAGE_RANGE)
 	sanitization += I.uv_power
 	COOLDOWN_START(I, uv_cooldown, I.uv_cooldown_length)
 
@@ -265,12 +265,12 @@
 	. = ..()
 	if(strikes_to_lose_limb <= 0) // we've already hit sepsis, nothing more to do
 		if(SPT_PROB(0.5, seconds_per_tick))
-			victim.visible_message(span_danger(LANG("datum.dcd29bc1", list(victim, limb.plaintext_zone))), span_warning(LANG("datum.3f8ed01c", list(limb.plaintext_zone))), vision_distance = COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger(LANG("datum.dcd29bc10531ac13", list(victim, limb.plaintext_zone))), span_warning(LANG("datum.3f8ed01c2c66d1d2", list(limb.plaintext_zone))), vision_distance = COMBAT_MESSAGE_RANGE)
 		return
 	if(flesh_healing > 0)
 		flesh_damage = max(flesh_damage - (0.1 * seconds_per_tick), 0)
 	if((flesh_damage <= 0) && (infection <= 1))
-		to_chat(victim, span_green(LANG("datum.bd29dc7c", list(limb.plaintext_zone))))
+		to_chat(victim, span_green(LANG("datum.bd29dc7c79632e6d", list(limb.plaintext_zone))))
 		qdel(src)
 		return
 	if(sanitization > 0)

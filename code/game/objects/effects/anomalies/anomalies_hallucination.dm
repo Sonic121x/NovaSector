@@ -97,7 +97,7 @@
 #endif
 
 /obj/effect/anomaly/hallucination/decoy/analyzer_act(mob/living/user, obj/item/analyzer/tool)
-	to_chat(user, span_notice(LANG("obj.89993faf", list(tool, replacetext(report_text, "%TOOL%", "[tool]")))))
+	to_chat(user, span_notice(LANG("obj.89993faf463641a6", list(tool, replacetext(report_text, "%TOOL%", "[tool]")))))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/effect/anomaly/hallucination/decoy/detonate()

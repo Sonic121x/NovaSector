@@ -40,7 +40,7 @@
 
 /datum/round_event/vent_clog/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce(LANG("datum.35f17a5a", list(event_area)), "Custodial Notification")
+	priority_announce(LANG("datum.35f17a5a6a9f1730", list(event_area)), "Custodial Notification")
 
 /datum/round_event/vent_clog/setup()
 	vent = get_vent()
@@ -134,7 +134,7 @@
 	clog_vent()
 
 	announce_to_ghosts(vent)
-	priority_announce(LANG("datum.0fe704ab", list(prob(50) ? "Unknown.":"[get_area_name(vent)].")), "Lifesign Notification")
+	priority_announce(LANG("datum.0fe704abaefd2374", list(prob(50) ? "Unknown.":"[get_area_name(vent)].")), "Lifesign Notification")
 
 /**
  * Handles the production of our mob and adds it to our living_mobs list
@@ -154,7 +154,7 @@
 
 	var/mob/new_mob = new spawned_mob(vent_loc) // we spawn it early so we can actually use is_blocked_turf
 	living_mobs += WEAKREF(new_mob)
-	vent.visible_message(span_warning(LANG("datum.f0292b89", list(new_mob, vent))))
+	vent.visible_message(span_warning(LANG("datum.f0292b89af1234dc", list(new_mob, vent))))
 
 	var/list/potential_locations = list(vent_loc) // already confirmed to be accessable via the 2nd if check of the proc
 
@@ -179,12 +179,12 @@
 ///Handles the actual unclogging action and ends the event on completion.
 /datum/round_event/vent_clog/proc/attempt_unclog(mob/user)
 	if(vent.welded)
-		to_chat(user, span_notice(LANG("datum.70661c4a", list(vent))))
+		to_chat(user, span_notice(LANG("datum.70661c4a51d1a607", list(vent))))
 		return
 
-	user.balloon_alert_to_viewers(LANG("datum.a9f46f51", null), LANG("datum.540bc5d9", null))
+	user.balloon_alert_to_viewers(LANG("datum.a9f46f51d14b2df3", null), LANG("datum.540bc5d918dff837", null))
 	if(do_after(user, 6 SECONDS, target = vent))
-		user.balloon_alert_to_viewers(LANG("datum.670c9c2c", null))
+		user.balloon_alert_to_viewers(LANG("datum.670c9c2c9c8b5fe6", null))
 		clear_signals()
 		kill()
 
@@ -235,7 +235,7 @@
 
 /datum/round_event/vent_clog/major/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce(LANG("datum.0505b6c5", list(event_area)), "Infestation Alert")
+	priority_announce(LANG("datum.0505b6c50f39b84c", list(event_area)), "Infestation Alert")
 
 /datum/round_event_control/vent_clog/critical
 	name = "Ventilation Clog: Critical"
@@ -259,7 +259,7 @@
 
 /datum/round_event/vent_clog/critical/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce(LANG("datum.eb1fa81d", list(event_area)), "Security Alert")
+	priority_announce(LANG("datum.eb1fa81dadd3b564", list(event_area)), "Security Alert")
 
 /datum/round_event/vent_clog/critical/get_mob()
 	var/static/list/mob_list = list(
@@ -292,7 +292,7 @@
 
 /datum/round_event/vent_clog/strange/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce(LANG("datum.b85526ea", list(event_area)), "Lifesign Alert", ANNOUNCER_ALIENS)
+	priority_announce(LANG("datum.b85526ea740ead1a", list(event_area)), "Lifesign Alert", ANNOUNCER_ALIENS)
 
 /datum/round_event/vent_clog/strange/get_mob()
 	var/static/list/mob_list = list(

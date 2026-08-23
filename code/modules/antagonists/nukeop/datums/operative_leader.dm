@@ -12,7 +12,7 @@
 /datum/antagonist/nukeop/leader/memorize_code()
 	. = ..()
 	var/obj/item/paper/nuke_code_paper = new(get_turf(owner.current))
-	nuke_code_paper.add_raw_text(LANG("datum.80679267", list(nuke_team.memorized_code)))
+	nuke_code_paper.add_raw_text(LANG("datum.80679267878c4573", list(nuke_team.memorized_code)))
 	nuke_code_paper.name = "nuclear bomb code"
 	nuke_code_paper.update_appearance()
 	owner.current.put_in_hands(nuke_code_paper)
@@ -27,10 +27,10 @@
 
 /datum/antagonist/nukeop/leader/greet()
 	play_stinger()
-	to_chat(owner, LANG("datum.cb8902e8", list(title)))
-	to_chat(owner, LANG("datum.3c440342", null))
+	to_chat(owner, LANG("datum.cb8902e8adea1138", list(title)))
+	to_chat(owner, LANG("datum.3c440342cfd72d84", null))
 	if(!CONFIG_GET(flag/disable_warops))
-		to_chat(owner, LANG("datum.27effbcf", null))
+		to_chat(owner, LANG("datum.27effbcf3558e27b", null))
 	owner.announce_objectives()
 
 /datum/antagonist/nukeop/leader/on_gain()
@@ -51,8 +51,8 @@
 	var/randomname = pick(GLOB.last_names)
 	var/newname = tgui_input_text(
 		owner.current,
-		LANG("datum.232cff57", list(title)),
-		LANG("datum.b4bf4c54", null),
+		LANG("datum.232cff57c1c15cca", list(title)),
+		LANG("datum.b4bf4c54d223e79b", null),
 		randomname,
 		max_length = MAX_NAME_LEN,
 	)

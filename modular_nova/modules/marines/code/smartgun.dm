@@ -46,34 +46,34 @@
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/examine(mob/user)
 	. = ..()
-	. += LANG("obj.a7e31ec3", list(cover_open ? "close" : "open"))
+	. += LANG("obj.a7e31ec3870c0171", list(cover_open ? "close" : "open"))
 	if(cover_open && magazine)
-		. += span_notice(LANG("obj.50e55fa8", null))
+		. += span_notice(LANG("obj.50e55fa813130bc1", null))
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/attack_hand_secondary(mob/user, list/modifiers)
 	if(!user.can_perform_action(src))
 		return
 	cover_open = !cover_open
-	to_chat(user, span_notice(LANG("obj.503615b1", list(cover_open ? "open" : "close", src))))
+	to_chat(user, span_notice(LANG("obj.503615b1235def03", list(cover_open ? "open" : "close", src))))
 	playsound(src, 'sound/items/weapons/gun/l6/l6_door.ogg', 60, TRUE)
 	update_appearance()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/can_shoot()
 	if(cover_open)
-		balloon_alert_to_viewers(LANG("obj.b726018f", null))
+		balloon_alert_to_viewers(LANG("obj.b726018fdc5c7891", null))
 		return FALSE
 	return chambered
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
 	if(!cover_open)
-		to_chat(user, span_warning(LANG("obj.3c4b2231", null)))
+		to_chat(user, span_warning(LANG("obj.3c4b2231f3be4483", null)))
 		return
 	return ..()
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!cover_open && istype(tool, accepted_magazine_type))
-		to_chat(user, span_warning(LANG("obj.a2a6c45d", list(src))))
+		to_chat(user, span_warning(LANG("obj.a2a6c45daabeb285", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 

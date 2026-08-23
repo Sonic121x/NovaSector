@@ -16,12 +16,12 @@
 
 /datum/unit_test/i18n_html_tag_keys/Run()
 	var/saved_locale = GLOB.i18n_server_locale
-	if(!islist(GLOB.i18n_cache[LANGUAGE_LOCALE_ZH_HANS]))
+	if(!islist(GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][LANGUAGE_LOCALE_ZH_HANS]))
 		return // 该 locale 目录不存在（精简签出）：跳过而不是误报。
 	GLOB.i18n_server_locale = LANGUAGE_LOCALE_ZH_HANS
 
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
-	var/list/zh_cache = GLOB.i18n_cache[LANGUAGE_LOCALE_ZH_HANS]
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
+	var/list/zh_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][LANGUAGE_LOCALE_ZH_HANS]
 
 	// ① 边缘标签：整句被 <b> 包住。运行期送到查表的是**剥了标签的裸句**。
 	var/eggs_key

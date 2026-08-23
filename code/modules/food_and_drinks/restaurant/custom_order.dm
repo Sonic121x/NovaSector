@@ -190,8 +190,8 @@
 
 /datum/custom_order/reagent/drink/handle_get_order(mob/living/basic/robot_customer/customer_pawn, obj/item/order_item)
 	customer_pawn.visible_message(
-		span_danger(LANG("datum.982ccdf6", list(customer_pawn, order_item))),
-		span_danger(LANG("datum.8421fa2d", list(order_item))),
+		span_danger(LANG("datum.982ccdf63108b2e7", list(customer_pawn, order_item))),
+		span_danger(LANG("datum.8421fa2de3adb82e", list(order_item))),
 	)
 	return ..()
 
@@ -216,7 +216,7 @@
 
 /datum/custom_order/reagent/soup/handle_get_order(mob/living/basic/robot_customer/customer_pawn, obj/item/order_item)
 	customer_pawn.visible_message(
-		span_danger(LANG("datum.63e2b12f", list(customer_pawn, order_item, customer_pawn.p_their()))),
-		span_danger(LANG("datum.f98cd7bd", list(order_item))),
+		span_danger(LANG("datum.63e2b12f1db715a2", list(customer_pawn, order_item, customer_pawn.p_their()))),
+		span_danger(LANG("datum.f98cd7bdd2ed218c", list(order_item))),
 	)
 	return ..()

@@ -55,13 +55,13 @@
 
 /obj/item/boulder/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.c187ef28", list(durability)))
+	. += span_notice(LANG("obj.c187ef28582f0c6d", list(durability)))
 	if(HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
-		. += span_notice(LANG("obj.c513c159", null))
+		. += span_notice(LANG("obj.c513c159439fb122", null))
 
 /obj/item/boulder/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.3b483921", list(span_bold("Boulders"), span_bold("mining tools"), span_bold("refineries or smelters"), span_bold("BRM"))))
+	. += span_notice(LANG("obj.3b483921e8f4cd36", list(span_bold("Boulders"), span_bold("mining tools"), span_bold("refineries or smelters"), span_bold("BRM"))))
 
 /obj/item/boulder/update_icon_state()
 	. = ..()
@@ -129,7 +129,7 @@
 /obj/item/boulder/proc/create_platform(atom/interacting_with, mob/living/user, timer_override = null)
 	if(locate(/obj/structure/lattice/catwalk/boulder, interacting_with))
 		if(user)
-			to_chat(user, span_warning(LANG("obj.f5d6df92", null)))
+			to_chat(user, span_warning(LANG("obj.f5d6df925d01ad48", null)))
 		return null
 
 	var/active_platform_lifespan = platform_lifespan //Default to the assigned value.
@@ -139,7 +139,7 @@
 	var/obj/structure/lattice/catwalk/boulder/platform = new(interacting_with)
 	addtimer(CALLBACK(platform, TYPE_PROC_REF(/obj/structure/lattice/catwalk/boulder, pre_self_destruct)), active_platform_lifespan)
 	// See Lattice.dm for more info
-	visible_message(span_notice(LANG("obj.3305beb4", list(src, interacting_with))))
+	visible_message(span_notice(LANG("obj.3305beb4e8e5948e", list(src, interacting_with))))
 	qdel(src)
 	return platform
 
@@ -160,7 +160,7 @@
 		process_speed = weapon.toolspeed
 		weapon.play_tool_sound(src, 50)
 		if(!continued)
-			to_chat(user, span_notice(LANG("obj.a97c9463", list(src))))
+			to_chat(user, span_notice(LANG("obj.a97c94632e6ff31b", list(src))))
 
 	// Handle user conditions/override conditions.
 	else if (override_speed_multiplier || HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
@@ -172,7 +172,7 @@
 			process_speed = INATE_BOULDER_SPEED_MULTIPLIER
 		playsound(src, 'sound/effects/rock/rocktap1.ogg', 50)
 		if(!continued)
-			to_chat(user, span_notice(LANG("obj.09755b5a", list(src))))
+			to_chat(user, span_notice(LANG("obj.09755b5a3280b7d5", list(src))))
 	else
 		CRASH("No weapon, acceptable user, or override speed multiplier passed to manual_process()")
 	if(durability > 0)
@@ -184,14 +184,14 @@
 		user.apply_damage(4 * skill_modifier, STAMINA)
 	if(durability <= 0)
 		convert_to_ore()
-		to_chat(user, span_notice(LANG("obj.20b7e847", list(src))))
+		to_chat(user, span_notice(LANG("obj.20b7e847850b30ac", list(src))))
 		playsound(src, 'sound/effects/rock/rock_break.ogg', 50)
 		user.mind?.adjust_experience(/datum/skill/mining, MINING_SKILL_BOULDER_SIZE_XP * 0.2)
 		user.mind?.adjust_experience(/datum/skill/athletics, MINING_SKILL_BOULDER_SIZE_XP * 0.2)
 		qdel(src)
 		return
 	var/msg = (durability == 1 ? "is crumbling!" : "looks weaker!")
-	to_chat(user, span_notice(LANG("obj.a3b2fc1f", list(src, msg))))
+	to_chat(user, span_notice(LANG("obj.a3b2fc1ffbf777e4", list(src, msg))))
 	manual_process(weapon, user, override_speed_multiplier, continued = TRUE)
 
 /**
@@ -219,7 +219,7 @@
 /obj/item/boulder/proc/break_apart()
 	if(length(contents))
 		var/list/quips = list("Clang!", "Crack!", "Bang!", "Clunk!", "Clank!")
-		visible_message(span_notice(LANG("obj.c7129054", list(pick(quips), src))))
+		visible_message(span_notice(LANG("obj.c7129054b110919f", list(pick(quips), src))))
 		playsound(loc, 'sound/effects/pickaxe/picaxe1.ogg', 60, FALSE)
 		for(var/obj/item/content as anything in contents)
 			content.forceMove(get_turf(src))

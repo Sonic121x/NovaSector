@@ -71,10 +71,10 @@ SUBSYSTEM_DEF(augury)
 
 /datum/action/innate/augury/Activate()
 	SSaugury.watchers += owner
-	to_chat(owner, span_notice(LANG("datum.af01ddd4", null)))
+	to_chat(owner, span_notice(LANG("datum.af01ddd43442df50", null)))
 	active = TRUE
 
 /datum/action/innate/augury/Deactivate()
 	SSaugury.watchers -= owner
-	to_chat(owner, span_notice(LANG("datum.7103731b", null)))
+	to_chat(owner, span_notice(LANG("datum.7103731bf6f34afc", null)))
 	active = FALSE

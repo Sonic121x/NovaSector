@@ -16,7 +16,7 @@
 
 	INVOKE_ASYNC(big_guy, TYPE_PROC_REF(/atom/movable, start_pulling), batman)
 	big_guy.face_atom(batman)
-	batman.visible_message(span_warning(LANG("datum.cda80619", list(batman, big_guy))), span_userdanger(LANG("datum.3aca6d23", list(big_guy))))
+	batman.visible_message(span_warning(LANG("datum.cda80619851edec6", list(batman, big_guy))), span_userdanger(LANG("datum.3aca6d233fe3bf9f", list(big_guy))))
 	for(var/zone in GLOB.all_body_zones - BODY_ZONE_HEAD)
 		batman.apply_damage(15, BRUTE, zone, wound_bonus = 35)
 

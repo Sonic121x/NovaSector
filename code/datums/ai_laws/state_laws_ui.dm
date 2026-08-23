@@ -100,7 +100,7 @@
 	var/list/to_state_cached = to_state.Copy()
 
 	//"radiomod" is inserted before a hardcoded message to change if and how it is handled by an internal radio.
-	owner.say(LANG("datum.95a614f6", list(owner.radiomod)), forced = forced_log_message)
+	owner.say(LANG("datum.95a614f67d279f8a", list(owner.radiomod)), forced = forced_log_message)
 	sleep(1 SECONDS)
 
 	if (lawcache_zeroth && (force_all_laws || (lawcache_zeroth in to_state_cached)))

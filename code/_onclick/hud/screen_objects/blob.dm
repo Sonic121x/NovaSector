@@ -33,7 +33,7 @@
 		var/mob/eye/blob/B = hud.mymob
 		if(!B.placed)
 			name = "Place Blob Core"
-			desc = LANG("atom.073c0960", null)
+			desc = LANG("atom.073c0960741f6277", null)
 		else
 			name = initial(name)
 			desc = initial(desc)
@@ -57,7 +57,7 @@
 /atom/movable/screen/blob/blobbernaut/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	name = "Produce Blobbernaut ([BLOBMOB_BLOBBERNAUT_RESOURCE_COST])"
-	desc = LANG("atom.b5e087c1", list(BLOBMOB_BLOBBERNAUT_RESOURCE_COST))
+	desc = LANG("atom.b5e087c1b79d103e", list(BLOBMOB_BLOBBERNAUT_RESOURCE_COST))
 
 /atom/movable/screen/blob/blobbernaut/Click()
 	if(!isovermind(usr))
@@ -75,7 +75,7 @@
 /atom/movable/screen/blob/resource_blob/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	name = "Produce Resource Blob ([BLOB_STRUCTURE_RESOURCE_COST])"
-	desc = LANG("atom.beb675d6", list(BLOB_STRUCTURE_RESOURCE_COST))
+	desc = LANG("atom.beb675d6eff309be", list(BLOB_STRUCTURE_RESOURCE_COST))
 
 /atom/movable/screen/blob/resource_blob/Click()
 	if(!isovermind(usr))
@@ -92,7 +92,7 @@
 /atom/movable/screen/blob/node_blob/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	name = "Produce Node Blob ([BLOB_STRUCTURE_NODE_COST])"
-	desc = LANG("atom.38f3335d", list(BLOB_STRUCTURE_NODE_COST))
+	desc = LANG("atom.38f3335d96b3ceae", list(BLOB_STRUCTURE_NODE_COST))
 
 /atom/movable/screen/blob/node_blob/Click()
 	if(!isovermind(usr))
@@ -109,7 +109,7 @@
 /atom/movable/screen/blob/factory_blob/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	name = "Produce Factory Blob ([BLOB_STRUCTURE_FACTORY_COST])"
-	desc = LANG("atom.d1b220e1", list(BLOB_STRUCTURE_FACTORY_COST))
+	desc = LANG("atom.d1b220e184747818", list(BLOB_STRUCTURE_FACTORY_COST))
 
 /atom/movable/screen/blob/factory_blob/Click()
 	if(!isovermind(usr))
@@ -130,11 +130,11 @@
 		if(B.free_strain_rerolls)
 			// NOVA EDIT CHANGE - i18n: initial(name) 会覆盖已反查的中文名；英文字面后缀进 _name_suffixes.json 一并反查
 			name = "[lang_reverse_text(initial(name))] [lang_reverse_text("(FREE)")]"
-			desc = LANG("atom.664b7dda", null)
+			desc = LANG("atom.664b7ddae3269c99", null)
 		else
 			// NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
 			name = "[lang_reverse_text(initial(name))] ([BLOB_POWER_REROLL_COST])"
-			desc = LANG("atom.5a02817a", list(BLOB_POWER_REROLL_CHOICES, BLOB_POWER_REROLL_COST))
+			desc = LANG("atom.5a02817ab91444b3", list(BLOB_POWER_REROLL_CHOICES, BLOB_POWER_REROLL_COST))
 	return ..()
 
 /atom/movable/screen/blob/readapt_strain/Click()
@@ -152,7 +152,7 @@
 /atom/movable/screen/blob/relocate_core/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	name = "Relocate Core ([BLOB_POWER_RELOCATE_COST])"
-	desc = LANG("atom.6edc491c", list(BLOB_POWER_RELOCATE_COST))
+	desc = LANG("atom.6edc491cf08ab058", list(BLOB_POWER_RELOCATE_COST))
 
 /atom/movable/screen/blob/relocate_core/Click()
 	if(isovermind(usr))

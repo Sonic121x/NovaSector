@@ -9,7 +9,7 @@
 	for(var/obj/item/stock_parts/power_store/cell in user.contents)
 		cell.use(1e10, TRUE) // uh oh
 	if(issilicon(user))
-		to_chat(user, span_notice(LANG("datum.b99f5f20", null)))
+		to_chat(user, span_notice(LANG("datum.b99f5f206c21af2d", null)))
 
 /datum/artifact_effect/celldrain/do_effect_aura(seconds_per_tick)
 	. = ..()
@@ -58,7 +58,7 @@
 	if(issilicon(receiver_atmon))
 		for(var/obj/item/stock_parts/power_store/cell in receiver_atmon.contents)
 			cell.use(power, TRUE)
-		to_chat(receiver_atmon, span_warning(LANG("datum.7b68f08b", null)))
+		to_chat(receiver_atmon, span_warning(LANG("datum.7b68f08bd645142f", null)))
 
 /**
  * Tries to discharge every rechargable item in artifact range

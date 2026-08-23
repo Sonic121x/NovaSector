@@ -82,7 +82,7 @@
 	else if(istype(action, /datum/action/item_action/jetpack_stabilization))
 		if(on)
 			configure_jetpack(!stabilize, user)
-			to_chat(user, span_notice(LANG("obj.dd46bf26", list(stabilize ? "on" : "off"))))
+			to_chat(user, span_notice(LANG("obj.dd46bf2657260a9a", list(stabilize ? "on" : "off"))))
 	else
 		toggle_internals(user)
 
@@ -92,13 +92,13 @@
 
 	if(!on)
 		if(turn_on(user))
-			to_chat(user, span_notice(LANG("obj.9b733081", null)))
+			to_chat(user, span_notice(LANG("obj.9b73308127b96697", null)))
 		else
-			to_chat(user, span_notice(LANG("obj.a1ea18f3", null)))
+			to_chat(user, span_notice(LANG("obj.a1ea18f39c289f9f", null)))
 			return
 	else
 		turn_off(user)
-		to_chat(user, span_notice(LANG("obj.750f6d9a", null)))
+		to_chat(user, span_notice(LANG("obj.750f6d9af1e6c282", null)))
 
 	update_item_action_buttons()
 
@@ -153,8 +153,8 @@
 	if (!ishuman(user))
 		return
 	var/mob/living/carbon/human/suffocater = user
-	suffocater.say(LANG("obj.ea4679ae", null))
-	suffocater.visible_message(span_suicide(LANG("obj.7338d70e", list(user, user.p_them(), src, user.p_they()))))
+	suffocater.say(LANG("obj.ea4679aed1d0421e", null))
+	suffocater.visible_message(span_suicide(LANG("obj.7338d70e876a9e5f", list(user, user.p_them(), src, user.p_they()))))
 	return OXYLOSS
 
 /obj/item/tank/jetpack/emp_act(severity)
@@ -193,7 +193,7 @@
 
 	var/mob/user = loc
 	if(rand(0,250) == 0)
-		to_chat(user, span_notice(LANG("obj.6db92729", null)))
+		to_chat(user, span_notice(LANG("obj.6db92729d61ab4ce", null)))
 		turn_off(user)
 		return
 	return ..()

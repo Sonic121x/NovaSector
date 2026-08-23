@@ -36,10 +36,10 @@
 		return NONE
 
 	if(locate(/obj/structure/closet/crate/grave) in interacting_with)
-		user.balloon_alert(user, LANG("datum.ac9058a6", null))
+		user.balloon_alert(user, LANG("datum.ac9058a68412d6df", null))
 		return ITEM_INTERACT_BLOCKING
 
-	user.balloon_alert(user, LANG("datum.1db6d44a", null))
+	user.balloon_alert(user, LANG("datum.1db6d44afe0bfd75", null))
 	playsound(interacting_with, 'sound/effects/shovel_dig.ogg', 50, TRUE)
 	INVOKE_ASYNC(src, PROC_REF(perform_digging), user, interacting_with, source)
 	return ITEM_INTERACT_BLOCKING

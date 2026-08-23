@@ -244,7 +244,7 @@
 		if(valid_area_check)
 			deadchat_broadcast(" has died at <b>[get_area_name(death_turf)]</b>.", "<b>[mind.name]</b>", follow_target = src, turf_target = death_turf, message_type=DEADCHAT_DEATHRATTLE)
 		if(SSlag_switch.measures[DISABLE_DEAD_KEYLOOP] && !client?.holder)
-			to_chat(src, span_deadsay(span_big(LANG("mob.75ceedd7", null))))
+			to_chat(src, span_deadsay(span_big(LANG("mob.75ceedd701e7bbb1", null))))
 			ghostize(TRUE)
 	set_disgust(0)
 	SetSleeping(0, 0)

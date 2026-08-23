@@ -82,7 +82,7 @@
 	var/design_delta = length(cached_designs) - previous_design_count
 
 	if(design_delta > 0)
-		say(LANG("obj.b8003438", list(design_delta, design_delta == 1 ? "" : "s")))
+		say(LANG("obj.b800343897a0eb02", list(design_delta, design_delta == 1 ? "" : "s")))
 		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 50, TRUE)
 
 	update_static_data_for_all_viewers()

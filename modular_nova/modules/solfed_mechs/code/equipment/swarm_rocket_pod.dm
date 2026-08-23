@@ -45,7 +45,7 @@
 				valid_targets += thing
 
 	if (!length(valid_targets))
-		to_chat(source, span_warning(LANG("obj.41d96bee", null)))
+		to_chat(source, span_warning(LANG("obj.41d96beeb420a492", null)))
 		return FALSE
 
 	var/rocket_count = 12

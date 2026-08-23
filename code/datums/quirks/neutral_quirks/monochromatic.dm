@@ -17,7 +17,7 @@
 
 /datum/quirk/monochromatic/post_add()
 	if(is_detective_job(quirk_holder.mind.assigned_role))
-		to_chat(quirk_holder, span_bolddanger(LANG("datum.2212678e", null)))
+		to_chat(quirk_holder, span_bolddanger(LANG("datum.2212678e35fc3c7e", null)))
 		quirk_holder.playsound_local(quirk_holder, 'sound/ambience/security/ambidet1.ogg', 50, FALSE)
 
 /datum/quirk/monochromatic/remove()

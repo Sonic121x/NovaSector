@@ -98,11 +98,11 @@
 	SIGNAL_HANDLER
 
 	if(amount_ready < 1)
-		examine_list += span_notice(LANG("datum.71160715", list(parent)))
+		examine_list += span_notice(LANG("datum.71160715fdbe29af", list(parent)))
 	if(amount_ready > 1)
-		examine_list += span_notice(LANG("datum.ef467691", list(parent, amount_ready)))
+		examine_list += span_notice(LANG("datum.ef46769126f9a862", list(parent, amount_ready)))
 	if(amount_ready == 1)
-		examine_list += span_notice(LANG("datum.e68c2251", list(parent)))
+		examine_list += span_notice(LANG("datum.e68c2251374ba993", list(parent)))
 
 ///signal called on parent being attacked with an item
 /datum/component/mob_harvest/proc/on_attackby(datum/source, obj/item/used_item, mob/user)
@@ -139,10 +139,10 @@
  */
 /datum/component/mob_harvest/proc/remove_wait_time(mob/user)
 	if(amount_ready >= max_ready)
-		to_chat(user, span_warning(LANG("datum.964d3523", list(parent))))
+		to_chat(user, span_warning(LANG("datum.964d35232ff0968f", list(parent))))
 		return
 	item_generation_time -= item_reduction_time
-	to_chat(user, span_notice(LANG("datum.1d9ece2c", list(parent))))
+	to_chat(user, span_notice(LANG("datum.1d9ece2c35e6f549", list(parent))))
 	return
 
 /**
@@ -153,12 +153,12 @@
  */
 /datum/component/mob_harvest/proc/harvest_item(mob/user)
 	if(amount_ready < 1)
-		to_chat(user, span_warning(LANG("datum.f212f42a", list(parent, produced_item_desc))))
+		to_chat(user, span_warning(LANG("datum.f212f42a788d3280", list(parent, produced_item_desc))))
 		return
-	to_chat(user, span_notice(LANG("datum.39a4ead7", list(produced_item_desc, parent))))
+	to_chat(user, span_notice(LANG("datum.39a4ead77feb892c", list(produced_item_desc, parent))))
 	if(do_after(user, item_harvest_time, target = parent))
 		playsound(parent, item_harvest_sound, 20, TRUE)
-		to_chat(user, span_notice(LANG("datum.a9beab01", list(produced_item_desc, parent))))
+		to_chat(user, span_notice(LANG("datum.a9beab015fce8cc6", list(produced_item_desc, parent))))
 		amount_ready--
 		if(!iscarbon(parent))
 			var/mob/living/living_parent = parent

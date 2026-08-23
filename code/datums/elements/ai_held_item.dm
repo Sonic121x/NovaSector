@@ -36,7 +36,7 @@
 	if (!carried_item)
 		return
 
-	source.visible_message(span_danger(LANG("datum.07248897", list(source, carried_item, user))))
+	source.visible_message(span_danger(LANG("datum.07248897ddcdb4b5", list(source, carried_item, user))))
 	carried_item.forceMove(get_turf(user))
 	source.ai_controller.clear_blackboard_key(BB_SIMPLE_CARRY_ITEM)
 
@@ -55,7 +55,7 @@
 	var/obj/item/carried_item = get_held_item(source)
 	if (!carried_item)
 		return
-	examine_text += span_notice(LANG("datum.c5be016b", list(source.p_They(), source.p_are(), carried_item.examine_title(user))))
+	examine_text += span_notice(LANG("datum.c5be016b48c320f8", list(source.p_They(), source.p_are(), carried_item.examine_title(user))))
 
 /// If we died, drop anything we were carrying
 /datum/element/ai_held_item/proc/on_death(mob/living/ol_yeller)
@@ -65,6 +65,6 @@
 	if(!carried_item)
 		return
 
-	ol_yeller.visible_message(span_danger(LANG("datum.03d288d8", list(ol_yeller, carried_item, ol_yeller.p_they(), ol_yeller.p_s()))))
+	ol_yeller.visible_message(span_danger(LANG("datum.03d288d8c16dcad8", list(ol_yeller, carried_item, ol_yeller.p_they(), ol_yeller.p_s()))))
 	carried_item.forceMove(ol_yeller.drop_location())
 	ol_yeller.ai_controller.clear_blackboard_key(BB_SIMPLE_CARRY_ITEM)

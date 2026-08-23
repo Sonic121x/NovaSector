@@ -18,7 +18,7 @@
 		// give it to all wizards even if there are multiple
 		if(IS_WIZARD(wizard) && !HAS_TRAIT_FROM(wizard, TRAIT_RAINSTORM_IMMUNE, MAGIC_TRAIT))
 			ADD_TRAIT(wizard, TRAIT_RAINSTORM_IMMUNE, MAGIC_TRAIT)
-			to_chat(wizard, span_reallybig(span_hypnophrase(LANG("datum.d92aecee", null))))
+			to_chat(wizard, span_reallybig(span_hypnophrase(LANG("datum.d92aeceecf911d75", null))))
 
 	if(!started)
 		started = TRUE
@@ -28,4 +28,4 @@
 	for(var/mob/living/wizard in GLOB.alive_mob_list)
 		if(IS_WIZARD(wizard) && HAS_TRAIT_FROM(wizard, TRAIT_RAINSTORM_IMMUNE, MAGIC_TRAIT))
 			REMOVE_TRAIT(wizard, TRAIT_RAINSTORM_IMMUNE, MAGIC_TRAIT)
-			to_chat(wizard, span_notice(LANG("datum.63834779", null)))
+			to_chat(wizard, span_notice(LANG("datum.63834779573b8395", null)))

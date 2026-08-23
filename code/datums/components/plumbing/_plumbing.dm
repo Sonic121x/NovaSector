@@ -136,7 +136,7 @@
 	if(!active())
 		var/datum/overlap = ducting_layer_check(parent_obj, -ducting_layer)
 		if(!isnull(overlap))
-			parent_obj.balloon_alert(user, LANG("datum.bda81211", list(istype(overlap, /obj/machinery/duct) ? "duct" : "machine")))
+			parent_obj.balloon_alert(user, LANG("datum.bda812114e9941a5", list(istype(overlap, /obj/machinery/duct) ? "duct" : "machine")))
 			return ITEM_INTERACT_FAILURE
 
 /datum/component/plumbing/proc/toggle_active(obj/parent_obj, new_state)
@@ -253,7 +253,7 @@
 	SIGNAL_HANDLER
 
 	if(distinct_reagent_cap != INFINITY)
-		examine_list += span_notice(LANG("datum.bb11a474", list(distinct_reagent_cap)))
+		examine_list += span_notice(LANG("datum.bb11a47470e725a1", list(distinct_reagent_cap)))
 
 ///called from in process(). only calls process_request(), but can be overwritten for children with special behaviour
 /datum/component/plumbing/proc/send_request(dir)

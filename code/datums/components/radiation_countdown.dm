@@ -21,7 +21,7 @@
 
 	time_added = world.time
 
-	to_chat(parent, span_userdanger(LANG("datum.8830c9cb", null)))
+	to_chat(parent, span_userdanger(LANG("datum.8830c9cb1c3d2884", null)))
 
 	start_deletion_timer()
 
@@ -30,7 +30,7 @@
 
 /datum/component/radiation_countdown/proc/remove_self()
 	if (!HAS_TRAIT(parent, TRAIT_IRRADIATED))
-		to_chat(parent, span_notice(LANG("datum.52e5b155", null)))
+		to_chat(parent, span_notice(LANG("datum.52e5b155bfb5b3c5", null)))
 
 	qdel(src)
 

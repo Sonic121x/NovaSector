@@ -42,7 +42,7 @@
 	if((clothing_flags & VOICEBOX_TOGGLABLE))
 		clothing_flags ^= (VOICEBOX_DISABLED)
 		var/status = !(clothing_flags & VOICEBOX_DISABLED)
-		to_chat(user, span_notice(LANG("obj.1e607059", list(src, status ? "on" : "off"))))
+		to_chat(user, span_notice(LANG("obj.1e60705952207201", list(src, status ? "on" : "off"))))
 
 /obj/item/clothing/mask/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, bodyshape = NONE)
 	. = ..()

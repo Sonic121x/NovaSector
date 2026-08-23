@@ -55,20 +55,20 @@
 	if(isobserver(user) || !in_range(src, user))
 		return
 
-	. += span_notice(LANG("obj.788bb106", list(reagents.maximum_volume)))
+	. += span_notice(LANG("obj.788bb1064cd758d0", list(reagents.maximum_volume)))
 	if(reagents.total_volume)
 		for(var/datum/reagent/reg as anything in reagents.reagent_list)
-			. += span_notice(LANG("obj.d353620d", list(round(reg.volume, CHEMICAL_VOLUME_ROUNDING), reg.name)))
+			. += span_notice(LANG("obj.d353620de6ca6337", list(round(reg.volume, CHEMICAL_VOLUME_ROUNDING), reg.name)))
 	else
-		. += span_notice(LANG("obj.aa75d156", null))
+		. += span_notice(LANG("obj.aa75d1565980cc59", null))
 
 	if(anchored)
-		. += span_notice(LANG("obj.7641f909", list(EXAMINE_HINT("anchored"))))
+		. += span_notice(LANG("obj.7641f909d43c346d", list(EXAMINE_HINT("anchored"))))
 	else
-		. += span_warning(LANG("obj.41f51354", list(EXAMINE_HINT("anchored"))))
-		. += span_notice(LANG("obj.fa5fc796", list(EXAMINE_HINT("welded"))))
+		. += span_warning(LANG("obj.41f513549c79a917", list(EXAMINE_HINT("anchored"))))
+		. += span_notice(LANG("obj.fa5fc7965e12e9d0", list(EXAMINE_HINT("welded"))))
 
-	. += span_notice(LANG("obj.02b50ffa", list(EXAMINE_HINT("plunger"))))
+	. += span_notice(LANG("obj.02b50ffa4d4fa614", list(EXAMINE_HINT("plunger"))))
 
 /obj/machinery/plumbing/wrench_act(mob/living/user, obj/item/tool)
 	if(user.combat_mode)
@@ -87,23 +87,23 @@
 		return NONE
 
 	if(anchored)
-		balloon_alert(user, LANG("obj.3e939160", null))
+		balloon_alert(user, LANG("obj.3e9391607cda6ee1", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(I.tool_start_check(user, amount = 1))
-		to_chat(user, span_notice(LANG("obj.789a7181", list(src))))
+		to_chat(user, span_notice(LANG("obj.789a7181a99ade4d", list(src))))
 		if(I.use_tool(src, user, 1.5 SECONDS, volume = 50))
 			deconstruct(TRUE)
-			to_chat(user, span_notice(LANG("obj.54e5a2bb", list(src))))
+			to_chat(user, span_notice(LANG("obj.54e5a2bb7dba2176", list(src))))
 			return ITEM_INTERACT_SUCCESS
 
 	return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/plumbing/plunger_act(obj/item/plunger/attacking_plunger, mob/living/user, reinforced)
-	user.balloon_alert_to_viewers(LANG("obj.6051e050", null))
+	user.balloon_alert_to_viewers(LANG("obj.6051e050a7898871", null))
 	if(!do_after(user, 3 SECONDS, target = src))
 		return TRUE
-	user.balloon_alert_to_viewers(LANG("obj.670c9c2c", null))
+	user.balloon_alert_to_viewers(LANG("obj.670c9c2c9c8b5fe6", null))
 	reagents.expose(get_turf(src), TOUCH) //splash on the floor
 	reagents.clear_reagents()
 	return TRUE

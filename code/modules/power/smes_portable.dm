@@ -68,7 +68,7 @@
 	PRIVATE_PROC(TRUE)
 
 	if(connected_smes)
-		balloon_alert(user, LANG("obj.8413f243", null))
+		balloon_alert(user, LANG("obj.8413f2433575485a", null))
 		return FALSE
 	return TRUE
 
@@ -98,7 +98,7 @@
 
 /obj/machinery/power/smes/connector/ui_interact(mob/user, datum/tgui/ui)
 	if(!connected_smes)
-		balloon_alert(user, LANG("obj.5308d2be", null))
+		balloon_alert(user, LANG("obj.5308d2be70abb010", null))
 		return FALSE
 
 	return ..()
@@ -176,13 +176,13 @@
 
 /obj/machinery/smesbank/examine(user)
 	. = ..()
-	. += span_notice(LANG("obj.bba556de", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
+	. += span_notice(LANG("obj.bba556de2501ef2d", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
 	if(connected_port)
-		. += span_notice(LANG("obj.d50594b3", list(EXAMINE_HINT("unwrench"))))
+		. += span_notice(LANG("obj.d50594b32d27fbfd", list(EXAMINE_HINT("unwrench"))))
 	else
 		if(panel_open)
-			. += span_notice(LANG("obj.fa5fc796", list(EXAMINE_HINT("pried"))))
-		. += span_notice(LANG("obj.e4805b3e", list(EXAMINE_HINT("wrenched"))))
+			. += span_notice(LANG("obj.fa5fc7965e12e9d0", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.e4805b3e965b051d", list(EXAMINE_HINT("wrenched"))))
 
 /obj/machinery/smesbank/Destroy()
 	disconnect_port()
@@ -210,9 +210,9 @@
 		if(!wrench.use_tool(src, user, 8 SECONDS))
 			return ITEM_INTERACT_BLOCKING
 		user.visible_message( \
-			LANG("obj.4acbf7f4", list(user, src)), \
-			span_notice(LANG("obj.bc4d4443", list(src, connected_port))), \
-			span_hear(LANG("obj.aa8a193f", null)))
+			LANG("obj.4acbf7f4975d45b7", list(user, src)), \
+			span_notice(LANG("obj.bc4d44434c135224", list(src, connected_port))), \
+			span_hear(LANG("obj.aa8a193f8da7c41c", null)))
 		investigate_log("was disconnected from [connected_port] by [key_name(user)].", INVESTIGATE_ENGINE)
 		disconnect_port()
 		update_appearance(UPDATE_OVERLAYS)
@@ -224,9 +224,9 @@
 	if(!connect_port(possible_connector, user))
 		return ITEM_INTERACT_BLOCKING
 	user.visible_message( \
-		LANG("obj.1450de58", list(user, src)), \
-		span_notice(LANG("obj.5cfbd1d1", list(src, possible_connector))), \
-		span_hear(LANG("obj.aa8a193f", null)))
+		LANG("obj.1450de580c437995", list(user, src)), \
+		span_notice(LANG("obj.5cfbd1d1cfec840d", list(src, possible_connector))), \
+		span_hear(LANG("obj.aa8a193f8da7c41c", null)))
 	update_appearance(UPDATE_OVERLAYS)
 	investigate_log("was connected to [possible_connector] by [key_name(user)].", INVESTIGATE_ENGINE)
 	return ITEM_INTERACT_SUCCESS
@@ -240,7 +240,7 @@
 
 /obj/machinery/smesbank/crowbar_act(mob/living/user, obj/item/tool)
 	if(connected_port)
-		balloon_alert(user, LANG("obj.120f3b8a", list(connected_port)))
+		balloon_alert(user, LANG("obj.120f3b8a88e324dc", list(connected_port)))
 		return ITEM_INTERACT_FAILURE
 
 	return default_deconstruction_crowbar(user, tool)
@@ -258,13 +258,13 @@
 
 	if(QDELETED(possible_connector))
 		if(user)
-			balloon_alert(user, LANG("obj.4108c443", null))
+			balloon_alert(user, LANG("obj.4108c44377cfcb80", null))
 		return FALSE
 
 	//Make sure not already connected to something else
 	if(possible_connector.panel_open)
 		if(user)
-			balloon_alert(user, LANG("obj.1b23fc09", null))
+			balloon_alert(user, LANG("obj.1b23fc096c19399f", null))
 		return FALSE
 
 	//Perform the connection

@@ -102,7 +102,7 @@
 	parts_list = reverse_range(sortTim(parts_list, GLOBAL_PROC_REF(cmp_rped_sort)))
 	current_lowest_tier = parts_list[1].get_part_rating()
 	if(ismob(parent.loc))
-		parent.balloon_alert(parent.loc, LANG("datum.f50d38d8", null))
+		parent.balloon_alert(parent.loc, LANG("datum.f50d38d824667b02", null))
 
 	var/dump_loc = user.drop_location()
 	for(var/obj/item/part in parts_list)

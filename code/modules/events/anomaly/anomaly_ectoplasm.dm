@@ -42,7 +42,7 @@
 /datum/round_event/anomaly/anomaly_ectoplasm/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce(LANG("datum.5dbea7fe", list(ANOMALY_ANNOUNCE_HARMFUL_TEXT, impact_area.name)), "Anomaly Alert", ANNOUNCER_ANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Paranormal ectoplasmic outburst detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce(LANG("datum.5dbea7feef0ebe8d", list(ANOMALY_ANNOUNCE_HARMFUL_TEXT, impact_area.name)), "Anomaly Alert", ANNOUNCER_ANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Paranormal ectoplasmic outburst detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert")
 
 /datum/event_admin_setup/anomaly_ectoplasm
 	///The admin-selected intensity
@@ -51,13 +51,13 @@
 	var/ghost_override
 
 /datum/event_admin_setup/anomaly_ectoplasm/prompt_admins()
-	if(tgui_alert(usr, LANG("datum.51a7e598", null), LANG("datum.8fe2bbb8", null), list("Yes", "No")) == "Yes")
+	if(tgui_alert(usr, LANG("datum.51a7e5981202528f", null), LANG("datum.8fe2bbb8dcf041cc", null), list("Yes", "No")) == "Yes")
 		var/list/power_values = list(ANOMALY_INTENSITY_MINOR, ANOMALY_INTENSITY_MODERATE, ANOMALY_INTENSITY_MAJOR)
-		chosen_effect = tgui_input_list(usr, LANG("datum.54a5ddfe", null), LANG("datum.33bcf117", null), power_values)
+		chosen_effect = tgui_input_list(usr, LANG("datum.54a5ddfe1c49a4c6", null), LANG("datum.33bcf1178d88ceaa", null), power_values)
 		if(!chosen_effect)
 			return ADMIN_CANCEL_EVENT
 
-		ghost_override = tgui_input_number(usr, LANG("datum.b954873b", null), LANG("datum.c8332864", null), 0, 20, 1)
+		ghost_override = tgui_input_number(usr, LANG("datum.b954873bb0365407", null), LANG("datum.c8332864526a3224", null), 0, 20, 1)
 		if(!ghost_override)
 			return ADMIN_CANCEL_EVENT
 

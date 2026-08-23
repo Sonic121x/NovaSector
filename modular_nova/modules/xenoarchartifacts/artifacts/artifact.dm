@@ -51,13 +51,13 @@
 	. = ..()
 	. += span_notice("[holomark ? "This boulder has been scanned. Target Depth: [approximate_excavation_level] +- 15 cm." : "This boulder has not been scanned."]")
 	if(holomark_adv)
-		. += span_notice(LANG("obj.9c404e9c", list(target_excavation_level)))
+		. += span_notice(LANG("obj.9c404e9c88edaba1", list(target_excavation_level)))
 	. += span_notice("[measured ? "This boulder has been measured. Dug Depth: [excavation_level]." : "This boulder has not been measured."]")
 	var/datum/component/gps/our_gps = GetComponent(/datum/component/gps)
 	if(our_gps)
-		. += span_notice(LANG("obj.87719a64", list(artifact_id)))
+		. += span_notice(LANG("obj.87719a64febc4f0a", list(artifact_id)))
 	else
-		. += span_notice(LANG("obj.d7cf889a", null))
+		. += span_notice(LANG("obj.d7cf889a25397815", null))
 
 /obj/structure/boulder/Initialize(mapload)
 	. = ..()
@@ -184,9 +184,9 @@
 /obj/structure/boulder/proc/gps_tag(mob/user)
 	var/datum/component/gps/our_gps = GetComponent(/datum/component/gps)
 	if(our_gps)
-		to_chat(user, span_warning(LANG("obj.d71d9076", list(src))))
+		to_chat(user, span_warning(LANG("obj.d71d9076936be231", list(src))))
 		return
-	to_chat(user, span_notice(LANG("obj.1fe95f8d", list(src))))
+	to_chat(user, span_notice(LANG("obj.1fe95f8dedaf0ae1", list(src))))
 	playsound(src, 'sound/machines/beep/twobeep.ogg', 100)
 	AddComponent(/datum/component/gps, "\[[artifact_id]\] Xenoarch Debris")
 
@@ -196,41 +196,41 @@
 		return ITEM_INTERACT_SUCCESS
 	if(istype(tool, /obj/item/pickaxe))
 		user.visible_message(
-			span_notice(LANG("obj.494c4505", list(user, src))),
-			span_notice(LANG("obj.b8e9b3f0", list(src))),
+			span_notice(LANG("obj.494c45056addb219", list(user, src))),
+			span_notice(LANG("obj.b8e9b3f0c4519a64", list(src))),
 		)
 		if(!do_after(user, 2.5 SECONDS, target = src))
 			user.visible_message(
-				span_warning(LANG("obj.1a44b09b", list(user))),
-				span_warning(LANG("obj.84b6068e", null)),
-				blind_message = span_hear(LANG("obj.3ec752af", null)),
+				span_warning(LANG("obj.1a44b09bd5bd01e8", list(user))),
+				span_warning(LANG("obj.84b6068eb50cbc99", null)),
+				blind_message = span_hear(LANG("obj.3ec752afc989bfe3", null)),
 			)
 			excavation_level += rand(10,50)
 			return ITEM_INTERACT_BLOCKING
 		switch(try_dig(25))
 			if(DIG_DELETE)
 				user.visible_message(
-					span_warning(LANG("obj.6db9ab42", list(src))),
-					blind_message = span_hear(LANG("obj.9c90ffa7", null)),
+					span_warning(LANG("obj.6db9ab42f29a566a", list(src))),
+					blind_message = span_hear(LANG("obj.9c90ffa77b8b9994", null)),
 				)
 				return ITEM_INTERACT_SUCCESS
 			if(DIG_ROCK)
 				user.visible_message(
-					span_notice(LANG("obj.f37b4dcd", list(user, src))),
-					span_notice(LANG("obj.b996ea2a", list(src))),
-					blind_message = span_hear(LANG("obj.9c90ffa7", null)),
+					span_notice(LANG("obj.f37b4dcd730e18a5", list(user, src))),
+					span_notice(LANG("obj.b996ea2ab6b48276", list(src))),
+					blind_message = span_hear(LANG("obj.9c90ffa77b8b9994", null)),
 				)
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/xenoarch/hammer))
 		var/obj/item/xenoarch/hammer/hammer = tool
 		user.visible_message(
-			span_notice(LANG("obj.3f8240a0", list(user))),
-			span_notice(LANG("obj.04bcd84c", null)),
-			blind_message = span_hear(LANG("obj.2afa996e", null)),
+			span_notice(LANG("obj.3f8240a063adf660", list(user))),
+			span_notice(LANG("obj.04bcd84c34308956", null)),
+			blind_message = span_hear(LANG("obj.2afa996ebe30ea4e", null)),
 		)
 		if(!do_after(user, hammer.dig_speed, target = src))
-			to_chat(user, span_warning(LANG("obj.9d6b236c", null)))
+			to_chat(user, span_warning(LANG("obj.9d6b236c8a3042e9", null)))
 			excavation_level += rand(1,5)
 			return ITEM_INTERACT_BLOCKING
 		switch(try_dig(hammer.dig_amount))
@@ -238,92 +238,92 @@
 				CRASH("[hammer] tried to call try_dig() with an invalid dig_amount! Must have a positive value.")
 			if(DIG_DELETE)
 				user.visible_message(
-					span_warning(LANG("obj.b150c4e6", null)),
-					blind_message = span_hear(LANG("obj.691e6a73", null)),
+					span_warning(LANG("obj.b150c4e64120414f", null)),
+					blind_message = span_hear(LANG("obj.691e6a737b8cf0e5", null)),
 				)
 				return ITEM_INTERACT_SUCCESS
 			if(DIG_ROCK)
-				to_chat(user, span_notice(LANG("obj.c2a25e9a", null)))
+				to_chat(user, span_notice(LANG("obj.c2a25e9ab2ed5ac3", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	if (istype(tool, /obj/item/xenoarch/handheld_scanner))
 		var/obj/item/xenoarch/handheld_scanner/scanner = tool
 		if (holomark_adv || (holomark && !istype(scanner, /obj/item/xenoarch/handheld_scanner/advanced)))
-			to_chat(user, span_notice(LANG("obj.eb7905b5", null)))
+			to_chat(user, span_notice(LANG("obj.eb7905b5ca08e8e9", null)))
 			return ITEM_INTERACT_BLOCKING
 		user.visible_message(
-			span_notice(LANG("obj.f18b5d8d", list(user, src, scanner))),
-			span_notice(LANG("obj.c849e69f", list(src, scanner))),
-			blind_message = span_hear(LANG("obj.b2408de5", null)),
+			span_notice(LANG("obj.f18b5d8d509fdf4d", list(user, src, scanner))),
+			span_notice(LANG("obj.c849e69f03c8630e", list(src, scanner))),
+			blind_message = span_hear(LANG("obj.b2408de55b40bfc4", null)),
 		)
 		if(!do_after(user, scanner.scanning_speed, target = src))
-			to_chat(user, span_warning(LANG("obj.3f48dec0", null)))
+			to_chat(user, span_warning(LANG("obj.3f48dec0c8bbb751", null)))
 			excavation_level += rand(1,5)
 			return ITEM_INTERACT_BLOCKING
 		if(get_scanned(scanner.scan_advanced))
-			to_chat(user, (span_notice(LANG("obj.96e6cb60", null))))
+			to_chat(user, (span_notice(LANG("obj.96e6cb602b603fb0", null))))
 			if(scanner.scan_advanced)
-				to_chat(user, span_notice(LANG("obj.e3c9597e", null)))
+				to_chat(user, span_notice(LANG("obj.e3c9597e0a50a985", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(tool.type == /obj/item/xenoarch)
 		if (measured)
-			to_chat(user, span_notice(LANG("obj.c8acb66e", null)))
+			to_chat(user, span_notice(LANG("obj.c8acb66ed252ad75", null)))
 			return ITEM_INTERACT_BLOCKING
 		user.visible_message(
-			span_notice(LANG("obj.caad5216", list(user, src))),
-			span_notice(LANG("obj.cfbbc627", null)),
-			blind_message = span_hear(LANG("obj.187faf2f", null)),
+			span_notice(LANG("obj.caad5216bd4fec46", list(user, src))),
+			span_notice(LANG("obj.cfbbc627f83faa70", null)),
+			blind_message = span_hear(LANG("obj.187faf2f7c6957b7", null)),
 		)
 		if(!do_after(user, 4 SECONDS, target = src))
-			to_chat(user, span_warning(LANG("obj.9d6b236c", null)))
+			to_chat(user, span_warning(LANG("obj.9d6b236c8a3042e9", null)))
 			excavation_level += rand(1,5)
 			return ITEM_INTERACT_BLOCKING
 		if(get_measured())
-			to_chat(user, span_notice(LANG("obj.4a3432f4", null)))
+			to_chat(user, span_notice(LANG("obj.4a3432f48c23db9b", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/xenoarch/brush))
 		var/obj/item/xenoarch/brush/brush = tool
 		user.visible_message(
-			span_notice(LANG("obj.f2fa9edc", list(user, src))),
-			span_notice(LANG("obj.f49f7bc1", null)),
-			blind_message = span_hear(LANG("obj.845a0660", null)),
+			span_notice(LANG("obj.f2fa9edc0dc631d3", list(user, src))),
+			span_notice(LANG("obj.f49f7bc1952c1865", null)),
+			blind_message = span_hear(LANG("obj.845a0660f70b200e", null)),
 		)
 		if(!do_after(user, brush.dig_speed, target = src))
-			to_chat(user, span_warning(LANG("obj.9d6b236c", null)))
+			to_chat(user, span_warning(LANG("obj.9d6b236c8a3042e9", null)))
 			excavation_level += rand(1,5)
 			return ITEM_INTERACT_BLOCKING
 		switch(try_uncover())
 			if(BRUSH_DELETE)
 				user.visible_message(
-					span_warning(LANG("obj.b150c4e6", null)),
-					blind_message = span_hear(LANG("obj.691e6a73", null)),
+					span_warning(LANG("obj.b150c4e64120414f", null)),
+					blind_message = span_hear(LANG("obj.691e6a737b8cf0e5", null)),
 				)
 				return ITEM_INTERACT_SUCCESS
 			if(BRUSH_UNCOVER)
-				to_chat(user, span_notice(LANG("obj.63b96783", null)))
+				to_chat(user, span_notice(LANG("obj.63b96783c3c30b93", null)))
 				return ITEM_INTERACT_SUCCESS
 			if(BRUSH_NONE)
-				to_chat(user, span_notice(LANG("obj.377f381a", null)))
+				to_chat(user, span_notice(LANG("obj.377f381aa23c6c20", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/xenoarch/handheld_radar))
-		to_chat(user, span_warning(LANG("obj.9a40e4e5", null)))
+		to_chat(user, span_warning(LANG("obj.9a40e4e5dc3dc8fb", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/xenoarch/core_sampler))
 		var/obj/item/xenoarch/core_sampler/sampler = tool
 		if(sampler.used)
-			balloon_alert(user, LANG("obj.713d4ec0", null))
+			balloon_alert(user, LANG("obj.713d4ec011ecaea7", null))
 			return ITEM_INTERACT_BLOCKING
 		sampler.sample = src
 		sampler.used = TRUE
 		sampler.icon_state = "sampler"
 		user.visible_message(
-			span_notice(LANG("obj.e0d4d8b3", list(user, src))),
-			span_notice(LANG("obj.c2615fa0", list(src))),
-			blind_message = span_hear(LANG("obj.19e74f40", null)),
+			span_notice(LANG("obj.e0d4d8b34da771a7", list(user, src))),
+			span_notice(LANG("obj.c2615fa09a7ef7c2", list(src))),
+			blind_message = span_hear(LANG("obj.19e74f409876919f", null)),
 		)
 		return ITEM_INTERACT_SUCCESS
 

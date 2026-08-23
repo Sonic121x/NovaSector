@@ -57,7 +57,7 @@
 	var/datum/gas_mixture/env = .
 	env.temperature = clamp(env.temperature - 100, target_temp_low, target_temp_high)
 	holder.air_update_turf(FALSE, FALSE)
-	to_chat(user, span_warning(LANG("datum.e0e94c8c", null)))
+	to_chat(user, span_warning(LANG("datum.e0e94c8c622268ba", null)))
 
 /datum/artifact_effect/temperature/cold/do_effect_aura(seconds_per_tick)
 	. = ..()
@@ -93,7 +93,7 @@
 	var/amount_to_change = (target_temp_high - env.temperature) / 4
 	env.temperature = clamp(env.temperature + amount_to_change, target_temp_low, target_temp_high)
 	holder.air_update_turf(FALSE, FALSE)
-	to_chat(user, span_warning(LANG("datum.e8283afb", null)))
+	to_chat(user, span_warning(LANG("datum.e8283afb07327c9d", null)))
 
 /datum/artifact_effect/temperature/heat/do_effect_aura(seconds_per_tick)
 	. = ..()

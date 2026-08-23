@@ -23,7 +23,7 @@
 	. = ..()
 
 	if(!COOLDOWN_FINISHED(src, flip_cooldown) && IS_CLOCK(user))
-		. += span_brass(LANG("obj.6a82292e", null))
+		. += span_brass(LANG("obj.6a82292e0061b789", null))
 
 /// Send all `atom/movable`s flying in the set direction for a decent distance
 /obj/structure/destructible/clockwork/trap/flipper/proc/flip()
@@ -44,7 +44,7 @@
 
 /// Visual update when the cooldown's finished
 /obj/structure/destructible/clockwork/trap/flipper/proc/cooldown_done()
-	visible_message(span_brass(LANG("obj.33e89066", list(src))))
+	visible_message(span_brass(LANG("obj.33e89066cdc5ea3c", list(src))))
 
 /datum/component/clockwork_trap/flipper
 	takes_input = TRUE

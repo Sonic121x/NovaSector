@@ -64,7 +64,7 @@
 /obj/machinery/launchpad/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.1215ce83", list(range)))
+		. += span_notice(LANG("obj.1215ce83e62eba35", list(range)))
 
 /obj/machinery/launchpad/multitool_act(mob/living/user, obj/item/multitool/multi)
 	. = NONE
@@ -72,7 +72,7 @@
 		return
 
 	multi.set_buffer(src)
-	balloon_alert(user, LANG("obj.bb9065b6", null))
+	balloon_alert(user, LANG("obj.bb9065b6437d1b0c", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/launchpad/screwdriver_act(mob/living/user, obj/item/tool)
@@ -314,7 +314,7 @@
 	if(over_object == user)
 		if(!briefcase)
 			return
-		user.visible_message(span_notice(LANG("obj.1fae3a21", list(usr, src))), span_notice(LANG("obj.a080d046", list(src))))
+		user.visible_message(span_notice(LANG("obj.1fae3a21687b0337", list(usr, src))), span_notice(LANG("obj.a080d046fd1c0cf1", list(src))))
 		if(do_after(user, 3 SECONDS, target = user))
 			user.put_in_hands(briefcase)
 			moveToNullspace() //hides it from suitcase contents
@@ -328,7 +328,7 @@
 	if(IS_WEAKREF_OF(src, remote.pad)) //do not attempt to link when already linked
 		return ITEM_INTERACT_BLOCKING
 	remote.pad = WEAKREF(src)
-	to_chat(user, span_notice(LANG("obj.8d7c3dc4", list(src, remote))))
+	to_chat(user, span_notice(LANG("obj.8d7c3dc4e50105d6", list(src, remote))))
 	return ITEM_INTERACT_SUCCESS
 
 
@@ -349,7 +349,7 @@
 /obj/item/launchpad_remote/attack_self(mob/user)
 	. = ..()
 	ui_interact(user)
-	to_chat(user, span_notice(LANG("obj.dc25f3fd", list(src))))
+	to_chat(user, span_notice(LANG("obj.dc25f3fdd1482f37", list(src))))
 
 
 /obj/item/launchpad_remote/ui_state(mob/user)
@@ -379,7 +379,7 @@
 
 /obj/item/launchpad_remote/proc/teleport(mob/user, obj/machinery/launchpad/pad)
 	if(QDELETED(pad))
-		to_chat(user, span_warning(LANG("obj.7445563a", null)))
+		to_chat(user, span_warning(LANG("obj.7445563af3f44744", null)))
 		return
 	var/error_reason = pad.teleport_checks()
 	if(error_reason)
@@ -427,7 +427,7 @@
 			our_pad.display_name = new_name
 		if("remove")
 			. = TRUE
-			if(tgui_alert(user, LANG("obj.77344162", null), LANG("obj.04b76580", null), list("I'm Sure", "Abort")) == "I'm Sure")
+			if(tgui_alert(user, LANG("obj.773441628de640b4", null), LANG("obj.04b765801f46e0ac", null), list("I'm Sure", "Abort")) == "I'm Sure")
 				pad = null
 		if("launch")
 			sending = TRUE

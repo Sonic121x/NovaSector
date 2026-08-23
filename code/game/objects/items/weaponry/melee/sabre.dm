@@ -48,8 +48,8 @@
 
 /obj/item/melee/sabre/proc/bane_message(mob/living/target, mob/living/attacker)
 	target.visible_message(
-		span_warning(LANG("obj.9d90db71", list(src, target))),
-		span_boldwarning(LANG("obj.cf39d318", list(src))),
+		span_warning(LANG("obj.9d90db7137cf39ac", list(src, target))),
+		span_boldwarning(LANG("obj.cf39d318a9d86545", list(src))),
 	)
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "scream")
 
@@ -65,7 +65,7 @@
 	playsound(container.parent, 'sound/items/sheath.ogg', 25, TRUE)
 
 /obj/item/melee/sabre/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.e6bf66ba", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.e6bf66bab6a6f598", list(user, user.p_their(), src, user.p_theyre()))))
 	var/i = 0
 	ADD_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
 	if(iscarbon(user))

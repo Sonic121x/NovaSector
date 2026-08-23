@@ -45,9 +45,9 @@
 
 	if(!is_our_spy(user))
 		return
-	examine_list += span_notice(LANG("datum.32ac4b36", null))
-	examine_list += span_notice(LANG("datum.9a5f7ab0", list(EXAMINE_HINT("Use it in hand"))))
-	examine_list += span_notice(LANG("datum.ff18e074", list(EXAMINE_HINT("Right click"))))
+	examine_list += span_notice(LANG("datum.32ac4b36e4378e3a", null))
+	examine_list += span_notice(LANG("datum.9a5f7ab0d3575f65", list(EXAMINE_HINT("Use it in hand"))))
+	examine_list += span_notice(LANG("datum.ff18e0746c4e4d64", list(EXAMINE_HINT("Right click"))))
 
 /datum/component/spy_uplink/proc/block_pda_bombs(obj/item/source)
 	SIGNAL_HANDLER
@@ -83,10 +83,10 @@
 		if(!bounty.is_stealable(stealing))
 			continue
 		if(bounty.claimed)
-			stealing.balloon_alert(spy, LANG("datum.c8d3a3d1", null))
+			stealing.balloon_alert(spy, LANG("datum.c8d3a3d1b9e84516", null))
 			return TRUE
 		if(DOING_INTERACTION(spy, REF(src)))
-			spy.balloon_alert(spy, LANG("datum.ca13ca70", null)) // Only shown if they're trying to scan two valid targets
+			spy.balloon_alert(spy, LANG("datum.ca13ca70bce035e4", null)) // Only shown if they're trying to scan two valid targets
 			return TRUE
 		SEND_SIGNAL(stealing, COMSIG_MOVABLE_SPY_STEALING, spy, bounty)
 		INVOKE_ASYNC(src, PROC_REF(start_stealing), stealing, spy, bounty)
@@ -97,7 +97,7 @@
 /// Wraps the stealing process in a scanning effect.
 /datum/component/spy_uplink/proc/start_stealing(atom/movable/stealing, mob/living/spy, datum/spy_bounty/bounty)
 	if(!isturf(stealing.loc) && stealing.loc != spy)
-		to_chat(spy, span_warning(LANG("datum.307ebb76", list(stealing))))
+		to_chat(spy, span_warning(LANG("datum.307ebb765982cacd", list(stealing))))
 		return FALSE
 
 	log_combat(spy, stealing, "started stealing", parent, "(spy bounty)")
@@ -135,17 +135,17 @@
 /// If successful, proceeds to complete the bounty.
 /datum/component/spy_uplink/proc/steal_process(atom/movable/stealing, mob/living/spy, datum/spy_bounty/bounty)
 	spy.visible_message(
-		span_warning(LANG("datum.d93da5e4", list(spy, stealing))),
-		span_notice(LANG("datum.be5f19a1", list(stealing))),
+		span_warning(LANG("datum.d93da5e4ad76a5cc", list(spy, stealing))),
+		span_notice(LANG("datum.be5f19a106b7767f", list(stealing))),
 	)
 
 	if(!do_after(spy, bounty.theft_time, stealing, interaction_key = REF(src), cog_icon = null))
 		return FALSE
 	if(bounty.claimed)
-		to_chat(spy, span_warning(LANG("datum.86b2d04f", list(stealing))))
+		to_chat(spy, span_warning(LANG("datum.86b2d04f9f4bb616", list(stealing))))
 		return FALSE
 	if(spy.is_holding(stealing) && !spy.dropItemToGround(stealing))
-		to_chat(spy, span_warning(LANG("datum.432b57b2", list(stealing))))
+		to_chat(spy, span_warning(LANG("datum.432b57b20464f614", list(stealing))))
 		return FALSE
 
 	var/bounty_key = bounty.get_dupe_protection_key(stealing)
@@ -163,7 +163,7 @@
 	if(isitem(reward))
 		spy.put_in_hands(reward)
 
-	to_chat(spy, span_notice(LANG("datum.33e62f45", list(reward, reward.loc == spy ? "" : " <i>Find it at your feet.</i>"))))
+	to_chat(spy, span_notice(LANG("datum.33e62f45caad7a23", list(reward, reward.loc == spy ? "" : " <i>Find it at your feet.</i>"))))
 
 	playsound(parent, 'sound/machines/wewewew.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 

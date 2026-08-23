@@ -86,14 +86,14 @@
 		return
 
 	if(isregalrat(user))
-		. += span_warning(LANG("mob.470878de", null))
+		. += span_warning(LANG("mob.470878de1c4b6633", null))
 		return
 
 	if(ismouse(user))
 		if(user.faction_check_atom(src, exact_match = TRUE))
-			. += span_notice(LANG("mob.1b0e2fc1", list(p_their())))
+			. += span_notice(LANG("mob.1b0e2fc1e58f19fc", list(p_their())))
 		else
-			. += span_warning(LANG("mob.b9c2794d", list(p_them())))
+			. += span_warning(LANG("mob.b9c2794d470c80dc", list(p_them())))
 		return
 
 	. += special_moniker
@@ -109,7 +109,7 @@
 /// Triggers an alert to all ghosts that the rat has become player controlled.
 /mob/living/basic/regal_rat/proc/became_player_controlled()
 	notify_ghosts(
-		LANG("mob.3803618b", list(name, get_area(src))),
+		LANG("mob.3803618b4781c551", list(name, get_area(src))),
 		source = src,
 		header = "Sentient Rat Created",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -199,11 +199,11 @@
 
 	var/mob/living/living_target = the_target
 	if(IS_DEAD_OR_FAKING(living_target))
-		balloon_alert(src, LANG("mob.c037f6bd", null))
+		balloon_alert(src, LANG("mob.c037f6bd27e4fb8f", null))
 		return FALSE
 
 	if(living_target.faction_check_atom(src, exact_match = TRUE))
-		balloon_alert(src, LANG("mob.d5b2481b", null))
+		balloon_alert(src, LANG("mob.d5b2481b0125e2d2", null))
 		return FALSE
 
 	return TRUE
@@ -221,16 +221,16 @@
 		return FALSE
 
 	visible_message(
-		span_warning(LANG("mob.30826eb5", list(src, target))),
-		span_notice(LANG("mob.7c5ebf31", list(target))),
-		span_warning(LANG("mob.3a8da1a7", null)),
+		span_warning(LANG("mob.30826eb5ef23371b", list(src, target))),
+		span_notice(LANG("mob.7c5ebf31479bbfa3", list(target))),
+		span_warning(LANG("mob.3a8da1a7d22319e3", null)),
 	)
 
 	if (!do_after(src, 2 SECONDS, target, interaction_key = REGALRAT_INTERACTION))
 		return TRUE // don't return false here because they tried to lick and the do_after was interrupted, otherwise cancelling the do_after will make them hit the target.
 
 	target.reagents.add_reagent(/datum/reagent/rat_spit, rand(1,3), no_react = TRUE)
-	balloon_alert(src, LANG("mob.ada4fdab", null))
+	balloon_alert(src, LANG("mob.ada4fdab17ab3d3f", null))
 	return TRUE
 
 /**
@@ -243,7 +243,7 @@
  */
 /mob/living/basic/regal_rat/proc/cheese_heal(obj/item/target, amount, message)
 	if(health >= maxHealth)
-		balloon_alert(src, LANG("mob.b6be25c4", null))
+		balloon_alert(src, LANG("mob.b6be25c4899c899e", null))
 		return
 
 	to_chat(src, message)

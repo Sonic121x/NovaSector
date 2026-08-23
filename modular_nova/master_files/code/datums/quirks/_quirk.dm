@@ -22,7 +22,7 @@
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	var/where = human_holder.equip_in_one_of_slots(quirk_item, valid_slots, qdel_on_fail = FALSE, indirect_action = TRUE) || default_location
 	if(notify_player)
-		to_chat(quirk_holder, span_boldnotice(LANG("datum.fcb9bcbc", list(quirk_item, where, flavour_text))))
+		to_chat(quirk_holder, span_boldnotice(LANG("datum.fcb9bcbc39c510d3", list(quirk_item, where, flavour_text))))
 
 /**
  * NovaSector override to add the quirk to a new quirk_holder.

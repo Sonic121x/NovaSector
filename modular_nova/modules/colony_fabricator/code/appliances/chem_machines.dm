@@ -130,7 +130,7 @@
 
 /obj/machinery/chem_dispenser/frontier_appliance/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.7a0899a5", null))
+	. += span_notice(LANG("obj.7a0899a5d4f2d25d", null))
 
 // Deployable item for cargo for the sustenance machine
 

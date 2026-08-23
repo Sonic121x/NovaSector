@@ -13,6 +13,8 @@ const CATALOGS: Record<string, Catalog> = {
 };
 
 const DEFAULT_LOCALE = 'en';
+let catalogRevision = 0;
+
 
 /// 本次会话累积的**负载 overlay**：`英文 → 译文`，由 DM 侧随 ui_data/ui_static_data 下发
 /// （见 tgui.dm 的 `json_data["i18n"]`）。
@@ -97,6 +99,7 @@ export function substituteOverlay(text: string): string | null {
 export function mergeCatalogOverlay(entries: Catalog): void {
   overlay = { ...overlay, ...entries };
   overlayMatcherStale = true;
+  catalogRevision++;
   for (const key of Object.keys(entries)) {
     overlayNormalized[normalizeOverlayKey(key)] = entries[key];
   }
@@ -106,22 +109,21 @@ export function resetCatalogOverlay(): void {
   overlay = {};
   overlayMatcherStale = true;
   overlayNormalized = {};
+  catalogRevision++;
 }
 
-export function translate(
-  locale: string,
-  key: string,
-  args?: Array<string | number>,
+export function getCatalogRevision(): number {
+  return catalogRevision;
+}
+
+export function getCurrentLocale(): string {
+  return store.get(configAtom)?.locale ?? DEFAULT_LOCALE;
+}
+
+function fillArgs(
+  template: string,
+  args?: ReadonlyArray<string | number>,
 ): string {
-  const catalog = CATALOGS[locale] ?? CATALOGS[DEFAULT_LOCALE];
-  // overlay 优先：它是本次负载的运行期真值，静态目录里不可能有。locale==en 时 DM 不下发 overlay。
-  // 归一化索引排在静态目录之后：静态目录的精确命中永远优先于 overlay 的模糊命中。
-  let template =
-    overlay[key] ??
-    catalog?.[key] ??
-    CATALOGS[DEFAULT_LOCALE]?.[key] ??
-    overlayNormalized[normalizeOverlayKey(key)] ??
-    key;
   if (args) {
     for (let i = 0; i < args.length; i++) {
       template = template.split(`{${i}}`).join(String(args[i]));
@@ -130,10 +132,51 @@ export function translate(
   return template;
 }
 
+function staticTemplate(locale: string, key: string): string {
+  const catalog = CATALOGS[locale] ?? CATALOGS[DEFAULT_LOCALE];
+  return (
+    catalog?.[key] ??
+    CATALOGS[DEFAULT_LOCALE]?.[key] ??
+    key
+  );
+}
+
+export function translate(
+  locale: string,
+  key: string,
+  args?: ReadonlyArray<string | number>,
+): string {
+  const catalog = CATALOGS[locale] ?? CATALOGS[DEFAULT_LOCALE];
+  // Overlay belongs to the automatic upstream adapter. Explicit contextual messages use
+  // translateStatic(), so payload values can never shadow authored display messages.
+  const template =
+    overlay[key] ??
+    catalog?.[key] ??
+    CATALOGS[DEFAULT_LOCALE]?.[key] ??
+    overlayNormalized[normalizeOverlayKey(key)] ??
+    key;
+  return fillArgs(template, args);
+}
+
+/** Low-level keyed lookup which excludes runtime payload overlays. */
+export function translateStatic(
+  locale: string,
+  key: string,
+  args?: ReadonlyArray<string | number>,
+): string {
+  return fillArgs(staticTemplate(locale, key), args);
+}
+
 export function translateCurrent(
   key: string,
-  args?: Array<string | number>,
+  args?: ReadonlyArray<string | number>,
 ): string {
-  const locale = store.get(configAtom)?.locale ?? DEFAULT_LOCALE;
-  return translate(locale, key, args);
+  return translate(getCurrentLocale(), key, args);
+}
+
+export function translateStaticCurrent(
+  key: string,
+  args?: ReadonlyArray<string | number>,
+): string {
+  return translateStatic(getCurrentLocale(), key, args);
 }

@@ -39,9 +39,9 @@
 	adjust_charge(25)
 	if(!(flags & SHOCK_SUPPRESS_MESSAGE))
 		stomach_owner.visible_message(
-			span_danger(LANG("obj.cc5e22c0", list(stomach_owner, shock_source, stomach_owner.p_their()))), \
-			span_userdanger(LANG("obj.5d1c3993", null)), \
-			span_hear(LANG("obj.495976fb", null)) \
+			span_danger(LANG("obj.cc5e22c084ef587d", list(stomach_owner, shock_source, stomach_owner.p_their()))), \
+			span_userdanger(LANG("obj.5d1c3993dbf45447", null)), \
+			span_hear(LANG("obj.495976fb42ec6752", null)) \
 		)
 	if (!(flags & SHOCK_NO_HUMAN_ANIM))
 		if(ishuman(stomach_owner))

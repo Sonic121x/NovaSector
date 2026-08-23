@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 /obj/machinery/announcement_system/multitool_act(mob/living/user, obj/item/tool)
 	if(!panel_open || !(machine_stat & EMPED))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.f932ce75", list(src))))
+	to_chat(user, span_notice(LANG("obj.f932ce759bbce750", list(src))))
 	set_machine_stat(machine_stat & ~EMPED)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -95,7 +95,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		return FALSE
 	obj_flags |= EMAGGED
 	act_up()
-	balloon_alert(user, LANG("obj.c2b1f388", null))
+	balloon_alert(user, LANG("obj.c2b1f388c0680972", null))
 	return TRUE
 
 /obj/machinery/announcement_system/ui_interact(mob/user, datum/tgui/ui)
@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if(!usr.can_perform_action(src, ALLOW_SILICON_REACH))
 		return
 	if(machine_stat & EMPED)
-		visible_message(span_warning(LANG("obj.9f1f2989", list(src))), span_hear(LANG("obj.c2e63776", null)))
+		visible_message(span_warning(LANG("obj.9f1f2989394f9812", list(src))), span_hear(LANG("obj.c2e63776d067d9b7", null)))
 		playsound(src.loc, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 		return
 
@@ -162,9 +162,9 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		return
 
 	if (machine_stat & EMPED)
-		to_chat(user, span_warning(LANG("obj.c4eb860a", list(src))))
+		to_chat(user, span_warning(LANG("obj.c4eb860ada823ea5", list(src))))
 		if (!isAI(user))	// Deus Ex Machina goes without multitool in his default complectation.
-			to_chat(user, span_warning(LANG("obj.03f0ba87", list(EXAMINE_HINT("multitool"), EXAMINE_HINT("panel is open")))))
+			to_chat(user, span_warning(LANG("obj.03f0ba8774531eca", list(EXAMINE_HINT("multitool"), EXAMINE_HINT("panel is open")))))
 		return FALSE
 
 /// If AAS can't broadcast message, it shouldn't be picked by randomizer.

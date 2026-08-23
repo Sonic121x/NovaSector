@@ -28,23 +28,23 @@
 /obj/item/pipe_dispenser/bluespace/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stack/sheet/bluespace_crystal))
 		if(BSRPD_CAPACITY_NEW > (BSRPD_CAPACITY_MAX - current_capacity) || ranged_use_cost == 0)
-			to_chat(user, span_warning(LANG("obj.b3f1a1de", list(src))))
+			to_chat(user, span_warning(LANG("obj.b3f1a1de932b62b9", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		tool.use(1)
-		to_chat(user, span_notice(LANG("obj.bebb86e5", list(src))))
+		to_chat(user, span_notice(LANG("obj.bebb86e5953e4d83", list(src))))
 		current_capacity += BSRPD_CAPACITY_NEW
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/assembly/signaler/anomaly/bluespace))
 		if(ranged_use_cost)
-			to_chat(user, span_notice(LANG("obj.3d75f84c", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.3d75f84c5f2dcf2b", list(tool, src))))
 			ranged_use_cost = 0
 			qdel(tool)
 			return ITEM_INTERACT_SUCCESS
 
 		else
-			to_chat(user, span_warning(LANG("obj.3ba6e8c1", list(src))))
+			to_chat(user, span_warning(LANG("obj.3ba6e8c16f6ecf4e", list(src))))
 
 		return ITEM_INTERACT_BLOCKING
 
@@ -53,18 +53,18 @@
 /obj/item/pipe_dispenser/bluespace/examine(mob/user)
 	. = ..()
 	if(user.Adjacent(src))
-		. += LANG("obj.97010a9e", list(ranged_use_cost == 0 ? "infinite" : current_capacity / ranged_use_cost))
+		. += LANG("obj.97010a9ed391afbc", list(ranged_use_cost == 0 ? "infinite" : current_capacity / ranged_use_cost))
 		if(ranged_use_cost != 0)
-			. += LANG("obj.687fe48c", null)
+			. += LANG("obj.687fe48c3ef7c0f0", null)
 
 	else
-		. += LANG("obj.d747a74c", null)
+		. += LANG("obj.d747a74c7f8f2a72", null)
 
-	. += span_notice(LANG("obj.786de939", null))
+	. += span_notice(LANG("obj.786de939e9952848", null))
 
 /obj/item/pipe_dispenser/bluespace/click_alt(mob/user)
 	remote_piping_toggle = !remote_piping_toggle
-	balloon_alert(user, LANG("obj.c65037c1", list(remote_piping_toggle ? "on" : "off")))
+	balloon_alert(user, LANG("obj.c65037c187b24347", list(remote_piping_toggle ? "on" : "off")))
 	playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 	return CLICK_ACTION_SUCCESS
 
@@ -73,7 +73,7 @@
 		return NONE
 
 	if(current_capacity < ranged_use_cost)
-		to_chat(user, span_warning(LANG("obj.cbc50014", list(src))))
+		to_chat(user, span_warning(LANG("obj.cbc500142fc2c258", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!in_use)

@@ -41,21 +41,21 @@
 
 	var/turf/destination_turf = zlevels ? find_safe_turf(zlevels) : get_safe_random_station_turf_equal_weight()
 	if(!destination_turf)
-		source.balloon_alert(user, LANG("datum.0a498e6e", null))
-		to_chat(user, span_warning(LANG("datum.f70ce44a", null)))
+		source.balloon_alert(user, LANG("datum.0a498e6e166d7f15", null))
+		to_chat(user, span_warning(LANG("datum.f70ce44a5377637b", null)))
 		return
 
 	var/turf/user_turf = get_turf(user)
 	var/atom/movable/dragged = user.pulling
 	user.forceMove(destination_turf)
-	user_turf.balloon_alert_to_hearers(LANG("datum.b320c5f9", null))
+	user_turf.balloon_alert_to_hearers(LANG("datum.b320c5f96ec4d858", null))
 	if(dragged)
 		var/turf/dragged_turf = get_turf(dragged)
 		dragged.forceMove(destination_turf)
 		user.start_pulling(dragged, force = TRUE)
-		dragged_turf.balloon_alert_to_hearers(LANG("datum.b320c5f9", null))
+		dragged_turf.balloon_alert_to_hearers(LANG("datum.b320c5f96ec4d858", null))
 
-	to_chat(list(user, dragged), span_notice(LANG("datum.2c46523b", list(get_area_name(destination_turf)))))
+	to_chat(list(user, dragged), span_notice(LANG("datum.2c46523b20bf3ff3", list(get_area_name(destination_turf)))))
 	user.emote("blink")
 	astype(dragged, /mob)?.emote("blink") // shhhhh just let it happen
 

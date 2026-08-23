@@ -248,7 +248,7 @@
 
 	on_fire = TRUE
 	if(!silent)
-		owner.visible_message(span_warning(LANG("datum.8f730aca", list(owner))), span_userdanger(LANG("datum.14b3c7da", null)))
+		owner.visible_message(span_warning(LANG("datum.8f730acab07b6d7d", list(owner))), span_userdanger(LANG("datum.14b3c7da5ef7ff36", null)))
 
 	if(moblight_type)
 		if(moblight)

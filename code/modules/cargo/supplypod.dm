@@ -277,13 +277,13 @@
 	turf/destination = find_safe_turf(extended_safety_checks = TRUE, dense_atoms = FALSE)
 )
 	if(isnull(destination)) //Uuuuh, something went wrong. This is gonna hurt.
-		to_chat(victim, span_hypnophrase(LANG("obj.8f8243ce", null)))
+		to_chat(victim, span_hypnophrase(LANG("obj.8f8243ceac3a1935", null)))
 		flags_1 &= ~PREVENT_CONTENTS_EXPLOSION_1
 		explosionSize = list(0,1,1,1)
 		destination = get_random_station_turf()
 
 	do_sparks(8, FALSE, victim)
-	victim.visible_message(span_notice(LANG("obj.6c06c821", list(victim))))
+	victim.visible_message(span_notice(LANG("obj.6c06c821ac9a9f7b", list(victim))))
 
 	victim.forceMove(src)
 
@@ -296,7 +296,7 @@
 	bluespace = TRUE //Make it so that the pod doesn't stay in centcom forever
 	pod_flags &= ~FIRST_SOUNDS //Make it so we play sounds now
 	if (!effectQuiet && !ispath(style, /datum/pod_style/seethrough))
-		audible_message(span_notice(LANG("obj.3a2ac31a", null)), span_notice(LANG("obj.fa1062ba", null)))
+		audible_message(span_notice(LANG("obj.3a2ac31a6a32299d", null)), span_notice(LANG("obj.fa1062bac6a44e0a", null)))
 	stay_after_drop = FALSE
 	holder.pixel_z = initial(holder.pixel_z)
 	holder.alpha = initial(holder.alpha)

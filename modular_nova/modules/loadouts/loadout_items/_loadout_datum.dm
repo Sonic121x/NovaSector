@@ -157,7 +157,7 @@
 /// Tells the client we couldn't equip their item
 /datum/loadout_item/proc/message_client(client, target, msg)
 	if(client)
-		to_chat(target, span_warning(LANG("datum.1f1ce51e", list(initial(item_path.name), msg))))
+		to_chat(target, span_warning(LANG("datum.1f1ce51ea03b4729", list(initial(item_path.name), msg))))
 	return FALSE
 
 /datum/loadout_item/get_ui_buttons()

@@ -99,8 +99,8 @@
 
 /obj/item/pipe_dispenser/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.68de951f", null))
-	. += span_notice(LANG("obj.19856b61", null))
+	. += span_notice(LANG("obj.68de951f812d8d65", null))
+	. += span_notice(LANG("obj.19856b6115c54228", null))
 
 /obj/item/pipe_dispenser/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
 	. = NONE
@@ -126,7 +126,7 @@
 	ui_interact(user)
 
 /obj/item/pipe_dispenser/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.de303714", list(user, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.de303714191f4a53", list(user, user.p_their(), user.p_theyre()))))
 	playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
 	playsound(get_turf(user), RPD_USE_SOUND, 50, TRUE)
 	return BRUTELOSS
@@ -276,7 +276,7 @@
 			if (ISNOTSTUB(target_dir))
 				p_init_dir = target_dir
 			else
-				to_chat(ui.user, span_warning(LANG("obj.0c06b2dc", list(src))))
+				to_chat(ui.user, span_warning(LANG("obj.0c06b2dcf1e127b4", list(src))))
 				return FALSE
 
 		if("init_reset")
@@ -297,13 +297,13 @@
 
 		// Check if the upgrade's already present
 		if(rpd_disk.upgrade_flags & upgrade_flags)
-			balloon_alert(user, LANG("obj.1519de2c", null))
+			balloon_alert(user, LANG("obj.1519de2c757d5d5c", null))
 			return ITEM_INTERACT_BLOCKING
 
 		// Adds the upgrade from the disk and then deletes the disk
 		upgrade_flags |= rpd_disk.upgrade_flags
 		playsound(loc, 'sound/machines/click.ogg', 50, vary = TRUE)
-		balloon_alert(user, LANG("obj.aabb4585", null))
+		balloon_alert(user, LANG("obj.aabb4585e5f16304", null))
 		qdel(rpd_disk)
 		return ITEM_INTERACT_SUCCESS
 
@@ -345,16 +345,16 @@
 		var/obj/machinery/atmospherics/pipe/smart/target_smart_pipe = attack_target
 		if(istype(target_smart_pipe))
 			if(target_smart_pipe.dir == ALL_CARDINALS)
-				balloon_alert(user, LANG("obj.1c240eb1", null))
+				balloon_alert(user, LANG("obj.1c240eb1777b1411", null))
 				return ITEM_INTERACT_FAILURE
 			var/old_init_dir = target_smart_pipe.get_init_directions()
 			if(old_init_dir == p_init_dir)
-				balloon_alert(user, LANG("obj.0aeb8a0a", null))
+				balloon_alert(user, LANG("obj.0aeb8a0af367d117", null))
 				return ITEM_INTERACT_FAILURE
 			// Check for differences in unconnected directions
 			var/target_differences = (p_init_dir ^ old_init_dir) & ~target_smart_pipe.connections
 			if(!target_differences)
-				balloon_alert(user, LANG("obj.c6534f6b", null))
+				balloon_alert(user, LANG("obj.c6534f6b47d9d720", null))
 				return ITEM_INTERACT_FAILURE
 
 			playsound(get_turf(src), SFX_TOOL_SWITCH, 20, TRUE)
@@ -364,7 +364,7 @@
 
 			// Double check to make sure that nothing has changed. If anything we were about to change was connected during do_after, abort
 			if(target_differences & target_smart_pipe.connections)
-				balloon_alert(user, LANG("obj.a6e52783", null))
+				balloon_alert(user, LANG("obj.a6e527839386d607", null))
 				return ITEM_INTERACT_FAILURE
 			// Grab the current initializable directions, which may differ from old_init_dir if someone else was working on the same pipe at the same time
 			var/current_init_dir = target_smart_pipe.get_init_directions()
@@ -373,7 +373,7 @@
 			var/new_init_dir = (current_init_dir & ~target_differences) | (p_init_dir & target_differences)
 			// Don't make a smart pipe with only one connection
 			if(ISSTUB(new_init_dir))
-				balloon_alert(user, LANG("obj.0181f57b", null))
+				balloon_alert(user, LANG("obj.0181f57b647c5913", null))
 				return ITEM_INTERACT_FAILURE
 			target_smart_pipe.set_init_directions(new_init_dir)
 			// We're now reconfigured.
@@ -399,7 +399,7 @@
 				SSair.add_to_rebuild_queue(target_smart_pipe)
 			// Finally, update our internal state - update_pipe_icon also updates dir and connections
 			target_smart_pipe.update_pipe_icon()
-			user.visible_message(span_notice(LANG("obj.5580137b", list(user, target_smart_pipe))), span_notice(LANG("obj.3d5dcbde", list(target_smart_pipe))))
+			user.visible_message(span_notice(LANG("obj.5580137b951ce664", list(user, target_smart_pipe))), span_notice(LANG("obj.3d5dcbdea907530f", list(target_smart_pipe))))
 			return ITEM_INTERACT_SUCCESS
 
 		// If this is an unplaced smart pipe, try to reprogram it
@@ -420,7 +420,7 @@
 					return ITEM_INTERACT_FAILURE
 				attack_target = get_turf(attack_target)
 				if(isclosedturf(attack_target))
-					balloon_alert(user, LANG("obj.93c79d91", null))
+					balloon_alert(user, LANG("obj.93c79d910488623c", null))
 					return ITEM_INTERACT_FAILURE
 				playsound(get_turf(src), SFX_TOOL_SWITCH, 20, TRUE)
 
@@ -430,7 +430,7 @@
 				var/obj/structure/disposalconstruct/new_disposals_segment = new (attack_target, queued_pipe_type, queued_pipe_dir, queued_pipe_flipped)
 
 				if(!new_disposals_segment.can_place())
-					balloon_alert(user, LANG("obj.0289e33d", null))
+					balloon_alert(user, LANG("obj.0289e33dac4a2405", null))
 					qdel(new_disposals_segment)
 					return ITEM_INTERACT_FAILURE
 
@@ -447,12 +447,12 @@
 					return ITEM_INTERACT_FAILURE
 				attack_target = get_turf(attack_target)
 				if(isclosedturf(attack_target))
-					balloon_alert(user, LANG("obj.7dd60dd8", null))
+					balloon_alert(user, LANG("obj.7dd60dd859724567", null))
 					return ITEM_INTERACT_FAILURE
 
 				var/turf/target_turf = get_turf(attack_target)
 				if(target_turf.is_blocked_turf(exclude_mobs = TRUE))
-					balloon_alert(user, LANG("obj.7dd60dd8", null))
+					balloon_alert(user, LANG("obj.7dd60dd859724567", null))
 					return ITEM_INTERACT_FAILURE
 
 				playsound(get_turf(src), SFX_TOOL_SWITCH, 20, TRUE)
@@ -488,7 +488,7 @@
 	if(target.pipe_color && target.piping_layer)
 		paint_color = GLOB.pipe_color_name[target.pipe_color]
 		pipe_layers = PIPE_LAYER(target.piping_layer)
-		balloon_alert(user, LANG("obj.066f1497", null))
+		balloon_alert(user, LANG("obj.066f1497dc632042", null))
 		return ITEM_INTERACT_SUCCESS
 
 /**
@@ -540,7 +540,7 @@
 		if(!do_after(user, atmos_build_speed, target = atom_to_target))
 			return FALSE
 		if(!recipe.all_layers && (layer_to_build == 1 || layer_to_build == MAX_PIPE_LAYERS))
-			balloon_alert(user, LANG("obj.f2f68727", list(layer_to_build)))
+			balloon_alert(user, LANG("obj.f2f68727fab9b1e5", list(layer_to_build)))
 			if(multi_layer)
 				continue
 			return FALSE
@@ -578,7 +578,7 @@
 /obj/item/pipe_dispenser/proc/mouse_wheeled(mob/source_mob, atom/A, delta_x, delta_y, params)
 	SIGNAL_HANDLER
 	if(multi_layer)
-		balloon_alert(source_mob, LANG("obj.8210df88", null))
+		balloon_alert(source_mob, LANG("obj.8210df888db391fa", null))
 		return
 	if(INCAPACITATED_IGNORING(source_mob, INCAPABLE_RESTRAINTS|INCAPABLE_STASIS))
 		return
@@ -592,7 +592,7 @@
 	else //mice with side-scrolling wheels are apparently a thing and fuck this up
 		return
 	SStgui.update_uis(src)
-	balloon_alert(source_mob, LANG("obj.30eac174", list(get_active_pipe_layers()[1])))
+	balloon_alert(source_mob, LANG("obj.30eac174ed73d69b", list(get_active_pipe_layers()[1])))
 
 
 /obj/item/rpd_upgrade

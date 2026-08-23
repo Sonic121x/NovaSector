@@ -29,13 +29,13 @@
 	var/stealthed = has_status_effect(/datum/status_effect/guardian_stealth)
 	var/datum/action/cooldown/guardian/toggle_mode/assassin/stealth_ability = locate() in actions
 	if (stealthed)
-		to_chat(src, span_bolddanger(LANG("mob.c1aa80af", null)))
+		to_chat(src, span_bolddanger(LANG("mob.c1aa80afd69261f1", null)))
 		remove_status_effect(/datum/status_effect/guardian_stealth)
 		if(stealth_ability)
 			stealth_ability.build_all_button_icons()
 		return
 	if (!is_deployed())
-		to_chat(src, span_bolddanger(LANG("mob.a94d04ee", null)))
+		to_chat(src, span_bolddanger(LANG("mob.a94d04ee9482481d", null)))
 		return
 	apply_status_effect(/datum/status_effect/guardian_stealth)
 	if(stealth_ability)
@@ -44,7 +44,7 @@
 /// Called when we are removed from stealth involuntarily
 /mob/living/basic/guardian/assassin/proc/on_forced_unstealth(mob/living/source)
 	SIGNAL_HANDLER
-	visible_message(span_danger(LANG("mob.9e57f4c3", list(src))))
+	visible_message(span_danger(LANG("mob.9e57f4c368f43bf0", list(src))))
 	COOLDOWN_START(src, manifest_cooldown, 4 SECONDS)
 	var/datum/action/cooldown/guardian/toggle_mode/assassin/stealth_ability = locate() in actions
 	if(stealth_ability)
@@ -68,7 +68,7 @@
 		basic_owner.armour_penetration = 100
 		basic_owner.wound_bonus = stealth_wound_bonus
 		basic_owner.obj_damage = 0
-	to_chat(owner, span_bolddanger(LANG("datum.0bac8e00", null)))
+	to_chat(owner, span_bolddanger(LANG("datum.0bac8e007164ce5f", null)))
 	animate(owner, alpha = 15, time = 0.5 SECONDS)
 
 	RegisterSignals(owner, list(COMSIG_GUARDIAN_RECALLED, COMSIG_HOSTILE_POST_ATTACKINGTARGET), PROC_REF(forced_exit))

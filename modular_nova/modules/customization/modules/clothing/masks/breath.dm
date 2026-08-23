@@ -57,17 +57,17 @@
 			if (0)
 				flags_inv = HIDEHAIR
 				icon_state = initial(icon_state) + "_open"
-				to_chat(user, span_notice(LANG("obj.daf7a4c3", null)))
+				to_chat(user, span_notice(LANG("obj.daf7a4c364196f86", null)))
 				open = 1
 			if (1)
 				flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 				icon_state = initial(icon_state) + "_mouth"
-				to_chat(user, span_notice(LANG("obj.18093b32", null)))
+				to_chat(user, span_notice(LANG("obj.18093b32f0ade7d3", null)))
 				open = 2
 			else
 				flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 				icon_state = initial(icon_state)
-				to_chat(user, span_notice(LANG("obj.bc348054", null)))
+				to_chat(user, span_notice(LANG("obj.bc348054e48f4c44", null)))
 				open = 0
 		user.update_clothing(slot_flags)
 

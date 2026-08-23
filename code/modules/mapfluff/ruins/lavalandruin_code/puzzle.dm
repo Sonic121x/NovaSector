@@ -288,7 +288,7 @@
 
 /obj/effect/sliding_puzzle/prison/Destroy()
 	if(prisoner)
-		to_chat(prisoner,span_userdanger(LANG("obj.f7b19df1", null)))
+		to_chat(prisoner,span_userdanger(LANG("obj.f7b19df1c59b9c30", null)))
 		prisoner.investigate_log("has died from their prison puzzle being destroyed.", INVESTIGATE_DEATHS)
 		prisoner.death()
 		qdel(prisoner)
@@ -330,13 +330,13 @@
 	if(istype(carbon_victim) && (carbon_victim.handcuffed || IS_UNCONSCIOUS_OR_CRIT(carbon_victim)))
 		user.do_attack_animation(carbon_victim)
 		if(!puzzle_imprison(carbon_victim))
-			to_chat(user, span_warning(LANG("obj.c98a68e3", list(src))))
+			to_chat(user, span_warning(LANG("obj.c98a68e35c85e1a9", list(src))))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_warning(LANG("obj.26239c21", list(carbon_victim))))
+		to_chat(user, span_warning(LANG("obj.26239c21e242034c", list(carbon_victim))))
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_notice(LANG("obj.ae6c8c0c", list(src))))
+	to_chat(user, span_notice(LANG("obj.ae6c8c0c431c0847", list(src))))
 	return ITEM_INTERACT_BLOCKING
 
 /proc/puzzle_imprison(mob/living/prisoner)
@@ -349,7 +349,7 @@
 	//First grab the prisoner and move them temporarily into the generator so they won't get thrown around.
 	ADD_TRAIT(prisoner, TRAIT_NO_TRANSFORM, cube.element_type)
 	prisoner.forceMove(cube)
-	to_chat(prisoner,span_userdanger(LANG("_root.bee2fca4", null)))
+	to_chat(prisoner,span_userdanger(LANG("_root.bee2fca4b4a9ad52", null)))
 
 	//Clear the area from objects (and cube user)
 	var/list/things_to_throw = list()

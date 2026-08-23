@@ -45,12 +45,12 @@
 	RegisterSignal(user, COMSIG_LIVING_SUICIDE_ACT, PROC_REF(call_suicide))
 
 	user.gain_trauma(paranoia, TRAUMA_RESILIENCE_MAGIC)
-	to_chat(user, span_warning(LANG("obj.ed5d5eb4", null)))
+	to_chat(user, span_warning(LANG("obj.ed5d5eb4b2ca9fa2", null)))
 
 /obj/item/clothing/head/costume/foilhat/mouse_drop_dragged(atom/over_object, mob/user)
 	//God Im sorry
 	if(!warped && user.get_item_by_slot(ITEM_SLOT_HEAD) == src)
-		to_chat(user, span_userdanger(LANG("obj.edf807fb", null)))
+		to_chat(user, span_userdanger(LANG("obj.edf807fb0ff63a12", null)))
 		return
 	return ..()
 
@@ -62,11 +62,11 @@
 
 /// When the foilhat is drained an anti-magic charge.
 /obj/item/clothing/head/costume/foilhat/proc/drain_antimagic(mob/user)
-	to_chat(user, span_warning(LANG("obj.d08593ec", list(src))))
+	to_chat(user, span_warning(LANG("obj.d08593ec3511de42", list(src))))
 
 /obj/item/clothing/head/costume/foilhat/proc/warp_up()
 	name = "scorched tinfoil hat"
-	desc = LANG("obj.57315a13", null)
+	desc = LANG("obj.57315a13c92a8f1e", null)
 	warped = TRUE
 	clothing_flags &= ~ANTI_TINFOIL_MANEUVER
 	if(!isliving(loc) || !paranoia)
@@ -77,11 +77,11 @@
 		return
 	QDEL_NULL(paranoia)
 	if(!IS_UNCONSCIOUS(target))
-		to_chat(target, span_warning(LANG("obj.9c2e15af", null)))
+		to_chat(target, span_warning(LANG("obj.9c2e15afc3e3090e", null)))
 
 /obj/item/clothing/head/costume/foilhat/attack_hand(mob/user, list/modifiers)
 	if(!warped && user.get_item_by_slot(ITEM_SLOT_HEAD) == src)
-		to_chat(user, span_userdanger(LANG("obj.edf807fb", null)))
+		to_chat(user, span_userdanger(LANG("obj.edf807fb0ff63a12", null)))
 		return
 	return ..()
 
@@ -99,7 +99,7 @@
 	return OXYLOSS
 
 /obj/item/clothing/head/costume/foilhat/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.d2001b0f", list(user, user.p_their(), capitalize(user.p_they()), user.p_have()))))
+	user.visible_message(span_suicide(LANG("obj.d2001b0f53718779", list(user, user.p_their(), capitalize(user.p_they()), user.p_have()))))
 	var/static/list/conspiracy_line = list(
 		";THEY'RE HIDING CAMERAS IN THE CEILINGS! THEY WITNESS EVERYTHING WE DO!!",
 		";HOW CAN I LIVE IN A WORLD WHERE MY FATE AND EXISTENCE IS DECIDED BY A GROUP OF INDIVIDUALS?!!",

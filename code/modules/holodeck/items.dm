@@ -67,7 +67,7 @@
 		M.apply_damage(10, STAMINA)
 		if(prob(5))
 			M.Paralyze(60)
-			visible_message(span_danger(LANG("obj.4673b48c", list(M, M.p_their()))))
+			visible_message(span_danger(LANG("obj.4673b48c411a5e14", list(M, M.p_their()))))
 
 //
 // Machines
@@ -87,22 +87,22 @@
 	power_channel = AREA_USAGE_ENVIRON
 
 /obj/machinery/readybutton/attack_ai(mob/user)
-	to_chat(user, span_warning(LANG("obj.31c1413b", null)))
+	to_chat(user, span_warning(LANG("obj.31c1413b02228ad6", null)))
 	return
 
 /obj/machinery/readybutton/attack_paw(mob/user, list/modifiers)
-	to_chat(user, span_warning(LANG("obj.7748efda", null)))
+	to_chat(user, span_warning(LANG("obj.7748efda7de57b36", null)))
 	return
 
 /obj/machinery/readybutton/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
-	to_chat(user, span_warning(LANG("obj.1dbdcc98", null)))
+	to_chat(user, span_warning(LANG("obj.1dbdcc98a8bbfbc7", null)))
 
 /obj/machinery/readybutton/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, span_warning(LANG("obj.fe6ea03f", null)))
+		to_chat(user, span_warning(LANG("obj.fe6ea03faa3a3ae5", null)))
 		return
 
 	currentarea = get_area(src)
@@ -111,7 +111,7 @@
 		return
 
 	if(eventstarted)
-		to_chat(usr, span_warning(LANG("obj.e4350606", null)))
+		to_chat(usr, span_warning(LANG("obj.e43506068ec7d452", null)))
 		return
 
 	ready = !ready
@@ -148,7 +148,7 @@
 					qdel(barrier)
 
 			for(var/mob/contestant in area_turf)
-				to_chat(contestant, span_userdanger(LANG("obj.935e8525", null)))
+				to_chat(contestant, span_userdanger(LANG("obj.935e8525818a396f", null)))
 
 /obj/machinery/conveyor/holodeck
 

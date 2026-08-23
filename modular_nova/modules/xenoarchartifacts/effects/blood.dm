@@ -24,7 +24,7 @@
 		return
 	if(issynthetic(user))
 		return
-	to_chat(user, span_notice(LANG("datum.54f1e017", null)))
+	to_chat(user, span_notice(LANG("datum.54f1e0172300fccc", null)))
 	regen_target(user, 15)
 
 /datum/artifact_effect/blood_regen/do_effect_aura(seconds_per_tick)
@@ -35,7 +35,7 @@
 	for(var/mob/living/receiver in range(range, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_notice(LANG("datum.2be7b733", null)))
+		to_chat(receiver, span_notice(LANG("datum.2be7b73365dbcb2a", null)))
 		regen_target(receiver, 5 * seconds_per_tick)
 
 /datum/artifact_effect/blood_regen/do_effect_pulse(seconds_per_tick)
@@ -46,7 +46,7 @@
 	for(var/mob/living/receiver in range(range, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_notice(LANG("datum.2be7b733", null)))
+		to_chat(receiver, span_notice(LANG("datum.2be7b73365dbcb2a", null)))
 		regen_target(receiver, 25 * seconds_per_tick)
 
 /datum/artifact_effect/blood_regen/do_effect_destroy()
@@ -54,7 +54,7 @@
 	for(var/mob/living/receiver in range(7, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_notice(LANG("datum.2be7b733", null)))
+		to_chat(receiver, span_notice(LANG("datum.2be7b73365dbcb2a", null)))
 		regen_target(receiver, 100)
 
 /datum/artifact_effect/blood_drain
@@ -81,7 +81,7 @@
 		return
 	if(issynthetic(user))
 		return
-	to_chat(user, span_warning(LANG("datum.4724256d", null)))
+	to_chat(user, span_warning(LANG("datum.4724256d5d2be241", null)))
 	suck(user, 50)
 	return TRUE
 
@@ -93,7 +93,7 @@
 	for(var/mob/living/receiver in range(range, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_warning(LANG("datum.52c80af3", null)))
+		to_chat(receiver, span_warning(LANG("datum.52c80af3648d7370", null)))
 		suck(receiver, 5 * seconds_per_tick)
 
 /datum/artifact_effect/blood_drain/do_effect_pulse(seconds_per_tick)
@@ -115,5 +115,5 @@
 	for(var/mob/living/receiver in range(7, curr_turf))
 		if(issynthetic(receiver))
 			continue
-		to_chat(receiver, span_warning(LANG("datum.35f8411a", null)))
+		to_chat(receiver, span_warning(LANG("datum.35f8411a4300d44c", null)))
 		suck(receiver, 75)

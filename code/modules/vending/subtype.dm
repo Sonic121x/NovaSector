@@ -39,13 +39,13 @@
 		return
 
 	if(!user.client?.holder?.check_for_rights(R_SERVER|R_DEBUG))
-		speak(LANG("obj.b790a393", null))
+		speak(LANG("obj.b790a393badfccee", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-	var/type_to_vend_now = tgui_input_text(user, LANG("obj.844c89cc", null), LANG("obj.cc819309", null), "/obj/item/toy/plush")
+	var/type_to_vend_now = tgui_input_text(user, LANG("obj.844c89cce94b997b", null), LANG("obj.cc819309470fad82", null), "/obj/item/toy/plush")
 	type_to_vend_now = text2path(type_to_vend_now)
 	if(!ispath(type_to_vend_now))
-		speak(LANG("obj.fe935936", null))
+		speak(LANG("obj.fe935936be7e55f6", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	type_to_vend = type_to_vend_now

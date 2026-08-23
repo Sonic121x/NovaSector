@@ -31,7 +31,7 @@
 
 /datum/surgery_operation/limb/prosthetic_replacement/all_required_strings()
 	. = ..()
-	. += LANG("datum.0f48e50a", null)
+	. += LANG("datum.0f48e50ab296edda", null)
 
 /datum/surgery_operation/limb/prosthetic_replacement/any_required_strings()
 	return list("arms may receive any suitable item in lieu of a replacement limb") + ..()

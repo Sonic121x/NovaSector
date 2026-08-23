@@ -77,7 +77,7 @@
  */
 /datum/mold_type/proc/bulb_discharge(obj/structure/mold/structure/bulb/bulb)
 	SHOULD_CALL_PARENT(TRUE) //  don't skip the message brah...
-	bulb.visible_message(span_warning(LANG("datum.b53918bd", list(bulb))))
+	bulb.visible_message(span_warning(LANG("datum.b53918bda3ed40c1", list(bulb))))
 	return
 
 /**
@@ -105,7 +105,7 @@
  * * amount_of_reagent - how much of the reagent to add to the reagents datum. Defaults to 30.
  */
 /datum/mold_type/proc/spew_foam(obj/structure/mold/structure/source, range, reagent_capacity, reagent_to_add, amount_of_reagent = 30)
-	source.visible_message(span_warning(LANG("datum.48ad5552", list(source))))
+	source.visible_message(span_warning(LANG("datum.48ad55523a1cae26", list(source))))
 	var/datum/reagents/spewed_reagents = new /datum/reagents(reagent_capacity)
 	spewed_reagents.my_atom = source
 	spewed_reagents.add_reagent(reagent_to_add, amount_of_reagent)
@@ -129,7 +129,7 @@
 	resistance_flags = FIRE_PROOF
 
 /datum/mold_type/fire/core_defense(obj/structure/mold/structure/core/core)
-	core.visible_message(span_warning(LANG("datum.caf626b6", list(core))))
+	core.visible_message(span_warning(LANG("datum.caf626b644ca15b0", list(core))))
 	spawn_atmos(core)
 
 /datum/mold_type/fire/bulb_discharge(obj/structure/mold/structure/bulb/bulb)
@@ -158,7 +158,7 @@
 	preferred_atmos_conditions = "TEMP=312"
 
 /datum/mold_type/disease/core_defense(obj/structure/mold/structure/core/core)
-	core.visible_message(span_warning(LANG("datum.26458cd6", list(core))))
+	core.visible_message(span_warning(LANG("datum.26458cd6370da85c", list(core))))
 	fungal_puff(core, DISEASE_PUFF_RANGE_CORE)
 
 /datum/mold_type/disease/bulb_discharge(obj/structure/mold/structure/bulb/bulb)
@@ -195,7 +195,7 @@
 	preferred_atmos_conditions = "n2=30;TEMP=100"
 
 /datum/mold_type/emp/core_defense(obj/structure/mold/structure/core/core)
-	core.visible_message(span_warning(LANG("datum.e3847b54", list(core))))
+	core.visible_message(span_warning(LANG("datum.e3847b54ee8814e2", list(core))))
 	electrical_discharge(
 		source = core,
 		heavy_emp_range = ELECTRICAL_DISCHARGE_HEAVY_RANGE,
@@ -295,7 +295,7 @@
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 
 /datum/mold_type/radioactive/core_defense(obj/structure/mold/structure/core/core)
-	core.visible_message(span_warning(LANG("datum.79f3c223", list(core))))
+	core.visible_message(span_warning(LANG("datum.79f3c223194d8fff", list(core))))
 	irradiate(core, threshold = RAD_IRRADIATE_THRESHOLD_CORE)
 	spew_foam(
 		core,

@@ -21,12 +21,12 @@
 	if(L)
 		START_PROCESSING(SSdcs, src)
 		last_breath = world.time
-		to_chat(C, span_notice(LANG("datum.619bc66d", null)))
+		to_chat(C, span_notice(LANG("datum.619bc66d0b406db3", null)))
 
 /datum/component/manual_breathing/Destroy(force)
 	L = null
 	STOP_PROCESSING(SSdcs, src)
-	to_chat(parent, span_notice(LANG("datum.5f73670a", null)))
+	to_chat(parent, span_notice(LANG("datum.5f73670ae164ecd3", null)))
 	return ..()
 
 /datum/component/manual_breathing/RegisterWithParent()
@@ -59,14 +59,14 @@
 	var/next_text = initial(next_breath_type.key)
 	if(world.time > (last_breath + check_every + grace_period))
 		if(!warn_dying)
-			to_chat(C, span_userdanger(LANG("datum.1acf8651", list(next_text))))
+			to_chat(C, span_userdanger(LANG("datum.1acf865168a94332", list(next_text))))
 			warn_dying = TRUE
 
 		L.apply_organ_damage(damage_rate)
 		C.losebreath += 0.8
 	else if(world.time > (last_breath + check_every))
 		if(!warn_grace)
-			to_chat(C, span_danger(LANG("datum.f372ea4a", list(next_text))))
+			to_chat(C, span_danger(LANG("datum.f372ea4acbbb91f0", list(next_text))))
 			warn_grace = TRUE
 
 /datum/component/manual_breathing/proc/check_added_organ(mob/who_cares, obj/item/organ/O)

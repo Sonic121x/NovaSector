@@ -36,7 +36,7 @@
 	if(!tool.get_sharpness())
 		return NONE
 
-	to_chat(user, span_notice(LANG("obj.9e3ed699", list(src))))
+	to_chat(user, span_notice(LANG("obj.9e3ed699a61048b6", list(src))))
 	new carved_type(user.loc)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

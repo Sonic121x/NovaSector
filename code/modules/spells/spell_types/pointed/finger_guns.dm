@@ -35,11 +35,11 @@
 		var/mob/living/carbon/human/human_invoker = invoker
 		if(human_invoker.incapacitated)
 			if(feedback)
-				to_chat(human_invoker, span_warning(LANG("datum.3fad9b41", null)))
+				to_chat(human_invoker, span_warning(LANG("datum.3fad9b4171f50b1f", null)))
 			return FALSE
 		if(human_invoker.get_active_held_item())
 			if(feedback)
-				to_chat(human_invoker, span_warning(LANG("datum.ce74923c", null)))
+				to_chat(human_invoker, span_warning(LANG("datum.ce74923ce89ca6b5", null)))
 			return FALSE
 
 	return ..()

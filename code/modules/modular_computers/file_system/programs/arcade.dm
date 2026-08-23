@@ -164,17 +164,17 @@
 			return TRUE
 		if("Dispense_Tickets")
 			if(computer.stored_paper <= 0)
-				to_chat(gamer, span_notice(LANG("datum.8f26e725", null)))
+				to_chat(gamer, span_notice(LANG("datum.8f26e725be4eae5b", null)))
 				return
 			else
-				computer.visible_message(span_notice(LANG("datum.a6e88e99", list(computer))))
+				computer.visible_message(span_notice(LANG("datum.a6e88e999e6e1197", list(computer))))
 				if(ticket_count >= 1)
 					new /obj/item/stack/arcadeticket((get_turf(computer)))
-					to_chat(gamer, span_notice(LANG("datum.a21fb8ef", list(computer))))
+					to_chat(gamer, span_notice(LANG("datum.a21fb8ef5c9fa7b0", list(computer))))
 					ticket_count -= 1
 					computer.stored_paper -= 1
 				else
-					to_chat(gamer, span_notice(LANG("datum.445c950a", null)))
+					to_chat(gamer, span_notice(LANG("datum.445c950ae852622a", null)))
 				return TRUE
 		if("Start_Game")
 			game_active = TRUE

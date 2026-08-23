@@ -6,18 +6,18 @@ ADMIN_VERB(run_weather, R_ADMIN|R_FUN, "运行天气", "Triggers specific weathe
 		for(var/datum/weather/weather_type as anything in valid_subtypesof(/datum/weather))
 			weather_choices[initial(weather_type.type)] = weather_type
 
-	var/datum/weather/weather_choice = tgui_input_list(user, LANG("datum.ab4c79f4", null), LANG("datum.858e003b", null), weather_choices)
+	var/datum/weather/weather_choice = tgui_input_list(user, LANG("datum.ab4c79f4c08b2cd9", null), LANG("datum.858e003b961dc1c0", null), weather_choices)
 	if(!weather_choice)
 		return
 	weather_choice = weather_choices[weather_choice]
 
 	var/turf/current_turf = get_turf(user.mob)
-	var/z_level = tgui_input_number(user, LANG("datum.07c3ce55", null), LANG("datum.3321c9cb", null), min_value = 1, max_value = world.maxz, default = current_turf?.z)
+	var/z_level = tgui_input_number(user, LANG("datum.07c3ce55c35540cd", null), LANG("datum.3321c9cb5a642e7f", null), min_value = 1, max_value = world.maxz, default = current_turf?.z)
 	if(!isnum(z_level))
 		return
 
 	var/static/list/custom_options = list("Default", "Custom", "Cancel")
-	var/custom_choice = tgui_alert(user, LANG("datum.cd6b6119", null), LANG("datum.f9bf3c1d", null), custom_options)
+	var/custom_choice = tgui_alert(user, LANG("datum.cd6b61197e332b06", null), LANG("datum.f9bf3c1d0513dcb5", null), custom_options)
 	switch(custom_choice)
 		if("Default")
 			SSweather.run_weather(weather_choice, z_level) // default settings
@@ -33,7 +33,7 @@ ADMIN_VERB(run_weather, R_ADMIN|R_FUN, "运行天气", "Triggers specific weathe
 		area_choices[area_instance.type] ||= list()
 		area_choices[area_instance.type] |= area_instance
 
-	var/area/area_choice = tgui_input_list(user, LANG("datum.f13674c6", null), LANG("datum.f99c2e5c", null), area_choices)
+	var/area/area_choice = tgui_input_list(user, LANG("datum.f13674c6ef9e4f29", null), LANG("datum.f99c2e5cb3ef2d68", null), area_choices)
 	if(!area_choice)
 		return
 	area_choice = area_choices[area_choice]
@@ -48,7 +48,7 @@ ADMIN_VERB(run_weather, R_ADMIN|R_FUN, "运行天气", "Triggers specific weathe
 	var/datum/reagent/reagent_choice
 	if((weather_bitflags & (WEATHER_TURFS|WEATHER_MOBS)))
 		var/static/list/reagent_options = list("Yes", "No", "Cancel")
-		var/reagent_option = tgui_alert(user, LANG("datum.cb1417b5", null), LANG("datum.39b4eb7d", null), reagent_options)
+		var/reagent_option = tgui_alert(user, LANG("datum.cb1417b55e590fcc", null), LANG("datum.39b4eb7d0b9139ec", null), reagent_options)
 		switch(reagent_option)
 			if("Cancel")
 				return
@@ -58,7 +58,7 @@ ADMIN_VERB(run_weather, R_ADMIN|R_FUN, "运行天气", "Triggers specific weathe
 					for(var/datum/reagent/reagent_type as anything in subtypesof(/datum/reagent))
 						reagent_choices[initial(reagent_type.type)] = reagent_type
 
-				reagent_choice = tgui_input_list(user, LANG("datum.a7588a05", null), LANG("datum.3214d219", null), reagent_choices)
+				reagent_choice = tgui_input_list(user, LANG("datum.a7588a0580713ad0", null), LANG("datum.3214d219b620eac7", null), reagent_choices)
 				if(!reagent_choice)
 					return
 				reagent_choice = reagent_choices[reagent_choice]
@@ -67,7 +67,7 @@ ADMIN_VERB(run_weather, R_ADMIN|R_FUN, "运行天气", "Triggers specific weathe
 	if(weather_bitflags & (WEATHER_THUNDER))
 		var/static/list/thunder_choices = GLOB.thunder_chance_options
 
-		var/thunder_choice = tgui_input_list(user, LANG("datum.220554c0", null), LANG("datum.e05764b0", null), thunder_choices)
+		var/thunder_choice = tgui_input_list(user, LANG("datum.220554c0261d2b31", null), LANG("datum.e05764b0c5658c20", null), thunder_choices)
 		if(!thunder_choice)
 			return
 		thunder_value = GLOB.thunder_chance_options[thunder_choice]

@@ -24,6 +24,12 @@ describe('localizeProps', () => {
     expect(props.content).toBe(SAMPLE_ZH);
   });
 
+  test('legacy JSX adapter keeps unknown text as its English fallback', () => {
+    const source = 'Zzqv unknown upstream message';
+    const props = localizeProps({ content: source }) as Record<string, string>;
+    expect(props.content).toBe(source);
+  });
+
   test('confirmContent 也算可翻 prop（policy.json 单一来源）', () => {
     const props = localizeProps({ confirmContent: SAMPLE }) as Record<
       string,
@@ -146,6 +152,34 @@ describe('localizeProps', () => {
       title: 'Reading: Zzyzx Manifesto',
     }) as Record<string, string>;
     expect(props.title).toBe(zh.replace('{0}', 'Zzyzx Manifesto'));
+  });
+
+  test('prop 模板缓存随 locale 切换失效', () => {
+    const source = 'Reading: Zzyzx Manifesto';
+    store.set(configAtom, { locale: 'en' } as Config);
+    expect(
+      (localizeProps({ title: source }) as Record<string, string>).title,
+    ).toBe(source);
+
+    store.set(configAtom, { locale: 'zh-Hans' } as Config);
+    const zh = (zhHans as Record<string, string>)['Reading: {0}'];
+    expect(
+      (localizeProps({ title: source }) as Record<string, string>).title,
+    ).toBe(zh.replace('{0}', 'Zzyzx Manifesto'));
+  });
+
+  test('prop 模板缓存随 overlay 生命周期失效', () => {
+    const source = 'Reading: Zzyzx Manifesto';
+    mergeCatalogOverlay({ 'Reading: {0}': '负载模板：{0}' });
+    expect(
+      (localizeProps({ title: source }) as Record<string, string>).title,
+    ).toBe('负载模板：Zzyzx Manifesto');
+
+    resetCatalogOverlay();
+    const zh = (zhHans as Record<string, string>)['Reading: {0}'];
+    expect(
+      (localizeProps({ title: source }) as Record<string, string>).title,
+    ).toBe(zh.replace('{0}', 'Zzyzx Manifesto'));
   });
 
   // 逆匹配是整串匹配，形状对不上就不该动（否则等于子串替换、会从句子中间开火）。

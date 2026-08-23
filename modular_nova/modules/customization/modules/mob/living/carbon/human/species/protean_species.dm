@@ -136,8 +136,8 @@
 /datum/species/protean/proc/assimilate_organ(mob/living/source, obj/item/organ/organ, special)
 	qdel(organ)
 	if(!special)
-		to_chat(source, span_notice(LANG("datum.d4b6b921", null)))
-		source.balloon_alert_to_viewers(LANG("datum.a7478a8e", null), vision_distance = 1)
+		to_chat(source, span_notice(LANG("datum.d4b6b9214b579523", null)))
+		source.balloon_alert_to_viewers(LANG("datum.a7478a8ed2b95098", null), vision_distance = 1)
 	replace_incompatible_organs(source, special)
 
 /// Adds the protean limb component to any new limb attached to a protean.
@@ -210,29 +210,29 @@
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "robot",
-		SPECIES_PERK_NAME = LANG("datum.7e8e38d5", null),
-		SPECIES_PERK_DESC = LANG("datum.a3e35900", null),
+		SPECIES_PERK_NAME = LANG("datum.7e8e38d53f234fb9", null),
+		SPECIES_PERK_DESC = LANG("datum.a3e359003d65da69", null),
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "shield-halved",
-		SPECIES_PERK_NAME = LANG("datum.d70a139c", null),
-		SPECIES_PERK_DESC = LANG("datum.75382ccb", null),
+		SPECIES_PERK_NAME = LANG("datum.d70a139c31d4780b", null),
+		SPECIES_PERK_DESC = LANG("datum.75382ccb4c11dde5", null),
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "cube",
-		SPECIES_PERK_NAME = LANG("datum.5a4f2ab1", null),
-		SPECIES_PERK_DESC = LANG("datum.6de75752", null),
+		SPECIES_PERK_NAME = LANG("datum.5a4f2ab1e3a081a4", null),
+		SPECIES_PERK_DESC = LANG("datum.6de75752d3aaec01", null),
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "bolt",
-		SPECIES_PERK_NAME = LANG("datum.5f9da63c", null),
-		SPECIES_PERK_DESC = LANG("datum.af269036", null),
+		SPECIES_PERK_NAME = LANG("datum.5f9da63ca08c2fdb", null),
+		SPECIES_PERK_DESC = LANG("datum.af269036adc99bc6", null),
 	))
 
 	return perk_descriptions

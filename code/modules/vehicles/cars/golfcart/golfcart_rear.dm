@@ -105,8 +105,8 @@
 
 /obj/golfcart_rear/proc/after_escape(obj/container, mob/living/user)
 	user?.visible_message(
-		span_danger(LANG("obj.bf116803", list(container, src))),
-		span_userdanger(LANG("obj.76dc73d5", list(src)))
+		span_danger(LANG("obj.bf1168039216a373", list(container, src))),
+		span_userdanger(LANG("obj.76dc73d5a41fd904", list(src)))
 	)
 	container.SpinAnimation(5, 1)
 	if (user && istype(container, /obj/structure/closet))
@@ -133,8 +133,8 @@
 ///Called when someone resists inside of the cargo hitch.
 /obj/golfcart_rear/relay_container_resist_act(mob/living/user, obj/container)
 	user.visible_message(
-		span_danger(LANG("obj.76c1c11d", list(user, container))),
-		span_userdanger(LANG("obj.64e34bab", list(container))),
+		span_danger(LANG("obj.76c1c11d0c46bdc1", list(user, container))),
+		span_userdanger(LANG("obj.64e34bab2e55095a", list(container))),
 	)
 	if (parent.has_buckled_mobs())
 		for (var/mob/driver in parent.buckled_mobs)
@@ -173,24 +173,24 @@
 /obj/golfcart_rear/mouse_drop_receive(atom/dropped, mob/user, params)
 	if (!can_load(dropped))
 		if (!isliving(dropped) || (has_buckled_mobs() && buckled_mobs.len >= max_buckled_mobs))
-			balloon_alert_to_viewers(LANG("obj.62d831a3", null))
+			balloon_alert_to_viewers(LANG("obj.62d831a3dbaf3612", null))
 			return
 		//Allow either 2 standing mobs or 1 lying down mob
 		//If a mob is already lying down it's obviously blocked.
 		if (has_buckled_mobs())
 			for (var/mob/living/carbon/carbon_sitter in buckled_mobs)
 				if (carbon_sitter.body_position == LYING_DOWN)
-					balloon_alert_to_viewers(LANG("obj.62d831a3", null))
+					balloon_alert_to_viewers(LANG("obj.62d831a3dbaf3612", null))
 					return
 		var/mob/living/dropped_liver = dropped
 		if (dropped_liver.has_buckled_mobs())
 			//This sucks
-			balloon_alert_to_viewers(LANG("obj.62d831a3", null))
+			balloon_alert_to_viewers(LANG("obj.62d831a3dbaf3612", null))
 			return
 		if (iscarbon(dropped_liver))
 			var/mob/living/carbon/dropped_carbon = dropped_liver
 			if (dropped_carbon.body_position == LYING_DOWN && has_buckled_mobs())
-				balloon_alert_to_viewers(LANG("obj.18b66369", null))
+				balloon_alert_to_viewers(LANG("obj.18b66369e083dd9f", null))
 				return
 		return ..()
 	var/obj/dropped_obj = dropped
@@ -199,7 +199,7 @@
 /obj/golfcart_rear/examine(mob/user)
 	if (!parent)
 		. = ..()
-		. += span_warning(LANG("obj.d9869a41", null))
+		. += span_warning(LANG("obj.d9869a41d857e9b0", null))
 		return
 	return parent.examine(user)
 
@@ -354,20 +354,20 @@
 /obj/golfcart_rear/is_buckle_possible(mob/living/target, force, check_loc)
 	// these are to_viewers because you can buckle someone on their behalf
 	if (cargo)
-		balloon_alert_to_viewers(LANG("obj.62d831a3", null))
+		balloon_alert_to_viewers(LANG("obj.62d831a3dbaf3612", null))
 		return FALSE
 	if (target.body_position != STANDING_UP)
 		if (has_buckled_mobs())
-			balloon_alert_to_viewers(LANG("obj.18b66369", null))
+			balloon_alert_to_viewers(LANG("obj.18b66369e083dd9f", null))
 			return FALSE
 		return ..()
 	for (var/mob/blocker in buckled_mobs)
 		if (!isliving(blocker))
-			balloon_alert_to_viewers(LANG("obj.62d831a3", null))
+			balloon_alert_to_viewers(LANG("obj.62d831a3dbaf3612", null))
 			return FALSE
 		var/mob/living/living_blocker = blocker
 		if (living_blocker.body_position != STANDING_UP)
-			balloon_alert_to_viewers(LANG("obj.62d831a3", null))
+			balloon_alert_to_viewers(LANG("obj.62d831a3dbaf3612", null))
 			return FALSE
 	return ..()
 

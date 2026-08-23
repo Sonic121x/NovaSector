@@ -19,7 +19,7 @@
 	playsound(src, SFX_SHATTER, 50, TRUE)
 	playsound(src, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	if(IS_HERETIC_OR_MONSTER(user))
-		to_chat(user, span_mansus(LANG("obj.8f719e0a", list(src))))
+		to_chat(user, span_mansus(LANG("obj.8f719e0aa4c5b146", list(src))))
 		for(var/mob/living/nearby_mob in view(3, user))
 			if(IS_HERETIC_OR_MONSTER(nearby_mob))
 				continue
@@ -27,28 +27,28 @@
 				continue
 			if(nearby_mob.can_block_magic(MAGIC_RESISTANCE))
 				nearby_mob.visible_message(
-					span_danger(LANG("obj.82a4ce33", list(nearby_mob))),
-					span_userdanger(LANG("obj.8e768904", null))
+					span_danger(LANG("obj.82a4ce3347f4df43", list(nearby_mob))),
+					span_userdanger(LANG("obj.8e76890450e2d9b7", null))
 				)
 				continue
 			nearby_mob.visible_message(
-				span_danger(LANG("obj.3d43da39", list(nearby_mob))),
-				span_userdanger(LANG("obj.692af578", null)),
+				span_danger(LANG("obj.3d43da39f5464a7c", list(nearby_mob))),
+				span_userdanger(LANG("obj.692af578f28c8980", null)),
 			)
 			nearby_mob.apply_status_effect(/datum/status_effect/void_prison)
 
 	else if(user.can_block_magic(MAGIC_RESISTANCE))
-		to_chat(user, span_hypnophrase(LANG("obj.be75ef07", list(src))))
+		to_chat(user, span_hypnophrase(LANG("obj.be75ef07699811cd", list(src))))
 		user.visible_message(
-			span_danger(LANG("obj.82a4ce33", list(user))),
-			span_userdanger(LANG("obj.8e768904", null))
+			span_danger(LANG("obj.82a4ce3347f4df43", list(user))),
+			span_userdanger(LANG("obj.8e76890450e2d9b7", null))
 		)
 
 	else
-		to_chat(user, span_hypnophrase(LANG("obj.be75ef07", list(src))))
+		to_chat(user, span_hypnophrase(LANG("obj.be75ef07699811cd", list(src))))
 		user.visible_message(
-			span_danger(LANG("obj.3d43da39", list(user))),
-			span_userdanger(LANG("obj.692af578", null)),
+			span_danger(LANG("obj.3d43da39f5464a7c", list(user))),
+			span_userdanger(LANG("obj.692af578f28c8980", null)),
 		)
 		user.apply_status_effect(/datum/status_effect/void_prison)
 

@@ -29,8 +29,8 @@
 
 /obj/item/disk/surgery/advanced_plastic_surgery/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.372641a2", list(/datum/surgery_operation/limb/add_plastic::name)))
-	. += span_info(LANG("obj.f9b0b03c", list(/datum/surgery_operation/limb/plastic_surgery::name)))
+	. += span_info(LANG("obj.372641a25ca2bbb5", list(/datum/surgery_operation/limb/add_plastic::name)))
+	. += span_info(LANG("obj.f9b0b03c018136e9", list(/datum/surgery_operation/limb/plastic_surgery::name)))
 
 /obj/item/disk/surgery/advanced_plastic_surgery/Initialize(mapload)
 	. = ..()

@@ -17,18 +17,18 @@
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/stack/stack_in_question = tool
 	if(stack_in_question.get_amount() < 1)
-		to_chat(user, span_warning(LANG("obj.9f79a16e", null)))
+		to_chat(user, span_warning(LANG("obj.9f79a16eacba52b1", null)))
 		return ITEM_INTERACT_BLOCKING
 	var/dir_to_set = SOUTHWEST
 	if(!anchored)
-		to_chat(user, span_warning(LANG("obj.79102fe3", list(src))))
+		to_chat(user, span_warning(LANG("obj.79102fe36de4f058", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	for(var/obj/structure/window/window_on_turf in loc)
-		to_chat(user, span_warning(LANG("obj.a3c6a7b7", null)))
+		to_chat(user, span_warning(LANG("obj.a3c6a7b7ec1e883d", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(!clear_tile(user))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.1c659472", null)))
+	to_chat(user, span_notice(LANG("obj.1c659472f7175207", null)))
 	if(!do_after(user, 1 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	if(!src.loc || !anchored) //Grille broken or unanchored while waiting
@@ -41,5 +41,5 @@
 	new_window.setDir(dir_to_set)
 	new_window.state = 0
 	stack_in_question.use(1)
-	to_chat(user, span_notice(LANG("obj.7a67ae81", list(new_window, src))))
+	to_chat(user, span_notice(LANG("obj.7a67ae81e5981d09", list(new_window, src))))
 	return ITEM_INTERACT_SUCCESS

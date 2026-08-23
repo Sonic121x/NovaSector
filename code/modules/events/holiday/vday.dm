@@ -97,7 +97,7 @@
 	if(length(candidates_pruned) == 0)
 		return
 	if(length(candidates_pruned) == 1)
-		to_chat(candidates_pruned[1], span_warning(LANG("datum.eeaca880", null)))
+		to_chat(candidates_pruned[1], span_warning(LANG("datum.eeaca880c2f9371a", null)))
 		return
 
 	while(length(candidates_pruned) >= 2)

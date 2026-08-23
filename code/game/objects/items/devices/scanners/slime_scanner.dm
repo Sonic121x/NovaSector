@@ -20,7 +20,7 @@
 	if(!user.can_read(src)) //NOVA EDIT CHANGE - Blind People Can Analyze Again - ORIGINAL : if(!user.can_read(src) || user.is_blind())
 		return ITEM_INTERACT_BLOCKING
 	if (!isslime(interacting_with))
-		to_chat(user, span_warning(LANG("obj.619bec23", null)))
+		to_chat(user, span_warning(LANG("obj.619bec233e803c69", null)))
 		return ITEM_INTERACT_BLOCKING
 	var/mob/living/basic/slime/scanned_slime = interacting_with
 	playsound(src, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
@@ -32,35 +32,35 @@
 	// 既非裸 `.` 也不在 examine proc 里 → 抽取器的整句闸把它整块挡在目录外；而它是玩家盯得最久的
 	// 面板之一。突变颜色走 lang_slime_colour（顶层表，不进全局反查表——颜色同时是 icon_state/突变表键）。
 	// ORIGINAL: 见 git 历史，形态为 "<b>Slime scan results:</b>\n…" 一路 += 拼接。
-	var/to_render = "<b>[LANG("_root.459c8a52", null)]</b>\
+	var/to_render = "<b>[LANG("_root.459c8a5231b80452", null)]</b>\
 					\n[span_notice(lang_reverse_text("[scanned_slime.slime_type.colour] [scanned_slime.life_stage] slime"))]\
-					\n[LANG("_root.2a47f665", list(scanned_slime.nutrition, SLIME_MAX_NUTRITION))]"
+					\n[LANG("_root.2a47f665c5b214de", list(scanned_slime.nutrition, SLIME_MAX_NUTRITION))]"
 
 	if (scanned_slime.nutrition < SLIME_STARVE_NUTRITION)
-		to_render += "\n[span_warning(LANG("_root.3c9cb2fc", null))]"
+		to_render += "\n[span_warning(LANG("_root.3c9cb2fc35873d39", null))]"
 	else if (scanned_slime.nutrition < SLIME_HUNGER_NUTRITION)
-		to_render += "\n[span_warning(LANG("_root.37838263", null))]"
+		to_render += "\n[span_warning(LANG("_root.37838263b6d60b3b", null))]"
 
-	to_render += "\n[LANG("_root.0b94a02a", list(scanned_slime.powerlevel))]\n[LANG("_root.878005df", list(round(scanned_slime.health/scanned_slime.maxHealth,0.01)*100))]"
+	to_render += "\n[LANG("_root.0b94a02ad64ef275", list(scanned_slime.powerlevel))]\n[LANG("_root.878005df2dd29147", list(round(scanned_slime.health/scanned_slime.maxHealth,0.01)*100))]"
 
-	to_render += "\n[scanned_slime.slime_type.mutations.len > 1 ? LANG("_root.d8f34fa4", null) : LANG("_root.bdb4023f", null)] "
+	to_render += "\n[scanned_slime.slime_type.mutations.len > 1 ? LANG("_root.d8f34fa438cb6e6e", null) : LANG("_root.bdb4023f13aa2d04", null)] "
 	var/list/mutation_text = list()
 	for(var/datum/slime_type/key as anything in scanned_slime.slime_type.mutations)
 		mutation_text += lang_slime_colour(initial(key.colour))
 
 	if(!mutation_text.len)
-		to_render += " [LANG("_root.0b6c8933", null)]"
+		to_render += " [LANG("_root.0b6c893368fb3a9d", null)]"
 
 	to_render += "[mutation_text.Join(", ")]"
-	to_render += "\n[LANG("_root.5d0d3d5c", list(scanned_slime.mutation_chance))]"
+	to_render += "\n[LANG("_root.5d0d3d5c597fdbc7", list(scanned_slime.mutation_chance))]"
 
 	if (scanned_slime.cores > 1)
-		to_render += "\n[LANG("_root.fb43dfa1", null)]"
-	to_render += "\n[LANG("_root.999a945b", list(scanned_slime.amount_grown, SLIME_EVOLUTION_THRESHOLD))]"
+		to_render += "\n[LANG("_root.fb43dfa18f7c1f4f", null)]"
+	to_render += "\n[LANG("_root.999a945b91e07175", list(scanned_slime.amount_grown, SLIME_EVOLUTION_THRESHOLD))]"
 
 	if(scanned_slime.crossbreed_modification)
-		to_render += "\n[span_notice(LANG("_root.8056f8a5", list(scanned_slime.crossbreed_modification)))]\
-					  \n[span_notice(LANG("_root.d9219f70", list(scanned_slime.applied_crossbreed_amount, SLIME_EXTRACT_CROSSING_REQUIRED)))]"
+		to_render += "\n[span_notice(LANG("_root.8056f8a5ea9841c6", list(scanned_slime.crossbreed_modification)))]\
+					  \n[span_notice(LANG("_root.d9219f70a14c0341", list(scanned_slime.applied_crossbreed_amount, SLIME_EXTRACT_CROSSING_REQUIRED)))]"
 	// NOVA EDIT CHANGE END
 
 	to_chat(user, boxed_message(jointext(to_render,"")))

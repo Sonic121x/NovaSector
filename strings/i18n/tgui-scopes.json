@@ -1680,9 +1680,6 @@
   "Ancient Crew": [
     "dm:labels"
   ],
-  "And if you do not wish to OPFOR, simply press the button below to remove your status.": [
-    "tgui:AntagInfoOpfor"
-  ],
   "And you're done! Note that the infusion source will be obliterated in the process.": [
     "tgui:InfuserBook"
   ],
@@ -15410,9 +15407,6 @@
   "If you didnt sleep during statistics class you can skip this part. Basically the type of randomness you choose determines the probability curve (if you take a million samples how will they look on a chart) of the values to pick. The probability graphs for the byond rands are:": [
     "tgui:Tutorial"
   ],
-  "If you do not have any ideas, check #player-submitted-opfors on the Discord for inspiration.": [
-    "tgui:AntagInfoOpfor"
-  ],
   "If you have any bets, this will remove them and refund the money.": [
     "tgui:NtosSpaceBetting"
   ],
@@ -26346,9 +26340,6 @@
   "Remove Soul": [
     "tgui:Soulcatcher"
   ],
-  "Remove Status": [
-    "tgui:AntagInfoOpfor"
-  ],
   "Remove all empty space from the shuttle.{0}": [
     "tgui:ShuttleBlueprints"
   ],
@@ -26387,9 +26378,6 @@
   ],
   "Remove waste gases from Fusion, and any selected gases from the Moderator.": [
     "tgui:Controls"
-  ],
-  "Remove your OPFOR candidate status.": [
-    "tgui:AntagInfoOpfor"
   ],
   "Remove your application from the queue.": [
     "tgui:OpposingForcePanel"
@@ -37373,9 +37361,6 @@
   "You are allowed unlimited, unrestricted movement in the dark. Light will pull you out of this.": [
     "tgui:AntagInfoNightmare"
   ],
-  "You are an OPFOR candidate!": [
-    "tgui:AntagInfoOpfor"
-  ],
   "You are an advanced combat unit. You have been outfitted with {0}.": [
     "tgui:AntagInfoGlitch"
   ],
@@ -37399,9 +37384,6 @@
   ],
   "You are currently dead. You may speak with the Chaplain at night, if there is one.": [
     "tgui:MafiaPanel"
-  ],
-  "You are encouraged to OPFOR to perform an antagonistic action in some form.": [
-    "tgui:AntagInfoOpfor"
   ],
   "You are expected to role play to some degree. Keep in mind: Not entering information may lead to you not being selected. Press submit to alert pAI cards of your candidacy.": [
     "tgui:PaiSubmit",
@@ -38023,6 +38005,24 @@
   "and": [
     "tgui:AiAirlock",
     "tgui:Changelog"
+  ],
+  "antag.opfor.candidate_description\u0004You are encouraged to OPFOR to perform an antagonistic action in some form.": [
+    "tgui:interfaces/AntagInfoOpfor"
+  ],
+  "antag.opfor.candidate_title\u0004You are an OPFOR candidate!": [
+    "tgui:interfaces/AntagInfoOpfor"
+  ],
+  "antag.opfor.inspiration_hint\u0004If you do not have any ideas, check #player-submitted-opfors on the Discord for inspiration.": [
+    "tgui:interfaces/AntagInfoOpfor"
+  ],
+  "antag.opfor.remove_hint\u0004And if you do not wish to OPFOR, simply press the button below to remove your status.": [
+    "tgui:interfaces/AntagInfoOpfor"
+  ],
+  "antag.opfor.remove_status\u0004Remove Status": [
+    "tgui:interfaces/AntagInfoOpfor"
+  ],
+  "antag.opfor.remove_status_tooltip\u0004Remove your OPFOR candidate status.": [
+    "tgui:interfaces/AntagInfoOpfor"
   ],
   "anyone within three tiles will note an uncanny wrongness if examining you.": [
     "tgui:AntagInfoMorph"
@@ -39633,9 +39633,6 @@
   ],
   "{0}Waste remove:": [
     "tgui:Controls"
-  ],
-  "{0}You are encouraged to OPFOR to perform an antagonistic action in some form.If you do not have any ideas, check #player-submitted-opfors on the Discord for inspiration.And if you do not wish to OPFOR, simply press the button below to remove your status.{1}": [
-    "tgui:AntagInfoOpfor"
   ],
   "{0}You have unrivaled freedom. Remain in space and no one can stop you. You can move through windows, so stay near them to always have a way out.{1}{2}{3}Pick unfair fights. Look for inattentive targets and strike at them when they don't expect you.{4}{5}{6}Your Unsettle ability stuns and drains your targets. Knock them out with your draining slash, take them to space (or nebula vomit) and enlighten them.{7}{8}{9}Our students expell our essence regularly. We can use this to go where we could otherwise not, but we reabsorb this when we use it to leave. (You can dive in space vomit.)": [
     "tgui:AntagInfoVoidwalker"

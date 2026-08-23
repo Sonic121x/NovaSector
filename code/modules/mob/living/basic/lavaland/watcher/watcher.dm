@@ -75,7 +75,7 @@
 
 /// I love eating diamonds yum
 /mob/living/basic/mining/watcher/proc/consume(atom/movable/thing)
-	visible_message(span_warning(LANG("mob.a9ce4996", list(thing, src))))
+	visible_message(span_warning(LANG("mob.a9ce499665632fc2", list(thing, src))))
 	thing.forceMove(src)
 
 /// More durable, burning projectiles

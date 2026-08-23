@@ -89,7 +89,7 @@
 
 /obj/item/gun/energy/get_cell(atom/movable/interface, mob/user)
 	if(istype(interface, /obj/item/inducer))
-		to_chat(user, span_alert(LANG("obj.9034fa56", list(interface))))
+		to_chat(user, span_alert(LANG("obj.9034fa56b694b20c", list(interface))))
 		return null
 	return cell
 
@@ -129,21 +129,21 @@
 	if(!ammo_type.len)
 		return
 	var/obj/projectile/exam_proj
-	readout += LANG("obj.a08b819f", list(span_warning("[ammo_type.len] mode\s")))
-	readout += LANG("obj.7f45e9a3", null)
+	readout += LANG("obj.a08b819fdf4163cf", list(span_warning("[ammo_type.len] mode\s")))
+	readout += LANG("obj.7f45e9a3fcabe333", null)
 	if(projectile_damage_multiplier <= 0)
-		readout += LANG("obj.f4491d5a", list(span_warning("every")))
+		readout += LANG("obj.f4491d5ab111fe66", list(span_warning("every")))
 		return readout.Join("\n") // Sending over the singular string, rather than the whole list
 	for(var/obj/item/ammo_casing/energy/for_ammo as anything in ammo_type)
 		exam_proj = for_ammo.projectile_type
 		if(!ispath(exam_proj))
 			continue
 		if(initial(exam_proj.damage) > 0) // Don't divide by 0!!!!!
-			readout += LANG("obj.6982b268", list(span_warning("[HITS_TO_CRIT((initial(exam_proj.damage) * projectile_damage_multiplier) * for_ammo.pellets)] shot\s"), span_warning("[for_ammo.select_name]"), initial(exam_proj.damage_type) == STAMINA ? "immense pain" : "their wounds"))
+			readout += LANG("obj.6982b26817b8f1c0", list(span_warning("[HITS_TO_CRIT((initial(exam_proj.damage) * projectile_damage_multiplier) * for_ammo.pellets)] shot\s"), span_warning("[for_ammo.select_name]"), initial(exam_proj.damage_type) == STAMINA ? "immense pain" : "their wounds"))
 			if(initial(exam_proj.stamina) > 0) // In case a projectile does damage AND stamina damage (Energy Crossbow)
-				readout += LANG("obj.9a48d447", list(span_warning("[HITS_TO_CRIT((initial(exam_proj.stamina) * projectile_damage_multiplier) * for_ammo.pellets)] shot\s"), span_warning("[for_ammo.select_name]")))
+				readout += LANG("obj.9a48d447aeb36c50", list(span_warning("[HITS_TO_CRIT((initial(exam_proj.stamina) * projectile_damage_multiplier) * for_ammo.pellets)] shot\s"), span_warning("[for_ammo.select_name]")))
 		else
-			readout += LANG("obj.ab7bb7d7", list(span_warning("[for_ammo.select_name]")))
+			readout += LANG("obj.ab7bb7d738952953", list(span_warning("[for_ammo.select_name]")))
 
 	return readout.Join("\n") // Sending over the singular string, rather than the whole list
 
@@ -247,7 +247,7 @@
 	if (shot.muzzle_flash_color)
 		set_light_color(shot.muzzle_flash_color)
 	if (shot.select_name && user)
-		balloon_alert(user, LANG("obj.28f94138", list(shot.select_name)))
+		balloon_alert(user, LANG("obj.28f94138c1669b1d", list(shot.select_name)))
 	chambered = null
 	recharge_newshot(TRUE)
 	update_appearance()
@@ -317,20 +317,20 @@
 
 /obj/item/gun/energy/suicide_act(mob/living/user)
 	if(istype(user) && can_shoot() && can_trigger_gun(user) && user.get_bodypart(BODY_ZONE_HEAD))
-		user.visible_message(span_suicide(LANG("obj.575e922c", list(user, src, user.p_their(), user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.575e922c5efe4e9b", list(user, src, user.p_their(), user.p_theyre()))))
 		sleep(2.5 SECONDS)
 		if(user.is_holding(src))
-			user.visible_message(span_suicide(LANG("obj.57fe2dae", list(user, user.p_their(), src))))
+			user.visible_message(span_suicide(LANG("obj.57fe2daedb5a216e", list(user, user.p_their(), src))))
 			playsound(loc, fire_sound, 50, TRUE, -1)
 			var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 			cell.use(shot.e_cost)
 			update_appearance()
 			return FIRELOSS
 		else
-			user.visible_message(span_suicide(LANG("obj.dec784f1", list(user))))
+			user.visible_message(span_suicide(LANG("obj.dec784f113c361fe", list(user))))
 			return OXYLOSS
 	else
-		user.visible_message(span_suicide(LANG("obj.0dfc93a5", list(user, user.p_their(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.0dfc93a503d35ae2", list(user, user.p_their(), src, user.p_theyre()))))
 		playsound(src, dry_fire_sound, 30, TRUE)
 		return OXYLOSS
 
@@ -354,13 +354,13 @@
 		if(!loaded_projectile)
 			. = ""
 		else if(loaded_projectile.damage <= 0 || loaded_projectile.damage_type == STAMINA)
-			user.visible_message(span_danger(LANG("obj.77bebaf4", list(user, A.loc == user ? "[user.p_their()] [A.name]" : A, src))))
+			user.visible_message(span_danger(LANG("obj.77bebaf4bfd46e21", list(user, A.loc == user ? "[user.p_their()] [A.name]" : A, src))))
 			playsound(user, E.fire_sound, 50, TRUE)
 			playsound(user, loaded_projectile.hitsound, 50, TRUE)
 			cell.use(E.e_cost)
 			. = ""
 		else if(loaded_projectile.damage_type != BURN)
-			user.visible_message(span_danger(LANG("obj.37817c55", list(user, A.loc == user ? "[user.p_their()] [A.name]" : A, src))))
+			user.visible_message(span_danger(LANG("obj.37817c55251a0c53", list(user, A.loc == user ? "[user.p_their()] [A.name]" : A, src))))
 			playsound(user, E.fire_sound, 50, TRUE)
 			playsound(user, loaded_projectile.hitsound, 50, TRUE)
 			cell.use(E.e_cost)

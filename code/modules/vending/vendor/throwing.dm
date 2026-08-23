@@ -28,7 +28,7 @@
 	pre_throw(thrown_item)
 
 	thrown_item.throw_at(target, 16, 3)
-	visible_message(span_danger(LANG("obj.78331797", list(src, thrown_item, target))))
+	visible_message(span_danger(LANG("obj.783317970f14f7df", list(src, thrown_item, target))))
 	return TRUE
 
 /**

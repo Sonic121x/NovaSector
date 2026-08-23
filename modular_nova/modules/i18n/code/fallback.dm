@@ -5,8 +5,7 @@
 //   1. 主字典——内存反查表 lang_build_reverse(locale)（即已翻译的 name/desc/message/title 等
 //      无占位符整串），**仅取含空格的多词短语**：单词做子串替换会误伤（"Door"→"Doorknob"），
 //      单词类名靠 examine/hover/TGUI 等显示边界调用 lang_reverse_text 精确反查覆盖（见 runtime.dm）。
-//   2. 可选人工补充——strings/i18n/<locale>/_fallback.json，扁平 {"english": "中文"}（不受多词
-//      过滤限制，人工显式覆盖）。
+//   2. Explicit scoped:fallback domain from catalog-domains.json (不受多词过滤限制，人工显式覆盖).
 // 注意：纯子串替换，不保证语序正确，仅用于过渡期与长尾「不漏英文」。已被 LANG 处理过的
 // 文本不应再过此层（中文不匹配英文 pattern，天然 no-op，但仍尽量避免二次过）。
 
@@ -76,27 +75,22 @@ GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
 /// AC 字典的早调用告警计数（与 lang_reverse_text 那个哨兵同源，上限同一个 define）。
 GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
 
-/// 惰性为某 locale 注册 AC 字典；返回是否可用。
+/// Builds one locale's AC engines. The common runtime lifecycle is the only readiness gate:
+/// bootstrap calls return without recording state or an empty cache.
 /proc/lang_fallback_setup(locale)
+	if(locale == DEFAULT_UI_LOCALE)
+		return FALSE
 	var/state = GLOB.i18n_fallback_state[locale]
 	if(state)
 		return state == "ready"
-	GLOB.i18n_fallback_cache[locale] = list()
-
-	// **i18n_cache 未就绪时必须直接退出、且不写 state**。`lang_build_reverse` 在那种情况下
-	// 特意「返回空表但不缓存」（免得把空反查表钉死），可这里拿到空表会一路走到下面把 state 钉成
-	// "none" —— 那是**永久**的：`lang_fallback_setup` 此后一律返回 FALSE，整局的字面 AC 层
-	// 无声关闭。同一个「别把未就绪状态缓存起来」的道理，上一层做了、这一层漏了。
-	if(!islist(GLOB.i18n_cache[DEFAULT_UI_LOCALE]) || !islist(GLOB.i18n_cache[locale]))
-		// **静默失败在这里是最坏的形态**：AC 层不跑、文本原样返回、玩家看到英文，而日志上
-		// 只表现为「某几条串没翻」——与「目录里没这条」长得一模一样，查起来会一路查到目录去。
-		// 拿真目录写的四条断言全过而线上照漏，就是被这个形态骗了一轮。把调用点打出来。
+	if(!lang_runtime_can_build_indexes() || !lang_catalog_locale_is_loaded(locale))
 		if(GLOB.i18n_fallback_early_warnings < I18N_MAX_EARLY_WARNINGS)
 			GLOB.i18n_fallback_early_warnings++
-			stack_trace("i18n: lang_fallback_setup([locale]) 在目录就绪前被调用——本次字面 AC 层不跑，该文本会原样留英文。若这是启动期的某个渲染点，它应改到 SS Initialize 之后，或改走 LANG。")
+			stack_trace("i18n: lang_fallback_setup([locale]) was called before the active catalog lifecycle reached INITIALIZING; returning without caching")
 		return FALSE
+	GLOB.i18n_fallback_cache[locale] = list()
 
-	// 主字典：内存反查表里「含空格的多词短语」（单词排除，避免子串误伤）。
+	// 主字典：global reverse domain 里「含空格的多词短语」（单词排除，避免子串误伤）。
 	var/list/dict = list()
 	var/list/reverse = lang_build_reverse(locale)
 	for(var/english in reverse)
@@ -104,18 +98,15 @@ GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
 			continue
 		dict[english] = reverse[english]
 
-	// 可选人工补充/覆盖（不受多词过滤限制）。
+	// Explicit scoped supplement. Cross-domain differences are legal; this layer intentionally wins.
 	var/list/single_patterns = list()
 	var/list/single_replacements = list()
-	var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/[locale]/_fallback.json"
-	if(fexists(path))
-		var/list/manual = json_decode(file2text(path))
-		if(islist(manual))
-			for(var/english in manual)
-				dict[english] = manual[english]
-				if(!findtext(english, " ") && !findtext(english, "\t") && !findtext(english, "\n"))
-					single_patterns += english
-					single_replacements += manual[english]
+	var/list/manual = lang_runtime_domain("fallback", locale)
+	for(var/english in manual)
+		dict[english] = manual[english]
+		if(!findtext(english, " ") && !findtext(english, "\t") && !findtext(english, "\n"))
+			single_patterns += english
+			single_replacements += manual[english]
 
 	// **匹配模式必须是 LeftmostLongest**（默认 Standard = 一命中就替换，即最短匹配）。
 	// 目录里大量存在「一个词是另一个词前缀」的情况，最短匹配会把长词切坏：
@@ -203,14 +194,23 @@ GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
 			text = after_template
 			templated = TRUE
 	if(ac_mode == I18N_AC_NONE)
+		if(!templated)
+			lang_count_layer_hit(I18N_LAYER_MISS)
 		return text
 	if(ac_mode == I18N_AC_PROSE && !lang_tgui_prose_candidate(text))
+		if(!templated)
+			lang_count_layer_hit(I18N_LAYER_MISS)
 		return text
 	if(!lang_fallback_setup(locale))
+		if(!templated)
+			lang_count_layer_hit(I18N_LAYER_MISS)
 		return text
 	. = rustg_acreplace("i18n_[locale]", text)
-	// AC 一无所获时把模板那一步的成果原样交出去（`.` 与 text 此刻相同，写清楚免得读者以为丢了）。
-	return templated || . != text ? . : text
+	if(. != text)
+		lang_count_layer_hit(I18N_LAYER_AC)
+	else if(!templated)
+		lang_count_layer_hit(I18N_LAYER_MISS)
+	return .
 
 /proc/lang_fallback_apply(text, locale)
 	if(!istext(text) || !length(text))
@@ -220,6 +220,7 @@ GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
 	if(locale == DEFAULT_UI_LOCALE)
 		return text
 	if(!lang_fallback_setup(locale))
+		lang_count_layer_hit(I18N_LAYER_MISS)
 		return text
 	var/source_text = text
 	var/list/cache = GLOB.i18n_fallback_cache[locale]
@@ -239,11 +240,15 @@ GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
 	if(!ascii_letter_regex.Find(text))
 		return lang_fallback_cache_store(locale, source_text, text)
 	var/has_word_separator = findtext(text, " ") || findtext(text, "\t") || findtext(text, "\n")
-	// 模板锚和主字典都是多词 pattern；无空白输入只跑人工单词字典。
-	// _fallback.json 新增无空白条目会在 setup 时自动进该字典，无需改代码。
+	// Template anchors and the main dictionary are multi-word; single tokens only use scoped:fallback.
 	if(!has_word_separator)
+		var/before_ac = text
 		if(GLOB.i18n_fallback_single_state[locale] == "ready")
 			text = rustg_acreplace("i18n_single_[locale]", text)
+		if(text != before_ac)
+			lang_count_layer_hit(I18N_LAYER_AC)
+		else
+			lang_count_layer_hit(I18N_LAYER_MISS)
 		return lang_fallback_cache_store(locale, source_text, text)
 	// 整串精确 → 模板逆匹配 → 字面 AC，顺序由 lang_localize_chain 统一定义。
 	// **整串精确必须排在模板之前**：目录里若正好有这一整句，它是最具体的证据。否则先跑的模板

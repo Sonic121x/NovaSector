@@ -151,8 +151,10 @@ fn migrate_locale(
         std::fs::write(&path, serde_json::to_string_pretty(&report)? + "\n")?;
         eprintln!("近似迁移报告（请人工复核）: {}", path.display());
     }
-    eprintln!("译文迁移 [{locale}]：精确继承 {exact} 条，近似迁移 {fuzzy} 条（孤儿池 {} 条）",
-        orphans.len());
+    eprintln!(
+        "译文迁移 [{locale}]：精确继承 {exact} 条，近似迁移 {fuzzy} 条（孤儿池 {} 条）",
+        orphans.len()
+    );
     Ok(())
 }
 
@@ -191,7 +193,11 @@ fn best_orphan(
         // 极性词出现集不一致直接否决：否定/反转（"now"↔"no longer"）语义相反，
         // token 相似度看不出来（实测 Dice 0.84 仍接错）。
         let polarity_of = |set: &HashSet<String>| -> Vec<&'static str> {
-            POLARITY.iter().copied().filter(|p| set.contains(*p)).collect()
+            POLARITY
+                .iter()
+                .copied()
+                .filter(|p| set.contains(*p))
+                .collect()
         };
         if polarity_of(tokens) != polarity_of(other) {
             continue;
@@ -308,7 +314,10 @@ mod tests {
         map.insert("a.b".to_string(), "值".to_string());
         write_preserving_indent(&tmp, &map).unwrap();
         let text = std::fs::read_to_string(&tmp).unwrap();
-        assert!(text.contains("\n  \"a.b\""), "缺省应为 2 空格缩进: {text:?}");
+        assert!(
+            text.contains("\n  \"a.b\""),
+            "缺省应为 2 空格缩进: {text:?}"
+        );
         let _ = std::fs::remove_file(&tmp);
     }
 }

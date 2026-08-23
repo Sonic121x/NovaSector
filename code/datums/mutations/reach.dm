@@ -63,7 +63,7 @@
 /datum/mutation/elastic_arms/proc/on_owner_equipping_item(mob/living/carbon/human/owner, obj/item/pick_item)
 	SIGNAL_HANDLER
 	if((pick_item.w_class > WEIGHT_CLASS_BULKY) && !(pick_item.item_flags & (ABSTRACT|HAND_ITEM))) // cant decide if i should limit to huge or bulky.
-		pick_item.balloon_alert(owner, LANG("datum.53b32a28", null))
+		pick_item.balloon_alert(owner, LANG("datum.53b32a28a8f43923", null))
 		return COMPONENT_LIVING_CANT_PUT_IN_HAND
 
 /// signal sent when owner tries to pull
@@ -72,10 +72,10 @@
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(living_target.mob_size > MOB_SIZE_HUMAN)
-			living_target.balloon_alert(owner, LANG("datum.098f7151", null))
+			living_target.balloon_alert(owner, LANG("datum.098f71518a7110a8", null))
 			return COMSIG_LIVING_CANCEL_PULL
 	if(isitem(target))
 		var/obj/item/item_target = target
 		if(item_target.w_class > WEIGHT_CLASS_BULKY)
-			item_target.balloon_alert(owner, LANG("datum.098f7151", null))
+			item_target.balloon_alert(owner, LANG("datum.098f71518a7110a8", null))
 			return COMSIG_LIVING_CANCEL_PULL

@@ -10,7 +10,7 @@
 
 /datum/action/cooldown/spell/stimpack/cast(mob/living/cast_on)
 	. = ..()
-	cast_on.balloon_alert(cast_on, LANG("datum.f2aa1289", null))
+	cast_on.balloon_alert(cast_on, LANG("datum.f2aa128966218e9c", null))
 	cast_on.SetKnockdown(0)
 	cast_on.set_stamina_loss(0)
 	cast_on.set_resting(FALSE)

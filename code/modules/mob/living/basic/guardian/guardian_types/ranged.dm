@@ -30,7 +30,7 @@
 
 /mob/living/basic/guardian/ranged/toggle_modes()
 	if(is_deployed() && !isnull(summoner))
-		balloon_alert(src, LANG("mob.61be645f", null))
+		balloon_alert(src, LANG("mob.61be645f40512de2", null))
 		return
 	if (has_status_effect(/datum/status_effect/guardian_scout_mode))
 		remove_status_effect(/datum/status_effect/guardian_scout_mode)
@@ -77,7 +77,7 @@
 
 	var/mob/living/basic/guardian/guardian_mob = owner
 	guardian_mob.unleash()
-	to_chat(owner, span_bolddanger(LANG("datum.ff9f4948", null)))
+	to_chat(owner, span_bolddanger(LANG("datum.ff9f494862b1836a", null)))
 	return TRUE
 
 /datum/status_effect/guardian_scout_mode/on_remove()
@@ -88,7 +88,7 @@
 		COMSIG_GUARDIAN_RECALLED,
 		COMSIG_MOB_CLICKON,
 	))
-	to_chat(owner, span_bolddanger(LANG("datum.8e6cee42", null)))
+	to_chat(owner, span_bolddanger(LANG("datum.8e6cee42f4940d44", null)))
 	var/mob/living/basic/guardian/guardian_mob = owner
 	guardian_mob.leash_to(owner, guardian_mob.summoner)
 
@@ -110,7 +110,7 @@
 /// We can't do any ranged attacks while in scout mode.
 /datum/status_effect/guardian_scout_mode/proc/on_ranged_attack()
 	SIGNAL_HANDLER
-	owner.balloon_alert(owner, LANG("datum.ce3aec94", null))
+	owner.balloon_alert(owner, LANG("datum.ce3aec9440d4ad20", null))
 	return COMPONENT_CANCEL_RANGED_ATTACK
 
 /// Place an invisible trap which alerts the guardian when it is crossed
@@ -134,7 +134,7 @@
 	StartCooldown(360 SECONDS)
 
 	if (length(placed_snares) >= maximum_snares)
-		var/picked_snare = tgui_input_list(owner, LANG("datum.8ed0ddbd", null), LANG("datum.2ef3a982", null), sort_names(placed_snares))
+		var/picked_snare = tgui_input_list(owner, LANG("datum.8ed0ddbd00cc7650", null), LANG("datum.2ef3a982b5e5c732", null), sort_names(placed_snares))
 		if(isnull(picked_snare))
 			return FALSE
 		qdel(picked_snare)
@@ -142,7 +142,7 @@
 		StartCooldown(0)
 		return FALSE
 
-	owner.balloon_alert(owner, LANG("datum.6accee33", null)) // We need feedback because they are invisible
+	owner.balloon_alert(owner, LANG("datum.6accee337ac42379", null)) // We need feedback because they are invisible
 	var/turf/snare_loc = get_turf(owner)
 	var/obj/effect/abstract/surveillance_snare/new_snare = new(snare_loc, owner)
 	new_snare.assign_owner(owner)

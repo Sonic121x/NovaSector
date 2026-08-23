@@ -260,7 +260,7 @@
 			var/obj/item/slime_extract/extract = my_atom
 			extract.extract_uses--
 			if(extract.extract_uses <= 0) // give the notification that the slime core is dead
-				my_atom.visible_message(span_notice(LANG("datum.c6f000bb", list(iconhtml, my_atom))))
+				my_atom.visible_message(span_notice(LANG("datum.c6f000bb16e2df92", list(iconhtml, my_atom))))
 				extract.name = "used slime extract"
 				extract.desc = "This extract has been used up."
 				extract.can_grind = FALSE

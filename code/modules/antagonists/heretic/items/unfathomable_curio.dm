@@ -33,7 +33,7 @@
 	RegisterSignal(user, COMSIG_LIVING_CHECK_BLOCK, PROC_REF(shield_reaction))
 
 	if(!IS_HERETIC(user))
-		to_chat(user, span_warning(LANG("obj.c6f0716f", null)))
+		to_chat(user, span_warning(LANG("obj.c6f0716f4cbdaf27", null)))
 
 /obj/item/storage/belt/unfathomable_curio/dropped(mob/user)
 	. = ..()
@@ -61,11 +61,11 @@
 		/datum/brain_trauma/severe/paralysis,
 		/datum/brain_trauma/severe/monophobia
 	)
-	wearer.visible_message(span_danger(LANG("obj.7d740d9d", list(wearer, attack_text))))
+	wearer.visible_message(span_danger(LANG("obj.7d740d9dd22dbbfb", list(wearer, attack_text))))
 	if(IS_HERETIC(wearer))
 		return
 
-	to_chat(wearer, span_warning(LANG("obj.b962662f", null)))
+	to_chat(wearer, span_warning(LANG("obj.b962662f1b7dad82", null)))
 	wearer.adjust_organ_loss(ORGAN_SLOT_BRAIN, 40)
 	wearer.dropItemToGround(src, TRUE)
 	wearer.gain_trauma(pick(brain_traumas), TRAUMA_RESILIENCE_MAGIC)
@@ -77,6 +77,6 @@
 
 	user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10, 160)
 	user.adjust_temp_blindness(5 SECONDS)
-	. += span_notice(LANG("obj.fc5e918a", null))
+	. += span_notice(LANG("obj.fc5e918a31b92410", null))
 
 

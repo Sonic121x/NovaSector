@@ -35,7 +35,7 @@
 /obj/item/clothing/suit/armor/sf_sacrificial/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.fde05f38", null)
+	. += LANG("obj.fde05f380a6a669c", null)
 
 	return .
 
@@ -132,16 +132,16 @@
 /obj/item/clothing/head/helmet/sf_sacrificial/examine(mob/user)
 	. = ..()
 	if(face_shield)
-		. += span_notice(LANG("obj.b1f23bfe", null))
+		. += span_notice(LANG("obj.b1f23bfee2f95648", null))
 	else
-		. += span_notice(LANG("obj.f4850f5b", null))
+		. += span_notice(LANG("obj.f4850f5bcc85fe73", null))
 
 	return .
 
 /obj/item/clothing/head/helmet/sf_sacrificial/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.fde05f38", null)
+	. += LANG("obj.fde05f380a6a669c", null)
 
 	return .
 

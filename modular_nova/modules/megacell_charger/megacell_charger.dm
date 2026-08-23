@@ -38,11 +38,11 @@
 // Handles the inspect on our new charger
 /obj/machinery/megacell_charger/examine(mob/user)
 	. = ..()
-	. += LANG("obj.f2da67ae", list(charging ? "\a [charging]" : "no cell"))
+	. += LANG("obj.f2da67ae3c0759cc", list(charging ? "\a [charging]" : "no cell"))
 	if(charging)
-		. += LANG("obj.d4f7effc", list(round(charging.percent(), 1)))
+		. += LANG("obj.d4f7effcec36aa12", list(round(charging.percent(), 1)))
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.17c157e9", list(display_power(charge_rate, convert = FALSE))))
+		. += span_notice(LANG("obj.17c157e9794dec28", list(display_power(charge_rate, convert = FALSE))))
 
 // Handles our anchor states
 /obj/machinery/megacell_charger/wrench_act(mob/living/user, obj/item/tool)
@@ -70,32 +70,32 @@
 		return NONE
 
 	if(machine_stat & BROKEN)
-		to_chat(user, span_warning(LANG("obj.e2c73115", list(src))))// The charger is broken
+		to_chat(user, span_warning(LANG("obj.e2c73115e801b359", list(src))))// The charger is broken
 		return ITEM_INTERACT_BLOCKING
 	if(!anchored)
-		to_chat(user, span_warning(LANG("obj.f467682f", list(src))))// the charger needs to be anchored
+		to_chat(user, span_warning(LANG("obj.f467682f5bf33467", list(src))))// the charger needs to be anchored
 		return ITEM_INTERACT_BLOCKING
 	if(charging)
-		to_chat(user, span_warning(LANG("obj.c7dde075", null)))// no bluespace cell stacking
+		to_chat(user, span_warning(LANG("obj.c7dde075eca1c08c", null)))// no bluespace cell stacking
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/stock_parts/power_store/battery/inserting_battery = tool// Sets up a last sanity check on the cell
 	if(inserting_battery.chargerate <= 0)// If the cell is unchargable for w/e reason
-		to_chat(user, span_warning(LANG("obj.d4b2e04f", list(inserting_battery))))// Reject it entirely
+		to_chat(user, span_warning(LANG("obj.d4b2e04f1ab025de", list(inserting_battery))))// Reject it entirely
 		return
 
 	var/area/charge_area = get_area(src)
 	if(!isarea(charge_area))// If we arent in an area that will charge us
 		return ITEM_INTERACT_BLOCKING// Block usage
 	if(!charge_area.power_equip) // There's no APC in this area, don't try to cheat power!
-		to_chat(user, span_warning(LANG("obj.389d2adc", list(src))))// If we cant even supply power
+		to_chat(user, span_warning(LANG("obj.389d2adc179a15cd", list(src))))// If we cant even supply power
 		return ITEM_INTERACT_BLOCKING// Block usage
 	if(!user.transferItemToLoc(tool, src))// If we cant transfer the cell because we have nodrop or something
 		return ITEM_INTERACT_BLOCKING// Dont violate the laws of nature
 
 	charging = tool// crossmaps our obj were trying to stick in to the tool interact of the proc
 	user.visible_message(
-		span_notice(LANG("obj.7f426058", list(user, src))),
-		span_notice(LANG("obj.66c24cf5", list(src))),
+		span_notice(LANG("obj.7f426058a419ba9c", list(user, src))),
+		span_notice(LANG("obj.66c24cf5e38e7160", list(src))),
 	)// Let them know we did it woo!
 	update_appearance()// Give it a fresh icon
 	return ITEM_INTERACT_SUCCESS
@@ -130,14 +130,14 @@
 		return
 
 	charging.add_fingerprint(user)
-	user.visible_message(span_notice(LANG("obj.4a2c1fdd", list(user, charging, src))), span_notice(LANG("obj.cbed3266", list(charging, src))))
+	user.visible_message(span_notice(LANG("obj.4a2c1fddbcf43cde", list(user, charging, src))), span_notice(LANG("obj.cbed32661d4c054a", list(charging, src))))
 	user.put_in_hands(removebattery(drop_location()))
 
 /obj/machinery/megacell_charger/attack_tk(mob/user)
 	if(!charging)
 		return
 
-	to_chat(user, span_notice(LANG("obj.2e70f313", list(charging, src))))
+	to_chat(user, span_notice(LANG("obj.2e70f3132b99713e", list(charging, src))))
 	removebattery(drop_location())
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 

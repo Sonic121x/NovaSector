@@ -63,7 +63,7 @@
 		return
 	if (steps_travelled < steps_to_hatch)
 		return
-	visible_message(span_boldnotice(LANG("obj.4db5da9a", list(src))))
+	visible_message(span_boldnotice(LANG("obj.4db5da9a600c5461", list(src))))
 	playsound(new_loc, 'sound/effects/splat.ogg', 50, TRUE)
 	new /obj/effect/decal/cleanable/greenglow(new_loc)
 	new /obj/item/watcher_hatchling(new_loc)
@@ -248,13 +248,13 @@
 /// We must guard this corpse
 /obj/effect/watcher_orbiter/proc/on_parent_died(mob/living/parent)
 	SIGNAL_HANDLER
-	visible_message(span_notice(LANG("obj.2f1cfa77", list(src, parent))))
+	visible_message(span_notice(LANG("obj.2f1cfa7711c46b54", list(src, parent))))
 	fire_delay /= on_death_multiplier
 
 /// Exit hyperactive mode
 /obj/effect/watcher_orbiter/proc/on_parent_revived(mob/living/parent)
 	SIGNAL_HANDLER
-	visible_message(span_notice(LANG("obj.e9eb928d", list(src, parent))))
+	visible_message(span_notice(LANG("obj.e9eb928de4c55d66", list(src, parent))))
 	fire_delay *= on_death_multiplier
 
 

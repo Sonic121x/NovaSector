@@ -52,7 +52,7 @@
 		return
 	if(world.time < last_synth+time_per_syringe)
 		return
-	to_chat(loc, span_warning(LANG("obj.e55b3473", list(src))))
+	to_chat(loc, span_warning(LANG("obj.e55b34738a2d056f", list(src))))
 	syringes_left++
 	if(chambered && !chambered.loaded_projectile)
 		chambered.newshot()

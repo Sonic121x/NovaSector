@@ -15,7 +15,7 @@ Industrial extracts:
 
 /obj/item/slimecross/industrial/examine(mob/user)
 	. = ..()
-	. += LANG("obj.501e5dcd", list(plasmaabsorbed, plasmarequired))
+	. += LANG("obj.501e5dcd31048f9d", list(plasmaabsorbed, plasmarequired))
 
 /obj/item/slimecross/industrial/proc/do_after_spawn(obj/item/spawned)
 	return

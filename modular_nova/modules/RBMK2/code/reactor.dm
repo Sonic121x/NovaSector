@@ -203,7 +203,7 @@
 
 /obj/machinery/power/rbmk2/exchange_parts(mob/user, obj/item/storage/part_replacer/replacer_tool)
 	if(active)
-		balloon_alert(user, LANG("obj.81f59132", null))
+		balloon_alert(user, LANG("obj.81f59132de55e92f", null))
 		return FALSE
 
 	. = ..()
@@ -216,12 +216,12 @@
 	if(!jammed)
 		return FALSE
 	if(atom_integrity <= damage_to_deal)
-		balloon_alert(user, LANG("obj.ea198d83", null))
+		balloon_alert(user, LANG("obj.ea198d836b488917", null))
 		return FALSE
 	if(attacking_item.use_tool(src, user, 4 SECONDS, volume = 50) && jam(user, FALSE))
 		take_damage(damage_to_deal, armour_penetration = 100)
 		src.Shake(duration = 0.5 SECONDS)
-		balloon_alert(user, LANG("obj.a1f4b10e", null))
+		balloon_alert(user, LANG("obj.a1f4b10efe573cf9", null))
 		return TRUE
 	return FALSE
 
@@ -231,7 +231,7 @@
 		src.add_fingerprint(user)
 		stored_rod.add_fingerprint(user)
 		if(remove_rod(user))
-			balloon_alert(user, LANG("obj.ef4127ab", null))
+			balloon_alert(user, LANG("obj.ef4127ab410d2317", null))
 		return TRUE
 
 /obj/machinery/power/rbmk2/proc/remove_rod(mob/living/user, do_throw = FALSE)
@@ -320,7 +320,7 @@
 	for(var/obj/machinery/power/rbmk2/reactor in get_turf(src))
 		if(reactor != src)
 			reactor.deconstruct(FALSE) // To prevent stacking reactors on top of each other.
-			balloon_alert_to_viewers(LANG("obj.d2e890a9", list(reactor)))
+			balloon_alert_to_viewers(LANG("obj.d2e890a95bbef5df", list(reactor)))
 			return
 
 	if(active == desired_state)
@@ -385,7 +385,7 @@
 
 	if(venting) //Can't change when they're already on.
 		if(user)
-			balloon_alert(user, LANG("obj.05f7fc92", null))
+			balloon_alert(user, LANG("obj.05f7fc92ce503dfc", null))
 		return FALSE
 
 	vent_reverse_direction = desired_state
@@ -393,7 +393,7 @@
 	if(user)
 		user.log_message("had vents set to [vent_reverse_direction ? "reverse" : "normal"] by [src]", LOG_GAME)
 		investigate_log("had vents set to [vent_reverse_direction ? "reverse" : "normal"] by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
-		balloon_alert(user, LANG("obj.fe3b480c", list(vent_reverse_direction ? "pulling" : "pushing")))
+		balloon_alert(user, LANG("obj.fe3b480c4afdfb7c", list(vent_reverse_direction ? "pulling" : "pushing")))
 	else
 		var/turf/our_turf = get_turf(src)
 		log_game("[src] had vents set to [vent_reverse_direction ? "reverse" : "normal"] at [AREACOORD(our_turf)]")
@@ -500,7 +500,7 @@
 
 			safety = !safety
 
-			balloon_alert(user, LANG("obj.2ca76580", list(safety ? "on" : "off")))
+			balloon_alert(user, LANG("obj.2ca7658078962b02", list(safety ? "on" : "off")))
 			. = TRUE
 			if(isliving(user))
 				user.log_message("turned the safety [safety ? "on" : "off"] of [src]", LOG_GAME)
@@ -513,7 +513,7 @@
 
 			overclocked = !overclocked
 
-			balloon_alert(user, LANG("obj.0b854533", list(overclocked ? "on" : "off")))
+			balloon_alert(user, LANG("obj.0b85453330574c3e", list(overclocked ? "on" : "off")))
 			. = TRUE
 			if(isliving(user))
 				user.log_message("turned the overclock [overclocked ? "on" : "off"] of [src]", LOG_GAME)
@@ -526,36 +526,36 @@
 /obj/machinery/power/rbmk2/examine(mob/user)
 	. = ..()
 
-	. += span_notice(LANG("obj.df8ff394", list(display_power(safeties_max_power_generation))))
+	. += span_notice(LANG("obj.df8ff394ee20335e", list(display_power(safeties_max_power_generation))))
 
-	. += LANG("obj.bbb00e7d", list(length(linked_sniffers)))
+	. += LANG("obj.bbb00e7dc4529b61", list(length(linked_sniffers)))
 
-	. += LANG("obj.e87ba4d7", list(!active?"n't":""))
+	. += LANG("obj.e87ba4d7c50d0213", list(!active?"n't":""))
 
 	if(!power || !powernet)
-		. += span_warning(LANG("obj.5a2cca64", null))
+		. += span_warning(LANG("obj.5a2cca645a0e96bf", null))
 
 	if(!venting)
-		. += span_warning(LANG("obj.7206c8ab", null))
+		. += span_warning(LANG("obj.7206c8ab931a35e9", null))
 	else if(vent_reverse_direction)
-		. += LANG("obj.4ad27eca", null)
+		. += LANG("obj.4ad27ecaf71db99d", null)
 	if(!stored_rod)
-		. += span_warning(LANG("obj.ae3829d7", null))
+		. += span_warning(LANG("obj.ae3829d78ac295ed", null))
 	else if(jammed)
-		. += span_danger(LANG("obj.ca628566", null))
+		. += span_danger(LANG("obj.ca628566ef4b72da", null))
 	else if(meltdown)
-		. += span_danger(LANG("obj.92cc2aff", null))
+		. += span_danger(LANG("obj.92cc2affbe2637c9", null))
 	else
-		. += span_notice(LANG("obj.9fb43c12", null))
+		. += span_notice(LANG("obj.9fb43c1290adf449", null))
 
 	if(active)
-		. += span_notice(LANG("obj.943a8299", list(last_tritium_consumption, display_power(last_power_generation))))
+		. += span_notice(LANG("obj.943a8299afa98cb9", list(last_tritium_consumption, display_power(last_power_generation))))
 
 /obj/machinery/power/rbmk2/examine_more(mob/user)
 	. = ..()
-	. += LANG("obj.f26dad54", list(power_efficiency*100))
-	. += LANG("obj.86da2e45", list(vent_pressure))
-	. += LANG("obj.ce3eec20", list(display_power(max_power_generation)))
+	. += LANG("obj.f26dad54543ea6a7", list(power_efficiency*100))
+	. += LANG("obj.86da2e45bab88090", list(vent_pressure))
+	. += LANG("obj.ce3eec20da257972", list(display_power(max_power_generation)))
 
 /obj/machinery/power/rbmk2/proc/transfer_rod_temperature(datum/gas_mixture/gas_source, allow_cooling_limiter = TRUE, multiplier = 1)
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents

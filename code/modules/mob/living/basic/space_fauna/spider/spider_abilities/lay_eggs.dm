@@ -31,25 +31,25 @@
 		return FALSE
 	if(DOING_INTERACTION(owner, DOAFTER_SOURCE_SPIDER))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.8df72942", null))
+			owner.balloon_alert(owner, LANG("datum.8df72942c63f9092", null))
 		return FALSE
 	var/obj/structure/spider/eggcluster/eggs = locate() in get_turf(owner)
 	if(eggs)
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.f33507b8", null))
+			owner.balloon_alert(owner, LANG("datum.f33507b80d989186", null))
 		return FALSE
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/lay_eggs/Activate(atom/target)
-	owner.balloon_alert_to_viewers(LANG("datum.1564e82c", null))
+	owner.balloon_alert_to_viewers(LANG("datum.1564e82c1bdb6be5", null))
 	StartCooldown(360 SECONDS, 360 SECONDS)
 	if(!do_after(owner, egg_lay_time, target = get_turf(owner), interaction_key = DOAFTER_SOURCE_SPIDER))
-		owner.balloon_alert(owner, LANG("datum.c67b5d27", null))
+		owner.balloon_alert(owner, LANG("datum.c67b5d274d6e724b", null))
 		StartCooldown(0 SECONDS)
 		return
 	var/obj/structure/spider/eggcluster/eggs = locate() in get_turf(owner)
 	if(eggs)
-		owner.balloon_alert(owner, LANG("datum.f33507b8", null))
+		owner.balloon_alert(owner, LANG("datum.f33507b80d989186", null))
 	else
 		lay_egg()
 	StartCooldown()
@@ -83,7 +83,7 @@
 		return FALSE
 	if (charges <= 0)
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.2bebcffa", null))
+			owner.balloon_alert(owner, LANG("datum.2bebcffac7307e29", null))
 		return FALSE
 	return TRUE
 

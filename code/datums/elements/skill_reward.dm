@@ -18,12 +18,12 @@
 
 /datum/element/skill_reward/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice(LANG("datum.7d1ef8eb", null))
+	examine_list += span_notice(LANG("datum.7d1ef8eb35f11545", null))
 
 /datum/element/skill_reward/proc/on_attack_hand(datum/source, mob/living/user, list/modifiers)
 	SIGNAL_HANDLER
 	if(!LAZYACCESS(modifiers, CTRL_CLICK) && !check_equippable(user)) //Allows other players to drag it around at least.
-		to_chat(user, span_warning(LANG("datum.941ba63a", list(source))))
+		to_chat(user, span_warning(LANG("datum.941ba63a77fd46fc", list(source))))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	return NONE
 
@@ -32,7 +32,7 @@
 	SIGNAL_HANDLER
 	if(check_equippable(user) || !(source in user.get_equipped_items(INCLUDE_POCKETS | INCLUDE_ACCESSORIES)))
 		return NONE
-	to_chat(user, span_warning(LANG("datum.941ba63a", list(source))))
+	to_chat(user, span_warning(LANG("datum.941ba63a77fd46fc", list(source))))
 	user.dropItemToGround(source, TRUE)
 	return COMPONENT_EQUIPPED_FAILED
 

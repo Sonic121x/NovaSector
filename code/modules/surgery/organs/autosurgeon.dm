@@ -38,11 +38,11 @@
 /obj/item/autosurgeon/proc/load_organ(obj/item/organ/loaded_organ, mob/living/user)
 	if(user)
 		if(stored_organ)
-			to_chat(user, span_alert(LANG("obj.e7325773", list(src))))
+			to_chat(user, span_alert(LANG("obj.e7325773024711f3", list(src))))
 			return
 
 		if(uses <= 0)
-			to_chat(user, span_alert(LANG("obj.5aa6b652", list(src))))
+			to_chat(user, span_alert(LANG("obj.5aa6b652a3f8c5b8", list(src))))
 			return
 
 		if(organ_whitelist.len)
@@ -52,11 +52,11 @@
 					organ_whitelisted = TRUE
 					break
 			if(!organ_whitelisted)
-				to_chat(user, span_alert(LANG("obj.fbb43e6b", list(src, loaded_organ))))
+				to_chat(user, span_alert(LANG("obj.fbb43e6b3e1fb536", list(src, loaded_organ))))
 				return
 
 		if(!user.transferItemToLoc(loaded_organ, src))
-			to_chat(user, span_alert(LANG("obj.1dbf8014", list(loaded_organ))))
+			to_chat(user, span_alert(LANG("obj.1dbf8014c030d016", list(loaded_organ))))
 			return
 
 	stored_organ = loaded_organ
@@ -68,28 +68,28 @@
 
 /obj/item/autosurgeon/proc/use_autosurgeon(mob/living/target, mob/living/user, implant_time)
 	if(!stored_organ)
-		to_chat(user, span_alert(LANG("obj.7c5b6298", list(src))))
+		to_chat(user, span_alert(LANG("obj.7c5b6298c5edfb9e", list(src))))
 		return
 
 	if(uses <= 0)
-		to_chat(user, span_alert(LANG("obj.8104ad50", list(src))))
+		to_chat(user, span_alert(LANG("obj.8104ad50cb01368d", list(src))))
 		return
 
 	if(implant_time)
 		user.visible_message(
-			span_notice(LANG("obj.4e79cbb5", list(user, src, target))),
-			span_notice(LANG("obj.a3bf96f5", list(src, target))),
+			span_notice(LANG("obj.4e79cbb58488df32", list(user, src, target))),
+			span_notice(LANG("obj.a3bf96f544f86236", list(src, target))),
 		)
 		if(!do_after(user, (implant_time * surgery_speed), target))
 			return
 
 	if(target != user)
 		log_combat(user, target, "autosurgeon implanted [stored_organ] into", "[src]", "in [AREACOORD(target)]")
-		user.visible_message(span_notice(LANG("obj.9cb3659c", list(user, src, target))), span_notice(LANG("obj.8bbf310a", list(src, target))))
+		user.visible_message(span_notice(LANG("obj.9cb3659c4de2284e", list(user, src, target))), span_notice(LANG("obj.8bbf310a84f60973", list(src, target))))
 	else
 		user.visible_message(
-			span_notice(LANG("obj.474deacb", list(user, src, user.p_their()))),
-			span_notice(LANG("obj.ceb24710", list(src))),
+			span_notice(LANG("obj.474deacba75bc0ea", list(user, src, user.p_their()))),
+			span_notice(LANG("obj.ceb247107540422f", list(src))),
 		)
 
 	if (stored_organ.valid_zones && user.get_held_index_of_item(src))
@@ -105,7 +105,7 @@
 				break
 
 	if (!stored_organ.Insert(target)) // insert stored organ into the user
-		balloon_alert(user, LANG("obj.2c800922", null))
+		balloon_alert(user, LANG("obj.2c800922b2e10079", null))
 		return
 
 	stored_organ = null
@@ -115,7 +115,7 @@
 
 	uses--
 	if(uses <= 0)
-		desc = LANG("obj.8c69c278", list(initial(desc)))
+		desc = LANG("obj.8c69c278a06af8a9", list(initial(desc)))
 
 /obj/item/autosurgeon/attack_self(mob/user)//when the object it used...
 	use_autosurgeon(user, user)
@@ -134,18 +134,18 @@
 	if(..())
 		return TRUE
 	if(!stored_organ)
-		to_chat(user, span_warning(LANG("obj.215a92c5", list(src))))
+		to_chat(user, span_warning(LANG("obj.215a92c5e4dd44f5", list(src))))
 	else
 		var/atom/drop_loc = user.drop_location()
 		for(var/atom/movable/stored_implant as anything in src)
 			stored_implant.forceMove(drop_loc)
-			to_chat(user, span_notice(LANG("obj.01339089", list(stored_organ, src))))
+			to_chat(user, span_notice(LANG("obj.0133908911d9431b", list(stored_organ, src))))
 			stored_organ = null
 
 		screwtool.play_tool_sound(src)
 		uses--
 		if(uses <= 0)
-			desc = LANG("obj.8c69c278", list(initial(desc)))
+			desc = LANG("obj.8c69c278a06af8a9", list(initial(desc)))
 		update_appearance(UPDATE_ICON)
 	return TRUE
 

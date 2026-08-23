@@ -50,23 +50,23 @@
 /datum/action/cooldown/spell/pointed/manse_link/proc/do_linking(mob/living/linkee)
 	var/datum/component/mind_linker/linker = target
 	if(linkee.stat == DEAD)
-		to_chat(owner, span_warning(LANG("datum.43a298a5", null)))
+		to_chat(owner, span_warning(LANG("datum.43a298a53dd28fec", null)))
 		return FALSE
 
-	to_chat(owner, span_notice(LANG("datum.d639c400", list(linkee))))
-	to_chat(linkee, span_warning(LANG("datum.1efea42c", null)))
+	to_chat(owner, span_notice(LANG("datum.d639c4003b83eac2", list(linkee))))
+	to_chat(linkee, span_warning(LANG("datum.1efea42c64214f8d", null)))
 
 	if(!do_after(owner, link_time, linkee, cog_icon = null))
-		to_chat(owner, span_warning(LANG("datum.d2945102", list(linkee))))
-		to_chat(linkee, span_warning(LANG("datum.87466815", null)))
+		to_chat(owner, span_warning(LANG("datum.d29451023fc5ede3", list(linkee))))
+		to_chat(linkee, span_warning(LANG("datum.8746681502462cac", null)))
 		return FALSE
 
 	if(QDELETED(src) || QDELETED(owner) || QDELETED(linkee))
 		return FALSE
 
 	if(!linker.link_mob(linkee))
-		to_chat(owner, span_warning(LANG("datum.386f9098", list(linkee))))
-		to_chat(linkee, span_warning(LANG("datum.87466815", null)))
+		to_chat(owner, span_warning(LANG("datum.386f909832f5cb2f", list(linkee))))
+		to_chat(linkee, span_warning(LANG("datum.8746681502462cac", null)))
 		return FALSE
 
 	return TRUE

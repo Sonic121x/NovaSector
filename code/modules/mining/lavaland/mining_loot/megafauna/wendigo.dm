@@ -13,7 +13,7 @@
 	var/mob/living/carbon/human/human_user = user
 	if(!human_user.mind)
 		return
-	to_chat(human_user, span_danger(LANG("obj.93c9b102", null)))
+	to_chat(human_user, span_danger(LANG("obj.93c9b102847b1eda", null)))
 	var/datum/action/cooldown/spell/shapeshift/polar_bear/transformation_spell = new(user.mind || user)
 	transformation_spell.Grant(user)
 	playsound(human_user.loc, 'sound/items/drink.ogg', rand(10,50), TRUE)

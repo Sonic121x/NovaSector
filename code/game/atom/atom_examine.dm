@@ -41,9 +41,9 @@
 		else if(findtext(tag_string[length(tag_string)], regex(@">.*?and .*?<")))
 			tag_and = " "
 		tag_string = english_list(tag_string, and_text = tag_and, comma_text = tag_comma)
-		. += LANG("atom.0e340ddb", list(lang_pronoun(p_They()), lang_pronoun(p_are()), tag_string, lang_reverse_text(examine_descriptor(user)), post_desc_string)) // NOVA EDIT - i18n: 反查描述词(machine/structure/item…)+代词专用反查(He/is→他/是)，模板译文里占位符就位即成中文
+		. += LANG("atom.0e340ddb80a1ff83", list(lang_pronoun(p_They()), lang_pronoun(p_are()), tag_string, lang_reverse_text(examine_descriptor(user)), post_desc_string)) // NOVA EDIT - i18n: 反查描述词(machine/structure/item…)+代词专用反查(He/is→他/是)，模板译文里占位符就位即成中文
 	else if(post_desc_string)
-		. += LANG("atom.82f39ea0", list(p_They(), p_are(), lang_reverse_text(examine_descriptor(user)), post_desc_string)) // NOVA EDIT - i18n: 反查描述词(machine/structure/item…)，词进 ui.json
+		. += LANG("atom.82f39ea0c9f0e0a2", list(p_They(), p_are(), lang_reverse_text(examine_descriptor(user)), post_desc_string)) // NOVA EDIT - i18n: 反查描述词(machine/structure/item…)，词进 ui.json
 
 	if(reagents)
 		var/user_sees_reagents = user.can_see_reagents()
@@ -51,20 +51,20 @@
 		if(!(reagent_sigreturn & STOP_GENERIC_REAGENT_EXAMINE))
 			if(reagents.flags & TRANSPARENT)
 				if(reagents.total_volume)
-					. += LANG("atom.e9f1f44b", list(reagents.total_volume, user_sees_reagents ? ":" : "."))
+					. += LANG("atom.e9f1f44b12d3ed3a", list(reagents.total_volume, user_sees_reagents ? ":" : "."))
 					if(user_sees_reagents || (reagent_sigreturn & ALLOW_GENERIC_REAGENT_EXAMINE)) //Show each individual reagent for detailed examination
 						for(var/datum/reagent/current_reagent as anything in reagents.reagent_list)
-							. += LANG("atom.5b87b0e6", list(round(current_reagent.volume, CHEMICAL_VOLUME_ROUNDING), current_reagent.name))
+							. += LANG("atom.5b87b0e65d339f24", list(round(current_reagent.volume, CHEMICAL_VOLUME_ROUNDING), current_reagent.name))
 						if(reagents.is_reacting)
-							. += span_warning(LANG("atom.b103a790", null))
-						. += span_notice(LANG("atom.e0cf0e9e", list(round(reagents.ph, 0.01), reagents.chem_temp)))
+							. += span_warning(LANG("atom.b103a79011256e3f", null))
+						. += span_notice(LANG("atom.e0cf0e9e6dbe3ad2", list(round(reagents.ph, 0.01), reagents.chem_temp)))
 				else
-					. += LANG("atom.252461f2", null)
+					. += LANG("atom.252461f292e74fd5", null)
 			else if(reagents.flags & AMOUNT_VISIBLE)
 				if(reagents.total_volume)
-					. += span_notice(LANG("atom.5600f9ef", list(reagents.total_volume)))
+					. += span_notice(LANG("atom.5600f9efd453a9b7", list(reagents.total_volume)))
 				else
-					. += span_danger(LANG("atom.552a4105", null))
+					. += span_danger(LANG("atom.552a41054f376fdf", null))
 
 		if(HAS_TRAIT(user, TRAIT_KEEN_NOSE))
 			var/sniff_text = get_sniff_examine(user)
@@ -151,13 +151,7 @@
 		var/datum/material/current_material = SSmaterials.get_material(custom_material)
 		var/mat_name = lang_material(current_material.name) // NOVA EDIT - i18n: 材料名专用反查（零碰撞，按材料义翻；单词材料全局会按错义译）
 		mats_list += span_tooltip(LANG("atom.made_out_of_tooltip", list(mat_name)), mat_name) // NOVA EDIT - i18n: tooltip 文本本地化。ORIGINAL: span_tooltip("It is made out of [mat_name].", mat_name)
-	// NOVA EDIT CHANGE - i18n: 材料列表连接词中文用顿号（"铁 and 玻璃" → "铁、玻璃"）。ORIGINAL: . += LANG("atom.18275935", list(english_list(mats_list)))
-	var/mat_and = " and "
-	var/mat_comma = ", "
-	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
-		mat_and = "、"
-		mat_comma = "、"
-	. += LANG("atom.18275935", list(lang_english_list(mats_list, and_text = mat_and, comma_text = mat_comma)))
+	. += LANG("atom.1827593576cd6b63", list(lang_english_list(mats_list))) // NOVA EDIT CHANGE - i18n: scoped locale list formatting. ORIGINAL: . += LANG("atom.1827593576cd6b63", list(english_list(mats_list)))
 
 /**
  * Called when a mob examines (shift click or verb) this atom twice (or more) within EXAMINE_MORE_WINDOW (default 1 second)
@@ -191,7 +185,7 @@
 				material_string += span_tooltip("[lang_localize_arg("[property]")]: [lang_localize_arg(tooltip_hint)]", lang_localize_arg(descriptor)) // NOVA EDIT - I18N: 描述符/提示逐项翻（get_descriptor 的 return 字面量已进目录）
 
 		if (length(material_string))
-			. += span_info(LANG("atom.120458d2", list(capitalize(material.name), lang_english_list(material_string)))) // NOVA EDIT - I18N
+			. += span_info(LANG("atom.120458d2dd2fe467", list(capitalize(material.name), lang_english_list(material_string)))) // NOVA EDIT - I18N
 
 /**
  * Get the name of this object for examine

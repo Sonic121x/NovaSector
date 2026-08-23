@@ -12,12 +12,12 @@
 	if(isturf(interacting_with)) //This shouldn't be needed, but apparently it throws runtimes otherwise.
 		return NONE
 	if(interacting_with.type != from_obj) //Checks whether the item is eligible to be converted
-		to_chat(user, span_warning(LANG("obj.b040226a", list(interacting_with))))
+		to_chat(user, span_warning(LANG("obj.b040226ab04cf9e7", list(interacting_with))))
 		return ITEM_INTERACT_BLOCKING
 	if(!pre_convert_check(interacting_with, user))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/converted_item = new to_obj
-	user.visible_message(span_notice(LANG("obj.b0031472", list(user, interacting_with, converted_item))), span_notice(LANG("obj.85e7c294", list(interacting_with, converted_item))))
+	user.visible_message(span_notice(LANG("obj.b0031472585269f0", list(user, interacting_with, converted_item))), span_notice(LANG("obj.85e7c294e20e36b1", list(interacting_with, converted_item))))
 	qdel(interacting_with)
 	qdel(src)
 	user.put_in_hands(converted_item)

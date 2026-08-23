@@ -72,7 +72,7 @@
 	if(we_ate_heart == previous_heart)
 		return
 	if (!HAS_TRAIT(we_ate_heart, TRAIT_ORGAN_USED_BY_PLAYER))
-		to_chat(eater, span_warning(LANG("datum.f0de33c4", null)))
+		to_chat(eater, span_warning(LANG("datum.f0de33c4f31ebe95", null)))
 		return
 	bites_taken = 0
 
@@ -93,7 +93,7 @@
 	eater.dna?.species?.damage_modifier += 10
 	remember_modifier += 10
 	healing_heart(eater)
-	to_chat(eater, span_warning(LANG("datum.876f999d", null)))
+	to_chat(eater, span_warning(LANG("datum.876f999dc10942f5", null)))
 
 ///Not Perfect heart give random mutation.
 /datum/component/heart_eater/proc/not_perfect_heart(mob/living/carbon/human/eater)
@@ -109,7 +109,7 @@
 		return
 	eater.dna.add_mutation(new_mutation, MUTATION_SOURCE_HEART_EATER)
 	healing_heart(eater)
-	to_chat(eater, span_warning(LANG("datum.272c8f38", list(new_mutation.name))))
+	to_chat(eater, span_warning(LANG("datum.272c8f385b36f3f7", list(new_mutation.name))))
 
 ///Heart eater give also strong healing from hearts.
 /datum/component/heart_eater/proc/healing_heart(mob/living/carbon/human/eater)
@@ -162,20 +162,20 @@
 		interaction_key = "[DOAFTER_SOURCE_RIP_HEART]_[hand_index]",
 		max_interact_count = 1,
 		))
-		user.balloon_alert(user, LANG("datum.c67b5d27", null))
+		user.balloon_alert(user, LANG("datum.c67b5d274d6e724b", null))
 		return
 	var/obj/item/bodypart/chest = target.get_bodypart(BODY_ZONE_CHEST)
 	chest.force_wound_upwards(/datum/wound/blunt/bone/critical, wound_source = "heart ripped")
 	var/obj/item/organ/heart = target.get_organ_slot(ORGAN_SLOT_HEART)
 	if(!heart)
-		target.balloon_alert(user, LANG("datum.20f6c448", null))
+		target.balloon_alert(user, LANG("datum.20f6c448ae212824", null))
 		return
 	heart.Remove(target)
-	to_chat(user, span_warning(LANG("datum.da480ea5", list(target, heart.name, target.p_their()))))
+	to_chat(user, span_warning(LANG("datum.da480ea50ae6f840", list(target, heart.name, target.p_their()))))
 	target.visible_message(
-		span_warning(LANG("datum.b03ee5e1", list(user, target, heart.name, target.p_their()))),
-		span_userdanger(LANG("datum.0578e1b2", list(user, heart.name))),
-		span_userdanger(LANG("datum.5deb60e0", null)),
+		span_warning(LANG("datum.b03ee5e10352d52c", list(user, target, heart.name, target.p_their()))),
+		span_userdanger(LANG("datum.0578e1b2f51f7ee2", list(user, heart.name))),
+		span_userdanger(LANG("datum.5deb60e09f16a360", null)),
 		ignored_mobs = list(user),
 		)
 	if(!user.put_in_hand(heart, hand_index))

@@ -16,8 +16,8 @@
 			peek_a_boo.apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 
 		target.visible_message(
-			span_warning(LANG("obj.0948d002", list(target))),
-			span_revendanger(LANG("obj.7d22a087", null)),
+			span_warning(LANG("obj.0948d002c6bf01dc", list(target))),
+			span_revendanger(LANG("obj.7d22a087362fe0b0", null)),
 		)
 		target.apply_damage(rand(10, 15))
 

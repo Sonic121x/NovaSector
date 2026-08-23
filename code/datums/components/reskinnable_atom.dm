@@ -268,7 +268,7 @@
 		return
 
 	set_skin_by_name(pick, user)
-	to_chat(user, span_info(LANG("datum.83aae89c", list(parent, pick))))
+	to_chat(user, span_info(LANG("datum.83aae89c59f6975d", list(parent, pick))))
 
 	if(!infinite_reskin)
 		qdel(src)

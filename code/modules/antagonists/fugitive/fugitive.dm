@@ -81,7 +81,7 @@
 			message += "<BR><B>No idea what they're talking about though. I didn't steal any secrets, I just <i>borrowed</i> some of the prototypes my team and I had worked on.</B>"
 			message += "<BR><B>I worked on them, I MADE them. Now they want MY toys back? Not until I'm done playing with them...</B>"
 	to_chat(owner, "[message]</span>")
-	to_chat(owner, LANG("datum.cd88457b", null))
+	to_chat(owner, LANG("datum.cd88457bf3d102f1", null))
 	owner.announce_objectives()
 
 /datum/antagonist/fugitive/create_team(datum/team/fugitive/new_team)

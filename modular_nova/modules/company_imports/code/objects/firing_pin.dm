@@ -33,7 +33,7 @@ GLOBAL_VAR_INIT(permit_pin_unrestricted, FALSE)
 	. = ..()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, LANG("obj.ca984f15", null))
+	balloon_alert(user, LANG("obj.ca984f156c715884", null))
 	obj_flags |= EMAGGED
 	can_remove = TRUE
 	return TRUE

@@ -97,16 +97,16 @@
 /obj/structure/bookcase/examine(mob/user)
 	. = ..()
 	if(!anchored)
-		. += span_notice(LANG("obj.d6821321", null))
+		. += span_notice(LANG("obj.d6821321c5af3df2", null))
 	else
-		. += span_notice(LANG("obj.33d90045", null))
+		. += span_notice(LANG("obj.33d900455f54fff2", null))
 	switch(state)
 		if(BOOKCASE_UNANCHORED)
-			. += span_notice(LANG("obj.1425df27", null))
+			. += span_notice(LANG("obj.1425df27548be884", null))
 		if(BOOKCASE_ANCHORED)
-			. += span_notice(LANG("obj.de85b8df", null))
+			. += span_notice(LANG("obj.de85b8df682a0086", null))
 		if(BOOKCASE_FINISHED)
-			. += span_notice(LANG("obj.a89f5a39", null))
+			. += span_notice(LANG("obj.a89f5a39336e8884", null))
 
 /obj/structure/bookcase/set_anchored(anchorvalue)
 	. = ..()
@@ -127,11 +127,11 @@
 			return NONE
 		var/obj/item/stack/sheet/mineral/wood/planks = tool
 		if(planks.get_amount() < 2)
-			balloon_alert(user, LANG("obj.6c0cc018", null))
+			balloon_alert(user, LANG("obj.6c0cc0180ca3231b", null))
 			return ITEM_INTERACT_BLOCKING
 
 		planks.use(2)
-		balloon_alert(user, LANG("obj.a91480e5", null))
+		balloon_alert(user, LANG("obj.a91480e5093dcc6a", null))
 		state = BOOKCASE_FINISHED
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
@@ -156,7 +156,7 @@
 		if (!found_anything)
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.0247b950", list(src)))
+		balloon_alert(user, LANG("obj.0247b950d0177e0b", list(src)))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -168,17 +168,17 @@
 			if(!tool.use_tool(src, user, 2 SECONDS, volume = 50))
 				return ITEM_INTERACT_BLOCKING
 
-			user.balloon_alert(user, LANG("obj.44620667", null))
+			user.balloon_alert(user, LANG("obj.4462066733c487bc", null))
 			deconstruct(TRUE)
 			return ITEM_INTERACT_SUCCESS
 
 		if(BOOKCASE_FINISHED)
 			if(length(contents))
-				balloon_alert(user, LANG("obj.711ba1ac", null))
+				balloon_alert(user, LANG("obj.711ba1acbd1f2750", null))
 				return ITEM_INTERACT_BLOCKING
 
 			tool.play_tool_sound(src, 100)
-			balloon_alert(user, LANG("obj.a47b69b4", null))
+			balloon_alert(user, LANG("obj.a47b69b49f60f84b", null))
 			new /obj/item/stack/sheet/mineral/wood(drop_location(), 2)
 			state = BOOKCASE_ANCHORED
 			update_appearance()
@@ -192,13 +192,13 @@
 			if(!tool.use_tool(src, user, 2 SECONDS, volume = 50))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, LANG("obj.1972f190", null))
+			balloon_alert(user, LANG("obj.1972f190d8dd961c", null))
 			set_anchored(TRUE)
 			return ITEM_INTERACT_SUCCESS
 
 		if(BOOKCASE_ANCHORED)
 			tool.play_tool_sound(src, 100)
-			balloon_alert(user, LANG("obj.7ffc1b99", null))
+			balloon_alert(user, LANG("obj.7ffc1b995d4dafce", null))
 			set_anchored(FALSE)
 			return ITEM_INTERACT_SUCCESS
 
@@ -212,7 +212,7 @@
 		return
 	if(!length(contents))
 		return
-	var/obj/item/book/choice = tgui_input_list(user, LANG("obj.ef5db367", null), LANG("obj.d7b57abc", null), sort_names(contents.Copy()))
+	var/obj/item/book/choice = tgui_input_list(user, LANG("obj.ef5db3670072eaef", null), LANG("obj.d7b57abc677ca482", null), sort_names(contents.Copy()))
 	if(isnull(choice))
 		return
 	if(!(user.mobility_flags & MOBILITY_USE) || IS_UNCONSCIOUS_OR_CRIT(user) || HAS_TRAIT(user, TRAIT_HANDS_BLOCKED) || !in_range(loc, user))

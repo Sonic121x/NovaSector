@@ -104,7 +104,7 @@
 
 /obj/item/clothing/under/akula_wetsuit/job/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.b5542b5e", null))
+	. += span_notice(LANG("obj.b5542b5eea7b0c2d", null))
 
 /obj/item/clothing/under/akula_wetsuit/job/examine_more(mob/user)
 	. = ..()

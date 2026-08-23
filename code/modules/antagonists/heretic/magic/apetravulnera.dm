@@ -33,8 +33,8 @@
 
 	if(cast_on.can_block_magic(antimagic_flags))
 		cast_on.visible_message(
-			span_danger(LANG("datum.4c55356c", list(cast_on))),
-			span_danger(LANG("datum.305f347c", null))
+			span_danger(LANG("datum.4c55356cd427a621", list(cast_on))),
+			span_danger(LANG("datum.305f347ca53f0044", null))
 		)
 		return FALSE
 
@@ -51,8 +51,8 @@
 		crit_wound.apply_wound(pick(cast_on.get_bodyparts()))
 
 	cast_on.visible_message(
-		span_danger(LANG("datum.8c4044ad", list(cast_on))),
-		span_danger(LANG("datum.ebac4a38", null))
+		span_danger(LANG("datum.8c4044ad48d76545", list(cast_on))),
+		span_danger(LANG("datum.ebac4a38ee70f810", null))
 	)
 
 	new /obj/effect/temp_visual/cleave(get_turf(cast_on))

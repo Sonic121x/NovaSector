@@ -36,8 +36,8 @@
 		hit_mob.add_overlay(forbearance)
 		addtimer(CALLBACK(hit_mob, TYPE_PROC_REF(/atom, cut_overlay), forbearance), 10 SECONDS)
 
-		hit_mob.visible_message(span_warning(LANG("datum.958a7bbc", list(hit_mob))), \
-									   span_userdanger(LANG("datum.25702594", null)))
+		hit_mob.visible_message(span_warning(LANG("datum.958a7bbc19850e51", list(hit_mob))), \
+									   span_userdanger(LANG("datum.25702594d77aba9a", null)))
 
 		playsound(invoker, 'sound/effects/magic/mm_hit.ogg', 50, TRUE)
 		return TRUE
@@ -53,10 +53,10 @@
 		hit_mob.color = LIGHT_COLOR_BLOOD_MAGIC
 		animate(hit_mob, color = mob_color, time = 30 SECONDS)
 
-		hit_mob.say(LANG("datum.e14bfb2c", null))
+		hit_mob.say(LANG("datum.e14bfb2c4e379d83", null))
 
-		to_chat(invoker, span_warning(LANG("datum.bfed218f", list(hit_mob))))
-		to_chat(hit_mob, span_warning(LANG("datum.4856e25c", null)))
+		to_chat(invoker, span_warning(LANG("datum.bfed218fe8cd767d", list(hit_mob))))
+		to_chat(hit_mob, span_warning(LANG("datum.4856e25c0e25f9d4", null)))
 
 		playsound(invoker, 'sound/effects/magic/mm_hit.ogg', 50, TRUE)
 		return TRUE

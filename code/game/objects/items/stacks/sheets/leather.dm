@@ -408,17 +408,17 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 	if(!tool.get_sharpness())
 		return ..()
 	playsound(loc, 'sound/items/weapons/slice.ogg', 50, TRUE, -1)
-	user.visible_message(span_notice(LANG("obj.cdc34796", list(user, src))), span_notice(LANG("obj.4a5f6834", list(src))), span_hear(LANG("obj.a4128978", null)))
+	user.visible_message(span_notice(LANG("obj.cdc347966716a71b", list(user, src))), span_notice(LANG("obj.4a5f6834f0d6f6bc", list(src))), span_hear(LANG("obj.a412897885ceae0f", null)))
 	if(!do_after(user, 5 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.07e8728d", list(src.name))))
+	to_chat(user, span_notice(LANG("obj.07e8728d0c72fc38", list(src.name))))
 	new /obj/item/stack/sheet/hairlesshide(user.drop_location(), amount)
 	use(amount)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/sheet/animalhide/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.6fdc6d9a", null))
+	. += span_notice(LANG("obj.6fdc6d9a9d49aeaa", null))
 
 //Step two - washing..... it's actually in washing machine code.
 
@@ -435,7 +435,7 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 
 /obj/item/stack/sheet/hairlesshide/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.3a0baa69", null))
+	. += span_notice(LANG("obj.3a0baa69d2c0b5ee", null))
 
 //Step three - drying
 /obj/item/stack/sheet/wethide
@@ -455,7 +455,7 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 
 /obj/item/stack/sheet/wethide/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.1a2d1423", null))
+	. += span_notice(LANG("obj.1a2d14232204737d", null))
 
 /obj/item/stack/sheet/wethide/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	. = ..()
@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 	AddComponent(/datum/component/bakeable, /obj/item/stack/sheet/leather, rand(15 SECONDS, 20 SECONDS), TRUE, TRUE)
 
 /obj/item/stack/sheet/wethide/burn()
-	visible_message(span_notice(LANG("obj.fef5d09d", list(src))))
+	visible_message(span_notice(LANG("obj.fef5d09d21ff5d4e", list(src))))
 	new /obj/item/stack/sheet/leather(loc, amount) // all the sheets to incentivize not losing your whole stack by accident
 	qdel(src)
 

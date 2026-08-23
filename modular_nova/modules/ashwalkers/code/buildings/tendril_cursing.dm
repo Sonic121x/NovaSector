@@ -12,12 +12,12 @@
 		else
 			src.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#41007e")
 
-		balloon_alert_to_viewers(LANG("obj.8bed25c6", list(cursed ? "placed..." : "lifted...")))
+		balloon_alert_to_viewers(LANG("obj.8bed25c6ee5e743e", list(cursed ? "placed..." : "lifted...")))
 		if(isliving(user))
 			var/mob/living/living_user = user
 			living_user.adjust_fire_loss(100)
 
-		to_chat(user, span_warning(LANG("mob.83922db4", null)))
+		to_chat(user, span_warning(LANG("mob.83922db4ee6949e0", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	return ..()
@@ -34,7 +34,7 @@
 			if(!is_species(select_mob, /datum/species/lizard/ashwalker))
 				continue
 
-			to_chat(select_mob, span_boldwarning(LANG("mob.b4feab5b", null)))
+			to_chat(select_mob, span_boldwarning(LANG("mob.b4feab5bda9af201", null)))
 
 	. = ..()
 
@@ -65,7 +65,7 @@
 		if(!is_species(select_mob, /datum/species/lizard/ashwalker))
 			continue
 
-		to_chat(select_mob, span_boldwarning(LANG("datum.6dcd6da4", null)))
+		to_chat(select_mob, span_boldwarning(LANG("datum.6dcd6da4edf3183b", null)))
 
 	qdel(src)
 
@@ -78,7 +78,7 @@
 			if(!is_species(select_mob, /datum/species/lizard/ashwalker))
 				continue
 
-			to_chat(select_mob, span_boldwarning(LANG("datum.9e661497", null)))
+			to_chat(select_mob, span_boldwarning(LANG("datum.9e661497f8c319fd", null)))
 		qdel(src)
 		return
 

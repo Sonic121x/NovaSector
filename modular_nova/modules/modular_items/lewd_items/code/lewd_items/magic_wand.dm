@@ -96,11 +96,11 @@
 
 	var/message = ""
 	if(vibration_mode == "off")
-		to_chat(user, span_warning(LANG("obj.6b646a95", null)))
+		to_chat(user, span_warning(LANG("obj.6b646a95e7f41a5f", null)))
 		return FALSE
 
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger(LANG("obj.bc6595c0", list(target))))
+		to_chat(user, span_danger(LANG("obj.bc6595c02bc7720d", list(target))))
 		return FALSE
 
 	var/first_adjective = ""
@@ -125,7 +125,7 @@
 
 			var/currently_bottomless = target.is_bottomless()
 			if(!currently_bottomless && !vagina?.visibility_preference && !penis?.visibility_preference)
-				to_chat(user, span_danger(LANG("obj.c5b0317d", list(target))))
+				to_chat(user, span_danger(LANG("obj.c5b0317d58c50f81", list(target))))
 				return FALSE
 
 			var/target_organs = list()
@@ -146,7 +146,7 @@
 		if(BODY_ZONE_CHEST)
 			var/obj/item/organ/genital/breasts = target.get_organ_slot(ORGAN_SLOT_BREASTS)
 			if(!(target.is_topless() || breasts.visibility_preference == GENITAL_ALWAYS_SHOW))
-				to_chat(user, span_danger(LANG("obj.b0aede84", list(target))))
+				to_chat(user, span_danger(LANG("obj.b0aede841acb5a5f", list(target))))
 				return FALSE
 
 			var/breasts_or_nipples = breasts ? ORGAN_SLOT_BREASTS : ORGAN_SLOT_NIPPLES
@@ -164,13 +164,13 @@
 	toggle_mode()
 	switch(vibration_mode)
 		if("low")
-			to_chat(user, span_notice(LANG("obj.e12c5aec", null)))
+			to_chat(user, span_notice(LANG("obj.e12c5aecb6f6b59c", null)))
 		if("medium")
-			to_chat(user, span_notice(LANG("obj.64762236", null)))
+			to_chat(user, span_notice(LANG("obj.647622368df23f9b", null)))
 		if("high")
-			to_chat(user, span_notice(LANG("obj.f9ff6616", null)))
+			to_chat(user, span_notice(LANG("obj.f9ff6616b82c79a0", null)))
 		if("off")
-			to_chat(user, span_notice(LANG("obj.bb1d999a", list(src))))
+			to_chat(user, span_notice(LANG("obj.bb1d999ae5909108", list(src))))
 
 	update_icon()
 	update_icon_state()

@@ -236,12 +236,12 @@
 		return TRUE
 	var/datum/bank_account/department_account = SSeconomy.get_dep_account(account_job.paycheck_department)
 	if(isnull(department_account))
-		bank_card_talk(LANG("datum.c2a57dc4", list(event)))
+		bank_card_talk(LANG("datum.c2a57dc42eb07a8d", list(event)))
 		return FALSE
 	if(!transfer_money(department_account, money_to_transfer))
-		bank_card_talk(LANG("datum.7a86f744", list(event)))
+		bank_card_talk(LANG("datum.7a86f744611896cd", list(event)))
 		return FALSE
-	bank_card_talk(LANG("datum.4cd20f13", list(event, account_balance, MONEY_SYMBOL)))
+	bank_card_talk(LANG("datum.4cd20f13fbb84ab3", list(event, account_balance, MONEY_SYMBOL)))
 	return TRUE
 
 /**

@@ -95,7 +95,7 @@
 	var/datum/species/rec_species = human_receiver.dna.species
 	rec_species.update_no_equip_flags(brain_owner, initial(rec_species.no_equip_flags))
 	if(hammer)
-		brain_owner.visible_message(span_warning(LANG("obj.5695beae", list(hammer))))
+		brain_owner.visible_message(span_warning(LANG("obj.5695beae3f6830f1", list(hammer))))
 		QDEL_NULL(hammer)
 
 /obj/item/goliath_infuser_hammer
@@ -130,7 +130,7 @@
 
 /obj/item/goliath_infuser_hammer/examine(mob/user)
 	. = ..()
-	. += LANG("obj.d0c19a6e", null)
+	. += LANG("obj.d0c19a6e0f8cc903", null)
 
 /obj/item/goliath_infuser_hammer/attack(mob/living/target, mob/living/carbon/human/user, list/modifiers, list/attack_modifiers)
 	. = ..()

@@ -131,7 +131,7 @@
 	. = ..()
 	if(visuals_only)
 		return
-	to_chat(H, span_notice(LANG("datum.f91ed4c3", list(faction))))
+	to_chat(H, span_notice(LANG("datum.f91ed4c3fb00a166", list(faction))))
 
 /datum/outfit/syndicate/reinforcement/plasmaman
 	name = "Syndicate Operative - Reinforcement (Plasmaman)"

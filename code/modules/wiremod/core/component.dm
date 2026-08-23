@@ -116,7 +116,7 @@
 /obj/item/circuit_component/examine(mob/user)
 	. = ..()
 	if(circuit_flags & CIRCUIT_FLAG_REFUSE_MODULE)
-		. += span_notice(LANG("obj.85e2ca09", null))
+		. += span_notice(LANG("obj.85e2ca09948d8892", null))
 
 /// updates the ui alerts in the given component. new_flag adds flags, remove_flag removes them
 /obj/item/circuit_component/proc/update_ui_alerts(new_flag, remove_flag)

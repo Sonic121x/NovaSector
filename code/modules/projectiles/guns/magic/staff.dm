@@ -56,8 +56,8 @@
 /obj/item/gun/magic/staff/change/pickup(mob/user)
 	. = ..()
 	if(!is_wizard_or_friend(user))
-		to_chat(user, span_hypnophrase(LANG("obj.8bec49b0", null)))
-		balloon_alert(user, LANG("obj.20e2b3fd", null))
+		to_chat(user, span_hypnophrase(LANG("obj.8bec49b04bde7cd2", null)))
+		balloon_alert(user, LANG("obj.20e2b3fd6c3cc46c", null))
 
 /// Transforms the user
 /obj/item/gun/magic/staff/change/proc/transform_self(mob/living/user)
@@ -66,7 +66,7 @@
 	var/mob/living/new_body = user.wabbajack(wabbajack_into, preset_wabbajack_changeflag)
 	if(!new_body)
 		return
-	balloon_alert(new_body, LANG("obj.f13b14b3", null))
+	balloon_alert(new_body, LANG("obj.f13b14b3d4114e26", null))
 	return new_body
 
 /obj/item/gun/magic/staff/change/on_intruder_use(mob/living/user, atom/target)
@@ -139,13 +139,13 @@
 /obj/item/gun/magic/staff/healing/pickup(mob/user)
 	. = ..()
 	if(!is_wizard_or_friend(user))
-		to_chat(user, span_hypnophrase(LANG("obj.56d08662", null)))
-		user.balloon_alert(user, LANG("obj.f98e124c", null))
+		to_chat(user, span_hypnophrase(LANG("obj.56d0866244fe79ed", null)))
+		user.balloon_alert(user, LANG("obj.f98e124c0ad02fba", null))
 
 /obj/item/gun/magic/staff/healing/examine(mob/user)
 	. = ..()
 	if(!is_wizard_or_friend(user))
-		. += span_notice(LANG("obj.31468cef", null))
+		. += span_notice(LANG("obj.31468cef717d7b59", null))
 
 /obj/item/gun/magic/staff/healing/Initialize(mapload)
 	. = ..()
@@ -177,7 +177,7 @@
 	if(user.mob_biotypes & MOB_UNDEAD)
 		user.dust(drop_items = TRUE)
 		return MANUAL_SUICIDE
-	user.visible_message(span_suicide(LANG("obj.0f15a9dc", null)))
+	user.visible_message(span_suicide(LANG("obj.0f15a9dce0f2851a", null)))
 	return SHAME
 
 /// Does random shit when fired
@@ -232,12 +232,12 @@
 
 /obj/item/gun/magic/staff/chaos/on_intruder_use(mob/living/user)
 	if(!user.can_cast_magic()) // Don't let people with antimagic use the staff of chaos.
-		balloon_alert(user, LANG("obj.dc97ffea", null))
+		balloon_alert(user, LANG("obj.dc97ffeab4425d04", null))
 		return FALSE
 
 	if(prob(95)) // You have a 5% chance of hitting yourself when using the staff of chaos.
 		return TRUE
-	balloon_alert(user, LANG("obj.2c896a75", null))
+	balloon_alert(user, LANG("obj.2c896a75f36fd660", null))
 	user.dropItemToGround(src, TRUE)
 	process_fire(user, user, FALSE)
 	return FALSE
@@ -437,7 +437,7 @@
 /obj/item/gun/magic/staff/babel/do_suicide(mob/living/user)
 	. = ..()
 	process_fire(user, user, FALSE)
-	user.say(LANG("obj.0d861f29", null), forced = "failed babel staff suicide")
+	user.say(LANG("obj.0d861f2911678ecf", null), forced = "failed babel staff suicide")
 	return SHAME
 
 /// Deals damage to the target and recharges their spells if they have any
@@ -494,7 +494,7 @@
 	. = ..()
 	playsound(user, fire_sound, 50, TRUE)
 	user.unequip_everything()
-	user.visible_message(span_suicide(LANG("obj.1c8e52c7", list(user))), span_suicide(LANG("obj.3fee85c3", null)))
+	user.visible_message(span_suicide(LANG("obj.1c8e52c7cade440a", list(user))), span_suicide(LANG("obj.3fee85c350530e2a", null)))
 	user.Stun(20 SECONDS, ignore_canstun = TRUE)
 	user.set_suicide(TRUE)
 	user.ghostize()

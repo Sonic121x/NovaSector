@@ -24,16 +24,16 @@
 		mobs_with_special_messages += buckling
 		delay *= SADDLE_MOUNTING_OTHER_MULT
 
-	user.visible_message(span_warning(LANG("mob.a2389259", list(user, ridee_string, src))), span_notice(LANG("mob.dbeecf1f", list(ridee_string, src))), ignored_mobs = mobs_with_special_messages)
-	to_chat(src, span_warning(LANG("mob.04d6903a", list(user, ridee_string))))
+	user.visible_message(span_warning(LANG("mob.a2389259731c8839", list(user, ridee_string, src))), span_notice(LANG("mob.dbeecf1fec06f8b1", list(ridee_string, src))), ignored_mobs = mobs_with_special_messages)
+	to_chat(src, span_warning(LANG("mob.04d6903ad215d136", list(user, ridee_string))))
 	if (buckling != user)
-		to_chat(buckling, span_boldwarning(LANG("mob.92ad98ea", list(user, src))))
+		to_chat(buckling, span_boldwarning(LANG("mob.92ad98ea967a1f7d", list(user, src))))
 
 	if (!do_after(user, SADDLE_MOUNTING_TIME, target = src))
-		user.visible_message(span_warning(LANG("mob.f803a36a", list(user, ridee_string, src))), span_warning(LANG("mob.192ea1c6", list(ridee_string, src))), ignored_mobs = mobs_with_special_messages)
-		to_chat(src, span_warning(LANG("mob.b76eae35", list(user, ridee_string))))
+		user.visible_message(span_warning(LANG("mob.f803a36ac7412f65", list(user, ridee_string, src))), span_warning(LANG("mob.192ea1c6a80ef88f", list(ridee_string, src))), ignored_mobs = mobs_with_special_messages)
+		to_chat(src, span_warning(LANG("mob.b76eae350212e612", list(user, ridee_string))))
 		if (buckling != user)
-			to_chat(buckling, span_warning(LANG("mob.5ef57986", list(user, src))))
+			to_chat(buckling, span_warning(LANG("mob.5ef57986a90f1511", list(user, src))))
 		return FALSE
 
 	if (!can_be_ridden_by(buckling, user)) // because we slept

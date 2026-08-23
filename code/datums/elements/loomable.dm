@@ -46,7 +46,7 @@
 /datum/element/loomable/proc/on_examine(obj/item/source, mob/examiner, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice(LANG("datum.219e0b66", list(source, initial(loom_type.name))))
+	examine_list += span_notice(LANG("datum.219e0b661bbef061", list(source, initial(loom_type.name))))
 
 /// Checks if the thing we clicked on can be used as a loom, and if we can actually loom the source at present (an example being does the stack have enough in it (if its a stack))
 /datum/element/loomable/proc/try_and_loom_me(obj/item/source, atom/target, mob/living/user)
@@ -58,13 +58,13 @@
 	if(ismovable(target))
 		var/atom/movable/movable_target = target
 		if(target_needs_anchoring && !movable_target.anchored)
-			user.balloon_alert(user, LANG("datum.f935315f", list(movable_target)))
+			user.balloon_alert(user, LANG("datum.f935315f148d8578", list(movable_target)))
 			return
 
 	if((required_amount > 1) && istype(source, /obj/item/stack))
 		var/obj/item/stack/source_stack = source
 		if(source_stack.amount < required_amount)
-			user.balloon_alert(user, LANG("datum.3d9f817c", list(required_amount, source)))
+			user.balloon_alert(user, LANG("datum.3d9f817ce6504cb0", list(required_amount, source)))
 			return
 
 	INVOKE_ASYNC(src, PROC_REF(loom_me), source, user, target)
@@ -83,7 +83,7 @@
 
 			if(!stack_we_use.use(required_amount))
 				if (!spawning_amount)
-					user.balloon_alert(user, LANG("datum.3d9f817c", list(required_amount, source)))
+					user.balloon_alert(user, LANG("datum.3d9f817ce6504cb0", list(required_amount, source)))
 				break
 
 			spawning_amount++
@@ -91,7 +91,7 @@
 
 	else
 		if(!do_after(user, loom_time * skill_modifier, target)) //NOVA EDIT ADDITION: Production Skill (Three Skills)
-			user.balloon_alert(user, LANG("datum.c67b5d27", null))
+			user.balloon_alert(user, LANG("datum.c67b5d274d6e724b", null))
 			return
 
 		qdel(source)

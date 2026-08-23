@@ -93,7 +93,7 @@
 
 /datum/admins/proc/check_antagonists()
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr, LANG("datum.8a212f07", null))
+		tgui_alert(usr, LANG("datum.8a212f0792509a20", null))
 		return
 	var/list/dat = list("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Round Status</title></head><body><h1><B>Round Status</B></h1>")
 	dat += "<a href='byond://?_src_=holder;[HrefToken()];gamemode_panel=1'>Dynamic Panel</a><br>"

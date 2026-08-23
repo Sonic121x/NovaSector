@@ -32,7 +32,7 @@
 	new picked(src)
 
 /obj/item/storage/dice/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.e9dd5aab", list(user, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.e9dd5aabc9db1b28", list(user, user.p_theyre()))))
 	return OXYLOSS
 
 /obj/item/storage/dice/hazard/PopulateContents()
@@ -102,12 +102,12 @@
 
 	if(in_hand) //Dice was rolled in someone's hand
 		user.visible_message(
-			span_notice(LANG("obj.f5053f42", list(user, src, result, comment))),
-			span_notice(LANG("obj.7b6d9935", list(src, result, comment))),
-			span_hear(LANG("obj.6e8c1cfa", list(src, fake_result))),
+			span_notice(LANG("obj.f5053f422fd95566", list(user, src, result, comment))),
+			span_notice(LANG("obj.7b6d99359af3c927", list(src, result, comment))),
+			span_hear(LANG("obj.6e8c1cfa3814ed95", list(src, fake_result))),
 		)
 	else
-		visible_message(span_notice(LANG("obj.61df0bbf", list(src, result, comment))))
+		visible_message(span_notice(LANG("obj.61df0bbfdb5783a5", list(src, result, comment))))
 
 	return .
 
@@ -128,7 +128,7 @@
 	return original
 
 /obj/item/dice/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.e9dd5aab", list(user, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.e9dd5aabc9db1b28", list(user, user.p_theyre()))))
 	return OXYLOSS
 
 /obj/item/dice/d1
@@ -306,7 +306,7 @@
 
 /obj/item/dice/d20/fate/diceroll(mob/user, in_hand=FALSE)
 	if(!COOLDOWN_FINISHED(src, roll_cd))
-		to_chat(user, span_warning(LANG("obj.382a27bb", list(src))))
+		to_chat(user, span_warning(LANG("obj.382a27bbe5279163", list(src))))
 		return
 
 	. = ..()
@@ -314,14 +314,14 @@
 		return
 
 	if(!ishuman(user) || !user.mind || IS_WIZARD(user))
-		to_chat(user, span_warning(LANG("obj.b3f54b2b", null)))
+		to_chat(user, span_warning(LANG("obj.b3f54b2b2d2827d5", null)))
 		return
 
 	if(!reusable)
 		used = TRUE
 
 	var/turf/selected_turf = get_turf(src)
-	selected_turf.visible_message(span_userdanger(LANG("obj.0204327d", list(src))))
+	selected_turf.visible_message(span_userdanger(LANG("obj.0204327d5219134c", list(src))))
 
 	addtimer(CALLBACK(src, PROC_REF(effect), user, .), 1 SECONDS)
 	COOLDOWN_START(src, roll_cd, 2.5 SECONDS)
@@ -329,7 +329,7 @@
 /obj/item/dice/d20/fate/equipped(mob/user, slot)
 	. = ..()
 	if(!ishuman(user) || !user.mind || IS_WIZARD(user))
-		to_chat(user, span_warning(LANG("obj.b32a31b5", null)))
+		to_chat(user, span_warning(LANG("obj.b32a31b53a866f70", null)))
 		user.dropItemToGround(src)
 
 
@@ -338,37 +338,37 @@
 	switch(roll)
 		if(1)
 			//Dust
-			selected_turf.visible_message(span_userdanger(LANG("obj.84d50983", list(user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.84d50983f55abf9e", list(user))))
 			user.investigate_log("has been dusted by a die of fate.", INVESTIGATE_DEATHS)
 			user.dust()
 		if(2)
 			//Death
-			selected_turf.visible_message(span_userdanger(LANG("obj.f503c5aa", list(user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.f503c5aaaa8f5bd7", list(user))))
 			user.investigate_log("has been killed by a die of fate.", INVESTIGATE_DEATHS)
 			user.death()
 		if(3)
 			//Swarm of creatures
-			selected_turf.visible_message(span_userdanger(LANG("obj.b22389f5", list(user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.b22389f5f81c8161", list(user))))
 			for(var/direction in GLOB.alldirs)
 				var/turf/stepped_turf = get_step(get_turf(user), direction)
 				do_sparks(3, FALSE, stepped_turf)
 				new /mob/living/basic/creature(stepped_turf)
 		if(4)
 			//Destroy Equipment
-			selected_turf.visible_message(span_userdanger(LANG("obj.02c3ef08", list(user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.02c3ef08d607d4b6", list(user))))
 			var/list/belongings = user.get_all_gear(NONE) //don't delete prosthetics or abstract items.
 			QDEL_LIST(belongings)
 		if(5)
 			//Monkeying
-			selected_turf.visible_message(span_userdanger(LANG("obj.18c3682a", list(user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.18c3682ae17f314e", list(user))))
 			user.monkeyize()
 		if(6)
 			//Cut speed
-			selected_turf.visible_message(span_userdanger(LANG("obj.05f26a10", list(user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.05f26a107650a312", list(user))))
 			user.add_movespeed_modifier(/datum/movespeed_modifier/die_of_fate)
 		if(7)
 			//Throw
-			selected_turf.visible_message(span_userdanger(LANG("obj.a381c4d3", list(user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.a381c4d37f4a794f", list(user))))
 			user.Stun(60)
 			user.adjust_brute_loss(50)
 			var/throw_dir = pick(GLOB.cardinals)
@@ -376,29 +376,29 @@
 			user.throw_at(throw_target, 200, 4)
 		if(8)
 			//Fuel tank Explosion
-			selected_turf.visible_message(span_userdanger(LANG("obj.f6062786", list(user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.f606278658b9cb43", list(user))))
 			explosion(get_turf(user), devastation_range = -1, light_impact_range = 2, flame_range = 2, explosion_cause = src)
 		if(9)
 			//Cold
 			var/datum/disease/cold = new /datum/disease/cold()
-			selected_turf.visible_message(span_userdanger(LANG("obj.2abf6e39", list(user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.2abf6e398f4d3035", list(user))))
 			user.ForceContractDisease(cold, FALSE, TRUE)
 		if(10)
 			//Nothing
-			selected_turf.visible_message(span_userdanger(LANG("obj.f6f0831c", null)))
+			selected_turf.visible_message(span_userdanger(LANG("obj.f6f0831c33245a41", null)))
 		if(11)
 			//Cookie
-			selected_turf.visible_message(span_userdanger(LANG("obj.44e46d93", null)))
+			selected_turf.visible_message(span_userdanger(LANG("obj.44e46d93b65cdd0c", null)))
 			var/obj/item/food/cookie/ooh_a_cookie = new(drop_location())
 			do_smoke(0, src, drop_location())
 			ooh_a_cookie.name = "Cookie of Fate"
 		if(12)
 			//Healing
-			selected_turf.visible_message(span_userdanger(LANG("obj.5c1cb615", list(user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.5c1cb615f33e9c9c", list(user))))
 			user.revive(ADMIN_HEAL_ALL)
 		if(13)
 			//Mad Dosh
-			selected_turf.visible_message(span_userdanger(LANG("obj.e8187eca", list(src))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.e8187eca69b80d88", list(src))))
 			var/turf/Start = get_turf(src)
 			for(var/direction in GLOB.alldirs)
 				var/turf/dirturf = get_step(Start,direction)
@@ -410,38 +410,38 @@
 					new /obj/item/coin/gold(bag_money)
 		if(14)
 			//Free Gun
-			selected_turf.visible_message(span_userdanger(LANG("obj.924dabc9", null)))
+			selected_turf.visible_message(span_userdanger(LANG("obj.924dabc9d7af2af6", null)))
 			do_smoke(0, src, drop_location())
 			new /obj/item/gun/ballistic/revolver/mateba(drop_location())
 		if(15)
 			//Random One-use spellbook
-			selected_turf.visible_message(span_userdanger(LANG("obj.b28ed29f", null)))
+			selected_turf.visible_message(span_userdanger(LANG("obj.b28ed29faedeaef7", null)))
 			do_smoke(0, src, drop_location())
 			new /obj/item/book/granter/action/spell/random(drop_location())
 		if(16)
 			//Servant & Servant Summon
-			selected_turf.visible_message(span_userdanger(LANG("obj.189741f3", list(user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.189741f308a42716", list(user))))
 			var/datum/action/cooldown/spell/summon_mob/dice/summon_servant = new(user.mind || user)
 			summon_servant.Grant(user)
 		if(17)
 			//Tator Kit
-			selected_turf.visible_message(span_userdanger(LANG("obj.473e04e0", null)))
+			selected_turf.visible_message(span_userdanger(LANG("obj.473e04e08aefa556", null)))
 			new /obj/item/storage/box/syndicate/bundle_a(drop_location())
 			do_smoke(0, src, drop_location())
 		if(18)
 			//Captain ID
-			selected_turf.visible_message(span_userdanger(LANG("obj.5fff12fe", null)))
+			selected_turf.visible_message(span_userdanger(LANG("obj.5fff12fe4797e918", null)))
 			new /obj/item/card/id/advanced/gold/captains_spare(drop_location())
 			do_smoke(0, src, drop_location())
 		if(19)
 			//Instrinct Resistance
-			selected_turf.visible_message(span_userdanger(LANG("obj.f21dd13f", list(user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.f21dd13f82fc0326", list(user))))
 			user.physiology.brute_mod *= 0.5
 			user.physiology.burn_mod *= 0.5
 
 		if(20)
 			//Free wizard!
-			selected_turf.visible_message(span_userdanger(LANG("obj.46c35360", list(src, user))))
+			selected_turf.visible_message(span_userdanger(LANG("obj.46c353600ee99c7d", list(src, user))))
 			user.mind.make_wizard()
 
 #undef MIN_SIDES_ALERT

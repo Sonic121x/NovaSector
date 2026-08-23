@@ -21,7 +21,7 @@
 
 /obj/effect/countdown/examine(mob/user)
 	. = ..()
-	. += LANG("obj.72b7a056", list(displayed_text))
+	. += LANG("obj.72b7a05695fbdd4f", list(displayed_text))
 
 /obj/effect/countdown/proc/attach(atom/A)
 	attached_to = A

@@ -27,8 +27,8 @@
 	owner.spray_blood(owner.dir, 2)
 	owner.emote("cough")
 	owner.visible_message(
-		span_danger(LANG("obj.ad136f09", list(owner))),
-		span_danger(LANG("obj.5359b9c3", null))
+		span_danger(LANG("obj.ad136f09074dff13", list(owner))),
+		span_danger(LANG("obj.5359b9c33a87d5c0", null))
 	)
 
 /obj/item/autosurgeon/syndicate/sandy
@@ -57,13 +57,13 @@
 
 	if(human_owner.is_neuroware_compatible())
 		human_owner.reagents.add_reagent(/datum/reagent/drug/twitch/synth, injection_amount)
-		owner.visible_message(span_danger(LANG("datum.d0cc93d9", list(owner.name))), \
-				span_userdanger(LANG("datum.32fcd558", null)))
+		owner.visible_message(span_danger(LANG("datum.d0cc93d9646d5c99", list(owner.name))), \
+				span_userdanger(LANG("datum.32fcd558a0a01318", null)))
 		playsound(human_owner, 'sound/items/hypospray.ogg', 50, TRUE)
 	else
 		human_owner.reagents.add_reagent(/datum/reagent/drug/twitch, injection_amount)
-		owner.visible_message(span_danger(LANG("datum.91c7767f", list(owner.name))), \
-				span_userdanger(LANG("datum.e0e6e853", null)))
+		owner.visible_message(span_danger(LANG("datum.91c7767f8ac28bd4", list(owner.name))), \
+				span_userdanger(LANG("datum.e0e6e85312a6d261", null)))
 		playsound(human_owner, 'sound/items/hypospray.ogg', 50, TRUE)
 
 		var/obj/item/telegraph_vial = new /obj/item/qani_laaca_telegraph(get_turf(owner))
@@ -97,7 +97,7 @@
 		return
 	var/mob/living/carbon/human/human_owner = owner
 
-	to_chat(owner, span_warning(LANG("obj.c734846a", null)))
+	to_chat(owner, span_warning(LANG("obj.c734846ac44a2402", null)))
 
 	human_owner.Knockdown(6 SECONDS)
 	human_owner.Stun(4 SECONDS)
@@ -159,11 +159,11 @@
 	. = ..()
 
 	if(ismob(cast_on) || is_type_in_list(cast_on, emag_blacklist))
-		owner.balloon_alert(owner, LANG("datum.58684a77", null))
+		owner.balloon_alert(owner, LANG("datum.58684a77d46b3189", null))
 		return FALSE
 
 	if(get_dist(owner, cast_on) > hack_range)
-		owner.balloon_alert(owner, LANG("datum.a462ee7c", null))
+		owner.balloon_alert(owner, LANG("datum.a462ee7cec0ddb47", null))
 		return FALSE
 
 	return TRUE
@@ -176,8 +176,8 @@
 	playsound(owner, 'sound/effects/light_flicker.ogg', 50, TRUE)
 	var/beam = owner.Beam(cast_on, icon_state = "light_beam", time = 5 SECONDS)
 
-	owner.visible_message(span_bolddanger(LANG("datum.851e71c5", list(owner.name, owner.p_them(), cast_on))), \
-			span_bolddanger(LANG("datum.ed541b76", list(cast_on))))
+	owner.visible_message(span_bolddanger(LANG("datum.851e71c554bac2f0", list(owner.name, owner.p_them(), cast_on))), \
+			span_bolddanger(LANG("datum.ed541b76f488fce5", list(cast_on))))
 
 	if(!do_after(owner, 5 SECONDS, cast_on, IGNORE_SLOWDOWNS))
 		qdel(beam)
@@ -185,7 +185,7 @@
 		return
 
 	if(!cast_on.emag_act(owner))
-		owner.balloon_alert(owner, LANG("datum.294954ad", null))
+		owner.balloon_alert(owner, LANG("datum.294954ad75058418", null))
 		StartCooldown(1 SECONDS) // Resets the spell to working after a second, just so its not spammed
 		return
 
@@ -208,7 +208,7 @@
 	human_owner.adjust_bodytemperature(HACKERMAN_DECK_EMP_TEMPERATURE_INCREASE)
 	human_owner.adjust_fire_stacks(2)
 	human_owner.ignite_mob()
-	to_chat(owner, span_warning(LANG("obj.3aa6cef1", null)))
+	to_chat(owner, span_warning(LANG("obj.3aa6cef1db56daba", null)))
 
 /// Adds an item to the list of fibers for this forensics datum that tells on the fact someone used a hacking implant here
 /datum/forensics/proc/add_hacking_implant_trace()

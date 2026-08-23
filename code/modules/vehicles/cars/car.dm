@@ -30,7 +30,7 @@
 		return
 	if((car_traits & CAN_KIDNAP) && isliving(dropping) && user != dropping)
 		var/mob/living/kidnapped = dropping
-		kidnapped.visible_message(span_warning(LANG("obj.848525e9", list(user, kidnapped, src))))
+		kidnapped.visible_message(span_warning(LANG("obj.848525e98d4b6270", list(user, kidnapped, src))))
 		mob_try_forced_enter(user, kidnapped)
 	return ..()
 
@@ -39,10 +39,10 @@
 		mob_exit(future_pedestrian, silent)
 		return TRUE
 	if (escape_time > 0)
-		to_chat(user, span_notice(LANG("obj.686c4487", list(src))))
+		to_chat(user, span_notice(LANG("obj.686c4487f60fa594", list(src))))
 		if(!do_after(user, escape_time, target = src))
 			return FALSE
-	to_chat(user,span_danger(LANG("obj.705572da", list(user, src))))
+	to_chat(user,span_danger(LANG("obj.705572da3a09d074", list(user, src))))
 	mob_exit(future_pedestrian, silent)
 	return TRUE
 
@@ -50,14 +50,14 @@
 	. = ..()
 	if(!(car_traits & CAN_KIDNAP))
 		return
-	to_chat(user, span_notice(LANG("obj.b5f2dd6f", list(src))))
+	to_chat(user, span_notice(LANG("obj.b5f2dd6f67c1bab3", list(src))))
 	if(!do_after(user, 30))
 		return
 	if(return_amount_of_controllers_with_flag(VEHICLE_CONTROL_KIDNAPPED))
-		to_chat(user, span_notice(LANG("obj.ad6d868a", list(src))))
+		to_chat(user, span_notice(LANG("obj.ad6d868a3418081e", list(src))))
 		dump_specific_mobs(VEHICLE_CONTROL_KIDNAPPED)
 		return
-	to_chat(user, span_notice(LANG("obj.80d9fa41", list(src))))
+	to_chat(user, span_notice(LANG("obj.80d9fa4161e12f80", list(src))))
 
 ///attempts to force a mob into the car
 /obj/vehicle/sealed/car/proc/mob_try_forced_enter(mob/forcer, mob/kidnapped, silent = FALSE)
@@ -77,7 +77,7 @@
 ///Proc called when someone is forcefully stuffedd into a car
 /obj/vehicle/sealed/car/proc/mob_forced_enter(mob/kidnapped, silent = FALSE)
 	if(!silent)
-		kidnapped.visible_message(span_warning(LANG("obj.b48b8704", list(kidnapped, src))))
+		kidnapped.visible_message(span_warning(LANG("obj.b48b8704ba9adcd8", list(kidnapped, src))))
 		if(forced_enter_sound)
 			playsound(src, forced_enter_sound, 70, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	kidnapped.forceMove(src)

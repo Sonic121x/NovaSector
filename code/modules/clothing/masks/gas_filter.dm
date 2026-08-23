@@ -55,7 +55,7 @@
 
 /obj/item/gas_filter/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.63dd8db8", list(src, filter_status)))
+	. += span_notice(LANG("obj.63dd8db8d4689f67", list(src, filter_status)))
 
 /**
  * called by the gas mask where the filter is installed, lower the filter_status depending on the breath gas composition and by the strength of the filter

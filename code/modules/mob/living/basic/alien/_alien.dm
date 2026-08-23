@@ -74,7 +74,7 @@
 		return FALSE
 	if(locate(/obj/structure/alien/weeds/node) in get_turf(src))
 		return FALSE
-	visible_message(span_alertalien(LANG("mob.f4785f5c", list(src))))
+	visible_message(span_alertalien(LANG("mob.f4785f5c2bf56b8c", list(src))))
 	new /obj/structure/alien/weeds/node(loc)
 	return TRUE
 
@@ -84,7 +84,7 @@
 		return FALSE
 	if(locate(/obj/structure/alien/egg) in get_turf(src))
 		return FALSE
-	visible_message(span_alertalien(LANG("mob.e0a767fe", list(src))))
+	visible_message(span_alertalien(LANG("mob.e0a767fee8b79dc2", list(src))))
 	new /obj/structure/alien/egg(loc)
 	return TRUE
 

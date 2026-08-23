@@ -19,8 +19,8 @@
 
 /obj/structure/sauna_oven/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.19403cdd", list(water_amount ? "moist" : "dry")))
-	. += span_notice(LANG("obj.fa0c2f58", list(fuel_amount ? "some fuel" : "no fuel")))
+	. += span_notice(LANG("obj.19403cddaaeb1144", list(water_amount ? "moist" : "dry")))
+	. += span_notice(LANG("obj.fa0c2f58ff4bad0b", list(fuel_amount ? "some fuel" : "no fuel")))
 
 /obj/structure/sauna_oven/Destroy()
 	if(lit)
@@ -35,11 +35,11 @@
 	if(lit)
 		lit = FALSE
 		STOP_PROCESSING(SSobj, src)
-		user.visible_message(span_notice(LANG("obj.10018e19", list(user, src))), span_notice(LANG("obj.833a0800", list(src))))
+		user.visible_message(span_notice(LANG("obj.10018e19a621f27d", list(user, src))), span_notice(LANG("obj.833a08009d651401", list(src))))
 	else if (fuel_amount)
 		lit = TRUE
 		START_PROCESSING(SSobj, src)
-		user.visible_message(span_notice(LANG("obj.96d11239", list(user, src))), span_notice(LANG("obj.11cd7563", list(src))))
+		user.visible_message(span_notice(LANG("obj.96d1123903230929", list(user, src))), span_notice(LANG("obj.11cd75631ed337a9", list(src))))
 	update_icon()
 
 /obj/structure/sauna_oven/update_overlays()
@@ -53,9 +53,9 @@
 
 /obj/structure/sauna_oven/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.tool_behaviour == TOOL_WRENCH)
-		balloon_alert(user, LANG("obj.44f0e678", null))
+		balloon_alert(user, LANG("obj.44f0e678d88c8044", null))
 		if(tool.use_tool(src, user, 60, volume = 50))
-			balloon_alert(user, LANG("obj.80451b1c", null))
+			balloon_alert(user, LANG("obj.80451b1c014c10d8", null))
 			new /obj/item/stack/sheet/mineral/wood(get_turf(src), 30)
 			qdel(src)
 
@@ -65,26 +65,26 @@
 			return ..()
 		if(reagent_container.reagents.has_reagent(/datum/reagent/water))
 			reagent_container.reagents.remove_reagent(/datum/reagent/water, 5)
-			user.visible_message(span_notice(LANG("obj.5f7ac2eb", list(user, src))), span_notice(LANG("obj.cab26e05", list(src))))
+			user.visible_message(span_notice(LANG("obj.5f7ac2eb92383a9f", list(user, src))), span_notice(LANG("obj.cab26e058eae119a", list(src))))
 			water_amount += 5 * SAUNA_WATER_PER_WATER_UNIT
 		else
-			balloon_alert(user, LANG("obj.ac11e966", null))
+			balloon_alert(user, LANG("obj.ac11e9660778b13d", null))
 
 	else if(istype(tool, /obj/item/stack/sheet/mineral/wood))
 		var/obj/item/stack/sheet/mineral/wood/wood = tool
 		if(fuel_amount > SAUNA_MAXIMUM_FUEL)
-			balloon_alert(user, LANG("obj.2cb7d354", null))
+			balloon_alert(user, LANG("obj.2cb7d3546d66854d", null))
 			return ITEM_INTERACT_BLOCKING
 		fuel_amount += SAUNA_LOG_FUEL * wood.amount
 		wood.use(wood.amount)
-		user.visible_message(span_notice(LANG("obj.2dc25b27", list(user, src))), span_notice(LANG("obj.bd3682ed", list(src))))
+		user.visible_message(span_notice(LANG("obj.2dc25b27fd670c2a", list(user, src))), span_notice(LANG("obj.bd3682ed15e0fa15", list(src))))
 	else if(istype(tool, /obj/item/paper_bin))
 		var/obj/item/paper_bin/paper_bin = tool
-		user.visible_message(span_notice(LANG("obj.8938881b", list(user, tool, src))), span_notice(LANG("obj.0c27fe26", list(tool, src))))
+		user.visible_message(span_notice(LANG("obj.8938881bc2a5a201", list(user, tool, src))), span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 		fuel_amount += SAUNA_PAPER_FUEL * paper_bin.total_paper
 		qdel(paper_bin)
 	else if(istype(tool, /obj/item/paper))
-		user.visible_message(span_notice(LANG("obj.8938881b", list(user, tool, src))), span_notice(LANG("obj.9a474d8d", list(tool, src))))
+		user.visible_message(span_notice(LANG("obj.8938881bc2a5a201", list(user, tool, src))), span_notice(LANG("obj.9a474d8d4e3af196", list(tool, src))))
 		fuel_amount += SAUNA_PAPER_FUEL
 		qdel(tool)
 	return ..()

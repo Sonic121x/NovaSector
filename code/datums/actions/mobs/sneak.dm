@@ -26,12 +26,12 @@
 		// It's safest to go to the initial alpha of the mob.
 		// Otherwise we get permanent invisbility exploits.
 		animate(owner, alpha = initial(owner.alpha), time = animation_time)
-		owner.balloon_alert(owner, LANG("datum.3363c618", null))
+		owner.balloon_alert(owner, LANG("datum.3363c61876165ce7", null))
 		REMOVE_TRAIT(owner, TRAIT_SNEAK, ACTION_TRAIT)
 
 	else
 		animate(owner, alpha = sneak_alpha, time = animation_time)
-		owner.balloon_alert(owner, LANG("datum.f17eada7", null))
+		owner.balloon_alert(owner, LANG("datum.f17eada7e3a61fed", null))
 		ADD_TRAIT(owner, TRAIT_SNEAK, ACTION_TRAIT)
 
 	return TRUE

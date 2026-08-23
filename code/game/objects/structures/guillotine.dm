@@ -67,17 +67,17 @@
 /obj/structure/guillotine/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stack/sheet/plasteel))
 		if(blade_sharpness == GUILLOTINE_BLADE_MAX_SHARP)
-			to_chat(user, span_warning(LANG("obj.2377e11d", null)))
+			to_chat(user, span_warning(LANG("obj.2377e11d143a3f50", null)))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.95b45dae", null)))
+		to_chat(user, span_notice(LANG("obj.95b45dae2f9339d4", null)))
 		if(!do_after(user, 100, target = user))
-			to_chat(user, span_notice(LANG("obj.e0cd1a12", null)))
+			to_chat(user, span_notice(LANG("obj.e0cd1a123f3384b6", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		blade_sharpness = min(GUILLOTINE_BLADE_MAX_SHARP, blade_sharpness+3)
 		tool.use(1)
-		to_chat(user, span_notice(LANG("obj.de124329", null)))
+		to_chat(user, span_notice(LANG("obj.de1243292a71f509", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/sharpener))
@@ -86,11 +86,11 @@
 			return ITEM_INTERACT_BLOCKING
 
 		if (blade_status != GUILLOTINE_BLADE_RAISED)
-			to_chat(user, span_warning(LANG("obj.9da86793", null)))
+			to_chat(user, span_warning(LANG("obj.9da8679320416b0b", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		if (blade_sharpness == GUILLOTINE_BLADE_MAX_SHARP)
-			to_chat(user, span_warning(LANG("obj.8c80f756", null)))
+			to_chat(user, span_warning(LANG("obj.8c80f756b0a04124", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		blade_status = GUILLOTINE_BLADE_SHARPENING
@@ -99,8 +99,8 @@
 			return ITEM_INTERACT_BLOCKING
 
 		blade_status = GUILLOTINE_BLADE_RAISED
-		user.visible_message(span_notice(LANG("obj.eacedcc3", list(user))),
-			                 span_notice(LANG("obj.0ec15aff", null)))
+		user.visible_message(span_notice(LANG("obj.eacedcc346cd6738", list(user))),
+			                 span_notice(LANG("obj.0ec15affebe75578", null)))
 		blade_sharpness += 1
 		playsound(src, 'sound/items/unsheath.ogg', 100, TRUE)
 		return ITEM_INTERACT_SUCCESS
@@ -113,19 +113,19 @@
 	var/msg = "It is [anchored ? "wrenched to the floor." : "unsecured. A wrench should fix that."]"
 
 	if (blade_status == GUILLOTINE_BLADE_RAISED)
-		msg += LANG("obj.2c4b2fc8", null)
+		msg += LANG("obj.2c4b2fc868b1409e", null)
 
 		if (blade_sharpness >= GUILLOTINE_DECAP_MIN_SHARP)
-			msg += LANG("obj.bab59b14", null)
+			msg += LANG("obj.bab59b14ba72a6f2", null)
 		else
-			msg += LANG("obj.17dec7f2", null)
+			msg += LANG("obj.17dec7f290a1db61", null)
 	else
-		msg += LANG("obj.44ea87e6", null)
+		msg += LANG("obj.44ea87e68aad5868", null)
 
 	. += span_notice(msg)
 
 	if (LAZYLEN(buckled_mobs))
-		. += span_notice(LANG("obj.507c5d19", null))
+		. += span_notice(LANG("obj.507c5d19a8a39651", null))
 
 /obj/structure/guillotine/attack_hand(mob/living/user, list/modifiers)
 	add_fingerprint(user)
@@ -145,8 +145,8 @@
 		if (GUILLOTINE_BLADE_RAISED)
 			if (LAZYLEN(buckled_mobs))
 				if (user.combat_mode)
-					user.visible_message(span_warning(LANG("obj.664b0547", list(user))),
-						                 span_warning(LANG("obj.c9a0b27a", null)))
+					user.visible_message(span_warning(LANG("obj.664b05477b302266", list(user))),
+						                 span_warning(LANG("obj.c9a0b27a826ab091", null)))
 					current_action = GUILLOTINE_ACTION_INUSE
 
 					if (do_after(user, GUILLOTINE_ACTIVATE_DELAY, target = src) && blade_status == GUILLOTINE_BLADE_RAISED)
@@ -222,15 +222,15 @@
 
 /obj/structure/guillotine/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if (!anchored)
-		to_chat(usr, span_warning(LANG("obj.acb3909a", list(src))))
+		to_chat(usr, span_warning(LANG("obj.acb3909a82cc6dff", list(src))))
 		return FALSE
 
 	if (!ishuman(M))
-		to_chat(usr, span_warning(LANG("obj.5b6969ef", list(M.p_they()))))
+		to_chat(usr, span_warning(LANG("obj.5b6969efadfae913", list(M.p_they()))))
 		return FALSE // Can't decapitate non-humans
 
 	if (blade_status != GUILLOTINE_BLADE_RAISED)
-		to_chat(usr, span_warning(LANG("obj.6649cb11", null)))
+		to_chat(usr, span_warning(LANG("obj.6649cb11e5b5c08f", null)))
 		return FALSE
 
 	return ..(M, user, check_loc = FALSE) //check_loc = FALSE to allow moving people in from adjacent turfs
@@ -270,7 +270,7 @@
 /obj/structure/guillotine/can_be_unfasten_wrench(mob/user, silent)
 	if (LAZYLEN(buckled_mobs))
 		if (!silent)
-			to_chat(user, span_warning(LANG("obj.cea3a5ec", null)))
+			to_chat(user, span_warning(LANG("obj.cea3a5ec05fb4a98", null)))
 		return FAILED_UNFASTEN
 
 	if (current_action && current_action != GUILLOTINE_ACTION_WRENCH)

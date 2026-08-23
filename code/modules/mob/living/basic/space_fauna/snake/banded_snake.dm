@@ -33,13 +33,13 @@
 
 /mob/living/basic/snake/banded/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("mob.678e1643", null))
+	. += span_notice(LANG("mob.678e1643016dfe44", null))
 	if(src.poison_reagent == (/datum/reagent/consumable/milk))
 		. += span_info("[pick(src.rhymes_harmless)]")
-		. += span_notice(LANG("mob.df5f19ba", null))
+		. += span_notice(LANG("mob.df5f19ba4ddec5cb", null))
 	else
 		. += span_info("[pick(src.rhymes_dangerous)]")
-		. += span_notice(LANG("mob.664d5bb0", null))
+		. += span_notice(LANG("mob.664d5bb09f810e1e", null))
 	return .
 
 /datum/ai_controller/basic_controller/snake/banded

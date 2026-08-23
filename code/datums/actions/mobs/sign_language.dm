@@ -49,13 +49,13 @@
 /datum/action/innate/sign_language/Activate()
 	active = TRUE
 	ADD_TRAIT(owner, TRAIT_SIGN_LANG, ACTION_TRAIT)
-	to_chat(owner, span_green(LANG("datum.115e48ba", null)))
+	to_chat(owner, span_green(LANG("datum.115e48baab57229b", null)))
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 /datum/action/innate/sign_language/Deactivate()
 	active = FALSE
 	REMOVE_TRAIT(owner, TRAIT_SIGN_LANG, ACTION_TRAIT)
-	to_chat(owner, span_green(LANG("datum.436127be", null)))
+	to_chat(owner, span_green(LANG("datum.436127be15630b00", null)))
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 /// Shows the linked action to the owner Carbon.

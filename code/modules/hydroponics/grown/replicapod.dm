@@ -75,7 +75,7 @@
 		return
 
 	if(!blood.data["mind"] || !blood.data["cloneable"])
-		visible_message(span_warning(LANG("obj.aa8dc8b6", list(src))))
+		visible_message(span_warning(LANG("obj.aa8dc8b62acb8cff", list(src))))
 		return
 
 	mind = blood.data["mind"]
@@ -88,7 +88,7 @@
 	quirks = blood.data["quirks"]
 	sampleDNA = blood.data[BLOOD_DATA_DNA]
 	contains_sample = TRUE
-	visible_message(span_notice(LANG("obj.c0515c64", list(src))))
+	visible_message(span_notice(LANG("obj.c0515c6460937b6b", list(src))))
 	investigate_log("[key_name(mind)]'s cloning record was added to [src]", INVESTIGATE_BOTANY)
 
 /// Handles reagents being deleted from these seeds.
@@ -157,7 +157,7 @@
 	if(!make_podman)
 		// Prevent accidental harvesting. Make sure the user REALLY wants to do this if there's a chance of this coming from a living creature.
 		if(user.client && (mind || ckey))
-			var/choice = tgui_alert(user, LANG("obj.edb89ddd", null), LANG("obj.69d55dd1", null), list("Harvest Seeds", "Cancel"))
+			var/choice = tgui_alert(user, LANG("obj.edb89ddd4fdf1f16", null), LANG("obj.69d55dd1ff53e4b4", null), list("Harvest Seeds", "Cancel"))
 			if(choice != "Harvest Seeds")
 				return result
 

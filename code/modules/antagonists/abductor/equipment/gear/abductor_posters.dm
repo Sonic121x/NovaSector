@@ -14,13 +14,13 @@
 
 /obj/structure/sign/poster/abductor/tear_poster(mob/user)
 	if(!HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_KNOWLEDGE))
-		balloon_alert(user, LANG("obj.73bdfe0e", null))
+		balloon_alert(user, LANG("obj.73bdfe0e62c8ab3c", null))
 		return
 	return ..()
 
 /obj/structure/sign/poster/abductor/wirecutter_act(mob/living/user, obj/item/tool)
 	if(tool.toolspeed >= 0.2)
-		balloon_alert(user, LANG("obj.c3ced8e3", null))
+		balloon_alert(user, LANG("obj.c3ced8e3357759cf", null))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 

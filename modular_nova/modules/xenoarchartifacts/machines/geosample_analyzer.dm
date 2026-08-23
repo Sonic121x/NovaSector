@@ -34,27 +34,27 @@
 
 /obj/machinery/radiocarbon_spectrometer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/xenoarch/core_sampler))
-		balloon_alert(user, LANG("obj.5dd22dfe", null))
+		balloon_alert(user, LANG("obj.5dd22dfe91643255", null))
 		return NONE
 
 	var/obj/item/xenoarch/core_sampler/sampler = tool
 	if(!powered())
 		return ITEM_INTERACT_BLOCKING
 	if(scanning)
-		to_chat(user, span_notice(LANG("obj.94a8d0b1", null)))
+		to_chat(user, span_notice(LANG("obj.94a8d0b1f9654b58", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(!sampler.sample)
-		balloon_alert(user, LANG("obj.d1e936e5", null))
+		balloon_alert(user, LANG("obj.d1e936e56992af60", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(sampler, src))
-		to_chat(user, span_warning(LANG("obj.0d10df9a", list(sampler))))
+		to_chat(user, span_warning(LANG("obj.0d10df9a93e1dd55", list(sampler))))
 		return ITEM_INTERACT_BLOCKING
 	current_sample = sampler
 	scanning = TRUE
 	user.visible_message(
-		span_notice(LANG("obj.05c6f8ca", list(user, sampler, src))),
-		span_notice(LANG("obj.8ce99939", list(sampler, src))),
-		blind_message = span_notice(LANG("obj.0e0002b3", null)),
+		span_notice(LANG("obj.05c6f8cadd77b915", list(user, sampler, src))),
+		span_notice(LANG("obj.8ce99939bf01b695", list(sampler, src))),
+		blind_message = span_notice(LANG("obj.0e0002b3a4e16270", null)),
 	)
 	process_sample()
 	return ITEM_INTERACT_SUCCESS
@@ -109,6 +109,6 @@
 	icon_state = "spectrometer"
 	update_use_power(IDLE_POWER_USE)
 	visible_message(
-		span_warning(LANG("obj.87273db5", list(src))),
-		blind_message = span_warning(LANG("obj.b29110a7", null)),
+		span_warning(LANG("obj.87273db5518a02ed", list(src))),
+		blind_message = span_warning(LANG("obj.b29110a7c0096f42", null)),
 	)

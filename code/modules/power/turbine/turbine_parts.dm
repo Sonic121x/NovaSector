@@ -16,14 +16,14 @@
 
 /obj/item/turbine_parts/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.8bc7ff16", list(current_tier, get_tier_value(TURBINE_MAX_RPM), get_tier_value(TURBINE_MAX_TEMP))))
+	. += span_notice(LANG("obj.8bc7ff1664608bdc", list(current_tier, get_tier_value(TURBINE_MAX_RPM), get_tier_value(TURBINE_MAX_TEMP))))
 
 	var/list/required_parts = get_tier_upgrades()
 	if(length(required_parts))
 		var/obj/item/stack/material = required_parts[TURBINE_UPGRADE_PART]
-		. += span_notice(LANG("obj.03c29b5a", list(required_parts[TURBINE_UPGRADE_AMOUNT], initial(material.name))))
+		. += span_notice(LANG("obj.03c29b5ad3fda362", list(required_parts[TURBINE_UPGRADE_AMOUNT], initial(material.name))))
 	else
-		. += span_notice(LANG("obj.8036b004", null))
+		. += span_notice(LANG("obj.8036b00479e8251e", null))
 
 /**
  * Returns the max values of various attributes of this turbine based on its tier
@@ -73,17 +73,17 @@
 
 	var/list/required_parts = get_tier_upgrades()
 	if(!length(required_parts))
-		balloon_alert(user, LANG("obj.ccd1dcb9", null))
+		balloon_alert(user, LANG("obj.ccd1dcb988325fe5", null))
 		return ITEM_INTERACT_FAILURE
 
 	var/obj/item/stack/sheet/material = attacking_item
 	if(!istype(material, required_parts[TURBINE_UPGRADE_PART]))
-		balloon_alert(user, LANG("obj.0d6c438e", null))
+		balloon_alert(user, LANG("obj.0d6c438e150ddf48", null))
 		return ITEM_INTERACT_FAILURE
 
 	var/amount = required_parts[TURBINE_UPGRADE_AMOUNT]
 	if(material.amount < amount)
-		balloon_alert(user, LANG("obj.9c6111d7", list(amount)))
+		balloon_alert(user, LANG("obj.9c6111d73a710110", list(amount)))
 		return ITEM_INTERACT_FAILURE
 
 	if(do_after(user, current_tier SECONDS, src) && material.use(amount))

@@ -15,18 +15,18 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/eyechart, 32)
 
 	if(!user.can_read(src, READING_CHECK_LITERACY, silent = TRUE) || !user.has_language(/datum/language/common, UNDERSTOOD_LANGUAGE))
 		if(!user.is_blind())
-			. += LANG("obj.965934eb", null)
-			. += span_warning(LANG("obj.3b924ced", null))
+			. += LANG("obj.965934eb18ea8157", null)
+			. += span_warning(LANG("obj.3b924ced9d607335", null))
 		return
 
 	if(user.is_blind())
-		. += LANG("obj.f1b34eb5", null)
-		. += span_notice(LANG("obj.cc8187e2", null))
+		. += LANG("obj.f1b34eb5012ecee7", null)
+		. += span_notice(LANG("obj.cc8187e2f9c2994d", null))
 		return
 
 	if(!user.can_read(src, READING_CHECK_LIGHT, silent = TRUE))
-		. += LANG("obj.f2d4c8a3", null)
-		. += span_warning(LANG("obj.acb1aee2", null))
+		. += LANG("obj.f2d4c8a372f37fba", null)
+		. += span_warning(LANG("obj.acb1aee2995b2b6d", null))
 		return
 
 	var/colorblind = HAS_TRAIT(user, TRAIT_COLORBLIND)
@@ -43,12 +43,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/eyechart, 32)
 		eye_goodness = max(eye_goodness, little_bad + 1)
 	eye_goodness += ((get_dist(user, src) - 2) * 5) // add a modifier based on distance, so closer = "better", further = "worse"
 
-	. += LANG("obj.de52c1c8", null)
+	. += LANG("obj.de52c1c8985dc022", null)
 	if(eye_goodness <= 0)
-		. += span_notice(LANG("obj.16193f6b", list(colorblind ? "brown - wait, isn't it supposed to be red? -" : "red")))
+		. += span_notice(LANG("obj.16193f6b680c5139", list(colorblind ? "brown - wait, isn't it supposed to be red? -" : "red")))
 	else if(eye_goodness < little_bad)
-		. += span_notice(LANG("obj.28ffaa7b", list(colorblind ? "grey - wait, isn't it supposed to be green? -" : "green")))
+		. += span_notice(LANG("obj.28ffaa7b0e43b820", list(colorblind ? "grey - wait, isn't it supposed to be green? -" : "green")))
 	else if(eye_goodness < very_bad)
-		. += span_warning(LANG("obj.c7ec3655", null))
+		. += span_warning(LANG("obj.c7ec3655965b8b54", null))
 	else
-		. += span_warning(LANG("obj.d45e9dad", null))
+		. += span_warning(LANG("obj.d45e9dadb106388e", null))

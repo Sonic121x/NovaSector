@@ -68,7 +68,7 @@
 		carbon_target.reagents.add_reagent(/datum/reagent/toxin, 4)
 
 /obj/item/melee/beesword/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.b92cbe19", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.b92cbe196b172462", list(user, user.p_them(), src, user.p_theyre()))))
 	playsound(get_turf(src), hitsound, 75, TRUE, -1)
 	return TOXLOSS
 
@@ -94,7 +94,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
 		human_target.drop_all_held_items()
-		human_target.visible_message(span_danger(LANG("obj.d91638bb", list(user, human_target))), span_userdanger(LANG("obj.5edb27d4", list(user))))
+		human_target.visible_message(span_danger(LANG("obj.d91638bb277d15e6", list(user, human_target))), span_userdanger(LANG("obj.5edb27d44722092c", list(user))))
 
 /obj/item/melee/roastingstick
 	name = "advanced roasting stick"
@@ -140,7 +140,7 @@
 	SIGNAL_HANDLER
 
 	if(held_sausage)
-		to_chat(user, span_warning(LANG("obj.b4fb66b0", list(src, held_sausage))))
+		to_chat(user, span_warning(LANG("obj.b4fb66b03facee8c", list(src, held_sausage))))
 		return COMPONENT_BLOCK_TRANSFORM
 
 /*
@@ -162,15 +162,15 @@
 		return NONE
 
 	if (!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-		to_chat(user, span_warning(LANG("obj.a9f024ac", list(src))))
+		to_chat(user, span_warning(LANG("obj.a9f024ac72b7eff5", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if (held_sausage)
-		to_chat(user, span_warning(LANG("obj.6620462c", list(held_sausage, src))))
+		to_chat(user, span_warning(LANG("obj.6620462c57de25e8", list(held_sausage, src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if (!user.transferItemToLoc(tool, src))
-		to_chat(user, span_warning(LANG("obj.1ef594be", list(tool, src))))
+		to_chat(user, span_warning(LANG("obj.1ef594be8045203c", list(tool, src))))
 		return ITEM_INTERACT_BLOCKING
 
 	held_sausage = tool
@@ -199,7 +199,7 @@
 	if (!is_type_in_typecache(interacting_with, ovens))
 		return NONE
 	if (istype(interacting_with, /obj/singularity) || istype(interacting_with, /obj/energy_ball) && get_dist(user, interacting_with) < 10)
-		to_chat(user, span_notice(LANG("obj.901f34bd", list(held_sausage, interacting_with))))
+		to_chat(user, span_notice(LANG("obj.901f34bd55099878", list(held_sausage, interacting_with))))
 		playsound(src, 'sound/items/tools/rped.ogg', 50, TRUE)
 		beam = user.Beam(interacting_with, icon_state = "rped_upgrade", time = 10 SECONDS)
 		finish_roasting(user, interacting_with)
@@ -211,14 +211,14 @@
 		return NONE
 	if (!is_type_in_typecache(interacting_with, ovens))
 		return NONE
-	to_chat(user, span_notice(LANG("obj.1aa105e0", list(src, interacting_with))))
+	to_chat(user, span_notice(LANG("obj.1aa105e0a5fc2432", list(src, interacting_with))))
 	playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
 	finish_roasting(user, interacting_with)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/melee/roastingstick/proc/finish_roasting(user, atom/target)
 	if(do_after(user, 10 SECONDS, target = user))
-		to_chat(user, span_notice(LANG("obj.a9ba5062", list(held_sausage))))
+		to_chat(user, span_notice(LANG("obj.a9ba506280d53bf3", list(held_sausage))))
 		playsound(src, 'sound/items/tools/welder2.ogg', 50, TRUE)
 		held_sausage.add_atom_colour(rgb(103, 63, 24), FIXED_COLOUR_PRIORITY)
 		held_sausage.name = "[target.name]-roasted [held_sausage.name]"
@@ -227,7 +227,7 @@
 	else
 		QDEL_NULL(beam)
 		playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
-		to_chat(user, span_notice(LANG("obj.b28096d6", list(src))))
+		to_chat(user, span_notice(LANG("obj.b28096d6247e2bfe", list(src))))
 
 /obj/item/melee/cleric_mace
 	name = "cleric mace"
@@ -268,7 +268,7 @@
 	. = ..()
 	var/datum/material/material = get_material_from_slot(/datum/material_slot/handle)
 	if (material)
-		desc = LANG("obj.9d63d6ed", list(initial(desc), material.name))
+		desc = LANG("obj.9d63d6ed7cdc1c34", list(initial(desc), material.name))
 
 /obj/item/melee/cleric_mace/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	// Don't bring a...mace to a gunfight, and also you aren't going to really block someone full body tackling you with a mace.
@@ -299,8 +299,8 @@
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 
 /obj/item/sord/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.e18ef6ad", list(user, user.p_them(), src))), \
-	span_suicide(LANG("obj.4a7e4634", list(src))))
+	user.visible_message(span_suicide(LANG("obj.e18ef6adb2cd1a63", list(user, user.p_them(), src))), \
+	span_suicide(LANG("obj.4a7e4634cc30646a", list(src))))
 	return SHAME
 
 /obj/item/carpenter_hammer
@@ -333,7 +333,7 @@
 /obj/item/carpenter_hammer/examine(mob/user)
 	. = ..()
 	. += ""
-	. += LANG("obj.ab9134d9", null)
+	. += LANG("obj.ab9134d9d8859519", null)
 	. += pick(
 		"Every building, from hospitals to homes, has a room that serves as the heart of the building \
 		and carries blood and nutrients to its extremities. Try to find the heart of your home!",
@@ -359,9 +359,9 @@
 
 /obj/item/phone/suicide_act(mob/living/user)
 	if(locate(/obj/structure/chair/stool) in user.loc)
-		user.visible_message(span_suicide(LANG("obj.30dc40b7", list(user, src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.30dc40b7d6aa740c", list(user, src, user.p_theyre()))))
 	else
-		user.visible_message(span_suicide(LANG("obj.913c8e88", list(user, user.p_them(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.913c8e888e843d61", list(user, user.p_them(), src, user.p_theyre()))))
 	return OXYLOSS
 
 /obj/item/bambostaff
@@ -515,7 +515,7 @@
 
 /obj/item/melee/flyswatter/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(is_type_in_typecache(target, splattable))
-		to_chat(user, span_warning(LANG("obj.16f49258", list(target))))
+		to_chat(user, span_warning(LANG("obj.16f4925868970d0a", list(target))))
 		if(QDELETED(target))
 			return
 		if(isliving(target))

@@ -15,4 +15,4 @@
 	. = ..()
 	employee_name = new_employee_name
 	name = "paper- [employee_name] employment contract"
-	add_raw_text(LANG("obj.3fb6c4ae", list(employee_name, employee_name)))
+	add_raw_text(LANG("obj.3fb6c4ae8d80a224", list(employee_name, employee_name)))

@@ -60,8 +60,8 @@
 /obj/machinery/quantum_server/proc/on_goal_turf_examined(datum/source, mob/examiner, list/examine_text)
 	SIGNAL_HANDLER
 
-	examine_text += span_info(LANG("obj.3104c7e4", null))
-	examine_text += span_info(LANG("obj.fb01129b", null))
+	examine_text += span_info(LANG("obj.3104c7e45e370fac", null))
+	examine_text += span_info(LANG("obj.fb01129b953c9418", null))
 
 
 /// Scans over the inbound created_atoms from lazy templates

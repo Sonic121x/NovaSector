@@ -16,29 +16,29 @@
 	if(.)
 		return
 	if(charges <= 0)
-		to_chat(user, span_boldnotice(LANG("obj.7aa0b44a", null)))
+		to_chat(user, span_boldnotice(LANG("obj.7aa0b44a4dce34b8", null)))
 		return
 
 	else if(!ishuman(user))
-		to_chat(user, span_boldnotice(LANG("obj.adc1785b", null)))
+		to_chat(user, span_boldnotice(LANG("obj.adc1785b85459074", null)))
 		return
 
 	else if(user.is_antag())
-		to_chat(user, span_boldnotice(LANG("obj.e4ac5688", null)))
+		to_chat(user, span_boldnotice(LANG("obj.e4ac5688594c2b49", null)))
 
 	else if (!insisting)
-		to_chat(user, span_boldnotice(LANG("obj.80179961", null)))
+		to_chat(user, span_boldnotice(LANG("obj.801799619d45c120", null)))
 		insisting++
 
 	else
-		to_chat(user, span_boldnotice(LANG("obj.7c0227c2", list(pick("I want the station to disappear","Humanity is corrupt, mankind must be destroyed","I want to be rich", "I want to rule the world","I want immortality.")))))
-		to_chat(user, span_boldnotice(LANG("obj.b777a2e1", null)))
+		to_chat(user, span_boldnotice(LANG("obj.7c0227c2eb24bc4d", list(pick("I want the station to disappear","Humanity is corrupt, mankind must be destroyed","I want to be rich", "I want to rule the world","I want immortality.")))))
+		to_chat(user, span_boldnotice(LANG("obj.b777a2e1c831ffe2", null)))
 
 		charges--
 		insisting = 0
 
 		user.mind.add_antag_datum(/datum/antagonist/wishgranter)
 
-		to_chat(user, span_warning(LANG("obj.7c3ce82a", null)))
+		to_chat(user, span_warning(LANG("obj.7c3ce82af7d7e31d", null)))
 
 	return

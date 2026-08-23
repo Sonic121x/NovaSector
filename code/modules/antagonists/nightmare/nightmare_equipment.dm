@@ -55,12 +55,12 @@
 		return
 	playsound(target, 'sound/effects/wounds/crackandbleed.ogg', 100, TRUE)
 	if(target.stat == DEAD)
-		user.visible_message(span_warning(LANG("obj.3a5eb477", list(user, target, src))), span_warning(LANG("obj.a53b0d2b", list(target, src))))
+		user.visible_message(span_warning(LANG("obj.3a5eb4772b4e0a85", list(user, target, src))), span_warning(LANG("obj.a53b0d2bdd0d9be8", list(target, src))))
 	else if(!HAS_TRAIT(target, TRAIT_HULK) && (iscarbon(target) || issilicon(target)))
-		user.visible_message(span_boldwarning(LANG("obj.82941853", list(user, target, src))), span_userdanger(LANG("obj.4e1ace01", list(target, src))))
+		user.visible_message(span_boldwarning(LANG("obj.82941853a58f81df", list(user, target, src))), span_userdanger(LANG("obj.4e1ace0100c152b0", list(target, src))))
 		target.Paralyze(issilicon(target) ? 2 SECONDS : 1 SECONDS)
 	else
-		user.visible_message(span_boldwarning(LANG("obj.8f8f6049", list(user, target, src))), span_userdanger(LANG("obj.fff05900", list(target, src))))
+		user.visible_message(span_boldwarning(LANG("obj.8f8f604976da21bc", list(user, target, src))), span_userdanger(LANG("obj.fff05900a034a291", list(target, src))))
 		target.apply_damage(damage = force, forced = TRUE)
 	remove_crit()
 
@@ -76,7 +76,7 @@
 	has_crit = TRUE
 	add_filter("crit_glow", 3, list("type" = "outline", "color" = COLOR_CARP_RIFT_RED, "size" = 5))
 	if(ismob(loc))
-		loc.balloon_alert(loc, LANG("obj.eb39ba98", null))
+		loc.balloon_alert(loc, LANG("obj.eb39ba9804b6a6da", null))
 
 /obj/item/light_eater/proc/remove_crit()
 	if(!has_crit)

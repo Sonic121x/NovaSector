@@ -27,7 +27,7 @@
 			else if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.emote("gasp")
 			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(affected_mob, span_danger(LANG("datum.b11cdaa2", null)))
+				to_chat(affected_mob, span_danger(LANG("datum.b11cdaa2b0c55aba", null)))
 		if(4)
 			if(SPT_PROB(5, seconds_per_tick))
 				affected_mob.emote("cough")

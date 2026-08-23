@@ -184,13 +184,13 @@
 				deity = GLOB.deity
 			else
 				deity = "Christ"
-			to_chat(ghostie, span_userdanger(LANG("datum.36e3d79d", list(deity))))
+			to_chat(ghostie, span_userdanger(LANG("datum.36e3d79dfea1a4a4", list(deity))))
 			ghostie.apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 			ghostie.apply_status_effect(/datum/status_effect/revenant/revealed, 10 SECONDS)
 			ghostie.adjust_health(50)
 		for(var/mob/living/carbon/evil_motherfucker in get_hearers_in_view(effective_size,T))
 			if(IS_CULTIST(evil_motherfucker) || HAS_TRAIT(evil_motherfucker, TRAIT_EVIL))
-				to_chat(evil_motherfucker, span_userdanger(LANG("datum.d9f59c91", null)))
+				to_chat(evil_motherfucker, span_userdanger(LANG("datum.d9f59c91beb39ffe", null)))
 				evil_motherfucker.Paralyze(40)
 				evil_motherfucker.adjust_fire_stacks(5)
 				evil_motherfucker.ignite_mob()
@@ -402,7 +402,7 @@
 		return
 	var/mob/living/carbon/victim = holder.my_atom
 	if (victim.stat != DEAD)
-		victim.visible_message(span_warning(LANG("datum.03e2da71", list(victim))))
+		victim.visible_message(span_warning(LANG("datum.03e2da7154608f6a", list(victim))))
 	victim.adjust_organ_loss(ORGAN_SLOT_LUNGS, created_volume / 5)
 
 /datum/chemical_reaction/smoke_powder_smoke
@@ -424,7 +424,7 @@
 		return
 	var/mob/living/carbon/victim = holder.my_atom
 	if (victim.stat != DEAD)
-		victim.visible_message(span_warning(LANG("datum.03e2da71", list(victim))))
+		victim.visible_message(span_warning(LANG("datum.03e2da7154608f6a", list(victim))))
 	victim.adjust_organ_loss(ORGAN_SLOT_LUNGS, created_volume / 10)
 
 /datum/chemical_reaction/sonic_powder
@@ -523,7 +523,7 @@
 		return ..()
 	var/turf/local_turf = get_turf(holder.my_atom)
 	playsound(local_turf, 'sound/effects/magic/ethereal_exit.ogg', 50, 1)
-	local_turf.visible_message(LANG("datum.a128d236", null))
+	local_turf.visible_message(LANG("datum.a128d236ac2d841e", null))
 	freeze_radius(holder, null, holder.chem_temp*2, clamp(cryostylane.volume/30, 2, 6), 120 SECONDS, 2)
 	clear_reactants(holder, 15)
 	holder.chem_temp += 100
@@ -533,7 +533,7 @@
 	var/datum/reagent/cryostylane/cryostylane = holder.has_reagent(/datum/reagent/cryostylane)
 	var/turf/local_turf = get_turf(holder.my_atom)
 	playsound(local_turf, 'sound/effects/magic/ethereal_exit.ogg', 50, 1)
-	local_turf.visible_message(LANG("datum.c3200050", list(holder.my_atom)))
+	local_turf.visible_message(LANG("datum.c32000502d435c54", list(holder.my_atom)))
 	freeze_radius(holder, equilibrium, holder.chem_temp, clamp(cryostylane.volume/15, 3, 10), 180 SECONDS, 5)
 	new /obj/structure/statue/snow/snowman(local_turf)
 	clear_reactants(holder)

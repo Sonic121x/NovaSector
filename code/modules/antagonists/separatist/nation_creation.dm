@@ -73,4 +73,4 @@
 		var/announce_text = "The new independent state of [nation.name] has formed from the ashes of the [department.department_name] department!"
 		if(istype(department, /datum/job_department/assistant)) //the text didn't really work otherwise
 			announce_text = "The assistants of the station have risen to form the new independent state of [nation.name]!"
-		priority_announce(announce_text, LANG("_root.09f362a1", list(GLOB.station_name)),  has_important_message = TRUE)
+		priority_announce(announce_text, LANG("_root.09f362a168a88e31", list(GLOB.station_name)),  has_important_message = TRUE)

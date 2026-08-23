@@ -159,7 +159,7 @@ GAME_VERB_HIDDEN(/client, drop_item, "drop item")
 		return TRUE
 	else if(HAS_TRAIT(mob, TRAIT_RESTRAINED))
 		COOLDOWN_START(src, move_delay, 1 SECONDS)
-		to_chat(src, span_warning(LANG("client.ef7e6e93", null)))
+		to_chat(src, span_warning(LANG("client.ef7e6e938e1bfcc0", null)))
 		return TRUE
 	return !mob.resist_grab(TRUE)
 
@@ -235,17 +235,17 @@ GAME_VERB_HIDDEN(/client, drop_item, "drop item")
 			if(stepTurf)
 				var/obj/effect/decal/cleanable/food/salt/salt = locate() in stepTurf
 				if(salt)
-					to_chat(L, span_warning(LANG("client.47d96764", list(salt))))
+					to_chat(L, span_warning(LANG("client.47d9676453cc2423", list(salt))))
 					if(isrevenant(L))
 						var/mob/living/basic/revenant/ghostie = L
 						ghostie.apply_status_effect(/datum/status_effect/revenant/revealed, 2 SECONDS)
 						ghostie.apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 					return
 				if(stepTurf.turf_flags & NOJAUNT)
-					to_chat(L, span_warning(LANG("client.570f77d7", null)))
+					to_chat(L, span_warning(LANG("client.570f77d7c2b7eea1", null)))
 					return
 				if(HAS_TRAIT(stepTurf, TRAIT_TURF_BLESSED))
-					to_chat(L, span_warning(LANG("client.1fa44391", null)))
+					to_chat(L, span_warning(LANG("client.1fa443913aa8cb49", null)))
 					return
 
 				L.forceMove(stepTurf)
@@ -291,7 +291,7 @@ GAME_VERB_HIDDEN(/client, drop_item, "drop item")
 	if(backup.newtonian_move(dir2angle(REVERSE_DIR(movement_dir)), instant = TRUE)) //You're pushing off something movable, so it moves
 		// We set it down here so future calls to Process_Spacemove by the same pair in the same tick don't lead to fucky
 		backup.last_pushoff = world.time
-		to_chat(src, span_info(LANG("mob.f1cba3d1", list(backup))))
+		to_chat(src, span_info(LANG("mob.f1cba3d1aa426479", list(backup))))
 	return TRUE
 
 /// We handle lattices via backups
@@ -518,7 +518,7 @@ GAME_VERB_HIDDEN_INSTANT(/client, toggle_walk_run, "toggle-walk-run")
 	else
 		//NOVA EDIT ADDITION BEGIN - GUNPOINT
 		if (HAS_TRAIT(src,TRAIT_NORUNNING))
-			to_chat(src, LANG("mob.ccc751ef", null))
+			to_chat(src, LANG("mob.ccc751ef89f09dc8", null))
 			return FALSE
 		//NOVA EDIT ADDITION END
 		move_intent = MOVE_INTENT_RUN
@@ -545,11 +545,11 @@ GAME_VERB_HIDDEN_INSTANT(/client, toggle_walk_run, "toggle-walk-run")
 
 	if(!can_z_move(UP, current_turf, null, ZMOVE_CAN_FLY_CHECKS|ZMOVE_FEEDBACK))
 		return
-	balloon_alert(src, LANG("mob.614fbd1f", null))
+	balloon_alert(src, LANG("mob.614fbd1f4388e81f", null))
 	if(!do_after(src, 1 SECONDS, cog_icon = null))
 		return
 	if(zMove(UP, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK))
-		to_chat(src, span_notice(LANG("mob.42490421", null)))
+		to_chat(src, span_notice(LANG("mob.424904218786fa94", null)))
 
 ///Moves a mob down a z level
 /mob/proc/down()
@@ -569,11 +569,11 @@ GAME_VERB_HIDDEN_INSTANT(/client, toggle_walk_run, "toggle-walk-run")
 
 	if(!can_z_move(DOWN, current_turf, null, ZMOVE_CAN_FLY_CHECKS|ZMOVE_FEEDBACK))
 		return
-	balloon_alert(src, LANG("mob.8e342f14", null))
+	balloon_alert(src, LANG("mob.8e342f148f4fccf7", null))
 	if(!do_after(src, 1 SECONDS, cog_icon = null))
 		return
 	if(zMove(DOWN, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK))
-		to_chat(src, span_notice(LANG("mob.323655c6", null)))
+		to_chat(src, span_notice(LANG("mob.323655c6bc26fa03", null)))
 	return FALSE
 
 /mob/abstract_move(atom/destination)

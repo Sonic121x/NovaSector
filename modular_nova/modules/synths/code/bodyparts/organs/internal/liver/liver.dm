@@ -21,11 +21,11 @@
 
 	switch(severity)
 		if(EMP_HEAVY)
-			to_chat(owner, span_warning(LANG("obj.4436d1ff", null)))
+			to_chat(owner, span_warning(LANG("obj.4436d1ff6fe84e71", null)))
 			apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 
 		if(EMP_LIGHT)
-			to_chat(owner, span_warning(LANG("obj.7a67bbf3", null)))
+			to_chat(owner, span_warning(LANG("obj.7a67bbf3223fb2c0", null)))
 			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 
 /datum/design/synth_liver

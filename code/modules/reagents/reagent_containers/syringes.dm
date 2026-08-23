@@ -59,23 +59,23 @@
 	log_combat(user, target, "attempted to inject", src, addition="which had [contained]")
 
 	if(!reagents.total_volume)
-		to_chat(user, span_warning(LANG("obj.dac39a7c", list(src))))
+		to_chat(user, span_warning(LANG("obj.dac39a7ce12a1ffe", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!isliving(target) && !target.is_injectable(user))
-		to_chat(user, span_warning(LANG("obj.e9ebd1b7", list(target))))
+		to_chat(user, span_warning(LANG("obj.e9ebd1b7e93031b6", list(target))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(target.reagents.holder_full())
-		to_chat(user, span_notice(LANG("obj.8e2d390c", list(target))))
+		to_chat(user, span_notice(LANG("obj.8e2d390ca03cb226", list(target))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(living_target != user)
 			living_target.visible_message(
-				span_danger(LANG("obj.551ee95a", list(user, living_target))),
-				span_userdanger(LANG("obj.978a421a", list(user))),
+				span_danger(LANG("obj.551ee95abc52c0d3", list(user, living_target))),
+				span_userdanger(LANG("obj.978a421ab03bfdc7", list(user))),
 			)
 			if(!do_after(user, CHEM_INTERACT_DELAY(3 SECONDS, user), living_target, extra_checks = CALLBACK(src, PROC_REF(try_syringe), living_target, user)))
 				return ITEM_INTERACT_BLOCKING
@@ -84,8 +84,8 @@
 			if(living_target.reagents.holder_full())
 				return ITEM_INTERACT_BLOCKING
 			living_target.visible_message(
-				span_danger(LANG("obj.5cfdf6df", list(user, living_target))),
-				span_userdanger(LANG("obj.0fbcc917", list(user))),
+				span_danger(LANG("obj.5cfdf6df5c2dfa98", list(user, living_target))),
+				span_userdanger(LANG("obj.0fbcc91784db7a4b", list(user))),
 			)
 
 		if(living_target == user)
@@ -94,7 +94,7 @@
 			log_combat(user, living_target, "injected", src, addition="which had [contained]")
 
 	if(reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user, methods = INJECT))
-		to_chat(user, span_notice(LANG("obj.18ffa51a", list(amount_per_transfer_from_this, reagents.total_volume))))
+		to_chat(user, span_notice(LANG("obj.18ffa51aa70b492d", list(amount_per_transfer_from_this, reagents.total_volume))))
 		target.update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -109,7 +109,7 @@
 	SEND_SIGNAL(target, COMSIG_LIVING_TRY_SYRINGE_WITHDRAW, user)
 
 	if(reagents.holder_full())
-		to_chat(user, span_notice(LANG("obj.8e2d390c", list(src))))
+		to_chat(user, span_notice(LANG("obj.8e2d390ca03cb226", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(isliving(target))
@@ -117,30 +117,30 @@
 		var/drawn_amount = reagents.maximum_volume - reagents.total_volume
 		if(target != user)
 			target.visible_message(
-				span_danger(LANG("obj.4cd737bb", list(user, target))),
-				span_userdanger(LANG("obj.cb931f73", list(user))),
+				span_danger(LANG("obj.4cd737bb4b80b71d", list(user, target))),
+				span_userdanger(LANG("obj.cb931f734ecd1215", list(user))),
 			)
 			if(!do_after(user, CHEM_INTERACT_DELAY(3 SECONDS, user), target, extra_checks = CALLBACK(src, PROC_REF(try_syringe), living_target, user)))
 				return ITEM_INTERACT_BLOCKING
 			if(reagents.holder_full())
 				return ITEM_INTERACT_BLOCKING
 		if(living_target.transfer_blood_to(src, drawn_amount))
-			user.visible_message(span_notice(LANG("obj.deeacac7", list(user, living_target))))
+			user.visible_message(span_notice(LANG("obj.deeacac7ec430590", list(user, living_target))))
 		else
-			to_chat(user, span_warning(LANG("obj.15aca96f", list(living_target))))
+			to_chat(user, span_warning(LANG("obj.15aca96ff0269734", list(living_target))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!target.reagents.total_volume)
-		to_chat(user, span_warning(LANG("obj.02d482cc", list(target))))
+		to_chat(user, span_warning(LANG("obj.02d482cc1aef0cef", list(target))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!target.is_drawable(user))
-		to_chat(user, span_warning(LANG("obj.09f81901", list(target))))
+		to_chat(user, span_warning(LANG("obj.09f8190132db8a6a", list(target))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user) // transfer from, transfer to - who cares?
 	if(trans)
-		to_chat(user, span_notice(LANG("obj.24df3147", list(src, trans, reagents.total_volume))))
+		to_chat(user, span_notice(LANG("obj.24df3147e3d1fd89", list(src, trans, reagents.total_volume))))
 	target.update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -149,9 +149,9 @@
  */
 /obj/item/reagent_containers/syringe/on_accidental_consumption(mob/living/carbon/victim, mob/living/carbon/user, obj/item/source_item,  discover_after = TRUE)
 	if(source_item)
-		to_chat(victim, span_boldwarning(LANG("obj.a75ff925", list(src, source_item))))
+		to_chat(victim, span_boldwarning(LANG("obj.a75ff925a99576ef", list(src, source_item))))
 	else
-		to_chat(victim, span_boldwarning(LANG("obj.c21a5dac", list(src))))
+		to_chat(victim, span_boldwarning(LANG("obj.c21a5dac41fd1558", list(src))))
 
 	victim.apply_damage(5, BRUTE, BODY_ZONE_HEAD)
 	reagents?.trans_to(victim, round(reagents.total_volume*(2/3)), transferred_by = user, methods = INJECT)
@@ -199,7 +199,7 @@
 	SIGNAL_HANDLER
 	if(!reagents.total_volume || !user.reagents || !user.try_inject(user, user.get_active_hand()))
 		return
-	to_chat(user, span_danger(LANG("obj.ae3a2625", list(letter))))
+	to_chat(user, span_danger(LANG("obj.ae3a2625ea0deb82", list(letter))))
 	reagents.trans_to(user, min(reagents.total_volume, 5))
 	forceMove(user.loc)
 	return COMPONENT_TRAITOR_MAIL_HANDLED

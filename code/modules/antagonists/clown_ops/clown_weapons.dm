@@ -71,14 +71,14 @@
 		return ITEM_INTERACT_BLOCKING
 
 	COOLDOWN_START(src, next_trombone_allowed, 5 SECONDS)
-	to_chat(user, span_warning(LANG("obj.ac83dad3", null)))
+	to_chat(user, span_warning(LANG("obj.ac83dad3525ace1a", null)))
 	playsound(src, 'sound/misc/sadtrombone.ogg', 50)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/melee/energy/sword/bananium/suicide_act(mob/living/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		attack_self(user)
-	user.visible_message(span_suicide(LANG("obj.8f0522c6", list(user, pick("slitting [user.p_their()] stomach open with", "falling on"), src, user.p_theyre(), user.p_them()))))
+	user.visible_message(span_suicide(LANG("obj.8f0522c6110bf93c", list(user, pick("slitting [user.p_their()] stomach open with", "falling on"), src, user.p_theyre(), user.p_them()))))
 	var/datum/component/slippery/slipper = GetComponent(/datum/component/slippery)
 	slipper.Slip(src, user)
 	return SHAME
@@ -173,7 +173,7 @@
 
 	var/potential_user = null
 	if(iscarbon(loc))
-		to_chat(loc, span_danger(LANG("obj.8404dd67", list(src))))
+		to_chat(loc, span_danger(LANG("obj.8404dd67e36ed98d", list(src))))
 		potential_user = loc // just for fingerprint diagnosis in explosion logging, the on_consumed proc will have provided the necessary context already
 
 	bomb.arm_grenade(potential_user, msg = FALSE)
@@ -183,7 +183,7 @@
 	QDEL_NULL(bomb)
 
 /obj/item/grown/bananapeel/bombanana/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.acd0ba8d", list(user, src))))
+	user.visible_message(span_suicide(LANG("obj.acd0ba8d7f60f12e", list(user, src))))
 	playsound(loc, 'sound/misc/slip.ogg', 50, TRUE, -1)
 	bomb.arm_grenade(user, 0, FALSE)
 	return BRUTELOSS

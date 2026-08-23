@@ -45,7 +45,7 @@
 /mob/living/carbon/human/get_message_voice(visible_name)
 	. = ..()
 	if(. != name)
-		. += LANG("mob.d2009ec0", list(get_id_name("Unknown", honorifics = TRUE)))
+		. += LANG("mob.d2009ec03106173c", list(get_id_name("Unknown", honorifics = TRUE)))
 
 /mob/living/carbon/human/binarycheck()
 	if(IS_UNCONSCIOUS_OR_CRIT(src))

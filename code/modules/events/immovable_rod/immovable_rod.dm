@@ -66,10 +66,10 @@
 		return
 
 	if(!num_mobs_hit)
-		. += span_notice(LANG("obj.807c1ae8", null))
+		. += span_notice(LANG("obj.807c1ae8ef3fcbcb", null))
 		return
 
-	. += LANG("obj.fb149573", list(num_mobs_hit, num_sentient_mobs_hit, num_sentient_people_hit))
+	. += LANG("obj.fb14957394a07155", list(num_mobs_hit, num_sentient_mobs_hit, num_sentient_people_hit))
 
 /obj/effect/immovablerod/Topic(href, href_list)
 	if(href_list["orbit"])
@@ -101,14 +101,14 @@
 			var/direction = z_diff > 0 ? UP : DOWN
 			var/turf/target_z_turf = get_step_multiz(src, direction)
 
-			visible_message(span_danger(LANG("obj.0e999bd8", list(src))))
+			visible_message(span_danger(LANG("obj.0e999bd88f25d2c2", list(src))))
 
 			if(!do_teleport(src, target_z_turf))
 				// We failed to teleport. Might as well admit defeat.
 				qdel(src)
 				return
 
-			visible_message(span_danger(LANG("obj.bcf092e2", list(src))))
+			visible_message(span_danger(LANG("obj.bcf092e298ed7fcc", list(src))))
 			GLOB.move_manager.home_onto(src, special_target)
 
 		if(loc == target_turf)
@@ -156,7 +156,7 @@
 /obj/effect/immovablerod/Bump(atom/clong)
 	if(prob(10))
 		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
-		audible_message(span_danger(LANG("obj.425d6ace", null)))
+		audible_message(span_danger(LANG("obj.425d6ace1ba48b42", null)))
 
 	if(special_target && clong == special_target)
 		complete_trajectory()
@@ -164,7 +164,7 @@
 	// If rod meets rod, they collapse into a singularity. Yes, this means that if two wizard rods collide,
 	// they ALSO collapse into a singulo.
 	if(istype(clong, /obj/effect/immovablerod))
-		visible_message(span_danger(LANG("obj.3f3255ef", list(src, clong))))
+		visible_message(span_danger(LANG("obj.3f3255ef20e93054", list(src, clong))))
 		do_smoke(2, src, get_turf(src))
 		var/obj/singularity/bad_luck = new(get_turf(src))
 		bad_luck.energy = 800
@@ -200,7 +200,7 @@
 	CRASH("[src] Bump()ed into non-atom thing [clong] ([clong.type])")
 
 /obj/effect/immovablerod/proc/penetrate(mob/living/smeared_mob)
-	smeared_mob.visible_message(span_danger(LANG("obj.c2b59118", list(smeared_mob))) , span_userdanger(LANG("obj.80ade64a", null)) , span_danger(LANG("obj.425d6ace", null)))
+	smeared_mob.visible_message(span_danger(LANG("obj.c2b59118778b9754", list(smeared_mob))) , span_userdanger(LANG("obj.80ade64acfa22176", null)) , span_danger(LANG("obj.425d6ace1ba48b42", null)))
 
 	if(smeared_mob.stat != DEAD)
 		num_mobs_hit++
@@ -244,8 +244,8 @@
 /obj/effect/immovablerod/proc/suplex_rod(mob/living/strongman)
 	strongman.client?.give_award(/datum/award/achievement/jobs/feat_of_strength, strongman)
 	strongman.visible_message(
-		span_boldwarning(LANG("obj.276f3fd6", list(strongman, src))),
-		span_warning(LANG("obj.618729c1", list(src)))
+		span_boldwarning(LANG("obj.276f3fd60c976e18", list(strongman, src))),
+		span_warning(LANG("obj.618729c10fcd5d68", list(src)))
 		)
 	sound_to_playing_players('sound/items/handling/lead_pipe/lead_pipe_drop.ogg')
 	new /obj/structure/festivus/anchored(drop_location())

@@ -222,7 +222,7 @@
 		return ..()
 
 	if(!(linked_venue.req_access in used_id.GetAccess()))
-		to_chat(user, span_warning(LANG("obj.ecca8e63", null)))
+		to_chat(user, span_warning(LANG("obj.ecca8e6395599e72", null)))
 		return
 
 	linked_venue.toggle_open()
@@ -233,7 +233,7 @@
 		return NONE
 
 	if(!allowed(user))
-		balloon_alert(user, LANG("obj.9b3b0da8", null))
+		balloon_alert(user, LANG("obj.9b3b0da8e550b773", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/list/radial_items = list()
@@ -256,7 +256,7 @@
 
 	turned_on_portal = WEAKREF(user)
 
-	balloon_alert(user, LANG("obj.40d03b90", list(chosen_venue.name)))
+	balloon_alert(user, LANG("obj.40d03b90ce971e14", list(chosen_venue.name)))
 
 	if(linked_venue && (src in linked_venue.restaurant_portals)) //We're already linked, unlink us.
 		linked_venue.restaurant_portals -= src
@@ -276,7 +276,7 @@
 
 /obj/machinery/restaurant_portal/wrench_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.2152c7cd", null))
+		balloon_alert(user, LANG("obj.2152c7cd805774d4", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if (default_unfasten_wrench(user, tool))

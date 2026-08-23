@@ -36,7 +36,7 @@
 
 /datum/action/cooldown/adrenaline/Activate(mob/living/carbon/cast_on)
 	. = ..()
-	to_chat(cast_on, span_userdanger(LANG("datum.58411831", null)))
+	to_chat(cast_on, span_userdanger(LANG("datum.58411831fc4edb8e", null)))
 	cast_on.reagents.add_reagent(/datum/reagent/drug/pumpup, adrenaline_amount)
 	cast_on.reagents.add_reagent(/datum/reagent/medicine/synaptizine, adrenaline_amount)
 	cast_on.reagents.add_reagent(/datum/reagent/determination, adrenaline_amount)
@@ -44,7 +44,7 @@
 	return TRUE
 
 /datum/action/cooldown/adrenaline/proc/get_tired(mob/living/carbon/cast_on)
-	to_chat(cast_on, span_danger(LANG("datum.cdaa3e64", null)))
+	to_chat(cast_on, span_danger(LANG("datum.cdaa3e64c32ebc14", null)))
 	cast_on.reagents.add_reagent(/datum/reagent/peaceborg/tire, comedown_amount)
 	cast_on.reagents.add_reagent(/datum/reagent/peaceborg/confuse, comedown_amount)
 	cast_on.set_dizzy_if_lower(10 SECONDS)

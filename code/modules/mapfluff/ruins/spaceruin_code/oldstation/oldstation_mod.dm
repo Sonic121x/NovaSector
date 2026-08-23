@@ -112,6 +112,6 @@
 		close_machine()
 		return
 	else if(busy)
-		balloon_alert(user, LANG("obj.2ffcba26", null))
+		balloon_alert(user, LANG("obj.2ffcba260e4b2ba0", null))
 		return
 	open_machine()

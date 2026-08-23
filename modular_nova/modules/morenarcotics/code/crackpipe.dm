@@ -14,7 +14,7 @@
 	if(smoketime <= 0)
 		if(ismob(loc))
 			var/mob/living/smoking_mob = loc
-			to_chat(smoking_mob, span_notice(LANG("obj.a821e0ac", list(name))))
+			to_chat(smoking_mob, span_notice(LANG("obj.a821e0acd40c0998", list(name))))
 			lit = FALSE
 			icon_state = icon_off
 			inhand_icon_state = icon_off
@@ -30,7 +30,7 @@
 
 /obj/item/cigarette/pipe/crackpipe/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(is_type_in_list(tool, list(/obj/item/reagent_containers/crack,/obj/item/reagent_containers/blacktar)))
-		to_chat(user, span_notice(LANG("obj.16ae1517", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.16ae151750ce356a", list(tool, src))))
 		smoketime = 2 * 60
 		name = "[tool.name]-packed [initial(name)]"
 		if(tool.reagents)
@@ -44,7 +44,7 @@
 				light(lighting_text)
 				return ITEM_INTERACT_SUCCESS
 			else
-				to_chat(user, span_warning(LANG("obj.3556913a", null)))
+				to_chat(user, span_warning(LANG("obj.3556913a68fa0be7", null)))
 				return ITEM_INTERACT_BLOCKING
 		else
 			return ..()

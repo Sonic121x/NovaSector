@@ -96,7 +96,7 @@
 	if(..())
 		return TRUE
 	if(circuit)
-		balloon_alert(user, LANG("obj.ee35cc46", null))
+		balloon_alert(user, LANG("obj.ee35cc46765d5659", null))
 		if(I.use_tool(src, user, time_to_unscrew, volume=50))
 			deconstruct(TRUE)
 	return TRUE
@@ -129,7 +129,7 @@
 		board.AddComponent(/datum/component/gps, "[gps_tag]")
 		set_tracker = TRUE
 	if (set_tracker)
-		balloon_alert_to_viewers(LANG("obj.a464e5c7", null), vision_distance = 1)
+		balloon_alert_to_viewers(LANG("obj.a464e5c7ef1cc6c4", null), vision_distance = 1)
 
 /obj/machinery/computer/emp_act(severity)
 	. = ..()

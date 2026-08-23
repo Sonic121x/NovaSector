@@ -50,7 +50,7 @@
 	if(!COOLDOWN_FINISHED(src, ring_cooldown) && ring_cooldown_length)
 		return TRUE
 	if(!ring_bell(user))
-		to_chat(user, span_notice(LANG("obj.4553a83f", list(src))))
+		to_chat(user, span_notice(LANG("obj.4553a83f9428fc78", list(src))))
 	if(ring_cooldown_length)
 		COOLDOWN_START(src, ring_cooldown, ring_cooldown_length)
 	return TRUE
@@ -70,10 +70,10 @@
 // Fix the clapper
 /obj/structure/desk_bell/screwdriver_act(mob/living/user, obj/item/tool)
 	if(broken_ringer)
-		balloon_alert(user, LANG("obj.b52342a8", null))
+		balloon_alert(user, LANG("obj.b52342a8e93a2ba2", null))
 		tool.play_tool_sound(src)
 		if(tool.use_tool(src, user, 5 SECONDS))
-			balloon_alert_to_viewers(LANG("obj.65ced1e8", null))
+			balloon_alert_to_viewers(LANG("obj.65ced1e8b5b56733", null))
 			playsound(user, 'sound/items/tools/change_drill.ogg', 50, vary = TRUE)
 			broken_ringer = FALSE
 			times_rang = 0
@@ -83,10 +83,10 @@
 
 // Deconstruct
 /obj/structure/desk_bell/wrench_act_secondary(mob/living/user, obj/item/tool)
-	balloon_alert(user, LANG("obj.f73dd9ac", null))
+	balloon_alert(user, LANG("obj.f73dd9ac07755d16", null))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 5 SECONDS))
-		balloon_alert(user, LANG("obj.6da68488", null))
+		balloon_alert(user, LANG("obj.6da68488a6a04800", null))
 		playsound(user, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
 		if(!broken_ringer) // Drop 2 if it's not broken.
 			new/obj/item/stack/sheet/iron(drop_location())
@@ -99,9 +99,9 @@
 /obj/structure/desk_bell/proc/check_clapper(mob/living/user)
 	if(((times_rang >= 10000) || prob(times_rang/100)) && ring_cooldown_length)
 		if (user)
-			to_chat(user, span_notice(LANG("obj.0d3181f4", list(src))))
+			to_chat(user, span_notice(LANG("obj.0d3181f49f0ab09f", list(src))))
 		else
-			audible_message(span_notice(LANG("obj.0d3181f4", list(src))))
+			audible_message(span_notice(LANG("obj.0d3181f49f0ab09f", list(src))))
 		broken_ringer = TRUE
 
 /// Ring the bell
@@ -197,9 +197,9 @@
 	var/obj/vehicle/ridden/wheelchair/chair = interacting_with
 
 	if (chair.bell_attached)
-		user.balloon_alert(user, LANG("obj.13ae863f", null))
+		user.balloon_alert(user, LANG("obj.13ae863fb72e50bc", null))
 		return ITEM_INTERACT_FAILURE
-	user.balloon_alert(user, LANG("obj.17698377", null))
+	user.balloon_alert(user, LANG("obj.176983775393568f", null))
 	if (!do_after(user, 0.5 SECONDS, chair))
 		return ITEM_INTERACT_FAILURE
 

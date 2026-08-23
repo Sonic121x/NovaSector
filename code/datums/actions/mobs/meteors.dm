@@ -16,7 +16,7 @@
 /datum/action/cooldown/mob_cooldown/meteors/proc/create_meteors(atom/target)
 	if(!target)
 		return
-	target.visible_message(span_boldwarning(LANG("datum.3c1d9bf1", null)))
+	target.visible_message(span_boldwarning(LANG("datum.3c1d9bf1fcd11a5d", null)))
 	var/turf/targetturf = get_turf(target)
 	for(var/turf/turf as anything in RANGE_TURFS(9,targetturf))
 		if(prob(11))

@@ -47,7 +47,7 @@
 				names += namelist
 		else
 			if(advanced)
-				to_chat(surgeon, span_warning(LANG("datum.a68956b9", null)))
+				to_chat(surgeon, span_warning(LANG("datum.a68956b93f6d7f39", null)))
 
 			for(var/i in 1 to 10)
 				if(limb.owner)
@@ -55,7 +55,7 @@
 				else
 					names += generate_random_name_species_based(pick(MALE, FEMALE), TRUE, GLOB.species_list[limb.limb_id] || /datum/species/human)
 
-	operation_args[OPERATION_NEW_NAME] = tgui_input_list(surgeon, LANG("datum.2de2feac", null), LANG("datum.4706d458", null), names)
+	operation_args[OPERATION_NEW_NAME] = tgui_input_list(surgeon, LANG("datum.2de2feac39ebf5b7", null), LANG("datum.4706d45844db641e", null), names)
 	return !!operation_args[OPERATION_NEW_NAME]
 
 /datum/surgery_operation/limb/plastic_surgery/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)

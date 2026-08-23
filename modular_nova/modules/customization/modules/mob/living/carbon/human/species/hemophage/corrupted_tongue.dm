@@ -55,34 +55,34 @@
  */
 /datum/action/cooldown/hemophage/drain_victim/proc/has_valid_target(mob/living/carbon/hemophage)
 	if(!hemophage.pulling || !iscarbon(hemophage.pulling) || isalien(hemophage.pulling))
-		hemophage.balloon_alert(hemophage, LANG("datum.bc764ad9", null))
+		hemophage.balloon_alert(hemophage, LANG("datum.bc764ad9c7a7141b", null))
 		return FALSE
 
 	var/mob/living/carbon/victim = hemophage.pulling
 	if(hemophage.get_blood_volume() >= BLOOD_VOLUME_MAXIMUM)
-		hemophage.balloon_alert(hemophage, LANG("datum.e28c7f55", null))
+		hemophage.balloon_alert(hemophage, LANG("datum.e28c7f55e1d974b1", null))
 		return FALSE
 
 	if(victim.stat == DEAD)
-		hemophage.balloon_alert(hemophage, LANG("datum.3b30952e", null))
+		hemophage.balloon_alert(hemophage, LANG("datum.3b30952e983f73e4", null))
 		return FALSE
 
 	if(!victim.get_blood_volume() || (victim.dna && ((HAS_TRAIT(victim, TRAIT_NOBLOOD)) || (victim.get_blood_reagent() != hemophage.get_blood_reagent()))))
-		hemophage.balloon_alert(hemophage, LANG("datum.110f9880", list(victim)))
+		hemophage.balloon_alert(hemophage, LANG("datum.110f98805ee89b6d", list(victim)))
 		return FALSE
 
 	if(victim.can_block_magic(MAGIC_RESISTANCE_HOLY, charge_cost = 0))
 		victim.show_message(span_warning("[hemophage] tries to bite you, but stops before touching you!"))
-		to_chat(hemophage, span_warning(LANG("datum.135f1a2f", list(victim))))
+		to_chat(hemophage, span_warning(LANG("datum.135f1a2f23cab109", list(victim))))
 		return FALSE
 
 	if(victim.has_reagent(/datum/reagent/consumable/garlic))
 		victim.show_message(span_warning("[hemophage] tries to bite you, but recoils in disgust!"))
-		to_chat(hemophage, span_warning(LANG("datum.d0f6c84c", list(victim))))
+		to_chat(hemophage, span_warning(LANG("datum.d0f6c84c4327b5af", list(victim))))
 		return FALSE
 
 	if(ismonkey(victim) && (hemophage.get_blood_volume() >= BLOOD_VOLUME_NORMAL))
-		hemophage.balloon_alert(hemophage, LANG("datum.8d41f733", null))
+		hemophage.balloon_alert(hemophage, LANG("datum.8d41f73303dee2ab", null))
 		return FALSE
 
 	return TRUE
@@ -120,7 +120,7 @@
 	StartCooldown()
 
 	if(!do_after(hemophage, 3 SECONDS, target = victim))
-		hemophage.balloon_alert(hemophage, LANG("datum.4b403578", null))
+		hemophage.balloon_alert(hemophage, LANG("datum.4b403578f7a3c3f0", null))
 		return
 
 	var/drained_blood = min(victim.get_blood_volume(), HEMOPHAGE_DRAIN_AMOUNT, blood_volume_difference)
@@ -142,21 +142,21 @@
 
 	if(horrible_feeding)
 		if(istype(victim, /mob/living/carbon/human/species/monkey))
-			to_chat(hemophage, span_notice(LANG("datum.dc66a46c", list(victim))))
+			to_chat(hemophage, span_notice(LANG("datum.dc66a46c5fe9c4de", list(victim))))
 		else
-			to_chat(hemophage, span_warning(LANG("datum.51831942", list(victim))))
+			to_chat(hemophage, span_warning(LANG("datum.5183194218c0e78e", list(victim))))
 	else
-		to_chat(hemophage, span_notice(LANG("datum.6919eec6", list(victim, is_target_human_with_client ? " That tasted particularly good!" : ""))))
+		to_chat(hemophage, span_notice(LANG("datum.6919eec60171778a", list(victim, is_target_human_with_client ? " That tasted particularly good!" : ""))))
 
 	playsound(hemophage, 'sound/items/drink.ogg', 30, TRUE, -2)
 
 	// just let the hemophage know they're capped out on blood if they're trying to go for an exsanguinate and wondering why it isn't working
 	if(drained_blood != HEMOPHAGE_DRAIN_AMOUNT && hemophage.get_blood_volume() >= (BLOOD_VOLUME_MAXIMUM - HEMOPHAGE_DRAIN_AMOUNT))
-		to_chat(hemophage, span_boldnotice(LANG("datum.f87d1b8e", null)))
+		to_chat(hemophage, span_boldnotice(LANG("datum.f87d1b8ec0b28adb", null)))
 
 	if(victim.get_blood_volume() <= BLOOD_VOLUME_OKAY)
-		to_chat(hemophage, span_warning(LANG("datum.81d34023", null)))
-		to_chat(victim, span_warning(LANG("datum.c97e0799", null))) //let the victim know too
+		to_chat(hemophage, span_warning(LANG("datum.81d3402329750eb0", null)))
+		to_chat(victim, span_warning(LANG("datum.c97e0799e8a4db2e", null))) //let the victim know too
 
 	if(is_target_human_with_client)
 		hemophage.apply_status_effect(/datum/status_effect/blood_thirst_satiated)
@@ -166,9 +166,9 @@
 
 	// for this to ever occur, the hemophage actually has to be decently hungry, otherwise they'll cap their own blood reserves and be unable to pull it off.
 	if(!victim.get_blood_volume() || victim.get_blood_volume() <= BLOOD_VOLUME_SURVIVE)
-		to_chat(hemophage, span_boldwarning(LANG("datum.2045668c", list(victim))))
+		to_chat(hemophage, span_boldwarning(LANG("datum.2045668c1ec92baa", list(victim))))
 	else if((victim.get_blood_volume() - HEMOPHAGE_DRAIN_AMOUNT) <= BLOOD_VOLUME_SURVIVE)
-		to_chat(hemophage, span_warning(LANG("datum.34d6cc6f", list(victim))))
+		to_chat(hemophage, span_warning(LANG("datum.34d6cc6f8cd0b032", list(victim))))
 
 
 #undef HEMOPHAGE_DRAIN_AMOUNT

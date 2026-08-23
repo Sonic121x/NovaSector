@@ -120,7 +120,7 @@
 		return
 	var/mob/living/carbon/human/affected_human = affected_carbon
 	if(affected_human.gender == MALE)
-		to_chat(affected_human, span_warning(LANG("datum.e48dfea5", null)))
+		to_chat(affected_human, span_warning(LANG("datum.e48dfea511deec45", null)))
 		affected_human.set_facial_hairstyle("Beard (Full)", update = TRUE)
 	//Only like gross food
 	var/obj/item/organ/tongue/tongue = affected_carbon.get_organ_slot(ORGAN_SLOT_TONGUE)
@@ -134,7 +134,7 @@
 	. = ..()
 	if(!ishuman(affected_carbon))
 		return
-	to_chat(affected_carbon, span_warning(LANG("datum.e1d13ff9", null)))
+	to_chat(affected_carbon, span_warning(LANG("datum.e1d13ff96afc8899", null)))
 	ADD_TRAIT(affected_carbon, TRAIT_NIGHT_VISION, type)
 
 /datum/addiction/maintenance_drugs/withdrawal_stage_3_process(mob/living/carbon/affected_carbon, seconds_per_tick)
@@ -266,7 +266,7 @@
 		to_chat(affected_carbon, organ.high_threshold_passed)
 		return
 
-	to_chat(affected_carbon, span_warning(LANG("datum.35f18f54", list(organ.name))))
+	to_chat(affected_carbon, span_warning(LANG("datum.35f18f5425497cda", list(organ.name))))
 
 /datum/addiction/medicine/end_withdrawal(mob/living/carbon/affected_carbon)
 	. = ..()

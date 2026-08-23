@@ -15,7 +15,7 @@
 
 	// Handle power damage (oxy)
 	if (battery <= 0 && lacks_power())
-		to_chat(src, span_warning(LANG("mob.31bb5b7d", null)))
+		to_chat(src, span_warning(LANG("mob.31bb5b7d8d908b3c", null)))
 		adjust_oxy_loss(200)
 
 	if(aiRestorePowerRoutine)
@@ -80,7 +80,7 @@
 
 
 /mob/living/silicon/ai/proc/start_RestorePowerRoutine()
-	to_chat(src, span_notice(LANG("mob.d26047a2", null)))
+	to_chat(src, span_notice(LANG("mob.d26047a28380416e", null)))
 	end_multicam()
 	sleep(5 SECONDS)
 	var/turf/T = get_turf(src)
@@ -89,16 +89,16 @@
 		if(!isspaceturf(T))
 			ai_restore_power()
 			return
-	to_chat(src, span_notice(LANG("mob.7d628243", null)))
+	to_chat(src, span_notice(LANG("mob.7d628243f97f5405", null)))
 	sleep(2 SECONDS)
-	to_chat(src, span_notice(LANG("mob.fb349518", null)))
+	to_chat(src, span_notice(LANG("mob.fb3495183ea09405", null)))
 	sleep(5 SECONDS)
 	T = get_turf(src)
 	if(isspaceturf(T))
-		to_chat(src, span_alert(LANG("mob.a04734d2", null)))
+		to_chat(src, span_alert(LANG("mob.a04734d2e59a466c", null)))
 		setAiRestorePowerRoutine(POWER_RESTORATION_SEARCH_APC)
 		return
-	to_chat(src, span_notice(LANG("mob.da327aa3", null)))
+	to_chat(src, span_notice(LANG("mob.da327aa3b238ef46", null)))
 	sleep(5 SECONDS)
 	var/obj/machinery/power/apc/theAPC = null
 
@@ -111,9 +111,9 @@
 		if (!theAPC)
 			switch(PRP)
 				if(1)
-					to_chat(src, span_alert(LANG("mob.6dd70470", null)))
+					to_chat(src, span_alert(LANG("mob.6dd70470205a6b79", null)))
 				else
-					to_chat(src, span_alert(LANG("mob.cd09a9d6", null)))
+					to_chat(src, span_alert(LANG("mob.cd09a9d670f427cb", null)))
 			setAiRestorePowerRoutine(POWER_RESTORATION_SEARCH_APC)
 			return
 		if(AIarea.power_equip)
@@ -122,17 +122,17 @@
 				return
 		switch(PRP)
 			if (1)
-				to_chat(src, span_notice(LANG("mob.c08be872", null)))
+				to_chat(src, span_notice(LANG("mob.c08be8723d456be2", null)))
 			if (2)
-				to_chat(src, span_notice(LANG("mob.173e030d", null)))
+				to_chat(src, span_notice(LANG("mob.173e030dd968d5b8", null)))
 			if (3)
-				to_chat(src, span_notice(LANG("mob.44bd591d", null)))
+				to_chat(src, span_notice(LANG("mob.44bd591da2b801c0", null)))
 			if (4)
-				to_chat(src, span_notice(LANG("mob.454fbb59", null)))
+				to_chat(src, span_notice(LANG("mob.454fbb598d97f09f", null)))
 				sleep(5 SECONDS)
-				to_chat(src, span_notice(LANG("mob.8a3af1a1", null)))
+				to_chat(src, span_notice(LANG("mob.8a3af1a1f0e519da", null)))
 				sleep(0.2 SECONDS)
-				to_chat(src, LANG("mob.affa6905", list(REF(src), TRUE)))
+				to_chat(src, LANG("mob.affa6905271601a8", list(REF(src), TRUE)))
 				apc_override = theAPC
 				apc_override.ui_interact(src)
 				setAiRestorePowerRoutine(POWER_RESTORATION_APC_FOUND)
@@ -142,11 +142,11 @@
 /mob/living/silicon/ai/proc/ai_restore_power()
 	if(aiRestorePowerRoutine)
 		if(aiRestorePowerRoutine == POWER_RESTORATION_APC_FOUND)
-			to_chat(src, span_notice(LANG("mob.93616e9c", null)))
+			to_chat(src, span_notice(LANG("mob.93616e9c876fb157", null)))
 			if(apc_override)
-				to_chat(src, span_notice(LANG("mob.6eccd0f4", null))) //Fluff for why we have to hack every time.
+				to_chat(src, span_notice(LANG("mob.6eccd0f4bef4214d", null))) //Fluff for why we have to hack every time.
 		else
-			to_chat(src, span_notice(LANG("mob.c67cd8fc", null)))
+			to_chat(src, span_notice(LANG("mob.c67cd8fc73c3bb1d", null)))
 		setAiRestorePowerRoutine(POWER_RESTORATION_OFF)
 		remove_status_effect(/datum/status_effect/temporary_blindness)
 		apc_override = null
@@ -157,5 +157,5 @@
 	setAiRestorePowerRoutine(POWER_RESTORATION_START)
 	adjust_temp_blindness(2 SECONDS)
 	update_sight()
-	to_chat(src, span_alert(LANG("mob.39cee9b0", null)))
+	to_chat(src, span_alert(LANG("mob.39cee9b03a4a7c34", null)))
 	addtimer(CALLBACK(src, PROC_REF(start_RestorePowerRoutine)), 2 SECONDS)

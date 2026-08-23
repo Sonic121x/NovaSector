@@ -92,7 +92,7 @@
 		original_damage_coeff = basic_owner.damage_coeff
 		basic_owner.damage_coeff = shielded_damage
 
-	to_chat(owner, span_bolddanger(LANG("datum.215a7702", null)))
+	to_chat(owner, span_bolddanger(LANG("datum.215a77027d5710ad", null)))
 	RegisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_update_overlays))
 	RegisterSignals(owner, COMSIG_LIVING_ADJUST_STANDARD_DAMAGE_TYPES, PROC_REF(on_health_changed))
 	owner.update_appearance(UPDATE_ICON)
@@ -107,7 +107,7 @@
 		var/mob/living/basic/basic_owner = owner
 		basic_owner.damage_coeff = original_damage_coeff
 
-	to_chat(owner, span_bolddanger(LANG("datum.8e6cee42", null)))
+	to_chat(owner, span_bolddanger(LANG("datum.8e6cee42f4940d44", null)))
 	UnregisterSignal(owner, list(COMSIG_ATOM_UPDATE_OVERLAYS) + COMSIG_LIVING_ADJUST_STANDARD_DAMAGE_TYPES)
 	owner.update_appearance(UPDATE_ICON)
 

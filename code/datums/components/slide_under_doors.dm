@@ -43,7 +43,7 @@
 	notify_user()
 
 /datum/component/slide_under_doors/proc/notify_user()
-	to_chat(parent, span_notice(LANG("datum.de7e362d", null)))
+	to_chat(parent, span_notice(LANG("datum.de7e362de9dea9e2", null)))
 
 /datum/component/slide_under_doors/proc/on_user_unarmed_attack(mob/living/user, atom/target, is_adjacent, modifiers)
 	SIGNAL_HANDLER
@@ -60,9 +60,9 @@
 		return
 
 	user.visible_message(
-		message = span_danger(LANG("datum.3276f89a", list(user, user.p_s(), door))),
-		self_message = span_notice(LANG("datum.6365202c", list(door))),
-		blind_message = span_hear(LANG("datum.da94412c", null)),
+		message = span_danger(LANG("datum.3276f89ac8922728", list(user, user.p_s(), door))),
+		self_message = span_notice(LANG("datum.6365202c66d7d628", list(door))),
+		blind_message = span_hear(LANG("datum.da94412caa1d6e52", null)),
 	)
 
 	playsound(user, 'sound/effects/footstep/gib_step.ogg', vol = 50, vary = TRUE, ignore_walls = FALSE)
@@ -78,27 +78,27 @@
 	if (user.loc == door)
 		return FALSE
 	if (!isturf(user.loc))
-		user.balloon_alert(user, LANG("datum.29adf317", null))
+		user.balloon_alert(user, LANG("datum.29adf317e1072511", null))
 		return FALSE
 	if (!door.IsReachableBy(user))
-		user.balloon_alert(user, LANG("datum.fba9228d", null))
+		user.balloon_alert(user, LANG("datum.fba9228dcadf2006", null))
 		return FALSE
 	if (HAS_TRAIT(user, TRAIT_INCAPACITATED))
-		user.balloon_alert(user, LANG("datum.7ac2788b", null))
+		user.balloon_alert(user, LANG("datum.7ac2788bbe3be4b1", null))
 		return FALSE
 	if (!(door.pass_flags_self & PASSDOORS))
-		door.balloon_alert(user, LANG("datum.3bbd67b1", null))
+		door.balloon_alert(user, LANG("datum.3bbd67b1a15ef727", null))
 		return FALSE
 	if (!door.density)
-		door.balloon_alert(user, LANG("datum.5f82ab6e", null))
+		door.balloon_alert(user, LANG("datum.5f82ab6ecf88af5e", null))
 		return FALSE
 	return TRUE
 
 /datum/component/slide_under_doors/proc/slide_under_door(mob/living/user, obj/machinery/door/door)
 	user.visible_message(
-		message = span_danger(LANG("datum.fc1e7bf4", list(user, user.p_s(), door))),
-		self_message = span_notice(LANG("datum.3a1d7d38", list(door))),
-		blind_message = span_hear(LANG("datum.445a50ea", null)),
+		message = span_danger(LANG("datum.fc1e7bf4b17858f4", list(user, user.p_s(), door))),
+		self_message = span_notice(LANG("datum.3a1d7d387cadd778", list(door))),
+		blind_message = span_hear(LANG("datum.445a50eaf2333efb", null)),
 	)
 
 	playsound(user, 'sound/effects/meatslap.ogg', vol = 50, vary = TRUE, ignore_walls = FALSE)
@@ -115,14 +115,14 @@
 
 	if (visible_turf)
 		visible_turf.visible_message(
-			message = span_danger(LANG("datum.ccf90ca4", list(current_door))),
-			blind_message = span_hear(LANG("datum.da94412c", null)),
+			message = span_danger(LANG("datum.ccf90ca4092bfd07", list(current_door))),
+			blind_message = span_hear(LANG("datum.da94412caa1d6e52", null)),
 			ignored_mobs = current_user,
 		)
 
 		playsound(visible_turf, 'sound/effects/footstep/gib_step.ogg', vol = 50, vary = TRUE, ignore_walls = FALSE)
 
-	to_chat(current_user, span_notice(LANG("datum.c76a3c62", list(current_door))))
+	to_chat(current_user, span_notice(LANG("datum.c76a3c6238c53395", list(current_door))))
 
 	if (!do_after(current_user, slide_out_delay, current_door, timed_action_flags = IGNORE_INCAPACITATED))
 		return
@@ -142,9 +142,9 @@
 		user.Move(get_step(user, move_dir), move_dir)
 
 	user.visible_message(
-		message = span_danger(LANG("datum.68295efc", list(user, user.p_s(), door))),
-		self_message = span_notice(LANG("datum.1499402c", list(door))),
-		blind_message = span_hear(LANG("datum.445a50ea", null)),
+		message = span_danger(LANG("datum.68295efce20d6294", list(user, user.p_s(), door))),
+		self_message = span_notice(LANG("datum.1499402ca8668411", list(door))),
+		blind_message = span_hear(LANG("datum.445a50eaf2333efb", null)),
 	)
 
 	playsound(user, 'sound/effects/meatslap.ogg', vol = 50, vary = TRUE, ignore_walls = FALSE)

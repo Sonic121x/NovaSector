@@ -105,7 +105,7 @@
 /datum/component/lockable_storage/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(can_hack_open)
-		examine_list += LANG("datum.12cbbf44", list(panel_open ? "unscrewed" : "screwed shut"))
+		examine_list += LANG("datum.12cbbf4472f66bd6", list(panel_open ? "unscrewed" : "screwed shut"))
 
 /**
  * Called when a screwdriver is used on the parent, if it's hackable.
@@ -117,7 +117,7 @@
 
 	panel_open = !panel_open
 	tool.play_tool_sound(source)
-	source.balloon_alert(user, LANG("datum.a741c12e", list(panel_open ? "opened" : "closed")))
+	source.balloon_alert(user, LANG("datum.a741c12ee0655743", list(panel_open ? "opened" : "closed")))
 	return ITEM_INTERACT_SUCCESS
 
 /**
@@ -129,9 +129,9 @@
 	if(!can_hack_open || !source.atom_storage.locked)
 		return NONE
 	if(!panel_open)
-		source.balloon_alert(user, LANG("datum.3feda34e", null))
+		source.balloon_alert(user, LANG("datum.3feda34e2f0f7806", null))
 		return ITEM_INTERACT_BLOCKING
-	source.balloon_alert(user, LANG("datum.fcd3ebd1", null))
+	source.balloon_alert(user, LANG("datum.fcd3ebd187b8f430", null))
 	INVOKE_ASYNC(src, PROC_REF(hack_open), source, user, tool)
 	return ITEM_INTERACT_SUCCESS
 
@@ -139,7 +139,7 @@
 /datum/component/lockable_storage/proc/hack_open(atom/source, mob/user, obj/item/tool)
 	if(!tool.use_tool(parent, user, 40 SECONDS, volume = 50))
 		return
-	source.balloon_alert(user, LANG("datum.ae6d6bce", null))
+	source.balloon_alert(user, LANG("datum.ae6d6bcee5d8b881", null))
 	set_lock_code(null)
 
 /datum/component/lockable_storage/proc/break_lock()
@@ -161,8 +161,8 @@
 	if(source.obj_flags & EMAGGED)
 		return FALSE
 
-	source.visible_message(span_warning(LANG("datum.4ebe3de5", list(source))), blind_message = span_hear(LANG("datum.e9bee9b3", null)))
-	source.balloon_alert(user, LANG("datum.c20bce4a", null))
+	source.visible_message(span_warning(LANG("datum.4ebe3de564d9fd88", list(source))), blind_message = span_hear(LANG("datum.e9bee9b372539a94", null)))
+	source.balloon_alert(user, LANG("datum.c20bce4a91712e62", null))
 	playsound(source, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	break_lock()
 	return ITEM_INTERACT_SUCCESS
@@ -186,7 +186,7 @@
 	source.update_appearance()
 
 	if(istype(user) && new_code)
-		to_chat(user, span_notice(LANG("datum.227ba271", list(source, lock_code))))
+		to_chat(user, span_notice(LANG("datum.227ba2717b4bd304", list(source, lock_code))))
 
 	return TRUE
 

@@ -21,7 +21,7 @@
 
 	if(length(user.held_items) < 0 || iscyborg(user) || source.anchored)
 		return
-	examine_list += span_smallnotice(LANG("datum.aa33c124", list(source.p_them())))
+	examine_list += span_smallnotice(LANG("datum.aa33c12466cc1e41", list(source.p_them())))
 
 ///Give context to players holding a pair of handcuffs when hovering the item
 /datum/element/cuffable_item/proc/on_requesting_context_from_item(datum/source, list/context, obj/item/held_item, mob/user)
@@ -50,14 +50,14 @@
 
 	for(var/datum/status_effect/cuffed_item/effect in user.status_effects)
 		if(effect.cuffed == source)
-			to_chat(user, span_warning(LANG("datum.b8be3198", list(source))))
+			to_chat(user, span_warning(LANG("datum.b8be3198a6b41bbf", list(source))))
 			return
 		if(effect.cuffed_to == user.get_inactive_hand())
-			to_chat(user, span_warning(LANG("datum.f8f88059", null)))
+			to_chat(user, span_warning(LANG("datum.f8f880598c917a1b", null)))
 			return
 
 	if(!user.get_inactive_hand())
-		to_chat(user, span_warning(LANG("datum.586de32e", list(source))))
+		to_chat(user, span_warning(LANG("datum.586de32e15b27397", list(source))))
 		return
 
 	if(cuffs.handcuffs_clumsiness_check(user))
@@ -66,7 +66,7 @@
 	if(SEND_SIGNAL(source, COMSIG_ITEM_PRE_CUFFED_TO_MOB, user, cuffs) & BLOCK_ITEM_CUFF)
 		return
 
-	source.balloon_alert(user, LANG("datum.0640e813", null))
+	source.balloon_alert(user, LANG("datum.0640e813446265d8", null))
 	playsound(source, cuffs.cuffsound, 30, TRUE, -2)
 	if(!do_after(user, cuffs.get_handcuff_time(user), source))
 		return
@@ -74,8 +74,8 @@
 	playsound(source, cuffs.cuffsuccesssound, 30, TRUE, -2)
 
 	if(user.apply_status_effect(/datum/status_effect/cuffed_item, source, cuffs))
-		source.balloon_alert(user, LANG("datum.4e3e479a", null))
+		source.balloon_alert(user, LANG("datum.4e3e479ae8ff7933", null))
 		return
 
-	source.balloon_alert(user, LANG("datum.6eb87360", null))
+	source.balloon_alert(user, LANG("datum.6eb873609791eb08", null))
 	return

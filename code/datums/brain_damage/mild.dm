@@ -112,10 +112,10 @@
 			if(6 to 9)
 				owner.adjust_slurring(1 MINUTES)
 			if(10)
-				to_chat(owner, span_notice(LANG("datum.ff0ff386", null)))
+				to_chat(owner, span_notice(LANG("datum.ff0ff3861c0d9ced", null)))
 				owner.Stun(20)
 			if(11)
-				to_chat(owner, span_warning(LANG("datum.e095b564", null)))
+				to_chat(owner, span_warning(LANG("datum.e095b564eb9dbb92", null)))
 				owner.Unconscious(80)
 
 	..()
@@ -153,7 +153,7 @@
 	if(owner.move_intent == MOVE_INTENT_RUN)
 		fall_chance += 2
 	if(SPT_PROB(0.5 * fall_chance, seconds_per_tick) && owner.body_position == STANDING_UP)
-		to_chat(owner, span_warning(LANG("datum.153fa308", null)))
+		to_chat(owner, span_warning(LANG("datum.153fa308a7274560", null)))
 		owner.Paralyze(35)
 
 	else if(owner.get_active_held_item())
@@ -161,10 +161,10 @@
 		var/obj/item/I = owner.get_active_held_item()
 		drop_chance += I.w_class
 		if(SPT_PROB(0.5 * drop_chance, seconds_per_tick) && owner.dropItemToGround(I))
-			to_chat(owner, span_warning(LANG("datum.fd41c3f3", list(I))))
+			to_chat(owner, span_warning(LANG("datum.fd41c3f3006fb8d0", list(I))))
 
 	else if(SPT_PROB(1.5, seconds_per_tick))
-		to_chat(owner, span_warning(LANG("datum.d980b2cf", null)))
+		to_chat(owner, span_warning(LANG("datum.d980b2cffd0ba9fc", null)))
 		owner.adjust_stamina_loss(50)
 	..()
 
@@ -326,14 +326,14 @@
 
 	ADD_TRAIT(my_thing, TRAIT_NODROP, TRAUMA_TRAIT)
 	RegisterSignals(my_thing, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(clear_trait))
-	to_chat(owner, span_warning(LANG("datum.4e1e6bd6", list(my_thing))))
+	to_chat(owner, span_warning(LANG("datum.4e1e6bd637f019dc", list(my_thing))))
 	addtimer(CALLBACK(src, PROC_REF(relax), my_thing), rand(30 SECONDS, 3 MINUTES), TIMER_DELETE_ME)
 
 /datum/brain_trauma/mild/possessive/proc/relax(obj/item/my_thing)
 	if(QDELETED(my_thing))
 		return
 	if(HAS_TRAIT_FROM_ONLY(my_thing, TRAIT_NODROP, TRAUMA_TRAIT)) // in case something else adds nodrop, somehow?
-		to_chat(owner, span_notice(LANG("datum.2c4b9c61", list(my_thing))))
+		to_chat(owner, span_notice(LANG("datum.2c4b9c61e2f3a2d3", list(my_thing))))
 	clear_trait(my_thing)
 
 /datum/brain_trauma/mild/possessive/proc/clear_trait(obj/item/my_thing, ...)

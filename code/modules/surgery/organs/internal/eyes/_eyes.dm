@@ -261,7 +261,7 @@
 		return
 
 	var/picked_side = pick(valid_sides)
-	to_chat(owner, span_userdanger(LANG("obj.77df50be", list(picked_side == RIGHT_EYE_SCAR ? "right" : "left"))))
+	to_chat(owner, span_userdanger(LANG("obj.77df50be2addd59a", list(picked_side == RIGHT_EYE_SCAR ? "right" : "left"))))
 	// oof ouch my eyes
 	apply_organ_damage(rand((maxHealth - high_threshold) * 0.5, maxHealth - low_threshold))
 	var/datum/wound/pierce/bleed/severe/eye/eye_puncture = new

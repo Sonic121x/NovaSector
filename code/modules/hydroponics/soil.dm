@@ -35,11 +35,11 @@
 	if(tool.tool_behaviour != TOOL_SHOVEL) //Spades can still uproot plants on left click
 		return ..()
 
-	balloon_alert(user, LANG("obj.f5aeb9c3", null))
+	balloon_alert(user, LANG("obj.f5aeb9c3c5ffce9a", null))
 	if(!tool.use_tool(src, user, 3 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.5dc4c873", null))
+	balloon_alert(user, LANG("obj.5dc4c873b93c0e4a", null))
 	new sack_type(loc, src) //The bag handles sucking up the soil, stopping processing and setting relevants stats.
 	return ITEM_INTERACT_SUCCESS
 
@@ -164,7 +164,7 @@
 		return ..()
 
 	if(locate(/obj/machinery/hydroponics/soil) in interacting_with)
-		to_chat(user, span_alert(LANG("obj.c7d08249", null)))
+		to_chat(user, span_alert(LANG("obj.c7d082494a8757df", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!do_after(user, 1 SECONDS, interacting_with))

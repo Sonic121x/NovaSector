@@ -40,7 +40,7 @@
 		return
 
 	var/mob/living/owner = parent
-	to_chat(owner, span_userdanger(LANG("datum.6128d01b", null)))
+	to_chat(owner, span_userdanger(LANG("datum.6128d01b17702a9e", null)))
 
 	var/obj/machinery/byteforge/forge = forge_ref?.resolve()
 	forge?.setup_particles()
@@ -64,7 +64,7 @@
 		return
 
 	player.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/glitch_slowdown)
-	to_chat(player, span_danger(LANG("datum.0ebc0553", null)))
+	to_chat(player, span_danger(LANG("datum.0ebc05531932da0b", null)))
 
 /// Power restored
 /datum/component/glitch/proc/on_forge_power_restored(datum/source)

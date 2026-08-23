@@ -20,7 +20,7 @@
 
 /obj/structure/closet/body_bag/lost_crew/with_body/attempt_fold(mob/living/carbon/human/the_folder)
 	if (!body_spawned)
-		to_chat(the_folder, span_warning(LANG("obj.10b16433", list(src))))
+		to_chat(the_folder, span_warning(LANG("obj.10b16433da9d4adc", list(src))))
 		return FALSE
 	return ..()
 

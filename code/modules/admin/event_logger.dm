@@ -493,7 +493,7 @@ GLOBAL_DATUM_INIT(event_logger, /datum/event_logger, new())
 			var/datum/target = locate(track_ref)
 			if(!target)
 				return FALSE
-			if(tgui_alert(user, LANG("datum.650da5ab", list(target)), LANG("datum.3c1da715", null), list("Stop Tracking", "Cancel")) != "Stop Tracking")
+			if(tgui_alert(user, LANG("datum.650da5ab3e8e9832", list(target)), LANG("datum.3c1da715a16e1d9e", null), list("Stop Tracking", "Cancel")) != "Stop Tracking")
 				return FALSE
 			target.disable_evlogging()
 			return TRUE

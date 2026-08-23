@@ -53,11 +53,11 @@
 				return FALSE
 			// Don't let people off station futz with the station network.
 			if(!is_station_level(z))
-				balloon_alert(user, LANG("obj.2201997f", null))
+				balloon_alert(user, LANG("obj.2201997fe1ea08ad", null))
 				return TRUE
 
 			expunge_record_info(target)
-			balloon_alert(user, LANG("obj.0f11207f", null))
+			balloon_alert(user, LANG("obj.0f11207fc11db655", null))
 			playsound(src, 'sound/machines/terminal/terminal_eject.ogg', 70, TRUE)
 			investigate_log("[key_name(user)] expunged the record of [target.name].", INVESTIGATE_RECORDS)
 
@@ -69,7 +69,7 @@
 			return TRUE
 
 		if("logout")
-			balloon_alert(user, LANG("obj.73a72999", null))
+			balloon_alert(user, LANG("obj.73a729993efe359e", null))
 			playsound(src, 'sound/machines/terminal/terminal_off.ogg', 70, TRUE)
 			authenticated = FALSE
 
@@ -78,7 +78,7 @@
 		if("purge_records")
 			// Don't let people off station futz with the station network.
 			//NOVA EDIT BEGIN: disable record purging/expunging to stop people messing around with the AI effortlessly
-			balloon_alert(usr, LANG("obj.1bd3ceeb", null))
+			balloon_alert(usr, LANG("obj.1bd3ceeb3a56d0d5", null))
 			return TRUE
 			/*
 			if(!is_station_level(z))
@@ -146,23 +146,23 @@
 		return FALSE
 
 	if(!authenticated && !allowed(user))
-		balloon_alert(user, LANG("obj.1d2a5ed1", null))
+		balloon_alert(user, LANG("obj.1d2a5ed1ed67a4a4", null))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 70, TRUE)
 		return FALSE
 
 	if(mugshot.picture.psize_x > ICON_SIZE_X || mugshot.picture.psize_y > ICON_SIZE_Y)
-		balloon_alert(user, LANG("obj.fedaf173", null))
+		balloon_alert(user, LANG("obj.fedaf173be49bf81", null))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 70, TRUE)
 		return FALSE
 
 	var/trimmed = copytext(mugshot.name, 9, MAX_NAME_LEN) // Remove "photo - "
-	var/name = tgui_input_text(user, LANG("obj.57d81285", null), LANG("obj.f8524261", null), trimmed, max_length = MAX_NAME_LEN)
+	var/name = tgui_input_text(user, LANG("obj.57d81285b37b2400", null), LANG("obj.f852426137f8923f", null), trimmed, max_length = MAX_NAME_LEN)
 	if(!name || !is_operational || !user.can_perform_action(src, ALLOW_SILICON_REACH) || !mugshot || QDELETED(mugshot) || QDELETED(src))
 		return FALSE
 
 	new /datum/record/crew(name = name, character_appearance = mugshot.picture.picture_image)
 
-	balloon_alert(user, LANG("obj.d04363cb", null))
+	balloon_alert(user, LANG("obj.d04363cb2736c085", null))
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 70, TRUE)
 
 	qdel(mugshot)
@@ -175,11 +175,11 @@
 		return FALSE
 
 	if(!allowed(user))
-		balloon_alert(user, LANG("obj.1d2a5ed1", null))
+		balloon_alert(user, LANG("obj.1d2a5ed1ed67a4a4", null))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 70, TRUE)
 		return FALSE
 
-	balloon_alert(user, LANG("obj.c36a6418", null))
+	balloon_alert(user, LANG("obj.c36a641855e57b51", null))
 	playsound(src, 'sound/machines/terminal/terminal_on.ogg', 70, TRUE)
 
 	return TRUE

@@ -21,7 +21,7 @@ GLOBAL_DATUM_INIT(food_prefs_menu, /datum/food_prefs_menu, new)
 	var/fail_reason = GLOB.food_prefs_menu.is_food_invalid(counts)
 
 	if(fail_reason)
-		to_chat(preferences.parent, span_announce(LANG("datum.b16bdca9", list(fail_reason)))) // Sorry, but I don't want folk sleeping on this.
+		to_chat(preferences.parent, span_announce(LANG("datum.b16bdca9b11cf053", list(fail_reason)))) // Sorry, but I don't want folk sleeping on this.
 		return
 
 	var/obj/item/organ/tongue/target_tongue = target.get_organ_slot(ORGAN_SLOT_TONGUE)
@@ -91,7 +91,7 @@ GLOBAL_DATUM_INIT(food_prefs_menu, /datum/food_prefs_menu, new)
 					if(liked_food_length > MAXIMUM_LIKES)
 						preferences.food_preferences.Remove(food_entry)
 				if(liked_food_length > MAXIMUM_LIKES || (food_preference == FOOD_PREFERENCE_LIKED && liked_food_length == MAXIMUM_LIKES) && !(food_name in GLOB.obscure_food_types)) // Equals as well, if we're setting a liked food!
-					tgui_alert(ui, LANG("datum.45c856cf", list(MAXIMUM_LIKES)))
+					tgui_alert(ui, LANG("datum.45c856cfbbb95a8d", list(MAXIMUM_LIKES)))
 					return TRUE
 
 			preferences.food_preferences[food_name] = food_preference

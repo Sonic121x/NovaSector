@@ -119,7 +119,7 @@
 
 	var/datum/admin_help/current_ticket = target.current_ticket
 	if (!current_ticket)
-		to_chat(admin, span_warning(LANG("_root.b40dd163", list(key_name(target)))))
+		to_chat(admin, span_warning(LANG("_root.b40dd163444b2ef5", list(key_name(target)))))
 		return
 
 	admin.cmd_admin_pm(target, message)

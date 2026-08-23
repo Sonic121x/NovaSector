@@ -109,7 +109,7 @@
 /obj/structure/sink/oil_well/attack_hand(mob/user, list/modifiers)
 	flick("puddle-oil-splash",src)
 	reagents.expose(user, TOUCH, 20) //Covers target in 20u of oil.
-	to_chat(user, span_notice(LANG("obj.0053387d", null)))
+	to_chat(user, span_notice(LANG("obj.0053387d148dd882", null)))
 
 /obj/structure/sink/oil_well/wrench_act(mob/living/user, obj/item/tool)
 	//we deconstruct with a shovel
@@ -118,7 +118,7 @@
 /obj/structure/sink/oil_well/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	flick("puddle-oil-splash",src)
 	if(tool.tool_behaviour == TOOL_SHOVEL) //attempt to deconstruct the puddle with a shovel
-		to_chat(user, LANG("obj.86bbd906", null))
+		to_chat(user, LANG("obj.86bbd90648b1b022", null))
 		tool.play_tool_sound(src)
 		deconstruct(TRUE)
 		return ITEM_INTERACT_SUCCESS
@@ -178,7 +178,7 @@
 
 /obj/structure/closet/crate/grave/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.a83a8153", list(EXAMINE_HINT((opened ? "closed" : "dug open")))))
+	. += span_notice(LANG("obj.a83a8153ca72d62f", list(EXAMINE_HINT((opened ? "closed" : "dug open")))))
 
 /obj/structure/closet/crate/grave/filled
 	affect_mood = TRUE
@@ -221,7 +221,7 @@
 		return FALSE
 
 	if(!force)
-		to_chat(user, span_notice(LANG("obj.dd2ad981", null)))
+		to_chat(user, span_notice(LANG("obj.dd2ad9816d1b9f61", null)))
 		return FALSE
 
 	return TRUE
@@ -232,7 +232,7 @@
 		return FALSE
 
 	if(!dug_closed)
-		to_chat(user, span_notice(LANG("obj.9b22dd2a", null)))
+		to_chat(user, span_notice(LANG("obj.9b22dd2a5530b574", null)))
 		return FALSE
 
 	dug_closed = FALSE
@@ -250,21 +250,21 @@
 			return ITEM_INTERACT_BLOCKING
 
 		user.visible_message(
-			span_notice(LANG("obj.3b0d41e0", list(user, src))),
-			span_notice(LANG("obj.d6f54d34", list(src))),
+			span_notice(LANG("obj.3b0d41e0c375d08c", list(user, src))),
+			span_notice(LANG("obj.d6f54d34effad045", list(src))),
 		)
 		if(!tool.use_tool(src, user, delay = 1.5 SECONDS , volume = 40) || !opened)
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.7c288ba4", list(src))))
+		to_chat(user, span_notice(LANG("obj.7c288ba4eefeaf51", list(src))))
 		user.add_mood_event("graverobbing", /datum/mood_event/graverobbing)
 		deconstruct(TRUE)
 		return ITEM_INTERACT_SUCCESS
 
 	//player is attempting to open/close the grave with a shovel
 	user.visible_message(
-			span_notice(LANG("obj.e5f15a33", list(user, opened ? "close" : "dig open", src))),
-			span_notice(LANG("obj.0f8e8d4a", list(opened ? "closing" : "digging open", src))),
+			span_notice(LANG("obj.e5f15a335c73fffc", list(user, opened ? "close" : "dig open", src))),
+			span_notice(LANG("obj.0f8e8d4ade3e60a3", list(opened ? "closing" : "digging open", src))),
 	)
 	if(!tool.use_tool(src, user, delay = 1.5 SECONDS, volume = 40))
 		return ITEM_INTERACT_BLOCKING
@@ -281,9 +281,9 @@
 	user.add_mood_event("graverobbing", is_chill_with_robbing ? /datum/mood_event/morbid_graverobbing : /datum/mood_event/graverobbing)
 	if(lead_tomb && first_open)
 		if(is_chill_with_robbing || !astype(user, /mob/living/carbon)?.gain_trauma(/datum/brain_trauma/magic/stalker))
-			to_chat(user, span_notice(LANG("obj.d864b6cd", null)))
+			to_chat(user, span_notice(LANG("obj.d864b6cda8004936", null)))
 		else
-			to_chat(user, span_boldwarning(LANG("obj.e77630b1", null)))
+			to_chat(user, span_boldwarning(LANG("obj.e77630b189ff72f2", null)))
 		first_open = FALSE
 
 	return ITEM_INTERACT_SUCCESS
@@ -296,21 +296,21 @@
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	user.visible_message(
-		span_warning(LANG("obj.b000f5e9", list(src))),
-		span_notice(LANG("obj.66170aca", list(DisplayTimeText(breakout_time)))),
-		span_hear(LANG("obj.a1de0101", list(src))),
+		span_warning(LANG("obj.b000f5e9a1311afa", list(src))),
+		span_notice(LANG("obj.66170acaa3e4914d", list(DisplayTimeText(breakout_time)))),
+		span_hear(LANG("obj.a1de0101add171c9", list(src))),
 	)
 	if(do_after(user, breakout_time, target = src))
 		if(opened)
 			return
 		user.visible_message(
-			span_danger(LANG("obj.b7ff5367", list(user, src))),
-			span_notice(LANG("obj.978bf908", list(src))),
+			span_danger(LANG("obj.b7ff536798cd9a0b", list(user, src))),
+			span_notice(LANG("obj.978bf908eb55b1c9", list(src))),
 		)
 		bust_open()
 	else
 		if(user.loc == src)
-			to_chat(user, span_warning(LANG("obj.9e84027d", list(src))))
+			to_chat(user, span_warning(LANG("obj.9e84027d6482b07d", list(src))))
 
 /obj/structure/closet/crate/grave/fresh
 	name = "makeshift grave"

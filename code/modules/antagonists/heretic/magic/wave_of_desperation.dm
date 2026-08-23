@@ -28,10 +28,10 @@
 		return
 
 	if(cast_on.handcuffed)
-		cast_on.visible_message(span_danger(LANG("datum.2eaa1a83", list(cast_on.handcuffed, cast_on))))
+		cast_on.visible_message(span_danger(LANG("datum.2eaa1a833db06e62", list(cast_on.handcuffed, cast_on))))
 		QDEL_NULL(cast_on.handcuffed)
 	if(cast_on.legcuffed)
-		cast_on.visible_message(span_danger(LANG("datum.732cd5ff", list(cast_on.legcuffed, cast_on))))
+		cast_on.visible_message(span_danger(LANG("datum.732cd5fffd82cb6a", list(cast_on.legcuffed, cast_on))))
 		QDEL_NULL(cast_on.legcuffed)
 
 	cast_on.apply_status_effect(/datum/status_effect/heretic_lastresort)

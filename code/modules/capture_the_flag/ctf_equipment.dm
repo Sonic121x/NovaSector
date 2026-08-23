@@ -187,7 +187,7 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/target_mob = target
-		target_mob.visible_message(span_danger(LANG("obj.8cc3c08a", list(target_mob))))
+		target_mob.visible_message(span_danger(LANG("obj.8cc3c08ae9885028", list(target_mob))))
 		target_mob.gib()
 
 // SHIELDED VEST

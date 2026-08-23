@@ -63,7 +63,7 @@
 
 /obj/machinery/computer/monitor/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.04deb5c0", null))
+	. += span_notice(LANG("obj.04deb5c03bea7f36", null))
 
 //Checks for cable connection, charges if possible.
 /obj/machinery/computer/vaultcontroller/process()
@@ -171,7 +171,7 @@
 
 ///Overrides screwdriver act to prevent all deconstruction and hacking. Override for extra tuff fluff
 /obj/machinery/door/airlock/vault/derelict/screwdriver_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_danger(LANG("obj.790b0a3d", list(src))))
+	to_chat(user, span_danger(LANG("obj.790b0a3d1ba669ae", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/fluff/oldturret

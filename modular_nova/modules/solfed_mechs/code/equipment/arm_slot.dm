@@ -76,9 +76,9 @@
 
 /obj/item/grenade/chem_grenade/solfed/attack_self(mob/user)
 	if (detonated)
-		to_chat(user, span_warning(LANG("obj.2c0e9895", null)))
+		to_chat(user, span_warning(LANG("obj.2c0e98955e3ed9e6", null)))
 	else
-		to_chat(user, span_warning(LANG("obj.900a6455", null)))
+		to_chat(user, span_warning(LANG("obj.900a645565a3754f", null)))
 	return FALSE
 
 /obj/item/grenade/chem_grenade/solfed/teargas
@@ -309,4 +309,4 @@
 	else
 		button_icon_state = "welder_off"
 	build_all_button_icons()
-	to_chat(clicker, LANG("datum.2453bb3f", list(welder.welding ? "Alternate mode" : "Main mode")))
+	to_chat(clicker, LANG("datum.2453bb3f4575e22a", list(welder.welding ? "Alternate mode" : "Main mode")))

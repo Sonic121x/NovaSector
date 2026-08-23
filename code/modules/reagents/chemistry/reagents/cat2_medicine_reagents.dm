@@ -50,34 +50,34 @@
 
 	if(good_kind_of_healing && !reaping && SPT_PROB(0.005, seconds_per_tick)) //janken with the grim reaper!
 		notify_ghosts(
-			LANG("datum.64518392", list(affected_mob.real_name)),
+			LANG("datum.6451839243cb071c", list(affected_mob.real_name)),
 			source = affected_mob,
 			header = "Who Will Win?",
 		)
 		reaping = TRUE
 		if(affected_mob.apply_status_effect(/datum/status_effect/necropolis_curse, CURSE_BLINDING))
 			helbent = TRUE
-		to_chat(affected_mob, span_hierophant(LANG("datum.b4953290", null)))
+		to_chat(affected_mob, span_hierophant(LANG("datum.b495329069daa3c7", null)))
 		var/timeisticking = world.time
-		var/RPSchoice = tgui_alert(affected_mob, LANG("datum.b9ecf418", null), LANG("datum.a6e46146", null), list("rock" , "paper" , "scissors"), 60)
+		var/RPSchoice = tgui_alert(affected_mob, LANG("datum.b9ecf418303f75ad", null), LANG("datum.a6e461468434f642", null), list("rock" , "paper" , "scissors"), 60)
 		if(QDELETED(affected_mob) || (timeisticking+(1.1 MINUTES) < world.time))
 			reaping = FALSE
 			return //good job, you ruined it
 		if(!RPSchoice)
-			to_chat(affected_mob, span_hierophant(LANG("datum.485cdcb4", null)))
+			to_chat(affected_mob, span_hierophant(LANG("datum.485cdcb4a01cf8b6", null)))
 			reaping = FALSE
 			return
 		switch(rand(1,3))
 			if(1) //You Tied!
-				to_chat(affected_mob, span_hierophant(LANG("datum.8108699c", null)))
+				to_chat(affected_mob, span_hierophant(LANG("datum.8108699c53df464f", null)))
 				reaping = FALSE
 			if(2) //You lost!
-				to_chat(affected_mob, span_hierophant(LANG("datum.44a41d25", null)))
+				to_chat(affected_mob, span_hierophant(LANG("datum.44a41d25aa13111b", null)))
 				affected_mob.investigate_log("has lost rock paper scissors with the grim reaper and been dusted.", INVESTIGATE_DEATHS)
 				affected_mob.dust()
 				return
 			if(3) //VICTORY ROYALE
-				to_chat(affected_mob, span_hierophant(LANG("datum.d178975f", null)))
+				to_chat(affected_mob, span_hierophant(LANG("datum.d178975fdfc9379f", null)))
 				affected_mob.client.give_award(/datum/award/achievement/jobs/helbitaljanken, affected_mob)
 				affected_mob.revive(HEAL_ALL & ~HEAL_REFRESH_ORGANS)
 				holder.del_reagent(type)
@@ -98,7 +98,7 @@
 	. = ..()
 	if(current_cycle >= 50) //greater than 10u in the system
 		affected_mob.AddComponent(/datum/component/omen, incidents_left = min(round(current_cycle/51), 3)) //no more than 3 bad incidents for dropping more than 10u
-		to_chat(affected_mob, span_hierophant_warning(LANG("datum.4648c11e", null)))
+		to_chat(affected_mob, span_hierophant_warning(LANG("datum.4648c11e5cd0e82c", null)))
 
 /datum/reagent/medicine/c2/libital //messes with your liber
 	name = "Libital"
@@ -153,7 +153,7 @@
 	if(affected_mob.get_stamina_loss() >= 80)
 		affected_mob.adjust_drowsiness(2 SECONDS * metabolization_ratio * seconds_per_tick)
 	if(affected_mob.get_stamina_loss() >= 100)
-		to_chat(affected_mob,span_warning(LANG("datum.6706249c", null)))
+		to_chat(affected_mob,span_warning(LANG("datum.6706249c303a2904", null)))
 		need_mob_update += affected_mob.adjust_stamina_loss(-100, updating_stamina = FALSE) // Don't add the biotype parameter here as it results in infinite sleep and chat spam.
 		affected_mob.Sleeping(10 SECONDS)
 	if(need_mob_update)
@@ -537,9 +537,9 @@
 	if(need_mob_update)
 		carbies.updatehealth()
 		if(show_message)
-			carbies.visible_message(span_nicegreen(LANG("datum.08780947", list(carbies))))
+			carbies.visible_message(span_nicegreen(LANG("datum.08780947d749db88", list(carbies))))
 			if(carbies.stat != DEAD)
-				to_chat(carbies, span_danger(LANG("datum.803fb633", null)))
+				to_chat(carbies, span_danger(LANG("datum.803fb6339fef448a", null)))
 				carbies.add_mood_event("painful_medicine", /datum/mood_event/painful_medicine)
 
 	//don't unhusked non husked mobs
@@ -549,7 +549,7 @@
 	//don't try to unhusk mobs above burn damage threshold
 	if(carbies.get_fire_loss() > UNHUSK_DAMAGE_THRESHOLD)
 		if(show_message && !need_mob_update)
-			carbies.visible_message(span_minoralert(LANG("datum.fe4b7775", list(carbies, carbies))))
+			carbies.visible_message(span_minoralert(LANG("datum.fe4b7775fa6dd799", list(carbies, carbies))))
 		return
 
 	var/datum/reagent/synthflesh = carbies.reagents.has_reagent(/datum/reagent/medicine/c2/synthflesh)
@@ -565,16 +565,16 @@
 		carbies.cure_husk(BURN)
 		carbies.reagents.remove_reagent(/datum/reagent/medicine/c2/synthflesh, current_volume) // consume the synthflesh, it won't do anything in their blood
 		//we're avoiding using the phrases "burnt flesh" and "burnt skin" here because carbies could be a skeleton or a golem or something
-		carbies.visible_message(span_nicegreen(LANG("datum.c4435ce4", list(carbies, carbies))))
+		carbies.visible_message(span_nicegreen(LANG("datum.c4435ce41e4e2b04", list(carbies, carbies))))
 	else if(show_message && !need_mob_update)
 		// if they are laying in a pool of synthflesh, we don't want it sending a message every tick
 		if(methods & TOUCH)
 			if(TIMER_COOLDOWN_RUNNING(carbies, REF(carbies)))
 				return
 			TIMER_COOLDOWN_START(carbies, REF(carbies), 16 SECONDS)
-			carbies.visible_message(span_boldnotice(LANG("datum.499203e3", list(carbies))))
+			carbies.visible_message(span_boldnotice(LANG("datum.499203e35a74feeb", list(carbies))))
 		else
-			carbies.visible_message(span_nicegreen(LANG("datum.2875ff97", list(carbies))))
+			carbies.visible_message(span_nicegreen(LANG("datum.2875ff979fb83207", list(carbies))))
 
 /******ORGAN HEALING******/
 /*Suffix: -rite*/
@@ -638,12 +638,12 @@
 		affected_mob.set_dizzy_if_lower(1 * rand(0 SECONDS, 4 SECONDS) * metabolization_ratio * seconds_per_tick)
 
 		if(SPT_PROB(18, seconds_per_tick))
-			to_chat(affected_mob,span_danger(LANG("datum.2a00f1da", null)))
+			to_chat(affected_mob,span_danger(LANG("datum.2a00f1dac35fc493", null)))
 
 	if(affected_mob.health <= (affected_mob.crit_threshold + HEALTH_THRESHOLD_FULLCRIT*(2*normalise_creation_purity()))) //certain death below this threshold
 		REMOVE_TRAIT(affected_mob, TRAIT_STABLEHEART, type) //we have to remove the stable heart trait before we give them a heart attack
 		affected_mob.remove_traits(subject_traits, type)
-		to_chat(affected_mob, span_danger(LANG("datum.0dc545d8", null)))
+		to_chat(affected_mob, span_danger(LANG("datum.0dc545d8ce66e774", null)))
 		if(!HAS_TRAIT(affected_mob, TRAIT_ANALGESIA))
 			affected_mob.emote("scream")
 		affected_mob.set_heartattack(TRUE)

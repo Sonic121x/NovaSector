@@ -22,7 +22,7 @@
 	for (var/point_amt in point_val_cache)
 		var/list/types = point_val_cache[point_amt]
 		var/types_joined = lang_english_list(types) // NOVA EDIT - I18N: 逐项翻物品名再连接（整条 Join 后不是目录键）
-		. += EXPERIMENT_PROG_DETAIL(LANG("datum.a93b2232", list(text2num(point_amt), types_joined)), complete) // NOVA EDIT - I18N
+		. += EXPERIMENT_PROG_DETAIL(LANG("datum.a93b22327c11ac32", list(text2num(point_amt), types_joined)), complete) // NOVA EDIT - I18N
 
 /datum/experiment/scanning/points/experiment_requirements(datum/component/experiment_handler/experiment_handler, atom/target)
 	var/destructive = traits & EXPERIMENT_TRAIT_DESTRUCTIVE

@@ -32,7 +32,7 @@
 		if(AH)
 			AH.Action(href_list["ahelp_action"])
 		else
-			to_chat(usr, LANG("datum.6efd50c0", list(ahelp_ref)), confidential = TRUE)
+			to_chat(usr, LANG("datum.6efd50c00803d365", list(ahelp_ref)), confidential = TRUE)
 
 	else if(href_list["ahelp_tickets"])
 		GLOB.ahelp_tickets.BrowseTickets(text2num(href_list["ahelp_tickets"]))
@@ -45,7 +45,7 @@
 			return
 		var/mob/M = locate(href_list["getplaytimewindow"]) in GLOB.mob_list
 		if(!M)
-			to_chat(usr, span_danger(LANG("datum.a285e921", null)), confidential = TRUE)
+			to_chat(usr, span_danger(LANG("datum.a285e9210204fbbb", null)), confidential = TRUE)
 			return
 		cmd_show_exp_panel(M.client)
 
@@ -111,12 +111,12 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		var/timer = input(LANG("datum.7a9fa483", null),LANG("datum.a982065d", null), SSshuttle.emergency.timeLeft() ) as num|null
+		var/timer = input(LANG("datum.7a9fa483e25f690d", null),LANG("datum.a982065d02172ffe", null), SSshuttle.emergency.timeLeft() ) as num|null
 		if(!timer)
 			return
 		SSshuttle.emergency.setTimer(timer SECONDS)
 		log_admin("[key_name(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds.")
-		minor_announce(LANG("datum.e2713225", list(DisplayTimeText(timer SECONDS))))
+		minor_announce(LANG("datum.e2713225ea91e4c8", list(DisplayTimeText(timer SECONDS))))
 		message_admins(span_adminnotice("[key_name_admin(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds."))
 	else if(href_list["trigger_centcom_recall"])
 		if(!check_rights(R_ADMIN))
@@ -141,7 +141,7 @@
 		if(!shuttle_console)
 			return
 		shuttle_console.admin_controlled = !shuttle_console.admin_controlled
-		to_chat(usr, LANG("datum.f1f049a9", list(shuttle_console, shuttle_console.admin_controlled ? "locked" : "unlocked")), confidential = TRUE)
+		to_chat(usr, LANG("datum.f1f049a9b1650ab5", list(shuttle_console, shuttle_console.admin_controlled ? "locked" : "unlocked")), confidential = TRUE)
 
 	else if(href_list["delay_round_end"])
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/delay_round_end)
@@ -150,7 +150,7 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		if(tgui_alert(usr, LANG("datum.1a379431", list(SSticker.admin_delay_notice)), LANG("datum.d931e692", null), list("Yes", "No")) == "No")
+		if(tgui_alert(usr, LANG("datum.1a3794310077d709", list(SSticker.admin_delay_notice)), LANG("datum.d931e69240f08582", null), list("Yes", "No")) == "No")
 			return
 
 		SSticker.admin_delay_notice = null
@@ -166,8 +166,8 @@
 			return
 
 		message_admins(span_adminnotice("[key_name_admin(usr)] is considering ending the round."))
-		if(tgui_alert(usr, LANG("datum.a421b35a", null), LANG("datum.15bc27b6", null), list("Yes", "No")) == "Yes")
-			if(tgui_alert(usr, LANG("datum.043ec219", null), LANG("datum.15bc27b6", null), list("Yes", "No")) == "Yes")
+		if(tgui_alert(usr, LANG("datum.a421b35a62964602", null), LANG("datum.15bc27b6fe454546", null), list("Yes", "No")) == "Yes")
+			if(tgui_alert(usr, LANG("datum.043ec21997b5c5f4", null), LANG("datum.15bc27b6fe454546", null), list("Yes", "No")) == "Yes")
 				message_admins(span_adminnotice("[key_name_admin(usr)] has ended the round."))
 				SSticker.force_ending = ADMIN_FORCE_END_ROUND //Yeah there we go APC destroyed mission accomplished
 				return
@@ -182,12 +182,12 @@
 
 		var/mob/M = locate(href_list["mob"])
 		if(!ismob(M))
-			to_chat(usr, LANG("datum.7ba1e557", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.7ba1e55740ebfe3d", null), confidential = TRUE)
 			return
 
 		var/delmob = TRUE
 		if(!isobserver(M))
-			switch(tgui_alert(usr,LANG("datum.77d992b5", null),LANG("datum.affb7d7e", null),list("Yes","No","Cancel")))
+			switch(tgui_alert(usr,LANG("datum.77d992b535a0f491", null),LANG("datum.affb7d7ed9357b02", null),list("Yes","No","Cancel")))
 				if("Cancel")
 					return
 				if("No")
@@ -220,17 +220,17 @@
 		var/mob/M = locate(href_list["boot2"])
 		if(ismob(M))
 			if(!check_if_greater_rights_than(M.client))
-				to_chat(usr, span_danger(LANG("datum.3b765e14", null)), confidential = TRUE)
+				to_chat(usr, span_danger(LANG("datum.3b765e1483bbd776", null)), confidential = TRUE)
 				return
-			if(tgui_alert(usr, LANG("datum.2495f3bd", list(key_name(M))), LANG("datum.3c1da715", null), list("Yes", "No")) != "Yes")
+			if(tgui_alert(usr, LANG("datum.2495f3bdbc245f22", list(key_name(M))), LANG("datum.3c1da715a16e1d9e", null), list("Yes", "No")) != "Yes")
 				return
 			if(!M)
-				to_chat(usr, span_danger(LANG("datum.bd46e6a6", list(M))), confidential = TRUE)
+				to_chat(usr, span_danger(LANG("datum.bd46e6a6650253fd", list(M))), confidential = TRUE)
 				return
 			if(!M.client)
-				to_chat(usr, span_danger(LANG("datum.605d44e3", list(M))), confidential = TRUE)
+				to_chat(usr, span_danger(LANG("datum.605d44e3e83aafdf", list(M))), confidential = TRUE)
 				return
-			to_chat(M, span_danger(LANG("datum.c7289045", list(usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"))), confidential = TRUE)
+			to_chat(M, span_danger(LANG("datum.c7289045c2063e76", list(usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"))), confidential = TRUE)
 			log_admin("[key_name(usr)] kicked [key_name(M)].")
 			message_admins(span_adminnotice("[key_name_admin(usr)] kicked [key_name_admin(M)]."))
 			qdel(M.client)
@@ -276,7 +276,7 @@
 	else if(href_list["deletemessage"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = tgui_alert(usr,LANG("datum.231e6355", null),,list("Yes","No"));
+		var/safety = tgui_alert(usr,LANG("datum.231e6355af5205fb", null),,list("Yes","No"));
 		if (safety == "Yes")
 			var/message_id = href_list["deletemessage"]
 			delete_message(message_id)
@@ -284,7 +284,7 @@
 	else if(href_list["deletemessageempty"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = tgui_alert(usr,LANG("datum.231e6355", null),,list("Yes","No"));
+		var/safety = tgui_alert(usr,LANG("datum.231e6355af5205fb", null),,list("Yes","No"));
 		if (safety == "Yes")
 			var/message_id = href_list["deletemessageempty"]
 			delete_message(message_id, browse = TRUE)
@@ -401,9 +401,9 @@
 
 		var/mob/M = locate(href_list["forcespeech"])
 		if(!ismob(M))
-			to_chat(usr, LANG("datum.79c90543", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.79c9054337e6bd81", null), confidential = TRUE)
 			return
-		var/speech = input(LANG("datum.36afaae5", list(key_name(M))), LANG("datum.58eebcb9", null), "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
+		var/speech = input(LANG("datum.36afaae5a7d9bc18", list(key_name(M))), LANG("datum.58eebcb9c1419092", null), "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
 		if(!speech)
 			return
 		M.say(speech, forced = "admin speech")
@@ -417,10 +417,10 @@
 
 		var/mob/living/carbon/human/target = locate(href_list["applyquirks"])
 		if(!istype(target))
-			to_chat(usr, LANG("datum.54430006", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.544300069ea9f258", null), confidential = TRUE)
 			return
 		if(!target.client)
-			to_chat(usr, LANG("datum.a07249cc", list(target)), confidential = TRUE)
+			to_chat(usr, LANG("datum.a07249cca6963076", list(target)), confidential = TRUE)
 			return
 		SSquirks.AssignQuirks(target, target.client)
 		log_admin("[key_name(usr)] applied client quirks to [key_name(target)].")
@@ -432,18 +432,18 @@
 
 		var/mob/M = locate(href_list["sendtoprison"])
 		if(!ismob(M))
-			to_chat(usr, LANG("datum.7ba1e557", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.7ba1e55740ebfe3d", null), confidential = TRUE)
 			return
 		if(isAI(M))
-			to_chat(usr, LANG("datum.f61bfd33", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.f61bfd3351545dca", null), confidential = TRUE)
 			return
 
-		if(tgui_alert(usr, LANG("datum.c86d8a4f", list(key_name(M))), LANG("datum.affb7d7e", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, LANG("datum.c86d8a4f2539b183", list(key_name(M))), LANG("datum.affb7d7ed9357b02", null), list("Yes", "No")) != "Yes")
 			return
 
 		do_sparks(10, TRUE, M, spark_type = /datum/effect_system/basic/spark_spread/quantum) // NOVA EDIT ADDITION - Immersion-friendly Admin Prison
 		M.forceMove(pick(GLOB.prisonwarp))
-		to_chat(M, span_adminnotice(LANG("datum.9675fbbc", null)), confidential = TRUE)
+		to_chat(M, span_adminnotice(LANG("datum.9675fbbcd8dc687c", null)), confidential = TRUE)
 
 		log_admin("[key_name(usr)] has sent [key_name(M)] to Prison!")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to Prison!")
@@ -455,14 +455,14 @@
 		var/mob/M = locate(href_list["sendbacktolobby"])
 
 		if(!isobserver(M))
-			to_chat(usr, span_notice(LANG("datum.0120740c", null)), confidential = TRUE)
+			to_chat(usr, span_notice(LANG("datum.0120740cadc89d95", null)), confidential = TRUE)
 			return
 
 		if(!M.client)
-			to_chat(usr, span_warning(LANG("datum.b00938b9", list(M))), confidential = TRUE)
+			to_chat(usr, span_warning(LANG("datum.b00938b9ee8ce088", list(M))), confidential = TRUE)
 			return
 
-		if(tgui_alert(usr, LANG("datum.40bafdaa", list(key_name(M))), LANG("datum.affb7d7e", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, LANG("datum.40bafdaa9bf72890", list(key_name(M))), LANG("datum.affb7d7ed9357b02", null), list("Yes", "No")) != "Yes")
 			return
 
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
@@ -476,15 +476,15 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(tgui_alert(usr, LANG("datum.c688d4ff", null), LANG("datum.affb7d7e", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, LANG("datum.c688d4ff7e0eaa00", null), LANG("datum.affb7d7ed9357b02", null), list("Yes", "No")) != "Yes")
 			return
 
 		var/mob/M = locate(href_list["tdome1"])
 		if(!isliving(M))
-			to_chat(usr, LANG("datum.ff0c6507", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.ff0c650777f5416b", null), confidential = TRUE)
 			return
 		if(isAI(M))
-			to_chat(usr, LANG("datum.f61bfd33", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.f61bfd3351545dca", null), confidential = TRUE)
 			return
 		var/mob/living/L = M
 
@@ -502,15 +502,15 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(tgui_alert(usr, LANG("datum.c688d4ff", null), LANG("datum.affb7d7e", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, LANG("datum.c688d4ff7e0eaa00", null), LANG("datum.affb7d7ed9357b02", null), list("Yes", "No")) != "Yes")
 			return
 
 		var/mob/M = locate(href_list["tdome2"])
 		if(!isliving(M))
-			to_chat(usr, LANG("datum.ff0c6507", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.ff0c650777f5416b", null), confidential = TRUE)
 			return
 		if(isAI(M))
-			to_chat(usr, LANG("datum.f61bfd33", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.f61bfd3351545dca", null), confidential = TRUE)
 			return
 		var/mob/living/L = M
 
@@ -528,15 +528,15 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(tgui_alert(usr, LANG("datum.c688d4ff", null), LANG("datum.affb7d7e", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, LANG("datum.c688d4ff7e0eaa00", null), LANG("datum.affb7d7ed9357b02", null), list("Yes", "No")) != "Yes")
 			return
 
 		var/mob/M = locate(href_list["tdomeadmin"])
 		if(!isliving(M))
-			to_chat(usr, LANG("datum.ff0c6507", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.ff0c650777f5416b", null), confidential = TRUE)
 			return
 		if(isAI(M))
-			to_chat(usr, LANG("datum.f61bfd33", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.f61bfd3351545dca", null), confidential = TRUE)
 			return
 		var/mob/living/L = M
 
@@ -551,15 +551,15 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(tgui_alert(usr, LANG("datum.c688d4ff", null), LANG("datum.affb7d7e", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, LANG("datum.c688d4ff7e0eaa00", null), LANG("datum.affb7d7ed9357b02", null), list("Yes", "No")) != "Yes")
 			return
 
 		var/mob/M = locate(href_list["tdomeobserve"])
 		if(!isliving(M))
-			to_chat(usr, LANG("datum.ff0c6507", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.ff0c650777f5416b", null), confidential = TRUE)
 			return
 		if(isAI(M))
-			to_chat(usr, LANG("datum.f61bfd33", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.f61bfd3351545dca", null), confidential = TRUE)
 			return
 		var/mob/living/L = M
 
@@ -584,7 +584,7 @@
 
 		var/mob/living/L = locate(href_list["revive"])
 		if(!istype(L))
-			to_chat(usr, LANG("datum.ff0c6507", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.ff0c650777f5416b", null), confidential = TRUE)
 			return
 
 		L.revive(ADMIN_HEAL_ALL)
@@ -599,17 +599,17 @@
 		if(!istype(our_mob))
 			return
 		if(isAI(our_mob))
-			to_chat(usr, LANG("datum.64c52459", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.64c52459263cc965", null), confidential = TRUE)
 			return
 
 		var/move = TRUE
-		switch(tgui_alert(usr,LANG("datum.ecfe8c78", null),LANG("datum.3dd15d72", null), list("Yes", "No","Cancel")))
+		switch(tgui_alert(usr,LANG("datum.ecfe8c78ffe4d325", null),LANG("datum.3dd15d7206a4bd5f", null), list("Yes", "No","Cancel")))
 			if("Cancel", null)
 				return
 			if("No")
 				move = FALSE
 		if(QDELETED(our_mob))
-			to_chat(usr, span_danger(LANG("datum.adb452d6", null)))
+			to_chat(usr, span_danger(LANG("datum.adb452d678a29523", null)))
 			return
 		message_admins(span_danger("Admin [key_name_admin(usr)] AIized [key_name_admin(our_mob)]!"))
 		log_admin("[key_name(usr)] AIized [key_name(our_mob)].")
@@ -626,14 +626,14 @@
 		var/mob/original_mob = locate(href_list["ppbyckeyorigmob"]) in GLOB.mob_list
 		var/mob/target_mob = get_mob_by_ckey(target_ckey)
 		if(!target_mob)
-			to_chat(usr, span_warning(LANG("datum.1badee55", null)))
+			to_chat(usr, span_warning(LANG("datum.1badee55f2be1a13", null)))
 			return
 
 		if(original_mob == target_mob)
-			to_chat(usr, span_warning(LANG("datum.9122250d", list(target_ckey, original_mob))))
+			to_chat(usr, span_warning(LANG("datum.9122250ddf1c65f2", list(target_ckey, original_mob))))
 			return
 
-		to_chat(usr, span_notice(LANG("datum.226bba77", list(target_ckey, target_mob))))
+		to_chat(usr, span_notice(LANG("datum.226bba774e9ed1f8", list(target_ckey, target_mob))))
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/show_player_panel, target_mob)
 
 	else if(href_list["adminplayerobservefollow"])
@@ -667,7 +667,7 @@
 	else if(href_list["adminmoreinfo"])
 		var/mob/subject = locate(href_list["adminmoreinfo"]) in GLOB.mob_list
 		if(!ismob(subject))
-			to_chat(usr, LANG("datum.7ba1e557", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.7ba1e55740ebfe3d", null), confidential = TRUE)
 			return
 
 		var/location_description = ""
@@ -763,9 +763,9 @@
 		for(var/datum/job/job as anything in SSjob.joinable_occupations)
 			if(job.title == Add)
 				var/newslots = null
-				newslots = input(usr, LANG("datum.87730f12", null), LANG("datum.829e48c5", null), "[newslots]") as num|null
+				newslots = input(usr, LANG("datum.87730f1259510f9e", null), LANG("datum.829e48c56e13fef9", null), "[newslots]") as num|null
 				if(!isnull(newslots))
-					to_chat(src.owner, LANG("datum.a312843b", list(job.title, newslots)) , confidential = TRUE)
+					to_chat(src.owner, LANG("datum.a312843b86fadd8f", list(job.title, newslots)) , confidential = TRUE)
 					job.total_positions = newslots
 					log_job_debug("[key_name(usr)] set the job cap for [job.title] to [newslots]")
 					break
@@ -821,7 +821,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["adminspawncookie"])
 		if(!ishuman(H))
-			to_chat(usr, LANG("datum.5036349f", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.5036349fb5264190", null), confidential = TRUE)
 			return
 		var/obj/item/new_item = new H.dna.species.species_cookie(H)
 		if(H.put_in_hands(new_item))
@@ -835,21 +835,21 @@
 		log_admin("[key_name(H)] got their [new_item], spawned by [key_name(src.owner)].")
 		message_admins("[key_name(H)] got their [new_item], spawned by [key_name(src.owner)].")
 		SSblackbox.record_feedback("amount", "admin_cookies_spawned", 1)
-		to_chat(H, span_adminnotice(LANG("datum.4c8c9a53", list(new_item.name))), confidential = TRUE)
+		to_chat(H, span_adminnotice(LANG("datum.4c8c9a5351cd2754", list(new_item.name))), confidential = TRUE)
 		SEND_SOUND(H, sound('sound/effects/pray_chaplain.ogg'))
 
 	else if (href_list["adminpopup"])
 		if (!check_rights(R_ADMIN))
 			return
 
-		var/message = input(owner, LANG("datum.fa1640eb", null), LANG("datum.affb7d7e", null)) as text|null
+		var/message = input(owner, LANG("datum.fa1640eb0aa175a8", null), LANG("datum.affb7d7ed9357b02", null)) as text|null
 		if (!message)
-			to_chat(owner, span_notice(LANG("datum.0b619045", null)))
+			to_chat(owner, span_notice(LANG("datum.0b619045004a10a7", null)))
 			return
 
 		var/client/target = locate(href_list["adminpopup"])
 		if (!istype(target))
-			to_chat(owner, span_notice(LANG("datum.035168de", null)))
+			to_chat(owner, span_notice(LANG("datum.035168de3f402089", null)))
 			return
 
 		give_admin_popup(target, owner, message)
@@ -905,7 +905,7 @@
 			return
 
 		var/mob/M = locate(href_list["playsoundto"])
-		var/S = input("", LANG("datum.9ffc2daa", null),) as null|sound
+		var/S = input("", LANG("datum.9ffc2daa838ad951", null),) as null|sound
 		if(S)
 			SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/play_direct_mob_sound, S, M)
 
@@ -915,7 +915,7 @@
 
 		var/mob/M = locate(href_list["individuallog"]) in GLOB.mob_list
 		if(!ismob(M))
-			to_chat(usr, LANG("datum.7ba1e557", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.7ba1e55740ebfe3d", null), confidential = TRUE)
 			return
 
 		show_individual_logging_panel(M, href_list["log_src"], href_list["log_type"])
@@ -925,7 +925,7 @@
 
 		var/mob/M = locate(href_list["languagemenu"]) in GLOB.mob_list
 		if(!ismob(M))
-			to_chat(usr, LANG("datum.7ba1e557", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.7ba1e55740ebfe3d", null), confidential = TRUE)
 			return
 		M.get_language_holder().open_language_menu(usr)
 
@@ -935,7 +935,7 @@
 			return
 		// literally just gives them a sound and a message
 		SEND_SOUND(rper, sound('sound/misc/roleplay.ogg'))
-		to_chat(rper, boxed_message(LANG("datum.a9ca7b6e", list(span_hypnophrase("Please roleplay appropriately.")))))
+		to_chat(rper, boxed_message(LANG("datum.a9ca7b6e135d4a32", list(span_hypnophrase("Please roleplay appropriately.")))))
 		message_admins("[ADMIN_LOOKUPFLW(usr)] reminded [ADMIN_LOOKUPFLW(rper)] to roleplay appropriately.")
 		log_admin("[key_name(usr)] reminded [key_name(rper)] to roleplay appropriately.")
 
@@ -944,14 +944,14 @@
 			return
 
 		if(!SSticker.HasRoundStarted())
-			tgui_alert(usr,LANG("datum.8a212f07", null))
+			tgui_alert(usr,LANG("datum.8a212f0792509a20", null))
 			return
 
 		var/mob/M = locate(href_list["traitor"])
 		if(!ismob(M))
 			var/datum/mind/D = M
 			if(!istype(D))
-				to_chat(usr, LANG("datum.0c07ee28", null), confidential = TRUE)
+				to_chat(usr, LANG("datum.0c07ee28332ab28d", null), confidential = TRUE)
 				return
 			else
 				D.traitor_panel()
@@ -964,7 +964,7 @@
 			return
 
 		if(!SSticker.HasRoundStarted())
-			tgui_alert(usr,LANG("datum.8a212f07", null))
+			tgui_alert(usr,LANG("datum.8a212f0792509a20", null))
 			return
 
 		var/target = locate(href_list["skill"])
@@ -975,7 +975,7 @@
 		else if (istype(target, /datum/mind))
 			target_mind = target
 		else
-			to_chat(usr, LANG("datum.0c07ee28", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.0c07ee28332ab28d", null), confidential = TRUE)
 			return
 		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/show_skill_panel, target_mind)
 		return
@@ -988,7 +988,7 @@
 			return
 		var/mob/M = locate(href_list["initmind"])
 		if(!ismob(M) || M.mind)
-			to_chat(usr, LANG("datum.08200204", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.082002046f7d9270", null), confidential = TRUE)
 			return
 		M.mind_initialize()
 
@@ -1017,8 +1017,8 @@
 			return
 		if(SSticker.IsRoundInProgress())
 			var/afkonly = text2num(href_list["afkonly"])
-			if(tgui_alert(usr,LANG("datum.d0987f76", list(afkonly ? "AFK" : "")),LANG("datum.affb7d7e", null),list("Yes","Cancel")) != "Yes")
-				to_chat(usr, LANG("datum.34207859", null), confidential = TRUE)
+			if(tgui_alert(usr,LANG("datum.d0987f76e7aea747", list(afkonly ? "AFK" : "")),LANG("datum.affb7d7ed9357b02", null),list("Yes","Cancel")) != "Yes")
+				to_chat(usr, LANG("datum.34207859e466c8a0", null), confidential = TRUE)
 				return
 			var/list/listkicked = kick_clients_in_lobby(span_danger("You were kicked from the lobby by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"]."), afkonly)
 
@@ -1028,7 +1028,7 @@
 			message_admins("[key_name_admin(usr)] has kicked [afkonly ? "all AFK" : "all"] clients from the lobby. [length(listkicked)] clients kicked: [strkicked ? strkicked : "--"]")
 			log_admin("[key_name(usr)] has kicked [afkonly ? "all AFK" : "all"] clients from the lobby. [length(listkicked)] clients kicked: [strkicked ? strkicked : "--"]")
 		else
-			to_chat(usr, LANG("datum.1fdc6a36", null), confidential = TRUE)
+			to_chat(usr, LANG("datum.1fdc6a36bf65f597", null), confidential = TRUE)
 
 	else if(href_list["set_selfdestruct_code"])
 		if(!check_rights(R_ADMIN))
@@ -1043,16 +1043,16 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/list/type_choices = typesof(/datum/station_goal)
-		var/picked = tgui_input_list(usr, LANG("datum.46a6d2a6", null), LANG("datum.381f9f9f", null), type_choices)
+		var/picked = tgui_input_list(usr, LANG("datum.46a6d2a6be417955", null), LANG("datum.381f9f9f1d9bbcce", null), type_choices)
 		if(!picked)
 			return
 		var/datum/station_goal/G = new picked()
 		if(picked == /datum/station_goal)
-			var/newname = input(LANG("datum.f1b9ec85", null)) as text|null
+			var/newname = input(LANG("datum.f1b9ec85e25d528e", null)) as text|null
 			if(!newname)
 				return
 			G.name = newname
-			var/description = input(LANG("datum.d738f81b", null)) as message|null
+			var/description = input(LANG("datum.d738f81b745f10fb", null)) as message|null
 			if(!description)
 				return
 			G.report_message = description
@@ -1075,7 +1075,7 @@
 			else
 				var/switch_index = text2num(href_list["change_lag_switch"])
 				if(!SSlag_switch.set_measure(switch_index, !LAZYACCESS(SSlag_switch.measures, switch_index)))
-					to_chat(src, span_danger(LANG("datum.eddcceaa", null)), confidential = TRUE)
+					to_chat(src, span_danger(LANG("datum.eddcceaa451f8d5a", null)), confidential = TRUE)
 				else
 					log_admin("[key_name(usr)] turned a Lag Switch measure at index ([switch_index]) [LAZYACCESS(SSlag_switch.measures, switch_index) ? "ON" : "OFF"]")
 					message_admins("[key_name_admin(usr)] turned a Lag Switch measure [LAZYACCESS(SSlag_switch.measures, switch_index) ? "ON" : "OFF"]")
@@ -1097,13 +1097,13 @@
 				log_admin("[key_name(usr)] toggled automatic Lag Switch activation [SSlag_switch.auto_switch ? "ON" : "OFF"].")
 				message_admins("[key_name_admin(usr)] toggled automatic Lag Switch activation [SSlag_switch.auto_switch ? "ON" : "OFF"].")
 			if("NUM")
-				var/new_num = input(LANG("datum.e04a9cf7", null), LANG("datum.8cc2af2a", null)) as null|num
+				var/new_num = input(LANG("datum.e04a9cf7a3cd3466", null), LANG("datum.8cc2af2a3cab6128", null)) as null|num
 				if(!isnull(new_num))
 					SSlag_switch.trigger_pop = new_num
 					log_admin("[key_name(usr)] set the Lag Switch automatic trigger pop to [new_num].")
 					message_admins("[key_name_admin(usr)] set the Lag Switch automatic trigger pop to [new_num].")
 			if("SLOWCOOL")
-				var/new_num = input(LANG("datum.9963175d", null), LANG("datum.8cc2af2a", null)) as null|num
+				var/new_num = input(LANG("datum.9963175dcb18a182", null), LANG("datum.8cc2af2a3cab6128", null)) as null|num
 				if(!isnull(new_num))
 					SSlag_switch.change_slowmode_cooldown(new_num)
 					log_admin("[key_name(usr)] set the Lag Switch slowmode cooldown to [new_num] seconds.")
@@ -1114,7 +1114,7 @@
 	else if(href_list["viewruntime"])
 		var/datum/error_viewer/error_viewer = locate(href_list["viewruntime"])
 		if(!istype(error_viewer))
-			to_chat(usr, span_warning(LANG("datum.fef0ee78", null)), confidential = TRUE)
+			to_chat(usr, span_warning(LANG("datum.fef0ee787827581c", null)), confidential = TRUE)
 			return
 
 		if(href_list["viewruntime_backto"])
@@ -1154,8 +1154,8 @@
 		var/data = list("key" = usr.key)
 		var/answer = href_list["slowquery"]
 		if(answer == "yes")
-			if(tgui_alert(usr, LANG("datum.8272d331", null), LANG("datum.85e385f2", null), list("Yes", "No")) == "Yes")
-				var/response = input(usr,LANG("datum.28a2eed5", null),LANG("datum.85e385f2", null)) as null|text
+			if(tgui_alert(usr, LANG("datum.8272d331dadc961d", null), LANG("datum.85e385f294188b1e", null), list("Yes", "No")) == "Yes")
+				var/response = input(usr,LANG("datum.28a2eed5d6133f29", null),LANG("datum.85e385f294188b1e", null)) as null|text
 				if(response)
 					data["response"] = response
 			logger.Log(LOG_CATEGORY_DEBUG_SQL, "server hang", data)
@@ -1334,10 +1334,10 @@
 	else if(href_list["admincommend"])
 		var/mob/heart_recepient = locate(href_list["admincommend"])
 		if(!heart_recepient?.ckey)
-			to_chat(usr, span_warning(LANG("datum.091cead0", null)))
+			to_chat(usr, span_warning(LANG("datum.091cead0d56adcb7", null)))
 			return
 
-		switch(tgui_alert(usr, LANG("datum.b8eae451", null), "<3?", list("Apply now", "Apply at round end", "Cancel")))
+		switch(tgui_alert(usr, LANG("datum.b8eae45104778fc1", null), "<3?", list("Apply now", "Apply at round end", "Cancel")))
 			if("Apply now")
 				heart_recepient.receive_heart(usr, instant = TRUE)
 			if("Apply at round end")

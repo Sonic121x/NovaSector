@@ -39,7 +39,7 @@
 /obj/machinery/jukebox/examine(mob/user)
 	. = ..()
 	if(music_player.active_song_sound)
-		. += LANG("obj.b46a0c3a", list(music_player.selection.song_name))
+		. += LANG("obj.b46a0c3ab86e13a6", list(music_player.selection.song_name))
 
 /obj/machinery/jukebox/wrench_act(mob/living/user, obj/item/tool)
 	if(!isnull(music_player.active_song_sound))
@@ -65,14 +65,14 @@
 	if(isobserver(user))
 		return ..()
 	if(!anchored)
-		balloon_alert(user, LANG("obj.84f11b3c", null))
+		balloon_alert(user, LANG("obj.84f11b3cc10cf62b", null))
 		return UI_CLOSE
 	if(!allowed(user))
-		balloon_alert(user, LANG("obj.1bd3ceeb", null))
+		balloon_alert(user, LANG("obj.1bd3ceeb3a56d0d5", null))
 		user.playsound_local(src, 'sound/machines/compiler/compiler-failure.ogg', 20, TRUE)
 		return UI_CLOSE
 	if(!length(music_player.songs))
-		to_chat(user,span_warning(LANG("obj.8c457d6b", null)))
+		to_chat(user,span_warning(LANG("obj.8c457d6b694495f0", null)))
 		user.playsound_local(src, 'sound/machines/compiler/compiler-failure.ogg', 25, TRUE)
 		return UI_CLOSE
 	return ..()
@@ -99,7 +99,7 @@
 
 		if("select_track")
 			if(!isnull(music_player.active_song_sound))
-				to_chat(user, span_warning(LANG("obj.976d4352", null)))
+				to_chat(user, span_warning(LANG("obj.976d435252fed4e0", null)))
 				return TRUE
 
 			var/datum/track/new_song = music_player.songs[params["track"]]
@@ -131,7 +131,7 @@
 	if(COOLDOWN_FINISHED(src, jukebox_song_cd))
 		activate_music()
 		return
-	balloon_alert(user, LANG("obj.9732c1b9", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, jukebox_song_cd)))))
+	balloon_alert(user, LANG("obj.9732c1b9f6ff5e47", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, jukebox_song_cd)))))
 	if(COOLDOWN_FINISHED(src, jukebox_error_cd))
 		playsound(src, 'sound/machines/compiler/compiler-failure.ogg', 25, TRUE)
 		COOLDOWN_START(src, jukebox_error_cd, 15 SECONDS)

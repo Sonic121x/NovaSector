@@ -59,10 +59,10 @@
 	if(anchored)
 		return TRUE
 
-	user.visible_message(span_warning(LANG("obj.5b4896db", list(user, src))),
-		span_notice(LANG("obj.3fe80d07", list(src))), span_hear(LANG("obj.cbfa7730", null)))
+	user.visible_message(span_warning(LANG("obj.5b4896dbaa07367d", list(user, src))),
+		span_notice(LANG("obj.3fe80d07a62c36d5", list(src))), span_hear(LANG("obj.cbfa7730eca28115", null)))
 	if(I.use_tool(src, user, 50, volume=100) && !anchored)
-		to_chat(user, span_notice(LANG("obj.9f42ff14", list(src))))
+		to_chat(user, span_notice(LANG("obj.9f42ff1450750446", list(src))))
 		deconstruct()
 
 	return TRUE

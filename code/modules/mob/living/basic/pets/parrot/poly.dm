@@ -213,7 +213,7 @@
 		forceMove(get_turf(target))
 		return FALSE
 	if(ishuman(loc))
-		balloon_alert(src, LANG("mob.c5767b43", null))
+		balloon_alert(src, LANG("mob.c5767b43dafd2e9f", null))
 		return FALSE
 	forceMove(target)
 	return TRUE

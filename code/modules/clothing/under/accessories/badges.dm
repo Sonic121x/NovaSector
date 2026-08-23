@@ -12,7 +12,7 @@
 /obj/item/clothing/accessory/lawyers_badge/interact(mob/user)
 	. = ..()
 	if(prob(1))
-		user.say(LANG("obj.635daae8", null), forced = "[src]")
+		user.say(LANG("obj.635daae895b0b8af", null), forced = "[src]")
 	user.point_at(src)
 
 /obj/item/clothing/accessory/lawyers_badge/accessory_equipped(obj/item/clothing/under/clothes, mob/living/user)
@@ -25,7 +25,7 @@
 	SIGNAL_HANDLER
 
 	ASYNC
-		source.say(LANG("obj.006d275c", null), spans = list(SPAN_YELL), forced = "[src]")
+		source.say(LANG("obj.006d275cf5db5bee", null), spans = list(SPAN_YELL), forced = "[src]")
 
 /obj/item/clothing/accessory/clown_enjoyer_pin
 	name = "\improper Clown Pin"
@@ -38,7 +38,7 @@
 		return
 	if(locate(/obj/item/clothing/accessory/mime_fan_pin) in attach_to.attached_accessories)
 		if(user)
-			attach_to.balloon_alert(user, LANG("obj.5cd15459", null))
+			attach_to.balloon_alert(user, LANG("obj.5cd15459b011c1a0", null))
 		return FALSE
 	return TRUE
 
@@ -66,7 +66,7 @@
 		return
 	if(locate(/obj/item/clothing/accessory/clown_enjoyer_pin) in attach_to.attached_accessories)
 		if(user)
-			attach_to.balloon_alert(user, LANG("obj.5cd15459", null))
+			attach_to.balloon_alert(user, LANG("obj.5cd15459b011c1a0", null))
 		return FALSE
 	return TRUE
 
@@ -99,7 +99,7 @@
 
 	if(!isnull(attach_to.atom_storage))
 		if(user)
-			attach_to.balloon_alert(user, LANG("obj.68951c6c", null))
+			attach_to.balloon_alert(user, LANG("obj.68951c6c67a8f9ed", null))
 		return FALSE
 	return TRUE
 
@@ -157,9 +157,9 @@
 
 	if(ismob(source))
 		// Examining a mob wearing the clothes, wearing the dogtag will also show the message
-		examine_list += LANG("obj.98bf8839", list(source.p_their(), display))
+		examine_list += LANG("obj.98bf88398540eb6d", list(source.p_their(), display))
 	else
-		examine_list += LANG("obj.4d92482a", list(source, display))
+		examine_list += LANG("obj.4d92482aada879c2", list(source, display))
 
 /obj/item/clothing/accessory/dogtag/allergy
 	name = "Allergy dogtag"
@@ -282,17 +282,17 @@
 /obj/item/clothing/accessory/press_badge/examine(mob/user)
 	. = ..()
 	if(!journalist_name || !press_name)
-		. += span_notice(LANG("obj.8d3e0b49", null))
+		. += span_notice(LANG("obj.8d3e0b49efdbbdb0", null))
 		return
 
-	. += span_notice(LANG("obj.a8b90f43", list(journalist_name, press_name)))
+	. += span_notice(LANG("obj.a8b90f43c464802a", list(journalist_name, press_name)))
 
 /obj/item/clothing/accessory/press_badge/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!journalist_name)
-		journalist_name = tgui_input_text(user, LANG("obj.2f968a50", null), LANG("obj.994cfa96", null), "[user.name]", max_length = MAX_NAME_LEN)
+		journalist_name = tgui_input_text(user, LANG("obj.2f968a50a163a8da", null), LANG("obj.994cfa96cefd74e4", null), "[user.name]", max_length = MAX_NAME_LEN)
 	if(!press_name)
-		press_name = tgui_input_text(user, LANG("obj.477f03a1", null), LANG("obj.0a838b13", null), "Nanotrasen", max_length = MAX_CHARTER_LEN)
+		press_name = tgui_input_text(user, LANG("obj.477f03a1356a35c5", null), LANG("obj.0a838b1368a2c735", null), "Nanotrasen", max_length = MAX_CHARTER_LEN)
 
 /obj/item/clothing/accessory/press_badge/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ..()
@@ -303,10 +303,10 @@
 	if(user.combat_mode)
 		playsound(interacting_living, 'sound/items/weapons/throw.ogg', 30)
 		interacting_living.examinate(src)
-		to_chat(interacting_living, span_userdanger(LANG("obj.20dbfa2b", list(user, src))))
-		user.visible_message(span_warning(LANG("obj.e4872f2d", list(user, src, interacting_living))))
+		to_chat(interacting_living, span_userdanger(LANG("obj.20dbfa2bf8318f1e", list(user, src))))
+		user.visible_message(span_warning(LANG("obj.e4872f2dccea6628", list(user, src, interacting_living))))
 	else
 		playsound(interacting_living, 'sound/items/weapons/throwsoft.ogg', 20)
 		interacting_living.examinate(src)
-		to_chat(interacting_living, span_boldwarning(LANG("obj.0b00b773", list(user, src))))
-		user.visible_message(span_notice(LANG("obj.7eb4af66", list(user, src, interacting_living))))
+		to_chat(interacting_living, span_boldwarning(LANG("obj.0b00b7732f5c8c5c", list(user, src))))
+		user.visible_message(span_notice(LANG("obj.7eb4af6645b84aef", list(user, src, interacting_living))))

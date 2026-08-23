@@ -77,7 +77,7 @@
 /mob/living/basic/bot/secbot/ed209/examine(mob/user)
 	. = ..()
 	if(sheriffized)
-		. += span_notice(LANG("mob.66bbda09", null))
+		. += span_notice(LANG("mob.66bbda09eceb4f3d", null))
 
 /mob/living/basic/bot/secbot/ed209/bot_reset(bypass_ai_reset = FALSE)
 	. = ..()
@@ -91,8 +91,8 @@
 	. = ..()
 	icon_state = "ed209[bot_mode_flags & BOT_MODE_ON]"
 	set_weapon()
-	balloon_alert(user, LANG("mob.42074643", null))
-	audible_message(span_bolddanger(LANG("mob.ece108f8", list(src))))
+	balloon_alert(user, LANG("mob.42074643f1699068", null))
+	audible_message(span_bolddanger(LANG("mob.ece108f83c5e1d8d", list(src))))
 	return TRUE
 
 /mob/living/basic/bot/secbot/ed209/proc/set_weapon()

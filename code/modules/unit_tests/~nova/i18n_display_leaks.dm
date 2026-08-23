@@ -17,6 +17,7 @@
 	var/saved_locale
 	var/saved_locale_resolved
 	var/list/injected_en_keys
+	var/list/saved_grammar_tables
 
 #define I18N_LEAK_LOCALE "i18n-leak-unittest"
 #define I18N_LEAK_NAME "Zxqv Thranok Unit"
@@ -30,25 +31,30 @@
 /datum/unit_test/i18n_display_leaks/Destroy()
 	if(!isnull(saved_locale))
 		GLOB.i18n_server_locale = saved_locale
-		GLOB.i18n_locale_resolved = saved_locale_resolved
-		var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
+		GLOB.i18n_runtime_state = saved_locale_resolved
+		var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
 		if(islist(en_cache))
 			for(var/key in injected_en_keys)
 				en_cache -= key
-		GLOB.i18n_cache -= I18N_LEAK_LOCALE
+		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET] -= I18N_LEAK_LOCALE
+		GLOB.i18n_runtime_domains -= I18N_LEAK_LOCALE
 		GLOB.i18n_reverse -= I18N_LEAK_LOCALE
 		GLOB.i18n_unreverse -= I18N_LEAK_LOCALE
 		GLOB.i18n_type_name_keys.Cut()
 		GLOB.i18n_type_desc_keys.Cut()
+		if(islist(saved_grammar_tables))
+			GLOB.i18n_scoped_tables["grammar_tokens.json"] = saved_grammar_tables
+		else
+			GLOB.i18n_scoped_tables -= "grammar_tokens.json"
 		GLOB.i18n_type_var_tables_loaded = FALSE
 		saved_locale = null
 	return ..()
 
 /datum/unit_test/i18n_display_leaks/Run()
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
 	if(!islist(en_cache))
 		en_cache = list()
-		GLOB.i18n_cache[DEFAULT_UI_LOCALE] = en_cache
+		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE] = en_cache
 
 	var/list/pairs = list(
 		"unittest.leak_name" = list(I18N_LEAK_NAME, I18N_LEAK_NAME_ZH),
@@ -61,11 +67,16 @@
 		en_cache[key] = pair[1]
 		locale_cache[key] = pair[2]
 	saved_locale = GLOB.i18n_server_locale
-	saved_locale_resolved = GLOB.i18n_locale_resolved
+	saved_locale_resolved = GLOB.i18n_runtime_state
 	injected_en_keys = pairs.Copy()
-	GLOB.i18n_cache[I18N_LEAK_LOCALE] = locale_cache
+	saved_grammar_tables = GLOB.i18n_scoped_tables["grammar_tokens.json"]
+	var/list/grammar_tables = islist(saved_grammar_tables) ? saved_grammar_tables.Copy() : list()
+	grammar_tables[I18N_LEAK_LOCALE] = list("does" = "", "it" = "它")
+	GLOB.i18n_scoped_tables["grammar_tokens.json"] = grammar_tables
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][I18N_LEAK_LOCALE] = locale_cache
+	GLOB.i18n_runtime_domains -= I18N_LEAK_LOCALE
 	GLOB.i18n_server_locale = I18N_LEAK_LOCALE
-	GLOB.i18n_locale_resolved = TRUE
+	GLOB.i18n_runtime_state = I18N_RUNTIME_READY
 	GLOB.i18n_reverse -= I18N_LEAK_LOCALE
 	GLOB.i18n_fallback_state -= I18N_LEAK_LOCALE
 	GLOB.i18n_fallback_cache -= I18N_LEAK_LOCALE
@@ -97,11 +108,7 @@
 		var/list/area_table = lang_type_name_keys()
 		area_table[test_area.type] = "unittest.leak_area"
 		subject.name = "Zxqv Sector Zxqv Thranok Unit tag9"
-		TEST_ASSERT_EQUAL(
-			subject.lang_localize_name_for_display(subject.name),
-			"兹克夫星区 兹克夫单元 tag9",
-			"「区域名 + 类型名 + id」合成名没有被分段本地化",
-		)
+		TEST_ASSERT_EQUAL(subject.lang_localize_name_for_display(subject.name), "兹克夫星区 兹克夫单元 tag9", "「区域名 + 类型名 + id」合成名没有被分段本地化")
 		subject.name = I18N_LEAK_NAME
 		test_area.name = saved_area_name
 
@@ -130,11 +137,7 @@
 	// ⑧ 运行期在类型名两侧加缀的实例名（法则架的 `"\proper core module rack 'alpha'"`）：
 	// 整串既不是目录键、类型表按 initial(name) 也对不上 → 只剩字面 AC。按 initial(name) 作前缀拆开。
 	subject.name = "\proper [I18N_LEAK_NAME] 'alpha'"
-	TEST_ASSERT_EQUAL(
-		subject.lang_localize_name_for_display(subject.name),
-		"兹克夫单元 'alpha'",
-		"类型名加缀的实例名没有按前缀拆开本地化（标记字节与它后面的空格也要一起剥）",
-	)
+	TEST_ASSERT_EQUAL(subject.lang_localize_name_for_display(subject.name), "兹克夫单元 'alpha'", "类型名加缀的实例名没有按前缀拆开本地化（标记字节与它后面的空格也要一起剥）")
 	subject.name = I18N_LEAK_NAME
 
 	// ⑨ 「裸文本 + span 包裹」的混合 LANG 实参：剥外壳那条分支要求整串首尾都是标签，多一个前导
@@ -143,6 +146,7 @@
 	locale_cache["unittest.leak_join"] = " 和 "
 	injected_en_keys["unittest.leak_join"] = TRUE
 	GLOB.i18n_reverse -= I18N_LEAK_LOCALE
+	GLOB.i18n_runtime_domains -= I18N_LEAK_LOCALE
 	GLOB.i18n_reverse_norm -= I18N_LEAK_LOCALE
 	GLOB.i18n_fallback_state -= I18N_LEAK_LOCALE
 	GLOB.i18n_fallback_cache -= I18N_LEAK_LOCALE

@@ -31,14 +31,14 @@
 
 /turf/closed/wall/concrete/deconstruction_hints(mob/user)
 	. = list()
-	. += span_notice(LANG("turf.7d30cd47", list(p_They(), p_s(), p_them(), tool_behaviour_name(TOOL_MINING))))
+	. += span_notice(LANG("turf.7d30cd47a719134b", list(p_They(), p_s(), p_them(), tool_behaviour_name(TOOL_MINING))))
 	switch(harden_lvl)
 		if(0.8 to 0.99)
-			. += LANG("turf.14f1b427", list(p_They(), p_s()))
+			. += LANG("turf.14f1b427fd025069", list(p_They(), p_s()))
 		if(0.4 to 0.8)
-			. += LANG("turf.ca7a1c2d", list(p_They(), p_s()))
+			. += LANG("turf.ca7a1c2d14f55b95", list(p_They(), p_s()))
 		if(0 to 0.4)
-			. += LANG("turf.b21ffc9d", list(p_They(), p_s()))
+			. += LANG("turf.b21ffc9d334375fd", list(p_They(), p_s()))
 	return
 
 /turf/closed/wall/concrete/try_clean(obj/item/W, mob/living/user)
@@ -47,12 +47,12 @@
 
 /turf/closed/wall/concrete/try_decon(obj/item/I, mob/user)
 	if (I.tool_behaviour == TOOL_MINING)
-		to_chat(user, span_notice(LANG("turf.5626c5b3", null)))
+		to_chat(user, span_notice(LANG("turf.5626c5b3375cac60", null)))
 		if(I.use_tool(src, user, slicing_duration, volume=100))
 			// break_prob decreases linearly from 100 to hardness as it cures
 			var/break_prob = hardness + (1 - harden_lvl) * (100 - hardness)
 			if(prob(break_prob))
-				to_chat(user, span_notice(LANG("turf.3baf5056", null)))
+				to_chat(user, span_notice(LANG("turf.3baf50567e0b89bf", null)))
 				dismantle_wall()
 				new /obj/effect/decal/cleanable/concrete_dust(src)
 			else

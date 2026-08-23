@@ -83,9 +83,9 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 		return
 	var/spawned_chickens = prob(97) ? 1 : min(4, chickens_remaining) // We don't want to go over the limit
 	if (spawned_chickens > 1) // Chicken jackpot!
-		visible_message(span_notice(LANG("obj.7d4a2d88", list(spawned_chickens))))
+		visible_message(span_notice(LANG("obj.7d4a2d88ae7c5541", list(spawned_chickens))))
 	else
-		visible_message(span_notice(LANG("obj.ee4e2201", null)))
+		visible_message(span_notice(LANG("obj.ee4e220108d4de64", null)))
 	for(var/i in 1 to spawned_chickens)
 		new /mob/living/basic/chick(spawn_turf)
 		GLOB.chicks_from_eggs++
@@ -96,10 +96,10 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 		var/pigment = crayon.crayon_color
 
 		if(!(pigment in list("blue", "green", "mime", "orange", "purple", "rainbow", "red", "yellow")))
-			to_chat(usr, span_notice(LANG("obj.3bcff4f9", list(src))))
+			to_chat(usr, span_notice(LANG("obj.3bcff4f9e6de20dd", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(usr, span_notice(LANG("obj.bd20f702", list(src, tool))))
+		to_chat(usr, span_notice(LANG("obj.bd20f702d7c560ba", list(src, tool))))
 		icon_state = "egg-[pigment]"
 		return ITEM_INTERACT_SUCCESS
 
@@ -107,8 +107,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 		var/clowntype = pick("grock", "grimaldi", "rainbow", "chaos", "joker", "sexy", "standard", "bobble",
 			"krusty", "bozo", "pennywise", "ronald", "jacobs", "kelly", "popov", "cluwne")
 		icon_state = "egg-clown-[clowntype]"
-		desc = LANG("obj.b47f13f9", null)
-		to_chat(usr, span_notice(LANG("obj.9cd73011", list(src, tool))))
+		desc = LANG("obj.b47f13f9529b1e30", null)
+		to_chat(usr, span_notice(LANG("obj.9cd73011a663cdc6", list(src, tool))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(is_reagent_container(tool))
@@ -116,11 +116,11 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 		if (!dunk_test_container.is_drainable() || !dunk_test_container.reagents.has_reagent(/datum/reagent/water))
 			return NONE
 
-		to_chat(user, span_notice(LANG("obj.dbecdd57", list(src))))
+		to_chat(user, span_notice(LANG("obj.dbecdd573898b5f7", list(src))))
 		if(istype(src, /obj/item/food/egg/rotten))
-			to_chat(user, span_warning(LANG("obj.2be03659", list(src, dunk_test_container))))
+			to_chat(user, span_warning(LANG("obj.2be03659676e439c", list(src, dunk_test_container))))
 		else
-			to_chat(user, span_notice(LANG("obj.4c37fbf5", list(src, dunk_test_container))))
+			to_chat(user, span_notice(LANG("obj.4c37fbf55dd5c46c", list(src, dunk_test_container))))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -131,7 +131,7 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 
 	var/obj/machinery/griddle/hit_griddle = interacting_with
 	if(length(hit_griddle.griddled_objects) >= hit_griddle.max_items)
-		interacting_with.balloon_alert(user, LANG("obj.ad6c6384", null))
+		interacting_with.balloon_alert(user, LANG("obj.ad6c6384cbc2d930", null))
 		return ITEM_INTERACT_BLOCKING
 	var/atom/broken_egg = new /obj/item/food/rawegg(interacting_with.loc)
 	if(LAZYACCESS(modifiers, ICON_X))
@@ -142,7 +142,7 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	reagents.trans_to(broken_egg, reagents.total_volume, copy_only = TRUE)
 
 	hit_griddle.AddToGrill(broken_egg, user)
-	interacting_with.balloon_alert(user, LANG("obj.da470110", list(src)))
+	interacting_with.balloon_alert(user, LANG("obj.da470110d91bf1a6", list(src)))
 
 	qdel(src)
 	return ITEM_INTERACT_BLOCKING
@@ -295,12 +295,12 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 
 	var/obj/item/kitchen/fork/fork = tool
 	if(fork.forkload)
-		to_chat(user, span_warning(LANG("obj.f0081b30", null)))
+		to_chat(user, span_warning(LANG("obj.f0081b3077e005f5", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	fork.icon_state = "forkloaded"
-	user.visible_message(span_notice(LANG("obj.20bb5f72", list(user, user.p_their()))), \
-						span_notice(LANG("obj.d2bce3d3", null)))
+	user.visible_message(span_notice(LANG("obj.20bb5f726e568c2b", list(user, user.p_their()))), \
+						span_notice(LANG("obj.d2bce3d33053928a", null)))
 
 	var/datum/reagent/reagent = pick(reagents.reagent_list)
 	reagents.remove_reagent(reagent.type, 1)
@@ -383,7 +383,7 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 
 	var/obj/machinery/griddle/hit_griddle = interacting_with
 	if(length(hit_griddle.griddled_objects) >= hit_griddle.max_items)
-		interacting_with.balloon_alert(user, LANG("obj.ad6c6384", null))
+		interacting_with.balloon_alert(user, LANG("obj.ad6c6384cbc2d930", null))
 		return ITEM_INTERACT_BLOCKING
 	var/atom/broken_egg = new /obj/item/food/rawegg/spore(interacting_with.loc)
 	if(LAZYACCESS(modifiers, ICON_X))
@@ -394,7 +394,7 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	reagents.trans_to(broken_egg, reagents.total_volume, copy_only = TRUE)
 
 	hit_griddle.AddToGrill(broken_egg, user)
-	interacting_with.balloon_alert(user, LANG("obj.da470110", list(src)))
+	interacting_with.balloon_alert(user, LANG("obj.da470110d91bf1a6", list(src)))
 
 	qdel(src)
 	return ITEM_INTERACT_BLOCKING

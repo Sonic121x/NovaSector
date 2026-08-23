@@ -42,10 +42,10 @@
 	if (user.combat_mode || !HAS_TRAIT(target, TRAIT_ROCK_EATER))
 		return
 	if (extra_validation && !extra_validation.Invoke())
-		source.balloon_alert(user, LANG("datum.746c4913", null))
+		source.balloon_alert(user, LANG("datum.746c491370ea9213", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if (!snack_type.can_consume(target))
-		source.balloon_alert(user, LANG("datum.de10b913", null))
+		source.balloon_alert(user, LANG("datum.de10b913a92549b3", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if (isnull(golem_snack))
 		create_golem_snack(source)

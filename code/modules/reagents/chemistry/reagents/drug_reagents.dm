@@ -30,7 +30,7 @@
 
 /datum/reagent/drug/space_drugs/overdose_start(mob/living/affected_mob, metabolization_ratio)
 	. = ..()
-	to_chat(affected_mob, span_userdanger(LANG("datum.dd1055e8", null)))
+	to_chat(affected_mob, span_userdanger(LANG("datum.dd1055e8788f55aa", null)))
 	affected_mob.add_mood_event("[type]_overdose", /datum/mood_event/overdose, name)
 
 /datum/reagent/drug/space_drugs/overdose_process(mob/living/affected_mob, seconds_per_tick, metabolization_ratio)
@@ -61,10 +61,10 @@
 		affected_mob.emote(pick("smile","laugh","giggle"))
 	affected_mob.adjust_nutrition(-0.6 * metabolization_ratio * seconds_per_tick) //munchies
 	if(SPT_PROB(4, seconds_per_tick) && affected_mob.body_position == LYING_DOWN && !affected_mob.IsSleeping()) //chance to fall asleep if lying down
-		to_chat(affected_mob, span_warning(LANG("datum.03b68360", null)))
+		to_chat(affected_mob, span_warning(LANG("datum.03b68360be85eb79", null)))
 		affected_mob.Sleeping(10 SECONDS)
 	if(SPT_PROB(4, seconds_per_tick) && affected_mob.buckled && affected_mob.body_position != LYING_DOWN && !affected_mob.IsParalyzed()) //chance to be couchlocked if sitting
-		to_chat(affected_mob, span_warning(LANG("datum.a21b5a4e", null)))
+		to_chat(affected_mob, span_warning(LANG("datum.a21b5a4e75ffb062", null)))
 		affected_mob.Paralyze(10 SECONDS)
 
 	var/list/enemies = affected_mob.ai_controller?.blackboard[BB_MONKEY_ENEMIES]
@@ -144,7 +144,7 @@
 	if(HAS_TRAIT(affected_mob, TRAIT_HUSK))
 		return
 
-	to_chat(affected_mob, span_userdanger(LANG("datum.25064714", null)))
+	to_chat(affected_mob, span_userdanger(LANG("datum.25064714869f871f", null)))
 	var/mob/living/carbon/human/affected_human = affected_mob
 	affected_human.set_facial_hairstyle("Shaved", update = FALSE)
 	affected_human.set_hairstyle("Bald", update = FALSE)
@@ -220,7 +220,7 @@
 	if(SPT_PROB(10, seconds_per_tick))
 		affected_mob.emote("laugh")
 	if(SPT_PROB(18, seconds_per_tick))
-		affected_mob.visible_message(span_danger(LANG("datum.7d6a85f6", list(affected_mob))))
+		affected_mob.visible_message(span_danger(LANG("datum.7d6a85f600c3a5b9", list(affected_mob))))
 		affected_mob.drop_all_held_items()
 	var/need_mob_update
 	need_mob_update = affected_mob.adjust_tox_loss(0.67 * metabolization_ratio * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype)
@@ -384,7 +384,7 @@
 
 /datum/reagent/drug/pumpup/overdose_start(mob/living/affected_mob, metabolization_ratio)
 	. = ..()
-	to_chat(affected_mob, span_userdanger(LANG("datum.f5f0df4c", null)))
+	to_chat(affected_mob, span_userdanger(LANG("datum.f5f0df4c4492cb0e", null)))
 
 /datum/reagent/drug/pumpup/overdose_process(mob/living/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -679,7 +679,7 @@
 	flip_count = 0
 	var/atom/throw_target = get_edge_target_turf(dancer, dancer.dir)  //Do a super flip
 	dancer.SpinAnimation(speed = 3, loops = 3)
-	dancer.visible_message(span_notice(LANG("datum.6063a816", list(dancer))), span_nicegreen(LANG("datum.78c67e50", null)))
+	dancer.visible_message(span_notice(LANG("datum.6063a816e158e15f", list(dancer))), span_nicegreen(LANG("datum.78c67e502089afcf", null)))
 	dancer.throw_at(throw_target, range = 6, speed = overdosed ? 4 : 1)
 
 ///This proc listens to the spin signal and throws the mob every third spin
@@ -694,7 +694,7 @@
 	if(spin_count < BLASTOFF_DANCE_MOVES_PER_SUPER_MOVE)
 		return
 	spin_count = 0 //Do a super spin.
-	dancer.visible_message(span_danger(LANG("datum.c5910d76", list(dancer))), span_danger(LANG("datum.d9299d4a", null)))
+	dancer.visible_message(span_danger(LANG("datum.c5910d767bcb9f4a", list(dancer))), span_danger(LANG("datum.d9299d4a67c87b89", null)))
 	dancer.spin(30, 2)
 	if(dancer.disgust < 40)
 		dancer.adjust_disgust(10)
@@ -702,7 +702,7 @@
 		return
 	var/dancer_turf = get_turf(dancer)
 	var/atom/movable/dance_partner = dancer.pulledby
-	dance_partner.visible_message(span_danger(LANG("datum.d7b6c648", list(dance_partner, dancer))), span_danger(LANG("datum.a2b77cf5", list(dancer))), null, COMBAT_MESSAGE_RANGE)
+	dance_partner.visible_message(span_danger(LANG("datum.d7b6c648d3f47c43", list(dance_partner, dancer))), span_danger(LANG("datum.a2b77cf5e1596d41", list(dancer))), null, COMBAT_MESSAGE_RANGE)
 	var/throwtarget = get_edge_target_turf(dancer_turf, get_dir(dancer_turf, get_step_away(dance_partner, dancer_turf)))
 	if(overdosed)
 		dance_partner.throw_at(target = throwtarget, range = 7, speed = 4)
@@ -728,7 +728,7 @@
 /datum/reagent/drug/saturnx/on_mob_metabolize(mob/living/invisible_man)
 	. = ..()
 	playsound(invisible_man, 'sound/effects/chemistry/saturnx_fade.ogg', 40)
-	to_chat(invisible_man, span_nicegreen(LANG("datum.68393c2c", null)))
+	to_chat(invisible_man, span_nicegreen(LANG("datum.68393c2cc8c251d4", null)))
 	addtimer(CALLBACK(src, PROC_REF(turn_man_invisible), invisible_man), 1 SECONDS) //just a quick delay to synch up the sound.
 	if(!invisible_man.hud_used)
 		return
@@ -779,7 +779,7 @@
 		invisible_man.add_to_all_human_data_huds() //Is this safe, what do you think, Floyd?
 		invisible_man.remove_traits(list(TRAIT_INVISIBLE_MAN, TRAIT_HIDE_EXTERNAL_ORGANS, TRAIT_NO_BLOOD_OVERLAY), type)
 
-		to_chat(invisible_man, span_notice(LANG("datum.0ebc42ab", null)))
+		to_chat(invisible_man, span_notice(LANG("datum.0ebc42abc7d076ff", null)))
 
 	invisible_man.sound_environment_override = NONE
 
@@ -864,8 +864,8 @@ If you have at over 25u in your body you restore more than 20 stamina per cycle,
 		stamina_heal_per_unit = 12
 		if(trans_volume >= 3)
 			SEND_SOUND(druggo, sound('sound/items/weapons/flash_ring.ogg')) //The efffect is often refered to as the "kronkaine bells".
-			to_chat(druggo, span_danger(LANG("datum.4c173cc5", null)))
-			to_chat(druggo, span_nicegreen(LANG("datum.4cd2510f", null)))
+			to_chat(druggo, span_danger(LANG("datum.4c173cc522b578fb", null)))
+			to_chat(druggo, span_nicegreen(LANG("datum.4cd2510f17c8a1c1", null)))
 		else if(prob(15))
 			to_chat(druggo, span_nicegreen(pick("You feel the cowardice melt away...", "You feel unbothered by the judgements of others.", "My life feels lovely!", "You lower your snout... and suddenly feel more charitable!")))
 	else
@@ -879,7 +879,7 @@ If you have at over 25u in your body you restore more than 20 stamina per cycle,
 	if(kronkaine_fiend.adjust_organ_loss(ORGAN_SLOT_HEART, 0.67 * (0.1 + 0.04 * volume) * metabolization_ratio * seconds_per_tick, required_organ_flag = affected_organ_flags))
 		need_mob_update = UPDATE_MOB_HEALTH
 		if(kronkaine_fiend.get_organ_loss(ORGAN_SLOT_HEART) >= 75 && prob(15))
-			to_chat(kronkaine_fiend, span_userdanger(LANG("datum.2d0b516b", null)))
+			to_chat(kronkaine_fiend, span_userdanger(LANG("datum.2d0b516b75652be1", null)))
 			playsound(kronkaine_fiend, 'sound/effects/singlebeat.ogg', 200, TRUE)
 	kronkaine_fiend.set_jitter_if_lower(13.34 SECONDS * metabolization_ratio * seconds_per_tick)
 	kronkaine_fiend.AdjustSleeping(-1.34 SECONDS * metabolization_ratio * seconds_per_tick)
@@ -893,7 +893,7 @@ If you have at over 25u in your body you restore more than 20 stamina per cycle,
 			if(istype(possible_purger, /datum/reagent/medicine/c2/multiver) || istype(possible_purger, /datum/reagent/medicine/haloperidol))
 				if(kronkaine_fiend.HasDisease(/datum/disease/adrenal_crisis))
 					break
-				kronkaine_fiend.visible_message(span_bolddanger(LANG("datum.8159ab68", list(kronkaine_fiend.name))), span_userdanger(LANG("datum.e2227551", null)))
+				kronkaine_fiend.visible_message(span_bolddanger(LANG("datum.8159ab68a29e91eb", list(kronkaine_fiend.name))), span_userdanger(LANG("datum.e222755134d74cb9", null)))
 				kronkaine_fiend.ForceContractDisease(new /datum/disease/adrenal_crisis(), FALSE, TRUE) //We punish players for purging, since unchecked purging would allow players to reap the stamina healing benefits without any drawbacks. This also has the benefit of making haloperidol a counter, like it is supposed to be.
 				break
 	need_mob_update = kronkaine_fiend.adjust_stamina_loss(-0.54 * volume * metabolization_ratio * seconds_per_tick, updating_stamina = FALSE, required_biotype = affected_biotype)
@@ -923,7 +923,7 @@ If you have at over 25u in your body you restore more than 20 stamina per cycle,
 /datum/reagent/drug/kronkaine/gore/on_mob_metabolize(mob/living/gored)
 	. = ..()
 	if(HAS_TRAIT(gored, TRAIT_ECHOLOCATOR))
-		to_chat(gored, span_nicegreen(LANG("datum.1ba9f85f", null)))
+		to_chat(gored, span_nicegreen(LANG("datum.1ba9f85f5bb4cd81", null)))
 
 /datum/reagent/drug/kronkaine/gore/on_mob_life(mob/living/gored, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -934,8 +934,8 @@ If you have at over 25u in your body you restore more than 20 stamina per cycle,
 /datum/reagent/drug/kronkaine/gore/overdose_start(mob/living/gored, metabolization_ratio)
 	. = ..()
 	gored.visible_message(
-		span_danger(LANG("datum.4e32d859", list(gored))),
-		span_userdanger(LANG("datum.d7d4c3a6", null)),
+		span_danger(LANG("datum.4e32d859ce58cc55", list(gored))),
+		span_userdanger(LANG("datum.d7d4c3a65cff7b6f", null)),
 	)
 	new /obj/structure/bouncy_castle(gored.loc, gored)
 	gored.gib()

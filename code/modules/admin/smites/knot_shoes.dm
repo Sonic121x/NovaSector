@@ -6,11 +6,11 @@
 /datum/smite/knot_shoes/effect(client/user, mob/living/target)
 	. = ..()
 	if (!ishuman(target))
-		to_chat(user, span_warning(LANG("datum.bcb0ef0b", null)), confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.bcb0ef0b2c8801d5", null)), confidential = TRUE)
 		return
 	var/mob/living/carbon/human/dude = target
 	var/obj/item/clothing/shoes/sick_kicks = dude.shoes
 	if (!istype(sick_kicks) || sick_kicks.fastening_type == SHOES_SLIPON)
-		to_chat(user, span_warning(LANG("datum.ea089fb6", list(dude))), confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.ea089fb60cd98061", list(dude))), confidential = TRUE)
 		return
 	sick_kicks.adjust_laces(SHOES_KNOTTED)

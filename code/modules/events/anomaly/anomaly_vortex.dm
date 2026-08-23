@@ -18,4 +18,4 @@
 /datum/round_event/anomaly/anomaly_vortex/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce(LANG("datum.ec4ad302", list(ANOMALY_ANNOUNCE_DANGEROUS_TEXT, impact_area.name)), "Anomaly Alert", ANNOUNCER_VORTEXANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Localized high-intensity vortex anomaly detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name]", "Anomaly Alert")
+	priority_announce(LANG("datum.ec4ad302c8d8caf5", list(ANOMALY_ANNOUNCE_DANGEROUS_TEXT, impact_area.name)), "Anomaly Alert", ANNOUNCER_VORTEXANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Localized high-intensity vortex anomaly detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name]", "Anomaly Alert")

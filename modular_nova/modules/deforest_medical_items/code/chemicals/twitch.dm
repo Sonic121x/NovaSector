@@ -96,13 +96,13 @@
 	if(constant_dose_time < CONSTANT_DOSE_SAFE_LIMIT) // Anything less than this and you'll come out fiiiine, aside from a big hit of stamina damage
 		if(!(our_guy.mob_biotypes & MOB_ROBOTIC))
 			our_guy.visible_message(
-				span_danger(LANG("datum.8995fa37", list(our_guy, our_guy.p_their()))),
-				span_danger(LANG("datum.12c319cc", null))
+				span_danger(LANG("datum.8995fa37cad7dd5c", list(our_guy, our_guy.p_their()))),
+				span_danger(LANG("datum.12c319cc90a899b6", null))
 			)
 		else
 			our_guy.visible_message(
-				span_danger(LANG("datum.66893f9a", list(our_guy, our_guy.p_their()))),
-				span_danger(LANG("datum.da1e154f", null))
+				span_danger(LANG("datum.66893f9a260271b6", list(our_guy, our_guy.p_their()))),
+				span_danger(LANG("datum.da1e154faf73d36a", null))
 			)
 		our_guy.adjust_stamina_loss(constant_dose_time)
 
@@ -111,13 +111,13 @@
 			our_guy.spray_blood(our_guy.dir, 2) // The before mentioned coughing up blood
 			our_guy.emote("cough")
 			our_guy.visible_message(
-				span_danger(LANG("datum.7556328c", list(our_guy, our_guy.p_their()))),
-				span_danger(LANG("datum.cf196513", null))
+				span_danger(LANG("datum.7556328c7628e496", list(our_guy, our_guy.p_their()))),
+				span_danger(LANG("datum.cf19651308e82f0d", null))
 			)
 		else
 			our_guy.visible_message(
-				span_danger(LANG("datum.ce818bac", list(our_guy, our_guy.p_their()))),
-				span_danger(LANG("datum.4fc0bedb", null))
+				span_danger(LANG("datum.ce818bac65a1f72f", list(our_guy, our_guy.p_their()))),
+				span_danger(LANG("datum.4fc0bedb7808b780", null))
 			)
 		our_guy.adjust_stamina_loss(constant_dose_time)
 		if(!HAS_TRAIT(our_guy, TRAIT_TWITCH_ADAPTED))
@@ -138,9 +138,9 @@
 		return
 	var/mob/living/our_guy = source
 	if(get_dist(attacker, source) <= 1)
-		our_guy.visible_message(span_warning(LANG("datum.4f298475", list(our_guy, attacker))),
-		span_warning(LANG("datum.761458cc", list(attacker))),
-		span_warning(LANG("datum.25795f92", null)))
+		our_guy.visible_message(span_warning(LANG("datum.4f29847546a526de", list(our_guy, attacker))),
+		span_warning(LANG("datum.761458cc86dd79d7", list(attacker))),
+		span_warning(LANG("datum.25795f9273552f83", null)))
 		our_guy.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * 2, STAGGERED_SLOWDOWN_LENGTH * 4) // staggers for +6 seconds, caps at 12
 
 /// Signal sent by COMSIG_ATOM_PREHITBY (from being hit with a thrown item). If someone hits you with a thrown, apply a stagger.
@@ -154,9 +154,9 @@
 	var/obj/item/hit_item = hit_atom
 	if(!hit_item.throwforce)
 		return
-	our_guy.visible_message(span_warning(LANG("datum.8ee6a29b", list(our_guy, hit_atom))),
-	span_warning(LANG("datum.b8a36c04", list(hit_atom))),
-	span_warning(LANG("datum.a1526985", null)))
+	our_guy.visible_message(span_warning(LANG("datum.8ee6a29ba3d6f5ed", list(our_guy, hit_atom))),
+	span_warning(LANG("datum.b8a36c04702d2f01", list(hit_atom))),
+	span_warning(LANG("datum.a1526985ec169cf8", null)))
 	our_guy.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, STAGGERED_SLOWDOWN_LENGTH) // staggers for +3 seconds, caps at 3
 
 /// Leaves an afterimage behind the mob when they move
@@ -175,8 +175,8 @@
 	if(source.legcuffed) // if legcuffed, no bullet dodge
 		return NONE
 	source.visible_message(
-		span_danger(LANG("datum.cc7af3a3", list(source, hitting_projectile))),
-		span_userdanger(LANG("datum.497150e8", list(hitting_projectile))),
+		span_danger(LANG("datum.cc7af3a368899481", list(source, hitting_projectile))),
+		span_userdanger(LANG("datum.497150e8e0b33769", list(hitting_projectile))),
 	)
 	playsound(source, pick('sound/items/weapons/bulletflyby.ogg', 'sound/items/weapons/bulletflyby2.ogg', 'sound/items/weapons/bulletflyby3.ogg'), 75, TRUE)
 	source.add_filter(TWITCH_BLUR_EFFECT, 2, gauss_blur_filter(5))
@@ -241,7 +241,7 @@
 	our_guy.adjust_tox_loss(0.77 * seconds_per_tick * metabolization_ratio, updating_health = FALSE, forced = TRUE, required_biotype = affected_biotype)
 
 	if(SPT_PROB(5, seconds_per_tick) && !(our_guy.mob_biotypes & MOB_ROBOTIC))
-		to_chat(our_guy, span_danger(LANG("datum.7d3e95cd", null)))
+		to_chat(our_guy, span_danger(LANG("datum.7d3e95cd8d80b0db", null)))
 		our_guy.spray_blood(our_guy.dir, 1)
 		our_guy.emote("cough")
 

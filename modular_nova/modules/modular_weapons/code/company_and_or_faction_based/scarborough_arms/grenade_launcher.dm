@@ -126,8 +126,8 @@
 
 /obj/item/gun/ballistic/pump_launcher/rack(mob/user)
 	if((folded == BOARDER_FOLD_FOLDED) && !can_rack_when_folded)
-		to_chat(user, span_warning(LANG("obj.03f15c4c", list(src))))
-		balloon_alert(user, LANG("obj.37570396", null))
+		to_chat(user, span_warning(LANG("obj.03f15c4c7d71b7aa", list(src))))
+		balloon_alert(user, LANG("obj.375703964ca172ad", null))
 		return FALSE
 	. = ..()
 
@@ -145,13 +145,13 @@
 		recoil = 0.5
 	else
 		if(!do_after(user, fold_time, timed_action_flags = IGNORE_USER_LOC_CHANGE))
-			balloon_alert(user, LANG("obj.c67b5d27", null))
+			balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 			return
 		w_class = WEIGHT_CLASS_NORMAL
 		recoil = 1.5 // ow ouch ouchie oof
 	folded = !folded
 	if(user)
-		balloon_alert(user, LANG("obj.e0a3c235", list(folded ? "collapsed" : "extended")))
+		balloon_alert(user, LANG("obj.e0a3c2350fae5f6d", list(folded ? "collapsed" : "extended")))
 		playsound(src.loc, 'sound/items/weapons/batonextend.ogg', 30, 1)
 	update_icon()
 

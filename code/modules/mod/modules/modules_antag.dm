@@ -249,10 +249,10 @@
 	. = ..()
 	if(!.)
 		return
-	mod.wearer.visible_message(span_warning(LANG("obj.d1adb849", list(mod.wearer))), \
-		blind_message = span_hear(LANG("obj.cc2e7fe1", null)))
+	mod.wearer.visible_message(span_warning(LANG("obj.d1adb849894a2d29", list(mod.wearer))), \
+		blind_message = span_hear(LANG("obj.cc2e7fe155833cfe", null)))
 	playsound(src, 'sound/items/modsuit/loader_charge.ogg', 75, TRUE)
-	balloon_alert(mod.wearer, LANG("obj.9dc8c02a", null))
+	balloon_alert(mod.wearer, LANG("obj.9dc8c02ab4e05ae4", null))
 	animate(mod.wearer, 0.3 SECONDS, pixel_z = 16, flags = ANIMATION_RELATIVE, easing = SINE_EASING|EASE_OUT)
 	addtimer(CALLBACK(mod.wearer, TYPE_PROC_REF(/atom, SpinAnimation), 3, 2), 0.3 SECONDS)
 	if(!do_after(mod.wearer, 1 SECONDS, target = mod))
@@ -321,7 +321,7 @@
 
 /obj/item/mod/module/chameleon/used(mob/activator)
 	if(mod.active || mod.activating)
-		balloon_alert(activator, LANG("obj.7913b0b7", null))
+		balloon_alert(activator, LANG("obj.7913b0b70e3a0cf3", null))
 		return FALSE
 	return ..()
 
@@ -329,7 +329,7 @@
 	if(current_disguise)
 		return_look()
 		return
-	var/picked_name = tgui_input_list(activator, LANG("obj.902ee4e7", null), LANG("obj.e9bc5fb4", null), possible_disguises)
+	var/picked_name = tgui_input_list(activator, LANG("obj.902ee4e741922cd0", null), LANG("obj.e9bc5fb4dc960d63", null), possible_disguises)
 	if(!possible_disguises[picked_name] || mod.active || mod.activating)
 		return
 	current_disguise = possible_disguises[picked_name]
@@ -496,10 +496,10 @@
 	if(!. || target == mod.wearer)
 		return
 	if(get_dist(mod.wearer, target) > 6)
-		balloon_alert(mod.wearer, LANG("obj.b40a17eb", null))
+		balloon_alert(mod.wearer, LANG("obj.b40a17ebc7e69d14", null))
 		return
 	if(istype(target, /obj/machinery/power/apc)) //Bit too strong for a module so this is blacklisted
-		balloon_alert(mod.wearer, LANG("obj.0d9212bd", null))
+		balloon_alert(mod.wearer, LANG("obj.0d9212bdac618ef0", null))
 		return
 
 	var/list/things_to_disrupt = list(target)
@@ -541,7 +541,7 @@
 /obj/item/mod/module/stealth/wraith/unstealth(datum/source)
 	if(!stealth_active)
 		return
-	to_chat(mod.wearer, span_warning(LANG("obj.af764fe4", list(src))))
+	to_chat(mod.wearer, span_warning(LANG("obj.af764fe44d9000ba", list(src))))
 	do_sparks(2, TRUE, src)
 	drain_power(use_energy_cost)
 	// Don't deactivate() directly as the module may not be active in the first place when stealthing
@@ -555,5 +555,5 @@
 /obj/item/mod/module/stealth/wraith/examine_more(mob/user)
 	. = ..()
 	. += span_info( \
-		LANG("obj.fdeab785", null) \
+		LANG("obj.fdeab78501561196", null) \
 	)

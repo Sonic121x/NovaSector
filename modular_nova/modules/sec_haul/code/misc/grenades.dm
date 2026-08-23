@@ -42,7 +42,7 @@
 		silent_alert(user, src, crew_to_alert, message)
 		return ..()
 	else
-		to_chat(user, span_doyourjobidiot(LANG("obj.3d6e3e1e", null)))
+		to_chat(user, span_doyourjobidiot(LANG("obj.3d6e3e1e9d0ca279", null)))
 		return
 
 // CTRL + Click to willingly bypass the green alert restriction

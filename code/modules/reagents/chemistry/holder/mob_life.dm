@@ -66,7 +66,7 @@
 		liver.apply_organ_damage(min(liver_damage * seconds_per_tick , MAX_TOXIN_LIVER_DAMAGE * seconds_per_tick))
 
 	if(provide_pain_message && liver.damage > 10 && SPT_PROB(liver.damage/6, seconds_per_tick)) //the higher the damage the higher the probability
-		to_chat(owner, span_warning(LANG("datum.fc623fd9", null)))
+		to_chat(owner, span_warning(LANG("datum.fc623fd962917acc", null)))
 
 	if(owner)
 		//apply side effects based on reagents metabolized

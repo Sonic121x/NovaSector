@@ -83,7 +83,7 @@
 
 /datum/sdql_parser/proc/parse_error(error_message)
 	error = 1
-	to_chat(usr, span_warning(LANG("datum.ad989edf", list(error_message))), confidential = TRUE)
+	to_chat(usr, span_warning(LANG("datum.ad989edfcb25f8f5", list(error_message))), confidential = TRUE)
 	return query.len + 1
 
 /datum/sdql_parser/proc/parse()

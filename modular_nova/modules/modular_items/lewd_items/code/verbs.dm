@@ -1,13 +1,13 @@
 GAME_VERB(/mob/living/carbon/human, climax_verb, "高潮", "IC")
 	if(!has_status_effect(/datum/status_effect/climax_cooldown))
-		if(tgui_alert(usr, LANG("mob.b5f29a08", null), LANG("mob.39f677eb", null), list("Yes", "No")) == "Yes")
+		if(tgui_alert(usr, LANG("mob.b5f29a08ed50f940", null), LANG("mob.39f677eb73c61f5a", null), list("Yes", "No")) == "Yes")
 			if(IS_UNCONSCIOUS_OR_CRIT(src))
-				to_chat(usr, span_warning(LANG("mob.9143876c", null)))
+				to_chat(usr, span_warning(LANG("mob.9143876ccadf80e7", null)))
 				return
 			else
 				climax(TRUE)
 	else
-		to_chat(src, span_warning(LANG("mob.b4242208", null)))
+		to_chat(src, span_warning(LANG("mob.b424220869039f8a", null)))
 
 GAME_VERB(/mob/living, reflexes_verb, "切换敏捷反应", "IC")
 	if(!HAS_TRAIT_FROM(src, TRAIT_QUICKREFLEXES, REF(src)))

@@ -1,6 +1,6 @@
 // THIS IS A NOVA SECTOR UI FILE
-// JSX 自动本地化运行时。Rspack/SWC 只对 packages/tgui 使用这个 importSource；
-// tgui-panel / tgui-say 继续使用 React 原生 jsx-runtime。
+// Legacy/upstream automatic-localization adapter. Application-owned code should use typed,
+// contextual messages; Rspack/SWC keeps this importSource for unmigrated upstream JSX.
 
 import {
   Fragment,

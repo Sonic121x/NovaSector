@@ -116,7 +116,7 @@ GLOBAL_VAR(basketball_game)
 /datum/basketball_controller/proc/start_game(ready_players)
 	message_admins("The players have spoken! Voting has enabled the basketball minigame!")
 	notify_ghosts(
-		LANG("datum.2536f137", null),
+		LANG("datum.2536f137d9758181", null),
 		source = home_hoop,
 		header = "Basketball Minigame",
 		ghost_sound = 'sound/effects/ghost2.ogg',
@@ -203,13 +203,13 @@ GLOBAL_VAR(basketball_game)
 
 		SEND_SOUND(baller, sound('sound/items/whistle/whistle.ogg', volume=30))
 		if(is_player_referee)
-			to_chat(baller, span_notice(LANG("datum.012023bf", null)))
+			to_chat(baller, span_notice(LANG("datum.012023bf558ae5c5", null)))
 		else
-			to_chat(baller, span_notice(LANG("datum.56e4f0b5", list(team_name))))
-			to_chat(baller, span_info(LANG("datum.3b4cc788", null)))
-			to_chat(baller, span_info(LANG("datum.e75fcc5a", list(STAMINA_COST_SHOOTING))))
-			to_chat(baller, span_info(LANG("datum.29ee0a47", list(STAMINA_COST_DUNKING))))
-			to_chat(baller, span_info(LANG("datum.c566ef79", list(STAMINA_COST_SPINNING))))
+			to_chat(baller, span_notice(LANG("datum.56e4f0b5ac61599e", list(team_name))))
+			to_chat(baller, span_info(LANG("datum.3b4cc788229c2119", null)))
+			to_chat(baller, span_info(LANG("datum.e75fcc5a304777c0", list(STAMINA_COST_SHOOTING))))
+			to_chat(baller, span_info(LANG("datum.29ee0a472a046947", list(STAMINA_COST_DUNKING))))
+			to_chat(baller, span_info(LANG("datum.c566ef79c68e8012", list(STAMINA_COST_SPINNING))))
 
 /**
  * Called after the game is finished. Sends end game notifications to teams and dusts the losers.
@@ -237,17 +237,17 @@ GLOBAL_VAR(basketball_game)
 		for(var/ckey in winner_team_ckeys)
 			var/mob/living/competitor = get_mob_by_ckey(ckey)
 			if(competitor in minigame_basketball_mobs)
-				to_chat(competitor, span_hypnophrase(LANG("datum.1a8c54b1", null)))
+				to_chat(competitor, span_hypnophrase(LANG("datum.1a8c54b1199d1577", null)))
 	else
 		for(var/ckey in winner_team_ckeys)
 			var/mob/living/competitor = get_mob_by_ckey(ckey)
 			if(competitor in minigame_basketball_mobs)
-				to_chat(competitor, span_hypnophrase(LANG("datum.8a7f4a43", list(winner_team_name))))
+				to_chat(competitor, span_hypnophrase(LANG("datum.8a7f4a43af53ea68", list(winner_team_name))))
 
 		for(var/ckey in loser_team_ckeys)
 			var/mob/living/competitor = get_mob_by_ckey(ckey)
 			if(competitor in minigame_basketball_mobs)
-				to_chat(competitor, span_hypnophrase(LANG("datum.8a7f4a43", list(winner_team_name))))
+				to_chat(competitor, span_hypnophrase(LANG("datum.8a7f4a43af53ea68", list(winner_team_name))))
 				competitor.dust()
 
 	addtimer(CALLBACK(src, PROC_REF(end_game)), 20 SECONDS) // give winners time for a victory lap
@@ -307,8 +307,8 @@ GLOBAL_VAR(basketball_game)
 	//small message about not getting into this game for clarity on why they didn't get in
 	for(var/unpicked in possible_keys)
 		var/client/unpicked_client = GLOB.directory[unpicked]
-		to_chat(unpicked_client, span_danger(LANG("datum.6d5f6a76", null)))
-		to_chat(unpicked_client, span_warning(LANG("datum.21ddf196", null)))
+		to_chat(unpicked_client, span_danger(LANG("datum.6d5f6a7656422ca5", null)))
+		to_chat(unpicked_client, span_warning(LANG("datum.21ddf196170434a2", null)))
 
 	prepare_game(filtered_keys)
 
@@ -379,7 +379,7 @@ GLOBAL_VAR(basketball_game)
 
 	var/client/ghost_client = user.client
 	if(!SSticker.HasRoundStarted())
-		to_chat(ghost_client, span_warning(LANG("datum.c73d9fd9", null)))
+		to_chat(ghost_client, span_warning(LANG("datum.c73d9fd9f92ab4a3", null)))
 		return
 
 	switch(action)
@@ -387,19 +387,19 @@ GLOBAL_VAR(basketball_game)
 			if(GLOB.basketball_signup[ghost_client.ckey] || GLOB.basketball_bad_signup[ghost_client.ckey])
 				GLOB.basketball_signup -= ghost_client.ckey
 				GLOB.basketball_bad_signup -= ghost_client.ckey
-				to_chat(ghost_client, span_notice(LANG("datum.c2072afc", null)))
+				to_chat(ghost_client, span_notice(LANG("datum.c2072afc721b0dbc", null)))
 			else
 				GLOB.basketball_signup[ghost_client.ckey] = TRUE
-				to_chat(ghost_client, span_notice(LANG("datum.62b4b2cd", null)))
+				to_chat(ghost_client, span_notice(LANG("datum.62b4b2cd5e076060", null)))
 
 			check_signups()
 			return TRUE
 		if("basketball_start")
 			if(!GLOB.basketball_signup[ghost_client.ckey])
-				to_chat(ghost_client, span_notice(LANG("datum.7c6f1672", null)))
+				to_chat(ghost_client, span_notice(LANG("datum.7c6f1672c3e2df48", null)))
 				return
 			if(current_map)
-				to_chat(ghost_client, span_notice(LANG("datum.1b7e3397", null)))
+				to_chat(ghost_client, span_notice(LANG("datum.1b7e339739331904", null)))
 				return
 			try_autostart()
 			return TRUE

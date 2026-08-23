@@ -29,7 +29,7 @@
 
 /datum/element/shuttle_construction_lattice/proc/on_examined(obj/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice(LANG("datum.26ab4f77", list(source.name)))
+	examine_list += span_notice(LANG("datum.26ab4f7728f4a51b", list(source.name)))
 
 /datum/element/shuttle_construction_lattice/proc/on_moved(obj/source, atom/old_loc)
 	SIGNAL_HANDLER

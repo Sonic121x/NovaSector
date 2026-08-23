@@ -26,7 +26,7 @@
 	var/folder_type_name = "folder"
 
 /obj/item/folder/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.8cc04502", list(user, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.8cc04502c791bc01", list(user, user.p_theyre()))))
 	return OXYLOSS
 
 /obj/item/folder/Initialize(mapload)
@@ -46,7 +46,7 @@
 /obj/item/folder/examine()
 	. = ..()
 	if(length(contents) && !contents_hidden)
-		. += span_notice(LANG("obj.f1120689", list(contents[1])))
+		. += span_notice(LANG("obj.f1120689587a921d", list(contents[1])))
 
 /obj/item/folder/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
 	if(is_type_in_typecache(target, folder_insertables))
@@ -73,7 +73,7 @@
 	if(istype(Item))
 		Item.forceMove(user.loc)
 		user.put_in_hands(Item)
-		to_chat(user, span_notice(LANG("obj.cbed3266", list(Item, src))))
+		to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(Item, src))))
 		update_icon()
 
 /obj/item/folder/attack_hand(mob/user, list/modifiers)
@@ -108,10 +108,10 @@
 
 /obj/item/folder/proc/sharp_thing_act(mob/user, obj/item/sharp_tool)
 	if(contents.len)
-		balloon_alert(user, LANG("obj.caa44cf0", list(src)))
+		balloon_alert(user, LANG("obj.caa44cf0f4469be2", list(src)))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.b98b43de", null))
+	balloon_alert(user, LANG("obj.b98b43de28eb7559", null))
 	qdel(src)
 	user.put_in_hands(new /obj/item/stack/sheet/cardboard)
 	return ITEM_INTERACT_SUCCESS

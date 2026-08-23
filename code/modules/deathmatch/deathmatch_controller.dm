@@ -25,7 +25,7 @@
 
 /datum/deathmatch_controller/proc/create_new_lobby(mob/host)
 	lobbies[host.ckey] = new /datum/deathmatch_lobby(host)
-	deadchat_broadcast(LANG("datum.a5cecc89", list(REF(lobbies[host.ckey]))), "<B>[host]</B>") // NOVA EDIT CHANGE - I18N - ORIGINAL: deadchat_broadcast(" has opened a new deathmatch lobby. <a href=byond://?src=[REF(lobbies[host.ckey])];join=1>(Join)</a>", "<B>[host]</B>")
+	deadchat_broadcast(LANG("datum.a5cecc89a6ed7fd6", list(REF(lobbies[host.ckey]))), "<B>[host]</B>") // NOVA EDIT CHANGE - I18N - ORIGINAL: deadchat_broadcast(" has opened a new deathmatch lobby. <a href=byond://?src=[REF(lobbies[host.ckey])];join=1>(Join)</a>", "<B>[host]</B>")
 
 /datum/deathmatch_controller/proc/remove_lobby(ckey)
 	var/lobby = lobbies[ckey]
@@ -79,18 +79,18 @@
 	switch (action)
 		if ("host")
 			if(!(GLOB.ghost_role_flags & GHOSTROLE_MINIGAME))
-				tgui_alert(usr, LANG("datum.b11a5c4e", null))
+				tgui_alert(usr, LANG("datum.b11a5c4e71caf134", null))
 				return
 			if (lobbies[usr.ckey])
 				return
 			if(!SSticker.HasRoundStarted())
-				tgui_alert(usr, LANG("datum.dc7dc65a", null))
+				tgui_alert(usr, LANG("datum.dc7dc65ad497d278", null))
 				return
 			ui.close()
 			create_new_lobby(usr)
 		if ("join")
 			if(!(GLOB.ghost_role_flags & GHOSTROLE_MINIGAME))
-				tgui_alert(usr, LANG("datum.b11a5c4e", null))
+				tgui_alert(usr, LANG("datum.b11a5c4e71caf134", null))
 				return
 			if (!lobbies[params["id"]])
 				return

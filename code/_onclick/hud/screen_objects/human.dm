@@ -42,7 +42,7 @@
 
 /atom/movable/screen/ling/chems/Click(location, control, params)
 	. = ..()
-	to_chat(usr, span_notice(LANG("atom.a289da76", null)))
+	to_chat(usr, span_notice(LANG("atom.a289da76a9d56ef6", null)))
 
 /atom/movable/screen/ling/chems/MouseEntered(location,control,params)
 	if(usr != get_mob())

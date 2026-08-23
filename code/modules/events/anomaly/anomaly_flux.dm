@@ -18,4 +18,4 @@
 /datum/round_event/anomaly/anomaly_flux/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce(LANG("datum.6e92d4eb", list(ANOMALY_ANNOUNCE_DANGEROUS_TEXT, impact_area.name)), "Anomaly Alert", ANNOUNCER_FLUXANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Hyper-energetic flux wave detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce(LANG("datum.6e92d4eb588584cd", list(ANOMALY_ANNOUNCE_DANGEROUS_TEXT, impact_area.name)), "Anomaly Alert", ANNOUNCER_FLUXANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Hyper-energetic flux wave detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name].", "Anomaly Alert")

@@ -44,17 +44,17 @@
 		if("resetid")
 			payments_acc = null
 		if("setsplit")
-			var/potential_cut = input(LANG("datum.64a2bf7c", null),LANG("datum.9464744c", list(round(cut_min*100), round(cut_max*100)))) as num|null
+			var/potential_cut = input(LANG("datum.64a2bf7c13540cc7", null),LANG("datum.9464744c35f078e2", list(round(cut_min*100), round(cut_max*100)))) as num|null
 			cut_multiplier = potential_cut ? clamp(round(potential_cut/100, cut_min), cut_min, cut_max) : initial(cut_multiplier)
 		if("print")
 			if(computer.stored_paper <= 0)
-				to_chat(usr, span_notice(LANG("datum.8f26e725", null)))
+				to_chat(usr, span_notice(LANG("datum.8f26e725be4eae5b", null)))
 				return TRUE
 			if(!payments_acc)
-				to_chat(usr, span_notice(LANG("datum.aaf33d07", null)))
+				to_chat(usr, span_notice(LANG("datum.aaf33d07be4be0ae", null)))
 				return TRUE
 			var/obj/item/barcode/barcode = new /obj/item/barcode(get_turf(computer.ui_host()))
 			barcode.payments_acc = payments_acc
 			barcode.cut_multiplier = cut_multiplier
 			computer.stored_paper--
-			to_chat(usr, span_notice(LANG("datum.280b8c1a", null)))
+			to_chat(usr, span_notice(LANG("datum.280b8c1aeb2417e3", null)))

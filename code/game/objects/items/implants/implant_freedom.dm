@@ -20,7 +20,7 @@
 	if(!.)
 		return FALSE
 	if(!iscarbon(target)) //This is pretty much useless for anyone else since they can't be cuffed
-		balloon_alert(user, LANG("obj.3f809a5b", null))
+		balloon_alert(user, LANG("obj.3f809a5bda34ae44", null))
 		return FALSE
 	return TRUE
 
@@ -28,7 +28,7 @@
 	. = ..()
 	var/mob/living/carbon/carbon_imp_in = imp_in
 	if(!can_trigger(carbon_imp_in))
-		balloon_alert(carbon_imp_in, LANG("obj.b2b516c4", null))
+		balloon_alert(carbon_imp_in, LANG("obj.b2b516c4b9258327", null))
 		return
 
 	uses--

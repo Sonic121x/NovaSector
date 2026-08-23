@@ -9,9 +9,9 @@
 
 /datum/martial_art/mushpunch/proc/charge_up_attack(mob/living/attacker, mob/living/defender)
 
-	to_chat(attacker, span_spiderbroodmother(LANG("datum.613dd13f", null)))
+	to_chat(attacker, span_spiderbroodmother(LANG("datum.613dd13fbac5dc7e", null)))
 	if(!do_after(attacker, 2.5 SECONDS, defender))
-		to_chat(attacker, span_spiderbroodmother(LANG("datum.93aae2a4", null)))
+		to_chat(attacker, span_spiderbroodmother(LANG("datum.93aae2a46c4dce96", null)))
 		return
 
 	var/final_damage = rand(15, 30)
@@ -21,13 +21,13 @@
 
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
 	defender.visible_message(
-		span_danger(LANG("datum.096781cb", list(attacker, atk_verb, defender, defender.p_them()))), \
-		span_userdanger(LANG("datum.65df5c1f", list(atk_verb, attacker))),
-		span_hear(LANG("datum.6c7f8149", null)),
+		span_danger(LANG("datum.096781cbecf9ad3a", list(attacker, atk_verb, defender, defender.p_them()))), \
+		span_userdanger(LANG("datum.65df5c1f51b80e36", list(atk_verb, attacker))),
+		span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 		null,
 		attacker,
 	)
-	to_chat(attacker, span_danger(LANG("datum.6546b2e4", list(atk_verb, defender, defender.p_them()))))
+	to_chat(attacker, span_danger(LANG("datum.6546b2e4cdb85045", list(atk_verb, defender, defender.p_them()))))
 	defender.apply_damage(final_damage, attacker.get_attack_type())
 	playsound(defender, 'sound/effects/meteorimpact.ogg', 25, TRUE, -1)
 	var/throwtarget = get_edge_target_turf(attacker, get_dir(attacker, get_step_away(defender, attacker)))
@@ -45,12 +45,12 @@
 /obj/item/mushpunch/attack_self(mob/living/user)
 	if(!istype(user))
 		return
-	to_chat(user, span_spiderbroodmother(LANG("obj.7b356264", list(src))))
+	to_chat(user, span_spiderbroodmother(LANG("obj.7b3562648ab20d0d", list(src))))
 	var/datum/martial_art/mushpunch/mush = new(user)
 	mush.teach(user)
 	visible_message(
-		span_warning(LANG("obj.e9ed66c6", list(user, src))),
-		span_notice(LANG("obj.9ec0a398", list(src))),
+		span_warning(LANG("obj.e9ed66c6120aefc7", list(user, src))),
+		span_notice(LANG("obj.9ec0a398294a3312", list(src))),
 	)
 
 	qdel(src)

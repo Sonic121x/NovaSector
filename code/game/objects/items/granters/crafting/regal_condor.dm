@@ -17,5 +17,5 @@
 	)
 
 /obj/item/book/granter/crafting_recipe/regal_condor/recoil(mob/living/user)
-	to_chat(user, span_warning(LANG("obj.00d3a38e", null)))
+	to_chat(user, span_warning(LANG("obj.00d3a38ea0112407", null)))
 	qdel(src)

@@ -40,7 +40,7 @@
 		modified_tame_chance += 50
 		inform_tamer = TRUE
 
-	source.balloon_alert(attacker, LANG("datum.db39e69e", null))
+	source.balloon_alert(attacker, LANG("datum.db39e69ebf172c74", null))
 	if(prob(modified_tame_chance)) //note: lack of feedback message is deliberate, keep them guessing unless they're an expert!
 		on_tame(source, attacker, food, inform_tamer)
 	else
@@ -63,7 +63,7 @@
 	if(isliving(parent) && isliving(tamer))
 		INVOKE_ASYNC(source, TYPE_PROC_REF(/mob/living, befriend), tamer)
 		if(inform_tamer)
-			source.balloon_alert(tamer, LANG("datum.5d376a35", null))
+			source.balloon_alert(tamer, LANG("datum.5d376a3586439a99", null))
 
 	if(HAS_TRAIT(tamer, TRAIT_BEAST_EMPATHY))
 		INVOKE_ASYNC(src, PROC_REF(rename_pet), source, tamer)
@@ -73,11 +73,11 @@
 		current_tame_chance = tame_chance
 
 /datum/component/tameable/proc/rename_pet(mob/living/animal, mob/living/tamer)
-	var/chosen_name = sanitize_name(tgui_input_text(tamer, LANG("datum.47d853e6", null), LANG("datum.8832512c", null), animal.name, MAX_NAME_LEN), allow_numbers = TRUE)
+	var/chosen_name = sanitize_name(tgui_input_text(tamer, LANG("datum.47d853e635842b7f", null), LANG("datum.8832512c24991d5f", null), animal.name, MAX_NAME_LEN), allow_numbers = TRUE)
 	if(QDELETED(animal) || chosen_name == animal.name)
 		return
 	if(!chosen_name)
-		to_chat(tamer, span_warning(LANG("datum.cf7854ad", null)))
+		to_chat(tamer, span_warning(LANG("datum.cf7854ad74933857", null)))
 		rename_pet(animal, tamer)
 		return
 	animal.fully_replace_character_name(animal.name, chosen_name)

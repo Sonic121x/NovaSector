@@ -9,7 +9,7 @@
 	mind_control_duration = 1800
 
 /obj/item/organ/heart/gland/trauma/activate()
-	to_chat(owner, span_warning(LANG("obj.9e157ef4", null)))
+	to_chat(owner, span_warning(LANG("obj.9e157ef472b446d3", null)))
 	if(prob(33))
 		owner.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, rand(TRAUMA_RESILIENCE_BASIC, TRAUMA_RESILIENCE_LOBOTOMY))
 	else

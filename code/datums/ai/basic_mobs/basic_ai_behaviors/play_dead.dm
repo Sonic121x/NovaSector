@@ -21,6 +21,6 @@
 	var/mob/living/basic/pawn = controller.pawn
 	if(QDELETED(pawn) || IS_UNCONSCIOUS_OR_CRIT(pawn))
 		return
-	pawn.visible_message(span_notice(LANG("datum.387c7144", list(pawn))))
+	pawn.visible_message(span_notice(LANG("datum.387c714496b28feb", list(pawn))))
 	REMOVE_TRAIT(pawn, TRAIT_FAKEDEATH, BASIC_MOB_DEATH_TRAIT)
 	pawn.look_alive()

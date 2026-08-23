@@ -17,7 +17,7 @@
 	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/leg/right/robot/surplus, special = TRUE)
 
 /datum/quirk/quadruple_amputee/post_add()
-	to_chat(quirk_holder, span_bolddanger(LANG("datum.ee583e53", null)))
+	to_chat(quirk_holder, span_bolddanger(LANG("datum.ee583e53545169b8", null)))
 
 /datum/quirk/quadruple_amputee/remove()
 	if(QDELING(quirk_holder))

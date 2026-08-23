@@ -81,13 +81,13 @@
 	attacker.changeNext_move(CLICK_CD_MELEE) // let's not stack swings that easily, pal
 	// question: should the windup be reduced if the target is incapacitated, somehow?
 
-	attacker.visible_message(span_warning(LANG("datum.f2133cb4", list(attacker, weapon, target, limb_target.plaintext_zone))), span_danger(LANG("datum.61d6812d", list(weapon, target, limb_target.plaintext_zone))))
+	attacker.visible_message(span_warning(LANG("datum.f2133cb4d0725787", list(attacker, weapon, target, limb_target.plaintext_zone))), span_danger(LANG("datum.61d6812d346361a1", list(weapon, target, limb_target.plaintext_zone))))
 	log_combat(attacker, target, "started aiming to maul", weapon)
 
 	if(!do_after(attacker, swing_delay, target, interaction_key = weapon))
 		return
 
-	attacker.visible_message(span_warning(LANG("datum.321d4747", list(attacker, weapon, target, limb_target.plaintext_zone))), span_danger(LANG("datum.4dc1c6d2", list(weapon, target, limb_target.plaintext_zone))))
+	attacker.visible_message(span_warning(LANG("datum.321d47474e3b3163", list(attacker, weapon, target, limb_target.plaintext_zone))), span_danger(LANG("datum.4dc1c6d2b8931752", list(weapon, target, limb_target.plaintext_zone))))
 	var/wound_to_inflict = WOUND_BLUNT
 	if(weapon.sharpness & SHARP_EDGED)
 		wound_to_inflict = WOUND_SLASH

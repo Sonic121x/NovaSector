@@ -1,10 +1,16 @@
 // THIS IS A NOVA SECTOR UI FILE
-// Shared helpers for automatic TGUI JSX localization.
+// Legacy/upstream JSX compatibility adapter. New code uses explicit contextual messages.
 
 import { Dropdown } from 'tgui-core/components';
 
-import { substituteOverlay, translateCurrent } from './catalog';
+import {
+  getCatalogRevision,
+  getCurrentLocale,
+  substituteOverlay,
+  translateCurrent,
+} from './catalog';
 import { recordMiss } from './missLog';
+import { isLocalizedOption } from './messages';
 import policy from './policy.json';
 import propTemplateKeys from './prop-templates.json';
 
@@ -134,7 +140,8 @@ function capturesLookLikeValues(
 }
 
 function matchPropTemplate(text: string): string | null {
-  const cached = propTemplateCache.get(text);
+  const cacheKey = `${getCatalogRevision()}\u0004${getCurrentLocale()}\u0004${text}`;
+  const cached = propTemplateCache.get(cacheKey);
   if (cached !== undefined) {
     return cached;
   }
@@ -175,7 +182,7 @@ function matchPropTemplate(text: string): string | null {
   if (propTemplateCache.size > 2000) {
     propTemplateCache.clear();
   }
-  propTemplateCache.set(text, result);
+  propTemplateCache.set(cacheKey, result);
   return result;
 }
 
@@ -387,13 +394,16 @@ function localizeOption(option: unknown): unknown {
   // onSelected 回传的就是这个字符串。若翻成中文，回传中文、而调用方几乎都按英文原文匹配
   // (`aug_options.find(a => displayName(a) === 回传)`、`value === style.name`、或把回传直接当
   // `style_name`/标识符发回服务端) → 匹配失败、选择静默失效（「强化+ 身体部位下拉点了没反应」即此）。
-  // 字符串选项的「值」本身就是标识符,不可改。需要既翻显示又能正确回传的下拉,应改用**对象选项**
-  // `{value, displayText}`：value 保持英文标识符(下面只翻 displayText)——见 LimbsPage 强化/植入下拉。
+  // 这是只为上游裸字符串调用点保留的兼容行为。新代码必须用 typed localizedOption /
+  // localizedDropdownOption，让 canonical value 与 LocalizedText 在类型层分开。
   if (typeof option === 'string') {
     return option;
   }
   if (!option || typeof option !== 'object' || Array.isArray(option)) {
     return localizeNode(option);
+  }
+  if (isLocalizedOption(option)) {
+    return option;
   }
 
   let nextOption = option as Record<string, unknown>;
@@ -430,7 +440,7 @@ function localizeOptions(value: unknown): unknown {
   return changed ? localized : value;
 }
 
-// tgui-core Dropdown 专用：**裸字符串选项**既是显示又是回传值（`m(o) = o`），所以
+// Legacy Dropdown adapter: **裸字符串选项**既是显示又是回传值（`m(o) = o`），所以
 // localizeOption 一律不翻它们——翻了 onSelected 就回传中文，调用方/服务端按英文匹配全部失效。
 // 但整个界面里下拉往往是唯一还在显示英文的控件（ID 饰边压印机的饰边表、管道分配器的管件表…）。
 //

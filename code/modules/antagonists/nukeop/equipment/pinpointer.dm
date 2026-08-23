@@ -8,21 +8,21 @@
 	var/msg = "Its tracking indicator reads "
 	switch(mode)
 		if(TRACK_NUKE_DISK)
-			msg += LANG("obj.154f86ea", null)
+			msg += LANG("obj.154f86ea0d061b3d", null)
 		if(TRACK_MALF_AI)
 			msg += "\"01000001 01001001\"."
 		if(TRACK_INFILTRATOR)
-			msg += LANG("obj.ba6e5a83", null)
+			msg += LANG("obj.ba6e5a83fa0483cd", null)
 		/// NOVA EDIT BEGIN
 		if(TRACK_GOLDENEYE)
-			msg += LANG("obj.5260cc04", null)
+			msg += LANG("obj.5260cc04780ea703", null)
 		/// NOVA EDIT END
 		else
 			msg = "Its tracking indicator is blank."
 	. += msg
 	for(var/obj/machinery/nuclearbomb/bomb as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb))
 		if(bomb.timing)
-			. += LANG("obj.bd76de8e", list(bomb.get_time_left()))
+			. += LANG("obj.bd76de8eae070a2b", list(bomb.get_time_left()))
 
 /obj/item/pinpointer/nuke/process(seconds_per_tick)
 	..()
@@ -35,7 +35,7 @@
 		playsound(src, 'sound/items/nuke_toy_lowpower.ogg', 50, FALSE)
 		if(isliving(loc))
 			var/mob/living/alerted_holder = loc
-			to_chat(alerted_holder, span_userdanger(LANG("obj.60b954c6", list(name))))
+			to_chat(alerted_holder, span_userdanger(LANG("obj.60b954c6fe57aab1", list(name))))
 		return
 
 /obj/item/pinpointer/nuke/scan_for_target()
@@ -62,7 +62,7 @@
 /obj/item/pinpointer/nuke/proc/switch_mode_to(new_mode)
 	if(isliving(loc))
 		var/mob/living/L = loc
-		to_chat(L, span_userdanger(LANG("obj.21c54b21", list(name))))
+		to_chat(L, span_userdanger(LANG("obj.21c54b21f1b38033", list(name))))
 		playsound(L, 'sound/machines/beep/triple_beep.ogg', 50, TRUE)
 	mode = new_mode
 	scan_for_target()

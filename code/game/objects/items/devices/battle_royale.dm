@@ -44,21 +44,21 @@ GLOBAL_LIST_INIT(battle_royale_regions, list(
 		remote.link_implanter(src, user)
 		return ITEM_INTERACT_SUCCESS
 	if (!linked)
-		balloon_alert(user, LANG("obj.6662913c", null))
+		balloon_alert(user, LANG("obj.6662913cb5a05b38", null))
 		return ITEM_INTERACT_BLOCKING
 	if (DOING_INTERACTION_WITH_TARGET(user, interacting_with))
-		balloon_alert(user, LANG("obj.8df72942", null))
+		balloon_alert(user, LANG("obj.8df72942c63f9092", null))
 		return ITEM_INTERACT_BLOCKING
 	var/mob/living/potential_winner = interacting_with
 	if (IS_UNCONSCIOUS_OR_CRIT(potential_winner))
-		balloon_alert(user, LANG("obj.8ff7f235", null))
+		balloon_alert(user, LANG("obj.8ff7f235062f56a9", null))
 		return ITEM_INTERACT_BLOCKING
 	if (!potential_winner.mind)
-		balloon_alert(user, LANG("obj.61e50ca6", null))
+		balloon_alert(user, LANG("obj.61e50ca64151ca5c", null))
 		return ITEM_INTERACT_BLOCKING
 	log_combat(user, potential_winner, "tried to implant a battle royale implant into")
 	if (!do_after(user, 1.5 SECONDS, potential_winner))
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/implant/explosive/battle_royale/encouragement_implant = new
@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(battle_royale_regions, list(
 		qdel(encouragement_implant) // no balloon alert - feedback is usually provided by the implant
 		return ITEM_INTERACT_BLOCKING
 
-	potential_winner.balloon_alert(user, LANG("obj.5d667473", null))
+	potential_winner.balloon_alert(user, LANG("obj.5d6674738e7271d4", null))
 	SEND_SIGNAL(src, COMSIG_ROYALE_IMPLANTED, encouragement_implant)
 	return ITEM_INTERACT_SUCCESS
 
@@ -101,7 +101,7 @@ GLOBAL_LIST_INIT(battle_royale_regions, list(
 		return
 	var/contestant_count = length(implanted_implants)
 	if (contestant_count < required_contestants)
-		balloon_alert(user, LANG("obj.f321db60", list(required_contestants - contestant_count)))
+		balloon_alert(user, LANG("obj.f321db601834493a", list(required_contestants - contestant_count)))
 		return
 
 	GLOB.battle_royale_master.start_battle(implanted_implants)
@@ -116,11 +116,11 @@ GLOBAL_LIST_INIT(battle_royale_regions, list(
 /obj/item/royale_remote/proc/link_implanter(obj/item/royale_implanter/implanter, mob/user)
 	if (implanter in linked_implanters)
 		if (user)
-			balloon_alert(user, LANG("obj.cc32a1c7", null))
+			balloon_alert(user, LANG("obj.cc32a1c7c966a07a", null))
 		return
 
 	if (user)
-		balloon_alert(user, LANG("obj.06b2390f", null))
+		balloon_alert(user, LANG("obj.06b2390f153d0463", null))
 
 	implanter.linked = TRUE
 	linked_implanters += implanter
@@ -233,7 +233,7 @@ GLOBAL_DATUM_INIT(battle_royale_master, /datum/battle_royale_master, new)
 		return FALSE // Well there's not much point is there
 
 	priority_announce(
-		text = LANG("datum.19e62bc6", list(station_name(), convert_integer_to_words(length(contestant_implants)), chosen_area)),
+		text = LANG("datum.19e62bc6f5f2981c", list(station_name(), convert_integer_to_words(length(contestant_implants)), chosen_area)),
 		title = "Rumble Royale Beginning",
 		sound = 'sound/announcer/alarm/nuke_alarm.ogg',
 		has_important_message = TRUE,
@@ -312,7 +312,7 @@ GLOBAL_DATUM_INIT(battle_royale_master, /datum/battle_royale_master, new)
 /// Called halfway through the battle, if you've not made it to the designated battle zone we kill you
 /datum/battle_royale_controller/proc/limit_area()
 	priority_announce(
-		text = LANG("datum.561fbdf8", list(chosen_area)),
+		text = LANG("datum.561fbdf8abfa8895", list(chosen_area)),
 		title = "Rumble Royale Update",
 		sound = 'sound/announcer/notice/notice1.ogg',
 		has_important_message = TRUE,

@@ -52,17 +52,17 @@
 
 /obj/item/clothing/head/helmet/space/eva/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.3bc01be1", list(span_bold("cyborg leg"))))
+	. += span_notice(LANG("obj.3bc01be197536759", list(span_bold("cyborg leg"))))
 
 /obj/item/clothing/head/helmet/space/eva/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/bodypart/leg/left/robot) && !istype(tool, /obj/item/bodypart/leg/right/robot))
 		return ..()
 
 	if(ismob(loc))
-		user.balloon_alert(user, LANG("obj.3bee8c5b", null))
+		user.balloon_alert(user, LANG("obj.3bee8c5b758f355b", null))
 		return ITEM_INTERACT_BLOCKING
 
-	user.balloon_alert(user, LANG("obj.be522028", null))
+	user.balloon_alert(user, LANG("obj.be522028b332d364", null))
 	new /obj/item/bot_assembly/vim(loc)
 	qdel(tool)
 	qdel(src)
@@ -92,10 +92,10 @@
 
 /obj/item/clothing/suit/space/fragile/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(!torn && prob(50))
-		to_chat(owner, span_warning(LANG("obj.8f7fe4f1", list(src))))
+		to_chat(owner, span_warning(LANG("obj.8f7fe4f1d18997cf", list(src))))
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
 		name = "torn [src]."
-		desc = LANG("obj.35d05cba", null)
+		desc = LANG("obj.35d05cbae1cfda03", null)
 		torn = TRUE
 		playsound(loc, 'sound/items/weapons/slashmiss.ogg', 50, TRUE)
 		playsound(loc, 'sound/effects/refill.ogg', 50, TRUE)

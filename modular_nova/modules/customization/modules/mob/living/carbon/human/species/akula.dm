@@ -69,44 +69,44 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_TOOTH,
-		SPECIES_PERK_NAME = LANG("datum.b1efa87c", null),
-		SPECIES_PERK_DESC = LANG("datum.48dd7237", null)
+		SPECIES_PERK_NAME = LANG("datum.b1efa87c14a5ddf0", null),
+		SPECIES_PERK_DESC = LANG("datum.48dd7237efa9e75e", null)
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_PERSON_WALKING,
-		SPECIES_PERK_NAME = LANG("datum.302b4679", null),
-		SPECIES_PERK_DESC = LANG("datum.b8672f0d", null)
+		SPECIES_PERK_NAME = LANG("datum.302b46791d60ffcb", null),
+		SPECIES_PERK_DESC = LANG("datum.b8672f0dfdf5a7fe", null)
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_HAND,
-		SPECIES_PERK_NAME = LANG("datum.d7260806", null),
-		SPECIES_PERK_DESC = LANG("datum.f87ff1ab", null)
+		SPECIES_PERK_NAME = LANG("datum.d726080639535d30", null),
+		SPECIES_PERK_DESC = LANG("datum.f87ff1ab0825ca79", null)
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHIRT,
-		SPECIES_PERK_NAME = LANG("datum.3c506263", null),
-		SPECIES_PERK_DESC = LANG("datum.d2c9e0ed", null)
+		SPECIES_PERK_NAME = LANG("datum.3c506263c9f43be4", null),
+		SPECIES_PERK_DESC = LANG("datum.d2c9e0ed2eb43b32", null)
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_LUNGS,
-		SPECIES_PERK_NAME = LANG("datum.ebe41b3e", null),
-		SPECIES_PERK_DESC = LANG("datum.2e569b61", null),
+		SPECIES_PERK_NAME = LANG("datum.ebe41b3e67efcaa6", null),
+		SPECIES_PERK_DESC = LANG("datum.2e569b611b605b79", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_ARROW_DOWN,
-		SPECIES_PERK_NAME = LANG("datum.0dae605e", null),
-		SPECIES_PERK_DESC = LANG("datum.910679f0", null)
+		SPECIES_PERK_NAME = LANG("datum.0dae605e9123ed47", null),
+		SPECIES_PERK_DESC = LANG("datum.910679f0e34d233c", null)
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_PERSON_FALLING,
-		SPECIES_PERK_NAME = LANG("datum.e6c90141", null),
-		SPECIES_PERK_DESC = LANG("datum.b357d61e", null),
+		SPECIES_PERK_NAME = LANG("datum.e6c90141be28c6be", null),
+		SPECIES_PERK_DESC = LANG("datum.b357d61ee898302b", null),
 	))
 	return perks
 

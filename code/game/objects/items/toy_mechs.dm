@@ -89,12 +89,12 @@
 
 	if(!attacker) //if there's no attacker, then attacker_controller IS the attacker
 		if(!in_range(src, attacker_controller))
-			attacker_controller.visible_message(span_suicide(LANG("obj.687956c5", list(attacker_controller, src))))
+			attacker_controller.visible_message(span_suicide(LANG("obj.687956c525a613e7", list(attacker_controller, src))))
 			return FALSE
 	else // if there's an attacker, we can procede as normal
 		if(!in_range(src, attacker)) //and the two toys aren't next to each other, the battle ends
-			attacker_controller.visible_message(span_notice(LANG("obj.97dbea3e", list(attacker, src))), \
-								span_notice(LANG("obj.97dbea3e", list(attacker, src))))
+			attacker_controller.visible_message(span_notice(LANG("obj.97dbea3e302e91ba", list(attacker, src))), \
+								span_notice(LANG("obj.97dbea3e302e91ba", list(attacker, src))))
 			return FALSE
 
 		//dead men tell no tales, incapacitated men fight no fights
@@ -102,8 +102,8 @@
 			return FALSE
 		//if the attacker_controller isn't next to the attacking toy (and doesn't have telekinesis), the battle ends
 		if(!in_range(attacker, attacker_controller) && !(attacker_controller.dna.check_mutation(/datum/mutation/telekinesis)))
-			attacker_controller.visible_message(span_notice(LANG("obj.6ee216c4", list(attacker_controller.name, attacker))), \
-								span_notice(LANG("obj.47552e1f", list(attacker))))
+			attacker_controller.visible_message(span_notice(LANG("obj.6ee216c45cadcfc6", list(attacker_controller.name, attacker))), \
+								span_notice(LANG("obj.47552e1fbdd7a67a", list(attacker))))
 			return FALSE
 
 		//if it's PVP and the opponent is not next to the defending(src) toy (and doesn't have telekinesis), the battle ends
@@ -111,14 +111,14 @@
 			if(opponent.incapacitated)
 				return FALSE
 			if(!in_range(src, opponent) && !(opponent.dna.check_mutation(/datum/mutation/telekinesis)))
-				opponent.visible_message(span_notice(LANG("obj.6ee216c4", list(opponent.name, src))), \
-							span_notice(LANG("obj.47552e1f", list(src))))
+				opponent.visible_message(span_notice(LANG("obj.6ee216c45cadcfc6", list(opponent.name, src))), \
+							span_notice(LANG("obj.47552e1fbdd7a67a", list(src))))
 				return FALSE
 		//if it's not PVP and the attacker_controller isn't next to the defending toy (and doesn't have telekinesis), the battle ends
 		else
 			if (!in_range(src, attacker_controller) && !(attacker_controller.dna.check_mutation(/datum/mutation/telekinesis)))
-				attacker_controller.visible_message(span_notice(LANG("obj.28632b4d", list(attacker_controller.name, src, attacker))), \
-									span_notice(LANG("obj.be639ea3", list(attacker, src))))
+				attacker_controller.visible_message(span_notice(LANG("obj.28632b4d5f4f3f15", list(attacker_controller.name, src, attacker))), \
+									span_notice(LANG("obj.be639ea3871ad2bb", list(attacker, src))))
 				return FALSE
 
 	//if all that is good, then we can sleep peacefully
@@ -128,7 +128,7 @@
 //all credit to skasi for toy mech fun ideas
 /obj/item/toy/mecha/attack_self(mob/user)
 	if(timer < world.time)
-		to_chat(user, span_notice(LANG("obj.0d7de94d", list(src))))
+		to_chat(user, span_notice(LANG("obj.0d7de94d6905043c", list(src))))
 		timer = world.time + cooldown
 		if(!quiet)
 			playsound(user, 'sound/vehicles/mecha/mechstep.ogg', 20, TRUE)
@@ -157,11 +157,11 @@
  */
 /obj/item/toy/mecha/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
 	if(target == user)
-		to_chat(user, span_notice(LANG("obj.ae28e64c", null)))
+		to_chat(user, span_notice(LANG("obj.ae28e64c51d187d0", null)))
 		return
 	else if(!user.combat_mode)
 		if(wants_to_battle) //prevent spamming someone with offers
-			to_chat(user, span_notice(LANG("obj.8cc900ee", null)))
+			to_chat(user, span_notice(LANG("obj.8cc900ee824dc230", null)))
 			return
 		if(!check_battle_start(user)) //if the user's mech isn't ready, don't bother checking
 			return
@@ -179,8 +179,8 @@
 					return
 
 		//extend the offer of battle to the other mech
-		to_chat(user, span_notice(LANG("obj.964b79c3", list(target.name))))
-		to_chat(target, span_notice(LANG("obj.1599ab99", list(user.name, user.p_their(), name))))
+		to_chat(user, span_notice(LANG("obj.964b79c3047ae5ca", list(target.name))))
+		to_chat(target, span_notice(LANG("obj.1599ab99e3a57aef", list(user.name, user.p_their(), name))))
 		wants_to_battle = TRUE
 		addtimer(CALLBACK(src, PROC_REF(withdraw_offer), user), 6 SECONDS)
 		return
@@ -192,7 +192,7 @@
  */
 /obj/item/toy/mecha/attack_tk(mob/user)
 	if(timer < world.time)
-		to_chat(user, span_notice(LANG("obj.a117c34f", list(src))))
+		to_chat(user, span_notice(LANG("obj.a117c34fe617c7ae", list(src))))
 		timer = world.time + cooldown
 		if(!quiet)
 			playsound(user, 'sound/vehicles/mecha/mechstep.ogg', 20, TRUE)
@@ -209,16 +209,16 @@
 /obj/item/toy/mecha/proc/withdraw_offer(mob/living/carbon/user)
 	if(wants_to_battle)
 		wants_to_battle = FALSE
-		to_chat(user, span_notice(LANG("obj.a10087de", null)))
+		to_chat(user, span_notice(LANG("obj.a10087dee3e3c1f4", null)))
 /**
  * Starts a battle, toy mech vs player. Player... doesn't win.
  */
 /obj/item/toy/mecha/suicide_act(mob/living/user)
 	if(in_combat)
-		to_chat(user, span_notice(LANG("obj.d186bdcf", list(src))))
+		to_chat(user, span_notice(LANG("obj.d186bdcf54b84108", list(src))))
 		return
 
-	user.visible_message(span_suicide(LANG("obj.a1352bd4", list(user, user.p_they(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.a1352bd41b5fe9fe", list(user, user.p_they(), src, user.p_theyre()))))
 
 	in_combat = TRUE
 	sleep(1.5 SECONDS)
@@ -238,7 +238,7 @@
 				user.adjust_stamina_loss(25)
 
 		if(!combat_sleep(1 SECONDS, null, user))
-			say(LANG("obj.dee92bb2", null))
+			say(LANG("obj.dee92bb2c1196eff", null))
 			combat_health = max_combat_health
 			in_combat = FALSE
 			return SHAME
@@ -247,7 +247,7 @@
 	user.adjust_brute_loss(450)
 
 	in_combat = FALSE
-	say(LANG("obj.e30e6958", null)) // steal a soul, become swole
+	say(LANG("obj.e30e69582eaef8cf", null)) // steal a soul, become swole
 	add_atom_colour(rgb(255, 115, 115), ADMIN_COLOUR_PRIORITY)
 	max_combat_health = round(max_combat_health*1.5 + 0.1)
 	combat_health = max_combat_health
@@ -256,15 +256,15 @@
 
 /obj/item/toy/mecha/examine()
 	. = ..()
-	. += span_notice(LANG("obj.82ac1d5f", list(special_attack_cry, special_attack_type_message)))
+	. += span_notice(LANG("obj.82ac1d5f03c1b834", list(special_attack_cry, special_attack_type_message)))
 	if(in_combat)
-		. += span_notice(LANG("obj.0df9ef1e", list(max_combat_health, combat_health)))
-		. += span_notice(LANG("obj.d6be4a49", list(special_attack_cooldown? "flashing red." : "green and is ready!")))
+		. += span_notice(LANG("obj.0df9ef1e1046528e", list(max_combat_health, combat_health)))
+		. += span_notice(LANG("obj.d6be4a49aafd16df", list(special_attack_cooldown? "flashing red." : "green and is ready!")))
 	else
-		. += span_notice(LANG("obj.dcbaa226", list(max_combat_health)))
+		. += span_notice(LANG("obj.dcbaa226bdb6cd71", list(max_combat_health)))
 
 	if(wins || losses)
-		. += span_notice(LANG("obj.ff61d365", list(wins, losses)))
+		. += span_notice(LANG("obj.ff61d365e0be569c", list(wins, losses)))
 
 /obj/item/toy/mecha/can_speak(allow_mimes)
 	return !quiet && ..()
@@ -284,9 +284,9 @@
  */
 /obj/item/toy/mecha/proc/mecha_brawl(obj/item/toy/mecha/attacker, mob/living/carbon/attacker_controller, mob/living/carbon/opponent)
 	//A GOOD DAY FOR A SWELL BATTLE!
-	attacker_controller.visible_message(span_danger(LANG("obj.e5ae62b1", list(attacker_controller.name, attacker, src))), \
-						span_danger(LANG("obj.afec8b6e", list(attacker, src))), \
-						span_hear(LANG("obj.c355a91b", null)), COMBAT_MESSAGE_RANGE)
+	attacker_controller.visible_message(span_danger(LANG("obj.e5ae62b197722f7e", list(attacker_controller.name, attacker, src))), \
+						span_danger(LANG("obj.afec8b6eb5220157", list(attacker, src))), \
+						span_hear(LANG("obj.c355a91bfa61aa65", null)), COMBAT_MESSAGE_RANGE)
 
 	/// Who's in control of the defender (src)?
 	var/mob/living/carbon/src_controller = (opponent)? opponent : attacker_controller
@@ -308,13 +308,13 @@
 
 		//before we do anything - deal with charged attacks
 		if(special_attack_charged)
-			src_controller.visible_message(span_danger(LANG("obj.c318cdeb", list(src))), \
-							span_danger(LANG("obj.82d3e46e", list(src))))
+			src_controller.visible_message(span_danger(LANG("obj.c318cdeb6a226e75", list(src))), \
+							span_danger(LANG("obj.82d3e46e25a14252", list(src))))
 			special_attack_move(attacker)
 		else if(attacker.special_attack_charged)
 
-			attacker_controller.visible_message(span_danger(LANG("obj.c318cdeb", list(attacker))), \
-								span_danger(LANG("obj.82d3e46e", list(attacker))))
+			attacker_controller.visible_message(span_danger(LANG("obj.c318cdeb6a226e75", list(attacker))), \
+								span_danger(LANG("obj.82d3e46e25a14252", list(attacker))))
 			attacker.special_attack_move(src)
 		else
 			//process the cooldowns
@@ -328,20 +328,20 @@
 				if(1 to 3) //attacker wins
 					if(attacker.special_attack_cooldown == 0 && attacker.combat_health <= round(attacker.max_combat_health/3)) //if health is less than 1/3 and special off CD, use it
 						attacker.special_attack_charged = TRUE
-						attacker_controller.visible_message(span_danger(LANG("obj.e0f33a5f", list(attacker))), \
-											span_danger(LANG("obj.645487bc", list(attacker))))
+						attacker_controller.visible_message(span_danger(LANG("obj.e0f33a5fc3633aab", list(attacker))), \
+											span_danger(LANG("obj.645487bc9c2ed03d", list(attacker))))
 					else //just attack
 						attacker.SpinAnimation(5, 0)
 						playsound(attacker, 'sound/vehicles/mecha/mechstep.ogg', 30, TRUE)
 						combat_health--
-						attacker_controller.visible_message(span_danger(LANG("obj.2fdd340b", list(attacker, src))), \
-											span_danger(LANG("obj.2886f6fc", list(attacker, src))), \
-											span_hear(LANG("obj.5d7869f0", null)), COMBAT_MESSAGE_RANGE)
+						attacker_controller.visible_message(span_danger(LANG("obj.2fdd340baa171a12", list(attacker, src))), \
+											span_danger(LANG("obj.2886f6fcf0269fa7", list(attacker, src))), \
+											span_hear(LANG("obj.5d7869f0d2f84a2c", null)), COMBAT_MESSAGE_RANGE)
 						if(prob(5))
 							combat_health--
 							playsound(src, 'sound/effects/meteorimpact.ogg', 20, TRUE)
-							attacker_controller.visible_message(span_boldwarning(LANG("obj.663bc120", null)), \
-												span_boldwarning(LANG("obj.3c1b7582", list(src))), null, COMBAT_MESSAGE_RANGE)
+							attacker_controller.visible_message(span_boldwarning(LANG("obj.663bc120cd934586", null)), \
+												span_boldwarning(LANG("obj.3c1b7582254dd042", list(src))), null, COMBAT_MESSAGE_RANGE)
 
 				if(4) //both lose
 					attacker.SpinAnimation(5, 0)
@@ -351,44 +351,44 @@
 					do_sparks(2, FALSE, src)
 					do_sparks(2, FALSE, attacker)
 					if(prob(50))
-						attacker_controller.visible_message(span_danger(LANG("obj.79bc7e6e", list(attacker, src))), \
-											span_danger(LANG("obj.79bc7e6e", list(attacker, src))), \
-											span_hear(LANG("obj.35f8fb86", null)), COMBAT_MESSAGE_RANGE)
+						attacker_controller.visible_message(span_danger(LANG("obj.79bc7e6eb8e8b87b", list(attacker, src))), \
+											span_danger(LANG("obj.79bc7e6eb8e8b87b", list(attacker, src))), \
+											span_hear(LANG("obj.35f8fb86678c111f", null)), COMBAT_MESSAGE_RANGE)
 					else
-						src_controller.visible_message(span_danger(LANG("obj.79bc7e6e", list(src, attacker))), \
-										span_danger(LANG("obj.79bc7e6e", list(src, attacker))), \
-										span_hear(LANG("obj.35f8fb86", null)), COMBAT_MESSAGE_RANGE)
+						src_controller.visible_message(span_danger(LANG("obj.79bc7e6eb8e8b87b", list(src, attacker))), \
+										span_danger(LANG("obj.79bc7e6eb8e8b87b", list(src, attacker))), \
+										span_hear(LANG("obj.35f8fb86678c111f", null)), COMBAT_MESSAGE_RANGE)
 				if(5) //both win
 					playsound(attacker, 'sound/items/weapons/parry.ogg', 20, TRUE)
 					if(prob(50))
-						attacker_controller.visible_message(span_danger(LANG("obj.68baf414", list(src, attacker))), \
-											span_danger(LANG("obj.68baf414", list(src, attacker))), \
-											span_hear(LANG("obj.b94f51bf", null)), COMBAT_MESSAGE_RANGE)
+						attacker_controller.visible_message(span_danger(LANG("obj.68baf4145b5a7e7a", list(src, attacker))), \
+											span_danger(LANG("obj.68baf4145b5a7e7a", list(src, attacker))), \
+											span_hear(LANG("obj.b94f51bf2a96b93e", null)), COMBAT_MESSAGE_RANGE)
 					else
-						src_controller.visible_message(span_danger(LANG("obj.68baf414", list(attacker, src))), \
-										span_danger(LANG("obj.68baf414", list(attacker, src))), \
-										span_hear(LANG("obj.b94f51bf", null)), COMBAT_MESSAGE_RANGE)
+						src_controller.visible_message(span_danger(LANG("obj.68baf4145b5a7e7a", list(attacker, src))), \
+										span_danger(LANG("obj.68baf4145b5a7e7a", list(attacker, src))), \
+										span_hear(LANG("obj.b94f51bf2a96b93e", null)), COMBAT_MESSAGE_RANGE)
 
 				if(6 to 8) //defender wins
 					if(special_attack_cooldown == 0 && combat_health <= round(max_combat_health/3)) //if health is less than 1/3 and special off CD, use it
 						special_attack_charged = TRUE
-						src_controller.visible_message(span_danger(LANG("obj.e0f33a5f", list(src))), \
-										span_danger(LANG("obj.645487bc", list(src))))
+						src_controller.visible_message(span_danger(LANG("obj.e0f33a5fc3633aab", list(src))), \
+										span_danger(LANG("obj.645487bc9c2ed03d", list(src))))
 					else //just attack
 						SpinAnimation(5, 0)
 						playsound(src, 'sound/vehicles/mecha/mechstep.ogg', 30, TRUE)
 						attacker.combat_health--
-						src_controller.visible_message(span_danger(LANG("obj.7a108798", list(src, attacker))), \
-										span_danger(LANG("obj.0fc798f9", list(src, attacker))), \
-										span_hear(LANG("obj.e5dc3487", null)), COMBAT_MESSAGE_RANGE)
+						src_controller.visible_message(span_danger(LANG("obj.7a1087988164048b", list(src, attacker))), \
+										span_danger(LANG("obj.0fc798f954512097", list(src, attacker))), \
+										span_hear(LANG("obj.e5dc34872b7e033e", null)), COMBAT_MESSAGE_RANGE)
 						if(prob(5))
 							attacker.combat_health--
 							playsound(attacker, 'sound/effects/meteorimpact.ogg', 20, TRUE)
-							src_controller.visible_message(span_boldwarning(LANG("obj.663bc120", null)), \
-											span_boldwarning(LANG("obj.3c1b7582", list(attacker))), null, COMBAT_MESSAGE_RANGE)
+							src_controller.visible_message(span_boldwarning(LANG("obj.663bc120cd934586", null)), \
+											span_boldwarning(LANG("obj.3c1b7582254dd042", list(attacker))), null, COMBAT_MESSAGE_RANGE)
 				else
-					attacker_controller.visible_message(span_notice(LANG("obj.76413af4", list(src, attacker))), \
-										span_notice(LANG("obj.f5e2c301", null)))
+					attacker_controller.visible_message(span_notice(LANG("obj.76413af435fc2ad9", list(src, attacker))), \
+										span_notice(LANG("obj.f5e2c3011a44b2c3", null)))
 
 		battle_length++
 		sleep(0.5 SECONDS)
@@ -398,30 +398,30 @@
 
 	if(attacker.combat_health <= 0 && combat_health <= 0) //both lose
 		playsound(src, 'sound/machines/warning-buzzer.ogg', 20, TRUE)
-		attacker_controller.visible_message(span_boldnotice(LANG("obj.021786ba", list(src, attacker))), \
-							span_boldnotice(LANG("obj.f9bdcc8c", list(src, attacker))))
+		attacker_controller.visible_message(span_boldnotice(LANG("obj.021786ba36773d50", list(src, attacker))), \
+							span_boldnotice(LANG("obj.f9bdcc8c170f2d99", list(src, attacker))))
 	else if(attacker.combat_health <= 0) //src wins
 		wins++
 		attacker.losses++
 		playsound(attacker, 'sound/effects/light_flicker.ogg', 20, TRUE)
-		attacker_controller.visible_message(span_notice(LANG("obj.08142e6f", list(attacker))), \
-							span_notice(LANG("obj.08142e6f", list(attacker))), null, COMBAT_MESSAGE_RANGE)
+		attacker_controller.visible_message(span_notice(LANG("obj.08142e6f8a225816", list(attacker))), \
+							span_notice(LANG("obj.08142e6f8a225816", list(attacker))), null, COMBAT_MESSAGE_RANGE)
 		say("[pick(winlines)]")
-		src_controller.visible_message(span_notice(LANG("obj.01bf2392", list(src, attacker))), \
-						span_notice(LANG("obj.4c8d5b7b", list(src, attacker))))
+		src_controller.visible_message(span_notice(LANG("obj.01bf23927b11c6d0", list(src, attacker))), \
+						span_notice(LANG("obj.4c8d5b7b49a913e0", list(src, attacker))))
 	else if (combat_health <= 0) //attacker wins
 		attacker.wins++
 		losses++
 		playsound(src, 'sound/effects/light_flicker.ogg', 20, TRUE)
-		src_controller.visible_message(span_notice(LANG("obj.b250dd93", list(src))), \
-						span_notice(LANG("obj.b250dd93", list(src))), null, COMBAT_MESSAGE_RANGE)
+		src_controller.visible_message(span_notice(LANG("obj.b250dd93af5d065f", list(src))), \
+						span_notice(LANG("obj.b250dd93af5d065f", list(src))), null, COMBAT_MESSAGE_RANGE)
 		attacker.say("[pick(winlines)]")
-		attacker_controller.visible_message(span_notice(LANG("obj.e1bc66b4", list(attacker, src))), \
+		attacker_controller.visible_message(span_notice(LANG("obj.e1bc66b475172497", list(attacker, src))), \
 							"[span_notice("You raise up [attacker] proudly over [src]")]!")
 	else //both win?
-		say(LANG("obj.8b8212bd", null))
+		say(LANG("obj.8b8212bd0c6d74ce", null))
 		//don't want to make this a one sided conversation
-		quiet? attacker.say(LANG("obj.cc4a562b", null)) : attacker.say(LANG("obj.1e46ee7a", null))
+		quiet? attacker.say(LANG("obj.cc4a562b8838687d", null)) : attacker.say(LANG("obj.1e46ee7afd8298a8", null))
 
 	in_combat = FALSE
 	attacker.in_combat = FALSE
@@ -444,20 +444,20 @@
  */
 /obj/item/toy/mecha/proc/check_battle_start(mob/living/carbon/user, obj/item/toy/mecha/attacker, mob/living/carbon/target)
 	if(attacker?.in_combat)
-		to_chat(user, span_notice(LANG("obj.4df14454", list(target?target.p_their() : "Your", attacker.name))))
-		to_chat(target, span_notice(LANG("obj.e9afeed6", list(attacker.name))))
+		to_chat(user, span_notice(LANG("obj.4df14454f7d0e928", list(target?target.p_their() : "Your", attacker.name))))
+		to_chat(target, span_notice(LANG("obj.e9afeed655dd1ffa", list(attacker.name))))
 		return FALSE
 	if(in_combat)
-		to_chat(user, span_notice(LANG("obj.e9afeed6", list(name))))
-		to_chat(target, span_notice(LANG("obj.4df14454", list(user.p_their(), name))))
+		to_chat(user, span_notice(LANG("obj.e9afeed655dd1ffa", list(name))))
+		to_chat(target, span_notice(LANG("obj.4df14454f7d0e928", list(user.p_their(), name))))
 		return FALSE
 	if(attacker && attacker.timer > world.time)
-		to_chat(user, span_notice(LANG("obj.8024b036", list(target?target.p_their() : "Your", attacker.name))))
-		to_chat(target, span_notice(LANG("obj.a68768ea", list(attacker.name))))
+		to_chat(user, span_notice(LANG("obj.8024b03644957bd6", list(target?target.p_their() : "Your", attacker.name))))
+		to_chat(target, span_notice(LANG("obj.a68768ea6bf89ec1", list(attacker.name))))
 		return FALSE
 	if(timer > world.time)
-		to_chat(user, span_notice(LANG("obj.a68768ea", list(name))))
-		to_chat(target, span_notice(LANG("obj.8024b036", list(user.p_their(), name))))
+		to_chat(user, span_notice(LANG("obj.a68768ea6bf89ec1", list(name))))
+		to_chat(target, span_notice(LANG("obj.8024b03644957bd6", list(user.p_their(), name))))
 		return FALSE
 
 	return TRUE
@@ -489,7 +489,7 @@
 		if(SPECIAL_ATTACK_OTHER) //other
 			super_special_attack(victim)
 		else
-			say(LANG("obj.63c26c49", null))
+			say(LANG("obj.63c26c49b1746f87", null))
 
 /**
  * Base proc for 'other' special attack moves.
@@ -499,7 +499,7 @@
  * * victim - the toy being hit by the super special move (doesn't necessarily need to be used)
  */
 /obj/item/toy/mecha/proc/super_special_attack(obj/item/toy/mecha/victim)
-	visible_message(span_notice(LANG("obj.80271972", list(src))))
+	visible_message(span_notice(LANG("obj.80271972f2650a16", list(src))))
 
 /obj/item/toy/mecha/ripley
 	name = "toy Ripley MK-I"
@@ -609,7 +609,7 @@
 /obj/item/toy/mecha/deathripley/super_special_attack(obj/item/toy/mecha/victim)
 	playsound(src, 'sound/items/weapons/sonic_jackhammer.ogg', 20, TRUE)
 	if(victim.combat_health < combat_health) //Instantly kills the other mech if its health is below ours.
-		say(LANG("obj.7458c683", null))
+		say(LANG("obj.7458c683cae13f87", null))
 		victim.combat_health = 0
 	else //Otherwise, just deal one damage.
 		victim.combat_health--

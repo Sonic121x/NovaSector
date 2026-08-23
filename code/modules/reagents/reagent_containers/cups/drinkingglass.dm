@@ -53,7 +53,7 @@
 /obj/item/reagent_containers/cup/glass/drinkingglass/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT(src, TRAIT_WAS_RENAMED))
-		. += span_notice(LANG("obj.1272de7b", null))
+		. += span_notice(LANG("obj.1272de7b45676e50", null))
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/proc/on_cleaned(obj/source_component, obj/source)
 	SIGNAL_HANDLER
@@ -99,9 +99,9 @@
 		return
 	. = ..()
 	if(length(reagents.reagent_list))
-		desc = LANG("obj.b049848e", null)
+		desc = LANG("obj.b049848e43cc1053", null)
 	else
-		desc = LANG("obj.517c0088", null)
+		desc = LANG("obj.517c0088f0f77cf3", null)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled
 	base_container_type = /obj/item/reagent_containers/cup/glass/drinkingglass

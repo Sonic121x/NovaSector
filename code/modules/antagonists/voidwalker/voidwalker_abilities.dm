@@ -26,11 +26,11 @@
 	. = ..()
 
 	if(!isliving(cast_on))
-		cast_on.balloon_alert(owner, LANG("datum.90038a3d", null))
+		cast_on.balloon_alert(owner, LANG("datum.90038a3dc6dc0d13", null))
 		return FALSE
 
 	if(!check_if_staring(cast_on))
-		owner.balloon_alert(owner, LANG("datum.550658cc", null))
+		owner.balloon_alert(owner, LANG("datum.550658cc03cb0154", null))
 		return FALSE
 
 	return .
@@ -52,10 +52,10 @@
 	SIGNAL_HANDLER
 
 	if(target.is_blind() || !(owner in view(target, world.view)))
-		owner.balloon_alert(owner, LANG("datum.3a683ff2", null))
+		owner.balloon_alert(owner, LANG("datum.3a683ff2e5aae728", null))
 		return FALSE
 	if(in_combat)
-		owner.balloon_alert(owner, LANG("datum.7b8a9de2", null))
+		owner.balloon_alert(owner, LANG("datum.7b8a9de22ed3b232", null))
 		in_combat = FALSE
 	return TRUE
 
@@ -135,5 +135,5 @@
 	if(istype(get_turf(target), valid_target_turf))
 		return ..()
 
-	owner.balloon_alert(owner, LANG("datum.686f201d", list(initial(valid_target_turf.name))))
+	owner.balloon_alert(owner, LANG("datum.686f201dc17a71d0", list(initial(valid_target_turf.name))))
 	return FALSE

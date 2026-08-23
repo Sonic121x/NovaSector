@@ -43,8 +43,8 @@
 		user.Move_Pulled(source_obj)
 
 		if (user.pulling.loc == source_obj.loc)
-			user.visible_message(span_notice(LANG("datum.90421f65", list(user, user.pulling, source_obj))),
-				span_notice(LANG("datum.ae0dc246", list(user.pulling, source_obj))))
+			user.visible_message(span_notice(LANG("datum.90421f65d3a10018", list(user, user.pulling, source_obj))),
+				span_notice(LANG("datum.ae0dc2460ceff50c", list(user.pulling, source_obj))))
 			user.stop_pulling()
 
 		return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -55,7 +55,7 @@
 			//Already buckled to the object, you probably meant to unbuckle them
 			return
 
-		to_chat(user, span_warning(LANG("datum.9a1c1261", list(pushed_mob, pushed_mob.buckled))))
+		to_chat(user, span_warning(LANG("datum.9a1c126101e7f485", list(pushed_mob, pushed_mob.buckled))))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	INVOKE_ASYNC(src, PROC_REF(perform_table_smash), source_obj, user)
@@ -67,7 +67,7 @@
 	if (user.combat_mode)
 		switch(user.grab_state)
 			if (GRAB_PASSIVE)
-				to_chat(user, span_warning(LANG("datum.d5471d98", null)))
+				to_chat(user, span_warning(LANG("datum.d5471d9857d59e0e", null)))
 				return
 			if (GRAB_AGGRESSIVE)
 				if (gentle_push)
@@ -77,8 +77,8 @@
 			if (GRAB_NECK to GRAB_KILL)
 				tablelimbsmash(user, pushed_mob, table)
 	else
-		pushed_mob.visible_message(span_notice(LANG("datum.f9e2a953", list(user, pushed_mob, table))), \
-							span_userdanger(LANG("datum.f9e2a953", list(user, pushed_mob, table))))
+		pushed_mob.visible_message(span_notice(LANG("datum.f9e2a953864c8a5e", list(user, pushed_mob, table))), \
+							span_userdanger(LANG("datum.f9e2a953864c8a5e", list(user, pushed_mob, table))))
 		if (do_after(user, 3.5 SECONDS, target = pushed_mob))
 			tableplace(user, pushed_mob, table)
 		else
@@ -121,8 +121,8 @@
 	if (istype(potential_spine))
 		tableplace_delay *= potential_spine.athletics_boost_multiplier
 
-	carried_mob.visible_message(span_notice(LANG("datum.426e5861", list(user, skills_space, carried_mob, table))),
-		span_userdanger(LANG("datum.426e5861", list(user, skills_space, carried_mob, table))))
+	carried_mob.visible_message(span_notice(LANG("datum.426e5861b752282d", list(user, skills_space, carried_mob, table))),
+		span_userdanger(LANG("datum.426e5861b752282d", list(user, skills_space, carried_mob, table))))
 	if (!do_after(user, tableplace_delay, target = carried_mob))
 		return ITEM_INTERACT_BLOCKING
 	user.unbuckle_mob(carried_mob)
@@ -133,14 +133,14 @@
 /datum/element/table_smash/proc/tableplace(mob/living/user, mob/living/pushed_mob, obj/structure/table/table)
 	pushed_mob.forceMove(table.loc)
 	pushed_mob.set_resting(TRUE, TRUE)
-	pushed_mob.visible_message(span_notice(LANG("datum.90421f65", list(user, pushed_mob, table))), \
-		span_notice(LANG("datum.90421f65", list(user, pushed_mob, table))))
+	pushed_mob.visible_message(span_notice(LANG("datum.90421f65d3a10018", list(user, pushed_mob, table))), \
+		span_notice(LANG("datum.90421f65d3a10018", list(user, pushed_mob, table))))
 	log_combat(user, pushed_mob, "placed", null, "onto [table]")
 
 /// Aggressively smash the mob onto the table
 /datum/element/table_smash/proc/tablepush(mob/living/user, mob/living/pushed_mob, obj/structure/table/table)
 	if (HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_danger(LANG("datum.4088543b", list(pushed_mob))))
+		to_chat(user, span_danger(LANG("datum.4088543b30e10161", list(pushed_mob))))
 		return
 
 	var/passtable_key = REF(user)
@@ -158,8 +158,8 @@
 	pushed_mob.apply_damage(10, BRUTE)
 	pushed_mob.apply_damage(40, STAMINA)
 	playsound(pushed_mob, 'sound/effects/tableslam.ogg', 90, TRUE)
-	pushed_mob.visible_message(span_danger(LANG("datum.88e2eb84", list(user, pushed_mob, table))), \
-		span_userdanger(LANG("datum.55d7ad7b", list(user, table))))
+	pushed_mob.visible_message(span_danger(LANG("datum.88e2eb84d2fdb0a3", list(user, pushed_mob, table))), \
+		span_userdanger(LANG("datum.55d7ad7b31d7168e", list(user, table))))
 	log_combat(user, pushed_mob, "tabled", null, "onto [table]")
 	pushed_mob.add_mood_event("table", /datum/mood_event/table)
 	SEND_SIGNAL(user, COMSIG_LIVING_TABLE_SLAMMING, pushed_mob, table)
@@ -176,8 +176,8 @@
 	pushed_mob.apply_damage(30, BRUTE, banged_limb, wound_bonus = extra_wound)
 	pushed_mob.apply_damage(60, STAMINA)
 	playsound(pushed_mob, 'sound/effects/bang.ogg', 90, TRUE)
-	pushed_mob.visible_message(span_danger(LANG("datum.6979a6dc", list(user, pushed_mob, banged_limb.plaintext_zone, table))),
-		span_userdanger(LANG("datum.6c6e7d58", list(user, banged_limb.plaintext_zone, table))))
+	pushed_mob.visible_message(span_danger(LANG("datum.6979a6dc9090a616", list(user, pushed_mob, banged_limb.plaintext_zone, table))),
+		span_userdanger(LANG("datum.6c6e7d58b77f15ff", list(user, banged_limb.plaintext_zone, table))))
 	log_combat(user, pushed_mob, "head slammed", null, "against [table]")
 	pushed_mob.add_mood_event("table", /datum/mood_event/table_limbsmash, banged_limb)
 	table.take_damage(50)
@@ -191,9 +191,9 @@
 	if((shove_flags & SHOVE_KNOCKDOWN_BLOCKED) || !(shove_flags & SHOVE_BLOCKED))
 		return
 	target.Knockdown(SHOVE_KNOCKDOWN_TABLE, daze_amount = 3 SECONDS)
-	target.visible_message(span_danger(LANG("obj.39cd95b6", list(shover.name, target.name, src))),
-		span_userdanger(LANG("obj.3873e9ee", list(src, shover.name))), span_hear(LANG("obj.b75dfa76", null)), COMBAT_MESSAGE_RANGE, shover)
-	to_chat(shover, span_danger(LANG("obj.b47544d4", list(target.name, src))))
+	target.visible_message(span_danger(LANG("obj.39cd95b69ae46db0", list(shover.name, target.name, src))),
+		span_userdanger(LANG("obj.3873e9ee1e775caf", list(src, shover.name))), span_hear(LANG("obj.b75dfa76034c79c2", null)), COMBAT_MESSAGE_RANGE, shover)
+	to_chat(shover, span_danger(LANG("obj.b47544d4280dee14", list(target.name, src))))
 	target.throw_at(src, 1, 1, null, FALSE) //1 speed throws with no spin are basically just forcemoves with a hard collision check
 	log_combat(shover, target, "shoved", "onto [src] (table)[weapon ? " with [weapon]" : ""]")
 	after_smash(target)

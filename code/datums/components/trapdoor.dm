@@ -70,7 +70,7 @@
 	if(!isopenturf(new_parent))
 		if(isatom(new_parent))
 			var/atom/new_parent_atom = new_parent
-			new_parent_atom.visible_message(span_warning(LANG("datum.b71af5b8", list(new_parent_atom))))
+			new_parent_atom.visible_message(span_warning(LANG("datum.b71af5b868b22150", list(new_parent_atom))))
 		return COMPONENT_NOTRANSFER
 	if(SSshuttle.get_containing_shuttle(new_parent))
 		on_shuttle = TRUE
@@ -140,9 +140,9 @@
 	if(!assembly)
 		return
 	if(IS_OPEN(parent))
-		source.balloon_alert(user, LANG("datum.7f40e850", null))
+		source.balloon_alert(user, LANG("datum.7f40e85087df5a10", null))
 		return
-	source.balloon_alert(user, LANG("datum.e625c60f", null))
+	source.balloon_alert(user, LANG("datum.e625c60ffe9580ae", null))
 	INVOKE_ASYNC(src, PROC_REF(async_try_unlink), source, user, tool)
 	return
 
@@ -154,15 +154,15 @@
 		return
 	var/obj/item/trapdoor_remote/remote = tool
 	if(!remote.internals)
-		source.balloon_alert(user, LANG("datum.6cb0ce7c", null))
+		source.balloon_alert(user, LANG("datum.6cb0ce7cfce8ea6d", null))
 		return
 	if(IS_OPEN(parent))
-		source.balloon_alert(user, LANG("datum.5f72265c", null))
+		source.balloon_alert(user, LANG("datum.5f72265cb50a616d", null))
 		return
 	if(assembly)
-		source.balloon_alert(user, LANG("datum.8ee2cda6", null))
+		source.balloon_alert(user, LANG("datum.8ee2cda64083936a", null))
 		return
-	source.balloon_alert(user, LANG("datum.2d580d19", null))
+	source.balloon_alert(user, LANG("datum.2d580d1917c7162c", null))
 	INVOKE_ASYNC(src, PROC_REF(async_try_link), source, user, tool)
 
 /datum/component/trapdoor/proc/async_try_link(turf/source, mob/user, obj/item/trapdoor_remote/remote)
@@ -171,11 +171,11 @@
 	if(QDELETED(src))
 		return
 	if(IS_OPEN(parent))
-		source.balloon_alert(user, LANG("datum.5f72265c", null))
+		source.balloon_alert(user, LANG("datum.5f72265cb50a616d", null))
 		return
 	src.assembly = remote.internals
 	++assembly.linked
-	source.balloon_alert(user, LANG("datum.06c8ad67", null))
+	source.balloon_alert(user, LANG("datum.06c8ad67ba588038", null))
 	UnregisterSignal(SSdcs, COMSIG_GLOB_TRAPDOOR_LINK)
 	RegisterSignal(assembly, COMSIG_ASSEMBLY_PULSED, PROC_REF(toggle_trapdoor))
 	RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), PROC_REF(try_unlink))
@@ -186,7 +186,7 @@
 	if(QDELETED(src))
 		return
 	if(IS_OPEN(parent))
-		source.balloon_alert(user, LANG("datum.7f40e850", null))
+		source.balloon_alert(user, LANG("datum.7f40e85087df5a10", null))
 		return
 	assembly.linked = max(assembly.linked - 1, 0)
 	stored_decals = list()
@@ -194,7 +194,7 @@
 	UnregisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL))
 	RegisterSignal(SSdcs, COMSIG_GLOB_TRAPDOOR_LINK, PROC_REF(on_link_requested))
 	assembly = null
-	source.balloon_alert(user, LANG("datum.5377410f", null))
+	source.balloon_alert(user, LANG("datum.5377410f47791b0e", null))
 
 /datum/component/trapdoor/proc/decal_detached(datum/source, description, cleanable, directional, pic)
 	SIGNAL_HANDLER
@@ -248,7 +248,7 @@
 			post_change_callbacks += CALLBACK(src, TYPE_PROC_REF(/datum/component/trapdoor, carry_over_trapdoor), path, null, conspicuous, assembly)
 			return
 		// otherwise, break trapdoor
-		dying_trapdoor.visible_message(span_warning(LANG("datum.3bb6ec86", list(dying_trapdoor))))
+		dying_trapdoor.visible_message(span_warning(LANG("datum.3bb6ec868a59d3a8", list(dying_trapdoor))))
 		if(assembly)
 			assembly.linked = max(assembly.linked - 1, 0)
 			stored_decals.Cut()
@@ -275,7 +275,7 @@
 	if(is_under_shuttle())
 		return
 	if(conspicuous)
-		examine_text += LANG("datum.b0e52a2c", null)
+		examine_text += LANG("datum.b0e52a2c6daec231", null)
 
 /**
  * ## try_opening
@@ -296,7 +296,7 @@
 		RegisterSignal(parent, COMSIG_TURF_DECAL_DETACHED, PROC_REF(decal_detached))
 	playsound(trapdoor_turf, 'sound/machines/trapdoor/trapdoor_open.ogg', 50)
 	trapdoor_baseturfs = trapdoor_turf.get_baseturfs_to_depth(opening_depth)
-	trapdoor_turf.visible_message(span_warning(LANG("datum.61403a24", list(trapdoor_turf))))
+	trapdoor_turf.visible_message(span_warning(LANG("datum.61403a2424002fa6", list(trapdoor_turf))))
 	trapdoor_turf.ScrapeAway(opening_depth, flags = CHANGETURF_INHERIT_AIR | CHANGETURF_TRAPDOOR_INDUCED)
 
 /**
@@ -309,10 +309,10 @@
 	var/turf/open/trapdoor_turf = parent
 	var/obj/structure/lattice/blocking = locate() in trapdoor_turf.contents
 	if(blocking)
-		trapdoor_turf.visible_message(span_warning(LANG("datum.a62ed95f", list(trapdoor_turf, blocking))))
+		trapdoor_turf.visible_message(span_warning(LANG("datum.a62ed95fa1c06ae6", list(trapdoor_turf, blocking))))
 		return
 	playsound(trapdoor_turf, 'sound/machines/trapdoor/trapdoor_shut.ogg', 50)
-	trapdoor_turf.visible_message(span_warning(LANG("datum.7365d86d", list(trapdoor_turf))))
+	trapdoor_turf.visible_message(span_warning(LANG("datum.7365d86d67ddd912", list(trapdoor_turf))))
 	var/list/new_baseturfs = list()
 	new_baseturfs += trapdoor_turf.baseturfs
 	new_baseturfs += trapdoor_turf.type
@@ -353,7 +353,7 @@
 		return
 	if(!COOLDOWN_FINISHED(src, search_cooldown))
 		if(loc && pulser)
-			loc.balloon_alert(pulser, LANG("obj.4d1f829f", null))
+			loc.balloon_alert(pulser, LANG("obj.4d1f829f4e0abcba", null))
 		return
 	attempt_link_up()
 	COOLDOWN_START(src, search_cooldown, search_cooldown_time)
@@ -362,14 +362,14 @@
 	var/turf/assembly_turf = get_turf(src)
 	if(!COOLDOWN_FINISHED(src, search_cooldown))
 		var/timeleft = DisplayTimeText(COOLDOWN_TIMELEFT(src, search_cooldown))
-		assembly_turf.visible_message(span_warning(LANG("obj.c95c9d1a", list(src, timeleft))), vision_distance = SAMETILE_MESSAGE_RANGE)
+		assembly_turf.visible_message(span_warning(LANG("obj.c95c9d1a4c98a418", list(src, timeleft))), vision_distance = SAMETILE_MESSAGE_RANGE)
 		return
 	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TRAPDOOR_LINK, src) & LINKED_UP)
 		playsound(assembly_turf, 'sound/machines/chime.ogg', 50, TRUE)
-		assembly_turf.visible_message(span_notice(LANG("obj.e630b7ef", list(src))), vision_distance = SAMETILE_MESSAGE_RANGE)
+		assembly_turf.visible_message(span_notice(LANG("obj.e630b7ef70f302c0", list(src))), vision_distance = SAMETILE_MESSAGE_RANGE)
 	else
 		playsound(assembly_turf, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-		assembly_turf.visible_message(span_warning(LANG("obj.ab361f8b", list(src))), vision_distance = SAMETILE_MESSAGE_RANGE)
+		assembly_turf.visible_message(span_warning(LANG("obj.ab361f8b4e17fb6c", list(src))), vision_distance = SAMETILE_MESSAGE_RANGE)
 
 /**
  * ## trapdoor remotes!
@@ -390,26 +390,26 @@
 /obj/item/trapdoor_remote/examine(mob/user)
 	. = ..()
 	if(!internals)
-		. += span_warning(LANG("obj.5e5b99ec", list(src)))
+		. += span_warning(LANG("obj.5e5b99ece9210da9", list(src)))
 		return
-	. += span_notice(LANG("obj.2cbdf06f", null))
+	. += span_notice(LANG("obj.2cbdf06f9d656bfd", null))
 	if(!internals.linked)
-		. += span_warning(LANG("obj.6982c762", list(src)))
-		. += span_notice(LANG("obj.69879e5c", list(src)))
+		. += span_warning(LANG("obj.6982c7625a16d4a5", list(src)))
+		. += span_notice(LANG("obj.69879e5cd1c9a0ca", list(src)))
 		return
-	. += span_notice(LANG("obj.dda4c815", list(src, internals.linked)))
-	. += span_notice(LANG("obj.e9b4cfc9", null))
-	. += span_notice(LANG("obj.fd925114", null))
-	. += span_notice(LANG("obj.9e947e51", list(internals.autoclose ? "enabled" : "disabled")))
+	. += span_notice(LANG("obj.dda4c8158ebffe5f", list(src, internals.linked)))
+	. += span_notice(LANG("obj.e9b4cfc9a939af09", null))
+	. += span_notice(LANG("obj.fd92511417ade3a7", null))
+	. += span_notice(LANG("obj.9e947e51e055c65f", list(internals.autoclose ? "enabled" : "disabled")))
 	if(!COOLDOWN_FINISHED(src, trapdoor_cooldown))
-		. += span_warning(LANG("obj.7ac5a36b", null))
+		. += span_warning(LANG("obj.7ac5a36b1f85c219", null))
 
 /obj/item/trapdoor_remote/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(!internals)
-		to_chat(user, span_warning(LANG("obj.d0a8684a", list(src))))
+		to_chat(user, span_warning(LANG("obj.d0a8684acfccf71d", list(src))))
 		return
-	to_chat(user, span_notice(LANG("obj.b2ebb56a", list(internals, src))))
+	to_chat(user, span_notice(LANG("obj.b2ebb56a7a9359e9", list(internals, src))))
 	internals.forceMove(get_turf(src))
 	internals = null
 
@@ -417,9 +417,9 @@
 	if(!istype(assembly))
 		return NONE
 	if(internals)
-		balloon_alert(user, LANG("obj.7f1af016", null))
+		balloon_alert(user, LANG("obj.7f1af0164989b57e", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.c001ae59", null))
+	balloon_alert(user, LANG("obj.c001ae59289fc369", null))
 	internals = assembly
 	user.transferItemToLoc(assembly, src)
 	return ITEM_INTERACT_SUCCESS
@@ -430,24 +430,24 @@
 		return TRUE
 
 	if(!internals)
-		user.balloon_alert(user, LANG("obj.3095f095", null))
+		user.balloon_alert(user, LANG("obj.3095f0953147a63b", null))
 		return TRUE
 
 	if(!internals.linked)
 		internals.pulsed(user)
 		// The pulse linked successfully
 		if(internals.linked)
-			user.balloon_alert(user, LANG("obj.c1a9e344", list(internals.linked)))
+			user.balloon_alert(user, LANG("obj.c1a9e3448f083fc3", list(internals.linked)))
 		// The pulse failed to link
 		else
-			user.balloon_alert(user, LANG("obj.b6682898", null))
+			user.balloon_alert(user, LANG("obj.b6682898b81ddfac", null))
 		return TRUE
 
 	if(!COOLDOWN_FINISHED(src, trapdoor_cooldown))
-		user.balloon_alert(user, LANG("obj.d4ae5d4d", null))
+		user.balloon_alert(user, LANG("obj.d4ae5d4dded19efe", null))
 		return TRUE
 
-	user.balloon_alert(user, LANG("obj.10d81e10", null))
+	user.balloon_alert(user, LANG("obj.10d81e104217e722", null))
 	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 	icon_state = "trapdoor_pressed"
 	addtimer(VARSET_CALLBACK(src, icon_state, initial(icon_state)), trapdoor_cooldown_time)
@@ -459,11 +459,11 @@
 	if (!user.is_holding(src))
 		return CLICK_ACTION_BLOCKING
 	if(!internals)
-		user.balloon_alert(user, LANG("obj.3095f095", null))
+		user.balloon_alert(user, LANG("obj.3095f0953147a63b", null))
 		return CLICK_ACTION_BLOCKING
 
 	internals.autoclose = !internals.autoclose
-	user.balloon_alert(user, LANG("obj.270ec772", list(internals.autoclose ? "enabled" : "disabled")))
+	user.balloon_alert(user, LANG("obj.270ec772bb097bc3", list(internals.autoclose ? "enabled" : "disabled")))
 	return CLICK_ACTION_SUCCESS
 
 #undef TRAPDOOR_LINKING_SEARCH_RANGE
@@ -497,7 +497,7 @@
 	if(!isopenspaceturf(target_turf))
 		return NONE
 	in_use = TRUE
-	balloon_alert(user, LANG("obj.14259684", null))
+	balloon_alert(user, LANG("obj.14259684f2d6a96d", null))
 	if(!do_after(user, 5 SECONDS, interacting_with))
 		in_use = FALSE
 		return ITEM_INTERACT_BLOCKING
@@ -506,6 +506,6 @@
 		return ITEM_INTERACT_BLOCKING
 	var/turf/new_turf = target_turf.place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	new_turf.AddComponent(/datum/component/trapdoor, starts_open = FALSE, conspicuous = TRUE)
-	balloon_alert(user, LANG("obj.ff550070", null))
+	balloon_alert(user, LANG("obj.ff55007058dfc5ba", null))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

@@ -40,7 +40,7 @@
 
 /obj/item/stack/ore/bluespace_crystal/attack_self(mob/user)
 	SEND_SIGNAL(user, COMSIG_MOB_CRUSHED_BLUESPACE_CRYSTAL, src)
-	user.visible_message(span_warning(LANG("obj.a1d666d4", list(user, src))), span_danger(LANG("obj.e79ecc98", list(src))))
+	user.visible_message(span_warning(LANG("obj.a1d666d485862318", list(user, src))), span_danger(LANG("obj.e79ecc98d18d99d8", list(src))))
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, SFX_PORTAL_ENTER, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	blink_mob(user)
@@ -51,7 +51,7 @@
 
 /obj/item/stack/ore/bluespace_crystal/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..()) // not caught in mid-air
-		visible_message(span_notice(LANG("obj.d8c434f3", list(src))))
+		visible_message(span_notice(LANG("obj.d8c434f30cb92d39", list(src))))
 		var/turf/T = get_turf(hit_atom)
 		new /obj/effect/particle_effect/sparks(T)
 		playsound(loc, SFX_PORTAL_ENTER, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
@@ -103,9 +103,9 @@
 	user.put_in_hands(BC)
 	use(1)
 	if(!amount)
-		to_chat(user, span_notice(LANG("obj.7b64f981", null)))
+		to_chat(user, span_notice(LANG("obj.7b64f981710d8877", null)))
 	else
-		to_chat(user, span_notice(LANG("obj.1e4b0cb9", null)))
+		to_chat(user, span_notice(LANG("obj.1e4b0cb9fbf9dfcd", null)))
 
 /obj/item/stack/sheet/bluespace_crystal/fifty
 	amount = 50

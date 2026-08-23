@@ -6,10 +6,10 @@
 #define I18N_TEST_LOCALE "i18n-unittest"
 
 /datum/unit_test/i18n_template_match/Run()
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
 	if(!islist(en_cache))
 		en_cache = list()
-		GLOB.i18n_cache[DEFAULT_UI_LOCALE] = en_cache
+		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE] = en_cache
 	var/list/test_pairs = list(
 		"unittest.tpl_mid" = list("The {0} is already filled to capacity.", "测试{0}满员。"),
 		"unittest.tpl_lead" = list("{0} slams the vault door shut!", "{0}砰地关上了金库门！"),
@@ -20,7 +20,8 @@
 		var/list/pair = test_pairs[key]
 		en_cache[key] = pair[1]
 		test_cache[key] = pair[2]
-	GLOB.i18n_cache[I18N_TEST_LOCALE] = test_cache
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][I18N_TEST_LOCALE] = test_cache
+	GLOB.i18n_runtime_domains.Remove(I18N_TEST_LOCALE)
 
 	// 分段诊断：setup / 记录数 / 锚检测 / 完整 apply。
 	TEST_ASSERT(lang_tpl_setup(I18N_TEST_LOCALE), "lang_tpl_setup 应返回 ready")
@@ -43,14 +44,17 @@
 	// 幂等：已替换的中文输出再过引擎不变。
 	var/once = lang_template_apply("The Zxqv is already filled to capacity.", I18N_TEST_LOCALE)
 	TEST_ASSERT_EQUAL(lang_template_apply(once, I18N_TEST_LOCALE), once, "引擎应幂等")
-	// 人工字典的无空白 pattern 自动进独立 AC：纯串与前缀子串都不需要 DM 登记。
-	TEST_ASSERT_EQUAL(lang_fallback_apply("Loading...", "zh-Hans"), "加载中……", "无空白 fallback 应由 JSON 自动注册")
-	TEST_ASSERT_EQUAL(lang_fallback_apply("Map:Delta", "zh-Hans"), "地图:Delta", "无空白 fallback 应支持嵌入子串")
+	// 人工 fallback 是 locale 专属维护数据，伪 locale 只生成自动 forward 目录；只有 active zh-Hans
+	// 才能断言这两条中文补充。运行时不会为测试额外加载第二个 locale。
+	if(GLOB.i18n_server_locale == LANGUAGE_LOCALE_ZH_HANS)
+		TEST_ASSERT_EQUAL(lang_fallback_apply("Loading...", LANGUAGE_LOCALE_ZH_HANS), "加载中……", "无空白 fallback 应由 active locale 的 JSON 自动注册")
+		TEST_ASSERT_EQUAL(lang_fallback_apply("Map:Delta", LANGUAGE_LOCALE_ZH_HANS), "地图:Delta", "无空白 fallback 应支持嵌入子串")
 
 	// 清理注入状态（测试 locale 的引擎缓存与字面 AC 状态一并清掉）。
 	for(var/key in test_pairs)
 		en_cache -= key
-	GLOB.i18n_cache -= I18N_TEST_LOCALE
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET] -= I18N_TEST_LOCALE
+	GLOB.i18n_runtime_domains.Remove(I18N_TEST_LOCALE)
 	GLOB.i18n_tpl_state -= I18N_TEST_LOCALE
 	GLOB.i18n_tpl_records -= I18N_TEST_LOCALE
 	GLOB.i18n_tpl_anchor_ids -= I18N_TEST_LOCALE

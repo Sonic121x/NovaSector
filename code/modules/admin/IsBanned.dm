@@ -244,7 +244,7 @@
 			return null
 
 		if (C) //user is already connected!.
-			to_chat(C, span_redtext(LANG("world.5f205b9e", null)), confidential = TRUE)
+			to_chat(C, span_redtext(LANG("world.5f205b9e7bfcf966", null)), confidential = TRUE)
 
 		var/desc = "\nReason:(StickyBan) You, or another user of this computer or connection ([bannedckey]) is banned from playing here. The ban reason is:\n[ban["message"]]\nThis ban was applied by [ban["admin"]]\nThis is a BanEvasion Detection System ban, if you think this ban is a mistake, please wait EXACTLY 6 seconds, then try again before filing an appeal.\n"
 		. = list("reason" = "Stickyban", "desc" = desc)

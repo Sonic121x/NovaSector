@@ -45,7 +45,7 @@
 		amount_to_steal = account_to_rob.account_balance
 	plunder_stored += amount_to_steal
 	account_to_rob.adjust_money(-amount_to_steal)
-	account_to_rob.bank_card_talk(LANG("datum.b7433aa9", list(amount_to_steal, MONEY_NAME)))
+	account_to_rob.bank_card_talk(LANG("datum.b7433aa9d401d966", list(amount_to_steal, MONEY_NAME)))
 
 /datum/component/plundering_attacks/proc/drop_plunder()
 	SIGNAL_HANDLER

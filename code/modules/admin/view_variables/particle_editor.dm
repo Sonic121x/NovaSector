@@ -163,7 +163,7 @@
 						var_value[3] = var_value[1]
 					var_value = generator(arglist(var_value))
 				if(P_DATA_ICON_ADD)
-					var_value = input(LANG("datum.f5b090a6", null), LANG("datum.ef7ff638", null)) as null|icon
+					var_value = input(LANG("datum.f5b090a6032e2061", null), LANG("datum.ef7ff63888bef350", null)) as null|icon
 					if(!var_value)
 						return FALSE
 					var/list/new_values = list()

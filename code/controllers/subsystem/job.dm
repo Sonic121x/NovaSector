@@ -154,7 +154,7 @@ SUBSYSTEM_DEF(job)
 		joinable_departments = list()
 		joinable_departments_by_type = list()
 		experience_jobs_map = list()
-		to_chat(world, span_boldannounce(LANG("datum.b5eb6ddf", null)))
+		to_chat(world, span_boldannounce(LANG("datum.b5eb6ddf3681e1a1", null)))
 		return FALSE
 
 	var/list/new_all_occupations = list()
@@ -724,7 +724,7 @@ SUBSYSTEM_DEF(job)
 	job_debug("RJCT: Player rejected, Player: [player]")
 	unassigned -= player
 	if(!run_divide_occupation_pure)
-		to_chat(player, span_infoplain(LANG("datum.77359c87", null)))
+		to_chat(player, span_infoplain(LANG("datum.77359c87045aa539", null)))
 		player.ready = PLAYER_NOT_READY
 		player.client << output((player.ready == PLAYER_READY_TO_PLAY) ? 1 : 0, "lobby_browser:imgsrc") // NOVA EDIT ADDITION
 
@@ -874,9 +874,9 @@ SUBSYSTEM_DEF(job)
 	var/where = new_captain.equip_in_one_of_slots(paper, slots, FALSE, indirect_action = TRUE) || "at your feet"
 
 	if(acting_captain)
-		to_chat(new_captain, span_notice(LANG("datum.3c051050", list(where))))
+		to_chat(new_captain, span_notice(LANG("datum.3c051050c566ddec", list(where))))
 	else
-		to_chat(new_captain, span_notice(LANG("datum.afec813a", list(where))))
+		to_chat(new_captain, span_notice(LANG("datum.afec813a73100647", list(where))))
 		new_captain.add_mob_memory(/datum/memory/key/captains_spare_code, safe_code = SSid_access.spare_id_safe_code)
 
 	// Force-give their ID card bridge access.

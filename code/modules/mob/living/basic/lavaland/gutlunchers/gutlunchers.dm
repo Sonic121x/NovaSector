@@ -53,7 +53,7 @@
 		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 	var/obj/ore_food = locate(/obj/item/stack/ore) in target
 	if(isnull(ore_food))
-		balloon_alert(src, LANG("mob.3c546ddf", null))
+		balloon_alert(src, LANG("mob.3c546ddf183ec9f1", null))
 	else
 		UnarmedAttack(ore_food, TRUE, modifiers)
 	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN

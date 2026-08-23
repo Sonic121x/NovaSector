@@ -89,23 +89,23 @@
 	. = ..()
 
 	if(!QDELETED(beaker1))
-		. += span_notice(LANG("obj.23d1ac8d", list(beaker1.reagents.maximum_volume)))
-		. += span_notice(LANG("obj.e931dcd2", list(EXAMINE_HINT("LMB Alt"))))
+		. += span_notice(LANG("obj.23d1ac8d3f2eb519", list(beaker1.reagents.maximum_volume)))
+		. += span_notice(LANG("obj.e931dcd2c3b8be53", list(EXAMINE_HINT("LMB Alt"))))
 	else
-		. += span_warning(LANG("obj.489241c7", list(EXAMINE_HINT("Left Click"))))
+		. += span_warning(LANG("obj.489241c763d5ed76", list(EXAMINE_HINT("Left Click"))))
 	if(!QDELETED(beaker2))
-		. += span_notice(LANG("obj.51f4fb4e", list(beaker2.reagents.maximum_volume)))
-		. += span_notice(LANG("obj.d9137172", list(EXAMINE_HINT("RMB Alt"))))
+		. += span_notice(LANG("obj.51f4fb4e59adbec7", list(beaker2.reagents.maximum_volume)))
+		. += span_notice(LANG("obj.d91371729ce553cb", list(EXAMINE_HINT("RMB Alt"))))
 	else
-		. += span_warning(LANG("obj.eedbf6c6", list(EXAMINE_HINT("Right Click"))))
+		. += span_warning(LANG("obj.eedbf6c625db8357", list(EXAMINE_HINT("Right Click"))))
 
 	if(anchored)
-		. += span_notice(LANG("obj.04b10ee4", list(EXAMINE_HINT("anchored"))))
+		. += span_notice(LANG("obj.04b10ee4cf37358e", list(EXAMINE_HINT("anchored"))))
 	else
-		. += span_warning(LANG("obj.7fa302fb", list(EXAMINE_HINT("wrenched"))))
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
+		. += span_warning(LANG("obj.7fa302fb98f1a2d0", list(EXAMINE_HINT("wrenched"))))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
 	if(panel_open)
-		. += span_notice(LANG("obj.fa5fc796", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.fa5fc7965e12e9d0", list(EXAMINE_HINT("pried"))))
 
 /obj/machinery/chem_mass_spec/update_overlays()
 	. = ..()
@@ -148,7 +148,7 @@
 
 /obj/machinery/chem_mass_spec/item_interaction(mob/living/user, obj/item/item, list/modifiers)
 	if(processing_reagents)
-		balloon_alert(user, LANG("obj.2807df16", null))
+		balloon_alert(user, LANG("obj.2807df1677620a4e", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!item.can_insert_container(user, src))
@@ -158,7 +158,7 @@
 	if(!replace_beaker(user, !is_right_clicking, item))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.73f897d5", list(item, is_right_clicking ? "output" : "input"))))
+	to_chat(user, span_notice(LANG("obj.73f897d51ab0f68c", list(item, is_right_clicking ? "output" : "input"))))
 	update_appearance()
 	ui_interact(user)
 
@@ -167,7 +167,7 @@
 /obj/machinery/chem_mass_spec/wrench_act(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if(processing_reagents)
-		balloon_alert(user, LANG("obj.2807df16", null))
+		balloon_alert(user, LANG("obj.2807df1677620a4e", null))
 		return .
 
 	if(default_unfasten_wrench(user, tool) == SUCCESSFUL_UNFASTEN)
@@ -175,14 +175,14 @@
 
 /obj/machinery/chem_mass_spec/screwdriver_act(mob/living/user, obj/item/tool)
 	if(processing_reagents)
-		balloon_alert(user, LANG("obj.2807df16", null))
+		balloon_alert(user, LANG("obj.2807df1677620a4e", null))
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/chem_mass_spec/crowbar_act(mob/living/user, obj/item/tool)
 	if(processing_reagents)
-		balloon_alert(user, LANG("obj.2807df16", null))
+		balloon_alert(user, LANG("obj.2807df1677620a4e", null))
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_crowbar(user, tool)
@@ -360,17 +360,17 @@
 	switch(action)
 		if("activate")
 			if(QDELETED(beaker1))
-				say(LANG("obj.5b0996ec", null))
+				say(LANG("obj.5b0996ece3613c91", null))
 				return
 			if(QDELETED(beaker2))
-				say(LANG("obj.4a1552b9", null))
+				say(LANG("obj.4a1552b9ef91a517", null))
 				return
 
 			//adjust timer for purification
 			progress_time = 0
 			estimate_time()
 			if(delay_time <= 0)
-				say(LANG("obj.5890d1b0", null))
+				say(LANG("obj.5890d1b0f36ad123", null))
 				return
 
 			//start the purification process
@@ -448,14 +448,14 @@
 
 /obj/machinery/chem_mass_spec/click_alt(mob/living/user)
 	if(processing_reagents)
-		balloon_alert(user, LANG("obj.2807df16", null))
+		balloon_alert(user, LANG("obj.2807df1677620a4e", null))
 		return CLICK_ACTION_BLOCKING
 	replace_beaker(user, TRUE)
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/chem_mass_spec/click_alt_secondary(mob/living/user)
 	if(processing_reagents)
-		balloon_alert(user, LANG("obj.2807df16", null))
+		balloon_alert(user, LANG("obj.2807df1677620a4e", null))
 		return
 	replace_beaker(user, FALSE)
 

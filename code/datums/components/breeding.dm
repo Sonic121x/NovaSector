@@ -64,7 +64,7 @@
 		return
 
 	if(!ready_to_breed)
-		source.balloon_alert(source, LANG("datum.1125a29f", null))
+		source.balloon_alert(source, LANG("datum.1125a29f654ba3e2", null))
 		return COMPONENT_HOSTILE_NO_ATTACK
 
 	var/turf/delivery_destination = get_turf(source)

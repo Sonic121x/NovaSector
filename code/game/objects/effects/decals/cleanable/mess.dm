@@ -202,7 +202,7 @@
 	if(. || !HAS_TRAIT(user, TRAIT_VOMIT_SLURPER))
 		return
 	playsound(get_turf(src), 'sound/items/drink.ogg', 50, TRUE) //slurp
-	user.visible_message(span_alert(LANG("obj.5bfdb828", list(user))))
+	user.visible_message(span_alert(LANG("obj.5bfdb82855ef48fb", list(user))))
 	lazy_init_reagents()?.trans_to(user, reagents.total_volume, transferred_by = user, methods = INGEST)
 	qdel(src)
 
@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
 	if(!isnull(oldname))
-		desc = LANG("obj.8095bd93", list(oldname))
+		desc = LANG("obj.8095bd93f9ad92d5", list(oldname))
 	. = ..()
 
 /obj/effect/decal/cleanable/glitter

@@ -72,7 +72,7 @@
 	if(possible_bag_bombs[suit] == HOLDING_MODULE_PREVENT_DUPLICATE_CHECK)
 		return MOD_ABORT_INSTALL
 	if(!anomalock.core)
-		balloon_alert(user, LANG("obj.9c969525", null))
+		balloon_alert(user, LANG("obj.9c96952522f32061", null))
 		playsound(suit, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return MOD_ABORT_INSTALL
 	var/datum/storage/bag_of_holding/other_bag

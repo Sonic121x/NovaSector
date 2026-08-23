@@ -41,7 +41,7 @@
 		return FALSE
 
 	if(linked_mob.handcuffed)
-		linked_mob.balloon_alert(linked_mob, LANG("datum.15d796f0", null))
+		linked_mob.balloon_alert(linked_mob, LANG("datum.15d796f05efc019d", null))
 		activate()
 		return FALSE
 
@@ -79,8 +79,8 @@
 
 /obj/item/clothing/neck/link_scryer/loaded/nifsoft/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.779b5fc6", list(mod_link.id, mod_link.frequency || "unset")))
-	. += span_notice(LANG("obj.421abe83", null))
+	. += span_notice(LANG("obj.779b5fc69d2d5884", list(mod_link.id, mod_link.frequency || "unset")))
+	. += span_notice(LANG("obj.421abe837eb2b7e1", null))
 
 /obj/item/clothing/neck/link_scryer/loaded/nifsoft/equipped(mob/living/user, slot)
 	. = ..()
@@ -95,16 +95,16 @@
 	return TRUE
 
 /obj/item/clothing/neck/link_scryer/loaded/nifsoft/screwdriver_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, LANG("obj.6a34b38f", null))
+	balloon_alert(user, LANG("obj.6a34b38ffe179ddd", null))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/clothing/neck/link_scryer/loaded/nifsoft/attack_hand_secondary(mob/user, list/modifiers)
-	var/new_label = reject_bad_text(tgui_input_text(user, LANG("obj.ef858bfd", null), LANG("obj.043408e2", null), label, max_length = MAX_NAME_LEN))
+	var/new_label = reject_bad_text(tgui_input_text(user, LANG("obj.ef858bfd31749053", null), LANG("obj.043408e2d9bad7f0", null), label, max_length = MAX_NAME_LEN))
 	if(!new_label)
-		balloon_alert(user, LANG("obj.b3c641ad", null))
+		balloon_alert(user, LANG("obj.b3c641ad6521a873", null))
 		return
 	label = new_label
-	balloon_alert(user, LANG("obj.63b7d810", null))
+	balloon_alert(user, LANG("obj.63b7d8101662b5cf", null))
 	update_name()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 

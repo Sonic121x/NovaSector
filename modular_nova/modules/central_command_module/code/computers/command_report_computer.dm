@@ -75,7 +75,7 @@
 
 	if(announce_contents)
 		priority_announce(command_report_content, command_report_title, report_sound, sender_override = command_name, has_important_message = TRUE)
-	print_command_report(command_report_content, LANG("obj.fb6958b6", list(announce_contents ? "" : "Classified ", command_name)), !announce_contents)
+	print_command_report(command_report_content, LANG("obj.fb6958b641d31224", list(announce_contents ? "" : "Classified ", command_name)), !announce_contents)
 
 	log_admin("[key_name(usr)] has created a command report: \"[command_report_content]\", sent from \"[command_name]\".")
 	message_admins("[key_name_admin(usr)] has created a command report, sent from \"[html_encode(command_name)]\".")

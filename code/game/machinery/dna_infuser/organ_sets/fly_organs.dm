@@ -30,7 +30,7 @@
 	// needs to be done before the species is set
 	UnregisterSignal(source, COMSIG_ORGAN_BODYPART_INSERTED)
 	// okay you NEED to be a fly
-	to_chat(new_fly, span_danger(LANG("datum.47394568", null)))
+	to_chat(new_fly, span_danger(LANG("datum.47394568433d5ead", null)))
 	new_fly.set_species(/datum/species/fly)
 
 /obj/item/organ/eyes/fly
@@ -157,8 +157,8 @@
 	body.vomit(vomit_flags = (MOB_VOMIT_MESSAGE | MOB_VOMIT_FORCE | MOB_VOMIT_HARM), lost_nutrition = 0, distance = 2, purge_ratio = 0.67)
 	playsound(get_turf(owner), 'sound/effects/splat.ogg', 50, TRUE)
 	body.visible_message(
-		span_danger(LANG("obj.04e91940", list(body))),
-		span_userdanger(LANG("obj.6bcf6afe", null)),
+		span_danger(LANG("obj.04e91940a6bcc616", list(body))),
+		span_userdanger(LANG("obj.6bcf6afee3efd1c0", null)),
 	)
 	return ..()
 

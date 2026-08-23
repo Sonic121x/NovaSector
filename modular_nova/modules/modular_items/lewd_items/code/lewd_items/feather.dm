@@ -20,7 +20,7 @@
 		if(BODY_ZONE_PRECISE_GROIN)
 			targetedsomewhere = TRUE
 			if(!(target.is_bottomless()))
-				to_chat(user, span_danger(LANG("obj.27926522", list(target))))
+				to_chat(user, span_danger(LANG("obj.27926522fd6429b1", list(target))))
 				return
 			message = (user == target) ? pick("tickles [target.p_them()]self with [src]", "gently teases [target.p_their()] belly with [src]") : pick("teases [target]'s belly with [src]", "uses [src] to tickle [target]'s belly", "tickles [target] with [src]")
 			if(target.stat == DEAD)
@@ -32,7 +32,7 @@
 			targetedsomewhere = TRUE
 			var/obj/item/organ/genital/badonkers = target.get_organ_slot(ORGAN_SLOT_BREASTS)
 			if(!(target.is_topless() || badonkers.visibility_preference == GENITAL_ALWAYS_SHOW))
-				to_chat(user, span_danger(LANG("obj.a7259a33", list(target))))
+				to_chat(user, span_danger(LANG("obj.a7259a33d6199479", list(target))))
 				return
 			message = (user == target) ? pick("tickles [target.p_them()]self with [src]", "gently teases [target.p_their()] own nipples with [src]") : pick("teases [target]'s nipples with [src]", "uses [src] to tickle [target]'s left nipple", "uses [src] to tickle [target]'s right nipple")
 			if(target.stat == DEAD)
@@ -43,11 +43,11 @@
 		if(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 			targetedsomewhere = TRUE
 			if(!target.has_feet())
-				to_chat(user, span_danger(LANG("obj.005c78c4", list(target))))
+				to_chat(user, span_danger(LANG("obj.005c78c4535e88fe", list(target))))
 				return
 
 			if(!target.is_barefoot())
-				to_chat(user, span_danger(LANG("obj.6e1e6ab7", list(target))))
+				to_chat(user, span_danger(LANG("obj.6e1e6ab7abafd77b", list(target))))
 				return
 			message = (user == target) ? pick("tickles [target.p_them()]self with [src]", "gently teases [target.p_their()] own feet with [src]") : pick("teases [target]'s feet with [src]", "uses [src] to tickle [target]'s [user.zone_selected == BODY_ZONE_L_LEG ? "left" : "right"] foot", "uses [src] to tickle [target]'s toes")
 			if(target.stat == DEAD)
@@ -58,7 +58,7 @@
 		if(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)
 			targetedsomewhere = TRUE
 			if(!target.is_topless())
-				to_chat(user, span_danger(LANG("obj.eb21ab9b", list(target))))
+				to_chat(user, span_danger(LANG("obj.eb21ab9beef834a8", list(target))))
 				return
 			message = (user == target) ? pick("tickles [target.p_them()]self with [src]", "gently teases [target.p_their()] own armpit with [src]") : pick("teases [target]'s right armpit with [src]", "uses [src] to tickle [target]'s [user.zone_selected == BODY_ZONE_L_ARM ? "left" : "right"] armpit", "uses [src] to tickle [target]'s underarm")
 			if(target.stat == DEAD)

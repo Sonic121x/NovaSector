@@ -29,28 +29,28 @@
 /obj/structure/bed/nest/buckle_feedback(mob/living/being_buckled, mob/buckler)
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice(LANG("obj.850437aa", list(buckler, src, buckler.p_them()))),
-			span_notice(LANG("obj.de3a0f21", list(src))),
+			span_notice(LANG("obj.850437aa4af74163", list(buckler, src, buckler.p_them()))),
+			span_notice(LANG("obj.de3a0f21d2084b3e", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_buckled.visible_message(
-			span_notice(LANG("obj.501b93dd", list(buckler, being_buckled, src, being_buckled.p_them()))),
-			span_notice(LANG("obj.8db7d7e1", list(buckler, src))),
+			span_notice(LANG("obj.501b93dd46442b8e", list(buckler, being_buckled, src, being_buckled.p_them()))),
+			span_notice(LANG("obj.8db7d7e186686c00", list(buckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
 /obj/structure/bed/nest/unbuckle_feedback(mob/living/being_unbuckled, mob/unbuckler)
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice(LANG("obj.3ed57b41", list(unbuckler, unbuckler.p_them()))),
-			span_notice(LANG("obj.b240c437", null)),
+			span_notice(LANG("obj.3ed57b4165d9e9c0", list(unbuckler, unbuckler.p_them()))),
+			span_notice(LANG("obj.b240c437762c7ecd", null)),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_notice(LANG("obj.dd90ed93", list(unbuckler, being_unbuckled))),
-			span_notice(LANG("obj.37e7fd0c", list(unbuckler))),
+			span_notice(LANG("obj.dd90ed93d0fe4c37", list(unbuckler, being_unbuckled))),
+			span_notice(LANG("obj.37e7fd0c4c2d9fbf", list(unbuckler))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -64,25 +64,25 @@
 		return
 
 	if(captive != hero)
-		captive.visible_message(span_notice(LANG("obj.dd90ed93", list(hero.name, captive.name))),
-			span_notice(LANG("obj.4d5b023f", list(hero.name))),
-			span_hear(LANG("obj.8489ba56", null)))
+		captive.visible_message(span_notice(LANG("obj.dd90ed93d0fe4c37", list(hero.name, captive.name))),
+			span_notice(LANG("obj.4d5b023fab13b9c3", list(hero.name))),
+			span_hear(LANG("obj.8489ba564b7cea8e", null)))
 		unbuckle_mob(captive)
 		add_fingerprint(hero)
 		return
 
-	captive.visible_message(span_warning(LANG("obj.d4e1e5a3", list(captive.name))),
-		span_notice(LANG("obj.11477fc6", null)),
-		span_hear(LANG("obj.8489ba56", null)))
+	captive.visible_message(span_warning(LANG("obj.d4e1e5a3d637fce7", list(captive.name))),
+		span_notice(LANG("obj.11477fc6d413dd27", null)),
+		span_hear(LANG("obj.8489ba564b7cea8e", null)))
 
 	if(!do_after(captive, 100 SECONDS, target = src, cog_icon = null))
 		if(captive.buckled)
-			to_chat(captive, span_warning(LANG("obj.bca97c0d", null)))
+			to_chat(captive, span_warning(LANG("obj.bca97c0d59d379d9", null)))
 		return
 
-	captive.visible_message(span_warning(LANG("obj.47c13f01", list(captive.name))),
-		span_notice(LANG("obj.eccde3c8", null)),
-		span_hear(LANG("obj.8489ba56", null)))
+	captive.visible_message(span_warning(LANG("obj.47c13f014854245f", list(captive.name))),
+		span_notice(LANG("obj.eccde3c8b90dab69", null)),
+		span_hear(LANG("obj.8489ba564b7cea8e", null)))
 
 	unbuckle_mob(captive)
 	add_fingerprint(hero)
@@ -100,9 +100,9 @@
 		unbuckle_all_mobs()
 
 	if(buckle_mob(M))
-		M.visible_message(span_notice(LANG("obj.93d01e74", list(user.name, M.name, src))),\
-			span_danger(LANG("obj.d785adc4", list(user.name, src))),\
-			span_hear(LANG("obj.8489ba56", null)))
+		M.visible_message(span_notice(LANG("obj.93d01e74e8b8c7f0", list(user.name, M.name, src))),\
+			span_danger(LANG("obj.d785adc43c858561", list(user.name, src))),\
+			span_hear(LANG("obj.8489ba564b7cea8e", null)))
 
 /obj/structure/bed/nest/post_buckle_mob(mob/living/M)
 	ADD_TRAIT(M, TRAIT_HANDS_BLOCKED, type)

@@ -38,7 +38,7 @@
 		return
 
 	if(!connected)
-		say(LANG("obj.26d14ec8", null))
+		say(LANG("obj.26d14ec823a6d091", null))
 		return
 
 	for(var/obj/machinery/door/poddoor/M in range(range, src))
@@ -84,7 +84,7 @@
 	if(.)
 		return
 	if(!allowed(usr))
-		to_chat(usr, span_warning(LANG("obj.077f9b52", null)))
+		to_chat(usr, span_warning(LANG("obj.077f9b52c530e7f8", null)))
 		return
 
 	switch(action)

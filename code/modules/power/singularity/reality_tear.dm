@@ -58,7 +58,7 @@
 	if(!isliving(user))
 		return
 	var/mob/living/jedi = user
-	to_chat(jedi, span_userdanger(LANG("obj.12e78c0f", null)))
+	to_chat(jedi, span_userdanger(LANG("obj.12e78c0f69d481d0", null)))
 	jedi.dust(just_ash = TRUE)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 

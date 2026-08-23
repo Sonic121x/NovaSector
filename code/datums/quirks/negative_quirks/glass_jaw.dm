@@ -48,8 +48,8 @@
 		//don't display the message if little mac is already KO'd
 		if(!IS_UNCONSCIOUS(source))
 			source.visible_message(
-				span_warning(LANG("datum.f3161a5f", list(source))),
-				span_userdanger(LANG("datum.5f831b05", null)),
+				span_warning(LANG("datum.f3161a5ff6cc3b3b", list(source))),
+				span_userdanger(LANG("datum.5f831b0567fc1de3", null)),
 				vision_distance = COMBAT_MESSAGE_RANGE,
 			)
 		source.Unconscious(3 SECONDS)

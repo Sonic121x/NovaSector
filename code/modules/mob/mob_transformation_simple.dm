@@ -6,21 +6,21 @@
 /mob/proc/change_mob_type(new_type = null, turf/location = null, new_name = null as text|null, delete_old_mob = FALSE)
 
 	if(isnewplayer(src))
-		to_chat(usr, span_danger(LANG("mob.7ffc2fb0", null)))
+		to_chat(usr, span_danger(LANG("mob.7ffc2fb0f8c44454", null)))
 		return
 
 	if(!new_type)
-		new_type = input(LANG("mob.4cffd853", null), LANG("mob.cca2da41", null)) as text|null
+		new_type = input(LANG("mob.4cffd8534421817f", null), LANG("mob.cca2da41e634a3de", null)) as text|null
 
 	if(istext(new_type))
 		new_type = text2path(new_type)
 
 	if(!ispath(new_type) )
-		to_chat(usr, LANG("mob.75e9434e", list(new_type)))
+		to_chat(usr, LANG("mob.75e9434e3489a508", list(new_type)))
 		return
 
 	if(ispath(new_type, /mob/dead/new_player))
-		to_chat(usr, span_danger(LANG("mob.de3ef23b", null)))
+		to_chat(usr, span_danger(LANG("mob.de3ef23b93dd4e4c", null)))
 		return
 
 	if (SEND_SIGNAL(src, COMSIG_PRE_MOB_CHANGED_TYPE) & COMPONENT_BLOCK_MOB_CHANGE)
@@ -37,7 +37,7 @@
 		desired_mob = new new_type(src.loc)
 
 	if(!ismob(desired_mob))
-		to_chat(usr, LANG("mob.fc301dbf", list(new_type)))
+		to_chat(usr, LANG("mob.fc301dbfc51cdca3", list(new_type)))
 		qdel(desired_mob)
 		return
 

@@ -1,15 +1,15 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ADMIN_VERB(reestablish_db_connection, R_NONE, "重新连接数据库", "Attempts to (re)establish the DB Connection", ADMIN_CATEGORY_SERVER)
 	if (!CONFIG_GET(flag/sql_enabled))
-		to_chat(user, span_adminnotice(LANG("datum.5bf16f98", null)), confidential = TRUE)
+		to_chat(user, span_adminnotice(LANG("datum.5bf16f98199b79cc", null)), confidential = TRUE)
 		return
 
 	if (SSdbcore.IsConnected())
 		if (!user.holder.check_for_rights(R_DEBUG))
-			tgui_alert(user,LANG("datum.5c442773", null), LANG("datum.9cf82a0f", null))
+			tgui_alert(user,LANG("datum.5c442773d18ac2a7", null), LANG("datum.9cf82a0ffadbd786", null))
 			return
 
-		var/reconnect = tgui_alert(user,LANG("datum.edf02f70", null), LANG("datum.9cf82a0f", null), list("Force Reconnect", "Cancel"))
+		var/reconnect = tgui_alert(user,LANG("datum.edf02f7036d2a62b", null), LANG("datum.9cf82a0ffadbd786", null), list("Force Reconnect", "Cancel"))
 		if (reconnect != "Force Reconnect")
 			return
 

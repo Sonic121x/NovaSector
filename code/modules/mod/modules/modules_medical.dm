@@ -159,11 +159,11 @@
 			return
 		var/atom/movable/organ = target
 		if(length(organ_list) >= max_organs)
-			balloon_alert(mod.wearer, LANG("obj.ea62ed27", null))
+			balloon_alert(mod.wearer, LANG("obj.ea62ed27a91f762b", null))
 			return
 		organ_list += organ
 		organ.forceMove(src)
-		balloon_alert(mod.wearer, LANG("obj.6d8a4646", list(organ)))
+		balloon_alert(mod.wearer, LANG("obj.6d8a4646f8fb2b75", list(organ)))
 		playsound(src, 'sound/vehicles/mecha/hydraulic.ogg', 25, TRUE)
 		drain_power(use_energy_cost)
 		return
@@ -324,16 +324,16 @@
 	if(!.)
 		return
 	if(!mod.wearer.Adjacent(target) || !iscarbon(target) || target == mod.wearer)
-		balloon_alert(mod.wearer, LANG("obj.5c77b90d", null))
+		balloon_alert(mod.wearer, LANG("obj.5c77b90dc874f777", null))
 		return
 	var/mob/living/carbon/carbon_target = target
 	if(length(ripped_clothing))
-		balloon_alert(mod.wearer, LANG("obj.1c6aa147", null))
+		balloon_alert(mod.wearer, LANG("obj.1c6aa14747155a68", null))
 		return
-	balloon_alert(mod.wearer, LANG("obj.74ead2c2", null))
+	balloon_alert(mod.wearer, LANG("obj.74ead2c2c84f65d9", null))
 	playsound(src, 'sound/items/zip/zip.ogg', 25, TRUE, frequency = -1)
 	if(!do_after(mod.wearer, 1.5 SECONDS, target = carbon_target))
-		balloon_alert(mod.wearer, LANG("obj.c67b5d27", null))
+		balloon_alert(mod.wearer, LANG("obj.c67b5d274d6e724b", null))
 		return
 	var/target_zones = body_zone2cover_flags(mod.wearer.zone_selected)
 	for(var/obj/item/clothing as anything in carbon_target.get_equipped_items())
@@ -363,7 +363,7 @@
 		ripped_clothing -= clothing
 	if(zipped)
 		playsound(src, 'sound/items/zip/zip.ogg', 25, TRUE)
-		balloon_alert(mod.wearer, LANG("obj.bb9fc339", null))
+		balloon_alert(mod.wearer, LANG("obj.bb9fc339a2b940f5", null))
 
 /obj/item/mod/module/thread_ripper/on_part_deactivation(deleting = FALSE)
 	if(!length(ripped_clothing))

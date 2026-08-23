@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(ckey_to_aooc_name)
 GAME_VERB(/client, aooc, "反派 OOC", "OOC")
 	VERB_ARG(msg, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger(LANG("client.b79ad8a3", null)))
+		to_chat(usr, span_danger(LANG("client.b79ad8a388d1b3a4", null)))
 		return
 
 	if(!mob)
@@ -16,16 +16,16 @@ GAME_VERB(/client, aooc, "反派 OOC", "OOC")
 
 	if(!holder)
 		if(!mob.mind || !length(mob.mind.antag_datums))
-			to_chat(src, span_danger(LANG("client.64888d23", null)))
+			to_chat(src, span_danger(LANG("client.64888d2366898696", null)))
 			return
 		if(!GLOB.aooc_allowed)
-			to_chat(src, span_danger(LANG("client.af6892f5", null)))
+			to_chat(src, span_danger(LANG("client.af6892f50161a767", null)))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, span_danger(LANG("client.058db9ff", null)))
+			to_chat(src, span_danger(LANG("client.058db9ff84dbe18d", null)))
 			return
 	if(is_banned_from(ckey, "OOC"))
-		to_chat(src, span_danger(LANG("client.aaaae170", null)))
+		to_chat(src, span_danger(LANG("client.aaaae170c8fb6787", null)))
 		return
 	if(QDELETED(src))
 		return
@@ -39,7 +39,7 @@ GAME_VERB(/client, aooc, "反派 OOC", "OOC")
 	msg = emoji_parse(msg)
 
 	if(!(prefs.chat_toggles & CHAT_OOC))
-		to_chat(src, span_danger(LANG("client.a877c979", null)))
+		to_chat(src, span_danger(LANG("client.a877c979d7d49962", null)))
 		return
 
 	mob.log_talk(raw_msg, LOG_OOC, tag = "AOOC")
@@ -72,7 +72,7 @@ GAME_VERB(/client, aooc, "反派 OOC", "OOC")
 		var/mode = listeners[iterated_client]
 		var/color = (!anon && CONFIG_GET(flag/allow_admin_ooccolor) && iterated_client?.prefs?.read_preference(/datum/preference/color/ooc_color)) ? iterated_client?.prefs?.read_preference(/datum/preference/color/ooc_color) : GLOB.AOOC_COLOR
 		var/name = (mode == AOOC_LISTEN_ADMIN && anon) ? "([key])[keyname]" : keyname
-		to_chat(iterated_client, span_oocplain(LANG("client.0600bf7a", list(color, name, msg))), avoid_highlighting = (iterated_client == src))
+		to_chat(iterated_client, span_oocplain(LANG("client.0600bf7ad7dc17d8", list(color, name, msg))), avoid_highlighting = (iterated_client == src))
 
 #undef AOOC_LISTEN_PLAYER
 #undef AOOC_LISTEN_ADMIN
@@ -97,7 +97,7 @@ GAME_VERB(/client, aooc, "反派 OOC", "OOC")
 			listeners[iterated_mob.client] = TRUE
 	for(var/iterated_listener in listeners)
 		var/client/iterated_client = iterated_listener
-		to_chat(iterated_client, span_oocplain(LANG("_root.9dcf1da5", list(GLOB.aooc_allowed ? "enabled" : "disabled"))))
+		to_chat(iterated_client, span_oocplain(LANG("_root.9dcf1da536be006b", list(GLOB.aooc_allowed ? "enabled" : "disabled"))))
 
 ADMIN_VERB(toggleaooc, R_ADMIN, "切换反派 OOC", "Toggles Antag OOC.", ADMIN_CATEGORY_SERVER)
 	toggle_aooc()

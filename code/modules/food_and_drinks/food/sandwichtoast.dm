@@ -286,7 +286,7 @@
 		return
 	if(check_liked(user) == FOOD_LIKED)
 		return
-	to_chat(user, span_warning(LANG("obj.48eed786", list(src))))
+	to_chat(user, span_warning(LANG("obj.48eed786158fdfcf", list(src))))
 	user.adjust_disgust(33)
 
 // Override for after_eat and check_liked callbacks.
@@ -315,11 +315,11 @@
 	if(check_liked(consumer) == FOOD_LIKED)
 		return
 	// I thought it didn't make sense for it to instantly kill you, so instead enjoy shitloads of toxin damage per bite.
-	balloon_alert(consumer, LANG("obj.3c38f370", null))
+	balloon_alert(consumer, LANG("obj.3c38f370adfa07c9", null))
 	consumer.ForceContractDisease(new /datum/disease/death_sandwich_poisoning())
 
 /obj/item/food/sandwich/death/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.7a12678a", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.7a12678a120ff547", list(user, src, user.p_their(), user.p_theyre()))))
 	qdel(src)
 	user.gib()
 	return MANUAL_SUICIDE

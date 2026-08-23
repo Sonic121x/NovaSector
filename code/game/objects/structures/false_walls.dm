@@ -101,21 +101,21 @@
 /obj/structure/falsewall/tool_act(mob/living/user, obj/item/tool, list/modifiers)
 	if(!opening || !tool.tool_behaviour)
 		return ..()
-	to_chat(user, span_warning(LANG("obj.79d73a2a", null)))
+	to_chat(user, span_warning(LANG("obj.79d73a2a41526f00", null)))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/structure/falsewall/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!density)
-		to_chat(user, span_warning(LANG("obj.bd26aaca", null)))
+		to_chat(user, span_warning(LANG("obj.bd26aaca35046453", null)))
 		return
 	var/turf/loc_turf = get_turf(src)
 	if(loc_turf.density)
-		to_chat(user, span_warning(LANG("obj.1596b690", list(src))))
+		to_chat(user, span_warning(LANG("obj.1596b6909c5bb436", list(src))))
 		return ITEM_INTERACT_SUCCESS
 	if(!isfloorturf(loc_turf))
-		to_chat(user, span_warning(LANG("obj.de34c64e", list(src))))
+		to_chat(user, span_warning(LANG("obj.de34c64eda9d37e0", list(src))))
 		return ITEM_INTERACT_SUCCESS
-	user.visible_message(span_notice(LANG("obj.7015292b", list(user))), span_notice(LANG("obj.6bcc8576", null)))
+	user.visible_message(span_notice(LANG("obj.7015292b950755c7", list(user))), span_notice(LANG("obj.6bcc85763092c593", null)))
 	ChangeToWall()
 	return ITEM_INTERACT_SUCCESS
 
@@ -128,12 +128,12 @@
 
 /obj/structure/falsewall/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(opening)
-		to_chat(user, span_warning(LANG("obj.79d73a2a", null)))
+		to_chat(user, span_warning(LANG("obj.79d73a2a41526f00", null)))
 		return ITEM_INTERACT_BLOCKING // honest to god no idea what the point of this blocker is, I'm just the messenger
 	return NONE
 
 /obj/structure/falsewall/proc/dismantle(mob/user, disassembled=TRUE, obj/item/tool = null)
-	user.visible_message(span_notice(LANG("obj.53c21018", list(user))), span_notice(LANG("obj.f2e26fd8", null)))
+	user.visible_message(span_notice(LANG("obj.53c21018eed8ce7d", list(user))), span_notice(LANG("obj.f2e26fd8651820c4", null)))
 	if(tool)
 		tool.play_tool_sound(src, 100)
 	else
@@ -449,7 +449,7 @@
 
 /obj/structure/falsewall/material/finalize_material_effects(list/materials)
 	. = ..()
-	desc = LANG("obj.2d73a0c8", list(get_material_english_list(materials)))
+	desc = LANG("obj.2d73a0c8464b7da6", list(get_material_english_list(materials)))
 
 /obj/structure/falsewall/material/toggle_open()
 	if(!QDELETED(src))

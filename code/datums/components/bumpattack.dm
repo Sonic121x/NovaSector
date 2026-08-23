@@ -68,6 +68,6 @@
 	if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_BUMP_ATTACK))
 		TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, attack_cooldown)
 		INVOKE_ASYNC(target, TYPE_PROC_REF(/atom, attackby), our_weapon, bumper)
-		bumper.visible_message(span_danger(LANG("datum.a0b8bc10", list(bumper, target, our_weapon))), span_danger(LANG("datum.ab37bd7e", list(target, our_weapon))), vision_distance = COMBAT_MESSAGE_RANGE)
+		bumper.visible_message(span_danger(LANG("datum.a0b8bc10a2f92e02", list(bumper, target, our_weapon))), span_danger(LANG("datum.ab37bd7e0e178e8a", list(target, our_weapon))), vision_distance = COMBAT_MESSAGE_RANGE)
 
 #undef COOLDOWN_BUMP_ATTACK

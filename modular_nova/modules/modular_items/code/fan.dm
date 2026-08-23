@@ -31,10 +31,10 @@
 	return TRUE
 
 /obj/machinery/nova/fan/wrench_act(mob/living/user, obj/item/tool)
-	loc.balloon_alert_to_viewers(LANG("obj.44f0e678", null))
+	loc.balloon_alert_to_viewers(LANG("obj.44f0e678d88c8044", null))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
-	loc.balloon_alert_to_viewers(LANG("obj.4e90d37e", null))
+	loc.balloon_alert_to_viewers(LANG("obj.4e90d37ef8407fea", null))
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
 

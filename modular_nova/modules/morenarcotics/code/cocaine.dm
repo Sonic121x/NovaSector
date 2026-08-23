@@ -58,7 +58,7 @@
 		affected_mob.emote("shiver")
 
 /datum/reagent/drug/cocaine/overdose_start(mob/living/affected_mob, metabolization_ratio)
-	to_chat(affected_mob, span_userdanger(LANG("datum.5fbbe175", null)))
+	to_chat(affected_mob, span_userdanger(LANG("datum.5fbbe175e31b1b93", null)))
 
 /datum/reagent/drug/cocaine/overdose_process(mob/living/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -69,7 +69,7 @@
 		affected_mob.emote(pick("twitch","drool"))
 	if(!HAS_TRAIT(affected_mob, TRAIT_FLOORED))
 		if(SPT_PROB(1.5, seconds_per_tick))
-			affected_mob.visible_message(span_danger(LANG("datum.5d39e298", list(affected_mob))))
+			affected_mob.visible_message(span_danger(LANG("datum.5d39e298c951d530", list(affected_mob))))
 			affected_mob.Paralyze(135,TRUE)
 			affected_mob.drop_all_held_items()
 	if(need_mob_update)

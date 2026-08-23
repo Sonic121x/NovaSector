@@ -69,7 +69,7 @@
 
 /obj/item/gun/ballistic/automatic/sol_rifle/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.b663717d", null))
+	. += span_notice(LANG("obj.b663717df67087e6", null))
 
 /obj/item/gun/ballistic/automatic/sol_rifle/get_lore_blurb()
 	return lore_blurb + "<br><br>" + model_specific_lore

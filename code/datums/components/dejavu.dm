@@ -83,7 +83,7 @@
 	//comes after healing so new limbs comically drop to the floor
 	if(starting_turf)
 		if(!check_teleport_valid(parent, starting_turf))
-			to_chat(parent, span_warning(LANG("datum.ea92cddb", null)))
+			to_chat(parent, span_warning(LANG("datum.ea92cddb1754d6ad", null)))
 		else
 			var/atom/movable/master = parent
 			master.forceMove(starting_turf)

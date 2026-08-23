@@ -31,12 +31,12 @@
 
 /datum/action/cooldown/spell/pointed/rust_construction/is_valid_target(atom/cast_on)
 	if(!isturf(cast_on))
-		cast_on.balloon_alert(owner, LANG("datum.ad6a4546", null))
+		cast_on.balloon_alert(owner, LANG("datum.ad6a45467b5b3d2d", null))
 		return FALSE
 
 	if(!HAS_TRAIT(cast_on, TRAIT_RUSTY))
 		if(owner)
-			cast_on.balloon_alert(owner, LANG("datum.485da0fb", null))
+			cast_on.balloon_alert(owner, LANG("datum.485da0fb25ce3f41", null))
 		return FALSE
 
 	return TRUE
@@ -56,7 +56,7 @@
 
 	// If we casted at a wall we'll try to rust it. In the case of an enchanted wall it'll deconstruct it
 	if(isclosedturf(cast_on))
-		cast_on.visible_message(span_warning(LANG("datum.d79451d6", list(cast_on))))
+		cast_on.visible_message(span_warning(LANG("datum.d79451d6bc48e3b1", list(cast_on))))
 		var/mob/living/living_owner = owner
 		living_owner?.do_rust_heretic_act(cast_on)
 		// ref transfers to floor
@@ -90,13 +90,13 @@
 		message_shown = TRUE
 		if(IS_HERETIC_OR_MONSTER(living_mob) || living_mob == owner)
 			living_mob.visible_message(
-				span_warning(LANG("datum.ae71175b", list(new_wall, rises_message, living_mob))),
-				span_notice(LANG("datum.d34234ba", list(new_wall, rises_message))),
+				span_warning(LANG("datum.ae71175b8c105fd7", list(new_wall, rises_message, living_mob))),
+				span_notice(LANG("datum.d34234ba94d7891b", list(new_wall, rises_message))),
 			)
 		else
 			living_mob.visible_message(
-				span_warning(LANG("datum.a92c9281", list(new_wall, rises_message, living_mob))),
-				span_userdanger(LANG("datum.b0cab291", list(new_wall, rises_message))),
+				span_warning(LANG("datum.a92c9281d54dfa5b", list(new_wall, rises_message, living_mob))),
+				span_userdanger(LANG("datum.b0cab291e1bc48d2", list(new_wall, rises_message))),
 			)
 			living_mob.apply_damage(10, BRUTE, wound_bonus = 10)
 			living_mob.Knockdown(5 SECONDS)
@@ -119,7 +119,7 @@
 		living_mob.throw_at(pick(turfs_by_us), 1, 3, thrower = owner, spin = FALSE)
 
 	if(!message_shown)
-		new_wall.visible_message(span_warning(LANG("datum.76f3f903", list(new_wall, rises_message))))
+		new_wall.visible_message(span_warning(LANG("datum.76f3f903b9b65da3", list(new_wall, rises_message))))
 
 /datum/action/cooldown/spell/pointed/rust_construction/proc/fade_wall_filter(turf/closed/wall)
 	if(QDELETED(wall))

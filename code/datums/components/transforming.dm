@@ -183,7 +183,7 @@
 	SIGNAL_HANDLER
 
 	if(!COOLDOWN_FINISHED(src, transform_cooldown))
-		to_chat(user, span_warning(LANG("datum.b46a1352", list(source))))
+		to_chat(user, span_warning(LANG("datum.b46a1352166bc54e", list(source))))
 		return
 
 	if(SEND_SIGNAL(source, COMSIG_TRANSFORMING_PRE_TRANSFORM, user, active) & COMPONENT_BLOCK_TRANSFORM)
@@ -318,8 +318,8 @@
 		var/hurt_self_verb_simple = LAZYLEN(attack_verb_simple_on) ? pick(attack_verb_simple_on) : "hit"
 		var/hurt_self_verb_continuous = LAZYLEN(attack_verb_continuous_on) ? pick(attack_verb_continuous_on) : "hits"
 		user.visible_message(
-			span_warning(LANG("datum.c2369edf", list(user, parent, hurt_self_verb_continuous))),
-			span_warning(LANG("datum.c3311c64", list(parent, hurt_self_verb_simple))),
+			span_warning(LANG("datum.c2369edff7054eb4", list(user, parent, hurt_self_verb_continuous))),
+			span_warning(LANG("datum.c3311c6424d23d7d", list(parent, hurt_self_verb_simple))),
 		)
 		var/obj/item/item_parent = parent
 		switch(item_parent.damtype)

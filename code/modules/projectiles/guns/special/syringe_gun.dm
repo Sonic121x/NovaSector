@@ -71,16 +71,16 @@
 
 /obj/item/gun/syringe/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.9b2ea8fa", list(max_syringes, syringes.len)))
+	. += span_notice(LANG("obj.9b2ea8fa153c12f4", list(max_syringes, syringes.len)))
 	if (low_power)
-		. += span_notice(LANG("obj.abb8b5a1", null))
+		. += span_notice(LANG("obj.abb8b5a138773662", null))
 	else
-		. += span_notice(LANG("obj.9ff3aed5", null))
-	. += span_notice(LANG("obj.69d550e8", list(src, low_power ? "full" : "low")))
+		. += span_notice(LANG("obj.9ff3aed507647237", null))
+	. += span_notice(LANG("obj.69d550e8723500d9", list(src, low_power ? "full" : "low")))
 
 /obj/item/gun/syringe/attack_self(mob/living/user, list/modifiers)
 	if (!syringes.len)
-		balloon_alert(user, LANG("obj.76a90f7c", null))
+		balloon_alert(user, LANG("obj.76a90f7c0f5ea424", null))
 		return FALSE
 
 	var/obj/item/reagent_containers/syringe/syringe = syringes[syringes.len]
@@ -90,7 +90,7 @@
 	user.put_in_hands(syringe)
 
 	syringes.Remove(syringe)
-	balloon_alert(user, LANG("obj.faef9ffa", list(syringe.name)))
+	balloon_alert(user, LANG("obj.faef9ffa75046798", list(syringe.name)))
 	update_appearance()
 	return TRUE
 
@@ -101,11 +101,11 @@
 
 	low_power = !low_power
 	if (low_power)
-		balloon_alert(user, LANG("obj.42b3f13b", null))
-		to_chat(user, span_notice(LANG("obj.f9691945", null)))
+		balloon_alert(user, LANG("obj.42b3f13bcd18f86f", null))
+		to_chat(user, span_notice(LANG("obj.f9691945388a84a3", null)))
 	else
-		balloon_alert(user, LANG("obj.f5989967", null))
-		to_chat(user, span_notice(LANG("obj.8301cdc3", null)))
+		balloon_alert(user, LANG("obj.f598996752229054", null))
+		to_chat(user, span_notice(LANG("obj.8301cdc3a354e19b", null)))
 	playsound(user, 'sound/machines/click.ogg', 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -117,17 +117,17 @@
 
 /obj/item/gun/syringe/proc/attempt_insert_syringe(mob/living/user, obj/item/reagent_containers/syringe/syringe)
 	if(istype(syringe, /obj/item/reagent_containers/syringe/bluespace))
-		balloon_alert(user, LANG("obj.b86c0ffd", list(syringe.name)))
+		balloon_alert(user, LANG("obj.b86c0ffd3ab72e43", list(syringe.name)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(syringes.len >= max_syringes)
-		balloon_alert(user, LANG("obj.2cb7d354", null))
+		balloon_alert(user, LANG("obj.2cb7d3546d66854d", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(syringe, src))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.8255044f", list(syringe.name)))
+	balloon_alert(user, LANG("obj.8255044fcd6a7f23", list(syringe.name)))
 	syringes += syringe
 	recharge_newshot()
 	update_appearance()
@@ -202,18 +202,18 @@
 	if(istype(tool, /obj/item/dnainjector))
 		var/obj/item/dnainjector/D = tool
 		if(D.used)
-			balloon_alert(user, LANG("obj.9505d6ea", list(D.name)))
+			balloon_alert(user, LANG("obj.9505d6ea32ee9591", list(D.name)))
 			return ITEM_INTERACT_BLOCKING
 		if(syringes.len < max_syringes)
 			if(!user.transferItemToLoc(D, src))
 				return ITEM_INTERACT_BLOCKING
-			balloon_alert(user, LANG("obj.8255044f", list(D.name)))
+			balloon_alert(user, LANG("obj.8255044fcd6a7f23", list(D.name)))
 			syringes += D
 			recharge_newshot()
 			update_appearance()
 			playsound(loc, load_sound, 40)
 			return ITEM_INTERACT_SUCCESS
-		balloon_alert(user, LANG("obj.53488f9b", null))
+		balloon_alert(user, LANG("obj.53488f9b0696fdd9", null))
 		return ITEM_INTERACT_BLOCKING
 	return NONE
 
@@ -243,6 +243,6 @@
 	. = ..()
 	if(!.)
 		return
-	visible_message(span_danger(LANG("obj.7477a69b", list(user))))
+	visible_message(span_danger(LANG("obj.7477a69bcf922a5a", list(user))))
 	user.adjust_stamina_loss(20, updating_stamina = FALSE)
 	user.adjust_oxy_loss(20)

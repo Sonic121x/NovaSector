@@ -82,11 +82,11 @@
 	var/total_required = cocoon_action?.total_blood_required
 
 	if (total_required > 0)
-		. += LANG("mob.92b8912b", list(FLOOR(total / total_required * 100, 1)))
-	. += LANG("mob.44aa35a7", null)
-	. += LANG("mob.b90295d5", list(ceil(normal)))
-	. += LANG("mob.501f0300", list(ceil(synth), maximum_synth_blood))
-	. += LANG("mob.e28ede9d", list(ceil(total), total_required))
+		. += LANG("mob.92b8912b03b13f62", list(FLOOR(total / total_required * 100, 1)))
+	. += LANG("mob.44aa35a721df178a", null)
+	. += LANG("mob.b90295d56377737d", list(ceil(normal)))
+	. += LANG("mob.501f03000d085b9e", list(ceil(synth), maximum_synth_blood))
+	. += LANG("mob.e28ede9df894f17e", list(ceil(total), total_required))
 
 /// Sends text to the blood worm, whether they are possessing a host or not.
 /mob/living/basic/blood_worm/proc/to_chat_self(text)

@@ -25,11 +25,11 @@
 		return NONE
 
 	if (expended)
-		user.balloon_alert(user, LANG("obj.97090118", null))
+		user.balloon_alert(user, LANG("obj.9709011840177c76", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if (drawing_rune)
-		user.balloon_alert(user, LANG("obj.adac0bea", null))
+		user.balloon_alert(user, LANG("obj.adac0beafa92b15b", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if (isturf(interacting_with))
@@ -53,7 +53,7 @@
 /obj/item/traitor_spraycan/proc/try_draw_new_rune(mob/living/user, turf/target_turf)
 	for(var/turf/nearby_turf as anything in RANGE_TURFS(1, target_turf))
 		if (!isopenturf(nearby_turf) || is_type_in_typecache(nearby_turf, no_draw_turfs))
-			user.balloon_alert(user, LANG("obj.54c10994", null))
+			user.balloon_alert(user, LANG("obj.54c10994634d6c39", null))
 			return
 
 	draw_rune(user, target_turf)
@@ -87,7 +87,7 @@
 		wait_time *= 0.5
 
 	if(!do_after(user, wait_time, target, cog_icon = null, extra_checks = CALLBACK(src, PROC_REF(adjacency_check), user, target)))
-		user.balloon_alert(user, LANG("obj.c67b5d27", null))
+		user.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		drawing_rune = FALSE
 		return FALSE
 
@@ -113,7 +113,7 @@
 			if (!try_draw_step("... finalising design...", user, rune))
 				return
 			if (!rune)
-				user.balloon_alert(user, LANG("obj.6bc3ff7b", null))
+				user.balloon_alert(user, LANG("obj.6bc3ff7b994a7e38", null))
 				return
 			rune.set_stage(RUNE_STAGE_COLOURED)
 			try_complete_rune(user, rune)
@@ -122,27 +122,27 @@
 			if (!try_draw_step("... applying final coating...", user, rune))
 				return
 			if (!rune)
-				user.balloon_alert(user, LANG("obj.6bc3ff7b", null))
+				user.balloon_alert(user, LANG("obj.6bc3ff7b994a7e38", null))
 				return
-			user.balloon_alert(user, LANG("obj.47c456e1", null))
+			user.balloon_alert(user, LANG("obj.47c456e130af036d", null))
 			rune.set_stage(RUNE_STAGE_COMPLETE)
 			expended = TRUE
-			desc = LANG("obj.726a6251", null)
+			desc = LANG("obj.726a6251fa474712", null)
 			SEND_SIGNAL(src, COMSIG_TRAITOR_GRAFFITI_DRAWN, rune)
 
 		if (RUNE_STAGE_COMPLETE, RUNE_STAGE_REMOVABLE)
-			user.balloon_alert(user, LANG("obj.de77007f", null))
+			user.balloon_alert(user, LANG("obj.de77007fe7fa0b69", null))
 
 /// Copying the functionality from normal spraycans, but doesn't need all the optional checks
 /obj/item/traitor_spraycan/suicide_act(mob/living/user)
 	if(expended)
-		user.visible_message(span_suicide(LANG("obj.f371b59f", list(user, src, user.p_their()))))
-		user.say(LANG("obj.d42a3bbe", null), forced="spraycan suicide")
+		user.visible_message(span_suicide(LANG("obj.f371b59f24b61667", list(user, src, user.p_their()))))
+		user.say(LANG("obj.d42a3bbee5e2ee8f", null), forced="spraycan suicide")
 		return SHAME
 
 	var/mob/living/carbon/human/suicider = user
-	user.visible_message(span_suicide(LANG("obj.59ba7571", list(user, src, user.p_their(), user.p_their()))))
-	user.say(LANG("obj.30531ece", null), forced="spraycan suicide")
+	user.visible_message(span_suicide(LANG("obj.59ba7571ec5666c0", list(user, src, user.p_their(), user.p_their()))))
+	user.say(LANG("obj.30531ece4ba08bd4", null), forced="spraycan suicide")
 	playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
 	suicider.AddComponent(/datum/component/face_decal, "spray", list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER), paint_color)
 	return OXYLOSS
@@ -150,7 +150,7 @@
 ///Checks if the user is still adjacent to the target (used for do_after extra_checks)
 /obj/item/traitor_spraycan/proc/adjacency_check(mob/user, atom/target)
 	if(!user.Adjacent(target))
-		user.balloon_alert(user, LANG("obj.12bfeff6", null))
+		user.balloon_alert(user, LANG("obj.12bfeff6c26d0f1d", null))
 		return FALSE
 	return TRUE
 
@@ -214,16 +214,16 @@
 	switch(drawn_stage)
 		if (RUNE_STAGE_OUTLINE)
 			icon_state = "traitor_rune_outline"
-			desc = LANG("obj.853deadf", null)
+			desc = LANG("obj.853deadf726f8054", null)
 
 		if (RUNE_STAGE_COLOURED, RUNE_STAGE_REMOVABLE)
 			icon_state = "traitor_rune_done"
-			desc = LANG("obj.34d1aab5", null)
+			desc = LANG("obj.34d1aab50df29050", null)
 			clean_proof = FALSE
 
 		if (RUNE_STAGE_COMPLETE)
 			icon_state = "traitor_rune_sheen"
-			desc = LANG("obj.c999c8e0", null)
+			desc = LANG("obj.c999c8e010bb1831", null)
 			var/datum/demoralise_moods/graffiti/mood_category = new()
 			demoraliser = new(src, 7, TRUE, mood_category)
 			clean_proof = TRUE

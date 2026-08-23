@@ -186,9 +186,9 @@
 
 	add_fingerprint(user, TRUE)
 	investigate_log("has been gibbed due to being emagged by [user].", INVESTIGATE_DEATHS)
-	visible_message(span_boldwarning(LANG("mob.aa4faa1b", list(user, target))), span_notice(LANG("mob.3ff70b47", list(target))))
+	visible_message(span_boldwarning(LANG("mob.aa4faa1bc299a33f", list(user, target))), span_notice(LANG("mob.3ff70b47411db327", list(target))))
 
-	notify_ghosts(LANG("mob.b8d62116", list(user.real_name, target)),
+	notify_ghosts(LANG("mob.b8d62116bbd54714", list(user.real_name, target)),
 		source = target,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "Borgi Emagged",
@@ -198,7 +198,7 @@
 	return TRUE
 
 /mob/living/basic/pet/dog/corgi/borgi/proc/explode_imminent()
-	visible_message(span_bolddanger(LANG("mob.68305384", list(src))))
+	visible_message(span_bolddanger(LANG("mob.68305384b29ba9cf", list(src))))
 	do_jitter_animation(30)
 
 	addtimer(CALLBACK(src, PROC_REF(explode)), 10 SECONDS)

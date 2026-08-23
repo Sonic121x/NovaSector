@@ -155,7 +155,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 /obj/machinery/fax/examine()
 	. = ..()
 	if(jammed)
-		. += span_notice(LANG("obj.20cc52f7", null))
+		. += span_notice(LANG("obj.20cc52f767375b15", null))
 
 
 /obj/machinery/fax/on_set_is_operational(old_value)
@@ -180,13 +180,13 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
  */
 /obj/machinery/fax/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if (!panel_open && !allow_exotic_faxes)
-		balloon_alert(user, LANG("obj.a59b2c79", null))
+		balloon_alert(user, LANG("obj.a59b2c79dd1c6362", null))
 		return FALSE
 	if (!(obj_flags & EMAGGED))
 		obj_flags |= EMAGGED
 		playsound(src, 'sound/mobs/non-humanoids/dog/growl2.ogg', 50, FALSE)
-		balloon_alert(user, LANG("obj.f0747bd1", null))
-		to_chat(user, span_warning(LANG("obj.a3b792e7", list(src))))
+		balloon_alert(user, LANG("obj.f0747bd1350814fb", null))
+		to_chat(user, span_warning(LANG("obj.a3b792e76eb2ee9d", list(src))))
 		return TRUE
 	return FALSE
 
@@ -207,14 +207,14 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 /obj/machinery/fax/multitool_act(mob/living/user, obj/item/I)
 	if (panel_open)
 		return
-	var/new_fax_name = tgui_input_text(user, LANG("obj.ab6918e5", null), LANG("obj.d66c9d74", null), max_length = 128)
+	var/new_fax_name = tgui_input_text(user, LANG("obj.ab6918e5d9f3d7e4", null), LANG("obj.d66c9d748f9d6458", null), max_length = 128)
 	if (!new_fax_name)
 		return ITEM_INTERACT_SUCCESS
 	if (new_fax_name != fax_name)
 		if (fax_name_exist(new_fax_name))
 			// Being able to set the same name as another fax machine will give a lot of gimmicks for the traitor.
 			if (syndicate_network != TRUE && !(obj_flags & EMAGGED))
-				to_chat(user, span_warning(LANG("obj.c4364d38", null)))
+				to_chat(user, span_warning(LANG("obj.c4364d388036f348", null)))
 				return ITEM_INTERACT_SUCCESS
 		user.log_message("renamed [fax_name] (fax machine) to [new_fax_name].", LOG_GAME)
 		fax_name = new_fax_name
@@ -230,7 +230,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 		return ITEM_INTERACT_SUCCESS
 	if(can_load_item(tool))
 		if(loaded_item_ref?.resolve())
-			balloon_alert(user, LANG("obj.2bbb23a6", null))
+			balloon_alert(user, LANG("obj.2bbb23a6131a85d7", null))
 			return ITEM_INTERACT_BLOCKING
 		loaded_item_ref = WEAKREF(tool)
 		tool.forceMove(src)
@@ -249,7 +249,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 			return FALSE
 		clean_spray.reagents.remove_reagent(/datum/reagent/space_cleaner, clean_spray.amount_per_transfer_from_this)
 		playsound(loc, 'sound/effects/spray3.ogg', 50, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
-		user.visible_message(span_notice(LANG("obj.64300ac6", list(user, src))), span_notice(LANG("obj.c0ca4fbc", list(src))))
+		user.visible_message(span_notice(LANG("obj.64300ac60297b948", list(user, src))), span_notice(LANG("obj.c0ca4fbc08311dd3", list(src))))
 		jammed = FALSE
 		return TRUE
 	if (istype(item, /obj/item/soap) || istype(item, /obj/item/rag))
@@ -257,9 +257,9 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 		if (istype(item, /obj/item/soap))
 			var/obj/item/soap/used_soap = item
 			cleanspeed = used_soap.cleanspeed
-		user.visible_message(span_notice(LANG("obj.8501abcc", list(user, src))), span_notice(LANG("obj.68d2bfba", list(src))))
+		user.visible_message(span_notice(LANG("obj.8501abcc60232bf3", list(user, src))), span_notice(LANG("obj.68d2bfbad08a8b0a", list(src))))
 		if (do_after(user, cleanspeed, target = src))
-			user.visible_message(span_notice(LANG("obj.64300ac6", list(user, src))), span_notice(LANG("obj.c0ca4fbc", list(src))))
+			user.visible_message(span_notice(LANG("obj.64300ac60297b948", list(user, src))), span_notice(LANG("obj.c0ca4fbc08311dd3", list(src))))
 			jammed = FALSE
 		return TRUE
 	return FALSE
@@ -373,7 +373,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 
 			GLOB.requests.fax_request(usr.client, "sent a fax message from [fax_name]/[fax_id] to [params["name"]]", list("paper" = fax_paper, "destination_id" = params["id"], "sender_name" = fax_name))
 			to_chat(GLOB.admins,
-				span_adminnotice(LANG("obj.025b382f", list(icon2html(src.icon, GLOB.admins), ADMIN_FULLMONTY(usr), span_linkify("sent a fax message from [fax_name]/[fax_id][ADMIN_FLW(src)] to [html_encode(params["name"])]"), ADMIN_SHOW_PAPER(fax_paper), ADMIN_PRINT_FAX(fax_paper, fax_name, params["id"])))),
+				span_adminnotice(LANG("obj.025b382f35c03b37", list(icon2html(src.icon, GLOB.admins), ADMIN_FULLMONTY(usr), span_linkify("sent a fax message from [fax_name]/[fax_id][ADMIN_FLW(src)] to [html_encode(params["name"])]"), ADMIN_SHOW_PAPER(fax_paper), ADMIN_PRINT_FAX(fax_paper, fax_name, params["id"])))),
 				type = MESSAGE_TYPE_PRAYER,
 				confidential = TRUE)
 			for(var/client/staff as anything in GLOB.admins)
@@ -425,7 +425,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 			continue
 		if (FAX.jammed)
 			do_sparks(5, TRUE, src)
-			balloon_alert(usr, LANG("obj.ff556f3a", null))
+			balloon_alert(usr, LANG("obj.ff556f3a8839b4ba", null))
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 			return FALSE
 		FAX.receive(loaded, fax_name)
@@ -446,7 +446,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 /obj/machinery/fax/proc/receive(obj/item/loaded, sender_name)
 	playsound(src, 'sound/machines/printer.ogg', 50, FALSE)
 	INVOKE_ASYNC(src, PROC_REF(animate_object_travel), loaded, "fax_receive", find_overlay_state(loaded, "receive"))
-	say(LANG("obj.5f9fabf5", list(sender_name)))
+	say(LANG("obj.5f9fabf5ecb34f94", list(sender_name)))
 	history_add("Receive", sender_name)
 	addtimer(CALLBACK(src, PROC_REF(vend_item), loaded), 1.9 SECONDS)
 	SEND_SIGNAL(src, COMSIG_FAX_MESSAGE_RECEIVED, sender_name)

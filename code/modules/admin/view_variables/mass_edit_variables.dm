@@ -1,6 +1,6 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /client/proc/cmd_mass_modify_object_variables(datum/target, var_name)
-	if(tgui_alert(src, LANG("client.06906caa", list(var_name)), LANG("client.0b1b237a", null), list("Yes", "No"), 60 SECONDS) != "Yes")
+	if(tgui_alert(src, LANG("client.06906caab9c685c2", list(var_name)), LANG("client.0b1b237ab8187726", null), list("Yes", "No"), 60 SECONDS) != "Yes")
 		return
 
 	if(!check_rights(R_VAREDIT))
@@ -28,7 +28,7 @@
 
 		names = sort_list(names)
 
-		variable = input(src, LANG("client.3e95c4ff", null), LANG("client.61b9a9e1", null)) as null|anything in names
+		variable = input(src, LANG("client.3e95c4ff429965ba", null), LANG("client.61b9a9e107dedb8a", null)) as null|anything in names
 	else
 		variable = var_name
 
@@ -38,7 +38,7 @@
 	var/var_value = target.vars[variable]
 
 	if(variable in GLOB.VVckey_edit)
-		to_chat(src, LANG("client.76436c05", null), confidential = TRUE)
+		to_chat(src, LANG("client.76436c0550001696", null), confidential = TRUE)
 		return
 	if(variable in GLOB.VVlocked)
 		if(!check_rights(R_DEBUG))
@@ -49,18 +49,18 @@
 	if(variable in GLOB.VVpixelmovement)
 		if(!check_rights(R_DEBUG))
 			return
-		var/prompt = tgui_alert(src, LANG("client.5cf56dd3", null), LANG("client.3be55d75", null), list("ABORT ", "Continue", " ABORT"))
+		var/prompt = tgui_alert(src, LANG("client.5cf56dd35eaedcb0", null), LANG("client.3be55d75e081d250", null), list("ABORT ", "Continue", " ABORT"))
 		if (prompt != "Continue")
 			return
 
 	default = vv_get_class(variable, var_value)
 
 	if(isnull(default))
-		to_chat(src, LANG("client.79202fb9", null), confidential = TRUE)
+		to_chat(src, LANG("client.79202fb969bb1d48", null), confidential = TRUE)
 	else
-		to_chat(src, LANG("client.a7b53abf", list(uppertext(default))), confidential = TRUE)
+		to_chat(src, LANG("client.a7b53abf28e579ff", list(uppertext(default))), confidential = TRUE)
 
-	to_chat(src, LANG("client.34502e1e", list(var_value)), confidential = TRUE)
+	to_chat(src, LANG("client.34502e1ef4fb1bcd", list(var_value)), confidential = TRUE)
 
 	if(default == VV_NUM)
 		var/dir_text = ""
@@ -75,7 +75,7 @@
 				dir_text += "WEST"
 
 		if(dir_text)
-			to_chat(src, LANG("client.091219d6", list(dir_text)), confidential = TRUE)
+			to_chat(src, LANG("client.091219d656be7f8b", list(dir_text)), confidential = TRUE)
 
 	var/value = vv_get_value(default_class = default)
 	var/new_value = value["value"]
@@ -97,9 +97,9 @@
 
 	switch(class)
 		if(VV_RESTORE_DEFAULT)
-			to_chat(src, LANG("client.a7b247d9", null), confidential = TRUE)
+			to_chat(src, LANG("client.a7b247d92e8a93aa", null), confidential = TRUE)
 			var/list/items = get_all_of_type(target.type, strict_type)
-			to_chat(src, LANG("client.21c9b9eb", list(items.len)), confidential = TRUE)
+			to_chat(src, LANG("client.21c9b9eb3c7c7f2e", list(items.len)), confidential = TRUE)
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -115,7 +115,7 @@
 			var/pre_processing = new_value
 			var/unique
 			if (varsvars?.len)
-				unique = tgui_alert(src, LANG("client.88c860f0", null), LANG("client.e6e5f425", null), list("Unique", "Same"))
+				unique = tgui_alert(src, LANG("client.88c860f0da81b40d", null), LANG("client.e6e5f425560e12ac", null), list("Unique", "Same"))
 				if(unique == "Unique")
 					unique = TRUE
 				else
@@ -123,9 +123,9 @@
 					for(var/V in varsvars)
 						new_value = replacetext(new_value,"\[[V]]","[target.vars[V]]")
 
-			to_chat(src, LANG("client.a7b247d9", null), confidential = TRUE)
+			to_chat(src, LANG("client.a7b247d92e8a93aa", null), confidential = TRUE)
 			var/list/items = get_all_of_type(target.type, strict_type)
-			to_chat(src, LANG("client.21c9b9eb", list(items.len)), confidential = TRUE)
+			to_chat(src, LANG("client.21c9b9eb3c7c7f2e", list(items.len)), confidential = TRUE)
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -142,7 +142,7 @@
 				CHECK_TICK
 
 		if (VV_NEW_TYPE)
-			var/many = tgui_alert(src, LANG("client.c1d2934a", list(value["type"])), LANG("client.93ccb966", null), list("One", "Many", "Cancel"))
+			var/many = tgui_alert(src, LANG("client.c1d2934a4d32155b", list(value["type"])), LANG("client.93ccb9665aa46d50", null), list("One", "Many", "Cancel"))
 			if (many == "Cancel")
 				return
 			if (many == "Many")
@@ -151,9 +151,9 @@
 				many = FALSE
 
 			var/type = value["type"]
-			to_chat(src, LANG("client.a7b247d9", null), confidential = TRUE)
+			to_chat(src, LANG("client.a7b247d92e8a93aa", null), confidential = TRUE)
 			var/list/items = get_all_of_type(target.type, strict_type)
-			to_chat(src, LANG("client.21c9b9eb", list(items.len)), confidential = TRUE)
+			to_chat(src, LANG("client.21c9b9eb3c7c7f2e", list(items.len)), confidential = TRUE)
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -169,9 +169,9 @@
 				CHECK_TICK
 
 		else
-			to_chat(src, LANG("client.a7b247d9", null), confidential = TRUE)
+			to_chat(src, LANG("client.a7b247d92e8a93aa", null), confidential = TRUE)
 			var/list/items = get_all_of_type(target.type, strict_type)
-			to_chat(src, LANG("client.21c9b9eb", list(items.len)), confidential = TRUE)
+			to_chat(src, LANG("client.21c9b9eb3c7c7f2e", list(items.len)), confidential = TRUE)
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -185,13 +185,13 @@
 
 	var/count = rejected+accepted
 	if (!count)
-		to_chat(src, LANG("client.dd4402fa", null), confidential = TRUE)
+		to_chat(src, LANG("client.dd4402fa68ef5460", null), confidential = TRUE)
 		return
 	if (!accepted)
-		to_chat(src, LANG("client.b982b249", null), confidential = TRUE)
+		to_chat(src, LANG("client.b982b249f935d101", null), confidential = TRUE)
 		return
 	if (rejected)
-		to_chat(src, LANG("client.2c4cc3ff", list(rejected, count)), confidential = TRUE)
+		to_chat(src, LANG("client.2c4cc3ffd1445ae5", list(rejected, count)), confidential = TRUE)
 
 	log_world("### MassVarEdit by [src]: [target.type] (A/R [accepted]/[rejected]) [variable]=[html_encode("[target.vars[variable]]")]([list2params(value)])")
 	log_admin("[key_name(src)] mass modified [original_name]'s [variable] to [target.vars[variable]] ([accepted] objects modified)")

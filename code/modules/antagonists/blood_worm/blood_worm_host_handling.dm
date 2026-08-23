@@ -7,9 +7,9 @@
 		playsound(src, 'sound/effects/magic/enter_blood.ogg', vol = 60, vary = TRUE, ignore_walls = FALSE)
 
 		visible_message(
-			message = span_bolddanger(LANG("mob.9ea628cf", list(src, p_s(), new_host))),
-			self_message = span_notice(LANG("mob.79d5582c", list(new_host))),
-			blind_message = span_hear(LANG("mob.45a3102a", null))
+			message = span_bolddanger(LANG("mob.9ea628cfab699fab", list(src, p_s(), new_host))),
+			self_message = span_notice(LANG("mob.79d5582c7e9d4c56", list(new_host))),
+			blind_message = span_hear(LANG("mob.45a3102a17d796e7", null))
 		)
 
 		new /obj/effect/temp_visual/blood_worm_invade_host(get_turf(new_host), effect_name)
@@ -84,8 +84,8 @@
 		return
 
 	visible_message(
-		message = span_bolddanger(LANG("mob.dacadcd0", list(src, p_s(), host))),
-		blind_message = span_hear(LANG("mob.45a3102a", null)),
+		message = span_bolddanger(LANG("mob.dacadcd087eeaa38", list(src, p_s(), host))),
+		blind_message = span_hear(LANG("mob.45a3102a17d796e7", null)),
 		ignored_mobs = list(host, src)
 	)
 

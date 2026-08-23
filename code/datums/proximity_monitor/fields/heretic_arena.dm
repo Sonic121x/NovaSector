@@ -64,8 +64,8 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 			var/obj/item/melee/sickly_blade/training/new_blade = new(get_turf(human_in_range))
 			welfare_blades += new_blade
 			INVOKE_ASYNC(human_in_range, TYPE_PROC_REF(/mob, put_in_hands), new_blade)
-			to_chat(human_in_range, span_boldbig(LANG("datum.2ee38bbe", null)))
-			human_in_range.balloon_alert(human_in_range, LANG("datum.2c88fd8f", null))
+			to_chat(human_in_range, span_boldbig(LANG("datum.2ee38bbe3a664d5f", null)))
+			human_in_range.balloon_alert(human_in_range, LANG("datum.2c88fd8f2c9b150f", null))
 		human_in_range.apply_status_effect(/datum/status_effect/arena_tracker)
 		RegisterSignal(human_in_range, COMSIG_CAN_Z_MOVE, PROC_REF(on_try_z_move))
 		RegisterSignal(human_in_range, COMSIG_LADDER_TRAVEL, PROC_REF(on_try_ladder))
@@ -77,8 +77,8 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 		mob.remove_traits(given_immunities, HERETIC_ARENA_TRAIT)
 		mob.remove_status_effect(/datum/status_effect/arena_tracker)
 		UnregisterSignal(mob, list(COMSIG_CAN_Z_MOVE, COMSIG_LADDER_TRAVEL, COMSIG_MOVABLE_PRE_MOVE, COMSIG_MOVABLE_POST_TELEPORT))
-		to_chat(mob, span_boldbig(LANG("datum.2d8ee4ab", null)))
-		mob.balloon_alert(mob, LANG("datum.51d6c2e4", null))
+		to_chat(mob, span_boldbig(LANG("datum.2d8ee4ab79d1a627", null)))
+		mob.balloon_alert(mob, LANG("datum.51d6c2e480b686a5", null))
 	for(var/turf/to_restore in border_walls)
 		to_restore.ChangeTurf(border_walls[to_restore])
 	for(var/obj/to_refund as anything in welfare_blades)
@@ -150,7 +150,7 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 	var/mob/living/living_mob = bumped_atom
 	var/atom/target = get_edge_target_turf(living_mob, get_dir(src, get_step_away(living_mob, src)))
 	living_mob.throw_at(target, 4, 5)
-	to_chat(living_mob, span_userdanger(LANG("turf.f67b58a5", null)))
+	to_chat(living_mob, span_userdanger(LANG("turf.f67b58a5d5364a6d", null)))
 
 /// Called when you crit somebody to update your crown
 /datum/status_effect/arena_tracker/proc/on_crit_somebody()
@@ -184,9 +184,9 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 	if(arena_victor) // No need to spam if we've already killed at least 1 person
 		return
 	if(IS_HERETIC(owner))
-		to_chat(owner, span_big(span_hypnophrase(LANG("datum.71fe76a9", null))))
+		to_chat(owner, span_big(span_hypnophrase(LANG("datum.71fe76a95fcf52cf", null))))
 	else
-		to_chat(owner, span_big(span_hypnophrase(LANG("datum.a1f524a3", null))))
+		to_chat(owner, span_big(span_hypnophrase(LANG("datum.a1f524a3f3370cce", null))))
 	arena_victor = TRUE
 
 /**

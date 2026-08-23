@@ -46,7 +46,7 @@
 /obj/machinery/research/anomaly_refinery/examine_more(mob/user)
 	. = ..()
 	if (obj_flags & EMAGGED)
-		. += span_notice(LANG("obj.48c6fe98", list(p_their())))
+		. += span_notice(LANG("obj.48c6fe98112ad152", list(p_their())))
 
 
 /obj/machinery/research/anomaly_refinery/assume_air(datum/gas_mixture/giver)
@@ -76,46 +76,46 @@
 
 /obj/machinery/research/anomaly_refinery/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(active)
-		to_chat(user, span_warning(LANG("obj.be3ab4e3", list(tool, src, p_theyre()))))
+		to_chat(user, span_warning(LANG("obj.be3ab4e31888a70c", list(tool, src, p_theyre()))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/raw_anomaly_core))
 		if(inserted_core)
-			to_chat(user, span_warning(LANG("obj.ee691b08", list(src))))
+			to_chat(user, span_warning(LANG("obj.ee691b0894ed03d4", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning(LANG("obj.fe537243", list(tool))))
+			to_chat(user, span_warning(LANG("obj.fe5372438537b4ff", list(tool))))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/raw_anomaly_core/raw_core = tool
 		if(!get_required_radius(raw_core.anomaly_type))
-			say(LANG("obj.87cfbf81", list(raw_core)))
+			say(LANG("obj.87cfbf81173da6ba", list(raw_core)))
 			return ITEM_INTERACT_BLOCKING
 
 		inserted_core = raw_core
-		to_chat(user, span_notice(LANG("obj.8ce99939", list(raw_core, src))))
+		to_chat(user, span_notice(LANG("obj.8ce99939bf01b695", list(raw_core, src))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!istype(tool, /obj/item/transfer_valve))
 		return NONE
 
 	if(inserted_bomb)
-		to_chat(user, span_warning(LANG("obj.a02faa01", list(src))))
+		to_chat(user, span_warning(LANG("obj.a02faa019125bc7a", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/transfer_valve/valve = tool
 	if(!valve.ready())
-		to_chat(user, span_warning(LANG("obj.2b56c786", list(valve))))
+		to_chat(user, span_warning(LANG("obj.2b56c786e03e03e3", list(valve))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
-		to_chat(user, span_warning(LANG("obj.fe537243", list(tool))))
+		to_chat(user, span_warning(LANG("obj.fe5372438537b4ff", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 
 	inserted_bomb = tool
 	tank_to_target = inserted_bomb.tank_two
-	to_chat(user, span_notice(LANG("obj.a0235cf5", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.a0235cf5996a0849", list(tool, src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/research/anomaly_refinery/update_icon_state()
@@ -136,12 +136,12 @@
 /obj/machinery/research/anomaly_refinery/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	if (obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.e5d5677d", null))
+		balloon_alert(user, LANG("obj.e5d5677de6ec46ae", null))
 		return
 
 	obj_flags |= EMAGGED
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, vary = FALSE)
-	say(LANG("obj.eabd0218", null))
+	say(LANG("obj.eabd0218a949a420", null))
 	return TRUE
 
 /**
@@ -149,7 +149,7 @@
  */
 /obj/machinery/research/anomaly_refinery/proc/start_test()
 	if (active)
-		say(LANG("obj.74bdee7d", null))
+		say(LANG("obj.74bdee7d9f793c90", null))
 		return
 
 	if(!istype(inserted_core) || !istype(inserted_bomb))
@@ -160,12 +160,12 @@
 		end_test("ERROR: Transfer valve malfunctioning. Items ejected.")
 		return
 
-	say(LANG("obj.d4fb6fbe", null))
+	say(LANG("obj.d4fb6fbe906783a0", null))
 	active = TRUE
 	test_status = null
 
 	if (obj_flags & EMAGGED)
-		say(LANG("obj.677703ef", null))
+		say(LANG("obj.677703ef638667f7", null))
 		playsound(src, 'sound/machines/ding.ogg', 50, vary = TRUE)
 		addtimer(CALLBACK(src, PROC_REF(error_test)), 2 SECONDS, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_NO_HASH_WAIT) // Synced with the sound.
 		return
@@ -183,7 +183,7 @@
 	investigate_log("was emagged and ejected a TTV.", INVESTIGATE_RESEARCH)
 	obj_flags &= ~EMAGGED
 
-	say(LANG("obj.97b3644c", null))
+	say(LANG("obj.97b3644c2387e11f", null))
 	inserted_bomb.toggle_valve(tank_to_target)
 	eject_bomb(force = TRUE)
 	timeout_timer = addtimer(CALLBACK(src, PROC_REF(timeout_test)), COMPRESSION_TEST_TIME, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_NO_HASH_WAIT) // Actually start the test so they can't just put the bomb back in.
@@ -275,7 +275,7 @@
 		return
 	if(user)
 		user.put_in_hands(inserted_bomb)
-		to_chat(user, span_notice(LANG("obj.cbed3266", list(inserted_bomb, src))))
+		to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(inserted_bomb, src))))
 	else
 		inserted_bomb.forceMove(drop_location())
 	combined_gasmix = null
@@ -286,7 +286,7 @@
 		return
 	if(user)
 		user.put_in_hands(inserted_core)
-		to_chat(user, span_notice(LANG("obj.cbed3266", list(inserted_core, src))))
+		to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(inserted_core, src))))
 	else
 		inserted_core.forceMove(drop_location())
 

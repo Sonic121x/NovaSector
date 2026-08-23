@@ -51,11 +51,11 @@
 /// This makes it so you have to extend it.
 /obj/item/hairbrush/switchblade/attack(mob/target, mob/user)
 	if(!extended)
-		to_chat(user, span_warning(LANG("obj.d8e59ffa", null)))
+		to_chat(user, span_warning(LANG("obj.d8e59ffaaeddd4fd", null)))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(target.stat == DEAD)
-		to_chat(user, span_warning(LANG("obj.227e6d84", null)))
+		to_chat(user, span_warning(LANG("obj.227e6d840edff6e2", null)))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	brush(target, user)
@@ -115,8 +115,8 @@
 	switch(current_state)
 		if(TURN_DIAL)
 			user.visible_message(
-				LANG("obj.df800fbb", list(icon2html(src, oviewers(2, user)), user, src)),
-				LANG("obj.fcc5b6b1", list(icon2html(src, user))),
+				LANG("obj.df800fbba5d34205", list(icon2html(src, oviewers(2, user)), user, src)),
+				LANG("obj.fcc5b6b1909a06ae", list(icon2html(src, user))),
 				vision_distance=2)
 			playsound(user, 'modular_nova/master_files/sound/effects/bab1.ogg', 100, TRUE)
 			sparks.start()
@@ -125,8 +125,8 @@
 			return
 		if(TAP_SCREEN)
 			user.visible_message(
-				LANG("obj.2599decf", list(icon2html(src, oviewers(2, user)), user, src, src)),
-				LANG("obj.b948dcdf", list(icon2html(src, user))),
+				LANG("obj.2599decfe81aee1e", list(icon2html(src, oviewers(2, user)), user, src, src)),
+				LANG("obj.b948dcdf58cb5eb1", list(icon2html(src, user))),
 				vision_distance=2)
 			playsound(user, 'modular_nova/master_files/sound/effects/platform_call.ogg', 100, TRUE)
 			current_state = PRESS_KEYS
@@ -134,8 +134,8 @@
 			return
 		if(PRESS_KEYS)
 			user.visible_message(
-				LANG("obj.90d39fd7", list(icon2html(src, oviewers(2, user)), user, src)),
-				LANG("obj.f2fa258d", list(icon2html(src, user))),
+				LANG("obj.90d39fd707337a7d", list(icon2html(src, oviewers(2, user)), user, src)),
+				LANG("obj.f2fa258d102af1ad", list(icon2html(src, user))),
 				vision_distance=2)
 			sparks.start()
 			playsound(user, 'modular_nova/master_files/sound/effects/gmalfunction.ogg', 100, TRUE)
@@ -144,16 +144,16 @@
 			return
 		if(EXTEND_ANTENNA)
 			user.visible_message(
-				LANG("obj.78ddd562", list(icon2html(src, oviewers(2, user)), user, src, user)),
-				LANG("obj.64bbfa60", list(icon2html(src, user))),
+				LANG("obj.78ddd562325aca83", list(icon2html(src, oviewers(2, user)), user, src, user)),
+				LANG("obj.64bbfa6081f98a23", list(icon2html(src, user))),
 				vision_distance=2)
 			current_state = SLAP_SIDE
 			next_activate = world.time + 20
 			return
 		if(SLAP_SIDE)
 			user.visible_message(
-				LANG("obj.6088244a", list(icon2html(src, oviewers(2, user)), user, src)),
-				LANG("obj.19033de2", list(icon2html(src, user))),
+				LANG("obj.6088244a4ec2920e", list(icon2html(src, oviewers(2, user)), user, src)),
+				LANG("obj.19033de2ba959e6d", list(icon2html(src, user))),
 				vision_distance=2)
 			playsound(user, 'modular_nova/master_files/sound/effects/hacked.ogg', 100, TRUE)
 			sparks.start()
@@ -209,7 +209,7 @@
 /obj/vehicle/ridden/wheelchair/hardlight/post_unbuckle_mob()
 	. = ..()
 
-	visible_message(span_notice(LANG("obj.b9697850", list(src))))
+	visible_message(span_notice(LANG("obj.b9697850dd28eacf", list(src))))
 	qdel(src)
 
 
@@ -238,13 +238,13 @@
 
 /obj/item/holosign_creator/hardlight_wheelchair/examine(mob/user)
 	. = ..()
-	. += span_tinynoticeital(LANG("obj.ce98fc58", null))
+	. += span_tinynoticeital(LANG("obj.ce98fc584f0e883d", null))
 
 
 /obj/item/holosign_creator/hardlight_wheelchair/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.777cba0e", null))
-	. += span_smallnoticeital(LANG("obj.1c4d1f45", null))
+	. += span_notice(LANG("obj.777cba0e9fc878b3", null))
+	. += span_smallnoticeital(LANG("obj.1c4d1f458440eeb7", null))
 
 
 /datum/action/innate/nanite_leg_reinforcement
@@ -281,11 +281,11 @@
 	. = ..()
 	var/mob/living/living_user = user
 	if(!istype(user) || !living_user.has_quirk(/datum/quirk/paraplegic))
-		to_chat(user, LANG("obj.ff4002fa", list(src)))
+		to_chat(user, LANG("obj.ff4002fae9653ad3", list(src)))
 		return
 	var/datum/action/action = new action_to_grant(user)
 	action.Grant(user)
-	to_chat(user, LANG("obj.3ee05b0b", list(src)))
+	to_chat(user, LANG("obj.3ee05b0bed62a2c9", list(src)))
 	qdel(src)
 
 /obj/item/lipstick/quantum/sqn
@@ -487,7 +487,7 @@
 
 /obj/item/toy/pillow/torapillow/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.d3f0f5ec", list(src, src.icon_state)))
+	. += span_notice(LANG("obj.d3f0f5ec227f31a7", list(src, src.icon_state)))
 
 /// Toggles between flipped/non-flipped
 /obj/item/toy/pillow/torapillow/proc/adjust_item_style(mob/user)
@@ -495,4 +495,4 @@
 		icon_state = "torapillbod-t"
 	else
 		icon_state = "torapillbod"
-	user.visible_message(span_notice(LANG("obj.4bb7d4ba", list(user, src))))
+	user.visible_message(span_notice(LANG("obj.4bb7d4ba2d283754", list(user, src))))

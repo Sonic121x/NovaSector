@@ -128,7 +128,7 @@
 				return PROJECTILE_PIERCE_PHASE
 
 		if(victim.can_block_magic(MAGIC_RESISTANCE))
-			visible_message(span_warning(LANG("obj.97ac73cd", list(src, victim))))
+			visible_message(span_warning(LANG("obj.97ac73cd7e45e03e", list(src, victim))))
 			return PROJECTILE_DELETE_WITHOUT_HITTING
 
 	return ..()

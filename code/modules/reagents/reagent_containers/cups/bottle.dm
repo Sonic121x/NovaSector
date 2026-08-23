@@ -258,11 +258,11 @@
 	. = ..()
 	if(prob(50))
 		name = "Acidic buffer bottle"
-		desc = LANG("obj.ce30039a", null)
+		desc = LANG("obj.ce30039ac6aaa0be", null)
 		reagents.add_reagent(/datum/reagent/reaction_agent/acidic_buffer, 30)
 	else
 		name = "Basic buffer bottle"
-		desc = LANG("obj.0a25d5cd", null)
+		desc = LANG("obj.0a25d5cd98bd19a4", null)
 		reagents.add_reagent(/datum/reagent/reaction_agent/basic_buffer, 30)
 
 /obj/item/reagent_containers/cup/bottle/acidic_buffer
@@ -529,8 +529,8 @@
 
 /obj/item/reagent_containers/cup/bottle/syrup_bottle/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.fdaf9a38", null))
-	. += span_notice(LANG("obj.bf7b7e64", null))
+	. += span_notice(LANG("obj.fdaf9a38d68bba94", null))
+	. += span_notice(LANG("obj.bf7b7e643116231f", null))
 
 /obj/item/reagent_containers/cup/bottle/syrup_bottle/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
@@ -556,15 +556,15 @@
 
 /obj/item/reagent_containers/cup/bottle/syrup_bottle/proc/refillable_act(mob/user, obj/item/tool)
 	if(!reagents.total_volume)
-		balloon_alert(user, LANG("obj.e60040d3", null))
+		balloon_alert(user, LANG("obj.e60040d374368614", null))
 		return ITEM_INTERACT_BLOCKING
 	if(tool.reagents.holder_full())
-		balloon_alert(user, LANG("obj.dbac9623", null))
+		balloon_alert(user, LANG("obj.dbac962389e54430", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/transfer_amount = round(reagents.trans_to(tool, amount_per_transfer_from_this, transferred_by = user), CHEMICAL_VOLUME_ROUNDING)
 	if(transfer_amount)
-		balloon_alert(user, LANG("obj.cb1aa9db", list(transfer_amount)))
+		balloon_alert(user, LANG("obj.cb1aa9db10b5d39c", list(transfer_amount)))
 	flick("syrup_anim",src)
 	tool.update_appearance()
 	update_appearance()
@@ -579,10 +579,10 @@
 
 /obj/item/reagent_containers/cup/bottle/syrup_bottle/click_alt(mob/user)
 	if(is_open_container())
-		balloon_alert(user, LANG("obj.8986f2cc", null))
+		balloon_alert(user, LANG("obj.8986f2ccecda1bda", null))
 		update_container_flags(SEALED_CONTAINER | TRANSPARENT)
 	else
-		balloon_alert(user, LANG("obj.68b58460", null))
+		balloon_alert(user, LANG("obj.68b58460e9543505", null))
 		reset_container_flags()
 
 	update_appearance()

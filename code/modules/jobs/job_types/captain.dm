@@ -57,7 +57,7 @@
 
 /datum/job/captain/get_radio_information()
 	. = ..()
-	. += LANG("datum.730b5be8", null)
+	. += LANG("datum.730b5be8dcb58264", null)
 
 /datum/outfit/job/captain
 	name = "Captain"

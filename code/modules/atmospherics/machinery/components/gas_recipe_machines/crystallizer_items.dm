@@ -10,24 +10,24 @@
 	var/obj/machinery/portable_atmospherics/atmos_device = interacting_with
 	var/obj/item/clothing/worn_item = interacting_with
 	if(!istype(worn_item) && !istype(atmos_device))
-		to_chat(user, span_warning(LANG("obj.0c564925", null)))
+		to_chat(user, span_warning(LANG("obj.0c56492508b30e9f", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(atmos_device))
 		if(atmos_device.nob_crystal_inserted)
-			to_chat(user, span_warning(LANG("obj.c6d9d29f", list(atmos_device))))
+			to_chat(user, span_warning(LANG("obj.c6d9d29f4a65e875", list(atmos_device))))
 			return ITEM_INTERACT_BLOCKING
 		atmos_device.insert_nob_crystal()
-		to_chat(user, span_notice(LANG("obj.efd435e6", list(src, atmos_device))))
+		to_chat(user, span_notice(LANG("obj.efd435e696e36781", list(src, atmos_device))))
 
 	if(istype(worn_item))
 		if(istype(worn_item, /obj/item/clothing/suit/space))
-			to_chat(user, span_warning(LANG("obj.4e50bdaa", list(worn_item))))
+			to_chat(user, span_warning(LANG("obj.4e50bdaa3a9137fe", list(worn_item))))
 			return ITEM_INTERACT_BLOCKING
 		if(worn_item.min_cold_protection_temperature == SPACE_SUIT_MIN_TEMP_PROTECT && worn_item.clothing_flags & STOPSPRESSUREDAMAGE)
-			to_chat(user, span_warning(LANG("obj.39f39658", list(worn_item))))
+			to_chat(user, span_warning(LANG("obj.39f39658958a5343", list(worn_item))))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.d4f1437f", list(worn_item))))
+		to_chat(user, span_notice(LANG("obj.d4f1437fad590791", list(worn_item))))
 		worn_item.name = "pressure-resistant [worn_item.name]"
 		worn_item.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 		worn_item.add_atom_colour(color_transition_filter("#00fff7", SATURATION_OVERRIDE), FIXED_COLOUR_PRIORITY)

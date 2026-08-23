@@ -18,7 +18,7 @@
 
 /datum/component/shielded/suit/default_run_hit_callback(mob/living/owner, attack_text, current_charges)
 	var/obj/item/item_parent = parent
-	owner.visible_message(span_danger(LANG("datum.8063f04a", list(owner, attack_text))))
+	owner.visible_message(span_danger(LANG("datum.8063f04ab2cf4cf8", list(owner, attack_text))))
 	if(current_charges <= 0)
-		owner.visible_message(span_warning(LANG("datum.b8ea8e9c", list(owner))))
+		owner.visible_message(span_warning(LANG("datum.b8ea8e9c44a96f3b", list(owner))))
 		playsound(item_parent, 'sound/items/ceramic_break.ogg', 60, TRUE)

@@ -124,14 +124,14 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "丢下", null)
 	. = ..()
 	if(stored)
 		var/obj/item/reagent_containers/reagent_container = stored
-		. += LANG("obj.f7a54f73", list(reagent_container))
+		. += LANG("obj.f7a54f732cebb3b2", list(reagent_container))
 		if(length(reagent_container.reagents.reagent_list))
 			for(var/datum/reagent/reagent in reagent_container.reagents.reagent_list)
-				. += LANG("obj.bcff57a8", list(reagent.volume, reagent.name))
+				. += LANG("obj.bcff57a8c88babaf", list(reagent.volume, reagent.name))
 		else
-			. += LANG("obj.aa75d156", null)
+			. += LANG("obj.aa75d1565980cc59", null)
 
-	. += span_notice(LANG("obj.e9890590", null))
+	. += span_notice(LANG("obj.e98905906a91ce57", null))
 
 /obj/item/borg/apparatus/beaker/update_overlays()
 	. = ..()
@@ -228,21 +228,21 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "丢下", null)
 
 /obj/item/borg/apparatus/organ_storage/examine()
 	. = ..()
-	. += LANG("obj.a905d5d1", null)
+	. += LANG("obj.a905d5d11a1e4775", null)
 	if(stored)
 		var/obj/item/organ = stored
 		. += organ.name
 	else
-		. += LANG("obj.aa75d156", null)
-	. += span_notice(LANG("obj.847f9513", null))
+		. += LANG("obj.aa75d1565980cc59", null)
+	. += span_notice(LANG("obj.847f951382726d22", null))
 
 /obj/item/borg/apparatus/organ_storage/click_alt(mob/living/silicon/robot/user)
 	if(!stored)
-		to_chat(user, span_notice(LANG("obj.ab993876", list(src))))
+		to_chat(user, span_notice(LANG("obj.ab993876c3c54624", list(src))))
 		return CLICK_ACTION_BLOCKING
 
 	var/obj/item/organ = stored
-	user.visible_message(span_notice(LANG("obj.9933dc27", list(user, organ, src))), span_notice(LANG("obj.9d3802a3", list(organ, src))))
+	user.visible_message(span_notice(LANG("obj.9933dc2706299213", list(user, organ, src))), span_notice(LANG("obj.9d3802a3fdbdfb8c", list(organ, src))))
 	organ.forceMove(drop_location())
 	return CLICK_ACTION_SUCCESS
 
@@ -279,8 +279,8 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "丢下", null)
 /obj/item/borg/apparatus/sheet_manipulator/examine()
 	. = ..()
 	if(stored)
-		. += LANG("obj.929ca228", list(stored))
-	. += span_notice(LANG("obj.9b0c73e2", null))
+		. += LANG("obj.929ca228fbd7968b", list(stored))
+	. += span_notice(LANG("obj.9b0c73e2ea9e2802", null))
 
 ///Apparatus allowing Engineer/Sabo borgs to manipulate circuit boards and more
 /obj/item/borg/apparatus/engineering
@@ -329,19 +329,19 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "丢下", null)
 /obj/item/borg/apparatus/engineering/examine()
 	. = ..()
 	if(stored)
-		. += LANG("obj.929ca228", list(stored))
-	. += span_notice(LANG("obj.a9c007ab", null))
+		. += LANG("obj.929ca228fbd7968b", list(stored))
+	. += span_notice(LANG("obj.a9c007ab4c0c30fa", null))
 
 /obj/item/borg/apparatus/engineering/pre_attack(atom/atom, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(istype(atom, /obj/item/ai_module/law) && !stored) //If an admin wants a borg to upload laws, who am I to stop them? Otherwise, we can hint that it fails
-		to_chat(user, span_warning(LANG("obj.d3e4aec4", null)))
+		to_chat(user, span_warning(LANG("obj.d3e4aec4b1415567", null)))
 		return TRUE
 	return ..()
 
 // stops them from cell interactions with other borgos
 /obj/item/borg/apparatus/engineering/interact_with_atom(atom/movable/interacting_with, mob/living/user, list/modifiers)
 	if(iscyborg(user) && iscyborg(interacting_with))
-		balloon_alert(user, LANG("obj.8b21d685", null))
+		balloon_alert(user, LANG("obj.8b21d685f52af6cb", null))
 		return ITEM_INTERACT_FAILURE
 
 /obj/item/borg/apparatus/service
@@ -380,5 +380,5 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "丢下", null)
 /obj/item/borg/apparatus/service/examine()
 	. = ..()
 	if(stored)
-		. += LANG("obj.929ca228", list(stored))
-	. += span_notice(LANG("obj.47397b29", null))
+		. += LANG("obj.929ca228fbd7968b", list(stored))
+	. += span_notice(LANG("obj.47397b29a2524baf", null))

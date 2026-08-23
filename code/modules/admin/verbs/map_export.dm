@@ -3,14 +3,14 @@ ADMIN_VERB(map_export, R_DEBUG, "地图导出", "Select a part of the map by coo
 	var/user_x = user.mob.x
 	var/user_y = user.mob.y
 	var/user_z = user.mob.z
-	var/z_level = tgui_input_number(user, LANG("datum.8b31294f", null), LANG("datum.859277a9", null), user_z || 2)
-	var/start_x = tgui_input_number(user, LANG("datum.28b1557f", null), LANG("datum.859277a9", null), user_x || 1, world.maxx, 1)
-	var/start_y = tgui_input_number(user, LANG("datum.c2d76058", null), LANG("datum.859277a9", null), user_y || 1, world.maxy, 1)
-	var/end_x = tgui_input_number(user, LANG("datum.4782996e", null), LANG("datum.859277a9", null), user_x || 1, world.maxx, 1)
-	var/end_y = tgui_input_number(user, LANG("datum.9a36bc67", null), LANG("datum.859277a9", null), user_y || 1, world.maxy, 1)
+	var/z_level = tgui_input_number(user, LANG("datum.8b31294f0dae4895", null), LANG("datum.859277a901048f66", null), user_z || 2)
+	var/start_x = tgui_input_number(user, LANG("datum.28b1557f52c6ed99", null), LANG("datum.859277a901048f66", null), user_x || 1, world.maxx, 1)
+	var/start_y = tgui_input_number(user, LANG("datum.c2d7605852a53f4c", null), LANG("datum.859277a901048f66", null), user_y || 1, world.maxy, 1)
+	var/end_x = tgui_input_number(user, LANG("datum.4782996e0219b4dc", null), LANG("datum.859277a901048f66", null), user_x || 1, world.maxx, 1)
+	var/end_y = tgui_input_number(user, LANG("datum.9a36bc670b22fa56", null), LANG("datum.859277a901048f66", null), user_y || 1, world.maxy, 1)
 	var/date = time2text(world.timeofday, "YYYY-MM-DD_hh-mm-ss", TIMEZONE_UTC)
-	var/file_name = sanitize_filename(tgui_input_text(user, LANG("datum.3a4b5379", null), LANG("datum.859277a9", null), "exported_map_[date]"))
-	var/confirm = tgui_alert(user, LANG("datum.957cc0e2", null), LANG("datum.859277a9", null), list("Yes", "No"))
+	var/file_name = sanitize_filename(tgui_input_text(user, LANG("datum.3a4b53790e3a36ec", null), LANG("datum.859277a901048f66", null), "exported_map_[date]"))
+	var/confirm = tgui_alert(user, LANG("datum.957cc0e23b013ae1", null), LANG("datum.859277a901048f66", null), list("Yes", "No"))
 
 	if(confirm != "Yes")
 		return

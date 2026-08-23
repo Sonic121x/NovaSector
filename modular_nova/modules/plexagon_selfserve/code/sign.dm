@@ -9,7 +9,7 @@
 	if(prob(4))
 		name = "Punch Out!!"
 		icon_state = "punch-clock"
-		desc = LANG("obj.7c08bbf2", null)
+		desc = LANG("obj.7c08bbf2458fb9e5", null)
 	return ..()
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/timeclock_psa, 32)

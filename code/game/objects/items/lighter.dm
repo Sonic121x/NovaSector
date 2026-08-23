@@ -72,9 +72,9 @@
 /obj/item/lighter/examine(mob/user)
 	. = ..()
 	if(get_fuel() <= 0)
-		. += span_warning(LANG("obj.6b58542f", null))
+		. += span_warning(LANG("obj.6b58542fd9e3f9ec", null))
 	else
-		. += span_notice(LANG("obj.f88f2881", list(get_fuel(), maximum_fuel)))
+		. += span_notice(LANG("obj.f88f2881e0ac2b68", list(get_fuel(), maximum_fuel)))
 
 /obj/item/lighter/proc/light_updated(datum/source)
 	SIGNAL_HANDLER
@@ -82,7 +82,7 @@
 
 /// Destroy the lighter when it's shot by a bullet
 /obj/item/lighter/proc/on_intercepted_bullet(mob/living/victim, obj/projectile/bullet)
-	victim.visible_message(span_warning(LANG("obj.c449404a", list(bullet, victim))))
+	victim.visible_message(span_warning(LANG("obj.c449404a1b00ef40", list(bullet, victim))))
 	playsound(victim, SFX_RICOCHET, 100, TRUE)
 	new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
 	do_sparks(1, TRUE, src)
@@ -96,11 +96,11 @@
 
 /obj/item/lighter/suicide_act(mob/living/user)
 	if (lit)
-		user.visible_message(span_suicide(LANG("obj.eb8d55fc", list(user, src, user.p_their(), user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.eb8d55fc40d2a97b", list(user, src, user.p_their(), user.p_theyre()))))
 		playsound(src, 'sound/items/tools/welder.ogg', 50, TRUE)
 		return FIRELOSS
 	else
-		user.visible_message(span_suicide(LANG("obj.670b53fb", list(user, user.p_them(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.670b53fbd60c7521", list(user, user.p_them(), src, user.p_theyre()))))
 		return BRUTELOSS
 
 /obj/item/lighter/update_icon_state()
@@ -165,13 +165,13 @@
 		set_lit(FALSE)
 		if(fancy)
 			user.visible_message(
-				span_notice(LANG("obj.75aa0d4d", list(user, src, user.p_theyre()))),
-				span_notice(LANG("obj.d5fe5829", list(src)))
+				span_notice(LANG("obj.75aa0d4dd6669abb", list(user, src, user.p_theyre()))),
+				span_notice(LANG("obj.d5fe582977edc873", list(src)))
 			)
 		else
 			user.visible_message(
-				span_notice(LANG("obj.50bfc32f", list(user, src))),
-				span_notice(LANG("obj.35578345", list(src)))
+				span_notice(LANG("obj.50bfc32f6e933b41", list(user, src))),
+				span_notice(LANG("obj.355783451f0367a9", list(src)))
 			)
 		return
 
@@ -182,8 +182,8 @@
 
 	if(fancy)
 		user.visible_message(
-			span_notice(LANG("obj.f830b519", list(user, src))),
-			span_notice(LANG("obj.1c089d29", list(src)))
+			span_notice(LANG("obj.f830b519b7a3259d", list(user, src))),
+			span_notice(LANG("obj.1c089d29c17dd0ab", list(src)))
 		)
 		return
 
@@ -200,16 +200,16 @@
 
 	if(hand_protected || prob(75))
 		user.visible_message(
-			span_notice(LANG("obj.dccc6c71", list(user, src))),
-			span_notice(LANG("obj.223eb862", list(src)))
+			span_notice(LANG("obj.dccc6c71b5923471", list(user, src))),
+			span_notice(LANG("obj.223eb8628fac6208", list(src)))
 		)
 		return
 
 	var/hitzone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
 	user.apply_damage(5, BURN, hitzone)
 	user.visible_message(
-		span_warning(LANG("obj.107582e4", list(user, src, user.p_they(), user.p_s(), user.p_their()))),
-		span_warning(LANG("obj.5196a9d7", null))
+		span_warning(LANG("obj.107582e46115a1fc", list(user, src, user.p_they(), user.p_s(), user.p_their()))),
+		span_warning(LANG("obj.5196a9d791291623", null))
 	)
 	user.add_mood_event("burnt_thumb", /datum/mood_event/burnt_thumb)
 
@@ -224,7 +224,7 @@
 		return ..()
 
 	if(cig.lit)
-		to_chat(user, span_warning(LANG("obj.79fd2c4b", list(cig))))
+		to_chat(user, span_warning(LANG("obj.79fd2c4ba5e911c8", list(cig))))
 	if(target_mob == user)
 		cig.attempt_light(user, src)
 		return
@@ -237,10 +237,10 @@
 ///Checks if the lighter is able to perform a welding task.
 /obj/item/lighter/tool_use_check(mob/living/user, amount, heat_required)
 	if(!lit)
-		to_chat(user, span_warning(LANG("obj.5f9e6829", list(src))))
+		to_chat(user, span_warning(LANG("obj.5f9e6829627723e9", list(src))))
 		return FALSE
 	if(get_fuel() < amount)
-		to_chat(user, span_warning(LANG("obj.ff6b84ef", null)))
+		to_chat(user, span_warning(LANG("obj.ff6b84ef3456c583", null)))
 		return FALSE
 	if(heat < heat_required)
 		return FALSE

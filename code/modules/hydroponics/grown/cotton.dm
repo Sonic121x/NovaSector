@@ -39,7 +39,7 @@
 	if(seed)
 		cotton_count += round(seed.potency / 25)
 
-	user.balloon_alert(user, LANG("obj.6564c0d2", list(cotton_count)))
+	user.balloon_alert(user, LANG("obj.6564c0d229dcb9ce", list(cotton_count)))
 	new cotton_type(user.drop_location(), cotton_count)
 	qdel(src)
 

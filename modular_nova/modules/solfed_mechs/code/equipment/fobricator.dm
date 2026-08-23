@@ -93,7 +93,7 @@
 		return
 	var/obj/item/mecha_parts/mecha_equipment/utility/fob_3d_printer/printer = locate(/obj/item/mecha_parts/mecha_equipment/utility/fob_3d_printer) in chassis.equip_by_category[MECHA_UTILITY]
 	if (!printer)
-		to_chat(user, LANG("datum.693ad918", null))
+		to_chat(user, LANG("datum.693ad918a0b987f7", null))
 		return
 
 	var/list/choices = list()
@@ -101,7 +101,7 @@
 		var/name = printer.printables[typepath]["name"]
 		choices[name] = typepath
 
-	var/choice = input(user, LANG("datum.3b2fc4c9", null), LANG("datum.668b224e", null)) in choices
+	var/choice = input(user, LANG("datum.3b2fc4c9142615b8", null), LANG("datum.668b224eca45a85d", null)) in choices
 	if (!choice)
 		return
 
@@ -119,13 +119,13 @@
 		return
 	var/obj/item/mecha_parts/mecha_equipment/utility/fob_3d_printer/printer = locate(/obj/item/mecha_parts/mecha_equipment/utility/fob_3d_printer) in chassis.equip_by_category[MECHA_UTILITY]
 	if (!printer)
-		to_chat(clicker, LANG("datum.6e94cd97", null))
+		to_chat(clicker, LANG("datum.6e94cd97ebb6dbc7", null))
 		return
 
 	printer.cablelay_mode = !printer.cablelay_mode
 	button_icon_state = printer.cablelay_mode ? "rcl_on" : "rcl_off"
 	build_all_button_icons()
-	to_chat(clicker, LANG("datum.ef269924", list(printer.cablelay_mode ? "enabled" : "disabled")))
+	to_chat(clicker, LANG("datum.ef26992412beddf0", list(printer.cablelay_mode ? "enabled" : "disabled")))
 
 /obj/item/mecha_parts/mecha_equipment/utility/fob_3d_printer/Move(newloc, dir)
 	. = ..()
@@ -173,7 +173,7 @@
 		var/name = printer.printables[typepath]["name"]
 		choices[name] = typepath
 
-	var/choice = input(user, LANG("datum.3b2fc4c9", null), LANG("datum.668b224e", null)) in choices
+	var/choice = input(user, LANG("datum.3b2fc4c9142615b8", null), LANG("datum.668b224eca45a85d", null)) in choices
 	if(!choice)
 		return
 
@@ -191,7 +191,7 @@
 		source_atom = user,
 		ignore_atoms = list(/obj/item, /obj/effect),
 		type_list = TRUE))
-		balloon_alert(user, LANG("obj.08a96e4b", null))
+		balloon_alert(user, LANG("obj.08a96e4b13589fee", null))
 		return FALSE
 
 	// Rule 3: Plating can only be built on openspace
@@ -211,17 +211,17 @@
 	var/turf/target = get_step(src, usr.dir)
 
 	if(!can_build_here(target, typepath))
-		to_chat(user, LANG("obj.2700109a", null))
+		to_chat(user, LANG("obj.2700109afef98847", null))
 		return
 
 	if(!chassis.use_energy(energy_cost))
-		to_chat(user, LANG("obj.67bc5ebd", list(data["name"])))
+		to_chat(user, LANG("obj.67bc5ebd932aeef3", list(data["name"])))
 		return
 
-	to_chat(user, LANG("obj.07de4109", list(data["name"])))
+	to_chat(user, LANG("obj.07de410929f91c95", list(data["name"])))
 
 	if (do_after(user, deploy_time, target))
 		chassis.use_energy(energy_cost)
 		var/obj/structure/item = new typepath(target)
 		item.setDir(user.dir)
-		to_chat(user, LANG("obj.752720d4", list(item)))
+		to_chat(user, LANG("obj.752720d45d13de3b", list(item)))

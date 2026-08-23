@@ -783,7 +783,7 @@
 ///Let people know shits about to go down
 /obj/docking_port/mobile/proc/announce_shuttle_events()
 	for(var/datum/shuttle_event/event as anything in event_list)
-		notify_ghosts(LANG("obj.78efd9d4", list(src, event.name)))
+		notify_ghosts(LANG("obj.78efd9d455b66cb5", list(src, event.name)))
 
 /obj/docking_port/mobile/emergency/on_emergency_launch()
 	return

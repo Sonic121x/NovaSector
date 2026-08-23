@@ -95,8 +95,8 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "thermometer-empty",
-		SPECIES_PERK_NAME = LANG("datum.968c00ce", null),
-		SPECIES_PERK_DESC = LANG("datum.89f31680", null),
+		SPECIES_PERK_NAME = LANG("datum.968c00ce3a1483c3", null),
+		SPECIES_PERK_DESC = LANG("datum.89f31680f38e3996", null),
 	))
 
 	return to_add

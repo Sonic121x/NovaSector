@@ -86,7 +86,7 @@
 	if (!ptank)
 		return NONE
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning(LANG("obj.9c99e5d8", list(src))))
+		to_chat(user, span_warning(LANG("obj.9c99e5d8a6b60e98", list(src))))
 		log_combat(user, interacting_with, "attempted to flamethrower", src, "with gas mixture: {[print_gas_mixture(ptank.return_analyzable_air())]}, flamethrower: \"[name]\" ([src]), igniter: \"[igniter.name]\", tank: \"[ptank.name]\" and tank distribution pressure: \"[siunit(1000 * ptank.distribute_pressure, unit = "Pa", maxdecimals = 9)]\"" + (lit ? " while lit" : "" + " but failed due to pacifism."))
 		return ITEM_INTERACT_BLOCKING
 	var/turf/target_turf = get_turf(interacting_with)
@@ -118,7 +118,7 @@
 	if(igniter && !lit)
 		tool.play_tool_sound(src)
 		status = !status
-		to_chat(user, span_notice(LANG("obj.f2e6e23d", list(igniter, status ? "secured" : "unsecured"))))
+		to_chat(user, span_notice(LANG("obj.f2e6e23d8fa576f8", list(igniter, status ? "secured" : "unsecured"))))
 		update_appearance()
 		return TRUE
 
@@ -133,7 +133,7 @@
 			return ITEM_INTERACT_BLOCKING
 		igniter = inserting_igniter
 		update_appearance()
-		balloon_alert(user, LANG("obj.b0ad167d", null))
+		balloon_alert(user, LANG("obj.b0ad167d3c297e25", null))
 		return ITEM_INTERACT_SUCCESS
 	if(istype(tool, /obj/item/tank/internals/plasma))
 		if(ptank)
@@ -141,7 +141,7 @@
 				return ITEM_INTERACT_BLOCKING
 			ptank.forceMove(get_turf(src))
 			ptank = tool
-			to_chat(user, span_notice(LANG("obj.9ff322d2", list(src))))
+			to_chat(user, span_notice(LANG("obj.9ff322d20b156e35", list(src))))
 			return ITEM_INTERACT_SUCCESS
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
@@ -166,23 +166,23 @@
 
 	user.put_in_hands(ptank)
 	ptank = null
-	to_chat(user, span_notice(LANG("obj.eaaed1e4", list(src))))
+	to_chat(user, span_notice(LANG("obj.eaaed1e4bafe48f9", list(src))))
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/flamethrower/examine(mob/user)
 	. = ..()
 	if(ptank)
-		. += span_notice(LANG("obj.26be8016", list(src, ptank)))
+		. += span_notice(LANG("obj.26be80161ba6889f", list(src, ptank)))
 
 /obj/item/flamethrower/proc/toggle_igniter(mob/user)
 	if(!ptank)
-		to_chat(user, span_notice(LANG("obj.42663bf9", null)))
+		to_chat(user, span_notice(LANG("obj.42663bf9c44a0ff6", null)))
 		return
 	if(!status)
-		to_chat(user, span_notice(LANG("obj.c596cf90", null)))
+		to_chat(user, span_notice(LANG("obj.c596cf90815d25a0", null)))
 		return
-	to_chat(user, span_notice(LANG("obj.22d557f3", list(lit ? "extinguish" : "ignite", src))))
+	to_chat(user, span_notice(LANG("obj.22d557f300d422c9", list(lit ? "extinguish" : "ignite", src))))
 	lit = !lit
 	if(lit)
 		playsound(loc, acti_sound, 50, TRUE)
@@ -270,7 +270,7 @@
 	create_with_tank = TRUE
 
 /obj/item/flamethrower/proc/intercepted_bullet_reaction(mob/living/holder, obj/projectile/bullet)
-	holder.visible_message(span_danger(LANG("obj.35d873ef", list(bullet, holder, name))))
+	holder.visible_message(span_danger(LANG("obj.35d873ef3a8b3323", list(bullet, holder, name))))
 	var/turf/target_turf = get_turf(holder)
 	holder.log_message("held a flamethrower tank detonated by a projectile ([bullet])", LOG_GAME)
 	igniter.ignite_turf(src,target_turf, release_amount = 100)

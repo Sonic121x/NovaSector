@@ -61,8 +61,8 @@
 
 /obj/machinery/recycler/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.546bceb7", list(amount_produced)))
-	. += LANG("obj.ddd56e46", list((machine_stat & NOPOWER) ? "off" : "on", safety_mode ? "on" : "off", obj_flags & EMAGGED ? "off" : "on"))
+	. += span_notice(LANG("obj.546bceb74c741db0", list(amount_produced)))
+	. += LANG("obj.ddd56e46abd85a99", list((machine_stat & NOPOWER) ? "off" : "on", safety_mode ? "on" : "off", obj_flags & EMAGGED ? "off" : "on"))
 
 /obj/machinery/recycler/wrench_act(mob/living/user, obj/item/tool)
 	default_unfasten_wrench(user, tool)
@@ -82,7 +82,7 @@
 		safety_mode = FALSE
 		update_appearance()
 	playsound(src, SFX_SPARKS, 75, TRUE, SILENCED_SOUND_EXTRARANGE)
-	balloon_alert(user, LANG("obj.42074643", null))
+	balloon_alert(user, LANG("obj.42074643f1699068", null))
 	return FALSE
 
 /obj/machinery/recycler/update_icon_state()
@@ -150,7 +150,7 @@
 		if(thing.flags_1 & HOLOGRAM_1)
 			for(var/atom/movable/hologram_content as anything in thing.contents)
 				hologram_content.forceMove(loc) // we shouldn't qdel() the non-holographic content of the hologram.
-			visible_message(span_notice(LANG("obj.1b5ff63e", list(thing))))
+			visible_message(span_notice(LANG("obj.1b5ff63e77419eab", list(thing))))
 			qdel(thing)
 			continue
 
@@ -274,7 +274,7 @@
 		playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
 
 	if(iscarbon(living_mob) && !IS_UNCONSCIOUS_OR_CRIT(living_mob))
-		living_mob.say(LANG("obj.0a82f701", null), forced= "recycler grinding")
+		living_mob.say(LANG("obj.0a82f701b9690187", null), forced= "recycler grinding")
 
 	if(!issilicon(living_mob))
 		add_mob_blood(living_mob)

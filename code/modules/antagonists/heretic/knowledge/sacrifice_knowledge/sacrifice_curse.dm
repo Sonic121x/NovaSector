@@ -80,9 +80,9 @@
 	var/obj/item/organ/removing_organ = pick(removable_organs)
 
 	if (carbon_owner.vomit(vomit_flags = VOMIT_CATEGORY_BLOOD))
-		carbon_owner.visible_message(span_boldwarning(LANG("datum.68410156", list(carbon_owner, carbon_owner.p_their(), removing_organ))))
+		carbon_owner.visible_message(span_boldwarning(LANG("datum.684101563a21ca23", list(carbon_owner, carbon_owner.p_their(), removing_organ))))
 	else
-		carbon_owner.visible_message(span_boldwarning(LANG("datum.452f135a", list(carbon_owner, removing_organ, carbon_owner.p_their()))))
+		carbon_owner.visible_message(span_boldwarning(LANG("datum.452f135a46100a2a", list(carbon_owner, removing_organ, carbon_owner.p_their()))))
 
 	removing_organ.Remove(carbon_owner)
 

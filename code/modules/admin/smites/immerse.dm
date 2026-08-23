@@ -7,4 +7,4 @@
 	. = ..()
 	immerse_player(target)
 	SEND_SOUND(target, sound('sound/misc/roleplay.ogg'))
-	to_chat(target, span_boldnotice(LANG("datum.93cd467b", null)))
+	to_chat(target, span_boldnotice(LANG("datum.93cd467b59731534", null)))

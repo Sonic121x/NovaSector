@@ -93,14 +93,14 @@
 
 	switch(state)
 		if(WINDOW_SCREWED_TO_FRAME)
-			. += span_notice(LANG("obj.c09e8fdf", null))
+			. += span_notice(LANG("obj.c09e8fdfefdf5f41", null))
 		if(WINDOW_IN_FRAME)
-			. += span_notice(LANG("obj.e02e3584", null))
+			. += span_notice(LANG("obj.e02e3584245996eb", null))
 		if(WINDOW_OUT_OF_FRAME)
 			if (anchored)
-				. += span_notice(LANG("obj.ebe146b0", null))
+				. += span_notice(LANG("obj.ebe146b01df506cd", null))
 			else
-				. += span_notice(LANG("obj.7134205a", null))
+				. += span_notice(LANG("obj.7134205aa4071996", null))
 
 /obj/structure/window/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if(the_rcd.mode == RCD_DECONSTRUCT)
@@ -164,7 +164,7 @@
 
 /obj/structure/window/attack_tk(mob/user)
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message(span_notice(LANG("obj.0b66f8c2", list(src))))
+	user.visible_message(span_notice(LANG("obj.0b66f8c2ebf3b068", list(src))))
 	add_fingerprint(user)
 	playsound(src, knock_sound, 50, TRUE)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -184,12 +184,12 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 
 	if(!user.combat_mode)
-		user.visible_message(span_notice(LANG("obj.a41de491", list(user, src))), \
-			span_notice(LANG("obj.a57c3d4a", list(src))))
+		user.visible_message(span_notice(LANG("obj.a41de491922a8b46", list(user, src))), \
+			span_notice(LANG("obj.a57c3d4a9f2cf468", list(src))))
 		playsound(src, knock_sound, 50, TRUE)
 	else
-		user.visible_message(span_warning(LANG("obj.6f19d1b0", list(user, src))), \
-			span_warning(LANG("obj.b771210b", list(src))))
+		user.visible_message(span_warning(LANG("obj.6f19d1b0cbe7dd9c", list(user, src))), \
+			span_warning(LANG("obj.b771210bca02af66", list(src))))
 		playsound(src, bash_sound, 100, TRUE)
 
 /obj/structure/window/attack_paw(mob/user, list/modifiers)
@@ -208,40 +208,40 @@
 
 /obj/structure/window/welder_act(mob/living/user, obj/item/tool)
 	if(atom_integrity >= max_integrity)
-		to_chat(user, span_warning(LANG("obj.7f6370b2", list(src))))
+		to_chat(user, span_warning(LANG("obj.7f6370b2939fd6c1", list(src))))
 		return ITEM_INTERACT_SUCCESS
 	if(!tool.tool_start_check(user, amount = 0))
 		return FALSE
-	to_chat(user, span_notice(LANG("obj.93449ef4", list(src))))
+	to_chat(user, span_notice(LANG("obj.93449ef42b686baf", list(src))))
 	if(tool.use_tool(src, user, 4 SECONDS, volume = 50))
 		repair_damage(max_integrity)
-		to_chat(user, span_notice(LANG("obj.e94d13eb", list(src))))
+		to_chat(user, span_notice(LANG("obj.e94d13ebf50e7df1", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/window/screwdriver_act(mob/living/user, obj/item/tool)
 
 	switch(state)
 		if(WINDOW_SCREWED_TO_FRAME)
-			to_chat(user, span_notice(LANG("obj.56e5b5cf", null)))
+			to_chat(user, span_notice(LANG("obj.56e5b5cfa7770260", null)))
 			if(tool.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 				state = WINDOW_IN_FRAME
-				to_chat(user, span_notice(LANG("obj.a12ab5b0", null)))
+				to_chat(user, span_notice(LANG("obj.a12ab5b07b9b903c", null)))
 		if(WINDOW_IN_FRAME)
-			to_chat(user, span_notice(LANG("obj.7a615707", null)))
+			to_chat(user, span_notice(LANG("obj.7a61570753cd3238", null)))
 			if(tool.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 				state = WINDOW_SCREWED_TO_FRAME
-				to_chat(user, span_notice(LANG("obj.df59932b", null)))
+				to_chat(user, span_notice(LANG("obj.df59932b9e920368", null)))
 		if(WINDOW_OUT_OF_FRAME)
 			if(anchored)
-				to_chat(user, span_notice(LANG("obj.9d5eabeb", null)))
+				to_chat(user, span_notice(LANG("obj.9d5eabebb44e4ad0", null)))
 				if(tool.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 					set_anchored(FALSE)
-					to_chat(user, span_notice(LANG("obj.0ca6ccca", null)))
+					to_chat(user, span_notice(LANG("obj.0ca6ccca00cab2f4", null)))
 			else
-				to_chat(user, span_notice(LANG("obj.ef898ce0", null)))
+				to_chat(user, span_notice(LANG("obj.ef898ce0c0cbb6d8", null)))
 				if(tool.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 					set_anchored(TRUE)
-					to_chat(user, span_notice(LANG("obj.3ab9bdb1", null)))
+					to_chat(user, span_notice(LANG("obj.3ab9bdb15c9bf1c4", null)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/window/wrench_act(mob/living/user, obj/item/tool)
@@ -250,14 +250,14 @@
 	if(reinf && state >= RWINDOW_FRAME_BOLTED)
 		return FALSE
 
-	to_chat(user, span_notice(LANG("obj.9014c0cc", list(src))))
+	to_chat(user, span_notice(LANG("obj.9014c0cc15e008c2", list(src))))
 	if(!tool.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 		return ITEM_INTERACT_SUCCESS
 	var/obj/item/stack/sheet/G = new glass_type(user.loc, glass_amount)
 	if (!QDELETED(G))
 		G.add_fingerprint(user)
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-	to_chat(user, span_notice(LANG("obj.3b0fc241", list(src))))
+	to_chat(user, span_notice(LANG("obj.3b0fc241a2403169", list(src))))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -267,15 +267,15 @@
 
 	switch(state)
 		if(WINDOW_IN_FRAME)
-			to_chat(user, span_notice(LANG("obj.aa80fd44", null)))
+			to_chat(user, span_notice(LANG("obj.aa80fd44f6c4f825", null)))
 			if(tool.use_tool(src, user, 10 SECONDS, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 				state = WINDOW_OUT_OF_FRAME
-				to_chat(user, span_notice(LANG("obj.f810f857", null)))
+				to_chat(user, span_notice(LANG("obj.f810f85752e46e08", null)))
 		if(WINDOW_OUT_OF_FRAME)
-			to_chat(user, span_notice(LANG("obj.a759764d", null)))
+			to_chat(user, span_notice(LANG("obj.a759764d30318fa5", null)))
 			if(tool.use_tool(src, user, 5 SECONDS, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 				state = WINDOW_SCREWED_TO_FRAME
-				to_chat(user, span_notice(LANG("obj.ef3bab8e", null)))
+				to_chat(user, span_notice(LANG("obj.ef3bab8ed35d684e", null)))
 		else
 			return FALSE
 
@@ -521,7 +521,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/unanchored/spawner, 0)
 
 /obj/structure/window/reinforced/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
 	if(resistance_flags & INDESTRUCTIBLE)
-		balloon_alert(user, LANG("obj.be7da9ca", null))
+		balloon_alert(user, LANG("obj.be7da9ca64c2a721", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_behaviour)
@@ -529,19 +529,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/unanchored/spawner, 0)
 	// to have gotten to this point, any tool must be innapropriate for its step
 	switch(state)
 		if(RWINDOW_SECURE)
-			to_chat(user, span_warning(LANG("obj.226cfe0d", null)))
+			to_chat(user, span_warning(LANG("obj.226cfe0dc7695e47", null)))
 
 		if(RWINDOW_BOLTS_HEATED)
-			to_chat(user, span_warning(LANG("obj.b436b070", null)))
+			to_chat(user, span_warning(LANG("obj.b436b070badd040f", null)))
 
 		if(RWINDOW_BOLTS_OUT)
-			to_chat(user, span_warning(LANG("obj.b834e198", null)))
+			to_chat(user, span_warning(LANG("obj.b834e19842967505", null)))
 
 		if(RWINDOW_POPPED)
-			to_chat(user, span_warning(LANG("obj.7fef2ecb", null)))
+			to_chat(user, span_warning(LANG("obj.7fef2ecb97b4546e", null)))
 
 		if(RWINDOW_BARS_CUT)
-			to_chat(user, span_warning(LANG("obj.58a878dd", null)))
+			to_chat(user, span_warning(LANG("obj.58a878dd533ee068", null)))
 
 	return ITEM_INTERACT_BLOCKING
 
@@ -550,12 +550,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/unanchored/spawner, 0)
 		return NONE
 	if(state != WINDOW_OUT_OF_FRAME)
 		return NONE
-	to_chat(user, span_notice(LANG("obj.a759764d", null)))
+	to_chat(user, span_notice(LANG("obj.a759764d30318fa5", null)))
 	if(!tool.use_tool(src, user, 10 SECONDS, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 		return ITEM_INTERACT_BLOCKING
 
 	state = RWINDOW_SECURE
-	to_chat(user, span_notice(LANG("obj.ef3bab8e", null)))
+	to_chat(user, span_notice(LANG("obj.ef3bab8ed35d684e", null)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/window/reinforced/welder_act_secondary(mob/living/user, obj/item/tool)
@@ -565,12 +565,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/unanchored/spawner, 0)
 	if(!tool.tool_start_check(user, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.37c5e60f", list(user, tool, src))),
-						span_notice(LANG("obj.b7fd88e6", list(src))))
+	user.visible_message(span_notice(LANG("obj.37c5e60fc2eed9ea", list(user, tool, src))),
+						span_notice(LANG("obj.b7fd88e6ebc4dad6", list(src))))
 	if(!tool.use_tool(src, user, 15 SECONDS, volume = 100))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.6f2c4612", null)))
+	to_chat(user, span_notice(LANG("obj.6f2c461215e158ee", null)))
 	state = RWINDOW_BOLTS_HEATED
 	addtimer(CALLBACK(src, PROC_REF(cool_bolts)), 30 SECONDS)
 	return ITEM_INTERACT_SUCCESS
@@ -579,51 +579,51 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/unanchored/spawner, 0)
 	if(state != RWINDOW_BOLTS_HEATED)
 		return NONE
 
-	user.visible_message(span_notice(LANG("obj.55c1e9f8", list(user))),
-						span_notice(LANG("obj.4b09d58d", null)))
+	user.visible_message(span_notice(LANG("obj.55c1e9f878943b9b", list(user))),
+						span_notice(LANG("obj.4b09d58d31e1c9ac", null)))
 	if(!tool.use_tool(src, user, 5 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
 	state = RWINDOW_BOLTS_OUT
-	to_chat(user, span_notice(LANG("obj.52e8eb7d", null)))
+	to_chat(user, span_notice(LANG("obj.52e8eb7dddfde731", null)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/window/reinforced/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	if(state != RWINDOW_BOLTS_OUT)
 		return NONE
 
-	user.visible_message(span_notice(LANG("obj.c85f4c8c", list(user, tool))),
-						span_notice(LANG("obj.5c047a6d", list(tool))))
+	user.visible_message(span_notice(LANG("obj.c85f4c8c1d6e860b", list(user, tool))),
+						span_notice(LANG("obj.5c047a6d36aa881a", list(tool))))
 	if(!tool.use_tool(src, user, 4 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
 	state = RWINDOW_POPPED
-	to_chat(user, span_notice(LANG("obj.781504da", null)))
+	to_chat(user, span_notice(LANG("obj.781504da78e798be", null)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/window/reinforced/wirecutter_act_secondary(mob/living/user, obj/item/tool)
 	if(state != RWINDOW_POPPED)
 		return NONE
 
-	user.visible_message(span_notice(LANG("obj.1a307314", list(user, src))),
-						span_notice(LANG("obj.a842c4a8", list(src))))
+	user.visible_message(span_notice(LANG("obj.1a307314966f5abe", list(user, src))),
+						span_notice(LANG("obj.a842c4a87333f329", list(src))))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
 	state = RWINDOW_BARS_CUT
-	to_chat(user, span_notice(LANG("obj.bc012cc9", null)))
+	to_chat(user, span_notice(LANG("obj.bc012cc9bd7deafb", null)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/window/reinforced/wrench_act_secondary(mob/living/user, obj/item/tool)
 	if(state != RWINDOW_BARS_CUT)
 		return NONE
 
-	user.visible_message(span_notice(LANG("obj.a02268c3", list(user, src))),
-						span_notice(LANG("obj.d0f44333", null)))
+	user.visible_message(span_notice(LANG("obj.a02268c3e2514a45", list(user, src))),
+						span_notice(LANG("obj.d0f4433379d6d85e", null)))
 	if(!tool.use_tool(src, user, 4 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.6152c847", null)))
+	to_chat(user, span_notice(LANG("obj.6152c84734478cd2", null)))
 	state = WINDOW_OUT_OF_FRAME
 	set_anchored(FALSE)
 	return ITEM_INTERACT_SUCCESS
@@ -631,7 +631,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/unanchored/spawner, 0)
 /obj/structure/window/proc/cool_bolts()
 	if(state == RWINDOW_BOLTS_HEATED)
 		state = RWINDOW_SECURE
-		visible_message(span_notice(LANG("obj.9042e6ac", list(src))))
+		visible_message(span_notice(LANG("obj.9042e6ac66cd6364", list(src))))
 
 /obj/structure/window/reinforced/examine(mob/user)
 	. = ..()
@@ -639,15 +639,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/unanchored/spawner, 0)
 		return
 	switch(state)
 		if(RWINDOW_SECURE)
-			. += span_notice(LANG("obj.1cbbbebc", null))
+			. += span_notice(LANG("obj.1cbbbebc112d03aa", null))
 		if(RWINDOW_BOLTS_HEATED)
-			. += span_notice(LANG("obj.935bbf32", null))
+			. += span_notice(LANG("obj.935bbf325c5dca75", null))
 		if(RWINDOW_BOLTS_OUT)
-			. += span_notice(LANG("obj.9e37608c", null))
+			. += span_notice(LANG("obj.9e37608c0abfc2ff", null))
 		if(RWINDOW_POPPED)
-			. += span_notice(LANG("obj.02a1e27e", null))
+			. += span_notice(LANG("obj.02a1e27eea9997ec", null))
 		if(RWINDOW_BARS_CUT)
-			. += span_notice(LANG("obj.0ee0a74b", null))
+			. += span_notice(LANG("obj.0ee0a74ba480dd18", null))
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/spawner, 0)
 
@@ -987,7 +987,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/tinted/frosted/spaw
 /obj/structure/window/paperframe/examine(mob/user)
 	. = ..()
 	if(atom_integrity < max_integrity)
-		. += span_info(LANG("obj.1f86b375", null))
+		. += span_info(LANG("obj.1f86b3755063c622", null))
 
 /obj/structure/window/paperframe/spawn_debris(location)
 	. = list(new /obj/item/stack/sheet/mineral/wood(location))
@@ -1027,13 +1027,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/tinted/frosted/spaw
 	if(!istype(tool, /obj/item/paper) || atom_integrity == max_integrity)
 		return NONE
 
-	user.visible_message(span_notice(LANG("obj.6bc86786", list(user, src))))
+	user.visible_message(span_notice(LANG("obj.6bc8678623305911", list(user, src))))
 	if(!do_after(user, 2 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
 	atom_integrity = min(atom_integrity+4,max_integrity)
 	qdel(tool)
-	user.visible_message(span_notice(LANG("obj.94410e24", list(user, src))))
+	user.visible_message(span_notice(LANG("obj.94410e24a0364b49", list(user, src))))
 	if(atom_integrity == max_integrity)
 		update_appearance()
 	return ITEM_INTERACT_SUCCESS

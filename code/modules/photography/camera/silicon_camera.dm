@@ -32,25 +32,25 @@
 	else
 		// Trying to turn on camera mode while you have another click intercept active, such as malf abilities
 		if(sound)
-			balloon_alert(user, LANG("obj.82771ce2", null))
+			balloon_alert(user, LANG("obj.82771ce201a43292", null))
 			playsound(user, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE)
 		return
 
 	if(sound)
 		playsound(user, 'sound/items/tools/wirecutter.ogg', 50, TRUE)
-		balloon_alert(user, LANG("obj.1696633a", list(user.click_intercept == src ? "activated" : "deactivated")))
+		balloon_alert(user, LANG("obj.1696633aa49c30ec", list(user.click_intercept == src ? "activated" : "deactivated")))
 
 /obj/item/camera/siliconcam/proc/selectpicture(mob/user)
 	RETURN_TYPE(/datum/picture)
 	if(!length(stored))
-		user.balloon_alert(user, LANG("obj.eb74bb77", null))
+		user.balloon_alert(user, LANG("obj.eb74bb771df66792", null))
 		return
 	var/list/nametemp = list()
 	var/list/temp = list()
 	for(var/datum/picture/stored_photo as anything in stored)
 		nametemp += stored_photo.picture_name
 		temp[stored_photo.picture_name] = stored_photo
-	var/find = tgui_input_list(user, LANG("obj.1ac29f4f", null), LANG("obj.d95a3efe", null), nametemp)
+	var/find = tgui_input_list(user, LANG("obj.1ac29f4f1fcb832b", null), LANG("obj.d95a3efe5bd502c9", null), nametemp)
 	if(isnull(find) || isnull(temp[find]))
 		return
 	return temp[find]
@@ -84,7 +84,7 @@
 	var/number = length(stored)
 	picture.picture_name = "Image [number] (taken by [loc.name])"
 	stored[picture] = TRUE
-	balloon_alert(user, LANG("obj.3fb11283", null))
+	balloon_alert(user, LANG("obj.3fb112834df9e975", null))
 	user.playsound_local(get_turf(user), SFX_POLAROID, 50, TRUE, -3)
 
 /obj/item/camera/siliconcam/robot_camera
@@ -101,12 +101,12 @@
 		var/number = user.connected_ai.aicamera.stored.len
 		picture.picture_name = "Image [number] (taken by [loc.name])"
 		user.connected_ai.aicamera.stored[picture] = TRUE
-		balloon_alert(user, LANG("obj.2aff1fef", null))
+		balloon_alert(user, LANG("obj.2aff1fefba924e2d", null))
 	else
 		var/number = stored.len
 		picture.picture_name = "Image [number] (taken by [loc.name])"
 		stored[picture] = TRUE
-		balloon_alert(user, LANG("obj.b86d818d", null))
+		balloon_alert(user, LANG("obj.b86d818d4bf7b8e8", null))
 	playsound(src, SFX_POLAROID, 75, TRUE, -3)
 
 /obj/item/camera/siliconcam/robot_camera/selectpicture(mob/living/silicon/robot/user)
@@ -117,16 +117,16 @@
 
 /obj/item/camera/siliconcam/robot_camera/proc/borgprint(mob/living/silicon/robot/user)
 	if(!istype(user) || user.toner < printcost)
-		balloon_alert(user, LANG("obj.f0060825", null))
+		balloon_alert(user, LANG("obj.f00608258451f700", null))
 		return
 	var/datum/picture/selection = selectpicture(user)
 	if(!istype(selection))
-		balloon_alert(user, LANG("obj.3d217d8a", null))
+		balloon_alert(user, LANG("obj.3d217d8a8f5886a2", null))
 		return
 	var/obj/item/photo/printed = new(user.drop_location(), selection)
 	printed.pixel_x = printed.base_pixel_x + rand(-10, 10)
 	printed.pixel_y = printed.base_pixel_y + rand(-10, 10)
 	user.toner -= printcost  //All fun allowed.
-	user.visible_message(span_notice(LANG("obj.adb9d4fa", list(user.name))), span_notice(LANG("obj.ea70dffc", null)))
-	balloon_alert(user, LANG("obj.11d97790", null))
+	user.visible_message(span_notice(LANG("obj.adb9d4fa007382a6", list(user.name))), span_notice(LANG("obj.ea70dffc1019f291", null)))
+	balloon_alert(user, LANG("obj.11d977901fe54db2", null))
 	playsound(src, 'sound/items/taperecorder/taperecorder_print.ogg', 50, TRUE, -3)

@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	embed_chance = 50
 
 /obj/item/stack/rods/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.7675d3b7", list(user, src, user.p_their(), user.p_theyre()))))//it looks like theyre ur mum
+	user.visible_message(span_suicide(LANG("obj.7675d3b7eccb7cd5", list(user, src, user.p_their(), user.p_theyre()))))//it looks like theyre ur mum
 	return BRUTELOSS
 
 /obj/item/stack/rods/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
@@ -88,13 +88,13 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 
 /obj/item/stack/rods/welder_act(mob/living/user, obj/item/tool)
 	if(get_amount() < 2)
-		balloon_alert(user, LANG("obj.6cf1e2aa", null))
+		balloon_alert(user, LANG("obj.6cf1e2aa36098753", null))
 		return
 	if(tool.use_tool(src, user, delay = 0, volume = 40))
 		var/obj/item/stack/sheet/iron/new_item = new(user.loc)
 		user.visible_message(
-			span_notice(LANG("obj.768d01f5", list(user.name, src, tool))),
-			blind_message = span_hear(LANG("obj.1aa82fa3", null)),
+			span_notice(LANG("obj.768d01f5940011f2", list(user.name, src, tool))),
+			blind_message = span_hear(LANG("obj.1aa82fa3545466eb", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)
@@ -106,8 +106,8 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	if(tool.use_tool(src, user, delay = 0, volume = 40))
 		var/obj/item/stack/tile/iron/two/new_item = new(user.loc)
 		user.visible_message(
-			span_notice(LANG("obj.f0b0e648", list(user.name, src, tool))),
-			blind_message = span_hear(LANG("obj.1aa82fa3", null)),
+			span_notice(LANG("obj.f0b0e6486670cdb7", list(user.name, src, tool))),
+			blind_message = span_hear(LANG("obj.1aa82fa3545466eb", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)

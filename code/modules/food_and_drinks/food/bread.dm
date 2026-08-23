@@ -375,7 +375,7 @@
 /obj/item/food/baguette/examine(mob/user)
 	. = ..()
 	if(HAS_MIND_TRAIT(user, TRAIT_MIMING))
-		. += span_notice(LANG("obj.79dfb300", null))
+		. += span_notice(LANG("obj.79dfb300e6b9eb53", null))
 
 /obj/item/food/baguette/attack_self(mob/user, modifiers)
 	. = ..()
@@ -388,8 +388,8 @@
 
 /obj/item/food/baguette/proc/begin_swordplay(mob/user)
 	visible_message(
-		span_notice(LANG("obj.bc696875", list(user, src))),
-		span_notice(LANG("obj.629fffbf", list(src)))
+		span_notice(LANG("obj.bc6968755ce3f0a8", list(user, src))),
+		span_notice(LANG("obj.629fffbf376a0844", list(src)))
 	)
 	ADD_TRAIT(src, TRAIT_CUSTOM_TAP_SOUND, SWORDPLAY_TRAIT)
 	attack_verb_continuous = list("slashes", "cuts")
@@ -411,8 +411,8 @@
 
 	if(user)
 		visible_message(
-			span_notice(LANG("obj.2d743686", list(user, src))),
-			span_notice(LANG("obj.fd8bdd13", list(src)))
+			span_notice(LANG("obj.2d7436862bc9b849", list(user, src))),
+			span_notice(LANG("obj.fd8bdd1394995cc8", list(src)))
 		)
 
 /obj/item/food/baguette/proc/on_sword_dropped(datum/source, mob/user)

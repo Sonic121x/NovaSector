@@ -84,9 +84,9 @@
 /mob/living/basic/guardian/lightning/proc/on_chain_zap(mob/living/target)
 	target.electrocute_act(shock_damage = 0, source = "lightning chain")
 	target.visible_message(
-		span_danger(LANG("mob.4f60d4f3", list(target))),
-		span_userdanger(LANG("mob.7777aa87", null)),
-		span_hear(LANG("mob.495976fb", null)),
+		span_danger(LANG("mob.4f60d4f3dbff0102", list(target))),
+		span_userdanger(LANG("mob.7777aa87897f368a", null)),
+		span_hear(LANG("mob.495976fb42ec6752", null)),
 	)
 
 /// Beam definition for our lightning chain

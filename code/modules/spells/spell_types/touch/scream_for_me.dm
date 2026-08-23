@@ -18,8 +18,8 @@
 
 /datum/action/cooldown/spell/touch/scream_for_me/on_antimagic_triggered(obj/item/melee/touch_attack/hand, mob/living/victim, mob/living/carbon/caster)
 	caster.visible_message(
-		span_warning(LANG("datum.f7eb65fd", list(caster))),
-		span_userdanger(LANG("datum.80c86c81", list(victim))),
+		span_warning(LANG("datum.f7eb65fdcd13d93c", list(caster))),
+		span_userdanger(LANG("datum.80c86c81c4a76173", list(victim))),
 	)
 	var/obj/item/bodypart/to_wound = caster.get_holding_bodypart_of_item(hand)
 	caster.cause_wound_of_type_and_severity(WOUND_SLASH, to_wound, WOUND_SEVERITY_MODERATE, WOUND_SEVERITY_CRITICAL)

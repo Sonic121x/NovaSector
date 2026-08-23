@@ -224,13 +224,13 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 ADMIN_VERB(load_circuit, R_VAREDIT, "加载电路", "Loads a circuit from a file or direct input.", ADMIN_CATEGORY_FUN)
 	var/list/errors = list()
 
-	var/option = alert(user, LANG("datum.27977cb6", null), LANG("datum.abc5936e", null), "File", "Direct Input")
+	var/option = alert(user, LANG("datum.27977cb607c73fda", null), LANG("datum.abc5936edcb89352", null), "File", "Direct Input")
 	var/txt
 	switch(option)
 		if("File")
-			txt = file2text(input(user, LANG("datum.02b08ff6", null)) as null|file)
+			txt = file2text(input(user, LANG("datum.02b08ff64c7d7727", null)) as null|file)
 		if("Direct Input")
-			txt = input(user, LANG("datum.4a49cfa7", null), LANG("datum.4a49cfa7", null)) as text|null
+			txt = input(user, LANG("datum.4a49cfa716796d7a", null), LANG("datum.4a49cfa716796d7a", null)) as text|null
 
 	if(!txt)
 		return
@@ -239,6 +239,6 @@ ADMIN_VERB(load_circuit, R_VAREDIT, "加载电路", "Loads a circuit from a file
 	circuit.load_circuit_data(txt, errors)
 
 	if(length(errors))
-		to_chat(user, span_warning(LANG("datum.0eee8784", null)))
+		to_chat(user, span_warning(LANG("datum.0eee878461880319", null)))
 		for(var/error in errors)
 			to_chat(user, span_warning(error))

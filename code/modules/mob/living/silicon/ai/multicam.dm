@@ -211,13 +211,13 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 /mob/living/silicon/ai/proc/drop_new_multicam(silent = FALSE)
 	if(!CONFIG_GET(flag/allow_ai_multicam))
 		if(!silent)
-			to_chat(src, span_warning(LANG("mob.8fafa74b", null)))
+			to_chat(src, span_warning(LANG("mob.8fafa74bb14dafa0", null)))
 		return
 	if(!eyeobj)
 		return
 	if(multicam_screens.len >= max_multicams)
 		if(!silent)
-			to_chat(src, span_warning(LANG("mob.e4cf8b98", list(max_multicams))))
+			to_chat(src, span_warning(LANG("mob.e4cf8b98be100a93", list(max_multicams))))
 		return
 	var/atom/movable/screen/movable/pic_in_pic/ai/C = new /atom/movable/screen/movable/pic_in_pic/ai()
 	C.set_view_size(3, 3, FALSE)
@@ -225,12 +225,12 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	C.set_ai(src)
 	C.aiEye.name = "[name] (Secondary AI Eye)"
 	if(!silent)
-		to_chat(src, span_notice(LANG("mob.234dbf2b", null)))
+		to_chat(src, span_notice(LANG("mob.234dbf2b717ea2f1", null)))
 	return C
 
 /mob/living/silicon/ai/proc/toggle_multicam()
 	if(!CONFIG_GET(flag/allow_ai_multicam))
-		to_chat(src, span_warning(LANG("mob.8fafa74b", null)))
+		to_chat(src, span_warning(LANG("mob.8fafa74bb14dafa0", null)))
 		return
 	if(multicam_on)
 		end_multicam()
@@ -241,11 +241,11 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	if(multicam_on || aiRestorePowerRoutine || !isturf(loc))
 		return
 	if(!GLOB.ai_camera_room_landmark)
-		to_chat(src, span_warning(LANG("mob.53982052", null)))
+		to_chat(src, span_warning(LANG("mob.53982052d5ebb2d8", null)))
 		return
 	multicam_on = TRUE
 	refresh_multicam()
-	to_chat(src, span_notice(LANG("mob.5545a2f9", null)))
+	to_chat(src, span_notice(LANG("mob.5545a2f94efd8528", null)))
 
 /mob/living/silicon/ai/proc/refresh_multicam()
 	reset_perspective(GLOB.ai_camera_room_landmark)
@@ -264,7 +264,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 			var/atom/movable/screen/movable/pic_in_pic/P = V
 			P.unshow_to(client)
 	reset_perspective()
-	to_chat(src, span_notice(LANG("mob.1eb5e260", null)))
+	to_chat(src, span_notice(LANG("mob.1eb5e2608055c231", null)))
 
 
 /mob/living/silicon/ai/proc/select_main_multicam_window(atom/movable/screen/movable/pic_in_pic/ai/P)

@@ -103,7 +103,7 @@
 				drip.vars[slot] = null
 
 		if("rename")
-			var/newname = tgui_input_text(owner, LANG("datum.f392fe89", null), OUTFIT_EDITOR_NAME, max_length = MAX_NAME_LEN)
+			var/newname = tgui_input_text(owner, LANG("datum.f392fe8900b9ef8a", null), OUTFIT_EDITOR_NAME, max_length = MAX_NAME_LEN)
 			if(newname)
 				drip.name = newname
 		if("save")
@@ -120,7 +120,7 @@
 	if(!choice)
 		return
 	if(!ispath(choice))
-		tgui_alert(owner, LANG("datum.e0282434", null), OUTFIT_EDITOR_NAME, list("oh no"))
+		tgui_alert(owner, LANG("datum.e028243441fd4705", null), OUTFIT_EDITOR_NAME, list("oh no"))
 		return
 	if(initial(choice.icon_state) == null) //hacky check copied from experimentor code
 		var/msg = "Warning: This item's icon_state is null, indicating it is very probably not actually a usable item."
@@ -171,7 +171,7 @@
 				suit = new suit //initial() doesn't like lists
 				options = suit.allowed
 			if(!length(options)) //nothing will happen, but don't let the user think it's broken
-				to_chat(owner, span_warning(LANG("datum.c6a9008c", null)))
+				to_chat(owner, span_warning(LANG("datum.c6a9008c6593ae4a", null)))
 
 		if("belt")
 			options = typesof(/obj/item/storage/belt)
@@ -198,7 +198,7 @@
 
 	if(!length(options))
 		return
-	var/option = tgui_input_list(owner, LANG("datum.da184112", null), OUTFIT_EDITOR_NAME, options)
+	var/option = tgui_input_list(owner, LANG("datum.da184112ee0607df", null), OUTFIT_EDITOR_NAME, options)
 	if(isnull(option))
 		return
 	set_item(slot, option)

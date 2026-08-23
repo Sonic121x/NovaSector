@@ -37,7 +37,7 @@
 	var/mob/living/user = arguments[2]
 	var/force = arguments[4]
 	if(!force)
-		source.balloon_alert(user, LANG("obj.562f3ecf", null))
+		source.balloon_alert(user, LANG("obj.562f3ecf827d7cd8", null))
 		return COMPONENT_STOP_IMPLANTING
 
 /obj/item/implant/circuit/ui_host(mob/user)
@@ -147,7 +147,7 @@
 	if (implant.imp_in.stat == DEAD)
 		return
 
-	to_chat(implant.imp_in, LANG("obj.dabd65ca", list(span_robot("[html_encode(sent_message)]"))))
+	to_chat(implant.imp_in, LANG("obj.dabd65ca808cce08", list(span_robot("[html_encode(sent_message)]"))))
 
 /obj/item/circuit_component/implant_core/proc/on_borg_charge(datum/source, datum/callback/charge_cell, seconds_per_tick)
 	SIGNAL_HANDLER
@@ -167,13 +167,13 @@
 		return
 
 	parent.cell.give(shock_damage * 2)
-	to_chat(source, span_notice(LANG("obj.a5584887", list(parent.name))))
+	to_chat(source, span_notice(LANG("obj.a55848878b05c22e", list(parent.name))))
 
 /obj/item/circuit_component/implant_core/proc/on_examine(datum/source, mob/mob, list/examine_text)
 	SIGNAL_HANDLER
 
 	if (isobserver(mob))
-		examine_text += span_notice(LANG("obj.4930d946", list(source.p_They(), source.p_have(), REF(src), parent, source.p_them())))
+		examine_text += span_notice(LANG("obj.4930d946e5fb642f", list(source.p_They(), source.p_have(), REF(src), parent, source.p_them())))
 
 /obj/item/circuit_component/implant_core/Topic(href, list/href_list)
 	..()
@@ -221,10 +221,10 @@
 	var/obj/item/stock_parts/power_store/cell/cell = circuit_component.parent.cell
 
 	if (isnull(cell))
-		to_chat(owner, span_boldwarning(LANG("datum.2bd539cc", list(circuit_component.parent))))
+		to_chat(owner, span_boldwarning(LANG("datum.2bd539cc8b9e88c8", list(circuit_component.parent))))
 	else
-		to_chat(owner, span_info(LANG("datum.458a2f5f", list(circuit_component.parent, cell.name, cell.percent()))))
-		to_chat(owner, span_info(LANG("datum.d802482f", null)))
+		to_chat(owner, span_info(LANG("datum.458a2f5ff385e99e", list(circuit_component.parent, cell.name, cell.percent()))))
+		to_chat(owner, span_info(LANG("datum.d802482fb2d05e8c", null)))
 
 /datum/action/innate/implant_charge_action/process(seconds_per_tick)
 	build_all_button_icons(UPDATE_BUTTON_STATUS)

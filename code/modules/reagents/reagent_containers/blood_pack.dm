@@ -66,14 +66,14 @@
 
 /obj/item/reagent_containers/blood/snail/examine()
 	. = ..()
-	. += span_notice(LANG("obj.9ac7b3d9", null))
+	. += span_notice(LANG("obj.9ac7b3d98792fd6b", null))
 
 /obj/item/reagent_containers/blood/podperson
 	blood_type = /datum/blood_type/water
 
 /obj/item/reagent_containers/blood/podperson/examine()
 	. = ..()
-	. += span_notice(LANG("obj.e82072b2", null))
+	. += span_notice(LANG("obj.e82072b25f24a139", null))
 
 // for slimepeople
 /obj/item/reagent_containers/blood/toxin
@@ -81,7 +81,7 @@
 
 /obj/item/reagent_containers/blood/toxin/examine()
 	. = ..()
-	. += span_notice(LANG("obj.c52db507", null))
+	. += span_notice(LANG("obj.c52db50777ac0c00", null))
 
 /obj/item/reagent_containers/blood/universal
 	blood_type = /datum/blood_type/universal

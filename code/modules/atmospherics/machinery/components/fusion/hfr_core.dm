@@ -210,5 +210,5 @@
 /obj/machinery/atmospherics/components/unary/hypertorus/core/crowbar_deconstruction_act(mob/living/user, obj/item/tool, internal_pressure = 0)
 	internal_pressure = max(internal_fusion.return_pressure(), moderator_internal.return_pressure())
 	if(internal_pressure)
-		say(LANG("obj.c8129502", null))
+		say(LANG("obj.c8129502fcf3f413", null))
 	return ..(user, tool, internal_pressure)

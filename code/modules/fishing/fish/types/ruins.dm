@@ -44,18 +44,18 @@
 	return list(span_deadsay("It's bones."))
 
 /obj/item/fish/mastodon/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.10a7f51f", list(user, src))))
+	user.visible_message(span_suicide(LANG("obj.10a7f51fb2ac401f", list(user, src))))
 	forceMove(user)
 	user.update_transform(1.25) // become BIG from eating BIG fish
 	addtimer(CALLBACK(src, PROC_REF(skeleton_appears), user), 2 SECONDS)
 	return MANUAL_SUICIDE_NONLETHAL // chance not to die
 
 /obj/item/fish/mastodon/proc/skeleton_appears(mob/living/user)
-	user.visible_message(span_warning(LANG("obj.4de22ba2", list(user))), span_boldwarning(LANG("obj.4f37cb37", null)))
+	user.visible_message(span_warning(LANG("obj.4de22ba2899671d5", list(user))), span_boldwarning(LANG("obj.4f37cb37da567ffd", null)))
 	user.spawn_gibs()
 	user.drop_everything(del_on_drop = FALSE, force = FALSE, del_if_nodrop = FALSE)
 	user.set_species(/datum/species/skeleton)
-	user.say(LANG("obj.8b4d2ae1", null), forced = "mastodon fish suicide")
+	user.say(LANG("obj.8b4d2ae15f4ddf32", null), forced = "mastodon fish suicide")
 	user.AddComponent(/datum/component/omen) // the curse of the fish
 	if(prob(75)) // rare so less likely (the curse keeps you alive)
 		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, death)), 3 SECONDS)
@@ -97,7 +97,7 @@
 	return list("cooked meat" = 2)
 
 /obj/item/fish/soul/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.303dfb86", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.303dfb86277479c9", list(user, src, user.p_theyre()))))
 	src.forceMove(user)
 	addtimer(CALLBACK(src, PROC_REF(good_ending), user), 2.5 SECONDS)
 	for(var/i in 1 to 7)
@@ -111,7 +111,7 @@
 	addtimer(CALLBACK(soulman, TYPE_PROC_REF(/mob/living, death)), 5 SECONDS, TIMER_DELETE_ME)
 	if(prob(80)) // the percentage is important.
 		soulman.PossessByPlayer(user.ckey)
-		to_chat(soulman, span_notice(LANG("obj.50db0457", null)))
+		to_chat(soulman, span_notice(LANG("obj.50db04572e391fe1", null)))
 	user.gib()
 	qdel(src)
 
@@ -158,15 +158,15 @@
 	return list("cooked crab" = 2)
 
 /obj/item/fish/skin_crab/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.83a2eddd", list(user, user.p_their(), src, user.p_theyre(), user.p_their(), src))))
+	user.visible_message(span_suicide(LANG("obj.83a2edddb6b06f0e", list(user, user.p_their(), src, user.p_theyre(), user.p_their(), src))))
 	if(HAS_TRAIT(user, TRAIT_UNHUSKABLE))
-		user.visible_message(span_suicide(LANG("obj.834949d3", list(user))))
+		user.visible_message(span_suicide(LANG("obj.834949d3c9733a5d", list(user))))
 		return SHAME
 	if(!ishuman(user))
-		user.visible_message(span_suicide(LANG("obj.55246041", list(src, user))))
+		user.visible_message(span_suicide(LANG("obj.552460411ee5a521", list(src, user))))
 		return SHAME
 	if(status == FISH_DEAD)
-		user.visible_message(span_suicide(LANG("obj.3a4ca27f", list(src, user))))
+		user.visible_message(span_suicide(LANG("obj.3a4ca27fe39e5ee8", list(src, user))))
 		return SHAME
 
 	var/mob/living/carbon/skin_haver = user
@@ -182,7 +182,7 @@
 
 	// skin crab grows powerful
 	color = skin_tone //skintone2hex(skin_tone) //wait til smartkar's recolorwork
-	visible_message(span_danger(LANG("obj.5439bc3c", list(user))))
+	visible_message(span_danger(LANG("obj.5439bc3ce949e6d4", list(user))))
 	AddElement(/datum/element/haunted, haunt_color = skin_tone)
 
 	return BRUTELOSS

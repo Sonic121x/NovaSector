@@ -63,7 +63,7 @@
 		return NONE
 	if(synced_bank_account)
 		synced_bank_account.adjust_money(value)
-		say(LANG("obj.2bf7e5e6", list(MONEY_NAME_CAPITALIZED, synced_bank_account.account_holder, synced_bank_account.account_balance, MONEY_SYMBOL)))
+		say(LANG("obj.2bf7e5e6bc98c3f3", list(MONEY_NAME_CAPITALIZED, synced_bank_account.account_holder, synced_bank_account.account_balance, MONEY_SYMBOL)))
 	qdel(tool)
 	return ITEM_INTERACT_SUCCESS
 
@@ -73,12 +73,12 @@
 	if(!siphoning || !synced_bank_account)
 		return
 	if (machine_stat & (BROKEN | NOPOWER))
-		say(LANG("obj.05d4cfd5", null))
+		say(LANG("obj.05d4cfd50cc6ad71", null))
 		end_siphon()
 		return
 	var/siphon_am = 100 * seconds_per_tick
 	if(!synced_bank_account.has_money(siphon_am))
-		say(LANG("obj.36dbf810", list(synced_bank_account.account_holder)))
+		say(LANG("obj.36dbf810e79012f5", list(synced_bank_account.account_holder)))
 		end_siphon()
 		return
 
@@ -115,20 +115,20 @@
 	switch(action)
 		if("siphon")
 			if(is_station_level(src.z) || is_centcom_level(src.z))
-				say(LANG("obj.bd6f0c76", list(MONEY_NAME)))
+				say(LANG("obj.bd6f0c769aa26d97", list(MONEY_NAME)))
 				start_siphon(ui.user)
 			else
-				say(LANG("obj.8aeb705e", null))
+				say(LANG("obj.8aeb705ef136ae9c", null))
 			. = TRUE
 		if("halt")
-			say(LANG("obj.3bbcdc77", list(MONEY_NAME_SINGULAR)))
+			say(LANG("obj.3bbcdc775504a80a", list(MONEY_NAME_SINGULAR)))
 			end_siphon()
 			. = TRUE
 
 /obj/machinery/computer/bank_machine/on_changed_z_level()
 	. = ..()
 	if(siphoning && !(is_station_level(src.z) || is_centcom_level(src.z)))
-		say(LANG("obj.14c20d8b", null))
+		say(LANG("obj.14c20d8b5b81bb61", null))
 		end_siphon()
 
 /obj/machinery/computer/bank_machine/proc/end_siphon()

@@ -28,7 +28,7 @@
 		return
 	in_use = TRUE
 
-	rune.balloon_alert_to_viewers(LANG("datum.a1cab080", null))
+	rune.balloon_alert_to_viewers(LANG("datum.a1cab08041b2dd0b", null))
 	new ritual_effect(rune.loc)
 
 	// it is entirely possible to have your own effects here... this is just a suggestion
@@ -63,10 +63,10 @@
 				return FALSE
 		if(is_type_in_list(atom_check, consumed_components))
 			qdel(atom_check)
-			checked_rune.balloon_alert_to_viewers(LANG("datum.bf43ca1d", list(checked_component)))
+			checked_rune.balloon_alert_to_viewers(LANG("datum.bf43ca1d21a17c20", list(checked_component)))
 
 		else
-			checked_rune.balloon_alert_to_viewers(LANG("datum.0d7d872d", list(checked_component)))
+			checked_rune.balloon_alert_to_viewers(LANG("datum.0d7d872d7a3e230e", list(checked_component)))
 
 		new ritual_effect(checked_rune.loc)
 		sleep(ritual_time)
@@ -75,14 +75,14 @@
 
 /datum/ash_ritual/proc/ritual_fail(obj/effect/ash_rune/failed_rune)
 	new ritual_effect(failed_rune.loc)
-	failed_rune.balloon_alert_to_viewers(LANG("datum.13a3a8c1", null))
+	failed_rune.balloon_alert_to_viewers(LANG("datum.13a3a8c10b70e59b", null))
 	failed_rune.current_ritual = null
 	in_use = FALSE
 	return
 
 /datum/ash_ritual/proc/ritual_success(obj/effect/ash_rune/success_rune)
 	new ritual_effect(success_rune.loc)
-	success_rune.balloon_alert_to_viewers(LANG("datum.1e6cd11d", null))
+	success_rune.balloon_alert_to_viewers(LANG("datum.1e6cd11dcd4944a4", null))
 	log_game("[name] ritual has been successfully activated.")
 
 	var/turf/rune_turf = get_turf(success_rune)
@@ -207,7 +207,7 @@
 		if(select_mob.z != success_rune.z)
 			continue
 
-		to_chat(select_mob, span_userdanger(LANG("datum.3f14073a", null)))
+		to_chat(select_mob, span_userdanger(LANG("datum.3f14073a30004066", null)))
 		playsound(get_turf(select_mob), 'sound/effects/magic/demon_attack1.ogg', 50, TRUE)
 		flash_color(select_mob, flash_color = "#FF0000", flash_time = 3 SECONDS)
 
@@ -408,7 +408,7 @@
 	var/list/yes_voters = SSpolling.poll_candidates("Do you wish to banish [find_banished]?", poll_time = 10 SECONDS, group = asked_voters)
 
 	if(length(yes_voters) < max(1, ceil(length(asked_voters) / 2 + 0.01))) // you need a simple majority (ex: 10 people vote, need 6)
-		find_banished.balloon_alert_to_viewers(LANG("datum.5681f8ee", null))
+		find_banished.balloon_alert_to_viewers(LANG("datum.5681f8eef35d566f", null))
 		return
 
 	var/turf/teleport_turf = locate(rand(1,255), rand(1,255), success_rune.z)

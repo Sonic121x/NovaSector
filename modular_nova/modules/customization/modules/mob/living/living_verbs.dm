@@ -6,10 +6,10 @@ GLOBAL_DATUM_INIT(temporary_flavor_text_vis, /obj/effect/overlay/indicator/tempo
 
 GAME_VERB_DESC(/mob/living, set_temporary_flavor, "设置临时风味文本", "Allows you to set a temporary flavor text.", "IC")
 	if(IS_UNCONSCIOUS_OR_CRIT(src))
-		to_chat(usr, span_warning(LANG("mob.a3ef0a20", null)))
+		to_chat(usr, span_warning(LANG("mob.a3ef0a20fc538af4", null)))
 		return
 
-	var/msg = tgui_input_text(usr, LANG("mob.3b4f7fa2", null), LANG("mob.bfbb9785", null), html_decode(temporary_flavor_text), max_length = MAX_FLAVOR_LEN, multiline = TRUE)
+	var/msg = tgui_input_text(usr, LANG("mob.3b4f7fa20fd17927", null), LANG("mob.bfbb9785cda3b2ae", null), html_decode(temporary_flavor_text), max_length = MAX_FLAVOR_LEN, multiline = TRUE)
 	if(isnull(msg))
 		return
 

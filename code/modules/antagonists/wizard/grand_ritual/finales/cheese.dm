@@ -11,7 +11,7 @@
 
 /datum/grand_finale/cheese/trigger(mob/living/invoker)
 	message_admins("[key_name(invoker)] has summoned forth The Wabbajack and cursed the crew with madness!")
-	priority_announce("Danger: Extremely potent reality altering object has been summoned on station. Immediate evacuation advised. Brace for impact.", LANG("datum.92d186ed", list(command_name())), 'sound/effects/glass/glassbr1.ogg')
+	priority_announce("Danger: Extremely potent reality altering object has been summoned on station. Immediate evacuation advised. Brace for impact.", LANG("datum.92d186ed5b00090d", list(command_name())), 'sound/effects/glass/glassbr1.ogg')
 
 	for (var/mob/living/carbon/human/crewmate as anything in GLOB.human_list)
 		if (isnull(crewmate.mind))
@@ -19,8 +19,8 @@
 		if (crewmate == invoker) //everyone but the wizard is royally fucked, no matter who they are
 			continue
 		if (crewmate.has_trauma_type(/datum/brain_trauma/mild/hallucinations)) //for an already insane person, this is retribution
-			to_chat(crewmate, span_boldwarning(LANG("datum.eeb46b2a", null)))
-			to_chat(crewmate, span_nicegreen(LANG("datum.e9cf9bf7", null)))
+			to_chat(crewmate, span_boldwarning(LANG("datum.eeb46b2aa7c314ce", null)))
+			to_chat(crewmate, span_nicegreen(LANG("datum.e9cf9bf7b7b3144e", null)))
 			if(crewmate.has_quirk(/datum/quirk/insanity))
 				crewmate.remove_quirk(/datum/quirk/insanity)
 			else
@@ -29,7 +29,7 @@
 			//everyone else gets to relish in madness
 			//yes killing their mood will also trigger mood hallucinations
 			create_vendetta(crewmate.mind, invoker.mind)
-			to_chat(crewmate, span_boldwarning(LANG("datum.24739b23", list(invoker))))
+			to_chat(crewmate, span_boldwarning(LANG("datum.24739b239d2dfc87", list(invoker))))
 			var/datum/brain_trauma/mild/hallucinations/added_trauma = new()
 			added_trauma.resilience = TRAUMA_RESILIENCE_ABSOLUTE
 			crewmate.adjust_organ_loss(ORGAN_SLOT_BRAIN, BRAIN_DAMAGE_DEATH - 25, BRAIN_DAMAGE_DEATH - 25) //you'd better hope chap didn't pick a hypertool
@@ -41,4 +41,4 @@
 	invoker.add_mood_event("wizard_ritual_finale", /datum/mood_event/madness_elation)
 	var/obj/item/gun/magic/staff/chaos/true_wabbajack/the_wabbajack = new
 	invoker.put_in_active_hand(the_wabbajack)
-	to_chat(invoker, span_mind_control(LANG("datum.d90f731c", list(the_wabbajack))))
+	to_chat(invoker, span_mind_control(LANG("datum.d90f731cf7ebda3c", list(the_wabbajack))))

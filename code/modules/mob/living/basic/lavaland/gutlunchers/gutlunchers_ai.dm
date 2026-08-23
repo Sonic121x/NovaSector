@@ -55,7 +55,7 @@
 
 /datum/pet_command/breed/gutlunch/set_command_target(mob/living/parent, atom/target)
 	if(GLOB.gutlunch_count >= MAXIMUM_GUTLUNCH_POP)
-		parent.balloon_alert_to_viewers(LANG("datum.157d30d4", null))
+		parent.balloon_alert_to_viewers(LANG("datum.157d30d4b052b070", null))
 		return FALSE
 	return ..()
 
@@ -80,7 +80,7 @@
 		if(!living_pawn.client || !living_pawn.faction_check_atom(potential_friend) || living_pawn.has_ally(REF(potential_friend)))
 			continue
 		living_pawn.befriend(potential_friend)
-		to_chat(potential_friend, span_nicegreen(LANG("datum.84765660", list(living_pawn))))
+		to_chat(potential_friend, span_nicegreen(LANG("datum.847656603c776c1e", list(living_pawn))))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 

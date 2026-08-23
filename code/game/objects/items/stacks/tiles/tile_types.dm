@@ -49,7 +49,7 @@
 /obj/item/stack/tile/examine(mob/user)
 	. = ..()
 	if(tile_reskin_types || tile_rotate_dirs)
-		. += span_notice(LANG("obj.030520cc", list(src)))
+		. += span_notice(LANG("obj.030520cce5aa6014", list(src)))
 	if(throwforce && !is_cyborg) //do not want to divide by zero or show the message to borgs who can't throw
 		var/damage_value
 		switch(ceil(MAX_LIVING_HEALTH / throwforce)) //throws to crit a human
@@ -65,7 +65,7 @@
 				damage_value = "mediocre"
 		if(!damage_value)
 			return
-		. += span_notice(LANG("obj.9a8a884d", list(damage_value)))
+		. += span_notice(LANG("obj.9a8a884d8e612595", list(damage_value)))
 
 /**
  * Place our tile on a plating, or replace it.

@@ -263,7 +263,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/the_owl, 32)
 	if(prob(99) && !check_holidays(APRIL_FOOLS))
 		return ..()
 
-	visible_message(span_notice(LANG("obj.6f5f6ca2", list(user, src))))
+	visible_message(span_notice(LANG("obj.6f5f6ca2b7249c25", list(user, src))))
 	playsound(src, 'sound/items/poster/poster_ripped.ogg', 100, TRUE)
 	if(corrupted)
 		name = initial(name)
@@ -272,7 +272,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/the_owl, 32)
 		corrupted = FALSE
 	else
 		name = "Yes ERP"
-		desc = LANG("obj.4f7e03a3", null)
+		desc = LANG("obj.4f7e03a34af117b9", null)
 		icon_state = "yes_erp"
 		corrupted = TRUE
 
@@ -314,14 +314,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/periodic_table, 
 
 /obj/structure/sign/poster/official/plasma_effects/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.651bbda5", null))
-	. += LANG("obj.294efb1f", list(span_info("Plasma (scientific name Amenthium) is classified by TerraGov as a Grade 1 Health Hazard, and has significant risks to health associated with chronic exposure.")))
-	. += LANG("obj.294efb1f", list(span_info("Plasma is known to cross the blood/brain barrier and bioaccumulate in brain tissue, where it begins to result in degradation of brain function. The mechanism for attack is not yet fully known, and as such no concrete preventative advice is available barring proper use of PPE (gloves + protective jumpsuit + respirator).")))
-	. += LANG("obj.294efb1f", list(span_info("In small doses, plasma induces confusion, short-term amnesia, and heightened aggression. These effects persist with continual exposure.")))
-	. += LANG("obj.294efb1f", list(span_info("In individuals with chronic exposure, severe effects have been noted. Further heightened aggression, long-term amnesia, Alzheimer's symptoms, schizophrenia, macular degeneration, aneurysms, heightened risk of stroke, and Parkinsons symptoms have all been noted.")))
-	. += LANG("obj.294efb1f", list(span_info("It is recommended that all individuals in unprotected contact with raw plasma regularly check with company health officials.")))
-	. += LANG("obj.294efb1f", list(span_info("For more information, please check with TerraGov's extranet site on Amenthium: www.terra.gov/health_and_safety/amenthium/, or our internal risk-assessment documents (document numbers #47582-b (Plasma safety data sheets) and #64210 through #64225 (PPE regulations for working with Plasma), available via NanoDoc to all employees).")))
-	. += LANG("obj.294efb1f", list(span_info("Nanotrasen: Always looking after your health.")))
+	. += span_notice(LANG("obj.651bbda56f722ed1", null))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Plasma (scientific name Amenthium) is classified by TerraGov as a Grade 1 Health Hazard, and has significant risks to health associated with chronic exposure.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Plasma is known to cross the blood/brain barrier and bioaccumulate in brain tissue, where it begins to result in degradation of brain function. The mechanism for attack is not yet fully known, and as such no concrete preventative advice is available barring proper use of PPE (gloves + protective jumpsuit + respirator).")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("In small doses, plasma induces confusion, short-term amnesia, and heightened aggression. These effects persist with continual exposure.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("In individuals with chronic exposure, severe effects have been noted. Further heightened aggression, long-term amnesia, Alzheimer's symptoms, schizophrenia, macular degeneration, aneurysms, heightened risk of stroke, and Parkinsons symptoms have all been noted.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("It is recommended that all individuals in unprotected contact with raw plasma regularly check with company health officials.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("For more information, please check with TerraGov's extranet site on Amenthium: www.terra.gov/health_and_safety/amenthium/, or our internal risk-assessment documents (document numbers #47582-b (Plasma safety data sheets) and #64210 through #64225 (PPE regulations for working with Plasma), available via NanoDoc to all employees).")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Nanotrasen: Always looking after your health.")))
 	return .
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/plasma_effects, 32)
@@ -347,10 +347,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/corporate_perks_
 
 /obj/structure/sign/poster/official/jim_nortons/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.651bbda5", null))
-	. += LANG("obj.294efb1f", list(span_info("From our roots in Trois-Rivières, we've worked to bring you the best coffee money can buy since 1965.")))
-	. += LANG("obj.294efb1f", list(span_info("So stop by Jim's today- have a hot cup of coffee and a donut, and live like the Québécois do.")))
-	. += LANG("obj.294efb1f", list(span_info("Jim Norton's Québécois Coffee: Toujours Le Bienvenu.")))
+	. += span_notice(LANG("obj.651bbda56f722ed1", null))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("From our roots in Trois-Rivières, we've worked to bring you the best coffee money can buy since 1965.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("So stop by Jim's today- have a hot cup of coffee and a donut, and live like the Québécois do.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Jim Norton's Québécois Coffee: Toujours Le Bienvenu.")))
 	return .
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/jim_nortons, 32)

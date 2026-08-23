@@ -32,7 +32,7 @@
 
 /obj/item/gibtonite_hand/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if (!held_gibtonite)
-		to_chat(user, span_warning(LANG("obj.0adb2fc2", list(src))))
+		to_chat(user, span_warning(LANG("obj.0adb2fc288922b28", list(src))))
 		qdel(src)
 		return ITEM_INTERACT_BLOCKING
 
@@ -79,10 +79,10 @@
 /obj/item/bluespace_finger/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	var/turf/target_turf = get_turf(interacting_with)
 	if (get_dist(target_turf, get_turf(src)) > teleport_range)
-		balloon_alert(user, LANG("obj.f5e75781", null))
+		balloon_alert(user, LANG("obj.f5e75781e8f1dc46", null))
 		return ITEM_INTERACT_BLOCKING
 	if (target_turf.is_blocked_turf(exclude_mobs = TRUE))
-		balloon_alert(user, LANG("obj.ad6c6384", null))
+		balloon_alert(user, LANG("obj.ad6c6384cbc2d930", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/effect/temp_visual/teleport_golem/landing_indicator = new(target_turf)

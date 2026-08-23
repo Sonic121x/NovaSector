@@ -85,4 +85,4 @@
 	if(isnull(.))
 		return
 	SET_FACTION_AND_ALLIES_FROM(src, new_friend)
-	visible_message(span_notice(LANG("mob.4e88df2b", list(src, src.p_their(), new_friend, src.p_their()))))
+	visible_message(span_notice(LANG("mob.4e88df2ba8cf2bc2", list(src, src.p_their(), new_friend, src.p_their()))))

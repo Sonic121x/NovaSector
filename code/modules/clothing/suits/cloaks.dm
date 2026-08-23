@@ -17,7 +17,7 @@
 	AddElement(/datum/element/surgery_aid, "cloak")
 
 /obj/item/clothing/neck/cloak/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.2a557471", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.2a557471bd55eaf0", list(user, user.p_them(), src, user.p_theyre()))))
 	return OXYLOSS
 
 /obj/item/clothing/neck/cloak/hos

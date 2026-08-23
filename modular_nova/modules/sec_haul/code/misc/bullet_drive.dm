@@ -23,12 +23,12 @@
 /obj/machinery/dish_drive/bullet/do_the_dishes(manual)
 	if(!LAZYLEN(dish_drive_contents))
 		if(manual)
-			visible_message(span_notice(LANG("obj.02d482cc", list(src))))
+			visible_message(span_notice(LANG("obj.02d482cc1aef0cef", list(src))))
 		return
 	var/obj/machinery/disposal/bin/bin = locate() in view(binrange, src) //NOVA EDIT CHANGE
 	if(!bin)
 		if(manual)
-			visible_message(span_warning(LANG("obj.40c14145", list(src))))
+			visible_message(span_warning(LANG("obj.40c1414541d9345d", list(src))))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 		return
 	var/disposed = 0
@@ -39,12 +39,12 @@
 			use_energy(active_power_usage)
 			disposed++
 	if(disposed)
-		visible_message(span_notice(LANG("obj.5cba38c2", list(src, pick("whooshes", "bwooms", "fwooms", "pshooms"), disposed))))
+		visible_message(span_notice(LANG("obj.5cba38c25cd7835f", list(src, pick("whooshes", "bwooms", "fwooms", "pshooms"), disposed))))
 		playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 		playsound(bin, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 		flick("synthesizer_beam", src)
 	else
-		visible_message(span_notice(LANG("obj.359381c8", list(src))))
+		visible_message(span_notice(LANG("obj.359381c866f6b704", list(src))))
 	time_since_dishes = world.time + 600
 
 /obj/machinery/dish_drive/bullet/process()
@@ -54,12 +54,12 @@
 		return
 	for(var/obj/item/I in view(2 + suck_distance, src))
 		if(istype(I, /obj/machinery/dish_drive/bullet))
-			visible_message(span_userdanger(LANG("obj.5ce1d582", list(src))))
+			visible_message(span_userdanger(LANG("obj.5ce1d5826142a5a4", list(src))))
 			break
 		if(is_type_in_list(I, collectable_items) && I.loc != src && (!I.reagents || !I.reagents.total_volume))
 			if(I.Adjacent(src))
 				LAZYADD(dish_drive_contents, I)
-				visible_message(span_notice(LANG("obj.52c367cc", list(src, I))))
+				visible_message(span_notice(LANG("obj.52c367cc63542a81", list(src, I))))
 				I.moveToNullspace()
 				playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 				flick("synthesizer_beam", src)

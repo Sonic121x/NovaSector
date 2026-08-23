@@ -11,16 +11,16 @@
 
 /obj/item/fake_identity_kit/examine_more(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.d1375bb6", null))
-	. += span_info(LANG("obj.cf1c63c7", null))
+	. += span_info(LANG("obj.d1375bb613a60651", null))
+	. += span_info(LANG("obj.cf1c63c70bca2927", null))
 
 /obj/item/fake_identity_kit/attack_self(mob/living/carbon/human/user, modifiers)
 	. = ..()
 	if (!ishuman(user))
-		balloon_alert(user, LANG("obj.421f65c9", null))
+		balloon_alert(user, LANG("obj.421f65c9eca4f8b1", null))
 		return
 	if (find_record(user.real_name))
-		balloon_alert(user, LANG("obj.78bfa2b8", null))
+		balloon_alert(user, LANG("obj.78bfa2b80dcba0a4", null))
 		return
 
 	user.temporarilyRemoveItemFromInventory(src)
@@ -56,9 +56,9 @@
 		), qdel_on_fail = FALSE, indirect_action = TRUE)
 	if (isnull(placed_in))
 		fake_id.forceMove(user.drop_location())
-		to_chat(user, span_warning(LANG("obj.b7cb726f", null)))
+		to_chat(user, span_warning(LANG("obj.b7cb726fb76461c9", null)))
 	else
-		to_chat(user, span_notice(LANG("obj.97b64665", list(placed_in))))
+		to_chat(user, span_notice(LANG("obj.97b6466553c625c1", list(placed_in))))
 
 	user.update_ID_card()
 
@@ -81,13 +81,13 @@
 		), qdel_on_fail = FALSE, indirect_action = TRUE)
 		if (isnull(returned_to))
 			fake_id.forceMove(user.drop_location())
-			to_chat(user, span_warning(LANG("obj.ee1b188f", null)))
+			to_chat(user, span_warning(LANG("obj.ee1b188f88564790", null)))
 		else
-			to_chat(user, span_notice(LANG("obj.2ff2ba2a", list(returned_to))))
+			to_chat(user, span_notice(LANG("obj.2ff2ba2a2a7a0341", list(returned_to))))
 
 	var/obj/item/arrival_announcer/announcer = new(user.drop_location())
 	user.put_in_hands(announcer)
-	to_chat(user, span_notice(LANG("obj.7fd7addd", null)))
+	to_chat(user, span_notice(LANG("obj.7fd7addd8bfd2619", null)))
 	qdel(src)
 
 /obj/item/arrival_announcer
@@ -108,10 +108,10 @@
 	var/name = user.real_name
 	var/datum/record/manifest_data = find_record(name)
 	if (isnull(manifest_data))
-		balloon_alert(user, LANG("obj.fc25e5c8", null))
+		balloon_alert(user, LANG("obj.fc25e5c833e0f167", null))
 		return
 	var/job = manifest_data.rank
-	if (tgui_alert(user, LANG("obj.32b6fbe2", list(name, job)), LANG("obj.cae34731", null), list("Yes", "No"), timeout = 30 SECONDS) != "Yes")
+	if (tgui_alert(user, LANG("obj.32b6fbe25f6913ce", list(name, job)), LANG("obj.cae34731b05d2a6f", null), list("Yes", "No"), timeout = 30 SECONDS) != "Yes")
 		return
 	if (QDELETED(src) || !user.can_perform_action(src, interaction_flags_click))
 		return

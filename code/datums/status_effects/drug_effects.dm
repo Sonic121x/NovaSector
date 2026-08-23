@@ -54,7 +54,7 @@
 	duration = amplitude
 	owner.set_jitter_if_lower(100 SECONDS)
 	owner.Paralyze(duration)
-	owner.visible_message(span_warning(LANG("datum.a37e8af4", list(owner, owner.p_they(), owner.p_s()))), \
+	owner.visible_message(span_warning(LANG("datum.a37e8af4ee878f6c", list(owner, owner.p_they(), owner.p_s()))), \
 	span_warning("[pick("You can't collect your thoughts...", "You suddenly feel extremely dizzy...", "You can't think straight...","You can't move your face properly anymore...")]"))
 	return TRUE
 

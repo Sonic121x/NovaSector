@@ -54,13 +54,13 @@
 
 	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
 	var/your_or_other = (user == victim ? "your" : "[victim]'s")
-	victim.visible_message(span_notice(LANG("datum.7f837c44", list(user, their_or_other, limb.plaintext_zone))), \
-		span_notice(LANG("datum.195b3284", list(your_or_other, limb.plaintext_zone))))
+	victim.visible_message(span_notice(LANG("datum.7f837c440806a932", list(user, their_or_other, limb.plaintext_zone))), \
+		span_notice(LANG("datum.195b328432e27bc4", list(your_or_other, limb.plaintext_zone))))
 
 	if (!screwdriver_tool.use_tool(target = victim, user = user, delay = (6 SECONDS * delay_mult), volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
-	victim.visible_message(span_green(LANG("datum.2e4a1325", list(user, their_or_other, limb.plaintext_zone))), \
-		span_green(LANG("datum.612c84f1", list(your_or_other, limb.plaintext_zone))))
+	victim.visible_message(span_green(LANG("datum.2e4a1325a6d45228", list(user, their_or_other, limb.plaintext_zone))), \
+		span_green(LANG("datum.612c84f1f7ebd630", list(your_or_other, limb.plaintext_zone))))
 
 	remove_wound()

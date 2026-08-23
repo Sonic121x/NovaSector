@@ -1014,14 +1014,14 @@
 			if(non_departmental_uses_left)
 				non_departmental_uses_left--
 				if(non_departmental_uses_left)
-					say(LANG("obj.927fd769", list(non_departmental_uses_left)))
+					say(LANG("obj.927fd769d42b836f", list(non_departmental_uses_left)))
 				else
-					say(LANG("obj.95a9feeb", list(src)))
+					say(LANG("obj.95a9feeb5b41685f", list(src)))
 			else
-				target.visible_message(span_warning(LANG("obj.c25d9d9b", list(user, target, src))), \
-					span_warning(LANG("obj.4d9fd2fd", list(user, src))))
+				target.visible_message(span_warning(LANG("obj.c25d9d9bad3de2c0", list(user, target, src))), \
+					span_warning(LANG("obj.4d9fd2fd26f04dbc", list(user, src))))
 				turn_off()
-				balloon_alert(user, LANG("obj.9de834dd", null))
+				balloon_alert(user, LANG("obj.9de834ddefd6f41f", null))
 				playsound(src, SFX_SPARKS, 75, TRUE, -1)
 				update_appearance()
 				return FALSE
@@ -1034,16 +1034,16 @@
 		if(!is_type_in_list(current_area, valid_areas))
 			return
 		if(non_departmental_uses_left < 4)
-			say(LANG("obj.ab5bbce7", null))
+			say(LANG("obj.ab5bbce7c40e96f4", null))
 			non_departmental_uses_left = 4
 
 /obj/item/melee/baton/security/loaded/departmental/emag_act(mob/user)
 	if(!emagged)
 		if(user)
-			user.visible_message(span_warning(LANG("obj.4ebe3de5", list(src))),
-							span_warning(LANG("obj.8a48054b", list(src))),
-							span_hear(LANG("obj.e9bee9b3", null)))
-		balloon_alert(user, LANG("obj.d11dba2f", null))
+			user.visible_message(span_warning(LANG("obj.4ebe3de564d9fd88", list(src))),
+							span_warning(LANG("obj.8a48054b45d3e545", list(src))),
+							span_hear(LANG("obj.e9bee9b372539a94", null)))
+		balloon_alert(user, LANG("obj.d11dba2fe2307aa0", null))
 		playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		obj_flags |= EMAGGED
 		emagged = TRUE

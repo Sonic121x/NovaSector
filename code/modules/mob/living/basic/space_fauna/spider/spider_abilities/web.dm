@@ -32,19 +32,19 @@
 		return FALSE
 	if(DOING_INTERACTION(owner, DOAFTER_SOURCE_SPIDER))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.8df72942", null))
+			owner.balloon_alert(owner, LANG("datum.8df72942c63f9092", null))
 		return FALSE
 	if(!isturf(owner.loc))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.5a6389ed", null))
+			owner.balloon_alert(owner, LANG("datum.5a6389ed5f3d395f", null))
 		return FALSE
 	if(HAS_TRAIT(owner.loc, TRAIT_SPINNING_WEB_TURF))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.ac884a8f", null))
+			owner.balloon_alert(owner, LANG("datum.ac884a8fd24fda2b", null))
 		return FALSE
 	if(obstructed_by_other_web())
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.b6e10a25", null))
+			owner.balloon_alert(owner, LANG("datum.b6e10a25500b3949", null))
 		return FALSE
 	return TRUE
 
@@ -57,14 +57,14 @@
 	var/turf/spider_turf = get_turf(owner)
 	var/obj/structure/spider/stickyweb/web = locate() in spider_turf
 	if(web)
-		owner.balloon_alert_to_viewers(LANG("datum.c1bc0b96", null))
+		owner.balloon_alert_to_viewers(LANG("datum.c1bc0b962d022b49", null))
 	else
-		owner.balloon_alert_to_viewers(LANG("datum.9b40a9f8", null))
+		owner.balloon_alert_to_viewers(LANG("datum.9b40a9f897f99c7e", null))
 	ADD_TRAIT(spider_turf, TRAIT_SPINNING_WEB_TURF, REF(src))
 	if(do_after(owner, webbing_time, target = spider_turf, interaction_key = DOAFTER_SOURCE_SPIDER) && owner.loc == spider_turf)
 		plant_web(spider_turf, web)
 	else
-		owner?.balloon_alert(owner, LANG("datum.c67b5d27", null)) // Null check because we might have been interrupted via being disintegrated
+		owner?.balloon_alert(owner, LANG("datum.c67b5d274d6e724b", null)) // Null check because we might have been interrupted via being disintegrated
 	REMOVE_TRAIT(spider_turf, TRAIT_SPINNING_WEB_TURF, REF(src))
 	build_all_button_icons()
 
@@ -166,7 +166,7 @@
 		return FALSE
 	if(!isturf(owner.loc))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.5a6389ed", null))
+			owner.balloon_alert(owner, LANG("datum.5a6389ed5f3d395f", null))
 		return FALSE
 	return TRUE
 

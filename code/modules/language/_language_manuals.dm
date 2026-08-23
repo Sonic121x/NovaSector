@@ -14,10 +14,10 @@
 		return
 
 	if(user.has_language(language))
-		to_chat(user, span_boldwarning(LANG("obj.6e7d7669", list(src, initial(language.name)))))
+		to_chat(user, span_boldwarning(LANG("obj.6e7d7669350ca85b", list(src, initial(language.name)))))
 		return
 
-	to_chat(user, span_bolddanger(LANG("obj.0550275b", list(src, flavour_text))))
+	to_chat(user, span_bolddanger(LANG("obj.0550275b8865088a", list(src, flavour_text))))
 
 	user.grant_language(language)
 	user.remove_blocked_language(language, source=LANGUAGE_ALL)
@@ -35,19 +35,19 @@
 	playsound(loc, SFX_PUNCH, 25, TRUE, -1)
 
 	if(M.stat == DEAD)
-		M.visible_message(span_danger(LANG("obj.d96b11d6", list(user, M, src))), span_userdanger(LANG("obj.25819aec", list(user, src))), span_hear(LANG("obj.e821c025", null)))
+		M.visible_message(span_danger(LANG("obj.d96b11d66b5980f5", list(user, M, src))), span_userdanger(LANG("obj.25819aec3d525113", list(user, src))), span_hear(LANG("obj.e821c025d0846fa2", null)))
 	else if(M.has_language(language))
-		M.visible_message(span_danger(LANG("obj.908ad4aa", list(user, M, src))), span_userdanger(LANG("obj.f3960582", list(user, src))), span_hear(LANG("obj.e821c025", null)))
+		M.visible_message(span_danger(LANG("obj.908ad4aa37bb4e1e", list(user, M, src))), span_userdanger(LANG("obj.f3960582586a528e", list(user, src))), span_hear(LANG("obj.e821c025d0846fa2", null)))
 	else
-		M.visible_message(span_notice(LANG("obj.4936305e", list(user, M, M.p_them(), src))), span_boldnotice(LANG("obj.e1674db8", list(user, src, flavour_text))), span_hear(LANG("obj.e821c025", null)))
+		M.visible_message(span_notice(LANG("obj.4936305eee6e0467", list(user, M, M.p_them(), src))), span_boldnotice(LANG("obj.e1674db86e041990", list(user, src, flavour_text))), span_hear(LANG("obj.e821c025d0846fa2", null)))
 		M.grant_language(language, source = LANGUAGE_MIND)
 		use_charge(user)
 
 /obj/item/language_manual/proc/use_charge(mob/user)
 	charges--
 	if(!charges)
-		user.visible_message(span_notice(LANG("obj.d3148291", list(user, user.p_their()))),
-							span_warning(LANG("obj.4d96de82", list(src))))
+		user.visible_message(span_notice(LANG("obj.d3148291f7c6aeab", list(user, user.p_their()))),
+							span_warning(LANG("obj.4d96de82274039bd", list(src))))
 		new /obj/item/book/manual/random(get_turf(src))
 		qdel(src)
 
@@ -70,7 +70,7 @@
 		var/list/available_languages = length(GLOB.uncommon_roundstart_languages) ? GLOB.uncommon_roundstart_languages : list(/datum/language/common)
 		language = pick(available_languages)
 	name = "[initial(language.name)] manual"
-	desc = LANG("obj.09c2ca37", list(initial(language.name)))
+	desc = LANG("obj.09c2ca37a995125b", list(initial(language.name)))
 	flavour_text = "you feel empowered with a mastery over [initial(language.name)]"
 
 /obj/item/language_manual/roundstart_species/unlimited
@@ -109,14 +109,14 @@
 /obj/item/language_manual/dronespeak_manual/attack(mob/living/M, mob/living/user)
 	// If they are not drone or silicon, we don't want them to learn this language.
 	if(!(isdrone(M) || issilicon(M)))
-		M.visible_message(span_danger(LANG("obj.908ad4aa", list(user, M, src))), span_userdanger(LANG("obj.f3960582", list(user, src))), span_hear(LANG("obj.e821c025", null)))
+		M.visible_message(span_danger(LANG("obj.908ad4aa37bb4e1e", list(user, M, src))), span_userdanger(LANG("obj.f3960582586a528e", list(user, src))), span_hear(LANG("obj.e821c025d0846fa2", null)))
 		return
 
 	return ..()
 
 /obj/item/language_manual/dronespeak_manual/attack_self(mob/living/user)
 	if(!(isdrone(user) || issilicon(user)))
-		to_chat(user, span_danger(LANG("obj.ffff29ef", list(src))))
+		to_chat(user, span_danger(LANG("obj.ffff29ef06ac5b23", list(src))))
 		return
 
 	return ..()

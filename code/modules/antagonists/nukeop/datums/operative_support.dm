@@ -7,8 +7,8 @@
 
 /datum/antagonist/nukeop/support/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/machines/printer.ogg', 100, 0, use_reverb = FALSE)
-	to_chat(owner, span_big(LANG("datum.b88429a6", list(name))))
-	to_chat(owner, span_red(LANG("datum.39b088d8", null)))
+	to_chat(owner, span_big(LANG("datum.b88429a67f886eaf", list(name))))
+	to_chat(owner, span_red(LANG("datum.39b088d84cfc5957", null)))
 	owner.announce_objectives()
 
 /datum/antagonist/nukeop/support/on_gain()
@@ -26,7 +26,7 @@
 			emp_proof = FALSE, \
 		)
 		our_teammate.playsound_local(get_turf(owner.current), 'sound/items/weapons/egloves.ogg', 100, 0)
-		to_chat(our_teammate, span_notice(LANG("datum.001d97c2", null)))
+		to_chat(our_teammate, span_notice(LANG("datum.001d97c2f8da82ab", null)))
 
 	RegisterSignal(nuke_team, COMSIG_NUKE_TEAM_ADDITION, PROC_REF(late_bodycam))
 
@@ -49,7 +49,7 @@
 		network = OPERATIVE_CAMERA_NET, \
 		emp_proof = FALSE, \
 	)
-	to_chat(new_teammate, span_notice(LANG("datum.2577bcf3", null)))
+	to_chat(new_teammate, span_notice(LANG("datum.2577bcf3c8e7209a", null)))
 
 /datum/objective/overwatch
 	explanation_text = "Provide intelligence support and overwatch to your operative team!"

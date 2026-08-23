@@ -30,8 +30,8 @@
 	return iscarbon(cast_on)
 
 /datum/action/cooldown/spell/touch/duffelbag/on_antimagic_triggered(obj/item/melee/touch_attack/hand, mob/living/carbon/victim, mob/living/carbon/caster)
-	to_chat(caster, span_warning(LANG("datum.35261768", list(victim))))
-	to_chat(victim, span_warning(LANG("datum.2570c649", list(pick(elaborate_backstory)))))
+	to_chat(caster, span_warning(LANG("datum.352617680be39e27", list(victim))))
+	to_chat(victim, span_warning(LANG("datum.2570c6496de8bbfa", list(pick(elaborate_backstory)))))
 
 /datum/action/cooldown/spell/touch/duffelbag/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/victim, mob/living/carbon/caster)
 
@@ -43,15 +43,15 @@
 
 	// If someone's already cursed, don't try to give them another
 	if(istype(victim.get_item_by_slot(ITEM_SLOT_BACK), /obj/item/storage/backpack/duffelbag/cursed))
-		to_chat(caster, span_warning(LANG("datum.02c601f6", list(victim))))
-		to_chat(victim, span_warning(LANG("datum.96819b64", null)))
+		to_chat(caster, span_warning(LANG("datum.02c601f6812bf256", list(victim))))
+		to_chat(victim, span_warning(LANG("datum.96819b64b113575a", null)))
 		return TRUE
 
 	// However if they're uncursed, they're fresh for getting a cursed bag
 	var/obj/item/storage/backpack/duffelbag/cursed/conjured_duffel = new get_turf(victim)
 	victim.visible_message(
-		span_danger(LANG("datum.994bc05b", list(victim))),
-		span_danger(LANG("datum.5aabd19c", list(pick(elaborate_backstory)))),
+		span_danger(LANG("datum.994bc05b2c9c025c", list(victim))),
+		span_danger(LANG("datum.5aabd19c880538b8", list(pick(elaborate_backstory)))),
 	)
 
 	conjured_duffel.pickup(victim)

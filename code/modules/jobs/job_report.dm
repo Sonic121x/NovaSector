@@ -66,7 +66,7 @@
 			if(!check_rights(R_ADMIN))
 				message_admins("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin rights.")
 				log_admin("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin rights.")
-				to_chat(usr, span_danger(LANG("datum.b350041e", null)), confidential = TRUE)
+				to_chat(usr, span_danger(LANG("datum.b350041e2c9eb8da", null)), confidential = TRUE)
 				return TRUE
 
 			var/datum/admins/viewer_admin_datum = GLOB.admin_datums[usr.ckey]
@@ -74,11 +74,11 @@
 			if(!viewer_admin_datum)
 				message_admins("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin datum for their ckey.")
 				log_admin("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin datum for their ckey.")
-				to_chat(usr, span_danger(LANG("datum.b350041e", null)), confidential = TRUE)
+				to_chat(usr, span_danger(LANG("datum.b350041e2c9eb8da", null)), confidential = TRUE)
 				return TRUE
 
 			if(QDELETED(owner))
-				to_chat(usr, span_danger(LANG("datum.6e5910fc", null)), confidential = TRUE)
+				to_chat(usr, span_danger(LANG("datum.6e5910fc80039fae", null)), confidential = TRUE)
 				return TRUE
 
 			viewer_admin_datum.toggle_exempt_status(owner)

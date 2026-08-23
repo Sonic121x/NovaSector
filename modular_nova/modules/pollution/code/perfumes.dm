@@ -28,11 +28,11 @@
 /obj/item/perfume/examine(mob/user)
 	. = ..()
 	if(uses_remaining)
-		. += LANG("obj.5bf37df5", list(uses_remaining))
+		. += LANG("obj.5bf37df5de0917f2", list(uses_remaining))
 	else
-		. += LANG("obj.53b0d090", null)
+		. += LANG("obj.53b0d090ad9fbc27", null)
 	if(has_cap)
-		. += span_notice(LANG("obj.ffde040d", list(src, cap ? "take the cap off" : "put the cap on")))
+		. += span_notice(LANG("obj.ffde040dcd2e2881", list(src, cap ? "take the cap off" : "put the cap on")))
 
 /obj/item/perfume/click_alt(mob/user)
 	toggle_cap(user)
@@ -45,7 +45,7 @@
 /obj/item/perfume/proc/toggle_cap(mob/user)
 	if(has_cap && user.can_perform_action(src, NEED_DEXTERITY))
 		cap = !cap
-		to_chat(user, span_notice(LANG("obj.d9778473", list(src, cap ? "on" : "off"))))
+		to_chat(user, span_notice(LANG("obj.d97784730c871d9f", list(src, cap ? "on" : "off"))))
 		update_appearance()
 
 /obj/item/perfume/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -54,15 +54,15 @@
 	if(!ismovable(interacting_with))
 		return
 	if(has_cap && cap)
-		to_chat(user, span_warning(LANG("obj.71461396", null)))
+		to_chat(user, span_warning(LANG("obj.714613962be744cb", null)))
 		return TRUE
 	if(uses_remaining <= 0)
-		to_chat(user, span_warning(LANG("obj.9104a6b2", list(src))))
+		to_chat(user, span_warning(LANG("obj.9104a6b2d5c7ff59", list(src))))
 		return TRUE
 	uses_remaining--
 	var/turf/my_turf = get_turf(user)
 	my_turf.pollute_turf(fragrance_type, 20)
-	user.visible_message(span_notice(LANG("obj.7bd82406", list(user, interacting_with, src))), span_notice(LANG("obj.32584876", list(interacting_with, src))))
+	user.visible_message(span_notice(LANG("obj.7bd824067cd2635d", list(user, interacting_with, src))), span_notice(LANG("obj.3258487664ec9046", list(interacting_with, src))))
 	user.changeNext_move(CLICK_CD_RANGE*2)
 	playsound(my_turf, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 	interacting_with.AddComponent(/datum/component/temporary_pollution_emission, fragrance_type, 5, 10 MINUTES)

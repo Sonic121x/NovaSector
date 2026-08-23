@@ -12,7 +12,7 @@
 	if(user)
 		add_fingerprint(user)
 		if(msg)
-			to_chat(user, span_warning(LANG("obj.d35594fe", list(src, capitalize(DisplayTimeText(det_time))))))
+			to_chat(user, span_warning(LANG("obj.d35594febf316b0f", list(src, capitalize(DisplayTimeText(det_time))))))
 	if(shrapnel_type && shrapnel_radius)
 		shrapnel_initialized = TRUE
 		AddComponent(/datum/component/pellet_cloud, projectile_type = shrapnel_type, magnitude = shrapnel_radius)

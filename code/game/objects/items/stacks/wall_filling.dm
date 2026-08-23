@@ -26,7 +26,7 @@
 
 /obj/item/stack/wall_filling/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.030520cc", list(src)))
+	. += span_notice(LANG("obj.030520cce5aa6014", list(src)))
 	if(throwforce && !is_cyborg) //do not want to divide by zero or show the message to borgs who can't throw
 		var/damage_value
 		switch(ceil(MAX_LIVING_HEALTH / throwforce)) //throws to crit a human
@@ -42,22 +42,22 @@
 				damage_value = "mediocre"
 		if(!damage_value)
 			return
-		. += span_notice(LANG("obj.9a8a884d", list(damage_value)))
+		. += span_notice(LANG("obj.9a8a884d8e612595", list(damage_value)))
 
 /obj/item/stack/wall_filling/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (tool.tool_behaviour != TOOL_WELDER)
 		return ..()
 
 	if(!made_from)
-		to_chat(user, span_warning(LANG("obj.59f6af92", null)))
+		to_chat(user, span_warning(LANG("obj.59f6af92d3a8d698", null)))
 		stack_trace("A wall filling of type [type] doesn't have its made_from set.")
 		return
 	if(!tool.use_tool(src, user, 0, volume=40))
 		return
 	var/obj/item/new_item = new made_from(user.drop_location(), 2)
-	user.visible_message(span_notice(LANG("obj.50a33dd4", list(user, src, new_item, tool))), \
-		span_notice(LANG("obj.2628de4d", list(src, new_item, tool))), \
-		span_hear(LANG("obj.1aa82fa3", null)))
+	user.visible_message(span_notice(LANG("obj.50a33dd456d81013", list(user, src, new_item, tool))), \
+		span_notice(LANG("obj.2628de4d944c5a1c", list(src, new_item, tool))), \
+		span_hear(LANG("obj.1aa82fa3545466eb", null)))
 	var/holding = user.is_holding(src)
 	use(1)
 	if(holding && QDELETED(src))

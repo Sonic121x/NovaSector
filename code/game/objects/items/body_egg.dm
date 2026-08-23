@@ -10,7 +10,7 @@
 
 /obj/item/organ/body_egg/on_find(mob/living/finder)
 	..()
-	to_chat(finder, span_warning(LANG("obj.16c140a2", list(owner, zone))))
+	to_chat(finder, span_warning(LANG("obj.16c140a264769012", list(owner, zone))))
 
 /obj/item/organ/body_egg/feel_for_damage(self_aware)
 	// keep these stealthy for now, revisit later

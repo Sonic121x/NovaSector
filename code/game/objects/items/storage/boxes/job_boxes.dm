@@ -169,14 +169,14 @@
 	foldable_result = null
 
 /obj/item/storage/box/hug/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.6c963278", list(user, user.p_their()))))
+	user.visible_message(span_suicide(LANG("obj.6c9632780532c668", list(user, user.p_their()))))
 	return BRUTELOSS
 
 /obj/item/storage/box/hug/attack_self(mob/user)
 	..()
 	user.changeNext_move(CLICK_CD_MELEE)
 	playsound(loc, SFX_RUSTLE, 50, vary=TRUE, extrarange=-5)
-	user.visible_message(span_notice(LANG("obj.40c08047", list(user, src))),span_notice(LANG("obj.1ce28c94", list(src))))
+	user.visible_message(span_notice(LANG("obj.40c08047c5f299dc", list(user, src))),span_notice(LANG("obj.1ce28c9403c58c4d", list(src))))
 
 /obj/item/storage/box/hug/black
 	icon_state = "hugbox_black"
@@ -192,12 +192,12 @@
 	if(!istype(tool, /obj/item/bodypart/arm/left/robot) && !istype(tool, /obj/item/bodypart/arm/right/robot))
 		return ..()
 	if(contents.len) //prevent accidently deleting contents
-		balloon_alert(user, LANG("obj.ca142d62", null))
+		balloon_alert(user, LANG("obj.ca142d621fdf23fb", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.temporarilyRemoveItemFromInventory(tool))
 		return ITEM_INTERACT_BLOCKING
 	qdel(tool)
-	loc.balloon_alert(user, LANG("obj.1b4c5ce8", null))
+	loc.balloon_alert(user, LANG("obj.1b4c5ce81f3b6d09", null))
 	var/obj/item/bot_assembly/honkbot/assembly = new(drop_location())
 	var/held_index = user.is_holding(src)
 	qdel(src)
@@ -206,7 +206,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/storage/box/clown/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.a1df2303", list(user, src, p_them(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.a1df2303b5ddd7eb", list(user, src, p_them(), user.p_theyre()))))
 	playsound(user, 'sound/misc/scary_horn.ogg', 70, vary = TRUE)
 	forceMove(user.drop_location())
 	var/obj/item/mob_holder/consumed = new(src, user)
@@ -247,14 +247,14 @@
 
 //Duplicated suicide/attack self procs, since the survival boxes are a subtype of box/survival
 /obj/item/storage/box/survival/hug/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.6c963278", list(user, user.p_their()))))
+	user.visible_message(span_suicide(LANG("obj.6c9632780532c668", list(user, user.p_their()))))
 	return BRUTELOSS
 
 /obj/item/storage/box/survival/hug/attack_self(mob/user)
 	..()
 	user.changeNext_move(CLICK_CD_MELEE)
 	playsound(loc, SFX_RUSTLE, 50, vary=TRUE, extrarange=-5)
-	user.visible_message(span_notice(LANG("obj.40c08047", list(user, src))),span_notice(LANG("obj.1ce28c94", list(src))))
+	user.visible_message(span_notice(LANG("obj.40c08047c5f299dc", list(user, src))),span_notice(LANG("obj.1ce28c9403c58c4d", list(src))))
 
 /obj/item/storage/box/hug/plushes
 	name = "tactical cuddle kit"

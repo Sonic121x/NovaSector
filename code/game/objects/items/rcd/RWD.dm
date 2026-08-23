@@ -50,10 +50,10 @@
 
 /obj/item/rwd/examine(mob/user)
 	. = ..()
-	. += LANG("obj.415f15b8", null)
-	. += LANG("obj.8dc63c9e", list(current_amount))
-	. += LANG("obj.e0ae16cf", null)
-	. += LANG("obj.dff365af", null)
+	. += LANG("obj.415f15b8098170b2", null)
+	. += LANG("obj.8dc63c9e0a6b7a41", list(current_amount))
+	. += LANG("obj.e0ae16cfa1fcc3e9", null)
+	. += LANG("obj.dff365afb21f8434", null)
 
 /obj/item/rwd/update_icon_state()
 	switch(current_amount)
@@ -73,7 +73,7 @@
 
 /obj/item/rwd/attack_self_secondary(mob/user, modifiers)
 	if(current_amount <= 0)
-		balloon_alert(user, LANG("obj.a0dddad1", null))
+		balloon_alert(user, LANG("obj.a0dddad15b4663af", null))
 		return
 
 	var/amount = tgui_input_number(user = user, message = "Enter amount to dispense", title = "Custom cable", default = 0, max_value = min(30, current_amount), min_value = min(1, current_amount), timeout = 0, round_value = TRUE)
@@ -99,7 +99,7 @@
 	//spawn the cable. if it merged with the stak below then you pick that up else put it in the user's hand
 	var/obj/item/stack/cable_coil/new_cable = new(user.drop_location(), amount)
 	if(QDELETED(new_cable))
-		balloon_alert(user, LANG("obj.fa918011", null))
+		balloon_alert(user, LANG("obj.fa91801133558ac8", null))
 	else
 		user.put_in_active_hand(modify_cable(new_cable))
 
@@ -159,7 +159,7 @@
 	if(!istype(user))
 		return FALSE
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning(LANG("obj.e8ba50af", null)))
+		to_chat(user, span_warning(LANG("obj.e8ba50af79992c6d", null)))
 		return FALSE
 	if(user.incapacitated || !user.Adjacent(src))
 		return FALSE
@@ -168,7 +168,7 @@
 /// insert cable into the rwd
 /obj/item/rwd/proc/add_cable(mob/user, obj/item/stack/cable_coil/cable)
 	if(current_amount == max_amount)
-		balloon_alert(user, LANG("obj.e4b00025", null))
+		balloon_alert(user, LANG("obj.e4b0002524987313", null))
 		return
 
 	var/insert_amount = min(cable.amount, max_amount - current_amount)
@@ -177,7 +177,7 @@
 
 	delta_cable(insert_amount, decrement = FALSE)
 	update_appearance(UPDATE_ICON_STATE)
-	balloon_alert(user, LANG("obj.b4d110da", list(insert_amount)))
+	balloon_alert(user, LANG("obj.b4d110daa8f98f31", list(insert_amount)))
 
 /// modify cable properties according to its layer
 /obj/item/rwd/proc/modify_cable(obj/item/stack/cable_coil/target_cable)

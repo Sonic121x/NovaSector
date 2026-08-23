@@ -184,7 +184,7 @@
 
 	owner.adjust_fire_stacks(fire_stacks_per_second * seconds_between_ticks * length(bodyparts))
 	if(owner.ignite_mob())
-		owner.visible_message(span_danger(LANG("datum.a939c72d", list(owner))), span_userdanger(LANG("datum.2cb997a2", null)))
+		owner.visible_message(span_danger(LANG("datum.a939c72dcdb2dd5a", list(owner))), span_userdanger(LANG("datum.2cb997a2ac51ba20", null)))
 
 #undef GET_BODYPART_COEFFICIENT
 #undef IS_FULL_BODY

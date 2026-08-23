@@ -110,10 +110,10 @@
 		if(istype(tool, /obj/item/stack/sheet/plasteel) && !secure)
 			var/obj/item/stack/sheet/plasteel/reinforcement = tool
 			if(reinforcement.get_amount() < 2)
-				to_chat(user, span_warning(LANG("obj.d0ad9de3", null)))
+				to_chat(user, span_warning(LANG("obj.d0ad9de358fda04e", null)))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice(LANG("obj.8042a31e", null)))
+			to_chat(user, span_notice(LANG("obj.8042a31e3fca1d03", null)))
 
 			if(!do_after(user, 4 SECONDS, target = src))
 				return ITEM_INTERACT_BLOCKING
@@ -122,7 +122,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			reinforcement.use(2)
-			to_chat(user, span_notice(LANG("obj.ba48339d", null)))
+			to_chat(user, span_notice(LANG("obj.ba48339d974d29f2", null)))
 			secure = TRUE
 			if(anchored)
 				name = "secure anchored windoor assembly"
@@ -133,7 +133,7 @@
 
 		//Adding cable to the assembly. Step 5 complete.
 		if(istype(tool, /obj/item/stack/cable_coil) && anchored)
-			user.visible_message(span_notice(LANG("obj.2bd6d785", list(user))), span_notice(LANG("obj.e8308e6d", null)))
+			user.visible_message(span_notice(LANG("obj.2bd6d78586d43c7b", list(user))), span_notice(LANG("obj.e8308e6da25f1e5a", null)))
 
 			if(!do_after(user, 4 SECONDS, target = src))
 				return ITEM_INTERACT_BLOCKING
@@ -143,10 +143,10 @@
 
 			var/obj/item/stack/cable_coil/wiring = tool
 			if(!wiring.use(1))
-				to_chat(user, span_warning(LANG("obj.bc76c590", null)))
+				to_chat(user, span_warning(LANG("obj.bc76c590ac48b662", null)))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice(LANG("obj.d99b42df", null)))
+			to_chat(user, span_notice(LANG("obj.d99b42df6e624a1a", null)))
 			cables_added = TRUE
 			if(secure)
 				name = "secure wired windoor assembly"
@@ -163,8 +163,8 @@
 	if(istype(tool, /obj/item/electronics/airlock))
 
 		tool.play_tool_sound(src, 100)
-		user.visible_message(span_notice(LANG("obj.1dc6640c", list(user))),
-							span_notice(LANG("obj.fb1066e6", null)))
+		user.visible_message(span_notice(LANG("obj.1dc6640c2caf0f95", list(user))),
+							span_notice(LANG("obj.fb1066e61a51ca9e", null)))
 
 		if(!do_after(user, 4 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
@@ -176,7 +176,7 @@
 			tool.forceMove(drop_location())
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.2b65dc12", null)))
+		to_chat(user, span_notice(LANG("obj.2b65dc1211c06809", null)))
 		name = "near finished windoor assembly"
 		electronics = tool
 		return ITEM_INTERACT_SUCCESS
@@ -194,13 +194,13 @@
 	if(!tool.tool_start_check(user, amount=1))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.191a3904", list(user))),
-						span_notice(LANG("obj.88c5f1a0", null)))
+	user.visible_message(span_notice(LANG("obj.191a39045c3fe552", list(user))),
+						span_notice(LANG("obj.88c5f1a0d49aa8d5", null)))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.e5955219", null)))
+	to_chat(user, span_notice(LANG("obj.e595521901309aeb", null)))
 	var/obj/item/stack/sheet/rglass/dropped_glass = new (get_turf(src), 5)
 	if(!QDELETED(dropped_glass))
 		dropped_glass.add_fingerprint(user)
@@ -219,11 +219,11 @@
 	if(!anchored)
 		for(var/obj/machinery/door/window/competitor in loc)
 			if(competitor.dir == dir)
-				to_chat(user, span_warning(LANG("obj.b9e2eb2c", null)))
+				to_chat(user, span_warning(LANG("obj.b9e2eb2cc4acfca4", null)))
 				return ITEM_INTERACT_BLOCKING
 
-		user.visible_message(span_notice(LANG("obj.49b00f4e", list(user))),
-							span_notice(LANG("obj.b5c22584", null)))
+		user.visible_message(span_notice(LANG("obj.49b00f4efcfac2ce", list(user))),
+							span_notice(LANG("obj.b5c22584d660b783", null)))
 		if(!tool.use_tool(src, user, 4 SECONDS, volume=100))
 			return ITEM_INTERACT_BLOCKING
 
@@ -232,10 +232,10 @@
 
 		for(var/obj/machinery/door/window/competitor in loc)
 			if(competitor.dir == dir)
-				to_chat(user, span_warning(LANG("obj.b9e2eb2c", null)))
+				to_chat(user, span_warning(LANG("obj.b9e2eb2cc4acfca4", null)))
 				return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.feaf53d7", null)))
+		to_chat(user, span_notice(LANG("obj.feaf53d7063a74b2", null)))
 		set_anchored(TRUE)
 		if(secure)
 			name = "secure anchored windoor assembly"
@@ -244,14 +244,14 @@
 		return ITEM_INTERACT_SUCCESS
 
 	//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
-	user.visible_message(span_notice(LANG("obj.b8259a4a", list(user))),
-						span_notice(LANG("obj.b3d125da", null)))
+	user.visible_message(span_notice(LANG("obj.b8259a4ac836e1b9", list(user))),
+						span_notice(LANG("obj.b3d125dabf52f537", null)))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, volume=100))
 		return ITEM_INTERACT_BLOCKING
 	if(!anchored)
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.f8d3bc8f", null)))
+	to_chat(user, span_notice(LANG("obj.f8d3bc8f28ce4fed", null)))
 	set_anchored(FALSE)
 	if(secure)
 		name = "secure windoor assembly"
@@ -264,11 +264,11 @@
 	if(anchored)
 		return NONE
 	if(facing == WINDOOR_LEFT)
-		to_chat(usr, span_notice(LANG("obj.450e75fd", null)))
+		to_chat(usr, span_notice(LANG("obj.450e75fd01e78c6a", null)))
 		facing = WINDOOR_RIGHT
 	else
 		facing = WINDOOR_LEFT
-		to_chat(usr, span_notice(LANG("obj.a3cf90b7", null)))
+		to_chat(usr, span_notice(LANG("obj.a3cf90b7ec445e1b", null)))
 
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -278,15 +278,15 @@
 	if(!cables_added)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
-	user.visible_message(span_notice(LANG("obj.bf1d728f", list(user))), \
-						span_notice(LANG("obj.345e8759", null)))
+	user.visible_message(span_notice(LANG("obj.bf1d728fc5ac0288", list(user))), \
+						span_notice(LANG("obj.345e875949792065", null)))
 	if(!tool.use_tool(src, user, 4 SECONDS, volume=100))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!cables_added)
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.048e7ef7", null)))
+	to_chat(user, span_notice(LANG("obj.048e7ef767df48c9", null)))
 	new/obj/item/stack/cable_coil(get_turf(user), 1)
 	cables_added = FALSE
 	if(secure)
@@ -304,12 +304,12 @@
 	if(!electronics)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
-	user.visible_message(span_notice(LANG("obj.a05c355a", list(user))),
-						span_notice(LANG("obj.e494d3b2", null)))
+	user.visible_message(span_notice(LANG("obj.a05c355a0fbc637e", list(user))),
+						span_notice(LANG("obj.e494d3b2a3374337", null)))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, volume=100) && electronics)
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.a5dac4b8", null)))
+	to_chat(user, span_notice(LANG("obj.a5dac4b826ccd223", null)))
 	name = "wired windoor assembly"
 	var/obj/item/electronics/airlock/scrap
 	scrap = electronics
@@ -323,35 +323,35 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(!electronics)
-		to_chat(usr, span_warning(LANG("obj.0098cf03", null)))
+		to_chat(usr, span_warning(LANG("obj.0098cf0367eb3c29", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.a78577a6", list(user))),
-						span_notice(LANG("obj.84e887db", null)))
+	user.visible_message(span_notice(LANG("obj.a78577a68f8e85b6", list(user))),
+						span_notice(LANG("obj.84e887db531622d9", null)))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, volume=100) || !electronics)
 		return ITEM_INTERACT_BLOCKING
 	set_density(TRUE) //Shouldn't matter but just incase <-- in case what?
-	to_chat(user, span_notice(LANG("obj.640bb6ba", null)))
+	to_chat(user, span_notice(LANG("obj.640bb6ba46266669", null)))
 	finish_door()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/windoor_assembly/examine(mob/user)
 	. = ..()
 	if(!anchored)
-		. += span_notice(LANG("obj.a7438b4a", list(src, span_boldnotice("wrenched"))))
-		. += span_notice(LANG("obj.df3132c2", list(src, span_boldnotice("cut apart"), span_boldnotice("welder"))))
+		. += span_notice(LANG("obj.a7438b4a3bcfb8e7", list(src, span_boldnotice("wrenched"))))
+		. += span_notice(LANG("obj.df3132c2178c983f", list(src, span_boldnotice("cut apart"), span_boldnotice("welder"))))
 		return .
 
 	if(!cables_added)
-		. += span_notice(LANG("obj.c884d56a", list(src, span_boldnotice("wiring"), span_boldnotice("un-wrenched"))))
+		. += span_notice(LANG("obj.c884d56af0a83232", list(src, span_boldnotice("wiring"), span_boldnotice("un-wrenched"))))
 		return .
 
 	if(!electronics)
-		. += span_notice(LANG("obj.8a016b75", list(src, span_boldnotice("airlock electronics"), span_boldnotice("wirecutters"))))
+		. += span_notice(LANG("obj.8a016b759b07cc4f", list(src, span_boldnotice("airlock electronics"), span_boldnotice("wirecutters"))))
 		return .
 
-	. += span_notice(LANG("obj.8289058c", list(src, span_boldnotice("levered"), span_boldnotice("crowbar"))))
+	. += span_notice(LANG("obj.8289058c3c1d4edd", list(src, span_boldnotice("levered"), span_boldnotice("crowbar"))))
 
 /obj/structure/windoor_assembly/proc/finish_door()
 	var/obj/machinery/door/window/windoor
@@ -414,11 +414,11 @@ GAME_VERB_SRC(/obj/structure/windoor_assembly, flip, oview(1), "翻转窗门组�
 			return
 
 	if(facing == "l")
-		to_chat(usr, span_notice(LANG("obj.450e75fd", null)))
+		to_chat(usr, span_notice(LANG("obj.450e75fd01e78c6a", null)))
 		facing = "r"
 	else
 		facing = "l"
-		to_chat(usr, span_notice(LANG("obj.a3cf90b7", null)))
+		to_chat(usr, span_notice(LANG("obj.a3cf90b7ec445e1b", null)))
 
 	update_appearance()
 	return

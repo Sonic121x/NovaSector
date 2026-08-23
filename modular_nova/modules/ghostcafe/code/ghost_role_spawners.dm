@@ -35,7 +35,7 @@
 		spawned_robot.RegisterSignal(spawned_robot, COMSIG_MOVABLE_USING_RADIO, TYPE_PROC_REF(/mob/living, on_using_radio))
 		ADD_TRAIT(spawned_robot, TRAIT_SIXTHSENSE, TRAIT_GHOSTROLE)
 		ADD_TRAIT(spawned_robot, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE)
-		to_chat(spawned_robot,span_warning(LANG("obj.e70e28c0", null)))
+		to_chat(spawned_robot,span_warning(LANG("obj.e70e28c0e46f2416", null)))
 		var/datum/action/toggle_dead_chat_mob/D = new(spawned_robot)
 		D.Grant(spawned_robot)
 
@@ -65,7 +65,7 @@
 		ADD_TRAIT(spawned_human, TRAIT_SIXTHSENSE, TRAIT_GHOSTROLE)
 		ADD_TRAIT(spawned_human, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE)
 		ADD_TRAIT(spawned_human, TRAIT_NOBREATH, TRAIT_GHOSTROLE)
-		to_chat(spawned_human,span_warning(LANG("obj.e70e28c0", null)))
+		to_chat(spawned_human,span_warning(LANG("obj.e70e28c0e46f2416", null)))
 		var/datum/action/toggle_dead_chat_mob/dchat_toggle_ability = new(spawned_human)
 		dchat_toggle_ability.Grant(spawned_human)
 
@@ -104,10 +104,10 @@
 	var/mob/M = target
 	if(HAS_TRAIT_FROM(M,TRAIT_SIXTHSENSE,TRAIT_GHOSTROLE))
 		REMOVE_TRAIT(M,TRAIT_SIXTHSENSE,TRAIT_GHOSTROLE)
-		to_chat(M,span_notice(LANG("datum.e94a4ac7", null)))
+		to_chat(M,span_notice(LANG("datum.e94a4ac78dafc7f3", null)))
 	else
 		ADD_TRAIT(M,TRAIT_SIXTHSENSE,TRAIT_GHOSTROLE)
-		to_chat(M,span_notice(LANG("datum.b025ffbe", null)))
+		to_chat(M,span_notice(LANG("datum.b025ffbefa8019d1", null)))
 
 /obj/item/storage/box/syndie_kit/chameleon/ghostcafe
 	name = "cafe costuming kit"

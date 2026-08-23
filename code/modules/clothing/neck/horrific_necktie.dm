@@ -27,7 +27,7 @@
 /obj/item/clothing/neck/tie/disco/examine(mob/user)
 	. = ..()
 	if(!length(possessed_souls))
-		. += span_notice(LANG("obj.2a370694", list(EXAMINE_HINT("using it in hand"))))
+		. += span_notice(LANG("obj.2a37069444cc36d2", list(EXAMINE_HINT("using it in hand"))))
 
 /obj/item/clothing/neck/tie/disco/equipped(mob/living/user, slot)
 	. = ..()
@@ -48,7 +48,7 @@
 		return ..()
 
 	using = TRUE
-	to_chat(user, span_notice(LANG("obj.9c240dcf", list(src))))
+	to_chat(user, span_notice(LANG("obj.9c240dcf6f1fb0ab", list(src))))
 
 	var/list/candidates = SSpolling.poll_ghost_candidates(
 		question = "Do you want to play as the spirit of [span_danger("[user.real_name]'s")] [span_notice("horrific necktie")]?",
@@ -60,7 +60,7 @@
 		ignore_category = POLL_IGNORE_HORRIFIC_NECKTIE,
 	)
 	if(!length(candidates))
-		to_chat(user, span_warning(LANG("obj.ca2504bc", list(src))))
+		to_chat(user, span_warning(LANG("obj.ca2504bc64ab302c", list(src))))
 		using = FALSE
 		return
 	hears_us = user.mind
@@ -74,10 +74,10 @@
 /obj/item/clothing/neck/tie/disco/attack_ghost(mob/hopeful_ghost)
 	. = ..()
 	if (!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER))
-		to_chat(hopeful_ghost, span_warning(LANG("obj.90034770", null)))
+		to_chat(hopeful_ghost, span_warning(LANG("obj.9003477049b70374", null)))
 		return
 	if (!SSticker.HasRoundStarted())
-		to_chat(hopeful_ghost, span_warning(LANG("obj.14782a6e", null)))
+		to_chat(hopeful_ghost, span_warning(LANG("obj.14782a6e854a9746", null)))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	became_player_controlled(hopeful_ghost)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -95,7 +95,7 @@
 /obj/item/clothing/neck/tie/disco/proc/on_deleting(datum/source, force)
 	SIGNAL_HANDLER
 	possessed_souls -= source
-	to_chat(hears_us.current, span_notice(LANG("obj.bc3ed64a", null)))
+	to_chat(hears_us.current, span_notice(LANG("obj.bc3ed64a0b3c0f06", null)))
 
 ///Creates the ghost itself and adds them to the list of possessed souls in the tie.
 /obj/item/clothing/neck/tie/disco/proc/create_ghost(mob/new_ghost)
@@ -104,7 +104,7 @@
 	RegisterSignal(new_soul, COMSIG_LIVING_SEND_SPEECH, PROC_REF(on_speech_sent))
 	RegisterSignal(new_soul, COMSIG_QDELETING, PROC_REF(on_deleting))
 	possessed_souls += new_soul
-	to_chat(hears_us.current, span_notice(LANG("obj.0e315e01", list(src))))
+	to_chat(hears_us.current, span_notice(LANG("obj.0e315e01d018f85e", list(src))))
 
 ///Called when a voice in the tie speaks, we use this to remove all listeners except the voices and creator.
 /obj/item/clothing/neck/tie/disco/proc/on_speech_sent(atom/source, list/listeners)
@@ -128,7 +128,7 @@
 
 /mob/living/basic/tie/Login()
 	. = ..()
-	to_chat(src, span_notice(LANG("mob.ecf415d8", null)))
+	to_chat(src, span_notice(LANG("mob.ecf415d8d75ab489", null)))
 
 /mob/living/basic/tie/Logout()
 	. = ..()

@@ -68,14 +68,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 
 /obj/structure/extinguisher_cabinet/wrench_act(mob/living/user, obj/item/tool)
 	if(stored_extinguisher)
-		balloon_alert(user, LANG("obj.c4f74ff0", list(src)))
+		balloon_alert(user, LANG("obj.c4f74ff0cd65bc6d", list(src)))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.d601ee5f", null))
+	balloon_alert(user, LANG("obj.d601ee5f2d7821e0", null))
 	tool.play_tool_sound(src)
 	if(!tool.use_tool(src, user, 6 SECONDS))
 		return ITEM_INTERACT_BLOCKING
 	playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-	user.balloon_alert(user, LANG("obj.f0112ce5", null))
+	user.balloon_alert(user, LANG("obj.f0112ce583a9373d", null))
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -91,7 +91,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		stored_extinguisher = tool
-		balloon_alert(user, LANG("obj.1a9661ab", null))
+		balloon_alert(user, LANG("obj.1a9661ab59e77eeb", null))
 		update_appearance(UPDATE_ICON)
 		return ITEM_INTERACT_SUCCESS
 	toggle_cabinet(user)
@@ -105,7 +105,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 		return
 	if(stored_extinguisher)
 		user.put_in_hands(stored_extinguisher)
-		user.balloon_alert(user, LANG("obj.91cf9b66", null))
+		user.balloon_alert(user, LANG("obj.91cf9b664942f343", null))
 		if(!opened)
 			opened = 1
 			playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
@@ -123,7 +123,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
 	if(stored_extinguisher)
 		stored_extinguisher.forceMove(loc)
-		to_chat(user, span_notice(LANG("obj.2e70f313", list(stored_extinguisher, src))))
+		to_chat(user, span_notice(LANG("obj.2e70f3132b99713e", list(stored_extinguisher, src))))
 		stored_extinguisher = null
 		opened = TRUE
 		playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
@@ -137,7 +137,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 
 /obj/structure/extinguisher_cabinet/proc/toggle_cabinet(mob/user)
 	if(opened && broken)
-		user.balloon_alert(user, LANG("obj.77c0e4a7", null))
+		user.balloon_alert(user, LANG("obj.77c0e4a7c3579c6d", null))
 	else
 		playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
 		opened = !opened

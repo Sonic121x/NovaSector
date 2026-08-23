@@ -26,17 +26,17 @@
 		contains_type = get_gift_type()
 
 /obj/item/gift/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.43607308", list(user, src, user.p_them(), user.p_they(), user.p_were()))))
+	user.visible_message(span_suicide(LANG("obj.436073089f566200", list(user, src, user.p_them(), user.p_they(), user.p_were()))))
 	return BRUTELOSS
 
 /obj/item/gift/examine(mob/user)
 	. = ..()
 	if(HAS_MIND_TRAIT(user, TRAIT_PRESENT_VISION) || isobserver(user))
-		. += span_notice(LANG("obj.eaca0139", list(initial(contains_type.name))))
+		. += span_notice(LANG("obj.eaca0139f8d2f814", list(initial(contains_type.name))))
 
 /obj/item/gift/attack_self(mob/user)
 	if(HAS_MIND_TRAIT(user, TRAIT_CANNOT_OPEN_PRESENTS))
-		to_chat(user, span_warning(LANG("obj.1e92b2d1", null)))
+		to_chat(user, span_warning(LANG("obj.1e92b2d191abde18", null)))
 		return
 
 	moveToNullspace()
@@ -44,9 +44,9 @@
 	var/obj/item/thing = new contains_type(get_turf(user))
 
 	if (QDELETED(thing)) //might contain something like metal rods that might merge with a stack on the ground
-		user.visible_message(span_danger(LANG("obj.45dcd969", list(user))))
+		user.visible_message(span_danger(LANG("obj.45dcd969147112c0", list(user))))
 	else
-		user.visible_message(span_notice(LANG("obj.e6d1a6be", list(user, src, thing))))
+		user.visible_message(span_notice(LANG("obj.e6d1a6be7f1dde02", list(user, src, thing))))
 		user.investigate_log("has unwrapped a present containing [thing.type].", INVESTIGATE_PRESENTS)
 		user.put_in_hands(thing)
 		thing.add_fingerprint(user)
@@ -126,7 +126,7 @@
 
 	var/datum/mind/recipient = recipient_ref.resolve()
 	if(recipient && recipient != user?.mind)
-		to_chat(user, span_notice(LANG("obj.b0988fa8", null)))
+		to_chat(user, span_notice(LANG("obj.b0988fa8c831be49", null)))
 		return FALSE
 	return ..()
 

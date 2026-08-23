@@ -97,13 +97,13 @@
 /// Checks if the mob wants to leave the soulcatcher. If they do and are able to leave, they are booted out.
 GAME_VERB(/mob/living/soulcatcher_soul, leave_soulcatcher, "离开灵魂捕手", "IC")
 	if(!able_to_leave)
-		to_chat(src, span_warning(LANG("mob.f0ac5649", null)))
+		to_chat(src, span_warning(LANG("mob.f0ac5649fe304176", null)))
 		return FALSE
 
-	if(tgui_alert(src, LANG("mob.19325a1b", null), LANG("mob.49410bda", null), list("Yes", "No")) != "Yes")
+	if(tgui_alert(src, LANG("mob.19325a1b0ad07f26", null), LANG("mob.49410bda6648d9c5", null), list("Yes", "No")) != "Yes")
 		return FALSE
 
-	if(tgui_alert(src, LANG("mob.38a62079", null), LANG("mob.49410bda", null), list("Yes", "No")) != "Yes")
+	if(tgui_alert(src, LANG("mob.38a6207970a3920d", null), LANG("mob.49410bda6648d9c5", null), list("Yes", "No")) != "Yes")
 		return FALSE
 
 	return_to_body()
@@ -132,7 +132,7 @@ GAME_VERB(/mob/living/soulcatcher_soul, leave_soulcatcher, "离开灵魂捕手",
 		return
 
 	if((!able_to_speak && !communicating_externally) || (!able_to_speak_as_container && communicating_externally))
-		to_chat(src, span_warning(LANG("mob.be0faa66", null)))
+		to_chat(src, span_warning(LANG("mob.be0faa66616d01a0", null)))
 		return FALSE
 
 	var/datum/soulcatcher_room/room = current_room.resolve()
@@ -148,7 +148,7 @@ GAME_VERB(/mob/living/soulcatcher_soul, leave_soulcatcher, "离开灵魂捕手",
 		return FALSE
 
 	if((!able_to_emote && !communicating_externally) || (!able_to_emote_as_container && communicating_externally))
-		to_chat(src, span_warning(LANG("mob.32e1b9f8", null)))
+		to_chat(src, span_warning(LANG("mob.32e1b9f839393b32", null)))
 		return FALSE
 
 	var/datum/soulcatcher_room/room = current_room.resolve()

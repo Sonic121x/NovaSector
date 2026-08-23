@@ -132,7 +132,7 @@
 		if(istype(held_item, /obj/item/offhand))
 			held_item = victim.get_inactive_held_item()
 		if(held_item && victim.dropItemToGround(held_item))
-			victim.visible_message(span_danger(LANG("datum.66ca3db3", list(victim, held_item))), span_warning(LANG("datum.5d9af63c", list(limb.plaintext_zone, held_item))), vision_distance=COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger(LANG("datum.66ca3db39837bc66", list(victim, held_item))), span_warning(LANG("datum.5d9af63c27e36520", list(limb.plaintext_zone, held_item))), vision_distance=COMBAT_MESSAGE_RANGE)
 
 /datum/wound/blunt/robotic/remove_wound(ignore_limb, replaced, destroying)
 	. = ..()
@@ -253,13 +253,13 @@
 		attack_direction = get_dir(victim, attacking_item)
 
 	if (!isnull(attack_direction) && prob(stagger_score * stagger_movement_chance_ratio))
-		to_chat(victim, span_warning(LANG("datum.62fe685c", null)))
+		to_chat(victim, span_warning(LANG("datum.62fe685cec46c042", null)))
 		var/turf/target_loc = get_step(victim, attack_direction)
 		victim.Move(target_loc)
 
 	victim.visible_message(span_warning(message), ignored_mobs = victim)
 	to_chat(victim, span_warning(self_message))
-	victim.balloon_alert(victim, LANG("datum.4eef1e2a", null))
+	victim.balloon_alert(victim, LANG("datum.4eef1e2affacc212", null))
 
 	victim.Shake(pixelshiftx = shift, pixelshifty = shift, duration = shake_duration)
 	var/aftershock_delay = (shake_duration * STAGGER_PERCENT_OF_SHAKE_DURATION_TO_AFTERSHOCK_DELAY)
@@ -318,7 +318,7 @@
 		message += "."
 
 	to_chat(victim, span_danger(message))
-	victim.balloon_alert(victim, LANG("datum.8683f173", null))
+	victim.balloon_alert(victim, LANG("datum.8683f173226ddede", null))
 
 	oscillating = FALSE
 
@@ -326,13 +326,13 @@
 
 /// Called when percussive maintenance succeeds at its random roll.
 /datum/wound/blunt/robotic/proc/handle_percussive_maintenance_success(attacking_item, mob/living/user)
-	victim.visible_message(span_green(LANG("datum.cdd6271d", list(victim, limb.plaintext_zone))), \
-		span_green(LANG("datum.5c21dfd3", list(limb.plaintext_zone))))
+	victim.visible_message(span_green(LANG("datum.cdd6271d38183f62", list(victim, limb.plaintext_zone))), \
+		span_green(LANG("datum.5c21dfd37eded87e", list(limb.plaintext_zone))))
 	remove_wound()
 
 /// Called when percussive maintenance fails at its random roll.
 /datum/wound/blunt/robotic/proc/handle_percussive_maintenance_failure(attacking_item, mob/living/user)
-	to_chat(victim, span_warning(LANG("datum.08f531b3", list(limb.plaintext_zone))))
+	to_chat(victim, span_warning(LANG("datum.08f531b345e53a15", list(limb.plaintext_zone))))
 
 /// If our victim has no gravity, the effects of movement are multiplied by this.
 #define VICTIM_MOVED_NO_GRAVITY_EFFECT_MULT 0.5

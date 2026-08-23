@@ -108,7 +108,7 @@
 		return // enough harassing them
 
 	if(gamers[gamer] == ORION_GAMER_PAMPHLET)
-		say(LANG("obj.ad9b2814", null))
+		say(LANG("obj.ad9b281478ab756f", null))
 		new /obj/item/paper/pamphlet/violent_video_games(drop_location())
 		gamers[gamer]--
 		return
@@ -348,23 +348,23 @@
 			reason = "You ran out of food and starved."
 			if(obj_flags & EMAGGED)
 				gamer.set_nutrition(0) //yeah you pretty hongry
-				to_chat(gamer, span_userdanger(LANG("obj.a282d43a", null)))
+				to_chat(gamer, span_userdanger(LANG("obj.a282d43a472b47ca", null)))
 		if(fuel <= 0)
 			reason = "You ran out of fuel, and drift, slowly, into a star."
 			if(obj_flags & EMAGGED)
 				gamer.adjust_fire_stacks(5)
 				gamer.ignite_mob() //flew into a star, so you're on fire
-				to_chat(gamer, span_userdanger(LANG("obj.1b848599", null)))
+				to_chat(gamer, span_userdanger(LANG("obj.1b8485992f954f76", null)))
 
 	if(obj_flags & EMAGGED)
-		to_chat(gamer, span_userdanger(LANG("obj.2bd838a4", null)))
+		to_chat(gamer, span_userdanger(LANG("obj.2bd838a4b160b2d4", null)))
 		gamer.investigate_log("has been killed by an emagged Orion Trail game.", INVESTIGATE_DEATHS)
 		gamer.death()
 		obj_flags &= ~EMAGGED //removes the emagged status after you lose
 		gamer.log_message("lost a Realism Mode Orion Trail game, changing the machine back to normal.", LOG_GAME)
 		gameStatus = ORION_STATUS_START
 		name = "The Orion Trail"
-		desc = LANG("obj.1ff4d29a", null)
+		desc = LANG("obj.1ff4d29a59dac487", null)
 
 	gamer?.mind?.adjust_experience(/datum/skill/gaming, 10)//learning from your mistakes is the first rule of roguelikes
 	return reason
@@ -419,7 +419,7 @@
 		killed_crew += 1 //if there was no suspected lings, this is just plain murder
 	playsound(loc,'sound/items/weapons/gun/pistol/shot.ogg', 100, TRUE)
 	if(!settlers.len || !alive)
-		say(LANG("obj.447e3e9e", list(sheriff)))
+		say(LANG("obj.447e3e9e85888a03", list(sheriff)))
 		if(obj_flags & EMAGGED)
 			gamer.investigate_log("has been killed by an emagged Orion Trail game.", INVESTIGATE_DEATHS)
 			gamer.death()
@@ -429,7 +429,7 @@
 			report_player(gamer)
 	else if(obj_flags & EMAGGED)
 		if(findtext(gamer.name, sheriff))
-			say(LANG("obj.4e456d50", list(gamer)))
+			say(LANG("obj.4e456d5038ea8944", list(gamer)))
 			gamer.investigate_log("has been killed by an emagged Orion Trail game.", INVESTIGATE_DEATHS)
 			gamer.death()
 
@@ -465,7 +465,7 @@
 /obj/machinery/computer/arcade/orion_trail/proc/win(mob/living/user)
 	user.won_game()
 	gameStatus = ORION_STATUS_START
-	say(LANG("obj.5036d8fe", null))
+	say(LANG("obj.5036d8fe9c1ac7c8", null))
 	if(obj_flags & EMAGGED)
 		new /obj/item/orion_ship(loc)
 		message_admins("[ADMIN_LOOKUPFLW(user)] made it to Orion on an emagged machine and got an explosive toy ship.")
@@ -481,15 +481,15 @@
 		return FALSE
 
 	name = "The Orion Trail: Realism Edition"
-	desc = LANG("obj.2f56e501", null)
+	desc = LANG("obj.2f56e501ff7d7e75", null)
 	obj_flags |= EMAGGED
 
 	if (!user)
 		return TRUE
 
 	user.log_message("emagged [src], activating Realism Mode.", LOG_GAME)
-	balloon_alert(user, LANG("obj.aa98dce1", null))
-	to_chat(user, span_notice(LANG("obj.6978fe19", list(rand(1, 50)))))
+	balloon_alert(user, LANG("obj.aa98dce12ae8f969", null))
+	to_chat(user, span_notice(LANG("obj.6978fe19c4e9638f", list(rand(1, 50)))))
 	newgame(user)
 	return TRUE
 
@@ -508,16 +508,16 @@
 	if(!(in_range(user, src)))
 		return
 	if(active)
-		. += span_notice(LANG("obj.2222c3c7", null))
+		. += span_notice(LANG("obj.2222c3c79af410b8", null))
 		return
-	. += span_notice(LANG("obj.d4658a89", null))
+	. += span_notice(LANG("obj.d4658a89e96d1546", null))
 
 /obj/item/orion_ship/attack_self(mob/user)
 	if(active)
 		return
 
 	log_bomber(user, "primed an explosive", src, "for detonation")
-	to_chat(user, span_warning(LANG("obj.b5003286", list(src))))
+	to_chat(user, span_warning(LANG("obj.b50032866ef308b1", list(src))))
 	active = TRUE
 	addtimer(CALLBACK(src, PROC_REF(commit_explosion)), 1 SECONDS)
 
@@ -526,17 +526,17 @@
 	var/time_for_next_level
 	switch(dialogue_level)
 		if(0)
-			say(LANG("obj.b055e13d", list(rand(1,1000))))
+			say(LANG("obj.b055e13d1ce2aad7", list(rand(1,1000))))
 			time_for_next_level = 2 SECONDS
 		if(1)
-			say(LANG("obj.9aca0637", null))
+			say(LANG("obj.9aca0637ca145067", null))
 			time_for_next_level = 3 SECONDS
 		if(2)
-			say(LANG("obj.c539ee8d", null))
+			say(LANG("obj.c539ee8df8ef5326", null))
 			playsound(loc, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE)
 			time_for_next_level = 0.36 SECONDS
 		if(3 to INFINITY)
-			visible_message(span_userdanger(LANG("obj.e64b7ad7", list(src))))
+			visible_message(span_userdanger(LANG("obj.e64b7ad721a42632", list(src))))
 			explosion(src, devastation_range = 2, heavy_impact_range = 4, light_impact_range = 8, flame_range = 16)
 			qdel(src)
 			return

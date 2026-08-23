@@ -113,7 +113,7 @@
  * This happens when a non-heretic fails the minigame. Their arm is ripped straight off and thrown into the rift.
  */
 /datum/fish_source/dimensional_rift/proc/on_epic_fail(mob/user, datum/fishing_challenge/challenge, success)
-	challenge.location.visible_message(span_danger(LANG("datum.22e01f23", list(challenge.location, user, user.get_active_hand()))))
+	challenge.location.visible_message(span_danger(LANG("datum.22e01f23b857a1f2", list(challenge.location, user, user.get_active_hand()))))
 	var/obj/item/bodypart/random_arm = user.get_active_hand()
 	if (random_arm.dismember(BRUTE, FALSE))
 		random_arm.forceMove(user.drop_location())
@@ -131,12 +131,12 @@
 		if(!is_type_in_list(thingy, list(/obj/item/bodypart, /obj/item/fishing_rod)) && (thingy != used_rod))
 			continue
 		thingy.forceMove(location)
-		location.visible_message(span_danger(LANG("datum.22993fa1", list(location, thingy, thingy))))
+		location.visible_message(span_danger(LANG("datum.22993fa1c9e96e0e", list(location, thingy, thingy))))
 
 /datum/fish_source/dimensional_rift/proc/arm_fished(atom/spawn_location)
 	var/obj/item/bodypart/arm/random_arm = pick(subtypesof(/obj/item/bodypart/arm))
 	random_arm = new random_arm(spawn_location)
-	spawn_location.visible_message(span_notice(LANG("datum.1190364f", list(random_arm, spawn_location))))
+	spawn_location.visible_message(span_notice(LANG("datum.1190364f910155cf", list(random_arm, spawn_location))))
 	return random_arm
 
 /datum/fish_source/dimensional_rift/proc/influence_fished(mob/user, datum/fishing_challenge/challenge)
@@ -146,14 +146,14 @@
 	if(ishuman(user))
 		human_user = user
 
-	user.visible_message(span_danger(LANG("datum.babc1934", list(user, user.p_their(), challenge.used_rod))), span_notice(LANG("datum.fa7a4aba", null)))
+	user.visible_message(span_danger(LANG("datum.babc193413590295", list(user, user.p_their(), challenge.used_rod))), span_notice(LANG("datum.fa7a4aba87503e0f", null)))
 	// Heretics that fish in the rift gain knowledge.
 	if(IS_HERETIC(user))
 		human_user?.add_mood_event("rift fishing", /datum/mood_event/rift_fishing)
 		var/obj/effect/heretic_influence/fishfluence = challenge.location
 		// But only if it's an open rift
 		if(!istype(fishfluence))
-			to_chat(user, span_notice(LANG("datum.f0c231e0", null)))
+			to_chat(user, span_notice(LANG("datum.f0c231e04b12e924", null)))
 			return
 		fishfluence.after_drain(user)
 		var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
@@ -163,7 +163,7 @@
 			// They can also gain an extra influence point if they infused their rod.
 			if(HAS_TRAIT(challenge.used_rod, TRAIT_ROD_MANSUS_INFUSED))
 				heretic_datum.adjust_knowledge_points(1)
-			to_chat(user, span_boldnotice(LANG("datum.31eb22fa", null)))
+			to_chat(user, span_boldnotice(LANG("datum.31eb22fa9d858b7c", null)))
 		return
 
 	// Non-heretics instead go crazy

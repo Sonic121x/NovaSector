@@ -52,4 +52,4 @@
 	if (living_only && !isliving(new_target))
 		return // If we don't want to bark at food items or chairs or windows
 	emote_chance = max(emote_chance - subtract_chance, minimum_chance)
-	source.manual_emote(LANG("datum.6fef9504", list(pick(emote_list), new_target)))
+	source.manual_emote(LANG("datum.6fef9504dfcf62e4", list(pick(emote_list), new_target)))

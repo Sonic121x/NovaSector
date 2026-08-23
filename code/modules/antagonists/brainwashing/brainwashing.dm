@@ -26,7 +26,7 @@
 	deadchat_broadcast(rendered, "<b>[brainwash_victim]</b>", follow_target = brainwash_victim, turf_target = get_turf(brainwash_victim), message_type=DEADCHAT_ANNOUNCEMENT)
 	if(check_holidays(APRIL_FOOLS))
 		// Note: most of the time you're getting brainwashed you're unconscious
-		brainwash_victim.say(LANG("_root.111ff1ea", null), forced = "That son of a bitch! They're in. (April Fools)")
+		brainwash_victim.say(LANG("_root.111ff1ea340ccefe", null), forced = "That son of a bitch! They're in. (April Fools)")
 
 /datum/antagonist/brainwashed
 	name = "\improper Brainwashed Victim"
@@ -48,7 +48,7 @@
 	return data
 
 /datum/antagonist/brainwashed/farewell()
-	to_chat(owner, span_warning(LANG("datum.2637ccf2", null)))
+	to_chat(owner, span_warning(LANG("datum.2637ccf2918ea779", null)))
 	to_chat(owner, "<big>[span_warning("<b>You feel the weight of the Directives disappear! You no longer have to obey them.</b>")]</big>")
 	if(owner.current)
 		var/mob/living/owner_mob = owner.current
@@ -62,19 +62,19 @@
 		return
 	var/list/objectives = list()
 	do
-		var/objective = tgui_input_text(admin, LANG("datum.88d7defe", null), LANG("datum.442e449c", null), max_length = MAX_MESSAGE_LEN)
+		var/objective = tgui_input_text(admin, LANG("datum.88d7defefe571ee7", null), LANG("datum.442e449cae607ecb", null), max_length = MAX_MESSAGE_LEN)
 		if(objective)
 			objectives += objective
-	while(tgui_alert(admin, LANG("datum.a77cc496", null), LANG("datum.a1f3aeb9", null), list("Yes","No")) == "Yes")
+	while(tgui_alert(admin, LANG("datum.a77cc4962658cfa1", null), LANG("datum.a1f3aeb95dc11b4f", null), list("Yes","No")) == "Yes")
 
-	if(tgui_alert(admin,LANG("datum.e77519bb", null),LANG("datum.77344162", null),list("Yes","No")) == "No")
+	if(tgui_alert(admin,LANG("datum.e77519bb70f745d9", null),LANG("datum.773441628de640b4", null),list("Yes","No")) == "No")
 		return
 
 	if(!LAZYLEN(objectives))
 		return
 
 	if(QDELETED(C))
-		to_chat(admin, LANG("datum.4068a4c3", null))
+		to_chat(admin, LANG("datum.4068a4c39ab7926b", null))
 		return
 
 	brainwash(C, objectives)

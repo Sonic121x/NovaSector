@@ -16,12 +16,12 @@
 		return NONE
 	if(target_vape.screw == TRUE && !target_vape.reagents.total_volume)
 		src.reagents.trans_to(target_vape, src.volume, transferred_by = user)
-		to_chat(user, span_notice(LANG("obj.f644f3dd", list(src.name))))
+		to_chat(user, span_notice(LANG("obj.f644f3ddf4e98313", list(src.name))))
 		qdel(src)
 	else if(!target_vape.screw)
-		to_chat(user, span_warning(LANG("obj.d55ac358", null)))
+		to_chat(user, span_warning(LANG("obj.d55ac35860724a16", null)))
 	else
-		to_chat(user, span_warning(LANG("obj.947fe303", list(target_vape))))
+		to_chat(user, span_warning(LANG("obj.947fe303bb786182", list(target_vape))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/vapecart/empty
@@ -33,13 +33,13 @@
 
 /obj/item/reagent_containers/vapecart/empty/attack_self(mob/user)
 	if(reagents.total_volume > 0)
-		to_chat(user, span_notice(LANG("obj.44e03ef8", list(src))))
+		to_chat(user, span_notice(LANG("obj.44e03ef830341105", list(src))))
 		reagents.clear_reagents()
 
 /obj/item/reagent_containers/vapecart/empty/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (istype(tool, /obj/item/pen) || istype(tool, /obj/item/toy/crayon))
 		if(!user.is_literate())
-			to_chat(user, span_notice(LANG("obj.1035c5d6", null)))
+			to_chat(user, span_notice(LANG("obj.1035c5d6fd03f4fb", null)))
 			return ITEM_INTERACT_BLOCKING
 		var/new_title = stripped_input(user, "What would you like to label the vape cart?", name, null, 53)
 		if(!user.can_perform_action(src))

@@ -14,7 +14,7 @@
 
 /obj/item/gun/magic/wand/freeze/zap_self(mob/living/user, suicide = FALSE)
 	. = ..()
-	to_chat(user, span_warning(LANG("obj.def483cf", null)))
+	to_chat(user, span_warning(LANG("obj.def483cfc2dc212c", null)))
 	var/obj/projectile/magic/freeze/ice = new(user.drop_location())
 	ice.firer = user
 	user.projectile_hit(ice, BODY_ZONE_CHEST)

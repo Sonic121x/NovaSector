@@ -2,7 +2,7 @@
 /datum/quirk/blooddeficiency/add(client/client_source)
 	if(isjellyperson(quirk_holder))
 		name = "Jelly Desiccation"
-		desc = LANG("datum.71d33cd1", null)
+		desc = LANG("datum.71d33cd1ade0d7c2", null)
 		medical_record_text = "Patient requires regular treatment for slime jelly loss."
 		mail_goodies = list(/obj/item/reagent_containers/blood/toxin)
 	return ..()

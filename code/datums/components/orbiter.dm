@@ -114,7 +114,7 @@
 		orbiter.glide_size = movable_parent.glide_size
 
 	orbiter.abstract_move(get_turf(parent))
-	to_chat(orbiter, span_notice(LANG("datum.5631e3ff", list(parent))))
+	to_chat(orbiter, span_notice(LANG("datum.5631e3ffd21fb024", list(parent))))
 
 /datum/component/orbiter/proc/orbiter_before_shuttle_move(atom/source)
 	SIGNAL_HANDLER
@@ -196,7 +196,7 @@
 		return
 	if (HAS_TRAIT(A, TRAIT_ORBITING_FORBIDDEN))
 		// Stealth-mins have an empty name, don't want "You cannot orbit   at this time."
-		to_chat(src, span_notice(LANG("atom.f7941793", list("[A]" || "them"))))
+		to_chat(src, span_notice(LANG("atom.f794179375ec51ad", list("[A]" || "them"))))
 		return
 	orbit_target = A
 	return A.AddComponent(/datum/component/orbiter, src, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)

@@ -75,14 +75,14 @@
 	if(!action_checks(target))
 		return
 	playsound(chassis, 'sound/effects/hallucinations/wail.ogg', 100, TRUE)
-	to_chat(source, LANG("obj.a79c5210", list(icon2html(src, source))))
+	to_chat(source, LANG("obj.a79c52101aa540cf", list(icon2html(src, source))))
 	for(var/mob/living/carbon/carbon_mob in ohearers(6, chassis))
 		if(HAS_TRAIT(carbon_mob, TRAIT_DEAF))
 			continue
 		var/turf/turf_check = get_turf(carbon_mob)
 		if(isspaceturf(turf_check) && !turf_check.Adjacent(src)) //in space nobody can hear you scream.
 			continue
-		to_chat(carbon_mob, LANG("obj.882f3127", null))
+		to_chat(carbon_mob, LANG("obj.882f3127e62cb479", null))
 		carbon_mob.SetSleeping(0)
 		carbon_mob.adjust_stutter(40 SECONDS)
 		var/obj/item/organ/ears/ears = carbon_mob.get_organ_slot(ORGAN_SLOT_EARS)

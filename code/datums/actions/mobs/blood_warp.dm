@@ -58,11 +58,11 @@
 		shuffle_inplace(pools)
 		found_bloodpool = pick(pools)
 	if(found_bloodpool)
-		owner.visible_message(span_danger(LANG("datum.781433e8", list(owner))))
+		owner.visible_message(span_danger(LANG("datum.781433e84af94c6c", list(owner))))
 		playsound(owner_turf, 'sound/effects/magic/enter_blood.ogg', 100, TRUE, -1)
 		owner.forceMove(get_turf(found_bloodpool))
 		playsound(get_turf(owner), 'sound/effects/magic/exit_blood.ogg', 100, TRUE, -1)
-		owner.visible_message(span_danger(LANG("datum.f4040cf3", null)))
+		owner.visible_message(span_danger(LANG("datum.f4040cf36be3cf20", null)))
 		SEND_SIGNAL(owner, COMSIG_BLOOD_WARP)
 		return TRUE
 	return FALSE

@@ -98,11 +98,11 @@
 	if (holder_histamine)
 		if (holder_histamine.overdosed) // uh oh!
 			if (SPT_PROB(15, seconds_per_tick))
-				to_chat(quirk_holder, span_boldwarning(LANG("datum.8324ee70", null)))
+				to_chat(quirk_holder, span_boldwarning(LANG("datum.8324ee70c42e2fa7", null)))
 			adjust_inflammation(histamine_OD_inflammation * seconds_per_tick)
 		else
 			if (SPT_PROB(5, seconds_per_tick))
-				to_chat(quirk_holder, span_warning(LANG("datum.70258d9b", null)))
+				to_chat(quirk_holder, span_warning(LANG("datum.70258d9bd3de965b", null)))
 			adjust_inflammation(histamine_inflammation * seconds_per_tick)
 
 	var/datum/reagent/medicine/albuterol/albuterol = quirk_holder.reagents.has_reagent(/datum/reagent/medicine/albuterol)
@@ -127,7 +127,7 @@
 	RegisterSignal(current_attack, COMSIG_QDELETING, PROC_REF(attack_deleting))
 
 	if (current_attack.alert_ghosts)
-		notify_ghosts(LANG("datum.8b546d23", list(quirk_holder, current_attack.name)), source = quirk_holder, notify_flags = NOTIFY_CATEGORY_NOFLASH, header = "Asthma attack!")
+		notify_ghosts(LANG("datum.8b546d238fee4ed1", list(quirk_holder, current_attack.name)), source = quirk_holder, notify_flags = NOTIFY_CATEGORY_NOFLASH, header = "Asthma attack!")
 
 /// Setter proc for [inflammation]. Adjusts the amount by lung health, adjusts pressure mult, gives feedback messages if silent is FALSE.
 /datum/quirk/item_quirk/asthma/proc/adjust_inflammation(amount, silent = FALSE)
@@ -176,14 +176,14 @@
 	if (difference > 0) // it decreased
 		if (prob(1 * change_mult))
 			// in my experience with asthma an inhaler causes a bunch of mucous and you tend to cough it up
-			to_chat(quirk_holder, span_notice(LANG("datum.bbb9bb28", null)))
+			to_chat(quirk_holder, span_notice(LANG("datum.bbb9bb281a7b25ac", null)))
 			quirk_holder.emote("cough")
 
 	else if (difference < 0)// it increased
 		if (prob(1 * change_mult))
 			quirk_holder.emote("wheeze")
 		if (prob(5 * change_mult))
-			to_chat(quirk_holder, span_warning(LANG("datum.d8b31bc0", null)))
+			to_chat(quirk_holder, span_warning(LANG("datum.d8b31bc095d4ea01", null)))
 
 /// Returns the % of health our lungs have, from 1-0. Used in reducing recovery and intensifying inflammation.
 /datum/quirk/item_quirk/asthma/proc/get_lung_health_mult()

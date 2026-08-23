@@ -52,7 +52,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	oversized_quirk.old_organs += list(old_stomach)
 
 	new_stomach.Insert(human_holder, special = TRUE)
-	to_chat(human_holder, span_warning(LANG("datum.9dcfb380", null)))
+	to_chat(human_holder, span_warning(LANG("datum.9dcfb38062a68d30", null)))
 	if(old_stomach)
 		old_stomach.moveToNullspace()
 		STOP_PROCESSING(SSobj, old_stomach)
@@ -83,8 +83,8 @@ GLOBAL_LIST_EMPTY(customizable_races)
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "paw",
-			SPECIES_PERK_NAME = LANG("datum.ac7ca645", null),
-			SPECIES_PERK_DESC = LANG("datum.7d4aa45b", null),
+			SPECIES_PERK_NAME = LANG("datum.ac7ca64554ede9e7", null),
+			SPECIES_PERK_DESC = LANG("datum.7d4aa45b515cfa1b", null),
 		),
 	)
 	return to_add

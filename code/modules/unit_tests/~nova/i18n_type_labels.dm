@@ -16,8 +16,8 @@
 	var/saved_locale_resolved
 
 #define I18N_TYPE_LABEL_LOCALE "i18n-typelabel-unittest"
-#define I18N_TYPE_LABEL_NAME_KEY "unittest.typelabel_name"
-#define I18N_TYPE_LABEL_DESC_KEY "unittest.typelabel_desc"
+#define I18N_TYPE_LABEL_NAME_KEY "unittest.0000000000000001"
+#define I18N_TYPE_LABEL_DESC_KEY "unittest.0000000000000002"
 /// 单词名：反查侧的多词闸门（lang_reverse_phrase_tgui / lang_fallback_pattern_safe）永远够不到它。
 #define I18N_TYPE_LABEL_NAME "Cryostylane"
 #define I18N_TYPE_LABEL_DESC "Bluespace"
@@ -29,8 +29,12 @@
 /datum/unit_test/i18n_type_labels/Destroy()
 	if(!isnull(saved_locale))
 		GLOB.i18n_server_locale = saved_locale
-		GLOB.i18n_locale_resolved = saved_locale_resolved
-		GLOB.i18n_cache -= I18N_TYPE_LABEL_LOCALE
+		GLOB.i18n_runtime_state = saved_locale_resolved
+		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET] -= I18N_TYPE_LABEL_LOCALE
+		var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
+		en_cache -= I18N_TYPE_LABEL_NAME_KEY
+		en_cache -= I18N_TYPE_LABEL_DESC_KEY
+		GLOB.i18n_runtime_domains -= I18N_TYPE_LABEL_LOCALE
 		GLOB.i18n_reverse -= I18N_TYPE_LABEL_LOCALE
 		// 表按 locale 惰性建；清掉并复位标志，让之后的调用按真实 locale 重建。
 		GLOB.i18n_type_name_keys.Cut()
@@ -41,19 +45,22 @@
 
 /datum/unit_test/i18n_type_labels/Run()
 	saved_locale = GLOB.i18n_server_locale
-	saved_locale_resolved = GLOB.i18n_locale_resolved
-	// 单测环境 locale==en，表会被短路成空；切到合成 locale 才建得起来。
-	GLOB.i18n_cache[I18N_TYPE_LABEL_LOCALE] = list(
+	saved_locale_resolved = GLOB.i18n_runtime_state
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
+	en_cache[I18N_TYPE_LABEL_NAME_KEY] = I18N_TYPE_LABEL_NAME
+	en_cache[I18N_TYPE_LABEL_DESC_KEY] = I18N_TYPE_LABEL_DESC
+	// 单测环境 locale==en，表会被短路成空；切到合成 locale才建得起来。
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][I18N_TYPE_LABEL_LOCALE] = list(
 		I18N_TYPE_LABEL_NAME_KEY = "低温冷凝剂",
 		I18N_TYPE_LABEL_DESC_KEY = "蓝空",
 	)
 	GLOB.i18n_server_locale = I18N_TYPE_LABEL_LOCALE
-	GLOB.i18n_locale_resolved = TRUE
+	GLOB.i18n_runtime_state = I18N_RUNTIME_READY
 
 	// ① 真表完整性：非空，且条目的 key 必须真在 en 目录里（表与目录同源）。
 	var/list/name_table = lang_type_name_keys()
 	TEST_ASSERT(length(name_table) > 0, "类型显示名表为空：strings/i18n/type_vars.json 缺失或未由 nova-i18n extract 产出")
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
+	en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
 	TEST_ASSERT(islist(en_cache), "en 目录未加载")
 	var/checked = 0
 	for(var/atom_type in name_table)
@@ -72,18 +79,10 @@
 	var/obj/item/i18n_type_label_test/subject = allocate(/obj/item/i18n_type_label_test)
 
 	// ② 单词名落地（反查链在这里必然 miss）。
-	TEST_ASSERT_EQUAL(
-		subject.lang_localize_name_for_display(subject.name),
-		"低温冷凝剂",
-		"单词类型名没有走类型表（这正是它相对反查链的净增益）",
-	)
+	TEST_ASSERT_EQUAL(subject.lang_localize_name_for_display(subject.name), "低温冷凝剂", "单词类型名没有走类型表（这正是它相对反查链的净增益）")
 
 	// ⑤ desc 同构。
-	TEST_ASSERT_EQUAL(
-		subject.lang_localize_desc_for_display(subject.desc),
-		"蓝空",
-		"类型描述没有走类型表",
-	)
+	TEST_ASSERT_EQUAL(subject.lang_localize_desc_for_display(subject.desc), "蓝空", "类型描述没有走类型表")
 
 	// ③ 实例数据不被改写 —— 整套方案的地基。
 	TEST_ASSERT_EQUAL(subject.name, I18N_TYPE_LABEL_NAME, "显示边界回写了实例 name：比较与查表会当场坏掉")
@@ -91,11 +90,7 @@
 
 	// ④ 身份名不吃类型表。
 	subject.name = "Someone's Cryostylane"
-	TEST_ASSERT_EQUAL(
-		subject.lang_localize_name_for_display(subject.name),
-		"Someone's Cryostylane",
-		"身份名被类型表翻掉了",
-	)
+	TEST_ASSERT_EQUAL(subject.lang_localize_name_for_display(subject.name), "Someone's Cryostylane", "身份名被类型表翻掉了")
 
 #undef I18N_TYPE_LABEL_LOCALE
 #undef I18N_TYPE_LABEL_NAME_KEY

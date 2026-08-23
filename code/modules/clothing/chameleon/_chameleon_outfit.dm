@@ -58,19 +58,19 @@
 
 /datum/action/chameleon_outfit/proc/save_outfit(mob/user, list/saved_paths)
 	if(!length(saved_paths))
-		owner.balloon_alert(user, LANG("datum.9c2f5c3e", null))
+		owner.balloon_alert(user, LANG("datum.9c2f5c3e11d3a8e5", null))
 		return
 
 	for(var/existing_outfit in custom_outfits)
 		if(custom_outfits[existing_outfit] ~= saved_paths)
-			owner.balloon_alert(user, LANG("datum.02704b99", null))
+			owner.balloon_alert(user, LANG("datum.02704b9916ccdc75", null))
 			return
 
 	if(next_custom_outfit > max_custom_oufits)
 		next_custom_outfit = 1
 
 	LAZYSET(custom_outfits, "Custom Outfit #[next_custom_outfit]", saved_paths)
-	owner.balloon_alert(user, LANG("datum.d0a305b7", list(next_custom_outfit)))
+	owner.balloon_alert(user, LANG("datum.d0a305b76bd75a5e", list(next_custom_outfit)))
 	next_custom_outfit += 1
 
 /datum/action/chameleon_outfit/proc/select_outfit(mob/user)
@@ -81,7 +81,7 @@
 	all_options += "--- Job outfits ---"
 	all_options += outfit_options
 
-	var/selected = tgui_input_list(user, LANG("datum.abef9c9e", null), LANG("datum.688d644a", null), all_options)
+	var/selected = tgui_input_list(user, LANG("datum.abef9c9ed3283a0f", null), LANG("datum.688d644a94b9eaad", null), all_options)
 	if(isnull(selected) || QDELETED(src) || QDELETED(user) || QDELETED(owner) || !IsAvailable(feedback = TRUE))
 		return FALSE
 

@@ -12,10 +12,10 @@
 
 /obj/item/disk/computer/virus/proc/send_virus(obj/item/modular_computer/pda/source, obj/item/modular_computer/pda/target, mob/living/user, message)
 	if(charges <= 0)
-		to_chat(user, span_notice(LANG("obj.11fdd575", null)))
+		to_chat(user, span_notice(LANG("obj.11fdd5750d2ed9ff", null)))
 		return FALSE
 	if(!target)
-		to_chat(user, span_notice(LANG("obj.21aff8f8", null)))
+		to_chat(user, span_notice(LANG("obj.21aff8f83f581246", null)))
 		return FALSE
 	return TRUE
 
@@ -77,13 +77,13 @@
 		return
 
 	var/original_host = source
-	var/fakename = sanitize_name(tgui_input_text(user, LANG("obj.9ef208cc", null), LANG("obj.cc7d4a46", null), max_length = MAX_NAME_LEN), allow_numbers = TRUE)
+	var/fakename = sanitize_name(tgui_input_text(user, LANG("obj.9ef208cc9a0a7242", null), LANG("obj.cc7d4a4668fcd6f8", null), max_length = MAX_NAME_LEN), allow_numbers = TRUE)
 	if(!fakename || source != original_host || !user.can_perform_action(source))
 		return
-	var/fakejob = sanitize_name(tgui_input_text(user, LANG("obj.d1ae3c92", null), LANG("obj.cc7d4a46", null), max_length = MAX_NAME_LEN), allow_numbers = TRUE)
+	var/fakejob = sanitize_name(tgui_input_text(user, LANG("obj.d1ae3c92175bc7d3", null), LANG("obj.cc7d4a4668fcd6f8", null), max_length = MAX_NAME_LEN), allow_numbers = TRUE)
 	if(!fakejob || source != original_host || !user.can_perform_action(source))
 		return
-	var/attach_fake_photo = tgui_alert(user, LANG("obj.193b7fc9", null), LANG("obj.cc7d4a46", null), list("Yes", "No")) == "Yes"
+	var/attach_fake_photo = tgui_alert(user, LANG("obj.193b7fc9c3c6a5af", null), LANG("obj.cc7d4a4668fcd6f8", null), list("Yes", "No")) == "Yes"
 
 	var/datum/computer_file/program/messenger/app = locate() in source.stored_files
 	var/datum/computer_file/program/messenger/target_app = locate() in target.stored_files
@@ -115,12 +115,12 @@
 		return ..()
 
 	if(!charges)
-		to_chat(user, span_notice(LANG("obj.bc80c84a", list(src, tool))))
+		to_chat(user, span_notice(LANG("obj.bc80c84a780c8995", list(src, tool))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/stack/telecrystal/telecrystal_stack = tool
 	telecrystals += telecrystal_stack.amount
-	to_chat(user, span_notice(LANG("obj.32434fb8", list(telecrystal_stack, src))))
+	to_chat(user, span_notice(LANG("obj.32434fb8ab0a921d", list(telecrystal_stack, src))))
 	telecrystal_stack.use(telecrystal_stack.amount)
 	return ITEM_INTERACT_SUCCESS
 
@@ -131,7 +131,7 @@
 
 	charges--
 	var/unlock_code = "[rand(100,999)] [pick(GLOB.phonetic_alphabet)]"
-	to_chat(user, span_notice(LANG("obj.6c1610fd", list(unlock_code))))
+	to_chat(user, span_notice(LANG("obj.6c1610fd49ace330", list(unlock_code))))
 	var/datum/component/uplink/hidden_uplink = target.GetComponent(/datum/component/uplink)
 	if(!hidden_uplink)
 		var/datum/mind/target_mind

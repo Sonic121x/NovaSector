@@ -63,10 +63,10 @@
 /// Signal handler for light eater flavortext
 /datum/element/light_eaten/proc/on_examine(atom/eaten_light, mob/examiner, list/examine_text)
 	SIGNAL_HANDLER
-	examine_text += span_warning(LANG("datum.2accee4a", null))
+	examine_text += span_warning(LANG("datum.2accee4a3495356b", null))
 	if(isliving(examiner) && prob(20))
 		var/mob/living/target = examiner
-		examine_text += span_danger(LANG("datum.3bf32c08", list(eaten_light.p_them())))
+		examine_text += span_danger(LANG("datum.3bf32c0875a12471", list(eaten_light.p_them())))
 		target.adjust_temp_blindness(10 SECONDS)
 		target.set_eye_blur_if_lower(20 SECONDS)
 	return NONE

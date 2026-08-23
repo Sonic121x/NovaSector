@@ -154,10 +154,10 @@
 		icon = loc
 	if(!in_range(src, user) && !isobserver(user))
 		if(icon == src)
-			. += span_notice(LANG("obj.b96d97a0", null))
+			. += span_notice(LANG("obj.b96d97a085ef72ee", null))
 		return
 
-	. += span_notice(LANG("obj.9e3c085a", list(round(air_contents.return_pressure(),0.01))))
+	. += span_notice(LANG("obj.9e3c085aca517c20", list(round(air_contents.return_pressure(),0.01))))
 
 	var/celsius_temperature = air_contents.temperature-T0C
 	var/descriptive
@@ -175,10 +175,10 @@
 	else
 		descriptive = "furiously hot"
 
-	. += span_notice(LANG("obj.a8d1c72b", list(descriptive)))
+	. += span_notice(LANG("obj.a8d1c72bc7a89a02", list(descriptive)))
 
 	if(tank_assembly)
-		. += span_warning(LANG("obj.01fd2dda", list(EXAMINE_HINT("rigged"))))
+		. += span_warning(LANG("obj.01fd2dda62f091bd", list(EXAMINE_HINT("rigged"))))
 
 /obj/item/tank/atom_deconstruct(disassembled = TRUE)
 	var/atom/location = loc
@@ -189,7 +189,7 @@
 
 /obj/item/tank/suicide_act(mob/living/user)
 	var/mob/living/carbon/human/human_user = user
-	user.visible_message(span_suicide(LANG("obj.31575156", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.315751566c5080cf", list(user, src, user.p_their(), user.p_theyre()))))
 	playsound(loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
 	if(!QDELETED(human_user) && air_contents && air_contents.return_pressure() >= 1000)
 		var/obj/item/bodypart/head = human_user.get_bodypart(BODY_ZONE_HEAD)
@@ -197,7 +197,7 @@
 			ADD_TRAIT(head, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		human_user.inflate_gib()
 		return MANUAL_SUICIDE
-	to_chat(user, span_warning(LANG("obj.37a51a61", list(src))))
+	to_chat(user, span_warning(LANG("obj.37a51a61e014a3a9", list(src))))
 	return SHAME
 
 /obj/item/tank/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -205,7 +205,7 @@
 	if(!istype(tool, /obj/item/assembly_holder))
 		return NONE
 	if(tank_assembly)
-		balloon_alert(user, LANG("obj.317d7ea4", null))
+		balloon_alert(user, LANG("obj.317d7ea4da208289", null))
 		return ITEM_INTERACT_BLOCKING
 	bomb_assemble(tool, user)
 	return ITEM_INTERACT_SUCCESS
@@ -219,11 +219,11 @@
 
 /obj/item/tank/welder_act(mob/living/user, obj/item/tool)
 	if(bomb_status)
-		balloon_alert(user, LANG("obj.0054c51b", null))
+		balloon_alert(user, LANG("obj.0054c51b1ea6f7e6", null))
 		return ITEM_INTERACT_BLOCKING
 	if(tool.use_tool(src, user, 0, volume=40))
 		bomb_status = TRUE
-		balloon_alert(user, LANG("obj.e3f53f60", null))
+		balloon_alert(user, LANG("obj.e3f53f60ca0b9d12", null))
 		log_bomber(user, "welded a single tank bomb,", src, "| Temp: [air_contents.temperature] Pressure: [air_contents.return_pressure()]")
 		add_fingerprint(user)
 		return ITEM_INTERACT_SUCCESS
@@ -381,7 +381,7 @@
 
 	if(atom_integrity < 0) // So we don't play the alerts while we are exploding or rupturing.
 		return
-	visible_message(span_warning(LANG("obj.f1aa7c29", list(src))))
+	visible_message(span_warning(LANG("obj.f1aa7c293b587ad8", list(src))))
 	playsound(src, 'sound/effects/spray.ogg', 10, TRUE, -3)
 
 /// Handles rupturing and fragmenting
@@ -447,7 +447,7 @@
 	return TRUE
 
 /obj/item/tank/receive_signal() //This is mainly called by the sensor through sense() to the holder, and from the holder to here.
-	audible_message(span_warning(LANG("obj.a31e2378", list(icon2html(src, hearers(src))))))
+	audible_message(span_warning(LANG("obj.a31e23785cc68a0a", list(icon2html(src, hearers(src))))))
 	playsound(src, 'sound/machines/beep/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(ignite)), 1 SECONDS)
 
@@ -462,19 +462,19 @@
 		return
 
 	if(isitem(loc)) // we are in a storage item
-		balloon_alert(user, LANG("obj.fba9228d", null))
+		balloon_alert(user, LANG("obj.fba9228dcadf2006", null))
 		return
 
 	if((src in user.get_equipped_items(INCLUDE_POCKETS | INCLUDE_ACCESSORIES)) && !user.canUnEquip(src))
-		balloon_alert(user, LANG("obj.ee463177", null))
+		balloon_alert(user, LANG("obj.ee46317710e7fbe5", null))
 		return
 
 	if(!user.canUnEquip(assembly))
-		balloon_alert(user, LANG("obj.ee463177", null))
+		balloon_alert(user, LANG("obj.ee46317710e7fbe5", null))
 		return
 
 	if(!user.transferItemToLoc(assembly, src))
-		balloon_alert(user, LANG("obj.ee463177", null))
+		balloon_alert(user, LANG("obj.ee46317710e7fbe5", null))
 		return
 
 	tank_assembly = assembly //Tell the tank about its assembly part
@@ -482,13 +482,13 @@
 	assembly.on_attach()
 	update_weight_class(WEIGHT_CLASS_BULKY)
 
-	balloon_alert(user, LANG("obj.35abd169", null))
+	balloon_alert(user, LANG("obj.35abd169dcb935b8", null))
 	update_appearance(UPDATE_OVERLAYS)
 
 /// Detaches an assembly holder from the tank, disarming the bomb
 /obj/item/tank/proc/bomb_disassemble(mob/user)
 	bomb_status = FALSE
-	balloon_alert(user, LANG("obj.ea991be0", null))
+	balloon_alert(user, LANG("obj.ea991be063bb464b", null))
 	if(!tank_assembly)
 		CRASH("bomb_disassemble() called on a tank with no assembly!")
 	user.put_in_hands(tank_assembly)

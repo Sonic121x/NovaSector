@@ -14,11 +14,11 @@
 	var/obj/item/cain_and_abel/cain_and_abel = target
 
 	if(!living_owner.is_holding(cain_and_abel))
-		owner.balloon_alert(owner, LANG("datum.a49825ad", null))
+		owner.balloon_alert(owner, LANG("datum.a49825adce3b58cd", null))
 		return FALSE
 
 	if(!cain_and_abel.check_wield(owner))
-		owner.balloon_alert(owner, LANG("datum.9ec3aa89", null))
+		owner.balloon_alert(owner, LANG("datum.9ec3aa89dee2003f", null))
 		return TRUE
 
 	living_owner.apply_status_effect(/datum/status_effect/dagger_swinging)

@@ -99,7 +99,7 @@
 		spawn_callback?.Invoke(created)
 
 	if (spawn_text)
-		spawner.visible_message(span_danger(LANG("datum.b3892db7", list(spawn_text, spawner))))
+		spawner.visible_message(span_danger(LANG("datum.b3892db7a0a545d4", list(spawn_text, spawner))))
 
 /// Remove weakrefs to atoms which have been killed or deleted without us picking it up somehow
 /datum/component/spawner/proc/validate_references()

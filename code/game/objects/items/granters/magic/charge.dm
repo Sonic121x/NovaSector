@@ -17,6 +17,6 @@
 
 /obj/item/book/granter/action/spell/charge/recoil(mob/living/user)
 	. = ..()
-	to_chat(user,span_warning(LANG("obj.c87ce25b", list(src))))
+	to_chat(user,span_warning(LANG("obj.c87ce25b4b067bdb", list(src))))
 	empulse(src, 1, 1, emp_source = src)
 

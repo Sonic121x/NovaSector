@@ -24,13 +24,13 @@
 	if(toilet)
 		for(var/obj/item/cistern_item in toilet.contents)
 			cistern_item.forceMove(crafter.drop_location())
-			to_chat(crafter, span_warning(LANG("obj.0faaa105", list(cistern_item))))
+			to_chat(crafter, span_warning(LANG("obj.0faaa105847c0343", list(cistern_item))))
 		setDir(toilet.dir)
 		forceMove(toilet.loc)
 
 	crafter.visible_message(
-		span_notice(LANG("obj.ab5097c7", list(crafter))),
-		span_notice(LANG("obj.2764ac65", null)),
+		span_notice(LANG("obj.ab5097c7cc8e3e8e", list(crafter))),
+		span_notice(LANG("obj.2764ac655c23b6cc", null)),
 	)
 	return ..()
 
@@ -42,19 +42,19 @@
 /obj/structure/toiletbong/attack_hand(mob/living/carbon/user)
 	. = ..()
 	if (!anchored)
-		user.balloon_alert(user, LANG("obj.e30cef1e", null))
+		user.balloon_alert(user, LANG("obj.e30cef1e78b85e3b", null))
 		return
 	if (!LAZYLEN(contents))
-		user.balloon_alert(user, LANG("obj.76a90f7c", null))
+		user.balloon_alert(user, LANG("obj.76a90f7c0f5ea424", null))
 		return
-	user.visible_message(span_boldnotice(LANG("obj.9912c477", list(user, src))))
+	user.visible_message(span_boldnotice(LANG("obj.9912c4774db40b0e", list(user, src))))
 	if (!do_after(user, 2 SECONDS, target = src))
 		return
 	var/turf/toiletbong_location = loc
 	toiletbong_location.hotspot_expose(1000, 5)
 	for (var/obj/item/item in contents)
 		if (item.resistance_flags & INDESTRUCTIBLE)
-			user.balloon_alert(user, LANG("obj.a1919659", list(item.name)))
+			user.balloon_alert(user, LANG("obj.a19196597b6861d3", list(item.name)))
 			continue
 		playsound(src, 'sound/items/modsuit/flamethrower.ogg', 50)
 
@@ -62,11 +62,11 @@
 		do_chem_smoke(amount = smoke_amount, holder = src, location = loc, carry = item.reagents, carry_limit = 20, smoke_type = /datum/effect_system/fluid_spread/smoke/chem/smoke_machine)
 		if (prob(5) && !(obj_flags & EMAGGED))
 			if(user.get_liked_foodtypes() & GORE)
-				user.balloon_alert(user, LANG("obj.3f5fa41f", null))
-				user.visible_message(span_danger(LANG("obj.75c206b4", list(user))))
+				user.balloon_alert(user, LANG("obj.3f5fa41f018c7373", null))
+				user.visible_message(span_danger(LANG("obj.75c206b477ac3966", list(user))))
 			else
-				to_chat(user, span_userdanger(LANG("obj.836dffd7", null)))
-				user.visible_message(span_danger(LANG("obj.e83468cd", list(user))))
+				to_chat(user, span_userdanger(LANG("obj.836dffd7860df41e", null)))
+				user.visible_message(span_danger(LANG("obj.e83468cd684ca8be", list(user))))
 				user.adjust_disgust(50)
 				user.vomit(VOMIT_CATEGORY_DEFAULT)
 			var/mob/living/spawned_mob = new /mob/living/basic/mouse(get_turf(user))
@@ -91,7 +91,7 @@
 	if(anchored)
 		return FALSE
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice(LANG("obj.6cb50b2d", list(src))))
+	to_chat(user, span_notice(LANG("obj.6cb50b2d21a79b41", list(src))))
 	if (!do_after(user, 10 SECONDS, target = src))
 		return FALSE
 	new /obj/item/flamethrower(get_turf(src))
@@ -107,7 +107,7 @@
 	obj_flags |= EMAGGED
 	smokeradius = 2
 	playsound(src, 'sound/effects/fish_splash.ogg', 50)
-	balloon_alert(user, LANG("obj.8e94d908", null))
+	balloon_alert(user, LANG("obj.8e94d9080485c920", null))
 	if (emag_card)
-		to_chat(user, span_boldwarning(LANG("obj.08a10670", list(emag_card))))
+		to_chat(user, span_boldwarning(LANG("obj.08a106701c40a98b", list(emag_card))))
 	return TRUE

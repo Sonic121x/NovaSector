@@ -49,7 +49,7 @@
 	if(!isitem(target))
 		return
 	if(!isturf(target.loc))
-		balloon_alert(mod.wearer, LANG("obj.cff36f54", null))
+		balloon_alert(mod.wearer, LANG("obj.cff36f54adb1401f", null))
 		return
 	var/obj/item/microwave_target = target
 	do_sparks(2, TRUE, mod.wearer)
@@ -57,7 +57,7 @@
 	if(microwave_target.microwave_act(microwaver = mod.wearer) & COMPONENT_MICROWAVE_SUCCESS)
 		playsound(src, 'sound/machines/microwave/microwave-end.ogg', 50, FALSE)
 	else
-		balloon_alert(mod.wearer, LANG("obj.fc614343", null))
+		balloon_alert(mod.wearer, LANG("obj.fc614343acb1b5f1", null))
 	do_sparks(2, TRUE, microwave_target)
 	drain_power(use_energy_cost)
 

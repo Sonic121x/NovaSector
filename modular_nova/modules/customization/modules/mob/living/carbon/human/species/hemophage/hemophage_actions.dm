@@ -50,10 +50,10 @@
 	if(!tumor || !istype(tumor)) // This shouldn't happen, but you can never be too careful.
 		return
 
-	owner.balloon_alert(owner, LANG("datum.c3b43a81", list(tumor.is_dormant ? "leaving" : "entering")))
+	owner.balloon_alert(owner, LANG("datum.c3b43a81ef42b93e", list(tumor.is_dormant ? "leaving" : "entering")))
 
 	if(!do_after(owner, 3 SECONDS))
-		owner.balloon_alert(owner, LANG("datum.be74d0de", null))
+		owner.balloon_alert(owner, LANG("datum.be74d0de71ab25f1", null))
 		return
 
 	to_chat(owner, span_notice("[tumor.is_dormant ? DORMANT_STATE_END_MESSAGE : DORMANT_STATE_START_MESSAGE]"))
@@ -65,7 +65,7 @@
 
 	if(tumor.is_dormant)
 		name = "Exit Dormant State"
-		desc = LANG("datum.2f896c32", null)
+		desc = LANG("datum.2f896c32a8357d30", null)
 	else
 		name = initial(name)
 		desc = initial(desc)
@@ -89,12 +89,12 @@
 		return
 
 	if(living_owner.get_blood_volume() <= MINIMUM_VOLUME_FOR_REGEN)
-		living_owner.balloon_alert(living_owner, LANG("datum.8f68b52e", null))
+		living_owner.balloon_alert(living_owner, LANG("datum.8f68b52ecdf1b469", null))
 		return
 
 	if(living_owner.has_status_effect(/datum/status_effect/hemokinetic_regen))
 		living_owner.remove_status_effect(/datum/status_effect/hemokinetic_regen)
-		living_owner.balloon_alert(living_owner, LANG("datum.7df765b3", null))
+		living_owner.balloon_alert(living_owner, LANG("datum.7df765b30cc77ba5", null))
 	else
 		living_owner.apply_status_effect(/datum/status_effect/hemokinetic_regen)
 
@@ -129,7 +129,7 @@
 		return
 
 	if(carbon_owner.get_blood_volume() <= MINIMUM_VOLUME_FOR_REGEN)
-		carbon_owner.balloon_alert(carbon_owner, LANG("datum.8f68b52e", null))
+		carbon_owner.balloon_alert(carbon_owner, LANG("datum.8f68b52ecdf1b469", null))
 		return
 
 	// Fully clot one wound per use, priotizing the most oozy one.
@@ -151,11 +151,11 @@
 		))
 		RegisterSignal(carbon_owner, COMSIG_CARBON_LIMB_DAMAGED, PROC_REF(on_limb_damaged), override = TRUE)
 		chosen_wound.adjust_blood_flow(-WOUND_MAX_BLOODFLOW)
-		to_chat(carbon_owner, span_good(LANG("datum.6df294cc", list(chosen_wound))))
+		to_chat(carbon_owner, span_good(LANG("datum.6df294cc8b87d10c", list(chosen_wound))))
 		carbon_owner.adjust_blood_volume(-50)
 		return ..()
 
-	carbon_owner.balloon_alert(carbon_owner, LANG("datum.988508cb", null))
+	carbon_owner.balloon_alert(carbon_owner, LANG("datum.988508cbc5788a3e", null))
 
 
 /// Called when the limb takes damage, the previous wounds return as they were before they got clotted.
@@ -188,7 +188,7 @@
 				list_entry -= list(quadruplet)
 				if(!length(list_entry))
 					previous_wounds -= limb_name
-				to_chat(our_mob, span_warning(LANG("datum.15c1a9d0", list(iter_wound))))
+				to_chat(our_mob, span_warning(LANG("datum.15c1a9d086f632f9", list(iter_wound))))
 
 	UnregisterSignal(our_mob, COMSIG_CARBON_LIMB_DAMAGED)
 
@@ -210,15 +210,15 @@
 		return
 
 	if(living_owner.has_status_effect(/datum/status_effect/slave_to_the_tumor))
-		to_chat(living_owner, LANG("datum.1a830dc9", null))
+		to_chat(living_owner, LANG("datum.1a830dc9560fff8d", null))
 		return
 
 	if(living_owner.has_status_effect(/datum/status_effect/master_of_the_house))
 		living_owner.remove_status_effect(/datum/status_effect/master_of_the_house)
-		to_chat(living_owner, LANG("datum.fdc987be", null))
+		to_chat(living_owner, LANG("datum.fdc987be46dee505", null))
 	else
 		living_owner.apply_status_effect(/datum/status_effect/master_of_the_house)
-		to_chat(living_owner, LANG("datum.592c9765", null))
+		to_chat(living_owner, LANG("datum.592c976520dd55dc", null))
 
 	return ..()
 

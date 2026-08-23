@@ -53,7 +53,7 @@
 	AddElement(/datum/element/eyestab)
 
 /obj/item/kitchen/fork/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.47a6be89", list(user, src, user.p_their(), user.p_theyre(), user.p_them()))))
+	user.visible_message(span_suicide(LANG("obj.47a6be893ab97a8a", list(user, src, user.p_their(), user.p_theyre(), user.p_them()))))
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE)
 	return BRUTELOSS
 
@@ -63,10 +63,10 @@
 
 	if(forkload)
 		if(M == user)
-			M.visible_message(span_notice(LANG("obj.c57a3940", list(user))))
+			M.visible_message(span_notice(LANG("obj.c57a3940612c10c7", list(user))))
 			M.reagents.add_reagent(forkload.type, 1)
 		else
-			M.visible_message(span_notice(LANG("obj.1d5f1bcf", list(user, M))))
+			M.visible_message(span_notice(LANG("obj.1d5f1bcf36122169", list(user, M))))
 			M.reagents.add_reagent(forkload.type, 1)
 		icon_state = "fork"
 		forkload = null
@@ -133,13 +133,13 @@
 
 /obj/item/knife/kitchen/silicon/examine()
 	. = ..()
-	. += LANG("obj.ce18620c", list(tool_behaviour))
+	. += LANG("obj.ce18620c8f36725b", list(tool_behaviour))
 
 /obj/item/knife/kitchen/silicon/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	if(tool_behaviour != TOOL_ROLLINGPIN)
 		tool_behaviour = TOOL_ROLLINGPIN
-		to_chat(user, span_notice(LANG("obj.9ccf1ef7", list(src))))
+		to_chat(user, span_notice(LANG("obj.9ccf1ef7834c7de7", list(src))))
 		icon_state = "sili_rolling_pin"
 		force = 8
 		sharpness = NONE
@@ -149,7 +149,7 @@
 
 	else
 		tool_behaviour = TOOL_KNIFE
-		to_chat(user, span_notice(LANG("obj.86213d8c", list(src))))
+		to_chat(user, span_notice(LANG("obj.86213d8c286e0b04", list(src))))
 		icon_state = "sili_knife"
 		force = 0
 		sharpness = SHARP_EDGED
@@ -193,7 +193,7 @@
 	exposed_wound_bonus = 14
 
 /obj/item/kitchen/rollingpin/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.ff61aa4e", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.ff61aa4e0b5b0f09", list(user, user.p_their(), src, user.p_theyre()))))
 	return BRUTELOSS
 /* Trays  moved to /obj/item/storage/bag */
 
@@ -259,28 +259,28 @@
 
 	if(target_mob.is_mouth_covered(ITEM_SLOT_HEAD) || target_mob.is_mouth_covered(ITEM_SLOT_MASK))
 		if(target_mob == user)
-			target_mob.balloon_alert(user, LANG("obj.323ad734", null))
+			target_mob.balloon_alert(user, LANG("obj.323ad7343593a775", null))
 		else
-			target_mob.balloon_alert(user, LANG("obj.2b3c0878", list(target_mob.p_their())))
+			target_mob.balloon_alert(user, LANG("obj.2b3c08782ab70fe1", list(target_mob.p_their())))
 		return TRUE
 
 	if(target_mob == user)
 		user.visible_message(
-			span_notice(LANG("obj.92b3e547", list(user, user.p_their()))),
-			span_notice(LANG("obj.35476b60", null))
+			span_notice(LANG("obj.92b3e547a863c656", list(user, user.p_their()))),
+			span_notice(LANG("obj.35476b606bab15a0", null))
 		)
 
 	else
-		to_chat(target_mob, span_userdanger(LANG("obj.7aa66522", list(target_mob.is_blind() ? "Someone" : "[user]"))))
-		target_mob.balloon_alert(user, LANG("obj.f758a280", null))
+		to_chat(target_mob, span_userdanger(LANG("obj.7aa66522efc14b85", list(target_mob.is_blind() ? "Someone" : "[user]"))))
+		target_mob.balloon_alert(user, LANG("obj.f758a280badd5048", null))
 		if(!do_after(user, 3 SECONDS, target_mob))
-			target_mob.balloon_alert(user, LANG("obj.c67b5d27", null))
+			target_mob.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 			return TRUE
 
-		to_chat(target_mob, span_userdanger(LANG("obj.423ae488", list(target_mob.is_blind() ? "You are forced to" : "[user] forces you to"))))
+		to_chat(target_mob, span_userdanger(LANG("obj.423ae488c6423443", list(target_mob.is_blind() ? "You are forced to" : "[user] forces you to"))))
 		user.visible_message(
-			span_danger(LANG("obj.4409e170", list(user, target_mob))),
-			span_notice(LANG("obj.0f098418", list(target_mob)))
+			span_danger(LANG("obj.4409e170c2fa38d1", list(user, target_mob))),
+			span_notice(LANG("obj.0f09841863bdcf35", list(target_mob)))
 		)
 
 	playsound(target_mob, 'sound/items/drink.ogg', rand(10,50), vary = TRUE)
@@ -300,11 +300,11 @@
 
 	var/amount_given = reagents.trans_to(attacked_atom, reagents.maximum_volume)
 	if(amount_given >= reagents.total_volume)
-		attacked_atom.balloon_alert(user, LANG("obj.11d7c373", null))
+		attacked_atom.balloon_alert(user, LANG("obj.11d7c373b7dd05e4", null))
 	else if(amount_given > 0)
-		attacked_atom.balloon_alert(user, LANG("obj.404f2b3d", null))
+		attacked_atom.balloon_alert(user, LANG("obj.404f2b3d244358d5", null))
 	else
-		attacked_atom.balloon_alert(user, LANG("obj.2cb7d354", null))
+		attacked_atom.balloon_alert(user, LANG("obj.2cb7d3546d66854d", null))
 	return TRUE
 
 /obj/item/kitchen/spoon/pre_attack_secondary(atom/attacked_atom, mob/living/user, list/modifiers, list/attack_modifiers)
@@ -320,9 +320,9 @@
 		return SECONDARY_ATTACK_CALL_NORMAL
 
 	if(attacked_atom.reagents.trans_to(src, reagents.maximum_volume))
-		attacked_atom.balloon_alert(user, LANG("obj.af3b4ccf", null))
+		attacked_atom.balloon_alert(user, LANG("obj.af3b4ccf0ff6a0c6", null))
 	else
-		attacked_atom.balloon_alert(user, LANG("obj.ac3b077d", null))
+		attacked_atom.balloon_alert(user, LANG("obj.ac3b077d7edc0241", null))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/kitchen/spoon/plastic
@@ -385,7 +385,7 @@
 /obj/item/kitchen/tongs/examine(mob/user)
 	. = ..()
 	if (!isnull(tonged))
-		. += span_notice(LANG("obj.3fe7caf0", list(tonged)))
+		. += span_notice(LANG("obj.3fe7caf0730e2ced", list(tonged)))
 
 /obj/item/kitchen/tongs/dropped(mob/user, silent)
 	. = ..()
@@ -400,7 +400,7 @@
 		return TRUE
 	if (!COOLDOWN_FINISHED(src, clack_cooldown))
 		return TRUE
-	user.visible_message(span_notice(LANG("obj.12a1282f", list(user, user.p_their(), name))))
+	user.visible_message(span_notice(LANG("obj.12a1282f27ee731d", list(user, user.p_their(), name))))
 	click_clack()
 	return TRUE
 
@@ -408,7 +408,7 @@
 /obj/item/kitchen/tongs/proc/drop_tonged()
 	if (isnull(tonged))
 		return
-	visible_message(span_notice(LANG("obj.609b536c", list(tonged))))
+	visible_message(span_notice(LANG("obj.609b536cd20455db", list(tonged))))
 	var/turf/location = drop_location()
 	tonged.forceMove(location)
 	tonged.do_drop_animation(location)

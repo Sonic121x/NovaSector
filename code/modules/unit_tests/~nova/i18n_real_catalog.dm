@@ -13,16 +13,16 @@
 
 /datum/unit_test/i18n_real_catalog/Run()
 	var/saved_locale = GLOB.i18n_server_locale
-	if(!islist(GLOB.i18n_cache[LANGUAGE_LOCALE_ZH_HANS]))
+	if(!islist(GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][LANGUAGE_LOCALE_ZH_HANS]))
 		return // 该 locale 目录不存在（精简签出）：跳过而不是误报。
 	GLOB.i18n_server_locale = LANGUAGE_LOCALE_ZH_HANS
 
 	// ① 插值句：手术台上每一步都长这样（display_results → visible_message → to_chat 的 AC/模板层）。
 	// 分层断言：目录 → 引擎就绪 → 裸句 → 带 span 的整条。哪一层断的一目了然。
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
-	var/list/zh_cache = GLOB.i18n_cache[LANGUAGE_LOCALE_ZH_HANS]
-	TEST_ASSERT_EQUAL(en_cache["datum.67ca09d3"], "{0} begins to make an incision in the organs within {1}.", "目录里的英文模板应仍是这条（键换了就更新本测试）")
-	TEST_ASSERT_NOTEQUAL(zh_cache["datum.67ca09d3"], en_cache["datum.67ca09d3"], "该键应已译")
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
+	var/list/zh_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][LANGUAGE_LOCALE_ZH_HANS]
+	TEST_ASSERT_EQUAL(en_cache["datum.67ca09d3877d7907"], "{0} begins to make an incision in the organs within {1}.", "目录里的英文模板应仍是这条（键换了就更新本测试）")
+	TEST_ASSERT_NOTEQUAL(zh_cache["datum.67ca09d3877d7907"], en_cache["datum.67ca09d3877d7907"], "该键应已译")
 	TEST_ASSERT(lang_tpl_setup(LANGUAGE_LOCALE_ZH_HANS), "zh-Hans 的模板逆匹配索引应能建起来")
 
 	var/bare = "Isshiki Iroha begins to make an incision in the organs within YC Bond's chest."
@@ -111,7 +111,7 @@
 	// 威胁那条的中文语序与英文相反（"Bomb in cargo" → 「货舱有炸弹」），所以这里同时验两件事：
 	// 译文确实是中文，且**占位符被调了序**（{1} 排在 {0} 前面）—— 只断言"是中文"的话，
 	// 有人把 zh 模板改回 `{0}在{1}` 也照样过。
-	var/threat_line = LANG("datum.28e3a12e", list("Zxqv", "Qwrp"))
+	var/threat_line = LANG("datum.28e3a12eb168e201", list("Zxqv", "Qwrp"))
 	TEST_ASSERT(findtext(threat_line, "Qwrp") < findtext(threat_line, "Zxqv"), \
 		"威胁句式的占位符没有按中文语序调换：[threat_line]")
 	TEST_ASSERT_NOTEQUAL(lang_reverse_text("a changeling"), "a changeling", "幻觉指控碎片应已入目录并译出")
@@ -161,18 +161,49 @@
 	// ⑥d AC 字典的**建表时序**：i18n_cache 还没就绪时 lang_build_reverse 会「返回空表但不缓存」，
 	// 而 lang_fallback_setup 从前拿到空表就把 state 钉成 "none" —— 那是**永久**的，整局字面 AC
 	// 无声关闭。这里模拟那一刻：清掉 state 与 cache 再 setup，必须**不写 state**（留待下次重试）。
-	var/list/saved_cache = GLOB.i18n_cache[LANGUAGE_LOCALE_ZH_HANS]
+	var/list/saved_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][LANGUAGE_LOCALE_ZH_HANS]
 	// 这一格**故意**制造「目录未就绪」，会撞响 lang_fallback_setup 的早调用哨兵；
 	// 而 stack_trace 在单测里算 runtime = 直接判失败。先把告警配额打满，测完复原。
 	var/saved_warnings = GLOB.i18n_fallback_early_warnings
 	GLOB.i18n_fallback_early_warnings = I18N_MAX_EARLY_WARNINGS
 	GLOB.i18n_fallback_state -= LANGUAGE_LOCALE_ZH_HANS
-	GLOB.i18n_cache -= LANGUAGE_LOCALE_ZH_HANS
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET] -= LANGUAGE_LOCALE_ZH_HANS
 	TEST_ASSERT(!lang_fallback_setup(LANGUAGE_LOCALE_ZH_HANS), "目录未就绪时 setup 应返回 FALSE")
 	TEST_ASSERT(isnull(GLOB.i18n_fallback_state[LANGUAGE_LOCALE_ZH_HANS]), "目录未就绪时**不得**把 state 钉成 none —— 那会让整局 AC 永久关闭")
-	GLOB.i18n_cache[LANGUAGE_LOCALE_ZH_HANS] = saved_cache
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][LANGUAGE_LOCALE_ZH_HANS] = saved_cache
 	GLOB.i18n_fallback_state -= LANGUAGE_LOCALE_ZH_HANS
 	TEST_ASSERT(lang_fallback_setup(LANGUAGE_LOCALE_ZH_HANS), "目录就绪后 setup 应能重新建起字典")
 	GLOB.i18n_fallback_early_warnings = saved_warnings
 
 	GLOB.i18n_server_locale = saved_locale
+
+/datum/unit_test/i18n_reverse_ambiguity
+
+/datum/unit_test/i18n_reverse_ambiguity/Run()
+	var/list/seen = list()
+	var/list/origins = list()
+	var/list/ambiguous = list()
+	var/list/output = list()
+	var/source = "Zxqv shared source"
+
+	lang_add_forward_reverse_value(seen, origins, ambiguous, output, source, source, "untranslated key")
+	TEST_ASSERT(isnull(output[source]), "未译 identity 候选不应污染全局反查")
+	lang_add_forward_reverse_value(seen, origins, ambiguous, output, source, "甲", "datum key")
+	TEST_ASSERT_EQUAL(output[source], "甲", "单一 forward 候选应进入全局反查")
+	lang_add_forward_reverse_value(seen, origins, ambiguous, output, source, "乙", "obj key")
+	TEST_ASSERT(isnull(output[source]), "不同上下文译文不得按文件顺序任选一个进入全局反查")
+	TEST_ASSERT_EQUAL(length(ambiguous[source]), 2, "歧义来源必须保留两个 origin 供诊断")
+
+	// 显式 global_reverse 条目是维护者给出的 canonical 决策，可以接管歧义源串。
+	seen -= source
+	origins -= source
+	lang_add_domain_value(seen, origins, output, source, "规范译文", I18N_DOMAIN_GLOBAL_REVERSE, "manual override")
+	TEST_ASSERT_EQUAL(output[source], "规范译文", "显式 global_reverse 条目应能解决 forward 歧义")
+
+	var/list/norm_origins = list()
+	var/list/norm_ambiguous = list()
+	var/list/norm_output = list()
+	lang_add_normalized_reverse(norm_output, norm_origins, norm_ambiguous, "zxqv shared alias", "甲", "first source")
+	lang_add_normalized_reverse(norm_output, norm_origins, norm_ambiguous, "zxqv shared alias", "乙", "second source")
+	TEST_ASSERT(isnull(norm_output["zxqv shared alias"]), "冲突的归一化别名必须被省略，不能按目录顺序任选")
+	TEST_ASSERT_EQUAL(length(norm_ambiguous["zxqv shared alias"]), 2, "归一化冲突必须保留来源供诊断")

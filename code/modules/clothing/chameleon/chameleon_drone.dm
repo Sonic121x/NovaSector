@@ -40,7 +40,7 @@
 	else if(istype(old_headgear, /obj/item/clothing/mask/chameleon/drone))
 		new_headgear = new /obj/item/clothing/head/chameleon/drone(droney)
 	else
-		to_chat(owner, span_warning(LANG("datum.192ec484", null)))
+		to_chat(owner, span_warning(LANG("datum.192ec484e022ba14", null)))
 		return FALSE
 	droney.dropItemToGround(target, force = TRUE)
 	droney.equip_to_slot_or_del(new_headgear, ITEM_SLOT_HEAD)

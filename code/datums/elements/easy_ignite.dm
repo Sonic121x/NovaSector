@@ -31,7 +31,7 @@
 /datum/element/easy_ignite/proc/ignite(atom/igniting, mob/user)
 	var/delete_after = TRUE
 
-	igniting.visible_message(span_warning(LANG("datum.a6b672b2", list(igniting, igniting.p_es()))), span_warning(LANG("datum.ab80ff63", null)))
+	igniting.visible_message(span_warning(LANG("datum.a6b672b25d299bff", list(igniting, igniting.p_es()))), span_warning(LANG("datum.ab80ff632b5160ee", null)))
 	new /obj/effect/hotspot(isturf(igniting) ? igniting : igniting.loc)
 
 	if(isturf(igniting))
@@ -94,14 +94,14 @@
 /datum/element/easy_ignite/proc/item_ignition(obj/item/source, obj/item/tool, mob/user)
 	if(tool.get_temperature() >= required_temp)
 		source.visible_message(
-			span_warning(LANG("datum.e6ca8165", list(user, source, tool))),
-			span_warning(LANG("datum.47ff14d7", list(source, tool))),
+			span_warning(LANG("datum.e6ca8165f4ee11b8", list(user, source, tool))),
+			span_warning(LANG("datum.47ff14d765165de9", list(source, tool))),
 		)
 		ignite(source, user)
 		return TRUE
 
 	source.visible_message(
-		span_warning(LANG("datum.4cbf85cf", list(user, source, tool))),
-		span_warning(LANG("datum.27d74a5d", list(source, tool))),
+		span_warning(LANG("datum.4cbf85cf1a029a10", list(user, source, tool))),
+		span_warning(LANG("datum.27d74a5de6fed5ac", list(source, tool))),
 	)
 	return FALSE

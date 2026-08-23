@@ -127,7 +127,7 @@
 		return FALSE
 	if(!mod.active || mod.activating)
 		if(mod.wearer)
-			module.balloon_alert(mod.wearer, LANG("datum.ec29f255", null))
+			module.balloon_alert(mod.wearer, LANG("datum.ec29f255cfec6270", null))
 		return FALSE
 	circuit_component.user.set_output(owner)
 	circuit_component.signal.set_output(COMPONENT_SIGNAL)

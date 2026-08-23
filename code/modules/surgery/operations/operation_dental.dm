@@ -12,9 +12,9 @@
 
 /datum/surgery_operation/limb/add_dental_implant/all_required_strings()
 	. = list()
-	. += LANG("datum.5c64277d", null)
+	. += LANG("datum.5c64277d103b109d", null)
 	. += ..()
-	. += LANG("datum.b0882657", null)
+	. += LANG("datum.b088265772d6b5ea", null)
 
 /datum/surgery_operation/limb/add_dental_implant/get_default_radial_image()
 	return image('icons/hud/implants.dmi', "reagents")
@@ -135,11 +135,11 @@
 	return ..()
 
 /datum/action/item_action/activate_pill/do_effect(trigger_flags)
-	owner.balloon_alert_to_viewers(LANG("datum.6de05d2d", list(owner)), LANG("datum.b311df92", null))
+	owner.balloon_alert_to_viewers(LANG("datum.6de05d2d99f2473c", list(owner)), LANG("datum.b311df9201c07a2a", null))
 	if(!do_after(owner, owner.stat * (2.5 SECONDS), owner,  IGNORE_USER_LOC_CHANGE | IGNORE_INCAPACITATED))
 		return FALSE
 	var/obj/item/pill = target
-	to_chat(owner, span_notice(LANG("datum.3916b390", list(pill.name))))
+	to_chat(owner, span_notice(LANG("datum.3916b3904fb3913c", list(pill.name))))
 	owner.log_message("swallowed an implanted pill, [pill]", LOG_ATTACK)
 	pill.reagents.trans_to(owner, pill.reagents.total_volume, transferred_by = owner, methods = INGEST)
 	qdel(pill)

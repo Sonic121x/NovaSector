@@ -21,7 +21,7 @@
 /obj/item/gun/magic/wand/prank/do_suicide(mob/living/user)
 	charges--
 	playsound(user, fire_sound, 50, TRUE)
-	user.visible_message(LANG("obj.65a670a8", list(user, user.p_themselves())))
+	user.visible_message(LANG("obj.65a670a82cca5064", list(user, user.p_themselves())))
 	var/datum/reagents/lube = new /datum/reagents(40)
 	lube.add_reagent(/datum/reagent/lube, 40)
 	lube.my_atom = get_turf(user)

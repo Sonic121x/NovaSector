@@ -28,7 +28,7 @@
 /obj/structure/holopay/examine(mob/user)
 	. = ..()
 	if(force_fee)
-		. += span_boldnotice(LANG("obj.8354174e", list(force_fee, MONEY_NAME_AUTOPURAL(force_fee))))
+		. += span_boldnotice(LANG("obj.8354174e06e60a23", list(force_fee, MONEY_NAME_AUTOPURAL(force_fee))))
 
 /obj/structure/holopay/Initialize(mapload)
 	. = ..()
@@ -79,10 +79,10 @@
 	/// Users can pay with an ID to skip the UI
 	if(isidcard(tool))
 		if(istype(tool, /obj/item/card/id/departmental_budget))
-			balloon_alert(user, LANG("obj.981ecc80", null))
-			to_chat(user, span_warning(LANG("obj.14dbb8b1", null)))
+			balloon_alert(user, LANG("obj.981ecc806c42dafb", null))
+			to_chat(user, span_warning(LANG("obj.14dbb8b137586cfd", null)))
 			return ITEM_INTERACT_BLOCKING
-		if(force_fee && tgui_alert(user, LANG("obj.81a7c95a", list(force_fee, MONEY_SYMBOL)), LANG("obj.54c77a01", null), list("Pay", "Cancel")) != "Pay")
+		if(force_fee && tgui_alert(user, LANG("obj.81a7c95a428ac9cb", list(force_fee, MONEY_SYMBOL)), LANG("obj.54c77a016bf0b145", null), list("Pay", "Cancel")) != "Pay")
 			return ITEM_INTERACT_BLOCKING
 		process_payment(user)
 		return ITEM_INTERACT_SUCCESS
@@ -91,29 +91,29 @@
 		/// Account checks
 		var/obj/item/holochip/chip = tool
 		if(!chip.credits)
-			balloon_alert(user, LANG("obj.61e0af6a", null))
-			to_chat(user, span_warning(LANG("obj.02709041", list(MONEY_NAME))))
+			balloon_alert(user, LANG("obj.61e0af6a56421def", null))
+			to_chat(user, span_warning(LANG("obj.027090418d246175", list(MONEY_NAME))))
 			return ITEM_INTERACT_BLOCKING
 		/// Charges force fee or uses pay what you want
-		var/cash_deposit = force_fee || tgui_input_number(user, LANG("obj.348052fb", list(chip.credits)), LANG("obj.7029a1e6", null), max_value = chip.credits)
+		var/cash_deposit = force_fee || tgui_input_number(user, LANG("obj.348052fbd86d333e", list(chip.credits)), LANG("obj.7029a1e67f87f7fe", null), max_value = chip.credits)
 		/// Exit sanity checks
 		if(!cash_deposit)
 			return ITEM_INTERACT_BLOCKING
 		if(QDELETED(tool) || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 			return ITEM_INTERACT_BLOCKING
 		if(!chip.spend(cash_deposit, FALSE))
-			balloon_alert(user, LANG("obj.62b3f643", list(MONEY_NAME)))
-			to_chat(user, span_warning(LANG("obj.af145c57", list(MONEY_NAME))))
+			balloon_alert(user, LANG("obj.62b3f643d6c12c7a", list(MONEY_NAME)))
+			to_chat(user, span_warning(LANG("obj.af145c57e9626838", list(MONEY_NAME))))
 			return ITEM_INTERACT_BLOCKING
 		/// Success: Alert buyer
 		alert_buyer(user, cash_deposit)
 		return ITEM_INTERACT_SUCCESS
 	/// Throws errors if they try to use space cash
 	if(istype(tool, /obj/item/stack/spacecash))
-		to_chat(user, LANG("obj.a61bd149", null))
+		to_chat(user, LANG("obj.a61bd149b98f3429", null))
 		return ITEM_INTERACT_BLOCKING
 	if(istype(tool, /obj/item/coin))
-		to_chat(user, LANG("obj.1bb0a4c0", null))
+		to_chat(user, LANG("obj.1bb0a4c024348f82", null))
 		return ITEM_INTERACT_BLOCKING
 	return NONE
 
@@ -200,13 +200,13 @@
  */
 /obj/structure/holopay/proc/assign_card(turf/target, obj/item/card/id/card)
 	linked_card = card
-	desc = LANG("obj.af649a63", list(card.registered_account.account_holder))
+	desc = LANG("obj.af649a6325b02034", list(card.registered_account.account_holder))
 	force_fee = card.holopay_fee
 	shop_logo = card.holopay_logo
 	name = card.holopay_name
 	add_atom_colour("#77abff", FIXED_COLOUR_PRIORITY)
 	set_light(2)
-	visible_message(span_notice(LANG("obj.6e1881d1", null)))
+	visible_message(span_notice(LANG("obj.6e1881d1c94e8496", null)))
 	/// Start checking if the source projection is in range
 	track(linked_card)
 	return TRUE
@@ -242,7 +242,7 @@
  */
 /obj/structure/holopay/proc/dissipate()
 	playsound(loc, 'sound/effects/empulse.ogg', 40, TRUE)
-	visible_message(span_notice(LANG("obj.9e1b3e9a", null)))
+	visible_message(span_notice(LANG("obj.9e1b3e9a99380a64", null)))
 	qdel(src)
 
 /**
@@ -258,26 +258,26 @@
 	var/obj/item/card/id/id_card
 	id_card = user.get_idcard(TRUE)
 	if(isnull(id_card) || !id_card.can_be_used_in_payment(user))
-		balloon_alert(user, LANG("obj.bcdb378a", null))
-		to_chat(user, span_warning(LANG("obj.08c4f7f3", null)))
+		balloon_alert(user, LANG("obj.bcdb378a61063339", null))
+		to_chat(user, span_warning(LANG("obj.08c4f7f3c715bb4a", null)))
 		return FALSE
 	var/datum/bank_account/payee = id_card.registered_account
 	if(payee == linked_card?.registered_account)
-		balloon_alert(user, LANG("obj.cfa18fcd", null))
-		to_chat(user, span_warning(LANG("obj.7016afa3", null)))
+		balloon_alert(user, LANG("obj.cfa18fcd520807e4", null))
+		to_chat(user, span_warning(LANG("obj.7016afa3893fc76d", null)))
 		return FALSE
 	if(istype(id_card, /obj/item/card/id/departmental_budget))
-		balloon_alert(user, LANG("obj.981ecc80", null))
-		to_chat(user, span_warning(LANG("obj.14dbb8b1", null)))
+		balloon_alert(user, LANG("obj.981ecc806c42dafb", null))
+		to_chat(user, span_warning(LANG("obj.14dbb8b137586cfd", null)))
 		return FALSE
 	/// If the user has enough money, ask them the amount or charge the force fee
-	var/amount = force_fee || tgui_input_number(user, LANG("obj.348052fb", list(payee.account_balance)), LANG("obj.7029a1e6", null), max_value = payee.account_balance)
+	var/amount = force_fee || tgui_input_number(user, LANG("obj.348052fbd86d333e", list(payee.account_balance)), LANG("obj.7029a1e67f87f7fe", null), max_value = payee.account_balance)
 	/// Exit checks in case the user cancelled or entered an invalid amount
 	if(!amount || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return FALSE
 	if(!payee.adjust_money(-amount, "Holopay: [capitalize(name)]"))
-		balloon_alert(user, LANG("obj.62b3f643", list(MONEY_NAME)))
-		to_chat(user, span_warning(LANG("obj.fc4edf93", null)))
+		balloon_alert(user, LANG("obj.62b3f643d6c12c7a", list(MONEY_NAME)))
+		to_chat(user, span_warning(LANG("obj.fc4edf933983c014", null)))
 		return FALSE
 	/// Success: Alert the buyer
 	alert_buyer(user, amount)
@@ -296,8 +296,8 @@
 	/// Pay the owner
 	linked_card.registered_account.adjust_money(amount, "Holopay: [name]")
 	/// Make alerts
-	linked_card.registered_account.bank_card_talk(LANG("obj.0e5a56ec", list(payee, amount, MONEY_SYMBOL)))
-	say(LANG("obj.71a910e0", list(payee)))
+	linked_card.registered_account.bank_card_talk(LANG("obj.0e5a56ecece34b2f", list(payee, amount, MONEY_SYMBOL)))
+	say(LANG("obj.71a910e002d48624", list(payee)))
 	playsound(src, 'sound/effects/cashregister.ogg', 20, TRUE)
 	/// Log the event
 	log_econ("[amount] [MONEY_NAME] were transferred from [payee]'s transaction to [linked_card.registered_account.account_holder]")

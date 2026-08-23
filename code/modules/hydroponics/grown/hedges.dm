@@ -26,10 +26,10 @@
 	var/turf/player_turf = get_turf(user)
 	if(player_turf?.is_blocked_turf(TRUE))
 		return FALSE
-	user.visible_message(span_danger(LANG("obj.2bce40fb", list(user, src))))
+	user.visible_message(span_danger(LANG("obj.2bce40fb14210d60", list(user, src))))
 	if(do_after(user, 8 SECONDS, target = user.drop_location()))
 		new /obj/structure/hedge/opaque(user.drop_location())
-		to_chat(user, span_notice(LANG("obj.ad55c574", list(src))))
+		to_chat(user, span_notice(LANG("obj.ad55c5744703f8be", list(src))))
 		qdel(src)
 
 ///the structure placed by the shrubs
@@ -50,7 +50,7 @@
 /obj/structure/hedge/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!opacity || !HAS_TRAIT(user, TRAIT_BONSAI) || !tool.get_sharpness())
 		return NONE
-	balloon_alert(user, LANG("obj.75091a05", null))
+	balloon_alert(user, LANG("obj.75091a052a1f6871", null))
 	if(!do_after(user, 3 SECONDS, target=src))
 		return ITEM_INTERACT_BLOCKING
 	opacity = FALSE

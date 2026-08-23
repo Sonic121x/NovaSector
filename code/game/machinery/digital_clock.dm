@@ -23,11 +23,11 @@
 
 /obj/machinery/digital_clock/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, LANG("obj.e4901a5f", list(anchored ? "un" : "")))
+	balloon_alert(user, LANG("obj.e4901a5f7f1b9614", list(anchored ? "un" : "")))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
-		balloon_alert(user, LANG("obj.97c34052", list(anchored ? "un" : "")))
+		balloon_alert(user, LANG("obj.97c3405220b343d0", list(anchored ? "un" : "")))
 		deconstruct()
 		return TRUE
 
@@ -35,12 +35,12 @@
 	if(user.combat_mode)
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, LANG("obj.20fd4e5f", null))
+		balloon_alert(user, LANG("obj.20fd4e5fc4308a43", null))
 		return TRUE
-	balloon_alert(user, LANG("obj.2666c57c", null))
+	balloon_alert(user, LANG("obj.2666c57c052d2063", null))
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 0, volume=50))
 		return TRUE
-	balloon_alert(user, LANG("obj.65ced1e8", null))
+	balloon_alert(user, LANG("obj.65ced1e8b5b56733", null))
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()
@@ -51,11 +51,11 @@
 		return
 	if(!(obj_flags & EMAGGED))
 		return
-	balloon_alert(user, LANG("obj.cedc2245", null))
+	balloon_alert(user, LANG("obj.cedc2245ff497fd8", null))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
-		balloon_alert(user, LANG("obj.1aac9c2d", null))
+		balloon_alert(user, LANG("obj.1aac9c2d549c3083", null))
 		obj_flags &= ~EMAGGED
 		return TRUE
 

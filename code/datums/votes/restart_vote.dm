@@ -37,7 +37,7 @@
 
 /datum/vote/restart_vote/proc/async_alert_about_admins(mob/vote_creator)
 	set waitfor = FALSE
-	tgui_alert(vote_creator, LANG("datum.f689ba2f", null))
+	tgui_alert(vote_creator, LANG("datum.f689ba2fa2ec08ba", null))
 
 /datum/vote/restart_vote/get_vote_result(list/non_voters)
 	if(!CONFIG_GET(flag/default_no_vote))
@@ -52,7 +52,7 @@
 
 	if(winning_option == CHOICE_RESTART)
 		if(admins_present())
-			to_chat(world, span_boldannounce(LANG("datum.5b3baac1", null)))
+			to_chat(world, span_boldannounce(LANG("datum.5b3baac1311a49b1", null)))
 			message_admins("A restart vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
 			return
 

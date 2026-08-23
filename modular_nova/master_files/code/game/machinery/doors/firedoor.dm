@@ -4,11 +4,11 @@
 
 /obj/machinery/door/firedoor/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.927eb543", null))
+	. += span_notice(LANG("obj.927eb5435f079315", null))
 
 /obj/machinery/door/proc/try_manual_override(mob/user)
 	if(density && !welded && !operating)
-		balloon_alert(user, LANG("obj.1194bd8a", null))
+		balloon_alert(user, LANG("obj.1194bd8a6cfaaf1f", null))
 		if(do_after(user, 5 SECONDS, target = src))
 			try_to_crowbar(null, user)
 			return TRUE

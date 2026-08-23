@@ -38,7 +38,7 @@
 		QDEL_IN(src, 3 SECONDS)
 
 /obj/item/fish/holo/suicide_act(mob/living/user)
-	visible_message(span_suicide(LANG("obj.405f798c", list(user, src, user.p_theyre(), user.p_themselves()))))
+	visible_message(span_suicide(LANG("obj.405f798c49f6986d", list(user, src, user.p_theyre(), user.p_themselves()))))
 	var/area/station/holodeck/holo_area = get_area(src)
 	if(!istype(holo_area))
 		user.dust(just_ash = TRUE, drop_items = TRUE)
@@ -116,7 +116,7 @@
 	if(!iscarbon(user))
 		return ..()
 
-	visible_message(span_suicide(LANG("obj.62963f05", list(user, name, user.p_theyre(), user.p_themselves()))))
+	visible_message(span_suicide(LANG("obj.62963f05a7b168d3", list(user, name, user.p_theyre(), user.p_themselves()))))
 	for(var/obj/item/bodypart/limb in user.get_bodyparts())
 		limb.add_bodypart_texture(/datum/bodypart_texture/checkered, update = FALSE)
 

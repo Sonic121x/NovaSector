@@ -39,21 +39,21 @@
 
 /obj/machinery/igniter/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.3cf9245e", list(EXAMINE_HINT("multitool"))))
-	. += span_notice(LANG("obj.5f2a74d5", list(EXAMINE_HINT("welded"))))
+	. += span_notice(LANG("obj.3cf9245eaa78f822", list(EXAMINE_HINT("multitool"))))
+	. += span_notice(LANG("obj.5f2a74d53db3726a", list(EXAMINE_HINT("welded"))))
 
 /obj/machinery/igniter/welder_act(mob/living/user, obj/item/tool)
 	if(on)
 		return
 
 	if(!tool.tool_start_check(user, amount = 2))
-		balloon_alert(user, LANG("obj.161985b7", null))
+		balloon_alert(user, LANG("obj.161985b727572120", null))
 		return
 
-	loc.balloon_alert(user, LANG("obj.4dc14b15", list(src)))
+	loc.balloon_alert(user, LANG("obj.4dc14b157d492d07", list(src)))
 	if(!tool.use_tool(src, user, delay = 2.5 SECONDS, amount = 2, volume = 50))
 		return
-	loc.balloon_alert(user, LANG("obj.b6cf49cc", list(src)))
+	loc.balloon_alert(user, LANG("obj.b6cf49ccb7902a3f", list(src)))
 
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -63,12 +63,12 @@
 	new /obj/item/assembly/igniter(loc)
 
 /obj/machinery/igniter/multitool_act(mob/living/user, obj/item/tool)
-	var/change_id = tgui_input_number(user, LANG("obj.042c4d04", null), LANG("obj.d7898442", null), id, 100)
+	var/change_id = tgui_input_number(user, LANG("obj.042c4d04efb88c68", null), LANG("obj.d7898442b00c1fcc", null), id, 100)
 	if(!change_id || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	id = change_id
-	balloon_alert(user, LANG("obj.9bbb21f5", list(id)))
-	to_chat(user, span_notice(LANG("obj.7fe56c16", list(id))))
+	balloon_alert(user, LANG("obj.9bbb21f568547505", list(id)))
+	to_chat(user, span_notice(LANG("obj.7fe56c167316abeb", list(id))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/igniter/incinerator_ordmix
@@ -187,18 +187,18 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/sparker, 26)
 
 /obj/machinery/sparker/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.3cf9245e", list(EXAMINE_HINT("multitool"))))
-	. += span_notice(LANG("obj.5f2a74d5", list(EXAMINE_HINT("welded"))))
+	. += span_notice(LANG("obj.3cf9245eaa78f822", list(EXAMINE_HINT("multitool"))))
+	. += span_notice(LANG("obj.5f2a74d53db3726a", list(EXAMINE_HINT("welded"))))
 
 /obj/machinery/sparker/welder_act(mob/living/user, obj/item/tool)
 	if(!tool.tool_start_check(user, amount = 1))
-		balloon_alert(user, LANG("obj.161985b7", null))
+		balloon_alert(user, LANG("obj.161985b727572120", null))
 		return TRUE
 
-	loc.balloon_alert(user, LANG("obj.4dc14b15", list(src)))
+	loc.balloon_alert(user, LANG("obj.4dc14b157d492d07", list(src)))
 	if(!tool.use_tool(src, user, delay = 1.5 SECONDS, amount = 1, volume = 50))
 		return
-	loc.balloon_alert(user, LANG("obj.b6cf49cc", list(src)))
+	loc.balloon_alert(user, LANG("obj.b6cf49ccb7902a3f", list(src)))
 
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -207,12 +207,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/sparker, 26)
 	new /obj/item/wallframe/sparker(loc)
 
 /obj/machinery/sparker/multitool_act(mob/living/user, obj/item/tool)
-	var/change_id = tgui_input_number(user, LANG("obj.fa08ed98", null), LANG("obj.8961924c", null), id, 100)
+	var/change_id = tgui_input_number(user, LANG("obj.fa08ed98c1f76fbe", null), LANG("obj.8961924c016a043d", null), id, 100)
 	if(!change_id || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	id = change_id
-	balloon_alert(user, LANG("obj.9bbb21f5", list(id)))
-	to_chat(user, span_notice(LANG("obj.7fe56c16", list(id))))
+	balloon_alert(user, LANG("obj.9bbb21f568547505", list(id)))
+	to_chat(user, span_notice(LANG("obj.7fe56c167316abeb", list(id))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/sparker/update_icon_state()
@@ -232,9 +232,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/sparker, 26)
 	tool.play_tool_sound(src, 50)
 	disable = !disable
 	if (disable)
-		user.visible_message(span_notice(LANG("obj.bc94fd37", list(user, src))), span_notice(LANG("obj.02bb1fc0", list(src))))
+		user.visible_message(span_notice(LANG("obj.bc94fd3793536d07", list(user, src))), span_notice(LANG("obj.02bb1fc090b88548", list(src))))
 	if (!disable)
-		user.visible_message(span_notice(LANG("obj.f9458d6d", list(user, src))), span_notice(LANG("obj.166ce20b", list(src))))
+		user.visible_message(span_notice(LANG("obj.f9458d6d9205b334", list(user, src))), span_notice(LANG("obj.166ce20bc20d8ad4", list(src))))
 	update_appearance()
 	return TRUE
 

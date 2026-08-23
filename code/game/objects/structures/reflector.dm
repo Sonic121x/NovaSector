@@ -43,13 +43,13 @@
 /obj/structure/reflector/examine(mob/user)
 	. = ..()
 	if(finished)
-		. += LANG("obj.85161655", list(rotation_angle, can_rotate ? "unlocked" : "locked"))
+		. += LANG("obj.8516165543a1a005", list(rotation_angle, can_rotate ? "unlocked" : "locked"))
 		if(!admin)
 			if(can_rotate)
-				. += span_notice(LANG("obj.0dfd560c", null))
-				. += span_notice(LANG("obj.791dda47", null))
+				. += span_notice(LANG("obj.0dfd560c2596facd", null))
+				. += span_notice(LANG("obj.791dda474f117a3a", null))
 			else
-				. += span_notice(LANG("obj.f68e082e", null))
+				. += span_notice(LANG("obj.f68e082e5f6ff037", null))
 
 /obj/structure/reflector/proc/set_angle(new_angle)
 	if(can_rotate)
@@ -86,18 +86,18 @@
 
 /obj/structure/reflector/screwdriver_act(mob/living/user, obj/item/tool)
 	can_rotate = !can_rotate
-	to_chat(user, span_notice(LANG("obj.13ce15bb", list(can_rotate ? "unlock" : "lock", src))))
+	to_chat(user, span_notice(LANG("obj.13ce15bbabaf6229", list(can_rotate ? "unlock" : "lock", src))))
 	tool.play_tool_sound(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reflector/wrench_act(mob/living/user, obj/item/tool)
 	if(anchored)
-		to_chat(user, span_warning(LANG("obj.2893b16b", list(src))))
+		to_chat(user, span_warning(LANG("obj.2893b16b1d8ee846", list(src))))
 		return ITEM_INTERACT_SUCCESS
-	user.visible_message(span_notice(LANG("obj.87859cea", list(user, src))), span_notice(LANG("obj.344c0686", list(src))))
+	user.visible_message(span_notice(LANG("obj.87859cea46929693", list(user, src))), span_notice(LANG("obj.344c0686a869a413", list(src))))
 	if(!tool.use_tool(src, user, 8 SECONDS, volume=50))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.fc814806", list(src))))
+	to_chat(user, span_notice(LANG("obj.fc81480614a78c5d", list(src))))
 	new framebuildstacktype(drop_location(), framebuildstackamount)
 	if(buildstackamount)
 		new buildstacktype(drop_location(), buildstackamount)
@@ -108,27 +108,27 @@
 	if(!tool.tool_start_check(user, amount=1))
 		return ITEM_INTERACT_BLOCKING
 	if(atom_integrity < max_integrity)
-		user.visible_message(span_notice(LANG("obj.7cfba828", list(user, src))),
-							span_notice(LANG("obj.93449ef4", list(src))),
-							span_hear(LANG("obj.1aa82fa3", null)))
+		user.visible_message(span_notice(LANG("obj.7cfba828a395f44c", list(user, src))),
+							span_notice(LANG("obj.93449ef42b686baf", list(src))),
+							span_hear(LANG("obj.1aa82fa3545466eb", null)))
 		if(tool.use_tool(src, user, 4 SECONDS, volume=40))
 			atom_integrity = max_integrity
-			user.visible_message(span_notice(LANG("obj.639f2d4f", list(user, src))), \
-								span_notice(LANG("obj.616dfcb1", list(src))))
+			user.visible_message(span_notice(LANG("obj.639f2d4fef2753bc", list(user, src))), \
+								span_notice(LANG("obj.616dfcb178896bec", list(src))))
 	else if(!anchored)
-		user.visible_message(span_notice(LANG("obj.9600c364", list(user, src))),
-							span_notice(LANG("obj.7765e0fa", list(src))),
-							span_hear(LANG("obj.1aa82fa3", null)))
+		user.visible_message(span_notice(LANG("obj.9600c36405630174", list(user, src))),
+							span_notice(LANG("obj.7765e0fab90f0928", list(src))),
+							span_hear(LANG("obj.1aa82fa3545466eb", null)))
 		if (tool.use_tool(src, user, 2 SECONDS, volume=50))
 			set_anchored(TRUE)
-			to_chat(user, span_notice(LANG("obj.46f0194b", list(src))))
+			to_chat(user, span_notice(LANG("obj.46f0194bbe668d3b", list(src))))
 	else
-		user.visible_message(span_notice(LANG("obj.078cc3d3", list(user, src))),
-							span_notice(LANG("obj.41ed57fe", list(src))),
-							span_hear(LANG("obj.1aa82fa3", null)))
+		user.visible_message(span_notice(LANG("obj.078cc3d361bb45af", list(user, src))),
+							span_notice(LANG("obj.41ed57fe66669269", list(src))),
+							span_hear(LANG("obj.1aa82fa3545466eb", null)))
 		if (tool.use_tool(src, user, 2 SECONDS, volume=50))
 			set_anchored(FALSE)
-			to_chat(user, span_notice(LANG("obj.6a908a91", list(src))))
+			to_chat(user, span_notice(LANG("obj.6a908a91e8707af7", list(src))))
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -145,7 +145,7 @@
 	var/obj/item/stack/sheet/using_stack = tool
 	if(istype(using_stack, /obj/item/stack/sheet/glass))
 		if(!using_stack.use(5))
-			to_chat(user, span_warning(LANG("obj.436be82e", null)))
+			to_chat(user, span_warning(LANG("obj.436be82e68d359df", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		new /obj/structure/reflector/single(drop_location())
@@ -154,7 +154,7 @@
 
 	if(istype(using_stack, /obj/item/stack/sheet/rglass))
 		if(!using_stack.use(10))
-			to_chat(user, span_warning(LANG("obj.f81de041", null)))
+			to_chat(user, span_warning(LANG("obj.f81de041712febf4", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		new /obj/structure/reflector/double(drop_location())
@@ -171,9 +171,9 @@
 
 /obj/structure/reflector/proc/rotate(mob/user)
 	if (!can_rotate || admin)
-		to_chat(user, span_warning(LANG("obj.1fabeebe", null)))
+		to_chat(user, span_warning(LANG("obj.1fabeebe0bb9f074", null)))
 		return FALSE
-	var/new_angle = tgui_input_number(user, LANG("obj.19bfb52d", null), LANG("obj.edfa1be4", null), rotation_angle, 360)
+	var/new_angle = tgui_input_number(user, LANG("obj.19bfb52d04bc5bf6", null), LANG("obj.edfa1be4f6498a3f", null), rotation_angle, 360)
 	if(isnull(new_angle) || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return FALSE
 	set_angle(SIMPLIFY_DEGREES(new_angle))
@@ -298,10 +298,10 @@
 
 /obj/structure/reflector/ui_interact(mob/user, datum/tgui/ui)
 	if(!finished)
-		user.balloon_alert(user, LANG("obj.dead6374", null))
+		user.balloon_alert(user, LANG("obj.dead6374540925c6", null))
 		return
 	if(!can_rotate)
-		user.balloon_alert(user, LANG("obj.e8f6efb5", null))
+		user.balloon_alert(user, LANG("obj.e8f6efb5b84f5bbd", null))
 		ui?.close()
 		return
 	ui = SStgui.try_update_ui(user, src, ui)

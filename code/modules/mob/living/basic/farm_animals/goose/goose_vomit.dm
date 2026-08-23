@@ -29,11 +29,11 @@
 		return FALSE
 	if (!length(owner.contents))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.46138ad1", null))
+			owner.balloon_alert(owner, LANG("datum.46138ad178629e8f", null))
 		return FALSE
 	if (!isliving(owner))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.221df4b7", null))
+			owner.balloon_alert(owner, LANG("datum.221df4b7fc0f2d84", null))
 		return FALSE
 	return TRUE
 

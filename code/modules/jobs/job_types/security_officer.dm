@@ -160,9 +160,9 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 
 	if(player_client)
 		if(department)
-			to_chat(player_client, LANG("datum.dadd4a02", list(department)))
+			to_chat(player_client, LANG("datum.dadd4a02a611bff3", list(department)))
 		else
-			to_chat(player_client, LANG("datum.af55b396", null))
+			to_chat(player_client, LANG("datum.af55b39645b43da7", null))
 
 	return department
 

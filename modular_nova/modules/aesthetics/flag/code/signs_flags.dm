@@ -20,7 +20,7 @@
 			return
 		if(!user.can_perform_action(src, NEED_DEXTERITY))
 			return
-		user.visible_message(span_notice(LANG("obj.c9da7713", list(user, src.name))), span_notice(LANG("obj.4e7205b6", list(src.name))))
+		user.visible_message(span_notice(LANG("obj.c9da7713216df903", list(user, src.name))), span_notice(LANG("obj.4e7205b6e00d8209", list(src.name))))
 		var/obj/item/flag_item = new item_flag(loc)
 		TransferComponents(flag_item)
 		user.put_in_hands(flag_item)

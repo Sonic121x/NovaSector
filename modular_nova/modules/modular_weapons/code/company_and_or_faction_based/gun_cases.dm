@@ -132,7 +132,7 @@
 
 /obj/item/storage/toolbox/guncase/nova/ntcase/examine(mob/user)
 	. = ..()
-	. += LANG("obj.b5a86bf3", list(span_blue("Nanotrasen")))
+	. += LANG("obj.b5a86bf321d9aa38", list(span_blue("Nanotrasen")))
 
 /obj/item/storage/toolbox/guncase/nova/ntcase/pistol
 	name = "small gun case"
@@ -148,7 +148,7 @@
 
 /obj/item/storage/toolbox/guncase/nova/ntspecial/examine(mob/user)
 	. = ..()
-	. += LANG("obj.f2062fbe", list(span_blue("Nanotrasen")))
+	. += LANG("obj.f2062fbe2f84fc6f", list(span_blue("Nanotrasen")))
 
 
 /obj/item/storage/toolbox/guncase/nova/ntspecial/pistol
@@ -165,7 +165,7 @@
 
 /obj/item/storage/toolbox/guncase/nova/solfed/examine(mob/user)
 	. = ..()
-	. += LANG("obj.205c1624", list(span_cyan_nova("Solar Federation")))
+	. += LANG("obj.205c162433aa9673", list(span_cyan_nova("Solar Federation")))
 
 /obj/item/storage/toolbox/guncase/nova/solfed/pistol
 	name = "small gun case"
@@ -181,7 +181,7 @@
 
 /obj/item/storage/toolbox/guncase/nova/solfedspec/examine(mob/user)
 	. = ..()
-	. += LANG("obj.205c1624", list(span_cyan_nova("Solar Federation")))
+	. += LANG("obj.205c162433aa9673", list(span_cyan_nova("Solar Federation")))
 
 /obj/item/storage/toolbox/guncase/nova/solfedspec/pistol
 	name = "small gun case"
@@ -197,7 +197,7 @@
 
 /obj/item/storage/toolbox/guncase/nova/syndicate/examine(mob/user)
 	. = ..()
-	. += LANG("obj.5fc9855d", list(span_red("Syndicate Conglomerate")))
+	. += LANG("obj.5fc9855ddf37abaf", list(span_red("Syndicate Conglomerate")))
 
 /obj/item/storage/toolbox/guncase/nova/syndicate/pistol
 	name = "small gun case"
@@ -213,7 +213,7 @@
 
 /obj/item/storage/toolbox/guncase/nova/interdyne/examine(mob/user)
 	. = ..()
-	. += LANG("obj.7746f8f1", list(span_green("Interdyne Pharmaceuticals")))
+	. += LANG("obj.7746f8f12ac8010a", list(span_green("Interdyne Pharmaceuticals")))
 
 /obj/item/storage/toolbox/guncase/nova/interdyne/pistol
 	name = "small gun case"
@@ -229,7 +229,7 @@
 
 /obj/item/storage/toolbox/guncase/nova/interdynespec/examine(mob/user)
 	. = ..()
-	. += LANG("obj.7746f8f1", list(span_green("Interdyne Pharmaceuticals")))
+	. += LANG("obj.7746f8f12ac8010a", list(span_green("Interdyne Pharmaceuticals")))
 
 /obj/item/storage/toolbox/guncase/nova/interdynespec/pistol
 	name = "small gun case"
@@ -251,7 +251,7 @@
 
 /obj/item/storage/toolbox/guncase/nova/pistol/trappiste_small_case/examine(mob/user)
 	. = ..()
-	. += LANG("obj.5b1c9c61", list(span_red("Trappiste Fabriek")))
+	. += LANG("obj.5b1c9c61aaa0bbe0", list(span_red("Trappiste Fabriek")))
 
 // Xhihao Light Arms
 /obj/item/storage/toolbox/guncase/nova/xhihao_large_case
@@ -260,4 +260,4 @@
 
 /obj/item/storage/toolbox/guncase/nova/xhihao_large_case/examine(mob/user)
 	. = ..()
-	. += LANG("obj.55ce2592", list(span_purple("Xhihao Light Arms")))
+	. += LANG("obj.55ce2592cc351467", list(span_purple("Xhihao Light Arms")))

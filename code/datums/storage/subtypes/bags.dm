@@ -18,8 +18,8 @@
 
 /datum/storage/bag/trash/remove_single(mob/removing, obj/item/thing, atom/remove_to_loc, silent)
 	real_location.visible_message(
-		span_notice(LANG("datum.ca2b142b", list(removing, parent))),
-		span_notice(LANG("datum.2af9202a", list(parent))),
+		span_notice(LANG("datum.ca2b142be74a9b84", list(removing, parent))),
+		span_notice(LANG("datum.2af9202a2f282a77", list(parent))),
 	)
 	if(!do_after(removing, 1.5 SECONDS, parent))
 		return FALSE
@@ -289,7 +289,7 @@
 
 	if(istype(to_insert, /obj/item/storage/backpack) && length(to_insert.contents))
 		if(messages && user)
-			parent.balloon_alert(user, LANG("datum.9d66f65b", null))
+			parent.balloon_alert(user, LANG("datum.9d66f65b8edaf554", null))
 		return FALSE
 
 	return TRUE
@@ -314,7 +314,7 @@
 	SIGNAL_HANDLER
 
 	if(user && messages)
-		parent.balloon_alert(user, LANG("datum.81291e43", null))
+		parent.balloon_alert(user, LANG("datum.81291e4379d1a18d", null))
 	return BLOCK_STORAGE_INSERT
 
 ///Quiver bag

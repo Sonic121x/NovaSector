@@ -229,7 +229,7 @@
 	for(var/mob/M as anything in GLOB.player_list)
 		if (M.client?.eye == shell_camera)
 			M.reset_perspective(null)
-			to_chat(M, span_warning(LANG("obj.f627b674", null)))
+			to_chat(M, span_warning(LANG("obj.f627b67467eb041e", null)))
 
 /**
  * Restore emp'd camera

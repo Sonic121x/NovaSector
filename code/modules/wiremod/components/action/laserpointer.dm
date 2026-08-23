@@ -58,7 +58,7 @@
 		var/mob/living/silicon/silicon = target
 		log_combat(shell, silicon, "shone in the sensors", src)
 		silicon.flash_act(affect_silicon = TRUE) /// no stunning, just a blind
-		to_chat(silicon, span_danger(LANG("obj.e0c6adb4", list(shell))))
+		to_chat(silicon, span_danger(LANG("obj.e0c6adb4753b6f94", list(shell))))
 
 	var/mutable_appearance/laser_location = mutable_appearance('icons/obj/weapons/guns/projectiles.dmi', "[pointer_icon_state]_laser")
 

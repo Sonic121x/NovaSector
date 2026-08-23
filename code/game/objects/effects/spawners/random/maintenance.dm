@@ -22,7 +22,7 @@
 
 /obj/effect/spawner/random/maintenance/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.280148b7", list(get_effective_lootcount())))
+	. += span_info(LANG("obj.280148b7d29e8cf2", list(get_effective_lootcount())))
 
 /obj/effect/spawner/random/maintenance/Initialize(mapload)
 	switch(loot_table)

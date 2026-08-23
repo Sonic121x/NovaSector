@@ -27,7 +27,7 @@
 
 /datum/component/revenant_prison/proc/on_parent_break(obj/source, damage_flags)
 	SIGNAL_HANDLER
-	source.visible_message(span_revenwarning(LANG("datum.dd62bcf1", list(source))))
+	source.visible_message(span_revenwarning(LANG("datum.dd62bcf1f14b3616", list(source))))
 	playsound(source.loc, 'sound/effects/chemistry/ahaha.ogg', 100, TRUE)
 	release_revenant(source, cause = "[parent] breaking")
 
@@ -50,7 +50,7 @@
 
 /datum/component/revenant_prison/proc/on_parent_examine(datum/source, mob/user, list/examine_list)
 	if(istype(parent, /obj/structure/mirror))
-		examine_list += span_revenwarning(LANG("datum.5b74bb15", null))
+		examine_list += span_revenwarning(LANG("datum.5b74bb15c80921d7", null))
 
 /datum/component/revenant_prison/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_parent_examine))

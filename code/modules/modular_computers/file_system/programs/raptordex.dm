@@ -57,7 +57,7 @@
 			scan_data["inherited_traits"] += GLOB.raptor_inherit_traits[index]
 
 	playsound(computer, 'sound/mobs/non-humanoids/orbie/orbie_send_out.ogg', 20)
-	my_raptor.balloon_alert(user, LANG("datum.98f57ecb", null))
+	my_raptor.balloon_alert(user, LANG("datum.98f57ecb62270a5f", null))
 	return TRUE
 
 /datum/computer_file/program/raptordex/ui_data(mob/user)

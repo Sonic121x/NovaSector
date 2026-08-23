@@ -16,10 +16,10 @@
 /datum/antagonist/heretic_monster/on_removal()
 	if(!silent)
 		if(master?.current)
-			to_chat(master.current, span_warning(LANG("datum.fb8db412", list(owner))))
+			to_chat(master.current, span_warning(LANG("datum.fb8db4123441a759", list(owner))))
 		if(owner.current)
-			to_chat(owner.current, span_deconversion_message(LANG("datum.70c4b6ae", list(master ? " [master]":""))))
-			owner.current.visible_message(span_deconversion_message(LANG("datum.1d239388", list(owner.current, owner.current.p_theyve()))), ignored_mobs = owner.current)
+			to_chat(owner.current, span_deconversion_message(LANG("datum.70c4b6ae5a91d8ed", list(master ? " [master]":""))))
+			owner.current.visible_message(span_deconversion_message(LANG("datum.1d23938810bde3c4", list(owner.current, owner.current.p_theyve()))), ignored_mobs = owner.current)
 
 	master = null
 	return ..()
@@ -48,5 +48,5 @@
 
 	objectives += master_obj
 	owner.announce_objectives()
-	to_chat(owner, span_boldnotice(LANG("datum.8e1132bd", list(ishuman(owner.current) ? "shambling corpse returned":"horrible creation brought"))))
-	to_chat(owner, span_notice(LANG("datum.9d65ff87", list(master))))
+	to_chat(owner, span_boldnotice(LANG("datum.8e1132bd2e20d25d", list(ishuman(owner.current) ? "shambling corpse returned":"horrible creation brought"))))
+	to_chat(owner, span_notice(LANG("datum.9d65ff87670b153c", list(master))))

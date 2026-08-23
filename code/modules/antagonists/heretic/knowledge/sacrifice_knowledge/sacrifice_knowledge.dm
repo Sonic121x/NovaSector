@@ -72,7 +72,7 @@
 	// You may wonder why we don't straight up prevent them from invoking the ritual if they don't have one -
 	// Hunt and sacrifice should always be invokable for clarity's sake, even if it'll fail immediately.
 	if(heretic_datum.has_living_heart() != HERETIC_HAS_LIVING_HEART)
-		loc.balloon_alert(user, LANG("datum.dfde0ee6", null))
+		loc.balloon_alert(user, LANG("datum.dfde0ee611438868", null))
 		return FALSE
 
 	// We've got no targets set, let's try to set some.
@@ -82,25 +82,25 @@
 		return TRUE
 
 	if(istype(get_area(loc), /area/centcom/heretic_backdoor))
-		loc.balloon_alert(user, LANG("datum.0bb4efa2", null))
+		loc.balloon_alert(user, LANG("datum.0bb4efa2e61dbc1a", null))
 		switch(backdoor_sacrifice_attempts)
 			if(0)
-				to_chat(user, span_mansus(LANG("datum.9a23d624", null)))
+				to_chat(user, span_mansus(LANG("datum.9a23d624c8968e23", null)))
 			if(1)
-				to_chat(user, span_mansus(LANG("datum.ecf4d1cf", list(HAS_TRAIT(user, TRAIT_DEAF) ? ", despite your deafness" : ""))))
+				to_chat(user, span_mansus(LANG("datum.ecf4d1cfee9a946b", list(HAS_TRAIT(user, TRAIT_DEAF) ? ", despite your deafness" : ""))))
 			if(2)
-				to_chat(user, span_mansus(LANG("datum.1231e12e", null)))
+				to_chat(user, span_mansus(LANG("datum.1231e12ec7d3c558", null)))
 				user.soundbang_act(SOUNDBANG_NORMAL, deafen_pwr = 10 SECONDS, stun_pwr = 1 SECONDS, damage_pwr = 10, ignore_deafness = TRUE)
 			if(3)
-				to_chat(user, span_mansus(LANG("datum.f9bd1bfc", null)))
+				to_chat(user, span_mansus(LANG("datum.f9bd1bfc52d85573", null)))
 				user.soundbang_act(SOUNDBANG_OVERWHELMING, deafen_pwr = 20 SECONDS, stun_pwr = 4 SECONDS, damage_pwr = 20, ignore_deafness = TRUE)
 			if(4)
 				if(begin_sacrifice(user))
-					to_chat(user, span_mansus(LANG("datum.1fc20b19", null)))
+					to_chat(user, span_mansus(LANG("datum.1fc20b1924ccdc91", null)))
 				else
-					to_chat(user, span_mansus(LANG("datum.a94a544f", null)))
+					to_chat(user, span_mansus(LANG("datum.a94a544f9aded8f7", null)))
 			if(5 to INFINITY)
-				to_chat(user, span_mansus(LANG("datum.909d4c8a", null)))
+				to_chat(user, span_mansus(LANG("datum.909d4c8ac2431b09", null)))
 
 		backdoor_sacrifice_attempts++
 		return FALSE
@@ -120,7 +120,7 @@
 		return TRUE
 
 	// or FALSE if we don't
-	loc.balloon_alert(user, LANG("datum.b6d47d34", null))
+	loc.balloon_alert(user, LANG("datum.b6d47d343ef1823f", null))
 	return FALSE
 
 /datum/heretic_knowledge/hunt_and_sacrifice/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
@@ -131,7 +131,7 @@
 		if(obtain_targets(user, heretic_datum = heretic_datum))
 			return TRUE
 		else
-			loc.balloon_alert(user, LANG("datum.fb470477", null))
+			loc.balloon_alert(user, LANG("datum.fb470477ce15e5b9", null))
 			return FALSE
 
 	sacrifice_process(user, selected_atoms, loc)
@@ -165,7 +165,7 @@
 
 	if(!length(valid_targets))
 		if(!silent)
-			to_chat(user, span_mansus(LANG("datum.7a82ac02", null)))
+			to_chat(user, span_mansus(LANG("datum.7a82ac02de85c8cd", null)))
 		return FALSE
 
 	// Now, let's try to get four targets.
@@ -206,12 +206,12 @@
 		target_sanity++
 
 	if(!silent)
-		to_chat(user, span_danger(LANG("datum.0bd3b304", null)))
+		to_chat(user, span_danger(LANG("datum.0bd3b30440d8505d", null)))
 
 	for(var/datum/mind/chosen_mind as anything in final_targets)
 		heretic_datum.add_sacrifice_target(chosen_mind.current)
 		if(!silent)
-			to_chat(user, span_danger(LANG("datum.b88a54a4", list(chosen_mind.current.real_name, chosen_mind.assigned_role?.title))))
+			to_chat(user, span_danger(LANG("datum.b88a54a4b354012c", list(chosen_mind.current.real_name, chosen_mind.assigned_role?.title))))
 
 	return TRUE
 
@@ -262,7 +262,7 @@
 					span_narsie(" one of our own. Destroy and sacrifice the infidel before it claims more!")
 					to_chat(mind.current, message)
 			// he(retic) gets a warn too
-			to_chat(user, span_narsiesmall(LANG("datum.a0a3e593", null)))
+			to_chat(user, span_narsiesmall(LANG("datum.a0a3e593ba3dd70b", null)))
 			var/non_flavor_warning = span_cult_bold("You feel that your action has attracted ") + span_hypnophrase("attention") + span_cult_bold(".")
 			to_chat(user, non_flavor_warning)
 		return
@@ -280,8 +280,8 @@
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/grant_reward(mob/living/user, mob/living/sacrifice, turf/loc)
 
 	// Visible and audible encouragement!
-	to_chat(user, span_big(span_hypnophrase(LANG("datum.2b59bfa5", null))))
-	to_chat(user, span_mansus(LANG("datum.fc3e2f65", null)))
+	to_chat(user, span_big(span_hypnophrase(LANG("datum.2b59bfa5c7ef915e", null))))
+	to_chat(user, span_mansus(LANG("datum.fc3e2f650ae6532f", null)))
 	playsound(sacrifice, 'sound/effects/magic/disintegrate.ogg', 75, TRUE)
 
 	// Drop all items and splatter them around messily.
@@ -365,7 +365,7 @@
 
 	var/turf/destination = get_turf(destination_landmark)
 
-	sac_target.visible_message(span_danger(LANG("datum.814c8324", list(sac_target))))
+	sac_target.visible_message(span_danger(LANG("datum.814c83248c4225a3", list(sac_target))))
 	sac_target.equip_to_slot_or_del(new /obj/item/restraints/handcuffs/cult, ITEM_SLOT_HANDCUFFED, indirect_action = TRUE)
 	sac_target.dropItemToGround(sac_target.legcuffed, TRUE)
 
@@ -383,9 +383,9 @@
 		return
 
 	if(sac_target.AdjustUnconscious(SACRIFICE_SLEEP_DURATION))
-		to_chat(sac_target, span_hypnophrase(LANG("datum.c1a1b68b", null)))
+		to_chat(sac_target, span_hypnophrase(LANG("datum.c1a1b68b76e4591c", null)))
 	else
-		to_chat(sac_target, span_hypnophrase(LANG("datum.c9b73e1f", null)))
+		to_chat(sac_target, span_hypnophrase(LANG("datum.c9b73e1f3b5d5434", null)))
 
 	sac_target.AdjustParalyzed(SACRIFICE_SLEEP_DURATION * 1.2)
 	sac_target.AdjustImmobilized(SACRIFICE_SLEEP_DURATION * 1.2)
@@ -428,7 +428,7 @@
 		disembowel_target(sac_target)
 		return
 
-	to_chat(sac_target, span_big(span_hypnophrase(LANG("datum.dd7db219", null))))
+	to_chat(sac_target, span_big(span_hypnophrase(LANG("datum.dd7db219d8ec4bfc", null))))
 
 	playsound(sac_target, 'sound/music/antag/heretic/heretic_sacrifice.ogg', 50, FALSE) // play theme
 
@@ -454,7 +454,7 @@
 		to_give.Insert(sac_target)
 
 	new /obj/effect/gibspawner/human/bodypartless(get_turf(sac_target), sac_target)
-	sac_target.visible_message(span_boldwarning(LANG("datum.be930f15", list(sac_target))))
+	sac_target.visible_message(span_boldwarning(LANG("datum.be930f152fa4b3fb", list(sac_target))))
 
 /**
  * This proc is called from [proc/after_target_sleeps] when the [sac_target] should be waking up.)
@@ -484,8 +484,8 @@
 	sac_target.adjust_hallucinations(24 SECONDS)
 	sac_target.emote("scream")
 
-	to_chat(sac_target, span_reallybig(span_hypnophrase(LANG("datum.0dd6a19c", null))))
-	to_chat(sac_target, span_hypnophrase(LANG("datum.e166937c", null)))
+	to_chat(sac_target, span_reallybig(span_hypnophrase(LANG("datum.0dd6a19cca780280", null))))
+	to_chat(sac_target, span_hypnophrase(LANG("datum.e166937cc92e1797", null)))
 	// When it runs out, let them know they're almost home free
 	addtimer(CALLBACK(src, PROC_REF(after_helgrasp_ends), sac_target), helgrasp_time)
 	// Win condition
@@ -501,7 +501,7 @@
 	if(QDELETED(sac_target) || sac_target.stat == DEAD)
 		return
 
-	to_chat(sac_target, span_hypnophrase(LANG("datum.f8b70c6a", null)))
+	to_chat(sac_target, span_hypnophrase(LANG("datum.f8b70c6a22daaedc", null)))
 
 /**
  * This proc is called from [proc/begin_sacrifice] if the target survived the shadow realm), or [COMSIG_LIVING_DEATH] if they don't.
@@ -591,7 +591,7 @@
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/on_target_escape(mob/living/carbon/human/sac_target, old_z, new_z)
 	SIGNAL_HANDLER
 
-	to_chat(sac_target, span_boldwarning(LANG("datum.81601479", null)))
+	to_chat(sac_target, span_boldwarning(LANG("datum.8160147926c1faa9", null)))
 	// Ends up calling return_target() via death signal to clean up.
 	disembowel_target(sac_target)
 
@@ -601,11 +601,11 @@
  * Gives the sacrifice target some after effects upon ariving back to reality.
  */
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/after_return_live_target(mob/living/carbon/human/sac_target)
-	to_chat(sac_target, span_hypnophrase(LANG("datum.0e210eb1", null)))
+	to_chat(sac_target, span_hypnophrase(LANG("datum.0e210eb1e2bce2ab", null)))
 	if(IS_HERETIC(sac_target))
-		to_chat(sac_target, span_big(span_hypnophrase(LANG("datum.4b043b81", null))))
+		to_chat(sac_target, span_big(span_hypnophrase(LANG("datum.4b043b81f5462c71", null))))
 	else
-		to_chat(sac_target, span_big(span_hypnophrase(LANG("datum.6cde3797", null))))
+		to_chat(sac_target, span_big(span_hypnophrase(LANG("datum.6cde3797d537e405", null))))
 
 	// Oh god where are we?
 	sac_target.flash_act()
@@ -634,8 +634,8 @@
  * it spawns a special red broken illusion on their spot, for style.
  */
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/after_return_dead_target(mob/living/carbon/human/sac_target)
-	to_chat(sac_target, span_hypnophrase(LANG("datum.77740de6", null)))
-	to_chat(sac_target, span_big(span_hypnophrase(LANG("datum.cfee04d2", null))))
+	to_chat(sac_target, span_hypnophrase(LANG("datum.77740de66ceb0993", null)))
+	to_chat(sac_target, span_big(span_hypnophrase(LANG("datum.cfee04d2e03df362", null))))
 
 	var/obj/effect/visible_heretic_influence/illusion = new(get_turf(sac_target))
 	illusion.name = "\improper weakened rift in reality"
@@ -655,8 +655,8 @@
 		sac_target.investigate_log("has been killed by heretic sacrifice.", INVESTIGATE_DEATHS)
 		sac_target.death()
 	sac_target.visible_message(
-		span_danger(LANG("datum.bd002aac", list(sac_target, sac_target.p_their()))),
-		span_userdanger(LANG("datum.34acadea", null))
+		span_danger(LANG("datum.bd002aacb37edb89", list(sac_target, sac_target.p_their()))),
+		span_userdanger(LANG("datum.34acadea1dc224ac", null))
 	)
 
 	new /obj/effect/gibspawner/human/bodypartless(get_turf(sac_target), sac_target)

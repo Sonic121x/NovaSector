@@ -19,7 +19,7 @@
 	playsound(user, fire_sound, 50, TRUE)
 	if (!suicide)
 		user.log_message("zapped [user.p_them()]self with a <b>[src]</b>", LOG_ATTACK)
-		user.visible_message(span_notice(LANG("obj.4dd4f898", list(user, src, user.p_their()))))
+		user.visible_message(span_notice(LANG("obj.4dd4f898bcd332c9", list(user, src, user.p_their()))))
 	var/obj/projectile/magic/booze/splash = new(user.drop_location())
 	splash.firer = user
 	user.projectile_hit(splash, BODY_ZONE_HEAD)
@@ -28,7 +28,7 @@
 
 /obj/item/gun/magic/wand/booze/do_suicide(mob/living/user)
 	. = ..()
-	user.visible_message(span_suicide(LANG("obj.0ddc136a", list(user, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.0ddc136ad3c39802", list(user, user.p_their(), user.p_theyre()))))
 	if (!do_after(user, 3 SECONDS, target = src))
 		return SHAME
 	user.Stun(5 SECONDS, ignore_canstun = TRUE)

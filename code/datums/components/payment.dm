@@ -98,12 +98,12 @@
 
 		if(armless)
 			if(!user.pulling || !iscash(user.pulling) && !istype(user.pulling, /obj/item/card/id))
-				to_chat(user, span_notice(LANG("datum.4138cbc3", list(parent))))
+				to_chat(user, span_notice(LANG("datum.4138cbc31c021e9c", list(parent))))
 				return FALSE
 		return FALSE
 
 	if(physical_cash_total < total_cost)
-		to_chat(user, span_warning(LANG("datum.ba09eaf4", null)))
+		to_chat(user, span_warning(LANG("datum.ba09eaf4cca26ed3", null)))
 		return FALSE
 	for(var/obj/cash_object in counted_money)
 		qdel(cash_object)
@@ -122,7 +122,7 @@
 		else
 			user.pulling = holochange
 	log_econ("[total_cost] [MONEY_NAME] were spent on [parent] by [user].")
-	to_chat(user, span_notice(LANG("datum.75b1e71e", list(MONEY_NAME))))
+	to_chat(user, span_notice(LANG("datum.75b1e71e001ddaaf", list(MONEY_NAME))))
 	playsound(user, 'sound/effects/cashregister.ogg', 20, TRUE)
 	return TRUE
 
@@ -134,40 +134,40 @@
 
 	if(!idcard)
 		if(transaction_style == PAYMENT_VENDING)
-			to_chat(user, span_warning(LANG("datum.d252af12", null)))
+			to_chat(user, span_warning(LANG("datum.d252af12d697d427", null)))
 		return FALSE
 	if(!idcard?.registered_account)
 		switch(transaction_style)
 			if(PAYMENT_FRIENDLY)
-				to_chat(user, span_warning(LANG("datum.522a0c54", null)))
+				to_chat(user, span_warning(LANG("datum.522a0c5493ee63ab", null)))
 			if(PAYMENT_ANGRY)
-				to_chat(user, span_warning(LANG("datum.ace3e54b", null)))
+				to_chat(user, span_warning(LANG("datum.ace3e54b19388aa5", null)))
 			if(PAYMENT_CLINICAL)
-				to_chat(user, span_warning(LANG("datum.38d83f77", null)))
+				to_chat(user, span_warning(LANG("datum.38d83f77a79d90f8", null)))
 			if(PAYMENT_VENDING)
-				to_chat(user, span_warning(LANG("datum.e15072d6", null)))
+				to_chat(user, span_warning(LANG("datum.e15072d68009375b", null)))
 
 		return FALSE
 
 	if(!idcard.can_be_used_in_payment(user))
-		atom_parent.say(LANG("datum.1a1c311c", null))
+		atom_parent.say(LANG("datum.1a1c311c554dd2ff", null))
 		return FALSE
 
 	if(!(idcard.registered_account.has_money(total_cost)))
 		switch(transaction_style)
 			if(PAYMENT_FRIENDLY)
-				to_chat(user, span_warning(LANG("datum.a2042e92", null)))
+				to_chat(user, span_warning(LANG("datum.a2042e92016f957a", null)))
 			if(PAYMENT_ANGRY)
-				to_chat(user, span_warning(LANG("datum.040f4dda", null)))
+				to_chat(user, span_warning(LANG("datum.040f4ddab63fde94", null)))
 			if(PAYMENT_CLINICAL)
-				to_chat(user, span_warning(LANG("datum.beffae1b", null)))
+				to_chat(user, span_warning(LANG("datum.beffae1b6f877930", null)))
 			if(PAYMENT_VENDING)
-				to_chat(user, span_warning(LANG("datum.107f4d46", null)))
-		atom_parent.balloon_alert(user, LANG("datum.0250228f", list(total_cost, MONEY_NAME_AUTOPURAL(total_cost))))
+				to_chat(user, span_warning(LANG("datum.107f4d46c7ea10d5", null)))
+		atom_parent.balloon_alert(user, LANG("datum.0250228f64b936ff", list(total_cost, MONEY_NAME_AUTOPURAL(total_cost))))
 		return FALSE
 	target_acc.transfer_money(idcard.registered_account, total_cost, "Nanotrasen: Usage of Corporate Machinery")
 	log_econ("[total_cost] [MONEY_NAME] were spent on [parent] by [user] via [idcard.registered_account.account_holder]'s card.")
-	idcard.registered_account.bank_card_talk(LANG("datum.45b1d5d4", list(total_cost, MONEY_NAME)))
+	idcard.registered_account.bank_card_talk(LANG("datum.45b1d5d4cb3bc986", list(total_cost, MONEY_NAME)))
 	playsound(src, 'sound/effects/cashregister.ogg', 20, TRUE)
 	SSeconomy.add_audit_entry(idcard.registered_account, total_cost, parent)
 	return TRUE

@@ -129,8 +129,8 @@
 
 /datum/experimental_cloner_fuckup/monkey/post_emerged(mob/living/carbon/victim)
 	victim.visible_message(\
-		span_boldwarning(LANG("datum.51b4e917", list(victim))),\
-		span_boldwarning(LANG("datum.08885eff", null)))
+		span_boldwarning(LANG("datum.51b4e9171a9e7b10", list(victim))),\
+		span_boldwarning(LANG("datum.08885eff6312276c", null)))
 	victim.monkeyize()
 
 /// No skin
@@ -140,8 +140,8 @@
 /datum/experimental_cloner_fuckup/skeletised/post_emerged(mob/living/victim)
 	victim.emote("scream")
 	victim.visible_message(\
-		span_boldwarning(LANG("datum.998a10a4", list(victim))),\
-		span_boldwarning(LANG("datum.3f691e4c", null)))
+		span_boldwarning(LANG("datum.998a10a4d4370a68", list(victim))),\
+		span_boldwarning(LANG("datum.3f691e4c7aea0b80", null)))
 	victim.set_species(/datum/species/skeleton)
 	new /obj/effect/gibspawner/human/bodypartless(victim.drop_location(), victim)
 
@@ -159,8 +159,8 @@
 /datum/experimental_cloner_fuckup/total_failure/post_emerged(mob/living/victim)
 	victim.emote("scream")
 	victim.visible_message(\
-		span_boldwarning(LANG("datum.68274097", list(victim))),\
-		span_boldwarning(LANG("datum.8f9cecb7", null)))
+		span_boldwarning(LANG("datum.6827409733790e88", list(victim))),\
+		span_boldwarning(LANG("datum.8f9cecb79fd4457f", null)))
 	var/mob/living/basic/fleshblob/blob = new(victim.drop_location())
 	blob.name = victim.real_name
 	blob.real_name = victim.real_name

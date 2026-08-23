@@ -75,21 +75,21 @@
 	// Doesn't show the base notes for items that have the override notes variable set to true
 	if(!source.override_notes)
 		if (source.get_sharpness() & SHARP_EDGED)
-			readout += LANG("datum.d7cd31f4", null)
+			readout += LANG("datum.d7cd31f4665635fc", null)
 		if (source.get_sharpness() & SHARP_POINTY)
-			readout += LANG("datum.3bda1472", null)
+			readout += LANG("datum.3bda1472a39a7826", null)
 		// Make sure not to divide by 0 on accident
 		if(source.force > 0)
-			readout += LANG("datum.8e4fe8d1", list(span_warning("[HITS_TO_CRIT(source.force)]")))
+			readout += LANG("datum.8e4fe8d104d2048b", list(span_warning("[HITS_TO_CRIT(source.force)]")))
 		else
-			readout += LANG("datum.9d8c7289", null)
+			readout += LANG("datum.9d8c7289234d3cc4", null)
 
 		if(source.throwforce > 0)
-			readout += LANG("datum.ef1d05fa", list(span_warning("[HITS_TO_CRIT(source.throwforce)]")))
+			readout += LANG("datum.ef1d05fa5ef3f598", list(span_warning("[HITS_TO_CRIT(source.throwforce)]")))
 		else
-			readout += LANG("datum.37914c10", null)
+			readout += LANG("datum.37914c10964f9a2d", null)
 		if(source.armour_penetration > 0 || source.block_chance > 0)
-			readout += LANG("datum.49e14a5d", list(span_warning("[weapon_tag_convert(source.armour_penetration)]"), span_warning("[weapon_tag_convert(source.block_chance)]")))
+			readout += LANG("datum.49e14a5d7af42c9b", list(span_warning("[weapon_tag_convert(source.armour_penetration)]"), span_warning("[weapon_tag_convert(source.block_chance)]")))
 	// Custom manual notes
 	if(source.offensive_notes)
 		readout += source.offensive_notes

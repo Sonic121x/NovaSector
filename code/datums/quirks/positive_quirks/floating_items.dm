@@ -45,11 +45,11 @@
 			if(ishuman(owner))
 				var/mob/living/carbon/human/owner_human = owner
 				owner_human.update_held_items()
-			to_chat(owner, span_notice(LANG("datum.eb83ed54", null)))
+			to_chat(owner, span_notice(LANG("datum.eb83ed54d72334ed", null)))
 		else
 			ADD_TRAIT(owner, TRAIT_FLOATING_HELD, QUIRK_TRAIT)
 			if(ishuman(owner))
 				var/mob/living/carbon/human/owner_human = owner
 				owner_human.update_held_items()
-			to_chat(owner, span_notice(LANG("datum.7fc06111", null)))
+			to_chat(owner, span_notice(LANG("datum.7fc061111110192f", null)))
 	return TRUE

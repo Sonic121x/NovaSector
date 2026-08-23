@@ -14,12 +14,12 @@
 	SIGNAL_HANDLER
 	var/mob/currentmob = parent
 	if(currentmob && sourcemob && !(QDELETED(sourcemob)) && !(QDELETED(currentmob)))
-		to_chat(currentmob, span_warning(LANG("datum.ef5fcd41", null)))
+		to_chat(currentmob, span_warning(LANG("datum.ef5fcd41cbb623d4", null)))
 		sourcemob.ckey = currentmob.ckey
 		if(HAS_TRAIT_FROM(sourcemob, TRAIT_SACRIFICED, "sacrificed"))
 			REMOVE_TRAIT(sourcemob, TRAIT_SACRIFICED, "sacrificed")
 	else
-		to_chat(currentmob, span_warning(LANG("datum.61d6e60d", null)))
+		to_chat(currentmob, span_warning(LANG("datum.61d6e60d44907f82", null)))
 	if(!QDELETED(src) && !deleting)
 		qdel(src)
 		deleting = TRUE

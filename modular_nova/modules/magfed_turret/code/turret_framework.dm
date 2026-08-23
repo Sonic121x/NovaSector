@@ -64,15 +64,15 @@
 
 /obj/item/storage/toolbox/emergency/turret/mag_fed/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.3c4792d0", list(turret_safety ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>")))
-	. += span_notice(LANG("obj.946c53d9", list(flags_on ? "<font color='#00ff15'>OBEYING LAWS</font>" : "<font color='#ff0000'>FREE TARGETING</font>")))
+	. += span_notice(LANG("obj.3c4792d0bcc91fc4", list(turret_safety ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>")))
+	. += span_notice(LANG("obj.946c53d93bb5c1b8", list(flags_on ? "<font color='#00ff15'>OBEYING LAWS</font>" : "<font color='#ff0000'>FREE TARGETING</font>")))
 	if(!easy_deploy)
-		. += span_notice(LANG("obj.60a06731", null))
+		. += span_notice(LANG("obj.60a067315a6ba562", null))
 	else
-		. += span_notice(LANG("obj.6c48bde0", null))
+		. += span_notice(LANG("obj.6c48bde002a10f98", null))
 	if(setting_change)
-		. += span_notice(LANG("obj.701ed59b", null))
-		. += span_notice(LANG("obj.bcebed61", null))
+		. += span_notice(LANG("obj.701ed59bcc20d91b", null))
+		. += span_notice(LANG("obj.bcebed619f668f0a", null))
 
 /obj/item/storage/toolbox/emergency/turret/mag_fed/PopulateContents()
 
@@ -113,14 +113,14 @@
 			return NONE
 		if(!tool.toolspeed)
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, LANG("obj.6d69dc2b", null))
+		balloon_alert(user, LANG("obj.6d69dc2ba89e58df", null))
 		if(!tool.use_tool(src, user, 2 SECONDS, volume = 20))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.ddc1329a", null))
+		balloon_alert(user, LANG("obj.ddc1329a475e1243", null))
 		user.visible_message(
-			span_danger(LANG("obj.2a0f4de0", list(user, src, tool))),
-			span_danger(LANG("obj.acf5f95a", list(src, tool))),
+			span_danger(LANG("obj.2a0f4de079b6287d", list(user, src, tool))),
+			span_danger(LANG("obj.acf5f95aa290b2ea", list(src, tool))),
 			null,
 			COMBAT_MESSAGE_RANGE,
 		)
@@ -135,9 +135,9 @@
 		return
 	var/turf/chosen_spot = get_step(user, user.dir) //find spot infront of person and places it there
 	if(chosen_spot.is_blocked_turf(TRUE, src))
-		balloon_alert(user, LANG("obj.df641915", null))
+		balloon_alert(user, LANG("obj.df641915d149c210", null))
 		return
-	balloon_alert(user, LANG("obj.617d0336", null))
+	balloon_alert(user, LANG("obj.617d0336aeeefc63", null))
 	playsound(src, 'sound/items/tools/ratchet.ogg', 50, TRUE)
 	if(!do_after(user, easy_deploy_timer))
 		return
@@ -148,7 +148,7 @@
 	if(!chosen_spot)
 		target_area = loc
 	if(target_area.is_blocked_turf(TRUE, src))
-		balloon_alert(user, LANG("obj.743bf7fb", null))
+		balloon_alert(user, LANG("obj.743bf7fb63560cf3", null))
 		return
 	playsound(src, 'sound/items/tools/drill_use.ogg', 80, TRUE, -1)
 	var/obj/machinery/porta_turret/syndicate/toolbox/mag_fed/turret = new turret_type(target_area)
@@ -168,7 +168,7 @@
 /obj/item/storage/toolbox/emergency/turret/mag_fed/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(quick_deployable)
-		balloon_alert_to_viewers(LANG("obj.617d0336", null))
+		balloon_alert_to_viewers(LANG("obj.617d0336aeeefc63", null))
 		addtimer(CALLBACK(src, PROC_REF(deploy_turret), throwingdatum.thrower?.resolve()), quick_deploy_timer, TIMER_STOPPABLE)
 
 ////// Targeting Device handling //////
@@ -208,13 +208,13 @@
 
 /obj/item/target_designator/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.f73273f4", list(length(linked_turrets), turret_limit)))
-	. += span_notice(LANG("obj.e09e61c8", null))
-	. += span_notice(LANG("obj.3373d868", null))
-	. += span_notice(LANG("obj.9853d09b", null))
-	. += span_notice(LANG("obj.466f093a", list(target_all ? "<font color='#ff0000'>ENABLED</font>" : "<font color='#00ff15'>DISABLED</font>")))
-	. += span_notice(LANG("obj.55512a3d", null))
-	. += span_notice(LANG("obj.86783d43", list(follow_flags ? "<font color='#00ff15'>OBEYING LAWS</font>" : "<font color='#ff0000'>FREE TARGETING</font>")))
+	. += span_notice(LANG("obj.f73273f475e077ad", list(length(linked_turrets), turret_limit)))
+	. += span_notice(LANG("obj.e09e61c8749a2e93", null))
+	. += span_notice(LANG("obj.3373d868ad56eb30", null))
+	. += span_notice(LANG("obj.9853d09bfce4e844", null))
+	. += span_notice(LANG("obj.466f093afbbd7d8f", list(target_all ? "<font color='#ff0000'>ENABLED</font>" : "<font color='#00ff15'>DISABLED</font>")))
+	. += span_notice(LANG("obj.55512a3d5b88deb9", null))
+	. += span_notice(LANG("obj.86783d43e2d13dad", list(follow_flags ? "<font color='#00ff15'>OBEYING LAWS</font>" : "<font color='#ff0000'>FREE TARGETING</font>")))
 
 /obj/item/target_designator/attack_self(mob/user, modifiers)
 	. = ..()
@@ -259,7 +259,7 @@
 	for(var/obj/machinery/porta_turret/syndicate/toolbox/mag_fed/turret in linked_turrets)
 		for(var/turret_to_control in 1 to length(linked_turrets))
 			turret.override_target(acquired_target?.resolve())
-		balloon_alert(user, LANG("obj.1d6ad100", null))
+		balloon_alert(user, LANG("obj.1d6ad10069301e05", null))
 
 /// clears manual target acquisition
 /obj/item/target_designator/proc/clear_target(user)
@@ -267,7 +267,7 @@
 	for(var/obj/machinery/porta_turret/syndicate/toolbox/mag_fed/turret in linked_turrets)
 		for(var/turret_to_control in 1 to length(linked_turrets))
 			turret.clear_override()
-		balloon_alert(user, LANG("obj.0a3f5035", null))
+		balloon_alert(user, LANG("obj.0a3f5035176f521c", null))
 
 /// Sets all turrets to the same state as the controller.
 /obj/item/target_designator/proc/sync_turrets()
@@ -275,15 +275,15 @@
 		if(target_all == TRUE && follow_flags == FALSE)
 			if(!(turret.target_assessment == TURRET_FLAG_SHOOT_EVERYONE))
 				turret.target_assessment = TURRET_FLAG_SHOOT_EVERYONE
-				turret.balloon_alert_to_viewers(LANG("obj.5e7a5938", null))
+				turret.balloon_alert_to_viewers(LANG("obj.5e7a59380932e364", null))
 		if(follow_flags == TRUE)
 			if(!(turret.target_assessment == TURRET_FLAG_OBEY_FLAGS))
 				turret.target_assessment = TURRET_FLAG_OBEY_FLAGS
-				turret.balloon_alert_to_viewers(LANG("obj.7bcfac8e", null))
+				turret.balloon_alert_to_viewers(LANG("obj.7bcfac8e98207d9d", null))
 		if(follow_flags == FALSE && target_all == FALSE)
 			if(!(turret.target_assessment == TURRET_FLAG_SHOOT_NOONE))
 				turret.target_assessment = TURRET_FLAG_SHOOT_NOONE
-				turret.balloon_alert_to_viewers(LANG("obj.ca236d6c", null))
+				turret.balloon_alert_to_viewers(LANG("obj.ca236d6c71f2e545", null))
 		turret.setState(TRUE) //So they'll update properly
 
 ////// Turret handling //////
@@ -425,18 +425,18 @@
 	. -= span_notice("You can repair it by <b>left-clicking</b> with a combat wrench.")
 	. -= span_notice("You can fold it by <b>right-clicking</b> with a combat wrench.")
 	if(FAST_FACTION_CHECK(faction, user.get_faction(), null, null, FALSE) || has_ally(user))
-		. += span_notice(LANG("obj.39514540", list(atom_integrity, max_integrity)))
-		. += span_notice(LANG("obj.715fc85f", null))
-		. += span_notice(LANG("obj.7ddeed03", null))
-		. += span_notice(LANG("obj.dcb58e58", null))
-		. += span_notice(LANG("obj.4be347bd", null))
-		. += span_notice(LANG("obj.72eb51b4", null))
-		. += span_notice(LANG("obj.ded26699", null))
-		. += span_notice(LANG("obj.5fa00071", null))
+		. += span_notice(LANG("obj.3951454015b184ba", list(atom_integrity, max_integrity)))
+		. += span_notice(LANG("obj.715fc85f20cd6d48", null))
+		. += span_notice(LANG("obj.7ddeed03e763032e", null))
+		. += span_notice(LANG("obj.dcb58e5840fc877c", null))
+		. += span_notice(LANG("obj.4be347bde4bce8f4", null))
+		. += span_notice(LANG("obj.72eb51b42020cbd3", null))
+		. += span_notice(LANG("obj.ded2669939d01ec2", null))
+		. += span_notice(LANG("obj.5fa0007123081147", null))
 		if(quick_retract)
-			. += span_notice (LANG("obj.59acde45", null))
+			. += span_notice (LANG("obj.59acde453e7361db", null))
 		if(linkage)
-			. += span_notice(LANG("obj.38306681", null))
+			. += span_notice(LANG("obj.38306681ecfb55e6", null))
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/on_deconstruction(disassembled, mob/user) // Full re-write, to stop the toolbox var from being a runtimer
 	var/obj/item/ammo_box/magazine/mag = magazine_ref?.resolve()
@@ -520,7 +520,7 @@
 		return
 	if (mag.ammo_count())
 		if(!claptrap_moment)
-			balloon_alert_to_viewers(LANG("obj.331be1b0", null))
+			balloon_alert_to_viewers(LANG("obj.331be1b0d1762682", null))
 		chambered = WEAKREF(mag.get_round())
 		var/obj/item/ammo_casing/casing = chambered?.resolve()
 		if(isnull(casing))
@@ -551,7 +551,7 @@
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/proc/load_mag()
 	var/obj/item/storage/toolbox/emergency/turret/mag_fed/auto_loader = mag_box?.resolve()
 	if(!auto_loader.get_mag())
-		balloon_alert_to_viewers(LANG("obj.859e7193", null)) // hey, this is actually important info to convey.
+		balloon_alert_to_viewers(LANG("obj.859e71936ddbfde2", null)) // hey, this is actually important info to convey.
 		toggle_on(FALSE) // I know i added the shupt-up toggle after adding this, This is just to prevent rapid proccing
 		return
 	magazine_ref = WEAKREF(auto_loader.get_mag(FALSE))
@@ -560,7 +560,7 @@
 		magazine_ref = null
 	get_that_mag.forceMove(src)
 	if(!claptrap_moment)
-		balloon_alert_to_viewers(LANG("obj.2bc942a4", null))
+		balloon_alert_to_viewers(LANG("obj.2bc942a42645ca54", null))
 	return
 
 /// ejects cartridge and calls if issues arrive.
@@ -571,7 +571,7 @@
 	if(istype(casing)) //there's a chambered round
 		if(casing_ejector) //To handle casing ejection (Previous version didn't account for caseless ammo and threw runtimes with new system)
 			if(!claptrap_moment)
-				balloon_alert_to_viewers(LANG("obj.695e564e", null)) // will proc even on caseless cartridges, but it's a debug message.
+				balloon_alert_to_viewers(LANG("obj.695e564e136c01b9", null)) // will proc even on caseless cartridges, but it's a debug message.
 			casing.forceMove(drop_location()) //Eject casing onto ground.
 			chambered = null
 			casing.bounce_away(TRUE)
@@ -583,9 +583,9 @@
 	if(isnull(auto_loader))
 		mag_box = null
 	if(!(magaroni.type in auto_loader.atom_storage.can_hold))
-		balloon_alert(guy_with_mag, LANG("obj.dccfcc57", null))
+		balloon_alert(guy_with_mag, LANG("obj.dccfcc574a859d31", null))
 		return
-	balloon_alert(guy_with_mag, LANG("obj.700a9f25", null))
+	balloon_alert(guy_with_mag, LANG("obj.700a9f255ad32135", null))
 	auto_loader?.atom_storage.attempt_insert(magaroni, guy_with_mag, TRUE)
 	toggle_on(TRUE)
 	return
@@ -668,11 +668,11 @@
 /// toggles between whether things are inside the ally system
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/proc/toggle_ally(mob/living/target) //leave these since it's kinda important to know which is being done.
 	if(remove_ally(target))
-		balloon_alert_to_viewers(LANG("obj.b421ea7b", null))
+		balloon_alert_to_viewers(LANG("obj.b421ea7b6f1378a8", null))
 		return
 	else
 		if(add_ally(target))
-			balloon_alert_to_viewers(LANG("obj.f0698dc8", null))
+			balloon_alert_to_viewers(LANG("obj.f0698dc880aa7f55", null))
 		return
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/target(atom/movable/target)
@@ -705,7 +705,7 @@
 	if(!target)
 		return
 	target_override = WEAKREF(target)
-	balloon_alert_to_viewers(LANG("obj.9364ba44", null)) // So you know whats causing it to fire
+	balloon_alert_to_viewers(LANG("obj.9364ba44f4d996aa", null)) // So you know whats causing it to fire
 	shot_delay = (initial(shot_delay) / 2) //No need to scan for targets so faster work
 	burst_delay = (initial(burst_delay) / 2)
 
@@ -810,30 +810,30 @@
 	if(isnull(auto_loader))
 		mag_box = null
 	if(tool.type in auto_loader.atom_storage.can_hold)
-		balloon_alert(user, LANG("obj.c55c621b", null))
+		balloon_alert(user, LANG("obj.c55c621bc98594e0", null))
 		if(!do_after(user, 1 SECONDS, src))
-			balloon_alert(user, LANG("obj.57787c73", null))
+			balloon_alert(user, LANG("obj.57787c738f1c34f1", null))
 		insert_mag(tool, user)
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/card/id))
 		if(!in_faction(user))
-			balloon_alert(user, LANG("obj.1bd3ceeb", null))
+			balloon_alert(user, LANG("obj.1bd3ceeb3a56d0d5", null))
 			return ITEM_INTERACT_BLOCKING
 
 	if(in_faction(user))
 		if(istype(tool, /obj/item/target_designator))
 			var/obj/item/target_designator/controller = tool
 			if(length(controller.linked_turrets) >= controller.turret_limit)
-				balloon_alert(user, LANG("obj.959a0132", null))
+				balloon_alert(user, LANG("obj.959a0132bac5af12", null))
 				return ITEM_INTERACT_BLOCKING
 			if(linkage) //should help both preventing dual-controlling AND double-linking causing odd issues with ally system
-				balloon_alert(user, LANG("obj.966002f4", null))
+				balloon_alert(user, LANG("obj.966002f45877dfaa", null))
 				return ITEM_INTERACT_BLOCKING
 			linkage = WEAKREF(controller)
 			controller.linked_turrets += src
 			RegisterSignal(controller, COMSIG_QDELETING, PROC_REF(on_qdeleted), TRUE) //True otherwise it causes a runtime for overwriting parent qdeling. Dont know where to go elsewise.
-			balloon_alert(user, LANG("obj.18851703", null))
+			balloon_alert(user, LANG("obj.18851703de0247b8", null))
 			return ITEM_INTERACT_SUCCESS
 
 	return ITEM_INTERACT_BLOCKING
@@ -841,11 +841,11 @@
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/wrench_act(mob/living/user, obj/item/attacking_item)
 	if(atom_integrity == max_integrity)
 		if(!claptrap_moment)
-			balloon_alert(user, LANG("obj.88cc0c7c", null))
+			balloon_alert(user, LANG("obj.88cc0c7c9991f538", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!claptrap_moment)
-		balloon_alert(user, LANG("obj.b52342a8", null))
+		balloon_alert(user, LANG("obj.b52342a8e93a2ba2", null))
 	while(atom_integrity != max_integrity)
 		if(!attacking_item.use_tool(src, user, 2 SECONDS, volume = 20))
 			return ITEM_INTERACT_FAILURE
@@ -853,7 +853,7 @@
 		repair_damage(25)
 
 	if(!claptrap_moment)
-		balloon_alert(user, LANG("obj.ac33e326", null))
+		balloon_alert(user, LANG("obj.ac33e326acea2a3f", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
@@ -861,12 +861,12 @@
 		if(istype(tool, /obj/item/target_designator))
 			var/obj/item/target_designator/owner_check = linkage?.resolve()
 			if(tool != owner_check) //cant unlink if not the same one
-				balloon_alert(user, LANG("obj.1bfde4cb", null))
+				balloon_alert(user, LANG("obj.1bfde4cbd2a907f0", null))
 				return ITEM_INTERACT_BLOCKING
 			var/obj/item/target_designator/controller = tool
 			linkage = null
 			controller.linked_turrets -= src
-			balloon_alert(user, LANG("obj.b69401fb", null))
+			balloon_alert(user, LANG("obj.b69401fb58447f31", null))
 			return ITEM_INTERACT_SUCCESS
 
 	if(tool.tool_behaviour != TOOL_WRENCH)
@@ -876,7 +876,7 @@
 		return NONE
 
 	if(!claptrap_moment)
-		balloon_alert(user, LANG("obj.44f0e678", null))
+		balloon_alert(user, LANG("obj.44f0e678d88c8044", null))
 	if(!tool.use_tool(src, user, 5 SECONDS, volume = 20))
 		return ITEM_INTERACT_BLOCKING
 

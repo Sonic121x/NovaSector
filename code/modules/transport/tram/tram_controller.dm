@@ -216,7 +216,7 @@
 	SIGNAL_HANDLER
 
 	travel_remaining = 0
-	bumped_atom.visible_message(span_userdanger(LANG("datum.9b50948c", list(bumped_atom))))
+	bumped_atom.visible_message(span_userdanger(LANG("datum.9b50948cb7f0b293", list(bumped_atom))))
 	for(var/obj/structure/transport/linear/tram/transport_module as anything in transport_modules)
 		transport_module.set_travelling(FALSE)
 		for(var/explosive_target in transport_module.transport_contents)
@@ -273,7 +273,7 @@
 	if(controller_status & EMERGENCY_STOP)
 		set_status_code(EMERGENCY_STOP, FALSE)
 		playsound(paired_cabinet, 'sound/machines/synth/synth_yes.ogg', 40, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
-		paired_cabinet.say(LANG("datum.1a359505", null))
+		paired_cabinet.say(LANG("datum.1a3595055ab89cca", null))
 	nav_beacon.tram_loop.start()
 	for(var/obj/structure/transport/linear/tram/transport_module as anything in transport_modules) //only thing everyone needs to know is the new location.
 		if(transport_module.travelling) //wee woo wee woo there was a double action queued. damn multi tile structs
@@ -382,7 +382,7 @@
 	if((controller_status & SYSTEM_FAULT) && (nav_beacon.loc == destination_platform.loc)) //position matches between controller and tram, we're back on track
 		set_status_code(SYSTEM_FAULT, FALSE)
 		playsound(paired_cabinet, 'sound/machines/synth/synth_yes.ogg', 40, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
-		paired_cabinet.say(LANG("datum.1a359505", null))
+		paired_cabinet.say(LANG("datum.1a3595055ab89cca", null))
 		log_transport("TC: [specific_transport_id] position data successfully reset.")
 	idle_platform = destination_platform
 
@@ -403,7 +403,7 @@
 	if(controller_status & SYSTEM_FAULT)
 		set_status_code(SYSTEM_FAULT, FALSE)
 		playsound(paired_cabinet, 'sound/machines/synth/synth_yes.ogg', 40, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
-		paired_cabinet.say(LANG("datum.1a359505", null))
+		paired_cabinet.say(LANG("datum.1a3595055ab89cca", null))
 		log_transport("TC: [specific_transport_id] position data successfully reset. ")
 	if(malf_active == TRANSPORT_LOCAL_FAULT)
 		set_status_code(SYSTEM_FAULT, TRUE)
@@ -411,7 +411,7 @@
 		malf_active = TRANSPORT_SYSTEM_NORMAL
 		throw_chance = initial(throw_chance)
 		playsound(paired_cabinet, 'sound/machines/buzz/buzz-sigh.ogg', 60, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
-		paired_cabinet.say(LANG("datum.dd6c7b53", null))
+		paired_cabinet.say(LANG("datum.dd6c7b534e941603", null))
 	idle_platform = destination_platform
 	tram_registration.distance_travelled += (travel_trip_length - travel_remaining)
 	travel_trip_length = 0
@@ -429,7 +429,7 @@
 	if(controller_status & SYSTEM_FAULT)
 		if(!isnull(paired_cabinet))
 			playsound(paired_cabinet, 'sound/machines/buzz/buzz-sigh.ogg', 60, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
-			paired_cabinet.say(LANG("datum.dd6c7b53", null))
+			paired_cabinet.say(LANG("datum.dd6c7b534e941603", null))
 		log_transport("TC: [specific_transport_id] Transport Controller failed!")
 
 	if(travel_remaining)
@@ -458,7 +458,7 @@
 			set_status_code(SYSTEM_FAULT, FALSE)
 			set_status_code(EMERGENCY_STOP, FALSE)
 			playsound(paired_cabinet, 'sound/machines/synth/synth_yes.ogg', 40, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
-			paired_cabinet.say(LANG("datum.1a359505", null))
+			paired_cabinet.say(LANG("datum.1a3595055ab89cca", null))
 			log_transport("TC: [specific_transport_id] Transport Controller reset was requested, but the tram nav data seems correct. Info: nav_pos ([nav_beacon.x], [nav_beacon.y], [nav_beacon.z]) idle_pos ([idle_platform.x], [idle_platform.y], [idle_platform.z]).")
 			return
 
@@ -473,7 +473,7 @@
 
 	if(!reset_beacon)
 		playsound(paired_cabinet, 'sound/machines/buzz/buzz-sigh.ogg', 60, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
-		paired_cabinet.say(LANG("datum.71c2517e", null)) // If you screwed up the tram this bad, I don't even
+		paired_cabinet.say(LANG("datum.71c2517ec2075cab", null)) // If you screwed up the tram this bad, I don't even
 		log_transport("TC: [specific_transport_id] non-recoverable error! Tram is at ([nav_beacon.x], [nav_beacon.y], [nav_beacon.z] [tram_velocity_sign ? "OUTBOUND" : "INBOUND"]) and can't find a reset beacon.")
 		message_admins("Tram ID [specific_transport_id] is in a non-recoverable error state at [ADMIN_JMP(nav_beacon)]. If it's causing problems, delete the controller datum from the 'Reset Tram' proc in the Debug tab.")
 		return
@@ -484,7 +484,7 @@
 	destination_platform = reset_beacon
 	internal_movement_delay = 1.5
 	playsound(paired_cabinet, 'sound/machines/ping.ogg', 40, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
-	paired_cabinet.say(LANG("datum.9a4d5e63", null))
+	paired_cabinet.say(LANG("datum.9a4d5e632c70db62", null))
 	log_transport("TC: [specific_transport_id] trip calculation: src: [nav_beacon.x], [nav_beacon.y], [nav_beacon.z] dst: [destination_platform] [destination_platform.x], [destination_platform.y], [destination_platform.z] = Dir [travel_direction] Dist [travel_remaining].")
 	cycle_doors(CYCLE_CLOSED)
 	set_active(TRUE)
@@ -494,7 +494,7 @@
 
 /datum/transport_controller/linear/tram/proc/estop()
 	playsound(paired_cabinet, 'sound/machines/buzz/buzz-sigh.ogg', 60, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
-	paired_cabinet.say(LANG("datum.cfa60025", null))
+	paired_cabinet.say(LANG("datum.cfa60025f1f05dab", null))
 	set_status_code(EMERGENCY_STOP, TRUE)
 	log_transport("TC: [specific_transport_id] requested emergency stop.")
 
@@ -503,7 +503,7 @@
  */
 /datum/transport_controller/linear/tram/proc/crash_fx()
 	playsound(source = nav_beacon, soundin = 'sound/vehicles/car_crash.ogg', vol = 100, vary = FALSE, falloff_distance = DEFAULT_TRAM_LENGTH)
-	nav_beacon.audible_message(span_userdanger(LANG("datum.494720cc", null)))
+	nav_beacon.audible_message(span_userdanger(LANG("datum.494720cc2e5859b7", null)))
 	for(var/mob/living/tram_passenger in range(DEFAULT_TRAM_LENGTH - 2, nav_beacon))
 		if(IS_UNCONSCIOUS_OR_CRIT(tram_passenger))
 			continue
@@ -654,7 +654,7 @@
 	log_transport("TC: [specific_transport_id] ending Tram Malfunction event.")
 
 /datum/transport_controller/linear/tram/proc/announce_malf_event()
-	priority_announce("Our automated control system has lost contact with the tram's onboard computer. Please stand by, engineering has been dispatched to the tram to perform a reset.", LANG("datum.9245c6e2", list(command_name())))
+	priority_announce("Our automated control system has lost contact with the tram's onboard computer. Please stand by, engineering has been dispatched to the tram to perform a reset.", LANG("datum.9245c6e22bc89b75", list(command_name())))
 
 /datum/transport_controller/linear/tram/proc/register_collision(points = 1)
 	tram_registration.collisions += points
@@ -790,7 +790,7 @@
 	// Don't bother processing crossing signals, where this tram's going there are no signals
 	//for(var/obj/machinery/transport/crossing_signal/xing as anything in SStransport.crossing_signals)
 	//	xing.temp_malfunction()
-	priority_announce(LANG("datum.766f70d0", list(GLOB.station_name)), "Braking News")
+	priority_announce(LANG("datum.766f70d07404b618", list(GLOB.station_name)), "Braking News")
 	set_active(TRUE)
 	set_status_code(CONTROLS_LOCKED, TRUE)
 	dispatch_transport(destination_platform = push_destination)
@@ -880,19 +880,19 @@
 /obj/machinery/transport/tram_controller/examine(mob/user)
 	. = ..()
 	if(has_cover)
-		. += span_notice(LANG("obj.2f55b8b3", list(cover_locked ? "locked. Swipe an ID card to unlock" : "unlocked. Swipe an ID card to lock")))
+		. += span_notice(LANG("obj.2f55b8b3e4306aae", list(cover_locked ? "locked. Swipe an ID card to unlock" : "unlocked. Swipe an ID card to lock")))
 		if(panel_open)
-			. += span_notice(LANG("obj.ce4b88dc", list(EXAMINE_HINT("bolts."))))
-			. += span_notice(LANG("obj.a92204bf", list(EXAMINE_HINT("screwdriver."))))
+			. += span_notice(LANG("obj.ce4b88dc0ed0a5f2", list(EXAMINE_HINT("bolts."))))
+			. += span_notice(LANG("obj.a92204bf445bb356", list(EXAMINE_HINT("screwdriver."))))
 		else
-			. += span_notice(LANG("obj.817d6499", list(EXAMINE_HINT("screwdriver."))))
+			. += span_notice(LANG("obj.817d6499ae297bf4", list(EXAMINE_HINT("screwdriver."))))
 
 	if(cover_open || !has_cover)
-		. += span_notice(LANG("obj.d53a9d52", list(EXAMINE_HINT("yellow reset button"))))
-		. += span_notice(LANG("obj.21c28179", list(EXAMINE_HINT("red stop button"))))
-		. += span_notice(LANG("obj.03ff4c11", list(EXAMINE_HINT("Right-click."))))
+		. += span_notice(LANG("obj.d53a9d52911f017a", list(EXAMINE_HINT("yellow reset button"))))
+		. += span_notice(LANG("obj.21c28179b9786b2f", list(EXAMINE_HINT("red stop button"))))
+		. += span_notice(LANG("obj.03ff4c117c5363c2", list(EXAMINE_HINT("Right-click."))))
 	else
-		. += span_notice(LANG("obj.414ed638", list(EXAMINE_HINT("Left-click."))))
+		. += span_notice(LANG("obj.414ed638e213a0c7", list(EXAMINE_HINT("Left-click."))))
 
 
 /obj/machinery/transport/tram_controller/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -912,7 +912,7 @@
 	if(cover_locked)
 		var/obj/item/card/id/id_card = user.get_idcard(TRUE)
 		if(isnull(id_card))
-			balloon_alert(user, LANG("obj.1bd3ceeb", null))
+			balloon_alert(user, LANG("obj.1bd3ceeb3a56d0d5", null))
 			return
 
 		try_toggle_lock(user, id_card)
@@ -928,7 +928,7 @@
 	if(!cover_open)
 		var/obj/item/card/id/id_card = user.get_idcard(TRUE)
 		if(isnull(id_card))
-			balloon_alert(user, LANG("obj.1bd3ceeb", null))
+			balloon_alert(user, LANG("obj.1bd3ceeb3a56d0d5", null))
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 		try_toggle_lock(user, id_card)
@@ -949,16 +949,16 @@
 	if(isnull(id_card))
 		id_card = user.get_idcard(TRUE)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.13a0a708", null))
+		balloon_alert(user, LANG("obj.13a0a7084b1e56e8", null))
 		return FALSE
 
 	if(check_access(id_card))
 		cover_locked = !cover_locked
-		balloon_alert(user, LANG("obj.dc384c45", list(cover_locked ? "locked" : "unlocked")))
+		balloon_alert(user, LANG("obj.dc384c45005f902b", list(cover_locked ? "locked" : "unlocked")))
 		update_appearance()
 		return TRUE
 
-	balloon_alert(user, LANG("obj.1bd3ceeb", null))
+	balloon_alert(user, LANG("obj.1bd3ceeb3a56d0d5", null))
 	return FALSE
 
 /obj/machinery/transport/tram_controller/wrench_act_secondary(mob/living/user, obj/item/tool)
@@ -967,12 +967,12 @@
 		return
 
 	if(panel_open && cover_open)
-		balloon_alert(user, LANG("obj.2d0543b7", null))
+		balloon_alert(user, LANG("obj.2d0543b78c118a66", null))
 		tool.play_tool_sound(src)
 		if(!tool.use_tool(src, user, 6 SECONDS))
 			return
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
-		balloon_alert(user, LANG("obj.fb79114b", null))
+		balloon_alert(user, LANG("obj.fb79114b4e3e9cc4", null))
 		deconstruct(TRUE)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -1089,17 +1089,17 @@
 
 /obj/machinery/transport/tram_controller/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.a6527fc6", null))
+		balloon_alert(user, LANG("obj.a6527fc6ac38b995", null))
 		return FALSE
 	obj_flags |= EMAGGED
 	cover_locked = FALSE
 	playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, LANG("obj.72faa602", null))
+	balloon_alert(user, LANG("obj.72faa6022466ed59", null))
 	return TRUE
 
 /obj/machinery/transport/tram_controller/ui_status(mob/user, datum/ui_state/state)
 	if(HAS_SILICON_ACCESS(user) && (controller_datum.controller_status & SYSTEM_FAULT || controller_datum.controller_status & COMM_ERROR || !is_operational))
-		to_chat(user, span_warning(LANG("obj.21a8bd08", list(src))))
+		to_chat(user, span_warning(LANG("obj.21a8bd085efbe5b0", list(src))))
 		return UI_CLOSE
 
 	return ..()
@@ -1157,7 +1157,7 @@
 		return
 
 	if(machine_stat & NOPOWER)
-		visible_message(span_warning(LANG("obj.f6b7f804", list(src))), vision_distance = COMBAT_MESSAGE_RANGE)
+		visible_message(span_warning(LANG("obj.f6b7f804031a6c62", list(src))), vision_distance = COMBAT_MESSAGE_RANGE)
 		return
 
 	switch(action)
@@ -1253,7 +1253,7 @@
 	var/turf/tram_turf = get_turf(user)
 	var/obj/structure/thermoplastic/tram_floor = locate() in tram_turf
 	if(!istype(tram_floor))
-		balloon_alert(user, LANG("obj.9019d9fa", null))
+		balloon_alert(user, LANG("obj.9019d9fa68b01df0", null))
 		return FALSE
 
 	return ..()

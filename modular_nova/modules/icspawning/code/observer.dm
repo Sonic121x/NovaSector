@@ -11,13 +11,13 @@
 		outfits["Show All"] = "Show All"
 
 		var/dresscode
-		var/teleport_option = tgui_alert(usr, LANG("mob.6e23e22e", null), LANG("mob.158170ae", null), list("Bluespace", "Pod", "Cancel"))
+		var/teleport_option = tgui_alert(usr, LANG("mob.6e23e22ea5ddc108", null), LANG("mob.158170ae3d18f7bd", null), list("Bluespace", "Pod", "Cancel"))
 		if (teleport_option == "Cancel")
 			return
-		var/character_option = tgui_alert(usr, LANG("mob.7663c5c8", null), LANG("mob.158170ae", null), list("Selected Character", "Randomly Created", "Cancel"))
+		var/character_option = tgui_alert(usr, LANG("mob.7663c5c869110245", null), LANG("mob.158170ae3d18f7bd", null), list("Selected Character", "Randomly Created", "Cancel"))
 		if (character_option == "Cancel")
 			return
-		var/initial_outfits = tgui_alert(usr, LANG("mob.05436964", null), LANG("mob.5e1733b1", null), list("Bluespace Tech", "Show All", "Cancel"))
+		var/initial_outfits = tgui_alert(usr, LANG("mob.05436964d3c2a6ef", null), LANG("mob.5e1733b122663213", null), list("Bluespace Tech", "Show All", "Cancel"))
 		if (initial_outfits == "Cancel")
 			return
 
@@ -32,13 +32,13 @@
 		// We're spawning someone else
 		var/give_return
 		if (user != usr)
-			give_return = tgui_alert(usr, LANG("mob.5de7b353", null), LANG("mob.3dd406d2", null), list("Yes", "No"))
+			give_return = tgui_alert(usr, LANG("mob.5de7b3531874baea", null), LANG("mob.3dd406d23d8e1ab8", null), list("Yes", "No"))
 			if(!give_return)
 				return
 
 		var/addquirks
 		if(character_option == "Selected Character")
-			addquirks = tgui_input_list(src, LANG("mob.3e860394", null), LANG("mob.7ce56bad", null), list("Quirks & Loadout", "Quirks Only", "Loadout Only", "Neither"))
+			addquirks = tgui_input_list(src, LANG("mob.3e8603942ddcecf9", null), LANG("mob.7ce56bad4da22ced", null), list("Quirks & Loadout", "Quirks Only", "Loadout Only", "Neither"))
 			if(!addquirks)
 				return
 
@@ -105,7 +105,7 @@
 		var/datum/outfit/path_as_outfit = path
 		outfits[initial(path_as_outfit.name)] = path
 
-	var/dresscode = tgui_input_list(src, LANG("client.05436964", null), LANG("client.0287867f", null), baseoutfits + sort_list(outfits))
+	var/dresscode = tgui_input_list(src, LANG("client.05436964d3c2a6ef", null), LANG("client.0287867f7f10323a", null), baseoutfits + sort_list(outfits))
 
 	if (isnull(dresscode))
 		return
@@ -120,7 +120,7 @@
 			var/datum/outfit/O = path
 			job_outfits[initial(O.name)] = path
 
-		dresscode = input(LANG("client.5d3c14c3", null), LANG("client.0287867f", null)) as null|anything in sort_list(job_outfits)
+		dresscode = input(LANG("client.5d3c14c3d9fe6fa0", null), LANG("client.0287867f7f10323a", null)) as null|anything in sort_list(job_outfits)
 		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -132,7 +132,7 @@
 			var/datum/outfit/O = path
 			plasmaman_outfits[initial(O.name)] = path
 
-		dresscode = input(LANG("client.2d3ee6f2", null), LANG("client.0287867f", null)) as null|anything in sort_list(plasmaman_outfits)
+		dresscode = input(LANG("client.2d3ee6f2b303e94b", null), LANG("client.0287867f7f10323a", null)) as null|anything in sort_list(plasmaman_outfits)
 		dresscode = plasmaman_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -141,7 +141,7 @@
 		var/list/custom_names = list()
 		for(var/datum/outfit/req_outfit in GLOB.custom_outfits)
 			custom_names[req_outfit.name] = req_outfit
-		var/selected_name = input(LANG("client.05436964", null), LANG("client.0287867f", null)) as null|anything in sort_list(custom_names)
+		var/selected_name = input(LANG("client.05436964d3c2a6ef", null), LANG("client.0287867f7f10323a", null)) as null|anything in sort_list(custom_names)
 		dresscode = custom_names[selected_name]
 		if(isnull(dresscode))
 			return

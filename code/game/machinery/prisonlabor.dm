@@ -31,10 +31,10 @@
 	if(!istype(tool, /obj/item/stack/license_plates/empty))
 		return NONE
 	if(!is_operational)
-		to_chat(user, span_warning(LANG("obj.7fc47c77", list(src))))
+		to_chat(user, span_warning(LANG("obj.7fc47c77a4071895", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(current_plate)
-		to_chat(user, span_warning(LANG("obj.1e895fc9", list(src))))
+		to_chat(user, span_warning(LANG("obj.1e895fc93f92cb4f", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/stack/license_plates/empty/plate = tool
@@ -53,7 +53,7 @@
 
 	pressing = TRUE
 	update_appearance()
-	to_chat(user, span_notice(LANG("obj.26c3d242", null)))
+	to_chat(user, span_notice(LANG("obj.26c3d242bfef2955", null)))
 
 	if(!do_after(user, 4 SECONDS, target = src))
 		pressing = FALSE
@@ -61,7 +61,7 @@
 		return FALSE
 
 	use_energy(active_power_usage)
-	to_chat(user, span_notice(LANG("obj.cbe5289d", null)))
+	to_chat(user, span_notice(LANG("obj.cbe5289d35cacf5f", null)))
 
 	pressing = FALSE
 	QDEL_NULL(current_plate)

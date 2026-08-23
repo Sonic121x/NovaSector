@@ -25,7 +25,7 @@
 		return FALSE
 
 	playsound(user, 'sound/effects/compressed_air/tank_insert_clunky.ogg', 50)
-	user.balloon_alert_to_viewers(LANG("obj.d7fe959d", null))
+	user.balloon_alert_to_viewers(LANG("obj.d7fe959d788984f7", null))
 
 	var/text = span_purple("[user] starts hooking up [src] to [target_mob]'s fangs...")
 	var/self_text = span_purple("You start hooking up [src] to [target_mob]'s fangs...")
@@ -55,22 +55,22 @@
 	var/datum/action/cooldown/mob_cooldown/venomous_bite/bite = locate() in target.actions
 	if (isnull(bite))
 		if (!silent)
-			user?.balloon_alert(user, LANG("obj.1d126ca6", null))
+			user?.balloon_alert(user, LANG("obj.1d126ca6cf1dd6a3", null))
 		return FALSE
 	if (!bite.IsAvailable())
 		if (!silent)
-			user?.balloon_alert(user, LANG("obj.67c481ae", null))
+			user?.balloon_alert(user, LANG("obj.67c481ae0c67d6d5", null))
 		return FALSE
 	if (reagents.holder_full())
 		if (!silent)
-			user?.balloon_alert(user, LANG("obj.8edd0d02", null))
+			user?.balloon_alert(user, LANG("obj.8edd0d026a09fd6f", null))
 		return FALSE
 
 	if (iscarbon(user))
 		var/mob/living/carbon/carbon_target = target
 		if (carbon_target.is_mouth_covered())
 			if (!silent)
-				user.balloon_alert(user, LANG("obj.8b7fe4a7", null))
+				user.balloon_alert(user, LANG("obj.8b7fe4a7666bda72", null))
 			return FALSE
 
 	return TRUE
@@ -95,7 +95,7 @@
 	bite.add_reagents(reagents, TRUE)
 
 	if (!isnull(user))
-		user.balloon_alert_to_viewers(LANG("obj.f084c51c", null))
+		user.balloon_alert_to_viewers(LANG("obj.f084c51c11147d58", null))
 		var/text = span_purple("[user] siphons venom from [target]'s fangs with [src]!")
 		var/self_text = span_purple("You siphon venom from [target]'s fangs with [src]!")
 		var/victim_text = span_purple("[user] siphons venom from your fangs with [src]!")

@@ -83,11 +83,11 @@
 /datum/action/innate/listen_prayers/Activate()
 	active = TRUE
 	REMOVE_TRAIT(owner, TRAIT_DONT_HEAR_PRAYERS, ACTION_TRAIT)
-	to_chat(owner, span_green(LANG("datum.3a4b9081", null)))
+	to_chat(owner, span_green(LANG("datum.3a4b90811e793233", null)))
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 /datum/action/innate/listen_prayers/Deactivate()
 	active = FALSE
 	ADD_TRAIT(owner, TRAIT_DONT_HEAR_PRAYERS, ACTION_TRAIT)
-	to_chat(owner, span_green(LANG("datum.101cc263", null)))
+	to_chat(owner, span_green(LANG("datum.101cc2637c0d5363", null)))
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)

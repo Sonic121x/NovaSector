@@ -71,8 +71,8 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "thermometer-empty",
-		SPECIES_PERK_NAME = LANG("datum.968c00ce", null),
-		SPECIES_PERK_DESC = LANG("datum.b6f8dc93", null),
+		SPECIES_PERK_NAME = LANG("datum.968c00ce3a1483c3", null),
+		SPECIES_PERK_DESC = LANG("datum.b6f8dc93f5718301", null),
 	))
 
 	return to_add
@@ -84,8 +84,8 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "spider",
-			SPECIES_PERK_NAME = LANG("datum.241fd17d", null),
-			SPECIES_PERK_DESC = LANG("datum.14f6b582", null),
+			SPECIES_PERK_NAME = LANG("datum.241fd17d2b383890", null),
+			SPECIES_PERK_DESC = LANG("datum.14f6b582594e82c2", null),
 		),
 	)
 
@@ -95,8 +95,8 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "comment",
-		SPECIES_PERK_NAME = LANG("datum.131712b3", null),
-		SPECIES_PERK_DESC = LANG("datum.813605cf", list(/datum/language/kobold::name)),
+		SPECIES_PERK_NAME = LANG("datum.131712b34b4d5d2c", null),
+		SPECIES_PERK_DESC = LANG("datum.813605cfc70ea9c6", list(/datum/language/kobold::name)),
 	))
 
 	return to_add

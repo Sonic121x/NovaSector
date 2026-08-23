@@ -27,7 +27,7 @@
 
 /obj/item/borg/stun/attack(mob/living/attacked_mob, mob/living/user)
 	if(cooldown_check > world.time)
-		user.balloon_alert(user, LANG("obj.26defd6f", null))
+		user.balloon_alert(user, LANG("obj.26defd6f9b56ea97", null))
 		return
 	if(ishuman(attacked_mob))
 		var/mob/living/carbon/human/human = attacked_mob
@@ -47,13 +47,13 @@
 	if(issilicon(attacked_mob))
 		attacked_mob.emp_act(EMP_HEAVY)
 		attacked_mob.visible_message(
-			span_danger(LANG("obj.d656a7da", list(user, attacked_mob, src))),
-			span_userdanger(LANG("obj.f3d4edd4", list(user, src))),
+			span_danger(LANG("obj.d656a7da6ae1ce8f", list(user, attacked_mob, src))),
+			span_userdanger(LANG("obj.f3d4edd4bc2ccfae", list(user, src))),
 		)
 	else
 		attacked_mob.visible_message(
-			span_danger(LANG("obj.238f0c6a", list(user, attacked_mob, src))),
-			span_userdanger(LANG("obj.6825a6bb", list(user, src))),
+			span_danger(LANG("obj.238f0c6aa2def19f", list(user, attacked_mob, src))),
+			span_userdanger(LANG("obj.6825a6bb861742fb", list(user, src))),
 		)
 
 	SEND_SIGNAL(attacked_mob, COMSIG_LIVING_MINOR_SHOCK) // NOVA EDIT ADDITION
@@ -91,13 +91,13 @@
 			mode = HUG_MODE_NICE
 	switch(mode)
 		if(HUG_MODE_NICE)
-			to_chat(user, span_infoplain(LANG("obj.60f99919", null)))
+			to_chat(user, span_infoplain(LANG("obj.60f99919930b80e0", null)))
 		if(HUG_MODE_HUG)
-			to_chat(user, span_infoplain(LANG("obj.66c0e486", null)))
+			to_chat(user, span_infoplain(LANG("obj.66c0e4860aead931", null)))
 		if(HUG_MODE_SHOCK)
-			to_chat(user, LANG("obj.1aaf7f88", null))
+			to_chat(user, LANG("obj.1aaf7f880d158b71", null))
 		if(HUG_MODE_CRUSH)
-			to_chat(user, LANG("obj.0a022aa3", null))
+			to_chat(user, LANG("obj.0a022aa3aa370a04", null))
 
 /obj/item/borg/cyborghug/attack(mob/living/attacked_mob, mob/living/silicon/robot/user, list/modifiers, list/attack_modifiers)
 	if(attacked_mob == user)
@@ -112,28 +112,28 @@
 				return
 			if(user.zone_selected == BODY_ZONE_HEAD)
 				user.visible_message(
-					span_notice(LANG("obj.92bbbd71", list(user, attacked_mob))),
-					span_notice(LANG("obj.5b22fd59", list(attacked_mob))),
+					span_notice(LANG("obj.92bbbd713d631f6b", list(user, attacked_mob))),
+					span_notice(LANG("obj.5b22fd595e9a2541", list(attacked_mob))),
 				)
 				user.do_attack_animation(attacked_mob, ATTACK_EFFECT_BOOP)
 				playsound(loc, 'sound/items/weapons/tap.ogg', 50, TRUE, -1)
 			else if(ishuman(attacked_mob))
 				if(user.body_position == LYING_DOWN)
 					user.visible_message(
-						span_notice(LANG("obj.b37c53ea", list(user, attacked_mob, attacked_mob.p_them()))),
-						span_notice(LANG("obj.8abc44ac", list(attacked_mob, attacked_mob.p_them()))),
+						span_notice(LANG("obj.b37c53ea3dcaa7b9", list(user, attacked_mob, attacked_mob.p_them()))),
+						span_notice(LANG("obj.8abc44acc5331322", list(attacked_mob, attacked_mob.p_them()))),
 					)
 				else
 					user.visible_message(
-						span_notice(LANG("obj.dde9bc77", list(user, attacked_mob, attacked_mob.p_them()))),
-						span_notice(LANG("obj.04eb052a", list(attacked_mob, attacked_mob.p_them()))),
+						span_notice(LANG("obj.dde9bc770d236adc", list(user, attacked_mob, attacked_mob.p_them()))),
+						span_notice(LANG("obj.04eb052a4acf56a6", list(attacked_mob, attacked_mob.p_them()))),
 					)
 				if(attacked_mob.resting)
 					attacked_mob.set_resting(FALSE, TRUE)
 			else
 				user.visible_message(
-					span_notice(LANG("obj.0239e2cd", list(user, attacked_mob))),
-					span_notice(LANG("obj.3ced569c", list(attacked_mob))),
+					span_notice(LANG("obj.0239e2cd609bbf9e", list(user, attacked_mob))),
+					span_notice(LANG("obj.3ced569c79c6fd12", list(attacked_mob))),
 				)
 			playsound(loc, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 		if(HUG_MODE_HUG)
@@ -141,26 +141,26 @@
 				attacked_mob.adjust_status_effects_on_shake_up()
 				if(attacked_mob.body_position == LYING_DOWN)
 					user.visible_message(
-						span_notice(LANG("obj.b37c53ea", list(user, attacked_mob, attacked_mob.p_them()))),
-						span_notice(LANG("obj.8abc44ac", list(attacked_mob, attacked_mob.p_them()))),
+						span_notice(LANG("obj.b37c53ea3dcaa7b9", list(user, attacked_mob, attacked_mob.p_them()))),
+						span_notice(LANG("obj.8abc44acc5331322", list(attacked_mob, attacked_mob.p_them()))),
 					)
 				else if(user.zone_selected == BODY_ZONE_HEAD)
-					user.visible_message(span_warning(LANG("obj.8b26e949", list(user, attacked_mob))),
-						span_warning(LANG("obj.f08745e9", list(attacked_mob))),
+					user.visible_message(span_warning(LANG("obj.8b26e94916925780", list(user, attacked_mob))),
+						span_warning(LANG("obj.f08745e9287688c6", list(attacked_mob))),
 					)
 					user.do_attack_animation(attacked_mob, ATTACK_EFFECT_PUNCH)
 				else
 					if(!(SEND_SIGNAL(attacked_mob, COMSIG_BORG_HUG_MOB, user) & COMSIG_BORG_HUG_HANDLED))
 						user.visible_message(
-							span_warning(LANG("obj.2c384008", list(user, attacked_mob, attacked_mob))),
-							span_warning(LANG("obj.430162c7", list(attacked_mob, attacked_mob.p_them(), attacked_mob))),
+							span_warning(LANG("obj.2c38400892a34f4e", list(user, attacked_mob, attacked_mob))),
+							span_warning(LANG("obj.430162c7641df997", list(attacked_mob, attacked_mob.p_them(), attacked_mob))),
 						)
 				if(attacked_mob.resting)
 					attacked_mob.set_resting(FALSE, TRUE)
 			else
 				user.visible_message(
-					span_warning(LANG("obj.8b26e949", list(user, attacked_mob))),
-					span_warning(LANG("obj.f08745e9", list(attacked_mob))),
+					span_warning(LANG("obj.8b26e94916925780", list(user, attacked_mob))),
+					span_warning(LANG("obj.f08745e9287688c6", list(attacked_mob))),
 				)
 			playsound(loc, 'sound/items/weapons/tap.ogg', 50, TRUE, -1)
 		if(HUG_MODE_SHOCK)
@@ -171,20 +171,20 @@
 				attacked_mob.dropItemToGround(attacked_mob.get_active_held_item())
 				attacked_mob.dropItemToGround(attacked_mob.get_inactive_held_item())
 				user.visible_message(
-					span_userdanger(LANG("obj.e7ae6904", list(user, attacked_mob, user.p_their()))),
-					span_danger(LANG("obj.fe2b3f85", list(attacked_mob))),
+					span_userdanger(LANG("obj.e7ae6904e39712e2", list(user, attacked_mob, user.p_their()))),
+					span_danger(LANG("obj.fe2b3f85998a9f4a", list(attacked_mob))),
 				)
 			else
 				if(!iscyborg(attacked_mob))
 					attacked_mob.adjust_fire_loss(10)
 					user.visible_message(
-						span_userdanger(LANG("obj.d016fc16", list(user, attacked_mob))),
-						span_danger(LANG("obj.ac5b962b", list(attacked_mob))),
+						span_userdanger(LANG("obj.d016fc162e9ab6bb", list(user, attacked_mob))),
+						span_danger(LANG("obj.ac5b962ba44bb286", list(attacked_mob))),
 					)
 				else
 					user.visible_message(
-						span_userdanger(LANG("obj.814568fc", list(user, attacked_mob))),
-						span_danger(LANG("obj.92056e5e", list(attacked_mob))),
+						span_userdanger(LANG("obj.814568fc95b0ed10", list(user, attacked_mob))),
+						span_danger(LANG("obj.92056e5e0735a690", list(attacked_mob))),
 					)
 			playsound(loc, 'sound/effects/sparks/sparks2.ogg', 50, TRUE, -1)
 			user.cell.use(0.5 * STANDARD_CELL_CHARGE, force = TRUE)
@@ -194,13 +194,13 @@
 				return
 			if(ishuman(attacked_mob))
 				user.visible_message(
-					span_userdanger(LANG("obj.73c68314", list(user, attacked_mob, user.p_their()))),
-					span_danger(LANG("obj.298e1261", list(attacked_mob))),
+					span_userdanger(LANG("obj.73c6831430c8e2ec", list(user, attacked_mob, user.p_their()))),
+					span_danger(LANG("obj.298e126138b27132", list(attacked_mob))),
 				)
 			else
 				user.visible_message(
-					span_userdanger(LANG("obj.a1d666d4", list(user, attacked_mob))),
-						span_danger(LANG("obj.e79ecc98", list(attacked_mob))),
+					span_userdanger(LANG("obj.a1d666d485862318", list(user, attacked_mob))),
+						span_danger(LANG("obj.e79ecc98d18d99d8", list(attacked_mob))),
 				)
 			playsound(loc, 'sound/items/weapons/smash.ogg', 50, TRUE, -1)
 			attacked_mob.adjust_brute_loss(15)
@@ -233,7 +233,7 @@
 		mode = "charge"
 	else
 		mode = "draw"
-	to_chat(user, span_notice(LANG("obj.2d716125", list(src, mode))))
+	to_chat(user, span_notice(LANG("obj.2d716125f2889532", list(src, mode))))
 	update_appearance()
 
 /obj/item/borg/charger/interact_with_atom(atom/target, mob/living/silicon/robot/user, list/modifiers)
@@ -245,10 +245,10 @@
 		if(is_type_in_list(target, charge_machines))
 			var/obj/machinery/target_machine = target
 			if((target_machine.machine_stat & (NOPOWER|BROKEN)) || !target_machine.anchored)
-				to_chat(user, span_warning(LANG("obj.5c3745ea", list(target_machine))))
+				to_chat(user, span_warning(LANG("obj.5c3745ead72f2f66", list(target_machine))))
 				return
 
-			to_chat(user, span_notice(LANG("obj.5807fb0d", list(target_machine))))
+			to_chat(user, span_notice(LANG("obj.5807fb0dc6fa5f35", list(target_machine))))
 			while(do_after(user, 1.5 SECONDS, target = target_machine, show_progress = FALSE))
 				if(!user || !user.cell || mode != "draw")
 					return
@@ -258,27 +258,27 @@
 
 				target_machine.charge_cell(0.15 * STANDARD_CELL_CHARGE, user.cell)
 
-			to_chat(user, span_notice(LANG("obj.26c09d1c", null)))
+			to_chat(user, span_notice(LANG("obj.26c09d1ccc093466", null)))
 
 		else if(is_type_in_list(target, charge_items))
 			var/obj/item/stock_parts/power_store/cell = target
 			if(!istype(cell))
 				cell = locate(/obj/item/stock_parts/power_store) in target
 			if(!cell)
-				to_chat(user, span_warning(LANG("obj.c6df9dc9", list(target))))
+				to_chat(user, span_warning(LANG("obj.c6df9dc908b25ef7", list(target))))
 				return
 
 			if(istype(target, /obj/item/gun/energy))
 				var/obj/item/gun/energy/energy_gun = target
 				if(!energy_gun.can_charge)
-					to_chat(user, span_warning(LANG("obj.bb3e56b7", list(target))))
+					to_chat(user, span_warning(LANG("obj.bb3e56b764ee1a57", list(target))))
 					return
 
 			if(!cell.charge)
-				to_chat(user, span_warning(LANG("obj.84948dc2", list(target))))
+				to_chat(user, span_warning(LANG("obj.84948dc215a024fe", list(target))))
 
 
-			to_chat(user, span_notice(LANG("obj.72b279e1", list(target))))
+			to_chat(user, span_notice(LANG("obj.72b279e1c1cfc81a", list(target))))
 
 			while(do_after(user, 1.5 SECONDS, target = target, show_progress = FALSE))
 				if(!user || !user.cell || mode != "draw")
@@ -297,26 +297,26 @@
 					break
 				target.update_appearance()
 
-			to_chat(user, span_notice(LANG("obj.26c09d1c", null)))
+			to_chat(user, span_notice(LANG("obj.26c09d1ccc093466", null)))
 
 	else if(is_type_in_list(target, charge_items))
 		var/obj/item/stock_parts/power_store/cell = target
 		if(!istype(cell))
 			cell = locate(/obj/item/stock_parts/power_store) in target
 		if(!cell)
-			to_chat(user, span_warning(LANG("obj.c6df9dc9", list(target))))
+			to_chat(user, span_warning(LANG("obj.c6df9dc908b25ef7", list(target))))
 			return
 
 		if(istype(target, /obj/item/gun/energy))
 			var/obj/item/gun/energy/energy_gun = target
 			if(!energy_gun.can_charge)
-				to_chat(user, span_warning(LANG("obj.bb3e56b7", list(target))))
+				to_chat(user, span_warning(LANG("obj.bb3e56b764ee1a57", list(target))))
 				return
 
 		if(cell.charge >= cell.maxcharge)
-			to_chat(user, span_warning(LANG("obj.d228da44", list(target))))
+			to_chat(user, span_warning(LANG("obj.d228da44f255734b", list(target))))
 
-		to_chat(user, span_notice(LANG("obj.72b279e1", list(target))))
+		to_chat(user, span_notice(LANG("obj.72b279e1c1cfc81a", list(target))))
 
 		while(do_after(user, 1.5 SECONDS, target = target, show_progress = FALSE))
 			if(!user || !user.cell || mode != "charge")
@@ -335,7 +335,7 @@
 				break
 			target.update_appearance()
 
-		to_chat(user, span_notice(LANG("obj.d02d54e8", list(target))))
+		to_chat(user, span_notice(LANG("obj.d02d54e80810e293", list(target))))
 
 /obj/item/harmalarm
 	name = "\improper Sonic Harm Prevention Tool"
@@ -348,21 +348,21 @@
 /obj/item/harmalarm/emag_act(mob/user, obj/item/card/emag/emag_card)
 	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.9f2c2e26", null))
+		balloon_alert(user, LANG("obj.9f2c2e26b33284ad", null))
 	else
-		balloon_alert(user, LANG("obj.fc8c1c99", null))
+		balloon_alert(user, LANG("obj.fc8c1c99704b98d2", null))
 	return TRUE
 
 /obj/item/harmalarm/attack_self(mob/user)
 	var/safety = !(obj_flags & EMAGGED)
 	if (!COOLDOWN_FINISHED(src, alarm_cooldown))
-		to_chat(user, LANG("obj.9306fd19", null))
+		to_chat(user, LANG("obj.9306fd19eb9e8682", null))
 		return
 
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/robot_user = user
 		if(!robot_user.cell || robot_user.cell.charge < 1200)
-			to_chat(user, span_warning(LANG("obj.949e51ce", null)))
+			to_chat(user, span_warning(LANG("obj.949e51ce1af4c78b", null)))
 			return
 		robot_user.cell.charge -= 1000
 		if(robot_user.emagged)
@@ -370,16 +370,16 @@
 
 	if(safety == TRUE)
 		user.visible_message(
-			LANG("obj.e54f5ded", list(user)),
-			span_userdanger(LANG("obj.e12a98a6", list(iscyborg(user) ? "you" : "and confuses you"))),
-			span_danger(LANG("obj.b3d71be9", null)),
+			LANG("obj.e54f5dedf29910a6", list(user)),
+			span_userdanger(LANG("obj.e12a98a6c1c14979", list(iscyborg(user) ? "you" : "and confuses you"))),
+			span_danger(LANG("obj.b3d71be9caa8faed", null)),
 		)
 		for(var/mob/living/carbon/carbon in get_hearers_in_view(9, user))
 			if(carbon.get_ear_protection() > 0)
 				continue
 			carbon.adjust_confusion(6 SECONDS)
 
-		audible_message(LANG("obj.b60d5fa4", null))
+		audible_message(LANG("obj.b60d5fa4c4f4e977", null))
 		playsound(get_turf(src), 'sound/mobs/non-humanoids/cyborg/harmalarm.ogg', 70, 3)
 		COOLDOWN_START(src, alarm_cooldown, HARM_ALARM_SAFETY_COOLDOWN)
 		user.log_message("used a Cyborg Harm Alarm", LOG_ATTACK)
@@ -387,7 +387,7 @@
 			var/mob/living/silicon/robot/robot_user = user
 			to_chat(robot_user.connected_ai, "<br>[span_notice("NOTICE - Peacekeeping 'HARM ALARM' used by: [user]")]<br>")
 	else
-		user.audible_message(LANG("obj.ce8d743c", null))
+		user.audible_message(LANG("obj.ce8d743cd6ab87de", null))
 		for(var/mob/living/living in get_hearers_in_view(9, user))
 			var/bang_effect = living.soundbang_act(SOUNDBANG_STRONG, 0, 0, 5)
 			switch(bang_effect)

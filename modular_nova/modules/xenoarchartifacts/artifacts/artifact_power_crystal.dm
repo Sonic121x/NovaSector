@@ -32,44 +32,44 @@
 	if(tool.tool_behaviour == TOOL_WIRECUTTER) // If we want to remove the wiring
 		if(wired)
 			user.visible_message(
-				span_notice(LANG("obj.65c1bf91", list(user, src))),
-				span_notice(LANG("obj.54162c5a", list(src))),
-				blind_message = span_hear(LANG("obj.3896dd23", null)),
+				span_notice(LANG("obj.65c1bf9179df9c03", list(user, src))),
+				span_notice(LANG("obj.54162c5abd6a3248", list(src))),
+				blind_message = span_hear(LANG("obj.3896dd235eb5a12f", null)),
 			)
 			if(tool.use_tool(src, user, 20, volume = 50))
 				user.visible_message(
-					span_notice(LANG("obj.d74e74ba", list(user, src))),
-					span_notice(LANG("obj.cfaf99e0", list(src))),
-					blind_message = span_notice(LANG("obj.e30c3394", null)),
+					span_notice(LANG("obj.d74e74ba7a99ac35", list(user, src))),
+					span_notice(LANG("obj.cfaf99e05cac0d6f", list(src))),
+					blind_message = span_notice(LANG("obj.e30c3394256c6679", null)),
 				)
 				wired = FALSE
 				update_crystal()
 				return ITEM_INTERACT_SUCCESS
 		else
-			to_chat(user, span_red(LANG("obj.c5749323", list(src))))
+			to_chat(user, span_red(LANG("obj.c57493232fc0434b", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/stack/cable_coil)) // If we want to put the wiring
 		if(!wired)
 			var/obj/item/stack/cable_coil/our_cable_coil = tool
 			if(!our_cable_coil.use(2))
-				to_chat(user, span_red(LANG("obj.508c5cd0", null)))
+				to_chat(user, span_red(LANG("obj.508c5cd0201fb4e9", null)))
 				return ITEM_INTERACT_BLOCKING
 			user.visible_message(
-				span_notice(LANG("obj.d94d19f6", list(user, src))),
-				span_notice(LANG("obj.89e6bce6", list(src))),
+				span_notice(LANG("obj.d94d19f6237ade26", list(user, src))),
+				span_notice(LANG("obj.89e6bce6abaaa821", list(src))),
 			)
 			if(tool.use_tool(src, user, 20, volume = 50))
 				user.visible_message(
-					span_notice(LANG("obj.71f486e8", list(user, src))),
-					span_notice(LANG("obj.c0e1aa49", list(src))),
+					span_notice(LANG("obj.71f486e8b754d3fb", list(user, src))),
+					span_notice(LANG("obj.c0e1aa497f0a032c", list(src))),
 				)
 				wired = TRUE
 				update_crystal()
 				return ITEM_INTERACT_SUCCESS
 			return ITEM_INTERACT_BLOCKING
 		else
-			balloon_alert(user, LANG("obj.9a6e26bd", null))
+			balloon_alert(user, LANG("obj.9a6e26bd7aeebe89", null))
 			return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -78,19 +78,19 @@
 	if(.)
 		return
 	if(!Adjacent(user))
-		to_chat(user, span_warning(LANG("obj.874aa184", list(src))))
+		to_chat(user, span_warning(LANG("obj.874aa1848bd31ec0", list(src))))
 		return TRUE
 	if(wired && anchored)
 		first_effect.ToggleActivate()
 		update_crystal()
-	to_chat(user, span_bold(LANG("obj.97eda384", list(src))))
+	to_chat(user, span_bold(LANG("obj.97eda3841c423837", list(src))))
 
 /obj/machinery/power/crystal/Destroy()
 	if(first_effect)
 		QDEL_NULL(first_effect)
 	visible_message(
-		span_warning(LANG("obj.d0641e15", list(src))),
-		blind_message = span_hear(LANG("obj.e76a0c0c", null)),
+		span_warning(LANG("obj.d0641e1553a22038", list(src))),
+		blind_message = span_hear(LANG("obj.e76a0c0ca397ea02", null)),
 	)
 	var/turf/mainloc = get_turf(src)
 	var/count_crystal_bs = rand(1,3)
@@ -118,7 +118,7 @@
 /obj/machinery/power/crystal/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit = FALSE)
 	if(istype(hitting_projectile, /obj/projectile/energy) || istype(hitting_projectile, /obj/projectile/beam))
 		visible_message(
-			span_danger(LANG("obj.a71a5ecb", list(hitting_projectile, src)))
+			span_danger(LANG("obj.a71a5ecb4163a288", list(hitting_projectile, src)))
 		)
 		// Find a turf near or on the original location to bounce to
 		if(hitting_projectile.starting)

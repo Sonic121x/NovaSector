@@ -50,7 +50,7 @@
 
 	target_mob.set_disgust(max(target_mob.disgust, TUMOR_DISLIKED_FOOD_DISGUST))
 
-	to_chat(target_mob, span_warning(LANG("datum.e235ec33", null)))
+	to_chat(target_mob, span_warning(LANG("datum.e235ec33e1c9c868", null)))
 
 	// We don't lose nutrition because we don't even use nutrition as Hemopahges. It WILL however purge nearly all of what's in their stomach.
 	target_mob.vomit(vomit_flags = HEMOPHAGE_VOMIT_FLAGS, lost_nutrition = 0, distance = 1, purge_ratio = HEMOPHAGE_VOMIT_PURGE_RATIO)

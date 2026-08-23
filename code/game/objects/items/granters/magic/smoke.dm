@@ -16,7 +16,7 @@
 
 /obj/item/book/granter/action/spell/smoke/recoil(mob/living/user)
 	. = ..()
-	to_chat(user,span_warning(LANG("obj.b801e197", null)))
+	to_chat(user,span_warning(LANG("obj.b801e19767744c6e", null)))
 	if(user.nutrition)
 		user.set_nutrition(200)
 		if(user.nutrition <= 0)

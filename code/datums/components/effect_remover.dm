@@ -68,7 +68,7 @@
 		return NONE
 
 	if(HAS_TRAIT(target, TRAIT_ILLUSORY_EFFECT))
-		to_chat(user, span_notice(LANG("datum.4a7f955b", list(parent, target))))
+		to_chat(user, span_notice(LANG("datum.4a7f955bcda0a649", list(parent, target))))
 		return NONE
 
 	if(is_type_in_typecache(target, effects_we_clear)) // Make sure we get all subtypes and everything

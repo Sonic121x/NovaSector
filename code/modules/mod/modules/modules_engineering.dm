@@ -140,7 +140,7 @@
 
 /obj/item/mod/module/tether/used()
 	if(HAS_TRAIT_FROM(mod.wearer, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(mod.wearer, LANG("obj.5550f24a", null))
+		balloon_alert(mod.wearer, LANG("obj.5550f24a003f6456", null))
 		playsound(src, 'sound/items/weapons/gun/general/dry_fire.ogg', 25, TRUE)
 		return FALSE
 	return ..()
@@ -278,8 +278,8 @@
 
 /obj/item/tether_anchor/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.98b0d388", list(src)))
-	. += span_info(LANG("obj.ec3c22c2", null))
+	. += span_info(LANG("obj.98b0d388242fcbc8", list(src)))
+	. += span_info(LANG("obj.ec3c22c25d34e8dd", null))
 
 /obj/item/tether_anchor/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -295,14 +295,14 @@
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(user, LANG("obj.5550f24a", null))
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return
 
 	if (parent_module && HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(parent_module)))
-		balloon_alert(user, LANG("obj.5550f24a", null))
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return
 
-	balloon_alert(user, LANG("obj.8133fa02", null))
+	balloon_alert(user, LANG("obj.8133fa0296376ad7", null))
 	user.AddComponent(/datum/component/tether, src, 7, "tether", tether_trait_source = REF(src))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -321,33 +321,33 @@
 		return
 
 	if(HAS_TRAIT_FROM(target, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(user, LANG("obj.5550f24a", null))
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return
 
 	if (parent_module && HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(parent_module)))
-		balloon_alert(user, LANG("obj.5550f24a", null))
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return
 
 	if (target == user)
-		balloon_alert(user, LANG("obj.8133fa02", null))
+		balloon_alert(user, LANG("obj.8133fa0296376ad7", null))
 		user.AddComponent(/datum/component/tether, src, 7, "tether", tether_trait_source = REF(src), no_target_trait = TRUE)
 		return
 
-	balloon_alert(user, LANG("obj.7b2e6eab", null))
-	to_chat(target, span_userdanger(LANG("obj.be29c7c5", list(user))))
+	balloon_alert(user, LANG("obj.7b2e6eab6fd5562f", null))
+	to_chat(target, span_userdanger(LANG("obj.be29c7c523f8538e", list(user))))
 	if (!do_after(user, 5 SECONDS, target))
 		return
 
 	if(HAS_TRAIT_FROM(target, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(user, LANG("obj.5550f24a", null))
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return
 
 	if (parent_module && HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(parent_module)))
-		balloon_alert(user, LANG("obj.5550f24a", null))
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return
 
-	balloon_alert(user, LANG("obj.8133fa02", null))
-	to_chat(target, span_userdanger(LANG("obj.1ef2d7c5", list(user))))
+	balloon_alert(user, LANG("obj.8133fa0296376ad7", null))
+	to_chat(target, span_userdanger(LANG("obj.1ef2d7c5a3290a21", list(user))))
 	target.AddComponent(/datum/component/tether, src, 7, "tether", tether_trait_source = REF(src), no_target_trait = TRUE)
 
 /obj/item/tether_anchor/proc/tether_snapped(datum/component/tether/tether, tether_source)

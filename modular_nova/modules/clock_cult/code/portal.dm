@@ -18,7 +18,7 @@
 	var/mob/movable_mob = movable
 
 	if(!IS_CLOCK(movable_mob) && clock_only && !isobserver(movable_mob))
-		to_chat(movable_mob, span_warning(LANG("obj.b92e7087", list(src))))
+		to_chat(movable_mob, span_warning(LANG("obj.b92e7087c29f2f70", list(src))))
 		return FALSE
 
 	return ..()
@@ -34,7 +34,7 @@
 
 
 /obj/effect/portal/permanent/one_way/reebe/leaving/teleport(atom/movable/movable, force)
-	to_chat(movable, span_notice(LANG("obj.2e7a7a51", list(src))))
+	to_chat(movable, span_notice(LANG("obj.2e7a7a51939d3ee0", list(src))))
 
 	if(!do_after(movable, 4 SECONDS))
 		return FALSE

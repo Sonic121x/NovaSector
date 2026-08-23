@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(admin_verbs)
 		CRASH("Attempted to dynamically invoke admin verb '[verb_type]' that doesn't exist.")
 
 	if(!admin.holder.check_for_rights(verb_singleton.permissions))
-		to_chat(admin, span_adminnotice(LANG("datum.f47a71b7", null)))
+		to_chat(admin, span_adminnotice(LANG("datum.f47a71b73c658e8c", null)))
 		return
 
 	var/list/extra_args = args.Copy(3)
@@ -143,7 +143,7 @@ SUBSYSTEM_DEF(admin_verbs)
 		return
 
 	if(!isnull(admins_pending_subsytem_init)) // if the list exists we are still initializing
-		to_chat(admin, span_big(span_green(LANG("datum.e947e781", null))))
+		to_chat(admin, span_big(span_green(LANG("datum.e947e7813bc24f76", null))))
 		admins_pending_subsytem_init |= list(admin.ckey)
 		return
 

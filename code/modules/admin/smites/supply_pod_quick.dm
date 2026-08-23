@@ -12,8 +12,8 @@
 /datum/smite/supply_pod_quick/configure(client/user)
 	var/attempted_target_path = input(
 		user,
-		LANG("datum.325b0384", null),
-		LANG("datum.1a01b0f5", null),
+		LANG("datum.325b0384be5d66b7", null),
+		LANG("datum.1a01b0f5ae81d070", null),
 		"/obj/item/food/grown/flower/harebell",
 	) as null|text
 
@@ -29,7 +29,7 @@
 	if(!ispath(delivery))
 		delivery = pick_closest_path(attempted_target_path)
 		if(!delivery)
-			tgui_alert(user, LANG("datum.c57fb711", null))
+			tgui_alert(user, LANG("datum.c57fb711fd72ae5b", null))
 			return FALSE
 	target_path = delivery
 

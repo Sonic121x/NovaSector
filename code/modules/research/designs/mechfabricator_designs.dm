@@ -1969,7 +1969,7 @@
 	. = ..()
 	var/obj/item/mod/construction/plating/armor_type = build_path
 	var/datum/mod_theme/theme = GLOB.mod_themes[initial(armor_type.theme)]
-	desc = LANG("datum.ac33c823", list(theme.desc))
+	desc = LANG("datum.ac33c823207d9390", list(theme.desc))
 
 /datum/design/mod_plating/civilian
 	name = "MOD Civilian Plating"
@@ -2095,7 +2095,7 @@
 /datum/design/module/New()
 	. = ..()
 	var/obj/item/mod/module/module = build_path
-	desc = LANG("datum.d29ee956", list(initial(module.desc), initial(module.complexity)))
+	desc = LANG("datum.d29ee95676afb56c", list(initial(module.desc), initial(module.complexity)))
 
 /datum/design/module/mod_storage
 	name = "Compact Storage Module"

@@ -39,7 +39,7 @@
 		if(feedback_delivered || !helped)
 			continue
 
-		to_chat(affected_mob, span_notice(LANG("obj.8bd5bbf0", null)))
+		to_chat(affected_mob, span_notice(LANG("obj.8bd5bbf047a64d23", null)))
 		feedback_delivered = TRUE
 
 

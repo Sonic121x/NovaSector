@@ -51,7 +51,7 @@
 
 /// Become a zombie
 /mob/living/basic/blob_minion/spore/proc/zombify(mob/living/carbon/human/target)
-	visible_message(span_warning(LANG("mob.364b7d51", list(target.name))))
+	visible_message(span_warning(LANG("mob.364b7d51c4e92a43", list(target.name))))
 	var/mob/living/basic/blob_minion/zombie/blombie = change_mob_type(zombie_type, loc, new_name = initial(zombie_type.name))
 	blombie.pass_flags |= PASSBLOB //No way to pass the blob_borne info through change_mob_type() to Initilize(), so we just circumvent it here.
 	APPLY_FACTION_AND_ALLIES_FROM(blombie, src) //inherit the spore's faction in case it was spawned with a different one (eg gold core)
@@ -140,5 +140,5 @@
 	)
 
 /mob/living/basic/blob_minion/spore/independent/proc/on_assumed_control()
-	to_chat(src, span_blobannounce(LANG("mob.ede75760", null)))
+	to_chat(src, span_blobannounce(LANG("mob.ede75760daa05d6a", null)))
 	SEND_SOUND(src, sound('sound/music/antag/blobalert.ogg', volume = 50))

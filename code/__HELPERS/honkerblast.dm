@@ -25,7 +25,7 @@
 		victim.adjust_stutter(30 SECONDS)
 		victim.set_jitter_if_lower(1000 SECONDS)
 		victim.sound_damage(10, 30 SECONDS)
-		to_chat(victim, LANG("_root.e96ea543", null))
+		to_chat(victim, LANG("_root.e96ea543797c7f59", null))
 		var/obj/item/clothing/shoes/victim_shoes = victim.get_item_by_slot(ITEM_SLOT_FEET)
 		if(!victim_shoes || victim_shoes.fastening_type == SHOES_SLIPON)
 			continue
@@ -36,10 +36,10 @@
 		victim.Stun(50)
 		victim.set_jitter_if_lower(500 SECONDS)
 		victim.sound_damage(7, 20 SECONDS)
-		to_chat(victim, LANG("_root.fa169faa", null))
+		to_chat(victim, LANG("_root.fa169faa9a58e5e6", null))
 
 	for(var/mob/living/carbon/victim in lightly_honked)
 		victim.Knockdown(20)
 		victim.set_jitter_if_lower(200 SECONDS)
 		victim.sound_damage(4, 10 SECONDS)
-		to_chat(victim, LANG("_root.7fd15502", null))
+		to_chat(victim, LANG("_root.7fd15502a8b6d401", null))

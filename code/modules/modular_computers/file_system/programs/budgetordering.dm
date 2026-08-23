@@ -194,11 +194,11 @@
 				return
 			if(SSshuttle.supply.getDockedId() == docking_home)
 				SSshuttle.moveShuttle(cargo_shuttle, docking_away, TRUE)
-				computer.say(LANG("datum.c8889dde", null))
+				computer.say(LANG("datum.c8889dde4d5b29e6", null))
 				user.investigate_log("sent the supply shuttle away.", INVESTIGATE_CARGO)
 			else
 				user.investigate_log("called the supply shuttle.", INVESTIGATE_CARGO)
-				computer.say(LANG("datum.8a1a83d6", list(SSshuttle.supply.timeLeft(600))))
+				computer.say(LANG("datum.8a1a83d6d1e41e94", list(SSshuttle.supply.timeLeft(600))))
 				SSshuttle.moveShuttle(cargo_shuttle, docking_home, TRUE)
 			. = TRUE
 		if("loan")
@@ -215,7 +215,7 @@
 				return
 			else
 				SSshuttle.shuttle_loan.loan_shuttle()
-				computer.say(LANG("datum.a29fce78", null))
+				computer.say(LANG("datum.a29fce78fecf59e8", null))
 				user.investigate_log("accepted a shuttle loan event.", INVESTIGATE_CARGO)
 				user.log_message("accepted a shuttle loan event.", LOG_GAME)
 				. = TRUE
@@ -248,21 +248,21 @@
 
 			if(self_paid)
 				if(!istype(id_card_customer))
-					computer.say(LANG("datum.9caa768c", null))
+					computer.say(LANG("datum.9caa768c0177ac98", null))
 					return
 				if(IS_DEPARTMENTAL_CARD(id_card_customer))
-					computer.say(LANG("datum.8cd2261a", list(id_card_customer)))
+					computer.say(LANG("datum.8cd2261a41a75ff7", list(id_card_customer)))
 					return
 				account = id_card_customer.registered_account
 				name = id_card_customer.registered_account.account_holder
 				if(!istype(account))
-					computer.say(LANG("datum.3ad4c193", null))
+					computer.say(LANG("datum.3ad4c19308c51a2e", null))
 					return
 
 			var/reason = ""
 			var/datum/bank_account/personal_department
 			if((requestonly && !self_paid) || !(computer.stored_id?.GetID()))
-				reason = tgui_input_text(user, LANG("datum.ba5380f4", null), name, max_length = MAX_MESSAGE_LEN)
+				reason = tgui_input_text(user, LANG("datum.ba5380f4e7abe6d9", null), name, max_length = MAX_MESSAGE_LEN)
 				if(isnull(reason) || ..())
 					return
 
@@ -270,7 +270,7 @@
 			if(id_card_customer?.registered_account?.account_job && !self_paid) //Find a budget to pull from
 				personal_department = SSeconomy.get_dep_account(id_card_customer.registered_account.account_job.paycheck_department)
 				if(!(personal_department.account_holder == "Cargo Budget"))
-					var/dept_choice = tgui_alert(user, LANG("datum.b7de779a", null), LANG("datum.78858682", null), list("Cargo Budget", "[personal_department.account_holder]"))
+					var/dept_choice = tgui_alert(user, LANG("datum.b7de779abff270c2", null), LANG("datum.788586826babe8fa", null), list("Cargo Budget", "[personal_department.account_holder]"))
 					if(!dept_choice)
 						return
 					if(dept_choice == "Cargo Budget")
@@ -283,12 +283,12 @@
 
 			if(((pack.order_flags & ORDER_GOODY) && (!(pack.order_flags & ORDER_DEPARTMENTAL_GOODY) || uses_cargo_budget)) && !self_paid) // NOVA EDIT CHANGE - ORIGINAL: if((pack.order_flags & ORDER_GOODY) && !self_paid)
 				playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-				computer.say(LANG("datum.90374cfb", null))
+				computer.say(LANG("datum.90374cfbf570e042", null))
 				return
 
 			if(SSshuttle.supply.get_order_count(pack) == OVER_ORDER_LIMIT)
 				playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-				computer.say(LANG("datum.6627f598", list(CARGO_MAX_ORDER)))
+				computer.say(LANG("datum.6627f598fbb8c20c", list(CARGO_MAX_ORDER)))
 				return
 
 			if(!self_paid)
@@ -300,17 +300,17 @@
 				SO.generateRequisition(T)
 				computer.stored_paper -= 1
 				if(computer.stored_paper <= 4)
-					computer.say(LANG("datum.4fa8c372", list(computer.stored_paper)))
+					computer.say(LANG("datum.4fa8c3724cda33f8", list(computer.stored_paper)))
 					if(computer.stored_paper <= 1)
-						computer.say(LANG("datum.61d6b734", null))
+						computer.say(LANG("datum.61d6b734795d0630", null))
 			else
-				computer.say(LANG("datum.65148df3", null))
+				computer.say(LANG("datum.65148df3e9007669", null))
 			if((requestonly && !self_paid) || !(computer.stored_id?.GetID()))
 				SSshuttle.request_list += SO
 			else
 				SSshuttle.shopping_list += SO
 				if(self_paid)
-					computer.say(LANG("datum.cf813d0c", list(account.account_holder)))
+					computer.say(LANG("datum.cf813d0cbcc0517b", list(account.account_holder)))
 			playsound(computer, 'sound/effects/coin2.ogg', 40, TRUE)
 			. = TRUE
 		if("remove")

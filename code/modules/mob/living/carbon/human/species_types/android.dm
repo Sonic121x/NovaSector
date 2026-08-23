@@ -67,20 +67,20 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHIELD_ALT,
-		SPECIES_PERK_NAME = LANG("datum.995ce0a7", null),
-		SPECIES_PERK_DESC = LANG("datum.de8b7f28", null),
+		SPECIES_PERK_NAME = LANG("datum.995ce0a79e591866", null),
+		SPECIES_PERK_DESC = LANG("datum.de8b7f2825a8d951", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_COGS,
-		SPECIES_PERK_NAME = LANG("datum.26c3304b", null),
-		SPECIES_PERK_DESC = LANG("datum.b5cecf51", null),
+		SPECIES_PERK_NAME = LANG("datum.26c3304b05fdac25", null),
+		SPECIES_PERK_DESC = LANG("datum.b5cecf51af8fe078", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_DNA,
-		SPECIES_PERK_NAME = LANG("datum.0b61862b", null),
-		SPECIES_PERK_DESC = LANG("datum.cfc90f6f", null),
+		SPECIES_PERK_NAME = LANG("datum.0b61862bb1593f38", null),
+		SPECIES_PERK_DESC = LANG("datum.cfc90f6fe9e0bce2", null),
 	))
 	return perks
 
@@ -89,13 +89,13 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHIELD_HEART,
-		SPECIES_PERK_NAME = LANG("datum.69ebc08c", null),
-		SPECIES_PERK_DESC = LANG("datum.fa93449b", null),
+		SPECIES_PERK_NAME = LANG("datum.69ebc08c7e5f2bf5", null),
+		SPECIES_PERK_DESC = LANG("datum.fa93449b6f0a2260", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_ROBOT,
-		SPECIES_PERK_NAME = LANG("datum.a7e78ae8", null),
-		SPECIES_PERK_DESC = LANG("datum.bd86b11f", null),
+		SPECIES_PERK_NAME = LANG("datum.a7e78ae8afab9b9e", null),
+		SPECIES_PERK_DESC = LANG("datum.bd86b11fc9d0d902", null),
 	))
 	return perks

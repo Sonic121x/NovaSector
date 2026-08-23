@@ -45,14 +45,14 @@
 
 	owner.emote("mumble")
 	owner.playsound_local(get_turf(owner), 'sound/effects/magic/magic_block_mind.ogg', 75, vary = TRUE) // sound of creepy whispers
-	to_chat(owner, span_reallybig(span_hypnophrase(LANG("datum.8328498a", null))))
+	to_chat(owner, span_reallybig(span_hypnophrase(LANG("datum.8328498a60048e9e", null))))
 
 /datum/status_effect/tower_of_babel/magical/on_remove()
 	. = ..()
 	if(!.)
 		return
 
-	to_chat(owner, span_reallybig(span_hypnophrase(LANG("datum.22ee6cc8", null))))
+	to_chat(owner, span_reallybig(span_hypnophrase(LANG("datum.22ee6cc8fdbbe593", null))))
 
 /atom/movable/screen/alert/status_effect/tower_of_babel
 	name = "Tower of babel"

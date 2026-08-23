@@ -25,11 +25,11 @@
 ///returns nothing with an alert instead of the message if it contains something in the ic filter, and sanitizes normally if the name is fine. It returns nothing so it backs out of the input the same way as if you had entered nothing.
 /proc/sanitize_name(target, allow_numbers = FALSE, cap_after_symbols = TRUE)
 	if(is_ic_filtered(target) || is_soft_ic_filtered(target))
-		tgui_alert(usr, LANG("_root.bbfb9915", null))
+		tgui_alert(usr, LANG("_root.bbfb99150c282dd1", null))
 		return ""
 	var/result = reject_bad_name(target, allow_numbers = allow_numbers, strict = TRUE, cap_after_symbols = cap_after_symbols)
 	if(!result)
-		tgui_alert(usr, LANG("_root.345b30b5", null))
+		tgui_alert(usr, LANG("_root.345b30b5e2a45eba", null))
 		return ""
 	return sanitize(result)
 

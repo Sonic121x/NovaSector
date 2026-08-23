@@ -219,7 +219,7 @@
 		if("select_lipstick_style")
 			var/list/their_loadout = manager.get_current_loadout()// NOVA EDIT CHANGE - Multiple loadout presets - ORIGINAL: var/list/their_loadout = manager.preferences.read_preference(/datum/preference/loadout)
 			var/old_style = their_loadout?[item_path]?[INFO_LAYER] || MIDDLE_LIP
-			var/chosen = tgui_input_list(user, LANG("datum.e406bbbe", null), LANG("datum.ecec67a0", null), list(UPPER_LIP, MIDDLE_LIP, LOWER_LIP), old_style)
+			var/chosen = tgui_input_list(user, LANG("datum.e406bbbe6761043e", null), LANG("datum.ecec67a09734065e", null), list(UPPER_LIP, MIDDLE_LIP, LOWER_LIP), old_style)
 			their_loadout =  manager.get_current_loadout()// NOVA EDIT CHANGE - Multiple loadout presets - ORIGINAL: their_loadout = manager.preferences.read_preference(/datum/preference/loadout) // after sleep: sanity check
 			if(their_loadout?[item_path]) // Validate they still have it equipped
 				their_loadout[item_path][INFO_LAYER] = chosen

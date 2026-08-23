@@ -46,11 +46,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 /obj/machinery/defibrillator_mount/examine(mob/user)
 	. = ..()
 	if(defib)
-		. += span_notice(LANG("obj.da2374a1", null))
+		. += span_notice(LANG("obj.da2374a160d1de89", null))
 		if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED)
-			. += span_notice(LANG("obj.23197a11", null))
+			. += span_notice(LANG("obj.23197a11cef6973c", null))
 		else
-			. += span_notice(LANG("obj.1d9f25dd", list(clamps_locked ? "dis" : "")))
+			. += span_notice(LANG("obj.1d9f25ddd2bb4a4b", list(clamps_locked ? "dis" : "")))
 
 /obj/machinery/defibrillator_mount/update_overlays()
 	. = ..()
@@ -76,30 +76,30 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 /obj/machinery/defibrillator_mount/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(!defib)
-		to_chat(user, span_warning(LANG("obj.df6749e8", null)))
+		to_chat(user, span_warning(LANG("obj.df6749e86a0a04ed", null)))
 		return
 	if(defib.paddles.loc != defib)
-		to_chat(user, span_warning(LANG("obj.1ca97c26", list(defib.paddles.loc == user ? "You are already" : "Someone else is", defib))))
+		to_chat(user, span_warning(LANG("obj.1ca97c2622501fcb", list(defib.paddles.loc == user ? "You are already" : "Someone else is", defib))))
 		return
 	if(!in_range(src, user))
-		to_chat(user, span_warning(LANG("obj.602c75ee", list(defib))))
+		to_chat(user, span_warning(LANG("obj.602c75ee4214bdb7", list(defib))))
 		return
 	user.put_in_hands(defib.paddles)
 
 /obj/machinery/defibrillator_mount/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/defibrillator))
 		if(defib)
-			to_chat(user, span_warning(LANG("obj.f3f623c6", list(src))))
+			to_chat(user, span_warning(LANG("obj.f3f623c6475c792c", list(src))))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/defibrillator/new_defib = tool
 		if(!new_defib.get_cell())
-			to_chat(user, span_warning(LANG("obj.829a8eb0", list(src))))
+			to_chat(user, span_warning(LANG("obj.829a8eb09c6b87df", list(src))))
 			return ITEM_INTERACT_BLOCKING
 		if(HAS_TRAIT(new_defib, TRAIT_NODROP) || !user.transferItemToLoc(new_defib, src))
-			to_chat(user, span_warning(LANG("obj.1dbf8014", list(new_defib))))
+			to_chat(user, span_warning(LANG("obj.1dbf8014c030d016", list(new_defib))))
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice(LANG("obj.4f2c832c", list(user, new_defib, src))), \
-		span_notice(LANG("obj.a44cf35f", list(new_defib))))
+		user.visible_message(span_notice(LANG("obj.4f2c832ca095c082", list(user, new_defib, src))), \
+		span_notice(LANG("obj.a44cf35fb7535b6a", list(new_defib))))
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 		// Make sure the defib is set before processing begins.
 		defib = new_defib
@@ -115,33 +115,33 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 		return NONE
 
 	if((!allowed(user) && SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_RED)) //anyone can toggle the clamps in red alert!
-		to_chat(user, span_warning(LANG("obj.21748dc0", null)))
+		to_chat(user, span_warning(LANG("obj.21748dc0198a9bbb", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!defib)
-		to_chat(user, span_warning(LANG("obj.e5a512fe", null)))
+		to_chat(user, span_warning(LANG("obj.e5a512fe177598eb", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	clamps_locked = !clamps_locked
-	to_chat(user, span_notice(LANG("obj.775e623f", list(clamps_locked ? "" : "dis"))))
+	to_chat(user, span_notice(LANG("obj.775e623f42a40224", list(clamps_locked ? "" : "dis"))))
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/defibrillator_mount/multitool_act(mob/living/user, obj/item/multitool)
 	..()
 	if(!defib)
-		to_chat(user, span_warning(LANG("obj.6ca3beee", null)))
+		to_chat(user, span_warning(LANG("obj.6ca3beeee9b61204", null)))
 		return TRUE
 	if(!clamps_locked)
-		to_chat(user, span_warning(LANG("obj.6b897277", list(src))))
+		to_chat(user, span_warning(LANG("obj.6b8972771fd158ef", list(src))))
 		return TRUE
-	user.visible_message(span_notice(LANG("obj.34d15c2f", list(user, multitool, src))), \
-	span_notice(LANG("obj.a051a656", list(src))))
+	user.visible_message(span_notice(LANG("obj.34d15c2f77155c9d", list(user, multitool, src))), \
+	span_notice(LANG("obj.a051a6563ba8de47", list(src))))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	if(!do_after(user, 10 SECONDS, target = src) || !clamps_locked)
 		return
-	user.visible_message(span_notice(LANG("obj.64dec7f6", list(user, multitool, src))), \
-	span_notice(LANG("obj.9bffaec0", list(src))))
+	user.visible_message(span_notice(LANG("obj.64dec7f6a1947a1a", list(user, multitool, src))), \
+	span_notice(LANG("obj.9bffaec05ad399a5", list(src))))
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, TRUE)
 	clamps_locked = FALSE
 	update_appearance()
@@ -153,29 +153,29 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 	if(user.combat_mode)
 		return ..()
 	if(defib)
-		to_chat(user, span_warning(LANG("obj.42450a4a", null)))
+		to_chat(user, span_warning(LANG("obj.42450a4ab1859cfc", null)))
 		..()
 		return TRUE
 	new wallframe_type(get_turf(src))
 	qdel(src)
 	tool.play_tool_sound(user)
-	to_chat(user, span_notice(LANG("obj.33a499d5", list(src))))
+	to_chat(user, span_notice(LANG("obj.33a499d5039d1d7c", list(src))))
 	return TRUE
 
 /obj/machinery/defibrillator_mount/click_alt(mob/living/carbon/user)
 	if(!defib)
-		to_chat(user, span_warning(LANG("obj.1039c3da", null)))
+		to_chat(user, span_warning(LANG("obj.1039c3dab857a9fa", null)))
 		return CLICK_ACTION_BLOCKING
 	if(clamps_locked)
-		to_chat(user, span_warning(LANG("obj.1457a0e4", list(defib))))
+		to_chat(user, span_warning(LANG("obj.1457a0e4b0b9ccd5", list(defib))))
 		return CLICK_ACTION_BLOCKING
 	if(!user.put_in_hands(defib))
-		to_chat(user, span_warning(LANG("obj.1dde8a16", null)))
-		user.visible_message(span_notice(LANG("obj.aa52b2dc", list(user, defib, src))), \
-		span_notice(LANG("obj.308f5f76", list(defib, src))))
+		to_chat(user, span_warning(LANG("obj.1dde8a164bdb08e8", null)))
+		user.visible_message(span_notice(LANG("obj.aa52b2dcd7128076", list(user, defib, src))), \
+		span_notice(LANG("obj.308f5f7658e78a38", list(defib, src))))
 	else
-		user.visible_message(span_notice(LANG("obj.752093ee", list(user, defib, src))), \
-		span_notice(LANG("obj.1e4ff0bb", list(defib, src))))
+		user.visible_message(span_notice(LANG("obj.752093ee8759230f", list(user, defib, src))), \
+		span_notice(LANG("obj.1e4ff0bbbe167d87", list(defib, src))))
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	return CLICK_ACTION_SUCCESS
 
@@ -249,10 +249,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 	if(user.combat_mode)
 		return ..()
 	if(defib)
-		to_chat(user, span_warning(LANG("obj.42450a4a", null)))
+		to_chat(user, span_warning(LANG("obj.42450a4ab1859cfc", null)))
 		..()
 		return TRUE
-	balloon_alert(user, LANG("obj.44f0e678", null))
+	balloon_alert(user, LANG("obj.44f0e678d88c8044", null))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 5 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)

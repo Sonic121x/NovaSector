@@ -21,7 +21,7 @@
 /datum/antagonist/slaughter/greet()
 	. = ..()
 	owner.announce_objectives()
-	to_chat(owner, span_warning(LANG("datum.b5df330d", null)))
+	to_chat(owner, span_warning(LANG("datum.b5df330df9eee2a5", null)))
 
 /datum/antagonist/slaughter/forge_objectives()
 	if(summoner)

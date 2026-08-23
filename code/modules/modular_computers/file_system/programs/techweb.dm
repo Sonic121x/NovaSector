@@ -35,7 +35,7 @@
 	if(QDELETED(used_multitool.buffer) || !istype(used_multitool.buffer, /datum/techweb))
 		return ITEM_INTERACT_BLOCKING
 	stored_research = used_multitool.buffer
-	computer.balloon_alert(user, LANG("datum.0624d195", null))
+	computer.balloon_alert(user, LANG("datum.0624d1959b8eaa2d", null))
 	return ITEM_INTERACT_SUCCESS
 
 /datum/computer_file/program/science/ui_assets(mob/user)
@@ -98,18 +98,18 @@
 	. = ..()
 	// Check if the console is locked to block any actions occuring
 	if (locked && action != "toggleLock")
-		computer.say(LANG("datum.647b971b", null))
+		computer.say(LANG("datum.647b971b5edcbdc9", null))
 		return TRUE
 
 	switch (action)
 		if ("toggleLock")
 			if(computer.obj_flags & EMAGGED)
-				to_chat(usr, span_boldwarning(LANG("datum.45bb9000", null)))
+				to_chat(usr, span_boldwarning(LANG("datum.45bb9000b7c94bb6", null)))
 				return TRUE
 			if(lock_access in computer?.stored_id?.access)
 				locked = !locked
 			else
-				to_chat(usr, span_boldwarning(LANG("datum.819506be", null)))
+				to_chat(usr, span_boldwarning(LANG("datum.819506be3e7684ae", null)))
 			return TRUE
 		if ("researchNode")
 			research_node(params["node_id"], usr)
@@ -223,25 +223,25 @@
 
 /datum/computer_file/program/science/proc/enqueue_node(id, mob/user)
 	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		computer.say(LANG("datum.d0d6c45f", null))
+		computer.say(LANG("datum.d0d6c45f12db34e9", null))
 		return FALSE
 	stored_research.enqueue_node(id, user)
 	return TRUE
 
 /datum/computer_file/program/science/proc/dequeue_node(id, mob/user)
 	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		computer.say(LANG("datum.a58ea08a", null))
+		computer.say(LANG("datum.a58ea08a5e2c7b84", null))
 		return FALSE
 	stored_research.dequeue_node(id, user)
 	return TRUE
 
 /datum/computer_file/program/science/proc/research_node(id, mob/user)
 	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		computer.say(LANG("datum.c8163dbe", null))
+		computer.say(LANG("datum.c8163dbe367f03db", null))
 		return FALSE
 	var/datum/techweb_node/tech_node = SSresearch.techweb_node_by_id(id)
 	if(!istype(tech_node))
-		computer.say(LANG("datum.82fe29cd", null))
+		computer.say(LANG("datum.82fe29cde43ce4b9", null))
 		return FALSE
 	var/list/price = tech_node.get_price(stored_research)
 	if(stored_research.can_afford(price))
@@ -249,7 +249,7 @@
 		if(istype(stored_research, /datum/techweb/science))
 			SSblackbox.record_feedback("associative", "science_techweb_unlock", 1, list("id" = "[id]", "name" = tech_node.display_name, "price" = "[json_encode(price)]", "time" = ISOtime()))
 		if(stored_research.research_node_id(id))
-			computer.say(LANG("datum.9d1c2f30", list(tech_node.display_name)))
+			computer.say(LANG("datum.9d1c2f30413f1470", list(tech_node.display_name)))
 			var/logname = "Unknown"
 			if(HAS_AI_ACCESS(user))
 				logname = "AI [user.name]"
@@ -274,7 +274,7 @@
 			))
 			return TRUE
 		else
-			computer.say(LANG("datum.4e8cca8a", null))
+			computer.say(LANG("datum.4e8cca8a706a86f7", null))
 			return FALSE
-	computer.say(LANG("datum.8a4d3feb", null))
+	computer.say(LANG("datum.8a4d3febf4c65c82", null))
 	return FALSE

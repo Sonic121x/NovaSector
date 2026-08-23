@@ -48,13 +48,13 @@
 		return
 
 	if(params["implant_action"] == "warn")
-		var/warning = tgui_input_text(user, LANG("obj.09ca1f81", list(imp_in.name)), LANG("obj.0a5ca72d", null), max_length = MAX_MESSAGE_LEN)
+		var/warning = tgui_input_text(user, LANG("obj.09ca1f813f01e1f7", list(imp_in.name)), LANG("obj.0a5ca72d9fea0bca", null), max_length = MAX_MESSAGE_LEN)
 		if(!warning || QDELETED(src) || QDELETED(user) || QDELETED(console) || isnull(imp_in))
 			return TRUE
 		if(!console.is_operational || !user.can_perform_action(console, NEED_DEXTERITY|ALLOW_SILICON_REACH))
 			return TRUE
 
-		to_chat(imp_in, span_hear(LANG("obj.d667566a", list(warning))))
+		to_chat(imp_in, span_hear(LANG("obj.d667566a22f280b9", list(warning))))
 		log_directed_talk(user, imp_in, warning, LOG_SAY, "implant message")
 		return TRUE
 

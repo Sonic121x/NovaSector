@@ -87,7 +87,7 @@
 	target_nifsoft.fake_laws = laws_to_assign
 
 /obj/item/disk/nifsoft_uploader/dorms/contract/attack_self(mob/user, list/modifiers)
-	var/new_law = tgui_input_text(user, LANG("obj.79d270be", null), src, laws_to_assign, max_length = MAX_MESSAGE_LEN)
+	var/new_law = tgui_input_text(user, LANG("obj.79d270be2792034a", null), src, laws_to_assign, max_length = MAX_MESSAGE_LEN)
 	if(!new_law)
 		return FALSE
 

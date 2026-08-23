@@ -16,6 +16,6 @@
 
 /obj/item/book/granter/action/spell/forcewall/recoil(mob/living/user)
 	. = ..()
-	to_chat(user, span_warning(LANG("obj.52704779", null)))
+	to_chat(user, span_warning(LANG("obj.527047798c295b86", null)))
 	user.Stun(4 SECONDS, ignore_canstun = TRUE)
 	user.petrify(6 SECONDS)

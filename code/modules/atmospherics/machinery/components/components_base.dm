@@ -241,7 +241,7 @@
 /obj/machinery/atmospherics/components/ui_status(mob/user, datum/ui_state/state)
 	if(allowed(user))
 		return ..()
-	to_chat(user, span_danger(LANG("obj.077f9b52", null)))
+	to_chat(user, span_danger(LANG("obj.077f9b52c530e7f8", null)))
 	return UI_CLOSE
 
 // Tool acts
@@ -254,7 +254,7 @@
  */
 /obj/machinery/atmospherics/components/proc/crowbar_deconstruction_act(mob/living/user, obj/item/tool, internal_pressure = 0)
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.de78deee", null))
+		balloon_alert(user, LANG("obj.de78deeeb898303d", null))
 		return ITEM_INTERACT_SUCCESS
 
 	var/unsafe_wrenching = FALSE
@@ -271,12 +271,12 @@
 	if(!filled_pipe)
 		return default_deconstruction_crowbar(user, tool)
 
-	to_chat(user, span_notice(LANG("obj.84b25bb7", list(src))))
+	to_chat(user, span_notice(LANG("obj.84b25bb7640cc2b0", list(src))))
 
 	internal_pressure -= environment_air.return_pressure()
 
 	if(internal_pressure > 2 * ONE_ATMOSPHERE)
-		to_chat(user, span_warning(LANG("obj.85919bd0", list(src))))
+		to_chat(user, span_warning(LANG("obj.85919bd0d89b5593", list(src))))
 		unsafe_wrenching = TRUE
 
 	if(!do_after(user, 2 SECONDS, src))

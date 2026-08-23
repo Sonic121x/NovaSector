@@ -79,8 +79,8 @@
 	if(stat == DEAD)
 		return
 	visible_message(
-		span_danger(LANG("mob.2491f032", list(src))),
-		span_userdanger(LANG("mob.f31f655a", null)),
+		span_danger(LANG("mob.2491f032dfd4d500", list(src))),
+		span_userdanger(LANG("mob.f31f655a6b0812a5", null)),
 	)
 	apply_damage(500) //ouch
 
@@ -124,11 +124,11 @@
 
 	. = ITEM_INTERACT_BLOCKING
 	if(held_mob.stat == DEAD)
-		user.balloon_alert(user, LANG("obj.5f159f3d", null))
+		user.balloon_alert(user, LANG("obj.5f159f3d51512a3c", null))
 		return
 
 	if(locate(type) in interacting_with)
-		user.balloon_alert(user, LANG("obj.5881ef41", null))
+		user.balloon_alert(user, LANG("obj.5881ef41306a9dfe", null))
 		return
 
 	if(!do_after(user, 2 SECONDS, interacting_with))

@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(ckey_to_sooc_name)
 GAME_VERB(/client, sooc, "安保 OOC", "OOC")
 	VERB_ARG(msg, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger(LANG("client.b79ad8a3", null)))
+		to_chat(usr, span_danger(LANG("client.b79ad8a388d1b3a4", null)))
 		return
 
 	if(!mob)
@@ -18,16 +18,16 @@ GAME_VERB(/client, sooc, "安保 OOC", "OOC")
 	if(!holder)
 		var/job = mob?.mind.assigned_role.title
 		if(!job || !job_lookup[job])
-			to_chat(src, span_danger(LANG("client.2d3c1ccc", null)))
+			to_chat(src, span_danger(LANG("client.2d3c1ccc8de8cd93", null)))
 			return
 		if(!GLOB.sooc_allowed)
-			to_chat(src, span_danger(LANG("client.7b81d1c7", null)))
+			to_chat(src, span_danger(LANG("client.7b81d1c7f84c37cd", null)))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, span_danger(LANG("client.058db9ff", null)))
+			to_chat(src, span_danger(LANG("client.058db9ff84dbe18d", null)))
 			return
 	if(is_banned_from(ckey, "OOC"))
-		to_chat(src, span_danger(LANG("client.aaaae170", null)))
+		to_chat(src, span_danger(LANG("client.aaaae170c8fb6787", null)))
 		return
 	if(QDELETED(src))
 		return
@@ -41,7 +41,7 @@ GAME_VERB(/client, sooc, "安保 OOC", "OOC")
 	msg = emoji_parse(msg)
 
 	if(!(prefs.chat_toggles & CHAT_OOC))
-		to_chat(src, span_danger(LANG("client.a877c979", null)))
+		to_chat(src, span_danger(LANG("client.a877c979d7d49962", null)))
 		return
 
 	mob.log_talk(raw_msg, LOG_OOC, tag="SOOC")
@@ -73,7 +73,7 @@ GAME_VERB(/client, sooc, "安保 OOC", "OOC")
 		var/mode = listeners[iterated_client]
 		var/color = (!anon && CONFIG_GET(flag/allow_admin_ooccolor) && iterated_client?.prefs?.read_preference(/datum/preference/color/ooc_color)) ? iterated_client?.prefs?.read_preference(/datum/preference/color/ooc_color) : GLOB.SOOC_COLOR
 		var/name = (mode == SOOC_LISTEN_ADMIN && anon) ? "([key])[keyname]" : keyname
-		to_chat(iterated_client, span_oocplain(LANG("client.673249a7", list(color, name, msg))), avoid_highlighting = (iterated_client == src))
+		to_chat(iterated_client, span_oocplain(LANG("client.673249a7bf265186", list(color, name, msg))), avoid_highlighting = (iterated_client == src))
 
 #undef SOOC_LISTEN_PLAYER
 #undef SOOC_LISTEN_ADMIN
@@ -99,7 +99,7 @@ GAME_VERB(/client, sooc, "安保 OOC", "OOC")
 					listeners[iterated_mob.client] = TRUE
 	for(var/iterated_listener in listeners)
 		var/client/iterated_client = iterated_listener
-		to_chat(iterated_client, span_oocplain(LANG("_root.76719f4c", list(GLOB.sooc_allowed ? "enabled" : "disabled"))))
+		to_chat(iterated_client, span_oocplain(LANG("_root.76719f4cf5e89c52", list(GLOB.sooc_allowed ? "enabled" : "disabled"))))
 
 ADMIN_VERB(togglesooc, R_ADMIN, "切换安保 OOC", "Toggles Security OOC.", ADMIN_CATEGORY_SERVER)
 	toggle_sooc()

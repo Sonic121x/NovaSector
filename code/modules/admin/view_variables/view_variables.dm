@@ -11,7 +11,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(debug_variables, R_NONE, "查看变量", /datum)
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
 
 	if(!usr.client || !usr.client.holder) //This is usr because admins can call the proc on other clients, even if they're not admins, to show them VVs.
-		to_chat(usr, span_danger(LANG("client.e2f0bb8e", null)), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("client.e2f0bb8e856ac513", null)), confidential = TRUE)
 		return
 
 	if(!thing)

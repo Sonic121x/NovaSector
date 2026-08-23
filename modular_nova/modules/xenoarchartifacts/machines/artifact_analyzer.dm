@@ -99,10 +99,10 @@
 		else
 			results = get_scan_info(scanned_object)
 		owned_scanner.icon_state = "xenoarch_scanner"
-		say(LANG("obj.89cc9b10", null))
+		say(LANG("obj.89cc9b10dc9c9293", null))
 		var/obj/item/paper/artifact_info/artifact_report = new(get_turf(src))
 		artifact_report.name = "[src] report #[++report_num]"
-		artifact_report.add_raw_text(LANG("obj.9900af23", list(src, report_num)))
+		artifact_report.add_raw_text(LANG("obj.9900af230b95df98", list(src, report_num)))
 		artifact_report.add_raw_text("<br>")
 		artifact_report.add_raw_text("[scanned_object] -- [results]")
 		artifact_report.update_icon()
@@ -140,7 +140,7 @@
 		if(!owned_scanner)
 			reconnect_scanner()
 		if(!owned_scanner)
-			say(LANG("obj.1995d690", null))
+			say(LANG("obj.1995d690ef15b2d1", null))
 			return
 
 		var/turf/scanner_turf = get_turf(owned_scanner)
@@ -159,17 +159,17 @@
 				break
 		var/obj/machinery/artifact/possible_artifact = scanned_object
 		if(!possible_artifact)
-			say(LANG("obj.ae2bb84c", null))
+			say(LANG("obj.ae2bb84c83914dfc", null))
 			return
 		if(possible_artifact.being_used)
-			say(LANG("obj.7dbfa79a", null))
+			say(LANG("obj.7dbfa79ae76bbb33", null))
 			playsound(src, 'sound/machines/buzz/buzz-two.ogg', 25, FALSE)
 			return
 
 		possible_artifact.being_used = TRUE
 		scan_in_progress = TRUE
 		scan_completion_time = world.time + scan_duration
-		say(LANG("obj.53951422", null))
+		say(LANG("obj.539514222aece05a", null))
 		owned_scanner.icon_state = "xenoarch_scanner_scanning"
 		flick("xenoarch_console_working", src)
 		return
@@ -179,7 +179,7 @@
 		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
 		scan_in_progress = FALSE
 		owned_scanner.icon_state = "xenoarch_scanner"
-		say(LANG("obj.6bc36b0e", null))
+		say(LANG("obj.6bc36b0e5957916e", null))
 		return
 
 	// Default: refresh UI only if needed

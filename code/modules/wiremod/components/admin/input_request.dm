@@ -60,12 +60,12 @@
 	var/new_option = input_options.value
 	switch(new_option)
 		if(COMP_INPUT_STRING)
-			var/player_input = tgui_input_text(player, LANG("obj.6cf41d4c", null), LANG("obj.79168a41", null), max_length = MAX_MESSAGE_LEN)
+			var/player_input = tgui_input_text(player, LANG("obj.6cf41d4c5fdc4635", null), LANG("obj.79168a41b82fcc59", null), max_length = MAX_MESSAGE_LEN)
 			if(isnull(player_input))
 				return
 			input_response.set_output(player_input)
 		if(COMP_INPUT_NUMBER)
-			var/player_input = tgui_input_number(player, LANG("obj.6cf41d4c", null), LANG("obj.79168a41", null))
+			var/player_input = tgui_input_number(player, LANG("obj.6cf41d4c5fdc4635", null), LANG("obj.79168a41b82fcc59", null))
 			if(isnull(player_input))
 				return
 			input_response.set_output(player_input)
@@ -73,7 +73,7 @@
 			var/list/data = parameter.value
 			if(!islist(data))
 				return
-			var/player_input = tgui_input_list(player, LANG("obj.6cf41d4c", null), LANG("obj.79168a41", null), data)
+			var/player_input = tgui_input_list(player, LANG("obj.6cf41d4c5fdc4635", null), LANG("obj.79168a41b82fcc59", null), data)
 			if(isnull(player_input))
 				return
 			input_response.set_output(player_input)

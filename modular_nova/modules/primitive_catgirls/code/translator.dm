@@ -11,11 +11,11 @@
 
 /obj/item/clothing/neck/necklace/translator/hearthkin/equip_feedback(mob/living/carbon/human/equipper)
 	to_chat(equipper, span_notice( \
-		LANG("obj.30c9ac8d", list(initial(language_granted.name), initial(language_granted.name))) \
+		LANG("obj.30c9ac8d1c78406e", list(initial(language_granted.name), initial(language_granted.name))) \
 	))
 
 
 /obj/item/clothing/neck/necklace/translator/hearthkin/unequip_feedback(mob/living/carbon/human/unequipper)
 	to_chat(unequipper, span_boldnotice( \
-		LANG("obj.d8978b52", list(src, initial(language_granted.name))) \
+		LANG("obj.d8978b52fad43199", list(src, initial(language_granted.name))) \
 	))

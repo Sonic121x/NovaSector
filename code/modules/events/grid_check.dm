@@ -23,7 +23,7 @@
 			CRASH("event started without controller!")
 		if(!COOLDOWN_FINISHED(controller, announcement_spam_protection))
 			return
-	priority_announce(LANG("datum.be6cda49", list(station_name())), "Critical Power Failure", ANNOUNCER_POWEROFF)
+	priority_announce(LANG("datum.be6cda49d5078099", list(station_name())), "Critical Power Failure", ANNOUNCER_POWEROFF)
 	if(!fake) // Only start the CD if we're real
 		COOLDOWN_START(controller, announcement_spam_protection, 30 SECONDS)
 

@@ -168,13 +168,13 @@
 	var/targetedsomewhere = FALSE
 //and there is code for successful check, so we are whipping someone
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger(LANG("obj.8d0a0182", list(target))))
+		to_chat(user, span_danger(LANG("obj.8d0a01828f0e2a19", list(target))))
 		return
 	switch(user.zone_selected) //to let code know what part of body we gonna whip
 		if(BODY_ZONE_L_LEG)
 			targetedsomewhere = TRUE
 			if(!target.has_feet())
-				to_chat(user, span_danger(LANG("obj.a9f6f816", list(target))))
+				to_chat(user, span_danger(LANG("obj.a9f6f8166cd6bfc5", list(target))))
 				return
 			if(current_whip_type == "hard")
 				message = (user == target) ? pick("Knocks [target.p_them()]self down with [src]", "Uses [src] to knock [target.p_them()]self on the ground") : pick("drops [target] to the ground with [src]", "uses [src] to put [target] on [target.p_their()] knees")
@@ -200,7 +200,7 @@
 		if(BODY_ZONE_R_LEG)
 			targetedsomewhere = TRUE
 			if(!target.has_feet())
-				to_chat(user, span_danger(LANG("obj.5cbada26", list(target))))
+				to_chat(user, span_danger(LANG("obj.5cbada26149a8baf", list(target))))
 				return
 			if(current_whip_type == "hard")
 				message = (user == target) ? pick("knocks [target.p_them()]self down with [src]", "uses [src] to knock [target.p_them()]self on the ground") : pick("Hardly drops [target] on the ground with [src]", "uses [src] to put [target] on [target.p_their()] knees")
@@ -235,7 +235,7 @@
 		if(BODY_ZONE_PRECISE_GROIN)
 			targetedsomewhere = TRUE
 			if(!target.is_bottomless())
-				to_chat(user, span_danger(LANG("obj.6b7eb5bf", list(target))))
+				to_chat(user, span_danger(LANG("obj.6b7eb5bf20160db4", list(target))))
 				return
 			if(current_whip_type == "weak")
 				message = (user == target) ? pick("whips [target.p_them()]self with [src]", "flogs [target.p_them()]self with [src]") :pick("playfully flogs [target]'s thighs with [src]", "flogs [target] with [src]", "mercilessly flogs [target] with [src]")
@@ -296,9 +296,9 @@
 	toggle_mode()
 	switch(current_whip_type)
 		if("hard")
-			to_chat(user, span_notice(LANG("obj.9791a27b", list(src))))
+			to_chat(user, span_notice(LANG("obj.9791a27bad53e7f0", list(src))))
 		if("weak")
-			to_chat(user, span_notice(LANG("obj.a8075e2f", list(src))))
+			to_chat(user, span_notice(LANG("obj.a8075e2f93bd4df3", list(src))))
 	update_icon()
 	update_icon_state()
 

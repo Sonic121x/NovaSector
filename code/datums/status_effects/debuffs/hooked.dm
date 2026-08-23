@@ -33,11 +33,11 @@
 		return
 	if(!owner.can_resist())
 		return
-	owner.balloon_alert(owner, LANG("atom.3ae58ac5", null))
+	owner.balloon_alert(owner, LANG("atom.3ae58ac51b09784a", null))
 	var/datum/status_effect/grouped/hooked/effect = owner.has_status_effect(attached_effect.type)
 	if(!effect.try_unhook())
 		return
-	owner.balloon_alert(owner, LANG("atom.b5eb7b3d", null))
+	owner.balloon_alert(owner, LANG("atom.b5eb7b3ddf6d0c36", null))
 	var/datum/beam/held/rand_source = pick(effect.sources)
 	qdel(rand_source)
 

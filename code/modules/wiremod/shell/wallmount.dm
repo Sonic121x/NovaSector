@@ -16,11 +16,11 @@
 /obj/structure/wallmount_circuit/wrench_act(mob/living/user, obj/item/tool)
 	var/datum/component/shell/shell_comp = GetComponent(/datum/component/shell)
 	if(shell_comp.locked)
-		balloon_alert(user, LANG("obj.5d71bae2", null))
+		balloon_alert(user, LANG("obj.5d71bae27aaf9422", null))
 		return ITEM_INTERACT_FAILURE
-	to_chat(user, span_notice(LANG("obj.3dbc9724", null)))
+	to_chat(user, span_notice(LANG("obj.3dbc9724772ee843", null)))
 	if(tool.use_tool(src, user, 40, volume=50))
-		to_chat(user, span_notice(LANG("obj.b659bb13", null)))
+		to_chat(user, span_notice(LANG("obj.b659bb1327da979b", null)))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 		deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS

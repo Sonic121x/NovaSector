@@ -59,7 +59,7 @@
 		finish_action(controller, FALSE)
 		return
 
-	victim.visible_message(span_warning(LANG("datum.4c436cd8", list(living_pawn, target, victim))), span_danger(LANG("datum.67d81504", list(living_pawn, target))))
+	victim.visible_message(span_warning(LANG("datum.4c436cd82a686802", list(living_pawn, target, victim))), span_danger(LANG("datum.67d815043b4cf681", list(living_pawn, target))))
 	controller.set_blackboard_key(BB_MONKEY_PICKPOCKETING, TRUE)
 
 	var/success = FALSE
@@ -67,7 +67,7 @@
 	if(do_after(living_pawn, MONKEY_ITEM_SNATCH_DELAY, victim) && target && victim.IsReachableBy(living_pawn))
 		for(var/obj/item/I in victim.held_items)
 			if(I == target)
-				victim.visible_message(span_danger(LANG("datum.61694db5", list(living_pawn, target, victim))), span_userdanger(LANG("datum.ef984e8a", list(living_pawn, target))))
+				victim.visible_message(span_danger(LANG("datum.61694db59c35a1bd", list(living_pawn, target, victim))), span_userdanger(LANG("datum.ef984e8ac8211261", list(living_pawn, target))))
 				if(victim.temporarilyRemoveItemFromInventory(target))
 					// NOVA EDIT CHANGE START - 抢夺中途猴子被打死会把武器留在 nullspace（永久消失）
 					// temporarilyRemoveItemFromInventory 先把物品挪进 nullspace，之后每一环都依赖
@@ -90,7 +90,7 @@
 						break
 					// NOVA EDIT CHANGE END
 				else
-					victim.visible_message(span_danger(LANG("datum.99c53414", list(living_pawn, target, victim))), span_userdanger(LANG("datum.0782927d", list(living_pawn, target))))
+					victim.visible_message(span_danger(LANG("datum.99c53414744b8aab", list(living_pawn, target, victim))), span_userdanger(LANG("datum.0782927d597f53e9", list(living_pawn, target))))
 
 	finish_action(controller, success)
 

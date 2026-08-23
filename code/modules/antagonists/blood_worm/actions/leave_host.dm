@@ -22,11 +22,11 @@
 	var/mob/living/carbon/human/host = worm.host
 
 	host.visible_message(
-		message = span_danger(LANG("datum.2aecc8d1", list(host, host.p_s(), host.p_s()))),
+		message = span_danger(LANG("datum.2aecc8d18d27edc3", list(host, host.p_s(), host.p_s()))),
 		ignored_mobs = owner
 	)
 
-	to_chat(owner, span_danger(LANG("datum.5185a565", null)))
+	to_chat(owner, span_danger(LANG("datum.5185a56568e6642d", null)))
 
 	host.add_traits(list(TRAIT_FLOORED, TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED), REF(src))
 

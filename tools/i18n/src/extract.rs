@@ -17,7 +17,8 @@ use std::path::Path;
 use dm::ast::{AssignOp, Expression, Follow, Statement, Term};
 
 use crate::catalog::Catalog;
-use crate::keys::{make_key, namespace_for};
+use crate::keys::{is_v2_key, make_key, namespace_for};
+use crate::semantics::{block_is_pure, native_dialog_no_usr, resolve_sink_arg, sink_message_args};
 use crate::template::{build_template, placeholder_count};
 
 /// 视为玩家可见的变量名。
@@ -53,10 +54,43 @@ struct TypeVarKeys {
 ///
 /// **维护方式是可证伪的**：改动这张表之后跑 `nova-i18n lint`，碰撞告警数不许比基线多。
 const ATTACK_VERB_IDENT_BLOCKLIST: &[&str] = &[
-    "ban", "beep", "burn", "call", "calls", "charge", "colour", "dump", "filter", "filters",
-    "grind", "hack", "hammer", "heal", "hug", "nuke", "pierce", "plants", "play", "plays",
-    "probe", "scan", "shear", "shred", "siphon", "smite", "socks", "stamp", "stomp", "strike",
-    "stun", "surgeries", "surgery", "swords", "tong", "update", "warn",
+    "ban",
+    "beep",
+    "burn",
+    "call",
+    "calls",
+    "charge",
+    "colour",
+    "dump",
+    "filter",
+    "filters",
+    "grind",
+    "hack",
+    "hammer",
+    "heal",
+    "hug",
+    "nuke",
+    "pierce",
+    "plants",
+    "play",
+    "plays",
+    "probe",
+    "scan",
+    "shear",
+    "shred",
+    "siphon",
+    "smite",
+    "socks",
+    "stamp",
+    "stomp",
+    "strike",
+    "stun",
+    "surgeries",
+    "surgery",
+    "swords",
+    "tong",
+    "update",
+    "warn",
 ];
 
 const SINK_VARS: &[&str] = &[
@@ -90,7 +124,7 @@ const SINK_VARS: &[&str] = &[
     "flavor_text",
     "title",
     // 其它可靠的玩家可见显示字段（type 变量；非 desc 的别名 / 专有显示串）。
-    "description",      // /datum/reagent 等用 description（非 desc）——之前完全漏抽。
+    "description",       // /datum/reagent 等用 description（非 desc）——之前完全漏抽。
     "taste_description", // 试剂味道（"It tastes of …"）。
     // /datum/disease 的两个纯显示字段：form（"Advanced Disease"，医疗扫描的「Warning: … detected」）、
     // agent（"advance microbes"，病毒学面板的病原体名）。全仓无 `== ` 比较，翻显示安全。
@@ -274,7 +308,12 @@ pub fn is_examine_accumulator(id: &str) -> bool {
         // 均 `+= span_*("…")` 拼成 to_chat 的玩家可见体检报告）。
         // readout=武器战斗信息标签（weapon_description/baton 等 11 文件，`readout += "…"` 拼成 to_chat 的
         // 「See combat information」面板，含「约需 {0} 击倒敌人」等插值行 → 改 LANG 才能翻插值结构）。
-        "examine_list" | "examine_text" | "examine_strings" | "combined_msg" | "check_list" | "readout"
+        "examine_list"
+            | "examine_text"
+            | "examine_strings"
+            | "combined_msg"
+            | "check_list"
+            | "readout"
     )
 }
 
@@ -325,7 +364,12 @@ fn split_interp_parts(expr: &Expression) -> Vec<&Expression> {
 
 fn split_concat_parts(expr: &Expression) -> Vec<&Expression> {
     fn flatten<'e>(e: &'e Expression, out: &mut Vec<&'e Expression>) {
-        if let Expression::BinaryOp { op: dm::ast::BinaryOp::Add, lhs, rhs } = e {
+        if let Expression::BinaryOp {
+            op: dm::ast::BinaryOp::Add,
+            lhs,
+            rhs,
+        } = e
+        {
             flatten(lhs, out);
             flatten(rhs, out);
         } else {
@@ -346,13 +390,19 @@ fn is_examine_sentence(t: &str) -> bool {
         return false;
     }
     let starts_ok = trimmed.starts_with('{')
-        || trimmed.chars().next().is_some_and(|c| c.is_ascii_uppercase());
+        || trimmed
+            .chars()
+            .next()
+            .is_some_and(|c| c.is_ascii_uppercase());
     if !starts_ok {
         return false;
     }
     let body = trimmed.trim_end_matches(|c: char| c.is_whitespace());
     let body = body.strip_suffix("\\n").unwrap_or(body).trim_end();
-    matches!(body.chars().last(), Some('.') | Some('!') | Some('?') | Some(':'))
+    matches!(
+        body.chars().last(),
+        Some('.') | Some('!') | Some('?') | Some(':')
+    )
 }
 
 fn is_sentence_like(s: &str) -> bool {
@@ -447,7 +497,9 @@ fn identifier_policy() -> &'static IdentifierPolicy {
 /// tgui_input_list 的 act 回传标识符，进目录会被 lint 判碰撞（is_sentence_like 无句末标点闸，
 /// "Send to custom" 这类短语能穿过）。按变量名后缀排除。
 fn is_option_accumulator(id: &str) -> bool {
-    id.ends_with("options") || id.ends_with("choices") || id.ends_with("buttons")
+    id.ends_with("options")
+        || id.ends_with("choices")
+        || id.ends_with("buttons")
         || id.ends_with("items")
 }
 
@@ -708,7 +760,10 @@ fn emit_perk_strings(expr: &Expression, ns: &str, catalog: &mut Catalog) {
             };
             for arg in args.iter() {
                 if let Expression::AssignOp { lhs, rhs, .. } = arg {
-                    if matches!(build_template(lhs).as_deref(), Some("name") | Some("description")) {
+                    if matches!(
+                        build_template(lhs).as_deref(),
+                        Some("name") | Some("description")
+                    ) {
                         if let Some(t) = build_template(rhs) {
                             emit(catalog, ns, &t);
                         }
@@ -872,11 +927,7 @@ fn for_each_statement_block(stmt: &Statement, f: &mut impl FnMut(&[dm::ast::Span
 ///   · **类型是 atom**（`/obj`|`/mob`|`/turf`|`/area`）：atom 的 name/desc 按定义是显示文本，
 ///     而 `/datum/...` 的 name 里标识符浓度很高（verb 元数据、资源 id）—— 与 MT 那条 atom-scope
 ///     判据同源，都是「`#name` 本身不足以证明它是文案」。
-fn walk_name_assignments(
-    block: &[dm::ast::Spanned<Statement>],
-    ns: &str,
-    catalog: &mut Catalog,
-) {
+fn walk_name_assignments(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog: &mut Catalog) {
     for stmt in block.iter() {
         for_each_statement_expr(&stmt.elem, &mut |expr| {
             let Expression::AssignOp { lhs, rhs, .. } = expr else {
@@ -894,7 +945,11 @@ fn walk_name_assignments(
             if !matches!(target, Some("name") | Some("desc")) {
                 return;
             }
-            let Expression::Base { term: value, follow: value_follow } = rhs.as_ref() else {
+            let Expression::Base {
+                term: value,
+                follow: value_follow,
+            } = rhs.as_ref()
+            else {
                 return;
             };
             if !value_follow.is_empty() {
@@ -1017,10 +1072,7 @@ fn collect_lang_arg_idents_block(
     }
 }
 
-fn collect_lang_arg_idents_expr(
-    expr: &Expression,
-    out: &mut std::collections::HashSet<String>,
-) {
+fn collect_lang_arg_idents_expr(expr: &Expression, out: &mut std::collections::HashSet<String>) {
     match expr {
         Expression::Base { term, follow } => {
             if let Term::Call(name, args) = &term.elem {
@@ -1032,9 +1084,15 @@ fn collect_lang_arg_idents_expr(
                 // 的槽」，一次抽取就混进单测断言串（`SSShe isss ssso sssasssy`）、单位格式化的期望值
                 // （`535 mA`）、管理面板 HTML 骨架、`callback.object is null.` 这类调试串 —— 而目录
                 // 只增不减，脏键进去就永久留着。只认 sink 调用的实参这一种形状。
-                if sink_message_args(name.as_str()).is_some() {
-                    for a in args.iter() {
-                        collect_interp_slot_idents(a, out);
+                if let Some(indices) = sink_message_args(name.as_str()) {
+                    let skip_two = native_dialog_no_usr(name.as_str(), args);
+                    for &idx in indices {
+                        if skip_two && idx == 2 {
+                            continue;
+                        }
+                        if let Some((_, arg)) = resolve_sink_arg(name.as_str(), idx, args) {
+                            collect_interp_slot_idents(arg, out);
+                        }
                     }
                 }
                 if let Some(idx) = lang_format_key_index(name.as_str()) {
@@ -1059,6 +1117,17 @@ fn collect_lang_arg_idents_expr(
             }
             for f in follow.iter() {
                 if let Follow::Call(_, name, args) = &f.elem {
+                    if let Some(indices) = sink_message_args(name.as_str()) {
+                        let skip_two = native_dialog_no_usr(name.as_str(), args);
+                        for &idx in indices {
+                            if skip_two && idx == 2 {
+                                continue;
+                            }
+                            if let Some((_, arg)) = resolve_sink_arg(name.as_str(), idx, args) {
+                                collect_interp_slot_idents(arg, out);
+                            }
+                        }
+                    }
                     if let Some(idx) = lang_format_key_index(name.as_str()) {
                         for (i, a) in args.iter().enumerate() {
                             if i > idx {
@@ -1243,73 +1312,7 @@ fn walk_examine_tags(
     }
 }
 
-/// 汇聚点 proc 名 -> 其消息参数下标。
-fn sink_message_args(name: &str) -> Option<&'static [usize]> {
-    match name {
-        "to_chat" => Some(&[1]),
-        "balloon_alert" => Some(&[1]),
-        // 群发气泡警告：balloon_alert_to_viewers(message, self_message, …) / _to_hearers 同签名。
-        // [0]=观众消息 [1]=自身消息，均玩家可见（如阀门 "valve opened"）。与 rewrite.rs 同表。
-        "balloon_alert_to_viewers" => Some(&[0, 1]),
-        "balloon_alert_to_hearers" => Some(&[0, 1]),
-        "visible_message" => Some(&[0, 1, 2]), // [2]=blind_message（盲人可见）。
-        "audible_message" => Some(&[0, 1, 3]),
-        "say" => Some(&[0]),
-        "manual_emote" => Some(&[0]),
-        // 提示/对话框（玩家可见）。只取消息+标题；按钮/选项列表/返回值不动，
-        // 以免破坏 `if(alert(...) == "Yes")` 之类的比较。原生 alert/input 的位置实参随「有没有 usr」
-        // 整体平移一位（有 usr 时 [2]=标题、该抽；无 usr 时 [2]=按钮/默认值、绝不能抽），判据见
-        // native_dialog_no_usr。**必须与 rewrite.rs 同表**，否则 rewrite 会生成目录里没有的 key。
-        "alert" => Some(&[0, 1, 2]),
-        "input" => Some(&[0, 1, 2]),
-        "tgui_alert" => Some(&[1, 2]),
-        "tgui_input_list" => Some(&[1, 2]),
-        "tgui_input_text" => Some(&[1, 2]),
-        "tgui_input_number" => Some(&[1, 2]),
-        // 中央指挥部/站内公告（玩家可见正文+标题）。[0]=正文 [1]=标题。**非插值**公告仅抽取、显示靠
-        // priority_announce.dm 的运行时整串反查 + AC（零 churn）；但 rewrite.rs 对**带 [插值] 的**公告会
-        // 改写为 LANG（反查需精确整串、AC 排除占位符，二者都够不着插值公告——典型：安全等级公告
-        // `[等级文案]\n\nA summary has been copied…`，文案插值后整串反查 miss、suffix 含 {0} 不进 AC）。
-        "priority_announce" => Some(&[0, 1]),
-        "minor_announce" => Some(&[0, 1]),
-        "print_command_report" => Some(&[0, 1]),
-        // 银行卡/账户消息（发薪、转账、错误提示等，玩家可见）：bank_card_talk(message, force)。
-        "bank_card_talk" => Some(&[0]),
-        // 幽灵招募/事件通知（"An X is ready to hatch in …" 等）：notify_ghosts(message, source, …)。与 rewrite.rs 同表。
-        "notify_ghosts" => Some(&[0]),
-        // 机器打印到纸上的正文（字面量实参必是作者写的印刷体；玩家书写永远是变量）。与 rewrite.rs 同表。
-        "add_raw_text" => Some(&[0]),
-        // 机器人播报。与 rewrite.rs 同表；那边额外过多词闸门（`speak("unstun")` 这类 switch 键不改写）。
-        "speak" => Some(&[0]),
-        // 电台播报（超物质分层警报、AI 播报、机器人电台）：talk_into(speaker, message, channel, …)。
-        // 与 speak 同样过多词闸门（proc 名常见，首参是 speaker、消息在 [1]）。
-        "talk_into" => Some(&[1]),
-        // 手术每一步的可见/痛觉消息。整个 surgery 模块的玩家可见文本几乎都从这两个 proc 出去，
-        // 而它们只是包了一层 visible_message/to_chat，通用 sink 检测看不穿 → 整模块没进目录。
-        // display_results(surgeon, target, self_message, detailed_message, vague_message, …)
-        // display_pain(target, pain_message, …)
-        // **只加在 extract 侧**：这些消息全是插值句，进目录后由聊天层的模板逆匹配引擎
-        // （lang_template_apply）落地，不需要改写调用点。rewrite.rs 不加，就不会生成目录外的 key。
-        "display_results" => Some(&[2, 3, 4]),
-        "display_pain" => Some(&[1]),
-        _ => None,
-    }
-}
-
-/// 原生 alert/input 的「无 usr」写法判别：`alert(Message, Title, Button1…)` / `input(Message, Title, Default)`
-/// 时 [0] 就是消息字符串字面量，此时 [2] 是按钮/默认值而非标题，**不得抽取**（会污染目录并诱使
-/// rewrite 改写返回值/比较值）。与 rewrite.rs 的同名判据保持一致。
-fn native_dialog_no_usr(name: &str, args: &[Expression]) -> bool {
-    if !matches!(name, "alert" | "input") {
-        return false;
-    }
-    let Some(a0) = args.first() else { return false };
-    let mut nodes: Vec<&dm::ast::Spanned<Term>> = Vec::new();
-    crate::rewrite::collect_text_nodes(a0, &mut nodes);
-    !nodes.is_empty()
-}
-
-pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
+pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<Catalog> {
     let mut context = dm::Context::default();
     context.set_print_severity(Some(dm::Severity::Error));
 
@@ -1319,8 +1322,13 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
     let mut parser = dm::parser::Parser::new(&context, indents);
     parser.enable_procs();
     let (fatal, tree) = parser.parse_object_tree_2();
-    if fatal {
-        anyhow::bail!("DM 解析出现致命错误，无法继续抽取");
+    let error_count = context
+        .errors()
+        .iter()
+        .filter(|error| error.severity() == dm::Severity::Error)
+        .count();
+    if fatal || error_count != 0 {
+        anyhow::bail!("DM 解析出现错误，无法继续抽取（{error_count} 条 error 级诊断）");
     }
 
     // pass 1：收集纯函数 proc 名（与 rewrite 一致，按名跳过以覆盖继承纯度的子类型实现）。
@@ -1427,23 +1435,36 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             // 攻击动词池（`attack_verb_continuous = list("smashes", "bashes", …)`）。这两个变量**已经在
             // SINK_VARS 里**，看着像早就覆盖了——但 SINK_VARS 那条路对 list 初值走 build_template，
             // 而 build_template 对 list 返回 None；激进 pass 又要求句末标点，小写单词动词一条都过不了。
-            // 于是「表里有名字、目录里没条目」，战斗消息里动词整片英文（漏翻采集 mob.26ba31da 下的
+            // 于是「表里有名字、目录里没条目」，战斗消息里动词整片英文（某 mob sink key 下的
             // strikes/roasts/scorches 即此）。落地与 speak_emote 同路：作为 LANG 实参走**整串精确**反查
             // （lang_localize_arg 无多词门槛），不进字面 AC 的多词字典，所以单词条目在这里安全。
-            let is_attack_verb_pool =
-                matches!(var_name.as_str(), "attack_verb_continuous" | "attack_verb_simple");
+            let is_attack_verb_pool = matches!(
+                var_name.as_str(),
+                "attack_verb_continuous" | "attack_verb_simple"
+            );
             // 合成配方步骤列表（/datum/crafting_recipe steps = list("步骤1", …)，crafting UI "steps"
             // 字段直发显示、P1 反查）。无句末标点居多 → 逐元素抽。
-            let is_steps_list = var_name == "steps" && ty.path.starts_with("/datum/crafting_recipe");
+            let is_steps_list =
+                var_name == "steps" && ty.path.starts_with("/datum/crafting_recipe");
             // 激进 pass：任何类型变量初值里的「句子型」字面量（含 list 元素与插值模板）。
             // 自定义 examine 文本变量（dry_desc 类）、pick 表、未列入 SINK_VARS 的长尾自动入目录
             // （句末标点闸门挡住标识符/枚举名）；显示靠反查表/字面 AC/模板逆匹配引擎。
             if let Some(expr) = &type_var.value.expression {
-                let var_ctx = ProcCtx { ident: false, examine: false, display_return: false };
+                let var_ctx = ProcCtx {
+                    ident: false,
+                    examine: false,
+                    display_return: false,
+                };
                 visit_expr(expr, &var_scope, &mut catalog, suppress_aggressive, var_ctx);
             }
-            if !is_sink && !is_config_default && !is_aas_template && !is_law_list && !is_slogan
-                && !is_speech_pool && !is_steps_list && !is_attack_verb_pool
+            if !is_sink
+                && !is_config_default
+                && !is_aas_template
+                && !is_law_list
+                && !is_slogan
+                && !is_speech_pool
+                && !is_steps_list
+                && !is_attack_verb_pool
             {
                 continue;
             }
@@ -1535,7 +1556,8 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                     for stmt in block.iter() {
                         if let Statement::Setting { name, value, .. } = &stmt.elem {
                             if name.as_str() == "name" {
-                                if let Some(t) = build_template(value).or_else(|| plain_string(value))
+                                if let Some(t) =
+                                    build_template(value).or_else(|| plain_string(value))
                                 {
                                     if is_safe_verb_name(&t) {
                                         emit(&mut catalog, &namespace, &t);
@@ -1549,7 +1571,12 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                     // 运行时在 species.dm 的 compile_constant_data 反查落地。
                     // 「局部变量一跳」：赋给 LANG 实参标识符的字面量（见 walk_lang_arg_locals）。
                     // 与下面按 proc 名分派的规则正交，所有 proc 都要走一遍。
-                    walk_lang_arg_locals(block, &namespace, &mut catalog, suppress_aggressive || in_unit_tests(proc_value.location));
+                    walk_lang_arg_locals(
+                        block,
+                        &namespace,
+                        &mut catalog,
+                        suppress_aggressive || in_unit_tests(proc_value.location),
+                    );
                     // 运行期改名（`switch(caste)` 里的 `name = "alien ravager"`）。只对 atom 开。
                     if !suppress_aggressive
                         && !in_unit_tests(proc_value.location)
@@ -1604,7 +1631,9 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                         // 后经 lang_reverse_text 翻译 → 抽其 assoc 值入目录（键 "0".."3" 无字母、emit 自动过滤）。
                         "InitGlobalantag_opt_in_strings" => {
                             for stmt in block.iter() {
-                                if let Statement::Expr(Expression::AssignOp { rhs, .. }) = &stmt.elem {
+                                if let Statement::Expr(Expression::AssignOp { rhs, .. }) =
+                                    &stmt.elem
+                                {
                                     emit_list_strings(rhs, &namespace, &mut catalog);
                                 }
                             }
@@ -1615,7 +1644,9 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
                         // 运行时 setup_tgui_lists 构建静态表时整串反查落地（含单词条目）。
                         "setup_access_descriptions" => {
                             for stmt in block.iter() {
-                                if let Statement::Expr(Expression::AssignOp { rhs, .. }) = &stmt.elem {
+                                if let Statement::Expr(Expression::AssignOp { rhs, .. }) =
+                                    &stmt.elem
+                                {
                                     if let Some(t) = build_template(rhs) {
                                         if !t.contains('{') {
                                             emit(&mut catalog, &namespace, &t);
@@ -1684,6 +1715,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             crate::flavor::extract_news_stories(repo_root, &mut catalog);
         }
     }
+    catalog.ensure_no_collisions()?;
 
     eprintln!(
         "抽取 {} 条字符串，{} 个命名空间",
@@ -1696,7 +1728,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             eprintln!("译文迁移失败（不影响抽取）: {err}");
         }
         // 合并已存在目录：保留已被 rewrite 改写（源码里已不是字面量）的 key（重同步必需）。
-        catalog.load_dir(out);
+        catalog.load_dir(out)?;
         catalog.write(out)?;
         eprintln!(
             "已写入英文主目录: {}（合并后 {} 条）",
@@ -1704,10 +1736,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             catalog.entry_count()
         );
         // key -> 类型路径 sidecar。放 locale 目录的**上一级**（见 write_scopes 注释）。
-        let scopes_path = out
-            .parent()
-            .unwrap_or(out)
-            .join("scopes.json");
+        let scopes_path = out.parent().unwrap_or(out).join("scopes.json");
         catalog.write_scopes(&scopes_path)?;
         eprintln!(
             "已写入语境 sidecar: {}（本次 {} 个 key 带类型路径）",
@@ -1730,7 +1759,19 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<()> {
             counts.join(" ")
         );
     }
-    Ok(())
+    Ok(catalog)
+}
+
+/// Collect the exact current extracted/LANG-referenced key set without loading or writing catalogs.
+///
+/// Catalog governance uses this instead of generated sidecars, which may be stale. Parser
+/// diagnostics and hash collisions propagate as hard errors, so partial parses cannot masquerade
+/// as complete liveness data.
+pub fn live_keys(dme: &Path, out: &Path) -> Result<std::collections::BTreeSet<String>> {
+    let catalog = run(dme, out, true)?;
+    let mut keys: std::collections::BTreeSet<String> = catalog.keys().map(str::to_owned).collect();
+    keys.extend(catalog.referenced_keys().map(str::to_owned));
+    Ok(keys)
 }
 
 /// 把「自己声明了 name/desc」的类型表按 DM 继承语义展开到每个 atom 子类型。
@@ -1744,9 +1785,10 @@ fn expand_type_var_table(
     let mut out: std::collections::BTreeMap<String, std::collections::BTreeMap<String, String>> =
         std::collections::BTreeMap::new();
     for ty in tree.iter_types() {
-        if !TYPE_VAR_TABLE_ROOTS.iter().any(|root| {
-            ty.path == *root || ty.path.starts_with(&format!("{root}/"))
-        }) {
+        if !TYPE_VAR_TABLE_ROOTS
+            .iter()
+            .any(|root| ty.path == *root || ty.path.starts_with(&format!("{root}/")))
+        {
             continue;
         }
         for var in TYPE_VAR_TABLE_VARS {
@@ -1804,13 +1846,6 @@ fn write_type_var_table(
     Ok(())
 }
 
-/// 该 proc 是否标了 `set SpacemanDMM_should_be_pure`（与 rewrite.rs 一致，跳过不抽取）。
-fn block_is_pure(block: &[dm::ast::Spanned<Statement>]) -> bool {
-    block.iter().any(|s| {
-        matches!(&s.elem, Statement::Setting { name, .. } if name.as_str() == "SpacemanDMM_should_be_pure")
-    })
-}
-
 /// `type_path` = 完整 DM 类型路径（flavor.rs 等无类型来源传裸命名空间名，见 Catalog::insert）。
 /// LANG 实参里的英文字面量。
 ///
@@ -1822,7 +1857,7 @@ fn block_is_pure(block: &[dm::ast::Spanned<Statement>]) -> bool {
 ///
 /// 必须绕开的两类**非显示**字面量：
 ///   - 下标键（`ded["name"]`、`data["role"]`）——是程序用的键名，翻了就查不到值。故不下探 `Follow::Index`。
-///   - 嵌套 LANG 的 key 本身（`LANG("datum.eb109e14", …)`）——形如 `<ns>.<hash>`，翻了目录就崩。
+///   - 嵌套 LANG 的 key 本身（`LANG("datum.0123456789abcdef", …)`）——形如 `<ns>.<hash>`，翻了目录就崩。
 fn collect_lang_arg_literals(expr: &Expression, out: &mut Vec<String>) {
     match expr {
         Expression::Base { term, follow } => {
@@ -1981,15 +2016,9 @@ fn is_lang_arg_text(s: &str) -> bool {
     if t.len() < 3 || t.contains('{') {
         return false;
     }
-    // `<ns>.<8 位十六进制>` = 目录 key，绝不能当文案抽。
-    if let Some((ns, hash)) = t.split_once('.') {
-        if !ns.is_empty()
-            && ns.chars().all(|c| c.is_ascii_lowercase() || c == '_')
-            && hash.len() == 8
-            && hash.chars().all(|c| c.is_ascii_hexdigit())
-        {
-            return false;
-        }
+    // v2 `<ns>.<16 lowercase hex>` = 目录 key，绝不能当文案抽。
+    if is_v2_key(t) {
+        return false;
     }
     // **只收多词**。单 token 的 LANG 实参里标识符浓度极高：act/topic/wire 键（`activate`、`attach`、
     // `unlock`、`datumedit`、`targetvar`）、黑板键与 var 名（`all_damage`、`turbine_max_rpm`）、存档路径、
@@ -2032,12 +2061,20 @@ pub(crate) fn emit(catalog: &mut Catalog, type_path: &str, template: &str) {
     }
     // key 必须仍按**命名空间**算（`<ns>.<hash>`），否则全目录 key 变更 = 丢光全部译文。
     let key = make_key(&namespace_for(type_path), template);
-    catalog.insert(type_path, &key, template);
+    // Visitor callbacks deliberately stay infallible; Catalog retains the source-attributed
+    // collision and `run` turns it into a hard error before any output is written.
+    let _ = catalog.insert(type_path, &key, template);
 }
 
 // ---- 语句/表达式遍历：找到汇聚点调用 ----
 
-fn visit_block(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog: &mut Catalog, suppress: bool, ctx: ProcCtx) {
+fn visit_block(
+    block: &[dm::ast::Spanned<Statement>],
+    ns: &str,
+    catalog: &mut Catalog,
+    suppress: bool,
+    ctx: ProcCtx,
+) {
     for stmt in block.iter() {
         visit_stmt(&stmt.elem, ns, catalog, suppress, ctx);
     }
@@ -2264,7 +2301,8 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
             // 的「标签」正是程序拿去查表的键。槽位名把这些一条不落地挡在外面。
             if !suppress && matches!(key.as_str(), "name" | "label" | "title") {
                 if let Some(value) = plain_string(rhs) {
-                    if is_option_label(&value) && !DISPLAY_SLOT_BLOCKLIST.contains(&value.as_str()) {
+                    if is_option_label(&value) && !DISPLAY_SLOT_BLOCKLIST.contains(&value.as_str())
+                    {
                         emit(catalog, ns, &value);
                     }
                 }
@@ -2303,7 +2341,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                 }
             }
             // 汇聚点调用检测。
-            // 已被 rewrite 改写的字符串，源码里只剩 `LANG("obj.abc123")` —— 字面量没了，
+            // 已被 rewrite 改写的字符串，源码里只剩 `LANG("obj.0123456789abcdef")` —— 字面量没了，
             // 常规抽取产不出它，key 靠 Catalog::load_dir 从旧目录续命。语境同理会丢：
             // 全目录约 28% 的 key（而且恰恰是玩家最常见的 sink 串）会没有类型路径。
             // 这里从 **LANG() 调用点本身**回收 scope —— 比原字面量的定义处更准，
@@ -2353,7 +2391,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                         if skip_two && i == 2 {
                             continue;
                         }
-                        if let Some(arg) = args.get(i) {
+                        if let Some((_, arg)) = resolve_sink_arg(name.as_str(), i, args) {
                             if let Some(template) = build_template(arg) {
                                 emit(catalog, ns, &template);
                             }
@@ -2369,7 +2407,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                         if skip_two && i == 2 {
                             continue;
                         }
-                        if let Some(arg) = args.get(i) {
+                        if let Some((_, arg)) = resolve_sink_arg("input", i, args) {
                             if let Some(template) = build_template(arg) {
                                 emit(catalog, ns, &template);
                             }
@@ -2469,8 +2507,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                                         }
                                     }
                                     emit(catalog, ns, &template);
-                                } else if is_sentence_like(&template)
-                                    && !is_option_accumulator(id)
+                                } else if is_sentence_like(&template) && !is_option_accumulator(id)
                                 {
                                     emit(catalog, ns, &template);
                                 }
@@ -2484,10 +2521,9 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
             // 260+ 文件、非单一 proc → 按 var 名「context」在通用 AssignOp 处抽（运行时 build_context 反查显示）。
             else if matches!(op, AssignOp::Assign) {
                 if let Expression::Base { term, follow } = lhs.as_ref() {
-                    let is_context_index =
-                        matches!(&term.elem, Term::Ident(id) if id == "context")
-                            && follow.len() == 1
-                            && matches!(&follow[0].elem, Follow::Index(..));
+                    let is_context_index = matches!(&term.elem, Term::Ident(id) if id == "context")
+                        && follow.len() == 1
+                        && matches!(&follow[0].elem, Follow::Index(..));
                     if is_context_index {
                         if let Some(template) = build_template(rhs) {
                             emit(catalog, ns, &template);
@@ -2644,7 +2680,7 @@ fn recurse_follow(follow: &Follow, ns: &str, catalog: &mut Catalog, suppress: bo
                     if skip_two && i == 2 {
                         continue;
                     }
-                    if let Some(arg) = args.get(i) {
+                    if let Some((_, arg)) = resolve_sink_arg(name.as_str(), i, args) {
                         if let Some(template) = build_template(arg) {
                             emit(catalog, ns, &template);
                         }

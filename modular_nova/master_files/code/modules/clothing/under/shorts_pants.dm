@@ -76,20 +76,20 @@
 
 /obj/item/clothing/under/pants/nova/chaps/click_ctrl_shift(mob/user)
 	if(attached_accessories) //Make sure they don't have any attachments first
-		balloon_alert(user, LANG("obj.8e29c0ed", null))
+		balloon_alert(user, LANG("obj.8e29c0ed03ef1879", null))
 		return
 	//Converts the Chaps into an attachment
 	//See accessories.dm for the accessory version
 	var/obj/item/clothing/accessory/chaps/chaps_accessory = new /obj/item/clothing/accessory/chaps(user.drop_location())
 	chaps_accessory.greyscale_colors = greyscale_colors
 	chaps_accessory.update_greyscale()
-	user.balloon_alert(user, LANG("obj.67d9d81f", null))
+	user.balloon_alert(user, LANG("obj.67d9d81f0294df12", null))
 	qdel(src)
 	user.put_in_hands(chaps_accessory)
 
 /obj/item/clothing/under/pants/nova/chaps/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.50fd6574", list(EXAMINE_HINT("ctrl+shift clicked"))))
+	. += span_notice(LANG("obj.50fd65745f3738ee", list(EXAMINE_HINT("ctrl+shift clicked"))))
 
 /obj/item/clothing/under/pants/nova/chaps/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()

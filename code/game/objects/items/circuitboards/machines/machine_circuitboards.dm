@@ -45,7 +45,7 @@
 			new /obj/effect/temp_visual/point(potential_turf)
 			blocked = TRUE
 	if(blocked)
-		balloon_alert_to_viewers(LANG("obj.a7e45501", null))
+		balloon_alert_to_viewers(LANG("obj.a7e45501468fca51", null))
 		return FALSE
 	return TRUE
 
@@ -303,13 +303,13 @@
 /obj/item/circuitboard/machine/pacman/examine(mob/user)
 	. = ..()
 	var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
-	. += span_notice(LANG("obj.4560308d", list(message)))
-	. += span_notice(LANG("obj.9425f6f2", list(src)))
+	. += span_notice(LANG("obj.4560308de21b70b7", list(message)))
+	. += span_notice(LANG("obj.9425f6f2359e9bb2", list(src)))
 
 /obj/item/circuitboard/machine/pacman/screwdriver_act(mob/living/user, obj/item/tool)
 	high_production_profile = !high_production_profile
 	var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
-	to_chat(user, span_notice(LANG("obj.ff7ca6d1", list(message))))
+	to_chat(user, span_notice(LANG("obj.ff7ca6d12861d252", list(message))))
 
 /obj/item/circuitboard/machine/turbine_compressor
 	name = "Turbine - Inlet Compressor"
@@ -418,11 +418,11 @@
 /obj/item/circuitboard/machine/thermomachine/multitool_act(mob/living/user, obj/item/multitool/multitool)
 	. = ..()
 	pipe_layer = (pipe_layer >= PIPING_LAYER_MAX) ? PIPING_LAYER_MIN : (pipe_layer + 1)
-	to_chat(user, span_notice(LANG("obj.e9689634", list(pipe_layer))))
+	to_chat(user, span_notice(LANG("obj.e9689634aa332fb7", list(pipe_layer))))
 
 /obj/item/circuitboard/machine/thermomachine/examine()
 	. = ..()
-	. += span_notice(LANG("obj.286b48ae", list(pipe_layer)))
+	. += span_notice(LANG("obj.286b48ae8193eb36", list(pipe_layer)))
 
 /obj/item/circuitboard/machine/HFR_fuel_input
 	name = "HFR Fuel Input"
@@ -531,14 +531,14 @@
 	else
 		build_path = /obj/machinery/holopad/secure
 		secure = TRUE
-	to_chat(user, span_notice(LANG("obj.febe530e", list(secure? "en" : "dis", src))))
+	to_chat(user, span_notice(LANG("obj.febe530eebc6dc6c", list(secure? "en" : "dis", src))))
 	return TRUE
 
 /obj/item/circuitboard/machine/holopad/examine(mob/user)
 	. = ..()
-	. += LANG("obj.7ee1da5d", null)
+	. += LANG("obj.7ee1da5de4839c1d", null)
 	if(secure)
-		. += LANG("obj.977ac07b", null)
+		. += LANG("obj.977ac07b15fcd866", null)
 
 /obj/item/circuitboard/machine/launchpad
 	name = "Bluespace Launchpad"
@@ -606,14 +606,14 @@
 	var/position = fridges_name_paths.Find(build_path, fridges_name_paths)
 	position = (position == length(fridges_name_paths)) ? 1 : (position + 1)
 	build_path = fridges_name_paths[position]
-	to_chat(user, span_notice(LANG("obj.6eda33a7", list(fridges_name_paths[build_path]))))
+	to_chat(user, span_notice(LANG("obj.6eda33a79399b08f", list(fridges_name_paths[build_path]))))
 	return TRUE
 
 /obj/item/circuitboard/machine/smartfridge/examine(mob/user)
 	. = ..()
 	if(is_special_type)
 		return
-	. += span_info(LANG("obj.610b9c31", list(src, fridges_name_paths[build_path])))
+	. += span_info(LANG("obj.610b9c31f4de330a", list(src, fridges_name_paths[build_path])))
 
 /obj/item/circuitboard/machine/dehydrator
 	name = "Dehydrator"
@@ -679,7 +679,7 @@
 	. = ITEM_INTERACT_FAILURE
 	if(all_products_free)
 		return
-	var/choice = tgui_input_list(user, LANG("obj.39554213", null), LANG("obj.71faa22a", null), sort_list(valid_vendor_names_paths))
+	var/choice = tgui_input_list(user, LANG("obj.3955421376f278eb", null), LANG("obj.71faa22a542e632f", null), sort_list(valid_vendor_names_paths))
 	if(isnull(choice))
 		return
 	if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
@@ -838,7 +838,7 @@
 
 	build_path = new_path
 	name = "[new_name] 3000"
-	to_chat(user, span_notice(LANG("obj.10fac27d", list(new_name))))
+	to_chat(user, span_notice(LANG("obj.10fac27d04d8b050", list(new_name))))
 	return TRUE
 
 /obj/item/circuitboard/machine/cryo_tube
@@ -874,18 +874,18 @@
 
 /obj/item/circuitboard/machine/medical_kiosk/multitool_act(mob/living/user)
 	. = ..()
-	var/new_cost = tgui_input_number(user, LANG("obj.e8673629", null), LANG("obj.039fe93c", null), custom_cost, 1000, 10)
+	var/new_cost = tgui_input_number(user, LANG("obj.e8673629b18f300c", null), LANG("obj.039fe93c2b1b47b9", null), custom_cost, 1000, 10)
 	if(!new_cost || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	if(loc != user)
-		to_chat(user, span_warning(LANG("obj.e60dcc61", null)))
+		to_chat(user, span_warning(LANG("obj.e60dcc6148b32148", null)))
 		return
 	custom_cost = new_cost
-	to_chat(user, span_notice(LANG("obj.fdb4bef1", list(custom_cost))))
+	to_chat(user, span_notice(LANG("obj.fdb4bef11d5ad912", list(custom_cost))))
 
 /obj/item/circuitboard/machine/medical_kiosk/examine(mob/user)
 	. = ..()
-	. += LANG("obj.7673fcd9", list(custom_cost))
+	. += LANG("obj.7673fcd9b3770131", list(custom_cost))
 
 /obj/item/circuitboard/machine/limbgrower
 	name = "Limb Grower"
@@ -1286,16 +1286,16 @@
 
 /obj/item/circuitboard/machine/dish_drive/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.bb8d8a74", list(suction ? "enabled" : "disabled")))
-	. += span_notice(LANG("obj.be7221f3", list(transmit ? "enabled" : "disabled")))
+	. += span_notice(LANG("obj.bb8d8a74174247ce", list(suction ? "enabled" : "disabled")))
+	. += span_notice(LANG("obj.be7221f3d78dc285", list(transmit ? "enabled" : "disabled")))
 
 /obj/item/circuitboard/machine/dish_drive/attack_self(mob/living/user)
 	suction = !suction
-	to_chat(user, span_notice(LANG("obj.fe3f9e72", list(suction ? "enable" : "disable"))))
+	to_chat(user, span_notice(LANG("obj.fe3f9e721282a839", list(suction ? "enable" : "disable"))))
 
 /obj/item/circuitboard/machine/dish_drive/click_alt(mob/living/user)
 	transmit = !transmit
-	to_chat(user, span_notice(LANG("obj.6abd1c78", list(transmit ? "enable" : "disable"))))
+	to_chat(user, span_notice(LANG("obj.6abd1c7850a2048c", list(transmit ? "enable" : "disable"))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/circuitboard/machine/gibber
@@ -1321,11 +1321,11 @@
 	if(build_path == /obj/machinery/hydroponics/constructable/oldstyle)
 		name = "Hydroponics Tray [name_extension]"
 		build_path = /obj/machinery/hydroponics/constructable
-		balloon_alert(user, LANG("obj.c8948408", null))
+		balloon_alert(user, LANG("obj.c894840839aafe75", null))
 	else
 		name = "Hydroponics Tray (Alt) [name_extension]"
 		build_path = /obj/machinery/hydroponics/constructable/oldstyle
-		balloon_alert(user, LANG("obj.2f35e8fe", null))
+		balloon_alert(user, LANG("obj.2f35e8fef7aab627", null))
 
 /obj/item/circuitboard/machine/hydroponics/item_interaction(mob/living/user, obj/item/I, list/modifiers)
 	if(istype(I, /obj/item/plant_analyzer))
@@ -1382,11 +1382,11 @@
 	if(build_path == /obj/machinery/processor)
 		name = "Slime Processor"
 		build_path = /obj/machinery/processor/slime
-		to_chat(user, span_notice(LANG("obj.e27bb0c2", null)))
+		to_chat(user, span_notice(LANG("obj.e27bb0c2b8c0dcad", null)))
 	else
 		name = "Food Processor"
 		build_path = /obj/machinery/processor
-		to_chat(user, span_notice(LANG("obj.ae6bfadd", null)))
+		to_chat(user, span_notice(LANG("obj.ae6bfaddd44ceec9", null)))
 	return TRUE
 
 /obj/item/circuitboard/machine/protolathe/department/service
@@ -1547,14 +1547,14 @@
 		return ITEM_INTERACT_BLOCKING
 
 	venue_type = radial_results[choice]
-	to_chat(user, span_notice(LANG("obj.8f84e0c4", list(src))))
+	to_chat(user, span_notice(LANG("obj.8f84e0c4f019ef99", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/circuitboard/machine/restaurant_portal/examine(mob/user)
 	. = ..()
 	if (venue_type)
 		var/datum/venue/as_venue = venue_type
-		. += span_notice(LANG("obj.ab267465", list(src, initial(as_venue.name))))
+		. += span_notice(LANG("obj.ab267465a5a037d3", list(src, initial(as_venue.name))))
 
 /obj/item/circuitboard/machine/restaurant_portal/configure_machine(obj/machinery/restaurant_portal/machine)
 	if(!istype(machine))
@@ -1974,27 +1974,27 @@
 /obj/item/circuitboard/machine/wall_healer/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning(LANG("obj.9c0336bf", null))
+		. += span_warning(LANG("obj.9c0336bf604c4994", null))
 
 /obj/item/circuitboard/machine/wall_healer/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
 
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	visible_message(span_warning(LANG("obj.b7523a48", list(src))))
-	balloon_alert(user, LANG("obj.42074643", null))
+	visible_message(span_warning(LANG("obj.b7523a488c133b30", list(src))))
+	balloon_alert(user, LANG("obj.42074643f1699068", null))
 	obj_flags |= EMAGGED
 	return TRUE
 
 // Someone please add generic support for constructing wall mounted objects thanks
 /obj/item/circuitboard/machine/wall_healer/completion_requirements(obj/structure/frame/install_frame, mob/living/user)
 	if(locate(/obj/machinery/wall_healer) in install_frame.loc) // for subtypes support
-		install_frame.balloon_alert(user, LANG("obj.513bd59d", null))
+		install_frame.balloon_alert(user, LANG("obj.513bd59de83b6597", null))
 		return FALSE
 
 	var/turf/facing_wall = get_step(install_frame, user.dir)
 	if(!is_mountable_turf(facing_wall))
-		install_frame.balloon_alert(user, LANG("obj.21417537", null))
+		install_frame.balloon_alert(user, LANG("obj.214175376dbd0bd6", null))
 		return FALSE
 
 	return TRUE

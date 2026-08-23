@@ -111,7 +111,7 @@ SUBSYSTEM_DEF(mapping)
 		var/datum/map_config/old_config = current_map
 		current_map = config.defaultmap
 		if(!current_map || current_map.defaulted)
-			to_chat(world, span_boldannounce(LANG("datum.dc0c09d4", list(old_config.map_name))))
+			to_chat(world, span_boldannounce(LANG("datum.dc0c09d46bb46b49", list(old_config.map_name))))
 			current_map = old_config
 	plane_offset_to_true = list()
 	true_to_offset_planes = list()
@@ -610,29 +610,29 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 ADMIN_VERB(load_away_mission, R_FUN, "加载外勤任务", "Load a specific away mission for the station.", ADMIN_CATEGORY_EVENTS)
 	if(!GLOB.the_gateway)
-		if(tgui_alert(user, LANG("datum.79f7ccfd", null), LANG("datum.222318f5", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, LANG("datum.79f7ccfdb060eca0", null), LANG("datum.222318f5c7e38f63", null), list("Yes", "No")) != "Yes")
 			return
 
 	var/list/possible_options = GLOB.potentialRandomZlevels + "Custom"
 	var/away_name
 	var/datum/space_level/away_level
 	var/secret = FALSE
-	if(tgui_alert(user, LANG("datum.b4cfc0ff", null), LANG("datum.ed5faa39", null), list("Yes", "No")) == "Yes")
+	if(tgui_alert(user, LANG("datum.b4cfc0ff3386fdab", null), LANG("datum.ed5faa393934234d", null), list("Yes", "No")) == "Yes")
 		secret = TRUE
-	var/answer = input(user, LANG("datum.368ebd69", null),LANG("datum.d418d931", null)) as null|anything in possible_options
+	var/answer = input(user, LANG("datum.368ebd69cc5954e4", null),LANG("datum.d418d93122b79fe9", null)) as null|anything in possible_options
 	switch(answer)
 		if("Custom")
-			var/mapfile = input(user, LANG("datum.56488294", null), LANG("datum.c79013ac", null)) as null|file
+			var/mapfile = input(user, LANG("datum.56488294d356f533", null), LANG("datum.c79013ac2f26ad68", null)) as null|file
 			if(!mapfile)
 				return
 			away_name = "[mapfile] custom"
-			to_chat(user, span_notice(LANG("datum.7333f99a", list(away_name))), MESSAGE_TYPE_DEBUG)
+			to_chat(user, span_notice(LANG("datum.7333f99afa1dd20c", list(away_name))), MESSAGE_TYPE_DEBUG)
 			var/datum/map_template/template = new(mapfile, "Away Mission")
 			away_level = template.load_new_z(secret)
 		else
 			if(answer in GLOB.potentialRandomZlevels)
 				away_name = answer
-				to_chat(user, span_notice(LANG("datum.7333f99a", list(away_name))), MESSAGE_TYPE_DEBUG)
+				to_chat(user, span_notice(LANG("datum.7333f99afa1dd20c", list(away_name))), MESSAGE_TYPE_DEBUG)
 				var/datum/map_template/template = new(away_name, "Away Mission")
 				away_level = template.load_new_z(secret)
 			else
@@ -915,12 +915,12 @@ ADMIN_VERB(load_away_mission, R_FUN, "加载外勤任务", "Load a specific away
 		if(!check_rights(R_DEBUG))
 			return
 		var/confirmation_string = "This will load every single away mission in the [map_directory] directory. This might cause a bit of lag that can only be cleared on a world restart. Are you sure you want to do this?"
-		confirmation_alert_result = tgui_alert(usr, confirmation_string, LANG("datum.53702fae", null), list("Yes", "Cancel"))
+		confirmation_alert_result = tgui_alert(usr, confirmation_string, LANG("datum.53702faed1cccbb9", null), list("Yes", "Cancel"))
 		if(confirmation_alert_result != "Yes")
 			return
 
 		var/current_wait_time = CONFIG_GET(number/gateway_delay)
-		switch(tgui_alert(usr, LANG("datum.4659069d", list(DisplayTimeText(current_wait_time))), LANG("datum.f05d1f99", null), list("Yes", "No", "Cancel")))
+		switch(tgui_alert(usr, LANG("datum.4659069dda6efb77", list(DisplayTimeText(current_wait_time))), LANG("datum.f05d1f998bf2030f", null), list("Yes", "No", "Cancel")))
 			if("No")
 				new_wait = current_wait_time
 			if("Cancel")

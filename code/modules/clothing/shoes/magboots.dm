@@ -71,13 +71,13 @@ GAME_VERB_SRC(/obj/item/clothing/shoes/magboots, toggle, usr, "切换磁力靴",
 		slowdown -= slowdown_active
 
 	update_appearance()
-	balloon_alert(user, LANG("obj.4a78a629", list(magpulse ? "enabled" : "disabled")))
+	balloon_alert(user, LANG("obj.4a78a6299893c1b3", list(magpulse ? "enabled" : "disabled")))
 	//we want to update our speed so we arent running at max speed in regular magboots
 	user.update_equipment_speed_mods()
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)
 	. = ..()
-	. += LANG("obj.1fee68ed", list(magpulse ? "enabled" : "disabled"))
+	. += LANG("obj.1fee68edd2b6694a", list(magpulse ? "enabled" : "disabled"))
 
 /obj/item/clothing/shoes/magboots/update_icon_state()
 	. = ..()

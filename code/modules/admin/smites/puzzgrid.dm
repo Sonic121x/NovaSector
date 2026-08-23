@@ -7,11 +7,11 @@
 	var/gib_on_loss
 
 /datum/smite/puzzgrid/configure(client/user)
-	var/timer = input(user, LANG("datum.6102fe88", null), LANG("datum.a87eab73", null), 0) as num | null
+	var/timer = input(user, LANG("datum.6102fe88bce69503", null), LANG("datum.a87eab737d227e5c", null), 0) as num | null
 	if (isnull(timer))
 		return FALSE
 
-	var/gib_on_loss = tgui_alert(user, LANG("datum.0d24710c", null), LANG("datum.a87eab73", null), list("Gib", "New puzzle")) == "Gib"
+	var/gib_on_loss = tgui_alert(user, LANG("datum.0d24710c2566c585", null), LANG("datum.a87eab737d227e5c", null), list("Gib", "New puzzle")) == "Gib"
 
 	src.gib_on_loss = gib_on_loss
 	src.timer = timer == 0 ? null : (timer * 1 SECONDS)
@@ -23,12 +23,12 @@
 
 	var/datum/puzzgrid/puzzgrid = create_random_puzzgrid()
 	if (isnull(puzzgrid))
-		to_chat(user, span_warning(LANG("datum.7882fed5", null)))
+		to_chat(user, span_warning(LANG("datum.7882fed564e3ea45", null)))
 		return
 
 	var/obj/structure/puzzgrid_effect/puzzgrid_effect = new(target.loc, target, puzzgrid, timer, gib_on_loss)
 	target.forceMove(puzzgrid_effect)
-	puzzgrid_effect.visible_message(span_warning(LANG("datum.9ac6a75b", list(target))))
+	puzzgrid_effect.visible_message(span_warning(LANG("datum.9ac6a75bcb09b6af", list(target))))
 
 	playsound(puzzgrid_effect, 'sound/effects/magic.ogg', 70)
 
@@ -76,8 +76,8 @@
 	victim.forceMove(loc)
 	victim.Paralyze(5 SECONDS)
 	victim.visible_message(
-		span_notice(LANG("obj.70442626", list(victim))),
-		span_notice(LANG("obj.ffcb9dac", null)),
+		span_notice(LANG("obj.7044262645ef317b", list(victim))),
+		span_notice(LANG("obj.ffcb9dac7306d49f", null)),
 	)
 
 	victim.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILIZED), "[type]")
@@ -89,8 +89,8 @@
 /obj/structure/puzzgrid_effect/proc/loss_gib()
 	victim.forceMove(loc)
 	victim.visible_message(
-		span_bolddanger(LANG("obj.8dc329de", list(victim))),
-		span_bolddanger(LANG("obj.6b8258eb", null)),
+		span_bolddanger(LANG("obj.8dc329de3b6d1005", list(victim))),
+		span_bolddanger(LANG("obj.6b8258eb9730a45e", null)),
 	)
 	victim.gib(DROP_ALL_REMAINS)
 	victim = null
@@ -102,13 +102,13 @@
 	if (isnull(puzzgrid))
 		victim.forceMove(loc)
 		victim.Paralyze(5 SECONDS)
-		victim.visible_message(span_bolddanger(LANG("obj.9ef614c1", list(victim))))
+		victim.visible_message(span_bolddanger(LANG("obj.9ef614c1166aef46", list(victim))))
 		victim.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILIZED), "[type]")
 		qdel(src)
 		victim = null
 		return
 
-	visible_message(span_danger(LANG("obj.ffa62dc6", null)))
+	visible_message(span_danger(LANG("obj.ffa62dc6573ec61e", null)))
 
 	// Defer until after the fail proc finishes, since that will qdel the component.
 	addtimer(CALLBACK(src, PROC_REF(add_puzzgrid_component), puzzgrid), 0)

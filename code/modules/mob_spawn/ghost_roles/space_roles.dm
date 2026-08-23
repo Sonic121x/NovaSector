@@ -22,7 +22,7 @@
 	if(!.)
 		return
 	notify_ghosts(
-		LANG("obj.7ea6ddf5", null),
+		LANG("obj.7ea6ddf55099a87e", null),
 		source = ., //the spawned mob
 		header = "Join in, help out!",
 		click_interact = TRUE,
@@ -117,7 +117,7 @@
 	if(!(user.ckey in antag_team.players_spawned))
 		return TRUE
 	if(!silent)
-		to_chat(user, span_boldwarning(LANG("obj.3cd11f75", null)))
+		to_chat(user, span_boldwarning(LANG("obj.3cd11f75596aed94", null)))
 	return FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/syndicate/battlecruiser/special(mob/living/spawned_mob, mob/possesser)

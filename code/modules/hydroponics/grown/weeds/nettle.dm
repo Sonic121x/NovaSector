@@ -53,7 +53,7 @@
 	attack_verb_simple = list("sting")
 
 /obj/item/food/grown/nettle/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.ee607b49", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.ee607b4955f8f2c6", list(user, src, user.p_theyre()))))
 	return (BRUTELOSS|TOXLOSS)
 
 /obj/item/food/grown/nettle/death

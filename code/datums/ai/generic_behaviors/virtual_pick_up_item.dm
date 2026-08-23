@@ -27,10 +27,10 @@
 	var/atom/pawn = controller.pawn
 	var/obj/item/held = controller.blackboard[storage_key]
 	if(held?.loc == pawn)
-		pawn.visible_message(span_notice(LANG("datum.2ee8f499", list(pawn, held))))
+		pawn.visible_message(span_notice(LANG("datum.2ee8f499eabbe7b4", list(pawn, held))))
 		held.forceMove(get_turf(pawn))
 		controller.clear_blackboard_key(storage_key)
-	pawn.visible_message(span_notice(LANG("datum.6147eb56", list(pawn, target))))
+	pawn.visible_message(span_notice(LANG("datum.6147eb56b44042b2", list(pawn, target))))
 	target.forceMove(pawn)
 	controller.set_blackboard_key(storage_key, target)
 
@@ -52,9 +52,9 @@
 	var/mob/pawn = controller.pawn
 	var/obj/item/item = controller.blackboard[storage_key]
 	if(QDELETED(item) || item.loc != pawn)
-		pawn.visible_message(span_notice(LANG("datum.be662e40", list(pawn, pawn.p_they(), pawn.p_have()))))
+		pawn.visible_message(span_notice(LANG("datum.be662e405f01edd2", list(pawn, pawn.p_they(), pawn.p_have()))))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	pawn.visible_message(span_notice(LANG("datum.e55ffe23", list(pawn, item, target))))
+	pawn.visible_message(span_notice(LANG("datum.e55ffe2306685022", list(pawn, item, target))))
 	item.forceMove(get_turf(target))
 	controller.clear_blackboard_key(storage_key)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED

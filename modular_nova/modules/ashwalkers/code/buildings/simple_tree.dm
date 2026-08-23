@@ -7,15 +7,15 @@
 		return ..()
 
 	if(harvested && tool.get_sharpness())
-		to_chat(user, span_notice(LANG("obj.7b7f276c", list(src))))
+		to_chat(user, span_notice(LANG("obj.7b7f276c419dc49a", list(src))))
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 10 SECONDS * skill_modifier, target = src))
-			to_chat(user, span_warning(LANG("obj.ef3ab13e", list(src))))
+			to_chat(user, span_warning(LANG("obj.ef3ab13e21b8d5ca", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(prob(10))
 			new /obj/item/food/tree_fruit(get_turf(src))
-			to_chat(user, span_notice(LANG("obj.3e9efd51", list(src))))
+			to_chat(user, span_notice(LANG("obj.3e9efd51ab8f087f", list(src))))
 			user.mind?.adjust_experience(/datum/skill/primitive, 5)
 
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
@@ -189,37 +189,37 @@
 	. = ..()
 	switch(tree_stage)
 		if(TREE_STAGE_ONE)
-			. += span_notice(LANG("obj.5f95429a", null))
+			. += span_notice(LANG("obj.5f95429ab11778fb", null))
 
 		if(TREE_STAGE_TWO)
-			. += span_notice(LANG("obj.f58fe028", null))
+			. += span_notice(LANG("obj.f58fe028d8fd0fe4", null))
 
 		if(TREE_STAGE_THREE)
-			. += span_notice(LANG("obj.6cc2248d", null))
+			. += span_notice(LANG("obj.6cc2248dc78ac6ff", null))
 			if(COOLDOWN_FINISHED(src, harvest_cooldown))
-				. += span_notice(LANG("obj.a62607f5", null))
+				. += span_notice(LANG("obj.a62607f5397c203c", null))
 
 			if(COOLDOWN_FINISHED(src, wood_cooldown))
-				. += span_notice(LANG("obj.86288e99", null))
+				. += span_notice(LANG("obj.86288e998aa58ba7", null))
 
 			if(length(graft_list) < 3)
-				. += span_notice(LANG("obj.d2f9425d", null))
+				. += span_notice(LANG("obj.d2f9425d0072e7d5", null))
 
 			for(var/obj/item/graft/grafted_item in graft_list)
-				. += span_notice(LANG("obj.12c84ef4", list(grafted_item.plant_dna.plantname)))
+				. += span_notice(LANG("obj.12c84ef47026fae2", list(grafted_item.plant_dna.plantname)))
 
 			if(tree_bee)
-				. += span_notice(LANG("obj.7dff0128", null))
+				. += span_notice(LANG("obj.7dff0128da8130e1", null))
 				if(COOLDOWN_FINISHED(src, honeycomb_cooldown))
-					. += span_notice(LANG("obj.7a8e6c0a", null))
+					. += span_notice(LANG("obj.7a8e6c0ad292b36f", null))
 
 			if(tapped_tree)
-				. += span_notice(LANG("obj.c2d1280a", null))
+				. += span_notice(LANG("obj.c2d1280af00cfb32", null))
 				if(COOLDOWN_FINISHED(src, sap_cooldown))
-					. += span_notice(LANG("obj.d4808225", null))
+					. += span_notice(LANG("obj.d4808225c98af0b8", null))
 
 			else
-				. += span_notice(LANG("obj.ee670769", null))
+				. += span_notice(LANG("obj.ee67076987900ee8", null))
 
 /obj/structure/simple_tree/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stack/worm_fertilizer))
@@ -240,7 +240,7 @@
 	if(istype(tool, /obj/item/secateurs))
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 10 SECONDS * skill_modifier, target = src))
-			to_chat(user, span_warning(LANG("obj.04e7e31c", null)))
+			to_chat(user, span_warning(LANG("obj.04e7e31c7a1982a6", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		for(var/obj/item/graft/target_grafts in graft_list)
@@ -250,23 +250,23 @@
 
 		update_graft_reagents()
 		update_appearance(UPDATE_OVERLAYS)
-		to_chat(user, span_notice(LANG("obj.b0ea563c", list(src))))
+		to_chat(user, span_notice(LANG("obj.b0ea563c6ee30650", list(src))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/queen_bee))
 		if(tree_bee)
-			to_chat(user, span_warning(LANG("obj.0af9a1f1", null)))
+			to_chat(user, span_warning(LANG("obj.0af9a1f1f95d6b03", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		tool.forceMove(src)
 		tree_bee = tool
-		to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 		update_appearance(UPDATE_OVERLAYS)
 		return ITEM_INTERACT_SUCCESS
 
 	if(is_reagent_container(tool))
 		if(!COOLDOWN_FINISHED(src, sap_cooldown))
-			to_chat(user, span_warning(LANG("obj.307033fc", list(src))))
+			to_chat(user, span_warning(LANG("obj.307033fc45650881", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		COOLDOWN_START(src, sap_cooldown, 1 MINUTES)
@@ -277,27 +277,27 @@
 				container_tool.reagents.add_reagent(tapped_reagent, 10)
 				return ITEM_INTERACT_SUCCESS
 
-			to_chat(user, span_warning(LANG("obj.4720cdc3", list(tool))))
+			to_chat(user, span_warning(LANG("obj.4720cdc3cc4413b6", list(tool))))
 			return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/graft))
 		var/obj/item/graft/tool_graft = tool
 		playsound(src, SFX_CRUNCHY_BUSH_WHACK, 50, vary = FALSE)
-		to_chat(user, span_notice(LANG("obj.96c8e9e8", list(tool_graft.plant_dna.plantname, src))))
+		to_chat(user, span_notice(LANG("obj.96c8e9e819b543e4", list(tool_graft.plant_dna.plantname, src))))
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 10 SECONDS * skill_modifier, target = src))
-			to_chat(user, span_warning(LANG("obj.ef991da3", null)))
+			to_chat(user, span_warning(LANG("obj.ef991da31d3d6524", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		playsound(src, SFX_CRUNCHY_BUSH_WHACK, 50, vary = FALSE)
 
 		if(length(graft_list) >= 3)
-			to_chat(user, span_warning(LANG("obj.766f1811", list(src))))
+			to_chat(user, span_warning(LANG("obj.766f18112b4b9565", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		tool_graft.forceMove(src)
 		graft_list += tool_graft
-		to_chat(user, span_notice(LANG("obj.4447dfad", list(tool_graft.plant_dna.plantname, src))))
+		to_chat(user, span_notice(LANG("obj.4447dfadba263354", list(tool_graft.plant_dna.plantname, src))))
 		update_graft_reagents()
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		update_appearance(UPDATE_OVERLAYS)
@@ -319,7 +319,7 @@
 		update_appearance(UPDATE_OVERLAYS)
 		playsound(src, SFX_CRUNCHY_BUSH_WHACK, 50, vary = FALSE)
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
-		to_chat(user, span_notice(LANG("obj.051696ab", list(src))))
+		to_chat(user, span_notice(LANG("obj.051696abcda05201", list(src))))
 		var/turf/user_turf = get_turf(user)
 		for(var/iteration in 1 to rand(1, 2))
 			var/obj/item/food/tree_fruit/spawned_fruit = new /obj/item/food/tree_fruit(user_turf)
@@ -331,7 +331,7 @@
 	// if not fruited, lets get the bee out if its there
 	if(tree_bee)
 		tree_bee.forceMove(get_turf(user))
-		to_chat(user, span_warning(LANG("obj.3c031c76", list(tree_bee, src))))
+		to_chat(user, span_warning(LANG("obj.3c031c76c20f45ae", list(tree_bee, src))))
 		playsound(src, SFX_CRUNCHY_BUSH_WHACK, 50, vary = FALSE)
 		tree_bee = null
 		update_appearance(UPDATE_OVERLAYS)
@@ -343,7 +343,7 @@
 
 /obj/structure/simple_tree/screwdriver_act(mob/living/user, obj/item/tool)
 	if(tapped_tree)
-		to_chat(user, span_warning(LANG("obj.f7625a01", list(src))))
+		to_chat(user, span_warning(LANG("obj.f7625a015a3f42b6", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	tap_tree(user, tool)
@@ -353,13 +353,13 @@
 /obj/structure/simple_tree/proc/tap_tree(mob/user, obj/item/tool, tapping_direction = TRUE, use_time = 4 SECONDS, forced_tool = FALSE)
 	playsound(get_turf(src), SFX_TREE_CHOP, 50, vary = FALSE)
 	if(!forced_tool)
-		to_chat(user, span_notice(LANG("obj.785ca65f", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.785ca65f43d37d6b", list(tool, src))))
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, use_time * tool.toolspeed * skill_modifier, target = src))
-			to_chat(user, span_warning(LANG("obj.2efa4d9f", list(tool, src))))
+			to_chat(user, span_warning(LANG("obj.2efa4d9f7a89bc6b", list(tool, src))))
 			return
 
-		to_chat(user, span_notice(LANG("obj.672ee986", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.672ee98675c05200", list(tool, src))))
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		tool.forceMove(src)
 
@@ -372,10 +372,10 @@
 	playsound(src, 'sound/effects/shovel_dig.ogg', 50, TRUE)
 	if(!forced_fertilizer)
 		if(!tool.use(use_amount))
-			to_chat(user, span_warning(LANG("obj.2efa4d9f", list(tool, src))))
+			to_chat(user, span_warning(LANG("obj.2efa4d9f7a89bc6b", list(tool, src))))
 			return
 
-		to_chat(user, span_notice(LANG("obj.522c5d1d", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.522c5d1d2cc42c6a", list(tool, src))))
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 
 	adjust_health(5)
@@ -386,14 +386,14 @@
 /obj/structure/simple_tree/proc/attempt_woodmaking(mob/user)
 	if(!COOLDOWN_FINISHED(src, wood_cooldown) || tree_stage < TREE_STAGE_THREE)
 		adjust_health(-50)
-		to_chat(user, span_warning(LANG("obj.f9ddbb08", list(src))))
+		to_chat(user, span_warning(LANG("obj.f9ddbb08a4608a94", list(src))))
 		return
 
 	COOLDOWN_START(src, wood_cooldown, 1 MINUTES)
 	update_appearance(UPDATE_OVERLAYS)
 	var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 	if(!do_after(user, 5 SECONDS * skill_modifier, target = src))
-		to_chat(user, span_warning(LANG("obj.1d070418", null)))
+		to_chat(user, span_warning(LANG("obj.1d070418624f6190", null)))
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		return
 
@@ -405,20 +405,20 @@
 /obj/structure/simple_tree/proc/attempt_honeycomb(mob/user)
 	if(tree_stage < TREE_STAGE_THREE)
 		adjust_health(-10)
-		to_chat(user, span_warning(LANG("obj.f9ddbb08", list(src))))
+		to_chat(user, span_warning(LANG("obj.f9ddbb08a4608a94", list(src))))
 		return
 
 	playsound(src, SFX_CRUNCHY_BUSH_WHACK, 50, vary = FALSE)
 	if(!tree_bee || !COOLDOWN_FINISHED(src, honeycomb_cooldown))
-		to_chat(user, span_warning(LANG("obj.2747052f", list(src))))
+		to_chat(user, span_warning(LANG("obj.2747052f2cbdb95e", list(src))))
 		return
 
 	COOLDOWN_START(src, honeycomb_cooldown, 90 SECONDS)
-	to_chat(user, span_notice(LANG("obj.c49636b9", list(src))))
+	to_chat(user, span_notice(LANG("obj.c49636b96277a369", list(src))))
 	update_appearance(UPDATE_OVERLAYS)
 	var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 	if(!do_after(user, 10 SECONDS * skill_modifier, target = src))
-		to_chat(user, span_warning(LANG("obj.5c90256b", null)))
+		to_chat(user, span_warning(LANG("obj.5c90256b945c133c", null)))
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		return
 
@@ -426,7 +426,7 @@
 	for(var/iteration in 1 to rand(1, 2))
 		var/obj/item/food/honeycomb/new_comb = new(get_turf(user))
 		new_comb.set_reagent(tree_bee.queen.beegent.type)
-	to_chat(user, span_notice(LANG("obj.e7c77d61", list(src))))
+	to_chat(user, span_notice(LANG("obj.e7c77d6197527423", list(src))))
 	user.mind?.adjust_experience(/datum/skill/primitive, 10)
 	return
 
@@ -454,7 +454,7 @@
 			continue
 
 		if(prob(20))
-			balloon_alert_to_viewers(LANG("obj.5003c0e8", null))
+			balloon_alert_to_viewers(LANG("obj.5003c0e8a7ea459d", null))
 			return
 
 	fertilizer_amount = 0

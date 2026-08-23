@@ -27,7 +27,7 @@
 			continue
 		hidden_uplink.uplink_handler.add_telecrystals(amount)
 		use(amount)
-		to_chat(user, span_notice(LANG("obj.b24279db", list(src))))
+		to_chat(user, span_notice(LANG("obj.b24279db3cb8e77e", list(src))))
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 

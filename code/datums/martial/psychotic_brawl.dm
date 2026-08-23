@@ -41,13 +41,13 @@
 					if(grab_attack)
 						log_combat(attacker, defender, "grabbed", addition="aggressively")
 						defender.visible_message(
-							span_warning(LANG("datum.c089d79c", list(attacker, defender))),
-							span_userdanger(LANG("datum.0d8be3c1", list(attacker))),
-							span_hear(LANG("datum.1af6c3cc", null)),
+							span_warning(LANG("datum.c089d79c68a0807b", list(attacker, defender))),
+							span_userdanger(LANG("datum.0d8be3c16967d704", list(attacker))),
+							span_hear(LANG("datum.1af6c3cc749ce1a9", null)),
 							null,
 							attacker,
 						)
-						to_chat(attacker, span_danger(LANG("datum.a2ee96d0", list(defender))))
+						to_chat(attacker, span_danger(LANG("datum.a2ee96d0e16ad938", list(defender))))
 						attacker.setGrabState(GRAB_AGGRESSIVE) //Instant aggressive grab
 					else
 						log_combat(attacker, defender, "grabbed", addition="passively")
@@ -61,13 +61,13 @@
 			attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
 			attacker.emote("flip")
 			defender.visible_message(
-				span_danger(LANG("datum.73829518", list(attacker, atk_verb, defender))),
-				span_userdanger(LANG("datum.074fb9e3", list(atk_verb, attacker))),
-				span_hear(LANG("datum.6c7f8149", null)),
+				span_danger(LANG("datum.73829518320af0f7", list(attacker, atk_verb, defender))),
+				span_userdanger(LANG("datum.074fb9e3a20824d3", list(atk_verb, attacker))),
+				span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 				null,
 				attacker,
 			)
-			to_chat(attacker, span_danger(LANG("datum.22d557f3", list(atk_verb, defender))))
+			to_chat(attacker, span_danger(LANG("datum.22d557f300d422c9", list(atk_verb, defender))))
 			playsound(defender, 'sound/items/weapons/punch1.ogg', 40, TRUE, -1)
 			defender.apply_damage(defender_damage, attacker.get_attack_type(), BODY_ZONE_HEAD)
 			attacker.apply_damage(rand(5, 10), attacker.get_attack_type(), BODY_ZONE_HEAD)
@@ -86,13 +86,13 @@
 
 			attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
 			defender.visible_message(
-				span_danger(LANG("datum.05d96ab4", list(attacker, atk_verb, defender, defender.p_them()))),
-				span_userdanger(LANG("datum.65df5c1f", list(atk_verb, attacker))),
-				span_hear(LANG("datum.6c7f8149", null)),
+				span_danger(LANG("datum.05d96ab44941ed41", list(attacker, atk_verb, defender, defender.p_them()))),
+				span_userdanger(LANG("datum.65df5c1f51b80e36", list(atk_verb, attacker))),
+				span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 				null,
 				attacker,
 			)
-			to_chat(attacker, span_danger(LANG("datum.6546b2e4", list(atk_verb, defender, defender.p_them()))))
+			to_chat(attacker, span_danger(LANG("datum.6546b2e4cdb85045", list(atk_verb, defender, defender.p_them()))))
 			defender.apply_damage(rand(15, 30), attacker.get_attack_type())
 			playsound(defender, 'sound/effects/meteorimpact.ogg', 25, TRUE, -1)
 			var/throwtarget = get_edge_target_turf(attacker, get_dir(attacker, get_step_away(defender, attacker)))

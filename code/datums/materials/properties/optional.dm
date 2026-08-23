@@ -157,7 +157,7 @@
 	if(armor_block > 50)
 		return
 
-	to_chat(target, span_userdanger(LANG("datum.82b2d674", list(object))))
+	to_chat(target, span_userdanger(LANG("datum.82b2d67467099a57", list(object))))
 	playsound(target, SFX_SIZZLE, 33, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	target.apply_damage(burn_damage, BURN, def_zone, armor_block, wound_bonus = 10, attacking_item = object, attack_direction = get_dir(user, target), wound_clothing = FALSE)
 

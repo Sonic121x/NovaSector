@@ -43,22 +43,22 @@ GAME_VERB_PROC_DESC(/mob/dead, server_hop, "服务器跳转", "Jump to the other
 	switch(length(csa))
 		if(0)
 			UNASSIGN_GAME_VERB(src, /mob/dead, server_hop)
-			to_chat(src, span_notice(LANG("mob.65c6c56e", null)))
+			to_chat(src, span_notice(LANG("mob.65c6c56e1ca618eb", null)))
 		if(1)
 			pick = csa[1]
 		else
-			pick = tgui_input_list(src, LANG("mob.17bb19eb", null), LANG("mob.b8fb2a34", null), csa)
+			pick = tgui_input_list(src, LANG("mob.17bb19eb71b353b8", null), LANG("mob.b8fb2a347f1dc727", null), csa)
 
 	if(isnull(pick))
 		return
 
 	var/addr = csa[pick]
 
-	if(tgui_alert(usr, LANG("mob.cb56e410", list(pick, addr)), LANG("mob.b8fb2a34", null), list("Yes", "No")) != "Yes")
+	if(tgui_alert(usr, LANG("mob.cb56e4101a01eb9e", list(pick, addr)), LANG("mob.b8fb2a347f1dc727", null), list("Yes", "No")) != "Yes")
 		return
 
 	var/client/hopper = client
-	to_chat(hopper, span_notice(LANG("mob.4cf0422f", list(pick))))
+	to_chat(hopper, span_notice(LANG("mob.4cf0422f0bd8bc9c", list(pick))))
 	var/atom/movable/screen/splash/fade_in = new(null, null, hopper, FALSE)
 	fade_in.fade(FALSE)
 

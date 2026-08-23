@@ -40,7 +40,7 @@
 /obj/item/spellbook/proc/on_magic_charge(datum/source, datum/action/cooldown/spell/spell, mob/living/caster)
 	SIGNAL_HANDLER
 
-	to_chat(caster, span_warning(LANG("obj.4a1a4281", null)))
+	to_chat(caster, span_warning(LANG("obj.4a1a4281c9f77ab5", null)))
 	to_chat(caster, span_red(pick(
 		"NICE TRY BUT NO!",
 		"CLEVER BUT NOT CLEVER ENOUGH!",
@@ -54,23 +54,23 @@
 /obj/item/spellbook/examine(mob/user)
 	. = ..()
 	if(owner)
-		. += LANG("obj.9cdd04e8", list(owner))
+		. += LANG("obj.9cdd04e824b20035", list(owner))
 	else
-		. += LANG("obj.ddaae055", null)
+		. += LANG("obj.ddaae0557b534731", null)
 
 /obj/item/spellbook/attack_self(mob/user)
 	if(!owner)
 		if(!user.mind)
 			return
-		to_chat(user, span_notice(LANG("obj.de6bffcd", list(src))))
+		to_chat(user, span_notice(LANG("obj.de6bffcd625de317", list(src))))
 		owner = user.mind
 		return
 
 	if(user.mind != owner)
 		if(IS_WIZARD_APPRENTICE(user))
-			to_chat(user, span_warning(LANG("obj.703c024c", null)))
+			to_chat(user, span_warning(LANG("obj.703c024cc27d3502", null)))
 		else
-			to_chat(user, span_warning(LANG("obj.aa4173ac", list(src))))
+			to_chat(user, span_warning(LANG("obj.aa4173ace0b2744f", list(src))))
 		return
 
 	return ..()
@@ -81,7 +81,7 @@
 	var/success_string
 	if(istype(tool, /obj/item/antag_spawner/contract))
 		if(astype(tool, /obj/item/antag_spawner/contract).used)
-			to_chat(user, span_warning(LANG("obj.1e561a6d", null)))
+			to_chat(user, span_warning(LANG("obj.1e561a6d6070ad66", null)))
 			return ITEM_INTERACT_BLOCKING
 		spawner_entry = locate(/datum/spellbook_entry/item/contract) in entries
 		success_string = "You feed the contract back into the spellbook, refunding your points."
@@ -97,10 +97,10 @@
 	if(isnull(success_string))
 		return NONE
 	if(!istype(spawner_entry)) // No success_string means it isn't a valid item, no spawner entry means the book doesn't have it(somehow)(they had this check before I got here)
-		to_chat(user, span_warning(LANG("obj.34e9a265", list(src, tool))))
+		to_chat(user, span_warning(LANG("obj.34e9a265b0048b7d", list(src, tool))))
 		return ITEM_INTERACT_BLOCKING
 	if(!spawner_entry.can_refund(user, src, tool))
-		to_chat(user, span_warning(LANG("obj.3639a6ab", list(src))))
+		to_chat(user, span_warning(LANG("obj.3639a6ab4391cf68", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	to_chat(user, span_notice(success_string))
@@ -163,7 +163,7 @@
 		return
 	var/mob/living/carbon/human/wizard = usr
 	if(!istype(wizard))
-		to_chat(wizard, span_warning(LANG("obj.e4f34863", null)))
+		to_chat(wizard, span_warning(LANG("obj.e4f348635aacc33b", null)))
 		return FALSE
 
 	// Actions that are always available
@@ -187,7 +187,7 @@
 			return TRUE
 
 	if(uses < initial(uses))
-		to_chat(wizard, span_warning(LANG("obj.0f07e876", null)))
+		to_chat(wizard, span_warning(LANG("obj.0f07e876774f6120", null)))
 		return FALSE
 
 	// Actions that are only available if you have full spell points
@@ -216,7 +216,7 @@
 	to_buy.times++
 	if(HAS_TRAIT(user, TRAIT_SPELLS_LOTTERY))
 		if(prob(50 / to_buy.cost))
-			to_chat(user, span_notice(LANG("obj.fa8b89dd", null)))
+			to_chat(user, span_notice(LANG("obj.fa8b89dd15986b66", null)))
 			return TRUE
 	uses -= to_buy.cost
 	return TRUE

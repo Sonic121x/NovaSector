@@ -89,30 +89,30 @@
 /obj/machinery/quantum_server/examine(mob/user)
 	. = ..()
 
-	. += span_infoplain(LANG("obj.fb160dbb", null))
+	. += span_infoplain(LANG("obj.fb160dbb86fa62bd", null))
 
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "close" : "open")))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "close" : "open")))
 	if(panel_open)
-		. += span_notice(LANG("obj.fa5fc796", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.fa5fc7965e12e9d0", list(EXAMINE_HINT("pried"))))
 
 	var/upgraded = FALSE
 	if(capacitor_coefficient < 1)
-		. += span_infoplain(LANG("obj.c88196ab", list((1 - capacitor_coefficient) * 100)))
+		. += span_infoplain(LANG("obj.c88196ab8039ad4f", list((1 - capacitor_coefficient) * 100)))
 		upgraded = TRUE
 
 	if(servo_bonus > 0.2)
-		. += span_infoplain(LANG("obj.f66d7d5a", list(servo_bonus)))
-		. += span_infoplain(LANG("obj.8f8831fb", list(servo_bonus * 100)))
+		. += span_infoplain(LANG("obj.f66d7d5ae8846d02", list(servo_bonus)))
+		. += span_infoplain(LANG("obj.8f8831fb0e4a24f3", list(servo_bonus * 100)))
 		upgraded = TRUE
 
 	if(!upgraded)
-		. += span_notice(LANG("obj.59921e18", null))
+		. += span_notice(LANG("obj.59921e18571ce6c6", null))
 
 	if(!is_ready)
-		. += span_notice(LANG("obj.05e7947b", null))
+		. += span_notice(LANG("obj.05e7947b0af45a96", null))
 
 	if(isobserver(user) && (obj_flags & EMAGGED))
-		. += span_notice(LANG("obj.1682df33", null))
+		. += span_notice(LANG("obj.1682df33b78033e4", null))
 
 
 /obj/machinery/quantum_server/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -126,7 +126,7 @@
 	threat_prob_max *= 2
 
 	add_overlay(mutable_appearance('icons/obj/machines/bitrunning.dmi', "emag_overlay"))
-	balloon_alert(user, LANG("obj.61d25b48", null))
+	balloon_alert(user, LANG("obj.61d25b48c49a02e3", null))
 	playsound(src, 'sound/effects/sparks/sparks1.ogg', 35, vary = TRUE)
 
 
@@ -155,7 +155,7 @@
 	if(!istype(tool, /obj/item/bitrunning_debug))
 		return NONE
 
-	balloon_alert(user, LANG("obj.2432f01a", null))
+	balloon_alert(user, LANG("obj.2432f01af73bee0d", null))
 	obj_flags |= EMAGGED
 	glitch_chance = 0.5
 	capacitor_coefficient = 0.1
@@ -164,16 +164,16 @@
 
 /obj/machinery/quantum_server/crowbar_act(mob/living/user, obj/item/crowbar)
 	if(!is_ready)
-		balloon_alert(user, LANG("obj.906576e5", null))
+		balloon_alert(user, LANG("obj.906576e576280743", null))
 		return ITEM_INTERACT_FAILURE
 	if(length(avatar_connection_refs))
-		balloon_alert(user, LANG("obj.706e5aea", null))
+		balloon_alert(user, LANG("obj.706e5aeac7556fd2", null))
 		return ITEM_INTERACT_FAILURE
 	return default_deconstruction_crowbar(user, crowbar)
 
 /obj/machinery/quantum_server/screwdriver_act(mob/living/user, obj/item/screwdriver)
 	if(!is_ready)
-		balloon_alert(user, LANG("obj.906576e5", null))
+		balloon_alert(user, LANG("obj.906576e576280743", null))
 		return ITEM_INTERACT_FAILURE
 	return default_deconstruction_screwdriver(user, screwdriver)
 

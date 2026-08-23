@@ -115,8 +115,8 @@
 	if(!(flags & CALTROP_SILENT) && !digitigrade_fan.has_status_effect(/datum/status_effect/caltropped))
 		digitigrade_fan.apply_status_effect(/datum/status_effect/caltropped)
 		digitigrade_fan.visible_message(
-			span_danger(LANG("datum.bc14edea", list(digitigrade_fan, parent))),
-			span_userdanger(LANG("datum.d71853c3", list(parent)))
+			span_danger(LANG("datum.bc14edea2fca79cd", list(digitigrade_fan, parent))),
+			span_userdanger(LANG("datum.d71853c36b3f8171", list(parent)))
 		)
 
 	digitigrade_fan.apply_damage(damage, BRUTE, picked_def_zone, wound_bonus = CANT_WOUND, attacking_item = parent)

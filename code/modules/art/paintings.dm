@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 		user.transfer_item_to_turf(canvas, get_turf(src), silent = FALSE)
 		painting = canvas
 		canvas.layer = layer+0.1
-		user.visible_message(span_notice(LANG("obj.dc77a240", list(user, canvas, src))),span_notice(LANG("obj.98e51b72", list(canvas, src))))
+		user.visible_message(span_notice(LANG("obj.dc77a2403751435c", list(user, canvas, src))),span_notice(LANG("obj.98e51b722d8a9136", list(canvas, src))))
 		return ITEM_INTERACT_SUCCESS
 
 
@@ -237,7 +237,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	if(finalized || painting_metadata.loaded_from_json)
 		return
 	if(!in_range(src, user))
-		user.balloon_alert(user, LANG("obj.a462ee7c", null))
+		user.balloon_alert(user, LANG("obj.a462ee7cec0ddb47", null))
 		return
 	if(!try_rename(user))
 		return
@@ -258,28 +258,28 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	if(!finalized || !isliving(user))
 		return
 	if(!painting_metadata.loaded_from_json)
-		if(tgui_alert(user, LANG("obj.b3d4d969", null),LANG("obj.c410a53c", null),list("Yes","No")) != "Yes")
+		if(tgui_alert(user, LANG("obj.b3d4d9693e62d482", null),LANG("obj.c410a53c698ee0d2", null),list("Yes","No")) != "Yes")
 			return
 	var/mob/living/living_user = user
 	var/obj/item/card/id/id_card = living_user.get_idcard(TRUE)
 	if(!id_card)
-		to_chat(user, span_warning(LANG("obj.c46fb7e3", null)))
+		to_chat(user, span_warning(LANG("obj.c46fb7e3998652e3", null)))
 		return
 	if(!id_card.can_be_used_in_payment(user))
-		to_chat(user, span_warning(LANG("obj.781bd5e7", null)))
+		to_chat(user, span_warning(LANG("obj.781bd5e738cf6ff8", null)))
 		return
 	var/datum/bank_account/account = id_card.registered_account
 	if(!account.has_money(painting_metadata.credit_value))
-		to_chat(user, span_warning(LANG("obj.a47d5fc1", null)))
+		to_chat(user, span_warning(LANG("obj.a47d5fc1698669d1", null)))
 		return
 	var/sniped_amount = painting_metadata.credit_value
-	var/offer_amount = tgui_input_number(user, LANG("obj.fedfee58", null), LANG("obj.086e5b08", null), (painting_metadata.credit_value + 1), account.account_balance, painting_metadata.credit_value)
+	var/offer_amount = tgui_input_number(user, LANG("obj.fedfee5897c797de", null), LANG("obj.086e5b08eb642c0e", null), (painting_metadata.credit_value + 1), account.account_balance, painting_metadata.credit_value)
 	if(!offer_amount || QDELETED(user) || QDELETED(src) || !istype(loc, /obj/structure/sign/painting) || !user.can_perform_action(loc, FORBID_TELEKINESIS_REACH))
 		return
 	if(sniped_amount != painting_metadata.credit_value)
 		return
 	if(!account.adjust_money(-offer_amount, "Painting: Patron of [painting_metadata.title]"))
-		to_chat(user, span_warning(LANG("obj.eab48414", null)))
+		to_chat(user, span_warning(LANG("obj.eab484146b427211", null)))
 		return
 
 	var/datum/bank_account/service_account = SSeconomy.get_dep_account(ACCOUNT_SRV)
@@ -293,7 +293,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 			if(curator_cut)
 				for(var/datum/bank_account/curator as anything in curator_accounts)
 					curator.adjust_money(curator_cut, "Painting: Patronage cut")
-					curator.bank_card_talk(LANG("obj.c2681220", list(curator.account_balance, MONEY_SYMBOL)))
+					curator.bank_card_talk(LANG("obj.c26812200c6e9c81", list(curator.account_balance, MONEY_SYMBOL)))
 
 	if(istype(loc, /obj/structure/sign/painting))
 		var/obj/structure/sign/painting/frame = loc
@@ -305,7 +305,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	painting_metadata.credit_value = offer_amount
 	last_patron = WEAKREF(user.mind)
 
-	to_chat(user, span_notice(LANG("obj.3991f23d", null)))
+	to_chat(user, span_notice(LANG("obj.3991f23d6a0e9688", null)))
 	if(HAS_PERSONALITY(user, /datum/personality/creative))
 		user.add_mood_event("creative_patronage", /datum/mood_event/creative_patronage)
 	if(HAS_PERSONALITY(user, /datum/personality/unimaginative))
@@ -313,7 +313,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	var/list/possible_frames = SSpersistent_paintings.get_available_frames(offer_amount)
 	if(possible_frames.len <= 1) // Not much room for choices here.
 		return
-	if(tgui_alert(user, LANG("obj.cbb75003", null),LANG("obj.1ed3c6d9", null),list("Yes","No")) != "Yes")
+	if(tgui_alert(user, LANG("obj.cbb75003986ea7cb", null),LANG("obj.1ed3c6d9c7ac117c", null),list("Yes","No")) != "Yes")
 		return
 	if(!can_select_frame(user))
 		return
@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 		return
 	painting_metadata.frame_type = result
 	var/obj/structure/sign/painting/our_frame = loc
-	our_frame.balloon_alert(user, LANG("obj.14b8a1b6", list(result)))
+	our_frame.balloon_alert(user, LANG("obj.14b8a1b6c7624393", list(result)))
 	our_frame.update_appearance()
 
 /obj/item/canvas/proc/can_select_frame(mob/user)
@@ -447,13 +447,13 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 /obj/item/canvas/proc/try_rename(mob/user)
 	if(painting_metadata.loaded_from_json) // No renaming old paintings
 		return TRUE
-	var/new_name = tgui_input_text(user, LANG("obj.8790d2a6", null), LANG("obj.ff0f7709", null), max_length = MAX_NAME_LEN)
+	var/new_name = tgui_input_text(user, LANG("obj.8790d2a61664acc0", null), LANG("obj.ff0f7709c47413cf", null), max_length = MAX_NAME_LEN)
 	new_name = reject_bad_name(new_name, allow_numbers = TRUE, ascii_only = FALSE, strict = TRUE, cap_after_symbols = FALSE)
 	if(isnull(new_name))
 		return FALSE
 	if(new_name != painting_metadata.title && user.can_perform_action(src))
 		painting_metadata.title = new_name
-	switch(tgui_alert(user, LANG("obj.851cfc93", null), LANG("obj.d9d5ab38", null), list("Yes", "No", "Cancel")))
+	switch(tgui_alert(user, LANG("obj.851cfc932cc945a6", null), LANG("obj.d9d5ab38f95b15e2", null), list("Yes", "No", "Cancel")))
 		if("Yes")
 			return TRUE
 		if("No")
@@ -607,18 +607,18 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 /obj/structure/sign/painting/examine(mob/user)
 	. = ..()
 	if(persistence_id)
-		. += span_notice(LANG("obj.809ae13e", null))
+		. += span_notice(LANG("obj.809ae13ebfd22072", null))
 	if(current_canvas)
 		current_canvas.ui_interact(user)
-		. += span_notice(LANG("obj.1c4b24ce", null))
+		. += span_notice(LANG("obj.1c4b24cee51c8b0e", null))
 		if(IS_WEAKREF_OF(user?.mind, current_canvas.last_patron))
-			. += span_notice(LANG("obj.93c33f22", null))
+			. += span_notice(LANG("obj.93c33f223c42110d", null))
 
 /obj/structure/sign/painting/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(current_canvas)
 		current_canvas.forceMove(drop_location())
-		to_chat(user, span_notice(LANG("obj.bf98e367", null)))
+		to_chat(user, span_notice(LANG("obj.bf98e367e61657c1", null)))
 		return TRUE
 
 /obj/structure/sign/painting/Exited(atom/movable/movable, atom/newloc)
@@ -638,13 +638,13 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/living/user, obj/item/canvas/new_canvas)
 	if(!(new_canvas.type in accepted_canvas_types))
-		to_chat(user, span_warning(LANG("obj.16bf6224", list(new_canvas))))
+		to_chat(user, span_warning(LANG("obj.16bf62247bdf9906", list(new_canvas))))
 		return FALSE
 	if(user.transferItemToLoc(new_canvas,src))
 		current_canvas = new_canvas
 		if(!current_canvas.finalized)
 			current_canvas.finalize(user)
-		to_chat(user,span_notice(LANG("obj.9e80a226", list(current_canvas))))
+		to_chat(user,span_notice(LANG("obj.9e80a22628ddd831", list(current_canvas))))
 		add_art_element()
 		update_appearance()
 		if(HAS_PERSONALITY(user, /datum/personality/creative))
@@ -794,10 +794,10 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	var/check_dir = our_dir & (EAST|WEST) ? NORTH : EAST
 	var/turf/closed/wall/second_wall = get_step(on_wall, check_dir)
 	if(!istype(second_wall) || !second_wall.IsReachableBy(user))
-		to_chat(user, span_warning(LANG("obj.fdbc3eef", list(check_dir == EAST ? "right" : "left"))))
+		to_chat(user, span_warning(LANG("obj.fdbc3eef6a8c34b0", list(check_dir == EAST ? "right" : "left"))))
 		return FALSE
 	if(check_wall_item(second_wall, our_dir, wall_external))
-		to_chat(user, span_warning(LANG("obj.f7d93ebd", list(check_dir == EAST ? "right" : "left"))))
+		to_chat(user, span_warning(LANG("obj.f7d93ebd075b53f7", list(check_dir == EAST ? "right" : "left"))))
 		return FALSE
 
 /obj/item/wallframe/painting/large/after_attach(obj/object)

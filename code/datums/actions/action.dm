@@ -188,37 +188,37 @@
 	if((check_flags & AB_CHECK_CONSCIOUS) && IS_UNCONSCIOUS_OR_CRIT(owner))
 		if (feedback)
 			if(owner.stat == DEAD)
-				owner.balloon_alert(owner, LANG("datum.1bf49ad4", null))
+				owner.balloon_alert(owner, LANG("datum.1bf49ad4e413a0a1", null))
 			else if(IS_UNCONSCIOUS(owner))
-				owner.balloon_alert(owner, LANG("datum.dc8b5a42", null))
+				owner.balloon_alert(owner, LANG("datum.dc8b5a428036bfca", null))
 			else
-				owner.balloon_alert(owner, LANG("datum.b49fe510", null))
+				owner.balloon_alert(owner, LANG("datum.b49fe5107e2b7291", null))
 		return FALSE
 	if((check_flags & AB_CHECK_HANDS_BLOCKED) && HAS_TRAIT(owner, TRAIT_HANDS_BLOCKED))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.d1507825", null))
+			owner.balloon_alert(owner, LANG("datum.d15078255110e2c5", null))
 		return FALSE
 	if((check_flags & AB_CHECK_IMMOBILE) && HAS_TRAIT(owner, TRAIT_IMMOBILIZED))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.b5c8ce04", null))
+			owner.balloon_alert(owner, LANG("datum.b5c8ce04aa8e539a", null))
 		return FALSE
 	if((check_flags & AB_CHECK_INCAPACITATED) && HAS_TRAIT(owner, TRAIT_INCAPACITATED))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.7ac2788b", null))
+			owner.balloon_alert(owner, LANG("datum.7ac2788bbe3be4b1", null))
 		return FALSE
 	if((check_flags & AB_CHECK_LYING) && isliving(owner))
 		var/mob/living/action_owner = owner
 		if(action_owner.body_position == LYING_DOWN)
 			if (feedback)
-				owner.balloon_alert(owner, LANG("datum.70b816d0", null))
+				owner.balloon_alert(owner, LANG("datum.70b816d084765a90", null))
 			return FALSE
 	if((check_flags & AB_CHECK_PHASED) && HAS_TRAIT(owner, TRAIT_MAGICALLY_PHASED))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.1919c2bc", null))
+			owner.balloon_alert(owner, LANG("datum.1919c2bca8803ea8", null))
 		return FALSE
 	if((check_flags & AB_CHECK_OPEN_TURF) && !isopenturf(owner.loc))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.5f5397de", null))
+			owner.balloon_alert(owner, LANG("datum.5f5397de25d6f763", null))
 		return FALSE
 	return TRUE
 

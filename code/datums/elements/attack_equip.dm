@@ -36,7 +36,7 @@
 /datum/element/attack_equip/proc/equip(obj/item/attire, mob/living/carbon/human/sharp_dresser, mob/living/user)
 
 	if(HAS_TRAIT(attire, TRAIT_NODROP))
-		to_chat(user, span_warning(LANG("datum.73a8373f", list(attire, sharp_dresser))))
+		to_chat(user, span_warning(LANG("datum.73a8373f0ab702ce", list(attire, sharp_dresser))))
 		return
 	var/equip_time = attire.equip_delay_other
 

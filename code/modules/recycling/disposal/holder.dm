@@ -105,7 +105,7 @@
 	last_pipe = null
 	active = FALSE
 	for(var/mob/living/piperider in contents)
-		to_chat(piperider, span_notice(LANG("obj.24d18756", null)))
+		to_chat(piperider, span_notice(LANG("obj.24d18756fd8bbc5b", null)))
 
 /**
  * Starts the struggle code
@@ -131,11 +131,11 @@
 		return //Somehow we're not in a pipe, shits probably fucked
 	var/obj/structure/disposalpipe/transport_cylinder = loc
 	if(active)
-		to_chat(escapee, span_danger(LANG("obj.409de90d", list(loc))))
+		to_chat(escapee, span_danger(LANG("obj.409de90de39ece2b", list(loc))))
 		return
 	if(src in escapee.do_afters)
 		return //already trying to escape
-	to_chat(escapee, span_warning(LANG("obj.4fe951d2", null)))
+	to_chat(escapee, span_warning(LANG("obj.4fe951d29cee235d", null)))
 	playsound(loc, 'sound/machines/airlock/airlock_alien_prying.ogg', vol = 30, vary = FALSE, extrarange = 3) //yeah I know but at least it sounds like metal being bent.
 
 	if(!do_after(escapee, 20 SECONDS, get_turf(loc)))

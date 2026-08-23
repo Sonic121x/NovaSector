@@ -59,8 +59,8 @@
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher/examine(mob/user)
 	. = ..()
 
-	. += span_notice(LANG("obj.0c8e68cc", null))
-	. += span_notice(LANG("obj.ba3f81e4", list(target_range)))
+	. += span_notice(LANG("obj.0c8e68ccd8e79835", null))
+	. += span_notice(LANG("obj.ba3f81e450d9316a", list(target_range)))
 
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!interacting_with || !user)
@@ -68,11 +68,11 @@
 
 	var/distance_ranged = get_dist(user, interacting_with)
 	if(distance_ranged > maximum_target_range)
-		user.balloon_alert(user, LANG("obj.0fdcc754", null))
+		user.balloon_alert(user, LANG("obj.0fdcc7544da5ebf6", null))
 		return ITEM_INTERACT_BLOCKING
 
 	target_range = distance_ranged
-	user.balloon_alert(user, LANG("obj.600585cb", list(target_range)))
+	user.balloon_alert(user, LANG("obj.600585cb77becd60", list(target_range)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher/no_mag

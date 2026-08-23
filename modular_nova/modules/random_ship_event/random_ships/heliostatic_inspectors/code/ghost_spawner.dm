@@ -35,7 +35,7 @@
 	// if this is the first officer, keep a reference to them
 	if(!first_officer)
 		first_officer = REF(spawned_mob)
-		to_chat(spawned_mob, span_bold(LANG("obj.cb61ec08", null) \
+		to_chat(spawned_mob, span_bold(LANG("obj.cb61ec0858ef5ddc", null) \
 		))
 
 	to_chat(spawned_mob, "[span_boldnotice("Your primary duty is to the Heliostatic Coalition. \

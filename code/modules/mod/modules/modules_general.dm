@@ -43,10 +43,10 @@
 	if(QDELETED(source) || !invdrop || !mod.wearer || newloc == mod.wearer || !mod.wearer.s_store)
 		return
 	if(!atom_storage?.attempt_insert(mod.wearer.s_store, mod.wearer, override = TRUE))
-		balloon_alert(mod.wearer, LANG("obj.f9f04c53", null))
-		to_chat(mod.wearer, span_warning(LANG("obj.ee3e3d49", list(src, mod.wearer.s_store))))
+		balloon_alert(mod.wearer, LANG("obj.f9f04c533dcee98b", null))
+		to_chat(mod.wearer, span_warning(LANG("obj.ee3e3d49c944ab14", list(src, mod.wearer.s_store))))
 		return
-	to_chat(mod.wearer, span_notice(LANG("obj.28ef2196", list(src, mod.wearer.s_store))))
+	to_chat(mod.wearer, span_notice(LANG("obj.28ef21968c140456", list(src, mod.wearer.s_store))))
 	mod.wearer.temporarilyRemoveItemFromInventory(mod.wearer.s_store)
 
 /obj/item/mod/module/storage/large_capacity
@@ -197,9 +197,9 @@
 
 /obj/item/mod/module/jump_jet/on_use(mob/activator)
 	if (DOING_INTERACTION(mod.wearer, mod.wearer))
-		balloon_alert(activator, LANG("obj.8df72942", null))
+		balloon_alert(activator, LANG("obj.8df72942c63f9092", null))
 		return
-	balloon_alert(mod.wearer, LANG("obj.bb303ae9", null))
+	balloon_alert(mod.wearer, LANG("obj.bb303ae92784c14b", null))
 	mod.wearer.Shake(duration = 1 SECONDS)
 	if (!do_after(mod.wearer, 1 SECONDS, target = mod.wearer))
 		start_cooldown(FAILED_ACTIVATION_COOLDOWN) // Don't go on full cooldown if we failed to launch
@@ -208,7 +208,7 @@
 	mod.wearer.apply_status_effect(/datum/status_effect/jump_jet)
 	var/turf/launch_from = get_turf(mod.wearer)
 	if (mod.wearer.zMove(UP, z_move_flags = ZMOVE_CHECK_PULLS))
-		launch_from.visible_message(span_warning(LANG("obj.ac01fc95", list(mod.wearer))))
+		launch_from.visible_message(span_warning(LANG("obj.ac01fc95d72128ac", list(mod.wearer))))
 	new /obj/effect/temp_visual/jet_plume(launch_from)
 
 	var/obj/item/mod/module/jetpack/linked_jetpack = locate() in mod.modules
@@ -478,7 +478,7 @@
 			if(!value)
 				return
 			if(is_color_dark(value, 50))
-				balloon_alert(mod.wearer, LANG("obj.272335f1", null))
+				balloon_alert(mod.wearer, LANG("obj.272335f1703110e8", null))
 				return
 			set_light_color(value)
 			update_clothing_slots()
@@ -521,11 +521,11 @@
 
 /obj/item/mod/module/dispenser/on_use(mob/activator)
 	if(dispense_time && !do_after(mod.wearer, dispense_time, target = mod))
-		balloon_alert(mod.wearer, LANG("obj.c67b5d27", null))
+		balloon_alert(mod.wearer, LANG("obj.c67b5d274d6e724b", null))
 		return FALSE
 	var/obj/item/dispensed = new dispense_type(mod.wearer.loc)
 	mod.wearer.put_in_hands(dispensed)
-	balloon_alert(activator, LANG("obj.14c3e68c", list(dispensed)))
+	balloon_alert(activator, LANG("obj.14c3e68c14092df1", list(dispensed)))
 	playsound(src, 'sound/machines/click.ogg', 100, TRUE)
 	drain_power(use_energy_cost)
 	return dispensed
@@ -564,8 +564,8 @@
 		mod.wearer.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * levels, 10 SECONDS)
 
 	mod.wearer.visible_message(
-		span_notice(LANG("obj.481e6dd8", list(mod.wearer, fell_on, extreme_fall ? ", but barely manages to stay on [p_their()] feet." : ", and quite stylishly on [p_their()] feet"))),
-		span_notice(LANG("obj.645945bc", list(src))),
+		span_notice(LANG("obj.481e6dd8253c0431", list(mod.wearer, fell_on, extreme_fall ? ", but barely manages to stay on [p_their()] feet." : ", and quite stylishly on [p_their()] feet"))),
+		span_notice(LANG("obj.645945bcfdfdb166", list(src))),
 	)
 	return ZIMPACT_CANCEL_DAMAGE|ZIMPACT_NO_MESSAGE|ZIMPACT_NO_SPIN
 
@@ -633,7 +633,7 @@
 
 /obj/item/mod/module/dna_lock/on_use(mob/activator)
 	dna = mod.wearer.dna.unique_enzymes
-	balloon_alert(activator, LANG("obj.aafa9d0a", null))
+	balloon_alert(activator, LANG("obj.aafa9d0ab17a0a2a", null))
 	drain_power(use_energy_cost)
 
 /obj/item/mod/module/dna_lock/emp_act(severity)
@@ -650,7 +650,7 @@
 	var/mob/living/carbon/carbon_user = user
 	if(!dna  || (carbon_user.has_dna() && carbon_user.dna.unique_enzymes == dna))
 		return TRUE
-	balloon_alert(user, LANG("obj.63b7a85b", null))
+	balloon_alert(user, LANG("obj.63b7a85b1c0af335", null))
 	return FALSE
 
 /obj/item/mod/module/dna_lock/proc/on_emp(datum/source, severity, protection)
@@ -910,10 +910,10 @@
 
 /obj/item/mod/module/recycler/proc/dispense(atom/target)
 	if(container.retrieve_all(target))
-		balloon_alert(mod.wearer, LANG("obj.76348571", null))
+		balloon_alert(mod.wearer, LANG("obj.7634857157607a63", null))
 		playsound(src, 'sound/machines/microwave/microwave-end.ogg', 50, TRUE)
 		return
-	balloon_alert(mod.wearer, LANG("obj.f2f7f710", null))
+	balloon_alert(mod.wearer, LANG("obj.f2f7f710e2dac1c1", null))
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 
 /obj/item/mod/module/recycler/proc/InsertSheets(obj/item/recycler, obj/item/stack/sheets, atom/context)
@@ -942,12 +942,12 @@
 
 /obj/item/mod/module/recycler/donk/dispense(atom/target)
 	if(!container.use_amount_mat(required_amount, /datum/material/iron))
-		balloon_alert(mod.wearer, LANG("obj.f2f7f710", null))
+		balloon_alert(mod.wearer, LANG("obj.f2f7f710e2dac1c1", null))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 		return
 	var/obj/item/ammo_box/product = new ammobox_type(target)
 	attempt_insert_storage(product)
-	balloon_alert(mod.wearer, LANG("obj.0a63011c", null))
+	balloon_alert(mod.wearer, LANG("obj.0a63011cb01b7f5c", null))
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 50, TRUE)
 
 /obj/item/mod/module/fishing_glove
@@ -975,19 +975,19 @@
 
 /obj/item/mod/module/fishing_glove/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.5750e2b3", list(EXAMINE_HINT("right-click"))))
+	. += span_info(LANG("obj.5750e2b3d79a2873", list(EXAMINE_HINT("right-click"))))
 	if(equipped)
-		. += span_info(LANG("obj.95c330e2", list(icon2html(equipped, user), EXAMINE_HINT("Right-Click"))))
+		. += span_info(LANG("obj.95c330e2707ad8d2", list(icon2html(equipped, user), EXAMINE_HINT("Right-Click"))))
 
 /obj/item/mod/module/fishing_glove/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/fishing_rod))
 		return ..()
 	if(equipped)
-		balloon_alert(user, LANG("obj.573708ed", null))
+		balloon_alert(user, LANG("obj.573708ed1bf8289f", null))
 	if(!user.transferItemToLoc(tool, src))
-		user.balloon_alert(user, LANG("obj.ee463177", null))
+		user.balloon_alert(user, LANG("obj.ee46317710e7fbe5", null))
 	equipped = tool
-	balloon_alert(user, LANG("obj.9b3ecfd0", null))
+	balloon_alert(user, LANG("obj.9b3ecfd019e0b744", null))
 	playsound(src, 'sound/items/click.ogg', 50, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -998,7 +998,7 @@
 	if(!equipped)
 		return
 	user.put_in_hands(equipped)
-	balloon_alert(user, LANG("obj.4ccf0271", null))
+	balloon_alert(user, LANG("obj.4ccf02719f449212", null))
 	playsound(src, 'sound/items/click.ogg', 50, TRUE)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 

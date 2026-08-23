@@ -27,9 +27,9 @@
 	if(!language_type || quirk_holder.has_language(language_type))
 		language_type = /datum/language/uncommon
 		if(quirk_holder.has_language(language_type))
-			to_chat(quirk_holder, span_boldnotice(LANG("datum.73c19933", null)))
+			to_chat(quirk_holder, span_boldnotice(LANG("datum.73c19933d420e53f", null)))
 			return
-		to_chat(quirk_holder, span_boldnotice(LANG("datum.fe5f4196", null)))
+		to_chat(quirk_holder, span_boldnotice(LANG("datum.fe5f4196f51eb676", null)))
 
 	var/speakable = client_source?.prefs.read_preference(/datum/preference/toggle/language_speakable)
 	var/language_skill = client_source?.prefs.read_preference(/datum/preference/choiced/language_skill) || "100%"

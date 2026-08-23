@@ -167,11 +167,11 @@
 		return
 	var/mob/living/carbon/human/human_target = target
 	if(!human_target.on_fire)
-		to_chat(human_target, span_danger(LANG("obj.53bcf40c", list(src))))
+		to_chat(human_target, span_danger(LANG("obj.53bcf40c878cdb19", list(src))))
 		human_target.adjust_fire_stacks(2)
 		human_target.ignite_mob()
 		return
-	to_chat(human_target, span_danger(LANG("obj.f614c82b", list(src))))
+	to_chat(human_target, span_danger(LANG("obj.f614c82b12d5d95b", list(src))))
 	explosion(src, light_impact_range = 1, flame_range = 2) //ow
 
 /// Ashen arrows

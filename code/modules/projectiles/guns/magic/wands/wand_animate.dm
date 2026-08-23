@@ -13,11 +13,11 @@
 
 /obj/item/gun/magic/wand/animate/zap_self(mob/living/user, suicide = FALSE)
 	. = ..()
-	to_chat(user, span_warning(LANG("obj.03e4cae0", null)))
+	to_chat(user, span_warning(LANG("obj.03e4cae07aa8b568", null)))
 	charges--
 	var/list/possessions = user.get_equipped_items()
 	if (!length(possessions))
-		to_chat(user, span_notice(LANG("obj.9a18dfd4", null)))
+		to_chat(user, span_notice(LANG("obj.9a18dfd4269c01f0", null)))
 		return
 
 	var/obj/some_item = pick(possessions)
@@ -27,7 +27,7 @@
 /obj/item/gun/magic/wand/animate/do_suicide(mob/living/user)
 	charges--
 	if (!iscarbon(user))
-		user.visible_message(span_suicide(LANG("obj.7ba2dc9b", list(user))))
+		user.visible_message(span_suicide(LANG("obj.7ba2dc9bdb94b636", list(user))))
 		return SHAME
 	var/mob/living/carbon/suicider = user
 	var/obj/item/animate_part = suicider.get_organ_slot(ORGAN_SLOT_BRAIN) || suicider.get_bodypart(BODY_ZONE_HEAD)

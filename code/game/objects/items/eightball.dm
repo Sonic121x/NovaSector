@@ -64,10 +64,10 @@
 		return
 
 	if(on_cooldown)
-		to_chat(user, span_warning(LANG("obj.7d63c9c3", list(src))))
+		to_chat(user, span_warning(LANG("obj.7d63c9c351600edd", list(src))))
 		return
 
-	user.visible_message(span_notice(LANG("obj.bc30abc3", list(user, src))), span_notice(LANG("obj.33c6ea09", list(src))), span_hear(LANG("obj.e1b985f1", null)))
+	user.visible_message(span_notice(LANG("obj.bc30abc3e1af9930", list(user, src))), span_notice(LANG("obj.33c6ea09f45f7744", list(src))), span_hear(LANG("obj.e1b985f17dc898da", null)))
 
 	shaking = TRUE
 
@@ -131,7 +131,7 @@
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/item/toy/eightball/haunted/attack_ghost(mob/user)
 	if(!shaking)
-		to_chat(user, span_warning(LANG("obj.16e7ade7", list(src))))
+		to_chat(user, span_warning(LANG("obj.16e7ade7fcddc17e", list(src))))
 		return
 	interact(user)
 	return ..()
@@ -139,11 +139,11 @@
 /obj/item/toy/eightball/haunted/start_shaking(mob/user)
 	// notify ghosts that someone's shaking a haunted eightball
 	// and inform them of the message, (hopefully a yes/no question)
-	selected_message = tgui_input_text(user, LANG("obj.33897a80", null), LANG("obj.2a61f14f", null), max_length = CHAT_MESSAGE_MAX_LENGTH) || initial(selected_message)
+	selected_message = tgui_input_text(user, LANG("obj.33897a80b457b6c3", null), LANG("obj.2a61f14ffb33a12a", null), max_length = CHAT_MESSAGE_MAX_LENGTH) || initial(selected_message)
 	if (!(src in user.held_items))
 		return FALSE
 	notify_ghosts(
-		LANG("obj.db850740", list(user.real_name, src, selected_message)),
+		LANG("obj.db8507401d253168", list(user.real_name, src, selected_message)),
 		source = src,
 		header = "Magic eightball",
 		click_interact = TRUE,

@@ -108,12 +108,12 @@
 
 	log_combat(user, wallopee, "prepared to use a bash attack with a [src] against [wallopee]")
 
-	wallopee.visible_message(span_danger(LANG("obj.9b83bdbf", list(user, src, wallopee, head_name))), span_userdanger(LANG("obj.19ff9020", list(user, src, head_name))))
+	wallopee.visible_message(span_danger(LANG("obj.9b83bdbfe4e0f77d", list(user, src, wallopee, head_name))), span_userdanger(LANG("obj.19ff9020739256a2", list(user, src, head_name))))
 
 	if(!do_after(user,  2 SECONDS, target = wallopee))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-	wallopee.visible_message(span_danger(LANG("obj.b2fb04a5", list(user, src, wallopee, head_name))), span_userdanger(LANG("obj.8051bcf0", list(user, src, head_name))))
+	wallopee.visible_message(span_danger(LANG("obj.b2fb04a5162aa9d1", list(user, src, wallopee, head_name))), span_userdanger(LANG("obj.8051bcf0584c359e", list(user, src, head_name))))
 
 	var/min_wound = head_to_bash.get_wound_threshold_of_wound_type(WOUND_BLUNT, WOUND_SEVERITY_SEVERE, return_value_if_no_wound = 30, wound_source = src)
 	var/max_wound = head_to_bash.get_wound_threshold_of_wound_type(WOUND_BLUNT, WOUND_SEVERITY_CRITICAL, return_value_if_no_wound = 50, wound_source = src)
@@ -216,20 +216,20 @@
 
 /obj/item/extinguisher/suicide_act(mob/living/user)
 	if (!safety && (reagents.total_volume >= 1))
-		user.visible_message(span_suicide(LANG("obj.9fa8a972", list(user, user.p_their(), user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.9fa8a972d489de52", list(user, user.p_their(), user.p_theyre()))))
 		interact_with_atom(user, user)
 		return OXYLOSS
 	else if (safety && (reagents.total_volume >= 1))
-		user.visible_message(span_warning(LANG("obj.24d077ad", list(user, user.p_their()))))
+		user.visible_message(span_warning(LANG("obj.24d077ade5501869", list(user, user.p_their()))))
 		return SHAME
 	else
-		user.visible_message(span_warning(LANG("obj.13b2da04", list(user, user.p_their(), src))))
+		user.visible_message(span_warning(LANG("obj.13b2da0406d20171", list(user, user.p_their(), src))))
 		return SHAME
 
 /obj/item/extinguisher/attack_self(mob/user)
 	safety = !safety
 	src.icon_state = "[sprite_name][!safety]"
-	balloon_alert(user, LANG("obj.10fa174c", list(safety ? "on" : "off")))
+	balloon_alert(user, LANG("obj.10fa174cf01e7d3e", list(safety ? "on" : "off")))
 	return
 
 /obj/item/extinguisher/attack(mob/M, mob/living/user)
@@ -247,29 +247,29 @@
 
 /obj/item/extinguisher/examine(mob/user)
 	. = ..()
-	. += LANG("obj.400bbae9", list(safety ? "on" : "off"))
+	. += LANG("obj.400bbae9877489c5", list(safety ? "on" : "off"))
 
 	if(reagents.total_volume)
-		. += span_notice(LANG("obj.e810a747", null))
+		. += span_notice(LANG("obj.e810a74775bcd123", null))
 
 /obj/item/extinguisher/proc/AttemptRefill(atom/target, mob/user)
 	if(is_type_in_list(target, tanktypes) && target.Adjacent(user))
 		if(reagents.total_volume == reagents.maximum_volume)
-			balloon_alert(user, LANG("obj.e28c7f55", null))
+			balloon_alert(user, LANG("obj.e28c7f55e1d974b1", null))
 			return TRUE
 		// Make sure we're refilling with the proper chem.
 		if(!(target.reagents.has_reagent(chem, check_subtypes = TRUE)))
-			balloon_alert(user, LANG("obj.448ee9c6", null))
+			balloon_alert(user, LANG("obj.448ee9c642d981a9", null))
 			return TRUE
 		var/obj/structure/reagent_dispensers/W = target //will it work?
 		var/transferred = W.reagents.trans_to(src, max_water, transferred_by = user)
 		if(transferred > 0)
-			to_chat(user, span_notice(LANG("obj.04d0ec52", list(src, transferred))))
+			to_chat(user, span_notice(LANG("obj.04d0ec52c3c30bcb", list(src, transferred))))
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, TRUE, -6)
 			for(var/datum/reagent/water/R in reagents.reagent_list)
 				R.cooling_temperature = cooling_power
 		else
-			to_chat(user, span_warning(LANG("obj.9104a6b2", list(W))))
+			to_chat(user, span_warning(LANG("obj.9104a6b2d5c7ff59", list(W))))
 
 		return TRUE
 	else
@@ -291,7 +291,7 @@
 		return NONE
 
 	if (src.reagents.total_volume < 1)
-		balloon_alert(user, LANG("obj.76a90f7c", null))
+		balloon_alert(user, LANG("obj.76a90f7c0f5ea424", null))
 		return .
 
 	if (world.time < src.last_use + 12)
@@ -361,7 +361,7 @@
 
 /obj/item/extinguisher/click_alt(mob/user)
 	if(!user.is_holding(src))
-		to_chat(user, span_notice(LANG("obj.ef710334", list(src))))
+		to_chat(user, span_notice(LANG("obj.ef710334ab61541f", list(src))))
 		return CLICK_ACTION_BLOCKING
 	EmptyExtinguisher(user)
 	return CLICK_ACTION_SUCCESS
@@ -370,14 +370,14 @@
 	if(loc == user && reagents.total_volume)
 		reagents.expose(user.loc, TOUCH)
 		reagents.clear_reagents()
-		user.visible_message(span_notice(LANG("obj.6f49410c", list(user, src))), span_info(LANG("obj.e1d68383", list(src))))
+		user.visible_message(span_notice(LANG("obj.6f49410cad7eca5d", list(user, src))), span_info(LANG("obj.e1d68383a74660ed", list(src))))
 
 // Firebot assembly
 /obj/item/extinguisher/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (!istype(tool, /obj/item/bodypart/arm/left/robot) && !istype(tool, /obj/item/bodypart/arm/right/robot))
 		return NONE
 
-	to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 	qdel(tool)
 	var/obj/item/bot_assembly/firebot/assembly = new(drop_location())
 	var/held_index = user.is_holding(src)

@@ -40,7 +40,7 @@
 /obj/effect/mob_spawn/ghost_role/venus_human_trap/proc/bear_fruit()
 	ready = TRUE
 	notify_ghosts(
-		LANG("obj.5dd73092", list(src)),
+		LANG("obj.5dd73092fda44bc4", list(src)),
 		source = src,
 		header = "Venus Human Trap",
 		click_interact = TRUE,
@@ -53,6 +53,6 @@
 		return FALSE
 	if(!ready)
 		if(!silent)
-			to_chat(user, span_warning(LANG("obj.64e8db3d", list(src))))
+			to_chat(user, span_warning(LANG("obj.64e8db3d9b18da06", list(src))))
 		return FALSE
 	return TRUE

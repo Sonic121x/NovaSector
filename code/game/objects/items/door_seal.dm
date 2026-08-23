@@ -21,7 +21,7 @@
 	var/unseal_time = 2 SECONDS
 
 /obj/item/door_seal/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.5c284d92", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.5c284d920c0cc6ca", list(user, user.p_them(), src, user.p_theyre()))))
 	playsound(src, 'sound/items/tools/jaws_pry.ogg', 30, TRUE)
 	return BRUTELOSS
 

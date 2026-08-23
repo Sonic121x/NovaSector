@@ -137,7 +137,7 @@
 					if(!target_site)
 						return TRUE
 					if(!controlled_drone.check_blacklist())
-						say(LANG("obj.b9623c90", null))
+						say(LANG("obj.b9623c90c28cdf6f", null))
 						return TRUE
 				controlled_drone.launch_for(target_site)
 			return TRUE

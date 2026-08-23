@@ -11,7 +11,7 @@
 
 /obj/machinery/computer/shuttle/ferry/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!allow_emag)
-		balloon_alert(user, LANG("obj.83cec077", null))
+		balloon_alert(user, LANG("obj.83cec0778330f82c", null))
 		return FALSE
 	return ..()
 

@@ -16,7 +16,7 @@
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 	var/mob/living/owner = parent
-	owner.balloon_alert(owner, LANG("datum.04bf4594", null))
+	owner.balloon_alert(owner, LANG("datum.04bf45947238e010", null))
 
 /datum/component/pixel_tilt/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE, PROC_REF(pre_move_check))
@@ -52,7 +52,7 @@
 	animate(owner, transform = transform_to_reset, time = 0.2 SECONDS)
 
 	if(!QDELETED(owner))
-		owner.balloon_alert(owner, LANG("datum.59b6e5e5", null))
+		owner.balloon_alert(owner, LANG("datum.59b6e5e57e318596", null))
 
 	qdel(src)
 

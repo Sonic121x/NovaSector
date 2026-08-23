@@ -23,15 +23,15 @@
 
 /mob/living/proc/show_conflict_opt_in()
 	if(CONFIG_GET(flag/disable_conflict_opt_in_preferences))
-		balloon_alert(src, LANG("mob.9a3f0310", null))
+		balloon_alert(src, LANG("mob.9a3f031002f496cd", null))
 		return FALSE
 	if(!client)
 		return FALSE
 	if(IS_UNCONSCIOUS_OR_CRIT(src))
-		balloon_alert(src, LANG("mob.c2ec14c4", null))
+		balloon_alert(src, LANG("mob.c2ec14c481eb7b08", null))
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, conflict_opt_in_aura_cooldown))
-		balloon_alert(src, LANG("mob.ca72a73e", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, conflict_opt_in_aura_cooldown)))))
+		balloon_alert(src, LANG("mob.ca72a73e985e1a6b", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, conflict_opt_in_aura_cooldown)))))
 		return FALSE
 
 	clear_conflict_opt_in_auras()
@@ -52,13 +52,13 @@
 			LAZYSET(conflict_opt_in_aura_targets, scanned_mob, aura_key)
 
 	if(!LAZYLEN(conflict_opt_in_aura_targets))
-		balloon_alert(src, LANG("mob.b318bcbd", null))
+		balloon_alert(src, LANG("mob.b318bcbd2cdfa4d0", null))
 		return FALSE
 
 	COOLDOWN_START(src, conflict_opt_in_aura_cooldown, CONFLICT_OPT_IN_AURA_COOLDOWN)
 	conflict_opt_in_aura_timer = addtimer(CALLBACK(src, PROC_REF(clear_conflict_opt_in_auras), FALSE), CONFLICT_OPT_IN_AURA_DURATION, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
-	balloon_alert(src, LANG("mob.3984f468", null))
-	to_chat(src, span_notice(LANG("mob.29dcdba7", null)))
+	balloon_alert(src, LANG("mob.3984f468fb9eb0ac", null))
+	to_chat(src, span_notice(LANG("mob.29dcdba7ceee8d73", null)))
 	return TRUE
 
 GAME_VERB_DESC(/mob/living, show_conflict_opt_in_verb, "显示冲突加入意向", "Display nearby conflict opt-in statuses.", "IC")

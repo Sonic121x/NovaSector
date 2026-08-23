@@ -44,7 +44,7 @@
 	var/mob/living/basic/blood_worm/worm = target
 	var/mob/living/carbon/human/host = worm.host
 
-	to_chat(owner, span_notice(LANG("datum.675c3fe1", list(host))))
+	to_chat(owner, span_notice(LANG("datum.675c3fe1d45ae259", list(host))))
 
 	for (var/i in 1 to 3)
 		if (!do_after(owner, 2 SECONDS, host, timed_action_flags = IGNORE_INCAPACITATED | IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(run_checks), worm, host)))
@@ -59,20 +59,20 @@
 		animate(transform = original_transform, time = 0.2 SECONDS, easing = CUBIC_EASING | EASE_IN, flags = ANIMATION_PARALLEL)
 
 		host.visible_message(
-			message = span_danger(LANG("datum.024bc760", list(host, host.p_s()))),
+			message = span_danger(LANG("datum.024bc76086ad05ee", list(host, host.p_s()))),
 			ignored_mobs = owner
 		)
 
 	if (!host.revive())
-		host.balloon_alert(owner, LANG("datum.5028a8ea", null))
+		host.balloon_alert(owner, LANG("datum.5028a8ea2a76f27e", null))
 		return FALSE
 
 	host.visible_message(
-		message = span_danger(LANG("datum.8bb70931", list(host, host.p_s()))),
+		message = span_danger(LANG("datum.8bb709317d2784cc", list(host, host.p_s()))),
 		ignored_mobs = owner
 	)
 
-	to_chat(owner, span_green(LANG("datum.24fb8296", list(host))))
+	to_chat(owner, span_green(LANG("datum.24fb8296958169c5", list(host))))
 
 	return ..()
 
@@ -81,26 +81,26 @@
 		return FALSE
 	if (host.stat != DEAD)
 		if (feedback)
-			host.balloon_alert(owner, LANG("datum.f5271c5d", null))
+			host.balloon_alert(owner, LANG("datum.f5271c5dfec0a80a", null))
 		return FALSE
 	if (HAS_TRAIT(host, TRAIT_HUSK))
 		if (feedback)
-			host.balloon_alert(owner, LANG("datum.62afb343", null))
+			host.balloon_alert(owner, LANG("datum.62afb343bad22764", null))
 		return FALSE
 	if (!host.get_organ_slot(ORGAN_SLOT_BRAIN))
 		if (feedback)
-			host.balloon_alert(owner, LANG("datum.bbe41671", null))
+			host.balloon_alert(owner, LANG("datum.bbe416714a70026c", null))
 		return FALSE
 	if (host.get_organ_loss(ORGAN_SLOT_BRAIN) >= BRAIN_DAMAGE_DEATH && !HAS_TRAIT(host, TRAIT_BRAIN_DAMAGE_NODEATH))
 		if (feedback)
-			host.balloon_alert(owner, LANG("datum.45c3c09b", null))
+			host.balloon_alert(owner, LANG("datum.45c3c09bc4bdd702", null))
 		return FALSE
 	if (host.health <= HEALTH_THRESHOLD_DEAD)
 		if (feedback)
-			host.balloon_alert(owner, LANG("datum.0f64334c", null))
+			host.balloon_alert(owner, LANG("datum.0f64334c2dd10e02", null))
 		return FALSE
 	if (!host.can_be_revived()) // Fallback, ideally caught by earlier, more descriptive checks.
 		if (feedback)
-			host.balloon_alert(owner, LANG("datum.c8789229", null))
+			host.balloon_alert(owner, LANG("datum.c8789229aac980be", null))
 		return FALSE
 	return TRUE

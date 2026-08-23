@@ -136,7 +136,7 @@
 	if(ishuman(usr) && !allow_chunky)
 		var/mob/living/carbon/human/human_user = usr
 		if(human_user.check_chunky_fingers())
-			balloon_alert(human_user, LANG("obj.97cabc49", null))
+			balloon_alert(human_user, LANG("obj.97cabc49707aa840", null))
 			return TRUE
 
 	switch(action)
@@ -162,7 +162,7 @@
 				return
 
 			killed_program.kill_program(usr)
-			to_chat(usr, span_notice(LANG("obj.0041f6c4", list(killed_program.filename, killed_program.filetype, rand(100,999)))))
+			to_chat(usr, span_notice(LANG("obj.0041f6c4a7f7bd2e", list(killed_program.filename, killed_program.filetype, rand(100,999)))))
 			return TRUE
 
 		if("PC_runprogram")
@@ -181,7 +181,7 @@
 				if(!new_color)
 					return
 				if(is_color_dark(new_color, 50) ) //Colors too dark are rejected
-					to_chat(user, span_warning(LANG("obj.c385c4f1", null)))
+					to_chat(user, span_warning(LANG("obj.c385c4f14f4df834", null)))
 					new_color = null
 			set_flashlight_color(new_color)
 			return TRUE

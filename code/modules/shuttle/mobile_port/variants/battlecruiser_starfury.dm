@@ -170,12 +170,12 @@
 				spawner.antag_team.players_spawned += (our_candidate.ckey)
 				candidates.Splice(1, 2)
 				notify_ghosts(
-					LANG("_root.1d537442", list(our_candidate)),
+					LANG("_root.1d5374423f90be0e", list(our_candidate)),
 					source = our_candidate,
 				)
 			else
 				notify_ghosts(
-					LANG("_root.1d537442", list(spawner)),
+					LANG("_root.1d5374423f90be0e", list(spawner)),
 					source = spawner,
 				)
 

@@ -59,7 +59,7 @@
 
 /obj/machinery/power/thermoelectric_generator/wrench_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.0592e3eb", null))
+		balloon_alert(user, LANG("obj.0592e3eb3ddef312", null))
 		return
 	set_anchored(!anchored)
 	tool.play_tool_sound(src)
@@ -75,16 +75,16 @@
 	if(!anchored)
 		return
 	find_circulators()
-	balloon_alert(user, LANG("obj.e21683f7", null))
+	balloon_alert(user, LANG("obj.e21683f74ea58e9e", null))
 	return TRUE
 
 /obj/machinery/power/thermoelectric_generator/screwdriver_act(mob/user, obj/item/tool)
 	if(!anchored)
-		balloon_alert(user, LANG("obj.b74e8050", null))
+		balloon_alert(user, LANG("obj.b74e80508821d610", null))
 		return
 	toggle_panel_open()
 	tool.play_tool_sound(src)
-	balloon_alert(user, LANG("obj.a741c12e", list(panel_open ? "open" : "closed")))
+	balloon_alert(user, LANG("obj.a741c12ee0655743", list(panel_open ? "open" : "closed")))
 	return TRUE
 
 /obj/machinery/power/thermoelectric_generator/crowbar_act(mob/living/user, obj/item/tool)

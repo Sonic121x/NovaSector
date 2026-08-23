@@ -268,7 +268,7 @@
 	for(var/mob/shooken in range(7,src))
 		shake_camera(shooken, 15, 1)
 	playsound(get_turf(src),'sound/effects/explosion/explosionfar.ogg', 200, TRUE)
-	visible_message(span_boldannounce(LANG("obj.502bd934", null)))
+	visible_message(span_boldannounce(LANG("obj.502bd934dfb85a7b", null)))
 	var/mob/living/basic/boss_baby = new boss_mob(loc)
 	boss_baby.set_faction(faction)
 	new loot_drop(loc)
@@ -278,7 +278,7 @@
 	. = ..()
 	src.loot_drop = loot_drop
 	src.boss_mob = boss_mob
-	visible_message(span_boldannounce(LANG("obj.e4a4e2fd", null)))
+	visible_message(span_boldannounce(LANG("obj.e4a4e2fde79ad75a", null)))
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, FALSE, 50, TRUE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(rustle)), 5 SECONDS, TIMER_DELETE_ME)
 	do_jiggle_nova()

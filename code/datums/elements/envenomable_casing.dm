@@ -30,7 +30,7 @@
 	if(!target.is_open_container())
 		return NONE
 	if(!casing.loaded_projectile)
-		user.balloon_alert(user, LANG("datum.df2a9347", null))
+		user.balloon_alert(user, LANG("datum.df2a9347dba3c1f0", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/datum/reagent/venom_applied = target.reagents.get_master_reagent()
@@ -39,7 +39,7 @@
 	var/amount_applied = min(venom_applied.volume, amount_allowed)
 
 	casing.loaded_projectile.AddElement(/datum/element/venomous, venom_applied.type, amount_applied)
-	to_chat(user, span_notice(LANG("datum.4572fbcf", list(casing, venom_applied))))
+	to_chat(user, span_notice(LANG("datum.4572fbcf8a4ddc46", list(casing, venom_applied))))
 	target.reagents.remove_reagent(venom_applied.type, amount_applied)
 	///stops further poison application
 	UnregisterSignal(casing, COMSIG_ITEM_INTERACTING_WITH_ATOM)
@@ -49,9 +49,9 @@
 ///signal called on parent being examined while not coated
 /datum/element/envenomable_casing/proc/on_examine_before_dip(obj/item/ammo_casing/casing, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice(LANG("datum.300be675", null))
+	examine_list += span_notice(LANG("datum.300be67560072ddd", null))
 
 ///ditto, but after it's been coated
 /datum/element/envenomable_casing/proc/on_examine_after_dip(obj/item/ammo_casing/casing, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_warning(LANG("datum.01f6d509", null))
+	examine_list += span_warning(LANG("datum.01f6d509c0cbe9f4", null))

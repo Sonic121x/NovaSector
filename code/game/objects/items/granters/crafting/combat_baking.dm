@@ -15,6 +15,6 @@
 	)
 
 /obj/item/book/granter/crafting_recipe/combat_baking/recoil(mob/living/user)
-	to_chat(user, span_warning(LANG("obj.1d180ec2", null)))
+	to_chat(user, span_warning(LANG("obj.1d180ec228341e4e", null)))
 	new /obj/effect/decal/cleanable/ash(get_turf(src))
 	qdel(src)

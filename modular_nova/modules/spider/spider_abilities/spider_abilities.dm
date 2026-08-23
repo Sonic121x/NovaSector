@@ -76,7 +76,7 @@
 /datum/action/cooldown/mob_cooldown/spider_leap/Activate(atom/target)
 	var/turf/target_turf = get_turf(target)
 	if(isclosedturf(target_turf) || isspaceturf(target_turf))
-		owner.balloon_alert(owner, LANG("datum.dc0a2636", null))
+		owner.balloon_alert(owner, LANG("datum.dc0a2636a79a98ac", null))
 		return FALSE
 	new /obj/effect/temp_visual/leaper_crush(target_turf)
 	owner.throw_at(target = target_turf, range = 7, speed = 1, spin = FALSE, callback = CALLBACK(src, PROC_REF(flop_on_turf), target_turf))
@@ -94,7 +94,7 @@
 		var/throw_dir = victim.loc == owner.loc ? get_dir(owner, victim) : pick(GLOB.alldirs)
 		var/throwtarget = get_edge_target_turf(victim, throw_dir)
 		victim.throw_at(target = throwtarget, range = 1, speed = 1)
-		victim.visible_message(span_warning(LANG("datum.65b13390", list(victim, owner))))
+		victim.visible_message(span_warning(LANG("datum.65b13390ac2beebd", list(victim, owner))))
 
 // Baron's snare
 /datum/action/cooldown/spell/pointed/projectile/web_restraints/baron
@@ -222,9 +222,9 @@
 	for(var/mob/living/carbon/carbon_target in view(2,src))
 		if(carbon_target.soundbang_act(intensity = 1, stun_pwr = 0, damage_pwr = 5, deafen_pwr = 5)) // if you don't have earpro you get brain damage
 			carbon_target.gain_trauma(/datum/brain_trauma/magic/spider)
-			visible_message(span_userdanger(LANG("obj.739f7b1f", null)))
+			visible_message(span_userdanger(LANG("obj.739f7b1f7a497df5", null)))
 		else
-			visible_message(span_notice(LANG("obj.de3858fb", null)))
+			visible_message(span_notice(LANG("obj.de3858fbac1631cf", null)))
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -256,14 +256,14 @@
 /datum/action/cooldown/mob_cooldown/ceiling_walk/Activate(atom/target)
 	if(HAS_TRAIT(owner, TRAIT_SNEAK))
 
-		owner.balloon_alert(owner, LANG("datum.bdf22beb", null))
+		owner.balloon_alert(owner, LANG("datum.bdf22beb71ea6821", null))
 		owner.RemoveElement(/datum/element/forced_gravity, NEGATIVE_GRAVITY)
 		owner.density = TRUE
 		REMOVE_TRAIT(owner, TRAIT_SNEAK, ACTION_TRAIT)
 		animate(owner, alpha = initial(owner.alpha), time = animation_time, delay = animation_time, flags = ANIMATION_PARALLEL)
 
 	else
-		owner.balloon_alert(owner, LANG("datum.8a4c8de1", null))
+		owner.balloon_alert(owner, LANG("datum.8a4c8de15ae85316", null))
 		owner.AddElement(/datum/element/forced_gravity, NEGATIVE_GRAVITY)
 		owner.density = FALSE // if we're on the ceiling...
 		ADD_TRAIT(owner, TRAIT_SNEAK, ACTION_TRAIT)

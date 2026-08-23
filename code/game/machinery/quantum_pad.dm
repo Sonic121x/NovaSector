@@ -33,11 +33,11 @@
 
 /obj/machinery/quantumpad/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.1c245d72", list(linked_pad ? "currently" : "not")))
+	. += span_notice(LANG("obj.1c245d725af78095", list(linked_pad ? "currently" : "not")))
 	if(!panel_open)
-		. += span_notice(LANG("obj.e4beb9ee", null))
+		. += span_notice(LANG("obj.e4beb9ee7388db7b", null))
 	else
-		. += span_notice(LANG("obj.3fc748b5", null))
+		. += span_notice(LANG("obj.3fc748b55093fb35", null))
 
 /obj/machinery/quantumpad/RefreshParts()
 	. = ..()
@@ -56,19 +56,19 @@
 /obj/machinery/quantumpad/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
 	if(panel_open)
 		multi_tool.set_buffer(src)
-		balloon_alert(user, LANG("obj.84afb909", null))
-		to_chat(user, span_notice(LANG("obj.6b5564ef", list(multi_tool))))
+		balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
+		to_chat(user, span_notice(LANG("obj.6b5564efd47e6e6e", list(multi_tool))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(multi_tool.buffer, /obj/machinery/quantumpad))
 		if(multi_tool.buffer == src)
-			balloon_alert(user, LANG("obj.67e011aa", null))
+			balloon_alert(user, LANG("obj.67e011aacb75929c", null))
 			return ITEM_INTERACT_BLOCKING
 		linked_pad = multi_tool.buffer
-		balloon_alert(user, LANG("obj.38965918", null))
+		balloon_alert(user, LANG("obj.3896591862bc97a5", null))
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, LANG("obj.f1ae255d", null))
+	balloon_alert(user, LANG("obj.f1ae255d9b79e3bf", null))
 	return NONE
 
 /obj/machinery/quantumpad/screwdriver_act(mob/living/user, obj/item/tool)
@@ -81,13 +81,13 @@
 	if(istype(tool, /obj/item/quantum_keycard))
 		var/obj/item/quantum_keycard/card = tool
 		if(card.qpad)
-			to_chat(user, span_notice(LANG("obj.1f48689a", list(card, src))))
+			to_chat(user, span_notice(LANG("obj.1f48689a1d54c7ea", list(card, src))))
 			interact(user, card.qpad)
 			return ITEM_INTERACT_SUCCESS
-		to_chat(user, span_notice(LANG("obj.dbcf3ee7", list(card, src))))
+		to_chat(user, span_notice(LANG("obj.dbcf3ee74ce214b0", list(card, src))))
 		if(!do_after(user, 4 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.1d03ea67", list(card, src))))
+		to_chat(user, span_notice(LANG("obj.1d03ea6773ed5749", list(card, src))))
 		card.set_pad(src)
 		return ITEM_INTERACT_SUCCESS
 
@@ -105,29 +105,29 @@
 		if(map_pad_link_id && initMappedLink())
 			target_pad = linked_pad
 		else
-			to_chat(user, span_warning(LANG("obj.3eec8037", null)))
+			to_chat(user, span_warning(LANG("obj.3eec803744bd32d8", null)))
 			return
 	//NOVA EDIT ADDITION
 	var/turf/my_turf = get_turf(src)
 	if(is_away_level(my_turf.z))
-		to_chat(user, LANG("obj.cd44f8b6", list(src)))
+		to_chat(user, LANG("obj.cd44f8b6122f897f", list(src)))
 		return
 	//NOVA EDIT END
 
 	if(world.time < last_teleport + teleport_cooldown)
-		to_chat(user, span_warning(LANG("obj.d5739086", list(src, DisplayTimeText(last_teleport + teleport_cooldown - world.time)))))
+		to_chat(user, span_warning(LANG("obj.d57390861ad8acc3", list(src, DisplayTimeText(last_teleport + teleport_cooldown - world.time)))))
 		return
 
 	if(teleporting)
-		to_chat(user, span_warning(LANG("obj.f02db920", list(src))))
+		to_chat(user, span_warning(LANG("obj.f02db920b4a568ad", list(src))))
 		return
 
 	if(target_pad.teleporting)
-		to_chat(user, span_warning(LANG("obj.69237bf8", null)))
+		to_chat(user, span_warning(LANG("obj.69237bf8385ca754", null)))
 		return
 
 	if(target_pad.machine_stat & NOPOWER)
-		to_chat(user, span_warning(LANG("obj.c88e863b", null)))
+		to_chat(user, span_warning(LANG("obj.c88e863b50a8584d", null)))
 		return
 	add_fingerprint(user)
 	doteleport(user, target_pad)
@@ -156,11 +156,11 @@
 	teleporting = FALSE
 	if(machine_stat & NOPOWER)
 		if(user)
-			to_chat(user, span_warning(LANG("obj.5c3745ea", list(src))))
+			to_chat(user, span_warning(LANG("obj.5c3745ead72f2f66", list(src))))
 		return
 	if(QDELETED(target_pad) || target_pad.machine_stat & NOPOWER)
 		if(user)
-			to_chat(user, span_warning(LANG("obj.246e956b", null)))
+			to_chat(user, span_warning(LANG("obj.246e956bbda9ef5c", null)))
 		return
 
 	last_teleport = world.time

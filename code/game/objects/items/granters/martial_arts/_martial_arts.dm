@@ -13,18 +13,18 @@
 	if(!isliving(user))
 		return FALSE
 	if(locate(martial) in user.martial_arts)
-		to_chat(user, span_warning(LANG("obj.d3b40725", list(martial_name))))
+		to_chat(user, span_warning(LANG("obj.d3b40725d29f42b0", list(martial_name))))
 		return FALSE
 	return TRUE
 
 /obj/item/book/granter/martial/on_reading_start(mob/user)
-	to_chat(user, span_notice(LANG("obj.cecd2f7c", list(martial_name))))
+	to_chat(user, span_notice(LANG("obj.cecd2f7c61000711", list(martial_name))))
 	return TRUE
 
 /obj/item/book/granter/martial/on_reading_finished(mob/user)
 	if(user.mind)
 		if(!user.mind.AddComponent(/datum/component/mindbound_martial_arts, martial))
-			to_chat(user, span_warning(LANG("obj.786be5c9", list(martial_name, src))))
+			to_chat(user, span_warning(LANG("obj.786be5c9060ba9e3", list(martial_name, src))))
 			uses += 1 // Return the use
 			return
 	else

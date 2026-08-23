@@ -8,7 +8,7 @@
 	if(!(check_usability(user)))
 		return
 
-	to_chat(user, span_notice(LANG("obj.74fad6c7", list(src))))
+	to_chat(user, span_notice(LANG("obj.74fad6c7e04fc96b", list(src))))
 	drop_bot()
 	do_sparks(4, TRUE, src)
 	qdel(src)

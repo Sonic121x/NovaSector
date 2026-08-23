@@ -52,16 +52,16 @@
 	if(ismecha(parent))
 		if(amount)
 			if(amount < maxamount)
-				examine_list += span_notice(LANG("datum.69811e78", list(amount, upgrade_name)))
+				examine_list += span_notice(LANG("datum.69811e78eed2b861", list(amount, upgrade_name)))
 			else
-				examine_list += span_notice(LANG("datum.72d7ed87", list(upgrade_name)))
+				examine_list += span_notice(LANG("datum.72d7ed87e17ab6e0", list(upgrade_name)))
 		else
-			examine_list += span_notice(LANG("datum.ecbf0fef", null))
+			examine_list += span_notice(LANG("datum.ecbf0fef9805641f", null))
 	else
 		if(amount)
-			examine_list += span_notice(LANG("datum.b518f27d", list(amount, maxamount, upgrade_name)))
+			examine_list += span_notice(LANG("datum.b518f27db3c748d9", list(amount, maxamount, upgrade_name)))
 		else
-			examine_list += span_notice(LANG("datum.a97eb600", list(maxamount, upgrade_name)))
+			examine_list += span_notice(LANG("datum.a97eb60029f245f6", list(maxamount, upgrade_name)))
 
 /datum/component/armor_plate/proc/applyplate(datum/source, obj/item/our_upgrade_item, mob/user, params)
 	SIGNAL_HANDLER
@@ -70,20 +70,20 @@
 		return
 
 	if(amount >= maxamount)
-		to_chat(user, span_warning(LANG("datum.bdf00154", list(parent))))
+		to_chat(user, span_warning(LANG("datum.bdf00154643e9b3e", list(parent))))
 		return
 
 	if(ismecha(parent) && !plate_component)
 		var/obj/vehicle/sealed/mecha/as_mecha = parent
 		if (LAZYLEN(as_mecha.equip_by_category[MECHA_ARMOR]) >= as_mecha.max_equip_by_category[MECHA_ARMOR])
-			to_chat(user, span_warning(LANG("datum.956e5045", list(as_mecha))))
+			to_chat(user, span_warning(LANG("datum.956e50457ab65583", list(as_mecha))))
 			return
 
 	if(isstack(our_upgrade_item))
 		our_upgrade_item.use(1)
 	else
 		if(length(our_upgrade_item.contents))
-			to_chat(user, span_warning(LANG("datum.45af8a49", list(our_upgrade_item))))
+			to_chat(user, span_warning(LANG("datum.45af8a49c0806e9b", list(our_upgrade_item))))
 			return
 		qdel(our_upgrade_item)
 
@@ -96,12 +96,12 @@
 		if(upgrade_prefix && !have_upgraded)
 			target_for_upgrading.name = "[upgrade_prefix] [target_for_upgrading.name]"
 			have_upgraded = TRUE
-		to_chat(user, span_info(LANG("datum.1e3a39b3", list(target_for_upgrading))))
+		to_chat(user, span_info(LANG("datum.1e3a39b31c9cd9c2", list(target_for_upgrading))))
 		return
 
 	var/obj/vehicle/sealed/mecha/mecha_for_upgrading = target_for_upgrading
 	mecha_for_upgrading.update_appearance()
-	to_chat(user, span_info(LANG("datum.1e3a39b3", list(mecha_for_upgrading))))
+	to_chat(user, span_info(LANG("datum.1e3a39b31c9cd9c2", list(mecha_for_upgrading))))
 	if (plate_component)
 		return
 	plate_component = new(mecha_for_upgrading)

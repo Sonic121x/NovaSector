@@ -18,14 +18,14 @@
 	var/datum/antagonist/lunatic/lunatic_datum = IS_LUNATIC(owner)
 	var/mob/living/carbon/human/ascended_heretic = lunatic_datum.ascended_body
 	if(!(ascended_heretic))
-		owner.balloon_alert(owner, LANG("datum.35197ad9", null))
+		owner.balloon_alert(owner, LANG("datum.35197ad9668c3d39", null))
 		StartCooldown(1 SECONDS)
 		return FALSE
 	playsound(owner, 'sound/effects/singlebeat.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	owner.balloon_alert(owner, get_balloon_message(ascended_heretic))
 
 	if(ascended_heretic.stat == DEAD)
-		to_chat(owner, span_mansus(LANG("datum.9185ca5d", list(ascended_heretic))))
+		to_chat(owner, span_mansus(LANG("datum.9185ca5d1d5e710b", list(ascended_heretic))))
 
 	StartCooldown()
 	return TRUE

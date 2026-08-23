@@ -53,7 +53,7 @@
 	lunatic_obj.master = heretic_master
 	lunatic_obj.update_explanation_text()
 
-	to_chat(owner, span_boldnotice(LANG("datum.9f1ab985", list(heretic_master))))
+	to_chat(owner, span_boldnotice(LANG("datum.9f1ab9852fd4f2a5", list(heretic_master))))
 
 /datum/antagonist/lunatic/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/our_mob = mob_override || owner.current

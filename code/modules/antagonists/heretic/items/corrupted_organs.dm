@@ -45,7 +45,7 @@
 /obj/item/organ/eyes/corrupt/penlight_examine(mob/living/viewer, obj/item/examtool)
 	viewer.playsound_local(src, 'sound/effects/magic/magic_block_mind.ogg', 75, FALSE)
 	if(!viewer.is_blind() && !IS_HERETIC_OR_MONSTER(viewer))
-		to_chat(viewer, span_danger(LANG("obj.0996a07c", null)))
+		to_chat(viewer, span_danger(LANG("obj.0996a07c93a20e71", null)))
 		viewer.emote("scream")
 		viewer.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 		viewer.adjust_timed_status_effect(15 SECONDS, /datum/status_effect/speech/slurring/heretic)
@@ -124,7 +124,7 @@
 	extra_reagents.add_reagent(pick(extra_ingredients), amount_added)
 	extra_reagents.trans_to(human, amount_added, transferred_by = src, methods = INJECT)
 	if (prob(20))
-		to_chat(human, span_warning(LANG("obj.ce87b081", null)))
+		to_chat(human, span_warning(LANG("obj.ce87b0815d0d9b7d", null)))
 
 
 /// Rapidly become hungry if you are not digesting blood
@@ -163,7 +163,7 @@
 		return
 
 	if (!thirst_satiated)
-		to_chat(source, span_cult_italic(LANG("obj.d12acdcf", null)))
+		to_chat(source, span_cult_italic(LANG("obj.d12acdcf8b9810b5", null)))
 	thirst_satiated = TRUE
 	deltimer(thirst_timer)
 	thirst_timer = addtimer(VARSET_CALLBACK(src, thirst_satiated, FALSE), 3 MINUTES, TIMER_STOPPABLE | TIMER_DELETE_ME)

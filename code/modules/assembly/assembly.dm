@@ -74,7 +74,7 @@
 
 /obj/item/assembly/proc/is_secured(mob/user)
 	if(!secured)
-		to_chat(user, span_warning(LANG("obj.001076e4", list(src))))
+		to_chat(user, span_warning(LANG("obj.001076e410bd0a63", list(src))))
 		return FALSE
 	return TRUE
 
@@ -127,20 +127,20 @@
 		// Check both our's and their's assembly flags to see if either should not duplicate
 		// If so, and we match types, don't create a holder - block it
 		if(((new_assembly.assembly_flags|assembly_flags) & ASSEMBLY_NO_DUPLICATES) && istype(new_assembly, type))
-			balloon_alert(user, LANG("obj.f8e0657c", list(new_assembly.name)))
+			balloon_alert(user, LANG("obj.f8e0657ce4bb501f", list(new_assembly.name)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(new_assembly.secured)
-			balloon_alert(user, LANG("obj.3f73649f", list(new_assembly.name)))
+			balloon_alert(user, LANG("obj.3f73649fa07dec64", list(new_assembly.name)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(secured)
-			balloon_alert(user, LANG("obj.3f73649f", list(name)))
+			balloon_alert(user, LANG("obj.3f73649fa07dec64", list(name)))
 			return ITEM_INTERACT_BLOCKING
 
 		holder = new /obj/item/assembly_holder(drop_location())
 		holder.assemble(src, new_assembly, user)
-		holder.balloon_alert(user, LANG("obj.4a0ae622", null))
+		holder.balloon_alert(user, LANG("obj.4a0ae622fcbdb700", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/assembly_holder))
@@ -152,15 +152,15 @@
 
 /obj/item/assembly/screwdriver_act(mob/living/user, obj/item/tool)
 	if(toggle_secure())
-		to_chat(user, span_notice(LANG("obj.61750689", list(src))))
+		to_chat(user, span_notice(LANG("obj.61750689ca2406f7", list(src))))
 	else
-		to_chat(user, span_notice(LANG("obj.910adc2c", list(src))))
+		to_chat(user, span_notice(LANG("obj.910adc2cd5590a62", list(src))))
 	add_fingerprint(user)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/assembly/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.a3b2fc1f", list(src, secured? "is secured and ready to be used!" : "can be attached to other things.")))
+	. += span_notice(LANG("obj.a3b2fc1ffbf777e4", list(src, secured? "is secured and ready to be used!" : "can be attached to other things.")))
 
 /obj/item/assembly/ui_host(mob/user)
 	// In order, return:

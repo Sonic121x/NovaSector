@@ -62,7 +62,7 @@
 		return
 	var/mob/mob_parent = parent
 	held_disk.forceMove(mob_parent.drop_location())
-	mob_parent.visible_message(span_danger(LANG("datum.1a8f7f13", list(mob_parent, held_disk))))
+	mob_parent.visible_message(span_danger(LANG("datum.1a8f7f1389aaf156", list(mob_parent, held_disk))))
 	disky = null
 	mob_parent.update_appearance(updates = UPDATE_ICON)
 
@@ -73,7 +73,7 @@
 	if (!held_disk)
 		return
 	var/mob/mob_parent = parent
-	examine_list += span_notice(LANG("datum.ec83588a", list(mob_parent.p_are(), mob_parent.p_they(), held_disk)))
+	examine_list += span_notice(LANG("datum.ec83588a29b4929a", list(mob_parent.p_are(), mob_parent.p_they(), held_disk)))
 
 /// Drop the disk when we are killed
 /datum/component/nuclear_bomb_operator/proc/on_death(atom/parent_atom)
@@ -106,7 +106,7 @@
 	potential_disky.forceMove(mob_parent)
 	disky = WEAKREF(potential_disky)
 	mob_parent.update_appearance(updates = UPDATE_ICON)
-	mob_parent.balloon_alert(mob_parent, LANG("datum.b2c799cf", null))
+	mob_parent.balloon_alert(mob_parent, LANG("datum.b2c799cf80d1efa4", null))
 	on_disk_collected?.InvokeAsync(potential_disky)
 
 /// Uses the disk on clicked atom, or places it on the ground
@@ -119,7 +119,7 @@
 
 	held_disk.forceMove(attacked_target)
 	disky = null
-	mob_parent.balloon_alert(mob_parent, LANG("datum.21a56fae", null))
+	mob_parent.balloon_alert(mob_parent, LANG("datum.21a56fae43e3d3d7", null))
 	mob_parent.update_appearance(updates = UPDATE_ICON)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 

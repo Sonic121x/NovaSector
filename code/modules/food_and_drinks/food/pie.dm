@@ -81,7 +81,7 @@
 		victim.Paralyze(2 SECONDS) //splat!
 	if(can_splat_on)
 		victim.adjust_eye_blur(2 SECONDS)
-	victim.visible_message(span_warning(LANG("obj.cd7d68ab", list(victim, src))), span_userdanger(LANG("obj.8e2fb866", list(src))))
+	victim.visible_message(span_warning(LANG("obj.cd7d68abf4f13986", list(victim, src))), span_userdanger(LANG("obj.8e2fb86699a2937d", list(src))))
 	playsound(victim, SFX_DESECRATION, 50, TRUE)
 
 /obj/item/food/pie/cream/nostun
@@ -193,7 +193,7 @@
 	var/fey = prob(10)
 	if(fey)
 		name = "exceptional plump pie"
-		desc = LANG("obj.6a1722c6", null)
+		desc = LANG("obj.6a1722c6fa2a10ac", null)
 		food_reagents = list(
 			/datum/reagent/consumable/nutriment = 11,
 			/datum/reagent/medicine/omnizine = 5,

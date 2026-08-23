@@ -8,7 +8,7 @@
  * but the crew themselves can return power via the engine, solars, or other means of creating power.
  */
 /proc/power_failure()
-	priority_announce(LANG("_root.be6cda49", list(station_name())), "Critical Power Failure", ANNOUNCER_POWEROFF)
+	priority_announce(LANG("_root.be6cda49d5078099", list(station_name())), "Critical Power Failure", ANNOUNCER_POWEROFF)
 	var/list/all_smes = SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/smes)
 	for(var/obj/machinery/power/smes/smes as anything in all_smes)
 		if(istype(get_area(smes), /area/station/ai) || !is_station_level(smes.z))
@@ -46,7 +46,7 @@
  * Magically fills ALL APCs and SMESs to capacity, and restores power to depowered areas.
  */
 /proc/power_restore()
-	priority_announce(LANG("_root.f42506df", list(station_name())), "Power Systems Nominal", ANNOUNCER_POWERON)
+	priority_announce(LANG("_root.f42506df3f5cfc19", list(station_name())), "Power Systems Nominal", ANNOUNCER_POWERON)
 	for(var/obj/machinery/power/apc/C as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/apc))
 		if(C.cell && is_station_level(C.z))
 			C.cell.charge = C.cell.maxcharge
@@ -82,7 +82,7 @@
  * Great as a less magical / more IC way to return power to a sapped station.
  */
 /proc/power_restore_quick()
-	priority_announce(LANG("_root.2ba3359d", list(station_name())), "Power Systems Nominal", ANNOUNCER_POWERON)
+	priority_announce(LANG("_root.2ba3359d2f899c79", list(station_name())), "Power Systems Nominal", ANNOUNCER_POWERON)
 	var/list/all_smes = SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/smes)
 	for(var/obj/machinery/power/smes/smes as anything in all_smes)
 		if(!is_station_level(smes.z))

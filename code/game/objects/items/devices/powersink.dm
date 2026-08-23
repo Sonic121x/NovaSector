@@ -38,9 +38,9 @@
 /obj/item/powersink/examine(mob/user)
 	. = ..()
 	if(mode)
-		. += LANG("obj.7aaa4180", list(src))
+		. += LANG("obj.7aaa418012486a86", list(src))
 	if((in_range(user, src) || isobserver(user)) && internal_heat > max_heat * 0.5)
-		. += span_danger(LANG("obj.e7ed8747", list(src)))
+		. += span_danger(LANG("obj.e7ed87472badf526", list(src)))
 
 /obj/item/powersink/set_anchored(anchorvalue)
 	. = ..()
@@ -82,26 +82,26 @@
 		if(isturf(T) && T.underfloor_accessibility >= UNDERFLOOR_INTERACTABLE)
 			attached = locate() in T
 			if(!attached)
-				to_chat(user, span_warning(LANG("obj.2bd00208", list(src))))
+				to_chat(user, span_warning(LANG("obj.2bd002083b56a922", list(src))))
 			else
 				set_mode(CLAMPED_OFF)
 				user.visible_message( \
-					LANG("obj.97570205", list(user, src)), \
-					span_notice(LANG("obj.b346b7fc", list(src))),
-					span_hear(LANG("obj.7d716371", null)))
+					LANG("obj.9757020596812064", list(user, src)), \
+					span_notice(LANG("obj.b346b7fc3f0e1fb7", list(src))),
+					span_hear(LANG("obj.7d716371ffbd4fdd", null)))
 		else
-			to_chat(user, span_warning(LANG("obj.2bd00208", list(src))))
+			to_chat(user, span_warning(LANG("obj.2bd002083b56a922", list(src))))
 	else
 		set_mode(DISCONNECTED)
 		user.visible_message( \
-			LANG("obj.f180bf4c", list(user, src)), \
-			span_notice(LANG("obj.020e329d", list(src))),
-			span_hear(LANG("obj.b8c00fb8", null)))
+			LANG("obj.f180bf4ceeeeaf38", list(user, src)), \
+			span_notice(LANG("obj.020e329d030c4d74", list(src))),
+			span_hear(LANG("obj.b8c00fb8e733e37a", null)))
 
 /obj/item/powersink/screwdriver_act(mob/living/user, obj/item/tool)
 	user.visible_message( \
-		LANG("obj.a9dc0f20", list(user, src)), \
-		span_notice(LANG("obj.9a479330", list(src))))
+		LANG("obj.a9dc0f202709ff2f", list(user, src)), \
+		span_notice(LANG("obj.9a479330d0489299", list(src))))
 	return TRUE
 
 /obj/item/powersink/attack_paw(mob/user, list/modifiers)
@@ -120,13 +120,13 @@
 
 		if(CLAMPED_OFF)
 			user.visible_message( \
-				LANG("obj.c4887f35", list(user, src)), \
-				span_notice(LANG("obj.41ddd503", list(src))),
-				span_hear(LANG("obj.0f830183", null)))
+				LANG("obj.c4887f356612d7e9", list(user, src)), \
+				span_notice(LANG("obj.41ddd5031269c4e0", list(src))),
+				span_hear(LANG("obj.0f830183df1905e6", null)))
 			message_admins("Power sink activated by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(src)]")
 			user.log_message("activated a powersink", LOG_GAME)
 			notify_ghosts(
-				LANG("obj.bec61c37", list(user.real_name)),
+				LANG("obj.bec61c37b5cd5544", list(user.real_name)),
 				source = src,
 				header = "Shocking News!",
 			)
@@ -134,9 +134,9 @@
 
 		if(OPERATING)
 			user.visible_message( \
-				LANG("obj.072be970", list(user, src)), \
-				span_notice(LANG("obj.03d7907e", list(src))),
-				span_hear(LANG("obj.0f830183", null)))
+				LANG("obj.072be970f51996ff", list(user, src)), \
+				span_notice(LANG("obj.03d7907e8d038ced", list(src))),
+				span_hear(LANG("obj.0f830183df1905e6", null)))
 			user.log_message("deactivated the powersink", LOG_GAME)
 			set_mode(CLAMPED_OFF)
 
@@ -191,7 +191,7 @@
 			warning_given = TRUE
 			message_admins("Power sink at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>) has reached [ALERT]% of max heat. Explosion imminent.")
 			notify_ghosts(
-				LANG("obj.4012c191", list(src)),
+				LANG("obj.4012c1917f3c29c2", list(src)),
 				source = src,
 				header = "Power Sunk",
 			)

@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list( \
 
 /obj/item/stack/sheet/runed_metal/interact(mob/user)
 	if(!IS_CULTIST(user))
-		to_chat(user, span_warning(LANG("obj.e57292e1", null)))
+		to_chat(user, span_warning(LANG("obj.e57292e18798f67f", null)))
 		return FALSE
 
 	var/turf/user_turf = get_turf(user)
@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list( \
 	var/is_valid_area = user_area && (user_area.area_flags & CULT_PERMITTED)
 
 	if(!is_valid_turf || !is_valid_area)
-		to_chat(user, span_warning(LANG("obj.44b6eb55", null)))
+		to_chat(user, span_warning(LANG("obj.44b6eb55a6cd519e", null)))
 		return FALSE
 
 	return ..()

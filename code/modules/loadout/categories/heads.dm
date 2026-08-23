@@ -12,7 +12,7 @@
 /datum/loadout_item/head/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE)
 	if(equipper.dna?.species?.outfit_important_for_life)
 		if(!visuals_only)
-			to_chat(equipper, LANG("datum.9e7e0221", null))
+			to_chat(equipper, LANG("datum.9e7e022147087f05", null))
 			LAZYADD(outfit.backpack_contents, item_path)
 	else
 		outfit.head = item_path

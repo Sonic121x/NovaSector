@@ -15,5 +15,5 @@
 /obj/item/pai_cable/proc/plugin(obj/machinery/M, mob/living/user)
 	if(!user.transferItemToLoc(src, M))
 		return
-	user.visible_message(span_notice(LANG("obj.533b2254", list(user, src, M))), span_notice(LANG("obj.db680c6c", list(src, M))), span_hear(LANG("obj.041e871f", null)))
+	user.visible_message(span_notice(LANG("obj.533b22549ad9f036", list(user, src, M))), span_notice(LANG("obj.db680c6cf0edd56b", list(src, M))), span_hear(LANG("obj.041e871fba600eaf", null)))
 	hacking_machine = M

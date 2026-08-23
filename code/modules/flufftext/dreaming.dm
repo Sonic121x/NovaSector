@@ -121,7 +121,7 @@ GLOBAL_LIST_INIT(dreams, populate_dream_list())
 	var/list/adjectives = lang_word_pool("strings/names/adjectives.txt", GLOB.adjectives)
 
 	. = list()
-	. += LANG("datum.efaeefa5", null)
+	. += LANG("datum.efaeefa517476935", null)
 
 	//Subject
 	if(custom_dream_nouns.len && prob(90))
@@ -139,7 +139,7 @@ GLOBAL_LIST_INIT(dreams, populate_dream_list())
 			fragment += "[pick(lang_word_pool("strings/names/adverbs.txt", GLOB.adverbs))] "
 		fragment += pick(lang_word_pool("strings/names/ing_verbs.txt", GLOB.ing_verbs))
 	else
-		fragment += LANG("datum.8356b3e0", null)
+		fragment += LANG("datum.8356b3e0d54e153c", null)
 		fragment += pick(lang_word_pool("strings/names/verbs.txt", GLOB.verbs))
 	. += fragment
 
@@ -189,7 +189,7 @@ GLOBAL_LIST_INIT(dreams, populate_dream_list())
 	. = ..()
 	. += pick("you wind up a toy", "you hear something strange", "you pick out a record to play", "you hit shuffle on your music player")
 	. += CALLBACK(src, PROC_REF(PlayRandomSound))
-	. += LANG("datum.5e68fd6d", null)
+	. += LANG("datum.5e68fd6d41fdde9a", null)
 
 /datum/dream/hear_something/OnDreamEnd(mob/living/carbon/dreamer)
 	. = ..()

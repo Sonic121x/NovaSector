@@ -34,5 +34,5 @@
 
 /datum/element/easily_fragmented/proc/try_break(obj/item/source, mob/user)
 	if(prob(break_chance))
-		user.visible_message(span_danger(LANG("datum.e1e17f77", list(user, source.name, source.p_s(), user.p_their()))))
+		user.visible_message(span_danger(LANG("datum.e1e17f77ddbe01bf", list(user, source.name, source.p_s(), user.p_their()))))
 		source.deconstruct(disassembled = FALSE)

@@ -135,7 +135,7 @@
 
 /obj/item/reagent_containers/cup/glass/coffee/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.8d6143f3", null))
+	. += span_notice(LANG("obj.8d6143f3b3276662", null))
 	return
 
 /obj/item/reagent_containers/cup/glass/coffee/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
@@ -266,15 +266,15 @@
 /obj/item/reagent_containers/cup/glass/waterbottle/examine(mob/user)
 	. = ..()
 	if(cap_lost)
-		. += span_notice(LANG("obj.6099e91e", null))
+		. += span_notice(LANG("obj.6099e91eff13e2fc", null))
 	else if(!is_open_container())
-		. += span_notice(LANG("obj.71c8703a", null))
+		. += span_notice(LANG("obj.71c8703a9fe58ac3", null))
 	else
-		. += span_notice(LANG("obj.7a951459", null))
+		. += span_notice(LANG("obj.7a951459937b6fe0", null))
 
 /obj/item/reagent_containers/cup/glass/waterbottle/click_alt(mob/user)
 	if(cap_lost)
-		to_chat(user, span_warning(LANG("obj.8b436bcd", null)))
+		to_chat(user, span_warning(LANG("obj.8b436bcdf57dae68", null)))
 		return CLICK_ACTION_BLOCKING
 
 	var/fumbled = HAS_TRAIT(user, TRAIT_CLUMSY) && prob(5)
@@ -282,14 +282,14 @@
 		reset_container_flags()
 		animate(src, transform = null, time = 2, loop = 0)
 		if(fumbled)
-			to_chat(user, span_warning(LANG("obj.c5444f80", list(src))))
+			to_chat(user, span_warning(LANG("obj.c5444f80e62b83b6", list(src))))
 			cap_lost = TRUE
 		else
-			to_chat(user, span_notice(LANG("obj.98f5a473", list(src))))
+			to_chat(user, span_notice(LANG("obj.98f5a473ce6f9c34", list(src))))
 			playsound(loc, 'sound/items/handling/reagent_containers/plastic_bottle/bottle_cap_open.ogg', 50, TRUE)
 	else
 		update_container_flags(SEALED_CONTAINER | TRANSPARENT)
-		to_chat(user, span_notice(LANG("obj.96858d2d", list(src))))
+		to_chat(user, span_notice(LANG("obj.96858d2dc5f46a85", list(src))))
 		playsound(loc, 'sound/items/handling/reagent_containers/plastic_bottle/bottle_cap_close.ogg', 50, TRUE)
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
@@ -302,7 +302,7 @@
 	if(is_open_container() || !reagents.total_volume)
 		return
 	if(prob(flip_chance)) // landed upright
-		src.visible_message(span_notice(LANG("obj.d0607bf1", list(src))))
+		src.visible_message(span_notice(LANG("obj.d0607bf14272fa59", list(src))))
 		var/mob/living/thrower = throwingdatum?.get_thrower()
 		if(istype(thrower))
 			thrower.add_mood_event("bottle_flip", /datum/mood_event/bottle_flip)
@@ -399,7 +399,7 @@
 		return
 	icon_state = "colocup[rand(0, 6)]"
 	if(icon_state == "colocup6")
-		desc = LANG("obj.995ac8a8", null)
+		desc = LANG("obj.995ac8a869785fd2", null)
 
 /obj/item/reagent_containers/cup/glass/colocup/lean
 	name = "lean"
@@ -445,30 +445,30 @@
 
 /obj/item/reagent_containers/cup/glass/shaker/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.682e5da5", list(using_custom_drinks ? "disable" : "enable")))
+	. += span_notice(LANG("obj.682e5da5b9d868ac", list(using_custom_drinks ? "disable" : "enable")))
 	if(using_custom_drinks)
-		. += span_notice(LANG("obj.71e7082c", list(custom_drink_name)))
-		. += span_notice(LANG("obj.5bea78a9", list(custom_drink_desc)))
+		. += span_notice(LANG("obj.71e7082cacc92372", list(custom_drink_name)))
+		. += span_notice(LANG("obj.5bea78a94a84bd86", list(custom_drink_desc)))
 
 /obj/item/reagent_containers/cup/glass/shaker/click_alt(mob/user)
 	if(using_custom_drinks)
 		using_custom_drinks = FALSE
 		disable_custom_drinks()
-		balloon_alert(user, LANG("obj.3c6fe8ea", null))
+		balloon_alert(user, LANG("obj.3c6fe8ea8fdb9d30", null))
 		return CLICK_ACTION_BLOCKING
 
-	var/new_name = reject_bad_text(tgui_input_text(user, LANG("obj.49eaa853", null), LANG("obj.da7b2f30", null), custom_drink_name, 45, FALSE), 64)
+	var/new_name = reject_bad_text(tgui_input_text(user, LANG("obj.49eaa853be9d53df", null), LANG("obj.da7b2f306364e466", null), custom_drink_name, 45, FALSE), 64)
 	if(!new_name)
-		balloon_alert(user, LANG("obj.98fc4ad4", null))
+		balloon_alert(user, LANG("obj.98fc4ad4360b8165", null))
 		using_custom_drinks = FALSE
 		return CLICK_ACTION_BLOCKING
 
 	if(!user.can_perform_action(src, NEED_HANDS|FORBID_TELEKINESIS_REACH))
 		return CLICK_ACTION_BLOCKING
 
-	var/new_desc = reject_bad_text(tgui_input_text(user, LANG("obj.937d5ec4", null), LANG("obj.5f0097b5", null), custom_drink_desc, 64, TRUE), 128)
+	var/new_desc = reject_bad_text(tgui_input_text(user, LANG("obj.937d5ec4d2150f16", null), LANG("obj.5f0097b53b9a387b", null), custom_drink_desc, 64, TRUE), 128)
 	if(!new_desc)
-		balloon_alert(user, LANG("obj.f41bd3b7", null))
+		balloon_alert(user, LANG("obj.f41bd3b7943ae0b6", null))
 		using_custom_drinks = FALSE
 		return CLICK_ACTION_BLOCKING
 
@@ -480,7 +480,7 @@
 	custom_drink_desc = new_desc
 
 	enable_custom_drinks()
-	balloon_alert(user, LANG("obj.0a3e6cc4", null))
+	balloon_alert(user, LANG("obj.0a3e6cc4e7d6bc7b", null))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/reagent_containers/cup/glass/shaker/proc/enable_custom_drinks()

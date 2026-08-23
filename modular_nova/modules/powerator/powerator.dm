@@ -103,29 +103,29 @@
 	. = ..()
 	. += "<br>"
 	if(panel_open)
-		. += span_warning(LANG("obj.cf05318f", list(src)))
+		. += span_warning(LANG("obj.cf05318ffc63e43b", list(src)))
 	else
-		. += span_notice(LANG("obj.841bb056", null))
+		. += span_notice(LANG("obj.841bb056fa7ba100", null))
 
 	if(!anchored)
-		. += span_warning(LANG("obj.c5bc2a98", list(src)))
+		. += span_warning(LANG("obj.c5bc2a98954a6414", list(src)))
 	else
-		. += span_notice(LANG("obj.775a619b", null))
+		. += span_notice(LANG("obj.775a619b9190da7e", null))
 
 	if(machine_stat & (NOPOWER | BROKEN))
-		. += span_warning(LANG("obj.f4dece2b", list(src)))
+		. += span_warning(LANG("obj.f4dece2badc67514", list(src)))
 	else
-		. += span_notice(LANG("obj.5e41a7e9", null))
+		. += span_notice(LANG("obj.5e41a7e9bef06547", null))
 
 	if(isnull(attached_cable))
-		. += span_warning(LANG("obj.4ef22516", list(src)))
+		. += span_warning(LANG("obj.4ef22516793869ad", list(src)))
 	else
-		. += span_notice(LANG("obj.060fc45e", null))
+		. += span_notice(LANG("obj.060fc45e159be75d", null))
 
-	. += span_notice(LANG("obj.68520cce", list(display_power(current_power, FALSE), display_power(max_power, FALSE))))
-	. += span_notice(LANG("obj.e8975537", list(credits_made)))
-	. += span_notice(LANG("obj.746edd42", list(display_power(divide_ratio, FALSE))))
-	. += span_notice(LANG("obj.7fca5ad9", list(tax)))
+	. += span_notice(LANG("obj.68520cce41141c49", list(display_power(current_power, FALSE), display_power(max_power, FALSE))))
+	. += span_notice(LANG("obj.e89755371c72d748", list(credits_made)))
+	. += span_notice(LANG("obj.746edd4234ffdd63", list(display_power(divide_ratio, FALSE))))
+	. += span_notice(LANG("obj.7fca5ad9251ab3a7", list(tax)))
 
 /obj/machinery/powerator/RefreshParts()
 	. = ..()
@@ -182,7 +182,7 @@
 
 /obj/machinery/powerator/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	current_power = tgui_input_number(user, LANG("obj.57e01f16", list(display_power(max_power, FALSE))), LANG("obj.7057368a", null), current_power, max_power, 0)
+	current_power = tgui_input_number(user, LANG("obj.57e01f1657ca9676", list(display_power(max_power, FALSE))), LANG("obj.7057368a596d4af9", null), current_power, max_power, 0)
 	if(isnull(current_power))
 		return
 

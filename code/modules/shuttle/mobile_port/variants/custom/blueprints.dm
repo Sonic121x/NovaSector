@@ -181,40 +181,40 @@
 		return
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
 	if(shuttle.master_blueprint?.resolve() != src)
-		to_chat(user, span_warning(LANG("obj.db2737a5", list(shuttle, shuttle.p_them()))))
+		to_chat(user, span_warning(LANG("obj.db2737a5709836c5", list(shuttle, shuttle.p_them()))))
 		return
 	var/turf/user_turf = get_turf(user)
 	if(user_turf && isshuttleturf(user_turf))
-		to_chat(user, span_warning(LANG("obj.fb64aa6e", list(shuttle, shuttle.p_them()))))
+		to_chat(user, span_warning(LANG("obj.fb64aa6e5af462ae", list(shuttle, shuttle.p_them()))))
 		return
 	if(!source.isGlass)
-		to_chat(user, span_warning(LANG("obj.15e5e604", list(source, attacked))))
+		to_chat(user, span_warning(LANG("obj.15e5e60464889594", list(source, attacked))))
 		return
 	if(source.reagents.total_volume < CHEMICAL_QUANTISATION_LEVEL)
-		to_chat(user, span_warning(LANG("obj.ecf7408b", list(source))))
+		to_chat(user, span_warning(LANG("obj.ecf7408b2d34c451", list(source))))
 		return
 	INVOKE_ASYNC(src, PROC_REF(christen), user, shuttle, attacked, user.active_hand_index)
 
 /obj/item/shuttle_blueprints/proc/christen(mob/living/user, obj/docking_port/mobile/custom/shuttle, atom/attacked, hand)
 	var/trait_source = REF(shuttle)
 	ADD_TRAIT(user, TRAIT_ATTEMPTING_CHRISTENING, trait_source)
-	var/new_name = reject_bad_name(tgui_input_text(user, LANG("obj.6749a8f1", list(shuttle)), LANG("obj.71af29dd", null), max_length = 128), allow_numbers = TRUE, strict = TRUE, cap_after_symbols = FALSE)
+	var/new_name = reject_bad_name(tgui_input_text(user, LANG("obj.6749a8f1292db942", list(shuttle)), LANG("obj.71af29ddbc0ee8fc", null), max_length = 128), allow_numbers = TRUE, strict = TRUE, cap_after_symbols = FALSE)
 	if(QDELETED(user))
 		return
 	REMOVE_TRAIT(user, TRAIT_ATTEMPTING_CHRISTENING, trait_source)
 	if(!new_name)
-		user.balloon_alert(user, LANG("obj.c22cf976", null))
+		user.balloon_alert(user, LANG("obj.c22cf9764b68afbf", null))
 		return
 	new_name = apply_text_macros(new_name)
 	var/obj/item/hitting_implement = (locate(/obj/item/reagent_containers/cup/glass/bottle) in user.held_items) || user.get_item_for_held_index(hand)
 	if(!attacked.IsReachableBy(user, hitting_implement.reach))
-		user.balloon_alert(user, LANG("obj.2201997f", null))
+		user.balloon_alert(user, LANG("obj.2201997fe1ea08ad", null))
 		return
 	var/obj/item/reagent_containers/cup/glass/bottle/bottle = hitting_implement
 	bottle = istype(bottle) && bottle.isGlass && bottle
 	var/shuttle_exists = !QDELETED(shuttle)
 	if(!shuttle_exists)
-		to_chat(user, span_warning(LANG("obj.374efaf1", null)))
+		to_chat(user, span_warning(LANG("obj.374efaf115374c71", null)))
 	var/has_blueprints = !QDELETED(src) && (src in user.gather_belongings())
 	var/turf/attacked_turf = attacked
 	var/is_closed_turf = isclosedturf(attacked_turf)
@@ -283,8 +283,8 @@
 		user.visible_message(span_warning(msg), span_warning(self_msg))
 	else
 		user.visible_message(
-			span_notice(LANG("obj.0f880b89", list(user, new_name, hitting_implement.get_examine_name(), (bottle.reagents.total_volume < 30) ? "" : ", though the dearth of christening fluid makes for an unimpressive display"))),
-			span_notice(LANG("obj.0ef0f713", list(new_name, hitting_implement.get_examine_name())))
+			span_notice(LANG("obj.0f880b89f1f48802", list(user, new_name, hitting_implement.get_examine_name(), (bottle.reagents.total_volume < 30) ? "" : ", though the dearth of christening fluid makes for an unimpressive display"))),
+			span_notice(LANG("obj.0ef0f713207b656e", list(new_name, hitting_implement.get_examine_name())))
 		)
 		user.do_attack_animation(attacked, used_item = bottle)
 		bottle.smash(attacked, user)
@@ -433,15 +433,15 @@
 /obj/item/shuttle_blueprints/proc/get_shuttle_tip()
 	. = list()
 	if(!shuttle_ref)
-		. += span_notice(LANG("obj.f46e2812", null))
+		. += span_notice(LANG("obj.f46e28124b106bb6", null))
 		return
 	var/obj/docking_port/mobile/custom/shuttle = shuttle_ref.resolve()
 	if(!shuttle)
-		. += span_notice(LANG("obj.229bd62a", null))
+		. += span_notice(LANG("obj.229bd62a0a35d423", null))
 	else
-		. += span_notice(LANG("obj.6657253b", list(shuttle, shuttle.p_them(), shuttle.p_their())))
+		. += span_notice(LANG("obj.6657253b8dd09477", list(shuttle, shuttle.p_them(), shuttle.p_their())))
 		if(shuttle.master_blueprint.resolve() == src)
-			. += span_notice(LANG("obj.b94bb363", list(shuttle)))
+			. += span_notice(LANG("obj.b94bb3630e91fd9d", list(shuttle)))
 
 /obj/item/shuttle_blueprints/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ..()
@@ -455,12 +455,12 @@
 		var/obj/docking_port/mobile/other_shuttle = other_blueprints.shuttle_ref?.resolve()
 		if(istype(other_shuttle))
 			return
-		balloon_alert(user, LANG("obj.b32eeb89", null))
+		balloon_alert(user, LANG("obj.b32eeb891c4d9f10", null))
 		if(!do_after(user, 5 SECONDS, other_blueprints))
-			balloon_alert(user, LANG("obj.c67b5d27", null))
+			balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 			return ITEM_INTERACT_FAILURE
 		other_blueprints.link_to_shuttle(shuttle)
-		balloon_alert(user, LANG("obj.7ff7de27", null))
+		balloon_alert(user, LANG("obj.7ff7de27eab18668", null))
 		return ITEM_INTERACT_SUCCESS
 	if(istype(interacting_with, /mob/living/silicon/robot))
 		var/mob/living/silicon/robot/borg = interacting_with
@@ -468,15 +468,15 @@
 		if(!other_blueprints)
 			return
 		if(other_blueprints.shuttles.Find(shuttle_ref))
-			balloon_alert(user, LANG("obj.6e924f05", null))
-		balloon_alert(user, LANG("obj.b32eeb89", null))
+			balloon_alert(user, LANG("obj.6e924f05983c3f37", null))
+		balloon_alert(user, LANG("obj.b32eeb891c4d9f10", null))
 		if(!do_after(user, 5 SECONDS, borg))
-			balloon_alert(user, LANG("obj.0c4ac08a", null))
+			balloon_alert(user, LANG("obj.0c4ac08abe367aff", null))
 			return ITEM_INTERACT_FAILURE
 		if(QDELETED(other_blueprints))
 			return ITEM_INTERACT_FAILURE
 		other_blueprints.shuttles |= shuttle_ref
-		balloon_alert(user, LANG("obj.7ff7de27", null))
+		balloon_alert(user, LANG("obj.7ff7de27eab18668", null))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/item/shuttle_blueprints/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -499,22 +499,22 @@
 			var/turf/shuttle_origin = get_turf(usr)
 			var/check_status = shuttle_build_check(shuttle_origin, shuttle_turfs, shuttle_areas)
 			if(check_status & ORIGIN_NOT_ON_SHUTTLE)
-				balloon_alert(usr, LANG("obj.45e1d622", null))
+				balloon_alert(usr, LANG("obj.45e1d6220acc4183", null))
 				return TRUE
 			if(check_status & TOO_MANY_SHUTTLES)
-				balloon_alert(usr, LANG("obj.524613df", null))
+				balloon_alert(usr, LANG("obj.524613dfa40c777b", null))
 				return TRUE
 			if(check_status & ABOVE_MAX_SHUTTLE_SIZE)
-				balloon_alert(usr, LANG("obj.b6c1f7eb", null))
+				balloon_alert(usr, LANG("obj.b6c1f7eb3fa807c2", null))
 				return TRUE
 			if(check_status & CUSTOM_AREA_NOT_COMPLETELY_CONTAINED)
-				balloon_alert(usr, LANG("obj.17dc3bec", null))
+				balloon_alert(usr, LANG("obj.17dc3bec560a63dc", null))
 				return TRUE
 			if(check_status & INTERSECTS_NON_WHITELISTED_AREA)
-				balloon_alert(usr, LANG("obj.f936886b", null))
+				balloon_alert(usr, LANG("obj.f936886b9e395ce9", null))
 				return TRUE
 			if(check_status & CONTAINS_APC_OF_NON_CUSTOM_AREA)
-				balloon_alert(usr, LANG("obj.5dcace64", null))
+				balloon_alert(usr, LANG("obj.5dcace642ca69224", null))
 				return TRUE
 			var/obj/docking_port/mobile/custom/shuttle = create_shuttle(
 				usr,
@@ -529,49 +529,49 @@
 			return TRUE
 		if("tryLinkShuttle")
 			if(shuttle_ref?.resolve())
-				balloon_alert(usr, LANG("obj.cc32a1c7", null))
+				balloon_alert(usr, LANG("obj.cc32a1c7c966a07a", null))
 				return TRUE
 			var/obj/docking_port/mobile/custom/shuttle = SSshuttle.get_containing_shuttle(usr)
 			if(!shuttle)
-				balloon_alert(usr, LANG("obj.b44481aa", null))
+				balloon_alert(usr, LANG("obj.b44481aa99292ca6", null))
 				return TRUE
 			if(!istype(shuttle))
-				balloon_alert(usr, LANG("obj.91ca6587", null))
+				balloon_alert(usr, LANG("obj.91ca658747a0a526", null))
 				return TRUE
 			var/obj/item/shuttle_blueprints/master = shuttle.master_blueprint?.resolve()
 			if(master && (master != src))
-				balloon_alert(usr, LANG("obj.d90307e2", null))
+				balloon_alert(usr, LANG("obj.d90307e28dda3f0d", null))
 				return TRUE
 			link_to_shuttle(shuttle, TRUE)
 			return TRUE
 		if("promoteToMaster")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, LANG("obj.59204d3b", null))
+				balloon_alert(usr, LANG("obj.59204d3b7513ec6b", null))
 				return TRUE
 			var/obj/item/shuttle_blueprints/master = shuttle.master_blueprint?.resolve()
 			if(master)
-				balloon_alert(usr, LANG("obj.d90307e2", null))
+				balloon_alert(usr, LANG("obj.d90307e28dda3f0d", null))
 				return TRUE
 			shuttle.master_blueprint = WEAKREF(src)
 			return TRUE
 		if("createNewArea")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, LANG("obj.59204d3b", null))
+				balloon_alert(usr, LANG("obj.59204d3b7513ec6b", null))
 				return TRUE
 			var/area_name = params["name"]
 			if(!area_name)
-				balloon_alert(usr, LANG("obj.7e8e988c", null))
+				balloon_alert(usr, LANG("obj.7e8e988cbaf45e3f", null))
 				return TRUE
 			var/area/current_area = get_area(usr)
 			var/area/default_area = shuttle.default_area
 			if(current_area != default_area)
-				balloon_alert(usr, LANG("obj.2d4553a9", null))
+				balloon_alert(usr, LANG("obj.2d4553a9d2046d0d", null))
 				return TRUE
 			var/list/turfs = detect_room(get_turf(usr), max_size = CONFIG_GET(number/max_shuttle_size), extra_check = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(custom_shuttle_room_check), shuttle, null))
 			if(!length(turfs))
-				balloon_alert(usr, LANG("obj.56e89721", null))
+				balloon_alert(usr, LANG("obj.56e89721e4b6279f", null))
 				return TRUE
 			var/area/shuttle/custom/new_area = new()
 			new_area.name = area_name
@@ -586,20 +586,20 @@
 		if("releaseArea")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, LANG("obj.59204d3b", null))
+				balloon_alert(usr, LANG("obj.59204d3b7513ec6b", null))
 				return TRUE
 			var/area/current_area = get_area(usr)
 			if(!shuttle.shuttle_areas[current_area])
-				balloon_alert(usr, LANG("obj.b44481aa", null))
+				balloon_alert(usr, LANG("obj.b44481aa99292ca6", null))
 				return TRUE
 			var/area/default_area = shuttle.default_area
 			if(current_area == default_area)
-				balloon_alert(usr, LANG("obj.23ab986c", null))
+				balloon_alert(usr, LANG("obj.23ab986c13ababa2", null))
 				return TRUE
 			var/obj/machinery/power/apc/current_area_apc = current_area.apc
 			var/obj/machinery/power/apc/default_area_apc = default_area.apc
 			if(current_area_apc && default_area_apc)
-				balloon_alert(usr, LANG("obj.e4082bf3", null))
+				balloon_alert(usr, LANG("obj.e4082bf39e83cbb7", null))
 				return TRUE
 			var/list/turfs = current_area.get_turfs_by_zlevel(shuttle.z)
 			set_turfs_to_area(turfs, default_area)
@@ -611,12 +611,12 @@
 		if("mergeIntoArea")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, LANG("obj.59204d3b", null))
+				balloon_alert(usr, LANG("obj.59204d3b7513ec6b", null))
 				return TRUE
 			var/area/current_area = get_area(usr)
 			var/area/default_area = shuttle.default_area
 			if(current_area != default_area)
-				balloon_alert(usr, LANG("obj.2d4553a9", null))
+				balloon_alert(usr, LANG("obj.2d4553a9d2046d0d", null))
 				return TRUE
 			var/area/merge_area = locate(params["area"])
 			if(!istype(merge_area))
@@ -628,13 +628,13 @@
 			var/list/actual_adjacent_areas = list()
 			var/list/turfs = detect_room(get_turf(usr), max_size = CONFIG_GET(number/max_shuttle_size), extra_check = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(custom_shuttle_room_check), shuttle, actual_adjacent_areas))
 			if(!length(turfs))
-				balloon_alert(usr, LANG("obj.56e89721", null))
+				balloon_alert(usr, LANG("obj.56e89721e4b6279f", null))
 				return TRUE
 			if(!actual_adjacent_areas[merge_area])
-				balloon_alert(usr, LANG("obj.5167717b", null))
+				balloon_alert(usr, LANG("obj.5167717b624b222a", null))
 				return TRUE
 			if(merge_area.apc && default_area.apc && turfs[get_turf(default_area.apc)])
-				balloon_alert(usr, LANG("obj.e4082bf3", null))
+				balloon_alert(usr, LANG("obj.e4082bf39e83cbb7", null))
 				return TRUE
 			set_turfs_to_area(turfs, merge_area)
 			for(var/obj/machinery/door/firedoor/firelock as anything in merge_area.firedoors + default_area.firedoors)
@@ -643,59 +643,59 @@
 		if("renameArea")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, LANG("obj.59204d3b", null))
+				balloon_alert(usr, LANG("obj.59204d3b7513ec6b", null))
 				return TRUE
 			var/area/current_area = get_area(usr)
 			if(!shuttle.shuttle_areas[current_area])
-				balloon_alert(usr, LANG("obj.b44481aa", null))
+				balloon_alert(usr, LANG("obj.b44481aa99292ca6", null))
 				return TRUE
 			var/area/default_area = shuttle.default_area
 			if(current_area == default_area)
-				balloon_alert(usr, LANG("obj.c01c0d46", null))
+				balloon_alert(usr, LANG("obj.c01c0d46c2b1e6c0", null))
 				return TRUE
 			var/new_name = params["name"]
 			if(!new_name)
-				balloon_alert(usr, LANG("obj.7e8e988c", null))
+				balloon_alert(usr, LANG("obj.7e8e988cbaf45e3f", null))
 				return TRUE
 			rename_area(current_area, new_name)
 			return TRUE
 		if("expandWithFrame")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, LANG("obj.59204d3b", null))
+				balloon_alert(usr, LANG("obj.59204d3b7513ec6b", null))
 				return TRUE
 			var/list/turfs = list()
 			var/list/areas = list()
 			var/turf/origin = get_turf(usr)
 			var/check_status = shuttle_expand_check(origin, shuttle, turfs, areas)
 			if(check_status & ORIGIN_NOT_ON_SHUTTLE)
-				balloon_alert(usr, LANG("obj.45e1d622", null))
+				balloon_alert(usr, LANG("obj.45e1d6220acc4183", null))
 				return TRUE
 			if(check_status & FRAME_NOT_ADJACENT_TO_LINKED_SHUTTLE)
-				balloon_alert(usr, LANG("obj.2c30f8a5", null))
+				balloon_alert(usr, LANG("obj.2c30f8a56de44a1d", null))
 				return TRUE
 			if(check_status & ABOVE_MAX_SHUTTLE_SIZE)
-				balloon_alert(usr, LANG("obj.b6c1f7eb", null))
+				balloon_alert(usr, LANG("obj.b6c1f7eb3fa807c2", null))
 				return TRUE
 			if(check_status & CUSTOM_AREA_NOT_COMPLETELY_CONTAINED)
-				balloon_alert(usr, LANG("obj.17dc3bec", null))
+				balloon_alert(usr, LANG("obj.17dc3bec560a63dc", null))
 				return TRUE
 			if(check_status & INTERSECTS_NON_WHITELISTED_AREA)
-				balloon_alert(usr, LANG("obj.f936886b", null))
+				balloon_alert(usr, LANG("obj.f936886b9e395ce9", null))
 				return TRUE
 			if(check_status & CONTAINS_APC_OF_NON_CUSTOM_AREA)
-				balloon_alert(usr, LANG("obj.6d51372b", null))
+				balloon_alert(usr, LANG("obj.6d51372be7f1a24c", null))
 				return TRUE
 			expand_shuttle(usr, shuttle, turfs, areas)
 			return TRUE
 		if("cleanupEmptyTurfs")
 			var/obj/docking_port/mobile/custom/shuttle = shuttle_ref?.resolve()
 			if(!shuttle)
-				balloon_alert(usr, LANG("obj.59204d3b", null))
+				balloon_alert(usr, LANG("obj.59204d3b7513ec6b", null))
 				return TRUE
 			var/obj/item/shuttle_blueprints/master = shuttle.master_blueprint?.resolve()
 			if(master && master != src)
-				balloon_alert(usr, LANG("obj.a3e8b610", null))
+				balloon_alert(usr, LANG("obj.a3e8b610ebbc289a", null))
 			clear_empty_shuttle_turfs(shuttle)
 
 /obj/item/shuttle_blueprints/crude
@@ -724,18 +724,18 @@
 	. = list()
 	if(!shuttle_ref)
 		if(!length(shuttles))
-			. += span_notice(LANG("obj.5a14b598", null))
+			. += span_notice(LANG("obj.5a14b598fd6c88d6", null))
 		else
-			. += span_notice(LANG("obj.38e338a4", null))
-		. += span_notice(LANG("obj.39159662", null))
+			. += span_notice(LANG("obj.38e338a4265e63e8", null))
+		. += span_notice(LANG("obj.39159662f069256d", null))
 		return
 	var/obj/docking_port/mobile/custom/shuttle = shuttle_ref.resolve()
 	if(!shuttle)
-		. += span_notice(LANG("obj.f72d51b8", null))
+		. += span_notice(LANG("obj.f72d51b8b9d0ce81", null))
 	else
-		. += span_notice(LANG("obj.1792c395", list(shuttle, shuttle.p_them(), shuttle.p_their())))
+		. += span_notice(LANG("obj.1792c3951d3f7c10", list(shuttle, shuttle.p_them(), shuttle.p_their())))
 		if(shuttle.master_blueprint.resolve() == src)
-			. += span_notice(LANG("obj.47de6555", list(shuttle)))
+			. += span_notice(LANG("obj.47de65550da3404d", list(shuttle)))
 
 /obj/item/shuttle_blueprints/borg/unlink(removing)
 	if(removing)

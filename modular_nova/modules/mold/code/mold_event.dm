@@ -21,7 +21,7 @@
 	if(!fake)
 		INVOKE_ASYNC(SSsecurity_level, TYPE_PROC_REF(/datum/controller/subsystem/security_level, minimum_security_level), SEC_LEVEL_VIOLET, FALSE, FALSE)
 
-	priority_announce(LANG("datum.7c9a6924", list(station_name())), "Biohazard Alert", ANNOUNCER_OUTBREAK6)
+	priority_announce(LANG("datum.7c9a692442b096e3", list(station_name())), "Biohazard Alert", ANNOUNCER_OUTBREAK6)
 
 /datum/round_event/mold/start()
 	var/list/turfs = list() //list of all the empty floor turfs in the hallway areas

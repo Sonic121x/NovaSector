@@ -129,7 +129,7 @@
 		if(!(antimagic_flags & magic_spell.antimagic_flags))
 			continue
 
-		to_chat(equipper, span_warning(LANG("datum.beadf132", list(parent))))
+		to_chat(equipper, span_warning(LANG("datum.beadf132210aa566", list(parent))))
 		alert_caster_on_equip = FALSE
 		break
 

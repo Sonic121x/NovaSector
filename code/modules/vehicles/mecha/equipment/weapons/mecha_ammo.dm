@@ -29,10 +29,10 @@
 /obj/item/mecha_ammo/attack_self(mob/user)
 	..()
 	if(rounds)
-		to_chat(user, span_warning(LANG("obj.5a7938b0", null)))
+		to_chat(user, span_warning(LANG("obj.5a7938b09d79bb4a", null)))
 		return
 
-	to_chat(user, span_notice(LANG("obj.8534e1be", list(src))))
+	to_chat(user, span_notice(LANG("obj.8534e1be59e09f15", list(src))))
 	var/trash = new /obj/item/stack/sheet/iron(user.loc)
 	qdel(src)
 	user.put_in_hands(trash)
@@ -40,9 +40,9 @@
 /obj/item/mecha_ammo/examine(mob/user)
 	. = ..()
 	if(rounds)
-		. += LANG("obj.3205e5c3", list(rounds > 1?"are":"is", rounds, ammo_type, rounds > 1?"s":""))
+		. += LANG("obj.3205e5c3501d660e", list(rounds > 1?"are":"is", rounds, ammo_type, rounds > 1?"s":""))
 	else
-		. += span_notice(LANG("obj.d4be4f0c", null))
+		. += span_notice(LANG("obj.d4be4f0c622685e8", null))
 
 /obj/item/mecha_ammo/incendiary
 	name = "incendiary ammo box"

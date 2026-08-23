@@ -122,7 +122,7 @@
 		return
 
 	if(COOLDOWN_FINISHED(src, harden_effect_cd))
-		source.visible_message(span_warning(LANG("obj.c6313bf9", list(source))))
+		source.visible_message(span_warning(LANG("obj.c6313bf983f5a29b", list(source))))
 		playsound(source, 'sound/effects/constructform.ogg', 25, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 
 	COOLDOWN_START(src, harden_effect_cd, 5 SECONDS) // Cooldown resets EVERY time we get hit

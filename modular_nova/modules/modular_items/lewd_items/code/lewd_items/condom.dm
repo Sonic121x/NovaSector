@@ -29,7 +29,7 @@
 	icon_state = "[base_icon_state]_[current_color]"
 
 /obj/item/condom_pack/attack_self(mob/user)
-	to_chat(user, span_notice(LANG("obj.e32241a2", null)))
+	to_chat(user, span_notice(LANG("obj.e32241a2bc25de78", null)))
 	if(!do_after(user, 1.5 SECONDS, target = user))
 		return
 	playsound_if_pref(src.loc, 'sound/items/poster/poster_ripped.ogg', 50, TRUE)

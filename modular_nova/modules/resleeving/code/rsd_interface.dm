@@ -14,10 +14,10 @@
 		return NONE
 
 	if(HAS_TRAIT(interacting_with, TRAIT_RSD_COMPATIBLE))
-		user.balloon_alert(user, LANG("obj.7d09f139", null))
+		user.balloon_alert(user, LANG("obj.7d09f139044f50ff", null))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.39467e1b", list(user, interacting_with, src))), span_notice(LANG("obj.0fa829c7", list(interacting_with))))
+	user.visible_message(span_notice(LANG("obj.39467e1b1ded8a4c", list(user, interacting_with, src))), span_notice(LANG("obj.0fa829c764370cb0", list(interacting_with))))
 	interacting_with.AddElement(/datum/element/rsd_interface)
 	playsound(interacting_with.loc, 'sound/items/weapons/circsawhit.ogg', 50, vary = TRUE)
 	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT, /datum/material/silver = SHEET_MATERIAL_AMOUNT, /datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
@@ -36,7 +36,7 @@
 /// Adds text to the examine text of the parent item, explaining that the item can be used to enable the use of NIFSoft HUDs
 /datum/element/rsd_interface/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
-	examine_text += span_cyan_nova(LANG("datum.d8ce2db0", list(source)))
+	examine_text += span_cyan_nova(LANG("datum.d8ce2db0f905a821", list(source)))
 
 /datum/element/rsd_interface/Detach(datum/target)
 	UnregisterSignal(target, COMSIG_ATOM_EXAMINE)

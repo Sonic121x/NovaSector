@@ -116,4 +116,4 @@
 	if(user.equip_to_slot_if_possible(finger, ITEM_SLOT_MASK, qdel_on_fail = FALSE, disable_warning = TRUE))
 		finger.forceMove(user)
 		return
-	balloon_alert(user, LANG("obj.290d96e8", null))
+	balloon_alert(user, LANG("obj.290d96e84b1cc00c", null))

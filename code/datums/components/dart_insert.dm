@@ -53,10 +53,10 @@
 	if(!istype(dart))
 		return
 	if(!dart.modified)
-		to_chat(user, span_warning(LANG("datum.38ef8576", list(parent, dart))))
+		to_chat(user, span_warning(LANG("datum.38ef85769c49b7b3", list(parent, dart))))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if(HAS_TRAIT(dart, TRAIT_DART_HAS_INSERT))
-		to_chat(user, span_warning(LANG("datum.b97c4533", list(dart))))
+		to_chat(user, span_warning(LANG("datum.b97c45332c564646", list(dart))))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	add_to_dart(dart, user)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -71,7 +71,7 @@
 	if(user)
 		if(!user.transferItemToLoc(parent_item, dart_projectile))
 			return
-		to_chat(user, span_notice(LANG("datum.8ce99939", list(parent_item, dart))))
+		to_chat(user, span_notice(LANG("datum.8ce99939bf01b695", list(parent_item, dart))))
 	else
 		parent_item.forceMove(dart_projectile)
 	ADD_TRAIT(dart, TRAIT_DART_HAS_INSERT, REF(src))
@@ -106,7 +106,7 @@
 	UnregisterSignal(parent, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 	if(user)
 		INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, put_in_hands), parent)
-		to_chat(user, span_notice(LANG("datum.cbed3266", list(parent, dart))))
+		to_chat(user, span_notice(LANG("datum.cbed32661d4c054a", list(parent, dart))))
 
 /datum/component/dart_insert/proc/on_dart_attack_self(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -114,7 +114,7 @@
 
 /datum/component/dart_insert/proc/on_dart_examine_more(datum/source, mob/user, list/examine_list)
 	var/obj/item/parent_item = parent
-	examine_list += span_notice(LANG("datum.17d5598e", list(parent_item.name)))
+	examine_list += span_notice(LANG("datum.17d5598e79dff6a8", list(parent_item.name)))
 
 /datum/component/dart_insert/proc/on_leave_dart()
 	SIGNAL_HANDLER

@@ -36,15 +36,15 @@
 	SSshuttle.registerTradeBlockade(src)
 	AddComponent(/datum/component/gps, "Nautical Signal")
 	active = TRUE
-	to_chat(user,span_notice(LANG("obj.baabf8b3", list(src, active ? "on":"off"))))
-	to_chat(user,span_warning(LANG("obj.62f32462", null)))
+	to_chat(user,span_notice(LANG("obj.baabf8b352cb3e9d", list(src, active ? "on":"off"))))
+	to_chat(user,span_warning(LANG("obj.62f32462101113ba", null)))
 	START_PROCESSING(SSobj,src)
 
 /obj/machinery/shuttle_scrambler/interact(mob/user)
 	if(active)
 		dump_loot(user)
 		return
-	var/scramble_response = tgui_alert(user, LANG("obj.282b3cb4", null), LANG("obj.39df10f1", null), list("Yes", "Cancel"))
+	var/scramble_response = tgui_alert(user, LANG("obj.282b3cb4fcece620", null), LANG("obj.39df10f1b48305a7", null), list("Yes", "Cancel"))
 	if(scramble_response != "Yes")
 		return
 	if(active || !user.can_perform_action(src))
@@ -66,10 +66,10 @@
 /obj/machinery/shuttle_scrambler/proc/dump_loot(mob/user)
 	if(credits_stored) // Prevents spamming empty holochips
 		new /obj/item/holochip(drop_location(), credits_stored)
-		to_chat(user,span_notice(LANG("obj.0283787e", list(MONEY_NAME))))
+		to_chat(user,span_notice(LANG("obj.0283787e22d292b4", list(MONEY_NAME))))
 		credits_stored = 0
 	else
-		to_chat(user,span_notice(LANG("obj.3cb1c397", null)))
+		to_chat(user,span_notice(LANG("obj.3cb1c3972998c8dc", null)))
 
 /// Alerts the crew about the siphon
 /obj/machinery/shuttle_scrambler/proc/send_notification()
@@ -132,13 +132,13 @@
 
 /obj/machinery/loot_locator/interact(mob/user)
 	if(!COOLDOWN_FINISHED(src, locate_cooldown))
-		balloon_alert_to_viewers(LANG("obj.1ab78062", null), vision_distance = 3)
+		balloon_alert_to_viewers(LANG("obj.1ab78062ad41903d", null), vision_distance = 3)
 		return
 	var/atom/movable/found_loot = find_random_loot()
 	if(!found_loot)
-		say(LANG("obj.4047e42b", null))
+		say(LANG("obj.4047e42b737840d2", null))
 	else
-		say(LANG("obj.b133e9f6", list(found_loot.name, get_area_name(found_loot))))
+		say(LANG("obj.b133e9f6669c20f7", list(found_loot.name, get_area_name(found_loot))))
 
 	COOLDOWN_START(src, locate_cooldown, 10 SECONDS)
 
@@ -186,7 +186,7 @@
 	. = ..()
 	if (istype(I))
 		I.set_buffer(src)
-		balloon_alert(user, LANG("obj.84afb909", null))
+		balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
 		return TRUE
 
 /obj/machinery/piratepad/screwdriver_act(mob/living/user, obj/item/tool)
@@ -255,7 +255,7 @@
 /obj/machinery/computer/piratepad_control/multitool_act(mob/living/user, obj/item/multitool/I)
 	. = ..()
 	if (istype(I) && istype(I.buffer,/obj/machinery/piratepad))
-		to_chat(user, span_notice(LANG("obj.806c484e", list(src, I.buffer, I))))
+		to_chat(user, span_notice(LANG("obj.806c484e24c32b14", list(src, I.buffer, I))))
 		pad_ref = WEAKREF(I.buffer)
 		return TRUE
 
@@ -357,7 +357,7 @@
 	if(!value)
 		status_report += "Nothing"
 
-	pad.visible_message(span_notice(LANG("obj.f40f5858", list(pad))))
+	pad.visible_message(span_notice(LANG("obj.f40f58585fecd2fe", list(pad))))
 	pad.finish_sending()
 	sending = FALSE
 
@@ -393,17 +393,17 @@
 	var/obj/machinery/piratepad/pad = pad_ref?.resolve()
 	if(!pad)
 		status_report = "No pad detected. Build or link a pad."
-		pad.audible_message(span_notice(LANG("obj.40fc0359", list(pad))))
+		pad.audible_message(span_notice(LANG("obj.40fc0359bb486866", list(pad))))
 		return
 	if(pad?.panel_open)
 		status_report = "Please screwdrive pad closed to send. "
-		pad.audible_message(span_notice(LANG("obj.40fc0359", list(pad))))
+		pad.audible_message(span_notice(LANG("obj.40fc0359bb486866", list(pad))))
 		return
 	if(sending)
 		return
 	sending = TRUE
 	status_report = "Sending... "
-	pad.visible_message(span_notice(LANG("obj.50bf02a4", list(pad))))
+	pad.visible_message(span_notice(LANG("obj.50bf02a4d2f35df5", list(pad))))
 	pad.set_is_sending(TRUE)
 	sending_timer = addtimer(CALLBACK(src, PROC_REF(send), check_global, user), warmup_time, TIMER_STOPPABLE)
 	if(load_holding_facility)
@@ -467,7 +467,7 @@
 	sold_item.adjust_confusion(10 SECONDS)
 	sold_item.adjust_dizzy(10 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(send_back_to_station), sold_item), COME_BACK_FROM_CAPTURE_TIME)
-	to_chat(sold_item, span_hypnophrase(LANG("datum.292d2b5c", null)))
+	to_chat(sold_item, span_hypnophrase(LANG("datum.292d2b5c1f35fe2b", null)))
 
 	return EXPORT_SOLD_DONT_DELETE
 

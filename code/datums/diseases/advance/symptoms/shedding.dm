@@ -35,14 +35,14 @@
 		switch(disease.stage)
 			if(3, 4)
 				if((affected_human.hairstyle == "Bald") && (affected_human.hairstyle != "Balding Hair"))
-					to_chat(affected_human, span_warning(LANG("datum.cc5e9c19", null)))
+					to_chat(affected_human, span_warning(LANG("datum.cc5e9c19740b0d58", null)))
 					addtimer(CALLBACK(src, PROC_REF(baldify), affected_human, FALSE), 5 SECONDS)
 			if(5)
 				if((affected_human.facial_hairstyle != "Shaved") || (affected_human.hairstyle != "Bald"))
 					if(affected_human.hairstyle == "Balding Hair")
-						to_chat(affected_human, span_warning(LANG("datum.1fbafdb4", null)))
+						to_chat(affected_human, span_warning(LANG("datum.1fbafdb492418ddf", null)))
 					else
-						to_chat(affected_human, span_warning(LANG("datum.cc5e9c19", null)))
+						to_chat(affected_human, span_warning(LANG("datum.cc5e9c19740b0d58", null)))
 					addtimer(CALLBACK(src, PROC_REF(baldify), affected_human, TRUE), 3 SECONDS)
 
 /datum/symptom/shedding/proc/baldify(mob/living/carbon/human/baldie, fully_bald)

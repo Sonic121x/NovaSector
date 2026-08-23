@@ -26,8 +26,8 @@
 	if(user.gender == FEMALE)
 		return
 	var/mob/living/carbon/human/H = user
-	user.visible_message(span_suicide(LANG("obj.2fa53db1", list(user, src, user.p_theyre()))))
-	user.say(LANG("obj.5500087f", null), forced = "fedora suicide")
+	user.visible_message(span_suicide(LANG("obj.2fa53db18c6a9a75", list(user, src, user.p_theyre()))))
+	user.say(LANG("obj.5500087f5def4cc5", null), forced = "fedora suicide")
 	sleep(1 SECONDS)
 	H.facial_hairstyle = "Neckbeard"
 	return BRUTELOSS

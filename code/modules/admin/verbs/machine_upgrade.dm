@@ -3,7 +3,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(machine_upgrade, R_DEBUG, "调整组件评级", /ob
 	VERB_ARG_TYPED(machine, VERB_ARG_TYPE_OBJ, VERB_ARG_SOURCE_WORLD, /obj/machinery)
 	if(!ismachinery(machine))
 		return
-	var/new_rating = tgui_input_number(user, "", LANG("datum.c202dd0a", null))
+	var/new_rating = tgui_input_number(user, "", LANG("datum.c202dd0aa9fe3d86", null))
 	if(new_rating && machine.component_parts)
 		for(var/obj/item/stock_parts/P in machine.component_parts)
 			P.rating = new_rating

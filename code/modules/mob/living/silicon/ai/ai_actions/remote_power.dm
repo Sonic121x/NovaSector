@@ -26,11 +26,11 @@
 		return FALSE
 
 	if(!isapc(clicked_on))
-		clicked_on.balloon_alert(ai_clicker, LANG("datum.dcf12c3d", null))
+		clicked_on.balloon_alert(ai_clicker, LANG("datum.dcf12c3d0394bfbf", null))
 		return FALSE
 
 	if(ai_clicker.battery - 50 <= 0)
-		to_chat(ai_clicker, span_warning(LANG("datum.8b96acf7", null)))
+		to_chat(ai_clicker, span_warning(LANG("datum.8b96acf7dd025d7e", null)))
 		return FALSE
 
 	var/obj/machinery/power/apc/apc = clicked_on

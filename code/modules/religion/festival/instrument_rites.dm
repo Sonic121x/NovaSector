@@ -11,7 +11,7 @@
 	. = ..()
 	var/turf/tool_turf = get_turf(religious_tool)
 	var/obj/item/instrument/violin/fidis = new /obj/item/instrument/violin/festival(get_turf(religious_tool))
-	fidis.visible_message(span_notice(LANG("datum.71cf4641", list(fidis))))
+	fidis.visible_message(span_notice(LANG("datum.71cf46413f17a3ae", list(fidis))))
 	playsound(tool_turf, 'sound/effects/pray.ogg', 50, TRUE)
 
 /datum/religion_rites/portable_song_tuning
@@ -28,7 +28,7 @@
 	for(var/obj/item/instrument/could_empower in get_turf(religious_tool))
 		instrument_target = could_empower
 		return ..()
-	to_chat(user, span_warning(LANG("datum.7fe66e30", list(religious_tool))))
+	to_chat(user, span_warning(LANG("datum.7fe66e30d26a73d1", list(religious_tool))))
 	return FALSE
 
 /datum/religion_rites/portable_song_tuning/invoke_effect(mob/living/user, atom/movable/religious_tool)
@@ -37,9 +37,9 @@
 	var/turf/tool_turf = get_turf(religious_tool)
 	instrument_target = null
 	if(QDELETED(empower_target) || !(tool_turf == empower_target.loc)) //check if the instrument is still there
-		to_chat(user, span_warning(LANG("datum.a4aeac01", null)))
+		to_chat(user, span_warning(LANG("datum.a4aeac01f2519693", null)))
 		return FALSE
-	empower_target.visible_message(span_notice(LANG("datum.0d43f7c4", list(empower_target))))
+	empower_target.visible_message(span_notice(LANG("datum.0d43f7c4cf0136b2", list(empower_target))))
 	playsound(tool_turf, 'sound/effects/pray.ogg', 50, TRUE)
 	var/list/allowed_rites_from_bible = subtypesof(/datum/religion_rites/song_tuner)
 	empower_target.AddComponent( \
@@ -212,5 +212,5 @@
 	listener.set_eye_blur_if_lower(4 SECONDS)
 
 /datum/religion_rites/song_tuner/lullaby/finish_effect(mob/living/carbon/human/listener, atom/song_source)
-	to_chat(listener, span_danger(LANG("datum.cb528330", null)))
+	to_chat(listener, span_danger(LANG("datum.cb528330cf29f2f3", null)))
 	listener.AdjustSleeping(5 SECONDS)

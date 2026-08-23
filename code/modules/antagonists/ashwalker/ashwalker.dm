@@ -53,9 +53,9 @@
 /datum/team/ashwalkers/roundend_report()
 	var/list/report = list()
 
-	report += span_header(LANG("datum.e9773e20", null)) // NOVA EDIT CHANGE - I18N - ORIGINAL: report += span_header("An Ash Walker Tribe inhabited the wastes...</span><br>")
+	report += span_header(LANG("datum.e9773e208a7d86ce", null)) // NOVA EDIT CHANGE - I18N - ORIGINAL: report += span_header("An Ash Walker Tribe inhabited the wastes...</span><br>")
 	if(length(members)) //The team is generated alongside the tendril, and it's entirely possible that nobody takes the role.
-		report += LANG("datum.f3efa5d0", list(member_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: report += "The [member_name]s were:"
+		report += LANG("datum.f3efa5d0d94b8c26", list(member_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: report += "The [member_name]s were:"
 		report += printplayerlist(members)
 
 		var/datum/objective/protect_object/necropolis_objective = locate(/datum/objective/protect_object) in objectives

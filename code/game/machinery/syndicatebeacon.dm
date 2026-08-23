@@ -23,12 +23,12 @@
 /obj/machinery/power/singularity_beacon/proc/Activate(mob/user = null)
 	if(surplus() < 1500)
 		if(user)
-			to_chat(user, span_notice(LANG("obj.3759c3c5", null)))
+			to_chat(user, span_notice(LANG("obj.3759c3c54ff9f7b0", null)))
 		return
 	icon_state = "[icontype]1"
 	active = TRUE
 	if(user)
-		to_chat(user, span_notice(LANG("obj.0518eb60", null)))
+		to_chat(user, span_notice(LANG("obj.0518eb60215dc2dc", null)))
 
 
 /obj/machinery/power/singularity_beacon/proc/Deactivate(mob/user = null)
@@ -38,7 +38,7 @@
 	icon_state = "[icontype]0"
 	active = FALSE
 	if(user)
-		to_chat(user, span_notice(LANG("obj.2f5bbfb8", null)))
+		to_chat(user, span_notice(LANG("obj.2f5bbfb8a2b8c266", null)))
 
 /obj/machinery/power/singularity_beacon/attack_ai(mob/user)
 	return
@@ -50,33 +50,33 @@
 	if(anchored)
 		return active ? Deactivate(user) : Activate(user)
 	else
-		to_chat(user, span_warning(LANG("obj.4da8ab71", list(src))))
+		to_chat(user, span_warning(LANG("obj.4da8ab7199d45eea", list(src))))
 
 /obj/machinery/power/singularity_beacon/wrench_act(mob/living/user, obj/item/tool)
 	. = TRUE
 	if(active)
-		to_chat(user, span_warning(LANG("obj.5445fd88", list(src))))
+		to_chat(user, span_warning(LANG("obj.5445fd886d4b594b", list(src))))
 		return
 
 	if(anchored)
 		tool.play_tool_sound(src, 50)
 		set_anchored(FALSE)
-		to_chat(user, span_notice(LANG("obj.020e329d", list(src))))
+		to_chat(user, span_notice(LANG("obj.020e329d030c4d74", list(src))))
 		disconnect_from_network()
 		return
 	else
 		if(!connect_to_network())
-			to_chat(user, span_warning(LANG("obj.2bd00208", list(src))))
+			to_chat(user, span_warning(LANG("obj.2bd002083b56a922", list(src))))
 			return
 		tool.play_tool_sound(src, 50)
 		set_anchored(TRUE)
-		to_chat(user, span_notice(LANG("obj.b1320da4", list(src))))
+		to_chat(user, span_notice(LANG("obj.b1320da4833cc79d", list(src))))
 		return
 
 /obj/machinery/power/singularity_beacon/screwdriver_act(mob/living/user, obj/item/tool)
 	user.visible_message( \
-			LANG("obj.a9dc0f20", list(user, src)), \
-			span_notice(LANG("obj.9a479330", list(src))))
+			LANG("obj.a9dc0f202709ff2f", list(user, src)), \
+			span_notice(LANG("obj.9a479330d0489299", list(src))))
 	return TRUE
 
 /obj/machinery/power/singularity_beacon/Destroy()
@@ -97,10 +97,10 @@
 				var/atom/singulo = singulo_component.parent
 				if(singulo.z == z)
 					singulo_component.target = src
-					say(LANG("obj.d03b764c", list(singulo, get_dist(src,singulo), dir2text(get_dir(src,singulo)))))
+					say(LANG("obj.d03b764c439704dc", list(singulo, get_dist(src,singulo), dir2text(get_dir(src,singulo)))))
 	else
 		Deactivate()
-		say(LANG("obj.3c4a4c39", null))
+		say(LANG("obj.3c4a4c39c0ab7bae", null))
 
 // Used for the No Escape final objective that attracts a singularity to the escape shuttle
 // needs to be charged with an inducer to work
@@ -127,9 +127,9 @@
 
 /obj/machinery/power/singularity_beacon/syndicate/no_escape/examine(mob/user)
 	. = ..()
-	. += LANG("obj.bcf51b45", list(src, active ? "on" : "off"))
+	. += LANG("obj.bcf51b45b9808901", list(src, active ? "on" : "off"))
 	if(cell)
-		. += LANG("obj.00f8f6f7", list(cell ? round(cell.percent(), 1) : 0))
+		. += LANG("obj.00f8f6f702faa55b", list(cell ? round(cell.percent(), 1) : 0))
 
 /obj/machinery/power/singularity_beacon/syndicate/no_escape/get_cell()
 	return cell
@@ -139,21 +139,21 @@
 
 /obj/machinery/power/singularity_beacon/syndicate/no_escape/Activate(mob/user = null)
 	if(!cell.charge())
-		say(LANG("obj.09a29852", null))
+		say(LANG("obj.09a2985252791a28", null))
 		return
 
 	icon_state = "[icontype]1"
 	active = TRUE
 	begin_processing()
 	if(user)
-		to_chat(user, span_notice(LANG("obj.0518eb60", null)))
+		to_chat(user, span_notice(LANG("obj.0518eb60215dc2dc", null)))
 
 /obj/machinery/power/singularity_beacon/syndicate/no_escape/Deactivate(mob/user = null)
 	icon_state = "[icontype]0"
 	active = FALSE
 	end_processing()
 	if(user)
-		to_chat(user, span_notice(LANG("obj.2f5bbfb8", null)))
+		to_chat(user, span_notice(LANG("obj.2f5bbfb8a2b8c266", null)))
 
 /obj/machinery/power/singularity_beacon/syndicate/no_escape/wrench_act(mob/living/user, obj/item/tool)
 	. = TRUE
@@ -161,11 +161,11 @@
 	tool.play_tool_sound(src, 50)
 	if(anchored)
 		set_anchored(FALSE)
-		to_chat(user, span_notice(LANG("obj.4dce2e35", list(src))))
+		to_chat(user, span_notice(LANG("obj.4dce2e3580b8d166", list(src))))
 		return
 	else
 		set_anchored(TRUE)
-		to_chat(user, span_notice(LANG("obj.a20e4c2a", list(src))))
+		to_chat(user, span_notice(LANG("obj.a20e4c2ac41fc542", list(src))))
 		return
 
 /obj/machinery/power/singularity_beacon/syndicate/no_escape/screwdriver_act(mob/living/user, obj/item/tool)
@@ -190,7 +190,7 @@
 				no_escape_event.beacon = src
 	else
 		Deactivate()
-		say(LANG("obj.3c4a4c39", null))
+		say(LANG("obj.3c4a4c39c0ab7bae", null))
 
 /obj/machinery/power/singularity_beacon/syndicate
 	icontype = "beaconsynd"
@@ -210,7 +210,7 @@
 
 /obj/item/sbeacondrop/attack_self(mob/user)
 	if(user)
-		to_chat(user, span_notice(LANG("obj.018374a5", null)))
+		to_chat(user, span_notice(LANG("obj.018374a55df52403", null)))
 		new droptype( user.loc )
 		playsound(src, 'sound/effects/pop.ogg', 100, TRUE, TRUE)
 		qdel(src)

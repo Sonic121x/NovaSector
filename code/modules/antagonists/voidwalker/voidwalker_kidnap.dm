@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(voidwalker_void)
 	. = ..()
 
 	gone.remove_traits(wisp_driver_traits, REF(src))
-	to_chat(gone, span_boldwarning(LANG("obj.0431240b", null)))
+	to_chat(gone, span_boldwarning(LANG("obj.0431240b319ca676", null)))
 	qdel(src)
 
 /// Loop us around, maybe, if we're going to bump into a wall

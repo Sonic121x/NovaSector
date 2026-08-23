@@ -52,7 +52,7 @@
 		return
 
 	var/num_slain = LAZYLEN(cultists_slain)
-	examine_list += span_cult_italic(LANG("datum.f499ab5c", list(num_slain, num_slain == 1 ? "" : "s", num_slain >= 3 ? "powerful" : "standard")))
+	examine_list += span_cult_italic(LANG("datum.f499ab5c8c75d5ed", list(num_slain, num_slain == 1 ? "" : "s", num_slain >= 3 ? "powerful" : "standard")))
 
 /datum/component/cult_kill_tracker/proc/on_sacrificed(obj/item/source, obj/effect/rune/convert/rune)
 	SIGNAL_HANDLER

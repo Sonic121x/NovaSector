@@ -36,7 +36,7 @@
 /mob/living/basic/bot/secbot/grievous/proc/on_weapon_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
 	if(active)
-		visible_message(span_warning(LANG("mob.62c4041c", list(src))))
+		visible_message(span_warning(LANG("mob.62c4041caab68406", list(src))))
 	sword_active = active
 	update_icon_state()
 
@@ -52,7 +52,7 @@
 	if(!sword_active || !prob(block_chance))
 		return NONE
 
-	visible_message(span_warning(LANG("mob.8ef58a66", list(source, hitting_projectile))))
+	visible_message(span_warning(LANG("mob.8ef58a66583ec00f", list(source, hitting_projectile))))
 	playsound(source, 'sound/items/weapons/blade1.ogg', 50, TRUE)
 	return COMPONENT_BULLET_BLOCKED
 
@@ -60,7 +60,7 @@
 	. = ..()
 	if(!ismob(movable_target) || !ai_controller.blackboard[BB_CURRENT_TARGET] == movable_target)
 		return
-	visible_message(span_warning(LANG("mob.d9ec943d", list(src, movable_target))))
+	visible_message(span_warning(LANG("mob.d9ec943d63c37b8a", list(src, movable_target))))
 	playsound(src, 'sound/mobs/non-humanoids/beepsky/beepskyspinsabre.ogg' , 100, TRUE, -1)
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, ClickOn), movable_target)
 

@@ -114,12 +114,12 @@
 		return
 	if(HAS_TRAIT(clicker, TRAIT_SEE_WORN_COLOURS))
 		REMOVE_TRAIT(clicker, TRAIT_SEE_WORN_COLOURS, CLOTHING_TRAIT)
-		clicker.balloon_alert(clicker, LANG("datum.a2f5fae0", null))
+		clicker.balloon_alert(clicker, LANG("datum.a2f5fae0d12909c2", null))
 	else
 		ADD_TRAIT(clicker, TRAIT_SEE_WORN_COLOURS, CLOTHING_TRAIT)
-		clicker.balloon_alert(clicker, LANG("datum.52a260cc", null))
+		clicker.balloon_alert(clicker, LANG("datum.52a260cc674c51cb", null))
 	return CLICK_ACTION_SUCCESS
 
 /datum/element/wearable_client_colour/proc/on_examine(obj/item/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
-	examine_texts += span_info(LANG("datum.2affc795", list(key_info)))
+	examine_texts += span_info(LANG("datum.2affc795628f905c", list(key_info)))

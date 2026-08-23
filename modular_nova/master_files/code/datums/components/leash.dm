@@ -23,7 +23,7 @@
 
 /// Enables or disables the leash, allowing or forbidding the PAI from leaving a specified range
 /datum/component/leash/proc/toggle_leash()
-	to_chat(owner, span_warning(LANG("datum.30a730ed", list(enabled ? "activated" : "deactivated"))))
+	to_chat(owner, span_warning(LANG("datum.30a730ed99c65499", list(enabled ? "activated" : "deactivated"))))
 	if(enabled)
 		disable_leash()
 	else

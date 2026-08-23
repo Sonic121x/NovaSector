@@ -38,8 +38,8 @@
 			held_item = victim.get_inactive_held_item()
 
 		if(held_item && victim.dropItemToGround(held_item))
-			victim.visible_message(span_danger(LANG("datum.66ca3db3", list(victim, held_item))), \
-			span_warning(LANG("datum.5d9af63c", list(parse_zone(limb.body_zone), held_item))), vision_distance=COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger(LANG("datum.66ca3db39837bc66", list(victim, held_item))), \
+			span_warning(LANG("datum.5d9af63c27e36520", list(parse_zone(limb.body_zone), held_item))), vision_distance=COMBAT_MESSAGE_RANGE)
 
 	return ..()
 
@@ -72,7 +72,7 @@
 		if(!victim || !limb)
 			qdel(src)
 			return
-		to_chat(victim, span_green(LANG("datum.32ba9352", list(parse_zone(limb.body_zone)))))
+		to_chat(victim, span_green(LANG("datum.32ba93523a2e14ea", list(parse_zone(limb.body_zone)))))
 		remove_wound()
 
 /// If we're a human who's punching something with a broken arm, we might hurt ourselves doing so
@@ -86,11 +86,11 @@
 	if(prob(severity * 15))
 		// And you have a 70% or 50% chance to actually land the blow, respectively
 		if(prob(70 - 20 * severity))
-			to_chat(victim, span_userdanger(LANG("datum.80e4fffe", list(parse_zone(limb.body_zone), target))))
+			to_chat(victim, span_userdanger(LANG("datum.80e4fffeb82da5b2", list(parse_zone(limb.body_zone), target))))
 			limb.receive_damage(brute=rand(1,5))
 		else
-			victim.visible_message(span_danger(LANG("datum.b0d854bb", list(victim, target, victim.p_their(), parse_zone(limb.body_zone)))), \
-			span_userdanger(LANG("datum.90d60144", list(target, parse_zone(limb.body_zone)))), vision_distance=COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger(LANG("datum.b0d854bb8e368563", list(victim, target, victim.p_their(), parse_zone(limb.body_zone)))), \
+			span_userdanger(LANG("datum.90d601442cd9ebf3", list(target, parse_zone(limb.body_zone)))), vision_distance=COMBAT_MESSAGE_RANGE)
 			INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob, emote), "scream")
 			victim.Stun(0.5 SECONDS)
 			limb.receive_damage(brute=rand(3,7))

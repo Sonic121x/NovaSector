@@ -27,7 +27,7 @@
 		return FALSE
 	if (owner.movement_type & VENTCRAWLING)
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.fc8ddc5b", null))
+			owner.balloon_alert(owner, LANG("datum.fc8ddc5b3f56649c", null))
 		return FALSE
 
 /datum/action/cooldown/mob_cooldown/domain/Activate(atom/target)
@@ -113,7 +113,7 @@
 		return FALSE
 	if (owner.movement_type & VENTCRAWLING)
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.fc8ddc5b", null))
+			owner.balloon_alert(owner, LANG("datum.fc8ddc5b3f56649c", null))
 		return FALSE
 
 /datum/action/cooldown/mob_cooldown/riot/Activate(atom/target)
@@ -169,13 +169,13 @@
 	. = ..()
 	if(HAS_TRAIT(affected_mob, TRAIT_AGEUSIA))
 		return
-	to_chat(affected_mob, span_notice(LANG("datum.fb74a9b2", null)))
+	to_chat(affected_mob, span_notice(LANG("datum.fb74a9b20e6d8c1d", null)))
 
 /datum/reagent/rat_spit/overdose_start(mob/living/affected_mob, metabolization_ratio)
 	. = ..()
 	var/mob/living/carbon/victim = affected_mob
 	if (istype(victim) && !victim.has_faction(FACTION_RAT))
-		to_chat(victim, span_userdanger(LANG("datum.df0b9993", null)))
+		to_chat(victim, span_userdanger(LANG("datum.df0b9993a65acc48", null)))
 		victim.add_faction(FACTION_RAT)
 		victim.vomit(VOMIT_CATEGORY_DEFAULT)
 	metabolization_rate = 10 * REAGENTS_METABOLISM
@@ -183,10 +183,10 @@
 /datum/reagent/rat_spit/on_mob_life(mob/living/carbon/affected_mob, metabolization_ratio)
 	. = ..()
 	if(prob(15))
-		to_chat(affected_mob, span_notice(LANG("datum.8dcc4527", null)))
+		to_chat(affected_mob, span_notice(LANG("datum.8dcc4527de298d40", null)))
 		affected_mob.adjust_disgust(3)
 	else if(prob(10))
-		to_chat(affected_mob, span_warning(LANG("datum.d9848bf9", null)))
+		to_chat(affected_mob, span_warning(LANG("datum.d9848bf93b0f5c1e", null)))
 		affected_mob.adjust_disgust(5)
 	else if(prob(5))
 		affected_mob.vomit(VOMIT_CATEGORY_DEFAULT)

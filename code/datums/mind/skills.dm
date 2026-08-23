@@ -69,7 +69,7 @@
 		if(known_skills[i][SKILL_LVL] > SKILL_LEVEL_NONE) //Do we actually have a level in this?
 			shown_skills += i
 	if(!length(shown_skills))
-		to_chat(user, span_notice(LANG("datum.4e0b0c44", null)))
+		to_chat(user, span_notice(LANG("datum.4e0b0c44e54d007b", null)))
 		return
 	var/msg = "[span_info("<EM>Your skills</EM>")]\n<span class='notice'>"
 	for(var/i in shown_skills)

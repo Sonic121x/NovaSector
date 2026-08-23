@@ -37,13 +37,13 @@
 	if(!isliving(user))
 		return CLICK_ACTION_BLOCKING
 	if(user.get_active_held_item() != src)
-		to_chat(user, span_warning(LANG("obj.a549c0e7", list(src))))
+		to_chat(user, span_warning(LANG("obj.a549c0e7962c6f91", list(src))))
 		return CLICK_ACTION_BLOCKING
 	if (!enabled_waddle)
-		to_chat(user, span_notice(LANG("obj.9bbe0817", null)))
+		to_chat(user, span_notice(LANG("obj.9bbe0817cb751648", null)))
 		enabled_waddle = TRUE
 	else
-		to_chat(user, span_notice(LANG("obj.62f263e1", null)))
+		to_chat(user, span_notice(LANG("obj.62f263e1eb70a125", null)))
 		enabled_waddle = FALSE
 	return CLICK_ACTION_SUCCESS
 

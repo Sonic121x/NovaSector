@@ -71,7 +71,7 @@
 	return
 
 /mob/living/basic/living_floor/crowbar_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, LANG("mob.1c42ba09", null))
+	balloon_alert(user, LANG("mob.1c42ba097851f484", null))
 	playsound(src, 'sound/items/tools/crowbar.ogg', 45, TRUE)
 	if(!do_after(user, 5 SECONDS, src))
 		return ITEM_INTERACT_BLOCKING

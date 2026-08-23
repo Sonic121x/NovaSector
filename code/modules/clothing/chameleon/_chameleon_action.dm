@@ -118,7 +118,7 @@
 	chameleon_typecache |= new_items
 
 /datum/action/item_action/chameleon/change/proc/select_look(mob/user)
-	var/picked_name = tgui_input_list(user, LANG("datum.908d4ff2", list(chameleon_name)), LANG("datum.e9bc5fb4", null), sort_list(chameleon_list, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+	var/picked_name = tgui_input_list(user, LANG("datum.908d4ff2c59e6ccd", list(chameleon_name)), LANG("datum.e9bc5fb4dc960d63", null), sort_list(chameleon_list, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 	if(isnull(picked_name) || isnull(chameleon_list[picked_name]) || QDELETED(src) || QDELETED(user) || QDELETED(owner) || !IsAvailable(feedback = TRUE))
 		return
 	var/obj/item/picked_item = chameleon_list[picked_name]

@@ -124,7 +124,7 @@
 		new /obj/effect/temp_visual/dragon_swoop/legionnaire(T)
 		T = get_step(T, dir_to_target)
 	playsound(src,'sound/effects/magic/demon_attack1.ogg', 200, 1)
-	visible_message(span_boldwarning(LANG("mob.f2725eaf", list(src))))
+	visible_message(span_boldwarning(LANG("mob.f2725eaf164a5e71", list(src))))
 	addtimer(CALLBACK(src, PROC_REF(legionnaire_charge_2), dir_to_target, 0), 0.4 SECONDS)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge_2(move_dir, times_ran)
@@ -153,8 +153,8 @@
 		hit_things += trample_target
 		if(faction_check_atom(trample_target))
 			continue
-		visible_message(span_boldwarning(LANG("mob.839ad776", list(src, trample_target))))
-		to_chat(trample_target, span_userdanger(LANG("mob.ecb3e412", list(src))))
+		visible_message(span_boldwarning(LANG("mob.839ad7760e7e0036", list(src, trample_target))))
+		to_chat(trample_target, span_userdanger(LANG("mob.ecb3e4124e65c218", list(src))))
 		trample_target.safe_throw_at(throwtarget, 10, 1, src)
 		trample_target.Paralyze(20)
 		trample_target.adjust_brute_loss(melee_damage_upper)
@@ -170,7 +170,7 @@
 		icon_state = "legionnaire_headless"
 		icon_living = "legionnaire_headless"
 		icon_aggro = "legionnaire_headless"
-		visible_message(span_boldwarning(LANG("mob.52a3c5de", list(src))))
+		visible_message(span_boldwarning(LANG("mob.52a3c5de150f4c6e", list(src))))
 		var/mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/newhead = new /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead(loc)
 		newhead.GiveTarget(target)
 		SET_FACTION_AND_ALLIES_FROM(newhead, src)
@@ -194,7 +194,7 @@
 	icon_state = "legionnaire"
 	icon_living = "legionnaire"
 	icon_aggro = "legionnaire"
-	visible_message(span_boldwarning(LANG("mob.c1818228", list(src))))
+	visible_message(span_boldwarning(LANG("mob.c1818228f584f51b", list(src))))
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/bonfire_teleport()
 	ranged_cooldown = world.time + 5
@@ -203,7 +203,7 @@
 		mypile = newpile
 		mypile.myowner = src
 		playsound(get_turf(src),'sound/items/fulton/fultext_deploy.ogg', 200, 1)
-		visible_message(span_boldwarning(LANG("mob.e3d3823e", list(src, get_turf(src)))))
+		visible_message(span_boldwarning(LANG("mob.e3d3823e21aa7e6a", list(src, get_turf(src)))))
 		return
 	else
 		var/turf/legionturf = get_turf(src)
@@ -214,9 +214,9 @@
 			return
 		playsound(pileturf,'sound/items/fulton/fultext_deploy.ogg', 200, 1)
 		playsound(legionturf,'sound/items/fulton/fultext_deploy.ogg', 200, 1)
-		visible_message(span_boldwarning(LANG("mob.36a02541", list(src))))
+		visible_message(span_boldwarning(LANG("mob.36a0254192ef767a", list(src))))
 		forceMove(pileturf)
-		visible_message(span_boldwarning(LANG("mob.55dbff32", list(src))))
+		visible_message(span_boldwarning(LANG("mob.55dbff3204bd62d9", list(src))))
 		mypile.forceMove(legionturf)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/spew_smoke()
@@ -227,11 +227,11 @@
 	else
 		smoke_location = get_turf(src)
 	if(myhead != null)
-		myhead.visible_message(span_boldwarning(LANG("mob.227eb0f0", list(myhead))))
+		myhead.visible_message(span_boldwarning(LANG("mob.227eb0f01e1f90bf", list(myhead))))
 	else if(!has_head)
-		visible_message(span_boldwarning(LANG("mob.7cbf7bc9", list(src))))
+		visible_message(span_boldwarning(LANG("mob.7cbf7bc959963110", list(src))))
 	else
-		visible_message(span_boldwarning(LANG("mob.227eb0f0", list(src))))
+		visible_message(span_boldwarning(LANG("mob.227eb0f01e1f90bf", list(src))))
 	do_smoke(2, src, smoke_location)
 
 //The legionnaire's head.  Basically the same as any legion head, but we have to tell our creator when we die so they can generate another head.

@@ -19,13 +19,13 @@
 /datum/action/cooldown/spell/splattercasting/cast(mob/living/cast_on)
 	. = ..()
 
-	to_chat(cast_on, span_green(LANG("datum.321122bf", null)))
+	to_chat(cast_on, span_green(LANG("datum.321122bf832df121", null)))
 	if(!do_after(cast_on, 5 SECONDS))
-		to_chat(cast_on, span_warning(LANG("datum.5ae22f28", null)))
+		to_chat(cast_on, span_warning(LANG("datum.5ae22f28959da728", null)))
 		return
 
 	playsound(cast_on, 'sound/effects/pope_entry.ogg', 100)
-	to_chat(cast_on, span_danger(LANG("datum.72a7dffb", null)))
+	to_chat(cast_on, span_danger(LANG("datum.72a7dffb0cca7b4d", null)))
 
 	cast_on.set_species(/datum/species/human/vampire)
 	cast_on.set_blood_volume(BLOOD_VOLUME_NORMAL) ///for predictable blood total amounts when the spell is first cast.

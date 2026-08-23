@@ -62,7 +62,7 @@
 
 		actual_successor.mind.holy_role = HOLY_ROLE_HIGHPRIEST
 
-		to_chat(actual_successor, span_warning(LANG("_root.25c717b1", null)))
+		to_chat(actual_successor, span_warning(LANG("_root.25c717b16142608d", null)))
 
 		return actual_successor
 

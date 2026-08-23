@@ -42,8 +42,8 @@
 		return FALSE
 
 	obj_flags |= EMAGGED
-	visible_message(span_warning(LANG("obj.4ebe3de5", list(src))), blind_message = span_hear(LANG("obj.e9bee9b3", null)))
-	balloon_alert(user, LANG("obj.c20bce4a", null))
+	visible_message(span_warning(LANG("obj.4ebe3de564d9fd88", list(src))), blind_message = span_hear(LANG("obj.e9bee9b372539a94", null)))
+	balloon_alert(user, LANG("obj.c20bce4a91712e62", null))
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	stored_lock_code = null
 	atom_storage.locked = STORAGE_NOT_LOCKED

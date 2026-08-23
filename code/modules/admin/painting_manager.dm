@@ -56,7 +56,7 @@ ADMIN_VERB(painting_manager, R_ADMIN, "绘画管理器", "View and redact painti
 		if("rename")
 			//Modify the metadata
 			var/old_title = chosen_painting.title
-			var/new_title = tgui_input_text(user, LANG("datum.4af395ac", null), LANG("datum.04fca8db", null), chosen_painting.title, max_length = MAX_NAME_LEN)
+			var/new_title = tgui_input_text(user, LANG("datum.4af395accb8a3a8e", null), LANG("datum.04fca8db80e94e30", null), chosen_painting.title, max_length = MAX_NAME_LEN)
 			if(!new_title)
 				return
 			chosen_painting.title = new_title
@@ -64,7 +64,7 @@ ADMIN_VERB(painting_manager, R_ADMIN, "绘画管理器", "View and redact painti
 			return TRUE
 		if("rename_author")
 			var/old_name = chosen_painting.creator_name
-			var/new_name = tgui_input_text(user, LANG("datum.889a2fbb", null), LANG("datum.04fca8db", null), chosen_painting.creator_name, max_length = MAX_NAME_LEN)
+			var/new_name = tgui_input_text(user, LANG("datum.889a2fbb86fbeb88", null), LANG("datum.04fca8db80e94e30", null), chosen_painting.creator_name, max_length = MAX_NAME_LEN)
 			if(!new_name)
 				return
 			chosen_painting.creator_name = new_name
@@ -84,7 +84,7 @@ ADMIN_VERB(painting_manager, R_ADMIN, "绘画管理器", "View and redact painti
 			log_admin("[key_name(user)] has removed tag [params["tag"]] from persistent painting made by [chosen_painting.creator_ckey] with id [chosen_painting.md5].")
 			return TRUE
 		if("add_tag")
-			var/tag_name = tgui_input_text(user, LANG("datum.5133b174", null), LANG("datum.ac1b8607", null), max_length = MAX_NAME_LEN)
+			var/tag_name = tgui_input_text(user, LANG("datum.5133b1745241c6b8", null), LANG("datum.ac1b86079dfdc49d", null), max_length = MAX_NAME_LEN)
 			if(!tag_name)
 				return
 			if(!chosen_painting.tags)

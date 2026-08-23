@@ -290,9 +290,9 @@
 	var/special_role_text = LOWER_TEXT(name)
 
 	if(traitor_won)
-		result += span_greentext(LANG("datum.edebafa5", list(special_role_text)))
+		result += span_greentext(LANG("datum.edebafa52fecf7a3", list(special_role_text)))
 	else
-		result += span_redtext(LANG("datum.cd8dd865", list(special_role_text)))
+		result += span_redtext(LANG("datum.cd8dd8654cea6403", list(special_role_text)))
 		SEND_SOUND(owner.current, 'sound/ambience/misc/ambifailure.ogg')
 
 	return result.Join("<br>")
@@ -318,7 +318,7 @@
 	var/phrases = jointext(SStraitor.syndicate_code_phrase, ", ")
 	var/responses = jointext(SStraitor.syndicate_code_response, ", ")
 
-	var/message = LANG("datum.19bf03f1", list(phrases, responses))
+	var/message = LANG("datum.19bf03f1dc5725e3", list(phrases, responses))
 
 	return message
 

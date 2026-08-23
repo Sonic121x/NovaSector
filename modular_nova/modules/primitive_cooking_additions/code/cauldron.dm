@@ -55,14 +55,14 @@
 /obj/machinery/cauldron/examine(mob/user)
 	. = ..()
 
-	. += span_notice(LANG("obj.01fa2e71", null))
+	. += span_notice(LANG("obj.01fa2e713cdec9b7", null))
 
 	if(!in_range(user, src) && !isobserver(user))
-		. += span_warning(LANG("obj.9b3e6cc5", list(src)))
+		. += span_warning(LANG("obj.9b3e6cc512f6f5da", list(src)))
 		return
 
 	if(length(ingredients))
-		. += span_notice(LANG("obj.43cd9c42", list(src)))
+		. += span_notice(LANG("obj.43cd9c42848e6bce", list(src)))
 		var/list/items_counts = new
 		for(var/i in ingredients)
 			if(isstack(i))
@@ -74,10 +74,10 @@
 				items_counts[single_item.name]++
 
 		for(var/item in items_counts)
-			. += span_notice(LANG("obj.f2bf9e2b", list(items_counts[item], item)))
+			. += span_notice(LANG("obj.f2bf9e2bde340faf", list(items_counts[item], item)))
 
 	else
-		. += span_notice(LANG("obj.c8ad1ee9", list(src)))
+		. += span_notice(LANG("obj.c8ad1ee9ae7c9da4", list(src)))
 
 /obj/machinery/cauldron/Exited(atom/movable/gone, direction)
 	if(gone in ingredients)
@@ -176,7 +176,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/cauldron/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers(LANG("obj.b5ba9871", null))
+	user.balloon_alert_to_viewers(LANG("obj.b5ba987161d1a2e3", null))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 
@@ -190,7 +190,7 @@
 
 	if(!anchored)
 		if(IS_EDIBLE(tool))
-			balloon_alert(user, LANG("obj.801f0be9", null))
+			balloon_alert(user, LANG("obj.801f0be9a529882b", null))
 			return TRUE
 		return ITEM_INTERACT_SUCCESS
 
@@ -200,7 +200,7 @@
 
 		if(!istype(tool, /obj/item/storage/bag/tray))
 			// Non-tray dumping requires a do_after
-			to_chat(user, span_notice(LANG("obj.66f69281", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.66f692814914ab0d", list(tool, src))))
 			var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 			if(!do_after(user, 2 SECONDS * skill_modifier, target = tray))
 				return ITEM_INTERACT_BLOCKING
@@ -210,7 +210,7 @@
 				continue
 
 			if(ingredients.len >= max_n_of_items)
-				balloon_alert(user, LANG("obj.2cb7d354", null))
+				balloon_alert(user, LANG("obj.2cb7d3546d66854d", null))
 				return ITEM_INTERACT_BLOCKING
 
 			if(tray.atom_storage.attempt_remove(tray_item, src))
@@ -219,7 +219,7 @@
 
 		if(loaded)
 			open()
-			to_chat(user, span_notice(LANG("obj.1de8bb22", list(loaded, src))))
+			to_chat(user, span_notice(LANG("obj.1de8bb225ce0e2a7", list(loaded, src))))
 			user.mind?.adjust_experience(/datum/skill/primitive, 2)
 			update_appearance()
 
@@ -227,16 +227,16 @@
 
 	if(tool.w_class <= WEIGHT_CLASS_NORMAL && !istype(tool, /obj/item/storage) && !user.combat_mode)
 		if(ingredients.len >= max_n_of_items)
-			balloon_alert(user, LANG("obj.2cb7d354", null))
+			balloon_alert(user, LANG("obj.2cb7d3546d66854d", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, LANG("obj.f84f0f5d", null))
+			balloon_alert(user, LANG("obj.f84f0f5d8dcd2ecb", null))
 			return ITEM_INTERACT_BLOCKING
 
 		ingredients += tool
 		open()
-		user.visible_message(span_notice(LANG("obj.6776a8ee", list(user, tool, src))), span_notice(LANG("obj.dc741820", list(tool, src))))
+		user.visible_message(span_notice(LANG("obj.6776a8eeb48ddb0a", list(user, tool, src))), span_notice(LANG("obj.dc741820a0ec26a7", list(tool, src))))
 		user.mind?.adjust_experience(/datum/skill/primitive, 2)
 		update_appearance()
 		return ITEM_INTERACT_BLOCKING
@@ -246,7 +246,7 @@
 /obj/machinery/cauldron/attack_hand_secondary(mob/user, list/modifiers)
 	if(user.can_perform_action(src))
 		if(!length(ingredients))
-			balloon_alert(user, LANG("obj.76a90f7c", null))
+			balloon_alert(user, LANG("obj.76a90f7c0f5ea424", null))
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 		cook(user)
@@ -257,7 +257,7 @@
 	. = ..()
 
 	if(!anchored)
-		balloon_alert(user, LANG("obj.801f0be9", null))
+		balloon_alert(user, LANG("obj.801f0be9a529882b", null))
 		return
 
 	if(operating || !user.can_perform_action(src))
@@ -268,7 +268,7 @@
 			examine(user)
 
 		else
-			balloon_alert(user, LANG("obj.76a90f7c", null))
+			balloon_alert(user, LANG("obj.76a90f7c0f5ea424", null))
 
 		return
 
@@ -276,7 +276,7 @@
 
 	// post choice verification
 	if(!anchored)
-		balloon_alert(user, LANG("obj.801f0be9", null))
+		balloon_alert(user, LANG("obj.801f0be9a529882b", null))
 		return
 
 	if(operating || !user.can_perform_action(src))
@@ -320,7 +320,7 @@
  * * cooker - The mob that initiated the cook cycle
  */
 /obj/machinery/cauldron/proc/start(mob/cooker)
-	visible_message(span_notice(LANG("obj.2769877b", list(src))), null, span_hear(LANG("obj.b05372a3", null)))
+	visible_message(span_notice(LANG("obj.2769877b0ebe4fae", list(src))), null, span_hear(LANG("obj.b05372a3fc9d9b0f", null)))
 	operating = TRUE
 	update_appearance()
 	cook_loop(cycles = 10, cooker = cooker)

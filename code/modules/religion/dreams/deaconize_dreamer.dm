@@ -6,7 +6,7 @@
 
 /datum/religion_rites/deaconize/dreamers/invoke_effect(mob/living/carbon/human/user, atom/movable/religious_tool)
 	if(HAS_TRAIT(potential_deacon, TRAIT_NIGHTMARISH))
-		to_chat(user, span_warning(LANG("datum.bb5ebc92", list(potential_deacon, GLOB.deity))))
+		to_chat(user, span_warning(LANG("datum.bb5ebc92f859d23a", list(potential_deacon, GLOB.deity))))
 		return FALSE
 	return ..()
 

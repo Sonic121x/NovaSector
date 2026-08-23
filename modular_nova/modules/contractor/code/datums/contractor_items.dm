@@ -32,9 +32,9 @@
 	if(item)
 		var/atom/item_to_create = new item(get_turf(user))
 		if(user.put_in_hands(item_to_create))
-			to_chat(user, span_notice(LANG("datum.25367579", null)))
+			to_chat(user, span_notice(LANG("datum.25367579e091a55a", null)))
 		else
-			to_chat(user, span_notice(LANG("datum.2e0caff6", null)))
+			to_chat(user, span_notice(LANG("datum.2e0caff62126be21", null)))
 
 	return TRUE
 
@@ -105,7 +105,7 @@
 	if(!.)
 		return
 	power_fail(35, 50)
-	priority_announce(LANG("datum.be6cda49", list(station_name())), "Critical Power Failure", ANNOUNCER_POWEROFF)
+	priority_announce(LANG("datum.be6cda49d5078099", list(station_name())), "Critical Power Failure", ANNOUNCER_POWEROFF)
 
 /datum/contractor_item/comms_blackout
 	name = "Comms Outage"

@@ -23,7 +23,7 @@
 
 	charges--
 	playsound(user, fire_sound, 50, TRUE)
-	user.visible_message(span_suicide(LANG("obj.bcbf2332", list(user, user.p_their()))))
+	user.visible_message(span_suicide(LANG("obj.bcbf23321107652b", list(user, user.p_their()))))
 	var/mob/living/carbon/organ_haver = user
 	for (var/obj/item/organ/organ as anything in organ_haver.organs)
 		organ.Remove(user)
@@ -57,13 +57,13 @@
 	alert_type = null
 
 /datum/status_effect/levitate/on_apply()
-	owner.visible_message(span_warning(LANG("datum.724115e6", list(owner))))
+	owner.visible_message(span_warning(LANG("datum.724115e6dba7a76b", list(owner))))
 	owner.AddElement(/datum/element/forced_gravity, 0)
 	owner.add_filter("antigrav_glow", 2, list("type" = "outline", "color" = "#de3aff48", "size" = 2))
 	return ..()
 
 /datum/status_effect/levitate/on_remove()
-	owner.visible_message(span_notice(LANG("datum.e14d4528", list(owner))))
+	owner.visible_message(span_notice(LANG("datum.e14d45283357b174", list(owner))))
 	owner.RemoveElement(/datum/element/forced_gravity, 0)
 	owner.remove_filter("antigrav_glow")
 	return ..()

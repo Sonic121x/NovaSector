@@ -43,7 +43,7 @@
 		GLOB.teleportbeacons += src
 	else
 		turn_off()
-	to_chat(user, span_notice(LANG("obj.48b47fdd", list(enabled ? "enable" : "disable"))))
+	to_chat(user, span_notice(LANG("obj.48b47fdd4bda642a", list(enabled ? "enable" : "disable"))))
 	return
 
 /obj/item/beacon/attack_hand_secondary(mob/user, list/modifiers)

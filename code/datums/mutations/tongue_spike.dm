@@ -28,12 +28,12 @@
 /datum/action/cooldown/spell/tongue_spike/cast(mob/living/carbon/cast_on)
 	. = ..()
 	if(HAS_TRAIT(cast_on, TRAIT_NODISMEMBER))
-		to_chat(cast_on, span_notice(LANG("datum.46d68b01", null)))
+		to_chat(cast_on, span_notice(LANG("datum.46d68b019691a839", null)))
 		return
 
 	var/obj/item/organ/tongue/to_fire = locate() in cast_on.organs
 	if(!to_fire)
-		to_chat(cast_on, span_notice(LANG("datum.97806b7a", null)))
+		to_chat(cast_on, span_notice(LANG("datum.97806b7afd19919b", null)))
 		return
 
 	to_fire.Remove(cast_on, special = TRUE)
@@ -70,7 +70,7 @@
 		morph_back()
 
 /obj/item/hardened_spike/proc/morph_back()
-	visible_message(span_warning(LANG("obj.3c8ae517", list(src))))
+	visible_message(span_warning(LANG("obj.3c8ae51744f6b4b8", list(src))))
 	for(var/obj/tongue as anything in contents)
 		tongue.forceMove(get_turf(src))
 	qdel(src)
@@ -130,7 +130,7 @@
 	chem_action.transferred_ref = WEAKREF(victim)
 	chem_action.Grant(fired_by)
 
-	to_chat(fired_by, span_notice(LANG("datum.10b17e7e", null)))
+	to_chat(fired_by, span_notice(LANG("datum.10b17e7e0d75e836", null)))
 
 /datum/embedding/tongue_spike/chem/stop_embedding()
 	. = ..()
@@ -139,7 +139,7 @@
 	if(!istype(fired_by))
 		return
 
-	to_chat(fired_by, span_warning(LANG("datum.cc3d61bd", null)))
+	to_chat(fired_by, span_warning(LANG("datum.cc3d61bd1735bb7b", null)))
 	var/datum/action/send_chems/chem_action = locate() in fired_by.actions
 	qdel(chem_action)
 
@@ -170,7 +170,7 @@
 	if(!ishuman(transferred))
 		return FALSE
 
-	to_chat(transferred, span_warning(LANG("datum.d366f84f", null)))
+	to_chat(transferred, span_warning(LANG("datum.d366f84feb09c62c", null)))
 	transferer.reagents.trans_to(transferred, transferer.reagents.total_volume, transferred_by = transferer)
 
 	var/obj/item/hardened_spike/chem/chem_spike = target
@@ -179,6 +179,6 @@
 	var/mob/living/carbon/spike_owner = chem_spike.get_embed()?.owner
 	// Message first because it'll shift back into a tongue right after moving
 	if (istype(spike_owner))
-		spike_owner.visible_message(span_notice(LANG("datum.64fbe43f", list(chem_spike, spike_owner))))
+		spike_owner.visible_message(span_notice(LANG("datum.64fbe43f3fb1a8f8", list(chem_spike, spike_owner))))
 	chem_spike.forceMove(get_turf(chem_spike))
 	return TRUE

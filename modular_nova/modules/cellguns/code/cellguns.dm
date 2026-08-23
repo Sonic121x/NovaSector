@@ -17,11 +17,11 @@
 /obj/item/gun/energy/cell_loaded/examine(mob/user)
 	. = ..()
 	if(maxcells)
-		. += LANG("obj.caf41c05", list(installedcells.len, maxcells))
-		. += span_info(LANG("obj.27cf5b98", null))
+		. += LANG("obj.caf41c05455a7d90", list(installedcells.len, maxcells))
+		. += span_info(LANG("obj.27cf5b98dec4aa6d", null))
 
 		for(var/cell in installedcells)
-			. += span_notice(LANG("obj.310931af", list(cell))) //Shows what cells are currently inside of the gun
+			. += span_notice(LANG("obj.310931af48ececc7", list(cell))) //Shows what cells are currently inside of the gun
 
 /// Handles insertion of weapon cells
 /obj/item/gun/energy/cell_loaded/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -29,7 +29,7 @@
 		return ..()
 
 	if(length(installedcells) >= maxcells) //Prevents the user from loading any cells past the maximum cell allowance
-		to_chat(user, span_warning(LANG("obj.aa9f4384", list(src))))
+		to_chat(user, span_warning(LANG("obj.aa9f4384b6b915ea", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/weaponcell/cell = tool
@@ -37,7 +37,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(loc, 'sound/machines/click.ogg', 50, 1)
-	to_chat(user, span_notice(LANG("obj.b23d1821", list(cell))))
+	to_chat(user, span_notice(LANG("obj.b23d18219e203402", list(cell))))
 	ammo_type += new cell.ammo_type(src)
 	installedcells += cell
 	return ITEM_INTERACT_SUCCESS
@@ -75,10 +75,10 @@
 
 /obj/item/gun/energy/cell_loaded/click_alt(mob/user, modifiers)
 	if(!installedcells.len) //Checks to see if there is a cell inside of the gun, before removal.
-		to_chat(user, span_warning(LANG("obj.b177a4f7", list(src))))
+		to_chat(user, span_warning(LANG("obj.b177a4f71b8df493", list(src))))
 		return CLICK_ACTION_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.19b8c0f5", null)))
+	to_chat(user, span_notice(LANG("obj.19b8c0f516259103", null)))
 	var/obj/item/last_cell = installedcells[installedcells.len]
 
 	if(last_cell)

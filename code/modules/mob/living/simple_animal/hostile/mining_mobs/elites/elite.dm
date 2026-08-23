@@ -45,7 +45,7 @@
 	if(istype(target, /obj/structure/elite_tumor))
 		var/obj/structure/elite_tumor/T = target
 		if(T.mychild == src && T.activity == TUMOR_PASSIVE)
-			var/elite_remove = tgui_alert(usr,LANG("mob.a3870d55", null), LANG("mob.7f0885e7", null), list("Yes", "No"))
+			var/elite_remove = tgui_alert(usr,LANG("mob.a3870d5598fa61ed", null), LANG("mob.7f0885e7c8c8a39b", null), list("Yes", "No"))
 			if(elite_remove == "No" || QDELETED(src) || !Adjacent(T))
 				return
 			T.mychild = null
@@ -165,53 +165,53 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		if(TUMOR_PASSIVE)
 			// Prevents the user from being forcemoved back and forth between two elite arenas.
 			if(HAS_TRAIT(user, TRAIT_ELITE_CHALLENGER))
-				user.visible_message(span_warning(LANG("obj.49ac9177", list(user, src, user.p_their()))),
-					span_warning(LANG("obj.6fd67fc8", list(src))))
+				user.visible_message(span_warning(LANG("obj.49ac9177d92f8559", list(user, src, user.p_their()))),
+					span_warning(LANG("obj.6fd67fc8e19273a7", list(src))))
 				return
 			activity = TUMOR_ACTIVE
-			user.visible_message(span_boldwarning(LANG("obj.a942aaee", list(src, user))),
-				span_boldwarning(LANG("obj.daace54e", list(src))))
+			user.visible_message(span_boldwarning(LANG("obj.a942aaeeabdae251", list(src, user))),
+				span_boldwarning(LANG("obj.daace54ef0f0bd79", list(src))))
 			make_activator(user)
 			if(boosted)
 				mychild.playsound_local(get_turf(mychild), 'sound/effects/magic.ogg', 40, 0)
-				to_chat(mychild, LANG("obj.64a9683d", null))
+				to_chat(mychild, LANG("obj.64a9683da25d0d4d", null))
 			addtimer(CALLBACK(src, PROC_REF(return_elite)), 3 SECONDS)
 			INVOKE_ASYNC(src, PROC_REF(arena_checks))
 		if(TUMOR_INACTIVE)
 			if(HAS_TRAIT(user, TRAIT_ELITE_CHALLENGER))
-				user.visible_message(span_warning(LANG("obj.49ac9177", list(user, src, user.p_their()))),
-					span_warning(LANG("obj.6fd67fc8", list(src))))
+				user.visible_message(span_warning(LANG("obj.49ac9177d92f8559", list(user, src, user.p_their()))),
+					span_warning(LANG("obj.6fd67fc8e19273a7", list(src))))
 				return
 			activity = TUMOR_ACTIVE
 			var/mob/dead/observer/elitemind = null
-			visible_message(span_boldwarning(LANG("obj.0ada0ace", list(src))))
+			visible_message(span_boldwarning(LANG("obj.0ada0ace5a615629", list(src))))
 			make_activator(user)
 			if(!boosted)
 				addtimer(CALLBACK(src, PROC_REF(spawn_elite)), 3 SECONDS)
 				return
-			visible_message(span_boldwarning(LANG("obj.db55f0e8", list(src))))
+			visible_message(span_boldwarning(LANG("obj.db55f0e824049052", list(src))))
 			var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, poll_time = 5 SECONDS, checked_target = src, ignore_category = POLL_IGNORE_LAVALAND_ELITE, alert_pic = src, role_name_text = "lavaland elite")
 			if(chosen_one)
-				audible_message(span_boldwarning(LANG("obj.df067659", null)))
+				audible_message(span_boldwarning(LANG("obj.df0676597d8a5de8", null)))
 				elitemind = chosen_one
 				elitemind.playsound_local(get_turf(elitemind), 'sound/effects/magic.ogg', 40, 0)
-				to_chat(elitemind, LANG("obj.621d36fd", null))
+				to_chat(elitemind, LANG("obj.621d36fd84cbf1eb", null))
 				addtimer(CALLBACK(src, PROC_REF(spawn_elite), elitemind), 10 SECONDS)
 			else
-				visible_message(span_boldwarning(LANG("obj.4a45436b", null)))
+				visible_message(span_boldwarning(LANG("obj.4a45436b3ec336ff", null)))
 				activity = TUMOR_INACTIVE
 				clear_activator(user)
 
 /obj/structure/elite_tumor/proc/spawn_elite(mob/dead/observer/elitemind)
 	var/selectedspawn = pick(potentialspawns)
 	mychild = new selectedspawn(loc)
-	visible_message(span_boldwarning(LANG("obj.8616ec7e", list(mychild, src))))
+	visible_message(span_boldwarning(LANG("obj.8616ec7ef6eb4cb4", list(mychild, src))))
 	playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
 	if(boosted)
 		mychild.PossessByPlayer(elitemind.key)
 		mychild.sentience_act()
 		notify_ghosts(
-			LANG("obj.f32ace39", list(mychild, get_area(src))),
+			LANG("obj.f32ace3947f2a0eb", list(mychild, get_area(src))),
 			source = mychild,
 			header = "Lavaland Elite awakened",
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -223,14 +223,14 @@ While using this makes the system rely on OnFire, it still gives options for tim
 
 /obj/structure/elite_tumor/proc/return_elite()
 	mychild.forceMove(loc)
-	visible_message(span_boldwarning(LANG("obj.8616ec7e", list(mychild, src))))
+	visible_message(span_boldwarning(LANG("obj.8616ec7ef6eb4cb4", list(mychild, src))))
 	playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
 	mychild.revive(HEAL_ALL)
 	if(boosted)
 		mychild.maxHealth *= 1 / ELITE_POST_BATTLE_HEALTH_MULTIPLIER //we multiply it back to its original value
 		mychild.health = mychild.maxHealth
 		notify_ghosts(
-			LANG("obj.d9091c2c", list(mychild, get_area(src))),
+			LANG("obj.d9091c2cb5950c8d", list(mychild, get_area(src))),
 			source = mychild,
 			header = "Lavaland Elite challenged",
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -279,11 +279,11 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	. = NONE
 	if(istype(attacking_item, /obj/item/organ/monster_core/regenerative_core) && activity == TUMOR_INACTIVE && !boosted)
 		var/obj/item/organ/monster_core/regenerative_core/core = attacking_item
-		visible_message(span_boldwarning(LANG("obj.c37af7b7", list(user, src, src))))
+		visible_message(span_boldwarning(LANG("obj.c37af7b71340ce57", list(user, src, src))))
 		icon_state = "advanced_tumor"
 		boosted = TRUE
 		set_light_range(6)
-		desc = LANG("obj.a3f1d5f9", list(desc))
+		desc = LANG("obj.a3f1d5f93dddd403", list(desc))
 		qdel(core)
 		return ITEM_INTERACT_SUCCESS
 
@@ -321,17 +321,17 @@ While using this makes the system rely on OnFire, it still gives options for tim
 /obj/structure/elite_tumor/proc/border_check()
 	if(activator != null && get_dist(src, activator) >= 12)
 		activator.forceMove(loc)
-		visible_message(span_boldwarning(LANG("obj.5ba873c8", list(activator, src))))
+		visible_message(span_boldwarning(LANG("obj.5ba873c850bb5350", list(activator, src))))
 		playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
 	if(mychild != null && get_dist(src, mychild) >= 12)
 		mychild.forceMove(loc)
-		visible_message(span_boldwarning(LANG("obj.5ba873c8", list(mychild, src))))
+		visible_message(span_boldwarning(LANG("obj.5ba873c850bb5350", list(mychild, src))))
 		playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
 
 /obj/structure/elite_tumor/proc/onEliteLoss()
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, 0, 50, TRUE, TRUE)
-	visible_message(span_boldwarning(LANG("obj.954123e2", list(src))))
-	visible_message(span_boldwarning(LANG("obj.4e604f07", list(src))))
+	visible_message(span_boldwarning(LANG("obj.954123e25b203555", list(src))))
+	visible_message(span_boldwarning(LANG("obj.4e604f07c2578841", list(src))))
 	var/obj/structure/closet/crate/necropolis/tendril/lootbox = new /obj/structure/closet/crate/necropolis/tendril(loc)
 	if(boosted)
 		if(mychild.loot_drop != null && prob(50))
@@ -350,9 +350,9 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		mychild.health = mychild.maxHealth
 	if(times_won == 1)
 		mychild.playsound_local(get_turf(mychild), 'sound/effects/magic.ogg', 40, 0)
-		to_chat(mychild, span_boldwarning(LANG("obj.28e67ca0", null)))
-		to_chat(mychild, LANG("obj.61ba8e65", null))
-		to_chat(mychild, span_boldbig(LANG("obj.7ea05fce", null)))
+		to_chat(mychild, span_boldwarning(LANG("obj.28e67ca0fe79ab9d", null)))
+		to_chat(mychild, LANG("obj.61ba8e65355138ab", null))
+		to_chat(mychild, span_boldbig(LANG("obj.7ea05fceb9af52c7", null)))
 
 	REMOVE_TRAIT(mychild, TRAIT_UNCONVERTABLE, INNATE_TRAIT)
 
@@ -375,15 +375,15 @@ While using this makes the system rely on OnFire, it still gives options for tim
 
 	var/mob/living/simple_animal/hostile/asteroid/elite/elite = interacting_with
 	if(elite.stat != DEAD || elite.sentience_type != SENTIENCE_BOSS || !elite.key)
-		user.visible_message(span_notice(LANG("obj.a4d9359b", list(elite))))
+		user.visible_message(span_notice(LANG("obj.a4d9359bbe0fee6b", list(elite))))
 		return ITEM_INTERACT_BLOCKING
 	elite.set_allies(list("[REF(user)]"))
 	elite.set_faction(null)
 	elite.revive(HEAL_ALL)
-	user.visible_message(span_notice(LANG("obj.6bcad2d0", list(user, elite, src))))
+	user.visible_message(span_notice(LANG("obj.6bcad2d0177d3d67", list(user, elite, src))))
 	elite.playsound_local(get_turf(elite), 'sound/effects/magic.ogg', 40, 0)
-	to_chat(elite, span_userdanger(LANG("obj.3a95fb82", list(user, user, user.p_them(), user.p_their()))))
-	to_chat(elite, span_boldbig(LANG("obj.6ed51246", list(user))))
+	to_chat(elite, span_userdanger(LANG("obj.3a95fb82b79b14f9", list(user, user, user.p_them(), user.p_their()))))
+	to_chat(elite, span_boldbig(LANG("obj.6ed51246b99a8dfb", list(user))))
 	elite.maxHealth *= ELITE_POST_BATTLE_HEALTH_MULTIPLIER
 	elite.health = elite.maxHealth
 	elite.desc = "[elite.desc] However, this one appears to be less wild in nature, and calmer around people."

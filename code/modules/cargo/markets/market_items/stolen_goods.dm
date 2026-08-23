@@ -11,5 +11,5 @@
 	..()
 	set_item(thing)
 	name = "Stolen [thing.name]"
-	desc = LANG("datum.62dd97f8", list(thing.name))
+	desc = LANG("datum.62dd97f8b598c7c9", list(thing.name))
 	price = thing_price

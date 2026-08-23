@@ -89,7 +89,7 @@
 /obj/item/storage/wallet/examine()
 	. = ..()
 	if(front_id)
-		. += span_notice(LANG("obj.b58d4695", null))
+		. += span_notice(LANG("obj.b58d4695676b957a", null))
 
 /obj/item/storage/wallet/get_id_examine_strings(mob/user)
 	. = ..()

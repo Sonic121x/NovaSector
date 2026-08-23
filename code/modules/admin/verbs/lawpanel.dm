@@ -22,10 +22,10 @@ ADMIN_VERB(law_panel, R_ADMIN, "法则面板", "View the AI laws.", ADMIN_CATEGO
 
 /datum/law_panel/proc/add_law_helper(mob/living/user, mob/living/silicon/borgo)
 	var/list/lawtypes = list(LAW_ZEROTH, LAW_HACKED, LAW_INHERENT, LAW_SUPPLIED) // in order of priority
-	var/lawtype = tgui_input_list(user, LANG("datum.7343ade7", null), LANG("datum.016be05e", null), lawtypes)
+	var/lawtype = tgui_input_list(user, LANG("datum.7343ade739b2a519", null), LANG("datum.016be05e156a1afe", null), lawtypes)
 	if(isnull(lawtype))
 		return FALSE
-	var/lawtext = tgui_input_text(user, LANG("datum.fa57421e", null), LANG("datum.371fe1ed", null)) // admin verb so no max length and also any user-level input is config based already so ehhhh
+	var/lawtext = tgui_input_text(user, LANG("datum.fa57421ed26c7299", null), LANG("datum.371fe1edab2d332c", null)) // admin verb so no max length and also any user-level input is config based already so ehhhh
 	if(!lawtext)
 		return FALSE
 	if(QDELETED(src) || QDELETED(borgo))
@@ -34,7 +34,7 @@ ADMIN_VERB(law_panel, R_ADMIN, "法则面板", "View the AI laws.", ADMIN_CATEGO
 	switch(lawtype)
 		if(LAW_ZEROTH)
 			if(borgo.laws.zeroth || borgo.laws.zeroth_borg)
-				var/zero_override_alert = tgui_alert(user, LANG("datum.c657cbe0", null), LANG("datum.7d5ea3fe", null), list("Yes", "No"))
+				var/zero_override_alert = tgui_alert(user, LANG("datum.c657cbe0926e0def", null), LANG("datum.7d5ea3fe617e4229", null), list("Yes", "No"))
 				if(zero_override_alert != "Yes" || QDELETED(src) || QDELETED(borgo))
 					return FALSE
 
@@ -56,19 +56,19 @@ ADMIN_VERB(law_panel, R_ADMIN, "法则面板", "View the AI laws.", ADMIN_CATEGO
 	var/list/relevant_laws = borgo.laws.inherent
 	var/lawindex = relevant_laws.Find(law)
 	if(!lawindex)
-		to_chat(user, span_danger(LANG("datum.22084e40", null)))
+		to_chat(user, span_danger(LANG("datum.22084e40774b15ad", null)))
 		return FALSE
 
 	switch(direction)
 		if("up")
 			if(lawindex == length(relevant_laws)) // Already at the top? Sanity
-				to_chat(user, span_danger(LANG("datum.22084e40", null)))
+				to_chat(user, span_danger(LANG("datum.22084e40774b15ad", null)))
 				return FALSE
 
 			relevant_laws.Swap(lawindex + 1, lawindex)
 		if("down")
 			if(lawindex == 1) // Already at the bottom? Sanity
-				to_chat(user, span_danger(LANG("datum.22084e40", null)))
+				to_chat(user, span_danger(LANG("datum.22084e40774b15ad", null)))
 				return FALSE
 
 			relevant_laws.Swap(lawindex - 1, lawindex)
@@ -81,7 +81,7 @@ ADMIN_VERB(law_panel, R_ADMIN, "法则面板", "View the AI laws.", ADMIN_CATEGO
 	return TRUE
 
 /datum/law_panel/proc/edit_law_text_helper(mob/living/user, mob/living/silicon/borgo, lawtype, oldlaw)
-	var/newlaw = tgui_input_text(user, LANG("datum.d5ac7105", null), LANG("datum.0dc203c5", null), oldlaw)
+	var/newlaw = tgui_input_text(user, LANG("datum.d5ac7105769c1dff", null), LANG("datum.0dc203c589968b5e", null), oldlaw)
 	if(!newlaw || QDELETED(src) || QDELETED(borgo))
 		return FALSE
 
@@ -103,7 +103,7 @@ ADMIN_VERB(law_panel, R_ADMIN, "法则面板", "View the AI laws.", ADMIN_CATEGO
 	if(lawtype != LAW_ZEROTH)
 		var/lawindex = relevant_laws.Find(oldlaw)
 		if(!lawindex)
-			to_chat(user, span_danger(LANG("datum.4685fb16", null)))
+			to_chat(user, span_danger(LANG("datum.4685fb16d34ccb2c", null)))
 			return FALSE
 
 		relevant_laws[lawindex] = newlaw
@@ -145,7 +145,7 @@ ADMIN_VERB(law_panel, R_ADMIN, "法则面板", "View the AI laws.", ADMIN_CATEGO
 	if(params["ref"])
 		borgo = locate(params["ref"]) in GLOB.silicon_mobs
 		if(QDELETED(borgo))
-			to_chat(usr, span_danger(LANG("datum.b8c19230", null)))
+			to_chat(usr, span_danger(LANG("datum.b8c19230482711cd", null)))
 			return TRUE
 
 	switch(action)

@@ -40,12 +40,12 @@
 		var/obj/item/real_path = istext(path) ? text2path(path) : path
 		if(!ispath(real_path, /obj/item))
 			if(optional_loadout_owner)
-				to_chat(optional_loadout_owner, span_boldnotice(LANG("datum.68da2daa", list(real_path || "null"))))
+				to_chat(optional_loadout_owner, span_boldnotice(LANG("datum.68da2daac57b27c8", list(real_path || "null"))))
 			continue
 
 		else if(!istype(GLOB.all_loadout_datums[real_path], /datum/loadout_item))
 			if(optional_loadout_owner)
-				to_chat(optional_loadout_owner, span_boldnotice(LANG("datum.265384fe", list(real_path || "null"))))
+				to_chat(optional_loadout_owner, span_boldnotice(LANG("datum.265384fe7bb6224f", list(real_path || "null"))))
 			continue
 
 		var/datum/loadout_item/loadout_item = GLOB.all_loadout_datums[real_path]

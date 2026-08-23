@@ -34,25 +34,25 @@
 	switch(stage)
 		if(2)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob) && affected_mob.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL))
-				to_chat(affected_mob, span_warning(LANG("datum.01bdcf39", null)))
+				to_chat(affected_mob, span_warning(LANG("datum.01bdcf391da5022d", null)))
 				affected_mob.emote("wag")
 		if(3)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				to_chat(affected_mob, span_warning(LANG("datum.84d5c396", null)))
+				to_chat(affected_mob, span_warning(LANG("datum.84d5c3969f5cb43c", null)))
 			else if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				affected_mob.visible_message(LANG("datum.f6af129e", null), visible_message_flags = EMOTE_MESSAGE)
+				affected_mob.visible_message(LANG("datum.f6af129e9b0c43ad", null), visible_message_flags = EMOTE_MESSAGE)
 		if(4)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
 				gnash_someone()
 			else if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				affected_mob.visible_message(LANG("datum.f6af129e", null), visible_message_flags = EMOTE_MESSAGE)
+				affected_mob.visible_message(LANG("datum.f6af129e9b0c43ad", null), visible_message_flags = EMOTE_MESSAGE)
 		if(5)
 			max_stage_reached = TRUE
 			grant_ability()
 			if(SPT_PROB(2, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
 				gnash_someone()
 			else if(SPT_PROB(2, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				affected_mob.visible_message(LANG("datum.f6af129e", null), visible_message_flags = EMOTE_MESSAGE)
+				affected_mob.visible_message(LANG("datum.f6af129e9b0c43ad", null), visible_message_flags = EMOTE_MESSAGE)
 
 /datum/disease/carpellosis/Destroy()
 	if(ability_granted)
@@ -63,7 +63,7 @@
 	if(ability_granted)
 		rift_ability.Remove(affected_mob)
 	if(max_stage_reached && prob(ella_spawn_chance))
-		to_chat(affected_mob, span_warning(LANG("datum.5942ad42", null)))
+		to_chat(affected_mob, span_warning(LANG("datum.5942ad42dc156443", null)))
 		new /mob/living/basic/carp/ella(affected_mob.loc)
 	return ..()
 
@@ -84,9 +84,9 @@
 /datum/disease/carpellosis/proc/gnash_someone()
 	var/mob/living/carbon/human/target = find_nearby_human()
 	if(isnull(target) || !affected_mob.get_bodypart(BODY_ZONE_HEAD)) // Need mouth to gnash
-		to_chat(affected_mob, span_warning(LANG("datum.017f9e47", null)))
+		to_chat(affected_mob, span_warning(LANG("datum.017f9e47048a1dc8", null)))
 		return
-	to_chat(affected_mob, span_warning(LANG("datum.e4eb463f", list(target.name))))
+	to_chat(affected_mob, span_warning(LANG("datum.e4eb463f1ea690b4", list(target.name))))
 	if(ability_granted && !affected_mob.Adjacent(target))
 		rift_ability.Trigger(target = target)
 	affected_mob.face_atom(target)
@@ -94,6 +94,6 @@
 		affected_mob.set_combat_mode(TRUE)
 		target.attack_paw(affected_mob)
 	else
-		affected_mob.visible_message(LANG("datum.43513639", list(target.name)), visible_message_flags = EMOTE_MESSAGE)
+		affected_mob.visible_message(LANG("datum.435136392bbfc533", list(target.name)), visible_message_flags = EMOTE_MESSAGE)
 
 #undef GNASHING_RANGE

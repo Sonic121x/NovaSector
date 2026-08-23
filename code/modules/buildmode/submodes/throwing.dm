@@ -10,7 +10,7 @@
 
 /datum/buildmode_mode/throwing/show_help(client/builder)
 	to_chat(builder, span_purple(boxed_message(
-		LANG("datum.fbcae5f7", list(span_bold("Select"), span_bold("Throw")))))
+		LANG("datum.fbcae5f7b05cb889", list(span_bold("Select"), span_bold("Throw")))))
 	)
 
 /datum/buildmode_mode/throwing/handle_click(client/c, params, obj/object)
@@ -20,7 +20,7 @@
 		if(isturf(object))
 			return
 		throw_atom = object
-		to_chat(c, LANG("datum.4f79b931", list(throw_atom)))
+		to_chat(c, LANG("datum.4f79b931222b4fcf", list(throw_atom)))
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		if(throw_atom)
 			throw_atom.throw_at(object, 10, 1, c.mob)

@@ -155,7 +155,7 @@
 
 /datum/heretic_knowledge/rifle_ammo/pre_research(mob/user, datum/antagonist/heretic/our_heretic)
 	if(!our_heretic.get_knowledge(/datum/heretic_knowledge/rifle))
-		tgui_alert(user, LANG("datum.96269547", null))
+		tgui_alert(user, LANG("datum.96269547515aa65d", null))
 		return FALSE
 
 	return TRUE

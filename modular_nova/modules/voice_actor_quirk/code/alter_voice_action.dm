@@ -103,11 +103,11 @@
 	active = !active
 	if(active)
 		set_secondary_voice()
-		to_chat(owner, span_green(LANG("datum.4981e644", null)))
+		to_chat(owner, span_green(LANG("datum.4981e6449907e22f", null)))
 	else
 		set_primary_voice()
-		to_chat(owner, span_green(LANG("datum.0c37e040", null)))
-	owner.balloon_alert(owner, LANG("datum.658bbcbb", null))
+		to_chat(owner, span_green(LANG("datum.0c37e04004f40c49", null)))
+	owner.balloon_alert(owner, LANG("datum.658bbcbb6a0df920", null))
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 ///Swaps to the Voice Actor quirk's secondary chat color, TTS voice, and blooper

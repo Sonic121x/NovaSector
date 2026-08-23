@@ -4,7 +4,7 @@ GAME_VERB_PROC_DESC(/mob/living, soulcatcher_say, "灵魂发言", "Send a Say me
 	if(!target_soulcatcher || !target_soulcatcher.targeted_soulcatcher_room)
 		return FALSE
 
-	var/message_to_send = tgui_input_text(usr, LANG("mob.e2196c58", null), LANG("mob.49410bda", null), multiline = TRUE)
+	var/message_to_send = tgui_input_text(usr, LANG("mob.e2196c58f2802f77", null), LANG("mob.49410bda6648d9c5", null), multiline = TRUE)
 	if(!message_to_send)
 		return FALSE
 
@@ -17,7 +17,7 @@ GAME_VERB_PROC_DESC(/mob/living, soulcatcher_emote, "灵魂动作", "Send an emo
 	if(!target_soulcatcher || !target_soulcatcher.targeted_soulcatcher_room)
 		return FALSE
 
-	var/message_to_send = tgui_input_text(usr, LANG("mob.bc4f131d", null), LANG("mob.49410bda", null), max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+	var/message_to_send = tgui_input_text(usr, LANG("mob.bc4f131d894d55b1", null), LANG("mob.49410bda6648d9c5", null), max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 	if(!message_to_send)
 		return FALSE
 

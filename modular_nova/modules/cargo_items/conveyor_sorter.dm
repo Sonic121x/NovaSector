@@ -22,14 +22,14 @@
 
 /obj/item/conveyor_sorter/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.12799f69", list(max_sorters)))
-	. += span_notice(LANG("obj.bce6a8f7", list(max_items)))
-	. += span_notice(LANG("obj.4a4635d4", null))
-	. += span_notice(LANG("obj.2e88eeab", null))
+	. += span_notice(LANG("obj.12799f69d5f35cb2", list(max_sorters)))
+	. += span_notice(LANG("obj.bce6a8f736273020", list(max_items)))
+	. += span_notice(LANG("obj.4a4635d48d84c77a", null))
+	. += span_notice(LANG("obj.2e88eeabcd0b0f13", null))
 
 /obj/item/conveyor_sorter/attack_self(mob/user, modifiers)
 	if(length(spawned_sorters) >= max_sorters)
-		to_chat(user, span_warning(LANG("obj.1f501a4a", list(max_sorters))))
+		to_chat(user, span_warning(LANG("obj.1f501a4a313ea78e", list(max_sorters))))
 		return
 	var/obj/effect/decal/conveyor_sorter/new_cs = new conveyor_type(get_turf(src))
 	new_cs.parent_item = src
@@ -42,17 +42,17 @@
 	if(istype(interacting_with, /obj/effect/decal/conveyor_sorter))
 		return NONE
 	if(is_type_in_list(interacting_with, current_sort))
-		to_chat(user, span_warning(LANG("obj.c72dca91", list(interacting_with, src))))
+		to_chat(user, span_warning(LANG("obj.c72dca91853ebbc1", list(interacting_with, src))))
 		return ITEM_INTERACT_BLOCKING
 	if(length(current_sort) >= max_items)
-		to_chat(user, span_warning(LANG("obj.fcac1b6d", list(src, max_items))))
+		to_chat(user, span_warning(LANG("obj.fcac1b6d0ce9e727", list(src, max_items))))
 		return ITEM_INTERACT_BLOCKING
 	current_sort += interacting_with.type
-	to_chat(user, span_notice(LANG("obj.76d0b398", list(interacting_with, src))))
+	to_chat(user, span_notice(LANG("obj.76d0b398a0b1f14b", list(interacting_with, src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/conveyor_sorter/click_alt(mob/user)
-	visible_message(LANG("obj.ccff4e81", list(src)))
+	visible_message(LANG("obj.ccff4e81aa2f46b4", list(src)))
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 	current_sort = list()
 	return CLICK_ACTION_SUCCESS
@@ -92,13 +92,13 @@
 
 /obj/effect/decal/conveyor_sorter/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.731f1dfd", null))
-	. += span_notice(LANG("obj.015554c2", null))
-	. += span_notice(LANG("obj.b23d38f0", null))
-	. += span_notice(LANG("obj.fbae40a6", null))
+	. += span_notice(LANG("obj.731f1dfdbb9237b6", null))
+	. += span_notice(LANG("obj.015554c24827eedf", null))
+	. += span_notice(LANG("obj.b23d38f06652a512", null))
+	. += span_notice(LANG("obj.fbae40a68616b160", null))
 
 /obj/effect/decal/conveyor_sorter/attack_hand(mob/living/user, list/modifiers)
-	var/user_choice = tgui_input_list(user, LANG("obj.d72879d2", null), LANG("obj.f366a6b9", null), directions) // this would be cooler as a radial
+	var/user_choice = tgui_input_list(user, LANG("obj.d72879d2988cee0f", null), LANG("obj.f366a6b93b2ee98e", null), directions) // this would be cooler as a radial
 	if(!user_choice)
 		return ..()
 
@@ -108,7 +108,7 @@
 
 	setDir(dir)
 
-	visible_message(LANG("obj.d447c9d8", list(src)))
+	visible_message(LANG("obj.d447c9d81f4d6213", list(src)))
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 
 /obj/effect/decal/conveyor_sorter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -117,18 +117,18 @@
 
 	var/obj/item/conveyor_sorter/cs_item = tool
 	sorting_list = cs_item.current_sort
-	visible_message(LANG("obj.2c0baf57", list(src)))
+	visible_message(LANG("obj.2c0baf5754ddc3ab", list(src)))
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/effect/decal/conveyor_sorter/click_alt(mob/user)
-	visible_message(LANG("obj.ccff4e81", list(src)))
+	visible_message(LANG("obj.ccff4e81aa2f46b4", list(src)))
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 	sorting_list = list()
 	return CLICK_ACTION_SUCCESS
 
 /obj/effect/decal/conveyor_sorter/click_ctrl(mob/user)
-	visible_message(LANG("obj.3ad05a72", list(src)))
+	visible_message(LANG("obj.3ad05a725c132be7", list(src)))
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 	qdel(src)
 	return CLICK_ACTION_SUCCESS

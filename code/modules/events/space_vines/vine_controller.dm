@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(vine_mutations_list, init_vine_mutation_list())
 		return
 
 	if(href_list[VV_HK_SPACEVINE_PURGE])
-		if(tgui_alert(usr, LANG("datum.e71717d4", null), LANG("datum.c04e98ae", null), list("Yes", "No")) == "Yes")
+		if(tgui_alert(usr, LANG("datum.e71717d48b7ef995", null), LANG("datum.c04e98ae90da90f6", null), list("Yes", "No")) == "Yes")
 			DeleteVines()
 
 /datum/spacevine_controller/proc/DeleteVines() //this is kill

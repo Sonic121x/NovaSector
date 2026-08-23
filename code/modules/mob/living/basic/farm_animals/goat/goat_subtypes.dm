@@ -7,5 +7,5 @@
 	. = ..()
 	var/area/goat_area = get_area(src)
 	if((bodytemperature < T20C) || istype(goat_area, /area/station/service/kitchen/coldroom))
-		. += span_notice(LANG("mob.52616146", list(p_They(), p_do()))) // special for pete
+		. += span_notice(LANG("mob.526161462fd93782", list(p_They(), p_do()))) // special for pete
 

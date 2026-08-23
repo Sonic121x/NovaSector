@@ -16,13 +16,13 @@
 	switch(rand(1, 3))
 		if(1)
 			adjust_stutter(1 MINUTES / severity)
-			to_chat(src, span_danger(LANG("mob.a056c9f4", null)))
+			to_chat(src, span_danger(LANG("mob.a056c9f4286c1ee1", null)))
 		if(2)
 			adjust_slurring(INFINITY)
-			to_chat(src, span_danger(LANG("mob.4acdffa9", null)))
+			to_chat(src, span_danger(LANG("mob.4acdffa908e7af76", null)))
 		if(3)
 			set_derpspeech(INFINITY)
-			to_chat(src, span_danger(LANG("mob.e30fbcdc", null)))
+			to_chat(src, span_danger(LANG("mob.e30fbcdccce1ed5e", null)))
 	if(prob(40))
 		set_active_language(get_random_spoken_language())
 
@@ -43,25 +43,25 @@
 
 /mob/living/silicon/pai/attack_hand(mob/living/carbon/human/user, list/modifiers)
 	if(!user.combat_mode)
-		visible_message(span_notice(LANG("mob.d17aabd4", list(user, src))))
+		visible_message(span_notice(LANG("mob.d17aabd42add0beb", list(user, src))))
 		return
 	user.do_attack_animation(src)
 	if(user.name != master_name)
-		visible_message(span_danger(LANG("mob.c528ce31", list(user, src))))
+		visible_message(span_danger(LANG("mob.c528ce31a3630d9b", list(user, src))))
 		take_holo_damage(2)
 		return
-	visible_message(span_notice(LANG("mob.e7cfa050", list(src))))
+	visible_message(span_notice(LANG("mob.e7cfa05030260661", list(src))))
 	if(!do_after(user, 1 SECONDS, src))
 		return
 	fold_in()
 	if(user.put_in_hands(card))
-		user.visible_message(span_notice(LANG("mob.8be318e8", list(user, user.p_their()))))
+		user.visible_message(span_notice(LANG("mob.8be318e8e9e1fe37", list(user, user.p_their()))))
 
 /mob/living/silicon/pai/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit = FALSE)
 	. = ..()
 	if(. == BULLET_ACT_HIT && (hitting_projectile.stun || hitting_projectile.paralyze))
 		fold_in(force = TRUE)
-		visible_message(span_warning(LANG("mob.43e8c42b", list(src, p_them()))))
+		visible_message(span_warning(LANG("mob.43e8c42b0a92607a", list(src, p_them()))))
 
 /mob/living/silicon/pai/ignite_mob(silent)
 	return FALSE
@@ -71,7 +71,7 @@
 	if(holochassis_health < 0)
 		fold_in(force = TRUE)
 	if(amount > 0)
-		to_chat(src, span_userdanger(LANG("mob.006119b7", null)))
+		to_chat(src, span_userdanger(LANG("mob.006119b73a6845c6", null)))
 	update_health_hud()
 	return amount
 

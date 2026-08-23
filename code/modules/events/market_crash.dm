@@ -34,7 +34,7 @@
 		"uhh, bad luck, we guess"
 	)
 	var/reason = pick(poss_reasons)
-	priority_announce(LANG("datum.c6ab74b9", list(reason)), "Nanotrasen Accounting Division")
+	priority_announce(LANG("datum.c6ab74b963a5a771", list(reason)), "Nanotrasen Accounting Division")
 
 /datum/round_event/market_crash/start()
 	. = ..()

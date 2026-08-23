@@ -132,7 +132,7 @@
 /obj/item/ammo_casing/examine(mob/user)
 	. = ..()
 	if(ammo_stack_type)
-		. += span_notice(LANG("obj.40639269", list(src)))
+		. += span_notice(LANG("obj.406392695bd168f3", list(src)))
 	return .
 
 /obj/item/ammo_casing/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -143,16 +143,16 @@
 
 	var/obj/item/ammo_casing/used_casing = tool
 	if(!used_casing.ammo_stack_type)
-		balloon_alert(user, LANG("obj.3c774c38", null))
+		balloon_alert(user, LANG("obj.3c774c3872d876d2", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!ammo_stack_type)
-		balloon_alert(user, LANG("obj.d3684a89", null))
+		balloon_alert(user, LANG("obj.d3684a8927b30973", null))
 		return ITEM_INTERACT_BLOCKING
 	if(ammo_stack_type != used_casing.ammo_stack_type)
-		balloon_alert(user, LANG("obj.13971459", null))
+		balloon_alert(user, LANG("obj.139714591fc20c17", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!loaded_projectile || !used_casing.loaded_projectile)
-		balloon_alert(user, LANG("obj.f2fbdb00", null))
+		balloon_alert(user, LANG("obj.f2fbdb00bc8f8093", null))
 		return ITEM_INTERACT_BLOCKING
 
 	// try_load rather than give_round, so casings held by the user are properly unequipped instead of forceMoved out of their hands

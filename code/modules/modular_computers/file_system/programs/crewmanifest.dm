@@ -25,7 +25,7 @@
 								[GLOB.manifest ? GLOB.manifest.get_html(0) : ""]
 								"}
 				if(!computer.print_text(contents, "crew manifest ([round_timestamp()])"))
-					to_chat(usr, span_notice(LANG("datum.8f26e725", null)))
+					to_chat(usr, span_notice(LANG("datum.8f26e725be4eae5b", null)))
 					return
 				else
-					computer.visible_message(span_notice(LANG("datum.7a4642f7", list(computer))))
+					computer.visible_message(span_notice(LANG("datum.7a4642f71effe3c7", list(computer))))

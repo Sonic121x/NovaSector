@@ -173,15 +173,15 @@
 	if(check_valid_duel(user, FALSE) || other_gun.check_valid_duel(user, FALSE))
 		return ITEM_INTERACT_BLOCKING
 	var/datum/duel/newduel = new(src, other_gun)
-	to_chat(user,span_notice(LANG("obj.b12ddd9a", list(newduel.pairing_code))))
+	to_chat(user,span_notice(LANG("obj.b12ddd9a02e00972", list(newduel.pairing_code))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/energy/dueling/examine_more(mob/user)
 	. = ..()
 	if(check_valid_duel(user, FALSE))
-		. += LANG("obj.255ee2b7", list(duel.pairing_code))
+		. += LANG("obj.255ee2b7e903f36c", list(duel.pairing_code))
 	else
-		. += LANG("obj.4f6d8234", list(src))
+		. += LANG("obj.4f6d82343dc6e5c2", list(src))
 
 /obj/item/gun/energy/dueling/proc/setting_iconstate()
 	switch(setting)
@@ -211,7 +211,7 @@
 			setting = DUEL_SETTING_C
 		if(DUEL_SETTING_C)
 			setting = DUEL_SETTING_A
-	to_chat(user,span_notice(LANG("obj.6fad9ea5", list(src, setting))))
+	to_chat(user,span_notice(LANG("obj.6fad9ea5c3981ac1", list(src, setting))))
 	update_appearance()
 
 /obj/item/gun/energy/dueling/update_overlays()
@@ -237,7 +237,7 @@
 		if(DUEL_READY)
 			return .
 		else
-			to_chat(user,span_warning(LANG("obj.3ef1937b", list(src))))
+			to_chat(user,span_warning(LANG("obj.3ef1937b6e0c6707", list(src))))
 			return FALSE
 
 /obj/item/gun/energy/dueling/proc/is_duelist(mob/living/L)
@@ -252,10 +252,10 @@
 		return
 	if(duel.state == DUEL_READY)
 		duel.confirmations[src] = TRUE
-		to_chat(user,span_notice(LANG("obj.7f7f4e0d", null)))
+		to_chat(user,span_notice(LANG("obj.7f7f4e0d806664cc", null)))
 		return
 	else if(!is_duelist(target)) //I kinda want to leave this out just to see someone shoot a bystander or missing.
-		to_chat(user,span_warning(LANG("obj.2810d504", list(src))))
+		to_chat(user,span_warning(LANG("obj.2810d5048dcfb10e", list(src))))
 		return
 	else
 		duel.fired[src] = TRUE
@@ -269,7 +269,7 @@
 /obj/item/gun/energy/dueling/proc/check_valid_duel(mob/living/user, do_warn)
 	if(!duel)
 		if(do_warn)
-			to_chat(user,span_warning(LANG("obj.4f6d8234", list(src))))
+			to_chat(user,span_warning(LANG("obj.4f6d82343dc6e5c2", list(src))))
 		return FALSE
 	return TRUE
 

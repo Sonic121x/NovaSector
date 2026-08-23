@@ -260,7 +260,7 @@ for (const [name, rows] of Object.entries(buckets)) {
     for (const row of rows) {
       if (!/\barg\b/.test(row.sources)) continue;
       for (const hint of row.hints) {
-        const m = /^来源: ([a-z_]+\.[0-9a-f]{8})$/.exec(hint);
+        const m = /^来源: ([a-z_]+\.[0-9a-f]{16})$/.exec(hint);
         if (!m) continue;
         const list = byKey.get(m[1]) ?? [];
         list.push(row);

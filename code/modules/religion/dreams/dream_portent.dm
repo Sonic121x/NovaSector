@@ -19,16 +19,16 @@
 	if(!..())
 		return FALSE
 	if(!iscarbon(user))
-		to_chat(user, span_warning(LANG("datum.c0c90737", null)))
+		to_chat(user, span_warning(LANG("datum.c0c9073787cf9bd9", null)))
 		return FALSE
 	return TRUE
 
 /datum/religion_rites/dream_portent/invoke_effect(mob/living/user, atom/religious_tool)
 	if(!user.SetSleeping(10 SECONDS))
-		to_chat(user, span_warning(LANG("datum.b6f72b4d", null)))
+		to_chat(user, span_warning(LANG("datum.b6f72b4d9af54e56", null)))
 		return FALSE
 
-	user.visible_message(span_notice(LANG("datum.4895edcf", list(user, user.p_their()))))
+	user.visible_message(span_notice(LANG("datum.4895edcfa63ed4f8", list(user, user.p_their()))))
 	user.adjust_drowsiness(30 SECONDS)
 	return ..()
 
@@ -60,7 +60,7 @@
 	if(istype(current_dream, /datum/dream/specific_portent))
 		return
 
-	to_chat(dreamer, span_cyan(LANG("datum.0b68ef8b", null)))
+	to_chat(dreamer, span_cyan(LANG("datum.0b68ef8b2b511526", null)))
 	refund(0.8)
 	dreamer.adjust_drowsiness(10 SECONDS)
 	dreamer.add_mood_event("dream_failed", /datum/mood_event/dream_failed)
@@ -71,7 +71,7 @@
 	if(!prob(damage_amount * 10)) // higher damage = higher chance to interrupt
 		return
 
-	to_chat(dreamer, span_warning(LANG("datum.7ef09d3c", null)))
+	to_chat(dreamer, span_warning(LANG("datum.7ef09d3c4f0e4d41", null)))
 	dreamer.SetSleeping(0)
 	dreamer.adjust_drowsiness(10 SECONDS)
 	dreamer.add_mood_event("dream_interrupted", /datum/mood_event/dream_interrupted)
@@ -97,7 +97,7 @@
 
 /datum/dream/specific_portent/GenerateDream(mob/living/carbon/dreamer)
 	. = list()
-	. += span_cyan(LANG("datum.c934c6d7", null))
+	. += span_cyan(LANG("datum.c934c6d7932aa9ae", null))
 
 	var/list/portent_types = list(
 		"[GLOB.deity] greets you warmly" = "[GLOB.deity] bids you farewell, though you feel their presence watch over you",

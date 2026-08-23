@@ -601,7 +601,7 @@ Ignore_errors instructes mysql to continue inserting rows if some of them have e
 /datum/db_query/proc/warn_execute(async = TRUE)
 	. = Execute(async)
 	if(!.)
-		to_chat(usr, span_danger(LANG("datum.576967ef", null)))
+		to_chat(usr, span_danger(LANG("datum.576967ef3c07f2a6", null)))
 
 /datum/db_query/proc/Execute(async = TRUE, log_error = TRUE)
 	Activity("Execute")

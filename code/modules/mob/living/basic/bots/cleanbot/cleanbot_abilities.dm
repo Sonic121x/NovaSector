@@ -15,7 +15,7 @@
 	if((bot_owner.bot_mode_flags & BOT_MODE_ON))
 		return TRUE
 	if(feedback)
-		bot_owner.balloon_alert(bot_owner, LANG("datum.f108efd4", null))
+		bot_owner.balloon_alert(bot_owner, LANG("datum.f108efd46ba8f5f8", null))
 	return FALSE
 
 /datum/action/cooldown/mob_cooldown/bot/foam
@@ -29,7 +29,7 @@
 	var/foam_range = 2
 
 /datum/action/cooldown/mob_cooldown/bot/foam/Activate(mob/living/firer, atom/target)
-	owner.visible_message(span_danger(LANG("datum.731d2b09", list(owner))))
+	owner.visible_message(span_danger(LANG("datum.731d2b093df8228b", list(owner))))
 	do_foam(foam_range, owner, owner.loc)
 	StartCooldown()
 	return TRUE

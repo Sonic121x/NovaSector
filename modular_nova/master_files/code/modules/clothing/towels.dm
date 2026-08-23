@@ -74,7 +74,7 @@
 	. = ..()
 
 	if(wet)
-		. += span_notice(LANG("obj.421df0d7", null))
+		. += span_notice(LANG("obj.421df0d78aa57660", null))
 
 
 	if(!ishuman(user) && !iscyborg(user))
@@ -87,20 +87,20 @@
 		in_hands = user.get_active_held_item() == src || user.get_inactive_held_item() == src
 
 		if(in_hands)
-			. += span_notice(LANG("obj.070bf4e1", list(src)))
+			. += span_notice(LANG("obj.070bf4e1e19f542b", list(src)))
 
 	if(in_hands && shape != TOWEL_FOLDED)
-		. += span_notice(LANG("obj.fdbf29f4", list(wet && ishuman(user) ? "wring parts of the liquids out of [src]" : "fold [src] neatly")))
+		. += span_notice(LANG("obj.fdbf29f497e4f9be", list(wet && ishuman(user) ? "wring parts of the liquids out of [src]" : "fold [src] neatly")))
 
 	if(iscyborg(user))
 		return
 
 	if(shape == TOWEL_FULL || shape == TOWEL_WAIST)
-		. += span_notice(LANG("obj.a0c19eba", list(src)))
+		. += span_notice(LANG("obj.a0c19ebab91615ce", list(src)))
 
 	if(wet)
-		. += span_notice(LANG("obj.aad7cc32", list(src)))
-		. += span_notice(LANG("obj.b01ccd76", list(src)))
+		. += span_notice(LANG("obj.aad7cc32f7395884", list(src)))
+		. += span_notice(LANG("obj.b01ccd7615258340", list(src)))
 
 
 /obj/item/towel/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
@@ -140,25 +140,25 @@
 
 	var/free_space = reagents.maximum_volume - reagents.total_volume
 	if(free_space <= 0)
-		to_chat(user, span_warning(LANG("obj.5b8b31a2", list(src))))
+		to_chat(user, span_warning(LANG("obj.5b8b31a2b129be53", list(src))))
 		return
 
 	var/cleaning_themselves = target_mob == user
 
-	target_mob.visible_message(span_notice(LANG("obj.9aaa3fa5", list(user, cleaning_themselves ? "themselves" : target_mob, src))), span_notice(LANG("obj.50b44c37", list(cleaning_themselves ? "You start drying yourself" : "[user] starts drying you", src))), ignored_mobs = cleaning_themselves ? null : user)
+	target_mob.visible_message(span_notice(LANG("obj.9aaa3fa55e5f19e6", list(user, cleaning_themselves ? "themselves" : target_mob, src))), span_notice(LANG("obj.50b44c37ba7c9855", list(cleaning_themselves ? "You start drying yourself" : "[user] starts drying you", src))), ignored_mobs = cleaning_themselves ? null : user)
 
 	if(!cleaning_themselves)
-		to_chat(user, span_notice(LANG("obj.147e561b", list(target_mob, src))))
+		to_chat(user, span_notice(LANG("obj.147e561b2d32905c", list(target_mob, src))))
 
 	if(!do_after(user, 2 SECONDS, src))
-		to_chat(user, span_notice(LANG("obj.03c77c18", list(target_mob))))
+		to_chat(user, span_notice(LANG("obj.03c77c182812b238", list(target_mob))))
 		return
 
 
-	target_mob.visible_message(span_notice(LANG("obj.ae12c265", list(user, cleaning_themselves ? "themselves" : target_mob, src))), span_notice(LANG("obj.50b44c37", list(cleaning_themselves ? "You finish drying yourself" : "[user] finishes drying you ", src))), ignored_mobs = cleaning_themselves ? null : user)
+	target_mob.visible_message(span_notice(LANG("obj.ae12c265174961fc", list(user, cleaning_themselves ? "themselves" : target_mob, src))), span_notice(LANG("obj.50b44c37ba7c9855", list(cleaning_themselves ? "You finish drying yourself" : "[user] finishes drying you ", src))), ignored_mobs = cleaning_themselves ? null : user)
 
 	if(!cleaning_themselves)
-		to_chat(user, span_notice(LANG("obj.e18a683a", list(target_mob, src))))
+		to_chat(user, span_notice(LANG("obj.e18a683a58416e60", list(target_mob, src))))
 
 	var/water_to_remove = min(max(-target_mob.fire_stacks, 0), free_space)
 
@@ -211,7 +211,7 @@
 		transfer_fingerprints_to(shreds)
 		shreds.add_fingerprint(user)
 
-	to_chat(user, span_notice(LANG("obj.2a4896c4", list(src))))
+	to_chat(user, span_notice(LANG("obj.2a4896c414ac520f", list(src))))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -223,18 +223,18 @@
 		return
 
 	if(!reagents.total_volume)
-		to_chat(user, span_warning(LANG("obj.c6e6750c", list(src))))
+		to_chat(user, span_warning(LANG("obj.c6e6750cb7b11495", list(src))))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	var/obj/item/reagent_containers/cup/bucket/target_bucket = target
 
 	if(target_bucket.reagents.total_volume >= target_bucket.reagents.maximum_volume)
-		to_chat(user, span_warning(LANG("obj.21d5a38a", list(target))))
+		to_chat(user, span_warning(LANG("obj.21d5a38ae9e8687a", list(target))))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	transfer_towel_reagents_to(target_bucket, reagents.total_volume, user, loss_factor = SQUEEZING_DISPERSAL_RATIO, make_used = TRUE) // If it didn't have enough space, oh well, you lost like 3/4th of what was in the towel anyway, there's just even more loss that way. Doesn't really matter.
 
-	to_chat(user, span_notice(LANG("obj.4d2e5f90", list(src, target))))
+	to_chat(user, span_notice(LANG("obj.4d2e5f905ef5c9c5", list(src, target))))
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -261,12 +261,12 @@
 
 /obj/item/towel/item_ctrl_click(mob/user)
 	if(!wet && shape == TOWEL_FOLDED) // You can't fold a wet towel, so you can't get a folded towel that's also wet. And you can't fold what's already folded, obviously.
-		to_chat(user, span_warning(LANG("obj.45dba097", null)))
+		to_chat(user, span_warning(LANG("obj.45dba097c9cc940c", null)))
 		return
 
 	if(ishuman(user) || iscyborg(user))
 		if(iscyborg(user) && wet) // Cyborgs can't wring towels.
-			to_chat(user, span_warning(LANG("obj.e5d0e3ec", null)))
+			to_chat(user, span_warning(LANG("obj.e5d0e3ec02bb6060", null)))
 			return CLICK_ACTION_BLOCKING
 
 		var/in_hands = TRUE
@@ -280,15 +280,15 @@
 
 		if(!wet)
 			change_towel_shape(user, TOWEL_FOLDED, silent = TRUE)
-			to_chat(user, span_notice(LANG("obj.76964146", list(src))))
+			to_chat(user, span_notice(LANG("obj.76964146c6c8252c", list(src))))
 			return CLICK_ACTION_SUCCESS
 
 		// No cyborgs past this point.
 
-		to_chat(user, span_warning(LANG("obj.60a48597", list(src))))
+		to_chat(user, span_warning(LANG("obj.60a48597452b049b", list(src))))
 
 		if(!do_after(user, 2 SECONDS, src))
-			to_chat(user, span_warning(LANG("obj.49bf49fb", list(src))))
+			to_chat(user, span_warning(LANG("obj.49bf49fbfa55ce24", list(src))))
 			return CLICK_ACTION_BLOCKING
 
 		var/turf/current_turf = get_turf(src) // It's done by a user so it should always have a turf.
@@ -302,7 +302,7 @@
 
 		qdel(temp_holder)
 
-		user.visible_message(span_warning(LANG("obj.3297ba3b", list(user, src, current_turf))), span_warning(LANG("obj.9edf5b37", list(src, current_turf))))
+		user.visible_message(span_warning(LANG("obj.3297ba3b0b0d2683", list(user, src, current_turf))), span_warning(LANG("obj.9edf5b3792693c54", list(src, current_turf))))
 		return CLICK_ACTION_SUCCESS
 
 
@@ -501,7 +501,7 @@
 
 	var/free_space = reagents.maximum_volume - reagents.total_volume
 	if(free_space <= 0)
-		to_chat(user, span_warning(LANG("obj.5b8b31a2", list(src))))
+		to_chat(user, span_warning(LANG("obj.5b8b31a2b129be53", list(src))))
 		return TRUE
 
 	var/datum/reagents/temp_holder = liquids.take_reagents_flat(free_space)
@@ -509,7 +509,7 @@
 	set_wet(reagents.total_volume)
 	make_used(user, silent = TRUE)
 
-	to_chat(user, span_notice(LANG("obj.966933a8", list(src))))
+	to_chat(user, span_notice(LANG("obj.966933a819450c5d", list(src))))
 
 	qdel(temp_holder)
 	user.changeNext_move(CLICK_CD_MELEE)

@@ -13,7 +13,7 @@
 	max_charges = 20
 
 /obj/item/gun/magic/wand/pizza/zap_self(mob/living/user, suicide = FALSE)
-	to_chat(user, span_notice(LANG("obj.0f10f583", null)))
+	to_chat(user, span_notice(LANG("obj.0f10f583b0168fa3", null)))
 	return
 
 /obj/item/gun/magic/wand/pizza/do_suicide(mob/living/user)
@@ -82,7 +82,7 @@
 
 					var/mob/living/carbon/edward_pizza_hands = lunch_haver
 					edward_pizza_hands.make_item_prosthetic(the_piz, hand_index)
-					edward_pizza_hands.visible_message(span_warning(LANG("obj.8144156c", list(edward_pizza_hands, hand_zone, the_piz))))
+					edward_pizza_hands.visible_message(span_warning(LANG("obj.8144156cf37d65b3", list(edward_pizza_hands, hand_zone, the_piz))))
 
 	lunch_haver.set_combat_mode(FALSE) // You can't eat pizza if you're on combat mode
 	the_piz.attack(lunch_haver, lunch_haver)

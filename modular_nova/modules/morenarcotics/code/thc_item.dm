@@ -27,9 +27,9 @@
 
 
 /obj/item/reagent_containers/hashbrick/attack_self(mob/user)
-	user.visible_message(span_notice(LANG("obj.2c94b9ca", list(user, src))))
+	user.visible_message(span_notice(LANG("obj.2c94b9cac2485db3", list(user, src))))
 	if(do_after(user,10))
-		to_chat(user, span_notice(LANG("obj.eb1bbccb", list(src))))
+		to_chat(user, span_notice(LANG("obj.eb1bbccb3849e180", list(src))))
 		for(var/i = 1 to 4)
 			new /obj/item/reagent_containers/hash(user.loc)
 		qdel(src)

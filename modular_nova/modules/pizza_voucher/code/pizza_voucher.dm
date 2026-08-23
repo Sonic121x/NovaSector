@@ -42,11 +42,11 @@
 		"EVERY TIME YOU DREAM OF CIRCULAR CUISINE!",
 		"WE ALWAYS DELIVER! WE ALWAYS DELIVER! WE ALWAYS DELIVER!",
 		)
-	desc = LANG("obj.4dd0bfdc", list(pick(descstrings)))
+	desc = LANG("obj.4dd0bfdccdbb0484", list(pick(descstrings)))
 
 /obj/item/pizzavoucher/attack_self(mob/user)
 	. = ..()
-	user.visible_message(span_notice(LANG("obj.69f56e26", list(user, src))))
+	user.visible_message(span_notice(LANG("obj.69f56e264956ed82", list(user, src))))
 
 	// Build radial menu from all the pizzalikes
 	var/list/pizza_choices = list()
@@ -65,9 +65,9 @@
 		else
 			our_box = new /obj/item/pizzabox()
 
-		user.visible_message(span_notice(LANG("obj.8e028098", list(user))),
-			span_notice(LANG("obj.c6351aac", null)),
-			span_notice(LANG("obj.c339c692", null)),
+		user.visible_message(span_notice(LANG("obj.8e028098d02d56b9", list(user))),
+			span_notice(LANG("obj.c6351aac1fc68b61", null)),
+			span_notice(LANG("obj.c339c692a6b81a51", null)),
 		)
 		fill_pizza(user, our_box, pizza_choices[selection]) // Look up the path using the name key
 		podspawn(list(
@@ -75,16 +75,16 @@
 			"style" = /datum/pod_style/seethrough,
 			"spawn" = our_box,
 		))
-		to_chat(user, span_warning(LANG("obj.00eece82", list(src))))
+		to_chat(user, span_warning(LANG("obj.00eece8295ac37b2", list(src))))
 		new /obj/effect/decal/cleanable/ash(get_turf(src))
 		qdel(src)
 
 /obj/item/pizzavoucher/emag_act(mob/user)
 	if(special_delivery)
-		balloon_alert(user, LANG("obj.80f9a9f8", null))
+		balloon_alert(user, LANG("obj.80f9a9f89707898d", null))
 		return FALSE
-	to_chat(user, span_warning(LANG("obj.e97766b1", list(src))))
-	balloon_alert(user, LANG("obj.ff3943f2", null))
+	to_chat(user, span_warning(LANG("obj.e97766b114dd7993", list(src))))
+	balloon_alert(user, LANG("obj.ff3943f22033d18b", null))
 	special_delivery = TRUE
 	return TRUE
 

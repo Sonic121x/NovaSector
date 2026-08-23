@@ -43,7 +43,7 @@
 	if(!istype(user))
 		return
 	if(user.get_item_by_slot(user.getBackSlot()) != src)
-		to_chat(user, span_warning(LANG("obj.000f49d3", null)))
+		to_chat(user, span_warning(LANG("obj.000f49d369c91614", null)))
 		return
 	if(user.incapacitated)
 		return
@@ -54,7 +54,7 @@
 	if(noz in src)
 		//Detach the nozzle into the user's hands
 		if(!user.put_in_hands(noz))
-			to_chat(user, span_warning(LANG("obj.b184f525", null)))
+			to_chat(user, span_warning(LANG("obj.b184f525b120865b", null)))
 			return
 	else
 		//Remove from their hands and put back "into" the tank
@@ -69,7 +69,7 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "切换喷雾器", null)
 /obj/item/watertank/proc/noz_move(atom/movable/mover, atom/oldloc, direction)
 	if(mover.loc == src || mover.loc == loc)
 		return
-	balloon_alert(loc, LANG("obj.4521d163", null))
+	balloon_alert(loc, LANG("obj.4521d163d4e0090d", null))
 	mover.forceMove(src)
 
 /obj/item/watertank/equipped(mob/user, slot)
@@ -159,7 +159,7 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "切换喷雾器", null)
 	return new /obj/item/reagent_containers/spray/mister/janitor(src)
 
 /obj/item/reagent_containers/spray/mister/janitor/mode_change_message(mob/user)
-	to_chat(user, span_notice(LANG("obj.96db0e0e", list(amount_per_transfer_from_this == 10 ? "remove" : "affix", amount_per_transfer_from_this))))
+	to_chat(user, span_notice(LANG("obj.96db0e0e9c9361bd", list(amount_per_transfer_from_this == 10 ? "remove" : "affix", amount_per_transfer_from_this))))
 
 //Security tank
 /obj/item/watertank/pepperspray
@@ -191,7 +191,7 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "切换喷雾器", null)
 	return new /obj/item/reagent_containers/spray/mister/pepperspray(src)
 
 /obj/item/reagent_containers/spray/mister/pepperspray/mode_change_message(mob/user)
-	to_chat(user, span_notice(LANG("obj.96db0e0e", list(amount_per_transfer_from_this == 10 ? "remove" : "affix", amount_per_transfer_from_this))))
+	to_chat(user, span_notice(LANG("obj.96db0e0e9c9361bd", list(amount_per_transfer_from_this == 10 ? "remove" : "affix", amount_per_transfer_from_this))))
 
 //ATMOS FIRE FIGHTING BACKPACK
 /obj/item/watertank/atmos
@@ -261,19 +261,19 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "切换喷雾器", null)
 			nozzle_mode = RESIN_LAUNCHER
 			if(uses_pack)
 				tank.icon_state = "waterbackpackatmos_1"
-			balloon_alert(user, LANG("obj.567793aa", null))
+			balloon_alert(user, LANG("obj.567793aa1be8df06", null))
 			return
 		if(RESIN_LAUNCHER)
 			nozzle_mode = RESIN_FOAM
 			if(uses_pack)
 				tank.icon_state = "waterbackpackatmos_2"
-			balloon_alert(user, LANG("obj.9138c32b", null))
+			balloon_alert(user, LANG("obj.9138c32b3b2f420e", null))
 			return
 		if(RESIN_FOAM)
 			nozzle_mode = EXTINGUISHER
 			if(uses_pack)
 				tank.icon_state = "waterbackpackatmos_0"
-			balloon_alert(user, LANG("obj.b0638d2a", null))
+			balloon_alert(user, LANG("obj.b0638d2ae69b3ead", null))
 			return
 	return
 
@@ -292,10 +292,10 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "切换喷雾器", null)
 			return ITEM_INTERACT_SKIP_TO_ATTACK
 		var/datum/reagents/R = reagents
 		if(R.total_volume < 100)
-			balloon_alert(user, LANG("obj.fbe12ace", null))
+			balloon_alert(user, LANG("obj.fbe12ace6e83cd5f", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!COOLDOWN_FINISHED(src, resin_cooldown))
-			balloon_alert(user, LANG("obj.26defd6f", null))
+			balloon_alert(user, LANG("obj.26defd6f9b56ea97", null))
 			return ITEM_INTERACT_BLOCKING
 		COOLDOWN_START(src, resin_cooldown, 10 SECONDS)
 		R.remove_all(100)
@@ -312,11 +312,11 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "切换喷雾器", null)
 		if(!isturf(interacting_with))
 			return NONE
 		if(!Adj)
-			balloon_alert(user, LANG("obj.f5e75781", null))
+			balloon_alert(user, LANG("obj.f5e75781e8f1dc46", null))
 			return ITEM_INTERACT_BLOCKING
 		for(var/thing in interacting_with)
 			if(istype(thing, /obj/effect/particle_effect/fluid/foam/metal/resin) || istype(thing, /obj/structure/foamedmetal/resin))
-				balloon_alert(user, LANG("obj.e0df0d35", null))
+				balloon_alert(user, LANG("obj.e0df0d3591efcca1", null))
 				return ITEM_INTERACT_BLOCKING
 		if(metal_synthesis_cooldown < 5)
 			var/obj/effect/particle_effect/fluid/foam/metal/resin/foam = new (get_turf(interacting_with))
@@ -325,7 +325,7 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "切换喷雾器", null)
 			addtimer(CALLBACK(src, PROC_REF(reduce_metal_synth_cooldown)), 10 SECONDS)
 			return ITEM_INTERACT_SUCCESS
 
-		balloon_alert(user, LANG("obj.39a3bafc", null))
+		balloon_alert(user, LANG("obj.39a3bafc88f582ad", null))
 		return ITEM_INTERACT_BLOCKING
 
 	return NONE
@@ -401,7 +401,7 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "切换喷雾器", null)
 	if(!istype(user))
 		return
 	if (user.get_item_by_slot(ITEM_SLOT_BACK) != src)
-		to_chat(user, span_warning(LANG("obj.53570848", null)))
+		to_chat(user, span_warning(LANG("obj.535708480239d18e", null)))
 		return
 	if(on)
 		turn_off()
@@ -432,13 +432,13 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "切换喷雾器", null)
 	on = TRUE
 	START_PROCESSING(SSobj, src)
 	if(ismob(loc))
-		to_chat(loc, span_notice(LANG("obj.7b8f853d", list(src))))
+		to_chat(loc, span_notice(LANG("obj.7b8f853d1755bd9a", list(src))))
 
 /obj/item/reagent_containers/chemtank/proc/turn_off()
 	on = FALSE
 	STOP_PROCESSING(SSobj, src)
 	if(ismob(loc))
-		to_chat(loc, span_notice(LANG("obj.743eda64", list(src))))
+		to_chat(loc, span_notice(LANG("obj.743eda6425e5c1b5", list(src))))
 
 /obj/item/reagent_containers/chemtank/process(seconds_per_tick)
 	if(!ishuman(loc))

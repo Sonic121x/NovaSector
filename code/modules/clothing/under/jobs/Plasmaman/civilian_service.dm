@@ -24,7 +24,7 @@
 
 /obj/item/clothing/under/plasmaman/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.8d253863", list(extinguishes_left == 1 ? "is" : "are", extinguishes_left)))
+	. += span_notice(LANG("obj.8d253863c5f47f6c", list(extinguishes_left == 1 ? "is" : "are", extinguishes_left)))
 
 /obj/item/clothing/under/plasmaman/equipped(mob/living/user, slot)
 	. = ..()
@@ -55,7 +55,7 @@
 	COOLDOWN_START(src, extinguish_timer, extinguish_cooldown)
 	// Check if our (possibly other) wearer is on fire once the cooldown ends
 	addtimer(CALLBACK(src, PROC_REF(check_fire_state)), extinguish_cooldown)
-	owner.visible_message(span_warning(LANG("obj.1259449b", list(owner, owner.p_them()))), span_warning(LANG("obj.7fd1fcff", null)))
+	owner.visible_message(span_warning(LANG("obj.1259449b99485d98", list(owner, owner.p_them()))), span_warning(LANG("obj.7fd1fcffbd245f6e", null)))
 	owner.extinguish_mob()
 	new /obj/effect/particle_effect/water(get_turf(owner))
 
@@ -64,11 +64,11 @@
 		return ..()
 
 	if (extinguishes_left == 5)
-		to_chat(user, span_notice(LANG("obj.ef12437e", null)))
+		to_chat(user, span_notice(LANG("obj.ef12437efec2c1b7", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	extinguishes_left = 5
-	to_chat(user, span_notice(LANG("obj.161539ff", null)))
+	to_chat(user, span_notice(LANG("obj.161539ff154b23ab", null)))
 	check_fire_state()
 	qdel(tool)
 	return ITEM_INTERACT_SUCCESS
@@ -176,6 +176,6 @@
 	COOLDOWN_START(src, extinguish_timer, extinguish_cooldown)
 	// Check if our (possibly other) wearer is on fire once the cooldown ends
 	addtimer(CALLBACK(src, PROC_REF(check_fire_state)), extinguish_cooldown)
-	owner.visible_message(span_warning(LANG("obj.49863cca", list(owner))), span_warning(LANG("obj.668f25fa", null)))
+	owner.visible_message(span_warning(LANG("obj.49863cca75d8b95a", list(owner))), span_warning(LANG("obj.668f25fa12ac4d04", null)))
 	owner.extinguish_mob()
 	do_foam(4, src, get_turf(owner), /datum/reagent/lube, 15)

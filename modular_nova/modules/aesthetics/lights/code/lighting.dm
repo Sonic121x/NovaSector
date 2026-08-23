@@ -82,13 +82,13 @@
 
 /obj/machinery/light/multitool_act(mob/living/user, obj/item/multitool)
 	if(!constant_flickering)
-		balloon_alert(user, LANG("obj.e5dcc381", null))
+		balloon_alert(user, LANG("obj.e5dcc381fcd4dfff", null))
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, LANG("obj.af43217e", null))
+	balloon_alert(user, LANG("obj.af43217ea674ada2", null))
 	if(do_after(user, 2 SECONDS, src))
 		stop_flickering()
-		balloon_alert(user, LANG("obj.b3fe788a", null))
+		balloon_alert(user, LANG("obj.b3fe788a7e1f7fed", null))
 		return ITEM_INTERACT_SUCCESS
 	return ..()
 

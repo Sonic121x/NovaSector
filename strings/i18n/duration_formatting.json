@@ -1,0 +1,14 @@
+{
+	"_comment": "DisplayTimeText 的 locale-neutral 时长显示格式。now 是零时长文本；units 是单个数值模板（{0} 为数值）；separator 连接非末项，last_separator 连接末项。顶层放置，单位词与连接格式不进入全局反查。缺少该 locale 时调用方回退 canonical English formatter；新增 locale 只需增加同级对象。",
+	"zh-Hans": {
+		"now": "就在此刻",
+		"separator": "",
+		"last_separator": "",
+		"units": {
+			"day": "{0}天",
+			"hour": "{0}小时",
+			"minute": "{0}分钟",
+			"second": "{0}秒"
+		}
+	}
+}

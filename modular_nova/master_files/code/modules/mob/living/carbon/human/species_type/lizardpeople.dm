@@ -55,8 +55,8 @@ Lizard subspecies: ASHWALKERS
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "comment",
-		SPECIES_PERK_NAME = LANG("datum.2c6ae453", null),
-		SPECIES_PERK_DESC = LANG("datum.4ae1167d", list(initial(common_language.name)))
+		SPECIES_PERK_NAME = LANG("datum.2c6ae453c19c3937", null),
+		SPECIES_PERK_DESC = LANG("datum.4ae1167d82b4fd78", list(initial(common_language.name)))
 	))
 
 	return to_add

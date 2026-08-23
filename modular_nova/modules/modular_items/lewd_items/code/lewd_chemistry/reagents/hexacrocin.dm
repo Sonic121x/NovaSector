@@ -41,7 +41,7 @@
 	if(prob(OD_CHANCE_NO_TRAUMA) || HAS_TRAIT(exposed_mob, TRAIT_BIMBO))
 		return ..()
 
-	to_chat(exposed_mob, span_purple(LANG("datum.85c37dac", null)))
+	to_chat(exposed_mob, span_purple(LANG("datum.85c37dac751cc778", null)))
 	exposed_mob.gain_trauma(/datum/brain_trauma/very_special/bimbo, TRAUMA_RESILIENCE_BASIC)
 	ADD_TRAIT(exposed_mob, TRAIT_BIMBO, TRAIT_LEWDCHEM)
 

@@ -46,7 +46,7 @@
 			if(prob(base_message_chance) && !suppress_warning)
 				to_chat(M, span_warning("[pick("You feel dizzy.", "Your head spins.")]"))
 		else
-			to_chat(M, span_userdanger(LANG("datum.151eedce", null)))
+			to_chat(M, span_userdanger(LANG("datum.151eedce1312f276", null)))
 			M.adjust_dizzy_up_to(1 MINUTES, 140 SECONDS)
 			if(power >= 2)
 				M.set_drugginess(80 SECONDS)

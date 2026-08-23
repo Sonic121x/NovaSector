@@ -39,12 +39,12 @@ ADMIN_VERB(view_all_circuits, R_ADMIN, "查看所有电路", "List all circuits 
 
 	var/obj/item/integrated_circuit/circuit = locate(params["circuit"])
 	if (!istype(circuit))
-		to_chat(usr, span_warning(LANG("datum.0d7b8138", null)))
+		to_chat(usr, span_warning(LANG("datum.0d7b81389b7281bf", null)))
 		return FALSE
 
 	switch (action)
 		if ("duplicate_circuit")
-			if (alert(usr, LANG("datum.23acd2f6", null), LANG("datum.3c1da715", null), "Yes", "No") != "Yes")
+			if (alert(usr, LANG("datum.23acd2f6ba3ea7dc", null), LANG("datum.3c1da715a16e1d9e", null), "Yes", "No") != "Yes")
 				return FALSE
 
 			var/list/errors = list()
@@ -53,7 +53,7 @@ ADMIN_VERB(view_all_circuits, R_ADMIN, "查看所有电路", "List all circuits 
 			new_circuit.load_circuit_data(circuit.convert_to_json(), errors)
 
 			if (length(errors))
-				to_chat(usr, span_warning(LANG("datum.a9e1807f", null)))
+				to_chat(usr, span_warning(LANG("datum.a9e1807f1105d002", null)))
 				for (var/error in errors)
 					to_chat(usr, span_warning(error))
 		if ("follow_circuit")

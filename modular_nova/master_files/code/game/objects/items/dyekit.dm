@@ -18,12 +18,12 @@
 		return
 
 	if(!uses) // Can be set to -1 for infinite uses, basically.
-		balloon_alert(user, LANG("obj.76a90f7c", null))
+		balloon_alert(user, LANG("obj.76a90f7c0f5ea424", null))
 		return
 
 	var/mob/living/carbon/human/human_target = target
 	var/static/list/dye_options = list(DYE_OPTION_HAIR_COLOR, DYE_OPTION_GRADIENT)
-	var/gradient_or_hair = tgui_alert(user, LANG("obj.ab3c2f64", null), LANG("obj.ac2dd580", null), dye_options, autofocus = TRUE)
+	var/gradient_or_hair = tgui_alert(user, LANG("obj.ab3c2f647ff1b220", null), LANG("obj.ac2dd580512ca80b", null), dye_options, autofocus = TRUE)
 	if(!gradient_or_hair || !user.can_perform_action(src, NEED_DEXTERITY))
 		return
 
@@ -34,21 +34,21 @@
 		if(!new_color || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
-		human_target.visible_message(span_notice(LANG("obj.c2358a12", list(user, dyeing_themselves ? "their own" : "[human_target]'s"))), span_notice(LANG("obj.b7dd0d94", list(dyeing_themselves ? "You start" : "[user] starts", dyeing_themselves ? "your own" : "your"))), ignored_mobs = user)
+		human_target.visible_message(span_notice(LANG("obj.c2358a12e0b001c8", list(user, dyeing_themselves ? "their own" : "[human_target]'s"))), span_notice(LANG("obj.b7dd0d943e72a4f0", list(dyeing_themselves ? "You start" : "[user] starts", dyeing_themselves ? "your own" : "your"))), ignored_mobs = user)
 		if(!dyeing_themselves)
-			balloon_alert(user, LANG("obj.87b436e1", null))
+			balloon_alert(user, LANG("obj.87b436e179957446", null))
 		if(!do_after(user, 3 SECONDS, target))
 			return
 
 		human_target.set_haircolor(sanitize_hexcolor(new_color), update = TRUE)
 
 	else
-		var/beard_or_hair = tgui_input_list(user, LANG("obj.104fcb0c", null), LANG("obj.78f80c29", null), list("Hair", "Facial Hair"))
+		var/beard_or_hair = tgui_input_list(user, LANG("obj.104fcb0c9eff7027", null), LANG("obj.78f80c295b6adf9f", null), list("Hair", "Facial Hair"))
 		if(!beard_or_hair || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
 		var/list/choices = beard_or_hair == "Hair" ? SSaccessories.hair_gradients_list : SSaccessories.facial_hair_gradients_list
-		var/new_grad_style = tgui_input_list(user, LANG("obj.2b2d0933", null), LANG("obj.a23f5593", null), choices)
+		var/new_grad_style = tgui_input_list(user, LANG("obj.2b2d093354e09c10", null), LANG("obj.a23f559359e0ffee", null), choices)
 		if(!new_grad_style || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
@@ -57,9 +57,9 @@
 		if(!new_grad_color || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
-		human_target.visible_message(span_notice(LANG("obj.c2358a12", list(user, dyeing_themselves ? "their own" : "[human_target]'s"))), span_notice(LANG("obj.b7dd0d94", list(dyeing_themselves ? "You start" : "[user] starts", dyeing_themselves ? "your own" : "your"))), ignored_mobs = user)
+		human_target.visible_message(span_notice(LANG("obj.c2358a12e0b001c8", list(user, dyeing_themselves ? "their own" : "[human_target]'s"))), span_notice(LANG("obj.b7dd0d943e72a4f0", list(dyeing_themselves ? "You start" : "[user] starts", dyeing_themselves ? "your own" : "your"))), ignored_mobs = user)
 		if(!dyeing_themselves)
-			balloon_alert(user, LANG("obj.87b436e1", null))
+			balloon_alert(user, LANG("obj.87b436e179957446", null))
 		if(!do_after(user, 3 SECONDS, target))
 			return
 
@@ -73,16 +73,16 @@
 	playsound(src, 'sound/effects/spray.ogg', 10, vary = TRUE)
 
 	human_target.visible_message(
-		span_notice(LANG("obj.aa012fcc", list(user, dyeing_themselves ? "their own" : "[human_target]'s"))),
-		span_notice(LANG("obj.3d587810", list(dyeing_themselves ? "You finish" : "[user] finishes", dyeing_themselves ? "your own" : "your"))), ignored_mobs = user)
+		span_notice(LANG("obj.aa012fccedd6cb13", list(user, dyeing_themselves ? "their own" : "[human_target]'s"))),
+		span_notice(LANG("obj.3d5878103c30e9eb", list(dyeing_themselves ? "You finish" : "[user] finishes", dyeing_themselves ? "your own" : "your"))), ignored_mobs = user)
 	if(!dyeing_themselves)
-		balloon_alert(user, LANG("obj.7fd26f0a", null))
+		balloon_alert(user, LANG("obj.7fd26f0a72ebd75f", null))
 
 	uses--
 
 /obj/item/dyespray/examine(mob/user)
 	. = ..()
-	. += LANG("obj.8e201a44", list(uses))
+	. += LANG("obj.8e201a44af6b290d", list(uses))
 
 #undef DYE_OPTION_HAIR_COLOR
 #undef DYE_OPTION_GRADIENT

@@ -57,7 +57,7 @@
 	if(spell_to_give)
 		spell_to_give.Remove(source)
 		if(source.stat != DEAD && !silent)
-			to_chat(source, span_boldnotice(LANG("obj.72e32b1f", list(spell_to_give))))
+			to_chat(source, span_boldnotice(LANG("obj.72e32b1f30151d22", list(spell_to_give))))
 	return TRUE
 
 /obj/item/implanter/spell

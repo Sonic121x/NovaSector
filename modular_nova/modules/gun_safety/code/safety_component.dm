@@ -43,7 +43,7 @@
 	SIGNAL_HANDLER
 
 	if(safety_currently_on)
-		user.balloon_alert(user, LANG("datum.6860930d", null))
+		user.balloon_alert(user, LANG("datum.6860930daf630b7b", null))
 		return COMPONENT_CANCEL_GUN_FIRE
 
 /// Calls toggle_safeties if the action type for doing so is used
@@ -63,8 +63,8 @@
 
 	playsound(parent, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	user.visible_message(
-		span_notice(LANG("datum.ed1c26f1", list(user, parent, safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"))),
-		span_notice(LANG("datum.19865f2b", list(parent, safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>")))
+		span_notice(LANG("datum.ed1c26f1cac7cbd2", list(user, parent, safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"))),
+		span_notice(LANG("datum.19865f2bd260c76a", list(parent, safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>")))
 	)
 
 	SEND_SIGNAL(parent, COMSIG_GUN_SAFETY_TOGGLED)
@@ -73,10 +73,10 @@
 /datum/component/gun_safety/proc/on_examine(obj/item/source, mob/examiner, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += LANG("datum.f361a6c4", list(safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"))
+	examine_list += LANG("datum.f361a6c4c389c37f", list(safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"))
 	var/keybinding = examiner.client?.prefs?.key_bindings?["toggle_safety"]?[1]
 	if (!isnull(keybinding))
-		examine_list += LANG("datum.22650fb4", list(span_notice("[keybinding]")))
+		examine_list += LANG("datum.22650fb4e1e9b2fd", list(span_notice("[keybinding]")))
 
 /// Small proc to update the actio button's icon, just so I can not have to copypaste the same thing several times.
 /datum/component/gun_safety/proc/update_action_button_state()

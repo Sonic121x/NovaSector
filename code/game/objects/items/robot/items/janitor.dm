@@ -67,8 +67,8 @@
 		offered = locate(/mob/living/carbon) in orange(1, offerer)
 	if(offered && istype(offered))
 		offerer.visible_message(
-			span_notice(LANG("obj.dc571d91", list(offerer, offered))),
-			span_notice(LANG("obj.a9fd3af8", list(src, offered))), null, 2)
+			span_notice(LANG("obj.dc571d915d321038", list(offerer, offered))),
+			span_notice(LANG("obj.a9fd3af879bea484", list(src, offered))), null, 2)
 
 	offerer.apply_status_effect(/datum/status_effect/offering, src, /atom/movable/screen/alert/give/borg, offered)
 	return
@@ -82,8 +82,8 @@
 		stack_trace("[src] failed to connect to a trash bag on [module_list.resolve()].")
 		return TRUE
 	taker.visible_message(
-		span_notice(LANG("obj.04632086", list(taker, hose, offerer))),
-		span_notice(LANG("obj.ee16294a", list(hose, offerer))))
+		span_notice(LANG("obj.0463208688c41744", list(taker, hose, offerer))),
+		span_notice(LANG("obj.ee16294a2e2dd067", list(hose, offerer))))
 	hose.do_pickup_animation(taker, offerer)
 	taker.put_in_hands(hose)
 	hose.borg_hose = hose.generate_hose(offerer, taker)
@@ -105,7 +105,7 @@
 
 /obj/item/borg/cleaner_box/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.27470410", list(locked ? "unlock" : "lock", src)))
+	. += span_notice(LANG("obj.27470410274d9a7d", list(locked ? "unlock" : "lock", src)))
 
 /obj/item/vacuum_item
 	name = "janitorial floor cleaner"
@@ -156,14 +156,14 @@
 		return COMPONENT_NO_DEFAULT_MESSAGE
 	playsound(src, 'sound/items/vacuum/vacuum_clack.ogg', 30, TRUE)
 	if(cleaning) //CLEAN_SCRUB because if you get a borg to help you clean up a crime, you deserve to win.
-		balloon_alert(user, LANG("obj.00b05e5f", null))
+		balloon_alert(user, LANG("obj.00b05e5faa933075", null))
 		AddComponent( \
 			/datum/component/cleaner, \
 			base_cleaning_duration = 1 SECONDS, \
 			pre_clean_callback = CALLBACK(src, PROC_REF(clean_sound)), \
 			)
 	else
-		balloon_alert(user, LANG("obj.f62eeb03", null))
+		balloon_alert(user, LANG("obj.f62eeb03da327f12", null))
 		qdel(GetComponent(/datum/component/cleaner))
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
@@ -181,7 +181,7 @@
 	forceMove(cleaner_resolved)
 	playsound(cleaner_resolved, 'sound/items/vacuum/vacuum_ploop.ogg', 100)
 	if(!isnull(borg_hose) && !QDELING(borg_hose))
-		balloon_alert_to_hearers(LANG("obj.2f5b407e", null))
+		balloon_alert_to_hearers(LANG("obj.2f5b407e91c2a8ff", null))
 		QDEL_NULL(borg_hose)
 	bag = null
 	cleaner_resolved.deployed = FALSE
@@ -199,7 +199,7 @@
 
 /obj/item/vacuum_item/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.fbc96e6a", list(cleaning ? "<b>vacuum</b>" : "<b>cleaning</b>")))
+	. += span_notice(LANG("obj.fbc96e6a47c2710b", list(cleaning ? "<b>vacuum</b>" : "<b>cleaning</b>")))
 /obj/item/vacuum_item/proc/on_update()
 	SIGNAL_HANDLER
 	var/mob/living/mob = borg_hose.origin

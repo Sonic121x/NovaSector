@@ -88,7 +88,7 @@ SUBSYSTEM_DEF(explosions)
 	held_throwturf -= T
 
 ADMIN_VERB(check_bomb_impacts, R_DEBUG, "检查炸弹威力", "See what the effect of a bomb would be.", ADMIN_CATEGORY_DEBUG)
-	var/newmode = tgui_alert(user, LANG("datum.c76f8f6d", null),LANG("datum.256bcbfe", null), list("Yes", "No"))
+	var/newmode = tgui_alert(user, LANG("datum.c76f8f6dad868ef5", null),LANG("datum.256bcbfe3ee0bfaf", null), list("Yes", "No"))
 	var/turf/epicenter = get_turf(user.mob)
 	if(!epicenter)
 		return
@@ -97,7 +97,7 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "检查炸弹威力", "See what the effe
 	var/heavy = 0
 	var/light = 0
 	var/list/choices = list("Small Bomb","Medium Bomb","Big Bomb","Custom Bomb")
-	var/choice = tgui_input_list(user, LANG("datum.f12899b8", null), LANG("datum.46f071bc", null), choices)
+	var/choice = tgui_input_list(user, LANG("datum.f12899b867ca72b5", null), LANG("datum.46f071bc2c1e7880", null), choices)
 	switch(choice)
 		if(null)
 			return 0
@@ -114,9 +114,9 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "检查炸弹威力", "See what the effe
 			heavy = 5
 			light = 7
 		if("Custom Bomb")
-			dev = input(user, LANG("datum.6b1cf2e6", null)) as num
-			heavy = input(user, LANG("datum.54a896b7", null)) as num
-			light = input(user, LANG("datum.923a0ff5", null)) as num
+			dev = input(user, LANG("datum.6b1cf2e6fe96999a", null)) as num
+			heavy = input(user, LANG("datum.54a896b70b6f3985", null)) as num
+			light = input(user, LANG("datum.923a0ff50bd59016", null)) as num
 
 	var/max_range = max(dev, heavy, light)
 	var/x0 = epicenter.x

@@ -80,7 +80,7 @@
 
 /obj/item/clothing/head/hooded/berserker/examine()
 	. = ..()
-	. += span_notice(LANG("obj.353b48f8", list(berserk_charge)))
+	. += span_notice(LANG("obj.353b48f8509ce5bd", list(berserk_charge)))
 
 /obj/item/clothing/head/hooded/berserker/process(seconds_per_tick)
 	if(berserk_active)
@@ -103,8 +103,8 @@
 	berserk_charge = clamp(round(berserk_charge + berserk_value), 0, MAX_BERSERK_CHARGE)
 	if(berserk_charge >= MAX_BERSERK_CHARGE)
 		var/datum/action/item_action/berserk_mode/ragemode = locate() in actions
-		to_chat(owner, span_cult_large(LANG("obj.7958328a", null)))
-		balloon_alert(owner, LANG("obj.b9d33b7a", null))
+		to_chat(owner, span_cult_large(LANG("obj.7958328ac7062cf9", null)))
+		balloon_alert(owner, LANG("obj.b9d33b7adf7f3079", null))
 		ragemode?.build_all_button_icons(UPDATE_BUTTON_STATUS)
 
 /obj/item/clothing/head/hooded/berserker/IsReflect()
@@ -113,7 +113,7 @@
 /// Starts berserk, reducing incoming brute by 50%, doubled attacking speed, NOGUNS trait, adding a color and giving them the berserk movespeed modifier
 /obj/item/clothing/head/hooded/berserker/proc/berserk_mode(mob/living/carbon/human/user)
 	var/datum/action/item_action/berserk_mode/ragemode = locate() in actions
-	to_chat(user, span_cult(LANG("obj.c1e42e9b", null)))
+	to_chat(user, span_cult(LANG("obj.c1e42e9bcdaf9c02", null)))
 	playsound(user, 'sound/effects/magic/staff_healing.ogg', 50)
 	user.add_movespeed_modifier(/datum/movespeed_modifier/berserk)
 	user.physiology.brute_mod *= 0.5
@@ -134,7 +134,7 @@
 		return
 	var/datum/action/item_action/berserk_mode/ragemode = locate() in actions
 	ragemode?.build_all_button_icons(UPDATE_BUTTON_STATUS)
-	to_chat(user, span_cult(LANG("obj.16618cc1", null)))
+	to_chat(user, span_cult(LANG("obj.16618cc1bf2d18b5", null)))
 	playsound(user, 'sound/effects/magic/summonitems_generic.ogg', 50)
 	user.remove_movespeed_modifier(/datum/movespeed_modifier/berserk)
 	user.physiology.brute_mod *= 2

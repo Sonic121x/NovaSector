@@ -58,8 +58,8 @@
 		return FALSE
 	if(user)
 		if (emag_card)
-			user.visible_message(span_warning(LANG("obj.f9eb3449", list(user, emag_card, src))))
-		to_chat(user, span_notice(LANG("obj.7f25b3b6", list(src))))
+			user.visible_message(span_warning(LANG("obj.f9eb34497a25192c", list(user, emag_card, src))))
+		to_chat(user, span_notice(LANG("obj.7f25b3b66ba0238f", list(src))))
 
 	obj_flags |= EMAGGED
 	contraband = TRUE
@@ -266,17 +266,17 @@
 		account = id_card?.registered_account // We can still assign an account for request department purposes.
 		if(self_paid)
 			if(!istype(id_card))
-				say(LANG("obj.9caa768c", null))
+				say(LANG("obj.9caa768c0177ac98", null))
 				return
 			if(IS_DEPARTMENTAL_CARD(id_card))
-				say(LANG("obj.eb8fcdad", list(src, id_card)))
+				say(LANG("obj.eb8fcdad537a7f72", list(src, id_card)))
 				return
 			if(!istype(account))
-				say(LANG("obj.3ad4c193", null))
+				say(LANG("obj.3ad4c19308c51a2e", null))
 				return
 			var/list/access = id_card.GetAccess()
 			if((pack.access_view && !(pack.access_view in access)) && !bypass)
-				say(LANG("obj.4e11fbde", list(id_card)))
+				say(LANG("obj.4e11fbdecc1d6d30", list(id_card)))
 				return
 
 	// The list we are operating on right now
@@ -286,7 +286,7 @@
 	var/uses_cargo_budget = FALSE // NOVA EDIT ADDITION - boolean flag to check if we are using the cargo budget without doing excessive shenanigans.
 	if(requestonly && !self_paid && (!(pack.order_flags & ORDER_GOODY) || (pack.order_flags & ORDER_DEPARTMENTAL_GOODY))) // NOVA EDIT CHANGE - should never have a dept goodie thats not a goody. ORIGINAL: if(requestonly && !self_paid && !(pack.order_flags & ORDER_GOODY))
 		working_list = SSshuttle.request_list
-		reason = tgui_input_text(user, LANG("obj.ba5380f4", null), name, max_length = MAX_MESSAGE_LEN)
+		reason = tgui_input_text(user, LANG("obj.ba5380f4e7abe6d9", null), name, max_length = MAX_MESSAGE_LEN)
 		if(isnull(reason))
 			return
 
@@ -294,7 +294,7 @@
 		if(account?.account_job)
 			personal_department = SSeconomy.get_dep_account(account.account_job.paycheck_department)
 			if(!(personal_department.account_holder == "Cargo Budget"))
-				var/dept_choice = tgui_alert(user, LANG("obj.b7de779a", null), LANG("obj.a672d0c4", null), list("Cargo Budget", "[personal_department.account_holder]"))
+				var/dept_choice = tgui_alert(user, LANG("obj.b7de779abff270c2", null), LANG("obj.a672d0c44ba60bac", null), list("Cargo Budget", "[personal_department.account_holder]"))
 				if(!dept_choice)
 					return
 				if(dept_choice == "Cargo Budget")
@@ -317,7 +317,7 @@
 				// We want to block cargo requests when a player is requesting a restricted pack that they don't have access to.
 				// BUT only when it's requested with non-cargo funds, as cargo had direct oversight over their own purchases with their own budget.
 				// HOWEVER, this shouldn't prevent someone from buying something using their own personal funds.
-				say(LANG("obj.13fe6ebe", null))
+				say(LANG("obj.13fe6ebe8013de1d", null))
 				return
 
 	if(((pack.order_flags & ORDER_GOODY) && (!(pack.order_flags & ORDER_DEPARTMENTAL_GOODY) || uses_cargo_budget)) && (!self_paid || !requestonly)) // NOVA EDIT CHANGE - ORIGINAL: if((pack.order_flags & ORDER_GOODY) && !self_paid)
@@ -326,13 +326,13 @@
 		// 上游只在「非私人购买」时拦，那句文案是准的。Nova 这条额外加了 `|| !requestonly`，
 		// 于是主控台上无论开不开私人购买都会被拦——照抄上游文案就成了自相矛盾的提示
 		// （玩家开了私人购买，机器还说「只能由私人账户购买」）。改成说清真正的限制。
-		say(LANG("obj.47495ce9", null))
+		say(LANG("obj.47495ce951f2b122", null))
 		return
 
 	var/similar_count = SSshuttle.supply.get_order_count(pack)
 	if(similar_count == OVER_ORDER_LIMIT)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-		say(LANG("obj.6627f598", list(CARGO_MAX_ORDER)))
+		say(LANG("obj.6627f598fbb8c20c", list(CARGO_MAX_ORDER)))
 		return
 
 	if(!self_paid)
@@ -340,7 +340,7 @@
 		// NOVA EDIT ADDITION START
 		if ((uses_cargo_budget || !requestonly) && ((pack.order_flags & ORDER_COMPANY) == ORDER_COMPANY))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-			say(LANG("obj.90374cfb", null))
+			say(LANG("obj.90374cfbf570e042", null))
 			return
 		// NOVA EDIT ADDITION END
 
@@ -349,7 +349,7 @@
 		var/obj/item/coupon/applied_coupon
 		for(var/obj/item/coupon/coupon_check in loaded_coupons)
 			if(pack.type == coupon_check.discounted_pack)
-				say(LANG("obj.2ad02099", list(round(coupon_check.discount_pct_off * 100))))
+				say(LANG("obj.2ad020991350d90e", list(round(coupon_check.discount_pct_off * 100))))
 				coupon_check.moveToNullspace()
 				applied_coupon = coupon_check
 				break
@@ -366,7 +366,7 @@
 		working_list += order
 
 	if(self_paid)
-		say(LANG("obj.cf813d0c", list(account.account_holder)))
+		say(LANG("obj.cf813d0cbcc0517b", list(account.account_holder)))
 	if(requestonly && message_cooldown < world.time)
 		aas_config_announce(/datum/aas_config_entry/cargo_orders_announcement, list("AMOUNT" = amount), src, list(RADIO_CHANNEL_SUPPLY), amount == 1 ? "Single Order" : "Multiple Orders")
 		message_cooldown = world.time + 30 SECONDS
@@ -381,10 +381,10 @@
 		if(order.id != id)
 			continue
 		if(order.department_destination)
-			say(LANG("obj.666c9c11", null))
+			say(LANG("obj.666c9c1125a5eb0d", null))
 			return FALSE
 		if(order.applied_coupon)
-			say(LANG("obj.93e2806e", null))
+			say(LANG("obj.93e2806e05b5208f", null))
 			order.applied_coupon.forceMove(get_turf(src))
 		SSshuttle.shopping_list -= order
 		qdel(order)
@@ -417,7 +417,7 @@
 
 			if(SSshuttle.supply.getDockedId() == docking_home)
 				SSshuttle.moveShuttle(cargo_shuttle, docking_away, TRUE)
-				say(LANG("obj.c8889dde", null))
+				say(LANG("obj.c8889dde4d5b29e6", null))
 				ui.user.investigate_log("sent the supply shuttle away.", INVESTIGATE_CARGO)
 			else
 				//create the paper from the SSshuttle.shopping_list
@@ -446,7 +446,7 @@
 					requisition_paper.update_appearance()
 
 				ui.user.investigate_log("called the supply shuttle.", INVESTIGATE_CARGO)
-				say(LANG("obj.8a1a83d6", list(SSshuttle.supply.timeLeft(600))))
+				say(LANG("obj.8a1a83d6d1e41e94", list(SSshuttle.supply.timeLeft(600))))
 				SSshuttle.moveShuttle(cargo_shuttle, docking_home, TRUE)
 
 			. = TRUE
@@ -464,7 +464,7 @@
 				return
 			else
 				SSshuttle.shuttle_loan.loan_shuttle()
-				say(LANG("obj.a29fce78", null))
+				say(LANG("obj.a29fce78fecf59e8", null))
 				ui.user.investigate_log("accepted a shuttle loan event.", INVESTIGATE_CARGO)
 				ui.user.log_message("accepted a shuttle loan event.", LOG_GAME)
 				. = TRUE

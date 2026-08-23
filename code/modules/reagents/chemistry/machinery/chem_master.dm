@@ -84,17 +84,17 @@
 /obj/machinery/chem_master/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.6383ba77", list(reagents.maximum_volume, 0.75 SECONDS / printing_speed * 100)))
+		. += span_notice(LANG("obj.6383ba77c9a992a8", list(reagents.maximum_volume, 0.75 SECONDS / printing_speed * 100)))
 		if(!QDELETED(beaker))
-			. += span_notice(LANG("obj.88c50dd2", list(beaker, beaker.reagents.maximum_volume)))
-			. += span_notice(LANG("obj.538cc5a7", null))
+			. += span_notice(LANG("obj.88c50dd2915313aa", list(beaker, beaker.reagents.maximum_volume)))
+			. += span_notice(LANG("obj.538cc5a71ff6f17c", null))
 		else
-			. += span_warning(LANG("obj.f4211e4f", null))
+			. += span_warning(LANG("obj.f4211e4f2783a044", null))
 
-		. += span_notice(LANG("obj.0788e9ba", list(EXAMINE_HINT("wrenched"), anchored ? "loose" : "in place")))
-		. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "close" : "open")))
+		. += span_notice(LANG("obj.0788e9bad2233fc0", list(EXAMINE_HINT("wrenched"), anchored ? "loose" : "in place")))
+		. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "close" : "open")))
 		if(panel_open)
-			. += span_notice(LANG("obj.740bee8c", list(EXAMINE_HINT("pried"))))
+			. += span_notice(LANG("obj.740bee8c703db032", list(EXAMINE_HINT("pried"))))
 
 /obj/machinery/chem_master/update_appearance(updates)
 	. = ..()
@@ -185,7 +185,7 @@
 
 /obj/machinery/chem_master/wrench_act(mob/living/user, obj/item/tool)
 	if(is_printing)
-		balloon_alert(user, LANG("obj.3d7d4be2", null))
+		balloon_alert(user, LANG("obj.3d7d4be222904f9b", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(default_unfasten_wrench(user, tool) == SUCCESSFUL_UNFASTEN)
@@ -194,14 +194,14 @@
 
 /obj/machinery/chem_master/screwdriver_act(mob/living/user, obj/item/tool)
 	if(is_printing)
-		balloon_alert(user, LANG("obj.3d7d4be2", null))
+		balloon_alert(user, LANG("obj.3d7d4be222904f9b", null))
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/chem_master/crowbar_act(mob/living/user, obj/item/tool)
 	if(is_printing)
-		balloon_alert(user, LANG("obj.3d7d4be2", null))
+		balloon_alert(user, LANG("obj.3d7d4be222904f9b", null))
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_crowbar(user, tool)
@@ -408,7 +408,7 @@
 	switch(action)
 		if("eject")
 			if(is_printing)
-				say(LANG("obj.7fc577b1", null))
+				say(LANG("obj.7fc577b152bdc684", null))
 				return
 
 			replace_beaker(ui.user)
@@ -435,7 +435,7 @@
 
 		if("transfer")
 			if(is_printing)
-				say(LANG("obj.7fc577b1", null))
+				say(LANG("obj.7fc577b152bdc684", null))
 				return
 
 			var/reagent_ref = params["reagentRef"]
@@ -444,13 +444,13 @@
 
 			if(amount == -1) // Set custom amount
 				var/mob/user = ui.user //Hold a reference of the user if the UI is closed
-				amount = round(tgui_input_number(user, LANG("obj.08b34adc", null), LANG("obj.9749dd49", null), round_value = FALSE), CHEMICAL_VOLUME_ROUNDING)
+				amount = round(tgui_input_number(user, LANG("obj.08b34adc9893eec0", null), LANG("obj.9749dd491955cd84", null), round_value = FALSE), CHEMICAL_VOLUME_ROUNDING)
 				if(!amount || !user.can_perform_action(src))
 					return FALSE
 
 			var/should_transfer = is_transfering || (target == "buffer") // we should always transfer if target is the buffer
 			if(should_transfer && isnull(beaker)) // if there's no beaker, we cannot transfer
-				say(LANG("obj.0a21046a", null))
+				say(LANG("obj.0a21046a699f1960", null))
 				return FALSE
 
 			var/reagents_from
@@ -530,8 +530,8 @@
 			// NOVA EDIT ADDITION END
 			var/item_name = tgui_input_text(
 				usr,
-				LANG("obj.fb66f8b6", null),
-				LANG("obj.e81360ea", null),
+				LANG("obj.fb66f8b64462a5b5", null),
+				LANG("obj.e81360eaaea292c0", null),
 				item_name_default,
 				max_length = MAX_NAME_LEN,
 			)

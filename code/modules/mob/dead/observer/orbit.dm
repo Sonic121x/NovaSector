@@ -31,7 +31,7 @@ GLOBAL_DATUM_INIT(orbit_menu, /datum/orbit_menu, new)
 			if((ismob(poi) && !SSpoints_of_interest.is_valid_poi(poi, CALLBACK(src, PROC_REF(validate_mob_poi)))) \
 				|| !SSpoints_of_interest.is_valid_poi(poi)
 			)
-				to_chat(usr, span_notice(LANG("datum.cd4213d3", null)))
+				to_chat(usr, span_notice(LANG("datum.cd4213d3456764a4", null)))
 				return TRUE
 
 			var/mob/dead/observer/user = usr

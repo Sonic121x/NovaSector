@@ -73,7 +73,7 @@
 	var/fitness_protection_probability = winner.mind?.get_skill_modifier(/datum/skill/athletics, SKILL_RANDS_MODIFIER)
 
 	if(prob(fitness_protection_probability * 2)) //Stuff that should "block" a heart attack rather than just deny eligibility for one goes here.
-		winner.visible_message(span_warning(LANG("datum.75377706", list(winner, winner.p_their()))), span_medal(LANG("datum.66f2f20c", null)), span_hear(LANG("datum.ec4010f3", null)), 4)
+		winner.visible_message(span_warning(LANG("datum.753777064a2f7603", list(winner, winner.p_their()))), span_medal(LANG("datum.66f2f20c96f1878a", null)), span_hear(LANG("datum.ec4010f34ed060ac", null)), 4)
 		winner.playsound_local(get_turf(winner), 'sound/effects/health/slowbeat.ogg', 40, 0, channel = CHANNEL_HEARTBEAT, use_reverb = FALSE)
 		winner.Stun(3 SECONDS)
 		if(winner.client)

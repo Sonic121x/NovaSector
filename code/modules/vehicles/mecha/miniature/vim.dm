@@ -61,12 +61,12 @@
 
 /obj/vehicle/sealed/mecha/vim/mob_try_enter(mob/entering)
 	if(issilicon(entering))
-		entering.balloon_alert(entering, LANG("obj.968bae1c", null))
+		entering.balloon_alert(entering, LANG("obj.968bae1c84b196c3", null))
 		return FALSE
 
 	var/mob/living/animal_or_basic = entering
 	if(animal_or_basic.mob_size > maximum_mob_size)
-		entering.balloon_alert(entering, LANG("obj.968bae1c", null))
+		entering.balloon_alert(entering, LANG("obj.968bae1c84b196c3", null))
 		return FALSE
 
 	mob_enter(entering)

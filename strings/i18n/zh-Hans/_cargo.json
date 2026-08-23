@@ -21,7 +21,7 @@
 	"cargo_lbl_received": "已接收",
 	"cargo_lbl_credits": "信用点",
 	"cargo_unit_vending_refill": "贩卖机补货罐",
-	"cargo_unit_cardboard_box": "纸箱",
+	"cargo_unit_cardboard_box": "纸板盒子",
 	"shuttle_status_transit_towards": "正在前往",
 	"shuttle_status_recharging": "充能中"
 }

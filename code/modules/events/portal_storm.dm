@@ -75,7 +75,7 @@
 	set waitfor = 0
 	sound_to_playing_players('sound/effects/magic/lightning_chargeup.ogg')
 	sleep(8 SECONDS)
-	priority_announce(LANG("datum.88f27206", list(station_name())))
+	priority_announce(LANG("datum.88f272067cfddf87", list(station_name())))
 	sleep(2 SECONDS)
 	sound_to_playing_players('sound/effects/magic/lightningbolt.ogg')
 

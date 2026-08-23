@@ -111,7 +111,7 @@
 		if(!has_trait)
 			return
 
-	attacker.visible_message(span_warning(LANG("datum.624ebca2", list(attacker, source))), span_warning(LANG("datum.5904aa9c", list(source))))
+	attacker.visible_message(span_warning(LANG("datum.624ebca225cb9104", list(attacker, source))), span_warning(LANG("datum.5904aa9c44dbc25c", list(source))))
 	clear_haunting()
 	return COMPONENT_NO_AFTERATTACK
 

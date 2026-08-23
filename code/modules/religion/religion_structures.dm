@@ -36,9 +36,9 @@
 		return ..()
 	var/mob/living/pushed_mob = user.pulling
 	if(pushed_mob.buckled)
-		to_chat(user, span_warning(LANG("obj.9a1c1261", list(pushed_mob, pushed_mob.buckled))))
+		to_chat(user, span_warning(LANG("obj.9a1c126101e7f485", list(pushed_mob, pushed_mob.buckled))))
 		return ..()
-	to_chat(user, span_notice(LANG("obj.160cc378", list(pushed_mob, src))))
+	to_chat(user, span_notice(LANG("obj.160cc37829ebbc27", list(pushed_mob, src))))
 	if(!do_after(user,(5 SECONDS),target = pushed_mob))
 		return ..()
 	pushed_mob.forceMove(loc)
@@ -125,7 +125,7 @@
 
 /// When the ritual totem is depleted of antimagic
 /obj/item/ritual_totem/proc/expire(mob/user)
-	to_chat(user, span_warning(LANG("obj.1468ea0c", list(src))))
+	to_chat(user, span_warning(LANG("obj.1468ea0ce8d58ece", list(src))))
 	new /obj/effect/decal/cleanable/ash(drop_location())
 	qdel(src)
 
@@ -137,18 +137,18 @@
 	. = ..()
 	var/is_holy = user.mind?.holy_role
 	if(is_holy)
-		. += span_notice(LANG("obj.667b74f1", list(src, GLOB.deity)))
+		. += span_notice(LANG("obj.667b74f1dc86e42f", list(src, GLOB.deity)))
 
 /obj/item/ritual_totem/pickup(mob/taker)
 	var/initial_loc = loc
 	var/holiness = taker.mind?.holy_role
 	var/no_take = FALSE
 	if(holiness == NONE)
-		to_chat(taker, span_warning(LANG("obj.7a5de8ac", list(src))))
+		to_chat(taker, span_warning(LANG("obj.7a5de8ac5ff63276", list(src))))
 		no_take = TRUE
 	else if(holiness == HOLY_ROLE_DEACON) //deacons cannot pick them up either
 		no_take = TRUE
-		to_chat(taker, span_warning(LANG("obj.5cb271db", list(src, GLOB.deity))))
+		to_chat(taker, span_warning(LANG("obj.5cb271db3ed93321", list(src, GLOB.deity))))
 	..()
 	if(no_take)
 		taker.dropItemToGround(src)

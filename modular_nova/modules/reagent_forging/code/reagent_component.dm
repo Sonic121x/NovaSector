@@ -43,7 +43,7 @@
 
 /datum/component/reagent_clothing/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice(LANG("datum.ffcdec43", list(parent_clothing)))
+	examine_list += span_notice(LANG("datum.ffcdec43bc5d7de5", list(parent_clothing)))
 
 /datum/component/reagent_clothing/proc/set_wearer()
 	SIGNAL_HANDLER
@@ -94,7 +94,7 @@
 
 /datum/component/reagent_weapon/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice(LANG("datum.2a3bcb34", list(parent_weapon)))
+	examine_list += span_notice(LANG("datum.2a3bcb34c62f2a50", list(parent_weapon)))
 
 /datum/component/reagent_weapon/proc/inject_attacked(datum/source, mob/living/target, mob/living/user, params)
 	SIGNAL_HANDLER

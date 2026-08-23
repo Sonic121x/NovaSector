@@ -19,17 +19,17 @@
 /obj/item/xenoarch/hammer/examine(mob/user)
 	. = ..()
 	if(advanced)
-		. += span_notice(LANG("obj.87ab7ab3", null))
+		. += span_notice(LANG("obj.87ab7ab38e1f3b3b", null))
 
-	. += span_notice(LANG("obj.b4c9ca45", list(dig_amount)))
+	. += span_notice(LANG("obj.b4c9ca452812e1c1", list(dig_amount)))
 
 /obj/item/xenoarch/hammer/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!advanced)
-		to_chat(user, span_warning(LANG("obj.dba114b6", null)))
+		to_chat(user, span_warning(LANG("obj.dba114b6bdbfffb6", null)))
 		return
 
-	var/user_choice = input(user, LANG("obj.b490defd", null), LANG("obj.187c7b42", null)) as null|num
+	var/user_choice = input(user, LANG("obj.b490defdabce5b48", null), LANG("obj.187c7b420ebb98f9", null)) as null|num
 	if(!user_choice)
 		dig_amount = 1
 		dig_speed = 1
@@ -48,7 +48,7 @@
 
 	dig_amount = round_dig
 	dig_speed = round_dig * 0.5
-	to_chat(user, span_notice(LANG("obj.16295f5e", list(round_dig))))
+	to_chat(user, span_notice(LANG("obj.16295f5e7623bace", list(round_dig))))
 
 /obj/item/xenoarch/hammer/cm2
 	name = "hammer (2cm)"
@@ -180,9 +180,9 @@
 
 /obj/item/xenoarch/handheld_radar/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.3dadc2c5", list(src)))
-	. += span_notice(LANG("obj.5004f077", list(src)))
-	. += span_notice(LANG("obj.5b0a7dab", list(src)))
+	. += span_notice(LANG("obj.3dadc2c573524c7e", list(src)))
+	. += span_notice(LANG("obj.5004f0779a14c8c3", list(src)))
+	. += span_notice(LANG("obj.5b0a7dab5320111a", list(src)))
 
 /obj/item/xenoarch/handheld_radar/pre_attack(atom/target, mob/user)
 	if(isturf(target))
@@ -250,37 +250,37 @@
 	COOLDOWN_START(src, tool_scan, 2 SECONDS)
 
 	if(!(is_mining_level(user.z)))
-		user.balloon_alert(user, LANG("obj.bf18be82", null))
-		to_chat(user, span_warning(LANG("obj.58c396db", null)))
+		user.balloon_alert(user, LANG("obj.bf18be827b2de949", null))
+		to_chat(user, span_warning(LANG("obj.58c396db497ae799", null)))
 		return FALSE
 
 	var/user_area = get_area(user)
 	if (!is_type_in_typecache(user_area, allowed_areas) || is_type_in_typecache(user_area, disallowed_areas))
-		user.balloon_alert(user, LANG("obj.bf18be82", null))
-		to_chat(user, span_warning(LANG("obj.4cec1c8b", null)))
+		user.balloon_alert(user, LANG("obj.bf18be827b2de949", null))
+		to_chat(user, span_warning(LANG("obj.4cec1c8b1f5f939d", null)))
 		return FALSE
 
 	var/datum/scavenge_profile/profile = get_profile(user)
 
-	user.visible_message(span_notice(LANG("obj.a2b7c8bc", list(user))), \
-	span_notice(LANG("obj.3e2f8e9a", null)))
-	user.balloon_alert(user, LANG("obj.295da20a", null))
+	user.visible_message(span_notice(LANG("obj.a2b7c8bc002476ad", list(user))), \
+	span_notice(LANG("obj.3e2f8e9abc61be27", null)))
+	user.balloon_alert(user, LANG("obj.295da20a70965941", null))
 	if(!do_after(user, scanner_speed))
-		user.balloon_alert(user, LANG("obj.c67b5d27", null))
+		user.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return FALSE
-	user.balloon_alert(user, LANG("obj.b1893328", null))
+	user.balloon_alert(user, LANG("obj.b18933282a1ea9ff", null))
 	if(!do_after(user, scanner_speed))
-		user.balloon_alert(user, LANG("obj.c67b5d27", null))
+		user.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return FALSE
-	user.balloon_alert(user, LANG("obj.e180bcdd", null))
+	user.balloon_alert(user, LANG("obj.e180bcdd3496856a", null))
 	if(!do_after(user, scanner_speed))
-		user.balloon_alert(user, LANG("obj.c67b5d27", null))
+		user.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return FALSE
 	var/candidate_turf = pick_valid_turf_in_range(user)
 
 	if(!candidate_turf)
-		user.balloon_alert(user, LANG("obj.dfecbd69", null))
-		to_chat(user, span_warning(LANG("obj.fb3e8f74", null)))
+		user.balloon_alert(user, LANG("obj.dfecbd69eb3882d3", null))
+		to_chat(user, span_warning(LANG("obj.fb3e8f74313c4180", null)))
 		return FALSE
 
 	profile.site = candidate_turf
@@ -288,8 +288,8 @@
 	var/chance = user.mind?.get_skill_modifier(/datum/skill/archeology, SKILL_PROBS_MODIFIER) || 0
 	if(prob(clamp(chance - 40, 0, 100)))
 		profile.site_radius++
-		to_chat(user, span_notice(LANG("obj.26a88fa9", null)))
-	user.balloon_alert(user, LANG("obj.bef97ab6", null))
+		to_chat(user, span_notice(LANG("obj.26a88fa9eba5f791", null)))
+	user.balloon_alert(user, LANG("obj.bef97ab6186a8181", null))
 	playsound(src, 'sound/machines/compiler/compiler-stage1.ogg', 75)
 	return TRUE
 
@@ -303,11 +303,11 @@
 	if(!profile.site)
 		return FALSE
 
-	user.visible_message(span_notice(LANG("obj.a6135a4a", list(user, dig_turf))), \
-	span_notice(LANG("obj.ca1dccc5", list(dig_turf))))
+	user.visible_message(span_notice(LANG("obj.a6135a4ac78a17e6", list(user, dig_turf))), \
+	span_notice(LANG("obj.ca1dccc53b90e799", list(dig_turf))))
 	var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/archeology, SKILL_SPEED_MODIFIER)
 	if(!do_after(user, digging_speed * skill_modifier, target = dig_turf))
-		user.balloon_alert(user, LANG("obj.c67b5d27", null))
+		user.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return FALSE
 
 	var/turf/site_turf = profile.site
@@ -318,23 +318,23 @@
 	var/dif_z = dig_turf.z - site_turf.z
 
 	if(dif_x > radius || dif_y > radius || dif_z != 0)
-		user.visible_message(span_notice(LANG("obj.4805bbfb", list(user, dig_turf))), \
-		span_notice(LANG("obj.23574d45", list(dig_turf))))
+		user.visible_message(span_notice(LANG("obj.4805bbfb5898ab48", list(user, dig_turf))), \
+		span_notice(LANG("obj.23574d4546e63e94", list(dig_turf))))
 		return FALSE
 
 	profile.site = null
 
 	var/rocks_amount = 1
-	to_chat(user, span_notice(LANG("obj.b18a7cc3", null)))
+	to_chat(user, span_notice(LANG("obj.b18a7cc32d5ec371", null)))
 	if(prob(user.mind?.get_skill_modifier(/datum/skill/archeology, SKILL_PROBS_MODIFIER)))
 		rocks_amount++
-		to_chat(user, span_notice(LANG("obj.6c0655c9", null)))
+		to_chat(user, span_notice(LANG("obj.6c0655c910082b27", null)))
 	if(prob(50))
 		rocks_amount++
-		to_chat(user, span_notice(LANG("obj.0c848c48", null)))
+		to_chat(user, span_notice(LANG("obj.0c848c48ed6e685c", null)))
 	if (SSmapping.level_trait(dig_turf.z, ZTRAIT_LAVA_RUINS)) // review when Lavaland 2.0 comes out. - logic here is that lavaland is more dangerous than snow, thus, extra rock.
 		rocks_amount++
-		to_chat(user, span_notice(LANG("obj.e92ddf53", null)))
+		to_chat(user, span_notice(LANG("obj.e92ddf534172890e", null)))
 	for(var/i in 1 to rocks_amount)
 		new /obj/item/xenoarch/strange_rock(dig_turf)
 	user.mind?.adjust_experience(/datum/skill/archeology, rocks_amount*25)
@@ -348,14 +348,14 @@
 	COOLDOWN_START(src, tool_scan, 2 SECONDS)
 	var/datum/scavenge_profile/profile = get_profile(user)
 	if(!profile.site)
-		user.balloon_alert(user, LANG("obj.bf18be82", null))
-		to_chat(user, span_warning(LANG("obj.a63d607f", null)))
+		user.balloon_alert(user, LANG("obj.bf18be827b2de949", null))
+		to_chat(user, span_warning(LANG("obj.a63d607f63f2e48a", null)))
 		return
 
 	var/turf/candidate_turf = profile.site
 	if(profile.site.z != user.z)
-		user.balloon_alert(user, LANG("obj.bf18be82", null))
-		to_chat(user, span_warning(LANG("obj.cd9674d7", null)))
+		user.balloon_alert(user, LANG("obj.bf18be827b2de949", null))
+		to_chat(user, span_warning(LANG("obj.cd9674d752228083", null)))
 		return
 
 	// We get the distance and direction from the user/tool to the turf we are heading towards.
@@ -366,7 +366,7 @@
 	// We pick the color (or break early) based on the distance we got.
 	switch(dist)
 		if (0 to 4)
-			user.balloon_alert(user, LANG("obj.79e02d14", null))
+			user.balloon_alert(user, LANG("obj.79e02d14bc92ce3b", null))
 			return
 		if(5 to 10)
 			user.balloon_alert(user, "! ! ! !")
@@ -412,7 +412,7 @@
 	if(istype(interacting_with, /obj/item/xenoarch/broken_item))
 		var/obj/item/xenoarch/broken_item/brushed_item = interacting_with
 		if (!brushed_item.loot)
-			to_chat(user, span_notice(LANG("obj.2cd78820", null)))
+			to_chat(user, span_notice(LANG("obj.2cd78820bdefa577", null)))
 			return NONE
 		var/turf/src_turf = get_turf(brushed_item)
 		var/recovered_loot = brushed_item.loot
@@ -530,13 +530,13 @@
 				show_message = TRUE
 			else
 				if(!spam_protection)
-					to_chat(user, span_warning(LANG("obj.852c4a22", list(name))))
+					to_chat(user, span_warning(LANG("obj.852c4a22e92ffc7e", list(name))))
 					spam_protection = TRUE
 					continue
 	if(show_message)
 		playsound(user, storage_type.rustle_sound, 50, TRUE)
-		user.visible_message(span_notice(LANG("obj.c22a23fc", list(user, user.p_them()))), \
-			span_notice(LANG("obj.8e0efbb8", list(name))))
+		user.visible_message(span_notice(LANG("obj.c22a23fc10771e74", list(user, user.p_them()))), \
+			span_notice(LANG("obj.8e0efbb8b7158fdb", list(name))))
 	spam_protection = FALSE
 
 /obj/item/storage/bag/xenoarch/adv

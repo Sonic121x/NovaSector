@@ -29,14 +29,14 @@
 
 /obj/item/disk/bitrunning/examine(mob/user)
 	. = ..()
-	. += span_infoplain(LANG("obj.134d049a", null))
+	. += span_infoplain(LANG("obj.134d049a41763313", null))
 
 	if(isnull(choice_made))
-		. += span_notice(LANG("obj.c74ecd1a", null))
+		. += span_notice(LANG("obj.c74ecd1a21469fa0", null))
 		return
 
-	. += span_info(LANG("obj.1fb73f57", list(choice_made)))
-	. += span_notice(LANG("obj.8d039ed5", null))
+	. += span_info(LANG("obj.1fb73f57ea23b24f", list(choice_made)))
+	. += span_notice(LANG("obj.8d039ed532c716df", null))
 
 /// Handles loading our stuff onto avatars
 /obj/item/disk/bitrunning/proc/load_onto_avatar(mob/living/carbon/human/neo, mob/living/carbon/human/avatar, domain_flags)
@@ -84,7 +84,7 @@
 	if(isnull(granted_action))
 		return
 
-	balloon_alert(user, LANG("obj.f52a7dba", null))
+	balloon_alert(user, LANG("obj.f52a7dba801411b1", null))
 	playsound(user, 'sound/items/click.ogg', 50, TRUE)
 	choice_made = choice
 
@@ -149,7 +149,7 @@
 		if(initial(thing.name) == choice)
 			granted_item = thing
 
-	balloon_alert(user, LANG("obj.f52a7dba", null))
+	balloon_alert(user, LANG("obj.f52a7dba801411b1", null))
 	playsound(user, 'sound/items/click.ogg', 50, TRUE)
 	choice_made = choice
 

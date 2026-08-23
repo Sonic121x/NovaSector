@@ -27,7 +27,7 @@
 	petrified_mob = living
 	if(living.buckled)
 		living.buckled.unbuckle_mob(living, force = TRUE)
-	living.visible_message(span_warning(LANG("obj.98bda0b4", list(living))), span_userdanger(LANG("obj.2d06b0b5", null)))
+	living.visible_message(span_warning(LANG("obj.98bda0b46ff26023", list(living))), span_userdanger(LANG("obj.2d06b0b5d810fd44", null)))
 	living.forceMove(src)
 	living.add_traits(list(TRAIT_GODMODE, TRAIT_MUTE, TRAIT_NOBLOOD), STATUE_MUTE)
 	living.add_faction(FACTION_MIMIC) //Stops mimics from instaqdeling people in statues
@@ -64,7 +64,7 @@
 		if(statue_mob.mind)
 			if(petrified_mob)
 				statue_mob.mind.transfer_to(petrified_mob)
-				to_chat(petrified_mob, span_notice(LANG("obj.b0cd6b11", null)))
+				to_chat(petrified_mob, span_notice(LANG("obj.b0cd6b110f2a9c6f", null)))
 		qdel(statue_mob)
 
 	for(var/obj/statue_contents in src)
@@ -104,7 +104,7 @@
 	new_statue.atom_colours = atom_colours.Copy()
 	new_statue.update_atom_colour()
 	petrified_mob.mind?.transfer_to(new_statue)
-	to_chat(new_statue, span_userdanger(LANG("obj.b4ce1024", list(owner ? "Do not harm [owner], your creator" : ""))))
+	to_chat(new_statue, span_userdanger(LANG("obj.b4ce1024e0c720a3", list(owner ? "Do not harm [owner], your creator" : ""))))
 	forceMove(new_statue)
 	return new_statue
 

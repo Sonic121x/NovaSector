@@ -56,14 +56,14 @@
 	if(attempted_slot & ITEM_SLOT_HANDS) //hands needs some different checks
 		curse_victim.drop_all_held_items()
 		if(curse_victim.put_in_hands(item_pawn, del_on_fail = FALSE))
-			to_chat(curse_victim, span_danger(LANG("datum.12cc17a5", list(item_pawn))))
+			to_chat(curse_victim, span_danger(LANG("datum.12cc17a528b9ba1f", list(item_pawn))))
 			what_a_horrible_night_to_have_a_curse()
 		return
 	var/obj/item/blocking = curse_victim.get_item_by_slot(attempted_slot)
 	if(!curse_victim.dropItemToGround(blocking, silent = TRUE))
 		return //cannot equip to this person so whatever just keep whacking them until they die or fugg off
 	curse_victim.equip_to_slot_if_possible(item_pawn, attempted_slot, qdel_on_fail = FALSE, disable_warning = FALSE)
-	to_chat(curse_victim, span_danger(LANG("datum.b0b55458", list(item_pawn, item_pawn.p_them()))))
+	to_chat(curse_victim, span_danger(LANG("datum.b0b55458cfc0c31f", list(item_pawn, item_pawn.p_them()))))
 	what_a_horrible_night_to_have_a_curse()
 
 ///proc called when the cursed object successfully attaches itself to someone, removing the cursed element and by extension the ai itself

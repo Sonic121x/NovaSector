@@ -22,7 +22,7 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice(LANG("obj.9f940620", list(EXAMINE_HINT("Research Notes"))))
+	. += span_notice(LANG("obj.9f940620bde43844", list(EXAMINE_HINT("Research Notes"))))
 
 /obj/machinery/rnd/server/oldstation/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/research_notes) && stored_research)

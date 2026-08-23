@@ -154,7 +154,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/arena_escape_enrage() // you ran somehow / teleported away from my arena attack now i'm mad fucker
 	SLEEP_CHECK_DEATH(0, src)
-	visible_message(span_boldwarning(LANG("mob.c1bbe24a", list(src))))
+	visible_message(span_boldwarning(LANG("mob.c1bbe24a2149fe5f", list(src))))
 	adjust_brute_loss(-250) // yeah you're gonna pay for that, don't run nerd
 	add_atom_colour(rgb(255, 255, 0), TEMPORARY_COLOUR_PRIORITY)
 	move_to_delay = move_to_delay / 2
@@ -225,9 +225,9 @@
 			continue
 		victim.adjust_fire_loss(10)
 		if(can_transform_turf)
-			to_chat(victim, span_userdanger(LANG("obj.fb5f38e6", null)))
+			to_chat(victim, span_userdanger(LANG("obj.fb5f38e61341c3e6", null)))
 		else
-			to_chat(victim, span_userdanger(LANG("obj.938e7332", null)))
+			to_chat(victim, span_userdanger(LANG("obj.938e7332f8593825", null)))
 
 	// deals damage to mechs
 	for(var/obj/vehicle/sealed/mecha/mech in our_turf)
@@ -305,7 +305,7 @@
 			continue
 		if(islist(flame_hit) && !flame_hit[L])
 			L.adjust_fire_loss(40)
-			to_chat(L, span_userdanger(LANG("obj.508f9ea4", null)))
+			to_chat(L, span_userdanger(LANG("obj.508f9ea4c4089fef", null)))
 			flame_hit[L] = TRUE
 		else
 			L.adjust_fire_loss(10) //if we've already hit them, do way less damage

@@ -48,9 +48,9 @@
 	. = ..()
 	switch(state)
 		if(INFLATED)
-			desc = LANG("obj.1452ff3a", null)
+			desc = LANG("obj.1452ff3abd567073", null)
 		if(POPPED)
-			desc = LANG("obj.0dfc7147", null)
+			desc = LANG("obj.0dfc714725dd5ace", null)
 
 /obj/item/latexballoon/proc/blow(obj/item/tank/tank, mob/user)
 	if(state == POPPED)
@@ -59,7 +59,7 @@
 	air_contents = tank.remove_air_volume(3)
 
 	if(isnull(air_contents))
-		balloon_alert(user, LANG("obj.714a41ca", null))
+		balloon_alert(user, LANG("obj.714a41cac867f081", null))
 		return
 
 	if(state == INFLATED)
@@ -68,7 +68,7 @@
 
 	playsound(src, 'sound/items/modsuit/inflate_bloon.ogg', 50, TRUE)
 
-	balloon_alert(user, LANG("obj.e30ad305", null)) // because it's a balloon obviously
+	balloon_alert(user, LANG("obj.e30ad30578f4c4c1", null)) // because it's a balloon obviously
 
 	set_state(INFLATED)
 

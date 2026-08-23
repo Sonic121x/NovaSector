@@ -52,7 +52,7 @@
 	R.transfer_fingerprints_to(TP)
 	TP.add_fingerprint(user)
 	TP.setDir(turn(src.dir, -90))
-	user.visible_message(span_notice(LANG("obj.055270ea", list(user, R))), span_notice(LANG("obj.a134b5ec", list(R))))
+	user.visible_message(span_notice(LANG("obj.055270ea6f6e84fd", list(user, R))), span_notice(LANG("obj.a134b5ec6da36f3e", list(R))))
 	qdel(R)
 
 
@@ -66,10 +66,10 @@
 				var/mob/living/GM = user.pulling
 				if(user.grab_state >= GRAB_AGGRESSIVE)
 					if(GM.buckled || GM.has_buckled_mobs())
-						to_chat(user, span_warning(LANG("obj.2ea65959", list(GM))))
+						to_chat(user, span_warning(LANG("obj.2ea6595934d14b00", list(GM))))
 						return
 					for(var/obj/structure/transit_tube_pod/pod in loc)
-						pod.visible_message(span_warning(LANG("obj.e5cae166", list(user, GM, pod))))
+						pod.visible_message(span_warning(LANG("obj.e5cae16654c1a85a", list(user, GM, pod))))
 						if(do_after(user, 1.5 SECONDS, target = src))
 							if(open_status == STATION_TUBE_OPEN && GM && user.grab_state >= GRAB_AGGRESSIVE && user.pulling == GM && !GM.buckled && !GM.has_buckled_mobs())
 								GM.Paralyze(100)
@@ -83,7 +83,7 @@
 
 					else if(open_status == STATION_TUBE_OPEN)
 						if(pod.contents.len && user.loc != pod)
-							user.visible_message(span_notice(LANG("obj.80d9853c", list(user, pod))), span_notice(LANG("obj.d1b34561", list(pod))))
+							user.visible_message(span_notice(LANG("obj.80d9853c866d62d7", list(user, pod))), span_notice(LANG("obj.d1b34561ceface07", list(pod))))
 							if(do_after(user, 1 SECONDS, target = src)) //So it doesn't default to close_animation() on fail
 								if(pod && pod.loc == loc)
 									for(var/atom/movable/AM in pod)
@@ -248,7 +248,7 @@
 
 /obj/structure/transit_tube/station/dispenser/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.d9d4cc3e", null))
+	. += span_notice(LANG("obj.d9d4cc3e4e9de990", null))
 
 /obj/structure/transit_tube/station/dispenser/Bumped(atom/movable/AM)
 	if(!(istype(AM) && AM.dir == boarding_dir) || AM.anchored)
@@ -256,13 +256,13 @@
 	if(!isliving(AM))
 		if(!COOLDOWN_FINISHED(src, freight_output))
 			if(COOLDOWN_FINISHED(src, freight_message))
-				AM.visible_message(span_notice(LANG("obj.2c094d95", null)))
+				AM.visible_message(span_notice(LANG("obj.2c094d952e3f1c79", null)))
 				COOLDOWN_START(src, freight_message, 10 SECONDS)
 			return
 		COOLDOWN_START(src, freight_output, 2 SECONDS)
 
 	var/obj/structure/transit_tube_pod/dispensed/pod = new(loc)
-	AM.visible_message(span_notice(LANG("obj.45e00279", list(pod, AM))), span_notice(LANG("obj.7ee5397c", list(pod))))
+	AM.visible_message(span_notice(LANG("obj.45e00279912fcae2", list(pod, AM))), span_notice(LANG("obj.7ee5397ce3da6e44", list(pod))))
 	playsound(src, 'sound/items/weapons/emitter2.ogg', 50, TRUE)
 	pod.setDir(turn(src.dir, -90))
 	AM.forceMove(pod)

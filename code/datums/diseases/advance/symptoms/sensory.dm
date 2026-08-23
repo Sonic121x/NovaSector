@@ -109,11 +109,11 @@
 			eyes.apply_organ_damage(-2)
 			if(prob(20))
 				if(infected_mob.is_blind_from(EYE_DAMAGE))
-					to_chat(infected_mob, span_warning(LANG("datum.075ce441", null)))
+					to_chat(infected_mob, span_warning(LANG("datum.075ce441371afaf3", null)))
 					infected_mob.adjust_eye_blur(20 SECONDS)
 
 				else if(infected_mob.is_nearsighted_from(EYE_DAMAGE))
-					to_chat(infected_mob, span_warning(LANG("datum.99242784", null)))
+					to_chat(infected_mob, span_warning(LANG("datum.9924278487fbdd07", null)))
 					infected_mob.adjust_eye_blur(5 SECONDS)
 
 		else

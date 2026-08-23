@@ -656,25 +656,25 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
  */
 /datum/mafia_controller/proc/signup_mafia(mob/user, client/ghost_client, obj/item/modular_computer/modpc)
 	if(!SSticker.HasRoundStarted())
-		to_chat(user, span_warning(LANG("datum.c73d9fd9", null)))
+		to_chat(user, span_warning(LANG("datum.c73d9fd9f92ab4a3", null)))
 		return FALSE
 	if(isnull(modpc))
 		if(GLOB.mafia_signup[ghost_client.ckey])
 			GLOB.mafia_signup -= ghost_client.ckey
 			GLOB.mafia_early_votes -= ghost_client.ckey //Remove their early start vote as well
-			to_chat(user, span_notice(LANG("datum.aac50da0", null)))
+			to_chat(user, span_notice(LANG("datum.aac50da0cb83e135", null)))
 		else
 			GLOB.mafia_signup[ghost_client.ckey] = TRUE
-			to_chat(user, span_notice(LANG("datum.f91d04c6", null)))
+			to_chat(user, span_notice(LANG("datum.f91d04c65acc9bad", null)))
 	else
 		if(GLOB.pda_mafia_signup[modpc])
 			GLOB.pda_mafia_signup -= modpc
 			GLOB.mafia_early_votes -= modpc //Remove their early start vote as well
-			to_chat(user, span_notice(LANG("datum.aac50da0", null)))
+			to_chat(user, span_notice(LANG("datum.aac50da0cb83e135", null)))
 			return TRUE
 		else
 			GLOB.pda_mafia_signup[modpc] = TRUE
-			to_chat(user, span_notice(LANG("datum.f91d04c6", null)))
+			to_chat(user, span_notice(LANG("datum.f91d04c65acc9bad", null)))
 	if(phase == MAFIA_PHASE_SETUP)
 		check_signups()
 		try_autostart()
@@ -816,8 +816,8 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
 		if(!(unpicked in GLOB.mafia_signup))
 			continue
 		var/client/unpicked_client = GLOB.directory[unpicked]
-		to_chat(unpicked_client, span_danger(LANG("datum.dce9f04e", null)))
-		to_chat(unpicked_client, span_warning(LANG("datum.21ddf196", null)))
+		to_chat(unpicked_client, span_danger(LANG("datum.dce9f04ed8e9c9ec", null)))
+		to_chat(unpicked_client, span_warning(LANG("datum.21ddf196170434a2", null)))
 
 	return filtered_keys_and_pdas
 

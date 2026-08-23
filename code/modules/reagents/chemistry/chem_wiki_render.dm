@@ -12,12 +12,12 @@ ADMIN_VERB(generate_wikichem_list, R_DEBUG, "解析维基化学", "Parse and gen
 
 	var/input_text = tgui_input_text(
 		user,
-		LANG("datum.102b8371", null),
-		LANG("datum.e1c04ddb", null),
+		LANG("datum.102b8371f2daaa52", null),
+		LANG("datum.e1c04ddb93c619eb", null),
 		max_length = MAX_MESSAGE_LEN,
 		) //95% of the time, the reagent type is a lowercase, no spaces / underscored version of the name
 	if(!input_text)
-		to_chat(user, LANG("datum.eca3b274", null))
+		to_chat(user, LANG("datum.eca3b2748072e99c", null))
 		return
 	text2file(prefix_reaction, "[GLOB.log_directory]/chem_parse.txt")
 	var/list/names = splittext("[input_text]", ",")
@@ -25,13 +25,13 @@ ADMIN_VERB(generate_wikichem_list, R_DEBUG, "解析维基化学", "Parse and gen
 	for(var/name in names)
 		var/datum/reagent/reagent = GLOB.chemical_reagents_list[get_chem_id(name)]
 		if(!reagent)
-			to_chat(user, LANG("datum.f1b32696", list(name)))
+			to_chat(user, LANG("datum.f1b32696ca97b27d", list(name)))
 			continue
 		//Get reaction
 		var/list/reactions = GLOB.chemical_reactions_list_product_index[reagent.type]
 
 		if(!length(reactions))
-			to_chat(user, LANG("datum.9d254392", list(name)))
+			to_chat(user, LANG("datum.9d254392e9d91520", list(name)))
 			var/single_parse = generate_chemwiki_line(reagent, null)
 			text2file(single_parse, "[GLOB.log_directory]/chem_parse.txt")
 			continue
@@ -40,7 +40,7 @@ ADMIN_VERB(generate_wikichem_list, R_DEBUG, "解析维基化学", "Parse and gen
 			var/single_parse = generate_chemwiki_line(reagent, reaction)
 			text2file(single_parse, "[GLOB.log_directory]/chem_parse.txt")
 	text2file("|}", "[GLOB.log_directory]/chem_parse.txt") //Cap off the table
-	to_chat(user, LANG("datum.da20b5ec", list(GLOB.log_directory)))
+	to_chat(user, LANG("datum.da20b5ec45c7be25", list(GLOB.log_directory)))
 
 /// Generate the big list of reagent based reactions.
 /proc/generate_chemwiki_line(datum/reagent/reagent, datum/chemical_reaction/reaction)
@@ -139,7 +139,7 @@ ADMIN_VERB(generate_wikichem_list, R_DEBUG, "解析维基化学", "Parse and gen
 				else if (sum_change < 0)
 					outstring += "\n<br>H+ producing"
 			else
-				to_chat(usr, LANG("_root.78b7fa0b", list(reaction)))
+				to_chat(usr, LANG("_root.78b7fa0b3217241b", list(reaction)))
 		else
 			if(reaction.H_ion_release > 0)
 				outstring += "\n<br>H+ consuming"

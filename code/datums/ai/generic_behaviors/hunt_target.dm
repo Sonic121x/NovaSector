@@ -27,13 +27,13 @@
 /datum/bt_node/ai_behavior/hunt_target/proc/target_caught(mob/living/hunter, atom/hunted)
 	if(isliving(hunted))
 		var/mob/living/living_target = hunted
-		hunter.manual_emote(LANG("datum.abe45ebf", list(living_target)))
+		hunter.manual_emote(LANG("datum.abe45ebf6b325254", list(living_target)))
 		living_target.investigate_log("has been killed by [key_name(hunter)].", INVESTIGATE_DEATHS)
 		living_target.death()
 	else if(IS_EDIBLE(hunted))
 		hunted.attack_animal(hunter)
 	else
-		hunter.manual_emote(LANG("datum.abe45ebf", list(hunted)))
+		hunter.manual_emote(LANG("datum.abe45ebf6b325254", list(hunted)))
 		qdel(hunted)
 
 /datum/bt_node/ai_behavior/hunt_target/finish_action(datum/ai_controller/controller, succeeded)
@@ -116,7 +116,7 @@
 	always_reset_target = TRUE
 
 /datum/bt_node/ai_behavior/hunt_target/snail_people/target_caught(mob/living/hunter, atom/hunted)
-	hunter.manual_emote(LANG("datum.4db43eb4", list(hunted)))
+	hunter.manual_emote(LANG("datum.4db43eb4609cbae6", list(hunted)))
 	hunter.SpinAnimation(speed = 1, loops = 3)
 
 /// Starts pulling the target item toward the hunter.
@@ -149,14 +149,14 @@
 	always_reset_target = TRUE
 
 /datum/bt_node/ai_behavior/hunt_target/sniff_flora/target_caught(mob/living/hunter, atom/hunted)
-	hunter.manual_emote(LANG("datum.79c8e4f9", list(hunted::name)))
+	hunter.manual_emote(LANG("datum.79c8e4f9e4c87913", list(hunted::name)))
 
 /// Playfully headbutts the target's legs.
 /datum/bt_node/ai_behavior/hunt_target/headbutt_leg
 	always_reset_target = TRUE
 
 /datum/bt_node/ai_behavior/hunt_target/headbutt_leg/target_caught(mob/living/hunter, atom/hunted)
-	hunter.manual_emote(LANG("datum.7efb24f8", list(hunted)))
+	hunter.manual_emote(LANG("datum.7efb24f8575bebae", list(hunted)))
 
 /// Attempts to buckle (latch onto) the target mob.
 /datum/bt_node/ai_behavior/hunt_target/latch_onto
@@ -172,7 +172,7 @@
 		return FALSE
 	if(!hunted.buckle_mob(hunter, force = TRUE))
 		return FALSE
-	hunted.visible_message(span_notice(LANG("datum.c2374fbc", list(hunted, hunter))))
+	hunted.visible_message(span_notice(LANG("datum.c2374fbc388bae90", list(hunted, hunter))))
 	return TRUE
 
 

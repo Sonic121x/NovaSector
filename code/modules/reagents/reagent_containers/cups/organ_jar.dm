@@ -21,9 +21,9 @@
 
 /obj/item/reagent_containers/cup/beaker/organ_jar/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.7b02a777", null))
+	. += span_info(LANG("obj.7b02a777a4f7b3c7", null))
 	if(held_organ && held_organ.GetComponent(/datum/component/ghostrole_on_revive))
-		. += span_smallnoticeital(LANG("obj.e1147132", null)) // Guaranteed to be a brain if it has that component
+		. += span_smallnoticeital(LANG("obj.e11471329cb71ae2", null)) // Guaranteed to be a brain if it has that component
 
 /obj/item/reagent_containers/cup/beaker/organ_jar/Destroy(force)
 	. = ..()
@@ -32,7 +32,7 @@
 // Alt click lets you take the organ out, if it's present
 /obj/item/reagent_containers/cup/beaker/organ_jar/click_alt(mob/user)
 	if(held_organ)
-		balloon_alert(user, LANG("obj.c6b4aa68", list(held_organ)))
+		balloon_alert(user, LANG("obj.c6b4aa687c2eb2c1", list(held_organ)))
 		user.put_in_hands(held_organ)
 		held_organ.organ_flags &= ~ORGAN_FROZEN
 		held_organ = null
@@ -48,15 +48,15 @@
 	if(!istype(tool, /obj/item/organ))
 		return ..()
 	if(held_organ)
-		balloon_alert(user, LANG("obj.df3afad5", list(held_organ)))
+		balloon_alert(user, LANG("obj.df3afad51c6de0b2", list(held_organ)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.94d2a5ff", list(tool)))
+	balloon_alert(user, LANG("obj.94d2a5ff4fc6b8fa", list(tool)))
 	held_organ = tool
 	name = "[tool.name] in a jar"
-	desc = LANG("obj.75a92945", list(tool))
+	desc = LANG("obj.75a929450700648e", list(tool))
 	check_organ_freeze()
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -110,20 +110,20 @@
 
 /obj/item/reagent_containers/cup/beaker/organ_jar/brain_in_a_jar/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.501c2297", null))
+	. += span_notice(LANG("obj.501c22970bb6e67f", null))
 
 /obj/item/reagent_containers/cup/beaker/organ_jar/brain_in_a_jar/examine_more(mob/user)
 	. = ..()
 	// Flavor for why the brain is scarred
 	switch(note_type)
 		if(NOTE_STUCK_IN_MAIL)
-			. += span_notice(LANG("obj.3bae428a", null))
+			. += span_notice(LANG("obj.3bae428ac806111b", null))
 		if(NOTE_MORBID_GIFT)
-			. += span_notice(LANG("obj.c0451ef0", null))
-			. += span_notice(LANG("obj.b06cbbb9", null))
+			. += span_notice(LANG("obj.c0451ef0d9235a9e", null))
+			. += span_notice(LANG("obj.b06cbbb9b220a6d7", null))
 		if(NOTE_DISCARDED_LOST_CREW)
-			. += span_notice(LANG("obj.c0451ef0", null))
-			. += span_notice(LANG("obj.c7fa32e3", null))
+			. += span_notice(LANG("obj.c0451ef0d9235a9e", null))
+			. += span_notice(LANG("obj.c7fa32e3641a6b78", null))
 
 
 /obj/item/reagent_containers/cup/beaker/organ_jar/brain_in_a_jar/Initialize(mapload)
@@ -139,7 +139,7 @@
 	held_organ = scarred_brain // Put the brain inside the jar
 	reagents.add_reagent(/datum/reagent/toxin/formaldehyde, reagents.maximum_volume) // Fill the jar with formaldehyde
 	name = "brain in a jar" // Set a custom name&description
-	desc = LANG("obj.615e8ff1", null)
+	desc = LANG("obj.615e8ff117610447", null)
 	update_appearance()
 
 // All this does is add a random special brain trauma + add recovered crew antag datum for logging

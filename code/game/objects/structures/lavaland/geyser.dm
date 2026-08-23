@@ -69,10 +69,10 @@
 		return NONE //this runs the plunger code
 
 	if(discovered)
-		to_chat(user, span_warning(LANG("obj.e4633b3a", null)))
+		to_chat(user, span_warning(LANG("obj.e4633b3a3489124d", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.6aa4e4c3", null)))
+	to_chat(user, span_notice(LANG("obj.6aa4e4c39ee210a4", null)))
 	playsound(src, 'sound/machines/beep/twobeep_high.ogg', 30)
 	SEND_SIGNAL(user, COMSIG_LIVING_DISCOVERED_GEYSER, src)
 	if(discovery_message)
@@ -86,7 +86,7 @@
 
 	var/obj/item/card/id/card = user.get_idcard()
 	if(card)
-		to_chat(user, span_notice(LANG("obj.eeda2ee4", list(point_value))))
+		to_chat(user, span_notice(LANG("obj.eeda2ee4b5588c36", list(point_value))))
 		card.registered_account.mining_points += point_value
 	return ITEM_INTERACT_SUCCESS
 
@@ -165,7 +165,7 @@
 	if(iscarbon(hit_atom))
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.equip_to_slot_if_possible(src, ITEM_SLOT_MASK, disable_warning = TRUE))
-			victim.visible_message(span_warning(LANG("obj.c6e03993", list(victim))), span_warning(LANG("obj.82ae4793", null)))
+			victim.visible_message(span_warning(LANG("obj.c6e03993cbba5fce", list(victim))), span_warning(LANG("obj.82ae47934afa85a9", null)))
 
 /obj/item/plunger/attack_self(mob/user)
 	. = ..()
@@ -174,15 +174,15 @@
 
 	if(!layer_mode)
 		icon_state = initial(icon_state)
-		to_chat(user, span_notice(LANG("obj.ffb49636", null)))
+		to_chat(user, span_notice(LANG("obj.ffb49636d5f8f205", null)))
 	else
 		icon_state = layer_mode_sprite
-		to_chat(user, span_notice(LANG("obj.09c3484a", null)))
+		to_chat(user, span_notice(LANG("obj.09c3484abcbb8dbf", null)))
 
 	playsound(src, 'sound/machines/click.ogg', 10, TRUE)
 
 /obj/item/plunger/click_alt(mob/user)
-	var/new_layer = tgui_input_list(user, LANG("obj.0d8e05e2", null), LANG("obj.6a7ee8f6", null), GLOB.plumbing_layers)
+	var/new_layer = tgui_input_list(user, LANG("obj.0d8e05e232e584ae", null), LANG("obj.6a7ee8f6d0b6ef94", null), GLOB.plumbing_layers)
 	if(isnull(new_layer) || !user.can_perform_action(src))
 		return CLICK_ACTION_BLOCKING
 	target_layer = GLOB.plumbing_layers[new_layer]

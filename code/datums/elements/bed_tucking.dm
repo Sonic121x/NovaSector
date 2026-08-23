@@ -49,7 +49,7 @@
 	if(!tucker.transfer_item_to_turf(tucked, target_bed.drop_location()))
 		return
 
-	to_chat(tucker, span_notice(LANG("datum.1185e2a0", list(tucked, target_bed))))
+	to_chat(tucker, span_notice(LANG("datum.1185e2a0a4c2a1a2", list(tucked, target_bed))))
 	tuck(tucked, target_bed)
 	return COMPONENT_NO_AFTERATTACK
 

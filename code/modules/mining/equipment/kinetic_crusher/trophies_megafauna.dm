@@ -214,13 +214,13 @@
 		return
 	var/mob/living/living_user = user
 	if(use_time > world.time)
-		to_chat(living_user, LANG("obj.98a9d78e", null))
+		to_chat(living_user, LANG("obj.98a9d78efadc69f8", null))
 		return
 	else if(HAS_TRAIT(living_user, TRAIT_LAVA_IMMUNE))
-		to_chat(living_user, LANG("obj.42fe2449", null))
+		to_chat(living_user, LANG("obj.42fe24495d971e51", null))
 		return
 	ADD_TRAIT(living_user, TRAIT_LAVA_IMMUNE, type)
-	to_chat(living_user, LANG("obj.7912a050", null))
+	to_chat(living_user, LANG("obj.7912a0505605c20c", null))
 	addtimer(TRAIT_CALLBACK_REMOVE(user, TRAIT_LAVA_IMMUNE, type), 10 SECONDS)
 	use_time = world.time + 60 SECONDS
 
@@ -252,10 +252,10 @@
 		return
 	var/mob/living/LivingUser = user
 	if(next_use_time > world.time)
-		LivingUser.visible_message(span_warning(LANG("obj.86997935", list(LivingUser, src))))
-		to_chat(LivingUser, LANG("obj.df0fd23d", null))
+		LivingUser.visible_message(span_warning(LANG("obj.86997935adb9bb84", list(LivingUser, src))))
+		to_chat(LivingUser, LANG("obj.df0fd23d86b84c82", null))
 		return
-	LivingUser.visible_message(span_boldwarning(LANG("obj.8c8cf59b", list(LivingUser, src))))
+	LivingUser.visible_message(span_boldwarning(LANG("obj.8c8cf59be6c13e6f", list(LivingUser, src))))
 
 	var/mob/living/basic/mining/legion_brood/minion = new (LivingUser.loc)
 	minion.assign_creator(LivingUser)

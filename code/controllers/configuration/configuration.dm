@@ -78,7 +78,7 @@
 
 /datum/controller/configuration/proc/PreConfigReload()
 	if(reload_in_progress)
-		to_chat(usr, span_warning(LANG("datum.8a35f165", null)))
+		to_chat(usr, span_warning(LANG("datum.8a35f16567115e44", null)))
 		return FALSE
 
 	reload_in_progress = TRUE

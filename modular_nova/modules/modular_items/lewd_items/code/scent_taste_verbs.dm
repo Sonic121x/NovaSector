@@ -3,18 +3,18 @@ GAME_VERB(/mob/living/carbon/human, lick, "舔", "IC")
 	if(!istype(target) || !(target in get_adjacent_humans()))
 		return FALSE
 	if(!get_organ_slot(ORGAN_SLOT_TONGUE))
-		to_chat(src, span_warning(LANG("mob.7f0789de", null)))
+		to_chat(src, span_warning(LANG("mob.7f0789def3d608a3", null)))
 		return FALSE
 	if(!can_use_erp_flavor_verb(target, "doesn't feel like being touched right now."))
 		return FALSE
 
 	var/taste = target.dna.features[ERP_FLAVOR_DNA_TASTE]
 	if(!taste)
-		to_chat(src, span_warning(LANG("mob.77fc7cc5", list(target))))
+		to_chat(src, span_warning(LANG("mob.77fc7cc54a3486a2", list(target))))
 		return FALSE
 
-	to_chat(src, span_notice(LANG("mob.bed05d46", list(target, taste))))
-	to_chat(target, span_notice(LANG("mob.c262fc2b", list(src))))
+	to_chat(src, span_notice(LANG("mob.bed05d4616376ba8", list(target, taste))))
+	to_chat(target, span_notice(LANG("mob.c262fc2bc1bcf54b", list(src))))
 	return TRUE
 
 GAME_VERB(/mob/living/carbon/human, smell, "闻", "IC")
@@ -26,10 +26,10 @@ GAME_VERB(/mob/living/carbon/human, smell, "闻", "IC")
 
 	var/scent = target.dna.features[ERP_FLAVOR_DNA_SCENT]
 	if(!scent)
-		to_chat(src, span_warning(LANG("mob.2a8abd41", list(target))))
+		to_chat(src, span_warning(LANG("mob.2a8abd411466dfc2", list(target))))
 		return FALSE
 
-	to_chat(src, span_notice(LANG("mob.28205dc0", list(target, scent))))
+	to_chat(src, span_notice(LANG("mob.28205dc00f302dac", list(target, scent))))
 	return TRUE
 
 /mob/living/carbon/human/proc/can_see_erp_flavor(mob/living/carbon/human/target)
@@ -37,7 +37,7 @@ GAME_VERB(/mob/living/carbon/human, smell, "闻", "IC")
 
 /mob/living/carbon/human/proc/can_use_erp_flavor_verb(mob/living/carbon/human/target, warning_message)
 	if(!can_see_erp_flavor(target))
-		to_chat(src, span_warning(LANG("mob.83ecc146", null)))
+		to_chat(src, span_warning(LANG("mob.83ecc146598ff6cb", null)))
 		return FALSE
 
 	if(HAS_TRAIT(target, TRAIT_QUICKREFLEXES))

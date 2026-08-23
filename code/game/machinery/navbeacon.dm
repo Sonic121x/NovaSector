@@ -112,7 +112,7 @@
 
 /obj/machinery/navbeacon/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!panel_open && cover_locked)
-		balloon_alert(user, LANG("obj.1aeb791b", null))
+		balloon_alert(user, LANG("obj.1aeb791b92aa7ec9", null))
 		return ITEM_INTERACT_BLOCKING
 	return default_deconstruction_screwdriver(user, tool)
 
@@ -128,13 +128,13 @@
 	if(!tool.GetID())
 		return NONE
 	if(panel_open)
-		balloon_alert(user, LANG("obj.2a428bad", null))
+		balloon_alert(user, LANG("obj.2a428bad1848a353", null))
 		return ITEM_INTERACT_BLOCKING
 	if (!allowed(user))
-		balloon_alert(user, LANG("obj.1d2a5ed1", null))
+		balloon_alert(user, LANG("obj.1d2a5ed1ed67a4a4", null))
 		return ITEM_INTERACT_BLOCKING
 	controls_locked = !controls_locked
-	balloon_alert(user, LANG("obj.dc384c45", list(controls_locked ? "locked" : "unlocked")))
+	balloon_alert(user, LANG("obj.dc384c45005f902b", list(controls_locked ? "locked" : "unlocked")))
 	SStgui.update_uis(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -215,7 +215,7 @@
 			toggle_code(NAVBEACON_DELIVERY_MODE)
 			return TRUE
 		if("set_location")
-			var/input_text = tgui_input_text(user, LANG("obj.d651f6c5", null), LANG("obj.741c486b", null), location, max_length = 20)
+			var/input_text = tgui_input_text(user, LANG("obj.d651f6c50a20da1f", null), LANG("obj.741c486b2bbf7ff7", null), location, max_length = 20)
 			if (!input_text || location == input_text)
 				return
 			glob_lists_deregister()
@@ -224,7 +224,7 @@
 			return TRUE
 		if("set_patrol_next")
 			var/next_patrol = codes[NAVBEACON_PATROL_NEXT]
-			var/input_text = tgui_input_text(user, LANG("obj.32c9ffe8", null), LANG("obj.741c486b", null), next_patrol, max_length = 20)
+			var/input_text = tgui_input_text(user, LANG("obj.32c9ffe84b167c01", null), LANG("obj.741c486b2bbf7ff7", null), next_patrol, max_length = 20)
 			if (!input_text || location == input_text)
 				return
 			codes[NAVBEACON_PATROL_NEXT] = input_text

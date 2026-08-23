@@ -29,7 +29,7 @@
 
 /obj/item/style_meter/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.9d14e21b", null))
+	. += span_notice(LANG("obj.9d14e21b9f9779aa", null))
 
 /obj/item/style_meter/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!istype(interacting_with, /obj/item/clothing/glasses))
@@ -44,7 +44,7 @@
 	RegisterSignal(interacting_with, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(interacting_with, COMSIG_CLICK_ALT, PROC_REF(on_click_alt))
 	RegisterSignal(interacting_with, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), PROC_REF(redirect_multitool))
-	balloon_alert(user, LANG("obj.c066d0c8", null))
+	balloon_alert(user, LANG("obj.c066d0c801c1cf09", null))
 	playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 	if(!ishuman(interacting_with.loc))
 		return .
@@ -89,8 +89,8 @@
 /obj/item/style_meter/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice(LANG("obj.9d14e21b", null))
-	examine_list += span_notice(LANG("obj.67ca0ed9", null))
+	examine_list += span_notice(LANG("obj.9d14e21b9f9779aa", null))
+	examine_list += span_notice(LANG("obj.67ca0ed9b4ac9816", null))
 
 
 /// Signal proc to remove from glasses
@@ -107,7 +107,7 @@
 
 /obj/item/style_meter/multitool_act(mob/living/user, obj/item/tool)
 	multitooled = !multitooled
-	balloon_alert(user, LANG("obj.64d51d7f", list(multitooled ? "" : "un")))
+	balloon_alert(user, LANG("obj.64d51d7fa11d0481", list(multitooled ? "" : "un")))
 	style_meter?.multitooled = multitooled
 	return ITEM_INTERACT_SUCCESS
 

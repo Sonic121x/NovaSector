@@ -71,26 +71,26 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "feather-alt",
-			SPECIES_PERK_NAME = LANG("datum.2ac52c3d", null),
-			SPECIES_PERK_DESC = LANG("datum.7a81da30", null),
+			SPECIES_PERK_NAME = LANG("datum.2ac52c3dab3e5801", null),
+			SPECIES_PERK_DESC = LANG("datum.7a81da30fc2a3e10", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "tshirt",
-			SPECIES_PERK_NAME = LANG("datum.19b1f8f6", null),
-			SPECIES_PERK_DESC = LANG("datum.2cb44ed4", null),
+			SPECIES_PERK_NAME = LANG("datum.19b1f8f64a17258c", null),
+			SPECIES_PERK_DESC = LANG("datum.2cb44ed4480a174a", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "fire",
-			SPECIES_PERK_NAME = LANG("datum.0fa5396c", null),
-			SPECIES_PERK_DESC = LANG("datum.506026bb", null),
+			SPECIES_PERK_NAME = LANG("datum.0fa5396c29ae9ea1", null),
+			SPECIES_PERK_DESC = LANG("datum.506026bb36615be3", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "sun",
-			SPECIES_PERK_NAME = LANG("datum.da9dee50", null),
-			SPECIES_PERK_DESC = LANG("datum.405d5fce", null),
+			SPECIES_PERK_NAME = LANG("datum.da9dee50ff8ae0e8", null),
+			SPECIES_PERK_DESC = LANG("datum.405d5fce2490a12c", null),
 		),
 	)
 

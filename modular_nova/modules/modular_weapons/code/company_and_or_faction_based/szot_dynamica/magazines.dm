@@ -80,7 +80,7 @@
 /obj/item/ammo_box/magazine/recharge/plasma_battery/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.c14a2df8", null)
+	. += LANG("obj.c14a2df8805f21db", null)
 
 	return .
 
@@ -96,7 +96,7 @@
 	var/sparks_volume = 30
 	if(length(stored_ammo) == max_ammo)
 		sparks_volume = 80 //full charge should be noticeable
-		balloon_alert_to_viewers(LANG("obj.abbda6f9", list(src)))
+		balloon_alert_to_viewers(LANG("obj.abbda6f9a2562c85", list(src)))
 	playsound(src, 'sound/effects/sparks/sparks2.ogg', sparks_volume, TRUE)
 
 // Shotgun revolver's cylinder
@@ -169,20 +169,20 @@
 	if(length(stored_ammo))
 		var/obj/item/ammo_casing/pulse/top_cell = get_round()
 		if(istype(top_cell))
-			. += span_notice(LANG("obj.e4a5de6c", list(top_cell.remaining_uses, top_cell.max_uses)))
+			. += span_notice(LANG("obj.e4a5de6c48df0eb1", list(top_cell.remaining_uses, top_cell.max_uses)))
 
 /obj/item/ammo_box/magazine/pulse/add_notes_box()
 	var/list/readout = list()
 	var/obj/item/ammo_casing/pulse/sample_casing = ammo_type
 
 	// Display magazine capacity info
-	readout += LANG("obj.1f5c34bf", list(span_warning(magazine_designation), span_warning("[max_ammo] plasma plugs"), span_warning("[initial(sample_casing.max_uses)] pulses")))
-	readout += LANG("obj.b982c996", list(span_warning("[max_ammo * initial(sample_casing.max_uses)] pulses")))
+	readout += LANG("obj.1f5c34bfea588527", list(span_warning(magazine_designation), span_warning("[max_ammo] plasma plugs"), span_warning("[initial(sample_casing.max_uses)] pulses")))
+	readout += LANG("obj.b982c99647b82171", list(span_warning("[max_ammo * initial(sample_casing.max_uses)] pulses")))
 
 	// Get actual round info if available
 	var/obj/item/ammo_casing/mag_ammo = get_and_shuffle_round()
 	if(istype(mag_ammo))
-		readout += LANG("obj.65aac1b5", list(mag_ammo.add_notes_ammo()))
+		readout += LANG("obj.65aac1b5abce675a", list(mag_ammo.add_notes_ammo()))
 
 	return readout.Join("\n")
 

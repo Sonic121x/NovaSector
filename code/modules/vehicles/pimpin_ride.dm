@@ -33,7 +33,7 @@
 /obj/vehicle/ridden/janicart/examine(mob/user)
 	. = ..()
 	if (installed_upgrade)
-		. += LANG("obj.62c34c57", list(installed_upgrade))
+		. += LANG("obj.62c34c57a617a2ed", list(installed_upgrade))
 
 /obj/vehicle/ridden/janicart/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
@@ -41,12 +41,12 @@
 		return
 	if(istype(tool, /obj/item/storage/bag/trash))
 		if(trash_bag)
-			to_chat(user, span_warning(LANG("obj.b06b8991", list(src))))
+			to_chat(user, span_warning(LANG("obj.b06b8991a24dffa5", list(src))))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.3322367b", list(src))))
+		to_chat(user, span_notice(LANG("obj.3322367bf569a1b7", list(src))))
 		trash_bag = tool
 		RegisterSignal(trash_bag, COMSIG_QDELETING, PROC_REF(bag_deleted))
 		SEND_SIGNAL(src, COMSIG_VACUUM_BAG_ATTACH, tool)
@@ -55,13 +55,13 @@
 
 	if(istype(tool, /obj/item/janicart_upgrade))
 		if(installed_upgrade)
-			to_chat(user, span_warning(LANG("obj.78b70bc0", list(src))))
+			to_chat(user, span_warning(LANG("obj.78b70bc085e2e8ba", list(src))))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/janicart_upgrade/new_upgrade = tool
 		new_upgrade.forceMove(src)
 		new_upgrade.install(src)
 		installed_upgrade = new_upgrade
-		to_chat(user, span_notice(LANG("obj.0c7ce576", list(src, new_upgrade))))
+		to_chat(user, span_notice(LANG("obj.0c7ce576dd8e82bf", list(src, new_upgrade))))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -77,7 +77,7 @@
 	installed_upgrade.uninstall(src)
 	installed_upgrade.forceMove(get_turf(user))
 	user.put_in_hands(installed_upgrade)
-	to_chat(user, span_notice(LANG("obj.04ef1fd2", list(installed_upgrade, src))))
+	to_chat(user, span_notice(LANG("obj.04ef1fd22c41bdf4", list(installed_upgrade, src))))
 	installed_upgrade = null
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS

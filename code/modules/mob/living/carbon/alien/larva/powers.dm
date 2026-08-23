@@ -11,16 +11,16 @@
 	if(owner.layer == hide_layer)
 		owner.layer = initial(owner.layer)
 		owner.visible_message(
-			span_notice(LANG("datum.6a0aef44", list(owner))),
-			span_noticealien(LANG("datum.7ecbf127", null)),
+			span_notice(LANG("datum.6a0aef440846d2d6", list(owner))),
+			span_noticealien(LANG("datum.7ecbf12703cf4c80", null)),
 		)
 		ADD_TRAIT(owner, TRAIT_IGNORE_ELEVATION, ACTION_TRAIT)
 
 	else
 		owner.layer = hide_layer
 		owner.visible_message(
-			span_name(LANG("datum.ae59a15c", list(owner))),
-			span_noticealien(LANG("datum.7b68aaca", null)),
+			span_name(LANG("datum.ae59a15c78e90fbb", list(owner))),
+			span_noticealien(LANG("datum.7b68aacab13c592d", null)),
 		)
 		REMOVE_TRAIT(owner, TRAIT_IGNORE_ELEVATION, ACTION_TRAIT)
 

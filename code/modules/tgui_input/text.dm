@@ -144,7 +144,7 @@
 				if(length_char(params["entry"]) > max_length)
 					CRASH("[usr] typed a text string longer than the max length")
 				if(encode && (length_char(html_encode(params["entry"])) > max_length))
-					to_chat(usr, span_notice(LANG("datum.9d12f9ff", null)))
+					to_chat(usr, span_notice(LANG("datum.9d12f9ff6c9e62a4", null)))
 			set_entry(params["entry"])
 			closed = TRUE
 			SStgui.close_uis(src)

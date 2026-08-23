@@ -422,7 +422,7 @@
 /obj/item/mecha_parts/mecha_equipment/thrusters/try_attach_part(mob/user, obj/vehicle/sealed/mecha/mecha, attach_right)
 	for(var/obj/item/part in mecha.equip_by_category[MECHA_UTILITY])
 		if(istype(part, src))
-			to_chat(user, span_warning(LANG("obj.a2abb12f", list(mecha))))
+			to_chat(user, span_warning(LANG("obj.a2abb12fe28e4321", list(mecha))))
 			return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -514,7 +514,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/concealed_weapon_bay/try_attach_part(mob/user, obj/vehicle/sealed/mecha/M)
 	if(M.mech_type & EXOSUIT_MODULE_COMBAT)
-		to_chat(user, span_warning(LANG("obj.f9e42ef5", list(M))))
+		to_chat(user, span_warning(LANG("obj.f9e42ef5ba425f14", list(M))))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -531,9 +531,9 @@
 		icon = existing_equip.icon
 		icon_state = existing_equip.icon_state
 		qdel(existing_equip)
-		user.visible_message(span_notice(LANG("obj.848b6078", list(user, src))), span_notice(LANG("obj.9dfc6221", list(mech, src))))
+		user.visible_message(span_notice(LANG("obj.848b6078e0f24746", list(user, src))), span_notice(LANG("obj.9dfc62217fcea7ff", list(mech, src))))
 	else
-		user.visible_message(span_notice(LANG("obj.c24be4ca", list(user, src, mech))), span_notice(LANG("obj.c1fbc99d", list(src, mech))))
+		user.visible_message(span_notice(LANG("obj.c24be4ca3d4ab352", list(user, src, mech))), span_notice(LANG("obj.c1fbc99dd596332a", list(src, mech))))
 	attach(mech, attach_right)
 	mech.mech_type |= EXOSUIT_MODULE_CONCEALED_WEP_BAY
 	return TRUE
@@ -557,7 +557,7 @@
 
 /obj/item/mecha_parts/camera_kit/try_attach_part(mob/user, obj/vehicle/sealed/mecha/mech, attach_right)
 	if(mech.chassis_camera)
-		balloon_alert(user, LANG("obj.7ba4355a", null))
+		balloon_alert(user, LANG("obj.7ba4355a1680eee1", null))
 		return ITEM_INTERACT_BLOCKING
 
 	. = ..()

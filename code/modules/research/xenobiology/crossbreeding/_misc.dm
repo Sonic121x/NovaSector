@@ -49,11 +49,11 @@ Slimecrossing Items
 /obj/item/camera/rewind/on_flash(atom/target, mob/user)
 	. = ..()
 	if(user == target)
-		to_chat(user, span_notice(LANG("obj.afae693b", null)))
+		to_chat(user, span_notice(LANG("obj.afae693bcb7eaa36", null)))
 	else
-		to_chat(user, span_notice(LANG("obj.dffc9f6f", list(target))))
-		to_chat(target, span_notice(LANG("obj.c02e391b", list(user))))
-	to_chat(target, span_boldnotice(LANG("obj.be4b557f", null)))
+		to_chat(user, span_notice(LANG("obj.dffc9f6f62e91917", list(target))))
+		to_chat(target, span_notice(LANG("obj.c02e391bb694120c", list(user))))
+	to_chat(target, span_boldnotice(LANG("obj.be4b557ff560751c", null)))
 
 	target.AddComponent(/datum/component/dejavu, 2)
 
@@ -91,11 +91,11 @@ Slimecrossing Items
 
 /obj/item/barriercube/attack_self(mob/user)
 	if(locate(/obj/structure/barricade/slime) in get_turf(loc))
-		to_chat(user, span_warning(LANG("obj.67ffba57", null)))
+		to_chat(user, span_warning(LANG("obj.67ffba57386dacb3", null)))
 		return
-	to_chat(user, span_notice(LANG("obj.c6edd408", list(src))))
+	to_chat(user, span_notice(LANG("obj.c6edd408db9aaaa2", list(src))))
 	var/obj/B = new /obj/structure/barricade/slime(get_turf(loc))
-	B.visible_message(span_warning(LANG("obj.beefbf5d", list(src))))
+	B.visible_message(span_warning(LANG("obj.beefbf5deba48e4f", list(src))))
 	qdel(src)
 
 //Slime barricade - Chilling Grey
@@ -167,36 +167,36 @@ Slimecrossing Items
 
 /obj/item/capturedevice/attack(mob/living/pokemon, mob/user)
 	if(length(contents))
-		to_chat(user, span_warning(LANG("obj.13d7cfe6", null)))
+		to_chat(user, span_warning(LANG("obj.13d7cfe6099faea7", null)))
 		return
 	if(!isanimal_or_basicmob(pokemon))
-		to_chat(user, span_warning(LANG("obj.b6eb583c", null)))
+		to_chat(user, span_warning(LANG("obj.b6eb583c2b0f416f", null)))
 		return
 	if(pokemon.mind)
-		to_chat(user, span_notice(LANG("obj.2a23d692", list(pokemon))))
-		if(tgui_alert(pokemon, LANG("obj.899669bb", list(user)), LANG("obj.baa986aa", null), list("Yes", "No")) == "Yes")
+		to_chat(user, span_notice(LANG("obj.2a23d6929f17bbe5", list(pokemon))))
+		if(tgui_alert(pokemon, LANG("obj.899669bb2376c434", list(user)), LANG("obj.baa986aa7a9f44ab", null), list("Yes", "No")) == "Yes")
 			if(user.can_perform_action(src) && user.can_perform_action(pokemon))
-				to_chat(user, span_notice(LANG("obj.e1789f82", list(pokemon))))
-				to_chat(pokemon, span_notice(LANG("obj.ebbaa692", null)))
+				to_chat(user, span_notice(LANG("obj.e1789f822ad97805", list(pokemon))))
+				to_chat(pokemon, span_notice(LANG("obj.ebbaa69281dfdd98", null)))
 				store(pokemon, user)
 			else
-				to_chat(user, span_warning(LANG("obj.d57ab25d", list(pokemon))))
-				to_chat(pokemon, span_warning(LANG("obj.d57ab25d", list(user))))
+				to_chat(user, span_warning(LANG("obj.d57ab25d7bdf85ce", list(pokemon))))
+				to_chat(pokemon, span_warning(LANG("obj.d57ab25d7bdf85ce", list(user))))
 		else
-			to_chat(user, span_warning(LANG("obj.7cb5edae", list(pokemon))))
+			to_chat(user, span_warning(LANG("obj.7cb5edae152bb745", list(pokemon))))
 			return
 	else if(!pokemon.has_faction(FACTION_NEUTRAL))
-		to_chat(user, span_warning(LANG("obj.e34d6a42", null)))
+		to_chat(user, span_warning(LANG("obj.e34d6a427004b4d2", null)))
 		return
-	to_chat(user, span_notice(LANG("obj.e1789f82", list(pokemon))))
+	to_chat(user, span_notice(LANG("obj.e1789f822ad97805", list(pokemon))))
 	store(pokemon)
 
 /obj/item/capturedevice/attack_self(mob/user)
 	if(contents.len)
-		to_chat(user, span_notice(LANG("obj.a7eb70b0", null)))
+		to_chat(user, span_notice(LANG("obj.a7eb70b0ce770237", null)))
 		release()
 	else
-		to_chat(user, span_warning(LANG("obj.adbd88b7", null)))
+		to_chat(user, span_warning(LANG("obj.adbd88b72e7aef4a", null)))
 
 /obj/item/capturedevice/proc/store(mob/living/pokemon)
 	pokemon.forceMove(src)

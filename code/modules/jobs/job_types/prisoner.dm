@@ -46,7 +46,7 @@
 	var/datum/record/crew/target_record = find_record(crewmember.real_name)
 	target_record.crimes += past_crime
 	target_record.recreate_manifest_photos(add_height_chart = TRUE)
-	to_chat(crewmember, span_warning(LANG("datum.87512c44", list(crime_name))))
+	to_chat(crewmember, span_warning(LANG("datum.87512c44ebc06890", list(crime_name))))
 	crewmember.add_mob_memory(/datum/memory/key/permabrig_crimes, crimes = crime_name)
 
 /datum/outfit/job/prisoner

@@ -40,9 +40,9 @@
 	if(!key_type || is_key(inserted_key) || !is_key(tool))
 		return NONE
 	if(!user.transferItemToLoc(tool, src))
-		to_chat(user, span_warning(LANG("obj.dc050dd7", list(tool))))
+		to_chat(user, span_warning(LANG("obj.dc050dd751b8faab", list(tool))))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.a9ab5056", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.a9ab5056327dd722", list(tool, src))))
 	if(inserted_key) //just in case there's an invalid key
 		inserted_key.forceMove(drop_location())
 	inserted_key = tool
@@ -52,9 +52,9 @@
 	if(!inserted_key)
 		return CLICK_ACTION_BLOCKING
 	if(!is_occupant(user))
-		to_chat(user, span_warning(LANG("obj.cb483ffc", list(src, src, inserted_key))))
+		to_chat(user, span_warning(LANG("obj.cb483ffc39d0753c", list(src, src, inserted_key))))
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice(LANG("obj.c92284f5", list(inserted_key, src))))
+	to_chat(user, span_notice(LANG("obj.c92284f54d16a145", list(inserted_key, src))))
 	user.put_in_hands(inserted_key)
 	inserted_key = null
 	return CLICK_ACTION_SUCCESS

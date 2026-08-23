@@ -25,12 +25,12 @@
 		clean_speedies = cleanspeed * min(user.mind.get_skill_modifier(/datum/skill/cleaning, SKILL_SPEED_MODIFIER)+0.1, 1) //less scaling for soapies
 
 	if((interacting_with in user?.client.screen) && !user.is_holding(interacting_with))
-		to_chat(user, span_warning(LANG("obj.ccc3c0cc", list(interacting_with.name))))
+		to_chat(user, span_warning(LANG("obj.ccc3c0ccbb7eb20f", list(interacting_with.name))))
 
 	else if(istype(interacting_with, /obj/effect/decal/cleanable))
-		user.visible_message(span_notice(LANG("obj.8ea246c1", list(user, interacting_with.name, src))), span_warning(LANG("obj.d953b976", list(interacting_with.name, src))))
+		user.visible_message(span_notice(LANG("obj.8ea246c1dde54189", list(user, interacting_with.name, src))), span_warning(LANG("obj.d953b9763266bf49", list(interacting_with.name, src))))
 		if(do_after(user, clean_speedies, target = interacting_with))
-			to_chat(user, span_notice(LANG("obj.b46f5b73", list(interacting_with.name))))
+			to_chat(user, span_notice(LANG("obj.b46f5b7383b458cf", list(interacting_with.name))))
 			var/obj/effect/decal/cleanable/cleanies = interacting_with
 			user.mind?.adjust_experience(/datum/skill/cleaning, max(round(cleanies.beauty/CLEAN_SKILL_BEAUTY_ADJUSTMENT), 0)) //again, intentional that this does NOT round but mops do.
 			qdel(interacting_with)
@@ -40,9 +40,9 @@
 			user.put_in_hands(used_cloth)
 
 	else if(istype(interacting_with, /obj/structure/window))
-		user.visible_message(span_notice(LANG("obj.efee36ff", list(user, interacting_with.name, src))), span_notice(LANG("obj.d633de38", list(interacting_with.name, src))))
+		user.visible_message(span_notice(LANG("obj.efee36ff78d8bc84", list(user, interacting_with.name, src))), span_notice(LANG("obj.d633de3857498f7b", list(interacting_with.name, src))))
 		if(do_after(user, clean_speedies, target = interacting_with))
-			to_chat(user, span_notice(LANG("obj.c0ca4fbc", list(interacting_with.name))))
+			to_chat(user, span_notice(LANG("obj.c0ca4fbc08311dd3", list(interacting_with.name))))
 			interacting_with.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 			interacting_with.set_opacity(initial(interacting_with.opacity))
 			user.mind?.adjust_experience(/datum/skill/cleaning, CLEAN_SKILL_GENERIC_WASH_XP)
@@ -52,9 +52,9 @@
 			user.put_in_hands(used_cloth)
 
 	else
-		user.visible_message(span_notice(LANG("obj.efee36ff", list(user, interacting_with.name, src))), span_notice(LANG("obj.d633de38", list(interacting_with.name, src))))
+		user.visible_message(span_notice(LANG("obj.efee36ff78d8bc84", list(user, interacting_with.name, src))), span_notice(LANG("obj.d633de3857498f7b", list(interacting_with.name, src))))
 		if(do_after(user, clean_speedies, target = interacting_with))
-			to_chat(user, span_notice(LANG("obj.c0ca4fbc", list(interacting_with.name))))
+			to_chat(user, span_notice(LANG("obj.c0ca4fbc08311dd3", list(interacting_with.name))))
 			if(user && isturf(interacting_with))
 				for(var/obj/effect/decal/cleanable/cleanable_decal in interacting_with)
 					user.mind?.adjust_experience(/datum/skill/cleaning, round(cleanable_decal.beauty / CLEAN_SKILL_BEAUTY_ADJUSTMENT))
@@ -93,11 +93,11 @@
 
 /obj/item/serviette_pack/attack_self(mob/user)
 	if(number_remaining)
-		to_chat(user, span_notice(LANG("obj.8ac8a766", list(src))))
+		to_chat(user, span_notice(LANG("obj.8ac8a766a3d63477", list(src))))
 		number_remaining--
 		var/obj/item/serviette/used_serviette = new /obj/item/serviette
 		user.put_in_hands(used_serviette)
 		update_icon()
 		update_icon_state()
 	else
-		to_chat(user, span_notice(LANG("obj.606d32a1", null)))
+		to_chat(user, span_notice(LANG("obj.606d32a12661832b", null)))

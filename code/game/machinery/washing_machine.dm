@@ -196,7 +196,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 /obj/machinery/washing_machine/examine(mob/user)
 	. = ..()
 	if(!busy)
-		. += span_notice(LANG("obj.64d3a881", null))
+		. += span_notice(LANG("obj.64d3a88109a8d860", null))
 
 /obj/machinery/washing_machine/RefreshParts()
 	. = ..()
@@ -285,7 +285,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	inhand_x_dimension = initial(target_type.inhand_x_dimension)
 	inhand_y_dimension = initial(target_type.inhand_y_dimension)
 	name = initial(target_type.name)
-	desc = LANG("obj.e748a00f", list(initial(target_type.desc)))
+	desc = LANG("obj.e748a00f931d7ce0", list(initial(target_type.desc)))
 	return target_type //successfully "appearance copy" dyed something; returns the target type as a hacky way of extending
 
 //what happens to this object when washed inside a washing machine
@@ -372,16 +372,16 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	if(user.combat_mode)
 		return NONE
 	if (!state_open)
-		to_chat(user, span_warning(LANG("obj.945f9ada", null)))
+		to_chat(user, span_warning(LANG("obj.945f9ada0c77e559", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(bloody_mess)
-		to_chat(user, span_warning(LANG("obj.70e4926e", list(src))))
+		to_chat(user, span_warning(LANG("obj.70e4926e415c34cc", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(total_load >= max_wash_capacity)
-		to_chat(user, span_warning(LANG("obj.0d9ba4ad", null)))
+		to_chat(user, span_warning(LANG("obj.0d9ba4ad19ce0965", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(item, src))
-		to_chat(user, span_warning(LANG("obj.ea876d08", list(item))))
+		to_chat(user, span_warning(LANG("obj.ea876d08d28e7d45", list(item))))
 		return ITEM_INTERACT_BLOCKING
 	if(item.dye_color)
 		color_source = item
@@ -395,7 +395,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	if(.)
 		return
 	if(busy)
-		to_chat(user, span_warning(LANG("obj.9e275a1c", list(src))))
+		to_chat(user, span_warning(LANG("obj.9e275a1c3effde3e", list(src))))
 		return
 
 	if(user.pulling && isliving(user.pulling))
@@ -408,10 +408,10 @@ GLOBAL_LIST_INIT(dye_registry, list(
 				update_appearance()
 			else if(ishuman(victim))
 				if(user.grab_state < GRAB_AGGRESSIVE)
-					balloon_alert(user, LANG("obj.e79ca7b4", null))
+					balloon_alert(user, LANG("obj.e79ca7b426d1dba2", null))
 					return
 
-				victim.visible_message(span_danger(LANG("obj.7a0f23a6", list(user, victim, src))))
+				victim.visible_message(span_danger(LANG("obj.7a0f23a61fa830d6", list(user, victim, src))))
 				log_game("[key_name_and_tag(user)] is forcing [key_name_and_tag(victim)] into a washing machine")
 				if(!do_after(user, 3 SECONDS, target = src, timed_action_flags = IGNORE_HELD_ITEM, extra_checks = CALLBACK(src, PROC_REF(check_aggro_grab), user)))
 					return
@@ -436,13 +436,13 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	if(!user.can_perform_action(src, ALLOW_SILICON_REACH))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 	if(busy)
-		to_chat(user, span_warning(LANG("obj.9e275a1c", list(src))))
+		to_chat(user, span_warning(LANG("obj.9e275a1c3effde3e", list(src))))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 	if(state_open)
-		to_chat(user, span_warning(LANG("obj.05b1cae3", null)))
+		to_chat(user, span_warning(LANG("obj.05b1cae3f571e2cf", null)))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 	if(bloody_mess)
-		to_chat(user, span_warning(LANG("obj.70e4926e", list(src))))
+		to_chat(user, span_warning(LANG("obj.70e4926e415c34cc", list(src))))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 	busy = TRUE
 	if(HAS_TRAIT(user, TRAIT_BRAINWASHING))

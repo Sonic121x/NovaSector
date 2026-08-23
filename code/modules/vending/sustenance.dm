@@ -32,10 +32,10 @@
 		return
 	if(!istype(living_user.get_idcard(TRUE), /obj/item/card/id/advanced/prisoner))
 		if(!req_access)
-			speak(LANG("obj.99803408", null))
+			speak(LANG("obj.99803408ab9652c2", null))
 			return
 		if(!allowed(living_user))
-			speak(LANG("obj.8a699ba5", null))
+			speak(LANG("obj.8a699ba5f5d4602d", null))
 			return
 	return ..()
 
@@ -56,12 +56,12 @@
 
 /obj/machinery/vending/sustenance/labor_camp/proceed_payment(obj/item/card/id/advanced/prisoner/paying_scum_id, mob/living/mob_paying, datum/data/vending_product/product_to_vend, price_to_use)
 	if(!istype(paying_scum_id))
-		speak(LANG("obj.f50f9f22", null))
+		speak(LANG("obj.f50f9f220f277643", null))
 		return FALSE
 	if(LAZYLEN(product_to_vend.returned_products))
 		price_to_use = 0 //returned items are free
 	if(price_to_use && !(paying_scum_id.points >= price_to_use)) //not enough good prisoner points
-		speak(LANG("obj.44676581", list(product_to_vend.name)))
+		speak(LANG("obj.446765814c7ee10f", list(product_to_vend.name)))
 		flick(icon_deny, src)
 		return FALSE
 

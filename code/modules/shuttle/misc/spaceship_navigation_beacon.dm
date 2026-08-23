@@ -55,14 +55,14 @@
 /obj/machinery/spaceship_navigation_beacon/multitool_act(mob/living/user, obj/item/tool)
 	..()
 
-	var/chosen_tag = tgui_input_text(user, LANG("obj.85af715c", null), LANG("obj.e461ea59", null), max_length = MAX_NAME_LEN)
+	var/chosen_tag = tgui_input_text(user, LANG("obj.85af715c05297674", null), LANG("obj.e461ea590b47a312", null), max_length = MAX_NAME_LEN)
 	if(!chosen_tag)
 		return
 
 	var/new_name = "[initial(src.name)] [chosen_tag]"
 	if(new_name && Adjacent(user))
 		name = new_name
-		balloon_alert_to_viewers(LANG("obj.ca23ac38", null))
+		balloon_alert_to_viewers(LANG("obj.ca23ac385012978f", null))
 
 	return TRUE
 
@@ -78,11 +78,11 @@
 
 /obj/machinery/spaceship_navigation_beacon/examine()
 	.=..()
-	. += span_notice(LANG("obj.e5d986b7", list(FREQ_RADIO_NAV_BEACON / 10)))
+	. += span_notice(LANG("obj.e5d986b71c3a9abc", list(FREQ_RADIO_NAV_BEACON / 10)))
 	if(locked)
-		. += span_warning(LANG("obj.f2195955", null))
+		. += span_warning(LANG("obj.f2195955d6ca54db", null))
 	else
-		. += span_notice(LANG("obj.79fdbc01", null))
+		. += span_notice(LANG("obj.79fdbc01b478545a", null))
 
 /obj/machinery/spaceship_navigation_beacon/process(seconds_per_tick)
 	if(COOLDOWN_FINISHED(src, next_automatic_message_time) && radio)
@@ -107,5 +107,5 @@
 
 /obj/item/folded_navigation_gigabeacon/examine()
 	.=..()
-	. += span_notice(LANG("obj.c3fb1fb2", null))
-	. += span_notice(LANG("obj.e5d986b7", list(FREQ_RADIO_NAV_BEACON / 10)))
+	. += span_notice(LANG("obj.c3fb1fb252992ae7", null))
+	. += span_notice(LANG("obj.e5d986b71c3a9abc", list(FREQ_RADIO_NAV_BEACON / 10)))

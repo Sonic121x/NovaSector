@@ -23,13 +23,13 @@
 /obj/item/food/grown/banana/banana_spider_spawnable/attack_self(mob/user)
 	if(awakening || isspaceturf(user.loc))
 		return
-	to_chat(user, span_notice(LANG("obj.8634f5c0", null)))
+	to_chat(user, span_notice(LANG("obj.8634f5c09b45be45", null)))
 	awakening = TRUE
 	addtimer(CALLBACK(src, PROC_REF(spawnspider)), 8 SECONDS)
 
 /obj/item/food/grown/banana/banana_spider_spawnable/proc/spawnspider()
 	if(!QDELETED(src))
 		var/mob/living/basic/banana_spider/banana_spider = new(get_turf(loc))
-		banana_spider.visible_message(span_notice(LANG("obj.59afccc9", null)))
+		banana_spider.visible_message(span_notice(LANG("obj.59afccc9d61db1ea", null)))
 		qdel(src)
 

@@ -88,7 +88,7 @@
 	if(.)
 		return
 	if(malfunctioning && prob(MOD_MALFUNCTION_PROB))
-		balloon_alert(ui.user, LANG("obj.a820219e", null))
+		balloon_alert(ui.user, LANG("obj.a820219e011d9757", null))
 		return
 	switch(action)
 		if("lock")
@@ -96,7 +96,7 @@
 				locked = !locked
 				balloon_alert(ui.user, "[locked ? "locked" : "unlocked"]")
 			else
-				balloon_alert(ui.user, LANG("obj.68742331", null))
+				balloon_alert(ui.user, LANG("obj.687423311fe7b8ef", null))
 				playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		if("call")
 			if(!mod_link.link_call)

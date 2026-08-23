@@ -64,7 +64,7 @@
 	. = ..()
 	if(user.combat_mode)
 		return
-	visible_message(span_warning(LANG("mob.3aed09e7", list(src))))
+	visible_message(span_warning(LANG("mob.3aed09e75df55e04", list(src))))
 	for(var/atom/affected in range(2, get_turf(src)))
 		if(istype(affected, /obj/item/stock_parts/power_store/cell))
 			var/obj/item/stock_parts/power_store/cell/cell = affected

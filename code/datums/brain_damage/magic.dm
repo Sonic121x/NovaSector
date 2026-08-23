@@ -30,7 +30,7 @@
 		return
 
 	if(COOLDOWN_FINISHED(src, damage_warning_cooldown))
-		to_chat(owner, span_warning(LANG("datum.cbd62039", null)))
+		to_chat(owner, span_warning(LANG("datum.cbd62039cf5f3bc9", null)))
 		COOLDOWN_START(src, damage_warning_cooldown, 10 SECONDS)
 	owner.take_overall_damage(burn = 1.5 * seconds_per_tick)
 
@@ -120,7 +120,7 @@
 
 	if(get_dist(owner, stalker) <= 1)
 		playsound(owner, 'sound/effects/magic/demon_attack1.ogg', 50)
-		owner.visible_message(span_warning(LANG("datum.da9e8de9", list(owner))), span_userdanger(LANG("datum.e1270845", null)))
+		owner.visible_message(span_warning(LANG("datum.da9e8de93ca694ba", list(owner))), span_userdanger(LANG("datum.e1270845a6d8c64b", null)))
 		owner.take_bodypart_damage(rand(20, 45), wound_bonus=CANT_WOUND)
 	else if(SPT_PROB(30, seconds_per_tick))
 		stalker.forceMove(get_step_towards(stalker, owner))

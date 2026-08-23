@@ -35,7 +35,7 @@
 /datum/component/pinnable_accessory/proc/try_to_pin(obj/item/clothing/accessory/badge, mob/living/carbon/human/distinguished, mob/user)
 	var/obj/item/clothing/under/distinguished_uniform = distinguished.w_uniform
 	if(!istype(distinguished_uniform))
-		distinguished.balloon_alert(user, LANG("datum.42735d0c", null))
+		distinguished.balloon_alert(user, LANG("datum.42735d0c24ddf8fb", null))
 		return
 
 	if(!badge.can_attach_accessory(distinguished_uniform, user))
@@ -44,8 +44,8 @@
 
 	if (!silent)
 		user.visible_message(
-			span_notice(LANG("datum.390eef44", list(user, badge, distinguished))),
-			span_notice(LANG("datum.e4e75b94", list(badge, distinguished))),
+			span_notice(LANG("datum.390eef44b16bc652", list(user, badge, distinguished))),
+			span_notice(LANG("datum.e4e75b94cc1b4519", list(badge, distinguished))),
 		)
 
 	if (on_pre_pin && !on_pre_pin.Invoke(distinguished, user))
@@ -59,13 +59,13 @@
 
 	if (pinned)
 		user.visible_message(
-			span_notice(LANG("datum.571feb4a", list(user, badge, distinguished))),
-			span_notice(LANG("datum.69613c36", list(badge, distinguished))),
+			span_notice(LANG("datum.571feb4a83144b2d", list(user, badge, distinguished))),
+			span_notice(LANG("datum.69613c36e140a609", list(badge, distinguished))),
 		)
 	else
 		user.visible_message(
-			span_warning(LANG("datum.16c87b63", list(user, badge, distinguished))),
-			span_warning(LANG("datum.7b4cdbb1", list(badge, distinguished))),
+			span_warning(LANG("datum.16c87b6305d6f586", list(user, badge, distinguished))),
+			span_warning(LANG("datum.7b4cdbb118927271", list(badge, distinguished))),
 		)
 
 /// Callback for do_after to check if we can still be pinned

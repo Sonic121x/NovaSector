@@ -15,7 +15,7 @@
 
 /datum/computer_file/program/robotact/on_start(mob/living/user)
 	if(!istype(computer, /obj/item/modular_computer/pda/silicon))
-		to_chat(user, span_warning(LANG("datum.020eb627", list(computer))))
+		to_chat(user, span_warning(LANG("datum.020eb627200ad2a2", list(computer))))
 		return FALSE
 	. = ..()
 	if(.)
@@ -149,8 +149,8 @@
 		if("alertPower")
 			if(!IS_UNCONSCIOUS_OR_CRIT(cyborg))
 				if(!cyborg.cell || !cyborg.cell.charge)
-					cyborg.visible_message(span_notice(LANG("datum.1e4dd381", list(span_name("[cyborg]")))), \
-						LANG("datum.3e1fe44a", null))
+					cyborg.visible_message(span_notice(LANG("datum.1e4dd38122559bdf", list(span_name("[cyborg]")))), \
+						LANG("datum.3e1fe44ab0e7be90", null))
 					playsound(cyborg, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE)
 
 		if("toggleSensors")
@@ -181,7 +181,7 @@
 	//NOVA EDIT ADDITION BEGIN - Adds in a Toggle for the Camera, blocking the AI from doing so
 		if("cameraToggle")
 			if(istype(cyborg, /mob/living/silicon/robot/shell))
-				to_chat(cyborg, span_warning(LANG("datum.448eeaf5", null)))
+				to_chat(cyborg, span_warning(LANG("datum.448eeaf5a070f2ed", null)))
 				return
 			else
 				cyborg.builtInCamera.toggle_cam()

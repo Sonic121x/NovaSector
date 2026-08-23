@@ -29,7 +29,7 @@
 /obj/item/food/egg/raptor_egg/examine(mob/user)
 	. = ..()
 	if (growth_progress >= RAPTOR_EGG_GROWTH_PROGRESS)
-		. += span_boldnotice(LANG("obj.276edfdb", null))
+		. += span_boldnotice(LANG("obj.276edfdba3a80fc1", null))
 
 /obj/item/food/egg/raptor_egg/process(seconds_per_tick)
 	if (!isturf(loc) || length(GLOB.raptor_population) >= MAX_RAPTOR_POP)
@@ -48,7 +48,7 @@
 	if (growth_progress < RAPTOR_EGG_GROWTH_PROGRESS || islava(loc))
 		return
 
-	visible_message(span_notice(LANG("obj.ad60dd61", list(src))))
+	visible_message(span_notice(LANG("obj.ad60dd61b4dfb14f", list(src))))
 	new /mob/living/basic/raptor/baby(loc, child_color, inherited_stats)
 	inherited_stats = null
 	qdel(src)

@@ -57,7 +57,7 @@
 	if(!ishuman(user))
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 	used_wrench.play_tool_sound(user)
-	user.balloon_alert(user, LANG("obj.d8917abe", null))
+	user.balloon_alert(user, LANG("obj.d8917abe3239fc3a", null))
 	if(!do_after(user, undeploy_time, src))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/undeployed_object = new spawned_on_undeploy()

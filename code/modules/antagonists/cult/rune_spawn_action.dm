@@ -26,13 +26,13 @@
 	if(!T)
 		return FALSE
 	if(isspaceturf(T))
-		to_chat(owner, span_warning(LANG("datum.c9d99de1", null)))
+		to_chat(owner, span_warning(LANG("datum.c9d99de1f0feaddf", null)))
 		return FALSE
 	if(locate(/obj/effect/rune) in T)
-		to_chat(owner, span_cult(LANG("datum.99666d98", null)))
+		to_chat(owner, span_cult(LANG("datum.99666d98038522f5", null)))
 		return FALSE
 	if(!is_station_level(T.z) && !is_mining_level(T.z))
-		to_chat(owner, span_warning(LANG("datum.44b6eb55", null)))
+		to_chat(owner, span_warning(LANG("datum.44b6eb55a6cd519e", null)))
 		return FALSE
 	return TRUE
 
@@ -43,7 +43,7 @@
 		return
 	var/chosen_keyword
 	if(initial(rune_type.req_keyword))
-		chosen_keyword = tgui_input_text(owner, LANG("datum.1f47d530", null), LANG("datum.bf4a41cd", null), max_length = MAX_NAME_LEN)
+		chosen_keyword = tgui_input_text(owner, LANG("datum.1f47d530f05cc1c3", null), LANG("datum.bf4a41cdcda96daa", null), max_length = MAX_NAME_LEN)
 		if(!chosen_keyword || !turf_check(T))
 			return
 //the outer ring is always the same across all runes

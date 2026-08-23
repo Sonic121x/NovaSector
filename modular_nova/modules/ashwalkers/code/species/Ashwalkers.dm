@@ -66,7 +66,7 @@
 	SIGNAL_HANDLER
 	// if the world time hasn't yet passed the time required for evolution
 	if(human_target.has_status_effect(/datum/status_effect/ash_age))
-		to_chat(human_target, span_warning(LANG("datum.839b1280", null)))
+		to_chat(human_target, span_warning(LANG("datum.839b1280f3c6493e", null)))
 		return
 
 	// since it was time, go up a stage and now we check what to add
@@ -76,7 +76,7 @@
 	switch(current_stage)
 		if(1)
 			species_target.damage_modifier += 10
-			to_chat(human_target, span_notice(LANG("datum.75fb3742", null)))
+			to_chat(human_target, span_notice(LANG("datum.75fb3742a050336f", null)))
 
 		if(2)
 			var/obj/item/bodypart/arm/left/left_arm = human_target.get_bodypart(BODY_ZONE_L_ARM)
@@ -90,7 +90,7 @@
 				right_arm.unarmed_damage_high += 5
 
 			ADD_TRAIT(human_target, TRAIT_BOULDER_BREAKER, REF(src))
-			to_chat(human_target, span_notice(LANG("datum.0c9f0175", null)))
+			to_chat(human_target, span_notice(LANG("datum.0c9f01758ada0fa7", null)))
 
 		if(3)
 			var/datum/action/ashen_actions/hivemind_speak/grant_hivemind = new /datum/action/ashen_actions/hivemind_speak(human_target)
@@ -98,22 +98,22 @@
 
 		if(4)
 			human_target.add_movespeed_modifier(/datum/movespeed_modifier/ash_aged)
-			to_chat(human_target, span_notice(LANG("datum.390547b8", null)))
+			to_chat(human_target, span_notice(LANG("datum.390547b8c739ebc6", null)))
 
 		if(5)
 			var/obj/item/organ/ashen_armblade/summoned_organ = new /obj/item/organ/ashen_armblade()
 			summoned_organ.Insert(human_target)
-			to_chat(human_target, span_notice(LANG("datum.6f16876f", null)))
+			to_chat(human_target, span_notice(LANG("datum.6f16876f91fc870c", null)))
 
 		if(6)
 			ADD_TRAIT(human_target, TRAIT_LAVA_IMMUNE, REF(src))
 			var/datum/action/cooldown/mob_cooldown/fire_breath/granted_action
 			granted_action = new(human_target)
 			granted_action.Grant(human_target)
-			to_chat(human_target, span_notice(LANG("datum.91f4b4c2", null)))
+			to_chat(human_target, span_notice(LANG("datum.91f4b4c265da6147", null)))
 
 		if(7 to INFINITY)
-			to_chat(human_target, span_warning(LANG("datum.a52e94f0", null)))
+			to_chat(human_target, span_warning(LANG("datum.a52e94f0d879b180", null)))
 
 /// Speed mod
 /datum/movespeed_modifier/ash_aged
@@ -123,9 +123,9 @@
 /datum/component/ash_age/proc/on_examine(atom/target_atom, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(human_target.has_status_effect(/datum/status_effect/ash_age))
-		examine_list += span_notice(LANG("datum.bea066b6", list(human_target)))
+		examine_list += span_notice(LANG("datum.bea066b6d3ff6a0e", list(human_target)))
 		return
-	examine_list += span_warning(LANG("datum.97db1288", list(human_target)))
+	examine_list += span_warning(LANG("datum.97db12885b095e49", list(human_target)))
 
 /datum/status_effect/ash_age
 	id = "ash_age"
@@ -191,12 +191,12 @@
 
 	if(locate(connected_organ.summoned_armblade) in connected_organ)
 		owner.put_in_active_hand(connected_organ.summoned_armblade)
-		owner.visible_message(span_warning(LANG("datum.4f914b98", list(owner))), span_warning(LANG("datum.f4917b16", null)), span_hear(LANG("datum.581bebe7", null)))
+		owner.visible_message(span_warning(LANG("datum.4f914b98691c0007", list(owner))), span_warning(LANG("datum.f4917b16aaefc314", null)), span_hear(LANG("datum.581bebe73d25d191", null)))
 		playsound(get_turf(owner), 'sound/effects/blob/blobattack.ogg', 30, TRUE)
 
 	else
 		connected_organ.summoned_armblade.forceMove(connected_organ)
-		owner.visible_message(span_warning(LANG("datum.1f76d95a", list(owner, owner.p_their(), connected_organ.summoned_armblade))), span_notice(LANG("datum.f00ab43e", list(connected_organ.summoned_armblade))), span_italics(LANG("datum.581bebe7", null)))
+		owner.visible_message(span_warning(LANG("datum.1f76d95a5c03dc82", list(owner, owner.p_their(), connected_organ.summoned_armblade))), span_notice(LANG("datum.f00ab43eb945f050", list(connected_organ.summoned_armblade))), span_italics(LANG("datum.581bebe73d25d191", null)))
 		playsound(get_turf(owner), 'sound/effects/blob/blobattack.ogg', 30, TRUE)
 
 /obj/item/melee/ashen_blade
@@ -256,28 +256,28 @@
 		if((!opening.requiresID() || opening.allowed(user)) && opening.hasPower()) //This is to prevent stupid shit like hitting a door with an arm blade, the door opening because you have acces and still getting a "the airlocks motors resist our efforts to force it" message, power requirement is so this doesn't stop unpowered doors from being pried open if you have access
 			return
 		if(opening.locked)
-			opening.balloon_alert(user, LANG("obj.6a3633c4", null))
+			opening.balloon_alert(user, LANG("obj.6a3633c424772e6e", null))
 			return
 
 		if(opening.hasPower())
-			user.visible_message(span_warning(LANG("obj.573a3a08", list(user, src))), span_warning(LANG("obj.a36e868f", list(opening))), \
-			span_hear(LANG("obj.4e2b5bed", null)))
+			user.visible_message(span_warning(LANG("obj.573a3a084f4157fe", list(user, src))), span_warning(LANG("obj.a36e868f8c6d64dd", list(opening))), \
+			span_hear(LANG("obj.4e2b5bedec44f46d", null)))
 			playsound(opening, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE)
 			if(!do_after(user, 10 SECONDS, target = opening))
 				return
 
-		user.visible_message(span_warning(LANG("obj.ec05ee4f", list(user, user.p_their(), src))), span_warning(LANG("obj.e5ba6600", list(opening))), \
-		span_hear(LANG("obj.4e2b5bed", null)))
+		user.visible_message(span_warning(LANG("obj.ec05ee4ff87af269", list(user, user.p_their(), src))), span_warning(LANG("obj.e5ba660052a0fff1", list(opening))), \
+		span_hear(LANG("obj.4e2b5bedec44f46d", null)))
 		opening.open(BYPASS_DOOR_CHECKS)
 
 /obj/item/melee/ashen_blade/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/crusher_trophy))
 		if(prob(25)) //by chance, you should get at least every 3 out of 4 trophies.
-			to_chat(user, span_warning(LANG("obj.c1f0e91f", list(src, tool))))
+			to_chat(user, span_warning(LANG("obj.c1f0e91f4ea6a14a", list(src, tool))))
 			qdel(tool)
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_warning(LANG("obj.252ccaeb", list(src, tool))))
+		to_chat(user, span_warning(LANG("obj.252ccaeb168611a0", list(src, tool))))
 		playsound(get_turf(src), 'sound/effects/magic/demon_attack1.ogg', 50, TRUE)
 		qdel(tool)
 		consumed_trophies += 1
@@ -296,7 +296,7 @@
 			exposed_wound_bonus += 2
 
 		else if(consumed_trophies == (max_trophies + 1)) //just so you aren't spammed...
-			to_chat(user, span_warning(LANG("obj.54cd2a85", list(src))))
+			to_chat(user, span_warning(LANG("obj.54cd2a85eba1d2ea", list(src))))
 
 		return ITEM_INTERACT_BLOCKING
 
@@ -320,7 +320,7 @@
 
 	currently_used = TRUE
 
-	var/inserted_message = tgui_input_text(owner, LANG("datum.7c660e6f", null), LANG("datum.e4746e5f", null), max_length = CHAT_MESSAGE_MAX_LENGTH)
+	var/inserted_message = tgui_input_text(owner, LANG("datum.7c660e6fccd3a48f", null), LANG("datum.e4746e5f94895cef", null), max_length = CHAT_MESSAGE_MAX_LENGTH)
 	if(isnull(inserted_message))
 		currently_used = FALSE
 		return
@@ -329,11 +329,11 @@
 		if(!isashwalker(living_ashwalker))
 			continue
 
-		to_chat(living_ashwalker, span_rose(LANG("datum.deb3c2c3", list(owner, inserted_message))))
+		to_chat(living_ashwalker, span_rose(LANG("datum.deb3c2c36a71b075", list(owner, inserted_message))))
 
 	for(var/mob/dead_mob in GLOB.dead_mob_list)
 		var/link = FOLLOW_LINK(dead_mob, src)
-		to_chat(dead_mob, span_rose(LANG("datum.7ab889f0", list(link, owner, inserted_message))))
+		to_chat(dead_mob, span_rose(LANG("datum.7ab889f0d76b8e5e", list(link, owner, inserted_message))))
 
 	var/logging_text = "[key_name(owner)] spoke into the hivemind: [inserted_message]"
 	log_say(logging_text)

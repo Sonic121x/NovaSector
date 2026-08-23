@@ -174,7 +174,7 @@
 	if(. == original_word || !should_stutter())
 		return
 	var/datum/brain_trauma/special/obsessed/obsession_trauma = get_obsession()
-	to_chat(owner, span_warning(LANG("datum.4771a848", list(obsession_trauma.obsession.real_name))))
+	to_chat(owner, span_warning(LANG("datum.4771a8488fd390d5", list(obsession_trauma.obsession.real_name))))
 	COOLDOWN_START(src, stutter_cooldown, rand(4, 8) SECONDS)
 
 /datum/status_effect/speech/stutter/obsession/proc/get_obsession()

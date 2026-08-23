@@ -17,7 +17,7 @@
 	if(isliving(target))
 		var/mob/living/victim = target
 		if(victim.can_block_magic(antimagic_flags, antimagic_charge_cost))
-			visible_message(span_warning(LANG("obj.40223ab3", list(src, victim))))
+			visible_message(span_warning(LANG("obj.40223ab31c29058f", list(src, victim))))
 			return PROJECTILE_DELETE_WITHOUT_HITTING
 
 	if(istype(target, /obj/machinery/hydroponics)) // even plants can block antimagic
@@ -25,7 +25,7 @@
 		if(!plant_tray.myseed)
 			return
 		if(plant_tray.myseed.get_gene(/datum/plant_gene/trait/anti_magic))
-			visible_message(span_warning(LANG("obj.40223ab3", list(src, plant_tray))))
+			visible_message(span_warning(LANG("obj.40223ab31c29058f", list(src, plant_tray))))
 			return PROJECTILE_DELETE_WITHOUT_HITTING
 
 /// Straight up kills you, unless you're undead
@@ -41,9 +41,9 @@
 		if(victim.mob_biotypes & MOB_UNDEAD) //negative energy heals the undead
 			if(victim.revive(ADMIN_HEAL_ALL & ~HEAL_REFRESH_ORGANS , force_grab_ghost = TRUE)) // This heals suicides
 				victim.grab_ghost(force = TRUE)
-				to_chat(victim, span_notice(LANG("obj.deba4578", null)))
+				to_chat(victim, span_notice(LANG("obj.deba4578ff3cb4ae", null)))
 			else if(victim.stat != DEAD)
-				to_chat(victim, span_notice(LANG("obj.db6efb87", null)))
+				to_chat(victim, span_notice(LANG("obj.db6efb87489e801b", null)))
 			return
 		victim.investigate_log("has been killed by a bolt of death.", INVESTIGATE_DEATHS)
 		victim.death()
@@ -72,9 +72,9 @@
 			return
 
 		if(victim.revive(ADMIN_HEAL_ALL & ~HEAL_REFRESH_ORGANS , force_grab_ghost = TRUE)) // This heals suicides
-			to_chat(victim, span_notice(LANG("obj.fbc12ddd", null)))
+			to_chat(victim, span_notice(LANG("obj.fbc12ddd4d77ed8e", null)))
 		else if(victim.stat != DEAD)
-			to_chat(victim, span_notice(LANG("obj.db6efb87", null)))
+			to_chat(victim, span_notice(LANG("obj.db6efb87489e801b", null)))
 
 	if(istype(target, /obj/machinery/hydroponics))
 		var/obj/machinery/hydroponics/plant_tray = target
@@ -374,13 +374,13 @@
 	if(iscarbon(target))
 		if(istype(get_area(target), /area/deathmatch))
 			target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 25) // Roughly 8 hits to kill
-			target.visible_message(span_warning(LANG("obj.e3abd235", list(target))))
+			target.visible_message(span_warning(LANG("obj.e3abd2353a6a12e7", list(target))))
 			return BULLET_ACT_HIT
 		for(var/x in target.get_traumas())//checks to see if the victim is already going through possession
 			if(istype(x, /datum/brain_trauma/special/imaginary_friend/trapped_owner))
-				target.visible_message(span_warning(LANG("obj.4ef98e44", list(src, target))))
+				target.visible_message(span_warning(LANG("obj.4ef98e440bcfff61", list(src, target))))
 				return BULLET_ACT_BLOCK
-		to_chat(target, span_warning(LANG("obj.b923311f", null)))
+		to_chat(target, span_warning(LANG("obj.b923311f010c3d38", null)))
 		possession_test(target)
 		return BULLET_ACT_HIT
 
@@ -395,12 +395,12 @@
 	if(target.stat == DEAD)//boo.
 		return
 	if(chosen_one)
-		to_chat(target, span_boldnotice(LANG("obj.0b74084f", null)))
+		to_chat(target, span_boldnotice(LANG("obj.0b74084fe365206c", null)))
 		var/mob/dead/observer/ghosted_target = target.ghostize(FALSE)
 		target.PossessByPlayer(chosen_one.key)
 		trauma.add_friend(ghosted_target)
 	else
-		to_chat(target, span_notice(LANG("obj.cefcd9e2", null)))
+		to_chat(target, span_notice(LANG("obj.cefcd9e2eed77b00", null)))
 		qdel(trauma)
 
 /// Gives magic projectiles an area of effect radius that will bump into any nearby mobs

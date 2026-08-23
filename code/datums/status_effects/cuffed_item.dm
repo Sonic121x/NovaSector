@@ -106,7 +106,7 @@
 /datum/status_effect/cuffed_item/proc/on_examine_more(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_warning(LANG("datum.e1e53bc4", list(cuffed.examine_title(user), owner.p_their(), cuffed_to.plaintext_zone, cuffs.examine_title(user))))
+	examine_list += span_warning(LANG("datum.e1e53bc4597c23e9", list(cuffed.examine_title(user), owner.p_their(), cuffed_to.plaintext_zone, cuffs.examine_title(user))))
 
 /// What happens if the limb we're cuffed to is removed?
 /datum/status_effect/cuffed_item/proc/cuffed_to_removed(datum/source, mob/living/carbon/owner, special)
@@ -190,19 +190,19 @@
 	if(!leash_to_mob.dropItemToGround(cuffed))
 		qdel(src)
 		return
-	to_chat(leash_to_mob, span_warning(LANG("datum.1d71ec19", list(cuffs, cuffed, owner))))
+	to_chat(leash_to_mob, span_warning(LANG("datum.1d71ec19e1a38ed6", list(cuffs, cuffed, owner))))
 
 /// Stops it from being stored anywhere
 /datum/status_effect/cuffed_item/proc/block_storage_insert(obj/item/source, atom/target_storage, mob/user, force, messages)
 	SIGNAL_HANDLER
 	if(messages)
-		target_storage.balloon_alert(user, LANG("datum.3913c79e", list(source.name)))
+		target_storage.balloon_alert(user, LANG("datum.3913c79e2f6fad58", list(source.name)))
 	return BLOCK_STORAGE_INSERT
 
 /// Stops double cuff
 /datum/status_effect/cuffed_item/proc/block_item_cuff(obj/item/source, mob/cuffer, obj/item/cuffs)
 	SIGNAL_HANDLER
-	source.balloon_alert(cuffer, LANG("datum.36469744", null))
+	source.balloon_alert(cuffer, LANG("datum.364697445a5053cb", null))
 	return BLOCK_ITEM_CUFF
 
 ///What happens if one of the items is moved away from the mob
@@ -246,20 +246,20 @@
 		return FALSE
 
 	if(!(user.mobility_flags & MOBILITY_USE) || (user != owner && !owner.IsReachableBy(user)))
-		owner.balloon_alert(user, LANG("datum.ce24dac8", null))
+		owner.balloon_alert(user, LANG("datum.ce24dac8913e1594", null))
 		return FALSE
 
 	if(user != owner)
-		owner.visible_message(span_notice(LANG("datum.f534000c", list(user, cuffs, cuffed, owner))), span_warning(LANG("datum.30155df6", list(user, cuffs, cuffed))))
+		owner.visible_message(span_notice(LANG("datum.f534000c635ee619", list(user, cuffs, cuffed, owner))), span_warning(LANG("datum.30155df6823944c7", list(user, cuffs, cuffed))))
 
-	owner.balloon_alert(user, LANG("datum.547b3cb3", null))
+	owner.balloon_alert(user, LANG("datum.547b3cb319d42f21", null))
 	playsound(owner, cuffs.cuffsound, 30, TRUE, -2)
 	if(!do_after(user, cuffs.get_handcuff_time(user) * 1.5, owner, interaction_key = interaction_key) || QDELETED(src))
-		owner.balloon_alert(user, LANG("datum.c67b5d27", null))
+		owner.balloon_alert(user, LANG("datum.c67b5d274d6e724b", null))
 		return FALSE
 
 	if(user != owner)
-		owner.visible_message(span_notice(LANG("datum.c82c3caf", list(user, cuffs, cuffed, owner))), span_warning(LANG("datum.1ffa2e55", list(user, cuffs, cuffed))))
+		owner.visible_message(span_notice(LANG("datum.c82c3cafe26c4720", list(user, cuffs, cuffed, owner))), span_warning(LANG("datum.1ffa2e556ffbf8ae", list(user, cuffs, cuffed))))
 
 	log_combat(user, owner, "removed restraints binding [cuffed] to")
 
@@ -267,7 +267,7 @@
 	var/mob/living/ref_owner = owner
 	ref_cuffs.forceMove(owner.drop_location()) //This will cause the status effect to delete itself, which unsets the 'cuffs' var
 	user.put_in_hands(ref_cuffs)
-	ref_owner.balloon_alert(user, LANG("datum.656a238c", null))
+	ref_owner.balloon_alert(user, LANG("datum.656a238cd939f378", null))
 
 	return TRUE
 

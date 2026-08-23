@@ -288,12 +288,12 @@
 
 /obj/item/clothing/head/skrell_chain/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.ce2b4e46", null))
+	. += span_notice(LANG("obj.ce2b4e46aefb9a9d", null))
 
 /obj/item/clothing/head/skrell_chain/attack_self(mob/user)
-	var/style_name = tgui_input_list(user, LANG("obj.55dfefea", null), LANG("obj.26d3def8", null), chain_styles)
+	var/style_name = tgui_input_list(user, LANG("obj.55dfefea37bbbdd1", null), LANG("obj.26d3def8963e06f6", null), chain_styles)
 	worn_icon_state = chain_styles[style_name]
-	balloon_alert(user, LANG("obj.f5069694", null))
+	balloon_alert(user, LANG("obj.f50696942096b781", null))
 
 /obj/item/clothing/head/skrell_chain/silver
 	name = "silver skrellian head chain"

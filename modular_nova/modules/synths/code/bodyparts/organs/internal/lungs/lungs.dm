@@ -26,12 +26,12 @@
 
 	switch(severity)
 		if(EMP_HEAVY)
-			to_chat(owner, span_warning(LANG("obj.eebc97f4", null)))
+			to_chat(owner, span_warning(LANG("obj.eebc97f437d171c8", null)))
 			apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 			owner.adjust_bodytemperature(SYNTH_HEAVY_EMP_TEMPERATURE_POWER * TEMPERATURE_DAMAGE_COEFFICIENT)
 
 		if(EMP_LIGHT)
-			to_chat(owner, span_warning(LANG("obj.b0f459f5", null)))
+			to_chat(owner, span_warning(LANG("obj.b0f459f5cd3aa91b", null)))
 			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 			owner.adjust_bodytemperature(SYNTH_LIGHT_EMP_TEMPERATURE_POWER * TEMPERATURE_DAMAGE_COEFFICIENT)
 

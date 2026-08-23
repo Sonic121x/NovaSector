@@ -16,7 +16,7 @@
 	attack_verb_simple = list("stamp")
 
 /obj/item/stamp/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.12db9a09", list(user, user.p_their()))))
+	user.visible_message(span_suicide(LANG("obj.12db9a09fa6bef93", list(user, user.p_their()))))
 	playsound(src, 'sound/items/handling/standard_stamp.ogg', 50, vary = TRUE)
 	return OXYLOSS
 

@@ -60,11 +60,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/match/update_desc(updates)
 	. = ..()
 	if(lit)
-		desc = LANG("obj.68d3ee3f", list(initial(desc)))
+		desc = LANG("obj.68d3ee3f64e87eb4", list(initial(desc)))
 	else if(burnt)
-		desc = LANG("obj.f95d29a4", list(initial(desc)))
+		desc = LANG("obj.f95d29a459d18722", list(initial(desc)))
 	else if(broken)
-		desc = LANG("obj.2df33494", list(initial(desc)))
+		desc = LANG("obj.2df3349471a2423a", list(initial(desc)))
 	else
 		desc = initial(desc)
 
@@ -149,7 +149,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return ..()
 
 	if(cig.lit)
-		to_chat(user, span_warning(LANG("obj.d3ebc52c", list(cig))))
+		to_chat(user, span_warning(LANG("obj.d3ebc52c521a6b7c", list(cig))))
 		return
 
 	cig.attempt_light(user, src, target_mob == user ? null : span_notice("[user] holds [src] out for [target_mob], and lights [cig]."))
@@ -347,7 +347,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	to_edit.layer = new_layer
 
 /obj/item/cigarette/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.1593f0ac", list(user, src, user.p_they(), user.p_theyre(), user.p_them()))))
+	user.visible_message(span_suicide(LANG("obj.1593f0ac4d9f252a", list(user, src, user.p_they(), user.p_theyre(), user.p_them()))))
 	return (TOXLOSS|OXYLOSS)
 
 /obj/item/cigarette/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -364,11 +364,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	// Maybe jank, but the reason it's like this is that you can ignore ignition_effect() and also provide no text by giving an empty string to text_override, while still lighting.
 
 	if(!check_oxygen(user)) //cigarettes need oxygen
-		balloon_alert(user, LANG("obj.0886d784", null))
+		balloon_alert(user, LANG("obj.0886d78468b76dce", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!smoketime)
-		to_chat(user, span_warning(LANG("obj.3556913a", null)))
+		to_chat(user, span_warning(LANG("obj.3556913a68fa0be7", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	light(text_override)
@@ -395,12 +395,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(istype(glass, /obj/item/reagent_containers/cup/mortar))
 		return NONE
 	if(glass.reagents.trans_to(src, chem_volume, transferred_by = user)) //if reagents were transferred, show the message
-		to_chat(user, span_notice(LANG("obj.530d955b", list(src, glass))))
+		to_chat(user, span_notice(LANG("obj.530d955bca8193fa", list(src, glass))))
 	//if not, either the beaker was empty, or the cigarette was full
 	else if(!glass.reagents.total_volume)
-		to_chat(user, span_warning(LANG("obj.02d482cc", list(glass))))
+		to_chat(user, span_warning(LANG("obj.02d482cc1aef0cef", list(glass))))
 	else
-		to_chat(user, span_warning(LANG("obj.21d5a38a", list(src))))
+		to_chat(user, span_warning(LANG("obj.21d5a38ae9e8687a", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/cigarette/update_icon_state()
@@ -447,11 +447,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	// Custom handling for the hallucination effect
 	if(reagents?.has_reagent(/datum/reagent/flash_powder))
 		if(!isliving(loc))
-			loc.visible_message(span_hear(LANG("obj.7a9f2e3c", list(src))))
+			loc.visible_message(span_hear(LANG("obj.7a9f2e3c37da34b3", list(src))))
 			qdel(src)
 			return
 		var/mob/living/user = loc
-		loc.visible_message(span_hear(LANG("obj.6f00a940", list(user, name, p_they(user)))), span_danger(LANG("obj.3378a74b", null)))
+		loc.visible_message(span_hear(LANG("obj.6f00a9403f160685", list(user, name, p_they(user)))), span_danger(LANG("obj.3378a74b7cde8a89", null)))
 		user.flash_act(INFINITY, visual = TRUE, length = 5 SECONDS)
 		user.playsound_local(get_turf(user), SFX_EXPLOSION, 50, TRUE)
 		user.cause_hallucination(/datum/hallucination/death, "trick trick [name]")
@@ -498,7 +498,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	update_appearance(UPDATE_ICON)
 	set_light_on(FALSE)
 	if(ismob(loc))
-		to_chat(loc, span_notice(LANG("obj.a821e0ac", list(name))))
+		to_chat(loc, span_notice(LANG("obj.a821e0acd40c0998", list(name))))
 	QDEL_NULL(cig_smoke)
 	QDEL_NULL(mob_smoke)
 
@@ -519,23 +519,23 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	if(isnull(guy_infront))
 		smoker.visible_message(
-			span_notice(LANG("obj.bb2695f1", list(smoker, src))),
-			span_notice(LANG("obj.7086910b", list(src))),
+			span_notice(LANG("obj.bb2695f155bbac30", list(smoker, src))),
+			span_notice(LANG("obj.7086910bd652e07a", list(src))),
 		)
 
 	else if(ishuman(guy_infront) && guy_infront.get_bodypart(BODY_ZONE_HEAD) && !guy_infront.is_pepper_proof())
 		smoker.visible_message(
-			span_notice(LANG("obj.e53d3934", list(smoker, src, guy_infront))),
-			span_notice(LANG("obj.b10825a5", list(src, guy_infront))),
+			span_notice(LANG("obj.e53d3934377f214e", list(smoker, src, guy_infront))),
+			span_notice(LANG("obj.b10825a5a609a62e", list(src, guy_infront))),
 			ignored_mobs = guy_infront,
 		)
-		to_chat(guy_infront, span_warning(LANG("obj.918ef629", list(smoker, name))))
+		to_chat(guy_infront, span_warning(LANG("obj.918ef629d69bd648", list(smoker, name))))
 		smoke_in_face(guy_infront)
 
 	else
 		smoker.visible_message(
-			span_notice(LANG("obj.179d668b", list(smoker, src, guy_infront))),
-			span_notice(LANG("obj.bf5a0917", list(src, guy_infront))),
+			span_notice(LANG("obj.179d668b07ba7a30", list(smoker, src, guy_infront))),
+			span_notice(LANG("obj.bf5a0917dc971e42", list(src, guy_infront))),
 		)
 
 	if(!isturf(smoker.loc))
@@ -622,14 +622,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!isnull(user))
 		if(done_early)
 			if(isfloorturf(location) && location.has_gravity())
-				user.visible_message(span_notice(LANG("obj.a632d8e7", list(user, src))))
+				user.visible_message(span_notice(LANG("obj.a632d8e77f624ab4", list(user, src))))
 				new /obj/effect/decal/cleanable/ash(location)
 				long_exhale(user)
 			else
-				user.visible_message(span_notice(LANG("obj.d380cf10", list(user, src))))
+				user.visible_message(span_notice(LANG("obj.d380cf1026ea4d37", list(user, src))))
 			how_long_have_we_been_smokin = 0 SECONDS
 		else
-			to_chat(user, span_notice(LANG("obj.a821e0ac", list(name))))
+			to_chat(user, span_notice(LANG("obj.a821e0acd40c0998", list(name))))
 	new type_butt(location)
 	qdel(src)
 
@@ -646,7 +646,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return ..()
 
 	if(cig.lit)
-		to_chat(user, span_warning(LANG("obj.79fd2c4b", list(cig))))
+		to_chat(user, span_warning(LANG("obj.79fd2c4ba5e911c8", list(cig))))
 		return
 
 	cig.attempt_light(user, src, fire_guy == user ? null : span_notice("[user] holds \the [src] out for [fire_guy], and lights [fire_guy.p_their()] [cig.name]."))
@@ -1000,11 +1000,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/cigarette/pipe/put_out(mob/user, done_early = FALSE)
 	lit = FALSE
 	if(done_early)
-		user.visible_message(span_notice(LANG("obj.f63d4f5a", list(user, src))), span_notice(LANG("obj.00731180", list(src))))
+		user.visible_message(span_notice(LANG("obj.f63d4f5a9dc58d37", list(user, src))), span_notice(LANG("obj.00731180d2de7c9a", list(src))))
 
 	else
 		if(user)
-			to_chat(user, span_notice(LANG("obj.a821e0ac", list(name))))
+			to_chat(user, span_notice(LANG("obj.a821e0acd40c0998", list(name))))
 		packeditem = null
 	update_appearance(UPDATE_ICON)
 	set_light_on(FALSE)
@@ -1016,15 +1016,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return ..()
 
 	if(packeditem)
-		to_chat(user, span_warning(LANG("obj.90429325", null)))
+		to_chat(user, span_warning(LANG("obj.904293256f74695a", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/to_smoke = tool
 	if(istype(to_smoke, /obj/item/food/grown) && !HAS_TRAIT(to_smoke, TRAIT_DRIED))
-		to_chat(user, span_warning(LANG("obj.bf51b6a2", null)))
+		to_chat(user, span_warning(LANG("obj.bf51b6a24509cf14", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.16ae1517", list(to_smoke, src))))
+	to_chat(user, span_notice(LANG("obj.16ae151750ce356a", list(to_smoke, src))))
 	smoketime = 13 MINUTES
 	packeditem = to_smoke.name
 	update_name()
@@ -1037,7 +1037,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/cigarette/pipe/attack_self(mob/user)
 	var/atom/location = drop_location()
 	if(packeditem && !lit)
-		to_chat(user, span_notice(LANG("obj.4f4fb947", list(src, location))))
+		to_chat(user, span_notice(LANG("obj.4f4fb947b5009a75", list(src, location))))
 		new /obj/effect/decal/cleanable/ash(location)
 		packeditem = null
 		smoketime = 0
@@ -1120,13 +1120,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	reagents.add_reagent(/datum/reagent/drug/nicotine, 50)
 
 /obj/item/vape/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.7e62ee3d", list(user, user.p_they()))))//it doesn't give you cancer, it is cancer
+	user.visible_message(span_suicide(LANG("obj.7e62ee3d83a094fb", list(user, user.p_they()))))//it doesn't give you cancer, it is cancer
 	return (TOXLOSS|OXYLOSS)
 
 /obj/item/vape/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!screw)
 		screw = TRUE
-		to_chat(user, span_notice(LANG("obj.7e4e257f", list(src))))
+		to_chat(user, span_notice(LANG("obj.7e4e257fbf5c76a3", list(src))))
 		reagents.flags |= OPENCONTAINER
 		if(obj_flags & EMAGGED)
 			icon_state = "vapeopen_high"
@@ -1139,7 +1139,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			set_greyscale(new_config = /datum/greyscale_config/vape/open_low)
 	else
 		screw = FALSE
-		to_chat(user, span_notice(LANG("obj.2544d22b", list(src))))
+		to_chat(user, span_notice(LANG("obj.2544d22bc34bf1cf", list(src))))
 		reagents.flags &= ~(OPENCONTAINER)
 		icon_state = initial(post_init_icon_state) || initial(icon_state)
 		set_greyscale(new_config = initial(greyscale_config))
@@ -1149,31 +1149,31 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(screw && !(obj_flags & EMAGGED))//also kinky
 		if(!super)
 			super = TRUE
-			to_chat(user, span_notice(LANG("obj.f028607e", list(src))))
+			to_chat(user, span_notice(LANG("obj.f028607ef855a6b4", list(src))))
 			icon_state = "vapeopen_med"
 			set_greyscale(new_config = /datum/greyscale_config/vape/open_med)
 		else
 			super = FALSE
-			to_chat(user, span_notice(LANG("obj.b2797a32", list(src))))
+			to_chat(user, span_notice(LANG("obj.b2797a327df69b39", list(src))))
 			icon_state = "vapeopen_low"
 			set_greyscale(new_config = /datum/greyscale_config/vape/open_low)
 
 	if(screw && (obj_flags & EMAGGED))
-		to_chat(user, span_warning(LANG("obj.f8dad71b", list(src))))
+		to_chat(user, span_warning(LANG("obj.f8dad71b22202d7a", list(src))))
 
 /obj/item/vape/emag_act(mob/user, obj/item/card/emag/emag_card) // I WON'T REGRET WRITTING THIS, SURLY.
 
 	if (!screw)
-		balloon_alert(user, LANG("obj.d4e00927", null))
+		balloon_alert(user, LANG("obj.d4e00927ce9aa79d", null))
 		return FALSE
 
 	if (obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.9bab397b", null))
+		balloon_alert(user, LANG("obj.9bab397b17f019dd", null))
 		return FALSE
 
 	obj_flags |= EMAGGED
 	super = FALSE
-	balloon_alert(user, LANG("obj.3d11b921", null))
+	balloon_alert(user, LANG("obj.3d11b921e6fad5ee", null))
 	icon_state = "vapeopen_high"
 	set_greyscale(new_config = /datum/greyscale_config/vape/open_high)
 	do_sparks(5, TRUE, src)
@@ -1181,10 +1181,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/vape/attack_self(mob/user)
 	if(!screw)
-		balloon_alert(user, LANG("obj.d4e00927", null))
+		balloon_alert(user, LANG("obj.d4e00927ce9aa79d", null))
 		return
 	if(reagents.total_volume > 0)
-		to_chat(user, span_notice(LANG("obj.44e03ef8", list(src))))
+		to_chat(user, span_notice(LANG("obj.44e03ef830341105", list(src))))
 		reagents.clear_reagents()
 
 /obj/item/vape/equipped(mob/user, slot)
@@ -1193,10 +1193,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 
 	if(screw)
-		to_chat(user, span_warning(LANG("obj.2df8bf5d", null)))
+		to_chat(user, span_warning(LANG("obj.2df8bf5d86b3d5ab", null)))
 		return
 
-	to_chat(user, span_notice(LANG("obj.b2d80123", null)))
+	to_chat(user, span_notice(LANG("obj.b2d80123577bca0c", null)))
 	reagents.flags &= ~(NO_REACT)
 	reagents.handle_reactions()
 	if(QDELETED(src))
@@ -1241,7 +1241,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	if(!reagents.total_volume)
 		if(ismob(loc))
-			to_chat(M, span_warning(LANG("obj.02d482cc", list(src))))
+			to_chat(M, span_warning(LANG("obj.02d482cc1aef0cef", list(src))))
 			STOP_PROCESSING(SSobj, src)
 			//it's reusable so it won't unequip when empty
 		return
@@ -1267,7 +1267,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			M.apply_damage(20, BURN, BODY_ZONE_HEAD)
 			M.Paralyze(300)
 			do_sparks(5, TRUE, src)
-			to_chat(M, span_userdanger(LANG("obj.b27bfdbb", list(src))))
+			to_chat(M, span_userdanger(LANG("obj.b27bfdbbc295339f", list(src))))
 			qdel(src)
 			return
 	else if(super)

@@ -126,7 +126,7 @@
 	..()
 	if(href_list["cancel"])
 		if(!triggering)
-			to_chat(usr, span_admin(LANG("datum.f89ac756", null)))
+			to_chat(usr, span_admin(LANG("datum.f89ac756a995c14f", null)))
 			return
 		triggering = FALSE
 		message_admins("[key_name_admin(usr)] cancelled event [name].")
@@ -134,7 +134,7 @@
 		SSblackbox.record_feedback("tally", "event_admin_cancelled", 1, typepath)
 	if(href_list["different_event"])
 		if(!triggering)
-			to_chat(usr, span_admin(LANG("datum.2bce0c8e", null)))
+			to_chat(usr, span_admin(LANG("datum.2bce0c8ec54b2948", null)))
 			return
 		triggering = FALSE
 		message_admins("[key_name_admin(usr)] chose to have event [name] rolled into a different event.")
@@ -245,7 +245,7 @@ Runs the event
 	if(control.alert_observers)
 		if (atom_of_interest)
 			notify_ghosts(
-				LANG("datum.f1f8dce9", list(control.name, atom_of_interest)),
+				LANG("datum.f1f8dce975abb44e", list(control.name, atom_of_interest)),
 				source = atom_of_interest,
 			)
 	return

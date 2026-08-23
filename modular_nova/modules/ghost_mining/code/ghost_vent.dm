@@ -46,13 +46,13 @@
 	if(!boulder_infinite)
 		switch(tapped)
 			if(TRUE)
-				. += span_notice(LANG("obj.e5f01231", list(boulder_bounty)))
+				. += span_notice(LANG("obj.e5f01231c40278b9", list(boulder_bounty)))
 			if(FALSE)
-				. += span_notice(LANG("obj.ee3ab12d", list(boulder_bounty)))
+				. += span_notice(LANG("obj.ee3ab12d43500380", list(boulder_bounty)))
 	if(manual_reset)
-		. += span_notice(LANG("obj.07f04671", list(reset_timer)))
+		. += span_notice(LANG("obj.07f0467149ec38d7", list(reset_timer)))
 	if(clear_tally >= 1)
-		. += span_notice(LANG("obj.9bead09b", list(clear_tally)))
+		. += span_notice(LANG("obj.9bead09b8a2f6f91", list(clear_tally)))
 
 /obj/structure/ore_vent/ghost_mining/produce_boulder(apply_cooldown)
 	RETURN_TYPE(/obj/item/boulder)
@@ -124,12 +124,12 @@
 	. = ..()
 	if(manual_reset)
 		if(reset_timer <= 0)
-			if(tgui_alert(user, reset_message, LANG("obj.b703ddac", null), list("Yes", "No")) != "Yes")
+			if(tgui_alert(user, reset_message, LANG("obj.b703ddac096ce0d4", null), list("Yes", "No")) != "Yes")
 				return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 			reset_vent(TRUE)
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 		else
-			balloon_alert_to_viewers(LANG("obj.5690d9c2", null))
+			balloon_alert_to_viewers(LANG("obj.5690d9c2d242bb55", null))
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/ore_vent/ghost_mining/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
@@ -435,7 +435,7 @@
 			boss_string = "clear, a bonfire of bones burning beneath"
 		if(/mob/living/simple_animal/hostile/asteroid/elite/pandora) //Elite vent end
 			boss_string = "rippling calmly in odd geometric patterns"
-	. += span_notice(LANG("obj.5a66df44", list(boss_string)))
+	. += span_notice(LANG("obj.5a66df4422ce59f8", list(boss_string)))
 
 /obj/structure/ore_vent/ghost_mining/boss/reset_vent()
 	. = ..()

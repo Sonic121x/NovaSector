@@ -32,7 +32,7 @@
 		straitjacket = null
 
 	if(!handcuffs && !legcuffs && !straitjacket && !prisoner_shoes && !knotted_shoes && !some_manner_of_cage && !space_invader)
-		user.balloon_alert(user, LANG("datum.b2d2162d", null))
+		user.balloon_alert(user, LANG("datum.b2d2162df687b38e", null))
 		return .
 	..()
 
@@ -51,11 +51,11 @@
 
 	for(var/obj/restraint as anything in restraints)
 		if(restraint.obj_flags & (INDESTRUCTIBLE | ACID_PROOF | UNACIDABLE))
-			to_chat(user, span_changeling(LANG("datum.d793256c", list(restraint))))
+			to_chat(user, span_changeling(LANG("datum.d793256cab6b6ceb", list(restraint))))
 			continue
 
 		if(restraint == user.loc)
-			restraint.visible_message(span_warning(LANG("datum.c80b4154", list(restraint))))
+			restraint.visible_message(span_warning(LANG("datum.c80b41548f710a8d", list(restraint))))
 			addtimer(CALLBACK(restraint, TYPE_PROC_REF(/atom, atom_destruction), ACID), 4 SECONDS)
 			for(var/beat in 1 to 3)
 				addtimer(CALLBACK(src, PROC_REF(make_puddle), restraint), beat SECONDS)
@@ -66,9 +66,9 @@
 		addtimer(CALLBACK(restraint, TYPE_PROC_REF(/atom, atom_destruction), ACID), 1.5 SECONDS)
 		log_combat(user = user, target = restraint, what_done = "melted restraining item", addition = "(biodegrade)")
 		user.visible_message(
-			span_warning(LANG("datum.e681e603", list(user, restraint))),
-			user.balloon_alert(user, LANG("datum.55a9cd67", null)),
-			span_danger(LANG("datum.b4a2c7f6", null)))
+			span_warning(LANG("datum.e681e6031b69a7ef", list(user, restraint))),
+			user.balloon_alert(user, LANG("datum.55a9cd6724b09906", null)),
+			span_danger(LANG("datum.b4a2c7f687d452b6", null)))
 		playsound(user, 'sound/items/tools/welder.ogg', 50, TRUE)
 		. = TRUE
 
@@ -95,16 +95,16 @@
 	playsound(user, 'sound/mobs/non-humanoids/bileworm/bileworm_spit.ogg', 50, TRUE)
 	if(IS_CHANGELING(hapless_manhandler))
 		user.visible_message(
-			span_danger(LANG("datum.0d9fd9aa", list(user, hapless_manhandler))),
-			span_changeling(LANG("datum.4b694fb3", list(span_danger("But nothing happened?!")))),
-			span_danger(LANG("datum.57dcc57a", null))
+			span_danger(LANG("datum.0d9fd9aa40ca5679", list(user, hapless_manhandler))),
+			span_changeling(LANG("datum.4b694fb337908f25", list(span_danger("But nothing happened?!")))),
+			span_danger(LANG("datum.57dcc57ad040753a", null))
 			)
-		to_chat(hapless_manhandler, span_changeling(LANG("datum.174dd70b", null)))
+		to_chat(hapless_manhandler, span_changeling(LANG("datum.174dd70bce234991", null)))
 		return
 	user.visible_message(
-		span_danger(LANG("datum.b6684180", list(user, hapless_manhandler))),
-		user.balloon_alert(user, LANG("datum.129592f0", null)),
-		span_danger(LANG("datum.0ca6b9c5", null)))
+		span_danger(LANG("datum.b668418068ac61e3", list(user, hapless_manhandler))),
+		user.balloon_alert(user, LANG("datum.129592f0e5b6ae18", null)),
+		span_danger(LANG("datum.0ca6b9c56af7457c", null)))
 	hapless_manhandler.Stun(2 SECONDS)
 	hapless_manhandler.emote("scream")
 	hapless_manhandler.stop_pulling()

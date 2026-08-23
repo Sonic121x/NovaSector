@@ -44,10 +44,10 @@
 /obj/machinery/satellite/proc/toggle(mob/user)
 	if(!active && !isinspace())
 		if(user)
-			to_chat(user, span_warning(LANG("obj.08e90777", list(src))))
+			to_chat(user, span_warning(LANG("obj.08e907777fe71f42", list(src))))
 		return FALSE
 	if(user)
-		to_chat(user, span_notice(LANG("obj.d6171b71", list(active ? "deactivate": "activate", src))))
+		to_chat(user, span_notice(LANG("obj.d6171b714b8cf981", list(active ? "deactivate": "activate", src))))
 	set_anchored(!anchored)
 	return TRUE
 
@@ -57,5 +57,5 @@
 
 /obj/machinery/satellite/multitool_act(mob/living/user, obj/item/I)
 	..()
-	to_chat(user, span_notice(LANG("obj.7d69322a", list(id, active ? "PRIMARY" : "STANDBY", (obj_flags & EMAGGED) ? "DEBUG_MODE //" : ""))))
+	to_chat(user, span_notice(LANG("obj.7d69322ad09c0894", list(id, active ? "PRIMARY" : "STANDBY", (obj_flags & EMAGGED) ? "DEBUG_MODE //" : ""))))
 	return TRUE

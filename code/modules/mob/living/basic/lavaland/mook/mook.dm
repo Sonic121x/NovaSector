@@ -186,7 +186,7 @@
 	return COMSIG_KB_ACTIVATED
 
 /mob/living/basic/mining/mook/death()
-	desc = LANG("mob.7c771812", null) //Can you guess the twist
+	desc = LANG("mob.7c771812210f34d7", null) //Can you guess the twist
 	return ..()
 
 /mob/living/basic/mining/mook/proc/attack_intruder(mob/living/intruder)

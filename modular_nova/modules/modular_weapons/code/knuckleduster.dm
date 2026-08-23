@@ -97,7 +97,7 @@
 	if(istype(user))
 		user.add_traits(list(TRAIT_CHUNKYFINGERS), REF(src))
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.balloon_alert(user, LANG("obj.1ce67ba1", null))
+	user.balloon_alert(user, LANG("obj.1ce67ba1bc8e790a", null))
 
 /**
  * Removes all glove-related bonuses, effects, and traits.
@@ -188,13 +188,13 @@
 		if(HAS_TRAIT(defender, TRAIT_BOXING_READY))
 			// boxer on boxer violence results in full boxing shenanigans. ggs
 			defender.visible_message(
-				span_danger(LANG("datum.454b0e16", list(attacker, defender))),
-				span_userdanger(LANG("datum.1ace6279", list(attacker))),
-				span_hear(LANG("datum.6c7f8149", null)),
+				span_danger(LANG("datum.454b0e163b68a5f7", list(attacker, defender))),
+				span_userdanger(LANG("datum.1ace6279c0000c05", list(attacker))),
+				span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 				COMBAT_MESSAGE_RANGE,
 				attacker,
 			)
-			to_chat(attacker, span_danger(LANG("datum.00087ddb", list(defender))))
+			to_chat(attacker, span_danger(LANG("datum.00087ddbe1a4f1cd", list(defender))))
 			defender.apply_effect(6 SECONDS, EFFECT_KNOCKDOWN, armor_block)
 			defender.SetSleeping(3 SECONDS) // this is still punishing enough i think
 			log_combat(attacker, defender, "knocked out (boxing) ")
@@ -202,26 +202,26 @@
 			// otherwise, if baton resistant, more stagger and stamina damage
 			if(HAS_TRAIT(defender, TRAIT_BATON_RESISTANCE))
 				defender.visible_message(
-					span_danger(LANG("datum.0280fff2", list(attacker, defender, defender.p_them()))),
-					span_userdanger(LANG("datum.b743a8b8", list(attacker))),
-					span_hear(LANG("datum.6c7f8149", null)),
+					span_danger(LANG("datum.0280fff214373140", list(attacker, defender, defender.p_them()))),
+					span_userdanger(LANG("datum.b743a8b8c5c86937", list(attacker))),
+					span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 					COMBAT_MESSAGE_RANGE,
 					attacker,
 				)
-				to_chat(attacker, span_danger(LANG("datum.5eb2f1d2", list(defender))))
+				to_chat(attacker, span_danger(LANG("datum.5eb2f1d2debf3613", list(defender))))
 				defender.adjust_staggered_up_to(0.5 SECONDS, 10 SECONDS) // probably not enough to increase the window to eat more crits
 				defender.apply_damage(15, STAMINA, blocked = armor_block) // if you're punching the guy who's baton-resistant, you might just want to shoot him, actually
 				log_combat(attacker, defender, "knocked around (boxing) ")
 			else
 			// otherwise, sit down buddy (if you got crit once you're probably lined up to eat more crits)
 				defender.visible_message(
-					span_danger(LANG("datum.0252723d", list(attacker, defender))),
-					span_userdanger(LANG("datum.f940daa3", list(attacker))),
-					span_hear(LANG("datum.6c7f8149", null)),
+					span_danger(LANG("datum.0252723d75538cfc", list(attacker, defender))),
+					span_userdanger(LANG("datum.f940daa335711f28", list(attacker))),
+					span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 					COMBAT_MESSAGE_RANGE,
 					attacker,
 				)
-				to_chat(attacker, span_danger(LANG("datum.e1cca3ed", list(defender))))
+				to_chat(attacker, span_danger(LANG("datum.e1cca3ed391d42a9", list(defender))))
 				defender.adjust_staggered_up_to(2 SECONDS, 10 SECONDS) // slight increase in window to eat more crits
 				defender.apply_effect(1 SECONDS, EFFECT_KNOCKDOWN, armor_block)
 				// in regards to knockdown: "1 second seems a bit low"
@@ -231,14 +231,14 @@
 				log_combat(attacker, defender, "knocked down (boxing) ")
 	else
 		defender.visible_message(
-			span_danger(LANG("datum.962ddadc", list(attacker, defender))),
-			span_userdanger(LANG("datum.706ff840", list(attacker))),
-			span_hear(LANG("datum.6c7f8149", null)),
+			span_danger(LANG("datum.962ddadceaa1df0c", list(attacker, defender))),
+			span_userdanger(LANG("datum.706ff84088f01398", list(attacker))),
+			span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 			COMBAT_MESSAGE_RANGE,
 			attacker,
 		)
 		defender.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 10 SECONDS)
-		to_chat(attacker, span_danger(LANG("datum.fde652f7", list(defender))))
+		to_chat(attacker, span_danger(LANG("datum.fde652f7c6bdbd50", list(defender))))
 		log_combat(attacker, defender, "staggered (boxing) ")
 
 #undef MARTIALART_STREET_BOXING

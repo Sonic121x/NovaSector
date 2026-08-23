@@ -33,14 +33,14 @@
 		return NONE // It's already open numbnuts
 
 	if(DOING_INTERACTION_WITH_TARGET(attacker, target) || (!isnull(interaction_key) && DOING_INTERACTION(attacker, interaction_key)))
-		attacker.balloon_alert(attacker, LANG("datum.8df72942", null))
+		attacker.balloon_alert(attacker, LANG("datum.8df72942c63f9092", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if (attacker.combat_mode)
 		return // Attack the door
 
 	if (airlock_target.locked || airlock_target.welded || airlock_target.seal)
-		airlock_target.balloon_alert(attacker, LANG("datum.24832f9d", null))
+		airlock_target.balloon_alert(attacker, LANG("datum.24832f9d9b28c9b8", null))
 		attacker.log_message("Tried to pry open [src], located at [loc_name(src)], but failed due to the airlock being sealed.", LOG_GAME)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -50,7 +50,7 @@
 /// Try opening the door, and if we can't then try forcing it
 /datum/element/door_pryer/proc/open_door(mob/living/basic/attacker, obj/machinery/door/airlock/airlock_target)
 	if (!airlock_target.hasPower())
-		attacker.visible_message(span_warning(LANG("datum.ee7f1b16", list(attacker, airlock_target))))
+		attacker.visible_message(span_warning(LANG("datum.ee7f1b164b7a474f", list(attacker, airlock_target))))
 		attacker.log_message("Pried open [src], located at [loc_name(src)].", LOG_GAME)
 		airlock_target.open(FORCING_DOOR_CHECKS)
 		return
@@ -60,21 +60,21 @@
 		return
 
 	attacker.visible_message(\
-		message = span_warning(LANG("datum.2592a9f8", list(attacker, airlock_target))),
-		blind_message = span_hear(LANG("datum.4e2b5bed", null)),
+		message = span_warning(LANG("datum.2592a9f812bd3bbe", list(attacker, airlock_target))),
+		blind_message = span_hear(LANG("datum.4e2b5bedec44f46d", null)),
 	)
 	attacker.log_message("Started prying open [src], located at [loc_name(src)].", LOG_GAME)
 
 	playsound(airlock_target, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE)
-	airlock_target.balloon_alert(attacker, LANG("datum.1c42ba09", null))
+	airlock_target.balloon_alert(attacker, LANG("datum.1c42ba097851f484", null))
 	if(!do_after(attacker, pry_time, airlock_target))
-		airlock_target.balloon_alert(attacker, LANG("datum.c67b5d27", null))
+		airlock_target.balloon_alert(attacker, LANG("datum.c67b5d274d6e724b", null))
 		attacker.log_message("Tried and failed to pry open [src], located at [loc_name(src)], due to getting interrupted.", LOG_GAME)
 		return
 	if(airlock_target.locked)
 		attacker.log_message("Tried and failed to pry open [src], located at [loc_name(src)], due to the airlock getting bolted during the do_after.", LOG_GAME)
 		return
-	attacker.visible_message(span_warning(LANG("datum.ee7f1b16", list(attacker, airlock_target))))
+	attacker.visible_message(span_warning(LANG("datum.ee7f1b164b7a474f", list(attacker, airlock_target))))
 	attacker.log_message("Successfully pried open [src], located at [loc_name(src)].", LOG_GAME)
 	airlock_target.open(BYPASS_DOOR_CHECKS)
 	airlock_target.take_damage(AIRLOCK_PRY_DAMAGE, BRUTE, sound_effect = FALSE)

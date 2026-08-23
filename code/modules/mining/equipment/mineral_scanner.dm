@@ -94,7 +94,7 @@
 	if(vents_nearby && scanner)
 		if(undiscovered)
 			playsound(scanner, 'sound/machines/radar-ping.ogg', radar_volume, FALSE)
-			scanner.balloon_alert_to_viewers(LANG("_root.dec83256", null))
+			scanner.balloon_alert_to_viewers(LANG("_root.dec832561bec47fc", null))
 		else
 			playsound(scanner, 'sound/machines/sonar-ping.ogg', radar_volume, FALSE)
 		scanner.spasm_animation(1.5 SECONDS)

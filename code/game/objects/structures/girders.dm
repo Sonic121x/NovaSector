@@ -39,20 +39,20 @@
 	. = ..()
 	switch(state)
 		if(GIRDER_REINF)
-			. += span_notice(LANG("obj.5e56184e", null))
+			. += span_notice(LANG("obj.5e56184ed3127a86", null))
 		if(GIRDER_REINF_STRUTS)
-			. += span_notice(LANG("obj.bc269192", null))
+			. += span_notice(LANG("obj.bc269192e777bdff", null))
 		if(GIRDER_NORMAL)
 			if(can_displace)
-				. += span_notice(LANG("obj.0b355a52", null))
+				. += span_notice(LANG("obj.0b355a5222a6369d", null))
 		if(GIRDER_DISPLACED)
-			. += span_notice(LANG("obj.5203d4ea", list(src)))
+			. += span_notice(LANG("obj.5203d4eac411e0c8", list(src)))
 		if(GIRDER_TRAM)
-			. += span_notice(LANG("obj.08524e18", list(src)))
+			. += span_notice(LANG("obj.08524e188f484641", list(src)))
 	if (can_weld_apart)
-		. += span_notice(LANG("obj.f754b687", null))
+		. += span_notice(LANG("obj.f754b687f346abd2", null))
 	else
-		. += span_notice(LANG("obj.e88a9141", null))
+		. += span_notice(LANG("obj.e88a9141b0db3a0a", null))
 
 /obj/structure/girder/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (user.combat_mode)
@@ -93,7 +93,7 @@
 /obj/structure/girder/wrench_act(mob/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if (!can_displace)
-		balloon_alert(user, LANG("obj.aa9ba64f", null))
+		balloon_alert(user, LANG("obj.aa9ba64f9b85019f", null))
 		return
 	switch (state)
 		if (GIRDER_NORMAL)
@@ -109,7 +109,7 @@
 	. = ITEM_INTERACT_BLOCKING
 	// Plasmacutters can always slice apart girders.
 	if (!can_weld_apart && !istype(tool, /obj/item/gun/energy/plasmacutter))
-		balloon_alert(user, LANG("obj.c921c965", null))
+		balloon_alert(user, LANG("obj.c921c96580c0e891", null))
 		return
 	if (try_construction_step(user, tool, 4 SECONDS, start_alert = "slicing apart..."))
 		deconstruct(disassembled = TRUE)
@@ -131,7 +131,7 @@
 	if (!isnull(req_state) && req_state != state)
 		return FALSE
 	if (req_floor && !isfloorturf(loc))
-		balloon_alert(user, LANG("obj.51b4e54f", null))
+		balloon_alert(user, LANG("obj.51b4e54f864ee54c", null))
 		return FALSE
 	return TRUE
 

@@ -138,7 +138,7 @@
 /datum/computer_file/program/proc/is_supported_by_hardware(hardware_flag = NONE, loud = FALSE, mob/user)
 	if(!(hardware_flag & can_run_on_flags))
 		if(loud && computer && user)
-			to_chat(user, span_danger(LANG("datum.cdff91ed", list(computer))))
+			to_chat(user, span_danger(LANG("datum.cdff91ed950c5ce8", list(computer))))
 		return FALSE
 	return TRUE
 
@@ -182,7 +182,7 @@
 
 		if(!accesscard)
 			if(loud && user)
-				to_chat(user, span_danger(LANG("datum.88d28099", list(computer))))
+				to_chat(user, span_danger(LANG("datum.88d28099f0a24de6", list(computer))))
 			return FALSE
 		access = accesscard.GetAccess()
 
@@ -191,7 +191,7 @@
 			return TRUE
 
 	if(loud && user)
-		to_chat(user, span_danger(LANG("datum.167113b9", list(computer))))
+		to_chat(user, span_danger(LANG("datum.167113b9190ac15f", list(computer))))
 	return FALSE
 
 /**

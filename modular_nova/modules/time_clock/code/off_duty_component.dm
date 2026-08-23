@@ -47,11 +47,11 @@
 		return FALSE
 
 	if(!(ACCESS_HOP in hop_id.access))
-		to_chat(user, span_warning(LANG("datum.c21ab3f9", list(parent))))
+		to_chat(user, span_warning(LANG("datum.c21ab3f924811246", list(parent))))
 		return FALSE
 
 	hop_locked = FALSE
-	to_chat(user, span_notice(LANG("datum.d2b0764b", list(parent))))
+	to_chat(user, span_notice(LANG("datum.d2b0764bb09978d7", list(parent))))
 	log_admin("[parent] has been unlocked by [user] and is now able to be clocked back in.")
 
 	return TRUE

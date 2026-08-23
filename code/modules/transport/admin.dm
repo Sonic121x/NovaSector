@@ -1,10 +1,10 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ADMIN_VERB(reset_tram, R_DEBUG|R_ADMIN, "重置电车", "Reset a tram controller or its contents.", ADMIN_CATEGORY_DEBUG)
 	var/datum/transport_controller/linear/tram/broken_controller
-	var/selected_transport_id = tgui_input_list(user, LANG("datum.36d2dca9", null), LANG("datum.818db524", null), SStransport.debug_tram_list)
+	var/selected_transport_id = tgui_input_list(user, LANG("datum.36d2dca94b835fe3", null), LANG("datum.818db524dee31846", null), SStransport.debug_tram_list)
 	if(isnull(selected_transport_id))
 		return
-	var/reset_type = tgui_input_list(user, LANG("datum.bb13dd40", null), LANG("datum.d87b2099", null), list("Clear Tram Contents", "Controller", "Controller and Contents", "Delete Datum", "Cancel"))
+	var/reset_type = tgui_input_list(user, LANG("datum.bb13dd40091ecef9", null), LANG("datum.d87b20998fc9eaa7", null), list("Clear Tram Contents", "Controller", "Controller and Contents", "Delete Datum", "Cancel"))
 
 	if(isnull(reset_type) || reset_type == "Cancel")
 		return
@@ -15,12 +15,12 @@ ADMIN_VERB(reset_tram, R_DEBUG|R_ADMIN, "重置电车", "Reset a tram controller
 			break
 
 	if(isnull(broken_controller))
-		to_chat(user, span_warning(LANG("datum.b35cdde5", list(selected_transport_id))))
+		to_chat(user, span_warning(LANG("datum.b35cdde507e14ca8", list(selected_transport_id))))
 		return
 
 	switch(reset_type)
 		if("Clear Tram Contents")
-			var/selection = tgui_alert(user, LANG("datum.1a693916", null), LANG("datum.fd48c37e", list(selected_transport_id)), list("Contents", "Contents and Players", "Cancel"))
+			var/selection = tgui_alert(user, LANG("datum.1a6939163762c07a", null), LANG("datum.fd48c37e00e1ff4f", list(selected_transport_id)), list("Contents", "Contents and Players", "Cancel"))
 			switch(selection)
 				if("Contents")
 					broken_controller.reset_lift_contents(foreign_objects = TRUE, foreign_non_player_mobs = TRUE, consider_player_mobs = FALSE)
@@ -40,7 +40,7 @@ ADMIN_VERB(reset_tram, R_DEBUG|R_ADMIN, "重置电车", "Reset a tram controller
 			broken_controller.reset_position()
 
 		if("Controller and Contents")
-			var/selection = tgui_alert(user, LANG("datum.1a693916", null), LANG("datum.fd48c37e", list(selected_transport_id)), list("Contents", "Contents and Players", "Cancel"))
+			var/selection = tgui_alert(user, LANG("datum.1a6939163762c07a", null), LANG("datum.fd48c37e00e1ff4f", list(selected_transport_id)), list("Contents", "Contents and Players", "Cancel"))
 			switch(selection)
 				if("Contents")
 					message_admins("[key_name_admin(user)] performed a contents and controller reset of tram ID [selected_transport_id].")
@@ -57,7 +57,7 @@ ADMIN_VERB(reset_tram, R_DEBUG|R_ADMIN, "重置电车", "Reset a tram controller
 			broken_controller.reset_position()
 
 		if("Delete Datum")
-			var/confirm = tgui_alert(user, LANG("datum.70811767", list(selected_transport_id)), LANG("datum.19138b1d", list(selected_transport_id)), list("Yes", "Cancel"))
+			var/confirm = tgui_alert(user, LANG("datum.70811767c668080c", list(selected_transport_id)), LANG("datum.19138b1d9d6b41eb", list(selected_transport_id)), list("Yes", "Cancel"))
 			if(confirm != "Yes")
 				return
 

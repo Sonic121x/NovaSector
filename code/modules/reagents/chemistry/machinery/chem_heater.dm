@@ -66,19 +66,19 @@
 /obj/machinery/chem_heater/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.827df9e9", list(heater_coefficient * 1000)))
+		. += span_notice(LANG("obj.827df9e9e1de41b7", list(heater_coefficient * 1000)))
 		if(!QDELETED(beaker))
-			. += span_notice(LANG("obj.26796692", list(beaker.reagents.total_volume)))
+			. += span_notice(LANG("obj.26796692a3f28402", list(beaker.reagents.total_volume)))
 			if(beaker.reagents.is_reacting)
-				. += span_notice(LANG("obj.92d004e1", null))
+				. += span_notice(LANG("obj.92d004e1e1aa5895", null))
 		else
-			. += span_warning(LANG("obj.801e6422", null))
-		. += span_notice(LANG("obj.b913d455", list(on ? "On" : "Off")))
-		. += span_notice(LANG("obj.827df9e9", list(heater_coefficient * 1000)))
+			. += span_warning(LANG("obj.801e64225f4fde6e", null))
+		. += span_notice(LANG("obj.b913d455d8e61a48", list(on ? "On" : "Off")))
+		. += span_notice(LANG("obj.827df9e9e1de41b7", list(heater_coefficient * 1000)))
 		if(panel_open)
-			. += span_notice(LANG("obj.7d0f2c58", list(EXAMINE_HINT("pried"))))
+			. += span_notice(LANG("obj.7d0f2c5837377ceb", list(EXAMINE_HINT("pried"))))
 		else
-			. += span_notice(LANG("obj.c87fbeb5", list(EXAMINE_HINT("pried"))))
+			. += span_notice(LANG("obj.c87fbeb5b7e7fde9", list(EXAMINE_HINT("pried"))))
 
 /obj/machinery/chem_heater/update_icon_state()
 	icon_state = "[base_icon_state][(beaker && !panel_open) ? 1 : 0]b"
@@ -104,7 +104,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	ui_interact(user)
-	balloon_alert(user, LANG("obj.254f5a24", null))
+	balloon_alert(user, LANG("obj.254f5a24e45dd1e5", null))
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -362,14 +362,14 @@
 
 	//no beaker
 	if(QDELETED(beaker))
-		say(LANG("obj.ce184d8a", null))
+		say(LANG("obj.ce184d8af7fe7152", null))
 		return FALSE
 
 	//trying to absorb buffer from currently inserted beaker
 	if(volume < 0)
 		if(!beaker.reagents.has_reagent(buffer_type))
 			var/name = initial(buffer_type.name)
-			say(LANG("obj.7f146f64", list(name, name)))
+			say(LANG("obj.7f146f64bbbcd671", list(name, name)))
 			return FALSE
 		beaker.reagents.trans_to(src, (reagents.maximum_volume / 2) - reagents.get_reagent_amount(buffer_type), target_id = buffer_type)
 		return TRUE

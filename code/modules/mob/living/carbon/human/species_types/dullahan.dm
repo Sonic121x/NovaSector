@@ -162,8 +162,8 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "horse-head",
-		SPECIES_PERK_NAME = LANG("datum.d9231718", null),
-		SPECIES_PERK_DESC = LANG("datum.8cc7a4f9", null),
+		SPECIES_PERK_NAME = LANG("datum.d9231718c5b5d65e", null),
+		SPECIES_PERK_DESC = LANG("datum.8cc7a4f93246c38a", null),
 	))
 
 	return to_add
@@ -175,8 +175,8 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "skull",
-		SPECIES_PERK_NAME = LANG("datum.e00d4a39", null),
-		SPECIES_PERK_DESC = LANG("datum.ea0f02c1", list(name)),
+		SPECIES_PERK_NAME = LANG("datum.e00d4a39bfe0dc7b", null),
+		SPECIES_PERK_DESC = LANG("datum.ea0f02c18fdab51a", list(name)),
 	))
 
 	return to_add

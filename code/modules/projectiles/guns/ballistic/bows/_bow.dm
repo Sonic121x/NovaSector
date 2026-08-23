@@ -70,7 +70,7 @@
 
 /obj/item/gun/ballistic/bow/attack_self(mob/user)
 	if(!chambered)
-		balloon_alert(user, LANG("obj.137b0247", null))
+		balloon_alert(user, LANG("obj.137b024711ce8ad3", null))
 		return
 	balloon_alert(user, "[drawn ? "string released" : "string drawn"]")
 	drawn = !drawn
@@ -81,7 +81,7 @@
 	if(!chambered)
 		return FALSE
 	if(!drawn)
-		to_chat(user, span_warning(LANG("obj.56a1fce0", null)))
+		to_chat(user, span_warning(LANG("obj.56a1fce05cf202a1", null)))
 		drop_arrow()
 		return FALSE
 	return ..() //fires, removing the arrow
@@ -94,7 +94,7 @@
 /obj/item/gun/ballistic/bow/equipped(mob/user, slot, initial)
 	. = ..()
 	if(slot != ITEM_SLOT_HANDS && chambered)
-		balloon_alert(user, LANG("obj.15fc63fa", null))
+		balloon_alert(user, LANG("obj.15fc63faa49b7c79", null))
 		if(drawn)
 			playsound(src, 'sound/items/weapons/gun/bow/bow_fire.ogg', 25, TRUE)
 		drop_arrow()

@@ -97,6 +97,6 @@
 		if(201 to INFINITY)
 			cost_desc = "torrent"
 
-	to_chat(source, span_danger(LANG("datum.cd5d3ca5", list(cost_desc))))
+	to_chat(source, span_danger(LANG("datum.cd5d3ca584a3bdc8", list(cost_desc))))
 
 #undef COOLDOWN_TO_BLOOD_RATIO

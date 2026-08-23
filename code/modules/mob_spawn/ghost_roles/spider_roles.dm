@@ -28,15 +28,15 @@
 	if(istype(user, /mob/living/basic/spider/giant/midwife))
 		switch(spawner.amount_grown)
 			if(0 to 24)
-				. += span_info(LANG("obj.03996bba", null))
+				. += span_info(LANG("obj.03996bbaeb1bd13e", null))
 			if(25 to 49)
-				. += span_info(LANG("obj.11362670", null))
+				. += span_info(LANG("obj.11362670c813ad5f", null))
 			if(50 to 74)
-				. += span_info(LANG("obj.95cfab54", null))
+				. += span_info(LANG("obj.95cfab54a3dd5d16", null))
 			if(75 to 99)
-				. += span_info(LANG("obj.4734a7c9", null))
+				. += span_info(LANG("obj.4734a7c944b98c4c", null))
 			if(100 to INFINITY)
-				. += span_info(LANG("obj.d252a30b", null))
+				. += span_info(LANG("obj.d252a30b0fc65f6c", null))
 
 /obj/structure/spider/eggcluster/abnormal
 	name = "abnormal egg cluster"
@@ -113,7 +113,7 @@
 		if(flash_window)
 			notify_flags_to_pass &= GHOST_NOTIFY_FLASH_WINDOW
 		notify_ghosts(
-			LANG("obj.6b8ec072", list(src)),
+			LANG("obj.6b8ec072c16a7e29", list(src)),
 			source = src,
 			header = "Spider Infestation",
 			click_interact = TRUE,
@@ -138,7 +138,7 @@
 		return FALSE
 	if(!ready)
 		if(!silent)
-			to_chat(user, span_warning(LANG("obj.39fd5ce5", list(src))))
+			to_chat(user, span_warning(LANG("obj.39fd5ce5a8b812ba", list(src))))
 		return FALSE
 	return TRUE
 

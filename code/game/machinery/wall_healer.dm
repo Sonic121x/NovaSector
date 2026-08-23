@@ -114,7 +114,7 @@
 
 	if(!find_and_mount_on_atom())
 		stack_trace("Got to on_construction for [type], but failed to mount on a wall! This should be asserted from construction requirements.")
-		loc.balloon_alert(user, LANG("obj.21417537", null))
+		loc.balloon_alert(user, LANG("obj.214175376dbd0bd6", null))
 		deconstruct(TRUE)
 
 /obj/machinery/wall_healer/proc/refill_healing_pool(percent = 100)
@@ -149,9 +149,9 @@
 /obj/machinery/wall_healer/examine(mob/user)
 	. = ..()
 	var/total_bandages = num_bandages + LAZYLEN(stocked_bandages)
-	. += span_notice(LANG("obj.6a8eb00c", list(total_bandages, total_bandages ? " [is_free(user) ? "Purchase" : "Retrieve"] a bandage with [EXAMINE_HINT("right-click")]." : "")))
+	. += span_notice(LANG("obj.6a8eb00c73441cb6", list(total_bandages, total_bandages ? " [is_free(user) ? "Purchase" : "Retrieve"] a bandage with [EXAMINE_HINT("right-click")]." : "")))
 	if(current_user)
-		. += span_notice(LANG("obj.01867178", list(current_user, current_hand ? "has [current_user.p_their()] [current_hand.plaintext_zone] in" : "is using")))
+		. += span_notice(LANG("obj.018671782e522916", list(current_user, current_hand ? "has [current_user.p_their()] [current_hand.plaintext_zone] in" : "is using")))
 
 /obj/machinery/wall_healer/update_overlays()
 	. = ..()
@@ -192,8 +192,8 @@
 		return FALSE
 
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	visible_message(span_warning(LANG("obj.b7523a48", list(src))))
-	balloon_alert(user, LANG("obj.42074643", null))
+	visible_message(span_warning(LANG("obj.b7523a488c133b30", list(src))))
+	balloon_alert(user, LANG("obj.42074643f1699068", null))
 	obj_flags |= EMAGGED
 	circuit?.obj_flags |= EMAGGED
 	return TRUE
@@ -224,12 +224,12 @@
 	if(.)
 		return .
 	if(!isliving(user) || !ishuman(dropped))
-		balloon_alert(user, LANG("obj.fbc9e3cd", null))
+		balloon_alert(user, LANG("obj.fbc9e3cdde5b4ae2", null))
 		return FALSE
 	var/mob/living/who_put_user_in = user
 	var/mob/living/new_user = dropped
 	if(!loc_check(new_user))
-		balloon_alert(who_put_user_in, LANG("obj.bbf81a18", list(new_user == who_put_user_in ? "get" : "bring [new_user.p_them()]")))
+		balloon_alert(who_put_user_in, LANG("obj.bbf81a1816139a6f", list(new_user == who_put_user_in ? "get" : "bring [new_user.p_them()]")))
 		return FALSE
 
 	if(do_after(user, 1 SECONDS, src))
@@ -241,10 +241,10 @@
 	if(.)
 		return .
 	if(!ishuman(user))
-		balloon_alert(user, LANG("obj.fbc9e3cd", null))
+		balloon_alert(user, LANG("obj.fbc9e3cdde5b4ae2", null))
 		return FALSE
 	if(!loc_check(user))
-		balloon_alert(user, LANG("obj.09bd2bcf", null))
+		balloon_alert(user, LANG("obj.09bd2bcf05d124eb", null))
 		return FALSE
 	if(do_after(user, 0.5 SECONDS, src))
 		user_put_in_own_hand(user)
@@ -255,18 +255,18 @@
 		clear_using_mob()
 		if(user.get_active_hand() == current_hand)
 			user.visible_message(
-				span_notice(LANG("obj.6f44d3a6", list(user, user.p_their(), src))),
-				span_notice(LANG("obj.0db4b854", list(src))),
-				span_hear(LANG("obj.0f830183", null)),
+				span_notice(LANG("obj.6f44d3a6f267869b", list(user, user.p_their(), src))),
+				span_notice(LANG("obj.0db4b854a032caf5", list(src))),
+				span_hear(LANG("obj.0f830183df1905e6", null)),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				vision_distance = 5,
 			)
 		else
 			add_fingerprint(user)
 			user.visible_message(
-				span_notice(LANG("obj.559c71b1", list(user, user.p_their(), src, user.p_their()))),
-				span_notice(LANG("obj.1f9fc2f7", list(src))),
-				span_hear(LANG("obj.0f830183", null)),
+				span_notice(LANG("obj.559c71b1c23e6095", list(user, user.p_their(), src, user.p_their()))),
+				span_notice(LANG("obj.1f9fc2f7db0dc186", list(src))),
+				span_hear(LANG("obj.0f830183df1905e6", null)),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				vision_distance = 5,
 			)
@@ -274,8 +274,8 @@
 		return
 	else if(current_user)
 		user.visible_message(
-			span_notice(LANG("obj.d03eb21b", list(user, user.p_their(), src, current_user))),
-			span_notice(LANG("obj.e796f7bd", list(src, current_user))),
+			span_notice(LANG("obj.d03eb21bc3162eb2", list(user, user.p_their(), src, current_user))),
+			span_notice(LANG("obj.e796f7bd76baa20b", list(src, current_user))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 		)
@@ -284,16 +284,16 @@
 	add_fingerprint(user)
 	if(is_operational)
 		user.visible_message(
-			span_notice(LANG("obj.cd2adffc", list(user, user.p_their(), src, user.p_their()))),
-			span_notice(LANG("obj.985bc9a9", list(src))),
-			span_hear(LANG("obj.0f830183", null)),
+			span_notice(LANG("obj.cd2adffc3354bc69", list(user, user.p_their(), src, user.p_their()))),
+			span_notice(LANG("obj.985bc9a9fa5af82d", list(src))),
+			span_hear(LANG("obj.0f830183df1905e6", null)),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 		)
 	else
 		user.visible_message(
-			span_notice(LANG("obj.81961ecb", list(user, user.p_their(), src))),
-			span_notice(LANG("obj.595af87e", list(src))),
+			span_notice(LANG("obj.81961ecb6ea82184", list(user, user.p_their(), src))),
+			span_notice(LANG("obj.595af87e7dc05813", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 		)
@@ -306,21 +306,21 @@
 	if(current_user == user)
 		clear_using_mob()
 		if(user.get_active_hand() == current_hand)
-			to_chat(who_put_user_in, span_notice(LANG("obj.b05cf4c3", list(user, src))))
+			to_chat(who_put_user_in, span_notice(LANG("obj.b05cf4c3b332034e", list(user, src))))
 			user.visible_message(
-				span_notice(LANG("obj.6ae897a6", list(who_put_user_in, user, src))),
-				span_notice(LANG("obj.8ca39ab5", list(who_put_user_in, src))),
-				span_hear(LANG("obj.0f830183", null)),
+				span_notice(LANG("obj.6ae897a618a50476", list(who_put_user_in, user, src))),
+				span_notice(LANG("obj.8ca39ab5fcecf59a", list(who_put_user_in, src))),
+				span_hear(LANG("obj.0f830183df1905e6", null)),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				vision_distance = 5,
 				ignored_mobs = who_put_user_in,
 			)
 		else
-			to_chat(who_put_user_in, span_notice(LANG("obj.9eb0170d", list(user, src, user.p_their()))))
+			to_chat(who_put_user_in, span_notice(LANG("obj.9eb0170d8a5d6ea9", list(user, src, user.p_their()))))
 			user.visible_message(
-				span_notice(LANG("obj.559c71b1", list(who_put_user_in, user.p_their(), src, user.p_their()))),
-				span_notice(LANG("obj.8296fd6c", list(who_put_user_in, src))),
-				span_hear(LANG("obj.0f830183", null)),
+				span_notice(LANG("obj.559c71b1c23e6095", list(who_put_user_in, user.p_their(), src, user.p_their()))),
+				span_notice(LANG("obj.8296fd6ccdeb7fc7", list(who_put_user_in, src))),
+				span_hear(LANG("obj.0f830183df1905e6", null)),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				vision_distance = 5,
 				ignored_mobs = who_put_user_in,
@@ -330,10 +330,10 @@
 		return
 
 	if(current_user)
-		to_chat(who_put_user_in, span_notice(LANG("obj.ea7b8ba2", list(user, src, current_user))))
+		to_chat(who_put_user_in, span_notice(LANG("obj.ea7b8ba2235315ab", list(user, src, current_user))))
 		user.visible_message(
-			span_notice(LANG("obj.bf4f023a", list(who_put_user_in, user, src, current_user))),
-			span_notice(LANG("obj.9e181238", list(who_put_user_in, src, current_user))),
+			span_notice(LANG("obj.bf4f023ac1c802a2", list(who_put_user_in, user, src, current_user))),
+			span_notice(LANG("obj.9e181238eea8288e", list(who_put_user_in, src, current_user))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 			ignored_mobs = who_put_user_in,
@@ -342,20 +342,20 @@
 
 	add_fingerprint(who_put_user_in)
 	if(is_operational)
-		to_chat(who_put_user_in, span_notice(LANG("obj.85c0c60f", list(user, src, user.p_their()))))
+		to_chat(who_put_user_in, span_notice(LANG("obj.85c0c60f0671b264", list(user, src, user.p_their()))))
 		user.visible_message(
-			span_notice(LANG("obj.cd2adffc", list(who_put_user_in, user.p_their(), src, user.p_their()))),
-			span_notice(LANG("obj.5b6ad3d2", list(who_put_user_in, src))),
-			span_hear(LANG("obj.0f830183", null)),
+			span_notice(LANG("obj.cd2adffc3354bc69", list(who_put_user_in, user.p_their(), src, user.p_their()))),
+			span_notice(LANG("obj.5b6ad3d2631badf2", list(who_put_user_in, src))),
+			span_hear(LANG("obj.0f830183df1905e6", null)),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 			ignored_mobs = who_put_user_in,
 		)
 	else
-		to_chat(who_put_user_in, span_notice(LANG("obj.b130b877", list(user, src))))
+		to_chat(who_put_user_in, span_notice(LANG("obj.b130b877afb4bff2", list(user, src))))
 		user.visible_message(
-			span_notice(LANG("obj.81961ecb", list(who_put_user_in, user.p_their(), src))),
-			span_notice(LANG("obj.e85d80c1", list(who_put_user_in, src))),
+			span_notice(LANG("obj.81961ecb6ea82184", list(who_put_user_in, user.p_their(), src))),
+			span_notice(LANG("obj.e85d80c162290670", list(who_put_user_in, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 			ignored_mobs = who_put_user_in,
@@ -368,17 +368,17 @@
 		return .
 	var/mob/living/living_user = user
 	if(!is_operational)
-		to_chat(user, span_warning(LANG("obj.107fc710", list(src))))
+		to_chat(user, span_warning(LANG("obj.107fc710a222579d", list(src))))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(num_bandages + LAZYLEN(stocked_bandages) <= 0)
-		to_chat(user, span_warning(LANG("obj.dc02bcf8", list(src))))
+		to_chat(user, span_warning(LANG("obj.dc02bcf8ed91155a", list(src))))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(attempt_charge(src, user, extra_fees = floor(per_bandage_cost)) & COMPONENT_OBJ_CANCEL_CHARGE)
 		if(!living_user.get_idcard())
-			to_chat(user, span_warning(LANG("obj.fed5bb01", null)))
+			to_chat(user, span_warning(LANG("obj.fed5bb015e608c47", null)))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if((obj_flags & EMAGGED) && prob(99))
-		to_chat(user, span_warning(LANG("obj.9d73fb13", null)))
+		to_chat(user, span_warning(LANG("obj.9d73fb13ebfabc10", null)))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	var/obj/item/stack/medical/wrap/gauze/bandage = LAZYACCESS(stocked_bandages, 1)
@@ -387,9 +387,9 @@
 		bandage = new(user.drop_location(), 1)
 	user.put_in_hands(bandage)
 	user.visible_message(
-		span_notice(LANG("obj.02714569", list(user, bandage, src))),
-		span_notice(LANG("obj.8527f6f3", list(bandage, src))),
-		span_hear(LANG("obj.0f830183", null)),
+		span_notice(LANG("obj.027145693dc56b9b", list(user, bandage, src))),
+		span_notice(LANG("obj.8527f6f349f64a0c", list(bandage, src))),
+		span_hear(LANG("obj.0f830183df1905e6", null)),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		vision_distance = 5,
 	)
@@ -407,12 +407,12 @@
 	if(!istype(tool, /obj/item/stack/medical/wrap/gauze))
 		return NONE
 	if(!user.temporarilyRemoveItemFromInventory(tool))
-		to_chat(user, span_warning(LANG("obj.3a35fea1", list(src, tool))))
+		to_chat(user, span_warning(LANG("obj.3a35fea133261abb", list(src, tool))))
 		return ITEM_INTERACT_BLOCKING
 	user.visible_message(
-		span_notice(LANG("obj.82f2706f", list(user, src, tool))),
-		span_notice(LANG("obj.17c664b8", list(src, tool))),
-		span_hear(LANG("obj.0f830183", null)),
+		span_notice(LANG("obj.82f2706f33b5f3c5", list(user, src, tool))),
+		span_notice(LANG("obj.17c664b8d1703d70", list(src, tool))),
+		span_hear(LANG("obj.0f830183df1905e6", null)),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		vision_distance = 5,
 	)
@@ -462,9 +462,9 @@
 		return
 	if(!QDELING(current_user))
 		current_user.visible_message(
-			span_notice(LANG("obj.6f44d3a6", list(current_user, current_user.p_their(), src))),
-			span_notice(LANG("obj.0db4b854", list(src))),
-			span_hear(LANG("obj.0f830183", null)),
+			span_notice(LANG("obj.6f44d3a6f267869b", list(current_user, current_user.p_their(), src))),
+			span_notice(LANG("obj.0db4b854a032caf5", list(src))),
+			span_hear(LANG("obj.0f830183df1905e6", null)),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			vision_distance = 5,
 		)
@@ -516,20 +516,20 @@
 	if(!arm_check)
 		playsound(src, 'sound/machines/defib/defib_saftyOff.ogg', 50, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
 		if(antispam_counter % 3 == 1)
-			to_chat(current_user, span_notice(LANG("obj.120e6fc5", list(src, current_hand ? "limbs" : "beings"))))
+			to_chat(current_user, span_notice(LANG("obj.120e6fc515e90fc7", list(src, current_hand ? "limbs" : "beings"))))
 		return
 
 	if(!current_user.can_inject(null, current_hand))
 		playsound(src, 'sound/machines/defib/defib_saftyOff.ogg', 50, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
 		if(antispam_counter % 3 == 1)
-			to_chat(current_user, span_notice(LANG("obj.26ebbe2a", list(src))))
+			to_chat(current_user, span_notice(LANG("obj.26ebbe2abce62abe", list(src))))
 		return
 
 	if(obj_flags & EMAGGED)
 		current_user.apply_damage(33, BRUTE, current_hand, sharpness = SHARP_POINTY)
 		playsound(src, 'sound/machines/defib/defib_failed.ogg', 50, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
 		if(antispam_counter % 2 == 1)
-			to_chat(current_user, span_warning(LANG("obj.98441c2b", null)))
+			to_chat(current_user, span_warning(LANG("obj.98441c2b15fb2002", null)))
 		use_energy(500 JOULES)
 		add_mob_blood(current_user)
 		return
@@ -544,7 +544,7 @@
 		playsound(src, 'sound/machines/defib/defib_saftyOff.ogg', 50, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
 		// attempt charge sends a chat message on fail, except if the user has no ID card
 		if((antispam_counter % 3 == 1) && !current_user.get_idcard())
-			to_chat(current_user, span_warning(LANG("obj.fed5bb01", null)))
+			to_chat(current_user, span_warning(LANG("obj.fed5bb015e608c47", null)))
 		return
 
 	var/amount_healed = 0
@@ -566,7 +566,7 @@
 	if(amount_healed)
 		playsound(src, 'sound/machines/defib/defib_SaftyOn.ogg', 50, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
 		if(antispam_counter % 2 == 1)
-			to_chat(current_user, span_notice(LANG("obj.325eae18", list(current_hand?.plaintext_zone || "body"))))
+			to_chat(current_user, span_notice(LANG("obj.325eae18d09cff31", list(current_hand?.plaintext_zone || "body"))))
 		update_appearance()
 		use_energy(200 JOULES) // just some background power drain. we don't really care about whether this is actually successful
 		return
@@ -579,9 +579,9 @@
 	var/missed_tox_healing = tox_healing_now > 0 && !current_user.get_tox_loss()
 	var/missed_blood_healing = blood_healing_now > 0 && current_user.get_blood_volume() >= BLOOD_VOLUME_OKAY
 	if(missed_brute_healing || missed_burn_healing || missed_tox_healing || missed_blood_healing)
-		to_chat(current_user, span_notice(LANG("obj.aa764065", list(src))))
+		to_chat(current_user, span_notice(LANG("obj.aa764065d11ad984", list(src))))
 		return
-	to_chat(current_user, span_notice(LANG("obj.feec7aea", null)))
+	to_chat(current_user, span_notice(LANG("obj.feec7aeaebbd324c", null)))
 
 /// Subtype of progress bar used by the wall healer to show time until next injection
 /// This subtype only exists so we can shove fastprocess processing off of the machine itself

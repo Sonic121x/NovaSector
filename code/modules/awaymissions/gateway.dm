@@ -110,18 +110,18 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	else
 		for(var/mob/living/L in AM.contents)
 			if(check_exile_implant(L))
-				target_gateway.say(LANG("datum.6467585d", list(AM)))
+				target_gateway.say(LANG("datum.6467585da9002fbb", list(AM)))
 				return FALSE
 	if(AM.has_buckled_mobs())
 		for(var/mob/living/L in AM.buckled_mobs)
 			if(check_exile_implant(L))
-				target_gateway.say(LANG("datum.dd2abe39", list(AM)))
+				target_gateway.say(LANG("datum.dd2abe3940a108d5", list(AM)))
 				return FALSE
 	return TRUE
 
 /datum/gateway_destination/gateway/home/proc/check_exile_implant(mob/living/L)
 	for(var/obj/item/implant/exile/E in L.implants)//Checking that there is an exile implant
-		to_chat(L, span_userdanger(LANG("datum.4d74dcae", null)))
+		to_chat(L, span_userdanger(LANG("datum.4d74dcaec249862b", null)))
 		return TRUE
 	return FALSE
 
@@ -153,7 +153,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 		for(var/atom/movable/content_item as anything in AM.get_all_contents())
 			if(!is_type_in_list(content_item, type_blacklist))
 				continue
-			to_chat(AM, span_warning(LANG("obj.dbee9075", list(content_item))))
+			to_chat(AM, span_warning(LANG("obj.dbee90756e0d611b", list(content_item))))
 			return
 	//NOVA EDIT ADDITION END
 	if(get_dir(src,AM) == gateway?.dir)
@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 /obj/machinery/gateway/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
 	if(istype(I, /obj/item/key/gateway) && requires_key)
-		to_chat(user, LANG("obj.0aafdd32", list(src)))
+		to_chat(user, LANG("obj.0aafdd3296c875e2", list(src)))
 		key_used = TRUE
 		qdel(I)
 		return
@@ -319,10 +319,10 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 		return
 	var/turf/tar_turf = target?.get_target_turf()
 	if(isnull(tar_turf))
-		to_chat(user, span_warning(LANG("obj.5f65f3c4", null)))
+		to_chat(user, span_warning(LANG("obj.5f65f3c499e970ed", null)))
 		return
 	if(is_secret_level(tar_turf.z) && !user.client?.holder)
-		to_chat(user, span_warning(LANG("obj.a65fabe9", null)))
+		to_chat(user, span_warning(LANG("obj.a65fabe9a327cec7", null)))
 		return
 	Transfer(user)
 
@@ -343,10 +343,10 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 
 /obj/machinery/gateway/multitool_act(mob/living/user, obj/item/I)
 	if(calibrated)
-		to_chat(user, span_alert(LANG("obj.0607a771", null)))
+		to_chat(user, span_alert(LANG("obj.0607a77118a4e0e0", null)))
 	else
 		playsound(src, 'sound/machines/gateway/gateway_calibrated.ogg', 80, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-		to_chat(user, LANG("obj.4ea6dba2", list(span_boldnotice("Recalibration successful!"))))
+		to_chat(user, LANG("obj.4ea6dba2f2925742", list(span_boldnotice("Recalibration successful!"))))
 		calibrated = TRUE
 	return TRUE
 
@@ -369,12 +369,12 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 		for(var/atom/movable/content_item as anything in user.get_contents())
 			if(!is_type_in_list(content_item, type_blacklist))
 				continue
-			to_chat(user, span_warning(LANG("obj.dbee9075", list(content_item))))
+			to_chat(user, span_warning(LANG("obj.dbee90756e0d611b", list(content_item))))
 			return
 	//NOVA EDIT END
 	if(!target)
 		if(!GLOB.the_gateway)
-			to_chat(user,span_warning(LANG("obj.2bf035d6", null)))
+			to_chat(user,span_warning(LANG("obj.2bf035d6fdc0dce1", null)))
 		if(GLOB.the_gateway.target)
 			GLOB.the_gateway.deactivate() //this will turn the home gateway off so that it's free for us to connect to
 		activate(GLOB.the_gateway.destination)

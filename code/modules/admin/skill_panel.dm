@@ -43,17 +43,17 @@
 	switch (action)
 		if ("adj_exp")
 			var/skill = text2path(params["skill"])
-			var/number = input(LANG("datum.2a499d5b", null)) as num|null
+			var/number = input(LANG("datum.2a499d5bd2ef880f", null)) as num|null
 			if (number)
 				targetmind.adjust_experience(skill, number)
 		if ("set_exp")
 			var/skill = text2path(params["skill"])
-			var/number = input(LANG("datum.5db69853", null)) as num|null
+			var/number = input(LANG("datum.5db69853cb3db019", null)) as num|null
 			if (number)
 				targetmind.set_experience(skill, number)
 		if ("set_lvl")
 			var/skill = text2path(params["skill"])
 			var/max_skill = length(SKILL_EXP_LIST)
-			var/number = input(LANG("datum.a07760c5", list(max_skill))) as num|null
+			var/number = input(LANG("datum.a07760c57ecfb853", list(max_skill))) as num|null
 			if (number > 0 && number <= max_skill )
 				targetmind.set_level(skill, number)

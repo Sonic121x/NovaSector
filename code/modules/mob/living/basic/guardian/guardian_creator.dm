@@ -69,11 +69,11 @@ GLOBAL_LIST_INIT(guardian_radial_images, setup_guardian_radial())
 
 /obj/item/guardian_creator/attack_self(mob/living/user)
 	if(isguardian(user) && !allow_guardian)
-		balloon_alert(user, LANG("obj.c3d89266", null))
+		balloon_alert(user, LANG("obj.c3d892668bd54dfb", null))
 		return
 	var/list/guardians = user.get_all_linked_holoparasites()
 	if(length(guardians) && !allow_multiple)
-		balloon_alert(user, LANG("obj.87da24b2", null))
+		balloon_alert(user, LANG("obj.87da24b2f28380f2", null))
 		return
 	if(IS_CHANGELING(user) && !allow_changeling)
 		to_chat(user, ling_failure)
@@ -135,7 +135,7 @@ GLOBAL_LIST_INIT(guardian_radial_images, setup_guardian_radial())
 		return
 	var/list/guardians = user.get_all_linked_holoparasites()
 	if(length(guardians) && !allow_multiple)
-		balloon_alert(user, LANG("obj.1edc51df", null))
+		balloon_alert(user, LANG("obj.1edc51dfce2784a6", null))
 		used = FALSE
 		return
 	var/datum/guardian_fluff/guardian_theme = GLOB.guardian_themes[theme]

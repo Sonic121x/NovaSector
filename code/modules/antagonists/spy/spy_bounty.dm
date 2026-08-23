@@ -586,7 +586,7 @@
 	var/mob/living/carbon/human/stolen_from = stealing
 	var/obj/item/real_stolen_item = find_desired_thing(stealing)
 	stolen_from.Unconscious(10 SECONDS)
-	to_chat(stolen_from, span_warning(LANG("datum.af5aad5d", list(real_stolen_item.name))))
+	to_chat(stolen_from, span_warning(LANG("datum.af5aad5dcd537111", list(real_stolen_item.name))))
 	return ..(real_stolen_item, spy)
 
 /datum/spy_bounty/targets_person/some_item/target_found(mob/crewmember)
@@ -681,7 +681,7 @@
 
 /datum/spy_bounty/some_bot/finish_cleanup(mob/living/basic/bot/stealing)
 	if(stealing.client)
-		to_chat(stealing, span_deadsay(LANG("datum.16a69279", null)))
+		to_chat(stealing, span_deadsay(LANG("datum.16a69279cd8abf49", null)))
 		stealing.investigate_log("was stolen by a spy (and deleted)", INVESTIGATE_DEATHS)
 		stealing.ghostize()
 	return ..()

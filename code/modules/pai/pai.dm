@@ -133,7 +133,7 @@
 // See software.dm for Topic()
 /mob/living/silicon/pai/can_perform_action(atom/target, action_bitflags)
 	if(!(action_bitflags & ALLOW_PAI))
-		to_chat(src, span_warning(LANG("mob.23531ad8", null)))
+		to_chat(src, span_warning(LANG("mob.23531ad825b0c0e1", null)))
 		return FALSE
 	action_bitflags |= ALLOW_RESTING // Resting is just an aesthetic feature for them
 	action_bitflags &= ~ALLOW_SILICON_REACH // They don't get long reach like the rest of silicons
@@ -167,7 +167,7 @@
 
 /mob/living/silicon/pai/examine(mob/user)
 	. = ..()
-	. += LANG("mob.0fe75e3f", list((!master_name || emagged) ? "empty" : master_name))
+	. += LANG("mob.0fe75e3fe974651d", list((!master_name || emagged) ? "empty" : master_name))
 	//NOVA EDIT ADDITION BEGIN - CUSTOMIZATION
 	. += get_silicon_flavortext(user)
 	//NOVA EDIT ADDITION END
@@ -263,7 +263,7 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_HEALTH_UPDATE)
 
 /mob/living/silicon/pai/update_desc(updates)
-	desc = LANG("mob.56c97f66", list(chassis))
+	desc = LANG("mob.56c97f6694ccd892", list(chassis))
 	return ..()
 
 /mob/living/silicon/pai/update_icon_state()
@@ -294,7 +294,7 @@
  */
 /mob/living/silicon/pai/proc/fix_speech()
 	var/mob/living/silicon/pai = src
-	balloon_alert(pai, LANG("mob.15001796", null))
+	balloon_alert(pai, LANG("mob.1500179690d2f37b", null))
 	for(var/effect in typesof(/datum/status_effect/speech))
 		pai.remove_status_effect(effect)
 	return TRUE
@@ -323,8 +323,8 @@
 /mob/living/silicon/pai/proc/handle_emag(mob/living/carbon/attacker)
 	if(!isliving(attacker))
 		return FALSE
-	balloon_alert(attacker, LANG("mob.9358b2a6", null))
-	balloon_alert(src, LANG("mob.bb1005e5", null))
+	balloon_alert(attacker, LANG("mob.9358b2a6c4f74218", null))
+	balloon_alert(src, LANG("mob.bb1005e50f68b07c", null))
 	log_game("[key_name(attacker)] emagged [key_name(src)], wiping their master DNA and supplemental directive.")
 	emagged = TRUE
 	master_ref = WEAKREF(attacker)
@@ -334,13 +334,13 @@
 	laws.clear_inherent_laws()
 	laws.add_inherent_law("Do not interfere with the operations of the Syndicate.")
 	log_law_change(attacker, "emagged pai [key_name(src)]")
-	to_chat(src, span_danger(LANG("mob.3522296c", null)))
+	to_chat(src, span_danger(LANG("mob.3522296c1fa8bd84", null)))
 	return TRUE
 
 /mob/living/silicon/pai/on_saboteur(datum/source, disrupt_duration)
 	. = ..()
 	set_silence_if_lower(disrupt_duration)
-	balloon_alert(src, LANG("mob.94abb434", null))
+	balloon_alert(src, LANG("mob.94abb434b45053c2", null))
 	return TRUE
 
 /**
@@ -357,7 +357,7 @@
 	master_dna = null
 	laws.clear_inherent_laws()
 	leash = AddComponent(/datum/component/leash, card, HOLOFORM_DEFAULT_RANGE, force_teleport_out_effect = /obj/effect/temp_visual/guardian/phase/out)
-	balloon_alert(src, LANG("mob.9d986d1f", null))
+	balloon_alert(src, LANG("mob.9d986d1ff9a74b44", null))
 	return TRUE
 
 /**
@@ -368,17 +368,17 @@
  */
 /mob/living/silicon/pai/proc/set_dna(mob/user)
 	if(!iscarbon(user))
-		balloon_alert(user, LANG("mob.8dd519ea", null))
-		balloon_alert(src, LANG("mob.8dd519ea", null))
+		balloon_alert(user, LANG("mob.8dd519ea3be97864", null))
+		balloon_alert(src, LANG("mob.8dd519ea3be97864", null))
 		return FALSE
 	if(emagged)
-		balloon_alert(user, LANG("mob.e97166e6", null))
+		balloon_alert(user, LANG("mob.e97166e6e0c409b1", null))
 		return FALSE
 	var/mob/living/carbon/master = user
 	master_ref = WEAKREF(master)
 	master_name = master.real_name
 	master_dna = master.dna.unique_enzymes
-	to_chat(src, span_bolddanger(LANG("mob.471031ce", list(user.real_name))))
+	to_chat(src, span_bolddanger(LANG("mob.471031cef2916c24", list(user.real_name))))
 	holochassis_ready = TRUE
 	return TRUE
 
@@ -390,12 +390,12 @@
  */
 /mob/living/silicon/pai/proc/set_laws(mob/user)
 	if(!master_ref)
-		balloon_alert(user, LANG("mob.2ae94249", null))
+		balloon_alert(user, LANG("mob.2ae94249d47149f0", null))
 		return FALSE
 	var/new_laws = tgui_input_text(
 		user,
-		LANG("mob.9c7f6dc5", null),
-		LANG("mob.50ed9f0f", null),
+		LANG("mob.9c7f6dc5ec9e2e15", null),
+		LANG("mob.50ed9f0ff538e050", null),
 		laws.inherent[1],
 		max_length = 300,
 	)
@@ -412,7 +412,7 @@
  * @returns {boolean} - TRUE if successful, FALSE if not.
  */
 /mob/living/silicon/pai/proc/toggle_holo()
-	balloon_alert(src, LANG("mob.fc1b916a", list(can_holo ? "disabled" : "enabled")))
+	balloon_alert(src, LANG("mob.fc1b916a1ad6107f", list(can_holo ? "disabled" : "enabled")))
 	can_holo = !can_holo
 	return TRUE
 
@@ -431,7 +431,7 @@
 		can_receive = !can_receive
 	radio.wires.cut(transmit_holder)//wires.cut toggles cut and uncut states
 	transmit_holder = (transmitting ? can_transmit : can_receive) //recycling can be fun!
-	balloon_alert(src, LANG("mob.4ce87932", list(transmitting ? "outgoing" : "incoming", transmit_holder ? "enabled" : "disabled")))
+	balloon_alert(src, LANG("mob.4ce879321d8a4dde", list(transmitting ? "outgoing" : "incoming", transmit_holder ? "enabled" : "disabled")))
 	return TRUE
 
 /**
@@ -442,13 +442,13 @@
  * @returns {boolean} - TRUE if successful, FALSE if not.
  */
 /mob/living/silicon/pai/proc/wipe_pai(mob/user)
-	if(tgui_alert(user, LANG("mob.7fd173a5", null), LANG("mob.b46e0e79", null), list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, LANG("mob.7fd173a5c2a89997", null), LANG("mob.b46e0e7991ee0128", null), list("Yes", "No")) != "Yes")
 		return FALSE
-	to_chat(src, span_warning(LANG("mob.19f078c3", null)))
-	to_chat(src, span_danger(LANG("mob.665654d8", null)))
-	to_chat(src, span_userdanger(LANG("mob.e6eebaf7", null)))
-	to_chat(src, span_rose(LANG("mob.f9db15b7", null)))
-	balloon_alert(user, LANG("mob.ba55ae46", null))
+	to_chat(src, span_warning(LANG("mob.19f078c35e578ae1", null)))
+	to_chat(src, span_danger(LANG("mob.665654d846b6e844", null)))
+	to_chat(src, span_userdanger(LANG("mob.e6eebaf713176343", null)))
+	to_chat(src, span_rose(LANG("mob.f9db15b7e190a751", null)))
+	balloon_alert(user, LANG("mob.ba55ae466ddae279", null))
 	playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 	qdel(src)
 	return TRUE
@@ -458,7 +458,7 @@
 	SIGNAL_HANDLER
 
 	for(var/mob/living/cultist as anything in invokers)
-		to_chat(cultist, span_cult_italic(LANG("mob.e06dff9e", null)))
+		to_chat(cultist, span_cult_italic(LANG("mob.e06dff9ee7779c12", null)))
 	return STOP_SACRIFICE|SILENCE_SACRIFICE_MESSAGE
 
 /// Updates the distance we can be from our pai card

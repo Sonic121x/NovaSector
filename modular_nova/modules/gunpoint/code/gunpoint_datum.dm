@@ -24,7 +24,7 @@
 	aimed_gun = gun
 
 	source.face_atom(target)
-	source.visible_message(span_danger(LANG("datum.550c64cd", list(source.name, target.name, aimed_gun.name))))
+	source.visible_message(span_danger(LANG("datum.550c64cdfdbb8e2e", list(source.name, target.name, aimed_gun.name))))
 
 	/* // NOVA EDIT REMOVAL START
 	was_running = (source.move_intent == MOVE_INTENT_RUN)
@@ -61,10 +61,10 @@
 		locked = TRUE
 		log_combat(target, source, "locked onto with aiming")
 		playsound(get_turf(source), 'modular_nova/modules/gunpoint/sound/targeton.ogg', 50,1)
-		to_chat(source, span_notice(LANG("datum.135a273f", list(target.name))))
-		target.visible_message(span_warning(LANG("datum.46fd2c1f", list(source.name, target.name, aimed_gun.name))), span_userdanger(LANG("datum.7a25c49b", list(source.name, aimed_gun.name))))
+		to_chat(source, span_notice(LANG("datum.135a273fb126a123", list(target.name))))
+		target.visible_message(span_warning(LANG("datum.46fd2c1fbf052976", list(source.name, target.name, aimed_gun.name))), span_userdanger(LANG("datum.7a25c49b22192e51", list(source.name, aimed_gun.name))))
 		if(target.gunpointed.len == 1)//First case
-			to_chat(target, span_danger(LANG("datum.60f07a83", list(source.name))))
+			to_chat(target, span_danger(LANG("datum.60f07a83ec46a07a", list(source.name))))
 		if(target.gp_effect.icon_state != "locked")
 			target.gp_effect.icon_state = "locked"
 
@@ -90,7 +90,7 @@
 	target.gunpointed -= src
 	source.gunpointing = null
 	if(locked)
-		target.visible_message(span_notice(LANG("datum.44d815c8", list(source.name, target.name))), span_notice(LANG("datum.7d09acf7", list(source.name))))
+		target.visible_message(span_notice(LANG("datum.44d815c8fc5ba70e", list(source.name, target.name))), span_notice(LANG("datum.7d09acf76e1f824c", list(source.name))))
 	source = null
 	target = null
 	aimed_gun = null

@@ -79,9 +79,9 @@
 /obj/structure/railing/examine(mob/user)
 	. = ..()
 	if(anchored == TRUE)
-		. += span_notice(LANG("obj.a9695c8f", null))
+		. += span_notice(LANG("obj.a9695c8f0cbb0629", null))
 	else
-		. += span_notice(LANG("obj.5b307d06", null))
+		. += span_notice(LANG("obj.5b307d06996776db", null))
 
 /obj/structure/railing/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	add_fingerprint(user)
@@ -93,27 +93,27 @@
 
 	add_fingerprint(user)
 	if(atom_integrity == max_integrity)
-		to_chat(user, span_warning(LANG("obj.7f6370b2", list(src))))
+		to_chat(user, span_warning(LANG("obj.7f6370b2939fd6c1", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_start_check(user, amount=1))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.93449ef4", list(src))))
+	to_chat(user, span_notice(LANG("obj.93449ef42b686baf", list(src))))
 	if(!tool.use_tool(src, user, 40, volume=50))
 		return ITEM_INTERACT_BLOCKING
 
 	atom_integrity = max_integrity
-	to_chat(user, span_notice(LANG("obj.e94d13eb", list(src))))
+	to_chat(user, span_notice(LANG("obj.e94d13ebf50e7df1", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 
 /obj/structure/railing/wirecutter_act(mob/living/user, obj/item/I)
 	if(resistance_flags & INDESTRUCTIBLE)
-		to_chat(user, span_warning(LANG("obj.3fa7a79f", null)))
+		to_chat(user, span_warning(LANG("obj.3fa7a79fe65b4e5b", null)))
 		I.play_tool_sound(src, 100)
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_warning(LANG("obj.69825462", null)))
+	to_chat(user, span_warning(LANG("obj.698254623303d9c8", null)))
 	I.play_tool_sound(src, 100)
 	deconstruct()
 	return ITEM_INTERACT_SUCCESS
@@ -126,10 +126,10 @@
 ///Implements behaviour that makes it possible to unanchor the railing.
 /obj/structure/railing/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
-	to_chat(user, span_notice(LANG("obj.1e7f4f4f", list(anchored ? "unfasten the railing from":"fasten the railing to"))))
+	to_chat(user, span_notice(LANG("obj.1e7f4f4f2a121be7", list(anchored ? "unfasten the railing from":"fasten the railing to"))))
 	if(I.use_tool(src, user, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_anchored), anchored)))
 		set_anchored(!anchored)
-		to_chat(user, span_notice(LANG("obj.1175c81a", list(anchored ? "fasten the railing to":"unfasten the railing from"))))
+		to_chat(user, span_notice(LANG("obj.1175c81a0e157390", list(anchored ? "fasten the railing to":"unfasten the railing from"))))
 	return TRUE
 
 /obj/structure/railing/CanPass(atom/movable/mover, border_dir)

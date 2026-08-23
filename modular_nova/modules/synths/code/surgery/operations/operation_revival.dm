@@ -86,7 +86,7 @@
 		span_notice("[surgeon] sends a powerful shock to [patient]'s [brain_type]..."),
 	)
 	if (patient.stat < DEAD)
-		patient.visible_message(span_notice(LANG("datum.08e14015", list(patient))))
+		patient.visible_message(span_notice(LANG("datum.08e140159aa42aac", list(patient))))
 		return
 	patient.grab_ghost()
 	if(iscarbon(patient))
@@ -101,13 +101,13 @@
 /// Call when successfully revived
 /datum/surgery_operation/basic/revive_synth/proc/on_revived(mob/living/surgeon, mob/living/patient)
 	patient.emote("chime")
-	patient.visible_message(span_notice(LANG("datum.89db2f86", list(patient))))
+	patient.visible_message(span_notice(LANG("datum.89db2f86663d06c8", list(patient))))
 	to_chat(patient, span_danger("[CONFIG_GET(string/blackoutpolicy)]"))
 
 /// Called when revival fails
 /datum/surgery_operation/basic/revive_synth/proc/on_no_revive(mob/living/surgeon, mob/living/patient)
 	patient.emote("buzz")
-	patient.visible_message(span_warning(LANG("datum.234e35fd", list(patient.p_they()))))
+	patient.visible_message(span_warning(LANG("datum.234e35fd6f213811", list(patient.p_they()))))
 
 /// Flavor for failure
 /datum/surgery_operation/basic/revive_synth/on_failure(mob/living/patient, mob/living/surgeon, obj/item/tool, list/operation_args)

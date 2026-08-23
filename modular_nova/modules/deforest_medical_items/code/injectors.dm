@@ -16,7 +16,7 @@
 
 /obj/item/reagent_containers/hypospray/medipen/deforest/inject(mob/living/affected_mob, mob/user)
 	if(!reagents.total_volume)
-		to_chat(user, span_warning(LANG("obj.02d482cc", list(src))))
+		to_chat(user, span_warning(LANG("obj.02d482cc1aef0cef", list(src))))
 		return FALSE
 	if(!iscarbon(affected_mob))
 		return FALSE
@@ -29,14 +29,14 @@
 	log_combat(user, affected_mob, "attempted to inject", src, "([contained])")
 
 	if((affected_mob != user) && inject_others_time)
-		affected_mob.visible_message(span_danger(LANG("obj.551ee95a", list(user, affected_mob))), \
-				span_userdanger(LANG("obj.d7940928", list(user))))
+		affected_mob.visible_message(span_danger(LANG("obj.551ee95abc52c0d3", list(user, affected_mob))), \
+				span_userdanger(LANG("obj.d794092863b6db9f", list(user))))
 		if(!do_after(user, CHEM_INTERACT_DELAY(inject_others_time, user), affected_mob))
 			return FALSE
 
 	if(reagents.total_volume && (ignore_flags || affected_mob.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))) // Ignore flag should be checked first or there will be an error message.
-		to_chat(affected_mob, span_warning(LANG("obj.d366f84f", null)))
-		to_chat(user, span_notice(LANG("obj.db3ac45e", list(affected_mob, src))))
+		to_chat(affected_mob, span_warning(LANG("obj.d366f84feb09c62c", null)))
+		to_chat(user, span_notice(LANG("obj.db3ac45ef61a1c08", list(affected_mob, src))))
 		if(!stealthy)
 			playsound(affected_mob, 'sound/items/hypospray.ogg', 50, TRUE)
 		var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
@@ -48,7 +48,7 @@
 			else
 				reagents.expose(affected_mob, INJECT, fraction)
 				trans = reagents.trans_to(affected_mob, amount_per_transfer_from_this, copy_only = TRUE)
-			to_chat(user, span_notice(LANG("obj.243f7312", list(trans, reagents.total_volume, src))))
+			to_chat(user, span_notice(LANG("obj.243f7312730a3e05", list(trans, reagents.total_volume, src))))
 			log_combat(user, affected_mob, "injected", src, "([contained])")
 		return TRUE
 	return FALSE

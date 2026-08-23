@@ -41,7 +41,7 @@
 	// stop swooped target movement
 	swooping = TRUE
 	owner.add_traits(list(TRAIT_GODMODE, TRAIT_UNDENSE), SWOOPING_TRAIT)
-	owner.visible_message(span_boldwarning(LANG("datum.66278ae1", list(owner))))
+	owner.visible_message(span_boldwarning(LANG("datum.66278ae1fd23143a", list(owner))))
 
 	var/negative
 	var/initial_x = owner.x
@@ -105,7 +105,7 @@
 				throw_dir = pick(GLOB.alldirs)
 			var/throwtarget = get_edge_target_turf(owner, throw_dir)
 			victim.throw_at(throwtarget, 3)
-			owner.visible_message(span_warning(LANG("datum.65b13390", list(victim, owner))))
+			owner.visible_message(span_warning(LANG("datum.65b13390ac2beebd", list(victim, owner))))
 	for(var/obj/vehicle/sealed/mecha/mech in orange(1, owner))
 		mech.take_damage(75, BRUTE, MELEE, 1)
 
@@ -121,7 +121,7 @@
 /datum/action/cooldown/mob_cooldown/lava_swoop/proc/lava_pools(atom/target, amount = 30, delay = 0.8)
 	if(!target)
 		return
-	target.visible_message(span_boldwarning(LANG("datum.5dc7cc38", null)))
+	target.visible_message(span_boldwarning(LANG("datum.5dc7cc38a6da788c", null)))
 
 	while(amount > 0)
 		if(QDELETED(target))
@@ -137,7 +137,7 @@
 	var/turf/target_turf = get_turf(target)
 	if(QDELETED(target) || !isliving(target) || target_turf.z != owner.z)
 		return
-	target.visible_message(span_boldwarning(LANG("datum.66e56326", list(owner))))
+	target.visible_message(span_boldwarning(LANG("datum.66e56326f07bebff", list(owner))))
 	var/amount = 3
 	var/turf/center = get_turf(owner)
 	var/list/walled = RANGE_TURFS(3, center) - RANGE_TURFS(2, center)

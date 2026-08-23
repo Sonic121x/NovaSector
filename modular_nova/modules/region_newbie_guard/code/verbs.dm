@@ -3,13 +3,13 @@ ADMIN_VERB(toggle_newbie_guard, R_SERVER, "切换新人软管制", "Toggle the r
 
 	if(enabling)
 		if(!newbie_guard_load_geoip(force = TRUE))
-			to_chat(user, span_adminnotice(LANG("datum.2e4f80ca", list(GLOB.newbie_guard_geo_source, NEWBIE_GUARD_GEOIP_PATH))), confidential = TRUE)
+			to_chat(user, span_adminnotice(LANG("datum.2e4f80cade030fbd", list(GLOB.newbie_guard_geo_source, NEWBIE_GUARD_GEOIP_PATH))), confidential = TRUE)
 			return
 
-		var/playtime = input(user, LANG("datum.486b5cda", null), LANG("datum.fc23f26f", null), CONFIG_GET(number/newbie_guard_playtime)) as num|null
+		var/playtime = input(user, LANG("datum.486b5cdaba0bb6b5", null), LANG("datum.fc23f26f45d55301", null), CONFIG_GET(number/newbie_guard_playtime)) as num|null
 		if(isnull(playtime))
 			return
-		var/survival = input(user, LANG("datum.e096c1b6", null), LANG("datum.fc23f26f", null), CONFIG_GET(number/newbie_guard_survival)) as num|null
+		var/survival = input(user, LANG("datum.e096c1b67c305f21", null), LANG("datum.fc23f26f45d55301", null), CONFIG_GET(number/newbie_guard_survival)) as num|null
 		if(isnull(survival))
 			return
 
@@ -63,7 +63,7 @@ ADMIN_VERB(newbie_guard_panel, R_ADMIN, "新人软管制名单", "List and relea
 	panel.open()
 
 ADMIN_VERB(newbie_guard_exempt, R_ADMIN, "豁免新人软管制", "Permanently exempt a ckey from the newbie guard.", ADMIN_CATEGORY_MAIN)
-	var/target_ckey = ckey(input(user, LANG("datum.fad72d41", null), LANG("datum.fc23f26f", null)) as text|null)
+	var/target_ckey = ckey(input(user, LANG("datum.fad72d41b63c9639", null), LANG("datum.fc23f26f45d55301", null)) as text|null)
 	if(!target_ckey)
 		return
 
@@ -75,5 +75,5 @@ ADMIN_VERB(newbie_guard_reload_geoip, R_SERVER, "重载地区数据表", "Reload
 	var/loaded = newbie_guard_load_geoip(force = TRUE)
 	// Verdicts were decided against the previous table.
 	GLOB.newbie_guard_verdict.Cut()
-	to_chat(user, span_adminnotice(LANG("datum.8fbbdda6", list(GLOB.newbie_guard_geo_source, loaded))), confidential = TRUE)
+	to_chat(user, span_adminnotice(LANG("datum.8fbbdda63b80bde5", list(GLOB.newbie_guard_geo_source, loaded))), confidential = TRUE)
 	log_admin("[key_name(user)] reloaded the newbie guard GeoIP table ([loaded] ranges).")

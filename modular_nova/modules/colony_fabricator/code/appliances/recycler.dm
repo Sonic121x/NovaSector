@@ -48,8 +48,8 @@
 
 /obj/machinery/colony_recycler/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.546bceb7", list(amount_produced)))
-	. += span_notice(LANG("obj.b89f5bdb", null))
+	. += span_notice(LANG("obj.546bceb74c741db0", list(amount_produced)))
+	. += span_notice(LANG("obj.b89f5bdb56dc814c", null))
 
 /obj/machinery/colony_recycler/wrench_act_secondary(mob/living/user, obj/item/tool)
 	default_unfasten_wrench(user, tool)

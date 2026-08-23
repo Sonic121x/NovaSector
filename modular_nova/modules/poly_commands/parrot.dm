@@ -41,12 +41,12 @@
 	if(LAZYLEN(human_target.buckled_mobs) >= human_target.max_buckled_mobs)
 		return
 	if(buckled_to_human)
-		manual_emote(LANG("mob.7703f326", list(human_target)))
+		manual_emote(LANG("mob.7703f3262331e718", list(human_target)))
 		return
 	if(get_dist(src, human_target) > 1 || buckled) // Only adjacent
-		manual_emote(LANG("mob.fd42f95b", list(human_target)))
+		manual_emote(LANG("mob.fd42f95b7b77acbd", list(human_target)))
 		return
-	manual_emote(LANG("mob.04128cec", list(human_target)))
+	manual_emote(LANG("mob.04128cec03e07a78", list(human_target)))
 	if(start_perching(human_target))
 		buckled_to_human = TRUE
 
@@ -54,11 +54,11 @@
 	if(!buckled)
 		buckled_to_human = FALSE
 	if(!buckled_to_human || !buckled)
-		manual_emote(LANG("mob.7703f326", list(human_target)))
+		manual_emote(LANG("mob.7703f3262331e718", list(human_target)))
 		return
 
 	if(buckled)
-		to_chat(src, span_notice(LANG("mob.aee2b02f", list(human_target))))
+		to_chat(src, span_notice(LANG("mob.aee2b02f355b23ae", list(human_target))))
 		buckled.unbuckle_mob(src, TRUE)
-		manual_emote(LANG("mob.637df698", list(human_target)))
+		manual_emote(LANG("mob.637df698256cecc0", list(human_target)))
 

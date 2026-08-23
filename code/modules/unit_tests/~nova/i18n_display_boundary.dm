@@ -37,22 +37,23 @@
 /datum/unit_test/i18n_display_boundary/Destroy()
 	if(!isnull(saved_locale))
 		GLOB.i18n_server_locale = saved_locale
-		GLOB.i18n_locale_resolved = saved_locale_resolved
-		var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
+		GLOB.i18n_runtime_state = saved_locale_resolved
+		var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
 		if(islist(en_cache))
 			for(var/key in injected_en_keys)
 				en_cache -= key
-		GLOB.i18n_cache -= I18N_DISPLAY_TEST_LOCALE
+		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET] -= I18N_DISPLAY_TEST_LOCALE
+		GLOB.i18n_runtime_domains -= I18N_DISPLAY_TEST_LOCALE
 		GLOB.i18n_reverse -= I18N_DISPLAY_TEST_LOCALE
 		GLOB.i18n_unreverse -= I18N_DISPLAY_TEST_LOCALE
 		saved_locale = null
 	return ..()
 
 /datum/unit_test/i18n_display_boundary/Run()
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
 	if(!islist(en_cache))
 		en_cache = list()
-		GLOB.i18n_cache[DEFAULT_UI_LOCALE] = en_cache
+		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE] = en_cache
 
 	var/list/test_pairs = list(
 		"unittest.display_name" = list(I18N_DISPLAY_TEST_NAME, "焊接燃料"),
@@ -65,11 +66,12 @@
 		test_cache[key] = pair[2]
 	// 记录恢复所需的状态**再**改全局：Destroy() 靠 saved_locale 非空判断该不该恢复。
 	saved_locale = GLOB.i18n_server_locale
-	saved_locale_resolved = GLOB.i18n_locale_resolved
+	saved_locale_resolved = GLOB.i18n_runtime_state
 	injected_en_keys = test_pairs.Copy()
-	GLOB.i18n_cache[I18N_DISPLAY_TEST_LOCALE] = test_cache
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][I18N_DISPLAY_TEST_LOCALE] = test_cache
+	GLOB.i18n_runtime_domains -= I18N_DISPLAY_TEST_LOCALE
 	GLOB.i18n_server_locale = I18N_DISPLAY_TEST_LOCALE
-	GLOB.i18n_locale_resolved = TRUE
+	GLOB.i18n_runtime_state = I18N_RUNTIME_READY
 	GLOB.i18n_reverse -= I18N_DISPLAY_TEST_LOCALE
 	GLOB.i18n_unreverse -= I18N_DISPLAY_TEST_LOCALE
 
@@ -107,17 +109,9 @@
 	// user 必须非空：/mob/living/get_examine_name 会 SEND_SIGNAL(user, …)。
 	TEST_ASSERT(findtext(test_mouse.get_examine_name(test_human), "焊接燃料"), "静态 mob 类型名应在显示边界翻译")
 	// `set_name()` 形态：「类型名 (编号)」的前缀该翻、后缀原样保留（异种/蜂/无人机等都走这条）。
-	TEST_ASSERT_EQUAL(
-		test_mouse.lang_localize_name_for_display("[I18N_DISPLAY_TEST_NAME] (123)"),
-		"焊接燃料 (123)",
-		"类型名 + 括号后缀应翻前缀、留后缀",
-	)
+	TEST_ASSERT_EQUAL(test_mouse.lang_localize_name_for_display("[I18N_DISPLAY_TEST_NAME] (123)"), "焊接燃料 (123)", "类型名 + 括号后缀应翻前缀、留后缀")
 	// 但换成别的形状就必须当身份名保护住（前缀不等于 initial(name) / 没有括号后缀）。
-	TEST_ASSERT_EQUAL(
-		test_mouse.lang_localize_name_for_display("[I18N_DISPLAY_TEST_NAME] Junior"),
-		"[I18N_DISPLAY_TEST_NAME] Junior",
-		"非括号后缀的运行期名不得翻译",
-	)
+	TEST_ASSERT_EQUAL(test_mouse.lang_localize_name_for_display("[I18N_DISPLAY_TEST_NAME] Junior"), "[I18N_DISPLAY_TEST_NAME] Junior", "非括号后缀的运行期名不得翻译")
 
 	// tgui_input_list 的显示串↔原值往返：选项文本翻成译文，items_map 用同一个显示串作键，
 	// 回传后仍取回**原始值**。这条一旦回归就是「中文选项点了没反应」的静默失效。

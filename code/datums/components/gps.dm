@@ -111,7 +111,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 /datum/component/gps/item/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice(LANG("datum.95e1d867", list(tracking ? "off":"on")))
+	examine_list += span_notice(LANG("datum.95e1d867e7689fb2", list(tracking ? "off":"on")))
 
 ///Called on COMSIG_ATOM_EMP_ACT
 /datum/component/gps/item/proc/on_emp_act(datum/source, severity, protection)
@@ -144,16 +144,16 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	if(!user.can_perform_action(parent, ALLOW_RESTING | ALLOW_PAI))
 		return //user not valid to use gps
 	if(emped)
-		to_chat(user, span_warning(LANG("datum.4a41b215", null)))
+		to_chat(user, span_warning(LANG("datum.4a41b2157a89a3c7", null)))
 		return
 	var/atom/A = parent
 	if(tracking)
 		A.cut_overlay("working")
-		to_chat(user, span_notice(LANG("datum.1bf1ceab", list(parent))))
+		to_chat(user, span_notice(LANG("datum.1bf1ceab804efc9d", list(parent))))
 		tracking = FALSE
 	else
 		A.add_overlay("working")
-		to_chat(user, span_notice(LANG("datum.e0756380", list(parent))))
+		to_chat(user, span_notice(LANG("datum.e0756380910eb4aa", list(parent))))
 		tracking = TRUE
 
 	if(debug_mode)
@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 /datum/component/gps/item/ui_interact(mob/user, datum/tgui/ui)
 	if(emped)
-		to_chat(user, span_hear(LANG("datum.018d3156", list(parent))))
+		to_chat(user, span_hear(LANG("datum.018d315661bff287", list(parent))))
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -221,7 +221,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	switch(action)
 		if("rename")
 			var/atom/parentasatom = parent
-			var/a = tgui_input_text(usr, LANG("datum.d3a3a1d1", null), LANG("datum.6b3d9100", null), gpstag, max_length = 20)
+			var/a = tgui_input_text(usr, LANG("datum.d3a3a1d10e8ff8c2", null), LANG("datum.6b3d910035ab72c0", null), gpstag, max_length = 20)
 			if (QDELETED(ui) || ui.status != UI_INTERACTIVE)
 				return
 			if (!a)

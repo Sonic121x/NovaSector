@@ -55,7 +55,7 @@
 	var/obj/machinery/dna_vault/our_vault = dna_vault_ref?.resolve()
 	if(!our_vault)
 		dna_vault_ref = WEAKREF(target)//linking the dna vault with the probe
-		balloon_alert(user, LANG("obj.ff040b7b", null))
+		balloon_alert(user, LANG("obj.ff040b7bc6ec79fe", null))
 		playsound(src, 'sound/machines/terminal/terminal_success.ogg', 50)
 		return TRUE
 	return FALSE
@@ -82,66 +82,66 @@
 		stored_dna_animal.Cut()
 	target.check_goal()
 	playsound(target, 'sound/machines/compiler/compiler-stage1.ogg', 50)
-	to_chat(user, span_notice(LANG("obj.42bf3e37", list(uploaded))))
+	to_chat(user, span_notice(LANG("obj.42bf3e37d192739e", list(uploaded))))
 	return uploaded
 
 /obj/item/dna_probe/proc/scan_dna(atom/target, mob/user)
 	var/obj/machinery/dna_vault/our_vault = dna_vault_ref?.resolve()
 	if(!our_vault)
 		playsound(user, 'sound/machines/buzz/buzz-sigh.ogg', 50)
-		balloon_alert(user, LANG("obj.ce17823c", null))
+		balloon_alert(user, LANG("obj.ce17823c6629f0fb", null))
 		return FALSE
 	if(istype(target, /obj/machinery/hydroponics))
 		var/obj/machinery/hydroponics/hydro_tray = target
 		if(!hydro_tray.myseed)
 			return FALSE
 		if(our_vault.plant_dna[hydro_tray.myseed.type])
-			balloon_alert(user, LANG("obj.8b2ee6e2", null))
+			balloon_alert(user, LANG("obj.8b2ee6e2709ad339", null))
 			return FALSE
 		if(stored_dna_plants[hydro_tray.myseed.type])
-			balloon_alert(user, LANG("obj.457757ae", null))
+			balloon_alert(user, LANG("obj.457757ae35d226e7", null))
 			return FALSE
 		if(hydro_tray.plant_status != HYDROTRAY_PLANT_HARVESTABLE) // So it's bit harder.
-			balloon_alert(user, LANG("obj.3fc11e64", null))
+			balloon_alert(user, LANG("obj.3fc11e6426db1f68", null))
 			return FALSE
 		stored_dna_plants[hydro_tray.myseed.type] = TRUE
 		playsound(src, 'sound/machines/compiler/compiler-stage2.ogg', 50)
-		balloon_alert(user, LANG("obj.2a7d32ba", null))
+		balloon_alert(user, LANG("obj.2a7d32baaf9a66f8", null))
 		return TRUE
 
 	if(ishuman(target) && !ismonkey(target))
 		var/mob/living/carbon/human/human_target = target
 		if(our_vault.human_dna[human_target.dna.unique_identity])
-			balloon_alert(user, LANG("obj.8b2ee6e2", null))
+			balloon_alert(user, LANG("obj.8b2ee6e2709ad339", null))
 			return FALSE
 		if(stored_dna_human[human_target.dna.unique_identity])
-			balloon_alert(user, LANG("obj.457757ae", null))
+			balloon_alert(user, LANG("obj.457757ae35d226e7", null))
 			return FALSE
 		if(!(human_target.mob_biotypes & MOB_ORGANIC))
-			balloon_alert(user, LANG("obj.155bc7e9", null))
+			balloon_alert(user, LANG("obj.155bc7e96020d187", null))
 			return FALSE
 		stored_dna_human[human_target.dna.unique_identity] = TRUE
 		playsound(src, 'sound/machines/compiler/compiler-stage2.ogg', 50)
-		balloon_alert(user, LANG("obj.2a7d32ba", null))
+		balloon_alert(user, LANG("obj.2a7d32baaf9a66f8", null))
 		return TRUE
 
 	if(!is_type_in_typecache(target, animal_typecache) && !ismonkey(target))
 		return FALSE
 	if(our_vault.animal_dna[target.type])
-		balloon_alert(user, LANG("obj.8b2ee6e2", null))
+		balloon_alert(user, LANG("obj.8b2ee6e2709ad339", null))
 		return FALSE
 	if(stored_dna_animal[target.type])
-		balloon_alert(user, LANG("obj.457757ae", null))
+		balloon_alert(user, LANG("obj.457757ae35d226e7", null))
 		return FALSE
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(!(living_target.mob_biotypes & MOB_ORGANIC))
-			balloon_alert(user, LANG("obj.155bc7e9", null))
+			balloon_alert(user, LANG("obj.155bc7e96020d187", null))
 			return FALSE
 
 	stored_dna_animal[target.type] = TRUE
 	playsound(src, 'sound/machines/compiler/compiler-stage2.ogg', 50)
-	balloon_alert(user, LANG("obj.2a7d32ba", null))
+	balloon_alert(user, LANG("obj.2a7d32baaf9a66f8", null))
 	return TRUE
 
 /obj/item/dna_probe/proc/valid_scan_target(atom/target)
@@ -170,7 +170,7 @@
 	if(istype(target, /mob/living/basic/carp))
 		carp_dna_loaded = TRUE
 		playsound(src, 'sound/machines/compiler/compiler-stage2.ogg', 50)
-		balloon_alert(user, LANG("obj.87390b23", null))
+		balloon_alert(user, LANG("obj.87390b233d8f534a", null))
 	else
 		return ..()
 
@@ -182,15 +182,15 @@
 /obj/item/dna_probe/carp_scanner/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!carp_dna_loaded)
-		to_chat(user, span_notice(LANG("obj.3c961a2a", null)))
+		to_chat(user, span_notice(LANG("obj.3c961a2acba0c304", null)))
 		return
-	to_chat(user, span_notice(LANG("obj.914c9796", list(src))))
+	to_chat(user, span_notice(LANG("obj.914c9796e4eb6b3f", list(src))))
 	if(!do_after(user, CARP_MIX_DNA_TIMER))
 		return
 	var/mob/living/basic/space_dragon/new_dragon = user.change_mob_type(/mob/living/basic/space_dragon, location = loc, delete_old_mob = TRUE)
 	new_dragon.add_filter("anger_glow", 3, list("type" = "outline", "color" = COLOR_CARP_RIFT_RED, "size" = 5))
 	new_dragon.add_movespeed_modifier(/datum/movespeed_modifier/dragon_rage)
-	priority_announce(LANG("obj.3c3f0633", list(station_name())), "Lifesign Alert")
+	priority_announce(LANG("obj.3c3f0633bdb949b0", list(station_name())), "Lifesign Alert")
 	qdel(src)
 
 #undef CARP_MIX_DNA_TIMER

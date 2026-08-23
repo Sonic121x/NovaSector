@@ -73,21 +73,21 @@
 /obj/item/gun/energy/recharge/kinetic_accelerator/examine(mob/user)
 	. = ..()
 	if(max_mod_capacity)
-		. += LANG("obj.15082120", list(get_remaining_mod_capacity()))
-		. += span_info(LANG("obj.2abed7d3", null))
+		. += LANG("obj.1508212031c289eb", list(get_remaining_mod_capacity()))
+		. += span_info(LANG("obj.2abed7d34fa399c7", null))
 		for(var/obj/item/borg/upgrade/modkit/modkit_upgrade as anything in modkits)
-			. += span_notice(LANG("obj.ae0e0db4", list(modkit_upgrade, modkit_upgrade.cost)))
+			. += span_notice(LANG("obj.ae0e0db4ce9fb12e", list(modkit_upgrade, modkit_upgrade.cost)))
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/crowbar_act(mob/living/user, obj/item/I)
 	. = TRUE
 	if(modkits.len)
-		to_chat(user, span_notice(LANG("obj.4e48f31f", null)))
+		to_chat(user, span_notice(LANG("obj.4e48f31f1f19d856", null)))
 		I.play_tool_sound(src, 100)
 		for(var/obj/item/borg/upgrade/modkit/modkit_upgrade as anything in modkits)
 			if (modkit_upgrade.removable)
 				modkit_upgrade.forceMove(drop_location()) //uninstallation handled in Exited(), or /mob/living/silicon/robot/remove_from_upgrades() for borgs
 	else
-		to_chat(user, span_notice(LANG("obj.f52d8357", null)))
+		to_chat(user, span_notice(LANG("obj.f52d83570a4d5725", null)))
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/try_fire_gun(atom/target, mob/living/user, params)
 	return fire_gun(target, user, user.Adjacent(target) && !isturf(target), params)
@@ -293,7 +293,7 @@
 			continue
 		var/armor = living_mob.run_armor_check(def_zone, armor_flag, armour_penetration = armour_penetration)
 		living_mob.apply_damage(damage, damage_type, def_zone, armor)
-		to_chat(living_mob, span_userdanger(LANG("obj.91bf91e6", list(name))))
+		to_chat(living_mob, span_userdanger(LANG("obj.91bf91e631bd9373", list(name))))
 
 //Modkits
 /obj/item/borg/upgrade/modkit
@@ -320,7 +320,7 @@
 
 /obj/item/borg/upgrade/modkit/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.e294c885", list(cost)))
+	. += span_notice(LANG("obj.e294c88560d27d5d", list(cost)))
 
 /obj/item/borg/upgrade/modkit/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/gun/energy/recharge/kinetic_accelerator) || issilicon(user))
@@ -339,11 +339,11 @@
 	if(minebot_upgrade)
 		if(minebot_exclusive && !istype(KA.loc, /mob/living/basic/mining_drone))
 			if (user)
-				to_chat(user, span_notice(LANG("obj.82d49a6e", null)))
+				to_chat(user, span_notice(LANG("obj.82d49a6e05ce438e", null)))
 			return FALSE
 	else if(istype(KA.loc, /mob/living/basic/mining_drone))
 		if (user)
-			to_chat(user, span_notice(LANG("obj.5abda105", null)))
+			to_chat(user, span_notice(LANG("obj.5abda105148f05d9", null)))
 		return FALSE
 
 	var/type_to_limit = denied_type
@@ -358,11 +358,11 @@
 				number_of_denied++
 			if(maximum_of_type && number_of_denied >= maximum_of_type || !maximum_of_type && number_of_denied) //if we denied a type, or we have a maximum to reach, break
 				if (user)
-					to_chat(user, span_notice(LANG("obj.b2eb340e", null)))
+					to_chat(user, span_notice(LANG("obj.b2eb340e0741fd24", null)))
 				return FALSE
 
 	if(KA.get_remaining_mod_capacity() < cost)
-		to_chat(user, span_notice(LANG("obj.010f1840", list(KA.get_remaining_mod_capacity(), cost))))
+		to_chat(user, span_notice(LANG("obj.010f1840c638f748", list(KA.get_remaining_mod_capacity(), cost))))
 		return FALSE
 
 	if(transfer_to_loc)
@@ -372,7 +372,7 @@
 			forceMove(KA)
 
 	if (user)
-		to_chat(user, span_notice(LANG("obj.9c6d753c", null)))
+		to_chat(user, span_notice(LANG("obj.9c6d753cca58411e", null)))
 		playsound(loc, 'sound/items/tools/screwdriver.ogg', 100, TRUE)
 	KA.modkits |= src
 
@@ -511,7 +511,7 @@
 			continue
 		var/armor = living_mob.run_armor_check(kinetic_blast.def_zone, kinetic_blast.armor_flag, armour_penetration = kinetic_blast.armour_penetration)
 		living_mob.apply_damage(kinetic_blast.damage * damage_modifier, kinetic_blast.damage_type, kinetic_blast.def_zone, armor)
-		to_chat(living_mob, span_userdanger(LANG("obj.91bf91e6", list(kinetic_blast.name))))
+		to_chat(living_mob, span_userdanger(LANG("obj.91bf91e631bd9373", list(kinetic_blast.name))))
 
 /obj/item/borg/upgrade/modkit/cooldown/aoe/turfs
 	name = "mining explosion"

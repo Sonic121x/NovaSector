@@ -62,7 +62,7 @@
 		// If they somehow have a datum. I won't judge
 		return should_interaction_fail(source, thrower) ? COMPONENT_CANCEL_THROW : NONE
 	// If the thrower isn't a mob, just block it. It could be anything, but it's probably an explosion
-	source.visible_message(span_warning(LANG("datum.c7fa1691", list(source))))
+	source.visible_message(span_warning(LANG("datum.c7fa1691846cc5a7", list(source))))
 	return COMPONENT_CANCEL_THROW
 
 /// Returns FALSE if we don't have a bitrunning threat antag datum, TRUE + balloon alert otherwise
@@ -73,5 +73,5 @@
 	if(!user_mind.has_antag_datum_in_list(restricted_from))
 		return FALSE
 
-	objective.balloon_alert(user, LANG("datum.87a2c690", null))
+	objective.balloon_alert(user, LANG("datum.87a2c6901973def3", null))
 	return TRUE

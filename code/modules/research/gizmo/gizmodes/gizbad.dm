@@ -95,7 +95,7 @@
 	return
 
 /datum/gizpulse/ominous/activate(atom/movable/holder, datum/gizmodes/master, datum/gizmo_interface/interface)
-	holder.audible_message(span_hear(LANG("datum.301995ea", null)))
+	holder.audible_message(span_hear(LANG("datum.301995eaa42a151f", null)))
 
 /datum/gizpulse/thrower/grenade
 	throwables = list(

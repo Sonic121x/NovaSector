@@ -189,13 +189,13 @@
 	if(!isitem(exposed_obj) || HAS_TRAIT(exposed_obj, TRAIT_FOOD_FRIED))
 		return
 	if(is_type_in_typecache(exposed_obj, GLOB.oilfry_blacklisted_items) || (exposed_obj.resistance_flags & INDESTRUCTIBLE))
-		exposed_obj.visible_message(span_notice(LANG("datum.94f69a54", list(exposed_obj))))
+		exposed_obj.visible_message(span_notice(LANG("datum.94f69a5428dacf45", list(exposed_obj))))
 		return
 	if(exposed_obj.atom_storage)
-		exposed_obj.visible_message(span_notice(LANG("datum.7864ef84", list(exposed_obj))))
+		exposed_obj.visible_message(span_notice(LANG("datum.7864ef842fb31eca", list(exposed_obj))))
 		return
 
-	exposed_obj.visible_message(span_warning(LANG("datum.49213ec7", list(exposed_obj))))
+	exposed_obj.visible_message(span_warning(LANG("datum.49213ec771329cf3", list(exposed_obj))))
 	exposed_obj.AddElement(/datum/element/fried_item, volume SECONDS)
 	exposed_obj.reagents.add_reagent(type, reac_volume, data, holder.chem_temp)
 
@@ -211,8 +211,8 @@
 	if(HAS_TRAIT(exposed_mob, TRAIT_OIL_FRIED))
 		return
 
-	exposed_mob.visible_message(span_warning(LANG("datum.8b95c5a2", list(exposed_mob))), \
-	span_userdanger(LANG("datum.432558fc", null)))
+	exposed_mob.visible_message(span_warning(LANG("datum.8b95c5a23c619601", list(exposed_mob))), \
+	span_userdanger(LANG("datum.432558fcb07e6975", null)))
 	if(FryLoss)
 		exposed_mob.emote("scream")
 		exposed_mob.adjust_fire_loss(FryLoss)
@@ -337,7 +337,7 @@
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/affected_mob, metabolization_ratio)
 	. = ..()
-	to_chat(affected_mob, span_userdanger(LANG("datum.5be6b7c0", null)))
+	to_chat(affected_mob, span_userdanger(LANG("datum.5be6b7c0477a68be", null)))
 	affected_mob.AdjustSleeping(20 SECONDS)
 
 /datum/reagent/consumable/sugar/overdose_process(mob/living/affected_mob, seconds_per_tick, metabolization_ratio)
@@ -549,13 +549,13 @@
 	adjust_blood_flow(-0.06 * reac_volume, initial_flow * 0.6) // 20u of a salt shacker * 0.1 = -1.6~ blood flow, but is always clamped to, at best, third blood loss from that wound.
 	// Crystal irritation worsening recovery.
 	gauzed_clot_rate *= 0.65
-	to_chat(carbies, span_notice(LANG("datum.eb137392", list(LOWER_TEXT(src)))))
+	to_chat(carbies, span_notice(LANG("datum.eb13739215872542", list(LOWER_TEXT(src)))))
 
 /datum/wound/slash/flesh/on_salt(reac_volume, mob/living/carbon/carbies)
 	adjust_blood_flow(-0.1 * reac_volume, initial_flow * 0.5) // 20u of a salt shacker * 0.1 = -2~ blood flow, but is always clamped to, at best, halve blood loss from that wound.
 	// Crystal irritation worsening recovery.
 	clot_rate *= 0.75
-	to_chat(carbies, span_notice(LANG("datum.eb137392", list(LOWER_TEXT(src)))))
+	to_chat(carbies, span_notice(LANG("datum.eb13739215872542", list(LOWER_TEXT(src)))))
 
 /datum/wound/burn/flesh/on_salt(reac_volume)
 	// Slightly sanitizes and disinfects, but also increases infestation rate (some bacteria are aided by salt), and decreases flesh healing (can damage the skin from moisture absorption)
@@ -563,7 +563,7 @@
 	infection -= max(VALUE_PER(0.3, 30) * reac_volume, 0)
 	infection_rate += VALUE_PER(0.12, 30) * reac_volume
 	flesh_healing -= max(VALUE_PER(5, 30) * reac_volume, 0)
-	to_chat(victim, span_notice(LANG("datum.22c7e317", list(LOWER_TEXT(src)))))
+	to_chat(victim, span_notice(LANG("datum.22c7e317b7a358ed", list(LOWER_TEXT(src)))))
 
 /datum/reagent/consumable/blackpepper
 	name = "Black Pepper"
@@ -598,9 +598,9 @@
 	if(HAS_TRAIT(affected_mob, TRAIT_UNHOLY_BANEABLE)) //incapacitating but not lethal. Unfortunately, vampires cannot vomit.
 		if(SPT_PROB(min((current_cycle-1)/2, 12.5), seconds_per_tick))
 			if(HAS_TRAIT(affected_mob, TRAIT_ANOSMIA))
-				to_chat(affected_mob, span_danger(LANG("datum.cb04c270", null)))
+				to_chat(affected_mob, span_danger(LANG("datum.cb04c270fb92933c", null)))
 			else
-				to_chat(affected_mob, span_danger(LANG("datum.eee9d23e", null)))
+				to_chat(affected_mob, span_danger(LANG("datum.eee9d23e35fe3a4c", null)))
 			affected_mob.Paralyze(10)
 			affected_mob.set_jitter_if_lower(20 SECONDS)
 		return
@@ -626,7 +626,7 @@
 	if(methods & (TOUCH | VAPOR | INHALE))
 		var/tear_proof = victim.is_eyes_covered()
 		if (!tear_proof)
-			to_chat(exposed_mob, span_warning(LANG("datum.0a4f2c0a", null)))
+			to_chat(exposed_mob, span_warning(LANG("datum.0a4f2c0a78b5fa18", null)))
 			victim.emote("cry")
 			victim.adjust_eye_blur(6 SECONDS)
 
@@ -723,18 +723,18 @@
 
 /datum/wound/pierce/bleed/on_flour(reac_volume, mob/living/carbon/carbies)
 	adjust_blood_flow(-0.015 * reac_volume) // 30u of a flour sack * 0.015 = -0.45~ blood flow, prettay good
-	to_chat(carbies, span_notice(LANG("datum.6455a48e", list(LOWER_TEXT(src)))))
+	to_chat(carbies, span_notice(LANG("datum.6455a48e1b662577", list(LOWER_TEXT(src)))))
 	// When some nerd adds infection for wounds, make this increase the infection
 
 /datum/wound/slash/flesh/on_flour(reac_volume, mob/living/carbon/carbies)
 	adjust_blood_flow(-0.04 * reac_volume) // 30u of a flour sack * 0.04 = -1.25~ blood flow, pretty good!
-	to_chat(carbies, span_notice(LANG("datum.80ab56cd", list(LOWER_TEXT(src)))))
+	to_chat(carbies, span_notice(LANG("datum.80ab56cdda767139", list(LOWER_TEXT(src)))))
 	// When some nerd adds infection for wounds, make this increase the infection
 
 // Don't pour flour onto burn wounds, it increases infection risk! Very unwise. Backed up by REAL info from REAL professionals.
 // https://www.reuters.com/article/uk-factcheck-flour-burn-idUSKCN26F2N3
 /datum/wound/burn/flesh/on_flour(reac_volume)
-	to_chat(victim, span_notice(LANG("datum.f0c6ffad", list(LOWER_TEXT(src)))))
+	to_chat(victim, span_notice(LANG("datum.f0c6ffad45df2faa", list(LOWER_TEXT(src)))))
 	sanitization -= min(0, 1)
 	infection += 0.2
 	return
@@ -834,18 +834,18 @@
 
 /datum/wound/pierce/bleed/on_starch(reac_volume, mob/living/carbon/carbies)
 	adjust_blood_flow(-0.03 * reac_volume)
-	to_chat(carbies, span_notice(LANG("datum.deed5561", list(LOWER_TEXT(src)))))
+	to_chat(carbies, span_notice(LANG("datum.deed55615ade8a13", list(LOWER_TEXT(src)))))
 	// When some nerd adds infection for wounds, make this increase the infection
 	return
 
 /datum/wound/slash/flesh/on_starch(reac_volume, mob/living/carbon/carbies)
 	adjust_blood_flow(-0.06 * reac_volume)
-	to_chat(carbies, span_notice(LANG("datum.898e11e0", list(LOWER_TEXT(src)))))
+	to_chat(carbies, span_notice(LANG("datum.898e11e05e7521a8", list(LOWER_TEXT(src)))))
 	// When some nerd adds infection for wounds, make this increase the infection
 	return
 
 /datum/wound/burn/flesh/on_starch(reac_volume, mob/living/carbon/carbies)
-	to_chat(carbies, span_notice(LANG("datum.35fc5cb3", list(LOWER_TEXT(src)))))
+	to_chat(carbies, span_notice(LANG("datum.35fc5cb3ee340fe0", list(LOWER_TEXT(src)))))
 	sanitization -= min(0, 0.5)
 	infection += 0.1
 	return

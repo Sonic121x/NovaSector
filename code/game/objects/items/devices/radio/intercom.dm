@@ -49,26 +49,26 @@
 
 /obj/item/radio/intercom/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.24e4bcd8", list(MODE_TOKEN_INTERCOM)))
+	. += span_notice(LANG("obj.24e4bcd8daac331f", list(MODE_TOKEN_INTERCOM)))
 	if(!unscrewed)
-		. += span_notice(LANG("obj.2fc65237", null))
+		. += span_notice(LANG("obj.2fc65237fe53e006", null))
 	else
-		. += span_notice(LANG("obj.43888722", null))
+		. += span_notice(LANG("obj.43888722b99cffc3", null))
 
 	if(anonymize)
-		. += span_notice(LANG("obj.b6786468", null))
+		. += span_notice(LANG("obj.b67864687f6801c2", null))
 
 	if(freqlock == RADIO_FREQENCY_UNLOCKED)
 		if((obj_flags & EMAGGED) && initial(freqlock) == RADIO_FREQENCY_EMAGGABLE_LOCK)
-			. += span_warning(LANG("obj.da1b7679", null))
+			. += span_warning(LANG("obj.da1b7679c863e297", null))
 	else
-		. += span_notice(LANG("obj.5027c3ce", list(frequency/10)))
+		. += span_notice(LANG("obj.5027c3ceec38dcc3", list(frequency/10)))
 
 	if(keylock == RADIO_KEYSLOT_UNLOCKED)
 		if((obj_flags & EMAGGED) && initial(keylock) == RADIO_KEYSLOT_EMAGGABLE_LOCK)
-			. += span_warning(LANG("obj.50431995", null))
+			. += span_warning(LANG("obj.50431995b26963da", null))
 	else
-		. += span_notice(LANG("obj.d32d4532", list(keylock == RADIO_KEYSLOT_LOCKED ? "stripped" : "fastened tight", keylock == RADIO_KEYSLOT_LOCKED ? "" : " without some kind of magnet")))
+		. += span_notice(LANG("obj.d32d45328d811bd3", list(keylock == RADIO_KEYSLOT_LOCKED ? "stripped" : "fastened tight", keylock == RADIO_KEYSLOT_LOCKED ? "" : " without some kind of magnet")))
 
 /obj/item/radio/intercom/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -84,15 +84,15 @@
 
 /obj/item/radio/intercom/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	if(unscrewed)
-		user.visible_message(span_notice(LANG("obj.d065917f", list(user, src))), span_notice(LANG("obj.3f00c4f6", list(src))))
+		user.visible_message(span_notice(LANG("obj.d065917f814b1cc2", list(user, src))), span_notice(LANG("obj.3f00c4f61fbbb768", list(src))))
 		if(tool.use_tool(src, user, 30, volume=50))
-			user.visible_message(span_notice(LANG("obj.3065a8ec", list(user, src))), span_notice(LANG("obj.023abbe2", list(src))))
+			user.visible_message(span_notice(LANG("obj.3065a8ec946ae90e", list(user, src))), span_notice(LANG("obj.023abbe21f5f66e2", list(src))))
 			unscrewed = FALSE
 			update_appearance(UPDATE_OVERLAYS)
 	else
-		user.visible_message(span_notice(LANG("obj.eff9ca5b", list(user, src))), span_notice(LANG("obj.f4529b06", list(src))))
+		user.visible_message(span_notice(LANG("obj.eff9ca5b18cc1588", list(user, src))), span_notice(LANG("obj.f4529b06f210d08d", list(src))))
 		if(tool.use_tool(src, user, 40, volume=50))
-			user.visible_message(span_notice(LANG("obj.b3c7a951", list(user, src))), span_notice(LANG("obj.bb7969d3", list(src))))
+			user.visible_message(span_notice(LANG("obj.b3c7a951f59ab0fe", list(user, src))), span_notice(LANG("obj.bb7969d37c266e78", list(src))))
 			unscrewed = TRUE
 			update_appearance(UPDATE_OVERLAYS)
 	return ITEM_INTERACT_SUCCESS
@@ -104,12 +104,12 @@
 
 /obj/item/radio/intercom/wrench_act(mob/living/user, obj/item/tool)
 	if(!unscrewed)
-		to_chat(user, span_warning(LANG("obj.9269e98a", list(src))))
+		to_chat(user, span_warning(LANG("obj.9269e98a40f5a702", list(src))))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.096bdf2b", list(user, src))), span_notice(LANG("obj.08ee3372", list(src))))
+	user.visible_message(span_notice(LANG("obj.096bdf2beb6b1130", list(user, src))), span_notice(LANG("obj.08ee33726ba03b76", list(src))))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 80))
-		user.visible_message(span_notice(LANG("obj.21675bf4", list(user, src))), span_notice(LANG("obj.aa18b3fe", list(src))))
+		user.visible_message(span_notice(LANG("obj.21675bf488693e22", list(user, src))), span_notice(LANG("obj.aa18b3fe3f2cb677", list(src))))
 		playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 		deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -174,7 +174,7 @@
 		return .
 
 	if(!freqlock && !keylock)
-		balloon_alert(user, LANG("obj.15a752b9", null))
+		balloon_alert(user, LANG("obj.15a752b90ed3bc48", null))
 		return .
 
 	var/message = ""
@@ -186,11 +186,11 @@
 		message = "key lock"
 
 	if(!message)
-		balloon_alert(user, LANG("obj.b92dd0df", list((freqlock && keylock) ? "s" : "")))
+		balloon_alert(user, LANG("obj.b92dd0dfd5b291e4", list((freqlock && keylock) ? "s" : "")))
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE, SILENCED_SOUND_EXTRARANGE)
 		return .
 
-	balloon_alert(user, LANG("obj.d0a04656", list(message)))
+	balloon_alert(user, LANG("obj.d0a046565f092a57", list(message)))
 	playsound(src, SFX_SPARKS, 75, TRUE, SILENCED_SOUND_EXTRARANGE)
 	if(freqlock == RADIO_FREQENCY_EMAGGABLE_LOCK)
 		freqlock = RADIO_FREQENCY_UNLOCKED

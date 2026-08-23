@@ -60,28 +60,28 @@
 	if(stage >= 3 && SPT_PROB(0.15 * stage, seconds_per_tick))
 		var/datum/action/cooldown/spell/picked = pick(random_spells)
 		if(!picked.try_invoke(affected_mob, feedback = FALSE))
-			to_chat(affected_mob, span_danger(LANG("datum.c73f51f6", null)))
+			to_chat(affected_mob, span_danger(LANG("datum.c73f51f6f473cf20", null)))
 			return
 
 		picked.spell_feedback(affected_mob)
 		return
 
 	if(stage <= 3 && SPT_PROB(0.33 * stage, seconds_per_tick))
-		affected_mob.manual_emote(LANG("datum.cb103bcf", null))
+		affected_mob.manual_emote(LANG("datum.cb103bcf529697ad", null))
 
 	switch(stage)
 		if(2)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger(LANG("datum.20f1ebe8", list(pick("that you don't have enough mana", "that the winds of magic are gone", "an urge to summon familiar")))))
+				to_chat(affected_mob, span_danger(LANG("datum.20f1ebe8a80b36d9", list(pick("that you don't have enough mana", "that the winds of magic are gone", "an urge to summon familiar")))))
 
 		if(3)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger(LANG("datum.20f1ebe8", list(pick("the magic bubbling in your veins", "that this location gives you a +1 to INT", "an urge to summon familiar")))))
+				to_chat(affected_mob, span_danger(LANG("datum.20f1ebe8a80b36d9", list(pick("the magic bubbling in your veins", "that this location gives you a +1 to INT", "an urge to summon familiar")))))
 				spawn_wizard_clothes(10)
 
 		if(4)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger(LANG("datum.20f1ebe8", list(pick("the tidal wave of raw power building inside", "that this location gives you a +2 to INT and +1 to WIS", "an urge to teleport")))))
+				to_chat(affected_mob, span_danger(LANG("datum.20f1ebe8a80b36d9", list(pick("the tidal wave of raw power building inside", "that this location gives you a +2 to INT and +1 to WIS", "an urge to teleport")))))
 				spawn_wizard_clothes(50)
 
 			if(SPT_PROB(0.2, seconds_per_tick))

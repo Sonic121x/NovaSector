@@ -52,10 +52,10 @@
 	switch(parse_wire(wire))
 		if(WIRE_BOOM)
 			if(!bomb.active)
-				holder.visible_message(span_notice(LANG("datum.2b0fa738", list(icon2html(bomb, viewers(holder))))))
+				holder.visible_message(span_notice(LANG("datum.2b0fa738c5df44cf", list(icon2html(bomb, viewers(holder))))))
 				return
 
-			holder.visible_message(span_danger(LANG("datum.3b536419", list(icon2html(bomb, viewers(holder))))))
+			holder.visible_message(span_danger(LANG("datum.3b536419c0e9b07a", list(icon2html(bomb, viewers(holder))))))
 			bomb.explode_now = TRUE
 			if(is_dangerous())
 				tell_admins(bomb, user, "detonated via boom wire")
@@ -63,21 +63,21 @@
 					add_memory_in_range(bomb, 7, /datum/memory/bomb_defuse_failure, protagonist = user, antagonist = bomb)
 
 		if(WIRE_UNBOLT)
-			holder.visible_message(span_notice(LANG("datum.f5dacf93", list(icon2html(bomb, viewers(holder))))))
+			holder.visible_message(span_notice(LANG("datum.f5dacf9362ccb9ac", list(icon2html(bomb, viewers(holder))))))
 
 		if(WIRE_DELAY)
 			if(bomb.delayedbig)
-				holder.visible_message(span_notice(LANG("datum.2b0fa738", list(icon2html(bomb, viewers(holder))))))
+				holder.visible_message(span_notice(LANG("datum.2b0fa738c5df44cf", list(icon2html(bomb, viewers(holder))))))
 				return
 
-			holder.visible_message(span_notice(LANG("datum.87abafc0", list(icon2html(bomb, viewers(holder))))))
+			holder.visible_message(span_notice(LANG("datum.87abafc0f3c06d9d", list(icon2html(bomb, viewers(holder))))))
 			playsound(bomb, 'sound/machines/chime.ogg', 30, TRUE)
 			bomb.detonation_timer += (30 SECONDS)
 			if(bomb.active)
 				bomb.delayedbig = TRUE
 
 		if(WIRE_PROCEED)
-			holder.visible_message(span_danger(LANG("datum.a4fc487b", list(icon2html(bomb, viewers(holder))))))
+			holder.visible_message(span_danger(LANG("datum.a4fc487b4cd1ad6d", list(icon2html(bomb, viewers(holder))))))
 			playsound(bomb, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 			var/seconds = bomb.seconds_remaining()
 			if(seconds >= 61) // Long fuse bombs can suddenly become more dangerous if you tinker with them.
@@ -89,13 +89,13 @@
 
 		if(WIRE_ACTIVATE)
 			if(!bomb.active)
-				holder.visible_message(span_danger(LANG("datum.b1c28b4b", list(icon2html(bomb, viewers(holder))))))
+				holder.visible_message(span_danger(LANG("datum.b1c28b4bb2cf7d68", list(icon2html(bomb, viewers(holder))))))
 				bomb.activate()
 				bomb.update_appearance()
 			else if(bomb.delayedlittle)
-				holder.visible_message(span_notice(LANG("datum.2b0fa738", list(icon2html(bomb, viewers(holder))))))
+				holder.visible_message(span_notice(LANG("datum.2b0fa738c5df44cf", list(icon2html(bomb, viewers(holder))))))
 			else
-				holder.visible_message(span_notice(LANG("datum.bd075beb", list(icon2html(bomb, viewers(holder))))))
+				holder.visible_message(span_notice(LANG("datum.bd075beb7eef5578", list(icon2html(bomb, viewers(holder))))))
 				bomb.detonation_timer += 100
 				bomb.delayedlittle = TRUE
 
@@ -105,7 +105,7 @@
 		if(WIRE_BOOM)
 			if(mend || !bomb.active)
 				return
-			holder.visible_message(span_danger(LANG("datum.3b536419", list(icon2html(bomb, viewers(holder))))))
+			holder.visible_message(span_danger(LANG("datum.3b536419c0e9b07a", list(icon2html(bomb, viewers(holder))))))
 			bomb.explode_now = TRUE
 			if(is_dangerous())
 				tell_admins(bomb, source, "detonated via boom wire")
@@ -115,21 +115,21 @@
 		if(WIRE_UNBOLT)
 			if(mend || !bomb.anchored)
 				return
-			holder.visible_message(span_notice(LANG("datum.3063a696", list(icon2html(bomb, viewers(holder))))))
+			holder.visible_message(span_notice(LANG("datum.3063a6968bcf76fa", list(icon2html(bomb, viewers(holder))))))
 			playsound(bomb, 'sound/effects/stealthoff.ogg', 30, TRUE)
 			bomb.set_anchored(FALSE)
 
 		if(WIRE_PROCEED)
 			if(mend || !bomb.active)
 				return
-			holder.visible_message(span_danger(LANG("datum.21c4fac6", list(icon2html(bomb, viewers(holder))))))
+			holder.visible_message(span_danger(LANG("datum.21c4fac602311547", list(icon2html(bomb, viewers(holder))))))
 			bomb.examinable_countdown = FALSE
 
 		if(WIRE_ACTIVATE)
 			if(mend || !bomb.active)
 				return
 			var/bomb_time_left = bomb.seconds_remaining()
-			holder.visible_message(span_notice(LANG("datum.fbbfd6b7", list(icon2html(bomb, viewers(holder))))))
+			holder.visible_message(span_notice(LANG("datum.fbbfd6b7235bedde", list(icon2html(bomb, viewers(holder))))))
 			bomb.defuse()
 			if(is_dangerous())
 				tell_admins(bomb, source, "defused")

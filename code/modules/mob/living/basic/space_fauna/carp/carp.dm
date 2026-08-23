@@ -149,7 +149,7 @@
 	if (!feedback)
 		return
 	spin(spintime = 10, speed = 1)
-	visible_message(LANG("mob.8f4d1466", list(src, tamer)))
+	visible_message(LANG("mob.8f4d146605a22b76", list(src, tamer)))
 
 /// Teleport when you right click away from you
 /mob/living/basic/carp/ranged_secondary_attack(atom/atom_target, modifiers)

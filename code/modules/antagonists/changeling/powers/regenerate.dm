@@ -10,11 +10,11 @@
 
 /datum/action/changeling/regenerate/sting_action(mob/living/user)
 	if(!iscarbon(user))
-		user.balloon_alert(user, LANG("datum.e2f0ffe1", null))
+		user.balloon_alert(user, LANG("datum.e2f0ffe1c6cb4025", null))
 		return FALSE
 
 	..()
-	to_chat(user, span_notice(LANG("datum.3c911c57", null)))
+	to_chat(user, span_notice(LANG("datum.3c911c5750731088", null)))
 	var/mob/living/carbon/carbon_user = user
 	var/got_limbs_back = length(carbon_user.get_missing_limbs()) >= 1
 	carbon_user.fully_heal(HEAL_BODY)
@@ -22,9 +22,9 @@
 	if(got_limbs_back)
 		playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 		carbon_user.visible_message(
-			span_warning(LANG("datum.dcde9284", list(user))),
-			span_userdanger(LANG("datum.eebb0cd6", null)),
-			span_hear(LANG("datum.581bebe7", null)),
+			span_warning(LANG("datum.dcde928414fd695a", list(user))),
+			span_userdanger(LANG("datum.eebb0cd6068ec92e", null)),
+			span_hear(LANG("datum.581bebe73d25d191", null)),
 		)
 		carbon_user.emote("scream")
 

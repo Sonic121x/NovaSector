@@ -32,7 +32,7 @@
 
 	if(istype(attacking_item, /obj/item/melee/baseball_bat))
 		if(user.mind?.get_skill_level(/datum/skill/athletics) < SKILL_LEVEL_EXPERT)
-			to_chat(user, span_warning(LANG("datum.fc1fbd9d", list(parent))))
+			to_chat(user, span_warning(LANG("datum.fc1fbd9dcad1e150", list(parent))))
 			return FALSE
 		playsound(parent, 'sound/items/baseballhit.ogg', 100, TRUE)
 		redirection_proc.Invoke(user)
@@ -41,11 +41,11 @@
 	if (istype(attacking_item, /obj/item/melee/powerfist))
 		var/obj/item/melee/powerfist/fist = attacking_item
 		if(!fist.tank)
-			to_chat(user, span_warning(LANG("datum.e078088b", list(fist))))
+			to_chat(user, span_warning(LANG("datum.e078088bd15a40ce", list(fist))))
 			return FALSE
 		var/datum/gas_mixture/gas_used = fist.tank.remove_air(fist.gas_per_fist * 3) // 3 is HIGH_PRESSURE setting on powerfist.
 		if(!gas_used || !molar_cmp_equals(gas_used.total_moles(), fist.gas_per_fist * 3))
-			to_chat(user, span_warning(LANG("datum.7e07279d", list(fist, parent))))
+			to_chat(user, span_warning(LANG("datum.7e07279d4ce2de9a", list(fist, parent))))
 			return FALSE
 		playsound(parent, 'sound/items/weapons/resonator_blast.ogg', 50, TRUE)
 		redirection_proc.Invoke(user)

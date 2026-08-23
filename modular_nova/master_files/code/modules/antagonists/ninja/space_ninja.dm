@@ -132,12 +132,12 @@
 
 /datum/antagonist/ninja/greet()
 	SEND_SOUND(owner.current, sound('sound/music/antag/ninja_greeting.ogg'))
-	to_chat(owner.current, span_danger(LANG("datum.b4d8d233", null)))
-	to_chat(owner.current, span_warning(LANG("datum.8facf063", null)))
-	to_chat(owner.current, span_notice(LANG("datum.bfa95e0e", list(dir2text(get_dir(owner.current, locate(world.maxx/2, world.maxy/2, owner.current.z)))))))
+	to_chat(owner.current, span_danger(LANG("datum.b4d8d233a0e87645", null)))
+	to_chat(owner.current, span_warning(LANG("datum.8facf063d925a042", null)))
+	to_chat(owner.current, span_notice(LANG("datum.bfa95e0ed43a6088", list(dir2text(get_dir(owner.current, locate(world.maxx/2, world.maxy/2, owner.current.z)))))))
 	owner.announce_objectives()
 
 /// removes ninja glove security records console interaction
 /obj/machinery/computer/records/security/ninjadrain_charge(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
-	balloon_alert(ninja, LANG("obj.bccffc95", null))
+	balloon_alert(ninja, LANG("obj.bccffc95efe66ad7", null))
 

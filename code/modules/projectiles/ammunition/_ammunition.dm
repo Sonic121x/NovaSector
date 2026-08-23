@@ -105,9 +105,9 @@
 		return "Our legal team has determined the offensive nature of these [span_warning(caliber)] rounds to be esoteric."
 	// No dividing by 0
 	if(initial_damage)
-		readout += LANG("obj.2f3bec6e", list(span_warning(caliber), span_warning("[HITS_TO_CRIT((initial(exam_proj.damage) * proj_damage_mult) * pellets)] shot\s"), span_warning("[pellets] shot\s")))
+		readout += LANG("obj.2f3bec6ed96defc6", list(span_warning(caliber), span_warning("[HITS_TO_CRIT((initial(exam_proj.damage) * proj_damage_mult) * pellets)] shot\s"), span_warning("[pellets] shot\s")))
 	if(initial_stamina)
-		readout += LANG("obj.67914d2b", list(!readout.len ? "Most monkeys" : "More fortunate monkeys", span_warning("[HITS_TO_CRIT((initial(exam_proj.stamina) * proj_damage_mult) * pellets)] impact\s"), span_warning("[caliber]")))
+		readout += LANG("obj.67914d2b0bd980ce", list(!readout.len ? "Most monkeys" : "More fortunate monkeys", span_warning("[HITS_TO_CRIT((initial(exam_proj.stamina) * proj_damage_mult) * pellets)] impact\s"), span_warning("[caliber]")))
 	return readout.Join("\n") // Sending over a single string, rather than the whole list
 
 /obj/item/ammo_casing/update_icon_state()
@@ -156,10 +156,10 @@
 			boolets++
 
 	if (!boolets)
-		to_chat(user, span_warning(LANG("obj.937731d0", null)))
+		to_chat(user, span_warning(LANG("obj.937731d05b6b5f25", null)))
 		return FALSE
 	box.update_appearance()
-	to_chat(user, span_notice(LANG("obj.150417ef", list(boolets, box.casing_phrasing, box, box.stored_ammo.len, box.casing_phrasing))))
+	to_chat(user, span_notice(LANG("obj.150417efb67533ec", list(boolets, box.casing_phrasing, box, box.stored_ammo.len, box.casing_phrasing))))
 	return TRUE
 
 /obj/item/ammo_casing/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

@@ -50,7 +50,7 @@
 /obj/item/cardboard_cutout/attack_hand(mob/living/user, list/modifiers)
 	if(!user.combat_mode || pushed_over || !isturf(loc))
 		return ..()
-	user.visible_message(span_warning(LANG("obj.1715c5fe", list(user, src))), span_danger(LANG("obj.52f6060f", list(src))))
+	user.visible_message(span_warning(LANG("obj.1715c5fe1aedb195", list(user, src))), span_danger(LANG("obj.52f6060fc35559b4", list(src))))
 	playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 	push_over()
 
@@ -65,7 +65,7 @@
 
 /obj/item/cardboard_cutout/proc/push_over()
 	appearance = initial(appearance)
-	desc = LANG("obj.3688fcce", list(initial(desc)))
+	desc = LANG("obj.3688fccee5ef3aec", list(initial(desc)))
 	icon_state = "cutout_pushed_over"
 	remove_atom_colour(FIXED_COLOUR_PRIORITY)
 	pushed_over = TRUE
@@ -74,7 +74,7 @@
 /obj/item/cardboard_cutout/attack_self(mob/living/user)
 	if(!pushed_over)
 		return
-	to_chat(user, span_notice(LANG("obj.692d18ff", list(src))))
+	to_chat(user, span_notice(LANG("obj.692d18ff3cd3c481", list(src))))
 	desc = initial(desc)
 	icon = initial(icon)
 	icon_state = initial(icon_state) //This resets a cutout to its blank state - this is intentional to allow for resetting
@@ -129,7 +129,7 @@
 		return FALSE
 	if(!check_menu(user, crayon))
 		return FALSE
-	user.visible_message(span_notice(LANG("obj.acff05e0", list(user, src))), span_notice(LANG("obj.b26f51bd", list(src))))
+	user.visible_message(span_notice(LANG("obj.acff05e03bf7e78d", list(user, src))), span_notice(LANG("obj.b26f51bdc7e1145b", list(src))))
 	crayon.use_charges(1)
 	crayon.check_empty(user)
 	alpha = 255
@@ -153,14 +153,14 @@
 	if(user.incapacitated)
 		return FALSE
 	if(pushed_over)
-		to_chat(user, span_warning(LANG("obj.717b589f", list(src))))
+		to_chat(user, span_warning(LANG("obj.717b589fe33e8644", list(src))))
 		return FALSE
 	if(!crayon || !user.is_holding(crayon))
 		return FALSE
 	if(crayon.check_empty(user))
 		return FALSE
 	if(crayon.is_capped)
-		to_chat(user, span_warning(LANG("obj.71461396", null)))
+		to_chat(user, span_warning(LANG("obj.714613962be744cb", null)))
 		return FALSE
 	return TRUE
 

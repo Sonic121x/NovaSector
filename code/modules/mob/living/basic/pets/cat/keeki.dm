@@ -49,11 +49,11 @@
 	var/datum/mind/candidate_mind = candidate.brainmob.mind
 	candidate_mind.transfer_to(src)
 	candidate_mind.grab_ghost()
-	to_chat(src, LANG("mob.01f31d85", list(span_boldbig("You are a cak!"))))
+	to_chat(src, LANG("mob.01f31d85713158d8", list(span_boldbig("You are a cak!"))))
 	var/default_name = initial(name)
-	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, LANG("mob.e36094c4", list(src)), LANG("mob.b4bf4c54", null), default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
+	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, LANG("mob.e36094c4548f3f49", list(src)), LANG("mob.b4bf4c54d223e79b", null), default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
 	if(new_name)
-		to_chat(src, span_notice(LANG("mob.e590eb95", list(new_name))))
+		to_chat(src, span_notice(LANG("mob.e590eb95cb295f60", list(new_name))))
 		name = new_name
 
 /mob/living/basic/pet/cat/cak/spin(spintime, speed)

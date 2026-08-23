@@ -79,4 +79,4 @@
 		return
 	stasis_sealed = FALSE
 	do_sparks(3, FALSE, src)
-	to_chat(user, span_warning(LANG("obj.387a2f20", list(src))))
+	to_chat(user, span_warning(LANG("obj.387a2f20fe30c483", list(src))))

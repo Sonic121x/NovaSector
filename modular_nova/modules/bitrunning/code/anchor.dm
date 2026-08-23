@@ -7,12 +7,12 @@
 
 /obj/item/domain_anchor/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.a338b768", null))
+	. += span_notice(LANG("obj.a338b76858187702", null))
 
 /obj/item/domain_anchor/attack_self(mob/user, modifiers)
 	for(var/obj/machinery/quantum_server/server in SSmachines.get_machines_by_type(/obj/machinery/quantum_server))
 		if(server.current_anchors >= server.max_anchors)
-			user.balloon_alert(user, LANG("obj.399ab61a", null))
+			user.balloon_alert(user, LANG("obj.399ab61aef46d968", null))
 			return FALSE
 		server.exit_turfs += get_turf(src)
 		server.retries_spent -= 1
@@ -22,7 +22,7 @@
 		if(aas)
 			aas.broadcast("Potential secure datastream detected. Locking on the new spawn point.", list(RADIO_CHANNEL_SUPPLY, RADIO_CHANNEL_FACTION))
 	new /obj/effect/landmark/bitrunning/domain_anchor(drop_location())
-	user.balloon_alert(user, LANG("obj.d5a6f4a2", null))
+	user.balloon_alert(user, LANG("obj.d5a6f4a2764bde3e", null))
 	qdel(src)
 
 /obj/effect/landmark/bitrunning/domain_anchor

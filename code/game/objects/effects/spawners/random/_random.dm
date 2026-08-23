@@ -165,7 +165,7 @@
 	make_table()
 
 /obj/item/loot_table_maker/attack_self(mob/user)
-	to_chat(user, LANG("obj.052c0320", null))
+	to_chat(user, LANG("obj.052c032069f5f310", null))
 	make_table()
 
 /obj/item/loot_table_maker/proc/make_table()

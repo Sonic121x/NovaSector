@@ -33,10 +33,10 @@
 	if (!area_constraint)
 		return TRUE
 	if(!istype(build_area, area_constraint))
-		to_chat(owner, span_warning(LANG("datum.562ea6a9", list(area_constraint::name))))
+		to_chat(owner, span_warning(LANG("datum.562ea6a98341c7e1", list(area_constraint::name))))
 		return FALSE
 	if(only_station_z && !is_station_level(build_target.z))
-		to_chat(owner, span_warning(LANG("datum.190d3c8e", list(area_constraint::name))))
+		to_chat(owner, span_warning(LANG("datum.190d3c8e421c969b", list(area_constraint::name))))
 		return FALSE
 	return TRUE
 
@@ -84,17 +84,17 @@
 		return
 	var/turf/place_turf = get_turf(remote_eye)
 	if(!base_console.structures[structure_name])
-		to_chat(owner, span_warning(LANG("datum.d9ec7a5d", list(base_console, structure_name))))
+		to_chat(owner, span_warning(LANG("datum.d9ec7a5d695d4ab5", list(base_console, structure_name))))
 		return
 	if(!check_spot())
 		return
 	//Can't place inside a closed turf
 	if(place_turf.density)
-		to_chat(owner, span_warning(LANG("datum.06cf07c6", list(structure_name))))
+		to_chat(owner, span_warning(LANG("datum.06cf07c60e113839", list(structure_name))))
 		return
 	//Can't place two dense objects inside each other
 	if(initial(structure_path.density) && place_turf.is_blocked_turf())
-		to_chat(owner, span_warning(LANG("datum.b5be912e", null)))
+		to_chat(owner, span_warning(LANG("datum.b5be912eb446cbfd", null)))
 		return
 	var/obj/placed_structure = new structure_path(place_turf)
 	base_console.structures[structure_name]--
@@ -114,7 +114,7 @@
 	place_sound = 'sound/machines/click.ogg'
 
 /datum/action/innate/construction/place_structure/fan/after_place(obj/placed_structure, remaining)
-	to_chat(owner, span_notice(LANG("datum.54a6200a", list(remaining))))
+	to_chat(owner, span_notice(LANG("datum.54a6200ab6e50517", list(remaining))))
 
 /datum/action/innate/construction/place_structure/turret
 	name = "Install Plasma Anti-Wildlife Turret"
@@ -126,8 +126,8 @@
 /datum/action/innate/construction/place_structure/turret/after_place(obj/placed_structure, remaining)
 	var/obj/machinery/computer/auxiliary_base/turret_controller = locate() in get_area(placed_structure)
 	if(!turret_controller)
-		to_chat(owner, span_notice(LANG("datum.1e18424b", null)))
+		to_chat(owner, span_notice(LANG("datum.1e18424b47c47d6a", null)))
 		return
 
 	LAZYADD(turret_controller.turrets, WEAKREF(placed_structure))
-	to_chat(owner, span_notice(LANG("datum.10dbada5", list(remaining))))
+	to_chat(owner, span_notice(LANG("datum.10dbada592d34a9b", list(remaining))))

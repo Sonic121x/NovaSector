@@ -21,6 +21,8 @@ use std::path::{Path, PathBuf};
 
 use dm::ast::{BinaryOp, Case, Expression, Follow, Spanned, Statement, Term};
 
+use crate::{governance::CatalogDomains, keys};
+
 /// lint 结果：错误使退出码非零（CI 失败），告警仅打印。
 #[derive(Default)]
 struct Report {
@@ -91,7 +93,9 @@ fn collect_name_lang_assigns(block: &[Spanned<Statement>], out: &mut Vec<dm::Loc
                 out.push(stmt.location);
             }
         }
-        visit_nested_blocks(&stmt.elem, &mut |inner| collect_name_lang_assigns(inner, out));
+        visit_nested_blocks(&stmt.elem, &mut |inner| {
+            collect_name_lang_assigns(inner, out)
+        });
     }
 }
 
@@ -120,7 +124,11 @@ fn visit_nested_blocks(stmt: &Statement, sink: &mut impl FnMut(&[Spanned<Stateme
                 sink(block);
             }
         }
-        Statement::TryCatch { try_block, catch_block, .. } => {
+        Statement::TryCatch {
+            try_block,
+            catch_block,
+            ..
+        } => {
             sink(try_block);
             sink(catch_block);
         }
@@ -300,8 +308,9 @@ fn load_catalog_excluding(dir: &Path, exclude: &[&str]) -> BTreeMap<String, Stri
     let Ok(entries) = std::fs::read_dir(dir) else {
         return merged;
     };
-    for entry in entries.flatten() {
-        let path = entry.path();
+    let mut paths: Vec<PathBuf> = entries.flatten().map(|entry| entry.path()).collect();
+    paths.sort();
+    for path in paths {
         if path.extension().and_then(|s| s.to_str()) != Some("json") {
             continue;
         }
@@ -321,6 +330,129 @@ fn load_catalog_excluding(dir: &Path, exclude: &[&str]) -> BTreeMap<String, Stri
         }
     }
     merged
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+struct DomainCatalogEntry {
+    domain: String,
+    key: String,
+    file: String,
+    value: String,
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+struct DuplicateConflict {
+    domain: String,
+    key: String,
+    first_file: String,
+    first_value: String,
+    second_file: String,
+    second_value: String,
+}
+
+fn duplicate_conflicts(
+    entries: impl IntoIterator<Item = DomainCatalogEntry>,
+) -> Vec<DuplicateConflict> {
+    let mut seen: BTreeMap<(String, String), DomainCatalogEntry> = BTreeMap::new();
+    let mut conflicts = Vec::new();
+    for entry in entries {
+        let identity = (entry.domain.clone(), entry.key.clone());
+        if let Some(first) = seen.get(&identity) {
+            if first.value != entry.value {
+                conflicts.push(DuplicateConflict {
+                    domain: entry.domain,
+                    key: entry.key,
+                    first_file: first.file.clone(),
+                    first_value: first.value.clone(),
+                    second_file: entry.file,
+                    second_value: entry.value,
+                });
+            }
+        } else {
+            seen.insert(identity, entry);
+        }
+    }
+    conflicts
+}
+
+/// Runtime merges files by the explicit domain manifest. A key repeated with
+/// the same value is harmless, but different values make the effective
+/// translation depend on file iteration order and are therefore a hard error.
+fn lint_duplicate_catalog_keys(
+    locale_dir: &Path,
+    locale: &str,
+    domains: &CatalogDomains,
+    report: &mut Report,
+) {
+    let Ok(entries) = std::fs::read_dir(locale_dir) else {
+        report.error(format!(
+            "[catalog/domain] locale 目录不存在或不可读：{}",
+            locale_dir.display()
+        ));
+        return;
+    };
+    let mut paths: Vec<PathBuf> = entries.flatten().map(|entry| entry.path()).collect();
+    paths.sort();
+    let mut domain_entries = Vec::new();
+    for path in paths {
+        if !path.is_file() || path.extension().and_then(|ext| ext.to_str()) != Some("json") {
+            continue;
+        }
+        let Some(file_name) = path.file_name().and_then(|name| name.to_str()) else {
+            report.error(format!(
+                "[catalog/domain] locale={locale} 文件名不是 UTF-8：{}",
+                path.display()
+            ));
+            continue;
+        };
+        let Some(policy) = domains.get(file_name) else {
+            report.error(format!(
+                "[catalog/domain] locale={locale} 文件未登记，runtime 会拒绝加载：{}",
+                path.display()
+            ));
+            continue;
+        };
+        let text = match std::fs::read_to_string(&path) {
+            Ok(text) => text,
+            Err(err) => {
+                report.error(format!(
+                    "[catalog/domain] locale={locale} 无法读取 {}：{err}",
+                    path.display()
+                ));
+                continue;
+            }
+        };
+        let map = match serde_json::from_str::<BTreeMap<String, String>>(&text) {
+            Ok(map) => map,
+            Err(err) => {
+                report.error(format!(
+                    "[catalog/domain] locale={locale} JSON 解析失败 {}：{err}",
+                    path.display()
+                ));
+                continue;
+            }
+        };
+        for (key, value) in map {
+            domain_entries.push(DomainCatalogEntry {
+                domain: policy.domain.clone(),
+                key,
+                file: path.display().to_string(),
+                value,
+            });
+        }
+    }
+
+    for conflict in duplicate_conflicts(domain_entries) {
+        report.error(format!(
+            "[catalog/domain] locale={locale} domain={} 的 key {:?} 有冲突译文：\n    {} = {:?}\n    {} = {:?}",
+            conflict.domain,
+            conflict.key,
+            conflict.first_file,
+            conflict.first_value,
+            conflict.second_file,
+            conflict.second_value
+        ));
+    }
 }
 
 /// 模板里出现的占位符下标集合（`{0}/{1}…`）。比较「集合」而非「个数」：
@@ -371,18 +503,27 @@ fn has_bad_control_char(s: &str) -> bool {
 /// 校验三端策略单一来源 strings/i18n/policy.json：必须存在、可解析、
 /// 各策略字段为字符串数组且无重复（三端消费者对坏 JSON 都是静默降级 → 必须在门禁挡住）。
 fn lint_policy(catalog_root: &Path, report: &mut Report) {
-    const FIELDS: [&str; 4] = [
+    const FIELDS: [&str; 7] = [
         "payload_skip_keys",
+        "payload_prose_keys",
+        "translatable_props",
+        "option_text_props",
         "no_auto_translate",
         "identifier_dot_procs",
         "identifier_dot_proc_suffixes",
     ];
     let path = catalog_root.join("policy.json");
-    let Ok(text) = std::fs::read_to_string(&path) else {
-        report.error(format!("[policy] 缺少 {}（三端标识符策略单一来源）", path.display()));
-        return;
+    let source_bytes = match std::fs::read(&path) {
+        Ok(bytes) => bytes,
+        Err(err) => {
+            report.error(format!(
+                "[policy] 无法读取 {}（三端标识符策略单一来源）：{err}",
+                path.display()
+            ));
+            return;
+        }
     };
-    let json: serde_json::Value = match serde_json::from_str(&text) {
+    let json: serde_json::Value = match serde_json::from_slice(&source_bytes) {
         Ok(v) => v,
         Err(err) => {
             report.error(format!("[policy] {} 解析失败：{err}", path.display()));
@@ -405,11 +546,51 @@ fn lint_policy(catalog_root: &Path, report: &mut Report) {
             }
         }
     }
+
+    let Some(project_root) = catalog_root.parent().and_then(Path::parent) else {
+        report.error(format!(
+            "[policy] 无法从目录根推导项目根：{}",
+            catalog_root.display()
+        ));
+        return;
+    };
+    let copy_path = project_root.join("tgui/packages/tgui/i18n/policy.json");
+    match std::fs::read(&copy_path) {
+        Err(err) => report.error(format!(
+            "[policy] 无法读取 committed TGUI copy {}：{err}",
+            copy_path.display()
+        )),
+        Ok(copy_bytes) if copy_bytes != source_bytes => {
+            let offset = source_bytes
+                .iter()
+                .zip(&copy_bytes)
+                .position(|(source, copy)| source != copy)
+                .unwrap_or(source_bytes.len().min(copy_bytes.len()));
+            report.error(format!(
+                "[policy] policy drift：{} 与 {} 不是 byte-identical（首个差异 byte {}，长度 {} vs {}）。运行 `node tools/i18n/tgui-catalog.mjs sync` 后提交副本。",
+                path.display(),
+                copy_path.display(),
+                offset,
+                source_bytes.len(),
+                copy_bytes.len()
+            ));
+        }
+        Ok(_) => {}
+    }
 }
 
-fn lint_catalog(catalog_root: &Path, locale: &str, report: &mut Report) -> Result<()> {
+fn lint_catalog(
+    catalog_root: &Path,
+    locale: &str,
+    domains: &CatalogDomains,
+    report: &mut Report,
+) -> Result<()> {
     let en_dir = catalog_root.join("en");
     let loc_dir = catalog_root.join(locale);
+    lint_duplicate_catalog_keys(&en_dir, "en", domains, report);
+    if locale != "en" {
+        lint_duplicate_catalog_keys(&loc_dir, locale, domains, report);
+    }
     let en = load_catalog(&en_dir);
     let loc = load_catalog_opt(&loc_dir, true);
 
@@ -740,9 +921,32 @@ fn lint_identifier_collisions(
     let mut parser = dm::parser::Parser::new(&context, indents);
     parser.enable_procs();
     let (fatal, tree) = parser.parse_object_tree_2();
-    if fatal {
-        anyhow::bail!("DM 解析出现致命错误，无法继续 lint");
+    let parser_errors: Vec<String> = {
+        let diagnostics = context.errors();
+        diagnostics
+            .iter()
+            .filter(|diagnostic| diagnostic.severity() == dm::Severity::Error)
+            .map(|diagnostic| diagnostic.description().to_owned())
+            .collect()
+    };
+    if fatal || !parser_errors.is_empty() {
+        let examples = parser_errors
+            .iter()
+            .take(5)
+            .map(|description| format!("{description:?}"))
+            .collect::<Vec<_>>()
+            .join(", ");
+        anyhow::bail!(
+            "DM parser coverage failed/unsupported：fatal={fatal}，Severity::Error={}，exclusions=0；不会把 best-effort AST 当作完整 lint。{}",
+            parser_errors.len(),
+            if examples.is_empty() {
+                String::new()
+            } else {
+                format!("diagnostics: {examples}")
+            }
+        );
     }
+    eprintln!("[coverage] DM parser: full（Severity::Error=0，exclusions=0）");
 
     let mut collector = IdentCollector {
         context: &context,
@@ -998,12 +1202,12 @@ fn lint_identifier_collisions(
 // ---------------------------------------------------------------------------
 
 #[allow(clippy::too_many_arguments)]
-/// C. **悬空 LANG key**：源码里 `LANG("obj.abc12345")` 而目录里没有这个 key。
+/// C. **悬空 LANG key**：源码里 `LANG("obj.0123456789abcdef")` 而目录里没有这个 key。
 ///
 /// 抽取与改写是**两个独立通道**：改写把字面量换成 LANG(key)，抽取负责把模板写进目录。任何一条
 /// 让抽取跳过、而改写不跳过的规则（典型：具名累加器的整句闸——`available_channels += "<li>…</li>"`
 /// 过不了句末标点闸，改写却照改不误），都会产出悬空 key。此时 `lang_resolve` 兜底**返回 key 本身**，
-/// 玩家在耳机 examine 里看到的就是 `obj.b045da9c` 这串乱码——比不翻译严重得多。
+/// 玩家在耳机 examine 里看到的就是 `obj.0123456789abcdef` 这串乱码——比不翻译严重得多。
 ///
 /// 一次实测：全仓三万余处 LANG 调用里有 76 个悬空 key（耳机频率表、无人机分发器、血虫技能、
 /// 音乐技能芯片、雇佣合同…）。故列为**错误**而非告警：这是坏显示，不是缺翻译。
@@ -1037,13 +1241,41 @@ fn lint_dangling_lang_keys(root: &Path, catalog_root: &Path, report: &mut Report
              \t写回 en/zh 目录；同时补齐 extract 侧的准入规则，否则下次抽取还会漏。"
         ));
     }
-    eprintln!("悬空 key 扫描：{scanned} 处 LANG 调用，{} 个悬空。", dangling.len());
+    eprintln!(
+        "悬空 key 扫描：{scanned} 处 LANG 调用，{} 个悬空。",
+        dangling.len()
+    );
 }
 
-/// 一行里出现的所有 `LANG("<ns>.<8 位十六进制>"` / `LANGU(…, "<key>"` 的 key。
-/// 手写扫描而非正则：这个 crate 没有 regex 依赖，而形态固定得很简单。
-fn lang_keys_in_line(line: &str) -> Vec<String> {
+/// 一行里出现的所有 `LANG("<ns>.<16 位十六进制>"` / `LANGU(…, "<key>"` 的 key。
+/// 手写扫描而非正则：形态固定，最终校验复用 keys 模块的 v2 合约。
+fn code_before_line_comment(line: &str) -> &str {
     let bytes = line.as_bytes();
+    let mut in_string = false;
+    let mut escaped = false;
+    let mut index = 0usize;
+    while index < bytes.len() {
+        let byte = bytes[index];
+        if in_string {
+            if escaped {
+                escaped = false;
+            } else if byte == b'\\' {
+                escaped = true;
+            } else if byte == b'"' {
+                in_string = false;
+            }
+        } else if byte == b'"' {
+            in_string = true;
+        } else if byte == b'/' && bytes.get(index + 1) == Some(&b'/') {
+            return &line[..index];
+        }
+        index += 1;
+    }
+    line
+}
+
+fn lang_keys_in_line(line: &str) -> Vec<String> {
+    let line = code_before_line_comment(line);
     let mut out = Vec::new();
     let mut i = 0usize;
     while let Some(pos) = line[i..].find("LANG") {
@@ -1059,20 +1291,25 @@ fn lang_keys_in_line(line: &str) -> Vec<String> {
             out.push(candidate.to_string());
         }
         i += quote + 1 + close + 1;
-        let _ = bytes; // 仅为可读性保留切片边界推进
     }
     out
 }
-
-/// `<ns>.<8 位十六进制>` 形态。
+/// Automatic v2 or stable manual `<namespace>.<identifier>` LANG key.
 fn is_catalog_key(s: &str) -> bool {
-    let Some((ns, hash)) = s.split_once('.') else {
+    if keys::is_v2_key(s) {
+        return true;
+    }
+    let Some((namespace, name)) = s.split_once('.') else {
         return false;
     };
-    !ns.is_empty()
-        && ns.chars().all(|c| c.is_ascii_lowercase() || c == '_')
-        && hash.len() == 8
-        && hash.chars().all(|c| c.is_ascii_hexdigit())
+    !namespace.is_empty()
+        && !name.is_empty()
+        && namespace
+            .bytes()
+            .all(|byte| byte.is_ascii_lowercase() || byte == b'_')
+        && name
+            .bytes()
+            .all(|byte| byte.is_ascii_lowercase() || byte.is_ascii_digit() || byte == b'_')
 }
 
 /// 递归遍历 .dm 文件并回调 (path, 内容)。
@@ -1103,8 +1340,9 @@ pub fn run(
     skip_ast: bool,
 ) -> Result<()> {
     let mut report = Report::default();
+    let domains = CatalogDomains::load(catalog_root)?;
 
-    lint_catalog(catalog_root, locale, &mut report)?;
+    lint_catalog(catalog_root, locale, &domains, &mut report)?;
     lint_policy(catalog_root, &mut report);
     lint_dangling_lang_keys(Path::new("."), catalog_root, &mut report);
     if !skip_ast {
@@ -1116,9 +1354,12 @@ pub fn run(
             update_baseline,
             &mut report,
         )?;
+    } else {
+        eprintln!(
+            "[coverage] DM AST/identifier rules: explicitly excluded by --no-ast（exclusions=1；catalog-only lint）"
+        );
     }
-
-    if update_baseline {
+    if update_baseline && report.errors.is_empty() {
         return Ok(());
     }
 
@@ -1137,4 +1378,59 @@ pub fn run(
         anyhow::bail!("i18n lint 发现 {} 个错误", report.errors.len());
     }
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn entry(domain: &str, key: &str, file: &str, value: &str) -> DomainCatalogEntry {
+        DomainCatalogEntry {
+            domain: domain.to_owned(),
+            key: key.to_owned(),
+            file: file.to_owned(),
+            value: value.to_owned(),
+        }
+    }
+
+    #[test]
+    fn conflicting_duplicate_reports_both_provenances() {
+        let conflicts = duplicate_conflicts([
+            entry("forward", "obj.0123456789abcdef", "en/obj.json", "First"),
+            entry("forward", "obj.0123456789abcdef", "en/datum.json", "Second"),
+        ]);
+
+        assert_eq!(conflicts.len(), 1);
+        assert_eq!(conflicts[0].first_file, "en/obj.json");
+        assert_eq!(conflicts[0].first_value, "First");
+        assert_eq!(conflicts[0].second_file, "en/datum.json");
+        assert_eq!(conflicts[0].second_value, "Second");
+    }
+
+    #[test]
+    fn equal_values_or_different_domains_do_not_conflict() {
+        let conflicts = duplicate_conflicts([
+            entry("global_reverse", "Shared text", "en/a.json", "Translation"),
+            entry("global_reverse", "Shared text", "en/b.json", "Translation"),
+            entry("scoped:state", "Shared text", "en/_state.json", "Other"),
+        ]);
+
+        assert!(conflicts.is_empty());
+    }
+
+    #[test]
+    fn dangling_key_scan_ignores_comments_but_not_comment_markers_in_text() {
+        let key = "datum.0123456789abcdef";
+        assert!(lang_keys_in_line(&format!("// ORIGINAL: LANG(\"{key}\", null)")).is_empty());
+        assert_eq!(
+            lang_keys_in_line(&format!(
+                "to_chat(user, \"https://example/\", LANG(\"{key}\", null))"
+            )),
+            [key],
+        );
+        assert_eq!(
+            lang_keys_in_line("to_chat(user, LANG(\"datum.lua_disabled\", null))"),
+            ["datum.lua_disabled"],
+        );
+    }
 }

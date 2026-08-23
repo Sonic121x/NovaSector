@@ -66,8 +66,8 @@
 	// If we have health, we take some damage
 	if(health > (maxHealth * 0.02))
 		visible_message(
-				span_warning(LANG("mob.6670aa05", list(src))),
-				span_userdanger(LANG("mob.d2708bb8", list(user))),
+				span_warning(LANG("mob.6670aa05bc26d808", list(src))),
+				span_userdanger(LANG("mob.d2708bb80f5fbe9c", list(user))),
 		)
 
 		recent_examiner_refs += user_ref
@@ -80,8 +80,8 @@
 	// If we're examined on low enough health we die straight up
 	else
 		visible_message(
-				span_danger(LANG("mob.5698ffc8", list(src))),
-				span_userdanger(LANG("mob.56bd9fd4", list(user))),
+				span_danger(LANG("mob.5698ffc8b11142a2", list(src))),
+				span_userdanger(LANG("mob.56bd9fd4e9e50bcb", list(user))),
 		)
 
 		death()

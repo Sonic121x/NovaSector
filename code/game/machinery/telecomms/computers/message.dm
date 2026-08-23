@@ -61,7 +61,7 @@
 /obj/machinery/computer/message_monitor/screwdriver_act(mob/living/user, obj/item/I)
 	if(obj_flags & EMAGGED)
 		//Stops people from just unscrewing the monitor and putting it back to get the console working again.
-		to_chat(user, span_warning(LANG("obj.b0e05ae9", null)))
+		to_chat(user, span_warning(LANG("obj.b0e05ae94a6925c3", null)))
 		return TRUE
 	return ..()
 
@@ -69,7 +69,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	if(isnull(linked_server))
-		to_chat(user, span_notice(LANG("obj.d4bbcb1f", null)))
+		to_chat(user, span_notice(LANG("obj.d4bbcb1fe3470643", null)))
 		return FALSE
 
 	obj_flags |= EMAGGED
@@ -166,7 +166,7 @@
 				message_servers += message_server
 
 			if(length(message_servers) > 1)
-				var/selected_server = tgui_input_list(usr, LANG("obj.2868d9de", null), LANG("obj.ee71c6fc", null), message_servers)
+				var/selected_server = tgui_input_list(usr, LANG("obj.2868d9de7d2ed0de", null), LANG("obj.ee71c6fc7636efee", null), message_servers)
 				if(QDELETED(src) || !is_operational || !usr.can_interact_with(src))
 					screen = MSG_MON_SCREEN_MAIN
 					return TRUE
@@ -205,12 +205,12 @@
 			if(!is_on_station())
 				return TRUE
 
-			var/dkey = tgui_input_text(usr, LANG("obj.221a73c1", null), LANG("obj.5c4315f4", null), max_length = 16)
+			var/dkey = tgui_input_text(usr, LANG("obj.221a73c175d8f9e5", null), LANG("obj.5c4315f4620710aa", null), max_length = 16)
 			if(QDELETED(src) || !is_operational || !usr.can_interact_with(src))
 				return TRUE
 			if(dkey && dkey != "")
 				if(linked_server.decryptkey == dkey)
-					var/newkey = tgui_input_text(usr, LANG("obj.0182de4a", null), LANG("obj.5e440d3f", null), max_length = 16)
+					var/newkey = tgui_input_text(usr, LANG("obj.0182de4a0caf5104", null), LANG("obj.5e440d3ffce27630", null), max_length = 16)
 					if(QDELETED(src) || !is_operational || !usr.can_interact_with(src))
 						return TRUE
 					if(length(newkey) <= 3)
@@ -240,8 +240,8 @@
 				break
 			return TRUE
 		if("send_fake_message")
-			var/sender = tgui_input_text(usr, LANG("obj.0f703c1b", null), LANG("obj.2bc502a9", null), max_length = MAX_NAME_LEN)
-			var/job = tgui_input_text(usr, LANG("obj.395d91a2", null), LANG("obj.b62160f3", null), max_length = 60)
+			var/sender = tgui_input_text(usr, LANG("obj.0f703c1b13821185", null), LANG("obj.2bc502a9402b7c6c", null), max_length = MAX_NAME_LEN)
+			var/job = tgui_input_text(usr, LANG("obj.395d91a20186cba9", null), LANG("obj.b62160f3938d7e48", null), max_length = 60)
 
 			var/recipient
 			var/list/tablet_to_messenger = list()
@@ -255,11 +255,11 @@
 				viewable_tablets += message_app.computer
 				tablet_to_messenger[message_app.computer] = message_app
 			if(length(viewable_tablets) > 0)
-				recipient = tgui_input_list(usr, LANG("obj.bc7f670a", null), LANG("obj.4b4318ed", null), viewable_tablets)
+				recipient = tgui_input_list(usr, LANG("obj.bc7f670a32fb9b8f", null), LANG("obj.4b4318edef058897", null), viewable_tablets)
 			else
 				recipient = null
 
-			var/message = tgui_input_text(usr, LANG("obj.212cc1ac", null), LANG("obj.affb7d7e", null), max_length = MAX_MESSAGE_LEN)
+			var/message = tgui_input_text(usr, LANG("obj.212cc1ace7242847", null), LANG("obj.affb7d7ed9357b02", null), max_length = MAX_MESSAGE_LEN)
 			if(isnull(sender) || sender == "")
 				sender = "UNKNOWN"
 
@@ -325,7 +325,7 @@
  * Handles printing the monitor key for a given server onto this piece of paper.
  */
 /obj/item/paper/monitorkey/proc/print(obj/machinery/telecomms/message_server/server)
-	add_raw_text(LANG("obj.8d35bdca", list(server.decryptkey)))
+	add_raw_text(LANG("obj.8d35bdca5924db69", list(server.decryptkey)))
 	add_overlay("paper_words")
 	update_appearance()
 

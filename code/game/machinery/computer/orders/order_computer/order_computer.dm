@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
 
 			var/obj/item/card/id/used_id_card = living_user.get_idcard(TRUE)
 			if(!used_id_card || !used_id_card.registered_account)
-				say(LANG("obj.89f005dd", null))
+				say(LANG("obj.89f005ddf4d7efa3", null))
 				return
 			if(!purchase_items(used_id_card))
 				return
@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
 				return
 			var/obj/item/card/id/used_id_card = living_user.get_idcard(TRUE)
 			if(!used_id_card || !used_id_card.registered_account)
-				say(LANG("obj.89f005dd", null))
+				say(LANG("obj.89f005ddf4d7efa3", null))
 				return
 			if(!purchase_items(used_id_card, express = TRUE))
 				return
@@ -212,7 +212,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
 	var/final_cost = round(get_total_cost() * (express ? express_cost_multiplier : cargo_cost_multiplier))
 	if(subtract_points(final_cost, card))
 		return TRUE
-	say(LANG("obj.eac2f740", list(credit_type)))
+	say(LANG("obj.eac2f740e586a659", list(credit_type)))
 	return FALSE
 
 /**

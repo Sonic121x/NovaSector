@@ -97,10 +97,10 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/attack_hand(mob/user, list/modifiers)
 	if(jammed)
-		to_chat(user, span_warning(LANG("obj.6fe3570a", null)))
+		to_chat(user, span_warning(LANG("obj.6fe3570a833c5aa9", null)))
 		return
 	if(!shuttle_port && !SSshuttle.getShuttle(shuttleId))
-		to_chat(user,span_warning(LANG("obj.f92ae59e", null)))
+		to_chat(user,span_warning(LANG("obj.f92ae59e14450656", null)))
 		return
 	return ..()
 
@@ -208,23 +208,23 @@
 	var/mob/eye/camera/remote/shuttle_docker/the_eye = eyeobj
 	var/landing_clear = checkLandingSpot()
 	if(designate_time && (landing_clear != SHUTTLE_DOCKER_BLOCKED))
-		to_chat(current_user, span_warning(LANG("obj.59d10332", list(DisplayTimeText(designate_time)))))
+		to_chat(current_user, span_warning(LANG("obj.59d10332b4c791ae", list(DisplayTimeText(designate_time)))))
 		designating_target_loc = the_eye.loc
 		var/wait_completed = do_after(current_user, designate_time, designating_target_loc, timed_action_flags = IGNORE_HELD_ITEM, extra_checks = CALLBACK(src, TYPE_PROC_REF(/obj/machinery/computer/camera_advanced/shuttle_docker, canDesignateTarget)))
 		designating_target_loc = null
 		if(!current_user)
 			return
 		if(!wait_completed)
-			to_chat(current_user, span_warning(LANG("obj.29d19014", null)))
+			to_chat(current_user, span_warning(LANG("obj.29d1901459b0fa7e", null)))
 			return
 		landing_clear = checkLandingSpot()
 
 	if(landing_clear != SHUTTLE_DOCKER_LANDING_CLEAR)
 		switch(landing_clear)
 			if(SHUTTLE_DOCKER_BLOCKED)
-				to_chat(current_user, span_warning(LANG("obj.105e4ce1", null)))
+				to_chat(current_user, span_warning(LANG("obj.105e4ce189c16135", null)))
 			if(SHUTTLE_DOCKER_BLOCKED_BY_HIDDEN_PORT)
-				to_chat(current_user, span_warning(LANG("obj.02dee687", null)))
+				to_chat(current_user, span_warning(LANG("obj.02dee687b173338b", null)))
 		return
 
 	///Make one use port that deleted after fly off, to don't lose info that need on to properly fly off.
@@ -264,7 +264,7 @@
 
 	if(current_user.client)
 		current_user.client.images += the_eye.placed_images
-		to_chat(current_user, span_notice(LANG("obj.06fae955", null)))
+		to_chat(current_user, span_notice(LANG("obj.06fae955ea5ea4e8", null)))
 	return TRUE
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/canDesignateTarget()
@@ -468,7 +468,7 @@
 			L["([L.len]) [nav_beacon.name] locked"] = null
 
 	playsound(console, 'sound/machines/terminal/terminal_prompt.ogg', 25, FALSE)
-	var/selected = tgui_input_list(usr, LANG("datum.665f2f99", null), LANG("datum.e8415773", null), sort_list(L))
+	var/selected = tgui_input_list(usr, LANG("datum.665f2f9904ab6615", null), LANG("datum.e8415773b8e6f9cc", null), sort_list(L))
 	if(isnull(selected))
 		playsound(console, 'sound/machines/terminal/terminal_prompt_deny.ogg', 25, FALSE)
 		return
@@ -480,6 +480,6 @@
 		return
 	playsound(console, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 25, FALSE)
 	remote_eye.setLoc(T)
-	to_chat(owner, span_notice(LANG("datum.66a358cd", list(selected))))
+	to_chat(owner, span_notice(LANG("datum.66a358cd20d9c4ee", list(selected))))
 	owner.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
 	owner.clear_fullscreen("flash", 3)

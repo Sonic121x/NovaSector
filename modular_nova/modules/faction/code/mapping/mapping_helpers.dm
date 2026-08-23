@@ -75,7 +75,7 @@
 			new /obj/item/tank/internals/plasmaman/belt/full(src)
 			for(var/i in 1 to 7)
 				new /obj/item/clothing/mask/breath()
-			desc = LANG("obj.6ceb8232", null)
+			desc = LANG("obj.6ceb8232b8140324", null)
 			name = "internals crate"
 			icon_state = "o2crate"
 		if(4)
@@ -84,7 +84,7 @@
 			new /obj/item/storage/medkit/toxin(src)
 			new /obj/item/reagent_containers/hypospray/medipen(src)
 			new /obj/item/reagent_containers/hypospray/medipen/ekit(src)
-			desc = LANG("obj.3cc494cf", null)
+			desc = LANG("obj.3cc494cf9c8eb7dd", null)
 			name = "medical crate"
 			icon_state = "medicalcrate"
 		if(5)

@@ -233,23 +233,23 @@
 	. = ..()
 	switch(severity)
 		if(SEVERITY_DEAD)
-			. += span_notice(LANG("obj.718ef421", null))
+			. += span_notice(LANG("obj.718ef4215504a502", null))
 		if(SEVERITY_IMMEDIATE)
-			. += span_notice(LANG("obj.f5eb8b0f", null))
+			. += span_notice(LANG("obj.f5eb8b0fefe6ecd2", null))
 		if(SEVERITY_DELAYED)
-			. += span_notice(LANG("obj.9af4f4ad", null))
+			. += span_notice(LANG("obj.9af4f4ad4acd061b", null))
 		if(SEVERITY_MINIMAL)
-			. += span_notice(LANG("obj.e156d0b3", null))
+			. += span_notice(LANG("obj.e156d0b32ae2d188", null))
 
-	. += span_smallnoticeital(LANG("obj.a60bfbb2", null))
+	. += span_smallnoticeital(LANG("obj.a60bfbb202c54ede", null))
 
 /obj/item/paper/triage/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.539e9730", list(src)))
-	. += LANG("obj.6149c195", null)
-	. += LANG("obj.56835557", null)
-	. += LANG("obj.e73c9af8", null)
-	. += LANG("obj.f61ee04c", null)
+	. += span_notice(LANG("obj.539e973021c0d998", list(src)))
+	. += LANG("obj.6149c195074a89a9", null)
+	. += LANG("obj.568355570965435f", null)
+	. += LANG("obj.e73c9af897482af4", null)
+	. += LANG("obj.f61ee04cc610057c", null)
 
 /obj/item/paper/triage/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isliving(interacting_with))
@@ -262,7 +262,7 @@
 		return NONE
 
 	user.do_attack_animation(interacting_with, used_item = src)
-	interacting_with.balloon_alert(user, LANG("obj.e1777d83", null))
+	interacting_with.balloon_alert(user, LANG("obj.e1777d83bb7e6fb2", null))
 	interacting_with.AddComponent(/datum/component/sticker, src, get_dir(interacting_with, src), px, py)
 	return ITEM_INTERACT_SUCCESS
 

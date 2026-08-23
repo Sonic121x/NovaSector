@@ -349,10 +349,10 @@
 	var/obj/item/clothing/gown = new /obj/item/clothing/suit/toggle/labcoat/nova/surgical_gown/hardlight
 
 	if(wearer.equip_to_slot_if_possible(gown, ITEM_SLOT_OCLOTHING, 1, 1, 1))
-		wearer.visible_message(span_notice(LANG("obj.ee46a36d", list(gown, wearer))), span_notice(LANG("obj.ce0f7de9", list(gown))))
+		wearer.visible_message(span_notice(LANG("obj.ee46a36d9de7f86f", list(gown, wearer))), span_notice(LANG("obj.ce0f7de9b5059ced", list(gown))))
 		return
 	else
-		wearer.visible_message(span_warning(LANG("obj.e71776bb", list(gown, wearer))), span_warning(LANG("obj.ca68273e", list(gown))))
+		wearer.visible_message(span_warning(LANG("obj.e71776bbe5a6ff22", list(gown, wearer))), span_warning(LANG("obj.ca68273e729d2f54", list(gown))))
 		return FALSE
 
 //Salve Medicell
@@ -382,7 +382,7 @@
 
 /datum/embedding/salve_globule/hardlight/remove_embedding()
 	var/obj/item/mending_globule/globule = parent
-	owner.visible_message(span_warning(LANG("datum.6328d540", list(globule, owner))))
+	owner.visible_message(span_warning(LANG("datum.6328d540a067968c", list(globule, owner))))
 	qdel(globule)
 	return ..()
 
@@ -434,7 +434,7 @@
 	body.forceMove(firer.loc)
 	teleport_effect(body.loc)
 
-	body.visible_message(span_notice(LANG("obj.5b320390", list(body, firer))))
+	body.visible_message(span_notice(LANG("obj.5b3203907e00f7d2", list(body, firer))))
 
 /obj/projectile/energy/medical/utility/body_teleporter/proc/teleport_effect(location)
 	do_sparks(5, TRUE, get_turf(location), spark_type = /datum/effect_system/basic/spark_spread/quantum) //uses the teleport effect from quantum pads
@@ -449,7 +449,7 @@
 /obj/item/clothing/suit/toggle/labcoat/nova/surgical_gown/hardlight/dropped(mob/user)
 	user.update_held_items()
 	if(!QDELETED(src))
-		user.visible_message(span_warning(LANG("obj.ea8ed3b7", list(src))))
+		user.visible_message(span_warning(LANG("obj.ea8ed3b797c1ad70", list(src))))
 	return ..()
 
 //Salve Globule
@@ -466,7 +466,7 @@
 	. = ..()
 	for(var/obj/item/mending_globule/hardlight/existing in target_limb.embedded_objects)
 		if ((existing != parent))
-			target.visible_message(span_warning(LANG("datum.8f7756d0", list(parent, target, target_limb.plaintext_zone))))
+			target.visible_message(span_warning(LANG("datum.8f7756d0fbfed644", list(parent, target, target_limb.plaintext_zone))))
 			qdel(parent)
 			return
 		else
@@ -515,7 +515,7 @@
 		if(has_buckled_mobs())
 			return FALSE
 
-		user.visible_message(span_notice(LANG("obj.d4d4720b", list(user, src))), span_notice(LANG("obj.03d7907e", list(src))))
+		user.visible_message(span_notice(LANG("obj.d4d4720bd18d2eaa", list(user, src))), span_notice(LANG("obj.03d7907e8d038ced", list(src))))
 		qdel(src)
 
 //Oppressive Force Relocation
@@ -577,7 +577,7 @@
 		return FALSE
 
 	if(grace_period)
-		to_chat(teleportee, span_warning(LANG("obj.ad511792", list((time_allowance / 10)))))
+		to_chat(teleportee, span_warning(LANG("obj.ad51179286a504d9", list((time_allowance / 10)))))
 		teleportee.AddComponent(/datum/component/medigun_relocation, time_allowance, destination_area, area_locked, teleport_areas)
 		return TRUE
 
@@ -589,7 +589,7 @@
 			if(!turf_in_area.is_blocked_turf())
 				turf_list += turf_in_area
 
-	teleportee.visible_message(span_notice(LANG("obj.220f1c7c", list(teleportee))))
+	teleportee.visible_message(span_notice(LANG("obj.220f1c7cbaa9f581", list(teleportee))))
 
 	do_teleport(teleportee, pick(turf_list), no_effects = FALSE, channel = TELEPORT_CHANNEL_QUANTUM)
 
@@ -632,7 +632,7 @@
 			if(!turf_in_area.is_blocked_turf())
 				turf_list += turf_in_area
 
-	teleportee.visible_message(span_notice(LANG("datum.220f1c7c", list(teleportee))))
+	teleportee.visible_message(span_notice(LANG("datum.220f1c7cbaa9f581", list(teleportee))))
 
 	do_teleport(teleportee, pick(turf_list), no_effects = FALSE, channel = TELEPORT_CHANNEL_QUANTUM)
 

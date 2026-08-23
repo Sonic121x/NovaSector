@@ -357,18 +357,18 @@
 	if(mob_turf.turf_height - turf_height <= -TURF_HEIGHT_BLOCK_THRESHOLD)
 		//Climb up
 		if(user == dropped_mob)
-			user.balloon_alert_to_viewers(LANG("turf.a83a369a", null))
+			user.balloon_alert_to_viewers(LANG("turf.a83a369af8eda267", null))
 		else
-			dropped_mob.balloon_alert_to_viewers(LANG("turf.bfd586fb", null))
+			dropped_mob.balloon_alert_to_viewers(LANG("turf.bfd586fb0ebd2338", null))
 		if(do_after(user, 2 SECONDS, dropped_mob))
 			dropped_mob.forceMove(src)
 		return
 	if(turf_height - mob_turf.turf_height <= -TURF_HEIGHT_BLOCK_THRESHOLD)
 		//Climb down
 		if(user == dropped_mob)
-			user.balloon_alert_to_viewers(LANG("turf.3c17a2a7", null))
+			user.balloon_alert_to_viewers(LANG("turf.3c17a2a789b2ef86", null))
 		else
-			dropped_mob.balloon_alert_to_viewers(LANG("turf.a4c386bd", null))
+			dropped_mob.balloon_alert_to_viewers(LANG("turf.a4c386bdd0626dce", null))
 		if(do_after(user, 2 SECONDS, dropped_mob))
 			dropped_mob.forceMove(src)
 		return

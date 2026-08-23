@@ -3,23 +3,23 @@
 ///returns a boolean whether a machine occupant can be infused
 /atom/movable/proc/can_infuse(mob/feedback_target)
 	if(feedback_target)
-		balloon_alert(feedback_target, LANG("atom.45c57a87", null))
+		balloon_alert(feedback_target, LANG("atom.45c57a8748f58ea8", null))
 	return FALSE
 
 /mob/living/can_infuse(mob/feedback_target)
 	if(feedback_target)
-		balloon_alert(feedback_target, LANG("mob.d11a4fe6", null))
+		balloon_alert(feedback_target, LANG("mob.d11a4fe6953d9e5e", null))
 	return FALSE
 
 /mob/living/carbon/human/can_infuse(mob/feedback_target)
 	// Checked by can_mutate but explicit feedback for this issue is good
 	if(HAS_TRAIT(src, TRAIT_BADDNA))
 		if(feedback_target)
-			balloon_alert(feedback_target, LANG("mob.b3b63141", null))
+			balloon_alert(feedback_target, LANG("mob.b3b6314178d6e84c", null))
 		return FALSE
 	if(!can_mutate())
 		if(feedback_target)
-			balloon_alert(feedback_target, LANG("mob.772035a0", null))
+			balloon_alert(feedback_target, LANG("mob.772035a08e2e577e", null))
 		return FALSE
 	return TRUE
 

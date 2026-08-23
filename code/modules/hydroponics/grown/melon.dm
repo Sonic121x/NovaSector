@@ -32,7 +32,7 @@
 	if(seed)
 		pulp_count += round(seed.potency / 25)
 
-	user.balloon_alert(user, LANG("obj.b81bfe70", list(pulp_count)))
+	user.balloon_alert(user, LANG("obj.b81bfe70ddffd2bd", list(pulp_count)))
 	for(var/i in 1 to pulp_count)
 		new pulp_type(user.loc)
 
@@ -43,13 +43,13 @@
 			received_armor = new fire_resistant_chestplate_type
 		else
 			received_armor = new chestplate_type
-		to_chat(user, span_notice(LANG("obj.ddd7890b", list(src, tool))))
+		to_chat(user, span_notice(LANG("obj.ddd7890baf24b57e", list(src, tool))))
 	else
 		if(seed.resistance_flags & FIRE_PROOF)
 			received_armor = new fire_resistant_helmet_type
 		else
 			received_armor = new helmet_type
-		to_chat(user, span_notice(LANG("obj.cef33c1c", list(src, tool))))
+		to_chat(user, span_notice(LANG("obj.cef33c1c85c31536", list(src, tool))))
 
 	remove_item_from_storage(user)
 	qdel(src)
@@ -75,7 +75,7 @@
 	reagents_add = list(/datum/reagent/water = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.2)
 
 /obj/item/seeds/watermelon/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.978f962c", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.978f962c1ce45201", list(user, src, user.p_theyre()))))
 	user.gib(DROP_ALL_REMAINS)
 	new product(drop_location())
 	qdel(src)
@@ -153,7 +153,7 @@
 	var/mob/living/carbon/human/holy_person = mob_eating
 	if(!holy_person.mind?.holy_role || HAS_TRAIT(holy_person, TRAIT_AGEUSIA))
 		return
-	to_chat(holy_person, span_notice(LANG("obj.f55d2542", null)))
+	to_chat(holy_person, span_notice(LANG("obj.f55d25426e8b4697", null)))
 	holy_person.add_mood_event("Divine_chew", /datum/mood_event/holy_consumption)
 	return FOOD_LIKED
 

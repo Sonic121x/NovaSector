@@ -9,7 +9,7 @@
 
 /datum/buildmode_mode/outfit/show_help(client/builder)
 	to_chat(builder, span_purple(boxed_message(
-		LANG("datum.016855a1", list(span_bold("Select outfit to equip"), span_bold("Equip the selected outfit"), span_bold("Strip and delete current outfit")))))
+		LANG("datum.016855a1f304fb1c", list(span_bold("Select outfit to equip"), span_bold("Equip the selected outfit"), span_bold("Strip and delete current outfit")))))
 	)
 
 /datum/buildmode_mode/outfit/Reset()
@@ -28,7 +28,7 @@
 
 	if(LAZYACCESS(modifiers, LEFT_CLICK))
 		if(isnull(dressuptime))
-			to_chat(c, span_warning(LANG("datum.b9a1525d", null)))
+			to_chat(c, span_warning(LANG("datum.b9a1525dd7af56c7", null)))
 			return
 
 		for (var/item in dollie.get_equipped_items(INCLUDE_POCKETS))

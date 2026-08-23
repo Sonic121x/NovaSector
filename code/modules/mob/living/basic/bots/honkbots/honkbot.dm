@@ -71,11 +71,11 @@
 	icon_state = bot_access_flags & BOT_COVER_EMAGGED ? "[base_icon_state]-e" : "[base_icon_state]-c"
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_appearance)), 3 SECONDS, TIMER_OVERRIDE|TIMER_UNIQUE)
 
-	audible_message(span_danger(LANG("mob.02afa570", list(src))))
+	audible_message(span_danger(LANG("mob.02afa570d60b68de", list(src))))
 	playsound(src, 'sound/mobs/non-humanoids/honkbot/honkbot_evil_laugh.ogg', 75, TRUE, -1) // evil laughter
 
 /mob/living/basic/bot/secbot/honkbot/retrieve_emag_message()
-	audible_message(span_danger(LANG("mob.02afa570", list(src))))
+	audible_message(span_danger(LANG("mob.02afa570d60b68de", list(src))))
 	playsound(src, 'sound/mobs/non-humanoids/honkbot/honkbot_evil_laugh.ogg', 75, TRUE, -1) // evil laughter
 
 /mob/living/basic/bot/secbot/honkbot/post_stun(mob/living/carbon/current_target)

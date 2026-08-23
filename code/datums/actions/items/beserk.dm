@@ -22,10 +22,10 @@
 	var/obj/item/clothing/head/hooded/berserker/berserk = target
 	if(berserk.berserk_active)
 		if(feedback)
-			to_chat(owner, span_warning(LANG("datum.67bdabf9", null)))
+			to_chat(owner, span_warning(LANG("datum.67bdabf999e8d93a", null)))
 		return FALSE
 	if(berserk.berserk_charge < 100)
 		if(feedback)
-			to_chat(owner, span_warning(LANG("datum.8ceb25a0", null)))
+			to_chat(owner, span_warning(LANG("datum.8ceb25a0d4608b03", null)))
 		return FALSE
 	return TRUE

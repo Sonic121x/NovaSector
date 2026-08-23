@@ -136,7 +136,7 @@
 		LAZYADD(ghost_mobs, new_mob)
 
 		var/ghostname = lucky_ghost.name
-		notify_ghosts(LANG("datum.add1fc5b", list(ghostname, ghost_spawner.prompt_name)), source = new_mob, header = "001010110")
+		notify_ghosts(LANG("datum.add1fc5ba14c960a", list(ghostname, ghost_spawner.prompt_name)), source = new_mob, header = "001010110")
 
 /// Overridable proc to be called after the map is loaded.
 /datum/lazy_template/virtual_domain/proc/setup_domain(list/created_atoms)

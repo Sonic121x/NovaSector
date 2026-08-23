@@ -53,13 +53,13 @@
 	if(!zipped_up)
 		return ..()
 
-	balloon_alert(user, LANG("obj.b9725963", null))
+	balloon_alert(user, LANG("obj.b9725963cbb43b9c", null))
 	playsound(src, unzip_sfx, 100, FALSE)
 	var/datum/callback/can_unzip = CALLBACK(src, PROC_REF(zipper_matches), TRUE)
 	if(!do_after(user, unzip_duration, src, extra_checks = can_unzip))
-		user.balloon_alert(user, LANG("obj.cd2f4426", null))
+		user.balloon_alert(user, LANG("obj.cd2f4426aa1d85ea", null))
 		return
-	balloon_alert(user, LANG("obj.5bf34e2e", null))
+	balloon_alert(user, LANG("obj.5bf34e2e58501c87", null))
 	set_zipper(FALSE)
 	return TRUE
 
@@ -70,13 +70,13 @@
 	if(zipped_up)
 		return SECONDARY_ATTACK_CALL_NORMAL
 
-	balloon_alert(user, LANG("obj.a0ee2872", null))
+	balloon_alert(user, LANG("obj.a0ee2872d5962103", null))
 	playsound(src, zip_up_sfx, 100, FALSE)
 	var/datum/callback/can_zip = CALLBACK(src, PROC_REF(zipper_matches), FALSE)
 	if(!do_after(user, zip_up_duration, src, extra_checks = can_zip))
-		user.balloon_alert(user, LANG("obj.15d8e609", null))
+		user.balloon_alert(user, LANG("obj.15d8e609b12b1918", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	balloon_alert(user, LANG("obj.e27e52d3", null))
+	balloon_alert(user, LANG("obj.e27e52d302e4cb8b", null))
 	set_zipper(TRUE)
 	return SECONDARY_ATTACK_CONTINUE_CHAIN
 

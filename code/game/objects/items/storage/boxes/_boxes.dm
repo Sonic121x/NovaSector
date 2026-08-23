@@ -27,12 +27,12 @@
 /obj/item/storage/box/suicide_act(mob/living/user)
 	var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 	if(myhead)
-		user.visible_message(span_suicide(LANG("obj.7154be6d", list(user, user.p_their(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.7154be6dfe702e93", list(user, user.p_their(), src, user.p_theyre()))))
 		if (myhead.dismember())
 			myhead.forceMove(src) //force your enemies to kill themselves with your head collection box!
 		playsound(user, "desecration-01.ogg", 50, TRUE, -1)
 		return BRUTELOSS
-	user.visible_message(span_suicide(LANG("obj.f98873ca", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.f98873cab0cbe89e", list(user, user.p_them(), src, user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/storage/box/update_overlays()
@@ -46,12 +46,12 @@
 	if(!foldable_result || (flags_1 & HOLOGRAM_1))
 		return
 	if(contents.len)
-		balloon_alert(user, LANG("obj.ca142d62", null))
+		balloon_alert(user, LANG("obj.ca142d621fdf23fb", null))
 		return
 	if(!ispath(foldable_result))
 		return
 
 	var/obj/item/result = new foldable_result(user.drop_location())
-	balloon_alert(user, LANG("obj.02a8ddc2", null))
+	balloon_alert(user, LANG("obj.02a8ddc242ea2564", null))
 	qdel(src)
 	user.put_in_hands(result)

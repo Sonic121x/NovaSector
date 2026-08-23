@@ -75,7 +75,7 @@
 	if(!should_warn())
 		return
 	var/mob/admin = usr
-	if(tgui_alert(usr, LANG("datum.ff82528e", list(warning_text)), event_control.name, list("Yes", "No")) == "Yes")
+	if(tgui_alert(usr, LANG("datum.ff82528ec681a806", list(warning_text)), event_control.name, list("Yes", "No")) == "Yes")
 		if(snitch_text)
 			message_admins("[admin.ckey] [snitch_text]")
 	else
@@ -132,9 +132,9 @@
 /datum/event_admin_setup/minimum_candidate_requirement/prompt_admins()
 	var/candidate_count = count_candidates()
 	if(candidate_count < min_candidates)
-		tgui_alert(usr, output_text, LANG("datum.c6e0fad1", null))
+		tgui_alert(usr, output_text, LANG("datum.c6e0fad1f4d5d208", null))
 		return ADMIN_CANCEL_EVENT
-	tgui_alert(usr, LANG("datum.3e5b73ab", list(candidate_count)), event_control.name)
+	tgui_alert(usr, LANG("datum.3e5b73ab86066245", list(candidate_count)), event_control.name)
 
 /// Checks for candidates. Should return the total number of candidates
 /datum/event_admin_setup/minimum_candidate_requirement/proc/count_candidates()

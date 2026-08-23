@@ -13,7 +13,7 @@
 
 /turf/open/floor/iron/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("turf.ff9d66d1", null))
+	. += span_notice(LANG("turf.ff9d66d17aebc7c4", null))
 
 /turf/open/floor/iron/update_icon_state()
 	if(broken || burnt)

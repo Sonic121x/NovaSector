@@ -66,16 +66,16 @@
 
 /obj/machinery/electrolyzer/examine(mob/user)
 	. = ..()
-	. += LANG("obj.2bcd08b6", list(src, on ? "on" : "off", panel_open ? "open" : "closed"))
+	. += LANG("obj.2bcd08b6ca734b83", list(src, on ? "on" : "off", panel_open ? "open" : "closed"))
 
 	if(cell)
-		. += LANG("obj.00f8f6f7", list(cell ? round(cell.percent(), 1) : 0))
+		. += LANG("obj.00f8f6f702faa55b", list(cell ? round(cell.percent(), 1) : 0))
 	else
-		. += LANG("obj.b21d2f5d", null)
+		. += LANG("obj.b21d2f5d4c232681", null)
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.033fe9f5", list(on ? "off" : "on")))
-		. += span_notice(LANG("obj.63861cf1", null))
-	. += span_notice(LANG("obj.f5cfd6d4", list(anchored ? "area's APC" : "internal power cell")))
+		. += span_notice(LANG("obj.033fe9f52021b284", list(on ? "off" : "on")))
+		. += span_notice(LANG("obj.63861cf13063cbcd", null))
+	. += span_notice(LANG("obj.f5cfd6d4995a7e02", list(anchored ? "area's APC" : "internal power cell")))
 
 
 /obj/machinery/electrolyzer/update_icon_state()
@@ -149,7 +149,7 @@
 /obj/machinery/electrolyzer/screwdriver_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 50)
 	toggle_panel_open()
-	balloon_alert(user, LANG("obj.45725a89", list(panel_open ? "opened" : "closed")))
+	balloon_alert(user, LANG("obj.45725a89b7fc8d2e", list(panel_open ? "opened" : "closed")))
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
@@ -167,11 +167,11 @@
 		return NONE
 
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.de78deee", null))
+		balloon_alert(user, LANG("obj.de78deeeb898303d", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(cell)
-		balloon_alert(user, LANG("obj.11f17346", null))
+		balloon_alert(user, LANG("obj.11f17346bedb90cc", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
@@ -179,25 +179,25 @@
 
 	cell = tool
 	tool.add_fingerprint(usr)
-	balloon_alert(user, LANG("obj.15df949b", null))
+	balloon_alert(user, LANG("obj.15df949bbbd5610f", null))
 	SStgui.update_uis(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/electrolyzer/click_alt(mob/user)
 	if(panel_open)
-		balloon_alert(user, LANG("obj.4337ae3e", null))
+		balloon_alert(user, LANG("obj.4337ae3ee9e4930a", null))
 		return CLICK_ACTION_BLOCKING
 	toggle_power(user)
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/electrolyzer/proc/toggle_power(mob/user)
 	if(!anchored && !cell)
-		balloon_alert(user, LANG("obj.e362d48b", null))
+		balloon_alert(user, LANG("obj.e362d48b83d30e43", null))
 		return
 	on = !on
 	mode = ELECTROLYZER_MODE_STANDBY
 	update_appearance(UPDATE_ICON)
-	balloon_alert(user, LANG("obj.8fcfde3c", list(on ? "on" : "off")))
+	balloon_alert(user, LANG("obj.8fcfde3cd8c5cffd", list(on ? "on" : "off")))
 	if(on)
 		SSair.start_processing_machine(src)
 

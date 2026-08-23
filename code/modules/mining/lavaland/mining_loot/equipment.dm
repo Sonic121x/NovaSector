@@ -38,28 +38,28 @@
 	if(activated)
 		return
 	if(!iscarbon(user))
-		to_chat(user, span_warning(LANG("obj.319b1185", null)))
+		to_chat(user, span_warning(LANG("obj.319b1185ae0f88f7", null)))
 		return
 	var/mob/living/carbon/itemUser = user
 	if(itemUser.has_status_effect(/datum/status_effect/hippocratic_oath))
-		to_chat(user, span_warning(LANG("obj.27895a45", null)))
+		to_chat(user, span_warning(LANG("obj.27895a45f95bf0eb", null)))
 		return
 
 	var/static/failText = span_warning("The snake seems unsatisfied with your incomplete oath and returns to its previous place on the rod, returning to its dormant, wooden state. You must stand still while completing your oath!")
-	to_chat(itemUser, span_notice(LANG("obj.c8536cb6", null)))
+	to_chat(itemUser, span_notice(LANG("obj.c8536cb6f240ff80", null)))
 	for(var/oath_line in oath_lines)
 		if(do_after(itemUser, 3 SECONDS, target = itemUser))
 			itemUser.say(oath_line, forced = "hippocratic oath")
 			continue
 
-		balloon_alert(itemUser, LANG("obj.c67b5d27", null))
+		balloon_alert(itemUser, LANG("obj.c67b5d274d6e724b", null))
 		to_chat(itemUser, failText)
 		return
 
 	apply_oath(itemUser)
 
 /obj/item/rod_of_asclepius/proc/apply_oath(mob/living/carbon/user)
-	to_chat(user, span_notice(LANG("obj.ee64765a", null)))
+	to_chat(user, span_notice(LANG("obj.ee64765a6782b3a7", null)))
 	var/datum/status_effect/hippocratic_oath/effect = user.apply_status_effect(/datum/status_effect/hippocratic_oath)
 	effect.hand = user.get_held_index_of_item(src)
 	activated()
@@ -90,7 +90,7 @@
 /obj/item/warp_cube/attack_self(mob/user)
 	var/turf/current_location = get_turf(user)
 	if(!linked || isnull(get_turf(linked)) || !check_teleport_valid(src, current_location))
-		to_chat(user, span_warning(LANG("obj.c2b886e1", list(src))))
+		to_chat(user, span_warning(LANG("obj.c2b886e1cc60b26d", list(src))))
 		return
 	if(teleporting)
 		return
@@ -162,7 +162,7 @@
 		cooldown = world.time + 600
 		new /obj/effect/immortality_talisman(get_turf(user), user)
 	else
-		to_chat(user, span_warning(LANG("obj.efed0cc7", list(src))))
+		to_chat(user, span_warning(LANG("obj.efed0cc72a33d99e", list(src))))
 
 /obj/effect/immortality_talisman
 	name = "hole in reality"
@@ -193,12 +193,12 @@
 
 	user.remove_traits(list(TRAIT_GODMODE, TRAIT_NO_TRANSFORM), REF(src))
 	user.forceMove(get_turf(src))
-	user.visible_message(span_danger(LANG("obj.9f44ab01", list(user))))
+	user.visible_message(span_danger(LANG("obj.9f44ab012baeff90", list(user))))
 
 /obj/effect/immortality_talisman/proc/vanish(mob/user)
-	user.visible_message(span_danger(LANG("obj.d02f1d62", list(user, vanish_description, user.p_their()))))
+	user.visible_message(span_danger(LANG("obj.d02f1d626ec74d50", list(user, vanish_description, user.p_their()))))
 
-	desc = LANG("obj.9ba600b9", list(user.name))
+	desc = LANG("obj.9ba600b9c70decd2", list(user.name))
 	setDir(user.dir)
 
 	user.forceMove(src)

@@ -109,7 +109,7 @@
 	if(!dry_grind || HAS_TRAIT(src, TRAIT_DRIED))
 		return TRUE
 	if (user)
-		to_chat(user, span_warning(LANG("obj.8656d0c0", list(src))))
+		to_chat(user, span_warning(LANG("obj.8656d0c06752fc9e", list(src))))
 	return FALSE
 
 /// Turns the nutriments and vitamins into the distill reagent or fruit wine

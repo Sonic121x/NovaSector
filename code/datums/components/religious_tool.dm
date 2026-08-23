@@ -149,10 +149,10 @@
 /// Select the sect, called from [/datum/component/religious_tool/proc/AttemptActions]
 /datum/component/religious_tool/proc/select_sect(mob/living/user, path)
 	if(user.mind.holy_role != HOLY_ROLE_HIGHPRIEST)
-		to_chat(user, span_warning(LANG("datum.bf57a46e", null)))
+		to_chat(user, span_warning(LANG("datum.bf57a46e1d5af18d", null)))
 		return
 	if(!user.can_perform_action(parent, FORBID_TELEKINESIS_REACH))
-		to_chat(user,span_warning(LANG("datum.b6e521a0", null)))
+		to_chat(user,span_warning(LANG("datum.b6e521a08f235dbd", null)))
 		return
 	set_new_religious_sect(text2path(path))
 
@@ -160,15 +160,15 @@
 /datum/component/religious_tool/proc/perform_rite(mob/living/user, path)
 	if(user.mind.holy_role < HOLY_ROLE_PRIEST)
 		if(user.mind.holy_role == HOLY_ROLE_DEACON)
-			to_chat(user, span_warning(LANG("datum.491ec878", list(GLOB.deity))))
+			to_chat(user, span_warning(LANG("datum.491ec878ba1dc222", list(GLOB.deity))))
 		else
-			to_chat(user, span_warning(LANG("datum.db8860ee", null)))
+			to_chat(user, span_warning(LANG("datum.db8860ee1786ddf7", null)))
 		return
 	if(rite_types_allowlist && !is_path_in_list(path, rite_types_allowlist))
-		to_chat(user, span_warning(LANG("datum.e52683c5", null)))
+		to_chat(user, span_warning(LANG("datum.e52683c5ff7802ed", null)))
 		return
 	if(!user.can_perform_action(parent, FORBID_TELEKINESIS_REACH))
-		to_chat(user,span_warning(LANG("datum.34106044", null)))
+		to_chat(user,span_warning(LANG("datum.3410604474d9a0a5", null)))
 		return
 	//we have a rite already, but we want to do a new one.
 	if(performing_rite && !ispath(performing_rite.type, path))
@@ -260,12 +260,12 @@
 
 	if(!can_i_see)
 		return
-	examine_list += span_notice(LANG("datum.d28722e7", list(catalyst_type::name)))
+	examine_list += span_notice(LANG("datum.d28722e72c20468a", list(catalyst_type::name)))
 	if(isnull(easy_access_sect))
 		if(operation_flags & RELIGION_TOOL_SECTSELECT)
-			examine_list += span_notice(LANG("datum.dea5dddb", null))
+			examine_list += span_notice(LANG("datum.dea5dddb6e6fa966", null))
 			return
 	if(operation_flags & RELIGION_TOOL_SACRIFICE)//this can be moved around if things change but usually no rites == no sacrifice
-		examine_list += span_notice(LANG("datum.18d77425", null))
+		examine_list += span_notice(LANG("datum.18d77425de8b945f", null))
 	if(easy_access_sect.rites_list && operation_flags & RELIGION_TOOL_INVOKE)
-		examine_list += span_notice(LANG("datum.0759faf6", null))
+		examine_list += span_notice(LANG("datum.0759faf60e4f0e39", null))

@@ -639,4 +639,4 @@
 
 /obj/item/robot_model/ninja_saboteur/do_transform_animation()
 	. = ..()
-	to_chat(loc, span_userdanger(LANG("obj.a4f9d43c", null)))
+	to_chat(loc, span_userdanger(LANG("obj.a4f9d43c9955c8ca", null)))

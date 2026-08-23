@@ -49,7 +49,7 @@
 		for(var/obj/item/lighter/lighter in quirk_holder.held_items)
 			if(lighter.lit)
 				continue
-			to_chat(quirk_holder, span_warning(LANG("datum.d8bf3716", list(lighter))))
+			to_chat(quirk_holder, span_warning(LANG("datum.d8bf37160f7615c4", list(lighter))))
 			lighter.attack_self(quirk_holder)
 			COOLDOWN_START(src, start_fire_cd, 4 SECONDS)
 			break

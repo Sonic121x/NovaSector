@@ -192,7 +192,7 @@
 	var/list/result = SScircuit_component.execute_instant_run()
 
 	if(!result)
-		attached_airlock.visible_message(span_warning(LANG("obj.ae15d213", list(attached_airlock))))
+		attached_airlock.visible_message(span_warning(LANG("obj.ae15d2137bd30dcb", list(attached_airlock))))
 		return
 
 	if(result["should_open"])

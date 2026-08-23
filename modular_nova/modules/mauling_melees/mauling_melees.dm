@@ -94,16 +94,16 @@
 /obj/item/storage/belt/machete/examine(mob/user)
 	. = ..()
 	if(length(contents))
-		. += span_notice(LANG("obj.ebf3b6e0", null))
+		. += span_notice(LANG("obj.ebf3b6e0466f52e5", null))
 
 /obj/item/storage/belt/machete/click_alt(mob/user)
 	for(var/obj/item/machete/machete in contents)
-		user.visible_message(span_notice(LANG("obj.1f34f194", list(user, machete, src))), span_notice(LANG("obj.604c7b94", list(machete, src))))
+		user.visible_message(span_notice(LANG("obj.1f34f194a347a912", list(user, machete, src))), span_notice(LANG("obj.604c7b94ff4abde3", list(machete, src))))
 		machete.remove_item_from_storage(user)
 		user.put_in_hands(machete)
 		update_appearance()
 		return CLICK_ACTION_SUCCESS
-	balloon_alert(user, LANG("obj.76a90f7c", null))
+	balloon_alert(user, LANG("obj.76a90f7c0f5ea424", null))
 
 /obj/item/storage/belt/machete/update_icon_state()
 	icon_state = initial(icon_state)
@@ -125,13 +125,13 @@
 	switch(worn_variant)
 		if (MACHETE_BACK)
 			worn_variant = MACHETE_WAIST
-			to_chat(user, LANG("obj.9e4c3905", list(src)))
+			to_chat(user, LANG("obj.9e4c39056c96377e", list(src)))
 		if (MACHETE_WAIST)
 			worn_variant = MACHETE_LEG
-			to_chat(user, LANG("obj.cbf5e8fa", list(src)))
+			to_chat(user, LANG("obj.cbf5e8fafc9cd34f", list(src)))
 		if (MACHETE_LEG)
 			worn_variant = MACHETE_BACK
-			to_chat(user, LANG("obj.e9bfd247", list(src)))
+			to_chat(user, LANG("obj.e9bfd2478f744a17", list(src)))
 	update_appearance()
 
 #undef MACHETE_BACK

@@ -14,14 +14,14 @@
 		return NONE
 	var/obj/item/organ/monster_core/target_core = interacting_with
 	if (!istype(target_core))
-		balloon_alert(user, LANG("obj.5c77b90d", null))
+		balloon_alert(user, LANG("obj.5c77b90dc874f777", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if (!target_core.preserve())
-		balloon_alert(user, LANG("obj.614a4bdc", null))
+		balloon_alert(user, LANG("obj.614a4bdc6cd80f49", null))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.fab48b07", null))
+	balloon_alert(user, LANG("obj.fab48b078bf5b0d5", null))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -71,15 +71,15 @@
 	var/estimated_time_left = round(timeleft(decay_timer), 1 MINUTES)
 	switch(estimated_time_left)
 		if(4 MINUTES)
-			. += span_notice(LANG("obj.972a661b", null))
+			. += span_notice(LANG("obj.972a661bff0e15c6", null))
 		if(3 MINUTES)
-			. += span_notice(LANG("obj.019fc51a", null))
+			. += span_notice(LANG("obj.019fc51aeca22373", null))
 		if(2 MINUTES)
-			. += span_notice(LANG("obj.19ef4d50", null))
+			. += span_notice(LANG("obj.19ef4d5045251cdc", null))
 		if(1 MINUTES)
-			. += span_notice(LANG("obj.d467c886", null))
+			. += span_notice(LANG("obj.d467c886db20a241", null))
 		if(0 SECONDS to 1 MINUTES)
-			. += span_warning(LANG("obj.09abc9ee", null))
+			. += span_warning(LANG("obj.09abc9eed6110420", null))
 
 /obj/item/organ/monster_core/Destroy(force)
 	deltimer(decay_timer)
@@ -89,18 +89,18 @@
 	. = ..()
 
 	if (inert)
-		to_chat(target_carbon, span_notice(LANG("obj.71199cdb", list(src))))
+		to_chat(target_carbon, span_notice(LANG("obj.71199cdb583ebf9b", list(src))))
 		qdel(src)
 		return FALSE
 	if (!decay_timer)
 		return TRUE
 	preserve(TRUE)
-	target_carbon.visible_message(span_notice(LANG("obj.21df229c", list(src))))
+	target_carbon.visible_message(span_notice(LANG("obj.21df229cfc5c5de2", list(src))))
 	return TRUE
 
 /obj/item/organ/monster_core/on_mob_remove(mob/living/carbon/target_carbon, special, movement_flags)
 	if (!inert && !special)
-		target_carbon?.visible_message(span_notice(LANG("obj.b1ed63fb", list(src))))
+		target_carbon?.visible_message(span_notice(LANG("obj.b1ed63fb5412e849", list(src))))
 		go_inert()
 	return ..()
 
@@ -171,16 +171,16 @@
  */
 /obj/item/organ/monster_core/proc/try_apply(atom/target, mob/user)
 	if (!isliving(target))
-		balloon_alert(user, LANG("obj.5c77b90d", null))
+		balloon_alert(user, LANG("obj.5c77b90dc874f777", null))
 		return
 	if (inert)
-		balloon_alert(user, LANG("obj.614a4bdc", null))
+		balloon_alert(user, LANG("obj.614a4bdc6cd80f49", null))
 		return
 	var/mob/living/live_target = target
 	if (live_target.stat == DEAD)
-		balloon_alert(user, LANG("obj.43a02ec6", null))
+		balloon_alert(user, LANG("obj.43a02ec6cdcfa72d", null))
 		return
-	balloon_alert(user, LANG("obj.0266a6d2", null))
+	balloon_alert(user, LANG("obj.0266a6d2e290af9e", null))
 	apply_to(target, user)
 
 /**

@@ -41,7 +41,7 @@
 
 /datum/antagonist/survivalist/magic/greet()
 	. = ..()
-	to_chat(owner, span_notice(LANG("datum.535b15ca", null)))
+	to_chat(owner, span_notice(LANG("datum.535b15ca122d16cd", null)))
 
 /datum/antagonist/survivalist/magic/forge_objectives()
 	var/datum/objective/steal_n_of_type/summon_magic/magic = new
@@ -72,7 +72,7 @@
 	RegisterSignals(owner.current, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING), PROC_REF(on_died))
 
 /datum/antagonist/survivalist/battle_royale/greet()
-	to_chat(owner, span_warning(LANG("datum.a27efe14", list(span_bold("You hear a tinny voice in your ear: ")))))
+	to_chat(owner, span_warning(LANG("datum.a27efe14f438b777", list(span_bold("You hear a tinny voice in your ear: ")))))
 
 	return ..()
 
@@ -82,7 +82,7 @@
 	UnregisterSignal(owner.current, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING))
 	if (owner.current.stat == DEAD)
 		return ..()
-	to_chat(owner, span_notice(LANG("datum.42d51ecc", null)))
+	to_chat(owner, span_notice(LANG("datum.42d51ecce8432821", null)))
 	owner.current?.add_mood_event("battle_royale", /datum/mood_event/royale_survivor)
 	return ..()
 

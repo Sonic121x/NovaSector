@@ -19,7 +19,7 @@
 
 /datum/action/cooldown/mob_cooldown/ice_demon_teleport/Activate(atom/target_atom)
 	if(isclosedturf(get_turf(target_atom)))
-		owner.balloon_alert(owner, LANG("datum.62d831a3", null))
+		owner.balloon_alert(owner, LANG("datum.62d831a3dbaf3612", null))
 		return FALSE
 	animate(owner, transform = matrix().Scale(0.8), time = time_delay, easing = SINE_EASING)
 	addtimer(CALLBACK(src, PROC_REF(teleport_to_turf), target_atom), time_delay)

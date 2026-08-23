@@ -58,7 +58,7 @@
 	if(special)
 		return ..()
 
-	to_chat(owner, span_warning(LANG("obj.55b4f9d8", list(name))))
+	to_chat(owner, span_warning(LANG("obj.55b4f9d81f28e8b7", list(name))))
 	playsound(owner, 'sound/effects/blob/blobattack.ogg', 60, TRUE)
 	owner.adjust_blood_volume(-SLIME_LIMB_BLOOD_LOSS)
 	return ..()
@@ -67,7 +67,7 @@
 	if(special)
 		return ..()
 
-	to_chat(owner, span_warning(LANG("obj.55b4f9d8", list(name))))
+	to_chat(owner, span_warning(LANG("obj.55b4f9d81f28e8b7", list(name))))
 	playsound(owner, 'sound/effects/blob/blobattack.ogg', 60, TRUE)
 	owner.adjust_blood_volume(-SLIME_LIMB_BLOOD_LOSS)
 	return ..()
@@ -76,7 +76,7 @@
 	if(special)
 		return ..()
 
-	to_chat(owner, span_warning(LANG("obj.55b4f9d8", list(name))))
+	to_chat(owner, span_warning(LANG("obj.55b4f9d81f28e8b7", list(name))))
 	playsound(owner, 'sound/effects/blob/blobattack.ogg', 60, TRUE)
 	owner.adjust_blood_volume(-SLIME_LIMB_BLOOD_LOSS)
 	return ..()
@@ -85,7 +85,7 @@
 	if(special)
 		return ..()
 
-	to_chat(owner, span_warning(LANG("obj.55b4f9d8", list(name))))
+	to_chat(owner, span_warning(LANG("obj.55b4f9d81f28e8b7", list(name))))
 	playsound(owner, 'sound/effects/blob/blobattack.ogg', 60, TRUE)
 	owner.adjust_blood_volume(-SLIME_LIMB_BLOOD_LOSS)
 	return ..()
@@ -94,7 +94,7 @@
 	if(special)
 		return ..()
 
-	to_chat(owner, span_warning(LANG("obj.55b4f9d8", list(name))))
+	to_chat(owner, span_warning(LANG("obj.55b4f9d81f28e8b7", list(name))))
 	playsound(owner, 'sound/effects/blob/blobattack.ogg', 60, TRUE)
 	owner.adjust_blood_volume(-SLIME_LIMB_BLOOD_LOSS)
 	return ..()
@@ -103,7 +103,7 @@
 	if(special)
 		return ..()
 
-	to_chat(owner, span_warning(LANG("obj.55b4f9d8", list(name))))
+	to_chat(owner, span_warning(LANG("obj.55b4f9d81f28e8b7", list(name))))
 	playsound(owner, 'sound/effects/blob/blobattack.ogg', 60, TRUE)
 	owner.adjust_blood_volume(-SLIME_LIMB_BLOOD_LOSS)
 	return ..()
@@ -112,7 +112,7 @@
 	if(special)
 		return ..()
 
-	to_chat(owner, span_warning(LANG("obj.55b4f9d8", list(name))))
+	to_chat(owner, span_warning(LANG("obj.55b4f9d81f28e8b7", list(name))))
 	playsound(owner, 'sound/effects/blob/blobattack.ogg', 60, TRUE)
 	owner.adjust_blood_volume(-SLIME_LIMB_BLOOD_LOSS)
 	return ..()

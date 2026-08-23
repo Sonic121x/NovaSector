@@ -31,7 +31,7 @@
 	var/range = 0 //Everywhere
 
 /obj/item/assembly/signaler/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.ff0940e6", list(user, src, user.p_they()))))
+	user.visible_message(span_suicide(LANG("obj.ff0940e6d3d347b8", list(user, src, user.p_they()))))
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE)
 	moveToNullspace()
 	suicider = user.mind
@@ -44,7 +44,7 @@
 		return
 	if(suicide_mob != REF(user))
 		return
-	user.visible_message(span_suicide(LANG("obj.f446cfb9", list(user, src, user.p_them()))))
+	user.visible_message(span_suicide(LANG("obj.f446cfb95c0545d0", list(user, src, user.p_them()))))
 	user.set_suicide(TRUE)
 	user.adjust_oxy_loss(200)//it sends an electrical pulse to their heart, killing them. or something.
 	user.death(FALSE)
@@ -100,11 +100,11 @@
 		if("signal")
 			if(cooldown_length > 0)
 				if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_SIGNALLER_SEND))
-					balloon_alert(ui.user, LANG("obj.ba1fd79a", null))
+					balloon_alert(ui.user, LANG("obj.ba1fd79a5b8c3b5c", null))
 					return
 				TIMER_COOLDOWN_START(src, COOLDOWN_SIGNALLER_SEND, cooldown_length)
 			INVOKE_ASYNC(src, PROC_REF(signal))
-			balloon_alert(ui.user, LANG("obj.619d443f", null))
+			balloon_alert(ui.user, LANG("obj.619d443f7d09bab4", null))
 			. = TRUE
 		if("freq")
 			var/new_frequency = sanitize_frequency(unformat_frequency(params["freq"]), TRUE)
@@ -133,7 +133,7 @@
 
 	code = sister_signaler.code
 	set_frequency(sister_signaler.frequency)
-	to_chat(user, LANG("obj.d95b4f91", list(sister_signaler.name, name)))
+	to_chat(user, LANG("obj.d95b4f917c61f27f", list(sister_signaler.name, name)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/assembly/signaler/attack_self_secondary(mob/user, modifiers)
@@ -143,7 +143,7 @@
 	if(!ishuman(user))
 		return
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_SIGNALLER_SEND))
-		balloon_alert(user, LANG("obj.e1700ee9", null))
+		balloon_alert(user, LANG("obj.e1700ee921d301ce", null))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_SIGNALLER_SEND, 1 SECONDS)
 	INVOKE_ASYNC(src, PROC_REF(signal))
@@ -176,7 +176,7 @@
 	last_receive_signal_log = istype(holder, /obj/item/transfer_valve) ? signal.logging_data : null
 
 	pulse()
-	audible_message(span_infoplain(LANG("obj.a31e2378", list(icon2html(src, hearers(src))))), null, hearing_range)
+	audible_message(span_infoplain(LANG("obj.a31e23785cc68a0a", list(icon2html(src, hearers(src))))), null, hearing_range)
 	for(var/mob/hearing_mob in get_hearers_in_view(hearing_range, src))
 		hearing_mob.playsound_local(get_turf(src), 'sound/machines/beep/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
 	return TRUE
@@ -189,7 +189,7 @@
 
 /obj/item/assembly/signaler/proc/on_mail_unwrap(atom/source, mob/user, obj/item/mail/traitor/letter)
 	SIGNAL_HANDLER
-	to_chat(user, span_danger(LANG("obj.7595c084", list(letter, src))))
+	to_chat(user, span_danger(LANG("obj.7595c0848860fe39", list(letter, src))))
 	INVOKE_ASYNC(src, PROC_REF(signal)) // No need to check for cooldown, the cooldown is shorter than the do_after for opening mail
 	return NONE //don't return handled, we want in hands and open ui
 

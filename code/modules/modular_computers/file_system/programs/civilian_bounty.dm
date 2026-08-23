@@ -59,10 +59,10 @@
 		return
 	if((id_account.civilian_bounty || id_account.bounties) && !COOLDOWN_FINISHED(id_account, bounty_timer))
 		var/time_left = DisplayTimeText(COOLDOWN_TIMELEFT(id_account, bounty_timer), round_seconds_to = 1)
-		computer.balloon_alert(user, LANG("datum.22b3f375", list(time_left)))
+		computer.balloon_alert(user, LANG("datum.22b3f3756d795d4c", list(time_left)))
 		return FALSE
 	if(!computer.stored_id.trim)
-		computer.say(LANG("datum.898ed9d2", null))
+		computer.say(LANG("datum.898ed9d2d8b67c49", null))
 		return FALSE
 
 	var/list/datum/bounty/crumbs = computer.stored_id.trim.generate_bounty_list()

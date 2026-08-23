@@ -54,7 +54,7 @@
 	)
 
 /obj/structure/destructible/cult/item_dispenser/altar/succcess_message(mob/living/user, obj/item/spawned_item)
-	to_chat(user, span_cult_italic(LANG("obj.19b7e6eb", list(src, spawned_item))))
+	to_chat(user, span_cult_italic(LANG("obj.19b7e6eb85750ae6", list(src, spawned_item))))
 
 #undef ELDRITCH_WHETSTONE
 #undef CONSTRUCT_SHELL

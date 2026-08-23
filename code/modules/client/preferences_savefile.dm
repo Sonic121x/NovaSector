@@ -206,10 +206,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		addtimer(CALLBACK(src, PROC_REF(announce_conflict), notadded), 5 SECONDS)
 
 /datum/preferences/proc/announce_conflict(list/notadded)
-	to_chat(parent, LANG("datum.16cadbf3", list(REF(src))))
+	to_chat(parent, LANG("datum.16cadbf336896946", list(REF(src))))
 	for(var/item in notadded)
 		var/datum/keybinding/conflicted = item
-		to_chat(parent, span_danger(LANG("datum.3baf3d70", list(conflicted.category, conflicted.full_name))))
+		to_chat(parent, span_danger(LANG("datum.3baf3d70ea8b5d94", list(conflicted.category, conflicted.full_name))))
 
 /datum/preferences/proc/load_path(ckey, filename="preferences.json")
 	if(!ckey || !load_and_save)

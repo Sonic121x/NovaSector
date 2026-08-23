@@ -394,7 +394,7 @@
 		for(var/direction in GLOB.cardinals)
 			nearby_turf = get_step(dest_turf, direction)
 			if(locate(recipe.result) in nearby_turf)
-				to_chat(crafter, span_warning(LANG("datum.ccfba6d7", list(recipe.name))))
+				to_chat(crafter, span_warning(LANG("datum.ccfba6d76144f14e", list(recipe.name))))
 				return ", can't be adjacent to another!"
 
 	if(recipe.placement_checks & STACK_CHECK_ADJACENT)
@@ -603,14 +603,14 @@
 /datum/component/personal_crafting/proc/make_action(datum/crafting_recipe/recipe, mob/user)
 	var/atom/result = construct_item(user, recipe)
 	if(istext(result)) //We failed to make an item and got a fail message
-		to_chat(user, span_warning(LANG("datum.1477fa8a", list(result))))
+		to_chat(user, span_warning(LANG("datum.1477fa8a6ec57b25", list(result))))
 		return FALSE
 	if(ismob(user) && isitem(result)) //In case the user is actually possessing a non mob like a machine
 		user.put_in_hands(result)
 	else if(ismovable(result) && !istype(result, /obj/effect/spawner))
 		var/atom/movable/movable = result
 		movable.forceMove(user.drop_location())
-	to_chat(user, span_notice(LANG("datum.1221b3fc", list(recipe.name))))
+	to_chat(user, span_notice(LANG("datum.1221b3fc39ab93a3", list(recipe.name))))
 	user.investigate_log("crafted [recipe]", INVESTIGATE_CRAFTING)
 	return TRUE
 
@@ -641,7 +641,7 @@
 				while(make_action(crafting_recipe, user))
 					crafted_items++
 				if(crafted_items)
-					to_chat(user, span_notice(LANG("datum.50616c77", list(crafted_items))))
+					to_chat(user, span_notice(LANG("datum.50616c774fd576a8", list(crafted_items))))
 			else
 				make_action(crafting_recipe, user)
 			busy = FALSE
@@ -759,12 +759,12 @@
 				var/id = atoms.Find(reaction.required_container)
 				data["reqs"]["[id]"] = 1
 				// NOVA EDIT CHANGE START - I18N - 步骤行运行期拼接绕过所有翻译层；locale≠en 走 LANG（保留 en 侧 \a 冠词行为） - ORIGINAL: data["steps"] += "Add all ingredients into \a [initial(reaction.required_container.name)]"
-				data["steps"] += (GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) ? LANG("datum.96159b3b", list(initial(reaction.required_container.name))) : "Add all ingredients into \a [initial(reaction.required_container.name)]"
+				data["steps"] += (GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) ? LANG("datum.96159b3b25f7369f", list(initial(reaction.required_container.name))) : "Add all ingredients into \a [initial(reaction.required_container.name)]"
 				// NOVA EDIT CHANGE END
 			else if(length(recipe.reqs) > 1 || length(reaction.required_catalysts))
-				data["steps"] += LANG("datum.26d10300", null) // NOVA EDIT CHANGE - I18N - ORIGINAL: data["steps"] += "Mix all ingredients together"
+				data["steps"] += LANG("datum.26d103004e4b0dcf", null) // NOVA EDIT CHANGE - I18N - ORIGINAL: data["steps"] += "Mix all ingredients together"
 			if(reaction.required_temp > T20C)
-				data["steps"] += LANG("datum.c2dc24e5", list(reaction.required_temp)) // NOVA EDIT CHANGE - I18N - ORIGINAL: data["steps"] += "Heat up to [reaction.required_temp]K"
+				data["steps"] += LANG("datum.c2dc24e5ff8d2280", list(reaction.required_temp)) // NOVA EDIT CHANGE - I18N - ORIGINAL: data["steps"] += "Heat up to [reaction.required_temp]K"
 		else
 			stack_trace("Invalid reaction found in recipe code! ([recipe.reaction])")
 	else if(!isnull(recipe.reaction))

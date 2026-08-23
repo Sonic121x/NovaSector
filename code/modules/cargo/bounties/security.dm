@@ -110,28 +110,28 @@
 	var/progress = get_progress()
 	if(alerted == 0)
 		alerted = 1
-		id_card.registered_account.bank_card_talk(LANG("datum.d9b3a39d", list(needed_coverage)), force = TRUE)
+		id_card.registered_account.bank_card_talk(LANG("datum.d9b3a39de9c22a26", list(needed_coverage)), force = TRUE)
 		return
 
 	var/progress_percent = progress / needed_coverage
 	if(progress_percent >= 0.25 && alerted < 2)
 		alerted = 2
-		id_card.registered_account.bank_card_talk(LANG("datum.ebc0e5da", null), force = TRUE)
+		id_card.registered_account.bank_card_talk(LANG("datum.ebc0e5da8743b3ba", null), force = TRUE)
 		return
 
 	if(progress_percent >= 0.5 && alerted < 3)
 		alerted = 3
-		id_card.registered_account.bank_card_talk(LANG("datum.1d4c03de", null), force = TRUE)
+		id_card.registered_account.bank_card_talk(LANG("datum.1d4c03deeb441f92", null), force = TRUE)
 		return
 
 	if(progress_percent >= 0.75 && alerted < 4)
 		alerted = 4
-		id_card.registered_account.bank_card_talk(LANG("datum.04eb70c2", null), force = TRUE)
+		id_card.registered_account.bank_card_talk(LANG("datum.04eb70c2f992a72e", null), force = TRUE)
 		return
 
 	if(progress >= needed_coverage && alerted < 5)
 		alerted = 5
-		id_card.registered_account.bank_card_talk(LANG("datum.7dcceece", null), force = TRUE)
+		id_card.registered_account.bank_card_talk(LANG("datum.7dcceece5673499e", null), force = TRUE)
 		stop_tracking(id_card) // don't need this anymore
 		return
 

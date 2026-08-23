@@ -51,7 +51,7 @@
 /datum/action/cooldown/spell/pointed/proc/on_activation(mob/on_who)
 	SHOULD_CALL_PARENT(TRUE)
 
-	to_chat(on_who, span_notice(LANG("datum.811cd7a6", list(active_msg))))
+	to_chat(on_who, span_notice(LANG("datum.811cd7a6dfde0491", list(active_msg))))
 	build_all_button_icons()
 	return TRUE
 
@@ -80,7 +80,7 @@
 
 /datum/action/cooldown/spell/pointed/is_valid_target(atom/cast_on)
 	if(cast_on == owner)
-		to_chat(owner, span_warning(LANG("datum.85ff4a02", list(src))))
+		to_chat(owner, span_warning(LANG("datum.85ff4a028fcdfc21", list(src))))
 		return FALSE
 
 	return TRUE
@@ -91,7 +91,7 @@
 		return
 
 	if(owner && get_dist(get_turf(owner), get_turf(cast_on)) > cast_range)
-		cast_on.balloon_alert(owner, LANG("datum.a462ee7c", null))
+		cast_on.balloon_alert(owner, LANG("datum.a462ee7cec0ddb47", null))
 		return . | SPELL_CANCEL_CAST
 
 /**

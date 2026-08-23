@@ -105,7 +105,7 @@
 		if(extra_classes)
 			classes += extra_classes
 
-		.["class"] = input(src, LANG("client.8e0f156d", null), LANG("client.7c42245a", null), default_class) as null|anything in classes
+		.["class"] = input(src, LANG("client.8e0f156dcf9b9ef6", null), LANG("client.7c42245a5c19ba4e", null), default_class) as null|anything in classes
 		if(holder && holder.marked_datum && .["class"] == markstring)
 			.["class"] = VV_MARKED_DATUM
 
@@ -117,19 +117,19 @@
 
 	switch(.["class"])
 		if(VV_TEXT)
-			.["value"] = input(LANG("client.75221e2e", null), LANG("client.75a3cf7e", null), current_value) as null|text
+			.["value"] = input(LANG("client.75221e2e75a896ac", null), LANG("client.75a3cf7e0e5a9287", null), current_value) as null|text
 			if(.["value"] == null)
 				.["class"] = null
 				return
 		if(VV_MESSAGE)
-			.["value"] = input(LANG("client.75221e2e", null), LANG("client.75a3cf7e", null), current_value) as null|message
+			.["value"] = input(LANG("client.75221e2e75a896ac", null), LANG("client.75a3cf7e0e5a9287", null), current_value) as null|message
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 
 		if(VV_NUM)
-			.["value"] = input(LANG("client.90604e00", null), LANG("client.8cc2af2a", null), current_value) as null|num
+			.["value"] = input(LANG("client.90604e00522f9ff2", null), LANG("client.8cc2af2a3cab6128", null), current_value) as null|num
 			if(.["value"] == null)
 				.["class"] = null
 				return
@@ -156,7 +156,7 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input(LANG("client.fb9808c4", list(error)), LANG("client.18446660", null), type) as null|text
+				type = input(LANG("client.fb9808c47ead3b0e", list(error)), LANG("client.184466608a09f8b1", null), type) as null|text
 				if(!type)
 					break
 				type = text2path(type)
@@ -174,7 +174,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input(LANG("client.00c33bc8", null), LANG("client.1b04a393", null), current_value) as null|anything in things
+			var/value = input(LANG("client.00c33bc8037ed2fa", null), LANG("client.1b04a39351d118fa", null), current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
@@ -187,7 +187,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input(LANG("client.00c33bc8", null), LANG("client.1b04a393", null), current_value) as null|anything in things
+			var/value = input(LANG("client.00c33bc8037ed2fa", null), LANG("client.1b04a39351d118fa", null), current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
@@ -200,7 +200,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input(LANG("client.00c33bc8", null), LANG("client.1b04a393", null), current_value) as null|anything in things
+			var/value = input(LANG("client.00c33bc8037ed2fa", null), LANG("client.1b04a39351d118fa", null), current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
@@ -213,26 +213,26 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input(LANG("client.00c33bc8", null), LANG("client.1b04a393", null), current_value) as null|anything in things
+			var/value = input(LANG("client.00c33bc8037ed2fa", null), LANG("client.1b04a39351d118fa", null), current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
 			.["value"] = WEAKREF(things[value])
 
 		if(VV_CLIENT)
-			.["value"] = input(LANG("client.00c33bc8", null), LANG("client.1b04a393", null), current_value) as null|anything in GLOB.clients
+			.["value"] = input(LANG("client.00c33bc8037ed2fa", null), LANG("client.1b04a39351d118fa", null), current_value) as null|anything in GLOB.clients
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 		if(VV_FILE)
-			.["value"] = input(LANG("client.56488294", null), LANG("client.c79013ac", null)) as null|file
+			.["value"] = input(LANG("client.56488294d356f533", null), LANG("client.c79013ac2f26ad68", null)) as null|file
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 		if(VV_ICON)
-			.["value"] = input(LANG("client.f5b090a6", null), LANG("client.ef7ff638", null)) as null|icon
+			.["value"] = input(LANG("client.f5b090a6032e2061", null), LANG("client.ef7ff63888bef350", null)) as null|icon
 			if(.["value"] == null)
 				.["class"] = null
 				return
@@ -280,7 +280,7 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input(LANG("client.fb9808c4", list(error)), LANG("client.18446660", null), type) as null|text
+				type = input(LANG("client.fb9808c47ead3b0e", list(error)), LANG("client.184466608a09f8b1", null), type) as null|text
 				if(!type)
 					break
 				type = text2path(type)
@@ -299,7 +299,7 @@
 			.["type"] = /list
 			var/list/value = list()
 
-			var/expectation = alert(LANG("client.71c7f840", null), LANG("client.63eaf03d", null), "Yes", "No")
+			var/expectation = alert(LANG("client.71c7f8409cedfd6a", null), LANG("client.63eaf03d3665c432", null), "Yes", "No")
 			if(!expectation || expectation == "No")
 				.["value"] = value
 				return .
@@ -317,22 +317,22 @@
 		if(VV_TEXT_LOCATE)
 			var/datum/D
 			do
-				var/ref = input(LANG("client.f8e65f57", null), LANG("client.1b04a393", null)) as null|text
+				var/ref = input(LANG("client.f8e65f576fccf16b", null), LANG("client.1b04a39351d118fa", null)) as null|text
 				if(!ref)
 					break
 				D = locate(ref)
 				if(!D)
-					tgui_alert(usr,LANG("client.7f91cfb9", null))
+					tgui_alert(usr,LANG("client.7f91cfb9bf17061c", null))
 					continue
 				if(!D.can_vv_mark())
-					tgui_alert(usr,LANG("client.8606c6d9", null))
+					tgui_alert(usr,LANG("client.8606c6d9fc207112", null))
 					continue
 			while(!D)
 			.["type"] = D.type
 			.["value"] = D
 
 		if(VV_COLOR)
-			.["value"] = input(LANG("client.aca4fc25", null), LANG("client.0e20b7b5", null), current_value) as color|null
+			.["value"] = input(LANG("client.aca4fc25aca3d360", null), LANG("client.0e20b7b5489dda80", null), current_value) as color|null
 			if(.["value"] == null)
 				.["class"] = null
 				return

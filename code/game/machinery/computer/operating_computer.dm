@@ -72,9 +72,9 @@
 /obj/machinery/computer/operating/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/disk/surgery))
 		user.visible_message(
-			span_notice(LANG("obj.a8a3e32a", list(user, tool, src))),
-			span_notice(LANG("obj.bb289102", list(tool))),
-			span_hear(LANG("obj.fa2ab998", null)),
+			span_notice(LANG("obj.a8a3e32a96370ad8", list(user, tool, src))),
+			span_notice(LANG("obj.bb2891026d9b2adc", list(tool))),
+			span_hear(LANG("obj.fa2ab998e522621b", null)),
 		)
 		var/obj/item/disk/surgery/disky = tool
 		if(!do_after(user, 1 SECONDS, src))
@@ -82,7 +82,7 @@
 		advanced_surgeries |= disky.surgeries
 		update_static_data_for_all_viewers()
 		playsound(src, 'sound/machines/compiler/compiler-stage2.ogg', 50, FALSE, SILENCED_SOUND_EXTRARANGE)
-		balloon_alert(user, LANG("obj.12256e33", null))
+		balloon_alert(user, LANG("obj.12256e33b092184e", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if((tool.item_flags & SURGICAL_TOOL) && !user.combat_mode)

@@ -141,7 +141,7 @@
 	if (HAS_TRAIT(victim, TRAIT_TENTACLE_IMMUNE) || SEND_SIGNAL(victim, COMSIG_TENDRIL_TENTACLED_GRABBED) & COMPONENT_TENDRIL_CANCEL_TENTACLE_GRAB)
 		return
 
-	to_chat(victim, span_userdanger(LANG("obj.0cb89825", list(firer))))
+	to_chat(victim, span_userdanger(LANG("obj.0cb89825c77b59ea", list(firer))))
 	victim.apply_damage(snatch_damage, BRUTE, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	if (QDELETED(victim))
 		qdel(src)

@@ -71,8 +71,8 @@
 		return
 	else if(. && !QDELETED(src))
 		visible_message(
-			span_notice(LANG("obj.b09f8b0f", list(src))),
-			blind_message = span_hear(LANG("obj.3bdf0374", null)),
+			span_notice(LANG("obj.b09f8b0ff0769570", list(src))),
+			blind_message = span_hear(LANG("obj.3bdf0374298470ff", null)),
 		)
 		playsound(src.loc, 'modular_nova/modules/mapping/sounds/MachineDeath.ogg', 75, TRUE)	//Credit to @yungfunnyman#3798 on the SR Discord
 		do_sparks(2, TRUE, src)

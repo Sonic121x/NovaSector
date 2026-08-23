@@ -239,7 +239,7 @@
 	else if(is_visual && is_audible)
 		user.audible_message(
 			message = msg,
-			deaf_message = span_emote(LANG("datum.925c6790", list(user, msg))),
+			deaf_message = span_emote(LANG("datum.925c6790ca04918f", list(user, msg))),
 			self_message = msg,
 			audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE|additional_message_flags,
 			separation = space, // NOVA EDIT ADDITION
@@ -277,7 +277,7 @@
 		else if(is_visual && is_audible)
 			hologram.audible_message(
 				message = msg,
-				deaf_message = LANG("datum.3b266acd", list(user, msg)),
+				deaf_message = LANG("datum.3b266acd31b1d21f", list(user, msg)),
 				self_message = msg,
 				audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE,
 				separation = space,
@@ -337,7 +337,7 @@
 	if(user.nextsoundemote > world.time) // NOVA EDIT CHANGE - ORIGINAL: if(user.emotes_used && user.emotes_used[src] + cooldown > world.time)
 		var/datum/emote/default_emote = /datum/emote
 		if(cooldown > initial(default_emote.cooldown)) // only worry about longer-than-normal emotes
-			to_chat(user, span_danger(LANG("datum.ec9895bb", list(DisplayTimeText(user.nextsoundemote - world.time)))))
+			to_chat(user, span_danger(LANG("datum.ec9895bb936c212e", list(DisplayTimeText(user.nextsoundemote - world.time)))))
 		return FALSE
 	//if(!user.emotes_used)
 	//	user.emotes_used = list()
@@ -470,28 +470,28 @@
 	if(status_check && !is_type_in_typecache(user, mob_type_ignore_stat_typecache))
 		if(IS_UNCONSCIOUS(user) && !(can_use_flags & EMOTE_CANUSE_UNCONSCIOUS))
 			if(intentional)
-				to_chat(user, span_warning(LANG("datum.b0df7fb7", list(key))))
+				to_chat(user, span_warning(LANG("datum.b0df7fb7cfe537a7", list(key))))
 			return FALSE
 		if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED) && (can_use_flags & EMOTE_CANUSE_REQUIRE_HANDS))
 			if(intentional)
-				to_chat(user, span_warning(LANG("datum.a6c43807", list(key))))
+				to_chat(user, span_warning(LANG("datum.a6c43807910b0261", list(key))))
 			return FALSE
 
 		switch(user.stat)
 			if(SOFT_CRIT)
 				if(!(can_use_flags & EMOTE_CANUSE_SOFTCRIT))
 					if(intentional)
-						to_chat(user, span_warning(LANG("datum.06026301", list(key))))
+						to_chat(user, span_warning(LANG("datum.060263017f74632c", list(key))))
 					return FALSE
 			if(HARD_CRIT)
 				if(!(can_use_flags & EMOTE_CANUSE_HARDCRIT))
 					if(intentional)
-						to_chat(user, span_warning(LANG("datum.06026301", list(key))))
+						to_chat(user, span_warning(LANG("datum.060263017f74632c", list(key))))
 					return FALSE
 			if(DEAD)
 				if(!(can_use_flags & EMOTE_CANUSE_DEAD))
 					if(intentional)
-						to_chat(user, span_warning(LANG("datum.9cfbc2db", list(key))))
+						to_chat(user, span_warning(LANG("datum.9cfbc2db1e9bbc48", list(key))))
 					return FALSE
 
 	if(HAS_TRAIT(user, TRAIT_EMOTEMUTE))

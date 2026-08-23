@@ -24,7 +24,7 @@
 	for(var/mob/living/target in loc)
 		target.forceMove(teleport_target)
 		new /obj/effect/temp_visual/dir_setting/ninja(get_turf(target), target.dir)
-		to_chat(target, span_warning(LANG("obj.c47c8314", null)))
+		to_chat(target, span_warning(LANG("obj.c47c831453e4df77", null)))
 		target.Stun(60)
 
 /obj/machinery/abductor/pad/proc/Retrieve(mob/living/target)

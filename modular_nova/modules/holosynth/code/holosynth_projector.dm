@@ -87,7 +87,7 @@
 	SIGNAL_HANDLER
 
 	if(user)
-		balloon_alert(user, LANG("obj.23429591", null))
+		balloon_alert(user, LANG("obj.23429591f893b108", null))
 	playsound(src, 'sound/items/pen_click.ogg', 30, TRUE, -3)
 	icon_state = initial(icon_state) + (active ? "_writing" : "")
 	worn_icon_state = initial(worn_icon_state) + (active ? "_writing" : "")
@@ -112,7 +112,7 @@
 			linked_mob.heal_and_revive()
 			new /obj/effect/temp_visual/guardian/phase(get_turf(linked_mob))
 		else
-			balloon_alert(user, LANG("obj.f5e75781", null))
+			balloon_alert(user, LANG("obj.f5e75781e8f1dc46", null))
 			saved_loc_ref = WEAKREF(get_turf(linked_mob))
 
 	return COMPONENT_NO_DEFAULT_MESSAGE
@@ -148,8 +148,8 @@
 		UnregisterSignal(linked_mob, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING))
 		linked_mob.apply_status_effect(/datum/status_effect/holosynth_dissolving)
 		linked_mob.visible_message(
-			span_danger(LANG("obj.2375be4d", list(linked_mob))),
-			span_userdanger(LANG("obj.22d6f512", null)),
+			span_danger(LANG("obj.2375be4d12975f0f", list(linked_mob))),
+			span_userdanger(LANG("obj.22d6f512cac21deb", null)),
 		)
 	return ..()
 
@@ -210,13 +210,13 @@
 	if(isnull(linked_mob) || user == linked_mob)
 		return ITEM_INTERACT_FAILURE
 	if(linked_mob.loc != src)
-		balloon_alert(user, LANG("obj.dbe7c00a", null))
+		balloon_alert(user, LANG("obj.dbe7c00ad46c8a15", null))
 		return ITEM_INTERACT_FAILURE
 	if(target.density)
-		balloon_alert(user, LANG("obj.7abf37d0", null))
+		balloon_alert(user, LANG("obj.7abf37d048493bad", null))
 		return ITEM_INTERACT_FAILURE
 	saved_loc_ref = WEAKREF(get_turf(target))
-	balloon_alert(user, LANG("obj.bc5143f7", null))
+	balloon_alert(user, LANG("obj.bc5143f7a8f8ad06", null))
 	playsound(src, 'sound/items/pen_click.ogg', 30, TRUE, -3)
 	return ITEM_INTERACT_SUCCESS
 
@@ -225,9 +225,9 @@
 	var/mob/living/carbon/human/linked_mob = linked_mob_ref?.resolve()
 
 	if(linked_mob)
-		. += span_info(LANG("obj.d524a7ee", list(linked_mob)))
+		. += span_info(LANG("obj.d524a7ee91d579ba", list(linked_mob)))
 		if(linked_mob.loc == src)
-			. += span_notice(LANG("obj.551113a9", list(linked_mob)))
+			. += span_notice(LANG("obj.551113a9c5ea4c5d", list(linked_mob)))
 
 /obj/item/holosynth_pen/get_writing_implement_details()
 	if(HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
@@ -245,7 +245,7 @@
 	var/mob/living/carbon/human/linked_mob = linked_mob_ref?.resolve()
 
 	if(user == linked_mob)
-		balloon_alert(user, LANG("obj.dfbec797", null))
+		balloon_alert(user, LANG("obj.dfbec7979701a5e5", null))
 		return COMPONENT_BLOCK_TRANSFORM
 
 // The death effect
@@ -305,8 +305,8 @@
 		return
 	if(!isnull(should_strip_proc_path) && !call(linked_mob, should_strip_proc_path)(user))
 		return
-	pen.balloon_alert_to_viewers(LANG("datum.6fa30044", null))
-	user.visible_message(span_warning(LANG("datum.55f50183", list(user, pen))))
+	pen.balloon_alert_to_viewers(LANG("datum.6fa300449dbc4853", null))
+	user.visible_message(span_warning(LANG("datum.55f50183f3499d2b", list(user, pen))))
 	INVOKE_ASYNC(src, PROC_REF(open_strip_menu), linked_mob, user)
 
 /datum/element/strippable/holosynth_pen/proc/open_strip_menu(mob/living/carbon/human/linked_mob, mob/user)

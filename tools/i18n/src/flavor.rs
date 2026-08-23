@@ -98,28 +98,29 @@ const FLAVOR_JSON_SECTIONS: &[(&str, &[&str])] = &[
         ],
     ),
     (
-    // 脑创伤呓语（brain_damage：胡话整句）+ 神明幻觉 ALLCAPS 台词（god_*）。
-    "traumas.json",
-    &[
-        "brain_damage",
-        "god_foe",
-        "god_aggressive",
-        "god_neutral",
-        "god_unstun",
-        "god_heal",
-        // brain_damage 的句子里用 `@pick(x)` 拼进来的**子池**。框架早就译好了（`@pick(george)
-        // @pick(mellens) 在搞我，救命！！！`），子池没译就是中文句子里嵌着英文碎片。
-        // 收这四个：都是「拼错的真词」（`abdoocters`=abductors、`eppilapse`=epilepsy、
-        // `deth squads`、`sheadow lings`），在句中当名词/动词用。
-        "create_nouns",
-        "create_verbs",
-        "mutations",
-        "bug",
-        // **不收** `servers`（basil/sybil/terry/colonel hall 是 /tg/ 服务器专名）、`george`/`mellens`
-        // （人名），以及 `random_gibberish`/`y_replacements`/`semicolon` —— 后三者是**字母级**
-        // 变换表（`y`→`i`/`e`、`;`），翻了当场把拼错效果弄坏。
-    ],
-)];
+        // 脑创伤呓语（brain_damage：胡话整句）+ 神明幻觉 ALLCAPS 台词（god_*）。
+        "traumas.json",
+        &[
+            "brain_damage",
+            "god_foe",
+            "god_aggressive",
+            "god_neutral",
+            "god_unstun",
+            "god_heal",
+            // brain_damage 的句子里用 `@pick(x)` 拼进来的**子池**。框架早就译好了（`@pick(george)
+            // @pick(mellens) 在搞我，救命！！！`），子池没译就是中文句子里嵌着英文碎片。
+            // 收这四个：都是「拼错的真词」（`abdoocters`=abductors、`eppilapse`=epilepsy、
+            // `deth squads`、`sheadow lings`），在句中当名词/动词用。
+            "create_nouns",
+            "create_verbs",
+            "mutations",
+            "bug",
+            // **不收** `servers`（basil/sybil/terry/colonel hall 是 /tg/ 服务器专名）、`george`/`mellens`
+            // （人名），以及 `random_gibberish`/`y_replacements`/`semicolon` —— 后三者是**字母级**
+            // 变换表（`y`→`i`/`e`、`;`），翻了当场把拼错效果弄坏。
+        ],
+    ),
+];
 
 /// 递归纳入其下所有 .json 的 flavor 子目录。
 const FLAVOR_DIRS: &[&str] = &["antagonist_flavor", "wounds"];
@@ -163,8 +164,7 @@ pub(crate) fn extract_blanks(repo_root: &Path, catalog: &mut Catalog) {
         let Ok(text) = std::fs::read_to_string(repo_root.join(rel)) else {
             continue;
         };
-        let Ok(serde_json::Value::Array(blanks)) =
-            serde_json::from_str::<serde_json::Value>(&text)
+        let Ok(serde_json::Value::Array(blanks)) = serde_json::from_str::<serde_json::Value>(&text)
         else {
             continue;
         };
@@ -250,17 +250,17 @@ fn collect_interaction_messages(value: &serde_json::Value, catalog: &mut Catalog
     let is_hide = matches!(map.get("category"), Some(serde_json::Value::String(c)) if c == "hide");
     if !is_hide {
         for field in ["message", "user_messages", "target_messages"] {
-        if let Some(serde_json::Value::Array(msgs)) = map.get(field) {
-            for m in msgs {
-                if let serde_json::Value::String(m) = m {
-                    let m = m.trim();
-                    // "json error" 占位与空串跳过；其余整句模板入目录。
-                    if !m.is_empty() && m != "json error" {
-                        emit(catalog, "interactions", m);
+            if let Some(serde_json::Value::Array(msgs)) = map.get(field) {
+                for m in msgs {
+                    if let serde_json::Value::String(m) = m {
+                        let m = m.trim();
+                        // "json error" 占位与空串跳过；其余整句模板入目录。
+                        if !m.is_empty() && m != "json error" {
+                            emit(catalog, "interactions", m);
+                        }
                     }
                 }
             }
-        }
         }
     }
     // master json：值为交互对象，递归。

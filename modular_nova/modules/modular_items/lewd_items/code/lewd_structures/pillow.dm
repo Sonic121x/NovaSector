@@ -140,7 +140,7 @@
 
 /obj/item/fancy_pillow/attack_self(mob/user)
 	if(IN_INVENTORY)
-		to_chat(user, span_notice(LANG("obj.959f5646", list(src))))
+		to_chat(user, span_notice(LANG("obj.959f5646803a71e5", list(src))))
 		var/obj/structure/bed/pillow_tiny/pillow_pile = new(get_turf(src))
 		pillow_pile.current_color = current_color
 		pillow_pile.current_form = current_form
@@ -187,7 +187,7 @@
 //picking up the pillow
 
 /obj/structure/bed/pillow_tiny/click_ctrl_shift(mob/user)
-	to_chat(user, span_notice(LANG("obj.b01fab5a", list(src))))
+	to_chat(user, span_notice(LANG("obj.b01fab5a52a2d259", list(src))))
 	var/obj/item/fancy_pillow/taken_pillow = new()
 	user.put_in_hands(taken_pillow)
 
@@ -220,7 +220,7 @@
 		var/obj/item/fancy_pillow/used_pillow = tool
 		var/obj/structure/chair/pillow_small/pillow_pile
 		if(used_pillow.current_color == current_color)
-			to_chat(user, span_notice(LANG("obj.bdea92c3", list(src))))
+			to_chat(user, span_notice(LANG("obj.bdea92c36aab7a1f", list(src))))
 			pillow_pile = new(get_turf(src))
 			pillow_pile.current_color = current_color
 			pillow_pile.pillow2_color = used_pillow.current_color
@@ -239,7 +239,7 @@
 			qdel(used_pillow)
 			return ITEM_INTERACT_SUCCESS
 		else
-			to_chat(user, span_notice(LANG("obj.6bf87a22", null))) //Too lazy to add multicolor pillow pile sprites.
+			to_chat(user, span_notice(LANG("obj.6bf87a226a0f72c2", null))) //Too lazy to add multicolor pillow pile sprites.
 			return ITEM_INTERACT_BLOCKING
 	else
 		return ..()
@@ -300,7 +300,7 @@
 
 //Removing pillow from a pile
 /obj/structure/chair/pillow_small/click_ctrl_shift(mob/user)
-	to_chat(user, span_notice(LANG("obj.5b52fe5e", list(src))))
+	to_chat(user, span_notice(LANG("obj.5b52fe5e18e89f2e", list(src))))
 	var/obj/item/fancy_pillow/taken_pillow = new()
 	var/obj/structure/bed/pillow_tiny/pillow_pile = new(get_turf(src))
 	user.put_in_hands(taken_pillow)
@@ -327,7 +327,7 @@
 		var/obj/item/fancy_pillow/used_pillow = tool
 		var/obj/structure/bed/pillow_large/pillow_pile
 		if(used_pillow.current_color == current_color)
-			to_chat(user, span_notice(LANG("obj.568f8d8a", list(src))))
+			to_chat(user, span_notice(LANG("obj.568f8d8a5ffd699b", list(src))))
 			pillow_pile = new(get_turf(src))
 			pillow_pile.current_color = current_color
 			pillow_pile.pillow3_color = used_pillow.current_color
@@ -349,7 +349,7 @@
 			qdel(used_pillow)
 			return ITEM_INTERACT_SUCCESS
 		else
-			to_chat(user, span_notice(LANG("obj.6bf87a22", null))) //Too lazy to add multicolor pillow pile sprites.
+			to_chat(user, span_notice(LANG("obj.6bf87a226a0f72c2", null))) //Too lazy to add multicolor pillow pile sprites.
 			return ITEM_INTERACT_BLOCKING
 	else
 		return ..()
@@ -427,7 +427,7 @@
 
 //Removing pillow from a pile
 /obj/structure/bed/pillow_large/click_ctrl_shift(mob/user)
-	to_chat(user, span_notice(LANG("obj.5b52fe5e", list(src))))
+	to_chat(user, span_notice(LANG("obj.5b52fe5e18e89f2e", list(src))))
 	var/obj/item/fancy_pillow/taken_pillow = new()
 	var/obj/structure/chair/pillow_small/pillow_pile = new(get_turf(src))
 	user.put_in_hands(taken_pillow)

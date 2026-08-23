@@ -12,10 +12,10 @@
 	switch(wire)
 		if(WIRE_LAUNCH)
 			the_mass_driver.drive()
-			holder.visible_message(span_notice(LANG("datum.9fa79d3d", null)))
+			holder.visible_message(span_notice(LANG("datum.9fa79d3d15a62c2f", null)))
 		if(WIRE_SAFETIES)
 			the_mass_driver.power = 3
-			holder.visible_message(span_notice(LANG("datum.1916e26c", null)))
+			holder.visible_message(span_notice(LANG("datum.1916e26cc4f8ecf4", null)))
 
 /datum/wires/mass_driver/on_cut(wire, mend, source)
 	var/obj/machinery/mass_driver/the_mass_driver = holder
@@ -23,4 +23,4 @@
 		if(WIRE_SAFETIES)
 			if(the_mass_driver.power > 1) 
 				the_mass_driver.power = 1
-				holder.visible_message(span_notice(LANG("datum.18528817", null)))
+				holder.visible_message(span_notice(LANG("datum.1852881771c4638a", null)))

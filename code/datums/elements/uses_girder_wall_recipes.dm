@@ -18,7 +18,7 @@
 	if (!isstack(stack))
 		return NONE
 	if (!stack.usable_for_construction)
-		structure.balloon_alert(user, LANG("datum.012c8b58", null))
+		structure.balloon_alert(user, LANG("datum.012c8b5884d971bb", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/datum/girder_wall_recipe/main_recipe = get_main_recipe(structure, stack)
@@ -28,7 +28,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if (stack.has_unique_girder)
-		structure.balloon_alert(user, LANG("datum.4204fe50", null))
+		structure.balloon_alert(user, LANG("datum.4204fe505626ad61", null))
 		return ITEM_INTERACT_BLOCKING
 
 	// Plasteel is used for reinforcing girders.
@@ -75,9 +75,9 @@
 		return
 
 	user.visible_message(
-		message = span_notice(LANG("datum.38aa75d0", list(user, user.p_s(), structure))),
-		self_message = span_notice(LANG("datum.f48237e6", list(structure))),
-		blind_message = span_hear(LANG("datum.6bba0e33", null)),
+		message = span_notice(LANG("datum.38aa75d0fd95c390", list(user, user.p_s(), structure))),
+		self_message = span_notice(LANG("datum.f48237e6adf180f5", list(structure))),
+		blind_message = span_hear(LANG("datum.6bba0e339bd3ce46", null)),
 	)
 
 	structure.add_fingerprint(user)
@@ -105,8 +105,8 @@
 		griderholder.girder_type = structure.type
 
 	user.visible_message(
-		message = span_notice(LANG("datum.b4810c15", list(user, user.p_es(), wall, structure))),
-		self_message = span_notice(LANG("datum.2fcdbcf5", list(wall, structure))),
+		message = span_notice(LANG("datum.b4810c15f1d9789d", list(user, user.p_es(), wall, structure))),
+		self_message = span_notice(LANG("datum.2fcdbcf525c89221", list(wall, structure))),
 	)
 
 	structure.transfer_fingerprints_to(wall)
@@ -119,14 +119,14 @@
 /// Checks if the user can do the wall recipe.
 /datum/element/uses_girder_wall_recipes/proc/check_recipe(obj/structure/structure, mob/living/user, datum/girder_wall_recipe/recipe)
 	if(iswallturf(structure.loc) || (locate(/obj/structure/falsewall) in structure.loc.contents))
-		structure.balloon_alert(user, LANG("datum.6694fb22", null))
+		structure.balloon_alert(user, LANG("datum.6694fb22a351d5c6", null))
 		return FALSE
 	if (!ispath(recipe.wall_type, /obj/structure/tram))
 		if (!isfloorturf(structure.loc))
-			structure.balloon_alert(user, LANG("datum.eb230c3c", null))
+			structure.balloon_alert(user, LANG("datum.eb230c3c9103d8fc", null))
 			return FALSE
 	else if (!(locate(/obj/structure/transport/linear/tram) in structure.loc.contents))
-		structure.balloon_alert(user, LANG("datum.be3eac18", null))
+		structure.balloon_alert(user, LANG("datum.be3eac18abdd96ff", null))
 		return FALSE
 	if (!check_girder_state(structure, recipe))
 		return FALSE

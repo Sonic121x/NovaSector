@@ -37,16 +37,16 @@
 /obj/item/transfer_valve/examine(mob/user)
 	. = ..()
 	if(tank_one)
-		. += span_notice(LANG("obj.7880d7d8", list(tank_one)))
+		. += span_notice(LANG("obj.7880d7d814090aed", list(tank_one)))
 	if(tank_two)
-		. += span_notice(LANG("obj.aab91071", list(tank_two)))
+		. += span_notice(LANG("obj.aab910715061a768", list(tank_two)))
 	if(!tank_one || !tank_two)
-		. += span_notice(LANG("obj.332461ab", null))
+		. += span_notice(LANG("obj.332461ab87f2c9a2", null))
 	if(attached_device)
-		. += span_notice(LANG("obj.43a2aa42", list(attached_device)))
+		. += span_notice(LANG("obj.43a2aa428427fc5b", list(attached_device)))
 	if(wired)
-		. += span_notice(LANG("obj.12e9796b", list(EXAMINE_HINT("wires"))))
-		. += span_notice(LANG("obj.493399c9", list(EXAMINE_HINT(TOOL_WIRECUTTER))))
+		. += span_notice(LANG("obj.12e9796baccbbda7", list(EXAMINE_HINT("wires"))))
+		. += span_notice(LANG("obj.493399c9d8fbc0e1", list(EXAMINE_HINT(TOOL_WIRECUTTER))))
 
 /obj/item/transfer_valve/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -98,9 +98,9 @@
 		var/obj/vehicle/ridden/wheelchair/chair = interacting_with
 
 		if (chair.bomb_attached)
-			user.balloon_alert(user, LANG("obj.7ebb669f", null))
+			user.balloon_alert(user, LANG("obj.7ebb669ffba85dcc", null))
 			return ITEM_INTERACT_FAILURE
-		user.balloon_alert(user, LANG("obj.3124768f", null))
+		user.balloon_alert(user, LANG("obj.3124768f5d07e0de", null))
 		if (!do_after(user, 0.5 SECONDS, chair))
 			return ITEM_INTERACT_FAILURE
 
@@ -132,10 +132,10 @@
 	if(istype(tool, /obj/item/stack/cable_coil) && !wired)
 		var/obj/item/stack/cable_coil/coil = tool
 		if (coil.get_amount() < 15)
-			to_chat(user, span_warning(LANG("obj.1cc40c6b", null)))
+			to_chat(user, span_warning(LANG("obj.1cc40c6b2dbf8df5", null)))
 			return ITEM_INTERACT_BLOCKING
 		coil.use(15)
-		to_chat(user, span_notice(LANG("obj.9c4c0ec5", null)))
+		to_chat(user, span_notice(LANG("obj.9c4c0ec5e6c7f4e2", null)))
 		wired = TRUE
 		slot_flags |= ITEM_SLOT_BACK
 		update_appearance()
@@ -147,7 +147,7 @@
 	if(!wired)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice(LANG("obj.370ef466", null)))
+	to_chat(user, span_notice(LANG("obj.370ef4669e19a652", null)))
 	wired = FALSE
 	slot_flags &= ~ITEM_SLOT_BACK
 	forceMove(drop_location())
@@ -161,14 +161,14 @@
 		if(!user.transferItemToLoc(new_tank, src))
 			return FALSE
 		tank_one = new_tank
-		to_chat(user, span_notice(LANG("obj.f4a2eb0a", list(new_tank))))
+		to_chat(user, span_notice(LANG("obj.f4a2eb0a1f6a8908", list(new_tank))))
 	else if(!tank_two)
 		if(!user.transferItemToLoc(new_tank, src))
 			return FALSE
 		tank_two = new_tank
-		to_chat(user, span_notice(LANG("obj.669ea8a3", list(new_tank))))
+		to_chat(user, span_notice(LANG("obj.669ea8a3ddaad649", list(new_tank))))
 	else
-		to_chat(user, span_warning(LANG("obj.dfe7aaa0", null)))
+		to_chat(user, span_warning(LANG("obj.dfe7aaa0a82b524e", null)))
 		return FALSE
 
 	update_appearance()
@@ -176,15 +176,15 @@
 
 /obj/item/transfer_valve/proc/try_attach_assembly(obj/item/assembly/A, mob/user)
 	if(A.secured)
-		to_chat(user, span_notice(LANG("obj.007eae2b", list(A))))
+		to_chat(user, span_notice(LANG("obj.007eae2b385b1bd7", list(A))))
 		return FALSE
 	if(attached_device)
-		to_chat(user, span_warning(LANG("obj.f8d6a6b3", null)))
+		to_chat(user, span_warning(LANG("obj.f8d6a6b387ff3cd4", null)))
 		return FALSE
 	if(!user.transferItemToLoc(A, src))
 		return FALSE
 	attached_device = A
-	to_chat(user, span_notice(LANG("obj.59d5d14d", list(A))))
+	to_chat(user, span_notice(LANG("obj.59d5d14d4585bc7b", list(A))))
 	A.holder = src
 	A.on_attach()
 	A.toggle_secure() //this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).

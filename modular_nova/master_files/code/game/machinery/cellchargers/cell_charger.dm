@@ -10,10 +10,10 @@
 /obj/machinery/cell_charger/click_alt(mob/user, list/modifiers)
 	if(. || !charging)
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice(LANG("obj.aba7bd73", null)))
+	to_chat(user, span_notice(LANG("obj.aba7bd73c693c3fc", null)))
 	removecell(charging.forceMove(drop_location()))
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/cell_charger/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.44eddf6a", null))
+	. += span_notice(LANG("obj.44eddf6a74d7144f", null))

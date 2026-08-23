@@ -43,9 +43,9 @@
 	for(var/datum/wound/possible_bleeding_wound as anything in carbon_host.all_wounds)
 		if(possible_bleeding_wound.blood_flow && !hidden)
 			if(4 > A.stage >= 2)
-				to_chat(carbon_host, span_warning(LANG("datum.a171b546", null)))
+				to_chat(carbon_host, span_warning(LANG("datum.a171b5461fb52889", null)))
 			if(A.stage >= 4)
-				to_chat(carbon_host, span_warning(LANG("datum.9b861a05", null)))
+				to_chat(carbon_host, span_warning(LANG("datum.9b861a050d717e41", null)))
 			return
 
 /datum/symptom/bleeding/on_stage_change(datum/disease/advance/A)

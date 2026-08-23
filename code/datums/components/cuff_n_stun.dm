@@ -73,12 +73,12 @@
 /datum/component/stun_n_cuff/proc/cuff_target(mob/living/carbon/human_target)
 	if(human_target.handcuffed)
 		var/mob/living/living_parent = parent
-		living_parent.balloon_alert(human_target, LANG("datum.9690d555", null))
+		living_parent.balloon_alert(human_target, LANG("datum.9690d555f9c02fef", null))
 		return
 
 	playsound(parent, 'sound/items/weapons/cablecuff.ogg', 30, TRUE)
-	human_target.visible_message(span_danger(LANG("datum.ce1d235d", list(parent, human_target))),\
-		span_danger(LANG("datum.70425304", list(parent))))
+	human_target.visible_message(span_danger(LANG("datum.ce1d235d7d767db4", list(parent, human_target))),\
+		span_danger(LANG("datum.7042530486ca1fee", list(parent))))
 
 	if(!do_after(parent, handcuff_timer, human_target))
 		return
@@ -94,8 +94,8 @@
 	log_combat(parent, human_target, "honked")
 
 	human_target.visible_message(
-		span_danger(LANG("datum.5d105da3", list(parent, human_target))), \
-		span_userdanger(LANG("datum.1a84be86", list(parent))), \
+		span_danger(LANG("datum.5d105da3483fc3a3", list(parent, human_target))), \
+		span_userdanger(LANG("datum.1a84be864f71fcd1", list(parent))), \
 	)
 	COOLDOWN_START(src, stun_cooldown, stun_cooldown_timer)
 	post_stun_callback?.Invoke(human_target)

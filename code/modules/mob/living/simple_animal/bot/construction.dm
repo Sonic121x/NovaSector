@@ -29,7 +29,7 @@
  */
 /obj/item/bot_assembly/proc/can_finish_build(obj/item/tool, mob/user, drop_item = 1)
 	if(istype(loc, /obj/item/storage/backpack))
-		to_chat(user, span_warning(LANG("obj.91014460", list(src, loc))))
+		to_chat(user, span_warning(LANG("obj.910144606c3575f2", list(src, loc))))
 		return FALSE
 	if(!tool || !user || (drop_item && !user.temporarilyRemoveItemFromInventory(tool)))
 		return FALSE
@@ -79,7 +79,7 @@
 	bucket_obj.forceMove(bot)
 	bot.name = created_name
 	bot.robot_arm = tool.type
-	to_chat(user, span_notice(LANG("obj.8dc6c819", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.8dc6c81941eb78e8", list(tool, src))))
 	qdel(tool)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -101,7 +101,7 @@
 				return NONE
 			if(!user.temporarilyRemoveItemFromInventory(tool))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 			qdel(tool)
 			name = "legs/frame assembly"
 			if(build_step == ASSEMBLY_FIRST_STEP)
@@ -118,7 +118,7 @@
 				return NONE
 			if(!user.temporarilyRemoveItemFromInventory(tool))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 			qdel(tool)
 			name = "vest/legs/frame assembly"
 			inhand_icon_state = "ed209_shell"
@@ -132,7 +132,7 @@
 			if(!tool.use_tool(src, user, 0, volume=40))
 				return ITEM_INTERACT_BLOCKING
 			name = "shielded frame assembly"
-			to_chat(user, span_notice(LANG("obj.f1dc1831", list(src))))
+			to_chat(user, span_notice(LANG("obj.f1dc18314b230c42", list(src))))
 			build_step++
 			return ITEM_INTERACT_SUCCESS
 
@@ -141,7 +141,7 @@
 				return NONE
 			if(!user.temporarilyRemoveItemFromInventory(tool))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 			qdel(tool)
 			name = "covered and shielded frame assembly"
 			inhand_icon_state = "ed209_hat"
@@ -155,7 +155,7 @@
 			if(!user.temporarilyRemoveItemFromInventory(tool))
 				return ITEM_INTERACT_BLOCKING
 			build_step++
-			to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 			qdel(tool)
 			name = "covered, shielded and sensored frame assembly"
 			inhand_icon_state = "ed209_prox"
@@ -167,15 +167,15 @@
 				return NONE
 			var/obj/item/stack/cable_coil/coil = tool
 			if(coil.get_amount() < 1)
-				to_chat(user, span_warning(LANG("obj.0697a7dc", null)))
+				to_chat(user, span_warning(LANG("obj.0697a7dcd67737ae", null)))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.9d4d93a6", list(src))))
+			to_chat(user, span_notice(LANG("obj.9d4d93a608375bf0", list(src))))
 			if(!do_after(user, 4 SECONDS, target = src))
 				return ITEM_INTERACT_BLOCKING
 			if(coil.get_amount() < 1 || build_step != ASSEMBLY_SEVENTH_STEP)
 				return ITEM_INTERACT_BLOCKING
 			coil.use(1)
-			to_chat(user, span_notice(LANG("obj.1a95bd46", list(src))))
+			to_chat(user, span_notice(LANG("obj.1a95bd46213db6a3", list(src))))
 			name = "wired ED-209 assembly"
 			build_step++
 			return ITEM_INTERACT_SUCCESS
@@ -186,7 +186,7 @@
 			if(!user.temporarilyRemoveItemFromInventory(tool))
 				return ITEM_INTERACT_BLOCKING
 			name = "[tool.name] ED-209 assembly"
-			to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 			inhand_icon_state = "ed209_taser"
 			icon_state = "ed209_taser"
 			qdel(tool)
@@ -196,12 +196,12 @@
 		if(ASSEMBLY_NINTH_STEP)
 			if(tool.tool_behaviour != TOOL_SCREWDRIVER)
 				return NONE
-			to_chat(user, span_notice(LANG("obj.4602a56d", null)))
+			to_chat(user, span_notice(LANG("obj.4602a56d6e64bb7c", null)))
 			if(!tool.use_tool(src, user, 40, volume=100))
 				return ITEM_INTERACT_BLOCKING
 			var/mob/living/basic/bot/secbot/ed209/new_bot = new(drop_location())
 			new_bot.name = created_name
-			to_chat(user, span_notice(LANG("obj.8892493c", null)))
+			to_chat(user, span_notice(LANG("obj.8892493c30ef5cc6", null)))
 			qdel(src)
 			return ITEM_INTERACT_SUCCESS
 
@@ -229,7 +229,7 @@
 	. = ..()
 	switch(build_step)
 		if(ASSEMBLY_FIRST_STEP)
-			desc = LANG("obj.b4e61cb5", null)
+			desc = LANG("obj.b4e61cb526ab1039", null)
 		else
 			desc = initial(desc)
 
@@ -248,7 +248,7 @@
 			if(!can_finish_build(tool, user))
 				return ITEM_INTERACT_BLOCKING
 			build_step++
-			to_chat(user, span_notice(LANG("obj.1b86de8b", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.1b86de8b9e5c43d6", list(tool, src))))
 			qdel(tool)
 			update_appearance()
 			return ITEM_INTERACT_SUCCESS
@@ -262,7 +262,7 @@
 			repair.name = created_name
 			repair.toolbox = toolbox
 			repair.set_color(toolbox_color)
-			to_chat(user, span_notice(LANG("obj.1b86de8b", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.1b86de8b9e5c43d6", list(tool, src))))
 			var/obj/item/stack/crafting_stack = tool
 			crafting_stack.use(1)
 			qdel(src)
@@ -292,13 +292,13 @@
 			// NOVA EDIT ADDITION BEGIN -- EXTRA ROBOTICS HEALTH ANALYZERS
 			var/obj/item/healthanalyzer/analyzer = tool
 			if (!analyzer.can_be_used_in_medibot())
-				user?.balloon_alert(user, LANG("obj.32f53224", null))
+				user?.balloon_alert(user, LANG("obj.32f532248cc97301", null))
 				return
 			// NOVA EDIT ADDITION END
 			if(!user.temporarilyRemoveItemFromInventory(tool))
 				return ITEM_INTERACT_BLOCKING
 			healthanalyzer = tool.type
-			to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 			qdel(tool)
 			name = "first aid/robot arm/health analyzer assembly"
 			add_overlay("[base_icon_state]_analyzer")
@@ -312,7 +312,7 @@
 				return ITEM_INTERACT_BLOCKING
 			qdel(tool)
 			var/mob/living/basic/bot/medbot/medbot = new(drop_location(), skin)
-			to_chat(user, span_notice(LANG("obj.e9ca00ac", null)))
+			to_chat(user, span_notice(LANG("obj.e9ca00ac37d6987f", null)))
 			medbot.name = created_name
 			medbot.medkit_type = medkit_type
 			medbot.robot_arm = robot_arm
@@ -337,7 +337,7 @@
 				return NONE
 			if(!user.temporarilyRemoveItemFromInventory(tool))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.7f8b5b85", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.7f8b5b8580149bd3", list(tool, src))))
 			icon_state = "honkbot_proxy"
 			name = "incomplete Honkbot assembly"
 			qdel(tool)
@@ -349,7 +349,7 @@
 				return NONE
 			if(!can_finish_build(tool, user))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.e812b96b", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.e812b96b835fc76d", list(tool, src))))
 			var/mob/living/basic/bot/secbot/honkbot/new_honkbot = new(drop_location())
 			new_honkbot.name = created_name
 			playsound(new_honkbot, 'sound/machines/ping.ogg', 50, TRUE, -1)
@@ -379,7 +379,7 @@
 				if(!tool.use_tool(src, user, 0, volume=40))
 					return ITEM_INTERACT_BLOCKING
 				add_overlay("hs_hole")
-				to_chat(user, span_notice(LANG("obj.3dd18570", list(src))))
+				to_chat(user, span_notice(LANG("obj.3dd18570d581d0ae", list(src))))
 				build_step++
 				return ITEM_INTERACT_SUCCESS
 
@@ -388,7 +388,7 @@
 
 			new /obj/item/assembly/signaler(drop_loc)
 			new /obj/item/clothing/head/helmet/sec(drop_loc)
-			to_chat(user, span_notice(LANG("obj.48211ddf", null)))
+			to_chat(user, span_notice(LANG("obj.48211ddfcf82da58", null)))
 			qdel(src)
 			return ITEM_INTERACT_SUCCESS
 
@@ -396,7 +396,7 @@
 			if(isprox(tool))
 				if(!user.temporarilyRemoveItemFromInventory(tool))
 					return ITEM_INTERACT_BLOCKING
-				to_chat(user, span_notice(LANG("obj.7babf561", list(tool, src))))
+				to_chat(user, span_notice(LANG("obj.7babf561db8c1523", list(tool, src))))
 				add_overlay("hs_eye")
 				name = "helmet/signaler/prox sensor assembly"
 				qdel(tool)
@@ -410,7 +410,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			cut_overlay("hs_hole")
-			to_chat(user, span_notice(LANG("obj.bc37ee0b", list(src))))
+			to_chat(user, span_notice(LANG("obj.bc37ee0bf00654dc", list(src))))
 			build_step--
 			return ITEM_INTERACT_SUCCESS
 
@@ -418,7 +418,7 @@
 			if((istype(tool, /obj/item/bodypart/arm/left/robot)) || (istype(tool, /obj/item/bodypart/arm/right/robot)))
 				if(!user.temporarilyRemoveItemFromInventory(tool))
 					return ITEM_INTERACT_BLOCKING
-				to_chat(user, span_notice(LANG("obj.7babf561", list(tool, src))))
+				to_chat(user, span_notice(LANG("obj.7babf561db8c1523", list(tool, src))))
 				name = "helmet/signaler/prox sensor/robot arm assembly"
 				add_overlay("hs_arm")
 				robot_arm = tool.type
@@ -431,7 +431,7 @@
 
 			cut_overlay("hs_eye")
 			new /obj/item/assembly/prox_sensor(drop_loc)
-			to_chat(user, span_notice(LANG("obj.84db3815", list(src))))
+			to_chat(user, span_notice(LANG("obj.84db38150be807d3", list(src))))
 			build_step--
 			return ITEM_INTERACT_SUCCESS
 
@@ -439,7 +439,7 @@
 			if(istype(tool, /obj/item/melee/baton/security))
 				if(!can_finish_build(tool, user))
 					return ITEM_INTERACT_BLOCKING
-				to_chat(user, span_notice(LANG("obj.5e375b19", null)))
+				to_chat(user, span_notice(LANG("obj.5e375b19794f7540", null)))
 				var/mob/living/basic/bot/secbot/new_bot = new(drop_loc)
 				new_bot.name = created_name
 				new_bot.baton_type = tool.type
@@ -449,7 +449,7 @@
 				return ITEM_INTERACT_SUCCESS
 
 			if(tool.tool_behaviour == TOOL_WRENCH)
-				to_chat(user, span_notice(LANG("obj.9b7ad8ce", list(src))))
+				to_chat(user, span_notice(LANG("obj.9b7ad8ce10dd3cd5", list(src))))
 				build_step++
 				return ITEM_INTERACT_SUCCESS
 
@@ -457,12 +457,12 @@
 				cut_overlay("hs_arm")
 				var/obj/item/bodypart/dropped_arm = new robot_arm(drop_loc)
 				robot_arm = null
-				to_chat(user, span_notice(LANG("obj.cbed3266", list(dropped_arm, src))))
+				to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(dropped_arm, src))))
 				build_step--
 				if(toyswordamt > 0 || toyswordamt)
 					toyswordamt = 0
 					icon_state = initial(icon_state)
-					to_chat(user, span_notice(LANG("obj.d0ba13aa", list(src))))
+					to_chat(user, span_notice(LANG("obj.d0ba13aa22005e3e", list(src))))
 					for(var/IS in 1 to toyswordamt)
 						new /obj/item/toy/sword(drop_loc)
 				return ITEM_INTERACT_SUCCESS
@@ -476,7 +476,7 @@
 				created_name = "General Beepsky"
 				name = "helmet/signaler/prox sensor/robot arm/toy sword assembly"
 				icon_state = "grievous_assembly"
-				to_chat(user, span_notice(LANG("obj.c190fe06", list(tool, src))))
+				to_chat(user, span_notice(LANG("obj.c190fe0666436edb", list(tool, src))))
 				qdel(tool)
 				toyswordamt++
 				return ITEM_INTERACT_SUCCESS
@@ -484,7 +484,7 @@
 			if(!can_finish_build(tool, user))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice(LANG("obj.90c8faa6", null)))
+			to_chat(user, span_notice(LANG("obj.90c8faa6fac8d942", null)))
 			var/mob/living/basic/bot/secbot/grievous/toy/new_bot = new(drop_loc)
 			new_bot.name = created_name
 			new_bot.robot_arm = robot_arm
@@ -497,7 +497,7 @@
 				build_step--
 				swordamt = 0
 				icon_state = initial(icon_state)
-				to_chat(user, span_notice(LANG("obj.f359d11d", list(src))))
+				to_chat(user, span_notice(LANG("obj.f359d11dbc4986d1", list(src))))
 				for(var/IS in 1 to swordamt)
 					new /obj/item/melee/energy/sword/saber(drop_loc)
 				return ITEM_INTERACT_SUCCESS
@@ -511,7 +511,7 @@
 				created_name = "General Beepsky"
 				name = "helmet/signaler/prox sensor/robot arm/energy sword assembly"
 				icon_state = "grievous_assembly"
-				to_chat(user, span_notice(LANG("obj.9b80d08e", list(tool, src))))
+				to_chat(user, span_notice(LANG("obj.9b80d08e732304cd", list(tool, src))))
 				qdel(tool)
 				swordamt++
 				return ITEM_INTERACT_SUCCESS
@@ -519,7 +519,7 @@
 			if(!can_finish_build(tool, user))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice(LANG("obj.90c8faa6", null)))
+			to_chat(user, span_notice(LANG("obj.90c8faa6fac8d942", null)))
 			var/mob/living/basic/bot/secbot/grievous/new_bot = new(drop_loc)
 			new_bot.name = created_name
 			new_bot.robot_arm = robot_arm
@@ -541,9 +541,9 @@
 				return NONE
 			if(!user.temporarilyRemoveItemFromInventory(tool))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user,span_notice(LANG("obj.7f8b5b85", list(tool, src))))
+			to_chat(user,span_notice(LANG("obj.7f8b5b8580149bd3", list(tool, src))))
 			icon_state = "firebot_helmet"
-			desc = LANG("obj.f1bb56c1", null)
+			desc = LANG("obj.f1bb56c157fd1727", null)
 			qdel(tool)
 			build_step++
 			return ITEM_INTERACT_SUCCESS
@@ -553,7 +553,7 @@
 				return NONE
 			if(!can_finish_build(tool, user))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.bf8cde4d", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.bf8cde4d45c417a5", list(tool, src))))
 			var/mob/living/basic/bot/firebot/firebot = new(drop_location())
 			firebot.name = created_name
 			qdel(tool)
@@ -575,7 +575,7 @@
 			if(tool.tool_behaviour == TOOL_WELDER) //Construct
 				if(!tool.use_tool(src, user, 0, volume=40))
 					return ITEM_INTERACT_BLOCKING
-				to_chat(user, span_notice(LANG("obj.465137ea", list(src))))
+				to_chat(user, span_notice(LANG("obj.465137eaad509ca7", list(src))))
 				build_step++
 				return ITEM_INTERACT_SUCCESS
 
@@ -584,7 +584,7 @@
 			if(!tool.use_tool(src, user, 0, volume=40))
 				return ITEM_INTERACT_BLOCKING
 			new /obj/item/stack/sheet/iron(drop_loc, 2)
-			to_chat(user, span_notice(LANG("obj.0a54ca13", null)))
+			to_chat(user, span_notice(LANG("obj.0a54ca1385cc648a", null)))
 			qdel(src)
 			return ITEM_INTERACT_SUCCESS
 
@@ -594,7 +594,7 @@
 					return ITEM_INTERACT_BLOCKING
 
 				build_step++
-				to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+				to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 				qdel(tool)
 				return ITEM_INTERACT_SUCCESS
 
@@ -604,7 +604,7 @@
 			if(!tool.use_tool(src, user, 0, volume=30))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice(LANG("obj.acc962e0", list(src))))
+			to_chat(user, span_notice(LANG("obj.acc962e013356427", list(src))))
 			build_step--
 			return ITEM_INTERACT_SUCCESS
 
@@ -614,7 +614,7 @@
 
 			if(tool.tool_behaviour == TOOL_SCREWDRIVER) //deconstruct
 				new /obj/item/assembly/prox_sensor(drop_loc)
-				to_chat(user, span_notice(LANG("obj.84db3815", list(src))))
+				to_chat(user, span_notice(LANG("obj.84db38150be807d3", list(src))))
 				build_step--
 				return ITEM_INTERACT_SUCCESS
 
@@ -623,12 +623,12 @@
 
 			var/obj/item/stack/ducts/D = tool
 			if(D.get_amount() < 1)
-				to_chat(user, span_warning(LANG("obj.cef2efe0", list(src))))
+				to_chat(user, span_warning(LANG("obj.cef2efe0eafec60f", list(src))))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.588b18db", list(src))))
+			to_chat(user, span_notice(LANG("obj.588b18db2395afd0", list(src))))
 			if(!do_after(user, 4 SECONDS, target = src) && D.use(1))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.7898bdc4", list(src))))
+			to_chat(user, span_notice(LANG("obj.7898bdc489ce590f", list(src))))
 			var/mob/living/basic/bot/hygienebot/new_bot = new(drop_location())
 			new_bot.name = created_name
 			qdel(src)
@@ -648,9 +648,9 @@
 				return NONE
 			if(!user.temporarilyRemoveItemFromInventory(tool))
 				return ITEM_INTERACT_BLOCKING
-			balloon_alert(user, LANG("obj.be522028", null))
+			balloon_alert(user, LANG("obj.be522028b332d364", null))
 			icon_state = "vim_1"
-			desc = LANG("obj.ecbd4795", null)
+			desc = LANG("obj.ecbd47959adc7bce", null)
 			qdel(tool)
 			build_step++
 			return ITEM_INTERACT_SUCCESS
@@ -660,9 +660,9 @@
 				return NONE
 			if(!user.temporarilyRemoveItemFromInventory(tool))
 				return ITEM_INTERACT_SUCCESS
-			balloon_alert(user, LANG("obj.c272f53e", null))
+			balloon_alert(user, LANG("obj.c272f53eca642b19", null))
 			icon_state = "vim_2"
-			desc = LANG("obj.0024d586", null)
+			desc = LANG("obj.0024d5865950d689", null)
 			qdel(tool)
 			build_step++
 			return ITEM_INTERACT_SUCCESS
@@ -670,12 +670,12 @@
 		if(ASSEMBLY_THIRD_STEP)
 			if(tool.tool_behaviour != TOOL_SCREWDRIVER)
 				return NONE
-			balloon_alert(user, LANG("obj.1d0c6367", null))
+			balloon_alert(user, LANG("obj.1d0c636765c0ee2a", null))
 			if(!tool.use_tool(src, user, 4 SECONDS, volume=100))
 				return ITEM_INTERACT_BLOCKING
-			balloon_alert(user, LANG("obj.63dd6cad", null))
+			balloon_alert(user, LANG("obj.63dd6cad1ca3becf", null))
 			icon_state = "vim_3"
-			desc = LANG("obj.2c86b2fb", null)
+			desc = LANG("obj.2c86b2fb8f8f309b", null)
 			build_step++
 			return ITEM_INTERACT_SUCCESS
 
@@ -684,7 +684,7 @@
 				return NONE
 			if(!can_finish_build(tool, user))
 				return ITEM_INTERACT_BLOCKING
-			balloon_alert(user, LANG("obj.1b8f9293", null))
+			balloon_alert(user, LANG("obj.1b8f929345637f12", null))
 			var/obj/vehicle/sealed/mecha/vim/new_vim = new(drop_location())
 			new_vim.name = created_name
 			qdel(tool)

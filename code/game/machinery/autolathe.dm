@@ -62,16 +62,16 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice(LANG("obj.561f1ac0", list(creation_efficiency * 100)))
+	. += span_notice(LANG("obj.561f1ac09af31be7", list(creation_efficiency * 100)))
 	if(drop_direction)
-		. += span_notice(LANG("obj.f018ec80", list(dir2text(drop_direction))))
-		. += span_notice(LANG("obj.fc17772b", list(EXAMINE_HINT("Alt-click"))))
+		. += span_notice(LANG("obj.f018ec808e217c0e", list(dir2text(drop_direction))))
+		. += span_notice(LANG("obj.fc17772b4270ba7d", list(EXAMINE_HINT("Alt-click"))))
 	else
-		. += span_notice(LANG("obj.abc9aa60", list(EXAMINE_HINT("Drag"))))
+		. += span_notice(LANG("obj.abc9aa60a42a94d5", list(EXAMINE_HINT("Drag"))))
 
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
 	if(panel_open)
-		. += span_notice(LANG("obj.740bee8c", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.740bee8c703db032", list(EXAMINE_HINT("pried"))))
 
 /obj/machinery/autolathe/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(drop_direction)
@@ -238,7 +238,7 @@
 
 		//we use initial(active_power_usage) because higher tier parts will have higher active usage but we have no benefit from it
 		if(!directly_use_energy(ROUND_UP((amount / MAX_STACK_SIZE) * 0.4 * initial(active_power_usage))))
-			say(LANG("obj.c98ac214", null))
+			say(LANG("obj.c98ac2147c20335f", null))
 			return
 
 		materials.retrieve_stack(amount, material)
@@ -250,11 +250,11 @@
 		return
 
 	if(disabled)
-		say(LANG("obj.99d5e3ff", null))
+		say(LANG("obj.99d5e3ff7bae3a5e", null))
 		return
 
 	if(busy)
-		say(LANG("obj.fb5f20ac", null))
+		say(LANG("obj.fb5f20ac1720e7e1", null))
 		return
 
 	//validate design
@@ -271,7 +271,7 @@
 		stack_trace("got passed an invalid design id: [design_id] and somehow made it past all checks")
 		return
 	if(!(design.build_type & AUTOLATHE))
-		say(LANG("obj.ea5ed026", null))
+		say(LANG("obj.ea5ed026c6c21f35", null))
 		return
 
 	//validate print quantity
@@ -305,13 +305,13 @@
 				choices[valid_candidate.name] = valid_candidate
 
 		if(!length(choices))
-			say(LANG("obj.bc9df0c8", null))
+			say(LANG("obj.bc9df0c84387333d", null))
 			return
 
 		var/chosen = tgui_input_list(
 			ui.user,
-			LANG("obj.0475a2d8", list(slot ? " for [LOWER_TEXT(slot.name)]" : "")),
-			LANG("obj.725e3756", null),
+			LANG("obj.0475a2d8ae458071", list(slot ? " for [LOWER_TEXT(slot.name)]" : "")),
+			LANG("obj.725e375673b9d641", null),
 			sort_list(choices),
 		)
 		if(isnull(chosen))
@@ -329,7 +329,7 @@
 	//checks for available materials
 	var/material_cost_coefficient = (ispath(design.build_path, /obj/item/stack) || design.fixed_cost_efficiency) ? 1 : creation_efficiency
 	if(!materials.has_materials(materials_needed, material_cost_coefficient, build_count))
-		say(LANG("obj.f818a085", null))
+		say(LANG("obj.f818a0852c2f3b7b", null))
 		return
 
 	//compute power & time to print 1 item
@@ -384,7 +384,7 @@
 		return
 
 	if(!is_operational)
-		say(LANG("obj.37d5b119", null))
+		say(LANG("obj.37d5b1197d090c56", null))
 		finalize_build()
 		return
 
@@ -394,17 +394,17 @@
 		if(!QDELETED(my_apc))
 			var/charging_wait = my_apc.time_to_charge(charge_per_item)
 			if(!isnull(charging_wait))
-				say(LANG("obj.4923eed0", list(DisplayTimeText(charging_wait, round_seconds_to = 1))))
+				say(LANG("obj.4923eed0ea64393e", list(DisplayTimeText(charging_wait, round_seconds_to = 1))))
 			else
-				say(LANG("obj.61365fba", null))
+				say(LANG("obj.61365fba14ca3c88", null))
 		else
-			say(LANG("obj.7aa6d96a", null))
+			say(LANG("obj.7aa6d96aea8fe11b", null))
 		finalize_build()
 		return
 
 	var/is_stack = ispath(design.build_path, /obj/item/stack)
 	if(!materials.has_materials(materials_needed, material_cost_coefficient, is_stack ? items_remaining : 1))
-		say(LANG("obj.15347eaf", null))
+		say(LANG("obj.15347eaffc13ec9c", null))
 		finalize_build()
 		return
 	materials.use_materials(materials_needed, material_cost_coefficient, is_stack ? items_remaining : 1)
@@ -457,21 +457,21 @@
 	if(!can_interact(user) || (!HAS_SILICON_ACCESS(user) && !isAdminGhostAI(user)) && !Adjacent(user))
 		return
 	if(busy)
-		balloon_alert(user, LANG("obj.45e44459", null))
+		balloon_alert(user, LANG("obj.45e444590d6fdf9f", null))
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(user, LANG("obj.a778c49c", list(dir2text(drop_direction))))
+	balloon_alert(user, LANG("obj.a778c49c6c1e1f04", list(dir2text(drop_direction))))
 
 /obj/machinery/autolathe/click_alt(mob/user)
 	if(!drop_direction)
 		return CLICK_ACTION_BLOCKING
 	if(busy)
-		balloon_alert(user, LANG("obj.11d29340", null))
+		balloon_alert(user, LANG("obj.11d293408dbeafd5", null))
 		return CLICK_ACTION_SUCCESS
-	balloon_alert(user, LANG("obj.ec68d9e0", null))
+	balloon_alert(user, LANG("obj.ec68d9e079518317", null))
 	drop_direction = 0
 	return CLICK_ACTION_SUCCESS
 
@@ -480,7 +480,7 @@
 		return ..()
 
 	if(busy)
-		balloon_alert(user, LANG("obj.9b0aaa74", null))
+		balloon_alert(user, LANG("obj.9b0aaa7482194064", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(panel_open && is_wire_tool(tool))
@@ -494,18 +494,18 @@
 		return ..()
 
 	if(panel_open)
-		balloon_alert(user, LANG("obj.feaafe36", null))
+		balloon_alert(user, LANG("obj.feaafe3679c78ec3", null))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.fdd3b03f", list(user, tool, src))),
-		balloon_alert(user, LANG("obj.11758983", null)),
-		span_hear(LANG("obj.fa2ab998", null)))
+	user.visible_message(span_notice(LANG("obj.fdd3b03f3fa1956a", list(user, tool, src))),
+		balloon_alert(user, LANG("obj.1175898393dfcf39", null)),
+		span_hear(LANG("obj.fa2ab998e522621b", null)))
 	busy = TRUE
 
 	if(!do_after(user, 1.5 SECONDS, target = src))
 		busy = FALSE
 		update_static_data_for_all_viewers()
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/disk/design_disk/disky = tool
@@ -519,7 +519,7 @@
 			LAZYADD(not_imported, blueprint.name)
 
 	if(not_imported)
-		to_chat(user, span_warning(LANG("obj.bb8dde5e", list(length(not_imported) > 1 ? "s" : "", lang_english_list(not_imported)))))
+		to_chat(user, span_warning(LANG("obj.bb8dde5e94edfd08", list(length(not_imported) > 1 ? "s" : "", lang_english_list(not_imported)))))
 
 	busy = FALSE
 	update_static_data_for_all_viewers()

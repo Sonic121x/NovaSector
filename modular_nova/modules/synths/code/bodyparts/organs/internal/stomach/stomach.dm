@@ -25,12 +25,12 @@
 		if(EMP_HEAVY)
 			owner.nutrition = max(0, owner.nutrition - SYNTH_STOMACH_HEAVY_EMP_CHARGE_LOSS)
 			apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
-			to_chat(owner, span_warning(LANG("obj.2aa33b5f", null)))
+			to_chat(owner, span_warning(LANG("obj.2aa33b5ffd502479", null)))
 
 		if(EMP_LIGHT)
 			owner.nutrition = max(0, owner.nutrition - SYNTH_STOMACH_LIGHT_EMP_CHARGE_LOSS)
 			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
-			to_chat(owner, span_warning(LANG("obj.94d8276d", null)))
+			to_chat(owner, span_warning(LANG("obj.94d8276d4786e01f", null)))
 
 /datum/design/synth_stomach
 	name = "Synthetic Fuel Cell"

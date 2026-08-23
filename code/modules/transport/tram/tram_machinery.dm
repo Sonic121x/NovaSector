@@ -11,7 +11,7 @@
 	for(var/obj/effect/landmark/transport/nav_beacon/tram/platform/platform as anything in SStransport.nav_beacons[specific_transport_id])
 		LAZYADD(available_platforms, platform.name)
 
-	var/selected_platform = tgui_input_list(user, LANG("obj.fddb791b", null), LANG("obj.47ba7975", null), available_platforms)
+	var/selected_platform = tgui_input_list(user, LANG("obj.fddb791be52a6e56", null), LANG("obj.47ba7975933db6e3", null), available_platforms)
 	var/obj/effect/landmark/transport/nav_beacon/tram/platform/change_platform
 	for(var/obj/effect/landmark/transport/nav_beacon/tram/platform/destination as anything in SStransport.nav_beacons[specific_transport_id])
 		if(destination.name == selected_platform)
@@ -22,12 +22,12 @@
 		return
 
 	if(get_dist(change_platform, src) > 15)
-		balloon_alert(user, LANG("obj.2201997f", null))
+		balloon_alert(user, LANG("obj.2201997fe1ea08ad", null))
 		return
 
 	id = change_platform.platform_code
-	balloon_alert(user, LANG("obj.ed615b2a", null))
-	to_chat(user, span_notice(LANG("obj.60bd7fff", list(change_platform.name))))
+	balloon_alert(user, LANG("obj.ed615b2aaa16474c", null))
+	to_chat(user, span_notice(LANG("obj.60bd7fff05a47023", list(change_platform.name))))
 
 /obj/item/assembly/control/transport/call_button
 	name = "tram call button"
@@ -53,24 +53,24 @@
 		voice = SStts.tram_voice
 	switch(response_code)
 		if(REQUEST_SUCCESS)
-			say(LANG("obj.29253678", null))
+			say(LANG("obj.2925367886066f9d", null))
 
 		if(REQUEST_FAIL)
 			switch(response_info)
 				if(BROKEN_BEYOND_REPAIR)
-					say(LANG("obj.aa703320", null))
+					say(LANG("obj.aa70332011ebe9af", null))
 				if(NOT_IN_SERVICE) //tram has no power or other fault, but it's not broken forever
-					say(LANG("obj.5b62f6a7", null))
+					say(LANG("obj.5b62f6a7419d1669", null))
 				if(INVALID_PLATFORM) //engineer needs to fix button
-					say(LANG("obj.7825f195", null))
+					say(LANG("obj.7825f195996483b5", null))
 				if(TRANSPORT_IN_USE)
-					say(LANG("obj.317f4589", null))
+					say(LANG("obj.317f4589af5496b8", null))
 				if(INTERNAL_ERROR)
-					say(LANG("obj.335c006a", null))
+					say(LANG("obj.335c006a41da097a", null))
 				if(NO_CALL_REQUIRED) //already here
-					say(LANG("obj.c7cb3b73", null))
+					say(LANG("obj.c7cb3b73f411cd83", null))
 				else
-					say(LANG("obj.335c006a", null))
+					say(LANG("obj.335c006a41da097a", null))
 
 /obj/item/assembly/control/transport/call_button/activate()
 	if(cooldown)
@@ -103,7 +103,7 @@
 	if(in_range(user, src))
 		return attack_hand(user)
 	else
-		to_chat(user, span_warning(LANG("obj.cccb5c88", null)))
+		to_chat(user, span_warning(LANG("obj.cccb5c8808092119", null)))
 
 /obj/machinery/button/transport/tram/setup_device()
 	. = ..()
@@ -113,7 +113,7 @@
 
 /obj/machinery/button/transport/tram/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.55dc601c", null))
-	. += span_notice(LANG("obj.0865a712", null))
+	. += span_notice(LANG("obj.55dc601cc0769cf0", null))
+	. += span_notice(LANG("obj.0865a7125e017d93", null))
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/transport/tram, 32)

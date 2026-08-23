@@ -31,7 +31,7 @@
 		return NONE
 	// NOVA EDIT ADDITION END
 	if(!emote.hands_use_check && (emote.emote_type & EMOTE_AUDIBLE))
-		source.audible_message(LANG("datum.2d4d2b60", list(pick("strong ", "weak ", ""))), audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE)
+		source.audible_message(LANG("datum.2d4d2b60232e2c81", list(pick("strong ", "weak ", ""))), audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE)
 		return COMPONENT_CANT_EMOTE
 	return NONE
 
@@ -66,7 +66,7 @@
 
 /datum/element/muffles_speech/proc/fail_spellcast(mob/living/source, datum/action/cooldown/spell/spell)
 	spell.invocation(source)
-	to_chat(source, span_warning(LANG("datum.a1707ee7", list(spell))))
+	to_chat(source, span_warning(LANG("datum.a1707ee728963c4f", list(spell))))
 	if(source.click_intercept == spell)
 		spell.unset_click_ability(source, refund_cooldown = TRUE)
 	spell.StartCooldown(2 SECONDS)

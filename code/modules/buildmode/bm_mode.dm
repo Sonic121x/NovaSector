@@ -39,7 +39,7 @@
 	CRASH("No help defined, yell at a coder")
 
 /datum/buildmode_mode/proc/change_settings(client/c)
-	to_chat(c, span_warning(LANG("datum.97d59d08", null)))
+	to_chat(c, span_warning(LANG("datum.97d59d087af39c4c", null)))
 	return
 
 /datum/buildmode_mode/proc/Reset()
@@ -83,12 +83,12 @@
 				return
 			if(cornerA && !cornerB)
 				cornerB = select_tile(get_turf(object), AREASELECT_CORNERB)
-				to_chat(c, span_boldwarning(LANG("datum.24fa4cce", null)))
+				to_chat(c, span_boldwarning(LANG("datum.24fa4ccea1cadf63", null)))
 				return
 			handle_selected_area(c, params)
 			deselect_region()
 		else
-			to_chat(c, span_notice(LANG("datum.9b9431f4", null)))
+			to_chat(c, span_notice(LANG("datum.9b9431f4c9940f1d", null)))
 			deselect_region()
 	return
 

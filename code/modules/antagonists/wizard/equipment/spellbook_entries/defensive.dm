@@ -126,7 +126,7 @@
 /datum/spellbook_entry/item/wands/try_equip_item(mob/living/carbon/human/user, obj/item/to_equip)
 	if (!istype(user.belt, /obj/item/storage/belt/wands))
 		var/was_equipped = user.equip_to_slot_if_possible(to_equip, ITEM_SLOT_BELT, disable_warning = TRUE)
-		to_chat(user, span_notice(LANG("datum.60fa0327", list(to_equip.name, was_equipped ? "on your waist" : "at your feet"))))
+		to_chat(user, span_notice(LANG("datum.60fa032742c3d5f8", list(to_equip.name, was_equipped ? "on your waist" : "at your feet"))))
 		return
 
 	// If you already have a wand belt you get a cool bandolier instead for your copious amount of wands
@@ -138,7 +138,7 @@
 	qdel(to_equip)
 
 	var/was_equipped = user.equip_to_slot_if_possible(bandolier, ITEM_SLOT_SUITSTORE, disable_warning = TRUE)
-	to_chat(user, span_notice(LANG("datum.60fa0327", list(bandolier.name, was_equipped ? "across your chest" : "at your feet"))))
+	to_chat(user, span_notice(LANG("datum.60fa032742c3d5f8", list(bandolier.name, was_equipped ? "across your chest" : "at your feet"))))
 
 /datum/spellbook_entry/item/wands/discount
 	name = "Wand Assortment (Bargain Bin)"

@@ -104,9 +104,9 @@
 /datum/antagonist/ninja/greet()
 	. = ..()
 	SEND_SOUND(owner.current, sound('sound/music/antag/ninja_greeting.ogg'))
-	to_chat(owner.current, span_danger(LANG("datum.6fb06062", null)))
-	to_chat(owner.current, span_warning(LANG("datum.a797bbd7", null)))
-	to_chat(owner.current, span_notice(LANG("datum.bfa95e0e", list(dir2text(get_dir(owner.current, locate(world.maxx/2, world.maxy/2, owner.current.z)))))))
+	to_chat(owner.current, span_danger(LANG("datum.6fb06062ced2f748", null)))
+	to_chat(owner.current, span_warning(LANG("datum.a797bbd7779de8aa", null)))
+	to_chat(owner.current, span_notice(LANG("datum.bfa95e0ed43a6088", list(dir2text(get_dir(owner.current, locate(world.maxx/2, world.maxy/2, owner.current.z)))))))
 	owner.announce_objectives()
 
 /datum/antagonist/ninja/on_gain()

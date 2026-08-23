@@ -26,7 +26,7 @@
 			if(SPT_PROB(1, seconds_per_tick))
 				affected_mob.emote("yawn")
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger(LANG("datum.f77ef877", null)))
+				to_chat(affected_mob, span_danger(LANG("datum.f77ef877a125b606", null)))
 			if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 1, 170)
 		if(3)
@@ -37,7 +37,7 @@
 			if(SPT_PROB(5, seconds_per_tick))
 				affected_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 2, 170)
 				if(prob(2))
-					to_chat(affected_mob, span_danger(LANG("datum.3a088b6a", null)))
+					to_chat(affected_mob, span_danger(LANG("datum.3a088b6a4adaa026", null)))
 
 		if(4)
 			if(SPT_PROB(1, seconds_per_tick))
@@ -47,11 +47,11 @@
 			if(SPT_PROB(7.5, seconds_per_tick))
 				affected_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 3, 170)
 				if(prob(2))
-					to_chat(affected_mob, span_danger(LANG("datum.04e355dc", null)))
+					to_chat(affected_mob, span_danger(LANG("datum.04e355dcf568047f", null)))
 			if(SPT_PROB(1.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger(LANG("datum.d2188718", null)))
-				affected_mob.visible_message(span_warning(LANG("datum.696fd78e", list(affected_mob))), \
-											span_userdanger(LANG("datum.ed060d17", null)))
+				to_chat(affected_mob, span_danger(LANG("datum.d2188718b7f44318", null)))
+				affected_mob.visible_message(span_warning(LANG("datum.696fd78e42d998bb", list(affected_mob))), \
+											span_userdanger(LANG("datum.ed060d17062d6abf", null)))
 				affected_mob.Unconscious(rand(100, 200))
 				if(prob(1))
 					affected_mob.emote("snore")

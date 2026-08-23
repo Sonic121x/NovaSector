@@ -55,7 +55,7 @@
 	if(!patient_insertion_check(target, source))
 		return
 	to_chat(source, "[icon2html(src, source)][span_notice("You start putting [target] into [src]...")]")
-	chassis.visible_message(span_warning(LANG("obj.795199ec", list(chassis, target, src))))
+	chassis.visible_message(span_warning(LANG("obj.795199ecf086fc9d", list(chassis, target, src))))
 	if(!do_after(source, get_equip_cooldown(atomtarget), target, extra_checks=CALLBACK(src, PROC_REF(patient_insertion_check), target, source)))
 		return
 	if(!chassis || !(get_dir(chassis, target) & chassis.dir))
@@ -64,7 +64,7 @@
 	patient = target
 	START_PROCESSING(SSobj, src)
 	to_chat(source, "[icon2html(src, source)][span_notice("[target] successfully loaded into [src]. Life support functions engaged.")]")
-	chassis.visible_message(span_warning(LANG("obj.f703f7ec", list(chassis, target, src))))
+	chassis.visible_message(span_warning(LANG("obj.f703f7ec37a0230a", list(chassis, target, src))))
 	log_message("[target] loaded. Life support functions engaged.", LOG_MECHA)
 	return ..()
 
@@ -308,13 +308,13 @@
 		return analyze_reagents(target, source)
 	//we're in syringe mode so lets do syringe stuff
 	if(!LAZYLEN(syringes))
-		to_chat(source, LANG("obj.d876a8f7", list(icon2html(src, source))))
+		to_chat(source, LANG("obj.d876a8f7704826e7", list(icon2html(src, source))))
 		return
 	if(reagents.total_volume <= 0)
-		to_chat(source, LANG("obj.74526e27", list(icon2html(src, source))))
+		to_chat(source, LANG("obj.74526e2717e4cf8e", list(icon2html(src, source))))
 		return
 	if(HAS_TRAIT(source, TRAIT_PACIFISM))
-		to_chat(source, span_alert(LANG("obj.02b957d7", list(src))))
+		to_chat(source, span_alert(LANG("obj.02b957d79160e62a", list(src))))
 		return
 	var/obj/item/ammo_casing/syringegun/chambered = new /obj/item/ammo_casing/syringegun(src)
 	log_message("Fired [chambered] from [src] by [source], targeting [target].", LOG_MECHA)

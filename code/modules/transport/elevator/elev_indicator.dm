@@ -51,7 +51,7 @@
 	. = ..()
 
 	if(!is_operational)
-		. += span_notice(LANG("obj.d4aeeaa8", null))
+		. += span_notice(LANG("obj.d4aeeaa84dfbdffd", null))
 		return
 
 	var/dirtext
@@ -63,7 +63,7 @@
 		else
 			dirtext = "stopped"
 
-	. += span_notice(LANG("obj.a50e2b4a", list(current_lift_floor, dirtext)))
+	. += span_notice(LANG("obj.a50e2b4a16953f97", list(current_lift_floor, dirtext)))
 
 /**
  * Update state, and only process if elevator is moving.

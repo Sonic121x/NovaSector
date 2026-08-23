@@ -17,7 +17,7 @@
 
 	var/mob/player = occupant
 	player.playsound_local(src, 'sound/effects/splash.ogg', 60, TRUE)
-	to_chat(player, span_notice(LANG("obj.3be72ab3", null)))
+	to_chat(player, span_notice(LANG("obj.3be72ab301f2e4e7", null)))
 	open_machine()
 
 
@@ -50,7 +50,7 @@
 	mob_occupant.flash_act(override_blindness_check = TRUE, visual = TRUE)
 	mob_occupant.adjust_organ_loss(ORGAN_SLOT_BRAIN, disconnect_damage)
 	INVOKE_ASYNC(mob_occupant, TYPE_PROC_REF(/mob/living, emote), "scream")
-	to_chat(mob_occupant, span_danger(LANG("obj.2db21e2f", null)))
+	to_chat(mob_occupant, span_danger(LANG("obj.2db21e2f2f32731f", null)))
 
 
 /**
@@ -64,20 +64,20 @@
 /obj/machinery/netpod/proc/enter_matrix()
 	var/mob/living/carbon/human/neo = occupant
 	if(!ishuman(neo) || neo.stat == DEAD || isnull(neo.mind))
-		balloon_alert(neo, LANG("obj.1f7c73c3", null))
+		balloon_alert(neo, LANG("obj.1f7c73c331132bc5", null))
 		return
 
 	var/obj/machinery/quantum_server/server = find_server()
 	if(isnull(server))
-		balloon_alert(neo, LANG("obj.1e9f100a", null))
+		balloon_alert(neo, LANG("obj.1e9f100ac98104ba", null))
 		return
 
 	var/datum/lazy_template/virtual_domain/generated_domain = server.generated_domain
 	if(isnull(generated_domain) || !server.is_ready)
-		balloon_alert(neo, LANG("obj.9d45bb65", null))
+		balloon_alert(neo, LANG("obj.9d45bb65225207fe", null))
 		return
 
-	balloon_alert(neo, LANG("obj.93aae3db", null))
+	balloon_alert(neo, LANG("obj.93aae3db31ba69b8", null))
 
 	// Prevent hand interactions during loading to stop smuggling exploits into virtual domain
 	ADD_TRAIT(neo, TRAIT_HANDS_BLOCKED, TRAIT_GENERIC)
@@ -95,7 +95,7 @@
 	if(isnull(current_avatar) || IS_UNCONSCIOUS_OR_CRIT(current_avatar)) // We need a viable avatar
 		current_avatar = server.start_new_connection(neo, netsuit)
 		if(isnull(current_avatar))
-			balloon_alert(neo, LANG("obj.82ebf72d", null))
+			balloon_alert(neo, LANG("obj.82ebf72de73126d3", null))
 			return
 
 	neo.set_static_vision(2 SECONDS)

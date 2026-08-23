@@ -59,7 +59,7 @@
 		return
 	// NOVA EDIT CHANGE START - I18N: 原来把「Holding/Wearing + 代词」先拼成 method 再塞进整句，
 	// 拼出来的串既不是目录键、语序也钉死成英文的。改为按方式各自一条整句模板。
-	var/method_key = ((slots || item.slot_flags) & ITEM_SLOT_HANDS) ? "datum.3f95f43d" : "datum.1ff5eec7"
+	var/method_key = ((slots || item.slot_flags) & ITEM_SLOT_HANDS) ? "datum.3f95f43d1f26ed72" : "datum.1ff5eec7f9663d46"
 	add_examine_line(user, examine_text, method_key, item.p_them())
 	// NOVA EDIT CHANGE END
 
@@ -67,7 +67,7 @@
 	SIGNAL_HANDLER
 	if(!HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISH))
 		return
-	add_examine_line(user, examine_text, "datum.763fc6df", source.p_them()) // NOVA EDIT - I18N
+	add_examine_line(user, examine_text, "datum.763fc6df520b572c", source.p_them()) // NOVA EDIT - I18N
 
 /datum/element/adjust_fishing_difficulty/proc/add_examine_line(mob/user, list/examine_text, method_key, pronoun) // NOVA EDIT CHANGE - I18N: method 文本 -> 模板 key + 代词实参。ORIGINAL: add_examine_line(mob/user, list/examine_text, method)
 	var/percent = HAS_MIND_TRAIT(user, TRAIT_EXAMINE_DEEPER_FISH) ? "[abs(modifier)]% " : ""

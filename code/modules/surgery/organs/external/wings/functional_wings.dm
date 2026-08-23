@@ -83,7 +83,7 @@
 		return FALSE
 	//Jumpsuits have tail holes, so it makes sense they have wing holes too
 	if(!cant_hide && (human.obscured_slots & HIDEJUMPSUIT))
-		to_chat(human, span_warning(LANG("obj.f12358a3", null)))
+		to_chat(human, span_warning(LANG("obj.f12358a3d813369a", null)))
 		return FALSE
 	var/turf/location = get_turf(human)
 	if(!location)
@@ -91,7 +91,7 @@
 
 	var/datum/gas_mixture/environment = location.return_air()
 	if(environment?.return_pressure() < HAZARD_LOW_PRESSURE + 10)
-		to_chat(human, span_warning(LANG("obj.89ea74df", null)))
+		to_chat(human, span_warning(LANG("obj.89ea74df1740c935", null)))
 		return FALSE
 	return TRUE
 
@@ -101,7 +101,7 @@
 	if(human.buckled)
 		buckled_obj = human.buckled
 
-	to_chat(human, span_notice(LANG("obj.1bdad194", null)))
+	to_chat(human, span_notice(LANG("obj.1bdad194f9d7d253", null)))
 
 	playsound(human.loc, 'sound/misc/slip.ogg', 50, TRUE, -3)
 
@@ -127,7 +127,7 @@
 		human.AddElement(/datum/element/forced_gravity, 0)
 		ADD_TRAIT(human, TRAIT_PASSTABLE, SPECIES_FLIGHT_TRAIT)
 		open_wings()
-		to_chat(human, span_notice(LANG("obj.55ff3011", null)))
+		to_chat(human, span_notice(LANG("obj.55ff3011aa342533", null)))
 		human.set_resting(FALSE, TRUE)
 		human.refresh_gravity()
 		return
@@ -137,7 +137,7 @@
 	human.remove_movespeed_modifier(/datum/movespeed_modifier/jetpack/wings)
 	human.RemoveElement(/datum/element/forced_gravity, 0)
 	REMOVE_TRAIT(human, TRAIT_PASSTABLE, SPECIES_FLIGHT_TRAIT)
-	to_chat(human, span_notice(LANG("obj.4b278ac8", null)))
+	to_chat(human, span_notice(LANG("obj.4b278ac847840f33", null)))
 	close_wings()
 	human.refresh_gravity()
 

@@ -429,11 +429,11 @@
 	var/datum/martial_art/next = GET_NEXT_MARTIAL_ART(src)
 
 	if(current.locked_to_use)
-		to_chat(src, span_warning(LANG("mob.686ad0c8", list(current))))
+		to_chat(src, span_warning(LANG("mob.686ad0c8c2bde88f", list(current))))
 		return
 
 	switch_style(current, next)
-	to_chat(src, span_notice(LANG("mob.c1f344ba", list(current, next))))
+	to_chat(src, span_notice(LANG("mob.c1f344bab9f5a628", list(current, next))))
 
 /// Deactivates the current martial art and activates the next one.
 /mob/living/proc/switch_style(datum/martial_art/current_martial, datum/martial_art/next_martial)

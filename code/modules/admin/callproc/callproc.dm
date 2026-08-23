@@ -104,7 +104,7 @@ ADMIN_VERB(advanced_proc_call, R_DEBUG, "高级 ProcCall", "Call a proc on any d
 	var/targetselected = FALSE
 	var/returnval
 
-	switch(tgui_alert(usr,LANG("client.8837b5b0", null),,list("Yes","No")))
+	switch(tgui_alert(usr,LANG("client.8837b5b03e2377ed", null),,list("Yes","No")))
 		if("Yes")
 			targetselected = TRUE
 			var/list/value = vv_get_value(default_class = VV_ATOM_REFERENCE, classes = list(VV_ATOM_REFERENCE, VV_DATUM_REFERENCE, VV_MOB_REFERENCE, VV_CLIENT, VV_MARKED_DATUM, VV_TEXT_LOCATE, VV_PROCCALL_RETVAL))
@@ -112,13 +112,13 @@ ADMIN_VERB(advanced_proc_call, R_DEBUG, "高级 ProcCall", "Call a proc on any d
 				return
 			target = value["value"]
 			if(!istype(target))
-				to_chat(usr, span_danger(LANG("client.0c331727", null)), confidential = TRUE)
+				to_chat(usr, span_danger(LANG("client.0c331727de9b01f8", null)), confidential = TRUE)
 				return
 		if("No")
 			target = null
 			targetselected = FALSE
 
-	var/procpath = input(LANG("client.4c2dfb15", null),LANG("client.15b42aa3", null), null) as text|null
+	var/procpath = input(LANG("client.4c2dfb15e61d36ee", null),LANG("client.15b42aa38646a514", null), null) as text|null
 	if(!procpath)
 		return
 
@@ -132,12 +132,12 @@ ADMIN_VERB(advanced_proc_call, R_DEBUG, "高级 ProcCall", "Call a proc on any d
 
 	if(targetselected)
 		if(!hascall(target, procname))
-			to_chat(usr, span_warning(LANG("client.ea691f50", list(target.type, proctype, procpath))), confidential = TRUE)
+			to_chat(usr, span_warning(LANG("client.ea691f50fe6a4a00", list(target.type, proctype, procpath))), confidential = TRUE)
 			return
 	else
 		procpath = "/[proctype]/[procname]"
 		if(!text2path(procpath))
-			to_chat(usr, span_warning(LANG("client.e7396fc3", list(procpath))), confidential = TRUE)
+			to_chat(usr, span_warning(LANG("client.e7396fc37ef965b2", list(procpath))), confidential = TRUE)
 			return
 
 	var/list/lst = get_callproc_args()
@@ -146,7 +146,7 @@ ADMIN_VERB(advanced_proc_call, R_DEBUG, "高级 ProcCall", "Call a proc on any d
 
 	if(targetselected)
 		if(!target)
-			to_chat(usr, LANG("client.78437baf", null), confidential = TRUE)
+			to_chat(usr, LANG("client.78437baf825c0bf5", null), confidential = TRUE)
 			return
 		var/msg = "[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
 		log_admin(msg)
@@ -182,11 +182,11 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 /// Wrapper for proccalls where the datum is flagged as vareditted
 /proc/WrapAdminProcCall(datum/target, procname, list/arguments)
 	if(target && procname == "Del")
-		to_chat(usr, LANG("_root.e6bc385a", null), confidential = TRUE)
+		to_chat(usr, LANG("_root.e6bc385a35ce69ee", null), confidential = TRUE)
 		return
 
 	if(target != GLOBAL_PROC && !target.CanProcCall(procname))
-		to_chat(usr, LANG("_root.8659f80a", list(target.type, procname)), confidential = TRUE)
+		to_chat(usr, LANG("_root.8659f80a37e88016", list(target.type, procname)), confidential = TRUE)
 		return
 	var/current_caller = GLOB.AdminProcCaller
 	var/user_identifier = usr ? usr.client?.ckey : GLOB.AdminProcCaller
@@ -198,7 +198,7 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 		CRASH("WrapAdminProcCall with no ckey: [target] [procname] [english_list(arguments)]")
 
 	if(!is_remote_handler && current_caller && current_caller != user_identifier)
-		to_chat(usr, span_adminnotice(LANG("_root.10ac1dc4", null)), confidential = TRUE)
+		to_chat(usr, span_adminnotice(LANG("_root.10ac1dc40b7becf9", null)), confidential = TRUE)
 		return
 
 	GLOB.LastAdminCalledProc = procname
@@ -233,18 +233,18 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "原子过程调用", /datum)
 	VERB_ARG_TYPED(thing, VERB_ARG_TYPE_AREA | VERB_ARG_TYPE_OBJ | VERB_ARG_TYPE_TURF | VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /datum)
-	var/procname = input(user, LANG("datum.5a6a7f47", null),LANG("datum.a03a6d4f", null), null) as text|null
+	var/procname = input(user, LANG("datum.5a6a7f470a534828", null),LANG("datum.a03a6d4f8aa05257", null), null) as text|null
 	if(!procname)
 		return
 	if(!hascall(thing, procname))
-		to_chat(user, LANG("datum.f3b01759", list(thing.type, procname)), confidential = TRUE)
+		to_chat(user, LANG("datum.f3b01759cfc2576e", list(thing.type, procname)), confidential = TRUE)
 		return
 	var/list/lst = user.get_callproc_args()
 	if(!lst)
 		return
 
 	if(!thing || !is_valid_src(thing))
-		to_chat(user, span_warning(LANG("datum.2ff7dadf", null)), confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.2ff7dadf2433abdb", null)), confidential = TRUE)
 		return
 	log_admin("[key_name(user)] called [thing]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
 	var/msg = "[key_name(user)] called [thing]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
@@ -258,14 +258,14 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "原子过程调用", /da
 		to_chat(user, ., confidential = TRUE)
 
 /client/proc/get_callproc_args()
-	var/argnum = input(LANG("client.6600cbf5", null),LANG("client.3315a00c", null),0) as num|null
+	var/argnum = input(LANG("client.6600cbf5b1f9ae42", null),LANG("client.3315a00c0a3245ef", null),0) as num|null
 	if(isnull(argnum))
 		return
 
 	. = list()
 	var/list/named_args = list()
 	while(argnum--)
-		var/named_arg = input(LANG("client.66fc208c", null), LANG("client.a944057b", null)) as text|null
+		var/named_arg = input(LANG("client.66fc208ccdca3526", null), LANG("client.a944057b589304f7", null)) as text|null
 		var/value = vv_get_value(restricted_classes = list(VV_RESTORE_DEFAULT))
 		if (!value["class"])
 			return
@@ -284,14 +284,14 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "原子过程调用", /da
 		if(returnedlist.len)
 			var/assoc_check = returnedlist[1]
 			if(istext(assoc_check) && (returnedlist[assoc_check] != null))
-				. += LANG("client.5bf232fa", list(procname))
+				. += LANG("client.5bf232fa588038d8", list(procname))
 				for(var/key in returnedlist)
-					. += LANG("client.9dc78a5a", list(key, returnedlist[key]))
+					. += LANG("client.9dc78a5afbefac62", list(key, returnedlist[key]))
 
 			else
-				. += LANG("client.df1bd9d4", list(procname))
+				. += LANG("client.df1bd9d42014d240", list(procname))
 				for(var/elem in returnedlist)
-					. += LANG("client.65aac1b5", list(elem))
+					. += LANG("client.65aac1b5abce675a", list(elem))
 		else
 			. = "[procname] returned an empty list"
 		. += "</font>"

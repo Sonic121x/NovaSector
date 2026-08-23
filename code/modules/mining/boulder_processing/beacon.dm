@@ -9,7 +9,7 @@
 	var/uses = 3
 
 /obj/item/boulder_beacon/attack_self()
-	visible_message(span_warning(LANG("obj.41be4252", list(src))))
+	visible_message(span_warning(LANG("obj.41be4252fed1b7ee", list(src))))
 	addtimer(CALLBACK(src, PROC_REF(launch_payload)), 1 SECONDS)
 
 /**

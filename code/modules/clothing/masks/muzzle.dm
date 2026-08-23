@@ -16,7 +16,7 @@
 
 /obj/item/clothing/mask/muzzle/attack_paw(mob/user, list/modifiers)
 	if(user.get_item_by_slot(ITEM_SLOT_MASK) == src)
-		to_chat(user, span_warning(LANG("obj.8114e6da", null)))
+		to_chat(user, span_warning(LANG("obj.8114e6da11d98bec", null)))
 		return
 	return ..()
 
@@ -52,19 +52,19 @@
 	if(harmful_strip)
 		user.apply_damage(stripping_damage, BRUTE, BODY_ZONE_HEAD)
 		INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, emote), "scream")
-		to_chat(user, span_userdanger(LANG("obj.cbfb0bdd", null)))
+		to_chat(user, span_userdanger(LANG("obj.cbfb0bdde5ad219a", null)))
 
 /obj/item/clothing/mask/muzzle/tape/attack(mob/living/carbon/victim, mob/living/carbon/attacker, list/modifiers, list/attack_modifiers)
 	if(attacker.combat_mode)
 		return ..()
 	if(victim.is_mouth_covered(ITEM_SLOT_HEAD))
-		to_chat(attacker, span_notice(LANG("obj.bbee9212", list(victim))))
+		to_chat(attacker, span_notice(LANG("obj.bbee92123f1b3d12", list(victim))))
 		return
 	if(!mob_can_equip(victim, ITEM_SLOT_MASK))
-		to_chat(attacker, span_notice(LANG("obj.4a98d29a", list(victim))))
+		to_chat(attacker, span_notice(LANG("obj.4a98d29a08057cfc", list(victim))))
 		return
-	balloon_alert(attacker, LANG("obj.cf95b150", null))
-	to_chat(victim, span_userdanger(LANG("obj.abcc5b5f", list(attacker))))
+	balloon_alert(attacker, LANG("obj.cf95b15082f60f0b", null))
+	to_chat(victim, span_userdanger(LANG("obj.abcc5b5fc6d1e4f2", list(attacker))))
 	if(!do_after(attacker, equip_delay_other, target = victim))
 		return
 	victim.equip_to_slot_if_possible(src, ITEM_SLOT_MASK)

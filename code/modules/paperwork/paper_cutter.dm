@@ -84,14 +84,14 @@
 		var/mob/living/carbon/carbon_user = user
 		var/obj/item/bodypart/user_head = carbon_user.get_bodypart(BODY_ZONE_HEAD)
 		if(isnull(user_head)) // So no head?
-			user.visible_message(span_suicide(LANG("obj.84624dfb", list(user, user.p_them(), src, user.p_they(), user.p_were()))))
+			user.visible_message(span_suicide(LANG("obj.84624dfba2ff7688", list(user, user.p_them(), src, user.p_they(), user.p_were()))))
 			return SHAME
-		user.visible_message(span_suicide(LANG("obj.8276f4aa", list(user, user.p_them(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.8276f4aaebc27c58", list(user, user.p_them(), src, user.p_theyre()))))
 		user_head.drop_limb()
 		playsound(loc, SFX_DESECRATION, 50, TRUE, -1)
 		return BRUTELOSS
 	// If we have no blade, just beat ourselves up
-	user.visible_message(span_suicide(LANG("obj.fdba8754", list(user, src, user.p_them(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.fdba8754623f6492", list(user, src, user.p_them(), user.p_theyre()))))
 	playsound(loc, 'sound/items/gavel.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
@@ -104,37 +104,37 @@
 
 /obj/item/papercutter/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!stored_blade && !blade_secured)
-		balloon_alert(user, LANG("obj.67ffd827", null))
+		balloon_alert(user, LANG("obj.67ffd827c25ce7d8", null))
 		return ITEM_INTERACT_BLOCKING
 
 	tool.play_tool_sound(src)
-	balloon_alert(user, LANG("obj.97c34052", list(blade_secured ? "un" : "")))
+	balloon_alert(user, LANG("obj.97c3405220b343d0", list(blade_secured ? "un" : "")))
 	blade_secured = !blade_secured
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/papercutter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/paper))
 		if(is_type_in_list(tool, list(/obj/item/paper/holy_writ, /obj/item/paper/pamphlet, /obj/item/paper/paperslip)))
-			balloon_alert(user, LANG("obj.5dd6691b", null))
+			balloon_alert(user, LANG("obj.5dd6691b7fba20d5", null))
 			return ITEM_INTERACT_BLOCKING
 		if(stored_paper)
-			balloon_alert(user, LANG("obj.e80fe33b", null))
+			balloon_alert(user, LANG("obj.e80fe33b1a791ac2", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		playsound(loc, SFX_PAGE_TURN, 60, TRUE)
-		balloon_alert(user, LANG("obj.93f23f94", null))
+		balloon_alert(user, LANG("obj.93f23f942a05946e", null))
 		stored_paper = tool
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/hatchet/cutterblade))
 		if(stored_blade)
-			balloon_alert(user, LANG("obj.dc567852", null))
+			balloon_alert(user, LANG("obj.dc56785237561f52", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, LANG("obj.910cfc5d", null))
+		balloon_alert(user, LANG("obj.910cfc5d1e379bd0", null))
 		tool.forceMove(src)
 		stored_blade = tool
 		update_appearance()
@@ -153,11 +153,11 @@
 
 /obj/item/papercutter/attack_hand_secondary(mob/user, list/modifiers)
 	if(!stored_blade)
-		balloon_alert(user, LANG("obj.67ffd827", null))
+		balloon_alert(user, LANG("obj.67ffd827c25ce7d8", null))
 	else if(!blade_secured)
-		balloon_alert(user, LANG("obj.35f1bc9e", null))
+		balloon_alert(user, LANG("obj.35f1bc9e0962a080", null))
 	else if(!stored_paper)
-		balloon_alert(user, LANG("obj.89358e90", null))
+		balloon_alert(user, LANG("obj.89358e902f552277", null))
 	else
 		cut_paper(user)
 
@@ -166,7 +166,7 @@
 /obj/item/papercutter/proc/cut_paper(mob/user)
 	playsound(src.loc, 'sound/items/weapons/slash.ogg', 50, TRUE)
 	var/clumsy = (iscarbon(user) && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(cut_self_chance))
-	to_chat(user, span_userdanger(LANG("obj.05ca44d2", list(stored_paper, clumsy ? "... and your finger in the process!" : "."))))
+	to_chat(user, span_userdanger(LANG("obj.05ca44d27aac1601", list(stored_paper, clumsy ? "... and your finger in the process!" : "."))))
 	if(clumsy)
 		var/obj/item/bodypart/finger = user.get_active_hand()
 		if (iscarbon(user))

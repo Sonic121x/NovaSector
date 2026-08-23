@@ -25,10 +25,10 @@
 	var/mob/living/animal = interacting_with
 
 	if(IS_DEAD_OR_FAKING(animal))
-		balloon_alert(user, LANG("obj.5f159f3d", null))
+		balloon_alert(user, LANG("obj.5f159f3d51512a3c", null))
 		return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(animal, TRAIT_FUGU_GLANDED))
-		balloon_alert(user, LANG("obj.b924ae17", null))
+		balloon_alert(user, LANG("obj.b924ae170449d499", null))
 		return ITEM_INTERACT_BLOCKING
 
 	ADD_TRAIT(animal, TRAIT_FUGU_GLANDED, type)
@@ -39,6 +39,6 @@
 	animal.melee_damage_upper = max((animal.melee_damage_upper * 2), 10)
 	animal.update_transform(2)
 	animal.AddElement(/datum/element/wall_tearer)
-	to_chat(user, span_info(LANG("obj.34c9d211", list(animal, animal.p_them()))))
+	to_chat(user, span_info(LANG("obj.34c9d21179d45c7e", list(animal, animal.p_them()))))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

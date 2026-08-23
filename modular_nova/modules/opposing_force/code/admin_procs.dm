@@ -2,7 +2,7 @@ ADMIN_VERB(request_more_opfor, R_FUN, "征集 OPFOR 申请", "Request players si
 	var/asked = 0
 	for(var/mob/living/carbon/human/human in GLOB.alive_player_list)
 		if(human.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
-			to_chat(human, boxed_message(span_greentext(LANG("datum.d61bc93a", null))))
+			to_chat(human, boxed_message(span_greentext(LANG("datum.d61bc93a037eb5dd", null))))
 			asked++
 	message_admins("[ADMIN_LOOKUP(user)] has requested more OPFOR players! (Asked: [asked] players)")
 

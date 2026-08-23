@@ -52,15 +52,15 @@
 
 	if(istype(tool, stamp_requested))
 		add_stamp()
-		to_chat(user, span_notice(LANG("obj.04fbca1b", null)))
+		to_chat(user, span_notice(LANG("obj.04fbca1be4e47e44", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	var/datum/action/item_action/chameleon/change/stamp/stamp_action = locate() in tool.actions
 	if(isnull(stamp_action))
-		to_chat(user, span_warning(LANG("obj.5d527bc8", list(tool))))
+		to_chat(user, span_warning(LANG("obj.5d527bc891de2b6d", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.dc1bfd09", list(tool))))
+	to_chat(user, span_notice(LANG("obj.dc1bfd09af42e408", list(tool))))
 	stamp_action.update_look(stamp_requested)
 	add_stamp()
 	return ITEM_INTERACT_SUCCESS
@@ -74,14 +74,14 @@
 			. += detailed_desc
 		else
 			if(stamped)
-				. += span_info(LANG("obj.a37eefd5", null))
+				. += span_info(LANG("obj.a37eefd553e009d2", null))
 			else
 				var/datum/job/stamp_title = stamp_job
 				var/title = initial(stamp_title.title)
-				. += span_info(LANG("obj.11660acc", list(title)))
+				. += span_info(LANG("obj.11660accfb2d8e9a", list(title)))
 
 /obj/item/paperwork/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.472bb1e9", list(user, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.472bb1e9e6665cee", list(user, user.p_theyre()))))
 
 	var/obj/item/paper/new_paper = new /obj/item/paper(get_turf(src))
 	var/turf/turf_to_throw_at = get_ranged_target_turf(get_turf(src), pick(GLOB.alldirs))
@@ -89,9 +89,9 @@
 
 	var/obj/item/bodypart/BP = user.get_bodypart(pick(BODY_ZONE_HEAD))
 	if(BP?.dismember())
-		new_paper.visible_message(span_alert(LANG("obj.5a66a096", list(src, user))))
+		new_paper.visible_message(span_alert(LANG("obj.5a66a0964a3b49f1", list(src, user))))
 	else
-		user.visible_message(span_suicide(LANG("obj.dec784f1", list(user))))
+		user.visible_message(span_suicide(LANG("obj.dec784f113c361fe", list(user))))
 		return OXYLOSS
 
 	return MANUAL_SUICIDE
@@ -231,16 +231,16 @@
 
 	if(stamped)
 		if(voided)
-			. += span_notice(LANG("obj.5ff1d7e0", null))
+			. += span_notice(LANG("obj.5ff1d7e01b769596", null))
 		else
-			. += span_notice(LANG("obj.05d3bcc1", null))
+			. += span_notice(LANG("obj.05d3bcc15bc93f50", null))
 	else
-		. += span_notice(LANG("obj.a18c3a8c", null))
+		. += span_notice(LANG("obj.a18c3a8c61d6efdf", null))
 
 /obj/item/paperwork/photocopy/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/stamp/void) || stamped || voided)
 		return ..()
-	to_chat(user, span_notice(LANG("obj.e66f533b", list(tool))))
+	to_chat(user, span_notice(LANG("obj.e66f533b72c1f2ad", list(tool))))
 	stamp_overlay = mutable_appearance('icons/obj/service/bureaucracy.dmi', "paper_stamp-void")
 	add_overlay(stamp_overlay)
 	voided = TRUE

@@ -88,9 +88,9 @@
 	else
 		injectamount = cause
 	reagents.trans_to(victim, injectamount, methods = INJECT)
-	to_chat(victim, span_hear(LANG("obj.53477a1b", null)))
+	to_chat(victim, span_hear(LANG("obj.53477a1bbb4c8667", null)))
 	if(!reagents.total_volume)
-		to_chat(victim, span_hear(LANG("obj.9018a492", null)))
+		to_chat(victim, span_hear(LANG("obj.9018a492c9137e4f", null)))
 		qdel(src)
 
 /obj/item/implant/chem/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -100,7 +100,7 @@
 	return ..()
 
 /obj/item/implant/chem/proc/signaler_sync(obj/item/assembly/signaler/syncing_signaler, mob/living/user)
-	to_chat(user, LANG("obj.18a4c483", list(src, syncing_signaler, frequency ? "" : ", disabling other methods of activation")))
+	to_chat(user, LANG("obj.18a4c48377f9c053", list(src, syncing_signaler, frequency ? "" : ", disabling other methods of activation")))
 	code = syncing_signaler.code
 	SSradio.remove_object(src, frequency)
 	frequency = syncing_signaler.frequency

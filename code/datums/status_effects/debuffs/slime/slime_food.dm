@@ -43,9 +43,9 @@
 	if(get_dist(user, owner) > 1 && !astype(user, /mob/living/carbon)?.dna.get_mutation(/datum/mutation/olfaction))
 		return
 	if(user == feeder)
-		examine_list += span_boldnotice(LANG("datum.f37025d9", null))
+		examine_list += span_boldnotice(LANG("datum.f37025d97a269cc0", null))
 	else
-		examine_list += span_boldnotice(LANG("datum.624afaec", list(feeder)))
+		examine_list += span_boldnotice(LANG("datum.624afaec0d8cdd8f", list(feeder)))
 
 ///Handles a slime completely draining someone
 /datum/status_effect/slime_food/proc/on_drained(datum/source, mob/living/basic/slime/draining_slime)

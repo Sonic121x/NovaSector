@@ -132,30 +132,30 @@
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if (DOING_INTERACTION(healer, interaction_key))
-		healer.balloon_alert(healer, LANG("datum.8df72942", null))
+		healer.balloon_alert(healer, LANG("datum.8df72942c63f9092", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	switch (self_targeting)
 		if (HEALING_TOUCH_NOT_SELF)
 			if (target == healer)
-				healer.balloon_alert(healer, LANG("datum.45f64cdb", null))
+				healer.balloon_alert(healer, LANG("datum.45f64cdb77f353ac", null))
 				return COMPONENT_CANCEL_ATTACK_CHAIN
 		if (HEALING_TOUCH_SELF_ONLY)
 			if (target != healer)
-				healer.balloon_alert(healer, LANG("datum.07dba269", null))
+				healer.balloon_alert(healer, LANG("datum.07dba2692b023908", null))
 				return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	var/mob/living/living_target = target
 	if (living_target.health >= living_target.maxHealth)
-		target.balloon_alert(healer, LANG("datum.b9222925", null))
+		target.balloon_alert(healer, LANG("datum.b92229253323fb1d", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if (!has_healable_damage(living_target))
-		target.balloon_alert(healer, LANG("datum.57c9ac72", null))
+		target.balloon_alert(healer, LANG("datum.57c9ac727fe8fdca", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if (living_target.stat == DEAD)
-		target.balloon_alert(healer, LANG("datum.43a02ec6", null))
+		target.balloon_alert(healer, LANG("datum.43a02ec6cdcfa72d", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	INVOKE_ASYNC(src, PROC_REF(heal_target), healer, target)
@@ -189,7 +189,7 @@
 		healer.visible_message(span_notice("[format_string(action_text, healer, target)]"))
 
 	if (heal_time && !do_after(healer, heal_time, target = target, interaction_key = interaction_key))
-		healer.balloon_alert(healer, LANG("datum.c67b5d27", null))
+		healer.balloon_alert(healer, LANG("datum.c67b5d274d6e724b", null))
 		return
 
 	if (complete_text)

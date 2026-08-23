@@ -91,7 +91,7 @@
 /obj/item/ai_module/law/examine(mob/user)
 	. = ..()
 	if(ioned)
-		. += LANG("obj.b488f6c8", list(EXAMINE_HINT("multitool")))
+		. += LANG("obj.b488f6c80704a83c", list(EXAMINE_HINT("multitool")))
 
 	var/examine_laws = display_laws()
 	if(examine_laws)
@@ -100,10 +100,10 @@
 /obj/item/ai_module/law/multitool_act(mob/living/user, obj/item/tool)
 	if(!ioned)
 		return NONE
-	balloon_alert(user, LANG("obj.a6d19be6", null))
+	balloon_alert(user, LANG("obj.a6d19be6514028fd", null))
 	if(!tool.use_tool(ismachinery(loc) ? loc : src, user, 4 SECONDS, volume = 25, extra_checks = CALLBACK(src, PROC_REF(multitool_cb), loc, user, tool)))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.ad5198a8", null))
+	balloon_alert(user, LANG("obj.ad5198a8a5980245", null))
 	set_ioned(FALSE)
 	set_laws(saved_laws)
 	saved_laws = null
@@ -219,7 +219,7 @@
 		// removing core laws temporarily stuns the silicon to let people swap cores without immediately getting blasted
 		if(!parent_rack.rack_stun(bot))
 			continue
-		to_chat(bot, span_userdanger(LANG("obj.76556ff2", null)))
+		to_chat(bot, span_userdanger(LANG("obj.76556ff2ad766f3a", null)))
 
 /obj/item/ai_module/law/core/full
 	var/law_id // if non-null, loads the laws from the ai_laws datums

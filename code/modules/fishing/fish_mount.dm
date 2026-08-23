@@ -61,11 +61,11 @@
 
 /obj/structure/fish_mount/screwdriver_act(mob/living/user, obj/item/item)
 	. = ..()
-	balloon_alert(user, LANG("obj.452248b7", null))
+	balloon_alert(user, LANG("obj.452248b75c0ec16e", null))
 	if(!item.use_tool(src, user, 3 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-	balloon_alert_to_viewers(LANG("obj.61513170", null))
+	balloon_alert_to_viewers(LANG("obj.61513170262fb713", null))
 	deconstruct()
 	return ITEM_INTERACT_SUCCESS
 
@@ -91,16 +91,16 @@
 	if(!isfish(item) || user.combat_mode)
 		return ..()
 	if(mounted_fish)
-		balloon_alert(user, LANG("obj.1a176bd5", null))
+		balloon_alert(user, LANG("obj.1a176bd5b2e3a920", null))
 		return ITEM_INTERACT_BLOCKING
 	if(item.flags_1 & HOLOGRAM_1)
-		balloon_alert(user, LANG("obj.085c4de6", null))
+		balloon_alert(user, LANG("obj.085c4de68d920061", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.ce514c2a", null))
+	balloon_alert(user, LANG("obj.ce514c2a82b5a47d", null))
 	if(!do_after(user, 3 SECONDS, src) || mounted_fish)
 		return ITEM_INTERACT_BLOCKING
 	add_fish(item, catcher = user.name)
-	balloon_alert_to_viewers(LANG("obj.fbd13b1e", null))
+	balloon_alert_to_viewers(LANG("obj.fbd13b1ef0fd53d8", null))
 	playsound(loc, 'sound/machines/click.ogg', 30, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -152,13 +152,13 @@
 /obj/structure/fish_mount/attack_hand_secondary(mob/living/user, list/modifiers)
 	. = ..()
 	if(!mounted_fish)
-		balloon_alert(user, LANG("obj.9c065d6c", null))
+		balloon_alert(user, LANG("obj.9c065d6c9ff93802", null))
 	else
 		remove_fish(user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/fish_mount/proc/remove_fish(mob/living/user)
-	balloon_alert(user, LANG("obj.35800fc3", null))
+	balloon_alert(user, LANG("obj.35800fc3c011acbd", null))
 	if(!do_after(user, (persistence_loaded_fish ? 6 : 3) SECONDS, src) || !mounted_fish)
 		return
 
@@ -171,10 +171,10 @@
 		if(fish_reference.w_class >= WEIGHT_CLASS_BULKY)
 			ash_type = /obj/effect/decal/cleanable/ash/large
 		new ash_type(loc)
-		visible_message(LANG("obj.48f06f70", list(fish_reference, fish_reference.p_theyre(), src)))
+		visible_message(LANG("obj.48f06f70cccf1414", list(fish_reference, fish_reference.p_theyre(), src)))
 	else
 		user.put_in_hands(mounted_fish)
-	balloon_alert_to_viewers(LANG("obj.6c127de0", null))
+	balloon_alert_to_viewers(LANG("obj.6c127de08675b8a9", null))
 
 /obj/structure/fish_mount/Exited(atom/movable/gone)
 	if(gone != mounted_fish)

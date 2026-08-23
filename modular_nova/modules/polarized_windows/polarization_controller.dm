@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(polarization_controllers)
 	var/atom/parent_atom = parent
 
 	if(!polarizer.id)
-		parent_atom.balloon_alert(user, LANG("datum.f047cc0f", null))
+		parent_atom.balloon_alert(user, LANG("datum.f047cc0f8bb7032a", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(id)
@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(polarization_controllers)
 	id = "[polarizer.id]"
 
 	LAZYADDASSOC(GLOB.polarization_controllers, id, list(src))
-	parent_atom.balloon_alert(user, LANG("datum.a6cc0701", null))
+	parent_atom.balloon_alert(user, LANG("datum.a6cc070162307d81", null))
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -112,9 +112,9 @@ GLOBAL_LIST_EMPTY(polarization_controllers)
 /datum/component/polarization_controller/proc/on_window_examine(datum/source, mob/user, list/examine_strings)
 	SIGNAL_HANDLER
 
-	examine_strings += span_notice(LANG("datum.300f20e5", null))
-	examine_strings += span_notice(LANG("datum.39dfbdcf", null))
-	examine_strings += span_notice(LANG("datum.1be226fe", null))
+	examine_strings += span_notice(LANG("datum.300f20e594f5a11d", null))
+	examine_strings += span_notice(LANG("datum.39dfbdcf3cab6b16", null))
+	examine_strings += span_notice(LANG("datum.1be226fe27d10242", null))
 
 
 /**
@@ -139,10 +139,10 @@ GLOBAL_LIST_EMPTY(polarization_controllers)
 
 	var/obj/managed_window = parent
 
-	managed_window.balloon_alert(user, LANG("datum.dced60e5", null))
+	managed_window.balloon_alert(user, LANG("datum.dced60e574150cfe", null))
 
 	if(!do_after(user, 1 SECONDS, managed_window))
-		managed_window.balloon_alert(user, LANG("datum.751daea1", null))
+		managed_window.balloon_alert(user, LANG("datum.751daea17ee7da55", null))
 		return
 
 	toggle(FALSE)
@@ -158,6 +158,6 @@ GLOBAL_LIST_EMPTY(polarization_controllers)
 	UnregisterSignal(parent, COMSIG_ATOM_EXAMINE)
 	UnregisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL))
 
-	managed_window.balloon_alert(user, LANG("datum.d4f3c68e", null))
+	managed_window.balloon_alert(user, LANG("datum.d4f3c68eabaf4e85", null))
 
 	qdel(src)

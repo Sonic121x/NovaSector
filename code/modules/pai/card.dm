@@ -38,11 +38,11 @@
 		return NONE
 
 	if(!pai.encrypt_mod)
-		to_chat(user, span_alert(LANG("obj.3a580da9", null)))
+		to_chat(user, span_alert(LANG("obj.3a580da93561549b", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	pai.radio.attackby(tool, user, modifiers)
-	to_chat(user, span_notice(LANG("obj.c0c2c8e9", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.c0c2c8e9a302e81d", list(tool, src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/pai_card/attack_self(mob/user)
@@ -83,7 +83,7 @@
 		return pai.on_saboteur(source, disrupt_duration)
 
 /obj/item/pai_card/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.07c14856", list(user, src, user.p_They()))))
+	user.visible_message(span_suicide(LANG("obj.07c148568e471282", list(user, src, user.p_They()))))
 	return OXYLOSS
 
 /obj/item/pai_card/update_overlays()
@@ -204,7 +204,7 @@
 	add_alert()
 	addtimer(CALLBACK(src, PROC_REF(remove_alert)), 5 SECONDS)
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
-	visible_message(span_notice(LANG("obj.2ab2f3e8", list(src))), blind_message = span_notice(LANG("obj.b3b344dc", list(src))))
+	visible_message(span_notice(LANG("obj.2ab2f3e8d8f03f58", list(src))), blind_message = span_notice(LANG("obj.b3b344dc264968f8", list(src))))
 
 /**
  * Downloads a candidate from the list and removes them from SSpai.candidates
@@ -218,7 +218,7 @@
 		return FALSE
 	var/datum/pai_candidate/candidate = SSpai.candidates[ckey]
 	if(!candidate?.check_ready())
-		balloon_alert(user, LANG("obj.a7b3e428", null))
+		balloon_alert(user, LANG("obj.a7b3e4285da6374f", null))
 		return FALSE
 	var/mob/living/silicon/pai/new_pai = new(src)
 	new_pai.name = candidate.name || pick(GLOB.ninja_names)
@@ -239,18 +239,18 @@
 	if(pai)
 		return FALSE
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SILICONS))
-		balloon_alert(user, LANG("obj.eae662b2", null))
+		balloon_alert(user, LANG("obj.eae662b2a747562a", null))
 		return FALSE
 	if(request_spam)
-		balloon_alert(user, LANG("obj.9216f01d", null))
+		balloon_alert(user, LANG("obj.9216f01d8504687b", null))
 		return FALSE
 	request_spam = TRUE
 	playsound(src, 'sound/machines/ping.ogg', 20, TRUE)
-	balloon_alert(user, LANG("obj.2d85ea25", null))
+	balloon_alert(user, LANG("obj.2d85ea255f36de55", null))
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/aicards.dmi', "pai")
 
 	notify_ghosts(
-		LANG("obj.c603f497", list(user.real_name)),
+		LANG("obj.c603f4977d1c534f", list(user.real_name)),
 		source = user,
 		header = "pAI Request!",
 		alert_overlay = alert_overlay,
@@ -297,5 +297,5 @@
 	screen_image = /datum/pai_screen_image/neutral
 	update_appearance()
 	playsound(src, 'sound/effects/pai_boot.ogg', 50, TRUE, -1)
-	audible_message(LANG("obj.dd8ce8c9", list(src)))
+	audible_message(LANG("obj.dd8ce8c993e8056c", list(src)))
 	return TRUE

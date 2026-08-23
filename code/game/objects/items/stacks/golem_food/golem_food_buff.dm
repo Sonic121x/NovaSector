@@ -104,7 +104,7 @@
 	consumed.forceMove(get_turf(consumer))
 	new_hand.held_gibtonite = null
 	qdel(new_hand)
-	consumer.visible_message(span_warning(LANG("datum.1815732a", list(consumer, consumed))))
+	consumer.visible_message(span_warning(LANG("datum.1815732a1567b927", list(consumer, consumed))))
 
 /datum/golem_food_buff/bluespace
 	exclusive = FALSE
@@ -120,4 +120,4 @@
 			consumer.dropItemToGround(stack)
 	if (consumer.put_in_hands(new_hand, del_on_fail = TRUE))
 		return
-	consumer.balloon_alert(consumer, LANG("datum.1dee07cc", null))
+	consumer.balloon_alert(consumer, LANG("datum.1dee07cc4730d063", null))

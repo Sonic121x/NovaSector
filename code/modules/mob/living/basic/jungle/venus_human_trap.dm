@@ -80,7 +80,7 @@
 
 /// Tells the spawner that the venus human trap is ready
 /obj/structure/alien/resin/flower_bud/proc/bear_fruit()
-	visible_message(span_danger(LANG("obj.c138ef2f", null)))
+	visible_message(span_danger(LANG("obj.c138ef2fb414bcc4", null)))
 	if(spawner)
 		spawner.bear_fruit()
 
@@ -112,7 +112,7 @@
 		var/mob/living/L = AM
 		if(!isvineimmune(L))
 			L.adjust_brute_loss(5)
-			to_chat(L, span_alert(LANG("obj.4feffe03", null)))
+			to_chat(L, span_alert(LANG("obj.4feffe03f8426650", null)))
 
 /**
  * Venus Human Trap
@@ -194,7 +194,7 @@
 	var/vines_in_range = locate(/obj/structure/spacevine) in range(2, src)
 	if(!vines_in_range && !alert_shown)
 		alert_shown = TRUE
-		balloon_alert(src, LANG("mob.ea9ababd", null))
+		balloon_alert(src, LANG("mob.ea9ababd429f7733", null))
 	else if(vines_in_range)
 		alert_shown = FALSE
 
@@ -221,15 +221,15 @@
 	if(!ismovable(target_atom) || istype(target_atom, /obj/structure/spacevine))
 		return
 	if(target_atom.anchored)
-		owner.balloon_alert(owner, LANG("datum.cf190290", null))
+		owner.balloon_alert(owner, LANG("datum.cf1902903f339d00", null))
 		return
 	if(get_dist(owner, target_atom) > vine_grab_distance)
-		owner.balloon_alert(owner, LANG("datum.f5e75781", null))
+		owner.balloon_alert(owner, LANG("datum.f5e75781e8f1dc46", null))
 		return
 	var/list/target_turfs = get_line(owner, target_atom) - list(get_turf(owner), get_turf(target_atom))
 	for(var/turf/blockage in target_turfs)
 		if(blockage.is_blocked_turf(exclude_mobs = TRUE))
-			owner.balloon_alert(owner, LANG("datum.8857598a", null))
+			owner.balloon_alert(owner, LANG("datum.8857598ad5114f2b", null))
 			return
 
 	var/datum/beam/new_vine = owner.Beam(target_atom, icon_state = "vine", time = vine_duration * (ismob(target_atom) ? 1 : 2), beam_type = /obj/effect/ebeam/vine, emissive = FALSE)

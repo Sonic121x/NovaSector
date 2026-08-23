@@ -12,7 +12,7 @@
 
 /obj/item/shield/energy/returning/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.dfa0935c", null))
+	. += span_info(LANG("obj.dfa0935c5960e240", null))
 
 /obj/item/shield/energy/returning/blueshield
 	name = "blueshield energy shield"

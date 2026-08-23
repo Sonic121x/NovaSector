@@ -35,7 +35,7 @@
 
 	if (worm.get_worm_health() - health_cost < minimum_health)
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.663d6bcb", null))
+			owner.balloon_alert(owner, LANG("datum.663d6bcb874ca3b1", null))
 		return FALSE
 
 	return ..()
@@ -47,11 +47,11 @@
 	host.apply_status_effect(status_effect_type, worm)
 
 	host.visible_message(
-		message = span_danger(LANG("datum.b73f70f6", list(host))),
+		message = span_danger(LANG("datum.b73f70f6280ed44c", list(host))),
 		ignored_mobs = owner
 	)
 
-	to_chat(owner, span_notice(LANG("datum.d085dfee", null)))
+	to_chat(owner, span_notice(LANG("datum.d085dfee05b3cabf", null)))
 
 	worm.adjust_worm_health(-health_cost)
 

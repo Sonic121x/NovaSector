@@ -78,27 +78,27 @@
 		return
 	. = TRUE
 	if(DOING_INTERACTION(user, src))
-		balloon_alert(user, LANG("obj.94b27c3f", null))
+		balloon_alert(user, LANG("obj.94b27c3f734d7f63", null))
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, LANG("obj.9e4cb9c4", null))
+		balloon_alert(user, LANG("obj.9e4cb9c48761232b", null))
 		return
 	if(!W.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return
-	user.balloon_alert_to_viewers(LANG("obj.2ca5dd80", list(src)), LANG("obj.ecacaee5", list(src)))
-	audible_message(span_hear(LANG("obj.1aa82fa3", null)))
+	user.balloon_alert_to_viewers(LANG("obj.2ca5dd8041de3d6b", list(src)), LANG("obj.ecacaee5cb6304e8", list(src)))
+	audible_message(span_hear(LANG("obj.1aa82fa3545466eb", null)))
 	var/did_the_thing
 	while(atom_integrity < max_integrity)
 		if(W.use_tool(src, user, 2.5 SECONDS, volume=50))
 			did_the_thing = TRUE
 			atom_integrity += min(10, (max_integrity - atom_integrity))
-			audible_message(span_hear(LANG("obj.1aa82fa3", null)))
+			audible_message(span_hear(LANG("obj.1aa82fa3545466eb", null)))
 		else
 			break
 	if(did_the_thing)
-		user.balloon_alert_to_viewers(LANG("obj.e3cfcef3", list((atom_integrity >= max_integrity) ? "fully" : "partially", src)))
+		user.balloon_alert_to_viewers(LANG("obj.e3cfcef3ece6006c", list((atom_integrity >= max_integrity) ? "fully" : "partially", src)))
 	else
-		user.balloon_alert_to_viewers(LANG("obj.1324f892", list(src)), LANG("obj.87135ad0", null))
+		user.balloon_alert_to_viewers(LANG("obj.1324f89299b29d06", list(src)), LANG("obj.87135ad0ded5d854", null))
 
 /obj/vehicle/ridden/atv/atom_break()
 	START_PROCESSING(SSobj, src)

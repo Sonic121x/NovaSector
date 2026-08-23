@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 		return FALSE
 
 	if(!istype(equipping, /obj/item/clothing/neck/petcollar))
-		to_chat(user, span_warning(LANG("datum.bd32f942", null)))
+		to_chat(user, span_warning(LANG("datum.bd32f9422f350001", null)))
 		return FALSE
 
 	return TRUE
@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 		return FALSE
 
 	if(!ispath(equipping.dog_fashion, /datum/dog_fashion/back))
-		to_chat(user, span_warning(LANG("datum.790459cf", list(equipping, source))))
+		to_chat(user, span_warning(LANG("datum.790459cfeaaa6c73", list(equipping, source))))
 		equipping.forceMove(source.drop_location())
 		if(prob(25))
 			step_rand(equipping)
@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 		return FALSE
 
 	if(!isidcard(equipping))
-		to_chat(user, span_warning(LANG("datum.acd4c585", list(equipping, source))))
+		to_chat(user, span_warning(LANG("datum.acd4c585f1c7655c", list(equipping, source))))
 		return FALSE
 
 	return TRUE

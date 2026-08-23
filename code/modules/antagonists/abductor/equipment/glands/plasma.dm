@@ -9,14 +9,14 @@
 	mind_control_duration = 800
 
 /obj/item/organ/heart/gland/plasma/activate()
-	to_chat(owner, span_warning(LANG("obj.ed663304", null)))
+	to_chat(owner, span_warning(LANG("obj.ed6633043404afff", null)))
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(vomit_plasma)), 20 SECONDS)
 
 /obj/item/organ/heart/gland/plasma/proc/vomit_plasma()
 	if(!owner)
 		return
-	owner.visible_message(span_danger(LANG("obj.cbc588be", list(owner))))
+	owner.visible_message(span_danger(LANG("obj.cbc588be3d8166e3", list(owner))))
 	var/turf/open/T = get_turf(owner)
 	if(istype(T))
 		T.atmos_spawn_air("[GAS_PLASMA]=50;[TURF_TEMPERATURE(T20C)]")

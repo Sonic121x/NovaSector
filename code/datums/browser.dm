@@ -126,7 +126,7 @@
 /datum/browser/proc/open(use_on_close = TRUE)
 	if(isnull(window_id)) //null check because this can potentially nuke goonchat
 		WARNING("Browser [title] tried to open with a null ID")
-		to_chat(user, span_userdanger(LANG("datum.0dd66971", list(title))))
+		to_chat(user, span_userdanger(LANG("datum.0dd6697122c54a97", list(title))))
 		return
 
 	var/window_size = ""
@@ -427,9 +427,9 @@
 			if ("string")
 				setting["value"] = stripped_input(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]", setting["value"])
 			if ("number")
-				setting["value"] = input(user, LANG("datum.3ec3cdd5", list(setting["desc"])), LANG("datum.3ec3cdd5", list(setting["desc"]))) as num
+				setting["value"] = input(user, LANG("datum.3ec3cdd5425f6b73", list(setting["desc"])), LANG("datum.3ec3cdd5425f6b73", list(setting["desc"]))) as num
 			if ("color")
-				setting["value"] = input(user, LANG("datum.3ec3cdd5", list(setting["desc"])), LANG("datum.3ec3cdd5", list(setting["desc"])), setting["value"]) as color
+				setting["value"] = input(user, LANG("datum.3ec3cdd5425f6b73", list(setting["desc"])), LANG("datum.3ec3cdd5425f6b73", list(setting["desc"])), setting["value"]) as color
 			if ("boolean")
 				setting["value"] = (setting["value"] == "Yes") ? "No" : "Yes"
 			if ("ckey")

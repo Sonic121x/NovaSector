@@ -82,7 +82,7 @@
 /obj/machinery/reagentgrinder/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
-		. += span_warning(LANG("obj.7f267c32", list(src)))
+		. += span_warning(LANG("obj.7f267c3242b59931", list(src)))
 		return
 
 	var/total_weight = 0
@@ -97,30 +97,30 @@
 		to_process["[target.name]"] += amount
 		total_weight += target.w_class
 	if(to_process.len)
-		. += span_notice(LANG("obj.97fdf783", null))
+		. += span_notice(LANG("obj.97fdf783b296a70b", null))
 		for(var/target_name in to_process)
 			. += span_notice("[to_process[target_name]] [target_name]")
-		. += span_notice(LANG("obj.d9cecb0b", list(round((total_weight / maximum_weight) * 100))))
+		. += span_notice(LANG("obj.d9cecb0ba10a83fd", list(round((total_weight / maximum_weight) * 100))))
 
 	if(!QDELETED(beaker))
-		. += span_notice(LANG("obj.18a7d35a", list(beaker.reagents.maximum_volume)))
+		. += span_notice(LANG("obj.18a7d35ad9da13fd", list(beaker.reagents.maximum_volume)))
 		if(beaker.reagents.total_volume)
 			for(var/datum/reagent/reg as anything in beaker.reagents.reagent_list)
-				. += span_notice(LANG("obj.d353620d", list(round(reg.volume, CHEMICAL_VOLUME_ROUNDING), reg.name)))
+				. += span_notice(LANG("obj.d353620de6ca6337", list(round(reg.volume, CHEMICAL_VOLUME_ROUNDING), reg.name)))
 		else
-			. += span_notice(LANG("obj.aa75d156", null))
-		. += span_notice(LANG("obj.fb87c264", list(EXAMINE_HINT("Right click"))))
+			. += span_notice(LANG("obj.aa75d1565980cc59", null))
+		. += span_notice(LANG("obj.fb87c2649aa0d2ee", list(EXAMINE_HINT("Right click"))))
 	else
-		. += span_warning(LANG("obj.bdc656a8", null))
+		. += span_warning(LANG("obj.bdc656a847f05a40", null))
 
-	. += span_notice(LANG("obj.8e9dfe40", null))
+	. += span_notice(LANG("obj.8e9dfe4057e7f919", null))
 	if(anchored)
-		. += span_notice(LANG("obj.ea58af41", list(EXAMINE_HINT("wrenched"))))
+		. += span_notice(LANG("obj.ea58af4170499ebd", list(EXAMINE_HINT("wrenched"))))
 	else
-		. += span_warning(LANG("obj.603b2ade", list(EXAMINE_HINT("wrenched"))))
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
+		. += span_warning(LANG("obj.603b2ade20a94ab9", list(EXAMINE_HINT("wrenched"))))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
 	if(panel_open)
-		. += span_notice(LANG("obj.fa5fc796", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.fa5fc7965e12e9d0", list(EXAMINE_HINT("pried"))))
 
 /obj/machinery/reagentgrinder/update_overlays()
 	. = ..()
@@ -184,7 +184,7 @@
 
 		// Nothing would come from grinding or juicing
 		if(!length(ingredient.grind_results()) && !ingredient.reagents.total_volume)
-			to_chat(user, span_warning(LANG("obj.3d7498ae", list(ingredient))))
+			to_chat(user, span_warning(LANG("obj.3d7498aecada288f", list(ingredient))))
 			continue
 
 		// Error messages should be in the objects' definitions
@@ -207,7 +207,7 @@
 	var/items_transfered = 0
 	for(var/obj/item/weapon as anything in filtered_list)
 		if(weapon.w_class + total_weight > maximum_weight)
-			to_chat(user, span_warning(LANG("obj.34864f48", list(weapon, src))))
+			to_chat(user, span_warning(LANG("obj.34864f487f97d639", list(weapon, src))))
 			continue
 
 		//try to remove the right way
@@ -216,7 +216,7 @@
 
 		total_weight += weapon.w_class
 		items_transfered += 1
-		to_chat(user, span_notice(LANG("obj.e8da3f67", list(weapon, src))))
+		to_chat(user, span_notice(LANG("obj.e8da3f6705180b08", list(weapon, src))))
 
 	return items_transfered
 
@@ -227,7 +227,7 @@
 	//add the beaker
 	if (is_reagent_container(tool) && tool.is_open_container())
 		replace_beaker(user, tool)
-		to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 		return ITEM_INTERACT_SUCCESS
 
 	//add items from bag
@@ -249,33 +249,33 @@
 		//add the items
 		var/items_added = load_items(user, to_add)
 		if(!items_added)
-			to_chat(user, span_warning(LANG("obj.ef709a23", null)))
+			to_chat(user, span_warning(LANG("obj.ef709a23f5caa3f3", null)))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.52cb6082", list(items_added, tool, src))))
+		to_chat(user, span_notice(LANG("obj.52cb6082836fc770", list(items_added, tool, src))))
 		return ITEM_INTERACT_SUCCESS
 
 	//add item directly
 	else if(length(tool.grind_results()) || tool.reagents?.total_volume)
 		if(tool.atom_storage && length(tool.contents)) //anything that has internal storage would be too much recursion for us to handle
-			to_chat(user, span_notice(LANG("obj.0a0857f0", list(src))))
+			to_chat(user, span_notice(LANG("obj.0a0857f0c5d4922b", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		//add the items
 		if(!load_items(user, list(tool)))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.38ef5bc7", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.38ef5bc743cc4280", list(tool, src))))
 		return ITEM_INTERACT_SUCCESS
 
 	//ask player to drag stuff into grinder
 	else if(tool.atom_storage)
-		to_chat(user, span_warning(LANG("obj.8890b22b", list(tool, src))))
+		to_chat(user, span_warning(LANG("obj.8890b22bcdb0fdd3", list(tool, src))))
 		return ITEM_INTERACT_BLOCKING
 
 	return NONE
 
 /obj/machinery/reagentgrinder/wrench_act(mob/living/user, obj/item/tool)
 	if(operating)
-		balloon_alert(user, LANG("obj.4e8eee93", null))
+		balloon_alert(user, LANG("obj.4e8eee933e4ea008", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(default_unfasten_wrench(user, tool) == SUCCESSFUL_UNFASTEN)
@@ -286,14 +286,14 @@
 
 /obj/machinery/reagentgrinder/screwdriver_act(mob/living/user, obj/item/tool)
 	if(operating)
-		balloon_alert(user, LANG("obj.4e8eee93", null))
+		balloon_alert(user, LANG("obj.4e8eee933e4ea008", null))
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/reagentgrinder/crowbar_act(mob/living/user, obj/item/tool)
 	if(operating)
-		balloon_alert(user, LANG("obj.4e8eee93", null))
+		balloon_alert(user, LANG("obj.4e8eee933e4ea008", null))
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_crowbar(user, tool)
@@ -307,7 +307,7 @@
 			continue
 		contents_to_dump += to_dump
 
-	to_chat(user, span_notice(LANG("obj.9bb2b7ac", list(load_items(user, contents_to_dump), storage.parent, src))))
+	to_chat(user, span_notice(LANG("obj.9bb2b7acc660f6eb", list(load_items(user, contents_to_dump), storage.parent, src))))
 
 	return STORAGE_DUMP_HANDLED
 
@@ -432,13 +432,13 @@
 
 		if(juicing)
 			if(!ingredient.juice(beaker.reagents, user))
-				to_chat(user, span_danger(LANG("obj.45e1c97b", list(src, ingredient))))
+				to_chat(user, span_danger(LANG("obj.45e1c97bf2aa48cf", list(src, ingredient))))
 				continue
 		else if(!ingredient.grind(beaker.reagents, user))
 			if(isstack(ingredient))
-				to_chat(user, span_notice(LANG("obj.10d463a7", list(src, ingredient))))
+				to_chat(user, span_notice(LANG("obj.10d463a7660f5ddc", list(src, ingredient))))
 			else
-				to_chat(user, span_danger(LANG("obj.dae12876", list(src, ingredient))))
+				to_chat(user, span_danger(LANG("obj.dae1287652998dd5", list(src, ingredient))))
 			continue
 
 		//happens only for stacks where some of the sheets were grinded so we roughly compute the weight grinded

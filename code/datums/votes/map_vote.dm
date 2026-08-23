@@ -19,10 +19,10 @@
 	if(length(choices) == 1) // Only one choice, no need to vote. Let's just auto-rotate it to the only remaining map because it would just happen anyways.
 		var/datum/map_config/change_me_out = global.config.maplist[choices[1]]
 		finalize_vote(choices[1])// voted by not voting, very sad.
-		to_chat(world, span_boldannounce(LANG("datum.33b9e752", list(lang_map_display_name(change_me_out.map_name)))))
+		to_chat(world, span_boldannounce(LANG("datum.33b9e7525fa9c4eb", list(lang_map_display_name(change_me_out.map_name)))))
 		return FALSE
 	if(length(choices) == 0)
-		to_chat(world, span_boldannounce(LANG("datum.b86fbca1", null)))
+		to_chat(world, span_boldannounce(LANG("datum.b86fbca1075f4adb", null)))
 		return FALSE
 
 	return TRUE

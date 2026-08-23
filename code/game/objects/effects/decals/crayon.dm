@@ -24,7 +24,7 @@
 	if(desc_override)
 		desc = "[desc_override]"
 	else
-		desc = LANG("obj.fb2e64d1", list(name))
+		desc = LANG("obj.fb2e64d18897f44a", list(name))
 	if(alt_icon)
 		icon = alt_icon
 	if(type)

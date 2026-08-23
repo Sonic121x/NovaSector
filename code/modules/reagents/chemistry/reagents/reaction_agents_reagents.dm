@@ -109,10 +109,10 @@
 		if(reagent.purity <= reagent.inverse_chem_val)
 			is_inverse = TRUE
 	if(is_inverse)
-		target.my_atom.audible_message(span_warning(LANG("datum.0a47f0e8", null)))
+		target.my_atom.audible_message(span_warning(LANG("datum.0a47f0e85b6d19eb", null)))
 		playsound(target.my_atom, 'sound/effects/chemistry/bufferadd.ogg', 50, TRUE)
 	else
-		target.my_atom.audible_message(span_warning(LANG("datum.aa49175c", null)))
+		target.my_atom.audible_message(span_warning(LANG("datum.aa49175c60a35e0a", null)))
 	if(!copy_only)
 		volume -= amount
 		holder.update_total()
@@ -177,10 +177,10 @@
 
 	//audible feedback
 	if(conversion_buffer < amount * 10)
-		target.my_atom.audible_message(span_warning(LANG("datum.42eb62df", null)))
+		target.my_atom.audible_message(span_warning(LANG("datum.42eb62df6a7382cf", null)))
 		playsound(target.my_atom, 'sound/effects/chemistry/catalyst.ogg', 50, TRUE)
 	else
-		target.my_atom.audible_message(span_warning(LANG("datum.be894d1e", null)))
+		target.my_atom.audible_message(span_warning(LANG("datum.be894d1edc1303fb", null)))
 
 	//remove inversening reagent based on total buffer removed
 	var/volume_to_transfer = amount - (amount * (1 - (conversion_buffer / (amount * 10))))

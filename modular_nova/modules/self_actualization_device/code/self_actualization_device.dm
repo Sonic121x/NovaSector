@@ -54,7 +54,7 @@
 /obj/machinery/self_actualization_device/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.f8e857fe", null)
+	. += LANG("obj.f8e857feac6a7884", null)
 
 	return .
 
@@ -90,20 +90,20 @@
 		occupant.forceMove(drop_location())
 		set_occupant(null)
 		return FALSE
-	to_chat(occupant, span_notice(LANG("obj.1d4849e6", list(src))))
+	to_chat(occupant, span_notice(LANG("obj.1d4849e619e6913a", list(src))))
 	addtimer(CALLBACK(src, PROC_REF(get_consent)), 4 SECONDS, TIMER_OVERRIDE|TIMER_UNIQUE)
 	update_appearance()
 
 /obj/machinery/self_actualization_device/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.6b9564d4", list(display_power(active_power_usage), DisplayTimeText(processing_time))))
+	. += span_info(LANG("obj.6b9564d4e0dddf8a", list(display_power(active_power_usage), DisplayTimeText(processing_time))))
 
 	if(processing)
-		. += span_notice(LANG("obj.5510129c", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, sad_processing_time), 2))))
+		. += span_notice(LANG("obj.5510129cab92578c", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, sad_processing_time), 2))))
 	else
-		. += span_notice(LANG("obj.97f46bd1", list(state_open ? "close" : "open")))
+		. += span_notice(LANG("obj.97f46bd188c4d6c8", list(state_open ? "close" : "open")))
 		if(!isnull(occupant) && !state_open)
-			. += span_notice(LANG("obj.ff1221b3", null))
+			. += span_notice(LANG("obj.ff1221b3467849ff", null))
 
 /obj/machinery/self_actualization_device/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(!processing)
@@ -126,7 +126,7 @@
 	if(!powered() || !occupant || state_open || processing)
 		return CLICK_ACTION_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.c6842664", list(user, src))), span_notice(LANG("obj.85e7cc68", list(src))))
+	user.visible_message(span_notice(LANG("obj.c6842664dc0d26dc", list(user, src))), span_notice(LANG("obj.85e7cc687a81a65b", list(src))))
 	get_consent()
 	return CLICK_ACTION_SUCCESS
 
@@ -169,21 +169,21 @@
 		return
 
 	playsound(loc, 'sound/machines/chime.ogg', 30, FALSE)
-	say(LANG("obj.c1970230", null))
+	say(LANG("obj.c197023035b9be8c", null))
 	var/mob/living/carbon/human/human_occupant = occupant
 	if(!isnull(human_occupant.ckey) && isnull(human_occupant.client)) // player mob, currently disconnected
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-		say(LANG("obj.290ba6cf", null))
+		say(LANG("obj.290ba6cf33b04801", null))
 		return
 
 	player_consent = WAITING_PLAYER
 	update_appearance()
 
 	// defaults to rejecting it unless specified otherwise
-	if(tgui_alert(occupant, LANG("obj.849efc77", null), LANG("obj.b77e9c60", null), list("Yes", "No"), timeout = 10 SECONDS) == "Yes")
+	if(tgui_alert(occupant, LANG("obj.849efc777f2c2ba8", null), LANG("obj.b77e9c6037c3333e", null), list("Yes", "No"), timeout = 10 SECONDS) == "Yes")
 		player_consent = CONSENT_GRANTED
-		say(LANG("obj.d44835f5", list(DisplayTimeText(processing_time), display_power(active_power_usage))))
-		to_chat(occupant, span_warning(LANG("obj.233cda98", list(DisplayTimeText(processing_time)))))
+		say(LANG("obj.d44835f5666f8fc8", list(DisplayTimeText(processing_time), display_power(active_power_usage))))
+		to_chat(occupant, span_warning(LANG("obj.233cda98b945e47a", list(DisplayTimeText(processing_time)))))
 		set_light(l_range = 1.5, l_power = 1.2, l_on = TRUE)
 		sound_loop.start()
 		COOLDOWN_START(src, sad_processing_time, processing_time)
@@ -193,7 +193,7 @@
 	else
 		player_consent = NO_CONSENT
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-		say(LANG("obj.5618fe74", null))
+		say(LANG("obj.5618fe74191b092d", null))
 		update_appearance()
 
 /// Ejects the occupant after asking them if they want to accept the rejuvenation. If yes, they exit as their preferences character.
@@ -215,12 +215,12 @@
 		real_ai_player = old_ai_brain.mainframe
 		var/datum/preferences/check_prefs = patient.client?.prefs
 		if(!istype(check_prefs))
-			say(LANG("obj.934ec61f", null))
+			say(LANG("obj.934ec61f5cd59c26", null))
 			playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 			open_machine()
 			return
 		if(!is_augmented_enough(check_prefs))
-			say(LANG("obj.736dad98", null))
+			say(LANG("obj.736dad9888c06fdd", null))
 			playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 			open_machine()
 			return
@@ -243,7 +243,7 @@
 		Original Name: [original_name], New Name: [patient.dna.real_name]. \
 		This may be a false positive from changing from a humanized monkey into a character, so be careful.")
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
-	say(LANG("obj.1b818e47", null))
+	say(LANG("obj.1b818e47021a5f69", null))
 
 	open_machine()
 
@@ -264,7 +264,7 @@
 		victim_living.apply_damage(0.10 * damage, BURN, BODY_ZONE_R_LEG, wound_bonus = 14)
 		victim_living.apply_damage(0.10 * damage, BURN, BODY_ZONE_L_ARM, wound_bonus = 14)
 		victim_living.apply_damage(0.10 * damage, BURN, BODY_ZONE_R_ARM, wound_bonus = 14)
-		victim_living.visible_message(span_warning(LANG("obj.403793f7", list(src, victim_living))), span_danger(LANG("obj.35d55cee", list(src))))
+		victim_living.visible_message(span_warning(LANG("obj.403793f7807ec14a", list(src, victim_living))), span_danger(LANG("obj.35d55ceee0db8d79", list(src))))
 
 	open_machine()
 
@@ -274,34 +274,34 @@
 		return
 
 	if(COOLDOWN_TIMELEFT(src, sad_processing_time) < BREAKOUT_TIME)
-		to_chat(user, span_warning(LANG("obj.493da65a", null)))
+		to_chat(user, span_warning(LANG("obj.493da65abe3fa762", null)))
 		return
 
-	to_chat(user, span_notice(LANG("obj.58177e73", null)))
+	to_chat(user, span_notice(LANG("obj.58177e73a518ae0f", null)))
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice(LANG("obj.485787b2", list(user, src))), \
-		span_notice(LANG("obj.43ad33b1", list(src, DisplayTimeText(BREAKOUT_TIME)))), \
-		span_hear(LANG("obj.a1d9c573", list(src))))
+	user.visible_message(span_notice(LANG("obj.485787b2b8d67ec7", list(user, src))), \
+		span_notice(LANG("obj.43ad33b141e25411", list(src, DisplayTimeText(BREAKOUT_TIME)))), \
+		span_hear(LANG("obj.a1d9c5733c600b1c", list(src))))
 	user.emote("scream")
 
 	if(do_after(user, BREAKOUT_TIME, target = src))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || state_open)
 			return
-		user.visible_message(span_warning(LANG("obj.37696909", list(user, src))), \
-			span_notice(LANG("obj.81c31f6b", list(src))))
+		user.visible_message(span_warning(LANG("obj.37696909131e91b5", list(user, src))), \
+			span_notice(LANG("obj.81c31f6b9b00625a", list(src))))
 		eject_old_you(damaged_goods = TRUE)
 
 /obj/machinery/self_actualization_device/screwdriver_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		to_chat(user, span_warning(LANG("obj.29741746", list(src))))
+		to_chat(user, span_warning(LANG("obj.297417466fc8e075", list(src))))
 		return NONE
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/self_actualization_device/crowbar_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		to_chat(user, span_warning(LANG("obj.29741746", list(src))))
+		to_chat(user, span_warning(LANG("obj.297417466fc8e075", list(src))))
 		return NONE
 
 	return default_deconstruction_crowbar(user, tool)

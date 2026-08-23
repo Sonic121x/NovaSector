@@ -14,28 +14,28 @@
 	if(obj_flags & EMAGGED || . & EMP_PROTECT_SELF)
 		return
 	obj_flags |= EMAGGED
-	desc = LANG("obj.74b3f8d1", list(desc))
+	desc = LANG("obj.74b3f8d1fcf36ecd", list(desc))
 
 /obj/item/clothing/glasses/hud/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, LANG("obj.818a8b78", null))
-	desc = LANG("obj.74b3f8d1", list(desc))
+	balloon_alert(user, LANG("obj.818a8b789472b58c", null))
+	desc = LANG("obj.74b3f8d1fcf36ecd", list(desc))
 	return TRUE
 
 /obj/item/clothing/glasses/hud/suicide_act(mob/living/user)
 	if(user.is_blind())
 		return SHAME
 	var/mob/living/living_user = user
-	user.visible_message(span_suicide(LANG("obj.32039496", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.32039496d5a2a916", list(user, src, user.p_theyre()))))
 	if(living_user.get_organ_loss(ORGAN_SLOT_BRAIN) >= BRAIN_DAMAGE_SEVERE)
 		var/mob/thing = pick((/mob in view()) - user)
 		if(thing)
-			user.say(LANG("obj.e895b4bc", null))
+			user.say(LANG("obj.e895b4bc9e2aef16", null))
 			user.pointed(thing)
 		else
-			user.say(LANG("obj.da6d9fce", null))
+			user.say(LANG("obj.da6d9fce7ad90fad", null))
 	return OXYLOSS
 
 /obj/item/clothing/glasses/hud/equipped(mob/living/user, slot)
@@ -47,13 +47,13 @@
 		display_active = FALSE
 		for(var/hud_trait in clothing_traits)
 			REMOVE_CLOTHING_TRAIT(eye_owner, hud_trait)
-		balloon_alert(eye_owner, LANG("obj.8f3da789", null))
+		balloon_alert(eye_owner, LANG("obj.8f3da78925e2f1b3", null))
 		return
 
 	display_active = TRUE
 	for(var/hud_trait in clothing_traits)
 		ADD_CLOTHING_TRAIT(eye_owner, hud_trait)
-	balloon_alert(eye_owner, LANG("obj.435a2369", null))
+	balloon_alert(eye_owner, LANG("obj.435a2369c33cffae", null))
 
 /obj/item/clothing/glasses/hud/health
 	name = "health scanner HUD"

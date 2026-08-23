@@ -3776,6 +3776,7 @@ Zombies have long lasting beef with Botanists. Their last incident involving a l
 \n{0} seem{1} hardier against the void of space.
 access denied!
 flaps its wings!
+fully healed!
 is crumbling!
 is secured and ready to be used!
 is split open, causing your internal organs to spill out!
@@ -3787,6 +3788,8 @@ nothing happens!
 on cooldown!
 pecks at the ground!
 shakes its feathers!
+stammers softly for a moment before choking on something!
+stumbles slightly, turning a bright red!
 sweeps its tail!
 we must sadly announce that the would-be winner has also been disqualified. Such bad showmanship!
 you were a doctor on one of Nanotrasen's space stations, but you left behind that damn corporation's tyranny and everything it stood for. From a metaphorical hell to a literal one, you find yourself nonetheless missing the recycled air and warm floors of what you left behind... but you'd still rather be here than there.

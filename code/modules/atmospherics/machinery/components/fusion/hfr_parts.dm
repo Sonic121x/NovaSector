@@ -30,7 +30,7 @@
 
 /obj/machinery/atmospherics/components/unary/hypertorus/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.f6d67ef1", list(src)))
+	. += span_notice(LANG("obj.f6d67ef1cb5c8a4f", list(src)))
 
 /obj/machinery/atmospherics/components/unary/hypertorus/screwdriver_act(mob/living/user, obj/item/tool)
 	return fusion_started ? NONE : default_deconstruction_screwdriver(user, tool)
@@ -43,9 +43,9 @@
 		return FALSE
 	if(user.combat_mode)
 		return FALSE
-	balloon_alert(user, LANG("obj.b52342a8", null))
+	balloon_alert(user, LANG("obj.b52342a8e93a2ba2", null))
 	if(tool.use_tool(src, user, 10 SECONDS, volume=30))
-		balloon_alert(user, LANG("obj.65ced1e8", null))
+		balloon_alert(user, LANG("obj.65ced1e8b5b56733", null))
 		cracked = FALSE
 		update_appearance(UPDATE_ICON)
 
@@ -111,7 +111,7 @@
 
 /obj/machinery/hypertorus/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.f6d67ef1", list(src)))
+	. += span_notice(LANG("obj.f6d67ef1cb5c8a4f", list(src)))
 
 /obj/machinery/hypertorus/screwdriver_act(mob/living/user, obj/item/tool)
 	return fusion_started ? NONE : default_deconstruction_screwdriver(user, tool)
@@ -157,7 +157,7 @@
 	var/obj/machinery/atmospherics/components/unary/hypertorus/core/centre = locate() in T
 
 	if(!centre || !centre.check_part_connectivity())
-		to_chat(user, span_notice(LANG("obj.6548039c", null)))
+		to_chat(user, span_notice(LANG("obj.6548039c5f610628", null)))
 		return TRUE
 
 	connected_core = centre
@@ -175,7 +175,7 @@
 			ui = new(user, src, "Hypertorus", name)
 			ui.open()
 	else
-		to_chat(user, span_notice(LANG("obj.8876470c", null)))
+		to_chat(user, span_notice(LANG("obj.8876470cb834dd42", null)))
 		ui.close()
 
 /obj/machinery/hypertorus/interface/proc/gas_list_to_gasid_list(list/gas_list)

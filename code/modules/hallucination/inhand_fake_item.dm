@@ -115,7 +115,7 @@
 		// Yes this can break if someone changse grenade icon stuff
 		hallucinated_item.icon_state = "[hallucinated_item.icon_state]_active"
 		hallucinator.playsound_local(get_turf(hallucinator), 'sound/items/weapons/armbomb.ogg', 60, TRUE)
-		to_chat(hallucinator, span_warning(LANG("datum.35c64332", list(hallucinated_item))))
+		to_chat(hallucinator, span_warning(LANG("datum.35c643323bb92453", list(hallucinated_item))))
 
 	return hallucinated_item
 

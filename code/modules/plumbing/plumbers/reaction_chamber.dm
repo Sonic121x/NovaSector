@@ -102,7 +102,7 @@
 
 	switch(action)
 		if("add")
-			var/selected_reagent = tgui_input_list(ui.user, LANG("obj.b9a56639", null), LANG("obj.c5160de6", null), GLOB.name2reagent)
+			var/selected_reagent = tgui_input_list(ui.user, LANG("obj.b9a56639842f0c67", null), LANG("obj.c5160de6a7b5b7a3", null), GLOB.name2reagent)
 			if(!selected_reagent)
 				return FALSE
 			if(QDELETED(ui) || ui.status != UI_INTERACTIVE)

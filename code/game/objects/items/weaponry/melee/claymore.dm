@@ -44,7 +44,7 @@
 	AddComponent(/datum/component/alternative_sharpness, SHARP_POINTY, alt_continuous, alt_simple, -15)
 
 /obj/item/claymore/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.d209d171", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.d209d171d754d50b", list(user, src, user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
@@ -125,7 +125,7 @@
 /obj/item/claymore/highlander/Destroy()
 	if(nuke_disk)
 		nuke_disk.forceMove(get_turf(src))
-		nuke_disk.visible_message(span_warning(LANG("obj.848a89cd", null)))
+		nuke_disk.visible_message(span_warning(LANG("obj.848a89cd2bdc6dd4", null)))
 		nuke_disk = null
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -142,7 +142,7 @@
 
 /obj/item/claymore/highlander/pickup(mob/living/user)
 	. = ..()
-	to_chat(user, span_notice(LANG("obj.706eae0b", null)))
+	to_chat(user, span_notice(LANG("obj.706eae0b3c5d3eee", null)))
 	user.ignore_slowdown(HIGHLANDER_TRAIT)
 	user.add_stun_absorption(
 		source = HIGHLANDER_TRAIT,
@@ -158,16 +158,16 @@
 
 /obj/item/claymore/highlander/examine(mob/user)
 	. = ..()
-	. += LANG("obj.05dbe464", list(!notches ? "nothing" : "[notches] notches"))
+	. += LANG("obj.05dbe464a0aa410c", list(!notches ? "nothing" : "[notches] notches"))
 	if(nuke_disk)
-		. += span_boldwarning(LANG("obj.fc787447", null))
+		. += span_boldwarning(LANG("obj.fc787447cae3788f", null))
 
 /obj/item/claymore/highlander/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(!QDELETED(target) && target.stat == DEAD && target.mind?.has_antag_datum(/datum/antagonist/highlander))
 		user.fully_heal() //STEAL THE LIFE OF OUR FALLEN FOES
 		add_notch(user)
-		target.visible_message(span_warning(LANG("obj.da2ac4ba", list(target, user))), span_userdanger(LANG("obj.222a6ded", null)))
+		target.visible_message(span_warning(LANG("obj.da2ac4babf1f8d6c", list(target, user))), span_userdanger(LANG("obj.222a6dedd2beed0a", null)))
 		target.investigate_log("has been dusted by a highlander claymore.", INVESTIGATE_DEATHS)
 		target.dust()
 
@@ -182,9 +182,9 @@
 			closest_victim = siliscot
 
 	if(!closest_victim)
-		to_chat(user, span_warning(LANG("obj.56c464cd", list(src))))
+		to_chat(user, span_warning(LANG("obj.56c464cd0cff1afd", list(src))))
 		return
-	to_chat(user, span_danger(LANG("obj.fd65079b", list(src, dir2text(get_dir(user, closest_victim))))))
+	to_chat(user, span_danger(LANG("obj.fd65079bb364848a", list(src, dir2text(get_dir(user, closest_victim))))))
 
 /obj/item/claymore/highlander/IsReflect()
 	return 1 //YOU THINK YOUR PUNY LASERS CAN STOP ME?
@@ -195,44 +195,44 @@
 	var/new_name = name
 	switch(notches)
 		if(1)
-			to_chat(user, span_notice(LANG("obj.6f471bdf", list(src))))
-			to_chat(user, span_warning(LANG("obj.6c66a8a6", null)))
+			to_chat(user, span_notice(LANG("obj.6f471bdf604091ba", list(src))))
+			to_chat(user, span_warning(LANG("obj.6c66a8a6a6b18f48", null)))
 			new_name = "notched claymore"
 		if(2)
-			to_chat(user, span_notice(LANG("obj.178f7da6", null)))
+			to_chat(user, span_notice(LANG("obj.178f7da6e60498a9", null)))
 			new_name = "double-notched claymore"
 			add_atom_colour(rgb(255, 235, 235), ADMIN_COLOUR_PRIORITY)
 		if(3)
-			to_chat(user, span_notice(LANG("obj.fccca70a", null)))
+			to_chat(user, span_notice(LANG("obj.fccca70a859ae86d", null)))
 			new_name = "triple-notched claymore"
 			add_atom_colour(rgb(255, 215, 215), ADMIN_COLOUR_PRIORITY)
 		if(4)
-			to_chat(user, span_notice(LANG("obj.c925539e", null)))
+			to_chat(user, span_notice(LANG("obj.c925539eb95c8223", null)))
 			new_name = "many-notched claymore"
 			add_atom_colour(rgb(255, 195, 195), ADMIN_COLOUR_PRIORITY)
 		if(5)
-			to_chat(user, span_bolddanger(LANG("obj.2a8b29d8", null)))
+			to_chat(user, span_bolddanger(LANG("obj.2a8b29d87d25c75d", null)))
 			new_name = "battle-tested claymore"
 			add_atom_colour(rgb(255, 175, 175), ADMIN_COLOUR_PRIORITY)
 		if(6)
-			to_chat(user, span_bolddanger(LANG("obj.ebe67399", null)))
+			to_chat(user, span_bolddanger(LANG("obj.ebe673993faa4d84", null)))
 			new_name = "battle-scarred claymore"
 			add_atom_colour(rgb(255, 155, 155), ADMIN_COLOUR_PRIORITY)
 		if(7)
-			to_chat(user, span_bolddanger(LANG("obj.2a4f3f34", null)))
+			to_chat(user, span_bolddanger(LANG("obj.2a4f3f3413f3572b", null)))
 			new_name = "vicious claymore"
 			add_atom_colour(rgb(255, 135, 135), ADMIN_COLOUR_PRIORITY)
 		if(8)
-			to_chat(user, span_userdanger(LANG("obj.e9c6a7fd", null)))
+			to_chat(user, span_userdanger(LANG("obj.e9c6a7fddc42fa44", null)))
 			new_name = "bloodthirsty claymore"
 			add_atom_colour(rgb(255, 115, 115), ADMIN_COLOUR_PRIORITY)
 		if(9)
-			to_chat(user, span_userdanger(LANG("obj.568cd39c", null)))
+			to_chat(user, span_userdanger(LANG("obj.568cd39c1af899e3", null)))
 			new_name = "gore-stained claymore"
 			add_atom_colour(rgb(255, 95, 95), ADMIN_COLOUR_PRIORITY)
 		if(10)
-			user.visible_message(span_warning(LANG("obj.6a7089f3", list(user))), \
-			span_userdanger(LANG("obj.7a3d4b6b", null)))
+			user.visible_message(span_warning(LANG("obj.6a7089f359d3f35a", list(user))), \
+			span_userdanger(LANG("obj.7a3d4b6b2607177d", null)))
 			new_name = "GORE-DRENCHED CLAYMORE OF [pick("THE WHIMSICAL SLAUGHTER", "A THOUSAND SLAUGHTERED CATTLE", "GLORY AND VALHALLA", "ANNIHILATION", "OBLITERATION")]"
 			icon_state = "claymore_gold"
 			inhand_icon_state = "cultblade"

@@ -349,7 +349,7 @@
 		return
 	var/mob/living/siphoned = target
 	siphoned.mob_mood.adjust_sanity(-25)
-	to_chat(siphoned, span_warning(LANG("obj.60eb2f5f", null)))
+	to_chat(siphoned, span_warning(LANG("obj.60eb2f5f302cc36f", null)))
 
 /obj/projectile/beam/emitter/hitscan/magnetic
 	name = "magnetogenerative beam"

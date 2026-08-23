@@ -14,7 +14,7 @@
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/grille/grille = locate(/obj/structure/grille) in get_turf(target)
 		if(grille?.is_shocked())
-			target.balloon_alert(tapper, LANG("datum.b5c33e7b", null))
+			target.balloon_alert(tapper, LANG("datum.b5c33e7b11c3a03f", null))
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 
 		var/obj/structure/window/window = target
@@ -22,7 +22,7 @@
 	else if(istype(target, /obj/structure/grille))
 		var/obj/structure/grille/grille = target
 		if(grille.is_shocked())
-			target.balloon_alert(tapper, LANG("datum.b5c33e7b", null))
+			target.balloon_alert(tapper, LANG("datum.b5c33e7b11c3a03f", null))
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 
 		grille.temporary_shatter()

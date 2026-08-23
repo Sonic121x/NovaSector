@@ -90,30 +90,30 @@
 /obj/machinery/mounted_machine_gun/examine(mob/user)
 	. = ..()
 	if(ammo_box)
-		. += span_notice(LANG("obj.eb2283b9", list(ammo_box, ammo_box.ammo_count())))
+		. += span_notice(LANG("obj.eb2283b933c75d2c", list(ammo_box, ammo_box.ammo_count())))
 	else
-		. += span_danger(LANG("obj.83b4bcfe", null))
-	. += span_notice(LANG("obj.03b19a43", list(cover_open ? "open" : "closed", cover_open ? "close" : "open")))
-	. += span_notice(LANG("obj.137b003e", null))
+		. += span_danger(LANG("obj.83b4bcfe4bfad23a", null))
+	. += span_notice(LANG("obj.03b19a4300c5dad9", list(cover_open ? "open" : "closed", cover_open ? "close" : "open")))
+	. += span_notice(LANG("obj.137b003eadfd855f", null))
 	switch(barrel_heat)
 		if(BARREL_HEAT_THRESHOLD_LOW to BARREL_HEAT_THRESHOLD_HIGH)
-			. += span_warning(LANG("obj.7a5ef9bd", null))
+			. += span_warning(LANG("obj.7a5ef9bdc4c4641d", null))
 		if(BARREL_HEAT_THRESHOLD_HIGH to INFINITY)
-			. += span_warning(LANG("obj.717ab7f7", null))
+			. += span_warning(LANG("obj.717ab7f7f35efb9e", null))
 	if(overheated)
-		. += span_danger(LANG("obj.bf3ee46b", null))
+		. += span_danger(LANG("obj.bf3ee46bc84e2309", null))
 
 /obj/machinery/mounted_machine_gun/welder_act(mob/living/user, obj/item/tool)
 	if(user.combat_mode)
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, LANG("obj.20fd4e5f", null))
+		balloon_alert(user, LANG("obj.20fd4e5fc4308a43", null))
 		return TRUE
-	balloon_alert_to_viewers(LANG("obj.b52342a8", null))
+	balloon_alert_to_viewers(LANG("obj.b52342a8e93a2ba2", null))
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = REPAIR_WELDER_COST, volume = 100))
 		return TRUE
 	update_integrity(max_integrity)
-	balloon_alert_to_viewers(LANG("obj.ac33e326", null))
+	balloon_alert_to_viewers(LANG("obj.ac33e326acea2a3f", null))
 
 /// Undeploying, for when you want to move your big dakka around
 /obj/machinery/mounted_machine_gun/wrench_act(mob/living/user, obj/item/wrench/used_wrench)
@@ -124,10 +124,10 @@
 	if(!ishuman(user))
 		return TRUE
 	if(ammo_box)
-		balloon_alert_to_viewers(LANG("obj.bd9a7a4f", null))
+		balloon_alert_to_viewers(LANG("obj.bd9a7a4fff6fcc58", null))
 		return TRUE
 	used_wrench.play_tool_sound(user)
-	balloon_alert_to_viewers(LANG("obj.d8917abe", null))
+	balloon_alert_to_viewers(LANG("obj.d8917abe3239fc3a", null))
 	if(!do_after(user, undeploy_time))
 		return TRUE
 	new undeployed_type(get_turf(src))
@@ -176,7 +176,7 @@
 	if(!can_interact(user))
 		return
 	if(!cover_open)
-		balloon_alert(user, LANG("obj.252eb885", null))
+		balloon_alert(user, LANG("obj.252eb885a049a2db", null))
 		return
 	if(!ammo_box)
 		return
@@ -187,24 +187,24 @@
 	if(!istype(tool, ammo_box_type))
 		return
 	if(ammo_box)
-		balloon_alert(user, LANG("obj.e79a422e", null))
+		balloon_alert(user, LANG("obj.e79a422e90aa6613", null))
 		return
 	ammo_box = tool
 	tool.forceMove(src)
 	playsound(src, 'modular_nova/modules/mounted_machine_gun/sound/insert_ammobox.ogg', 100)
-	balloon_alert(user, LANG("obj.417a3398", null))
+	balloon_alert(user, LANG("obj.417a33986a696112", null))
 
 /obj/machinery/mounted_machine_gun/proc/remove_ammo_box(mob/living/user)
 	ammo_box.forceMove(drop_location())
 	user.put_in_hands(ammo_box)
 	ammo_box = null
 	playsound(src, 'modular_nova/modules/mounted_machine_gun/sound/remove_ammobox.ogg', 100)
-	balloon_alert(user, LANG("obj.b32330a3", null))
+	balloon_alert(user, LANG("obj.b32330a3cdd8a3b3", null))
 	update_appearance()
 
 /obj/machinery/mounted_machine_gun/proc/toggle_cover(mob/user)
 	cover_open = !cover_open
-	balloon_alert(user, LANG("obj.103661ca", list(cover_open ? "opened" : "closed")))
+	balloon_alert(user, LANG("obj.103661ca36062ef4", list(cover_open ? "opened" : "closed")))
 	playsound(src, cover_open ? 'modular_nova/modules/mounted_machine_gun/sound/open_lid.ogg' : 'modular_nova/modules/mounted_machine_gun/sound/close_lid.ogg', 100)
 
 /// Registers all the required signals and sets up the client to work with the turret.
@@ -352,10 +352,10 @@
 		drop_bolt()
 		fire_result = FALSE
 	if(cover_open)
-		balloon_alert_to_viewers(LANG("obj.b726018f", null))
+		balloon_alert_to_viewers(LANG("obj.b726018fdc5c7891", null))
 		fire_result = FALSE
 	if(overheated)
-		balloon_alert_to_viewers(LANG("obj.9edb09f5", null))
+		balloon_alert_to_viewers(LANG("obj.9edb09f5d4161db2", null))
 		fire_result = FALSE
 	if(!fire_result)
 		playsound(src, 'sound/items/weapons/gun/general/dry_fire.ogg', 50, TRUE)
@@ -468,7 +468,7 @@
 		browning.reset_overheat()
 		browning.barrel_heat -= clamp(browning.barrel_heat, 0, browning.barrel_heat_per_shot * 7)
 		playsound(browning, 'sound/effects/wounds/sizzle2.ogg', 100)
-		browning.balloon_alert_to_viewers(LANG("datum.320d47de", null))
+		browning.balloon_alert_to_viewers(LANG("datum.320d47de52931790", null))
 
 #undef BARREL_HEAT_THRESHOLD_LOW
 #undef BARREL_HEAT_THRESHOLD_HIGH

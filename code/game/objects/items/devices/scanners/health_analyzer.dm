@@ -46,10 +46,10 @@
 /obj/item/healthanalyzer/examine(mob/user)
 	. = ..()
 	if(src.mode != SCANNER_NO_MODE)
-		. += span_notice(LANG("obj.70d11c6e", list(src)))
+		. += span_notice(LANG("obj.70d11c6e331606e0", list(src)))
 
 /obj/item/healthanalyzer/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.1cd52c32", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.1cd52c32807c3847", list(user, user.p_them(), src, user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/healthanalyzer/attack_self(mob/user)
@@ -59,9 +59,9 @@
 	scanmode = (scanmode + 1) % SCANMODE_COUNT
 	switch(scanmode)
 		if(SCANMODE_HEALTH)
-			to_chat(user, span_notice(LANG("obj.7ad4b9bb", null)))
+			to_chat(user, span_notice(LANG("obj.7ad4b9bb70c1c663", null)))
 		if(SCANMODE_WOUND)
-			to_chat(user, span_notice(LANG("obj.7ed4e387", null)))
+			to_chat(user, span_notice(LANG("obj.7ed4e3873e23477f", null)))
 
 /obj/item/healthanalyzer/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isliving(interacting_with))
@@ -77,8 +77,8 @@
 	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
 		var/turf/scan_turf = get_turf(user)
 		user.visible_message(
-			span_warning(LANG("obj.2316cc3b", list(user, scan_turf))),
-			span_notice(LANG("obj.f9872b0a", list(scan_turf))),
+			span_warning(LANG("obj.2316cc3b714ee434", list(user, scan_turf))),
+			span_notice(LANG("obj.f9872b0aea30650f", list(scan_turf))),
 		)
 
 		var/floor_text = "<span class='info'>Analyzing results for <b>[scan_turf]</b> ([round_timestamp()]):</span><br>"
@@ -92,11 +92,11 @@
 		return
 
 	if(HAS_TRAIT(M, TRAIT_REQUIRED_ADV_HEALTH_SCANNER) && scanpower < SCANPOWER_ADVANCED)
-		to_chat(user, span_info(LANG("obj.58992497", list(M))))
+		to_chat(user, span_info(LANG("obj.58992497079b19e2", list(M))))
 		return
 
-	user.visible_message(span_notice(LANG("obj.e9abb56d", list(user, M))))
-	balloon_alert(user, LANG("obj.2cbcf779", null))
+	user.visible_message(span_notice(LANG("obj.e9abb56d7bbcc95b", list(user, M))))
+	balloon_alert(user, LANG("obj.2cbcf7799aed9199", null))
 	playsound(user.loc, 'sound/items/healthanalyzer.ogg', 50)
 
 	var/readability_check = user.can_read(src) // NOVA EDIT CHANGE - Blind people can analyze again - ORIGINAL: var/readability_check = user.can_read(src) && !user.is_blind()
@@ -225,9 +225,9 @@
 
 		var/datum/physiology/physiology = humantarget.physiology
 		if (physiology.brute_mod != 1)
-			render_list += "<span class='danger ml-1'>[LANG("obj.d01c84c0", list((physiology.brute_mod) * 100))]</span>\n" // NOVA EDIT - I18N
+			render_list += "<span class='danger ml-1'>[LANG("obj.d01c84c04fe00692", list((physiology.brute_mod) * 100))]</span>\n" // NOVA EDIT - I18N
 		if (physiology.burn_mod != 1)
-			render_list += "<span class='danger ml-1'>[LANG("obj.6b92d557", list((physiology.burn_mod) * 100))]</span>\n" // NOVA EDIT - I18N
+			render_list += "<span class='danger ml-1'>[LANG("obj.6b92d55788b9c654", list((physiology.burn_mod) * 100))]</span>\n" // NOVA EDIT - I18N
 	// NOVA EDIT ADDITION END
 	// Body part damage report
 	if(iscarbon(target))
@@ -476,9 +476,9 @@
 		// NOVA EDIT CHANGE START - I18N: 整块改 LANG。原为逐行拼插值，整串非目录键、AC 只会在半句
 		// 处替换。ORIGINAL: 见 git 历史（"<b>Warning: [disease.form] detected</b>" 起的续行块）。
 		render_list += "<span class='alert ml-1'>\
-			[conditional_tooltip("<b>[LANG("obj.91316a71", list(disease.form))]</b>", LANG("obj.42f2953a", list(/datum/reagent/medicine/spaceacillin::name)), tochat)]<br>\
+			[conditional_tooltip("<b>[LANG("obj.91316a71286b9e71", list(disease.form))]</b>", LANG("obj.42f2953affea6965", list(/datum/reagent/medicine/spaceacillin::name)), tochat)]<br>\
 			<div class='ml-2'>\
-			[LANG("obj.f9ef6cb2", list(disease.name, disease.spread_text, disease.stage, disease.max_stages, cure_text))]</div>\
+			[LANG("obj.f9ef6cb2c0edc742", list(disease.name, disease.spread_text, disease.stage, disease.max_stages, cure_text))]</div>\
 			</span>"
 		// NOVA EDIT CHANGE END
 	// NOVA EDIT ADDITION - Mutant stuff + death consequences quirk
@@ -507,13 +507,13 @@
 /obj/item/healthanalyzer/click_ctrl_shift(mob/user)
 	. = ..()
 	if(!LAZYLEN(last_scan_text))
-		balloon_alert(user, LANG("obj.e9bab894", null))
+		balloon_alert(user, LANG("obj.e9bab8942f6e3e81", null))
 		return
 	if(scanner_busy)
-		balloon_alert(user, LANG("obj.0a57825b", null))
+		balloon_alert(user, LANG("obj.0a57825b64ade85f", null))
 		return
 	scanner_busy = TRUE
-	balloon_alert(user, LANG("obj.6a68c3d7", null))
+	balloon_alert(user, LANG("obj.6a68c3d7638f1ac2", null))
 	addtimer(CALLBACK(src, PROC_REF(print_report), user), 2 SECONDS)
 
 /obj/item/healthanalyzer/proc/print_report(mob/user)
@@ -529,7 +529,7 @@
 	report_paper.update_appearance()
 
 	user.put_in_hands(report_paper)
-	balloon_alert(user, LANG("obj.f9941788", null))
+	balloon_alert(user, LANG("obj.f994178879c12924", null))
 
 	resolve_patient_eligibility(report_paper, user)
 	report_text = list()
@@ -643,7 +643,7 @@
 			if(istype(quirky, /datum/quirk/item_quirk/allergic))
 				var/datum/quirk/item_quirk/allergic/allergies_quirk = quirky
 				var/allergies = allergies_quirk.allergy_string
-				render_list += "<span class='alert ml-1'>[LANG("obj.3baac8ac", null)]</span><br>" // NOVA EDIT - I18N
+				render_list += "<span class='alert ml-1'>[LANG("obj.3baac8acac2e44a5", null)]</span><br>" // NOVA EDIT - I18N
 				render_list += "<span class='alert ml-2'>[allergies]</span><br>"
 
 		// we handled the last <br> so we don't need handholding
@@ -695,7 +695,7 @@
 			if (scanner.give_wound_treatment_bonus)
 				ADD_TRAIT(current_wound, TRAIT_WOUND_SCANNED, ANALYZER_TRAIT)
 				if(!advised)
-					to_chat(user, span_notice(LANG("_root.77738b07", list((length(wounded_part.wounds) || length(patient.get_wounded_bodyparts()) ) > 1 ? "various wounds" : "wound"))))
+					to_chat(user, span_notice(LANG("_root.77738b07ae57cdc4", list((length(wounded_part.wounds) || length(patient.get_wounded_bodyparts()) ) > 1 ? "various wounds" : "wound"))))
 					advised = TRUE
 		render_list += "</span>"
 
@@ -704,9 +704,9 @@
 			var/obj/item/healthanalyzer/simple/simple_scanner = scanner
 			// Only emit the cheerful scanner message if this scan came from a scanner
 			playsound(simple_scanner, 'sound/machines/ping.ogg', 50, FALSE)
-			to_chat(user, span_notice(LANG("_root.5d90facd", list(simple_scanner, patient))))
+			to_chat(user, span_notice(LANG("_root.5d90facdc7aafb44", list(simple_scanner, patient))))
 			simple_scanner.show_emotion(AID_EMOTION_HAPPY)
-		to_chat(user, LANG("_root.de87838d", null))
+		to_chat(user, LANG("_root.de87838d8996ce7d", null))
 	else
 		to_chat(user, custom_boxed_message("blue_box", jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
 		if(simple_scan)
@@ -737,7 +737,7 @@
 /obj/item/healthanalyzer/simple/attack_self(mob/user)
 	if(next_encouragement < world.time)
 		playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
-		to_chat(user, span_notice(LANG("obj.2d52a7f1", list(src, pick(encouragements)))))
+		to_chat(user, span_notice(LANG("obj.2d52a7f174abd03c", list(src, pick(encouragements)))))
 		next_encouragement = world.time + 10 SECONDS
 		show_emotion(AID_EMOTION_HAPPY)
 	else if(emotion != AID_EMOTION_ANGRY)
@@ -746,14 +746,14 @@
 		violence(user)
 
 /obj/item/healthanalyzer/simple/proc/greed_warning(mob/user)
-	to_chat(user, span_warning(LANG("obj.232b1012", list(src))))
+	to_chat(user, span_warning(LANG("obj.232b1012ac681159", list(src))))
 	show_emotion(AID_EMOTION_ANGRY)
 
 /obj/item/healthanalyzer/simple/proc/violence(mob/user)
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 	if(isliving(user))
 		var/mob/living/L = user
-		to_chat(L, span_warning(LANG("obj.f5a2025d", list(src))))
+		to_chat(L, span_warning(LANG("obj.f5a2025dcfa9b6f3", list(src))))
 		flick(icon_state + "_pinprick", src)
 		violence_damage(user)
 		user.dropItemToGround(src)
@@ -770,13 +770,13 @@
 
 	add_fingerprint(user)
 	user.visible_message(
-		span_notice(LANG("obj.2369a909", list(user, interacting_with, scan_for_what))),
-		span_notice(LANG("obj.3ff3ac73", list(interacting_with, scan_for_what))),
+		span_notice(LANG("obj.2369a9097ebbc9a8", list(user, interacting_with, scan_for_what))),
+		span_notice(LANG("obj.3ff3ac734f6f0c33", list(interacting_with, scan_for_what))),
 	)
 
 	if(!iscarbon(interacting_with))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
-		to_chat(user, span_notice(LANG("obj.7804b646", list(src, interacting_with))))
+		to_chat(user, span_notice(LANG("obj.7804b646e1faceaf", list(src, interacting_with))))
 		show_emotion(AI_EMOTION_SAD)
 		return ITEM_INTERACT_BLOCKING
 
@@ -861,14 +861,14 @@
 				var/datum/disease/advance/advanced_disease = disease
 				disease_cure = advanced_disease.generate_cure_text(1)
 			// NOVA EDIT CHANGE START - I18N: 同上，与 healthscan 共用同一批模板。
-			render += "<span class='alert ml-1'><b>[LANG("obj.91316a71", list(disease.form))]</b><br>\
-			<div class='ml-2'>[LANG("obj.f9ef6cb2", list(disease.name, disease.spread_text, disease.stage, disease.max_stages, disease_cure))]</div>\
+			render += "<span class='alert ml-1'><b>[LANG("obj.91316a71286b9e71", list(disease.form))]</b><br>\
+			<div class='ml-2'>[LANG("obj.f9ef6cb2c0edc742", list(disease.name, disease.spread_text, disease.stage, disease.max_stages, disease_cure))]</div>\
 			</span>"
 			// NOVA EDIT CHANGE END
 
 	if(!length(render))
 		playsound(scanner, 'sound/machines/ping.ogg', 50, FALSE)
-		to_chat(user, span_notice(LANG("_root.f44aa4bf", list(scanner, patient))))
+		to_chat(user, span_notice(LANG("_root.f44aa4bf4573835f", list(scanner, patient))))
 		scanner.emotion = AID_EMOTION_HAPPY
 	else
 		to_chat(user, span_notice(render.Join("")))
@@ -884,7 +884,7 @@
 /obj/item/paper/medical_report/examine(mob/user)
 	. = ..()
 	if(last_healthy_scanned_mob)
-		. += span_notice(LANG("obj.138779ea", null))
+		. += span_notice(LANG("obj.138779eafa9069f6", null))
 
 
 #undef SCANMODE_HEALTH

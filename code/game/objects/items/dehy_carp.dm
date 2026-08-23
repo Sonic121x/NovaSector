@@ -17,7 +17,7 @@
 	if(owner)
 		return ..()
 	add_fingerprint(user)
-	to_chat(user, span_notice(LANG("obj.e40ec5ea", list(src))))
+	to_chat(user, span_notice(LANG("obj.e40ec5eabdbabc36", list(src))))
 	owner = user
 	RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(owner_deleted))
 
@@ -25,8 +25,8 @@
 	if(swelling)
 		return
 	swelling = TRUE
-	desc = LANG("obj.c0c04da7", null)
-	visible_message(span_notice(LANG("obj.74d46365", list(src))))
+	desc = LANG("obj.c0c04da7f8eb3b0e", null)
+	visible_message(span_notice(LANG("obj.74d46365c5222225", list(src))))
 
 	//Animation
 	icon = 'icons/mob/simple/carp.dmi'
@@ -35,7 +35,7 @@
 	addtimer(CALLBACK(src, PROC_REF(spawn_carp)), 0.6 SECONDS)
 
 /obj/item/toy/plush/carpplushie/dehy_carp/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.dc1d8347", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.dc1d83474035f659", list(user, src, user.p_theyre()))))
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE)
 	if(!istype(user))
 		return BRUTELOSS

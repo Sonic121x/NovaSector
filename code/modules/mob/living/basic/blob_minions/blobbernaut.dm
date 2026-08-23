@@ -168,10 +168,10 @@
 	health = maxHealth / 2 // Start out injured to encourage not beelining away from the blob
 	SEND_SOUND(src, sound('sound/effects/blob/blobattack.ogg'))
 	SEND_SOUND(src, sound('sound/effects/blob/attackblob.ogg'))
-	to_chat(src, span_infoplain(LANG("mob.a21d6fed", list(span_cult_large("but will slowly die if not near the blob")))))
-	to_chat(src, span_infoplain(LANG("mob.231694ab", null)))
-	to_chat(src, span_infoplain(LANG("mob.58aa6186", list(blobstrain.color, blobstrain.name))))
-	to_chat(src, span_infoplain(LANG("mob.c86a2a17", list(blobstrain.color, blobstrain.name, blobstrain.shortdesc ? "[blobstrain.shortdesc]" : "[blobstrain.description]"))))
+	to_chat(src, span_infoplain(LANG("mob.a21d6fed51648d2c", list(span_cult_large("but will slowly die if not near the blob")))))
+	to_chat(src, span_infoplain(LANG("mob.231694ab18e79075", null)))
+	to_chat(src, span_infoplain(LANG("mob.58aa6186b1dbfb59", list(blobstrain.color, blobstrain.name))))
+	to_chat(src, span_infoplain(LANG("mob.c86a2a17b2d47fed", list(blobstrain.color, blobstrain.name, blobstrain.shortdesc ? "[blobstrain.shortdesc]" : "[blobstrain.description]"))))
 
 /// Called by our factory to inform us that it's not going to support us financially any more
 /mob/living/basic/blob_minion/blobbernaut/minion/on_factory_destroyed()

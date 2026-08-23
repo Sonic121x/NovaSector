@@ -26,10 +26,10 @@
 	powered = !powered
 	playsound(src, 'sound/effects/sparks/sparks4.ogg', 100, TRUE)
 	if(powered)
-		to_chat(user, span_notice(LANG("obj.303771eb", list(src))))
+		to_chat(user, span_notice(LANG("obj.303771eb31e94e69", list(src))))
 		switched_on()
 		return
-	to_chat(user, span_notice(LANG("obj.b0e072ec", list(src))))
+	to_chat(user, span_notice(LANG("obj.b0e072ec9233aa9f", list(src))))
 	switched_off()
 
 /obj/item/weldingtool/electric/switched_on(mob/user)
@@ -73,7 +73,7 @@
 
 /obj/item/weldingtool/electric/examine()
 	. = ..()
-	. += LANG("obj.3d8854c2", list(src, powered ? "powered" : "unpowered"))
+	. += LANG("obj.3d8854c23bddabfc", list(src, powered ? "powered" : "unpowered"))
 
 /obj/item/weldingtool/electric/update_icon_state()
 	if(powered)

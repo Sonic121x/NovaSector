@@ -269,7 +269,7 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 	SIGNAL_HANDLER
 
 	if(!burnt && human.bodytemperature >= 800 && human.fire_stacks > 0) //do not go into the extremely hot light. you will not survive
-		to_chat(human, span_danger(LANG("obj.7034ce72", null)))
+		to_chat(human, span_danger(LANG("obj.7034ce72568a41dd", null)))
 
 		burn_antennae()
 		human.update_body_parts()

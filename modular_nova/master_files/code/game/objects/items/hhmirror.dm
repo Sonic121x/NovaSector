@@ -32,7 +32,7 @@
 		return
 	var/mob/living/carbon/human/human_user = user
 
-	var/choice = input(user, LANG("obj.7dc7e71c", null), LANG("obj.02611a76", null)) as null|anything in list("name", "race", "gender", "hair", "eyes")
+	var/choice = input(user, LANG("obj.7dc7e71c4bdc9a00", null), LANG("obj.02611a7624bacd23", null)) as null|anything in list("name", "race", "gender", "hair", "eyes")
 
 	switch(choice)
 		if("name")
@@ -51,7 +51,7 @@
 
 		if("race")
 			var/newrace
-			var/racechoice = input(human_user, LANG("obj.d842af96", null), LANG("obj.838e24b8", null)) as null|anything in choosable_races
+			var/racechoice = input(human_user, LANG("obj.d842af96028ad702", null), LANG("obj.838e24b8bdb41a12", null)) as null|anything in choosable_races
 			newrace = GLOB.species_list[racechoice]
 
 			if(!newrace)
@@ -61,7 +61,7 @@
 			human_user.set_species(newrace, icon_update = 0)
 
 			if(HAS_TRAIT(human_user, TRAIT_USES_SKINTONES))
-				var/new_s_tone = input(user, LANG("obj.b1b6a2bb", null), LANG("obj.838e24b8", null))  as null|anything in GLOB.skin_tones
+				var/new_s_tone = input(user, LANG("obj.b1b6a2bbaacca8f0", null), LANG("obj.838e24b8bdb41a12", null))  as null|anything in GLOB.skin_tones
 
 				if(new_s_tone)
 					human_user.skin_tone = new_s_tone
@@ -78,7 +78,7 @@
 						human_user.dna.features[FEATURE_MUTANT_COLOR] = sanitize_hexcolor(new_mutantcolor)
 
 					else
-						to_chat(human_user, span_notice(LANG("obj.8ef8e412", null)))
+						to_chat(human_user, span_notice(LANG("obj.8ef8e4123b4a2a98", null)))
 
 			#undef MIN_MCOLOR_VALUE
 
@@ -91,16 +91,16 @@
 			if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 				return
 			if(human_user.gender == "male")
-				if(alert(human_user, LANG("obj.adcc2651", null), LANG("obj.15bc27b6", null), "Yes", "No") == "Yes")
+				if(alert(human_user, LANG("obj.adcc2651d6a1cbda", null), LANG("obj.15bc27b6fe454546", null), "Yes", "No") == "Yes")
 					human_user.gender = "female"
-					to_chat(human_user, span_notice(LANG("obj.bf69e8f9", null)))
+					to_chat(human_user, span_notice(LANG("obj.bf69e8f9cc5248cd", null)))
 				else
 					return
 
 			else
-				if(alert(human_user, LANG("obj.34851449", null), LANG("obj.15bc27b6", null), "Yes", "No") == "Yes")
+				if(alert(human_user, LANG("obj.34851449aa7f499f", null), LANG("obj.15bc27b6fe454546", null), "Yes", "No") == "Yes")
 					human_user.gender = "male"
-					to_chat(human_user, span_notice(LANG("obj.0d00cd24", null)))
+					to_chat(human_user, span_notice(LANG("obj.0d00cd2499e1453d", null)))
 				else
 					return
 			human_user.dna.update_ui_block(/datum/dna_block/identity/gender)
@@ -108,7 +108,7 @@
 			human_user.update_appearance(UPDATE_OVERLAYS) // (hulk male/female)
 
 		if("hair")
-			var/hairchoice = tgui_alert(human_user, LANG("obj.b8dd01cb", null), LANG("obj.1fc0c9f4", null), list("Style", "Color"))
+			var/hairchoice = tgui_alert(human_user, LANG("obj.b8dd01cbdb3720e1", null), LANG("obj.1fc0c9f4472e7c9d", null), list("Style", "Color"))
 			if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 				return
 			if(hairchoice == "Style") // So you just want to use a mirror then?
@@ -150,7 +150,7 @@
 	if(!charges == 0) // Later, should also have a lock
 		var/mob/living/carbon/human/human_user = user
 
-		var/choice = input(user, LANG("obj.7dc7e71c", null), LANG("obj.02611a76", null)) as null|anything in list("name", "gender", "hair", "eyes")
+		var/choice = input(user, LANG("obj.7dc7e71c4bdc9a00", null), LANG("obj.02611a7624bacd23", null)) as null|anything in list("name", "gender", "hair", "eyes")
 
 		switch(choice)
 			if("name")
@@ -173,16 +173,16 @@
 				if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 					return
 				if(human_user.gender == "male")
-					if(alert(human_user, LANG("obj.adcc2651", null), LANG("obj.15bc27b6", null), "Yes", "No") == "Yes")
+					if(alert(human_user, LANG("obj.adcc2651d6a1cbda", null), LANG("obj.15bc27b6fe454546", null), "Yes", "No") == "Yes")
 						human_user.gender = "female"
-						to_chat(human_user, span_notice(LANG("obj.bf69e8f9", null)))
+						to_chat(human_user, span_notice(LANG("obj.bf69e8f9cc5248cd", null)))
 					else
 						return
 
 				else
-					if(alert(human_user, LANG("obj.34851449", null), LANG("obj.15bc27b6", null), "Yes", "No") == "Yes")
+					if(alert(human_user, LANG("obj.34851449aa7f499f", null), LANG("obj.15bc27b6fe454546", null), "Yes", "No") == "Yes")
 						human_user.gender = "male"
-						to_chat(human_user, span_notice(LANG("obj.0d00cd24", null)))
+						to_chat(human_user, span_notice(LANG("obj.0d00cd2499e1453d", null)))
 					else
 						return
 				human_user.dna.update_ui_block(/datum/dna_block/identity/gender)
@@ -190,7 +190,7 @@
 				human_user.update_appearance(UPDATE_OVERLAYS) // (hulk male/female)
 
 			if("hair")
-				var/hairchoice = tgui_alert(human_user, LANG("obj.b8dd01cb", null), LANG("obj.1fc0c9f4", null), list("Style", "Color"))
+				var/hairchoice = tgui_alert(human_user, LANG("obj.b8dd01cbdb3720e1", null), LANG("obj.1fc0c9f4472e7c9d", null), list("Style", "Color"))
 				if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 					return
 				if(hairchoice == "Style") // So you just want to use a mirror then?
@@ -218,4 +218,4 @@
 		charges--
 	if(charges == 0)
 		qdel(src)
-		to_chat(user, LANG("obj.b7ab6380", null))
+		to_chat(user, LANG("obj.b7ab638040b17051", null))

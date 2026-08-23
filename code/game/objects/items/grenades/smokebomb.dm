@@ -34,7 +34,7 @@
 ///Here we generate the extremely insightful description.
 /obj/item/grenade/smokebomb/Initialize(mapload)
 	. = ..()
-	desc = LANG("obj.6b9871b7", list(pick(bruh_moment)))
+	desc = LANG("obj.6b9871b7278081f3", list(pick(bruh_moment)))
 
 ///Here we generate some smoke and also damage blobs??? for some reason. Honestly not sure why we do that.
 /obj/item/grenade/smokebomb/detonate(mob/living/lanced_by)

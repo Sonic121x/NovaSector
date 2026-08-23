@@ -6,4 +6,4 @@
 	var/mob/living/basic/bot/secbot/grievous/super_beeps = pawn
 	if(!super_beeps.sword_active)
 		INVOKE_ASYNC(super_beeps.weapon, TYPE_PROC_REF(/obj/item, attack_self), super_beeps)
-	super_beeps.visible_message(LANG("datum.bcd922f7", list(super_beeps, blackboard[BB_CURRENT_TARGET])))
+	super_beeps.visible_message(LANG("datum.bcd922f7f3fa3e37", list(super_beeps, blackboard[BB_CURRENT_TARGET])))

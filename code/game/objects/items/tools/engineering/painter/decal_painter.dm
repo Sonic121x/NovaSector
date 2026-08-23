@@ -155,7 +155,7 @@
 	if(cyborg.cell && cyborg.cell.charge > 0)
 		cyborg.cell.use(0.025 * STANDARD_CELL_CHARGE)
 	else if(cyborg.cell.charge <= 0)
-		balloon_alert(user, LANG("obj.204cf586", null))
+		balloon_alert(user, LANG("obj.204cf586a1a03b27", null))
 		return
 
 /obj/item/airlock_painter/decal/cyborg/click_alt(mob/user)

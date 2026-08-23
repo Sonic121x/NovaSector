@@ -330,7 +330,7 @@
 	for(var/mob/living/guy in falling_movables)
 		if(!can_fall_down_stairs(guy))
 			continue
-		to_chat(guy, span_warning(LANG("obj.2334ccd7", list(src))))
+		to_chat(guy, span_warning(LANG("obj.2334ccd7a03a3e6b", list(src))))
 		on_fall(guy)
 	. |= FALL_INTERCEPTED | FALL_NO_MESSAGE | FALL_RETAIN_PULL
 
@@ -393,12 +393,12 @@
 /obj/structure/stairs_frame/examine(mob/living/carbon/human/user)
 	. = ..()
 	if(anchored)
-		. += span_notice(LANG("obj.2e58066d", null))
+		. += span_notice(LANG("obj.2e58066d40d6664d", null))
 	else
-		. += span_notice(LANG("obj.e4b40668", null))
+		. += span_notice(LANG("obj.e4b40668ffbdf190", null))
 
 /obj/structure/stairs_frame/wrench_act(mob/living/user, obj/item/used_tool)
-	user.balloon_alert_to_viewers(LANG("obj.bc099e69", null), LANG("obj.880c9b6b", null))
+	user.balloon_alert_to_viewers(LANG("obj.bc099e695566df69", null), LANG("obj.880c9b6b32c6fbf4", null))
 	used_tool.play_tool_sound(src)
 	if(!used_tool.use_tool(src, user, 3 SECONDS))
 		return TRUE
@@ -411,7 +411,7 @@
 	return TRUE
 
 /obj/structure/stairs_frame/wrench_act_secondary(mob/living/user, obj/item/used_tool)
-	to_chat(user, span_notice(LANG("obj.f0ab830f", list(src))))
+	to_chat(user, span_notice(LANG("obj.f0ab830f6d35475f", list(src))))
 	used_tool.play_tool_sound(src)
 	if(!used_tool.use_tool(src, user, 3 SECONDS))
 		return TRUE
@@ -426,20 +426,20 @@
 	if(!isstack(tool))
 		return NONE
 	if(!anchored)
-		user.balloon_alert(user, LANG("obj.58e3ea49", null))
+		user.balloon_alert(user, LANG("obj.58e3ea49b9363655", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/stack/material = tool
 	if(material.stairs_type)
 		if(material.get_amount() < 10)
-			to_chat(user, span_warning(LANG("obj.a9e914c9", list(material.name))))
+			to_chat(user, span_warning(LANG("obj.a9e914c9e7ff6bf9", list(material.name))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(locate(/obj/structure/stairs) in loc)
-			to_chat(user, span_warning(LANG("obj.779d9133", null)))
+			to_chat(user, span_warning(LANG("obj.779d913385ee348b", null)))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.899b25bb", list(material, src))))
+		to_chat(user, span_notice(LANG("obj.899b25bb8b2e0376", list(material, src))))
 		if(!do_after(user, 10 SECONDS, target = src) || !material.use(10) || (locate(/obj/structure/table) in loc))
 			return ITEM_INTERACT_BLOCKING
 
@@ -448,14 +448,14 @@
 
 	if(istype(material, /obj/item/stack/sheet))
 		if(material.get_amount() < 10)
-			to_chat(user, span_warning(LANG("obj.0cc1b5c2", null)))
+			to_chat(user, span_warning(LANG("obj.0cc1b5c239ec3ccc", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(locate(/obj/structure/stairs) in loc)
-			to_chat(user, span_warning(LANG("obj.779d9133", null)))
+			to_chat(user, span_warning(LANG("obj.779d913385ee348b", null)))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.899b25bb", list(material, src))))
+		to_chat(user, span_notice(LANG("obj.899b25bb8b2e0376", list(material, src))))
 		if(!do_after(user, 10 SECONDS, target = src) || !material.use(10) || (locate(/obj/structure/table) in loc))
 			return ITEM_INTERACT_BLOCKING
 

@@ -83,11 +83,11 @@
 	. = ..()
 	switch(state)
 		if(TRAM_SCREWED_TO_FRAME)
-			. += span_notice(LANG("obj.e48e29d4", list(EXAMINE_HINT("screwed"), EXAMINE_HINT("screwdriver."))))
+			. += span_notice(LANG("obj.e48e29d4fa18465e", list(EXAMINE_HINT("screwed"), EXAMINE_HINT("screwdriver."))))
 		if(TRAM_IN_FRAME)
-			. += span_notice(LANG("obj.2509026e", list(EXAMINE_HINT("unscrewed,"), EXAMINE_HINT("pried"), EXAMINE_HINT("crowbar."))))
+			. += span_notice(LANG("obj.2509026ef27e089e", list(EXAMINE_HINT("unscrewed,"), EXAMINE_HINT("pried"), EXAMINE_HINT("crowbar."))))
 		if(TRAM_OUT_OF_FRAME)
-			. += span_notice(LANG("obj.0c375eb0", list(EXAMINE_HINT("pried"), EXAMINE_HINT("wired."), EXAMINE_HINT("wirecutters."))))
+			. += span_notice(LANG("obj.0c375eb099101096", list(EXAMINE_HINT("pried"), EXAMINE_HINT("wired."), EXAMINE_HINT("wirecutters."))))
 
 /obj/structure/tram/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(held_item?.tool_behaviour == TOOL_WELDER && atom_integrity < max_integrity)
@@ -116,12 +116,12 @@
 	. = ..()
 
 	if(!user.combat_mode)
-		user.visible_message(span_notice(LANG("obj.a41de491", list(user, src))), \
-			span_notice(LANG("obj.a57c3d4a", list(src))))
+		user.visible_message(span_notice(LANG("obj.a41de491922a8b46", list(user, src))), \
+			span_notice(LANG("obj.a57c3d4a9f2cf468", list(src))))
 		playsound(src, knock_sound, 50, TRUE)
 	else
-		user.visible_message(span_warning(LANG("obj.6f19d1b0", list(user, src))), \
-			span_warning(LANG("obj.b771210b", list(src))))
+		user.visible_message(span_warning(LANG("obj.6f19d1b0cbe7dd9c", list(user, src))), \
+			span_warning(LANG("obj.b771210bca02af66", list(src))))
 		playsound(src, bash_sound, 100, TRUE)
 
 /obj/structure/tram/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
@@ -153,14 +153,14 @@
 
 /obj/structure/tram/welder_act(mob/living/user, obj/item/tool)
 	if(atom_integrity >= max_integrity)
-		to_chat(user, span_warning(LANG("obj.7f6370b2", list(src))))
+		to_chat(user, span_warning(LANG("obj.7f6370b2939fd6c1", list(src))))
 		return ITEM_INTERACT_SUCCESS
 	if(!tool.tool_start_check(user, amount = 0, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return FALSE
-	to_chat(user, span_notice(LANG("obj.93449ef4", list(src))))
+	to_chat(user, span_notice(LANG("obj.93449ef42b686baf", list(src))))
 	if(tool.use_tool(src, user, 4 SECONDS, volume = 50))
 		atom_integrity = max_integrity
-		to_chat(user, span_notice(LANG("obj.e94d13eb", list(src))))
+		to_chat(user, span_notice(LANG("obj.e94d13ebf50e7df1", list(src))))
 		update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -168,28 +168,28 @@
 	if(tool.tool_behaviour)
 		switch(state)
 			if(TRAM_SCREWED_TO_FRAME)
-				to_chat(user, span_warning(LANG("obj.b436b070", null)))
+				to_chat(user, span_warning(LANG("obj.b436b070badd040f", null)))
 				return ITEM_INTERACT_BLOCKING
 
 			if(TRAM_OUT_OF_FRAME)
-				to_chat(user, span_warning(LANG("obj.037e6c30", null)))
+				to_chat(user, span_warning(LANG("obj.037e6c30ab3f6ed0", null)))
 				return ITEM_INTERACT_BLOCKING
 	return NONE
 
 /obj/structure/tram/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	switch(state)
 		if(TRAM_IN_FRAME)
-			user.visible_message(span_notice(LANG("obj.bcaca1b6", list(user, tool))),
-								span_notice(LANG("obj.4906368b", list(tool))))
+			user.visible_message(span_notice(LANG("obj.bcaca1b6f641cba7", list(user, tool))),
+								span_notice(LANG("obj.4906368b5b05a7e3", list(tool))))
 			if(!tool.use_tool(src, user, 1 SECONDS, volume = 50))
 				return ITEM_INTERACT_BLOCKING
 			state = TRAM_OUT_OF_FRAME
-			to_chat(user, span_notice(LANG("obj.71715436", null)))
+			to_chat(user, span_notice(LANG("obj.717154366751d062", null)))
 			return ITEM_INTERACT_SUCCESS
 
 		if(TRAM_OUT_OF_FRAME)
-			user.visible_message(span_notice(LANG("obj.f35770e7", list(user))),
-								span_notice(LANG("obj.c179381e", null)))
+			user.visible_message(span_notice(LANG("obj.f35770e72add164f", list(user))),
+								span_notice(LANG("obj.c179381e9f77e23b", null)))
 			state = TRAM_IN_FRAME
 			return ITEM_INTERACT_SUCCESS
 
@@ -198,17 +198,17 @@
 /obj/structure/tram/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	switch(state)
 		if(TRAM_SCREWED_TO_FRAME)
-			user.visible_message(span_notice(LANG("obj.af481d02", list(user))),
-								span_notice(LANG("obj.0a11790d", null)))
+			user.visible_message(span_notice(LANG("obj.af481d02683f73e6", list(user))),
+								span_notice(LANG("obj.0a11790d4f2b9581", null)))
 			if(!tool.use_tool(src, user, 1 SECONDS, volume = 50))
 				return ITEM_INTERACT_BLOCKING
 			state = TRAM_IN_FRAME
-			to_chat(user, span_notice(LANG("obj.52e8eb7d", null)))
+			to_chat(user, span_notice(LANG("obj.52e8eb7dddfde731", null)))
 			return ITEM_INTERACT_SUCCESS
 
 		if(TRAM_IN_FRAME)
-			user.visible_message(span_notice(LANG("obj.71337c68", list(user))),
-								span_notice(LANG("obj.ef873791", null)))
+			user.visible_message(span_notice(LANG("obj.71337c6814c58910", list(user))),
+								span_notice(LANG("obj.ef8737913b694ad8", null)))
 			state = TRAM_SCREWED_TO_FRAME
 			return ITEM_INTERACT_SUCCESS
 
@@ -217,11 +217,11 @@
 /obj/structure/tram/wirecutter_act_secondary(mob/living/user, obj/item/tool)
 	if(state != TRAM_OUT_OF_FRAME)
 		return NONE
-	user.visible_message(span_notice(LANG("obj.8a0b9559", list(user, src))),
-						span_notice(LANG("obj.de0b3ebb", list(src))))
+	user.visible_message(span_notice(LANG("obj.8a0b955973a9481d", list(user, src))),
+						span_notice(LANG("obj.de0b3ebb2593c3bd", list(src))))
 	if(!tool.use_tool(src, user, 1 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.d74adce8", null)))
+	to_chat(user, span_notice(LANG("obj.d74adce86907ac1e", null)))
 	deconstruct(disassembled = TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -408,7 +408,7 @@
 	var/duration = ((4.8 SECONDS) / tool.force) * 2 //In seconds, for now.
 	if(istype(tool, /obj/item/hatchet) || istype(tool, /obj/item/fireaxe))
 		duration /= 4 //Much better with hatchets and axes.
-	to_chat(user, span_notice(LANG("obj.0f48475b", list(src))))
+	to_chat(user, span_notice(LANG("obj.0f48475bf636e91b", list(src))))
 	if(!do_after(user, duration * (1 SECONDS), target=src)) //Into deciseconds.
 		return ITEM_INTERACT_BLOCKING
 	deconstruct(disassembled = FALSE)
@@ -498,12 +498,12 @@
 /obj/structure/tram/spoiler/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning(LANG("obj.510cf7f3", list(EXAMINE_HINT("multitool."))))
+		. += span_warning(LANG("obj.510cf7f3bb869df8", list(EXAMINE_HINT("multitool."))))
 
 	if(locked)
-		. += span_warning(LANG("obj.4d443dd9", list(EXAMINE_HINT("welded"))))
+		. += span_warning(LANG("obj.4d443dd9fc1b6fcb", list(EXAMINE_HINT("welded"))))
 	else
-		. += span_notice(LANG("obj.2e8466c7", list(EXAMINE_HINT("welder."))))
+		. += span_notice(LANG("obj.2e8466c7964a9207", list(EXAMINE_HINT("welder."))))
 
 /obj/structure/tram/spoiler/proc/set_spoiler(source, controller, controller_active, controller_status, travel_direction)
 	SIGNAL_HANDLER
@@ -513,7 +513,7 @@
 		if(!deployed)
 			// Bring out the blades
 			if(locked)
-				visible_message(span_danger(LANG("obj.f25b22db", list(src))))
+				visible_message(span_danger(LANG("obj.f25b22db4e88e0ca", list(src))))
 			do_sparks(3, cardinal_only = FALSE, source = src)
 			deploy_spoiler()
 		return
@@ -556,7 +556,7 @@
 /obj/structure/tram/spoiler/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	to_chat(user, span_warning(LANG("obj.dd76b457", list(src))), type = MESSAGE_TYPE_INFO)
+	to_chat(user, span_warning(LANG("obj.dd76b4573d770629", list(src))), type = MESSAGE_TYPE_INFO)
 	playsound(src, SFX_SPARKS, 100, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 	do_sparks(5, cardinal_only = FALSE, source = src)
 	obj_flags |= EMAGGED
@@ -566,7 +566,7 @@
 		return FALSE
 
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.44266fcf", null))
+		balloon_alert(user, LANG("obj.44266fcfb1743e9c", null))
 		obj_flags &= ~EMAGGED
 		return TRUE
 
@@ -577,12 +577,12 @@
 		return FALSE
 
 	if(atom_integrity >= max_integrity)
-		to_chat(user, span_warning(LANG("obj.1af9de62", list(src, locked ? "repairing damage" : "preventing retraction"))))
+		to_chat(user, span_warning(LANG("obj.1af9de62e8d620b1", list(src, locked ? "repairing damage" : "preventing retraction"))))
 		if(!tool.use_tool(src, user, 4 SECONDS, volume = 50))
 			return
 		locked = !locked
-		user.visible_message(span_warning(LANG("obj.2d971cef", list(user, locked ? "welds \the [src] in place" : "repairs \the [src]", tool))), \
-			span_warning(LANG("obj.d0de5e68", list(src, locked ? "locking it in place." : "it can move freely again!"))), null, COMBAT_MESSAGE_RANGE)
+		user.visible_message(span_warning(LANG("obj.2d971cef309b47e7", list(user, locked ? "welds \the [src] in place" : "repairs \the [src]", tool))), \
+			span_warning(LANG("obj.d0de5e68b0586a12", list(src, locked ? "locking it in place." : "it can move freely again!"))), null, COMBAT_MESSAGE_RANGE)
 
 		if(locked)
 			deploy_spoiler()
@@ -590,11 +590,11 @@
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_notice(LANG("obj.93449ef4", list(src))))
+	to_chat(user, span_notice(LANG("obj.93449ef42b686baf", list(src))))
 	if(!tool.use_tool(src, user, 4 SECONDS, volume = 50))
 		return
 	atom_integrity = max_integrity
-	to_chat(user, span_notice(LANG("obj.e94d13eb", list(src))))
+	to_chat(user, span_notice(LANG("obj.e94d13ebf50e7df1", list(src))))
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 

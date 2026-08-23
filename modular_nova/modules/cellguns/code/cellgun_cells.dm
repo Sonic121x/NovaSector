@@ -28,6 +28,6 @@
 /obj/item/weaponcell/examine(mob/user)
 	. = ..()
 	if(shot_name)
-		. += span_noticealien(LANG("obj.c5b42d57", list(shot_name)))
+		. += span_noticealien(LANG("obj.c5b42d5763b4f9be", list(shot_name)))
 	return .
 

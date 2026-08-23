@@ -55,7 +55,7 @@
 			if(prob(base_message_chance) && !suppress_warning)
 				to_chat(infected_mob, span_warning("[pick("Your head hurts.", "Your mind blanks for a moment.")]"))
 		else
-			to_chat(infected_mob, span_userdanger(LANG("datum.fa5aac30", null)))
+			to_chat(infected_mob, span_userdanger(LANG("datum.fa5aac30cfaac28d", null)))
 			infected_mob.adjust_confusion_up_to(16 SECONDS * power, 30 SECONDS)
 			if(brain_damage)
 				infected_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 3 * power, 80)

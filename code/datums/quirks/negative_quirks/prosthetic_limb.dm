@@ -31,7 +31,7 @@
 	human_holder.del_and_replace_bodypart(surplus, special = TRUE)
 
 /datum/quirk/prosthetic_limb/post_add()
-	to_chat(quirk_holder, span_bolddanger(LANG("datum.69a4af6d", list(slot_string))))
+	to_chat(quirk_holder, span_bolddanger(LANG("datum.69a4af6ddfb5b12b", list(slot_string))))
 
 /datum/quirk/prosthetic_limb/remove()
 	var/mob/living/carbon/human/human_holder = quirk_holder

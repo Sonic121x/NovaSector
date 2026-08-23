@@ -6,7 +6,7 @@ ADMIN_VERB(admin_change_title_screen, R_FUN, "标题画面：更改", "Upload a 
 	log_admin("[key_name(user)] is changing the title screen.")
 	message_admins("[key_name_admin(user)] is changing the title screen.")
 
-	switch(alert(usr, LANG("datum.901865e9", null), LANG("datum.b4e55da5", null), "Change", "Reset", "Cancel"))
+	switch(alert(usr, LANG("datum.901865e97bc57fba", null), LANG("datum.b4e55da514865786", null), "Change", "Reset", "Cancel"))
 		if("Change")
 			var/file = input(user) as icon|null
 			if(!file)
@@ -24,12 +24,12 @@ ADMIN_VERB(change_title_screen_notice, R_FUN, "标题画面：设置公告", "Se
 	log_admin("[key_name(usr)] is setting the title screen notice.")
 	message_admins("[key_name_admin(usr)] is setting the title screen notice.")
 
-	var/new_notice = input(usr, LANG("datum.3c9ed767", null), LANG("datum.5a174e20", null)) as text|null
+	var/new_notice = input(usr, LANG("datum.3c9ed76748c01b3d", null), LANG("datum.5a174e2073ed7296", null)) as text|null
 	SStitle.set_notice(new_notice)
 	if(!new_notice)
 		return
 	for(var/mob/dead/new_player/new_player in GLOB.new_player_list)
-		to_chat(new_player, span_boldannounce(LANG("datum.e918a8a8", list(new_notice))))
+		to_chat(new_player, span_boldannounce(LANG("datum.e918a8a8626872c7", list(new_notice))))
 		SEND_SOUND(new_player,  sound('modular_nova/modules/admin/sound/duckhonk.ogg'))
 
 /**
@@ -50,7 +50,7 @@ ADMIN_VERB(change_title_screen_html, R_DEBUG, "标题画面：设置 HTML", "Cha
 	log_admin("[key_name(user)] is setting the title screen HTML.")
 	message_admins("[key_name_admin(user)] is setting the title screen HTML.")
 
-	var/new_html = input(user, LANG("datum.2ee1a063", null), LANG("datum.c18ee36f", null)) as message|null
+	var/new_html = input(user, LANG("datum.2ee1a063216ea07a", null), LANG("datum.c18ee36f23e87bb3", null)) as message|null
 
 	if(!new_html)
 		return

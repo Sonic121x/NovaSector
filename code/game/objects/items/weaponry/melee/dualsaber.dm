@@ -59,10 +59,10 @@
 /// Specific hulk checks due to reflection chance for balance issues and switches hitsounds.
 /obj/item/dualsaber/proc/on_wield(obj/item/source, mob/living/carbon/user)
 	if(user && HAS_TRAIT(user, TRAIT_HULK))
-		to_chat(user, span_warning(LANG("obj.37452f0a", null)))
+		to_chat(user, span_warning(LANG("obj.37452f0a96351713", null)))
 		return COMPONENT_TWOHANDED_BLOCK_WIELD
 	if(HAS_TRAIT_FROM(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT))
-		to_chat(user, span_warning(LANG("obj.8c2b7b0b", list(src))))
+		to_chat(user, span_warning(LANG("obj.8c2b7b0b0acaf6f0", list(src))))
 		return COMPONENT_TWOHANDED_BLOCK_WIELD
 	update_weight_class(w_class_on)
 	hitsound = 'sound/items/weapons/blade1.ogg'
@@ -88,7 +88,7 @@
 
 /obj/item/dualsaber/suicide_act(mob/living/user)
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
-		user.visible_message(span_suicide(LANG("obj.7a5ec9db", list(user, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.7a5ec9db3344ac84", list(user, user.p_theyre()))))
 
 		var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)//stole from chainsaw code
 		var/obj/item/organ/brain/mybrain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
@@ -105,11 +105,11 @@
 					myhead.drop_limb()
 				sleep(0.3 SECONDS)
 			else
-				user.visible_message(span_suicide(LANG("obj.dec784f1", list(user))))
+				user.visible_message(span_suicide(LANG("obj.dec784f113c361fe", list(user))))
 				return OXYLOSS
 
 	else
-		user.visible_message(span_suicide(LANG("obj.cda94974", list(user, user.p_them(), src, user.p_they()))))
+		user.visible_message(span_suicide(LANG("obj.cda949742688ba11", list(user, user.p_them(), src, user.p_they()))))
 	return BRUTELOSS
 
 /obj/item/dualsaber/Initialize(mapload)
@@ -132,7 +132,7 @@
 
 /obj/item/dualsaber/attack(mob/target, mob/living/carbon/human/user)
 	if(HAS_TRAIT(user, TRAIT_HULK))
-		to_chat(user, span_warning(LANG("obj.36a67adb", null)))
+		to_chat(user, span_warning(LANG("obj.36a67adbd9c03a6b", null)))
 		if(HAS_TRAIT(src, TRAIT_WIELDED))
 			user.dropItemToGround(src, force=TRUE)
 			return
@@ -150,7 +150,7 @@
 	dance_rotate(user, CALLBACK(user, TYPE_PROC_REF(/mob, dance_flip)))
 
 /obj/item/dualsaber/proc/impale(mob/living/user)
-	to_chat(user, span_warning(LANG("obj.c47c8878", list(src))))
+	to_chat(user, span_warning(LANG("obj.c47c887847d80439", list(src))))
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
 		user.take_bodypart_damage(20,25,check_armor = TRUE)
 	else
@@ -215,10 +215,10 @@
 
 /obj/item/dualsaber/multitool_act(mob/living/user, obj/item/tool)
 	if(hacked)
-		to_chat(user, span_warning(LANG("obj.e7dd2e59", null)))
+		to_chat(user, span_warning(LANG("obj.e7dd2e591266c2d5", null)))
 		return ITEM_INTERACT_BLOCKING
 	hacked = TRUE
-	to_chat(user, span_warning(LANG("obj.3b79ba92", null)))
+	to_chat(user, span_warning(LANG("obj.3b79ba9290655f58", null)))
 	saber_color = "rainbow"
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS

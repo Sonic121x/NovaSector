@@ -9,7 +9,7 @@
 	. = ..()
 	if(isnull(user))
 		return
-	var/name_temp = tgui_input_text(user, LANG("datum.b86e30b9", null), LANG("datum.759cae98", null), apply_to.name)
+	var/name_temp = tgui_input_text(user, LANG("datum.b86e30b9c5408e91", null), LANG("datum.759cae98bbfb7b55", null), apply_to.name)
 	if(name_temp)
 		var/obj/item/applying_to = apply_to
 		applying_to.name = name_temp
@@ -81,7 +81,7 @@
 
 /obj/item/reagent_containers/cup/vial/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.3ffa84cf", null))
+	. += span_notice(LANG("obj.3ffa84cf8db0bb59", null))
 
 /obj/item/reagent_containers/cup/vial/click_ctrl_shift(mob/user)
 	greyscale_colors = null

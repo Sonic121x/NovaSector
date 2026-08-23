@@ -1,5 +1,5 @@
 // THIS IS A NOVA SECTOR UI FILE
-// Development JSX runtime wrapper paired with jsx-runtime.ts.
+// Development entrypoint for the legacy/upstream automatic-localization adapter.
 
 import { Fragment, jsxDEV as reactJsxDEV } from 'react/jsx-dev-runtime';
 import { localizeProps } from './localize';

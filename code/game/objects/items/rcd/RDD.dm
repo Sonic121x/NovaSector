@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(rdd_designs, list(
 
 /obj/item/construction/rdd/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.6cbdd8dd", list(span_bold(initial(selected_decoration.name)))))
+	. += span_info(LANG("obj.6cbdd8ddc19ced72", list(span_bold(initial(selected_decoration.name)))))
 
 /obj/item/construction/rdd/attack_self(mob/user)
 	. = ..()
@@ -276,14 +276,14 @@ GLOBAL_LIST_INIT(rdd_designs, list(
 		return ITEM_INTERACT_BLOCKING
 
 	if(target_turf.is_blocked_turf(exclude_mobs = TRUE))
-		balloon_alert(user, LANG("obj.fa928166", null))
+		balloon_alert(user, LANG("obj.fa928166c3175fe1", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/decoration_count = 0
 	for(var/obj/structure/decoration/existing in target_turf.contents)
 		decoration_count++
 		if(decoration_count >= 3)
-			balloon_alert(user, LANG("obj.8e325503", null))
+			balloon_alert(user, LANG("obj.8e325503f47bf2f9", null))
 			return ITEM_INTERACT_BLOCKING
 
 	var/cost = RDD_COST_MULTIPLIER
@@ -343,10 +343,10 @@ GLOBAL_LIST_INIT(rdd_designs, list(
 	if(!iscyborg(borgy))
 		return FALSE
 	if(!borgy.cell)
-		balloon_alert(user, LANG("obj.ba8f2f7d", null))
+		balloon_alert(user, LANG("obj.ba8f2f7d51fc8b56", null))
 		return FALSE
 	if(borgy.cell.charge < amount * energyfactor)
-		balloon_alert(user, LANG("obj.206fba9f", null))
+		balloon_alert(user, LANG("obj.206fba9f64179ead", null))
 		return FALSE
 	if(!dry_run)
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)

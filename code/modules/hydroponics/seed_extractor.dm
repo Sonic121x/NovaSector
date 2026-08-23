@@ -88,7 +88,7 @@
 /obj/machinery/seed_extractor/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.87238f0d", list(seed_multiplier, seed_multiplier * 4, max_seeds)))
+		. += span_notice(LANG("obj.87238f0da947d0c5", list(seed_multiplier, seed_multiplier * 4, max_seeds)))
 
 /obj/machinery/seed_extractor/update_icon_state()
 	. = ..()
@@ -110,16 +110,16 @@
 		var/loaded = 0
 		for(var/obj/item/seeds/to_store in tool.contents)
 			if(contents.len >= max_seeds)
-				to_chat(user, span_warning(LANG("obj.8e2d390c", list(src))))
+				to_chat(user, span_warning(LANG("obj.8e2d390ca03cb226", list(src))))
 				break
 			if(!add_seed(to_store, tool))
 				continue
 			loaded += 1
 
 		if(loaded)
-			to_chat(user, span_notice(LANG("obj.741bf6ac", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.741bf6ac4021e2bc", list(tool, src))))
 			return ITEM_INTERACT_SUCCESS
-		to_chat(user, span_warning(LANG("obj.75b8dcda", list(tool))))
+		to_chat(user, span_warning(LANG("obj.75b8dcda784801df", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/list/generated_seeds = seedify(tool, -1, src, user)
@@ -129,27 +129,27 @@
 			for(var/obj/item/seeds/seed as anything in generated_seeds)
 				//machine is full
 				if(contents.len >= max_seeds)
-					to_chat(user, span_warning(LANG("obj.8e2d390c", list(src))))
+					to_chat(user, span_warning(LANG("obj.8e2d390ca03cb226", list(src))))
 					break
 				//add seed to machine. second argument is null which means just force move into the machine
 				add_seed(seed)
-		to_chat(user, span_notice(LANG("obj.223fcf81", null)))
+		to_chat(user, span_notice(LANG("obj.223fcf8105f901e3", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/seeds))
 		if(contents.len >= max_seeds)
-			to_chat(user, span_warning(LANG("obj.8e2d390c", list(src))))
+			to_chat(user, span_warning(LANG("obj.8e2d390ca03cb226", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(add_seed(tool, user))
-			to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 			return ITEM_INTERACT_SUCCESS
 
-		to_chat(user, span_warning(LANG("obj.89cb0ca6", list(tool, src))))
+		to_chat(user, span_warning(LANG("obj.89cb0ca67e4fe022", list(tool, src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_behaviour || !user.combat_mode) // Using the wrong tool shouldn't assume you want to turn it into seeds.
-		to_chat(user, span_warning(LANG("obj.50990152", list(tool))))
+		to_chat(user, span_warning(LANG("obj.50990152f60673c0", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 
 	return NONE
@@ -269,10 +269,10 @@
 				if(usr)
 					var/mob/user = usr
 					if(user.put_in_hands(found_seed))
-						to_chat(user, span_notice(LANG("obj.3d630a50", list(found_seed))))
+						to_chat(user, span_notice(LANG("obj.3d630a5005388908", list(found_seed))))
 					else
-						to_chat(user, span_notice(LANG("obj.f57ed75b", list(found_seed))))
+						to_chat(user, span_notice(LANG("obj.f57ed75b3e8bb9e0", list(found_seed))))
 				else
 					found_seed.forceMove(drop_location())
-					visible_message(span_notice(LANG("obj.f57ed75b", list(found_seed))), null, span_hear(LANG("obj.6e0be4c4", null)), COMBAT_MESSAGE_RANGE)
+					visible_message(span_notice(LANG("obj.f57ed75b3e8bb9e0", list(found_seed))), null, span_hear(LANG("obj.6e0be4c48e3840a1", null)), COMBAT_MESSAGE_RANGE)
 				. = TRUE

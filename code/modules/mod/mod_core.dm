@@ -237,13 +237,13 @@
 
 /obj/item/mod/core/standard/proc/mod_uninstall_cell(mob/living/user)
 	if(!cell)
-		mod.balloon_alert(user, LANG("obj.0210855e", null))
+		mod.balloon_alert(user, LANG("obj.0210855e097c27b8", null))
 		return
-	mod.balloon_alert(user, LANG("obj.d17f808d", null))
+	mod.balloon_alert(user, LANG("obj.d17f808dc26b600d", null))
 	if(!do_after(user, 1.5 SECONDS, target = mod))
-		mod.balloon_alert(user, LANG("obj.c67b5d27", null))
+		mod.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return
-	mod.balloon_alert(user, LANG("obj.0dfdca6e", null))
+	mod.balloon_alert(user, LANG("obj.0dfdca6e675f39e2", null))
 	playsound(mod, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	var/obj/item/cell_to_move = cell
 	cell_to_move.forceMove(drop_location())
@@ -261,15 +261,15 @@
 	if(!istype(attacking_item, /obj/item/stock_parts/power_store/cell))
 		return FALSE
 	if(!mod.open)
-		mod.balloon_alert(user, LANG("obj.252eb885", null))
+		mod.balloon_alert(user, LANG("obj.252eb885a049a2db", null))
 		playsound(mod, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(cell)
-		mod.balloon_alert(user, LANG("obj.c7ff5001", null))
+		mod.balloon_alert(user, LANG("obj.c7ff500142ca334f", null))
 		playsound(mod, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	install_cell(attacking_item)
-	mod.balloon_alert(user, LANG("obj.0e9b65ee", null))
+	mod.balloon_alert(user, LANG("obj.0e9b65ee8bac5441", null))
 	playsound(mod, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return TRUE
 
@@ -439,7 +439,7 @@
 	if(uses_needed <= 0 || !plasma.use(uses_needed))
 		return FALSE
 	add_charge(uses_needed * charge_given)
-	balloon_alert(user, LANG("obj.ed4d5313", null))
+	balloon_alert(user, LANG("obj.ed4d5313d502f384", null))
 	return TRUE
 
 #undef PLASMA_CORE_ORE_CHARGE
@@ -547,7 +547,7 @@
 	set_theme(stone.theme)
 	for(var/mob/living/basic/shade/shade in stone)
 		shade.forceMove(get_turf(src))
-		shade.visible_message(span_warning(LANG("obj.38425edd", list(shade, stone, src))), span_warning(LANG("obj.ea1f0f51", list(stone, src))))
+		shade.visible_message(span_warning(LANG("obj.38425eddb105f59f", list(shade, stone, src))), span_warning(LANG("obj.ea1f0f5186972e2d", list(stone, src))))
 	return ..()
 
 /obj/item/mod/core/soul/proc/set_theme(new_theme)

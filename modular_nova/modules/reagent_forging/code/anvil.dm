@@ -25,11 +25,11 @@
 
 /obj/structure/reagent_anvil/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.a4681bf1", null))
-	. += span_notice(LANG("obj.48a3e387", null))
+	. += span_notice(LANG("obj.a4681bf1df24b0db", null))
+	. += span_notice(LANG("obj.48a3e387c72052ad", null))
 
 	if(length(contents))
-		. += span_notice(LANG("obj.130b7d38", list(contents[1])))
+		. += span_notice(LANG("obj.130b7d3822325e9d", list(contents[1])))
 
 /obj/structure/reagent_anvil/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -44,10 +44,10 @@
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/reagent_anvil/wrench_act(mob/living/user, obj/item/tool)
-	balloon_alert_to_viewers(LANG("obj.44f0e678", null))
+	balloon_alert_to_viewers(LANG("obj.44f0e678d88c8044", null))
 
 	if(!do_after(user, 2 SECONDS, src))
-		balloon_alert_to_viewers(LANG("obj.0fe37512", null))
+		balloon_alert_to_viewers(LANG("obj.0fe37512d75fb1a8", null))
 		return TRUE
 
 	tool.play_tool_sound(src)
@@ -63,7 +63,7 @@
 	var/obj/obj_anvil_search = locate() in contents
 
 	if(forge_item.in_use)
-		balloon_alert(user, LANG("obj.d4caebbf", null))
+		balloon_alert(user, LANG("obj.d4caebbff40e9118", null))
 		return ITEM_INTERACT_SUCCESS
 
 	var/obj/obj_tong_search = locate() in forge_item.contents
@@ -84,7 +84,7 @@
 	var/obj/item/forging/incomplete/locate_incomplete = locate() in contents
 	if(locate_incomplete)
 		if (locate_incomplete.in_use)
-			balloon_alert(user, LANG("obj.fd998539", null))
+			balloon_alert(user, LANG("obj.fd9985394d6e8606", null))
 			return ITEM_INTERACT_SUCCESS
 		locate_incomplete.in_use = TRUE
 		do_hammer(user, tool, locate_incomplete)
@@ -95,12 +95,12 @@
 	var/obj/locate_obj = locate() in contents
 	if(locate_obj && (locate_obj.obj_flags_nova & ANVIL_REPAIR))
 		if(locate_obj.get_integrity() >= locate_obj.max_integrity)
-			balloon_alert(user, LANG("obj.17c4d111", null))
+			balloon_alert(user, LANG("obj.17c4d1119ee04d46", null))
 			return ITEM_INTERACT_SUCCESS
 
 		while(locate_obj.get_integrity() < locate_obj.max_integrity)
 			if(!do_after(user, 1 SECONDS, src))
-				balloon_alert(user, LANG("obj.72164168", null))
+				balloon_alert(user, LANG("obj.72164168ea0646c7", null))
 				return ITEM_INTERACT_SUCCESS
 
 			locate_obj.repair_damage(locate_obj.get_integrity() + 10)
@@ -114,21 +114,21 @@
 		var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) * locate_incomplete.average_wait
 
 		if(!do_after(user, skill_modifier * tool.toolspeed, src))
-			balloon_alert(user, LANG("obj.80efa915", null))
+			balloon_alert(user, LANG("obj.80efa915cb0ab722", null))
 			locate_incomplete.in_use = FALSE
 			return ITEM_INTERACT_SUCCESS
 
 		if(locate_incomplete.loc != src)
-			balloon_alert(user, LANG("obj.3180b4c6", null))
+			balloon_alert(user, LANG("obj.3180b4c6565de422", null))
 			locate_incomplete.in_use = FALSE
 			return ITEM_INTERACT_SUCCESS
 
 		playsound(src, 'modular_nova/modules/reagent_forging/sound/forge.ogg', 50, TRUE, ignore_walls = FALSE)
 		if(COOLDOWN_FINISHED(locate_incomplete, heating_remainder))
-			balloon_alert(user, LANG("obj.72023a5e", null))
+			balloon_alert(user, LANG("obj.72023a5e0f875f5c", null))
 			locate_incomplete.times_hit -= 3
 			if(locate_incomplete.times_hit <= -locate_incomplete.average_hits)
-				balloon_alert_to_viewers(LANG("obj.6e19732b", null))
+				balloon_alert_to_viewers(LANG("obj.6e19732b2c02ea72", null))
 				qdel(locate_incomplete)
 				update_appearance()
 			return ITEM_INTERACT_SUCCESS
@@ -136,7 +136,7 @@
 		locate_incomplete.times_hit++
 		user.mind.adjust_experience(/datum/skill/smithing, 1) //A good hit gives minimal experience
 
-	balloon_alert(user, LANG("obj.fc7a8505", null))
+	balloon_alert(user, LANG("obj.fc7a850516e9707a", null))
 
 /obj/structure/reagent_anvil/hammer_act_secondary(mob/living/user, obj/item/tool)
 	hammer_act(user, tool)
@@ -154,8 +154,8 @@
 
 	poor_target.AddElement(/datum/element/squish, 30 SECONDS)
 	poor_target.visible_message(
-		span_bolddanger(LANG("obj.ce4a624a", list(src, poor_target))),
-		span_userdanger(LANG("obj.872dcdba", list(src)))
+		span_bolddanger(LANG("obj.ce4a624aefe4b419", list(src, poor_target))),
+		span_userdanger(LANG("obj.872dcdba4bdb623d", list(src)))
 	)
 	poor_target.Paralyze(5 SECONDS)
 	poor_target.emote("scream")

@@ -10,16 +10,16 @@
 
 	if(IS_UNCONSCIOUS_OR_CRIT(src))
 		if(stat == DEAD)
-			balloon_alert(src, LANG("mob.1bf49ad4", null))
+			balloon_alert(src, LANG("mob.1bf49ad4e413a0a1", null))
 		else if(IS_UNCONSCIOUS(src))
-			balloon_alert(src, LANG("mob.dc8b5a42", null))
+			balloon_alert(src, LANG("mob.dc8b5a428036bfca", null))
 		else
-			balloon_alert(src, LANG("mob.b49fe510", null))
+			balloon_alert(src, LANG("mob.b49fe5107e2b7291", null))
 		return FALSE
 
 	if(hunger_disabled)
 		if(!silent)
-			balloon_alert(src, LANG("mob.c8aeaa3f", null))
+			balloon_alert(src, LANG("mob.c8aeaa3fc00b2cb0", null))
 		return FALSE
 
 	if(check_friendship && has_faction(REF(meal)))
@@ -30,39 +30,39 @@
 
 	if(!(mobility_flags & MOBILITY_MOVE))
 		if(!silent)
-			balloon_alert(src, LANG("mob.b5c8ce04", null))
+			balloon_alert(src, LANG("mob.b5c8ce04aa8e539a", null))
 		return FALSE
 
 	if(meal.stat == DEAD)
 		if(!silent)
-			balloon_alert(src, LANG("mob.6d3b5261", null))
+			balloon_alert(src, LANG("mob.6d3b52611b9dbaf5", null))
 		return FALSE
 
 	if(locate(/mob/living/basic/slime) in meal.buckled_mobs)
 		if(!silent)
-			balloon_alert(src, LANG("mob.a6fc8c92", null))
+			balloon_alert(src, LANG("mob.a6fc8c924e3db273", null))
 		return FALSE
 
 	if(issilicon(meal) || meal.mob_biotypes & MOB_ROBOTIC || meal.flags_1 & HOLOGRAM_1)
-		balloon_alert(src, LANG("mob.6d3b5261", null))
+		balloon_alert(src, LANG("mob.6d3b52611b9dbaf5", null))
 		return FALSE
 
 	if(isslime(meal))
 		if(!silent)
-			balloon_alert(src, LANG("mob.c6a76143", null))
+			balloon_alert(src, LANG("mob.c6a761432abf0a91", null))
 		return FALSE
 
 	if(isanimal(meal))
 		var/mob/living/simple_animal/simple_meal = meal
 		if(simple_meal.damage_coeff[TOX] <= 0 && simple_meal.damage_coeff[BRUTE] <= 0) //The creature wouldn't take any damage, it must be too weird even for us.
 			if(!silent)
-				balloon_alert(src, LANG("mob.fb932b9b", null))
+				balloon_alert(src, LANG("mob.fb932b9ba655617d", null))
 			return FALSE
 	else if(isbasicmob(meal))
 		var/mob/living/basic/basic_meal = meal
 		if(basic_meal.damage_coeff[TOX] <= 0 && basic_meal.damage_coeff[BRUTE] <= 0)
 			if (!silent)
-				balloon_alert(src, LANG("mob.fb932b9b", null))
+				balloon_alert(src, LANG("mob.fb932b9ba655617d", null))
 			return FALSE
 
 	return TRUE
@@ -77,14 +77,14 @@
 		layer = MOB_ABOVE_PIGGYBACK_LAYER //appear above the target mob
 		target_mob.apply_status_effect(/datum/status_effect/slime_leech, src)
 		target_mob.visible_message(
-			span_danger(LANG("mob.cf705fa4", list(name, target_mob))),
-			span_userdanger(LANG("mob.cf705fa4", list(name, target_mob))),
+			span_danger(LANG("mob.cf705fa4f91d19fd", list(name, target_mob))),
+			span_userdanger(LANG("mob.cf705fa4f91d19fd", list(name, target_mob))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
-		to_chat(src, span_notice(LANG("mob.d919efd5", list(target_mob))))
-		balloon_alert(src, LANG("mob.a61e8e90", null))
+		to_chat(src, span_notice(LANG("mob.d919efd59cae77d5", list(target_mob))))
+		balloon_alert(src, LANG("mob.a61e8e90ef9f142b", null))
 	else
-		balloon_alert(src, LANG("mob.5353f456", null))
+		balloon_alert(src, LANG("mob.5353f456d33500f9", null))
 
 ///The slime will stop feeding
 /mob/living/basic/slime/proc/stop_feeding(silent = FALSE)
@@ -92,8 +92,8 @@
 		return
 
 	if(!silent)
-		visible_message(span_warning(LANG("mob.4dbce1e1", list(src, buckled))), span_notice(LANG("mob.ebf2f27c", list(buckled))))
-		balloon_alert(src, LANG("mob.b10966c3", null))
+		visible_message(span_warning(LANG("mob.4dbce1e10ec7695a", list(src, buckled))), span_notice(LANG("mob.ebf2f27c44503acb", list(buckled))))
+		balloon_alert(src, LANG("mob.b10966c324cec0f3", null))
 	remove_offsets(FEEDING_OFFSET)
 	layer = initial(layer)
 	INVOKE_ASYNC(buckled, TYPE_PROC_REF(/atom/movable, unbuckle_mob), src, force=TRUE)

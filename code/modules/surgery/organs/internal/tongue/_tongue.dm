@@ -66,11 +66,11 @@
 	. = ..()
 	if(HAS_MIND_TRAIT(user, TRAIT_ENTRAILS_READER)|| isobserver(user))
 		if(liked_foodtypes)
-			. += span_info(LANG("obj.bb4a08db", list(lang_english_list(bitfield_to_list(liked_foodtypes, FOOD_FLAGS_IC)))))
+			. += span_info(LANG("obj.bb4a08db50ee6504", list(lang_english_list(bitfield_to_list(liked_foodtypes, FOOD_FLAGS_IC)))))
 		if(disliked_foodtypes)
-			. += span_info(LANG("obj.7dd0e374", list(lang_english_list(bitfield_to_list(disliked_foodtypes, FOOD_FLAGS_IC)))))
+			. += span_info(LANG("obj.7dd0e374883ef241", list(lang_english_list(bitfield_to_list(disliked_foodtypes, FOOD_FLAGS_IC)))))
 		if(toxic_foodtypes)
-			. += span_info(LANG("obj.8f7b6387", list(lang_english_list(bitfield_to_list(toxic_foodtypes, FOOD_FLAGS_IC)))))
+			. += span_info(LANG("obj.8f7b6387e3045cc5", list(lang_english_list(bitfield_to_list(toxic_foodtypes, FOOD_FLAGS_IC)))))
 
 /**
  * Used in setting up the "languages possible" list.
@@ -306,11 +306,11 @@
 
 	if(isnull(statue))
 		if(feedback)
-			owner.balloon_alert(owner, LANG("datum.1db49ae6", null))
+			owner.balloon_alert(owner, LANG("datum.1db49ae6bbacf9fa", null))
 		return FALSE // permanently bricked
 	if(IS_UNCONSCIOUS_OR_CRIT(owner))
 		if(feedback)
-			owner.balloon_alert(owner, LANG("datum.65a3f894", null))
+			owner.balloon_alert(owner, LANG("datum.65a3f8941adb45e3", null))
 		return FALSE
 
 	return TRUE
@@ -321,13 +321,13 @@
 	var/is_statue = owner.loc == statue
 	if(!is_statue)
 		owner.visible_message(
-			span_notice(LANG("datum.f310af96", list(owner))),
-			span_notice(LANG("datum.dd675abf", null)),
+			span_notice(LANG("datum.f310af969a80423c", list(owner))),
+			span_notice(LANG("datum.dd675abfca24cbe8", null)),
 		)
 
 	owner.balloon_alert(owner, is_statue ? "breaking free..." : "striking a pose...")
 	if(!do_after(owner, (is_statue ? 0.5 SECONDS : 3 SECONDS), target = get_turf(owner)))
-		owner.balloon_alert(owner, LANG("datum.c67b5d27", null))
+		owner.balloon_alert(owner, LANG("datum.c67b5d274d6e724b", null))
 		return
 
 	StartCooldown()
@@ -336,15 +336,15 @@
 	statue.desc = "statue depicting [owner.real_name]"
 
 	if(is_statue)
-		statue.visible_message(span_danger(LANG("datum.9c94ee86", list(statue))))
+		statue.visible_message(span_danger(LANG("datum.9c94ee86eba1a92d", list(statue))))
 		owner.forceMove(get_turf(statue))
 		statue.moveToNullspace()
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
 	else
 		owner.visible_message(
-			span_notice(LANG("datum.aa360fa0", list(owner))),
-			span_notice(LANG("datum.b366833e", null)),
+			span_notice(LANG("datum.aa360fa0e411ba45", list(owner))),
+			span_notice(LANG("datum.b366833ec8137988", null)),
 		)
 		statue.set_visuals(owner.appearance)
 		statue.forceMove(get_turf(owner))
@@ -371,7 +371,7 @@
 	var/mob/living/carbon/carbon_owner = owner
 	UnregisterSignal(carbon_owner, COMSIG_MOVABLE_MOVED)
 
-	to_chat(carbon_owner, span_userdanger(LANG("datum.fdc91240", null)))
+	to_chat(carbon_owner, span_userdanger(LANG("datum.fdc912404473091a", null)))
 	carbon_owner.forceMove(get_turf(statue))
 	carbon_owner.dust(just_ash = TRUE, drop_items = TRUE)
 	carbon_owner.investigate_log("has been dusted from having their Silverscale Statue deconstructed / destroyed.", INVESTIGATE_DEATHS)
@@ -439,21 +439,21 @@
 		return
 
 	if(tongue.mothership == mothership)
-		to_chat(tongue_holder, span_notice(LANG("obj.927b529d", list(src))))
+		to_chat(tongue_holder, span_notice(LANG("obj.927b529d31980879", list(src))))
 
-	tongue_holder.visible_message(span_notice(LANG("obj.4cf26e6b", list(tongue_holder, src))), span_notice(LANG("obj.f5ce4436", list(src))))
+	tongue_holder.visible_message(span_notice(LANG("obj.4cf26e6b7df267d0", list(tongue_holder, src))), span_notice(LANG("obj.f5ce4436a57f34c7", list(src))))
 	if(do_after(tongue_holder, delay=15, target=src))
-		to_chat(tongue_holder, span_notice(LANG("obj.58fe1589", list(src))))
+		to_chat(tongue_holder, span_notice(LANG("obj.58fe1589d8544540", list(src))))
 		mothership = tongue.mothership
 
 /obj/item/organ/tongue/abductor/examine(mob/examining_mob)
 	. = ..()
 	if(HAS_MIND_TRAIT(examining_mob, TRAIT_ABDUCTOR_TRAINING) || isobserver(examining_mob))
-		. += span_notice(LANG("obj.583cd70c", null))
+		. += span_notice(LANG("obj.583cd70c6bbbe26a", null))
 		if(!mothership)
-			. += span_notice(LANG("obj.6305d16c", null))
+			. += span_notice(LANG("obj.6305d16c2681e0c5", null))
 		else
-			. += span_notice(LANG("obj.1790fafa", list(mothership)))
+			. += span_notice(LANG("obj.1790fafaa9ce1d0b", list(mothership)))
 
 /obj/item/organ/tongue/abductor/modify_speech(datum/source, list/speech_args)
 	//Hacks
@@ -665,14 +665,14 @@
 /obj/item/organ/tongue/robot/on_mob_insert(mob/living/carbon/receiver)
 	. = ..()
 	receiver.grant_language(/datum/language/machine, source = LANGUAGE_TONGUE)
-	to_chat(receiver, span_boldnotice(LANG("obj.7ce36525", list(/datum/language/machine::name))))
+	to_chat(receiver, span_boldnotice(LANG("obj.7ce36525de151fef", list(/datum/language/machine::name))))
 
 /obj/item/organ/tongue/robot/on_mob_remove(mob/living/carbon/owner)
 	. = ..()
 	if(QDELING(owner))
 		return
 	owner.remove_language(/datum/language/machine, source = LANGUAGE_TONGUE)
-	to_chat(owner, span_boldnotice(LANG("obj.314e1cd9", null)))
+	to_chat(owner, span_boldnotice(LANG("obj.314e1cd91baaa936", null)))
 
 /obj/item/organ/tongue/snail
 	name = "radula"

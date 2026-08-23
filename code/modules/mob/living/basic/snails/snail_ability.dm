@@ -15,8 +15,8 @@
 	SIGNAL_HANDLER
 
 	owner.visible_message(
-		span_danger(LANG("datum.45de441b", list(owner))),
-		span_userdanger(LANG("datum.f7bbb702", null)),
+		span_danger(LANG("datum.45de441bc42e7acd", list(owner))),
+		span_userdanger(LANG("datum.f7bbb70233ea3900", null)),
 	)
 	REMOVE_TRAIT(owner, TRAIT_SHELL_RETREATED, REF(src))
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_ATTEMPTED_MOVE, COMSIG_LIVING_DEATH))
@@ -24,8 +24,8 @@
 
 /datum/action/cooldown/mob_cooldown/shell_retreat/proc/retreat_into_shell()
 	owner.visible_message(
-		span_danger(LANG("datum.d0aa95a3", list(owner))),
-		span_userdanger(LANG("datum.98bc13be", null)),
+		span_danger(LANG("datum.d0aa95a31e8b8d1f", list(owner))),
+		span_userdanger(LANG("datum.98bc13bef6148e97", null)),
 	)
 	RegisterSignals(owner, list(COMSIG_LIVING_DEATH, COMSIG_MOVABLE_ATTEMPTED_MOVE), PROC_REF(unretreat_from_shell))
 	ADD_TRAIT(owner, TRAIT_SHELL_RETREATED, REF(src))

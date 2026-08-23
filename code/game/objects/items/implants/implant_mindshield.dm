@@ -17,18 +17,18 @@
 	if(target.mind)
 		if((SEND_SIGNAL(target.mind, COMSIG_PRE_MINDSHIELD_IMPLANT, user) & COMPONENT_MINDSHIELD_RESISTED))
 			if(!silent)
-				target.visible_message(span_warning(LANG("obj.67a3d80b", list(target))), span_warning(LANG("obj.ba69e512", null)))
+				target.visible_message(span_warning(LANG("obj.67a3d80b8f263ac5", list(target))), span_warning(LANG("obj.ba69e512c5ce7bb6", null)))
 			removed(target, TRUE)
 			qdel(src)
 			return TRUE
 		if(SEND_SIGNAL(target.mind, COMSIG_MINDSHIELD_IMPLANTED, user) & COMPONENT_MINDSHIELD_DECONVERTED)
 			if(prob(1) || check_holidays(APRIL_FOOLS))
-				target.say(LANG("obj.6c45651b", null), forced = "They're out! They quit! Whose kidneys do they have?")
+				target.say(LANG("obj.6c45651ba7688a89", null), forced = "They're out! They quit! Whose kidneys do they have?")
 
 	target.add_traits(list(TRAIT_MINDSHIELD, TRAIT_UNCONVERTABLE), IMPLANT_TRAIT)
 	target.sec_hud_set_implants()
 	if(!silent)
-		to_chat(target, span_notice(LANG("obj.e1a5c467", null)))
+		to_chat(target, span_notice(LANG("obj.e1a5c467d88ec36a", null)))
 	return TRUE
 
 /obj/item/implant/mindshield/removed(mob/target, silent = FALSE, special = FALSE)
@@ -40,7 +40,7 @@
 		target.remove_traits(list(TRAIT_MINDSHIELD, TRAIT_UNCONVERTABLE), IMPLANT_TRAIT)
 		L.sec_hud_set_implants()
 	if(target.stat != DEAD && !silent)
-		to_chat(target, span_boldnotice(LANG("obj.5efb3da7", null)))
+		to_chat(target, span_boldnotice(LANG("obj.5efb3da75ce0cd61", null)))
 	return TRUE
 
 /obj/item/implanter/mindshield

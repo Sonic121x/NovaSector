@@ -17,9 +17,9 @@
 
 /obj/machinery/stasissleeper/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.da3c2068", list(state_open ? "close" : "open")))
-	. += span_notice(LANG("obj.c3c010b2", list(occupant ? "occupied" : "vacant")))
-	. += span_notice(LANG("obj.33fcec18", null))
+	. += span_notice(LANG("obj.da3c2068ced63307", list(state_open ? "close" : "open")))
+	. += span_notice(LANG("obj.c3c010b2c061c930", list(occupant ? "occupied" : "vacant")))
+	. += span_notice(LANG("obj.33fcec1823ebeafa", null))
 
 /obj/machinery/stasissleeper/open_machine(drop = TRUE, density_to_set = FALSE)
 	if(!state_open && !panel_open)
@@ -53,9 +53,9 @@
 
 /obj/machinery/stasissleeper/click_alt(mob/user)
 	if(!panel_open)
-		user.visible_message(span_notice(LANG("obj.6516aa25", list(src, state_open ? "hisses as it seals shut." : "hisses as it swings open."))), \
-						span_notice(LANG("obj.767bf180", list(state_open ? "close" : "open", src))), \
-						span_hear(LANG("obj.5e28d30e", list(state_open ? "seal shut." : "swing open."))))
+		user.visible_message(span_notice(LANG("obj.6516aa25499991be", list(src, state_open ? "hisses as it seals shut." : "hisses as it swings open."))), \
+						span_notice(LANG("obj.767bf1806ccd199e", list(state_open ? "close" : "open", src))), \
+						span_hear(LANG("obj.5e28d30e58476e83", list(state_open ? "seal shut." : "swing open."))))
 	if(state_open)
 		close_machine()
 	else
@@ -69,8 +69,8 @@
 	. = ..()
 
 /obj/machinery/stasissleeper/container_resist_act(mob/living/user)
-	visible_message(span_notice(LANG("obj.8616ec7e", list(occupant, src))),
-		span_notice(LANG("obj.adaf0a2d", list(src))))
+	visible_message(span_notice(LANG("obj.8616ec7ef6eb4cb4", list(occupant, src))),
+		span_notice(LANG("obj.adaf0a2d27164b52", list(src))))
 	open_machine()
 	if(HAS_TRAIT(user, TRAIT_STASIS))
 		thaw_them(user)
@@ -116,10 +116,10 @@
 
 /obj/machinery/stasissleeper/screwdriver_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		to_chat(user, span_warning(LANG("obj.29741746", list(src))))
+		to_chat(user, span_warning(LANG("obj.297417466fc8e075", list(src))))
 		return
 	if(state_open)
-		to_chat(user, span_warning(LANG("obj.2bc99427", list(src, panel_open ? "close" : "open"))))
+		to_chat(user, span_warning(LANG("obj.2bc99427122c999f", list(src, panel_open ? "close" : "open"))))
 		return
 	return default_deconstruction_screwdriver(user, tool)
 
@@ -141,7 +141,7 @@
 	. = !(state_open || panel_open) && crowbar.tool_behaviour == TOOL_CROWBAR
 	if(.)
 		crowbar.play_tool_sound(src, 50)
-		visible_message(span_notice(LANG("obj.13d2a45b", list(usr, src))), span_notice(LANG("obj.f68d6a77", list(src))))
+		visible_message(span_notice(LANG("obj.13d2a45b8e812d6c", list(usr, src))), span_notice(LANG("obj.f68d6a7729d055fe", list(src))))
 		open_machine()
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
@@ -149,22 +149,22 @@
 /obj/machinery/stasissleeper/attack_hand(mob/user)
 	if(occupant)
 		if(occupant == user)
-			to_chat(user, span_notice(LANG("obj.0b81e68a", null)))
+			to_chat(user, span_notice(LANG("obj.0b81e68ae99ca1af", null)))
 		else
-			to_chat(user, span_notice(LANG("obj.f51db475", null)))
+			to_chat(user, span_notice(LANG("obj.f51db4756345d6e4", null)))
 		healthscan(user, occupant, mode = SCANNER_VERBOSE, scanpower = SCANPOWER_ADVANCED)
 	else
-		to_chat(user, span_warning(LANG("obj.1b7cb29c", null)))
+		to_chat(user, span_warning(LANG("obj.1b7cb29c37b37df8", null)))
 
 /obj/machinery/stasissleeper/attack_hand_secondary(mob/user)
 	if(occupant)
 		if(occupant == user)
-			to_chat(user, span_notice(LANG("obj.c9bf90dc", null)))
+			to_chat(user, span_notice(LANG("obj.c9bf90dc42d19949", null)))
 		else
-			to_chat(user, span_notice(LANG("obj.5b711ed3", null)))
+			to_chat(user, span_notice(LANG("obj.5b711ed33769b7a3", null)))
 		chemscan(user, occupant)
 	else
-		to_chat(user, span_warning(LANG("obj.7e49fc15", null)))
+		to_chat(user, span_warning(LANG("obj.7e49fc157ef9bd48", null)))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/stasissleeper/attack_ai(mob/user)

@@ -26,7 +26,7 @@
 
 /obj/item/storage/box/ration/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.875e990c", null))
+	. += span_notice(LANG("obj.875e990c0f2d76a9", null))
 	return .
 
 /* MAINS */

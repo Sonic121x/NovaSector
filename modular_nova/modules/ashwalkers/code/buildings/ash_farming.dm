@@ -36,7 +36,7 @@
 		var/obj/structure/simple_tree/locate_tree = locate() in get_turf(atom_parent)
 
 		if(one_per_turf && (locate_farm || locate_tree))
-			atom_parent.balloon_alert_to_viewers(LANG("datum.13ab81b6", null))
+			atom_parent.balloon_alert_to_viewers(LANG("datum.13ab81b6778d5b76", null))
 			return
 
 		locate_tree = new(get_turf(atom_parent), atom_parent)
@@ -44,7 +44,7 @@
 		locate_tree.pixel_y = (pixel_shift[2] - 8)
 		locate_tree.layer = atom_parent.layer + 0.01
 		attacking_item.forceMove(locate_tree)
-		atom_parent.balloon_alert_to_viewers(LANG("datum.b0cd4a3a", null))
+		atom_parent.balloon_alert_to_viewers(LANG("datum.b0cd4a3acb7f4ca4", null))
 
 	//if its a seed, lets try to plant
 	if(istype(attacking_item, /obj/item/seeds))
@@ -52,7 +52,7 @@
 		var/obj/structure/simple_tree/locate_tree = locate() in get_turf(atom_parent)
 
 		if(one_per_turf && (locate_farm || locate_tree))
-			atom_parent.balloon_alert_to_viewers(LANG("datum.13ab81b6", null))
+			atom_parent.balloon_alert_to_viewers(LANG("datum.13ab81b6778d5b76", null))
 			return
 
 		locate_farm = new(get_turf(atom_parent), atom_parent)
@@ -62,14 +62,14 @@
 		locate_farm.layer = atom_parent.layer + 0.1
 		attacking_item.forceMove(locate_farm)
 		locate_farm.planted_seed = attacking_item
-		atom_parent.balloon_alert_to_viewers(LANG("datum.ff8ef9aa", null))
+		atom_parent.balloon_alert_to_viewers(LANG("datum.ff8ef9aa59fafe56", null))
 		locate_farm.update_appearance()
 
 /**
  * check_examine is meant to listen for the COMSIG_ATOM_EXAMINE signal, where it will put additional information in the examine
  */
 /datum/component/simple_farm/proc/check_examine(datum/source, mob/user, list/examine_list)
-	examine_list += span_notice(LANG("datum.38138400", null))
+	examine_list += span_notice(LANG("datum.381384000dc59ae7", null))
 
 /**
  * delete_farm is meant to be called when the parent of this component has been deleted-- thus deleting the ability to grow the simple farm
@@ -131,11 +131,11 @@
 
 /obj/structure/simple_farm/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.80da4e79", list(src, DisplayTimeText(COOLDOWN_TIMELEFT(src, harvest_timer)))))
+	. += span_notice(LANG("obj.80da4e79ea0ec820", list(src, DisplayTimeText(COOLDOWN_TIMELEFT(src, harvest_timer)))))
 	if(max_harvest < 6)
-		. += span_notice(LANG("obj.ecd5398b", null))
+		. += span_notice(LANG("obj.ecd5398bc878208c", null))
 	if(harvest_cooldown > 30 SECONDS)
-		. += span_notice(LANG("obj.53b56213", null))
+		. += span_notice(LANG("obj.53b562133c6a0160", null))
 
 /obj/structure/simple_farm/process(seconds_per_tick)
 	update_appearance()
@@ -163,7 +163,7 @@
 
 /obj/structure/simple_farm/attack_hand(mob/living/user, list/modifiers)
 	if(!COOLDOWN_FINISHED(src, harvest_timer))
-		balloon_alert(user, LANG("obj.789d9fb4", null))
+		balloon_alert(user, LANG("obj.789d9fb4fd49e550", null))
 		return
 
 	COOLDOWN_START(src, harvest_timer, harvest_cooldown)
@@ -176,7 +176,7 @@
 	//if its a shovel or knife, dismantle
 	if(tool.tool_behaviour == TOOL_SHOVEL || tool.tool_behaviour == TOOL_KNIFE)
 		var/turf/src_turf = get_turf(src)
-		src_turf.balloon_alert_to_viewers(LANG("obj.f0b57d5d", null))
+		src_turf.balloon_alert_to_viewers(LANG("obj.f0b57d5d082527d0", null))
 		qdel(src)
 		return ITEM_INTERACT_BLOCKING
 
@@ -216,10 +216,10 @@
 		if (cooldown_improved || yield_improved)
 			use_item.use(1)
 			user.mind?.adjust_experience(/datum/skill/primitive, 2)
-			balloon_alert(user, LANG("obj.0e69a659", null))
+			balloon_alert(user, LANG("obj.0e69a659182f63d3", null))
 
 		else
-			balloon_alert(user, LANG("obj.90e175c7", null))
+			balloon_alert(user, LANG("obj.90e175c7429a68d5", null))
 
 		return ITEM_INTERACT_BLOCKING
 
@@ -231,14 +231,14 @@
 /obj/structure/simple_farm/proc/increase_yield(mob/user, silent = FALSE)
 	if(max_harvest >= 6)
 		if(!silent)
-			balloon_alert(user, LANG("obj.50d1b550", null))
+			balloon_alert(user, LANG("obj.50d1b5505f35cb21", null))
 
 		return FALSE
 
 	max_harvest++
 
 	if(!silent)
-		balloon_alert_to_viewers(LANG("obj.6063173b", null))
+		balloon_alert_to_viewers(LANG("obj.6063173bbb198cdf", null))
 
 	return TRUE
 
@@ -248,7 +248,7 @@
 /obj/structure/simple_farm/proc/decrease_cooldown(mob/user, silent = FALSE)
 	if(harvest_cooldown <= 30 SECONDS)
 		if(!silent)
-			balloon_alert(user, LANG("obj.87ed7d5f", null))
+			balloon_alert(user, LANG("obj.87ed7d5f96595263", null))
 
 		return FALSE
 
@@ -257,7 +257,7 @@
 	COOLDOWN_START(src, harvest_timer, harvest_cooldown * timeleft_percent)
 
 	if(!silent)
-		balloon_alert_to_viewers(LANG("obj.fd7da781", null))
+		balloon_alert_to_viewers(LANG("obj.fd7da781f641595c", null))
 
 	return TRUE
 
@@ -293,7 +293,7 @@
 
 			plant_bag?.atom_storage?.attempt_insert(created_special, user, TRUE)
 
-			balloon_alert_to_viewers(LANG("obj.63205a5c", null))
+			balloon_alert_to_viewers(LANG("obj.63205a5c652a8861", null))
 			continue
 
 		creating_obj = planted_seed.product

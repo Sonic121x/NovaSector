@@ -34,7 +34,7 @@
 		"summary",
 		"details"
 	],
-	"_translatable_props": "TGUI JSX 中「值是给玩家看的文案」的 prop 名。抽取器（tgui-catalog.mjs）与运行时（localize.ts）必须读同一份：两处各存一份清单时，新加的 prop 只改一边 → 目录里有键但界面不翻（或界面翻了但目录没键、被 MT 漏掉）。新增 prop 只改这里。",
+	"_translatable_props": "仅供 legacy/upstream JSX 自动本地化层使用的纯显示 prop 名。抽取器（tgui-catalog.mjs）与运行时（localize.ts）必须读同一份；应用代码使用 context-aware typed message API。",
 	"translatable_props": [
 		"aria-label",
 		"buttonText",
@@ -53,7 +53,7 @@
 		"titleMessage",
 		"tooltip"
 	],
-	"_option_text_props": "对象型下拉/列表选项里纯显示的字段名（`{value, displayText}` 的 displayText 一侧）。value 一律保持英文标识符，绝不入此表。",
+	"_option_text_props": "仅供 legacy/upstream 自动层识别对象选项里的显示字段。新代码使用 typed `{value, label: LocalizedText}`（Dropdown 边界为 displayText）；value 永远保持 canonical，绝不入此表。",
 	"option_text_props": [
 		"displayText",
 		"label",

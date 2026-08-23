@@ -44,6 +44,6 @@
 	gorilla_id.set_account(bank_account)
 	spawned.put_in_hands(gorilla_id, del_on_fail = TRUE)
 
-	to_chat(spawned, span_boldnotice(LANG("datum.e5a6f252", null)))
-	to_chat(spawned, span_notice(LANG("datum.285e387f", null)))
+	to_chat(spawned, span_boldnotice(LANG("datum.e5a6f25220efb720", null)))
+	to_chat(spawned, span_notice(LANG("datum.285e387f7ea92dc4", null)))
 	LAZYADD(spawned.mind.special_roles, "Cargorilla")

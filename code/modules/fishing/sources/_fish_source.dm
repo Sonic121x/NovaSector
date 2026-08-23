@@ -298,9 +298,9 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	if(isitem(reward)) //Try to put it in hand
 		INVOKE_ASYNC(fisherman, TYPE_PROC_REF(/mob, put_in_hands), reward)
 	else if(istype(reward, /obj/effect/spawner)) // Do not attempt to forceMove() a spawner. It will break things, and the spawned item should already be at the mob's turf by now.
-		fisherman.balloon_alert(fisherman, LANG("datum.ba7cd601", null))
+		fisherman.balloon_alert(fisherman, LANG("datum.ba7cd60152a220f3", null))
 		return
-	fisherman.balloon_alert(fisherman, LANG("datum.3413f47a", list(reward)))
+	fisherman.balloon_alert(fisherman, LANG("datum.3413f47afb25fe48", list(reward)))
 
 	var/list/fishing_data
 	if (isfish(reward))

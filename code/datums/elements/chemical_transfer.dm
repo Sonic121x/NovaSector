@@ -49,7 +49,7 @@
 			probability_description = "often"
 		if(100)
 			probability_description = "always"
-	examine_list += span_notice(LANG("datum.817d46e7", list(target, probability_description)))
+	examine_list += span_notice(LANG("datum.817d46e7f9147ac2", list(target, probability_description)))
 
 ///signal called on parent being used to attack a victim
 /datum/element/chemical_transfer/proc/on_attack(datum/target, mob/living/transfer_victim, mob/living/transfer_attacker)

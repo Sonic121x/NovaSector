@@ -59,25 +59,25 @@
 		return
 
 	toggle_clowning_action()
-	to_chat(wearer, span_warning(LANG("obj.dfd2013e", null)))
+	to_chat(wearer, span_warning(LANG("obj.dfd2013e94bfad98", null)))
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/attack_self(mob/user)
 	var/sheet_amount = bananium.retrieve_all()
 	if(sheet_amount)
-		to_chat(user, span_notice(LANG("obj.dea29e26", list(sheet_amount))))
+		to_chat(user, span_notice(LANG("obj.dea29e2663bc4c69", list(sheet_amount))))
 	else
-		to_chat(user, span_warning(LANG("obj.8708f933", null)))
+		to_chat(user, span_warning(LANG("obj.8708f933c1fbeb02", null)))
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.e4e6e9f9", list(on ? "enabled" : "disabled")))
+	. += span_notice(LANG("obj.e4e6e9f90c6ad4a5", list(on ? "enabled" : "disabled")))
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/ui_action_click(mob/user)
 	if(bananium.get_material_amount(/datum/material/bananium) >= material_per_banana)
 		toggle_clowning_action()
-		to_chat(user, span_notice(LANG("obj.39cc9bf0", list(on ? "activate" : "deactivate"))))
+		to_chat(user, span_notice(LANG("obj.39cc9bf04c946b17", list(on ? "activate" : "deactivate"))))
 	else
-		to_chat(user, span_warning(LANG("obj.8c2d96c9", null)))
+		to_chat(user, span_warning(LANG("obj.8c2d96c9896839ba", null)))
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/update_icon_state()
 	icon_state = "clown_prototype_[on ? "on" : "off"]"

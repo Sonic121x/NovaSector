@@ -28,10 +28,10 @@
 
 /obj/item/gun/energy/recharge/resonant_system/attack_self(mob/user)
 	if(mode == RESONATOR_MODE_AUTO)
-		to_chat(user, span_info(LANG("obj.f276f74c", null)))
+		to_chat(user, span_info(LANG("obj.f276f74c2473f585", null)))
 		mode = RESONATOR_MODE_MANUAL
 	else
-		to_chat(user, span_info(LANG("obj.36e0fa91", null)))
+		to_chat(user, span_info(LANG("obj.36e0fa91bf2b81d7", null)))
 		mode = RESONATOR_MODE_AUTO
 
 /obj/item/gun/energy/recharge/resonant_system/proc/modify_projectile(obj/projectile/resonant_bolt/bolt) //Allows for the resonator mode to activate with the resonator blast. Also copied from PKA code. This is butchered code.
@@ -147,7 +147,7 @@
 	if(creator)
 		log_combat(creator, owner, "used a resonator field on", "resonator")
 		SEND_SIGNAL(creator, COMSIG_LIVING_RESONATOR_BURST, creator, owner)
-	to_chat(owner, span_userdanger(LANG("datum.54e60935", list(src))))
+	to_chat(owner, span_userdanger(LANG("datum.54e609354fc16ac6", list(src))))
 	owner.apply_damage(resonance_damage, BRUTE)
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/resonance)
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/resonance), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_DELETE_ME)

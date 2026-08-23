@@ -20,7 +20,7 @@
 
 /obj/structure/decoration/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.997ec237", null))
+	. += span_notice(LANG("obj.997ec2374fd64023", null))
 
 /obj/structure/decoration/grass
 	name = "plastic grass patch"

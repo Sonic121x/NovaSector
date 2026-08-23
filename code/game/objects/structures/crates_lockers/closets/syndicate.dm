@@ -80,7 +80,7 @@
 	if(pickednum == 1)
 		var/obj/item/paper/paper = new /obj/item/paper(src)
 		paper.name = "\improper IOU"
-		paper.add_raw_text(LANG("obj.53cac500", null))
+		paper.add_raw_text(LANG("obj.53cac500f9e3e1c3", null))
 		paper.update_appearance()
 
 	//Iron (common ore)

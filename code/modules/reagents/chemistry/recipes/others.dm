@@ -662,10 +662,10 @@
 	if(iscarbon(maybe_monkey))
 		if(ismonkey(maybe_monkey))
 			maybe_monkey.gib(DROP_ALL_REMAINS)
-			to_chat(maybe_monkey, span_danger(LANG("datum.c49f5c95", null)))
+			to_chat(maybe_monkey, span_danger(LANG("datum.c49f5c95e9c85aa7", null)))
 		else
 			maybe_monkey.vomit(VOMIT_CATEGORY_BLOOD)
-			to_chat(maybe_monkey, span_danger(LANG("datum.b305e5df", null)))
+			to_chat(maybe_monkey, span_danger(LANG("datum.b305e5df21e2a3fd", null)))
 
 		var/monkey_cap = CONFIG_GET(number/monkeycap)
 		for(var/_ in 1 to created_volume)
@@ -683,10 +683,10 @@
 	if(iscarbon(maybe_monkey))
 		if(ismonkey(maybe_monkey))
 			maybe_monkey.gib(DROP_ALL_REMAINS)
-			to_chat(maybe_monkey, span_danger(LANG("datum.d786bafc", null)))
+			to_chat(maybe_monkey, span_danger(LANG("datum.d786bafc2b9ce312", null)))
 		else
 			maybe_monkey.vomit(VOMIT_CATEGORY_BLOOD)
-			to_chat(maybe_monkey, span_danger(LANG("datum.b305e5df", null)))
+			to_chat(maybe_monkey, span_danger(LANG("datum.b305e5df21e2a3fd", null)))
 
 		var/monkey_cap = CONFIG_GET(number/monkeycap)
 		for(var/_ in 1 to created_volume)
@@ -1054,7 +1054,7 @@
 			clear_products(holder, step_volume_added)
 			return
 	clear_products(holder, step_volume_added)
-	holder.my_atom.audible_message(span_notice(LANG("datum.89c474ef", list(icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))))))
+	holder.my_atom.audible_message(span_notice(LANG("datum.89c474ef79d97f75", list(icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))))))
 
 /datum/chemical_reaction/ants // Breeding ants together, high sugar cost makes this take a while to farm.
 	results = list(/datum/reagent/ants = 3)

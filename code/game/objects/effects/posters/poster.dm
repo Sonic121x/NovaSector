@@ -55,20 +55,20 @@
 
 /obj/item/poster/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.33c1f3b3", null))
+	. += span_notice(LANG("obj.33c1f3b300d1d82f", null))
 
 /obj/item/poster/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/shard))
 		return NONE
 
 	if(locate(/obj/item/shard) in (poster_structure?.contents || contents))
-		balloon_alert(user, LANG("obj.8cdee195", null))
+		balloon_alert(user, LANG("obj.8cdee19572b57c10", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.0a0c4fa1", list(tool))))
+	to_chat(user, span_notice(LANG("obj.0a0c4fa1166c901d", list(tool))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/poster/interact_with_atom(turf/closed/wall_structure, mob/living/user, list/modifiers)
@@ -78,7 +78,7 @@
 	var/turf/user_turf = get_turf(user)
 	var/dir = get_dir(user_turf, wall_structure)
 	if(!(dir in GLOB.cardinals))
-		balloon_alert(user, LANG("obj.66fb33f1", null))
+		balloon_alert(user, LANG("obj.66fb33f1cc223c28", null))
 		return ITEM_INTERACT_BLOCKING
 
 	// Deny placing posters on currently-diagonal walls, although the wall may change in the future.
@@ -86,20 +86,20 @@
 		for(var/overlay in wall_structure.overlays)
 			var/image/new_image = overlay
 			if(copytext(new_image.icon_state, 1, 3) == "d-") //3 == length("d-") + 1
-				to_chat(user, span_warning(LANG("obj.b1690fe8", null)))
+				to_chat(user, span_warning(LANG("obj.b1690fe890c1202f", null)))
 				return ITEM_INTERACT_FAILURE
 
 	var/stuff_on_wall = 0
 	for(var/obj/contained_object in wall_structure.contents) //Let's see if it already has a poster on it or too much stuff
 		if(istype(contained_object, /obj/structure/sign/poster))
-			balloon_alert(user, LANG("obj.ad6c6384", null))
+			balloon_alert(user, LANG("obj.ad6c6384cbc2d930", null))
 			return ITEM_INTERACT_FAILURE
 		stuff_on_wall++
 		if(stuff_on_wall == 3)
-			balloon_alert(user, LANG("obj.ad6c6384", null))
+			balloon_alert(user, LANG("obj.ad6c6384cbc2d930", null))
 			return ITEM_INTERACT_FAILURE
 
-	balloon_alert(user, LANG("obj.2331daf5", null))
+	balloon_alert(user, LANG("obj.2331daf54744be81", null))
 	var/obj/structure/sign/poster/placed_poster = poster_structure || new poster_type(src)
 	placed_poster.forceMove(user_turf)
 	placed_poster.setDir(dir)
@@ -167,7 +167,7 @@
 	if(!ruined)
 		original_name = name // can't use initial because of random posters
 		name = "poster - [name]"
-		desc = LANG("obj.0ac1f70f", list(desc))
+		desc = LANG("obj.0ac1f70f3d534b29", list(desc))
 
 	AddElement(/datum/element/beauty, 300)
 
@@ -229,10 +229,10 @@
 /obj/structure/sign/poster/wirecutter_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 100)
 	if(ruined)
-		to_chat(user, span_notice(LANG("obj.9a17f314", null)))
+		to_chat(user, span_notice(LANG("obj.9a17f31473e5c67e", null)))
 		qdel(src)
 	else
-		to_chat(user, span_notice(LANG("obj.db1bd806", null)))
+		to_chat(user, span_notice(LANG("obj.db1bd8068ead576b", null)))
 		roll_and_drop(Adjacent(user) ? get_turf(user) : loc, user)
 	return ITEM_INTERACT_SUCCESS
 
@@ -245,7 +245,7 @@
 /// Check to see if this poster is tearable and gives the user feedback if it is not.
 /obj/structure/sign/poster/proc/check_tearability(mob/user)
 	if(ruined)
-		balloon_alert(user, LANG("obj.b2d81487", null))
+		balloon_alert(user, LANG("obj.b2d814870df923c3", null))
 		return FALSE
 	return TRUE
 
@@ -255,9 +255,9 @@
 	if (!payload)
 		return
 
-	to_chat(user, span_warning(LANG("obj.f4130b39", null)))
+	to_chat(user, span_warning(LANG("obj.f4130b391524eee9", null)))
 	if(!can_embed_trap(user) || !payload.force_embed(user, user.get_active_hand()))
-		visible_message(span_notice(LANG("obj.a2f91e68", list(payload.name))) )
+		visible_message(span_notice(LANG("obj.a2f91e68a76ff2b3", list(payload.name))) )
 		payload.forceMove(user.drop_location())
 
 /obj/structure/sign/poster/proc/can_embed_trap(mob/living/carbon/human/user)
@@ -284,10 +284,10 @@
 	return isclosedturf(hopefully_still_a_closed_turf)
 
 /obj/structure/sign/poster/proc/on_placed_poster(mob/user)
-	to_chat(user, span_notice(LANG("obj.d0afdc37", null)))
+	to_chat(user, span_notice(LANG("obj.d0afdc37849e1898", null)))
 
 /obj/structure/sign/poster/proc/tear_poster(mob/user)
-	visible_message(span_notice(LANG("obj.65c72020", list(user, src))) )
+	visible_message(span_notice(LANG("obj.65c72020648a2259", list(user, src))) )
 	playsound(src.loc, 'sound/items/poster/poster_ripped.ogg', 100, TRUE)
 	spring_trap(user)
 

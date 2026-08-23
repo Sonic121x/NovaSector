@@ -19,7 +19,7 @@
 
 /obj/item/tank/internals/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.bf7896d5", null))
+	. += span_notice(LANG("obj.bf7896d560c6385a", null))
 
 /*
  * Oxygen
@@ -74,8 +74,8 @@
 
 /obj/item/tank/internals/anesthetic/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.95a80980", list(src)))
-	. += span_warning(LANG("obj.8b22a804", null))
+	. += span_notice(LANG("obj.95a80980609458a2", list(src)))
+	. += span_warning(LANG("obj.8b22a80485abbace", null))
 
 /obj/item/tank/internals/anesthetic/pure
 	desc = "A tank with pure N2O. There is a warning sticker crudely slapped onto the tank."

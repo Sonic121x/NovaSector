@@ -108,9 +108,9 @@
 	target.Knockdown(10 SECONDS)
 	var/datum/effect_system/basic/lightning_spread/lightning = new(target.loc, 5, TRUE)
 	lightning.start()
-	target.visible_message(span_danger(LANG("obj.7cd4e95e", list(target.name, src))), \
-		span_userdanger(LANG("obj.50a8dcc6", null)), \
-		span_hear(LANG("obj.ce87fd71", null)))
+	target.visible_message(span_danger(LANG("obj.7cd4e95e30404b86", list(target.name, src))), \
+		span_userdanger(LANG("obj.50a8dcc6853cc07b", null)), \
+		span_hear(LANG("obj.ce87fd7198aa2eae", null)))
 	var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
 	target.throw_at(throw_target, 200, 4)
 

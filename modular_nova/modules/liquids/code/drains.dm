@@ -27,9 +27,9 @@
 		return TRUE
 
 	playsound(src, 'sound/items/tools/welder2.ogg', 50, TRUE)
-	to_chat(user, span_notice(LANG("obj.7a834d32", list(welded ? "unwelding" : "welding", src))))
+	to_chat(user, span_notice(LANG("obj.7a834d324543d5df", list(welded ? "unwelding" : "welding", src))))
 	if(I.use_tool(src, user, 20))
-		to_chat(user, span_notice(LANG("obj.d6171b71", list(welded ? "unweld" : "weld", src))))
+		to_chat(user, span_notice(LANG("obj.d6171b714b8cf981", list(welded ? "unweld" : "weld", src))))
 		welded = !welded
 		update_icon()
 		if(welded)

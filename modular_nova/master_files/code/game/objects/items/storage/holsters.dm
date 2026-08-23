@@ -26,8 +26,8 @@
 
 /obj/item/storage/belt/holster/energy/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.62638794", list(recharger_cell ? "active, with [recharger_cell] inserted at <b>[round(recharger_cell.percent(), 1)]%</b>" : "<b>empty</b>")))
-	. += span_notice(LANG("obj.a5253bdb", null))
+	. += span_notice(LANG("obj.62638794ee704c4f", list(recharger_cell ? "active, with [recharger_cell] inserted at <b>[round(recharger_cell.percent(), 1)]%</b>" : "<b>empty</b>")))
+	. += span_notice(LANG("obj.a5253bdbe2286ca6", null))
 
 /obj/item/storage/belt/holster/energy/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	// attempt to insert the cell
@@ -35,18 +35,18 @@
 		return NONE
 	// holster occupied?
 	if(length(contents))
-		to_chat(user, span_warning(LANG("obj.2748931a", list(src))))
+		to_chat(user, span_warning(LANG("obj.2748931ac22d666d", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	// slot already occupied?
 	if(recharger_cell)
-		to_chat(user, span_warning(LANG("obj.f8cc447d", list(src))))
+		to_chat(user, span_warning(LANG("obj.f8cc447dd57c8488", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	// can transfer into holster?
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 	recharger_cell = tool
 	tool.anchored = TRUE
-	to_chat(user, span_notice(LANG("obj.aa0a6269", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.aa0a6269e5e3c77e", list(tool, src))))
 	playsound(src, 'sound/items/weapons/kinetic_reload.ogg', 50, TRUE, -5)
 	return ITEM_INTERACT_SUCCESS
 
@@ -54,11 +54,11 @@
 	// attempt to eject the cell
 	. = ..()
 	if(!recharger_cell)
-		to_chat(user, span_warning(LANG("obj.e2fafc66", list(src))))
+		to_chat(user, span_warning(LANG("obj.e2fafc66b7a5047a", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	recharger_cell.forceMove(drop_location())
 	user.put_in_hands(recharger_cell)
-	to_chat(user, span_notice(LANG("obj.cbed3266", list(recharger_cell, src))))
+	to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(recharger_cell, src))))
 	unregister_cell()
 	return ITEM_INTERACT_SUCCESS
 

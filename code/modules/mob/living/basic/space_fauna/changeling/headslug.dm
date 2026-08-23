@@ -47,11 +47,11 @@
 	. = ..()
 	if(stat != DEAD)
 		if(isnull(client))
-			. += span_notice(LANG("mob.603ff13e", null))
+			. += span_notice(LANG("mob.603ff13e013f68eb", null))
 		else
-			. += span_warning(LANG("mob.f8826250", null))
+			. += span_warning(LANG("mob.f8826250bcaf55b3", null))
 	if (egg_lain)
-		. += span_notice(LANG("mob.3db9c8f3", null))
+		. += span_notice(LANG("mob.3db9c8f3aee3d678", null))
 
 /// Signal Handler proc that runs on every attack and checks to see if this is a valid target for implantation. If so, it implants the egg and starts the countdown to death.
 /mob/living/basic/headslug/proc/check_and_implant(mob/living/basic/attacker, atom/target)
@@ -64,16 +64,16 @@
 	if(victim.stat != DEAD)
 		return
 	if(HAS_TRAIT(victim, TRAIT_XENO_HOST))
-		target.balloon_alert(src, LANG("mob.ed5dba7c", null)) // Maybe the worst balloon alert in the codebase
+		target.balloon_alert(src, LANG("mob.ed5dba7cbaba2072", null)) // Maybe the worst balloon alert in the codebase
 		return
 
 	if(!infect(victim))
-		target.balloon_alert(src, LANG("mob.8547d48a", null))
+		target.balloon_alert(src, LANG("mob.8547d48ac0706691", null))
 		stack_trace("[key] in [src] failed to implant egg in [victim], despite all checks suggesting it should have worked!")
 		return
 
 	egg_lain = TRUE
-	to_chat(src, span_userdanger(LANG("mob.87bd4e19", null)))
+	to_chat(src, span_userdanger(LANG("mob.87bd4e190c96d427", null)))
 	addtimer(CALLBACK(src, PROC_REF(death)), 10 SECONDS)
 
 /// Simply infects the target corpse with our changeling eggs. This shouldn't fail, because all checks should have been done in check_and_implant()
@@ -87,8 +87,8 @@
 		target.forceMove(egg)
 
 	visible_message(
-		span_warning(LANG("mob.ed618b29", list(src, victim))),
-		span_danger(LANG("mob.cbe47ce6", list(victim))),
+		span_warning(LANG("mob.ed618b29cdcc8a7b", list(src, victim))),
+		span_danger(LANG("mob.cbe47ce6ecbc1cb7", list(victim))),
 	)
 
 	return TRUE

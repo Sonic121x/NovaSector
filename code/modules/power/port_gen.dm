@@ -74,7 +74,7 @@
 
 /obj/machinery/power/port_gen/examine(mob/user)
 	. = ..()
-	. += LANG("obj.e87ba4d7", list(!active?"n't":""))
+	. += LANG("obj.e87ba4d7c50d0213", list(!active?"n't":""))
 
 /////////////////
 // P.A.C.M.A.N //
@@ -115,9 +115,9 @@
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.61edc3ea", list(sheets, sheet_name, display_power(power_gen))))
+	. += span_notice(LANG("obj.61edc3eaf2744790", list(sheets, sheet_name, display_power(power_gen))))
 	if(anchored)
-		. += span_notice(LANG("obj.aff10b22", null))
+		. += span_notice(LANG("obj.aff10b22ee4a0502", null))
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	if(sheets >= 1 / (time_per_sheet / power_output) - sheet_left)
@@ -182,9 +182,9 @@
 	var/obj/item/stack/addstack = tool
 	var/amount = min((max_sheets - sheets), addstack.amount)
 	if(amount < 1)
-		to_chat(user, span_notice(LANG("obj.ab597252", list(src))))
+		to_chat(user, span_notice(LANG("obj.ab597252187729c2", list(src))))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.93e3f8c8", list(amount, src))))
+	to_chat(user, span_notice(LANG("obj.93e3f8c801ae880b", list(amount, src))))
 	sheets += amount
 	addstack.use(amount)
 	return ITEM_INTERACT_SUCCESS
@@ -194,7 +194,7 @@
 		return NONE
 	toggle_panel_open()
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice(LANG("obj.0e6ae97a", list(panel_open ? "open" : "close"))))
+	to_chat(user, span_notice(LANG("obj.0e6ae97a17fd8a48", list(panel_open ? "open" : "close"))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/port_gen/wrench_act(mob/living/user, obj/item/tool)
@@ -202,11 +202,11 @@
 		return NONE
 	if(!anchored && !isinspace())
 		set_anchored(TRUE)
-		to_chat(user, span_notice(LANG("obj.2eaf2e96", null)))
+		to_chat(user, span_notice(LANG("obj.2eaf2e96850ca00d", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	set_anchored(FALSE)
-	to_chat(user, span_notice(LANG("obj.88a25423", null)))
+	to_chat(user, span_notice(LANG("obj.88a2542386baecfb", null)))
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -219,7 +219,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, LANG("obj.c29205c1", null))
+	balloon_alert(user, LANG("obj.c29205c110acf9f6", null))
 	emp_act(EMP_HEAVY)
 	return TRUE
 

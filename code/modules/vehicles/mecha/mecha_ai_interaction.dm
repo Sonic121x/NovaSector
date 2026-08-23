@@ -16,7 +16,7 @@
 		break
 
 	if(!data_tracker && !user.can_dominate_mechs)
-		to_chat(user, span_warning(LANG("obj.2212c588", null)))
+		to_chat(user, span_warning(LANG("obj.2212c5887f253c44", null)))
 		return
 
 	if(data_tracker || user.can_dominate_mechs)
@@ -47,16 +47,16 @@
 	switch(interaction)
 		if(AI_TRANS_TO_CARD) //Upload AI from mech to AI card.
 			if(!(mecha_flags & PANEL_OPEN)) //Mech must be in maint mode to allow carding.
-				to_chat(user, span_warning(LANG("obj.ce33693d", list(name))))
+				to_chat(user, span_warning(LANG("obj.ce33693d3e371be4", list(name))))
 				return
 			var/list/ai_pilots = list()
 			for(var/mob/living/silicon/ai/aipilot in occupants)
 				ai_pilots += aipilot
 			if(!length(ai_pilots)) //Mech does not have an AI for a pilot
-				to_chat(user, span_warning(LANG("obj.ade81fab", list(src))))
+				to_chat(user, span_warning(LANG("obj.ade81fab44727261", list(src))))
 				return
 			if(length(ai_pilots) > 1) //Input box for multiple AIs, but if there's only one we'll default to them.
-				AI = tgui_input_list(user, LANG("obj.5cd216c6", null), LANG("obj.a67d88fd", null), sort_list(ai_pilots))
+				AI = tgui_input_list(user, LANG("obj.5cd216c63717d2f8", null), LANG("obj.a67d88fd5d0754a5", null), sort_list(ai_pilots))
 			else
 				AI = ai_pilots[1]
 			if(isnull(AI))
@@ -74,37 +74,37 @@
 			card.AI = AI
 			AI.controlled_equipment = null
 			AI.remote_control = null
-			to_chat(AI, span_notice(LANG("obj.71ac6ae9", null)))
-			to_chat(user, LANG("obj.af961da8", list(span_boldnotice("Transfer successful"), AI.name, rand(1000,9999), name)))
+			to_chat(AI, span_notice(LANG("obj.71ac6ae98ef87a7b", null)))
+			to_chat(user, LANG("obj.af961da8b6e417bc", list(span_boldnotice("Transfer successful"), AI.name, rand(1000,9999), name)))
 			return
 
 		if(AI_MECH_HACK) //Called by AIs on the mech
 			AI.create_core_link(new /obj/structure/ai_core(AI.loc, CORE_STATE_FINISHED, AI.make_mmi()))
 			if(AI.can_dominate_mechs && LAZYLEN(occupants)) //Oh, I am sorry, were you using that?
-				to_chat(AI, span_warning(LANG("obj.9b0cf2ab", null)))
-				to_chat(occupants, span_danger(LANG("obj.d184ef99", null)))
+				to_chat(AI, span_warning(LANG("obj.9b0cf2abe878c91e", null)))
+				to_chat(occupants, span_danger(LANG("obj.d184ef99eed579b2", null)))
 				for(var/ejectee in occupants)
 					mob_exit(ejectee, silent = TRUE, randomstep = TRUE, forced = TRUE) //IT IS MINE, NOW. SUCK IT, RD!
 
 		if(AI_TRANS_FROM_CARD) //Using an AI card to upload to a mech.
 			AI = card.AI
 			if(!AI)
-				to_chat(user, span_warning(LANG("obj.be7325e2", null)))
+				to_chat(user, span_warning(LANG("obj.be7325e23df763e5", null)))
 				return
 			if(!(mecha_flags & AI_COMPATIBLE)) //If the mech isn't compatible with an AI transfer, early return.
-				to_chat(user, span_warning(LANG("obj.b40d1bd9", list(src))))
+				to_chat(user, span_warning(LANG("obj.b40d1bd9cb5e6db6", list(src))))
 				return
 			if(AI.deployed_shell) //Recall AI if shelled so it can be checked for a client
 				AI.disconnect_shell()
 			if(IS_UNCONSCIOUS_OR_CRIT(AI) || !AI.client)
-				to_chat(user, span_warning(LANG("obj.a4b587e5", list(AI.name))))
+				to_chat(user, span_warning(LANG("obj.a4b587e58b192cbd", list(AI.name))))
 				return
 			if((LAZYLEN(occupants) >= max_occupants) || dna_lock) //Normal AIs cannot steal mechs!
-				to_chat(user, span_warning(LANG("obj.c8b09913", list(name, LAZYLEN(occupants) >= max_occupants ? "currently fully occupied" : "secured with a DNA lock"))))
+				to_chat(user, span_warning(LANG("obj.c8b0991386044301", list(name, LAZYLEN(occupants) >= max_occupants ? "currently fully occupied" : "secured with a DNA lock"))))
 				return
 			AI.set_control_disabled(FALSE)
 			AI.radio_enabled = TRUE
-			to_chat(user, LANG("obj.8779c42c", list(span_boldnotice("Transfer successful"), AI.name, rand(1000,9999))))
+			to_chat(user, LANG("obj.8779c42caea32b69", list(span_boldnotice("Transfer successful"), AI.name, rand(1000,9999))))
 			card.AI = null
 	ai_enter_mech(AI)
 

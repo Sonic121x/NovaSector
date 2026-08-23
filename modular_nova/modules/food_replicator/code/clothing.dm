@@ -8,7 +8,7 @@
 
 /obj/item/clothing/under/colonial/mob_can_equip(mob/living/equipper, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action)
 	if(isteshari(equipper))
-		to_chat(equipper, span_warning(LANG("obj.c9ddda16", list(src))))
+		to_chat(equipper, span_warning(LANG("obj.c9ddda167e55766a", list(src))))
 		return FALSE
 
 	return ..()
@@ -23,7 +23,7 @@
 
 /obj/item/clothing/shoes/jackboots/colonial/mob_can_equip(mob/living/equipper, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action)
 	if(isteshari(equipper))
-		to_chat(equipper, span_warning(LANG("obj.c9ddda16", list(src))))
+		to_chat(equipper, span_warning(LANG("obj.c9ddda167e55766a", list(src))))
 		return FALSE
 
 	return ..()
@@ -41,7 +41,7 @@
 
 /obj/item/clothing/neck/cloak/colonial/mob_can_equip(mob/living/equipper, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action)
 	if(isteshari(equipper))
-		to_chat(equipper, span_warning(LANG("obj.c9ddda16", list(src))))
+		to_chat(equipper, span_warning(LANG("obj.c9ddda167e55766a", list(src))))
 		return FALSE
 
 	return ..()
@@ -58,7 +58,7 @@
 
 /obj/item/clothing/head/hats/colonial/mob_can_equip(mob/living/equipper, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action)
 	if(isteshari(equipper))
-		to_chat(equipper, span_warning(LANG("obj.c9ddda16", list(src))))
+		to_chat(equipper, span_warning(LANG("obj.c9ddda167e55766a", list(src))))
 		return FALSE
 
 	return ..()

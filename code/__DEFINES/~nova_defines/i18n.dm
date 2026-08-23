@@ -11,6 +11,34 @@
 /// i18n 目录文件位于 STRING_DIRECTORY ("strings") 下的此子目录：
 /// strings/i18n/<locale>/<namespace>.json，内容为扁平的 {"key": "模板"}。
 #define I18N_SUBDIRECTORY "i18n"
+/// Runtime catalog classification manifest. It is deliberately outside locale directories so
+/// the DM loader never mistakes metadata for translatable source text.
+#define I18N_CATALOG_DOMAIN_MANIFEST "catalog-domains.json"
+
+/// Catalog manifest domains.
+#define I18N_DOMAIN_FORWARD "forward"
+#define I18N_DOMAIN_MANUAL_FORWARD "manual_forward"
+#define I18N_DOMAIN_GLOBAL_REVERSE "global_reverse"
+#define I18N_DOMAIN_TGUI "tgui"
+#define I18N_DOMAIN_SCOPED_PREFIX "scoped:"
+
+/// Internal buckets in GLOB.i18n_catalogs.
+#define I18N_CATALOG_FORWARD_BUCKET "forward"
+#define I18N_CATALOG_PAIRED_BUCKET "paired"
+#define I18N_CATALOG_DIRECT_BUCKET "direct"
+#define I18N_CATALOG_MANUAL_BUCKET "manual_forward"
+
+/// One runtime lifecycle. Index builders may run only while INITIALIZING or READY.
+#define I18N_RUNTIME_BOOTSTRAP 1
+#define I18N_RUNTIME_INITIALIZING 2
+#define I18N_RUNTIME_READY 3
+
+/// Runtime translation-layer counters.
+#define I18N_LAYER_EXACT "exact"
+#define I18N_LAYER_NORMALIZED "normalized"
+#define I18N_LAYER_TEMPLATE "template"
+#define I18N_LAYER_AC "ac"
+#define I18N_LAYER_MISS "miss"
 
 /// 全服 locale 下的本地化 + 格式化。用于广播类文本（visible_message 等，
 /// 一条字符串展示给多名观察者，无法按单人 locale 区分）。

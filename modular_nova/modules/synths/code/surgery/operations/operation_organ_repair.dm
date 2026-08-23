@@ -314,7 +314,7 @@
 	display_pain(organ.owner, "The fragmentation errors start clearing.")
 	// Remove all neuroware
 	if(!isnull(organ.owner.has_status_effect(/datum/status_effect/neuroware)))
-		organ.owner.balloon_alert_to_viewers(LANG("datum.6e3bb276", null))
+		organ.owner.balloon_alert_to_viewers(LANG("datum.6e3bb276e517c67a", null))
 		for(var/datum/reagent/reagent as anything in organ.owner.reagents.reagent_list)
 			if(reagent.chemical_flags & REAGENT_NEUROWARE)
 				organ.owner.reagents.del_reagent(reagent.type)
@@ -324,7 +324,7 @@
 		organ.brainmob.mind?.remove_antag_datum(/datum/antagonist/brainwashed)
 	organ.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
 	if(organ.damage > organ.maxHealth * 0.1)
-		to_chat(surgeon, LANG("datum.02c1471b", list(FORMAT_ORGAN_OWNER(organ), brain_type)))
+		to_chat(surgeon, LANG("datum.02c1471b7d7ffb66", list(FORMAT_ORGAN_OWNER(organ), brain_type)))
 
 // flavor text - failure
 /datum/surgery_operation/organ/repair/brain/mechanic/synth/on_failure(obj/item/organ/brain/synth/organ, mob/living/surgeon, obj/item/tool, list/operation_args)

@@ -21,7 +21,7 @@
 		return FALSE
 	if(HAS_TRAIT(equip_target, TRAIT_NODROP) && (equip_target in held_items))
 		if(!disable_warning)
-			to_chat(src, span_warning(LANG("mob.b63dc576", list(equip_target))))
+			to_chat(src, span_warning(LANG("mob.b63dc5765efa1ad0", list(equip_target))))
 		return FALSE
 	return dna.species.can_equip(equip_target, slot, disable_warning, src, bypass_equip_delay_self, ignore_equipped, indirect_action)
 
@@ -209,7 +209,7 @@
 			s_store = equipping
 			update_suit_storage()
 		else
-			to_chat(src, span_danger(LANG("mob.d90ac502", null)))
+			to_chat(src, span_danger(LANG("mob.d90ac5022802ce1d", null)))
 			not_handled = TRUE
 
 	//Item is handled and in slot, valid to call callback, for this proc should always be true
@@ -342,13 +342,13 @@
 	// Notify user of missing valid breathing apparatus.
 	if (wear_mask)
 		// Invalid mask
-		to_chat(src, span_warning(LANG("mob.357ebde2", list(wear_mask, tank))))
+		to_chat(src, span_warning(LANG("mob.357ebde25afa7a91", list(wear_mask, tank))))
 	else if (head)
 		// Invalid headgear
-		to_chat(src, span_warning(LANG("mob.5cae4a00", list(head))))
+		to_chat(src, span_warning(LANG("mob.5cae4a0000f10289", list(head))))
 	else
 		// Not wearing any breathing apparatus.
-		to_chat(src, span_warning(LANG("mob.96ad0241", null)))
+		to_chat(src, span_warning(LANG("mob.96ad0241caa54792", null)))
 
 /// Returns TRUE if the tank successfully toggles open/closed. Opens the tank only if a breathing apparatus is found.
 /mob/living/carbon/human/toggle_externals(obj/item/tank)
@@ -404,7 +404,7 @@
 		thing_reject = SEND_SIGNAL(thing, COMSIG_HUMAN_NON_STORAGE_HOTKEY, src, equipped_item)
 	if(!equipped_item) // We also let you equip an item like this
 		if(!thing)
-			to_chat(src, span_warning(LANG("mob.31ecf46f", list(slot_item_name))))
+			to_chat(src, span_warning(LANG("mob.31ecf46f375bac25", list(slot_item_name))))
 			return
 		if(equip_to_slot_if_possible(thing, slot_type))
 			update_held_items()
@@ -416,19 +416,19 @@
 		else
 			if(thing_reject & COMPONENT_STORAGE_HOTKEY_HANDLED)
 				return
-			to_chat(src, span_warning(LANG("mob.bab1e21d", list(thing, equipped_item.name))))
+			to_chat(src, span_warning(LANG("mob.bab1e21d4e3a162b", list(thing, equipped_item.name))))
 		return
 	if(!storage.supports_smart_equip)
 		return
 	if (equipped_item.atom_storage.locked) // Determines if container is locked before trying to put something in or take something out so we dont give out information on contents (or lack of)
-		to_chat(src, span_warning(LANG("mob.55a899f0", list(equipped_item))))
+		to_chat(src, span_warning(LANG("mob.55a899f0e82ac957", list(equipped_item))))
 		return
 	if(thing) // put thing in storage item
 		if(!equipped_item.atom_storage?.attempt_insert(thing, src))
-			to_chat(src, span_warning(LANG("mob.bab1e21d", list(thing, equipped_item.name))))
+			to_chat(src, span_warning(LANG("mob.bab1e21d4e3a162b", list(thing, equipped_item.name))))
 		return
 	if(!storage.real_location.contents.len) // nothing to take out
-		to_chat(src, span_warning(LANG("mob.10c5780b", list(equipped_item.name))))
+		to_chat(src, span_warning(LANG("mob.10c5780bdeb69a25", list(equipped_item.name))))
 		return
 	var/obj/item/stored = storage.real_location.contents[storage.real_location.contents.len]
 	if(!stored || stored.on_found(src))

@@ -20,7 +20,7 @@
 
 /// Input a reason for the medal for the round end screen
 /obj/item/clothing/accessory/medal/proc/provide_reason(mob/living/carbon/human/distinguished, mob/user)
-	commendation_message = tgui_input_text(user, LANG("obj.64c0d70d", null), LANG("obj.f21c4046", null), max_length = 140)
+	commendation_message = tgui_input_text(user, LANG("obj.64c0d70d0d3234d8", null), LANG("obj.f21c4046bccb0fbe", null), max_length = 140)
 	return !!commendation_message
 
 /obj/item/clothing/accessory/medal/try_attach(obj/item/clothing/under/attach_to, mob/living/attacher)
@@ -133,7 +133,7 @@
 
 /obj/item/clothing/accessory/medal/plasma/atmos_expose(datum/gas_mixture/air, exposed_temperature)
 	atmos_spawn_air("[GAS_PLASMA]=20;[TURF_TEMPERATURE(exposed_temperature)]")
-	visible_message(span_danger(LANG("obj.7e9fd1a6", list(src))), span_userdanger(LANG("obj.da517669", list(src))))
+	visible_message(span_danger(LANG("obj.7e9fd1a650e4c995", list(src))), span_userdanger(LANG("obj.da5176696d6076a9", list(src))))
 	qdel(src)
 
 /obj/item/clothing/accessory/medal/plasma/nobel_science

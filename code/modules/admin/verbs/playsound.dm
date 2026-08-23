@@ -7,7 +7,7 @@
 ADMIN_VERB(play_sound, R_SOUND, "播放全局音效", "Play a sound to all connected players.", ADMIN_CATEGORY_FUN)
 	VERB_ARG(sound, VERB_ARG_TYPE_SOUND, VERB_ARG_SOURCE_INPUT)
 	var/freq = 1
-	var/vol = tgui_input_number(user, LANG("datum.71bfda44", null), max_value = 100)
+	var/vol = tgui_input_number(user, LANG("datum.71bfda441f757f9e", null), max_value = 100)
 	if(!vol)
 		return
 	vol = clamp(vol, 1, 100)
@@ -22,10 +22,10 @@ ADMIN_VERB(play_sound, R_SOUND, "播放全局音效", "Play a sound to all conne
 	admin_sound.status = SOUND_STREAM
 	admin_sound.volume = vol
 
-	var/res = tgui_alert(user, LANG("datum.61b0a770", null), LANG("datum.87f06ba1", null), list("Yes", "No", "Cancel"))
+	var/res = tgui_alert(user, LANG("datum.61b0a770b85be768", null), LANG("datum.87f06ba11ff1e4dd", null), list("Yes", "No", "Cancel"))
 	switch(res)
 		if("Yes")
-			to_chat(world, span_boldannounce(LANG("datum.1f3d7eda", list(sound))), confidential = TRUE)
+			to_chat(world, span_boldannounce(LANG("datum.1f3d7edadfda7683", list(sound))), confidential = TRUE)
 		if("Cancel")
 			return
 
@@ -45,7 +45,7 @@ ADMIN_VERB(play_local_sound, R_SOUND, "播放本地音效", "Plays a sound only 
 	VERB_ARG(sound, VERB_ARG_TYPE_SOUND, VERB_ARG_SOURCE_INPUT)
 	log_admin("[key_name(user)] played a local sound [sound]")
 	message_admins("[key_name_admin(user)] played a local sound [sound]")
-	var/volume = tgui_input_number(user, LANG("datum.71bfda44", null), max_value = 100)
+	var/volume = tgui_input_number(user, LANG("datum.71bfda441f757f9e", null), max_value = 100)
 	playsound(get_turf(user.mob), sound, volume || 50, FALSE)
 	BLACKBOX_LOG_ADMIN_VERB("Play Local Sound")
 
@@ -53,12 +53,12 @@ ADMIN_VERB(play_direct_mob_sound, R_SOUND, "直接播放生物音效", "Play a s
 	VERB_ARG(sound, VERB_ARG_TYPE_SOUND, VERB_ARG_SOURCE_INPUT)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(!target)
-		target = input(user, LANG("datum.65a0ea09", null), LANG("datum.dfea01ae", null)) as null|anything in sort_names(GLOB.player_list)
+		target = input(user, LANG("datum.65a0ea09b2f1b2b7", null), LANG("datum.dfea01ae34cf14c9", null)) as null|anything in sort_names(GLOB.player_list)
 	if(QDELETED(target))
 		return
 	log_admin("[key_name(user)] played a direct mob sound [sound] to [key_name_admin(target)].")
 	message_admins("[key_name_admin(user)] played a direct mob sound [sound] to [ADMIN_LOOKUPFLW(target)].")
-	var/volume = tgui_input_number(user, LANG("datum.71bfda44", null), max_value = 100)
+	var/volume = tgui_input_number(user, LANG("datum.71bfda441f757f9e", null), max_value = 100)
 	var/sound/admin_sound = sound(sound)
 	if(volume)
 		admin_sound.volume = volume
@@ -73,7 +73,7 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 		return
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
-		to_chat(user, span_boldwarning(LANG("_root.f0b400b7", null)), confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
+		to_chat(user, span_boldwarning(LANG("_root.f0b400b7c27e1e0e", null)), confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
 		return
 	var/web_sound_url = ""
 	var/stop_web_sounds = FALSE
@@ -86,14 +86,14 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 		var/stdout = output[SHELLEO_STDOUT]
 		var/stderr = output[SHELLEO_STDERR]
 		if(errorlevel)
-			to_chat(user, span_boldwarning(LANG("_root.54d458e2", null)), confidential = TRUE)
+			to_chat(user, span_boldwarning(LANG("_root.54d458e2c0cd20ee", null)), confidential = TRUE)
 			to_chat(user, span_warning("[stderr]"), confidential = TRUE)
 			return
 		var/list/data
 		try
 			data = json_decode(stdout)
 		catch(var/exception/e)
-			to_chat(user, span_boldwarning(LANG("_root.30a27b33", null)), confidential = TRUE)
+			to_chat(user, span_boldwarning(LANG("_root.30a27b33dddfd006", null)), confidential = TRUE)
 			to_chat(user, span_warning("[e]: [stdout]"), confidential = TRUE)
 			return
 		if (data["url"])
@@ -109,9 +109,9 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 		music_extra_data["album"] = data["album"]
 		duration = data["duration"] * 1 SECONDS
 		if (duration > 10 MINUTES)
-			if((tgui_alert(user, LANG("_root.1ac0e2fa", null), LANG("_root.52a67462", null), list("No", "Yes", "Cancel")) != "Yes"))
+			if((tgui_alert(user, LANG("_root.1ac0e2fa908134f7", null), LANG("_root.52a67462c8b63214", null), list("No", "Yes", "Cancel")) != "Yes"))
 				return
-		var/include_song_data = tgui_alert(user, LANG("_root.a45d69f3", list(title)), LANG("_root.4e1c9f3f", null), list("Yes", "No", "Cancel"))
+		var/include_song_data = tgui_alert(user, LANG("_root.a45d69f3a69bd759", list(title)), LANG("_root.4e1c9f3fed195e48", null), list("Yes", "No", "Cancel"))
 		switch(include_song_data)
 			if("Yes")
 				music_extra_data["title"] = data["title"]
@@ -124,7 +124,7 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 				music_extra_data["album"] = "Default"
 			if("Cancel", null)
 				return
-		var/credit_yourself = tgui_alert(user, LANG("_root.50f4492c", null), LANG("_root.d839031d", null), list("Yes", "No", "Cancel"))
+		var/credit_yourself = tgui_alert(user, LANG("_root.50f4492c1968ce16", null), LANG("_root.d839031d2e83f1e0", null), list("Yes", "No", "Cancel"))
 
 		var/list/to_chat_message = list()
 
@@ -163,8 +163,8 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 		web_sound_url = null
 		stop_web_sounds = TRUE
 	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
-		tgui_alert(user, LANG("_root.622d4b7b", null), LANG("_root.294348b2", null), list("OK"))
-		to_chat(user, span_boldwarning(LANG("_root.5c67a399", null)), confidential = TRUE)
+		tgui_alert(user, LANG("_root.622d4b7b7639f0f9", null), LANG("_root.294348b251b82273", null), list("OK"))
+		to_chat(user, span_boldwarning(LANG("_root.5c67a399943d4a9f", null)), confidential = TRUE)
 
 		return
 	if(web_sound_url || stop_web_sounds)
@@ -189,16 +189,16 @@ ADMIN_VERB_CUSTOM_EXIST_CHECK(play_web_sound)
 
 ADMIN_VERB(play_web_sound, R_SOUND, "播放互联网音效", "Play a given internet sound to all players.", ADMIN_CATEGORY_FUN)
 	if(!CLIENT_COOLDOWN_FINISHED(GLOB, web_sound_cooldown))
-		if(tgui_alert(user, LANG("datum.58373547", list(DisplayTimeText(CLIENT_COOLDOWN_TIMELEFT(GLOB, web_sound_cooldown), 1))), LANG("datum.8cff532b", null), list("No","Yes")) != "Yes")
+		if(tgui_alert(user, LANG("datum.58373547a487c124", list(DisplayTimeText(CLIENT_COOLDOWN_TIMELEFT(GLOB, web_sound_cooldown), 1))), LANG("datum.8cff532b1397b801", null), list("No","Yes")) != "Yes")
 			return
 
-	var/web_sound_input = tgui_input_text(user, LANG("datum.b5e0747f", null), LANG("datum.0bd20399", null), null)
+	var/web_sound_input = tgui_input_text(user, LANG("datum.b5e0747fb3c45215", null), LANG("datum.0bd20399b2680474", null), null)
 
 	if(length(web_sound_input))
 		web_sound_input = trim(web_sound_input)
 		if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-			to_chat(user, span_boldwarning(LANG("datum.e44f9a24", null)), confidential = TRUE)
-			to_chat(user, span_warning(LANG("datum.2e606989", null)), confidential = TRUE)
+			to_chat(user, span_boldwarning(LANG("datum.e44f9a249381f364", null)), confidential = TRUE)
+			to_chat(user, span_warning(LANG("datum.2e6069899c408f79", null)), confidential = TRUE)
 			return
 		web_sound(user.mob, web_sound_input)
 	else
@@ -206,7 +206,7 @@ ADMIN_VERB(play_web_sound, R_SOUND, "播放互联网音效", "Play a given inter
 
 ADMIN_VERB(set_round_end_sound, R_SOUND, "设置回合结束音效", "Set the sound that plays on round end.", ADMIN_CATEGORY_FUN)
 	VERB_ARG(sound, VERB_ARG_TYPE_SOUND, VERB_ARG_SOURCE_INPUT)
-	var/volume = tgui_input_number(user, LANG("datum.c1f5f6f4", null), max_value = 100)
+	var/volume = tgui_input_number(user, LANG("datum.c1f5f6f42daefae7", null), max_value = 100)
 	var/sound/admin_sound = sound(sound)
 	if(volume)
 		admin_sound.volume = volume

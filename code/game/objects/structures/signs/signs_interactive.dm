@@ -8,9 +8,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/clock, 32)
 
 /obj/structure/sign/clock/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.e61b3194", list(server_timestamp(ic_time = TRUE, twelve_hour_clock = user.client?.prefs.read_preference(/datum/preference/toggle/twelve_hour)))))
+	. += span_info(LANG("obj.e61b3194fa2c7c76", list(server_timestamp(ic_time = TRUE, twelve_hour_clock = user.client?.prefs.read_preference(/datum/preference/toggle/twelve_hour)))))
 	if(user.is_literate())
-		. += span_info(LANG("obj.f5c79a87", list(round_timestamp())))
+		. += span_info(LANG("obj.f5c79a87073cc118", list(round_timestamp())))
 
 /obj/structure/sign/calendar
 	name = "wall calendar"
@@ -21,8 +21,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/calendar, 32)
 
 /obj/structure/sign/calendar/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.6df51eb7", list(time2text(world.realtime, "DDD, MMM DD", world.timezone), CURRENT_STATION_YEAR)))
+	. += span_info(LANG("obj.6df51eb721af9805", list(time2text(world.realtime, "DDD, MMM DD", world.timezone), CURRENT_STATION_YEAR)))
 	if(length(GLOB.holidays))
-		. += span_info(LANG("obj.09bc5159", null))
+		. += span_info(LANG("obj.09bc51598b885de7", null))
 		for(var/holidayname in GLOB.holidays)
 			. += span_info("[holidayname]")

@@ -5,19 +5,19 @@
 /obj/item/cain_and_abel/on_thrown(mob/living/carbon/user, atom/target)
 	. = null
 	if(!COOLDOWN_FINISHED(src, throw_cooldown))
-		user.balloon_alert(user, LANG("obj.d4ae5d4d", null))
+		user.balloon_alert(user, LANG("obj.d4ae5d4dded19efe", null))
 		return
 
 	if(user.incapacitated || HAS_TRAIT(user, TRAIT_NO_THROWING) || !isturf(user.loc) || user.buckled)
-		user.balloon_alert(user, LANG("obj.147ad722", null))
+		user.balloon_alert(user, LANG("obj.147ad722c676de84", null))
 		return
 
 	if(!check_wield(user))
-		user.balloon_alert(user, LANG("obj.9ec3aa89", null))
+		user.balloon_alert(user, LANG("obj.9ec3aa89dee2003f", null))
 		return
 
 	if(get_dist(target, user) > 9)
-		user.balloon_alert(user, LANG("obj.a462ee7c", null))
+		user.balloon_alert(user, LANG("obj.a462ee7cec0ddb47", null))
 		return
 
 	var/static/list/throw_options = list(

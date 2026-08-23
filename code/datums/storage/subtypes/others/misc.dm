@@ -161,7 +161,7 @@
 		var/obj/item/gun/gun = to_insert
 		if(gun.weapon_weight > max_weapon_weight)
 			if(messages && user)
-				user.balloon_alert(user, LANG("datum.5e148cfa", null))
+				user.balloon_alert(user, LANG("datum.5e148cfadd1df692", null))
 			return FALSE
 
 	return TRUE

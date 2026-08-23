@@ -8,11 +8,11 @@
 
 /obj/machinery/netpod/screwdriver_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		balloon_alert(user, LANG("obj.d2232fc9", null))
+		balloon_alert(user, LANG("obj.d2232fc97a3a2f66", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(state_open)
-		balloon_alert(user, LANG("obj.1bd34d98", null))
+		balloon_alert(user, LANG("obj.1bd34d987bac1db7", null))
 		return ITEM_INTERACT_SUCCESS
 
 	return default_deconstruction_screwdriver(user, tool)

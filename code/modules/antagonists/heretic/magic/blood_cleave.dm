@@ -32,8 +32,8 @@
 			continue
 		if(victim.can_block_magic(antimagic_flags))
 			victim.visible_message(
-				span_danger(LANG("datum.35940b45", list(victim))),
-				span_danger(LANG("datum.69dd3ba2", null))
+				span_danger(LANG("datum.35940b451c73969b", list(victim))),
+				span_danger(LANG("datum.69dd3ba26bca270e", null))
 			)
 			continue
 
@@ -41,8 +41,8 @@
 			continue
 
 		victim.visible_message(
-			span_danger(LANG("datum.45a570a0", list(victim, victim.p_their()))),
-			span_danger(LANG("datum.cefd7c55", null))
+			span_danger(LANG("datum.45a570a0847b7f73", list(victim, victim.p_their()))),
+			span_danger(LANG("datum.cefd7c559d9568d1", null))
 		)
 
 		var/obj/item/bodypart/bodypart = pick(victim.get_bodyparts())

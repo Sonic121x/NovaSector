@@ -23,7 +23,7 @@
 			continue
 		if (HAS_TRAIT(victim, TRAIT_CLOWN_ENJOYER))
 			victim.add_mood_event("clown_world", /datum/mood_event/clown_world)
-		to_chat(victim, span_notice(LANG("datum.175f0f20", list(span_hypnophrase("I'm so glad that I work at Clown Research Station [station_name()]!")))))
+		to_chat(victim, span_notice(LANG("datum.175f0f209ec3dae7", list(span_hypnophrase("I'm so glad that I work at Clown Research Station [station_name()]!")))))
 		if (is_clown_job(victim.mind.assigned_role))
 			var/datum/action/cooldown/spell/conjure_item/clown_pockets/new_spell = new(victim)
 			new_spell.Grant(victim)

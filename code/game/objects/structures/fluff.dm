@@ -18,12 +18,12 @@
 /obj/structure/fluff/wrench_act(mob/living/user, obj/item/tool)
 	if(!deconstructible)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
-	user.visible_message(span_notice(LANG("obj.de50517e", list(user, src))), \
-						span_notice(LANG("obj.f0ab830f", list(src))))
+	user.visible_message(span_notice(LANG("obj.de50517e38c6d659", list(user, src))), \
+						span_notice(LANG("obj.f0ab830f6d35475f", list(src))))
 	tool.play_tool_sound(src)
 	if(!tool.use_tool(src, user, 50))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.da98fa51", list(user, src))), span_notice(LANG("obj.ae794d9d", list(src))))
+	user.visible_message(span_notice(LANG("obj.da98fa5192b4f39b", list(user, src))), span_notice(LANG("obj.ae794d9d17b78ccf", list(src))))
 	playsound(user, 'sound/items/deconstruct.ogg', 50, TRUE)
 	new/obj/item/stack/sheet/iron(drop_location())
 	qdel(src)

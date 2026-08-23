@@ -69,17 +69,17 @@
 		return
 	if(HAS_TRAIT_FROM(src, TRAIT_MODPC_INTERACTING_WITH_FRAME, REF(user)))
 		REMOVE_TRAIT(src, TRAIT_MODPC_INTERACTING_WITH_FRAME, REF(user))
-		balloon_alert(user, LANG("obj.f9767d30", null))
+		balloon_alert(user, LANG("obj.f9767d305c7b3f7b", null))
 	else
 		ADD_TRAIT(src, TRAIT_MODPC_INTERACTING_WITH_FRAME, REF(user))
-		balloon_alert(user, LANG("obj.5fb84d60", null))
+		balloon_alert(user, LANG("obj.5fb84d60eeae6ae5", null))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/modular_computer/examine(mob/user)
 	. = cpu?.examine(user) || ..()
-	. += span_info(LANG("obj.51a141b3", list(EXAMINE_HINT("Right-Click"))))
+	. += span_info(LANG("obj.51a141b39e930276", list(EXAMINE_HINT("Right-Click"))))
 	var/frame_or_pc = HAS_TRAIT_FROM(src, TRAIT_MODPC_INTERACTING_WITH_FRAME, REF(user)) ? "frame" : "computer"
-	. += span_info(LANG("obj.5137ae72", list(EXAMINE_HINT(frame_or_pc))))
+	. += span_info(LANG("obj.5137ae720f2aef45", list(EXAMINE_HINT(frame_or_pc))))
 
 /obj/machinery/modular_computer/attack_ghost(mob/dead/observer/user)
 	. = ..()
@@ -89,7 +89,7 @@
 
 /obj/machinery/modular_computer/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!cpu)
-		balloon_alert(user, LANG("obj.5aaff2c1", null))
+		balloon_alert(user, LANG("obj.5aaff2c1add88cd4", null))
 		return FALSE
 	return cpu.emag_act(user)
 

@@ -5,19 +5,19 @@
 
 /obj/item/stack/tile/mineral/welder_act(mob/living/user, obj/item/tool)
 	if(get_amount() < 4)
-		to_chat(user, span_warning(LANG("obj.682d330c", null)))
+		to_chat(user, span_warning(LANG("obj.682d330c5301657b", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(!mineralType)
-		to_chat(user, span_warning(LANG("obj.59f6af92", null)))
+		to_chat(user, span_warning(LANG("obj.59f6af92d3a8d698", null)))
 		stack_trace("A mineral tile of type [type] doesn't have its mineralType set.")
 		return ITEM_INTERACT_BLOCKING
 	if(!tool.use_tool(src, user, 0, volume=40))
 		return ITEM_INTERACT_BLOCKING
 	var/sheet_type = text2path("/obj/item/stack/sheet/mineral/[mineralType]")
 	var/obj/item/stack/sheet/mineral/new_item = new sheet_type(user.drop_location())
-	user.visible_message(span_notice(LANG("obj.50a33dd4", list(user, src, new_item, tool))), \
-						span_notice(LANG("obj.2628de4d", list(src, new_item, tool))), \
-						span_hear(LANG("obj.1aa82fa3", null)))
+	user.visible_message(span_notice(LANG("obj.50a33dd456d81013", list(user, src, new_item, tool))), \
+						span_notice(LANG("obj.2628de4d944c5a1c", list(src, new_item, tool))), \
+						span_hear(LANG("obj.1aa82fa3545466eb", null)))
 	var/holding = user.is_holding(src)
 	use(4)
 	if(holding && QDELETED(src))

@@ -167,9 +167,9 @@
 
 	var/mob/thrower = throw_args[4]
 	if(istype(thrower))
-		to_chat(thrower, span_hypnophrase(LANG("datum.811ae687", list(source, get_area_name(locked_to)))))
+		to_chat(thrower, span_hypnophrase(LANG("datum.811ae6875947e934", list(source, get_area_name(locked_to)))))
 
-	to_chat(source, span_hypnophrase(LANG("datum.f54da73e", list(get_area_name(locked_to)))))
+	to_chat(source, span_hypnophrase(LANG("datum.f54da73e77e403d6", list(get_area_name(locked_to)))))
 
 	return COMPONENT_CANCEL_THROW
 
@@ -180,7 +180,7 @@
 	if(!is_escaping_locked_area(source, destination))
 		return
 
-	to_chat(source, span_hypnophrase(LANG("datum.4514f0d4", list(get_area_name(locked_to)))))
+	to_chat(source, span_hypnophrase(LANG("datum.4514f0d4cf0326ce", list(get_area_name(locked_to)))))
 
 	source.Stun(1 SECONDS)
 	return TRUE
@@ -197,7 +197,7 @@
 	if(forced || !is_escaping_locked_area(old_loc, source))
 		return
 
-	to_chat(source, span_hypnophrase(LANG("datum.4514f0d4", list(get_area_name(locked_to)))))
+	to_chat(source, span_hypnophrase(LANG("datum.4514f0d4cf0326ce", list(get_area_name(locked_to)))))
 
 	var/turf/further_behind_old_loc = get_edge_target_turf(old_loc, REVERSE_DIR(movement_dir))
 
@@ -263,7 +263,7 @@
 		return FALSE
 	ADD_TRAIT(owner, TRAIT_PACIFISM, TRAIT_STATUS_EFFECT(id))
 	owner.emote(pick("giggle", "laugh"))
-	owner.balloon_alert(owner, LANG("datum.1d23c86e", null))
+	owner.balloon_alert(owner, LANG("datum.1d23c86e48360ee4", null))
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_damaged))
 	return TRUE
 
@@ -282,7 +282,7 @@
 
 	// Removes the trait in here since we don't wanna destroy the mark before its detonated or allow detonation triggers with other weapons
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, TRAIT_STATUS_EFFECT(id))
-	owner.balloon_alert(owner, LANG("datum.c1630c63", null))
+	owner.balloon_alert(owner, LANG("datum.c1630c63aaa99d71", null))
 
 /datum/status_effect/eldritch/moon/on_effect()
 	owner.adjust_confusion(30 SECONDS)

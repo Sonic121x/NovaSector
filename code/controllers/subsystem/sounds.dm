@@ -85,7 +85,7 @@ SUBSYSTEM_DEF(sounds)
 	init_sound_keys()
 
 	if(!(RUST_G))
-		to_chat(world, span_boldnotice(LANG("datum.76b77fc3", null)))
+		to_chat(world, span_boldnotice(LANG("datum.76b77fc37c3304be", null)))
 		return ..()
 
 	// Precache ambience sounds

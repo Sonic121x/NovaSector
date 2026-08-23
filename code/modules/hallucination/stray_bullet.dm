@@ -106,11 +106,11 @@
 /// Called when a mob is hit by the fake projectile
 /obj/projectile/hallucination/proc/on_mob_hit(mob/living/hit_mob)
 	if(hit_mob == parent.hallucinator)
-		to_chat(parent.hallucinator, span_userdanger(LANG("obj.af0d7b93", list(hit_mob, src))))
+		to_chat(parent.hallucinator, span_userdanger(LANG("obj.af0d7b930953d54d", list(hit_mob, src))))
 		apply_effect_to_hallucinator(parent.hallucinator)
 
 	else if(hit_mob in view(parent.hallucinator))
-		to_chat(parent.hallucinator, span_danger(LANG("obj.af0d7b93", list(hit_mob, src))))
+		to_chat(parent.hallucinator, span_danger(LANG("obj.af0d7b930953d54d", list(hit_mob, src))))
 
 	if(damage_type == BRUTE)
 		var/splatter_dir = dir

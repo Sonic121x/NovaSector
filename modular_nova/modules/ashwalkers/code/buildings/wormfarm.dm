@@ -42,25 +42,25 @@
 
 /obj/structure/wormfarm/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.7a1c5486", list(current_worm, max_worm)))
+	. += span_notice(LANG("obj.7a1c5486399827ab", list(current_worm, max_worm)))
 	if(current_worm < max_worm)
-		. += span_notice(LANG("obj.10eefb41", null))
+		. += span_notice(LANG("obj.10eefb41046f25c4", null))
 	if(current_worm > 0)
-		. += span_notice(LANG("obj.17971a87", null))
+		. += span_notice(LANG("obj.17971a870b8987e9", null))
 
 /obj/structure/wormfarm/attack_hand(mob/living/user, list/modifiers)
 	if(in_use)
-		balloon_alert(user, LANG("obj.c56e2817", null))
+		balloon_alert(user, LANG("obj.c56e281752c99780", null))
 		return ..()
 
-	balloon_alert(user, LANG("obj.fc851fd8", null))
+	balloon_alert(user, LANG("obj.fc851fd881a14836", null))
 	if(!do_after(user, 2 SECONDS, src))
-		balloon_alert(user, LANG("obj.d76e263a", null))
+		balloon_alert(user, LANG("obj.d76e263a1d57ea3f", null))
 		in_use = FALSE
 		return ..()
 
 	if(current_worm <= 0)
-		balloon_alert(user, LANG("obj.d58f72ab", null))
+		balloon_alert(user, LANG("obj.d58f72ab3e7b3065", null))
 		in_use = FALSE
 		return ..()
 
@@ -74,25 +74,25 @@
 	//we want to check for worms first because they are a type of food as well...
 	if(istype(tool, /obj/item/food/bait/worm))
 		if(current_worm >= max_worm)
-			balloon_alert(user, LANG("obj.fcf94d59", null))
+			balloon_alert(user, LANG("obj.fcf94d59a3707a5a", null))
 			return ITEM_INTERACT_BLOCKING
 
 		qdel(tool)
-		balloon_alert(user, LANG("obj.4ed12fa2", null))
+		balloon_alert(user, LANG("obj.4ed12fa2c82633c4", null))
 		current_worm++
 		return ITEM_INTERACT_BLOCKING
 
 	//if it aint a worm, lets check for any other food items
 	if(istype(tool, /obj/item/food))
 		if(in_use)
-			balloon_alert(user, LANG("obj.c56e2817", null))
+			balloon_alert(user, LANG("obj.c56e281752c99780", null))
 			return ITEM_INTERACT_BLOCKING
 		in_use = TRUE
 
-		balloon_alert(user, LANG("obj.1f5afd68", null))
+		balloon_alert(user, LANG("obj.1f5afd68b570ba48", null))
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 1 SECONDS * skill_modifier, src))
-			balloon_alert(user, LANG("obj.6b0f3f43", null))
+			balloon_alert(user, LANG("obj.6b0f3f43cbddefeb", null))
 			in_use = FALSE
 			return ITEM_INTERACT_BLOCKING
 
@@ -102,7 +102,7 @@
 			return ITEM_INTERACT_BLOCKING
 
 		qdel(tool)
-		balloon_alert(user, LANG("obj.3bcda56e", null))
+		balloon_alert(user, LANG("obj.3bcda56e171b2f73", null))
 
 		current_food++
 		user.mind?.adjust_experience(/datum/skill/primitive, 2)
@@ -114,11 +114,11 @@
 
 	if(istype(tool, /obj/item/storage/bag/plants))
 		if(in_use)
-			balloon_alert(user, LANG("obj.c56e2817", null))
+			balloon_alert(user, LANG("obj.c56e281752c99780", null))
 			return ITEM_INTERACT_BLOCKING
 		in_use = TRUE
 
-		balloon_alert(user, LANG("obj.1f5afd68", null))
+		balloon_alert(user, LANG("obj.1f5afd68b570ba48", null))
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		for(var/obj/item/food/selected_food in tool.contents)
 			if(!do_after(user, 1 SECONDS * skill_modifier, src))

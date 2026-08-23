@@ -142,7 +142,7 @@
 	if(!chassis || !(owner in chassis.occupants))
 		return
 	if(!COOLDOWN_FINISHED(src, search_cooldown))
-		chassis.balloon_alert(owner, LANG("datum.d4ae5d4d", null))
+		chassis.balloon_alert(owner, LANG("datum.d4ae5d4dded19efe", null))
 		return
 	if(!isliving(owner))
 		return
@@ -159,12 +159,12 @@
 		if(!pinpointed_ruin || get_dist(ruin_landmark, chassis) < get_dist(pinpointed_ruin, chassis))
 			pinpointed_ruin = ruin_landmark
 	if(!pinpointed_ruin)
-		chassis.balloon_alert(living_owner, LANG("datum.51aa3f3f", null))
+		chassis.balloon_alert(living_owner, LANG("datum.51aa3f3f50705e85", null))
 		return
 	var/datum/status_effect/agent_pinpointer/ruin_pinpointer = living_owner.apply_status_effect(/datum/status_effect/agent_pinpointer/ruin)
 	ruin_pinpointer.RegisterSignal(living_owner, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/datum/status_effect/agent_pinpointer/ruin, cancel_self))
 	ruin_pinpointer.scan_target = pinpointed_ruin
-	chassis.balloon_alert(living_owner, LANG("datum.7df7ed5a", null))
+	chassis.balloon_alert(living_owner, LANG("datum.7df7ed5ac140b51d", null))
 
 /datum/status_effect/agent_pinpointer/ruin
 	duration = SEARCH_COOLDOWN * 0.5

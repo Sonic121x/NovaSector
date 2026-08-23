@@ -164,7 +164,7 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 	SIGNAL_HANDLER
 
 	if(!COOLDOWN_FINISHED(src, on_clean_cooldown))
-		source.balloon_alert(user, LANG("datum.80e462c4", null))
+		source.balloon_alert(user, LANG("datum.80e462c42cfcc8f3", null))
 		return COMSIG_ATOM_CANCEL_CLEAN
 
 /datum/computer_file/program/virtual_pet/proc/on_playmate_find(datum/source)
@@ -504,7 +504,7 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 			else if(hat_selections[chosen_type])
 				var/datum/award/required_cheevo = cheevo_hats[chosen_type]
 				if(length(SSachievements.achievements) && required_cheevo && !ui.user.client.get_award_status(required_cheevo))
-					to_chat(ui.user, span_info(LANG("datum.49fd8406", list(span_bold(initial(required_cheevo.name))))))
+					to_chat(ui.user, span_info(LANG("datum.49fd84066b275127", list(span_bold(initial(required_cheevo.name))))))
 				else
 					selected_hat["type"] = chosen_type
 					var/state_to_use = initial(chosen_type.worn_icon_state) || initial(chosen_type.icon_state)

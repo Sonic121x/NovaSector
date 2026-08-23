@@ -68,7 +68,7 @@
 		var/found_table = locate(/obj/structure/table) in found_location
 		var/found_tray = locate(/obj/item/storage/bag/tray) in found_location || locate(/obj/item/plate/oven_tray) in found_location
 		if(!found_turf && !istype(found_location, /obj/item/storage/bag/tray) || found_turf && !(found_table || found_tray))
-			to_chat(user, span_notice(LANG("datum.9ecc1a57", list(initial(result_atom_type.name)))))
+			to_chat(user, span_notice(LANG("datum.9ecc1a57f8c69743", list(initial(result_atom_type.name)))))
 			return
 
 	mutable_recipes += list(list(TOOL_PROCESSING_RESULT = result_atom_type, TOOL_PROCESSING_AMOUNT = amount_created, TOOL_PROCESSING_TIME = time_to_process, TOOL_PROCESSING_SOUND = sound_to_play))
@@ -85,15 +85,15 @@
 	// but at least it's readable?
 	if(amount_created > 1)
 		if(result_gender == PLURAL)
-			examine_list += span_notice(LANG("datum.eb167b60", list(amount_created, result_name, span_bold(tool_desc))))
+			examine_list += span_notice(LANG("datum.eb167b605caac254", list(amount_created, result_name, span_bold(tool_desc))))
 		else
-			examine_list += span_notice(LANG("datum.71fd0050", list(amount_created, result_name, plural_s(result_name), span_bold(tool_desc))))
+			examine_list += span_notice(LANG("datum.71fd00508496d242", list(amount_created, result_name, plural_s(result_name), span_bold(tool_desc))))
 
 	else
 		if(result_gender == PLURAL)
-			examine_list += span_notice(LANG("datum.9e1ea931", list(result_name, span_bold(tool_desc))))
+			examine_list += span_notice(LANG("datum.9e1ea9319f087158", list(result_name, span_bold(tool_desc))))
 		else
-			examine_list += span_notice(LANG("datum.737700ae", list(result_name, span_bold(tool_desc))))
+			examine_list += span_notice(LANG("datum.737700ae95d9b156", list(result_name, span_bold(tool_desc))))
 
 /**
  * Adds context sensitivy directly to the processable file for screentips

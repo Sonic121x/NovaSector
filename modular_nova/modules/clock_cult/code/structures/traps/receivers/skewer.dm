@@ -49,7 +49,7 @@
 			continue
 
 		target_stabbed = TRUE
-		to_chat(stabbed_mob, span_userdanger(LANG("obj.1af7f6dd", list(src))))
+		to_chat(stabbed_mob, span_userdanger(LANG("obj.1af7f6ddc05ff41a", list(src))))
 		stabbed_mob.emote("scream")
 		playsound(src, 'sound/machines/clockcult/brass_skewer.ogg')
 		stabbed_mob.apply_damage(SKEWER_DAMAGE, BRUTE, BODY_ZONE_CHEST)
@@ -69,10 +69,10 @@
 	if(force)
 		return ..()
 
-	balloon_alert(buckled_mob, LANG("obj.4e7f3258", list(src)))
+	balloon_alert(buckled_mob, LANG("obj.4e7f325838354855", list(src)))
 
 	if(!do_after(buckled_mob, 5 SECONDS, target = src))
-		balloon_alert(buckled_mob, LANG("obj.1c11617d", list(src)))
+		balloon_alert(buckled_mob, LANG("obj.1c11617d4d3fc233", list(src)))
 		return
 
 	return ..()

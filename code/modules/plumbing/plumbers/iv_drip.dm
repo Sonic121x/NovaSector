@@ -31,10 +31,10 @@
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/iv_drip/plumbing/plunger_act(obj/item/plunger/attacking_plunger, mob/living/user, reinforced)
-	user.balloon_alert_to_viewers(LANG("obj.6051e050", null), LANG("obj.a133afa5", null))
+	user.balloon_alert_to_viewers(LANG("obj.6051e050a7898871", null), LANG("obj.a133afa599833991", null))
 	if(!do_after(user, 3 SECONDS, target = src))
 		return TRUE
-	user.balloon_alert_to_viewers(LANG("obj.670c9c2c", null))
+	user.balloon_alert_to_viewers(LANG("obj.670c9c2c9c8b5fe6", null))
 	reagents.expose(get_turf(src), TOUCH) //splash on the floor
 	reagents.clear_reagents()
 	return TRUE

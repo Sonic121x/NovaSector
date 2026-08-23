@@ -16,13 +16,13 @@
 /datum/action/cooldown/spell/chuuni_invocations/cast(mob/living/cast_on)
 	. = ..()
 
-	to_chat(cast_on, span_green(LANG("datum.eb3c9052", null)))
+	to_chat(cast_on, span_green(LANG("datum.eb3c905228df1d23", null)))
 	if(!do_after(cast_on, 5 SECONDS))
-		to_chat(cast_on, span_warning(LANG("datum.e40fb1bf", null)))
+		to_chat(cast_on, span_warning(LANG("datum.e40fb1bf4248eafe", null)))
 		return
 
 	playsound(cast_on, 'sound/effects/bamf.ogg', 75, TRUE, 5)
-	to_chat(cast_on, span_danger(LANG("datum.d3bf06a1", null)))
+	to_chat(cast_on, span_danger(LANG("datum.d3bf06a17996e93a", null)))
 
 	cast_on.AddComponent(/datum/component/chuunibyou)
 
@@ -31,10 +31,10 @@
 		human_cast_on.dropItemToGround(human_cast_on.glasses)
 		var/obj/item/clothing/head/wizard/wizhat = human_cast_on.head
 		if(istype(wizhat))
-			to_chat(human_cast_on, span_notice(LANG("datum.1b341085", list(wizhat))))
+			to_chat(human_cast_on, span_notice(LANG("datum.1b341085cccdcfd5", list(wizhat))))
 			qdel(wizhat)
 		else
-			to_chat(human_cast_on, span_notice(LANG("datum.0a616995", null)))
+			to_chat(human_cast_on, span_notice(LANG("datum.0a61699550512283", null)))
 		human_cast_on.equip_to_slot_or_del(new /obj/item/clothing/glasses/eyepatch/medical/chuuni(human_cast_on), ITEM_SLOT_EYES)
 
 	qdel(src)

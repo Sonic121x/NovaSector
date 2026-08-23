@@ -66,7 +66,7 @@
 			scan_data["inherited_traits"] += GLOB.raptor_inherit_traits[index]
 
 	playsound(src, 'sound/mobs/non-humanoids/orbie/orbie_send_out.ogg', 20)
-	my_raptor.balloon_alert(user, LANG("obj.98f57ecb", null))
+	my_raptor.balloon_alert(user, LANG("obj.98f57ecb62270a5f", null))
 	ui_interact(user)
 	return ITEM_INTERACT_SUCCESS
 

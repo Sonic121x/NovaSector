@@ -62,7 +62,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	update_static_data(user)
-	balloon_alert(user, LANG("obj.72323c87", null))
+	balloon_alert(user, LANG("obj.72323c876573fa04", null))
 	return TRUE
 
 /obj/machinery/limbgrower/ui_interact(mob/user, datum/tgui/ui)
@@ -151,9 +151,9 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/disk/design_disk/limbs))
-		user.visible_message(span_notice(LANG("obj.fdd3b03f", list(user, tool, src))),
-			span_notice(LANG("obj.d4607832", list(tool))),
-			span_hear(LANG("obj.37c3e9f9", null)))
+		user.visible_message(span_notice(LANG("obj.fdd3b03f3fa1956a", list(user, tool, src))),
+			span_notice(LANG("obj.d46078323387ccbb", list(tool))),
+			span_hear(LANG("obj.37c3e9f9cffb37f1", null)))
 		busy = TRUE
 		var/obj/item/disk/design_disk/limbs/limb_design_disk = tool
 		if(do_after(user, 2 SECONDS, target = src))
@@ -224,7 +224,7 @@
 			for(var/reagent_id in consumed_reagents_list)
 				consumed_reagents_list[reagent_id] *= production_coefficient
 				if(!reagents.has_reagent(reagent_id, consumed_reagents_list[reagent_id]))
-					audible_message(span_notice(LANG("obj.9f1f2989", list(src))))
+					audible_message(span_notice(LANG("obj.9f1f2989394f9812", list(src))))
 					playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 					return
 
@@ -250,7 +250,7 @@
 /obj/machinery/limbgrower/proc/build_item(list/modified_consumed_reagents_list)
 	for(var/reagent_id in modified_consumed_reagents_list)
 		if(!reagents.has_reagent(reagent_id, modified_consumed_reagents_list[reagent_id]))
-			audible_message(span_notice(LANG("obj.cefcf6a0", list(src))))
+			audible_message(span_notice(LANG("obj.cefcf6a0ce5941a9", list(src))))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 			break
 
@@ -310,7 +310,7 @@
 /obj/machinery/limbgrower/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.a459eca1", list(reagents.maximum_volume, production_coefficient * 100)))
+		. += span_notice(LANG("obj.a459eca19a7136cd", list(reagents.maximum_volume, production_coefficient * 100)))
 
 /**
  * Check if the limb grower is currently busy.
@@ -322,7 +322,7 @@
 /obj/machinery/limbgrower/proc/check_busy(mob/user)
 	. = busy
 	if(.)
-		to_chat(user, span_warning(LANG("obj.cc53b82d", null)))
+		to_chat(user, span_warning(LANG("obj.cc53b82d0fc1ac84", null)))
 
 /*
  * Checks our reagent list to see if a design can be built.

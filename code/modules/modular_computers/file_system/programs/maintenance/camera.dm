@@ -173,5 +173,5 @@
 			ui.user.put_in_hands(new_photo)
 			playsound(computer.physical, 'sound/machines/printer.ogg', 100, TRUE)
 			computer.stored_paper--
-			computer.visible_message(span_notice(LANG("datum.7a4642f7", list(computer))))
+			computer.visible_message(span_notice(LANG("datum.7a4642f71effe3c7", list(computer))))
 			return TRUE

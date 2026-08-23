@@ -110,7 +110,7 @@ GAME_VERB_DESC(/client, show_character_directory, "角色目录", "Shows a listi
 /client/proc/is_character_directory_on_cooldown()
 	// This is primarily to stop malicious users from trying to lag the server by spamming this verb
 	if(!COOLDOWN_FINISHED(src, char_directory_cooldown))
-		to_chat(src, span_alert(LANG("client.8c437e3b", null)))
+		to_chat(src, span_alert(LANG("client.8c437e3bfd1831a6", null)))
 		return TRUE
 	COOLDOWN_START(src, char_directory_cooldown, 10)
 	return FALSE
@@ -319,7 +319,7 @@ GAME_VERB_DESC(/client, show_character_directory, "角色目录", "Shows a listi
 		if("refresh")
 			// This is primarily to stop malicious users from trying to lag the server by spamming this verb
 			if(!COOLDOWN_FINISHED(user.client, char_directory_cooldown))
-				to_chat(user, span_warning(LANG("datum.f6085a38", null)))
+				to_chat(user, span_warning(LANG("datum.f6085a382581a4be", null)))
 				return
 			COOLDOWN_START(user.client, char_directory_cooldown, 10)
 			update_static_data(user, ui)

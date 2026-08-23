@@ -27,4 +27,4 @@
 /datum/round_event/wizard/possession/start()
 	for(var/mob/dead/observer/ghost_player in GLOB.player_list)
 		ghost_player.fun_verbs = TRUE
-		to_chat(ghost_player, span_hypnophrase(LANG("datum.9aa1fa68", null)))
+		to_chat(ghost_player, span_hypnophrase(LANG("datum.9aa1fa688bac65f1", null)))

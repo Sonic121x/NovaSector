@@ -87,9 +87,9 @@
 /obj/machinery/portable_atmospherics/examine(mob/user)
 	. = ..()
 	if(nob_crystal_inserted)
-		. += LANG("obj.af2505bf", null)
+		. += LANG("obj.af2505bf413597ed", null)
 	if(suppress_reactions)
-		. += LANG("obj.df2d7779", null)
+		. += LANG("obj.df2d77793c000f84", null)
 
 /obj/machinery/portable_atmospherics/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
@@ -113,13 +113,13 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 	if(atom_integrity >= max_integrity || (machine_stat & BROKEN) || !tool.tool_start_check(user, amount = 1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.b52342a8", null))
+	balloon_alert(user, LANG("obj.b52342a8e93a2ba2", null))
 	while(tool.use_tool(src, user, 2.5 SECONDS, volume=40))
 		atom_integrity = min(atom_integrity + 25, max_integrity)
 		if(atom_integrity >= max_integrity)
-			balloon_alert(user, LANG("obj.65ced1e8", null))
+			balloon_alert(user, LANG("obj.65ced1e8b5b56733", null))
 			return ITEM_INTERACT_SUCCESS
-		balloon_alert(user, LANG("obj.0aa1744a", null))
+		balloon_alert(user, LANG("obj.0aa1744ab7dc3eee", null))
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -216,7 +216,7 @@
 /obj/machinery/portable_atmospherics/click_alt(mob/living/user)
 	if(!holding)
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice(LANG("obj.cbed3266", list(holding, src))))
+	to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(holding, src))))
 	replace_tank(user, TRUE)
 	return CLICK_ACTION_SUCCESS
 
@@ -244,7 +244,7 @@
 
 	if(holding && new_tank)//for when we are actually switching tanks
 		investigate_log("had its internal [holding] swapped with [new_tank] by [key_name(user)].", INVESTIGATE_ATMOS)
-		to_chat(user, span_notice(LANG("obj.fdae5e9c", list(holding, src, new_tank))))
+		to_chat(user, span_notice(LANG("obj.fdae5e9cd4fecf82", list(holding, src, new_tank))))
 		user.put_in_hands(holding)
 		UnregisterSignal(holding, COMSIG_QDELETING)
 		holding = new_tank
@@ -253,7 +253,7 @@
 		playsound(src, remove_sound, sound_vol)
 	else if(holding)//we remove a tank
 		investigate_log("had its internal [holding] removed by [key_name(user)].", INVESTIGATE_ATMOS)
-		to_chat(user, span_notice(LANG("obj.cbed3266", list(holding, src))))
+		to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(holding, src))))
 		if(Adjacent(user))
 			user.put_in_hands(holding)
 		else
@@ -263,7 +263,7 @@
 		holding = null
 	else if(new_tank)//we insert the tank
 		investigate_log("had [new_tank] inserted into it by [key_name(user)].", INVESTIGATE_ATMOS)
-		to_chat(user, span_notice(LANG("obj.8ce99939", list(new_tank, src))))
+		to_chat(user, span_notice(LANG("obj.8ce99939bf01b695", list(new_tank, src))))
 		holding = new_tank
 		playsound(src, insert_sound, sound_vol)
 		RegisterSignal(holding, COMSIG_QDELETING, PROC_REF(unregister_holding))
@@ -289,23 +289,23 @@
 		disconnect()
 		wrench.play_tool_sound(src)
 		user.visible_message( \
-			LANG("obj.4acbf7f4", list(user, src)), \
-			span_notice(LANG("obj.4750b273", list(src))), \
-			span_hear(LANG("obj.aa8a193f", null)))
+			LANG("obj.4acbf7f4975d45b7", list(user, src)), \
+			span_notice(LANG("obj.4750b2731c4a628e", list(src))), \
+			span_hear(LANG("obj.aa8a193f8da7c41c", null)))
 		update_appearance()
 		return TRUE
 	var/obj/machinery/atmospherics/components/unary/portables_connector/possible_port = locate(/obj/machinery/atmospherics/components/unary/portables_connector) in loc
 	if(!possible_port)
-		to_chat(user, span_notice(LANG("obj.1ee6cac0", null)))
+		to_chat(user, span_notice(LANG("obj.1ee6cac099b952f7", null)))
 		return FALSE
 	if(!connect(possible_port))
-		to_chat(user, span_notice(LANG("obj.85a77c70", list(name))))
+		to_chat(user, span_notice(LANG("obj.85a77c70e9c1960e", list(name))))
 		return FALSE
 	wrench.play_tool_sound(src)
 	user.visible_message( \
-		LANG("obj.1450de58", list(user, src)), \
-		span_notice(LANG("obj.ea2a40d3", list(src))), \
-		span_hear(LANG("obj.aa8a193f", null)))
+		LANG("obj.1450de580c437995", list(user, src)), \
+		span_notice(LANG("obj.ea2a40d37a6615b9", list(src))), \
+		span_hear(LANG("obj.aa8a193f8da7c41c", null)))
 	update_appearance()
 	investigate_log("was connected to [possible_port] by [key_name(user)].", INVESTIGATE_ATMOS)
 	return TRUE

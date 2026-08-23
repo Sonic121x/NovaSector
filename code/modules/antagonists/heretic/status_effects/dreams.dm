@@ -89,7 +89,7 @@
 
 /datum/dream/heretic/GenerateDream(mob/living/carbon/dreamer)
 	. = list()
-	. += LANG("datum.d92dfe44", null)
+	. += LANG("datum.d92dfe443f9ff439", null)
 	. += "there is a " + pick("pond", "well", "lake", "puddle", "stream", "spring", "brook", "marsh")
 
 	if(isnull(allowed_typecaches_by_root_type))
@@ -103,15 +103,15 @@
 		var/list/filtered_objects = typecache_filter_list(all_objects, allowed_typecaches_by_root_type[object_type])
 		if(filtered_objects.len)
 			if (!something_found)
-				. += LANG("datum.fead6b09", null)
+				. += LANG("datum.fead6b09d4060479", null)
 				something_found = TRUE
 			var/obj/found_object = pick(filtered_objects)
 			. += initial(found_object.name)
 	if(!something_found)
 		. += pick("it's pitch black", "ihe reflections are vague", "you stroll aimlessly")
 	else
-		. += LANG("datum.eed1260e", null)
-	. += LANG("datum.dd403118", null)
+		. += LANG("datum.eed1260e0600fa5d", null)
+	. += LANG("datum.dd403118df0228f2", null)
 
 /datum/mood_event/mansus_dream_fatigue
 	description = "I must recover before I can dream of Mansus again."

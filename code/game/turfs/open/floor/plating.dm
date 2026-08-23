@@ -32,14 +32,14 @@
 /turf/open/floor/plating/examine(mob/user)
 	. = ..()
 	if(broken || burnt)
-		. += span_notice(LANG("turf.db10fb49", null))
+		. += span_notice(LANG("turf.db10fb49f073129c", null))
 		return
 	if(attachment_holes)
-		. += span_notice(LANG("turf.b0723366", null))
+		. += span_notice(LANG("turf.b0723366d6c280b0", null))
 	else
-		. += span_notice(LANG("turf.3fbc0709", null))
+		. += span_notice(LANG("turf.3fbc0709aabb8efe", null))
 	if(upgradable)
-		. += span_notice(LANG("turf.340b3580", null))
+		. += span_notice(LANG("turf.340b3580d084bdf6", null))
 
 #define PLATE_REINFORCE_COST 2
 
@@ -50,15 +50,15 @@
 
 	if(istype(tool, /obj/item/stack/rods) && attachment_holes)
 		if(broken || burnt)
-			to_chat(user, span_warning(LANG("turf.646c63e7", list(iscyborg(user) ? " or a plating repair tool" : ""))))
+			to_chat(user, span_warning(LANG("turf.646c63e7aa3aebb3", list(iscyborg(user) ? " or a plating repair tool" : ""))))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/rods/material = tool
 		if (material.get_amount() < 2)
-			to_chat(user, span_warning(LANG("turf.f6a65fbc", null)))
+			to_chat(user, span_warning(LANG("turf.f6a65fbc0a18f708", null)))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("turf.9be3abb7", null)))
+		to_chat(user, span_notice(LANG("turf.9be3abb710c67c87", null)))
 		if(!do_after(user, 3 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 
@@ -68,17 +68,17 @@
 		place_on_top(/turf/open/floor/engine, flags = CHANGETURF_INHERIT_AIR)
 		playsound(src, 'sound/items/deconstruct.ogg', 80, TRUE)
 		material.use(2)
-		to_chat(user, span_notice(LANG("turf.c70f4c00", null)))
+		to_chat(user, span_notice(LANG("turf.c70f4c0025b83795", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/stack/tile))
 		if(broken || burnt)
-			balloon_alert(user, LANG("turf.2812118d", list(iscyborg(user) ? "or plating repair " : "")))
+			balloon_alert(user, LANG("turf.2812118daf9d174b", list(iscyborg(user) ? "or plating repair " : "")))
 			return ITEM_INTERACT_BLOCKING
 
 		for(var/obj/blocker in src)
 			for(var/mob/sitter as anything in blocker.buckled_mobs)
-				to_chat(user, span_warning(LANG("turf.e3137a94", list(blocker, sitter, sitter.p_them()))))
+				to_chat(user, span_warning(LANG("turf.e3137a941f0adfc2", list(blocker, sitter, sitter.p_them()))))
 				return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/tile/tile = tool
@@ -89,7 +89,7 @@
 		if((!broken && !burnt) || !tool.use_tool(src, user, 0, volume=80))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_danger(LANG("turf.16c487d0", null)))
+		to_chat(user, span_danger(LANG("turf.16c487d0086256f0", null)))
 		icon_state = base_icon_state
 		burnt = FALSE
 		broken = FALSE
@@ -98,14 +98,14 @@
 
 	if(istype(tool, /obj/item/stack/sheet/plasteel) && upgradable) //Reinforcement!
 		if(broken || burnt)
-			balloon_alert(user, LANG("turf.2812118d", list(iscyborg(user) ? "or plating repair " : "")))
+			balloon_alert(user, LANG("turf.2812118daf9d174b", list(iscyborg(user) ? "or plating repair " : "")))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/sheet/sheets = tool
 		if(sheets.get_amount() < PLATE_REINFORCE_COST)
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("turf.b78e3218", null))
+		balloon_alert(user, LANG("turf.b78e3218d29b416f", null))
 		if(!do_after(user, 12 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 		if(sheets.get_amount() < PLATE_REINFORCE_COST || istype(src, /turf/open/floor/plating/reinforced))
@@ -117,15 +117,15 @@
 
 	if(istype(tool, /obj/item/stack/sheet/mineral/plastitanium) && attachment_holes)
 		if(broken || burnt)
-			to_chat(user, span_warning(LANG("turf.646c63e7", list(iscyborg(user) ? " or a plating repair tool" : ""))))
+			to_chat(user, span_warning(LANG("turf.646c63e7aa3aebb3", list(iscyborg(user) ? " or a plating repair tool" : ""))))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/sheet/mineral/plastitanium/sheet = tool
 		if (sheet.get_amount() < 1)
-			to_chat(user, span_warning(LANG("turf.82bf82a4", null))) // finally a reasonable message
+			to_chat(user, span_warning(LANG("turf.82bf82a434cf6820", null))) // finally a reasonable message
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("turf.1ad560a9", null))
+		balloon_alert(user, LANG("turf.1ad560a966bfd010", null))
 		if(!do_after(user, 1.5 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 
@@ -135,14 +135,14 @@
 		place_on_top(/turf/open/floor/engine/insulation, flags = CHANGETURF_INHERIT_AIR)
 		playsound(src, 'sound/items/deconstruct.ogg', 80, TRUE)
 		sheet.use(1)
-		to_chat(user, span_notice(LANG("turf.9ccab036", null)))
-		balloon_alert(user, LANG("turf.a365642c", null))
+		to_chat(user, span_notice(LANG("turf.9ccab0366087bbf6", null)))
+		balloon_alert(user, LANG("turf.a365642c500a7025", null))
 		return ITEM_INTERACT_SUCCESS
 
 /turf/open/floor/plating/welder_act(mob/living/user, obj/item/tool)
 	if((!broken && !burnt) || !tool.use_tool(src, user, 0, volume=80))
 		return NONE
-	to_chat(user, span_danger(LANG("turf.16c487d0", null)))
+	to_chat(user, span_danger(LANG("turf.16c487d0086256f0", null)))
 	icon_state = base_icon_state
 	burnt = FALSE
 	broken = FALSE
@@ -183,7 +183,7 @@
 	var/obj/lattice = locate(/obj/structure/lattice) in src
 	if(lattice)
 		qdel(lattice)
-	to_chat(user, span_notice(LANG("turf.e0a1d63a", null)))
+	to_chat(user, span_notice(LANG("turf.e0a1d63ab4572fca", null)))
 	playsound(src, 'sound/items/weapons/Genhit.ogg', 50, TRUE)
 	ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	return ITEM_INTERACT_SUCCESS
@@ -193,11 +193,11 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src)
 	if(prob(attacking_item.force * 20 - 25))
-		user.visible_message(span_danger(LANG("turf.1a64b3af", list(user, src))), \
-						span_danger(LANG("turf.f750bfe3", list(src, attacking_item))))
+		user.visible_message(span_danger(LANG("turf.1a64b3afe71be66b", list(user, src))), \
+						span_danger(LANG("turf.f750bfe3159da6f7", list(src, attacking_item))))
 		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 	else
-		to_chat(user, span_danger(LANG("turf.d31ae83e", list(src))))
+		to_chat(user, span_danger(LANG("turf.d31ae83edbde6ef3", list(src))))
 
 /turf/open/floor/plating/foam/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if(the_rcd.mode == RCD_TURF && the_rcd.rcd_design_path == /turf/open/floor/plating/rcd)
@@ -255,7 +255,7 @@
 /turf/open/floor/plating/reinforced/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	user.changeNext_move(CLICK_CD_MELEE)
 	if (!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning(LANG("turf.e8ba50af", null)))
+		to_chat(user, span_warning(LANG("turf.e8ba50af79992c6d", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	//get the user's location
@@ -273,14 +273,14 @@
 	switch(deconstruction_state)
 		if(PLATE_INTACT)
 			if(tool_used.tool_behaviour == TOOL_WRENCH)
-				balloon_alert(user, LANG("turf.67113ddb", null))
+				balloon_alert(user, LANG("turf.67113ddb349b0747", null))
 				if(tool_used.use_tool(src, user, 10 SECONDS, volume=100))
 					if(!istype(src, /turf/open/floor/plating/reinforced) || deconstruction_state != PLATE_INTACT)
 						return TRUE
 					deconstruction_state = PLATE_BOLTS_LOOSENED
 					update_appearance(UPDATE_ICON)
 					drop_screws()
-					balloon_alert(user, LANG("turf.704bde31", null))
+					balloon_alert(user, LANG("turf.704bde31b2221805", null))
 				return TRUE
 
 		if(PLATE_BOLTS_LOOSENED)
@@ -288,34 +288,34 @@
 				if(TOOL_WELDER)
 					if(!tool_used.tool_start_check(user, amount=3))
 						return
-					balloon_alert(user, LANG("turf.6e1259d1", null))
+					balloon_alert(user, LANG("turf.6e1259d158fa62f4", null))
 					if(tool_used.use_tool(src, user, 15 SECONDS, volume=100))
 						if(!istype(src, /turf/open/floor/plating/reinforced) || deconstruction_state != PLATE_BOLTS_LOOSENED)
 							return TRUE
 						deconstruction_state = PLATE_CUT
 						update_appearance(UPDATE_ICON)
-						balloon_alert(user, LANG("turf.e5000003", null))
+						balloon_alert(user, LANG("turf.e5000003f5c5fbfe", null))
 					return TRUE
 
 				if(TOOL_SCREWDRIVER)
-					balloon_alert(user, LANG("turf.6cbd8c3e", null))
+					balloon_alert(user, LANG("turf.6cbd8c3e7e47356a", null))
 					if(tool_used.use_tool(src, user, 15 SECONDS, volume=100))
 						if(!istype(src, /turf/open/floor/plating/reinforced) || deconstruction_state != PLATE_BOLTS_LOOSENED)
 							return TRUE
 						deconstruction_state = PLATE_INTACT
 						update_appearance(UPDATE_ICON)
-						balloon_alert(user, LANG("turf.065f7e36", null))
+						balloon_alert(user, LANG("turf.065f7e364c491117", null))
 					return TRUE
 			return FALSE
 
 		if(PLATE_CUT)
 			switch(tool_used.tool_behaviour)
 				if(TOOL_CROWBAR)
-					balloon_alert(user, LANG("turf.c52378ec", null))
+					balloon_alert(user, LANG("turf.c52378ecf9102c17", null))
 					if(tool_used.use_tool(src, user, 20 SECONDS, volume=100))
 						if(!istype(src,  /turf/open/floor/plating/reinforced) || deconstruction_state != PLATE_CUT)
 							return TRUE
-						balloon_alert(user, LANG("turf.86726efa", null))
+						balloon_alert(user, LANG("turf.86726efa7d369d0c", null))
 						new /obj/item/stack/sheet/plasteel(src, 2)
 						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					return TRUE
@@ -323,13 +323,13 @@
 				if(TOOL_WELDER)
 					if(!tool_used.tool_start_check(user, amount=3))
 						return
-					balloon_alert(user, LANG("turf.2fe0cb8f", null))
+					balloon_alert(user, LANG("turf.2fe0cb8f91485914", null))
 					if(tool_used.use_tool(src, user, 15 SECONDS, volume=100))
 						if(!istype(src,  /turf/open/floor/plating/reinforced) || deconstruction_state != PLATE_CUT)
 							return TRUE
 						deconstruction_state = PLATE_BOLTS_LOOSENED
 						update_appearance(UPDATE_ICON)
-						balloon_alert(user, LANG("turf.b054b8b5", null))
+						balloon_alert(user, LANG("turf.b054b8b52c04077d", null))
 					return TRUE
 			return FALSE
 	return FALSE

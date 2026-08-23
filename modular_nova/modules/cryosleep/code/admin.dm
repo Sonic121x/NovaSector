@@ -8,7 +8,7 @@
 	if(with_paper)
 		var/obj/item/paper/cryo_paper = new /obj/item/paper(loc)
 		cryo_paper.name = "Notification - [name]"
-		cryo_paper.add_raw_text(LANG("mob.a0426cb9", list(name, job ? ", [job]," : "")))
+		cryo_paper.add_raw_text(LANG("mob.a0426cb973d56fe5", list(name, job ? ", [job]," : "")))
 		cryo_paper.update_appearance()
 	//find cryopod
 	for(var/obj/machinery/cryopod/cryo in GLOB.valid_cryopods)

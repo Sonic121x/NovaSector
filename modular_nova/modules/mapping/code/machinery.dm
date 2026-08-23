@@ -14,8 +14,8 @@
 /obj/item/gps/computer/space/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(I.use_tool(src, user, 20, volume=50))
-		user.visible_message(span_warning(LANG("obj.64d85c99", list(user, src))),
-			span_notice(LANG("obj.c234e380", list(src))), span_hear(LANG("obj.f070a678", null)))
+		user.visible_message(span_warning(LANG("obj.64d85c99dc62f8de", list(user, src))),
+			span_notice(LANG("obj.c234e380f56e7a65", list(src))), span_hear(LANG("obj.f070a678bd67cf40", null)))
 		deconstruct(TRUE)
 	return TRUE
 
@@ -118,7 +118,7 @@
 /obj/machinery/power/micro_reactor/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += LANG("obj.e87ba4d7", list(!active?"n't":""))
+		. += LANG("obj.e87ba4d7c50d0213", list(!active?"n't":""))
 
 /obj/machinery/power/micro_reactor/bapgm
 	name = "B.A.P.G.M."

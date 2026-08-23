@@ -34,7 +34,7 @@
 
 // become lubeman. but you suicide
 /obj/item/fish/clownfish/lube/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.2aa7ceb7", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.2aa7ceb7ab47789d", list(user, src, user.p_theyre()))))
 	user.AddComponent(/datum/component/slippery, 8 SECONDS, SLIDE|GALOSHES_DONT_HELP)
 	user.AddElement(/datum/element/lube_walking)
 	qdel(src)
@@ -105,7 +105,7 @@
 	beauty = FISH_BEAUTY_GOOD
 
 /obj/item/fish/pufferfish/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.3edca752", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.3edca752eb397351", list(user, src, user.p_theyre()))))
 	return TOXLOSS
 
 /obj/item/fish/lanternfish
@@ -254,16 +254,16 @@
 	fish_traits = list(/datum/fish_trait/heavy, /datum/fish_trait/carnivore, /datum/fish_trait/predator, /datum/fish_trait/ink, /datum/fish_trait/camouflage, /datum/fish_trait/wary)
 
 /obj/item/fish/squid/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.4c4de3b0", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.4c4de3b0224bde24", list(user, src, user.p_theyre()))))
 
 	// No head? Bozo.
 	var/obj/item/bodypart/head = user.get_bodypart(BODY_ZONE_HEAD)
 	if(isnull(head))
-		user.visible_message(span_suicide(LANG("obj.35909165", list(user))))
+		user.visible_message(span_suicide(LANG("obj.359091651bf358c9", list(user))))
 		return SHAME
 
 	// get inked.
-	user.visible_message(span_warning(LANG("obj.435f3e65", list(user, src))), span_userdanger(LANG("obj.3659c69f", list(src))))
+	user.visible_message(span_warning(LANG("obj.435f3e655ff5afa1", list(user, src))), span_userdanger(LANG("obj.3659c69ff40a2f3c", list(src))))
 	user.AddComponent(/datum/component/face_decal/splat, \
 		color = COLOR_NEARLY_ALL_BLACK, \
 		memory_type = /datum/memory/witnessed_inking, \
@@ -275,7 +275,7 @@
 		return OXYLOSS
 
 	head.dismember(silent = FALSE)
-	user.visible_message(span_suicide(LANG("obj.406570cc", list(user))))
+	user.visible_message(span_suicide(LANG("obj.406570ccacc22814", list(user))))
 	return MANUAL_SUICIDE
 
 /obj/item/fish/squid/get_fish_taste()

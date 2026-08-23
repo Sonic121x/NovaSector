@@ -134,10 +134,10 @@
 		return
 
 	if(!validate_input(input))
-		to_chat(user, span_notice(LANG("obj.3f95a505", null)))
+		to_chat(user, span_notice(LANG("obj.3f95a50585ffc6e6", null)))
 		return
 
-	to_chat(user, span_warning(LANG("obj.503e48f9", null)))
+	to_chat(user, span_warning(LANG("obj.503e48f9f8b8fdae", null)))
 	previous_attempts += list(bulls_and_cows(input))
 	attempts--
 

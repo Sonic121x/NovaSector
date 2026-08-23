@@ -162,7 +162,7 @@ micro-manipulator, console screen, beaker, Microlaser, matter bin, power cells.
 /obj/item/circuitboard/machine/examine(mob/user)
 	. = ..()
 	if(!LAZYLEN(req_components))
-		. += span_info(LANG("obj.8f611717", null))
+		. += span_info(LANG("obj.8f6117170c2fa23f", null))
 		return
 
 	var/list/nice_list = list()
@@ -202,4 +202,4 @@ micro-manipulator, console screen, beaker, Microlaser, matter bin, power cells.
 			stack_trace("[component_path] was an invalid component")
 		nice_list += list("[component_amount] [component_name]\s")
 
-	. += span_info(LANG("obj.e8c2a536", list(lang_english_list(nice_list))))
+	. += span_info(LANG("obj.e8c2a536c6afeae9", list(lang_english_list(nice_list))))

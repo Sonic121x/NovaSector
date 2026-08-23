@@ -60,10 +60,10 @@
 		return
 	var/obj/item/storage/belt/storage_pouch/pouch = locate() in real_location
 	if(!pouch)
-		pouch.balloon_alert(user, LANG("datum.e29b497a", null))
+		pouch.balloon_alert(user, LANG("datum.e29b497aaa623f68", null))
 		return //oopsie!! If we don't have a pouch! You're fucked!
 	if(locked)
-		pouch.balloon_alert(user, LANG("datum.5d71bae2", null))
+		pouch.balloon_alert(user, LANG("datum.5d71bae27aaf9422", null))
 		return
 	pouch.atom_storage.dump_content_at(dest_object, user = user)
 
@@ -78,13 +78,13 @@
 		add_fingerprint(user)
 		playsound(src, 'sound/items/unsheath.ogg', 50, TRUE, -5)
 		if(!user.put_in_hands(drawn_item))
-			to_chat(user, span_notice(LANG("obj.02062406", list(drawn_item))))
+			to_chat(user, span_notice(LANG("obj.02062406fe0a5020", list(drawn_item))))
 			update_appearance()
 			return CLICK_ACTION_SUCCESS
-		user.visible_message(span_notice(LANG("obj.1f34f194", list(user, drawn_item, src))), span_notice(LANG("obj.604c7b94", list(drawn_item, src))))
+		user.visible_message(span_notice(LANG("obj.1f34f194a347a912", list(user, drawn_item, src))), span_notice(LANG("obj.604c7b94ff4abde3", list(drawn_item, src))))
 		update_appearance()
 	else
-		to_chat(user, span_warning(LANG("obj.02d482cc", list(src))))
+		to_chat(user, span_warning(LANG("obj.02d482cc1aef0cef", list(src))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/storage/belt/crusader/update_icon(updates)
@@ -98,9 +98,9 @@
 
 /obj/item/storage/belt/crusader/examine(mob/user)
 	. = ..()
-	.+= span_notice(LANG("obj.45c264f4", null))
+	.+= span_notice(LANG("obj.45c264f4d8ea027d", null))
 	if(contents.len == 2)	//If there's no sword/rod in the sheath slot it doesnt display the alt-click instruction
-		. += span_notice(LANG("obj.ebf3b6e0", null))
+		. += span_notice(LANG("obj.ebf3b6e0466f52e5", null))
 		return
 
 

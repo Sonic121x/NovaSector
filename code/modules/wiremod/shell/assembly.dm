@@ -87,7 +87,7 @@
 
 /obj/item/assembly/wiremod/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.873c7d4a", list(secured && "un", src)))
+	. += span_notice(LANG("obj.873c7d4ad9a094bf", list(secured && "un", src)))
 
 // This is to bypass removing the circuit with a screwdriver left-click
 /obj/item/assembly/wiremod/screwdriver_act_secondary(mob/living/user, obj/item/tool)

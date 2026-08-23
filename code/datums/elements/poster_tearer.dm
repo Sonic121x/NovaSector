@@ -29,7 +29,7 @@
 		return NONE // don't care we move on
 
 	if(DOING_INTERACTION_WITH_TARGET(user, target) || (!isnull(interaction_key) && DOING_INTERACTION(user, interaction_key)))
-		user.balloon_alert(target, LANG("datum.8df72942", null))
+		user.balloon_alert(target, LANG("datum.8df72942c63f9092", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	INVOKE_ASYNC(src, PROC_REF(tear_it_down), user, target)
@@ -40,7 +40,7 @@
 	if(!target.check_tearability(user)) // this proc will handle user feedback
 		return
 
-	target.balloon_alert(user, LANG("datum.3a722360", null))
+	target.balloon_alert(user, LANG("datum.3a722360c53d41f7", null))
 	if(!do_after(user, tear_time, target, interaction_key = interaction_key)) // just in case the user actually enjoys art
 		return
 	target.tear_poster(user)

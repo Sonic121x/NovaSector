@@ -185,12 +185,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			if(orders_adjusted.len)
 				var/datum/bank_account/paying_for_this = spawning_order.paying_account || SSeconomy.get_dep_account(ACCOUNT_CAR)
 				if(!sheets.contains.len) //no sheets in the market at all
-					paying_for_this.bank_card_talk(LANG("obj.16e29f44", list(spawning_order.id, spawning_order.pack.name)))
+					paying_for_this.bank_card_talk(LANG("obj.16e29f442c8ddfef", list(spawning_order.id, spawning_order.pack.name)))
 					SSshuttle.shopping_list -= spawning_order
 					clean_up_orders += spawning_order
 					continue
 				//some of the orders were adjusted(quantity changed or cancelled) according to the market
-				paying_for_this.bank_card_talk(LANG("obj.e1494024", list(spawning_order.id, spawning_order.pack.name, orders_adjusted.Join("<br>"))))
+				paying_for_this.bank_card_talk(LANG("obj.e1494024924d6ebd", list(spawning_order.id, spawning_order.pack.name, orders_adjusted.Join("<br>"))))
 
 		price = spawning_order.get_final_cost()
 
@@ -204,14 +204,14 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					var/list/current_buyer_orders = goodies_by_buyer[spawning_order.paying_account]
 					if(LAZYLEN(current_buyer_orders) == GOODY_FREE_SHIPPING_MAX)
 						price = round(price + CRATE_TAX)
-						paying_for_this.bank_card_talk(LANG("obj.69d21491", list(CRATE_TAX, MONEY_NAME_SINGULAR)))
+						paying_for_this.bank_card_talk(LANG("obj.69d2149182c72ec4", list(CRATE_TAX, MONEY_NAME_SINGULAR)))
 			else
 				paying_for_this = SSeconomy.get_dep_account(ACCOUNT_CAR)
 
 			if(paying_for_this)
 				if(!paying_for_this.adjust_money(-price, "Cargo: [spawning_order.pack.name]"))
 					if(spawning_order.paying_account)
-						paying_for_this.bank_card_talk(LANG("obj.d8f51cfd", list(spawning_order.id, MONEY_NAME_CAPITALIZED, price)))
+						paying_for_this.bank_card_talk(LANG("obj.d8f51cfd1cd55de2", list(spawning_order.id, MONEY_NAME_CAPITALIZED, price)))
 					if(!spawning_order.can_be_cancelled) //only if it absolutly cannot be canceled by the player do we cancel it for them
 						SSshuttle.shopping_list -= spawning_order
 						clean_up_orders += spawning_order

@@ -161,7 +161,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 		return TRUE
 	var/area/A = get_area(usr)
 	if(!A.outdoors)
-		to_chat(usr, span_warning(LANG("atom.3c2f6fc6", null)))
+		to_chat(usr, span_warning(LANG("atom.3c2f6fc68e7198dd", null)))
 		return TRUE
 	create_area(usr)
 
@@ -607,7 +607,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 		flick("[base_icon_state]_flick", src)
 		return
 
-	var/tgui_answer = tgui_alert(usr, LANG("atom.a08c61e6", null), LANG("atom.de5aa820", null), list("Yes", "No"))
+	var/tgui_answer = tgui_alert(usr, LANG("atom.a08c61e6c3682a73", null), LANG("atom.de5aa820260de8e3", null), list("Yes", "No"))
 	if(tgui_answer == "Yes" && !IS_UNCONSCIOUS(usr))
 		var/mob/living/L = usr
 		L.Sleeping(400)

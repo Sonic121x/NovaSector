@@ -41,13 +41,13 @@
 			R.set_anchored(!R.anchored)
 		if(WIRE_RESETOWNER)
 			R.my_card = null
-			R.audible_message(span_warning(LANG("datum.46bc66a8", null)))
+			R.audible_message(span_warning(LANG("datum.46bc66a8a3eda1c6", null)))
 			R.locked = FALSE
 		if(WIRE_PRIZEVEND)
 			R.shock(usr, 70)
 			if(R.locked)
 				return
-			R.audible_message(span_warning(LANG("datum.758cdc0f", null)))
+			R.audible_message(span_warning(LANG("datum.758cdc0f51c31a0a", null)))
 			R.prize_theft(0.20)
 
 /datum/wires/roulette/on_cut(wire, mend, source)
@@ -69,5 +69,5 @@
 			R.shock(usr, 75)
 			if(R.locked)
 				return
-			R.audible_message(span_warning(LANG("datum.758cdc0f", null)))
+			R.audible_message(span_warning(LANG("datum.758cdc0f51c31a0a", null)))
 			R.prize_theft(0.10)

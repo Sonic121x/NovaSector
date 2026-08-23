@@ -275,8 +275,8 @@
 		return ..()
 
 	revive(HEAL_ALL)
-	to_chat(reviver, span_userdanger(LANG("mob.517bec8e", list(src))))
-	balloon_alert(reviver, LANG("mob.4af409be", null))
+	to_chat(reviver, span_userdanger(LANG("mob.517bec8e707511e6", list(src))))
+	balloon_alert(reviver, LANG("mob.4af409be8d19b752", null))
 
 /mob/living/basic/blood_worm/hatchling
 	name = "hatchling blood worm"

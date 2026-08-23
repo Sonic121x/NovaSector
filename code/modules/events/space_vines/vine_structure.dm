@@ -44,12 +44,12 @@
 /obj/structure/spacevine/examine(mob/user)
 	. = ..()
 	if(!length(mutations))
-		. += LANG("obj.a868aa5f", null)
+		. += LANG("obj.a868aa5f378166ce", null)
 		return
 	var/text = "This vine has the following mutations:\n"
 	for(var/datum/spacevine_mutation/mutation as anything in mutations)
 		if(mutation.name == "transparent") /// Transparent has no hue
-			text += LANG("obj.b7b57e66", null)
+			text += LANG("obj.b7b57e66904a46c3", null)
 		else
 			text += "<font color='[mutation.hue]'>[mutation.name]</font> "
 	. += text
@@ -153,7 +153,7 @@
 	for(var/datum/spacevine_mutation/mutation in mutations)
 		mutation.on_buckle(src, victim)
 	if((victim.stat != DEAD) && (victim.buckled != src) && can_tangle) //not dead and not captured and can tangle
-		to_chat(victim, span_userdanger(LANG("obj.3d161d84", list(pick("wind", "tangle", "tighten")))))
+		to_chat(victim, span_userdanger(LANG("obj.3d161d84fac372c3", list(pick("wind", "tangle", "tighten")))))
 		buckle_mob(victim, force = TRUE)
 
 /// Finds a target tile to spread to. If checks pass it will spread to it and also proc on_spread on target.

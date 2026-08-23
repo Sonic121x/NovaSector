@@ -20,21 +20,21 @@
 	var/over_what_fp = source.loc == user ? "your [source.name]" : source
 	if(prob(10))
 		user.visible_message(
-			span_warning(LANG("datum.dde3c58c", list(user, match, over_what_tp))),
-			span_warning(LANG("datum.9e98a47f", list(match, over_what_fp))),
+			span_warning(LANG("datum.dde3c58cdf17f802", list(user, match, over_what_tp))),
+			span_warning(LANG("datum.9e98a47f4ccbe314", list(match, over_what_fp))),
 		)
 		return ITEM_INTERACT_SUCCESS
 	if(prob((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_HULK)) ? 33 : 2))
 		user.visible_message(
-			span_warning(LANG("datum.1224197f", list(user, match, over_what_tp))),
-			span_warning(LANG("datum.4d629683", list(match, over_what_fp))),
+			span_warning(LANG("datum.1224197f78dcacd2", list(user, match, over_what_tp))),
+			span_warning(LANG("datum.4d62968389c5df0f", list(match, over_what_fp))),
 		)
 		match.snap()
 		return ITEM_INTERACT_SUCCESS
 
 	user.visible_message(
-		span_rose(LANG("datum.92661cb0", list(user, match, over_what_tp))),
-		span_rose(LANG("datum.8a18a4e7", list(match, over_what_fp))),
+		span_rose(LANG("datum.92661cb0ad348ce7", list(user, match, over_what_tp))),
+		span_rose(LANG("datum.8a18a4e7f607d7a6", list(match, over_what_fp))),
 	)
 	match.matchignite()
 	return ITEM_INTERACT_SUCCESS

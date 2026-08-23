@@ -51,23 +51,23 @@
 	. = ..()
 	switch(stage)
 		if(LIGHT_CONSTRUCT_EMPTY)
-			. += span_notice(LANG("obj.b73d03f2", null))
+			. += span_notice(LANG("obj.b73d03f20c5281b9", null))
 		if(LIGHT_CONSTRUCT_WIRED)
-			. += span_notice(LANG("obj.f04ddf2d", null))
+			. += span_notice(LANG("obj.f04ddf2d686766bc", null))
 		if(LIGHT_CONSTRUCT_CLOSED)
-			. += span_notice(LANG("obj.f6ba5737", null))
+			. += span_notice(LANG("obj.f6ba57373add19fc", null))
 	if(cell_connectors)
 		if(cell)
-			. += span_notice(LANG("obj.d65bfb24", list(cell)))
+			. += span_notice(LANG("obj.d65bfb246ff7c506", list(cell)))
 		else
-			. += span_notice(LANG("obj.3f83d4f3", null))
+			. += span_notice(LANG("obj.3f83d4f3c2271b25", null))
 	else
-		. += span_danger(LANG("obj.1bdbd305", null))
+		. += span_danger(LANG("obj.1bdbd305250d9821", null))
 
 /obj/structure/light_construct/attack_hand(mob/user, list/modifiers)
 	if(!cell)
 		return
-	user.visible_message(span_notice(LANG("obj.6eec8634", list(user, cell, src))), span_notice(LANG("obj.1973523e", list(cell))))
+	user.visible_message(span_notice(LANG("obj.6eec863436b99805", list(user, cell, src))), span_notice(LANG("obj.1973523e4f545786", list(cell))))
 	user.put_in_hands(cell)
 	cell = null
 	add_fingerprint(user)
@@ -75,7 +75,7 @@
 /obj/structure/light_construct/attack_tk(mob/user)
 	if(!cell)
 		return
-	to_chat(user, span_notice(LANG("obj.326e9224", list(cell))))
+	to_chat(user, span_notice(LANG("obj.326e922415f23244", list(cell))))
 	var/obj/item/stock_parts/power_store/cell_reference = cell
 	cell = null
 	cell_reference.forceMove(drop_location())
@@ -85,19 +85,19 @@
 	add_fingerprint(user)
 	if(istype(tool, /obj/item/stock_parts/power_store/cell))
 		if(!cell_connectors)
-			to_chat(user, span_warning(LANG("obj.3e6b5586", list(name))))
+			to_chat(user, span_warning(LANG("obj.3e6b5586b39eb266", list(name))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.temporarilyRemoveItemFromInventory(tool))
-			to_chat(user, span_warning(LANG("obj.1dbf8014", list(tool))))
+			to_chat(user, span_warning(LANG("obj.1dbf8014c030d016", list(tool))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(cell)
-			to_chat(user, span_warning(LANG("obj.18df6061", null)))
+			to_chat(user, span_warning(LANG("obj.18df60619fe8f5e9", null)))
 			return ITEM_INTERACT_BLOCKING
 
-		user.visible_message(span_notice(LANG("obj.859ffee5", list(user, tool, src))), \
-		span_notice(LANG("obj.0c27fe26", list(tool, src))))
+		user.visible_message(span_notice(LANG("obj.859ffee5df42a245", list(user, tool, src))), \
+		span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 		tool.forceMove(src)
 		cell = tool
@@ -105,18 +105,18 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/light))
-		to_chat(user, span_warning(LANG("obj.8f9c8ea6", list(name))))
+		to_chat(user, span_warning(LANG("obj.8f9c8ea66971dfa5", list(name))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(stage == LIGHT_CONSTRUCT_EMPTY && istype(tool, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = tool
 		if(!coil.use(1))
-			to_chat(user, span_warning(LANG("obj.41542255", list(src))))
+			to_chat(user, span_warning(LANG("obj.41542255dc5f9152", list(src))))
 			return ITEM_INTERACT_BLOCKING
 		icon_state = "[fixture_type]-construct-stage2"
 		stage = LIGHT_CONSTRUCT_WIRED
-		user.visible_message(span_notice(LANG("obj.1c9350ed", list(user.name, src))), \
-							span_notice(LANG("obj.b1f7e13c", list(src))))
+		user.visible_message(span_notice(LANG("obj.1c9350ed5e24da8d", list(user.name, src))), \
+							span_notice(LANG("obj.b1f7e13ceef66539", list(src))))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -125,28 +125,28 @@
 	switch(stage)
 		if(LIGHT_CONSTRUCT_EMPTY)
 			if(cell)
-				to_chat(user, span_warning(LANG("obj.3218f2b7", null)))
+				to_chat(user, span_warning(LANG("obj.3218f2b785887c8c", null)))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.2f7a5f8d", list(src))))
+			to_chat(user, span_notice(LANG("obj.2f7a5f8d2b2b54b0", list(src))))
 			if (!tool.use_tool(src, user, 30, volume=50))
 				return ITEM_INTERACT_BLOCKING
-			user.visible_message(span_notice(LANG("obj.6d94607a", list(user.name, src))), \
-								span_notice(LANG("obj.a33d1bb6", list(src))), \
-								span_hear(LANG("obj.aa8a193f", null)))
+			user.visible_message(span_notice(LANG("obj.6d94607af53d4e95", list(user.name, src))), \
+								span_notice(LANG("obj.a33d1bb641d47707", list(src))), \
+								span_hear(LANG("obj.aa8a193f8da7c41c", null)))
 			playsound(src, 'sound/items/deconstruct.ogg', 75, TRUE)
 			deconstruct()
 			return ITEM_INTERACT_SUCCESS
 		if(LIGHT_CONSTRUCT_WIRED)
-			to_chat(usr, span_warning(LANG("obj.de6ac88c", null)))
+			to_chat(usr, span_warning(LANG("obj.de6ac88cbece36aa", null)))
 			return ITEM_INTERACT_BLOCKING
 	return NONE
 
 /obj/structure/light_construct/screwdriver_act(mob/living/user, obj/item/tool)
 	if(stage != LIGHT_CONSTRUCT_WIRED)
 		return NONE
-	user.visible_message(span_notice(LANG("obj.ab5a0f0c", list(user.name, src))), \
-						span_notice(LANG("obj.1aba22ed", list(src))), \
-						span_hear(LANG("obj.8616c74b", null)))
+	user.visible_message(span_notice(LANG("obj.ab5a0f0c0a1d9928", list(user.name, src))), \
+						span_notice(LANG("obj.1aba22edc3992fad", list(src))), \
+						span_hear(LANG("obj.8616c74b67f81440", null)))
 	tool.play_tool_sound(src, 75)
 	switch(fixture_type)
 		if("tube")
@@ -171,9 +171,9 @@
 	stage = LIGHT_CONSTRUCT_EMPTY
 	icon_state = "[fixture_type]-construct-stage1"
 	new /obj/item/stack/cable_coil(drop_location(), 1, "red")
-	user.visible_message(span_notice(LANG("obj.e3ab888f", list(user.name, src))), \
-						span_notice(LANG("obj.8671a81f", list(src))), \
-						span_hear(LANG("obj.dcc6c1b0", null)))
+	user.visible_message(span_notice(LANG("obj.e3ab888fb6330d84", list(user.name, src))), \
+						span_notice(LANG("obj.8671a81f671efacf", list(src))), \
+						span_hear(LANG("obj.dcc6c1b00318bad4", null)))
 	tool.play_tool_sound(src, 100)
 	return ITEM_INTERACT_SUCCESS
 

@@ -112,13 +112,13 @@
 /obj/item/clothing/suit/hooded/cultrobes/hardened/proc/attempt_exorcism(mob/living/exorcist)
 	if(IS_CULTIST(exorcist))
 		return
-	balloon_alert(exorcist, LANG("obj.833ce5de", null))
+	balloon_alert(exorcist, LANG("obj.833ce5de64242087", null))
 	playsound(src, 'sound/effects/hallucinations/veryfar_noise.ogg', 40, TRUE)
 	if(!do_after(exorcist, 4 SECONDS, target = src))
 		return
 	playsound(src, 'sound/effects/pray_chaplain.ogg', 60, TRUE)
 
-	exorcist.visible_message(span_notice(LANG("obj.453de01c", list(exorcist, src))))
+	exorcist.visible_message(span_notice(LANG("obj.453de01c95323b6c", list(exorcist, src))))
 	var/new_item_path = GLOB.holy_armor_type || pick(subtypesof(/obj/item/storage/box/holy))
 	var/obj/item/new_item = new new_item_path()
 	//take everything out and delete the box.
@@ -159,7 +159,7 @@
 	))
 	var/datum/wound/wound_of_choice = new wound_type()
 	wound_of_choice.apply_wound(bone_to_wound, wound_source = "cultist robes")
-	to_chat(wearer, span_alert(LANG("obj.8c36ccca", list(src))))
+	to_chat(wearer, span_alert(LANG("obj.8c36cccadc495bf7", list(src))))
 
 /obj/item/clothing/head/hooded/cult_hoodie/hardened
 	name = "\improper Nar'Sien hardened helmet"
@@ -213,18 +213,18 @@
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/equipped(mob/living/user, slot)
 	..()
 	if(!IS_CULTIST(user))
-		to_chat(user, span_cult_large(LANG("obj.79745a40", null)))
-		to_chat(user, span_warning(LANG("obj.9a09b431", null)))
+		to_chat(user, span_cult_large(LANG("obj.79745a40d7602a9a", null)))
+		to_chat(user, span_warning(LANG("obj.9a09b431e6c209b7", null)))
 		user.dropItemToGround(src, TRUE)
 		user.set_dizzy_if_lower(1 MINUTES)
 		user.Paralyze(100)
 
 ///Callback when the shield breaks, since cult robes are stupid and have different effects.
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/proc/shield_damaged(mob/living/wearer, attack_text, new_current_charges)
-	wearer.visible_message(span_danger(LANG("obj.f459e36d", list(wearer, attack_text))))
+	wearer.visible_message(span_danger(LANG("obj.f459e36d9dc36efc", list(wearer, attack_text))))
 	new /obj/effect/temp_visual/cult/sparks(get_turf(wearer))
 	if(new_current_charges == 0)
-		wearer.visible_message(span_danger(LANG("obj.f4603c3e", list(wearer))))
+		wearer.visible_message(span_danger(LANG("obj.f4603c3ec301ed52", list(wearer))))
 
 /obj/item/clothing/head/hooded/cult_hoodie/cult_shield
 	name = "empowered cultist helmet"
@@ -268,4 +268,4 @@
 	if(!eyes.apply_organ_damage(1))
 		return
 	if(SPT_PROB(3, seconds_per_tick))
-		to_chat(wearer, span_danger(LANG("obj.a15ac180", list(src, eyes.p_them()))))
+		to_chat(wearer, span_danger(LANG("obj.a15ac180ad2cf332", list(src, eyes.p_them()))))

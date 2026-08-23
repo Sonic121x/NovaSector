@@ -31,4 +31,4 @@
 
 /obj/structure/closet/infinite/proc/close_on_my_own()
 	if(close())
-		visible_message(span_notice(LANG("obj.68319664", list(src))))
+		visible_message(span_notice(LANG("obj.683196641e0f91e0", list(src))))

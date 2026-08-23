@@ -224,13 +224,13 @@
 	if (!Adjacent(user))
 		return
 
-	balloon_alert(user, LANG("obj.f7525ae3", null))
+	balloon_alert(user, LANG("obj.f7525ae383b36c26", null))
 	if (!do_after(user, 3 SECONDS, src))
 		return
 	if (QDELETED(src) || !Adjacent(user) || user.incapacitated)
 		return
 	user.place_on_head(src)
-	balloon_alert(user, LANG("obj.7fa4e2ca", null))
+	balloon_alert(user, LANG("obj.7fa4e2ca4ba18e5b", null))
 
 // if a borg right clicks themself, they try to drop their hat
 /mob/living/silicon/robot/attack_robot_secondary(mob/user, list/modifiers)
@@ -241,7 +241,7 @@
 	if (user != src || isnull(hat))
 		return
 
-	balloon_alert(user, LANG("mob.0ab66d35", null))
+	balloon_alert(user, LANG("mob.0ab66d35300f2db2", null))
 	if (!do_after(user, 3 SECONDS, src))
 		return
 	if (QDELETED(src) || !Adjacent(user) || user.incapacitated || isnull(hat))
@@ -249,4 +249,4 @@
 	hat.forceMove(get_turf(src))
 	hat = null
 	update_icons()
-	balloon_alert(user, LANG("mob.ffcaa5c0", null))
+	balloon_alert(user, LANG("mob.ffcaa5c006f5f6cc", null))

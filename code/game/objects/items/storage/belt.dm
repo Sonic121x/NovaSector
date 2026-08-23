@@ -18,7 +18,7 @@
 	var/content_overlays = FALSE //If this is true, the belt will gain overlays based on what it's holding
 
 /obj/item/storage/belt/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.00572afb", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.00572afb8f1a0bb6", list(user, user.p_them(), src, user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/storage/belt/update_overlays()
@@ -363,7 +363,7 @@
 /obj/item/storage/belt/military/snack/Initialize(mapload)
 	. = ..()
 	var/sponsor = pick("Donk Co.", "Waffle Corp.", "Roffle Co.", "Gorlex Marauders", "Tiger Cooperative")
-	desc = LANG("obj.b8c69bca", list(sponsor))
+	desc = LANG("obj.b8c69bcab85b80dd", list(sponsor))
 
 /obj/item/storage/belt/military/snack/full/Initialize(mapload)
 	. = ..()
@@ -561,11 +561,11 @@
 	wizard.temporarilyRemoveItemFromInventory(old_wand)
 	if (!wizard.put_in_hands(fresh_wand))
 		return
-	to_chat(wizard, span_notice(LANG("obj.ebcb21e5", list(fresh_wand))))
+	to_chat(wizard, span_notice(LANG("obj.ebcb21e5b72c2b5b", list(fresh_wand))))
 	if (atom_storage.attempt_insert(old_wand, wizard))
 		return
 	old_wand.forceMove(wizard.drop_location())
-	to_chat(wizard, span_warning(LANG("obj.8206685f", list(old_wand))))
+	to_chat(wizard, span_warning(LANG("obj.8206685f25803b9f", list(old_wand))))
 
 /obj/item/storage/belt/janitor
 	name = "janibelt"
@@ -699,14 +699,14 @@
 /obj/item/storage/belt/sheath/examine(mob/user)
 	. = ..()
 	if(length(contents))
-		. += span_notice(LANG("obj.ebf3b6e0", null))
+		. += span_notice(LANG("obj.ebf3b6e0466f52e5", null))
 
 /obj/item/storage/belt/sheath/click_alt(mob/user)
 	if(!length(contents))
-		balloon_alert(user, LANG("obj.76a90f7c", null))
+		balloon_alert(user, LANG("obj.76a90f7c0f5ea424", null))
 		return CLICK_ACTION_BLOCKING
 	var/obj/item/stored_item = contents[1]
-	user.visible_message(span_notice(LANG("obj.1f34f194", list(user, stored_item, src))), span_notice(LANG("obj.604c7b94", list(stored_item, src))))
+	user.visible_message(span_notice(LANG("obj.1f34f194a347a912", list(user, stored_item, src))), span_notice(LANG("obj.604c7b94ff4abde3", list(stored_item, src))))
 	user.put_in_hands(stored_item)
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
@@ -750,15 +750,15 @@
 	var/obj/item/storage/belt/sheath/owners_sheath = target
 	if(!COOLDOWN_FINISHED(owners_sheath, full_ability_cooldown))
 		if(feedback)
-			to_chat(owner, span_warning(LANG("datum.e00d4e92", null)))
+			to_chat(owner, span_warning(LANG("datum.e00d4e921581f305", null)))
 		return FALSE
 	if(!length(owners_sheath.contents))
 		if(feedback)
-			to_chat(owner, span_warning(LANG("datum.097cd0cb", null)))
+			to_chat(owner, span_warning(LANG("datum.097cd0cb7a5e26db", null)))
 		return FALSE
 	if(!COOLDOWN_FINISHED(owners_sheath, resheath_cooldown))
 		if(feedback)
-			to_chat(owner, span_warning(LANG("datum.a345976c", null)))
+			to_chat(owner, span_warning(LANG("datum.a345976cbdf3a34b", null)))
 		return FALSE
 	return TRUE
 
@@ -766,11 +766,11 @@
 	if(!isliving(cast_on))
 		return FALSE
 	if(owner == cast_on)
-		to_chat(owner, span_warning(LANG("datum.9adbdcf0", null)))
+		to_chat(owner, span_warning(LANG("datum.9adbdcf00a5ea795", null)))
 		return FALSE
 	var/mob/living/target = cast_on
 	if(!target.mind)
-		to_chat(owner, span_warning(LANG("datum.5d26e15f", null)))
+		to_chat(owner, span_warning(LANG("datum.5d26e15f5028be12", null)))
 		return FALSE
 	var/obj/item/storage/belt/sheath/oursheath = target
 	if(!length(oursheath.contents))
@@ -784,7 +784,7 @@
 	RegisterSignal(swordsman, COMSIG_LIVING_CHECK_BLOCK, PROC_REF(counter_attack))
 	swordsman.Immobilize(1 SECONDS)
 	eyed_fool = WEAKREF(cast_on)
-	swordsman.visible_message(span_danger(LANG("datum.3383b8e9", list(swordsman, swordsman.p_their(), swordsman.p_their(), used_sheath))), span_notice(LANG("datum.9b6cead5", list(cast_on))))
+	swordsman.visible_message(span_danger(LANG("datum.3383b8e94fd946f0", list(swordsman, swordsman.p_their(), swordsman.p_their(), used_sheath))), span_notice(LANG("datum.9b6cead5c207338b", list(cast_on))))
 	addtimer(CALLBACK(src, PROC_REF(relax), swordsman, used_sheath), 1 SECONDS)
 	COOLDOWN_START(used_sheath, full_ability_cooldown, 60 SECONDS)
 	unset_ranged_ability(swordsman)
@@ -809,7 +809,7 @@
 
 /datum/action/innate/blade_counter/proc/do_strike(mob/living/fool, mob/living/forward_thinker, obj/item/justicetool)
 	var/obj/item/bodypart/offending_hand = fool.get_active_hand()
-	forward_thinker.visible_message(span_danger(LANG("datum.4ab7dca5", list(forward_thinker, justicetool, fool, fool.p_their()))), span_notice(LANG("datum.205effe7", list(justicetool, fool))))
+	forward_thinker.visible_message(span_danger(LANG("datum.4ab7dca58b253708", list(forward_thinker, justicetool, fool, fool.p_their()))), span_notice(LANG("datum.205effe704d88182", list(justicetool, fool))))
 	fool.apply_damage(
 		damage = justicetool.force * COUNTERMULTIPLIER,
 		damagetype = justicetool.damtype,
@@ -845,8 +845,8 @@
 	var/obj/item/bodypart/offending_hand = fool.get_active_hand()
 	var/obj/item/bodypart/risked_hand = forward_thinker.get_active_hand()
 	if(iscarbon(fool) && offending_hand.dismember(BRUTE, FALSE, WOUND_SLASH))
-		forward_thinker.visible_message(span_danger(LANG("datum.80965063", list(forward_thinker, justicetool, fool, fool.p_their(), fool.p_their()))),
-										span_notice(LANG("datum.eed9720c", list(justicetool, fool))))
+		forward_thinker.visible_message(span_danger(LANG("datum.80965063897344d1", list(forward_thinker, justicetool, fool, fool.p_their(), fool.p_their()))),
+										span_notice(LANG("datum.eed9720cf55e6f6a", list(justicetool, fool))))
 	else
 		fool.apply_damage(
 			damage = justicetool.force * COUNTERMULTIPLIER,
@@ -859,11 +859,11 @@
 			attack_direction = get_dir(forward_thinker, fool),
 			attacking_item = justicetool,
 		)
-		forward_thinker.visible_message(span_danger(LANG("datum.4ab7dca5", list(forward_thinker, justicetool, fool, fool.p_their()))),
-										span_notice(LANG("datum.104ac3aa", list(justicetool))))
+		forward_thinker.visible_message(span_danger(LANG("datum.4ab7dca58b253708", list(forward_thinker, justicetool, fool, fool.p_their()))),
+										span_notice(LANG("datum.104ac3aae159ccfe", list(justicetool))))
 	if(!IS_ROBOTIC_LIMB(risked_hand))
-		forward_thinker.visible_message(span_danger(LANG("datum.9a15ba84", list(forward_thinker))),
-										span_danger(LANG("datum.a5d9f9d1", null)))
+		forward_thinker.visible_message(span_danger(LANG("datum.9a15ba84c8f77f24", list(forward_thinker))),
+										span_danger(LANG("datum.a5d9f9d1025172fd", null)))
 		forward_thinker.apply_damage(
 		damage = 50,
 		damagetype = BRUTE,
@@ -888,13 +888,13 @@
 	if(!worthless_hand)
 		worthless_hand = holder.get_inactive_hand()
 		if(!worthless_hand)
-			holder.visible_message(span_danger(LANG("datum.6affd115", list(holder))),
-									span_danger(LANG("datum.fd1846c1", null)))
+			holder.visible_message(span_danger(LANG("datum.6affd11589fb5244", list(holder))),
+									span_danger(LANG("datum.fd1846c183f95947", null)))
 			return
 
 	if(IS_ROBOTIC_LIMB(worthless_hand) || !worthless_hand.dismember(BRUTE, FALSE, WOUND_BLUNT))
-		holder.visible_message(span_danger(LANG("datum.461a984e", list(holder, holder.p_their()))),
-								span_danger(LANG("datum.c8a3c716", null)))
+		holder.visible_message(span_danger(LANG("datum.461a984e9270d248", list(holder, holder.p_their()))),
+								span_danger(LANG("datum.c8a3c71699761976", null)))
 		holder.apply_damage(
 			damage = 50,
 			damagetype = BRUTE,
@@ -904,8 +904,8 @@
 		)
 		return
 
-	holder.visible_message(span_danger(LANG("datum.f09d60ba", list(holder, holder.p_their()))),
-							span_danger(LANG("datum.c93061c0", null)))
+	holder.visible_message(span_danger(LANG("datum.f09d60ba79a95eec", list(holder, holder.p_their()))),
+							span_danger(LANG("datum.c93061c0df93ee5b", null)))
 
 #undef COUNTERMULTIPLIER
 

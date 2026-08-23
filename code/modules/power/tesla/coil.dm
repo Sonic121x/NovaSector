@@ -40,7 +40,7 @@
 	if(panel_open)
 		return NONE
 	if(anchored)
-		balloon_alert(user, LANG("obj.3e939160", null))
+		balloon_alert(user, LANG("obj.3e9391607cda6ee1", null))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 

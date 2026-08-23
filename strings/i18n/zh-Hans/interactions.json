@@ -1,10 +1,10 @@
 {
-  "interactions.40b2acbe": "%USER% 敬礼！",
-  "interactions.61cf07d7": "%USER% 和 %TARGET% 握手。",
-  "interactions.9f0bbd29": "%USER% 与 %TARGET% 击掌！",
-  "interactions.a049f304": "%USER% 为 %TARGET% 欢呼！",
-  "interactions.a39b9f16": "%USER% 与 %TARGET% 对拳！",
-  "interactions.b7a6cdb4": "%USER% 拍了拍 %TARGET% 的头！",
-  "interactions.bafe6be2": "%USER% 向 %TARGET% 招手示意过来。",
-  "interactions.bf4099f7": "%USER% 拍了拍 %TARGET% 的肩膀。"
+	"interactions.40b2acbe30002c7e": "%USER% 敬礼！",
+	"interactions.61cf07d7e4d2ef37": "%USER% 和 %TARGET% 握手。",
+	"interactions.9f0bbd291302bcc9": "%USER% 与 %TARGET% 击掌！",
+	"interactions.a049f304960ba16e": "%USER% 为 %TARGET% 欢呼！",
+	"interactions.a39b9f166973634e": "%USER% 与 %TARGET% 对拳！",
+	"interactions.b7a6cdb4db85a9ae": "%USER% 拍了拍 %TARGET% 的头！",
+	"interactions.bafe6be2d56720e4": "%USER% 向 %TARGET% 招手示意过来。",
+	"interactions.bf4099f748c7f9ae": "%USER% 拍了拍 %TARGET% 的肩膀。"
 }

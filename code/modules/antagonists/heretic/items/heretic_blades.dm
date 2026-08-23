@@ -36,7 +36,7 @@
 	if(!check_usability(user))
 		return
 
-	. += span_notice(LANG("obj.fe6cdb72", null))
+	. += span_notice(LANG("obj.fe6cdb7234fb7726", null))
 
 /// Checks if the passed mob can use this blade without being stunned
 /obj/item/melee/sickly_blade/proc/check_usability(mob/living/user)
@@ -47,7 +47,7 @@
 	if(.)
 		return .
 	if(!check_usability(user))
-		to_chat(user, span_danger(LANG("obj.b9d5f153", null)))
+		to_chat(user, span_danger(LANG("obj.b9d5f153d0261e31", null)))
 		var/mob/living/carbon/human/human_user = user
 		human_user.AdjustParalyzed(5 SECONDS)
 		return TRUE
@@ -61,9 +61,9 @@
 	if(heretic_datum?.unlimited_blades)
 		return
 	if(HAS_TRAIT(user, TRAIT_ELDRITCH_ARENA_PARTICIPANT))
-		user.balloon_alert(user, LANG("obj.49a104d1", null))
+		user.balloon_alert(user, LANG("obj.49a104d16a627e2b", null))
 		if(escape_attempts > 2)
-			to_chat(user, span_hypnophrase(span_big(LANG("obj.d3652838", null))))
+			to_chat(user, span_hypnophrase(span_big(LANG("obj.d3652838925e563e", null))))
 			playsound(src, SFX_SHATTER, 70, TRUE)
 			var/obj/item/bodypart/to_remove = user.get_active_hand()
 			to_remove.dismember()
@@ -74,7 +74,7 @@
 		escape_timer = addtimer(CALLBACK(src, PROC_REF(reset_attempts)), 2 SECONDS, TIMER_STOPPABLE)
 		return
 	if(HAS_TRAIT(user, TRAIT_NO_TELEPORT))
-		user.balloon_alert(user, LANG("obj.1af06ff6", null))
+		user.balloon_alert(user, LANG("obj.1af06ff60b649fe2", null))
 		return
 	seek_safety(user)
 
@@ -87,11 +87,11 @@
 	var/turf/safe_turf = find_safe_turf(z, extended_safety_checks = TRUE)
 	if(check_usability(user))
 		if(do_teleport(user, safe_turf, channel = TELEPORT_CHANNEL_MAGIC))
-			to_chat(user, span_warning(LANG("obj.5d413488", list(src, after_use_message))))
+			to_chat(user, span_warning(LANG("obj.5d413488a453b7c7", list(src, after_use_message))))
 		else
-			to_chat(user, span_warning(LANG("obj.c616d778", list(src))))
+			to_chat(user, span_warning(LANG("obj.c616d778d2bcf78f", list(src))))
 	else
-		to_chat(user,span_warning(LANG("obj.67b21342", list(src))))
+		to_chat(user,span_warning(LANG("obj.67b21342793c7f23", list(src))))
 	playsound(src, SFX_SHATTER, 70, TRUE) //copied from the code for smashing a glass sheet onto the ground to turn it into a shard
 	qdel(src)
 
@@ -190,7 +190,7 @@
 	// We're officially behind them, apply effects
 	living_target.AdjustParalyzed(1.5 SECONDS)
 	living_target.apply_damage(10, BRUTE, wound_bonus = CANT_WOUND)
-	living_target.balloon_alert(user, LANG("obj.69d80133", null))
+	living_target.balloon_alert(user, LANG("obj.69d801330a3eb49e", null))
 	playsound(living_target, 'sound/items/weapons/guillotine.ogg', 100, TRUE)
 
 /obj/item/melee/sickly_blade/dark/dropped(mob/user, silent)
@@ -278,10 +278,10 @@
 		to_chat(user, span_cult_large(pick("\"An untouched mind? Amusing.\"", "\" I suppose it isn't worth the effort to stop you.\"", "\"Go ahead. I don't care.\"", "\"You'll be mine soon enough.\"")))
 		user.apply_damage(5, BURN, user.get_active_hand())
 		playsound(src, SFX_SEAR, 25, TRUE)
-		to_chat(user, span_danger(LANG("obj.1b557bff", null))) // Nar nar might not care but their essence still doesn't like you
+		to_chat(user, span_danger(LANG("obj.1b557bff9a4b222c", null))) // Nar nar might not care but their essence still doesn't like you
 	else if(prob(15))
-		to_chat(user, span_big(span_hypnophrase(LANG("obj.f8b8d55c", null))))
-		to_chat(user, span_danger(LANG("obj.4fad2b9a", null)))
+		to_chat(user, span_big(span_hypnophrase(LANG("obj.f8b8d55c89db9baa", null))))
+		to_chat(user, span_danger(LANG("obj.4fad2b9a2626b4d4", null)))
 		user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 15) // This can kill you if you ignore it
 	return TRUE
 

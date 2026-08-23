@@ -71,9 +71,9 @@
 
 /// Fix us up
 /datum/component/torn_wall/proc/try_repair(atom/source, mob/user, obj/item/tool)
-	source.balloon_alert(user, LANG("datum.b52342a8", null))
+	source.balloon_alert(user, LANG("datum.b52342a8e93a2ba2", null))
 	if(!tool.use_tool(source, user, 5 SECONDS, amount = 2, volume = 50))
-		source.balloon_alert(user, LANG("datum.c67b5d27", null))
+		source.balloon_alert(user, LANG("datum.c67b5d274d6e724b", null))
 		return
 	current_stage--
 	if (current_stage < TORN_WALL_INITIAL)
@@ -86,8 +86,8 @@
 /datum/component/torn_wall/proc/on_examined(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	var/intensity = (current_stage == TORN_WALL_INITIAL) ? "slightly" : "badly"
-	examine_list += span_notice(LANG("datum.92b87327", list(intensity)))
-	examine_list += span_info(LANG("datum.5ec38b36", null))
+	examine_list += span_notice(LANG("datum.92b873279822833c", list(intensity)))
+	examine_list += span_info(LANG("datum.5ec38b36e476e2ac", null))
 
 /// Show a little crack on here
 /datum/component/torn_wall/proc/on_update_overlays(turf/source, list/overlays)

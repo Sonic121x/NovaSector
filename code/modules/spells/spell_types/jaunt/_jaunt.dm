@@ -45,12 +45,12 @@
 
 	if(!check_teleport_valid(owner, owner_turf, TELEPORT_CHANNEL_MAGIC))
 		if(feedback)
-			to_chat(owner, span_danger(LANG("datum.76ac1d27", null)))
+			to_chat(owner, span_danger(LANG("datum.76ac1d27d1412332", null)))
 		return FALSE
 
 	if(owner_turf?.turf_flags & NOJAUNT)
 		if(feedback)
-			to_chat(owner, span_danger(LANG("datum.d7ec575d", null)))
+			to_chat(owner, span_danger(LANG("datum.d7ec575d556ca88f", null)))
 		return FALSE
 
 	return isliving(owner)

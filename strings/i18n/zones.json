@@ -1,0 +1,18 @@
+{
+	"_comment": "身体部位显示名的显式运行时域。顶层放置，因此不会被 locale 目录扫描或进入全局反查；chest/head 等歧义单词仅由 lang_zone() 在部位语境查询。新增 locale 只需增加同级对象。",
+	"zh-Hans": {
+		"chest": "胸部",
+		"head": "头部",
+		"groin": "腹股沟",
+		"left arm": "左臂",
+		"right arm": "右臂",
+		"left leg": "左腿",
+		"right leg": "右腿",
+		"left hand": "左手",
+		"right hand": "右手",
+		"left foot": "左脚",
+		"right foot": "右脚",
+		"mouth": "嘴",
+		"eyes": "眼睛"
+	}
+}

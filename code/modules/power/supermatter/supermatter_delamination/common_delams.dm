@@ -13,7 +13,7 @@
 		return FALSE
 	sm.radio.talk_into(
 		sm,
-		LANG("datum.f81d1b77", null),
+		LANG("datum.f81d1b7799931e42", null),
 		sm.damage > sm.emergency_point ? sm.emergency_channel : sm.warning_channel
 	)
 	return TRUE
@@ -73,7 +73,7 @@
 		return FALSE
 	sm.radio.talk_into(
 		sm,
-		LANG("datum.976bb731", null),
+		LANG("datum.976bb731ea6f5897", null),
 		sm.damage > sm.emergency_point ? sm.emergency_channel : sm.warning_channel
 	)
 	return TRUE

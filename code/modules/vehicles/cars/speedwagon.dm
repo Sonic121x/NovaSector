@@ -30,7 +30,7 @@
 		if(ismovable(bumped))
 			var/atom/movable/flying_debris = bumped
 			flying_debris.throw_at(get_edge_target_turf(bumped, dir), 4, 3)
-		visible_message(span_danger(LANG("obj.fcbe80cf", list(src, bumped))))
+		visible_message(span_danger(LANG("obj.fcbe80cfc0d61810", list(src, bumped))))
 		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
 	if(!ishuman(bumped))
 		return
@@ -40,7 +40,7 @@
 	rammed.apply_damage(rand(20,35), BRUTE)
 	if(!crash_all)
 		rammed.throw_at(get_edge_target_turf(bumped, dir), 4, 3)
-		visible_message(span_danger(LANG("obj.fcbe80cf", list(src, rammed))))
+		visible_message(span_danger(LANG("obj.fcbe80cfc0d61810", list(src, rammed))))
 		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
 
 /obj/vehicle/sealed/car/speedwagon/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)

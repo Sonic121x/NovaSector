@@ -178,7 +178,7 @@
 		)
 		return TRUE
 
-	user.balloon_alert(user, LANG("datum.ffbbb54f", null))
+	user.balloon_alert(user, LANG("datum.ffbbb54f9a320759", null))
 	return FALSE
 
 /datum/heretic_knowledge/hypnosis_ritual
@@ -214,7 +214,7 @@
 			has_written_text = TRUE
 
 	if(!has_written_text && has_paper)
-		loc.balloon_alert(user, LANG("datum.357d9489", null))
+		loc.balloon_alert(user, LANG("datum.357d94890593f2e1", null))
 		return FALSE
 
 	return ..()

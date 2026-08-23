@@ -5,7 +5,7 @@
 	icon_state = "vial"
 
 /obj/item/bloodcrawl_bottle/attack_self(mob/user)
-	to_chat(user, span_notice(LANG("obj.22c5d6e8", list(src))))
+	to_chat(user, span_notice(LANG("obj.22c5d6e89754245e", list(src))))
 	var/datum/action/cooldown/spell/jaunt/bloodcrawl/mining/new_spell =  new(user)
 	new_spell.Grant(user)
 	user.log_message("learned the spell bloodcrawl (Mining) ([new_spell])", LOG_ATTACK, color="orange")
@@ -37,8 +37,8 @@
 		return
 	if(!is_necropolis_bloodcrawl_allowed(get_area(.)))
 		if(COOLDOWN_FINISHED(src, alert_cooldown))
-			to_chat(user, span_warning(LANG("obj.1f5bc281", null)), type = MESSAGE_TYPE_WARNING)
-			balloon_alert(user, LANG("obj.145d060c", null))
+			to_chat(user, span_warning(LANG("obj.1f5bc281f81bd108", null)), type = MESSAGE_TYPE_WARNING)
+			balloon_alert(user, LANG("obj.145d060c7a280769", null))
 			COOLDOWN_START(src, alert_cooldown, 1 SECONDS)
 		return null
 

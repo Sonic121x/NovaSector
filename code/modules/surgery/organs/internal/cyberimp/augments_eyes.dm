@@ -30,14 +30,14 @@
 		toggled_on = FALSE
 		for(var/hud_trait in HUD_traits)
 			remove_organ_trait(hud_trait)
-		balloon_alert(eye_owner, LANG("obj.8f3da789", null))
+		balloon_alert(eye_owner, LANG("obj.8f3da78925e2f1b3", null))
 		if(hud_color)
 			eye_owner.remove_eye_color(EYE_COLOR_HUD_PRIORITY)
 		return
 	toggled_on = TRUE
 	for(var/hud_trait in HUD_traits)
 		add_organ_trait(hud_trait)
-	balloon_alert(eye_owner, LANG("obj.435a2369", null))
+	balloon_alert(eye_owner, LANG("obj.435a2369c33cffae", null))
 	if(hud_color)
 		eye_owner.add_eye_color_right(hud_color, EYE_COLOR_HUD_PRIORITY)
 

@@ -24,7 +24,7 @@
 	if(!.)
 		return
 	var/mob/living/basic/blood_worm/invader = locate() in owner.loc
-	to_chat(owner, span_danger(LANG("datum.8c780588", list(invader))))
-	to_chat(invader, span_userdanger(LANG("datum.d803423a", list(owner.loc))))
+	to_chat(owner, span_danger(LANG("datum.8c780588b34aed84", list(invader))))
+	to_chat(invader, span_userdanger(LANG("datum.d803423a547e90b1", list(owner.loc))))
 	invader.leave_host() // hasta la vista, worm
 	return TRUE

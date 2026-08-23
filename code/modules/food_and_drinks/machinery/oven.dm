@@ -101,7 +101,7 @@
 			for(var/mob/smeller in get_hearers_in_view(DEFAULT_MESSAGE_RANGE, src))
 				if(HAS_TRAIT(smeller, TRAIT_ANOSMIA))
 					asomnia_hadders += smeller
-			visible_message(span_danger(LANG("obj.6d67c4b6", list(src))), ignored_mobs = asomnia_hadders)
+			visible_message(span_danger(LANG("obj.6d67c4b61a4de348", list(src))), ignored_mobs = asomnia_hadders)
 	set_smoke_state(worst_cooked_food_state)
 	update_appearance()
 	use_energy(active_power_usage)
@@ -116,7 +116,7 @@
 	if(!user.transferItemToLoc(tool, src, silent = FALSE))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.de7df645", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.de7df6459b40f465", list(tool, src))))
 	add_tray_to_oven(tool, user)
 	return ITEM_INTERACT_SUCCESS
 
@@ -161,13 +161,13 @@
 	if(open)
 		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
 		set_smoke_state(OVEN_SMOKE_STATE_NONE)
-		to_chat(user, span_notice(LANG("obj.89d38f23", list(src))))
+		to_chat(user, span_notice(LANG("obj.89d38f23ec7473e8", list(src))))
 		end_processing()
 		if(used_tray)
 			used_tray.vis_flags &= ~VIS_HIDE
 	else
 		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
-		to_chat(user, span_notice(LANG("obj.e65ef900", list(src))))
+		to_chat(user, span_notice(LANG("obj.e65ef9005667b2ec", list(src))))
 		if(used_tray)
 			begin_processing()
 			used_tray.vis_flags |= VIS_HIDE
@@ -186,13 +186,13 @@
 	if(open)
 		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
 		set_smoke_state(OVEN_SMOKE_STATE_NONE)
-		to_chat(user, span_notice(LANG("obj.89d38f23", list(src))))
+		to_chat(user, span_notice(LANG("obj.89d38f23ec7473e8", list(src))))
 		end_processing()
 		if(used_tray)
 			used_tray.vis_flags &= ~VIS_HIDE
 	else
 		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
-		to_chat(user, span_notice(LANG("obj.e65ef900", list(src))))
+		to_chat(user, span_notice(LANG("obj.e65ef9005667b2ec", list(src))))
 		if(used_tray)
 			begin_processing()
 			used_tray.vis_flags |= VIS_HIDE
@@ -289,12 +289,12 @@
 		return NONE
 
 	if(length(contents) >= max_items)
-		balloon_alert(user, LANG("obj.2cb7d354", null))
+		balloon_alert(user, LANG("obj.2cb7d3546d66854d", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!istype(item, /obj/item/storage/bag/tray))
 		// Non-tray dumping requires a do_after
-		to_chat(user, span_notice(LANG("obj.66f69281", list(item, src))))
+		to_chat(user, span_notice(LANG("obj.66f692814914ab0d", list(item, src))))
 		if(!do_after(user, 2 SECONDS, target = item))
 			return ITEM_INTERACT_BLOCKING
 
@@ -308,7 +308,7 @@
 			loaded++
 			AddToPlate(tray_item, user)
 	if(loaded)
-		to_chat(user, span_notice(LANG("obj.6732f6a8", list(loaded, src))))
+		to_chat(user, span_notice(LANG("obj.6732f6a8ae1a863c", list(loaded, src))))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING

@@ -10,15 +10,15 @@
 /obj/item/smelling_salts/attack(mob/living/mob_attacked, mob/user)
 	. = ..()
 	if(!iscarbon(mob_attacked))
-		to_chat(user, span_warning(LANG("obj.84286597", list(src, mob_attacked))))
+		to_chat(user, span_warning(LANG("obj.842865974a618b22", list(src, mob_attacked))))
 		return
 
 	if(mob_attacked == user)
-		to_chat(user, span_warning(LANG("obj.0b8fd131", list(src))))
+		to_chat(user, span_warning(LANG("obj.0b8fd1318701feac", list(src))))
 		return
 
 	if(mob_attacked.stat != DEAD)
-		to_chat(user, span_warning(LANG("obj.2a2ebd59", list(mob_attacked))))
+		to_chat(user, span_warning(LANG("obj.2a2ebd59277df598", list(mob_attacked))))
 		return
 
 	try_revive(mob_attacked, user)
@@ -28,14 +28,14 @@
 	carbon_target.notify_revival("You are being brought back to life!")
 	carbon_target.grab_ghost()
 
-	user.balloon_alert_to_viewers(LANG("obj.fce22e56", list(carbon_target)))
+	user.balloon_alert_to_viewers(LANG("obj.fce22e569d26c4d4", list(carbon_target)))
 
 	if(!do_after(user, 3 SECONDS, carbon_target))
-		user.balloon_alert(user, LANG("obj.09a569c9", list(carbon_target)))
+		user.balloon_alert(user, LANG("obj.09a569c9e8909eab", list(carbon_target)))
 		return
 
 	if(carbon_target.stat != DEAD)
-		to_chat(user, span_warning(LANG("obj.05e0ce5f", list(carbon_target))))
+		to_chat(user, span_warning(LANG("obj.05e0ce5f9f3b11a5", list(carbon_target))))
 		return
 
 	var/defib_result = carbon_target.can_defib()

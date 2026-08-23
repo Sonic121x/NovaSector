@@ -135,7 +135,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 		return NONE
 	toggle_panel_open()
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice(LANG("obj.e132e3de", list(panel_open ? "remove":"attach"))))
+	to_chat(user, span_notice(LANG("obj.e132e3de3ed62023", list(panel_open ? "remove":"attach"))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/disposal/welder_act(mob/living/user, obj/item/tool)
@@ -143,16 +143,16 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 		return NONE
 	if(!tool.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.a65f8584", list(src))))
+	to_chat(user, span_notice(LANG("obj.a65f85842acb1472", list(src))))
 	if(!tool.use_tool(src, user, 20, volume=SMALL_MATERIAL_AMOUNT) || !panel_open)
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.455ac4a0", list(src))))
+	to_chat(user, span_notice(LANG("obj.455ac4a0f91b6edf", list(src))))
 	deconstruct()
 	return ITEM_INTERACT_SUCCESS
 
 /// The regal rat spawns ratty treasures from the disposal
 /obj/machinery/disposal/proc/rat_rummage(mob/living/basic/regal_rat/king)
-	king.visible_message(span_warning(LANG("obj.8106b184", list(king, src))),span_notice(LANG("obj.c4da6d68", list(src))))
+	king.visible_message(span_warning(LANG("obj.8106b1848569647e", list(king, src))),span_notice(LANG("obj.c4da6d682332a327", list(src))))
 	if (!do_after(king, 2 SECONDS, src, interaction_key = "regalrat"))
 		return
 
@@ -160,18 +160,18 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	var/loot = rand(1,100)
 	switch(loot)
 		if(1 to 5)
-			to_chat(king, span_notice(LANG("obj.95dbf3b9", null)))
+			to_chat(king, span_notice(LANG("obj.95dbf3b91d36bccf", null)))
 			var/pickedcoin = pick(GLOB.ratking_coins)
 			for(var/i = 1 to rand(1,3))
 				new pickedcoin(king.drop_location())
 		if(6 to 33)
 			cheese = TRUE
 			king.say(pick("Treasure!","Our precious!","Cheese!"), ignore_spam = TRUE, forced = "regal rat rummaging")
-			to_chat(king, span_notice(LANG("obj.35e7b9a2", null)))
+			to_chat(king, span_notice(LANG("obj.35e7b9a2ff90ddd9", null)))
 			new /obj/item/food/cheese/wedge(king.drop_location())
 		else
 			var/pickedtrash = pick(GLOB.ratking_trash)
-			to_chat(king, span_notice(LANG("obj.c0978ad3", null)))
+			to_chat(king, span_notice(LANG("obj.c0978ad353d48f65", null)))
 			new pickedtrash(king.drop_location())
 
 	if (cheese)
@@ -181,15 +181,15 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 		var/mob/living/basic/mouse/new_subject = new(king.drop_location())
 		ADD_TRAIT(new_subject, TRAIT_SPAWNED_MOB, INNATE_TRAIT)
 		playsound(new_subject, 'sound/mobs/non-humanoids/mouse/mousesqueek.ogg', 100)
-		visible_message(span_warning(LANG("obj.dc5ea840", list(new_subject, src))))
+		visible_message(span_warning(LANG("obj.dc5ea840c345fada", list(new_subject, src))))
 
 /// Moves an item into the diposal bin
 /obj/machinery/disposal/proc/place_item_in_disposal(obj/item/disposing_item, mob/user)
 	if(!user.transferItemToLoc(disposing_item, newloc = src))
 		return FALSE
 	user.visible_message(
-		span_notice(LANG("obj.c1906f28", list(user.name, disposing_item, src))),
-		span_notice(LANG("obj.e1885933", list(disposing_item, src))),
+		span_notice(LANG("obj.c1906f28678bf390", list(user.name, disposing_item, src))),
+		span_notice(LANG("obj.e18859336c7bd405", list(disposing_item, src))),
 	)
 	return TRUE
 
@@ -216,20 +216,20 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	if(target.buckled || target.has_buckled_mobs())
 		return FALSE
 	if(target.mob_size > MOB_SIZE_HUMAN)
-		to_chat(user, span_warning(LANG("obj.704f9398", list(target, src))))
+		to_chat(user, span_warning(LANG("obj.704f939835cbf775", list(target, src))))
 		return FALSE
 	add_fingerprint(user)
 	if(user == target)
-		user.visible_message(span_warning(LANG("obj.b2bccafa", list(user, src))), span_notice(LANG("obj.3b91193d", list(src))))
+		user.visible_message(span_warning(LANG("obj.b2bccafa6ee25d27", list(user, src))), span_notice(LANG("obj.3b91193d1147d5f2", list(src))))
 	else
-		target.visible_message(span_danger(LANG("obj.c44c68dd", list(user, target, src))), span_userdanger(LANG("obj.40c97a17", list(user, src))))
+		target.visible_message(span_danger(LANG("obj.c44c68dd1e9a9f26", list(user, target, src))), span_userdanger(LANG("obj.40c97a173f67cda4", list(user, src))))
 	if(!do_after(user, 2 SECONDS, target) || QDELETED(src))
 		return FALSE
 	target.forceMove(src)
 	if(user == target)
-		user.visible_message(span_warning(LANG("obj.8471597f", list(user, src))), span_notice(LANG("obj.fe005c29", list(src))))
+		user.visible_message(span_warning(LANG("obj.8471597f5aaf7162", list(user, src))), span_notice(LANG("obj.fe005c29cff5675e", list(src))))
 	else
-		target.visible_message(span_danger(LANG("obj.e628761b", list(user, target, src))), span_userdanger(LANG("obj.e630d9cf", list(user, src))))
+		target.visible_message(span_danger(LANG("obj.e628761b7366f2cd", list(user, target, src))), span_userdanger(LANG("obj.e630d9cf42cd1f73", list(user, src))))
 		log_combat(user, target, "stuffed", addition="into [src]")
 	update_appearance()
 	return TRUE
@@ -239,22 +239,22 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 		bag.undeploy_bodybag(src)
 		qdel(bag)
 		user.visible_message(
-			span_warning(LANG("obj.730ccd16", list(user, bag.name, src))),
-			span_notice(LANG("obj.b604f9eb", list(bag.name, src)))
+			span_warning(LANG("obj.730ccd16515a8b84", list(user, bag.name, src))),
+			span_notice(LANG("obj.b604f9ebcf565c5f", list(bag.name, src)))
 		)
 		return TRUE
 
 	user.visible_message(
-		span_warning(LANG("obj.c44c68dd", list(user, bag, src))),
-		span_notice(LANG("obj.207439a2", list(bag, src)))
+		span_warning(LANG("obj.c44c68dd1e9a9f26", list(user, bag, src))),
+		span_notice(LANG("obj.207439a2c25b11b5", list(bag, src)))
 	)
 
 	if(!do_after(user, 4 SECONDS, bag) || QDELETED(src))
 		return FALSE
 
 	user.visible_message(
-		span_warning(LANG("obj.e628761b", list(user, bag, src))),
-		span_notice(LANG("obj.484469c5", list(bag, src)))
+		span_warning(LANG("obj.e628761b7366f2cd", list(user, bag, src))),
+		span_notice(LANG("obj.484469c5c3495b4d", list(bag, src)))
 	)
 
 	if(!length(bag.contents))
@@ -361,7 +361,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 
 	. = STORAGE_DUMP_HANDLED
 
-	to_chat(user, span_notice(LANG("obj.c6073def", list(storage.parent, src))))
+	to_chat(user, span_notice(LANG("obj.c6073deffa9bca86", list(storage.parent, src))))
 
 	for(var/obj/item/to_dump in storage.real_location)
 		if(user.active_storage != storage && to_dump.on_found(user))
@@ -375,12 +375,12 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 
 /obj/machinery/disposal/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
 	. = ..()
-	visible_message(span_warning(LANG("obj.11b84a7c", list(src))))
+	visible_message(span_warning(LANG("obj.11b84a7c56e6dbd5", list(src))))
 	deconstruct()
 
 /obj/machinery/disposal/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
 	. = ..()
-	visible_message(span_warning(LANG("obj.11b84a7c", list(src))))
+	visible_message(span_warning(LANG("obj.11b84a7c56e6dbd5", list(src))))
 	deconstruct()
 
 
@@ -406,9 +406,9 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	density = cur_density
 	target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
 	target.forceMove(src)
-	target.visible_message(span_danger(LANG("obj.565ee3b4", list(shover.name, target.name, src))),
-		span_userdanger(LANG("obj.d69cf19d", list(src, target.name))), span_hear(LANG("obj.b75dfa76", null)), COMBAT_MESSAGE_RANGE, shover)
-	to_chat(src, span_danger(LANG("obj.c7af2faa", list(target.name, src))))
+	target.visible_message(span_danger(LANG("obj.565ee3b4ec6becca", list(shover.name, target.name, src))),
+		span_userdanger(LANG("obj.d69cf19dfa647aaf", list(src, target.name))), span_hear(LANG("obj.b75dfa76034c79c2", null)), COMBAT_MESSAGE_RANGE, shover)
+	to_chat(src, span_danger(LANG("obj.c7af2faa1021b262", list(target.name, src))))
 	log_combat(shover, target, "shoved", "into [src] (disposal bin)[weapon ? " with [weapon]" : ""]")
 	return COMSIG_LIVING_SHOVE_HANDLED
 
@@ -423,7 +423,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	items_to_sweep.Cut()
 
 	update_appearance()
-	to_chat(user, span_notice(LANG("obj.2c5626d8", list(src))))
+	to_chat(user, span_notice(LANG("obj.2c5626d8b787d1aa", list(src))))
 	playsound(broom.loc, 'sound/items/weapons/thudswoosh.ogg', 30, TRUE, -1)
 
 
@@ -458,7 +458,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	if(!istype(tool, /obj/item/storage/bag/trash))
 		return ..()
 	var/obj/item/storage/bag/trash/bag = tool
-	to_chat(user, span_warning(LANG("obj.297edb3f", null)))
+	to_chat(user, span_warning(LANG("obj.297edb3ff1ca69ee", null)))
 	bag.atom_storage.remove_all(src)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -467,14 +467,14 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	if(!istype(tool, /obj/item/dest_tagger))
 		return ..()
 	if(mounted_tagger)
-		balloon_alert(user, LANG("obj.16919f81", null))
+		balloon_alert(user, LANG("obj.16919f814237353f", null))
 		return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(tool, TRAIT_NODROP) || !user.transferItemToLoc(tool, src))
-		balloon_alert(user, LANG("obj.edd6b8ce", null))
+		balloon_alert(user, LANG("obj.edd6b8cef2ef1cd1", null))
 		return ITEM_INTERACT_BLOCKING
 	tool.moveToNullspace()
-	user.visible_message(span_notice(LANG("obj.ba2e2ebc", list(user, tool, src))))
-	balloon_alert(user, LANG("obj.a6b7a20f", null))
+	user.visible_message(span_notice(LANG("obj.ba2e2ebc49902572", list(user, tool, src))))
+	balloon_alert(user, LANG("obj.a6b7a20ff8eba171", null))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	mounted_tagger = tool
 	update_appearance()
@@ -483,14 +483,14 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 /obj/machinery/disposal/bin/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(!mounted_tagger)
-		balloon_alert(user, LANG("obj.721a9f5a", null))
+		balloon_alert(user, LANG("obj.721a9f5a13812417", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!user.put_in_hands(mounted_tagger))
-		balloon_alert(user, LANG("obj.9c1f69b9", null))
+		balloon_alert(user, LANG("obj.9c1f69b9dead50d2", null))
 		mounted_tagger = null
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	user.visible_message(span_notice(LANG("obj.75deeac2", list(user, mounted_tagger, src))))
-	balloon_alert(user, LANG("obj.6aa54a2e", null))
+	user.visible_message(span_notice(LANG("obj.75deeac240b8e382", list(user, mounted_tagger, src))))
+	balloon_alert(user, LANG("obj.6aa54a2e8a21bddb", null))
 	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 	mounted_tagger = null
 	update_appearance(UPDATE_OVERLAYS)
@@ -499,9 +499,9 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 /obj/machinery/disposal/bin/examine(mob/user)
 	. = ..()
 	if(isnull(mounted_tagger))
-		. += span_notice(LANG("obj.95edaf4c", null))
+		. += span_notice(LANG("obj.95edaf4cbd35cbb7", null))
 	else
-		. += span_notice(LANG("obj.2183f846", list(mounted_tagger)))
+		. += span_notice(LANG("obj.2183f846553412b6", list(mounted_tagger)))
 
 /obj/machinery/disposal/bin/Destroy()
 	if(!isnull(mounted_tagger))
@@ -570,10 +570,10 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 		var/mob/thrower = throwingdatum?.get_thrower()
 		if((istype(thrower) && HAS_TRAIT(thrower, TRAIT_THROWINGARM)) || prob(75))
 			AM.forceMove(src)
-			visible_message(span_notice(LANG("obj.bcabc0c6", list(AM, src))))
+			visible_message(span_notice(LANG("obj.bcabc0c6e91156b9", list(AM, src))))
 			update_appearance()
 		else
-			visible_message(span_notice(LANG("obj.04dfef78", list(AM, src))))
+			visible_message(span_notice(LANG("obj.04dfef7852b06b85", list(AM, src))))
 			return ..()
 	else
 		return ..()
@@ -631,7 +631,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	var/turf/final_turf = length(open_turfs) ? pick(open_turfs) : drop_location()
 	var/mob/living/startled_animal = new contained_animal(drop_location())
 	startled_animal.Move(final_turf)
-	visible_message(span_notice(LANG("obj.8b9d6900", list(startled_animal, src))))
+	visible_message(span_notice(LANG("obj.8b9d690027ff7d25", list(startled_animal, src))))
 	contained_animal = null
 
 /// Initiates flushing
@@ -737,7 +737,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	else if(ismob(AM))
 		var/mob/M = AM
 		if(prob(2)) // to prevent mobs being stuck in infinite loops
-			to_chat(M, span_warning(LANG("obj.4395c960", null)))
+			to_chat(M, span_warning(LANG("obj.4395c960425b5888", null)))
 			return
 		M.forceMove(src)
 	flush()

@@ -148,14 +148,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 		return FALSE
 
 	if(atom_integrity >= max_integrity && !(machine_stat & BROKEN))
-		balloon_alert(user, LANG("obj.20fd4e5f", null))
+		balloon_alert(user, LANG("obj.20fd4e5fc4308a43", null))
 		return TRUE
 
-	balloon_alert(user, LANG("obj.2666c57c", null))
+	balloon_alert(user, LANG("obj.2666c57c052d2063", null))
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 0, volume = 50))
 		return TRUE
 
-	balloon_alert(user, LANG("obj.65ced1e8", null))
+	balloon_alert(user, LANG("obj.65ced1e8b5b56733", null))
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()
@@ -168,7 +168,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 
 	if(sign_features == DISPLAY_TRAM)
 		tool.play_tool_sound(src)
-		balloon_alert(user, LANG("obj.7e8fc231", null))
+		balloon_alert(user, LANG("obj.7e8fc23161fb4db4", null))
 		name = NAME_DELAM
 		desc = DESC_DELAM
 		sign_features = DISPLAY_DELAM
@@ -177,7 +177,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 		return TRUE
 	else
 		tool.play_tool_sound(src)
-		balloon_alert(user, LANG("obj.867ffe2b", null))
+		balloon_alert(user, LANG("obj.867ffe2b6f493208", null))
 		name = NAME_TRAM
 		desc = DESC_TRAM
 		sign_features = DISPLAY_TRAM
@@ -369,42 +369,42 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 /obj/machinery/incident_display/examine(mob/user)
 	. = ..()
 	if(atom_integrity < max_integrity)
-		. += span_notice(LANG("obj.e221d4e0", list(EXAMINE_HINT("welder"))))
+		. += span_notice(LANG("obj.e221d4e04a015f65", list(EXAMINE_HINT("welder"))))
 
 	if(sign_features & DISPLAY_DELAM)
-		. += span_notice(LANG("obj.31e2d6dc", list(EXAMINE_HINT("multitool"))))
+		. += span_notice(LANG("obj.31e2d6dc8adf77ba", list(EXAMINE_HINT("multitool"))))
 		if(last_delam >= 0)
-			. += span_info(LANG("obj.45fdedcb", list(last_delam)))
+			. += span_info(LANG("obj.45fdedcb0bcdf87d", list(last_delam)))
 			switch(last_delam)
 				if(0)
-					. += span_info(LANG("obj.76d3f946", null))
+					. += span_info(LANG("obj.76d3f94664ad3cb3", null))
 				if(1 to 5)
-					. += span_info(LANG("obj.811c121c", null))
+					. += span_info(LANG("obj.811c121c2dff77de", null))
 				if(6 to 10)
-					. += span_info(LANG("obj.8caefd42", null))
+					. += span_info(LANG("obj.8caefd426233422c", null))
 				if(69)
-					. += span_info(LANG("obj.1a92346f", null))
+					. += span_info(LANG("obj.1a92346f72c8b01b", null))
 				else
-					. += span_info(LANG("obj.9d999ff8", null))
+					. += span_info(LANG("obj.9d999ff85e15748d", null))
 		else
-			. += span_info(LANG("obj.e09f758a", null))
+			. += span_info(LANG("obj.e09f758a011144bc", null))
 
 	if(sign_features & DISPLAY_TRAM)
-		. += span_notice(LANG("obj.dfe4ef73", list(EXAMINE_HINT("multitool"))))
-		. += span_info(LANG("obj.6712bdbe", list(hit_count)))
+		. += span_notice(LANG("obj.dfe4ef731010e1d3", list(EXAMINE_HINT("multitool"))))
+		. += span_info(LANG("obj.6712bdbebea2e883", list(hit_count)))
 		switch(hit_count)
 			if(0)
-				. += span_info(LANG("obj.e636e0e6", null))
+				. += span_info(LANG("obj.e636e0e6959528aa", null))
 			if(1)
-				. += span_info(LANG("obj.5ebbea4e", null))
+				. += span_info(LANG("obj.5ebbea4e1b1310b9", null))
 			if(2 to 5)
-				. += span_info(LANG("obj.811c121c", null))
+				. += span_info(LANG("obj.811c121c2dff77de", null))
 			if(6 to 10)
-				. += span_info(LANG("obj.c6f41d81", null))
+				. += span_info(LANG("obj.c6f41d81ab434304", null))
 			if(69)
-				. += span_info(LANG("obj.1a92346f", null))
+				. += span_info(LANG("obj.1a92346f72c8b01b", null))
 			else
-				. += span_info(LANG("obj.4813e378", null))
+				. += span_info(LANG("obj.4813e378502a2463", null))
 
 #undef DISPLAY_DELAM
 #undef DISPLAY_TRAM

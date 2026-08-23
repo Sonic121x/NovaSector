@@ -25,7 +25,7 @@
 	var/atom/Tsec = drop_location()
 	for(var/mob/M in src)
 		M.forceMove(Tsec)
-		visible_message(span_danger(LANG("mob.be53b945", list(M, src))))
+		visible_message(span_danger(LANG("mob.be53b94537db4d1f", list(M, src))))
 	return ..()
 
 /mob/living/carbon/get_gibs_type(drop_bitflags = NONE)
@@ -106,6 +106,6 @@
 	if(!..())
 		return FALSE
 	if(!(mobility_flags & MOBILITY_USE)) //just while I finish up the new 'fun' suiciding verb. This is to prevent metagaming via suicide
-		to_chat(src, span_warning(LANG("mob.7e3cbb84", null)))
+		to_chat(src, span_warning(LANG("mob.7e3cbb84ff971b81", null)))
 		return FALSE
 	return TRUE

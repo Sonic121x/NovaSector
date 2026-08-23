@@ -230,7 +230,7 @@
 	. = ..()
 	if(stat != DEAD)
 		return
-	. += span_deadsay(LANG("mob.39d14e68", list(p_they(), p_s(), HAS_MIND_TRAIT(user, TRAIT_NAIVE) ? "asleep" : "dead")))
+	. += span_deadsay(LANG("mob.39d14e68ae35bb40", list(p_they(), p_s(), HAS_MIND_TRAIT(user, TRAIT_NAIVE) ? "asleep" : "dead")))
 
 /mob/living/basic/proc/melee_attack(atom/target, list/modifiers, ignore_cooldown = FALSE)
 	var/early_melee_result = early_melee_attack(target, modifiers, ignore_cooldown)

@@ -36,9 +36,9 @@
 		return
 	COOLDOWN_START(src, picket_sign_cooldown, 5 SECONDS)
 	if(label)
-		user.manual_emote(LANG("obj.65861579", list(label)))
+		user.manual_emote(LANG("obj.65861579bda68817", list(label)))
 	else
-		user.manual_emote(LANG("obj.5817f70b", null))
+		user.manual_emote(LANG("obj.5817f70bc4ee7077", null))
 	var/direction = prob(50) ? -1 : 1
 	if(NSCOMPONENT(user.dir)) //So signs are waved horizontally relative to what way the player waving it is facing.
 		animate(user, pixel_w = (1 * direction), time = 0.1 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_PARALLEL)
@@ -61,7 +61,7 @@
 	if(!istype(target, /obj/item/picket_sign))
 		return FALSE
 	var/obj/item/picket_sign/sign = target
-	var/input = tgui_input_text(owner, LANG("datum.bf32c05c", null), LANG("datum.90a47a6f", null), max_length = 30)
+	var/input = tgui_input_text(owner, LANG("datum.bf32c05c8ca8f316", null), LANG("datum.90a47a6f5f1f6718", null), max_length = 30)
 	if(input && owner.can_perform_action(sign))
 		sign.label = input
 		sign.AddComponent(/datum/component/rename, "[input] sign", "It reads: [input]")

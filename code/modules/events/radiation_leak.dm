@@ -59,7 +59,7 @@
 	else if(the_source_of_our_problems)
 		location_descriptor = get_area(the_source_of_our_problems)
 
-	priority_announce(LANG("datum.c5fdb5ad", list(location_descriptor || "an unknown area", pick("mechanics", "engineers", "scientists", "interns", "sensors", "readings"))), LANG("datum.9245c6e2", list(command_name())))
+	priority_announce(LANG("datum.c5fdb5adf92a7628", list(location_descriptor || "an unknown area", pick("mechanics", "engineers", "scientists", "interns", "sensors", "readings"))), LANG("datum.9245c6e22bc89b75", list(command_name())))
 
 /datum/round_event/radiation_leak/start()
 	var/obj/machinery/the_source_of_our_problems = picked_machine_ref?.resolve()
@@ -91,7 +91,7 @@
 	for(var/tool_method in methods_to_fix)
 		signals_to_add += COMSIG_ATOM_TOOL_ACT(how_do_we_fix_it[tool_method])
 
-	the_source_of_our_problems.visible_message(span_danger(LANG("datum.d9467e8b", list(the_source_of_our_problems))))
+	the_source_of_our_problems.visible_message(span_danger(LANG("datum.d9467e8ba9160ea6", list(the_source_of_our_problems))))
 	// Add the component that makes the thing radioactive
 	the_source_of_our_problems.AddComponent(
 		/datum/component/radioactive_emitter, \
@@ -125,7 +125,7 @@
 	if(!the_end_of_our_problems)
 		return
 
-	the_end_of_our_problems.visible_message(span_notice(LANG("datum.b0420700", list(the_end_of_our_problems))))
+	the_end_of_our_problems.visible_message(span_notice(LANG("datum.b0420700c1628cda", list(the_end_of_our_problems))))
 	qdel(the_end_of_our_problems.GetComponent(/datum/component/radioactive_emitter))
 	if(length(signals_to_add))
 		UnregisterSignal(the_end_of_our_problems, signals_to_add)
@@ -152,15 +152,15 @@
 
 /// Attempts a do_after, and if successful, stops the event
 /datum/round_event/radiation_leak/proc/try_remove_radiation(obj/machinery/source, mob/living/user, obj/item/tool)
-	source.balloon_alert(user, LANG("datum.76a25eb0", null))
+	source.balloon_alert(user, LANG("datum.76a25eb087c562ca", null))
 	// Fairly long do after. It shouldn't be SUPER easy to just run in and stop it.
 	// A tider can fix it if they want to soak a bunch of rads and inhale noxious fumes,
 	// but only an equipped engineer should be able to handle it painlessly.
 	if(!tool.use_tool(source, user, 30 SECONDS, amount = (tool.tool_behaviour == TOOL_WELDER ? 2 : 0), volume = 50))
-		source.balloon_alert(user, LANG("datum.c67b5d27", null))
+		source.balloon_alert(user, LANG("datum.c67b5d274d6e724b", null))
 		return
 
-	source.balloon_alert(user, LANG("datum.83631805", null))
+	source.balloon_alert(user, LANG("datum.836318054a8624c1", null))
 	// Force end the event
 	processing = FALSE
 	end()

@@ -33,14 +33,14 @@
 	. = ..()
 	var/turf/src_turf = get_turf(src)
 	if(!src_turf.GetComponent(/datum/component/simple_farm))
-		src_turf.balloon_alert_to_viewers(LANG("obj.18694f10", null))
+		src_turf.balloon_alert_to_viewers(LANG("obj.18694f10a5214b78", null))
 		return INITIALIZE_HINT_QDEL
 
 	for(var/obj/structure/antfarm/found_farm in range(2, get_turf(src)))
 		if(found_farm == src)
 			continue
 
-		src_turf.balloon_alert_to_viewers(LANG("obj.9a5e582c", null))
+		src_turf.balloon_alert_to_viewers(LANG("obj.9a5e582c2e0dd0cf", null))
 		return INITIALIZE_HINT_QDEL
 
 	START_PROCESSING(SSobj, src)
@@ -59,7 +59,7 @@
 
 	if(!has_ants)
 		if(prob(ant_chance))
-			balloon_alert_to_viewers(LANG("obj.38cb8d43", null))
+			balloon_alert_to_viewers(LANG("obj.38cb8d43792ec485", null))
 			has_ants = TRUE
 
 		return
@@ -69,18 +69,18 @@
 
 /obj/structure/antfarm/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.d22d28bb", list(has_ants ? "" : "no ")))
+	. += span_notice(LANG("obj.d22d28bbe99edf80", list(has_ants ? "" : "no ")))
 	if(!has_ants)
-		. += span_notice(LANG("obj.9a8a0c63", null))
+		. += span_notice(LANG("obj.9a8a0c63dc3e97a3", null))
 
 /obj/structure/antfarm/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/food))
 		if(has_ants)
-			balloon_alert(user, LANG("obj.5b35b262", null))
+			balloon_alert(user, LANG("obj.5b35b26234af70f7", null))
 			return ITEM_INTERACT_BLOCKING
 
 		qdel(tool)
-		balloon_alert(user, LANG("obj.9bf1051b", null))
+		balloon_alert(user, LANG("obj.9bf1051b82bbaedd", null))
 		user.mind?.adjust_experience(/datum/skill/primitive, 2)
 		ant_chance++
 		if(prob(user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
@@ -89,10 +89,10 @@
 
 	if(istype(tool, /obj/item/storage/bag/plants))
 		if(has_ants)
-			balloon_alert(user, LANG("obj.5b35b262", null))
+			balloon_alert(user, LANG("obj.5b35b26234af70f7", null))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.585ba266", null))
+		balloon_alert(user, LANG("obj.585ba266c316f44b", null))
 		for(var/obj/item/food/selected_food in tool.contents)
 			var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 			if(has_ants || !do_after(user, 1 SECONDS * skill_modifier, src))

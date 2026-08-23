@@ -196,7 +196,7 @@
 	var/self_harm_radius_mult = 3
 
 	if(punishable_triggerer && prob(60))
-		to_chat(punishable_triggerer, span_userdanger(LANG("datum.84e96847", null)))
+		to_chat(punishable_triggerer, span_userdanger(LANG("datum.84e96847a7b81e04", null)))
 		self_harm_radius_mult = 1 // we'll still give the guy who got hit some extra shredding, but not 3*radius
 		pellet_delta += radius
 		for(var/i in 1 to radius)
@@ -213,13 +213,13 @@
 	for(var/M in martyrs)
 		var/mob/living/martyr = M
 		if(radius > 4)
-			martyr.visible_message("<b>[span_danger("[martyr] heroically covers \the [parent] with [martyr.p_their()] body, absorbing a load of the shrapnel!")]</b>", span_userdanger(LANG("datum.07327f46", list(parent))))
+			martyr.visible_message("<b>[span_danger("[martyr] heroically covers \the [parent] with [martyr.p_their()] body, absorbing a load of the shrapnel!")]</b>", span_userdanger(LANG("datum.07327f460728d4c2", list(parent))))
 			magnitude_absorbed += round(radius * 0.5)
 		else if(radius >= 2)
-			martyr.visible_message("<b>[span_danger("[martyr] heroically covers \the [parent] with [martyr.p_their()] body, absorbing some of the shrapnel!")]</b>", span_userdanger(LANG("datum.2b45622d", list(parent))))
+			martyr.visible_message("<b>[span_danger("[martyr] heroically covers \the [parent] with [martyr.p_their()] body, absorbing some of the shrapnel!")]</b>", span_userdanger(LANG("datum.2b45622d091a39a9", list(parent))))
 			magnitude_absorbed += 2
 		else
-			martyr.visible_message("<b>[span_danger("[martyr] heroically covers \the [parent] with [martyr.p_their()] body, snuffing out the shrapnel!")]</b>", span_userdanger(LANG("datum.7b5202f1", list(parent))))
+			martyr.visible_message("<b>[span_danger("[martyr] heroically covers \the [parent] with [martyr.p_their()] body, snuffing out the shrapnel!")]</b>", span_userdanger(LANG("datum.7b5202f1daf3f8f9", list(parent))))
 			magnitude_absorbed = radius
 
 		var/pellets_absorbed = (radius ** 2) - ((radius - magnitude_absorbed - 1) ** 2)
@@ -348,11 +348,11 @@
 			limb_hit_text = " in the [hit_part.plaintext_zone]"
 
 		if(num_hits > 1)
-			target.visible_message(span_danger(LANG("datum.39e18b93", list(target, num_hits, proj_name, plural_s(proj_name), limb_hit_text, damage ? "" : ", without leaving a mark"))), null, null, COMBAT_MESSAGE_RANGE, target)
-			to_chat(target, span_userdanger(LANG("datum.8bd36006", list(num_hits, proj_name, limb_hit_text))))
+			target.visible_message(span_danger(LANG("datum.39e18b93ad65c194", list(target, num_hits, proj_name, plural_s(proj_name), limb_hit_text, damage ? "" : ", without leaving a mark"))), null, null, COMBAT_MESSAGE_RANGE, target)
+			to_chat(target, span_userdanger(LANG("datum.8bd36006f5aea7b6", list(num_hits, proj_name, limb_hit_text))))
 		else
-			target.visible_message(span_danger(LANG("datum.64caf928", list(target, proj_name, limb_hit_text, damage ? "" : ", without leaving a mark"))), null, null, COMBAT_MESSAGE_RANGE, target)
-			to_chat(target, span_userdanger(LANG("datum.f508a9fe", list(proj_name, limb_hit_text))))
+			target.visible_message(span_danger(LANG("datum.64caf928faa7bee2", list(target, proj_name, limb_hit_text, damage ? "" : ", without leaving a mark"))), null, null, COMBAT_MESSAGE_RANGE, target)
+			to_chat(target, span_userdanger(LANG("datum.f508a9fe0df21de4", list(proj_name, limb_hit_text))))
 
 	for(var/M in purple_hearts)
 		var/mob/living/martyr = M

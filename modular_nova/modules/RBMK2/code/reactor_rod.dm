@@ -58,11 +58,11 @@
 
 /obj/item/tank/rbmk2_rod/examine(user)
 	. = ..()
-	. += span_notice(LANG("obj.a9cd71f2", list(siunit_pressure(pressure_limit, 0), siunit(temperature_limit, "K", 0))))
+	. += span_notice(LANG("obj.a9cd71f254fb20f5", list(siunit_pressure(pressure_limit, 0), siunit(temperature_limit, "K", 0))))
 
 // Prevents putting the reactor rod on a TTV.
 /obj/item/transfer_valve/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/tank/rbmk2_rod))
-		to_chat(user, span_warning(LANG("obj.337bbdec", list(tool))))
+		to_chat(user, span_warning(LANG("obj.337bbdecd64af4db", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 	return ..()

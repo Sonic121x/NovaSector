@@ -38,7 +38,7 @@ Basically, the items they pull cannot be pulled (except by the puller)
 /datum/component/strong_pull/proc/reject_further_pulls(datum/source, mob/living/puller)
 	SIGNAL_HANDLER
 	if(puller != parent) //for increasing grabs, you need to have a valid pull. thus, parent should be able to pull the same object again
-		strongpulling.balloon_alert(puller, LANG("datum.74ed57d9", null))
+		strongpulling.balloon_alert(puller, LANG("datum.74ed57d9acc78b75", null))
 		return COMSIG_ATOM_CANT_PULL
 
 /*

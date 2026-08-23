@@ -29,7 +29,7 @@
 		return
 
 	if(owner && get_dist(get_turf(owner), get_turf(cast_on)) < min_cast_range)
-		cast_on.balloon_alert(owner, LANG("datum.079a7d8b", null))
+		cast_on.balloon_alert(owner, LANG("datum.079a7d8b98f17deb", null))
 		return . | SPELL_CANCEL_CAST
 
 /datum/action/cooldown/spell/pointed/void_phase/cast(atom/cast_on)

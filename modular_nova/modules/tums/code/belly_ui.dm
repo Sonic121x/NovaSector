@@ -27,7 +27,7 @@ GLOBAL_DATUM_INIT(erp_belly_prefshelper, /datum/erp_belly_prefshelper, new)
 /datum/erp_belly_prefshelper/proc/confirm_sync(obj/item/belly_function/belly)
 	if(belly == null)
 		return FALSE
-	var/choice = tgui_alert(belly.lastuser, LANG("datum.22acab90", null), LANG("datum.3f581b74", null), list("Yes", "No"))
+	var/choice = tgui_alert(belly.lastuser, LANG("datum.22acab90d2f24ae0", null), LANG("datum.3f581b743ffbc094", null), list("Yes", "No"))
 	return choice == "Yes" && !QDELETED(belly.lastuser) && !QDELETED(src)
 
 /// Fills the shared belly-size readout fields (calculated_size, base_size_max, maxsize)

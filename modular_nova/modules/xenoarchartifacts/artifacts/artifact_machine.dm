@@ -62,16 +62,16 @@
 	switch(artifact_type_id)
 		if(ARTIFACT_COMPUTER)
 			name = "alien computer"
-			desc = LANG("obj.75e99dcf", null)
+			desc = LANG("obj.75e99dcf8350cc56", null)
 		if(ARTIFACT_PILLAR)
 			name = "alien device"
-			desc = LANG("obj.2ba1245b", null)
+			desc = LANG("obj.2ba1245bc24abd63", null)
 		if(ARTIFACT_VENTS)
 			name = "alien device"
-			desc = LANG("obj.7d1aaf3e", null)
+			desc = LANG("obj.7d1aaf3ecee6a8ac", null)
 		if(ARTIFACT_FLOATING)
 			name = "strange metal object"
-			desc = LANG("obj.7d20d7ca", null)
+			desc = LANG("obj.7d20d7caf955f0fb", null)
 		if(ARTIFACT_CRYSTAL_GREEN)
 			artifact_type_id = pick(ARTIFACT_CRYSTAL_GREEN, ARTIFACT_CRYSTAL_PURPLE, ARTIFACT_CRYSTAL_BLUE) // now we pick a color
 			name = "large crystal"
@@ -95,8 +95,8 @@
 /obj/machinery/artifact/Destroy()
 	do_destroy_effects()
 	loc.visible_message(
-		span_danger(LANG("obj.fb56a19e", list(src))),
-		blind_message = span_hear(LANG("obj.3ec21fb8", null)),
+		span_danger(LANG("obj.fb56a19e6cfb8334", list(src))),
+		blind_message = span_hear(LANG("obj.3ec21fb85de7cec5", null)),
 	)
 	if(!QDELETED(first_effect))
 		QDEL_NULL(first_effect)
@@ -167,22 +167,22 @@
 	. = ..()
 	switch(round(100 * (get_integrity() / max_integrity)))
 		if(85 to 100)
-			to_chat(user, LANG("obj.b1ca5f3c", null))
+			to_chat(user, LANG("obj.b1ca5f3c7d4b6f1f", null))
 		if(65 to 85)
-			to_chat(user, LANG("obj.f6a5fa22", null))
+			to_chat(user, LANG("obj.f6a5fa226a4bd7ea", null))
 		if(45 to 65)
-			to_chat(user, LANG("obj.0196f2eb", null))
+			to_chat(user, LANG("obj.0196f2eb3f97f6cf", null))
 		if(10 to 45)
-			to_chat(user, LANG("obj.395eb4b1", null))
+			to_chat(user, LANG("obj.395eb4b17b6816d1", null))
 		if(0 to 10)
-			to_chat(user, LANG("obj.e7cc93da", null))
+			to_chat(user, LANG("obj.e7cc93da1712a0b3", null))
 
 /obj/machinery/artifact/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	if(!Adjacent(user))
-		to_chat(user, span_warning(LANG("obj.67a04864", list(src))))
+		to_chat(user, span_warning(LANG("obj.67a04864d4d96421", list(src))))
 		return TRUE
 	var/mob/living/carbon/carbon_to_test = user
 	if(istype(user))
@@ -194,7 +194,7 @@
 			try_toggle_effects(TRIGGER_TOUCH)
 	else
 		try_toggle_effects(TRIGGER_TOUCH)
-	to_chat(user, span_bold(LANG("obj.97eda384", list(src))))
+	to_chat(user, span_bold(LANG("obj.97eda3841c423837", list(src))))
 
 	if(first_effect.release_method == ARTIFACT_EFFECT_TOUCH)
 		first_effect.do_effect_touch(user)
@@ -290,7 +290,7 @@
 		if(secondary_effect && secondary_effect.release_method == ARTIFACT_EFFECT_TOUCH && secondary_effect.activated && prob(50))
 			secondary_effect.do_effect_touch(what_bumped)
 		if(ismob(what_bumped))
-			to_chat(what_bumped, span_bold(LANG("obj.cb8926a3", list(src))))
+			to_chat(what_bumped, span_bold(LANG("obj.cb8926a31211496d", list(src))))
 
 /**
  * Checks if container has reagent, which is in volatile_reagents global list
@@ -339,11 +339,11 @@
  */
 /obj/machinery/artifact/proc/get_scan(mob/living/user, obj/item/xenoarch/handheld_scanner/scanner)
 	user.visible_message(
-		span_notice(LANG("obj.f18b5d8d", list(user, src, scanner))),
-		span_notice(LANG("obj.c6c68360", list(src, scanner))),
-		blind_message = span_hear(LANG("obj.b2408de5", null)),
+		span_notice(LANG("obj.f18b5d8d509fdf4d", list(user, src, scanner))),
+		span_notice(LANG("obj.c6c68360dce5ba5a", list(src, scanner))),
+		blind_message = span_hear(LANG("obj.b2408de55b40bfc4", null)),
 	)
 	if(!do_after(user, scanner.scanning_speed * 5, target = src))
-		to_chat(user, span_warning(LANG("obj.611dd1f5", null)))
+		to_chat(user, span_warning(LANG("obj.611dd1f5826a3da9", null)))
 		return
-	to_chat(user, span_notice(LANG("obj.faf7b6ec", list(src, scanner))))
+	to_chat(user, span_notice(LANG("obj.faf7b6ec743998cd", list(src, scanner))))

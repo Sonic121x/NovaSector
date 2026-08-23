@@ -23,7 +23,7 @@
 
 /obj/item/card/emag/attack_self(mob/user) //for traitors with balls of plastitanium
 	if(Adjacent(user))
-		user.visible_message(span_notice(LANG("obj.ba4fa098", list(user, icon2html(src, viewers(user)), name))), span_notice(LANG("obj.023f33f7", list(src))))
+		user.visible_message(span_notice(LANG("obj.ba4fa098a36e1d83", list(user, icon2html(src, viewers(user)), name))), span_notice(LANG("obj.023f33f7b3a0af62", list(src))))
 	add_fingerprint(user)
 
 /obj/item/card/emag/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -40,8 +40,8 @@
 		return FALSE
 
 	user.visible_message(
-		span_notice(LANG("obj.2ca12615", list(user, emag_card, src))),
-		span_notice(LANG("obj.f9021cee", list(emag_card, src))),
+		span_notice(LANG("obj.2ca126159d72a27b", list(user, emag_card, src))),
+		span_notice(LANG("obj.f9021cee06763acd", list(emag_card, src))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	playsound(src, 'sound/effects/bang.ogg', 33, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
@@ -64,9 +64,9 @@
 	if(QDELETED(user))
 		return
 	if(QDELETED(src))
-		to_chat(user, span_notice(LANG("obj.3e72c041", null)))
+		to_chat(user, span_notice(LANG("obj.3e72c041f5f1b3f3", null)))
 	else
-		to_chat(user, span_warning(LANG("obj.de6317c8", null)))
+		to_chat(user, span_warning(LANG("obj.de6317c88c6ba50d", null)))
 
 /obj/item/card/emag/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -109,7 +109,7 @@
 
 /obj/item/card/emagfake/attack_self(mob/user) //for assistants with balls of plasteel
 	if(Adjacent(user))
-		user.visible_message(span_notice(LANG("obj.ba4fa098", list(user, icon2html(src, viewers(user)), name))), span_notice(LANG("obj.023f33f7", list(src))))
+		user.visible_message(span_notice(LANG("obj.ba4fa098a36e1d83", list(user, icon2html(src, viewers(user)), name))), span_notice(LANG("obj.023f33f7b3a0af62", list(src))))
 	add_fingerprint(user)
 
 /obj/item/card/emagfake/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -117,7 +117,7 @@
 		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE, frequency = 2)
 	else if(obj_flags & EMAGGED)
 		log_bomber(user, "triggered", src, "(rigged/emagged)")
-		visible_message(span_boldwarning(LANG("obj.42ea24ca", list(src))))
+		visible_message(span_boldwarning(LANG("obj.42ea24ca97c00b72", list(src))))
 		playsound(src, 'sound/items/bikehorn.ogg', 100, TRUE, frequency = 0.25)
 		addtimer(CALLBACK(src, PROC_REF(blow_up)), 1 SECONDS, TIMER_DELETE_ME)
 		exploding = TRUE
@@ -126,7 +126,7 @@
 	return ITEM_INTERACT_SKIP_TO_ATTACK // So it does the attack animation.
 
 /obj/item/card/emagfake/proc/blow_up()
-	visible_message(span_boldwarning(LANG("obj.e64b7ad7", list(src))))
+	visible_message(span_boldwarning(LANG("obj.e64b7ad721a42632", list(src))))
 	explosion(src, light_impact_range = 1, explosion_cause = src)
 	qdel(src)
 
@@ -137,7 +137,7 @@
 	desc = /obj/item/card/emag::desc
 	obj_flags |= EMAGGED
 	if(user)
-		balloon_alert(user, LANG("obj.b53adec0", null))
+		balloon_alert(user, LANG("obj.b53adec0911340df", null))
 		log_bomber(user, "rigged to blow", src, "(emagging)")
 	return TRUE
 
@@ -162,7 +162,7 @@
 /obj/item/card/emag/proc/can_emag(atom/target, mob/user)
 	for (var/subtypelist in type_blacklist)
 		if (target.type in subtypelist)
-			to_chat(user, span_warning(LANG("obj.c656b180", list(target, src))))
+			to_chat(user, span_warning(LANG("obj.c656b1800b9a0a44", list(target, src))))
 			return FALSE
 	return TRUE
 
@@ -192,7 +192,7 @@
 
 /obj/item/card/emag/doorjack/proc/use_charge(mob/user)
 	charges --
-	to_chat(user, span_notice(LANG("obj.2af8dc9c", list(src, charges, charges == 1 ? "" : "s"))))
+	to_chat(user, span_notice(LANG("obj.2af8dc9c213f01e3", list(src, charges, charges == 1 ? "" : "s"))))
 	charge_timers.Add(addtimer(CALLBACK(src, PROC_REF(recharge)), charge_time, TIMER_STOPPABLE))
 
 /obj/item/card/emag/doorjack/proc/recharge(mob/user)
@@ -202,22 +202,22 @@
 
 /obj/item/card/emag/doorjack/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.9cdb11b8", list(charges)))
+	. += span_notice(LANG("obj.9cdb11b8193784a4", list(charges)))
 	if (length(charge_timers))
 		. += "[span_notice("<b>A small display on the back reads:")]</b>"
 	for (var/i in 1 to length(charge_timers))
 		var/timeleft = timeleft(charge_timers[i])
 		var/loadingbar = num2loadingbar(timeleft/charge_time)
-		. += span_notice(LANG("obj.00674b3f", list(i, loadingbar, DisplayTimeText(timeleft))))
+		. += span_notice(LANG("obj.00674b3f98d5fb33", list(i, loadingbar, DisplayTimeText(timeleft))))
 
 /obj/item/card/emag/doorjack/can_emag(atom/target, mob/user)
 	if (charges <= 0)
-		to_chat(user, span_warning(LANG("obj.de8caf77", list(src))))
+		to_chat(user, span_warning(LANG("obj.de8caf778e82c26d", list(src))))
 		return FALSE
 	for (var/list/subtypelist in type_whitelist)
 		if (target.type in subtypelist)
 			return TRUE
-	to_chat(user, span_warning(LANG("obj.fe9e1951", list(src))))
+	to_chat(user, span_warning(LANG("obj.fe9e19511f8f9a16", list(src))))
 	return FALSE
 
 /*
@@ -236,17 +236,17 @@
 
 /obj/item/card/emag/battlecruiser/proc/use_charge(mob/user)
 	used = TRUE
-	to_chat(user, span_boldwarning(LANG("obj.ff52c4c4", list(src))))
+	to_chat(user, span_boldwarning(LANG("obj.ff52c4c4f110d46e", list(src))))
 
 /obj/item/card/emag/battlecruiser/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.3cd0a387", null))
+	. += span_notice(LANG("obj.3cd0a3876b97cc25", null))
 
 /obj/item/card/emag/battlecruiser/can_emag(atom/target, mob/user)
 	if(used)
-		to_chat(user, span_warning(LANG("obj.262f3d02", list(src))))
+		to_chat(user, span_warning(LANG("obj.262f3d0228614696", list(src))))
 		return FALSE
 	if(!istype(target, /obj/machinery/computer/communications))
-		to_chat(user, span_warning(LANG("obj.193994a0", list(src))))
+		to_chat(user, span_warning(LANG("obj.193994a00d3caac3", list(src))))
 		return FALSE
 	return TRUE

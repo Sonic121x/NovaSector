@@ -24,7 +24,7 @@
 /obj/item/clothing/suit/armor/sf_peacekeeper/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.ff790ba9", null)
+	. += LANG("obj.ff790ba9cbc6aee7", null)
 
 	return .
 
@@ -51,7 +51,7 @@
 /obj/item/clothing/head/helmet/sf_peacekeeper/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.9c96c294", null)
+	. += LANG("obj.9c96c294a31c6f86", null)
 
 	return .
 

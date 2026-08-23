@@ -114,4 +114,4 @@
 
 /datum/surgery_operation/limb/amputate/pegleg/all_required_strings()
 	. = ..()
-	. += LANG("datum.a68caac1", null)
+	. += LANG("datum.a68caac114838308", null)

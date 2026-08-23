@@ -78,14 +78,14 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "spider",
-			SPECIES_PERK_NAME = LANG("datum.241fd17d", null),
-			SPECIES_PERK_DESC = LANG("datum.a1729cc1", null),
+			SPECIES_PERK_NAME = LANG("datum.241fd17d2b383890", null),
+			SPECIES_PERK_DESC = LANG("datum.a1729cc1482644b8", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "paw",
-			SPECIES_PERK_NAME = LANG("datum.5deb47b0", null),
-			SPECIES_PERK_DESC = LANG("datum.e0c28328", null),
+			SPECIES_PERK_NAME = LANG("datum.5deb47b0a3a730b6", null),
+			SPECIES_PERK_DESC = LANG("datum.e0c28328782851e9", null),
 		),
 	)
 
@@ -100,8 +100,8 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "comment",
-		SPECIES_PERK_NAME = LANG("datum.131712b3", null),
-		SPECIES_PERK_DESC = LANG("datum.ddfe8592", list(initial(common_language.name), initial(monkey_language.name))),
+		SPECIES_PERK_NAME = LANG("datum.131712b34b4d5d2c", null),
+		SPECIES_PERK_DESC = LANG("datum.ddfe8592f0afb518", list(initial(common_language.name), initial(monkey_language.name))),
 	))
 
 	return to_add
@@ -132,11 +132,11 @@
 	if(monkey_brain.tripping)
 		monkey_brain.tripping = FALSE
 		background_icon_state = "bg_default"
-		to_chat(monkey_brain.owner, span_notice(LANG("datum.29e2efd3", null)))
+		to_chat(monkey_brain.owner, span_notice(LANG("datum.29e2efd329c25ad8", null)))
 	else
 		monkey_brain.tripping = TRUE
 		background_icon_state = "bg_default_on"
-		to_chat(monkey_brain.owner, span_notice(LANG("datum.32e05283", null)))
+		to_chat(monkey_brain.owner, span_notice(LANG("datum.32e05283c22b224c", null)))
 	build_all_button_icons()
 	return TRUE
 

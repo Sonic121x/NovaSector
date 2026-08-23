@@ -94,7 +94,7 @@
 	if(survived == round(required / 2))
 		to_chat(
 			owner,
-			span_greenannounce(LANG("datum.8e945017", list(required - survived, required - survived))),
+			span_greenannounce(LANG("datum.8e945017b1286386", list(required - survived, required - survived))),
 			type = MESSAGE_TYPE_ADMINPM,
 			skip_i18n_fallback = TRUE,
 		)
@@ -187,7 +187,7 @@
 	var/appeal_link = "<a href='byond://?src=[REF(GLOB.newbie_guard)];newbie_guard_appeal=1'>提交申诉 / appeal</a>"
 	to_chat(
 		source,
-		span_warning(LANG("datum.2b22349c", list(reason, CONFIG_GET(number/newbie_guard_survival), appeal_link, CONFIG_GET(number/newbie_guard_survival), appeal_link))),
+		span_warning(LANG("datum.2b22349ca5d431d9", list(reason, CONFIG_GET(number/newbie_guard_survival), appeal_link, CONFIG_GET(number/newbie_guard_survival), appeal_link))),
 		type = MESSAGE_TYPE_ADMINPM,
 		skip_i18n_fallback = TRUE,
 	)

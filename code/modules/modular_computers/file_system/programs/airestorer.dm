@@ -19,14 +19,14 @@
 /datum/computer_file/program/ai_restorer/on_examine(obj/item/modular_computer/source, mob/user)
 	var/list/examine_text = list()
 	if(!stored_card)
-		examine_text += LANG("datum.450206ee", null)
+		examine_text += LANG("datum.450206ee251595ca", null)
 		return examine_text
 
 	if(computer.Adjacent(user))
-		examine_text += LANG("datum.89f54fb8", list(stored_card.name))
+		examine_text += LANG("datum.89f54fb80be53f90", list(stored_card.name))
 	else
-		examine_text += LANG("datum.e7bc1361", null)
-	examine_text += span_info(LANG("datum.329547e0", null))
+		examine_text += LANG("datum.e7bc136101b81be1", null)
+	examine_text += span_info(LANG("datum.329547e0acfd3cc5", null))
 	return examine_text
 
 /datum/computer_file/program/ai_restorer/kill_program(mob/user)
@@ -66,28 +66,28 @@
 	if(!computer)
 		return NONE
 	if(stored_card)
-		to_chat(user, span_warning(LANG("datum.df431d9d", list(used_aicard, computer.name))))
+		to_chat(user, span_warning(LANG("datum.df431d9de4507e38", list(used_aicard, computer.name))))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(used_aicard, computer))
 		return ITEM_INTERACT_BLOCKING
 
 	stored_card = used_aicard
-	to_chat(user, span_notice(LANG("datum.a9ab5056", list(used_aicard, computer.name))))
+	to_chat(user, span_notice(LANG("datum.a9ab5056327dd722", list(used_aicard, computer.name))))
 	return ITEM_INTERACT_SUCCESS
 
 /datum/computer_file/program/ai_restorer/try_eject(mob/living/user, forced = FALSE)
 	if(!stored_card)
 		if(user)
-			to_chat(user, span_warning(LANG("datum.46f68c06", list(computer.name))))
+			to_chat(user, span_warning(LANG("datum.46f68c0692e1d0ab", list(computer.name))))
 		return FALSE
 
 	if(restoring && !forced)
 		if(user)
-			to_chat(user, span_warning(LANG("datum.efa91847", null)))
+			to_chat(user, span_warning(LANG("datum.efa91847e63ae1e4", null)))
 		return FALSE
 
 	if(user && computer.Adjacent(user))
-		to_chat(user, span_notice(LANG("datum.cbed3266", list(stored_card, computer.name))))
+		to_chat(user, span_notice(LANG("datum.cbed32661d4c054a", list(stored_card, computer.name))))
 		user.put_in_hands(stored_card)
 	else
 		stored_card.forceMove(computer.drop_location())

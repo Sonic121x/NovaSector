@@ -73,7 +73,7 @@ SUBSYSTEM_DEF(server_maint)
 			var/cmob = C.mob
 			if (!isnewplayer(cmob) || !SSticker.queued_players.Find(cmob))
 				log_access("AFK: [key_name(C)]")
-				to_chat(C, span_userdanger(LANG("datum.e89c8e68", list(DisplayTimeText(afk_period)))))
+				to_chat(C, span_userdanger(LANG("datum.e89c8e68d691505a", list(DisplayTimeText(afk_period)))))
 				QDEL_IN(C, 1) //to ensure they get our message before getting disconnected
 				continue
 

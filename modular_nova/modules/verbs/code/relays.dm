@@ -8,7 +8,7 @@
 
 GAME_VERB_HIDDEN(/client, connect_to_relay, "Connect to Relay")
 	if(!CONFIG_GET(flag/enable_relays))
-		to_chat(src, span_danger(LANG("client.e735287b", null)))
+		to_chat(src, span_danger(LANG("client.e735287b63d06137", null)))
 		return
 
 	var/static/list/available_relays
@@ -16,10 +16,10 @@ GAME_VERB_HIDDEN(/client, connect_to_relay, "Connect to Relay")
 		available_relays = CONFIG_GET(keyed_list/relay_option)
 
 	if(!length(available_relays))
-		to_chat(src, span_danger(LANG("client.dd83f55e", null)))
+		to_chat(src, span_danger(LANG("client.dd83f55e5daa8d53", null)))
 		return
 
-	var/choice = tgui_input_list(usr, LANG("client.ad08a62a", null), LANG("client.a135c8d5", null), available_relays)
+	var/choice = tgui_input_list(usr, LANG("client.ad08a62ae8a1c599", null), LANG("client.a135c8d5aa9129ca", null), available_relays)
 	if(isnull(choice))
 		return
 	var/address = available_relays[choice]

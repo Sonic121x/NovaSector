@@ -80,8 +80,8 @@
 	brain.throw_at(get_step(source_turf, source.dir), 1, 1)
 
 	source.visible_message(
-		span_boldwarning(LANG("datum.ee78498f", list(source, source.p_their()))),
-		span_userdanger(LANG("datum.f74d0ee1", null)),
+		span_boldwarning(LANG("datum.ee78498fceaf5bc6", list(source, source.p_their()))),
+		span_userdanger(LANG("datum.f74d0ee1b2341131", null)),
 	)
 
 /datum/wound/cranial_fissure/try_handling(mob/living/user)
@@ -96,13 +96,13 @@
 
 	var/obj/item/organ/eyes/eyes = victim.get_organ_by_type(/obj/item/organ/eyes)
 	if (isnull(eyes))
-		victim.balloon_alert(user, LANG("datum.66ea5238", null))
+		victim.balloon_alert(user, LANG("datum.66ea523819540243", null))
 		return TRUE
 
 	playsound(victim, 'sound/items/handling/surgery/organ2.ogg', 50, TRUE)
-	victim.balloon_alert(user, LANG("datum.21e124e5", null))
+	victim.balloon_alert(user, LANG("datum.21e124e5af264823", null))
 	user.visible_message(
-		span_boldwarning(LANG("datum.41a72eca", list(user, victim))),
+		span_boldwarning(LANG("datum.41a72eca7ffa3488", list(user, victim))),
 		ignored_mobs = user
 	)
 	victim.show_message(
@@ -121,8 +121,8 @@
 
 	playsound(victim, 'sound/items/handling/surgery/organ1.ogg', 75, TRUE)
 	user.visible_message(
-		span_boldwarning(LANG("datum.639786a8", list(user, victim))),
-		span_boldwarning(LANG("datum.256b862f", list(victim))),
+		span_boldwarning(LANG("datum.639786a84ec09701", list(user, victim))),
+		span_boldwarning(LANG("datum.256b862f7cb59dd8", list(victim))),
 		ignored_mobs = victim,
 	)
 

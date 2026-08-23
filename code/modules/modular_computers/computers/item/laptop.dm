@@ -36,7 +36,7 @@
 /obj/item/modular_computer/laptop/examine(mob/user)
 	. = ..()
 	if(screen_on)
-		. += span_notice(LANG("obj.9e98fdd4", null))
+		. += span_notice(LANG("obj.9e98fdd41bd2d591", null))
 
 /obj/item/modular_computer/laptop/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
@@ -103,12 +103,12 @@ GAME_VERB_SRC(/obj/item/modular_computer/laptop, open_computer, view(1), "打开
 
 /obj/item/modular_computer/laptop/proc/toggle_open(mob/living/user=null)
 	if(screen_on)
-		to_chat(user, span_notice(LANG("obj.134320dc", list(src))))
+		to_chat(user, span_notice(LANG("obj.134320dca8465fd8", list(src))))
 		slowdown -= slowdown_open
 		update_weight_class(initial(w_class))
 		drag_slowdown = initial(drag_slowdown)
 	else
-		to_chat(user, span_notice(LANG("obj.66ffeaa4", list(src))))
+		to_chat(user, span_notice(LANG("obj.66ffeaa40b25047d", list(src))))
 		slowdown += slowdown_open
 		update_weight_class(w_class_open)
 		drag_slowdown = slowdown_open

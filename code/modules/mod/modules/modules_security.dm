@@ -68,7 +68,7 @@
 	if(!mod.wearer.equip_to_slot_if_possible(item, ITEM_SLOT_SUITSTORE, qdel_on_fail = FALSE, disable_warning = TRUE))
 		return
 	playsound(src, 'sound/items/modsuit/magnetic_harness.ogg', 50, TRUE)
-	balloon_alert(mod.wearer, LANG("obj.1d4a010a", list(item)))
+	balloon_alert(mod.wearer, LANG("obj.1d4a010aae28fc24", list(item)))
 	drain_power(use_energy_cost)
 
 ///Pepper Shoulders - When hit, reacts with a spray of pepper spray around the user.
@@ -102,7 +102,7 @@
 		return
 	if(!check_power(use_energy_cost))
 		return
-	mod.wearer.visible_message(span_warning(LANG("obj.56a96dc6", list(src))), span_notice(LANG("obj.5f5addb2", list(src))))
+	mod.wearer.visible_message(span_warning(LANG("obj.56a96dc67f79e769", list(src))), span_notice(LANG("obj.5f5addb2253c6be4", list(src))))
 	used()
 
 ///Holster - Instantly holsters any not huge gun.
@@ -126,20 +126,20 @@
 	if(!holstered)
 		var/obj/item/gun/holding = mod.wearer.get_active_held_item()
 		if(!holding)
-			balloon_alert(mod.wearer, LANG("obj.ba2a1bdc", null))
+			balloon_alert(mod.wearer, LANG("obj.ba2a1bdc9a69ce94", null))
 			return
 		if(!istype(holding) || holding.w_class >= WEIGHT_CLASS_BULKY) // NOVA EDIT CHANGE - Original: if(!istype(holding) || holding.w_class > WEIGHT_CLASS_BULKY)
-			balloon_alert(mod.wearer, LANG("obj.7f1af016", null))
+			balloon_alert(mod.wearer, LANG("obj.7f1af0164989b57e", null))
 			return
 		if(mod.wearer.transferItemToLoc(holding, src, force = FALSE, silent = TRUE))
 			holstered = holding
-			balloon_alert(mod.wearer, LANG("obj.f76a2dab", null))
+			balloon_alert(mod.wearer, LANG("obj.f76a2dabacf152e2", null))
 			playsound(src, 'sound/items/weapons/gun/revolver/empty.ogg', 100, TRUE)
 	else if(mod.wearer.put_in_active_hand(holstered, forced = FALSE, ignore_animation = TRUE))
-		balloon_alert(mod.wearer, LANG("obj.ae041cb2", null))
+		balloon_alert(mod.wearer, LANG("obj.ae041cb22a60a40c", null))
 		playsound(src, 'sound/items/weapons/gun/revolver/empty.ogg', 100, TRUE)
 	else
-		balloon_alert(mod.wearer, LANG("obj.0954e64a", null))
+		balloon_alert(mod.wearer, LANG("obj.0954e64a0de9a217", null))
 
 /obj/item/mod/module/holster/on_uninstall(deleting = FALSE)
 	. = ..()
@@ -229,7 +229,7 @@
 	if(target == linked_bodybag)
 		playsound(src, 'sound/machines/ding.ogg', 25, TRUE)
 		if(!do_after(mod.wearer, packup_time, target = target))
-			balloon_alert(mod.wearer, LANG("obj.c67b5d27", null))
+			balloon_alert(mod.wearer, LANG("obj.c67b5d274d6e724b", null))
 		packup()
 		return
 	if(linked_bodybag)
@@ -239,7 +239,7 @@
 		return
 	playsound(src, 'sound/machines/ding.ogg', 25, TRUE)
 	if(!do_after(mod.wearer, capture_time, target = target))
-		balloon_alert(mod.wearer, LANG("obj.c67b5d27", null))
+		balloon_alert(mod.wearer, LANG("obj.c67b5d274d6e724b", null))
 		return
 	if(linked_bodybag)
 		return
@@ -268,7 +268,7 @@
 /obj/item/mod/module/criminalcapture/proc/delete_bag(obj/structure/closet/body_bag/bag)
 	if(mod?.wearer)
 		UnregisterSignal(mod.wearer, COMSIG_MOVABLE_MOVED, PROC_REF(check_range))
-		balloon_alert(mod.wearer, LANG("obj.51d3ba12", null))
+		balloon_alert(mod.wearer, LANG("obj.51d3ba12fb5f670a", null))
 	bag.open(force = TRUE)
 	qdel(bag)
 
@@ -445,12 +445,12 @@
 	COOLDOWN_START(src, scan_cooldown, scan_cooldown_time)
 
 /obj/item/mod/module/active_sonar/on_use(mob/activator)
-	balloon_alert(activator, LANG("obj.5795d91c", null))
+	balloon_alert(activator, LANG("obj.5795d91cd702cf2f", null))
 	playsound(mod.wearer, 'sound/vehicles/mecha/skyfall_power_up.ogg', vol = 20, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 	if(!do_after(mod.wearer, 1.1 SECONDS, target = mod))
 		return
 	playsound(src, 'sound/effects/ping_hit.ogg', vol = 75, vary = TRUE) // Should be audible for the radius of the sonar
-	to_chat(mod.wearer, span_notice(LANG("obj.941cabbe", list(detect_living_creatures()))))
+	to_chat(mod.wearer, span_notice(LANG("obj.941cabbe703fcb2b", list(detect_living_creatures()))))
 	for(var/mob/living/creature as anything in keyed_creatures)
 		new /obj/effect/temp_visual/sonar_ping(mod.wearer.loc, mod.wearer, creature)
 
@@ -497,7 +497,7 @@
 	if(new_mode == selected_mode || !mod.active)
 		return
 	if(new_mode != SHOOTING_ASSISTANT_OFF && !mod.get_charge())
-		balloon_alert(mod.wearer, LANG("obj.c0d39a14", null))
+		balloon_alert(mod.wearer, LANG("obj.c0d39a143f2b1626", null))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 

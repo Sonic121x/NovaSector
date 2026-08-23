@@ -70,16 +70,16 @@
 /obj/machinery/grill/examine(mob/user)
 	. = ..()
 
-	. += span_notice(LANG("obj.cd71f1f1", null))
-	. += span_notice(LANG("obj.9b7e8ce2", null))
-	. += span_notice(LANG("obj.bac45dca", null))
+	. += span_notice(LANG("obj.cd71f1f1e4a5b19b", null))
+	. += span_notice(LANG("obj.9b7e8ce260f64c63", null))
+	. += span_notice(LANG("obj.bac45dca35bb5555", null))
 
 	if(!anchored)
-		. += span_notice(LANG("obj.fa5fc796", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.fa5fc7965e12e9d0", list(EXAMINE_HINT("pried"))))
 	if(anchored)
-		. += span_notice(LANG("obj.04b10ee4", list(EXAMINE_HINT("anchored"))))
+		. += span_notice(LANG("obj.04b10ee4cf37358e", list(EXAMINE_HINT("anchored"))))
 	else
-		. += span_warning(LANG("obj.d61b721b", list(EXAMINE_HINT("anchored"))))
+		. += span_warning(LANG("obj.d61b721b77a7f361", list(EXAMINE_HINT("anchored"))))
 
 /obj/machinery/grill/update_icon_state()
 	if(!QDELETED(grilled_item))
@@ -100,7 +100,7 @@
 
 /obj/machinery/grill/attack_hand(mob/living/user, list/modifiers)
 	if(!QDELETED(grilled_item))
-		balloon_alert(user, LANG("obj.e7922fc8", null))
+		balloon_alert(user, LANG("obj.e7922fc816807150", null))
 		grilled_item.forceMove(drop_location())
 		update_appearance(UPDATE_ICON_STATE)
 		return TRUE
@@ -133,7 +133,7 @@
 		if(!QDELETED(grilled_item))
 			return NONE
 		if(!anchored)
-			balloon_alert(user, LANG("obj.c16d48e2", null))
+			balloon_alert(user, LANG("obj.c16d48e2e8f5ec29", null))
 			return ITEM_INTERACT_BLOCKING
 
 		//required for amount subtypes
@@ -150,7 +150,7 @@
 			if(!istype(stored, target_type))
 				continue
 			if(stored.amount == MAX_STACK_SIZE)
-				balloon_alert(user, LANG("obj.a5ca1017", null))
+				balloon_alert(user, LANG("obj.a5ca1017d69acdbb", null))
 				return ITEM_INTERACT_BLOCKING
 			target.merge(stored)
 			merged = TRUE
@@ -158,7 +158,7 @@
 		if(!merged)
 			weapon.forceMove(src)
 
-		to_chat(user, span_notice(LANG("obj.cf40a4bf", list(src))))
+		to_chat(user, span_notice(LANG("obj.cf40a4bf4760747d", list(src))))
 		if(!grill_fuel)
 			burn_stack()
 			begin_processing()
@@ -169,7 +169,7 @@
 		if(!QDELETED(grilled_item))
 			return NONE
 		if(!anchored)
-			balloon_alert(user, LANG("obj.c16d48e2", null))
+			balloon_alert(user, LANG("obj.c16d48e2e8f5ec29", null))
 			return ITEM_INTERACT_BLOCKING
 
 		var/transfered_amount = weapon.reagents.trans_to(src, container.amount_per_transfer_from_this)
@@ -202,27 +202,27 @@
 			update_appearance(UPDATE_ICON_STATE)
 
 			//feedback
-			to_chat(user, span_notice(LANG("obj.66dbe8a9", list(transfered_amount))))
+			to_chat(user, span_notice(LANG("obj.66dbe8a9987532f5", list(transfered_amount))))
 			return ITEM_INTERACT_SUCCESS
 
-		balloon_alert(user, LANG("obj.861ae340", null))
+		balloon_alert(user, LANG("obj.861ae34014ffc515", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(IS_EDIBLE(weapon))
 		//sanity checks
 		if(!anchored)
-			balloon_alert(user, LANG("obj.fc0b549c", null))
+			balloon_alert(user, LANG("obj.fc0b549c5b08ec06", null))
 			return ITEM_INTERACT_BLOCKING
 		if(HAS_TRAIT(weapon, TRAIT_NODROP))
 			return ..()
 		if(!QDELETED(grilled_item))
-			balloon_alert(user, LANG("obj.ce87caaa", null))
+			balloon_alert(user, LANG("obj.ce87caaa975fd90a", null))
 			return ITEM_INTERACT_BLOCKING
 		if(grill_fuel <= 0)
-			balloon_alert(user, LANG("obj.1b220a79", null))
+			balloon_alert(user, LANG("obj.1b220a79f75bded9", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(weapon, src))
-			balloon_alert(user, LANG("obj.015edaf0", list(weapon)))
+			balloon_alert(user, LANG("obj.015edaf0a69dffa2", list(weapon)))
 			return ITEM_INTERACT_BLOCKING
 
 		//add the item on the grill
@@ -231,7 +231,7 @@
 		var/datum/component/sizzle/sizzle = grilled_item.GetComponent(/datum/component/sizzle)
 		if(!isnull(sizzle))
 			grill_time = sizzle.time_elapsed()
-		to_chat(user, span_notice(LANG("obj.85eafb3f", list(grilled_item, src))))
+		to_chat(user, span_notice(LANG("obj.85eafb3f87cbfda2", list(grilled_item, src))))
 		update_appearance(UPDATE_ICON_STATE)
 		grill_loop.start()
 		return ITEM_INTERACT_SUCCESS
@@ -245,7 +245,7 @@
 
 /obj/machinery/grill/crowbar_act(mob/living/user, obj/item/tool)
 	if(anchored)
-		balloon_alert(user, LANG("obj.3e939160", null))
+		balloon_alert(user, LANG("obj.3e9391607cda6ee1", null))
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_crowbar(user, tool)

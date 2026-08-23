@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY_TYPED(tracked_implants, /obj/item/implant)
 			return TRUE
 
 		if("set_id_goal")
-			var/num = tgui_input_number(usr, LANG("obj.b89e3452", null), LANG("obj.a1472c54", null), 100, 1000, 1)
+			var/num = tgui_input_number(usr, LANG("obj.b89e34529de283e0", null), LANG("obj.a1472c54a3aa2e16", null), 100, 1000, 1)
 			if(!isnum(num) || QDELETED(src) || QDELETED(contained_id) || QDELETED(usr))
 				return TRUE
 			if(!is_operational || !usr.can_perform_action(src, NEED_DEXTERITY|ALLOW_SILICON_REACH))

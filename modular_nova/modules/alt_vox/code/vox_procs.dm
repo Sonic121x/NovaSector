@@ -25,12 +25,12 @@
 GAME_VERB_DESC(/mob/living/silicon/ai, switch_vox, "切换沃克斯语音", "Switch your VOX announcement voice!", "AI Commands")
 	if(incapacitated)
 		return
-	var/selection = tgui_input_list(src, LANG("mob.9a2655f5", null), LANG("mob.e1b6c58d", null), vox_voices)
+	var/selection = tgui_input_list(src, LANG("mob.9a2655f50b096f86", null), LANG("mob.e1b6c58dcb4a6bda", null), vox_voices)
 	if(selection == null)
 		return
 	vox_type = selection
 
-	to_chat(src, LANG("mob.403e8ab9", list(vox_type)))
+	to_chat(src, LANG("mob.403e8ab99ab4a818", list(vox_type)))
 
 
 GAME_VERB_DESC(/mob/living/silicon/ai, display_word_string, "显示词串", "Display the list of recently pressed vox lines.", "AI Commands")

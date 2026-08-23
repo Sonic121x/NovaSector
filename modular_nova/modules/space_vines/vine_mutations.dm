@@ -72,7 +72,7 @@
 
 /turf/open/floor/plating/kudzu/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/scythe) || istype(tool, /obj/item/wirecutters))
-		to_chat(user, span_notice(LANG("turf.846191f5", list(src))))
+		to_chat(user, span_notice(LANG("turf.846191f5685f3cde", list(src))))
 		playsound(src, 'sound/items/weapons/bladeslice.ogg', 75, TRUE)
 		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 		return ITEM_INTERACT_SUCCESS

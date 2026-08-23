@@ -19,7 +19,7 @@ Reproductive extracts:
 
 /obj/item/slimecross/reproductive/examine()
 	. = ..()
-	. += span_danger(LANG("obj.382ba87d", list(length(contents), p_s())))
+	. += span_danger(LANG("obj.382ba87d2932a1bd", list(length(contents), p_s())))
 
 /obj/item/slimecross/reproductive/Initialize(mapload)
 	. = ..()
@@ -31,11 +31,11 @@ Reproductive extracts:
 		return NONE
 
 	if((last_produce + cooldown) > world.time)
-		to_chat(user, span_warning(LANG("obj.0d08ae8e", list(src))))
+		to_chat(user, span_warning(LANG("obj.0d08ae8ed6012bc3", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(length(contents) >= feedAmount) //if for some reason the contents are full, but it didnt digest, attempt to digest again
-		to_chat(user, span_warning(LANG("obj.d7c1d5eb", list(src))))
+		to_chat(user, span_warning(LANG("obj.d7c1d5ebf2290525", list(src))))
 		slime_storage?.processCubes(user)
 		return ITEM_INTERACT_BLOCKING
 
@@ -43,9 +43,9 @@ Reproductive extracts:
 		var/list/inserted = list()
 		tool.atom_storage.remove_type(/obj/item/food/monkeycube, src, feedAmount - length(contents), TRUE, FALSE, user, inserted)
 		if(!inserted.len)
-			to_chat(user, span_warning(LANG("obj.83a8ffe6", null)))
+			to_chat(user, span_warning(LANG("obj.83a8ffe646f0917a", null)))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.979b8ca0", list(length(inserted), length(inserted) > 1 ? "s" : "", src))))
+		to_chat(user, span_notice(LANG("obj.979b8ca077b4b0ef", list(length(inserted), length(inserted) > 1 ? "s" : "", src))))
 		playsound(src, 'sound/items/eatfood.ogg', 20, TRUE)
 		slime_storage?.processCubes(user)
 		return ITEM_INTERACT_SUCCESS
@@ -54,10 +54,10 @@ Reproductive extracts:
 		return NONE
 
 	if(!atom_storage?.attempt_insert(tool, user, override = TRUE, force = STORAGE_FULLY_LOCKED))
-		to_chat(user, span_notice(LANG("obj.4933a936", list(src, tool)))) //in case it fails to insert for whatever reason you get feedback
+		to_chat(user, span_notice(LANG("obj.4933a936bcc24c5c", list(src, tool)))) //in case it fails to insert for whatever reason you get feedback
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.5a67e592", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.5a67e592a00e356f", list(tool, src))))
 	slime_storage?.processCubes(user)
 	playsound(src, 'sound/items/eatfood.ogg', 20, TRUE)
 	return ITEM_INTERACT_SUCCESS

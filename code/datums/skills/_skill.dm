@@ -72,10 +72,10 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 	if (new_level != SKILL_LEVEL_LEGENDARY)
 		return
 	if (!ispath(skill_item_path))
-		to_chat(mind.current, span_nicegreen(LANG("datum.f6538275", list(name, title))))
+		to_chat(mind.current, span_nicegreen(LANG("datum.f6538275563c73f8", list(name, title))))
 		return
 	if (LAZYFIND(mind.skills_rewarded, src.type))
-		to_chat(mind.current, span_nicegreen(LANG("datum.66093427", list(title))))
+		to_chat(mind.current, span_nicegreen(LANG("datum.660934278c181b6b", list(title))))
 		return
 	podspawn(list(
 		"target" = get_turf(mind.current),
@@ -83,5 +83,5 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 		"spawn" = skill_item_path,
 		"delays" = list(POD_TRANSIT = 150, POD_FALLING = 4, POD_OPENING = 30, POD_LEAVING = 30)
 	))
-	to_chat(mind.current, span_nicegreen(LANG("datum.6742daa1", list(title))))
+	to_chat(mind.current, span_nicegreen(LANG("datum.6742daa157b2af2e", list(title))))
 	LAZYADD(mind.skills_rewarded, src.type)

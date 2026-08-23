@@ -92,7 +92,7 @@
 /datum/action/cooldown/spell/thermal_vision/cast(mob/living/cast_on)
 	. = ..()
 	ADD_TRAIT(cast_on, TRAIT_THERMAL_VISION, GENETIC_MUTATION)
-	to_chat(cast_on, span_info(LANG("datum.66884c62", null)))
+	to_chat(cast_on, span_info(LANG("datum.66884c628811ea43", null)))
 	addtimer(CALLBACK(src, PROC_REF(deactivate), cast_on), thermal_duration)
 
 /datum/action/cooldown/spell/thermal_vision/proc/deactivate(mob/living/cast_on)
@@ -100,7 +100,7 @@
 		return
 
 	REMOVE_TRAIT(cast_on, TRAIT_THERMAL_VISION, GENETIC_MUTATION)
-	to_chat(cast_on, span_info(LANG("datum.6639bd38", null)))
+	to_chat(cast_on, span_info(LANG("datum.6639bd386306302c", null)))
 
 	if(iscarbon(cast_on))
 		var/mob/living/carbon/carbon_cast_on = cast_on
@@ -156,7 +156,7 @@
 
 	if(!source.combat_mode)
 		return
-	to_chat(source, span_warning(LANG("datum.19999a9b", null)))
+	to_chat(source, span_warning(LANG("datum.19999a9bafc74962", null)))
 	source.changeNext_move(CLICK_CD_RANGE)
 	source.newtonian_move(get_angle(source, target))
 	var/obj/projectile/beam/laser/laser_eyes/LE = new(source.loc)

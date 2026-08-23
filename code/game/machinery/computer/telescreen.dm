@@ -90,7 +90,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/entertai
 /obj/machinery/computer/security/telescreen/entertainment/examine(mob/user)
 	. = ..()
 	. += length(network) ? span_notice("The TV is broadcasting something!") : span_notice("<i>There's nothing on TV.</i>")
-	. += span_notice(LANG("obj.10d4ccb1", list(speakers.should_be_listening ? "on" : "off")))
+	. += span_notice(LANG("obj.10d4ccb103aa40f5", list(speakers.should_be_listening ? "on" : "off")))
 
 /obj/machinery/computer/security/telescreen/entertainment/ui_state(mob/user)
 	return GLOB.always_state
@@ -555,7 +555,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/deep_sto
 
 /obj/item/assembly/control/showtime/activate()
 	is_show_active = !is_show_active
-	say(LANG("obj.69bb2b73", list(tv_show_name, is_show_active ? "begun" : "ended")))
+	say(LANG("obj.69bb2b7358a89b9d", list(tv_show_name, is_show_active ? "begun" : "ended")))
 	var/announcement = is_show_active ? pick(tv_starters) : pick(tv_enders)
 	set_network_broadcast_status(tv_network_id, is_show_active, announcement)
 

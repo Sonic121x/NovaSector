@@ -106,14 +106,14 @@
 		vow.Grant(user)
 	var/datum/action/new_action = new granted_action(user.mind || user)
 	new_action.Grant(user)
-	to_chat(user, span_warning(LANG("obj.07e24125", null)))
+	to_chat(user, span_warning(LANG("obj.07e24125e253cad1", null)))
 	qdel(src)
 
 /obj/item/book/granter/action/spell/mime/mimery/can_learn(mob/living/user)
 	for(var/type in list(/datum/action/cooldown/spell/conjure/invisible_wall, /datum/action/cooldown/spell/conjure/invisible_chair, /datum/action/cooldown/spell/conjure_item/invisible_box, /datum/action/cooldown/spell/touch/mime_grayscale)) // NOVA CHANGE - Mime Monochrome - Adds '/datum/action/cooldown/spell/touch/mime_grayscale' - ORIGINAL: for(var/type in list(/datum/action/cooldown/spell/conjure/invisible_wall, /datum/action/cooldown/spell/conjure/invisible_chair, /datum/action/cooldown/spell/conjure_item/invisible_box))
 		if(!(locate(type) in user.actions))
 			return TRUE
-	to_chat(user, span_warning(LANG("obj.3aa57b79", null)))
+	to_chat(user, span_warning(LANG("obj.3aa57b79b5e32997", null)))
 	return FALSE
 
 /**

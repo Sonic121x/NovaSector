@@ -68,7 +68,7 @@ ADMIN_VERB(debug_controller, R_DEBUG, "调试控制器", "Debug the various peri
 		controllers[controller.name] = controller //we use an associated list to ensure clients can't hold references to controllers
 		controller_choices += controller.name
 
-	var/datum/controller/controller_string = input(LANG("datum.8dfa56ae", null), LANG("datum.b5e2de83", null)) as null|anything in controller_choices
+	var/datum/controller/controller_string = input(LANG("datum.8dfa56ae98578f19", null), LANG("datum.b5e2de83e0ddae8e", null)) as null|anything in controller_choices
 	var/datum/controller/controller = controllers[controller_string]
 
 	if (!istype(controller))

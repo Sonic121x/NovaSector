@@ -198,7 +198,7 @@
 		if(bodypart_disabled)
 			owner.set_usable_hands(owner.usable_hands - 1)
 			if(!IS_UNCONSCIOUS(owner))
-				to_chat(owner, span_userdanger(LANG("obj.a0373598", list(plaintext_zone))))
+				to_chat(owner, span_userdanger(LANG("obj.a03735985845d3a0", list(plaintext_zone))))
 			if(held_index)
 				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	else if(!bodypart_disabled)
@@ -425,7 +425,7 @@
 		if(bodypart_disabled)
 			owner.set_usable_legs(owner.usable_legs - 1)
 			if(!IS_UNCONSCIOUS(owner))
-				to_chat(owner, span_userdanger(LANG("obj.a0373598", list(plaintext_zone))))
+				to_chat(owner, span_userdanger(LANG("obj.a03735985845d3a0", list(plaintext_zone))))
 	else if(!bodypart_disabled)
 		owner.set_usable_legs(owner.usable_legs + 1)
 

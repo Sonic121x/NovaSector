@@ -79,10 +79,10 @@
 
 /obj/structure/punching_bag/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	if(anchored)
-		balloon_alert(user, LANG("obj.3670b291", null))
+		balloon_alert(user, LANG("obj.3670b291a581ff60", null))
 		return FALSE
 	tool.play_tool_sound(src)
-	balloon_alert(user, LANG("obj.44f0e678", null))
+	balloon_alert(user, LANG("obj.44f0e678d88c8044", null))
 	if (!do_after(user, 10 SECONDS, target = src))
 		return FALSE
 	new /obj/item/stack/sheet/iron(get_turf(src), 2)

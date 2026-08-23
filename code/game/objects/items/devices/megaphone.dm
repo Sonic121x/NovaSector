@@ -13,9 +13,9 @@
 	var/list/voicespan = list(SPAN_COMMAND)
 
 /obj/item/megaphone/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.4bdcdf88", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.4bdcdf88cabeeddb", list(user, user.p_their(), src, user.p_theyre()))))
 	spamcheck = 0//so they dont have to worry about recharging
-	user.say(LANG("obj.539044cd", null), forced="megaphone suicide")//he must have died while coding this
+	user.say(LANG("obj.539044cde9159d19", null), forced="megaphone suicide")//he must have died while coding this
 	return OXYLOSS
 
 /obj/item/megaphone/equipped(mob/equipper, slot)
@@ -33,7 +33,7 @@
 	if(HAS_TRAIT(user, TRAIT_SIGN_LANG) || user.get_active_held_item() != src)
 		return
 	if(spamcheck > world.time)
-		to_chat(user, span_warning(LANG("obj.ca0e42b8", list(src))))
+		to_chat(user, span_warning(LANG("obj.ca0e42b81ebcd17b", list(src))))
 	else
 		playsound(loc, 'sound/items/megaphone.ogg', 100, FALSE, TRUE)
 		speech_args[SPEECH_SPANS] |= voicespan
@@ -55,7 +55,7 @@
 /obj/item/megaphone/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, LANG("obj.852ad135", null))
+	balloon_alert(user, LANG("obj.852ad135a2b3c974", null))
 	obj_flags |= EMAGGED
 	voicespan = list(SPAN_REALLYBIG, "userdanger")
 	return TRUE

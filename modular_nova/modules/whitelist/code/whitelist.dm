@@ -66,10 +66,10 @@ GLOBAL_PROTECT(whitelist)
 
 ADMIN_VERB(add_whitelist, R_ADMIN, "添加白名单", "Adds a given ckey to the whitelist, allowing them access to the server.", ADMIN_CATEGORY_MAIN)
 	if(!SSdbcore.Connect())
-		to_chat(user, span_warning(LANG("datum.a22807d5", null)))
+		to_chat(user, span_warning(LANG("datum.a22807d56652e2cc", null)))
 		return
 
-	var/ckey_to_whitelist = input(user, LANG("datum.42bd108c", null), LANG("datum.1efabe26", null)) as text|null
+	var/ckey_to_whitelist = input(user, LANG("datum.42bd108c362e2805", null), LANG("datum.1efabe261593dcfd", null)) as text|null
 	ckey_to_whitelist = ckey(ckey_to_whitelist)
 	if(!ckey_to_whitelist)
 		return

@@ -15,13 +15,13 @@
 
 	// What're the odds someone uses 2000 uses of an infinite use book?
 	if(uses >= INFINITY - 2000)
-		to_chat(caster, span_notice(LANG("obj.7d925445", null)))
+		to_chat(caster, span_notice(LANG("obj.7d925445503930ba", null)))
 		pages_to_mastery = max(pages_to_mastery - 1, 1)
 		return COMPONENT_ITEM_CHARGED|COMPONENT_ITEM_BURNT_OUT
 
 	if(prob(80))
 		caster.dropItemToGround(src, TRUE)
-		visible_message(span_warning(LANG("obj.657fe46f", list(src))))
+		visible_message(span_warning(LANG("obj.657fe46f1b22303d", list(src))))
 		new /obj/effect/decal/cleanable/ash(drop_location())
 		qdel(src)
 		return COMPONENT_ITEM_BURNT_OUT
@@ -34,26 +34,26 @@
 		CRASH("Someone attempted to learn [type], which did not have a spell set.")
 	if(locate(granted_action) in user.actions)
 		if(HAS_MIND_TRAIT(user, TRAIT_MAGICALLY_GIFTED))
-			to_chat(user, span_warning(LANG("obj.606c56b8", list(action_name))))
+			to_chat(user, span_warning(LANG("obj.606c56b844c8a532", list(action_name))))
 		else
-			to_chat(user, span_warning(LANG("obj.b461ad6c", list(action_name))))
+			to_chat(user, span_warning(LANG("obj.b461ad6cac9f3c87", list(action_name))))
 		return FALSE
 	return TRUE
 
 /obj/item/book/granter/action/spell/on_reading_start(mob/living/user)
-	to_chat(user, span_notice(LANG("obj.672d2dc1", list(action_name))))
+	to_chat(user, span_notice(LANG("obj.672d2dc171225f82", list(action_name))))
 	return TRUE
 
 /obj/item/book/granter/action/spell/on_reading_finished(mob/living/user)
-	to_chat(user, span_notice(LANG("obj.478f0bd5", list(action_name))))
+	to_chat(user, span_notice(LANG("obj.478f0bd523e42502", list(action_name))))
 	var/datum/action/cooldown/spell/new_spell = new granted_action(user.mind || user)
 	new_spell.Grant(user)
 	user.log_message("learned the spell [action_name] ([new_spell])", LOG_ATTACK, color = "orange")
 	if(uses <= 0)
-		user.visible_message(span_warning(LANG("obj.bff10564", list(src))))
+		user.visible_message(span_warning(LANG("obj.bff105640447aa9d", list(src))))
 
 /obj/item/book/granter/action/spell/recoil(mob/living/user)
-	user.visible_message(span_warning(LANG("obj.67eebe91", list(src))))
+	user.visible_message(span_warning(LANG("obj.67eebe91cf308f86", list(src))))
 
 /// Simple granter that's replaced with a random spell granter on Initialize.
 /obj/item/book/granter/action/spell/random

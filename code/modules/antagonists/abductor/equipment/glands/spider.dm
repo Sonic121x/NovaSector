@@ -9,7 +9,7 @@
 	mind_control_duration = 2400
 
 /obj/item/organ/heart/gland/spiderman/activate()
-	to_chat(owner, span_warning(LANG("obj.2c5d3562", null)))
+	to_chat(owner, span_warning(LANG("obj.2c5d35627482b67f", null)))
 	owner.add_faction(FACTION_SPIDER)
 	var/mob/living/basic/spider/growing/spiderling/spider = new(owner.drop_location())
 	spider.directive = "Protect your nest inside [owner.real_name]."

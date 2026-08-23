@@ -39,7 +39,7 @@
 /obj/item/implant/teleport_blocker/proc/on_teleport(mob/living/teleportee, atom/destination, channel)
 	SIGNAL_HANDLER
 
-	to_chat(teleportee, span_holoparasite(LANG("obj.e8d0980b", null)))
+	to_chat(teleportee, span_holoparasite(LANG("obj.e8d0980b7739bada", null)))
 
 	teleportee.apply_status_effect(/datum/status_effect/incapacitating/paralyzed, 5 SECONDS)
 	do_sparks(5, TRUE, teleportee, spark_type = /datum/effect_system/basic/spark_spread/quantum)
@@ -49,7 +49,7 @@
 /obj/item/implant/teleport_blocker/proc/on_jaunt(mob/living/jaunter)
 	SIGNAL_HANDLER
 
-	to_chat(jaunter, span_holoparasite(LANG("obj.d9efb15c", null)))
+	to_chat(jaunter, span_holoparasite(LANG("obj.d9efb15c6936f64c", null)))
 
 	jaunter.apply_status_effect(/datum/status_effect/incapacitating/paralyzed, 5 SECONDS)
 	do_sparks(5, TRUE, jaunter, spark_type = /datum/effect_system/basic/spark_spread/quantum)

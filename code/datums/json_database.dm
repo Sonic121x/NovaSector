@@ -15,7 +15,7 @@
 
 /datum/json_database/New(filepath)
 	if (IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("datum.ca75f1ae", list(html_encode(filepath)))), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.ca75f1ae3edd4abe", list(html_encode(filepath)))), confidential = TRUE)
 		return
 
 	ASSERT(isnull(existing_json_database[filepath]), "[filepath] already has an associated json_database. You must expose it somehow and use that instead of making a new one.")

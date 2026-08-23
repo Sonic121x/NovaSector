@@ -6,7 +6,7 @@ GAME_VERB_PROC(/client, show_verbs, "管理员命令 - 显示", ADMIN_CATEGORY_M
 	UNASSIGN_GAME_VERB(src, /client, show_verbs)
 	add_admin_verbs()
 
-	to_chat(src, span_interface(LANG("client.11524bf0", null)), confidential = TRUE)
+	to_chat(src, span_interface(LANG("client.11524bf074c11bed", null)), confidential = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Show Adminverbs")
 
 GAME_VERB_PROC_DESC(/client, readmin, "恢复管理员权限", "Regain your admin powers.", "Admin")
@@ -26,7 +26,7 @@ GAME_VERB_PROC_DESC(/client, readmin, "恢复管理员权限", "Regain your admi
 	if (!holder)
 		return //This can happen if an admin attempts to vv themself into somebody elses's deadmin datum by getting ref via brute force
 
-	to_chat(src, span_interface(LANG("client.04bfdba7", null)), confidential = TRUE)
+	to_chat(src, span_interface(LANG("client.04bfdba78db6cc54", null)), confidential = TRUE)
 	message_admins("[src] re-adminned themselves.")
 	log_admin("[src] re-adminned themselves.")
 	BLACKBOX_LOG_ADMIN_VERB("Readmin")

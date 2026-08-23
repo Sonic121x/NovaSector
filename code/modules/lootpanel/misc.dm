@@ -13,7 +13,7 @@
 		var/build = owner.byond_build
 		var/version = owner.byond_version
 		if(build < 515 || (build == 515 && version < 1635))
-			to_chat(owner.mob, boxed_message(span_info(LANG("datum.1b116858", list(version, build)))))
+			to_chat(owner.mob, boxed_message(span_info(LANG("datum.1b1168581960646d", list(version, build)))))
 
 			notified = TRUE
 #endif

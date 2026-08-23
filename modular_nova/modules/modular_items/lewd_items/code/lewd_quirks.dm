@@ -116,20 +116,20 @@
 	if(!in_company())
 		//since you aren't within company, you won't be satisfied
 		satisfaction = clamp(satisfaction - 1, 0, 1000)
-		to_chat(human_owner, span_purple(LANG("datum.3b6c0c27", null)))
+		to_chat(human_owner, span_purple(LANG("datum.3b6c0c27c48e3fd2", null)))
 		return
 
 	switch(satisfaction)
 		if(0 to 100)
-			to_chat(human_owner, span_purple(LANG("datum.92568c12", null)))
+			to_chat(human_owner, span_purple(LANG("datum.92568c12ed6a1905", null)))
 		if(101 to 150)
-			to_chat(human_owner, span_purple(LANG("datum.53a4021d", null)))
+			to_chat(human_owner, span_purple(LANG("datum.53a4021d22d7b886", null)))
 		if(151 to 200)
-			to_chat(human_owner, span_purple(LANG("datum.ea96daa1", null)))
+			to_chat(human_owner, span_purple(LANG("datum.ea96daa1a47b8760", null)))
 		if(201 to 250)
-			to_chat(human_owner, span_purple(LANG("datum.6aed1717", null)))
+			to_chat(human_owner, span_purple(LANG("datum.6aed1717b57c6cf3", null)))
 		if(251 to 1000)
-			to_chat(human_owner, span_purple(LANG("datum.30d4e9a5", null)))
+			to_chat(human_owner, span_purple(LANG("datum.30d4e9a585213cb9", null)))
 
 /**
  * If we have another human in view, return true

@@ -48,10 +48,10 @@
 
 /obj/structure/fireplace/proc/try_light(obj/item/O, mob/user)
 	if(lit)
-		to_chat(user, span_warning(LANG("obj.392aae9f", null)))
+		to_chat(user, span_warning(LANG("obj.392aae9f3e084539", null)))
 		return FALSE
 	if(!fuel_added)
-		to_chat(user, span_warning(LANG("obj.015d7870", list(src))))
+		to_chat(user, span_warning(LANG("obj.015d7870756055db", list(src))))
 		return FALSE
 	var/msg = O.ignition_effect(src, user)
 	if(msg)
@@ -65,24 +65,24 @@
 		var/space_remaining = MAXIMUM_BURN_TIMER - burn_time_remaining()
 		var/space_for_logs = round(space_remaining / LOG_BURN_TIMER)
 		if(space_for_logs < 1)
-			to_chat(user, span_warning(LANG("obj.d56a17a7", list(tool, src))))
+			to_chat(user, span_warning(LANG("obj.d56a17a787f11561", list(tool, src))))
 			return ITEM_INTERACT_BLOCKING
 
 		var/logs_used = min(space_for_logs, wood.amount)
 		wood.use(logs_used)
 		adjust_fuel_timer(LOG_BURN_TIMER * logs_used)
-		user.visible_message(span_notice(LANG("obj.2dc25b27", list(user, src))), span_notice(LANG("obj.bd3682ed", list(src))))
+		user.visible_message(span_notice(LANG("obj.2dc25b27fd670c2a", list(user, src))), span_notice(LANG("obj.bd3682ed15e0fa15", list(src))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/paper_bin))
 		var/obj/item/paper_bin/paper_bin = tool
-		user.visible_message(span_notice(LANG("obj.8938881b", list(user, tool, src))), span_notice(LANG("obj.0c27fe26", list(tool, src))))
+		user.visible_message(span_notice(LANG("obj.8938881bc2a5a201", list(user, tool, src))), span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 		adjust_fuel_timer(PAPER_BURN_TIMER * paper_bin.total_paper)
 		qdel(paper_bin)
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/paper))
-		user.visible_message(span_notice(LANG("obj.8938881b", list(user, tool, src))), span_notice(LANG("obj.9a474d8d", list(tool, src))))
+		user.visible_message(span_notice(LANG("obj.8938881bc2a5a201", list(user, tool, src))), span_notice(LANG("obj.9a474d8d4e3af196", list(tool, src))))
 		adjust_fuel_timer(PAPER_BURN_TIMER)
 		qdel(tool)
 		return ITEM_INTERACT_SUCCESS
@@ -165,7 +165,7 @@
 	START_PROCESSING(SSobj, src)
 	burning_loop.start()
 	lit = TRUE
-	desc = LANG("obj.273d939d", null)
+	desc = LANG("obj.273d939d1f2f698b", null)
 	flame_expiry_timer = world.time + fuel_added
 	fuel_added = 0
 	update_appearance()

@@ -66,7 +66,7 @@
 
 		//while buckled, you can still connect to and control things like doors, but you can't use your modules
 		if(buckled)
-			to_chat(src, span_warning(LANG("mob.1fb1526a", list(buckled))))
+			to_chat(src, span_warning(LANG("mob.1fb1526ab864ae20", list(buckled))))
 			return
 
 		//if your "hands" are blocked you shouldn't be able to use modules

@@ -35,7 +35,7 @@
 	)
 
 /obj/item/experi_scanner/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.5a9f7ad1", list(user, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.5a9f7ad14033246e", list(user, user.p_theyre()))))
 
 	forceMove(drop_location())
 	user.forceMove(src)

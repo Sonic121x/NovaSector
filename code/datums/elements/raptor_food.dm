@@ -49,19 +49,19 @@
 
 	// Only personality or color probability effects, or just pure negatives
 	if (strognest_effect == 0)
-		examine_list += span_notice(LANG("datum.af0f81ed", null))
+		examine_list += span_notice(LANG("datum.af0f81ed13e8aa2f", null))
 		return
 
 	if (strognest_effect == attack_modifier)
-		examine_list += span_notice(LANG("datum.f0e0e75c", null))
+		examine_list += span_notice(LANG("datum.f0e0e75cf1997bdb", null))
 	else if (strognest_effect == health_modifier)
-		examine_list += span_notice(LANG("datum.5dfb4b9e", null))
+		examine_list += span_notice(LANG("datum.5dfb4b9e78d5446a", null))
 	else if (strognest_effect == speed_modifier)
-		examine_list += span_notice(LANG("datum.1f7a2a22", null))
+		examine_list += span_notice(LANG("datum.1f7a2a22cd1cb192", null))
 	else if (strognest_effect == ability_modifier)
-		examine_list += span_notice(LANG("datum.0330ec84", null))
+		examine_list += span_notice(LANG("datum.0330ec84baa94ea7", null))
 	else if (strognest_effect == growth_modifier)
-		examine_list += span_notice(LANG("datum.74815756", null))
+		examine_list += span_notice(LANG("datum.74815756ec74f0fa", null))
 
 /datum/element/raptor_food/proc/on_eaten(obj/item/source, mob/living/eater, mob/living/feeder)
 	SIGNAL_HANDLER

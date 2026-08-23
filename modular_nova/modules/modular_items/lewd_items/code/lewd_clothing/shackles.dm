@@ -46,7 +46,7 @@
 		var/obj/item/clothing/suit/straight_jacket/shackles/reinforced/shackles = new()
 		remove_item_from_storage(user)
 		user.put_in_hands(shackles)
-		to_chat(user, span_notice(LANG("obj.234b8ff1", list(src, tool))))
+		to_chat(user, span_notice(LANG("obj.234b8ff1e2316e62", list(src, tool))))
 		qdel(tool)
 		qdel(src)
 		return TRUE

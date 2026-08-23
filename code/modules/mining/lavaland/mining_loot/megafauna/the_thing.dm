@@ -117,21 +117,21 @@
 	if(isnull(AI))
 		return
 	if(AI.controlled_equipment)
-		to_chat(AI, span_warning(LANG("obj.c238d614", null)))
+		to_chat(AI, span_warning(LANG("obj.c238d61401451162", null)))
 		return
 	if(!SScameras.is_visible_by_cameras(owner))
-		to_chat(AI, span_warning(LANG("obj.f78d9026", null)))
+		to_chat(AI, span_warning(LANG("obj.f78d90261d9da8f9", null)))
 		return
 	if(!isturf(AI.loc))
-		to_chat(AI, span_warning(LANG("obj.d46a8420", null)))
+		to_chat(AI, span_warning(LANG("obj.d46a842079130d39", null)))
 		return
 
 	/// NOVA EDIT ADDITION START
 	if(istype(mainframe)) // In case another AI is already inside
-		to_chat(AI, span_warning(LANG("obj.aa338615", null)))
+		to_chat(AI, span_warning(LANG("obj.aa338615e472217d", null)))
 		return
 	if(owner.stat == DEAD)
-		to_chat(AI, span_warning(LANG("obj.5b4b9921", null)))
+		to_chat(AI, span_warning(LANG("obj.5b4b99218a0305a0", null)))
 		return
 	owner.copy_languages(AI.get_language_holder())
 	/// NOVA EDIT ADDITION END
@@ -141,7 +141,7 @@
 	ADD_TRAIT(AI.mind, TRAIT_UNCONVERTABLE, REF(src))
 	ADD_TRAIT(AI, TRAIT_MIND_TEMPORARILY_GONE, REF(src))
 	AI.mind.transfer_to(owner)
-	to_chat(owner, span_boldbig(LANG("obj.d49181ab", null)))
+	to_chat(owner, span_boldbig(LANG("obj.d49181ab44c46f41", null)))
 
 /obj/item/organ/brain/cybernetic/ai/proc/deploy_init(mob/living/silicon/ai/AI)
 	//todo camera maybe
@@ -209,10 +209,10 @@
 /obj/item/organ/brain/cybernetic/ai/proc/on_organ_gain(datum/source, obj/item/organ/new_organ, special)
 	SIGNAL_HANDLER
 	if(!is_sufficiently_augmented())
-		to_chat(owner, span_danger(LANG("obj.836de6d1", null)))
+		to_chat(owner, span_danger(LANG("obj.836de6d1fc29c7c8", null)))
 		undeploy()
 
 /obj/item/organ/brain/cybernetic/ai/proc/ai_deleted(datum/source)
 	SIGNAL_HANDLER
-	to_chat(owner, span_danger(LANG("obj.add7180e", null)))
+	to_chat(owner, span_danger(LANG("obj.add7180e222650db", null)))
 	undeploy()

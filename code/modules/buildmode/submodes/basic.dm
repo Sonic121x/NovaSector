@@ -4,7 +4,7 @@
 
 /datum/buildmode_mode/basic/show_help(client/builder)
 	to_chat(builder, span_purple(boxed_message(
-		LANG("datum.66c5e0c1", list(span_bold("Construct / Upgrade"), span_bold("Deconstruct / Delete / Downgrade"), span_bold("R-Window"), span_bold("Airlock")))))
+		LANG("datum.66c5e0c1b2770635", list(span_bold("Construct / Upgrade"), span_bold("Deconstruct / Delete / Downgrade"), span_bold("R-Window"), span_bold("Airlock")))))
 	)
 
 /datum/buildmode_mode/basic/handle_click(client/c, params, obj/object)

@@ -14,26 +14,26 @@
 	update_appearance()
 
 /obj/item/toy/cards/cardhand/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.022391dc", list(user, user.p_their(), src, user.p_they(), user.p_have()))))
+	user.visible_message(span_suicide(LANG("obj.022391dc66fc8339", list(user, user.p_their(), src, user.p_they(), user.p_have()))))
 	playsound(src, 'sound/items/cards/cardshuffle.ogg', 50, TRUE)
 	return BRUTELOSS
 
 /obj/item/toy/cards/cardhand/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.1b30acc7", list(count_cards())))
+	. += span_notice(LANG("obj.1b30acc70480455c", list(count_cards())))
 	var/broadcast_check = FALSE
 	for(var/obj/item/toy/singlecard/card in fetch_card_atoms())
 		if(user.is_holding(src) || card.flipped)
-			. += span_notice(LANG("obj.7f6bcefa", list(card.cardname)))
+			. += span_notice(LANG("obj.7f6bcefa108520dd", list(card.cardname)))
 			if(!card.flipped)
 				broadcast_check = TRUE
 		else if(HAS_TRAIT(user, TRAIT_XRAY_VISION))
-			. += span_notice(LANG("obj.aeb881ce", list(card.cardname)))
+			. += span_notice(LANG("obj.aeb881ce871218a7", list(card.cardname)))
 		var/marked_color = card.getMarkedColor(user)
 		if(marked_color)
-			. += span_notice(LANG("obj.1d2e33b5", list(marked_color)))
+			. += span_notice(LANG("obj.1d2e33b5f4c0be59", list(marked_color)))
 	if(broadcast_check)
-		user.visible_message(span_notice(LANG("obj.dcbb3edd", list(user, user.p_their()))))
+		user.visible_message(span_notice(LANG("obj.dcbb3edd01d36c77", list(user, user.p_their()))))
 
 
 /obj/item/toy/cards/cardhand/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
@@ -89,10 +89,10 @@
 		var/obj/item/toy/cards/deck/dealer_deck = tool
 		if(!HAS_TRAIT(dealer_deck, TRAIT_WIELDED)) // recycle cardhand into deck (if unwielded)
 			if(dealer_deck.insert(src))
-				user.balloon_alert_to_viewers(LANG("obj.f9852041", null))
+				user.balloon_alert_to_viewers(LANG("obj.f9852041e2a1f995", null))
 				return ITEM_INTERACT_SUCCESS
 
-			to_chat(user, span_warning(LANG("obj.64e89a57", list(dealer_deck))))
+			to_chat(user, span_warning(LANG("obj.64e89a57828326e1", list(dealer_deck))))
 			return ITEM_INTERACT_BLOCKING
 
 		card = dealer_deck.get_top_card(user)
@@ -109,7 +109,7 @@
 			dealer_deck.draw(user)
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_warning(LANG("obj.e887fcf8", null)))
+	to_chat(user, span_warning(LANG("obj.e887fcf875118c2f", null)))
 	return ITEM_INTERACT_BLOCKING
 
 #define CARDS_MAX_DISPLAY_LIMIT 5 // the amount of cards that are displayed in a hand

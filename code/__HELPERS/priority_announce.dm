@@ -201,10 +201,10 @@
 	var/message
 
 	if(current_level_number > previous_level_number)
-		title = LANG("datum.b8925663", list(current_level_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level elevated to [current_level_name]:"
+		title = LANG("datum.b89256636145aa75", list(current_level_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level elevated to [current_level_name]:"
 		message = selected_level.elevating_to_announcement
 	else
-		title = LANG("datum.9aa16b5d", list(current_level_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level lowered to [current_level_name]:"
+		title = LANG("datum.9aa16b5dfe73dfdd", list(current_level_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level lowered to [current_level_name]:"
 		message = selected_level.lowering_to_announcement
 
 	var/list/level_announcement_strings = list()

@@ -35,7 +35,7 @@
 	// Can't bite without a head
 	var/obj/item/bodypart/head/head = human_owner.get_bodypart(BODY_ZONE_HEAD)
 	if(isnull(head))
-		to_chat(human_owner, span_warning(LANG("datum.7b366827", null)))
+		to_chat(human_owner, span_warning(LANG("datum.7b3668275c670fe3", null)))
 		return
 
 	var/obj/item/organ/tongue/cat/cat_tongue = human_owner.get_organ_slot(ORGAN_SLOT_TONGUE)
@@ -50,7 +50,7 @@
 	active = TRUE
 	background_icon_state = "bg_default_on"
 	button_icon_state = "bite_on"
-	to_chat(human_owner, span_notice(LANG("datum.600b107e", null)))
+	to_chat(human_owner, span_notice(LANG("datum.600b107e6f1a513a", null)))
 	build_all_button_icons()
 
 /**
@@ -76,7 +76,7 @@
 	active = FALSE
 	background_icon_state = "bg_default"
 	button_icon_state = "bite_off"
-	to_chat(human_owner, span_notice(LANG("datum.d8ec2d0d", null)))
+	to_chat(human_owner, span_notice(LANG("datum.d8ec2d0dd3423012", null)))
 	build_all_button_icons()
 
 /**
@@ -226,8 +226,8 @@
 	addtimer(CALLBACK(src, PROC_REF(remove_random_bite_trait), attacker), 0.1 SECONDS)
 	// Optional flavor message
 	if(prob(50))
-		attacker.visible_message(span_danger(LANG("datum.a21687bd", list(attacker, defender))), \
-			span_danger(LANG("datum.1a1a312c", null)))
+		attacker.visible_message(span_danger(LANG("datum.a21687bdcef565c7", list(attacker, defender))), \
+			span_danger(LANG("datum.1a1a312c8b160a32", null)))
 
 /**
  * Helper proc to remove the temporary bite trait.

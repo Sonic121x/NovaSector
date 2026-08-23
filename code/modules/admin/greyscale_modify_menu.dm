@@ -129,8 +129,8 @@
 		if("select_config")
 			var/datum/greyscale_config/new_config = input(
 				usr,
-				LANG("datum.d83b9063", null),
-				LANG("datum.c79b1ba0", null),
+				LANG("datum.d83b9063e73d5838", null),
+				LANG("datum.c79b1ba0fde9cbe6", null),
 				"[config.type]"
 			) as anything in allowed_configs
 			new_config = allowed_configs[new_config]
@@ -203,8 +203,8 @@
 			if(length(GLOB.player_list) > 1)
 				var/check = alert(
 					user,
-LANG("datum.dd33abcb", null),
-					LANG("datum.da9f59f2", null),
+LANG("datum.dd33abcb8f780486", null),
+					LANG("datum.da9f59f232fb0d3a", null),
 					"Yes",
 					"Cancel"
 				)
@@ -230,8 +230,8 @@ LANG("datum.dd33abcb", null),
 			if(length(GLOB.player_list) > 1)
 				var/check = alert(
 					user,
-LANG("datum.ccfbba89", null),
-					LANG("datum.aa93ae7c", null),
+LANG("datum.ccfbba89e3c9cf08", null),
+					LANG("datum.aa93ae7c319e3be5", null),
 					"Yes",
 					"Cancel"
 				)

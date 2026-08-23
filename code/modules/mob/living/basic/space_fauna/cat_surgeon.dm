@@ -60,8 +60,8 @@
 		return
 
 	visible_message(
-		span_warning(LANG("mob.36c04003", list(src, attacked))),
-		span_warning(LANG("mob.412b8d1a", list(attacked))),
+		span_warning(LANG("mob.36c0400361970974", list(src, attacked))),
+		span_warning(LANG("mob.412b8d1aa04a6953", list(attacked))),
 	)
 	tail.Remove(attacked)
 	tail.forceMove(drop_location())

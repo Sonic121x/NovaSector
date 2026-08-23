@@ -11,7 +11,7 @@
 
 
 /datum/scripture/clockwork_armaments/invoke_success()
-	var/choice = tgui_input_list(invoker, LANG("datum.046c7982", null), LANG("datum.28834003", null), list("Brass Spear", "Brass Battlehammer", "Brass Sword", "Brass Bow"))
+	var/choice = tgui_input_list(invoker, LANG("datum.046c7982918bb75c", null), LANG("datum.288340034f411191", null), list("Brass Spear", "Brass Battlehammer", "Brass Sword", "Brass Bow"))
 
 	if(!choice)
 		return FALSE

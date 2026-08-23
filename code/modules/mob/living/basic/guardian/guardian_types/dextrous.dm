@@ -42,7 +42,7 @@
 	. = ..()
 	if(isnull(internal_storage) || (internal_storage.item_flags & ABSTRACT))
 		return
-	. += span_info(LANG("mob.30690125", list(internal_storage.examine_title(user))))
+	. += span_info(LANG("mob.30690125b88d448d", list(internal_storage.examine_title(user))))
 
 /mob/living/basic/guardian/dextrous/manifest_effects()
 	. = ..()
@@ -82,7 +82,7 @@
 
 /mob/living/basic/guardian/dextrous/equip_to_slot(obj/item/equipping, slot, initial = FALSE, redraw_mob = FALSE, indirect_action = FALSE)
 	if (slot != ITEM_SLOT_DEX_STORAGE)
-		to_chat(src, span_danger(LANG("mob.d90ac502", null)))
+		to_chat(src, span_danger(LANG("mob.d90ac5022802ce1d", null)))
 		return FALSE
 
 	var/index = get_held_index_of_item(equipping)

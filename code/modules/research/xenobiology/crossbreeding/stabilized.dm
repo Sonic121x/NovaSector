@@ -144,7 +144,7 @@ Stabilized extracts:
 	generate_mobtype()
 
 /obj/item/slimecross/stabilized/gold/attack_self(mob/user)
-	var/choice = tgui_input_list(user, LANG("obj.60072d1f", null), LANG("obj.9561baf1", null), sort_list(list("Familiar Location", "Familiar Species", "Familiar Sentience", "Familiar Name")))
+	var/choice = tgui_input_list(user, LANG("obj.60072d1f935ea9cf", null), LANG("obj.9561baf14dcdba44", null), sort_list(list("Familiar Location", "Familiar Species", "Familiar Sentience", "Familiar Name")))
 	if(isnull(choice))
 		return
 	if(!user.can_perform_action(src))
@@ -154,21 +154,21 @@ Stabilized extracts:
 		if(L.has_status_effect(/datum/status_effect/stabilized/gold))
 			L.remove_status_effect(/datum/status_effect/stabilized/gold)
 	if(choice == "Familiar Location")
-		to_chat(user, span_notice(LANG("obj.4812e982", list(src))))
+		to_chat(user, span_notice(LANG("obj.4812e982c6aa1eeb", list(src))))
 		START_PROCESSING(SSobj, src)
 	if(choice == "Familiar Species")
-		to_chat(user, span_notice(LANG("obj.bff171fd", list(src))))
+		to_chat(user, span_notice(LANG("obj.bff171fdf8a931c2", list(src))))
 		generate_mobtype()
 		START_PROCESSING(SSobj, src)
 	if(choice == "Familiar Sentience")
-		to_chat(user, span_notice(LANG("obj.6be07765", list(src))))
+		to_chat(user, span_notice(LANG("obj.6be077659f8dfa8d", list(src))))
 		saved_mind = null
 		START_PROCESSING(SSobj, src)
 	if(choice == "Familiar Name")
-		var/newname = sanitize_name(tgui_input_text(user, LANG("obj.ebe3820a", list(mob_name)), LANG("obj.b4bf4c54", null), mob_name, MAX_NAME_LEN))
+		var/newname = sanitize_name(tgui_input_text(user, LANG("obj.ebe3820a0899d3f3", list(mob_name)), LANG("obj.b4bf4c54d223e79b", null), mob_name, MAX_NAME_LEN))
 		if(newname)
 			mob_name = newname
-		to_chat(user, span_notice(LANG("obj.94cb2bcd", list(src))))
+		to_chat(user, span_notice(LANG("obj.94cb2bcdd0f763ea", list(src))))
 		START_PROCESSING(SSobj, src)
 
 /obj/item/slimecross/stabilized/oil
@@ -198,10 +198,10 @@ Stabilized extracts:
 		return NONE
 
 	if(regencore)
-		to_chat(user, span_warning(LANG("obj.2bf3b32a", list(src))))
+		to_chat(user, span_warning(LANG("obj.2bf3b32ac1a40a94", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.2197cf84", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.2197cf843104e679", list(tool, src))))
 	regencore = tool
 	tool.forceMove(src)
 	return ITEM_INTERACT_SUCCESS

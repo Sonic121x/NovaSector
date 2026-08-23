@@ -23,7 +23,7 @@
 
 /obj/item/ai_module/law/supplied/safeguard/configure(mob/user)
 	. = TRUE
-	var/targName = tgui_input_text(user, LANG("obj.9a61f054", null), LANG("obj.39b112df", null), user.name, max_length = MAX_NAME_LEN)
+	var/targName = tgui_input_text(user, LANG("obj.9a61f054f508f68d", null), LANG("obj.39b112dfb6a608c4", null), user.name, max_length = MAX_NAME_LEN)
 	if(!targName || !user.is_holding(src))
 		return
 	targetName = targName
@@ -31,7 +31,7 @@
 
 /obj/item/ai_module/law/supplied/safeguard/can_install_to_rack(mob/living/user, obj/machinery/ai_law_rack/rack)
 	if(!targetName)
-		to_chat(user, span_warning(LANG("obj.f7e900f2", null)))
+		to_chat(user, span_warning(LANG("obj.f7e900f28693249c", null)))
 		return FALSE
 	return TRUE
 

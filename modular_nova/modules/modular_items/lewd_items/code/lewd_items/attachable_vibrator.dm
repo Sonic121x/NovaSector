@@ -51,13 +51,13 @@
 		toggle_mode()
 		switch(vibration_mode)
 			if("low")
-				to_chat(user, span_notice(LANG("obj.872155eb", null)))
+				to_chat(user, span_notice(LANG("obj.872155ebd7508cd0", null)))
 			if("medium")
-				to_chat(user, span_notice(LANG("obj.cc511a30", null)))
+				to_chat(user, span_notice(LANG("obj.cc511a3013a33514", null)))
 			if("high")
-				to_chat(user, span_notice(LANG("obj.6ec33772", null)))
+				to_chat(user, span_notice(LANG("obj.6ec337726a63ec33", null)))
 			if("off")
-				to_chat(user, span_notice(LANG("obj.027102f0", null)))
+				to_chat(user, span_notice(LANG("obj.027102f013262438", null)))
 		update_icon()
 		update_icon_state()
 	return CLICK_ACTION_SUCCESS
@@ -198,7 +198,7 @@
 		color_changed = TRUE
 	else
 		if(!toy_on)
-			to_chat(user, span_notice(LANG("obj.56474033", null)))
+			to_chat(user, span_notice(LANG("obj.56474033eecce56b", null)))
 			return CLICK_ACTION_BLOCKING
 		toggle_mode()
 		soundloop1.stop()
@@ -206,13 +206,13 @@
 		soundloop3.stop()
 		switch(vibration_mode)
 			if("low")
-				to_chat(user, span_notice(LANG("obj.872155eb", null)))
+				to_chat(user, span_notice(LANG("obj.872155ebd7508cd0", null)))
 				soundloop1.start()
 			if("medium")
-				to_chat(user, span_notice(LANG("obj.cc511a30", null)))
+				to_chat(user, span_notice(LANG("obj.cc511a3013a33514", null)))
 				soundloop2.start()
 			if("high")
-				to_chat(user, span_notice(LANG("obj.49379485", null)))
+				to_chat(user, span_notice(LANG("obj.4937948515316a48", null)))
 				soundloop3.start()
 		update_icon()
 		update_icon_state()
@@ -247,11 +247,11 @@
 		return
 	if(toy_on)
 		if(src == vibrated.penis || src == vibrated.vagina || src == vibrated.anus)
-			to_chat(vibrated, span_purple(LANG("obj.2514b1c0", null)))
+			to_chat(vibrated, span_purple(LANG("obj.2514b1c024f93630", null)))
 		else if(src == vibrated.nipples)
-			to_chat(vibrated, span_purple(LANG("obj.33265d65", null)))
+			to_chat(vibrated, span_purple(LANG("obj.33265d6556f38a02", null)))
 	else if(!toy_on && is_inside_lewd_slot(vibrated))
-		to_chat(vibrated, span_purple(LANG("obj.de527b5e", null)))
+		to_chat(vibrated, span_purple(LANG("obj.de527b5e0192ac62", null)))
 
 	if(!master)
 		return

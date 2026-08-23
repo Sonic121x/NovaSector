@@ -20,7 +20,7 @@
 			return TRUE
 		if(PAI_DOOR_JACK_CANCEL)
 			QDEL_NULL(hacking_cable)
-			visible_message(span_notice(LANG("mob.35396c1c", null)))
+			visible_message(span_notice(LANG("mob.35396c1c440b2187", null)))
 			return TRUE
 	return FALSE
 
@@ -39,12 +39,12 @@
 	RegisterSignal(hacking_cable, COMSIG_QDELETING, PROC_REF(on_hacking_cable_del))
 	var/mob/living/carbon/hacker = get_holder()
 	if(hacker?.put_in_hands(hacking_cable)) //important to double check since get_holder can return non-null values that aren't carbons.
-		hacker.visible_message(span_notice(LANG("mob.c636f2cf", list(src, hacker))), span_notice(LANG("mob.38ce0258", list(src))), span_hear(LANG("mob.64889041", null)))
+		hacker.visible_message(span_notice(LANG("mob.c636f2cfa35dc3f7", list(src, hacker))), span_notice(LANG("mob.38ce025876291488", list(src))), span_hear(LANG("mob.6488904155465062", null)))
 		track_pai()
 		track_thing(hacking_cable)
 		return TRUE
 	hacking_cable.forceMove(drop_location())
-	hacking_cable.visible_message(message = span_notice(LANG("mob.ee265e49", list(src))), blind_message = span_hear(LANG("mob.326cdc4d", null)))
+	hacking_cable.visible_message(message = span_notice(LANG("mob.ee265e49f121cde6", list(src))), blind_message = span_hear(LANG("mob.326cdc4d7036dde2", null)))
 	track_pai()
 	track_thing(hacking_cable)
 	return TRUE
@@ -90,7 +90,7 @@
  * Handles deleting the hacking cable and notifying the user.
  */
 /mob/living/silicon/pai/proc/retract_cable()
-	balloon_alert(src, LANG("mob.5ac64d45", null))
+	balloon_alert(src, LANG("mob.5ac64d4574cdcb4f", null))
 	QDEL_NULL(hacking_cable)
 	return TRUE
 
@@ -106,19 +106,19 @@
 	if(!hacking_cable)
 		return FALSE
 	if(!hacking_cable.hacking_machine)
-		balloon_alert(src, LANG("mob.86101246", null))
+		balloon_alert(src, LANG("mob.8610124612e37d8a", null))
 		return FALSE
 	playsound(src, 'sound/machines/airlock/airlock_alien_prying.ogg', 50, TRUE)
-	balloon_alert(src, LANG("mob.e3f1440c", null))
+	balloon_alert(src, LANG("mob.e3f1440c9257513e", null))
 	// Now begin hacking
 	if(!do_after(src, 15 SECONDS, hacking_cable.hacking_machine, timed_action_flags = NONE))
-		balloon_alert(src, LANG("mob.e3cf22b4", null))
+		balloon_alert(src, LANG("mob.e3cf22b4ad6e4416", null))
 		QDEL_NULL(hacking_cable)
 		return FALSE
 	if(!hacking_cable?.hacking_machine)
 		return FALSE
 	var/obj/machinery/door/door = hacking_cable.hacking_machine
-	balloon_alert(src, LANG("mob.75090415", null))
+	balloon_alert(src, LANG("mob.750904155d7ebc7d", null))
 	door.open()
 	QDEL_NULL(hacking_cable)
 	return TRUE

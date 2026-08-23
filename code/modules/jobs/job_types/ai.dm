@@ -86,7 +86,7 @@
 /datum/job/ai/announce_job(mob/living/joining_mob)
 	. = ..()
 	if(SSticker.HasRoundStarted())
-		minor_announce(LANG("datum.ee3a7574", list(joining_mob, AREACOORD(joining_mob))))
+		minor_announce(LANG("datum.ee3a7574dccc311f", list(joining_mob, AREACOORD(joining_mob))))
 
 
 /datum/job/ai/config_check()

@@ -31,9 +31,9 @@
 
 /datum/surgery_operation/limb/lipoplasty/all_required_strings()
 	. = list()
-	. += LANG("datum.38e769ea", null)
+	. += LANG("datum.38e769eab7bc1a6e", null)
 	. += ..()
-	. += LANG("datum.33b3373c", null)
+	. += LANG("datum.33b3373cdaa8838c", null)
 
 /datum/surgery_operation/limb/lipoplasty/tool_check(obj/item/tool)
 	// Require edged sharpness OR a tool behavior match

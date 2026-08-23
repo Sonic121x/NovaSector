@@ -31,7 +31,7 @@
 	. = ..()
 	if(.)
 		return
-	to_chat(user, span_notice(LANG("datum.c059a5b6", null)))
+	to_chat(user, span_notice(LANG("datum.c059a5b64565a4f4", null)))
 	//This is dealt by BYOND. Keeping this here in case that ever changes, though this command doesn't actually work when manually called.
 	//winset(user, null, "command=.screenshot auto")
 	return TRUE
@@ -80,9 +80,9 @@
 
 	if(user.mob.hud_used)
 		user.mob.hud_used.show_hud() //Shows the next hud preset
-		to_chat(user, span_info(LANG("datum.d15c1157", null)))
+		to_chat(user, span_info(LANG("datum.d15c1157745c2406", null)))
 	else
-		to_chat(user, span_warning(LANG("datum.0fbbd22a", null)))
+		to_chat(user, span_warning(LANG("datum.0fbbd22ae691fb78", null)))
 
 	return TRUE
 

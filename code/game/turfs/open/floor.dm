@@ -166,10 +166,10 @@
 		broken = FALSE
 		burnt = FALSE
 		if(user && !silent)
-			to_chat(user, span_notice(LANG("turf.658fcf6d", null)))
+			to_chat(user, span_notice(LANG("turf.658fcf6dfcf65afc", null)))
 	else
 		if(user && !silent)
-			to_chat(user, span_notice(LANG("turf.c580fa1f", null)))
+			to_chat(user, span_notice(LANG("turf.c580fa1f254eba49", null)))
 		if(make_tile)
 			spawn_tile()
 	return make_plating(force_plating)
@@ -288,7 +288,7 @@
 			var/obj/structure/window/window_path = rcd_data[RCD_DESIGN_PATH]
 			if(!initial(window_path.fulltile))
 				if(!valid_build_direction(src, user.dir, is_fulltile = FALSE))
-					balloon_alert(user, LANG("turf.6cae9ae5", null))
+					balloon_alert(user, LANG("turf.6cae9ae586914e25", null))
 					return FALSE
 				var/obj/structure/window/WD = new window_path(src, user.dir)
 				WD.set_anchored(TRUE)
@@ -303,12 +303,12 @@
 
 			if(ispath(airlock_type, /obj/machinery/door/window))
 				if(!valid_build_direction(src, user.dir, is_fulltile = FALSE))
-					balloon_alert(user, LANG("turf.e5e52e8c", null))
+					balloon_alert(user, LANG("turf.e5e52e8ce7cc91ef", null))
 					return FALSE
 				for(var/obj/machinery/door/door in src)
 					if(istype(door, /obj/machinery/door/window))
 						continue
-					balloon_alert(user, LANG("turf.0d522e36", null))
+					balloon_alert(user, LANG("turf.0d522e36491cb6a8", null))
 					return FALSE
 				//create the assembly and let it finish itself
 				var/obj/structure/windoor_assembly/assembly = new (src, user.dir)
@@ -320,7 +320,7 @@
 			for(var/obj/machinery/door/door in src)
 				if(door.sub_door)
 					continue
-				balloon_alert(user, LANG("turf.0d522e36", null))
+				balloon_alert(user, LANG("turf.0d522e36491cb6a8", null))
 				return FALSE
 			//create the assembly and let it finish itself
 			var/obj/structure/door_assembly/assembly = new (src)
@@ -358,7 +358,7 @@
 			return TRUE
 		if(RCD_DECONSTRUCT)
 			if(rcd_proof)
-				balloon_alert(user, LANG("turf.994e5b45", null))
+				balloon_alert(user, LANG("turf.994e5b4501638424", null))
 				return FALSE
 			if(!ScrapeAway(flags = CHANGETURF_INHERIT_AIR))
 				return FALSE

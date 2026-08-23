@@ -34,7 +34,7 @@
 
 /obj/machinery/mineral/stacking_unit_console/multitool_act(mob/living/user, obj/item/multitool/M)
 	M.set_buffer(src)
-	balloon_alert(user, LANG("obj.84afb909", null))
+	balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/mineral/stacking_unit_console/ui_interact(mob/user, datum/tgui/ui)
@@ -145,7 +145,7 @@
 
 	console = multi_tool.buffer
 	console.machine = src
-	to_chat(user, span_notice(LANG("obj.f4834a8b", list(src, multi_tool))))
+	to_chat(user, span_notice(LANG("obj.f4834a8bd7b2157c", list(src, multi_tool))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/mineral/stacking_machine/proc/rotate(input)

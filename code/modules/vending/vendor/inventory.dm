@@ -163,7 +163,7 @@
 		message_admins("Vending machine exploit attempted by [ADMIN_LOOKUPFLW(user)]!")
 		return
 	if (item_record.amount <= 0)
-		speak(LANG("obj.54ca6252", list(item_record.name)))
+		speak(LANG("obj.54ca6252cf0d2178", list(item_record.name)))
 		flick(icon_deny, src)
 		return
 	if(!all_products_free)
@@ -174,11 +174,11 @@
 			living_user = user
 			card_used = living_user.get_idcard(TRUE)
 		if(QDELETED(card_used))
-			speak(LANG("obj.ba9e4262", list(item_record.name)))
+			speak(LANG("obj.ba9e42629aaeca9f", list(item_record.name)))
 			return
 
 		if(age_restrictions && item_record.age_restricted && (!card_used.registered_age || card_used.registered_age < AGE_MINOR))
-			speak(LANG("obj.8aa78326", list(item_record.name)))
+			speak(LANG("obj.8aa783267cc6527f", list(item_record.name)))
 			if(!(user in GLOB.narcd_underages))
 				aas_config_announce(/datum/aas_config_entry/vendomat_age_control, list(
 					"PERSON" = usr.name,
@@ -212,10 +212,10 @@
 
 	var/sigreturn = SEND_SIGNAL(user, COMSIG_MOB_VENDING_PURCHASE, src, vended_item)
 	if(!(sigreturn & VENDING_NO_PICKUP) && IsReachableBy(user) && user.put_in_hands(vended_item))
-		to_chat(user, span_notice(LANG("obj.3d630a50", list(item_record.name))))
+		to_chat(user, span_notice(LANG("obj.3d630a5005388908", list(item_record.name))))
 		vended_item.do_pickup_animation(user, src)
 	else
-		to_chat(user, span_warning(LANG("obj.1700eeb6", list(capitalize(format_text(item_record.name))))))
+		to_chat(user, span_warning(LANG("obj.1700eeb66d0841df", list(capitalize(format_text(item_record.name))))))
 
 	SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[item_record.product_path]"))
 
@@ -286,7 +286,7 @@
 	if(!discountless && account.account_job?.paycheck_department == payment_department)
 		price_to_use = max(round(price_to_use * DEPARTMENT_DISCOUNT), 1) //No longer free, but signifigantly cheaper.
 	if(attempt_charge(src, mob_paying, price_to_use) & COMPONENT_OBJ_CANCEL_CHARGE)
-		speak(LANG("obj.b8076add", list(product_to_vend.name)))
+		speak(LANG("obj.b8076adde9e25c2b", list(product_to_vend.name)))
 		flick(icon_deny,src)
 		return FALSE
 

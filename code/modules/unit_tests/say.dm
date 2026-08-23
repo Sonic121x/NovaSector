@@ -70,7 +70,7 @@
 	var/mob/living/dummy = allocate(/mob/living)
 
 	RegisterSignal(dummy, COMSIG_MOB_SAY, PROC_REF(check_say))
-	dummy.say(LANG("datum.d2f36d44", null))
+	dummy.say(LANG("datum.d2f36d4476a52548", null))
 
 /datum/unit_test/say_signal/proc/check_say(mob/living/source, list/say_args)
 	SIGNAL_HANDLER

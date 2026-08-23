@@ -216,7 +216,7 @@ SUBSYSTEM_DEF(vote)
 	// No valid vote found? No vote
 	if(!istype(to_vote))
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning(LANG("datum.818b68c0", null)))
+			to_chat(vote_initiator, span_warning(LANG("datum.818b68c09448ac2d", null)))
 		return FALSE
 
 	// Vote can't be initiated in our circumstances? No vote
@@ -271,7 +271,7 @@ SUBSYSTEM_DEF(vote)
 	// Even if it's forced we can't vote before we're set up
 	if(!MC_RUNNING(init_stage))
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning(LANG("datum.628b797e", null)))
+			to_chat(vote_initiator, span_warning(LANG("datum.628b797e75afde6b", null)))
 		return FALSE
 
 	if(forced)
@@ -280,12 +280,12 @@ SUBSYSTEM_DEF(vote)
 	var/next_allowed_time = last_vote_time + CONFIG_GET(number/vote_delay)
 	if(next_allowed_time > world.time)
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning(LANG("datum.1a8fd54d", list(DisplayTimeText(next_allowed_time - world.time)))))
+			to_chat(vote_initiator, span_warning(LANG("datum.1a8fd54d4b698db9", list(DisplayTimeText(next_allowed_time - world.time)))))
 		return FALSE
 
 	if(current_vote)
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning(LANG("datum.206e6de2", null)))
+			to_chat(vote_initiator, span_warning(LANG("datum.206e6de2a6928d0c", null)))
 		return FALSE
 
 	return TRUE
@@ -465,7 +465,7 @@ SUBSYSTEM_DEF(vote)
 GAME_VERB(/mob, vote, "投票", "OOC")
 
 	if(!SSvote.initialized)
-		to_chat(usr, span_notice(LANG("mob.cb7a09b7", null)))
+		to_chat(usr, span_notice(LANG("mob.cb7a09b75d45651f", null)))
 		return
 
 	SSvote.ui_interact(usr)

@@ -42,7 +42,7 @@
 	target.AddComponent(/datum/component/fantasy, upgrade_amount, null, null, can_backfire, TRUE)
 	uses -= 1
 	if(!uses)
-		visible_message(span_warning(LANG("obj.81de07e3", list(src))))
+		visible_message(span_warning(LANG("obj.81de07e3ea17e117", list(src))))
 		qdel(src)
 	return TRUE
 

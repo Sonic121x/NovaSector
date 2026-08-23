@@ -25,17 +25,17 @@ In all, this is a lot like the monkey code. /N
 		AdjustParalyzed(-6 SECONDS)
 		AdjustUnconscious(-6 SECONDS)
 		AdjustSleeping(-10 SECONDS)
-		visible_message(span_notice(LANG("mob.a355d084", list(user.name, src, p_them()))))
+		visible_message(span_notice(LANG("mob.a355d084e740a2d5", list(user.name, src, p_them()))))
 	else if(health > 0)
 		user.do_attack_animation(src, ATTACK_EFFECT_BITE)
 		playsound(loc, 'sound/items/weapons/bite.ogg', 50, TRUE, -1)
-		visible_message(span_danger(LANG("mob.4f554285", list(user.name, src))), \
-						span_userdanger(LANG("mob.a597d194", list(user.name))), span_hear(LANG("mob.a88c3258", null)), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_danger(LANG("mob.bcc2c3f4", list(src))))
+		visible_message(span_danger(LANG("mob.4f554285e4dd794e", list(user.name, src))), \
+						span_userdanger(LANG("mob.a597d1941e95818d", list(user.name))), span_hear(LANG("mob.a88c3258544405bc", null)), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger(LANG("mob.bcc2c3f4794cea26", list(src))))
 		adjust_brute_loss(1)
 		log_combat(user, src, "attacked")
 	else
-		to_chat(user, span_warning(LANG("mob.e612b65a", list(name))))
+		to_chat(user, span_warning(LANG("mob.e612b65a057f7da0", list(name))))
 
 
 /mob/living/carbon/alien/attack_larva(mob/living/carbon/alien/larva/L, list/modifiers)

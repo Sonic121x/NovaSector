@@ -181,7 +181,7 @@
 	if(isnull(loaded_projectile) || !prob(40/severity))
 		return
 	name = "malfunctioning laser shell"
-	desc = LANG("obj.aaf03b23", null)
+	desc = LANG("obj.aaf03b232db004ce", null)
 	projectile_type = /obj/projectile/beam/scatter/pathetic
 	loaded_projectile = new projectile_type(src)
 

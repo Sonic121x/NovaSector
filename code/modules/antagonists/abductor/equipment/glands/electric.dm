@@ -17,8 +17,8 @@
 	REMOVE_TRAIT(gland_owner, TRAIT_SHOCKIMMUNE, ABDUCTOR_GLAND_TRAIT)
 
 /obj/item/organ/heart/gland/electric/activate()
-	owner.visible_message(span_danger(LANG("obj.b5f58a47", list(owner))),\
-	span_warning(LANG("obj.71627712", null)))
+	owner.visible_message(span_danger(LANG("obj.b5f58a47d642be7e", list(owner))),\
+	span_warning(LANG("obj.7162771221e2a9d0", null)))
 	playsound(get_turf(owner), SFX_SPARKS, 100, TRUE, -1, SHORT_RANGE_SOUND_EXTRARANGE)
 	addtimer(CALLBACK(src, PROC_REF(zap)), rand(3 SECONDS, 10 SECONDS))
 

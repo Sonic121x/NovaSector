@@ -26,7 +26,7 @@
 		return
 
 	if(recharging_time > world.time)
-		to_chat(user, span_warning(LANG("obj.6e6195b1", null)))
+		to_chat(user, span_warning(LANG("obj.6e6195b19e09bb2f", null)))
 		return
 
 	var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
@@ -34,11 +34,11 @@
 	ADD_TRAIT(user, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)  //Throwing itself doesn't protect mobs against lava (because gulag).
 	if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = TRAIT_CALLBACK_REMOVE(user, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)))
 		playsound(src, 'sound/effects/stealthoff.ogg', 50, TRUE, TRUE)
-		user.visible_message(span_warning(LANG("obj.951d5b71", list(usr))))
+		user.visible_message(span_warning(LANG("obj.951d5b71b9614f3f", list(usr))))
 		recharging_time = world.time + recharging_rate
 	else
 		REMOVE_TRAIT(user, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)
-		to_chat(user, span_warning(LANG("obj.9227c41d", null)))
+		to_chat(user, span_warning(LANG("obj.9227c41df31765a4", null)))
 
 /obj/item/clothing/shoes/bhop/rocket
 	name = "rocket boots"

@@ -218,7 +218,7 @@
 			if(SPT_PROB(7.5, seconds_per_tick))
 				var/list/dancetypes = list("swinging", "fancy", "stylish", "20'th century", "jivin'", "rock and roller", "cool", "salacious", "bashing", "smashing")
 				var/dancemoves = pick(dancetypes)
-				owner.visible_message(LANG("datum.38eb57b6", list(owner, dancemoves)))
+				owner.visible_message(LANG("datum.38eb57b6b06912fc", list(owner, dancemoves)))
 		if(2)
 			if(SPT_PROB(7.5, seconds_per_tick))
 				owner.visible_message("<b>[owner]</b> [pick("jiggles their hips", "rotates their hips", "gyrates their hips", "taps their foot", "dances to an imaginary song", "jiggles their legs", "snaps their fingers")]!")

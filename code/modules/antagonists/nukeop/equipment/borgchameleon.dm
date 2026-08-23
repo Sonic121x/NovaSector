@@ -50,29 +50,29 @@
 		if (isturf(user.loc))
 			toggle(user)
 		else
-			to_chat(user, span_warning(LANG("obj.8f40d671", list(src))))
+			to_chat(user, span_warning(LANG("obj.8f40d67198a30100", list(src))))
 	else
-		to_chat(user, span_warning(LANG("obj.8f565726", list(display_energy(ACTIVATION_COST), src))))
+		to_chat(user, span_warning(LANG("obj.8f5657261e13f53b", list(display_energy(ACTIVATION_COST), src))))
 
 /obj/item/borg_chameleon/proc/toggle(mob/living/silicon/robot/user)
 	if(active)
 		playsound(src, 'sound/effects/pop.ogg', 100, TRUE, -6)
-		to_chat(user, span_notice(LANG("obj.03d7907e", list(src))))
+		to_chat(user, span_notice(LANG("obj.03d7907e8d038ced", list(src))))
 		deactivate(user)
 	else
 		if(animation_playing)
-			to_chat(user, span_notice(LANG("obj.65e76f37", list(src))))
+			to_chat(user, span_notice(LANG("obj.65e76f3715acfb9f", list(src))))
 			return
 		animation_playing = TRUE
-		to_chat(user, span_notice(LANG("obj.41ddd503", list(src))))
+		to_chat(user, span_notice(LANG("obj.41ddd5031269c4e0", list(src))))
 		playsound(src, 'sound/effects/seedling_chargeup.ogg', 100, TRUE, -6)
 		apply_wibbly_filters(user)
 		if (do_after(user, 5 SECONDS, target = user, cog_icon = null) && user.cell.use(ACTIVATION_COST))
 			playsound(src, 'sound/effects/bamf.ogg', 100, TRUE, -6)
-			to_chat(user, span_notice(LANG("obj.0e7b7c3e", list(friendlyName))))
+			to_chat(user, span_notice(LANG("obj.0e7b7c3e583f95e1", list(friendlyName))))
 			activate(user)
 		else
-			to_chat(user, span_warning(LANG("obj.d586c13c", null)))
+			to_chat(user, span_warning(LANG("obj.d586c13c08854c6a", null)))
 			do_sparks(3, FALSE, user)
 		remove_wibbly_filters(user)
 		animation_playing = FALSE
@@ -119,7 +119,7 @@
 /obj/item/borg_chameleon/proc/disrupt(mob/living/silicon/robot/user)
 	SIGNAL_HANDLER
 	if(active)
-		to_chat(user, span_danger(LANG("obj.7ac1e601", null)))
+		to_chat(user, span_danger(LANG("obj.7ac1e60165aa2a1d", null)))
 		deactivate(user)
 
 #undef ACTIVATION_COST

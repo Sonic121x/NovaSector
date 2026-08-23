@@ -11,7 +11,7 @@ ADMIN_VERB(jump_to_area, R_ADMIN, "跳转到区域", "Jumps to the specified are
 				break top_level
 
 	if(isnull(drop_location))
-		to_chat(user, span_warning(LANG("datum.0d94156d", null)))
+		to_chat(user, span_warning(LANG("datum.0d94156dab144b8f", null)))
 		return
 
 	user.mob.abstract_move(drop_location)
@@ -39,7 +39,7 @@ ADMIN_VERB(jump_to_coord, R_ADMIN, "跳转到坐标", "Jump to a specific coordi
 	VERB_ARG(cz, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
 	var/turf/where_we_droppin = locate(cx, cy, cz)
 	if(isnull(where_we_droppin))
-		to_chat(user, span_warning(LANG("datum.7b57b728", null)))
+		to_chat(user, span_warning(LANG("datum.7b57b728952ea396", null)))
 		return
 
 	user.mob.abstract_move(where_we_droppin)
@@ -53,9 +53,9 @@ ADMIN_VERB(jump_to_key, R_ADMIN, "跳转到 Key", "Jump to a specific player.", 
 	var/list/keys = list()
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client
-	var/client/selection = input(user, LANG("datum.49fce9a4", null), LANG("datum.a34d9875", null)) as null|anything in sort_key(keys)
+	var/client/selection = input(user, LANG("datum.49fce9a41ad34704", null), LANG("datum.a34d9875b6318242", null)) as null|anything in sort_key(keys)
 	if(!selection)
-		to_chat(user, LANG("datum.aadcdcc6", null), confidential = TRUE)
+		to_chat(user, LANG("datum.aadcdcc6537e70cd", null), confidential = TRUE)
 		return
 	var/mob/M = selection.mob
 	log_admin("[key_name(user)] jumped to [key_name(M)]")
@@ -69,7 +69,7 @@ ADMIN_VERB(jump_to_ghost, R_ADMIN, "身体跳转到幽灵处", "Jump your body t
 		return
 	var/mob/living/body = ghost?.mind?.current
 	if(!body)
-		to_chat(user, LANG("datum.9e71f104", null), confidential = TRUE)
+		to_chat(user, LANG("datum.9e71f10426b50208", null), confidential = TRUE)
 		return
 	log_admin("[key_name(user)] jumped to their Aghost at [AREACOORD(ghost.loc)]")
 	message_admins("[key_name_admin(user)] jumped to their Aghost [ADMIN_FLW(body)] at [AREACOORD(ghost.loc)]")
@@ -105,7 +105,7 @@ ADMIN_VERB(get_key, R_ADMIN, "抓取 Key", "Teleport the player with the provide
 	var/list/keys = list()
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client
-	var/client/selection = input(user, LANG("datum.49fce9a4", null), LANG("datum.a34d9875", null)) as null|anything in sort_key(keys)
+	var/client/selection = input(user, LANG("datum.49fce9a41ad34704", null), LANG("datum.a34d9875b6318242", null)) as null|anything in sort_key(keys)
 	if(!selection)
 		return
 	var/mob/M = selection.mob
@@ -124,9 +124,9 @@ ADMIN_VERB_AND_CONTEXT_MENU(send_mob, R_ADMIN, "发送 Mob", "Teleport the speci
 	VERB_ARG_TYPED(jumper, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	var/list/sorted_areas = get_sorted_areas()
 	if(!length(sorted_areas))
-		to_chat(user, LANG("datum.2a026971", null), confidential = TRUE)
+		to_chat(user, LANG("datum.2a0269717287a965", null), confidential = TRUE)
 		return
-	var/area/target_area = tgui_input_list(user, LANG("datum.7a731178", null), LANG("datum.e6339034", null), sorted_areas)
+	var/area/target_area = tgui_input_list(user, LANG("datum.7a731178d8834b91", null), LANG("datum.e633903422589e25", null), sorted_areas)
 	if(isnull(target_area))
 		return
 	if(!istype(target_area))
@@ -138,5 +138,5 @@ ADMIN_VERB_AND_CONTEXT_MENU(send_mob, R_ADMIN, "发送 Mob", "Teleport the speci
 		message_admins(msg)
 		admin_ticket_log(jumper, msg)
 	else
-		to_chat(user, LANG("datum.9e904b59", null), confidential = TRUE)
+		to_chat(user, LANG("datum.9e904b59d6c012c1", null), confidential = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Send Mob")

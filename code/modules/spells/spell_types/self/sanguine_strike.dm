@@ -30,11 +30,11 @@
 	var/obj/item/to_enchant = owner.get_active_held_item() || owner.get_inactive_held_item()
 	if(!to_enchant)
 		if(feedback)
-			to_chat(owner, span_warning(LANG("datum.7eca668e", null)))
+			to_chat(owner, span_warning(LANG("datum.7eca668e929493f0", null)))
 		return FALSE
 	if(!to_enchant.force)
 		if(feedback)
-			to_chat(owner, span_warning(LANG("datum.21fea0f9", list(to_enchant))))
+			to_chat(owner, span_warning(LANG("datum.21fea0f9472f5632", list(to_enchant))))
 		return FALSE
 	return ..()
 
@@ -45,7 +45,7 @@
 	if(!to_enchant)
 		//this shouldn't have passed can_cast_spell, but sanity is needed
 		return
-	to_chat(cast_on, span_notice(LANG("datum.ac4d07ba", list(to_enchant))))
+	to_chat(cast_on, span_notice(LANG("datum.ac4d07ba15868689", list(to_enchant))))
 	apply_enchantment(to_enchant)
 	//true cooldown starts when you use the item or drop it
 	StartCooldown(INFINITY)
@@ -82,7 +82,7 @@
 /// signal called from dropping the enchanted item
 /datum/action/cooldown/spell/sanguine_strike/proc/on_dropped(obj/item/enchanted, mob/dropper)
 	SIGNAL_HANDLER
-	to_chat(dropper, span_notice(LANG("datum.27fd51ae", list(enchanted))))
+	to_chat(dropper, span_notice(LANG("datum.27fd51aefacaa96d", list(enchanted))))
 	end_enchantment(enchanted)
 
 /// ends the enchantment, starting the cooldown (which was frozen until you attacked)

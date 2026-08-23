@@ -32,17 +32,17 @@ GLOBAL_DATUM(triple_ai_controller, /datum/triple_ai_controller)
 GAME_VERB_PROC(/client, triple_ai, "切换三 AI 模式", "Admin.Events")
 
 	if(SSticker.current_state > GAME_STATE_PREGAME)
-		to_chat(usr, LANG("client.c0416f7c", null), confidential = TRUE)
+		to_chat(usr, LANG("client.c0416f7c82dc6f0b", null), confidential = TRUE)
 		return
 
 	var/datum/job/job = SSjob.get_job_type(/datum/job/ai)
 	if(!job)
-		to_chat(usr, LANG("client.d811011b", null), confidential = TRUE)
+		to_chat(usr, LANG("client.d811011bf4947cd7", null), confidential = TRUE)
 		CRASH("triple_ai() called, no /datum/job/ai to be found.")
 
 	if(!GLOB.triple_ai_controller)
 		GLOB.triple_ai_controller = new()
 	else
 		QDEL_NULL(GLOB.triple_ai_controller)
-	to_chat(usr, LANG("client.1677e3fd", list(GLOB.triple_ai_controller ? "" : "not")))
+	to_chat(usr, LANG("client.1677e3fdea41abdb", list(GLOB.triple_ai_controller ? "" : "not")))
 	message_admins(span_adminnotice("[key_name_admin(usr)] has toggled [GLOB.triple_ai_controller ? "on" : "off"] triple AIs at round start."))

@@ -62,11 +62,11 @@
 
 /obj/item/supplypod_beacon/examine(user)
 	. = ..()
-	. += span_notice(LANG("obj.b1b81fb6", null))
+	. += span_notice(LANG("obj.b1b81fb64e354b87", null))
 	if(!express_console)
-		. += span_notice(LANG("obj.50d943ab", list(src)))
+		. += span_notice(LANG("obj.50d943ab326043f5", list(src)))
 	else
-		. += span_notice(LANG("obj.26c0d529", null))
+		. += span_notice(LANG("obj.26c0d52999bb3404", null))
 
 /obj/item/supplypod_beacon/Destroy()
 	if(express_console)
@@ -97,11 +97,11 @@
 	update_status(SP_LINKED)
 	if (express_console.using_beacon)
 		update_status(SP_READY)
-	to_chat(user, span_notice(LANG("obj.4b694d3f", list(src, C))))
+	to_chat(user, span_notice(LANG("obj.4b694d3fc409d887", list(src, C))))
 
 /obj/item/supplypod_beacon/click_alt(mob/user)
 	if(!express_console)
-		to_chat(user, span_alert(LANG("obj.13b210e2", null)))
+		to_chat(user, span_alert(LANG("obj.13b210e2728e0ba9", null)))
 		return CLICK_ACTION_BLOCKING
 	unlink_console()
 	return CLICK_ACTION_SUCCESS

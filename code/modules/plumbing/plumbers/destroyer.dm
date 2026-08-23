@@ -22,8 +22,8 @@
 
 /obj/machinery/plumbing/disposer/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.5418f76d", list(disposal_rate)))
-	. += span_notice(LANG("obj.68993b7b", null))
+	. += span_notice(LANG("obj.5418f76d6ffc5aad", list(disposal_rate)))
+	. += span_notice(LANG("obj.68993b7bb8aabdd9", null))
 
 /obj/machinery/plumbing/disposer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(isnull(held_item))

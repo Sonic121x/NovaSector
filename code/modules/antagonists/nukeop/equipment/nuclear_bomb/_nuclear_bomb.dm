@@ -80,34 +80,34 @@ GLOBAL_VAR(station_nuke_source)
 	. = ..()
 	switch(deconstruction_state)
 		if(NUKESTATE_UNSCREWED)
-			. += span_notice(LANG("obj.a7ba745d", null))
+			. += span_notice(LANG("obj.a7ba745d074586df", null))
 		if(NUKESTATE_PANEL_REMOVED)
-			. += span_notice(LANG("obj.3015b503", null))
+			. += span_notice(LANG("obj.3015b5034169c29c", null))
 		if(NUKESTATE_WELDED)
-			. += span_notice(LANG("obj.9d02306a", null))
+			. += span_notice(LANG("obj.9d02306a8df2c449", null))
 		if(NUKESTATE_CORE_EXPOSED)
-			. += span_danger(LANG("obj.65741786", list(core)))
-			. += span_notice(LANG("obj.ddc3212b", null))
+			. += span_danger(LANG("obj.657417860f38b699", list(core)))
+			. += span_notice(LANG("obj.ddc3212b59f122c0", null))
 		if(NUKESTATE_CORE_REMOVED)
-			. += span_notice(LANG("obj.9de89da8", null))
+			. += span_notice(LANG("obj.9de89da86a2d995a", null))
 		if(NUKESTATE_INTACT)
-			. += span_notice(LANG("obj.ef1f51eb", null))
+			. += span_notice(LANG("obj.ef1f51eb4b3f7d80", null))
 
 	switch(get_nuke_state())
 		if(NUKE_OFF_LOCKED)
-			. += span_notice(LANG("obj.47cf0ad0", null))
+			. += span_notice(LANG("obj.47cf0ad0b97cf990", null))
 		if(NUKE_OFF_UNLOCKED)
-			. += span_notice(LANG("obj.bfc2bb86", null))
+			. += span_notice(LANG("obj.bfc2bb8681c14b61", null))
 		if(NUKE_ON_TIMING)
-			. += span_danger(LANG("obj.67769c50", list(get_time_left())))
+			. += span_danger(LANG("obj.67769c50eafa1621", list(get_time_left())))
 		if(NUKE_ON_EXPLODING)
-			. += span_bolddanger(LANG("obj.434851f6", null))
+			. += span_bolddanger(LANG("obj.434851f602171f63", null))
 
 
 /// Checks if the disk inserted is a real nuke disk or not.
 /obj/machinery/nuclearbomb/proc/disk_check(obj/item/disk/nuclear/inserted_disk)
 	if(inserted_disk.fake)
-		say(LANG("obj.3bdf181a", null))
+		say(LANG("obj.3bdf181a3ce0a17c", null))
 		return FALSE
 
 	return TRUE
@@ -130,15 +130,15 @@ GLOBAL_VAR(station_nuke_source)
 		if(NUKESTATE_CORE_EXPOSED)
 			if(istype(tool, /obj/item/nuke_core_container))
 				var/obj/item/nuke_core_container/core_box = tool
-				to_chat(user, span_notice(LANG("obj.855b7b50", list(core_box))))
+				to_chat(user, span_notice(LANG("obj.855b7b502dd2c0ae", list(core_box))))
 				if(!do_after(user, 5 SECONDS, target = src, cog_icon = null))
 					return ITEM_INTERACT_BLOCKING
 
 				if(!core_box.load(core, user))
-					to_chat(user, span_warning(LANG("obj.514ef5d5", list(core_box, core_box))))
+					to_chat(user, span_warning(LANG("obj.514ef5d5f43223d8", list(core_box, core_box))))
 					return ITEM_INTERACT_BLOCKING
 
-				to_chat(user, span_notice(LANG("obj.f5ef12ec", list(core_box))))
+				to_chat(user, span_notice(LANG("obj.f5ef12ec072e63f4", list(core_box))))
 				deconstruction_state = NUKESTATE_CORE_REMOVED
 				update_appearance()
 				core = null
@@ -148,11 +148,11 @@ GLOBAL_VAR(station_nuke_source)
 				if(!tool.tool_start_check(user, amount = 20))
 					return ITEM_INTERACT_BLOCKING
 
-				to_chat(user, span_notice(LANG("obj.c12fad84", list(src))))
+				to_chat(user, span_notice(LANG("obj.c12fad84f559fe9e", list(src))))
 				if(!tool.use_tool(src, user, 10 SECONDS, amount = 20))
 					return ITEM_INTERACT_BLOCKING
 
-				to_chat(user, span_notice(LANG("obj.4f8b6189", list(src))))
+				to_chat(user, span_notice(LANG("obj.4f8b618908f3cab5", list(src))))
 				deconstruction_state = NUKESTATE_PANEL_REMOVED
 				STOP_PROCESSING(SSobj, core)
 				update_appearance()
@@ -161,13 +161,13 @@ GLOBAL_VAR(station_nuke_source)
 		if(NUKESTATE_CORE_REMOVED)
 			if(astype(tool, /obj/item/nuke_core_container)?.core && !istype(tool, /obj/item/nuke_core_container/supermatter))
 				var/obj/item/nuke_core_container/core_box = tool
-				to_chat(user, span_notice(LANG("obj.5990c1c6", list(core_box, core_box.core, src))))
+				to_chat(user, span_notice(LANG("obj.5990c1c61b7c8a83", list(core_box, core_box.core, src))))
 				if(!do_after(user, 15 SECONDS, src))
 					return ITEM_INTERACT_BLOCKING
 
 				core_box.core.forceMove(src)
 				core = core_box.core
-				to_chat(user, span_notice(LANG("obj.18949095", list(core_box.core, src))))
+				to_chat(user, span_notice(LANG("obj.18949095b0e0bfb7", list(core_box.core, src))))
 				deconstruction_state = NUKESTATE_CORE_EXPOSED
 				update_appearance()
 				core_box.icon_state = core_box::icon_state
@@ -175,13 +175,13 @@ GLOBAL_VAR(station_nuke_source)
 				return ITEM_INTERACT_SUCCESS
 
 			if(istype(tool, /obj/item/nuke_core) && !istype(tool, /obj/item/nuke_core/supermatter_sliver))
-				to_chat(user, span_notice(LANG("obj.da6645dd", list(tool, src))))
+				to_chat(user, span_notice(LANG("obj.da6645dd89920eb8", list(tool, src))))
 				if(!do_after(user, 6 SECONDS, src))
 					return ITEM_INTERACT_BLOCKING
 
 				tool.forceMove(src)
 				core = tool
-				to_chat(user, span_notice(LANG("obj.18949095", list(tool, src))))
+				to_chat(user, span_notice(LANG("obj.18949095b0e0bfb7", list(tool, src))))
 				deconstruction_state = NUKESTATE_CORE_EXPOSED
 				update_appearance()
 				return ITEM_INTERACT_SUCCESS
@@ -191,37 +191,37 @@ GLOBAL_VAR(station_nuke_source)
 /obj/machinery/nuclearbomb/crowbar_act(mob/user, obj/item/tool)
 	switch(deconstruction_state)
 		if(NUKESTATE_UNSCREWED)
-			to_chat(user, span_notice(LANG("obj.427be926", list(src))))
+			to_chat(user, span_notice(LANG("obj.427be926b3857da3", list(src))))
 			if(!tool.use_tool(src, user, 3 SECONDS, volume = 100))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice(LANG("obj.71da5252", list(src))))
+			to_chat(user, span_notice(LANG("obj.71da5252c036a54c", list(src))))
 			deconstruction_state = NUKESTATE_PANEL_REMOVED
 			update_appearance()
 			return ITEM_INTERACT_SUCCESS
 
 		if(NUKESTATE_WELDED)
-			to_chat(user, span_notice(LANG("obj.7578532c", list(src))))
+			to_chat(user, span_notice(LANG("obj.7578532cda389a8a", list(src))))
 			if(!tool.use_tool(src, user, 3 SECONDS, volume = 100))
 				return ITEM_INTERACT_BLOCKING
 
 			if(core)
-				to_chat(user, span_notice(LANG("obj.eea6038b", list(src))))
+				to_chat(user, span_notice(LANG("obj.eea6038b74eb9c31", list(src))))
 				START_PROCESSING(SSobj, core)
 				deconstruction_state = NUKESTATE_CORE_EXPOSED
 			else
-				to_chat(user, span_notice(LANG("obj.b555edb5", list(src))))
+				to_chat(user, span_notice(LANG("obj.b555edb546235600", list(src))))
 				deconstruction_state = NUKESTATE_CORE_REMOVED
 			update_appearance()
 			new /obj/item/stack/sheet/iron(loc, 15)
 			return ITEM_INTERACT_SUCCESS
 
 		if(NUKESTATE_PANEL_REMOVED)
-			to_chat(user, span_notice(LANG("obj.479f73b6", list(src))))
+			to_chat(user, span_notice(LANG("obj.479f73b611c7a41f", list(src))))
 			if(!tool.use_tool(src, user, 3 SECONDS, volume = 100))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice(LANG("obj.691e006e", list(src))))
+			to_chat(user, span_notice(LANG("obj.691e006e0824799f", list(src))))
 			deconstruction_state = NUKESTATE_UNSCREWED
 			update_appearance()
 			return ITEM_INTERACT_SUCCESS
@@ -235,23 +235,23 @@ GLOBAL_VAR(station_nuke_source)
 	switch(deconstruction_state)
 		if(NUKESTATE_INTACT)
 			if(istype(tool, /obj/item/screwdriver/nuke))
-				to_chat(user, span_notice(LANG("obj.6d8d832f", list(src))))
+				to_chat(user, span_notice(LANG("obj.6d8d832f7d93fab3", list(src))))
 				if(!tool.use_tool(src, user, 6 SECONDS, volume = 100))
 					return ITEM_INTERACT_BLOCKING
 
 				deconstruction_state = NUKESTATE_UNSCREWED
-				to_chat(user, span_notice(LANG("obj.dc412c3f", list(src))))
+				to_chat(user, span_notice(LANG("obj.dc412c3f499779c6", list(src))))
 				update_appearance()
 				return ITEM_INTERACT_SUCCESS
 
 		if(NUKESTATE_UNSCREWED)
 			if(istype(tool, /obj/item/screwdriver/nuke))
-				to_chat(user, span_notice(LANG("obj.a8a852a5", list(src))))
+				to_chat(user, span_notice(LANG("obj.a8a852a5912f7f12", list(src))))
 				if(!tool.use_tool(src, user, 8 SECONDS, volume = 100))
 					return ITEM_INTERACT_BLOCKING
 
 				deconstruction_state = NUKESTATE_INTACT
-				to_chat(user, span_notice(LANG("obj.e6153d3f", list(src))))
+				to_chat(user, span_notice(LANG("obj.e6153d3f3d3baeef", list(src))))
 				deconstruction_state = NUKESTATE_INTACT
 				update_appearance()
 				return ITEM_INTERACT_SUCCESS
@@ -265,11 +265,11 @@ GLOBAL_VAR(station_nuke_source)
 	if(!tool.tool_start_check(user, amount = 1))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.7b940279", list(src))))
+	to_chat(user, span_notice(LANG("obj.7b940279592b696d", list(src))))
 	if(!tool.use_tool(src, user, 8 SECONDS, volume=100))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.4c9fc8e8", list(src))))
+	to_chat(user, span_notice(LANG("obj.4c9fc8e857120f9b", list(src))))
 	deconstruction_state = NUKESTATE_WELDED
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -278,7 +278,7 @@ GLOBAL_VAR(station_nuke_source)
 /obj/machinery/nuclearbomb/attack_hand_secondary(mob/user, list/modifiers)
 	if(deconstruction_state != NUKESTATE_CORE_EXPOSED)
 		return ..()
-	to_chat(user, span_danger(LANG("obj.03187382", list(core))))
+	to_chat(user, span_danger(LANG("obj.031873821a0ab3a6", list(core))))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/nuclearbomb/can_interact(mob/user)
@@ -525,7 +525,7 @@ GLOBAL_VAR(station_nuke_source)
 /obj/machinery/nuclearbomb/proc/set_anchor(mob/anchorer)
 	if(isinspace() && !anchored)
 		if(anchorer)
-			to_chat(anchorer, span_warning(LANG("obj.27de9d44", null)))
+			to_chat(anchorer, span_warning(LANG("obj.27de9d44a2d7b19b", null)))
 		return
 
 	set_anchored(!anchored)
@@ -547,7 +547,7 @@ GLOBAL_VAR(station_nuke_source)
 /// Arms the nuke, or disarms it if it's already active.
 /obj/machinery/nuclearbomb/proc/toggle_nuke_armed()
 	if(safety)
-		to_chat(usr, span_danger(LANG("obj.6a4902c4", null)))
+		to_chat(usr, span_danger(LANG("obj.6a4902c46a3e52fb", null)))
 		return
 
 	timing = !timing
@@ -574,7 +574,7 @@ GLOBAL_VAR(station_nuke_source)
 	countdown.start()
 	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	notify_ghosts(
-		LANG("obj.83140544", list(get_area_name(src))),
+		LANG("obj.831405443dfed746", list(get_area_name(src))),
 		source = src,
 		header = "Nuke Armed",
 	)
@@ -754,14 +754,14 @@ GLOBAL_VAR(station_nuke_source)
 	if(istype(gibbed.loc, /obj/structure/closet/secure_closet/freezer))
 		var/obj/structure/closet/secure_closet/freezer/freezer = gibbed.loc
 		if(!freezer.jones)
-			to_chat(gibbed, span_bolddanger(LANG("_root.b17ec2e5", list(freezer, source, freezer))))
+			to_chat(gibbed, span_bolddanger(LANG("_root.b17ec2e58b444d15", list(freezer, source, freezer))))
 			freezer.jones = TRUE
 			return FALSE
 
 	if(gibbed.stat == DEAD)
 		return FALSE
 
-	to_chat(gibbed, span_userdanger(LANG("_root.19eb52d3", list(source))))
+	to_chat(gibbed, span_userdanger(LANG("_root.19eb52d3d36d45c7", list(source))))
 	gibbed.investigate_log("has been gibbed by a nuclear blast.", INVESTIGATE_DEATHS)
 	gibbed.gib(DROP_ALL_REMAINS)
 	return TRUE

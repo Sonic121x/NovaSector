@@ -44,7 +44,7 @@
 	. = ..()
 
 /datum/antagonist/highlander/greet()
-	to_chat(owner, span_bolddanger(LANG("datum.7bdc61a2", list(sword.name))))
+	to_chat(owner, span_bolddanger(LANG("datum.7bdc61a2954e467f", list(sword.name))))
 
 	owner.announce_objectives()
 
@@ -88,7 +88,7 @@
 	name = "\improper highlander"
 
 /datum/antagonist/highlander/robot/greet()
-	to_chat(owner, span_bolddanger(LANG("datum.e5a2a909", null)))
+	to_chat(owner, span_bolddanger(LANG("datum.e5a2a909f5ee8ad7", null)))
 
 /datum/antagonist/highlander/robot/give_equipment()
 	var/mob/living/silicon/robot/robotlander = owner.current

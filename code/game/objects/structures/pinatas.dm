@@ -58,11 +58,11 @@
 	var/turf/player_turf = get_turf(user)
 	if(player_turf?.is_blocked_turf(TRUE))
 		return FALSE
-	balloon_alert_to_viewers(LANG("obj.8b383ad8", null))
+	balloon_alert_to_viewers(LANG("obj.8b383ad8c2235b25", null))
 	if(!do_after(user, 4 SECONDS, target = get_turf(user)))
-		balloon_alert(user, LANG("obj.bcb4be71", null))
+		balloon_alert(user, LANG("obj.bcb4be71fd475a4f", null))
 	new pinata_type(get_turf(user))
-	balloon_alert(user, LANG("obj.a58c1faa", null))
+	balloon_alert(user, LANG("obj.a58c1faa79362bf6", null))
 	qdel(src)
 
 /obj/structure/pinata/syndie

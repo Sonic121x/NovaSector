@@ -60,7 +60,7 @@
 /obj/item/chainsaw/proc/on_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
 
-	to_chat(user, span_notice(LANG("obj.01b6aa57", list(src, active ? "it begins to whirr" : "the chain stops moving"))))
+	to_chat(user, span_notice(LANG("obj.01b6aa57cca1450a", list(src, active ? "it begins to whirr" : "the chain stops moving"))))
 	var/datum/component/butchering/butchering = GetComponent(/datum/component/butchering)
 	butchering.butchering_enabled = active
 	if (active)
@@ -88,18 +88,18 @@
 
 /obj/item/chainsaw/suicide_act(mob/living/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-		user.visible_message(span_suicide(LANG("obj.182337ec", list(user, src, user.p_their(), user.p_their(), user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.182337ec893cb6fa", list(user, src, user.p_their(), user.p_their(), user.p_theyre()))))
 		playsound(src, 'sound/items/weapons/genhit1.ogg', 100, TRUE)
 		return BRUTELOSS
 
 	if (!iscarbon(user))
-		user.visible_message(span_suicide(LANG("obj.5bc344b9", list(user, user.p_themselves(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.5bc344b97a66f08a", list(user, user.p_themselves(), src, user.p_theyre()))))
 		return BRUTELOSS
 
-	user.visible_message(span_suicide(LANG("obj.07146c7f", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.07146c7fcaa1409c", list(user, user.p_their(), src, user.p_theyre()))))
 	var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 	if(!myhead)
-		visible_message(span_suicide(LANG("obj.fc342c9f", list(user, user.p_they(), user.p_their(), user.p_they(), user.p_do()))))
+		visible_message(span_suicide(LANG("obj.fc342c9f5b37acaa", list(user, user.p_they(), user.p_their(), user.p_they(), user.p_do()))))
 		return SHAME
 
 	playsound(src, 'sound/items/weapons/chainsawhit.ogg', 100, TRUE)
@@ -108,7 +108,7 @@
 
 	var/datum/wound/slash/crit_wound = new ()
 	crit_wound.apply_wound(myhead)
-	visible_message(span_suicide(LANG("obj.b086978e", list(user, user.p_their()))))
+	visible_message(span_suicide(LANG("obj.b086978edfdad541", list(user, user.p_their()))))
 	return BRUTELOSS
 
 /obj/item/chainsaw/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
@@ -126,7 +126,7 @@
 		return ..()
 
 	playsound(src, 'sound/items/weapons/chainsawhit.ogg', vol = 100, vary = TRUE)
-	target_mob.balloon_alert(user, LANG("obj.2e91cbce", null))
+	target_mob.balloon_alert(user, LANG("obj.2e91cbce1ee9d160", null))
 
 	if (!do_after(user, behead_time, target_mob, extra_checks = CALLBACK(src, PROC_REF(has_same_head), target_mob, head)))
 		return TRUE
@@ -134,7 +134,7 @@
 	if (head.dismember(silent = FALSE))
 		playsound(src, 'sound/items/weapons/chainsawhit.ogg', vol = 100, vary = TRUE)
 	else
-		to_chat(user, span_warning(LANG("obj.56126b57", list(target_mob))))
+		to_chat(user, span_warning(LANG("obj.56126b576a243369", list(target_mob))))
 
 	return TRUE
 
@@ -157,7 +157,7 @@
 
 /obj/item/chainsaw/doomslayer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == PROJECTILE_ATTACK)
-		owner.visible_message(span_danger(LANG("obj.6a2c77b5", list(owner))))
+		owner.visible_message(span_danger(LANG("obj.6a2c77b5f349202c", list(owner))))
 		playsound(src, SFX_BULLET_MISS, 75, TRUE)
 		return TRUE
 	return FALSE

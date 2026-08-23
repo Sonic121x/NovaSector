@@ -22,7 +22,7 @@
 	SIGNAL_HANDLER
 
 	if(game.phase == MAFIA_PHASE_NIGHT && !lynch)
-		to_chat(body,span_userdanger(LANG("datum.26af812f", null)))
+		to_chat(body,span_userdanger(LANG("datum.26af812f1d03d821", null)))
 		return MAFIA_PREVENT_KILL
 
 /datum/mafia_role/nightmare

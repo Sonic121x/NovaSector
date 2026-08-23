@@ -83,15 +83,15 @@
 			MA.layer = FLOAT_LAYER
 
 			if(w == 23 || h == 23)
-				to_chat(ai, span_notice(LANG("datum.6f09ecad", null)))
+				to_chat(ai, span_notice(LANG("datum.6f09ecadb950bb84", null)))
 				MA.pixel_w = 5
 				MA.pixel_z = 5
 			else if(w == 24 || h == 24)
-				to_chat(ai, span_notice(LANG("datum.1070673c", null)))
+				to_chat(ai, span_notice(LANG("datum.1070673ca714070b", null)))
 				MA.pixel_w = 4
 				MA.pixel_z = 4
 			else
-				to_chat(ai, span_warning(LANG("datum.5c19afba", null)))
+				to_chat(ai, span_warning(LANG("datum.5c19afbada13eda4", null)))
 				return
 
 			ai.portrait_appearance = MA

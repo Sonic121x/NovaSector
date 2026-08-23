@@ -48,7 +48,7 @@
 
 
 /obj/structure/destructible/cult/item_dispenser/forge/succcess_message(mob/living/user, obj/item/spawned_item)
-	to_chat(user, span_cult_italic(LANG("obj.9928b88f", list(src, spawned_item))))
+	to_chat(user, span_cult_italic(LANG("obj.9928b88f9e4181a0", list(src, spawned_item))))
 
 /obj/structure/destructible/cult/item_dispenser/forge/engine
 	name = "magma engine"

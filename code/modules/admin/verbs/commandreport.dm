@@ -10,7 +10,7 @@
 #define CUSTOM_SOUND_PRESET "Custom Sound"
 
 ADMIN_VERB(change_command_name, R_ADMIN, "更改指挥部名称", "Change the name of Central Command.", ADMIN_CATEGORY_EVENTS)
-	var/input = input(user, LANG("datum.1162650f", null), LANG("datum.29297405", null), "") as text|null
+	var/input = input(user, LANG("datum.1162650f58fb2fb9", null), LANG("datum.29297405de146a0b", null), "") as text|null
 	if(!input)
 		return
 	change_command_name(input)
@@ -101,13 +101,13 @@ ADMIN_VERB(create_command_report, R_ADMIN, "创建指挥部报告", "Create a co
 		if("set_report_sound")
 			if(params["picked_sound"] == CUSTOM_SOUND_PRESET)
 				played_sound = DEFAULT_ANNOUNCEMENT_SOUND // fallback by default
-				var/sound_file = input(ui_user, LANG("datum.f011fe55", null), LANG("datum.fde59690", null)) as sound|null
+				var/sound_file = input(ui_user, LANG("datum.f011fe55ef17d14f", null), LANG("datum.fde596908d0eee1a", null)) as sound|null
 				if(!sound_file)
-					tgui_alert(ui_user, LANG("datum.43d1d768", null), LANG("datum.e990db78", null), list("Ok"))
+					tgui_alert(ui_user, LANG("datum.43d1d768513b0daa", null), LANG("datum.e990db784bda09f4", null), list("Ok"))
 					return
 
 				if(!IS_SOUND_FILE(sound_file))
-					tgui_alert(ui_user, LANG("datum.b42cc5a2", null), LANG("datum.e990db78", null), list("Ok"))
+					tgui_alert(ui_user, LANG("datum.b42cc5a2d1110705", null), LANG("datum.e990db784bda09f4", null), list("Ok"))
 					return
 
 				played_sound = sound_file
@@ -126,10 +126,10 @@ ADMIN_VERB(create_command_report, R_ADMIN, "创建指挥部报告", "Create a co
 			subheader = params["new_subheader"]
 		if("submit_report")
 			if(!command_name)
-				to_chat(ui_user, span_danger(LANG("datum.5f2f2558", null)))
+				to_chat(ui_user, span_danger(LANG("datum.5f2f2558fffd9299", null)))
 				return
 			if(!params["report"])
-				to_chat(ui_user, span_danger(LANG("datum.5f7b3dac", null)))
+				to_chat(ui_user, span_danger(LANG("datum.5f7b3dac486e2fd4", null)))
 				return
 			command_report_content = params["report"]
 			send_announcement()
@@ -161,7 +161,7 @@ ADMIN_VERB(create_command_report, R_ADMIN, "创建指挥部报告", "Create a co
 		priority_announce(command_report_content, subheader == ""? null : subheader, report_sound, has_important_message = TRUE, color_override = chosen_color)
 
 	if(!announce_contents || print_report)
-		print_command_report(command_report_content, LANG("datum.fb6958b6", list(announce_contents ? "" : "Classified ", command_name)), !announce_contents, contains_advanced_html = TRUE)
+		print_command_report(command_report_content, LANG("datum.fb6958b641d31224", list(announce_contents ? "" : "Classified ", command_name)), !announce_contents, contains_advanced_html = TRUE)
 
 	change_command_name(original_command_name)
 

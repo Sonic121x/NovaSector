@@ -105,7 +105,7 @@
 /obj/effect/meteor/proc/ram_turf(turf/T)
 	//first yell at mobs about them dying horribly
 	for(var/mob/living/thing in T)
-		thing.visible_message(span_warning(LANG("obj.8d79f97c", list(src, thing))), span_userdanger(LANG("obj.a16b7996", list(src))))
+		thing.visible_message(span_warning(LANG("obj.8d79f97cf1785556", list(src, thing))), span_userdanger(LANG("obj.a16b799661b4ff9b", list(src))))
 
 	//then, ram the turf
 	switch(hitpwr)
@@ -129,7 +129,7 @@
 	. = ..()
 
 	if((user.mind?.get_skill_level(/datum/skill/athletics) >= SKILL_LEVEL_LEGENDARY))
-		. += span_notice(LANG("obj.cda906ee", null))
+		. += span_notice(LANG("obj.cda906ee6fb98488", null))
 	check_examine_award(user)
 
 ///Called by component/meteor_combat to send us moving to the edge of the map away from whoever punched us
@@ -370,7 +370,7 @@
 /obj/effect/meteor/banana/ram_turf(turf/bumped)
 	for(var/mob/living/slipped in get_turf(bumped))
 		slipped.slip(100, slipped.loc,- GALOSHES_DONT_HELP|SLIDE)
-		slipped.visible_message(span_warning(LANG("obj.16da3e4c", list(src, slipped))), span_userdanger(LANG("obj.9b8444cf", list(src))))
+		slipped.visible_message(span_warning(LANG("obj.16da3e4c23b4349b", list(src, slipped))), span_userdanger(LANG("obj.9b8444cfd63cc86d", list(src))))
 	get_hit()
 
 /obj/effect/meteor/emp

@@ -33,7 +33,7 @@
 		return TRUE
 	var/help_information = current_used_art.get_style_help()
 	if(isnull(help_information))
-		to_chat(clicker, span_notice(LANG("datum.0f903854", list(current_used_art.name))))
+		to_chat(clicker, span_notice(LANG("datum.0f903854da1ada48", list(current_used_art.name))))
 		return TRUE
 	for(var/info in help_information)
 		to_chat(clicker, info)

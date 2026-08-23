@@ -67,9 +67,9 @@
 	. = ..()
 	var/sameside = user.faction_check_atom(src, exact_match = FALSE)
 	if(sameside)
-		. += span_notice(LANG("mob.d0e58859", null))
+		. += span_notice(LANG("mob.d0e588593c22d89c", null))
 	else
-		. += span_warning(LANG("mob.0c917354", null))
+		. += span_warning(LANG("mob.0c91735411ab1b30", null))
 
 /mob/living/basic/node_drone/update_icon_state()
 	. = ..()
@@ -122,17 +122,17 @@
 	flying_state = FLY_OUT_STATE
 	update_appearance(UPDATE_ICON_STATE)
 	if(prob(1))
-		say(LANG("mob.970525e3", null))
+		say(LANG("mob.970525e3c788926a", null))
 		funny_ending = TRUE
 	if(success)
-		visible_message(span_notice(LANG("mob.ad98c2ad", null)))
+		visible_message(span_notice(LANG("mob.ad98c2ad154ab042", null)))
 	else
-		visible_message(span_danger(LANG("mob.67b771ef", null)))
+		visible_message(span_danger(LANG("mob.67b771ef5a5da729", null)))
 	animate(src, pixel_z = 400, time = 2 SECONDS, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
 	sleep(2 SECONDS)
 	if(funny_ending)
 		playsound(src, 'sound/effects/explosion/explosion3.ogg', 50, FALSE) //node drone died on the way back to his home planet.
-		visible_message(span_notice(LANG("mob.f8d853f7", null)))
+		visible_message(span_notice(LANG("mob.f8d853f779b18cb7", null)))
 	qdel(src)
 
 

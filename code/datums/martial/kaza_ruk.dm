@@ -41,12 +41,12 @@
 		return
 	var/datum/martial_art/source = target
 	if (source.streak == "neck_chop")
-		owner.visible_message(span_danger(LANG("datum.addb3d5a", list(owner))), LANG("datum.17c24905", null))
-		owner.balloon_alert(owner, LANG("datum.3478a3ac", null))
+		owner.visible_message(span_danger(LANG("datum.addb3d5a52dfe7db", list(owner))), LANG("datum.17c24905450413e9", null))
+		owner.balloon_alert(owner, LANG("datum.3478a3ac622a4641", null))
 		source.streak = ""
 	else
-		owner.visible_message(span_danger(LANG("datum.51b49937", list(owner))), LANG("datum.6b624708", null))
-		owner.balloon_alert(owner, LANG("datum.6aa6210f", null))
+		owner.visible_message(span_danger(LANG("datum.51b49937e4af13c4", list(owner))), LANG("datum.6b6247088870d266", null))
+		owner.balloon_alert(owner, LANG("datum.6aa6210f9f3c3697", null))
 		source.streak = "neck_chop"
 
 /datum/action/low_sweep
@@ -62,12 +62,12 @@
 		return
 	var/datum/martial_art/source = target
 	if (source.streak == "low_sweep")
-		owner.visible_message(span_danger(LANG("datum.addb3d5a", list(owner))), LANG("datum.17c24905", null))
-		owner.balloon_alert(owner, LANG("datum.3478a3ac", null))
+		owner.visible_message(span_danger(LANG("datum.addb3d5a52dfe7db", list(owner))), LANG("datum.17c24905450413e9", null))
+		owner.balloon_alert(owner, LANG("datum.3478a3ac622a4641", null))
 		source.streak = ""
 	else
-		owner.visible_message(span_danger(LANG("datum.3b4e3473", list(owner))), LANG("datum.9848b029", null))
-		owner.balloon_alert(owner, LANG("datum.99c04930", null))
+		owner.visible_message(span_danger(LANG("datum.3b4e34739642ec82", list(owner))), LANG("datum.9848b0290e5d9dd1", null))
+		owner.balloon_alert(owner, LANG("datum.99c049309bf33ab3", null))
 		source.streak = "low_sweep"
 
 /datum/action/lung_punch//referred to internally as 'quick choke'
@@ -83,24 +83,24 @@
 		return
 	var/datum/martial_art/source = target
 	if (source.streak == "quick_choke")
-		owner.visible_message(span_danger(LANG("datum.addb3d5a", list(owner))), LANG("datum.17c24905", null))
-		owner.balloon_alert(owner, LANG("datum.3478a3ac", null))
+		owner.visible_message(span_danger(LANG("datum.addb3d5a52dfe7db", list(owner))), LANG("datum.17c24905450413e9", null))
+		owner.balloon_alert(owner, LANG("datum.3478a3ac622a4641", null))
 		source.streak = ""
 	else
-		owner.visible_message(span_danger(LANG("datum.553b45bf", list(owner))), LANG("datum.dd912fd8", null))
-		owner.balloon_alert(owner, LANG("datum.45dd754d", null))
+		owner.visible_message(span_danger(LANG("datum.553b45bf0ba344d3", list(owner))), LANG("datum.dd912fd8250756bb", null))
+		owner.balloon_alert(owner, LANG("datum.45dd754dede1823f", null))
 		source.streak = "quick_choke"//internal name for lung punch
 
 /datum/martial_art/kaza_ruk/activate_style(mob/living/new_holder)
 	. = ..()
-	to_chat(new_holder, span_userdanger(LANG("datum.29cbd7f1", list(name))))
-	to_chat(new_holder, span_danger(LANG("datum.a9fc34fd", null)))
+	to_chat(new_holder, span_userdanger(LANG("datum.29cbd7f1e54728ec", list(name))))
+	to_chat(new_holder, span_danger(LANG("datum.a9fc34fd99819bdd", null)))
 	neckchop.Grant(new_holder)
 	lowsweep.Grant(new_holder)
 	lungpunch.Grant(new_holder)
 
 /datum/martial_art/kaza_ruk/deactivate_style(mob/living/remove_from)
-	to_chat(remove_from, span_userdanger(LANG("datum.b8403c53", list(name))))
+	to_chat(remove_from, span_userdanger(LANG("datum.b8403c5359e3c92b", list(name))))
 	neckchop?.Remove(remove_from)
 	lowsweep?.Remove(remove_from)
 	lungpunch?.Remove(remove_from)
@@ -138,13 +138,13 @@
 			sweeping_language = "tail"
 
 	defender.visible_message(
-		span_warning(LANG("datum.f326b260", list(attacker, sweeping_language, defender))),
-		span_userdanger(LANG("datum.9efb8512", list(attacker))),
-		span_hear(LANG("datum.6c7f8149", null)),
+		span_warning(LANG("datum.f326b260865a94ed", list(attacker, sweeping_language, defender))),
+		span_userdanger(LANG("datum.9efb8512554d97ea", list(attacker))),
+		span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 		null,
 		attacker,
 	)
-	to_chat(attacker, span_danger(LANG("datum.f50544f6", list(sweeping_language, defender))))
+	to_chat(attacker, span_danger(LANG("datum.f50544f603bf1a07", list(sweeping_language, defender))))
 	playsound(attacker, 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
 
 	if(tail_sweeping)
@@ -158,13 +158,13 @@
 /datum/martial_art/kaza_ruk/proc/quick_choke(mob/living/attacker, mob/living/defender)//is actually lung punch
 	attacker.do_attack_animation(defender)
 	defender.visible_message(
-		span_warning(LANG("datum.1f21d3a6", list(attacker, defender))),
-		span_userdanger(LANG("datum.6822785d", list(attacker))),
-		span_hear(LANG("datum.6c7f8149", null)),
+		span_warning(LANG("datum.1f21d3a6028b4a6b", list(attacker, defender))),
+		span_userdanger(LANG("datum.6822785d8252e1b2", list(attacker))),
+		span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	to_chat(attacker, span_danger(LANG("datum.3b6bf18e", list(defender))))
+	to_chat(attacker, span_danger(LANG("datum.3b6bf18ef3c5b51d", list(defender))))
 	playsound(attacker, 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
 	if(defender.losebreath <= 10)
 		defender.losebreath = clamp(defender.losebreath + 5, 0, 10)
@@ -177,13 +177,13 @@
 		return MARTIAL_ATTACK_INVALID // Does 10 damage, so we can't let pacifists neck chop.
 	attacker.do_attack_animation(defender)
 	defender.visible_message(
-		span_warning(LANG("datum.473b6855", list(attacker, defender))),
-		span_userdanger(LANG("datum.52274472", list(attacker))),
-		span_hear(LANG("datum.6c7f8149", null)),
+		span_warning(LANG("datum.473b6855de764341", list(attacker, defender))),
+		span_userdanger(LANG("datum.5227447272c37589", list(attacker))),
+		span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	to_chat(attacker, span_danger(LANG("datum.cd29351a", list(defender, defender.p_them()))))
+	to_chat(attacker, span_danger(LANG("datum.cd29351a8f548a9d", list(defender, defender.p_them()))))
 	playsound(attacker, 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
 	defender.apply_damage(10, attacker.get_attack_type(), BODY_ZONE_HEAD)
 	defender.adjust_silence_up_to(20 SECONDS, 20 SECONDS)
@@ -208,13 +208,13 @@
 	if(prob(60) && stuff_in_hand && defender.temporarilyRemoveItemFromInventory(stuff_in_hand))
 		attacker.put_in_hands(stuff_in_hand)
 		defender.visible_message(
-			span_danger(LANG("datum.d91638bb", list(attacker, defender))),
-			span_userdanger(LANG("datum.17a4149c", list(attacker))),
-			span_hear(LANG("datum.7314bbd1", null)),
+			span_danger(LANG("datum.d91638bb277d15e6", list(attacker, defender))),
+			span_userdanger(LANG("datum.17a4149c36e54942", list(attacker))),
+			span_hear(LANG("datum.7314bbd171d7d8b7", null)),
 			COMBAT_MESSAGE_RANGE,
 			attacker,
 		)
-		to_chat(attacker, span_danger(LANG("datum.c4516d3a", list(defender))))
+		to_chat(attacker, span_danger(LANG("datum.c4516d3a5eb9b21d", list(defender))))
 		playsound(defender, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 		log_combat(attacker, defender, "disarmed (Kaza Ruk)", addition = "(disarmed of [stuff_in_hand])")
 	return MARTIAL_ATTACK_INVALID // normal shove
@@ -250,9 +250,9 @@
 			strike_language = "a whiplash tail spin"
 
 	source.visible_message(
-		span_warning(LANG("datum.db28a333", list(source, kicking ? kick_language : strike_language, target))),
-		span_notice(LANG("datum.9c252dec", list(kicking ? kick_language : strike_language, target))),
-		span_hear(LANG("datum.6c7f8149", null)),
+		span_warning(LANG("datum.db28a333deb415bd", list(source, kicking ? kick_language : strike_language, target))),
+		span_notice(LANG("datum.9c252dec5e0b533f", list(kicking ? kick_language : strike_language, target))),
+		span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 	)
 	if(tail_usage)
 		source.emote(kicking ? "flip" : "spin")

@@ -27,7 +27,7 @@
 
 /obj/machinery/bsa/back/multitool_act(mob/living/user, obj/item/multitool/tool)
 	tool.buffer = src
-	to_chat(user, span_notice(LANG("obj.cd58d744", list(tool))))
+	to_chat(user, span_notice(LANG("obj.cd58d74437d8c774", list(tool))))
 	return TRUE
 
 /obj/machinery/bsa/front
@@ -37,7 +37,7 @@
 
 /obj/machinery/bsa/front/multitool_act(mob/living/user, obj/item/multitool/tool)
 	tool.buffer = src
-	to_chat(user, span_notice(LANG("obj.cd58d744", list(tool))))
+	to_chat(user, span_notice(LANG("obj.cd58d74437d8c774", list(tool))))
 	return TRUE
 
 /obj/machinery/bsa/middle
@@ -53,14 +53,14 @@
 	if(tool.buffer)
 		if(istype(tool.buffer, /obj/machinery/bsa/back))
 			back_piece = WEAKREF(tool.buffer)
-			to_chat(user, span_notice(LANG("obj.e06b0e5f", list(src, tool.buffer))))
+			to_chat(user, span_notice(LANG("obj.e06b0e5fb3f1d8c7", list(src, tool.buffer))))
 			tool.buffer = null
 		else if(istype(tool.buffer, /obj/machinery/bsa/front))
 			front_piece = WEAKREF(tool.buffer)
-			to_chat(user, span_notice(LANG("obj.e06b0e5f", list(src, tool.buffer))))
+			to_chat(user, span_notice(LANG("obj.e06b0e5fb3f1d8c7", list(src, tool.buffer))))
 			tool.buffer = null
 	else
-		to_chat(user, span_warning(LANG("obj.12436894", list(tool))))
+		to_chat(user, span_warning(LANG("obj.12436894cae5c384", list(tool))))
 	return TRUE
 
 /obj/machinery/bsa/middle/proc/check_completion()
@@ -255,7 +255,7 @@
 	if(system_state != BSA_SYSTEM_READY)
 		return
 	system_state = BSA_SYSTEM_PREFIRE
-	priority_announce(LANG("obj.c2e7731f", list(round(capacitor_power / BSA_FIRE_POWER_THRESHOLD, 0.1))), "BLUESPACE ARTILLERY", ANNOUNCER_BLUESPACEARTY)
+	priority_announce(LANG("obj.c2e7731f7a869dc4", list(round(capacitor_power / BSA_FIRE_POWER_THRESHOLD, 0.1))), "BLUESPACE ARTILLERY", ANNOUNCER_BLUESPACEARTY)
 	alert_sound_to_playing('modular_nova/modules/bsa_overhaul/sound/superlaser_prefire.ogg', override_volume = TRUE)
 	message_admins("[user] has started the fire cycle of [src]! Firing at: [ADMIN_VERBOSEJMP(bullseye)]")
 	log_game("[key_name(user)] has aimed the bluespace artillery strike at [bullseye].")

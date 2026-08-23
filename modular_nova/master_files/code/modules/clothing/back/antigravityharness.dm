@@ -66,7 +66,7 @@
 
 	if(!gravity_on && (!current_cell || current_cell.charge < GRAVITY_FIELD_COST))
 		if(user)
-			to_chat(user, span_warning(LANG("obj.3c7362ac", list(src))))
+			to_chat(user, span_warning(LANG("obj.3c7362acb3fffad1", list(src))))
 
 		return FALSE
 
@@ -111,7 +111,7 @@
 
 			user.AddElement(/datum/element/forced_gravity, 0)
 			playsound(src, 'sound/effects/gravhit.ogg', 50)
-			to_chat(user, span_notice(LANG("obj.a812de21", list(src))))
+			to_chat(user, span_notice(LANG("obj.a812de214caaf458", list(src))))
 			gravity_on = TRUE
 			icon_state = ANTIGRAVITY_STATE
 			worn_icon_state = ANTIGRAVITY_STATE
@@ -128,7 +128,7 @@
 
 			ADD_TRAIT(user, TRAIT_NEGATES_GRAVITY, CLOTHING_TRAIT)
 			playsound(src, 'modular_nova/master_files/sound/effects/robot_sit.ogg', 25)
-			to_chat(user, span_notice(LANG("obj.6b14ca92", list(src))))
+			to_chat(user, span_notice(LANG("obj.6b14ca9229f19338", list(src))))
 			gravity_on = TRUE
 			icon_state = EXTRAGRAVITY_STATE
 			worn_icon_state = EXTRAGRAVITY_STATE
@@ -141,14 +141,14 @@
 			if(!user.has_gravity() && mode != MODE_GRAVOFF)
 				new /obj/effect/temp_visual/mook_dust/robot(get_turf(src))
 				playsound(src, 'modular_nova/master_files/sound/effects/robot_sit.ogg', 25)
-				to_chat(user, span_notice(LANG("obj.70cce796", list(src))))
+				to_chat(user, span_notice(LANG("obj.70cce7966d06f2d1", list(src))))
 				mode = MODE_GRAVOFF
 
 			else
 				if(user.has_gravity() && mode != MODE_GRAVOFF)
 					new /obj/effect/temp_visual/mook_dust(get_turf(src))
 					playsound(src, 'sound/effects/gravhit.ogg', 50)
-					to_chat(user, span_notice(LANG("obj.70cce796", list(src))))
+					to_chat(user, span_notice(LANG("obj.70cce7966d06f2d1", list(src))))
 					mode = MODE_GRAVOFF
 
 			icon_state = OFF_STATE
@@ -202,7 +202,7 @@
 
 	// cell.use will return FALSE if charge is lower than GRAVITY_FIELD_COST
 	if(!current_cell.use(GRAVITY_FIELD_COST))
-		to_chat(user, span_warning(LANG("obj.c394ea84", list(current_cell))))
+		to_chat(user, span_warning(LANG("obj.c394ea84da49d11e", list(current_cell))))
 		change_mode(MODE_GRAVOFF)
 
 /obj/item/gravity_harness/get_cell()
@@ -213,28 +213,28 @@
 /obj/item/gravity_harness/examine(mob/user)
 	. = ..()
 	if(in_range(src, user) || isobserver(user))
-		. += LANG("obj.c5c230c3", list(gravity_on ? "on" : "off", mode))
-		. += LANG("obj.876924dd", list(current_cell ? "<b>[round(current_cell.percent(), 0.1)]%</b> charge remaining." : "[span_warning("\"MISSING CELL\"")]"))
+		. += LANG("obj.c5c230c3aea49887", list(gravity_on ? "on" : "off", mode))
+		. += LANG("obj.876924dda7517c96", list(current_cell ? "<b>[round(current_cell.percent(), 0.1)]%</b> charge remaining." : "[span_warning("\"MISSING CELL\"")]"))
 
 		if(cell_cover_open)
-			. += LANG("obj.a1abb4c6", null)
+			. += LANG("obj.a1abb4c63449cf72", null)
 			if(!current_cell)
-				. += span_warning(LANG("obj.d7bd654c", null))
+				. += span_warning(LANG("obj.d7bd654ccbc6216a", null))
 			else
-				. += LANG("obj.5b7e5f42", list(current_cell))
+				. += LANG("obj.5b7e5f4202f8484c", list(current_cell))
 
 	return .
 
 /obj/item/gravity_harness/screwdriver_act(mob/living/user, obj/item/screwdriver)
-	balloon_alert(user, LANG("obj.b6c2611c", list(cell_cover_open ? "closing" : "opening")))
+	balloon_alert(user, LANG("obj.b6c2611c0475c996", list(cell_cover_open ? "closing" : "opening")))
 	screwdriver.play_tool_sound(src, 100)
 
 	if(!screwdriver.use_tool(src, user, 1 SECONDS))
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return FALSE
 
 	screwdriver.play_tool_sound(src, 100)
-	balloon_alert(user, LANG("obj.79db4d42", list(cell_cover_open ? "closed" : "opened")))
+	balloon_alert(user, LANG("obj.79db4d42235a62d4", list(cell_cover_open ? "closed" : "opened")))
 	cell_cover_open = !cell_cover_open
 	return TRUE
 
@@ -243,16 +243,16 @@
 		return ..()
 
 	if(!current_cell)
-		balloon_alert(user, LANG("obj.0210855e", null))
+		balloon_alert(user, LANG("obj.0210855e097c27b8", null))
 		return
 
-	balloon_alert(user, LANG("obj.d17f808d", null))
+	balloon_alert(user, LANG("obj.d17f808dc26b600d", null))
 	if(!do_after(user, 1.5 SECONDS, target = src))
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return
 
 	change_mode(MODE_GRAVOFF)
-	balloon_alert(user, LANG("obj.0dfdca6e", null))
+	balloon_alert(user, LANG("obj.0dfdca6e675f39e2", null))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	if(!user.put_in_hands(current_cell))
 		current_cell.forceMove(drop_location())
@@ -271,19 +271,19 @@
 		return ..()
 
 	if(!cell_cover_open)
-		balloon_alert(user, LANG("obj.7f12a351", null))
+		balloon_alert(user, LANG("obj.7f12a351300b8d65", null))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
 
 	if(current_cell)
-		balloon_alert(user, LANG("obj.d2ad27b2", null))
+		balloon_alert(user, LANG("obj.d2ad27b2fb0eb6cd", null))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
 
 	/// Shadow realm? I'm sending you to Lake City, FL!
 	tool.moveToNullspace()
 	current_cell = tool
-	balloon_alert(user, LANG("obj.0e9b65ee", null))
+	balloon_alert(user, LANG("obj.0e9b65ee8bac5441", null))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return ITEM_INTERACT_SUCCESS
 

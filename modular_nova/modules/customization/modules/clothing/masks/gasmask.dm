@@ -102,16 +102,16 @@
 
 /obj/item/clothing/mask/gas/respirator/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.c9e60429", null))
+	. += span_notice(LANG("obj.c9e604298df2e5c6", null))
 
 /obj/item/clothing/mask/gas/respirator/item_ctrl_click(mob/user)
 	if(!isliving(user))
 		return CLICK_ACTION_BLOCKING
 	if(user.get_active_held_item() != src)
-		to_chat(user, span_warning(LANG("obj.a549c0e7", list(src))))
+		to_chat(user, span_warning(LANG("obj.a549c0e7962c6f91", list(src))))
 		return CLICK_ACTION_BLOCKING
 	voice_filter = voice_filter ? null : initial(voice_filter)
-	to_chat(user, span_notice(LANG("obj.51325fc9", list(voice_filter ? "enabled" : "disabled"))))
+	to_chat(user, span_notice(LANG("obj.51325fc98b4b1c02", list(voice_filter ? "enabled" : "disabled"))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/mask/gas/clown_hat/vox
@@ -153,7 +153,7 @@
 		icon_state = options[choice]
 		user.update_worn_mask()
 		update_item_action_buttons()
-		to_chat(user, span_notice(LANG("obj.b3ec1c05", list(choice))))
+		to_chat(user, span_notice(LANG("obj.b3ec1c05db7ca0c7", list(choice))))
 		return TRUE
 
 /obj/item/clothing/mask/gas/mime/vox
@@ -200,7 +200,7 @@
 
 		user.update_worn_mask()
 		update_item_action_buttons()
-		to_chat(user, span_notice(LANG("obj.722fda20", list(choice))))
+		to_chat(user, span_notice(LANG("obj.722fda20674e88da", list(choice))))
 		return TRUE
 
 /obj/item/clothing/mask/gas/atmos/vox

@@ -4,7 +4,7 @@
 
 /datum/buildmode_mode/delete/show_help(client/builder)
 	to_chat(builder, span_purple(boxed_message(
-		LANG("datum.787f353b", list(span_bold("Delete an object"), span_bold("Delete all objects of a type")))))
+		LANG("datum.787f353bc0a86d8d", list(span_bold("Delete an object"), span_bold("Delete all objects of a type")))))
 	)
 
 /datum/buildmode_mode/delete/handle_click(client/c, params, object)
@@ -26,14 +26,14 @@
 			if(isturf(object))
 				return
 			var/atom/deleting = object
-			var/action_type = tgui_alert(usr,LANG("datum.68e254d3", list(deleting.type)),,list("Strict type","Type and subtypes","Cancel"))
+			var/action_type = tgui_alert(usr,LANG("datum.68e254d380f2e571", list(deleting.type)),,list("Strict type","Type and subtypes","Cancel"))
 			if(action_type == "Cancel" || !action_type)
 				return
 
-			if(tgui_alert(usr,LANG("datum.8a97a2c8", list(deleting.type)),,list("Yes","No")) != "Yes")
+			if(tgui_alert(usr,LANG("datum.8a97a2c8ee5e0d0c", list(deleting.type)),,list("Yes","No")) != "Yes")
 				return
 
-			if(tgui_alert(usr,LANG("datum.bd025aa5", null),,list("Yes","No")) != "Yes")
+			if(tgui_alert(usr,LANG("datum.bd025aa5cea64e01", null),,list("Yes","No")) != "Yes")
 				return
 
 			var/O_type = deleting.type
@@ -46,7 +46,7 @@
 							qdel(Obj)
 						CHECK_TICK
 					if(!i)
-						to_chat(usr, LANG("datum.bbf7720b", null))
+						to_chat(usr, LANG("datum.bbf7720b6714ed59", null))
 						return
 					log_admin("[key_name(usr)] deleted all instances of type [O_type] ([i] instances deleted) ")
 					message_admins(span_notice("[key_name(usr)] deleted all instances of type [O_type] ([i] instances deleted) "))
@@ -58,7 +58,7 @@
 							qdel(Obj)
 						CHECK_TICK
 					if(!i)
-						to_chat(usr, LANG("datum.bbf7720b", null))
+						to_chat(usr, LANG("datum.bbf7720b6714ed59", null))
 						return
 					log_admin("[key_name(usr)] deleted all instances of type or subtype of [O_type] ([i] instances deleted) ")
 					message_admins(span_notice("[key_name(usr)] deleted all instances of type or subtype of [O_type] ([i] instances deleted) "))

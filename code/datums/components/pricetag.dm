@@ -108,7 +108,7 @@
 		overall_item_price = max(0, overall_item_price - payee_cut)
 
 		payee.adjust_money(payee_cut, "Pricetag: [capitalize(format_text(source.name))] Sale")
-		payee.bank_card_talk(LANG("datum.dfccd630", list(source, payee_cut, MONEY_NAME)))
+		payee.bank_card_talk(LANG("datum.dfccd630623fc9ec", list(source, payee_cut, MONEY_NAME)))
 		running_tally += payee_cut
 	// Update the report with the modified final price
 	report.total_value[export] += overall_item_price

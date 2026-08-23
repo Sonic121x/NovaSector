@@ -33,7 +33,7 @@
 		desc = src::desc
 		return
 	var/obj/item/inserted = locate(/obj/item) in atom_storage.real_location
-	desc = LANG("obj.99ac7dc4", list(inserted, inserted.desc))
+	desc = LANG("obj.99ac7dc49790ae87", list(inserted, inserted.desc))
 
 /obj/item/evidencebag/update_icon_state()
 	. = ..()
@@ -68,9 +68,9 @@
 
 /obj/item/evidencebag/attack_self(mob/user)
 	if(!atom_storage.get_total_weight())
-		to_chat(user, span_notice(LANG("obj.ab993876", list(src))))
+		to_chat(user, span_notice(LANG("obj.ab993876c3c54624", list(src))))
 		return
-	user.visible_message(span_notice(LANG("obj.afa9d6d1", list(user, src))), span_notice(LANG("obj.b05fec39", list(src))),\
-	span_hear(LANG("obj.b15ca365", null)))
+	user.visible_message(span_notice(LANG("obj.afa9d6d1e143b9fc", list(user, src))), span_notice(LANG("obj.b05fec395860eb18", list(src))),\
+	span_hear(LANG("obj.b15ca365dec131fd", null)))
 	playsound(src,'sound/items/evidence_bag/evidence_bag_unzip.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
 	atom_storage.remove_all()

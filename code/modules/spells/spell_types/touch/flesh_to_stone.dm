@@ -14,8 +14,8 @@
 	hand_path = /obj/item/melee/touch_attack/flesh_to_stone
 
 /datum/action/cooldown/spell/touch/flesh_to_stone/on_antimagic_triggered(obj/item/melee/touch_attack/hand, mob/living/victim, mob/living/carbon/caster)
-	to_chat(caster, span_warning(LANG("datum.35261768", list(victim))))
-	to_chat(victim, span_warning(LANG("datum.62442af1", null)))
+	to_chat(caster, span_warning(LANG("datum.352617680be39e27", list(victim))))
+	to_chat(victim, span_warning(LANG("datum.62442af154e056ea", null)))
 
 /datum/action/cooldown/spell/touch/flesh_to_stone/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/victim, mob/living/carbon/caster)
 	var/mob/living/living_victim = victim

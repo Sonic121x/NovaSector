@@ -69,7 +69,7 @@
 	heretic_datum.update_data_for_all_viewers()
 
 /datum/status_effect/heretic_passive/proc/recharge_spells()
-	owner.balloon_alert(owner, LANG("datum.3f87cef2", null))
+	owner.balloon_alert(owner, LANG("datum.3f87cef2b29061cb", null))
 	var/list/main_path_knowledge = heretic_datum.get_researched_knowledge_by_category(HERETIC_KNOWLEDGE_TREE) \
 		+ heretic_datum.get_researched_knowledge_by_category(HERETIC_KNOWLEDGE_START)
 	var/list/side_path_knowledge = heretic_datum.get_researched_knowledge_by_category(HERETIC_KNOWLEDGE_DRAFT) \
@@ -201,7 +201,7 @@
 /datum/status_effect/heretic_passive/blade/proc/z_impact_react(datum/source, levels, turf/fell_on)
 	SIGNAL_HANDLER
 	new /obj/effect/temp_visual/mook_dust(fell_on)
-	owner.visible_message(span_notice(LANG("datum.885554a2", list(owner, fell_on, p_their()))))
+	owner.visible_message(span_notice(LANG("datum.885554a2048e1bf8", list(owner, fell_on, p_their()))))
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/atom, SpinAnimation), 0.5 SECONDS, 0)
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob/, emote), "flip")
 	return ZIMPACT_CANCEL_DAMAGE | ZIMPACT_NO_MESSAGE | ZIMPACT_NO_SPIN
@@ -272,18 +272,18 @@
 /// Does the actual counter-attack
 /datum/status_effect/heretic_passive/blade/proc/counter_attack(mob/living/carbon/human/source, mob/living/target, obj/item/melee/sickly_blade/weapon, attack_text)
 	playsound(get_turf(source), 'sound/items/weapons/parry.ogg', 100, TRUE)
-	source.balloon_alert(source, LANG("datum.be0e57d7", null))
+	source.balloon_alert(source, LANG("datum.be0e57d75969dbb9", null))
 	source.visible_message(
-		span_warning(LANG("datum.d58426c0", list(source, attack_text, target))),
-		span_warning(LANG("datum.31e70d1f", list(attack_text, target))),
-		span_hear(LANG("datum.bdccfbc8", null)),
+		span_warning(LANG("datum.d58426c07d0547f6", list(source, attack_text, target))),
+		span_warning(LANG("datum.31e70d1f7ac698a0", list(attack_text, target))),
+		span_hear(LANG("datum.bdccfbc8c01ec661", null)),
 	)
 	weapon.melee_attack_chain(source, target)
 
 /// Gives feedback to the user
 /datum/status_effect/heretic_passive/blade/proc/reset_riposte(mob/living/carbon/human/source)
 	riposte_ready = TRUE
-	source.balloon_alert(source, LANG("datum.754a9472", null))
+	source.balloon_alert(source, LANG("datum.754a94724f1aadcb", null))
 
 //---- Cosmic Passive
 // Level 1 Cosmic fields will speed up the caster and provide stamina regen

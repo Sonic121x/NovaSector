@@ -41,8 +41,8 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	if(!. || !knockdown_people || !prob(15) || !istype(target))
 		return
 	target.Paralyze(4 SECONDS)
-	target.visible_message(span_danger(LANG("mob.a428d7ce", list(src, target))), \
-		span_userdanger(LANG("mob.3d2fe270", list(src))))
+	target.visible_message(span_danger(LANG("mob.a428d7ce9c2c3bfc", list(src, target))), \
+		span_userdanger(LANG("mob.3d2fe2704bb6a233", list(src))))
 
 
 // ****************************
@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	if(user.combat_mode)
 		return ..()
 	if(trigger())
-		to_chat(user, span_danger(LANG("mob.6d649855", list(src, length(contents) ? "stiffens up and " : ""))))
+		to_chat(user, span_danger(LANG("mob.6d649855fff9a385", list(src, length(contents) ? "stiffens up and " : ""))))
 		return TRUE
 	toggle_open(user)
 	return TRUE
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 		return FALSE
 	if(ai_controller.ai_status != AI_STATUS_OFF)
 		return FALSE
-	visible_message(span_danger(LANG("mob.da7696ad", list(src))))
+	visible_message(span_danger(LANG("mob.da7696adc51a0d94", list(src))))
 	REMOVE_TRAIT(src, TRAIT_AI_PAUSED, INNATE_TRAIT)
 	ai_controller.clear_forced_off()
 	if(length(contents))
@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 /mob/living/basic/mimic/crate/proc/toggle_open(mob/user)
 	if(locked)
 		if(user)
-			balloon_alert(user, LANG("mob.2b9b00b6", null))
+			balloon_alert(user, LANG("mob.2b9b00b6aac14ad3", null))
 		return
 	if(!opened)
 		ADD_TRAIT(src, TRAIT_UNDENSE, MIMIC_TRAIT)
@@ -248,9 +248,9 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	var/mob/living/basic/mimic/crate/mimic = owner
 	mimic.locked = !mimic.locked
 	if(!mimic.locked)
-		to_chat(mimic, span_warning(LANG("datum.eb13e6aa", null)))
+		to_chat(mimic, span_warning(LANG("datum.eb13e6aabdaecf7c", null)))
 	else
-		to_chat(mimic, span_warning(LANG("datum.6716f7a6", null)))
+		to_chat(mimic, span_warning(LANG("datum.6716f7a61fbd728c", null)))
 
 // ****************************
 // COPYING (actually imitates target object) MIMIC
@@ -300,7 +300,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	return ..()
 
 /mob/living/basic/mimic/copy/wabbajack(what_to_randomize, change_flags = WABBAJACK)
-	visible_message(span_warning(LANG("mob.9612b576", list(src))))
+	visible_message(span_warning(LANG("mob.9612b576fe0f062a", list(src))))
 
 /mob/living/basic/mimic/copy/animate_atom_living(mob/living/owner)
 	change_owner(owner)

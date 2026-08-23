@@ -33,10 +33,10 @@
 
 /obj/item/resonator/attack_self(mob/user)
 	if(mode == RESONATOR_MODE_AUTO)
-		to_chat(user, span_info(LANG("obj.f276f74c", null)))
+		to_chat(user, span_info(LANG("obj.f276f74c2473f585", null)))
 		mode = RESONATOR_MODE_MANUAL
 	else
-		to_chat(user, span_info(LANG("obj.36e0fa91", null)))
+		to_chat(user, span_info(LANG("obj.36e0fa91bf2b81d7", null)))
 		mode = RESONATOR_MODE_AUTO
 
 /obj/item/resonator/proc/create_resonance(target, mob/user)
@@ -136,7 +136,7 @@
 		if(creator)
 			log_combat(creator, attacked_living, "used a resonator field on", "resonator")
 			SEND_SIGNAL(creator, COMSIG_LIVING_RESONATOR_BURST, creator, attacked_living)
-		to_chat(attacked_living, span_userdanger(LANG("obj.483f61e0", list(src))))
+		to_chat(attacked_living, span_userdanger(LANG("obj.483f61e0b7bd3eeb", list(src))))
 		attacked_living.apply_damage(resonance_damage, BRUTE)
 		if(!QDELETED(attacked_living))
 			attacked_living.add_movespeed_modifier(/datum/movespeed_modifier/resonance)
@@ -175,11 +175,11 @@
 
 /obj/item/resonator/upgraded/attack_self(mob/user)
 	if(mode == RESONATOR_MODE_AUTO)
-		to_chat(user, span_info(LANG("obj.f276f74c", null)))
+		to_chat(user, span_info(LANG("obj.f276f74c2473f585", null)))
 		mode = RESONATOR_MODE_MANUAL
 	else if(mode == RESONATOR_MODE_MANUAL)
-		to_chat(user, span_info(LANG("obj.5085a991", null)))
+		to_chat(user, span_info(LANG("obj.5085a991f8246665", null)))
 		mode = RESONATOR_MODE_MATRIX
 	else
-		to_chat(user, span_info(LANG("obj.36e0fa91", null)))
+		to_chat(user, span_info(LANG("obj.36e0fa91bf2b81d7", null)))
 		mode = RESONATOR_MODE_AUTO

@@ -44,7 +44,7 @@
 
 	if(get_dist(owner, spider) <= 1)
 		playsound(owner, 'sound/effects/magic/demon_attack1.ogg', 50)
-		owner.visible_message(span_warning(LANG("datum.033c3465", list(owner))), span_userdanger(LANG("datum.0d24001f", null)))
+		owner.visible_message(span_warning(LANG("datum.033c3465f07ad3b0", list(owner))), span_userdanger(LANG("datum.0d24001fd26653db", null)))
 		owner.take_bodypart_damage(rand(20, 50), wound_bonus = CANT_WOUND)
 	else if(SPT_PROB(30, seconds_per_tick))
 		spider.forceMove(get_step_towards(spider, owner))

@@ -98,6 +98,6 @@
 	SIGNAL_HANDLER
 
 	if(initial(result_typepath.gender) == PLURAL)
-		examine_list += span_notice(LANG("datum.224db634", list(source, span_bold("microwaved"), initial(result_typepath.name))))
+		examine_list += span_notice(LANG("datum.224db63491ac5e2c", list(source, span_bold("microwaved"), initial(result_typepath.name))))
 	else
-		examine_list += span_notice(LANG("datum.73ea291d", list(source, span_bold("microwaved"), initial(result_typepath.name))))
+		examine_list += span_notice(LANG("datum.73ea291d962a7b4f", list(source, span_bold("microwaved"), initial(result_typepath.name))))

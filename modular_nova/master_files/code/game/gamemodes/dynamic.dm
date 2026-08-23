@@ -27,7 +27,7 @@
 		if(trait_list_strings.len > 0)
 			. += "<hr><b>Identified shift divergencies:</b><BR>" + trait_list_strings.Join()
 
-	. += LANG("datum.35f364f2", null)
+	. += LANG("datum.35f364f202fb38e5", null)
 
 	print_command_report(., "Central Command Status Summary", announce = FALSE)
-	priority_announce(LANG("datum.ebf1c56b", list(station_name())), "Divergency Report", SSstation.announcer.get_rand_report_sound())
+	priority_announce(LANG("datum.ebf1c56be62f263f", list(station_name())), "Divergency Report", SSstation.announcer.get_rand_report_sound())

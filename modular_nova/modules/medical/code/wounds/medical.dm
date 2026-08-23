@@ -80,7 +80,7 @@
 	integrity--
 	if(integrity <= 0)
 		if(gauzed_bodypart.owner)
-			to_chat(gauzed_bodypart.owner, span_warning(LANG("obj.43b5ae24", list(name, gauzed_bodypart.name))))
+			to_chat(gauzed_bodypart.owner, span_warning(LANG("obj.43b5ae242a62d12d", list(name, gauzed_bodypart.name))))
 		qdel(src)
 
 /// Returns TRUE if we can generate an overlay, false otherwise.

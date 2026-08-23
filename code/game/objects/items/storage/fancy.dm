@@ -48,9 +48,9 @@
 	if(!open_status)
 		return
 	if(length(contents) == 1)
-		. += LANG("obj.5886344e", list(contents_tag))
+		. += LANG("obj.5886344e7177fe8f", list(contents_tag))
 	else
-		. += LANG("obj.b0d8d1e6", list(contents.len <= 0 ? "no" : "[contents.len]", contents_tag))
+		. += LANG("obj.b0d8d1e6c0dbe47c", list(contents.len <= 0 ? "no" : "[contents.len]", contents_tag))
 
 /obj/item/storage/fancy/attack_self(mob/user)
 	if(open_status == FANCY_CONTAINER_CLOSED)
@@ -65,7 +65,7 @@
 	if(!foldable_result || (flags_1 & HOLOGRAM_1))
 		return
 	var/obj/item/result = new foldable_result(user.drop_location())
-	balloon_alert(user, LANG("obj.02a8ddc2", null))
+	balloon_alert(user, LANG("obj.02a8ddc242ea2564", null))
 	// Gotta delete first, so then the cardboard appears in the same hand
 	qdel(src)
 	user.put_in_hands(result)
@@ -218,14 +218,14 @@
 
 	playsound(src, storage_type.rustle_sound, 50, TRUE)
 
-	balloon_alert(user, LANG("obj.18d1acd9", null))
+	balloon_alert(user, LANG("obj.18d1acd9630809ce", null))
 	var/obj/item/coupon/attached_coupon = new
 	user.put_in_hands(attached_coupon)
 	attached_coupon.generate(rigged_omen ? COUPON_OMEN : null, null, user)
 	attached_coupon = null
 	spawn_coupon = FALSE
 	name = "discarded cigarette packet"
-	desc = LANG("obj.fbd1771d", null)
+	desc = LANG("obj.fbd1771d66b500c2", null)
 	atom_storage.max_slots = 0
 
 /obj/item/storage/fancy/cigarettes/Initialize(mapload)
@@ -265,7 +265,7 @@
 	. = ..()
 
 	if(spawn_coupon)
-		. += span_notice(LANG("obj.3dc3b3ee", null))
+		. += span_notice(LANG("obj.3dc3b3ee2589b98c", null))
 
 /obj/item/storage/fancy/cigarettes/update_icon_state()
 	. = ..()

@@ -15,11 +15,11 @@ GAME_VERB_DESC(/mob, opposing_force, "敌对行动申请", "View your opposing f
 		return
 
 	if(is_banned_from(ckey, BAN_ANTAGONIST))
-		to_chat(src, span_warning(LANG("mob.e652f911", null)))
+		to_chat(src, span_warning(LANG("mob.e652f911fc961fab", null)))
 		return
 
 	if(is_banned_from(ckey, BAN_OPFOR))
-		to_chat(src, span_warning(LANG("mob.e0c3bbd2", null)))
+		to_chat(src, span_warning(LANG("mob.e0c3bbd2edbcb0e9", null)))
 		return
 
 	if(!mind.opposing_force)

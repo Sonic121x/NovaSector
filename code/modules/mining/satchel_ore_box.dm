@@ -45,15 +45,15 @@
 /obj/structure/ore_box/examine(mob/living/user)
 	. = ..()
 	if(in_range(src, user) || isobserver(user))
-		. += span_notice(LANG("obj.069a5701", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.069a5701e7253e5f", list(EXAMINE_HINT("pried"))))
 		ui_interact(user)
 
 /obj/structure/ore_box/crowbar_act(mob/living/user, obj/item/I)
 	. = ITEM_INTERACT_BLOCKING
 	if(I.use_tool(src, user, 50, volume = 50))
-		user.visible_message(span_notice(LANG("obj.bb43d2f3", list(user, src))),
-			span_notice(LANG("obj.309c6090", list(src))),
-			span_hear(LANG("obj.5fcb16ad", null)))
+		user.visible_message(span_notice(LANG("obj.bb43d2f3b7e7a709", list(user, src))),
+			span_notice(LANG("obj.309c60905890fde0", list(src))),
+			span_hear(LANG("obj.5fcb16ad6c46c22a", null)))
 		deconstruct(TRUE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -64,7 +64,7 @@
 
 	if(tool.atom_storage)
 		tool.atom_storage.remove_type(/obj/item/stack/ore, src, INFINITY, TRUE, FALSE, user, null)
-		to_chat(user, span_notice(LANG("obj.e933838f", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.e933838f5b28d3c6", list(tool, src))))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE

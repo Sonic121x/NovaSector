@@ -93,7 +93,7 @@
 	return ..()
 
 /obj/item/spear/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.0be0bc23", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.0be0bc23ffdcc751", list(user, src, user.p_theyre()))))
 	if (!do_after(user, 4 SECONDS, target = src))
 		return SHAME
 	var/obj/item/bodypart/head/head = user.get_bodypart(BODY_ZONE_HEAD)
@@ -192,7 +192,7 @@
 	playsound(src, 'sound/effects/grillehit.ogg', 50)
 	new spear_leftovers(get_turf(src))
 	if(isliving(loc))
-		loc.balloon_alert(loc, LANG("obj.5f195437", null))
+		loc.balloon_alert(loc, LANG("obj.5f195437f6b313e3", null))
 	return ..()
 
 /obj/item/spear/get_material_prefixes(list/materials)
@@ -297,7 +297,7 @@
 	spear.set_material_slot(/datum/material_slot/handle/spear, get_master_material())
 	spear.set_material_slot(/datum/material_slot/weapon_head/speartip, shard_mat)
 	spear.set_custom_materials(list((rod_material) = custom_materials[rod_material], (shard_mat) = tool.custom_materials[shard_mat]))
-	to_chat(user, span_notice(LANG("obj.51b3456e", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.51b3456ed3332aa6", list(tool, src))))
 
 	if (istype(tool, /obj/item/stack))
 		var/obj/item/stack/stack = tool
@@ -330,7 +330,7 @@
 		QDEL_NULL(explosive)
 	G.forceMove(src)
 	explosive = G
-	desc = LANG("obj.57ea6a30", list(G))
+	desc = LANG("obj.57ea6a3070b0c033", list(G))
 
 /obj/item/spear/explosive/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
 	var/obj/item/grenade/nade = locate() in components
@@ -342,7 +342,7 @@
 	return ..()
 
 /obj/item/spear/explosive/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.0be0bc23", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.0be0bc23ffdcc751", list(user, src, user.p_theyre()))))
 	user.say("[war_cry]", forced="spear warcry")
 	explosive.forceMove(user)
 	explosive.detonate()
@@ -352,10 +352,10 @@
 
 /obj/item/spear/explosive/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.39082dd4", null))
+	. += span_notice(LANG("obj.39082dd41db365bd", null))
 
 /obj/item/spear/explosive/click_alt(mob/user)
-	var/input = tgui_input_text(user, LANG("obj.f47fa021", null), LANG("obj.f9b8ae78", null), max_length = 50)
+	var/input = tgui_input_text(user, LANG("obj.f47fa021c7c2133d", null), LANG("obj.f9b8ae789d643b8c", null), max_length = 50)
 	if(input)
 		war_cry = input
 	return CLICK_ACTION_SUCCESS
@@ -590,17 +590,17 @@
 
 /datum/action/item_action/skybulge/do_effect(trigger_flags)
 	if(!HAS_TRAIT(target, TRAIT_WIELDED))
-		owner.balloon_alert(owner, LANG("datum.137351e6", null))
+		owner.balloon_alert(owner, LANG("datum.137351e66e6424c9", null))
 		return
 	var/time_left = S_TIMER_COOLDOWN_TIMELEFT(target, COOLDOWN_SKYBULGE_JUMP)
 	if(time_left)
-		owner.balloon_alert(owner, LANG("datum.ccdbb19f", list(FLOOR(time_left * 0.1, 0.1))))
+		owner.balloon_alert(owner, LANG("datum.ccdbb19f675ca231", list(FLOOR(time_left * 0.1, 0.1))))
 		return
 	//do after shows the progress bar as feedback, so nothing here.
 	if(LAZYACCESS(owner.do_afters, target))
 		return
 
-	owner.balloon_alert(owner, LANG("datum.726adb87", null))
+	owner.balloon_alert(owner, LANG("datum.726adb877dacbfc7", null))
 	ADD_TRAIT(target, TRAIT_NEEDS_TWO_HANDS, ACTION_TRAIT)
 	INVOKE_ASYNC(src, PROC_REF(jump_up))
 

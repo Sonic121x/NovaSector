@@ -108,7 +108,7 @@
 		return
 
 	if (!COOLDOWN_FINISHED(src, callout_cooldown))
-		clicked_atom.balloon_alert(user, LANG("datum.840c0cec", null))
+		clicked_atom.balloon_alert(user, LANG("datum.840c0cec42ee60ae", null))
 		return COMSIG_MOB_CANCEL_CLICKON
 
 	INVOKE_ASYNC(src, PROC_REF(callout_picker), user, clicked_atom)

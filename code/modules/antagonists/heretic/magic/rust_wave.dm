@@ -37,7 +37,7 @@
 	victim.apply_status_effect(/datum/status_effect/forced_combat/amok)
 	victim.apply_status_effect(/datum/status_effect/cloudstruck, 5 SECONDS)
 	victim.adjust_disgust(100)
-	to_chat(victim, span_boldwarning(LANG("datum.4f36bce9", null)))
+	to_chat(victim, span_boldwarning(LANG("datum.4f36bce995070c9e", null)))
 
 /datum/action/cooldown/spell/cone/staggered/entropic_plume/calculate_cone_shape(current_level)
 	// At the first level (that isn't level 1) we will be small

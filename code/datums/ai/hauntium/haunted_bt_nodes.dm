@@ -25,7 +25,7 @@
 	var/mob/item_holder = item_pawn.loc
 	if(!ismob(item_holder))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	item_pawn.visible_message(span_warning(LANG("datum.3cb1cf7f", list(item_pawn, item_holder))))
+	item_pawn.visible_message(span_warning(LANG("datum.3cb1cf7f44830c5d", list(item_pawn, item_holder))))
 	item_holder.dropItemToGround(item_pawn, TRUE)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 

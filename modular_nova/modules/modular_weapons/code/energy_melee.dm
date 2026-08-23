@@ -41,7 +41,7 @@
 		return ITEM_INTERACT_BLOCKING
 	sword_color_icon = LOWER_TEXT(pick_result)
 	set_light_color(possible_sword_colors[sword_color_icon])
-	to_chat(user, span_info(LANG("obj.9dd62e41", list(src, sword_color_icon))))
+	to_chat(user, span_info(LANG("obj.9dd62e411c34e5db", list(src, sword_color_icon))))
 	update_appearance(UPDATE_ICON_STATE)
 	return ITEM_INTERACT_SUCCESS
 

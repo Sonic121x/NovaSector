@@ -71,7 +71,7 @@
  */
 /datum/experiment/scanning/proc/serialize_progress_stage(atom/target, list/seen_instances)
 	var/scanned_total = (traits & EXPERIMENT_TRAIT_DESTRUCTIVE && !(traits & EXPERIMENT_TRAIT_TYPECACHE)) ? scanned[target] : seen_instances.len
-	var/message = scan_message || LANG("datum.af3e3ff9", list(initial(target.name))) // NOVA EDIT - I18N: 局部变量里的兜底模板，抽取器的整句闸挡掉了（无句末标点）
+	var/message = scan_message || LANG("datum.af3e3ff985ef155f", list(initial(target.name))) // NOVA EDIT - I18N: 局部变量里的兜底模板，抽取器的整句闸挡掉了（无句末标点）
 	return EXPERIMENT_PROG_INT(message, scanned_total, required_atoms[target])
 
 /**

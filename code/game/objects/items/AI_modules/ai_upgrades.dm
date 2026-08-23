@@ -22,7 +22,7 @@
 
 /obj/item/ai_module/upgrade/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.c9f498d7", null))
+	. += span_info(LANG("obj.c9f498d7a8cbbd0c", null))
 
 /obj/item/ai_module/upgrade/silicon_linked_to_installed(mob/living/silicon/lawed)
 	if(!isAI(lawed))
@@ -65,7 +65,7 @@
 
 /obj/item/ai_module/combat/examine(mob/user)
 	. = ..()
-	. += span_warning(LANG("obj.c9f498d7", null))
+	. += span_warning(LANG("obj.c9f498d7a8cbbd0c", null))
 
 /obj/item/ai_module/combat/log_install(mob/living/user, obj/machinery/ai_law_rack/rack)
 	. = ..()
@@ -81,8 +81,8 @@
 	var/mob/living/silicon/ai/combatai = lawed
 	if(combatai.malf_picker)
 		return
-	to_chat(combatai, span_userdanger(LANG("obj.d50afdbe", null)))
-	to_chat(combatai, span_danger(LANG("obj.b94f62ed", null))) //this unlocks malf powers, but does not give the license to plasma flood
+	to_chat(combatai, span_userdanger(LANG("obj.d50afdbe2aa59abf", null)))
+	to_chat(combatai, span_danger(LANG("obj.b94f62edde730024", null))) //this unlocks malf powers, but does not give the license to plasma flood
 	combatai.add_malf_picker()
 	combatai.hack_software = TRUE
 

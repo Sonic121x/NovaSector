@@ -11,7 +11,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/terrified
 
 /datum/status_effect/terrified/on_apply()
-	to_chat(owner, span_alert(LANG("datum.92ad7f74", null)))
+	to_chat(owner, span_alert(LANG("datum.92ad7f7488cefdf1", null)))
 	owner.emote("scream")
 	owner.AddComponentFrom("terrified", /datum/component/fearful, list(/datum/terror_handler/simple_source/nyctophobia/terrified), TERROR_INITIAL_AMOUNT)
 	return TRUE

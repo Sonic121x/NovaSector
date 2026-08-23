@@ -84,7 +84,7 @@
 		return
 	if (!(user in source.ai_controller?.blackboard[BB_FRIENDS_LIST]))
 		return
-	examine_list += span_notice(LANG("datum.0de9163d", list(source.p_They(), source.p_s())))
+	examine_list += span_notice(LANG("datum.0de9163df9235a8f", list(source.p_They(), source.p_s())))
 
 /datum/component/obeys_commands/proc/on_key_pressed(mob/living/friend)
 	SIGNAL_HANDLER

@@ -10,7 +10,7 @@
 	mind_control_duration = 300
 
 /obj/item/organ/heart/gland/transform/activate()
-	to_chat(owner, span_notice(LANG("obj.aea94ec4", null)))
+	to_chat(owner, span_notice(LANG("obj.aea94ec487330192", null)))
 	randomize_human(owner)
 	var/species = pick(list(/datum/species/human, /datum/species/lizard, /datum/species/moth, /datum/species/fly))
 	owner.set_species(species)

@@ -50,7 +50,7 @@
 /datum/storage/security_belt/can_insert(obj/item/to_insert, mob/user, messages, force)
 	. = ..()
 	if(is_type_in_list(to_insert, limited_hold_types) && (limited_held >= max_limited_store) && (to_insert.w_class > WEIGHT_CLASS_SMALL))
-		user.balloon_alert(user, LANG("datum.c253a52f", null))
+		user.balloon_alert(user, LANG("datum.c253a52f02348147", null))
 		return FALSE
 
 // CE's roundstart toolbelt, with T2 tools

@@ -58,4 +58,4 @@
 		human_mob.adjust_dizzy_up_to(30 SECONDS, 120 SECONDS)
 		human_mob.Sleeping(power * weakness * 10)
 	if(issilicon(receiver))
-		to_chat(receiver, span_warning(LANG("datum.f4745f54", list(rand(0,9999)))))
+		to_chat(receiver, span_warning(LANG("datum.f4745f54c8b0786a", list(rand(0,9999)))))

@@ -63,7 +63,7 @@
 
 /obj/item/paper/pamphlet/cybernetics/update_desc(updates)
 	. = ..()
-	desc = LANG("obj.627f53bc", list(sample ? " Has an attached \"sample\"..." : ""))
+	desc = LANG("obj.627f53bccea92c9a", list(sample ? " Has an attached \"sample\"..." : ""))
 
 /obj/item/paper/pamphlet/cybernetics/Destroy()
 	QDEL_NULL(sample)
@@ -77,6 +77,6 @@
 
 /obj/item/paper/pamphlet/cybernetics/attack_self(mob/user, modifiers)
 	. = ..()
-	to_chat(user, span_notice(LANG("obj.618a9a92", null)))
+	to_chat(user, span_notice(LANG("obj.618a9a92233af405", null)))
 	sample.forceMove(drop_location())
 	playsound(sample, 'sound/misc/splort.ogg', 50, vary = TRUE)

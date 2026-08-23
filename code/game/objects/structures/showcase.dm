@@ -142,11 +142,11 @@
 	if(anchored)
 		return FALSE
 	if(deconstruction_state == SHOWCASE_SCREWDRIVERED)
-		to_chat(user, span_notice(LANG("obj.0e6743cc", null)))
+		to_chat(user, span_notice(LANG("obj.0e6743ccd2aea51f", null)))
 		tool.play_tool_sound(src, 100)
 		deconstruction_state = SHOWCASE_CONSTRUCTED
 	else if (deconstruction_state == SHOWCASE_CONSTRUCTED)
-		to_chat(user, span_notice(LANG("obj.58aea0e2", null)))
+		to_chat(user, span_notice(LANG("obj.58aea0e2fa125fca", null)))
 		tool.play_tool_sound(src, 100)
 		deconstruction_state = SHOWCASE_SCREWDRIVERED
 	return ITEM_INTERACT_SUCCESS
@@ -154,7 +154,7 @@
 /obj/structure/showcase/crowbar_act(mob/living/user, obj/item/tool)
 	if(!tool.use_tool(src, user, 2 SECONDS, volume=100))
 		return
-	to_chat(user, span_notice(LANG("obj.5f8b985b", null)))
+	to_chat(user, span_notice(LANG("obj.5f8b985b22c201d8", null)))
 	new /obj/item/stack/sheet/iron(drop_location(), 4)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -172,11 +172,11 @@
 
 	switch(deconstruction_state)
 		if(SHOWCASE_CONSTRUCTED)
-			. += LANG("obj.5b7c1318", null)
+			. += LANG("obj.5b7c13185b763ff7", null)
 		if(SHOWCASE_SCREWDRIVERED)
-			. += LANG("obj.54a9be56", null)
+			. += LANG("obj.54a9be56d6c94af9", null)
 		else
-			. += LANG("obj.31a5af9d", null)
+			. += LANG("obj.31a5af9db67ce05a", null)
 
 #undef SHOWCASE_CONSTRUCTED
 #undef SHOWCASE_SCREWDRIVERED

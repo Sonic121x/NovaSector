@@ -10,11 +10,11 @@
 	for(var/crafting_recipe_type in crafting_recipe_types)
 		user.mind.teach_crafting_recipe(crafting_recipe_type)
 		var/datum/crafting_recipe/recipe = GLOB.cooking_recipes_by_typepath[crafting_recipe_type] || GLOB.crafting_recipes_by_typepath[crafting_recipe_type]
-		to_chat(user, span_notice(LANG("obj.c57b7f17", list(recipe.name))))
+		to_chat(user, span_notice(LANG("obj.c57b7f178e031727", list(recipe.name))))
 
 /obj/item/book/granter/crafting_recipe/dusting
 	icon_state = "book1"
 
 /obj/item/book/granter/crafting_recipe/dusting/recoil(mob/living/user)
-	to_chat(user, span_warning(LANG("obj.00d3a38e", null)))
+	to_chat(user, span_warning(LANG("obj.00d3a38ea0112407", null)))
 	qdel(src)

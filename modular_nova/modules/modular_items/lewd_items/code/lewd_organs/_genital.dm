@@ -388,17 +388,17 @@ GLOBAL_LIST_INIT(genital_arousal_options, list(
 		if("set_visibility")
 			if(!selected_organ.apply_visibility_label(params["option"]))
 				return
-			ui.user.balloon_alert(ui.user, LANG("datum.eca63fb3", list(selected_organ.name, LOWER_TEXT(params["option"]))))
+			ui.user.balloon_alert(ui.user, LANG("datum.eca63fb3b1d6ff34", list(selected_organ.name, LOWER_TEXT(params["option"]))))
 			return TRUE
 		if("set_layering")
 			if(!selected_organ.apply_layering_label(params["option"]))
 				return
-			ui.user.balloon_alert(ui.user, LANG("datum.95b2be64", list(selected_organ.name, LOWER_TEXT(params["option"]))))
+			ui.user.balloon_alert(ui.user, LANG("datum.95b2be646d04f41e", list(selected_organ.name, LOWER_TEXT(params["option"]))))
 			return TRUE
 
 GAME_VERB_DESC(/mob/living/carbon/human, toggle_genitals, "显示/隐藏生殖器", "Change which genitals show through clothes and how they layer.", "IC")
 	if(IS_UNCONSCIOUS_OR_CRIT(src))
-		to_chat(usr, span_warning(LANG("mob.9d652d0e", null)))
+		to_chat(usr, span_warning(LANG("mob.9d652d0e52355ad4", null)))
 		return
 
 	if(isnull(genital_layering_panel))
@@ -412,7 +412,7 @@ GAME_VERB_DESC(/mob/living/carbon/human, toggle_genitals, "显示/隐藏生殖�
 
 GAME_VERB_DESC(/mob/living/carbon/human, toggle_arousal, "切换性唤起", "Allows you to toggle how aroused your private parts are.", "IC")
 	if(IS_UNCONSCIOUS_OR_CRIT(src))
-		to_chat(usr, span_warning(LANG("mob.320c55f3", null)))
+		to_chat(usr, span_warning(LANG("mob.320c55f3804481a7", null)))
 		return
 
 	var/list/genital_list = list()
@@ -423,7 +423,7 @@ GAME_VERB_DESC(/mob/living/carbon/human, toggle_arousal, "切换性唤起", "All
 	if(!length(genital_list)) //There is nothing to modify.
 		return
 
-	var/obj/item/organ/genital/picked_organ = tgui_input_list(src, LANG("mob.0bd22500", null), LANG("mob.dfba591a", null), genital_list)
+	var/obj/item/organ/genital/picked_organ = tgui_input_list(src, LANG("mob.0bd22500dcf1eadd", null), LANG("mob.dfba591a401b68f1", null), genital_list)
 
 	if(!picked_organ || !(picked_organ in organs))
 		return
@@ -434,12 +434,12 @@ GAME_VERB_DESC(/mob/living/carbon/human, toggle_arousal, "切换性唤起", "All
 		"Very aroused" = AROUSAL_FULL,
 	)
 
-	var/picked_arousal = tgui_input_list(src, LANG("mob.f7ed617f", null), LANG("mob.963596b1", null), gen_arous_trans)
+	var/picked_arousal = tgui_input_list(src, LANG("mob.f7ed617f372ab496", null), LANG("mob.963596b1c4372fe7", null), gen_arous_trans)
 
 	if(!picked_arousal || !picked_organ || !(picked_organ in organs))
 		return
 
 	picked_organ.aroused = gen_arous_trans[picked_arousal]
 	picked_organ.update_sprite_suffix()
-	balloon_alert(src, LANG("mob.28f94138", list(LOWER_TEXT(picked_arousal))))
+	balloon_alert(src, LANG("mob.28f94138c1669b1d", list(LOWER_TEXT(picked_arousal))))
 	update_body()

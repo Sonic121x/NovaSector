@@ -68,7 +68,7 @@
 	if(!istype(attacking_item, /obj/item/clothing/neck/petcollar))
 		return NONE
 	if(locate(/obj/item/clothing/neck/petcollar) in source)
-		user.balloon_alert(source, LANG("datum.2abf1d3c", null))
+		user.balloon_alert(source, LANG("datum.2abf1d3c16266eff", null))
 		return NONE
 	attacking_item.forceMove(source)
 	return COMPONENT_NO_AFTERATTACK

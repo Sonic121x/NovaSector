@@ -27,40 +27,40 @@
 
 	var/mob/living/carbon/human/target_human = user.pulling
 	if(!istype(target_human) || user.grab_state < GRAB_AGGRESSIVE)
-		to_chat(user, span_warning(LANG("datum.cd204ed1", null)))
+		to_chat(user, span_warning(LANG("datum.cd204ed1c2d8ec92", null)))
 		return FALSE
 
 	if(!target_human.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
-		to_chat(user, span_warning(LANG("datum.6e3a87c5", list(target_human))))
+		to_chat(user, span_warning(LANG("datum.6e3a87c5c03f24d8", list(target_human))))
 		return FALSE
 
-	to_chat(user, span_notice(LANG("datum.960b6e35", list(target_human))))
+	to_chat(user, span_notice(LANG("datum.960b6e3507e63c6a", list(target_human))))
 
 	if(!do_after(user, 12 SECONDS, target_human))
 		return FALSE
 
-	var/choice = tgui_alert(target_human, LANG("datum.c82d6e5b", list(user)), LANG("datum.d9547f33", null), list("Yes", "No"))
+	var/choice = tgui_alert(target_human, LANG("datum.c82d6e5becc0edb9", list(user)), LANG("datum.d9547f3371f46edf", null), list("Yes", "No"))
 	if(choice != "Yes")
-		to_chat(user, span_warning(LANG("datum.d8d3b450", list(target_human))))
-		to_chat(target_human, span_warning(LANG("datum.6dbd22c2", list(user))))
+		to_chat(user, span_warning(LANG("datum.d8d3b45056f0e1b2", list(target_human))))
+		to_chat(target_human, span_warning(LANG("datum.6dbd22c2a76deaf4", list(user))))
 		return FALSE
 
-	user.visible_message(span_purple(LANG("datum.d6ddff46", list(target_human))), span_purple(LANG("datum.32c2acd2", list(user))))
+	user.visible_message(span_purple(LANG("datum.d6ddff461056ba82", list(target_human))), span_purple(LANG("datum.32c2acd2c819c321", list(user))))
 	user.emote("snap")
 	target_human.SetSleeping(60 SECONDS)
 	target_human.log_message("[target_human] was placed into a hypnotic sleep by [user].", LOG_GAME)
 
-	var/secondary_choice = tgui_alert(user, LANG("datum.d4090a38", list(target_human)), LANG("datum.d9547f33", null), list("Suggestion", "Release"))
+	var/secondary_choice = tgui_alert(user, LANG("datum.d4090a389fbcdea6", list(target_human)), LANG("datum.d9547f3371f46edf", null), list("Suggestion", "Release"))
 	while(secondary_choice == "Suggestion" && target_human.IsSleeping())
 		if(!in_range(user, target_human))
-			to_chat(user, span_warning(LANG("datum.3d9269d2", list(target_human))))
+			to_chat(user, span_warning(LANG("datum.3d9269d2bddfd2dc", list(target_human))))
 			target_human.SetSleeping(0)
 			return FALSE
 
-		var/input_text = tgui_input_text(user, LANG("datum.31eaca3e", null), LANG("datum.43b95ef9", null), max_length = MAX_MESSAGE_LEN)
-		to_chat(user, span_purple(LANG("datum.fd2015cb", list(target_human))))
+		var/input_text = tgui_input_text(user, LANG("datum.31eaca3e915b20b0", null), LANG("datum.43b95ef9a01022ac", null), max_length = MAX_MESSAGE_LEN)
+		to_chat(user, span_purple(LANG("datum.fd2015cbb1fc9d25", list(target_human))))
 		to_chat(target_human, span_hypnophrase("[input_text]"))
-		secondary_choice = tgui_alert(user, LANG("datum.df22715e", list(target_human)), LANG("datum.d9547f33", null), list("Suggestion", "Release"))
+		secondary_choice = tgui_alert(user, LANG("datum.df22715e6361208d", list(target_human)), LANG("datum.d9547f3371f46edf", null), list("Suggestion", "Release"))
 
-	user.visible_message(span_purple(LANG("datum.a8b89c67", list(user))), span_purple(LANG("datum.99f08fb9", list(target_human))))
+	user.visible_message(span_purple(LANG("datum.a8b89c6777074875", list(user))), span_purple(LANG("datum.99f08fb9aaeb24e8", list(target_human))))
 	target_human.SetSleeping(0)

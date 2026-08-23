@@ -55,7 +55,7 @@
 
 	if(iscyborg(defibber))
 		if(defibber.flash_act(affect_silicon = TRUE))
-			to_chat(defibber, span_userdanger(LANG("datum.62462bc0", list(changeling))))
+			to_chat(defibber, span_userdanger(LANG("datum.62462bc05518cac4", list(changeling))))
 			// run default visible message regardless, no overt indication of the cyborg being overloaded to watchers
 
 	else
@@ -78,17 +78,17 @@
 				defibber.emote("scream")
 
 				changeling.visible_message(
-					span_bolddanger(LANG("datum.450c83b9", list(changeling, defib, defibber, removed_arms >= 2 ? "" : "one of ", defibber.p_their()))),
+					span_bolddanger(LANG("datum.450c83b9b78e6b09", list(changeling, defib, defibber, removed_arms >= 2 ? "" : "one of ", defibber.p_their()))),
 					vision_distance = COMBAT_MESSAGE_RANGE,
 					ignored_mobs = list(changeling, defibber),
 				)
-				to_chat(changeling, span_changeling(LANG("datum.eeb266e2", list(defib, removed_arms >= 2 ? "" : "one of ", defibber))))
-				to_chat(defibber, span_userdanger(LANG("datum.dae0982a", list(changeling, removed_arms >= 2 ? "" : "one of "))))
+				to_chat(changeling, span_changeling(LANG("datum.eeb266e2b292ecde", list(defib, removed_arms >= 2 ? "" : "one of ", defibber))))
+				to_chat(defibber, span_userdanger(LANG("datum.dae0982afd869d0e", list(changeling, removed_arms >= 2 ? "" : "one of "))))
 				return // no default message if we got an arm
 
 	changeling.visible_message(
-		span_bolddanger(LANG("datum.39a03ac2", list(changeling))),
+		span_bolddanger(LANG("datum.39a03ac26d4ceca9", list(changeling))),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 		ignored_mobs = changeling,
 	)
-	to_chat(changeling, span_changeling(LANG("datum.ebba56f5", list(defib))))
+	to_chat(changeling, span_changeling(LANG("datum.ebba56f5b64a0fc5", list(defib))))

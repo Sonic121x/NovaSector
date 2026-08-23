@@ -63,10 +63,10 @@
 //because you're expecting user input.
 /obj/item/airlock_painter/proc/can_use(mob/user)
 	if(!ink)
-		balloon_alert(user, LANG("obj.4573cb69", null))
+		balloon_alert(user, LANG("obj.4573cb699522676c", null))
 		return FALSE
 	else if(ink.charges < 1)
-		balloon_alert(user, LANG("obj.d1b66dcc", null))
+		balloon_alert(user, LANG("obj.d1b66dcc38d6c4a6", null))
 		return FALSE
 	else
 		return TRUE
@@ -75,7 +75,7 @@
 	var/obj/item/organ/lungs/L = user.get_organ_slot(ORGAN_SLOT_LUNGS)
 
 	if(can_use(user) && L)
-		user.visible_message(span_suicide(LANG("obj.83d1bfb4", list(user, src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.83d1bfb4d6c3129b", list(user, src, user.p_theyre()))))
 		use(user)
 
 		// Once you've inhaled the toner, you throw up your lungs
@@ -101,27 +101,27 @@
 
 		// TODO maybe add some colorful vomit?
 
-		user.visible_message(span_suicide(LANG("obj.2d82743b", list(user, user.p_their(), L))))
+		user.visible_message(span_suicide(LANG("obj.2d82743b10f973c1", list(user, user.p_their(), L))))
 		playsound(user.loc, 'sound/effects/splat.ogg', 50, TRUE)
 
 		L.forceMove(T)
 
 		return (TOXLOSS|OXYLOSS)
 	else if(can_use(user) && !L)
-		user.visible_message(span_suicide(LANG("obj.11b575a9", list(user, user.p_them(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.11b575a950bd9138", list(user, user.p_them(), src, user.p_theyre()))))
 		user.reagents.add_reagent(/datum/reagent/colorful_reagent, 1)
 		user.reagents.expose(user, TOUCH, 1)
 		return TOXLOSS
 
 	else
-		user.visible_message(span_suicide(LANG("obj.04fd1357", list(user, src, src))))
+		user.visible_message(span_suicide(LANG("obj.04fd135716c77cc3", list(user, src, src))))
 		return SHAME
 
 
 /obj/item/airlock_painter/examine(mob/user)
 	. = ..()
 	if(!ink)
-		. += span_notice(LANG("obj.e432382e", null))
+		. += span_notice(LANG("obj.e432382e4cda4569", null))
 		return
 	var/ink_level = "high"
 	if(ink.charges < 1)
@@ -130,20 +130,20 @@
 		ink_level = "low"
 	else if((ink.charges/ink.max_charges) > 1) //Over 100% (admin var edit)
 		ink_level = "dangerously high"
-	. += span_notice(LANG("obj.15ef2d83", list(ink_level)))
+	. += span_notice(LANG("obj.15ef2d83855ab1e2", list(ink_level)))
 
 /obj/item/airlock_painter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/toner))
 		return NONE
 
 	if(ink)
-		to_chat(user, span_warning(LANG("obj.ea4e2654", list(src, ink))))
+		to_chat(user, span_warning(LANG("obj.ea4e2654469b0963", list(src, ink))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.a0a1d9da", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.a0a1d9da7a47a97b", list(tool, src))))
 	ink = tool
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -155,6 +155,6 @@
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	ink.forceMove(user.drop_location())
 	user.put_in_hands(ink)
-	to_chat(user, span_notice(LANG("obj.cbed3266", list(ink, src))))
+	to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(ink, src))))
 	ink = null
 	return CLICK_ACTION_SUCCESS

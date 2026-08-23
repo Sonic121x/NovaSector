@@ -95,7 +95,7 @@
 		var/area/A = get_area(user)
 		if(istype(A, /area/centcom/wizard_station))
 			add_fingerprint(user)
-			to_chat(user, span_warning(LANG("obj.226f4ee1", list(src))))
+			to_chat(user, span_warning(LANG("obj.226f4ee1ad09564b", list(src))))
 			return
 		else
 			no_den_usage = FALSE // Well you're probably not going back
@@ -146,14 +146,14 @@
 	return 1
 
 /obj/item/gun/magic/shoot_with_empty_chamber(mob/living/user)
-	to_chat(user, span_warning(LANG("obj.fac4051f", list(src))))
+	to_chat(user, span_warning(LANG("obj.fac4051fbd0a6b30", list(src))))
 
 /obj/item/gun/magic/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.7009f29d", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.7009f29d2b9534bf", list(user, src, user.p_their(), user.p_theyre()))))
 	if (can_user_shoot(user))
 		charges--
 		return do_suicide(user)
-	user.visible_message(span_suicide(LANG("obj.0f15a9dc", null)))
+	user.visible_message(span_suicide(LANG("obj.0f15a9dce0f2851a", null)))
 	return SHAME
 
 /// Extend to do something funny

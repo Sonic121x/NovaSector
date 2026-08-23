@@ -277,18 +277,18 @@
 /obj/item/fishing_hook/anomaly/examine(mob/user)
 	. = ..()
 	if(!isnull(core))
-		. += span_info(LANG("obj.937e1263", list(core)))
+		. += span_info(LANG("obj.937e1263b7e85a29", list(core)))
 
 /obj/item/fishing_hook/anomaly/examine_more(mob/user)
 	. = ..()
-	. += LANG("obj.67dbda35", list(/obj/item/assembly/signaler/anomaly/dimensional::name))
-	. += LANG("obj.ebd604e1", list(/obj/item/assembly/signaler/anomaly/bioscrambler::name))
-	. += LANG("obj.3c9962dd", list(/obj/item/assembly/signaler/anomaly/pyro::name))
-	. += LANG("obj.c9e68c31", list(/obj/item/assembly/signaler/anomaly/ectoplasm::name))
-	. += LANG("obj.9e0d997d", list(/obj/item/assembly/signaler/anomaly/hallucination::name))
-	. += LANG("obj.8ce17db2", list(/obj/item/assembly/signaler/anomaly/grav::name))
-	. += LANG("obj.11864333", list(/obj/item/assembly/signaler/anomaly/vortex::name))
-	. += LANG("obj.b1cc1dac", null)
+	. += LANG("obj.67dbda35839a48b9", list(/obj/item/assembly/signaler/anomaly/dimensional::name))
+	. += LANG("obj.ebd604e1ac6812d5", list(/obj/item/assembly/signaler/anomaly/bioscrambler::name))
+	. += LANG("obj.3c9962ddb53e0beb", list(/obj/item/assembly/signaler/anomaly/pyro::name))
+	. += LANG("obj.c9e68c31b1d4f332", list(/obj/item/assembly/signaler/anomaly/ectoplasm::name))
+	. += LANG("obj.9e0d997d1456940b", list(/obj/item/assembly/signaler/anomaly/hallucination::name))
+	. += LANG("obj.8ce17db24f17e945", list(/obj/item/assembly/signaler/anomaly/grav::name))
+	. += LANG("obj.118643332e90b67c", list(/obj/item/assembly/signaler/anomaly/vortex::name))
+	. += LANG("obj.b1cc1dac34bbde91", null)
 
 /obj/item/fishing_hook/anomaly/proc/on_fishing_rod_slotted(datum/source, obj/item/fishing_rod/rod, slot)
 	SIGNAL_HANDLER
@@ -309,7 +309,7 @@
 		if(/obj/item/assembly/signaler/anomaly/vortex)
 			rod.bounciness_mult *= 0.2
 		else
-			rod.balloon_alert_to_viewers(LANG("obj.8890651c", null), vision_distance = 2)
+			rod.balloon_alert_to_viewers(LANG("obj.8890651c188bb98f", null), vision_distance = 2)
 
 /obj/item/fishing_hook/anomaly/proc/on_fishing_rod_unslotted(datum/source, obj/item/fishing_rod/rod, slot)
 	SIGNAL_HANDLER
@@ -430,7 +430,7 @@
 	if(!istype(tool, /obj/item/assembly/signaler/anomaly))
 		return NONE
 	if(!isnull(core))
-		balloon_alert(user, LANG("obj.641e7c06", null))
+		balloon_alert(user, LANG("obj.641e7c0683b494f4", null))
 		return ITEM_INTERACT_BLOCKING
 	if(user.is_holding(tool))
 		if(!user.transferItemToLoc(tool, src))
@@ -439,7 +439,7 @@
 		tool.forceMove(src)
 
 	core = tool
-	balloon_alert(user, LANG("obj.1a2673f9", null))
+	balloon_alert(user, LANG("obj.1a2673f997ae855a", null))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	update_appearance(UPDATE_OVERLAYS)
 	return ITEM_INTERACT_SUCCESS
@@ -457,7 +457,7 @@
 		core.forceMove(drop_location())
 
 	core = null
-	balloon_alert(user, LANG("obj.8b10ca6a", null))
+	balloon_alert(user, LANG("obj.8b10ca6a98faa6f4", null))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	update_appearance(UPDATE_OVERLAYS)
 	return TRUE
@@ -536,7 +536,7 @@
 
 /obj/item/fishing_hook/stabilized/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.d53d0729", null))
+	. += span_notice(LANG("obj.d53d0729acf4fd8a", null))
 
 /obj/item/fishing_hook/jaws
 	name = "jawed hook"
@@ -611,17 +611,17 @@
 
 /obj/item/survivalcapsule/fishing/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.f6ccd0f5", list(EXAMINE_HINT("Right-Click"))))
+	. += span_info(LANG("obj.f6ccd0f5be5b77ae", list(EXAMINE_HINT("Right-Click"))))
 
 /obj/item/survivalcapsule/fishing/examine_more(mob/user)
 	. = ..()
-	. += span_tinynotice(LANG("obj.38082fde", null))
+	. += span_tinynotice(LANG("obj.38082fde9833952e", null))
 
 /obj/item/survivalcapsule/fishing/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, LANG("obj.42074643", null))
+	balloon_alert(user, LANG("obj.42074643f1699068", null))
 	playsound(src, SFX_SPARKS, 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 
@@ -644,7 +644,7 @@
 		return
 	template_id = spot_ids_by_name[choice]
 	template = SSmapping.shelter_templates[template_id]
-	to_chat(user, span_notice(LANG("obj.d0991dbd", list(src, choice))))
+	to_chat(user, span_notice(LANG("obj.d0991dbd7331279d", list(src, choice))))
 	playsound(src, 'sound/items/pen_click.ogg', 20, TRUE, -3)
 	return
 
@@ -656,15 +656,15 @@
 /obj/item/survivalcapsule/fishing/fail_feedback(status)
 	switch(status)
 		if(SHELTER_DEPLOY_BAD_AREA)
-			say(LANG("obj.43eeb3f4", null))
+			say(LANG("obj.43eeb3f4f073bec7", null))
 		if(SHELTER_DEPLOY_BAD_TURFS)
-			say(LANG("obj.c099f4f1", list(template.width, template.height)))
+			say(LANG("obj.c099f4f19290ab20", list(template.width, template.height)))
 		if(SHELTER_DEPLOY_ANCHORED_OBJECTS)
-			say(LANG("obj.1c6672e6", list(template.width, template.height)))
+			say(LANG("obj.1c6672e601a0e893", list(template.width, template.height)))
 		if(SHELTER_DEPLOY_BANNED_OBJECTS)
-			say(LANG("obj.b92ab1a2", list(template.width, template.height)))
+			say(LANG("obj.b92ab1a2b3e20cdd", list(template.width, template.height)))
 		if(SHELTER_DEPLOY_OUTSIDE_MAP)
-			say(LANG("obj.a6dd6129", null))
+			say(LANG("obj.a6dd61295ea19157", null))
 
 /obj/item/survivalcapsule/fishing/trigger_admin_alert(mob/triggerer, turf/trigger_loc)
 	var/datum/map_template/shelter/fishing/spot = template
@@ -739,13 +739,13 @@
 	. = ..()
 
 	if(!loaded_injector)
-		. += span_info(LANG("obj.9ae2d6dc", null))
+		. += span_info(LANG("obj.9ae2d6dc14d1e4b9", null))
 		return
 	var/info =  span_info("It's currently loaded with [loaded_injector]. Use it to ")
 	if(istype(loaded_injector, /obj/item/reagent_containers/syringe))
-		info += span_info(LANG("obj.142271a4", list(EXAMINE_HINT("extract"))))
+		info += span_info(LANG("obj.142271a4f983327f", list(EXAMINE_HINT("extract"))))
 	else
-		info += span_info(LANG("obj.67415287", list(EXAMINE_HINT("inject"))))
+		info += span_info(LANG("obj.67415287cf3d1bab", list(EXAMINE_HINT("inject"))))
 	. += info
 
 /obj/item/fish_genegun/update_icon_state()
@@ -757,13 +757,13 @@
 
 /obj/item/fish_genegun/attack_self(mob/user)
 	if(!loaded_injector)
-		balloon_alert(user, LANG("obj.cfa484ac", null))
+		balloon_alert(user, LANG("obj.cfa484acc67368e1", null))
 		return
 	var/obj/item/loaded = loaded_injector
 	loaded.forceMove(drop_location()) //this will unset the loaded_injector variable
 	if(IsReachableBy(user)) //check that the user can actually reach the loaded injector (telekinesis yadda yadda)
 		user.put_in_hands(loaded)
-	balloon_alert(user, LANG("obj.15ba5baf", null))
+	balloon_alert(user, LANG("obj.15ba5baf25c3f612", null))
 	playsound(src, 'sound/items/weapons/gun/general/magazine_remove_full.ogg', 30, TRUE)
 
 /obj/item/fish_genegun/Exited(atom/movable/gone)
@@ -777,15 +777,15 @@
 	if(!is_syringe && !istype(item, /obj/item/fish_gene))
 		return NONE
 	if(loaded_injector)
-		to_chat(user, span_warning(LANG("obj.9939d832", list(src, loaded_injector))))
+		to_chat(user, span_warning(LANG("obj.9939d832d5a66fd0", list(src, loaded_injector))))
 		return ITEM_INTERACT_BLOCKING
 	if(is_syringe && item.reagents.total_volume)
-		to_chat(user, span_warning(LANG("obj.a9d79f1e", list(src))))
+		to_chat(user, span_warning(LANG("obj.a9d79f1e4f49e631", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(item, src))
-		to_chat(user, span_warning(LANG("obj.66ff57bd", list(item))))
+		to_chat(user, span_warning(LANG("obj.66ff57bd4061b6c5", list(item))))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_info(LANG("obj.91f19664", list(item, src))))
+	to_chat(user, span_info(LANG("obj.91f1966485f25dd2", list(item, src))))
 	loaded_injector = item
 	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/items/weapons/gun/general/magazine_insert_full.ogg', 30, TRUE)
@@ -795,39 +795,39 @@
 	if(!isfish(interacting_with))
 		return NONE
 	if(!loaded_injector)
-		balloon_alert(user, LANG("obj.cfa484ac", null))
+		balloon_alert(user, LANG("obj.cfa484acc67368e1", null))
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_with.flags_1 & HOLOGRAM_1)
-		to_chat(user, span_warning(LANG("obj.e9a491f0", list(interacting_with, src))))
+		to_chat(user, span_warning(LANG("obj.e9a491f078a5638d", list(interacting_with, src))))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/fish/fish = interacting_with
 	var/is_syringe = istype(loaded_injector, /obj/item/reagent_containers/syringe)
 	if(fish.status == FISH_DEAD)
-		to_chat(user, span_warning(LANG("obj.306288c1", list(src, is_syringe ? "extract traits from" : "inject traits into", fish.name))))
+		to_chat(user, span_warning(LANG("obj.306288c1a394dd1f", list(src, is_syringe ? "extract traits from" : "inject traits into", fish.name))))
 		return ITEM_INTERACT_BLOCKING
 	if(!is_syringe)
 		var/obj/item/fish_gene/injector = loaded_injector
 		return injector.inject_into_fish(fish, user, src)
 
 	if(!length(fish.fish_traits))
-		to_chat(user, span_warning(LANG("obj.ae292894", list(fish))))
+		to_chat(user, span_warning(LANG("obj.ae292894eba5ac35", list(fish))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/list/choices = list()
 	for(var/datum/fish_trait/trait_type as anything in fish.fish_traits)
 		choices[trait_type::name] = trait_type
-	var/choice = tgui_input_list(user, LANG("obj.bfe509c9", null), LANG("obj.b528d59f", null), choices)
+	var/choice = tgui_input_list(user, LANG("obj.bfe509c92e163e79", null), LANG("obj.b528d59fee0984d8", null), choices)
 	if(!choice || QDELETED(fish) || !user.is_holding(src) || !fish.IsReachableBy(user))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!istype(loaded_injector, /obj/item/reagent_containers/syringe)) //The syringe was taken out
-		to_chat(user, span_warning(LANG("obj.3452e435", list(src))))
+		to_chat(user, span_warning(LANG("obj.3452e435ba18ab46", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(fish.status == FISH_DEAD)
-		to_chat(user, span_warning(LANG("obj.72fdf215", list(src, fish.name))))
+		to_chat(user, span_warning(LANG("obj.72fdf215d9dd97fe", list(src, fish.name))))
 		return ITEM_INTERACT_BLOCKING
 	if(!(choices[choice] in fish.fish_traits))
-		to_chat(user, span_warning(LANG("obj.b9dfaf6a", list(fish, choice))))
+		to_chat(user, span_warning(LANG("obj.b9dfaf6af9be922d", list(fish, choice))))
 		return ITEM_INTERACT_BLOCKING
 
 	QDEL_NULL(loaded_injector)
@@ -836,7 +836,7 @@
 	trait.remove_from_fish(fish)
 	loaded_injector = new /obj/item/fish_gene(src, trait_type)
 
-	user.visible_message(span_notice(LANG("obj.194296a7", list(user, fish, src))), span_notice(LANG("obj.c7c8534f", list(trait_type::name, fish))))
+	user.visible_message(span_notice(LANG("obj.194296a7a159a06b", list(user, fish, src))), span_notice(LANG("obj.c7c8534faa098fe3", list(trait_type::name, fish))))
 	if(HAS_TRAIT(fish, TRAIT_FISH_GENEGUNNED))
 		fish.set_status(FISH_DEAD)
 	ADD_TRAIT(fish, TRAIT_FISH_GENEGUNNED, TRAIT_GENERIC)
@@ -874,20 +874,20 @@
 	if(!isfish(interacting_with))
 		return NONE
 	if(interacting_with.flags_1 & HOLOGRAM_1)
-		to_chat(user, span_warning(LANG("obj.e9a491f0", list(interacting_with, src))))
+		to_chat(user, span_warning(LANG("obj.e9a491f078a5638d", list(interacting_with, src))))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/fish/fish = interacting_with
 	if(fish.status == FISH_DEAD)
-		to_chat(user, span_warning(LANG("obj.dbc1c3c8", list(src, fish.name))))
+		to_chat(user, span_warning(LANG("obj.dbc1c3c8f74223a3", list(src, fish.name))))
 		return ITEM_INTERACT_BLOCKING
 	return inject_into_fish(fish, user, src)
 
 /obj/item/fish_gene/proc/inject_into_fish(obj/item/fish/fish, mob/living/user, obj/item/tool = src)
 	var/datum/fish_trait/trait = GLOB.fish_traits[trait_type]
 	if(!trait.apply_to_fish(fish, initial = FALSE))
-		to_chat(user, span_warning(LANG("obj.90110eeb", list(trait_type::name, fish, fish.p_They(), fish.p_have(), fish.p_are()))))
+		to_chat(user, span_warning(LANG("obj.90110eebd90f7cf6", list(trait_type::name, fish, fish.p_They(), fish.p_have(), fish.p_are()))))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.194296a7", list(user, fish, tool))), span_notice(LANG("obj.25784bc4", list(trait_type::name, fish))))
+	user.visible_message(span_notice(LANG("obj.194296a7a159a06b", list(user, fish, tool))), span_notice(LANG("obj.25784bc47ae1faa8", list(trait_type::name, fish))))
 	qdel(src)
 	if(HAS_TRAIT(fish, TRAIT_FISH_GENEGUNNED))
 		fish.set_status(FISH_DEAD)

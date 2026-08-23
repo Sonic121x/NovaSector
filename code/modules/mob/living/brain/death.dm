@@ -6,8 +6,8 @@
 
 	if(!gibbed && container)//If not gibbed but in a container.
 		var/obj/item/mmi = container
-		mmi.visible_message(span_warning(LANG("mob.234ce8af", list(src))), \
-					span_hear(LANG("mob.642a3a82", null)))
+		mmi.visible_message(span_warning(LANG("mob.234ce8afaaaffb86", list(src))), \
+					span_hear(LANG("mob.642a3a82e9c54493", null)))
 		mmi.update_appearance()
 
 	return ..()

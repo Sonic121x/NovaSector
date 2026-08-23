@@ -33,12 +33,13 @@
 
 	// 2) 端到端：注入碎片词对，确认它无法在真实句子中间开火。
 	var/saved_locale = GLOB.i18n_server_locale
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
 	if(!islist(en_cache))
 		en_cache = list()
-		GLOB.i18n_cache[DEFAULT_UI_LOCALE] = en_cache
+		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE] = en_cache
 	en_cache["frag_oneof"] = "one of"
-	GLOB.i18n_cache[I18N_FRAG_TEST_LOCALE] = list("frag_oneof" = "其中一只")
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][I18N_FRAG_TEST_LOCALE] = list("frag_oneof" = "其中一只")
+	GLOB.i18n_runtime_domains.Remove(I18N_FRAG_TEST_LOCALE)
 
 	GLOB.i18n_reverse.Remove(I18N_FRAG_TEST_LOCALE)
 	GLOB.i18n_fallback_state.Remove(I18N_FRAG_TEST_LOCALE)
@@ -57,7 +58,8 @@
 	GLOB.i18n_fallback_state.Remove(I18N_FRAG_TEST_LOCALE)
 	GLOB.i18n_fallback_single_state.Remove(I18N_FRAG_TEST_LOCALE)
 	GLOB.i18n_fallback_cache.Remove(I18N_FRAG_TEST_LOCALE)
-	GLOB.i18n_cache.Remove(I18N_FRAG_TEST_LOCALE)
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET].Remove(I18N_FRAG_TEST_LOCALE)
+	GLOB.i18n_runtime_domains.Remove(I18N_FRAG_TEST_LOCALE)
 	en_cache.Remove("frag_oneof")
 
 #undef I18N_FRAG_TEST_LOCALE

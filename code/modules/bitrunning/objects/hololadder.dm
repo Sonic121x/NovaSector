@@ -31,14 +31,14 @@
 	. = ..()
 
 	if(isnull(server_ref.resolve()))
-		. += span_infoplain(LANG("obj.b8effa34", null))
+		. += span_infoplain(LANG("obj.b8effa34c8b656fe", null))
 		return
 
 	if(isobserver(user))
-		. += span_notice(LANG("obj.a577a0f8", null))
+		. += span_notice(LANG("obj.a577a0f87648bb4f", null))
 		return
 
-	. += span_infoplain(LANG("obj.222fff72", null))
+	. += span_infoplain(LANG("obj.222fff72103df1f0", null))
 
 
 /obj/structure/hololadder/attack_hand(mob/user, list/modifiers)
@@ -70,14 +70,14 @@
 		for(var/datum/weakref/ghostrole_weakref as anything in our_server.spawned_threat_refs)
 			var/mob/living/ghostrole = ghostrole_weakref.resolve()
 			if(ghostrole?.stat == STABLE && ghostrole.client && ghostrole.mind.has_antag_datum(/datum/antagonist/bitrunning_glitch))
-				to_chat(user, span_danger(LANG("obj.3f0203ba", null)))
+				to_chat(user, span_danger(LANG("obj.3f0203ba0aa81f43", null)))
 				return
 
 	if(!HAS_TRAIT(user, TRAIT_TEMPORARY_BODY))
-		balloon_alert(user, LANG("obj.acea3d3b", null))
+		balloon_alert(user, LANG("obj.acea3d3bf78d82e1", null))
 		return
 
-	balloon_alert(user, LANG("obj.731dc5a8", null))
+	balloon_alert(user, LANG("obj.731dc5a8b0340741", null))
 	if(do_after(user, travel_time, src))
 		SEND_SIGNAL(user, COMSIG_BITRUNNER_LADDER_SEVER)
 

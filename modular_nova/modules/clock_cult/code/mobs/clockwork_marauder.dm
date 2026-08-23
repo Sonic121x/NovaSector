@@ -62,10 +62,10 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 /mob/living/basic/clockwork_marauder/examine(mob/user)
 	. = ..()
 	if(IS_CLOCK(user))
-		. += span_brass(LANG("mob.2915b900", list(src, shield_health, MARAUDER_SHIELD_MAX)))
+		. += span_brass(LANG("mob.2915b9000c24db30", list(src, shield_health, MARAUDER_SHIELD_MAX)))
 
 		if(shield_health < MARAUDER_SHIELD_MAX)
-			. += span_brass(LANG("mob.fedb48df", null))
+			. += span_brass(LANG("mob.fedb48dfd1098d71", null))
 
 /mob/living/basic/clockwork_marauder/attacked_by(obj/item/attacking_item, mob/living/user)
 	if(shield_health)
@@ -84,7 +84,7 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 
 	if(shield_health)
 		damage_shield()
-		visible_message(span_warning(LANG("mob.ebd78be8", list(src))))
+		visible_message(span_warning(LANG("mob.ebd78be81f64ce3f", list(src))))
 		return COMPONENT_BULLET_BLOCKED
 	return NONE
 
@@ -94,8 +94,8 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 	shield_health--
 	playsound(src, 'modular_nova/modules/clock_cult/sound/magic/anima_fragment_attack.ogg', 60, TRUE)
 	if(!shield_health)
-		to_chat(src, span_userdanger(LANG("mob.a163bce9", null)))
-		to_chat(src, span_brass(LANG("mob.8207ba5f", null)))
+		to_chat(src, span_userdanger(LANG("mob.a163bce9928630a1", null)))
+		to_chat(src, span_brass(LANG("mob.8207ba5fd5bb5200", null)))
 
 
 /mob/living/basic/clockwork_marauder/welder_act(mob/living/user, obj/item/tool)
@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 		return TRUE
 
 	health = min(health + WELDER_REPAIR_AMOUNT, maxHealth)
-	to_chat(user, span_notice(LANG("mob.a39e50b6", list(src))))
+	to_chat(user, span_notice(LANG("mob.a39e50b64e9f8fc9", list(src))))
 	if(shield_health < MARAUDER_SHIELD_MAX)
 		shield_health++
 		playsound(src, 'sound/effects/magic/charge.ogg', 60, TRUE)

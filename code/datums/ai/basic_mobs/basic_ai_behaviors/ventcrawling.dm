@@ -24,8 +24,8 @@
 		controller.set_blackboard_key(BB_VENT_ENTRY_TIME, world.time)
 		if(prob(50))
 			cached_pawn.visible_message(
-				span_warning(LANG("datum.77cf54fb", list(cached_pawn))),
-				span_hear(LANG("datum.6df1df54", null)),
+				span_warning(LANG("datum.77cf54fbe0719f12", list(cached_pawn))),
+				span_hear(LANG("datum.6df1df54b1059c32", null)),
 			)
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
 

@@ -43,10 +43,10 @@
 		return NONE
 
 	if(!lavaland_equipment_pressure_check(get_turf(user)) && !(obj_flags & EMAGGED))
-		user.balloon_alert(user, LANG("obj.cc2994cc", null))
+		user.balloon_alert(user, LANG("obj.cc2994cca664e4dd", null))
 		return ITEM_INTERACT_BLOCKING
 	if(get_dist(user, target) > 9)
-		user.balloon_alert(user, LANG("obj.a462ee7c", null))
+		user.balloon_alert(user, LANG("obj.a462ee7cec0ddb47", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/turf/attacked_atom = get_turf(target)
@@ -78,7 +78,7 @@
 	. = ..()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, LANG("obj.c8b5acab", null))
+	balloon_alert(user, LANG("obj.c8b5acab223e9f5b", null))
 	obj_flags |= EMAGGED
 	return TRUE
 

@@ -242,8 +242,8 @@
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CAR_HONK))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_CAR_HONK, 2 SECONDS)
-	vehicle_entered_target.visible_message(span_danger(LANG("datum.9ffba65b", list(vehicle_entered_target))))
-	to_chat(owner, span_notice(LANG("datum.7fcccb63", list(vehicle_entered_target))))
+	vehicle_entered_target.visible_message(span_danger(LANG("datum.9ffba65b1d658fba", list(vehicle_entered_target))))
+	to_chat(owner, span_notice(LANG("datum.7fcccb63e05ca77c", list(vehicle_entered_target))))
 	if(istype(vehicle_target.inserted_key, /obj/item/bikehorn))
 		vehicle_target.inserted_key.attack_self(owner) //The bikehorn plays a sound instead
 		return
@@ -258,7 +258,7 @@
 	. = ..()
 	if(!.)
 		return
-	to_chat(owner, span_notice(LANG("datum.0db1653e", null)))
+	to_chat(owner, span_notice(LANG("datum.0db1653e2a1b6dcc", null)))
 	vehicle_entered_target.headlights_toggle = !vehicle_entered_target.headlights_toggle
 	vehicle_entered_target.set_light_on(vehicle_entered_target.headlights_toggle)
 	vehicle_entered_target.update_appearance()
@@ -273,7 +273,7 @@
 	. = ..()
 	if(!.)
 		return
-	vehicle_entered_target.visible_message(span_danger(LANG("datum.0a8f6a85", list(vehicle_entered_target))))
+	vehicle_entered_target.visible_message(span_danger(LANG("datum.0a8f6a85d1e5cf5a", list(vehicle_entered_target))))
 	vehicle_entered_target.dump_specific_mobs(VEHICLE_CONTROL_KIDNAPPED)
 
 
@@ -325,10 +325,10 @@
 	var/obj/vehicle/sealed/car/clowncar/clown_car = vehicle_entered_target
 	var/list/mob/drivers = clown_car.return_drivers()
 	if(!length(drivers))
-		to_chat(owner, span_danger(LANG("datum.9d717353", null)))
+		to_chat(owner, span_danger(LANG("datum.9d71735336dcc49a", null)))
 		return
 	var/mob/clown = pick(drivers)
-	owner.say(LANG("datum.745ae711", list(clown.name)))
+	owner.say(LANG("datum.745ae711c1744cf0", list(clown.name)))
 	clown_car.increment_thanks_counter()
 
 /datum/action/vehicle/ridden/wheelchair/bell
@@ -372,7 +372,7 @@
 		vehicle.unbuckle_mob(rider)
 		rider.throw_at(landing_turf, 2, 2)
 		rider.Paralyze(40)
-		vehicle.visible_message(span_danger(LANG("datum.cc638fd1", list(rider, rider.p_their()))))
+		vehicle.visible_message(span_danger(LANG("datum.cc638fd1fb7a6098", list(rider, rider.p_their()))))
 		return
 	if((locate(/obj/structure/table) in landing_turf) || (locate(/obj/structure/fluff/tram_rail) in landing_turf))
 		if(locate(/obj/structure/fluff/tram_rail) in vehicle.loc.contents)
@@ -414,21 +414,21 @@
 		rider.Paralyze(50)
 		if(prob(15))
 			rider.visible_message(
-				span_danger(LANG("datum.260ceab6", list(rider, rider.p_their()))),
-				span_userdanger(LANG("datum.3f677595", null)),
+				span_danger(LANG("datum.260ceab6afbf30e9", list(rider, rider.p_their()))),
+				span_userdanger(LANG("datum.3f677595ccac8771", null)),
 			)
 			rider.emote("scream")
 			rider.adjust_brute_loss(10)  // thats gonna leave a mark
 			return
 		rider.visible_message(
-			span_danger(LANG("datum.cc638fd1", list(rider, rider.p_their()))),
-			span_userdanger(LANG("datum.319652e2", null)),
+			span_danger(LANG("datum.cc638fd1fb7a6098", list(rider, rider.p_their()))),
+			span_userdanger(LANG("datum.319652e2d7421da2", null)),
 		)
 		return
 
 	rider.visible_message(
-		span_notice(LANG("datum.daa465a3", list(rider, rider.p_their()))),
-		span_notice(LANG("datum.35b0f7f9", null)),
+		span_notice(LANG("datum.daa465a3c0d0afc2", list(rider, rider.p_their()))),
+		span_notice(LANG("datum.35b0f7f909f42457", null)),
 	)
 	playsound(board, 'sound/vehicles/skateboard_ollie.ogg', 50, vary = TRUE)
 	rider.spin(spintime = 4, speed = 1)
@@ -461,7 +461,7 @@
 		return FALSE
 	var/obj/vehicle/sealed/mecha/vim/vim_mecha = vehicle_entered_target
 	if(!COOLDOWN_FINISHED(vim_mecha, sound_cooldown))
-		vim_mecha.balloon_alert(owner, LANG("datum.d4ae5d4d", null))
+		vim_mecha.balloon_alert(owner, LANG("datum.d4ae5d4dded19efe", null))
 		return FALSE
 	COOLDOWN_START(vim_mecha, sound_cooldown, VIM_SOUND_COOLDOWN)
 	vehicle_entered_target.visible_message(span_notice("[vehicle_entered_target] [sound_message]"))

@@ -52,9 +52,9 @@
 	var/distance = max(get_dist(shooter, target), 1) // treat 0 distance as adjacent
 	var/distance_description = (distance <= 1 ? "point blank " : "")
 
-	shooter.visible_message(span_danger(LANG("datum.7833d4dc", list(shooter, weapon, distance_description, target))),
-		span_danger(LANG("datum.6a1af96d", list(weapon, distance_description, target))), ignored_mobs = target)
-	to_chat(target, span_userdanger(LANG("datum.75e558aa", list(shooter, weapon, distance_description))))
+	shooter.visible_message(span_danger(LANG("datum.7833d4dc3af75be8", list(shooter, weapon, distance_description, target))),
+		span_danger(LANG("datum.6a1af96dedc65de5", list(weapon, distance_description, target))), ignored_mobs = target)
+	to_chat(target, span_userdanger(LANG("datum.75e558aaf0259be5", list(shooter, weapon, distance_description))))
 
 	shooter.Immobilize(0.75 SECONDS / distance)
 	if(!HAS_TRAIT(target, TRAIT_NOFEAR_HOLDUPS))
@@ -108,9 +108,9 @@
 	if(A != target)
 		return
 	var/mob/living/shooter = parent
-	shooter.visible_message(span_danger(LANG("datum.c34d9d90", list(shooter, target, shooter.p_their()))), \
-		span_danger(LANG("datum.fdd20516", list(target))), ignored_mobs = target)
-	to_chat(target, span_userdanger(LANG("datum.56f417cd", list(shooter, shooter.p_their()))))
+	shooter.visible_message(span_danger(LANG("datum.c34d9d9042b2587e", list(shooter, target, shooter.p_their()))), \
+		span_danger(LANG("datum.fdd20516c5dbbe65", list(target))), ignored_mobs = target)
+	to_chat(target, span_userdanger(LANG("datum.56f417cd92871f4f", list(shooter, shooter.p_their()))))
 	qdel(src)
 
 ///If the shooter shoves or grabs the target, cancel the holdup to avoid cheesing and forcing the charged shot
@@ -119,9 +119,9 @@
 
 	if(T != target || LAZYACCESS(modifiers, RIGHT_CLICK))
 		return
-	shooter.visible_message(span_danger(LANG("datum.c34d9d90", list(shooter, target, shooter.p_their()))), \
-		span_danger(LANG("datum.fdd20516", list(target))), ignored_mobs = target)
-	to_chat(target, span_userdanger(LANG("datum.56f417cd", list(shooter, shooter.p_their()))))
+	shooter.visible_message(span_danger(LANG("datum.c34d9d9042b2587e", list(shooter, target, shooter.p_their()))), \
+		span_danger(LANG("datum.fdd20516c5dbbe65", list(target))), ignored_mobs = target)
+	to_chat(target, span_userdanger(LANG("datum.56f417cd92871f4f", list(shooter, shooter.p_their()))))
 	qdel(src)
 
 ///Update the damage multiplier for whatever stage we're entering into
@@ -130,13 +130,13 @@
 		return
 	stage = new_stage
 	if(stage == 2)
-		to_chat(parent, span_danger(LANG("datum.bd9c19f0", list(weapon, target))))
-		to_chat(target, span_userdanger(LANG("datum.9d556a32", list(parent, weapon))))
+		to_chat(parent, span_danger(LANG("datum.bd9c19f08392a9f2", list(weapon, target))))
+		to_chat(target, span_userdanger(LANG("datum.9d556a32cda49bff", list(parent, weapon))))
 		damage_mult = GUNPOINT_MULT_STAGE_2
 		addtimer(CALLBACK(src, PROC_REF(update_stage), 3), GUNPOINT_DELAY_STAGE_3)
 	else if(stage == 3)
-		to_chat(parent, span_danger(LANG("datum.828cbbef", list(weapon, target))))
-		to_chat(target, span_userdanger(LANG("datum.20465151", list(parent, weapon))))
+		to_chat(parent, span_danger(LANG("datum.828cbbef400ef54a", list(weapon, target))))
+		to_chat(target, span_userdanger(LANG("datum.20465151787f7da7", list(parent, weapon))))
 		damage_mult = GUNPOINT_MULT_STAGE_3
 
 ///Cancel the holdup if the shooter moves out of sight or out of range of the target
@@ -182,9 +182,9 @@
 	SIGNAL_HANDLER
 
 	var/mob/living/shooter = parent
-	shooter.visible_message(span_danger(LANG("datum.fc377677", list(shooter, shooter.p_their(), target))), \
-		span_danger(LANG("datum.96ac5fb7", list(weapon, target))), ignored_mobs = target)
-	to_chat(target, span_userdanger(LANG("datum.c51526b3", list(shooter, shooter.p_their()))))
+	shooter.visible_message(span_danger(LANG("datum.fc37767760e34bc4", list(shooter, shooter.p_their(), target))), \
+		span_danger(LANG("datum.96ac5fb7ad683fc8", list(weapon, target))), ignored_mobs = target)
+	to_chat(target, span_userdanger(LANG("datum.c51526b30cc568a1", list(shooter, shooter.p_their()))))
 	qdel(src)
 
 ///If the shooter is hit by an attack, they have a 50% chance to flinch and fire. If it hit the arm holding the trigger, it's an 80% chance to fire instead
@@ -206,8 +206,8 @@
 
 	if(prob(flinch_chance))
 		source.visible_message(
-			span_danger(LANG("datum.ab8ea379", list(source))),
-			span_danger(LANG("datum.ae3f04e7", null)),
+			span_danger(LANG("datum.ab8ea3796ebd806a", list(source))),
+			span_danger(LANG("datum.ae3f04e77b984409", null)),
 		)
 		INVOKE_ASYNC(src, PROC_REF(trigger_reaction))
 
@@ -215,24 +215,24 @@
 /datum/component/gunpoint/proc/examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(user in viewers(target))
-		examine_list += span_boldwarning(LANG("datum.13ef5812", list(parent, parent.p_are(), target, weapon)))
+		examine_list += span_boldwarning(LANG("datum.13ef5812224b15da", list(parent, parent.p_are(), target, weapon)))
 
 ///Shows if the examine target is being held at gunpoint
 /datum/component/gunpoint/proc/examine_target(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(user in viewers(parent))
-		examine_list += span_boldwarning(LANG("datum.94725e20", list(target, target.p_are(), parent)))
+		examine_list += span_boldwarning(LANG("datum.94725e2005bce593", list(target, target.p_are(), parent)))
 
 ///Prevents bumping the shooter to break gunpoint since shove does that
 /datum/component/gunpoint/proc/block_bumps_parent(mob/bumped, mob/living/bumper)
 	SIGNAL_HANDLER
-	to_chat(bumper, span_warning(LANG("datum.3e08d972", list(bumped, bumped.p_are(), target))))
+	to_chat(bumper, span_warning(LANG("datum.3e08d9722dcd66f5", list(bumped, bumped.p_are(), target))))
 	return COMPONENT_LIVING_BLOCK_PRE_MOB_BUMP
 
 ///Prevents bumping the target by an ally to cheese and force the charged shot
 /datum/component/gunpoint/proc/block_bumps_target(mob/bumped, mob/living/bumper)
 	SIGNAL_HANDLER
-	to_chat(bumper, span_warning(LANG("datum.8b2a4a6e", list(bumped, bumped.p_are(), bumped.p_them()))))
+	to_chat(bumper, span_warning(LANG("datum.8b2a4a6e1525116f", list(bumped, bumped.p_are(), bumped.p_them()))))
 	return COMPONENT_LIVING_BLOCK_PRE_MOB_BUMP
 
 #undef GUNPOINT_DELAY_STAGE_2

@@ -24,7 +24,7 @@
 
 /obj/item/reagent_containers/cup/phylactery/interact_with_atom_secondary(atom/target, mob/living/user, list/modifiers)
 	if(!COOLDOWN_FINISHED(src, drain_cooldown))
-		user.balloon_alert(user, LANG("obj.71464c7d", null))
+		user.balloon_alert(user, LANG("obj.71464c7de9c69390", null))
 		return NONE
 	if(!isliving(target))
 		return NONE
@@ -33,21 +33,21 @@
 	if(living_target == user)
 		return ITEM_INTERACT_BLOCKING
 	if(reagents.total_volume >= reagents.maximum_volume)
-		to_chat(user, span_notice(LANG("obj.8e2d390c", list(src))))
+		to_chat(user, span_notice(LANG("obj.8e2d390ca03cb226", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(living_target.can_block_magic(MAGIC_RESISTANCE_HOLY))
-		to_chat(user, span_warning(LANG("obj.15aca96f", list(living_target))))
+		to_chat(user, span_warning(LANG("obj.15aca96ff0269734", list(living_target))))
 		COOLDOWN_START(src, drain_cooldown, 5 SECONDS)
-		to_chat(living_target, span_warning(LANG("obj.a4dd493c", null)))
+		to_chat(living_target, span_warning(LANG("obj.a4dd493c1d6a1229", null)))
 		return ITEM_INTERACT_BLOCKING
 	var/drawn_amount = min(reagents.maximum_volume - reagents.total_volume, 5)
 	if(living_target.transfer_blood_to(src, drawn_amount))
-		to_chat(user, span_notice(LANG("obj.69856d49", list(living_target))))
-		to_chat(living_target, span_warning(LANG("obj.d366f84f", null)))
+		to_chat(user, span_notice(LANG("obj.69856d49b0fa4c13", list(living_target))))
+		to_chat(living_target, span_warning(LANG("obj.d366f84feb09c62c", null)))
 		COOLDOWN_START(src, drain_cooldown, 5 SECONDS)
 		playsound(src, 'sound/effects/chemistry/catalyst.ogg', 20, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_exponent = 10)
 	else
-		to_chat(user, span_warning(LANG("obj.15aca96f", list(living_target))))
+		to_chat(user, span_warning(LANG("obj.15aca96ff0269734", list(living_target))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/cup/phylactery/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)

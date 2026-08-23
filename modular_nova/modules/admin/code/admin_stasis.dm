@@ -6,6 +6,6 @@ ADMIN_VERB_AND_CONTEXT_MENU(admin_stasis, R_ADMIN|R_FUN, "切换管理员停滞"
 	else
 		target.apply_status_effect(/datum/status_effect/grouped/stasis, STASIS_ADMIN)
 	var/stasis_status = has_effect ? "OFF" : "ON"
-	to_chat(user, LANG("datum.19961969", list(stasis_status, target)), confidential = TRUE)
+	to_chat(user, LANG("datum.1996196952391393", list(stasis_status, target)), confidential = TRUE)
 	message_admins("[key_name_admin(user)] has toggled admin stasis [stasis_status] for [target].")
 	log_admin("[key_name(user)] has toggled admin stasis [stasis_status] for [target].")

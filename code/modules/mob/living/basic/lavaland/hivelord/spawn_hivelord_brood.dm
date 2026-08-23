@@ -66,7 +66,7 @@
 
 	if (!length(target_turfs))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.ad6c6384", null))
+			owner.balloon_alert(owner, LANG("datum.ad6c6384cbc2d930", null))
 		StartCooldown(0.5 SECONDS)
 		return FALSE
 

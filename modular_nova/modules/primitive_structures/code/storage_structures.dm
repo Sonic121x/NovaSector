@@ -31,7 +31,7 @@
 	dropping.pixel_y = text2num(LAZYACCESS(modifiers, ICON_Y)) > 16 ? 10 : -4
 
 /obj/structure/rack/wooden/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers(LANG("obj.b5ba9871", null))
+	user.balloon_alert_to_viewers(LANG("obj.b5ba987161d1a2e3", null))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 
@@ -87,7 +87,7 @@
 	return contents.len
 
 /obj/machinery/smartfridge/wooden/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers(LANG("obj.b5ba9871", null))
+	user.balloon_alert_to_viewers(LANG("obj.b5ba987161d1a2e3", null))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 

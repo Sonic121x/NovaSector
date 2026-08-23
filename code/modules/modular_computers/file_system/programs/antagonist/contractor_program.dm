@@ -121,9 +121,9 @@
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					if(H.put_in_hands(crystals))
-						to_chat(H, span_notice(LANG("datum.4aa8fb3a", null)))
+						to_chat(H, span_notice(LANG("datum.4aa8fb3aaf42c4e5", null)))
 					else
-						to_chat(user, span_notice(LANG("datum.0c1e67da", null)))
+						to_chat(user, span_notice(LANG("datum.0c1e67dafef27476", null)))
 
 				uplink_computer.opfor_data.contractor_hub.contract_TC_payed_out += uplink_computer.opfor_data.contractor_hub.contract_TC_to_redeem // NOVA EDIT CHANGE - ORIGINAL: traitor_data.uplink_handler.contractor_hub.contract_TC_payed_out += traitor_data.uplink_handler.contractor_hub.contract_TC_to_redeem
 				uplink_computer.opfor_data.contractor_hub.contract_TC_to_redeem = 0 // NOVA EDIT CHANGE - ORIGINAL: traitor_data.uplink_handler.contractor_hub.contract_TC_to_redeem = 0

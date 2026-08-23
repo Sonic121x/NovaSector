@@ -8,7 +8,7 @@
 	icon_state = "vial"
 
 /obj/item/mayhem/attack_self(mob/user)
-	if(tgui_alert(user, LANG("obj.d7a687a7", null), LANG("obj.42653979", null), list("Break it!", "DON'T")) != "Break it!")
+	if(tgui_alert(user, LANG("obj.d7a687a7a9ed5794", null), LANG("obj.4265397962b2447d", null), list("Break it!", "DON'T")) != "Break it!")
 		return
 
 	if(QDELETED(src) || !user.is_holding(src) || user.incapacitated)
@@ -17,7 +17,7 @@
 	for(var/mob/living/carbon/human/target in range(7, user))
 		target.apply_status_effect(/datum/status_effect/mayhem)
 
-	to_chat(user, span_notice(LANG("obj.fb4453e5", null)))
+	to_chat(user, span_notice(LANG("obj.fb4453e5591ba4c3", null)))
 	playsound(user.loc, 'sound/effects/glass/glassbr1.ogg', 100, TRUE)
 	message_admins(span_adminnotice("[ADMIN_LOOKUPFLW(user)] has activated a bottle of mayhem!"))
 	user.log_message("activated a bottle of mayhem", LOG_ATTACK)
@@ -115,18 +115,18 @@
 
 /obj/item/clothing/head/hooded/hostile_environment/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
-	to_chat(user, span_notice(LANG("obj.de884d98", null)))
+	to_chat(user, span_notice(LANG("obj.de884d9893ca3400", null)))
 
 /obj/item/clothing/head/hooded/hostile_environment/dropped(mob/user, silent = FALSE)
 	. = ..()
-	to_chat(user, span_notice(LANG("obj.fad494b6", null)))
+	to_chat(user, span_notice(LANG("obj.fad494b65df26106", null)))
 
 /obj/item/clothing/head/hooded/hostile_environment/proc/consume(mob/living/user, mob/living/butchered)
 	if(butchered.mob_biotypes & (MOB_ROBOTIC | MOB_SPIRIT))
 		return
 	var/health_consumed = butchered.maxHealth * 0.1
 	user.heal_ordered_damage(health_consumed, list(BRUTE, BURN, TOX))
-	to_chat(user, span_notice(LANG("obj.8ece719e", list(butchered))))
+	to_chat(user, span_notice(LANG("obj.8ece719e739e2dd0", list(butchered))))
 	var/datum/client_colour/color_effect = user.add_client_colour(/datum/client_colour/bloodlust, HELMET_TRAIT)
 	QDEL_IN(color_effect, 1 SECONDS)
 

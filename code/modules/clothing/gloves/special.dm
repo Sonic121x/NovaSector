@@ -29,7 +29,7 @@
 		stack_trace("Gloves already have a pull component associated with \[[pull_component.parent]\] when \[[equipper]\] is trying to equip them.")
 		QDEL_NULL(pull_component_weakref)
 
-	to_chat(equipper, span_notice(LANG("obj.27bfcc15", null)))
+	to_chat(equipper, span_notice(LANG("obj.27bfcc15f5e4c109", null)))
 
 	pull_component_weakref = WEAKREF(equipper.AddComponent(/datum/component/strong_pull))
 
@@ -47,7 +47,7 @@
 	if(!pull_component)
 		return
 
-	to_chat(pull_component.parent, span_warning(LANG("obj.44833f45", list(src))))
+	to_chat(pull_component.parent, span_warning(LANG("obj.44833f453dde2f72", list(src))))
 
 	QDEL_NULL(pull_component_weakref)
 

@@ -1,7 +1,7 @@
 GAME_VERB(/mob, do_verb, "Do", "IC")
 	VERB_ARG(message, VERB_ARG_TYPE_MESSAGE, VERB_ARG_SOURCE_INPUT)
 	if(GLOB.say_disabled)
-		to_chat(usr, span_danger(LANG("mob.b79ad8a3", null)))
+		to_chat(usr, span_danger(LANG("mob.b79ad8a388d1b3a4", null)))
 		return
 
 	if(message)
@@ -15,7 +15,7 @@ GAME_VERB(/mob, do_verb, "Do", "IC")
 		var/list/filter_result = is_ic_filtered(message)
 
 		if(filter_result)
-			to_chat(usr, span_warning(LANG("mob.b210d3c9", list(message))))
+			to_chat(usr, span_warning(LANG("mob.b210d3c906839ca4", list(message))))
 			REPORT_CHAT_FILTER_TO_USER(usr, filter_result)
 			log_filter("IC Emote", message, filter_result)
 			SSblackbox.record_feedback("tally", "ic_blocked_words", 1, LOWER_TEXT(config.ic_filter_regex.match))
@@ -24,7 +24,7 @@ GAME_VERB(/mob, do_verb, "Do", "IC")
 		filter_result = is_soft_ic_filtered(message)
 
 		if(filter_result)
-			if(tgui_alert(usr, LANG("mob.ac82e7e2", list(filter_result[CHAT_FILTER_INDEX_WORD], filter_result[CHAT_FILTER_INDEX_REASON])), LANG("mob.b0fe106c", null), list("Yes", "No")) != "Yes")
+			if(tgui_alert(usr, LANG("mob.ac82e7e2e21c78a6", list(filter_result[CHAT_FILTER_INDEX_WORD], filter_result[CHAT_FILTER_INDEX_REASON])), LANG("mob.b0fe106c90796ca4", null), list("Yes", "No")) != "Yes")
 				SSblackbox.record_feedback("tally", "soft_ic_blocked_words", 1, LOWER_TEXT(config.soft_ic_filter_regex.match))
 				log_filter("Soft IC Emote", message, filter_result)
 				return FALSE
@@ -35,7 +35,7 @@ GAME_VERB(/mob, do_verb, "Do", "IC")
 			log_filter("Soft IC Emote (Passed)", message, filter_result)
 
 	if(usr.client?.prefs?.muted & MUTE_IC)
-		to_chat(usr, span_boldwarning(LANG("mob.edad7622", null)))
+		to_chat(usr, span_boldwarning(LANG("mob.edad7622f650b603", null)))
 		return
 
 	var/name_stub = " (<b>[usr]</b>)"

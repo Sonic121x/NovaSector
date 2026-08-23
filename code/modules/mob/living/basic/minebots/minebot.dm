@@ -94,39 +94,39 @@
 /mob/living/basic/mining_drone/set_combat_mode(new_mode, silent = TRUE, force = FALSE)
 	. = ..()
 	icon_state = combat_mode ? "mining_drone_offense" : "mining_drone"
-	balloon_alert(src, LANG("mob.f35c4f6c", list(combat_mode ? "attacking" : "collecting")))
+	balloon_alert(src, LANG("mob.f35c4f6c1484d77b", list(combat_mode ? "attacking" : "collecting")))
 
 /mob/living/basic/mining_drone/examine(mob/user)
 	. = ..()
 	if(health < maxHealth)
 		if(health >= maxHealth * 0.5)
-			. += span_warning(LANG("mob.000c1e88", list(p_They())))
+			. += span_warning(LANG("mob.000c1e887262d605", list(p_They())))
 		else
-			. += span_boldwarning(LANG("mob.91ce775e", list(p_They())))
+			. += span_boldwarning(LANG("mob.91ce775e286c1535", list(p_They())))
 
 	if(isnull(stored_gun) || !stored_gun.max_mod_capacity)
 		return
 
-	. += LANG("mob.15082120", list(stored_gun.get_remaining_mod_capacity()))
+	. += LANG("mob.1508212031c289eb", list(stored_gun.get_remaining_mod_capacity()))
 
 	for(var/obj/item/borg/upgrade/modkit/modkit as anything in stored_gun.modkits)
-		. += span_notice(LANG("mob.ae0e0db4", list(modkit, modkit.cost)))
+		. += span_notice(LANG("mob.ae0e0db4ce9fb12e", list(modkit, modkit.cost)))
 	if(ai_controller && ai_controller.ai_status == AI_STATUS_OFF && ai_controller.get_expected_ai_status() == AI_STATUS_ON)
-		. += LANG("mob.bb32306b", list(src))
+		. += LANG("mob.bb32306bc24007c0", list(src))
 
 
 /mob/living/basic/mining_drone/welder_act(mob/living/user, obj/item/welder)
 	if(user.combat_mode)
 		return FALSE
 	if(combat_mode)
-		user.balloon_alert(user, LANG("mob.5e4e3882", null))
+		user.balloon_alert(user, LANG("mob.5e4e38825a906956", null))
 		return TRUE
 	if(maxHealth == health)
-		user.balloon_alert(user, LANG("mob.0656418a", null))
+		user.balloon_alert(user, LANG("mob.0656418a81834278", null))
 		return TRUE
 	if(welder.use_tool(src, user, 0, volume=40))
 		adjust_brute_loss(-15)
-		user.balloon_alert(user, LANG("mob.7c1135f9", null))
+		user.balloon_alert(user, LANG("mob.7c1135f9c963b31f", null))
 	return TRUE
 
 /mob/living/basic/mining_drone/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -220,7 +220,7 @@
 	if(user.combat_mode)
 		return CLICK_ACTION_BLOCKING
 	set_combat_mode(!combat_mode)
-	balloon_alert(user, LANG("mob.f35c4f6c", list(combat_mode ? "attacking wildlife" : "collecting loose ore")))
+	balloon_alert(user, LANG("mob.f35c4f6c1484d77b", list(combat_mode ? "attacking wildlife" : "collecting loose ore")))
 	return CLICK_ACTION_SUCCESS
 
 /mob/living/basic/mining_drone/RangedAttack(atom/target, list/modifiers)
@@ -239,7 +239,7 @@
 		target_ore.forceMove(src)
 
 /mob/living/basic/mining_drone/proc/drop_ore()
-	to_chat(src, span_notice(LANG("mob.6a207d0a", null)))
+	to_chat(src, span_notice(LANG("mob.6a207d0addaa4bcb", null)))
 	for(var/obj/item/stack/ore/dropped_item in contents)
 		dropped_item.forceMove(get_turf(src))
 

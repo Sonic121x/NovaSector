@@ -21,7 +21,7 @@
 
 /turf/open/floor/tram/examine(mob/user)
 	. += ..()
-	. += span_notice(LANG("turf.f86d5448", list(EXAMINE_HINT("wrenched"), EXAMINE_HINT("wrench"))))
+	. += span_notice(LANG("turf.f86d54485413ce02", list(EXAMINE_HINT("wrenched"), EXAMINE_HINT("wrench"))))
 
 /turf/open/floor/tram/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stack/thermoplastic))
@@ -45,7 +45,7 @@
 
 /turf/open/floor/tram/wrench_act(mob/living/user, obj/item/item)
 	..()
-	to_chat(user, span_notice(LANG("turf.321e72ef", null)))
+	to_chat(user, span_notice(LANG("turf.321e72ef2a695ee9", null)))
 	if(item.use_tool(src, user, 30, volume=80))
 		if(!istype(src, /turf/open/floor/tram))
 			return TRUE
@@ -120,8 +120,8 @@
 /turf/open/floor/tram/plate/energized/examine(mob/user)
 	. = ..()
 	if(broken || burnt)
-		. += span_danger(LANG("turf.e7463f16", null))
-		. += span_notice(LANG("turf.99ed8514", list(EXAMINE_HINT("titanium sheet"))))
+		. += span_danger(LANG("turf.e7463f169bc3b8e4", null))
+		. += span_notice(LANG("turf.99ed851432a5e089", list(EXAMINE_HINT("titanium sheet"))))
 
 /turf/open/floor/tram/plate/energized/broken_states()
 	return list("energized_plate_damaged")
@@ -138,7 +138,7 @@
 		return ITEM_INTERACT_BLOCKING
 	broken = FALSE
 	update_appearance()
-	balloon_alert(user, LANG("turf.71c2f637", null))
+	balloon_alert(user, LANG("turf.71c2f637d7b41282", null))
 	return ITEM_INTERACT_SUCCESS
 
 /turf/open/floor/tram/plate/energized/broken
@@ -220,10 +220,10 @@
 	. = ..()
 
 	if(secured)
-		. += span_notice(LANG("obj.a578c58d", list(EXAMINE_HINT("screws."), EXAMINE_HINT("screwdriver."))))
+		. += span_notice(LANG("obj.a578c58d09587c99", list(EXAMINE_HINT("screws."), EXAMINE_HINT("screwdriver."))))
 	else
-		. += span_notice(LANG("obj.ff2110d8", list(EXAMINE_HINT("crowbar"))))
-		. += span_notice(LANG("obj.6fd5b2ea", list(EXAMINE_HINT("screwdriver."))))
+		. += span_notice(LANG("obj.ff2110d8bc1345f8", list(EXAMINE_HINT("crowbar"))))
+		. += span_notice(LANG("obj.6fd5b2eac8706e5d", list(EXAMINE_HINT("screwdriver."))))
 
 /obj/structure/thermoplastic/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
@@ -243,31 +243,31 @@
 /obj/structure/thermoplastic/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	if(secured)
-		user.visible_message(span_notice(LANG("obj.571d20f0", list(user))),
-		span_notice(LANG("obj.679179c6", null)))
+		user.visible_message(span_notice(LANG("obj.571d20f0e0a6e891", list(user))),
+		span_notice(LANG("obj.679179c6e13638b4", null)))
 		if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
 			secured = FALSE
-			to_chat(user, span_notice(LANG("obj.4630c562", null)))
+			to_chat(user, span_notice(LANG("obj.4630c56227e957b0", null)))
 	else
-		user.visible_message(span_notice(LANG("obj.8fdf6425", list(user))),
-		span_notice(LANG("obj.8993a9b9", null)))
+		user.visible_message(span_notice(LANG("obj.8fdf64255c7bfcf6", list(user))),
+		span_notice(LANG("obj.8993a9b9132bbc97", null)))
 		if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
 			secured = TRUE
-			to_chat(user, span_notice(LANG("obj.9248c7b7", null)))
+			to_chat(user, span_notice(LANG("obj.9248c7b720df741f", null)))
 
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/thermoplastic/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	if(secured)
-		to_chat(user, span_warning(LANG("obj.b436b070", null)))
+		to_chat(user, span_warning(LANG("obj.b436b070badd040f", null)))
 		return FALSE
 
 	else
-		user.visible_message(span_notice(LANG("obj.b9f905f9", list(user, tool))),
-		span_notice(LANG("obj.4906368b", list(tool))))
+		user.visible_message(span_notice(LANG("obj.b9f905f941e477ac", list(user, tool))),
+		span_notice(LANG("obj.4906368b5b05a7e3", list(tool))))
 		if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
-			to_chat(user, span_notice(LANG("obj.735aa41b", null)))
+			to_chat(user, span_notice(LANG("obj.735aa41b5878e4e7", null)))
 			var/obj/item/stack/thermoplastic/pulled_tile = new floor_tile()
 			pulled_tile.update_integrity(atom_integrity)
 			user.put_in_hands(pulled_tile)
@@ -277,15 +277,15 @@
 
 /obj/structure/thermoplastic/welder_act(mob/living/user, obj/item/tool)
 	if(atom_integrity >= max_integrity)
-		to_chat(user, span_warning(LANG("obj.7f6370b2", list(src))))
+		to_chat(user, span_warning(LANG("obj.7f6370b2939fd6c1", list(src))))
 		return ITEM_INTERACT_SUCCESS
 	if(!tool.tool_start_check(user, amount = 0, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return FALSE
-	to_chat(user, span_notice(LANG("obj.93449ef4", list(src))))
+	to_chat(user, span_notice(LANG("obj.93449ef42b686baf", list(src))))
 	var/integrity_to_repair = max_integrity - atom_integrity
 	if(tool.use_tool(src, user, integrity_to_repair * 0.5, volume = 50))
 		atom_integrity = max_integrity
-		to_chat(user, span_notice(LANG("obj.e94d13eb", list(src))))
+		to_chat(user, span_notice(LANG("obj.e94d13ebf50e7df1", list(src))))
 		update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -338,4 +338,4 @@
 				damage_value = "mediocre"
 		if(!damage_value)
 			return
-		. += span_notice(LANG("obj.9a8a884d", list(damage_value)))
+		. += span_notice(LANG("obj.9a8a884d8e612595", list(damage_value)))

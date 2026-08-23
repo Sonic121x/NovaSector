@@ -31,29 +31,29 @@
 			pulled_has_spells = TRUE
 
 		if(pulled_has_spells)
-			to_chat(pulled_living, span_notice(LANG("datum.cec8931e", null)))
-			to_chat(cast_on, span_notice(LANG("datum.c87ce25b", list(pulled_living))))
+			to_chat(pulled_living, span_notice(LANG("datum.cec8931e2fecb1c5", null)))
+			to_chat(cast_on, span_notice(LANG("datum.c87ce25b4b067bdb", list(pulled_living))))
 			return
 
-		to_chat(pulled_living, span_notice(LANG("datum.bc542ff0", null)))
+		to_chat(pulled_living, span_notice(LANG("datum.bc542ff032894303", null)))
 
 	// Then charge their main hand item, then charge their offhand item
 	var/obj/item/to_charge = cast_on.get_active_held_item() || cast_on.get_inactive_held_item()
 	if(!to_charge)
-		to_chat(cast_on, span_notice(LANG("datum.a7a61875", null)))
+		to_chat(cast_on, span_notice(LANG("datum.a7a6187565ab9674", null)))
 		return
 
 	var/charge_return = SEND_SIGNAL(to_charge, COMSIG_ITEM_MAGICALLY_CHARGED, src, cast_on)
 
 	if(QDELETED(to_charge))
-		to_chat(cast_on, span_warning(LANG("datum.449950b5", list(src, to_charge))))
+		to_chat(cast_on, span_warning(LANG("datum.449950b534ae5038", list(src, to_charge))))
 		return
 
 	if(charge_return & COMPONENT_ITEM_BURNT_OUT)
-		to_chat(cast_on, span_warning(LANG("datum.a67b2990", list(to_charge, src))))
+		to_chat(cast_on, span_warning(LANG("datum.a67b2990c8f594da", list(to_charge, src))))
 
 	else if(charge_return & COMPONENT_ITEM_CHARGED)
-		to_chat(cast_on, span_notice(LANG("datum.c87ce25b", list(to_charge))))
+		to_chat(cast_on, span_notice(LANG("datum.c87ce25b4b067bdb", list(to_charge))))
 
 	else
-		to_chat(cast_on, span_notice(LANG("datum.bfa1e85c", list(to_charge, src))))
+		to_chat(cast_on, span_notice(LANG("datum.bfa1e85c6ba9bd69", list(to_charge, src))))

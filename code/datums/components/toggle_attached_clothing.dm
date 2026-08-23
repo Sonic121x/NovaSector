@@ -127,10 +127,10 @@
 		return
 	var/mob/living/carbon/human/wearer = parent_gear.loc
 	if (wearer.is_holding(parent_gear))
-		parent_gear.balloon_alert(wearer, LANG("datum.0396a822", null))
+		parent_gear.balloon_alert(wearer, LANG("datum.0396a822e03abf9c", null))
 		return
 	if (wearer.get_item_by_slot(equipped_slot))
-		parent_gear.balloon_alert(wearer, LANG("datum.1f80dacd", null))
+		parent_gear.balloon_alert(wearer, LANG("datum.1f80dacd4fa085a6", null))
 		return
 	if (!deployable && !create_deployable())
 		return

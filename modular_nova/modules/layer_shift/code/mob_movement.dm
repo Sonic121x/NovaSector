@@ -8,32 +8,32 @@
 
 GAME_VERB(/mob/living, shift_layer_up, "上移图层", "IC")
 	if(incapacitated)
-		to_chat(src, span_warning(LANG("mob.93b3c965", null)))
+		to_chat(src, span_warning(LANG("mob.93b3c96537cf2a59", null)))
 		return FALSE
 
 	if(layer >= MOB_LAYER_SHIFT_MAX)
-		to_chat(src, span_warning(LANG("mob.e8f75d26", null)))
+		to_chat(src, span_warning(LANG("mob.e8f75d26e792393c", null)))
 		return FALSE
 
 	layer = min(((layer * MOB_LAYER_MULTIPLIER) + MOB_LAYER_SHIFT_INCREMENT) / MOB_LAYER_MULTIPLIER, MOB_LAYER_SHIFT_MAX)
 	var/layer_priority = round(layer * MOB_LAYER_MULTIPLIER - MOB_LAYER * MOB_LAYER_MULTIPLIER, MOB_LAYER_SHIFT_INCREMENT) // Just for text feedback
-	to_chat(src, span_notice(LANG("mob.f26cc199", list(layer_priority))))
+	to_chat(src, span_notice(LANG("mob.f26cc19984d5e862", list(layer_priority))))
 
 	return TRUE
 
 
 GAME_VERB(/mob/living, shift_layer_down, "下移图层", "IC")
 	if(incapacitated)
-		to_chat(src, span_warning(LANG("mob.93b3c965", null)))
+		to_chat(src, span_warning(LANG("mob.93b3c96537cf2a59", null)))
 		return FALSE
 
 	if(layer <= MOB_LAYER_SHIFT_MIN)
-		to_chat(src, span_warning(LANG("mob.389ab76b", null)))
+		to_chat(src, span_warning(LANG("mob.389ab76b0081a252", null)))
 		return FALSE
 
 	layer = max(((layer * MOB_LAYER_MULTIPLIER) - MOB_LAYER_SHIFT_INCREMENT) / MOB_LAYER_MULTIPLIER, MOB_LAYER_SHIFT_MIN)
 	var/layer_priority = round(layer * MOB_LAYER_MULTIPLIER - MOB_LAYER * MOB_LAYER_MULTIPLIER, MOB_LAYER_SHIFT_INCREMENT) // Just for text feedback
-	to_chat(src, span_notice(LANG("mob.f26cc199", list(layer_priority))))
+	to_chat(src, span_notice(LANG("mob.f26cc19984d5e862", list(layer_priority))))
 
 	return TRUE
 
@@ -47,7 +47,7 @@ GAME_VERB(/mob/living, shift_layer_down, "下移图层", "IC")
 
 /datum/emote/living/shift_layer_up/run_emote(mob/user, params, type_override, intentional)
 	if(!can_run_emote(user))
-		to_chat(user, span_warning(LANG("datum.cad91a79", null)))
+		to_chat(user, span_warning(LANG("datum.cad91a794a648209", null)))
 		return FALSE
 
 	var/mob/living/layer_shifter = user
@@ -64,7 +64,7 @@ GAME_VERB(/mob/living, shift_layer_down, "下移图层", "IC")
 
 /datum/emote/living/shift_layer_down/run_emote(mob/user, params, type_override, intentional)
 	if(!can_run_emote(user))
-		to_chat(user, span_warning(LANG("datum.cad91a79", null)))
+		to_chat(user, span_warning(LANG("datum.cad91a794a648209", null)))
 		return FALSE
 
 	var/mob/living/layer_shifter = user

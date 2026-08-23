@@ -171,11 +171,11 @@
 	var/datum/mind/candidate_mind = candidate.brainmob.mind
 	candidate_mind.transfer_to(src)
 	candidate_mind.grab_ghost()
-	to_chat(src, LANG("mob.447375bd", list(span_boldbig("You are a butter bear!"))))
+	to_chat(src, LANG("mob.447375bd14058500", list(span_boldbig("You are a butter bear!"))))
 	var/default_name = "Terrygold"
-	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, LANG("mob.e36094c4", list(src)), LANG("mob.b4bf4c54", null), default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
+	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, LANG("mob.e36094c4548f3f49", list(src)), LANG("mob.b4bf4c54d223e79b", null), default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
 	if(new_name)
-		to_chat(src, span_notice(LANG("mob.e590eb95", list(new_name))))
+		to_chat(src, span_notice(LANG("mob.e590eb95cb295f60", list(new_name))))
 		name = new_name
 
 /mob/living/basic/bear/butter/UnarmedAttack(atom/target, proximity_flag, list/modifiers) //Makes the butter bear's attacks against vertical targets slip said targets
@@ -187,4 +187,4 @@
 		return
 	victim.Knockdown(20)
 	playsound(loc, 'sound/misc/slip.ogg', 15)
-	victim.visible_message(span_danger(LANG("mob.f2ef0804", list(victim, src))))
+	victim.visible_message(span_danger(LANG("mob.f2ef0804bee16244", list(victim, src))))

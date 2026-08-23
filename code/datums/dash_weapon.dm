@@ -30,7 +30,7 @@
 		return FALSE
 	if (current_charges <= 0)
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.cfa89008", null))
+			owner.balloon_alert(owner, LANG("datum.cfa89008ef0113c3", null))
 		return FALSE
 	return TRUE
 
@@ -49,13 +49,13 @@
 	var/turf/current_turf = get_turf(user)
 	var/turf/target_turf = get_turf(target)
 	if(!(target in view(user.client.view, user)))
-		user.balloon_alert(user, LANG("datum.1af28010", null))
+		user.balloon_alert(user, LANG("datum.1af2801026ce2def", null))
 		return FALSE
 	if(target_turf.is_blocked_turf_ignore_climbable())
-		user.balloon_alert(user, LANG("datum.aacc1be3", null))
+		user.balloon_alert(user, LANG("datum.aacc1be3825ba0d2", null))
 		return FALSE
 	if(!do_teleport(user, target_turf, no_effects = TRUE))
-		user.balloon_alert(user, LANG("datum.2fe9fd19", null))
+		user.balloon_alert(user, LANG("datum.2fe9fd1955463977", null))
 		return FALSE
 
 	// Note: It's possible do_teleport, for whatever reason,
@@ -88,4 +88,4 @@
 	if(!owner)
 		return
 	owner.update_mob_action_buttons()
-	dashing_item.balloon_alert(owner, LANG("datum.74e0b142", list(current_charges, max_charges)))
+	dashing_item.balloon_alert(owner, LANG("datum.74e0b1422f985fa4", list(current_charges, max_charges)))

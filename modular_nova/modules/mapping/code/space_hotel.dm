@@ -29,33 +29,33 @@
 
 /obj/item/permanent_portal_creator/attack_self(mob/user, modifiers)
 	if(!linked_anchor)
-		balloon_alert(user, LANG("obj.59204d3b", null))
+		balloon_alert(user, LANG("obj.59204d3b7513ec6b", null))
 		return
 
 	if(!isweakref(linked_anchor))
-		balloon_alert(user, LANG("obj.68287953", null))
+		balloon_alert(user, LANG("obj.68287953524ee291", null))
 		return
 
 	var/obj/item/permanent_portal_anchor/portal_anchor = linked_anchor.resolve()
 
 	if(!istype(portal_anchor) || !get_turf(portal_anchor))
-		balloon_alert(user, LANG("obj.68287953", null))
+		balloon_alert(user, LANG("obj.68287953524ee291", null))
 		return
 
-	if(tgui_alert(user, LANG("obj.b1598ee9", null), LANG("obj.77344162", null), list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, LANG("obj.b1598ee9afdde8af", null), LANG("obj.773441628de640b4", null), list("Yes", "No")) != "Yes")
 		return
 
-	balloon_alert(user, LANG("obj.8b733ed3", null))
+	balloon_alert(user, LANG("obj.8b733ed3ee432e83", null))
 
 	if(!do_after(user, 5 SECONDS))
-		balloon_alert(user, LANG("obj.c7faa60a", null))
+		balloon_alert(user, LANG("obj.c7faa60a8a84796b", null))
 		return
 
 	var/list/obj/effect/portal/created_portals = create_portal_pair(get_turf(src), get_turf(portal_anchor), _lifespan = NONE)
 	created_portals[1].name = beacon_portal_name
 	created_portals[2].name = anchor_portal_name
 
-	created_portals[1].balloon_alert(user, LANG("obj.74814878", null))
+	created_portals[1].balloon_alert(user, LANG("obj.74814878a528c6e6", null))
 
 	qdel(portal_anchor)
 	qdel(src)
@@ -69,7 +69,7 @@
 
 /obj/item/permanent_portal_creator/space_hotel/examine(mob/user)
 	. = ..()
-	. += LANG("obj.d17d2f62", null)
+	. += LANG("obj.d17d2f6269ec02f7", null)
 
 
 /obj/item/permanent_portal_anchor
@@ -96,17 +96,17 @@
 	if(!ishuman(user))
 		return
 
-	balloon_alert(user, LANG("obj.617d0336", null))
+	balloon_alert(user, LANG("obj.617d0336aeeefc63", null))
 
 	if(!do_after(user, 5 SECONDS))
-		balloon_alert(user, LANG("obj.38267bbe", null))
+		balloon_alert(user, LANG("obj.38267bbe63733817", null))
 		return
 
 	deploy(user)
 
 	playsound(src, 'modular_nova/modules/aesthetics/airlock/sound/bolts_down.ogg', 50, FALSE)
 
-	balloon_alert(user, LANG("obj.867efa5c", null))
+	balloon_alert(user, LANG("obj.867efa5cb751c4d5", null))
 
 
 /// Simple helper proc to deploy the anchor, with mob/user as an optional argument to make them drop it if they're holding it.
@@ -126,13 +126,13 @@
 		return ..()
 
 	if(!anchored)
-		balloon_alert(user, LANG("obj.84ecf325", null))
+		balloon_alert(user, LANG("obj.84ecf3259f57f237", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/permanent_portal_creator/portal_maker = tool
 	portal_maker.linked_anchor = WEAKREF(src)
 
-	balloon_alert(user, LANG("obj.0fdcdc61", null))
+	balloon_alert(user, LANG("obj.0fdcdc618fb93c36", null))
 	return ITEM_INTERACT_SUCCESS
 
 
@@ -166,7 +166,7 @@
 	if(!room_number)
 		return
 
-	. += LANG("obj.3a0a2491", list(room_number))
+	. += LANG("obj.3a0a249126f74c47", list(room_number))
 
 
 /obj/item/key_card/hotel_room/master

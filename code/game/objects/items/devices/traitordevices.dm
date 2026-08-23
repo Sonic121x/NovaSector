@@ -38,7 +38,7 @@ effective or pretty fucking useless.
 	if(!user) return
 
 	if(times_used >= max_uses)
-		to_chat(user, span_danger(LANG("obj.2020c87a", null)))
+		to_chat(user, span_danger(LANG("obj.2020c87ade91e1d1", null)))
 		return
 
 	log_combat(user, null, "knocked down people in the area", src)
@@ -47,13 +47,13 @@ effective or pretty fucking useless.
 		if(prob(50))
 
 			M.Paralyze(rand(200,400))
-			to_chat(M, span_userdanger(LANG("obj.dadc049d", null)))
+			to_chat(M, span_userdanger(LANG("obj.dadc049dd2b70809", null)))
 
 		else
-			to_chat(M, span_userdanger(LANG("obj.cd7689dc", null)))
+			to_chat(M, span_userdanger(LANG("obj.cd7689dc7c9d1993", null)))
 
 	playsound(src.loc, 'sound/misc/interference.ogg', 50, TRUE)
-	to_chat(user, span_notice(LANG("obj.df02bfee", list(src))))
+	to_chat(user, span_notice(LANG("obj.df02bfee0d764b5c", list(src))))
 	times_used += 1
 	if(times_used >= max_uses)
 		icon_state = "battererburnt"
@@ -86,7 +86,7 @@ effective or pretty fucking useless.
 
 	var/mob/living/carbon/human/human_target = interacting_with
 	if(istype(human_target) && !used && SSradiation.wearing_rad_protected_clothing(human_target)) //intentionally not checking for TRAIT_RADIMMUNE here so that tatortot can still fuck up and waste their cooldown.
-		to_chat(user, span_warning(LANG("obj.b74f82a3", list(interacting_with, interacting_with.p_them()))))
+		to_chat(user, span_warning(LANG("obj.b74f82a3200ced46", list(interacting_with, interacting_with.p_them()))))
 		return . | ITEM_INTERACT_BLOCKING
 
 	if(!used)
@@ -96,11 +96,11 @@ effective or pretty fucking useless.
 		icon_state = "health1"
 		addtimer(VARSET_CALLBACK(src, used, FALSE), cooldown)
 		addtimer(VARSET_CALLBACK(src, icon_state, "health"), cooldown)
-		to_chat(user, span_warning(LANG("obj.0fd7d3dd", list(interacting_with))))
+		to_chat(user, span_warning(LANG("obj.0fd7d3dded95fbae", list(interacting_with))))
 		addtimer(CALLBACK(src, PROC_REF(radiation_aftereffect), interacting_with, intensity), (intensity+(wavelength*4))*5)
 		return . | ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_warning(LANG("obj.687320ea", null)))
+	to_chat(user, span_warning(LANG("obj.687320ea9ab32b81", null)))
 	return . | ITEM_INTERACT_BLOCKING
 
 /obj/item/healthanalyzer/rad_laser/proc/radiation_aftereffect(mob/living/M, passed_intensity)
@@ -247,14 +247,14 @@ effective or pretty fucking useless.
 	apply_wibbly_filters(owner)
 	stealth_engaged = TRUE
 	build_all_button_icons(UPDATE_BUTTON_STATUS|UPDATE_BUTTON_BACKGROUND)
-	owner.balloon_alert(owner, LANG("datum.ac71df14", null))
+	owner.balloon_alert(owner, LANG("datum.ac71df145e90d330", null))
 
 /datum/action/item_action/stealth_mode/proc/stealth_off()
 	owner.alpha = initial(owner.alpha)
 	remove_wibbly_filters(owner)
 	stealth_engaged = FALSE
 	build_all_button_icons(UPDATE_BUTTON_STATUS|UPDATE_BUTTON_BACKGROUND)
-	owner.balloon_alert(owner, LANG("datum.86b844a8", null))
+	owner.balloon_alert(owner, LANG("datum.86b844a889092f78", null))
 
 /datum/action/item_action/stealth_mode/proc/get_alpha()
 	return clamp(255 - (255 * charge / max_charge), min_alpha, 255)
@@ -350,11 +350,11 @@ effective or pretty fucking useless.
 /obj/item/jammer/attack_self(mob/user, modifiers)
 	. = ..()
 	if (!COOLDOWN_FINISHED(src, jam_cooldown))
-		user.balloon_alert(user, LANG("obj.d4ae5d4d", null))
+		user.balloon_alert(user, LANG("obj.d4ae5d4dded19efe", null))
 		return
 
-	user.balloon_alert(user, LANG("obj.a8202bbc", null))
-	to_chat(user, span_notice(LANG("obj.ec480649", null)))
+	user.balloon_alert(user, LANG("obj.a8202bbcf03141ae", null))
+	to_chat(user, span_notice(LANG("obj.ec480649b0779668", null)))
 	for (var/atom/potential_owner in view(disruptor_range, user))
 		disable_radios_on(potential_owner, ignore_syndie = TRUE)
 	COOLDOWN_START(src, jam_cooldown, jam_cooldown_duration)
@@ -363,8 +363,8 @@ effective or pretty fucking useless.
 	. = ..()
 	if(.)
 		return
-	to_chat(user, span_notice(LANG("obj.d6171b71", list(active ? "deactivate" : "activate", src))))
-	user.balloon_alert(user, LANG("obj.35a4ed94", list(active ? "deactivated" : "activated")))
+	to_chat(user, span_notice(LANG("obj.d6171b714b8cf981", list(active ? "deactivate" : "activate", src))))
+	user.balloon_alert(user, LANG("obj.35a4ed9461dc7426", list(active ? "deactivated" : "activated")))
 	active = !active
 	if(active)
 		GLOB.active_jammers |= src
@@ -380,11 +380,11 @@ effective or pretty fucking useless.
 		return
 
 	if (!(interacting_with in view(disruptor_range, user)))
-		user.balloon_alert(user, LANG("obj.214c97de", null))
+		user.balloon_alert(user, LANG("obj.214c97debc649ec5", null))
 		return
 
-	interacting_with.balloon_alert(user, LANG("obj.52de2340", null))
-	to_chat(user, span_notice(LANG("obj.a47f3edb", list(interacting_with))))
+	interacting_with.balloon_alert(user, LANG("obj.52de2340218bbe84", null))
+	to_chat(user, span_notice(LANG("obj.a47f3edb577f9fab", list(interacting_with))))
 	disable_radios_on(interacting_with)
 
 	return ITEM_INTERACT_SUCCESS
@@ -430,8 +430,8 @@ effective or pretty fucking useless.
 /obj/machinery/porta_turret/syndicate/toolbox/examine(mob/user)
 	. = ..()
 	if(faction_check_atom(user))
-		. += span_notice(LANG("obj.dbf4dd8e", null))
-		. += span_notice(LANG("obj.93664248", null))
+		. += span_notice(LANG("obj.dbf4dd8e5e185ec2", null))
+		. += span_notice(LANG("obj.93664248334b72c5", null))
 
 /obj/machinery/porta_turret/syndicate/toolbox/target(atom/movable/target)
 	if(!target)
@@ -450,21 +450,21 @@ effective or pretty fucking useless.
 		return ITEM_INTERACT_BLOCKING
 
 	if(user.combat_mode)
-		balloon_alert(user, LANG("obj.44f0e678", null))
+		balloon_alert(user, LANG("obj.44f0e678d88c8044", null))
 		if(!tool.use_tool(src, user, 5 SECONDS, volume = 20))
 			return ITEM_INTERACT_BLOCKING
 
 		deconstruct(TRUE)
 		tool.play_tool_sound(src, 50)
-		balloon_alert(user, LANG("obj.4e90d37e", null))
+		balloon_alert(user, LANG("obj.4e90d37ef8407fea", null))
 		return ITEM_INTERACT_SUCCESS
 
 
 	if(atom_integrity == max_integrity)
-		balloon_alert(user, LANG("obj.88cc0c7c", null))
+		balloon_alert(user, LANG("obj.88cc0c7c9991f538", null))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.b52342a8", null))
+	balloon_alert(user, LANG("obj.b52342a8e93a2ba2", null))
 	. = ITEM_INTERACT_BLOCKING // I'm doing this such that at least one successful repair considers the interaction a success
 	while(atom_integrity != max_integrity)
 		if(!tool.use_tool(src, user, 2 SECONDS, volume = 20))
@@ -473,7 +473,7 @@ effective or pretty fucking useless.
 		repair_damage(10)
 		. = ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, LANG("obj.ac33e326", null))
+	balloon_alert(user, LANG("obj.ac33e326acea2a3f", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/porta_turret/syndicate/toolbox/on_deconstruction(disassembled)
@@ -515,7 +515,7 @@ effective or pretty fucking useless.
 	. = ..()
 	var/det_time = 1 SECONDS + (4 SECONDS * (degrees / 90))
 	if(user)
-		to_chat(user, span_warning(LANG("obj.64527e09", list(capitalize(DisplayTimeText(det_time))))))
+		to_chat(user, span_warning(LANG("obj.64527e090084f33d", list(capitalize(DisplayTimeText(det_time))))))
 		log_bomber(user, "has primed a", src, "(penbang) for detonation")
 	addtimer(CALLBACK(src, PROC_REF(detonate), user), det_time)
 
@@ -603,4 +603,4 @@ effective or pretty fucking useless.
 /obj/item/clothing/shoes/jackboots/dagger/examine_more(mob/user)
 	. = ..()
 	if(user.is_holding(src))
-		. += span_notice(LANG("obj.8fd65dc5", null))
+		. += span_notice(LANG("obj.8fd65dc55b3b2af4", null))

@@ -69,7 +69,7 @@ LINEN BINS
 	if(!user.transfer_item_to_turf(src, get_turf(to_cover)))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.c03ee04d", null))
+	balloon_alert(user, LANG("obj.c03ee04d53cf0165", null))
 	coverup(to_cover)
 	add_fingerprint(user)
 
@@ -88,7 +88,7 @@ LINEN BINS
 	if(!QDELETED(shreds)) // Stacks merged
 		transfer_fingerprints_to(shreds)
 		shreds.add_fingerprint(user)
-	to_chat(user, span_notice(LANG("obj.faf12990", list(src))))
+	to_chat(user, span_notice(LANG("obj.faf12990c83b0410", list(src))))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -112,7 +112,7 @@ LINEN BINS
 	pixel_x = 0
 	pixel_y = 0
 	pixel_z = sleeper.pixel_z // Account for possible mob elevation
-	balloon_alert(sleeper, LANG("obj.c03ee04d", null))
+	balloon_alert(sleeper, LANG("obj.c03ee04d53cf0165", null))
 	var/angle = sleeper.lying_prev
 	dir = angle2dir(angle + 180) // 180 flips it to be the same direction as the mob
 
@@ -129,7 +129,7 @@ LINEN BINS
 	UnregisterSignal(sleeper, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(sleeper, COMSIG_LIVING_SET_BODY_POSITION)
 	UnregisterSignal(sleeper, COMSIG_QDELETING)
-	balloon_alert(sleeper, LANG("obj.84efd056", null))
+	balloon_alert(sleeper, LANG("obj.84efd056ff0f14e6", null))
 	layer = initial(layer)
 	SET_PLANE_IMPLICIT(src, initial(plane))
 	pixel_z = 0
@@ -603,11 +603,11 @@ LINEN BINS
 /obj/structure/bedsheetbin/examine(mob/user)
 	. = ..()
 	if(amount < 1)
-		. += LANG("obj.b2bea8f1", null)
+		. += LANG("obj.b2bea8f1df2056ff", null)
 	else if(amount == 1)
-		. += LANG("obj.fb1d78cc", null)
+		. += LANG("obj.fb1d78ccceaed324", null)
 	else
-		. += LANG("obj.34dbdfc7", list(amount))
+		. += LANG("obj.34dbdfc787efac4b", list(amount))
 
 /obj/structure/bedsheetbin/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(isnull(held_item))
@@ -650,10 +650,10 @@ LINEN BINS
 
 /obj/structure/bedsheetbin/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	if(amount)
-		to_chat(user, span_warning(LANG("obj.e7ed024d", list(src))))
+		to_chat(user, span_warning(LANG("obj.e7ed024dfd031d67", list(src))))
 		return ITEM_INTERACT_SUCCESS
 	if(tool.use_tool(src, user, 0.5 SECONDS, volume=50))
-		to_chat(user, span_notice(LANG("obj.0f0ff1f5", list(src))))
+		to_chat(user, span_notice(LANG("obj.0f0ff1f56a7b5b9e", list(src))))
 		new /obj/item/stack/rods(loc, 2)
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
@@ -675,7 +675,7 @@ LINEN BINS
 		return ITEM_INTERACT_BLOCKING
 	sheets.Add(tool)
 	amount++
-	to_chat(user, span_notice(LANG("obj.de7df645", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.de7df6459b40f465", list(tool, src))))
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -683,19 +683,19 @@ LINEN BINS
 	if(user.combat_mode)
 		return NONE
 	if(tool.w_class >= WEIGHT_CLASS_BULKY)
-		balloon_alert(user, LANG("obj.a5e64cbb", null))
+		balloon_alert(user, LANG("obj.a5e64cbb628dd24c", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!amount)
-		balloon_alert(user, LANG("obj.43ea5218", null))
+		balloon_alert(user, LANG("obj.43ea5218aab27b2a", null))
 		return ITEM_INTERACT_BLOCKING
 	if(hidden)
-		balloon_alert(user, LANG("obj.02635528", null))
+		balloon_alert(user, LANG("obj.02635528f9189ac3", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src, silent = FALSE))
-		to_chat(user, span_warning(LANG("obj.c61e998e", list(tool))))
+		to_chat(user, span_warning(LANG("obj.c61e998eaaa1419e", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 	hidden = tool
-	to_chat(user, span_notice(LANG("obj.98e101de", list(tool))))
+	to_chat(user, span_notice(LANG("obj.98e101dea5a24720", list(tool))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/bedsheetbin/attack_paw(mob/user, list/modifiers)
@@ -722,12 +722,12 @@ LINEN BINS
 
 		B.forceMove(drop_location())
 		user.put_in_hands(B)
-		to_chat(user, span_notice(LANG("obj.604c7b94", list(B, src))))
+		to_chat(user, span_notice(LANG("obj.604c7b94ff4abde3", list(B, src))))
 		update_appearance()
 
 		if(hidden)
 			hidden.forceMove(drop_location())
-			to_chat(user, span_notice(LANG("obj.64fbe43f", list(hidden, B))))
+			to_chat(user, span_notice(LANG("obj.64fbe43f3fb1a8f8", list(hidden, B))))
 			hidden = null
 
 	add_fingerprint(user)
@@ -746,7 +746,7 @@ LINEN BINS
 			B = new /obj/item/bedsheet(loc)
 
 		B.forceMove(drop_location())
-		to_chat(user, span_notice(LANG("obj.2e70f313", list(B, src))))
+		to_chat(user, span_notice(LANG("obj.2e70f3132b99713e", list(B, src))))
 		update_appearance()
 
 		if(hidden)

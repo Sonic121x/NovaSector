@@ -75,9 +75,9 @@
 /obj/item/gun/ballistic/shotgun/riot/sol/super/proc/on_booster_toggle(datum/component/source, mob/user, amped)
 	SIGNAL_HANDLER
 	if(amped)
-		balloon_alert(user, LANG("obj.d56f82b1", null))
+		balloon_alert(user, LANG("obj.d56f82b15d580e90", null))
 	else
-		balloon_alert(user, LANG("obj.cd6b5dda", null))
+		balloon_alert(user, LANG("obj.cd6b5dda56bbff76", null))
 
 // todo send COMSIG_GUN_RACK and COMSIG_GUN_BEFORE_FIRING signals to upstream if they'll take it
 /obj/item/gun/ballistic/shotgun/riot/sol/super/rack(mob/user)
@@ -267,12 +267,12 @@
 		fire_sound = amped_fire_sound
 		recoil = amped_recoil
 		pb_knockback = 5 // i hope you're throwing them into a wall
-		balloon_alert(user, LANG("obj.0b6f5ed6", null))
+		balloon_alert(user, LANG("obj.0b6f5ed6bcb9c982", null))
 	else
 		fire_sound = base_fire_sound
 		recoil = base_recoil
 		pb_knockback = initial(pb_knockback)
-		balloon_alert(user, LANG("obj.494e2e91", null))
+		balloon_alert(user, LANG("obj.494e2e9126dc3a1e", null))
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/super/unload_ammo(mob/living/user, forced)
 	. = ..()

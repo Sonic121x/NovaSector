@@ -314,7 +314,7 @@
 /datum/action/cooldown/mob_cooldown/projectile_attack/kinetic_accelerator/Activate(atom/target_atom)
 	. = ..()
 	playsound(owner, projectile_sound, 200, TRUE, 2)
-	owner.visible_message(span_danger(LANG("datum.4915091d", list(owner))))
+	owner.visible_message(span_danger(LANG("datum.4915091dd2d63501", list(owner))))
 	owner.face_atom(target_atom)
 	new /obj/effect/temp_visual/dir_setting/firing_effect(owner.loc, owner.dir)
 
@@ -332,7 +332,7 @@
 	var/mob/living/simple_animal/hostile/megafauna/colossus/colossus
 	if(istype(firer, /mob/living/simple_animal/hostile/megafauna/colossus))
 		colossus = firer
-		colossus.say(LANG("datum.042ea83a", null), spans = list(SPAN_COLOSSUS, SPAN_YELL))
+		colossus.say(LANG("datum.042ea83ac923f072", null), spans = list(SPAN_COLOSSUS, SPAN_YELL))
 
 	SLEEP_CHECK_DEATH(1.5 SECONDS, firer) //gives dumbasses in melee range a slim chance to retreat
 	var/finale_counter = 10

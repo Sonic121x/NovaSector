@@ -50,11 +50,11 @@
 /obj/structure/disposalpipe/sorting/mail/examine(mob/user)
 	. = ..()
 	if(sortTypes.len)
-		. += LANG("obj.831ec6a5", null)
+		. += LANG("obj.831ec6a50e7c4b42", null)
 		for(var/t in sortTypes)
-			. += LANG("obj.5aa6f726", list(GLOB.TAGGERLOCATIONS[t]))
+			. += LANG("obj.5aa6f7262776c454", list(GLOB.TAGGERLOCATIONS[t]))
 	else
-		. += LANG("obj.66467605", null)
+		. += LANG("obj.66467605d593365d", null)
 
 /obj/structure/disposalpipe/sorting/mail/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/dest_tagger))
@@ -65,10 +65,10 @@
 		return ITEM_INTERACT_BLOCKING
 	if(relevant_tag in sortTypes)
 		sortTypes -= relevant_tag
-		to_chat(user, span_notice(LANG("obj.7e803923", list(GLOB.TAGGERLOCATIONS[relevant_tag]))))
+		to_chat(user, span_notice(LANG("obj.7e803923f8872d15", list(GLOB.TAGGERLOCATIONS[relevant_tag]))))
 	else
 		sortTypes |= relevant_tag
-		to_chat(user, span_notice(LANG("obj.211382a4", list(GLOB.TAGGERLOCATIONS[relevant_tag]))))
+		to_chat(user, span_notice(LANG("obj.211382a4c49b8f36", list(GLOB.TAGGERLOCATIONS[relevant_tag]))))
 	playsound(src, 'sound/machines/beep/twobeep_high.ogg', 100, TRUE)
 	return ITEM_INTERACT_SUCCESS
 

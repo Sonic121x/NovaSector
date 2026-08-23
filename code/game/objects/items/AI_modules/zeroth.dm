@@ -10,7 +10,7 @@
 
 /obj/item/ai_module/law/zeroth/onehuman/configure(mob/user)
 	. = TRUE
-	var/targName = tgui_input_text(user, LANG("obj.61abbc7b", null), LANG("obj.f455cda7", null), user.real_name, max_length = MAX_NAME_LEN)
+	var/targName = tgui_input_text(user, LANG("obj.61abbc7bab62fddb", null), LANG("obj.f455cda7e9f1ecd2", null), user.real_name, max_length = MAX_NAME_LEN)
 	if(!targName || !user.is_holding(src))
 		return
 	targetName = targName
@@ -18,6 +18,6 @@
 
 /obj/item/ai_module/law/zeroth/onehuman/can_install_to_rack(mob/living/user, obj/machinery/ai_law_rack/rack)
 	if(!targetName)
-		to_chat(user, span_warning(LANG("obj.f7e900f2", null)))
+		to_chat(user, span_warning(LANG("obj.f7e900f28693249c", null)))
 		return FALSE
 	return TRUE

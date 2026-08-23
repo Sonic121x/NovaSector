@@ -168,38 +168,38 @@
 	if(I.tool_behaviour != TOOL_MINING)
 		return
 	. = TRUE
-	to_chat(user, span_notice(LANG("obj.055eb252", list(src))))
+	to_chat(user, span_notice(LANG("obj.055eb2526d843345", list(src))))
 	if(I.use_tool(src, user, 40, volume=50))
-		to_chat(user, span_notice(LANG("obj.6f82cfd5", null)))
+		to_chat(user, span_notice(LANG("obj.6f82cfd5a600dfaa", null)))
 		deconstruct(TRUE)
 
 /obj/structure/mineral_door/welder_act(mob/living/user, obj/item/I) //override if the door is supposed to be flammable.
 	..()
 	. = TRUE
 	if(anchored)
-		to_chat(user, span_warning(LANG("obj.4995b95a", list(src))))
+		to_chat(user, span_warning(LANG("obj.4995b95ad0a34103", list(src))))
 		return
 
-	user.visible_message(span_notice(LANG("obj.e556cda6", list(user, src))), span_notice(LANG("obj.6684844f", list(src))))
+	user.visible_message(span_notice(LANG("obj.e556cda6299e5e72", list(user, src))), span_notice(LANG("obj.6684844f2fb4baed", list(src))))
 	if(!I.use_tool(src, user, 60, 5, 50))
-		to_chat(user, span_warning(LANG("obj.1fa7b46f", list(src))))
+		to_chat(user, span_warning(LANG("obj.1fa7b46fe04a65a3", list(src))))
 		return
 
-	user.visible_message(span_notice(LANG("obj.8dea59c5", list(user, src))), span_notice(LANG("obj.34e337a3", list(src))))
+	user.visible_message(span_notice(LANG("obj.8dea59c5a9711842", list(user, src))), span_notice(LANG("obj.34e337a3219307fe", list(src))))
 	deconstruct(TRUE)
 
 /obj/structure/mineral_door/proc/crowbar_door(mob/living/user, obj/item/I) //if the door is flammable, call this in crowbar_act() so we can still decon it
 	. = TRUE
 	if(anchored)
-		to_chat(user, span_warning(LANG("obj.4995b95a", list(src))))
+		to_chat(user, span_warning(LANG("obj.4995b95ad0a34103", list(src))))
 		return
 
-	user.visible_message(span_notice(LANG("obj.c667552f", list(user, src))), span_notice(LANG("obj.417bb56c", list(src))))
+	user.visible_message(span_notice(LANG("obj.c667552f9203e0e6", list(user, src))), span_notice(LANG("obj.417bb56c255f2bbe", list(src))))
 	if(!I.use_tool(src, user, 60, volume = 50))
-		to_chat(user, span_warning(LANG("obj.66cf3cf8", list(src))))
+		to_chat(user, span_warning(LANG("obj.66cf3cf8b3ed7430", list(src))))
 		return
 
-	user.visible_message(span_notice(LANG("obj.7d06d691", list(user, src))), span_notice(LANG("obj.77bee8b6", list(src))))
+	user.visible_message(span_notice(LANG("obj.7d06d6911b1feefd", list(user, src))), span_notice(LANG("obj.77bee8b6b2232703", list(src))))
 	deconstruct(TRUE)
 
 
@@ -308,7 +308,7 @@
 /obj/structure/mineral_door/paperframe/examine(mob/user)
 	. = ..()
 	if(atom_integrity < max_integrity)
-		. += span_info(LANG("obj.1f86b375", null))
+		. += span_info(LANG("obj.1f86b3755063c622", null))
 
 /obj/structure/mineral_door/paperframe/pickaxe_door(mob/living/user, obj/item/I)
 	return
@@ -325,12 +325,12 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(!user.combat_mode && istype(tool, /obj/item/paper) && (atom_integrity < max_integrity))
-		user.visible_message(span_notice(LANG("obj.9be150e7", list(user, src))), span_notice(LANG("obj.595c0a7f", list(src))))
+		user.visible_message(span_notice(LANG("obj.9be150e750a75dd6", list(user, src))), span_notice(LANG("obj.595c0a7f520ca587", list(src))))
 		if(!do_after(user, 2 SECONDS, src))
 			return ITEM_INTERACT_BLOCKING
 		atom_integrity = min(atom_integrity+4,max_integrity)
 		qdel(tool)
-		user.visible_message(span_notice(LANG("obj.ed169c7c", list(user, src))), span_notice(LANG("obj.928c5eb0", list(src))))
+		user.visible_message(span_notice(LANG("obj.ed169c7c3ec91830", list(user, src))), span_notice(LANG("obj.928c5eb0f4789968", list(src))))
 		return ITEM_INTERACT_SUCCESS
 
 	return ..()

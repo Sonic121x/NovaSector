@@ -125,8 +125,8 @@
 
 	var/obj/item/bodypart/bodyparent = parent
 	source.visible_message(
-		span_warning(LANG("datum.323c5101", list(source, source.p_their(), bodyparent.name))),
-		span_warning(LANG("datum.6926d0f2", list(source.p_their(), bodyparent.name))),
+		span_warning(LANG("datum.323c51013a62bc87", list(source, source.p_their(), bodyparent.name))),
+		span_warning(LANG("datum.6926d0f20637bedd", list(source.p_their(), bodyparent.name))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	bodyparent.dismember(silent = TRUE) // which removes the limb, which qdels us (which nulls all the references and signals)

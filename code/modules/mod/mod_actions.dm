@@ -34,7 +34,7 @@
 /datum/action/item_action/mod/do_effect(trigger_flags)
 	var/obj/item/mod/control/mod = target
 	if(mod.malfunctioning && prob(MOD_MALFUNCTION_PROB))
-		mod.balloon_alert(usr, LANG("datum.a820219e", null))
+		mod.balloon_alert(usr, LANG("datum.a820219e011d9757", null))
 		return FALSE
 	return TRUE
 
@@ -158,7 +158,7 @@
 		// clears check hands and check conscious
 		check_flags = NONE
 	name = "Activate [capitalize(linked_module.name)]"
-	desc = LANG("datum.577f2905", list(linked_module))
+	desc = LANG("datum.577f2905a3351bec", list(linked_module))
 	RegisterSignals(linked_module, list(
 		COMSIG_MODULE_ACTIVATED,
 		COMSIG_MODULE_DEACTIVATED,

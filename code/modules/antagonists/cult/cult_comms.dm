@@ -28,7 +28,7 @@
 	return ..()
 
 /datum/action/innate/cult/comm/Activate()
-	var/input = tgui_input_text(usr, LANG("datum.40c487df", null), LANG("datum.c9d49206", null), max_length = MAX_MESSAGE_LEN)
+	var/input = tgui_input_text(usr, LANG("datum.40c487df16b5ca2d", null), LANG("datum.c9d492067f660d10", null), max_length = MAX_MESSAGE_LEN)
 	if(!input || !IsAvailable(feedback = TRUE))
 		return
 
@@ -39,7 +39,7 @@
 
 	var/list/soft_filter_result = CAN_BYPASS_FILTER(usr) ? null : is_soft_ic_filtered(input)
 	if(soft_filter_result)
-		if(tgui_alert(usr,LANG("datum.6308a68e", list(soft_filter_result[CHAT_FILTER_INDEX_WORD], soft_filter_result[CHAT_FILTER_INDEX_REASON])), LANG("datum.b0fe106c", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr,LANG("datum.6308a68e8adba21f", list(soft_filter_result[CHAT_FILTER_INDEX_WORD], soft_filter_result[CHAT_FILTER_INDEX_REASON])), LANG("datum.b0fe106c90796ca4", null), list("Yes", "No")) != "Yes")
 			return
 		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[html_encode(input)]\"")
 		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[input]\"")
@@ -121,34 +121,34 @@
 
 		choices[team_member.current.real_name] = team_member
 
-	var/new_master = tgui_input_list(owner, LANG("datum.85dd128f", null), LANG("datum.53cc29d3", null), choices)
+	var/new_master = tgui_input_list(owner, LANG("datum.85dd128fd3ac6069", null), LANG("datum.53cc29d37e620737", null), choices)
 	if (!new_master || !IsAvailable())
 		return
 
-	var/confirmation = tgui_alert(owner, LANG("datum.ff35a8e2", list(new_master)), LANG("datum.53cc29d3", null), list("Yes", "No"))
+	var/confirmation = tgui_alert(owner, LANG("datum.ff35a8e28d570615", list(new_master)), LANG("datum.53cc29d37e620737", null), list("Yes", "No"))
 	if (confirmation != "Yes" || !IsAvailable())
 		return
 
 	var/datum/mind/master_mind = choices[new_master]
 	var/mob/living/carbon/human/master = master_mind.current
 	if (!master || master.stat == DEAD || !master.client)
-		to_chat(owner, span_cult(LANG("datum.05a9d0fa", list(new_master))))
+		to_chat(owner, span_cult(LANG("datum.05a9d0faddffce07", list(new_master))))
 		return
 
 	var/datum/antagonist/cult/target_datum = master_mind.has_antag_datum(/datum/antagonist/cult)
 	if(!target_datum || owner_datum.cult_team != target_datum?.cult_team)
-		to_chat(owner, span_cult(LANG("datum.05a9d0fa", list(new_master))))
+		to_chat(owner, span_cult(LANG("datum.05a9d0faddffce07", list(new_master))))
 		return
 
 	SEND_SOUND(master, sound('sound/effects/magic.ogg', volume = 33))
-	confirmation = tgui_alert(master, LANG("datum.c3eca223", list(owner.real_name)), LANG("datum.96db51f3", null), list("Yes", "No"))
+	confirmation = tgui_alert(master, LANG("datum.c3eca2238fe4cfb5", list(owner.real_name)), LANG("datum.96db51f3eb941f42", null), list("Yes", "No"))
 
 	if (confirmation != "Yes")
-		to_chat(owner, span_cult(LANG("datum.728c2578", list(new_master))))
+		to_chat(owner, span_cult(LANG("datum.728c2578e153f5e5", list(new_master))))
 		return
 
 	if (!IsAvailable() || !master_mind.has_antag_datum(/datum/antagonist/cult) || !master.client)
-		to_chat(owner, span_cult(LANG("datum.05a9d0fa", list(new_master))))
+		to_chat(owner, span_cult(LANG("datum.05a9d0faddffce07", list(new_master))))
 		return
 
 	target_datum.cult_team.leader_passed_on = TRUE
@@ -167,7 +167,7 @@
 	var/place = get_area(owner)
 	var/datum/objective/eldergod/summon_objective = locate() in antag.cult_team.objectives
 	if(place in summon_objective.summon_spots)//cant do final reckoning in the summon area to prevent abuse, you'll need to get everyone to stand on the circle!
-		to_chat(owner, span_cult_large(LANG("datum.8512f461", null)))
+		to_chat(owner, span_cult_large(LANG("datum.8512f461fab58d44", null)))
 		return
 	for(var/i in 1 to 4)
 		chant(i)
@@ -176,7 +176,7 @@
 			if(!T.is_blocked_turf(TRUE))
 				destinations += T
 		if(!LAZYLEN(destinations))
-			to_chat(owner, span_warning(LANG("datum.1d68c4f9", null)))
+			to_chat(owner, span_warning(LANG("datum.1d68c4f9f0090c49", null)))
 			return
 		if(do_after(owner, 3 SECONDS, target = owner))
 			for(var/datum/mind/B in antag.cult_team.members)
@@ -214,15 +214,15 @@
 /datum/action/innate/cult/master/finalreck/proc/chant(chant_number)
 	switch(chant_number)
 		if(1)
-			owner.say(LANG("datum.581134ab", null), language = /datum/language/common, forced = "cult invocation")
+			owner.say(LANG("datum.581134ab539c2002", null), language = /datum/language/common, forced = "cult invocation")
 		if(2)
-			owner.say(LANG("datum.6383c927", null), language = /datum/language/common, forced = "cult invocation")
+			owner.say(LANG("datum.6383c92741a1b4ed", null), language = /datum/language/common, forced = "cult invocation")
 			playsound(get_turf(owner),'sound/effects/magic/clockwork/narsie_attack.ogg', 50, TRUE)
 		if(3)
-			owner.say(LANG("datum.312c3ee1", null), language = /datum/language/common, forced = "cult invocation")
+			owner.say(LANG("datum.312c3ee17b3c006d", null), language = /datum/language/common, forced = "cult invocation")
 			playsound(get_turf(owner),'sound/effects/magic/clockwork/narsie_attack.ogg', 75, TRUE)
 		if(4)
-			owner.say(LANG("datum.cc942f1a", null), language = /datum/language/common, forced = "cult invocation")
+			owner.say(LANG("datum.cc942f1a0baac58c", null), language = /datum/language/common, forced = "cult invocation")
 			playsound(get_turf(owner),'sound/effects/magic/clockwork/narsie_attack.ogg', 100, TRUE)
 
 /datum/action/innate/cult/master/cultmark
@@ -262,7 +262,7 @@
 		CRASH("[type] was casted by a cultist without a cult team datum.")
 
 	if(cult_team.blood_target)
-		to_chat(clicker, span_cult(LANG("datum.126deab0", null)))
+		to_chat(clicker, span_cult(LANG("datum.126deab019d8b0e2", null)))
 		return FALSE
 
 	if(cult_team.set_blood_target(clicked_on, clicker, cult_mark_duration))
@@ -302,14 +302,14 @@
 	if(cult_team.blood_target)
 		if(!COOLDOWN_FINISHED(src, cult_mark_cooldown))
 			cult_team.unset_blood_target_and_timer()
-			to_chat(owner, span_cult_bold(LANG("datum.b556b8fa", null)))
+			to_chat(owner, span_cult_bold(LANG("datum.b556b8fa1e59fd91", null)))
 			return TRUE
 
-		to_chat(owner, span_cult_bold(LANG("datum.126deab0", null)))
+		to_chat(owner, span_cult_bold(LANG("datum.126deab019d8b0e2", null)))
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, cult_mark_cooldown))
-		to_chat(owner, span_cult_bold(LANG("datum.4b6a3fbc", null)))
+		to_chat(owner, span_cult_bold(LANG("datum.4b6a3fbca215550a", null)))
 		return FALSE
 
 	var/atom/mark_target = owner.orbiting?.parent || get_turf(owner)
@@ -317,13 +317,13 @@
 		return FALSE
 
 	if(cult_team.set_blood_target(mark_target, owner, 60 SECONDS))
-		to_chat(owner, span_cult_bold(LANG("datum.8415a914", list(mark_target, DisplayTimeText(cult_mark_duration)))))
+		to_chat(owner, span_cult_bold(LANG("datum.8415a914656200ce", list(mark_target, DisplayTimeText(cult_mark_duration)))))
 		COOLDOWN_START(src, cult_mark_cooldown, cult_mark_cooldown_duration)
 		build_all_button_icons(UPDATE_BUTTON_NAME|UPDATE_BUTTON_ICON)
 		addtimer(CALLBACK(src, PROC_REF(reset_button)), cult_mark_cooldown_duration + 1)
 		return TRUE
 
-	to_chat(owner, span_cult(LANG("datum.cca794d6", null)))
+	to_chat(owner, span_cult(LANG("datum.cca794d604e600c8", null)))
 	return FALSE
 
 /datum/action/innate/cult/ghostmark/update_button_name(atom/movable/screen/movable/action_button/current_button, force = FALSE)
@@ -332,7 +332,7 @@
 		desc = initial(desc)
 	else
 		name = "Clear the Blood Mark"
-		desc = LANG("datum.cbe05017", null)
+		desc = LANG("datum.cbe0501787b5647d", null)
 
 	return ..()
 
@@ -349,7 +349,7 @@
 		return
 
 	SEND_SOUND(owner, 'sound/effects/magic/enter_blood.ogg')
-	to_chat(owner, span_cult_bold(LANG("datum.1ffd5c83", null)))
+	to_chat(owner, span_cult_bold(LANG("datum.1ffd5c8344564a41", null)))
 	build_all_button_icons(UPDATE_BUTTON_NAME|UPDATE_BUTTON_ICON)
 
 //////// ELDRITCH PULSE /////////
@@ -388,14 +388,14 @@
 /datum/action/innate/cult/master/pulse/do_ability(mob/living/clicker, atom/clicked_on)
 	var/atom/throwee = throwee_ref?.resolve()
 	if(throwee && QDELING(throwee))
-		to_chat(clicker, span_cult(LANG("datum.9673bb7a", null)))
+		to_chat(clicker, span_cult(LANG("datum.9673bb7ae7cd18d2", null)))
 		throwee = null
 		throwee_ref = null
 		return FALSE
 
 	if(throwee)
 		if(get_dist(throwee, clicked_on) >= 16)
-			to_chat(clicker, span_cult(LANG("datum.1bf44974", list(clicked_on.p_them()))))
+			to_chat(clicker, span_cult(LANG("datum.1bf44974bfee6ec3", list(clicked_on.p_them()))))
 			return FALSE
 
 		var/turf/throwee_turf = get_turf(throwee)
@@ -403,27 +403,27 @@
 		playsound(throwee_turf, 'sound/effects/magic/exit_blood.ogg', 50)
 		new /obj/effect/temp_visual/cult/sparks(throwee_turf, clicker.dir)
 		throwee.visible_message(
-			span_warning(LANG("datum.0a5b7bb2", list(throwee))),
-			span_cult(LANG("datum.ac5b2b93", null)),
+			span_warning(LANG("datum.0a5b7bb28de33397", list(throwee))),
+			span_cult(LANG("datum.ac5b2b93ec54fee5", null)),
 		)
 
 		if(!do_teleport(throwee, clicked_on, channel = TELEPORT_CHANNEL_CULT))
-			to_chat(clicker, span_cult(LANG("datum.8247d14a", null)))
+			to_chat(clicker, span_cult(LANG("datum.8247d14a560969ba", null)))
 			throwee.visible_message(
-				span_warning(LANG("datum.5cb004cc", null)),
-				span_cult(LANG("datum.42da56c8", null)),
+				span_warning(LANG("datum.5cb004cc74e66aaa", null)),
+				span_cult(LANG("datum.42da56c88758c9d6", null)),
 			)
 			return FALSE
 
 		throwee_turf.Beam(clicked_on, icon_state = "sendbeam", time = 0.4 SECONDS)
 		new /obj/effect/temp_visual/cult/sparks(get_turf(clicked_on), clicker.dir)
 		throwee.visible_message(
-			span_warning(LANG("datum.15881f47", list(throwee))),
-			span_cult(LANG("datum.c5d70604", null)),
+			span_warning(LANG("datum.15881f47e3d000b4", list(throwee))),
+			span_cult(LANG("datum.c5d706047a160a15", null)),
 		)
 
 		COOLDOWN_START(src, pulse_cooldown, pulse_cooldown_duration)
-		to_chat(clicker, span_cult(LANG("datum.e1c25f23", list(throwee))))
+		to_chat(clicker, span_cult(LANG("datum.e1c25f23973232d8", list(throwee))))
 		clicker.click_intercept = null
 		throwee_ref = null
 		build_all_button_icons()
@@ -436,12 +436,12 @@
 		if(!IS_CULTIST(living_clicked))
 			return FALSE
 		SEND_SOUND(clicker, sound('sound/items/weapons/thudswoosh.ogg'))
-		to_chat(clicker, span_cult_bold(LANG("datum.f38d0791", list(clicked_on, clicked_on.p_them()))))
+		to_chat(clicker, span_cult_bold(LANG("datum.f38d0791db9c1f0d", list(clicked_on, clicked_on.p_them()))))
 		throwee_ref = WEAKREF(clicked_on)
 		return TRUE
 
 	if(istype(clicked_on, /obj/structure/destructible/cult))
-		to_chat(clicker, span_cult_bold(LANG("datum.28b82cd2", list(clicked_on))))
+		to_chat(clicker, span_cult_bold(LANG("datum.28b82cd2cb00a77e", list(clicked_on))))
 		throwee_ref = WEAKREF(clicked_on)
 		return TRUE
 	return FALSE

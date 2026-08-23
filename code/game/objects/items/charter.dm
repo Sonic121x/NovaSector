@@ -27,19 +27,19 @@
 
 /obj/item/station_charter/attack_self(mob/living/user)
 	if(used)
-		to_chat(user, span_warning(LANG("obj.bcec3a87", list(name_type))))
+		to_chat(user, span_warning(LANG("obj.bcec3a875f3f0303", list(name_type))))
 		return
 	if(!ignores_timeout && (world.time-SSticker.round_start_time > STATION_RENAME_TIME_LIMIT)) //5 minutes
-		to_chat(user, span_warning(LANG("obj.8a911e3f", list(name_type))))
+		to_chat(user, span_warning(LANG("obj.8a911e3fac3414e1", list(name_type))))
 		return
 	if(response_timer_id)
-		to_chat(user, span_warning(LANG("obj.fce0590b", null)))
+		to_chat(user, span_warning(LANG("obj.fce0590bf59dee5c", null)))
 		return
 
-	var/new_name = tgui_input_text(user, LANG("obj.69884448", list(station_name())), LANG("obj.5cf4ddeb", null), max_length = MAX_CHARTER_LEN)
+	var/new_name = tgui_input_text(user, LANG("obj.698844488711cb11", list(station_name())), LANG("obj.5cf4ddebecbe3cde", null), max_length = MAX_CHARTER_LEN)
 
 	if(response_timer_id)
-		to_chat(user, span_warning(LANG("obj.fce0590b", null)))
+		to_chat(user, span_warning(LANG("obj.fce0590bf59dee5c", null)))
 		return
 
 	if(!new_name)
@@ -48,15 +48,15 @@
 		[new_name]", LOG_GAME)
 
 	if(standard_station_regex.Find(new_name))
-		to_chat(user, span_notice(LANG("obj.bfdb4f71", null)))
+		to_chat(user, span_notice(LANG("obj.bfdb4f7184b38b62", null)))
 		rename_station(new_name, user.name, user.real_name, key_name(user))
 		return
 
-	to_chat(user, span_notice(LANG("obj.b25fd49c", null)))
+	to_chat(user, span_notice(LANG("obj.b25fd49cc25b039b", null)))
 	// Autoapproves after a certain time
 	response_timer_id = addtimer(CALLBACK(src, PROC_REF(rename_station), new_name, user.name, user.real_name, key_name(user)), approval_time, TIMER_STOPPABLE)
 	to_chat(GLOB.admins,
-		span_adminnotice(LANG("obj.15e69930", list(ADMIN_LOOKUPFLW(user), name_type, new_name, DisplayTimeText(approval_time), ADMIN_SMITE(user), HrefToken(forceGlobal = TRUE), REF(src), ADMIN_CENTCOM_REPLY(user)))),
+		span_adminnotice(LANG("obj.15e6993076b61f37", list(ADMIN_LOOKUPFLW(user), name_type, new_name, DisplayTimeText(approval_time), ADMIN_SMITE(user), HrefToken(forceGlobal = TRUE), REF(src), ADMIN_CENTCOM_REPLY(user)))),
 		type = MESSAGE_TYPE_PRAYER)
 	for(var/client/admin_client in GLOB.admins)
 		if(admin_client.prefs.toggles & SOUND_ADMINHELP)
@@ -69,7 +69,7 @@
 	if(!response_timer_id)
 		return
 	var/turf/T = get_turf(src)
-	T.visible_message(span_warning(LANG("obj.dd664e95", list(src))))
+	T.visible_message(span_warning(LANG("obj.dd664e95d4dc4ca9", list(src))))
 	var/m = "[key_name(user)] has rejected the proposed station name."
 
 	message_admins(m)
@@ -80,11 +80,11 @@
 
 /obj/item/station_charter/proc/rename_station(designation, uname, ureal_name, ukey)
 	set_station_name(designation)
-	minor_announce(LANG("obj.c187b5ee", list(ureal_name, html_decode(station_name()))), "Captain's Charter") //decode station_name to avoid minor_announce double encode
+	minor_announce(LANG("obj.c187b5eee2c52a48", list(ureal_name, html_decode(station_name()))), "Captain's Charter") //decode station_name to avoid minor_announce double encode
 	log_game("[ukey] has renamed the station as [station_name()].")
 
 	name = "station charter for [station_name()]"
-	desc = LANG("obj.518d60ac", list(station_name(), uname))
+	desc = LANG("obj.518d60ac966c526b", list(station_name(), uname))
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
 	if(!unlimited_uses)
 		used = TRUE
@@ -108,10 +108,10 @@
 
 /obj/item/station_charter/banner/rename_station(designation, uname, ureal_name, ukey)
 	set_station_name(designation)
-	minor_announce(LANG("obj.5802b2ea", list(ureal_name, name_type, html_decode(station_name()))), "Captain's Banner") //decode station_name to avoid minor_announce double encode
+	minor_announce(LANG("obj.5802b2ea544d19b9", list(ureal_name, name_type, html_decode(station_name()))), "Captain's Banner") //decode station_name to avoid minor_announce double encode
 	log_game("[ukey] has renamed the [name_type] as [station_name()].")
 	name = "banner of [station_name()]"
-	desc = LANG("obj.319f1819", list(station_name(), uname))
+	desc = LANG("obj.319f1819bf0e826f", list(station_name(), uname))
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
 	if(!unlimited_uses)
 		used = TRUE

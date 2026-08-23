@@ -63,7 +63,7 @@
 	SIGNAL_HANDLER
 
 	if(!burnt && human.bodytemperature >= 800 && human.fire_stacks > 0) //do not go into the extremely hot light. you will not survive
-		to_chat(human, span_danger(LANG("obj.fcaa29ef", null)))
+		to_chat(human, span_danger(LANG("obj.fcaa29ef15a6a5ca", null)))
 		human.add_mood_event("burnt_wings", /datum/mood_event/burnt_wings)
 
 		burn_wings()

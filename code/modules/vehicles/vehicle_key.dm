@@ -16,11 +16,11 @@
 
 /obj/item/key/security/suicide_act(mob/living/user)
 	if(!user.emote("spin")) //In the off chance that someone attempts this suicide while under the effects of mime's bane they deserve the silliness.
-		user.visible_message(span_suicide(LANG("obj.5ae8d40f", list(user, src, user.p_their(), user.p_their(), user.p_theyre(), user.p_they()))))
+		user.visible_message(span_suicide(LANG("obj.5ae8d40f9f356c5a", list(user, src, user.p_their(), user.p_their(), user.p_theyre(), user.p_they()))))
 		playsound(src, 'sound/misc/sadtrombone.ogg', 50, TRUE, -1)
 		return SHAME
-	user.visible_message(span_suicide(LANG("obj.123df82b", list(user, src, user.p_their(), user.p_their(), user.p_theyre()))))
-	user.say(LANG("obj.8f412ba8", null), forced="secway key suicide") //Not doing a shamestate here, because even if they fail to speak they're spinning.
+	user.visible_message(span_suicide(LANG("obj.123df82b210c827a", list(user, src, user.p_their(), user.p_their(), user.p_theyre()))))
+	user.say(LANG("obj.8f412ba8b3c65a28", null), forced="secway key suicide") //Not doing a shamestate here, because even if they fail to speak they're spinning.
 	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/, gib)), 2 SECONDS)
 	return MANUAL_SUICIDE
 
@@ -47,19 +47,19 @@
 /obj/item/key/janitor/suicide_act(mob/living/user)
 	switch(user.mind?.get_skill_level(/datum/skill/cleaning))
 		if(SKILL_LEVEL_APPRENTICE to SKILL_LEVEL_JOURNEYMAN) //At least they tried
-			user.visible_message(span_suicide(LANG("obj.4f12769c", list(user, src, user.p_their(), user.p_theyre()))))
+			user.visible_message(span_suicide(LANG("obj.4f12769c6f885cb4", list(user, src, user.p_their(), user.p_theyre()))))
 			user.AddElement(/datum/element/cleaning)
 			addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), 5.1 SECONDS)
 			return MANUAL_SUICIDE
 		if(SKILL_LEVEL_EXPERT to SKILL_LEVEL_MASTER) //They are worthy enough, but can it go even further beyond?
-			user.visible_message(span_suicide(LANG("obj.7da5f440", list(user, src, user.p_their(), user.p_theyre()))))
+			user.visible_message(span_suicide(LANG("obj.7da5f440d9e9916c", list(user, src, user.p_their(), user.p_theyre()))))
 			user.AddElement(/datum/element/cleaning)
 			for(var/i in 1 to 100)
 				addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, add_atom_colour), (i % 2)? "#a245bb" : "#7a7d82", ADMIN_COLOUR_PRIORITY), i)
 			addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), 101)
 			return MANUAL_SUICIDE
 		if(SKILL_LEVEL_LEGENDARY to INFINITY) //Holy shit, look at that janny go!
-			user.visible_message(span_suicide(LANG("obj.a84023f0", list(user, src, user.p_their(), user.p_theyre()))))
+			user.visible_message(span_suicide(LANG("obj.a84023f0c3ece465", list(user, src, user.p_their(), user.p_theyre()))))
 			user.AddElement(/datum/element/cleaning)
 			playsound(src, 'sound/effects/magic/lightning_chargeup.ogg', 50, TRUE, -1)
 			user.reagents.add_reagent(/datum/reagent/drug/methamphetamine, 10) //Gotta go fast!
@@ -69,14 +69,14 @@
 			return MANUAL_SUICIDE
 
 	//Their mind is too weak to ascend as a janny
-	user.visible_message(span_suicide(LANG("obj.b0e75cae", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.b0e75caeaf5a0b6c", list(user, src, user.p_their(), user.p_theyre()))))
 	user.gib(DROP_ALL_REMAINS)
 	return MANUAL_SUICIDE
 
 /obj/item/key/proc/manual_suicide(mob/living/user)
 	if(user)
 		user.remove_atom_colour(ADMIN_COLOUR_PRIORITY)
-		user.visible_message(span_suicide(LANG("obj.9974d9e6", list(user, user.p_they(), user.p_are()))))
+		user.visible_message(span_suicide(LANG("obj.9974d9e613ea206d", list(user, user.p_they(), user.p_are()))))
 		if(user.mind?.get_skill_level(/datum/skill/cleaning) >= SKILL_LEVEL_LEGENDARY) //Janny janny janny janny janny
 			playsound(src, 'sound/effects/adminhelp.ogg', 50, TRUE, -1)
 		user.adjust_oxy_loss(200)
