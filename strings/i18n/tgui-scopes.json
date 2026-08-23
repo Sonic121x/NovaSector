@@ -3435,6 +3435,9 @@
   "Biker Goggles": [
     "dm:labels"
   ],
+  "Bikini": [
+    "dm:labels"
+  ],
   "Bikini - Cheetah": [
     "dm:labels"
   ],
@@ -4277,6 +4280,9 @@
     "tgui:MedicalKiosk"
   ],
   "Brain Tumor": [
+    "dm:labels"
+  ],
+  "Bralette w/ Boyshorts": [
     "dm:labels"
   ],
   "Brasspriest Coat": [
@@ -6305,6 +6311,9 @@
   "Choker (Thick)": [
     "dm:labels"
   ],
+  "Chonky": [
+    "dm:labels"
+  ],
   "Chonky (Fish Infusion)": [
     "dm:labels"
   ],
@@ -7062,6 +7071,9 @@
   ],
   "Commend Behavior": [
     "tgui:PlayerPanel"
+  ],
+  "Commie Bikini": [
+    "dm:labels"
   ],
   "Commie Boxers": [
     "dm:labels"
@@ -7850,6 +7862,9 @@
   ],
   "Credits stored": [
     "tgui:RestockTracker"
+  ],
+  "Crescent": [
+    "dm:labels"
   ],
   "Crescent (Fish Infusion)": [
     "dm:labels"
@@ -12759,6 +12774,9 @@
   "Free Use": [
     "dm:labels"
   ],
+  "Freedom Bikini": [
+    "dm:labels"
+  ],
   "Freedom Boxers": [
     "dm:labels"
   ],
@@ -14053,6 +14071,9 @@
     "tgui:constants"
   ],
   "Haloperidol": [
+    "dm:labels"
+  ],
+  "Halter Swimsuit": [
     "dm:labels"
   ],
   "Hammerhead": [
@@ -16683,6 +16704,9 @@
   "Knee-high (Ace)": [
     "dm:labels"
   ],
+  "Knee-high (Bee)": [
+    "dm:labels"
+  ],
   "Knee-high (Black)": [
     "dm:labels"
   ],
@@ -16690,6 +16714,15 @@
     "dm:labels"
   ],
   "Knee-high (Greyscale)": [
+    "dm:labels"
+  ],
+  "Knee-high (Rainbow)": [
+    "dm:labels"
+  ],
+  "Knee-high (Striped)": [
+    "dm:labels"
+  ],
+  "Knee-high (Thin)": [
     "dm:labels"
   ],
   "Knee-high (Trans)": [
@@ -16854,6 +16887,9 @@
     "tgui:PortableAtmos"
   ],
   "Labrador": [
+    "dm:labels"
+  ],
+  "Lace Bikini": [
     "dm:labels"
   ],
   "Laceup Shoes": [
@@ -17433,6 +17469,9 @@
   ],
   "Lines are a series of chords, separated by commas (,), each with notes separated by hyphens (-).{0}Every note in a chord will play together, with chord timed by the tempo.{1}Notes are played by the names of the note, and optionally, the accidental, and/or the octave number.{2}By default, every note is natural and in octave 3. Defining otherwise is remembered for each note.{3}Example: {4} will play a C major scale.{5}After a note has an accidental placed, it will be remembered: {6} is {7}{8}Chords can be played simply by seperating each note with a hyphon: {9}{10}A pause may be denoted by an empty chord: {11}{12}To make a chord be a different time, end it with /x, where the chord length will be length{13}defined by tempo / x: {14}{15}Combined, an example is: {16}{17}Lines may be up to {18} characters.{19}A song may only contain up to {20} lines.{21}": [
     "tgui:InstrumentEditor"
+  ],
+  "Lingerie": [
+    "dm:labels"
   ],
   "Linguist": [
     "dm:labels",
@@ -20431,6 +20470,12 @@
     "tgui:GlassBlowing"
   ],
   "Negroni": [
+    "dm:labels"
+  ],
+  "Neko Bikini (Black)": [
+    "dm:labels"
+  ],
+  "Neko Bikini (White)": [
     "dm:labels"
   ],
   "Nekomimetic": [
@@ -30688,6 +30733,15 @@
   "Sport Shoes": [
     "dm:labels"
   ],
+  "Sports Bra": [
+    "dm:labels"
+  ],
+  "Sports Bra (Alt)": [
+    "dm:labels"
+  ],
+  "Sports Bra w/ Boyshorts": [
+    "dm:labels"
+  ],
   "Sports Shirt (Blue)": [
     "dm:labels"
   ],
@@ -31238,10 +31292,16 @@
   "Strap-On": [
     "dm:labels"
   ],
+  "Strapless Bikini": [
+    "dm:labels"
+  ],
   "Strapless One-Piece Swimsuit": [
     "dm:labels"
   ],
   "Strapless Striped Swimsuit": [
+    "dm:labels"
+  ],
+  "Strapless Two-Piece Swimsuit": [
     "dm:labels"
   ],
   "Strength": [
@@ -32277,6 +32337,9 @@
   "Tank Top (Red)": [
     "dm:labels"
   ],
+  "Tank Top (Striped)": [
+    "dm:labels"
+  ],
   "Tank Top (White)": [
     "dm:labels"
   ],
@@ -33230,6 +33293,9 @@
   "Thigh-high (Ace)": [
     "dm:labels"
   ],
+  "Thigh-high (Bee)": [
+    "dm:labels"
+  ],
   "Thigh-high (Black)": [
     "dm:labels"
   ],
@@ -33243,6 +33309,9 @@
     "dm:labels"
   ],
   "Thigh-high (Greyscale)": [
+    "dm:labels"
+  ],
+  "Thigh-high (Rainbow)": [
     "dm:labels"
   ],
   "Thigh-high (Striped Stirrups)": [
@@ -34766,6 +34835,9 @@
   "Two Left Feet": [
     "dm:labels"
   ],
+  "Two-Piece Swimsuit": [
+    "dm:labels"
+  ],
   "Type": [
     "tgui:AppearanceInfo",
     "tgui:Beaker",
@@ -34810,6 +34882,9 @@
   ],
   "UI Style": [
     "tgui:ui_style"
+  ],
+  "UK Bikini": [
+    "dm:labels"
   ],
   "UK Boxers": [
     "dm:labels"

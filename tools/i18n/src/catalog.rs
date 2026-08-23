@@ -165,12 +165,17 @@ impl Catalog {
     ///
     /// 合并语义与 load_dir 一致：已被 rewrite 改写成 `LANG("key")` 的字符串，源码里已无
     /// 字面量、本次抽取产不出，其 scope 从旧文件保留，否则重跑一次就全丢。
-    pub fn write_scopes(&self, path: &Path) -> Result<()> {
+    ///
+    /// 但合并**必须按 live 收口**：目录只增不减，sidecar 若也只增不减，一次跑坏的抽取
+    /// （或换 key 方案的中间态）留下的条目会永久留着，且不在 catalog-audit 的视野里。
+    /// live 与 audit 用的是同一套判据（本次抽出的 key ∪ 源码里仍被 LANG 引用的 key）。
+    pub fn write_scopes(&self, path: &Path, live: &BTreeSet<String>) -> Result<()> {
         self.ensure_no_collisions()?;
         let mut merged: BTreeMap<String, BTreeSet<String>> = std::fs::read_to_string(path)
             .ok()
             .and_then(|t| serde_json::from_str::<BTreeMap<String, BTreeSet<String>>>(&t).ok())
             .unwrap_or_default();
+        merged.retain(|key, _| live.contains(key));
         // 本次抽取到的 key 以本次为准（类型可能被上游挪过窝）；没抽到的沿用旧值。
         for (key, scopes) in &self.scopes {
             merged.insert(key.clone(), scopes.clone());

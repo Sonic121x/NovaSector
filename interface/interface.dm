@@ -4,12 +4,12 @@ GAME_VERB_HIDDEN(/client, wiki, "wiki")
 
 	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(!wikiurl)
-		to_chat(src, span_danger(LANG("client.b6e02a75", null)))
+		to_chat(src, span_danger(LANG("client.b6e02a7540bf8fc9", null)))
 		return
 
 	var/query = tgui_input_text(src,
-		LANG("client.cddc2d48", null),
-		LANG("client.668f1cff", null),
+		LANG("client.cddc2d48bfcf4fa6", null),
+		LANG("client.668f1cfffb8c9c10", null),
 		max_length = MAX_MESSAGE_LEN,
 	)
 	if(isnull(query)) //cancelled out
@@ -23,7 +23,7 @@ GAME_VERB_HIDDEN(/client, forum, "forum")
 
 	var/forumurl = CONFIG_GET(string/forumurl)
 	if(!forumurl)
-		to_chat(src, span_danger(LANG("client.85a92160", null)))
+		to_chat(src, span_danger(LANG("client.85a92160d0b0d402", null)))
 		return
 	DIRECT_OUTPUT(src, link(forumurl))
 
@@ -31,7 +31,7 @@ GAME_VERB_HIDDEN(/client, rules, "rules")
 
 	var/rulesurl = CONFIG_GET(string/rulesurl)
 	if(!rulesurl)
-		to_chat(src, span_danger(LANG("client.39520bd5", null)))
+		to_chat(src, span_danger(LANG("client.39520bd5ba6f920a", null)))
 		return
 	DIRECT_OUTPUT(src, link(rulesurl))
 
@@ -39,7 +39,7 @@ GAME_VERB_HIDDEN(/client, github, "github")
 
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(!githuburl)
-		to_chat(src, span_danger(LANG("client.7c00baab", null)))
+		to_chat(src, span_danger(LANG("client.7c00baab5f2b61f1", null)))
 		return
 	DIRECT_OUTPUT(src, link(githuburl))
 
@@ -47,7 +47,7 @@ GAME_VERB_HIDDEN(/client, config, "config")
 
 	var/configurl = CONFIG_GET(string/configurl)
 	if(!configurl)
-		to_chat(src, span_danger(LANG("client.7b2fa997", null)))
+		to_chat(src, span_danger(LANG("client.7b2fa99793168553", null)))
 		return
 	DIRECT_OUTPUT(src, link(configurl))
 
@@ -55,7 +55,7 @@ GAME_VERB_DESC(/client, reportissue, "report-issue", "Report an issue", null)
 
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(!githuburl)
-		to_chat(src, span_danger(LANG("client.7c00baab", null)))
+		to_chat(src, span_danger(LANG("client.7c00baab5f2b61f1", null)))
 		return
 
 	var/testmerge_data = GLOB.revdata.testmerge
@@ -122,7 +122,7 @@ GAME_VERB_HIDDEN(/client, hotkeys_help, "Hotkeys Help")
 GAME_VERB_HIDDEN(/client, emote_panel, "Emote Panel")
 
 	if(!isliving(mob))
-		to_chat(mob, span_notice(LANG("client.143dea2d", null)))
+		to_chat(mob, span_notice(LANG("client.143dea2da20474e3", null)))
 		return
 
 	if(!GLOB.emote_panel)

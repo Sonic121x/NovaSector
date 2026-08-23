@@ -780,7 +780,6 @@ const DM_LABEL_SOURCES = [
   ['code/__DEFINES/~nova_defines/_globalvars/food.dm', false, /"([^"]+)"\s*=/g],
   // 职业名/部门名：job_types 用 `title = JOB_X`（#define 常量），字面量在 jobs.dm 的 #define 里。
   ['code/__DEFINES/jobs.dm', false, /#define\s+\w+\s+"([^"]+)"/g],
-  ['modular_nova/master_files/code/__DEFINES', true, /#define\s+JOB_\w+\s+"([^"]+)"/g],
   // 怪癖名：各 quirk 子类型的 `name = "..."`。核心 quirks 目录全是 quirk，直接抽；modular_nova 的
   // quirk 散在 master_files/datums/{quirks,traits}、modules/*_quirk、lewd_quirks、changeling 等
   // 20+ 处 → 用 requireMarker '/datum/quirk' 递归扫、只取 quirk 文件的 name(不碰物品/生物名)。
@@ -790,12 +789,10 @@ const DM_LABEL_SOURCES = [
   ['modular_nova/modules/alternative_job_titles', true, /^\s+"([A-Za-z][^"]*)",?\s*$/gm],
   // 人格名（特质与个性→人格 tab；按 datum 路径选择，name 仅显示=安全）。
   ['code/datums/personality', true, /^\s*name\s*=\s*"([^"]+)"/gm],
-  ['modular_nova/master_files/code/datums/personality', true, /^\s*name\s*=\s*"([^"]+)"/gm],
   // 配装分类 Tab 名（loadout 顶部 Head/Face/Suits/Neck…，用 `category_name = "..."`，
   // 与物品名的 `name=` 不同正则；前端按分类切换、显示走目录翻=安全）。
   ['code/modules/loadout/categories', true, /\bcategory_name\s*=\s*"([^"]+)"/g],
   ['code/modules/loadout/loadout_categories.dm', false, /\bcategory_name\s*=\s*"([^"]+)"/g],
-  ['modular_nova/modules/loadout/code', true, /\bcategory_name\s*=\s*"([^"]+)"/g],
   // 下游新增的配装分类（Face/Undersuit/Belt/Weapons/Toys 等）在 loadouts（复数）模块里。
   ['modular_nova/modules/loadouts', true, /\bcategory_name\s*=\s*"([^"]+)"/g],
   // loadouts（复数）模块里的配装**物品名**（Bouquet - Rose 等；按 item_path 选=显示安全）。
@@ -807,16 +804,13 @@ const DM_LABEL_SOURCES = [
   ['code/modules/vending', true, /"name"\s*=\s*"([^"]+)"/g],
   ['modular_nova/modules/modular_vending', true, /"name"\s*=\s*"([^"]+)"/g],
   // 精灵配件名（发型/胡须/纹身/渐变样式…，角色设置下拉，按名选择=标识符）。
-  ['code/datums/sprite_accessories.dm', false, /^\s*name\s*=\s*"([^"]+)"/gm],
-  ['modular_nova/master_files/code/datums/sprite_accessories', true, /^\s*name\s*=\s*"([^"]+)"/gm],
-  ['modular_nova/modules/customization/icons/sprite_accessories', true, /^\s*name\s*=\s*"([^"]+)"/gm],
+  ['code/datums/sprite_accessories', true, /^\s*name\s*=\s*"([^"]+)"/gm],
   // 生殖器/胸部等 sprite accessory（角色外观下拉，如 Pair/Quad/Sextuple；按配件键选=显示安全）。
   ['modular_nova/modules/customization/modules/mob/dead/new_player/sprite_accessories', true, /^\s*name\s*=\s*"([^"]+)"/gm],
   // 语言名（语言 tab）。
   ['code/modules/language', true, /^\s*name\s*=\s*"([^"]+)"/gm],
   // 配装物品名（loadout 配装 tab；偏好按 item_path 存，name 仅显示=安全）。
   ['code/modules/loadout/categories', true, /^\s*name\s*=\s*"([^"]+)"/gm],
-  ['modular_nova/modules/loadout/code', true, /^\s*name\s*=\s*"([^"]+)"/gm],
   // 物种名（角色 tab 物种浏览器；按 speciesKey/id 选择，name 仅显示=安全）。第 4 项剥 \improper/\proper
   // 宏（`name = "\improper Human"` → "Human"，与运行时 TGUI 收到的串对齐）。species_types 目录会混入
   // 少量内联器官/部件名（无害噪音：进 tgui 目录后由 TS 端翻显示、P1 跳过；非物种处仍可被翻）。
@@ -951,6 +945,15 @@ function extractDmLabels(catalog) {
   // 每项 [相对路径, 递归?, 正则(组1=可翻串)]，可选第 4 项 requireMarker：仅对**文件内容含该标记**
   // 的 .dm 抽取（用于类型过滤——如散落各处的 /datum/quirk 名，递归扫但只取 quirk 文件，不碰物品名）。
   for (const [rel, recursive, regex, requireMarker] of DM_LABEL_SOURCES) {
+    // 路径是钉死的，上游一次重命名就让整类标签**静默**不再被抽取（少翻、不崩、不冲突），
+    // 而目录只增不减，历史条目还在，于是界面照常显示中文 —— 缺口要等到有人裁剪目录才暴露。
+    // 实测这么躺着 6 条失效登记，其中 `code/datums/sprite_accessories.dm` 变成了同名目录，
+    // 整套发型/胡须/纹理名早已不在抽取面内。故这里**必须报错**而不是跳过。
+    if (!fs.existsSync(path.join(ROOT, rel))) {
+      throw new Error(
+        `DM_LABEL_SOURCES 登记的路径不存在：${rel}（上游改名？修正或删除该条登记）`,
+      );
+    }
     for (const file of dmFilesUnder(path.join(ROOT, rel), recursive, [])) {
       let source;
       try {

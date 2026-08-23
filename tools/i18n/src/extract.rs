@@ -1723,6 +1723,14 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<Catalog> {
         catalog.namespace_count()
     );
     if !dry_run {
+        // load_dir 之前定格 live key 集合：合并进来的历史条目此后与本次抽取无从区分，
+        // 而 sidecar 的裁剪需要「本次抽出的 ∪ 源码里仍被 LANG 引用的」这一集合（与
+        // catalog-audit 的 live_keys 同一判据）。
+        let live_keys: std::collections::BTreeSet<String> = catalog
+            .keys()
+            .chain(catalog.referenced_keys())
+            .map(str::to_owned)
+            .collect();
         // 译文迁移：趁旧 en 目录还在盘上，把孤儿译文接到新 key（精确继承 + 近似迁移，见 migrate.rs）。
         if let Err(err) = crate::migrate::run(&catalog, out) {
             eprintln!("译文迁移失败（不影响抽取）: {err}");
@@ -1737,7 +1745,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<Catalog> {
         );
         // key -> 类型路径 sidecar。放 locale 目录的**上一级**（见 write_scopes 注释）。
         let scopes_path = out.parent().unwrap_or(out).join("scopes.json");
-        catalog.write_scopes(&scopes_path)?;
+        catalog.write_scopes(&scopes_path, &live_keys)?;
         eprintln!(
             "已写入语境 sidecar: {}（本次 {} 个 key 带类型路径）",
             scopes_path.display(),

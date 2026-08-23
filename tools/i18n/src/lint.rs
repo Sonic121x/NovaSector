@@ -1211,15 +1211,18 @@ fn lint_identifier_collisions(
 ///
 /// 一次实测：全仓三万余处 LANG 调用里有 76 个悬空 key（耳机频率表、无人机分发器、血虫技能、
 /// 音乐技能芯片、雇佣合同…）。故列为**错误**而非告警：这是坏显示，不是缺翻译。
-fn lint_dangling_lang_keys(root: &Path, catalog_root: &Path, report: &mut Report) {
+fn lint_dangling_lang_keys(root: &Path, dme: &Path, catalog_root: &Path, report: &mut Report) {
     let en = load_catalog(&catalog_root.join("en"));
     if en.is_empty() {
         return; // lint_catalog 已就此告警
     }
     let mut dangling: BTreeMap<String, String> = BTreeMap::new();
     let mut scanned = 0usize;
-    for dir in ["code", "modular_nova"] {
-        collect_dm_files(&root.join(dir), &mut |path: &Path, text: &str| {
+    // 源码根**必须从 .dme 推导**，不能钉死 code/ 与 modular_nova/：`interface/interface.dm`
+    // 同样参与编译、同样被 rewrite 改写过，钉死的清单看不见它 —— 实测那里躺着 8 个悬空 key
+    // （wiki/rules/forum/github/config 几个 verb 的整句提示），而本规则一直报 0。
+    for dir in included_source_roots(dme) {
+        collect_dm_files(&root.join(&dir), &mut |path: &Path, text: &str| {
             for (lineno, line) in text.lines().enumerate() {
                 for key in lang_keys_in_line(line) {
                     scanned += 1;
@@ -1312,6 +1315,43 @@ fn is_catalog_key(s: &str) -> bool {
             .all(|byte| byte.is_ascii_lowercase() || byte.is_ascii_digit() || byte == b'_')
 }
 
+/// .dme 里 `#include` 到的 .dm 文件所在的顶层目录集合。
+///
+/// 过近似（按目录而非按文件）是**刻意**的：间接 include 的文件不在 .dme 的扁平清单里，按文件
+/// 收口会重新制造盲区，而多扫几个文件对本规则只有成本、没有假阳性。读不到 .dme 时退回历史清单。
+fn included_source_roots(dme: &Path) -> BTreeSet<String> {
+    let Ok(text) = std::fs::read_to_string(dme) else {
+        return ["code".to_owned(), "modular_nova".to_owned()].into();
+    };
+    let mut roots = BTreeSet::new();
+    for line in text.lines() {
+        let Some(rest) = line.trim_start().strip_prefix("#include") else {
+            continue;
+        };
+        let Some(open) = rest.find('"') else { continue };
+        let Some(close) = rest[open + 1..].find('"') else {
+            continue;
+        };
+        let include = &rest[open + 1..open + 1 + close];
+        if !include.ends_with(".dm") {
+            continue;
+        }
+        // DM 的 include 路径用反斜杠。
+        let normalized = include.replace('\\', "/");
+        let Some((root, _)) = normalized.split_once('/') else {
+            continue; // 与 .dme 同级的文件由调用方的根目录遍历覆盖不到，也无需覆盖
+        };
+        if !root.is_empty() {
+            roots.insert(root.to_owned());
+        }
+    }
+    if roots.is_empty() {
+        roots.insert("code".to_owned());
+        roots.insert("modular_nova".to_owned());
+    }
+    roots
+}
+
 /// 递归遍历 .dm 文件并回调 (path, 内容)。
 fn collect_dm_files(dir: &Path, visit: &mut dyn FnMut(&Path, &str)) {
     let Ok(entries) = std::fs::read_dir(dir) else {
@@ -1344,7 +1384,7 @@ pub fn run(
 
     lint_catalog(catalog_root, locale, &domains, &mut report)?;
     lint_policy(catalog_root, &mut report);
-    lint_dangling_lang_keys(Path::new("."), catalog_root, &mut report);
+    lint_dangling_lang_keys(Path::new("."), dme, catalog_root, &mut report);
     if !skip_ast {
         lint_identifier_collisions(
             dme,
@@ -1382,6 +1422,34 @@ pub fn run(
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn source_roots_come_from_the_dme_not_a_hardcoded_list() {
+        let dir = std::env::temp_dir().join(format!("nova-i18n-roots-{}", std::process::id()));
+        std::fs::create_dir_all(&dir).unwrap();
+        let dme = dir.join("tgstation.dme");
+        std::fs::write(
+            &dme,
+            "#include \"code\\game\\world.dm\"\n\
+             #include \"modular_nova\\modules\\i18n\\code\\runtime.dm\"\n\
+             #include \"interface\\interface.dm\"\n\
+             #include \"interface\\skin.dmf\"\n",
+        )
+        .unwrap();
+
+        let roots = included_source_roots(&dme);
+        // interface/ compiles too; its omission hid eight dangling keys.
+        assert!(roots.contains("interface"));
+        assert!(roots.contains("code"));
+        assert!(roots.contains("modular_nova"));
+        // .dmf is not a source file, and each root appears once.
+        assert_eq!(roots.len(), 3);
+
+        // An unreadable .dme must not silently scan nothing.
+        let missing = included_source_roots(&dir.join("absent.dme"));
+        assert!(missing.contains("code") && missing.contains("modular_nova"));
+        std::fs::remove_dir_all(&dir).ok();
+    }
+
     use super::*;
 
     fn entry(domain: &str, key: &str, file: &str, value: &str) -> DomainCatalogEntry {
