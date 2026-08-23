@@ -59,4 +59,4 @@
 	var/list/new_personality = list()
 	for(var/datum/personality/personality_type as anything in quirk_holder.personalities)
 		new_personality += initial(personality_type.name)
-	to_chat(quirk_holder, span_green(LANG("datum.74d7da23", list(english_list(new_personality)))))
+	to_chat(quirk_holder, span_green(LANG("datum.74d7da23", list(lang_english_list(new_personality)))))

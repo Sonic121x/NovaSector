@@ -1931,7 +1931,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			/* NOVA EDIT - Digitigrade customization - ORIGINAL:
 			SPECIES_PERK_DESC = "Alongside [initial(common_language.name)], [plural_form] gain the ability to speak [english_list(bonus_languages)].",
 			*/ // ORIGINAL END - NOVA EDIT START:
-			SPECIES_PERK_DESC = LANG("datum.fa2f48f7", list(initial(common_language.name), plural_form, english_list(bonus_languages))),
+			// lang_english_list：逐项过显示边界再用顿号连接。english_list 直接 Join 出来的
+			// "Marish and Empathy" 整串永远不是目录键，语言名连同 " and " 一起留成英文。
+			SPECIES_PERK_DESC = LANG("datum.fa2f48f7", list(initial(common_language.name), plural_form, lang_english_list(bonus_languages))),
 			// NOVA EDIT END
 		))
 
@@ -1940,7 +1942,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "comment",
 			SPECIES_PERK_NAME = LANG("datum.86354365", null),
-			SPECIES_PERK_DESC = LANG("datum.73588689", list(plural_form, initial(common_language.name), english_list(bonus_languages))),
+			SPECIES_PERK_DESC = LANG("datum.73588689", list(plural_form, initial(common_language.name), lang_english_list(bonus_languages))),
 		))
 
 	return to_add

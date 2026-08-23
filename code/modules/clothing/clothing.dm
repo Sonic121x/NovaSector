@@ -440,7 +440,7 @@
 				things_blocked += "pepperspray"
 			if(length(things_blocked))
 				readout += LANG("obj.e49fd311", null)
-				readout += LANG("obj.eb3ca618", list(english_list(things_blocked)))
+				readout += LANG("obj.eb3ca618", list(lang_english_list(things_blocked)))
 
 		var/list/parts_covered = list()
 		if(body_parts_covered & HEAD)
@@ -452,7 +452,7 @@
 		if(body_parts_covered & (LEGS|FEET))
 			parts_covered += "legs"
 		if(length(parts_covered))
-			readout += LANG("obj.764d8ebd", list(english_list(parts_covered)))
+			readout += LANG("obj.764d8ebd", list(lang_english_list(parts_covered)))
 
 		if((clothing_flags & STOPSPRESSUREDAMAGE) || (visor_flags & STOPSPRESSUREDAMAGE))
 			var/output_string = "It"

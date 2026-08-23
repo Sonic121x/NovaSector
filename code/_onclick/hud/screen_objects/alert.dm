@@ -703,7 +703,7 @@
 				var/list/location_list = list()
 				for(var/area/area_to_check in summon_objective.summon_spots)
 					location_list += area_to_check.get_original_area_name()
-				desc = LANG("atom.e22f0f66", list(english_list(location_list)))
+				desc = LANG("atom.e22f0f66", list(lang_english_list(location_list)))
 				if(icon_state == "runed_sense1")
 					return
 				animate(src, transform = null, time = 1, loop = 0)

@@ -127,7 +127,7 @@
 	if(bait)
 		equipped_stuff += "[icon2html(bait, user)] <b>[bait]</b>"
 	if(length(equipped_stuff))
-		. += span_notice(LANG("obj.dd85ec64", list(english_list(equipped_stuff))))
+		. += span_notice(LANG("obj.dd85ec64", list(lang_english_list(equipped_stuff))))
 	if(!bait)
 		. += span_warning(LANG("obj.32754eb0", null))
 	if(HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISH))

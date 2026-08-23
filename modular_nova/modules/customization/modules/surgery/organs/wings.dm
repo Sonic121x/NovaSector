@@ -138,7 +138,7 @@
 /obj/item/climbing_moth_wings/examine(mob/user)
 	. = ..()
 	var/list/look_binds = user.client.prefs.key_bindings["look up"]
-	. += span_notice(LANG("obj.2edd1f26", list(english_list(look_binds, nothing_text = "(nothing bound)", and_text = " or ", comma_text = ", or "))))
+	. += span_notice(LANG("obj.2edd1f26", list(lang_english_list(look_binds, nothing_text = "(nothing bound)", and_text = " or ", comma_text = ", or "))))
 	. += span_notice(LANG("obj.53acd64d", null))
 
 /obj/item/climbing_moth_wings/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)

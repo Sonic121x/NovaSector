@@ -48,30 +48,53 @@ const SYSTEM = `你在为一个太空站模拟游戏做简体中文本地化。
 3. 专有名词、型号、缩写保持英文原样。
 4. 只输出译文，每行一条，不要编号、不要解释、不要空行。`;
 
+/// 超时/网络抖动重试。整张表要跑十几分钟，中间断一次就前功尽弃——而这类失败是暂时的，
+/// 与「模型给的行数对不上」是两回事（后者靠二分收敛，见 translateChunk）。
+async function postWithRetry(payload: unknown, attempt = 0): Promise<any> {
+  try {
+    const res = await fetch(`${BASE_URL}/chat/completions`, {
+      method: 'POST',
+      signal: AbortSignal.timeout(300_000),
+      headers: { 'content-type': 'application/json', authorization: `Bearer ${API_KEY}` },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
+    return await res.json();
+  } catch (err) {
+    if (attempt >= 3) throw err;
+    await new Promise((r) => setTimeout(r, 2000 * (attempt + 1)));
+    return postWithRetry(payload, attempt + 1);
+  }
+}
+
 async function translateChunk(lines: string[], attempt = 0): Promise<string[]> {
-  const res = await fetch(`${BASE_URL}/chat/completions`, {
-    method: 'POST',
-    signal: AbortSignal.timeout(180_000),
-    headers: { 'content-type': 'application/json', authorization: `Bearer ${API_KEY}` },
-    body: JSON.stringify({
-      model: MODEL,
-      temperature: 0,
-      messages: [
-        { role: 'system', content: SYSTEM },
-        { role: 'user', content: lines.join('\n') },
-      ],
-    }),
+  const json = await postWithRetry({
+    model: MODEL,
+    temperature: 0,
+    messages: [
+      { role: 'system', content: SYSTEM },
+      { role: 'user', content: lines.join('\n') },
+    ],
   });
-  if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
-  const json = await res.json();
   const out = String(json.choices?.[0]?.message?.content ?? '')
     .split('\n')
     .map((l) => l.trim())
     .filter((l) => l.length > 0);
   // **行数对不上就整批重试**：错位一行，后面每一行都挂到错误的词上，而这类表没有 key 可以校验。
   if (out.length !== lines.length) {
-    if (attempt >= 2) throw new Error(`行数不符：期望 ${lines.length}，得到 ${out.length}`);
-    return translateChunk(lines, attempt + 1);
+    if (attempt < 2) return translateChunk(lines, attempt + 1);
+    // 重试两次仍对不上：**对半拆开继续**，而不是让整张表失败。929 行的 ing_verbs 只要有一批
+    // 反复错位就会把整个文件丢掉——而错位通常只出在某几行上，二分能把损失收敛到极小范围。
+    if (lines.length > 1) {
+      const mid = Math.floor(lines.length / 2);
+      return [
+        ...(await translateChunk(lines.slice(0, mid))),
+        ...(await translateChunk(lines.slice(mid))),
+      ];
+    }
+    // 单行还对不齐：保留英文。少译一个词远好过整表错位。
+    console.warn(`\n  ⚠ 保留英文（模型未给出对齐译文）：${lines[0]}`);
+    return [lines[0]];
   }
   return out;
 }

@@ -87,7 +87,7 @@
 		for(var/slot in required_slots)
 			var/list/slot_list = parse_slot_flags(slot)
 			slot_strings += (length(slot_list) == 1 ? "" : "one of ") + english_list(slot_list, and_text = " or ")
-		. += span_notice(LANG("obj.e4f54581", list(english_list(slot_strings))))
+		. += span_notice(LANG("obj.e4f54581", list(lang_english_list(slot_strings))))
 	if(HAS_TRAIT(user, TRAIT_DIAGNOSTIC_HUD))
 		. += span_notice(LANG("obj.9d8f41bd", list(complexity)))
 
@@ -127,7 +127,7 @@
 		for(var/slot in required_slots)
 			var/list/slot_list = parse_slot_flags(slot)
 			slot_strings += (length(slot_list) == 1 ? "" : "one of ") + english_list(slot_list, and_text = " or ")
-		to_chat(activator, span_warning(LANG("obj.00dff316", list(src, english_list(slot_strings)))))
+		to_chat(activator, span_warning(LANG("obj.00dff316", list(src, lang_english_list(slot_strings)))))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	if(module_type != MODULE_USABLE)

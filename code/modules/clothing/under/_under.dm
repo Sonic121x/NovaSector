@@ -443,7 +443,7 @@
 
 	if(LAZYLEN(attached_accessories))
 		var/list/accessories = list_accessories_with_icon(user)
-		. += LANG("obj.da83e7bd", list(english_list(accessories)))
+		. += LANG("obj.da83e7bd", list(lang_english_list(accessories)))
 		. += LANG("obj.fa3a64e1", list(attached_accessories[1]))
 
 /// Helper to list out all accessories with an icon besides it, for use in examine

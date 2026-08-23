@@ -108,7 +108,7 @@
 		var/obj/item/new_shard = new shard_to_create(target)
 		new_shard.add_fingerprint(user)
 		shards_created += "[new_shard.name]"
-	user.visible_message(span_notice(LANG("obj.87bfd4aa", list(user, name, target, english_list(shards_created)))), \
-		span_notice(LANG("obj.fdeba7b4", list(name, target, english_list(shards_created)))))
+	user.visible_message(span_notice(LANG("obj.87bfd4aa", list(user, name, target, lang_english_list(shards_created)))), \
+		span_notice(LANG("obj.fdeba7b4", list(name, target, lang_english_list(shards_created)))))
 	return TRUE
 

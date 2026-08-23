@@ -479,7 +479,7 @@
 		return FALSE
 
 	if(!(our_area in summon_objective.summon_spots))
-		to_chat(cultist, span_warning(LANG("datum.a30db543", list(english_list(summon_objective.summon_spots)))))
+		to_chat(cultist, span_warning(LANG("datum.a30db543", list(lang_english_list(summon_objective.summon_spots)))))
 		return FALSE
 
 	if(fail_if_last_site && length(summon_objective.summon_spots) <= 1)

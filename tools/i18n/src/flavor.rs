@@ -43,7 +43,32 @@ const FLAVOR_FILES: &[&str] = &[
 /// 只收**部分 section** 的 strings JSON：同文件其余 section 是 `@pick(...)` 生成器子池 /
 /// 字母变换表（如 traumas.json 的 y_replacements=["y","i","e"]、semicolon=[";"]），整文件收会
 /// 往目录塞单字符噪音、翻译还会破坏生成逻辑。句子 section 里的 `@pick(x)` 宏逐字保留（译者同）。
-const FLAVOR_JSON_SECTIONS: &[(&str, &[&str])] = &[(
+const FLAVOR_JSON_SECTIONS: &[(&str, &[&str])] = &[
+    (
+        // 幻觉假聊天/心灵感应台词（玩家在幻觉里"听到"的整句）。**只收整句 section**：
+        //   · `weird` 是乱码（`#@§*&£` / `EEEeeeeEEEE`），翻不得；
+        //   · `add_name` 只有 `%TARGETNAME% ` 这类占位前缀，没有可译文本；
+        //   · `people`/`accusations`/`contraband`/`threat`/`location`/`sublocation`/`chemicals`
+        //     是**碎片**，被 fake_chat.dm 里的裸字面量框架按英文语序拼成整句
+        //     （`"[people] is [accusations]!"`）。只译碎片会产出「舰长 is 叛徒!」——比全英文更糟，
+        //     要收就得连那些框架一起接 LANG。
+        // `@pick(add_name)` 宏与 `%TARGETNAME%` 逐字保留（译者同）。
+        "hallucination.json",
+        &[
+            "advice",
+            "aggressive",
+            "conversation",
+            "didyouhearthat",
+            "doubt",
+            "escape",
+            "getout",
+            "greetings",
+            "help",
+            "infection_advice",
+            "suspicion",
+        ],
+    ),
+    (
     // 脑创伤呓语（brain_damage：胡话整句）+ 神明幻觉 ALLCAPS 台词（god_*）。
     "traumas.json",
     &["brain_damage", "god_foe", "god_aggressive", "god_neutral", "god_unstun", "god_heal"],

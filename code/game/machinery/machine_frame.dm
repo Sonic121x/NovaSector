@@ -102,7 +102,7 @@
 		if(!req_components[component])
 			continue
 		nice_list += list("[req_components[component]] [req_component_names[component]]\s")
-	. += span_info(LANG("obj.e8c2a536", list(english_list(nice_list, "no more components"))))
+	. += span_info(LANG("obj.e8c2a536", list(lang_english_list(nice_list, "no more components"))))
 
 	. += span_notice(LANG("obj.3259bd49", list(EXAMINE_HINT("pried"))))
 	if(!length(nice_list))

@@ -545,15 +545,26 @@ GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 /// 这类「形容词/状态词列表拼成一句」的写法（鱼的健康警告、材料属性详检、伤情列表…）整句永远
 /// 不是目录键，而 `english_list` 拼出来的成品里每个词都还是英文——只能逐项翻。连接词也要换：
 /// 英文的 " and " 直接留在中文句子里很难看，中文用「、」。locale==en 时原样调 english_list，零变化。
-/proc/lang_english_list(list/items, nothing_text = "nothing")
+/// `and_text`/`comma_text` 与 english_list 同名同义，原样透传给 en 分支。zh 分支里 comma_text
+/// 一律换成顿号，但 **and_text 的语义必须留住**：「A 或 B」和「A 和 B」不是一回事（异常锁的备选
+/// 核心、手术备选工具都靠它区分），全替成顿号会把意思弄丢。全仓实际用到的连接词只有寥寥几种，
+/// 按词表映射；认不出的连接词退回顿号（宁可少一个词，也不要把英文 "or" 夹在中文列表里）。
+/proc/lang_english_list(list/items, nothing_text = "nothing", and_text = " and ", comma_text = ", ")
 	if(GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
-		return english_list(items, nothing_text)
+		return english_list(items, nothing_text, and_text, comma_text)
 	if(!length(items))
 		return lang_localize_arg(nothing_text)
 	var/list/localized = list()
 	for(var/item in items)
 		localized += lang_localize_arg("[item]")
-	return jointext(localized, "、")
+	if(length(localized) < 2)
+		return localized.Join()
+	// 「和」在中文列表里是多余的，顿号已经够了；「或」必须写出来。
+	var/static/list/connectives = list("and" = "、", "," = "、", "or" = "或", "OR" = "或")
+	var/tail = localized[length(localized)]
+	localized.Cut(length(localized))
+	var/joiner = connectives[trim(replacetext(and_text, ",", ""))] || "、"
+	return "[jointext(localized, "、")][joiner][tail]"
 
 /// 史莱姆颜色（SLIME_TYPE_* 的值）的显示译名。颜色同时是 icon_state 与突变表键，不能进反查表。
 /proc/lang_slime_colour(colour)

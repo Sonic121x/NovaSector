@@ -252,7 +252,7 @@ Behavior that's still missing from this component that original food items had t
 				translated_types += lang_reverse_text(LOWER_TEXT(food_type))
 			examine_list += span_notice(LANG("datum.62eee539", list(english_list(translated_types, and_text = "、", comma_text = "、"))))
 		else
-			examine_list += span_notice(LANG("datum.62eee539", list(LOWER_TEXT(english_list(types)))))
+			examine_list += span_notice(LANG("datum.62eee539", list(LOWER_TEXT(lang_english_list(types)))))
 
 	var/quality = get_perceived_food_quality(user)
 	if(quality > 0)

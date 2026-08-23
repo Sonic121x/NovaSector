@@ -66,11 +66,11 @@
 	. = ..()
 	if(HAS_MIND_TRAIT(user, TRAIT_ENTRAILS_READER)|| isobserver(user))
 		if(liked_foodtypes)
-			. += span_info(LANG("obj.bb4a08db", list(english_list(bitfield_to_list(liked_foodtypes, FOOD_FLAGS_IC)))))
+			. += span_info(LANG("obj.bb4a08db", list(lang_english_list(bitfield_to_list(liked_foodtypes, FOOD_FLAGS_IC)))))
 		if(disliked_foodtypes)
-			. += span_info(LANG("obj.7dd0e374", list(english_list(bitfield_to_list(disliked_foodtypes, FOOD_FLAGS_IC)))))
+			. += span_info(LANG("obj.7dd0e374", list(lang_english_list(bitfield_to_list(disliked_foodtypes, FOOD_FLAGS_IC)))))
 		if(toxic_foodtypes)
-			. += span_info(LANG("obj.8f7b6387", list(english_list(bitfield_to_list(toxic_foodtypes, FOOD_FLAGS_IC)))))
+			. += span_info(LANG("obj.8f7b6387", list(lang_english_list(bitfield_to_list(toxic_foodtypes, FOOD_FLAGS_IC)))))
 
 /**
  * Used in setting up the "languages possible" list.

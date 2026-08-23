@@ -19,7 +19,7 @@ ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA 门禁权限", "Manually trigger 
 
 	while(length(remaining_depts))
 		remaining_depts += "DONE - Finish selection"
-		var/choice = tgui_input_list(user, LANG("datum.f76a1f2a", list(calling_dept, english_list(selected_depts))), LANG("datum.c2a93820", null), remaining_depts)
+		var/choice = tgui_input_list(user, LANG("datum.f76a1f2a", list(calling_dept, lang_english_list(selected_depts))), LANG("datum.c2a93820", null), remaining_depts)
 
 		if(!choice || choice == "DONE - Finish selection")
 			break

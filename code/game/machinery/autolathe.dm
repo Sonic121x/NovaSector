@@ -519,7 +519,7 @@
 			LAZYADD(not_imported, blueprint.name)
 
 	if(not_imported)
-		to_chat(user, span_warning(LANG("obj.bb8dde5e", list(length(not_imported) > 1 ? "s" : "", english_list(not_imported)))))
+		to_chat(user, span_warning(LANG("obj.bb8dde5e", list(length(not_imported) > 1 ? "s" : "", lang_english_list(not_imported)))))
 
 	busy = FALSE
 	update_static_data_for_all_viewers()

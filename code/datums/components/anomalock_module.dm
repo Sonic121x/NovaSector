@@ -122,7 +122,7 @@
 	var/list/core_list = list()
 	for(var/atom/core_path as anything in accepted_anomalies)
 		core_list += initial(core_path.name)
-	examine_list += span_notice(LANG("datum.1d9be268", list(english_list(core_list, and_text = " or "))))
+	examine_list += span_notice(LANG("datum.1d9be268", list(lang_english_list(core_list, and_text = " or "))))
 	if(!core_removable)
 		examine_list += span_notice(LANG("datum.8a5d1e4d", null))
 

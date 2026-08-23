@@ -111,7 +111,7 @@
 	if(!length(known_fishes))
 		return
 
-	. += span_info(LANG("obj.a12b48bb", list(english_list(known_fishes))))
+	. += span_info(LANG("obj.a12b48bb", list(lang_english_list(known_fishes))))
 
 ///Check if the fish is in the list of catchable fish for this fishing lure. Return value is a multiplier.
 /obj/item/fishing_lure/check_bait(obj/item/fish/fish)

@@ -153,7 +153,7 @@
 		disk_ban += "powers"
 
 	if(length(import_ban))
-		to_chat(neo, span_warning(LANG("obj.ae02fc76", list(english_list(import_ban), english_list(disk_ban)))))
+		to_chat(neo, span_warning(LANG("obj.ae02fc76", list(lang_english_list(import_ban), lang_english_list(disk_ban)))))
 
 	var/return_flags = NONE
 	return_flags = SEND_SIGNAL(neo, COMSIG_BITRUNNER_STOCKING_GEAR, avatar, domain_forbids_flags)

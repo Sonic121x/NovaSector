@@ -34,7 +34,7 @@
 	// extension will always be the last entry
 	var/extension = value_split[length(value_split)]
 	if(!(extension in valid_extensions))
-		to_chat(usr, span_warning(LANG("datum.9e53f7a4", list(english_list(valid_extensions)))))
+		to_chat(usr, span_warning(LANG("datum.9e53f7a4", list(lang_english_list(valid_extensions)))))
 		return
 
 	find_index = findtext(value, link_regex)

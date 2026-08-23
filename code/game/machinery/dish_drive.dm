@@ -63,7 +63,7 @@
 		var/dish_name = dish_amount == 1 ? initial(dish.name) : "[initial(dish.name)][plural_s(initial(dish.name))]"
 		dish_list += list("[dish_amount] [dish_name]")
 
-	. += span_info(LANG("obj.0274fb36", list(english_list(dish_list), peek(dish_drive_contents))))
+	. += span_info(LANG("obj.0274fb36", list(lang_english_list(dish_list), peek(dish_drive_contents))))
 
 /obj/machinery/dish_drive/attack_hand(mob/living/user, list/modifiers)
 	. = ..()

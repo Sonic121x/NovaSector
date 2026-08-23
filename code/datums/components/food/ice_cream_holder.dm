@@ -143,7 +143,7 @@
 		else
 			examine_list += replacetext(replacetext("[source.p_Theyre()] [flavour.desc]", "$CONE_NAME", initial(source.name)), "$CUSTOM_NAME", key)
 	else /// Many flavours.
-		examine_list += LANG("datum.bf4b23bc", list(source.p_Theyre(), english_list(scoops), scoops_len))
+		examine_list += LANG("datum.bf4b23bc", list(source.p_Theyre(), lang_english_list(scoops), scoops_len))
 
 /datum/component/ice_cream_holder/proc/on_update_overlays(atom/source, list/new_overlays)
 	SIGNAL_HANDLER

@@ -134,7 +134,11 @@
 	var/hit_limb_zone = check_hit_limb_zone_name(def_zone)
 	var/organ_hit_text = ""
 	if (hit_limb_zone)
-		organ_hit_text = " in \the [parse_zone_with_bodypart(hit_limb_zone)]"
+		// NOVA EDIT CHANGE - I18N - 受伤部位短语整条走 LANG：拼好的 " in the chest" 整串永远不是
+		// 目录键，只有部位名本身在目录里 → 中文句子里嵌着 " in the chest"。
+		// ORIGINAL: organ_hit_text = " in \the [parse_zone_with_bodypart(hit_limb_zone)]"
+		organ_hit_text = LANG("mob.0605e73f", list(parse_zone_with_bodypart(hit_limb_zone)))
+		// NOVA EDIT END
 
 	switch (proj.suppressed)
 		if (SUPPRESSED_QUIET)

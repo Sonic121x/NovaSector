@@ -137,7 +137,7 @@ GAME_VERB_DESC(/mob/living/silicon/ai, announcement_help, "公告帮助", "Displ
 			incorrect_words += word
 
 	if(incorrect_words.len)
-		to_chat(src, span_notice(LANG("mob.5d25ab4d", list(english_list(incorrect_words)))))
+		to_chat(src, span_notice(LANG("mob.5d25ab4d", list(lang_english_list(incorrect_words)))))
 		return
 
 	announcing_vox = world.time + VOX_DELAY

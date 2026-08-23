@@ -123,7 +123,7 @@
 		already_used_names += initial(result.name)
 		string_results += list("\a [initial(result.name)]")
 
-	examine_list["crafting component"] = LANG("datum.4b719a3d", list(source, english_list(string_results))) // NOVA EDIT - i18n - ORIGINAL: examine_list["crafting component"] = "You think [source] could be used to make [english_list(string_results)]! Examine again to look at the details..."
+	examine_list["crafting component"] = LANG("datum.4b719a3d", list(source, lang_english_list(string_results))) // NOVA EDIT - i18n - ORIGINAL: examine_list["crafting component"] = "You think [source] could be used to make [lang_english_list(string_results)]! Examine again to look at the details..."
 
 /// Alerts any examiners to the details of the recipe.
 /datum/element/slapcrafting/proc/get_examine_more_info(atom/source, mob/user, list/examine_list)

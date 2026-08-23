@@ -197,7 +197,7 @@
 		// Let them know it screwed up
 		loc.balloon_alert(user, LANG("obj.1a08c859", null))
 		// Then let them know what they're missing
-		to_chat(user, span_mansus(LANG("obj.4a4e2a45", list(english_list(what_are_we_missing), ritual.name))))
+		to_chat(user, span_mansus(LANG("obj.4a4e2a45", list(lang_english_list(what_are_we_missing), ritual.name))))
 		return FALSE
 
 	//Everything's good, proceed and collect from the available stacks what's needed if needed.

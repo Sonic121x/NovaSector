@@ -126,7 +126,7 @@
 	if(movement_counter < 4)
 		return
 	// "The surgical drapes and bedsheets adorning John fall off!"
-	owner.visible_message(span_warning(LANG("datum.74f68f41", list(english_list(surgical_aids), owner))))
+	owner.visible_message(span_warning(LANG("datum.74f68f41", list(lang_english_list(surgical_aids), owner))))
 	qdel(src)
 
 /datum/status_effect/surgery_prepped/proc/on_attach_limb(datum/source, obj/item/bodypart/limb)

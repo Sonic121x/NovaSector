@@ -82,7 +82,7 @@
 				translated_types += lang_reverse_text(LOWER_TEXT(food_type))
 			. += span_notice(LANG("obj.5d48423d", list(english_list(translated_types, and_text = "、", comma_text = "、"))))
 		else
-			. += span_notice(LANG("obj.5d48423d", list(LOWER_TEXT(english_list(types)))))
+			. += span_notice(LANG("obj.5d48423d", list(LOWER_TEXT(lang_english_list(types)))))
 		// NOVA EDIT END
 	if(can_lid)
 		if(has_lid)

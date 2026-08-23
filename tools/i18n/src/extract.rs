@@ -2169,11 +2169,36 @@ fn is_speech_blackboard_key(key: &str) -> bool {
     matches!(key, "emote_say" | "emote_hear" | "emote_see")
 }
 
+/// `"显示名" = /类型/路径` 里的 rhs 是不是**光秃秃的类型路径**（无构造实参、无后续下标）。
+/// 见 visit_expr 里那条规则：值是类型路径就证明键是展示标签而不是数据键。
+fn rhs_is_bare_type_path(rhs: &Expression) -> bool {
+    let Expression::Base { term, follow } = rhs else {
+        return false;
+    };
+    if !follow.is_empty() {
+        return false;
+    }
+    matches!(&term.elem, Term::Prefab(prefab) if prefab.vars.is_empty())
+}
+
 fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool, ctx: ProcCtx) {
     if let Expression::AssignOp { lhs, rhs, .. } = expr {
         if let Some(key) = plain_string(lhs) {
             if is_speech_blackboard_key(&key) {
                 emit_list_strings(rhs, ns, catalog);
+            }
+            // **`"显示名" = /类型/路径` 形态：键就是文案**。午餐盒菜单、怪癖赠品选项这类
+            // `GLOBAL_LIST_INIT(x, list("Space Beer (Canned)" = /obj/…, …))` 里，键是玩家在偏好
+            // 菜单看到的标签、值是要生成的类型。`emit_list_strings` 对 AssignOp 取的是 **rhs**
+            // （类型路径不是字符串 → 跳过），键就整类丢了 —— 漏翻采集 tgui 桶里的食物/饮料名
+            // 几乎全是这一批。
+            //
+            // 这个形状之所以安全：**值是类型路径**就证明键不是程序查表用的数据键，而是一张
+            // 「标签 → 类型」的展示表（`examine_tags` 那条「assoc 键即文案」的另一种形态）。
+            // 键同时被当 act 回传标识符用（`GLOB.x[value]`）不影响——负载不动数据，译文随 overlay
+            // 下发，前端只翻显示。仍走多词闸门：单 token 键标识符浓度太高。
+            if !suppress && is_lang_arg_text(&key) && rhs_is_bare_type_path(rhs) {
+                emit(catalog, ns, &key);
             }
         }
         // 具名实参 `AddComponent(…, end_string = ", mate")`：语音突变的**无条件后缀**。词表的 key 是
@@ -2434,6 +2459,20 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
 fn recurse_term(term: &Term, ns: &str, catalog: &mut Catalog, suppress: bool, ctx: ProcCtx) {
     match term {
         Term::Expr(e) => visit_expr(e, ns, catalog, suppress, ctx),
+        // **`pick()` 是独立的 AST 节点，不是 Term::Call** —— 因为 DM 支持权重语法
+        // `pick(50;"a", 50;"b")`，解析器给了它 `Term::Pick(Box<[(Option<Expression>, Expression)]>)`。
+        // 少了这一支，**全仓所有 `pick(...)` 里的字面量都进不了目录**：`to_chat(x,
+        // span_notice("[pick(\"You feel pumped!\", …)]"))` 这类随机 flavor 消息是 DM 里最常见的写法之一。
+        // 实测一个文件里 146/147 条普通句子都在目录，pick 里的 8 条一条都不在 —— 这个反差就是判据。
+        // （普通句子靠 sink 路径的 build_template 抽到，与激进 pass 无关，所以缺口只在 pick 上显形。）
+        Term::Pick(args) => {
+            for (weight, value) in args.iter() {
+                if let Some(w) = weight {
+                    visit_expr(w, ns, catalog, suppress, ctx);
+                }
+                visit_expr(value, ns, catalog, suppress, ctx);
+            }
+        }
         Term::InterpString(_, parts) => {
             for (opt, _) in parts.iter() {
                 if let Some(e) = opt {

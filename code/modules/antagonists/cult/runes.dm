@@ -665,7 +665,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 	var/datum/objective/eldergod/summon_objective = locate() in user_antag.cult_team.objectives
 	var/area/place = get_area(src)
 	if(!(place in summon_objective.summon_spots))
-		to_chat(user, span_cult_large(LANG("obj.d5e6b585", list(english_list(summon_objective.summon_spots)))))
+		to_chat(user, span_cult_large(LANG("obj.d5e6b585", list(lang_english_list(summon_objective.summon_spots)))))
 		return
 	if(locate(/obj/narsie) in SSpoints_of_interest.narsies)
 		for(var/invoker in invokers)
@@ -1106,7 +1106,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		to_chat(user, span_cult_large(LANG("obj.a35e36c7", null)))
 		return
 	if(!(place in summon_objective.summon_spots))
-		to_chat(user, span_cult_large(LANG("obj.2b640a60", list(english_list(summon_objective.summon_spots)))))
+		to_chat(user, span_cult_large(LANG("obj.2b640a60", list(lang_english_list(summon_objective.summon_spots)))))
 		return
 
 	summon_objective.summon_spots -= place

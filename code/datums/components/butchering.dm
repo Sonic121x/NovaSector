@@ -436,9 +436,9 @@
 
 	if (butcher)
 		if (length(failures))
-			to_chat(butcher, span_warning(LANG("datum.fbad7e98", list(english_list(failures), target))))
+			to_chat(butcher, span_warning(LANG("datum.fbad7e98", list(lang_english_list(failures), target))))
 		if (length(bonuses))
-			to_chat(butcher, span_info(LANG("datum.ce8d9af7", list(english_list(bonuses), target))))
+			to_chat(butcher, span_info(LANG("datum.ce8d9af7", list(lang_english_list(bonuses), target))))
 
 	for (var/obj/guaranteed_remains as anything in target.guaranteed_butcher_results)
 		var/amount = target.guaranteed_butcher_results[guaranteed_remains]

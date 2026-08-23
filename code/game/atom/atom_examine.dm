@@ -157,7 +157,7 @@
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		mat_and = "、"
 		mat_comma = "、"
-	. += LANG("atom.18275935", list(english_list(mats_list, and_text = mat_and, comma_text = mat_comma)))
+	. += LANG("atom.18275935", list(lang_english_list(mats_list, and_text = mat_and, comma_text = mat_comma)))
 
 /**
  * Called when a mob examines (shift click or verb) this atom twice (or more) within EXAMINE_MORE_WINDOW (default 1 second)

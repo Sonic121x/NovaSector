@@ -78,7 +78,7 @@
 		area_names += allowed_area::name
 
 	if(length(area_names))
-		. += span_cyan(LANG("obj.44a3bbef", list(english_list(area_names))))
+		. += span_cyan(LANG("obj.44a3bbef", list(lang_english_list(area_names))))
 
 	return .
 
