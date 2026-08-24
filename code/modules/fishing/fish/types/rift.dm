@@ -582,7 +582,7 @@
 		return MANUAL_SUICIDE_NONLETHAL // in case they somehow break out
 
 	visible_message(span_suicide(LANG("obj.2cc81b648f41629b", list(user, src))))
-	var/psychic_speech = tgui_input_text(user, message = "Say something!", title = "What are your last words?", timeout = 15 SECONDS)
+	var/psychic_speech = tgui_input_text(user, message = LANG("obj.d2d964a87ba81037", null), title = LANG("obj.880a1c722294e2ff", null), timeout = 15 SECONDS)
 	if(!psychic_speech || !locate(src) in user.get_contents())
 		user.say(LANG("obj.2d013962b01e1494", null), forced = "blustering like a moron due to babbelfish suicide")
 		visible_message(span_suicide(LANG("obj.b597bc0a8b7662d2", list(user))))

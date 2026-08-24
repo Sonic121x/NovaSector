@@ -647,7 +647,7 @@
 				pressure = CAN_MAX_RELEASE_PRESSURE
 				. = TRUE
 			else if(pressure == "input")
-				pressure = tgui_input_number(usr, message = "New release pressure", title = "Canister Pressure", default = release_pressure, max_value = CAN_MAX_RELEASE_PRESSURE, min_value = CAN_MIN_RELEASE_PRESSURE, round_value = FALSE)
+				pressure = tgui_input_number(usr, message = LANG("obj.cd24599e9a80bea3", null), title = LANG("obj.6d99668e8dfacc65", null), default = release_pressure, max_value = CAN_MAX_RELEASE_PRESSURE, min_value = CAN_MIN_RELEASE_PRESSURE, round_value = FALSE)
 				if(!isnull(pressure))
 					. = TRUE
 			else if(text2num(pressure) != null)

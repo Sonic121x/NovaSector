@@ -30,8 +30,8 @@
 /datum/vote/custom_vote/create_vote(mob/vote_creator)
 	var/custom_count_method = tgui_input_list(
 		user = vote_creator,
-		message = "Single or multiple choice?",
-		title = "Choice Method",
+		message = LANG("datum.bbe82c356b82235c", null),
+		title = LANG("datum.84e9a377ea157578", null),
 		items = list("Single", "Multiple"),
 		default = "Single",
 	)
@@ -49,8 +49,8 @@
 
 	var/custom_win_method = tgui_input_list(
 		user = vote_creator,
-		message = "How should the vote winner be determined?",
-		title = "Winner Method",
+		message = LANG("datum.607a30ba21af44a8", null),
+		title = LANG("datum.5553562d2fd6336a", null),
 		items = list("Simple", "Weighted Random", "No Winner"),
 		default = "Simple",
 	)

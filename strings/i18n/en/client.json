@@ -80,8 +80,10 @@
 	"client.1acb51ba6eb0c864": "Adminhelps are also sent through TGS to services like IRC and Discord. If no admins are available in game, sending an adminhelp might still be noticed and responded to.",
 	"client.1b04a39351d118fa": "Reference",
 	"client.1b5d8977e1bd2bc4": "View and edit outfits.",
+	"client.1b7f7864bb0fcbcd": "<b>Your version of BYOND is too old:</b>",
 	"client.1bbf1ab0b1dfb47f": "We're cancelling the Spritemageddon. (This will create a LOT of runtimes! Don't use on a live server!)",
 	"client.1c3eb6ba8cc58e93": "announcement",
+	"client.1d9497f3497c55a9": "<br>The following experimental changes are active and are probably the cause of any new or sudden issues you may experience. If possible, please try to find a specific thread for your issue instead of posting to the general issue tracker:<br>",
 	"client.1e198c4d6b3b45d0": "Display all of the tagged datums.",
 	"client.1e1d765015d7d658": "View the weight of each hallucination subtype in the random weighted list.",
 	"client.1e9ee6ebacf05a0e": "View all spells and their requirements.",
@@ -425,6 +427,7 @@
 	"client.aca4fc25aca3d360": "Enter new color:",
 	"client.acf3640b5e935a18": "Warning",
 	"client.ad08a62ae8a1c599": "Which relay do you wish to use?",
+	"client.adf09a3276e72c99": "<b>Message not sent:</b>",
 	"client.ae3418a89c0ef66d": "Choose a new species",
 	"client.aeb0ae1ba842c633": "Restarts the world immediately.",
 	"client.af2bcc9f276db175": "Reloads the configuration from the default path on the disk, wiping any in-round modifications.",
@@ -636,5 +639,6 @@
 	"client.ff8b09ee91b5859a": "See all of your achievements!",
 	"client.ff96a7879597b0c6": "What happened? Where has everyone gone?",
 	"client.ffc8f0ffffb0fbe8": "View all trophies.",
-	"client.fff8a34933248978": "Bagpipes begin to blare. You feel Scottish pride coming over you."
+	"client.fff8a34933248978": "Bagpipes begin to blare. You feel Scottish pride coming over you.",
+	"client.fff996c7a4625859": "<br><b>Current Informational Settings:</b>"
 }

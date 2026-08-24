@@ -46,6 +46,12 @@ pub fn sink_arg_name(sink: &str, idx: usize) -> Option<&'static str> {
         "visible_message" => &[(0, "message"), (1, "self_message"), (2, "blind_message")],
         "audible_message" => &[(0, "message"), (1, "self_message"), (3, "deaf_message")],
         "notify_ghosts" => &[(0, "title")],
+        // 具名实参形态 `tgui_input_list(user, message = "Select an ability", title = "…", items = …)`：
+        // 少了这张表，按位取参会落到 `items = …` 上、整条提示语一个字都抽不到，且 rewrite 同样
+        // 跳过。比特跑者磁盘的「Select an ability」就是这么漏的。
+        "tgui_alert" | "tgui_input_list" | "tgui_input_text" | "tgui_input_number" => {
+            &[(1, "message"), (2, "title")]
+        }
         _ => return None,
     };
     names.iter().find(|(i, _)| *i == idx).map(|(_, name)| *name)
@@ -192,6 +198,24 @@ mod tests {
         assert_eq!(title_slot, 0);
         assert_eq!(build_template(body).as_deref(), Some("Alert body"));
         assert_eq!(build_template(title).as_deref(), Some("Alert title"));
+    }
+
+    /// `tgui_input_list(user, message = "…", title = "…", items = …)`：具名实参形态。
+    /// 少了 sink_arg_name 里那条，按位取参会落到 `items = …` 上（第 2 位是 title 的名字位，
+    /// 但源码里第 2 个实参其实是 title、第 3 个是 items）—— 提示语一个字都抽不到，
+    /// rewrite 同样跳过。比特跑者磁盘的「Select an ability」就是这么漏的。
+    #[test]
+    fn tgui_input_named_arguments_resolve_by_semantic_name() {
+        let args = vec![
+            ident("user"),
+            keyword("items", ident("names")),
+            keyword("message", text("Select an ability")),
+            keyword("title", text("Bitrunning Program")),
+        ];
+        let (_, message) = resolve_sink_arg("tgui_input_list", 1, &args).unwrap();
+        let (_, title) = resolve_sink_arg("tgui_input_list", 2, &args).unwrap();
+        assert_eq!(build_template(message).as_deref(), Some("Select an ability"));
+        assert_eq!(build_template(title).as_deref(), Some("Bitrunning Program"));
     }
 
     #[test]

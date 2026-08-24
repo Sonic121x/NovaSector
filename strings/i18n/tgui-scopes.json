@@ -17211,8 +17211,14 @@
   "Left arm module": [
     "tgui:constants"
   ],
+  "Left click pins operation to the top.": [
+    "tgui:PatientStateView"
+  ],
   "Left click to pin this recipe.": [
     "tgui:ChemDispenser"
+  ],
+  "Left click unpins operation from the top.": [
+    "tgui:PatientStateView"
   ],
   "Left leg": [
     "dm:labels"
@@ -38948,6 +38954,9 @@
   ],
   "striped": [
     "dm:labels"
+  ],
+  "surgery.operating_computer.all_tools\u0004All tools": [
+    "tgui:interfaces/OperatingComputer/PatientStateView"
   ],
   "switchcomb": [
     "dm:labels"

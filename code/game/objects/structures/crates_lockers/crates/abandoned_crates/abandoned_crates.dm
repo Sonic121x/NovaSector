@@ -123,7 +123,7 @@
 	if(!user.can_perform_action(src))
 		return
 
-	var/input = tgui_input_text(user, title = "Deca-code lock", message = "Enter [code_length] digits. All digits must be unique.", max_length = code_length)
+	var/input = tgui_input_text(user, title = LANG("obj.14eee6fcc5fbceff", null), message = LANG("obj.69270ce2099e68d0", list(code_length)), max_length = code_length)
 
 	if(input == code)
 		if(!spawned_loot)

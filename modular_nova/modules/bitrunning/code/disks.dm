@@ -54,10 +54,10 @@
 	if(isnull(prefdata_names))
 		return
 
-	var/response = tgui_alert(user, message = "Change selected prefs?", title = "Prefchange", buttons = list("Yes", "No"))
+	var/response = tgui_alert(user, message = LANG("obj.50483b4a4935c1ba", null), title = LANG("obj.536d495c60514292", null), buttons = list("Yes", "No"))
 	if(isnull(response) || response == "No")
 		return
-	var/choice = tgui_input_list(user, message = "Select a character",  title = "Character selection", items = prefdata_names)
+	var/choice = tgui_input_list(user, message = LANG("obj.3cb78ece2f701bcf", null),  title = LANG("obj.2b0ff9114b6c7fec", null), items = prefdata_names)
 	if(isnull(choice) || !user.is_holding(src))
 		return
 

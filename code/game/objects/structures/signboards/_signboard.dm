@@ -102,7 +102,7 @@
 		return FALSE
 	var/new_text = tgui_input_text(
 		user,
-		message = "What would you like to set this sign's text to?",
+		message = LANG("obj.3449a71c6b2335c5", null),
 		title = full_capitalize(name),
 		default = sign_text,
 		max_length = max_length,

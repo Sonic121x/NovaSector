@@ -11,6 +11,7 @@ import {
 } from 'tgui-core/components';
 import { capitalizeAll, capitalizeFirst } from 'tgui-core/string';
 import { useBackend, useSharedState } from '../../backend';
+import { defineMessage, useTranslator } from '../../i18n'; // NOVA EDIT - I18N
 import { type BodyZone, BodyZoneSelector } from '../common/BodyZoneSelector';
 import { extractSurgeryName } from './helpers';
 import {
@@ -19,6 +20,13 @@ import {
   type OperatingComputerData,
   type PatientData,
 } from './types';
+
+// NOVA EDIT ADDITION - I18N: 「全部工具」这一档的显示名。筛选值本身（'all tools'）兼作比较键，
+// 必须保持英文，所以只能另发一条显式消息给显示用。
+const allToolsLabel = defineMessage(
+  'surgery.operating_computer.all_tools',
+  'All tools',
+);
 
 type PatientStateViewProps = {
   setTab: (tab: number) => void;
@@ -183,6 +191,7 @@ const PatientStateNextOperationsView = (
   const { surgeries } = data;
   const { pinnedOperations, setPinnedOperations, setTab, setSearchText } =
     props;
+  const translator = useTranslator(); // NOVA EDIT - I18N
 
   const possible_next_operations = surgeries.filter(
     (operation) => operation.show_as_next,
@@ -240,7 +249,13 @@ const PatientStateNextOperationsView = (
           }
           onContextMenu={() => setFilterByTool(allTools[0])}
         >
-          {capitalizeFirst(filterByTool)}
+          {/* NOVA EDIT CHANGE - i18n: filterByTool 兼作比较键（`!== allTools[0]`），值必须保持
+              英文；「全部工具」这一档走显式消息才进得了目录、才翻得动（Button 的 children 类型
+              是 string，塞不进 JSX 片段）。工具名那一档来自 DM 负载，走 overlay。
+              ORIGINAL: {capitalizeFirst(filterByTool)} */}
+          {filterByTool === allTools[0]
+            ? translator.text(allToolsLabel)
+            : capitalizeFirst(filterByTool)}
         </Button>
       }
     >
@@ -279,13 +294,20 @@ const PatientStateNextOperationsView = (
                           </Stack.Item>
                         )}
                         <Stack.Item>{operation.desc}</Stack.Item>
-                        <Stack.Item italic fontSize="0.9rem">
-                          {`Left click ${
-                            pinnedOperations.includes(operation.name)
-                              ? 'unpins operation from'
-                              : 'pins operation to'
-                          } the top.`}
-                        </Stack.Item>
+                        {/* NOVA EDIT CHANGE START - i18n: 原本是模板字面量里嵌三元，整串是运行期
+                            产物、永远不是目录键，于是这一行恒为英文（而紧邻的「右键点击…」是纯文本
+                            children、照常被翻）。拆成两条完整句子，各自成为静态 children。
+                            ORIGINAL: 见 git 历史（单条 `Left click ${...} the top.` 模板串）。 */}
+                        {pinnedOperations.includes(operation.name) ? (
+                          <Stack.Item italic fontSize="0.9rem">
+                            Left click unpins operation from the top.
+                          </Stack.Item>
+                        ) : (
+                          <Stack.Item italic fontSize="0.9rem">
+                            Left click pins operation to the top.
+                          </Stack.Item>
+                        )}
+                        {/* NOVA EDIT CHANGE END */}
                         {!!operation.show_in_list && (
                           <Stack.Item italic fontSize="0.9rem">
                             Right click opens operation info.

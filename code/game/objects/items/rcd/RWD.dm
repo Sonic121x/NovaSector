@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 //This represents the amount of materials (both iron and glass that the max_amount of cable would amount to
 #define RWD_MAX_CABLES_MATS (SMALL_MATERIAL_AMOUNT * 0.1 * RWD_MAX_CABLES)
 #define RWD_MAX_CABLES 210
@@ -76,7 +77,7 @@
 		balloon_alert(user, LANG("obj.a0dddad15b4663af", null))
 		return
 
-	var/amount = tgui_input_number(user = user, message = "Enter amount to dispense", title = "Custom cable", default = 0, max_value = min(30, current_amount), min_value = min(1, current_amount), timeout = 0, round_value = TRUE)
+	var/amount = tgui_input_number(user = user, message = LANG("obj.df048da483627ba0", null), title = LANG("obj.9bff11454e4cb26b", null), default = 0, max_value = min(30, current_amount), min_value = min(1, current_amount), timeout = 0, round_value = TRUE)
 	if(isnull(amount) || amount > current_amount)
 		return
 

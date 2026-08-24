@@ -750,7 +750,7 @@
 	var/mob/living/recipient = tgui_input_list(telepath, LANG("datum.2a466622a20c82d8", null), LANG("datum.ecb4d27856a700a6", null), sort_names(recipient_options))
 	if(isnull(recipient) || telepath.stat == DEAD || !is_species(telepath, /datum/species/jelly/stargazer))
 		return
-	var/msg = tgui_input_text(telepath, title = "Telepathy", max_length = MAX_MESSAGE_LEN)
+	var/msg = tgui_input_text(telepath, title = LANG("datum.ecb4d27856a700a6", null), max_length = MAX_MESSAGE_LEN)
 	if(isnull(msg) || telepath.stat == DEAD || !is_species(telepath, /datum/species/jelly/stargazer))
 		return
 	if(!(recipient in oview(telepath)))

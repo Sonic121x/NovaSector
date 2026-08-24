@@ -301,8 +301,8 @@
 		return
 	var/confirmed = tgui_alert(
 		owner.current,
-		message = "Are you sure? You will no longer be able to Ascend.",
-		title = "Reject the call?",
+		message = LANG("datum.e97bafc6cb330068", null),
+		title = LANG("datum.cbdc9b35bd6720b4", null),
 		buttons = list("Yes", "No"),
 	) == "Yes"
 	if (!confirmed)

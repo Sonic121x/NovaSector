@@ -13,6 +13,8 @@
 #define I18N_FALLBACK_CACHE_MAX_LENGTH 512
 /// 「跨内联标签整段查表」前置 pass 的输入上限：聊天行/检查行量级。浏览器整页不走这条路。
 #define I18N_INLINE_RUN_MAX_LENGTH 2048
+/// `span_tooltip()` 拼出来的提示属性前缀。切块器唯一会去翻的属性（见 lang_localize_tooltip_attrs）。
+#define I18N_TOOLTIP_ATTR "data-content=\""
 
 /// locale -> "ready" | "none"，避免重复读盘/重复 setup。
 GLOBAL_LIST_EMPTY(i18n_fallback_state)
@@ -308,6 +310,32 @@ GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
 	lang_log_miss_value(text, "namespan")
 	return text
 
+/// `span_tooltip()` 的提示文字住在 **HTML 属性**里（`<span data-component="Tooltip"
+/// data-content="Remove surgically." class="tooltip">`），而 `lang_fallback_apply_html`
+/// 按标签切块、只把标签**之间**的纯文本送去查表 —— 属性一律跳过。跳过是对的（`class`/`href`
+/// 里是样式名和链接，翻了当场把配色和跳转弄坏），但 `data-content` 是个例外：它按构造就是
+/// 给玩家看的散文，别处再没有第二条路径能碰到它。
+///
+/// 症状很有辨识度：**悬浮提示整条英文，而它锚定的那段正文是中文**（健康扫描仪的断肢/辐射/
+/// 异物提示皆然，三条译文一直躺在目录里）。逐个改调用点走不通 —— `conditional_tooltip` 是
+/// `#define`，且有一批提示是运行期拼出来的。
+///
+/// 只认 `data-content`，且只认双引号（`span_tooltip` 就是这么拼的）。内容交给与正文**同一条**
+/// 落地链，理由同上：同样的散文不该因为所处位置不同而拿到不同待遇。
+/proc/lang_localize_tooltip_attrs(tag, locale)
+	var/at = findtext(tag, I18N_TOOLTIP_ATTR)
+	if(!at)
+		return tag
+	var/value_start = at + length(I18N_TOOLTIP_ATTR)
+	var/value_end = findtext(tag, "\"", value_start)
+	if(!value_end || value_end <= value_start)
+		return tag
+	var/value = copytext(tag, value_start, value_end)
+	var/localized = lang_fallback_apply(value, locale)
+	if(localized == value)
+		return tag
+	return copytext(tag, 1, value_start) + localized + copytext(tag, value_end)
+
 /// Finds the closing `>` for an HTML tag without treating a quoted `>` as the end of the tag.
 ///
 /// PERF：原实现按**字节**推进（`copytext(html, i, i+1)` 每字节分配一个新字符串），而本 proc 是
@@ -547,6 +575,8 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 	// 逐个改那 54 个 span_name() 调用点是走不完的（而且新调用点随时会加），所以在**切块器**里
 	// 认这个形状：整块就是一个名字 → 走整串精确反查（含剥冠词），不经 AC。
 	var/in_name_span = FALSE
+	// 整行扫一次，而不是每个标签扫一次：这是每条 to_chat 的必经路径，而带 tooltip 的行是少数。
+	var/has_tooltip_attr = locale != DEFAULT_UI_LOCALE && findtext(html, I18N_TOOLTIP_ATTR)
 	while(cursor <= html_length)
 		var/tag_start = findtext(html, "<", cursor)
 		if(!tag_start)
@@ -560,7 +590,7 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 			output += lang_fallback_apply(copytext(html, tag_start), locale)
 			break
 		var/tag = copytext(html, tag_start, tag_end + 1)
-		output += tag
+		output += has_tooltip_attr ? lang_localize_tooltip_attrs(tag, locale) : tag
 		cursor = tag_end + 1
 		in_name_span = findtext(tag, "class='name'") || findtext(tag, "class=\"name\"")
 
@@ -583,5 +613,6 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 #undef I18N_FALLBACK_CACHE_MAX
 #undef I18N_FALLBACK_CACHE_MAX_LENGTH
 #undef I18N_INLINE_RUN_MAX_LENGTH
+#undef I18N_TOOLTIP_ATTR
 #undef I18N_TAG_NAME_CHARS
 #undef I18N_TAG_LEAD_WHITESPACE

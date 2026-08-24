@@ -586,8 +586,8 @@ GLOBAL_LIST_EMPTY(antagonists)
 		return FALSE
 	var/custom_objective_text = tgui_input_text(
 		owner_mob,
-		message = "Specify your new objective.",
-		title = "Custom Objective",
+		message = LANG("datum.01d6d38e89c73567", null),
+		title = LANG("datum.42cbc6d887b5f2c8", null),
 		default = default_custom_objective,
 		max_length = CUSTOM_OBJECTIVE_MAX_LENGTH,
 	)

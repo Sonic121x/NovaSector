@@ -280,8 +280,8 @@ GLOBAL_LIST_INIT(command_strings, list(
 	var/new_name = sanitize_name(
 		reject_bad_text(tgui_input_text(
 			user = user,
-			message = "This machine is designated [real_name]. Would you like to update [p_their()] registration?",
-			title = "Name change",
+			message = LANG("mob.364822adbfbe0a8f", list(real_name, p_their())),
+			title = LANG("mob.b4bf4c54d223e79b", null),
 			default = real_name,
 			max_length = MAX_NAME_LEN,
 		)),
@@ -292,8 +292,8 @@ GLOBAL_LIST_INIT(command_strings, list(
 	if (key && user != src)
 		var/accepted = tgui_alert(
 			src,
-			message = "Do you wish to be renamed to [new_name]?",
-			title = "Name change",
+			message = LANG("mob.2d43d8599ca22a7f", list(new_name)),
+			title = LANG("mob.b4bf4c54d223e79b", null),
 			buttons = list("Yes", "No"),
 		)
 		if (accepted != "Yes" || QDELETED(src))

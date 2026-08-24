@@ -433,8 +433,8 @@
 					if(U)
 						var/crystals = tgui_input_number(
 							user = usr,
-							message = "Amount of telecrystals for [key]",
-							title = "Syndicate uplink",
+							message = LANG("datum.e7d543016cf39569", list(key)),
+							title = LANG("datum.37b70b93efd01dfb", null),
 							default = U.uplink_handler.telecrystals,
 						)
 						if(isnum(crystals))

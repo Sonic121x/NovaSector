@@ -133,7 +133,7 @@ Doesn't work on other aliens/AI.*/
 	if(!chosen_recipient)
 		return FALSE
 
-	var/to_whisper = tgui_input_text(owner, title = "Alien Whisper", max_length = MAX_MESSAGE_LEN)
+	var/to_whisper = tgui_input_text(owner, title = LANG("datum.7b1b2bb44fec5b46", null), max_length = MAX_MESSAGE_LEN)
 	if(QDELETED(chosen_recipient) || QDELETED(src) || QDELETED(owner) || !IsAvailable(feedback = TRUE) || !to_whisper)
 		return FALSE
 	if(chosen_recipient.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))

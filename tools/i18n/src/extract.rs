@@ -291,6 +291,12 @@ pub fn is_display_descriptor_proc(proc_name: &str) -> bool {
             // 餐厅顾客的点单台词（`"I'll take a [份量] of [试剂名]"`）：整句经 say() 说出来，
             // 但它是 proc 返回值、不是 sink 实参，抽取器够不着。
             | "get_order_line"
+            // 手术推荐工具名：基类走 `tool::name`（在 obj 目录里），但子类可以**覆盖成字面量**
+            // （`get_recommended_tool()` 直接 `return "cybernetic limb"`）。同一列里别的行是中文、
+            // 这一行英文，就是这个差别。`get_any_tool()` 的 "Any item" 早就手工收进 _surgery.json，
+            // 属同一形状 —— 与其继续一条条手工补，不如把这两个 proc 一起认下来。
+            | "get_recommended_tool"
+            | "get_any_tool"
     )
 }
 
@@ -544,8 +550,27 @@ fn is_loose_sentence(template: &str) -> bool {
         }
     }
     let end = lit.trim_end_matches(['"', '\'', ')', ']', '*']);
+    // 冒号收尾的**标签行**同样是玩家可见文本，而这道闸门原本只认句号/叹号/问号 ——
+    // 于是「扫描仪/记录/回合结算」那一整类整齐地漏在外面。同文件的 is_examine_sentence 一直认
+    // 冒号，两条闸门对同一种形状给出相反判定，判据就是这么分叉的。实测同 proc 内的对比：
+    //   `Subject contains no reagents in their stomach.`   → 在目录
+    //   `Subject contains the following reagents in their stomach:` → 不在
+    // 冒号不会放宽标识符面：前面已经要求「≥10 字符 + 含空格 + 首字母大写」，而 `switch` 键、
+    // 黑板键、图标名不长这样。
     if !(end.ends_with(['.', '!', '?', '…']) || end.ends_with("...")) {
-        return false;
+        // 冒号收尾的**标签行**同样是玩家可见文本（`Subject contains the following reagents in
+        // their stomach:`、回合结算的 `Station Economic Summary:`），而这道闸门原本只认句号系，
+        // 于是「扫描仪 / 记录 / 结算」那一整类整齐地漏在外面 —— 同一个 proc 里句号那行在目录、
+        // 冒号那行不在。同文件的 is_examine_sentence 一直是认冒号的，两条闸门对同一种形状给出
+        // 相反判定。
+        //
+        // 但**只放行不含占位符的**。实测直接开冒号会涌进 511 条，绝大多数是管理员日志与调试断言
+        // （`{0} Invalid timer state: …`、`{0}:{1}:Assertion failed: {2}{3}`、watchlist 通报）——
+        // 它们走的是 message_admins/CRASH 这些 is_non_player_sink 够不着的汇聚点，而「冒号 +
+        // 插值」正是日志行的典型形状。纯静态的冒号标签行没有这个问题。
+        if !end.ends_with(':') || template.contains('{') {
+            return false;
+        }
     }
     let first = lit.chars().next().unwrap();
     first.is_ascii_uppercase() || template.trim_start().starts_with('{')
@@ -1005,10 +1030,133 @@ fn walk_lang_arg_locals(
     }
     let mut literals = Vec::new();
     collect_local_assign_literals(block, &names, &mut literals);
+    collect_local_list_literal_values(block, &names, &mut literals);
     for literal in literals {
         if is_lang_arg_text(&literal) {
             emit(catalog, ns, literal.trim());
         }
+    }
+    // `var/cause = pick("space being cold", "climate change", …)` 之后 `LANG(key, list(cause))`：
+    // 词池整条是 flavor 备选，本来就是给玩家看的，但它既过不了激进 pass 的整句闸门（无句末标点、
+    // 小写起头），赋值右侧又是 `pick` 而不是字符串 —— 上面那一跳看不见它。症状是模板译好、实参
+    // 全英文：「由于space being cold，a pack of squeaking things已migrated到maintenance tunnels。」
+    //
+    // 这里**不用**多词闸门，改用**同池兄弟**做判据：只要池里有一条是多词显示文本，整池就一起收。
+    // 道理是词池的成员按构造可以互换 —— 一个位置既能填 "squeaking things" 又能填 "mice"，那它
+    // 就是个显示槽，不可能同时是标识符槽。多词闸门在这里恰恰会切出最难看的结果（长的译了、
+    // 短的没译，`已migrated到`）。全池皆单词的（`pick("attack", "disarm")`）不收。
+    let mut compared = std::collections::HashSet::new();
+    collect_compared_idents(block, &mut compared);
+    let mut pools = Vec::new();
+    collect_local_pick_pools(block, &names, &mut pools);
+    for (var_name, pool) in pools {
+        // **被比较过的变量，它的池是标识符池**。`var/brand = pick("Ebisu Super Dry", …)` 紧接着
+        // `switch(brand) if("Ebisu Super Dry")` —— 品牌名同时是查表键，进目录就多一条全局反查
+        // 面（`nova-i18n lint` 的碰撞规则当场报）。这是抽取期就能做的、与 lint 同一个判断。
+        if compared.contains(&var_name) {
+            continue;
+        }
+        if !pool.iter().any(|literal| is_lang_arg_text(literal)) {
+            continue;
+        }
+        for literal in pool {
+            emit(catalog, ns, literal.trim());
+        }
+    }
+}
+
+/// 在本 proc 里被拿去**比较**的裸标识符：`switch(x)` 的主语，以及 `x == …` / `… == x`。
+fn collect_compared_idents(
+    block: &[dm::ast::Spanned<Statement>],
+    out: &mut std::collections::HashSet<String>,
+) {
+    fn note(expr: &Expression, out: &mut std::collections::HashSet<String>) {
+        if let Expression::Base { term, follow } = expr {
+            if follow.is_empty() {
+                if let Term::Ident(name) = &term.elem {
+                    out.insert(name.clone());
+                }
+            }
+        }
+    }
+    fn scan(expr: &Expression, out: &mut std::collections::HashSet<String>) {
+        match expr {
+            Expression::BinaryOp { op, lhs, rhs } => {
+                if matches!(op, dm::ast::BinaryOp::Eq | dm::ast::BinaryOp::NotEq) {
+                    note(lhs, out);
+                    note(rhs, out);
+                }
+                // `fluid_type in GLOB.fish_compatible_fluid_types[…]`：成员判定同样说明这个值是
+                // 程序查表用的键。鱼类赏金的 `pick(AQUARIUM_FLUID_FRESHWATER, …)` 就是这形状 ——
+                // 它既进 name/description 显示，又拿去 `in` 判定，是典型的「值兼标识符」。
+                if matches!(op, dm::ast::BinaryOp::In) {
+                    note(lhs, out);
+                }
+                scan(lhs, out);
+                scan(rhs, out);
+            }
+            Expression::AssignOp { rhs, .. } => scan(rhs, out),
+            Expression::TernaryOp { cond, if_, else_ } => {
+                scan(cond, out);
+                scan(if_, out);
+                scan(else_, out);
+            }
+            Expression::Base { term, .. } => {
+                if let Term::Expr(inner) = &term.elem {
+                    scan(inner, out);
+                }
+            }
+        }
+    }
+    for stmt in block.iter() {
+        if let Statement::Switch { input, .. } = &stmt.elem {
+            note(input, out);
+        }
+        for_each_statement_expr(&stmt.elem, &mut |e| scan(e, out));
+        for_each_statement_block(&stmt.elem, &mut |b| collect_compared_idents(b, out));
+    }
+}
+
+/// 赋给目标标识符的 `pick(...)` 词池成员（含权重语法 `pick(50;"a", 50;"b")` 的值那一侧）。
+fn collect_local_pick_pools(
+    block: &[dm::ast::Spanned<Statement>],
+    names: &std::collections::HashSet<String>,
+    out: &mut Vec<(String, Vec<String>)>,
+) {
+    fn push_pool(name: &str, expr: &Expression, out: &mut Vec<(String, Vec<String>)>) {
+        let Expression::Base { term, follow } = expr else {
+            return;
+        };
+        if !follow.is_empty() {
+            return;
+        }
+        match &term.elem {
+            Term::Pick(args) => {
+                let mut pool = Vec::new();
+                for (_, value) in args.iter() {
+                    push_assigned_literals(value, &mut pool);
+                }
+                if !pool.is_empty() {
+                    out.push((name.to_owned(), pool));
+                }
+            }
+            Term::Expr(inner) => push_pool(name, inner, out),
+            _ => {}
+        }
+    }
+    for stmt in block.iter() {
+        if let Statement::Var(var_stmt) = &stmt.elem {
+            if names.contains(&var_stmt.name) {
+                if let Some(value) = &var_stmt.value {
+                    push_pool(&var_stmt.name, value, out);
+                }
+            }
+        }
+        // **只认 `var/x = pick(...)` 这种 proc 内声明**，不认对已有变量的赋值。
+        // `fluid_type = pick(AQUARIUM_FLUID_FRESHWATER, …)` 里 fluid_type 是 datum 的类型变量，
+        // 值会逃出本 proc、在**别的 proc** 里被 `in` 判定（`can_ship_fish`）—— 本 proc 内的
+        // 「有没有被比较过」扫描根本看不见它。局部声明的变量生命周期完整可见，才敢按池收。
+        for_each_statement_block(&stmt.elem, &mut |b| collect_local_pick_pools(b, names, out));
     }
 }
 
@@ -1164,6 +1312,15 @@ fn collect_bare_idents(expr: &Expression, out: &mut std::collections::HashSet<St
                     out.insert(name.clone());
                 }
             }
+            // `ops[mode]`：**局部查表**的显示标签。`x.y` 不收是因为赋值点不在本 proc，但下标查的
+            // 那张表往往就在同一个 proc 里（`var/static/list/ops = list(WAND_OPEN = "Open Door", …)`
+            // 再 `LANG(key, list(ops[mode]))`）。模板译好了、实参永远是英文 —— 安保门遥控器那条
+            // 「模式：Open Door」即此。收集名字，值由 collect_local_list_literal_values 去取。
+            if follow.len() == 1 && matches!(&follow[0].elem, Follow::Index(..)) {
+                if let Term::Ident(name) = &term.elem {
+                    out.insert(name.clone());
+                }
+            }
             match &term.elem {
                 Term::Expr(inner) => collect_bare_idents(inner, out),
                 Term::List(args) => {
@@ -1225,6 +1382,60 @@ fn collect_local_assign_literals(
         });
         for_each_statement_block(&stmt.elem, &mut |b| {
             collect_local_assign_literals(b, names, out)
+        });
+    }
+}
+
+/// 赋给目标标识符的 **list 字面量的值**（`ops = list(WAND_OPEN = "Open Door", …)`）。
+///
+/// 只取值，不取键：这里的键是 `#define` 出来的模式常量（`WAND_OPEN`），是程序查表用的。
+/// 与「值是类型路径 ⇒ 键才是标签」那条规则正好互为反面 —— 判据是**哪一边被当作 LANG 实参
+/// 送出去显示**，而不是形状。闸门仍由调用方的 `is_lang_arg_text`（多词）把关。
+fn collect_local_list_literal_values(
+    block: &[dm::ast::Spanned<Statement>],
+    names: &std::collections::HashSet<String>,
+    out: &mut Vec<String>,
+) {
+    fn push_list_values(expr: &Expression, out: &mut Vec<String>) {
+        let Expression::Base { term, follow } = expr else {
+            return;
+        };
+        if !follow.is_empty() {
+            return;
+        }
+        let Term::List(args) = &term.elem else {
+            return;
+        };
+        for arg in args.iter() {
+            match arg {
+                Expression::AssignOp { rhs, .. } => push_assigned_literals(rhs, out),
+                other => push_assigned_literals(other, out),
+            }
+        }
+    }
+    for stmt in block.iter() {
+        if let Statement::Var(var_stmt) = &stmt.elem {
+            if names.contains(&var_stmt.name) {
+                if let Some(value) = &var_stmt.value {
+                    push_list_values(value, out);
+                }
+            }
+        }
+        for_each_statement_expr(&stmt.elem, &mut |e| {
+            if let Expression::AssignOp { lhs, rhs, .. } = e {
+                if let Expression::Base { term, follow } = lhs.as_ref() {
+                    if follow.is_empty() {
+                        if let Term::Ident(name) = &term.elem {
+                            if names.contains(name) {
+                                push_list_values(rhs, out);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        for_each_statement_block(&stmt.elem, &mut |b| {
+            collect_local_list_literal_values(b, names, out)
         });
     }
 }
@@ -2322,7 +2533,11 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
         if let Expression::Base { term, follow } = &**lhs {
             if follow.is_empty() {
                 if let Term::Ident(name) = &term.elem {
-                    if name.as_str() == "end_string" {
+                    // `AddElement(/datum/element/contextual_screentip_bare_hands,
+                    //   lmb_text = "Toggle Resampler", rmb_text = "Flush Soup")`：悬停时的动作提示。
+                    // `context[SCREENTIP_CONTEXT_LMB] = "…"` 那种下标写法早就抽到了（全仓 577 条
+                    // 在目录），只有走具名实参的这批漏着 —— 同一个显示面，两种写法两种待遇。
+                    if matches!(name.as_str(), "end_string" | "lmb_text" | "rmb_text") {
                         emit_list_strings(rhs, ns, catalog);
                         if let Some(template) = build_template(rhs) {
                             if !template.contains('{') {

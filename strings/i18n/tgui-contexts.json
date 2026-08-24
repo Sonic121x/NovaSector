@@ -40,5 +40,12 @@
 		"scopes": [
 			"tgui:interfaces/AntagInfoOpfor"
 		]
+	},
+	"surgery.operating_computer.all_tools\u0004All tools": {
+		"context": "surgery.operating_computer.all_tools",
+		"source": "All tools",
+		"scopes": [
+			"tgui:interfaces/OperatingComputer/PatientStateView"
+		]
 	}
 }
