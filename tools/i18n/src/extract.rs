@@ -314,6 +314,9 @@ pub fn is_display_descriptor_proc(proc_name: &str) -> bool {
             // 属同一形状 —— 与其继续一条条手工补，不如把这两个 proc 一起认下来。
             | "get_recommended_tool"
             | "get_any_tool"
+            // 照片检查文本：`"You can also see [src] on the photo[受伤 ? ", looking a bit hurt" : ""]…"`
+            // 是各 mob 覆盖的 proc 返回值，既不是 sink 实参也不是类型变量，整类够不着。
+            | "get_photo_description"
     )
 }
 
@@ -569,6 +572,29 @@ fn is_speech_behavior_path(expr: &Expression) -> bool {
         let seg = seg.as_str();
         seg.starts_with("perform_emote") || seg.starts_with("perform_speech")
     })
+}
+
+/// 去掉 `{N}` 占位符与 DM 文法宏（`\improper` / `\the` / `\a` / `\s` …）后，是否还剩下真词。
+fn has_translatable_words(template: &str) -> bool {
+    let without_slots = strip_placeholders(template);
+    let mut letters = 0usize;
+    let mut chars = without_slots.chars().peekable();
+    while let Some(c) = chars.next() {
+        if c == '\\' {
+            // 文法宏：反斜杠后面那串字母整段跳过。
+            while chars.peek().is_some_and(|n| n.is_ascii_alphabetic()) {
+                chars.next();
+            }
+            continue;
+        }
+        if c.is_alphabetic() {
+            letters += 1;
+            if letters >= 3 {
+                return true;
+            }
+        }
+    }
+    false
 }
 
 fn is_loose_sentence(template: &str) -> bool {
@@ -1014,17 +1040,9 @@ fn walk_name_assignments(block: &[dm::ast::Spanned<Statement>], ns: &str, catalo
             if !matches!(target, Some("name") | Some("desc")) {
                 return;
             }
-            let Expression::Base {
-                term: value,
-                follow: value_follow,
-            } = rhs.as_ref()
-            else {
-                return;
-            };
-            if !value_follow.is_empty() {
-                return;
-            }
-            let Term::String(text) = &value.elem else {
+            // 插值模板同样要收：这些行几乎都是 `"remove [initial(organ.name)]"` 这种运行期拼的
+            // （`build_template` 对「去标签后不含字母」的表达式返回 None，纯占位符的形状自然被挡）。
+            let Some(text) = plain_string(rhs) else {
                 return;
             };
             if !text.trim().contains(' ') {
@@ -1034,6 +1052,90 @@ fn walk_name_assignments(block: &[dm::ast::Spanned<Statement>], ns: &str, catalo
         });
         for_each_statement_block(&stmt.elem, &mut |inner| {
             walk_name_assignments(inner, ns, catalog)
+        });
+    }
+}
+
+/// `X.info = "…"`：径向菜单选项（`/datum/radial_menu_choice`）的悬停说明。
+///
+/// 与 `name`/`desc` 分开走，因为闸门不同：
+///   · `name`/`desc` 只收**纯字符串**、且只对 atom 开 —— `/datum/…#name` 里标识符浓度高，
+///     而运行期拼出来的合成名（`"\improper [区域] APC"`、`"burnt [x]"`）由显示边界按段处理，
+///     收进目录既没用又会把 lint 的碰撞告警顶上去（实测 226 条新增、告警 54 → 63）。
+///   · `info` 是纯显示字段（选项标识符走同一 list 里的 OPERATION_ACTION），而且几乎都是
+///     `"Remove [initial(organ.name)] from the patient."` 这种插值模板 —— 不收模板就等于没收。
+fn walk_info_assignments(block: &[dm::ast::Spanned<Statement>], ns: &str, catalog: &mut Catalog) {
+    // 先找出这个 proc 里**被赋过 `.info` 的变量**——那就是径向菜单选项。它的 `.name`（切片上的
+    // 短标签，`"remove [器官名]"`）同样是显示文本，但对**所有** `.name` 放开插值模板太宽
+    // （合成名整片涌进来），所以用「同一个变量也设了 info」当准入证据。
+    let mut choice_idents = std::collections::HashSet::new();
+    collect_info_assigned_idents(block, &mut choice_idents);
+    walk_choice_display_fields(block, ns, catalog, &choice_idents);
+}
+
+fn collect_info_assigned_idents(
+    block: &[dm::ast::Spanned<Statement>],
+    out: &mut std::collections::HashSet<String>,
+) {
+    for stmt in block.iter() {
+        for_each_statement_expr(&stmt.elem, &mut |expr| {
+            let Expression::AssignOp { lhs, .. } = expr else {
+                return;
+            };
+            let Expression::Base { term, follow } = lhs.as_ref() else {
+                return;
+            };
+            let Term::Ident(name) = &term.elem else {
+                return;
+            };
+            if matches!(follow.first().map(|f| &f.elem), Some(Follow::Field(_, field)) if field == "info")
+            {
+                out.insert(name.clone());
+            }
+        });
+        for_each_statement_block(&stmt.elem, &mut |inner| collect_info_assigned_idents(inner, out));
+    }
+}
+
+fn walk_choice_display_fields(
+    block: &[dm::ast::Spanned<Statement>],
+    ns: &str,
+    catalog: &mut Catalog,
+    choices: &std::collections::HashSet<String>,
+) {
+    for stmt in block.iter() {
+        for_each_statement_expr(&stmt.elem, &mut |expr| {
+            let Expression::AssignOp { lhs, rhs, .. } = expr else {
+                return;
+            };
+            let Expression::Base { term, follow } = lhs.as_ref() else {
+                return;
+            };
+            let Term::Ident(ident) = &term.elem else {
+                return;
+            };
+            let Some(Follow::Field(_, field)) = follow.first().map(|f| &f.elem) else {
+                return;
+            };
+            let wanted = match field.as_str() {
+                "info" => true,
+                "name" => choices.contains(ident.as_str()),
+                _ => false,
+            };
+            if !wanted {
+                return;
+            }
+            let Some(template) = build_template(rhs) else {
+                return;
+            };
+            let trimmed = template.trim();
+            if !trimmed.contains(' ') || !has_translatable_words(trimmed) {
+                return;
+            }
+            emit(catalog, ns, trimmed);
+        });
+        for_each_statement_block(&stmt.elem, &mut |inner| {
+            walk_choice_display_fields(inner, ns, catalog, choices)
         });
     }
 }
@@ -1972,6 +2074,9 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<Catalog> {
                     {
                         walk_name_assignments(block, &namespace, &mut catalog);
                     }
+                    if !suppress_aggressive && !in_unit_tests(proc_value.location) {
+                        walk_info_assignments(block, &namespace, &mut catalog);
+                    }
 
                     match proc_name.as_str() {
                         "get_species_description" => {
@@ -2483,6 +2588,16 @@ fn visit_stmt(stmt: &Statement, ns: &str, catalog: &mut Catalog, suppress: bool,
             if ctx.display_return {
                 if let Some(template) = build_template(e) {
                     emit(catalog, ns, &template);
+                    // 整句作为模板进目录了，槽里的字面量也必须进 —— 模板逆匹配捕获到的正是它们。
+                    // `"You can also see [src] on the photo[受伤 ? ", looking a bit hurt" : ""]…"`
+                    // 即此：框架译好了，玩家看到「照片上你还可以看到 X, looking a bit hurt。」。
+                    let mut slots = Vec::new();
+                    collect_interp_slot_literals(e, &mut slots);
+                    for literal in slots {
+                        if is_lang_arg_text(&literal) {
+                            emit(catalog, ns, literal.trim());
+                        }
+                    }
                 }
             }
             visit_expr(e, ns, catalog, suppress, ctx)

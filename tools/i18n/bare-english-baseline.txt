@@ -3768,9 +3768,11 @@ Zombies have long lasting beef with Botanists. Their last incident involving a l
 \nThis tube has exhausted its chemicals.
 \n\nThese have undergone a special honing process; they'll kill people even faster than they used to.
 \n{0} seem{1} hardier against the void of space.
+a ... thing?
 access denied!
 flaps its wings!
 fully healed!
+insert {0} into the {1}.
 is crumbling!
 is split open, causing your internal organs to spill out!
 it won't budge!
