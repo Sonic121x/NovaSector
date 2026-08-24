@@ -188,5 +188,7 @@
 	"protected": "已写保护",
 	"unprotected": "未写保护",
 	"Arresting": "逮捕",
-	"Detaining": "拘留"
+	"Detaining": "拘留",
+	"prying": "撬",
+	"cutting": "切割"
 }

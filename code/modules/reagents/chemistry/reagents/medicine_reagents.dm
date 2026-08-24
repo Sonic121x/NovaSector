@@ -1088,9 +1088,17 @@
 
 /datum/reagent/medicine/strange_reagent/New()
 	. = ..()
-	description = replacetext(description, "%MAXHEALTHRATIO%", "[max_revive_damage_ratio * 100]%")
+	// NOVA EDIT CHANGE START - i18n: **先反查模板、再替换 %VAR%**。目录键里留着 `%MAXHEALTHRATIO%`
+	// （抽取器照抄源码字面量），而替换之后的整串再也不等于任何键 —— 于是这条描述译文一直躺在
+	// 目录里、化学界面却恒为英文。译文同样保留该占位符，替换在其后进行。
+	// 与 announcement_system.dm 的 %PERSON/%RANK 同一条道理（那里也是先反查整条模板）。
+	// ORIGINAL: description = replacetext(description, "%MAXHEALTHRATIO%", "[max_revive_damage_ratio * 100]%")
+	description = replacetext(lang_reverse_text(description), "%MAXHEALTHRATIO%", "[max_revive_damage_ratio * 100]%")
+	// NOVA EDIT CHANGE END
 	if(instant)
-		description += " It appears to be pulsing with a warm pink light."
+		// NOVA EDIT CHANGE - i18n: 基础句上面已经反查过了，后缀再拼英文就是「中文句 + 英文尾巴」。
+		// ORIGINAL: description += " It appears to be pulsing with a warm pink light."
+		description += lang_reverse_text(" It appears to be pulsing with a warm pink light.")
 
 // FEED ME SEYMOUR
 /datum/reagent/medicine/strange_reagent/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)

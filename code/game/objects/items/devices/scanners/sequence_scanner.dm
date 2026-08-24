@@ -168,6 +168,11 @@
 	if(!mutation_instance)
 		return "ERROR"
 	if(mutation in discovered)
-		return  "[mutation_instance.name] ([mutation_instance.alias])"
+		// NOVA EDIT CHANGE - i18n: 整串是运行期拼的、永远不是目录键，落地只剩字面 AC，而 AC 有多词
+		// 门槛 —— 于是「舌钉 (Mutation 32)」是中文、「Spastic (Mutation 67)」是英文，同一份列表里
+		// 按名字词数分成两半。突变名本身早在目录里，在显示处逐个反查即可（alias 是
+		// GLOB.alias_mutations 的查表键，保持英文）。
+		// ORIGINAL: return  "[mutation_instance.name] ([mutation_instance.alias])"
+		return  "[lang_localize_display_name(mutation_instance.name)] ([mutation_instance.alias])"
 	else
 		return mutation_instance.alias

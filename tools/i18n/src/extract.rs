@@ -121,6 +121,13 @@ const SINK_VARS: &[&str] = &[
     "message_AI",
     "message_monkey",
     "message_animal_or_basic",
+    // 线路面板的设备名（`/datum/wires/proper_name`，45 处）：面板标题与 AI 的线路目录都显示它。
+    // 类型变量、纯显示（唯一一处比较是 `proper_name != "Unknown"`，比的是数据本身，不受影响）。
+    // 45 条里有 24 条恰好因为同名机器在别处入过目录而能落地，另外 21 条整齐地留在英文 ——
+    // 「同一份列表里一半中文一半英文」这个反差就是判据。
+    "proper_name",
+    // 注：`APC` 这条 proper_name 由 CATALOG_VALUE_BLOCKLIST 挡掉（既是设备缩写又是
+    // polycircuit 的 switch 键，进目录当场触发 lint 的高置信碰撞）。
     "flavor_text",
     "title",
     // 其它可靠的玩家可见显示字段（type 变量；非 desc 的别名 / 专有显示串）。
@@ -1157,6 +1164,43 @@ fn collect_local_pick_pools(
         // 值会逃出本 proc、在**别的 proc** 里被 `in` 判定（`can_ship_fish`）—— 本 proc 内的
         // 「有没有被比较过」扫描根本看不见它。局部声明的变量生命周期完整可见，才敢按池收。
         for_each_statement_block(&stmt.elem, &mut |b| collect_local_pick_pools(b, names, out));
+    }
+}
+
+/// 收集**插值串的槽**里的字符串字面量（穿过 `span_*()` 包装与三元/pick 分支）。
+///
+/// `poll_question = "Do you want to be a [span_green("[cond ? \"mindless zombie\" : \"zombie\"]")]?"`：
+/// 整句模板早就进目录、也译好了，可槽里那两个字面量既不是 sink 实参也不是类型变量 ——
+/// 运行期模板引擎逆匹配捕获到的正是它们，于是玩家看到「你想成为一个 mindless zombie 吗？」。
+/// 闸门沿用 LANG 实参那条（多词），单 token 不收。
+fn collect_interp_slot_literals(expr: &Expression, out: &mut Vec<String>) {
+    match expr {
+        Expression::Base { term, .. } => match &term.elem {
+            Term::InterpString(_, parts) => {
+                for (opt, _) in parts.iter() {
+                    if let Some(e) = opt {
+                        push_assigned_literals(e, out);
+                        collect_interp_slot_literals(e, out);
+                    }
+                }
+            }
+            Term::Call(_, args) | Term::List(args) => {
+                for a in args.iter() {
+                    collect_interp_slot_literals(a, out);
+                }
+            }
+            Term::Expr(inner) => collect_interp_slot_literals(inner, out),
+            _ => {}
+        },
+        Expression::BinaryOp { lhs, rhs, .. } => {
+            collect_interp_slot_literals(lhs, out);
+            collect_interp_slot_literals(rhs, out);
+        }
+        Expression::TernaryOp { if_, else_, .. } => {
+            collect_interp_slot_literals(if_, out);
+            collect_interp_slot_literals(else_, out);
+        }
+        _ => {}
     }
 }
 
@@ -2278,6 +2322,9 @@ pub(crate) fn emit(catalog: &mut Catalog, type_path: &str, template: &str) {
     if template.trim().chars().count() < 2 {
         return;
     }
+    if CATALOG_VALUE_BLOCKLIST.contains(&template.trim()) {
+        return;
+    }
     // key 必须仍按**命名空间**算（`<ns>.<hash>`），否则全目录 key 变更 = 丢光全部译文。
     let key = make_key(&namespace_for(type_path), template);
     // Visitor callbacks deliberately stay infallible; Catalog retains the source-attributed
@@ -2433,6 +2480,14 @@ fn is_speech_blackboard_key(key: &str) -> bool {
 /// **维护方式可证伪**：改这张表之后跑 `nova-i18n lint`，碰撞告警数不许比基线多。
 const DISPLAY_SLOT_BLOCKLIST: &[&str] = &["Other Stuff"];
 
+/// **必须留在英文**的目录值：既是玩家可见文案、又被当标识符比较。按值（而不是按规则）挡，
+/// 因为供给它的那条规则其余几十条都是正常显示名 —— 为一条值退让整条规则代价太大。
+/// 新增前先跑 `nova-i18n lint`：报「高置信碰撞」的才该进来。
+const CATALOG_VALUE_BLOCKLIST: &[&str] = &[
+    // `/datum/wires/proper_name` 的设备缩写，同时是 polycircuit.dm 的 switch 键。
+    "APC",
+];
+
 /// 「这个串是选项表里的**显示标签**」：多词 + **首字母大写**。
 ///
 /// 首字母大写这道闸是实测逼出来的：只要求「多词」时一次抽取涌进 868 条，里面混着机甲日志碎片
@@ -2537,11 +2592,25 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                     //   lmb_text = "Toggle Resampler", rmb_text = "Flush Soup")`：悬停时的动作提示。
                     // `context[SCREENTIP_CONTEXT_LMB] = "…"` 那种下标写法早就抽到了（全仓 577 条
                     // 在目录），只有走具名实参的这批漏着 —— 同一个显示面，两种写法两种待遇。
-                    if matches!(name.as_str(), "end_string" | "lmb_text" | "rmb_text") {
+                    // 幽灵征召的提问（`poll_ghost_candidates(..., poll_question = "Do you want to be
+                    // a [span_green(...)]?")`）：整句模板早就在目录里、也译好了，但插值槽里那几个
+                    // 字面量（`"mindless zombie"` / `"zombie"`）既不是 sink 实参、也不是类型变量
+                    // —— 玩家看到「你想成为一个 mindless zombie 吗？」。
+                    if matches!(
+                        name.as_str(),
+                        "end_string" | "lmb_text" | "rmb_text" | "poll_question"
+                    ) {
                         emit_list_strings(rhs, ns, catalog);
                         if let Some(template) = build_template(rhs) {
                             if !template.contains('{') {
                                 emit(catalog, ns, &template);
+                            }
+                        }
+                        let mut slots = Vec::new();
+                        collect_interp_slot_literals(rhs, &mut slots);
+                        for literal in slots {
+                            if is_lang_arg_text(&literal) {
+                                emit(catalog, ns, literal.trim());
                             }
                         }
                     }
