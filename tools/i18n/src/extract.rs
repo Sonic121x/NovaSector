@@ -128,6 +128,16 @@ const SINK_VARS: &[&str] = &[
     "proper_name",
     // 注：`APC` 这条 proper_name 由 CATALOG_VALUE_BLOCKLIST 挡掉（既是设备缩写又是
     // polycircuit 的 switch 键，进目录当场触发 lint 的高置信碰撞）。
+    // 「回收船员」苏醒时逐条播出的身世（`lost_crew`）：`job_lore = "I was employed as a doctor"`、
+    // `area_lore = "I was working in a space station"`、`cause_of_death = "when I got bit by a
+    // spider!"`。三个都是**类型变量**、纯叙事文本，经 to_chat 一行一行发出来，落地靠整串反查
+    // —— 但从没进过目录。以小写从句开头（`when I …`）的那批连激进 pass 的整句闸门都过不了。
+    // 反派面板 / 幽灵环绕菜单的分组标题（`antagpanel_category = "Icemoon Dwellers"`，19 个值）。
+    // 纯分组标签，玩家在环绕菜单里逐条看到。
+    "antagpanel_category",
+    "job_lore",
+    "area_lore",
+    "cause_of_death",
     "flavor_text",
     "title",
     // 其它可靠的玩家可见显示字段（type 变量；非 desc 的别名 / 专有显示串）。
@@ -1059,9 +1069,28 @@ fn walk_lang_arg_locals(
     }
     let mut names = std::collections::HashSet::new();
     collect_lang_arg_idents_block(block, &mut names);
+    collect_examine_accumulator_idents(block, &mut names);
     if names.is_empty() {
         return;
     }
+    // **一跳往往不够**：`magnitude` → `label_line` → `readout`（examine 累加器）这种两跳链上，
+    // 中间那个变量才是显示位置认得的那个，末端的字面量还差一层。把「赋给已收集变量的值里，
+    // 插值槽中的裸标识符」也收进来，反复到不动点为止。
+    //
+    // 准入面**没有**因此放宽：种子仍然只有「出现在 LANG 实参 / sink 显示槽里的标识符」，
+    // 闸门仍然是 is_lang_arg_text（多词）。放宽的只是「离显示位置几跳」。
+    for _ in 0..4 {
+        let mut next = names.clone();
+        collect_assigned_slot_idents(block, &names, &mut next);
+        if next.len() == names.len() {
+            break;
+        }
+        names = next;
+    }
+    // 注：**「同槽兄弟」这条判据不能从 pick 词池搬到普通局部变量上**。词池的成员按构造可以
+    // 互换，所以整池同性质；而一个在分支里被反复赋值的局部变量，常常一支放句子、另一支放
+    // 模式键。实测放开后涌进 `imported_abilities` / `OOC` / `PRAYER` / `Warrant` / `cold` /
+    // `hot` / `low` / `high` 这些，lint 当场 1 错误 + 8 条新碰撞。
     let mut literals = Vec::new();
     collect_local_assign_literals(block, &names, &mut literals);
     collect_local_list_literal_values(block, &names, &mut literals);
@@ -1264,6 +1293,36 @@ fn collect_interp_slot_idents(expr: &Expression, out: &mut std::collections::Has
     }
 }
 
+/// examine 累加器 `+=` 右值里的裸标识符 —— 与 LANG 实参、sink 显示槽同为「显示位置」。
+///
+/// `readout += label_line` 这种把整行先攒在一个局部变量里、最后一次性追加的写法很常见；
+/// 不把 `label_line` 当种子，它上游的 `magnitude`（switch 里赋的形容词）就永远差一跳。
+fn collect_examine_accumulator_idents(
+    block: &[dm::ast::Spanned<Statement>],
+    out: &mut std::collections::HashSet<String>,
+) {
+    for stmt in block.iter() {
+        for_each_statement_expr(&stmt.elem, &mut |e| {
+            let Expression::AssignOp { lhs, rhs, .. } = e else {
+                return;
+            };
+            let Expression::Base { term, follow } = lhs.as_ref() else {
+                return;
+            };
+            if !follow.is_empty() {
+                return;
+            }
+            let Term::Ident(name) = &term.elem else {
+                return;
+            };
+            if name == "." || is_examine_accumulator(name) {
+                collect_bare_idents(rhs, out);
+            }
+        });
+        for_each_statement_block(&stmt.elem, &mut |b| collect_examine_accumulator_idents(b, out));
+    }
+}
+
 fn collect_lang_arg_idents_block(
     block: &[dm::ast::Spanned<Statement>],
     out: &mut std::collections::HashSet<String>,
@@ -1430,11 +1489,24 @@ fn collect_local_assign_literals(
     names: &std::collections::HashSet<String>,
     out: &mut Vec<String>,
 ) {
+    let mut by_variable = std::collections::BTreeMap::new();
+    collect_local_assign_groups(block, names, &mut by_variable);
+    for literals in by_variable.into_values() {
+        out.extend(literals);
+    }
+}
+
+/// 同上，但**按变量分组**——单词值的准入要看同一个槽里的兄弟值（见 walk_lang_arg_locals）。
+fn collect_local_assign_groups(
+    block: &[dm::ast::Spanned<Statement>],
+    names: &std::collections::HashSet<String>,
+    out: &mut std::collections::BTreeMap<String, Vec<String>>,
+) {
     for stmt in block.iter() {
         if let Statement::Var(var_stmt) = &stmt.elem {
             if names.contains(&var_stmt.name) {
                 if let Some(value) = &var_stmt.value {
-                    push_assigned_literals(value, out);
+                    push_assigned_literals(value, out.entry(var_stmt.name.clone()).or_default());
                 }
             }
         }
@@ -1444,7 +1516,7 @@ fn collect_local_assign_literals(
                     if follow.is_empty() {
                         if let Term::Ident(name) = &term.elem {
                             if names.contains(name) {
-                                push_assigned_literals(rhs, out);
+                                push_assigned_literals(rhs, out.entry(name.clone()).or_default());
                             }
                         }
                     }
@@ -1452,8 +1524,39 @@ fn collect_local_assign_literals(
             }
         });
         for_each_statement_block(&stmt.elem, &mut |b| {
-            collect_local_assign_literals(b, names, out)
+            collect_local_assign_groups(b, names, out)
         });
+    }
+}
+
+/// 「赋给已收集变量的值」里，**插值槽**中的裸标识符 —— 局部变量链的下一跳。
+fn collect_assigned_slot_idents(
+    block: &[dm::ast::Spanned<Statement>],
+    names: &std::collections::HashSet<String>,
+    out: &mut std::collections::HashSet<String>,
+) {
+    for stmt in block.iter() {
+        if let Statement::Var(var_stmt) = &stmt.elem {
+            if names.contains(&var_stmt.name) {
+                if let Some(value) = &var_stmt.value {
+                    collect_interp_slot_idents(value, out);
+                }
+            }
+        }
+        for_each_statement_expr(&stmt.elem, &mut |e| {
+            if let Expression::AssignOp { lhs, rhs, .. } = e {
+                if let Expression::Base { term, follow } = lhs.as_ref() {
+                    if follow.is_empty() {
+                        if let Term::Ident(name) = &term.elem {
+                            if names.contains(name) {
+                                collect_interp_slot_idents(rhs, out);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        for_each_statement_block(&stmt.elem, &mut |b| collect_assigned_slot_idents(b, names, out));
     }
 }
 
@@ -2513,6 +2616,8 @@ const DISPLAY_SLOT_BLOCKLIST: &[&str] = &["Other Stuff"];
 const CATALOG_VALUE_BLOCKLIST: &[&str] = &[
     // `/datum/wires/proper_name` 的设备缩写，同时是 polycircuit.dm 的 switch 键。
     "APC",
+    // `antagpanel_category` 的分组名，同时是 `ROLE_MALF` 这个 define 的值（`antag_flag ==` 比较）。
+    "Malf AI",
 ];
 
 /// 「这个串是选项表里的**显示标签**」：多词 + **首字母大写**。

@@ -1,6 +1,9 @@
 {
 	"_comment": "健康分析仪与医疗终端报告的结构性 HTML label 域。键按 replacetextEx 应用顺序排列：更长、更具体的锚必须位于其通用前缀之前。顶层放置，因此这些短标签不会进入全局反查；新增 locale 须保持相同键顺序。",
 	"zh-Hans": {
+		" followed with toxins treatment.": "，随后进行毒素治疗。",
+		"Liquid electricity level: ": "液态电力水平: ",
+		"Electrical charge: ": "电荷: ",
 		"Subject Major Disabilities: None.": "对象重大残疾: 无。",
 		"Subject Minor Disabilities: None.": "对象次要残疾: 无。",
 		"Subject Major Disabilities: ": "对象重大残疾: ",
