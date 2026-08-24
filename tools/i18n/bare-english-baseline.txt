@@ -175,6 +175,31 @@
  {0} {1} shedding {2} mortal shell!
  {0}'s arm twists and contorts into a grotesque blade!
  {0}, the changeling{1} vanish{2} into space through the airlocks! You're safe... for now.
+%PRONOUN_Their abdomen is distended... and wiggling.
+%PRONOUN_Their arm is just a mass of plate and tendrils.
+%PRONOUN_Their back is covered in small tendrils.
+%PRONOUN_Their ears are furred, and twitch occasionally.
+%PRONOUN_Their eyes are black orbs.
+%PRONOUN_Their eyes are blood red and stone-like.
+%PRONOUN_Their eyes have deep, shifty black pupils, surrounded by a sickening yellow sclera.
+%PRONOUN_Their eyes have wide dilated pupils, and no iris. Something is moving in the darkness.
+%PRONOUN_Their eyes move with machine precision, their expression completely blank.
+%PRONOUN_Their left arm has small needles breaching the skin all over it.
+%PRONOUN_Their mouth is drooling excessively.
+%PRONOUN_Their mouth is permanently affixed into a relaxed smile.
+%PRONOUN_Their neck has odd gills.
+%PRONOUN_Their right arm has small needles breaching the skin all over it.
+%PRONOUN_Their skin has small patches of scales growing on it.
+%PRONOUN_Their skin has visible hard plates growing from within.
+%PRONOUN_Their teeth are big and sharp.
+%PRONOUN_Their teeth are oddly shaped and yellowing.
+%PRONOUN_They %PRONOUN_have an unhealthy pallor.
+%PRONOUN_They %PRONOUN_have hardened, somewhat translucent skin.
+%PRONOUN_They %PRONOUN_have weird, deep-rooted obsidian tubes sticking out of where their ears should be.
+%PRONOUN_They hunch%PRONOUN_es over unnaturally!
+%PRONOUN_They radiate%PRONOUN_s an aura of serenity.
+%PRONOUN_They seem%PRONOUN_s unable to stay still.
+%PRONOUN_Theyve a set of gills on %PRONOUN_their neck.
 'Drones' are the engineers, technicians, and builders of the Primalis. Their duties revolve around the upkeep of the Arkships themselves, and the operation of technologies new and old. 'Servitors' are in charge of biological affairs; making sure stocks are full, meals are made, and Vox are healthy. They typically share work with Drones due to Vox technology being both synthetic and organic.
 'Leaders' are those that are in charge of a crew. Acting like a tightly-knit family, these work crews are kept in line not only by the Armalis, but by these typically very old Vox. These magnanimous (for a Primalis) individuals are very, very rarely seen outside of an Arkship due to their assignments requiring 'active duty'. To see a 'Leader,' in a place of aliens is to know that they are almost assuredly an exile, and shunned by all varieties of Vox. The Vox consider 'drains on resources' as inexcusable, and to be one is an act to be shunned upon.
 'Raiders' are those combat-focused Primalis sent on excursion teams from the ships to plunder goods, people, and other wares from aliens. 'Scavengers' work alongside Raiders, pulling stations and ships apart to find anything even remotely valuable, down to the scrap metal and copper wiring in an outpost.
@@ -431,7 +456,6 @@ Are you sure you want to call {0} to {1}?
 Are you sure you want to message the Sol Federation? Un-necessary communications may result in a large fine or 25 years in federal prison.
 Are you sure you want to place {0}({1}) in control of {2}?
 Are you sure you want to send off {0} to {1}?
-Are you sure? You will no longer be able to Ascend.
 Arrived at {0}.
 Arrived at {0}. Emergency landing at {1}.
 Arrived at {0}. Landing at {1}.
@@ -635,7 +659,6 @@ Centcom is satisfied with service's job today.
 Central control module is installed, and can be <b>screwed</b> into place.
 Central control module is secured, and the <b>peripheral control module</b> slot has opened.
 Cerebral traumas detected: patient appears to be suffering from {0}.
-Change selected prefs?
 Changes name randomly to a common misspelling of \"Borscht\".
 Channel operator status transferred to {0}.
 Channel renamed from {0} to {1} by operator.
@@ -806,7 +829,6 @@ Do you wish to banish {0}?
 Do you wish to be considered for a group of {0}?
 Do you wish to be considered for a {0}?
 Do you wish to be considered for {0}?
-Do you wish to be renamed to {0}?
 Dock to the {0} to conduct the voluntary safety inspection. Remain in the sector until the inspection is complete.
 Does not block surgery on covered bodyparts.
 Does the situation require additional S.W.A.T. backup, involve the station impeding you from doing your job, or involve the station making a fraudulent 911 call and needing an arrest made on the caller?
@@ -874,7 +896,6 @@ Ensure that {0}, the {1} escapes alive and out of custody.
 Ensure that {0}, the {1} is delivered to Nanotrasen alive and in custody.
 Enter cryosleep?
 Enter your desired display name.
-Enter {0} digits. All digits must be unique.
 Entombed quirk couldn't create a fused MODsuit on {0} and was force-removed.
 Epicenter at: grid ({0}, {1}). Temporal displacement of tachyons: {2} seconds.
 Equipment unlocked.
@@ -1106,7 +1127,6 @@ Hostile runtime detected in door controllers. Isolation lockdown protocols are n
 Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.
 Hot Hot Hot!
 Hot ice are solidified stacks of plasma. Ignition of one will result in a raging fire.
-How should the vote winner be determined?
 However it's not proper to just stand in here all shift and see what I'll say.
 Hug {0} {1} times while they're alive.
 Humanity never managed to find the kind of peace to fully unite under one banner like other species. The pencil and paper pushing of the UN bureaucrat lives on in the mosaic that is TerraGov; a composite of the nation-states that still live on in human society.
@@ -1985,7 +2005,6 @@ Reduces the effects of incoming electromagnetic pulses on the wearer.
 Refund from gambling on {0}.
 Refund: {0} gamble cancelled.
 Refunded: changed bet for {0}.
-Reject the call?
 Rejected by {0}.
 Relaying message to a new admin help.
 Religion: {0}.
@@ -2052,7 +2071,6 @@ Sandstorm event given {0} as unrecognized direction. Cancelling event...
 Santa is coming to town!
 Santa is coming to town! Do you want to be {0}?
 Saving lives is a waste of time.
-Say something!
 Scan a reagent container with {0} of at least {1}% purity.
 Scan samples of a harvested plant.
 Scan samples of harvested plants with the trait: {0}.
@@ -2117,7 +2135,6 @@ Simply speak \"{0}\" into frequency {1} to unlock its hidden features.
 Simply twist the top of the pen {0} from its starting position to unlock its hidden features.
 Simulations aborted, sensors report that the acasual event is normalizing. Good work, crew.
 Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: ONE MINUTE. 
-Single or multiple choice?
 Singularity tried to consume itself.
 Skeletons want to be feared again! Their presence in media has been destroyed, or at least that's what they firmly believe. They're always the first thing fought in an RPG, they're Flanderized into pun rolling JOKES, and it's really starting to get to them. You could say they're deeply RATTLED. Hah.
 Skillchip cannot detect viable body.
@@ -2180,7 +2197,6 @@ Special Request from someone out of your paygrade, they need {0} of {1} containi
 Species unsuitable for experiments.
 Species {0} ({1}) did not have a description set, and is a selectable roundstart race! Override get_species_description.
 Species {0} ({1}) did not have lore set, and is a selectable roundstart race! Override get_species_lore.
-Specify your new objective.
 Specimen already in database.
 Specimen braindead - disposed.
 Specimen deceased.
@@ -2735,7 +2751,6 @@ This job can be sacrificed by heretics.
 This job can be targeted by contractors.
 This job forces a minimum opt-in setting of {0}.
 This limb looks loosely held together.
-This machine is designated {0}. Would you like to update {1} registration?
 This might be a bit too much fire.
 This mob already has a user ({0}) in control of it! 
 This mob type has no health to speak of.
@@ -2953,22 +2968,17 @@ What \a {0} {1}. So {2}!
 What \a {0}. So {1}!
 What a {0}! {1} {2}.
 What are they THINKING?
-What are your last words?
 What colour would you like to be?
-What description do you want to give the {0}? Leave blank to clear.
 What do you wish to call 911 {0} for?
 What do you wish to call the Federation for?
 What do you wish to write on the card?
 What hallucination do you want to give to {0}?
 What hallucination should be forced for {0}?
 What happened? Where has everyone gone?
-What name do you want to give the {0}? Leave blank to clear.
 What the fuck was that?!
 What the hell is {0}? Tell an admin if you see this message.
-What will be the name of your broadcast?
 What would you like to label the vape cart?
 What would you like to name this mob?
-What would you like to set this sign's text to?
 What would you like your colour to be?
 What?!? {0}???
 Whatever you use.

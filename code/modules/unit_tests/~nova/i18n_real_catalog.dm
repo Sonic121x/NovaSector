@@ -122,6 +122,11 @@
 	TEST_ASSERT_NOTEQUAL(lang_alarm_type("Power"), "Power", "警报类别应经域内表翻译")
 	TEST_ASSERT_NOTEQUAL(lang_wire_colour("crimson"), "crimson", "线缆颜色应经域内表翻译")
 	TEST_ASSERT_EQUAL(lang_reverse_text("crimson"), "crimson", "线缆颜色**不应**进全局反查表（同时是 CSS 颜色名与 act 标识符）")
+	// 反应兜底名：`/datum/chemical_reaction` 没有 name 变量，反应查询界面对无产物的反应
+	// 从类型路径末段现切显示名 —— 源码里没有字面量可抽，只能走域内表。同一批里有
+	// heat/holy/life/soup 这类通用单词，进全局反查表会把 lint 的碰撞告警顶上去。
+	TEST_ASSERT_NOTEQUAL(lang_reaction_name("omegasoapification"), "omegasoapification", "反应兜底名应经域内表翻译")
+	TEST_ASSERT_EQUAL(lang_reverse_text("holy"), "holy", "反应兜底名**不应**进全局反查表（末段按定义是标识符形态）")
 
 	// ⑤ 回合总结的反派目标行：explanation_text 是**裸插值**赋值（objective.dm 没走 LANG），
 	// 只能靠边界模板逆匹配救。锚遮蔽修好之前它是半翻译（内层换成中文、外层留英文）。

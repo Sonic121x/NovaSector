@@ -68,6 +68,7 @@
 		"list_formatting.json": { "domain": "scoped:list_formatting", "owner": "manual" },
 		"materials.json": { "domain": "scoped:materials", "owner": "manual" },
 		"phobia_words.json": { "domain": "scoped:phobia_words", "owner": "manual" },
+		"reaction_names.json": { "domain": "scoped:reaction_names", "owner": "manual" },
 		"slime_colours.json": { "domain": "scoped:slime_colours", "owner": "manual" },
 		"statpanel_tabs.json": { "domain": "scoped:statpanel_tabs", "owner": "manual" },
 		"voice_of_god.json": { "domain": "scoped:voice_of_god", "owner": "manual" },

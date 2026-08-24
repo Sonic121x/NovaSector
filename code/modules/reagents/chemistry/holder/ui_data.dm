@@ -172,7 +172,10 @@
 		if(!length(reaction.results))
 			has_product = FALSE
 			var/list/names = splittext("[reaction.type]", "/")
-			var/product_name = names[names.len]
+			// NOVA EDIT CHANGE - i18n: 这个显示名是从类型路径末段现切的，源码里没有任何字面量可抽
+			// （同条负载里的 id 才是标识符）。走域内表 reaction_names.json，不进全局反查表。
+			// ORIGINAL: var/product_name = names[names.len]
+			var/product_name = lang_reaction_name(names[names.len])
 			data["reagent_mode_recipe"] = list("name" = product_name, "id" = reaction.type, "hasProduct" = has_product, "reagentCol" = COLOR_WHITE, "thermodynamics" = generate_thermodynamic_profile(reaction), "explosive" = generate_explosive_profile(reaction), "lowerpH" = reaction.optimal_ph_min, "upperpH" = reaction.optimal_ph_max, "thermics" = determine_reaction_thermics(reaction), "thermoUpper" = reaction.rate_up_lim, "minPurity" = reaction.purity_min, "inversePurity" = "N/A", "tempMin" = reaction.required_temp, "explodeTemp" = reaction.overheat_temp, "reqContainer" = container_name, "subReactLen" = 1, "subReactIndex" = 1)
 
 		//If we do have a product then we find it

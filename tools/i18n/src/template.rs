@@ -188,21 +188,64 @@ pub(crate) fn build_tag_chunk_templates(expr: &Expression) -> Option<Vec<String>
     if operands.len() < 2 {
         return None;
     }
-    let mut chunks = Vec::new();
-    for operand in operands {
-        if is_tag_wrapped(operand) {
-            let template = build_template(operand)?;
-            chunks.push(template);
+    // 先给每个操作数定性：标签包裹的显示单元 / 无字母的分隔串 / 其它。
+    #[derive(PartialEq)]
+    enum Kind {
+        Wrapped,
+        Separator,
+        Bare,
+    }
+    let kinds: Vec<Kind> = operands
+        .iter()
+        .map(|operand| {
+            if is_tag_wrapped(operand) {
+                return Kind::Wrapped;
+            }
+            match operand {
+                Expression::Base { term, follow } if follow.is_empty() => match &term.elem {
+                    Term::String(s) if !has_display_letters(s) => Kind::Separator,
+                    _ => Kind::Bare,
+                },
+                _ => Kind::Bare,
+            }
+        })
+        .collect();
+
+    // **判据是「运行期会不会被切开」**，而运行期的切法只有一条：`lang_fallback_apply_html`
+    // 在标签边界处切块。标签包裹的操作数两端各带一个标签，所以它与左右邻居必然分属不同块；
+    // 反过来，两个都不带标签的相邻操作数在运行期是连着的一整块，拆开只会产出查不到的半句
+    // （`"You have " + count + " items"` 就是这一类，必须整条交回 build_template）。
+    //
+    // 于是条件是：**每一对相邻的非分隔操作数里，至少有一个是标签包裹的**。
+    // 这条比「所有操作数都必须标签包裹」宽：赛博躯干的检查行是
+    // `"Its all wired up[…]." + "\n" + span_info("You can use <b>wirecutters</b>…")`
+    // —— 第一段是裸插值串，可它右边就是标签，运行期照样自成一块。
+    let mut previous: Option<&Kind> = None;
+    let mut saw_wrapped = false;
+    for kind in &kinds {
+        if *kind == Kind::Separator {
             continue;
         }
-        // 分隔串（换行/标点）在运行期不成块，跳过即可；其余形状一律交回整条处理。
-        match operand {
-            Expression::Base { term, follow } if follow.is_empty() => match &term.elem {
-                Term::String(s) if !has_display_letters(s) => continue,
-                _ => return None,
-            },
-            _ => return None,
+        if *kind == Kind::Wrapped {
+            saw_wrapped = true;
         }
+        if let Some(previous) = previous {
+            if *previous == Kind::Bare && *kind == Kind::Bare {
+                return None;
+            }
+        }
+        previous = Some(kind);
+    }
+    if !saw_wrapped {
+        return None;
+    }
+
+    let mut chunks = Vec::new();
+    for (operand, kind) in operands.iter().zip(kinds.iter()) {
+        if *kind == Kind::Separator {
+            continue;
+        }
+        chunks.push(build_template(operand)?);
     }
     if chunks.len() < 2 {
         return None;
@@ -236,6 +279,30 @@ mod tests {
             build_template(&expr).as_deref(),
             Some("First half. Second half.")
         );
+    }
+
+    /// 裸操作数只要**右邻是标签包裹的**，运行期照样自成一块（赛博躯干的检查行）。
+    #[test]
+    fn a_bare_operand_next_to_a_tagged_one_is_still_its_own_chunk() {
+        let expr = parse(
+            "\"Its all wired up.\" + \"\\n\" + (\"<span class='info'>\" + \"You can use wirecutters.\" + \"</span>\")",
+        );
+        assert_eq!(
+            build_tag_chunk_templates(&expr),
+            Some(vec![
+                "Its all wired up.".to_owned(),
+                "You can use wirecutters.".to_owned(),
+            ])
+        );
+    }
+
+    /// 两个裸操作数相邻 = 运行期是连着的一整块，拆开只会产出查不到的半句。
+    #[test]
+    fn two_adjacent_bare_operands_stay_one_template() {
+        let expr = parse(
+            "\"First half. \" + \"Second half.\" + (\"<span class='info'>\" + \"Tail.\" + \"</span>\")",
+        );
+        assert_eq!(build_tag_chunk_templates(&expr), None);
     }
 
     #[test]

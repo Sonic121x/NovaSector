@@ -788,6 +788,23 @@ GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 	for(var/file_name in scoped_files)
 		lang_scoped_table(file_name)
 
+/// 「数量 + 部件名」的显示片段（`"[2] [beaker]\s"` → 「2 烧杯」）。
+///
+/// 部件名来自 `initial(x.name)`，是 canonical English —— 显示边界化之后本该如此，翻译只在显示处做。
+/// 这类清单（机器框架、电路板、弹药工作台…）过去只剩字面 AC 一条落地路径，而 AC 有多词门槛，
+/// 于是同一行里 `玻璃板` 是中文、`micro-servo`/`beakers` 是英文 —— 「一份清单里按名字词数分成
+/// 两半」这个反差就是判据。
+///
+/// 译出中文时**丢掉 `\s`**：中文名词没有复数，留着 BYOND 会照数量渲染出多余的 "s"（「2 烧杯s」）。
+/// 没翻动的项保持原样，英文复数照常工作。
+/proc/lang_component_tally(amount, component_name)
+	if(!istext(component_name))
+		return "[amount] [component_name]\s"
+	var/localized = lang_localize_display_name(component_name)
+	if(localized == component_name)
+		return "[amount] [component_name]\s"
+	return "[amount] [localized]"
+
 /// `english_list()` 的 locale-neutral 本地化版：逐项过显示边界，再按显式域表连接。
 ///
 /// `list_formatting.json` 提供 separator、default_conjunction 与 canonical 英文连接词映射；
@@ -824,6 +841,18 @@ GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 		return colour
 	var/list/table = lang_scoped_table("slime_colours.json")
 	return table[colour] || colour
+
+/// 化学反应在「没有产物试剂」时的兜底显示名（`ui_data.dm` 从类型路径末段现切出来的那个）。
+///
+/// 走**域内表**而不是主目录：这些值按定义是类型路径末段、标识符形态，全仓 117 条里混着
+/// `heat` / `holy` / `life` / `soup` / `foam` 这类通用单词，塞进全局反查表当场把
+/// `nova-i18n lint` 的碰撞告警顶上去（实测 54 → 61）。顶层表只由这一个显示点查。
+/// 表由 `node tools/i18n/reaction-names.mjs` 生成骨架，未填译文的保持英文。
+/proc/lang_reaction_name(reaction_name)
+	if(!istext(reaction_name))
+		return reaction_name
+	var/list/table = lang_scoped_table("reaction_names.json")
+	return table[reaction_name] || reaction_name
 
 /// 线缆颜色的显示译名。颜色值同时是 act 回传标识符（`wire.color`）与 CSS 颜色名
 /// （前端 `labelColor={shownColor.replace(' ','')}`），所以值本身必须留英文；

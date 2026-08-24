@@ -516,6 +516,33 @@ fn is_option_accumulator(id: &str) -> bool {
         || id.ends_with("items")
 }
 
+/// `AddElement(/datum/element/xxx, …)` 里**哪几个位置实参是玩家可见文案**。
+///
+/// element/component 的构造参数是这个代码库里一整类漏抽：既不是 sink 实参、也不是类型变量，
+/// 而 `AddElement` 的位置实参里标识符浓度很高（`chav_replacement.json`、`snow_monkey_alive`、
+/// `bayonet_thin`、`mobs_killed_mining`），所以**不能按「长字面量」一刀切**（实测全仓 64 条里
+/// 一半是标识符）。按 element 类型逐个登记 —— 与 TGUI 侧 `COMPONENT_PROP_LABELS` 同一条路子。
+fn element_display_args(expr: &Expression) -> Option<&'static [usize]> {
+    let Expression::Base { term, follow } = expr else {
+        return None;
+    };
+    if !follow.is_empty() {
+        return None;
+    }
+    let Term::Prefab(prefab) = &term.elem else {
+        return None;
+    };
+    // 按**末段**匹配：prefab.path 的前导 `/` 在 AST 里不产生空段，而 element 类型名本身足够独特。
+    let path: Vec<&str> = prefab.path.iter().map(|(_, seg)| seg.as_str()).collect();
+    match path.last().copied().unwrap_or_default() {
+        // 「植入器官」的检查描述：`AddElement(/datum/element/noticable_organ,
+        // "%PRONOUN_Their eyes move with machine precision…", BODY_ZONE_PRECISE_EYES)`。
+        // 每次检查带改造的人都会显示，全仓 25 条。
+        "noticable_organ" => Some(&[1]),
+        _ => None,
+    }
+}
+
 /// 实参是否为 perform_emote / perform_speech 类 AI 行为类型路径（任一路径段命中即可，
 /// 兼容子类型如 /datum/ai_behavior/perform_speech/xxx）。供 queue_behavior 专项抽取判别。
 fn is_speech_behavior_path(expr: &Expression) -> bool {
@@ -2639,6 +2666,30 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
             // 这里从 **LANG() 调用点本身**回收 scope —— 比原字面量的定义处更准，
             // 因为它记的是这句话实际被用在哪个类型里。
             if let Term::Call(name, args) = &term.elem {
+                // `AddElement(/datum/element/xxx, "…")`：按 element 类型登记的显示实参。
+                //
+                // **AST 里没有 "AddElement"**：它是 `#define AddElement(arguments...)
+                // _AddElement(list(##arguments))`，预处理器在建 AST 之前就展开了，实参也被裹进
+                // 一层 `list(...)`。与 LANG/LANGU 那条坑同源 —— 按源码里写的名字匹配永远 0 命中。
+                if matches!(name.as_str(), "_AddElement" | "_AddComponent") {
+                    let inner = args.first().and_then(|arg| match arg {
+                        Expression::Base { term, follow } if follow.is_empty() => match &term.elem {
+                            Term::List(items) => Some(items.as_ref()),
+                            Term::Call(callee, items) if callee == "list" => Some(items.as_ref()),
+                            _ => None,
+                        },
+                        _ => None,
+                    });
+                    if let Some(inner) = inner {
+                        if let Some(indices) = inner.first().and_then(element_display_args) {
+                            for &idx in indices {
+                                if let Some(template) = inner.get(idx).and_then(build_template) {
+                                    emit(catalog, ns, &template);
+                                }
+                            }
+                        }
+                    }
+                }
                 // 注意匹配的是**宏展开后**的名字：LANG/LANGU 是 `#define`
                 // （code/__DEFINES/~nova_defines/i18n.dm），SpacemanDMM 的预处理器在建 AST
                 // 之前就把它们展开成 lang_format/lang_format_for 了，AST 里根本没有 "LANG"。
@@ -2804,6 +2855,20 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                                         }
                                     }
                                     emit(catalog, ns, &template);
+                                    // 整句已经作为模板进目录了，那么**槽里的字面量也必须进**：
+                                    // 运行期模板引擎逆匹配捕获到的就是它们，捕获值再走
+                                    // lang_localize_arg —— 查不到就原样留在中文句子里。
+                                    // `"Its all wired up[cell ? " and ready for usage" : ""].\n"`
+                                    // 就是这形状：模板译好了，玩家看到「它已经全部接好了线 and
+                                    // ready for usage。」。「整句会进目录」本身就是准入证据 ——
+                                    // 与 LANG 实参那条同一条道理，闸门也同一条（多词）。
+                                    let mut slots = Vec::new();
+                                    collect_interp_slot_literals(rhs, &mut slots);
+                                    for literal in slots {
+                                        if is_lang_arg_text(&literal) {
+                                            emit(catalog, ns, literal.trim());
+                                        }
+                                    }
                                 } else if is_sentence_like(&template) && !is_option_accumulator(id)
                                 {
                                     emit(catalog, ns, &template);

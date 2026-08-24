@@ -168,6 +168,76 @@ const AMBIGUITY_ALLOWLIST: &[(&str, &str)] = &[
     ),
 ];
 
+/// 译文里出现、而原文里没有的 `%VAR` 占位符。
+///
+/// 这一类占位符（`%PERSON` / `%RANK` / `%MAXHEALTHRATIO%` / `%PRONOUN_Their`）是**运行期**才被
+/// 替换的，替换发生在反查之后。MT 看不懂它们：实测 25 条 `%PRONOUN_Their eyes …` 被翻成
+/// `%PRONOUN_眼睛…` —— 代词那半截被吃掉，`REPLACE_PRONOUNS` 的正则再也匹配不上，玩家直接
+/// 看到 `%PRONOUN_` 这串东西。比不翻难看得多。
+///
+/// **允许少、不允许多**：中文常常整条省掉人称代词（而且 `GET_TARGET_PRONOUN` 返回的是英文词，
+/// 保留反而会在中文句子里插进一个英文单词），所以译文可以一个占位符都不留；但凡出现原文里
+/// 没有的形态，就是被切坏了。
+/// 形态：`%` + **全大写**首段（≥2 字符）+ 若干 `_单词` 段 + 可选的收尾 `%`。
+///
+/// 三条边界都是实测逼出来的：
+///   · `%SOMETHINGs`（英文复数直接贴在占位符后面）—— 首段遇小写就停，token 是 `%SOMETHING`，
+///     中文那边写 `%SOMETHING` 才不会被误报；
+///   · `10% Auxetics` / `10%Auxetics` —— 首段必须**整段大写**，`Auxetics` 一个大写字母带一串
+///     小写，不算占位符（否则百分号写法会被当成切坏的占位符）；
+///   · `%PRONOUN_Their` —— `_单词` 段可以是首字母大写的普通词。
+fn placeholder_tokens(text: &str) -> Vec<String> {
+    let chars: Vec<char> = text.chars().collect();
+    let mut out = Vec::new();
+    let mut i = 0;
+    while i < chars.len() {
+        if chars[i] != '%' {
+            i += 1;
+            continue;
+        }
+        let mut j = i + 1;
+        while j < chars.len() && (chars[j].is_ascii_uppercase() || chars[j].is_ascii_digit()) {
+            j += 1;
+        }
+        if j - (i + 1) < 2 {
+            i += 1;
+            continue;
+        }
+        // `_单词` 段：`%PRONOUN_Their`。只认 ASCII 字母，`_眼睛` 这种切坏的形态到此为止，
+        // token 退化成 `%PRONOUN` —— 原文里没有这个 token，正好被报出来。
+        while j < chars.len() && chars[j] == '_' {
+            let mut k = j + 1;
+            while k < chars.len() && chars[k].is_ascii_alphabetic() {
+                k += 1;
+            }
+            if k == j + 1 {
+                break;
+            }
+            j = k;
+        }
+        let mut token: String = chars[i..j].iter().collect();
+        if j < chars.len() && chars[j] == '%' {
+            token.push('%');
+            i = j + 1;
+        } else {
+            i = j;
+        }
+        out.push(token);
+    }
+    out
+}
+
+fn stray_placeholders(source: &str, translated: &str) -> Vec<String> {
+    let allowed: BTreeSet<String> = placeholder_tokens(source).into_iter().collect();
+    let mut stray: Vec<String> = placeholder_tokens(translated)
+        .into_iter()
+        .filter(|token| !allowed.contains(token))
+        .collect();
+    stray.sort();
+    stray.dedup();
+    stray
+}
+
 /// 返回「forward 内部冲突且没有 global_reverse 覆盖」的英文源串及其相互冲突的译文。
 fn forward_only_ambiguities(
     catalog_root: &Path,
@@ -266,6 +336,53 @@ pub fn run(dme: &Path, catalog_root: &Path, apply: bool) -> Result<()> {
         for key in stale_scopes.iter().take(10) {
             eprintln!("  {key}");
         }
+    }
+
+    // 译文里凭空出现的 `%VAR` 占位符 = MT 把它切坏了，玩家会直接看到那串东西。
+    let mut broken_total = 0usize;
+    for locale_dir in locale_dirs(catalog_root)? {
+        let Some(locale) = locale_dir.file_name().and_then(|name| name.to_str()) else {
+            continue;
+        };
+        if locale == "en" {
+            continue;
+        }
+        for entry in std::fs::read_dir(&locale_dir)? {
+            let path = entry?.path();
+            let Some(file_name) = path.file_name().and_then(|name| name.to_str()) else {
+                continue;
+            };
+            if !file_name.ends_with(".json") {
+                continue;
+            }
+            let english_path = catalog_root.join("en").join(file_name);
+            if !english_path.exists() {
+                continue;
+            }
+            let english = read_catalog(&english_path)?;
+            for (key, translated) in read_catalog(&path)? {
+                let Some(source) = english.get(&key) else {
+                    continue;
+                };
+                let stray = stray_placeholders(source, &translated);
+                if stray.is_empty() {
+                    continue;
+                }
+                broken_total += 1;
+                if broken_total <= 10 {
+                    eprintln!(
+                        "placeholder [{locale}] {file_name} {key}: 译文里多出 {} —— 原文是 {source:?}",
+                        stray.join(" ")
+                    );
+                }
+            }
+        }
+    }
+    if broken_total > 0 {
+        anyhow::bail!(
+            "{broken_total} 条译文含原文里没有的 %VAR 占位符（多半是 MT 把 %PRONOUN_/%VAR% 切坏了）；\
+             这类占位符在**反查之后**才被运行期替换，切坏了玩家就会直接看到它"
+        );
     }
 
     let allowed: BTreeSet<&str> = AMBIGUITY_ALLOWLIST.iter().map(|(source, _)| *source).collect();
@@ -392,6 +509,30 @@ mod tests {
             BTreeSet::from(["翻个面".to_owned(), "翻转".to_owned()])
         );
         std::fs::remove_dir_all(&dir).ok();
+    }
+
+    /// 占位符完整性：**允许少、不允许多**，而「多」的判定全靠 tokenizer 的三条边界。
+    #[test]
+    fn only_placeholders_absent_from_the_source_are_reported() {
+        // MT 实际产出的坏形态：代词那半截被吃掉，REPLACE_PRONOUNS 再也匹配不上。
+        assert_eq!(
+            stray_placeholders("%PRONOUN_Their teeth are big and sharp.", "%PRONOUN_牙齿又大又尖。"),
+            vec!["%PRONOUN".to_owned()]
+        );
+        // 整条省掉人称代词是**对的**（GET_TARGET_PRONOUN 返回英文词，留着会插进中文句子）。
+        assert!(stray_placeholders("%PRONOUN_Their teeth are big.", "牙齿又大又尖。").is_empty());
+        // 英文复数直接贴在占位符后面：token 到小写就停，两侧都是 %SOMETHING。
+        assert!(
+            stray_placeholders("There is a circle of %SOMETHINGs.", "一圈%SOMETHING。").is_empty()
+        );
+        // 百分号不是占位符 —— 首段必须整段大写，`Auxetics` 不算。
+        assert!(stray_placeholders("Made with 10% Auxetics.", "由 10%Auxetics 制成。").is_empty());
+        // 带收尾 % 的形态照常成对。
+        assert!(stray_placeholders("under -%MAXHEALTHRATIO% health", "低于 -%MAXHEALTHRATIO%").is_empty());
+        assert_eq!(
+            stray_placeholders("under -%MAXHEALTHRATIO% health", "低于 -%MAXHEALTH% 的目标"),
+            vec!["%MAXHEALTH%".to_owned()]
+        );
     }
 
     #[test]

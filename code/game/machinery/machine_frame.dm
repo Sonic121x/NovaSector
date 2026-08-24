@@ -101,7 +101,9 @@
 	for(var/component in req_components)
 		if(!req_components[component])
 			continue
-		nice_list += list("[req_components[component]] [req_component_names[component]]\s")
+		// NOVA EDIT CHANGE - i18n: 部件名保持 canonical English，只在这个显示点翻（中文丢 \s）。
+		// ORIGINAL: nice_list += list("[req_components[component]] [req_component_names[component]]\s")
+		nice_list += list(lang_component_tally(req_components[component], req_component_names[component]))
 	. += span_info(LANG("obj.e8c2a536c6afeae9", list(lang_english_list(nice_list, "no more components"))))
 
 	. += span_notice(LANG("obj.3259bd49fad24698", list(EXAMINE_HINT("pried"))))
