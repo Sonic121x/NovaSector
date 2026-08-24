@@ -822,5 +822,7 @@
   "zen-firstaid.zhe": "zen-firstaid.zhe",
   "Zingo": "Zingo",
   "你刚刚已经提交过申诉，请等待 {0} 秒后再试。<br>You just filed an appeal; try again in {1} seconds.": "你刚刚已经提交过申诉，请等待 {0} 秒后再试。<br>You just filed an appeal; try again in {1} seconds.",
-  "你当前没有受到新人软管制，无需申诉。<br>You are not under the newbie safeguard; there is nothing to appeal.": "你当前没有受到新人软管制，无需申诉。<br>You are not under the newbie safeguard; there is nothing to appeal."
+  "你当前没有受到新人软管制，无需申诉。<br>You are not under the newbie safeguard; there is nothing to appeal.": "你当前没有受到新人软管制，无需申诉。<br>You are not under the newbie safeguard; there is nothing to appeal.",
+  "_root.ad86d5e219de5a5c": "blue_box{0}",
+  "obj.ad86d5e219de5a5c": "blue_box{0}"
 }

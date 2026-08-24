@@ -383,6 +383,10 @@ Known trap classes:
 - **tgui-core `Button` 的 children 类型是 `string`，塞不进 JSX 片段** — 「值兼标识符的显示名」在 Button 上不能用 `{cond ? <>Label</> : value}` 那套（tsc 当场报 `Type 'Element' is not assignable to type 'string & ReactNode'`），要走 `defineMessage` + `translator.text(...)`：返回的是 string，且是唯一**被抽取器认得**的显式消息形态。顺带一条：`translateCurrent('X')` 这种写法**不进抽取面**，`tgui.json` 里那些键是历史遗留（union merge 从不裁剪）才活着的 —— 新代码别再这么写。
 - **拿真目录断言的那批测试，在伪 locale 门禁下会静默跳过** — 重构之后运行时只加载**当前 locale**，而 `i18n_html_tag_keys` / `i18n_real_catalog` 这些测试开头就有一句「zh-Hans 目录不存在就 return（精简签出时不误报）」。跑 `pseudo-test.sh`（locale=qps-ploc）时 zh-Hans 根本没加载 → 整个测试体一行没执行、照样报 PASS，耗时 0.0015s 就是指纹（对照 `i18n_display_boundary` 的 0.43s）。**新写的落地层断言必须用 `miss-harvest.sh`（真 zh-Hans）验一遍**，只跑伪 locale 等于没验。两个门禁互补这条一直写着，但没写明「哪些测试只在真 locale 那一边执行」。
   · 顺带一条：`data/unit_tests.json` 里 `status: 2` 是 **SKIPPED**（地图门控）不是失败，别按 `status != 0` 数失败数——我这么数过一次，把 9 条跳过的当成了 9 条失败。
-- **同一句英文在两个命名空间里译得不一样 → 反查表整条略过（全仓 273 条）** — 重构把「按文件序挑一个」改成了「有歧义就不进反查表」，这个决定是对的（旧行为是按加载顺序随机取），但**代价没被量化过**：这 273 条在所有反查路径上都够不着，正向 LANG 取键仍正常，所以只在聊天/examine/负载这些路径上显形。实测暴露的是 `You find yourself unable to speak!`（datum「说不出话了」/ mob「无法说话」）。
-  · **修法是改数据不是改机制**：同一个意思的（`Engineering` 工程部/工程、`Medical` 医疗/医疗部、`crafting component` 制作材料/合成材料）统一成一条即可恢复覆盖；真正的同形异义（`bolt` 螺栓/插销、`cut` 切割/切断、`Update` 通报/更新）就该保持歧义、由它留在英文，那正是这条设计要挡的东西。
-  · 扫法：按 en 值分组，看有几个不同的 zh 值。
+- **同一句英文在两个 forward 命名空间里译得不一样 → 反查表整条略过（全仓 71 条）** — 重构把「按文件序挑一个」改成了「有歧义就不进反查表」，这个决定是对的（旧行为是按加载顺序随机取），但**代价没被量化过**：这些条目在所有反查路径上都够不着，正向 LANG 取键仍正常，所以只在聊天/examine/负载这些路径上显形。实测暴露的是 `You find yourself unable to speak!`（datum「说不出话了」/ mob「无法说话」）。
+  · **修法是改数据不是改机制**：同一句英文被 MT 在两个命名空间各翻一遍、措辞小异的，统一成一条即可恢复覆盖（71 条里 68 条是这种）。
+  · **别按「en 值分组看有几个 zh 值」算规模**，那样得出 273 条、里面大半是假的：`tgui.json` 不进 DM 反查表（它有自己的域），而 `global_reverse` 那批显式文件会**覆盖** forward 候选（`lang_build_runtime_domain` 里那句 `seen = list()` 就是干这个的）。按「forward 内部冲突 **且** 没有 global_reverse 文件给值」算，真实是 **71 条**。我先报了 273，差了 4 倍。
+  · 由此还得到一条判据：`Engineering` 工程部/工程、`bolt` 螺栓/插销 这类看着最像问题的，恰恰**不是**问题——它们的另一半住在 `ui.json`/`manual.json`/`_wires.json` 里，那一层说了算。
+  · **不是所有冲突都该统一**：`{0} is hit by \a {1}{2}!` 在 mob 与 obj 下英文一样，但 `{2}` 一个是被击中的器官、一个是「未造成伤害」的后缀从句，中文语序必须各自安排 —— 统一 = 破坏**正向**渲染（两个 key 各自渲染，值一改就错一个）。同形异义（`Lizard` 物种/动物）同理。这三条进了 `audit.rs` 的 `AMBIGUITY_ALLOWLIST`，每条写明理由。
+  · 这一类由 MT 持续再生（同一句英文进两个命名空间 = 两个 key = 分两批送翻），所以清完必须配门禁，否则清一次长回来一次。已在 `nova-i18n catalog-audit` 里落地。
+  · 顺带修掉一个真 bug：`custom_boxed_message("blue_box", …)` 的 **CSS 类名**在 obj 侧被译成了「蓝色_盒子」，样式当场失效。这类值要同时进 `keep-english`，否则下一轮 MT 看到 zh==en 又当成待译翻一遍。

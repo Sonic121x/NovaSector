@@ -149,6 +149,71 @@ fn apply_stale(
 /// `LANG` references.  The default is a read-only CI check; `apply` performs the
 /// same analysis and removes only proven-stale automatic entries from matching
 /// locale files.
+/// 同一句英文在两个 forward 命名空间里译得不一样时，运行时的反查表会把它**整条略过**
+/// （见 `lang_build_runtime_domain` 的 ambiguous 处理）——那个决定是对的（旧行为是按文件
+/// 加载顺序随便挑一条），但代价是这些条目在**所有反查路径**上都够不着：聊天整行落地、
+/// examine 显示边界、TGUI 负载 overlay 全部 miss，而正向 `LANG(key)` 仍然正常，所以只在
+/// 玩家那边显形、在目录里完全看不出来。
+///
+/// 这一类由 MT 持续再生（同一句英文被抽进两个命名空间 = 两个 key = 分两批送去翻译），
+/// 所以必须有门禁，不然清一次长回来一次。
+///
+/// `global_reverse` 文件是显式决策层，会覆盖 forward 的候选，所以那里给了值的英文不算丢。
+const AMBIGUITY_ALLOWLIST: &[(&str, &str)] = &[
+    ("Central", "area 的「中央指挥部」与 obj 的「中央区」是两个地方，强行统一必错一个"),
+    ("Lizard", "物种名（蜥蜴人）与动物（蜥蜴），同形异义"),
+    (
+        "{0} is hit by \\a {1}{2}!",
+        "英文相同但 {2} 含义不同：mob 是被击中的器官、obj 是「未造成伤害」的后缀从句，中文语序必须各自安排",
+    ),
+];
+
+/// 返回「forward 内部冲突且没有 global_reverse 覆盖」的英文源串及其相互冲突的译文。
+fn forward_only_ambiguities(
+    catalog_root: &Path,
+    domains: &CatalogDomains,
+    locale: &str,
+) -> Result<BTreeMap<String, BTreeSet<String>>> {
+    let en_dir = catalog_root.join("en");
+    let locale_dir = catalog_root.join(locale);
+    let mut forward: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
+    let mut global_reverse: BTreeSet<String> = BTreeSet::new();
+    for entry in std::fs::read_dir(&en_dir)
+        .with_context(|| format!("无法读取英文目录：{}", en_dir.display()))?
+    {
+        let path = entry?.path();
+        let Some(file_name) = path.file_name().and_then(|name| name.to_str()) else {
+            continue;
+        };
+        if !file_name.ends_with(".json") {
+            continue;
+        }
+        let Some(policy) = domains.get(file_name) else {
+            continue;
+        };
+        let english = read_catalog(&path)?;
+        match policy.domain.as_str() {
+            "global_reverse" => global_reverse.extend(english.into_values()),
+            "forward" => {
+                let localized_path = locale_dir.join(file_name);
+                if !localized_path.exists() {
+                    continue;
+                }
+                let localized = read_catalog(&localized_path)?;
+                for (key, source) in english {
+                    let translated = localized.get(&key).cloned().unwrap_or_else(|| source.clone());
+                    forward.entry(source).or_default().insert(translated);
+                }
+            }
+            _ => {}
+        }
+    }
+    forward.retain(|source, translations| {
+        translations.len() > 1 && !global_reverse.contains(source)
+    });
+    Ok(forward)
+}
+
 pub fn run(dme: &Path, catalog_root: &Path, apply: bool) -> Result<()> {
     let en_dir = catalog_root.join("en");
     let domains = CatalogDomains::load(catalog_root)?;
@@ -203,8 +268,44 @@ pub fn run(dme: &Path, catalog_root: &Path, apply: bool) -> Result<()> {
         }
     }
 
-    if stale.is_empty() && stale_scopes.is_empty() {
+    let allowed: BTreeSet<&str> = AMBIGUITY_ALLOWLIST.iter().map(|(source, _)| *source).collect();
+    let mut ambiguous_total = 0usize;
+    for locale_dir in locale_dirs(catalog_root)? {
+        let Some(locale) = locale_dir.file_name().and_then(|name| name.to_str()) else {
+            continue;
+        };
+        // en 是源侧；qps-ploc 由 `nova-i18n pseudo` 机械生成，一句英文包一层括号，天然不冲突。
+        if locale == "en" || locale == "qps-ploc" {
+            continue;
+        }
+        let ambiguities = forward_only_ambiguities(catalog_root, &domains, locale)?;
+        let unexpected: Vec<_> = ambiguities
+            .iter()
+            .filter(|(source, _)| !allowed.contains(source.as_str()))
+            .collect();
+        if unexpected.is_empty() {
+            continue;
+        }
+        ambiguous_total += unexpected.len();
+        eprintln!(
+            "reverse ambiguity [{}]: {} 句英文在两个 forward 命名空间里译得不一样 —— 反查表会整条略过它们",
+            locale,
+            unexpected.len()
+        );
+        for (source, translations) in unexpected.iter().take(10) {
+            let variants: Vec<&str> = translations.iter().map(String::as_str).collect();
+            eprintln!("  {source:?} -> {}", variants.join(" | "));
+        }
+    }
+
+    if stale.is_empty() && stale_scopes.is_empty() && ambiguous_total == 0 {
         return Ok(());
+    }
+    if ambiguous_total > 0 {
+        anyhow::bail!(
+            "{} 句英文的译文在 forward 命名空间之间不一致；统一成一条，或确认它确属同形异义后加进 AMBIGUITY_ALLOWLIST 并写明理由",
+            ambiguous_total
+        );
     }
     if stale.is_empty() {
         anyhow::bail!(
@@ -252,6 +353,44 @@ mod tests {
         assert!(stale_sidecar_keys(&dir.join("absent.json"), &live)
             .unwrap()
             .is_empty());
+        std::fs::remove_dir_all(&dir).ok();
+    }
+
+    /// 反查表的歧义规则有两条边，两条都要验：forward 之间冲突要报，而 `global_reverse`
+    /// 显式给了值的那些**不算冲突**（运行时那一层会覆盖 forward 候选）。只验前一条的话，
+    /// 门禁会把几百条本来好好的条目报成错。
+    #[test]
+    fn forward_conflicts_report_unless_a_global_reverse_file_decides() {
+        let dir = std::env::temp_dir().join(format!("nova-i18n-ambig-{}", std::process::id()));
+        let en = dir.join("en");
+        let zh = dir.join("zh-Hans");
+        std::fs::create_dir_all(&en).unwrap();
+        std::fs::create_dir_all(&zh).unwrap();
+        std::fs::write(
+            dir.join("catalog-domains.json"),
+            r#"{"version":2,"files":{
+                "obj.json":{"domain":"forward","owner":"extract"},
+                "datum.json":{"domain":"forward","owner":"extract"},
+                "_decided.json":{"domain":"global_reverse","owner":"manual"}}}"#,
+        )
+        .unwrap();
+        for (dir_path, obj, datum, decided) in [
+            (&en, r#"{"obj.a":"Flip","obj.b":"Open"}"#, r#"{"datum.a":"Flip","datum.b":"Open"}"#, r#"{"Open":"Open"}"#),
+            (&zh, r#"{"obj.a":"翻个面","obj.b":"打开"}"#, r#"{"datum.a":"翻转","datum.b":"开门"}"#, r#"{"Open":"打开"}"#),
+        ] {
+            std::fs::write(dir_path.join("obj.json"), obj).unwrap();
+            std::fs::write(dir_path.join("datum.json"), datum).unwrap();
+            std::fs::write(dir_path.join("_decided.json"), decided).unwrap();
+        }
+
+        let domains = CatalogDomains::load(&dir).unwrap();
+        let found = forward_only_ambiguities(&dir, &domains, "zh-Hans").unwrap();
+
+        assert_eq!(found.keys().collect::<Vec<_>>(), vec!["Flip"]);
+        assert_eq!(
+            found["Flip"],
+            BTreeSet::from(["翻个面".to_owned(), "翻转".to_owned()])
+        );
         std::fs::remove_dir_all(&dir).ok();
     }
 
