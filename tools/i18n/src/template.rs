@@ -101,3 +101,159 @@ pub(crate) fn strip_tags(s: &str) -> String {
     }
     result
 }
+
+/// 一个 `span_*()` 宏展开后的形态：`("<span class='…'>" + 内容 + "</span>")`。
+///
+/// 判据只看**两端的字面量是不是纯标签**（去标签后无字母），中间是什么都行——内插串、
+/// 变量、再套一层 span 都算。这与运行期切块器的判据同源：它也只认标签边界。
+fn is_tag_wrapped(expr: &Expression) -> bool {
+    let Expression::Base { term, follow } = expr else {
+        return false;
+    };
+    if !follow.is_empty() {
+        return false;
+    }
+    let Term::Expr(inner) = &term.elem else {
+        return false;
+    };
+    let mut leaves = Vec::new();
+    flatten_add(inner, &mut leaves);
+    let (Some(first), Some(last)) = (leaves.first(), leaves.last()) else {
+        return false;
+    };
+    is_pure_tag(first) && is_pure_tag(last)
+}
+
+/// 纯标签字面量：以 `<` 开头，且去掉标签后不含字母。
+fn is_pure_tag(expr: &Expression) -> bool {
+    let Expression::Base { term, follow } = expr else {
+        return false;
+    };
+    if !follow.is_empty() {
+        return false;
+    }
+    match &term.elem {
+        Term::String(s) => {
+            s.starts_with('<') && !strip_tags(s).chars().any(|c| c.is_alphabetic())
+        }
+        _ => false,
+    }
+}
+
+/// 去掉 DM 的转义对（`\n`、`\t`、`\"`）后是否还含字母。
+///
+/// 分隔串判定**必须**先剥转义：AST 里的 `"\n"` 是反斜杠加字母 `n` 两个字符，直接看
+/// `is_alphabetic` 会把它当成正文，于是「两个标签单元之间夹一个换行」的拼接链拆不开。
+fn has_display_letters(s: &str) -> bool {
+    let mut chars = s.chars();
+    let mut plain = String::new();
+    while let Some(c) = chars.next() {
+        if c == '\\' {
+            chars.next();
+            continue;
+        }
+        plain.push(c);
+    }
+    strip_tags(&plain).chars().any(|c| c.is_alphabetic())
+}
+
+/// 把 `a + b + c` 摊平成操作数序列（只拆顶层 `+`）。
+fn flatten_add<'a>(expr: &'a Expression, out: &mut Vec<&'a Expression>) {
+    if let Expression::BinaryOp {
+        op: BinaryOp::Add,
+        lhs,
+        rhs,
+    } = expr
+    {
+        flatten_add(lhs, out);
+        flatten_add(rhs, out);
+    } else {
+        out.push(expr);
+    }
+}
+
+/// 把「若干个各自被标签包住的显示单元拼成一条」的表达式，按**单元**拆成多条模板。
+///
+/// `to_chat(span_notice("A") + span_boldnotice("B"))` 里 `build_template` 会把两端的
+/// span 标签当作「去标签后无字母」丢掉，于是两句折成**一个** key `"AB"`；而运行期
+/// `lang_fallback_apply_html` 按标签边界切块，切出来的 `A` 与 `B` 谁都不等于那个 key ——
+/// 译文躺在目录里却永远查不到。按操作数拆开抽，两半各自成键，切块后即可精确命中。
+///
+/// 只在**每个**操作数要么是标签包裹的显示单元、要么是无字母的分隔串（`"\n"`、`" - "`）时
+/// 才接管；只要有一个操作数是别的形状（变量、裸句），就交回 `build_template` 折成整条 ——
+/// 那种形状运行期本来就不会被切开。
+pub(crate) fn build_tag_chunk_templates(expr: &Expression) -> Option<Vec<String>> {
+    let mut operands = Vec::new();
+    flatten_add(expr, &mut operands);
+    if operands.len() < 2 {
+        return None;
+    }
+    let mut chunks = Vec::new();
+    for operand in operands {
+        if is_tag_wrapped(operand) {
+            let template = build_template(operand)?;
+            chunks.push(template);
+            continue;
+        }
+        // 分隔串（换行/标点）在运行期不成块，跳过即可；其余形状一律交回整条处理。
+        match operand {
+            Expression::Base { term, follow } if follow.is_empty() => match &term.elem {
+                Term::String(s) if !has_display_letters(s) => continue,
+                _ => return None,
+            },
+            _ => return None,
+        }
+    }
+    if chunks.len() < 2 {
+        return None;
+    }
+    Some(chunks)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn parse(source: &str) -> Expression {
+        let context = dm::Context::default();
+        let lexer = dm::lexer::Lexer::new(&context, Default::default(), source.as_bytes());
+        dm::parser::parse_expression(&context, Default::default(), lexer)
+            .expect("expression parses")
+    }
+
+    #[test]
+    fn tag_wrapped_operands_split_into_one_template_each() {
+        // `span_*()` 已被预处理器展开成括号里的三段拼接。
+        let expr = parse(
+            "(\"<span class='notice'>\" + \"First half. \" + \"</span>\") +              (\"<span class='boldnotice'>\" + \"Second half.\" + \"</span>\")",
+        );
+        assert_eq!(
+            build_tag_chunk_templates(&expr),
+            Some(vec!["First half. ".to_owned(), "Second half.".to_owned()])
+        );
+        // 折成整条的旧形态正是运行期切块后永远查不到的那个 key。
+        assert_eq!(
+            build_template(&expr).as_deref(),
+            Some("First half. Second half.")
+        );
+    }
+
+    #[test]
+    fn a_concatenation_that_is_not_split_at_runtime_stays_one_template() {
+        // 裸句 + 变量：运行期不会在这里切块，拆开抽只会产生查不到的半句。
+        let expr = parse("\"You have \" + count + \" items\"");
+        assert_eq!(build_tag_chunk_templates(&expr), None);
+        assert_eq!(build_template(&expr).as_deref(), Some("You have {0} items"));
+    }
+
+    #[test]
+    fn separators_between_tagged_units_do_not_block_the_split() {
+        let expr = parse(
+            "(\"<span class='notice'>\" + \"Alpha.\" + \"</span>\") + \"\\n\" +              (\"<span class='notice'>\" + \"Beta.\" + \"</span>\")",
+        );
+        assert_eq!(
+            build_tag_chunk_templates(&expr),
+            Some(vec!["Alpha.".to_owned(), "Beta.".to_owned()])
+        );
+    }
+}

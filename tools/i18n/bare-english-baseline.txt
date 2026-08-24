@@ -35,8 +35,6 @@
  It emanates a divine aura that defies souls tainted by darker forces.
  It feels easier to enter, now.
  It has an emblazoned Nanotrasen logo on it.
- It has been ID locked to {0}.
- It has been access locked to {0}s.
  It looks sticky.
  It looks tight.
  It looks very tight.
@@ -753,7 +751,6 @@ Defend your domain from the intruders!
 Departing immediately for new employee pickup.
 Departure has been postponed indefinitely pending conflict resolution.
 Deploy correction algorithms on aberrant code.
-Desiccation, commonly caused by Changelings.
 Designed and grown by the Apex, biocomputers the size of massive willow trees, the average Vox is a digitigrade, reptilian biped with stiff, semi-rigid keratin quills on their head, a long prehensile tail, and a teethed and bilaterally-split jaw. They have a flexible and lightweight skeleton and a two-channel redundant nervous system. They generally stand anywhere from 1.3 to 2 meters tall, averaging at 1.5 for most Vox, taller for Armalis, with a primarily green and brown coloration, but can have different colored quills and body markings. Their bodies are scaled with rigid, nonconducting plates in overlapping rows, which can be bristled or flattened at will to optimize cooling or form interior seals as to retain heat. Their aforementioned quills act as a supplementary cooling system, with tiny capillaries allowing bloodflow into the hollow recesses inside of the quills, which they may often violently shake to produce a cooling effect with the air; this also functions as a threat display, as many Vox will attempt to cool themselves down before engaging in a fight as to regulate their body-temperature though exertion. They do not respirate as humans do, but they do require a nitrogen-rich atmosphere to 'breathe', and suffer badly in the presence of oxygen. Their musculature is geared towards sudden bursts of rapid movement, with a vulnerability to lactic acid buildup as a result.
 Despite SSconfig setting SSjob.legacy_mode to TRUE, jobs.txt was not found in the config directory! Something has gone terribly wrong!
 Despite being a day off, the postal system is working overtime today. Mail will be delivered this shift.
@@ -1026,7 +1023,6 @@ From the shadows, all shall perish.
 Fucking stupid machine.
 Fuel reserves depleted.
 Fugitive locator tried to locate a fugitive antag datum with no owner.
-Fully heals the target and produces a random coin.
 Further changes occur in the host: the symbiont is heavily reliant on extremely rapid cell regeneration to sustain itself, which is disrupted by the presence of UV light. As a result, the host can start to experience heightened irritation in the presence of light and especially sunlight.
 GENUINE ID Appraisal Now!
 GET OVER HERE!
@@ -1327,7 +1323,6 @@ It appears heavily damaged.
 It appears moderately worn.
 It appears the mutiny has been quelled. Please return yourself and your incapacitated colleagues to work. We have remotely blacklisted the head revolutionaries in your medical records to prevent accidental revival.
 It appears to be a good conductor of electricity.
-It appears to be completely inactive. The reset light is blinking.
 It appears to be insulated against telepathic or mental influence.
 It appears to be tipped over, and is quietly waiting for someone to set it right.
 It appears to contain {0}.
@@ -1958,6 +1953,7 @@ Quantum relay switched from normal operation mode to overload recovery mode.
 Quantum relay switched from overload recovery mode to normal operation mode.
 REPLACE_PRONOUNS called with improper parameters.
 RETA system is disabled.
+RIGHT-CLICKING on your target with an empty hand.
 RO: Occupations reset.
 ROCKED AND SOCKED.
 ROUND READY. LOADING {0}!
@@ -2099,7 +2095,6 @@ Set the cable layer to connect to with the \"1\", \"2\", and \"3\" buttons.
 Set the guardian's color, cancel to let player set it.
 Set your gun setting and move {0} steps away from your opponent.
 Severe brain damage detected.
-Severe burns.
 Severe genetic damage detected.
 Shadekin are capable of reproducing sexually, though their minds need diverse surroundings to properly develop, making them fairly self-guided. Despite this, Shadekin easily find a space of their own, and become staples of their communities. They are more expressive than other species to compensate for a lack of psionic connection. Their language, Marish, is purely empathic and cannot be spoken by psychopaths. Their eye color is an important part of their biology, as it indicates temperament.
 Shadekin are pitch darkness given form. Light seems to pass through their bodies, which tires them. They do not cast shadows. Shadekin elude definition in terms of size and appearance, as no two Shadekin are the same-- they tend to take features from the species around them that would otherwise not be seen as theirs. For example, Shadekin spawned in Tizira tend to have horns or frill-like ears. An average Shadekin would be slightly shorter than a human, with a similar lifespan. Shadekin that do not use other species' naming conventions will tend to name themselves after their place in the community, like a job or societal function.
@@ -2217,10 +2212,7 @@ Strange reports warn of changelings infiltrating crews on trips to Orion...
 Stray ionization detected! Criticality at {0}%!
 Stray ionization detected! Reduce power output immediately!
 Stray ionization process halted. Returning to safe operating parameters.
-Stripped flesh.
 Subcontractor query successful, bitrunner connecting.
-Subject Major Disabilities: None.
-Subject Minor Disabilities: None.
 Subject appears to be hallucinating. Suggested treatments: Antipsychotic medication, {0} or {1}.
 Subject is blind from eye damage.
 Subject is blind from mental trauma.
@@ -2762,7 +2754,6 @@ This reaction has special behaviour when occurring in specific locations.
 This server is using deprecated configuration settings. Please check the logs and update accordingly.
 This structure is connected to <b>{0}</b> transmission sigil{1}.
 This stuff has layers.
-This subsystem is marked as SS_OK_TO_FAIL_INIT. This is still a bug, but it is non-blocking.
 This took place in {0} of {1} on {2}.
 This took place in {0} of {1}.
 This used to be \a {0}, but it sure isn't anymore.
@@ -2858,7 +2849,6 @@ Unidentified ship detected near the station.
 Unit is full.
 Unknown DNA. Consult the \"DNA infusion book\".
 Unknown Error happened, while we tried to procceed an order, please report this to Nanotrasen.
-Unknown causes.
 Unknown command: {0}!
 Unknown custom chat command: {0}!
 Unknown cyborg type '{0}' could not be found by {1}!
@@ -3432,7 +3422,6 @@ You point {0} at {1}, but {2} appear{3} to be dead!
 You point {0} at {1}, but {2} appear{3} to be non-functioning.
 You prepare to give {0}'s brain the spark of life with {1}.
 You prepare to use {0} on a target...
-You pull the string on \the {0}.
 You pull {0} out of {1}.
 You pulse {0}'s sensors with the baton!
 You push {0} back into place.
@@ -3599,8 +3588,6 @@ You were roleblocked!
 You were swept away into the black hole.
 You will make a fine rug!
 You won't stop now, you're in this to the end.
-You {0} yourself{1} with {2}{3}!
-You {0} {1}{2} with {3}{4}!
 You'd estimate {0} fitness level at about...
 You'll allow yourself to be touched now.
 You'll need reinforced fishing line to fish in there.
@@ -3612,7 +3599,6 @@ You're in love with {0}! How lovely.
 You're my BESSST frien'... You and me agains' th' world, buddy. Le's get another drink.
 You're not quite ready to toast another toast yet.
 You're struggling to make out any details...
-You're {0}{1} with {2}{3}!
 You've been provided with medication to help manage your condition. Take it regularly to avoid complications.
 You've probably heard a lot of repeats by now.
 Your ComputerID has already logged in with another key this round, please log out of this one NOW or risk being banned!
@@ -3766,8 +3752,6 @@ Zauker is produced at a rate that scales with the temperature.
 Zdraviya zhelaju, {0} crew. We are coming to your station.
 Zombies are undead, and thus completely immune to any environmental hazard, or any physical threat besides blunt force trauma and burns. Their limbs are easy to pop off their joints, but they can somehow just slot them back in.
 Zombies have long lasting beef with Botanists. Their last incident involving a lawn with defensive plants has left them very unhinged.
-\The {0} slams into \the {1} inducing a resonance... {2} body starts to glow and burst into flames before flashing into dust!
-\The {0} slams into \the {1} out of nowhere inducing a resonance... {2} body starts to glow and burst into flames before flashing into dust!
 \nIt looks incredibly resistant to damage!
 \nLooks like this used to be \a {0} some time ago.
 \nLooks like this used to be \an {0} some time ago.
@@ -3778,7 +3762,6 @@ access denied!
 flaps its wings!
 fully healed!
 is crumbling!
-is secured and ready to be used!
 is split open, causing your internal organs to spill out!
 it won't budge!
 jumps around!
@@ -4682,7 +4665,6 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} {1} while on the ground.
 {0} {1} with it winding down.
 {0} {1} with their newly received award.
-{0} {1} you{2} with {3}{4}!
 {0} {1} {2} adorning {3} {4}.
 {0} {1} {2} ears perked up, listening closely to whisper-quiet sounds.
 {0} {1} {2} unit{3} of blood{4}. {5} blood is <b>{6}</b> synthetic.

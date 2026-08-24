@@ -104,6 +104,24 @@ for (const file of fs.readdirSync(enDir).filter((f) => f.endsWith('.json'))) {
 // 片段检索用大 haystack（\x00 分隔防跨值误命中）
 const haystack = fragmentsHaystack.join('\x00');
 
+// ---- 前端目录（TGUI 渲染期查表）----
+// 重构之后 tgui.json 不再进 DM 侧的目录桶（catalog-domains.json 把它标成 domain: tgui，
+// 运行时加载器直接跳过），所以 P1 找不到译文、每个负载值都会刷一条 miss —— 而**前端**
+// 的 bundle 里有译文，玩家看到的是中文。这类不是缺口，混进「已译未接通」会把真问题淹掉
+// （实测一轮 419 行里占 81 行）。只对 DM 侧来源生效：tgui-ui 是前端自己报的 miss，
+// 它在 bundle 里反而说明有别的问题，不能降噪。
+const frontendCatalog = (() => {
+  const p = path.join(repoRoot, 'tgui', 'packages', 'tgui', 'i18n', 'zh-Hans.json');
+  if (!fs.existsSync(p)) return new Map();
+  return new Map(
+    Object.entries(JSON.parse(fs.readFileSync(p, 'utf8'))).filter(
+      ([source, target]) => typeof target === 'string' && target !== source,
+    ),
+  );
+})();
+const isFrontendCovered = (text, sources) =>
+  frontendCatalog.has(text) && !sources.includes('tgui-ui');
+
 // ---- 口音替换词池（有意保英文，不进目录）----
 // strings/*_replacement.json 是逐词/短语替换表（ork/鱼语/意式口音…），翻译会破坏替换机制，
 // 按既定方针保持英文。它们每局都会刷 miss 日志 → 单独分桶降噪，别混进「没进目录」。
@@ -142,6 +160,7 @@ const isNoise = (text) =>
 
 // ---- 归类 ----
 const buckets = {
+  前端已覆盖: [], // DM 侧查不到，但 TGUI bundle 有译文 → 渲染期由 TS 翻，不是缺口
   已译未接通: [], // 在目录且已译 → 路径绕过，落地点补反查
   在目录未译: [], // 在目录但 zh==en → MT/白名单判断
   目录片段: [], // 是某目录值的子串 → AC 拆碎，整串反查
@@ -159,7 +178,10 @@ for (const [text, { count, sources, hints }] of misses) {
     catalog: null,
   };
   const hit = enValues.get(text);
-  if (hit) {
+  if (isFrontendCovered(text, row.sources)) {
+    if (hit) row.catalog = `${hit.ns}#${hit.key}`;
+    buckets['前端已覆盖'].push(row);
+  } else if (hit) {
     row.catalog = `${hit.ns}#${hit.key}`;
     buckets[hit.translated ? '已译未接通' : '在目录未译'].push(row);
   } else if (poolWords.has(text.toLowerCase())) {
@@ -198,6 +220,7 @@ if (asJson) {
   process.exit(0);
 }
 const HINTS = {
+  前端已覆盖: 'DM 侧查不到但前端 bundle 有译文 → 渲染期由 TS 本地化，不是缺口，无需处理',
   已译未接通: '译文就绪但显示路径绕过翻译层 → 找到落地点补 lang_reverse_text/lang_fallback_apply/接 sink',
   在目录未译: '在 en 目录但 zh 未译 → bun tools/i18n/mt/i18n-mt.ts 跑 MT，或确认属 keep-english 白名单',
   目录片段: '是某条目录值的子串（AC 最短匹配拆碎/部分替换）→ 该文本落地点先整串反查再进 fallback',

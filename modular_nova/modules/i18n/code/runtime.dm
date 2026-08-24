@@ -1233,6 +1233,9 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 		var/affixed_name = lang_localize_type_affixed_name(display_name)
 		if(affixed_name)
 			return affixed_name
+		var/material_name = lang_localize_material_prefixed_name(display_name)
+		if(material_name)
+			return material_name
 	return lang_localize_display_name(display_name, "[type]")
 
 /// 运行期在**类型名两侧加缀**的实例名：AI 法则架的 `"\proper core module rack 'alpha'"`、
@@ -1255,6 +1258,33 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 	var/tail = copytext(stripped, base_length + 1)
 	var/localized_base = lang_type_display_text(src, lang_type_name_keys()) || lang_localize_display_name(base, "[type]")
 	return "[localized_base][tail]"
+
+/// 运行期把**材料名**拼在类型名**前面**的那批（`/obj/item/coin/gold` 的 `"gold coin"`、
+/// 各种材料造物）。与 lang_localize_type_affixed_name 同源但方向相反：那条认 `initial(name)`
+/// 是前缀，这条认它是**后缀**。两条都必要——材料在前、编号/标签在后。
+///
+/// 闸门是「前缀必须是**已登记的材料名**」（`lang_material` 认得）。不设这条就等于放行任意
+/// 运行期前缀，而材料域正是为 `gold`/`glass`/`iron` 这些歧义单词准备的：它们只在材料语境翻，
+/// 不进全局反查表。中文不需要那个分隔空格，直接拼。
+/atom/proc/lang_localize_material_prefixed_name(display_name)
+	var/base = initial(name)
+	var/base_length = length(base)
+	if(!base_length)
+		return null
+	var/stripped = lang_strip_grammar_macros(display_name)
+	var/stripped_length = length(stripped)
+	if(stripped_length <= base_length)
+		return null
+	if(copytext(stripped, stripped_length - base_length + 1) != base)
+		return null
+	var/prefix = trim(copytext(stripped, 1, stripped_length - base_length + 1))
+	if(!length(prefix))
+		return null
+	var/localized_prefix = lang_material(prefix)
+	if(localized_prefix == prefix) // 不是登记过的材料 —— 这个形状不归本条管
+		return null
+	var/localized_base = lang_type_display_text(src, lang_type_name_keys()) || lang_localize_display_name(base, "[type]")
+	return "[localized_prefix][localized_base]"
 
 /// 拆「区域名 + 其余」型实例名并分别本地化；不是这个形状时返回 null（调用方回落原链）。
 ///

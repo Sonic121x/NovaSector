@@ -60,6 +60,9 @@ GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
 	var/trimmed = trim(english)
 	if(!findtext(trimmed, " "))
 		return FALSE
+	// 续接标点打头 = 拼句碎片，无论多长都不该获得「在任意文本中间开火」的权力。
+	if(lang_fallback_pattern_fragment(trimmed))
+		return FALSE
 	// 整句（有句末标点）一律放行：它们不会成为更长单词的一部分。
 	var/last_character = copytext(trimmed, length(trimmed))
 	if(findtext(".!?:;\"')", last_character))
@@ -71,6 +74,29 @@ GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
 	if((LOWER_TEXT(words[1]) in stopwords) || (LOWER_TEXT(words[length(words)]) in stopwords))
 		return FALSE
 	return TRUE
+
+/// 「整串以续接标点起头」——拼句碎片的可靠签名。
+///
+/// 这类串（`", Col"`、`"- Make yourself a"`、`"...at ["`）本身是句子的后半截，进了 AC 的
+/// 子串字典就会从单词内部开火：`Smith, Colonel` 被咬成 `Smith, 列onel`。它们仍留在目录里
+/// 供各自调用点**精确**查表，只是不再参与子串替换。
+///
+/// 判据必须比「首字符是标点」更窄，否则会误杀一批正当显示串（实测）：
+///   · `.357 Speedloader` / `.50 BMG …` —— 句点后面跟**数字**，是弹药口径不是句子续接；
+///   · `(WALL PIERCE)` / `&bull; …` / `*static*…` —— 括号星号打头的是完整标签/正文；
+///   · `'Time Of Valor 2' Medbay` —— 引号打头的是区域专名，全仓 700+ 条。
+/// 故只认「逗号/分号/冒号」，以及「句点或连字符**后面跟空白或另一个句点**」。
+/// 只按 ASCII 判：UTF-8 下小于 128 的字节必是完整字符，多字节破折号极少见，不值得冒险。
+/proc/lang_fallback_pattern_fragment(trimmed)
+	var/first = text2ascii(trimmed, 1)
+	if(first == 44 || first == 59 || first == 58) // , ; :
+		return TRUE
+	var/second = text2ascii(trimmed, 2)
+	if(first == 46) // .
+		return second == 46 || second == 32 || second == 9
+	if(first == 45) // -
+		return second == 32 || second == 9
+	return FALSE
 
 /// AC 字典的早调用告警计数（与 lang_reverse_text 那个哨兵同源，上限同一个 define）。
 GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)

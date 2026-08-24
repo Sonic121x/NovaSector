@@ -19,7 +19,7 @@ use dm::ast::{AssignOp, Expression, Follow, Statement, Term};
 use crate::catalog::Catalog;
 use crate::keys::{is_v2_key, make_key, namespace_for};
 use crate::semantics::{block_is_pure, native_dialog_no_usr, resolve_sink_arg, sink_message_args};
-use crate::template::{build_template, placeholder_count};
+use crate::template::{build_tag_chunk_templates, build_template, placeholder_count};
 
 /// 视为玩家可见的变量名。
 /// message_* 系列是 /datum/emote 的各形态表情模板（人形/默剧/外星/AI/机器人等），玩家在聊天
@@ -2400,7 +2400,12 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                             continue;
                         }
                         if let Some((_, arg)) = resolve_sink_arg(name.as_str(), i, args) {
-                            if let Some(template) = build_template(arg) {
+                            // 拼接链先按标签单元拆（见 build_tag_chunk_templates）；拆不动才折成整条。
+                            if let Some(chunks) = build_tag_chunk_templates(arg) {
+                                for chunk in chunks {
+                                    emit(catalog, ns, &chunk);
+                                }
+                            } else if let Some(template) = build_template(arg) {
                                 emit(catalog, ns, &template);
                             }
                         }
