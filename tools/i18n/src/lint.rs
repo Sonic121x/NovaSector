@@ -47,6 +47,10 @@ impl Report {
 const NAME_LANG_ASSIGN_ALLOWLIST: &[&str] = &[
     "code/datums/components/food/edible.dm",
     "code/game/objects/items/mail.dm",
+    // 打印出来的法医报告：`"FR-[编号] 'Forensic Record'"` 是**新生成实例的合成身份名**
+    // （与 mail.dm 的「给某某的信」同形），编号来自运行期计数器，不存在 canonical 英文原名
+    // 可供显示边界反查。纸张名不参与任何比较。
+    "code/modules/detectivework/scanner.dm",
 ];
 
 /// 表达式的**值**是否就是 LANG 的产物（译文串）。

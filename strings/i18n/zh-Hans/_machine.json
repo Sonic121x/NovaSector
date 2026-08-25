@@ -1,4 +1,7 @@
 {
   "_machine.contains_parts": "它含有以下部件：",
-  "_machine.part_replaced": "{0} 已替换为 {1}。"
+  "_machine.part_replaced": "{0} 已替换为 {1}。",
+  "_machine.fab_offgrid_protolathe": "离网原型机",
+  "_machine.fab_offgrid_imprinter": "离网电路压印机",
+  "_machine.fab_component_printer": "部件打印机"
 }

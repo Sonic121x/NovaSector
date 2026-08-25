@@ -2753,6 +2753,28 @@ fn is_option_label(s: &str) -> bool {
     t.chars().next().is_some_and(|c| c.is_ascii_uppercase())
 }
 
+/// assoc 的键是不是屏幕提示的按键槽（`SCREENTIP_CONTEXT_*`）。
+///
+/// 那些是 `#define`，预处理器建 AST 之前就展开成 `"Ctrl-LMB"` 这类字符串了 —— 按定义名匹配
+/// 永远 0 命中，只能认展开后的值（与 `BB_EMOTE_*` 黑板键同一条路子）。
+///
+/// `context[SCREENTIP_CONTEXT_LMB] = "…"` 那种下标写法早就抽到了（IndexAssign 那条规则），
+/// 但**写在 list 字面量里**的没有：`list(/mob/living/silicon = list(SCREENTIP_CONTEXT_CTRL_LMB
+/// = "Toggle power", …))`。全仓 38 条这么漏着，APC 给 AI 看的那几条即此。
+fn is_screentip_slot_key(key: &str) -> bool {
+    matches!(
+        key,
+        "LMB"
+            | "RMB"
+            | "Shift-LMB"
+            | "Ctrl-LMB"
+            | "Ctrl-RMB"
+            | "Alt-LMB"
+            | "Alt-RMB"
+            | "Ctrl-Shift-LMB"
+    )
+}
+
 fn rhs_is_bare_type_path(rhs: &Expression) -> bool {
     let Expression::Base { term, follow } = rhs else {
         return false;
@@ -2820,6 +2842,16 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
             // lint` 当场报 **1 个错误 + 20 条新碰撞**：化学反应的参数标签（`Optimal Max Ph` =
             // `optimal_max_ph`）、性能面板（`SendMaps: Cleanup` = `cleanup`）都长这个形状，而它们
             // 的「标签」正是程序拿去查表的键。槽位名把这些一条不落地挡在外面。
+            // 屏幕提示按键槽：键是展开后的 `"Ctrl-LMB"` 之类，值就是那条动作提示。
+            if !suppress && is_screentip_slot_key(key.as_str()) {
+                if let Some(value) = plain_string(rhs) {
+                    let trimmed = value.trim();
+                    if trimmed.contains(' ') || trimmed.chars().filter(|c| c.is_alphabetic()).count() >= 3
+                    {
+                        emit(catalog, ns, trimmed);
+                    }
+                }
+            }
             if !suppress && matches!(key.as_str(), "name" | "label" | "title") {
                 if let Some(value) = plain_string(rhs) {
                     if is_option_label(&value) && !DISPLAY_SLOT_BLOCKLIST.contains(&value.as_str())

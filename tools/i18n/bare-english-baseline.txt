@@ -676,7 +676,6 @@ Cigarette smoke is unpleasant.
 Clearing clutter...
 Click this alert to let them help you up!
 Click this alert to take it and let {0} pull you around!
-Click to {0}.
 Click {0} with another gas tank to hot swap {1}.
 Client disconnected.
 Client does not purport to be QDELING, this is going to cause bugs in other places!
@@ -1697,7 +1696,6 @@ No eigen target set for the eigenstate component!
 No external injuries detected.
 No file chosen!
 No fires detected.
-No forensic traces found.
 No further details.
 No glands detected!
 No goal set!

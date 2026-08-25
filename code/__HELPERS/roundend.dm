@@ -481,10 +481,17 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		var/mob/living/silicon/ai/aiPlayer = i
 		var/datum/mind/aiMind = aiPlayer.deployed_shell?.mind || aiPlayer.mind
 		if(aiMind)
-			parts += "<b>[aiPlayer.name]</b>'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was [span_redtext("deactivated")]"] were:" //NOVA EDIT CHANGE
+			// NOVA EDIT CHANGE START - i18n: 手工 LANG 化。原句是「三元嵌在插值里」的裸拼接，
+			// 模板以冒号收尾又带占位符，抽取的两道闸门都挡着；`parts` 也不是注册累加器。
+			// 拆成两条完整模板（而不是把英文分句当实参传），中文语序才排得开。
+			// ORIGINAL: parts += "<b>[aiPlayer.name]</b>'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was [span_redtext("deactivated")]"] were:"
+			parts += aiPlayer.stat != DEAD \
+				? LANG("datum.c9614dfa3e5164f5", list(aiPlayer.name)) \
+				: LANG("datum.9a3724cc3403ed49", list(aiPlayer.name, span_redtext("deactivated")))
+			// NOVA EDIT CHANGE END
 			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
 
-		parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
+		parts += LANG("datum.1c8f9492d4fdd9e4", list(aiPlayer.law_change_counter)) // NOVA EDIT CHANGE - i18n - ORIGINAL: parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
 
 		if (aiPlayer.connected_robots.len)
 			var/borg_num = aiPlayer.connected_robots.len

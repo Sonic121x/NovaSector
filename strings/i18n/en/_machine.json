@@ -1,4 +1,7 @@
 {
   "_machine.contains_parts": "It contains the following parts:",
-  "_machine.part_replaced": "{0} replaced with {1}."
+  "_machine.part_replaced": "{0} replaced with {1}.",
+  "_machine.fab_offgrid_protolathe": "Off-Grid Protolathe",
+  "_machine.fab_offgrid_imprinter": "Off-Grid Circuit Imprinter",
+  "_machine.fab_component_printer": "Component Printer"
 }

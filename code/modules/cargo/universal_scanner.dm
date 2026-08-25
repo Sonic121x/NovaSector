@@ -181,27 +181,30 @@
 	for(var/exported_datum in report.total_amount)
 		price += report.total_value[exported_datum]
 
-	var/message = "Scanned [target]"
+	// NOVA EDIT CHANGE START - i18n: 手工 LANG 化。原本是往局部 `message` 上逐段 `+=` 拼句，
+	// 每一段单独看都是碎片（", no export value."），既进不了目录、进了也只会被字面 AC 在半句
+	// 处替换。改成每个分支一条**完整模板**，「无法确定价值」那半句作为可选后缀实参传入，
+	// 英文输出逐字节不变，中文语序由译文自己安排。
+	// ORIGINAL 见 git 历史（`message = "Scanned [target]"` 起的那一段逐段拼接）。
+	var/message
 	var/warning = FALSE
 	if(length(target.contents))
-		message = "Scanned [target] and its contents"
+		var/undeterminable = report.all_contents_scannable ? "" : LANG("obj.c191398477bf147a", null)
 		if(price)
-			message += ", total value: <b>[price]</b> [MONEY_NAME]"
+			message = LANG("obj.00275d2b3618279f", list(target, price, MONEY_NAME, undeterminable))
 		else
-			message += ", no export values"
+			message = LANG("obj.ec041646b97f1f2f", list(target, undeterminable))
 			warning = TRUE
-		if(!report.all_contents_scannable)
-			message += " (Undeterminable value detected, final value may differ)"
-		message += "."
 	else
 		if(!report.all_contents_scannable)
-			message += ", unable to determine value."
+			message = LANG("obj.c16a657c6f2f6ff0", list(target))
 			warning = TRUE
 		else if(price)
-			message += ", value: <b>[price]</b> [MONEY_NAME]."
+			message = LANG("obj.4177d9b2b10f32ec", list(target, price, MONEY_NAME))
 		else
-			message += ", no export value."
+			message = LANG("obj.b805c824dda85d5b", list(target))
 			warning = TRUE
+	// NOVA EDIT CHANGE END
 	if(warning)
 		to_chat(user, span_warning(message))
 	else

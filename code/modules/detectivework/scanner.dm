@@ -44,13 +44,18 @@
 	//This could be a global count like sec and med record printouts. See GLOB.manifest.generalPrintCount AKA datacore.dm
 	var/frNum = ++forensicPrintCount
 
-	report_paper.name = "FR-[frNum] 'Forensic Record'"
-	var/list/report_text = list("<h1>Forensic Record - (FR-[frNum])</h1><hr>")
+	// NOVA EDIT CHANGE START - i18n: 手工 LANG 化。整篇报告先攒进局部 list 再 `.Join()` 交给
+	// add_raw_text，抽取器按定义够不着这些字面量（扩规则试过，全仓只多抽到一条调试串）。
+	// ORIGINAL: report_paper.name = "FR-[frNum] 'Forensic Record'"
+	// ORIGINAL: var/list/report_text = list("<h1>Forensic Record - (FR-[frNum])</h1><hr>")
+	report_paper.name = LANG("obj.ace60e9b9af6b112", list(frNum))
+	var/list/report_text = list(LANG("obj.25e6d540933be77c", list(frNum)))
+	// NOVA EDIT CHANGE END
 
 	for(var/datum/detective_scanner_log/log_entry as anything in log_data)
 		report_text += log_entry.generate_report_text()
 
-	report_text += "<h1>Notes:</h1><br>"
+	report_text += LANG("obj.c896e682ee3d8286", null) // NOVA EDIT CHANGE - i18n - ORIGINAL: report_text += "<h1>Notes:</h1><br>"
 
 	report_paper.add_raw_text(report_text.Join())
 	report_paper.update_appearance()
