@@ -831,9 +831,13 @@ GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 /// `list_formatting.json` 提供 separator、default_conjunction 与 canonical 英文连接词映射；
 /// 缺少当前 locale 的格式表时，仍本地化各项，但保留 `english_list()` 的 canonical 连接行为。
 /// 这样新增 locale 只需添加域数据，不需要在 DM 控制流里增加 locale 分支。
-/proc/lang_english_list(list/items, nothing_text = "nothing", and_text = " and ", comma_text = ", ")
+/// `final_comma_text` 是英文的牛津逗号（"a, b, and c" 里 and 前那个逗号），本地化分支不使用它：
+/// 中文用顿号连接、也没有这个成分，与「译文不引用英文复数 `\s` 占位符」同一条道理。
+/// 但形参必须与 `english_list()` 逐一对应 —— rewrite 是就地把调用换成本 proc 的，
+/// 上游任何一个具名实参我们缺一个，那个调用点当场编译不过。
+/proc/lang_english_list(list/items, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "")
 	if(GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
-		return english_list(items, nothing_text, and_text, comma_text)
+		return english_list(items, nothing_text, and_text, comma_text, final_comma_text)
 	if(!length(items))
 		return lang_localize_arg(nothing_text)
 	var/list/localized = list()
@@ -845,7 +849,7 @@ GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 	var/separator = formatting["separator"]
 	var/list/conjunctions = formatting["conjunctions"]
 	if(!istext(separator) || !islist(conjunctions))
-		return english_list(localized, nothing_text, and_text, comma_text)
+		return english_list(localized, nothing_text, and_text, comma_text, final_comma_text)
 	var/conjunction_key = trim(replacetext(and_text, ",", ""))
 	var/joiner = conjunctions[conjunction_key]
 	if(isnull(joiner))
