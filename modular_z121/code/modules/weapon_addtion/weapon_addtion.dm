@@ -578,7 +578,7 @@
 
 	return TRUE
 
-/obj/item/gun/ballistic/shotgun/dex4/process_fire(atom/target, mob/living/user, params)
+/obj/item/gun/ballistic/shotgun/dex4/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	. = ..()
 	if ((obj_flags & EMAGGED))
 		//	爆！！！

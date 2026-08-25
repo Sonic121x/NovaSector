@@ -92,6 +92,7 @@
 
 //	驯服反应
 /mob/living/basic/pet/magicfur/tamed(mob/living/tamer, atom/food)
+	. = ..()
 	visible_message(span_notice("[src]和[tamer]成为了朋友，并用爪爪在[tamer]身上留下了友谊印记"))
 
 //	禁止使用远程武器

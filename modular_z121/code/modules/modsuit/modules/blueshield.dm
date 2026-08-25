@@ -82,7 +82,7 @@
     if(mod?.wearer)
         to_chat(mod.wearer, span_notice("护盾模块冷却结束，可以重新激活"))
 
-/obj/item/mod/module/blue_shield/proc/get_module_data(datum/mod_ui/ui)
+/obj/item/mod/module/blue_shield/proc/get_module_data(ui)
     . = ""
     if(cooldown_timer)
         var/time_left = timeleft(cooldown_timer)

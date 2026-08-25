@@ -44,6 +44,7 @@
 	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 100)
 
 /mob/living/basic/hamsterking/tamed(mob/living/tamer, atom/food)
+	. = ..()
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/cow)
 
 /obj/item/summon_beacon/donatepet/hamster

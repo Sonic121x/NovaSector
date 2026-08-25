@@ -67,7 +67,7 @@
 	charger.SpinAnimation(FLIP_EMOTE_DURATION, 1)
 	addtimer(TRAIT_CALLBACK_REMOVE(charger,TRAIT_UNHITTABLE_BY_PROJECTILES,REF(src)), TAUNT_EMOTE_DURATION * 1)
 
-/mob/living/basic/pet/lanhongqiu/UnarmedAttack(atom/A)
+/mob/living/basic/pet/lanhongqiu/UnarmedAttack(atom/A, proximity_flag, list/modifiers)
 	. = ..()
 	if(!isitem(A))
 		return
