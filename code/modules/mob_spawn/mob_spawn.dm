@@ -199,7 +199,7 @@
 	if(LAZYFIND(ckeys_trying_to_spawn, user.ckey))
 		return
 	if(uses <= 0 && !infinite_use)
-		to_chat(user, span_warning(LANG("obj.3f72bc17", null)))
+		to_chat(user, span_warning(LANG("obj.3f72bc171878f493", null)))
 		return FALSE
 	if(!can_ghost_take(user))
 		return FALSE
@@ -209,7 +209,7 @@
 	LAZYADD(ckeys_trying_to_spawn, user_ckey)
 	// NOVA EDIT ADDITION START
 	if(restricted_species && !(user.client?.prefs?.read_preference(/datum/preference/choiced/species) in restricted_species))
-		var/incorrect_species = tgui_alert(user, LANG("obj.55d53048", null), LANG("obj.ecb1db77", null), list("Yes", "No"))
+		var/incorrect_species = tgui_alert(user, LANG("obj.55d5304862a0c9e4", null), LANG("obj.ecb1db7795dfed98", null), list("Yes", "No"))
 		if(incorrect_species != "Yes")
 			LAZYREMOVE(ckeys_trying_to_spawn, user_ckey)
 			return
@@ -236,7 +236,7 @@
 	if(!prompt_fail && (allow_custom_character & GHOSTROLE_TAKE_PREFS_APPEARANCE) && user.client)
 		//if we have gotten to this point, they have already waived their species pref.-- they were told they need to use the specific species already
 		if(!apply_prefs && (restricted_species && (user.client?.prefs?.read_preference(/datum/preference/choiced/species) in restricted_species)) || !restricted_species)
-			apply_prefs = tgui_alert(user, LANG("obj.f2f3fd0e", null), LANG("obj.de8726f5", null), list("Yes", "No"), 10 SECONDS) == "Yes"
+			apply_prefs = tgui_alert(user, LANG("obj.f2f3fd0edf1bdf23", null), LANG("obj.de8726f52c15491c", null), list("Yes", "No"), 10 SECONDS) == "Yes"
 	// NOVA EDIT ADDITION END
 
 	if(!prompt_fail && !pre_ghost_take(user))
@@ -255,15 +255,15 @@
 /// Checks if a ghost can take this ghost role.
 /obj/effect/mob_spawn/ghost_role/proc/can_ghost_take(mob/dead/observer/user)
 	if(is_banned_from(user.ckey, role_ban))
-		to_chat(user, span_warning(LANG("obj.8b2c3968", null)))
+		to_chat(user, span_warning(LANG("obj.8b2c3968dacddd7b", null)))
 		return FALSE
 	// NOVA EDIT ADDITION START
 	if(is_banned_from(user.ckey, BAN_GHOST_ROLE_SPAWNER)) // Ghost role bans
-		to_chat(user, span_warning(LANG("obj.6eeb0d8d", null)))
+		to_chat(user, span_warning(LANG("obj.6eeb0d8dbba25f68", null)))
 		return FALSE
 	// NOVA EDIT ADDITION END
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER) && !(flags_1 & ADMIN_SPAWNED_1))
-		to_chat(user, span_warning(LANG("obj.2e1b465d", null)))
+		to_chat(user, span_warning(LANG("obj.2e1b465d0319156e", null)))
 		return FALSE
 	if(QDELETED(src) || QDELETED(user))
 		return FALSE

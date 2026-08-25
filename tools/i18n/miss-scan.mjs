@@ -38,7 +38,8 @@ for (let i = 0; i < args.length; i++) {
 }
 
 // ---- 读日志，跨文件聚合 ----
-const LINE_RE = /n=(\d+) src=(\w+) \| (.*)$/;
+// src 允许连字符：`tgui-ui` 用 `\w+` 匹配不到，整类会被静默丢掉（不是报 0 条，是**一行都不解析**）。
+const LINE_RE = /n=(\d+) src=([\w-]+) \| (.*)$/;
 /** text -> { count, sources:Set } */
 const misses = new Map();
 
@@ -48,16 +49,26 @@ function ingest(content) {
   for (const line of content.split('\n')) {
     const m = LINE_RE.exec(line);
     if (!m) continue;
-    const [, n, src, text] = m;
+    const [, n, src, rest] = m;
+    // **首次记录那行带着 ` || 整行: …` / ` || 来源: …` 上下文**（miss_log.dm 写的）。切掉再当键：
+    // 不切的话 n=1 那行的键带着上下文，与 en 目录永远对不上，整批首次记录会被误判成「没进目录」
+    // —— 而绝大多数串只出现一次，等于整份报告的分类全错。
+    const sep = rest.indexOf(' || ');
+    const text = sep < 0 ? rest : rest.slice(0, sep);
+    const hint = sep < 0 ? '' : rest.slice(sep + 4);
     const prev = perFile.get(text);
     const count = Number(n);
-    if (!prev || count > prev.count) perFile.set(text, { count, src });
-    else prev.src = prev.src || src;
+    if (!prev || count > prev.count) perFile.set(text, { count, src, hint });
+    else {
+      prev.src = prev.src || src;
+      prev.hint = prev.hint || hint;
+    }
   }
-  for (const [text, { count, src }] of perFile) {
-    const entry = misses.get(text) ?? { count: 0, sources: new Set() };
+  for (const [text, { count, src, hint }] of perFile) {
+    const entry = misses.get(text) ?? { count: 0, sources: new Set(), hints: new Set() };
     entry.count += count;
     entry.sources.add(src);
+    if (hint) entry.hints.add(hint);
     misses.set(text, entry);
   }
 }
@@ -93,6 +104,24 @@ for (const file of fs.readdirSync(enDir).filter((f) => f.endsWith('.json'))) {
 // 片段检索用大 haystack（\x00 分隔防跨值误命中）
 const haystack = fragmentsHaystack.join('\x00');
 
+// ---- 前端目录（TGUI 渲染期查表）----
+// 重构之后 tgui.json 不再进 DM 侧的目录桶（catalog-domains.json 把它标成 domain: tgui，
+// 运行时加载器直接跳过），所以 P1 找不到译文、每个负载值都会刷一条 miss —— 而**前端**
+// 的 bundle 里有译文，玩家看到的是中文。这类不是缺口，混进「已译未接通」会把真问题淹掉
+// （实测一轮 419 行里占 81 行）。只对 DM 侧来源生效：tgui-ui 是前端自己报的 miss，
+// 它在 bundle 里反而说明有别的问题，不能降噪。
+const frontendCatalog = (() => {
+  const p = path.join(repoRoot, 'tgui', 'packages', 'tgui', 'i18n', 'zh-Hans.json');
+  if (!fs.existsSync(p)) return new Map();
+  return new Map(
+    Object.entries(JSON.parse(fs.readFileSync(p, 'utf8'))).filter(
+      ([source, target]) => typeof target === 'string' && target !== source,
+    ),
+  );
+})();
+const isFrontendCovered = (text, sources) =>
+  frontendCatalog.has(text) && !sources.includes('tgui-ui');
+
 // ---- 口音替换词池（有意保英文，不进目录）----
 // strings/*_replacement.json 是逐词/短语替换表（ork/鱼语/意式口音…），翻译会破坏替换机制，
 // 按既定方针保持英文。它们每局都会刷 miss 日志 → 单独分桶降噪，别混进「没进目录」。
@@ -117,11 +146,21 @@ const CSS_PROP_RE =
   /\b(px|rem|rgba?\(|linear-gradient|radial-gradient|font-(size|family|weight)|margin|padding|border|background|display|position|letter-spacing|text-align|box-shadow|align-items|justify-content|overflow|pointer-events|box-sizing|transition|text-shadow|background-(size|repeat|clip))\b/;
 const ADMIN_LOG_RE =
   /\( ?(JMP|FLW|VV|SM|TP|LOGS|SMITE|PP) ?\)|has entered build mode|deadminned|deadmined|re-adminned|admin ghosted|took longer than .* seconds to delete|Explosion with size|EMP with size \(|- Playing as |is a (Game Admin|Host|Coder|Admin)\b|was selected\.$|reset the thunderdome/;
+// 3. ckey / 贡献者名单：`pyritechimera, gabenyfox, draegonlore` —— 逗号分隔的全小写标识符串，
+//    是人名不是文案。它们每局都会出现在偏好菜单/致谢页的负载里。
+const CKEY_LIST_RE = /^[a-z0-9]+(?:, [a-z0-9]+)+$/;
+// 4. 单测夹具的名字：套件驱动的漏翻采集里，被打的假人、被造的赛博格都叫这些名字。真实对局里
+//    不存在，收进报告只会挤占位置（`John Doe` 还会顺带把 `You attack John` 这类整行拖进来）。
+const TEST_FIXTURE_RE = /\b(Test Dummy|John Doe|Default Cyborg-\d+|consistent)\b/;
 const isNoise = (text) =>
-  (/[:;]/.test(text) && CSS_PROP_RE.test(text)) || ADMIN_LOG_RE.test(text);
+  (/[:;]/.test(text) && CSS_PROP_RE.test(text)) ||
+  ADMIN_LOG_RE.test(text) ||
+  CKEY_LIST_RE.test(text) ||
+  TEST_FIXTURE_RE.test(text);
 
 // ---- 归类 ----
 const buckets = {
+  前端已覆盖: [], // DM 侧查不到，但 TGUI bundle 有译文 → 渲染期由 TS 翻，不是缺口
   已译未接通: [], // 在目录且已译 → 路径绕过，落地点补反查
   在目录未译: [], // 在目录但 zh==en → MT/白名单判断
   目录片段: [], // 是某目录值的子串 → AC 拆碎，整串反查
@@ -129,11 +168,20 @@ const buckets = {
   词池保英文: [], // 口音替换词池 → 有意不译，纯降噪展示
   噪音: [], // CSS 声明/管理员日志印记 → 有意不译，纯降噪展示
 };
-for (const [text, { count, sources }] of misses) {
+for (const [text, { count, sources, hints }] of misses) {
   if (count < minCount) continue;
-  const row = { text, count, sources: [...sources].join(','), catalog: null };
+  const row = {
+    text,
+    count,
+    sources: [...sources].join(','),
+    hints: [...(hints ?? [])],
+    catalog: null,
+  };
   const hit = enValues.get(text);
-  if (hit) {
+  if (isFrontendCovered(text, row.sources)) {
+    if (hit) row.catalog = `${hit.ns}#${hit.key}`;
+    buckets['前端已覆盖'].push(row);
+  } else if (hit) {
     row.catalog = `${hit.ns}#${hit.key}`;
     buckets[hit.translated ? '已译未接通' : '在目录未译'].push(row);
   } else if (poolWords.has(text.toLowerCase())) {
@@ -172,6 +220,7 @@ if (asJson) {
   process.exit(0);
 }
 const HINTS = {
+  前端已覆盖: 'DM 侧查不到但前端 bundle 有译文 → 渲染期由 TS 本地化，不是缺口，无需处理',
   已译未接通: '译文就绪但显示路径绕过翻译层 → 找到落地点补 lang_reverse_text/lang_fallback_apply/接 sink',
   在目录未译: '在 en 目录但 zh 未译 → bun tools/i18n/mt/i18n-mt.ts 跑 MT，或确认属 keep-english 白名单',
   目录片段: '是某条目录值的子串（AC 最短匹配拆碎/部分替换）→ 该文本落地点先整串反查再进 fallback',
@@ -186,6 +235,74 @@ for (const [name, rows] of Object.entries(buckets)) {
   for (const row of rows) {
     const loc = row.catalog ? `  [${row.catalog}]` : '';
     console.log(`  ${String(row.count).padStart(5)}×  (${row.sources})${loc}  ${row.text}`);
+    // 首次记录带的上下文（整行 / 调用点类型）是定位调用点最强的线索，别只打片段。
+    for (const hint of row.hints) console.log(`           ↳ ${hint}`);
+  }
+}
+
+// ---- 显示边界缺口按**类型**聚合 ----
+// `display`/`desc` 两个来源带着 `src.type`（miss_log.dm 的 origin）。同一个类型下的漏翻是同一条
+// 修法：往 labels.rs 的 TYPE_VAR_RULES 补一条，或确认该类型的 name/desc 根本没进过抽取。
+// 按类型聚合之后，一条一条的名字变成「补哪几条规则」，这是这份报告里最直接可行动的一节。
+{
+  const byType = new Map();
+  for (const rows of Object.values(buckets)) {
+    for (const row of rows) {
+      if (!/\b(display|desc)\b/.test(row.sources)) continue;
+      for (const hint of row.hints) {
+        const m = /^来源: (\/.+)$/.exec(hint);
+        if (!m) continue;
+        const list = byType.get(m[1]) ?? [];
+        list.push(row);
+        byType.set(m[1], list);
+      }
+    }
+  }
+  if (byType.size) {
+    const ordered = [...byType].sort((a, b) => b[1].length - a[1].length);
+    console.log(`\n=== 显示边界缺口按类型聚合（${byType.size} 个类型）===`);
+    console.log(
+      '    每个类型一条修法：labels.rs TYPE_VAR_RULES 补一条（按类型路径，覆盖全部子类型），' +
+        '或确认该类型的 name/desc 压根没进抽取（拿英文名 grep strings/i18n/en/ 一条都没有 = 整类漏抽）',
+    );
+    for (const [type, rows] of ordered) {
+      console.log(`  ${String(rows.length).padStart(4)} 条  ${type}`);
+      for (const row of rows.slice(0, 5)) console.log(`           · ${row.text}`);
+      if (rows.length > 5) console.log(`           … 另有 ${rows.length - 5} 条`);
+    }
+  }
+}
+// ---- LANG 实参缺口按**模板 key** 聚合 ----
+// `arg` 来源现在带着它所属的 LANG key（runtime.dm 把 lang_resolve 的 key 一路传到
+// lang_localize_arg）。没有它的时候每一条都要拿片段去全仓 grep —— 而片段往往来自 pick() 词池、
+// 源码里根本搜不到那个字面量。有了 key 就能 `grep -rn '<key>' --include=*.dm` 一步定位调用点，
+// 同一个 key 下的一堆实参也就是同一条修法（多半是某张词池表整张没进目录）。
+{
+  const byKey = new Map();
+  for (const rows of Object.values(buckets)) {
+    for (const row of rows) {
+      if (!/\barg\b/.test(row.sources)) continue;
+      for (const hint of row.hints) {
+        const m = /^来源: ([a-z_]+\.[0-9a-f]{16})$/.exec(hint);
+        if (!m) continue;
+        const list = byKey.get(m[1]) ?? [];
+        list.push(row);
+        byKey.set(m[1], list);
+      }
+    }
+  }
+  if (byKey.size) {
+    const ordered = [...byKey].sort((a, b) => b[1].length - a[1].length);
+    console.log(`\n=== LANG 实参缺口按模板 key 聚合（${byKey.size} 个 key）===`);
+    console.log(
+      "    定位调用点：grep -rn '<key>' --include=*.dm code modular_nova —— " +
+        '同一个 key 下的多条实参通常是同一张词池表整张没进目录',
+    );
+    for (const [key, rows] of ordered) {
+      console.log(`  ${String(rows.length).padStart(4)} 条  ${key}`);
+      for (const row of rows.slice(0, 5)) console.log(`           · ${row.text}`);
+      if (rows.length > 5) console.log(`           … 另有 ${rows.length - 5} 条`);
+    }
   }
 }
 const total = Object.values(buckets).reduce((sum, rows) => sum + rows.length, 0);

@@ -84,12 +84,12 @@
 /obj/machinery/bluespace_miner/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning(LANG("obj.14c445f6", null))
+		. += span_warning(LANG("obj.14c445f6b351c46a", null))
 
 	// We don't need to run any more checks if this is functioning. Genuinely the old code is terrible
 	if(mining_stat)
 		if(mining_stat & BLUESPACE_MINER_TOO_CLOSE)
-			. += span_warning(LANG("obj.8be8b3cd", list(src)))
+			. += span_warning(LANG("obj.8be8b3cddb3c8566", list(src)))
 			return . // This needs relocation to fix so we won't bother with the rest
 
 		if(mining_stat & BLUESPACE_MINER_TOO_HOT)
@@ -171,16 +171,16 @@
 	if(focused_item)
 		ore_chance[focused_item] /= 3
 		focused_item = null
-		balloon_alert(user, LANG("obj.22db95db", null))
+		balloon_alert(user, LANG("obj.22db95db0197359a", null))
 		return TRUE
 
-	var/choice = tgui_input_list(user, LANG("obj.e8a256e6", null), LANG("obj.7b2f4115", null), ore_chance)
+	var/choice = tgui_input_list(user, LANG("obj.e8a256e6205e86aa", null), LANG("obj.7b2f41150d566bc2", null), ore_chance)
 	if(isnull(choice))
 		return FALSE
 
 	ore_chance[choice] *= 3
 	focused_item = choice
-	balloon_alert(user, LANG("obj.b22c05c0", null))
+	balloon_alert(user, LANG("obj.b22c05c02de2306d", null))
 	return TRUE
 
 /obj/machinery/bluespace_miner/attack_hand(mob/living/user, list/modifiers)
@@ -216,12 +216,12 @@
 
 /obj/machinery/bluespace_miner/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.9bab397b", null))
+		balloon_alert(user, LANG("obj.9bab397b17f019dd", null))
 		return FALSE
 
 	ore_chance += list(/obj/item/stack/sheet/mineral/bananium = 1)
 	obj_flags |= EMAGGED
-	balloon_alert_to_viewers(LANG("obj.5eb4084b", null))
+	balloon_alert_to_viewers(LANG("obj.5eb4084bfd7d1b11", null))
 	return TRUE
 
 /obj/item/circuitboard/machine/bluespace_miner

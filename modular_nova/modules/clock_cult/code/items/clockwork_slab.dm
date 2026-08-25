@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 
 /obj/item/clockwork/clockwork_slab/attack_self(mob/living/user)
 	if(!IS_CLOCK(user))
-		to_chat(user, span_warning(LANG("obj.6c9000dd", null)))
+		to_chat(user, span_warning(LANG("obj.6c9000dd59a4b531", null)))
 		return
 
 	if(active_scripture)
@@ -133,7 +133,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 
 	if(buffer)
 		buffer = null
-		to_chat(user, span_brass(LANG("obj.b3171813", list(src))))
+		to_chat(user, span_brass(LANG("obj.b31718130761e3bb", list(src))))
 		return
 
 	SEND_SIGNAL(user, COMSIG_CLOCKWORK_SLAB_USED, src)
@@ -192,32 +192,32 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 
 			if(scripture.type in purchased_scriptures)
 				if(invoking_scripture)
-					living_user.balloon_alert(living_user, LANG("obj.323a51d9", null))
+					living_user.balloon_alert(living_user, LANG("obj.323a51d9ab27b46d", null))
 					return FALSE
 
 				if(scripture.power_cost > GLOB.clock_power)
-					living_user.balloon_alert(living_user, LANG("obj.ce6859c8", list(scripture.power_cost)))
+					living_user.balloon_alert(living_user, LANG("obj.ce6859c872131150", list(scripture.power_cost)))
 					return FALSE
 
 				if(scripture.vitality_cost > GLOB.clock_vitality)
-					living_user.balloon_alert(living_user, LANG("obj.c279ee86", list(scripture.vitality_cost)))
+					living_user.balloon_alert(living_user, LANG("obj.c279ee8647a659b8", list(scripture.vitality_cost)))
 					return FALSE
 
 				scripture.begin_invoke(living_user, src)
 
 			else
 				if(scripture.research_required && !(scripture.type in GLOB.clockwork_research_unlocked_scriptures))
-					living_user.balloon_alert(living_user, LANG("obj.4226a8c1", null))
+					living_user.balloon_alert(living_user, LANG("obj.4226a8c1cfab152f", null))
 					return FALSE
 
 				if(cogs >= scripture.cogs_required)
 					cogs -= scripture.cogs_required
-					living_user.balloon_alert(living_user, LANG("obj.a57b1f38", list(scripture.name)))
+					living_user.balloon_alert(living_user, LANG("obj.a57b1f38a403e721", list(scripture.name)))
 					log_game("[scripture.name] purchased by [living_user.ckey]/[living_user.name] the [living_user.job] for [scripture.cogs_required] cogs, [cogs] cogs remaining.")
 					purchased_scriptures += scripture.type
 
 				else
-					living_user.balloon_alert(living_user, LANG("obj.479f0479", list(scripture.cogs_required)))
+					living_user.balloon_alert(living_user, LANG("obj.479f04799d6e18e3", list(scripture.cogs_required)))
 
 			return TRUE
 
@@ -236,7 +236,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 				else
 					positions += "([i]) - [quick_bound.name]"
 
-			var/position = tgui_input_list(living_user, LANG("obj.5cb75a78", null), LANG("obj.8a2f9e9d", null), positions)
+			var/position = tgui_input_list(living_user, LANG("obj.5cb75a78e734b34f", null), LANG("obj.8a2f9e9d2657ba71", null), positions)
 			if(!position)
 				return FALSE
 

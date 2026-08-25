@@ -29,26 +29,26 @@
 /obj/item/assembly/control/examine(mob/user)
 	. = ..()
 	if(generically_adjustable)
-		. += span_notice(LANG("obj.d3b2155b", list(EXAMINE_HINT("multitool"))))
+		. += span_notice(LANG("obj.d3b2155bdbddc0f0", list(EXAMINE_HINT("multitool"))))
 
 	if(copyable)
-		. += span_notice(LANG("obj.86bc9aae", null))
+		. += span_notice(LANG("obj.86bc9aaef1d7be48", null))
 
 	if(!id)
 		return
 
 	if(id != -1)
-		. += span_notice(LANG("obj.7150d501", list(id)))
+		. += span_notice(LANG("obj.7150d501b36712cd", list(id)))
 
 /obj/item/assembly/control/multitool_act(mob/living/user)
 	if(!generically_adjustable)
 		return
 
-	var/change_id = tgui_input_number(user, LANG("obj.77cab741", list(name)), LANG("obj.21b9fbfd", null), id, 100)
+	var/change_id = tgui_input_number(user, LANG("obj.77cab741b1ae4d2b", list(name)), LANG("obj.21b9fbfd20cb2a49", null), id, 100)
 	if(!change_id || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	id = change_id
-	to_chat(user, span_notice(LANG("obj.7fe56c16", list(id))))
+	to_chat(user, span_notice(LANG("obj.7fe56c167316abeb", list(id))))
 
 /obj/item/assembly/control/interact_with_atom(obj/item/assembly/control/interacting_with, mob/living/user, list/modifiers)
 	. = NONE
@@ -57,7 +57,7 @@
 
 	if(istype(interacting_with))
 		id = interacting_with.id
-		balloon_alert(user, LANG("obj.3852daee", null))
+		balloon_alert(user, LANG("obj.3852daee6363f0cd", null))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/item/assembly/control/blast_door
@@ -68,7 +68,7 @@
 /obj/item/assembly/control/blast_door/examine(mob/user)
 	. = ..()
 	if(id && id == -1)
-		. += span_notice(LANG("obj.a67ca672", null))
+		. += span_notice(LANG("obj.a67ca672704d8afc", null))
 
 /obj/item/assembly/control/blast_door/multitool_act(mob/living/user)
 	var/list/door_ids = list()
@@ -82,7 +82,7 @@
 		var/area/door_area = get_area(M)
 		display_ids += "[door_area.name]([M.id])"
 
-	var/change_id = tgui_input_list(user, LANG("obj.c920a899", null), LANG("obj.21b9fbfd", null), display_ids)
+	var/change_id = tgui_input_list(user, LANG("obj.c920a899a9ff843f", null), LANG("obj.21b9fbfd20cb2a49", null), display_ids)
 	if(!change_id || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 
@@ -95,11 +95,11 @@
 			id = "[change_id[start]]"
 		else
 			id = copytext(change_id, start, end)
-	balloon_alert(user, LANG("obj.3852daee", null))
+	balloon_alert(user, LANG("obj.3852daee6363f0cd", null))
 	if(id != -1)
-		to_chat(user, span_notice(LANG("obj.7fe56c16", list(id))))
+		to_chat(user, span_notice(LANG("obj.7fe56c167316abeb", list(id))))
 	else
-		to_chat(user, span_notice(LANG("obj.cba8c80c", null)))
+		to_chat(user, span_notice(LANG("obj.cba8c80ce50e3e19", null)))
 
 /obj/item/assembly/control/blast_door/activate()
 	var/openclose

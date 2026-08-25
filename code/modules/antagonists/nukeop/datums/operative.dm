@@ -40,7 +40,7 @@
 
 /datum/antagonist/nukeop/greet()
 	play_stinger()
-	to_chat(owner, span_big(LANG("datum.ac4464d7", list(nuke_team ? nuke_team.syndicate_name : "syndicate"))))
+	to_chat(owner, span_big(LANG("datum.ac4464d7eccdfad5", list(nuke_team ? nuke_team.syndicate_name : "syndicate"))))
 	owner.announce_objectives()
 
 /datum/antagonist/nukeop/on_gain()
@@ -159,9 +159,9 @@
 			break
 	if (code)
 		antag_memory += "<B>Syndicate Nuclear Bomb Code</B>: [code]<br>"
-		to_chat(owner.current, LANG("datum.f9a759ed", list(code)))
+		to_chat(owner.current, LANG("datum.f9a759edec481427", list(code)))
 	else
-		to_chat(admin, span_danger(LANG("datum.e3531002", null)))
+		to_chat(admin, span_danger(LANG("datum.e3531002c0e3422c", null)))
 
 /datum/antagonist/nukeop/proc/give_alias()
 	if(nuke_team?.syndicate_name)
@@ -177,7 +177,7 @@
 /datum/antagonist/nukeop/proc/memorize_code()
 	antag_memory += "<B>[nuke_team.tracked_nuke] Code</B>: [nuke_team.memorized_code]<br>"
 	owner.add_memory(/datum/memory/key/nuke_code, nuclear_code = nuke_team.memorized_code)
-	to_chat(owner, LANG("datum.f9a759ed", list(nuke_team.memorized_code)))
+	to_chat(owner, LANG("datum.f9a759edec481427", list(nuke_team.memorized_code)))
 
 /// Actually moves our nukie to where they should be
 /datum/antagonist/nukeop/proc/move_to_spawnpoint()

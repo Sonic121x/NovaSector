@@ -143,6 +143,7 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "重置按住按键")
 		"timeDilation" = "[round(SStime_track.time_dilation_current, 1)]",
 		"mapName" = SSmapping.current_map?.return_map_name(webmap_included = TRUE) || "Loading...",
 		"mapFeedbackLink" = SSmapping.current_map?.feedback_link,
+		"mapWebmap" = SSmapping.current_map?.mapping_url,
 		"canLeaveBody" = FALSE, // NOVA EDIT CHANGE - original: isliving(client?.mob) - Nova replaces the generic Leave Body page with the OPFOR/Ghost/Respawn buttons below
 		"canOpfor" = isliving(client?.mob), // NOVA EDIT ADDITION
 		"canRespawn" = !isliving(client?.mob), // NOVA EDIT ADDITION
@@ -205,7 +206,7 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "重置按住按键")
 	switch(action)
 		if("opened")
 			if(!version_warned && client.byond_build < 1680)
-				to_chat(client, span_warning(LANG("datum.c24a320a", null)))
+				to_chat(client, span_warning(LANG("datum.c24a320a56caa810", null)))
 				version_warned = TRUE
 
 			START_PROCESSING(SSescape_menu, src)
@@ -230,7 +231,7 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "重置按住按键")
 			pray_verb.down(client)
 		if("see_notes")
 			if(!CONFIG_GET(flag/see_own_notes))
-				to_chat(client.mob, span_notice(LANG("datum.89cbf921", null)))
+				to_chat(client.mob, span_notice(LANG("datum.89cbf921bc0f0afe", null)))
 				return TRUE
 			browse_messages(null, client.ckey, null, TRUE)
 		if("ghost")
@@ -274,6 +275,6 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "重置按住按键")
 			else
 				LAZYADD(client.prefs.ignoring, ckey)
 			client.prefs.save_preferences()
-			to_chat(client, span_notice(LANG("datum.e25fe072", list(ckey, (ckey in client.prefs.ignoring) ? "" : "un"))))
+			to_chat(client, span_notice(LANG("datum.e25fe0726ab2eb59", list(ckey, (ckey in client.prefs.ignoring) ? "" : "un"))))
 
 	return TRUE

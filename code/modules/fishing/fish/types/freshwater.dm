@@ -171,7 +171,7 @@
 
 /obj/item/fish/zipzap/suicide_act(mob/living/user)
 	if(!electrocute_mob(user, power_source = get_area(src), source = src, siemens_coeff = 1, dist_check = FALSE))
-		user.visible_message(span_suicide(LANG("obj.9cfc9b87", list(user, user.p_them(), src))))
+		user.visible_message(span_suicide(LANG("obj.9cfc9b8744f1ee8b", list(user, user.p_them(), src))))
 		return SHAME
 	return ..()
 
@@ -240,11 +240,11 @@
 	return 2 //two credits. Tadpoles aren't really that valueable.
 
 /obj/item/fish/tadpole/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.f34c2d31", list(user, src))))
+	user.visible_message(span_suicide(LANG("obj.f34c2d31553ec34d", list(user, src))))
 	src.forceMove(user)
 	if(status == FISH_DEAD)
 		user.emote("gasp")
-		user.visible_message(span_suicide(LANG("obj.0174aa5a", list(user))))
+		user.visible_message(span_suicide(LANG("obj.0174aa5af00da78d", list(user))))
 		return OXYLOSS
 
 	// the frogg grows
@@ -254,7 +254,7 @@
 /obj/item/fish/tadpole/proc/gestation(mob/living/user)
 	if(QDELETED(user) || QDELETED(src))
 		return
-	user.visible_message(span_suicide(LANG("obj.c0f58831", list(user))))
+	user.visible_message(span_suicide(LANG("obj.c0f588311660235b", list(user))))
 	new /obj/effect/spawner/random/frog(user.drop_location())
 
 	var/obj/item/bodypart/chest = user.get_bodypart(BODY_ZONE_CHEST)

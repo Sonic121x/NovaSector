@@ -22,7 +22,7 @@
 /// Returns TRUE if the beacon can be used, FALSE otherwise
 /obj/item/antag_spawner/bitrunning_help/proc/check_usability(mob/user)
 	if(user.mind.has_antag_datum(/datum/antagonist/domain_ghost_actor, TRUE) || user.mind.has_antag_datum(/datum/antagonist/bitrunning_glitch, TRUE))
-		to_chat(user, span_danger(LANG("obj.8020e778", null)))
+		to_chat(user, span_danger(LANG("obj.8020e77873ad4722", null)))
 		if(isliving(user))
 			var/mob/living/intruder = user
 			intruder.electrocute_act(15, user, 1, SHOCK_NOGLOVES|SHOCK_NOSTUN)
@@ -44,16 +44,16 @@
 		return
 
 	if(polling)
-		balloon_alert(user, LANG("obj.38f46f8c", null))
+		balloon_alert(user, LANG("obj.38f46f8c1ab54d5a", null))
 		return
 
-	balloon_alert(user, LANG("obj.c3ca892d", list(src)))
+	balloon_alert(user, LANG("obj.c3ca892d915e7e45", list(src)))
 	polling = TRUE
 
 	// Find an available quantum server
 	var/obj/machinery/quantum_server/server = get_available_server()
 	if(!server)
-		balloon_alert(user, LANG("obj.399ab61a", null))
+		balloon_alert(user, LANG("obj.399ab61aef46d968", null))
 		polling = FALSE
 		return
 
@@ -89,7 +89,7 @@
 		qdel(src)
 	else
 		polling = FALSE
-		to_chat(user, span_warning(LANG("obj.fa4afa9c", null)))
+		to_chat(user, span_warning(LANG("obj.fa4afa9cc240850a", null)))
 
 /// Finds an available quantum server
 /// Iterates through all quantum servers to find one that has available retries or doesn't require retries to be spent.

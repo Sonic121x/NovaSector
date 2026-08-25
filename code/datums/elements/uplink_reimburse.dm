@@ -35,10 +35,10 @@
 	SIGNAL_HANDLER
 
 	if(!IS_TRAITOR(user) && !IS_NUKE_OP(user))
-		examine_list += span_warning(LANG("datum.cea30691", null))
+		examine_list += span_warning(LANG("datum.cea306919441bcf5", null))
 		return
 
-	examine_list += span_notice(LANG("datum.ca11e097", list(refundable_tc)))
+	examine_list += span_notice(LANG("datum.ca11e09701294c86", list(refundable_tc)))
 
 /datum/element/uplink_reimburse/proc/reimburse(obj/item/refund_item, mob/user, datum/component/uplink/uplink_comp)
 	SIGNAL_HANDLER
@@ -46,7 +46,7 @@
 	if(!uplink_comp)
 		CRASH("No uplink component in arguments detected")
 
-	to_chat(user, span_notice(LANG("datum.e883569b", list(uplink_comp.parent, refund_item, refund_item))))
+	to_chat(user, span_notice(LANG("datum.e883569b1e55a912", list(uplink_comp.parent, refund_item, refund_item))))
 	do_sparks(2, source = uplink_comp.parent)
 	uplink_comp.uplink_handler.add_telecrystals(refundable_tc)
 	SEND_SIGNAL(refund_item, COMSIG_ITEM_TC_REIMBURSED)

@@ -28,19 +28,19 @@
 /obj/item/slime_extract/examine(mob/user)
 	. = ..()
 	if(extract_uses > 1)
-		. += LANG("obj.bfb90e09", list(extract_uses))
+		. += LANG("obj.bfb90e09acea4869", list(extract_uses))
 
 /obj/item/slime_extract/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/slimepotion/enhancer))
 		return NONE
 	if(extract_uses >= 5 || recurring)
-		to_chat(user, span_warning(LANG("obj.51da4542", null)))
+		to_chat(user, span_warning(LANG("obj.51da4542e084b4cd", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(istype(tool, /obj/item/slimepotion/enhancer/max))
-		to_chat(user, span_notice(LANG("obj.73974d7a", null)))
+		to_chat(user, span_notice(LANG("obj.73974d7a7b601b64", null)))
 		extract_uses = 5
 	else
-		to_chat(user, span_notice(LANG("obj.66d81fdf", null)))
+		to_chat(user, span_notice(LANG("obj.66d81fdfc8fff60f", null)))
 		extract_uses++
 	qdel(tool)
 	return ITEM_INTERACT_SUCCESS
@@ -59,7 +59,7 @@
 * * arg3 - Whether or not the activation is major or minor. Major activations have large, complex effects, minor are simple.
 */
 /obj/item/slime_extract/proc/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
-	to_chat(user, span_warning(LANG("obj.8957f019", null)))
+	to_chat(user, span_warning(LANG("obj.8957f01958212414", null)))
 	return FALSE
 
 /**
@@ -73,13 +73,13 @@
 		return NONE
 
 	if(IS_UNCONSCIOUS_OR_CRIT(target_slime))
-		to_chat(user, span_warning(LANG("obj.8820e387", null)))
+		to_chat(user, span_warning(LANG("obj.8820e38743f5c40f", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(target_slime.life_stage != SLIME_LIFE_STAGE_ADULT)
-		to_chat(user, span_warning(LANG("obj.4218b046", null)))
+		to_chat(user, span_warning(LANG("obj.4218b046544a0edf", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(target_slime.crossbreed_modification && target_slime.crossbreed_modification != crossbreed_modification)
-		to_chat(user, span_warning(LANG("obj.80afde9c", null)))
+		to_chat(user, span_warning(LANG("obj.80afde9c9a812cdd", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!target_slime.crossbreed_modification)
@@ -87,7 +87,7 @@
 
 	target_slime.applied_crossbreed_amount++
 	qdel(src)
-	to_chat(user, span_notice(LANG("obj.956b8ba8", list(src, target_slime.applied_crossbreed_amount == 1 ? "starting to mutate its core." : "further mutating its core."))))
+	to_chat(user, span_notice(LANG("obj.956b8ba861b91e0f", list(src, target_slime.applied_crossbreed_amount == 1 ? "starting to mutate its core." : "further mutating its core."))))
 	playsound(target_slime, 'sound/effects/blob/attackblob.ogg', 50, TRUE)
 
 	if(target_slime.applied_crossbreed_amount >= SLIME_EXTRACT_CROSSING_REQUIRED)
@@ -165,14 +165,14 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			if(!user.put_in_active_hand(M))
 				M.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-			to_chat(user, span_notice(LANG("obj.83fde922", null)))
+			to_chat(user, span_notice(LANG("obj.83fde9225704fce8", null)))
 			return 120
 		if(SLIME_ACTIVATE_MAJOR)
-			to_chat(user, span_notice(LANG("obj.e6616254", list(name))))
+			to_chat(user, span_notice(LANG("obj.e661625498df5774", list(name))))
 			if(do_after(user, 4 SECONDS, target = user))
 				var/mob/living/basic/slime/new_slime = new(get_turf(user), /datum/slime_type/grey)
 				playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-				to_chat(user, span_notice(LANG("obj.90cd020c", list(new_slime))))
+				to_chat(user, span_notice(LANG("obj.90cd020c510a9146", list(new_slime))))
 				return 350
 			else
 				return 0
@@ -187,16 +187,16 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 /obj/item/slime_extract/gold/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
-			user.visible_message(span_warning(LANG("obj.49d50020", list(user))),span_notice(LANG("obj.4730dced", list(name))))
+			user.visible_message(span_warning(LANG("obj.49d50020ac43cddc", list(user))),span_notice(LANG("obj.4730dcedbf51f3c8", list(name))))
 			if(do_after(user, 4 SECONDS, target = user))
 				var/mob/living/spawned_mob = create_random_mob(user.drop_location(), FRIENDLY_SPAWN)
 				spawned_mob.add_faction(FACTION_NEUTRAL)
 				playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-				user.visible_message(span_warning(LANG("obj.684bde97", list(user, spawned_mob))), span_notice(LANG("obj.ec7d601c", list(spawned_mob))))
+				user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, spawned_mob))), span_notice(LANG("obj.ec7d601c2be7898a", list(spawned_mob))))
 				return 300
 
 		if(SLIME_ACTIVATE_MAJOR)
-			user.visible_message(span_warning(LANG("obj.ff912bfd", list(user))),span_warning(LANG("obj.35e1d481", list(name))))
+			user.visible_message(span_warning(LANG("obj.ff912bfdcc6df5e6", list(user))),span_warning(LANG("obj.35e1d481ba5dba8e", list(name))))
 			if(do_after(user, 5 SECONDS, target = user))
 				var/mob/living/spawned_mob = create_random_mob(user.drop_location(), HOSTILE_SPAWN)
 				if(!user.combat_mode)
@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 				else
 					spawned_mob.add_faction(FACTION_SLIME)
 				playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-				user.visible_message(span_warning(LANG("obj.684bde97", list(user, spawned_mob))), span_warning(LANG("obj.ec7d601c", list(spawned_mob))))
+				user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, spawned_mob))), span_warning(LANG("obj.ec7d601c2be7898a", list(spawned_mob))))
 				return 600
 
 /obj/item/slime_extract/silver
@@ -223,7 +223,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			if(!user.put_in_active_hand(food_item))
 				food_item.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-			user.visible_message(span_warning(LANG("obj.684bde97", list(user, food_item))), span_notice(LANG("obj.ec7d601c", list(food_item))))
+			user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, food_item))), span_notice(LANG("obj.ec7d601c2be7898a", list(food_item))))
 			return 200
 		if(SLIME_ACTIVATE_MAJOR)
 			var/drink_type = get_random_drink()
@@ -231,7 +231,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			if(!user.put_in_active_hand(O))
 				O.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-			user.visible_message(span_warning(LANG("obj.684bde97", list(user, O))), span_notice(LANG("obj.ec7d601c", list(O))))
+			user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, O))), span_notice(LANG("obj.ec7d601c2be7898a", list(O))))
 			return 200
 
 /obj/item/slime_extract/metal
@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			if(!user.put_in_active_hand(O))
 				O.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-			user.visible_message(span_warning(LANG("obj.684bde97", list(user, O))), span_notice(LANG("obj.ec7d601c", list(O))))
+			user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, O))), span_notice(LANG("obj.ec7d601c2be7898a", list(O))))
 			return 150
 
 		if(SLIME_ACTIVATE_MAJOR)
@@ -254,7 +254,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			if(!user.put_in_active_hand(O))
 				O.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-			user.visible_message(span_warning(LANG("obj.684bde97", list(user, O))), span_notice(LANG("obj.ec7d601c", list(O))))
+			user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, O))), span_notice(LANG("obj.ec7d601c2be7898a", list(O))))
 			return 200
 
 /obj/item/slime_extract/purple
@@ -267,11 +267,11 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 		if(SLIME_ACTIVATE_MINOR)
 			user.adjust_nutrition(50)
 			user.adjust_blood_volume(50)
-			to_chat(user, span_notice(LANG("obj.113fd7a8", list(src))))
+			to_chat(user, span_notice(LANG("obj.113fd7a87e9976c5", list(src))))
 			return 150
 
 		if(SLIME_ACTIVATE_MAJOR)
-			to_chat(user, span_notice(LANG("obj.00c8ac9c", list(src))))
+			to_chat(user, span_notice(LANG("obj.00c8ac9c19f77c24", list(src))))
 			user.reagents.add_reagent(/datum/reagent/medicine/regen_jelly,10)
 			return 600
 
@@ -287,14 +287,14 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			if(!user.put_in_active_hand(O))
 				O.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-			user.visible_message(span_warning(LANG("obj.684bde97", list(user, O))), span_notice(LANG("obj.ec7d601c", list(O))))
+			user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, O))), span_notice(LANG("obj.ec7d601c2be7898a", list(O))))
 			return 150
 
 		if(SLIME_ACTIVATE_MAJOR)
 			var/turf/open/T = get_turf(user)
 			if(istype(T))
 				T.atmos_spawn_air("[GAS_PLASMA]=20")
-			to_chat(user, span_warning(LANG("obj.c4ade60c", list(src))))
+			to_chat(user, span_warning(LANG("obj.c4ade60c2772343a", list(src))))
 			return 900
 
 /obj/item/slime_extract/orange
@@ -305,7 +305,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 /obj/item/slime_extract/orange/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
-			to_chat(user, span_notice(LANG("obj.3a6e5644", list(src))))
+			to_chat(user, span_notice(LANG("obj.3a6e56444429db0d", list(src))))
 			user.reagents.add_reagent(/datum/reagent/consumable/capsaicin,10)
 			return 150
 
@@ -313,7 +313,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			user.reagents.add_reagent(/datum/reagent/phosphorus,5)//
 			user.reagents.add_reagent(/datum/reagent/potassium,5) // = smoke, along with any reagents inside mr. slime
 			user.reagents.add_reagent(/datum/reagent/consumable/sugar,5)     //
-			to_chat(user, span_warning(LANG("obj.c894bb30", list(src))))
+			to_chat(user, span_warning(LANG("obj.c894bb30cf412643", list(src))))
 			return 450
 
 /obj/item/slime_extract/yellow
@@ -325,18 +325,18 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
 			if(species.glow_intensity != LUMINESCENT_DEFAULT_GLOW)
-				to_chat(user, span_warning(LANG("obj.8f098c0c", null)))
+				to_chat(user, span_warning(LANG("obj.8f098c0c0f38b271", null)))
 				return
 			species.update_glow(user, 5)
 			addtimer(CALLBACK(species, TYPE_PROC_REF(/datum/species/jelly/luminescent, update_glow), user, LUMINESCENT_DEFAULT_GLOW), 1 MINUTES)
-			to_chat(user, span_notice(LANG("obj.13ead7ee", null)))
+			to_chat(user, span_notice(LANG("obj.13ead7ee191d5751", null)))
 
 		if(SLIME_ACTIVATE_MAJOR)
-			user.visible_message(span_warning(LANG("obj.f7c64e44", list(user))), span_warning(LANG("obj.04920525", null)))
+			user.visible_message(span_warning(LANG("obj.f7c64e44970d1530", list(user))), span_warning(LANG("obj.0492052514797a3c", null)))
 			if(do_after(user, 2.5 SECONDS, target = user))
 				empulse(user, 1, 2, emp_source = src)
 				user.log_message("triggered EMP using [src] in [AREACOORD(src)]", LOG_GAME)
-				user.visible_message(span_warning(LANG("obj.ff9e1903", list(user))), span_warning(LANG("obj.b0988c47", null)))
+				user.visible_message(span_warning(LANG("obj.ff9e190307d285d1", list(user))), span_warning(LANG("obj.b0988c4761c1bf1b", null)))
 				return 600
 
 /obj/item/slime_extract/red
@@ -347,15 +347,15 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 /obj/item/slime_extract/red/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
-			to_chat(user, span_notice(LANG("obj.aa4e9a70", list(src))))
+			to_chat(user, span_notice(LANG("obj.aa4e9a70ccb10a30", list(src))))
 			user.reagents.add_reagent(/datum/reagent/medicine/ephedrine,5)
 			return 450
 
 		if(SLIME_ACTIVATE_MAJOR)
-			user.visible_message(span_warning(LANG("obj.98e1c4fd", list(user))), span_warning(LANG("obj.c38edd12", null)))
+			user.visible_message(span_warning(LANG("obj.98e1c4fd5a2574e4", list(user))), span_warning(LANG("obj.c38edd12a5fedd47", null)))
 			for(var/mob/living/basic/slime/slime in viewers(get_turf(user), null))
 				slime.ai_controller?.set_blackboard_key(BB_SLIME_RABID, TRUE)
-				slime.visible_message(span_danger(LANG("obj.f05e3bad", list(slime))))
+				slime.visible_message(span_danger(LANG("obj.f05e3bad08ab0ae4", list(slime))))
 			return 600
 
 /obj/item/slime_extract/blue
@@ -366,14 +366,14 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 /obj/item/slime_extract/blue/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
-			to_chat(user, span_notice(LANG("obj.b639d348", list(src))))
+			to_chat(user, span_notice(LANG("obj.b639d34884ec041f", list(src))))
 			user.reagents.add_reagent(/datum/reagent/medicine/mutadone, 10)
 			user.reagents.add_reagent(/datum/reagent/medicine/potass_iodide, 10)
 			return 250
 
 		if(SLIME_ACTIVATE_MAJOR)
 			user.reagents.create_foam(/datum/effect_system/fluid_spread/foam, 20, log = TRUE)
-			user.visible_message(span_danger(LANG("obj.27c97c9b", list(user))), span_warning(LANG("obj.65e640a7", list(src))))
+			user.visible_message(span_danger(LANG("obj.27c97c9b04f48572", list(user))), span_warning(LANG("obj.65e640a70d731c8d", list(src))))
 			return 600
 
 /obj/item/slime_extract/darkblue
@@ -384,7 +384,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 /obj/item/slime_extract/darkblue/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
-			to_chat(user, span_notice(LANG("obj.f7de864d", list(src))))
+			to_chat(user, span_notice(LANG("obj.f7de864deebe3f43", list(src))))
 			user.extinguish_mob()
 			user.adjust_wet_stacks(20)
 			user.reagents.add_reagent(/datum/reagent/consumable/frostoil,6)
@@ -395,7 +395,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			var/turf/open/T = get_turf(user)
 			if(istype(T))
 				T.atmos_spawn_air("[GAS_N2]=40;[TURF_TEMPERATURE(2.7)]")
-			to_chat(user, span_warning(LANG("obj.17713ae7", list(src))))
+			to_chat(user, span_warning(LANG("obj.17713ae7e946d1f4", list(src))))
 			return 900
 
 /obj/item/slime_extract/pink
@@ -407,19 +407,19 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
 			if(user.gender != MALE && user.gender != FEMALE)
-				to_chat(user, span_warning(LANG("obj.ec46f52a", null)))
+				to_chat(user, span_warning(LANG("obj.ec46f52a6fe97bb1", null)))
 				return
 
 			if(user.gender == MALE)
 				user.gender = FEMALE
-				user.visible_message(span_boldnotice(LANG("obj.4ee216c9", list(user))), span_boldwarning(LANG("obj.42e37fc7", null)))
+				user.visible_message(span_boldnotice(LANG("obj.4ee216c94c71e861", list(user))), span_boldwarning(LANG("obj.42e37fc74da0ffcd", null)))
 			else
 				user.gender = MALE
-				user.visible_message(span_boldnotice(LANG("obj.7aa664c1", list(user))), span_boldwarning(LANG("obj.47ec0903", null)))
+				user.visible_message(span_boldnotice(LANG("obj.7aa664c14bc6ce68", list(user))), span_boldwarning(LANG("obj.47ec09034113768b", null)))
 			return 100
 
 		if(SLIME_ACTIVATE_MAJOR)
-			user.visible_message(span_warning(LANG("obj.5ed6dbe8", list(user))), span_notice(LANG("obj.88e6f050", null)))
+			user.visible_message(span_warning(LANG("obj.5ed6dbe83c8638a4", list(user))), span_notice(LANG("obj.88e6f0506e5dc40d", null)))
 			for(var/mob/living/carbon/C in viewers(user, null))
 				if(C != user)
 					C.reagents.add_reagent(/datum/reagent/pax,2)
@@ -433,20 +433,20 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 /obj/item/slime_extract/green/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
-			to_chat(user, span_warning(LANG("obj.1e52ec7e", null)))
+			to_chat(user, span_warning(LANG("obj.1e52ec7e8963b41e", null)))
 			if(do_after(user, 12 SECONDS, target = user))
-				to_chat(user, span_warning(LANG("obj.e759ff15", null)))
+				to_chat(user, span_warning(LANG("obj.e759ff1543dc4529", null)))
 				user.set_species(/datum/species/human)
 				return
-			to_chat(user, span_notice(LANG("obj.ce7ee5bf", null)))
+			to_chat(user, span_notice(LANG("obj.ce7ee5bf76aa42d0", null)))
 
 		if(SLIME_ACTIVATE_MAJOR)
-			to_chat(user, span_warning(LANG("obj.91b72427", null)))
+			to_chat(user, span_warning(LANG("obj.91b7242759839053", null)))
 			if(do_after(user, 12 SECONDS, target = user))
-				to_chat(user, span_warning(LANG("obj.f080466d", null)))
+				to_chat(user, span_warning(LANG("obj.f080466d0deb4de5", null)))
 				user.set_species(pick(/datum/species/jelly/slime, /datum/species/jelly/stargazer))
 				return
-			to_chat(user, span_notice(LANG("obj.ce7ee5bf", null)))
+			to_chat(user, span_notice(LANG("obj.ce7ee5bf76aa42d0", null)))
 
 /obj/item/slime_extract/lightpink
 	name = "light pink slime extract"
@@ -460,7 +460,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			if(!user.put_in_active_hand(O))
 				O.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-			user.visible_message(span_warning(LANG("obj.684bde97", list(user, O))), span_notice(LANG("obj.ec7d601c", list(O))))
+			user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, O))), span_notice(LANG("obj.ec7d601c2be7898a", list(O))))
 			return 150
 
 		if(SLIME_ACTIVATE_MAJOR)
@@ -468,7 +468,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			if(!user.put_in_active_hand(O))
 				O.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-			user.visible_message(span_warning(LANG("obj.684bde97", list(user, O))), span_notice(LANG("obj.ec7d601c", list(O))))
+			user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, O))), span_notice(LANG("obj.ec7d601c2be7898a", list(O))))
 			return 450
 
 /obj/item/slime_extract/black
@@ -479,17 +479,17 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 /obj/item/slime_extract/black/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
-			to_chat(user, span_userdanger(LANG("obj.4b777fea", null)))
+			to_chat(user, span_userdanger(LANG("obj.4b777fea2737678a", null)))
 			user.ForceContractDisease(new /datum/disease/transformation/slime(), FALSE, TRUE)
 			return 100
 
 		if(SLIME_ACTIVATE_MAJOR)
-			to_chat(user, span_warning(LANG("obj.7f9dd1e0", null)))
+			to_chat(user, span_warning(LANG("obj.7f9dd1e0bf076294", null)))
 			if(do_after(user, 12 SECONDS, target = user))
-				to_chat(user, span_warning(LANG("obj.47f520df", null)))
+				to_chat(user, span_warning(LANG("obj.47f520dfc2281b02", null)))
 				user.set_species(pick(/datum/species/shadow))
 				return
-			to_chat(user, span_notice(LANG("obj.d9e92749", list(src))))
+			to_chat(user, span_notice(LANG("obj.d9e927491b1e1b85", list(src))))
 
 /obj/item/slime_extract/oil
 	name = "oil slime extract"
@@ -499,20 +499,20 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 /obj/item/slime_extract/oil/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
-			to_chat(user, span_warning(LANG("obj.ef49238a", null)))
+			to_chat(user, span_warning(LANG("obj.ef49238ab8fa66a8", null)))
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
 			new /obj/effect/decal/cleanable/blood/oil/slippery(get_turf(user))
 			return 450
 
 		if(SLIME_ACTIVATE_MAJOR)
-			user.visible_message(span_warning(LANG("obj.7381a34a", list(user))), span_userdanger(LANG("obj.5123d0ff", null)))
+			user.visible_message(span_warning(LANG("obj.7381a34a5a17f9ed", list(user))), span_userdanger(LANG("obj.5123d0ff035183c9", null)))
 			if(do_after(user, 6 SECONDS, target = user))
-				to_chat(user, span_userdanger(LANG("obj.7e08d4c4", null)))
+				to_chat(user, span_userdanger(LANG("obj.7e08d4c4b2633dbe", null)))
 				explosion(user, devastation_range = 1, heavy_impact_range = 3, light_impact_range = 6, explosion_cause = src)
 				user.investigate_log("has been gibbed by an oil slime extract explosion.", INVESTIGATE_DEATHS)
 				user.gib(DROP_ALL_REMAINS)
 				return
-			to_chat(user, span_notice(LANG("obj.1a5a712d", list(src))))
+			to_chat(user, span_notice(LANG("obj.1a5a712da603b865", list(src))))
 
 /obj/item/slime_extract/adamantine
 	name = "adamantine slime extract"
@@ -523,21 +523,21 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
 			if(HAS_TRAIT(user, TRAIT_ADAMANTINE_EXTRACT_ARMOR))
-				to_chat(user, span_warning(LANG("obj.297c3374", null)))
+				to_chat(user, span_warning(LANG("obj.297c3374ec9e4e1a", null)))
 				return
 			ADD_TRAIT(user, TRAIT_ADAMANTINE_EXTRACT_ARMOR, ADAMANTINE_EXTRACT_TRAIT)
-			to_chat(user, span_notice(LANG("obj.02924b70", null)))
+			to_chat(user, span_notice(LANG("obj.02924b70baef8c96", null)))
 			user.physiology.damage_resistance += 25
 			addtimer(CALLBACK(src, PROC_REF(reset_armor), user), 120 SECONDS)
 			return 450
 
 		if(SLIME_ACTIVATE_MAJOR)
-			to_chat(user, span_warning(LANG("obj.3af3c7c6", null)))
+			to_chat(user, span_warning(LANG("obj.3af3c7c62edb046a", null)))
 			if(do_after(user, 12 SECONDS, target = user))
-				to_chat(user, span_warning(LANG("obj.22b4a5f5", null)))
+				to_chat(user, span_warning(LANG("obj.22b4a5f58ac65887", null)))
 				user.set_species(/datum/species/golem)
 				return
-			to_chat(user, span_notice(LANG("obj.f04d1d11", list(src))))
+			to_chat(user, span_notice(LANG("obj.f04d1d11ca64900d", list(src))))
 
 /obj/item/slime_extract/adamantine/proc/reset_armor(mob/living/carbon/human/user)
 	REMOVE_TRAIT(user, TRAIT_ADAMANTINE_EXTRACT_ARMOR, ADAMANTINE_EXTRACT_TRAIT)
@@ -555,15 +555,15 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 /obj/item/slime_extract/bluespace/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
-			to_chat(user, span_warning(LANG("obj.89acf0de", null)))
+			to_chat(user, span_warning(LANG("obj.89acf0deab031b78", null)))
 			if(do_after(user, 2.5 SECONDS, target = user))
-				to_chat(user, span_warning(LANG("obj.345b6857", null)))
+				to_chat(user, span_warning(LANG("obj.345b68577c233b37", null)))
 				do_teleport(user, get_turf(user), 6, asoundin = 'sound/items/weapons/emitter2.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 				return 300
 
 		if(SLIME_ACTIVATE_MAJOR)
 			if(!teleport_ready)
-				to_chat(user, span_notice(LANG("obj.b0b8c120", null)))
+				to_chat(user, span_notice(LANG("obj.b0b8c12054d3d06a", null)))
 				var/turf/T = get_turf(user)
 				teleport_x = T.x
 				teleport_y = T.y
@@ -573,7 +573,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 				teleport_ready = FALSE
 				if(teleport_x && teleport_y && teleport_z)
 					var/turf/T = locate(teleport_x, teleport_y, teleport_z)
-					to_chat(user, span_notice(LANG("obj.49af2e40", null)))
+					to_chat(user, span_notice(LANG("obj.49af2e40fe7e33ef", null)))
 					do_teleport(user, T,  asoundin = 'sound/items/weapons/emitter2.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 					return 450
 
@@ -591,7 +591,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			if(!user.put_in_active_hand(O))
 				O.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-			user.visible_message(span_warning(LANG("obj.684bde97", list(user, O))), span_notice(LANG("obj.ec7d601c", list(O))))
+			user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, O))), span_notice(LANG("obj.ec7d601c2be7898a", list(O))))
 			return 150
 
 		if(SLIME_ACTIVATE_MAJOR)
@@ -601,7 +601,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			if(!user.put_in_active_hand(O))
 				O.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-			user.visible_message(span_warning(LANG("obj.684bde97", list(user, O))), span_notice(LANG("obj.ec7d601c", list(O))))
+			user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, O))), span_notice(LANG("obj.ec7d601c2be7898a", list(O))))
 			return 250
 
 /obj/item/slime_extract/cerulean
@@ -613,14 +613,14 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
 			user.reagents.add_reagent(/datum/reagent/medicine/salbutamol,15)
-			to_chat(user, span_notice(LANG("obj.2dd94d5e", null)))
+			to_chat(user, span_notice(LANG("obj.2dd94d5e07ffda33", null)))
 			return 150
 
 		if(SLIME_ACTIVATE_MAJOR)
 			var/turf/open/T = get_turf(user)
 			if(istype(T))
 				T.atmos_spawn_air("[GAS_O2]=11;[GAS_N2]=41;[TURF_TEMPERATURE(T20C)]")
-				to_chat(user, span_warning(LANG("obj.313bf375", list(src))))
+				to_chat(user, span_warning(LANG("obj.313bf37526c4126e", list(src))))
 				return 600
 
 /obj/item/slime_extract/sepia
@@ -635,11 +635,11 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			if(!user.put_in_active_hand(O))
 				O.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-			user.visible_message(span_warning(LANG("obj.684bde97", list(user, O))), span_notice(LANG("obj.ec7d601c", list(O))))
+			user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, O))), span_notice(LANG("obj.ec7d601c2be7898a", list(O))))
 			return 150
 
 		if(SLIME_ACTIVATE_MAJOR)
-			to_chat(user, span_warning(LANG("obj.1bb380e3", null)))
+			to_chat(user, span_warning(LANG("obj.1bb380e36976d348", null)))
 			if(do_after(user, 3 SECONDS, target = user))
 				new /obj/effect/timestop(get_turf(user), 2, 50, list(user))
 				return 900
@@ -656,7 +656,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			user.dna.update_uf_block(/datum/dna_block/feature/mutant_color)
 			user.updateappearance(mutcolor_update=1)
 			species.update_glow(user)
-			to_chat(user, span_notice(LANG("obj.2c1d4eab", null)))
+			to_chat(user, span_notice(LANG("obj.2c1d4eab17201d7f", null)))
 			return 100
 
 		if(SLIME_ACTIVATE_MAJOR)
@@ -665,7 +665,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 			if(!user.put_in_active_hand(O))
 				O.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
-			user.visible_message(span_warning(LANG("obj.684bde97", list(user, O))), span_notice(LANG("obj.ec7d601c", list(O))))
+			user.visible_message(span_warning(LANG("obj.684bde9746657399", list(user, O))), span_notice(LANG("obj.ec7d601c2be7898a", list(O))))
 			return 150
 
 ////Slime-derived potions///
@@ -688,7 +688,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 
 /obj/item/slimepotion/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(is_reagent_container(interacting_with))
-		to_chat(user, span_warning(LANG("obj.b6c905d9", list(src, interacting_with))) )
+		to_chat(user, span_warning(LANG("obj.b6c905d9cc9bca11", list(src, interacting_with))) )
 		return ITEM_INTERACT_BLOCKING
 	return NONE
 
@@ -699,7 +699,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	if(isslime(interacting_with))
 		return interact_with_slime(interacting_with, user, modifiers)
 	else
-		to_chat(user, span_warning(LANG("obj.95b6440e", list(src))))
+		to_chat(user, span_warning(LANG("obj.95b6440ec10dc92f", list(src))))
 		return NONE
 
 /obj/item/slimepotion/slime/proc/interact_with_slime(mob/living/basic/slime/interacting_slime, mob/living/user, list/modifiers)
@@ -712,18 +712,18 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 
 /obj/item/slimepotion/slime/docility/interact_with_slime(mob/living/basic/slime/interacting_slime, mob/living/user, list/modifiers)
 	if(IS_UNCONSCIOUS_OR_CRIT(interacting_slime))
-		to_chat(user, span_warning(LANG("obj.8820e387", null)))
+		to_chat(user, span_warning(LANG("obj.8820e38743f5c40f", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_slime.ai_controller?.clear_blackboard_key(BB_SLIME_RABID)) //Stops being rabid, but doesn't become truly docile.
-		to_chat(interacting_slime, span_warning(LANG("obj.6b08ceb3", null)))
-		to_chat(user, span_notice(LANG("obj.e688eeb7", null)))
+		to_chat(interacting_slime, span_warning(LANG("obj.6b08ceb397e8a04d", null)))
+		to_chat(user, span_notice(LANG("obj.e688eeb7a65b5773", null)))
 		interacting_slime.set_default_behaviour()
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
 	interacting_slime.set_pacified_behaviour()
-	to_chat(interacting_slime, span_warning(LANG("obj.f148d43b", null)))
-	to_chat(user, span_notice(LANG("obj.e4d938d6", null)))
-	var/newname = sanitize_name(tgui_input_text(user, LANG("obj.1354cabd", null), LANG("obj.f428d0a3", null), "Pet Slime", MAX_NAME_LEN))
+	to_chat(interacting_slime, span_warning(LANG("obj.f148d43b793f078a", null)))
+	to_chat(user, span_notice(LANG("obj.e4d938d615766394", null)))
+	var/newname = sanitize_name(tgui_input_text(user, LANG("obj.1354cabd30a035a8", null), LANG("obj.f428d0a3eb8ed8ce", null), "Pet Slime", MAX_NAME_LEN))
 
 	if (!newname)
 		newname = "Pet Slime"
@@ -744,7 +744,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 
 /obj/item/slimepotion/sentience/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.40e3611d", list(potion_reason ? "Current reason: [span_warning(potion_reason)]" : null)))
+	. += span_notice(LANG("obj.40e3611d335761f0", list(potion_reason ? "Current reason: [span_warning(potion_reason)]" : null)))
 
 /obj/item/slimepotion/sentience/Initialize(mapload)
 	register_context()
@@ -755,7 +755,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/slimepotion/sentience/click_alt(mob/living/user)
-	potion_reason = tgui_input_text(user, LANG("obj.010edc16", null), LANG("obj.c46d6966", null), potion_reason, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+	potion_reason = tgui_input_text(user, LANG("obj.010edc1611d5953f", null), LANG("obj.c46d696676160eb8", null), potion_reason, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/slimepotion/sentience/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -768,15 +768,15 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	if(being_used)
 		return ITEM_INTERACT_BLOCKING
 	if(dumb_mob.ckey) //only works on animals that aren't player controlled
-		balloon_alert(user, LANG("obj.40c2b08e", null))
+		balloon_alert(user, LANG("obj.40c2b08ee59794f1", null))
 		return ITEM_INTERACT_BLOCKING
 	if(IS_UNCONSCIOUS_OR_CRIT(dumb_mob))
-		balloon_alert(user, LANG("obj.5f159f3d", null))
+		balloon_alert(user, LANG("obj.5f159f3d51512a3c", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!dumb_mob.compare_sentience_type(sentience_type)) // Will also return false if not a basic or simple mob, which are the only two we want anyway
-		balloon_alert(user, LANG("obj.1c85036c", null))
+		balloon_alert(user, LANG("obj.1c85036c03c3d01e", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.abfba543", null))
+	balloon_alert(user, LANG("obj.abfba5438ce05c12", null))
 	being_used = TRUE
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
 		question = "[span_danger(user.name)] is offering [span_notice(dumb_mob.name)] an intelligence potion![potion_reason ? " Reason: [span_boldnotice(potion_reason)]" : ""]",
@@ -794,7 +794,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 /// Assign the chosen ghost to the mob
 /obj/item/slimepotion/sentience/proc/on_poll_concluded(mob/user, mob/living/dumb_mob, mob/dead/observer/ghost)
 	if(isnull(ghost))
-		balloon_alert(user, LANG("obj.5065ea52", null))
+		balloon_alert(user, LANG("obj.5065ea52e1ae9688", null))
 		being_used = FALSE
 		return
 
@@ -807,7 +807,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 		smart_animal.sentience_act()
 
 	dumb_mob.mind.add_antag_datum(/datum/antagonist/sentient_creature)
-	balloon_alert(user, LANG("obj.75090415", null))
+	balloon_alert(user, LANG("obj.750904155d7ebc7d", null))
 	after_success(user, dumb_mob)
 	qdel(src)
 
@@ -847,13 +847,13 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	if(prompted)
 		return ITEM_INTERACT_BLOCKING
 	if(switchy_mob.ckey) //much like sentience, these will not work on something that is already player controlled
-		balloon_alert(user, LANG("obj.40c2b08e", null))
+		balloon_alert(user, LANG("obj.40c2b08ee59794f1", null))
 		return ITEM_INTERACT_BLOCKING
 	if(IS_UNCONSCIOUS_OR_CRIT(switchy_mob))
-		balloon_alert(user, LANG("obj.5f159f3d", null))
+		balloon_alert(user, LANG("obj.5f159f3d51512a3c", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!switchy_mob.compare_sentience_type(animal_type))
-		balloon_alert(user, LANG("obj.1c85036c", null))
+		balloon_alert(user, LANG("obj.1c85036c03c3d01e", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/job_banned = is_banned_from(user.ckey, ROLE_MIND_TRANSFER)
@@ -861,24 +861,24 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 		return ITEM_INTERACT_BLOCKING
 
 	if(job_banned)
-		balloon_alert(user, LANG("obj.c98f3771", null))
+		balloon_alert(user, LANG("obj.c98f3771ad386d24", null))
 		return ITEM_INTERACT_BLOCKING
 
 	user.do_attack_animation(interacting_with)
 	prompted = 1
-	if(tgui_alert(usr,LANG("obj.0230e6de", list(switchy_mob)),,list("Yes","No")) != "Yes")
+	if(tgui_alert(usr,LANG("obj.0230e6de647220ff", list(switchy_mob)),,list("Yes","No")) != "Yes")
 		prompted = 0
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.4d7af7e6", list(switchy_mob))))
+	to_chat(user, span_notice(LANG("obj.4d7af7e6b9e603e8", list(switchy_mob))))
 
 	user.mind.transfer_to(switchy_mob)
 	SEND_SIGNAL(switchy_mob, COMSIG_SIMPLEMOB_TRANSFERPOTION, user)
 	SET_FACTION_AND_ALLIES_FROM( switchy_mob, user)
 	switchy_mob.copy_languages(user, LANGUAGE_MIND)
 	user.death()
-	to_chat(switchy_mob, span_notice(LANG("obj.3f1fe369", list(switchy_mob))))
-	to_chat(switchy_mob, span_warning(LANG("obj.af0f8b56", list(switchy_mob))))
+	to_chat(switchy_mob, span_notice(LANG("obj.3f1fe3698b10eb0c", list(switchy_mob))))
+	to_chat(switchy_mob, span_warning(LANG("obj.af0f8b56127661cf", list(switchy_mob))))
 	switchy_mob.name = "[user.real_name]"
 	qdel(src)
 	if(isanimal(switchy_mob))
@@ -893,16 +893,16 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 
 /obj/item/slimepotion/slime/steroid/interact_with_slime(mob/living/basic/slime/interacting_slime, mob/living/user, list/modifiers)
 	if(interacting_slime.life_stage == SLIME_LIFE_STAGE_ADULT) //Can't steroidify adults
-		to_chat(user, span_warning(LANG("obj.c21fb8c0", null)))
+		to_chat(user, span_warning(LANG("obj.c21fb8c0d4cf9f40", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(IS_UNCONSCIOUS_OR_CRIT(interacting_slime))
-		to_chat(user, span_warning(LANG("obj.8820e387", null)))
+		to_chat(user, span_warning(LANG("obj.8820e38743f5c40f", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_slime.cores >= 5)
-		to_chat(user, span_warning(LANG("obj.36ee2a45", null)))
+		to_chat(user, span_warning(LANG("obj.36ee2a45e628c50b", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.48e47198", null)))
+	to_chat(user, span_notice(LANG("obj.48e4719872735a76", null)))
 	interacting_slime.cores++
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -919,13 +919,13 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 
 /obj/item/slimepotion/slime/stabilizer/interact_with_slime(mob/living/basic/slime/interacting_slime, mob/living/user, list/modifiers)
 	if(IS_UNCONSCIOUS_OR_CRIT(interacting_slime))
-		to_chat(user, span_warning(LANG("obj.8820e387", null)))
+		to_chat(user, span_warning(LANG("obj.8820e38743f5c40f", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_slime.mutation_chance == 0)
-		to_chat(user, span_warning(LANG("obj.8bb933d2", null)))
+		to_chat(user, span_warning(LANG("obj.8bb933d2c0fa21da", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.f6463632", null)))
+	to_chat(user, span_notice(LANG("obj.f6463632a8d0d116", null)))
 	interacting_slime.mutation_chance = clamp(interacting_slime.mutation_chance-15,0,100)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -937,16 +937,16 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 
 /obj/item/slimepotion/slime/mutator/interact_with_slime(mob/living/basic/slime/interacting_slime, mob/living/user, list/modifiers)
 	if(IS_UNCONSCIOUS_OR_CRIT(interacting_slime))
-		to_chat(user, span_warning(LANG("obj.8820e387", null)))
+		to_chat(user, span_warning(LANG("obj.8820e38743f5c40f", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_slime.mutator_used)
-		to_chat(user, span_warning(LANG("obj.f9cd8334", null)))
+		to_chat(user, span_warning(LANG("obj.f9cd8334abd5d04b", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_slime.mutation_chance == 100)
-		to_chat(user, span_warning(LANG("obj.c42215e8", null)))
+		to_chat(user, span_warning(LANG("obj.c42215e87834e583", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.51335eff", null)))
+	to_chat(user, span_notice(LANG("obj.51335eff3c5ae400", null)))
 	interacting_slime.mutation_chance = clamp(interacting_slime.mutation_chance+12,0,100)
 	interacting_slime.mutator_used = TRUE
 	qdel(src)
@@ -962,11 +962,11 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	if(. & ITEM_INTERACT_ANY_BLOCKER)
 		return .
 	if(!isobj(interacting_with))
-		to_chat(user, span_warning(LANG("obj.dff24baf", null)))
+		to_chat(user, span_warning(LANG("obj.dff24bafce228f9d", null)))
 		return NONE
 
 	if(HAS_TRAIT(interacting_with, TRAIT_SPEED_POTIONED))
-		to_chat(user, span_warning(LANG("obj.92ce148f", list(interacting_with))))
+		to_chat(user, span_warning(LANG("obj.92ce148fb5cf6ce2", list(interacting_with))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(isitem(interacting_with))
@@ -974,7 +974,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 		if(apply_to.slowdown <= 0 || (apply_to.item_flags & IMMUTABLE_SLOW) || HAS_TRAIT(apply_to, TRAIT_NO_SPEED_POTION))
 			if(interacting_with.atom_storage)
 				return NONE // lets us put the potion in the bag
-			to_chat(user, span_warning(LANG("obj.92ce148f", list(apply_to))))
+			to_chat(user, span_warning(LANG("obj.92ce148fb5cf6ce2", list(apply_to))))
 			return ITEM_INTERACT_BLOCKING
 
 	if(SEND_SIGNAL(interacting_with, COMSIG_SPEED_POTION_APPLIED, src, user) & SPEED_POTION_STOP)
@@ -984,7 +984,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 		var/obj/item/apply_to = interacting_with
 		apply_to.slowdown = 0
 
-	to_chat(user, span_notice(LANG("obj.4dacf75d", list(interacting_with))))
+	to_chat(user, span_notice(LANG("obj.4dacf75df500cca9", list(interacting_with))))
 	interacting_with.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 	interacting_with.add_atom_colour(color_transition_filter(COLOR_RED, SATURATION_OVERRIDE), FIXED_COLOUR_PRIORITY)
 	interacting_with.drag_slowdown = 0
@@ -1008,12 +1008,12 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/clothing/clothing = interacting_with
 	if(!istype(clothing))
-		to_chat(user, span_warning(LANG("obj.a29bdeb8", null)))
+		to_chat(user, span_warning(LANG("obj.a29bdeb8b2122646", null)))
 		return NONE
 	if(clothing.max_heat_protection_temperature >= FIRE_IMMUNITY_MAX_TEMP_PROTECT)
-		to_chat(user, span_warning(LANG("obj.bf84934f", list(clothing))))
+		to_chat(user, span_warning(LANG("obj.bf84934f4e22caf7", list(clothing))))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.363948bc", list(clothing))))
+	to_chat(user, span_notice(LANG("obj.363948bc8551479d", list(clothing))))
 	clothing.name = "fireproofed [clothing.name]"
 	clothing.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 	clothing.add_atom_colour(color_transition_filter(COLOR_NAVY, SATURATION_OVERRIDE), FIXED_COLOUR_PRIORITY)
@@ -1038,24 +1038,24 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 		return NONE
 	var/mob/living/living_mob = interacting_with
 	if(living_mob.stat == DEAD)
-		to_chat(user, span_warning(LANG("obj.b073beb9", null)))
+		to_chat(user, span_warning(LANG("obj.b073beb92149577b", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(living_mob.gender != MALE && living_mob.gender != FEMALE)
-		to_chat(user, span_warning(LANG("obj.01d41de2", null)))
+		to_chat(user, span_warning(LANG("obj.01d41de20b631af2", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(living_mob.mind)
 		if (!do_after(user, delay = 5 SECONDS, target = living_mob))
-			balloon_alert(user, LANG("obj.c67b5d27", null))
+			balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 			return ITEM_INTERACT_BLOCKING
 
 	if(living_mob.gender == MALE)
 		living_mob.gender = FEMALE
-		living_mob.visible_message(span_boldnotice(LANG("obj.4ee216c9", list(living_mob))), span_boldwarning(LANG("obj.42e37fc7", null)))
+		living_mob.visible_message(span_boldnotice(LANG("obj.4ee216c94c71e861", list(living_mob))), span_boldwarning(LANG("obj.42e37fc74da0ffcd", null)))
 	else
 		living_mob.gender = MALE
-		living_mob.visible_message(span_boldnotice(LANG("obj.7aa664c1", list(living_mob))), span_boldwarning(LANG("obj.47ec0903", null)))
+		living_mob.visible_message(span_boldnotice(LANG("obj.7aa664c14bc6ce68", list(living_mob))), span_boldwarning(LANG("obj.47ec09034113768b", null)))
 	living_mob.regenerate_icons()
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -1077,20 +1077,20 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	if(being_used)
 		return ITEM_INTERACT_BLOCKING
 	if(!renaming_mob.ckey) //only works on animals that aren't player controlled
-		to_chat(user, span_warning(LANG("obj.0c57b8a5", list(renaming_mob))))
+		to_chat(user, span_warning(LANG("obj.0c57b8a5b198ec50", list(renaming_mob))))
 		return ITEM_INTERACT_BLOCKING
 
 	being_used = TRUE
 
-	to_chat(user, span_notice(LANG("obj.7b2474e5", list(src, user))))
+	to_chat(user, span_notice(LANG("obj.7b2474e5d2e85f81", list(src, user))))
 
-	var/new_name = sanitize_name(tgui_input_text(renaming_mob, LANG("obj.53566b0f", null), LANG("obj.e767d1fc", null), renaming_mob.real_name, MAX_NAME_LEN))
+	var/new_name = sanitize_name(tgui_input_text(renaming_mob, LANG("obj.53566b0fa0485f54", null), LANG("obj.e767d1fc1c80c9b7", null), renaming_mob.real_name, MAX_NAME_LEN))
 
 	if(!new_name || QDELETED(src) || QDELETED(renaming_mob) || new_name == renaming_mob.real_name || !renaming_mob.Adjacent(user))
 		being_used = FALSE
 		return ITEM_INTERACT_BLOCKING
 
-	renaming_mob.visible_message(span_notice(LANG("obj.eb4383de", list(span_name("[renaming_mob]"), span_name("[new_name]")))), span_notice(LANG("obj.fa4783b1", list(span_name("[renaming_mob.real_name]"), span_name("[new_name]")))))
+	renaming_mob.visible_message(span_notice(LANG("obj.eb4383de114e65e2", list(span_name("[renaming_mob]"), span_name("[new_name]")))), span_notice(LANG("obj.fa4783b1cc7c4664", list(span_name("[renaming_mob.real_name]"), span_name("[new_name]")))))
 	message_admins("[ADMIN_LOOKUPFLW(user)] used [src] on [ADMIN_LOOKUPFLW(renaming_mob)], letting them rename themselves into [new_name].")
 	user.log_message("used [src] on [key_name(renaming_mob)], letting them rename themselves into [new_name].", LOG_GAME)
 
@@ -1112,15 +1112,15 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 	if(!isliving(interacting_with))
 		return NONE
 	if(!isanimal_or_basicmob(interacting_with))
-		to_chat(user, span_warning(LANG("obj.16166502", list(interacting_with))))
+		to_chat(user, span_warning(LANG("obj.16166502764921e4", list(interacting_with))))
 		return ITEM_INTERACT_BLOCKING
 	var/mob/living/radio_head = interacting_with
 	if(IS_UNCONSCIOUS_OR_CRIT(radio_head))
-		to_chat(user, span_warning(LANG("obj.01e50bce", list(radio_head))))
+		to_chat(user, span_warning(LANG("obj.01e50bcef3be90ac", list(radio_head))))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.42d1640e", list(radio_head))))
-	to_chat(radio_head, span_notice(LANG("obj.0841618c", null)))
+	to_chat(user, span_notice(LANG("obj.42d1640eae2b38e9", list(radio_head))))
+	to_chat(radio_head, span_notice(LANG("obj.0841618cf41841f2", null)))
 	var/obj/item/implant/radio/slime/imp = new(src)
 	imp.implant(radio_head, user)
 	qdel(src)

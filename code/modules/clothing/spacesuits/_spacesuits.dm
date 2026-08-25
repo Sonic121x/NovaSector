@@ -52,6 +52,7 @@
 	if(fishing_modifier)
 		AddElement(/datum/element/adjust_fishing_difficulty, fishing_modifier)
 	add_stabilizer()
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_HEAD, /datum/bodypart_texture/mesh/space)
 
 /obj/item/clothing/head/helmet/space/proc/add_stabilizer(loose_hat = TRUE)
 	AddComponent(/datum/component/hat_stabilizer, loose_hat = loose_hat)
@@ -132,6 +133,7 @@
 
 	if(fishing_modifier)
 		AddElement(/datum/element/adjust_fishing_difficulty, fishing_modifier)
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, /datum/bodypart_texture/mesh/space)
 
 /obj/item/clothing/suit/space/on_outfit_equip(mob/living/carbon/human/outfit_wearer, visuals_only, item_slot)
 	. = ..()
@@ -176,7 +178,7 @@
 	if(!cell.use(THERMAL_REGULATOR_COST))
 		toggle_spacesuit(user, FALSE)
 		update_hud_icon(user)
-		to_chat(user, span_warning(LANG("obj.26f668d5", list(cell))))
+		to_chat(user, span_warning(LANG("obj.26f668d5fea07c5d", list(cell))))
 		return
 
 	// If we got here, it means thermals are on, the cell is in and the cell has
@@ -206,7 +208,7 @@
 // support for items that interact with the cell
 /obj/item/clothing/suit/space/get_cell(atom/movable/interface, mob/user)
 	if(istype(interface, /obj/item/inducer))
-		to_chat(user, span_alert(LANG("obj.9034fa56", list(interface))))
+		to_chat(user, span_alert(LANG("obj.9034fa56b694b20c", list(interface))))
 		return null
 	return cell
 
@@ -214,14 +216,14 @@
 /obj/item/clothing/suit/space/examine(mob/user)
 	. = ..()
 	if(in_range(src, user) || isobserver(user))
-		. += LANG("obj.65e07705", list(thermal_on ? "on" : "off", round(temperature_setting-T0C,0.1), round(temperature_setting*1.8-459.67,0.1)))
-		. += LANG("obj.27ef0b50", list(cell ? "[round(cell.percent(), 0.1)]%" : "!invalid!"))
+		. += LANG("obj.65e07705a512aec2", list(thermal_on ? "on" : "off", round(temperature_setting-T0C,0.1), round(temperature_setting*1.8-459.67,0.1)))
+		. += LANG("obj.27ef0b509a77d910", list(cell ? "[round(cell.percent(), 0.1)]%" : "!invalid!"))
 		if(cell_cover_open)
-			. += LANG("obj.8dfaf6ca", null)
+			. += LANG("obj.8dfaf6ca7ec3d54f", null)
 			if(!cell)
-				. += LANG("obj.e4ac54e1", null)
+				. += LANG("obj.e4ac54e10fd34ca8", null)
 			else
-				. += LANG("obj.5b7e5f42", list(cell))
+				. += LANG("obj.5b7e5f4202f8484c", list(cell))
 
 /obj/item/clothing/suit/space/crowbar_act(mob/living/user, obj/item/tool)
 	toggle_spacesuit_cell(user)
@@ -234,10 +236,10 @@
 		range_low = -20 // emagged min temp c
 		range_high = 120 // emagged max temp c
 
-	var/deg_c = input(user, LANG("obj.30fa3a87", list(range_low, range_high))) as null|num
+	var/deg_c = input(user, LANG("obj.30fa3a871ee2e601", list(range_low, range_high))) as null|num
 	if(deg_c && deg_c >= range_low && deg_c <= range_high)
 		temperature_setting = round(T0C + deg_c, 0.1)
-		to_chat(user, span_notice(LANG("obj.0bfcae78", list(deg_c))))
+		to_chat(user, span_notice(LANG("obj.0bfcae78d5b6a116", list(deg_c))))
 	return ITEM_INTERACT_SUCCESS
 
 // object handling for accessing features of the suit
@@ -246,13 +248,13 @@
 		return ..()
 
 	if(cell)
-		to_chat(user, span_warning(LANG("obj.3d7d4031", list(src))))
+		to_chat(user, span_warning(LANG("obj.3d7d40314d136d07", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 	cell = tool
-	to_chat(user, span_notice(LANG("obj.b9a8027e", list(cell, src))))
+	to_chat(user, span_notice(LANG("obj.b9a8027ed409de44", list(cell, src))))
 	update_hud_icon(user)
 	return ITEM_INTERACT_SUCCESS
 
@@ -276,8 +278,8 @@
 /obj/item/clothing/suit/space/proc/remove_cell(mob/user)
 	if(!cell_cover_open || isnull(cell))
 		return
-	user.visible_message(span_notice(LANG("obj.ea367116", list(user, cell, src))), \
-		span_notice(LANG("obj.1973523e", list(cell))))
+	user.visible_message(span_notice(LANG("obj.ea367116b2948c11", list(user, cell, src))), \
+		span_notice(LANG("obj.1973523e4f545786", list(cell))))
 	cell.add_fingerprint(user)
 	user.put_in_hands(cell)
 	cell = null
@@ -286,7 +288,7 @@
 /// Toggle the space suit's cell cover
 /obj/item/clothing/suit/space/proc/toggle_spacesuit_cell(mob/user)
 	cell_cover_open = !cell_cover_open
-	to_chat(user, span_notice(LANG("obj.c78fe1c1", list(cell_cover_open ? "open" : "close", src))))
+	to_chat(user, span_notice(LANG("obj.c78fe1c101bde5f6", list(cell_cover_open ? "open" : "close", src))))
 
 /**
  * Toggle the space suit's thermal regulator status
@@ -303,7 +305,7 @@
 	// thermal protection value and should just return out early.
 	if(!thermal_on && (!cell || cell.charge < THERMAL_REGULATOR_COST))
 		if(toggler)
-			to_chat(toggler, span_warning(LANG("obj.cca32537", list(src))))
+			to_chat(toggler, span_warning(LANG("obj.cca325373638cc98", list(src))))
 		return
 
 	thermal_on = !thermal_on
@@ -316,9 +318,9 @@
 	if(!toggler)
 		return
 	if(manual_toggle)
-		to_chat(toggler, span_notice(LANG("obj.9f3a8cd1", list(thermal_on ? "on" : "off", src))))
+		to_chat(toggler, span_notice(LANG("obj.9f3a8cd17931de1b", list(thermal_on ? "on" : "off", src))))
 	else
-		to_chat(toggler, span_danger(LANG("obj.be261234", list(src, thermal_on ? "on" : "off"))))
+		to_chat(toggler, span_danger(LANG("obj.be26123481995e71", list(src, thermal_on ? "on" : "off"))))
 
 /obj/item/clothing/suit/space/ui_action_click(mob/user, actiontype)
 	toggle_spacesuit(user)
@@ -329,7 +331,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	if (user)
-		balloon_alert(user, LANG("obj.57904fc8", null))
+		balloon_alert(user, LANG("obj.57904fc8f96cc495", null))
 		user.log_message("emagged [src], overwriting thermal regulator restrictions.", LOG_GAME)
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
@@ -376,10 +378,10 @@
 /obj/item/clothing/head/helmet/space/suicide_act(mob/living/user)
 	var/datum/gas_mixture/environment = user.loc.return_air()
 	if(HAS_TRAIT(user, TRAIT_RESISTCOLD) || !environment || environment.return_temperature() >= user.get_body_temp_cold_damage_limit())
-		user.visible_message(span_suicide(LANG("obj.f98873ca", list(user, user.p_them(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.f98873cab0cbe89e", list(user, user.p_them(), src, user.p_theyre()))))
 		return BRUTELOSS
-	user.say(LANG("obj.1f541ec4", null), forced = "space helmet suicide")
-	user.visible_message(span_suicide(LANG("obj.1b82bf94", list(user, user.p_their(), user.p_they())))) //the use of p_they() instead of p_their() here is intentional
+	user.say(LANG("obj.1f541ec40f090e8d", null), forced = "space helmet suicide")
+	user.visible_message(span_suicide(LANG("obj.1b82bf94bd25b770", list(user, user.p_their(), user.p_they())))) //the use of p_they() instead of p_their() here is intentional
 	user.adjust_bodytemperature(-300)
 	user.apply_status_effect(/datum/status_effect/freon)
 	if(!ishuman(user))

@@ -5,20 +5,20 @@
 
 /datum/buildmode_mode/advanced/show_help(client/builder)
 	to_chat(builder, span_purple(boxed_message(
-		LANG("datum.8e765a3f", list(span_bold("Set object type"), span_bold("Copy object type"), span_bold("Place objects"), span_bold("Delete objects")))))
+		LANG("datum.8e765a3fe6aacc04", list(span_bold("Set object type"), span_bold("Copy object type"), span_bold("Place objects"), span_bold("Delete objects")))))
 	)
 
 /datum/buildmode_mode/advanced/change_settings(client/c)
-	var/target_path = input(c, LANG("datum.d60ae892", null), LANG("datum.1a01b0f5", null), "/obj/structure/closet")
+	var/target_path = input(c, LANG("datum.d60ae892d7e29eb6", null), LANG("datum.1a01b0f5ae81d070", null), "/obj/structure/closet")
 	objholder = text2path(target_path)
 	if(!ispath(objholder))
 		objholder = pick_closest_path(target_path)
 		if(!objholder)
-			tgui_alert(usr,LANG("datum.2cd7ebee", null))
+			tgui_alert(usr,LANG("datum.2cd7ebeeebee9b19", null))
 			return
 		else if(ispath(objholder, /area))
 			objholder = null
-			tgui_alert(usr,LANG("datum.45653dfd", null))
+			tgui_alert(usr,LANG("datum.45653dfddec86c29", null))
 			return
 	BM.preview_selected_item(objholder)
 
@@ -31,10 +31,10 @@
 	if(left_click && alt_click)
 		if (istype(object, /turf) || isobj(object) || istype(object, /mob))
 			objholder = object.type
-			to_chat(c, span_notice(LANG("datum.c79babd9", list(initial(object.name), object.type))))
+			to_chat(c, span_notice(LANG("datum.c79babd939db393a", list(initial(object.name), object.type))))
 			BM.preview_selected_item(objholder)
 		else
-			to_chat(c, span_notice(LANG("datum.74987fdf", list(initial(object.name)))))
+			to_chat(c, span_notice(LANG("datum.74987fdfe817380b", list(initial(object.name)))))
 	else if(left_click)
 		if(ispath(objholder,/turf))
 			var/turf/T = get_turf(object)
@@ -50,7 +50,7 @@
 			A.setDir(BM.build_dir)
 			log_admin("Build Mode: [key_name(c)] modified [A]'s [COORD(A)] dir to [BM.build_dir]")
 		else
-			to_chat(c, span_warning(LANG("datum.9779f12d", null)))
+			to_chat(c, span_warning(LANG("datum.9779f12d4a2d3589", null)))
 	else if(right_click)
 		if(isobj(object))
 			log_admin("Build Mode: [key_name(c)] deleted [object] at [AREACOORD(object)]")

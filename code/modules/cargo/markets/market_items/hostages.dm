@@ -49,7 +49,7 @@
 	signaler.set_frequency(sanitize_frequency(rand(MIN_FREE_FREQ, MAX_FREE_FREQ)))
 	signaler.code = rand(1, 100)
 	buyer.put_in_hands(signaler)
-	to_chat(buyer, span_notice(LANG("datum.6fb603cd", list(signaler, buyer.is_holding(signaler) ? "in your hands" : "at your feet"))))
+	to_chat(buyer, span_notice(LANG("datum.6fb603cd9bf4c74d", list(signaler, buyer.is_holding(signaler) ? "in your hands" : "at your feet"))))
 
 /datum/market_item/hostage/proc/clear_signaler_ref(datum/source)
 	SIGNAL_HANDLER
@@ -59,7 +59,7 @@
 	var/mob/living/mob = item
 	UnregisterSignal(mob, COMSIG_LIVING_RETURN_FROM_CAPTURE)
 	if(!IS_UNCONSCIOUS(mob))
-		to_chat(mob, span_boldnicegreen(LANG("datum.ffdc37fe", null)))
+		to_chat(mob, span_boldnicegreen(LANG("datum.ffdc37fee34cdbc1", null)))
 	if(!ishuman(item))
 		return ..()
 	var/mob/living/carbon/human/humie = item

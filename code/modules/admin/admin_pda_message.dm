@@ -9,7 +9,7 @@ ADMIN_VERB(message_pda, R_ADMIN, "PDA 消息", "Send a message to a user's PDA."
 		return
 
 	if(!length(GLOB.pda_messengers))
-		to_chat(usr, span_warning(LANG("datum.63789103", null)))
+		to_chat(usr, span_warning(LANG("datum.637891039a878244", null)))
 		return
 
 	var/datum/admin_pda_panel/ui = new(usr)
@@ -61,7 +61,7 @@ ADMIN_VERB(message_pda, R_ADMIN, "PDA 消息", "Send a message to a user's PDA."
 					targets += messenger
 
 			if(!length(targets))
-				to_chat(usr, span_warning(LANG("datum.c5f6b9a2", null)))
+				to_chat(usr, span_warning(LANG("datum.c5f6b9a2e3bb0b2c", null)))
 				return FALSE
 
 			var/datum/signal/subspace/messaging/tablet_message/signal = new(null, list(
@@ -82,7 +82,7 @@ ADMIN_VERB(message_pda, R_ADMIN, "PDA 消息", "Send a message to a user's PDA."
 				signal.send_to_receivers()
 
 			if(!(force || signal.data["reject"]))
-				to_chat(usr, span_warning(LANG("datum.9538ae0b", null)))
+				to_chat(usr, span_warning(LANG("datum.9538ae0bd8e47618", null)))
 				return FALSE
 
 			var/recipient = spam ? "everyone" : get_messenger_name(targets[1])

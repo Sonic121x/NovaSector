@@ -47,8 +47,8 @@
 		. += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_FISH,
-			SPECIES_PERK_NAME = LANG("datum.809c7733", null),
-			SPECIES_PERK_DESC = LANG("datum.ad0e0701", list(plural_form)),
+			SPECIES_PERK_NAME = LANG("datum.809c77334ee07a1d", null),
+			SPECIES_PERK_DESC = LANG("datum.ad0e070115a8d32a", list(plural_form)),
 		))
 
 /// Applies any after effects to the preview icon (such as opacity, color multiplication, etc)

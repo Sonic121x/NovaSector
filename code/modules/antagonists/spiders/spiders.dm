@@ -53,4 +53,4 @@
 
 /datum/antagonist/spider/flesh/greet()
 	. = ..()
-	to_chat(owner, span_boldwarning(LANG("datum.928cecbd", null)))
+	to_chat(owner, span_boldwarning(LANG("datum.928cecbd4dc7e583", null)))

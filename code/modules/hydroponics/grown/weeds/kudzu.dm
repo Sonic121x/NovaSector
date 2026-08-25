@@ -26,7 +26,7 @@
 	return S
 
 /obj/item/seeds/kudzu/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.35744de4", list(user, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.35744de480716101", list(user, user.p_theyre()))))
 	plant(user)
 	return BRUTELOSS
 
@@ -34,22 +34,22 @@
 	if(isspaceturf(user.loc))
 		return
 	if(!isturf(user.loc))
-		to_chat(user, span_warning(LANG("obj.e94dd832", list(src))))
+		to_chat(user, span_warning(LANG("obj.e94dd832cf86c37b", list(src))))
 		return FALSE
 	if(locate(/obj/structure/spacevine) in user.loc)
-		to_chat(user, span_warning(LANG("obj.a60a6271", list(src))))
+		to_chat(user, span_warning(LANG("obj.a60a6271bb561597", list(src))))
 		return FALSE
-	to_chat(user, span_notice(LANG("obj.19efdae6", list(src))))
+	to_chat(user, span_notice(LANG("obj.19efdae6bab2b6ae", list(src))))
 	message_admins("Kudzu planted by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(user)]")
 	investigate_log("was planted by [key_name(user)] at [AREACOORD(user)]", INVESTIGATE_BOTANY)
 	new /datum/spacevine_controller(get_turf(user), mutations, potency, production)
 	qdel(src)
 
 /obj/item/seeds/kudzu/attack_self(mob/user)
-	user.visible_message(span_danger(LANG("obj.92036855", list(user))))
+	user.visible_message(span_danger(LANG("obj.9203685543f7084d", list(user))))
 	if(do_after(user, 5 SECONDS, target = user.drop_location()))
 		plant(user)
-		to_chat(user, span_notice(LANG("obj.baa4d562", null)))
+		to_chat(user, span_notice(LANG("obj.baa4d56286ab85d8", null)))
 
 /obj/item/seeds/kudzu/get_unique_analyzer_data()
 	var/list/all_mutations = list()

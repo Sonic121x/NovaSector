@@ -305,7 +305,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 
 		if("createStory")
 			if(!current_channel)
-				balloon_alert(user, LANG("obj.5575955f", null))
+				balloon_alert(user, LANG("obj.5575955f39b9d36e", null))
 				return TRUE
 			var/current_channel_id = params["current"]
 			create_story(user, channel_id = current_channel_id)
@@ -351,7 +351,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 				var/mob/living/living_user = user
 				id_card = living_user.get_idcard(hand_first = TRUE)
 			if(!(admin_access in id_card?.GetAccess()))
-				say(LANG("obj.78e732a0", null))
+				say(LANG("obj.78e732a0631b82d8", null))
 				return TRUE
 			var/questionable_message = params["messageID"]
 			for(var/datum/feed_message/iterated_feed_message as anything in current_channel.messages)
@@ -365,7 +365,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 				var/mob/living/living_user = user
 				id_card = living_user.get_idcard(hand_first = TRUE)
 			if(!(admin_access in id_card?.GetAccess()))
-				say(LANG("obj.78e732a0", null))
+				say(LANG("obj.78e732a0631b82d8", null))
 				return TRUE
 			var/questionable_message = params["messageID"]
 			for(var/datum/feed_message/iterated_feed_message in current_channel.messages)
@@ -379,7 +379,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 				var/mob/living/living_user = user
 				id_card = living_user.get_idcard(hand_first = TRUE)
 			if(!(admin_access in id_card?.GetAccess()))
-				say(LANG("obj.78e732a0", null))
+				say(LANG("obj.78e732a0631b82d8", null))
 				return TRUE
 			var/selected_channel_id = (params["channel"])
 			if(isnull(selected_channel_id))
@@ -421,14 +421,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 			return TRUE
 
 		if("setCriminalName")
-			var/temp_name = tgui_input_text(user, LANG("obj.37782efd", null), LANG("obj.f19e98eb", null), "John Doe", max_length = MAX_NAME_LEN, multiline = FALSE)
+			var/temp_name = tgui_input_text(user, LANG("obj.37782efda370560b", null), LANG("obj.f19e98ebcf0d7035", null), "John Doe", max_length = MAX_NAME_LEN, multiline = FALSE)
 			if(!temp_name)
 				return TRUE
 			criminal_name = temp_name
 			return TRUE
 
 		if("setCrimeData")
-			var/temp_desc = tgui_input_text(user, LANG("obj.bf012c81", null), LANG("obj.f19e98eb", null), "Unknown", max_length = MAX_BROADCAST_LEN, multiline = TRUE)
+			var/temp_desc = tgui_input_text(user, LANG("obj.bf012c81a191fc19", null), LANG("obj.f19e98ebcf0d7035", null), "Unknown", max_length = MAX_BROADCAST_LEN, multiline = TRUE)
 			if(!temp_desc)
 				return TRUE
 			crime_description = temp_desc
@@ -467,7 +467,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 			if(current_user || newscaster_username)
 				current_user = null
 				newscaster_username = null
-				say(LANG("obj.c924fceb", null))
+				say(LANG("obj.c924fceb5411785e", null))
 				return TRUE
 
 		if("deleteRequest")
@@ -497,7 +497,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 	if(!user.temporarilyRemoveItemFromInventory(tool))
 		return ITEM_INTERACT_BLOCKING
 	paper_remaining++
-	to_chat(user, span_notice(LANG("obj.f15361cc", list(tool, src, paper_remaining))))
+	to_chat(user, span_notice(LANG("obj.f15361cc8c0a117f", list(tool, src, paper_remaining))))
 	qdel(tool)
 	return ITEM_INTERACT_SUCCESS
 
@@ -510,31 +510,31 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 		return
 	. = ITEM_INTERACT_SUCCESS
 	if(!(machine_stat & BROKEN))
-		to_chat(user, span_notice(LANG("obj.98b87a76", list(src))))
+		to_chat(user, span_notice(LANG("obj.98b87a768645563e", list(src))))
 		return
 	if(!tool.tool_start_check(user, amount=1))
 		return
-	user.balloon_alert_to_viewers(LANG("obj.42428533", null), LANG("obj.db5a7ed6", null))
-	audible_message(span_hear(LANG("obj.1aa82fa3", null)))
+	user.balloon_alert_to_viewers(LANG("obj.424285333e0484ab", null), LANG("obj.db5a7ed6d3f54273", null))
+	audible_message(span_hear(LANG("obj.1aa82fa3545466eb", null)))
 	if(!tool.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(needs_repair))))
-		user.balloon_alert_to_viewers(LANG("obj.4540ccf0", null), LANG("obj.87135ad0", null))
+		user.balloon_alert_to_viewers(LANG("obj.4540ccf014fb643f", null), LANG("obj.87135ad0ded5d854", null))
 		return
-	user.balloon_alert_to_viewers(LANG("obj.3f1130f3", list(src)))
+	user.balloon_alert_to_viewers(LANG("obj.3f1130f389064b4f", list(src)))
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 
 /obj/machinery/newscaster/wrench_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice(LANG("obj.5588c535", list(anchored ? "un" : "", src))))
+	to_chat(user, span_notice(LANG("obj.5588c535d3464263", list(anchored ? "un" : "", src))))
 	if(!tool.use_tool(src, user, 60, volume=50))
 		return
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	if((machine_stat & BROKEN))
-		to_chat(user, span_warning(LANG("obj.3797fc14", list(src))))
+		to_chat(user, span_warning(LANG("obj.3797fc1434117e37", list(src))))
 		new /obj/item/stack/sheet/iron(loc, 5)
 		new /obj/item/shard(loc)
 		new /obj/item/shard(loc)
 	else
-		to_chat(user, span_notice(LANG("obj.df2fad01", list(anchored ? "un" : "", src))))
+		to_chat(user, span_notice(LANG("obj.df2fad01a499d45e", list(anchored ? "un" : "", src))))
 		new /obj/item/wallframe/newscaster(loc)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -563,7 +563,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 
 /obj/machinery/newscaster/attack_paw(mob/living/user, list/modifiers)
 	if(!user.combat_mode)
-		to_chat(user, span_warning(LANG("obj.33cb0845", null)))
+		to_chat(user, span_warning(LANG("obj.33cb08457aa8c9a3", null)))
 	else
 		take_damage(5, BRUTE, MELEE)
 
@@ -603,9 +603,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 			else
 				targetcam = R.aicamera
 		else
-			to_chat(user, span_warning(LANG("obj.6f605f9f", null)))
+			to_chat(user, span_warning(LANG("obj.6f605f9f957ab1f3", null)))
 		if(!targetcam.stored.len)
-			to_chat(user, span_bolddanger(LANG("obj.db887170", null)))
+			to_chat(user, span_bolddanger(LANG("obj.db8871702ba591de", null)))
 			return
 		var/datum/picture/selection = targetcam.selectpicture(user)
 		if(selection)
@@ -617,7 +617,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
  */
 /obj/machinery/newscaster/proc/print_paper(mob/user)
 	if(paper_remaining <= 0)
-		balloon_alert_to_viewers(LANG("obj.99641765", null))
+		balloon_alert_to_viewers(LANG("obj.99641765cb8edf4e", null))
 		return TRUE
 	SSblackbox.record_feedback("amount", "newspapers_printed", 1)
 	var/obj/item/newspaper/new_newspaper = new(loc)
@@ -638,13 +638,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 /obj/machinery/newscaster/proc/news_alert(channel)
 	if(channel)
 		alert = TRUE
-		say(LANG("obj.46508b75", list(channel)))
+		say(LANG("obj.46508b75891cf101", list(channel)))
 		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 75, TRUE)
 		update_appearance()
 		addtimer(CALLBACK(src, PROC_REF(remove_alert)), ALERT_DELAY, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 	else
-		say(LANG("obj.c4d96e05", null))
+		say(LANG("obj.c4d96e0577bee0c6", null))
 		playsound(src, 'sound/machines/warning-buzzer.ogg', 75, TRUE)
 
 /**
@@ -666,15 +666,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 
 	var/datum/feed_channel/potential_channel = GLOB.news_network.network_channels_by_name[channel_name]
 	if(potential_channel)
-		tgui_alert(user, LANG("obj.fc1f0659", null), list("Okay"))
+		tgui_alert(user, LANG("obj.fc1f065967ecfb6b", null), list("Okay"))
 		return TRUE
 
 	var/list/hard_filter_result = is_ic_filtered(channel_name)
 	if(hard_filter_result)
-		tgui_alert(user, LANG("obj.83df229a", list(hard_filter_result[CHAT_FILTER_INDEX_WORD])))
+		tgui_alert(user, LANG("obj.83df229a01015d38", list(hard_filter_result[CHAT_FILTER_INDEX_WORD])))
 		return TRUE
 
-	var/choice = tgui_alert(user, LANG("obj.e41c8fc3", null),LANG("obj.0eacab27", null), list("Confirm", "Cancel"))
+	var/choice = tgui_alert(user, LANG("obj.e41c8fc3b8ebf247", null),LANG("obj.0eacab279a535407", null), list("Confirm", "Cancel"))
 	creating_channel = FALSE
 	if(choice != "Confirm")
 		update_static_data(user)
@@ -683,7 +683,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 	var/approval_time = CROSS_SECTOR_CANCEL_TIME
 	var/list/soft_filter_result = is_soft_ooc_filtered(channel_name)
 	if(soft_filter_result)
-		if(tgui_alert(user,LANG("obj.51cdbe29", list(soft_filter_result[CHAT_FILTER_INDEX_WORD], soft_filter_result[CHAT_FILTER_INDEX_REASON])), LANG("obj.b0fe106c", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(user,LANG("obj.51cdbe29f63ccfeb", list(soft_filter_result[CHAT_FILTER_INDEX_WORD], soft_filter_result[CHAT_FILTER_INDEX_REASON])), LANG("obj.b0fe106c90796ca4", null), list("Yes", "No")) != "Yes")
 			return
 		message_admins("[ADMIN_LOOKUPFLW(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \
 			They may be using a disallowed term for a cross-station newscaster channel. Increasing delay time to reject.\n\n Channel name: \"[html_encode(channel_name)]\"")
@@ -701,7 +701,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 	to_chat(
 		GLOB.admins,
 		span_adminnotice( \
-			LANG("obj.c76eafe9", list(ADMIN_LOOKUPFLW(user), html_encode(channel_name), DisplayTimeText(approval_time), REF(src)))\
+			LANG("obj.c76eafe9279eeb75", list(ADMIN_LOOKUPFLW(user), html_encode(channel_name), DisplayTimeText(approval_time), REF(src)))\
 		)
 	)
 	channel_approval_timer = addtimer(CALLBACK(src, PROC_REF(finish_channel_creation), user, channel_locked, TRUE, approval_time), approval_time, TIMER_STOPPABLE)
@@ -723,7 +723,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 		return
 
 	if (isnull(channel_approval_timer))
-		to_chat(usr, span_warning(LANG("obj.3c2954fe", null)))
+		to_chat(usr, span_warning(LANG("obj.3c2954fe4077f853", null)))
 		return
 
 	deltimer(channel_approval_timer)
@@ -761,7 +761,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 			existing_authors += iterated_feed_channel.author
 	if(!newscaster_username || (newscaster_username in existing_authors))
 		creating_channel = FALSE
-		tgui_alert(user, LANG("obj.a301f276", null), list("Okay"))
+		tgui_alert(user, LANG("obj.a301f2761ce063ba", null), list("Okay"))
 		return TRUE
 	creating_channel = TRUE
 	return TRUE
@@ -780,7 +780,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 	if(current_channel.receiving_cross_sector)
 		return
 
-	var/temp_message = tgui_input_text(user, LANG("obj.cb9369e7", null), LANG("obj.0eacab27", null), feed_channel_message, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+	var/temp_message = tgui_input_text(user, LANG("obj.cb9369e76c220c51", null), LANG("obj.0eacab279a535407", null), feed_channel_message, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 	if(length(temp_message) <= 1)
 		return TRUE
 
@@ -798,15 +798,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
  */
 /obj/machinery/newscaster/proc/toggle_photo(mob/user)
 	if(current_image)
-		balloon_alert(user, LANG("obj.80156050", null))
+		balloon_alert(user, LANG("obj.80156050bc503553", null))
 		current_image = null
 		return TRUE
 
 	attach_photo(user)
 	if(current_image)
-		balloon_alert(user, LANG("obj.4eb49c15", null))
+		balloon_alert(user, LANG("obj.4eb49c15e27cbee0", null))
 	else
-		balloon_alert(user, LANG("obj.eaffb85e", null))
+		balloon_alert(user, LANG("obj.eaffb85e1cea698d", null))
 
 /obj/machinery/newscaster/proc/clear_wanted_issue(mob/user)
 	var/obj/item/card/id/id_card
@@ -814,7 +814,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 		var/mob/living/living_user = user
 		id_card = living_user.get_idcard(hand_first = TRUE)
 	if(!(security_access in id_card?.GetAccess()))
-		say(LANG("obj.78e732a0", null))
+		say(LANG("obj.78e732a0631b82d8", null))
 		return TRUE
 	GLOB.news_network.wanted_issue.active = FALSE
 	return TRUE
@@ -829,7 +829,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 	if(active_request?.owner != current_user.account_holder)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
 		return TRUE
-	say(LANG("obj.60a524e0", null))
+	say(LANG("obj.60a524e0ee8fb598", null))
 	GLOB.request_list.Remove(active_request)
 
 /**
@@ -842,12 +842,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 		return TRUE
 	for(var/datum/station_request/iterated_station_request as anything in GLOB.request_list)
 		if(iterated_station_request.req_number == current_user.account_id)
-			say(LANG("obj.c9c211c4", null))
+			say(LANG("obj.c9c211c4062da529", null))
 			return TRUE
 	var/datum/station_request/curr_request = new /datum/station_request(current_user.account_holder, bounty_value,bounty_text,current_user.account_id, current_user)
 	GLOB.request_list += list(curr_request)
 	for(var/obj/iterated_bounty_board as anything in GLOB.allbountyboards)
-		iterated_bounty_board.say(LANG("obj.973df1c5", null))
+		iterated_bounty_board.say(LANG("obj.973df1c5a366818b", null))
 		playsound(iterated_bounty_board.loc, 'sound/effects/cashregister.ogg', 30, TRUE)
 /**
  * This sorts through the current list of bounties, and confirms that the intended request found is correct.
@@ -855,7 +855,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
  */
 /obj/machinery/newscaster/proc/apply_to_bounty()
 	if(!current_user)
-		say(LANG("obj.dc2755fe", null))
+		say(LANG("obj.dc2755feed08c0c9", null))
 		return TRUE
 	if(current_user.account_holder == active_request.owner)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
@@ -876,7 +876,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		return TRUE
 	payment_target.transfer_money(current_user, active_request.value, "Bounty Request")
-	say(LANG("obj.a408cc95", list(active_request.value, MONEY_NAME)))
+	say(LANG("obj.a408cc9521ec0e64", list(active_request.value, MONEY_NAME)))
 	GLOB.request_list.Remove(active_request)
 	qdel(active_request)
 

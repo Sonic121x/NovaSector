@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(antag_optin_forcing_on_spawn_antag_categories, list(
 		if (antag_level <= ANTAG_OPT_OUT)
 			return
 		var/stringified_level = GLOB.antag_opt_in_strings["[antag_level]"]
-		to_chat(our_client, span_boldnotice(LANG("datum.1ae88c5c", list(stringified_level))))
+		to_chat(our_client, span_boldnotice(LANG("datum.1ae88c5c0795bf1f", list(stringified_level))))
 
 /// Gets the actual opt-in level used for determining targets.
 /datum/mind/proc/get_effective_antag_opt_in_level()

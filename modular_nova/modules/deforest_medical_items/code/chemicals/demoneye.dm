@@ -69,13 +69,13 @@
 
 	if(constant_dose_time < CONSTANT_DOSE_SAFE_LIMIT || !our_guy.get_blood_volume())
 		our_guy.visible_message(
-				span_danger(LANG("datum.1693b7d5", list(our_guy))),
-				span_danger(LANG("datum.54f0b59d", null))
+				span_danger(LANG("datum.1693b7d5a9dcdf40", list(our_guy))),
+				span_danger(LANG("datum.54f0b59d14f60001", null))
 		)
 	else
 		our_guy.visible_message(
-			span_danger(LANG("datum.0936e06b", list(our_guy))),
-			span_danger(LANG("datum.31068ee4", null))
+			span_danger(LANG("datum.0936e06bfda8adc7", list(our_guy))),
+			span_danger(LANG("datum.31068ee4523544c1", null))
 		)
 
 		var/obj/item/bodypart/bodypart = pick(our_guy.bodyparts)

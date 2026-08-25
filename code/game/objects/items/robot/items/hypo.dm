@@ -189,26 +189,26 @@
 
 	var/mob/living/carbon/injectee = interacting_with
 	if(!selected_reagent)
-		balloon_alert(user, LANG("obj.ce27088b", null))
+		balloon_alert(user, LANG("obj.ce27088b72a392c8", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!stored_reagents.has_reagent(selected_reagent.type, amount_per_transfer_from_this))
-		balloon_alert(user, LANG("obj.98d23e06", list(selected_reagent.name)))
+		balloon_alert(user, LANG("obj.98d23e06e35c4140", list(selected_reagent.name)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!injectee.try_inject(user, user.zone_selected, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE | (bypass_protection ? INJECT_CHECK_PENETRATE_THICK : 0)))
-		balloon_alert(user, LANG("obj.1596b690", list(injectee.parse_zone_with_bodypart(user.zone_selected))))
+		balloon_alert(user, LANG("obj.1596b6909c5bb436", list(injectee.parse_zone_with_bodypart(user.zone_selected))))
 		return ITEM_INTERACT_BLOCKING
 
 	if (!injectee.reagents)
-		balloon_alert(user, LANG("obj.e64a5ccd", null))
+		balloon_alert(user, LANG("obj.e64a5ccdfe080194", null))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(injectee, span_warning(LANG("obj.d366f84f", null)))
-	to_chat(user, span_notice(LANG("obj.99b0f0cd", list(injectee, selected_reagent.name))))
+	to_chat(injectee, span_warning(LANG("obj.d366f84feb09c62c", null)))
+	to_chat(user, span_notice(LANG("obj.99b0f0cd4867c2cc", list(injectee, selected_reagent.name))))
 	user.changeNext_move(CLICK_CD_MELEE)
 	stored_reagents.trans_to(injectee, amount_per_transfer_from_this, target_id = selected_reagent.type, transferred_by = user, methods = INJECT)
-	balloon_alert(user, LANG("obj.d301ad12", list(amount_per_transfer_from_this)))
+	balloon_alert(user, LANG("obj.d301ad12ee8cd9aa", list(amount_per_transfer_from_this)))
 	log_combat(user, injectee, "injected", src, "(CHEMICALS: [selected_reagent])")
 	return ITEM_INTERACT_SUCCESS
 
@@ -253,13 +253,13 @@
 				var/obj/item/robot_model/container_model = loc
 				cyborg = container_model.robot
 			playsound(cyborg, 'sound/effects/pop.ogg', 50, FALSE)
-			balloon_alert(cyborg, LANG("obj.ff481801", list(selected_reagent.name)))
+			balloon_alert(cyborg, LANG("obj.ff481801838b0987", list(selected_reagent.name)))
 			break
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
 	. = ..()
-	. += LANG("obj.d070eebd", list(selected_reagent ? "[selected_reagent]. [selected_reagent.description]" : "nothing."))
-	. += span_notice(LANG("obj.f00ea77b", list(amount_per_transfer_from_this)))
+	. += LANG("obj.d070eebd61253da2", list(selected_reagent ? "[selected_reagent]. [selected_reagent.description]" : "nothing."))
+	. += span_notice(LANG("obj.f00ea77b39fdbb68", list(amount_per_transfer_from_this)))
 
 /* NOVA EDIT REMOVAL START - SEE master_files/code/modules/reagents/reagent_containers.dm
 /obj/item/reagent_containers/borghypo/click_alt(mob/living/user)
@@ -408,7 +408,7 @@ NOVA EDIT REMOVAL END */
 		var/obj/item/borg/apparatus/beaker/service/beverage_apparatus = (locate() in cyborg.model.modules) || (locate() in cyborg.held_items)
 
 		if (isnull(beverage_apparatus))
-			to_chat(user, span_warning(LANG("obj.652e1b8e", null)))
+			to_chat(user, span_warning(LANG("obj.652e1b8eb8b83fac", null)))
 			data["apparatusHasItem"] = FALSE
 		else
 			data["apparatusHasItem"] = !isnull(beverage_apparatus.stored)
@@ -418,13 +418,13 @@ NOVA EDIT REMOVAL END */
 	if(!interacting_with.is_refillable())
 		return NONE
 	if(!selected_reagent)
-		balloon_alert(user, LANG("obj.ce27088b", null))
+		balloon_alert(user, LANG("obj.ce27088b72a392c8", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!stored_reagents.has_reagent(selected_reagent.type, amount_per_transfer_from_this))
-		balloon_alert(user, LANG("obj.98d23e06", list(selected_reagent.name)))
+		balloon_alert(user, LANG("obj.98d23e06e35c4140", list(selected_reagent.name)))
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_with.reagents.total_volume >= interacting_with.reagents.maximum_volume)
-		balloon_alert(user, LANG("obj.2cb7d354", null))
+		balloon_alert(user, LANG("obj.2cb7d3546d66854d", null))
 		return ITEM_INTERACT_BLOCKING
 
 	// This is the in-between where we're storing the reagent we're going to pour into the container
@@ -434,7 +434,7 @@ NOVA EDIT REMOVAL END */
 	shaker.add_reagent(selected_reagent.type, amount_per_transfer_from_this, reagtemp = dispensed_temperature, no_react = TRUE)
 
 	shaker.trans_to(interacting_with, amount_per_transfer_from_this, transferred_by = user)
-	balloon_alert(user, LANG("obj.61948da8", list(amount_per_transfer_from_this)))
+	balloon_alert(user, LANG("obj.61948da8d9379b7a", list(amount_per_transfer_from_this)))
 	return ITEM_INTERACT_SUCCESS
 
 
@@ -480,13 +480,13 @@ NOVA EDIT REMOVAL END */
 	if(!interacting_with.is_refillable())
 		return NONE
 	if(!selected_reagent)
-		balloon_alert(user, LANG("obj.ce27088b", null))
+		balloon_alert(user, LANG("obj.ce27088b72a392c8", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!stored_reagents.has_reagent(selected_reagent.type, amount_per_transfer_from_this))
-		balloon_alert(user, LANG("obj.98d23e06", list(selected_reagent.name)))
+		balloon_alert(user, LANG("obj.98d23e06e35c4140", list(selected_reagent.name)))
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_with.reagents.total_volume >= interacting_with.reagents.maximum_volume)
-		balloon_alert(user, LANG("obj.2cb7d354", null))
+		balloon_alert(user, LANG("obj.2cb7d3546d66854d", null))
 		return ITEM_INTERACT_BLOCKING
 	// This is the in-between where we're storing the reagent we're going to pour into the container
 	// because we cannot specify a singular reagent to transfer in trans_to
@@ -494,7 +494,7 @@ NOVA EDIT REMOVAL END */
 	stored_reagents.remove_reagent(selected_reagent.type, amount_per_transfer_from_this)
 	shaker.add_reagent(selected_reagent.type, amount_per_transfer_from_this, reagtemp = dispensed_temperature, no_react = TRUE)
 	shaker.trans_to(interacting_with, amount_per_transfer_from_this, transferred_by = user)
-	balloon_alert(user, LANG("obj.61948da8", list(amount_per_transfer_from_this)))
+	balloon_alert(user, LANG("obj.61948da8d9379b7a", list(amount_per_transfer_from_this)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/borghypo/borgshaker/hacked

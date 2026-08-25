@@ -16,8 +16,8 @@
 		new buildstacktype(loc,buildstackamount)
 
 /obj/structure/fans/wrench_act(mob/living/user, obj/item/I)
-	user.visible_message(span_warning(LANG("obj.64d85c99", list(user, src))),
-		span_notice(LANG("obj.c234e380", list(src))), span_hear(LANG("obj.f070a678", null)))
+	user.visible_message(span_warning(LANG("obj.64d85c99dc62f8de", list(user, src))),
+		span_notice(LANG("obj.c234e380f56e7a65", list(src))), span_hear(LANG("obj.f070a678bd67cf40", null)))
 	if(I.use_tool(src, user, 20, volume=50))
 		deconstruct(TRUE)
 	return TRUE

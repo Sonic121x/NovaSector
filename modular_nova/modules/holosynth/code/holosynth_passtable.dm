@@ -17,7 +17,7 @@
 		owner.remove_traits(list(TRAIT_PASSTABLE, TRAIT_IGNORE_ELEVATION), type)
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/holosynth_passtable)
 	table_toggle = !table_toggle
-	to_chat(owner, span_notice(LANG("datum.0e531afd", list(table_toggle ? "enabled" : "disabled"))))
+	to_chat(owner, span_notice(LANG("datum.0e531afd0d08b727", list(table_toggle ? "enabled" : "disabled"))))
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 /datum/action/innate/holosynth_toggle_passtable/Destroy(force)

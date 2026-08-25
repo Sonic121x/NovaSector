@@ -16,7 +16,7 @@
 	RegisterSignal(user, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
 	if (user.hud_used)
 		on_hud_created(user)
-	to_chat(user, span_notice(LANG("datum.ea53b339", list(src.name))))
+	to_chat(user, span_notice(LANG("datum.ea53b339e531a6d9", list(src.name))))
 	log_purchase(user.key)
 	return TRUE
 
@@ -98,7 +98,7 @@
 		if(perks_allocated >= 2)
 			break
 	if(taking_perks.len < 1)
-		to_chat(user, span_warning(LANG("datum.1060f1d7", null)))
+		to_chat(user, span_warning(LANG("datum.1060f1d78d962601", null)))
 		return FALSE
 	taking_perks = shuffle(taking_perks)
 	for(var/datum/spellbook_entry/perks/perks_ready in taking_perks)

@@ -66,7 +66,7 @@
 	cost = 4
 
 /datum/spellbook_entry/summon/curse_of_madness/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy = TRUE)
-	var/message = tgui_input_text(user, LANG("datum.51123832", null), LANG("datum.057d133c", null), max_length = MAX_MESSAGE_LEN)
+	var/message = tgui_input_text(user, LANG("datum.511238323267d36a", null), LANG("datum.057d133c2dbed540", null), max_length = MAX_MESSAGE_LEN)
 	if(!message || QDELETED(user) || QDELETED(book) || !can_buy(user, book))
 		return FALSE
 	curse_of_madness(user, message)
@@ -93,16 +93,16 @@
 		spell_options[entry.name] = entry
 
 	sortTim(spell_options, GLOBAL_PROC_REF(cmp_text_asc))
-	var/chosen_spell_name = tgui_input_list(user, LANG("datum.185c7a9f", null), LANG("datum.50efdae5", null), spell_options)
+	var/chosen_spell_name = tgui_input_list(user, LANG("datum.185c7a9f87924b62", null), LANG("datum.50efdae5726ee7e1", null), spell_options)
 	if(isnull(chosen_spell_name) || QDELETED(user) || QDELETED(book))
 		return FALSE
 	if(GLOB.mass_teaching)
-		tgui_alert(user, LANG("datum.814740f1", list(name)), LANG("datum.50efdae5", null), list("Shame"))
+		tgui_alert(user, LANG("datum.814740f1ac7bca20", list(name)), LANG("datum.50efdae5726ee7e1", null), list("Shame"))
 		return FALSE
 
 	var/datum/spellbook_entry/chosen_entry = spell_options[chosen_spell_name]
 	if(cost + chosen_entry.cost > book.uses)
-		tgui_alert(user, LANG("datum.6b871da3", list(chosen_spell_name, cost)), LANG("datum.50efdae5", null), list("Shame"))
+		tgui_alert(user, LANG("datum.6b871da364390457", list(chosen_spell_name, cost)), LANG("datum.50efdae5726ee7e1", null), list("Shame"))
 		return FALSE
 
 	cost += chosen_entry.cost
@@ -114,7 +114,7 @@
 	GLOB.mass_teaching.equip_all_affected()
 
 	var/item_entry = istype(chosen_entry, /datum/spellbook_entry/item)
-	to_chat(user, span_hypnophrase(LANG("datum.3ff8651d", list(item_entry ? "granted everyone the power" : "taught everyone the ways", chosen_spell_name))))
+	to_chat(user, span_hypnophrase(LANG("datum.3ff8651d6fb355d9", list(item_entry ? "granted everyone the power" : "taught everyone the ways", chosen_spell_name))))
 	message_admins("[ADMIN_LOOKUPFLW(user)] gave everyone the [item_entry ? "item" : "spell"] \"[chosen_spell_name]\"!")
 	user.log_message("has gave everyone the [item_entry ? "item" : "spell"] \"[chosen_spell_name]\"!", LOG_GAME)
 

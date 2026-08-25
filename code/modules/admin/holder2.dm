@@ -479,7 +479,7 @@ you will have to do something like if(client.rights & R_ADMIN) yourself.
 			return TRUE
 		else
 			if(show_msg)
-				to_chat(usr, LANG("_root.67720ec7", list(rights2text(rights_required," "))), confidential = TRUE)
+				to_chat(usr, LANG("_root.67720ec72638a105", list(rights2text(rights_required," "))), confidential = TRUE)
 	return FALSE
 
 //probably a bit iffy - will hopefully figure out a better solution

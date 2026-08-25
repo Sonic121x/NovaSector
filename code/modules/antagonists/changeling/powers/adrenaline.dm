@@ -22,6 +22,6 @@
 
 	user.reagents.add_reagent(/datum/reagent/medicine/changelingadrenaline, 4) //Tank 5 consecutive baton hits
 
-	to_chat(user, span_changeling(LANG("datum.c4019334", null)))
+	to_chat(user, span_changeling(LANG("datum.c4019334d95f2b89", null)))
 
 	return TRUE

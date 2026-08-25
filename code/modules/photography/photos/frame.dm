@@ -17,7 +17,7 @@
 	if(!istype(tool, /obj/item/photo))
 		return NONE
 	if(displayed)
-		to_chat(user, span_warning(LANG("obj.2c26fb44", list(src))))
+		to_chat(user, span_warning(LANG("obj.2c26fb44674063bb", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
@@ -33,7 +33,7 @@
 	if(contents.len)
 		var/obj/item/I = pick(contents)
 		user.put_in_hands(I)
-		to_chat(user, span_notice(LANG("obj.4acd23f1", list(src))))
+		to_chat(user, span_notice(LANG("obj.4acd23f1983da46e", list(src))))
 		displayed = null
 		update_appearance()
 	return ..()
@@ -123,10 +123,10 @@
 /obj/structure/sign/picture_frame/proc/try_deconstruct(mob/living/user, obj/item/tool)
 	if(!can_decon)
 		return FALSE
-	to_chat(user, span_notice(LANG("obj.08ee3372", list(name))))
+	to_chat(user, span_notice(LANG("obj.08ee33726ba03b76", list(name))))
 	if(tool.use_tool(src, user, 3 SECONDS, volume=50))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		to_chat(user, span_notice(LANG("obj.eea293d1", list(name))))
+		to_chat(user, span_notice(LANG("obj.eea293d1cf569422", list(name))))
 		deconstruct()
 	return TRUE
 
@@ -141,7 +141,7 @@
 		return FALSE
 	tool.play_tool_sound(src)
 	framed.forceMove(drop_location())
-	user.visible_message(span_warning(LANG("obj.2e91e3aa", list(user, framed, src))))
+	user.visible_message(span_warning(LANG("obj.2e91e3aab8b8ad08", list(user, framed, src))))
 	set_and_save_framed(null)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -151,7 +151,7 @@
 	if(!istype(tool, /obj/item/photo))
 		return NONE
 	if(framed)
-		to_chat(user, span_warning(LANG("obj.2c26fb44", list(src))))
+		to_chat(user, span_warning(LANG("obj.2c26fb44674063bb", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
@@ -201,18 +201,18 @@
 		if(1) // Deempisi
 			name = "\improper Mr. Deempisi portrait"
 			icon_state = "frame-monkey"
-			desc = LANG("obj.75ed8625", null)
+			desc = LANG("obj.75ed862583b0baa3", null)
 		if(2) // A fruit
 			name = "picture of a fruit"
 			icon_state = "frame-fruit"
-			desc = LANG("obj.1873ff7d", null)
+			desc = LANG("obj.1873ff7d6221303f", null)
 		if(3) // Rat
 			name = "\improper Tom portrait"
-			desc = LANG("obj.51f014ad", null)
+			desc = LANG("obj.51f014add5a95ee9", null)
 			icon_state = "frame-rat"
 		if(4) // Ratvar
 			name = "portrait of the imprisoned god"
-			desc = LANG("obj.f357aef6", null) // common core lore.
+			desc = LANG("obj.f357aef60a27fbaa", null) // common core lore.
 			icon_state = "frame-ratvar"
 	portrait_name = name
 	portrait_state = icon_state
@@ -235,14 +235,14 @@
 /obj/structure/sign/picture_frame/portrait/update_desc(updates)
 	. = ..()
 	if(framed)
-		desc = LANG("obj.3917ebcf", null)
+		desc = LANG("obj.3917ebcf1d2f4684", null)
 	else
 		desc = portrait_desc
 
 /obj/structure/sign/picture_frame/portrait/examine_more(mob/user)
 	. = ..()
 	if(!framed)
-		. += span_notice(LANG("obj.574fe5ec", null))
+		. += span_notice(LANG("obj.574fe5ecbd4e5993", null))
 
 //persistent frames, make sure the same ID doesn't appear more than once per map
 /obj/structure/sign/picture_frame/showroom/one

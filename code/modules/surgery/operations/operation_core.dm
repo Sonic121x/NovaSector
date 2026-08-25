@@ -41,4 +41,4 @@
 			span_notice("[surgeon] successfully extracts [core_count] core\s from [patient]!"),
 		)
 	else
-		to_chat(surgeon, span_warning(LANG("datum.bd396b2c", list(patient))))
+		to_chat(surgeon, span_warning(LANG("datum.bd396b2c5b550bbe", list(patient))))

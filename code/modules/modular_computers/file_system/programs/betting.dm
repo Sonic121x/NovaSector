@@ -65,7 +65,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 	. = ..()
 	var/mob/user = ui.user
 	if(isnull(computer.stored_id))
-		to_chat(user, span_danger(LANG("datum.88d28099", list(computer))))
+		to_chat(user, span_danger(LANG("datum.88d28099f0a24de6", list(computer))))
 		return
 	switch(action)
 		if("create_bet")
@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 				options += option
 				option = reject_bad_name(option, allow_numbers = TRUE, max_length = MAX_LENGTH_TITLE, cap_after_symbols = FALSE)
 			if(length(options) < 2)
-				to_chat(user, span_danger(LANG("datum.3a96fc6d", null)))
+				to_chat(user, span_danger(LANG("datum.3a96fc6d8378afbc", null)))
 				return
 			created_bet = new(user, title, description, options)
 			return TRUE
@@ -95,7 +95,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 			if(isnull(bet_placed_on))
 				return
 			if(bet_placed_on == created_bet)
-				to_chat(user, span_danger(LANG("datum.86658971", null)))
+				to_chat(user, span_danger(LANG("datum.86658971d69c8cca", null)))
 				return
 			var/money_betting = params["money_betting"]
 			if(!isnum(money_betting))
@@ -235,7 +235,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 		//they only made their money back, don't tell them they won anything.
 		if((money_won - text2num(winner[2])) == 0)
 			continue
-		winner_account.bank_card_talk(LANG("datum.b711123e", list(money_won, MONEY_SYMBOL, name)))
+		winner_account.bank_card_talk(LANG("datum.b711123ede0494a3", list(money_won, MONEY_SYMBOL, name)))
 
 ///Puts a bank account's money bet on a given option.
 /datum/active_bet/proc/bet_money(datum/bank_account/better, money_betting, option_betting)
@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 						if(!better.adjust_money(-money_adding_in, "Gambling on [name]."))
 							return
 						total_amount_bet += money_adding_in
-						better.bank_card_talk(LANG("datum.fa03b881", list(money_adding_in, MONEY_SYMBOL, name)))
+						better.bank_card_talk(LANG("datum.fa03b881c8b473b8", list(money_adding_in, MONEY_SYMBOL, name)))
 						existing_bets[2] = "[money_betting]"
 						return
 					//taking it all out, we remove them from the list so they aren't a winner with bets of 0.
@@ -272,7 +272,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 							return
 						var/money_taking_out = text2num(existing_bets[2]) - money_betting
 						total_amount_bet -= money_taking_out
-						better.bank_card_talk(LANG("datum.aa2b6c1d", list(money_taking_out, MONEY_SYMBOL, name)))
+						better.bank_card_talk(LANG("datum.aa2b6c1dd94895c9", list(money_taking_out, MONEY_SYMBOL, name)))
 						better.adjust_money(money_taking_out, "Refund from gambling on [name].")
 						existing_bets[2] = "[money_betting]"
 						return
@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 		return
 	total_amount_bet += money_betting
 	options[option_betting] += list(list(better, "[money_betting]"))
-	better.bank_card_talk(LANG("datum.0fc60a8d", list(money_betting, MONEY_SYMBOL, name)))
+	better.bank_card_talk(LANG("datum.0fc60a8d9d73bae0", list(money_betting, MONEY_SYMBOL, name)))
 
 ///Cancels your bet, removing your bet and refunding your money.
 /datum/active_bet/proc/cancel_bet(datum/bank_account/better)
@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 			if(existing_bets[1] == better)
 				var/money_refunding = text2num(existing_bets[2])
 				total_amount_bet -= money_refunding
-				better.bank_card_talk(LANG("datum.0d3475bd", list(money_refunding, MONEY_SYMBOL, name)))
+				better.bank_card_talk(LANG("datum.0d3475bdcb1ca26e", list(money_refunding, MONEY_SYMBOL, name)))
 				better.adjust_money(money_refunding, "Refunded: changed bet for [name].")
 				options[option] -= list(existing_bets)
 

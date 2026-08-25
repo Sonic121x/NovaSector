@@ -108,12 +108,12 @@
 
 	if (to_heal > 0)
 		var/healed = eater.heal_overall_damage(to_heal)
-		eater.visible_message(span_notice(LANG("datum.c5d8a908", list(eater, eat_verb, target))), span_notice(LANG("datum.a1e1ad49", list(eat_verb, target, healed ? ", restoring some health" : ""))))
+		eater.visible_message(span_notice(LANG("datum.c5d8a9081665a417", list(eater, eat_verb, target))), span_notice(LANG("datum.a1e1ad49050efe95", list(eat_verb, target, healed ? ", restoring some health" : ""))))
 	else if (to_damage > 0 && damage_type)
 		var/damaged = eater.apply_damage(to_damage, damage_type)
-		eater.visible_message(span_notice(LANG("datum.dfdd43b5", list(eater, eat_verb, target, damaged ? ", and seems to hurt [eater.p_themselves()]!" : "."))), span_notice(LANG("datum.a1e1ad49", list(eat_verb, target, damaged ? ", hurting yourself in the process" : ""))))
+		eater.visible_message(span_notice(LANG("datum.dfdd43b57508de6a", list(eater, eat_verb, target, damaged ? ", and seems to hurt [eater.p_themselves()]!" : "."))), span_notice(LANG("datum.a1e1ad49050efe95", list(eat_verb, target, damaged ? ", hurting yourself in the process" : ""))))
 	else
-		eater.visible_message(span_notice(LANG("datum.c5d8a908", list(eater, eat_verb, target))), span_notice(LANG("datum.d6171b71", list(eat_verb, target))))
+		eater.visible_message(span_notice(LANG("datum.c5d8a9081665a417", list(eater, eat_verb, target))), span_notice(LANG("datum.d6171b714b8cf981", list(eat_verb, target))))
 
 	finish_eating(eater, target, feeder, to_heal)
 	return TRUE

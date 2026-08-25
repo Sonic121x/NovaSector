@@ -100,39 +100,39 @@
 				var/obj/item/card/id/advanced/prisoner/worn_prisoner_id = worn_id
 				worn_prisoner_id.points += stacking_machine.points
 				stacking_machine.points = 0
-				say(LANG("obj.8bb19476", null))
+				say(LANG("obj.8bb194760ba319fa", null))
 				return TRUE
 			else
 				if(COOLDOWN_FINISHED(src, say_cooldown))
-					say(LANG("obj.02480055", null))
+					say(LANG("obj.02480055308df8d1", null))
 					COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 
 		if("move_shuttle")
 			if(isnull(SSshuttle.getShuttle("laborcamp")))
 				if(COOLDOWN_FINISHED(src, say_cooldown))
-					say(LANG("obj.20fb4291", null))
+					say(LANG("obj.20fb42913df0c182", null))
 					COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				return
 
 			var/list/labor_shuttle_mobs = find_labor_shuttle_mobs()
 			if(length(labor_shuttle_mobs) > 1 || labor_shuttle_mobs[1] != user_mob)
 				if(COOLDOWN_FINISHED(src, say_cooldown))
-					say(LANG("obj.9d8fb001", null))
+					say(LANG("obj.9d8fb001782e224f", null))
 					COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				return
 
 			switch(SSshuttle.moveShuttle("laborcamp", "laborcamp_home", TRUE))
 				if(1)
 					if(COOLDOWN_FINISHED(src, say_cooldown))
-						say(LANG("obj.20fb4291", null))
+						say(LANG("obj.20fb42913df0c182", null))
 						COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				if(2)
 					if(COOLDOWN_FINISHED(src, say_cooldown))
-						say(LANG("obj.58de3a65", null))
+						say(LANG("obj.58de3a6502da3425", null))
 						COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				if(3)
 					if(COOLDOWN_FINISHED(src, say_cooldown))
-						say(LANG("obj.8f4dc87d", null))
+						say(LANG("obj.8f4dc87d798c2602", null))
 						COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				else
 					if(!(obj_flags & EMAGGED))
@@ -141,7 +141,7 @@
 
 						aas_config_announce(/datum/aas_config_entry/security_labor_stacker, list("PERSON" = user_mob.real_name), src, list(RADIO_CHANNEL_SECURITY))
 					user_mob.log_message("has completed their labor points goal and is now sending the gulag shuttle back to the station.", LOG_GAME)
-					say(LANG("obj.b670bfe4", null))
+					say(LANG("obj.b670bfe4dea4347c", null))
 					initiated_launch = TRUE
 					return TRUE
 
@@ -161,7 +161,7 @@
 
 	if(initiated_launch && length(find_labor_shuttle_mobs()) > 1)
 		initiated_launch = FALSE
-		say(LANG("obj.b5368c2e", null))
+		say(LANG("obj.b5368c2e0c8bac77", null))
 		return BLOCK_SHUTTLE_MOVE
 
 /obj/machinery/mineral/labor_claim_console/proc/locate_stacking_machine()
@@ -174,8 +174,8 @@
 		return FALSE
 
 	obj_flags |= EMAGGED
-	balloon_alert(user, LANG("obj.06aa6451", null))
-	visible_message(span_warning(LANG("obj.acc77098", list(src))))
+	balloon_alert(user, LANG("obj.06aa64511f4d3daf", null))
+	visible_message(span_warning(LANG("obj.acc770984c0d36b7", list(src))))
 	do_sparks(2, TRUE, src)
 	return TRUE
 
@@ -231,12 +231,12 @@
 
 	var/obj/item/card/id/advanced/prisoner/prisoner_id = tool
 	if(!prisoner_id.goal) //no goal to reach
-		say(LANG("obj.ebe1f050", null))
+		say(LANG("obj.ebe1f05097a99076", null))
 		return ITEM_INTERACT_BLOCKING
 
-	say(LANG("obj.2f62b694", list(prisoner_id.registered_name)))
-	say(LANG("obj.907c6c5c", list(prisoner_id.points, prisoner_id.goal)))
-	say(LANG("obj.ea9f3d09", null))
+	say(LANG("obj.2f62b6943facf359", list(prisoner_id.registered_name)))
+	say(LANG("obj.907c6c5c2ffe54e0", list(prisoner_id.points, prisoner_id.goal)))
+	say(LANG("obj.ea9f3d09ec540f55", null))
 	return ITEM_INTERACT_SUCCESS
 
 /datum/aas_config_entry/security_labor_stacker

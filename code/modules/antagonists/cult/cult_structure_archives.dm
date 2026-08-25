@@ -57,7 +57,7 @@
 	)
 
 /obj/structure/destructible/cult/item_dispenser/archives/succcess_message(mob/living/user, obj/item/spawned_item)
-	to_chat(user, span_cult_italic(LANG("obj.cb537480", list(spawned_item, src))))
+	to_chat(user, span_cult_italic(LANG("obj.cb5374809d76f7fa", list(spawned_item, src))))
 
 // Preset for the library that doesn't spawn runed metal on destruction, or glow.
 /obj/structure/destructible/cult/item_dispenser/archives/library

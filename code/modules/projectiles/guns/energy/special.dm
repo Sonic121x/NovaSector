@@ -118,7 +118,7 @@
 /obj/item/gun/energy/plasmacutter/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += span_notice(LANG("obj.26b13b03", list(src, round(cell.percent()))))
+		. += span_notice(LANG("obj.26b13b03680e71fd", list(src, round(cell.percent()))))
 
 /obj/item/gun/energy/plasmacutter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	var/charge_multiplier = 0
@@ -131,7 +131,7 @@
 		return NONE
 
 	if(cell.charge == cell.maxcharge)
-		balloon_alert(user, LANG("obj.9e79ba49", null))
+		balloon_alert(user, LANG("obj.9e79ba497c1078ea", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/stack/sheet = tool
@@ -139,7 +139,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	cell.give(0.2 * STANDARD_CELL_CHARGE * charge_multiplier)
-	balloon_alert(user, LANG("obj.aac7e166", null))
+	balloon_alert(user, LANG("obj.aac7e1661ebd251c", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/energy/plasmacutter/emp_act(severity)
@@ -151,7 +151,7 @@
 		return
 
 	var/mob/living/user = loc
-	user.visible_message(span_danger(LANG("obj.60571bac", list(src, user))), span_userdanger(LANG("obj.f8e93394", list(src))))
+	user.visible_message(span_danger(LANG("obj.60571bac2e1d0a00", list(src, user))), span_userdanger(LANG("obj.f8e9339460a4f695", list(src))))
 	user.adjust_fire_stacks(4)
 	user.ignite_mob()
 
@@ -159,16 +159,16 @@
 // Amount cannot be defaulted to 1: most of the code specifies 0 in the call.
 /obj/item/gun/energy/plasmacutter/tool_use_check(mob/living/user, amount, heat_required)
 	if(QDELETED(cell))
-		balloon_alert(user, LANG("obj.30fa5482", null))
+		balloon_alert(user, LANG("obj.30fa5482ed8959f3", null))
 		return FALSE
 	// Amount cannot be used if drain is made continuous, e.g. amount = 5, charge_weld = 25
 	// Then it'll drain 125 at first and 25 periodically, but fail if charge dips below 125 even though it still can finish action
 	// Alternately it'll need to drain amount*charge_weld every period, which is either obscene or makes it free for other uses
 	if(amount ? cell.charge < PLASMA_CUTTER_CHARGE_WELD * amount : cell.charge < PLASMA_CUTTER_CHARGE_WELD)
-		balloon_alert(user, LANG("obj.07f43d6c", null))
+		balloon_alert(user, LANG("obj.07f43d6c1593cca8", null))
 		return FALSE
 	if(heat < heat_required)
-		to_chat(user, span_warning(LANG("obj.fe7e2bc6", list(src))))
+		to_chat(user, span_warning(LANG("obj.fe7e2bc651e1c434", list(src))))
 		return FALSE
 
 	return TRUE
@@ -221,15 +221,15 @@
 
 /obj/item/gun/energy/wormhole_projector/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.b0f738a0", null))
+	. += span_notice(LANG("obj.b0f738a0e22fb56f", null))
 
 /obj/item/gun/energy/wormhole_projector/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/assembly/signaler/anomaly/bluespace))
 		return NONE
 	if(firing_core)
-		user.balloon_alert(user, LANG("obj.641e7c06", null))
+		user.balloon_alert(user, LANG("obj.641e7c0683b494f4", null))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.2025b3a6", list(tool))))
+	to_chat(user, span_notice(LANG("obj.2025b3a68739097c", list(tool))))
 	firing_core = TRUE
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	qdel(tool)
@@ -242,7 +242,7 @@
 
 /obj/item/gun/energy/wormhole_projector/shoot_with_empty_chamber(mob/living/user)
 	. = ..()
-	to_chat(user, span_danger(LANG("obj.146a1c5b", null)))
+	to_chat(user, span_danger(LANG("obj.146a1c5b4896ce8f", null)))
 
 /obj/item/gun/energy/wormhole_projector/update_icon_state()
 	. = ..()
@@ -380,9 +380,9 @@
 	if(!istype(tool, /obj/item/assembly/signaler/anomaly/grav))
 		return NONE
 	if(firing_core)
-		user.balloon_alert(user, LANG("obj.641e7c06", null))
+		user.balloon_alert(user, LANG("obj.641e7c0683b494f4", null))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.7d036008", list(tool))))
+	to_chat(user, span_notice(LANG("obj.7d0360082dfb41a0", list(tool))))
 	firing_core = TRUE
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	qdel(tool)
@@ -433,7 +433,7 @@ it is often confused with the mech weapon of the same name, since it is a bit mo
 		return ..()
 	//If we have charge, but the stock is folded, do sparks.
 	if(can_shoot())
-		balloon_alert(user, LANG("obj.cfac405b", null))
+		balloon_alert(user, LANG("obj.cfac405b92cdaca7", null))
 
 		if(prob(75)) //fake sparks to cut on spark spam
 			playsound(user, 'sound/effects/sparks/sparks1.ogg', 50, TRUE)
@@ -459,7 +459,7 @@ it is often confused with the mech weapon of the same name, since it is a bit mo
 		playsound(user, 'sound/items/weapons/gun/tesla/squeak_latch.ogg', 100)
 
 	update_appearance()
-	balloon_alert_to_viewers(LANG("obj.0e0b09bd", list(ready_to_fire ? "unfolded" : "folded")))
+	balloon_alert_to_viewers(LANG("obj.0e0b09bd7d14c819", list(ready_to_fire ? "unfolded" : "folded")))
 
 /obj/item/gun/energy/marksman_revolver
 	name = "marksman revolver"
@@ -485,9 +485,9 @@ it is often confused with the mech weapon of the same name, since it is a bit mo
 /obj/item/gun/energy/marksman_revolver/examine(mob/user)
 	. = ..()
 	if(max_coins)
-		. += LANG("obj.feda2fd5", list(coin_count, max_coins, coin_regen_rate/10))
+		. += LANG("obj.feda2fd5254783cb", list(coin_count, max_coins, coin_regen_rate/10))
 	else
-		. += LANG("obj.f0ee0dba", null)
+		. += LANG("obj.f0ee0dba79ce2cde", null)
 
 /obj/item/gun/energy/marksman_revolver/process(seconds_per_tick)
 	if(!max_coins || coin_count >= max_coins)
@@ -508,7 +508,7 @@ it is often confused with the mech weapon of the same name, since it is a bit mo
 		return ITEM_INTERACT_BLOCKING
 
 	if(max_coins && coin_count <= 0)
-		to_chat(user, span_warning(LANG("obj.4a83cbcd", null)))
+		to_chat(user, span_warning(LANG("obj.4a83cbcdb67d136b", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(max_coins)
@@ -517,7 +517,7 @@ it is often confused with the mech weapon of the same name, since it is a bit mo
 
 	var/turf/target_turf = get_offset_target_turf(target, rand(-1, 1), rand(-1, 1)) // choose a random tile adjacent to the clicked one
 	playsound(user.loc, 'sound/effects/coin2.ogg', 50, TRUE)
-	user.visible_message(span_warning(LANG("obj.222a4eda", list(user, target))), span_danger(LANG("obj.a569d9e3", list(target))))
+	user.visible_message(span_warning(LANG("obj.222a4eda78d58b03", list(user, target))), span_danger(LANG("obj.a569d9e3789b9d8a", list(target))))
 	var/obj/projectile/bullet/coin/new_coin = new(get_turf(user), target_turf, user)
 	new_coin.aim_projectile(target_turf, user)
 	new_coin.fire()

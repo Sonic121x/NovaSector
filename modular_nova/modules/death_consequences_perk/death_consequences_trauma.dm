@@ -413,7 +413,7 @@
 
 	owner.investigate_log(log_message)
 	owner.visible_message(visible_message, ignored_mobs = self_message_target) // finally, send it
-	owner.balloon_alert_to_viewers(LANG("datum.ed315fcd", null))
+	owner.balloon_alert_to_viewers(LANG("datum.ed315fcd1f482392", null))
 	to_chat(self_message_target, self_message)
 
 /// Returns a short-ish string containing an href to [get_specific_data].
@@ -448,7 +448,7 @@
 		if (world.time <= time_til_scan_expires[usr])
 			to_chat(usr, boxed_message(get_specific_data()), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 		else
-			to_chat(usr, span_warning(LANG("datum.4f10cea5", null)))
+			to_chat(usr, span_warning(LANG("datum.4f10cea5c2507031", null)))
 
 /// Returns a large string intended to show specifics of how this degradation work.
 /datum/brain_trauma/severe/death_consequences/proc/get_specific_data()

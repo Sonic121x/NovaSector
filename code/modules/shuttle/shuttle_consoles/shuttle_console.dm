@@ -45,25 +45,25 @@
 /obj/machinery/computer/shuttle/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	if(is_station_level(user.z) && user.mind && IS_HEAD_REVOLUTIONARY(user) && !(user.mind in dumb_rev_heads)) //Rev heads will get a one-time warning that they shouldn't leave
-		to_chat(user, span_warning(LANG("obj.64b04683", null)))
+		to_chat(user, span_warning(LANG("obj.64b04683a064fc92", null)))
 		dumb_rev_heads += user.mind
 		return
 	if (HAS_TRAIT(user, TRAIT_FORBID_MINING_SHUTTLE_CONSOLE_OUTSIDE_STATION) && !is_station_level(user.z)) //Free golems and other mobs with this trait will not be able to use the shuttle from outside the station Z
-		to_chat(user, span_warning(LANG("obj.5064b82b", null)))
+		to_chat(user, span_warning(LANG("obj.5064b82be86855a6", null)))
 		return
 	if(!user.can_read(src, reading_check_flags = READING_CHECK_LITERACY)) //Illiterate mobs which aren't otherwise blocked from using computers will send the shuttle to a random valid destination
-		to_chat(user, span_warning(LANG("obj.24ce6747", null)))
+		to_chat(user, span_warning(LANG("obj.24ce67475c1a6fa0", null)))
 		if(do_after(user, 10 SECONDS, target = src))
 			var/list/dest_list = get_valid_destinations()
 			if(!dest_list.len) //No valid destinations
-				to_chat(user, span_warning(LANG("obj.9b2794fb", null)))
+				to_chat(user, span_warning(LANG("obj.9b2794fb69df594d", null)))
 				return
 			var/list/destination = pick(dest_list)
 			switch (send_shuttle(destination["id"], user))
 				if (SHUTTLE_CONSOLE_SUCCESS)
 					return
 				else
-					to_chat(user, span_warning(LANG("obj.9b2794fb", null)))
+					to_chat(user, span_warning(LANG("obj.9b2794fb69df594d", null)))
 					return
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -178,7 +178,7 @@
 		return SHUTTLE_CONSOLE_DESTINVALID
 	switch(SSshuttle.moveShuttle(shuttleId, dest_id, TRUE))
 		if(DOCKING_SUCCESS)
-			say(LANG("obj.41f54f77", null))
+			say(LANG("obj.41f54f77a93fdfc6", null))
 			log_shuttle("[key_name(user)] has sent shuttle \"[shuttleId]\" towards \"[dest_id]\", using [src].")
 			return SHUTTLE_CONSOLE_SUCCESS
 		else
@@ -189,29 +189,29 @@
 	if(.)
 		return
 	if(!allowed(usr))
-		to_chat(usr, span_danger(LANG("obj.077f9b52", null)))
+		to_chat(usr, span_danger(LANG("obj.077f9b52c530e7f8", null)))
 		return
 
 	switch(action)
 		if("move")
 			switch (send_shuttle(params["shuttle_id"], usr)) //Try to send the shuttle, tell the user what happened
 				if (SHUTTLE_CONSOLE_ACCESSDENIED)
-					to_chat(usr, span_warning(LANG("obj.077f9b52", null)))
+					to_chat(usr, span_warning(LANG("obj.077f9b52c530e7f8", null)))
 					return
 				if (SHUTTLE_CONSOLE_ENDGAME)
-					to_chat(usr, span_warning(LANG("obj.0cab7660", null)))
+					to_chat(usr, span_warning(LANG("obj.0cab7660179b3888", null)))
 					return
 				if (SHUTTLE_CONSOLE_RECHARGING)
-					to_chat(usr, span_warning(LANG("obj.7567d480", null)))
+					to_chat(usr, span_warning(LANG("obj.7567d48086590dde", null)))
 					return
 				if (SHUTTLE_CONSOLE_INTRANSIT)
-					to_chat(usr, span_warning(LANG("obj.a804452a", null)))
+					to_chat(usr, span_warning(LANG("obj.a804452a69c70c27", null)))
 					return
 				if (SHUTTLE_CONSOLE_DESTINVALID)
-					to_chat(usr, span_warning(LANG("obj.545a7071", null)))
+					to_chat(usr, span_warning(LANG("obj.545a70714fa430e9", null)))
 					return
 				if (SHUTTLE_CONSOLE_ERROR)
-					to_chat(usr, span_warning(LANG("obj.3804550d", null)))
+					to_chat(usr, span_warning(LANG("obj.3804550d2183c63b", null)))
 					return
 				if (SHUTTLE_CONSOLE_SUCCESS)
 					return TRUE //No chat message here because the send_shuttle proc makes the console itself speak
@@ -222,11 +222,11 @@
 				return TRUE
 		if("request")
 			if(!COOLDOWN_FINISHED(src, request_cooldown))
-				to_chat(usr, span_warning(LANG("obj.191a51b7", null)))
+				to_chat(usr, span_warning(LANG("obj.191a51b7489f2d6a", null)))
 				return
 			COOLDOWN_START(src, request_cooldown, 1 MINUTES)
-			to_chat(usr, span_notice(LANG("obj.5209056f", null)))
-			to_chat(GLOB.admins, LANG("obj.ac968526", list(ADMIN_LOOKUPFLW(usr), HrefToken(), shuttleId, HrefToken(), REF(src))))
+			to_chat(usr, span_notice(LANG("obj.5209056feb88263d", null)))
+			to_chat(GLOB.admins, LANG("obj.ac968526429a9ee3", list(ADMIN_LOOKUPFLW(usr), HrefToken(), shuttleId, HrefToken(), REF(src))))
 			return TRUE
 
 /obj/machinery/computer/shuttle/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -234,7 +234,7 @@
 		return FALSE
 	req_access = list()
 	obj_flags |= EMAGGED
-	balloon_alert(user, LANG("obj.30b6ac44", null))
+	balloon_alert(user, LANG("obj.30b6ac443a1682a0", null))
 	return TRUE
 
 /obj/machinery/computer/shuttle/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)

@@ -8,8 +8,8 @@
 	var/report_message = "Complete this goal."
 
 /datum/station_goal/proc/send_report()
-	priority_announce(LANG("datum.289d9d43", list(name)), "Incoming Priority Message", SSstation.announcer.get_rand_report_sound())
-	print_command_report(get_report(),LANG("datum.f2e3ad50", list(pick(GLOB.phonetic_alphabet), rand(1,50))), announce=FALSE)
+	priority_announce(LANG("datum.289d9d4320b9a066", list(name)), "Incoming Priority Message", SSstation.announcer.get_rand_report_sound())
+	print_command_report(get_report(),LANG("datum.f2e3ad5023530509", list(pick(GLOB.phonetic_alphabet), rand(1,50))), announce=FALSE)
 	on_report()
 
 /datum/station_goal/proc/on_report()
@@ -24,9 +24,9 @@
 
 /datum/station_goal/proc/get_result()
 	if(check_completion())
-		return LANG("datum.fe15b6c1", list(name))
+		return LANG("datum.fe15b6c19e6e9b83", list(name))
 	else
-		return LANG("datum.959dd257", list(name))
+		return LANG("datum.959dd2571e5e1fb7", list(name))
 
 /datum/station_goal/Topic(href, href_list)
 	..()

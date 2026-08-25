@@ -33,7 +33,7 @@ All ShuttleMove procs go here
 			living_thing.buckled?.unbuckle_mob(living_thing, force = TRUE)
 			living_thing.pulledby?.stop_pulling()
 			living_thing.stop_pulling()
-			living_thing.visible_message(span_warning(LANG("turf.83e05307", list(shuttle, living_thing))))
+			living_thing.visible_message(span_warning(LANG("turf.83e05307efab19c9", list(shuttle, living_thing))))
 			SSblackbox.record_feedback("tally", "shuttle_gib", 1, living_thing.type)
 			log_shuttle("[key_name(living_thing)] was shuttle gibbed by [shuttle].")
 			living_thing.investigate_log("has been gibbed by [shuttle].", INVESTIGATE_DEATHS)
@@ -355,7 +355,7 @@ All ShuttleMove procs go here
 		buckled.user_unbuckle_mob(src, src)
 		return
 	if(knockdown > 0)
-		if(buckled)
+		if(buckled || HAS_TRAIT(src, TRAIT_NEGATES_GRAVITY))
 			Immobilize(knockdown * 0.5)
 			return
 		Paralyze(knockdown)

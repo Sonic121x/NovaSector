@@ -152,15 +152,15 @@ GLOBAL_LIST_EMPTY(raptor_population)
 
 	switch (health / maxHealth)
 		if (0 to 0.2)
-			. += span_italics(span_bolddanger(LANG("mob.24c1f9a8", list(p_They(), p_are(), p_their()))))
+			. += span_italics(span_bolddanger(LANG("mob.24c1f9a8b76f0428", list(p_They(), p_are(), p_their()))))
 		if (0.2 to 0.4)
-			. += span_danger(LANG("mob.7ee36f63", list(p_They(), p_have(), p_their())))
+			. += span_danger(LANG("mob.7ee36f63049d96c4", list(p_They(), p_have(), p_their())))
 		if (0.4 to 0.6)
-			. += span_warning(LANG("mob.f55c6c1e", list(p_They(), p_are(), p_their())))
+			. += span_warning(LANG("mob.f55c6c1eff2ae021", list(p_They(), p_are(), p_their())))
 		if (0.6 to 0.8)
-			. += span_warning(LANG("mob.47d4438f", list(p_They(), p_are(), p_their())))
+			. += span_warning(LANG("mob.47d4438f93e0f741", list(p_They(), p_are(), p_their())))
 		if (0.8 to 0.999)
-			. += span_notice(LANG("mob.a141ea2a", list(p_They(), p_have())))
+			. += span_notice(LANG("mob.a141ea2a3bde6767", list(p_They(), p_have())))
 
 /mob/living/basic/raptor/Life(seconds_per_tick)
 	. = ..()
@@ -181,7 +181,7 @@ GLOBAL_LIST_EMPTY(raptor_population)
 		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 	var/obj/ore_food = locate(/obj/item/stack/ore) in target
 	if(isnull(ore_food))
-		balloon_alert(src, LANG("mob.3c546ddf", null))
+		balloon_alert(src, LANG("mob.3c546ddf183ec9f1", null))
 	else
 		UnarmedAttack(ore_food, TRUE, modifiers)
 	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
@@ -357,14 +357,14 @@ GLOBAL_LIST_EMPTY(raptor_population)
 	switch (new_stage)
 		if (RAPTOR_BABY)
 			name = "baby raptor"
-			desc = LANG("mob.a5108206", null)
+			desc = LANG("mob.a510820671236bcb", null)
 			icon = 'icons/mob/simple/lavaland/raptor_baby.dmi'
 			base_icon_state = "baby"
 			base_pixel_w = 0
 			mob_size = MOB_SIZE_TINY
 		if (RAPTOR_YOUNG)
 			name = "raptor youngling"
-			desc = LANG("mob.b70bb106", null)
+			desc = LANG("mob.b70bb106b837329c", null)
 			icon = 'icons/mob/simple/lavaland/raptor_big.dmi'
 			base_icon_state = "young"
 			base_pixel_w = initial(base_pixel_w)

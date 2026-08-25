@@ -21,6 +21,8 @@ use std::path::{Path, PathBuf};
 
 use dm::ast::{BinaryOp, Case, Expression, Follow, Spanned, Statement, Term};
 
+use crate::{governance::CatalogDomains, keys};
+
 /// lint 结果：错误使退出码非零（CI 失败），告警仅打印。
 #[derive(Default)]
 struct Report {
@@ -35,6 +37,264 @@ impl Report {
     fn warn(&mut self, msg: String) {
         self.warnings.push(msg);
     }
+}
+
+/// 允许在运行期把译文写进 `name` 的调用点（上游本来就在运行期拼这些名字，且它们是**复合身份名**、
+/// 不参与任何英文比较；显示边界的 `name == initial(name)` 判据本就把它们排除在类型标签之外）。
+///   · edible.dm     —— `"slice of [x]"`
+///   · mail.dm       —— `"[initial(name)] for [收件人] ([职位])"`
+/// 新增前先问：这个 name 有没有可能被拿去比较/当查表键？有 → 不该固化译文。
+const NAME_LANG_ASSIGN_ALLOWLIST: &[&str] = &[
+    "code/datums/components/food/edible.dm",
+    "code/game/objects/items/mail.dm",
+    // 打印出来的法医报告：`"FR-[编号] 'Forensic Record'"` 是**新生成实例的合成身份名**
+    // （与 mail.dm 的「给某某的信」同形），编号来自运行期计数器，不存在 canonical 英文原名
+    // 可供显示边界反查。纸张名不参与任何比较。
+    "code/modules/detectivework/scanner.dm",
+    // MOD 组件的钉选动作名 `"Activate [模块名]"`：上游本来就在 `New()` 里按链接的模块拼出来，
+    // 不存在 canonical 英文原名可供显示边界反查。唯一读它的比较是 `action.dm` 的 `SetId`，
+    // 那里比的是**同一个 mob 上两个动作名之间**（给同名按钮分配不同 id），两边同时被译仍然
+    // 相等，所以译名不破坏它。
+    "code/modules/mod/mod_actions.dm",
+];
+
+/// 表达式的**值**是否就是 LANG 的产物（译文串）。
+///
+/// 语义刻意比「出现过 LANG」严：`name = tgui_input_text(user, LANG(提示), LANG(标题), …)` 里
+/// LANG 只是别人的实参，赋进 name 的是管理员输入 —— 按「出现过」判会当场误报（admin_verbs.dm
+/// 就是这形状）。只认值位置：LANG 本身、拼接/三元的分支、内插串里的内插项。
+///
+/// 注意匹配的是**宏展开后**的名字：`LANG`/`LANGU` 是 `#define`，SpacemanDMM 的预处理器在建 AST
+/// 之前就把它们展开成 `lang_format`/`lang_format_for` 了，AST 里根本没有 "LANG"（与 extract.rs
+/// 里那处注释同源）。
+fn expr_yields_lang(expr: &Expression) -> bool {
+    match expr {
+        Expression::Base { term, follow } => follow.is_empty() && term_yields_lang(&term.elem),
+        Expression::BinaryOp { op, lhs, rhs } => {
+            matches!(op, BinaryOp::Add) && (expr_yields_lang(lhs) || expr_yields_lang(rhs))
+        }
+        Expression::AssignOp { rhs, .. } => expr_yields_lang(rhs),
+        Expression::TernaryOp { if_, else_, .. } => {
+            expr_yields_lang(if_) || expr_yields_lang(else_)
+        }
+    }
+}
+
+fn term_yields_lang(term: &Term) -> bool {
+    match term {
+        Term::Call(name, _) => matches!(name.as_str(), "lang_format" | "lang_format_for"),
+        Term::Expr(inner) => expr_yields_lang(inner),
+        Term::InterpString(_, parts) => parts
+            .iter()
+            .any(|(part, _)| part.as_ref().is_some_and(expr_yields_lang)),
+        _ => false,
+    }
+}
+
+/// 收集 `name = <含 LANG 的表达式>` / `X.name = <含 LANG 的表达式>` 的位置（含 if/for 等嵌套块）。
+fn collect_name_lang_assigns(block: &[Spanned<Statement>], out: &mut Vec<dm::Location>) {
+    for stmt in block.iter() {
+        if let Statement::Expr(Expression::AssignOp { op, lhs, rhs }) = &stmt.elem {
+            if matches!(op, dm::ast::AssignOp::Assign)
+                && assign_target_is_name(lhs)
+                && expr_yields_lang(rhs)
+            {
+                out.push(stmt.location);
+            }
+        }
+        visit_nested_blocks(&stmt.elem, &mut |inner| {
+            collect_name_lang_assigns(inner, out)
+        });
+    }
+}
+
+/// 遍历语句里嵌套的子块（if/else/for/while/switch/do…）。只关心「块」，条件表达式不下探——
+/// 赋值不会出现在条件里。
+fn visit_nested_blocks(stmt: &Statement, sink: &mut impl FnMut(&[Spanned<Statement>])) {
+    match stmt {
+        Statement::If { arms, else_arm } => {
+            for (_, block) in arms.iter() {
+                sink(block);
+            }
+            if let Some(block) = else_arm {
+                sink(block);
+            }
+        }
+        Statement::ForLoop { block, .. }
+        | Statement::While { block, .. }
+        | Statement::DoWhile { block, .. } => sink(block),
+        Statement::ForList(for_list) => sink(&for_list.block),
+        Statement::ForRange(for_range) => sink(&for_range.block),
+        Statement::Switch { cases, default, .. } => {
+            for (_, block) in cases.iter() {
+                sink(block);
+            }
+            if let Some(block) = default {
+                sink(block);
+            }
+        }
+        Statement::TryCatch {
+            try_block,
+            catch_block,
+            ..
+        } => {
+            sink(try_block);
+            sink(catch_block);
+        }
+        Statement::Spawn { block, .. } => sink(block),
+        _ => {}
+    }
+}
+
+/// 赋值左侧是否是 `name` 或 `<something>.name`。
+fn assign_target_is_name(lhs: &Expression) -> bool {
+    let Expression::Base { term, follow } = lhs else {
+        return false;
+    };
+    if let Some(last) = follow.last() {
+        return matches!(&last.elem, Follow::Field(_, field) if field.as_str() == "name");
+    }
+    matches!(&term.elem, Term::Ident(ident) if ident.as_str() == "name")
+}
+
+/// 规则 D：**目录里有、源码里却还是裸字面量**。
+///
+/// 抽取与改写是两条独立通道。上游把一段文案搬进新写法时，extract 常常照样抽得到（于是目录里
+/// 有键、还被翻译了），而 rewrite 认不出那个 sink（比如上游把板条箱隐私锁重构成组件后，消息经
+/// 项目自定义的 `deny(source, user, msg)` 下发）→ 源码里留着裸英文，玩家看到的就是英文，而
+/// 目录里那条译文永远查不到调用点。这类**现有 lint 一条都查不出**：`nova-i18n lint` 的悬空 key
+/// 规则查的是反方向（有 key 没原文）。
+///
+/// 判据刻意收紧到「**这段文字已经在 en 目录里**」：那说明抽取器认得它、译文多半也在，唯一缺的
+/// 就是改写。纯启发式的「proc 里出现英文句子」噪音太大，没法当门禁。
+struct BareLiteralCollector<'ctx> {
+    context: &'ctx dm::Context,
+    hits: BTreeMap<String, String>,
+}
+
+impl<'ctx> BareLiteralCollector<'ctx> {
+    fn record(&mut self, text: &str, loc: dm::Location) {
+        if !self.hits.contains_key(text) {
+            let path = self.context.file_path(loc.file);
+            // 单元测试里的英文串是**夹具**：i18n 的落地层测试必须照抄真实渲染形态（见 AGENTS 里
+            // 「照抄真实形态，别手写等价物」那条），于是每写一条回归断言就会被这条规则报成新增
+            // 裸字面量。抽取侧早有同样的排除（extract.rs 的 in_unit_tests），这里漏了。
+            // 注意 DM 的 file list 用反斜杠，Path::components() 认不出，按归一后的字符串判。
+            let normalized = path.to_string_lossy().replace('\\', "/");
+            if normalized.contains("/unit_tests/") || normalized.starts_with("unit_tests/") {
+                return;
+            }
+            self.hits
+                .insert(text.to_string(), format!("{}:{}", path.display(), loc.line));
+        }
+    }
+
+    fn visit_block(&mut self, block: &[Spanned<Statement>]) {
+        for stmt in block.iter() {
+            self.visit_stmt(&stmt.elem, stmt.location);
+            visit_nested_blocks(&stmt.elem, &mut |inner| self.visit_block(inner));
+        }
+    }
+
+    fn visit_stmt(&mut self, stmt: &Statement, loc: dm::Location) {
+        match stmt {
+            Statement::Expr(e) => self.visit_expr(e, loc),
+            Statement::Return(Some(e)) => self.visit_expr(e, loc),
+            Statement::Var(v) => {
+                if let Some(e) = &v.value {
+                    self.visit_expr(e, loc);
+                }
+            }
+            _ => {}
+        }
+    }
+
+    fn visit_expr(&mut self, expr: &Expression, loc: dm::Location) {
+        match expr {
+            Expression::Base { term, follow } => {
+                self.visit_term(&term.elem, term.location);
+                for f in follow.iter() {
+                    match &f.elem {
+                        Follow::Index(_, idx) => self.visit_expr(idx, loc),
+                        Follow::Call(_, _, args) => {
+                            for a in args.iter() {
+                                self.visit_expr(a, loc);
+                            }
+                        }
+                        _ => {}
+                    }
+                }
+            }
+            Expression::BinaryOp { lhs, rhs, .. } | Expression::AssignOp { lhs, rhs, .. } => {
+                self.visit_expr(lhs, loc);
+                self.visit_expr(rhs, loc);
+            }
+            Expression::TernaryOp { cond, if_, else_ } => {
+                self.visit_expr(cond, loc);
+                self.visit_expr(if_, loc);
+                self.visit_expr(else_, loc);
+            }
+        }
+    }
+
+    fn visit_term(&mut self, term: &Term, loc: dm::Location) {
+        match term {
+            // LANG 调用整棵子树跳过：key 是 `<ns>.<hash>`，实参里的字面量是**故意**留成裸串的
+            // （运行期由 lang_localize_arg 逐实参反查），报它们只会淹掉真正的漏网之鱼。
+            Term::Call(name, args) => {
+                if matches!(name.as_str(), "lang_format" | "lang_format_for") {
+                    return;
+                }
+                for a in args.iter() {
+                    self.visit_expr(a, loc);
+                }
+            }
+            Term::String(text) => {
+                self.record(text, loc);
+            }
+            // 插值串同样要查：`speak("[mode] level [threat] scumbag [name] in [area].")` 的**模板形态**
+            // （`{0} level {1} scumbag {2} in {3}.`）早就在目录里、也译好了，缺的只是 rewrite 不认那个
+            // sink。只看纯字面量会整类漏掉——beepsky 的逮捕播报就是这么在目录里躺了很久的。
+            Term::InterpString(_, parts) => {
+                let expr = Expression::Base {
+                    term: Box::new(Spanned::new(loc, term.clone())),
+                    follow: Box::new([]),
+                };
+                if let Some(template) = crate::template::build_template(&expr) {
+                    self.record(&template, loc);
+                }
+                // 内插表达式里还可能嵌着自己的字面量（`"… [x ? "bar baz." : ""] …"`）。
+                // 从前这一支只记模板就 return 了，另有一条同名 arm 想做下探却因排在后面**永不可达**
+                // （编译器的 unreachable_pattern 警告一直在报）——整类嵌套字面量因此不在规则 D 视野里。
+                for (opt, _) in parts.iter() {
+                    if let Some(e) = opt {
+                        self.visit_expr(e, loc);
+                    }
+                }
+            }
+            Term::Expr(inner) => self.visit_expr(inner, loc),
+            Term::SelfCall(args) | Term::ParentCall(args) | Term::List(args) => {
+                for a in args.iter() {
+                    self.visit_expr(a, loc);
+                }
+            }
+            _ => {}
+        }
+    }
+}
+
+/// 「句子型」：含空格且以句末标点收尾。挡掉标识符、图标名、路径片段这些同样可能出现在目录里的短串。
+fn is_sentence_shaped(text: &str) -> bool {
+    let trimmed = text.trim();
+    if !trimmed.contains(' ') || trimmed.len() < 12 {
+        return false;
+    }
+    trimmed.ends_with(['.', '!', '?'])
+}
+
+/// 目录值里也要放行**插值模板**（含 `{N}`）：规则 D 现在同时比对插值串的模板形态。
+fn is_catalog_candidate(value: &str) -> bool {
+    is_sentence_shaped(value)
 }
 
 /// 手写的 locale-only 目录文件（无 en 对应是设计如此）：状态词表与人工 AC 兜底。
@@ -57,8 +317,9 @@ fn load_catalog_excluding(dir: &Path, exclude: &[&str]) -> BTreeMap<String, Stri
     let Ok(entries) = std::fs::read_dir(dir) else {
         return merged;
     };
-    for entry in entries.flatten() {
-        let path = entry.path();
+    let mut paths: Vec<PathBuf> = entries.flatten().map(|entry| entry.path()).collect();
+    paths.sort();
+    for path in paths {
         if path.extension().and_then(|s| s.to_str()) != Some("json") {
             continue;
         }
@@ -78,6 +339,129 @@ fn load_catalog_excluding(dir: &Path, exclude: &[&str]) -> BTreeMap<String, Stri
         }
     }
     merged
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+struct DomainCatalogEntry {
+    domain: String,
+    key: String,
+    file: String,
+    value: String,
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+struct DuplicateConflict {
+    domain: String,
+    key: String,
+    first_file: String,
+    first_value: String,
+    second_file: String,
+    second_value: String,
+}
+
+fn duplicate_conflicts(
+    entries: impl IntoIterator<Item = DomainCatalogEntry>,
+) -> Vec<DuplicateConflict> {
+    let mut seen: BTreeMap<(String, String), DomainCatalogEntry> = BTreeMap::new();
+    let mut conflicts = Vec::new();
+    for entry in entries {
+        let identity = (entry.domain.clone(), entry.key.clone());
+        if let Some(first) = seen.get(&identity) {
+            if first.value != entry.value {
+                conflicts.push(DuplicateConflict {
+                    domain: entry.domain,
+                    key: entry.key,
+                    first_file: first.file.clone(),
+                    first_value: first.value.clone(),
+                    second_file: entry.file,
+                    second_value: entry.value,
+                });
+            }
+        } else {
+            seen.insert(identity, entry);
+        }
+    }
+    conflicts
+}
+
+/// Runtime merges files by the explicit domain manifest. A key repeated with
+/// the same value is harmless, but different values make the effective
+/// translation depend on file iteration order and are therefore a hard error.
+fn lint_duplicate_catalog_keys(
+    locale_dir: &Path,
+    locale: &str,
+    domains: &CatalogDomains,
+    report: &mut Report,
+) {
+    let Ok(entries) = std::fs::read_dir(locale_dir) else {
+        report.error(format!(
+            "[catalog/domain] locale 目录不存在或不可读：{}",
+            locale_dir.display()
+        ));
+        return;
+    };
+    let mut paths: Vec<PathBuf> = entries.flatten().map(|entry| entry.path()).collect();
+    paths.sort();
+    let mut domain_entries = Vec::new();
+    for path in paths {
+        if !path.is_file() || path.extension().and_then(|ext| ext.to_str()) != Some("json") {
+            continue;
+        }
+        let Some(file_name) = path.file_name().and_then(|name| name.to_str()) else {
+            report.error(format!(
+                "[catalog/domain] locale={locale} 文件名不是 UTF-8：{}",
+                path.display()
+            ));
+            continue;
+        };
+        let Some(policy) = domains.get(file_name) else {
+            report.error(format!(
+                "[catalog/domain] locale={locale} 文件未登记，runtime 会拒绝加载：{}",
+                path.display()
+            ));
+            continue;
+        };
+        let text = match std::fs::read_to_string(&path) {
+            Ok(text) => text,
+            Err(err) => {
+                report.error(format!(
+                    "[catalog/domain] locale={locale} 无法读取 {}：{err}",
+                    path.display()
+                ));
+                continue;
+            }
+        };
+        let map = match serde_json::from_str::<BTreeMap<String, String>>(&text) {
+            Ok(map) => map,
+            Err(err) => {
+                report.error(format!(
+                    "[catalog/domain] locale={locale} JSON 解析失败 {}：{err}",
+                    path.display()
+                ));
+                continue;
+            }
+        };
+        for (key, value) in map {
+            domain_entries.push(DomainCatalogEntry {
+                domain: policy.domain.clone(),
+                key,
+                file: path.display().to_string(),
+                value,
+            });
+        }
+    }
+
+    for conflict in duplicate_conflicts(domain_entries) {
+        report.error(format!(
+            "[catalog/domain] locale={locale} domain={} 的 key {:?} 有冲突译文：\n    {} = {:?}\n    {} = {:?}",
+            conflict.domain,
+            conflict.key,
+            conflict.first_file,
+            conflict.first_value,
+            conflict.second_file,
+            conflict.second_value
+        ));
+    }
 }
 
 /// 模板里出现的占位符下标集合（`{0}/{1}…`）。比较「集合」而非「个数」：
@@ -128,19 +512,27 @@ fn has_bad_control_char(s: &str) -> bool {
 /// 校验三端策略单一来源 strings/i18n/policy.json：必须存在、可解析、
 /// 各策略字段为字符串数组且无重复（三端消费者对坏 JSON 都是静默降级 → 必须在门禁挡住）。
 fn lint_policy(catalog_root: &Path, report: &mut Report) {
-    const FIELDS: [&str; 5] = [
+    const FIELDS: [&str; 7] = [
         "payload_skip_keys",
-        "pref_desc_keys",
+        "payload_prose_keys",
+        "translatable_props",
+        "option_text_props",
         "no_auto_translate",
         "identifier_dot_procs",
         "identifier_dot_proc_suffixes",
     ];
     let path = catalog_root.join("policy.json");
-    let Ok(text) = std::fs::read_to_string(&path) else {
-        report.error(format!("[policy] 缺少 {}（三端标识符策略单一来源）", path.display()));
-        return;
+    let source_bytes = match std::fs::read(&path) {
+        Ok(bytes) => bytes,
+        Err(err) => {
+            report.error(format!(
+                "[policy] 无法读取 {}（三端标识符策略单一来源）：{err}",
+                path.display()
+            ));
+            return;
+        }
     };
-    let json: serde_json::Value = match serde_json::from_str(&text) {
+    let json: serde_json::Value = match serde_json::from_slice(&source_bytes) {
         Ok(v) => v,
         Err(err) => {
             report.error(format!("[policy] {} 解析失败：{err}", path.display()));
@@ -163,11 +555,51 @@ fn lint_policy(catalog_root: &Path, report: &mut Report) {
             }
         }
     }
+
+    let Some(project_root) = catalog_root.parent().and_then(Path::parent) else {
+        report.error(format!(
+            "[policy] 无法从目录根推导项目根：{}",
+            catalog_root.display()
+        ));
+        return;
+    };
+    let copy_path = project_root.join("tgui/packages/tgui/i18n/policy.json");
+    match std::fs::read(&copy_path) {
+        Err(err) => report.error(format!(
+            "[policy] 无法读取 committed TGUI copy {}：{err}",
+            copy_path.display()
+        )),
+        Ok(copy_bytes) if copy_bytes != source_bytes => {
+            let offset = source_bytes
+                .iter()
+                .zip(&copy_bytes)
+                .position(|(source, copy)| source != copy)
+                .unwrap_or(source_bytes.len().min(copy_bytes.len()));
+            report.error(format!(
+                "[policy] policy drift：{} 与 {} 不是 byte-identical（首个差异 byte {}，长度 {} vs {}）。运行 `node tools/i18n/tgui-catalog.mjs sync` 后提交副本。",
+                path.display(),
+                copy_path.display(),
+                offset,
+                source_bytes.len(),
+                copy_bytes.len()
+            ));
+        }
+        Ok(_) => {}
+    }
 }
 
-fn lint_catalog(catalog_root: &Path, locale: &str, report: &mut Report) -> Result<()> {
+fn lint_catalog(
+    catalog_root: &Path,
+    locale: &str,
+    domains: &CatalogDomains,
+    report: &mut Report,
+) -> Result<()> {
     let en_dir = catalog_root.join("en");
     let loc_dir = catalog_root.join(locale);
+    lint_duplicate_catalog_keys(&en_dir, "en", domains, report);
+    if locale != "en" {
+        lint_duplicate_catalog_keys(&loc_dir, locale, domains, report);
+    }
     let en = load_catalog(&en_dir);
     let loc = load_catalog_opt(&loc_dir, true);
 
@@ -485,6 +917,7 @@ fn lint_identifier_collisions(
     dme: &Path,
     catalog_root: &Path,
     baseline: Option<&Path>,
+    bare_baseline: Option<&Path>,
     update_baseline: bool,
     report: &mut Report,
 ) -> Result<()> {
@@ -497,9 +930,32 @@ fn lint_identifier_collisions(
     let mut parser = dm::parser::Parser::new(&context, indents);
     parser.enable_procs();
     let (fatal, tree) = parser.parse_object_tree_2();
-    if fatal {
-        anyhow::bail!("DM 解析出现致命错误，无法继续 lint");
+    let parser_errors: Vec<String> = {
+        let diagnostics = context.errors();
+        diagnostics
+            .iter()
+            .filter(|diagnostic| diagnostic.severity() == dm::Severity::Error)
+            .map(|diagnostic| diagnostic.description().to_owned())
+            .collect()
+    };
+    if fatal || !parser_errors.is_empty() {
+        let examples = parser_errors
+            .iter()
+            .take(5)
+            .map(|description| format!("{description:?}"))
+            .collect::<Vec<_>>()
+            .join(", ");
+        anyhow::bail!(
+            "DM parser coverage failed/unsupported：fatal={fatal}，Severity::Error={}，exclusions=0；不会把 best-effort AST 当作完整 lint。{}",
+            parser_errors.len(),
+            if examples.is_empty() {
+                String::new()
+            } else {
+                format!("diagnostics: {examples}")
+            }
+        );
     }
+    eprintln!("[coverage] DM parser: full（Severity::Error=0，exclusions=0）");
 
     let mut collector = IdentCollector {
         context: &context,
@@ -514,6 +970,142 @@ fn lint_identifier_collisions(
             }
         }
     }
+
+    // 规则 C：**数据不许被翻**。
+    //
+    // 整条显示边界方案（类型显示名表 / 运行期反查）都建立在一个不变量上：实例的 name/desc 始终是
+    // canonical English，`if(X.name == "…")`、`GLOB.foo[X.name]`、act 回传比较才不会当场坏掉。
+    // 今天这条不变量靠 rewrite 的结构（只遍历 ty.procs，够不到类型变量声明）保证，但那是「碰巧
+    // 成立」——谁把类型变量也纳入改写，或谁手写一句 `name = LANG(...)`，破坏都是静默的。
+    // 这里把它变成编译期门禁。
+    let mut data_translation = Vec::new();
+    for ty in tree.iter_types() {
+        // C1：类型变量声明里不得出现 LANG —— 那等于把译文固化成实例数据。
+        for (var_name, type_var) in ty.vars.iter() {
+            if !matches!(var_name.as_str(), "name" | "desc") {
+                continue;
+            }
+            let Some(expr) = &type_var.value.expression else {
+                continue;
+            };
+            if expr_yields_lang(expr) {
+                let loc = type_var.value.location;
+                data_translation.push(format!(
+                    "{}:{} 类型变量声明 `{}` 含 LANG()：实例数据会变成译文，name/desc 的比较与查表会静默失效",
+                    context.file_path(loc.file).display(),
+                    loc.line,
+                    var_name
+                ));
+            }
+        }
+        // C2：proc 体内 `name = LANG(...)` 只允许白名单（上游本就在运行期拼的复合名）。
+        for (_proc_name, type_proc) in ty.procs.iter() {
+            for proc_value in type_proc.value.iter() {
+                let Some(block) = &proc_value.code else {
+                    continue;
+                };
+                let mut hits = Vec::new();
+                collect_name_lang_assigns(block, &mut hits);
+                for loc in hits {
+                    let path = context.file_path(loc.file);
+                    let path_str = path.display().to_string().replace('\\', "/");
+                    if NAME_LANG_ASSIGN_ALLOWLIST
+                        .iter()
+                        .any(|allowed| path_str.ends_with(allowed))
+                    {
+                        continue;
+                    }
+                    data_translation.push(format!(
+                        "{}:{} 运行期 `name = LANG(...)`：实例名会变成译文。纯显示请走显示边界（lang_localize_name_for_display），确需固化请加进 NAME_LANG_ASSIGN_ALLOWLIST 并说明理由",
+                        path.display(),
+                        loc.line
+                    ));
+                }
+            }
+        }
+    }
+    for msg in data_translation {
+        report.error(msg);
+    }
+
+    // 规则 D：目录里有、源码里却还是裸字面量（extract 认得、rewrite 不认的 sink）。
+    let mut bare = BareLiteralCollector {
+        context: &context,
+        hits: BTreeMap::new(),
+    };
+    for ty in tree.iter_types() {
+        for (_proc_name, type_proc) in ty.procs.iter() {
+            for proc_value in type_proc.value.iter() {
+                if let Some(block) = &proc_value.code {
+                    bare.visit_block(block);
+                }
+            }
+        }
+    }
+    let en_full = load_catalog(&catalog_root.join("en"));
+    let catalog_sentences: BTreeSet<&str> = en_full
+        .values()
+        .filter(|v| is_catalog_candidate(v))
+        .map(|v| v.as_str())
+        .collect();
+    let mut bare_hits: Vec<(String, String)> = bare
+        .hits
+        .into_iter()
+        .filter(|(text, _)| catalog_sentences.contains(text.as_str()))
+        .collect();
+    bare_hits.sort();
+    // 基线：绝大多数命中是**有意**留给反查路径的（speak 词池、examine 累加器、desc 变量…），
+    // 所以这条规则只对「基线里没有的新增」失败 —— 那才是「上游换了 sink、rewrite 跟不上」的信号。
+    let bare_baseline_set = match bare_baseline {
+        Some(p) if p.exists() => std::fs::read_to_string(p)
+            .unwrap_or_default()
+            .lines()
+            // **不能 trim**：这条规则的键是句子原文，行首空格是内容的一部分（`" Administrators
+            // have been informed."` 这种拼句片段），trim 掉就永远匹配不上、每次都报成新增。
+            .map(|l| l.strip_suffix('\r').unwrap_or(l))
+            .filter(|l| !l.trim().is_empty() && !l.trim_start().starts_with('#'))
+            .map(|l| l.to_string())
+            .collect::<BTreeSet<String>>(),
+        _ => BTreeSet::new(),
+    };
+    if update_baseline {
+        if let Some(p) = bare_baseline {
+            let mut content = String::from(
+                "# nova-i18n「目录里有、源码里仍是裸字面量」基线（`nova-i18n lint --update-baseline` 生成）。\n                 # 每行一条已进 en 目录、但调用点没被 rewrite 改成 LANG 的句子。多数是有意留给反查\n                 # 路径的（speak 词池 / examine 累加器 / desc 变量）；CI 只对**不在此表**的新增失败 ——\n                 # 那通常意味着上游把消息挪进了 rewrite 不认识的 sink，译文会永远查不到调用点。\n",
+            );
+            for (text, _) in bare_hits.iter() {
+                content.push_str(&text.replace('\n', "\\n"));
+                content.push('\n');
+            }
+            std::fs::write(p, content)
+                .with_context(|| format!("写裸英文基线失败：{}", p.display()))?;
+            eprintln!(
+                "已写入裸英文基线：{}（{} 条）",
+                p.display(),
+                bare_hits.len()
+            );
+        }
+    }
+    let new_bare: Vec<&(String, String)> = bare_hits
+        .iter()
+        .filter(|(text, _)| !bare_baseline_set.contains(text.replace('\n', "\\n").as_str()))
+        .collect();
+    if !new_bare.is_empty() {
+        for (text, loc) in new_bare.iter().take(20) {
+            report.error(format!(
+                "{loc} 已进 en 目录的句子在源码里仍是裸字面量：{text:?}\n                 　　→ 译文躺在目录里但这个调用点永远查不到它（上游换了 sink、rewrite 认不出即此）。\n                 　　修法：① 让 rewrite 认得该 sink（tools/i18n/src/rewrite.rs 的 SINK_CALLS）后重跑 `nova-i18n rewrite`；\n                 　　② 确认该处本就该走反查路径（词池/累加器）→ `nova-i18n lint --update-baseline` 收进基线。"
+            ));
+        }
+        if new_bare.len() > 20 {
+            report.error(format!("…… 另有 {} 条同类新增裸英文", new_bare.len() - 20));
+        }
+    }
+    eprintln!(
+        "[bare/裸英文] 命中 {} 条（基线 {} 条，新增 {} 条）",
+        bare_hits.len(),
+        bare_baseline_set.len(),
+        new_bare.len()
+    );
 
     // en 目录里「会被 DM 反查表变异」的值集合：无占位符的纯串（与 lang_build_reverse 一致）。
     // **排除 tgui.json**：前端目录的值是「TS 端翻显示、DM 保留英文值」机制（act/比较用英文，P1 经
@@ -619,24 +1211,27 @@ fn lint_identifier_collisions(
 // ---------------------------------------------------------------------------
 
 #[allow(clippy::too_many_arguments)]
-/// C. **悬空 LANG key**：源码里 `LANG("obj.abc12345")` 而目录里没有这个 key。
+/// C. **悬空 LANG key**：源码里 `LANG("obj.0123456789abcdef")` 而目录里没有这个 key。
 ///
 /// 抽取与改写是**两个独立通道**：改写把字面量换成 LANG(key)，抽取负责把模板写进目录。任何一条
 /// 让抽取跳过、而改写不跳过的规则（典型：具名累加器的整句闸——`available_channels += "<li>…</li>"`
 /// 过不了句末标点闸，改写却照改不误），都会产出悬空 key。此时 `lang_resolve` 兜底**返回 key 本身**，
-/// 玩家在耳机 examine 里看到的就是 `obj.b045da9c` 这串乱码——比不翻译严重得多。
+/// 玩家在耳机 examine 里看到的就是 `obj.0123456789abcdef` 这串乱码——比不翻译严重得多。
 ///
 /// 一次实测：全仓三万余处 LANG 调用里有 76 个悬空 key（耳机频率表、无人机分发器、血虫技能、
 /// 音乐技能芯片、雇佣合同…）。故列为**错误**而非告警：这是坏显示，不是缺翻译。
-fn lint_dangling_lang_keys(root: &Path, catalog_root: &Path, report: &mut Report) {
+fn lint_dangling_lang_keys(root: &Path, dme: &Path, catalog_root: &Path, report: &mut Report) {
     let en = load_catalog(&catalog_root.join("en"));
     if en.is_empty() {
         return; // lint_catalog 已就此告警
     }
     let mut dangling: BTreeMap<String, String> = BTreeMap::new();
     let mut scanned = 0usize;
-    for dir in ["code", "modular_nova"] {
-        collect_dm_files(&root.join(dir), &mut |path: &Path, text: &str| {
+    // 源码根**必须从 .dme 推导**，不能钉死 code/ 与 modular_nova/：`interface/interface.dm`
+    // 同样参与编译、同样被 rewrite 改写过，钉死的清单看不见它 —— 实测那里躺着 8 个悬空 key
+    // （wiki/rules/forum/github/config 几个 verb 的整句提示），而本规则一直报 0。
+    for dir in included_source_roots(dme) {
+        collect_dm_files(&root.join(&dir), &mut |path: &Path, text: &str| {
             for (lineno, line) in text.lines().enumerate() {
                 for key in lang_keys_in_line(line) {
                     scanned += 1;
@@ -658,13 +1253,41 @@ fn lint_dangling_lang_keys(root: &Path, catalog_root: &Path, report: &mut Report
              \t写回 en/zh 目录；同时补齐 extract 侧的准入规则，否则下次抽取还会漏。"
         ));
     }
-    eprintln!("悬空 key 扫描：{scanned} 处 LANG 调用，{} 个悬空。", dangling.len());
+    eprintln!(
+        "悬空 key 扫描：{scanned} 处 LANG 调用，{} 个悬空。",
+        dangling.len()
+    );
 }
 
-/// 一行里出现的所有 `LANG("<ns>.<8 位十六进制>"` / `LANGU(…, "<key>"` 的 key。
-/// 手写扫描而非正则：这个 crate 没有 regex 依赖，而形态固定得很简单。
-fn lang_keys_in_line(line: &str) -> Vec<String> {
+/// 一行里出现的所有 `LANG("<ns>.<16 位十六进制>"` / `LANGU(…, "<key>"` 的 key。
+/// 手写扫描而非正则：形态固定，最终校验复用 keys 模块的 v2 合约。
+fn code_before_line_comment(line: &str) -> &str {
     let bytes = line.as_bytes();
+    let mut in_string = false;
+    let mut escaped = false;
+    let mut index = 0usize;
+    while index < bytes.len() {
+        let byte = bytes[index];
+        if in_string {
+            if escaped {
+                escaped = false;
+            } else if byte == b'\\' {
+                escaped = true;
+            } else if byte == b'"' {
+                in_string = false;
+            }
+        } else if byte == b'"' {
+            in_string = true;
+        } else if byte == b'/' && bytes.get(index + 1) == Some(&b'/') {
+            return &line[..index];
+        }
+        index += 1;
+    }
+    line
+}
+
+fn lang_keys_in_line(line: &str) -> Vec<String> {
+    let line = code_before_line_comment(line);
     let mut out = Vec::new();
     let mut i = 0usize;
     while let Some(pos) = line[i..].find("LANG") {
@@ -680,20 +1303,62 @@ fn lang_keys_in_line(line: &str) -> Vec<String> {
             out.push(candidate.to_string());
         }
         i += quote + 1 + close + 1;
-        let _ = bytes; // 仅为可读性保留切片边界推进
     }
     out
 }
-
-/// `<ns>.<8 位十六进制>` 形态。
+/// Automatic v2 or stable manual `<namespace>.<identifier>` LANG key.
 fn is_catalog_key(s: &str) -> bool {
-    let Some((ns, hash)) = s.split_once('.') else {
+    if keys::is_v2_key(s) {
+        return true;
+    }
+    let Some((namespace, name)) = s.split_once('.') else {
         return false;
     };
-    !ns.is_empty()
-        && ns.chars().all(|c| c.is_ascii_lowercase() || c == '_')
-        && hash.len() == 8
-        && hash.chars().all(|c| c.is_ascii_hexdigit())
+    !namespace.is_empty()
+        && !name.is_empty()
+        && namespace
+            .bytes()
+            .all(|byte| byte.is_ascii_lowercase() || byte == b'_')
+        && name
+            .bytes()
+            .all(|byte| byte.is_ascii_lowercase() || byte.is_ascii_digit() || byte == b'_')
+}
+
+/// .dme 里 `#include` 到的 .dm 文件所在的顶层目录集合。
+///
+/// 过近似（按目录而非按文件）是**刻意**的：间接 include 的文件不在 .dme 的扁平清单里，按文件
+/// 收口会重新制造盲区，而多扫几个文件对本规则只有成本、没有假阳性。读不到 .dme 时退回历史清单。
+fn included_source_roots(dme: &Path) -> BTreeSet<String> {
+    let Ok(text) = std::fs::read_to_string(dme) else {
+        return ["code".to_owned(), "modular_nova".to_owned()].into();
+    };
+    let mut roots = BTreeSet::new();
+    for line in text.lines() {
+        let Some(rest) = line.trim_start().strip_prefix("#include") else {
+            continue;
+        };
+        let Some(open) = rest.find('"') else { continue };
+        let Some(close) = rest[open + 1..].find('"') else {
+            continue;
+        };
+        let include = &rest[open + 1..open + 1 + close];
+        if !include.ends_with(".dm") {
+            continue;
+        }
+        // DM 的 include 路径用反斜杠。
+        let normalized = include.replace('\\', "/");
+        let Some((root, _)) = normalized.split_once('/') else {
+            continue; // 与 .dme 同级的文件由调用方的根目录遍历覆盖不到，也无需覆盖
+        };
+        if !root.is_empty() {
+            roots.insert(root.to_owned());
+        }
+    }
+    if roots.is_empty() {
+        roots.insert("code".to_owned());
+        roots.insert("modular_nova".to_owned());
+    }
+    roots
 }
 
 /// 递归遍历 .dm 文件并回调 (path, 内容)。
@@ -719,25 +1384,31 @@ pub fn run(
     catalog_root: &Path,
     locale: &str,
     baseline: Option<PathBuf>,
+    bare_baseline: Option<PathBuf>,
     update_baseline: bool,
     skip_ast: bool,
 ) -> Result<()> {
     let mut report = Report::default();
+    let domains = CatalogDomains::load(catalog_root)?;
 
-    lint_catalog(catalog_root, locale, &mut report)?;
+    lint_catalog(catalog_root, locale, &domains, &mut report)?;
     lint_policy(catalog_root, &mut report);
-    lint_dangling_lang_keys(Path::new("."), catalog_root, &mut report);
+    lint_dangling_lang_keys(Path::new("."), dme, catalog_root, &mut report);
     if !skip_ast {
         lint_identifier_collisions(
             dme,
             catalog_root,
             baseline.as_deref(),
+            bare_baseline.as_deref(),
             update_baseline,
             &mut report,
         )?;
+    } else {
+        eprintln!(
+            "[coverage] DM AST/identifier rules: explicitly excluded by --no-ast（exclusions=1；catalog-only lint）"
+        );
     }
-
-    if update_baseline {
+    if update_baseline && report.errors.is_empty() {
         return Ok(());
     }
 
@@ -756,4 +1427,87 @@ pub fn run(
         anyhow::bail!("i18n lint 发现 {} 个错误", report.errors.len());
     }
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn source_roots_come_from_the_dme_not_a_hardcoded_list() {
+        let dir = std::env::temp_dir().join(format!("nova-i18n-roots-{}", std::process::id()));
+        std::fs::create_dir_all(&dir).unwrap();
+        let dme = dir.join("tgstation.dme");
+        std::fs::write(
+            &dme,
+            "#include \"code\\game\\world.dm\"\n\
+             #include \"modular_nova\\modules\\i18n\\code\\runtime.dm\"\n\
+             #include \"interface\\interface.dm\"\n\
+             #include \"interface\\skin.dmf\"\n",
+        )
+        .unwrap();
+
+        let roots = included_source_roots(&dme);
+        // interface/ compiles too; its omission hid eight dangling keys.
+        assert!(roots.contains("interface"));
+        assert!(roots.contains("code"));
+        assert!(roots.contains("modular_nova"));
+        // .dmf is not a source file, and each root appears once.
+        assert_eq!(roots.len(), 3);
+
+        // An unreadable .dme must not silently scan nothing.
+        let missing = included_source_roots(&dir.join("absent.dme"));
+        assert!(missing.contains("code") && missing.contains("modular_nova"));
+        std::fs::remove_dir_all(&dir).ok();
+    }
+
+    use super::*;
+
+    fn entry(domain: &str, key: &str, file: &str, value: &str) -> DomainCatalogEntry {
+        DomainCatalogEntry {
+            domain: domain.to_owned(),
+            key: key.to_owned(),
+            file: file.to_owned(),
+            value: value.to_owned(),
+        }
+    }
+
+    #[test]
+    fn conflicting_duplicate_reports_both_provenances() {
+        let conflicts = duplicate_conflicts([
+            entry("forward", "obj.0123456789abcdef", "en/obj.json", "First"),
+            entry("forward", "obj.0123456789abcdef", "en/datum.json", "Second"),
+        ]);
+
+        assert_eq!(conflicts.len(), 1);
+        assert_eq!(conflicts[0].first_file, "en/obj.json");
+        assert_eq!(conflicts[0].first_value, "First");
+        assert_eq!(conflicts[0].second_file, "en/datum.json");
+        assert_eq!(conflicts[0].second_value, "Second");
+    }
+
+    #[test]
+    fn equal_values_or_different_domains_do_not_conflict() {
+        let conflicts = duplicate_conflicts([
+            entry("global_reverse", "Shared text", "en/a.json", "Translation"),
+            entry("global_reverse", "Shared text", "en/b.json", "Translation"),
+            entry("scoped:state", "Shared text", "en/_state.json", "Other"),
+        ]);
+
+        assert!(conflicts.is_empty());
+    }
+
+    #[test]
+    fn dangling_key_scan_ignores_comments_but_not_comment_markers_in_text() {
+        let key = "datum.0123456789abcdef";
+        assert!(lang_keys_in_line(&format!("// ORIGINAL: LANG(\"{key}\", null)")).is_empty());
+        assert_eq!(
+            lang_keys_in_line(&format!(
+                "to_chat(user, \"https://example/\", LANG(\"{key}\", null))"
+            )),
+            [key],
+        );
+        assert_eq!(
+            lang_keys_in_line("to_chat(user, LANG(\"datum.lua_disabled\", null))"),
+            ["datum.lua_disabled"],
+        );
+    }
 }

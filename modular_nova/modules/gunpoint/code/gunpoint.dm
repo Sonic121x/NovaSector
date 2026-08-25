@@ -41,14 +41,14 @@
 /mob/living/proc/CanGunpointAt(mob/living/L, notice = FALSE)
 	if(resting)
 		if(notice)
-			to_chat(src, span_warning(LANG("mob.5eac763c", null)))
+			to_chat(src, span_warning(LANG("mob.5eac763c5d0afaa4", null)))
 		return FALSE
 	if(!(L in viewers(8, src)))
 		if(notice)
-			to_chat(src, span_warning(LANG("mob.58ffbee8", null)))
+			to_chat(src, span_warning(LANG("mob.58ffbee8bcaef16b", null)))
 		return FALSE
 	if(L.alpha < 70)
 		if(notice)
-			to_chat(src, span_warning(LANG("mob.2734c4e7", null)))
+			to_chat(src, span_warning(LANG("mob.2734c4e7ecd0662c", null)))
 		return FALSE
 	return TRUE

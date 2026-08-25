@@ -63,7 +63,7 @@
 	else
 		ADD_TRAIT(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT)
 	if(ismob(loc))
-		to_chat(loc, span_notice(LANG("obj.be868471", list(HAS_TRAIT_FROM(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT) ? "locked" : "unlocked"))))
+		to_chat(loc, span_notice(LANG("obj.be86847199fd7994", list(HAS_TRAIT_FROM(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT) ? "locked" : "unlocked"))))
 
 /obj/item/clothing/suit/armor/abductor/vest/proc/flip_mode()
 	switch(mode)
@@ -158,7 +158,7 @@
 /obj/item/clothing/suit/armor/abductor/vest/proc/Adrenaline()
 	if(ishuman(loc))
 		if(combat_cooldown < initial(combat_cooldown))
-			to_chat(loc, span_warning(LANG("obj.217e7b6e", null)))
+			to_chat(loc, span_warning(LANG("obj.217e7b6eb6e0e024", null)))
 			return
 		var/mob/living/carbon/human/wearer = loc
 		wearer.adjust_stamina_loss(-75)

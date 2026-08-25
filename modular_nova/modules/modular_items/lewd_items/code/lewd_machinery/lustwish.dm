@@ -205,7 +205,7 @@
 	if(!istype(tool, /obj/item/lustwish_discount))
 		return ..()
 
-	user.visible_message(span_boldnotice(LANG("obj.81cfa1f1", list(src))))
+	user.visible_message(span_boldnotice(LANG("obj.81cfa1f132cf276a", list(src))))
 	card_used = !card_used
 
 	if(card_used)

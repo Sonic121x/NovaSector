@@ -82,7 +82,7 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.0592e3eb", null))
+		balloon_alert(user, LANG("obj.0592e3eb3ddef312", null))
 		return
 	set_anchored(!anchored)
 	I.play_tool_sound(src)
@@ -141,16 +141,16 @@
 	if(generator)
 		disconnectFromGenerator()
 	mode = !mode
-	balloon_alert(user, LANG("obj.28f94138", list(mode ? "cold" : "hot")))
+	balloon_alert(user, LANG("obj.28f94138c1669b1d", list(mode ? "cold" : "hot")))
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/I)
 	if(!anchored)
-		balloon_alert(user, LANG("obj.b74e8050", null))
+		balloon_alert(user, LANG("obj.b74e80508821d610", null))
 		return
 	toggle_panel_open()
 	I.play_tool_sound(src)
-	balloon_alert(user, LANG("obj.a741c12e", list(panel_open ? "open" : "closed")))
+	balloon_alert(user, LANG("obj.a741c12ee0655743", list(panel_open ? "open" : "closed")))
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/crowbar_act(mob/user, obj/item/I)

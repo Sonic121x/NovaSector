@@ -19,7 +19,7 @@
 	gland_owner.remove_language(/datum/language/slime, source = LANGUAGE_GLAND)
 
 /obj/item/organ/heart/gland/slime/activate()
-	to_chat(owner, span_warning(LANG("obj.77fb4947", null)))
+	to_chat(owner, span_warning(LANG("obj.77fb4947d65ead07", null)))
 	owner.vomit(VOMIT_CATEGORY_DEFAULT, lost_nutrition = 20)
 
 	var/mob/living/basic/slime/new_baby_slime = new(get_turf(owner), /datum/slime_type/grey)

@@ -28,7 +28,7 @@
 			break
 
 	if(!has_nightmare)
-		to_chat(user, span_warning(LANG("datum.0e6d1b9f", null)))
+		to_chat(user, span_warning(LANG("datum.0e6d1b9fc5c7d5c1", null)))
 		return FALSE
 
 	return ..()
@@ -64,9 +64,9 @@
 		for(var/i in 1 to give_heart)
 			new /obj/item/organ/heart/evolved/sacred/dreamer(get_turf(religious_tool))
 		playsound(religious_tool, 'sound/effects/pray.ogg', 50, TRUE, frequency = 0.5)
-		to_chat(user, span_hypnophrase(LANG("datum.7cbed5be", list(GLOB.deity))))
+		to_chat(user, span_hypnophrase(LANG("datum.7cbed5be5973b2dc", list(GLOB.deity))))
 	else
-		to_chat(user, span_hypnophrase(LANG("datum.94427737", list(GLOB.deity))))
+		to_chat(user, span_hypnophrase(LANG("datum.944277374d0ce24d", list(GLOB.deity))))
 	user.add_mood_event("banish_nightmare", /datum/mood_event/banish_nightmare)
 
 /datum/mood_event/banish_nightmare

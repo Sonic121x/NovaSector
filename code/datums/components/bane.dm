@@ -82,25 +82,22 @@
 	if(damage_multiplier == 1 && added_damage == 0 && !label_text)
 		return
 
-	var/label_line = ""
-	if(damage_multiplier > 1 || added_damage > 0)
-		label_line += "It is especially effective against"
-	else if(damage_multiplier < 1 || added_damage < 0)
-		label_line += "It is less effective against"
-	else
-		label_line += "It interacts uniquely with" // for custom behaviors?
-
-	label_line += " "
+	// NOVA EDIT CHANGE START - i18n: 手工 LANG 化。原本是往 `label_line` 上逐段 `+=` 拼句，
+	// 拼出来的整句永远不是目录键；而拆出来的碎片（", dealing …"）以逗号打头，字面 AC 按设计
+	// 拒收（那正是防「从单词内部开火」的闸门），所以两条落地路径都够不着。
+	// 改成每种情形一条完整模板，伤害倍率那半句作为可选后缀实参传入，英文输出逐字节不变。
+	// ORIGINAL 见 git 历史（`var/label_line = ""` 起的那一段逐段拼接）。
+	var/target_text
 	if(label_text)
-		label_line += label_text
+		target_text = label_text
 	else if(affected_biotypes)
 		var/list/affected_biotypes_readable = bitfield_to_list(affected_biotypes, MOB_BIOTYPES_READABLE)
-		label_line += "[english_list(affected_biotypes_readable)] enemies"
+		target_text = LANG("datum.e2442b22bf188699", list(lang_english_list(affected_biotypes_readable)))
 	else
-		label_line += "certain enemies"
+		target_text = LANG("datum.da219cc11bec6599", null)
 
+	var/magnitude = ""
 	if(damage_multiplier > 1 || added_damage > 0)
-		var/magnitude = ""
 		switch(max(damage_multiplier, added_damage / 10))
 			if(3 to INFINITY)
 				magnitude = "massively increased"
@@ -110,11 +107,7 @@
 				magnitude = "significantly increased"
 			if(1 to 1.5)
 				magnitude = "slightly increased"
-
-		label_line += ", dealing [span_warning(magnitude)] damage per hit"
-
 	else if(damage_multiplier < 1 || added_damage < 0)
-		var/magnitude = ""
 		switch(min(damage_multiplier, 10 / abs(added_damage || 1)))
 			if(-INFINITY to 0)
 				magnitude = "no"
@@ -127,9 +120,16 @@
 			if(0.9 to 1)
 				magnitude = "slightly reduced"
 
-		label_line += ", dealing [span_warning(magnitude)] damage per hit"
+	var/magnitude_text = magnitude ? LANG("datum.ada696f5fc467dea", list(span_warning(magnitude))) : ""
 
-	label_line += "."
+	var/label_line
+	if(damage_multiplier > 1 || added_damage > 0)
+		label_line = LANG("datum.e75426d909a1befa", list(target_text, magnitude_text))
+	else if(damage_multiplier < 1 || added_damage < 0)
+		label_line = LANG("datum.3b69155a029c34c8", list(target_text, magnitude_text))
+	else
+		label_line = LANG("datum.9cc388648a99dc20", list(target_text, magnitude_text))
+	// NOVA EDIT CHANGE END
 	readout += label_line
 
 // Item attack handling

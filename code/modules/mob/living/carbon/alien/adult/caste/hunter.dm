@@ -30,7 +30,7 @@
 	leap_icon?.icon_state = "leap_[leap_on_click ? "on":"off"]"
 	update_icons()
 	if(message)
-		to_chat(src, span_noticealien(LANG("mob.19a2a9f3", list(leap_on_click ? "leap at":"slash at"))))
+		to_chat(src, span_noticealien(LANG("mob.19a2a9f3164e6840", list(leap_on_click ? "leap at":"slash at"))))
 	else
 		return
 
@@ -48,11 +48,11 @@
 		return
 
 	if(pounce_cooldown > world.time)
-		to_chat(src, span_alertalien(LANG("mob.bf045f39", null)))
+		to_chat(src, span_alertalien(LANG("mob.bf045f394aed7406", null)))
 		return
 
 	if(!has_gravity() || !A.has_gravity())
-		to_chat(src, span_alertalien(LANG("mob.243950e0", null)))
+		to_chat(src, span_alertalien(LANG("mob.243950e025284fe6", null)))
 		//It's also extremely buggy visually, so it's balance+bugfix
 		return
 
@@ -85,7 +85,7 @@
 				if(H.check_block(src, 0, "\the [src]", attack_type = LEAP_ATTACK))
 					blocked = TRUE
 			if(!blocked)
-				L.visible_message(span_danger(LANG("mob.e82f512b", list(src, L))), span_userdanger(LANG("mob.c6188217", list(src))))
+				L.visible_message(span_danger(LANG("mob.e82f512b45b2b17c", list(src, L))), span_userdanger(LANG("mob.c61882174d21b7ee", list(src))))
 				L.Paralyze(5 SECONDS)
 				sleep(0.2 SECONDS)//Runtime prevention (infinite bump() calls on hulks)
 				step_towards(src,L)
@@ -94,7 +94,7 @@
 
 			toggle_leap(0)
 		else if(hit_atom.density && !hit_atom.CanPass(src, get_dir(hit_atom, src)))
-			visible_message(span_danger(LANG("mob.1eb45639", list(src, hit_atom))), span_alertalien(LANG("mob.1eb45639", list(src, hit_atom))))
+			visible_message(span_danger(LANG("mob.1eb456391fd2d397", list(src, hit_atom))), span_alertalien(LANG("mob.1eb456391fd2d397", list(src, hit_atom))))
 			Paralyze(40, ignore_canstun = TRUE)
 
 #undef MAX_ALIEN_LEAP_DIST

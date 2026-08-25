@@ -167,7 +167,7 @@
 	for(var/mob/living/victim in loc)
 		if (is_type_in_typecache(victim, damage_blacklist_typecache))
 			continue
-		to_chat(victim, span_warning(LANG("obj.be4a5a34", null)))
+		to_chat(victim, span_warning(LANG("obj.be4a5a3464238db9", null)))
 		victim.electrocute_act(zap_damage, src, flags = SHOCK_NOGLOVES | SHOCK_NOSTUN)
 
 /obj/effect/temp_visual/lightning_strike_zap

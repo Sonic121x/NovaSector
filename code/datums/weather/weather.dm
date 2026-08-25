@@ -522,7 +522,7 @@
 		thunder.color = thunder_color
 
 	for(var/mob/living/hit_mob in weather_turf)
-		to_chat(hit_mob, span_userdanger(LANG("datum.d028d146", null)))
+		to_chat(hit_mob, span_userdanger(LANG("datum.d028d146d6fe3e90", null)))
 		hit_mob.electrocute_act(50, "thunder", flags = SHOCK_TESLA|SHOCK_NOGLOVES)
 
 	for(var/obj/item/stack/ore/hit_ore in weather_turf)
@@ -533,7 +533,7 @@
 		hit_ore.fire_act(30000)
 
 	playsound(weather_turf, 'sound/effects/magic/lightningbolt.ogg', 100, extrarange = 10, falloff_distance = 10)
-	weather_turf.visible_message(span_danger(LANG("datum.5fc332ba", list(weather_turf))))
+	weather_turf.visible_message(span_danger(LANG("datum.5fc332ba91a2092b", list(weather_turf))))
 	new /obj/effect/hotspot(weather_turf)
 
 /**

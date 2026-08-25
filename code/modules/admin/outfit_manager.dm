@@ -45,7 +45,7 @@ ADMIN_VERB(outfit_manager, R_DEBUG|R_ADMIN, "装束管理器", "View and edit ou
 		if("load")
 			ui.user.client.holder.load_outfit(ui.user)
 		if("copy")
-			var/datum/outfit/outfit = tgui_input_list(ui.user, LANG("datum.68e08b2c", null), LANG("datum.deca34c3", null), subtypesof(/datum/outfit))
+			var/datum/outfit/outfit = tgui_input_list(ui.user, LANG("datum.68e08b2cfd72c1a5", null), LANG("datum.deca34c3e4533b02", null), subtypesof(/datum/outfit))
 			if(isnull(outfit))
 				return
 			if(!ispath(outfit))

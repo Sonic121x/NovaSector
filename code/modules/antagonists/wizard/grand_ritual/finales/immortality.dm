@@ -25,7 +25,7 @@
 		new /obj/effect/temp_visual/immortality_pulse(get_turf(alive_guy))
 		if (!alive_guy.mind)
 			continue
-		to_chat(alive_guy, span_notice(LANG("datum.37e30dfc", null)))
+		to_chat(alive_guy, span_notice(LANG("datum.37e30dfc5424fa93", null)))
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(something_died))
 
 /// Called when something passes into the great beyond, make it not do that
@@ -54,7 +54,7 @@
 
 	var/datum/mind/dead_mind = HAS_TRAIT(died, TRAIT_SUICIDED) ? null : died.mind // There is a way out of the cycle
 	if (!isnull(dead_mind))
-		to_chat(died, span_boldnotice(LANG("datum.9c71c745", list(DisplayTimeText(IMMORTAL_PRE_ACTIVATION_TIME + IMMORTAL_RESURRECT_TIME)))))
+		to_chat(died, span_boldnotice(LANG("datum.9c71c745d2c1484e", list(DisplayTimeText(IMMORTAL_PRE_ACTIVATION_TIME + IMMORTAL_RESURRECT_TIME)))))
 	animate(died, alpha = died.alpha, time = IMMORTAL_PRE_ACTIVATION_TIME / 2, flags = ANIMATION_PARALLEL)
 	animate(alpha = 0, time = IMMORTAL_PRE_ACTIVATION_TIME / 2, easing = SINE_EASING | EASE_IN)
 	addtimer(CALLBACK(src, PROC_REF(reverse_death), died, dead_mind, died_turf, body_type, saved_appearance), IMMORTAL_PRE_ACTIVATION_TIME, TIMER_DELETE_ME)
@@ -204,7 +204,7 @@
 	SIGNAL_HANDLER
 	if (isnull(corpse))
 		return
-	visible_message(span_boldnotice(LANG("obj.0555e4f6", list(corpse))))
+	visible_message(span_boldnotice(LANG("obj.0555e4f6bab7b300", list(corpse))))
 	corpse.remove_traits(list(TRAIT_NO_TELEPORT, TRAIT_AI_PAUSED), MAGIC_TRAIT)
 	corpse.remove_status_effect(/datum/status_effect/grouped/stasis, MAGIC_TRAIT)
 	corpse.forceMove(loc)

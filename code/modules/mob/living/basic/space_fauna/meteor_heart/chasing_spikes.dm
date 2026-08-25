@@ -88,5 +88,5 @@
 
 	var/target_zone = victim.resting ? BODY_ZONE_CHEST : pick_weight(standing_damage_zones)
 	victim.apply_damage(impale_damage, damagetype = BRUTE, def_zone = target_zone, wound_bonus = impale_wound_bonus, sharpness = SHARP_POINTY)
-	to_chat(victim, span_userdanger(LANG("obj.cbf10daf", list(src))))
+	to_chat(victim, span_userdanger(LANG("obj.cbf10daf481d2098", list(src))))
 	return TRUE

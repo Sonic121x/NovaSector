@@ -71,27 +71,27 @@
 		. = form_reference.examine(user)
 
 	if(get_dist(user, src) <= 3) // always add this because if the form_reference somehow nulls out we still want to have something look "weird" about an item when someone is close
-		. += span_warning(LANG("mob.8d8e4276", null))
+		. += span_warning(LANG("mob.8d8e4276ded10cfa", null))
 
 /mob/living/basic/morph/med_hud_set_health()
 	if(isliving(form_typepath))
 		return ..()
 
 	//we hide medical hud while in regular state or an item
-	set_hud_image_state(HEALTH_HUD, null)
+	set_hud_image_state(HEALTH_HUD, hud_state = null)
 
 /mob/living/basic/morph/med_hud_set_status()
 	if(isliving(form_typepath))
 		return ..()
 
 	//we hide medical hud while in regular state or an item
-	set_hud_image_state(STATUS_HUD, null)
+	set_hud_image_state(STATUS_HUD, hud_state = null)
 
 /mob/living/basic/morph/death(gibbed)
 	if(HAS_TRAIT(src, TRAIT_DISGUISED))
 		visible_message(
-			span_warning(LANG("mob.a0552fac", list(src))),
-			span_userdanger(LANG("mob.09dd6285", null)),
+			span_warning(LANG("mob.a0552facce3c1c97", list(src))),
+			span_userdanger(LANG("mob.09dd628537160041", null)),
 		)
 
 	return ..()
@@ -113,8 +113,8 @@
 	med_hud_set_status() //we're an object honest
 
 	visible_message(
-		span_warning(LANG("mob.11fa7128", list(src, target))),
-		span_notice(LANG("mob.f6c24658", list(target))),
+		span_warning(LANG("mob.11fa712800d591de", list(src, target))),
+		span_notice(LANG("mob.f6c246587ab093d9", list(target))),
 	)
 
 	form_weakref = WEAKREF(target)
@@ -124,8 +124,8 @@
 /mob/living/basic/morph/proc/on_undisguise()
 	SIGNAL_HANDLER
 	visible_message(
-		span_warning(LANG("mob.1b6a5f11", list(src))),
-		span_notice(LANG("mob.c64844e5", null)),
+		span_warning(LANG("mob.1b6a5f11a86af3ae", list(src))),
+		span_notice(LANG("mob.c64844e5841cf4cd", null)),
 	)
 
 	//Baseline stats
@@ -154,7 +154,7 @@
 		return
 
 	if(HAS_TRAIT(src, TRAIT_DISGUISED) && (melee_damage_disguised <= 0))
-		balloon_alert(src, LANG("mob.4c9ae855", null))
+		balloon_alert(src, LANG("mob.4c9ae855df1e871f", null))
 		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
 	if(isliving(target)) //Eat Corpses to regen health
@@ -183,15 +183,15 @@
 		return FALSE
 
 	if(HAS_TRAIT(src, TRAIT_DISGUISED) && !eat_while_disguised)
-		balloon_alert(src, LANG("mob.27447ee4", null))
+		balloon_alert(src, LANG("mob.27447ee484a2fddf", null))
 		return FALSE
 
-	balloon_alert(src, LANG("mob.d533a934", null))
+	balloon_alert(src, LANG("mob.d533a934f4c2b645", null))
 	if((delay > 0 SECONDS) && !do_after(src, delay, target = eatable))
 		return FALSE
 
 	log_combat(src, eatable, "ate", addition = "as morph")
-	visible_message(span_warning(LANG("mob.f34c2d31", list(src, eatable))))
+	visible_message(span_warning(LANG("mob.f34c2d31553ec34d", list(src, eatable))))
 	eatable.forceMove(src)
 	if(update_health != 0)
 		adjust_health(update_health)

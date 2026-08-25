@@ -66,7 +66,7 @@
 	STOP_PROCESSING(SSobj, old_organ)
 
 /datum/quirk/prosthetic_organ/post_add()
-	to_chat(quirk_holder, span_bolddanger(LANG("datum.0ffeb6e5", list(slot_string))))
+	to_chat(quirk_holder, span_bolddanger(LANG("datum.0ffeb6e5486f458f", list(slot_string))))
 
 /datum/quirk/prosthetic_organ/remove()
 	if(old_organ)

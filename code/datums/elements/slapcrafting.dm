@@ -101,12 +101,12 @@
 
 	var/atom/final_result = initial(final_recipe.result)
 
-	to_chat(user, span_notice(LANG("datum.280ecc22", list(initial(final_result.name)))))
+	to_chat(user, span_notice(LANG("datum.280ecc22c52ab2b2", list(initial(final_result.name)))))
 
 	var/error_string = craft_sheet.construct_item(user, final_recipe)
 
 	if(istext(error_string))
-		to_chat(user, span_warning(LANG("datum.d98d5529", list(error_string))))
+		to_chat(user, span_warning(LANG("datum.d98d5529d3ee4219", list(error_string))))
 
 /// Alerts any examiners to the recipe, if they wish to know more.
 /datum/element/slapcrafting/proc/get_examine_info(atom/source, mob/user, list/examine_list)
@@ -123,7 +123,7 @@
 		already_used_names += initial(result.name)
 		string_results += list("\a [initial(result.name)]")
 
-	examine_list["crafting component"] = LANG("datum.4b719a3d", list(source, english_list(string_results))) // NOVA EDIT - i18n - ORIGINAL: examine_list["crafting component"] = "You think [source] could be used to make [english_list(string_results)]! Examine again to look at the details..."
+	examine_list["crafting component"] = LANG("datum.4b719a3d757ab4a0", list(source, lang_english_list(string_results))) // NOVA EDIT - i18n - ORIGINAL: examine_list["crafting component"] = "You think [source] could be used to make [lang_english_list(string_results)]! Examine again to look at the details..."
 
 /// Alerts any examiners to the details of the recipe.
 /datum/element/slapcrafting/proc/get_examine_more_info(atom/source, mob/user, list/examine_list)
@@ -131,7 +131,7 @@
 
 	for(var/datum/crafting_recipe/recipe as anything in slapcraft_recipes)
 		var/atom/result = initial(recipe.result)
-		examine_list += LANG("datum.de2c41e0", list(REF(source), REF(recipe), initial(result.name)))
+		examine_list += LANG("datum.de2c41e0e4bf20dc", list(REF(source), REF(recipe), initial(result.name)))
 
 /datum/element/slapcrafting/proc/topic_handler(atom/source, user, href_list)
 	SIGNAL_HANDLER
@@ -146,7 +146,7 @@
 
 	var/atom/result = initial(cur_recipe.result)
 
-	to_chat(user, span_notice(LANG("datum.0fcb22e7", list(initial(result.name)))))
+	to_chat(user, span_notice(LANG("datum.0fcb22e70b43927f", list(initial(result.name)))))
 
 	// Gotta instance it to copy the lists over.
 	cur_recipe = new cur_recipe()
@@ -176,7 +176,7 @@
 
 	// If we did find ingredients then add them onto the list.
 	if(length(string_ingredient_list))
-		to_chat(user, span_boldnotice(LANG("datum.8b84eda2", null)))
+		to_chat(user, span_boldnotice(LANG("datum.8b84eda2587ea5f2", null)))
 		to_chat(user, boxed_message(span_notice(string_ingredient_list)))
 
 	var/list/tool_list = ""
@@ -190,7 +190,7 @@
 		tool_list += "\a [string]\n"
 
 	if(length(tool_list))
-		to_chat(user, span_boldnotice(LANG("datum.bab5bfe7", null)))
+		to_chat(user, span_boldnotice(LANG("datum.bab5bfe7ccdd3cb0", null)))
 		to_chat(user, boxed_message(span_notice(tool_list)))
 
 	qdel(cur_recipe)

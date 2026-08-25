@@ -70,7 +70,7 @@
 	SIGNAL_HANDLER
 	if(iscarbon(AM))
 		START_PROCESSING(SSobj, src)
-		to_chat(AM, span_danger(LANG("obj.085bb9d6", null)))
+		to_chat(AM, span_danger(LANG("obj.085bb9d6a3955ee4", null)))
 
 /obj/structure/table/optable/abductor/process(seconds_per_tick)
 	. = PROCESS_KILL

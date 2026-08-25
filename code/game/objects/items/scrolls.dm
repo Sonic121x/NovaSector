@@ -32,7 +32,7 @@
 	uses--
 	if(uses > 0)
 		return
-	to_chat(cast_on, span_warning(LANG("obj.8d5fb08c", list(src))))
+	to_chat(cast_on, span_warning(LANG("obj.8d5fb08c0cdef281", list(src))))
 	qdel(src)
 
 /obj/item/teleportation_scroll/apprentice
@@ -42,7 +42,7 @@
 /obj/item/teleportation_scroll/examine(mob/user)
 	. = ..()
 	if(uses > 0)
-		. += LANG("obj.4b3096b5", list(uses))
+		. += LANG("obj.4b3096b554bb3ee7", list(uses))
 
 /obj/item/teleportation_scroll/attack_self(mob/user)
 	. = ..()
@@ -58,7 +58,7 @@
 		return
 	var/datum/action/cooldown/spell/teleport/area_teleport/wizard/scroll/teleport = locate() in actions
 	if(!teleport)
-		to_chat(user, span_warning(LANG("obj.06e0c8d7", list(src))))
+		to_chat(user, span_warning(LANG("obj.06e0c8d7d623d269", list(src))))
 		return
 	if(!teleport.Activate(user))
 		return

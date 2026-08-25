@@ -50,7 +50,7 @@ The console is located at computer/gulag_teleporter.dm
 /obj/machinery/gulag_teleporter/interact(mob/user)
 	. = ..()
 	if(locked)
-		to_chat(user, span_warning(LANG("obj.9d5df8ce", list(src))))
+		to_chat(user, span_warning(LANG("obj.9d5df8cebbee16e7", list(src))))
 		return
 	toggle_open()
 
@@ -85,7 +85,7 @@ The console is located at computer/gulag_teleporter.dm
 	if(locked)
 		if(message_cooldown <= world.time)
 			message_cooldown = world.time + 50
-			to_chat(user, span_warning(LANG("obj.c4e897cb", list(src))))
+			to_chat(user, span_warning(LANG("obj.c4e897cb78099448", list(src))))
 		return
 	open_machine()
 
@@ -100,17 +100,17 @@ The console is located at computer/gulag_teleporter.dm
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	user.visible_message(
-		span_notice(LANG("obj.485787b2", list(user, src))),
-		span_notice(LANG("obj.43ad33b1", list(src, DisplayTimeText(resist_time)))),
-		span_hear(LANG("obj.a1d9c573", list(src))),
+		span_notice(LANG("obj.485787b2b8d67ec7", list(user, src))),
+		span_notice(LANG("obj.43ad33b141e25411", list(src, DisplayTimeText(resist_time)))),
+		span_hear(LANG("obj.a1d9c5733c600b1c", list(src))),
 	)
 
 	if(do_after(user, resist_time, target = src))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || state_open || !locked)
 			return
 		locked = FALSE
-		user.visible_message(span_warning(LANG("obj.37696909", list(user, src))), \
-			span_notice(LANG("obj.81c31f6b", list(src))))
+		user.visible_message(span_warning(LANG("obj.37696909131e91b5", list(user, src))), \
+			span_notice(LANG("obj.81c31f6b9b00625a", list(src))))
 		open_machine()
 
 /obj/machinery/gulag_teleporter/proc/locate_reclaimer()
@@ -120,7 +120,7 @@ The console is located at computer/gulag_teleporter.dm
 
 /obj/machinery/gulag_teleporter/proc/toggle_open()
 	if(panel_open)
-		to_chat(usr, span_notice(LANG("obj.0358adf3", null)))
+		to_chat(usr, span_notice(LANG("obj.0358adf39518d281", null)))
 		return
 
 	if(state_open)

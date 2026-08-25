@@ -131,7 +131,7 @@
 	. = ..()
 
 	if(stored_ckey && stored_ckey != insertee.ckey && theft_protection)
-		insertee.audible_message(span_warning(LANG("obj.8e231416", list(src, insertee))))
+		insertee.audible_message(span_warning(LANG("obj.8e231416378c1111", list(src, insertee))))
 		playsound(insertee, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		Remove(insertee)
 		forceMove(get_turf(insertee))
@@ -265,11 +265,11 @@
 	if(!blood_drain)
 		power_usage += (blood_drain_rate * blood_conversion_rate)
 
-		balloon_alert(linked_mob, LANG("obj.07112999", null))
+		balloon_alert(linked_mob, LANG("obj.07112999c74ee54a", null))
 		return TRUE
 
 	power_usage -= (blood_drain_rate * blood_conversion_rate)
-	balloon_alert(linked_mob, LANG("obj.109abd50", null))
+	balloon_alert(linked_mob, LANG("obj.109abd50f5efc4cb", null))
 	return TRUE
 
 ///Checks if the NIF is able to draw blood as a power source?
@@ -297,10 +297,10 @@
 			var/random_ailment = rand(1, side_effect_risk)
 			switch(random_ailment)
 				if(1)
-					to_chat(linked_mob, span_warning(LANG("obj.822899b3", null)))
+					to_chat(linked_mob, span_warning(LANG("obj.822899b3b9122f9c", null)))
 					linked_mob.adjust_disgust(25)
 				if(2)
-					to_chat(linked_mob, span_warning(LANG("obj.32585a14", null)))
+					to_chat(linked_mob, span_warning(LANG("obj.32585a146969391c", null)))
 					linked_mob.adjust_stamina_loss(50)
 
 		if(NIF_CALIBRATION_STAGE_FINISHED to INFINITY)
@@ -380,11 +380,11 @@
 		nif_icon = tag
 
 	if(alert)
-		to_chat(linked_mob, span_warning(LANG("obj.7c9e38dd", list(nif_icon, message_to_send))))
+		to_chat(linked_mob, span_warning(LANG("obj.7c9e38dd12fd0d1a", list(nif_icon, message_to_send))))
 		linked_mob.playsound_local(linked_mob, bad_sound, 60, FALSE)
 		return
 
-	to_chat(linked_mob, span_cyan_nova(LANG("obj.10c3dd1e", list(nif_icon, message_to_send))))
+	to_chat(linked_mob, span_cyan_nova(LANG("obj.10c3dd1ee8ce4414", list(nif_icon, message_to_send))))
 	linked_mob.playsound_local(linked_mob, good_sound, 60, FALSE)
 
 
@@ -411,7 +411,7 @@
 		return
 	var/added_stun_duration = 20 SECONDS / severity // the previous stun duration added by the parent call
 	owner.AdjustStun(-added_stun_duration) // we want to negate that stun here
-	to_chat(owner, span_warning(LANG("obj.bedf9715", null)))
+	to_chat(owner, span_warning(LANG("obj.bedf971581f78cbf", null)))
 	if(!durability_loss_vulnerable)
 		return FALSE
 

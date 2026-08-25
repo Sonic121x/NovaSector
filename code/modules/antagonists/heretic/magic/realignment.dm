@@ -25,7 +25,7 @@
 /datum/action/cooldown/spell/realignment/cast(mob/living/cast_on)
 	. = ..()
 	cast_on.apply_status_effect(/datum/status_effect/realignment)
-	to_chat(cast_on, span_notice(LANG("datum.bb879010", null)))
+	to_chat(cast_on, span_notice(LANG("datum.bb879010b899d959", null)))
 
 /datum/action/cooldown/spell/realignment/after_cast(atom/cast_on)
 	. = ..()
@@ -58,7 +58,7 @@
 	///Traits to add/remove
 	var/list/realignment_traits = list(TRAIT_BATON_RESISTANCE, TRAIT_PACIFISM)
 
-/datum/status_effect/realignment/get_examine_text()
+/datum/status_effect/realignment/get_examine_text(mob/examiner)
 	return span_notice("[owner.p_Theyre()] glowing a soft white.")
 
 /datum/status_effect/realignment/on_apply()

@@ -10,8 +10,8 @@
 /datum/smite/objectify/configure(client/user)
 	var/attempted_target_path = input(
 		user,
-		LANG("datum.f5dd6594", null),
-		LANG("datum.1a01b0f5", null),
+		LANG("datum.f5dd65946f0df9c2", null),
+		LANG("datum.1a01b0f5ae81d070", null),
 		"[/obj/item/food/bread/plain]",
 	) as null|text
 
@@ -24,7 +24,7 @@
 	if(isnull(desired_object) || !ispath(desired_object))
 		return FALSE //The user pressed "Cancel"
 	if(!ispath(desired_object, /atom))
-		tgui_alert(user, LANG("datum.c57fb711", null))
+		tgui_alert(user, LANG("datum.c57fb711fd72ae5b", null))
 		return FALSE
 	transform_path = desired_object
 

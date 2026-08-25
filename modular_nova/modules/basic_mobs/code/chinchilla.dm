@@ -74,7 +74,7 @@
 	hunt_cooldown = 20 SECONDS
 
 /datum/bt_node/ai_behavior/hunt_target/dust_roll/target_caught(mob/living/basic/pet/hunter, obj/effect/decal/cleanable/dust)
-	hunter.visible_message(span_notice(LANG("datum.0274a4a7", list(hunter, dust))))
+	hunter.visible_message(span_notice(LANG("datum.0274a4a7f4e753a6", list(hunter, dust))))
 	hunter.spin(10, 1)
 	qdel(dust)
 

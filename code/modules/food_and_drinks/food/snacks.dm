@@ -51,10 +51,10 @@
 /obj/item/food/candy/bronx/examine(mob/user)
 	. = ..()
 	if(!revelation && !isobserver(user))
-		. += span_notice(LANG("obj.f7594144", null))
+		. += span_notice(LANG("obj.f759414459126829", null))
 
 		name = "\improper South Bronx Parasite bar"
-		desc = LANG("obj.5f3a39ab", null)
+		desc = LANG("obj.5f3a39abdcbc52d3", null)
 		revelation = TRUE
 
 /obj/item/food/sosjerky
@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(safe_peanut_types, populate_safe_peanut_types())
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/cnds/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.f5f6b711", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.f5f6b7118b300b1b", list(user, src, user.p_their(), user.p_theyre()))))
 	return TOXLOSS
 
 /obj/item/food/cnds/caramel

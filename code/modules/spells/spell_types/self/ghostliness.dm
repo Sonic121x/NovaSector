@@ -20,7 +20,7 @@
 
 	if(!is_valid_target(owner))
 		if(feedback)
-			owner.balloon_alert(owner, LANG("datum.f686d151", null))
+			owner.balloon_alert(owner, LANG("datum.f686d151ab3d0ec8", null))
 		return FALSE
 
 	return TRUE
@@ -32,19 +32,19 @@
 	. = ..()
 
 	if(HAS_TRAIT(cast_on, TRAIT_GHOSTLY_MOB))
-		to_chat(cast_on, span_green(LANG("datum.7d9286bd", null)))
+		to_chat(cast_on, span_green(LANG("datum.7d9286bdca3f3222", null)))
 	else
-		to_chat(cast_on, span_green(LANG("datum.f918b45f", null)))
+		to_chat(cast_on, span_green(LANG("datum.f918b45f9ca1a699", null)))
 	if(!do_after(cast_on, 5 SECONDS))
 		if(HAS_TRAIT(cast_on, TRAIT_GHOSTLY_MOB))
-			to_chat(cast_on, span_warning(LANG("datum.7df38b8b", null)))
+			to_chat(cast_on, span_warning(LANG("datum.7df38b8bfab6dd55", null)))
 		else
-			to_chat(cast_on, span_warning(LANG("datum.b3b88428", null)))
+			to_chat(cast_on, span_warning(LANG("datum.b3b884286c0a0745", null)))
 		return
 	if(HAS_TRAIT(cast_on, TRAIT_GHOSTLY_MOB))
-		to_chat(cast_on, span_green(LANG("datum.ae7b212d", null)))
+		to_chat(cast_on, span_green(LANG("datum.ae7b212dbec3d23c", null)))
 	else
-		to_chat(cast_on, span_danger(LANG("datum.61c28d4b", null)))
+		to_chat(cast_on, span_danger(LANG("datum.61c28d4b20f75cfb", null)))
 		var/mob/living/carbon/human/soulless_husk = new(cast_on.drop_location())
 		soulless_husk.setDir(cast_on.dir)
 		cast_on.dna.copy_dna(soulless_husk.dna, ALL)

@@ -75,8 +75,8 @@
 		return
 	Remove(body)
 	forceMove(get_turf(body))
-	to_chat(body, span_danger(LANG("obj.a849b3b9", null)))
-	balloon_alert_to_viewers(LANG("obj.c10edb67", null), vision_distance = 1)
+	to_chat(body, span_danger(LANG("obj.a849b3b98d4bfc61", null)))
+	balloon_alert_to_viewers(LANG("obj.c10edb676d93174f", null), vision_distance = 1)
 
 /// Visual vars to cache and restore when regrowing limbs.
 /obj/item/organ/brain/protean/var/static/list/cached_visual_vars = list(
@@ -133,7 +133,7 @@
 	// Move into suit FIRST — this exits chasm_storage, which unregisters
 	// COMSIG_LIVING_REVIVE so any later revive won't trigger chasm auto-eject
 	var/atom/current_loc = owner.loc
-	owner.visible_message(span_warning(LANG("obj.9af74be9", list(owner, suit))))
+	owner.visible_message(span_warning(LANG("obj.9af74be901b41912", list(owner, suit))))
 	owner.extinguish_mob()
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(current_loc, owner.dir)
@@ -148,10 +148,10 @@
 	sleep(SUIT_TRANSFORMATION_DURATION)
 	owner.invisibility = initial(owner.invisibility)
 	if(IS_CHANGELING(owner))
-		to_chat(owner, span_red(LANG("obj.a39bee73", null)))
+		to_chat(owner, span_red(LANG("obj.a39bee73aa1f4745", null)))
 	else
 		qdel(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
-		to_chat(owner, span_red(LANG("obj.20f8d686", null)))
+		to_chat(owner, span_red(LANG("obj.20f8d686dd386004", null)))
 
 /obj/item/organ/brain/protean/on_life(seconds_per_tick, times_fired)
 	. = ..()
@@ -173,7 +173,7 @@
 	if(isnull(organ) || !istype(organ, /obj/item/organ/stomach/protean))
 		owner.adjust_brute_loss(3, forced = TRUE)
 		if(COOLDOWN_FINISHED(src, refactory_cooldown))
-			to_chat(owner, span_warning(LANG("obj.4fdd5cf8", null)))
+			to_chat(owner, span_warning(LANG("obj.4fdd5cf8c0838ef2", null)))
 			COOLDOWN_START(src, refactory_cooldown, 30 SECONDS)
 
 /// Checks if the orchestrator organ is present and applies movement penalties if missing.
@@ -187,7 +187,7 @@
 	if(isnull(organ) || !istype(organ, /obj/item/organ/heart/protean))
 		owner.KnockToFloor(TRUE, TRUE, 1 SECONDS)
 		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown, multiplicative_slowdown = 2)
-		to_chat(owner, span_warning(LANG("obj.1dea605c", null)))
+		to_chat(owner, span_warning(LANG("obj.1dea605ce085af5f", null)))
 	else
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown)
 
@@ -205,7 +205,7 @@
 	if(!forced)
 		if(!do_after(owner, 5 SECONDS))
 			return
-	owner.visible_message(span_warning(LANG("obj.9af74be9", list(owner, suit))))
+	owner.visible_message(span_warning(LANG("obj.9af74be901b41912", list(owner, suit))))
 	owner.extinguish_mob()
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
@@ -245,7 +245,7 @@
 	if(isnull(suit))
 		return
 	if(dead)
-		to_chat(owner, span_warning(LANG("obj.e779b31f", null)))
+		to_chat(owner, span_warning(LANG("obj.e779b31fd4e25fd5", null)))
 		return
 	if(!do_after(owner, 5 SECONDS, suit, IGNORE_INCAPACITATED))
 		return
@@ -268,7 +268,7 @@
 	owner.SetStun(0)
 	owner.remove_traits(TRANSFORM_TRAITS, PROTEAN_TRAIT)
 	owner.apply_status_effect(/datum/status_effect/protean_low_power_mode/reform)
-	owner.visible_message(span_warning(LANG("obj.33970ef4", list(owner, suit))))
+	owner.visible_message(span_warning(LANG("obj.33970ef41b4fade4", list(owner, suit))))
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
 
@@ -281,10 +281,10 @@
 	var/obj/item/organ/liver/synth/protean/liver = owner.get_organ_slot(ORGAN_SLOT_LIVER)
 
 	if(stomach.metal <= PROTEAN_STOMACH_FULL * 0.6 && istype(stomach))
-		to_chat(owner, span_warning(LANG("obj.79f5f5a8", null)))
+		to_chat(owner, span_warning(LANG("obj.79f5f5a88120271d", null)))
 		return
 	if(!istype(owner.loc, /obj/item/mod/control))
-		to_chat(owner, span_warning(LANG("obj.d4396b70", null)))
+		to_chat(owner, span_warning(LANG("obj.d4396b705102dc64", null)))
 		return
 	if(!do_after(owner, 30 SECONDS, get_protean_modsuit(owner), IGNORE_INCAPACITATED))
 		return
@@ -342,7 +342,7 @@
 /obj/item/organ/brain/protean/proc/revive()
 	dead = FALSE
 	playsound(owner, 'sound/machines/ping.ogg', 30)
-	to_chat(owner, span_warning(LANG("obj.ee65a3c2", null)))
+	to_chat(owner, span_warning(LANG("obj.ee65a3c2bb1faf51", null)))
 	var/obj/item/mod/control/pre_equipped/protean/suit = get_protean_modsuit(owner)
 	suit?.set_distress_signal(FALSE)
 	// Bring them back from stat = DEAD if they were held in the retreat state.
@@ -355,7 +355,7 @@
 
 /// Starts the revive countdown timer, shorter for changelings.
 /obj/item/organ/brain/protean/proc/revive_timer()
-	balloon_alert_to_viewers(LANG("obj.f2b23f18", null))
+	balloon_alert_to_viewers(LANG("obj.f2b23f18ac237926", null))
 	if(IS_CHANGELING(owner))
 		revive_timer_id = addtimer(CALLBACK(src, PROC_REF(revive)), 40 SECONDS, TIMER_STOPPABLE)
 	else
@@ -381,10 +381,10 @@
 		return
 	switch(severity)
 		if(EMP_HEAVY)
-			to_chat(owner, span_boldwarning(LANG("obj.22f162b2", list(pick("buzz erratically", "surge chaotically")))))
+			to_chat(owner, span_boldwarning(LANG("obj.22f162b2411d3b4c", list(pick("buzz erratically", "surge chaotically")))))
 			owner.set_drugginess_if_lower(40 SECONDS)
 		if(EMP_LIGHT)
-			to_chat(owner, span_warning(LANG("obj.fe74848d", list(pick("fuzzy", "unruly", "sluggish")))))
+			to_chat(owner, span_warning(LANG("obj.fe74848dfa1dd334", list(pick("fuzzy", "unruly", "sluggish")))))
 			owner.set_drugginess_if_lower(20 SECONDS)
 
 #undef TRANSFORM_TRAITS

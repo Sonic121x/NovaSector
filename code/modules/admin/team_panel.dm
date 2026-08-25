@@ -25,7 +25,7 @@
 
 /datum/admins/proc/check_teams()
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr,LANG("datum.8a212f07", null))
+		tgui_alert(usr,LANG("datum.8a212f0792509a20", null))
 		return
 
 	var/datum/browser/popup = new(usr, "teams", "Team Listing", 500, 500)
@@ -52,7 +52,7 @@
 	log_admin("[key_name(usr)] renamed [old_name] team to [name]")
 
 /datum/team/proc/admin_communicate(mob/user)
-	var/message = input(user,LANG("datum.a04f31ea", null),LANG("datum.bead7c7f", null)) as text|null
+	var/message = input(user,LANG("datum.a04f31eae8dac73e", null),LANG("datum.bead7c7f67adc4ec", null)) as text|null
 	if(!message)
 		return
 	for(var/datum/mind/M in members)
@@ -67,7 +67,7 @@
 	if(!GLOB.admin_objective_list)
 		generate_admin_objective_list()
 
-	var/selected_type = input(LANG("datum.4f1a9544", null), LANG("datum.ab83c996", null)) as null|anything in GLOB.admin_objective_list
+	var/selected_type = input(LANG("datum.4f1a9544d8a05760", null), LANG("datum.ab83c996c47f27c6", null)) as null|anything in GLOB.admin_objective_list
 	selected_type = GLOB.admin_objective_list[selected_type]
 	if (!selected_type)
 		return
@@ -112,7 +112,7 @@
 	for(var/mob/M in GLOB.mob_list)
 		if(M.mind)
 			minds |= M.mind
-	var/datum/mind/value = input(LANG("datum.6b9ca4f3", null), LANG("datum.73a6cb3f", null), null) as null|anything in sort_names(minds)
+	var/datum/mind/value = input(LANG("datum.6b9ca4f3b7502b74", null), LANG("datum.73a6cb3f7c5c28f6", null), null) as null|anything in sort_names(minds)
 	if (!value)
 		return
 
@@ -129,7 +129,7 @@
 //After a bit of consideration i block team deletion if there's any members left until unified objective handling is in.
 /datum/team/proc/admin_delete(mob/user)
 	if(members.len > 0)
-		to_chat(user,LANG("datum.6499268a", null), confidential = TRUE)
+		to_chat(user,LANG("datum.6499268a0fb44cd0", null), confidential = TRUE)
 		return
 	qdel(src)
 

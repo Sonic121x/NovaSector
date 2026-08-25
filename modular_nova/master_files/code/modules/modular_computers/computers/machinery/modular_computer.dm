@@ -8,6 +8,6 @@
 	if(HAS_TRAIT_FROM(user, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE))
 		if(ui)
 			ui.close()
-		balloon_alert(user, LANG("obj.4538c3c4", null))
+		balloon_alert(user, LANG("obj.4538c3c41f6e17c1", null))
 		return
 	return ..()

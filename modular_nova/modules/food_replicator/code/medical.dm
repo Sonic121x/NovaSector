@@ -59,10 +59,10 @@
 		return ..()
 
 	if(DOING_INTERACTION(user, DOAFTER_SOURCE_SURVIVALPEN))
-		to_chat(user,span_notice(LANG("obj.6f8a1eaf", list(src))))
+		to_chat(user,span_notice(LANG("obj.6f8a1eafde73a71d", list(src))))
 		return
 
-	to_chat(user,span_notice(LANG("obj.d976d2ff", null)))
+	to_chat(user,span_notice(LANG("obj.d976d2ffdcfc59cd", null)))
 	if(!do_after(user, 10 SECONDS, affected_mob, interaction_key = DOAFTER_SOURCE_SURVIVALPEN))
 		return
 

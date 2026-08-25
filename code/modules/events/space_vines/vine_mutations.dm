@@ -93,7 +93,7 @@
 	var/datum/spacevine_mutation/thorns/thorns = locate() in holder.mutations
 
 	if(thorns)
-		to_chat(crosser, span_alert(LANG("datum.cfc50009", null)))
+		to_chat(crosser, span_alert(LANG("datum.cfc5000932cd7f09", null)))
 		crosser.apply_damage(20, TOX)
 		return
 
@@ -106,7 +106,7 @@
 		if((body_parts_covered & required_coverage) == required_coverage)
 			return
 
-	to_chat(crosser, span_alert(LANG("datum.88b12057", null)))
+	to_chat(crosser, span_alert(LANG("datum.88b120572ea953d1", null)))
 	crosser.apply_damage(20, TOX)
 
 /datum/spacevine_mutation/toxicity/on_eat(obj/structure/spacevine/holder, mob/living/eater)
@@ -219,8 +219,8 @@
 	if(!iscarbon(living_mob))
 		living_mob.apply_damage(75, BRUTE, blocked = living_mob.run_armor_check(attack_flag = MELEE, silent = TRUE))
 		playsound(living_mob, 'sound/items/weapons/whip.ogg', 50, TRUE, -1)
-		living_mob.visible_message(span_danger(LANG("datum.40f3aa77", list(living_mob, vine))), \
-		span_userdanger(LANG("datum.58ed31e1", list(vine))))
+		living_mob.visible_message(span_danger(LANG("datum.40f3aa77d5f3f3f7", list(living_mob, vine))), \
+		span_userdanger(LANG("datum.58ed31e181843fbf", list(vine))))
 		log_combat(vine, living_mob, "aggressively spread into") //You aren't being attacked by the vines. You just happen to stand in their way.
 		return
 
@@ -236,8 +236,8 @@
 			victim.apply_damage(50, BRUTE, def_zone = limb, wound_bonus = rand(-20,10), sharpness = SHARP_POINTY) //This one gets a bit lower damage because it ignores armor.
 			victim.Stun(1 SECONDS) //Stopped in place for a moment.
 			playsound(living_mob, 'sound/items/weapons/pierce.ogg', 50, TRUE, -1)
-			living_mob.visible_message(span_danger(LANG("datum.e4a6aaa1", list(living_mob))), \
-			span_userdanger(LANG("datum.07c1ab51", null)))
+			living_mob.visible_message(span_danger(LANG("datum.e4a6aaa1403b5d95", list(living_mob))), \
+			span_userdanger(LANG("datum.07c1ab51ca05f83b", null)))
 			log_combat(vine, living_mob, "aggressively pierced") //"Aggressively" for easy ctrl+F'ing in the attack logs.
 			return
 
@@ -245,8 +245,8 @@
 			victim.apply_damage(60, BRUTE, def_zone = limb, blocked = armor, wound_bonus = rand(-20,10), sharpness = SHARP_EDGED)
 			victim.Knockdown(2 SECONDS)
 			playsound(victim, 'sound/items/weapons/whip.ogg', 50, TRUE, -1)
-			living_mob.visible_message(span_danger(LANG("datum.34e7bdaa", list(living_mob))), \
-			span_userdanger(LANG("datum.01f526cd", null)))
+			living_mob.visible_message(span_danger(LANG("datum.34e7bdaac9f04d2b", list(living_mob))), \
+			span_userdanger(LANG("datum.01f526cd60aa49f6", null)))
 			log_combat(vine, living_mob, "aggressively lacerated")
 			return
 
@@ -255,8 +255,8 @@
 	var/atom/throw_target = get_edge_target_turf(living_mob, get_dir(vine, get_step_away(living_mob, vine)))
 	victim.throw_at(throw_target, 3, 6)
 	playsound(victim, 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
-	living_mob.visible_message(span_danger(LANG("datum.e86f22b7", list(living_mob))), \
-	span_userdanger(LANG("datum.83da9f6a", null)))
+	living_mob.visible_message(span_danger(LANG("datum.e86f22b7d2702ffb", list(living_mob))), \
+	span_userdanger(LANG("datum.83da9f6ab27e3d42", null)))
 	log_combat(vine, living_mob, "aggressively smashed")
 
 /datum/spacevine_mutation/transparency
@@ -337,7 +337,7 @@
 	if(prob(THORN_MUTATION_CUT_PROB))
 		var/mob/living/victim = crosser
 		if(victim.apply_damage(15, BRUTE, blocked = victim.run_armor_check(attack_flag = MELEE, silent = TRUE), spread_damage = TRUE))
-			to_chat(victim, span_danger(LANG("datum.4feffe03", null)))
+			to_chat(victim, span_danger(LANG("datum.4feffe03f8426650", null)))
 
 /datum/spacevine_mutation/thorns/on_hit(obj/structure/spacevine/holder, mob/living/hitter, obj/item/item, expected_damage)
 	if(isvineimmune(hitter) || HAS_TRAIT(hitter, TRAIT_PIERCEIMMUNE) || HAS_TRAIT(hitter, TRAIT_PLANT_SAFE))
@@ -352,7 +352,7 @@
 	if(prob(THORN_MUTATION_CUT_PROB))
 		var/mob/living/victim = hitter
 		if(victim.apply_damage(15, BRUTE, blocked = victim.run_armor_check(attack_flag = MELEE, silent = TRUE), spread_damage = TRUE))
-			to_chat(victim, span_danger(LANG("datum.4feffe03", null)))
+			to_chat(victim, span_danger(LANG("datum.4feffe03f8426650", null)))
 
 	return expected_damage
 

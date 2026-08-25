@@ -143,7 +143,7 @@
 
 		var/timer_id = href_list["reject_cross_comms_message"]
 		if (!(timer_id in timers))
-			to_chat(usr, span_warning(LANG("datum.3c2954fe", null)))
+			to_chat(usr, span_warning(LANG("datum.3c2954fe4077f853", null)))
 			return
 
 		deltimer(timer_id)
@@ -160,7 +160,7 @@
 
 	LAZYREMOVE(timers, timer_id)
 
-	minor_announce(input["message"], LANG("datum.18f3f0f2", list(input["message_sender"])))
+	minor_announce(input["message"], LANG("datum.18f3f0f202fb52d9", list(input["message_sender"])))
 	message_admins("Receiving a message from [input["sender_ckey"]] at [input["source"]]")
 	for(var/obj/machinery/computer/communications/communications_console in GLOB.shuttle_caller_list)
 		communications_console.override_cooldown()
@@ -170,7 +170,7 @@
 
 /datum/world_topic/news_report/Run(list/input)
 
-	priority_announce(input["message"], LANG("datum.01758d2b", list(input["message_sender"]))) //NOVA EDIT CHANGE
+	priority_announce(input["message"], LANG("datum.01758d2b43b8485f", list(input["message_sender"]))) //NOVA EDIT CHANGE
 
 /datum/world_topic/adminmsg
 	keyword = "adminmsg"
@@ -282,7 +282,7 @@
 		return
 
 	if (!(timer_id in timers))
-		to_chat(usr, span_warning(LANG("datum.3c2954fe", null)))
+		to_chat(usr, span_warning(LANG("datum.3c2954fe4077f853", null)))
 		return
 
 	deltimer(timer_id)

@@ -43,7 +43,7 @@
 				continue
 			ghost.playsound_local(ghost, 'sound/effects/ghost2.ogg', 75, FALSE)
 			var/turf_link = TURF_LINK(ghost, spawn_loc)
-			to_chat(ghost, LANG("datum.8f95c4c5", list(turf_link, CES.job_name, turf_link)))
+			to_chat(ghost, LANG("datum.8f95c4c58f244aa2", list(turf_link, CES.job_name, turf_link)))
 
 /datum/event_spawner_instance/proc/GetExport()
 	var/list/blocks = list()
@@ -245,11 +245,11 @@
 				ShowPanel(usr, null)
 				return
 			if("job_name")
-				var/msg = input(usr, LANG("datum.32e8690c", null), LANG("datum.d559c01d", null), ESI.job_name) as text|null
+				var/msg = input(usr, LANG("datum.32e8690c01228cb5", null), LANG("datum.d559c01de1fb3fdc", null), ESI.job_name) as text|null
 				if(msg)
 					ESI.job_name = msg
 			if("flavor_text")
-				var/msg = input(usr, LANG("datum.ac5e2e1d", null), LANG("datum.3313d694", null), ESI.flavor_text) as message|null
+				var/msg = input(usr, LANG("datum.ac5e2e1d7cf63fe3", null), LANG("datum.3313d6946ff71378", null), ESI.flavor_text) as message|null
 				if(msg)
 					ESI.flavor_text = msg
 			if("used_outfit")
@@ -265,30 +265,30 @@
 			if("prompt_players")
 				ESI.prompt_players = !ESI.prompt_players
 			if("add_ckey")
-				var/msg = input(usr, LANG("datum.b427f368", null), LANG("datum.b52bec96", null), "") as text|null
+				var/msg = input(usr, LANG("datum.b427f3682e683be3", null), LANG("datum.b52bec96f77c340d", null), "") as text|null
 				if(msg)
 					ESI.ckey_whitelist += LOWER_TEXT(msg)
 			if("add_species")
-				var/result = input(usr, LANG("datum.2dc4c8fd", null), LANG("datum.562a036c", null)) as null|anything in GLOB.roundstart_races
+				var/result = input(usr, LANG("datum.2dc4c8fd22952ece", null), LANG("datum.562a036c31151288", null)) as null|anything in GLOB.roundstart_races
 				if(result)
 					ESI.species_whitelist += result
 			if("add_gender")
-				var/result = input(usr, LANG("datum.dfb3ebd7", null), LANG("datum.ee4959df", null)) as null|anything in list("male", "female", "plural")
+				var/result = input(usr, LANG("datum.dfb3ebd7752d1959", null), LANG("datum.ee4959df4149d859", null)) as null|anything in list("male", "female", "plural")
 				if(result)
 					ESI.gender_whitelist += result
 			if("add_access")
-				var/msg = input(usr, LANG("datum.5a790b8b", null), LANG("datum.6c8c800a", null), "") as num|null
+				var/msg = input(usr, LANG("datum.5a790b8b4c077ae4", null), LANG("datum.6c8c800add43bf00", null), "") as num|null
 				if(msg != null)
 					if(!(msg in ESI.access_override))
 						ESI.access_override += msg
 			if("add_equip")
-				var/msg = input(usr, LANG("datum.30b13b81", null), LANG("datum.71767a16", null), "") as text|null
+				var/msg = input(usr, LANG("datum.30b13b81ec20d8b1", null), LANG("datum.71767a16615f0077", null), "") as text|null
 				if(!isnull(msg))
 					var/typed = text2path(msg)
 					if(!isnull(typed))
 						ESI.additional_equipment += typed
 			if("set_headset")
-				var/result = input(usr, LANG("datum.036fe67d", null), LANG("datum.8aec6eb8", null)) as null|anything in radio_typecache
+				var/result = input(usr, LANG("datum.036fe67dcb0b8c9d", null), LANG("datum.8aec6eb89e3339d2", null)) as null|anything in radio_typecache
 				if(result)
 					ESI.headset_override = result
 			if("remove_ckey")
@@ -317,19 +317,19 @@
 				usr << browse("<code>[output]</code>", "window=export_spawner;size=500x600;border=1;can_resize=1;can_close=1;can_minimize=1")
 				return
 			if("import")
-				var/input = input(usr, LANG("datum.39766a5e", null), LANG("datum.e121863f", null)) as message|null
+				var/input = input(usr, LANG("datum.39766a5e8b54d6db", null), LANG("datum.e121863f13ba4b2d", null)) as message|null
 				if(input)
 					ESI.DoImport(input)
 		ShowPanel(usr, numb)
 	if(href_list["pref"])
 		switch(href_list["pref"])
 			if("create_new_instance")
-				var/action = tgui_alert(usr, LANG("datum.789d42d1", null), "", list("New", "Import"))
+				var/action = tgui_alert(usr, LANG("datum.789d42d11af22799", null), "", list("New", "Import"))
 				if(!action)
 					return
 				var/import_input
 				if(action == "Import")
-					import_input = input(usr, LANG("datum.39766a5e", null), LANG("datum.e121863f", null)) as message|null
+					import_input = input(usr, LANG("datum.39766a5e8b54d6db", null), LANG("datum.e121863f13ba4b2d", null)) as message|null
 					if(!import_input)
 						return
 				next_id++

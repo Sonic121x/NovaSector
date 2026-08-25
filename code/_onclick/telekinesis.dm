@@ -215,7 +215,7 @@
 /proc/tkMaxRangeCheck(mob/user, atom/target)
 	var/d = get_dist(user, target)
 	if(d > TK_MAXRANGE)
-		user.balloon_alert(user, LANG("_root.ac43d445", null))
+		user.balloon_alert(user, LANG("_root.ac43d445a227ddb6", null))
 		return
 	return TRUE
 
@@ -256,7 +256,7 @@
 	. += focus_overlay
 
 /obj/item/tk_grab/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.f96cbb62", list(user, user.p_their(), user.p_them(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.f96cbb62fc4bf6d5", list(user, user.p_their(), user.p_them(), user.p_theyre()))))
 	return OXYLOSS
 
 #undef TK_MAXRANGE

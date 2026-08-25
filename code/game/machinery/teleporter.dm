@@ -34,7 +34,7 @@
 /obj/machinery/teleport/hub/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.aaddcd7a", list(70 + (accuracy * 10))))
+		. += span_notice(LANG("obj.aaddcd7a8eeea5d9", list(70 + (accuracy * 10))))
 
 /obj/machinery/teleport/hub/proc/link_power_station()
 	if(power_station)
@@ -48,7 +48,7 @@
 
 /obj/machinery/teleport/hub/Bumped(atom/movable/AM)
 	if(is_centcom_level(z))
-		to_chat(AM, span_warning(LANG("obj.1cd76a5d", null)))
+		to_chat(AM, span_warning(LANG("obj.1cd76a5d176c9ee4", null)))
 		return
 	if(is_ready())
 		teleport(AM)
@@ -73,7 +73,7 @@
 		target = com.target_ref.resolve()
 	if (!target)
 		com.target_ref = null
-		visible_message(span_alert(LANG("obj.4ecc5976", null)))
+		visible_message(span_alert(LANG("obj.4ecc5976300c0ef3", null)))
 		return
 	if(!ismovable(M))
 		return
@@ -97,7 +97,7 @@
 		*/ //NOVA EDIT REMOVAL END
 		// NOVA EDIT ADDITION START
 		if(!HAS_TRAIT(human, TRAIT_NODISMEMBER))
-			to_chat(human, span_danger(LANG("obj.f3447f11", null)))
+			to_chat(human, span_danger(LANG("obj.f3447f119e23e726", null)))
 			var/list/bodyparts_dismember = list()
 			var/rad_mod = 0
 			for(var/obj/item/bodypart/BP in human.bodyparts)
@@ -154,11 +154,11 @@
 /obj/machinery/teleport/station/examine(mob/user)
 	. = ..()
 	if(!panel_open)
-		. += span_notice(LANG("obj.86b563c3", null))
+		. += span_notice(LANG("obj.86b563c3ee0ca988", null))
 	else
-		. += span_notice(LANG("obj.8906221c", null))
+		. += span_notice(LANG("obj.8906221cb8f5f457", null))
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.ae4236d9", list(efficiency)))
+		. += span_notice(LANG("obj.ae4236d9c93da42c", list(efficiency)))
 
 /obj/machinery/teleport/station/proc/link_console_and_hub()
 	for(var/direction in GLOB.cardinals)
@@ -189,7 +189,7 @@
 
 	if(panel_open)
 		tool.set_buffer(src)
-		balloon_alert(user, LANG("obj.84afb909", null))
+		balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!istype(tool.buffer, /obj/machinery/teleport/station) || tool.buffer == src)
@@ -198,7 +198,7 @@
 	if(linked_stations.len < efficiency)
 		linked_stations.Add(tool.buffer)
 		tool.set_buffer(null)
-		balloon_alert(user, LANG("obj.38965918", null))
+		balloon_alert(user, LANG("obj.3896591862bc97a5", null))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/teleport/station/screwdriver_act(mob/living/user, obj/item/tool)
@@ -215,14 +215,14 @@
 		return
 	if (teleporter_console.target_ref?.resolve())
 		if(teleporter_hub.panel_open || teleporter_hub.machine_stat & (BROKEN|NOPOWER))
-			to_chat(user, span_alert(LANG("obj.3b4253ff", null)))
+			to_chat(user, span_alert(LANG("obj.3b4253ffdd21b3fc", null)))
 		else
 			engaged = !engaged
 			use_energy(active_power_usage)
-			to_chat(user, span_notice(LANG("obj.8a3671d8", list(engaged ? "" : "dis"))))
+			to_chat(user, span_notice(LANG("obj.8a3671d82d1fc8bb", list(engaged ? "" : "dis"))))
 	else
 		teleporter_console.target_ref = null
-		to_chat(user, span_alert(LANG("obj.bfb5de77", null)))
+		to_chat(user, span_alert(LANG("obj.bfb5de774100c82f", null)))
 		engaged = FALSE
 	teleporter_hub.update_appearance()
 	add_fingerprint(user)

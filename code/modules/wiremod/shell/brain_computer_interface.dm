@@ -136,7 +136,7 @@
 	if (bci.owner.stat == DEAD)
 		return
 
-	to_chat(bci.owner, LANG("obj.dabd65ca", list(span_robot("[html_encode(sent_message)]"))))
+	to_chat(bci.owner, LANG("obj.dabd65ca808cce08", list(span_robot("[html_encode(sent_message)]"))))
 
 /obj/item/circuit_component/bci_core/proc/on_organ_implanted(datum/source, mob/living/carbon/owner)
 	SIGNAL_HANDLER
@@ -178,13 +178,13 @@
 		return
 
 	parent.cell.give(shock_damage * 2)
-	to_chat(source, span_notice(LANG("obj.a5584887", list(parent.name))))
+	to_chat(source, span_notice(LANG("obj.a55848878b05c22e", list(parent.name))))
 
 /obj/item/circuit_component/bci_core/proc/on_examine(datum/source, mob/mob, list/examine_text)
 	SIGNAL_HANDLER
 
 	if (isobserver(mob))
-		examine_text += span_notice(LANG("obj.a909da9e", list(source.p_They(), source.p_have(), REF(src), parent, source.p_them())))
+		examine_text += span_notice(LANG("obj.a909da9e650615e2", list(source.p_They(), source.p_have(), REF(src), parent, source.p_them())))
 
 /obj/item/circuit_component/bci_core/Topic(href, list/href_list)
 	..()
@@ -232,10 +232,10 @@
 	var/obj/item/stock_parts/power_store/cell/cell = circuit_component.parent.cell
 
 	if (isnull(cell))
-		to_chat(owner, span_boldwarning(LANG("datum.2bd539cc", list(circuit_component.parent))))
+		to_chat(owner, span_boldwarning(LANG("datum.2bd539cc8b9e88c8", list(circuit_component.parent))))
 	else
-		to_chat(owner, span_info(LANG("datum.458a2f5f", list(circuit_component.parent, cell.name, cell.percent()))))
-		to_chat(owner, span_info(LANG("datum.d802482f", null)))
+		to_chat(owner, span_info(LANG("datum.458a2f5ff385e99e", list(circuit_component.parent, cell.name, cell.percent()))))
+		to_chat(owner, span_info(LANG("datum.d802482fb2d05e8c", null)))
 
 /datum/action/innate/bci_charge_action/process(seconds_per_tick)
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
@@ -279,9 +279,9 @@
 /obj/machinery/bci_implanter/examine(mob/user)
 	. = ..()
 	if (isnull(bci_to_implant))
-		. += span_notice(LANG("obj.68b0b5e0", null))
+		. += span_notice(LANG("obj.68b0b5e063c791c8", null))
 	else
-		. += span_notice(LANG("obj.cd727f43", null))
+		. += span_notice(LANG("obj.cd727f43d78c7803", null))
 
 /obj/machinery/bci_implanter/proc/set_busy(status, working_icon)
 	busy = status
@@ -324,14 +324,14 @@
 		return
 
 	if (locked)
-		balloon_alert(user, LANG("obj.2ffcba26", null))
+		balloon_alert(user, LANG("obj.2ffcba260e4b2ba0", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if (isnull(bci_to_implant))
-		balloon_alert(user, LANG("obj.bf8bccc5", null))
+		balloon_alert(user, LANG("obj.bf8bccc5c31a52a6", null))
 	else
 		user.put_in_hands(bci_to_implant)
-		balloon_alert(user, LANG("obj.ccfe917c", null))
+		balloon_alert(user, LANG("obj.ccfe917c4c57d5dc", null))
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -341,16 +341,16 @@
 
 	var/obj/item/organ/cyberimp/bci/new_bci = tool
 	if (!(locate(/obj/item/integrated_circuit) in new_bci))
-		balloon_alert(user, LANG("obj.a2d6e3a7", null))
+		balloon_alert(user, LANG("obj.a2d6e3a7409f6c95", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/organ/cyberimp/bci/previous_bci_to_implant = bci_to_implant
 	user.transferItemToLoc(new_bci, src)
 	bci_to_implant = new_bci
 	if (isnull(previous_bci_to_implant))
-		balloon_alert(user, LANG("obj.f39f0abc", null))
+		balloon_alert(user, LANG("obj.f39f0abcf113581d", null))
 	else
-		balloon_alert(user, LANG("obj.13f4c845", null))
+		balloon_alert(user, LANG("obj.13f4c8456e3ef2cf", null))
 		user.put_in_hands(previous_bci_to_implant)
 	return ITEM_INTERACT_SUCCESS
 
@@ -395,14 +395,14 @@
 		bci_organ.Remove(carbon_occupant)
 
 		if (isnull(bci_to_implant))
-			say(LANG("obj.d1e8e764", null))
+			say(LANG("obj.d1e8e764361ed0c1", null))
 			carbon_occupant.transferItemToLoc(bci_organ, src)
 			bci_to_implant = bci_organ
 		else
-			say(LANG("obj.feff2605", null))
+			say(LANG("obj.feff260596d3a053", null))
 			bci_organ.forceMove(drop_location())
 	else if (!isnull(bci_to_implant))
-		say(LANG("obj.57a571e5", list(bci_to_implant)))
+		say(LANG("obj.57a571e5be863d6d", list(bci_to_implant)))
 		bci_to_implant.Insert(carbon_occupant)
 
 /obj/machinery/bci_implanter/open_machine(drop = TRUE, density_to_set = FALSE)
@@ -423,7 +423,7 @@
 	if (istype(occupant))
 		var/obj/item/organ/cyberimp/bci/bci_organ = carbon_occupant.get_organ_by_type(/obj/item/organ/cyberimp/bci)
 		if (isnull(bci_organ) && isnull(bci_to_implant))
-			say(LANG("obj.a34d2176", null))
+			say(LANG("obj.a34d2176b6faa7e3", null))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 			return FALSE
 
@@ -452,7 +452,7 @@
 		close_machine(null, user)
 		return
 	else if (locked)
-		balloon_alert(user, LANG("obj.2ffcba26", null))
+		balloon_alert(user, LANG("obj.2ffcba260e4b2ba0", null))
 		return
 
 	open_machine()

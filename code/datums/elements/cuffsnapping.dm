@@ -75,7 +75,7 @@
 	examine_string = "It looks like it could be used to cut zipties or cable restraints off someone in [snap_time_weak] seconds"
 
 	if(!isnull(snap_time_strong))
-		examine_string += LANG("datum.9adf8967", list(snap_time_strong))
+		examine_string += LANG("datum.9adf89670df15938", list(snap_time_strong))
 	else
 		examine_string += "."
 

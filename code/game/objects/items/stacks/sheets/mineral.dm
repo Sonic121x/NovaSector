@@ -25,6 +25,7 @@ Mineral Sheets
  */
 
 GLOBAL_LIST_INIT(sandstone_recipes, list ( \
+	new/datum/stack_recipe("sandstone tile", /obj/item/stack/tile/mineral/sandstone, 1, 4, 20, category = CAT_TILES), \
 	new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
 	new/datum/stack_recipe("sandstone platform", /obj/structure/platform/sandstone, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("Breakdown into sand", /obj/item/stack/ore/glass, 1, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_NO_MATERIALS, category = CAT_MISC), \
@@ -91,7 +92,7 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	if(!istype(tool, /obj/item/stack/ore/glass))
 		return NONE
 	var/obj/item/stack/ore/glass/sand = tool
-	to_chat(user, span_notice(LANG("obj.04fac2de", null)))
+	to_chat(user, span_notice(LANG("obj.04fac2deb2372f5a", null)))
 	var/obj/item/stack/sheet/mineral/sandbags/filled_bag = new (drop_location())
 	qdel(src)
 	if(Adjacent(user) && !issilicon(user))
@@ -184,7 +185,7 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	walltype = /turf/closed/wall/mineral/plasma
 
 /obj/item/stack/sheet/mineral/plasma/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.9bb5c4fb", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.9bb5c4fb28bfabe5", list(user, src, user.p_theyre()))))
 	return TOXLOSS//dont you kids know that stuff is toxic?
 
 GLOBAL_LIST_INIT(plasma_recipes, list ( \
@@ -332,11 +333,11 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
 		return ..()
 	var/obj/item/stack/rods/old_rods = tool
 	if(old_rods.merge_type != /obj/item/stack/rods)
-		to_chat(user, span_warning(LANG("obj.e306233a", null)))
+		to_chat(user, span_warning(LANG("obj.e306233a23ab73a4", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if (old_rods.get_amount() < 5 && get_amount() < 1)
-		to_chat(user, span_warning(LANG("obj.66ed56e6", null)))
+		to_chat(user, span_warning(LANG("obj.66ed56e61ec65881", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/stack/rods/shuttle/five/new_rods = new (get_turf(user))
@@ -427,6 +428,7 @@ GLOBAL_LIST_INIT(snow_recipes, list ( \
 
 
 GLOBAL_LIST_INIT(adamantine_recipes, list(
+	new /datum/stack_recipe("adamantine tile", /obj/item/stack/tile/mineral/adamantine, 1, 4, 20, category = CAT_TILES), \
 	new /datum/stack_recipe("incomplete servant golem shell", /obj/item/golem_shell/servant, req_amount=3, res_amount=1, category = CAT_ROBOT),
 	))
 
@@ -443,6 +445,10 @@ GLOBAL_LIST_INIT(adamantine_recipes, list(
 	. = ..()
 	. += GLOB.adamantine_recipes
 
+GLOBAL_LIST_INIT(runite_recipes, list(
+	new /datum/stack_recipe("runite tile", /obj/item/stack/tile/mineral/runite, 1, 4, 20, category = CAT_TILES), \
+	))
+
 /*
  * Runite
  */
@@ -458,6 +464,13 @@ GLOBAL_LIST_INIT(adamantine_recipes, list(
 	merge_type = /obj/item/stack/sheet/mineral/runite
 	material_type = /datum/material/runite
 
+/obj/item/stack/sheet/mineral/runite/get_main_recipes()
+	. = ..()
+	. += GLOB.runite_recipes
+
+GLOBAL_LIST_INIT(mythril_recipes, list(
+	new /datum/stack_recipe("mythril tile", /obj/item/stack/tile/mineral/mythril, 1, 4, 20, category = CAT_TILES), \
+	))
 
 /*
  * Mythril
@@ -471,6 +484,10 @@ GLOBAL_LIST_INIT(adamantine_recipes, list(
 	novariants = TRUE
 	mats_per_unit = list(/datum/material/mythril=SHEET_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/mineral/mythril
+
+/obj/item/stack/sheet/mineral/mythril/get_main_recipes()
+	. = ..()
+	. += GLOB.mythril_recipes
 
 /*
  * Alien Alloy
@@ -540,6 +557,7 @@ GLOBAL_LIST_INIT(abductor_recipes, list ( \
 
 //Metal Hydrogen
 GLOBAL_LIST_INIT(metalhydrogen_recipes, list(
+	new /datum/stack_recipe("metallic hydrogen tile", /obj/item/stack/tile/mineral/metal_hydrogen, 1, 4, 20, category = CAT_TILES), \
 	new /datum/stack_recipe("incomplete servant golem shell", /obj/item/golem_shell/servant, req_amount=20, res_amount=1, crafting_flags = NONE, category = CAT_ROBOT),
 	new /datum/stack_recipe("ancient armor", /obj/item/clothing/suit/armor/elder_atmosian, req_amount = 5, res_amount = 1, crafting_flags = NONE, category = CAT_CLOTHING),
 	new /datum/stack_recipe("ancient helmet", /obj/item/clothing/head/helmet/elder_atmosian, req_amount = 3, res_amount = 1, crafting_flags = NONE, category = CAT_CLOTHING),

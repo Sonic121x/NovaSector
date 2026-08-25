@@ -58,11 +58,11 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 
 /obj/machinery/status_display/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, LANG("obj.e4901a5f", list(anchored ? "un" : "")))
+	balloon_alert(user, LANG("obj.e4901a5f7f1b9614", list(anchored ? "un" : "")))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		balloon_alert(user, LANG("obj.97c34052", list(anchored ? "un" : "")))
+		balloon_alert(user, LANG("obj.97c3405220b343d0", list(anchored ? "un" : "")))
 		deconstruct()
 		return TRUE
 
@@ -70,12 +70,12 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 	if(user.combat_mode)
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, LANG("obj.20fd4e5f", null))
+		balloon_alert(user, LANG("obj.20fd4e5fc4308a43", null))
 		return TRUE
-	user.balloon_alert_to_viewers(LANG("obj.2666c57c", null), LANG("obj.b52342a8", null))
+	user.balloon_alert_to_viewers(LANG("obj.2666c57c052d2063", null), LANG("obj.b52342a8e93a2ba2", null))
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 0, volume=50))
 		return TRUE
-	balloon_alert(user, LANG("obj.65ced1e8", null))
+	balloon_alert(user, LANG("obj.65ced1e8b5b56733", null))
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()
@@ -254,23 +254,23 @@ GLOBAL_LIST_EMPTY(key_to_status_display)
 /obj/machinery/status_display/examine(mob/user)
 	. = ..()
 	if(LAZYLEN(active_displays))
-		. += span_notice(LANG("obj.a56bbf1b", null))
+		. += span_notice(LANG("obj.a56bbf1bd0ea62eb", null))
 		var/has_any = FALSE
 		for(var/obj/effect/abstract/greenscreen_display/display as anything in active_displays)
 			for(var/atom/movable/thing as anything in display.displaying)
-				. += span_notice(LANG("obj.2d399b97", list(thing.name)))
+				. += span_notice(LANG("obj.2d399b976227af60", list(thing.name)))
 				has_any = TRUE
 		if(!has_any)
-			. += span_notice(LANG("obj.66b0cd25", null))
+			. += span_notice(LANG("obj.66b0cd25a2848fd8", null))
 
 	var/obj/effect/overlay/status_display_text/message1_overlay = get_status_text(message_key_1)
 	var/obj/effect/overlay/status_display_text/message2_overlay = get_status_text(message_key_2)
 	if (message1_overlay || message2_overlay)
-		. += LANG("obj.005a8a9c", null)
+		. += LANG("obj.005a8a9cd984406e", null)
 		if (message1_overlay.message)
-			. += LANG("obj.60707fd0", list(html_encode(message1_overlay.message)))
+			. += LANG("obj.60707fd06a6b78a3", list(html_encode(message1_overlay.message)))
 		if (message2_overlay.message)
-			. += LANG("obj.60707fd0", list(html_encode(message2_overlay.message)))
+			. += LANG("obj.60707fd06a6b78a3", list(html_encode(message2_overlay.message)))
 
 // Helper procs for child display types.
 /obj/machinery/status_display/proc/display_shuttle_status(obj/docking_port/mobile/shuttle)
@@ -1039,7 +1039,7 @@ GLOBAL_LIST_EMPTY_TYPED(greenscreen_displays, /obj/effect/abstract/greenscreen_d
 
 /obj/machinery/greenscreen_camera/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.804d9a29", list(isnull(display) ? "not " : "")))
+	. += span_notice(LANG("obj.804d9a2905fa9562", list(isnull(display) ? "not " : "")))
 
 /obj/machinery/greenscreen_camera/interact(mob/user)
 	. = ..()
@@ -1056,7 +1056,7 @@ GLOBAL_LIST_EMPTY_TYPED(greenscreen_displays, /obj/effect/abstract/greenscreen_d
 		activate_feed()
 		if(isnull(display))
 			playsound(src, 'sound/machines/terminal/terminal_on.ogg', 33, TRUE, frequency = 0.5)
-			balloon_alert_to_viewers(LANG("obj.3f375123", null))
+			balloon_alert_to_viewers(LANG("obj.3f375123dc27500a", null))
 			return
 		playsound(src, 'sound/machines/terminal/terminal_on.ogg', 33, FALSE)
 		use_power = ACTIVE_POWER_USE
@@ -1064,7 +1064,7 @@ GLOBAL_LIST_EMPTY_TYPED(greenscreen_displays, /obj/effect/abstract/greenscreen_d
 		deactivate_feed()
 		playsound(src, 'sound/machines/terminal/terminal_off.ogg', 33, FALSE)
 		use_power = IDLE_POWER_USE
-	balloon_alert_to_viewers(LANG("obj.4e40ec03", list(isnull(display) ? "de" : "")))
+	balloon_alert_to_viewers(LANG("obj.4e40ec032a122c18", list(isnull(display) ? "de" : "")))
 
 /obj/machinery/greenscreen_camera/proc/activate_feed()
 	greenscreen_turf = find_displayed_turf()

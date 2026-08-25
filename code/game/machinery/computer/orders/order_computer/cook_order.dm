@@ -14,7 +14,7 @@
 	cargo_cost_multiplier =  0.65
 
 /obj/machinery/computer/order_console/cook/order_groceries(mob/living/purchaser, obj/item/card/id/card, list/groceries)
-	say(LANG("obj.7e5306e0", null))
+	say(LANG("obj.7e5306e0ef9ee55e", null))
 	aas_config_announce(/datum/aas_config_entry/order_console, list(), src, list(radio_channel), capitalize(blackbox_key))
 	for(var/datum/orderable_item/ordered_item in groceries)
 		if(!(ordered_item.category_index in order_categories))

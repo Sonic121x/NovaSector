@@ -69,7 +69,7 @@
 
 	if(!IS_HERETIC_OR_MONSTER(teleportee))
 		teleportee.apply_damage(20, BRUTE) //so they dont roll it like a jackpot machine to see if they can land in the armory
-		to_chat(teleportee, span_userdanger(LANG("obj.855995ca", list(src))))
+		to_chat(teleportee, span_userdanger(LANG("obj.855995cad99b7cde", list(src))))
 
 	INVOKE_ASYNC(src, PROC_REF(async_opendoor), doorstination)
 
@@ -112,19 +112,19 @@
 	. = ..()
 	if(!IS_HERETIC_OR_MONSTER(user))
 		return
-	. += span_hypnophrase(LANG("obj.b95b9688", null))
-	. += span_hypnophrase(LANG("obj.261367f7", null))
-	. += span_hypnophrase(LANG("obj.8cac100a", null))
-	. += span_hypnophrase(LANG("obj.9fbf6a9e", null))
-	. += span_hypnophrase(LANG("obj.5885444e", null))
+	. += span_hypnophrase(LANG("obj.b95b9688a9b9a051", null))
+	. += span_hypnophrase(LANG("obj.261367f77fcfa875", null))
+	. += span_hypnophrase(LANG("obj.8cac100a2cac001a", null))
+	. += span_hypnophrase(LANG("obj.9fbf6a9e3f12f4b6", null))
+	. += span_hypnophrase(LANG("obj.5885444e81486594", null))
 
 /obj/item/card/id/advanced/heretic/attack_self(mob/user)
 	. = ..()
 	if(!IS_HERETIC(user))
 		return
-	var/cardname = tgui_input_list(user, LANG("obj.54547418", null), LANG("obj.1a90e85e", null), fused_ids)
+	var/cardname = tgui_input_list(user, LANG("obj.5454741834adf11f", null), LANG("obj.1a90e85e3539406e", null), fused_ids)
 	if(!cardname)
-		balloon_alert(user, LANG("obj.9368ca26", null))
+		balloon_alert(user, LANG("obj.9368ca26b7f3b1a3", null))
 		return ..()
 	var/obj/item/card/id/card = fused_ids[cardname]
 	shapeshift(card)
@@ -133,7 +133,7 @@
 	if(!IS_HERETIC(user))
 		return CLICK_ACTION_BLOCKING
 	inverted = !inverted
-	balloon_alert(user, LANG("obj.94c58cf3", list(inverted ? "now" : "no longer")))
+	balloon_alert(user, LANG("obj.94c58cf35917228d", list(inverted ? "now" : "no longer")))
 	return CLICK_ACTION_SUCCESS
 
 ///Changes our appearance to the passed ID card
@@ -190,7 +190,7 @@
 	access |= card.access
 	if(!isnull(user))
 		playsound(drop_location(), 'sound/items/eatfood.ogg', rand(10,30), TRUE)
-		balloon_alert(user, LANG("obj.90ba2be7", null))
+		balloon_alert(user, LANG("obj.90ba2be73a25dc43", null))
 
 /obj/item/card/id/advanced/heretic/interact_with_atom(atom/target, mob/living/user, list/modifiers)
 	if(!IS_HERETIC(user))
@@ -211,12 +211,12 @@
 
 	if(reference_resolved)
 		make_portal(user, reference_resolved, target)
-		to_chat(user, span_notice(LANG("obj.055c0aed", list(src, reference_resolved, target))))
+		to_chat(user, span_notice(LANG("obj.055c0aed40d1b84a", list(src, reference_resolved, target))))
 		link = null
-		balloon_alert(user, LANG("obj.886e472f", null))
+		balloon_alert(user, LANG("obj.886e472f9142f7f1", null))
 	else
 		link = WEAKREF(target)
-		balloon_alert(user, LANG("obj.8a35f402", null))
+		balloon_alert(user, LANG("obj.8a35f402af3247d4", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/card/id/advanced/heretic/Destroy()

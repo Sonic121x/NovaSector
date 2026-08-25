@@ -50,9 +50,9 @@
 	if(isnull(weapon) || !target.dropItemToGround(weapon))
 		return
 	source.visible_message(
-		span_warning(LANG("datum.95d37bb3", list(source, target, weapon.name, target.p_their()))),
-		span_notice(LANG("datum.52361481", list(target, weapon.name, target.p_their()))),
-		span_hear(LANG("datum.1fd40cab", null)),
+		span_warning(LANG("datum.95d37bb3330c5a04", list(source, target, weapon.name, target.p_their()))),
+		span_notice(LANG("datum.52361481e6577c51", list(target, weapon.name, target.p_their()))),
+		span_hear(LANG("datum.1fd40cabf4548522", null)),
 	)
 
 /datum/martial_art/spiders_bite/get_prefered_attacking_limb(mob/living/martial_artist, mob/living/target)
@@ -64,5 +64,5 @@
 /datum/martial_art/spiders_bite/get_style_help()
 	. = list()
 
-	. += span_info(LANG("datum.e213fc49", null))
+	. += span_info(LANG("datum.e213fc4910821760", null))
 	return .

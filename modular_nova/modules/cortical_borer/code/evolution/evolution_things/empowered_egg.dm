@@ -12,7 +12,7 @@
 
 /obj/item/organ/empowered_borer_egg/on_find(mob/living/finder)
 	..()
-	to_chat(finder, span_warning(LANG("obj.6cf60afd", list(owner, zone))))
+	to_chat(finder, span_warning(LANG("obj.6cf60afdabad2645", list(owner, zone))))
 
 /obj/item/organ/empowered_borer_egg/Initialize(mapload)
 	. = ..()
@@ -25,7 +25,7 @@
 
 /obj/item/organ/empowered_borer_egg/on_mob_remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
-	visible_message(span_warning(span_italics(LANG("obj.424d6b54", list(src, M)))))
+	visible_message(span_warning(span_italics(LANG("obj.424d6b545e992936", list(src, M)))))
 	new/obj/effect/decal/cleanable/food/egg_smudge(get_turf(src))
 	qdel(src)
 
@@ -50,13 +50,13 @@
 		borer_egg.generation = generation
 		var/obj/item/bodypart/chest/chest = owner.get_bodypart(BODY_ZONE_CHEST)
 		chest.dismember()
-		owner.visible_message(span_danger(LANG("obj.f5cdf564", list(owner))), span_danger(LANG("obj.f39b677b", null)))
+		owner.visible_message(span_danger(LANG("obj.f5cdf564c42a18d3", list(owner))), span_danger(LANG("obj.f39b677b76c56445", null)))
 		return
 	var/mob/dead/observer/new_borer = pick(candidates)
 	var/mob/living/basic/cortical_borer/empowered/spawned_cb = new(get_turf(owner))
 	var/obj/item/bodypart/chest/chest = owner.get_bodypart(BODY_ZONE_CHEST)
 	chest.dismember()
-	owner.visible_message(span_danger(LANG("obj.15bcddc6", list(spawned_cb, owner))), span_danger(LANG("obj.702a03c7", list(spawned_cb))))
+	owner.visible_message(span_danger(LANG("obj.15bcddc60c34f370", list(spawned_cb, owner))), span_danger(LANG("obj.702a03c7d23e13e3", list(spawned_cb))))
 	spawned_cb.generation = generation
 	spawned_cb.ckey = new_borer.ckey
 	spawned_cb.mind.add_antag_datum(/datum/antagonist/cortical_borer)

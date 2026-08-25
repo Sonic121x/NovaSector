@@ -77,7 +77,7 @@
 
 /obj/item/storage/box/foodpack/tizira/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.1bf416e7", null))
+	. += span_notice(LANG("obj.1bf416e74b2d924f", null))
 	return .
 
 /obj/item/storage/box/foodpack/tizira/roll

@@ -7,7 +7,7 @@
 
 /obj/machinery/materials_market/item_interaction(mob/living/user, obj/item/stack/exportable, list/modifiers)
 	if(isstack(exportable))
-		say(LANG("obj.c75f2987", null))
+		say(LANG("obj.c75f29876cef29b8", null))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, FALSE)
 		return TRUE
 	return ..()

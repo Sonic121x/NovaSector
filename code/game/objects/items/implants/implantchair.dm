@@ -93,12 +93,12 @@
 	if(istype(I, /obj/item/implant))
 		var/obj/item/implant/P = I
 		if(P.implant(M))
-			visible_message(span_warning(LANG("obj.e63d0916", list(M, src))))
+			visible_message(span_warning(LANG("obj.e63d091635ea57ab", list(M, src))))
 			return TRUE
 	else if(isorgan(I))
 		var/obj/item/organ/P = I
 		P.Insert(M, FALSE, FALSE)
-		visible_message(span_warning(LANG("obj.e63d0916", list(M, src))))
+		visible_message(span_warning(LANG("obj.e63d091635ea57ab", list(M, src))))
 		return TRUE
 
 /obj/machinery/implantchair/update_icon_state()
@@ -129,20 +129,20 @@
 /obj/machinery/implantchair/container_resist_act(mob/living/user)
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice(LANG("obj.485787b2", list(user, src))), \
-		span_notice(LANG("obj.43ad33b1", list(src, DisplayTimeText(breakout_time)))), \
-		span_hear(LANG("obj.a1d9c573", list(src))))
+	user.visible_message(span_notice(LANG("obj.485787b2b8d67ec7", list(user, src))), \
+		span_notice(LANG("obj.43ad33b141e25411", list(src, DisplayTimeText(breakout_time)))), \
+		span_hear(LANG("obj.a1d9c5733c600b1c", list(src))))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || state_open)
 			return
-		user.visible_message(span_warning(LANG("obj.37696909", list(user, src))), \
-			span_notice(LANG("obj.81c31f6b", list(src))))
+		user.visible_message(span_warning(LANG("obj.37696909131e91b5", list(user, src))), \
+			span_notice(LANG("obj.81c31f6b9b00625a", list(src))))
 		open_machine()
 
 /obj/machinery/implantchair/relaymove(mob/living/user, direction)
 	if(message_cooldown <= world.time)
 		message_cooldown = world.time + 50
-		to_chat(user, span_warning(LANG("obj.c4e897cb", list(src))))
+		to_chat(user, span_warning(LANG("obj.c4e897cb78099448", list(src))))
 
 /obj/machinery/implantchair/mouse_drop_receive(mob/target, mob/user, params)
 	if(!isliving(target))
@@ -189,7 +189,7 @@
 	if(custom)
 		if(!user || !user.Adjacent(src))
 			return FALSE
-		objective = tgui_input_text(user, LANG("obj.9c46c6ff", list(C)), LANG("obj.442e449c", null), max_length = 120)
+		objective = tgui_input_text(user, LANG("obj.9c46c6ff768e9405", list(C)), LANG("obj.442e449cae607ecb", null), max_length = 120)
 		message_admins("[ADMIN_LOOKUPFLW(user)] set brainwash machine objective to '[objective]'.")
 		user.log_message("set brainwash machine objective to '[objective]'.", LOG_GAME)
 	if(HAS_MIND_TRAIT(C, TRAIT_UNCONVERTABLE))

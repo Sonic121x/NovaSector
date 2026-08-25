@@ -97,7 +97,7 @@
 	. = ..()
 	if(up || w_class == WEIGHT_CLASS_SMALL)
 		return
-	. += span_notice(LANG("obj.aaa9b3fd", null))
+	. += span_notice(LANG("obj.aaa9b3fde8bb6ecd", null))
 
 /obj/item/clothing/mask/gas/explorer/folded
 	w_class = WEIGHT_CLASS_SMALL
@@ -144,23 +144,23 @@
 		return NONE
 	var/mob/living/carbon/char = user
 	if((char.get_item_by_slot(ITEM_SLOT_NECK) == src) || (char.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src))
-		to_chat(user, span_warning(LANG("obj.3374cd4e", list(src))))
+		to_chat(user, span_warning(LANG("obj.3374cd4e2a15cf3c", list(src))))
 		return CLICK_ACTION_BLOCKING
 	if(!user.is_holding(src))
-		to_chat(user, span_warning(LANG("obj.d48ac390", list(src))))
+		to_chat(user, span_warning(LANG("obj.d48ac3903f5f0214", list(src))))
 		return CLICK_ACTION_BLOCKING
 	if(slot_flags & ITEM_SLOT_OCLOTHING)
 		slot_flags = ITEM_SLOT_NECK
 		cold_protection = null
 		heat_protection = null
 		set_armor(/datum/armor/none)
-		user.visible_message(span_notice(LANG("obj.4aa7068c", list(user, src))), span_notice(LANG("obj.e2bd153e", list(src))))
+		user.visible_message(span_notice(LANG("obj.4aa7068c6c0e6c7d", list(user, src))), span_notice(LANG("obj.e2bd153ecc0b20e6", list(src))))
 	else
 		slot_flags = initial(slot_flags)
 		cold_protection = initial(cold_protection)
 		heat_protection = initial(heat_protection)
 		set_armor(initial(armor_type))
-		user.visible_message(span_notice(LANG("obj.76afedb8", list(user, src))), span_notice(LANG("obj.0b0b9063", list(src))))
+		user.visible_message(span_notice(LANG("obj.76afedb8df8b0ea0", list(user, src))), span_notice(LANG("obj.0b0b9063d62702c5", list(src))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/head/hooded/cloakhood/goliath
@@ -201,6 +201,7 @@
 /obj/item/clothing/suit/armor/bone/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/armor_plate, upgrade_item = /obj/item/clothing/accessory/talisman)
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, /datum/bodypart_texture/mesh/drake)
 	allowed = GLOB.mining_suit_allowed
 
 /obj/item/clothing/head/helmet/skull

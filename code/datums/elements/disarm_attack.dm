@@ -43,4 +43,4 @@
 /datum/element/disarm_attack/proc/examine(obj/item/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(can_disarm_attack(source, user, user, FALSE))
-		examine_list += span_notice(LANG("datum.88bc6626", null))
+		examine_list += span_notice(LANG("datum.88bc662660b04e65", null))

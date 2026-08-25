@@ -52,14 +52,14 @@
 /obj/item/storage/portable_chem_mixer/examine(mob/user)
 	. = ..()
 	if(!atom_storage.locked)
-		. += span_notice(LANG("obj.b76164d4", list(EXAMINE_HINT("Ctrl Click"))))
+		. += span_notice(LANG("obj.b76164d4126d99d1", list(EXAMINE_HINT("Ctrl Click"))))
 	else
-		. += span_notice(LANG("obj.5946f17e", list(EXAMINE_HINT("Ctrl Click"))))
+		. += span_notice(LANG("obj.5946f17e7337fc63", list(EXAMINE_HINT("Ctrl Click"))))
 	if(QDELETED(beaker))
-		. += span_notice(LANG("obj.b84a92a8", null))
+		. += span_notice(LANG("obj.b84a92a8c04cd167", null))
 	else
-		. += span_notice(LANG("obj.dffd9dd1", list(beaker.reagents.maximum_volume)))
-		. += span_notice(LANG("obj.5dffdaaf", list(EXAMINE_HINT("Alt Click"))))
+		. += span_notice(LANG("obj.dffd9dd18eee6d79", list(beaker.reagents.maximum_volume)))
+		. += span_notice(LANG("obj.5dffdaafe68985c8", list(EXAMINE_HINT("Alt Click"))))
 
 /obj/item/storage/portable_chem_mixer/update_icon_state()
 	if(!atom_storage.locked)
@@ -141,7 +141,7 @@
 
 /obj/item/storage/portable_chem_mixer/ui_interact(mob/user, datum/tgui/ui)
 	if(!atom_storage.locked)
-		balloon_alert(user, LANG("obj.9b426eb5", null))
+		balloon_alert(user, LANG("obj.9b426eb517acca41", null))
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -211,7 +211,7 @@
 			return TRUE
 
 		if("dispense")
-			var/datum/reagent/reagent = GLOB.name2reagent[params["reagent"]] || GLOB.name2reagent[lang_unreverse_text(params["reagent"])] // NOVA EDIT CHANGE - i18n - ORIGINAL: var/datum/reagent/reagent = GLOB.name2reagent[params["reagent"]]
+			var/datum/reagent/reagent = GLOB.name2reagent[params["reagent"]]
 			if(isnull(reagent))
 				return
 
@@ -243,7 +243,7 @@
 
 /obj/item/storage/portable_chem_mixer/click_alt(mob/living/user)
 	if(!atom_storage.locked)
-		balloon_alert(user, LANG("obj.7092c664", null))
+		balloon_alert(user, LANG("obj.7092c664de175bd6", null))
 		return CLICK_ACTION_BLOCKING
 
 	replace_beaker(user)

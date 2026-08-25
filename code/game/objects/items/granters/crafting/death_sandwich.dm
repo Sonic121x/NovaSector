@@ -14,5 +14,5 @@
 	)
 
 /obj/item/book/granter/crafting_recipe/death_sandwich/recoil(mob/living/user)
-	to_chat(user, span_warning(LANG("obj.6c4f3571", null)))
+	to_chat(user, span_warning(LANG("obj.6c4f35714193e314", null)))
 	qdel(src)

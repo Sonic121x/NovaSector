@@ -159,10 +159,10 @@
 	if(!I.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return TRUE
 
-	to_chat(user, span_notice(LANG("obj.438e4eb2", list(src))))
+	to_chat(user, span_notice(LANG("obj.438e4eb2d9a97a7f", list(src))))
 	if(I.use_tool(src, user, 30, volume=50))
 		deconstruct()
-		to_chat(user, span_notice(LANG("obj.5fe2f60c", list(src))))
+		to_chat(user, span_notice(LANG("obj.5fe2f60c18d18527", list(src))))
 	return TRUE
 
 //checks if something is blocking the deconstruction (e.g. trunk with a bin still linked to it)
@@ -282,7 +282,7 @@
 
 /obj/structure/disposalpipe/trunk/can_be_deconstructed(mob/user)
 	if(linked)
-		to_chat(user, span_warning(LANG("obj.34472367", null)))
+		to_chat(user, span_warning(LANG("obj.3447236741f6c4d3", null)))
 		return FALSE
 	return TRUE
 

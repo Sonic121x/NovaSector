@@ -79,7 +79,7 @@
 	. = ..()
 
 	if(panel_open)
-		. += span_notice(LANG("obj.ce4b88dc", list(EXAMINE_HINT("bolts."))))
+		. += span_notice(LANG("obj.ce4b88dc0ed0a5f2", list(EXAMINE_HINT("bolts."))))
 
 /obj/machinery/transport/destination_sign/on_deconstruction(disassembled)
 	var/atom/drop = drop_location()
@@ -93,11 +93,11 @@
 
 /obj/machinery/transport/destination_sign/indicator/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, LANG("obj.e4901a5f", list(anchored ? "un" : "")))
+	balloon_alert(user, LANG("obj.e4901a5f7f1b9614", list(anchored ? "un" : "")))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
-		balloon_alert(user, LANG("obj.97c34052", list(anchored ? "un" : "")))
+		balloon_alert(user, LANG("obj.97c3405220b343d0", list(anchored ? "un" : "")))
 		deconstruct()
 		return TRUE
 

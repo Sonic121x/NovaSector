@@ -57,16 +57,16 @@
 
 	var/message = ""
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger(LANG("obj.3ed3c6e2", list(target))))
+		to_chat(user, span_danger(LANG("obj.3ed3c6e281b46c42", list(target))))
 		return
 	switch(user.zone_selected) //to let code know what part of body we gonna... Uhh... You get the point.
 		if(BODY_ZONE_PRECISE_GROIN)
 			var/obj/item/organ/genital/penis = target.get_organ_slot(ORGAN_SLOT_PENIS)
 			if(!penis)
-				to_chat(user, span_danger(LANG("obj.61cb6f1b", list(target))))
+				to_chat(user, span_danger(LANG("obj.61cb6f1b623003ad", list(target))))
 				return
 			if(!(target.is_bottomless() || penis.visibility_preference == GENITAL_ALWAYS_SHOW))
-				to_chat(user, span_danger(LANG("obj.27926522", list(target))))
+				to_chat(user, span_danger(LANG("obj.27926522fd6429b1", list(target))))
 				return
 			message = (user == target) ? pick("moans in ecstasy as [target.p_they()] use the [src]", "slowly moves [src] up and down on [target]'s penis, causing [target.p_them()] to bend in pleasure", "slightly shivers in pleasure as [target.p_they()] use [src]") : pick("uses [src] on [target]'s penis", "fucks [target] with [src]", "masturbates [target] with [src], causing [target.p_them()] to moan in ecstasy")
 			if(!(prob(40) && (target.stat != DEAD)))

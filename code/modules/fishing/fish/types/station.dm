@@ -153,8 +153,8 @@
 	ADD_TRAIT(src, TRAIT_FISH_SURVIVE_COOKING, INNATE_TRAIT)
 
 /obj/item/fish/fryish/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.d3919bb6", list(user, src, user.p_theyre()))))
-	user.say(LANG("obj.1988dbf6", null), forced = "fryfish suicide")
+	user.visible_message(span_suicide(LANG("obj.d3919bb63c4a7f77", list(user, src, user.p_theyre()))))
+	user.say(LANG("obj.1988dbf6edfb38bd", null), forced = "fryfish suicide")
 	qdel(src)
 	return OXYLOSS
 
@@ -243,9 +243,9 @@
 /obj/item/fish/fryish/fritterish/update_desc()
 	switch(variant)
 		if(FISH_BERNARD)
-			desc = LANG("obj.df0d1383", null)
+			desc = LANG("obj.df0d13834292356d", null)
 		if(FISH_MATTHEW)
-			desc = LANG("obj.9a347857", null)
+			desc = LANG("obj.9a347857da143850", null)
 	return ..()
 
 #undef FISH_FRITTERISH

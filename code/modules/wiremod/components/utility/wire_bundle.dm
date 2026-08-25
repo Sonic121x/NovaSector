@@ -108,7 +108,7 @@
 		return
 	var/datum/component/shell/shell_comp = source.GetComponent(/datum/component/shell)
 	if(shell_comp.locked)
-		source.balloon_alert(user, LANG("obj.5d71bae2", null))
+		source.balloon_alert(user, LANG("obj.5d71bae27aaf9422", null))
 		return ITEM_INTERACT_FAILURE
 	if(source.attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK)
 		return ITEM_INTERACT_BLOCKING

@@ -32,5 +32,5 @@
 	SIGNAL_HANDLER
 
 	var/series_number = subtype_list.Find(target.type)
-	examine_list += span_boldnotice(LANG("datum.351228cb", list(target, series_name)))
-	examine_list += span_notice(LANG("datum.5ac439bc", list(series_number, length(subtype_list))))
+	examine_list += span_boldnotice(LANG("datum.351228cbd0510fd1", list(target, series_name)))
+	examine_list += span_notice(LANG("datum.5ac439bc32b4b07c", list(series_number, length(subtype_list))))

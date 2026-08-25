@@ -24,4 +24,4 @@
 /obj/item/mecha_diagnostic/examine(mob/user)
 	. = ..()
 	if(mech_data)
-		. += LANG("obj.aa1e06c8", list(initial(mech_data.name)))
+		. += LANG("obj.aa1e06c853501431", list(initial(mech_data.name)))

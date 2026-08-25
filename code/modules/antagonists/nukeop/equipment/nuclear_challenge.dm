@@ -24,20 +24,20 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		return
 
 	declaring_war = TRUE
-	var/are_you_sure = tgui_alert(user, LANG("obj.e39d604c", list(station_name(), DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time))), LANG("obj.5081c3ea", null), list("Yes", "No"))
+	var/are_you_sure = tgui_alert(user, LANG("obj.e39d604c9bbd668c", list(station_name(), DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time))), LANG("obj.5081c3eabe95a94b", null), list("Yes", "No"))
 	declaring_war = FALSE
 
 	if(!check_allowed(user))
 		return
 
 	if(are_you_sure != "Yes")
-		to_chat(user, span_notice(LANG("obj.b52c50d0", null)))
+		to_chat(user, span_notice(LANG("obj.b52c50d0d4732e5d", null)))
 		return
 
 	var/war_declaration = "A syndicate fringe group has declared their intent to utterly destroy [station_name()] with a nuclear device, and dares the crew to try and stop them."
 
 	declaring_war = TRUE
-	var/custom_threat = tgui_alert(user, LANG("obj.2bf44c80", null), LANG("obj.1633be84", null), list("Yes", "No"))
+	var/custom_threat = tgui_alert(user, LANG("obj.2bf44c80e29a097b", null), LANG("obj.1633be84ed371b74", null), list("Yes", "No"))
 	declaring_war = FALSE
 
 	if(!check_allowed(user))
@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 	if(custom_threat == "Yes")
 		declaring_war = TRUE
-		war_declaration = tgui_input_text(user, LANG("obj.b810c0c1", null), LANG("obj.08ddc85f", null), max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+		war_declaration = tgui_input_text(user, LANG("obj.b810c0c16ec4c4f9", null), LANG("obj.08ddc85f17f0d9f0", null), max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 		declaring_war = FALSE
 
 	if(!check_allowed(user) || !war_declaration)
@@ -55,25 +55,25 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 ///Admin only proc to bypass checks and force a war declaration. Button on antag panel.
 /obj/item/nuclear_challenge/proc/force_war()
-	var/are_you_sure = tgui_alert(usr, LANG("obj.b0395880", list(GLOB.player_list.len < CHALLENGE_MIN_PLAYERS ? " Note, the player count is under the required limit." : "")), LANG("obj.5081c3ea", null), list("Yes", "No"))
+	var/are_you_sure = tgui_alert(usr, LANG("obj.b0395880992a5ccf", list(GLOB.player_list.len < CHALLENGE_MIN_PLAYERS ? " Note, the player count is under the required limit." : "")), LANG("obj.5081c3eabe95a94b", null), list("Yes", "No"))
 
 	if(are_you_sure != "Yes")
 		return
 
 	var/war_declaration = "A syndicate fringe group has declared their intent to utterly destroy [station_name()] with a nuclear device, and dares the crew to try and stop them."
 
-	var/custom_threat = tgui_alert(usr, LANG("obj.bb058e93", null), LANG("obj.1633be84", null), list("Yes", "No"))
+	var/custom_threat = tgui_alert(usr, LANG("obj.bb058e93dff7363b", null), LANG("obj.1633be84ed371b74", null), list("Yes", "No"))
 
 	if(custom_threat == "Yes")
-		war_declaration = tgui_input_text(usr, LANG("obj.b810c0c1", null), LANG("obj.08ddc85f", null), max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+		war_declaration = tgui_input_text(usr, LANG("obj.b810c0c16ec4c4f9", null), LANG("obj.08ddc85f17f0d9f0", null), max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
 	if(!war_declaration)
-		tgui_alert(usr, LANG("obj.295786f5", null), LANG("obj.edde0e71", null))
+		tgui_alert(usr, LANG("obj.295786f528ae738e", null), LANG("obj.edde0e71adba8c28", null))
 		return
 
 	for(var/obj/item/circuitboard/computer/syndicate_shuttle/board as anything in GLOB.syndicate_shuttle_boards)
 		if(board.challenge_start_time)
-			tgui_alert(usr, LANG("obj.28fee420", null), LANG("obj.2584dda6", null))
+			tgui_alert(usr, LANG("obj.28fee420fda57407", null), LANG("obj.2584dda68d57539f", null))
 			return
 
 	war_was_declared(memo = war_declaration)
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		color_override = "red",
 	)
 	if(user)
-		to_chat(user, LANG("obj.1d46f75b", null))
+		to_chat(user, LANG("obj.1d46f75b5cd833e9", null))
 
 	distribute_tc()
 	CONFIG_SET(number/shuttle_refuel_delay, max(CONFIG_GET(number/shuttle_refuel_delay), CHALLENGE_SHUTTLE_DELAY))
@@ -105,7 +105,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		var/obj/machinery/announcement_system/announcement_system = get_announcement_system(null, null, list(RADIO_CHANNEL_SCIENCE))
 		if (!isnull(announcement_system))
 			announcement_system.broadcast("Additional research data received from Nanotrasen R&D Division following the emergency protocol.", list(RADIO_CHANNEL_SCIENCE), TRUE)
-		station_techweb.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS * 3))
+		station_techweb.adjust_points(TECHWEB_POINT_TYPE_GENERIC, TECHWEB_TIER_5_POINTS * 3)
 
 	qdel(src)
 
@@ -131,7 +131,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 	for (var/mob/living/L in orphans)
 		var/TC = new /obj/item/stack/telecrystal(L.drop_location(), tc_per_nukie)
-		to_chat(L, span_warning(LANG("obj.8594b184", list(L.put_in_hands(TC) ? "hands" : "feet"))))
+		to_chat(L, span_warning(LANG("obj.8594b184e069e934", list(L.put_in_hands(TC) ? "hands" : "feet"))))
 		tc_to_distribute -= tc_per_nukie
 
 	if (tc_to_distribute > 0) // What shall we do with the remainder...
@@ -139,29 +139,29 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 			if (C.stat != DEAD)
 				var/obj/item/stack/telecrystal/TC = new(C.drop_location(), tc_to_distribute)
 				TC.throw_at(get_step(C, C.dir), 3, 3)
-				C.visible_message(span_notice(LANG("obj.82db1b3a", list(C))),span_notice(LANG("obj.5423e3ac", null)))
+				C.visible_message(span_notice(LANG("obj.82db1b3a12e2b575", list(C))),span_notice(LANG("obj.5423e3ac017c8f94", null)))
 				break
 
 
 /obj/item/nuclear_challenge/proc/check_allowed(mob/living/user)
 	if(declaring_war)
-		to_chat(user, span_boldwarning(LANG("obj.53c7d9f0", null)))
+		to_chat(user, span_boldwarning(LANG("obj.53c7d9f09743b618", null)))
 		return FALSE
 	if(GLOB.player_list.len < CHALLENGE_MIN_PLAYERS)
-		to_chat(user, span_boldwarning(LANG("obj.44bcf291", null)))
+		to_chat(user, span_boldwarning(LANG("obj.44bcf291454c6d31", null)))
 		return FALSE
 	if(!user.onSyndieBase())
-		to_chat(user, span_boldwarning(LANG("obj.5e4cc217", null)))
+		to_chat(user, span_boldwarning(LANG("obj.5e4cc21758638d58", null)))
 		return FALSE
 	if(world.time - SSticker.round_start_time > CHALLENGE_TIME_LIMIT)
-		to_chat(user, span_boldwarning(LANG("obj.87733400", null)))
+		to_chat(user, span_boldwarning(LANG("obj.87733400f3daa157", null)))
 		return FALSE
 	for(var/obj/item/circuitboard/computer/syndicate_shuttle/board as anything in GLOB.syndicate_shuttle_boards)
 		if(board.moved)
-			to_chat(user, span_boldwarning(LANG("obj.a331c45a", null)))
+			to_chat(user, span_boldwarning(LANG("obj.a331c45a770fcdd4", null)))
 			return FALSE
 		if(board.challenge_start_time)
-			to_chat(user, span_boldwarning(LANG("obj.28fee420", null)))
+			to_chat(user, span_boldwarning(LANG("obj.28fee420fda57407", null)))
 			return FALSE
 	return TRUE
 
@@ -177,7 +177,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 /obj/item/nuclear_challenge/literally_just_does_the_message/check_allowed(mob/living/user)
 	if(admin_only && !check_rights_for(user.client, R_SPAWN|R_FUN|R_DEBUG))
-		to_chat(user, span_hypnophrase(LANG("obj.714551c3", null)))
+		to_chat(user, span_hypnophrase(LANG("obj.714551c3e87ce9ef", null)))
 		return FALSE
 
 	return TRUE
@@ -185,7 +185,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 /obj/item/nuclear_challenge/literally_just_does_the_message/war_was_declared(mob/living/user, memo)
 #ifndef TESTING
 	// Reminder for our friends the admins
-	var/are_you_sure = tgui_alert(user, LANG("obj.177bb8fd", null), LANG("obj.38bd13ec", null), list("I'm sure", "You're right"))
+	var/are_you_sure = tgui_alert(user, LANG("obj.177bb8fdc102869f", null), LANG("obj.38bd13eca3dcc0b8", null), list("I'm sure", "You're right"))
 	if(are_you_sure != "I'm sure")
 		return
 #endif

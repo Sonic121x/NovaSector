@@ -75,7 +75,7 @@
 		if(!CheckTurfsPressure())
 			damaged = FALSE
 			if(console)
-				console.say(LANG("obj.516aa6c3", null))
+				console.say(LANG("obj.516aa6c364c2c15f", null))
 		return
 
 //If this proc is high on the profiler add a cooldown to the stuff after this line
@@ -83,7 +83,7 @@
 	else if(CheckTurfsPressure())
 		damaged = TRUE
 		if(console)
-			console.say(LANG("obj.47971f9c", null))
+			console.say(LANG("obj.47971f9cccaa9a00", null))
 		aas_config_announce(/datum/aas_config_entry/arrivals_broken, list(), command_span=TRUE)
 		if(mode != SHUTTLE_CALL)
 			sound_played = FALSE
@@ -165,13 +165,13 @@
 			if(cancel_reason)
 				mode = SHUTTLE_IDLE
 				if(console)
-					console.say(LANG("obj.b621b5d5", list(cancel_reason)))
+					console.say(LANG("obj.b621b5d57bdb2f84", list(cancel_reason)))
 				return
 		force_depart = FALSE
 	. = ..()
 	if(!. && !docked && !damaged)
 		if(console)
-			console.say(LANG("obj.54010e2e", null))
+			console.say(LANG("obj.54010e2e5b939926", null))
 		for(var/L in queued_announces)
 			var/datum/callback/C = L
 			C.Invoke()
@@ -205,7 +205,7 @@
 
 	Launch(TRUE)
 
-	to_chat(user, span_notice(LANG("obj.b1b65807", null)))
+	to_chat(user, span_notice(LANG("obj.b1b6580744c66ec2", null)))
 	while(mode != SHUTTLE_CALL && !damaged)
 		stoplag()
 

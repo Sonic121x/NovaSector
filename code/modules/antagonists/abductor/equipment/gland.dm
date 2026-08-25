@@ -31,7 +31,7 @@
 /obj/item/organ/heart/gland/examine(mob/user)
 	. = ..()
 	if(HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_SCIENTIST_TRAINING) || isobserver(user))
-		. += span_notice(LANG("obj.3ef89a46", list(abductor_hint)))
+		. += span_notice(LANG("obj.3ef89a46d93acc4e", list(abductor_hint)))
 
 /obj/item/organ/heart/gland/Stop()
 	return FALSE
@@ -51,18 +51,18 @@
 	if(!owner)
 		return
 	if(active_mind_control)
-		owner.set_hud_image_state(GLAND_HUD, "hudgland_active")
+		owner.set_hud_image_state(GLAND_HUD, hud_state = "hudgland_active")
 	else if(mind_control_uses)
-		owner.set_hud_image_state(GLAND_HUD, "hudgland_ready")
+		owner.set_hud_image_state(GLAND_HUD, hud_state = "hudgland_ready")
 	else
-		owner.set_hud_image_state(GLAND_HUD, "hudgland_spent")
+		owner.set_hud_image_state(GLAND_HUD, hud_state = "hudgland_spent")
 
 /obj/item/organ/heart/gland/proc/mind_control(command, mob/living/user)
 	if(!ownerCheck() || !mind_control_uses || active_mind_control)
 		return FALSE
 	mind_control_uses--
-	owner.balloon_alert(owner, LANG("obj.9f944227", null))
-	to_chat(owner, span_userdanger(LANG("obj.221865e7", null)))
+	owner.balloon_alert(owner, LANG("obj.9f944227ec732a8b", null))
+	to_chat(owner, span_userdanger(LANG("obj.221865e7841e9dd8", null)))
 	to_chat(owner, span_mind_control("[command]"))
 	active_mind_control = TRUE
 	message_admins("[key_name(user)] sent an abductor mind control message to [key_name(owner)]: [command]")
@@ -76,8 +76,8 @@
 /obj/item/organ/heart/gland/proc/clear_mind_control()
 	if(!ownerCheck() || !active_mind_control)
 		return FALSE
-	owner.balloon_alert(owner, LANG("obj.95e6670c", null))
-	to_chat(owner, span_userdanger(LANG("obj.e8ceee66", null)))
+	owner.balloon_alert(owner, LANG("obj.95e6670ca165a4d7", null))
+	to_chat(owner, span_userdanger(LANG("obj.e8ceee664f6c6876", null)))
 	owner.clear_alert(ALERT_MIND_CONTROL)
 	active_mind_control = FALSE
 	return TRUE

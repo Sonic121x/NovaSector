@@ -107,8 +107,8 @@
 
 /obj/item/construction/plumbing/examine(mob/user)
 	. = ..()
-	. += LANG("obj.2e9a54dc", null)
-	. += LANG("obj.d398c822", null)
+	. += LANG("obj.2e9a54dc06934674", null)
+	. += LANG("obj.d398c822afc9fcc9", null)
 
 /obj/item/construction/plumbing/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -208,13 +208,13 @@
 	var/is_allowed = TRUE
 	if(!useResource(cost, user, TRUE) || !(is_allowed = canPlace(destination)))
 		if(!is_allowed)
-			balloon_alert(user, LANG("obj.fa928166", null))
+			balloon_alert(user, LANG("obj.fa928166c3175fe1", null))
 		return FALSE
 	if(!build_delay(user, cost, target = destination))
 		return FALSE
 	if(!useResource(cost, user, TRUE) || !(is_allowed = canPlace(destination)))
 		if(!is_allowed)
-			balloon_alert(user, LANG("obj.fa928166", null))
+			balloon_alert(user, LANG("obj.fa928166c3175fe1", null))
 		return FALSE
 
 	playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
@@ -248,13 +248,13 @@
 
 			var/obj/machinery/machine_target = interacting_with
 			if(machine_target.anchored)
-				balloon_alert(user, LANG("obj.3e939160", null))
+				balloon_alert(user, LANG("obj.3e9391607cda6ee1", null))
 				return ITEM_INTERACT_BLOCKING
 			if(do_after(user, 2 SECONDS, target = interacting_with))
 				var/design_cost = designs[machine_target.type]
 				var/to_return = min(design_cost, max_matter - matter) // Give back matter was used to create smth
 				if(to_return < design_cost)
-					balloon_alert(user, LANG("obj.1205d2c0", null))
+					balloon_alert(user, LANG("obj.1205d2c0e030ec99", null))
 				matter += to_return
 				machine_target.deconstruct()
 				playsound(src, 'sound/machines/click.ogg', 50, TRUE) //this is just such a great sound effect
@@ -274,7 +274,7 @@
 	if(duct.duct_layer && duct.duct_color)
 		current_color = GLOB.pipe_color_name[duct.duct_color]
 		current_layer = GLOB.plumbing_layer_names["[duct.duct_layer]"]
-		balloon_alert(user, LANG("obj.33dd554f", list(current_color, current_layer)))
+		balloon_alert(user, LANG("obj.33dd554f527e5830", list(current_color, current_layer)))
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 
@@ -299,7 +299,7 @@
 		if(current_loc < 1)
 			current_loc = GLOB.plumbing_layers.len
 		current_layer = GLOB.plumbing_layers[current_loc]
-	to_chat(source, span_notice(LANG("obj.d6a04ad6", list(current_layer))))
+	to_chat(source, span_notice(LANG("obj.d6a04ad69d032431", list(current_layer))))
 
 /obj/item/construction/plumbing/service
 	name = "service plumbing constructor"

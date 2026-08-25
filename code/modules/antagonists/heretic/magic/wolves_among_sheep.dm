@@ -68,7 +68,7 @@
 		// If any future coder wants to allow arenas to merge or fight like domains, feel free to implement it.
 		if(get_dist(owner, nearby_arena) <= 25)
 			if(feedback)
-				owner.balloon_alert(owner, LANG("datum.9dff5bbe", null))
+				owner.balloon_alert(owner, LANG("datum.9dff5bbee969d5b0", null))
 			return FALSE
 
 /// Applies a visual to each turf

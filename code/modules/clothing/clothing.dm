@@ -139,9 +139,9 @@
 		if(CLOTHING_SHREDDED)
 			var/obj/item/stack/cloth_repair = weapon
 			if(cloth_repair.amount < 3)
-				to_chat(user, span_warning(LANG("obj.505afc10", list(cloth_repair.name, src))))
+				to_chat(user, span_warning(LANG("obj.505afc1089249e04", list(cloth_repair.name, src))))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.8541da06", list(src, cloth_repair))))
+			to_chat(user, span_notice(LANG("obj.8541da0620cd05ab", list(src, cloth_repair))))
 			if(!do_after(user, 6 SECONDS, src) || !cloth_repair.use(3))
 				return ITEM_INTERACT_BLOCKING
 			repair(user)
@@ -157,7 +157,7 @@
 	damage_by_parts = null
 	if(user)
 		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		to_chat(user, span_notice(LANG("obj.f3448f65", list(src))))
+		to_chat(user, span_notice(LANG("obj.f3448f65ee774bf1", list(src))))
 	update_appearance()
 
 /**
@@ -208,7 +208,7 @@
 	if(iscarbon(loc))
 		var/mob/living/carbon/carbon_loc = loc
 		zone_name = carbon_loc.parse_zone_with_bodypart(def_zone)
-		carbon_loc.visible_message(span_danger(LANG("obj.944f468f", list(zone_name, carbon_loc, src.name, break_verb))), span_userdanger(LANG("obj.d126b41b", list(zone_name, src.name, break_verb))), vision_distance = COMBAT_MESSAGE_RANGE)
+		carbon_loc.visible_message(span_danger(LANG("obj.944f468fb32dbd13", list(zone_name, carbon_loc, src.name, break_verb))), span_userdanger(LANG("obj.d126b41b72b89dc0", list(zone_name, src.name, break_verb))), vision_distance = COMBAT_MESSAGE_RANGE)
 		RegisterSignal(carbon_loc, COMSIG_MOVABLE_MOVED, PROC_REF(bristle), override = TRUE)
 	else
 		zone_name = parse_zone(def_zone)
@@ -328,7 +328,7 @@
 /obj/item/clothing/examine(mob/user)
 	. = ..()
 	if(damaged_clothes == CLOTHING_SHREDDED)
-		. += span_warning(LANG("obj.6505b740", list(p_Theyre(), p_s(), p_they())))
+		. += span_warning(LANG("obj.6505b7409827ed66", list(p_Theyre(), p_s(), p_they())))
 		return
 
 	for(var/zone in damage_by_parts)
@@ -336,26 +336,26 @@
 		var/zone_name = parse_zone(zone)
 		switch(pct_damage_part)
 			if(100 to INFINITY)
-				. += span_warning(LANG("obj.39afae4b", list(zone_name)))
+				. += span_warning(LANG("obj.39afae4beb476539", list(zone_name)))
 			if(60 to 99)
-				. += span_warning(LANG("obj.cb72d897", list(zone_name)))
+				. += span_warning(LANG("obj.cb72d897205b9482", list(zone_name)))
 			if(30 to 59)
-				. += span_danger(LANG("obj.ce2e363d", list(zone_name)))
+				. += span_danger(LANG("obj.ce2e363d65c5d268", list(zone_name)))
 
 	if(atom_storage)
 		var/list/how_cool_are_your_threads = list("<span class='notice'>")
 		if(atom_storage.attack_hand_interact)
-			how_cool_are_your_threads += LANG("obj.d9b14bb5", list(src))
+			how_cool_are_your_threads += LANG("obj.d9b14bb564bed1c3", list(src))
 		else
-			how_cool_are_your_threads += LANG("obj.c603422a", list(src))
+			how_cool_are_your_threads += LANG("obj.c603422ad46fdab0", list(src))
 		if (atom_storage.can_hold?.len) // If pocket type can hold anything, vs only specific items
-			how_cool_are_your_threads += LANG("obj.51cdfce1", list(src, atom_storage.max_slots, REF(src)))
+			how_cool_are_your_threads += LANG("obj.51cdfce11782b7a1", list(src, atom_storage.max_slots, REF(src)))
 		else
-			how_cool_are_your_threads += LANG("obj.05648428", list(src, atom_storage.max_slots, weight_class_to_text(atom_storage.max_specific_storage)))
+			how_cool_are_your_threads += LANG("obj.05648428dc779ad2", list(src, atom_storage.max_slots, weight_class_to_text(atom_storage.max_specific_storage)))
 		if(atom_storage.quickdraw)
-			how_cool_are_your_threads += LANG("obj.f72ef392", list(src))
+			how_cool_are_your_threads += LANG("obj.f72ef3924fa52785", list(src))
 		if(atom_storage.silent)
-			how_cool_are_your_threads += LANG("obj.08b5e10e", list(src))
+			how_cool_are_your_threads += LANG("obj.08b5e10e8bd3e2f7", list(src))
 		how_cool_are_your_threads += "</span>"
 		. += how_cool_are_your_threads.Join()
 
@@ -363,7 +363,7 @@
 		. += span_notice("OOC: Click <a href='byond://?src=[REF(src)];list_armor=1'>here</a> to see its protection classes.") // NOVA EDIT CHANGE - ORIGINAL: += span_notice("It has a <a href='byond://?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes.")
 
 	if(is_laundered)
-		. += LANG("obj.8cfbdf82", list(src))
+		. += LANG("obj.8cfbdf824b1ec561", list(src))
 
 /obj/item/clothing/examine_tags(mob/user)
 	. = ..()
@@ -439,8 +439,8 @@
 			if(flags_cover & PEPPERPROOF)
 				things_blocked += "pepperspray"
 			if(length(things_blocked))
-				readout += LANG("obj.e49fd311", null)
-				readout += LANG("obj.eb3ca618", list(english_list(things_blocked)))
+				readout += LANG("obj.e49fd311fe13f943", null)
+				readout += LANG("obj.eb3ca6189a0098ce", list(lang_english_list(things_blocked)))
 
 		var/list/parts_covered = list()
 		if(body_parts_covered & HEAD)
@@ -452,13 +452,13 @@
 		if(body_parts_covered & (LEGS|FEET))
 			parts_covered += "legs"
 		if(length(parts_covered))
-			readout += LANG("obj.764d8ebd", list(english_list(parts_covered)))
+			readout += LANG("obj.764d8ebd9777aae1", list(lang_english_list(parts_covered)))
 
 		if((clothing_flags & STOPSPRESSUREDAMAGE) || (visor_flags & STOPSPRESSUREDAMAGE))
 			var/output_string = "It"
 			if(!(clothing_flags & STOPSPRESSUREDAMAGE))
 				output_string = "When sealed, it"
-			readout += LANG("obj.2c17a02e", list(output_string, span_tooltip("The extremely low pressure is the biggest danger posed by the vacuum of space.", "low pressure")))
+			readout += LANG("obj.2c17a02e73c62243", list(output_string, span_tooltip("The extremely low pressure is the biggest danger posed by the vacuum of space.", "low pressure")))
 
 		var/heat_prot
 		switch (max_heat_protection_temperature)
@@ -469,13 +469,13 @@
 			if (1601 to 35000)
 				heat_prot = "extreme"
 		if (heat_prot)
-			. += LANG("obj.5a1b8f0e", list(src, heat_protection, max_heat_protection_temperature))
+			. += LANG("obj.5a1b8f0ece7a6765", list(src, heat_protection, max_heat_protection_temperature))
 
 		if(min_cold_protection_temperature)
-			readout += LANG("obj.5300c278", list(min_cold_protection_temperature <= SPACE_SUIT_MIN_TEMP_PROTECT ? span_tooltip("While not as dangerous as the lack of pressure, the extremely low temperature of space is also a hazard.", "the cold of space, down to [min_cold_protection_temperature] kelvin") : "cold, down to [min_cold_protection_temperature] kelvin"))
+			readout += LANG("obj.5300c2784ab5f612", list(min_cold_protection_temperature <= SPACE_SUIT_MIN_TEMP_PROTECT ? span_tooltip("While not as dangerous as the lack of pressure, the extremely low temperature of space is also a hazard.", "the cold of space, down to [min_cold_protection_temperature] kelvin") : "cold, down to [min_cold_protection_temperature] kelvin"))
 
 		if(!length(readout))
-			readout += LANG("obj.baca72d2", null)
+			readout += LANG("obj.baca72d2efae6e8e", null)
 
 		var/formatted_readout = span_notice("<b>[lang_armor_class("PROTECTION CLASSES")]</b><hr>[jointext(readout, "\n")]") // NOVA EDIT - i18n
 		to_chat(usr, boxed_message(formatted_readout))
@@ -499,9 +499,9 @@
 	if(isliving(loc)) //It's not important enough to warrant a message if it's not on someone
 		var/mob/living/M = loc
 		if(src in M.get_equipped_items())
-			to_chat(M, span_warning(LANG("obj.56b84b52", list(name, p_s()))))
+			to_chat(M, span_warning(LANG("obj.56b84b52245fca48", list(name, p_s()))))
 		else
-			to_chat(M, span_warning(LANG("obj.f95adbcc", list(src, p_s()))))
+			to_chat(M, span_warning(LANG("obj.f95adbcc8bb725ba", list(src, p_s()))))
 
 // you just dont get the same feeling with handwashed clothes
 /obj/item/clothing/machine_wash()
@@ -618,7 +618,7 @@ BLIND     // can't see anything
 		new /obj/effect/decal/cleanable/shreds(current_position, name)
 		if(isliving(loc))
 			var/mob/living/possessing_mob = loc
-			possessing_mob.visible_message(span_danger(LANG("obj.1bb63700", list(src))), span_boldwarning(LANG("obj.95bf689d", list(src))))
+			possessing_mob.visible_message(span_danger(LANG("obj.1bb637009de4f1db", list(src))), span_boldwarning(LANG("obj.95bf689da4068328", list(src))))
 		deconstruct(FALSE)
 	else
 		body_parts_covered = NONE
@@ -627,10 +627,10 @@ BLIND     // can't see anything
 		if(isliving(loc))
 			var/mob/living/M = loc
 			if(src in M.get_equipped_items()) //make sure they were wearing it and not attacking the item in their hands
-				M.visible_message(span_danger(LANG("obj.e86cca8a", list(M, src.name, p_s(), p_theyre()))), span_warning(LANG("obj.4df574fd", list(src.name, p_s(), p_theyre()))), vision_distance = COMBAT_MESSAGE_RANGE)
+				M.visible_message(span_danger(LANG("obj.e86cca8ad191e721", list(M, src.name, p_s(), p_theyre()))), span_warning(LANG("obj.4df574fdcd03fd36", list(src.name, p_s(), p_theyre()))), vision_distance = COMBAT_MESSAGE_RANGE)
 				M.dropItemToGround(src)
 			else
-				M.visible_message(span_danger(LANG("obj.f1e3c074", list(src, p_s()))), vision_distance = COMBAT_MESSAGE_RANGE)
+				M.visible_message(span_danger(LANG("obj.f1e3c074f274bc83", list(src, p_s()))), vision_distance = COMBAT_MESSAGE_RANGE)
 		name = "shredded [initial(name)]" // change the name -after- the message, not before.
 		update_appearance()
 	SEND_SIGNAL(src, COMSIG_ATOM_DESTRUCTION, damage_flag)
@@ -642,7 +642,7 @@ BLIND     // can't see anything
 	if(!istype(L))
 		return
 	if(prob(0.2))
-		to_chat(L, span_warning(LANG("obj.c859ac16", list(src.name))))
+		to_chat(L, span_warning(LANG("obj.c859ac16f06e6841", list(src.name))))
 
 /obj/item/clothing/apply_fantasy_bonuses(bonus)
 	. = ..()

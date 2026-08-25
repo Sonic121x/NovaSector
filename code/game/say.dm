@@ -172,6 +172,48 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/freqpart = radio_freq ? "\[[get_radio_name(radio_freq, radio_freq_name)]\] " : ""
 	//Speaker name
 	var/namepart = message_mods[MODE_SPEAKER_NAME_OVERRIDE] || speaker.get_message_voice(visible_name)
+	// NOVA EDIT ADDITION START - I18N - 说话者名字走显示边界。它被包在 `<span class='name'>` 里、
+	// 是**独立的一块**经过聊天落地层（切块器按标签切，名字自成一块），所以整句反查、模板引擎都够不着它，
+	// 只剩字面 AC —— 而 AC 有多词门槛，`wolf`/`mi-go` 这种单词名永远捞不着，玩家看到「The wolf 说，「……」」。
+	// 漏翻采集里这批名字片段是聊天面剩余漏翻的头号来源（emote 那条路修好之后升到榜首）。
+	// mob 版边界会把角色名/宠物挂牌这类**身份名**排除在外，只翻仍等于 initial(name) 的类型标签；
+	// 英文服与未命中时原样返回，输出逐字节不变。
+	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE && isatom(speaker))
+		var/atom/speaking_atom = speaker
+		var/canonical_name = speaking_atom.name
+		var/localized_name = speaking_atom.lang_localize_name_for_display(canonical_name)
+		if(localized_name != canonical_name)
+			// **不能拿 namepart 直接去翻**：`get_voice()` 返回的是 `"[src]"`，BYOND 对非专名会
+			// 自动补一个 "The"（该 proc 的注释写明了这点），于是 namepart 是 "The wolf" 而非 "wolf"，
+			// 显示边界按 `name != initial(name)` 当成身份名拒翻 —— 这正是第一版没生效的原因。
+			// 所以按 canonical name 取译名，只在 namepart 是「裸名字」或「冠词 + 名字」时替换；
+			// ID 头衔（"Captain John Doe"）与 name override 一律保持原样。
+			if(namepart == canonical_name)
+				namepart = localized_name
+			else
+				var/name_start = length(namepart) - length(canonical_name) + 1
+				if(name_start > 1 && copytext(namepart, name_start) == canonical_name)
+					var/article = LOWER_TEXT(copytext(namepart, 1, name_start))
+					if(article == "the " || article == "a " || article == "an ")
+						namepart = localized_name
+	// NOVA EDIT ADDITION START - I18N - 兜住 virtualspeaker：说话/电台会把说话者包进
+	// `/atom/movable/virtualspeaker`，它的 `name` **本身就是** "The wolf"（已含冠词），于是上面按
+	// canonical name 取译名那条也够不着（边界看到 name != initial(name)，当身份名拒翻）。
+	// 这里的判据比"是不是 virtualspeaker"更普适也更安全：**BYOND 只给非专有名词补冠词**，
+	// 而玩家角色名是专名、永远不带冠词 —— 所以「namepart 带冠词」本身就证明了它不是玩家身份名。
+	// 剥掉冠词后整串精确反查（单词名也能命中，不经字面 AC）。
+	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE && istext(namepart))
+		var/list/leading_articles = list("The ", "the ", "A ", "a ", "An ", "an ")
+		for(var/article in leading_articles)
+			if(findtext(namepart, article) != 1)
+				continue
+			var/bare_name = copytext(namepart, length(article) + 1)
+			var/bare_localized = lang_reverse_text(bare_name)
+			if(bare_localized != bare_name)
+				namepart = bare_localized // 中文不需要冠词
+			break
+	// NOVA EDIT ADDITION END
+	// NOVA EDIT ADDITION END
 
 	//End name span.
 	var/endspanpart = "</span>"

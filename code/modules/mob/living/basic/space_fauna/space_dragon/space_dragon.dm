@@ -103,7 +103,7 @@
 	if(!isnull(chosen_colour))
 		return
 	if(client.get_award_status(/datum/award/achievement/misc/sharkdragon))
-		if(tgui_alert(src, LANG("mob.6f918cfd", null),LANG("mob.5b013f86", null), list("Dragon","Shark")) == "Shark")
+		if(tgui_alert(src, LANG("mob.6f918cfdb31d778c", null),LANG("mob.5b013f860dd6a234", null), list("Dragon","Shark")) == "Shark")
 			sharkify()
 	rename_dragon()
 	select_colour()
@@ -120,7 +120,7 @@
 	base_pixel_z -= 3
 	do_jitter_animation(150)
 	shark_form = TRUE
-	desc = LANG("mob.6f278c03", null)
+	desc = LANG("mob.6f278c03340949b2", null)
 	icon_state = icon_state == icon_living ? "sharkdragon" : "sharkdragon_dead"
 	icon_living = "sharkdragon"
 	icon_dead = "sharkdragon_dead"
@@ -131,24 +131,24 @@
 
 /// Allows the space dragon to pick a funny name
 /mob/living/basic/space_dragon/proc/rename_dragon()
-	var/chosen_name = sanitize_name(reject_bad_text(tgui_input_text(src, LANG("mob.53566b0f", null), LANG("mob.628ceef3", null), real_name, MAX_NAME_LEN)))
+	var/chosen_name = sanitize_name(reject_bad_text(tgui_input_text(src, LANG("mob.53566b0fa0485f54", null), LANG("mob.628ceef3d535fbba", null), real_name, MAX_NAME_LEN)))
 	if(!chosen_name) // Null or empty or rejected
-		to_chat(src, span_warning(LANG("mob.1741625b", null)))
+		to_chat(src, span_warning(LANG("mob.1741625bcc02c097", null)))
 		rename_dragon()
 		return
-	to_chat(src, span_notice(LANG("mob.fce56561", list(span_name("[chosen_name]")))))
+	to_chat(src, span_notice(LANG("mob.fce56561279546d5", list(span_name("[chosen_name]")))))
 	fully_replace_character_name(null, chosen_name, log_new_name = TRUE)
 
 /// Select scale colour with the colour picker
 /mob/living/basic/space_dragon/proc/select_colour()
 	chosen_colour = tgui_color_picker(src, "What colour would you like to be?" ,"Colour Selection", COLOR_WHITE)
 	if(!chosen_colour) // Redo proc until we get a color
-		to_chat(src, span_warning(LANG("mob.4a638bdd", null)))
+		to_chat(src, span_warning(LANG("mob.4a638bdd7f629d2e", null)))
 		select_colour()
 		return
 	var/list/skin_hsv = rgb2hsv(chosen_colour)
 	if(skin_hsv[3] < REJECT_DARK_COLOUR_THRESHOLD)
-		to_chat(src, span_danger(LANG("mob.325c7469", null)))
+		to_chat(src, span_danger(LANG("mob.325c74694e777edf", null)))
 		select_colour()
 		return
 	add_atom_colour(chosen_colour, FIXED_COLOUR_PRIORITY)
@@ -191,7 +191,7 @@
 	if (target == src)
 		return COMPONENT_HOSTILE_NO_ATTACK // Easy to misclick yourself, let's not
 	if (DOING_INTERACTION(source, DOAFTER_SOURCE_SPACE_DRAGON_INTERACTION))
-		balloon_alert(source, LANG("mob.8df72942", null))
+		balloon_alert(source, LANG("mob.8df72942c63f9092", null))
 		return COMPONENT_HOSTILE_NO_ATTACK
 	if(isfish(target))
 		INVOKE_ASYNC(src, PROC_REF(try_eat), target)
@@ -205,7 +205,7 @@
 
 /// Try putting something inside us
 /mob/living/basic/space_dragon/proc/try_eat(atom/movable/food)
-	balloon_alert(src, LANG("mob.cc7a02ae", null))
+	balloon_alert(src, LANG("mob.cc7a02ae7bbc16d8", null))
 	if (do_after(src, 3 SECONDS, target = food))
 		if(isliving(food))
 			eat(food)
@@ -224,7 +224,7 @@
 	if (QDELETED(food) || food.loc == src)
 		return FALSE
 	playsound(src, 'sound/effects/magic/demon_attack1.ogg', 60, TRUE)
-	visible_message(span_boldwarning(LANG("mob.f34c2d31", list(src, food))))
+	visible_message(span_boldwarning(LANG("mob.f34c2d31553ec34d", list(src, food))))
 	food.extinguish_mob() // It's wet in there, and our food is likely to be on fire. Let's be decent and not husk them.
 	food.forceMove(src)
 	return TRUE
@@ -241,24 +241,24 @@
 			fish_left = initial(fish_left) //prevent begin_sharkify from being called again by eating another fish.
 	adjust_health(round(-health_recovered, 1))
 	playsound(src, 'sound/effects/magic/demon_attack1.ogg', 40, TRUE)
-	visible_message(span_boldwarning(LANG("mob.f34c2d31", list(src, fish))))
+	visible_message(span_boldwarning(LANG("mob.f34c2d31553ec34d", list(src, fish))))
 	if(HAS_TRAIT(fish, TRAIT_YUCKY_FISH))
-		balloon_alert(src, LANG("mob.d54ff51b", null))
-		to_chat(src, span_warning(LANG("mob.f0664f79", list(fish.name))))
+		balloon_alert(src, LANG("mob.d54ff51bc5e253aa", null))
+		to_chat(src, span_warning(LANG("mob.f0664f799e2d987f", list(fish.name))))
 		addtimer(CALLBACK(src, PROC_REF(barf_contents)), 3 SECONDS)
 	qdel(fish)
 
 /mob/living/basic/space_dragon/proc/begin_sharkify()
 	do_jitter_animation(300)
 	addtimer(CALLBACK(src, PROC_REF(sharkify)), 1.2 SECONDS)
-	visible_message(span_warning(LANG("mob.92eb6aa4", list(src))))
+	visible_message(span_warning(LANG("mob.92eb6aa479dc375c", list(src))))
 
 /mob/living/basic/space_dragon/proc/barf_contents()
 	if(stat == DEAD)
 		return
 	new /obj/effect/decal/cleanable/vomit(loc)
 	playsound(src, 'sound/effects/splat.ogg', vol = 50, vary = TRUE)
-	visible_message(span_danger(LANG("mob.a3529b7f", list(src))))
+	visible_message(span_danger(LANG("mob.a3529b7ff956a31c", list(src))))
 	for(var/atom/movable/eaten in src)
 		if(HAS_TRAIT(eaten, TRAIT_NOT_BARFABLE))
 			continue
@@ -283,7 +283,7 @@
 		return
 	new /obj/effect/decal/cleanable/vomit(loc)
 	playsound(src, 'sound/effects/splat.ogg', vol = 50, vary = TRUE)
-	visible_message(span_danger(LANG("mob.c75e882d", list(src, eaten))))
+	visible_message(span_danger(LANG("mob.c75e882d4829bd08", list(src, eaten))))
 	eaten.forceMove(loc)
 	eaten.Paralyze(5 SECONDS)
 

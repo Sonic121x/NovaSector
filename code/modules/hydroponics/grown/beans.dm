@@ -55,7 +55,7 @@
 
 //Now squeezable for imitation carpmeat
 /obj/item/food/grown/koibeans/attack_self(mob/living/user)
-	user.visible_message(span_notice(LANG("obj.cc4c1e86", list(user, src))), span_notice(LANG("obj.11cc6d0b", list(src))))
+	user.visible_message(span_notice(LANG("obj.cc4c1e8660b79d6f", list(user, src))), span_notice(LANG("obj.11cc6d0b57d05790", list(src))))
 	playsound(user, 'sound/effects/blob/blobattack.ogg', 50, TRUE)
 	var/obj/item/food/fishmeat/carp/imitation/fishie = new(null)
 	fishie.reagents.set_all_reagents_purity(seed.get_reagent_purity())
@@ -87,7 +87,7 @@
 	distill_reagent = /datum/reagent/consumable/yoghurt
 
 /obj/item/food/grown/butterbeans/attack_self(mob/living/user)
-	user.visible_message(span_notice(LANG("obj.c09a82b2", list(user, src))), span_notice(LANG("obj.a2ba1899", list(src))))
+	user.visible_message(span_notice(LANG("obj.c09a82b2accc85f9", list(user, src))), span_notice(LANG("obj.a2ba1899396a09ad", list(src))))
 	playsound(user, 'sound/effects/blob/blobattack.ogg', 50, TRUE)
 	var/obj/item/food/butterslice/butties = new(null)
 	butties.reagents.set_all_reagents_purity(seed.get_reagent_purity())

@@ -100,7 +100,7 @@
 
 /obj/item/clothing/head/costume/lobsterhat/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/speechmod, replacements = strings("crustacean_replacement.json", "crustacean"))
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("crustacean_replacement.json", "crustacean"))
 
 /obj/item/clothing/head/costume/drfreezehat
 	name = "doctor freeze's wig"

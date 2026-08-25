@@ -61,7 +61,7 @@
 	if (playing)
 		return
 	if(map.template_in_use)
-		to_chat(get_mob_by_ckey(host), span_warning(LANG("datum.510622bc", null)))
+		to_chat(get_mob_by_ckey(host), span_warning(LANG("datum.510622bc60fb3f0f", null)))
 		return
 	playing = DEATHMATCH_PRE_PLAYING
 
@@ -69,7 +69,7 @@
 	RegisterSignal(map, COMSIG_LAZY_TEMPLATE_LOADED, PROC_REF(find_spawns_and_start_delay))
 	location = map.lazy_load()
 	if (!location)
-		to_chat(get_mob_by_ckey(host), span_warning(LANG("datum.7b00910e", null)))
+		to_chat(get_mob_by_ckey(host), span_warning(LANG("datum.7b00910ea67adf53", null)))
 		playing = FALSE
 		map.template_in_use = FALSE
 		UnregisterSignal(map, COMSIG_LAZY_TEMPLATE_LOADED)
@@ -116,12 +116,12 @@
 	playing = DEATHMATCH_PLAYING
 	addtimer(CALLBACK(src, PROC_REF(game_took_too_long)), initial(map.automatic_gameend_time))
 	log_game("Deathmatch game [host] started.")
-	announce(span_reallybig(LANG("datum.d3cf14ad", null))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("GO!"))
+	announce(span_reallybig(LANG("datum.d3cf14ad79df2a64", null))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("GO!"))
 	if(length(modifiers))
 		var/list/modifier_names = list()
 		for(var/datum/deathmatch_modifier/modifier_path as anything in modifiers)
 			modifier_names += uppertext(lang_reverse_text(initial(modifier_path.name))) // NOVA EDIT CHANGE - I18N - ORIGINAL: modifier_names += uppertext(initial(modifier_path.name))
-		announce(span_boldnicegreen(LANG("datum.2505d0df", list(english_list(modifier_names, and_text = " ,"))))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_boldnicegreen("THIS MATCH MODIFIERS: [english_list(modifier_names, and_text = " ,")]."))
+		announce(span_boldnicegreen(LANG("datum.2505d0dfe1cff24a", list(lang_english_list(modifier_names, and_text = " ,"))))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_boldnicegreen("THIS MATCH MODIFIERS: [lang_english_list(modifier_names, and_text = " ,")]."))
 	return TRUE
 
 /datum/deathmatch_lobby/proc/spawn_observer_as_player(ckey, loc)
@@ -172,13 +172,13 @@
 /datum/deathmatch_lobby/proc/game_took_too_long()
 	if (!location || QDELING(src))
 		return
-	announce(span_reallybig(LANG("datum.e3f92c5f", null))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("The players have took too long! Game ending!"))
+	announce(span_reallybig(LANG("datum.e3f92c5fa6083ec4", null))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("The players have took too long! Game ending!"))
 	end_game()
 
 /datum/deathmatch_lobby/proc/lobby_afk_probably()
 	if (QDELING(src) || playing)
 		return
-	announce(span_warning(LANG("datum.cac9d564", list(host)))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_warning("Lobby ([host]) was closed due to not starting after 5 minutes, being potentially AFK. Please be faster next time."))
+	announce(span_warning(LANG("datum.cac9d56440e3c160", list(host)))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_warning("Lobby ([host]) was closed due to not starting after 5 minutes, being potentially AFK. Please be faster next time."))
 	GLOB.deathmatch_game.remove_lobby(host)
 
 /datum/deathmatch_lobby/proc/end_game()
@@ -190,7 +190,7 @@
 		if(!isnull(winner_info["mob"]))
 			winner = winner_info["mob"] //only one should remain anyway but incase of a draw
 
-	announce(span_reallybig(LANG("datum.af05b767", list(winner ? winner.real_name : LANG("datum.87aacbe7", null))))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("THE GAME HAS ENDED.<BR>THE WINNER IS: [winner ? winner.real_name : "no one"]."))
+	announce(span_reallybig(LANG("datum.af05b767e6926107", list(winner ? winner.real_name : LANG("datum.87aacbe78498a2a7", null))))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("THE GAME HAS ENDED.<BR>THE WINNER IS: [winner ? winner.real_name : "no one"]."))
 
 	for(var/ckey in players)
 		var/mob/loser = players[ckey]["mob"]
@@ -234,7 +234,7 @@
 	if(!isnull(ghost))
 		add_observer(ghost, (host == ckey))
 
-	announce(span_reallybig(LANG("datum.d064d32c", list(player.real_name, players.len)))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("[player.real_name] HAS DIED.<br>[players.len] REMAIN."))
+	announce(span_reallybig(LANG("datum.d064d32c93645893", list(player.real_name, players.len)))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("[player.real_name] HAS DIED.<br>[players.len] REMAIN."))
 
 	if(!gibbed && !QDELING(player) && !isdead(player))
 		if(!HAS_TRAIT(src, TRAIT_DEATHMATCH_EXPLOSIVE_IMPLANTS))
@@ -375,7 +375,7 @@
 	var/is_admin = check_rights_for(user.client, R_ADMIN)
 	var/has_auth = is_host || is_admin
 
-	data["active_mods"] = LANG("datum.f2e41ddf", null) // NOVA EDIT CHANGE - I18N - ORIGINAL: data["active_mods"] = "No modifiers selected"
+	data["active_mods"] = LANG("datum.f2e41ddf18967c52", null) // NOVA EDIT CHANGE - I18N - ORIGINAL: data["active_mods"] = "No modifiers selected"
 	data["admin"] = is_admin
 	data["host"] = is_host
 	data["loadouts"] = list("Randomize")
@@ -403,7 +403,7 @@
 		var/list/mod_names = list()
 		for(var/datum/deathmatch_modifier/modifier_path as anything in modifiers)
 			mod_names += localize_mods ? lang_reverse_text(modifier_path::name) : modifier_path::name
-		data["active_mods"] = LANG("datum.056a34d3", list(localize_mods ? jointext(mod_names, "、") : english_list(mod_names)))
+		data["active_mods"] = LANG("datum.056a34d391111560", list(localize_mods ? jointext(mod_names, "、") : lang_english_list(mod_names)))
 		// NOVA EDIT CHANGE END
 
 	if(is_player && !isnull(players[user.ckey]["loadout"]))
@@ -424,7 +424,7 @@
 			if (usr.ckey != host)
 				return FALSE
 			if (map.min_players > players.len)
-				to_chat(usr, span_warning(LANG("datum.b09ae9ec", null)))
+				to_chat(usr, span_warning(LANG("datum.b09ae9ec9a4b04cc", null)))
 				return FALSE
 			start_game()
 			return TRUE
@@ -446,8 +446,8 @@
 				players[params["player"]]["loadout"] = pick(loadouts)
 				return TRUE
 			for (var/datum/outfit/deathmatch_loadout/possible_loadout as anything in loadouts)
-				var/loadout_name = initial(possible_loadout.display_name) // NOVA EDIT - I18N - tolerate translated dropdown value
-				if (params["loadout"] != loadout_name && lang_unreverse_text(params["loadout"]) != loadout_name) // NOVA EDIT - I18N
+				var/loadout_name = initial(possible_loadout.display_name)
+				if (params["loadout"] != loadout_name)
 					continue
 				players[params["player"]]["loadout"] = possible_loadout
 				break
@@ -501,9 +501,7 @@
 						add_player(umob, loadouts[1], host == uckey)
 					return TRUE
 				if ("change_map")
-					var/map_key = params["map"] // NOVA EDIT - I18N - tolerate translated dropdown value
-					if (!(map_key in GLOB.deathmatch_game.maps))
-						map_key = lang_unreverse_text(map_key) // NOVA EDIT - I18N
+					var/map_key = params["map"]
 					if (!(map_key in GLOB.deathmatch_game.maps))
 						return FALSE
 					change_map(map_key)

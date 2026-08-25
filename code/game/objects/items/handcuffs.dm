@@ -16,7 +16,7 @@
 	icon = 'icons/obj/weapons/restraints.dmi'
 
 /obj/item/restraints/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.2a557471", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.2a557471bd55eaf0", list(user, user.p_them(), src, user.p_theyre()))))
 	return OXYLOSS
 
 // Zipties, cable cuffs, etc. Can be cut with wirecutters instantly.
@@ -87,34 +87,34 @@
 /// Handles all of the checks and application in a typical situation where someone attacks a carbon victim with the handcuff item.
 /obj/item/restraints/handcuffs/proc/attempt_to_cuff(mob/living/carbon/victim, mob/living/user)
 	if(SEND_SIGNAL(victim, COMSIG_CARBON_CUFF_ATTEMPTED, user) & COMSIG_CARBON_CUFF_PREVENT)
-		victim.balloon_alert(user, LANG("obj.fb5794d8", null))
+		victim.balloon_alert(user, LANG("obj.fb5794d88a619e52", null))
 		return
 
 	if(handcuffs_clumsiness_check(user))
 		return
 
 	if(!isnull(victim.handcuffed))
-		victim.balloon_alert(user, LANG("obj.957aa219", null))
+		victim.balloon_alert(user, LANG("obj.957aa2196e9fc065", null))
 		return
 
 	if(!victim.canBeHandcuffed())
-		victim.balloon_alert(user, LANG("obj.fb5794d8", null))
+		victim.balloon_alert(user, LANG("obj.fb5794d88a619e52", null))
 		return
 
 	victim.visible_message(
-		span_danger(LANG("obj.0392eba8", list(user, src, victim))),
-		span_userdanger(LANG("obj.f60a7d99", list(user, src))),
+		span_danger(LANG("obj.0392eba8ac92a258", list(user, src, victim))),
+		span_userdanger(LANG("obj.f60a7d993865e0b9", list(user, src))),
 	)
 
 	if(victim.is_blind())
-		to_chat(victim, span_userdanger(LANG("obj.13a6176f", list(src))))
+		to_chat(victim, span_userdanger(LANG("obj.13a6176f7a4c2f13", list(src))))
 
 	playsound(loc, cuffsound, 30, TRUE, -2)
 	log_combat(user, victim, "attempted to handcuff")
 
 	if(!do_after(user, get_handcuff_time(user), victim, timed_action_flags = IGNORE_SLOWDOWNS) || !victim.canBeHandcuffed())
-		victim.balloon_alert(user, LANG("obj.48910202", null))
-		to_chat(user, span_warning(LANG("obj.4edfbb12", list(victim))))
+		victim.balloon_alert(user, LANG("obj.489102024642ef65", null))
+		to_chat(user, span_warning(LANG("obj.4edfbb12ce8fe595", list(victim))))
 		log_combat(user, victim, "failed to handcuff")
 		return
 
@@ -122,8 +122,8 @@
 	playsound(loc, cuffsuccesssound, 30, TRUE, -2)
 
 	victim.visible_message(
-		span_notice(LANG("obj.490dffee", list(user, victim))),
-		span_userdanger(LANG("obj.25d2cc90", list(user))),
+		span_notice(LANG("obj.490dffee46da2a3d", list(user, victim))),
+		span_userdanger(LANG("obj.25d2cc908186cd40", list(user))),
 	)
 
 	log_combat(user, victim, "successfully handcuffed")
@@ -136,7 +136,7 @@
 /obj/item/restraints/handcuffs/proc/handcuffs_clumsiness_check(mob/user)
 	if(!iscarbon(user) || !HAS_TRAIT(user, TRAIT_CLUMSY) || prob(50)) //Clumsy people have a 50% chance to handcuff themselves instead of their target.
 		return FALSE
-	to_chat(user, span_warning(LANG("obj.5aba72c1", null)))
+	to_chat(user, span_warning(LANG("obj.5aba72c1757b9a7b", null)))
 	apply_cuffs(user, user)
 	return TRUE
 /**
@@ -358,7 +358,7 @@
 
 /obj/item/restraints/handcuffs/cable/zipties/on_uncuffed(datum/source, mob/living/wearer)
 	. = ..()
-	desc = LANG("obj.d7aec9af", null)
+	desc = LANG("obj.d7aec9af7b02da68", null)
 	icon_state = "cuff_used"
 	used = TRUE
 
@@ -398,7 +398,7 @@
 
 /obj/item/restraints/handcuffs/cult/on_uncuffed(datum/source, mob/living/wearer)
 	. = ..()
-	wearer.visible_message(span_danger(LANG("obj.b2ba5101", list(wearer))), span_userdanger(LANG("obj.9b140d2c", list(src))))
+	wearer.visible_message(span_danger(LANG("obj.b2ba51014a035c72", list(wearer))), span_userdanger(LANG("obj.9b140d2c445830ee", list(src))))
 	qdel(src)
 
 
@@ -457,7 +457,7 @@
 	return ..()
 
 /obj/item/restraints/legcuffs/beartrap/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.e73a9ae4", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.e73a9ae49d75df56", list(user, user.p_their(), src, user.p_theyre()))))
 	playsound(loc, 'sound/items/weapons/bladeslice.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
@@ -472,12 +472,12 @@
 	update_appearance()
 
 	if(armed && (HAS_TRAIT(user, TRAIT_DUMB) || HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(25))
-		to_chat(user, span_warning(LANG("obj.b686046c", null)))
+		to_chat(user, span_warning(LANG("obj.b686046c3486e615", null)))
 		var/hand_zone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
 		spring_trap(user, def_zone = hand_zone)
 		return
 
-	to_chat(user, span_notice(LANG("obj.8e5dbd27", list(src, armed ? "armed" : "disarmed"))))
+	to_chat(user, span_notice(LANG("obj.8e5dbd27cd71d066", list(src, armed ? "armed" : "disarmed"))))
 
 
 /obj/item/restraints/legcuffs/beartrap/attempt_pickup(mob/user)
@@ -485,7 +485,7 @@
 		return ..()
 
 	if((HAS_TRAIT(user, TRAIT_DUMB) || HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(25))
-		to_chat(user, span_warning(LANG("obj.b686046c", null)))
+		to_chat(user, span_warning(LANG("obj.b686046c3486e615", null)))
 		var/hand_zone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
 		spring_trap(user, def_zone = hand_zone)
 		return TRUE
@@ -525,7 +525,7 @@
 		var/obj/vehicle/ridden_vehicle = victim.buckled
 		if(!ridden_vehicle.are_legs_exposed) //close the trap without injuring/trapping the rider if their legs are inside the vehicle at all times.
 			close_trap()
-			ridden_vehicle.visible_message(span_danger(LANG("obj.1e08ff15", list(ridden_vehicle, src))))
+			ridden_vehicle.visible_message(span_danger(LANG("obj.1e08ff153a2e81cb", list(ridden_vehicle, src))))
 			return
 
 	//don't close the trap if they're as small as a mouse
@@ -536,11 +536,11 @@
 
 	close_trap()
 	if(ignore_movetypes)
-		victim.visible_message(span_danger(LANG("obj.1d6a5dbd", list(src, victim))), \
-				span_userdanger(LANG("obj.3f77175e", list(src))))
+		victim.visible_message(span_danger(LANG("obj.1d6a5dbd5077f37f", list(src, victim))), \
+				span_userdanger(LANG("obj.3f77175eb2d08aa0", list(src))))
 	else
-		victim.visible_message(span_danger(LANG("obj.1e08ff15", list(victim, src))), \
-				span_userdanger(LANG("obj.a8049713", list(src))))
+		victim.visible_message(span_danger(LANG("obj.1e08ff153a2e81cb", list(victim, src))), \
+				span_userdanger(LANG("obj.a804971387262319", list(src))))
 
 	if(iscarbon(victim) && (victim.body_position == STANDING_UP || hit_prone) && !((def_zone == BODY_ZONE_PRECISE_R_HAND) || (def_zone == BODY_ZONE_PRECISE_L_HAND)))
 		var/mob/living/carbon/carbon_victim = victim
@@ -638,7 +638,7 @@
 /obj/item/restraints/legcuffs/bola/proc/ensnare(mob/living/carbon/snared_mob)
 	if(snared_mob.legcuffed || snared_mob.num_legs < 2)
 		return
-	visible_message(span_danger(LANG("obj.1d6a5dbd", list(src, snared_mob))), span_userdanger(LANG("obj.3f77175e", list(src))))
+	visible_message(span_danger(LANG("obj.1d6a5dbd5077f37f", list(src, snared_mob))), span_userdanger(LANG("obj.3f77175eb2d08aa0", list(src))))
 	snared_mob.equip_to_slot(src, ITEM_SLOT_LEGCUFFED)
 	SSblackbox.record_feedback("tally", "handcuffs", 1, type)
 	snared_mob.Knockdown(knockdown)

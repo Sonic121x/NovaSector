@@ -124,13 +124,13 @@
 		turn_off()
 
 	else if(real_parent.machine_stat & (BROKEN|NOPOWER))
-		real_parent.balloon_alert_to_viewers(LANG("datum.b3e1b703", null))
+		real_parent.balloon_alert_to_viewers(LANG("datum.b3e1b703b228ad7a", null))
 		return
 
 	else
 		turn_on()
 
-	real_parent.balloon_alert_to_viewers(LANG("datum.832b8b7b", list(on ? "on" : "off")))
+	real_parent.balloon_alert_to_viewers(LANG("datum.832b8b7b5794be4a", list(on ? "on" : "off")))
 	playsound(real_parent, 'sound/machines/click.ogg', 30, TRUE)
 	playsound(real_parent, on ? 'sound/items/tools/welderactivate.ogg' : 'sound/items/tools/welderdeactivate.ogg', 15, TRUE)
 
@@ -148,12 +148,12 @@
 	if(!attacking_item.is_open_container())
 		return
 	if(!isnull(container))
-		to_chat(user, span_warning(LANG("datum.586b90e6", null)))
+		to_chat(user, span_warning(LANG("datum.586b90e6182fd063", null)))
 		return COMPONENT_NO_AFTERATTACK
 
 	if(user.transferItemToLoc(attacking_item, parent))
 		add_container(attacking_item, user)
-		to_chat(user, span_notice(LANG("datum.a7a19a66", list(attacking_item, parent))))
+		to_chat(user, span_notice(LANG("datum.a7a19a661d9487f4", list(attacking_item, parent))))
 	return COMPONENT_NO_AFTERATTACK
 
 /datum/component/stove/proc/on_exited(obj/machinery/source, atom/movable/gone, direction)
@@ -203,7 +203,7 @@
 /datum/component/stove/proc/on_examine(obj/machinery/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice(LANG("datum.2d9a4344", list(on ? "off" : "on")))
+	examine_list += span_notice(LANG("datum.2d9a434421f51031", list(on ? "off" : "on")))
 
 /datum/component/stove/proc/on_refresh_parts(obj/machinery/source)
 	SIGNAL_HANDLER

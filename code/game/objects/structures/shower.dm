@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(shower_mode_descriptions, list(
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = FALSE
-	layer = ABOVE_WINDOW_LAYER
+	layer = ABOVE_MOB_LAYER
 	use_power = NO_POWER_USE
 	subsystem_type = /datum/controller/subsystem/processing/plumbing
 	///Does the user want the shower on or off?
@@ -97,11 +97,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 
 /obj/machinery/shower/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.bcd47e6b", null))
+	. += span_notice(LANG("obj.bcd47e6bfd1f9d79", null))
 	if(has_water_reclaimer)
-		. += span_notice(LANG("obj.6a25c0f2", null))
-	. += span_notice(LANG("obj.f3fe27e6", list(GLOB.shower_mode_descriptions["[mode]"])))
-	. += span_notice(LANG("obj.31941555", list(reagents.total_volume, reagents.maximum_volume)))
+		. += span_notice(LANG("obj.6a25c0f25c1d92e4", null))
+	. += span_notice(LANG("obj.f3fe27e6d2c91c05", list(GLOB.shower_mode_descriptions["[mode]"])))
+	. += span_notice(LANG("obj.31941555602f62b7", list(reagents.total_volume, reagents.maximum_volume)))
 
 /obj/machinery/shower/Destroy()
 	QDEL_NULL(soundloop)
@@ -115,10 +115,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 
 	intended_on = !intended_on
 	if(!update_actually_on(intended_on))
-		balloon_alert(user, LANG("obj.76cfe055", list(src)))
+		balloon_alert(user, LANG("obj.76cfe0557d9c4c2d", list(src)))
 		return FALSE
 
-	balloon_alert(user, LANG("obj.8fcfde3c", list(intended_on ? "on" : "off")))
+	balloon_alert(user, LANG("obj.8fcfde3cd8c5cffd", list(intended_on ? "on" : "off")))
 
 	return TRUE
 
@@ -126,14 +126,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	. = ..()
 
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice(LANG("obj.7bb305ef", list(current_temperature))))
+	to_chat(user, span_notice(LANG("obj.7bb305ef4df82c53", list(current_temperature))))
 	return TRUE
 
 /obj/machinery/shower/plunger_act(obj/item/plunger/attacking_plunger, mob/living/user, reinforced)
-	user.balloon_alert_to_viewers(LANG("obj.6051e050", null), LANG("obj.36422741", null))
+	user.balloon_alert_to_viewers(LANG("obj.6051e050a7898871", null), LANG("obj.36422741f5176851", null))
 	if(!do_after(user, 3 SECONDS, target = src))
 		return TRUE
-	user.balloon_alert_to_viewers(LANG("obj.670c9c2c", null))
+	user.balloon_alert_to_viewers(LANG("obj.670c9c2c9c8b5fe6", null))
 	reagents.expose(get_turf(src), TOUCH) //splash on the floor
 	reagents.clear_reagents()
 	begin_processing()
@@ -144,7 +144,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 		return NONE
 
 	if(has_water_reclaimer)
-		to_chat(user, span_warning(LANG("obj.54d98562", null)))
+		to_chat(user, span_warning(LANG("obj.54d98562497bd0d7", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(src, 'sound/machines/click.ogg', 20, TRUE)
@@ -161,7 +161,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	tool.play_tool_sound(src)
 	mode = (mode + 1) % SHOWER_MODE_COUNT
 	begin_processing()
-	to_chat(user, span_notice(LANG("obj.c10c041d", list(GLOB.shower_mode_descriptions["[mode]"]))))
+	to_chat(user, span_notice(LANG("obj.c10c041d2099c9a7", list(GLOB.shower_mode_descriptions["[mode]"]))))
 	return TRUE
 
 /obj/machinery/shower/crowbar_act(mob/living/user, obj/item/tool)
@@ -169,18 +169,18 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	if(.)
 		return
 	if(!has_water_reclaimer)
-		to_chat(user, span_warning(LANG("obj.fe8e1f6a", null)))
+		to_chat(user, span_warning(LANG("obj.fe8e1f6afe2b140c", null)))
 		return
 
 	tool.play_tool_sound(src)
 	has_water_reclaimer = FALSE
 	new/obj/item/stock_parts/water_recycler(get_turf(loc))
-	to_chat(user, span_notice(LANG("obj.c5f01fc6", list(src))))
+	to_chat(user, span_notice(LANG("obj.c5f01fc6340628ec", list(src))))
 	return TRUE
 
 /obj/machinery/shower/screwdriver_act(mob/living/user, obj/item/I)
 	..()
-	to_chat(user, span_notice(LANG("obj.aedba1a4", list(I))))
+	to_chat(user, span_notice(LANG("obj.aedba1a4ee79a123", list(I))))
 	if(I.use_tool(src, user, 50))
 		switch(current_temperature)
 			if(SHOWER_NORMAL)
@@ -189,7 +189,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 				current_temperature = SHOWER_BOILING
 			if(SHOWER_BOILING)
 				current_temperature = SHOWER_NORMAL
-		user.visible_message(span_notice(LANG("obj.01c5ddbf", list(user, I))), span_notice(LANG("obj.98909d4e", list(I, current_temperature))))
+		user.visible_message(span_notice(LANG("obj.01c5ddbfb6b84dcc", list(user, I))), span_notice(LANG("obj.98909d4e0b234175", list(I, current_temperature))))
 		user.log_message("has wrenched a shower to [current_temperature].", LOG_ATTACK)
 		add_hiddenprint(user)
 	handle_mist()
@@ -373,11 +373,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 
 	if(current_temperature == SHOWER_FREEZING)
 		living.adjust_bodytemperature(-80, 80)
-		to_chat(living, span_warning(LANG("obj.c7c6f3ac", list(src))))
+		to_chat(living, span_warning(LANG("obj.c7c6f3ac98a81219", list(src))))
 	else if(current_temperature == SHOWER_BOILING)
 		living.adjust_bodytemperature(35, 0, 500)
 		living.adjust_fire_loss(5)
-		to_chat(living, span_danger(LANG("obj.f336012d", list(src))))
+		to_chat(living, span_danger(LANG("obj.f336012dbcc0bf4f", list(src))))
 
 
 /obj/structure/showerframe

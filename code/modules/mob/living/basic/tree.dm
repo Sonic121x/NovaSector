@@ -96,8 +96,8 @@
 	if(prob(paralyze_prob + boost))
 		victim.Paralyze(paralyze_value + boost)
 		victim.visible_message(
-			span_danger(LANG("mob.751de108", list(src, victim))),
-			span_userdanger(LANG("mob.f835f12e", list(src))),
+			span_danger(LANG("mob.751de108dbfcd3d0", list(src, victim))),
+			span_userdanger(LANG("mob.f835f12eb2f64f6a", list(src))),
 		)
 
 /datum/ai_controller/basic_controller/tree

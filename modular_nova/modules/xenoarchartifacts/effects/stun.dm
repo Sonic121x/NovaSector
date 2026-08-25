@@ -10,7 +10,7 @@
 	if(!.)
 		return
 	if(apply_stun(user, 200, 2)) // Instant stun
-		to_chat(user, span_warning(LANG("datum.cf928195", null)))
+		to_chat(user, span_warning(LANG("datum.cf928195d91fc54f", null)))
 
 /datum/artifact_effect/stun/do_effect_aura(seconds_per_tick)
 	. = ..()
@@ -21,7 +21,7 @@
 		if(!SPT_PROB(10, seconds_per_tick))
 			continue
 		if(apply_stun(living_mob, 12.5, seconds_per_tick))
-			to_chat(living_mob, span_warning(LANG("datum.c3e09d8e", null)))
+			to_chat(living_mob, span_warning(LANG("datum.c3e09d8efa9e3591", null)))
 
 /datum/artifact_effect/stun/do_effect_pulse(seconds_per_tick)
 	. = ..()
@@ -33,13 +33,13 @@
 		if(!SPT_PROB(25, seconds_per_tick))
 			continue
 		if(apply_stun(living_mob, 5 * used_power, seconds_per_tick))
-			to_chat(living_mob, span_warning(LANG("datum.4efca1f3", null)))
+			to_chat(living_mob, span_warning(LANG("datum.4efca1f36b87d9c9", null)))
 
 /datum/artifact_effect/stun/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/living_mob in range(range+3, curr_turf))
 		if(apply_stun(living_mob, 200, 2))
-			to_chat(living_mob, span_warning(LANG("datum.a343508e", null)))
+			to_chat(living_mob, span_warning(LANG("datum.a343508ee380b7b6", null)))
 
 /**
  * Tries to stun receiver, obviously

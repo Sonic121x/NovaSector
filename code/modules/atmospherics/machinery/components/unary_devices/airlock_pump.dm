@@ -167,10 +167,10 @@
 /obj/machinery/atmospherics/components/unary/airlock_pump/can_unwrench(mob/user)
 	. = ..()
 	if(!.)
-		to_chat(user, span_warning(LANG("obj.67f41406", list(src))))
+		to_chat(user, span_warning(LANG("obj.67f4140645a9739d", list(src))))
 		return FALSE
 	if(. && on)
-		to_chat(user, span_warning(LANG("obj.e5a055e3", list(src))))
+		to_chat(user, span_warning(LANG("obj.e5a055e327b2f3d5", list(src))))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/airlock_pump/set_on(active)
@@ -261,7 +261,7 @@
 		airlock.run_animation(DOOR_DENY_ANIMATION) // Already cycling
 		return
 	if(!cycling_set_up)
-		airlock.say(LANG("obj.c2634c2e", null))
+		airlock.say(LANG("obj.c2634c2ea147fd5f", null))
 		return
 	if(airlock in external_airlocks)
 		// If it's not null - we shuttledocked
@@ -325,7 +325,7 @@
 		if(!source_airlock)
 			source_airlock = internal_airlocks[1]
 		if(is_cycling_audible)
-			source_airlock.say(LANG("obj.fa471a15", null))
+			source_airlock.say(LANG("obj.fa471a155b4f2bd8", null))
 	else
 		cycle_pressure_target = docked_side_pressure != null ? docked_side_pressure : external_pressure_target
 		var/pressure_delta = tile_air_pressure - cycle_pressure_target
@@ -336,7 +336,7 @@
 		if(!source_airlock)
 			source_airlock = external_airlocks[1]
 		if(is_cycling_audible)
-			source_airlock.say(LANG("obj.4da6178e", null))
+			source_airlock.say(LANG("obj.4da6178eae553cd6", null))
 
 	return TRUE
 
@@ -379,10 +379,10 @@
 
 	// We just finishing previous cycle
 	if (airlocks_animating)
-		say(LANG("obj.ee386a6b", null))
+		say(LANG("obj.ee386a6bd313a514", null))
 		stoplag(1.1 SECONDS) // Wait for opening animation
 		if (airlocks_animating)	// Should (almost) never happened
-			say(LANG("obj.219d7148", null))
+			say(LANG("obj.219d7148727e5aa5", null))
 			return
 
 	if (on)
@@ -402,7 +402,7 @@
 		safe_dock()
 	else
 		var/obj/machinery/door/airlock/source_airlock = pick(internal_airlocks)
-		source_airlock.say(LANG("obj.47b7daf0", null))
+		source_airlock.say(LANG("obj.47b7daf004794efe", null))
 		start_cycle(ATMOS_DIRECTION_RELEASING)
 
 
@@ -449,7 +449,7 @@
 	stoplag(1 SECONDS) // Wait for closing animation
 	airlocks_animating = FALSE
 	update_appearance(UPDATE_ICON)
-	say(LANG("obj.56d2ee31", null))
+	say(LANG("obj.56d2ee3143cdf31c", null))
 	return TRUE
 
 
@@ -463,7 +463,7 @@
 	for(var/obj/machinery/door/airlock/airlock as anything in external_airlocks)
 		INVOKE_ASYNC(airlock, TYPE_PROC_REF(/obj/machinery/door/airlock, secure_close), TRUE)
 
-	say(LANG("obj.f8241966", null))
+	say(LANG("obj.f8241966e0800105", null))
 	airlocks_animating = TRUE
 	stoplag(1 SECONDS) // Wait for closing animation
 	airlocks_animating = FALSE
@@ -500,7 +500,7 @@
 			CRASH("[type] couldn't find airlocks to cycle with!")
 		internal_airlocks.Cut()
 		external_airlocks.Cut()
-		say(LANG("obj.a6598764", null))
+		say(LANG("obj.a659876433c881ad", null))
 		return
 
 	for(var/obj/machinery/door/airlock/airlock as anything in (internal_airlocks + external_airlocks))
@@ -513,7 +513,7 @@
 
 	cycling_set_up = TRUE
 	if(can_unwrench)
-		say(LANG("obj.24461a39", null))
+		say(LANG("obj.24461a39ed20991a", null))
 
 
 ///Get the turf of the first found airlock or an airtight structure (walls) within the allowed range
@@ -599,14 +599,14 @@
 		user.ventcrawl_layer = clamp(user.ventcrawl_layer + 2, PIPING_LAYER_DEFAULT - 1, PIPING_LAYER_DEFAULT + 1)
 	if((SOUTH|WEST) & direction)
 		user.ventcrawl_layer = clamp(user.ventcrawl_layer - 2, PIPING_LAYER_DEFAULT - 1, PIPING_LAYER_DEFAULT + 1)
-	to_chat(user, LANG("obj.3bcf8a8b", list(user.ventcrawl_layer == 2 ? 1 : 2)))
+	to_chat(user, LANG("obj.3bcf8a8bfdceb222", list(user.ventcrawl_layer == 2 ? 1 : 2)))
 
 /obj/machinery/atmospherics/components/unary/airlock_pump/on_set_is_operational(was_operational)
 	if(was_operational && !is_operational)
 		// unbolt all the doors but don't open them
 		for(var/obj/machinery/door/airlock/airlock as anything in (internal_airlocks + external_airlocks))
 			airlock.unbolt()
-		audible_message(span_notice(LANG("obj.162a59f4", list(src, p_they(), p_s()))))
+		audible_message(span_notice(LANG("obj.162a59f471b41528", list(src, p_they(), p_s()))))
 		deltimer(emergency_stop_timer)
 		set_on(FALSE)
 
@@ -617,7 +617,7 @@
 		for(var/obj/machinery/door/airlock/airlock as anything in internal_airlocks)
 			if(open_airlock_on_cycle)
 				INVOKE_ASYNC(airlock, TYPE_PROC_REF(/obj/machinery/door/airlock, secure_open))
-		audible_message(span_notice(LANG("obj.ebb9236f", list(src, p_they(), p_s()))))
+		audible_message(span_notice(LANG("obj.ebb9236fa5841310", list(src, p_they(), p_s()))))
 
 /obj/machinery/atmospherics/components/unary/airlock_pump/unbolt_only
 	open_airlock_on_cycle = FALSE

@@ -65,13 +65,13 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 /obj/item/clothing/mask/animal/examine(mob/user)
 	. = ..()
 	if(clothing_flags & VOICEBOX_TOGGLABLE)
-		. += span_notice(LANG("obj.bb68aa7e", list(clothing_flags & VOICEBOX_DISABLED ? "disabled" : "enabled")))
+		. += span_notice(LANG("obj.bb68aa7e365c1fda", list(clothing_flags & VOICEBOX_DISABLED ? "disabled" : "enabled")))
 
 /obj/item/clothing/mask/animal/click_alt(mob/user)
 	if(!(clothing_flags & VOICEBOX_TOGGLABLE))
 		return NONE
 	clothing_flags ^= VOICEBOX_DISABLED
-	to_chat(user, span_notice(LANG("obj.3f4184fc", list(clothing_flags & VOICEBOX_DISABLED ? "disabled" : "enabled", src))))
+	to_chat(user, span_notice(LANG("obj.3f4184fc8c421ac7", list(clothing_flags & VOICEBOX_DISABLED ? "disabled" : "enabled", src))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/mask/animal/proc/make_cursed() //apply cursed effects.
@@ -80,7 +80,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	if(flags_inv == initial(flags_inv))
 		flags_inv = HIDEFACIALHAIR
 	name = "[animal_type] face"
-	desc = LANG("obj.113ded71", list(animal_type))
+	desc = LANG("obj.113ded710522d64e", list(animal_type))
 	if(curse_spawn_sound)
 		playsound(src, curse_spawn_sound, 50, TRUE)
 	var/update_speech_mod = !modifies_speech && LAZYLEN(animal_sounds)
@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 		if(M.get_item_by_slot(ITEM_SLOT_MASK) == src)
 			if(update_speech_mod)
 				RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
-			to_chat(M, span_userdanger(LANG("obj.12e13291", list(src))))
+			to_chat(M, span_userdanger(LANG("obj.12e1329174c153f9", list(src))))
 			M.update_worn_mask()
 			M.refresh_obscured()
 
@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	if(ismob(loc))
 		var/mob/M = loc
 		if(M.get_item_by_slot(ITEM_SLOT_MASK) == src)
-			to_chat(M, span_notice(LANG("obj.24fadc80", list(src))))
+			to_chat(M, span_notice(LANG("obj.24fadc804261bdc1", list(src))))
 			if(update_speech_mod)
 				UnregisterSignal(M, COMSIG_MOB_SAY)
 			M.update_worn_mask()
@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	if(!iscarbon(user))
 		return ..()
 	if((slot & ITEM_SLOT_MASK) && HAS_TRAIT_FROM(src, TRAIT_NODROP, CURSED_MASK_TRAIT))
-		to_chat(user, span_userdanger(LANG("obj.12e13291", list(src))))
+		to_chat(user, span_userdanger(LANG("obj.12e1329174c153f9", list(src))))
 	return ..()
 
 

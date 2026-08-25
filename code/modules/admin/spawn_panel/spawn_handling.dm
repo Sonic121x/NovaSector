@@ -39,23 +39,23 @@
 		target = (where_target_type == WHERE_TARGETED_MOB_HAND ? spawn_params["target"] : user)
 
 		if(!target)
-			to_chat(user, span_warning(LANG("datum.f34756b2", null)))
+			to_chat(user, span_warning(LANG("datum.f34756b2284e5e44", null)))
 			return
 
 		if(!ismob(target))
-			to_chat(user, span_warning(LANG("datum.6f680b7a", null)))
+			to_chat(user, span_warning(LANG("datum.6f680b7ad513458d", null)))
 			return
 
 		if(!iscarbon(target) && !iscyborg(target))
-			to_chat(user, span_warning(LANG("datum.61ce565d", null)))
+			to_chat(user, span_warning(LANG("datum.61ce565d2c3de69c", null)))
 			where_target_type = WHERE_FLOOR_BELOW_MOB
 
 	else if(where_target_type == WHERE_MARKED_OBJECT || where_target_type == WHERE_IN_MARKED_OBJECT)
 		if(!user.client.holder.marked_datum)
-			to_chat(user, span_warning(LANG("datum.0171f97f", null)))
+			to_chat(user, span_warning(LANG("datum.0171f97f12317117", null)))
 			return
 		else if(!istype(user.client.holder.marked_datum, /atom))
-			to_chat(user, span_warning(LANG("datum.6f00d824", null)))
+			to_chat(user, span_warning(LANG("datum.6f00d82461527514", null)))
 			return
 		else
 			target = (where_target_type == WHERE_MARKED_OBJECT ? get_turf(user.client.holder.marked_datum) : user.client.holder.marked_datum)
@@ -82,7 +82,7 @@
 						relative_turf = locate(1, 1, 1)
 
 				if (!relative_turf)
-					to_chat(user, span_warning(LANG("datum.0549d3ce", null)))
+					to_chat(user, span_warning(LANG("datum.0549d3cef04fb0da", null)))
 					return
 
 				target = locate(relative_turf.x + X, relative_turf.y + Y, relative_turf.z + Z)

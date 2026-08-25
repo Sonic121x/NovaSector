@@ -56,7 +56,7 @@ ADMIN_VERB(station_traits_panel, R_FUN, "修改空间站特质", "Modify the sta
 				return TRUE
 
 			if (too_late_to_revert())
-				to_chat(usr, span_warning(LANG("datum.37a49444", null)))
+				to_chat(usr, span_warning(LANG("datum.37a49444743b4b6b", null)))
 				return TRUE
 
 			if (!station_trait.can_revert)
@@ -72,7 +72,7 @@ ADMIN_VERB(station_traits_panel, R_FUN, "修改空间站特质", "Modify the sta
 			return TRUE
 		if ("setup_future_traits")
 			if (too_late_for_future_traits())
-				to_chat(usr, span_warning(LANG("datum.3b3c0cbc", null)))
+				to_chat(usr, span_warning(LANG("datum.3b3c0cbc524b4a6a", null)))
 				return TRUE
 
 			var/list/new_future_traits = list()
@@ -82,7 +82,7 @@ ADMIN_VERB(station_traits_panel, R_FUN, "修改空间站特质", "Modify the sta
 				var/datum/station_trait/station_trait_path = text2path(station_trait_text)
 				if (!ispath(station_trait_path, /datum/station_trait) || station_trait_path == /datum/station_trait)
 					log_admin("[key_name(usr)] tried to set an invalid future station trait: [station_trait_text]")
-					to_chat(usr, span_warning(LANG("datum.935f8c62", list(station_trait_text))))
+					to_chat(usr, span_warning(LANG("datum.935f8c621964ff00", list(station_trait_text))))
 					return TRUE
 
 				station_trait_names += initial(station_trait_path.name)
@@ -102,7 +102,7 @@ ADMIN_VERB(station_traits_panel, R_FUN, "修改空间站特质", "Modify the sta
 			return TRUE
 		if ("clear_future_traits")
 			if (!future_traits)
-				to_chat(usr, span_warning(LANG("datum.6e808d0b", null)))
+				to_chat(usr, span_warning(LANG("datum.6e808d0bf40f6f53", null)))
 				return TRUE
 
 			var/message = "[key_name(usr)] has cleared the station traits for next round."

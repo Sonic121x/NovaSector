@@ -84,11 +84,11 @@
 /datum/emote/living/carbon/circle/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	if(!length(user.get_empty_held_indexes()))
-		to_chat(user, span_warning(LANG("datum.2638bd17", null)))
+		to_chat(user, span_warning(LANG("datum.2638bd17f5517f30", null)))
 		return
 	var/obj/item/hand_item/circlegame/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, span_notice(LANG("datum.4fbaf10b", null)))
+		to_chat(user, span_notice(LANG("datum.4fbaf10bbb542fa6", null)))
 
 /datum/emote/living/carbon/whistle
 	key = "whistle"
@@ -115,10 +115,10 @@
 	. = ..()
 	var/obj/item/hand_item/noogie/noogie = new(user)
 	if(user.put_in_hands(noogie))
-		to_chat(user, span_notice(LANG("datum.98291b48", null)))
+		to_chat(user, span_notice(LANG("datum.98291b487f80223d", null)))
 	else
 		qdel(noogie)
-		to_chat(user, span_warning(LANG("datum.fbf58f9b", null)))
+		to_chat(user, span_warning(LANG("datum.fbf58f9bfc0de30e", null)))
 
 /datum/emote/living/carbon/roll
 	key = "roll"
@@ -163,10 +163,10 @@
 	. = ..()
 	var/obj/item/hand_item/slapper/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, span_notice(LANG("datum.cb3c809c", null)))
+		to_chat(user, span_notice(LANG("datum.cb3c809cecfbc218", null)))
 	else
 		qdel(N)
-		to_chat(user, span_warning(LANG("datum.e391ec00", null)))
+		to_chat(user, span_warning(LANG("datum.e391ec00243b68ca", null)))
 
 
 /datum/emote/living/carbon/hand
@@ -179,10 +179,10 @@
 	. = ..()
 	var/obj/item/hand_item/hand/hand = new(user)
 	if(user.put_in_hands(hand))
-		to_chat(user, span_notice(LANG("datum.00db68bc", null)))
+		to_chat(user, span_notice(LANG("datum.00db68bc3c985273", null)))
 	else
 		qdel(hand)
-		to_chat(user, span_warning(LANG("datum.cd24a73a", null)))
+		to_chat(user, span_warning(LANG("datum.cd24a73acbba1a76", null)))
 
 
 /datum/emote/living/carbon/snap
@@ -210,10 +210,10 @@
 	. = ..()
 	var/obj/item/hand_item/stealer/stealing_hand = new(user)
 	if (user.put_in_hands(stealing_hand))
-		user.balloon_alert(user, LANG("datum.723868c5", null))
+		user.balloon_alert(user, LANG("datum.723868c5421b83c2", null))
 	else
 		qdel(stealing_hand)
-		user.balloon_alert(user, LANG("datum.03711a07", null))
+		user.balloon_alert(user, LANG("datum.03711a07b66ac8c1", null))
 
 /datum/emote/living/carbon/tail
 	key = "tail"

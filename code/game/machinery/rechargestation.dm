@@ -84,11 +84,11 @@
 /obj/machinery/recharge_station/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.a1f1354a", list(display_power(recharge_speed, convert = FALSE))))
+		. += span_notice(LANG("obj.a1f1354ae648b5c2", list(display_power(recharge_speed, convert = FALSE))))
 		if(materials.silo)
-			. += span_notice(LANG("obj.9bb8f696", list(src)))
+			. += span_notice(LANG("obj.9bb8f696aac68248", list(src)))
 		if(repairs)
-			. += span_notice(LANG("obj.cf202c99", list(src)))
+			. += span_notice(LANG("obj.cf202c99cb6525bf", list(src)))
 
 /obj/machinery/recharge_station/on_set_is_operational(old_value)
 	if(old_value) //Turned off
@@ -126,20 +126,20 @@
 /obj/machinery/recharge_station/proc/toggle_restock(mob/user)
 	if(sendmats)
 		sendmats = FALSE
-		say(LANG("obj.5adef825", null))
+		say(LANG("obj.5adef8253913cb78", null))
 		return
 	if(state_open || !occupant)
 		return
 	if(!iscyborg(occupant))
 		return
 	if(!materials.silo)
-		say(LANG("obj.d21318d6", null))
+		say(LANG("obj.d21318d629d36648", null))
 		return
 	if(materials.on_hold())
-		say(LANG("obj.cc23e175", null))
+		say(LANG("obj.cc23e1759d96e946", null))
 		return FALSE
 	sendmats = TRUE
-	say(LANG("obj.3a706c9e", null))
+	say(LANG("obj.3a706c9e52de2455", null))
 
 /obj/machinery/recharge_station/interact(mob/user)
 	toggle_open()

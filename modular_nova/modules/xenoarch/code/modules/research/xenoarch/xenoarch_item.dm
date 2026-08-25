@@ -278,7 +278,7 @@
 		return
 	if (steps_travelled < steps_to_hatch)
 		return
-	visible_message(span_boldnotice(LANG("obj.4db5da9a", list(src))))
+	visible_message(span_boldnotice(LANG("obj.4db5da9a600c5461", list(src))))
 	playsound(new_loc, 'sound/mobs/non-humanoids/chicken/chick_peep.ogg', 50, TRUE)
 	new /obj/effect/spawner/random/lavaland_mob/raptor/baby(new_loc)
 	qdel(src)

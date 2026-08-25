@@ -94,7 +94,7 @@
 
 /obj/item/clothing/under/syndicate/unarmoured/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.fbd3bd7d", null))
+	. += span_notice(LANG("obj.fbd3bd7d28bfd51c", null))
 
 /obj/item/clothing/under/syndicate/nova/tactical/unarmoured
 	name = "suspicious tactical turtleneck"
@@ -118,7 +118,7 @@
 
 /obj/item/clothing/under/syndicate/nova/tactical/unarmoured/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.fbd3bd7d", null))
+	. += span_notice(LANG("obj.fbd3bd7d28bfd51c", null))
 
 /obj/item/clothing/under/syndicate/nova/overalls/unarmoured
 	name = "suspicious utility overalls turtleneck"
@@ -140,7 +140,7 @@
 
 /obj/item/clothing/under/syndicate/nova/overalls/unarmoured/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.fbd3bd7d", null))
+	. += span_notice(LANG("obj.fbd3bd7d28bfd51c", null))
 
 /obj/item/clothing/mask/neck_gaiter/syndicate/tacticool
 	name = "tacticool neck gaiter"

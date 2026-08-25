@@ -1,9 +1,16 @@
 // THIS IS A NOVA SECTOR UI FILE
-// Shared helpers for automatic TGUI JSX localization.
+// Legacy/upstream JSX compatibility adapter. New code uses explicit contextual messages.
 
 import { Dropdown } from 'tgui-core/components';
 
-import { translateCurrent } from './catalog';
+import {
+  getCatalogRevision,
+  getCurrentLocale,
+  substituteOverlay,
+  translateCurrent,
+} from './catalog';
+import { recordMiss } from './missLog';
+import { isLocalizedOption } from './messages';
 import policy from './policy.json';
 import propTemplateKeys from './prop-templates.json';
 
@@ -133,7 +140,8 @@ function capturesLookLikeValues(
 }
 
 function matchPropTemplate(text: string): string | null {
-  const cached = propTemplateCache.get(text);
+  const cacheKey = `${getCatalogRevision()}\u0004${getCurrentLocale()}\u0004${text}`;
+  const cached = propTemplateCache.get(cacheKey);
   if (cached !== undefined) {
     return cached;
   }
@@ -174,7 +182,7 @@ function matchPropTemplate(text: string): string | null {
   if (propTemplateCache.size > 2000) {
     propTemplateCache.clear();
   }
-  propTemplateCache.set(text, result);
+  propTemplateCache.set(cacheKey, result);
   return result;
 }
 
@@ -209,6 +217,16 @@ function translateText(text: string): string {
   if (templated !== null) {
     return `${leading}${templated}${trailing}`;
   }
+  // 最后一道：负载 overlay 的子串替换。整串查不到、模板也不匹配的，多半是界面把运行期值**拼进**了
+  // 一个更大的串（`` `${x.name} - ${x.desc}` ``、`` `${name} (${n})` ``）。overlay 的键全是多词短语
+  // （P1 的多词门槛所致）、匹配面只有本次负载，再加词边界检查，见 catalog.ts substituteOverlay。
+  const substituted = substituteOverlay(body);
+  if (substituted !== null) {
+    return `${leading}${substituted}${trailing}`;
+  }
+  // 漏翻采集：整条链（精确 → Alt 后缀 → prop 模板逆匹配 → overlay 子串）都没命中。
+  // 这是 DM 侧看不到的那一面 —— 界面文本查表失败在浏览器里，服务端毫无痕迹。默认关闭。
+  recordMiss(body);
   // 未命中时保留原始 body（含原排版），不改动。
   return `${leading}${body}${trailing}`;
 }
@@ -256,6 +274,10 @@ function localizeChildrenTemplate(children: unknown[]): unknown[] | null {
   }
   const translated = translateCurrent(lookup);
   if (translated === lookup) {
+    // 漏翻采集：整条 children 模板查不到 —— 这一类的症状是「整段英文、但段落里的 <b>/<span>
+    // 词是中文」（那些是独立 jsx 节点、各自命中）。记的是**模板形态**（`The {0} neutral quirk`），
+    // 那正好是该去目录里补的键，比记渲染后的整句有用得多。
+    recordMiss(lookup);
     return null;
   }
   // 占位符必须一一对上，否则说明目录条目与这处 children 形状不符（例如 `{cond && <X/>}`
@@ -306,21 +328,42 @@ function isSelfContainedText(text: string): boolean {
 }
 
 function localizeChildrenSegments(children: unknown[]): unknown[] | null {
-  let changed = false;
+  // 两遍，因为两件事的安全性不同：
+  //   ① overlay 替换：只把本次负载里那几十条已确认的显示值就地换成译文，不动语序，永远安全；
+  //   ② 逐段查表：受碎片闸门约束，全有或全无（半句碎片按英文语序拼回去比不翻更糟）。
+  // 关键是闸门中止时**不能把 ① 的成果一起丢掉** —— 从前 P1 就地改写负载时，混排 children 里的
+  // 名字本来就已经是中文（周围碎片是英文）。一个查不到的静态碎片把整条打回英文，就是把那份覆盖赔掉。
+  const substituted: unknown[] = [];
+  const substitutedIndices = new Set<number>();
+  children.forEach((child, index) => {
+    if (typeof child === 'string') {
+      const next = substituteOverlay(child);
+      if (next !== null) {
+        substitutedIndices.add(index);
+        substituted.push(next);
+        return;
+      }
+    }
+    substituted.push(child);
+  });
+
+  let changed = substitutedIndices.size > 0;
+  const fallback = changed ? substituted : null;
   const localized: unknown[] = [];
-  for (const child of children) {
-    if (typeof child !== 'string') {
+  for (let index = 0; index < substituted.length; index++) {
+    const child = substituted[index];
+    if (typeof child !== 'string' || substitutedIndices.has(index)) {
       localized.push(child);
       continue;
     }
     if (!isSelfContainedText(child)) {
-      return null;
+      return fallback;
     }
     const next = translateText(child);
     if (next === child) {
-      // 空白 child 翻不动是正常的；有实义却查不到，说明它是碎片 → 整条保持英文。
+      // 空白 child 翻不动是正常的；有实义却查不到，说明它是碎片 → 逐段翻整条放弃。
       if (child.trim()) {
-        return null;
+        return fallback;
       }
     } else {
       changed = true;
@@ -351,13 +394,16 @@ function localizeOption(option: unknown): unknown {
   // onSelected 回传的就是这个字符串。若翻成中文，回传中文、而调用方几乎都按英文原文匹配
   // (`aug_options.find(a => displayName(a) === 回传)`、`value === style.name`、或把回传直接当
   // `style_name`/标识符发回服务端) → 匹配失败、选择静默失效（「强化+ 身体部位下拉点了没反应」即此）。
-  // 字符串选项的「值」本身就是标识符,不可改。需要既翻显示又能正确回传的下拉,应改用**对象选项**
-  // `{value, displayText}`：value 保持英文标识符(下面只翻 displayText)——见 LimbsPage 强化/植入下拉。
+  // 这是只为上游裸字符串调用点保留的兼容行为。新代码必须用 typed localizedOption /
+  // localizedDropdownOption，让 canonical value 与 LocalizedText 在类型层分开。
   if (typeof option === 'string') {
     return option;
   }
   if (!option || typeof option !== 'object' || Array.isArray(option)) {
     return localizeNode(option);
+  }
+  if (isLocalizedOption(option)) {
+    return option;
   }
 
   let nextOption = option as Record<string, unknown>;
@@ -394,7 +440,7 @@ function localizeOptions(value: unknown): unknown {
   return changed ? localized : value;
 }
 
-// tgui-core Dropdown 专用：**裸字符串选项**既是显示又是回传值（`m(o) = o`），所以
+// Legacy Dropdown adapter: **裸字符串选项**既是显示又是回传值（`m(o) = o`），所以
 // localizeOption 一律不翻它们——翻了 onSelected 就回传中文，调用方/服务端按英文匹配全部失效。
 // 但整个界面里下拉往往是唯一还在显示英文的控件（ID 饰边压印机的饰边表、管道分配器的管件表…）。
 //

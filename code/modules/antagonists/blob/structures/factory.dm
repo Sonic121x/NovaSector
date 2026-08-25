@@ -81,7 +81,7 @@
 		return
 
 	modify_max_integrity(initial(max_integrity) * 0.25) //factories that produced a blobbernaut have much lower health
-	visible_message(span_boldwarning(LANG("obj.fe15b31e", list(pick("rips", "tears", "shreds")))))
+	visible_message(span_boldwarning(LANG("obj.fe15b31e4a5ca90a", list(pick("rips", "tears", "shreds")))))
 	playsound(loc, 'sound/effects/splat.ogg', 50, TRUE)
 
 	blobbernaut = new_naut

@@ -98,12 +98,12 @@
 
 /obj/structure/plasticflaps/atom_break(damage_flag)
 	if(damage_flag == FIRE)
-		visible_message(span_warning(LANG("obj.252ef765", list(src))))
+		visible_message(span_warning(LANG("obj.252ef765d02ddebb", list(src))))
 	return ..()
 
 /obj/structure/plasticflaps/atom_destruction(damage_flag)
 	if(damage_flag == FIRE)
-		visible_message(span_warning(LANG("obj.34273b33", list(src))))
+		visible_message(span_warning(LANG("obj.34273b33dbf42428", list(src))))
 	return ..()
 
 /obj/structure/plasticflaps/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
@@ -144,9 +144,9 @@
 /obj/structure/plasticflaps/examine(mob/user)
 	. = ..()
 	if(anchored)
-		. += span_notice(LANG("obj.ca9b56e1", list(src)))
+		. += span_notice(LANG("obj.ca9b56e11d1e9b4d", list(src)))
 	else
-		. += span_notice(LANG("obj.f2bd0263", list(src)))
+		. += span_notice(LANG("obj.f2bd0263af60e766", list(src)))
 
 /obj/structure/plasticflaps/screwdriver_act(mob/living/user, obj/item/W)
 	if(..())
@@ -154,13 +154,13 @@
 	add_fingerprint(user)
 	var/action = anchored ? "unscrews [src] from" : "screws [src] to"
 	var/uraction = anchored ? "unscrew [src] from" : "screw [src] to"
-	user.visible_message(span_warning(LANG("obj.9664e991", list(user, action))), span_notice(LANG("obj.03dc512b", list(uraction))), span_hear(LANG("obj.e5e72f13", null)))
+	user.visible_message(span_warning(LANG("obj.9664e991fa99f63c", list(user, action))), span_notice(LANG("obj.03dc512bb063dbad", list(uraction))), span_hear(LANG("obj.e5e72f134e5ab82c", null)))
 	if(!W.use_tool(src, user, 100, volume=100, extra_checks = CALLBACK(src, PROC_REF(check_anchored_state), anchored)))
 		return TRUE
 	set_anchored(!anchored)
 	update_atmos_behaviour()
 	air_update_turf(TRUE)
-	to_chat(user, span_notice(LANG("obj.1175c81a", list(uraction))))
+	to_chat(user, span_notice(LANG("obj.1175c81a0e157390", list(uraction))))
 	return TRUE
 
 ///Update the flaps behaviour to gases, if not anchored will let air pass through
@@ -170,11 +170,11 @@
 /obj/structure/plasticflaps/wirecutter_act(mob/living/user, obj/item/W)
 	. = ..()
 	if(!anchored)
-		user.visible_message(span_warning(LANG("obj.5b4896db", list(user, src))), span_notice(LANG("obj.3fe80d07", list(src))), span_hear(LANG("obj.cbfa7730", null)))
+		user.visible_message(span_warning(LANG("obj.5b4896dbaa07367d", list(user, src))), span_notice(LANG("obj.3fe80d07a62c36d5", list(src))), span_hear(LANG("obj.cbfa7730eca28115", null)))
 		if(W.use_tool(src, user, 50, volume=100))
 			if(anchored)
 				return TRUE
-			to_chat(user, span_notice(LANG("obj.9f42ff14", list(src))))
+			to_chat(user, span_notice(LANG("obj.9f42ff1450750446", list(src))))
 			var/obj/item/stack/sheet/plastic/five/P = new(loc)
 			if (!QDELETED(P))
 				P.add_fingerprint(user)

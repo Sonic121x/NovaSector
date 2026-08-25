@@ -43,7 +43,7 @@
 		return SLOT_MACHINE_USE_CANCEL
 
 	if(monologuing)
-		to_chat(owner, span_warning(LANG("datum.d74eefa7", null))) // listening to kitschy monologues to postpone your powergaming is the true curse here.
+		to_chat(owner, span_warning(LANG("datum.d74eefa748932d59", null))) // listening to kitschy monologues to postpone your powergaming is the true curse here.
 		return SLOT_MACHINE_USE_POSTPONE
 
 /// Handles the debuffs of this status effect and incrementing the number of curses we have.
@@ -100,10 +100,10 @@
 
 		if(5 to INFINITY)
 			if(max_curse_count != DEFAULT_MAX_CURSE_COUNT) // this probably will only happen through admin schenanigans letting people stack up infinite curses or something
-				to_chat(owner, span_boldwarning(LANG("datum.9264c01d", null)))
+				to_chat(owner, span_boldwarning(LANG("datum.9264c01dbc98016a", null)))
 				return
 
-			to_chat(owner, span_userdanger(LANG("datum.986bd4a6", null)))
+			to_chat(owner, span_userdanger(LANG("datum.986bd4a6cd290369", null)))
 			owner.investigate_log("has been gibbed by the cursed status effect after accumulating [curse_count] curses.", INVESTIGATE_DEATHS)
 			owner.gib(DROP_ALL_REMAINS)
 			qdel(src)
@@ -123,8 +123,8 @@
 		brand?.remove_wound()
 
 	owner.visible_message(
-		span_notice(LANG("datum.16931a8e", list(owner.name))),
-		span_notice(LANG("datum.4cfd38fd", null)),
+		span_notice(LANG("datum.16931a8e8f5b05a8", list(owner.name))),
+		span_notice(LANG("datum.4cfd38fd759341db", null)),
 	)
 	qdel(src)
 
@@ -135,7 +135,7 @@
 		damage_chance = initial(damage_chance)
 		return
 
-	to_chat(owner, span_userdanger(LANG("datum.033aca9f", null)))
+	to_chat(owner, span_userdanger(LANG("datum.033aca9fa569be80", null)))
 	damage_chance += 75 //ruh roh raggy
 
 /// If our owner dies without getting gibbed (as in of other causes), stop smoking because we've "expended all the life energy".
@@ -188,10 +188,10 @@
 	var/curses = linked_effect?.curse_count
 	switch(curses)
 		if(2)
-			desc = LANG("atom.8d9ae20d", null)
+			desc = LANG("atom.8d9ae20dad5bb7a9", null)
 		if(3)
-			desc = LANG("atom.59269b5c", null)
+			desc = LANG("atom.59269b5cb04ae9a7", null)
 		if(4 to INFINITY)
-			desc = LANG("atom.e9733500", null)
+			desc = LANG("atom.e9733500381fafa5", null)
 
 #undef DEFAULT_MAX_CURSE_COUNT

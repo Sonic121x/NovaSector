@@ -49,8 +49,8 @@
 		return
 
 	customer_pawn.visible_message(
-		span_danger(LANG("datum.08963d49", list(customer_pawn, order_item))),
-		span_danger(LANG("datum.f660969a", list(order_item))),
+		span_danger(LANG("datum.08963d4918e4da97", list(customer_pawn, order_item))),
+		span_danger(LANG("datum.f660969ad621796e", list(order_item))),
 	)
 	playsound(customer_pawn, 'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	qdel(order_item)

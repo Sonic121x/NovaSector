@@ -157,14 +157,14 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHIELD_ALT,
-		SPECIES_PERK_NAME = LANG("datum.995ce0a7", null),
-		SPECIES_PERK_DESC = LANG("datum.86238fd4", null),
+		SPECIES_PERK_NAME = LANG("datum.995ce0a79e591866", null),
+		SPECIES_PERK_DESC = LANG("datum.86238fd443a40fcb", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_DNA,
-		SPECIES_PERK_NAME = LANG("datum.0b61862b", null),
-		SPECIES_PERK_DESC = LANG("datum.d8f03424", null),
+		SPECIES_PERK_NAME = LANG("datum.0b61862bb1593f38", null),
+		SPECIES_PERK_DESC = LANG("datum.d8f0342441b0fdb6", null),
 	))
 	return perks
 
@@ -173,26 +173,26 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHIELD_HEART,
-		SPECIES_PERK_NAME = LANG("datum.69ebc08c", null),
-		SPECIES_PERK_DESC = LANG("datum.5b4cde53", null),
+		SPECIES_PERK_NAME = LANG("datum.69ebc08c7e5f2bf5", null),
+		SPECIES_PERK_DESC = LANG("datum.5b4cde532534f440", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_ROBOT,
-		SPECIES_PERK_NAME = LANG("datum.a7e78ae8", null),
-		SPECIES_PERK_DESC = LANG("datum.348ae7c2", null),
+		SPECIES_PERK_NAME = LANG("datum.a7e78ae8afab9b9e", null),
+		SPECIES_PERK_DESC = LANG("datum.348ae7c2697bf6a4", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_MAGNIFYING_GLASS,
-		SPECIES_PERK_NAME = LANG("datum.04ca8b6b", null),
-		SPECIES_PERK_DESC = LANG("datum.a2ce5c04", null),
+		SPECIES_PERK_NAME = LANG("datum.04ca8b6b0ae041d0", null),
+		SPECIES_PERK_DESC = LANG("datum.a2ce5c04636aafc4", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_NOTES_MEDICAL,
-		SPECIES_PERK_NAME = LANG("datum.a911d5ba", null),
-		SPECIES_PERK_DESC = LANG("datum.01044cc5", null),
+		SPECIES_PERK_NAME = LANG("datum.a911d5bac9e5f4eb", null),
+		SPECIES_PERK_DESC = LANG("datum.01044cc514beb3a4", null),
 	))
 	return perks
 
@@ -341,7 +341,7 @@ GAME_VERB_PROC(/mob/living/carbon/human, holosynth_adjust_transparency, "调节�
 	var/datum/species/synthetic/holosynth/species = dna?.species
 	if(!istype(species))
 		return
-	var/new_value = tgui_input_number(src, LANG("mob.68b04713", null), LANG("mob.5d8aa259", null), (dna?.features["holo_transparency"] || 60), 100, 60)
+	var/new_value = tgui_input_number(src, LANG("mob.68b04713e2600212", null), LANG("mob.5d8aa259e365e878", null), (dna?.features["holo_transparency"] || 60), 100, 60)
 	if(!new_value)
 		return
 	dna?.features["holo_transparency"] = new_value
@@ -354,7 +354,7 @@ GAME_VERB_PROC(/mob/living/carbon/human, holosynth_toggle_scanline, "切换全�
 	var/new_state = !species.read_scanline(src)
 	dna?.features["holo_scanline"] = new_state
 	species.refresh_scanline(src)
-	to_chat(src, span_notice(LANG("mob.78b8ff22", list(new_state ? "enable" : "disable"))))
+	to_chat(src, span_notice(LANG("mob.78b8ff22aca378bd", list(new_state ? "enable" : "disable"))))
 
 /// Drops everything the holosynth has equipped except items in the slots they get to keep
 /// (ID + pockets).

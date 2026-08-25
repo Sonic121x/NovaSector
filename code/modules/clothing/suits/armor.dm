@@ -299,10 +299,13 @@
 	strip_delay = 8 SECONDS
 	equip_delay_other = 6 SECONDS
 	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED)
+	/// Type of texture applied by this
+	var/texture_type = /datum/bodypart_texture/mesh/heretic
 
 /obj/item/clothing/suit/armor/riot/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/adjust_fishing_difficulty, 5)
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, texture_type)
 	init_rustle_component()
 
 /obj/item/clothing/suit/armor/riot/proc/init_rustle_component()
@@ -461,6 +464,12 @@
 	slowdown = 3
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor_type = /datum/armor/armor_heavy
+	/// Type of texture applied by this
+	var/texture_type = /datum/bodypart_texture/mesh/black
+
+/obj/item/clothing/suit/armor/heavy/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, texture_type)
 
 /datum/armor/armor_heavy
 	melee = 80
@@ -527,13 +536,15 @@
 	desc = "A classic suit of plate armour, highly effective at stopping melee attacks."
 	icon_state = "knight_green"
 	inhand_icon_state = null
+	texture_type = /datum/bodypart_texture/mesh/biosuit_dark
 	allowed = list(
 		/obj/item/banner,
 		/obj/item/claymore,
 		/obj/item/nullrod,
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/tank/internals/plasmaman,
-		)
+	)
+
 /obj/item/clothing/suit/armor/riot/knight/init_rustle_component()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_ARMOR_RUSTLE, 8)
 
@@ -828,7 +839,7 @@
 	)
 
 /obj/item/clothing/suit/armor/durability/holymelon/proc/drain_antimagic(mob/user)
-	to_chat(user, span_warning(LANG("obj.86aa8c51", list(src))))
+	to_chat(user, span_warning(LANG("obj.86aa8c514eaacd1c", list(src))))
 
 /obj/item/clothing/suit/armor/durability/holymelon/proc/decay()
 	take_damage(8, BRUTE, 0, 0)

@@ -50,7 +50,7 @@
 		game.award_role(winner_award, src)
 		reveal_role(game, FALSE)
 	else
-		to_chat(body, span_userdanger(LANG("datum.9bb8636c", list(obsession.body.real_name))))
+		to_chat(body, span_userdanger(LANG("datum.9bb8636c81d4d6a0", list(obsession.body.real_name))))
 
 /datum/mafia_role/clown
 	name = "Clown"

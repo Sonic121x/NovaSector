@@ -6,15 +6,15 @@
 
 /obj/item/ai_module/law/syndicate/configure(mob/user)
 	. = TRUE
-	var/targName = tgui_input_text(user, LANG("obj.a105864b", null), LANG("obj.f2d27273", null), laws[1], max_length = CONFIG_GET(number/max_law_len), multiline = TRUE)
+	var/targName = tgui_input_text(user, LANG("obj.a105864b69363e00", null), LANG("obj.f2d272733fe0156d", null), laws[1], max_length = CONFIG_GET(number/max_law_len), multiline = TRUE)
 	if(!targName || !user.is_holding(src))
 		return
 	if(is_ic_filtered(targName)) // not even the syndicate can uwu
-		to_chat(user, span_warning(LANG("obj.b74e9614", null)))
+		to_chat(user, span_warning(LANG("obj.b74e9614e6c936be", null)))
 		return
 	var/list/soft_filter_result = is_soft_ooc_filtered(targName)
 	if(soft_filter_result)
-		if(tgui_alert(user,LANG("obj.785540fc", list(soft_filter_result[CHAT_FILTER_INDEX_WORD], soft_filter_result[CHAT_FILTER_INDEX_REASON])), LANG("obj.b0fe106c", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(user,LANG("obj.785540fc23484256", list(soft_filter_result[CHAT_FILTER_INDEX_WORD], soft_filter_result[CHAT_FILTER_INDEX_REASON])), LANG("obj.b0fe106c90796ca4", null), list("Yes", "No")) != "Yes")
 			return
 		message_admins("[ADMIN_LOOKUPFLW(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term for an AI law. Law: \"[html_encode(targName)]\"")
 		log_admin_private("[key_name(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term for an AI law. Law: \"[targName]\"")
@@ -48,19 +48,19 @@
 /obj/item/malf_board/examine(mob/user)
 	. = ..()
 	if(IS_TRAITOR(user) && isliving(user) && functional)
-		. += span_alert(LANG("obj.93f46afa", null))
-		. += span_alert(LANG("obj.50c272d3", null))
+		. += span_alert(LANG("obj.93f46afaaba2a4a4", null))
+		. += span_alert(LANG("obj.50c272d3385a514d", null))
 
 /obj/item/malf_board/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	var/blocking = ismachinery(interacting_with) || issilicon(interacting_with)
 	if(!IS_TRAITOR(user))
 		if(blocking)
-			to_chat(user, span_warning(LANG("obj.0606e04b", null)))
+			to_chat(user, span_warning(LANG("obj.0606e04b229af708", null)))
 			return ITEM_INTERACT_BLOCKING
 		return NONE
 	if(!functional)
 		if(blocking)
-			to_chat(user, span_warning(LANG("obj.85a2faec", null)))
+			to_chat(user, span_warning(LANG("obj.85a2faecde2605be", null)))
 			return ITEM_INTERACT_BLOCKING
 		return NONE
 
@@ -75,17 +75,17 @@
 			continue
 
 	if(!isAI(target_ai))
-		to_chat(user, span_warning(LANG("obj.6e87e0df", null)))
+		to_chat(user, span_warning(LANG("obj.6e87e0df11c834c3", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(target_ai.mind?.has_antag_datum(/datum/antagonist/malf_ai))
-		to_chat(user, span_warning(LANG("obj.abac3274", null)))
+		to_chat(user, span_warning(LANG("obj.abac32748db1dee4", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	var/datum/antagonist/malf_ai/infected/malf_datum = new (give_objectives = TRUE, new_boss = user.mind)
 	target_ai.mind.add_antag_datum(malf_datum)
 	target_ai.malf_picker.processing_time += 50
-	to_chat(target_ai, span_notice(LANG("obj.678effae", null)))
-	to_chat(user, span_notice(LANG("obj.405d503e", list(target_ai))))
+	to_chat(target_ai, span_notice(LANG("obj.678effae89175234", null)))
+	to_chat(user, span_notice(LANG("obj.405d503e7eeb73e5", list(target_ai))))
 
 	functional = FALSE
 	update_appearance()
@@ -99,7 +99,7 @@
 /obj/item/malf_board/update_desc(updates)
 	. = ..()
 	if(!functional)
-		desc = LANG("obj.de08e708", null)
+		desc = LANG("obj.de08e708b4951a80", null)
 
 /obj/item/malf_board/update_overlays()
 	. = ..()

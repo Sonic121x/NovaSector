@@ -16,9 +16,9 @@
 
 /obj/item/mecha_parts/proc/try_attach_part(mob/user, obj/vehicle/sealed/mecha/M, attach_right = FALSE) //For attaching parts to a finished mech
 	if(!user.transferItemToLoc(src, M))
-		to_chat(user, span_warning(LANG("obj.22012438", list(src, M))))
+		to_chat(user, span_warning(LANG("obj.22012438cf113442", list(src, M))))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.c24be4ca", list(user, src, M))), span_notice(LANG("obj.c1fbc99d", list(src, M))))
+	user.visible_message(span_notice(LANG("obj.c24be4ca3d4ab352", list(user, src, M))), span_notice(LANG("obj.c1fbc99dd596332a", list(src, M))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/mecha_parts/part/try_attach_part(mob/user, obj/vehicle/sealed/mecha/M, attach_right = FALSE)

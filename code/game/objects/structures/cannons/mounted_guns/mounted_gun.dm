@@ -87,16 +87,16 @@
 		return NONE
 
 	if(is_firing)
-		balloon_alert(user, LANG("obj.f6aac220", null))
+		balloon_alert(user, LANG("obj.f6aac2201f080a96", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/fully_loaded = shots_in_gun >= max_shots_per_fire
 	if(fully_loaded)
-		balloon_alert(user, LANG("obj.e79a422e", null))
+		balloon_alert(user, LANG("obj.e79a422e90aa6613", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if (load_delay > 0)
-		user.visible_message(span_warning(LANG("obj.3283f36d", list(user, src))))
+		user.visible_message(span_warning(LANG("obj.3283f36d6500349f", list(user, src))))
 		if(!do_after(user, load_delay, target = src))
 			return ITEM_INTERACT_BLOCKING
 
@@ -110,7 +110,7 @@
 	if (.)
 		return
 	if (is_firing)
-		balloon_alert(user, LANG("obj.f6aac220", null))
+		balloon_alert(user, LANG("obj.f6aac2201f080a96", null))
 		return
 	try_firing(user)
 
@@ -122,7 +122,7 @@
 /// Loop firing until we are done
 /obj/structure/mounted_gun/proc/fire_sequence(mob/living/user)
 	if (!shots_in_gun)
-		balloon_alert(user, LANG("obj.654000ba", null))
+		balloon_alert(user, LANG("obj.654000ba90862474", null))
 		return
 
 	is_firing = TRUE
@@ -221,13 +221,13 @@
 
 /obj/structure/mounted_gun/organ_gun/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.78caf5a0", list(src)))
+	. += span_notice(LANG("obj.78caf5a0a38ebf1f", list(src)))
 
-	. += span_info(LANG("obj.641b55a4", null))
-	. += span_info(LANG("obj.68407052", null))
-	. += span_info(LANG("obj.0618f793", null))
-	. += span_info(LANG("obj.6ff34045", null))
-	. += span_info(LANG("obj.3748abf4", null))
+	. += span_info(LANG("obj.641b55a4487e8a45", null))
+	. += span_info(LANG("obj.684070520013311c", null))
+	. += span_info(LANG("obj.0618f793078d3772", null))
+	. += span_info(LANG("obj.6ff34045cb8b162f", null))
+	. += span_info(LANG("obj.3748abf4231c4725", null))
 
 /obj/structure/mounted_gun/organ_gun/get_fired_projectile()
 	var/random_type = pick_weight(list_of_projectiles)
@@ -312,7 +312,7 @@
 		return ..()
 
 	if (load_delay > 0)
-		user.visible_message(span_warning(LANG("obj.8ec866ed", list(user, src))))
+		user.visible_message(span_warning(LANG("obj.8ec866ed068cd955", list(user, src))))
 		if(!do_after(user, load_delay, target = src))
 			return
 
@@ -370,16 +370,16 @@
 		return NONE
 
 	if(is_firing)
-		balloon_alert(user, LANG("obj.f6aac220", null))
+		balloon_alert(user, LANG("obj.f6aac2201f080a96", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(loaded_spear)
-		balloon_alert(user, LANG("obj.e79a422e", null))
+		balloon_alert(user, LANG("obj.e79a422e90aa6613", null))
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(src, 'sound/items/weapons/draw_bow.ogg', 50, FALSE, 5)
 	if (load_delay > 0)
-		user.visible_message(span_warning(LANG("obj.3283f36d", list(user, src))))
+		user.visible_message(span_warning(LANG("obj.3283f36d6500349f", list(user, src))))
 		if (!do_after(user, load_delay, target = src))
 			return ITEM_INTERACT_BLOCKING
 

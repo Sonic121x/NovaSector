@@ -25,13 +25,13 @@
 			attacker.do_attack_animation(defender, ATTACK_EFFECT_CLAW)
 			attacker.emote("spin")
 			defender.visible_message(
-				span_danger(LANG("datum.fd5e1b20", list(attacker, atk_verb, defender))),
-				span_userdanger(LANG("datum.c7a77b1a", list(atk_verb, attacker))),
-				span_hear(LANG("datum.895314d0", null)),
+				span_danger(LANG("datum.fd5e1b20b4190ba7", list(attacker, atk_verb, defender))),
+				span_userdanger(LANG("datum.c7a77b1ab809f5cf", list(atk_verb, attacker))),
+				span_hear(LANG("datum.895314d033e0c46c", null)),
 				null,
 				attacker,
 			)
-			to_chat(attacker, span_danger(LANG("datum.da48b359", list(defender, atk_verb))))
+			to_chat(attacker, span_danger(LANG("datum.da48b35924ce241f", list(defender, atk_verb))))
 			defender.apply_damage(rand(5, 10), attacker.get_attack_type())
 			playsound(attacker, 'sound/items/weapons/whip.ogg', 50, TRUE, -1)
 			defender.Knockdown(2 SECONDS)
@@ -46,13 +46,13 @@
 			atk_verb = pick("whipped", "flogged", "lashed")
 			attacker.do_attack_animation(defender, ATTACK_EFFECT_CLAW)
 			defender.visible_message(
-				span_danger(LANG("datum.e6c71944", list(attacker, atk_verb, defender))),
-				span_userdanger(LANG("datum.4115ef68", list(atk_verb, attacker))),
-				span_hear(LANG("datum.13c58946", null)),
+				span_danger(LANG("datum.e6c719446bb2a846", list(attacker, atk_verb, defender))),
+				span_userdanger(LANG("datum.4115ef68f069c003", list(atk_verb, attacker))),
+				span_hear(LANG("datum.13c58946300d7240", null)),
 				null,
 				attacker,
 			)
-			to_chat(attacker, span_danger(LANG("datum.77f1c6e9", list(atk_verb, defender))))
+			to_chat(attacker, span_danger(LANG("datum.77f1c6e98749956b", list(atk_verb, defender))))
 			defender.apply_damage(rand(10, 15), attacker.get_attack_type())
 			playsound(attacker, 'sound/items/weapons/whip.ogg', 50, TRUE, -1)
 			defender.drop_all_held_items()
@@ -66,13 +66,13 @@
 
 			attacker.do_attack_animation(defender, ATTACK_EFFECT_BITE)
 			defender.visible_message(
-				span_danger(LANG("datum.b16baefa", list(attacker, atk_verb, defender))),
-				span_userdanger(LANG("datum.762b8a3b", list(atk_verb, attacker))),
-				span_hear(LANG("datum.41cd5294", null)),
+				span_danger(LANG("datum.b16baefa914f1b36", list(attacker, atk_verb, defender))),
+				span_userdanger(LANG("datum.762b8a3bbc79f103", list(atk_verb, attacker))),
+				span_hear(LANG("datum.41cd5294372f4679", null)),
 				null,
 				attacker,
 			)
-			to_chat(attacker, span_danger(LANG("datum.d75fd5cb", list(atk_verb, defender))))
+			to_chat(attacker, span_danger(LANG("datum.d75fd5cb319ac1d4", list(atk_verb, defender))))
 			defender.apply_damage(rand(10, 20), damagetype = BRUTE, sharpness = SHARP_POINTY, wound_bonus = 50)
 			playsound(attacker, 'sound/items/weapons/bite.ogg', 50, TRUE, -1)
 			if(HAS_TRAIT(attacker, TRAIT_PACIFISM))

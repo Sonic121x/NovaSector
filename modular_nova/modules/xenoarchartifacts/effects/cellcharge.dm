@@ -9,7 +9,7 @@
 	for(var/obj/item/stock_parts/power_store/cell in user.contents)
 		cell.give(1e5)
 	if(issilicon(user))
-		to_chat(user, span_notice(LANG("datum.ce35bc03", null)))
+		to_chat(user, span_notice(LANG("datum.ce35bc03831e57e2", null)))
 
 /datum/artifact_effect/cellcharge/do_effect_aura(seconds_per_tick)
 	. = ..()
@@ -58,7 +58,7 @@
 	else if(issilicon(receiver_atmon))
 		for(var/obj/item/stock_parts/power_store/cell in receiver_atmon.contents)
 			cell.give(power)
-		to_chat(receiver_atmon, span_warning(LANG("datum.7b68f08b", null)))
+		to_chat(receiver_atmon, span_warning(LANG("datum.7b68f08bd645142f", null)))
 
 /**
  * Tries to charge every rechargable item in artifact range

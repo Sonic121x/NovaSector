@@ -43,7 +43,7 @@
 
 	var/msg = span_bolddanger("[victim]'s [dismembered_part.plaintext_zone] [occur_text]")
 
-	victim.visible_message(msg, span_userdanger(LANG("datum.203e3d8f", list(dismembered_part.plaintext_zone, self_msg ? self_msg : occur_text))))
+	victim.visible_message(msg, span_userdanger(LANG("datum.203e3d8f4e08d52e", list(dismembered_part.plaintext_zone, self_msg ? self_msg : occur_text))))
 
 	loss_wounding_type = wounding_type
 

@@ -121,9 +121,9 @@
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					if(H.put_in_hands(crystals))
-						to_chat(H, span_notice(LANG("datum.4aa8fb3a", null)))
+						to_chat(H, span_notice(LANG("datum.4aa8fb3aaf42c4e5", null)))
 					else
-						to_chat(user, span_notice(LANG("datum.0c1e67da", null)))
+						to_chat(user, span_notice(LANG("datum.0c1e67dafef27476", null)))
 
 				uplink_computer.opfor_data.contractor_hub.contract_TC_payed_out += uplink_computer.opfor_data.contractor_hub.contract_TC_to_redeem // NOVA EDIT CHANGE - ORIGINAL: traitor_data.uplink_handler.contractor_hub.contract_TC_payed_out += traitor_data.uplink_handler.contractor_hub.contract_TC_to_redeem
 				uplink_computer.opfor_data.contractor_hub.contract_TC_to_redeem = 0 // NOVA EDIT CHANGE - ORIGINAL: traitor_data.uplink_handler.contractor_hub.contract_TC_to_redeem = 0
@@ -146,8 +146,7 @@
 				var/item = params["item"]
 				for (var/datum/contractor_item/hub_item in uplink_computer.opfor_data.contractor_hub.hub_items)
 					// NOVA EDIT CHANGE - I18N - UI 回传的 hub 物品名可能已被 P1 反查成中文（contractor_hub_items 的 name 未进 payload_skip），
-					// 用 lang_unreverse_text 兜回英文键匹配；否则多词项（Reinforcements/Contract Reroll…）点了没反应。ORIGINAL: if (hub_item.name == item)
-					if (hub_item.name == item || hub_item.name == lang_unreverse_text(item))
+					if (hub_item.name == item)
 						hub_item.handle_purchase(uplink_computer.opfor_data.contractor_hub, user)
 			else
 				error = "Invalid user... You weren't recognized as the user of this system."

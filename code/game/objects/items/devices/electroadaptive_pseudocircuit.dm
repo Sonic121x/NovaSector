@@ -29,25 +29,25 @@
 		// NOVA EDIT CHANGE START - I18N: 原本是 `. += A + "\n" + B + "\n" + C` 拼接链——整条抽出来是
 		// `{0}\n{1}\n…` 的废键，逐段拆分又被整句闸挡掉前两句，于是只有第三句进了目录。逐句 LANG。
 		// ORIGINAL: 三句 span_notice 用 + "\n" + 串起来，见 git 历史。
-		. += "[span_notice(LANG("obj.7cc773b1", list(circuits, circuits == 1 ? "" : "s")))]\n"+\
-		"[span_notice(LANG("obj.35847d7e", null))]\n"+\
-		span_notice(LANG("obj.340338b0", null))
+		. += "[span_notice(LANG("obj.7cc773b19af56485", list(circuits, circuits == 1 ? "" : "s")))]\n"+\
+		"[span_notice(LANG("obj.35847d7e43c03f80", null))]\n"+\
+		span_notice(LANG("obj.340338b019a2afbe", null))
 		// NOVA EDIT CHANGE END
 
 /obj/item/electroadaptive_pseudocircuit/proc/adapt_circuit(mob/living/silicon/robot/R, circuit_cost = 0)
 	if(QDELETED(R) || !istype(R))
 		return
 	if(!R.cell)
-		to_chat(R, span_warning(LANG("obj.e7e04659", null)))
+		to_chat(R, span_warning(LANG("obj.e7e046594fe276e1", null)))
 		return
 	if(recharging)
-		to_chat(R, span_warning(LANG("obj.fb922db9", list(src))))
+		to_chat(R, span_warning(LANG("obj.fb922db994064a76", list(src))))
 		return
 	if(!R.cell.use(circuit_cost))
-		to_chat(R, span_warning(LANG("obj.bf316d07", list(display_energy(circuit_cost)))))
+		to_chat(R, span_warning(LANG("obj.bf316d0764a6542d", list(display_energy(circuit_cost)))))
 		return
 	if(!circuits)
-		to_chat(R, span_warning(LANG("obj.bbe5e976", list(src))))
+		to_chat(R, span_warning(LANG("obj.bbe5e976e12df3e9", list(src))))
 		return
 	playsound(R, 'sound/items/tools/rped.ogg', 50, TRUE)
 	recharging = TRUE
@@ -66,8 +66,8 @@
 	circuits++
 	maptext = MAPTEXT(circuits)
 	user.visible_message(
-		span_notice(LANG("obj.c1c343c9", list(interacting_with, src))),
-		span_notice(LANG("obj.3214e857", list(interacting_with, src, circuits)))
+		span_notice(LANG("obj.c1c343c9b527437d", list(interacting_with, src))),
+		span_notice(LANG("obj.3214e85792a02954", list(interacting_with, src, circuits)))
 	)
 	playsound(user, 'sound/items/deconstruct.ogg', 50, TRUE)
 	qdel(interacting_with)

@@ -54,13 +54,13 @@
 	// Otherwise, we're gonna dump into the dest object
 	var/turf/dump_onto = get_turf(dest_object)
 	user.visible_message(
-		span_notice(LANG("obj.fbc39129", list(user, src, dump_onto))),
-		span_notice(LANG("obj.d6ee8a96", list(src, dump_onto))),
+		span_notice(LANG("obj.fbc391297319ab9f", list(user, src, dump_onto))),
+		span_notice(LANG("obj.d6ee8a965601fd88", list(src, dump_onto))),
 	)
 	source.remove_all(dump_onto)
 
 /obj/item/storage/bag/trash/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.f192243d", list(user, src, user.p_their()))))
+	user.visible_message(span_suicide(LANG("obj.f192243df7c43753", list(user, src, user.p_their()))))
 	playsound(loc, 'sound/items/eatfood.ogg', 50, TRUE, -1)
 	return TOXLOSS
 
@@ -144,7 +144,7 @@
 
 /obj/item/storage/bag/ore/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/boulder))
-		to_chat(user, span_warning(LANG("obj.8598f5cb", list(tool, src))))
+		to_chat(user, span_warning(LANG("obj.8598f5cb9e42edb6", list(tool, src))))
 		return ITEM_INTERACT_BLOCKING
 	return NONE
 
@@ -189,16 +189,16 @@
 	COOLDOWN_START(src, ore_bag_balloon_cooldown, ORE_BAG_BALOON_COOLDOWN)
 
 	if (box)
-		balloon_alert(user, LANG("obj.5501bc4d", null))
+		balloon_alert(user, LANG("obj.5501bc4d5a371c6b", null))
 		user.visible_message(
-			span_notice(LANG("obj.e7ed5204", list(user, user.p_them(), box))),
+			span_notice(LANG("obj.e7ed52043d11e182", list(user, user.p_them(), box))),
 			ignored_mobs = user
 		)
 		return
 
-	balloon_alert(user, LANG("obj.07acec60", null))
+	balloon_alert(user, LANG("obj.07acec609673039c", null))
 	user.visible_message(
-		span_notice(LANG("obj.b9b15899", list(user, user.p_them()))),
+		span_notice(LANG("obj.b9b1589947ec19f2", list(user, user.p_them()))),
 		ignored_mobs = user
 	)
 
@@ -223,7 +223,7 @@
 		return TRUE
 
 	if (!spam_protection)
-		balloon_alert(user, LANG("obj.4ca77cfc", null))
+		balloon_alert(user, LANG("obj.4ca77cfccde331a3", null))
 		spam_protection = TRUE
 	return FALSE
 
@@ -277,7 +277,7 @@
 
 /obj/item/storage/bag/plants/portaseeder/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.e83b8901", null))
+	. += span_notice(LANG("obj.e83b8901556443c6", null))
 
 /obj/item/storage/bag/plants/portaseeder/item_ctrl_click(mob/user)
 	for(var/obj/item/plant in contents)
@@ -534,15 +534,15 @@
 
 /obj/item/storage/bag/rebar_quiver/proc/reload_held_rebar(mob/user)
 	if(!contents.len)
-		user.balloon_alert(user, LANG("obj.fe835843", null))
+		user.balloon_alert(user, LANG("obj.fe835843d134c3fc", null))
 		return
 	var/obj/held_item = user.get_active_held_item()
 	if(!held_item || !istype(held_item, /obj/item/gun/ballistic/rifle/rebarxbow))
-		user.balloon_alert(user, LANG("obj.ad7bdfe1", null))
+		user.balloon_alert(user, LANG("obj.ad7bdfe14a7de08a", null))
 		return
 	var/obj/item/gun/ballistic/rifle/rebarxbow/held_crossbow = held_item
 	if(held_crossbow.magazine.contents.len >= held_crossbow.magazine.max_ammo)
-		user.balloon_alert(user, LANG("obj.0e074d75", null))
+		user.balloon_alert(user, LANG("obj.0e074d750be56c64", null))
 		return
 	if(!do_after(user, held_crossbow.reload_time, user,timed_action_flags = held_crossbow.doafter_flags))
 		return

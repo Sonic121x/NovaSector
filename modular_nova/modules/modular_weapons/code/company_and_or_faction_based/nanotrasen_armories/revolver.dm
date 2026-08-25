@@ -3,6 +3,7 @@
 /datum/atom_skin/laevateinn_revolver
 	abstract_type = /datum/atom_skin/laevateinn_revolver
 	change_base_icon_state = TRUE
+	change_worn_icon_state = FALSE
 
 /datum/atom_skin/laevateinn_revolver/base
 	preview_name = "Baseline"
@@ -100,11 +101,11 @@
 	if(amped)
 		fire_sound = amped_fire_sound
 		recoil = amped_recoil
-		balloon_alert(user, LANG("obj.e8421720", null))
+		balloon_alert(user, LANG("obj.e8421720b97e4dce", null))
 	else
 		fire_sound = base_fire_sound
 		recoil = base_recoil
-		balloon_alert(user, LANG("obj.7f3c2bfb", null))
+		balloon_alert(user, LANG("obj.7f3c2bfb318dd65f", null))
 
 /datum/action/item_action/booster/c38super
 	button_icon = 'modular_nova/modules/modular_weapons/icons/obj/company_and_or_faction_based/nanotrasen_armories/ballistic.dmi'

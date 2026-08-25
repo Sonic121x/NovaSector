@@ -12,7 +12,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	locked = FALSE
-	to_chat(user, span_warning(LANG("obj.033ac0b0", null)))
+	to_chat(user, span_warning(LANG("obj.033ac0b02e2eef29", null)))
 	return TRUE
 
 /obj/machinery/computer/emergency_shuttle/advanced

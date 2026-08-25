@@ -80,31 +80,31 @@
 
 	if(isidcard(tool))
 		if(!anchored)
-			balloon_alert(user, LANG("obj.8b87a3d7", null))
+			balloon_alert(user, LANG("obj.8b87a3d70fb0ba6c", null))
 			return
 
 		if(obj_flags & EMAGGED)
-			balloon_alert(user, LANG("obj.df832909", null))
+			balloon_alert(user, LANG("obj.df8329097608e0cb", null))
 			return
 
 		var/obj/item/card/id/id_card = tool
 		if((ACCESS_SECURITY in id_card.GetAccess()))
 			locked = !locked
-			balloon_alert(user, LANG("obj.f9f0930e", list(locked ? "locked" : "unlocked")))
+			balloon_alert(user, LANG("obj.f9f0930e3593d4a2", list(locked ? "locked" : "unlocked")))
 		else
-			balloon_alert(user, LANG("obj.ddafd752", null))
+			balloon_alert(user, LANG("obj.ddafd75296a2dc2d", null))
 
 /obj/item/dragnet_beacon/wrench_act(mob/living/user, obj/item/tool)
 	if(user.is_holding(src))
-		balloon_alert(user, LANG("obj.da2d4c08", null))
+		balloon_alert(user, LANG("obj.da2d4c0814fc8262", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(anchored && locked)
-		balloon_alert(user, LANG("obj.ba4d82de", null))
+		balloon_alert(user, LANG("obj.ba4d82de132f0a53", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(isinspace() && !anchored)
-		balloon_alert(user, LANG("obj.117d1d87", null))
+		balloon_alert(user, LANG("obj.117d1d87fb9714ab", null))
 		return ITEM_INTERACT_BLOCKING
 
 	set_anchored(!anchored)
@@ -118,5 +118,5 @@
 	locked = FALSE
 	set_anchored(FALSE)
 	do_sparks(3, TRUE, src)
-	balloon_alert(user, LANG("obj.fc0c5e63", null))
+	balloon_alert(user, LANG("obj.fc0c5e63ce041c39", null))
 	return TRUE

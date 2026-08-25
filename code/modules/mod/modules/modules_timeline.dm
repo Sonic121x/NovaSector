@@ -6,7 +6,7 @@
 
 ///Eradication lock - Prevents people who aren't the owner of the suit from existing on the timeline via eradicating the suit with the intruder inside
 /obj/item/mod/module/eradication_lock
-	name = "MOD eradication lock module"
+	name = "\improper MOD eradication lock module"
 	desc = "A module which remembers the original owner of the suit, even alternate universe \
 			versions. When a non-owner enters, the eradication lock will begin eradicating the suit \
 			from the timeline... with the intruder inside. Not the way you want to go, so it turns \
@@ -32,7 +32,7 @@
 
 /obj/item/mod/module/eradication_lock/on_use(mob/activator)
 	true_owner_ckey = mod.wearer.ckey
-	balloon_alert(activator, LANG("obj.fc8bfd78", null))
+	balloon_alert(activator, LANG("obj.fc8bfd78a07d565d", null))
 	playsound(src, 'sound/items/pshoom/pshoom.ogg', 25, TRUE)
 	drain_power(use_energy_cost)
 
@@ -43,7 +43,7 @@
 	if(!true_owner_ckey || user.ckey == true_owner_ckey)
 		return NONE
 	if(user == mod.wearer)
-		to_chat(mod.wearer, span_userdanger(LANG("obj.811a46e6", null)))
+		to_chat(mod.wearer, span_userdanger(LANG("obj.811a46e61de4f93d", null)))
 		new /obj/structure/chrono_field(user.loc, user)
 	return MOD_CANCEL_ACTIVATE
 
@@ -52,13 +52,13 @@
 	SIGNAL_HANDLER
 
 	if(true_owner_ckey && user.ckey != true_owner_ckey)
-		to_chat(mod.wearer, span_userdanger(LANG("obj.833ad240", null)))
+		to_chat(mod.wearer, span_userdanger(LANG("obj.833ad240aff91e36", null)))
 		new /obj/structure/chrono_field(user.loc, user)
 		return MOD_CANCEL_REMOVAL
 
 ///Rewinder - Activating saves a point in time, after 10 seconds you will jump back to that state.
 /obj/item/mod/module/rewinder
-	name = "MOD rewinder module"
+	name = "\improper MOD rewinder module"
 	desc = "A module that can pull the user back through time given an anchor point to \
 			pull to. Very useful tool to get the job done, but keep in mind the suit locks for \
 			safety reasons while preparing a rewind."
@@ -71,7 +71,7 @@
 	required_slots = list(ITEM_SLOT_BACK)
 
 /obj/item/mod/module/rewinder/on_use(mob/activator)
-	balloon_alert(activator, LANG("obj.b54421cd", null))
+	balloon_alert(activator, LANG("obj.b54421cd1cf65a3b", null))
 	playsound(src, 'sound/items/modsuit/time_anchor_set.ogg', 50, TRUE)
 	//stops all mods from triggering during rewinding
 	for(var/obj/item/mod/module/module as anything in mod.modules)
@@ -89,18 +89,18 @@
 ///Signal fired when wearer attempts to activate/deactivate suits
 /obj/item/mod/module/rewinder/proc/on_activate_block(datum/source, user)
 	SIGNAL_HANDLER
-	balloon_alert(user, LANG("obj.5887bf36", null))
+	balloon_alert(user, LANG("obj.5887bf36d9500183", null))
 	return MOD_CANCEL_ACTIVATE
 
 ///Signal fired when wearer attempts to trigger modules, if attempting while time is stopped
 /obj/item/mod/module/rewinder/proc/on_module_triggered(datum/source, mob/user)
 	SIGNAL_HANDLER
-	balloon_alert(user, LANG("obj.5887bf36", null))
+	balloon_alert(user, LANG("obj.5887bf36d9500183", null))
 	return MOD_ABORT_USE
 
 ///Timestopper - Need I really explain? It's the wizard's time stop, but the user channels it by not moving instead of a duration.
 /obj/item/mod/module/timestopper
-	name = "MOD timestopper module"
+	name = "\improper MOD timestopper module"
 	desc = "A module that can halt time in a small radius around the user... for as long as they \
 			want! Great for monologues or lunch breaks. Keep in mind moving will end the stop, and the \
 			module has a hefty cooldown period to avoid reality errors."
@@ -116,7 +116,7 @@
 
 /obj/item/mod/module/timestopper/used(mob/activator)
 	if(timestop)
-		mod.balloon_alert(activator, LANG("obj.d3a82022", null))
+		mod.balloon_alert(activator, LANG("obj.d3a8202269440b77", null))
 		return FALSE
 	return ..()
 
@@ -139,18 +139,18 @@
 ///Signal fired when wearer attempts to trigger modules, if attempting while time is stopped
 /obj/item/mod/module/timestopper/proc/on_module_triggered(datum/source)
 	SIGNAL_HANDLER
-	balloon_alert(mod.wearer, LANG("obj.a77609bd", null))
+	balloon_alert(mod.wearer, LANG("obj.a77609bd65ddb8ef", null))
 	return MOD_ABORT_USE
 
 ///Signal fired when wearer attempts to activate/deactivate suits, if attempting while time is stopped
 /obj/item/mod/module/timestopper/proc/on_activate_block(datum/source, user)
 	SIGNAL_HANDLER
-	balloon_alert(user, LANG("obj.a77609bd", null))
+	balloon_alert(user, LANG("obj.a77609bd65ddb8ef", null))
 	return MOD_CANCEL_ACTIVATE
 
 ///Timeline Jumper - Infinite phasing. needs some special effects
 /obj/item/mod/module/timeline_jumper
-	name = "MOD timeline jumper module"
+	name = "\improper MOD timeline jumper module"
 	desc = "A module used to traverse timelines, phasing the user in and out of the stream of events."
 	icon_state = "timeline_jumper"
 	module_type = MODULE_USABLE
@@ -166,14 +166,14 @@
 /obj/item/mod/module/timeline_jumper/used(mob/activator)
 	var/area/noteleport_check = get_area(mod.wearer)
 	if(noteleport_check && !check_teleport_valid(mod.wearer, get_turf(mod.wearer)))
-		to_chat(activator, span_danger(LANG("obj.80df7bd2", list(phased_mob ? "current timeline" : "stream between timelines"))))
+		to_chat(activator, span_danger(LANG("obj.80df7bd236900331", list(phased_mob ? "current timeline" : "stream between timelines"))))
 		return FALSE
 	return ..()
 
 /obj/item/mod/module/timeline_jumper/on_use(mob/activator)
 	if(!phased_mob)
 		//phasing out
-		mod.visible_message(span_warning(LANG("obj.c63f6716", list(mod.wearer))))
+		mod.visible_message(span_warning(LANG("obj.c63f6716360e0f3a", list(mod.wearer))))
 		mod.wearer.SetAllImmobility(0)
 		mod.wearer.set_stamina_loss(0)
 		phased_mob = new(get_turf(mod.wearer.loc), mod.wearer)
@@ -183,7 +183,7 @@
 		phased_mob.eject_jaunter()
 		phased_mob = null
 		UnregisterSignal(mod, COMSIG_MOD_ACTIVATE)
-		mod.visible_message(span_warning(LANG("obj.088f18c0", list(mod.wearer))))
+		mod.visible_message(span_warning(LANG("obj.088f18c07568ba7c", list(mod.wearer))))
 
 	//probably justifies its own sound but whatever
 	playsound(src, 'sound/items/modsuit/time_anchor_set.ogg', 50, TRUE)
@@ -192,7 +192,7 @@
 /obj/item/mod/module/timeline_jumper/proc/on_activate_block(datum/source, user)
 	SIGNAL_HANDLER
 	//has to be a to_chat because you're phased out.
-	to_chat(user, span_warning(LANG("obj.c9a1ac31", null)))
+	to_chat(user, span_warning(LANG("obj.c9a1ac315e101139", null)))
 	return MOD_CANCEL_ACTIVATE
 
 ///special subtype for phased mobs.
@@ -202,7 +202,7 @@
 
 ///TEM - Lets you eradicate people.
 /obj/item/mod/module/tem
-	name = "MOD timestream eradication module"
+	name = "\improper MOD timestream eradication module"
 	desc = "The correction device of a fourth dimensional group outside time itself used to \
 			change the destination of a timeline. this device is capable of wiping a being from the \
 			timestream. They never are, they never were, they never will be."
@@ -251,14 +251,14 @@
 /obj/item/mod/module/tem/proc/field_connect(obj/structure/chrono_field/field)
 	if(field.tem)
 		if(field.captured)
-			balloon_alert(mod.wearer, LANG("obj.348a3ea1", null))
+			balloon_alert(mod.wearer, LANG("obj.348a3ea1efceceb7", null))
 		field_disconnect(field)
 		return
 	startpos = get_turf(mod.wearer)
 	src.field = field
 	field.tem = src
 	if(field.captured)
-		balloon_alert(mod.wearer, LANG("obj.211e032b", null))
+		balloon_alert(mod.wearer, LANG("obj.211e032b39093382", null))
 
 /**
  * ### field_disconnect
@@ -273,7 +273,7 @@
 		if(field.tem == src)
 			field.tem = null
 		if(field.captured)
-			balloon_alert(mod.wearer, LANG("obj.4a639f2f", null))
+			balloon_alert(mod.wearer, LANG("obj.4a639f2f65b2d3cc", null))
 	field = null
 	startpos = null
 
@@ -380,7 +380,7 @@
 			freed_movable.forceMove(drop_location())
 		qdel(src)
 	else if(timetokill <= 0)
-		to_chat(captured, span_notice(LANG("obj.4561dc50", null)))
+		to_chat(captured, span_notice(LANG("obj.4561dc50b60bdeae", null)))
 		var/mob/dead/observer/ghost = captured.ghostize(can_reenter_corpse = TRUE)
 		if(captured.mind)
 			if(ghost)

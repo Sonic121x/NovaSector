@@ -61,8 +61,8 @@
 	flick("goliath_tentacle_spawn", src)
 
 	if (victim.stat != DEAD && !HAS_TRAIT(victim, TRAIT_TENTACLE_IMMUNE))
-		balloon_alert(victim, LANG("obj.bb1cd695", null))
-		visible_message(span_danger(LANG("obj.599446dc", list(src, victim))))
+		balloon_alert(victim, LANG("obj.bb1cd6951dbbbb98", null))
+		visible_message(span_danger(LANG("obj.599446dc56b7a809", list(src, victim))))
 		victim.apply_damage(15, BRUTE)
 		if (victim.apply_status_effect(status_applied, grab_time, src))
 			buckle_mob(victim, TRUE)
@@ -74,7 +74,7 @@
 
 /obj/effect/wizard_tentacle/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	if (buckled_mob == user)
-		balloon_alert(user, LANG("obj.fba9228d", null))
+		balloon_alert(user, LANG("obj.fba9228dcadf2006", null))
 		return
 	return ..()
 
@@ -125,9 +125,9 @@
 /datum/status_effect/incapacitating/immobilized/wizard_tentacle/proc/on_helped(mob/source, mob/helping)
 	SIGNAL_HANDLER
 	if (helping == owner)
-		owner.balloon_alert(owner, LANG("datum.fba9228d", null))
+		owner.balloon_alert(owner, LANG("datum.fba9228dcadf2006", null))
 		return NONE
-	source.visible_message(span_notice(LANG("datum.0e8b01a6", list(helping, source))))
+	source.visible_message(span_notice(LANG("datum.0e8b01a62e3eec74", list(helping, source))))
 	release()
 	return COMPONENT_BLOCK_MISC_HELP
 
@@ -156,7 +156,7 @@
 	. = ..()
 	if (!owner || !had_tentacle)
 		return
-	owner.visible_message(span_suicide(LANG("datum.474e0e8f", list(owner))))
+	owner.visible_message(span_suicide(LANG("datum.474e0e8ff2313b3e", list(owner))))
 	owner.unequip_everything()
 	animate(owner, transform = matrix() * 0, time = RETRACT_TIME)
 	animate(owner, pixel_y = -12, time = RETRACT_TIME, flags = ANIMATION_PARALLEL)

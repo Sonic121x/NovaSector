@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(pp_transformables, list(
 		return
 
 	if(!ismob(selected_mob))
-		to_chat(usr, LANG("datum.7ba1e557", null))
+		to_chat(usr, LANG("datum.7ba1e55740ebfe3d", null))
 		return
 
 	if (!newTypeName)

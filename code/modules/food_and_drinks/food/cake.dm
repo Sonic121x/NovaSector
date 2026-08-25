@@ -313,7 +313,7 @@
 	AddElement(/datum/element/microwavable, /obj/item/clothing/head/utility/hardhat/cakehat/energycake)
 
 /obj/item/food/cake/birthday/energy/proc/energy_bite(mob/living/user)
-	to_chat(user, LANG("obj.440e69c0", null))
+	to_chat(user, LANG("obj.440e69c0cdf4492b", null))
 	user.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
 	playsound(user, 'sound/items/weapons/blade1.ogg', 5, TRUE)
 
@@ -345,13 +345,13 @@
 
 /obj/item/food/cakeslice/birthday/energy/attack(mob/living/target_mob, mob/living/user)
 	if(HAS_TRAIT(user, TRAIT_PACIFISM) && target_mob != user) //Prevents pacifists from attacking others directly
-		balloon_alert(user, LANG("obj.c527c3a0", null))
+		balloon_alert(user, LANG("obj.c527c3a04c12d09b", null))
 		return FALSE
 	return ..()
 
 /obj/item/food/cakeslice/birthday/energy/proc/bite_taken(datum/source, mob/living/eater, mob/living/feeder)
 	SIGNAL_HANDLER
-	to_chat(eater, LANG("obj.36194448", null))
+	to_chat(eater, LANG("obj.36194448e5caf85f", null))
 	if(eater != feeder)
 		log_combat(feeder, eater, "fed an energy cake to", src)
 	eater.apply_damage(18, BRUTE, BODY_ZONE_HEAD)

@@ -385,7 +385,7 @@
 
 	for(var/obj/machinery/nuclearbomb/bomb as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb))
 		if(bomb.timing)
-			examine_list += span_danger(LANG("datum.bd76de8e", list(bomb.get_time_left())))
+			examine_list += span_danger(LANG("datum.bd76de8eae070a2b", list(bomb.get_time_left())))
 	return examine_list
 
 /*
@@ -400,11 +400,11 @@
 
 	playsound(computer, 'sound/items/nuke_toy_lowpower.ogg', 50, FALSE)
 	if(isliving(computer.loc))
-		to_chat(computer.loc, span_userdanger(LANG("datum.60b954c6", list(computer.name))))
+		to_chat(computer.loc, span_userdanger(LANG("datum.60b954c6fe57aab1", list(computer.name))))
 	else
 		computer.audible_message(
-			span_danger(LANG("datum.d10e6587", list(computer))),
-			span_notice(LANG("datum.cc399bfe", list(computer))),
+			span_danger(LANG("datum.d10e6587a59199a3", list(computer))),
+			span_notice(LANG("datum.cc399bfef025d386", list(computer))),
 		)
 
 

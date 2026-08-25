@@ -15,7 +15,7 @@
 		var/obj/machinery/atmospherics/target_pipe = interacting_with
 		target_pipe.paint(GLOB.pipe_paint_colors[paint_color])
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
-		balloon_alert(user, LANG("obj.4da583d6", list(paint_color)))
+		balloon_alert(user, LANG("obj.4da583d630a718fb", list(paint_color)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(interacting_with, /obj/item/pipe))
@@ -24,14 +24,14 @@
 		target_pipe.pipe_color = color
 		target_pipe.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
-		balloon_alert(user, LANG("obj.4da583d6", list(paint_color)))
+		balloon_alert(user, LANG("obj.4da583d630a718fb", list(paint_color)))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
 
 /obj/item/pipe_painter/attack_self(mob/user)
-	paint_color = tgui_input_list(user, LANG("obj.14deab37", null), LANG("obj.e47df031", null), GLOB.pipe_paint_colors)
+	paint_color = tgui_input_list(user, LANG("obj.14deab37a273c7c0", null), LANG("obj.e47df031e534173c", null), GLOB.pipe_paint_colors)
 
 /obj/item/pipe_painter/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.a434c23e", list(paint_color)))
+	. += span_notice(LANG("obj.a434c23ebb4aed22", list(paint_color)))

@@ -186,7 +186,7 @@
 			reagents.trans_to(target, reagents.total_volume, methods = INJECT)
 			return BULLET_ACT_HIT
 		blocked = 100
-		target.visible_message(span_danger(LANG("obj.a02a8043", list(src))), span_userdanger(LANG("obj.5d4d8bcd", list(src))))
+		target.visible_message(span_danger(LANG("obj.a02a8043e36fbcbc", list(src))), span_userdanger(LANG("obj.5d4d8bcd6d25d666", list(src))))
 	. = ..()
 	if(reagents.flags & NO_REACT) //first impact on a noncarbon
 		reagents.flags &= ~(NO_REACT)

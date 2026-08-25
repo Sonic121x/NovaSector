@@ -67,11 +67,11 @@
 	var/healthpercent = round((atom_integrity/max_integrity) * 100, 1)
 	switch(healthpercent)
 		if(50 to 99)
-			. += span_info(LANG("obj.bc3c8a23", null))
+			. += span_info(LANG("obj.bc3c8a2327d585d1", null))
 		if(25 to 50)
-			. += span_info(LANG("obj.27d47c4b", null))
+			. += span_info(LANG("obj.27d47c4b2f198d89", null))
 		if(0 to 25)
-			. += span_warning(LANG("obj.ad6c0cee", null))
+			. += span_warning(LANG("obj.ad6c0cee53a99c80", null))
 
 /obj/item/shield/item_interaction(mob/living/user, obj/item/tool, list/modifiers, is_right_clicking)
 	. = ..()
@@ -82,7 +82,7 @@
 	if(!COOLDOWN_FINISHED(src, weapon_bash))
 		return ITEM_INTERACT_BLOCKING
 	playsound(src, shield_bash_sound, 50, TRUE)
-	user.manual_emote(LANG("obj.9dfb0b18", list(src, tool)))
+	user.manual_emote(LANG("obj.9dfb0b1846b255f6", list(src, tool)))
 	COOLDOWN_START(src, weapon_bash, WEAPON_BASH_COOLDOWN)
 	user.Shake(3, 3, 0.5 SECONDS)
 	return ITEM_INTERACT_SUCCESS
@@ -111,7 +111,7 @@
 	playsound(src, shield_break_sound, 50)
 	new shield_break_leftover(get_turf(src))
 	if(isliving(loc))
-		loc.balloon_alert(loc, LANG("obj.3da6fb1b", null))
+		loc.balloon_alert(loc, LANG("obj.3da6fb1b787e0d8d", null))
 	return ..()
 
 /obj/item/shield/buckler
@@ -193,13 +193,13 @@
 		return NONE
 
 	if (atom_integrity >= max_integrity)
-		to_chat(user, span_warning(LANG("obj.d7117bd3", list(src))))
+		to_chat(user, span_warning(LANG("obj.d7117bd3afcedca0", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/stack/sheet/mineral/titanium/titanium_sheet = tool
 	titanium_sheet.use(1)
 	atom_integrity = max_integrity
-	to_chat(user, span_notice(LANG("obj.168974ac", list(src, titanium_sheet))))
+	to_chat(user, span_notice(LANG("obj.168974ac65c7a636", list(src, titanium_sheet))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/shield/riot/flash
@@ -272,10 +272,10 @@
 
 	var/obj/item/assembly/flash/handheld/flash = tool
 	if(flash.burnt_out)
-		to_chat(user, span_warning(LANG("obj.441ca988", null)))
+		to_chat(user, span_warning(LANG("obj.441ca98863c72d3f", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.0d6c3f52", null)))
+	to_chat(user, span_notice(LANG("obj.0d6c3f5273efebb9", null)))
 	if(!do_after(user, 2 SECONDS, target = user))
 		return ITEM_INTERACT_BLOCKING
 
@@ -307,7 +307,7 @@
 /obj/item/shield/riot/flash/examine(mob/user)
 	. = ..()
 	if (embedded_flash?.burnt_out)
-		. += span_info(LANG("obj.ad41d255", null))
+		. += span_info(LANG("obj.ad41d25592e2399f", null))
 
 /obj/item/shield/energy
 	name = "combat energy shield"
@@ -384,7 +384,7 @@
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		if(send_message)
-			balloon_alert(user, LANG("obj.e6dca2bb", null))
+			balloon_alert(user, LANG("obj.e6dca2bb59c31bd1", null))
 		return COMPONENT_BLOCK_ITEM_DISARM_ATTACK
 
 /obj/item/shield/energy/advanced
@@ -448,7 +448,7 @@
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		if(send_message)
-			balloon_alert(user, LANG("obj.49db6390", null))
+			balloon_alert(user, LANG("obj.49db6390c549448f", null))
 		return COMPONENT_BLOCK_ITEM_DISARM_ATTACK
 
 /datum/armor/item_shield/ballistic
@@ -472,13 +472,13 @@
 		return NONE
 
 	if (atom_integrity >= max_integrity)
-		to_chat(user, span_warning(LANG("obj.d7117bd3", list(src))))
+		to_chat(user, span_warning(LANG("obj.d7117bd3afcedca0", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/stack/sheet/mineral/titanium/titanium_sheet = tool
 	titanium_sheet.use(1)
 	atom_integrity = max_integrity
-	to_chat(user, span_notice(LANG("obj.168974ac", list(src, titanium_sheet))))
+	to_chat(user, span_notice(LANG("obj.168974ac65c7a636", list(src, titanium_sheet))))
 	return ITEM_INTERACT_SUCCESS
 
 /datum/armor/item_shield/improvised

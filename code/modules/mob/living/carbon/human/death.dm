@@ -39,20 +39,20 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 				<b>Brain damage</b>: [src.get_organ_loss(ORGAN_SLOT_BRAIN) || "0"]<br>\
 				<b>[get_bloodtype()?.get_blood_name() || "Blood"] volume</b>: [src.get_blood_volume(apply_modifiers = TRUE)]cl ([round((src.get_blood_volume(apply_modifiers = TRUE) / BLOOD_VOLUME_NORMAL) * 100, 0.1)]%)<br>\
 				<b>Reagents</b>:<br>[reagents_readout()]", INVESTIGATE_DEATHS)
-	to_chat(src, span_warning(LANG("mob.4325cfb1", null)))
+	to_chat(src, span_warning(LANG("mob.4325cfb1b6fe6030", null)))
 	if(SSlag_switch.measures[DISABLE_DEAD_KEYLOOP] && !client?.holder)
-		to_chat(src, span_warning(LANG("mob.c49ecee7", null)))
+		to_chat(src, span_warning(LANG("mob.c49ecee75a33a1d2", null)))
 
 /mob/living/carbon/human/proc/reagents_readout()
 	var/readout = "[get_bloodtype()?.get_blood_name() || "Blood"]stream:"
 	for(var/datum/reagent/reagent in reagents?.reagent_list)
-		readout += LANG("mob.4f255ca4", list(round(reagent.volume, 0.001), reagent.name))
+		readout += LANG("mob.4f255ca43448fb6f", list(round(reagent.volume, 0.001), reagent.name))
 
-	readout += LANG("mob.62e52d2c", null)
+	readout += LANG("mob.62e52d2c7911f6e0", null)
 	var/obj/item/organ/stomach/belly = get_organ_slot(ORGAN_SLOT_STOMACH)
 	for(var/datum/reagent/bile in belly?.reagents?.reagent_list)
 		if(!belly.food_reagents[bile.type])
-			readout += LANG("mob.4f255ca4", list(round(bile.volume, 0.001), bile.name))
+			readout += LANG("mob.4f255ca43448fb6f", list(round(bile.volume, 0.001), bile.name))
 
 	return readout
 

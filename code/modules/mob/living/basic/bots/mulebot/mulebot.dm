@@ -112,12 +112,12 @@
 	. = ..()
 	if(bot_access_flags & BOT_COVER_MAINTS_OPEN)
 		if(cell)
-			. += span_notice(LANG("mob.4243143d", list(cell)))
-			. += span_info(LANG("mob.ada3b30b", null))
+			. += span_notice(LANG("mob.4243143d622ce537", list(cell)))
+			. += span_info(LANG("mob.ada3b30bfa2053f7", null))
 		else
-			. += span_notice(LANG("mob.63e1a12e", null))
+			. += span_notice(LANG("mob.63e1a12ed1e3fb52", null))
 	if(load) //observer check is so we don't show the name of the ghost that's sitting on it to prevent metagaming who's ded.
-		. += span_notice(LANG("mob.98314f8a", list(isobserver(load) ? "ghostly figure" : load)))
+		. += span_notice(LANG("mob.98314f8a059937cd", list(isobserver(load) ? "ghostly figure" : load)))
 
 /mob/living/basic/bot/mulebot/get_cell()
 	return cell
@@ -133,11 +133,11 @@
 /mob/living/basic/bot/mulebot/turn_on(mob/user)
 	if(bot_access_flags & BOT_COVER_MAINTS_OPEN)
 		if(user)
-			to_chat(user, span_warning(LANG("mob.100cd79e", list(src))))
+			to_chat(user, span_warning(LANG("mob.100cd79e2de2f97c", list(src))))
 		return FALSE
 	if(!has_power())
 		if(user)
-			to_chat(user, span_warning(LANG("mob.84948dc2", list(src))))
+			to_chat(user, span_warning(LANG("mob.84948dc215a024fe", list(src))))
 		return FALSE
 	return ..()
 
@@ -176,16 +176,16 @@
 /mob/living/basic/bot/mulebot/proc/buzz(type)
 	switch(type)
 		if(MULEBOT_MOOD_SIGH)
-			audible_message(span_hear(LANG("mob.f7366c55", list(src))))
+			audible_message(span_hear(LANG("mob.f7366c55f85a4242", list(src))))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		if(MULEBOT_MOOD_ANNOYED)
-			audible_message(span_hear(LANG("mob.b73d2a12", list(src))))
+			audible_message(span_hear(LANG("mob.b73d2a12c89c7867", list(src))))
 			playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE)
 		if(MULEBOT_MOOD_DELIGHT)
-			audible_message(span_hear(LANG("mob.c4b5365b", list(src))))
+			audible_message(span_hear(LANG("mob.c4b5365b3df7c715", list(src))))
 			playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
 		if(MULEBOT_MOOD_CHIME)
-			audible_message(span_hear(LANG("mob.3582e919", list(src))))
+			audible_message(span_hear(LANG("mob.3582e919b25a0cef", list(src))))
 			playsound(src, 'sound/machines/chime.ogg', 50, FALSE)
 	flick("[base_icon_state]1", src)
 

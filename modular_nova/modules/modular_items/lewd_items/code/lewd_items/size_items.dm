@@ -32,18 +32,18 @@
 /obj/item/clothing/neck/size_collar/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!warning_given)
-		if(tgui_alert(user, LANG("obj.2a72afac", null), LANG("obj.8f211533", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, LANG("obj.2a72afac1371df28", null), LANG("obj.8f211533a7c1c710", null), list("Yes", "No")) != "Yes")
 			return FALSE
 
 		warning_given = TRUE
 
-	var/chosen_size = tgui_input_number(user, LANG("obj.aa88082d", null), name, 100, CONFIG_GET(number/size_collar_maximum), CONFIG_GET(number/size_collar_minimum))
+	var/chosen_size = tgui_input_number(user, LANG("obj.aa88082df9f08994", null), name, 100, CONFIG_GET(number/size_collar_maximum), CONFIG_GET(number/size_collar_minimum))
 	if(!chosen_size)
-		balloon_alert(user, LANG("obj.a3ea0c2c", null))
+		balloon_alert(user, LANG("obj.a3ea0c2c48ab5f31", null))
 		return FALSE
 
 	log_message("[src] had its target size changed to [chosen_size]% by [usr]", LOG_ATTACK)
-	balloon_alert(user, LANG("obj.ddb88eda", list(chosen_size)))
+	balloon_alert(user, LANG("obj.ddb88eda1c01f175", list(chosen_size)))
 	target_size = (chosen_size * 0.01)
 	return TRUE
 
@@ -78,7 +78,7 @@
 		area_names += allowed_area::name
 
 	if(length(area_names))
-		. += span_cyan(LANG("obj.44a3bbef", list(english_list(area_names))))
+		. += span_cyan(LANG("obj.44a3bbefe52aef47", list(lang_english_list(area_names))))
 
 	return .
 

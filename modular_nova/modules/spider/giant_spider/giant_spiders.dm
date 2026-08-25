@@ -201,7 +201,7 @@
 /// Prevents you from healing other spiders spiders, or from healing when on fire
 /mob/living/basic/spider/giant/ogre/proc/can_mend(mob/living/source)
 	if (on_fire)
-		balloon_alert(src, LANG("mob.df492961", null))
+		balloon_alert(src, LANG("mob.df492961797b7954", null))
 		return FALSE
 	return TRUE
 
@@ -329,7 +329,7 @@
 
 /mob/living/basic/spider/giant/baron/proc/can_mend(mob/living/source)
 	if (on_fire)
-		balloon_alert(src, LANG("mob.df492961", null))
+		balloon_alert(src, LANG("mob.df492961797b7954", null))
 		return FALSE
 	return TRUE
 

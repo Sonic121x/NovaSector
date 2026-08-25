@@ -50,7 +50,7 @@
 	var/datum/remote_materials/rmat
 
 	/// All designs in the techweb that can be fabricated by this machine, since the last update.
-	var/list/datum/design/cached_designs
+	var/list/cached_designs
 
 	/// Looping sound for printing items
 	var/datum/looping_sound/lathe_print/print_sound
@@ -137,38 +137,37 @@
 /obj/machinery/mecha_part_fabricator/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.bf97bd79", list(rmat.local_size, component_coeff*100, 100-time_coeff*100)))
-		. += span_notice(LANG("obj.f018ec80", list(dir2text(drop_direction))))
+		. += span_notice(LANG("obj.bf97bd79886374df", list(rmat.local_size, component_coeff*100, 100-time_coeff*100)))
+		. += span_notice(LANG("obj.f018ec808e217c0e", list(dir2text(drop_direction))))
 
 /obj/machinery/mecha_part_fabricator/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
 	if(!can_interact(user) || (!HAS_SILICON_ACCESS(user) && !isAdminGhostAI(user)) && !Adjacent(user))
 		return
 	if(being_built)
-		balloon_alert(user, LANG("obj.45e44459", null))
+		balloon_alert(user, LANG("obj.45e444590d6fdf9f", null))
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(user, LANG("obj.a778c49c", list(dir2text(drop_direction))))
+	balloon_alert(user, LANG("obj.a778c49c6c1e1f04", list(dir2text(drop_direction))))
 
 /**
  * Updates the `final_sets` and `buildable_parts` for the current mecha fabricator.
  */
 /obj/machinery/mecha_part_fabricator/proc/update_menu_tech()
-	var/previous_design_count = cached_designs.len
+	var/previous_design_count = length(cached_designs)
 
 	cached_designs.Cut()
-	for(var/v in stored_research.researched_designs)
-		var/datum/design/design = SSresearch.techweb_design_by_id(v)
-
+	for(var/design_path in stored_research.researched_designs)
+		var/datum/design/design = SSresearch.techweb_designs[design_path]
 		if(design.build_type & MECHFAB)
-			cached_designs |= design
+			cached_designs |= design_path
 
-	var/design_delta = cached_designs.len - previous_design_count
+	var/design_delta = length(cached_designs) - previous_design_count
 
 	if(design_delta > 0)
-		say(LANG("obj.b8003438", list(design_delta, design_delta == 1 ? "" : "s")))
+		say(LANG("obj.b800343897a0eb02", list(design_delta, design_delta == 1 ? "" : "s")))
 		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 50, TRUE)
 
 	update_static_data_for_all_viewers()
@@ -225,26 +224,26 @@
  * * user_data - ID_DATA(user), see the proc on SSid_access
  */
 /obj/machinery/mecha_part_fabricator/proc/build_part(datum/design/D, verbose = TRUE, alist/user_data)
-	if(!D || length(D.reagents_list))
+	if(!D || LAZYLEN(D.reagents_list))
 		return FALSE
 
 	var/datum/material_container/materials = rmat.mat_container
 	if (!materials)
 		if(verbose)
-			say(LANG("obj.61413399", null))
+			say(LANG("obj.61413399dc2d947f", null))
 		return FALSE
 	if (!rmat.can_use_resource(user_data = user_data))
 		return FALSE
 	if(!materials.has_materials(D.materials, component_coeff))
 		if(verbose)
-			say(LANG("obj.c244ac5a", null))
+			say(LANG("obj.c244ac5ac0c7ebed", null))
 		return FALSE
 
 	rmat.use_materials(D.materials, component_coeff, 1, "processed", "[D.name]", user_data)
 	being_built = D
 	build_finish = world.time + get_construction_time_w_coeff(initial(D.construction_time))
 	build_start = world.time
-	desc = LANG("obj.66c201a5", list(D.name))
+	desc = LANG("obj.66c201a581155a68", list(D.name))
 
 	return TRUE
 
@@ -255,7 +254,7 @@
 		if(exit.density)
 			return TRUE
 
-		say(LANG("obj.8a68c143", list(stored_part)))
+		say(LANG("obj.8a68c143e23fb536", list(stored_part)))
 		stored_part.forceMove(exit)
 		stored_part = null
 
@@ -291,12 +290,12 @@
 
 	var/turf/exit = get_step(src, drop_direction)
 	if(exit.density)
-		say(LANG("obj.1fd98c63", null))
-		desc = LANG("obj.4ffe1f70", list(dispensed_design.name))
+		say(LANG("obj.1fd98c6348db999a", null))
+		desc = LANG("obj.4ffe1f706d3096e4", list(dispensed_design.name))
 		stored_part = built_part
 		return FALSE
 
-	say(LANG("obj.6f27a045", list(built_part)))
+	say(LANG("obj.6f27a045c043b90b", list(built_part)))
 	built_part.forceMove(exit)
 
 	top_job_id += 1
@@ -362,20 +361,21 @@
 	var/datum/asset/spritesheet_batched/research_designs/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/research_designs)
 	var/size32x32 = "[spritesheet.name]32x32"
 
-	for(var/datum/design/design in cached_designs)
+	for(var/design_path in cached_designs)
+		var/datum/design/design = SSresearch.techweb_designs[design_path]
 		var/cost = list()
 		var/list/materials = design.materials
 		for(var/datum/material/mat in materials)
-			cost[lang_unreverse_text(mat.name)] = OPTIMAL_COST(materials[mat] * component_coeff) // NOVA EDIT CHANGE - I18N - key cost by the english material name so it matches the available map (P1 doesn't translate assoc keys) - ORIGINAL: cost[mat.name] = OPTIMAL_COST(materials[mat] * component_coeff)
+			cost[mat.name] = OPTIMAL_COST(materials[mat] * component_coeff)
 
-		var/icon_size = spritesheet.icon_size_id(design.id)
-		designs[design.id] = list(
-			"name" = lang_reverse_text(design.name), // NOVA EDIT CHANGE - I18N - ORIGINAL: "name" = design.name, （设计名仅显示、构建走 id=安全；全量反查含单词类如 Bonesetter/Cautery，P1 多词门槛漏掉的）
+		var/icon_size = spritesheet.icon_size_id(design.asset_id)
+		designs[design.type] = list(
+			"name" = lang_reverse_text(design.name), // NOVA EDIT CHANGE - I18N - ORIGINAL: "name" = design.name, （设计名仅显示、构建走 path=安全；全量反查含单词类如 Bonesetter/Cautery）
 			"desc" = design.get_description(),
 			"cost" = cost,
-			"id" = design.id,
+			"path" = design.type,
 			"categories" = design.category,
-			"icon" = "[icon_size == size32x32 ? "" : "[icon_size] "][design.id]",
+			"icon" = "[icon_size == size32x32 ? "" : "[icon_size] "][design.asset_id]",
 			"constructionTime" = get_construction_time_w_coeff(design.construction_time)
 		)
 
@@ -393,7 +393,7 @@
 	if(being_built)
 		data["queue"] += list(list(
 			"jobId" = top_job_id,
-			"designId" = being_built.id,
+			"designPath" = being_built.type,
 			"processing" = TRUE,
 			"timeLeft" = (build_finish - world.time)
 		))
@@ -406,7 +406,7 @@
 
 		data["queue"] += list(list(
 			"jobId" = top_job_id + offset,
-			"designId" = design.id,
+			"designPath" = design.type,
 			"processing" = FALSE,
 			"timeLeft" = get_construction_time_w_coeff(design.construction_time) / 10
 		))
@@ -415,31 +415,28 @@
 
 /obj/machinery/mecha_part_fabricator/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-
 	if(.)
 		return
-
-	. = TRUE
 
 	switch(action)
 		if("build")
 			if(!rmat.can_use_resource(user_data = ID_DATA(usr)))
 				return
-			var/designs = params["designs"]
 
+			var/list/designs = params["designs"]
 			if(!islist(designs))
 				return
 
-			for(var/design_id in designs)
-				if(!istext(design_id))
+			for(var/design_path in designs)
+				design_path = text2path(design_path)
+				if(!stored_research.researched_designs[design_path])
 					continue
 
-				if(!stored_research.researched_designs.Find(design_id))
+				var/datum/design/design = SSresearch.techweb_designs[design_path]
+				if(!istype(design))
 					continue
 
-				var/datum/design/design = SSresearch.techweb_design_by_id(design_id)
-
-				if(!(design.build_type & MECHFAB) || design.id != design_id)
+				if(!(design.build_type & MECHFAB))
 					continue
 
 				add_to_queue(design, ID_DATA(usr))
@@ -453,20 +450,18 @@
 				if(!being_built)
 					begin_processing()
 
-			return
+			return TRUE
 
 		if("del_queue_part")
 			// Delete a specific from the queue
 			var/index = text2num(params["index"])
 			remove_from_queue(index)
-
-			return
+			return TRUE
 
 		if("clear_queue")
 			// Delete everything from queue
 			queue.Cut()
-
-			return
+			return TRUE
 
 		if("build_queue")
 			// Build everything in queue
@@ -474,26 +469,21 @@
 				return
 
 			process_queue = TRUE
-
 			if(!being_built)
 				begin_processing()
-
-			return
+			return TRUE
 
 		if("stop_queue")
 			// Pause queue building. Also known as stop.
 			process_queue = FALSE
-
-			return
+			return TRUE
 
 		if("remove_mat")
 			var/datum/material/material = locate(params["ref"])
 			var/amount = text2num(params["amount"])
 			// SAFETY: eject_sheets checks for valid mats
 			rmat.eject_sheets(material, amount, user_data = ID_DATA(usr))
-			return
-
-	return FALSE
+			return TRUE
 
 /obj/machinery/mecha_part_fabricator/proc/AfterMaterialInsert(item_inserted, id_inserted, amount_inserted)
 	var/datum/material/M = id_inserted
@@ -506,14 +496,14 @@
 
 /obj/machinery/mecha_part_fabricator/screwdriver_act(mob/living/user, obj/item/I)
 	if(being_built)
-		to_chat(user, span_warning(LANG("obj.8b2b5217", list(src))))
+		to_chat(user, span_warning(LANG("obj.8b2b521793e24433", list(src))))
 		return NONE
 
 	return default_deconstruction_screwdriver(user, I)
 
 /obj/machinery/mecha_part_fabricator/crowbar_act(mob/living/user, obj/item/I)
 	if(being_built)
-		to_chat(user, span_warning(LANG("obj.8b2b5217", list(src))))
+		to_chat(user, span_warning(LANG("obj.8b2b521793e24433", list(src))))
 		return NONE
 
 	return default_deconstruction_crowbar(user, I)

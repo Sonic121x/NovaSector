@@ -60,7 +60,7 @@ GLOBAL_DATUM(highlander_controller, /datum/highlander_controller)
 /datum/highlander_controller/proc/new_highlander(datum/source, mob/living/new_crewmember, rank)
 	SIGNAL_HANDLER
 
-	to_chat(new_crewmember, span_userdanger(LANG("datum.47f94506", null)))
+	to_chat(new_crewmember, span_userdanger(LANG("datum.47f945068c7d0c3c", null)))
 	new_crewmember.make_scottish()
 
 /**
@@ -73,7 +73,7 @@ GLOBAL_DATUM(highlander_controller, /datum/highlander_controller)
  */
 /client/proc/only_one(was_delayed = FALSE)
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr,LANG("client.8a212f07", null))
+		tgui_alert(usr,LANG("client.8a212f0792509a20", null))
 		return
 
 	if(was_delayed) //sends more accurate logs

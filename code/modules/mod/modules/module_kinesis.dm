@@ -1,7 +1,7 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///Kinesis - Gives you the ability to move and launch objects.
 /obj/item/mod/module/anomaly_locked/kinesis
-	name = "MOD kinesis module"
+	name = "\improper MOD kinesis module"
 	desc = "A modular plug-in to the forearm, this module was presumed lost for many years, \
 		despite the suits it used to be mounted on still seeing some circulation. \
 		This piece of technology allows the user to generate precise anti-gravity fields, \
@@ -57,10 +57,10 @@
 		launch(launched_object)
 		return
 	if(!range_check(target))
-		balloon_alert(mod.wearer, LANG("obj.f5e75781", null))
+		balloon_alert(mod.wearer, LANG("obj.f5e75781e8f1dc46", null))
 		return
 	if(!can_grab(target))
-		balloon_alert(mod.wearer, LANG("obj.7a457746", null))
+		balloon_alert(mod.wearer, LANG("obj.7a45774611b0a96d", null))
 		return
 	drain_power(use_energy_cost)
 	grab_atom(target)
@@ -73,7 +73,7 @@
 		clear_grab()
 		return
 	if(!range_check(grabbed_atom))
-		balloon_alert(mod.wearer, LANG("obj.2201997f", null))
+		balloon_alert(mod.wearer, LANG("obj.2201997fe1ea08ad", null))
 		clear_grab()
 		return
 	drain_power(use_energy_cost/10)
@@ -256,7 +256,7 @@
 	core_removable = FALSE
 
 /obj/item/mod/module/anomaly_locked/kinesis/prototype
-	name = "MOD prototype kinesis module"
+	name = "\improper MOD prototype kinesis module"
 	prebuilt = TRUE
 	complexity = 0
 	use_energy_cost = DEFAULT_CHARGE_DRAIN * 5
@@ -264,7 +264,7 @@
 	core_removable = FALSE
 
 /obj/item/mod/module/anomaly_locked/kinesis/plus
-	name = "MOD kinesis+ module"
+	name = "\improper MOD kinesis+ module"
 	desc = "A modular plug-in to the forearm, this module was recently redeveloped in secret. \
 		The bane of all ne'er-do-wells, the kinesis+ module is a powerful tool that allows the user \
 		to manipulate the world around them. Like its older counterpart, it's capable of manipulating \
@@ -275,7 +275,7 @@
 
 /// Admin suit version of kinesis. Can grab anything at any range, may enable phasing through walls.
 /obj/item/mod/module/anomaly_locked/kinesis/admin
-	name = "MOD kinesis++ module"
+	name = "\improper MOD kinesis++ module"
 	desc = "A modular plug-in to the forearm, this module was recently reredeveloped in super secret. \
 		This one can force some of the grasped objects to phase through walls. Oh no."
 	complexity = 0

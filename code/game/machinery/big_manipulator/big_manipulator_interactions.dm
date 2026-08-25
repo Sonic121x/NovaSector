@@ -41,7 +41,7 @@
 
 	if(!use_energy(active_power_usage, force = FALSE))
 		on = FALSE
-		balloon_alert_to_viewers(LANG("obj.7005f2d2", null))
+		balloon_alert_to_viewers(LANG("obj.7005f2d2db44de44", null))
 		return FALSE
 
 	next_cycle_scheduled = FALSE

@@ -26,7 +26,7 @@
 	return image(/atom/movable/screen/alert/hypnosis::overlay_icon, /atom/movable/screen/alert/hypnosis::overlay_state)
 
 /datum/surgery_operation/organ/brainwash/pre_preop(obj/item/organ/brain/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
-	operation_args[OPERATION_OBJECTIVE] = tgui_input_text(surgeon, LANG("datum.a04a1e3a", null), LANG("datum.442e449c", null), max_length = MAX_MESSAGE_LEN)
+	operation_args[OPERATION_OBJECTIVE] = tgui_input_text(surgeon, LANG("datum.a04a1e3a4e042ca7", null), LANG("datum.442e449cae607ecb", null), max_length = MAX_MESSAGE_LEN)
 	return !!operation_args[OPERATION_OBJECTIVE]
 
 /datum/surgery_operation/organ/brainwash/on_preop(obj/item/organ/brain/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
@@ -41,10 +41,10 @@
 
 /datum/surgery_operation/organ/brainwash/on_success(obj/item/organ/brain/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	if(!organ.owner.mind)
-		to_chat(surgeon, span_warning(LANG("datum.91a77439", list(organ.owner, organ.owner.p_they()))))
+		to_chat(surgeon, span_warning(LANG("datum.91a77439161b50d4", list(organ.owner, organ.owner.p_they()))))
 		return ..()
 	if(HAS_MIND_TRAIT(organ.owner, TRAIT_UNCONVERTABLE))
-		to_chat(surgeon, span_warning(LANG("datum.68738c14", list(organ.owner))))
+		to_chat(surgeon, span_warning(LANG("datum.68738c14d3e4cc34", list(organ.owner))))
 		return ..()
 
 	display_results(
@@ -58,7 +58,7 @@
 
 /datum/surgery_operation/organ/brainwash/proc/on_brainwash(mob/living/carbon/brainwashed, mob/living/surgeon, obj/item/tool, list/operation_args)
 	var/objective = operation_args[OPERATION_OBJECTIVE] || "Oooo no objective set somehow report this to an admin"
-	to_chat(brainwashed, span_notice(LANG("datum.0f876d62", list(objective))))
+	to_chat(brainwashed, span_notice(LANG("datum.0f876d627551c5e4", list(objective))))
 	brainwash(brainwashed, objective)
 	message_admins("[ADMIN_LOOKUPFLW(surgeon)] surgically brainwashed [ADMIN_LOOKUPFLW(brainwashed)] with the objective '[objective]'.")
 	surgeon.log_message("has brainwashed [key_name(brainwashed)] with the objective '[objective]' using brainwashing surgery.", LOG_ATTACK)

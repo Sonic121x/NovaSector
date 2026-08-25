@@ -41,7 +41,7 @@
 	acid = 50
 
 /obj/item/katana/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.437cc7c7", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.437cc7c7904a403f", list(user, user.p_their(), src, user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/katana/cursed //used by wizard events, see the tendril_loot.dm file for the miner one

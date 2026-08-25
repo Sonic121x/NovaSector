@@ -55,26 +55,26 @@
 		return NONE
 
 	if(flags_1 & HOLOGRAM_1)
-		balloon_alert(user, LANG("obj.761468ab", null))
+		balloon_alert(user, LANG("obj.761468ab2512abf5", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(can_uproot && tool.tool_behaviour == TOOL_SHOVEL)
 		if(uprooted)
-			user.visible_message(span_notice(LANG("obj.4f410c36", list(user, src))),
-								span_notice(LANG("obj.d164ac92", list(src))))
+			user.visible_message(span_notice(LANG("obj.4f410c36eed6624f", list(user, src))),
+								span_notice(LANG("obj.d164ac92ff5a5f34", list(src))))
 		else
-			user.visible_message(span_notice(LANG("obj.9697e68f", list(user, src))),
-								span_notice(LANG("obj.8d6b238d", list(src))))
+			user.visible_message(span_notice(LANG("obj.9697e68f59e33bd7", list(user, src))),
+								span_notice(LANG("obj.8d6b238dba0a0312", list(src))))
 		tool.play_tool_sound(src, 50)
 		if(!do_after(user, harvest_time, src))
 			return ITEM_INTERACT_BLOCKING
 		if(uprooted)
-			user.visible_message(span_notice(LANG("obj.da82b014", list(user, src))),
-								span_notice(LANG("obj.c8a4b141", list(src))))
+			user.visible_message(span_notice(LANG("obj.da82b0149db778f3", list(user, src))),
+								span_notice(LANG("obj.c8a4b141e3469050", list(src))))
 			replant(user)
 		else
-			user.visible_message(span_notice(LANG("obj.c4487d54", list(user, src))),
-								span_notice(LANG("obj.b067f869", list(src))))
+			user.visible_message(span_notice(LANG("obj.c4487d540b1a37a7", list(user, src))),
+								span_notice(LANG("obj.b067f869f92cf98c", list(src))))
 			uproot(user)
 		tool.play_tool_sound(src, 50)
 		return ITEM_INTERACT_SUCCESS
@@ -82,14 +82,14 @@
 	if(!can_harvest(user, tool))
 		return NONE
 
-	user.visible_message(span_notice(LANG("obj.b74b3b4c", list(user, harvest_verb, src))),
-						span_notice(LANG("obj.ad7a2441", list(harvest_verb, src, tool))))
+	user.visible_message(span_notice(LANG("obj.b74b3b4ccdf09044", list(user, harvest_verb, src))),
+						span_notice(LANG("obj.ad7a24414e22f935", list(harvest_verb, src, tool))))
 	play_attack_sound(tool.force)
 	if(!do_after(user, harvest_time * tool.toolspeed, src))
 		return ITEM_INTERACT_BLOCKING
 
-	visible_message(span_notice("[user] [harvest_verb][harvest_verb_suffix] [src]."),
-					span_notice(LANG("obj.d6171b71", list(harvest_verb, src))))
+	visible_message(span_notice(LANG("obj.5f7ab58442a7a604", list(user, harvest_verb, harvest_verb_suffix, src))),
+					span_notice(LANG("obj.d6171b714b8cf981", list(harvest_verb, src))))
 	play_attack_sound(tool.force)
 	if(harvest(user))
 		after_harvest(user)
@@ -102,12 +102,12 @@
 	if(!can_harvest(user))
 		return
 
-	user.visible_message(span_notice(LANG("obj.b74b3b4c", list(user, harvest_verb, src))),
-		span_notice(LANG("obj.9712cf58", list(harvest_verb, src))))
+	user.visible_message(span_notice(LANG("obj.b74b3b4ccdf09044", list(user, harvest_verb, src))),
+		span_notice(LANG("obj.9712cf5817898377", list(harvest_verb, src))))
 	play_attack_sound()
 	if(!do_after(user, harvest_time, src))
 		return
-	visible_message(span_notice("[user] [harvest_verb][harvest_verb_suffix] [src]."),
+	visible_message(span_notice(LANG("obj.5f7ab58442a7a604", list(user, harvest_verb, harvest_verb_suffix, src))),
 		ignored_mobs = list(user))
 	play_attack_sound()
 
@@ -347,12 +347,12 @@
 	delete_on_harvest = TRUE
 
 /obj/structure/flora/tree/stump/harvest(mob/living/user, product_amount_multiplier)
-	to_chat(user, span_notice(LANG("obj.be7bf9bc", list(src))))
+	to_chat(user, span_notice(LANG("obj.be7bf9bc922970e8", list(src))))
 	qdel(src)
 
 /obj/structure/flora/tree/stump/uproot(mob/living/user)
 	..()
-	to_chat(user, span_notice(LANG("obj.be7bf9bc", list(src))))
+	to_chat(user, span_notice(LANG("obj.be7bf9bc922970e8", list(src))))
 	qdel(src)
 
 /obj/structure/flora/tree/stump/get_seethrough_map()
@@ -499,9 +499,9 @@
 		return
 
 	if(took_presents[user.ckey] && !unlimited)
-		to_chat(user, span_warning(LANG("obj.38dae534", null)))
+		to_chat(user, span_warning(LANG("obj.38dae534292f3cca", null)))
 		return
-	to_chat(user, span_warning(LANG("obj.572a76d3", null)))
+	to_chat(user, span_warning(LANG("obj.572a76d3ffba5f9e", null)))
 
 	if(!unlimited)
 		took_presents[user.ckey] = TRUE

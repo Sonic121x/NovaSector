@@ -58,10 +58,10 @@
 /obj/item/wargame_projector/examine(mob/user)
 	. = ..()
 	if(projections)
-		. += span_notice(LANG("obj.515b5713", list(projections.len, max_signs)))
-	. += span_notice(LANG("obj.242b97d3", null))
-	. += span_notice(LANG("obj.f03395f5", null))
-	. += span_warning(LANG("obj.1444bda5", null))
+		. += span_notice(LANG("obj.515b57133eaa839d", list(projections.len, max_signs)))
+	. += span_notice(LANG("obj.242b97d3f3f49d6d", null))
+	. += span_notice(LANG("obj.f03395f5db2e5529", null))
+	. += span_warning(LANG("obj.1444bda5e3ef0d3e", null))
 
 /obj/item/wargame_projector/proc/populate_radial_choice_lists()
 	if(!length(radial_choices) || !length(projection_names_to_path))
@@ -88,18 +88,18 @@
 	select_hologram(user)
 
 /obj/item/wargame_projector/click_alt(mob/user)
-	var/selected_color = tgui_input_list(user, LANG("obj.c374a224", null), LANG("obj.503c427e", null), color_options)
+	var/selected_color = tgui_input_list(user, LANG("obj.c374a22461a7957f", null), LANG("obj.503c427e2d0ff719", null), color_options)
 	if(isnull(selected_color))
-		balloon_alert(user, LANG("obj.4435cb6b", null))
+		balloon_alert(user, LANG("obj.4435cb6b68a445b1", null))
 		return
 	var/color_to_set_to = color_options[selected_color]
 	holosign_color = color_to_set_to
-	balloon_alert(user, LANG("obj.7210b7e8", null))
+	balloon_alert(user, LANG("obj.7210b7e8dc488d8b", null))
 	set_greyscale(holosign_color)
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/wargame_projector/item_ctrl_click(mob/user)
-	if(tgui_alert(usr,LANG("obj.da18bc63", null), LANG("obj.f2e2c746", null), list("Yes", "No")) == "Yes")
+	if(tgui_alert(usr,LANG("obj.da18bc6304a32bcf", null), LANG("obj.f2e2c7461a43ffe5", null), list("Yes", "No")) == "Yes")
 		for(var/hologram in projections)
 			qdel(hologram)
 	return CLICK_ACTION_SUCCESS
@@ -112,7 +112,7 @@
 	if(target_turf.is_blocked_turf(TRUE))
 		return FALSE
 	if(LAZYLEN(projections) >= max_signs)
-		balloon_alert(user, LANG("obj.b672f626", null))
+		balloon_alert(user, LANG("obj.b672f626fbd0bc19", null))
 		return FALSE
 	return TRUE
 

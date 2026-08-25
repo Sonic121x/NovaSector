@@ -164,7 +164,7 @@
 
 	if(isliving(source))
 		var/mob/living/owner = source
-		to_chat(owner, span_boldwarning(LANG("datum.91126adc", list(network_name))))
+		to_chat(owner, span_boldwarning(LANG("datum.91126adcc1c06203", list(network_name))))
 
 	qdel(src)
 
@@ -211,7 +211,7 @@
 	else
 		stack_trace("[type] was created without a valid linker_action_path. No one will be able to link to it.")
 
-	to_chat(owner, span_boldnotice(LANG("datum.dc0aa7c1", list(network_name))))
+	to_chat(owner, span_boldnotice(LANG("datum.dc0aa7c18d50591d", list(network_name))))
 
 /datum/component/mind_linker/active_linking/Destroy()
 	QDEL_NULL(linker_action)
@@ -230,9 +230,9 @@
 	RegisterSignal(to_link, COMSIG_MINDSHIELD_IMPLANTED, PROC_REF(sig_unlink_mob))
 	var/mob/living/owner = parent
 	to_chat(to_link, span_notice(link_message))
-	to_chat(owner, span_notice(LANG("datum.1e4f0052", list(to_link, network_name))))
+	to_chat(owner, span_notice(LANG("datum.1e4f0052a87aeb51", list(to_link, network_name))))
 	for(var/mob/living/other_link as anything in linked_mobs)
-		to_chat(other_link, span_notice(LANG("datum.55d4fc87", list(owner.real_name, network_name))))
+		to_chat(other_link, span_notice(LANG("datum.55d4fc871543878c", list(owner.real_name, network_name))))
 
 /datum/component/mind_linker/active_linking/unlink_mob(mob/living/to_unlink)
 	. = ..()
@@ -242,9 +242,9 @@
 	UnregisterSignal(to_unlink, COMSIG_MINDSHIELD_IMPLANTED)
 	var/mob/living/owner = parent
 	to_chat(to_unlink, span_warning(unlink_message))
-	to_chat(owner, span_warning(LANG("datum.402cb6b6", list(network_name))))
+	to_chat(owner, span_warning(LANG("datum.402cb6b65a0ac706", list(network_name))))
 	for(var/mob/living/other_link as anything in linked_mobs)
-		to_chat(other_link, span_warning(LANG("datum.224e1bf8", list(owner.real_name, network_name))))
+		to_chat(other_link, span_warning(LANG("datum.224e1bf83217090a", list(owner.real_name, network_name))))
 
 // Used in mind linker to talk to everyone in the network.
 /datum/action/innate/linked_speech
@@ -264,7 +264,7 @@
 
 	var/datum/component/mind_linker/linker = Target
 	name = "[linker.network_name] Speech"
-	desc = LANG("datum.d19b7b5d", list(linker.network_name))
+	desc = LANG("datum.d19b7b5d39241c45", list(linker.network_name))
 	button_icon = linker.speech_action_icon
 	button_icon_state = linker.speech_action_icon_state
 	background_icon_state = linker.speech_action_background_icon_state
@@ -276,12 +276,12 @@
 	var/datum/component/mind_linker/linker = target
 	var/mob/living/linker_parent = linker.parent
 
-	var/message = tgui_input_text(owner, LANG("datum.3006d3ea", null), LANG("datum.df0464a5", list(linker.network_name)), max_length = MAX_MESSAGE_LEN)
+	var/message = tgui_input_text(owner, LANG("datum.3006d3ea8efe7701", null), LANG("datum.df0464a537e2f854", list(linker.network_name)), max_length = MAX_MESSAGE_LEN)
 	if(!message || QDELETED(src) || QDELETED(owner) || owner.stat == DEAD)
 		return
 
 	if(QDELETED(linker))
-		to_chat(owner, span_warning(LANG("datum.446f0cd7", null)))
+		to_chat(owner, span_warning(LANG("datum.446f0cd735f2d4d8", null)))
 		return
 
 	var/formatted_message = "<i><font color=[linker.chat_color]>\[[linker_parent.real_name]'s [linker.network_name]\] <b>[owner]:</b> [message]</font></i>"
@@ -293,7 +293,7 @@
 		var/avoid_highlighting = (recipient == owner) || (recipient == linker_parent)
 		to_chat(recipient, formatted_message, type = MESSAGE_TYPE_RADIO, avoid_highlighting = avoid_highlighting)
 		if(linker.show_balloon_alert && recipient != owner)
-			recipient.balloon_alert(recipient, LANG("datum.a046cc1b", list(linker.network_name)))
+			recipient.balloon_alert(recipient, LANG("datum.a046cc1b30e4e345", list(linker.network_name)))
 
 	for(var/mob/recipient as anything in GLOB.dead_mob_list)
 		to_chat(recipient, "[FOLLOW_LINK(recipient, owner)] [formatted_message]", type = MESSAGE_TYPE_RADIO)

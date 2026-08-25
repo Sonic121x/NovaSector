@@ -77,9 +77,11 @@ GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 //Takes a value of time in deciseconds.
 //Returns a text value of that number in hours, minutes, or seconds.
 /proc/DisplayTimeText(time_value, round_seconds_to = 0.1)
-	// NOVA EDIT ADDITION START - i18n - 全服中文时长（无复数/无 "and"，见 lang_display_time_text）
+	// NOVA EDIT ADDITION START - i18n - scoped locale duration formatting
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
-		return lang_display_time_text(time_value, round_seconds_to)
+		var/localized_time = lang_display_time_text(time_value, round_seconds_to)
+		if(!isnull(localized_time))
+			return localized_time
 	// NOVA EDIT ADDITION END
 	var/second = FLOOR(time_value * 0.1, round_seconds_to)
 	if(!second)

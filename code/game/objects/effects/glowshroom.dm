@@ -69,7 +69,7 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 
 /obj/structure/glowshroom/examine(mob/user)
 	. = ..()
-	. += LANG("obj.d736b741", list(generation, name))
+	. += LANG("obj.d736b741015ca60b", list(generation, name))
 
 /**
  * Creates a new glowshroom structure.
@@ -262,7 +262,7 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	take_damage(5, BURN, 0, 0)
 
 /obj/structure/glowshroom/acid_act(acidpwr, acid_volume)
-	visible_message(span_danger(LANG("obj.d5a75f95", list(src))))
+	visible_message(span_danger(LANG("obj.d5a75f955c6cd2fe", list(src))))
 	var/obj/effect/decal/cleanable/molten_object/I = new (get_turf(src))
 	I.desc = "Looks like this was \an [src] some time ago."
 	qdel(src)

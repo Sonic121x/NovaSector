@@ -73,8 +73,8 @@
 	cached_designs.Cut()
 
 	var/allow_any = isnull(allowed_department_flags)
-	for(var/design_id in stored_research.researched_designs)
-		var/datum/design/design = SSresearch.techweb_design_by_id(design_id)
+	for(var/design_path in stored_research.researched_designs)
+		var/datum/design/design = SSresearch.techweb_designs[design_path]
 
 		if(allow_any || ((design.departmental_flags & allowed_department_flags) && (design.build_type & allowed_buildtypes)))
 			cached_designs |= design
@@ -82,7 +82,7 @@
 	var/design_delta = length(cached_designs) - previous_design_count
 
 	if(design_delta > 0)
-		say(LANG("obj.b8003438", list(design_delta, design_delta == 1 ? "" : "s")))
+		say(LANG("obj.b800343897a0eb02", list(design_delta, design_delta == 1 ? "" : "s")))
 		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 50, TRUE)
 
 	update_static_data_for_all_viewers()

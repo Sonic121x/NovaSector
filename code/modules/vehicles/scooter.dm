@@ -15,12 +15,12 @@
 
 /obj/vehicle/ridden/scooter/wrench_act(mob/living/user, obj/item/tool)
 	..()
-	to_chat(user, span_notice(LANG("obj.3183924c", null)))
+	to_chat(user, span_notice(LANG("obj.3183924cb8d3b6b8", null)))
 	if(!tool.use_tool(src, user, 40, volume=50))
 		return TRUE
 	var/obj/vehicle/ridden/scooter/skateboard/improvised/skater = new(drop_location())
 	new /obj/item/stack/rods(drop_location(), 2)
-	to_chat(user, span_notice(LANG("obj.70118f37", list(src))))
+	to_chat(user, span_notice(LANG("obj.70118f37ff8fdb98", list(src))))
 	if(has_buckled_mobs())
 		var/mob/living/carbon/carbons = buckled_mobs[1]
 		unbuckle_mob(carbons)
@@ -110,14 +110,14 @@
 			rider.Paralyze(8 SECONDS)
 			rider.forceMove(bumped_thing)
 			forceMove(bumped_thing)
-			visible_message(span_danger(LANG("obj.41317fd3", list(src, bumped_thing))))
+			visible_message(span_danger(LANG("obj.41317fd3c25fb805", list(src, bumped_thing))))
 			return
 		rider.throw_at(throw_target, 3, 2)
 		var/head_slot = rider.get_item_by_slot(ITEM_SLOT_HEAD)
 		if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/utility/hardhat)))
 			rider.adjust_organ_loss(ORGAN_SLOT_BRAIN, 5)
 			rider.updatehealth()
-		visible_message(span_danger(LANG("obj.599ad85b", list(src, bumped_thing, rider))))
+		visible_message(span_danger(LANG("obj.599ad85b6a1a5f9f", list(src, bumped_thing, rider))))
 		rider.Paralyze(8 SECONDS)
 		if(iscarbon(bumped_thing))
 			var/mob/living/carbon/victim = bumped_thing
@@ -147,7 +147,7 @@
 		unbuckle_mob(skater)
 		var/atom/throw_target = get_edge_target_turf(src, pick(GLOB.cardinals))
 		skater.throw_at(throw_target, 2, 2)
-		visible_message(span_danger(LANG("obj.4e883dbb", list(skater, skater.p_their()))))
+		visible_message(span_danger(LANG("obj.4e883dbb36fdbba7", list(skater, skater.p_their()))))
 		skater.Paralyze(4 SECONDS)
 		grinding = FALSE
 		icon_state = "[initial(icon_state)]"
@@ -165,7 +165,7 @@
 			victim.apply_damage(damage = 25, damagetype = BRUTE, def_zone = victim.get_random_valid_zone(even_weights = TRUE), wound_bonus = 20)
 			victim.Paralyze(1.5 SECONDS)
 			skater.adjust_stamina_loss(instability)
-			victim.visible_message(span_danger(LANG("obj.45792a2b", list(victim, skater, src))))
+			victim.visible_message(span_danger(LANG("obj.45792a2b9bcf04d8", list(victim, skater, src))))
 	addtimer(CALLBACK(src, PROC_REF(grind)), 0.1 SECONDS)
 
 /obj/vehicle/ridden/scooter/skateboard/mouse_drop_dragged(atom/over_object, mob/user)
@@ -179,7 +179,7 @@
 	if ((skater.incapacitated || !Adjacent(skater)) && !forced)
 		return
 	if(has_buckled_mobs())
-		to_chat(skater, span_warning(LANG("obj.cd5547a3", null)))
+		to_chat(skater, span_warning(LANG("obj.cd5547a3152ae31c", null)))
 		return
 	skater.put_in_hands(board_item)
 	qdel(src)
@@ -210,7 +210,7 @@
 		return
 	if(rider && (z_move_flags & ZMOVE_CAN_FLY_CHECKS) && direction == UP)
 		if(z_move_flags & ZMOVE_FEEDBACK)
-			to_chat(rider, span_warning(LANG("obj.91d492c3", list(src, p_are()))))
+			to_chat(rider, span_warning(LANG("obj.91d492c3bc5e2458", list(src, p_are()))))
 		return FALSE
 
 /obj/vehicle/ridden/scooter/skateboard/hoverboard/holyboarded
@@ -254,16 +254,16 @@
 		return NONE
 	if(!tool.tool_start_check(user, amount=5))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.29a1eb2a", list(src))))
+	to_chat(user, span_notice(LANG("obj.29a1eb2a4d219a1a", list(src))))
 	if(!tool.use_tool(src, user, 80, volume = 50, amount = 5))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.7e0f0974", list(src))))
+	to_chat(user, span_notice(LANG("obj.7e0f09744b448f0a", list(src))))
 	new /obj/vehicle/ridden/scooter/skateboard/improvised(user.loc)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/scooter_frame/wrench_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice(LANG("obj.a33d1bb6", list(src))))
+	to_chat(user, span_notice(LANG("obj.a33d1bb641d47707", list(src))))
 	new /obj/item/stack/rods(drop_location(), 10)
 	tool.play_tool_sound(src)
 	qdel(src)
@@ -280,10 +280,10 @@
 		return NONE
 	if(!tool.tool_start_check(user, amount=2))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.72a01703", list(src))))
+	to_chat(user, span_notice(LANG("obj.72a01703150ddfb8", list(src))))
 	if(!tool.use_tool(src, user, 25, volume=50, amount=2))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.58b646ee", list(src))))
+	to_chat(user, span_notice(LANG("obj.58b646ee6e2e2577", list(src))))
 	var/obj/vehicle/ridden/scooter/skaterskoot = new(loc)
 	if(has_buckled_mobs())
 		var/mob/living/carbon/skaterboy = buckled_mobs[1]
@@ -296,10 +296,10 @@
 	. = ..()
 	if(.)
 		return
-	to_chat(user, span_notice(LANG("obj.81d62c45", list(src))))
+	to_chat(user, span_notice(LANG("obj.81d62c455ecade1d", list(src))))
 	if(!tool.use_tool(src, user, 20, volume=50))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.e4b2f2ea", list(src))))
+	to_chat(user, span_notice(LANG("obj.e4b2f2eab310507c", list(src))))
 	new /obj/item/stack/sheet/iron(drop_location(), 5)
 	new /obj/item/scooter_frame(drop_location())
 	if(has_buckled_mobs())
@@ -327,7 +327,7 @@
 
 /obj/vehicle/ridden/scooter/skateboard/wheelys/post_unbuckle_mob(mob/living/M)
 	if(!has_buckled_mobs())
-		to_chat(M, span_notice(LANG("obj.668f4bfa", list(wheel_name))))
+		to_chat(M, span_notice(LANG("obj.668f4bfa53d3e023", list(wheel_name))))
 		moveToNullspace()
 		shoes.toggle_wheels(FALSE)
 	return ..()
@@ -336,7 +336,7 @@
 	return
 
 /obj/vehicle/ridden/scooter/skateboard/wheelys/post_buckle_mob(mob/living/M)
-	to_chat(M, span_notice(LANG("obj.fb036645", list(wheel_name))))
+	to_chat(M, span_notice(LANG("obj.fb036645290cad75", list(wheel_name))))
 	shoes.toggle_wheels(TRUE)
 	return ..()
 

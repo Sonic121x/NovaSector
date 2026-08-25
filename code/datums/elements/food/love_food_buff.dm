@@ -37,4 +37,4 @@
 /datum/element/love_food_buff/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice(LANG("datum.c2e4acff", list(source, source.p_their())))
+	examine_list += span_notice(LANG("datum.c2e4acffbb0aca45", list(source, source.p_their())))

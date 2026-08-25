@@ -38,13 +38,13 @@
 		if(effective_damage && prob(33))
 			var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 			var/gauze_text = (!isnull(gauze) ? ", although the [gauze] helps to prevent some of the leakage" : "")
-			to_chat(victim, span_danger(LANG("datum.b0082fe8", list(limb.plaintext_zone, gauze_text))))
+			to_chat(victim, span_danger(LANG("datum.b0082fe827ffdf27", list(limb.plaintext_zone, gauze_text))))
 
 		if(regen_time_elapsed > regen_time_needed)
 			if(!victim || !limb)
 				qdel(src)
 				return
-			to_chat(victim, span_green(LANG("datum.96be4f7f", list(limb.plaintext_zone))))
+			to_chat(victim, span_green(LANG("datum.96be4f7ffcc0ca8e", list(limb.plaintext_zone))))
 			gelled = FALSE
 			ready_to_resolder = TRUE
 			ready_to_secure_internals = FALSE
@@ -71,21 +71,21 @@
 
 	var/to_add = get_wound_status()
 	if (!isnull(to_add))
-		. += LANG("datum.a6893bf4", list(to_add))
+		. += LANG("datum.a6893bf4cda6fd35", list(to_add))
 
 /datum/wound/blunt/robotic/secures_internals/get_simple_scanner_description(mob/user)
 	. = ..()
 
 	var/to_add = get_wound_status()
 	if (!isnull(to_add))
-		. += LANG("datum.a6893bf4", list(to_add))
+		. += LANG("datum.a6893bf4cda6fd35", list(to_add))
 
 /// Returns info specific to the dynamic state of the wound.
 /datum/wound/blunt/robotic/secures_internals/proc/get_wound_status(mob/user)
 	if (crowbarred_open)
-		. += LANG("datum.c05cf886", null)
+		. += LANG("datum.c05cf886979cbf64", null)
 	if (gelled)
-		. += LANG("datum.b0db91dc", null)
+		. += LANG("datum.b0db91dc9864db90", null)
 
 /datum/wound/blunt/robotic/secures_internals/item_can_treat(obj/item/potential_treater, mob/user)
 	if (potential_treater.tool_behaviour == TOOL_WELDER || potential_treater.tool_behaviour == TOOL_CAUTERY)
@@ -165,7 +165,7 @@
 	var/shock_or_not = (limb_can_shock_pre_sleep ? ", risking electrocution" : "")
 	var/self_message = span_warning("You start prying open [your_or_other] [limb.plaintext_zone] with [crowbarring_item][shock_or_not]...")
 
-	user?.visible_message(span_bolddanger(LANG("datum.4c8750cd", list(user, their_or_other, limb.plaintext_zone, crowbarring_item))), self_message, ignored_mobs = list(victim))
+	user?.visible_message(span_bolddanger(LANG("datum.4c8750cd2791dbbd", list(user, their_or_other, limb.plaintext_zone, crowbarring_item))), self_message, ignored_mobs = list(victim))
 
 	var/victim_message
 	if (user != victim) // this exists so we can do a userdanger
@@ -227,7 +227,7 @@
 			victim_message = span_userdanger("Your [limb.plaintext_zone] fragments and splinters as [user] tears it open with [user.p_their()] crowbar!")
 
 		playsound(get_turf(crowbarring_item), 'sound/effects/bang.ogg', 35, TRUE) // we did it!
-		to_chat(user, span_green(LANG("datum.8a50c887", list(your_or_other, limb.plaintext_zone))))
+		to_chat(user, span_green(LANG("datum.8a50c887d3acbe5b", list(your_or_other, limb.plaintext_zone))))
 		var/damage = CROWBAR_OPEN_BRUTE_DAMAGE
 		if (limb_essential()) // can't be disabled
 			damage *= CROWBAR_OPEN_ESSENTIAL_LIMB_DAMAGE_MULT
@@ -307,22 +307,22 @@
 
 	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
 	var/your_or_other = (user == victim ? "your" : "[victim]'s")
-	user?.visible_message(span_notice(LANG("datum.cbc77c08", list(user, their_or_other, limb.plaintext_zone))), \
-		span_notice(LANG("datum.e9198bf6", list(your_or_other, limb.plaintext_zone))))
+	user?.visible_message(span_notice(LANG("datum.cbc77c080aa00103", list(user, their_or_other, limb.plaintext_zone))), \
+		span_notice(LANG("datum.e9198bf63565e64f", list(your_or_other, limb.plaintext_zone))))
 	if (confused)
-		to_chat(user, span_warning(LANG("datum.2dff842e", list(your_or_other, limb.plaintext_zone))))
+		to_chat(user, span_warning(LANG("datum.2dff842e722962cc", list(your_or_other, limb.plaintext_zone))))
 
 	if (!securing_item.use_tool(target = victim, user = user, delay = (10 SECONDS * delay_mult), volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
 
 	if (prob(chance))
-		user?.visible_message(span_green(LANG("datum.fb07b942", list(user, their_or_other, limb.plaintext_zone))), \
-			span_green(LANG("datum.323b70c3", list(your_or_other, limb.plaintext_zone))))
-		to_chat(user, span_green(LANG("datum.998a6cc5", list(capitalize(your_or_other), limb.plaintext_zone))))
+		user?.visible_message(span_green(LANG("datum.fb07b94285095d11", list(user, their_or_other, limb.plaintext_zone))), \
+			span_green(LANG("datum.323b70c3f7f538a9", list(your_or_other, limb.plaintext_zone))))
+		to_chat(user, span_green(LANG("datum.998a6cc5a760d0b7", list(capitalize(your_or_other), limb.plaintext_zone))))
 		ready_to_secure_internals = FALSE
 		ready_to_resolder = TRUE
 	else
-		user?.visible_message(span_danger(LANG("datum.6b1da2a1", list(user, their_or_other, limb.plaintext_zone))))
+		user?.visible_message(span_danger(LANG("datum.6b1da2a1ea5f910d", list(user, their_or_other, limb.plaintext_zone))))
 		limb.receive_damage(brute = SECURE_INTERNALS_FAILURE_BRUTE_DAMAGE, damage_source = securing_item, wound_bonus = CANT_WOUND)
 
 	return TRUE
@@ -336,7 +336,7 @@
  */
 /datum/wound/blunt/robotic/secures_internals/proc/apply_gel(obj/item/stack/medical/bone_gel/gel, mob/user)
 	if (gelled)
-		to_chat(user, span_warning(LANG("datum.7c5b47cb", list(user == victim ? "Your" : "[victim]'s", limb.plaintext_zone))))
+		to_chat(user, span_warning(LANG("datum.7c5b47cbd54cb920", list(user == victim ? "Your" : "[victim]'s", limb.plaintext_zone))))
 		return TRUE
 
 	var/delay_mult = 1
@@ -346,17 +346,17 @@
 	if (HAS_TRAIT(src, TRAIT_WOUND_SCANNED))
 		delay_mult *= 0.75
 
-	user.visible_message(span_danger(LANG("datum.1c57181e", list(user, gel, victim, limb.plaintext_zone))), span_warning(LANG("datum.8c8be16d", list(gel, user == victim ? "your" : "[victim]'s", limb.plaintext_zone))))
+	user.visible_message(span_danger(LANG("datum.1c57181e243b69c1", list(user, gel, victim, limb.plaintext_zone))), span_warning(LANG("datum.8c8be16d3c6bdcf3", list(gel, user == victim ? "your" : "[victim]'s", limb.plaintext_zone))))
 
 	if (!do_after(user, (6 SECONDS * delay_mult), target = victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
 
 	gel.use(1)
 	if(user != victim)
-		user.visible_message(span_notice(LANG("datum.51a9515a", list(user, gel, victim, limb.plaintext_zone))), span_notice(LANG("datum.77f650f2", list(gel, victim, limb.plaintext_zone))), ignored_mobs=victim)
-		to_chat(victim, span_userdanger(LANG("datum.79735462", list(user, gel, limb.plaintext_zone))))
+		user.visible_message(span_notice(LANG("datum.51a9515a4966c25a", list(user, gel, victim, limb.plaintext_zone))), span_notice(LANG("datum.77f650f2269972ce", list(gel, victim, limb.plaintext_zone))), ignored_mobs=victim)
+		to_chat(victim, span_userdanger(LANG("datum.79735462307c7d3b", list(user, gel, limb.plaintext_zone))))
 	else
-		victim.visible_message(span_notice(LANG("datum.d8542688", list(victim, gel, victim.p_their(), limb.plaintext_zone))), span_notice(LANG("datum.ff428c18", list(gel, limb.plaintext_zone))))
+		victim.visible_message(span_notice(LANG("datum.d8542688f8715acb", list(victim, gel, victim.p_their(), limb.plaintext_zone))), span_notice(LANG("datum.ff428c18a9f56705", list(gel, limb.plaintext_zone))))
 
 	gelled = TRUE
 	set_disabling(TRUE)
@@ -373,8 +373,8 @@
 
 	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
 	var/your_or_other = (user == victim ? "your" : "[victim]'s")
-	victim.visible_message(span_notice(LANG("datum.30258a93", list(user, their_or_other, limb.plaintext_zone))), \
-		span_notice(LANG("datum.6296fda7", list(your_or_other, limb.plaintext_zone))))
+	victim.visible_message(span_notice(LANG("datum.30258a93cf3bc372", list(user, their_or_other, limb.plaintext_zone))), \
+		span_notice(LANG("datum.6296fda79f6d6928", list(your_or_other, limb.plaintext_zone))))
 
 	var/delay_mult = 1
 	if (welding_item.tool_behaviour == TOOL_CAUTERY)
@@ -385,8 +385,8 @@
 	if (!welding_item.use_tool(target = victim, user = user, delay = 7 SECONDS * delay_mult, volume = 50,  extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
 
-	victim.visible_message(span_green(LANG("datum.011db132", list(user, their_or_other, limb.plaintext_zone))), \
-		span_notice(LANG("datum.e6e8c49f", list(your_or_other, limb.plaintext_zone))))
+	victim.visible_message(span_green(LANG("datum.011db132b28b6650", list(user, their_or_other, limb.plaintext_zone))), \
+		span_notice(LANG("datum.e6e8c49f0a710882", list(your_or_other, limb.plaintext_zone))))
 	remove_wound()
 	return TRUE
 
@@ -407,11 +407,11 @@
 
 	var/wound_step = get_wound_step_info()
 	if (wound_step)
-		. += LANG("datum.727cdec4", list(span_notice(wound_step)))
+		. += LANG("datum.727cdec4c33e3f71", list(span_notice(wound_step)))
 
 /datum/wound/blunt/robotic/secures_internals/get_simple_scanner_description(mob/user)
 	. = ..()
 
 	var/wound_step = get_wound_step_info()
 	if (wound_step)
-		. += LANG("datum.727cdec4", list(span_notice(wound_step)))
+		. += LANG("datum.727cdec4c33e3f71", list(span_notice(wound_step)))

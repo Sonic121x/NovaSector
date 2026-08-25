@@ -53,7 +53,7 @@
 		return
 	// NOVA EDIT ADDITION END
 	priority_announce(
-		text = LANG("obj.d8f99a53", list(red_alert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "", timeLeft(60 SECONDS), reason, SSshuttle.emergency_last_call_loc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "", SSshuttle.admin_emergency_no_recall ? "\n\nWarning: Shuttle recall subroutines disabled; Recall not possible." : "")),
+		text = LANG("obj.d8f99a532c08d7e2", list(red_alert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "", timeLeft(60 SECONDS), reason, SSshuttle.emergency_last_call_loc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "", SSshuttle.admin_emergency_no_recall ? "\n\nWarning: Shuttle recall subroutines disabled; Recall not possible." : "")),
 		title = "Emergency Shuttle Dispatched",
 		sound = ANNOUNCER_SHUTTLECALLED,
 		sender_override = "Emergency Shuttle Uplink Alert",
@@ -75,7 +75,7 @@
 		SSshuttle.emergency_last_call_loc = null
 
 	priority_announce(
-		text = LANG("obj.93c96910", list(SSshuttle.emergency_last_call_loc ? " Recall signal traced. Results can be viewed on any communications console." : "")),
+		text = LANG("obj.93c969109f29fb0e", list(SSshuttle.emergency_last_call_loc ? " Recall signal traced. Results can be viewed on any communications console." : "")),
 		title = "Emergency Shuttle Recalled",
 		sound = ANNOUNCER_SHUTTLERECALLED,
 		sender_override = "Emergency Shuttle Uplink Alert",
@@ -170,7 +170,7 @@
 				setTimer(SSshuttle.emergency_dock_time)
 				send2adminchat("Server", "The Emergency Shuttle has docked with the station.")
 				priority_announce(
-					text = LANG("obj.a215ab15", list(SSshuttle.emergency, DisplayTimeText(SSshuttle.emergency_dock_time))),
+					text = LANG("obj.a215ab15c2195d6b", list(SSshuttle.emergency, DisplayTimeText(SSshuttle.emergency_dock_time))),
 					title = "Emergency Shuttle Arrival",
 					sound = ANNOUNCER_SHUTTLEDOCK,
 					sender_override = "Emergency Shuttle Uplink Alert",
@@ -234,7 +234,7 @@
 				bolt_all_doors() // NOVA EDIT ADDITION
 				setTimer(SSshuttle.emergency_escape_time * engine_coeff)
 				priority_announce(
-					text = LANG("obj.a6ef759f", list(timeLeft(60 SECONDS), command_name())),
+					text = LANG("obj.a6ef759f07f8735c", list(timeLeft(60 SECONDS), command_name())),
 					title = "Emergency Shuttle Departure",
 					sender_override = "Emergency Shuttle Uplink Alert",
 					color_override = "orange",
@@ -302,7 +302,7 @@
 	launch_status = ENDGAME_LAUNCHED
 	setTimer(SSshuttle.emergency_escape_time)
 	priority_announce(
-		text = LANG("obj.c0671157", list(timeLeft(60 SECONDS), command_name())),
+		text = LANG("obj.c06711573b064bc5", list(timeLeft(60 SECONDS), command_name())),
 		title = "Emergency Shuttle Transit Failure",
 		sender_override = "Emergency Shuttle Uplink Alert",
 		color_override = "orange",

@@ -40,7 +40,7 @@
 /obj/item/survivalcapsule/examine(mob/user)
 	. = ..()
 	get_template()
-	. += LANG("obj.e79b836b", list(template.name))
+	. += LANG("obj.e79b836bd86494d4", list(template.name))
 	. += template.description
 
 /obj/item/survivalcapsule/interact(mob/living/user)
@@ -53,7 +53,7 @@
 	if(used)
 		return FALSE
 
-	loc.visible_message(span_warning(LANG("obj.bb0f5054", list(src))))
+	loc.visible_message(span_warning(LANG("obj.bb0f50541f30098e", list(src))))
 	used = TRUE
 	addtimer(CALLBACK(src, PROC_REF(expand), user), 5 SECONDS)
 	if(iscarbon(user))
@@ -89,9 +89,9 @@
 /obj/item/survivalcapsule/proc/fail_feedback(status)
 	switch(status)
 		if(SHELTER_DEPLOY_BAD_AREA)
-			loc.visible_message(span_warning(LANG("obj.b1f7838e", list(src))))
+			loc.visible_message(span_warning(LANG("obj.b1f7838e7edb884c", list(src))))
 		if(SHELTER_DEPLOY_BAD_TURFS, SHELTER_DEPLOY_ANCHORED_OBJECTS, SHELTER_DEPLOY_OUTSIDE_MAP, SHELTER_DEPLOY_BANNED_OBJECTS)
-			loc.visible_message(span_warning(LANG("obj.90300dc4", list(src, template.width, template.height))))
+			loc.visible_message(span_warning(LANG("obj.90300dc4b8971dbd", list(src, template.width, template.height))))
 
 /// Throws any mobs near the deployed location away from the item / shelter
 /// Does some math to make closer mobs get thrown further
@@ -150,23 +150,6 @@
 	template_id = "shelter_toilet"
 
 //Pod objects
-
-//Window
-/obj/structure/window/reinforced/shuttle/survival_pod
-	name = "pod window"
-	icon = 'icons/obj/smooth_structures/pod_window.dmi'
-	icon_state = "pod_window-0"
-	base_icon_state = "pod_window"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
-	canSmoothWith = SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
-
-/obj/structure/window/reinforced/survival_pod
-	name = "pod window"
-	icon = 'icons/obj/mining_zones/survival_pod.dmi'
-	icon_state = "pwindow"
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/survival_pod/spawner, 0)
 
 //Door
 /obj/machinery/door/airlock/survival_pod
@@ -233,8 +216,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/survival_pod/left, 0)
 /obj/item/gps/computer/wrench_act(mob/living/user, obj/item/I)
 	..()
 
-	user.visible_message(span_warning(LANG("obj.64d85c99", list(user, src))),
-		span_notice(LANG("obj.c234e380", list(src))), span_hear(LANG("obj.f070a678", null)))
+	user.visible_message(span_warning(LANG("obj.64d85c99dc62f8de", list(user, src))),
+		span_notice(LANG("obj.c234e380f56e7a65", list(src))), span_hear(LANG("obj.f070a678bd67cf40", null)))
 	if(I.use_tool(src, user, 20, volume=50))
 		new /obj/item/gps(loc)
 		qdel(src)

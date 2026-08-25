@@ -37,18 +37,18 @@
 /datum/component/faction_granter/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(used)
-		examine_list += span_notice(LANG("datum.e49af80c", list(parent)))
+		examine_list += span_notice(LANG("datum.e49af80c174bd23e", list(parent)))
 	else
-		examine_list += span_notice(LANG("datum.a7283f94", list(parent, faction_to_grant)))
+		examine_list += span_notice(LANG("datum.a7283f94d7d7a05e", list(parent, faction_to_grant)))
 
 ///signal called on parent being interacted with in hand
 /datum/component/faction_granter/proc/on_self_attack(atom/source, mob/user)
 	SIGNAL_HANDLER
 	if(used)
-		to_chat(user, span_warning(LANG("datum.7ecdd2da", list(parent))))
+		to_chat(user, span_warning(LANG("datum.7ecdd2da2cd10cea", list(parent))))
 		return
 	if(user.mind?.holy_role < holy_role_required)
-		to_chat(user, span_warning(LANG("datum.bb58e8d9", list(parent))))
+		to_chat(user, span_warning(LANG("datum.bb58e8d90806c709", list(parent))))
 		return
 
 	to_chat(user, grant_message)

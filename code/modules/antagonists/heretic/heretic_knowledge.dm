@@ -60,7 +60,7 @@
 /datum/heretic_knowledge/proc/pre_research(mob/user, datum/antagonist/heretic/our_heretic)
 	// consider moving this check to a type instead
 	if(is_final_knowledge && !our_heretic.unlimited_blades)
-		var/choice = tgui_alert(user, LANG("datum.773c3f14", null), LANG("datum.32e923aa", null), list("Yes", "No"))
+		var/choice = tgui_alert(user, LANG("datum.773c3f14b8d91392", null), LANG("datum.32e923aacb9e99cf", null), list("Yes", "No"))
 		if(choice != "Yes")
 			return FALSE
 	return TRUE
@@ -311,14 +311,14 @@
 
 	if(the_spell != created_action_ref || isnull(the_spell.owner))
 		return NONE
-	if(charges > 0)
+	if(has_charges(the_spell.owner))
 		return NONE
 	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(the_spell.owner)
 	if(our_heretic?.ascended)
 		return NONE
 
 	if(feedback)
-		to_chat(the_spell.owner, span_mansus(LANG("datum.93b0e4f4", null)))
+		to_chat(the_spell.owner, span_mansus(LANG("datum.93b0e4f4c77bff3d", null)))
 	return SPELL_CANCEL_CAST
 
 /datum/heretic_knowledge/spell/proc/check_charges(mob/living/source, datum/action/cooldown/the_spell)
@@ -326,25 +326,35 @@
 
 	if(the_spell != created_action_ref)
 		return NONE
-	if(charges > 0)
+	if(has_charges(source))
 		return NONE
 	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(source)
 	if(our_heretic?.ascended)
 		return NONE
 
-	to_chat(source, span_mansus(LANG("datum.80d260ae", list(transmute_text))))
+	to_chat(source, span_mansus(LANG("datum.80d260ae8290360a", list(transmute_text))))
 	return SPELL_CANCEL_CAST
+
+/// Checks if we have enough charges to cast the spell
+/datum/heretic_knowledge/spell/proc/has_charges(mob/living/user)
+	return charges > 0
 
 /datum/heretic_knowledge/spell/proc/deduct_charge(mob/living/source, datum/action/cooldown/the_spell)
 	SIGNAL_HANDLER
 
 	if(the_spell != created_action_ref)
 		return
+	if(!should_deduct_charge(source))
+		return
 	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(source)
 	if(our_heretic?.ascended)
 		return
 
 	remove_charges(1)
+
+/// Checks if casting the spell should deduct a charge
+/datum/heretic_knowledge/spell/proc/should_deduct_charge(mob/living/user)
+	return TRUE
 
 /// Add a number of charges, optionally bypassing the cap
 /datum/heretic_knowledge/spell/proc/add_charges(num, uncapped = FALSE)
@@ -407,7 +417,7 @@
 			LAZYREMOVE(created_items, ref)
 
 	if(LAZYLEN(created_items) >= limit)
-		loc.balloon_alert(user, LANG("datum.ef61fe8e", null))
+		loc.balloon_alert(user, LANG("datum.ef61fe8eca135b20", null))
 		return FALSE
 
 	return TRUE
@@ -444,7 +454,7 @@
 		our_heretic.heretic_path = new column_path()
 	if(!our_heretic.heretic_path)
 		// If we don't have a path, we can't continue.
-		to_chat(user, span_warning(LANG("datum.98bd603c", null)))
+		to_chat(user, span_warning(LANG("datum.98bd603c48a569b0", null)))
 		stack_trace("failed to find valid path [our_heretic.heretic_shops[HERETIC_KNOWLEDGE_TREE][type][HKT_ROUTE]] from researching [src]")
 		return
 	SSblackbox.record_feedback("tally", "heretic_path_taken", 1, our_heretic.heretic_path.route)
@@ -609,7 +619,7 @@
 	message_admins("A [summoned.name] is being summoned by [ADMIN_LOOKUPFLW(user)] in [ADMIN_COORDJMP(summoned)].")
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = ROLE_HERETIC, poll_time = 10 SECONDS, checked_target = summoned, ignore_category = poll_ignore_define, alert_pic = summoned, role_name_text = summoned.name)
 	if(isnull(chosen_one))
-		loc.balloon_alert(user, LANG("datum.4aba41bf", null))
+		loc.balloon_alert(user, LANG("datum.4aba41bf85313a4b", null))
 		animate(summoned, 0.5 SECONDS, alpha = 0)
 		QDEL_IN(summoned, 0.6 SECONDS)
 		return FALSE
@@ -700,16 +710,16 @@
 
 	var/list/requirements_string = list()
 
-	to_chat(user, span_mansus(LANG("datum.6a274d9b", list(name))))
+	to_chat(user, span_mansus(LANG("datum.6a274d9bfbe3dc1c", list(name))))
 	for(var/obj/item/path as anything in required_atoms)
 		var/amount_needed = required_atoms[path]
-		to_chat(user, span_hypnophrase(LANG("datum.091a8f1d", list(amount_needed, initial(path.name)))))
+		to_chat(user, span_hypnophrase(LANG("datum.091a8f1db41179a7", list(amount_needed, initial(path.name)))))
 		requirements_string += "[amount_needed == 1 ? "":"[amount_needed] "][initial(path.name)]\s"
 
-	to_chat(user, span_mansus(LANG("datum.9260ae25", list(KNOWLEDGE_RITUAL_POINTS))))
+	to_chat(user, span_mansus(LANG("datum.9260ae255193d395", list(KNOWLEDGE_RITUAL_POINTS))))
 
 	transmute_text = "Transmute [english_list(requirements_string)]."
-	desc = LANG("datum.5e555f6c", list(KNOWLEDGE_RITUAL_POINTS))
+	desc = LANG("datum.5e555f6c57741b25", list(KNOWLEDGE_RITUAL_POINTS))
 
 /datum/heretic_knowledge/knowledge_ritual/can_be_invoked(datum/antagonist/heretic/invoker)
 	return !was_completed
@@ -722,7 +732,7 @@
 	our_heretic.adjust_knowledge_points(KNOWLEDGE_RITUAL_POINTS)
 	was_completed = TRUE
 
-	to_chat(user, span_boldnotice(LANG("datum.862499e6", list(name))))
+	to_chat(user, span_boldnotice(LANG("datum.862499e6553dce62", list(name))))
 	to_chat(user, span_hypnophrase(span_big("[pick_list(HERETIC_INFLUENCE_FILE, "drain_message")]")))
 	desc += " (Completed!)"
 	log_heretic_knowledge("[key_name(user)] completed a [name] at [round_timestamp()].")
@@ -808,7 +818,7 @@
 	SSblackbox.record_feedback("tally", "heretic_ascended", 1, heretic_datum.heretic_path.route)
 	log_heretic_knowledge("[key_name(user)] completed their final ritual at [round_timestamp()].")
 	notify_ghosts(
-		LANG("datum.15931db3", list(user.real_name)),
+		LANG("datum.15931db3c7ec95b7", list(user.real_name)),
 		source = user,
 		header = "A Heretic is Ascending!",
 	)

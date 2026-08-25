@@ -10,7 +10,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 /client/proc/vv_parse_text(O, new_var)
 	if(O && findtext(new_var,"\["))
-		var/process_vars = tgui_alert(usr,LANG("client.14e65026", null),LANG("client.1475e70e", null),list("Yes","No"))
+		var/process_vars = tgui_alert(usr,LANG("client.14e650260e603cf2", null),LANG("client.1475e70e6ebd485d", null),list("Yes","No"))
 		if(process_vars == "Yes")
 			. = string2listofvars(new_var, O)
 
@@ -25,7 +25,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if (!subtypes || !subtypes.len)
 		return FALSE
 	if (subtypes?.len)
-		switch(tgui_alert(usr,LANG("client.77dd7327", null), LANG("client.a2557075", null), list("Strictly this type","This type and subtypes", "Cancel")))
+		switch(tgui_alert(usr,LANG("client.77dd73271becb1f1", null), LANG("client.a255707500cb82ff", null), list("Strictly this type","This type and subtypes", "Cancel")))
 			if("Strictly this type")
 				return FALSE
 			if("This type and subtypes")
@@ -97,12 +97,12 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 	L += list(var_value) //var_value could be a list
 
-	switch(tgui_alert(usr,LANG("client.7b72fee3", null),,list("Yes","No")))
+	switch(tgui_alert(usr,LANG("client.7b72fee304910cc1", null),,list("Yes","No")))
 		if("Yes")
 			L[var_value] = mod_list_add_ass(O) //hehe
 	if (O)
 		if (O.vv_edit_var(objectvar, L) == FALSE)
-			to_chat(src, LANG("client.473659ab", null), confidential = TRUE)
+			to_chat(src, LANG("client.473659ab71970b04", null), confidential = TRUE)
 			return
 	log_world("### ListVarEdit by [src]: [(O ? O.type : "/list")] [objectvar]: ADDED=[var_value]")
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: ADDED=[var_value]")
@@ -112,14 +112,14 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if(!check_rights(R_VAREDIT))
 		return
 	if(!istype(L, /list))
-		to_chat(src, LANG("client.3aba73b6", null), confidential = TRUE)
+		to_chat(src, LANG("client.3aba73b628d4d63b", null), confidential = TRUE)
 		return
 	if(isalist(L))
-		to_chat(src, LANG("client.b131dbf3", null), confidential = TRUE)
+		to_chat(src, LANG("client.b131dbf388a6314f", null), confidential = TRUE)
 		return
 
 	if(L.len > 1000)
-		var/confirm = tgui_alert(usr, LANG("client.337f0b71", null), LANG("client.acf3640b", null), list("Continue", "Abort"))
+		var/confirm = tgui_alert(usr, LANG("client.337f0b711fb4b857", null), LANG("client.acf3640b5e935a18", null), list("Continue", "Abort"))
 		if(confirm != "Continue")
 			return
 
@@ -134,7 +134,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			value = "null"
 		names["#[i] [key] = [value]"] = i
 	if (!index)
-		var/variable = input(LANG("client.3e95c4ff", null),LANG("client.61b9a9e1", null)) as null|anything in names + "(ADD VAR)" + "(CLEAR NULLS)" + "(CLEAR DUPES)" + "(SHUFFLE)"
+		var/variable = input(LANG("client.3e95c4ff429965ba", null),LANG("client.61b9a9e107dedb8a", null)) as null|anything in names + "(ADD VAR)" + "(CLEAR NULLS)" + "(CLEAR DUPES)" + "(SHUFFLE)"
 
 		if(variable == null)
 			return
@@ -147,7 +147,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			L = L.Copy()
 			list_clear_nulls(L)
 			if (!O.vv_edit_var(objectvar, L))
-				to_chat(src, LANG("client.473659ab", null), confidential = TRUE)
+				to_chat(src, LANG("client.473659ab71970b04", null), confidential = TRUE)
 				return
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: CLEAR NULLS")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: CLEAR NULLS")
@@ -157,7 +157,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		if(variable == "(CLEAR DUPES)")
 			L = unique_list(L)
 			if (!O.vv_edit_var(objectvar, L))
-				to_chat(src, LANG("client.473659ab", null), confidential = TRUE)
+				to_chat(src, LANG("client.473659ab71970b04", null), confidential = TRUE)
 				return
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: CLEAR DUPES")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: CLEAR DUPES")
@@ -167,7 +167,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		if(variable == "(SHUFFLE)")
 			L = shuffle(L)
 			if (!O.vv_edit_var(objectvar, L))
-				to_chat(src, LANG("client.473659ab", null), confidential = TRUE)
+				to_chat(src, LANG("client.473659ab71970b04", null), confidential = TRUE)
 				return
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: SHUFFLE")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: SHUFFLE")
@@ -181,7 +181,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if (index == null)
 		return
 	var/assoc = 0
-	var/prompt = tgui_alert(usr, LANG("client.22199e70", null), LANG("client.96c7da58", null), list("Key", "Assigned Value", "Cancel"))
+	var/prompt = tgui_alert(usr, LANG("client.22199e707ba674f5", null), LANG("client.96c7da5868736a1a", null), list("Key", "Assigned Value", "Cancel"))
 	if (prompt == "Cancel")
 		return
 	if (prompt == "Assigned Value")
@@ -204,9 +204,9 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 	default = vv_get_class(objectvar, variable)
 
-	to_chat(src, LANG("client.a7b53abf", list(uppertext(default))), confidential = TRUE)
+	to_chat(src, LANG("client.a7b53abf28e579ff", list(uppertext(default))), confidential = TRUE)
 
-	to_chat(src, LANG("client.34502e1e", list(variable)), confidential = TRUE)
+	to_chat(src, LANG("client.34502e1ef4fb1bcd", list(variable)), confidential = TRUE)
 
 	if(default == VV_NUM)
 		var/dir_text = ""
@@ -222,7 +222,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 				dir_text += "WEST"
 
 		if(dir_text)
-			to_chat(usr, LANG("client.091219d6", list(dir_text)), confidential = TRUE)
+			to_chat(usr, LANG("client.091219d656be7f8b", list(dir_text)), confidential = TRUE)
 
 	var/original_var = variable
 
@@ -250,7 +250,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			L.Cut(index, index+1)
 			if (O)
 				if (O.vv_edit_var(objectvar, L))
-					to_chat(src, LANG("client.473659ab", null), confidential = TRUE)
+					to_chat(src, LANG("client.473659ab71970b04", null), confidential = TRUE)
 					return
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: REMOVED=[html_encode("[original_var]")]")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: REMOVED=[original_var]")
@@ -272,7 +272,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 				L[new_var] = old_assoc_value
 	if (O)
 		if (O.vv_edit_var(objectvar, L) == FALSE)
-			to_chat(src, LANG("client.473659ab", null), confidential = TRUE)
+			to_chat(src, LANG("client.473659ab71970b04", null), confidential = TRUE)
 			return
 	log_world("### ListVarEdit by [src]: [(O ? O.type : "/list")] [objectvar]: [original_var]=[new_var]")
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: [original_var]=[new_var]")
@@ -300,7 +300,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 	if(param_var_name)
 		if(!(param_var_name in O.vars))
-			to_chat(src, LANG("client.c5dca644", list(param_var_name, O)), confidential = TRUE)
+			to_chat(src, LANG("client.c5dca644628ab4cb", list(param_var_name, O)), confidential = TRUE)
 			return
 		variable = param_var_name
 
@@ -311,7 +311,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 		names = sort_list(names)
 
-		variable = input(LANG("client.3e95c4ff", null),LANG("client.61b9a9e1", null)) as null|anything in names
+		variable = input(LANG("client.3e95c4ff429965ba", null),LANG("client.61b9a9e107dedb8a", null)) as null|anything in names
 		if(!variable)
 			return
 
@@ -325,11 +325,11 @@ GLOBAL_PROTECT(VVpixelmovement)
 	var/default = vv_get_class(variable, var_value)
 
 	if(isnull(default))
-		to_chat(src, LANG("client.79202fb9", null), confidential = TRUE)
+		to_chat(src, LANG("client.79202fb969bb1d48", null), confidential = TRUE)
 	else
-		to_chat(src, LANG("client.a7b53abf", list(uppertext(default))), confidential = TRUE)
+		to_chat(src, LANG("client.a7b53abf28e579ff", list(uppertext(default))), confidential = TRUE)
 
-	to_chat(src, LANG("client.34502e1e", list(var_value)), confidential = TRUE)
+	to_chat(src, LANG("client.34502e1ef4fb1bcd", list(var_value)), confidential = TRUE)
 
 	if(default == VV_NUM)
 		var/dir_text = ""
@@ -344,7 +344,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 				dir_text += "WEST"
 
 		if(dir_text)
-			to_chat(src, LANG("client.091219d6", list(dir_text)), confidential = TRUE)
+			to_chat(src, LANG("client.091219d656be7f8b", list(dir_text)), confidential = TRUE)
 
 	if(autodetect_class && default != VV_NULL)
 		if (default == VV_TEXT)
@@ -381,7 +381,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 
 	if (O.vv_edit_var(variable, var_new) == FALSE)
-		to_chat(src, LANG("client.473659ab", null), confidential = TRUE)
+		to_chat(src, LANG("client.473659ab71970b04", null), confidential = TRUE)
 		return
 	vv_update_display(O, "varedited", VV_MSG_EDITED)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_VAR_EDIT, args)

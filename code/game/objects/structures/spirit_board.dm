@@ -33,9 +33,9 @@
 /obj/structure/spirit_board/examine()
 	. = ..()
 	if(planchette)
-		. += span_notice(LANG("obj.21f0ad13", list(planchette)))
+		. += span_notice(LANG("obj.21f0ad13c15d21c6", list(planchette)))
 	else
-		. += span_notice(LANG("obj.ed5269ff", null))
+		. += span_notice(LANG("obj.ed5269ffff4c9237", null))
 
 /obj/structure/spirit_board/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -58,12 +58,12 @@
 	if(virgin)
 		virgin = FALSE
 		notify_ghosts(
-			LANG("obj.c255aec9", list(src, get_area(src))),
+			LANG("obj.c255aec9d528d579", list(src, get_area(src))),
 			source = src,
 			header = "Spirit board",
 		)
 
-	var/new_planchette = tgui_input_list(ghost, LANG("obj.46360ed7", null), LANG("obj.fc8dad6f", null), ghosty_options)
+	var/new_planchette = tgui_input_list(ghost, LANG("obj.46360ed76ef48534", null), LANG("obj.fc8dad6fb31fc105", null), ghosty_options)
 	if(isnull(new_planchette))
 		return
 	if(!Adjacent(ghost) || !COOLDOWN_FINISHED(src, next_use))
@@ -73,8 +73,8 @@
 	COOLDOWN_START(src, next_use, rand(3 SECONDS, 5 SECONDS))
 	lastuser = ghost.ckey
 	visible_message(
-		message = span_notice(LANG("obj.90ebd152", list(planchette))),
-		blind_message = span_hear(LANG("obj.9d42739e", null)),
+		message = span_notice(LANG("obj.90ebd152f11db210", list(planchette))),
+		blind_message = span_hear(LANG("obj.9d42739e696387b0", null)),
 		vision_distance = 2,
 	)
 
@@ -86,7 +86,7 @@
 
 	var/turf/play_turf = get_turf(src)
 	if(play_turf?.check_lumcount_above(0.2))
-		to_chat(ghost, span_warning(LANG("obj.80b7b758", list(src))))
+		to_chat(ghost, span_warning(LANG("obj.80b7b7583657f455", list(src))))
 		return FALSE
 
 	if(required_user_count > 0)
@@ -96,13 +96,13 @@
 				continue
 
 			if(player.client?.is_afk() || HAS_TRAIT(player, TRAIT_HANDS_BLOCKED))//no playing with braindeads or corpses or handcuffed dudes.
-				to_chat(ghost, span_warning(LANG("obj.84624388", list(player))))
+				to_chat(ghost, span_warning(LANG("obj.84624388fd80bbf3", list(player))))
 				continue
 
 			users_in_range++
 
 		if(users_in_range < required_user_count)
-			to_chat(ghost, span_warning(LANG("obj.d2b6eb75", list(src))))
+			to_chat(ghost, span_warning(LANG("obj.d2b6eb75bd397664", list(src))))
 			return FALSE
 
 	return TRUE

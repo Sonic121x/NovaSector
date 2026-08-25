@@ -135,14 +135,10 @@ SUBSYSTEM_DEF(vote)
 	if(CONFIG_GET(flag/no_dead_vote) && voter.stat == DEAD && !voter.client?.holder)
 		return
 
-	// NOVA EDIT ADDITION START - I18N: 老客户端（或任何残留 P1 翻译）可能回传译名。译名不在 choices
-	// 里，直接 ++ 会建出幽灵条目、真键永远 0 票。先反查回英文键；反查不出来的按未知选项丢弃，
-	// 不再污染计票表。
+	// NOVA EDIT ADDITION START - I18N: 未知选项直接丢弃，不再 ++ 出幽灵条目、把真键的票数吃掉。
+	// （从前这里还要先把译名反查回英文——负载不再被就地改写之后，回传的永远是英文键。）
 	if(!(their_vote in current_vote.choices))
-		var/unreversed = lang_unreverse_text(their_vote)
-		if(!(unreversed in current_vote.choices))
-			return
-		their_vote = unreversed
+		return
 	// NOVA EDIT ADDITION END
 
 	// If user has already voted, remove their specific vote
@@ -172,14 +168,10 @@ SUBSYSTEM_DEF(vote)
 	else
 		voted += voter.ckey
 
-	// NOVA EDIT ADDITION START - I18N: 老客户端（或任何残留 P1 翻译）可能回传译名。译名不在 choices
-	// 里，直接 ++ 会建出幽灵条目、真键永远 0 票。先反查回英文键；反查不出来的按未知选项丢弃，
-	// 不再污染计票表。
+	// NOVA EDIT ADDITION START - I18N: 未知选项直接丢弃，不再 ++ 出幽灵条目、把真键的票数吃掉。
+	// （从前这里还要先把译名反查回英文——负载不再被就地改写之后，回传的永远是英文键。）
 	if(!(their_vote in current_vote.choices))
-		var/unreversed = lang_unreverse_text(their_vote)
-		if(!(unreversed in current_vote.choices))
-			return
-		their_vote = unreversed
+		return
 	// NOVA EDIT ADDITION END
 
 	if(current_vote.choices_by_ckey[voter.ckey + their_vote] == 1)
@@ -224,7 +216,7 @@ SUBSYSTEM_DEF(vote)
 	// No valid vote found? No vote
 	if(!istype(to_vote))
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning(LANG("datum.818b68c0", null)))
+			to_chat(vote_initiator, span_warning(LANG("datum.818b68c09448ac2d", null)))
 		return FALSE
 
 	// Vote can't be initiated in our circumstances? No vote
@@ -279,7 +271,7 @@ SUBSYSTEM_DEF(vote)
 	// Even if it's forced we can't vote before we're set up
 	if(!MC_RUNNING(init_stage))
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning(LANG("datum.628b797e", null)))
+			to_chat(vote_initiator, span_warning(LANG("datum.628b797e75afde6b", null)))
 		return FALSE
 
 	if(forced)
@@ -288,12 +280,12 @@ SUBSYSTEM_DEF(vote)
 	var/next_allowed_time = last_vote_time + CONFIG_GET(number/vote_delay)
 	if(next_allowed_time > world.time)
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning(LANG("datum.1a8fd54d", list(DisplayTimeText(next_allowed_time - world.time)))))
+			to_chat(vote_initiator, span_warning(LANG("datum.1a8fd54d4b698db9", list(DisplayTimeText(next_allowed_time - world.time)))))
 		return FALSE
 
 	if(current_vote)
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning(LANG("datum.206e6de2", null)))
+			to_chat(vote_initiator, span_warning(LANG("datum.206e6de2a6928d0c", null)))
 		return FALSE
 
 	return TRUE
@@ -473,7 +465,7 @@ SUBSYSTEM_DEF(vote)
 GAME_VERB(/mob, vote, "投票", "OOC")
 
 	if(!SSvote.initialized)
-		to_chat(usr, span_notice(LANG("mob.cb7a09b7", null)))
+		to_chat(usr, span_notice(LANG("mob.cb7a09b75d45651f", null)))
 		return
 
 	SSvote.ui_interact(usr)

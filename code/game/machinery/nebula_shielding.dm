@@ -74,7 +74,7 @@
 /obj/machinery/nebula_shielding/emergency/examine(mob/user)
 	. = ..()
 
-	. += span_notice(LANG("obj.513be8b1", list(p_They(), round(detonate_in / (1 MINUTES)), shielding_strength)))
+	. += span_notice(LANG("obj.513be8b117e4e2e0", list(p_They(), round(detonate_in / (1 MINUTES)), shielding_strength)))
 
 /obj/machinery/nebula_shielding/emergency/get_nebula_shielding()
 	return shielding_strength //no strings attached, we will always produce shielding
@@ -100,7 +100,7 @@
 /obj/machinery/nebula_shielding/radiation/examine(mob/user)
 	. = ..()
 
-	. += span_notice(LANG("obj.f0073e91", list(shielding_strength)))
+	. += span_notice(LANG("obj.f0073e9193ac8637", list(shielding_strength)))
 
 /obj/machinery/nebula_shielding/radiation/generate_reward()
 	var/turf/open/turf = get_turf(src)

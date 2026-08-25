@@ -43,7 +43,7 @@
 	. = ..()
 	if(!signs)
 		return
-	. += span_notice(LANG("obj.515b5713", list(signs.len, max_signs)))
+	. += span_notice(LANG("obj.515b57133eaa839d", list(signs.len, max_signs)))
 
 /obj/item/holosign_creator/check_allowed_items(atom/target, not_inside, target_self)
 	if(HAS_TRAIT(target, TRAIT_COMBAT_MODE_SKIP_INTERACTION))
@@ -62,10 +62,10 @@
 	if(target_turf.is_blocked_turf(TRUE, ignore_atoms = projectable_through, type_list = TRUE)) //can't put holograms on a tile that has dense stuff
 		return ITEM_INTERACT_BLOCKING
 	if(holocreator_busy)
-		balloon_alert(user, LANG("obj.72492db9", null))
+		balloon_alert(user, LANG("obj.72492db9cd2db75f", null))
 		return ITEM_INTERACT_BLOCKING
 	if(LAZYLEN(signs) >= max_signs)
-		balloon_alert(user, LANG("obj.b672f626", null))
+		balloon_alert(user, LANG("obj.b672f626fbd0bc19", null))
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(src, 'sound/machines/click.ogg', 20, TRUE)
@@ -98,7 +98,7 @@
 	if(LAZYLEN(signs))
 		for(var/obj/structure/holosign/hologram as anything in signs)
 			qdel(hologram)
-		balloon_alert(user, LANG("obj.9b9cc938", null))
+		balloon_alert(user, LANG("obj.9b9cc938b50f2830", null))
 
 /obj/item/holosign_creator/Destroy()
 	. = ..()
@@ -189,13 +189,13 @@
 /obj/item/holosign_creator/atmos/attack_self_secondary(mob/user, modifiers)
 	if(clearview)
 		reset_hologram_transparency()
-		balloon_alert(user, LANG("obj.7d58b7fd", null))
+		balloon_alert(user, LANG("obj.7d58b7fd35cac447", null))
 		return
 	if(LAZYLEN(signs))
 		for(var/obj/structure/holosign/barrier/atmos/hologram as anything in signs)
 			hologram.clearview_transparency()
 		clearview = TRUE
-		balloon_alert(user, LANG("obj.563c47e3", null))
+		balloon_alert(user, LANG("obj.563c47e359c60a1f", null))
 		clearview_timer = addtimer(CALLBACK(src, PROC_REF(reset_hologram_transparency)), 40 SECONDS, TIMER_STOPPABLE)
 	return ..()
 
@@ -228,7 +228,7 @@
 		var/mob/living/silicon/robot/borg = user
 
 		if(shock)
-			to_chat(user, span_notice(LANG("obj.805ca6eb", null)))
+			to_chat(user, span_notice(LANG("obj.805ca6eb5416ede7", null)))
 			holosign_type = /obj/structure/holosign/barrier/cyborg
 			creation_time = 0.5 SECONDS
 			for(var/obj/structure/holosign/hologram as anything in signs)
@@ -236,7 +236,7 @@
 			shock = FALSE
 			return
 		if(borg.emagged && !shock)
-			to_chat(user, span_warning(LANG("obj.291c165f", null)))
+			to_chat(user, span_warning(LANG("obj.291c165f4aaf66c3", null)))
 			holosign_type = /obj/structure/holosign/barrier/cyborg/hacked
 			creation_time = 3 SECONDS
 			for(var/obj/structure/holosign/hologram as anything in signs)
@@ -245,4 +245,4 @@
 			return
 	for(var/obj/structure/holosign/hologram as anything in signs)
 		qdel(hologram)
-	balloon_alert(user, LANG("obj.9b9cc938", null))
+	balloon_alert(user, LANG("obj.9b9cc938b50f2830", null))

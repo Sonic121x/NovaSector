@@ -124,7 +124,7 @@ SUBSYSTEM_DEF(dynamic)
 		for(var/job in job_prefs)
 			var/priority = job_prefs[job]
 			job_data += "[job]: [SSjob.job_priority_level_to_string(priority)]"
-		to_chat(player, span_danger(LANG("datum.ec24b7ae", null)))
+		to_chat(player, span_danger(LANG("datum.ec24b7aea520b79c", null)))
 		log_admin("[player.ckey] failed to qualify for any roundstart antagonist role \
 			because their job preferences presented a high chance of all of their selected jobs being unavailable, \
 			along with 'return to lobby if job is unavailable' enabled and has [player.client.prefs.be_special.len] antag preferences enabled. \
@@ -378,7 +378,7 @@ SUBSYSTEM_DEF(dynamic)
 	for(var/datum/mind/selected as anything in picked_ruleset.selected_minds)
 		message_admins("Midround ([range]): [ADMIN_LOOKUPFLW(selected.current)] has been selected for [picked_ruleset.config_tag].")
 		log_dynamic("Midround ([range]): [key_name(selected.current)] has been selected for [picked_ruleset.config_tag].")
-		notify_ghosts(LANG("datum.818defe4", list(selected.name, picked_ruleset.config_tag)), source = selected.current)
+		notify_ghosts(LANG("datum.818defe445ee6311", list(selected.name, picked_ruleset.config_tag)), source = selected.current)
 	// Clean up unused rulesets
 	QDEL_LIST(rulesets_weighted)
 	rulesets_to_spawn[range] -= 1
@@ -440,7 +440,7 @@ SUBSYSTEM_DEF(dynamic)
 	for(var/datum/mind/selected as anything in running.selected_minds)
 		message_admins("Midround (forced): [ADMIN_LOOKUPFLW(selected.current)] has been selected for [running.config_tag].")
 		log_dynamic("Midround (forced): [key_name(selected.current)] has been selected for [running.config_tag].")
-		notify_ghosts(LANG("datum.818defe4", list(selected.name, running.config_tag)), source = selected.current)
+		notify_ghosts(LANG("datum.818defe445ee6311", list(selected.name, running.config_tag)), source = selected.current)
 	return TRUE
 
 /**
@@ -664,7 +664,7 @@ SUBSYSTEM_DEF(dynamic)
 		if(!check_rights(R_ADMIN) || midround_admin_reroll)
 			return
 		if(COOLDOWN_FINISHED(src, midround_admin_cancel_period))
-			to_chat(usr, span_alert(LANG("datum.e7984e30", null)))
+			to_chat(usr, span_alert(LANG("datum.e7984e306343d622", null)))
 			return
 		midround_admin_reroll = TRUE
 		message_admins(span_adminnotice("[key_name_admin(usr)] rerolled the queued midround ruleset."))
@@ -675,7 +675,7 @@ SUBSYSTEM_DEF(dynamic)
 		if(!check_rights(R_ADMIN) || midround_admin_cancel)
 			return
 		if(COOLDOWN_FINISHED(src, midround_admin_cancel_period))
-			to_chat(usr, span_alert(LANG("datum.e7984e30", null)))
+			to_chat(usr, span_alert(LANG("datum.e7984e306343d622", null)))
 			return
 		midround_admin_cancel = TRUE
 		message_admins(span_adminnotice("[key_name_admin(usr)] cancelled the queued midround ruleset."))
@@ -734,7 +734,7 @@ SUBSYSTEM_DEF(dynamic)
 			data += "\]\n"
 		else
 			data += "blacklisted_roles = \[\]\n"
-		if(!istype(ruleset, /datum/dynamic_ruleset/latejoin) && !istype(ruleset, /datum/dynamic_ruleset/midround/from_living))
+		if(!istype(ruleset, /datum/dynamic_ruleset/latejoin))
 			if(islist(ruleset.min_antag_cap))
 				for(var/ruleset_min_antag_cap in ruleset.min_antag_cap)
 					data += "min_antag_cap.[ruleset_min_antag_cap] = [ruleset.min_antag_cap[ruleset_min_antag_cap]]\n"

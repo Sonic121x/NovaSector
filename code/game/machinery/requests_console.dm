@@ -71,12 +71,12 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 /obj/machinery/requests_console/examine(mob/user)
 	. = ..()
 	if(!open)
-		. += span_notice(LANG("obj.e3e7cdc9", null))
+		. += span_notice(LANG("obj.e3e7cdc9afe1b8d6", null))
 	else
-		. += span_warning(LANG("obj.aa6c0487", null))
+		. += span_warning(LANG("obj.aa6c048709791779", null))
 
 	if(hack_state)
-		. += span_warning(LANG("obj.941fb5ee", null))
+		. += span_warning(LANG("obj.941fb5eed7de3fe3", null))
 
 /obj/machinery/requests_console/update_overlays()
 	. = ..()
@@ -193,12 +193,12 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			// Check if user can call this emergency (prevent self-calls) RETA
 			var/user_dept = reta_get_user_department(usr)
 			if(user_dept == target_dept && !isAdminGhostAI(usr))
-				to_chat(usr, span_alert(LANG("obj.a01640cd", null)))
+				to_chat(usr, span_alert(LANG("obj.a01640cd07f7fb6e", null)))
 				return
 
 			// Check cooldown RETA
 			if(origin_dept && target_dept && reta_on_cooldown(origin_dept, target_dept))
-				to_chat(usr, span_alert(LANG("obj.3cd6ab48", list(target_dept))))
+				to_chat(usr, span_alert(LANG("obj.3cd6ab48926e09df", list(target_dept))))
 				return
 
 			emergency = emergency_type
@@ -291,7 +291,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			return TRUE
 		if("send_announcement")
 			if(!COOLDOWN_FINISHED(src, announcement_cooldown))
-				to_chat(usr, span_alert(LANG("obj.201fe056", null)))
+				to_chat(usr, span_alert(LANG("obj.201fe056c6504649", null)))
 				return
 			if(!can_send_announcements)
 				return
@@ -300,13 +300,13 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
 			var/message = reject_bad_text(trim(html_encode(params["message"]), MAX_MESSAGE_LEN), ascii_only = FALSE)
 			if(!message)
-				to_chat(usr, span_alert(LANG("obj.2b32249f", null)))
+				to_chat(usr, span_alert(LANG("obj.2b32249fb7c6b15c", null)))
 				return
 			if(isliving(usr))
 				var/mob/living/L = usr
 				message = L.treat_message(message)["message"]
 
-			minor_announce(message, LANG("obj.559317fb", list(department)), html_encode = FALSE, sound_override = ANNOUNCER_DEPARTMENTAL) // NOVA EDIT CHANGE - Announcer Sounds - ORIGINAL: minor_announce(message, "[department] Announcement:", html_encode = FALSE, sound_override = 'sound/announcer/announcement/announce_dig.ogg')
+			minor_announce(message, LANG("obj.559317fbfda5c290", list(department)), html_encode = FALSE, sound_override = ANNOUNCER_DEPARTMENTAL) // NOVA EDIT CHANGE - Announcer Sounds - ORIGINAL: minor_announce(message, "[department] Announcement:", html_encode = FALSE, sound_override = 'sound/announcer/announcement/announce_dig.ogg')
 			GLOB.news_network.submit_article(message, department, NEWSCASTER_STATION_ANNOUNCEMENTS, null)
 			usr.log_talk(message, LOG_SAY, tag="station announcement from [src]")
 			message_admins("[ADMIN_LOOKUPFLW(usr)] has made a station announcement from [src] at [AREACOORD(usr)].")
@@ -318,7 +318,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 		if("quick_reply")
 			var/recipient = params["reply_recipient"]
 
-			var/reply_message = reject_bad_text(tgui_input_text(usr, LANG("obj.d90b255e", list(recipient)), LANG("obj.e1dec803", null)), ascii_only = FALSE)
+			var/reply_message = reject_bad_text(tgui_input_text(usr, LANG("obj.d90b255e6ad0ca32", list(recipient)), LANG("obj.e1dec80373ac5976", null)), ascii_only = FALSE)
 			if(QDELETED(ui) || ui.status != UI_INTERACTIVE)
 				return
 			if(!reply_message)
@@ -337,7 +337,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 				return
 			var/message = reject_bad_text(trim(html_encode(params["message"]), MAX_MESSAGE_LEN), ascii_only = FALSE)
 			if(!message)
-				to_chat(usr, span_alert(LANG("obj.2b32249f", null)))
+				to_chat(usr, span_alert(LANG("obj.2b32249fb7c6b15c", null)))
 				has_mail_send_error = TRUE
 				return TRUE
 			var/request_type = params["request_type"]
@@ -348,8 +348,6 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
 ///Sends the message from the request console
 /obj/machinery/requests_console/proc/send_message(recipient, message, priority, request_type)
-	// NOVA EDIT ADDITION - I18N - the quick-reply path passes the P1-translated sender_department (e.g. 研究实验室); route by the english department name so the receiving console's `recipient_department == department` match works (no-op for the english dropdown path / en locale)
-	recipient = lang_unreverse_text(recipient)
 	var/radio_channel
 	// They all naming them wrong, all the time... I'll probably rewrite this later in separate PR.
 	// Automatically from areas or via mapping helpers. (ther is no "Cargobay Request Console" in any map)
@@ -499,10 +497,10 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 /obj/machinery/requests_console/crowbar_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 50)
 	if(open)
-		to_chat(user, span_notice(LANG("obj.32af0d76", null)))
+		to_chat(user, span_notice(LANG("obj.32af0d7644a6c168", null)))
 		open = FALSE
 	else
-		to_chat(user, span_notice(LANG("obj.c603638c", null)))
+		to_chat(user, span_notice(LANG("obj.c603638ce6825a53", null)))
 		open = TRUE
 	update_appearance()
 	return TRUE
@@ -511,13 +509,13 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	if(open)
 		hack_state = !hack_state
 		if(hack_state)
-			to_chat(user, span_notice(LANG("obj.b69f8494", null)))
+			to_chat(user, span_notice(LANG("obj.b69f8494312edfe8", null)))
 		else
-			to_chat(user, span_notice(LANG("obj.62d7a383", null)))
+			to_chat(user, span_notice(LANG("obj.62d7a383fc32cc12", null)))
 		update_appearance()
 		tool.play_tool_sound(src, 50)
 	else
-		to_chat(user, span_warning(LANG("obj.b389f563", null)))
+		to_chat(user, span_warning(LANG("obj.b389f5636ff569c4", null)))
 	return TRUE
 
 /obj/machinery/requests_console/item_interaction(mob/living/user, obj/item/tool, list/modifiers)

@@ -72,7 +72,7 @@
 		QDEL_NULL(pcp_rage)
 	if(pcp_tenacity)
 		QDEL_NULL(pcp_tenacity)
-	affected_mob.visible_message(span_danger(LANG("datum.5d39e298", list(affected_mob)))) //you pretty much pass out
+	affected_mob.visible_message(span_danger(LANG("datum.5d39e298c951d530", list(affected_mob)))) //you pretty much pass out
 	affected_mob.Paralyze(pcp_lifetime,TRUE)
 	affected_mob.drop_all_held_items()
 
@@ -85,7 +85,7 @@
 	if(SPT_PROB(2.5, seconds_per_tick))
 		affected_mob.emote(pick("twitch","drool"))
 	if(SPT_PROB(1.5, seconds_per_tick))
-		affected_mob.visible_message(span_danger(LANG("datum.ed696384", list(affected_mob))))
+		affected_mob.visible_message(span_danger(LANG("datum.ed696384a3d66232", list(affected_mob))))
 		affected_mob.drop_all_held_items()
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH

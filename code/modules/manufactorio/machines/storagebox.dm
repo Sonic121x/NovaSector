@@ -27,7 +27,7 @@
 
 /obj/machinery/power/manufacturing/storagebox/screwdriver_act(mob/living/user, obj/item/tool)
 	. = NONE
-	balloon_alert(user, LANG("obj.b5ba9871", null))
+	balloon_alert(user, LANG("obj.b5ba987161d1a2e3", null))
 	if(!do_after(user, 5 SECONDS, src))
 		return ITEM_INTERACT_FAILURE
 	atom_destruction()
@@ -42,7 +42,7 @@
 	. = ..()
 	if(user.combat_mode)
 		return
-	balloon_alert(user, LANG("obj.eb396448", null))
+	balloon_alert(user, LANG("obj.eb3964480f62db86", null))
 	if(!do_after(user, 1.25 SECONDS, src))
 		return
 	dump_inventory_contents()

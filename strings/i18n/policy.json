@@ -20,14 +20,21 @@
 		"shownColor",
 		"shop_items"
 	],
-	"_pref_desc_keys": "偏好菜单常量 asset 里可安全整串反查的纯显示字段（绝非 act 标识符）；name/title/choices 等一律不进此表。",
-	"pref_desc_keys": [
+	"_payload_prose_keys": "P1 允许**就地改写**（把译文直接写进负载值）的键。其余值一律不动数据、只把「英文→译文」记进 overlay 随负载下发，由 TS 在渲染期查表 —— 那样回传值与服务端持有的字符串逐字节相同，「显示文本被当标识符回传」这一整类静默故障在结构上不可能发生（出生管理器/DNA 染色体/大气警报清除都栽在这上面）。能留在这张表里的只有**证明不可能是标识符**的长散文字段（描述/身世/指令/条件…）：它们常被渲染在 auto-localize 够不到的位置（模板串、dangerouslySetInnerHTML），就地翻是保住覆盖面的唯一手段，而散文不可能被 act() 拿去比较。新增前先问：这个键的值有没有可能出现在 == 比较或查表键里？",
+	"payload_prose_keys": [
+		"desc",
 		"description",
-		"pos_gameplay_description",
-		"neg_gameplay_description",
-		"neut_gameplay_description"
+		"flavor_text",
+		"flavour_text",
+		"you_are_text",
+		"important_text",
+		"important_warning",
+		"lore",
+		"backstory",
+		"summary",
+		"details"
 	],
-	"_translatable_props": "TGUI JSX 中「值是给玩家看的文案」的 prop 名。抽取器（tgui-catalog.mjs）与运行时（localize.ts）必须读同一份：两处各存一份清单时，新加的 prop 只改一边 → 目录里有键但界面不翻（或界面翻了但目录没键、被 MT 漏掉）。新增 prop 只改这里。",
+	"_translatable_props": "仅供 legacy/upstream JSX 自动本地化层使用的纯显示 prop 名。抽取器（tgui-catalog.mjs）与运行时（localize.ts）必须读同一份；应用代码使用 context-aware typed message API。",
 	"translatable_props": [
 		"aria-label",
 		"buttonText",
@@ -46,7 +53,7 @@
 		"titleMessage",
 		"tooltip"
 	],
-	"_option_text_props": "对象型下拉/列表选项里纯显示的字段名（`{value, displayText}` 的 displayText 一侧）。value 一律保持英文标识符，绝不入此表。",
+	"_option_text_props": "仅供 legacy/upstream 自动层识别对象选项里的显示字段。新代码使用 typed `{value, label: LocalizedText}`（Dropdown 边界为 displayText）；value 永远保持 canonical，绝不入此表。",
 	"option_text_props": [
 		"displayText",
 		"label",

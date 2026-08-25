@@ -51,7 +51,7 @@
 		return TRUE
 
 	if(currently_aiming)
-		user.balloon_alert(user, LANG("obj.b326342a", null))
+		user.balloon_alert(user, LANG("obj.b326342ad95f13f6", null))
 		return FALSE
 
 	var/distance = get_dist(user, target)
@@ -63,7 +63,7 @@
 	if(distance <= min_distance || !isliving(target))
 		return TRUE
 
-	user.balloon_alert(user, LANG("obj.f159f803", null))
+	user.balloon_alert(user, LANG("obj.f159f8036028b284", null))
 	user.playsound_local(get_turf(user), 'sound/items/weapons/gun/general/chunkyrack.ogg', 100, TRUE)
 
 	var/image/reticle = image(
@@ -94,7 +94,7 @@
 		viewer.client?.images -= reticle
 
 	if(!.)
-		user.balloon_alert(user, LANG("obj.c67b5d27", null))
+		user.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 
 	return .
 

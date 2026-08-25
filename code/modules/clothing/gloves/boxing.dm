@@ -28,7 +28,7 @@
 
 /obj/item/clothing/gloves/boxing/proc/on_mail_unwrap(atom/source, mob/user, obj/item/mail/traitor/letter)
 	SIGNAL_HANDLER
-	to_chat(user, span_danger(LANG("obj.8c7f3ac8", list(letter))))
+	to_chat(user, span_danger(LANG("obj.8c7f3ac807fd3974", list(letter))))
 	var/mob/living/userasliving = user
 	playsound(user, SFX_PUNCH, 25, TRUE)
 	userasliving.Knockdown((extrapower ? 2 : 4) SECONDS, (extrapower ? 4 : 6) SECONDS)

@@ -61,13 +61,13 @@
 	user.do_attack_animation(target)
 	if (target == user)
 		user.visible_message(
-			span_danger(LANG("datum.bcc197c3", list(user, user.p_them(), item))),
-			span_userdanger(LANG("datum.ce50bb17", list(item))),
+			span_danger(LANG("datum.bcc197c3bec5a1dc", list(user, user.p_them(), item))),
+			span_userdanger(LANG("datum.ce50bb17d1db453f", list(item))),
 		)
 	else
 		target.visible_message(
-			span_danger(LANG("datum.df8f2c80", list(user, target, item))),
-			span_userdanger(LANG("datum.bb4281c5", list(user, item))),
+			span_danger(LANG("datum.df8f2c809a3f2fd1", list(user, target, item))),
+			span_userdanger(LANG("datum.bb4281c512014b52", list(user, item))),
 		)
 
 	if (target_limb)
@@ -91,7 +91,7 @@
 	// At over 10 damage we apply a lot of eye blur
 	target.adjust_eye_blur_up_to(30 SECONDS, EYESTAB_MAX_BLUR)
 	if (target.stat != DEAD && started_bleeding)
-		to_chat(target, span_danger(LANG("datum.5a468d0a", null)))
+		to_chat(target, span_danger(LANG("datum.5a468d0a4fef1470", null)))
 
 	// At over 10 damage, we cause at least enough eye damage to force nearsightedness
 	if (!target.is_nearsighted_from(EYE_DAMAGE) && eyes.damage <= eyes.low_threshold)
@@ -101,7 +101,7 @@
 	if (prob(50) && target.stat != DEAD)
 		var/list/dropped = target.drop_all_held_items()
 		if(length(dropped))
-			to_chat(target, span_danger(LANG("datum.f40070b8", null)))
+			to_chat(target, span_danger(LANG("datum.f40070b824811803", null)))
 		target.adjust_eye_blur_up_to(20 SECONDS, EYESTAB_MAX_BLUR)
 		target.Unconscious(2 SECONDS)
 		target.Paralyze(4 SECONDS)
@@ -115,7 +115,7 @@
 			valid_sides += LEFT_EYE_SCAR
 		if (length(valid_sides))
 			var/picked_side = pick(valid_sides)
-			to_chat(target, span_userdanger(LANG("datum.77df50be", list(picked_side == RIGHT_EYE_SCAR ? "right" : "left"))))
+			to_chat(target, span_userdanger(LANG("datum.77df50be2addd59a", list(picked_side == RIGHT_EYE_SCAR ? "right" : "left"))))
 			// oof ouch my eyes
 			var/datum/wound/pierce/bleed/severe/eye/eye_puncture = new
 			eye_puncture.apply_wound(eyes.bodypart_owner, wound_source = "eye stab", right_side = picked_side)

@@ -27,106 +27,16 @@ use crate::dm_string::{
     find_first_quote, find_open_paren, in_preprocessor_directive, line_col_to_byte,
     logical_line_end, scan_dm_string, split_call_args,
 };
-use crate::template::{build_template, placeholder_count, strip_tags};
 use crate::keys::{make_key, namespace_for};
+use crate::semantics::{
+    block_is_pure, is_announce_sink, is_rewrite_sink, is_wordy_sink, native_dialog_no_usr,
+    resolve_sink_arg, sink_message_args,
+};
+use crate::template::{build_sink_template, build_template, placeholder_count, strip_tags};
 
 /// 核心文件（非 modular_nova）被 codemod 改写时插入的文件级 NOVA EDIT 标记。
 const CORE_MARKER: &str =
     "// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md";
-
-/// 汇聚点 proc 名 -> 消息参数下标（与 extract.rs 保持一致）。
-fn sink_message_args(name: &str) -> Option<&'static [usize]> {
-    match name {
-        "to_chat" => Some(&[1]),
-        "balloon_alert" => Some(&[1]),
-        // 群发气泡警告：balloon_alert_to_viewers(message, self_message, …) / _to_hearers 同签名。
-        // [0]=观众消息 [1]=自身消息，均玩家可见（如阀门 "valve opened"）。与 extract.rs 同表。
-        "balloon_alert_to_viewers" => Some(&[0, 1]),
-        "balloon_alert_to_hearers" => Some(&[0, 1]),
-        "visible_message" => Some(&[0, 1, 2]), // [2]=blind_message（盲人可见）。
-        "audible_message" => Some(&[0, 1, 3]),
-        "say" => Some(&[0]),
-        "manual_emote" => Some(&[0]),
-        // 提示/对话框（玩家可见）。只取消息+标题；按钮/选项列表/返回值不动，
-        // 以免破坏 `if(alert(...) == "Yes")` 之类的比较。alert 取 [0,1,2] 同时覆盖
-        // `alert("msg")` 与 `alert(user, msg, title)` 两种写法（非字符串实参会被安全跳过）。
-        // 原生 alert/input 的位置实参随「有没有 usr」整体平移一位：
-        //   有 usr：alert(Usr, Message, Title, Button1…) / input(Usr, Message, Title, Default)  → [2]=标题，该译
-        //   无 usr：alert(Message, Title, Button1…)      / input(Message, Title, Default)       → [2]=按钮/默认值，**绝不能译**
-        //           （按钮是 `if(alert(...)=="Yes")` 的比较值；Default 是 input 的返回值）
-        // 判据在 try_rewrite_call 里：[0] 是字符串字面量 ⇒ 无 usr 形式 ⇒ 跳过 [2]。此前一律不取 [2]，
-        // 代价是所有对话框标题漏译（Tip/Admin Announce/Sort Type/Observe… 一大批）。
-        "alert" => Some(&[0, 1, 2]),
-        "input" => Some(&[0, 1, 2]),
-        "tgui_alert" => Some(&[1, 2]),
-        "tgui_input_list" => Some(&[1, 2]),
-        "tgui_input_text" => Some(&[1, 2]),
-        "tgui_input_number" => Some(&[1, 2]),
-        // 公告：[0]=正文 [1]=标题。**仅在插值时**改写（见 is_announce_sink + try_rewrite_call 的 interp_only
-        // 门控）：非插值公告靠 priority_announce.dm 的运行时整串反查翻译（零 codemod churn）；但**带 [插值] 的
-        // 公告**反查（需精确整串）和 AC（排除占位符）都够不着 → 必须 LANG 改写。与 extract.rs 同表。
-        "priority_announce" => Some(&[0, 1]),
-        "minor_announce" => Some(&[0, 1]),
-        "print_command_report" => Some(&[0, 1]),
-        // 银行卡/账户消息（发薪、转账、错误，玩家可见）：bank_card_talk(message, force)。与 extract.rs 同表。
-        "bank_card_talk" => Some(&[0]),
-        // 幽灵招募/事件通知（"An X is ready to hatch in …" 等，72+ 处）：notify_ghosts(message, source, …)。
-        // 只改位置实参 [0]=消息字面量（header 是关键字实参、改写器够不着，作残留）。与 extract.rs 同表。
-        "notify_ghosts" => Some(&[0]),
-        // 机器打印/预置到纸上的正文（21 处：每日密钥重置、核弹授权码、雇佣条款、扫描报告…）。
-        // 纸张**玩家书写**的内容不该译，但 add_raw_text 的字符串**字面量**实参全是作者写的印刷体，
-        // 玩家输入永远是变量。纸张渲染路径不过反查（见 i18n readme），所以只能靠 LANG 改写。
-        "add_raw_text" => Some(&[0]),
-        _ => None,
-    }
-}
-
-/// sink 的消息实参下标 -> 形参名。用于**关键字实参**调用（`priority_announce(text = "…", title = "…")`，
-/// 上游 46 处这么写）：改写器原本只按位置取实参，关键字写法下 AST 里那一项是 `text = "…"` 整个
-/// 赋值表达式 —— build_template 拿它算出的 key 与目录对不上，于是整类调用**一处都改不到**
-/// （玩家报的「紧急穿梭机公告半中半英」就是这么来的：AC 兜底只译得动 emergency shuttle 这种词组，
-/// 整句带插值、反查和 AC 都够不着）。有了名字表就能按名对齐，顺带防住 `f(text=…, sound=…, title=…)`
-/// 这种乱序写法把 title 套到 sound 上。
-fn sink_arg_name(sink: &str, idx: usize) -> Option<&'static str> {
-    let names: &[(usize, &'static str)] = match sink {
-        "priority_announce" => &[(0, "text"), (1, "title")],
-        "minor_announce" => &[(0, "message"), (1, "title")],
-        "print_command_report" => &[(0, "text"), (1, "title")],
-        "to_chat" => &[(1, "message")],
-        "balloon_alert" => &[(1, "text")],
-        "visible_message" => &[(0, "message"), (1, "self_message"), (2, "blind_message")],
-        "audible_message" => &[(0, "message"), (1, "self_message"), (3, "deaf_message")],
-        "notify_ghosts" => &[(0, "title")],
-        _ => return None,
-    };
-    names.iter().find(|(i, _)| *i == idx).map(|(_, n)| *n)
-}
-
-/// 关键字实参 `name = expr` 的名字（不是关键字实参就返回 None）。
-fn keyword_arg_name(arg: &Expression) -> Option<String> {
-    let Expression::AssignOp { op: AssignOp::Assign, lhs, rhs: _ } = arg else {
-        return None;
-    };
-    // 形参名在 AST 里是裸标识符项；build_template 只认字符串表达式，拿它取名会一律返回 None。
-    let Expression::Base { term, follow } = lhs.as_ref() else {
-        return None;
-    };
-    if !follow.is_empty() {
-        return None;
-    }
-    match &term.elem {
-        Term::Ident(name) => Some(name.clone()),
-        _ => None,
-    }
-}
-
-/// 公告类 sink：只在**插值**消息上改写（非插值留给运行时反查，避免改写遍布各处的公告调用点）。
-fn is_announce_sink(name: &str) -> bool {
-    matches!(
-        name,
-        "priority_announce" | "minor_announce" | "print_command_report"
-    )
-}
 
 struct Edit {
     start: usize,
@@ -211,7 +121,10 @@ pub fn run(dme: &Path, filter: Option<&str>, dry_run: bool) -> Result<()> {
         for e in &edits {
             src.replace_range(e.start..e.end, &e.replacement);
         }
-        let is_core = !path.to_string_lossy().replace('\\', "/").contains("modular_nova/");
+        let is_core = !path
+            .to_string_lossy()
+            .replace('\\', "/")
+            .contains("modular_nova/");
         if is_core && !src.starts_with(CORE_MARKER) {
             src.insert_str(0, &format!("{CORE_MARKER}\n"));
         }
@@ -220,7 +133,11 @@ pub fn run(dme: &Path, filter: Option<&str>, dry_run: bool) -> Result<()> {
 
     eprintln!(
         "改写 {total} 处，{files} 个文件{}",
-        if dry_run { "（dry-run，未落盘）" } else { "" }
+        if dry_run {
+            "（dry-run，未落盘）"
+        } else {
+            ""
+        }
     );
     Ok(())
 }
@@ -320,7 +237,8 @@ pub fn run_verbs(dme: &Path, locale: &str, revert: bool, dry_run: bool) -> Resul
                     // plain_string 回退：`set name = "< Ping >"` 会被 build_template 的 strip_tags
                     // 当 HTML 标签剥光而返回 None（详见 extract::plain_string）。抽取端已放行，
                     // 注入端必须用同一判据，否则这 22 条硅基音效表情抽得到、注不进。
-                    let Some(lit) = build_template(value).or_else(|| crate::extract::plain_string(value))
+                    let Some(lit) =
+                        build_template(value).or_else(|| crate::extract::plain_string(value))
                     else {
                         continue;
                     };
@@ -343,10 +261,7 @@ pub fn run_verbs(dme: &Path, locale: &str, revert: bool, dry_run: bool) -> Resul
                             [only] => (*only).clone(),
                             [] => continue,
                             many => {
-                                eprintln!(
-                                    "歧义跳过（{}）: {:?} -> {:?}",
-                                    ns, lit, many
-                                );
+                                eprintln!("歧义跳过（{}）: {:?} -> {:?}", ns, lit, many);
                                 continue;
                             }
                         }
@@ -427,7 +342,10 @@ pub fn run_verbs(dme: &Path, locale: &str, revert: bool, dry_run: bool) -> Resul
         for e in &es {
             src.replace_range(e.start..e.end, &e.replacement);
         }
-        let is_core = !path.to_string_lossy().replace('\\', "/").contains("modular_nova/");
+        let is_core = !path
+            .to_string_lossy()
+            .replace('\\', "/")
+            .contains("modular_nova/");
         if is_core && !src.starts_with(CORE_MARKER) {
             src.insert_str(0, &format!("{CORE_MARKER}\n"));
         }
@@ -436,16 +354,13 @@ pub fn run_verbs(dme: &Path, locale: &str, revert: bool, dry_run: bool) -> Resul
 
     eprintln!(
         "verb 注入 {total} 处，{files} 个文件{}",
-        if dry_run { "（dry-run，未落盘）" } else { "" }
+        if dry_run {
+            "（dry-run，未落盘）"
+        } else {
+            ""
+        }
     );
     Ok(())
-}
-
-/// 该 proc 是否标了 `set SpacemanDMM_should_be_pure`（纯函数，读全局会被 DreamChecker 判为破坏纯度）。
-fn block_is_pure(block: &[Spanned<Statement>]) -> bool {
-    block.iter().any(|s| {
-        matches!(&s.elem, Statement::Setting { name, .. } if name.as_str() == "SpacemanDMM_should_be_pure")
-    })
 }
 
 struct Rewriter<'a> {
@@ -592,15 +507,25 @@ impl<'a> Rewriter<'a> {
     fn visit_expr(&mut self, expr: &Expression, ns: &str) {
         if let Expression::Base { term, follow } = expr {
             if let Term::Call(name, args) = &term.elem {
-                if let Some(indices) = sink_message_args(name.as_str()) {
-                    self.try_rewrite_call(term.location, args, indices, ns, is_announce_sink(name.as_str()), name.as_str());
+                if is_rewrite_sink(name.as_str()) {
+                    if let Some(indices) = sink_message_args(name.as_str()) {
+                        self.try_rewrite_call(
+                            term.location,
+                            args,
+                            indices,
+                            ns,
+                            is_announce_sink(name.as_str()),
+                            is_wordy_sink(name.as_str()),
+                            name.as_str(),
+                        );
+                    }
                 }
             }
             // input() 是 dreammaker 的专用 Term::Input（因 `as type in list` 语法），不是 Call。
             // 复用同一套实参定位（term.location 指向 input 关键字，find_open_paren 找其 `(`）。
             if let Term::Input { args, .. } = &term.elem {
                 if let Some(indices) = sink_message_args("input") {
-                    self.try_rewrite_call(term.location, args, indices, ns, false, "input");
+                    self.try_rewrite_call(term.location, args, indices, ns, false, false, "input");
                 }
             }
             self.recurse_term(&term.elem, ns);
@@ -608,8 +533,18 @@ impl<'a> Rewriter<'a> {
                 // 方法调用形式的汇聚点（`X.visible_message(...)` 等）：用 follow 自身的 Location 定位、
                 // 改写消息参数。裸调用走上面的 Term::Call 分支；方法调用是 Follow::Call，此前完全漏改。
                 if let Follow::Call(_, name, fargs) = &f.elem {
-                    if let Some(indices) = sink_message_args(name.as_str()) {
-                        self.try_rewrite_call(f.location, fargs, indices, ns, is_announce_sink(name.as_str()), name.as_str());
+                    if is_rewrite_sink(name.as_str()) {
+                        if let Some(indices) = sink_message_args(name.as_str()) {
+                            self.try_rewrite_call(
+                                f.location,
+                                fargs,
+                                indices,
+                                ns,
+                                is_announce_sink(name.as_str()),
+                                is_wordy_sink(name.as_str()),
+                                name.as_str(),
+                            );
+                        }
                     }
                 }
                 self.recurse_follow(&f.elem, ns);
@@ -681,48 +616,21 @@ impl<'a> Rewriter<'a> {
         indices: &[usize],
         ns: &str,
         interp_only: bool,
+        wordy_only: bool,
         sink: &str,
     ) {
         // 原生 alert/input 的 [2]：有 usr 时是标题（该译），无 usr 时是按钮/默认值（绝不能译）。
-        // 判据是 [0] 到底是不是字符串字面量（是 ⇒ [0] 就是 Message ⇒ 无 usr 形式）。见 sink_message_args。
-        let native_dialog = matches!(sink, "alert" | "input");
-        let no_usr_form = native_dialog && {
-            let mut n0: Vec<&Spanned<Term>> = Vec::new();
-            if let Some(a0) = args.first() {
-                collect_text_nodes(a0, &mut n0);
-            }
-            !n0.is_empty()
-        };
+        let no_usr_form = native_dialog_no_usr(sink, args);
         // 1) 用 AST 判定每个消息参数是否「恰好一个可翻译文本节点」，并取其模板/占位符数/key。
         let mut targets: Vec<(usize, String, usize)> = Vec::new();
         for &i in indices {
             if no_usr_form && i == 2 {
                 continue;
             }
-            // 关键字实参写法：按形参名找到它实际所在的位置槽；找不到就退回按位置取，
-            // 但**位置上那一项若本身是关键字实参**说明对齐已不可信 → 跳过，宁可漏译不改错。
-            let kw_slot = sink_arg_name(sink, i).and_then(|want| {
-                args.iter()
-                    .position(|a| keyword_arg_name(a).as_deref() == Some(want))
-            });
-            let slot = match kw_slot {
-                Some(s) => s,
-                None => {
-                    if args.get(i).is_some_and(|a| keyword_arg_name(a).is_some()) {
-                        continue;
-                    }
-                    i
-                }
-            };
-            let Some(raw_arg) = args.get(slot) else { continue };
-            // 关键字实参取右值做模板；`text = "…"` 整体算 key 会与目录对不上。
-            let arg = match raw_arg {
-                Expression::AssignOp { op: AssignOp::Assign, rhs, .. }
-                    if keyword_arg_name(raw_arg).is_some() =>
-                {
-                    rhs.as_ref()
-                }
-                other => other,
+            // Named arguments resolve through the same semantic helper as extraction. The returned
+            // slot remains the physical source slot used by the string rewriter.
+            let Some((slot, arg)) = resolve_sink_arg(sink, i, args) else {
+                continue;
             };
             // 门槛：源码里恰好一个可翻译字符串字面量（保证后面切片定位无歧义）。
             let mut nodes: Vec<&Spanned<Term>> = Vec::new();
@@ -731,7 +639,7 @@ impl<'a> Rewriter<'a> {
                 continue;
             }
             // key 用与抽取**同一**函数计算，保证目录命中。
-            let Some(template) = build_template(arg) else {
+            let Some(template) = build_sink_template(arg) else {
                 continue;
             };
             // 对话框按钮（Yes/No/Cancel…）绝不改写——它们是 `if(alert(...)=="Yes")` 的比较值，
@@ -743,6 +651,13 @@ impl<'a> Rewriter<'a> {
             // locale≠en 返回译文，emote 解析必失败。此类串留给运行时反查翻显示。
             if template.starts_with('*') {
                 continue;
+            }
+            // 多词闸门（is_wordy_sink）：去掉占位符后仍须含空格，挡掉 `speak("unstun")` 这类 switch 键。
+            if wordy_only {
+                let bare = template.replace(|c: char| c == '{' || c == '}', " ");
+                if !bare.trim().contains(' ') {
+                    continue;
+                }
             }
             let ph = placeholder_count(&template);
             // 公告类：非插值（ph==0）留给运行时整串反查，不改写（零额外 churn）；只改插值公告（反查/AC 够不着）。
@@ -762,12 +677,18 @@ impl<'a> Rewriter<'a> {
                 return;
             }
         }
-        let Some(src) = self.source(&path) else { return };
+        let Some(src) = self.source(&path) else {
+            return;
+        };
         let Some(name_start) = line_col_to_byte(src, call_loc.line, call_loc.column) else {
             return;
         };
-        let Some(lparen) = find_open_paren(src, name_start) else { return };
-        let Some(mut arg_ranges) = split_call_args(src, lparen) else { return };
+        let Some(lparen) = find_open_paren(src, name_start) else {
+            return;
+        };
+        let Some(mut arg_ranges) = split_call_args(src, lparen) else {
+            return;
+        };
         // **尾逗号**（多行调用的 `f(\n\ta,\n\tb,\n)` 收尾风格，上游 tgstation 大量使用）：源码切分会在
         // 最后一个逗号与 `)` 之间多切出一个空范围，而 AST 里没有它。它在**末尾**，不会让前面任何实参的
         // 下标错位 —— 直接丢弃即可。不丢的话会被下面的空实参守卫当成 `f(a,,b)` 而整调用跳过，这正是
@@ -788,9 +709,15 @@ impl<'a> Rewriter<'a> {
         // 3) 对每个目标实参，找到其中唯一的字符串字面量并替换。
         let mut new_edits: Vec<Edit> = Vec::new();
         for (i, key, placeholders) in targets {
-            let Some(&(astart, aend)) = arg_ranges.get(i) else { continue };
-            let Some(qpos) = find_first_quote(src, astart, aend) else { continue };
-            let Some((lstart, qend, interp_args)) = scan_dm_string(src, qpos) else { continue };
+            let Some(&(astart, aend)) = arg_ranges.get(i) else {
+                continue;
+            };
+            let Some(qpos) = find_first_quote(src, astart, aend) else {
+                continue;
+            };
+            let Some((lstart, qend, interp_args)) = scan_dm_string(src, qpos) else {
+                continue;
+            };
             if qend > aend || interp_args.len() != placeholders {
                 continue; // 越界 / 内插数不符 → 跳过
             }
@@ -819,7 +746,13 @@ impl<'a> Rewriter<'a> {
     ///
     /// 安全：要求 rhs 源码里**恰好一个**顶层字符串字面量（span_notice("x") 满足；
     /// 形如 `foo("x") + "y"` 的有两个 → 跳过，避免改错那一个）。
-    fn try_rewrite_examine(&mut self, dot_loc: dm::Location, anchor: &str, rhs: &Expression, ns: &str) {
+    fn try_rewrite_examine(
+        &mut self,
+        dot_loc: dm::Location,
+        anchor: &str,
+        rhs: &Expression,
+        ns: &str,
+    ) {
         let mut nodes: Vec<&Spanned<Term>> = Vec::new();
         collect_text_nodes(rhs, &mut nodes);
         if nodes.len() != 1 {
@@ -837,7 +770,9 @@ impl<'a> Rewriter<'a> {
                 return;
             }
         }
-        let Some(src) = self.source(&path) else { return };
+        let Some(src) = self.source(&path) else {
+            return;
+        };
         let Some(dot_start) = line_col_to_byte(src, dot_loc.line, dot_loc.column) else {
             return;
         };
@@ -877,14 +812,11 @@ impl<'a> Rewriter<'a> {
         } else {
             format!("LANG(\"{key}\", list({}))", interp_args.join(", "))
         };
-        self.edits
-            .entry(path)
-            .or_default()
-            .push(Edit {
-                start: qpos,
-                end: qend,
-                replacement,
-            });
+        self.edits.entry(path).or_default().push(Edit {
+            start: qpos,
+            end: qend,
+            replacement,
+        });
     }
 
     /// 物种特征(perk)：走 list 字面量，把 key 为 name/description（SPECIES_PERK_NAME/DESC 宏）的
@@ -941,7 +873,10 @@ impl<'a> Rewriter<'a> {
                 };
                 for arg in args.iter() {
                     if let Expression::AssignOp { lhs, rhs, .. } = arg {
-                        if matches!(build_template(lhs).as_deref(), Some("name") | Some("description")) {
+                        if matches!(
+                            build_template(lhs).as_deref(),
+                            Some("name") | Some("description")
+                        ) {
                             self.try_rewrite_perk(rhs, ns);
                         }
                         self.rewrite_perk_expr(rhs, ns);
@@ -982,7 +917,9 @@ impl<'a> Rewriter<'a> {
                 return;
             }
         }
-        let Some(src) = self.source(&path) else { return };
+        let Some(src) = self.source(&path) else {
+            return;
+        };
         let Some(start) = line_col_to_byte(src, loc.line, loc.column) else {
             return;
         };
@@ -1107,7 +1044,7 @@ fn is_dialog_button(template: &str) -> bool {
     )
 }
 
-pub(crate) fn collect_text_nodes<'b>(expr: &'b Expression, out: &mut Vec<&'b Spanned<Term>>) {
+fn collect_text_nodes<'b>(expr: &'b Expression, out: &mut Vec<&'b Spanned<Term>>) {
     match expr {
         Expression::Base { term, follow } if follow.is_empty() => match &term.elem {
             Term::String(_) | Term::InterpString(_, _) => {
@@ -1152,7 +1089,11 @@ fn node_template(term: &Term) -> Option<(String, usize)> {
                 }
                 out.push_str(lit);
             }
-            if !strip_tags(&out).chars().any(|c| c.is_alphabetic()) {
+            // 纯占位符框架（`"[施动者] [动词] [受动者]!"`）也要认，判据与
+            // `template::build_sink_template` 一致（≥3 个槽）：框架本身没有可翻的字面文本，
+            // 但只有把这条调用改成 LANG，实参才走得到 `lang_localize_arg`，中文也才有办法
+            // 丢掉英文复数槽 / 调换语序。两处闸门必须同口径，否则 key 对不上。
+            if count < 3 && !strip_tags(&out).chars().any(|c| c.is_alphabetic()) {
                 return None;
             }
             Some((out, count))
@@ -1160,4 +1101,3 @@ fn node_template(term: &Term) -> Option<(String, usize)> {
         _ => None,
     }
 }
-

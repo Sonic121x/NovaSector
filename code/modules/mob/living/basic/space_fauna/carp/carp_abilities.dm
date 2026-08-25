@@ -58,7 +58,7 @@
 
 /datum/action/cooldown/mob_cooldown/lesser_carp_rift/proc/make_rift(atom/target_atom)
 	if (owner.Adjacent(target_atom))
-		owner.balloon_alert(owner, LANG("datum.079a7d8b", null))
+		owner.balloon_alert(owner, LANG("datum.079a7d8b98f17deb", null))
 		return FALSE
 
 	var/turf/owner_turf = get_turf(owner)
@@ -76,7 +76,7 @@
 		open_exit_turfs += potential_exit
 
 	if (!length(open_exit_turfs))
-		owner.balloon_alert(owner, LANG("datum.a38909de", null))
+		owner.balloon_alert(owner, LANG("datum.a38909dea758bad8", null))
 		return FALSE
 	if (!target_turf.is_blocked_turf(exclude_mobs = TRUE))
 		open_exit_turfs += target_turf

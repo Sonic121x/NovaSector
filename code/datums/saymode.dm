@@ -38,12 +38,12 @@
 /datum/saymode/changeling/can_be_used_by(mob/living/user)
 	if(user.mind?.has_antag_datum(/datum/antagonist/fallen_changeling))
 		// special message for you
-		to_chat(user, span_changeling(LANG("datum.36fb917f", null)))
+		to_chat(user, span_changeling(LANG("datum.36fb917fc73abccb", null)))
 		return FALSE
 	if(!HAS_TRAIT(user, TRAIT_CHANGELING_HIVEMIND))
 		return FALSE
 	if(is_muted(user))
-		to_chat(user, span_warning(LANG("datum.aaabf9fc", null)))
+		to_chat(user, span_warning(LANG("datum.aaabf9fcb6060515", null)))
 		return FALSE
 	return TRUE
 

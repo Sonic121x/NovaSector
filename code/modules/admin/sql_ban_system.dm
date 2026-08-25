@@ -491,7 +491,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger(LANG("datum.cfa9a578", null)), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("datum.cfa9a5781ea2050f", null)), confidential = TRUE)
 		return
 	var/list/error_state = list()
 	var/player_key
@@ -613,7 +613,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 			else
 				error_state += "No ban type was selected."
 	if(error_state.len)
-		to_chat(usr, span_danger(LANG("datum.d4b5f42a", list(edit_id ? "edited" : "created", error_state.Join("\n")))), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("datum.d4b5f42a4a539f2d", list(edit_id ? "edited" : "created", error_state.Join("\n")))), confidential = TRUE)
 		return
 	if(edit_id)
 		edit_ban(edit_id, player_key, ip_check, player_ip, cid_check, player_cid, use_last_connection, applies_to_admins, duration, interval, reason, mirror_edit, old_key, old_ip, old_cid, old_applies, page, admin_key, changes, roles_to_ban[1] == "Server")
@@ -624,7 +624,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger(LANG("datum.cfa9a578", null)), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("datum.cfa9a5781ea2050f", null)), confidential = TRUE)
 		return
 	var/player_ckey = ckey(player_key)
 	if(player_ckey)
@@ -643,11 +643,11 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 					player_cid = query_create_ban_get_player.item[3]
 		else
 			if(use_last_connection)
-				if(tgui_alert(usr, LANG("datum.5fd7453d", list(player_key, player_ckey)), LANG("datum.eaa1ede3", null), list("Yes", "No", "Cancel")) != "Yes")
+				if(tgui_alert(usr, LANG("datum.5fd7453d775995cf", list(player_key, player_ckey)), LANG("datum.eaa1ede339926ab5", null), list("Yes", "No", "Cancel")) != "Yes")
 					qdel(query_create_ban_get_player)
 					return
 			else
-				if(tgui_alert(usr, LANG("datum.601f14ec", list(player_key, player_ckey)), LANG("datum.eaa1ede3", null), list("Yes", "No", "Cancel")) != "Yes")
+				if(tgui_alert(usr, LANG("datum.601f14ecf464eb70", list(player_key, player_ckey)), LANG("datum.eaa1ede339926ab5", null), list("Yes", "No", "Cancel")) != "Yes")
 					qdel(query_create_ban_get_player)
 					return
 		qdel(query_create_ban_get_player)
@@ -731,7 +731,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger(LANG("datum.cfa9a578", null)), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("datum.cfa9a5781ea2050f", null)), confidential = TRUE)
 		return
 	var/datum/browser/unban_panel = new(usr, "unbanpanel", "Unbanning Panel", 850, 600)
 	unban_panel.add_stylesheet("unbanpanelcss", 'html/admin/unbanpanel.css')
@@ -879,11 +879,11 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger(LANG("datum.cfa9a578", null)), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("datum.cfa9a5781ea2050f", null)), confidential = TRUE)
 		return
 	var/target = ban_target_string(player_key, player_ip, player_cid)
 	// Make sure the only input that doesn't early return is "Yes" - This is the only situation in which we want the unban to proceed.
-	if(tgui_alert(usr, LANG("datum.596e7033", list(target, role)), LANG("datum.c825fbbb", null), list("Yes", "No")) != "Yes")
+	if(tgui_alert(usr, LANG("datum.596e7033f899b47b", list(target, role)), LANG("datum.c825fbbb4f6bfade", null), list("Yes", "No")) != "Yes")
 		return
 	var/kn = key_name(usr)
 	var/kna = key_name_admin(usr)
@@ -907,11 +907,11 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 	var/client/C = GLOB.directory[player_key]
 	if(C)
 		build_ban_cache(C)
-		to_chat(C, span_boldannounce(LANG("datum.f7074313", list(usr.client.key, role))), confidential = TRUE)
+		to_chat(C, span_boldannounce(LANG("datum.f70743131c059129", list(usr.client.key, role))), confidential = TRUE)
 	for(var/client/i in GLOB.clients - C)
 		if(i.address == player_ip || i.computer_id == player_cid)
 			build_ban_cache(i)
-			to_chat(i, span_boldannounce(LANG("datum.890bcc2c", list(usr.client.key, role))), confidential = TRUE)
+			to_chat(i, span_boldannounce(LANG("datum.890bcc2c0611d229", list(usr.client.key, role))), confidential = TRUE)
 	unban_panel(player_key, admin_key, player_ip, player_cid, page)
 
 /// Sometimes an admin did not intend to unban a player. This proc undoes an unbanning operation by setting the unbanned_ keys in the DB back to null.
@@ -919,12 +919,12 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger(LANG("datum.cfa9a578", null)), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("datum.cfa9a5781ea2050f", null)), confidential = TRUE)
 		return
 
 	var/target = ban_target_string(player_key, player_ip, player_cid)
 	// Make sure the only input that doesn't early return is "Yes" - This is the only situation in which we want the unban to proceed.
-	if(tgui_alert(usr, LANG("datum.17e6ba77", list(target, role)), LANG("datum.73642c50", null), list("Yes", "No")) != "Yes")
+	if(tgui_alert(usr, LANG("datum.17e6ba7712273ba1", list(target, role)), LANG("datum.73642c50e9b4d605", null), list("Yes", "No")) != "Yes")
 		return
 
 	if(applies_to_admins && !can_place_additional_admin_ban(usr.client.ckey))
@@ -961,7 +961,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger(LANG("datum.cfa9a578", null)), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("datum.cfa9a5781ea2050f", null)), confidential = TRUE)
 		return
 	var/player_ckey = ckey(player_key)
 	var/bantime
@@ -988,11 +988,11 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 					player_cid = query_edit_ban_get_player.item[4]
 		else
 			if(use_last_connection)
-				if(tgui_alert(usr, LANG("datum.e07887e1", list(player_key, player_ckey)), LANG("datum.eaa1ede3", null), list("Yes", "No", "Cancel")) != "Yes")
+				if(tgui_alert(usr, LANG("datum.e07887e1e8a4c4c9", list(player_key, player_ckey)), LANG("datum.eaa1ede339926ab5", null), list("Yes", "No", "Cancel")) != "Yes")
 					qdel(query_edit_ban_get_player)
 					return
 			else
-				if(tgui_alert(usr, LANG("datum.b7154aff", list(player_key, player_ckey)), LANG("datum.eaa1ede3", null), list("Yes", "No", "Cancel")) != "Yes")
+				if(tgui_alert(usr, LANG("datum.b7154afff87ff642", list(player_key, player_ckey)), LANG("datum.eaa1ede339926ab5", null), list("Yes", "No", "Cancel")) != "Yes")
 					qdel(query_edit_ban_get_player)
 					return
 		qdel(query_edit_ban_get_player)
@@ -1074,7 +1074,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger(LANG("datum.cfa9a578", null)), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("datum.cfa9a5781ea2050f", null)), confidential = TRUE)
 		return
 	var/datum/db_query/query_get_ban_edits = SSdbcore.NewQuery({"
 		SELECT edits FROM [format_table_name("ban")] WHERE id = :ban_id
@@ -1133,7 +1133,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 		if(check_rights(R_PERMISSIONS, show_msg = FALSE) && (can_edit_rights_flags() & R_EVERYTHING) == R_EVERYTHING) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
 			max_adminbans = MAX_ADMINBANS_PER_HEADMIN
 		if(adminban_count >= max_adminbans)
-			to_chat(usr, span_danger(LANG("datum.259091f0", list(max_adminbans))), confidential = TRUE)
+			to_chat(usr, span_danger(LANG("datum.259091f00edad401", list(max_adminbans))), confidential = TRUE)
 			qdel(query_check_adminban_count)
 			return FALSE
 	qdel(query_check_adminban_count)
@@ -1165,7 +1165,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 	var/is_admin = FALSE
 	if(player_client)
 		build_ban_cache(player_client)
-		to_chat(player_client, span_boldannounce(LANG("datum.d22adb7d", list(banned_player_message, appeal_url))), confidential = TRUE)
+		to_chat(player_client, span_boldannounce(LANG("datum.d22adb7d42ac9ce9", list(banned_player_message, appeal_url))), confidential = TRUE)
 		if(GLOB.admin_datums[player_client.ckey] || GLOB.deadmins[player_client.ckey])
 			is_admin = TRUE
 		if(kick_banned_players && (!is_admin || (is_admin && applies_to_admins)))
@@ -1174,7 +1174,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 	for(var/client/other_player_client in GLOB.clients - player_client)
 		if(other_player_client.address == banned_player_ip || other_player_client.computer_id == banned_player_cid)
 			build_ban_cache(other_player_client)
-			to_chat(other_player_client, span_boldannounce(LANG("datum.d22adb7d", list(banned_other_message, appeal_url))), confidential = TRUE)
+			to_chat(other_player_client, span_boldannounce(LANG("datum.d22adb7d42ac9ce9", list(banned_other_message, appeal_url))), confidential = TRUE)
 			if(GLOB.admin_datums[other_player_client.ckey] || GLOB.deadmins[other_player_client.ckey])
 				is_admin = TRUE
 			if(kick_banned_players && (!is_admin || (is_admin && applies_to_admins)))

@@ -21,7 +21,7 @@
 	if(check_rail || !use(1))
 		return NONE
 
-	to_chat(user, span_notice(LANG("obj.7a67ae81", list(src, target_turf))))
+	to_chat(user, span_notice(LANG("obj.7a67ae81e5981d09", list(src, target_turf))))
 	new /obj/structure/railroad(target_turf)
 	return ITEM_INTERACT_SUCCESS
 
@@ -83,8 +83,8 @@
 
 /obj/vehicle/ridden/rail_cart/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.115030f8", null))
-	. += span_notice(LANG("obj.01f454c0", null))
+	. += span_notice(LANG("obj.115030f8410efba8", null))
+	. += span_notice(LANG("obj.01f454c0137e9db9", null))
 
 /obj/vehicle/ridden/rail_cart/Initialize(mapload)
 	. = ..()

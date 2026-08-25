@@ -38,7 +38,7 @@
 			original_minds -= original_mind_ref
 			if(original_mind.current)
 				to_chat(original_mind.current, span_boldwarning(
-					LANG("datum.5a080e9e", null) \
+					LANG("datum.5a080e9e4020e98e", null) \
 				))
 
 			continue
@@ -82,19 +82,19 @@
 	// 0 = full protection on both
 	// 2 = zero protection summary
 	if(weakness_caster + weakness_to_swap <= 1) { // Either one is fully protected, or they have total protection <= 1
-		to_chat(caster, span_warning(LANG("datum.9152e94f", null)))
-		to_chat(to_swap, span_warning(LANG("datum.9152e94f", null)))
+		to_chat(caster, span_warning(LANG("datum.9152e94f390d66ec", null)))
+		to_chat(to_swap, span_warning(LANG("datum.9152e94f390d66ec", null)))
 		return FALSE
 	}
 
 	// IT WAS TRUE ALL ALONG
 	if(istype(caster.get_item_by_slot(ITEM_SLOT_HEAD), /obj/item/clothing/head/costume/foilhat))
-		to_chat(caster, span_clockred(LANG("datum.425c4433", null)))
+		to_chat(caster, span_clockred(LANG("datum.425c443319221b27", null)))
 		return FALSE
 
 	// THEY CONTROL US WITH INVISIBLE RAYS FROM SPACE SATELLITES
 	if(istype(caster.get_item_by_slot(ITEM_SLOT_HEAD), /obj/item/clothing/head/costume/foilhat))
-		to_chat(to_swap, span_clockred(LANG("datum.425c4433", null)))
+		to_chat(to_swap, span_clockred(LANG("datum.425c443319221b27", null)))
 		return FALSE
 
 	// Gives the target a mind if they don't have one
@@ -111,8 +111,8 @@
 		|| mind_to_swap.has_antag_datum(/datum/antagonist/rev) \
 		|| mind_to_swap.key?[1] == "@" \
 	)
-		holder.balloon_alert(to_swap, LANG("datum.07286f14", null))
-		holder.balloon_alert(caster, LANG("datum.07286f14", null))
+		holder.balloon_alert(to_swap, LANG("datum.07286f142031f581", null))
+		holder.balloon_alert(caster, LANG("datum.07286f142031f581", null))
 		return FALSE
 
 	// MIND TRANSFER BEGIN

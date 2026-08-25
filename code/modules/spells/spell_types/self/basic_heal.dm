@@ -24,8 +24,8 @@
 /datum/action/cooldown/spell/basic_heal/cast(mob/living/cast_on)
 	. = ..()
 	cast_on.visible_message(
-		span_warning(LANG("datum.9c6e1068", list(cast_on))),
-		span_notice(LANG("datum.ed1e1eb3", null)),
+		span_warning(LANG("datum.9c6e1068c02a3220", list(cast_on))),
+		span_notice(LANG("datum.ed1e1eb37623f900", null)),
 	)
 	var/need_mob_update = FALSE
 	need_mob_update += cast_on.adjust_brute_loss(-brute_to_heal, updating_health = FALSE)

@@ -35,16 +35,16 @@
 
 /obj/item/aicard/syndie/loaded/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.6e1558f1", null))
+	. += span_notice(LANG("obj.6e1558f1a5274bf2", null))
 
 /obj/item/aicard/syndie/loaded/attack_self(mob/user, modifiers)
 	if(!isnull(AI))
 		return ..()
 	if(finding_candidate)
-		balloon_alert(user, LANG("obj.22d73150", null))
+		balloon_alert(user, LANG("obj.22d731509ecf6915", null))
 		return TRUE
 	finding_candidate = TRUE
-	to_chat(user, span_notice(LANG("obj.eb63c4e9", null)))
+	to_chat(user, span_notice(LANG("obj.eb63c4e958e84112", null)))
 	procure_ai(user)
 	finding_candidate = FALSE
 	return TRUE
@@ -53,7 +53,7 @@
 /obj/item/aicard/syndie/loaded/proc/procure_ai(mob/user)
 	var/datum/antagonist/nukeop/op_datum = user.mind?.has_antag_datum(/datum/antagonist/nukeop,TRUE)
 	if(isnull(op_datum))
-		balloon_alert(user, LANG("obj.453cdb2b", null))
+		balloon_alert(user, LANG("obj.453cdb2b3af6af42", null))
 		return
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
 		check_jobban = list(ROLE_OPERATIVE, JOB_AI),
@@ -69,7 +69,7 @@
 /// Poll has concluded with a ghost, create the AI
 /obj/item/aicard/syndie/loaded/proc/on_poll_concluded(mob/user, datum/antagonist/nukeop/op_datum, mob/dead/observer/ghost)
 	if(!ismob(ghost))
-		to_chat(user, span_warning(LANG("obj.515a382a", null)))
+		to_chat(user, span_warning(LANG("obj.515a382a7ac4c08f", null)))
 		return
 
 	// pick ghost, create AI and transfer
@@ -111,7 +111,7 @@
 	. = ..()
 	if (!.)
 		return
-	visible_message(span_warning(LANG("obj.687cea10", null)))
+	visible_message(span_warning(LANG("obj.687cea10df0ca4c4", null)))
 	do_sparks(3, cardinal_only = FALSE, source = src)
 	new /obj/effect/decal/cleanable/ash(get_turf(src))
 	qdel(src)
@@ -132,12 +132,12 @@
 		AI = locate() in target
 	if(!AI || AI.interaction_range == INFINITY)
 		playsound(src,'sound/machines/buzz/buzz-sigh.ogg',50,FALSE)
-		to_chat(user, span_notice(LANG("obj.4ac1089d", null)))
+		to_chat(user, span_notice(LANG("obj.4ac1089dfb1c34b3", null)))
 		return ..()
 	AI.interaction_range += 2
 	if(AI.interaction_range > 7)
 		AI.interaction_range = INFINITY
 	playsound(src,'sound/machines/beep/twobeep.ogg',50,FALSE)
-	to_chat(user, span_notice(LANG("obj.a6cfb93e", list(src, AI))))
-	to_chat(AI, span_notice(LANG("obj.96fab1e7", list(src, AI.interaction_range))))
+	to_chat(user, span_notice(LANG("obj.a6cfb93eabd67689", list(src, AI))))
+	to_chat(AI, span_notice(LANG("obj.96fab1e7d75fb517", list(src, AI.interaction_range))))
 	qdel(src)

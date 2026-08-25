@@ -114,7 +114,7 @@
 	target.emp_act(EMP_LIGHT)
 	new /obj/effect/temp_visual/emp/pulse(target.loc)
 	addtimer(CALLBACK(src, PROC_REF(send_message), user), 30 SECONDS)
-	to_chat(user, span_brass(LANG("obj.e0d64c4a", list(target))))
+	to_chat(user, span_brass(LANG("obj.e0d64c4adb2465d3", list(target))))
 	playsound(user, 'sound/effects/magic/lightningshock.ogg', 40)
 
 /obj/item/clockwork/weapon/brass_sword/attack_atom(obj/attacked_obj, mob/living/user, params)
@@ -133,11 +133,11 @@
 	target.emp_act(EMP_HEAVY)
 	new /obj/effect/temp_visual/emp/pulse(target.loc)
 	addtimer(CALLBACK(src, PROC_REF(send_message), user), 20 SECONDS)
-	to_chat(user, span_brass(LANG("obj.e0d64c4a", list(target))))
+	to_chat(user, span_brass(LANG("obj.e0d64c4adb2465d3", list(target))))
 	playsound(user, 'sound/effects/magic/lightningshock.ogg', 40)
 
 /obj/item/clockwork/weapon/brass_sword/proc/send_message(mob/living/target)
-	to_chat(target, span_brass(LANG("obj.22294ed0", list(src))))
+	to_chat(target, span_brass(LANG("obj.22294ed05deb175c", list(src))))
 
 
 /obj/item/gun/ballistic/bow/clockwork
@@ -164,7 +164,7 @@
 
 /obj/item/gun/ballistic/bow/clockwork/try_fire_gun(atom/target, mob/living/user, params)
 	if(!drawn || !chambered)
-		to_chat(user, span_notice(LANG("obj.5c5254b9", list(src))))
+		to_chat(user, span_notice(LANG("obj.5c5254b91cd8ac9d", list(src))))
 		return FALSE
 	return ..()
 
@@ -185,7 +185,7 @@
 	if(!do_after(user, 0.5 SECONDS, src))
 		return
 
-	to_chat(user, span_notice(LANG("obj.80dbf3a2", null)))
+	to_chat(user, span_notice(LANG("obj.80dbf3a2161f2a63", null)))
 	drawn = TRUE
 	playsound(src, 'modular_nova/modules/tribal_extended/sound/sound_weapons_bowdraw.ogg', 75, 0) //gets way too high pitched if the freq varies
 	update_icon()

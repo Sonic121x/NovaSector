@@ -40,7 +40,7 @@ ADMIN_VERB(trophy_manager, R_ADMIN, "战利品管理器", "View all trophies.", 
 			return TRUE
 		if("edit_message")
 			var/old_message = trophy.message
-			var/new_message = tgui_input_text(user, LANG("datum.fd779f73", null), LANG("datum.8ad7af1b", null), trophy.message, max_length = MAX_PLAQUE_LEN)
+			var/new_message = tgui_input_text(user, LANG("datum.fd779f731e7473fd", null), LANG("datum.8ad7af1b966ef326", null), trophy.message, max_length = MAX_PLAQUE_LEN)
 			if(!new_message)
 				return
 			trophy.message = new_message
@@ -48,11 +48,11 @@ ADMIN_VERB(trophy_manager, R_ADMIN, "战利品管理器", "View all trophies.", 
 			return TRUE
 		if("edit_path")
 			var/old_path = trophy.path
-			var/new_path = tgui_input_text(user, LANG("datum.faf74930", null), LANG("datum.7c303dfa", null), trophy.path)
+			var/new_path = tgui_input_text(user, LANG("datum.faf74930af81fa1e", null), LANG("datum.7c303dfaf3a341c7", null), trophy.path)
 			if(!new_path)
 				return
 			if(!text2path(new_path))
-				to_chat(user, span_warning(LANG("datum.250a4695", null)))
+				to_chat(user, span_warning(LANG("datum.250a4695393dfc35", null)))
 				return
 			trophy.path = new_path
 			log_admin("[key_name(user)] has edited the item path of trophy made by [trophy.placer_key] from \"[old_path]\" to \"[new_path]\".")

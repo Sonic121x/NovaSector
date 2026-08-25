@@ -18,7 +18,7 @@
 /datum/atom_skin/paper_mask/apply(atom/apply_to, mob/user)
 	. = ..()
 	if(!user.is_holding_item_of_type(/obj/item/pen))
-		user.balloon_alert(user, LANG("datum.5cc7fdc9", null))
+		user.balloon_alert(user, LANG("datum.5cc7fdc9cca7e037", null))
 		return
 
 	var/mob/living/carbon/carbon_user
@@ -180,10 +180,10 @@
 		wear_hair_over = !wear_hair_over
 		if(wear_hair_over)
 			alternate_worn_layer = BACK_LAYER
-			to_chat(user, LANG("obj.4bb16fa0", list(is_worn ? "" : "will ")))
+			to_chat(user, LANG("obj.4bb16fa0c0d2491b", list(is_worn ? "" : "will ")))
 		else
 			alternate_worn_layer = initial(alternate_worn_layer)
-			to_chat(user, LANG("obj.94bde333", list(is_worn ? "" : "will ")))
+			to_chat(user, LANG("obj.94bde3330c090435", list(is_worn ? "" : "will ")))
 
 		user.update_worn_mask()
 
@@ -193,7 +193,7 @@
 	if(!user.incapacitated)
 		var/is_worn = user.wear_mask == src
 		strap_hidden = !strap_hidden
-		to_chat(user, LANG("obj.41026db5", list(is_worn ? "" : "will ", strap_hidden ? "hide" : "show")))
+		to_chat(user, LANG("obj.41026db50d038dab", list(is_worn ? "" : "will ", strap_hidden ? "hide" : "show")))
 
 		user.update_worn_mask()
 

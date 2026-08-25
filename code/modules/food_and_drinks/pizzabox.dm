@@ -71,19 +71,19 @@
 		boxtag_set = TRUE
 	if(open)
 		if(pizza)
-			desc = LANG("obj.a50048f4", list(desc, pizza, pizza.sliced ? ". It is sliced" : ""))
+			desc = LANG("obj.a50048f40b830334", list(desc, pizza, pizza.sliced ? ". It is sliced" : ""))
 		if(bomb)
-			desc = LANG("obj.50e207f3", list(desc, bomb))
+			desc = LANG("obj.50e207f3ea954ee2", list(desc, bomb))
 			if(bomb_defused)
-				desc = LANG("obj.11d93e52", list(desc))
+				desc = LANG("obj.11d93e52f0c03f38", list(desc))
 			if(bomb_active)
-				desc = LANG("obj.e761e95b", list(desc))
+				desc = LANG("obj.e761e95b70ab472e", list(desc))
 	else
 		var/obj/item/pizzabox/box = length(boxes) ? boxes[length(boxes)] : src
 		if(length(boxes))
-			desc = LANG("obj.041754f2", list(length(boxes) + 1))
+			desc = LANG("obj.041754f26e32da0f", list(length(boxes) + 1))
 		if(box.boxtag != "")
-			desc = LANG("obj.a7fc18c2", list(desc, length(boxes) ? "top box" : "box", box.boxtag))
+			desc = LANG("obj.a7fc18c20cd1d318", list(desc, length(boxes) ? "top box" : "box", box.boxtag))
 
 /obj/item/pizzabox/update_icon_state()
 	if(!open)
@@ -140,7 +140,7 @@
 		return
 	open = !open
 	if(open && !bomb_defused)
-		audible_message(span_warning(LANG("obj.a86aba68", list(icon2html(src, hearers(src))))))
+		audible_message(span_warning(LANG("obj.a86aba68bc758523", list(icon2html(src, hearers(src))))))
 		bomb_active = TRUE
 		START_PROCESSING(SSobj, src)
 	update_appearance()
@@ -171,18 +171,18 @@
 		else if(bomb)
 			if(wires.is_all_cut() && bomb_defused)
 				user.put_in_hands(bomb)
-				balloon_alert(user, LANG("obj.18b78df1", null))
+				balloon_alert(user, LANG("obj.18b78df1f73ac178", null))
 				clear_bomb()
 				update_appearance()
 				return
 			else
-				bomb_timer = tgui_input_number(user, LANG("obj.2d92aef2", null), LANG("obj.07affdff", null), bomb_timer, bomb_timer_max, bomb_timer_min)
+				bomb_timer = tgui_input_number(user, LANG("obj.2d92aef25f614a47", null), LANG("obj.07affdff182cc9dc", null), bomb_timer, bomb_timer_max, bomb_timer_min)
 				if(!bomb_timer || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 					return
 				bomb_defused = FALSE
 				log_bomber(user, "has trapped a", src, "with [bomb] set to [bomb_timer] seconds")
 				bomb.adminlog = "\The [bomb] in [src.name] that [key_name(user)] activated has detonated!"
-				balloon_alert(user, LANG("obj.944b69ef", null))
+				balloon_alert(user, LANG("obj.944b69eface8b6f5", null))
 				update_appearance()
 	else if(length(boxes))
 		var/obj/item/pizzabox/topbox = boxes[length(boxes)]
@@ -209,18 +209,18 @@
 			user.regenerate_icons()
 			if(length(boxes) >= 5)
 				if(prob(10 * length(boxes)))
-					user.balloon_alert_to_viewers(LANG("obj.60df3574", null))
+					user.balloon_alert_to_viewers(LANG("obj.60df3574a65ca41a", null))
 					disperse_pizzas()
 				else
-					balloon_alert(user, LANG("obj.a2a2410e", null))
+					balloon_alert(user, LANG("obj.a2a2410e13224273", null))
 			return ITEM_INTERACT_SUCCESS
 		else
-			balloon_alert(user, LANG("obj.1bd34d98", null))
+			balloon_alert(user, LANG("obj.1bd34d987bac1db7", null))
 			return ITEM_INTERACT_FAILURE
 	else if(istype(used_item, /obj/item/food/pizza))
 		if(open)
 			if(pizza)
-				balloon_alert(user, LANG("obj.2cb7d354", null))
+				balloon_alert(user, LANG("obj.2cb7d3546d66854d", null))
 				return ITEM_INTERACT_FAILURE
 			if(!user.transferItemToLoc(used_item, src))
 				return ITEM_INTERACT_FAILURE
@@ -233,11 +233,11 @@
 				return ITEM_INTERACT_FAILURE
 			set_wires(new /datum/wires/explosive/pizza(src))
 			register_bomb(used_item)
-			balloon_alert(user, LANG("obj.792e689f", null))
+			balloon_alert(user, LANG("obj.792e689f2e90d91e", null))
 			update_appearance()
 			return ITEM_INTERACT_SUCCESS
 		else if(bomb)
-			balloon_alert(user, LANG("obj.a0150da8", null))
+			balloon_alert(user, LANG("obj.a0150da8b4e3b6e5", null))
 			return ITEM_INTERACT_FAILURE
 	else if(IS_WRITING_UTENSIL(used_item))
 		if(open)
@@ -245,10 +245,10 @@
 		if(!user.can_write(used_item))
 			return ITEM_INTERACT_FAILURE
 		var/obj/item/pizzabox/box = length(boxes) ? boxes[length(boxes)] : src
-		box.boxtag += tgui_input_text(user, LANG("obj.56f1e668", list(box)), box, max_length = 30)
+		box.boxtag += tgui_input_text(user, LANG("obj.56f1e6681552b657", list(box)), box, max_length = 30)
 		if(!user.can_perform_action(src))
 			return ITEM_INTERACT_FAILURE
-		balloon_alert(user, LANG("obj.b180f54a", null))
+		balloon_alert(user, LANG("obj.b180f54a6e96c4d1", null))
 		playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 		boxtag_set = TRUE
 		update_appearance()
@@ -290,12 +290,12 @@
 	. = ..()
 	if(isobserver(user))
 		if(bomb)
-			. += span_deadsay(LANG("obj.b4b7c1e9", list(bomb_defused ? "an unarmed bomb" : "an armed bomb")))
+			. += span_deadsay(LANG("obj.b4b7c1e94d43aae5", list(bomb_defused ? "an unarmed bomb" : "an armed bomb")))
 		if(pizza && istype(pizza, /obj/item/food/pizza/margherita/robo))
-			. += span_deadsay(LANG("obj.8ce54cb7", null))
+			. += span_deadsay(LANG("obj.8ce54cb763540373", null))
 
 /obj/item/pizzabox/proc/disperse_pizzas()
-	visible_message(span_warning(LANG("obj.e174af78", null)))
+	visible_message(span_warning(LANG("obj.e174af78e3b37a30", null)))
 	for(var/V in boxes)
 		var/obj/item/pizzabox/P = V
 		var/fall_dir = pick(GLOB.alldirs)
@@ -390,12 +390,12 @@
 		attune_pizza(user) //pizza tag changes based on examiner
 	. = ..()
 	if(isobserver(user))
-		. += span_deadsay(LANG("obj.d77f4d8d", null))
+		. += span_deadsay(LANG("obj.d77f4d8d693c995f", null))
 
 /obj/item/pizzabox/infinite/attack_self(mob/living/user)
 	if(ishuman(user))
 		attune_pizza(user)
-		to_chat(user, span_notice(LANG("obj.6f59a897", null)))
+		to_chat(user, span_notice(LANG("obj.6f59a8971d84cacb", null)))
 	return ..()
 
 /obj/item/pizzabox/infinite/proc/attune_pizza(mob/living/carbon/human/nommer) //tonight on "proc names I never thought I'd type"

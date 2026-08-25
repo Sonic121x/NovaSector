@@ -6,7 +6,7 @@ GAME_VERB(/mob, say_verb, VERB_SAY, null)
 	VERB_ARG(message, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(usr, span_danger(LANG("mob.b79ad8a3", null)))
+		to_chat(usr, span_danger(LANG("mob.b79ad8a388d1b3a4", null)))
 		return
 
 	//queue this message because verbs are scheduled to process after SendMaps in the tick and speech is pretty expensive when it happens.
@@ -19,7 +19,7 @@ GAME_VERB(/mob, whisper_verb, VERB_WHISPER, null)
 	VERB_ARG(message, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(usr, span_danger(LANG("mob.b79ad8a3", null)))
+		to_chat(usr, span_danger(LANG("mob.b79ad8a388d1b3a4", null)))
 		return
 
 	if(message)
@@ -40,7 +40,7 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 	VERB_ARG(message, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(usr, span_danger(LANG("mob.b79ad8a3", null)))
+		to_chat(usr, span_danger(LANG("mob.b79ad8a388d1b3a4", null)))
 		return
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
@@ -58,7 +58,7 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 
 	if(filter_result && !filterproof)
 		//The filter warning message shows the sanitized message though.
-		to_chat(src, span_warning(LANG("mob.c5ad5b2b", null)))
+		to_chat(src, span_warning(LANG("mob.c5ad5b2b0b97c637", null)))
 		to_chat(src, span_warning("\"[message]\""))
 		REPORT_CHAT_FILTER_TO_USER(src, filter_result)
 		log_filter("IC", message, filter_result)
@@ -66,7 +66,7 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 		return FALSE
 
 	if(soft_filter_result && !filterproof)
-		if(tgui_alert(usr,LANG("mob.6308a68e", list(soft_filter_result[CHAT_FILTER_INDEX_WORD], soft_filter_result[CHAT_FILTER_INDEX_REASON])), LANG("mob.b0fe106c", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr,LANG("mob.6308a68e8adba21f", list(soft_filter_result[CHAT_FILTER_INDEX_WORD], soft_filter_result[CHAT_FILTER_INDEX_REASON])), LANG("mob.b0fe106c90796ca4", null), list("Yes", "No")) != "Yes")
 			SSblackbox.record_feedback("tally", "soft_ic_blocked_words", 1, LOWER_TEXT(config.soft_ic_filter_regex.match))
 			log_filter("Soft IC", message, filter_result)
 			return FALSE
@@ -77,7 +77,7 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 
 	if(client && !(ignore_spam || forced))
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, span_danger(LANG("mob.09db91bf", null)))
+			to_chat(src, span_danger(LANG("mob.09db91bf24f769f0", null)))
 			return FALSE
 		if(client.handle_spam_prevention(message, MUTE_IC))
 			return FALSE
@@ -90,9 +90,9 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 
 	if(!..()) // the can_speak check
 		if(HAS_MIND_TRAIT(src, TRAIT_MIMING))
-			to_chat(src, span_green(LANG("mob.7d205da2", null)))
+			to_chat(src, span_green(LANG("mob.7d205da286210f47", null)))
 		else
-			to_chat(src, span_warning(LANG("mob.d94d2905", null)))
+			to_chat(src, span_warning(LANG("mob.d94d29050f3f2ba1", null)))
 		return FALSE
 
 	return TRUE
@@ -115,12 +115,12 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 	var/alt_name = ""
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(usr, span_danger(LANG("mob.b79ad8a3", null)))
+		to_chat(usr, span_danger(LANG("mob.b79ad8a388d1b3a4", null)))
 		return
 
 	//NOVA EDIT ADDITION START
 	if(!GLOB.dchat_allowed && !check_rights(R_ADMIN, FALSE))
-		to_chat(src, LANG("mob.789f6b36", null))
+		to_chat(src, LANG("mob.789f6b361784edc9", null))
 		return
 	//NOVA EDIT ADDITION END
 	var/jb = is_banned_from(mannequin_controller?.ckey || ckey, "Deadchat")
@@ -128,17 +128,17 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 		return
 
 	if(jb)
-		to_chat(src, span_danger(LANG("mob.fe1bd167", null)))
+		to_chat(src, span_danger(LANG("mob.fe1bd167cd942ea3", null)))
 		return
 
 	if (src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			to_chat(src, span_danger(LANG("mob.df8e5891", null)))
+			to_chat(src, span_danger(LANG("mob.df8e58918cf70516", null)))
 			return
 
 		if(SSlag_switch.measures[SLOWMODE_SAY] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES) && src == usr)
 			if(!COOLDOWN_FINISHED(client, say_slowmode))
-				to_chat(src, span_warning(LANG("mob.033682b4", list(SSlag_switch.slowmode_cooldown/10, message))))
+				to_chat(src, span_warning(LANG("mob.033682b474988f17", list(SSlag_switch.slowmode_cooldown/10, message))))
 				return
 			COOLDOWN_START(client, say_slowmode, SSlag_switch.slowmode_cooldown)
 
@@ -225,14 +225,14 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 			mods[RADIO_EXTENSION] = GLOB.department_radio_keys[mods[RADIO_KEY]]
 			chop_to = length(key) + 2
 		else if(key == "," && !mods[LANGUAGE_EXTENSION])
-			for(var/ld in GLOB.all_languages)
-				var/datum/language/LD = ld
-				if(initial(LD.key) == message[1 + length(message[1])])
+			for(var/datum/language/LD as anything in GLOB.all_languages)
+				var/lang_key = LD::key
+				if(lang_key && (lang_key == message[1 + length(message[1])]))
 					// No, you cannot speak in xenocommon just because you know the key
 					if(!can_speak_language(LD))
 						return message
 					mods[LANGUAGE_EXTENSION] = LD
-					chop_to = length(key) + length(initial(LD.key)) + 1
+					chop_to = length(key) + length(lang_key) + 1
 			if(!mods[LANGUAGE_EXTENSION])
 				return message
 		else

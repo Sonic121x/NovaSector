@@ -69,9 +69,9 @@
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice(LANG("obj.4263d56a", list(user))),
-		span_notice(LANG("obj.2f43105d", null)),
-		blind_message = span_notice(LANG("obj.0e0002b3", null)),
+		span_notice(LANG("obj.4263d56a33b9bfc3", list(user))),
+		span_notice(LANG("obj.2f43105dc5550d93", null)),
+		blind_message = span_notice(LANG("obj.0e0002b3a4e16270", null)),
 	)
 	playsound(src, 'modular_nova/modules/aesthetics/lightswitch/sound/lightswitch.ogg', 25, FALSE)
 	inserted_battery = tool
@@ -143,8 +143,8 @@
 		if(cooldown <= 0)
 			cooldown = 0
 			visible_message(
-				span_notice(LANG("obj.340c6f12", list(src))),
-				blind_message = span_notice(LANG("obj.f01d59b1", null)),
+				span_notice(LANG("obj.340c6f128719df7d", list(src))),
+				blind_message = span_notice(LANG("obj.f01d59b1f6853cf1", null)),
 			)
 	else if(activated && inserted_battery.battery_effect)
 		// make sure the effect is active
@@ -175,7 +175,7 @@
 	if(activated)
 		activated = FALSE
 		timing = FALSE
-		visible_message(span_notice(LANG("obj.9f1f2989", list(src))), blind_message = span_notice(LANG("obj.917adee9", null)))
+		visible_message(span_notice(LANG("obj.9f1f2989394f9812", list(src))), blind_message = span_notice(LANG("obj.917adee946ae667d", null)))
 		cooldown = COOLDOWN_TIME
 
 	if(inserted_battery?.battery_effect)
@@ -285,14 +285,14 @@
 		inserted_battery.battery_effect.do_effect_touch(target_mob)
 		inserted_battery.stored_charge -= min(inserted_battery.stored_charge, 20) // we are spending quite a big amount of energy doing this
 		user.visible_message(
-			span_notice(LANG("obj.f6f39e24", list(user, target_mob, src))),
-			span_notice(LANG("obj.7254c8f8", list(target_mob, src))),
-			blind_message = span_hear(LANG("obj.03e62373", null)),
+			span_notice(LANG("obj.f6f39e2493feea03", list(user, target_mob, src))),
+			span_notice(LANG("obj.7254c8f8503db6d9", list(target_mob, src))),
+			blind_message = span_hear(LANG("obj.03e62373c2fcb572", null)),
 		)
 	else
 		user.visible_message(
-			span_notice(LANG("obj.61ef528f", list(user, target_mob, src))),
-			span_notice(LANG("obj.0f6d7ff1", list(target_mob, src))),
+			span_notice(LANG("obj.61ef528fa76b7a01", list(user, target_mob, src))),
+			span_notice(LANG("obj.0f6d7ff118cc3ada", list(target_mob, src))),
 		)
 
 	if(inserted_battery.battery_effect)

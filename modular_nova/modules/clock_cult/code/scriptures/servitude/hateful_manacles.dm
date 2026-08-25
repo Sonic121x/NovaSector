@@ -18,12 +18,12 @@
 		return FALSE
 
 	if(target_carbon.handcuffed)
-		target_carbon.balloon_alert(invoker, LANG("datum.1f241543", null))
+		target_carbon.balloon_alert(invoker, LANG("datum.1f241543e3f0ad24", null))
 		return FALSE
 
 	playsound(target_carbon, 'sound/items/weapons/handcuffs.ogg', 30, TRUE, -2)
-	target_carbon.visible_message(span_danger(LANG("datum.ef41cf65", list(invoker, target_carbon))),\
-						span_userdanger(LANG("datum.61017d12", list(invoker))))
+	target_carbon.visible_message(span_danger(LANG("datum.ef41cf6551462fa4", list(invoker, target_carbon))),\
+						span_userdanger(LANG("datum.61017d12d714600b", list(invoker))))
 
 	if(!do_after(invoker, 3 SECONDS, target = target_carbon))
 		return FALSE

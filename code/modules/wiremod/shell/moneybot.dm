@@ -159,11 +159,11 @@
 
 	var/amount_to_insert = item.get_item_credit_value()
 	if(!amount_to_insert)
-		balloon_alert(attacker, LANG("obj.7c5787d9", null))
+		balloon_alert(attacker, LANG("obj.7c5787d9e22e49a6", null))
 		return
 
 	attached_bot.add_money(amount_to_insert)
-	balloon_alert(attacker, LANG("obj.7b86d811", list(amount_to_insert, MONEY_NAME)))
+	balloon_alert(attacker, LANG("obj.7b86d811c6569564", list(amount_to_insert, MONEY_NAME)))
 	money_input.set_output(amount_to_insert)
 	entity.set_output(attacker)
 	money_trigger.set_output(COMPONENT_SIGNAL)

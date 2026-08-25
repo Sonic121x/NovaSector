@@ -3,7 +3,7 @@
 #define HOLDING_MODULE_CHECK_CONFIRMED 2
 
 /obj/item/mod/module/storage/holding
-	name = "MOD storage module of holding"
+	name = "\improper MOD storage module of holding"
 	desc = "A prototype storage module utilizing the power of anomalous bluespace phenomena \
 		to store copious amounts of matter. Unfortunately, it suffers from the same drawbacks as its standalone counterpart, \
 		including <b>tearing catastrophic rifts in reality</b> when nested inside bluespace pockets produced through similar means."
@@ -72,7 +72,7 @@
 	if(possible_bag_bombs[suit] == HOLDING_MODULE_PREVENT_DUPLICATE_CHECK)
 		return MOD_ABORT_INSTALL
 	if(!anomalock.core)
-		balloon_alert(user, LANG("obj.9c969525", null))
+		balloon_alert(user, LANG("obj.9c96952522f32061", null))
 		playsound(suit, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return MOD_ABORT_INSTALL
 	var/datum/storage/bag_of_holding/other_bag

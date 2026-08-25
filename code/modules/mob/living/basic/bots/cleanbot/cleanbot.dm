@@ -191,7 +191,7 @@
 		user.client.give_award(/datum/award/achievement/misc/cleanboss, user)
 	if(isnull(weapon))
 		return
-	. += span_warning(LANG("mob.c3749c11", list(weapon)))
+	. += span_warning(LANG("mob.c3749c11c783e607", list(weapon)))
 
 /mob/living/basic/bot/cleanbot/update_icon_state()
 	. = ..()
@@ -205,8 +205,8 @@
 /mob/living/basic/bot/cleanbot/emag_effects(mob/user)
 	if(weapon)
 		weapon.force = initial(weapon.force)
-	balloon_alert(user, LANG("mob.42074643", null))
-	audible_message(span_danger(LANG("mob.1798b7cd", list(src))))
+	balloon_alert(user, LANG("mob.42074643f1699068", null))
+	audible_message(span_danger(LANG("mob.1798b7cd2aeb74d1", list(src))))
 
 /mob/living/basic/bot/cleanbot/explode()
 	var/atom/drop_loc = drop_location()
@@ -266,16 +266,16 @@
 	return COMPONENT_NO_AFTERATTACK
 
 /mob/living/basic/bot/cleanbot/proc/attach_knife(mob/living/user, obj/item/used_item)
-	balloon_alert(user, LANG("mob.fe548daf", null))
+	balloon_alert(user, LANG("mob.fe548dafc897657f", null))
 	if(!do_after(user, 2.5 SECONDS, target = src))
 		return
 	deputize(used_item, user)
 
 /mob/living/basic/bot/cleanbot/proc/deputize(obj/item/knife, mob/user)
 	if(!in_range(src, user) || !user.transferItemToLoc(knife, src))
-		balloon_alert(user, LANG("mob.217b0cc9", null))
+		balloon_alert(user, LANG("mob.217b0cc9a94dd08e", null))
 		return FALSE
-	balloon_alert(user, LANG("mob.b0ad167d", null))
+	balloon_alert(user, LANG("mob.b0ad167d3c297e25", null))
 	if(!(bot_access_flags & BOT_COVER_EMAGGED))
 		weapon.force *= 0.5
 	var/static/list/loc_connections = list(
@@ -330,7 +330,7 @@
 	if(!(iscarbon(target) && (bot_access_flags & BOT_COVER_EMAGGED)) && !is_type_in_typecache(target, huntable_trash))
 		return NONE
 
-	visible_message(span_danger(LANG("mob.15d7b95f", list(src, target))))
+	visible_message(span_danger(LANG("mob.15d7b95f84defa63", list(src, target))))
 	playsound(src, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 	target.acid_act(75, 10)
 	return COMPONENT_CANCEL_ATTACK_CHAIN

@@ -39,12 +39,12 @@
 	if(istype(tool, /obj/item/food/grown))
 		var/obj/item/food/grown/grown_item = tool
 		if(packed_item)
-			balloon_alert(user, LANG("obj.1b900999", null))
+			balloon_alert(user, LANG("obj.1b900999a7ba2de9", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!HAS_TRAIT(grown_item, TRAIT_DRIED))
-			balloon_alert(user, LANG("obj.e1be8203", null))
+			balloon_alert(user, LANG("obj.e1be820302fcf3c3", null))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.16ae1517", list(grown_item, src))))
+		to_chat(user, span_notice(LANG("obj.16ae151750ce356a", list(grown_item, src))))
 		bong_hits = max_hits
 		packed_item = TRUE
 		if(grown_item.reagents)
@@ -55,9 +55,9 @@
 
 	else if(istype(tool, /obj/item/reagent_containers/hash)) //for hash/dabs
 		if(packed_item)
-			balloon_alert(user, LANG("obj.1b900999", null))
+			balloon_alert(user, LANG("obj.1b900999a7ba2de9", null))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.16ae1517", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.16ae151750ce356a", list(tool, src))))
 		bong_hits = max_hits
 		packed_item = TRUE
 		if(tool.reagents)
@@ -70,7 +70,7 @@
 		if(!lighting_text)
 			return ..()
 		if(bong_hits <= 0)
-			balloon_alert(user, LANG("obj.d1082b04", null))
+			balloon_alert(user, LANG("obj.d1082b049bec9a87", null))
 			return ..()
 		light(lighting_text)
 		name = "lit [initial(name)]"
@@ -79,12 +79,12 @@
 /obj/item/bong/attack_self(mob/user)
 	var/turf/location = get_turf(user)
 	if(lit)
-		user.visible_message(span_notice(LANG("obj.f63d4f5a", list(user, src))), span_notice(LANG("obj.00731180", list(src))))
+		user.visible_message(span_notice(LANG("obj.f63d4f5a9dc58d37", list(user, src))), span_notice(LANG("obj.00731180d2de7c9a", list(src))))
 		lit = FALSE
 		icon_state = icon_off
 		inhand_icon_state = icon_off
 	else if(!lit && bong_hits > 0)
-		to_chat(user, span_notice(LANG("obj.4f4fb947", list(src, location))))
+		to_chat(user, span_notice(LANG("obj.4f4fb947b5009a75", list(src, location))))
 		new /obj/effect/decal/cleanable/ash(location)
 		packed_item = FALSE
 		bong_hits = 0
@@ -94,11 +94,11 @@
 /obj/item/bong/attack(mob/hit_mob, mob/user, def_zone)
 	if(!packed_item || !lit)
 		return
-	hit_mob.visible_message(span_notice(LANG("obj.d01a311c", list(user, hit_mob == user ? "taking a hit from [src]." : "forcing [hit_mob] to take a hit from [src]!"))), hit_mob == user ? span_notice("You start taking a hit from [src].") : span_userdanger("[user] starts forcing you to take a hit from [src]!"))
+	hit_mob.visible_message(span_notice(LANG("obj.d01a311c5b3f37d4", list(user, hit_mob == user ? "taking a hit from [src]." : "forcing [hit_mob] to take a hit from [src]!"))), hit_mob == user ? span_notice("You start taking a hit from [src].") : span_userdanger("[user] starts forcing you to take a hit from [src]!"))
 	playsound(src, 'sound/effects/chemistry/heatdam.ogg', 50, TRUE)
 	if(!do_after(user, 40))
 		return
-	to_chat(hit_mob, span_notice(LANG("obj.74879e74", list(src))))
+	to_chat(hit_mob, span_notice(LANG("obj.74879e74c772491b", list(src))))
 	if(reagents.total_volume)
 		reagents.trans_to(hit_mob, reagent_transfer_per_use, transferred_by = user, methods = VAPOR)
 		bong_hits--
@@ -114,7 +114,7 @@
 			playsound(hit_mob, pick('modular_nova/master_files/sound/effects/lungbust_cough1.ogg','modular_nova/master_files/sound/effects/lungbust_cough2.ogg'), 50, TRUE)
 			hit_mob.emote("cough")
 	if(bong_hits <= 0)
-		balloon_alert(hit_mob, LANG("obj.38056827", null))
+		balloon_alert(hit_mob, LANG("obj.38056827f3d64042", null))
 		lit = FALSE
 		packed_item = FALSE
 		icon_state = icon_off

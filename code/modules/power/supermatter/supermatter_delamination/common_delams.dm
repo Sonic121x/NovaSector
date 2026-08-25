@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 // Singulo, tesla, and explosive delam
 
 /// When we have too much gas.
@@ -12,7 +13,7 @@
 		return FALSE
 	sm.radio.talk_into(
 		sm,
-		"Warning: Critical coolant mass reached.",
+		LANG("datum.f81d1b7799931e42", null),
 		sm.damage > sm.emergency_point ? sm.emergency_channel : sm.warning_channel
 	)
 	return TRUE
@@ -72,7 +73,7 @@
 		return FALSE
 	sm.radio.talk_into(
 		sm,
-		"DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.",
+		LANG("datum.976bb731ea6f5897", null),
 		sm.damage > sm.emergency_point ? sm.emergency_channel : sm.warning_channel
 	)
 	return TRUE

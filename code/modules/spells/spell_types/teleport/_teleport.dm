@@ -118,7 +118,7 @@
 	if(randomise_selection)
 		target_area = pick(GLOB.teleportlocs)
 	else
-		target_area = tgui_input_list(cast_on, LANG("datum.be53e1a1", null), LANG("datum.d225289a", null), GLOB.teleportlocs)
+		target_area = tgui_input_list(cast_on, LANG("datum.be53e1a1f41a75b0", null), LANG("datum.d225289abefb4d14", null), GLOB.teleportlocs)
 
 	if(QDELETED(src) || QDELETED(cast_on) || (owner && !can_cast_spell()))
 		return . | SPELL_CANCEL_CAST

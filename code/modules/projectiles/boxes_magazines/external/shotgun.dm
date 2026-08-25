@@ -64,7 +64,7 @@
 
 	var/mob/living/carbon/human/human_sniffer = user
 	if(!HAS_TRAIT(human_sniffer, TRAIT_ANOSMIA) && human_sniffer.can_perform_action(src, NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING|FORBID_TELEKINESIS_REACH))
-		. += span_notice(LANG("obj.ffa2abf5", null))
-		. += span_warning(LANG("obj.0c828ac0", null))
+		. += span_notice(LANG("obj.ffa2abf5a8d0b97e", null))
+		. += span_warning(LANG("obj.0c828ac03d820d08", null))
 		human_sniffer.add_mood_event("stink-pocket", /datum/mood_event/disgusted)
 

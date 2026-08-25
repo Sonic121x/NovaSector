@@ -38,7 +38,7 @@
 		contained_slip = arrived
 
 /obj/item/folder/biscuit/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.e0ba9e06", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.e0ba9e06371eb6c8", list(user, src, user.p_theyre()))))
 	playsound(get_turf(user), 'sound/effects/wounds/crackandbleed.ogg', 40, TRUE) //Don't eat plastic cards kids, they get really sharp if you chew on them.
 	return BRUTELOSS
 
@@ -51,17 +51,17 @@
 /obj/item/folder/biscuit/proc/crack_check(mob/user)
 	if (cracked)
 		return TRUE
-	balloon_alert(user, LANG("obj.c3fdd085", null))
+	balloon_alert(user, LANG("obj.c3fdd0858199d5fc", null))
 	return FALSE
 
 /obj/item/folder/biscuit/examine()
 	. = ..()
 	if(cracked)
-		. += span_notice(LANG("obj.1578ef9c", null))
+		. += span_notice(LANG("obj.1578ef9c7d266b20", null))
 	else
-		. += span_notice(LANG("obj.d721f550", null))
+		. += span_notice(LANG("obj.d721f55096b78d16", null))
 		if(contained_slip)
-			. += LANG("obj.4d91809e", list(contained_slip.name))
+			. += LANG("obj.4d91809e7038e8d9", list(contained_slip.name))
 
 /obj/item/folder/biscuit/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
@@ -90,7 +90,7 @@
 /obj/item/folder/biscuit/attack_self(mob/user)
 	add_fingerprint(user)
 	if (!cracked)
-		if (tgui_alert(user, LANG("obj.41734e8f", null), LANG("obj.e70d9bb9", null), list("Yes", "No")) != "Yes")
+		if (tgui_alert(user, LANG("obj.41734e8fafb5276a", null), LANG("obj.e70d9bb9eabec2fa", null), list("Yes", "No")) != "Yes")
 			return
 		cracked = TRUE
 		contents_hidden = FALSE
@@ -132,7 +132,7 @@
 /obj/item/folder/biscuit/unsealed/examine()
 	. = ..()
 	if(!has_been_sealed)
-		. += span_notice(LANG("obj.a4573a57", null))
+		. += span_notice(LANG("obj.a4573a5721d4ea00", null))
 
 /obj/item/folder/biscuit/unsealed/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
@@ -147,7 +147,7 @@
 		return ..()
 	if(has_been_sealed)
 		return
-	if(tgui_alert(user, LANG("obj.24895061", null), LANG("obj.c91fe971", null), list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, LANG("obj.2489506110fcf6d1", null), LANG("obj.c91fe9714839e15b", null), list("Yes", "No")) != "Yes")
 		return
 	cracked = FALSE
 	has_been_sealed = TRUE

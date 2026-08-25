@@ -139,11 +139,11 @@
 					contents += " [SSid_access.get_access_desc(A)]"
 
 			if(!computer.print_text(contents, "access report - [modified_id.registered_name || "Unregistered"]"))
-				to_chat(usr, span_notice(LANG("datum.8f26e725", null)))
+				to_chat(usr, span_notice(LANG("datum.8f26e725be4eae5b", null)))
 				return TRUE
 			else
 				playsound(computer, 'sound/machines/terminal/terminal_on.ogg', 50, FALSE)
-				computer.visible_message(span_notice(LANG("datum.7a4642f7", list(computer))))
+				computer.visible_message(span_notice(LANG("datum.7a4642f71effe3c7", list(computer))))
 			return TRUE
 		// Used to fire someone. Wipes all access from their card and modifies their assignment.
 		if("PRG_terminate")
@@ -151,7 +151,7 @@
 				return TRUE
 			if(minor)
 				if(!(modified_id.trim?.type in job_templates))
-					to_chat(usr, span_notice(LANG("datum.c5e0d1ff", null)))
+					to_chat(usr, span_notice(LANG("datum.c5e0d1fff20798bb", null)))
 					return TRUE
 
 			// Set the new assignment then remove the trim.
@@ -184,7 +184,7 @@
 			new_name = reject_bad_name(new_name, allow_numbers = TRUE)
 
 			if(!new_name)
-				to_chat(usr, span_notice(LANG("datum.e41fc499", null)))
+				to_chat(usr, span_notice(LANG("datum.e41fc499f404c976", null)))
 				return TRUE
 
 			modified_id.registered_name = new_name
@@ -233,7 +233,7 @@
 				return TRUE
 
 			if(!modified_id.add_access(list(access_type), try_wildcard))
-				to_chat(usr, span_notice(LANG("datum.de93f293", null)))
+				to_chat(usr, span_notice(LANG("datum.de93f293432434ed", null)))
 				LOG_ID_ACCESS_CHANGE(user, modified_id, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
 				return TRUE
 
@@ -276,7 +276,7 @@
 		if("PRG_insert_alt_id")
 			var/obj/item/card/id/alt_id = user.get_active_held_item()
 			if(!isidcard(alt_id))
-				to_chat(user, span_notice(LANG("datum.8a611bfa", null)))
+				to_chat(user, span_notice(LANG("datum.8a611bfab3572285", null)))
 				return TRUE
 			computer.insert_secondary_id(alt_id, user)
 			return TRUE

@@ -16,6 +16,7 @@
 	pass_flags = PASSTABLE | PASSGRILLE
 	gender = NEUTER
 	faction = list(FACTION_SLIME, FACTION_NEUTRAL)
+	hud_type = /datum/hud/living/slime
 
 	icon_living = "grey-baby"
 	icon_dead = "grey-baby-dead"
@@ -188,6 +189,8 @@
 	. = ..()
 	nutrition = min(nutrition, SLIME_MAX_NUTRITION)
 
+/mob/living/basic/slime/get_fullness(only_consumable)
+	return round((nutrition / SLIME_MAX_NUTRITION) * NUTRITION_LEVEL_FAT)
 
 /mob/living/basic/slime/update_name()
 	// NOVA EDIT CHANGE START - i18n: 原实现靠**正则解析显示名**来判断「这是自动名，可以按新颜色/阶段重建」
@@ -224,13 +227,6 @@
 
 	return ..()
 
-/mob/living/basic/slime/get_status_tab_items()
-	. = ..()
-	if(!hunger_disabled)
-		. += LANG("mob.2a47f665", list(nutrition, SLIME_MAX_NUTRITION))
-		. += LANG("mob.cf98c240", list(amount_grown, SLIME_EVOLUTION_THRESHOLD))
-		. += LANG("mob.29e74d49", list(powerlevel, SLIME_MAX_POWER))
-
 /mob/living/basic/slime/mouse_drop_dragged(atom/target_atom, mob/user)
 	if(isliving(target_atom) && target_atom != src && user == src)
 		var/mob/living/food = target_atom
@@ -251,19 +247,19 @@
 
 	switch(powerlevel)
 		if(SLIME_MIN_POWER to SLIME_EXTRA_SHOCK_COST)
-			. += LANG("mob.36e2b432", null)
+			. += LANG("mob.36e2b4323b45dd4f", null)
 
 		if(SLIME_EXTRA_SHOCK_COST to SLIME_MEDIUM_POWER)
-			. += LANG("mob.e3d0050d", null)
+			. += LANG("mob.e3d0050d67ad491b", null)
 
 
 		if(SLIME_MEDIUM_POWER to SLIME_MAX_POWER)
-			. += LANG("mob.2bd9f8e8", null)
+			. += LANG("mob.2bd9f8e875dcda77", null)
 
 		if(SLIME_MAX_POWER)
-			. += span_boldwarning(LANG("mob.fa596d20", null))
+			. += span_boldwarning(LANG("mob.fa596d2004689f04", null))
 	if(overcrowded)
-		. += span_warning(LANG("mob.4e40c4c1", null))
+		. += span_warning(LANG("mob.4e40c4c1b9d09ada", null))
 
 ///Changes the slime's current life state
 /mob/living/basic/slime/proc/set_life_stage(new_life_stage = SLIME_LIFE_STAGE_BABY, initial = FALSE)
@@ -307,7 +303,7 @@
 		return COMPONENT_HOSTILE_NO_ATTACK
 
 	if(isAI(target)) //The aI is not tasty!
-		target.balloon_alert(our_slime, LANG("mob.2e3a7b7b", null))
+		target.balloon_alert(our_slime, LANG("mob.2e3a7b7b39a11d0e", null))
 		return COMPONENT_HOSTILE_NO_ATTACK
 
 	if(our_slime.buckled == target) //If you try to attack the creature you are latched on, you instead cancel feeding
@@ -320,11 +316,11 @@
 		do_sparks(5, TRUE, borg_target)
 		var/stunprob = our_slime.powerlevel * SLIME_SHOCK_PERCENTAGE_PER_LEVEL + SLIME_BASE_SHOCK_PERCENTAGE
 		if(prob(stunprob) && our_slime.powerlevel >= SLIME_EXTRA_SHOCK_COST)
-			our_slime.powerlevel = clamp(our_slime.powerlevel - SLIME_EXTRA_SHOCK_COST, SLIME_MIN_POWER, SLIME_MAX_POWER)
+			our_slime.adjust_power_level(-SLIME_EXTRA_SHOCK_COST)
 			borg_target.apply_damage(our_slime.powerlevel * rand(6, 10), BRUTE, spread_damage = TRUE, wound_bonus = CANT_WOUND)
-			borg_target.visible_message(span_danger(LANG("mob.c6b46e10", list(our_slime, borg_target))), span_userdanger(LANG("mob.4f1c8faa", list(our_slime))))
+			borg_target.visible_message(span_danger(LANG("mob.c6b46e10621079a5", list(our_slime, borg_target))), span_userdanger(LANG("mob.4f1c8faa98afdfeb", list(our_slime))))
 		else
-			borg_target.visible_message(span_danger(LANG("mob.70672dce", list(our_slime, borg_target))), span_userdanger(LANG("mob.8ecc512c", list(our_slime))))
+			borg_target.visible_message(span_danger(LANG("mob.70672dce10cf30b1", list(our_slime, borg_target))), span_userdanger(LANG("mob.8ecc512c2219c1f6", list(our_slime))))
 
 		return COMPONENT_HOSTILE_NO_ATTACK
 
@@ -334,7 +330,7 @@
 		if(!prob(stunprob))
 			return NONE // normal attack
 
-		carbon_target.visible_message(span_danger(LANG("mob.c6b46e10", list(our_slime, carbon_target))), span_userdanger(LANG("mob.4f1c8faa", list(our_slime))))
+		carbon_target.visible_message(span_danger(LANG("mob.c6b46e10621079a5", list(our_slime, carbon_target))), span_userdanger(LANG("mob.4f1c8faa98afdfeb", list(our_slime))))
 
 		do_sparks(5, TRUE, carbon_target)
 		var/power = our_slime.powerlevel + rand(0,3)
@@ -342,7 +338,7 @@
 		carbon_target.Knockdown(power * 2 SECONDS)
 		carbon_target.set_stutter_if_lower(power * 2 SECONDS)
 		if (prob(stunprob) && our_slime.powerlevel >= SLIME_EXTRA_SHOCK_COST)
-			our_slime.powerlevel = clamp(our_slime.powerlevel - SLIME_EXTRA_SHOCK_COST, SLIME_MIN_POWER, SLIME_MAX_POWER)
+			adjust_power_level(-SLIME_EXTRA_SHOCK_COST)
 			carbon_target.apply_damage(our_slime.powerlevel * rand(6, 10), BURN, spread_damage = TRUE, wound_bonus = CANT_WOUND)
 
 	if(isslime(target))
@@ -351,8 +347,8 @@
 		var/mob/living/basic/slime/target_slime = target
 		if(target_slime.buckled)
 			target_slime.stop_feeding(silent = TRUE)
-			visible_message(span_danger(LANG("mob.0146af56", list(our_slime, target_slime))), \
-				span_danger(LANG("mob.64f4dd58", list(target_slime))))
+			visible_message(span_danger(LANG("mob.0146af566eb16ac3", list(our_slime, target_slime))), \
+				span_danger(LANG("mob.64f4dd58981ca81b", list(target_slime))))
 			return NONE // normal attack
 
 		var/is_adult_slime = our_slime.life_stage == SLIME_LIFE_STAGE_ADULT
@@ -367,7 +363,7 @@
 ///Spawns a crossed slimecore item
 /mob/living/basic/slime/proc/spawn_corecross()
 	var/static/list/crossbreeds = subtypesof(/obj/item/slimecross)
-	visible_message(span_danger(LANG("mob.bb3c2a53", list(src))))
+	visible_message(span_danger(LANG("mob.bb3c2a538e326f54", list(src))))
 	playsound(src, 'sound/effects/magic/smoke.ogg', 50, TRUE)
 	var/selected_crossbreed_path
 	for(var/crossbreed_path in crossbreeds)
@@ -378,7 +374,7 @@
 	if(selected_crossbreed_path)
 		new selected_crossbreed_path(loc)
 	else
-		visible_message(span_warning(LANG("mob.43eb182e", null)))
+		visible_message(span_warning(LANG("mob.43eb182eedcc99b8", null)))
 	qdel(src)
 
 ///Proc for slime core removal surgery, tries to remove cores from a dead slime.

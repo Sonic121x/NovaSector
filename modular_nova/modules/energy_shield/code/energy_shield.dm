@@ -136,10 +136,10 @@
 	RegisterSignal(wearer, COMSIG_LIVING_CHECK_BLOCK, PROC_REF(on_check_block))
 
 	if(!enabled)
-		to_chat(wearer, span_notice(LANG("obj.96c27719", list(src))))
+		to_chat(wearer, span_notice(LANG("obj.96c27719e17629aa", list(src))))
 	else if(wearer_has_heavy_armor())
 		turn_off(quiet = TRUE)
-		to_chat(wearer, span_warning(LANG("obj.5b8de8f1", list(src))))
+		to_chat(wearer, span_warning(LANG("obj.5b8de8f147b80d0c", list(src))))
 		return
 	else if(shield_health > 0)
 		shield_active = TRUE
@@ -179,15 +179,15 @@
 		enabled = TRUE
 		if(wearer_has_heavy_armor())
 			turn_off(quiet = TRUE)
-			to_chat(wearer, span_warning(LANG("obj.5b8de8f1", list(src))))
+			to_chat(wearer, span_warning(LANG("obj.5b8de8f147b80d0c", list(src))))
 		else if(wearer)
 			COOLDOWN_START(src, recharge_cooldown, recharge_delay)
 			recharge_visual_pending = TRUE
 			START_PROCESSING(SSobj, src)
-			to_chat(wearer, span_notice(LANG("obj.aba43d9c", null)))
+			to_chat(wearer, span_notice(LANG("obj.aba43d9c5004bc7b", null)))
 	else
 		turn_off()
-		to_chat(wearer, span_notice(LANG("obj.20106db5", null)))
+		to_chat(wearer, span_notice(LANG("obj.20106db57fcda174", null)))
 	action.build_all_button_icons()
 
 /// Drains shield health on EMP. Amount retained is controlled by emp_retention.
@@ -485,7 +485,7 @@
 	hide_shield_visuals()
 	update_shield_hud()
 	playsound(wearer, 'sound/vehicles/mecha/mech_shield_drop.ogg', 40, TRUE)
-	wearer.visible_message(span_warning(LANG("obj.fc13ce50", list(wearer))))
+	wearer.visible_message(span_warning(LANG("obj.fc13ce50c5c285ac", list(wearer))))
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(do_sparks), 3, TRUE, wearer)
 
 /// Disables the shield and clears transient combat/recharge state.
@@ -521,7 +521,7 @@
 	// Disable shield while wearing heavy armor
 	if(wearer_has_heavy_armor())
 		turn_off(force_sound = TRUE)
-		to_chat(wearer, span_warning(LANG("obj.587b6e90", null)))
+		to_chat(wearer, span_warning(LANG("obj.587b6e9048e7f989", null)))
 		return
 
 	if(!persistent_visuals)
@@ -553,7 +553,7 @@
 		recharge_visual_pending = FALSE
 		showing_recharge = TRUE
 		playsound(wearer, 'sound/items/eshield_recharge.ogg', 50, TRUE)
-		wearer.visible_message(span_notice(LANG("obj.fd54dcfb", list(wearer))))
+		wearer.visible_message(span_notice(LANG("obj.fd54dcfb551af063", list(wearer))))
 		show_shield_visuals()
 
 	if(visuals_shown)

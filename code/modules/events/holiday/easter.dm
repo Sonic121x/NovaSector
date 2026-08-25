@@ -23,7 +23,7 @@
 	description = "Summons a wave of cute rabbits."
 
 /datum/round_event/rabbitrelease/announce(fake)
-	priority_announce(LANG("datum.ad497567", list(station_name())), "Fluffy Alert", ANNOUNCER_ALIENS)
+	priority_announce(LANG("datum.ad49756726073eb8", list(station_name())), "Fluffy Alert", ANNOUNCER_ALIENS)
 
 
 /datum/round_event/rabbitrelease/start()
@@ -121,7 +121,7 @@
 
 /obj/item/surprise_egg/attack_self(mob/user)
 	..()
-	to_chat(user, span_notice(LANG("obj.0b5151ac", list(src))))
+	to_chat(user, span_notice(LANG("obj.0b5151acd3f4e6ff", list(src))))
 	dispensePrize(get_turf(src))
 	qdel(src)
 

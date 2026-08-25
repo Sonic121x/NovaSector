@@ -12,5 +12,5 @@
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
 	if(!SPT_PROB(5, seconds_per_tick))
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
-	living_pawn.manual_emote(LANG("datum.e46918c7", null))
+	living_pawn.manual_emote(LANG("datum.e46918c7e7a6ed7d", null))
 	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED

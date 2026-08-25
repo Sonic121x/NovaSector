@@ -74,13 +74,13 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice(LANG("obj.561f1ac0", list(efficiency_coeff * 100)))
-	. += span_notice(LANG("obj.e7acbb7a", list(efficiency_coeff * 100)))
+	. += span_notice(LANG("obj.561f1ac09af31be7", list(efficiency_coeff * 100)))
+	. += span_notice(LANG("obj.e7acbb7add1e1196", list(efficiency_coeff * 100)))
 	if(drop_direction)
-		. += span_notice(LANG("obj.f018ec80", list(dir2text(drop_direction))))
-		. += span_notice(LANG("obj.fc17772b", list(EXAMINE_HINT("Alt-click"))))
+		. += span_notice(LANG("obj.f018ec808e217c0e", list(dir2text(drop_direction))))
+		. += span_notice(LANG("obj.fc17772b4270ba7d", list(EXAMINE_HINT("Alt-click"))))
 	else
-		. += span_notice(LANG("obj.abc9aa60", list(EXAMINE_HINT("Drag"))))
+		. += span_notice(LANG("obj.abc9aa60a42a94d5", list(EXAMINE_HINT("Drag"))))
 
 /obj/machinery/rnd/production/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -107,20 +107,20 @@
 	PROTECTED_PROC(TRUE)
 	techweb_updating = FALSE
 
-	var/previous_design_count = cached_designs.len
+	var/previous_design_count = length(cached_designs)
 
 	cached_designs.Cut()
 
-	for(var/design_id in stored_research.researched_designs)
-		var/datum/design/design = SSresearch.techweb_design_by_id(design_id)
+	for(var/design_path in stored_research.researched_designs)
+		var/datum/design/design = SSresearch.techweb_designs[design_path]
 
 		if((isnull(allowed_department_flags) || (design.departmental_flags & allowed_department_flags)) && (design.build_type & allowed_buildtypes))
 			cached_designs |= design
 
-	var/design_delta = cached_designs.len - previous_design_count
+	var/design_delta = length(cached_designs) - previous_design_count
 
 	if(design_delta > 0)
-		say(LANG("obj.b8003438", list(design_delta, design_delta == 1 ? "" : "s")))
+		say(LANG("obj.b800343897a0eb02", list(design_delta, design_delta == 1 ? "" : "s")))
 		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 50, TRUE)
 
 	update_static_data_for_all_viewers()
@@ -239,23 +239,22 @@
 	var/datum/asset/spritesheet_batched/research_designs/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/research_designs)
 	var/size32x32 = "[spritesheet.name]32x32"
 
-	var/coefficient
 	for(var/datum/design/design in cached_designs)
-		var/cost = list()
+		var/list/cost = list()
 
-		coefficient = build_efficiency(design)
-		for(var/datum/material/mat as anything in design.materials)
-			var/amount = design.materials[mat]
-			cost[mat.name] = OPTIMAL_COST(amount * coefficient)
+		var/coefficient = build_efficiency(design)
+		for(var/_material, amount in design.materials)
+			var/datum/material/material = _material
+			cost[material.name] = OPTIMAL_COST(amount * coefficient)
 
-		var/icon_size = spritesheet.icon_size_id(design.id)
-		designs[design.id] = list(
-			"name" = lang_reverse_text(design.name), // NOVA EDIT CHANGE - I18N - ORIGINAL: "name" = design.name, （设计名仅显示、构建走 id=安全；全量反查含单词类如 Boxcutter）
+		var/icon_size = spritesheet.icon_size_id(design.asset_id)
+		designs[design.type] = list(
+			"name" = lang_reverse_text(design.name), // NOVA EDIT CHANGE - I18N - ORIGINAL: "name" = design.name, （设计名仅显示、构建走 path=安全；全量反查含单词类如 Boxcutter）
 			"desc" = design.get_description(),
 			"cost" = cost,
-			"id" = design.id,
+			"path" = design.type,
 			"categories" = design.category,
-			"icon" = "[icon_size == size32x32 ? "" : "[icon_size] "][design.id]"
+			"icon" = "[icon_size == size32x32 ? "" : "[icon_size] "][design.asset_id]"
 		)
 
 	data["designs"] = designs
@@ -285,17 +284,13 @@
 			if(!istype(material))
 				return
 
-			var/amount = params["amount"]
-			if(isnull(amount))
-				return
-
-			amount = text2num(amount)
-			if(isnull(amount))
+			var/amount = text2num(params["amount"])
+			if(!amount)
 				return
 
 			//we use initial(active_power_usage) because higher tier parts will have higher active usage but we have no benifit from it
 			if(!directly_use_energy(ROUND_UP((amount / MAX_STACK_SIZE) * 0.4 * initial(active_power_usage))))
-				say(LANG("obj.c98ac214", null))
+				say(LANG("obj.c98ac2147c20335f", null))
 				return
 
 			materials.eject_sheets(material_ref = material, eject_amount = amount, user_data = ID_DATA(usr))
@@ -303,28 +298,30 @@
 
 		if("build")
 			if(busy)
-				say(LANG("obj.96798cc7", null))
+				say(LANG("obj.96798cc77e0b7c6a", null))
 				return
 
 			//validate design
-			var/design_id = params["ref"]
-			if(!design_id)
+			var/design_path = text2path(params["design_path"])
+			if(!design_path)
 				return
-			var/datum/design/design = stored_research.researched_designs[design_id] ? SSresearch.techweb_design_by_id(design_id) : null
+
+			if(!stored_research.researched_designs[design_path])
+				return
+
+			var/datum/design/design = SSresearch.techweb_designs[design_path]
 			if(!istype(design))
 				return FALSE
+
 			if(!(isnull(allowed_department_flags) || (design.departmental_flags & allowed_department_flags)))
-				say(LANG("obj.ea5ed026", null))
+				say(LANG("obj.ea5ed026c6c21f35", null))
 				return FALSE
 			if(design.build_type && !(design.build_type & allowed_buildtypes))
-				say(LANG("obj.5d6aeb6b", null))
+				say(LANG("obj.5d6aeb6b82d005e3", null))
 				return FALSE
 
 			//validate print quantity
-			var/print_quantity = params["amount"]
-			if(isnull(print_quantity))
-				return
-			print_quantity = text2num(print_quantity)
+			var/print_quantity = text2num(params["amount"])
 			if(isnull(print_quantity))
 				return
 			print_quantity = clamp(print_quantity, 1, 50)
@@ -336,14 +333,11 @@
 			if(!materials.can_use_resource(user_data = ID_DATA(usr)))
 				return
 			if(!materials.mat_container.has_materials(design.materials, coefficient, print_quantity))
-				say(LANG("obj.5134774a", list(print_quantity > 1 ? "s" : "")))
+				say(LANG("obj.5134774a26035f51", list(print_quantity > 1 ? "s" : "")))
 				return FALSE
 
 			//compute power & time to print 1 item
-			var/charge_per_item = 0
-			for(var/material, amount in design.materials)
-				charge_per_item += amount
-			charge_per_item = ROUND_UP((charge_per_item / (MAX_STACK_SIZE * SHEET_MATERIAL_AMOUNT)) * coefficient * active_power_usage)
+			var/charge_per_item = ROUND_UP((values_sum(design.materials) / (MAX_STACK_SIZE * SHEET_MATERIAL_AMOUNT)) * coefficient * active_power_usage)
 			var/build_time_per_item = (design.construction_time * design.lathe_time_factor * efficiency_coeff) ** 0.8
 			// NOVA EDIT ADDITION START - Faster lathes
 			if(!speedup_disabled)
@@ -380,13 +374,14 @@
  * * user_data - ID_DATA(user), see the proc on SSid_access, served for logging
 */
 /obj/machinery/rnd/production/proc/do_make_item(
-		datum/design/design,
-		items_remaining,
-		build_time_per_item,
-		material_cost_coefficient,
-		charge_per_item,
-		turf/target,
-		alist/user_data)
+	datum/design/design,
+	items_remaining,
+	build_time_per_item,
+	material_cost_coefficient,
+	charge_per_item,
+	turf/target,
+	alist/user_data,
+)
 	PROTECTED_PROC(TRUE)
 
 	if(!items_remaining) // how
@@ -394,7 +389,7 @@
 		return
 
 	if(!is_operational)
-		say(LANG("obj.37d5b119", null))
+		say(LANG("obj.37d5b1197d090c56", null))
 		finalize_build()
 		return
 
@@ -404,11 +399,11 @@
 		if(!QDELETED(my_apc))
 			var/charging_wait = my_apc.time_to_charge(charge_per_item)
 			if(!isnull(charging_wait))
-				say(LANG("obj.4923eed0", list(DisplayTimeText(charging_wait, round_seconds_to = 1))))
+				say(LANG("obj.4923eed0ea64393e", list(DisplayTimeText(charging_wait, round_seconds_to = 1))))
 			else
-				say(LANG("obj.61365fba", null))
+				say(LANG("obj.61365fba14ca3c88", null))
 		else
-			say(LANG("obj.7aa6d96a", null))
+			say(LANG("obj.7aa6d96aea8fe11b", null))
 		finalize_build()
 		return
 
@@ -419,7 +414,7 @@
 	var/is_stack = ispath(design.build_path, /obj/item/stack)
 
 	if(!materials.mat_container.has_materials(design.materials, material_cost_coefficient, is_stack ? items_remaining : 1))
-		say(LANG("obj.15347eaf", null))
+		say(LANG("obj.15347eaffc13ec9c", null))
 		finalize_build()
 		return
 	materials.use_materials(design.materials, material_cost_coefficient, is_stack ? items_remaining : 1, "processed", "[design.name]", user_data = user_data)
@@ -449,7 +444,7 @@
 	if(is_stack)
 		items_remaining = 0
 	else
-		items_remaining -= 1
+		items_remaining--
 
 	if(!items_remaining)
 		finalize_build()
@@ -469,21 +464,21 @@
 	if(!can_interact(user) || (!HAS_SILICON_ACCESS(user) && !isAdminGhostAI(user)) && !Adjacent(user))
 		return
 	if(busy)
-		balloon_alert(user, LANG("obj.11d29340", null))
+		balloon_alert(user, LANG("obj.11d293408dbeafd5", null))
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(user, LANG("obj.a778c49c", list(dir2text(drop_direction))))
+	balloon_alert(user, LANG("obj.a778c49c6c1e1f04", list(dir2text(drop_direction))))
 
 /obj/machinery/rnd/production/click_alt(mob/user)
 	if(drop_direction == 0)
 		return CLICK_ACTION_BLOCKING
 	if(busy)
-		balloon_alert(user, LANG("obj.11d29340", null))
+		balloon_alert(user, LANG("obj.11d293408dbeafd5", null))
 		return CLICK_ACTION_BLOCKING
-	balloon_alert(user, LANG("obj.ec68d9e0", null))
+	balloon_alert(user, LANG("obj.ec68d9e079518317", null))
 	drop_direction = 0
 	return CLICK_ACTION_SUCCESS
 

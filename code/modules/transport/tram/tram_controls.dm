@@ -279,11 +279,11 @@
 
 			switch(response_info)
 				if(NOT_IN_SERVICE)
-					tram.nav_beacon.say(LANG("obj.62001e6e", null))
+					tram.nav_beacon.say(LANG("obj.62001e6e226b39d0", null))
 				if(INVALID_PLATFORM)
-					tram.nav_beacon.say(LANG("obj.7de17690", null))
+					tram.nav_beacon.say(LANG("obj.7de17690caf1c812", null))
 				if(INTERNAL_ERROR)
-					tram.nav_beacon.say(LANG("obj.335c006a", null))
+					tram.nav_beacon.say(LANG("obj.335c006a41da097a", null))
 				else
 					return
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/tram_controls, 32)

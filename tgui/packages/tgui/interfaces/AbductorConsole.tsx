@@ -91,7 +91,13 @@ const Abductsoft = (props) => {
         id: item.id ?? item.name, // NOVA EDIT CHANGE - I18N - ORIGINAL: id: item.name,
         name: item.name,
         category: category.name,
-        cost: `${item.cost} Credits`,
+        // NOVA EDIT CHANGE - I18N: 整串是运行期产物、永远不是目录键；包成元素后
+        // 按 children 模板 `{0} Credits` 进目录 - ORIGINAL: cost: `${item.cost} Credits`,
+        cost: (
+          <>
+            <span>{item.cost}</span> Credits
+          </>
+        ),
         desc: item.desc,
         disabled: (credits || 0) < item.cost,
         icon: item.icon,
@@ -112,7 +118,12 @@ const Abductsoft = (props) => {
         </LabeledList>
       </Section>
       <GenericUplink
-        currency={`${credits} Credits`}
+        // NOVA EDIT CHANGE - I18N - ORIGINAL: currency={`${credits} Credits`}
+        currency={
+          <>
+            <span>{credits}</span> Credits
+          </>
+        }
         categories={categoriesList}
         items={items}
         // NOVA EDIT CHANGE - I18N: 回传英文 id（item.name 现在是译名）- ORIGINAL: { name: item.name }

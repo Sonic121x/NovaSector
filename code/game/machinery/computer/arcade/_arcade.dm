@@ -18,11 +18,11 @@
 	if(istype(tool, /obj/item/stack/arcadeticket))
 		var/obj/item/stack/arcadeticket/tickets = tool
 		if(!tickets.use(2))
-			balloon_alert(user, LANG("obj.fb76c074", null))
+			balloon_alert(user, LANG("obj.fb76c07420474e84", null))
 			return ITEM_INTERACT_BLOCKING
 
 		prizevend(user)
-		balloon_alert(user, LANG("obj.c094c9cc", null))
+		balloon_alert(user, LANG("obj.c094c9cc377274b8", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/key/displaycase) || istype(tool, /obj/item/access_key))
@@ -38,7 +38,7 @@
 		playsound(loc, 'sound/items/rattling_keys.ogg', 25, TRUE)
 		if(!do_after(user, 10 SECONDS, src))
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, LANG("obj.3d7e753e", null))
+		balloon_alert(user, LANG("obj.3d7e753e799c53b6", null))
 		reset_cabinet(user)
 		return ITEM_INTERACT_SUCCESS
 
@@ -79,15 +79,15 @@
 ///Dispenses the proper prizes and gives them a positive mood event. If valid, has a small chance to give a pulse rifle.
 /obj/machinery/computer/arcade/proc/prizevend(mob/living/user, prizes = 1)
 	if(user.mind?.get_skill_level(/datum/skill/gaming) >= SKILL_LEVEL_LEGENDARY && HAS_TRAIT(user, TRAIT_GAMERGOD))
-		visible_message(span_notice(LANG("obj.d54eab6a", list(user))),\
-		span_notice(LANG("obj.3afc82a9", null)))
-		say(LANG("obj.f8d027e5", null))
+		visible_message(span_notice(LANG("obj.d54eab6a992887b8", list(user))),\
+		span_notice(LANG("obj.3afc82a9d7f3967a", null)))
+		say(LANG("obj.f8d027e5b2b96708", null))
 		prizes *= 2
 	for(var/i in 1 to prizes)
 		user.add_mood_event("arcade", /datum/mood_event/arcade)
 		if(prob(0.0001)) //1 in a million
 			new /obj/item/gun/energy/pulse/prize(get_turf(src))
-			visible_message(span_notice(LANG("obj.dfc0f949", list(src))), span_notice(LANG("obj.0c42547d", null)))
+			visible_message(span_notice(LANG("obj.dfc0f9493a190846", list(src))), span_notice(LANG("obj.0c42547ddad200d3", null)))
 			user.client.give_award(/datum/award/achievement/misc/pulse, user)
 			continue
 
@@ -98,11 +98,11 @@
 			prizeselect = pick_weight(GLOB.arcade_prize_pool)
 		var/atom/movable/the_prize = new prizeselect(get_turf(src))
 		playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
-		visible_message(span_notice(LANG("obj.c66de72d", list(src, the_prize))), span_notice(LANG("obj.90afbe5b", null)))
+		visible_message(span_notice(LANG("obj.c66de72db7432cb2", list(src, the_prize))), span_notice(LANG("obj.90afbe5b9d58f60e", null)))
 
 /obj/machinery/computer/arcade/proc/victory_tickets(tickets, sound = TRUE)
 	SEND_SIGNAL(src, COMSIG_ARCADE_VICTORY)
-	visible_message(span_notice(LANG("obj.2ab2b1c1", list(src, tickets))))
+	visible_message(span_notice(LANG("obj.2ab2b1c13a4d29e4", list(src, tickets))))
 	new /obj/item/stack/arcadeticket((get_turf(src)), tickets)
 	if(sound)
 		playsound(loc, 'sound/machines/arcade/win.ogg', 40)

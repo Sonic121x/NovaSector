@@ -77,7 +77,7 @@
 	if(deleted || missing_addiction)
 		if(deleted)
 			reagent_instance = new reagent_type()
-		to_chat(quirk_holder, span_danger(LANG("datum.3d62ff4a", null)))
+		to_chat(quirk_holder, span_danger(LANG("datum.3d62ff4a0a72b062", null)))
 		for(var/addiction in reagent_instance.addiction_types)
 			human_holder.last_mind?.add_addiction_points(addiction, 1000) ///Max that shit out
 

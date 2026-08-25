@@ -7,7 +7,7 @@
 /obj/item/circuitboard/computer/examine()
 	. = ..()
 	if(GetComponent(/datum/component/gps))
-		. += span_info(LANG("obj.d2a2db7a", null))
+		. += span_info(LANG("obj.d2a2db7afd251ef7", null))
 
 //Command
 
@@ -43,12 +43,12 @@
 
 /obj/item/circuitboard/computer/atmos_alert/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.11eefc56", list(station_only ? "track all station and mining alarms" : "track alarms on the same z-level")))
-	. += span_notice(LANG("obj.eb1ace56", list(EXAMINE_HINT("multitool"))))
+	. += span_info(LANG("obj.11eefc56a5550972", list(station_only ? "track all station and mining alarms" : "track alarms on the same z-level")))
+	. += span_notice(LANG("obj.eb1ace562012f704", list(EXAMINE_HINT("multitool"))))
 
 /obj/item/circuitboard/computer/atmos_alert/multitool_act(mob/living/user)
 	station_only = !station_only
-	balloon_alert(user, LANG("obj.9f52d9ee", list(station_only ? "station" : "z-level")))
+	balloon_alert(user, LANG("obj.9f52d9eef466df78", list(station_only ? "station" : "z-level")))
 	return TRUE
 
 /obj/item/circuitboard/computer/atmos_control
@@ -278,11 +278,11 @@
 	if(build_path == /obj/machinery/computer/libraryconsole/bookmanagement)
 		name = "Library Visitor Console"
 		build_path = /obj/machinery/computer/libraryconsole
-		to_chat(user, span_notice(LANG("obj.66d39cd0", null)))
+		to_chat(user, span_notice(LANG("obj.66d39cd0c93ef28f", null)))
 	else
 		name = "Book Inventory Management Console"
 		build_path = /obj/machinery/computer/libraryconsole/bookmanagement
-		to_chat(user, span_notice(LANG("obj.38cc8f05", null)))
+		to_chat(user, span_notice(LANG("obj.38cc8f0558a3ef72", null)))
 	return TRUE
 
 /obj/item/circuitboard/computer/monastery_shuttle
@@ -326,18 +326,18 @@
 		if(slot_themes[theme_name] == build_path)
 			current_theme = theme_name
 			break
-	. += span_info(LANG("obj.f16e6bdb", list(src, current_theme)))
+	. += span_info(LANG("obj.f16e6bdbed9dfe2d", list(src, current_theme)))
 
 /obj/item/circuitboard/computer/slot_machine/screwdriver_act(mob/living/user, obj/item/tool)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.7197f413", null))
+		balloon_alert(user, LANG("obj.7197f41370d1ba17", null))
 		return FALSE
 
-	var/choice = tgui_input_list(user, LANG("obj.25dfb2ec", null), LANG("obj.ff0d9178", null), slot_themes)
+	var/choice = tgui_input_list(user, LANG("obj.25dfb2ecba159395", null), LANG("obj.ff0d9178c5feadb7", null), slot_themes)
 	if(isnull(choice))
 		return ITEM_INTERACT_BLOCKING
 	build_path = slot_themes[choice]
-	to_chat(user, span_notice(LANG("obj.bc451115", list(choice))))
+	to_chat(user, span_notice(LANG("obj.bc451115753abb9f", list(choice))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/circuitboard/computer/slot_machine/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -346,7 +346,7 @@
 
 	obj_flags |= EMAGGED
 	build_path = /obj/machinery/computer/slot_machine/syndicate
-	balloon_alert(user, LANG("obj.8ae5765e", null))
+	balloon_alert(user, LANG("obj.8ae5765e88b635d1", null))
 	return TRUE
 
 /obj/item/circuitboard/computer/swfdoor
@@ -397,23 +397,23 @@
 
 /obj/item/circuitboard/computer/tram_controls/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.8fdb2d9a", list(specific_transport_id, install_type)))
-	. += span_notice(LANG("obj.ecf3b0e1", list(EXAMINE_HINT("multitool"), EXAMINE_HINT("screwdriver"))))
+	. += span_info(LANG("obj.8fdb2d9a1d1eb431", list(specific_transport_id, install_type)))
+	. += span_notice(LANG("obj.ecf3b0e1cc1d2e9b", list(EXAMINE_HINT("multitool"), EXAMINE_HINT("screwdriver"))))
 
 /obj/item/circuitboard/computer/tram_controls/screwdriver_act(mob/living/user)
-	var/selected_install_type = tgui_input_list(user, LANG("obj.1129f40e", null), LANG("obj.818db524", null), list(NORMAL_WINDOW, SPLIT_WINDOW, STANDALONE))
+	var/selected_install_type = tgui_input_list(user, LANG("obj.1129f40eb5471677", null), LANG("obj.818db524dee31846", null), list(NORMAL_WINDOW, SPLIT_WINDOW, STANDALONE))
 	if(isnull(selected_install_type))
 		return NONE
 	install_type = selected_install_type
-	to_chat(user, span_notice(LANG("obj.eca553b4", list(src, install_type))))
+	to_chat(user, span_notice(LANG("obj.eca553b4d2e1f0a1", list(src, install_type))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/circuitboard/computer/tram_controls/multitool_act(mob/living/user)
-	var/selected_transport_id = tgui_input_list(user, LANG("obj.36d2dca9", null), LANG("obj.818db524", null), SStransport.debug_tram_list)
+	var/selected_transport_id = tgui_input_list(user, LANG("obj.36d2dca94b835fe3", null), LANG("obj.818db524dee31846", null), SStransport.debug_tram_list)
 	if(isnull(selected_transport_id))
 		return NONE
 	specific_transport_id = selected_transport_id
-	to_chat(user, span_notice(LANG("obj.39c2b472", list(src, specific_transport_id))))
+	to_chat(user, span_notice(LANG("obj.39c2b47297a93778", list(src, specific_transport_id))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/circuitboard/computer/terminal
@@ -484,43 +484,43 @@
 
 /obj/item/circuitboard/computer/rdconsole/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.31c2ccd7", list(silence_announcements ? "silence" : "announce")))
-	. += span_notice(LANG("obj.eb1ace56", list(EXAMINE_HINT("multitool"))))
-	. += span_notice(LANG("obj.bdda31ff", list(locked ? "locked" : "unlocked", locked ? "unlocked" : "locked")))
+	. += span_info(LANG("obj.31c2ccd7383db650", list(silence_announcements ? "silence" : "announce")))
+	. += span_notice(LANG("obj.eb1ace562012f704", list(EXAMINE_HINT("multitool"))))
+	. += span_notice(LANG("obj.bdda31ff2d104d0c", list(locked ? "locked" : "unlocked", locked ? "unlocked" : "locked")))
 
 /obj/item/circuitboard/computer/rdconsole/multitool_act(mob/living/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.7197f413", null))
+		balloon_alert(user, LANG("obj.7197f41370d1ba17", null))
 		return
 	silence_announcements = !silence_announcements
-	balloon_alert(user, LANG("obj.3fcf5069", list(silence_announcements ? "enabled" : "disabled")))
+	balloon_alert(user, LANG("obj.3fcf50694f387c98", list(silence_announcements ? "enabled" : "disabled")))
 
 /obj/item/circuitboard/computer/rdconsole/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if (locked)
 		locked = FALSE
-		to_chat(user, span_notice(LANG("obj.73763376", null)))
+		to_chat(user, span_notice(LANG("obj.7376337690536d4e", null)))
 
 	if (obj_flags & EMAGGED)
 		return FALSE
 
 	obj_flags |= EMAGGED
 	silence_announcements = FALSE
-	to_chat(user, span_notice(LANG("obj.caef66a9", null)))
+	to_chat(user, span_notice(LANG("obj.caef66a92f7da1d5", null)))
 	return TRUE
 
 /obj/item/circuitboard/computer/rdconsole/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (user.combat_mode || !isidcard(tool))
 		return NONE
 	if (!check_access(tool))
-		balloon_alert(user, LANG("obj.ddafd752", null))
+		balloon_alert(user, LANG("obj.ddafd75296a2dc2d", null))
 		return ITEM_INTERACT_BLOCKING
 	locked = !locked
 	balloon_alert(user, locked ? "locked" : "unlocked")
 	user.visible_message(
-		span_notice(LANG("obj.2d106050", list(user, user.p_s(), src, tool))),
-		span_notice(LANG("obj.7b91cd02", list(src, tool))),
-		span_hear(LANG("obj.fc511428", null)),
+		span_notice(LANG("obj.2d10605097cf13c6", list(user, user.p_s(), src, tool))),
+		span_notice(LANG("obj.7b91cd0248e9ef78", list(src, tool))),
+		span_hear(LANG("obj.fc5114286529652d", null)),
 	)
 	return ITEM_INTERACT_SUCCESS
 
@@ -621,9 +621,9 @@
 	. = ..()
 	if(!(obj_flags & EMAGGED))
 		contraband = !contraband
-		to_chat(user, span_notice(LANG("obj.1ae1eebf", list(contraband ? "Broad" : "Standard"))))
+		to_chat(user, span_notice(LANG("obj.1ae1eebf2e28f9fa", list(contraband ? "Broad" : "Standard"))))
 	else
-		to_chat(user, span_alert(LANG("obj.be240f6f", null)))
+		to_chat(user, span_alert(LANG("obj.be240f6f01e2dd0d", null)))
 
 /obj/item/circuitboard/computer/cargo/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if (obj_flags & EMAGGED)
@@ -631,7 +631,7 @@
 
 	contraband = TRUE
 	obj_flags |= EMAGGED
-	to_chat(user, span_notice(LANG("obj.7f25b3b6", list(src))))
+	to_chat(user, span_notice(LANG("obj.7f25b3b66ba0238f", list(src))))
 	return TRUE
 
 /obj/item/circuitboard/computer/cargo/configure_machine(obj/machinery/computer/cargo/machine)
@@ -654,16 +654,16 @@
 
 	contraband = TRUE
 	obj_flags |= EMAGGED
-	to_chat(user, span_notice(LANG("obj.fb604c36", null)))
+	to_chat(user, span_notice(LANG("obj.fb604c367eb39f60", null)))
 	return TRUE
 
 /obj/item/circuitboard/computer/cargo/express/multitool_act(mob/living/user)
 	if (!(obj_flags & EMAGGED))
 		contraband = !contraband
-		to_chat(user, span_notice(LANG("obj.1ae1eebf", list(contraband ? "Broad" : "Standard"))))
+		to_chat(user, span_notice(LANG("obj.1ae1eebf2e28f9fa", list(contraband ? "Broad" : "Standard"))))
 		return TRUE
 	else
-		to_chat(user, span_notice(LANG("obj.08cd0748", null)))
+		to_chat(user, span_notice(LANG("obj.08cd07485042ebad", null)))
 		contraband = FALSE
 		obj_flags &= ~EMAGGED
 		return TRUE
@@ -731,7 +731,7 @@
 		var/on_shuttle_frame = HAS_TRAIT((get_turf(machine)), TRAIT_SHUTTLE_CONSTRUCTION_TURF)
 		machine.say(on_shuttle_frame ? "Console will automatically link on shuttle completion." : "No shuttle available for linking.")
 	else if(!istype(shuttle))
-		machine.say(LANG("obj.70714a10", null))
+		machine.say(LANG("obj.70714a10b5f99655", null))
 	else
 		machine.connect_to_shuttle(TRUE, shuttle)
 

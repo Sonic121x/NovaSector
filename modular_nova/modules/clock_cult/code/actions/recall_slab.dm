@@ -27,7 +27,7 @@
 	SIGNAL_HANDLER
 
 	if(owner)
-		to_chat(owner, span_boldwarning(LANG("datum.fe985c68", null)))
+		to_chat(owner, span_boldwarning(LANG("datum.fe985c688facd7e6", null)))
 
 	unmark_item()
 
@@ -41,7 +41,7 @@
 	var/obj/item_to_retrieve = marked_slab
 
 	if(!item_to_retrieve)
-		to_chat(usr, span_brass(LANG("datum.670da546", null)))
+		to_chat(usr, span_brass(LANG("datum.670da5468b508b67", null)))
 
 	if(!item_to_retrieve.loc)
 		return
@@ -64,9 +64,9 @@
 
 			// Items in silicons warp the whole silicon
 			if(issilicon(holding_mark))
-				holding_mark.loc.visible_message(span_warning(LANG("datum.65665160", list(holding_mark))))
+				holding_mark.loc.visible_message(span_warning(LANG("datum.6566516035489fa8", list(holding_mark))))
 				holding_mark.forceMove(usr.loc)
-				holding_mark.loc.visible_message(span_warning(LANG("datum.4e88a79e", list(holding_mark))))
+				holding_mark.loc.visible_message(span_warning(LANG("datum.4e88a79e68e40f6e", list(holding_mark))))
 				item_to_retrieve = null
 				break
 
@@ -93,13 +93,13 @@
 	if(!item_to_retrieve)
 		return
 
-	item_to_retrieve.loc?.visible_message(span_warning(LANG("datum.65665160", list(item_to_retrieve))))
+	item_to_retrieve.loc?.visible_message(span_warning(LANG("datum.6566516035489fa8", list(item_to_retrieve))))
 
 	if(isitem(item_to_retrieve) && usr.put_in_hands(item_to_retrieve))
-		item_to_retrieve.loc.visible_message(span_warning(LANG("datum.ff6f288a", list(item_to_retrieve, usr))))
+		item_to_retrieve.loc.visible_message(span_warning(LANG("datum.ff6f288a839fc2b4", list(item_to_retrieve, usr))))
 
 	else
 		item_to_retrieve.forceMove(usr.drop_location())
-		item_to_retrieve.loc.visible_message(span_warning(LANG("datum.4e88a79e", list(item_to_retrieve))))
+		item_to_retrieve.loc.visible_message(span_warning(LANG("datum.4e88a79e68e40f6e", list(item_to_retrieve))))
 
 	playsound(get_turf(item_to_retrieve), 'sound/effects/magic/summonitems_generic.ogg', 50, TRUE)

@@ -122,13 +122,13 @@
 	// If we should be deleted, give a message letting them know
 	var/mob/living/stored_owner = owner
 	if(remove_duration(2 SECONDS))
-		to_chat(stored_owner, span_green(LANG("datum.7331c046", null)))
+		to_chat(stored_owner, span_green(LANG("datum.7331c0469ac0ab5c", null)))
 		return
 
 	// Otherwise add a chance to let them know that it's working
 	else if(SPT_PROB(5, seconds_between_ticks))
 		var/obj/item/thing_covering_eyes = owner.is_eyes_covered()
 		// "Your blindfold soothes your eyes", for example
-		to_chat(owner, span_green(LANG("datum.bf98160e", list(thing_covering_eyes?.name || "eye covering"))))
+		to_chat(owner, span_green(LANG("datum.bf98160e612ce3d2", list(thing_covering_eyes?.name || "eye covering"))))
 
 #undef CAN_BE_BLIND

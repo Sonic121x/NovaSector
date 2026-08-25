@@ -31,7 +31,7 @@
 	if(!isliving(user))
 		return
 	if(!istype(user.get_item_by_slot(ITEM_SLOT_FEET), /obj/item/clothing/shoes/wheelys))
-		balloon_alert(user, LANG("obj.473ead36", null))
+		balloon_alert(user, LANG("obj.473ead36b8c7d2e0", null))
 		return
 	if(!(wheels.is_occupant(user)))
 		wheelToggle = FALSE

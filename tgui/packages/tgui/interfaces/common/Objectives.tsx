@@ -73,7 +73,7 @@ export const ReplaceObjectivesButton = (props: ReplaceObjectivesProps) => {
     can_change_objective,
     button_title,
     button_colour,
-    button_tooltip = 'Replace your existing objectives with a custom one. This action can only be taken once',
+    button_tooltip,
   } = props;
   const { act } = useBackend();
   if (!can_change_objective) {
@@ -83,7 +83,13 @@ export const ReplaceObjectivesButton = (props: ReplaceObjectivesProps) => {
     <Button
       color={button_colour}
       content={button_title}
-      tooltip={button_tooltip}
+      // NOVA EDIT CHANGE - I18N: 默认值从解构挪进 JSX —— 解构里的默认值不在任何显示位置上，
+      // 抽取器看不见；`??` 的字面量操作数在可翻 prop 上则由 addDisplayExpr 照常收。
+      // ORIGINAL: 默认值写在上面的解构里
+      tooltip={
+        button_tooltip ??
+        'Replace your existing objectives with a custom one. This action can only be taken once'
+      }
       onClick={() => act('change_objectives')}
     />
   );

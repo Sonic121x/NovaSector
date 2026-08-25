@@ -142,8 +142,8 @@
 		var/datum/job/job = guilty_conscience.assigned_role
 		if(job.departments_bitflags & (DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SECURITY))
 			return
-	to_chat(owner, span_notice(LANG("datum.4f739df0", list(user, GLOB.deity, reason))))
-	to_chat(user, span_danger(LANG("datum.73e3bbe0", list(GLOB.deity))))
+	to_chat(owner, span_notice(LANG("datum.4f739df0e7ed3ccb", list(user, GLOB.deity, reason))))
+	to_chat(user, span_danger(LANG("datum.73e3bbe0c2c360a4", list(GLOB.deity))))
 	guilty += user
 
 ///Signal sent by the relay_attackers element. It makes the attacker guilty unless the damage was stamina or it was a shove.
@@ -166,7 +166,7 @@
 	if(honorbound_human == target_creature)
 		return TRUE //oh come on now
 	if(IS_UNCONSCIOUS(target_creature) || HAS_TRAIT(target_creature, TRAIT_RESTRAINED))
-		to_chat(honorbound_human, span_warning(LANG("datum.bb87e550", null)))
+		to_chat(honorbound_human, span_warning(LANG("datum.bb87e550a511875b", null)))
 		return FALSE
 	//THE JUST (Applies over guilt except for med, so you best be careful!)
 	if(is_human)
@@ -174,14 +174,14 @@
 		var/datum/job/job = target_human.mind?.assigned_role
 		var/is_holy = target_human.mind?.holy_role
 		if(is_holy || (job?.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY))
-			to_chat(honorbound_human, span_warning(LANG("datum.1ba63d77", null)))
+			to_chat(honorbound_human, span_warning(LANG("datum.1ba63d776cfa5014", null)))
 			return FALSE
 		if(job?.departments_bitflags & DEPARTMENT_BITFLAG_MEDICAL && !is_guilty)
-			to_chat(honorbound_human, span_warning(LANG("datum.f9de008e", null)))
+			to_chat(honorbound_human, span_warning(LANG("datum.f9de008e07087535", null)))
 			return FALSE
 	//THE INNOCENT (human and borg exclusive)
 	if(!is_guilty && (is_human || issilicon(target_creature)))
-		to_chat(target_creature, span_warning(LANG("datum.02383e4a", null)))
+		to_chat(target_creature, span_warning(LANG("datum.02383e4ae96afe82", null)))
 		return FALSE
 	return TRUE
 
@@ -209,14 +209,14 @@
 		if(SCHOOL_HOLY, SCHOOL_MIME, SCHOOL_RESTORATION, SCHOOL_PSYCHIC)
 			return
 		if(SCHOOL_NECROMANCY, SCHOOL_FORBIDDEN, SCHOOL_SANGUINE)
-			to_chat(user, span_userdanger(LANG("datum.476840f2", list(GLOB.deity))))
+			to_chat(user, span_userdanger(LANG("datum.476840f2217270bf", list(GLOB.deity))))
 			lightningbolt(user)
 			user.mind.set_holy_role(NONE)
 			qdel(src)
 			owner.add_mood_event("honorbound", /datum/mood_event/banished) //add mood event after we already cleared our events
-			to_chat(user, span_userdanger(LANG("datum.6d078d97", null)))
+			to_chat(user, span_userdanger(LANG("datum.6d078d9771aaacf3", null)))
 		else
-			to_chat(user, span_userdanger(LANG("datum.45e82239", list(GLOB.deity, school == SCHOOL_UNSET ? "strange" : school))))
+			to_chat(user, span_userdanger(LANG("datum.45e822397cc6db3f", list(GLOB.deity, school == SCHOOL_UNSET ? "strange" : school))))
 			lightningbolt(user)
 			owner.add_mood_event("honorbound", /datum/mood_event/holy_smite)//permanently lose your moodlet after this
 
@@ -278,12 +278,12 @@
 
 	if(!GLOB.religious_sect)
 		if(feedback)
-			to_chat(owner, span_warning(LANG("datum.b9e63dfd", null)))
+			to_chat(owner, span_warning(LANG("datum.b9e63dfdc6eee450", null)))
 		return FALSE
 
 	if(GLOB.religious_sect.favor < required_favor)
 		if(feedback)
-			to_chat(owner, span_warning(LANG("datum.c87a435d", null)))
+			to_chat(owner, span_warning(LANG("datum.c87a435d6835f943", null)))
 		return FALSE
 
 	return TRUE
@@ -293,28 +293,28 @@
 	if(!.)
 		return FALSE
 	if(!isliving(cast_on))
-		to_chat(owner, span_warning(LANG("datum.df5dff65", null)))
+		to_chat(owner, span_warning(LANG("datum.df5dff655d2de794", null)))
 		return FALSE
 
 	var/mob/living/living_cast_on = cast_on
 	if(living_cast_on.stat == DEAD)
-		to_chat(owner, span_warning(LANG("datum.fcb3ce29", null)))
+		to_chat(owner, span_warning(LANG("datum.fcb3ce29779bc974", null)))
 		return FALSE
 
 	// sec and medical are immune to becoming guilty through attack
 	// (we don't check holy, because holy shouldn't be able to attack eachother anyways)
 	if(!living_cast_on.key || !living_cast_on.mind)
-		to_chat(owner, span_warning(LANG("datum.09471b26", null)))
+		to_chat(owner, span_warning(LANG("datum.09471b26014b6f95", null)))
 		return FALSE
 
 	// also handles any kind of issues with self declarations
 	if(living_cast_on.mind.holy_role)
-		to_chat(owner, span_warning(LANG("datum.2d30529b", list(GLOB.deity))))
+		to_chat(owner, span_warning(LANG("datum.2d30529b2fc22f59", list(GLOB.deity))))
 		return FALSE
 
 	// cannot declare security as evil
 	if(living_cast_on.mind.assigned_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
-		to_chat(owner, span_warning(LANG("datum.8e47b0c4", null)))
+		to_chat(owner, span_warning(LANG("datum.8e47b0c49f26e5a6", null)))
 		return FALSE
 
 	return TRUE

@@ -41,7 +41,7 @@
 	QDEL_NULL(ghost_poll)
 
 /obj/item/organ/zombie_infection/on_find(mob/living/finder)
-	to_chat(finder, span_warning(LANG("obj.2a51c145", null)))
+	to_chat(finder, span_warning(LANG("obj.2a51c14529b60c65", null)))
 
 /obj/item/organ/zombie_infection/process(seconds_per_tick)
 	if(!owner)
@@ -53,13 +53,13 @@
 	if (causes_damage && !owner.has_status_effect(/datum/status_effect/zombie) && owner.stat != DEAD)
 		owner.adjust_tox_loss(0.5 * seconds_per_tick)
 		if (SPT_PROB(5, seconds_per_tick))
-			to_chat(owner, span_danger(LANG("obj.7220d46a", null)))
+			to_chat(owner, span_danger(LANG("obj.7220d46a9dd730c6", null)))
 	if(timer_id || HAS_TRAIT(owner, TRAIT_SUICIDED) || !owner.get_organ_by_type(/obj/item/organ/brain))
 		return
 	if(owner.stat != DEAD && !converts_living)
 		return
 	if(!owner.has_status_effect(/datum/status_effect/zombie))
-		to_chat(owner, span_cult_large(LANG("obj.35245f8e", null)))
+		to_chat(owner, span_cult_large(LANG("obj.35245f8e900fcd82", null)))
 	var/revive_time = rand(revive_time_min, revive_time_max)
 	var/flags = TIMER_STOPPABLE
 	timer_id = addtimer(CALLBACK(src, PROC_REF(zombify), owner), revive_time, flags)
@@ -111,8 +111,8 @@
 
 /obj/item/organ/zombie_infection/proc/zombie_welcome(mob/living/carbon/new_zombie)
 	if(new_zombie.client)
-		to_chat(new_zombie, span_alien(LANG("obj.18944b9a", null)))
-		to_chat(new_zombie, span_alertalien(LANG("obj.284d8817", null)))
+		to_chat(new_zombie, span_alien(LANG("obj.18944b9a2169fca5", null)))
+		to_chat(new_zombie, span_alertalien(LANG("obj.284d8817664a3a99", null)))
 		playsound(new_zombie, 'sound/effects/hallucinations/far_noise.ogg', 50, 1)
 
 	new_zombie.do_jitter_animation(living_transformation_time)

@@ -6,7 +6,7 @@
  */
 GAME_VERB(/mob/living/basic/drone, check_laws, "查看法则", "Drone")
 
-	to_chat(src, LANG("mob.24a048ba", null))
+	to_chat(src, LANG("mob.24a048ba46e64b00", null))
 	to_chat(src, laws)
 
 /**
@@ -22,7 +22,7 @@ GAME_VERB(/mob/living/basic/drone, check_laws, "查看法则", "Drone")
  */
 GAME_VERB(/mob/living/basic/drone, drone_ping, "无人机警报", "Drone")
 
-	var/alert_s = input(src,LANG("mob.5b32bc9b", null),LANG("mob.4a2934c5", null),null) as null|anything in list("Low","Medium","High","Critical")
+	var/alert_s = input(src,LANG("mob.5b32bc9bac24df7e", null),LANG("mob.4a2934c5325265c2", null),null) as null|anything in list("Low","Medium","High","Critical")
 
 	var/area/A = get_area(loc)
 

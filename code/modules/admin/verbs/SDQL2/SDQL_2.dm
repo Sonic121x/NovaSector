@@ -198,7 +198,7 @@
 
 ADMIN_VERB(sdql2_query, R_DEBUG, "SDQL2 查询", "Run a SDQL2 query.", ADMIN_CATEGORY_DEBUG)
 	VERB_ARG(query_text, VERB_ARG_TYPE_MESSAGE, VERB_ARG_SOURCE_INPUT)
-	var/prompt = tgui_alert(user, LANG("datum.11f27815", null), LANG("datum.99b41112", null), list("Yes", "Cancel"))
+	var/prompt = tgui_alert(user, LANG("datum.11f27815c3e4793c", null), LANG("datum.99b41112af2c1d4b", null), list("Yes", "Cancel"))
 	if (prompt != "Yes")
 		return
 	var/list/results = world.SDQL2_query(query_text, key_name_admin(user), "[key_name(user)]")
@@ -273,7 +273,7 @@ ADMIN_VERB(sdql2_query, R_DEBUG, "SDQL2 查询", "Run a SDQL2 query.", ADMIN_CAT
 				finished = FALSE
 				if(query.state == SDQL2_STATE_ERROR)
 					if(usr)
-						to_chat(usr, span_admin(LANG("world.94c586e2", list(query.get_query_text()))), confidential = TRUE)
+						to_chat(usr, span_admin(LANG("world.94c586e2e3275f18", list(query.get_query_text()))), confidential = TRUE)
 					running -= query
 			else
 				if(query.finished)
@@ -295,7 +295,7 @@ ADMIN_VERB(sdql2_query, R_DEBUG, "SDQL2 查询", "Run a SDQL2 query.", ADMIN_CAT
 						next_query.ARun()
 				else
 					if(usr)
-						to_chat(usr, span_admin(LANG("world.049d9d2d", list(query.get_query_text()))), confidential = TRUE)
+						to_chat(usr, span_admin(LANG("world.049d9d2df3b597d6", list(query.get_query_text()))), confidential = TRUE)
 					running -= query
 	while(!finished)
 
@@ -528,7 +528,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 		var/client/C = GLOB.directory[show_next_to_key]
 		if(C)
 			var/mob/showmob = C.mob
-			to_chat(showmob, LANG("datum.4797d0f3", list(get_query_text(), islist(obj_count_all)? length(obj_count_all) : obj_count_all, where_switched? "[islist(obj_count_eligible)? length(obj_count_eligible) : obj_count_eligible] objects executed on after WHERE keyword selection." : "", DisplayTimeText(end_time - start_time))), confidential = TRUE)
+			to_chat(showmob, LANG("datum.4797d0f36ce20a63", list(get_query_text(), islist(obj_count_all)? length(obj_count_all) : obj_count_all, where_switched? "[islist(obj_count_eligible)? length(obj_count_eligible) : obj_count_eligible] objects executed on after WHERE keyword selection." : "", DisplayTimeText(end_time - start_time))), confidential = TRUE)
 			if(length(select_text))
 				var/text = islist(select_text)? select_text.Join() : select_text
 				var/static/result_offset = 0
@@ -860,7 +860,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 				if("or", "||")
 					result = (result || val)
 				else
-					to_chat(usr, span_danger(LANG("datum.cf5746e1", list(op))), confidential = TRUE)
+					to_chat(usr, span_danger(LANG("datum.cf5746e1f2f54ad0", list(op))), confidential = TRUE)
 					result = null
 		else
 			result = val
@@ -970,7 +970,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 				querys[querys_pos] = parsed_tree
 				querys_pos++
 			else //There was an error so don't run anything, and tell the user which query has errored.
-				to_chat(usr, span_danger(LANG("_root.2eec371b", list(querys_pos))), confidential = TRUE)
+				to_chat(usr, span_danger(LANG("_root.2eec371b714a61d6", list(querys_pos))), confidential = TRUE)
 				return list()
 			query_tree = list()
 			do_parse = 0
@@ -1005,7 +1005,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 				to_chat(usr, "[spaces][whitespace])", confidential = TRUE)
 
 			else
-				to_chat(usr, "[spaces][whitespace][query_tree[item]]", confidential = TRUE)
+				to_chat(usr, LANG("_root.b0fa8d1ff2111e4e", list(spaces, whitespace, query_tree[item])), confidential = TRUE)
 
 //Staying as a world proc as this is called too often for changes to offset the potential IsAdminAdvancedProcCall checking overhead.
 /world/proc/SDQL_var(object, list/expression, start = 1, source, superuser, datum/sdql2_query/query)
@@ -1017,19 +1017,19 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 		D = object
 
 	if (object == world && (!long || expression[start + 1] == ".") && !(expression[start] in exclude) && copytext(expression[start], 1, 3) != "SS") //3 == length("SS") + 1
-		to_chat(usr, span_danger(LANG("world.a9c0b1ad", null)), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("world.a9c0b1adbe639e37", null)), confidential = TRUE)
 		return null
 
 	else if(expression [start] == "{" && long)
 		if(LOWER_TEXT(copytext(expression[start + 1], 1, 3)) != "0x") //3 == length("0x") + 1
-			to_chat(usr, span_danger(LANG("world.27878744", list(expression[start + 1]))), confidential = TRUE)
+			to_chat(usr, span_danger(LANG("world.278787442bca7dbf", list(expression[start + 1]))), confidential = TRUE)
 			return null
 		var/datum/located = locate("\[[expression[start + 1]]]")
 		if(!istype(located))
-			to_chat(usr, span_danger(LANG("world.83c3d906", list(expression[start + 1]))), confidential = TRUE)
+			to_chat(usr, span_danger(LANG("world.83c3d9063a8b788f", list(expression[start + 1]))), confidential = TRUE)
 			return null
 		if(!located.can_vv_mark())
-			to_chat(usr, span_danger(LANG("world.f9ab1113", list(expression[start+1]))), confidential = TRUE)
+			to_chat(usr, span_danger(LANG("world.f9ab1113ebb9c5ee", list(expression[start+1]))), confidential = TRUE)
 			return null
 		v = located
 		start++
@@ -1093,7 +1093,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 			var/list/L = v
 			var/index = query.SDQL_expression(source, expression[start + 2])
 			if(isnum(index) && (!ISINTEGER(index) || L.len < index))
-				to_chat(usr, span_danger(LANG("world.74b4ed87", list(index))), confidential = TRUE)
+				to_chat(usr, span_danger(LANG("world.74b4ed878c5b076a", list(index))), confidential = TRUE)
 				return null
 			return L[index]
 	return v
@@ -1145,7 +1145,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 
 		else if(char == "'")
 			if(word != "")
-				to_chat(usr, LANG("_root.4f6e4edd", list(query_text, word)), confidential = TRUE)
+				to_chat(usr, LANG("_root.4f6e4edd459343ff", list(query_text, word)), confidential = TRUE)
 				return null
 
 			word = "'"
@@ -1165,7 +1165,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 					word += char
 
 			if(i > len)
-				to_chat(usr, LANG("_root.bb6b8e05", list(query_text)), confidential = TRUE)
+				to_chat(usr, LANG("_root.bb6b8e056e31a52e", list(query_text)), confidential = TRUE)
 				return null
 
 			query_list += "[word]'"
@@ -1173,7 +1173,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 
 		else if(char == "\"")
 			if(word != "")
-				to_chat(usr, LANG("_root.42a4a644", list(query_text, word)), confidential = TRUE)
+				to_chat(usr, LANG("_root.42a4a644efecefce", list(query_text, word)), confidential = TRUE)
 				return null
 
 			word = "\""
@@ -1193,7 +1193,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 					word += char
 
 			if(i > len)
-				to_chat(usr, LANG("_root.6bc0fb16", list(query_text)), confidential = TRUE)
+				to_chat(usr, LANG("_root.6bc0fb16b1b949e9", list(query_text)), confidential = TRUE)
 				return null
 
 			query_list += "[word]\""

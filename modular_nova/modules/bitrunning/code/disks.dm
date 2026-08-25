@@ -37,8 +37,8 @@
 	. = ..()
 	if(!isnull(loaded_preference))
 		var/name = loaded_preference.read_preference(/datum/preference/name/real_name)
-		. += LANG("obj.27bbe64d", list(name, (include_loadout ? "enabled" : "disabled")))
-		. += span_notice(LANG("obj.49759603", null))
+		. += LANG("obj.27bbe64db7229144", list(name, (include_loadout ? "enabled" : "disabled")))
+		. += span_notice(LANG("obj.49759603d99b2649", null))
 
 /obj/item/disk/bitrunning/prefs/click_alt(mob/user)
 	if(isnull(loaded_preference))
@@ -54,18 +54,18 @@
 	if(isnull(prefdata_names))
 		return
 
-	var/response = tgui_alert(user, message = "Change selected prefs?", title = "Prefchange", buttons = list("Yes", "No"))
+	var/response = tgui_alert(user, message = LANG("obj.50483b4a4935c1ba", null), title = LANG("obj.536d495c60514292", null), buttons = list("Yes", "No"))
 	if(isnull(response) || response == "No")
 		return
-	var/choice = tgui_input_list(user, message = "Select a character",  title = "Character selection", items = prefdata_names)
+	var/choice = tgui_input_list(user, message = LANG("obj.3cb78ece2f701bcf", null),  title = LANG("obj.2b0ff9114b6c7fec", null), items = prefdata_names)
 	if(isnull(choice) || !user.is_holding(src))
 		return
 
 	loaded_preference = new(user.client)
 	loaded_preference.load_character(prefdata_names.Find(choice))
 
-	balloon_alert(user, LANG("obj.0a6e4860", null))
-	to_chat(user, span_notice(LANG("obj.49b76751", list(choice))))
+	balloon_alert(user, LANG("obj.0a6e486073d29de6", null))
+	to_chat(user, span_notice(LANG("obj.49b767518078a295", list(choice))))
 
 /datum/orderable_item/bitrunning_tech/ability_tier0
 	cost_per_order = 350

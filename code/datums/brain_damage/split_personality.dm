@@ -100,8 +100,8 @@
 		return
 
 	current_backseat.log_message("assumed control of [key_name(owner)] due to [src]. (Original owner: [current_controller == OWNER ? owner.key : current_backseat.key])", LOG_GAME)
-	to_chat(owner, span_userdanger(LANG("datum.1ca49b80", null)))
-	to_chat(current_backseat, span_userdanger(LANG("datum.76cfb0b3", null)))
+	to_chat(owner, span_userdanger(LANG("datum.1ca49b80c8182502", null)))
+	to_chat(current_backseat, span_userdanger(LANG("datum.76cfb0b3a00d863f", null)))
 
 	//Body to backseat
 
@@ -178,12 +178,12 @@
 	. = ..()
 	if(!. || !client)
 		return FALSE
-	to_chat(src, span_notice(LANG("mob.c2fbe583", null)))
-	to_chat(src, span_warning(LANG("mob.6286261e", null)))
+	to_chat(src, span_notice(LANG("mob.c2fbe5839487496e", null)))
+	to_chat(src, span_warning(LANG("mob.6286261ec4c62ef8", null)))
 
 /mob/living/split_personality/try_speak(message, ignore_spam, forced, filterproof)
 	SHOULD_CALL_PARENT(FALSE)
-	to_chat(src, span_warning(LANG("mob.a9a20e21", null)))
+	to_chat(src, span_warning(LANG("mob.a9a20e21984d298c", null)))
 	return FALSE
 
 /mob/living/split_personality/emote(act, type_override = NONE, message = null, intentional = FALSE, force_silence = FALSE, forced = FALSE)
@@ -258,10 +258,10 @@
 	. = ..()
 	if(!. || !client)
 		return FALSE
-	to_chat(src, span_notice(LANG("mob.3edb904c", null)))
-	to_chat(src, span_notice(LANG("mob.c7cda14f", list(codeword))))
+	to_chat(src, span_notice(LANG("mob.3edb904ca917b198", null)))
+	to_chat(src, span_notice(LANG("mob.c7cda14ff2b1fbde", list(codeword))))
 	if(objective)
-		to_chat(src, span_notice(LANG("mob.ef95ff6c", list(objective))))
+		to_chat(src, span_notice(LANG("mob.ef95ff6cef55e819", list(objective))))
 
 /datum/brain_trauma/severe/split_personality/blackout
 	name = "Alcohol-Induced CNS Impairment"
@@ -286,7 +286,7 @@
 
 	RegisterSignal(owner, COMSIG_ATOM_SPLASHED, PROC_REF(on_splashed))
 	notify_ghosts(
-		LANG("datum.68d983a0", list(owner.real_name)),
+		LANG("datum.68d983a0336749ad", list(owner.real_name)),
 		source = owner,
 		header = "Bro I'm not even drunk right now",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -320,10 +320,10 @@
 		qdel(src)
 		return
 	else if(duration_in_seconds <= 60 && !(duration_in_seconds % 20))
-		to_chat(owner, span_warning(LANG("datum.6265858f", list(duration_in_seconds))))
+		to_chat(owner, span_warning(LANG("datum.6265858ff7502bec", list(duration_in_seconds))))
 	if(prob(10) && !HAS_TRAIT(owner, TRAIT_DISCOORDINATED_TOOL_USER))
 		ADD_TRAIT(owner, TRAIT_DISCOORDINATED_TOOL_USER, TRAUMA_TRAIT)
-		owner.balloon_alert(owner, LANG("datum.c52b8a45", null))
+		owner.balloon_alert(owner, LANG("datum.c52b8a4578130e60", null))
 		//We then send a callback to automatically re-add the trait
 		addtimer(TRAIT_CALLBACK_REMOVE(owner, TRAIT_DISCOORDINATED_TOOL_USER, TRAUMA_TRAIT), 10 SECONDS)
 		addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "dexterity regained!"), 10 SECONDS)
@@ -344,8 +344,8 @@
 	. = ..()
 	if(!. || !client)
 		return FALSE
-	to_chat(src, span_notice(LANG("mob.e4ff41f2", null)))
-	to_chat(src, span_boldwarning(LANG("mob.a5b7a207", null)))
+	to_chat(src, span_notice(LANG("mob.e4ff41f27d591ef1", null)))
+	to_chat(src, span_boldwarning(LANG("mob.a5b7a20713d632df", null)))
 
 #undef OWNER
 #undef STRANGER

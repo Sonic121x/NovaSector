@@ -47,7 +47,7 @@
 	lover.remove_status_effect(/datum/status_effect/in_love)
 
 /datum/antagonist/valentine/greet()
-	to_chat(owner, span_boldwarning(LANG("datum.ea4ca6be", list(date.name, date.p_them()))))
+	to_chat(owner, span_boldwarning(LANG("datum.ea4ca6bee5e61333", list(date.name, date.p_them()))))
 
 //Squashed up a bit
 /datum/antagonist/valentine/roundend_report()

@@ -68,22 +68,22 @@
 
 	var/obj/item/organ/brain/newbrain = tool
 	if(brain)
-		to_chat(user, span_warning(LANG("obj.195201fc", null)))
+		to_chat(user, span_warning(LANG("obj.195201fcd1f53eae", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(newbrain.suicided)
-		to_chat(user, span_warning(LANG("obj.4843ca8b", list(newbrain))))
+		to_chat(user, span_warning(LANG("obj.4843ca8bfcbc6b02", list(newbrain))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!newbrain.brainmob)
-		var/install = tgui_alert(user, LANG("obj.f1f04b31", list(newbrain)), LANG("obj.a84be5c1", null), list("Yes", "No"))
+		var/install = tgui_alert(user, LANG("obj.f1f04b31e8aaea3f", list(newbrain)), LANG("obj.a84be5c191efcbb5", null), list("Yes", "No"))
 		if(install != "Yes")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(newbrain, src))
 			return ITEM_INTERACT_BLOCKING
 
-		user.visible_message(span_notice(LANG("obj.48eff2d6", list(user, newbrain, src))), span_notice(LANG("obj.c1b7c3b5", list(src, newbrain))))
+		user.visible_message(span_notice(LANG("obj.48eff2d644b74527", list(user, newbrain, src))), span_notice(LANG("obj.c1b7c3b580570b4f", list(src, newbrain))))
 		brain = newbrain
 		brain.organ_flags |= ORGAN_FROZEN
 		// NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
@@ -97,7 +97,7 @@
 	var/mob/living/brain/other_brainmob = newbrain.brainmob
 	if(!other_brainmob.key && !newbrain.decoy_override)
 		other_brainmob.notify_revival("Someone has put your brain in a MMI!", source = src)
-	user.visible_message(span_notice(LANG("obj.610649c4", list(user, newbrain, src))), span_notice(LANG("obj.ce2edecd", list(src, newbrain))))
+	user.visible_message(span_notice(LANG("obj.610649c4672f28f4", list(user, newbrain, src))), span_notice(LANG("obj.ce2edecd2a83defc", list(src, newbrain))))
 
 	set_brainmob(newbrain.brainmob)
 	newbrain.brainmob = null
@@ -107,10 +107,10 @@
 	if(!fubar_brain && !(newbrain.organ_flags & ORGAN_FAILING)) // the brain organ hasn't been beaten to death, nor was from a suicider.
 		brainmob.set_stat(STABLE) //we manually revive the brain mob
 	else if(!fubar_brain && newbrain.organ_flags & ORGAN_FAILING) // the brain is damaged, but not from a suicider
-		to_chat(user, span_warning(LANG("obj.fecaffbf", list(src, newbrain))))
+		to_chat(user, span_warning(LANG("obj.fecaffbfe9ea113d", list(src, newbrain))))
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 5, TRUE)
 	else
-		to_chat(user, span_warning(LANG("obj.ed38038b", list(src, newbrain))))
+		to_chat(user, span_warning(LANG("obj.ed38038b17487190", list(src, newbrain))))
 		playsound(src, 'sound/machines/beep/triple_beep.ogg', 5, TRUE)
 
 	brainmob.reset_perspective()
@@ -196,12 +196,12 @@
 /obj/item/mmi/attack_self(mob/user)
 	if(!brain)
 		radio.set_on(!radio.is_on())
-		to_chat(user, span_notice(LANG("obj.39ef622c", list(src, radio.is_on() == TRUE ? "on" : "off"))))
+		to_chat(user, span_notice(LANG("obj.39ef622c86b5c90d", list(src, radio.is_on() == TRUE ? "on" : "off"))))
 	else
 		eject_brain(user)
 		update_appearance()
 		name = initial(name)
-		to_chat(user, span_notice(LANG("obj.4f2c1468", list(src))))
+		to_chat(user, span_notice(LANG("obj.4f2c1468592b4c86", list(src))))
 
 /obj/item/mmi/proc/eject_brain(mob/user)
 	if(brainmob)
@@ -287,13 +287,13 @@
 GAME_VERB_SRC_DESC(/obj/item/mmi, Toggle_Listening, usr.loc, "切换监听", "Toggle listening channel on or off.", "MMI")
 
 	if(IS_UNCONSCIOUS_OR_CRIT(brainmob))
-		to_chat(brainmob, span_warning(LANG("obj.d9c9989b", null)))
+		to_chat(brainmob, span_warning(LANG("obj.d9c9989b605ed9d8", null)))
 	if(!radio.is_on())
-		to_chat(brainmob, span_warning(LANG("obj.f8885d6e", null)))
+		to_chat(brainmob, span_warning(LANG("obj.f8885d6e22400e97", null)))
 		return
 
 	radio.set_listening(!radio.get_listening())
-	to_chat(brainmob, span_notice(LANG("obj.a68b1527", list(radio.get_listening() ? "now" : "no longer"))))
+	to_chat(brainmob, span_notice(LANG("obj.a68b15276add5314", list(radio.get_listening() ? "now" : "no longer"))))
 
 /obj/item/mmi/emp_act(severity)
 	. = ..()
@@ -319,24 +319,24 @@ GAME_VERB_SRC_DESC(/obj/item/mmi, Toggle_Listening, usr.loc, "切换监听", "To
 /obj/item/mmi/examine(mob/user)
 	. = ..()
 	if(radio)
-		. += span_notice(LANG("obj.139453cd", list(radio.is_on() ? "off" : "on", brain ? " It is currently being covered by [brain]." : null)))
+		. += span_notice(LANG("obj.139453cd9fbc8627", list(radio.is_on() ? "off" : "on", brain ? " It is currently being covered by [brain]." : null)))
 
 	if(!isnull(brain))
 		// It's dead, show it as much
 		if((brain.organ_flags & ORGAN_FAILING) || brainmob?.stat == DEAD)
 			if(brain.suicided || (brainmob && HAS_TRAIT(brainmob, TRAIT_SUICIDED)))
-				. += span_warning(LANG("obj.b32d0034", list(src)))
+				. += span_warning(LANG("obj.b32d0034b69f0204", list(src)))
 			else
-				. += span_warning(LANG("obj.80139015", list(src)))
+				. += span_warning(LANG("obj.80139015b5714fcc", list(src)))
 		// If we have a client, OR it's a decoy brain, show as active
 		else if(brain.decoy_override || brainmob?.client)
-			. += span_notice(LANG("obj.6ac5f1cc", list(src)))
+			. += span_notice(LANG("obj.6ac5f1ccf09c740c", list(src)))
 		// If we have a brainmob and it has a mind, it may just be DC'd
 		else if(brainmob?.mind)
-			. += span_warning(LANG("obj.38b984f0", list(src)))
+			. += span_warning(LANG("obj.38b984f08a7ebb1c", list(src)))
 		// No brainmob, no mind, and not a decoy, it's a dead brain
 		else
-			. += span_warning(LANG("obj.32d34791", list(src)))
+			. += span_warning(LANG("obj.32d34791fd3f4abe", list(src)))
 
 /obj/item/mmi/relaymove(mob/living/user, direction)
 	return //so that the MMI won't get a warning about not being able to move if it tries to move
@@ -345,31 +345,31 @@ GAME_VERB_SRC_DESC(/obj/item/mmi, Toggle_Listening, usr.loc, "切换监听", "To
 	var/mob/living/brain/B = brainmob
 	if(!B)
 		if(user)
-			to_chat(user, span_warning(LANG("obj.e3dc450c", list(src))))
+			to_chat(user, span_warning(LANG("obj.e3dc450cf436408f", list(src))))
 		return FALSE
 	if(brain?.decoy_override)
 		if(user)
-			to_chat(user, span_warning(LANG("obj.d8b1bd52", list(name))))
+			to_chat(user, span_warning(LANG("obj.d8b1bd520ff4a43c", list(name))))
 		return FALSE
 	if(!B.key || !B.mind)
 		if(user)
-			to_chat(user, span_warning(LANG("obj.762ac644", list(src))))
+			to_chat(user, span_warning(LANG("obj.762ac644050d8842", list(src))))
 		return FALSE
 	if(!B.client)
 		if(user)
-			to_chat(user, span_warning(LANG("obj.6b5776b1", list(src))))
+			to_chat(user, span_warning(LANG("obj.6b5776b1969a203c", list(src))))
 		return FALSE
 	if(HAS_TRAIT(B, TRAIT_SUICIDED) || brain?.suicided)
 		if(user)
-			to_chat(user, span_warning(LANG("obj.3471de9c", list(src))))
+			to_chat(user, span_warning(LANG("obj.3471de9cd978830b", list(src))))
 		return FALSE
 	if(B.stat == DEAD)
 		if(user)
-			to_chat(user, span_warning(LANG("obj.82c24640", list(src))))
+			to_chat(user, span_warning(LANG("obj.82c24640a7bc7959", list(src))))
 		return FALSE
 	if(brain?.organ_flags & ORGAN_FAILING)
 		if(user)
-			to_chat(user, span_warning(LANG("obj.02667ee3", list(src))))
+			to_chat(user, span_warning(LANG("obj.02667ee3bf3b9411", list(src))))
 		return FALSE
 	return TRUE
 
@@ -385,5 +385,5 @@ GAME_VERB_SRC_DESC(/obj/item/mmi, Toggle_Listening, usr.loc, "切换监听", "To
 
 /obj/item/mmi/syndie/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.13a9ccb0", null))
-	. += span_notice(LANG("obj.0bf881ab", null))
+	. += span_notice(LANG("obj.13a9ccb009f34e2c", null))
+	. += span_notice(LANG("obj.0bf881abded155ba", null))

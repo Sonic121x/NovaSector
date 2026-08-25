@@ -44,8 +44,8 @@
 		new /obj/item/food/bait/worm(source)
 
 	user.visible_message(
-		span_notice("[user] [action_text_third_person] [source]."),
-		span_notice(LANG("datum.d6171b71", list(action_text, source))),
+		span_notice(LANG("datum.6afbb5c3aa5fc504", list(user, action_text_third_person, source))),
+		span_notice(LANG("datum.d6171b714b8cf981", list(action_text, source))),
 	)
 
 	playsound(source, 'sound/effects/shovel_dig.ogg', 50, TRUE)

@@ -17,13 +17,13 @@ GAME_VERB_HIDDEN(/mob/living, navigate, "导航")
 		return
 	if(length(client.navigation_images))
 		addtimer(CALLBACK(src, PROC_REF(cut_navigation)), world.tick_lag)
-		balloon_alert(src, LANG("mob.782a8c41", null))
+		balloon_alert(src, LANG("mob.782a8c4166c44fec", null))
 		return
 	if(navigating)
-		balloon_alert(src, LANG("mob.0fe1fed5", null))
+		balloon_alert(src, LANG("mob.0fe1fed5bb140ff6", null))
 		return
 	if(!COOLDOWN_FINISHED(src, navigate_cooldown))
-		balloon_alert(src, LANG("mob.68863d58", null))
+		balloon_alert(src, LANG("mob.68863d58dba7ce81", null))
 		return
 	addtimer(CALLBACK(src, PROC_REF(create_navigation)), world.tick_lag)
 
@@ -47,15 +47,18 @@ GAME_VERB_HIDDEN(/mob/living, navigate, "导航")
 		destination_list[lang_reverse_text("Nearest Way Up")] = UP // NOVA EDIT - I18N
 
 	if(!length(destination_list))
-		balloon_alert(src, LANG("mob.f7ee8e03", null))
+		balloon_alert(src, LANG("mob.f7ee8e03680eeb5b", null))
 		return
 
-	var/platform_code = tgui_input_list(src, LANG("mob.0e4a2fa4", null), LANG("mob.5abb374f", null), sort_list(destination_list))
-	var/atom/navigate_target = destination_list[platform_code] || destination_list[lang_unreverse_text(platform_code)] // NOVA EDIT - I18N - tolerate any residual P1 translation on names not covered by _map_names (translated picks already match the localized key directly)
+	var/platform_code = tgui_input_list(src, LANG("mob.0e4a2fa429b7a9c8", null), LANG("mob.5abb374fa9982d80", null), sort_list(destination_list))
+	var/atom/navigate_target = destination_list[platform_code]
+	create_navigation_line(navigate_target)
 
+/mob/living/proc/create_navigation_line(atom/navigate_target)
 	if(isnull(navigate_target) || incapacitated)
 		return
 
+	cut_navigation()
 
 	var/finding_zchange = FALSE
 	COOLDOWN_START(src, navigate_cooldown, 15 SECONDS)
@@ -68,7 +71,7 @@ GAME_VERB_HIDDEN(/mob/living, navigate, "导航")
 		var/atom/new_target = find_nearest_stair_or_ladder(nav_dir)
 
 		if(!new_target)
-			balloon_alert(src, LANG("mob.1b2d2fbc", list(direction_name)))
+			balloon_alert(src, LANG("mob.1b2d2fbcd1e393da", list(direction_name)))
 			return
 
 		navigate_target = new_target
@@ -81,14 +84,14 @@ GAME_VERB_HIDDEN(/mob/living, navigate, "导航")
 	var/datum/callback/await = list(CALLBACK(src, PROC_REF(finish_navigation), navigate_target, finding_zchange))
 	if(!SSpathfinder.pathfind(src, navigate_target, MAX_NAVIGATE_RANGE, mintargetdist = 1, access = get_access(), skip_first = FALSE, on_finish = await))
 		navigating = FALSE
-		balloon_alert(src, LANG("mob.7734a1ee", null))
+		balloon_alert(src, LANG("mob.7734a1ee9214800a", null))
 
 /mob/living/proc/finish_navigation(turf/navigate_target, finding_zchange, list/path)
 	navigating = FALSE
 	if(!client)
 		return
 	if(!length(path))
-		balloon_alert(src, LANG("mob.38ec4930", null))
+		balloon_alert(src, LANG("mob.38ec4930b4bef7c9", null))
 		return
 	path |= get_turf(navigate_target)
 	for(var/i in 1 to length(path))
@@ -117,7 +120,7 @@ GAME_VERB_HIDDEN(/mob/living, navigate, "导航")
 	RegisterSignal(src, COMSIG_LIVING_DEATH, PROC_REF(cut_navigation))
 	if(finding_zchange)
 		RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(cut_navigation))
-	balloon_alert(src, LANG("mob.900191da", null))
+	balloon_alert(src, LANG("mob.900191dac4c64bcf", null))
 
 /mob/living/proc/shine_navigation()
 	for(var/i in 1 to length(client.navigation_images))
@@ -129,6 +132,9 @@ GAME_VERB_HIDDEN(/mob/living, navigate, "导航")
 
 /mob/living/proc/cut_navigation()
 	SIGNAL_HANDLER
+	if(!length(client.navigation_images))
+		return
+
 	for(var/image/navigation_path in client.navigation_images)
 		client.images -= navigation_path
 	client.navigation_images.Cut()

@@ -109,7 +109,7 @@
 		return
 
 	if(IS_HERETIC(user))
-		to_chat(user, span_boldwarning(LANG("obj.8639e33b", null)))
+		to_chat(user, span_boldwarning(LANG("obj.8639e33be7353802", null)))
 		return TRUE
 
 	var/mob/living/carbon/human/human_user = user
@@ -118,11 +118,11 @@
 		return TRUE
 
 	if(prob(25))
-		to_chat(human_user, span_userdanger(LANG("obj.6b66c9b1", list(their_poor_arm.name))))
+		to_chat(human_user, span_userdanger(LANG("obj.6b66c9b1ceb66991", list(their_poor_arm.name))))
 		if (their_poor_arm.dismember())
 			their_poor_arm.forceMove(src) // stored for later fishage
 	else
-		to_chat(human_user,span_danger(LANG("obj.58c500ee", null)))
+		to_chat(human_user,span_danger(LANG("obj.58c500ee51d39634", null)))
 	return TRUE
 
 /obj/effect/visible_heretic_influence/attack_tk(mob/user)
@@ -132,7 +132,7 @@
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(IS_HERETIC(user))
-		to_chat(user, span_boldwarning(LANG("obj.8639e33b", null)))
+		to_chat(user, span_boldwarning(LANG("obj.8639e33be7353802", null)))
 		return
 
 	var/mob/living/carbon/human/human_user = user
@@ -140,11 +140,11 @@
 	// You see, these tendrils are psychic. That's why you can't see them. Definitely not laziness. Just psychic. The character can feel but not see them.
 	// Because they're psychic. Yeah.
 	if(human_user.can_block_magic(MAGIC_RESISTANCE_MIND))
-		visible_message(span_danger(LANG("obj.fad92a53", list(src, user))))
+		visible_message(span_danger(LANG("obj.fad92a532345c520", list(src, user))))
 		return
 
 	// A very elaborate way to suicide
-	visible_message(span_userdanger(LANG("obj.52a80229", list(src, user, user.p_their()))))
+	visible_message(span_userdanger(LANG("obj.52a80229cc50d7df", list(src, user, user.p_their()))))
 	var/obj/item/bodypart/head/head = human_user.get_bodypart(BODY_ZONE_HEAD)
 	if(head?.dismember())
 		head.forceMove(src) // stored for later fishage
@@ -159,7 +159,7 @@
 	if(IS_HERETIC(user) || !ishuman(user))
 		return
 
-	. += span_userdanger(LANG("obj.360a41fd", null))
+	. += span_userdanger(LANG("obj.360a41fd9fb3d3fe", null))
 	user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10, 190)
 	user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 
@@ -203,7 +203,7 @@
 		return SECONDARY_ATTACK_CALL_NORMAL
 
 	if(being_drained)
-		loc.balloon_alert(user, LANG("obj.2839cef8", null))
+		loc.balloon_alert(user, LANG("obj.2839cef8fd110ed4", null))
 	else
 		INVOKE_ASYNC(src, PROC_REF(drain_influence), user, 1)
 
@@ -233,7 +233,7 @@
 /obj/effect/heretic_influence/proc/drain_influence(mob/living/user, knowledge_to_gain, drain_speed = HERETIC_RIFT_DEFAULT_DRAIN_SPEED)
 
 	being_drained = TRUE
-	loc.balloon_alert(user, LANG("obj.17a05ddb", null))
+	loc.balloon_alert(user, LANG("obj.17a05ddb0b6c9913", null))
 
 	// Only gives you the dripping eye effect if you have faster drain speed than default
 	var/mutable_appearance/draining_overlay = mutable_appearance('icons/mob/effects/heretic_aura.dmi', "heretic_eye_dripping")
@@ -243,12 +243,12 @@
 
 	if(!do_after(user, drain_speed, src, cog_icon = null))
 		being_drained = FALSE
-		loc.balloon_alert(user, LANG("obj.c67b5d27", null))
+		loc.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		user.cut_overlay(draining_overlay)
 		return
 
 	// We don't need to set being_drained back since we delete after anyways
-	loc.balloon_alert(user, LANG("obj.468cd548", null))
+	loc.balloon_alert(user, LANG("obj.468cd548810dddef", null))
 	user.cut_overlay(draining_overlay)
 
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
@@ -264,7 +264,7 @@
 /obj/effect/heretic_influence/proc/after_drain(mob/living/user)
 	if(user)
 		to_chat(user, span_hypnophrase(pick_list(HERETIC_INFLUENCE_FILE, "drain_message")))
-		to_chat(user, span_warning(LANG("obj.ea0fca6a", list(src))))
+		to_chat(user, span_warning(LANG("obj.ea0fca6ace81fc96", list(src))))
 
 	var/obj/effect/visible_heretic_influence/illusion = new /obj/effect/visible_heretic_influence(drop_location())
 	illusion.name = "\improper" + pick_list(HERETIC_INFLUENCE_FILE, "drained") + " " + format_text(name)

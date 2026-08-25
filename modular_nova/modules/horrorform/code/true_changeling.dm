@@ -96,20 +96,20 @@
 	scream()
 	spawn_gibs()
 	if(stored_changeling && mind)
-		visible_message(span_warning(LANG("mob.d2229f9f", list(src))), \
-						span_userdanger(LANG("mob.75f07a03", null)))
+		visible_message(span_warning(LANG("mob.d2229f9fce0782b0", list(src))), \
+						span_userdanger(LANG("mob.75f07a03aaab75a8", null)))
 		anchored = TRUE
 		turn_to_human.Remove()
 		AddComponent(/datum/component/pellet_cloud, projectile_type=/obj/projectile/bullet/pellet/bone_fragment, magnitude=8)
 		addtimer(CALLBACK(src, PROC_REF(real_death)), rand(3 SECONDS, 6 SECONDS))
 	else
-		visible_message(span_warning(LANG("mob.9f5be2c1", list(src))))
+		visible_message(span_warning(LANG("mob.9f5be2c1053e0f16", list(src))))
 		addtimer(CALLBACK(src, PROC_REF(revive_from_death)), 45 SECONDS)
 
 /mob/living/basic/true_changeling/proc/revive_from_death()
 	if(!src)
 		return
-	visible_message(span_warning(LANG("mob.629ee1de", list(src))))
+	visible_message(span_warning(LANG("mob.629ee1de2a26296b", list(src))))
 	revive() //Changelings can self-revive, and true changelings are no exception
 	scream()
 
@@ -118,8 +118,8 @@
 		spawn_gibs()
 	scream()
 	icon_state = "horror_dead"
-	visible_message(span_warning(LANG("mob.61733113", list(src))), \
-						span_userdanger(LANG("mob.dea38607", null)))
+	visible_message(span_warning(LANG("mob.61733113d378725a", list(src))), \
+						span_userdanger(LANG("mob.dea38607f7a4ffc2", null)))
 	stored_changeling.loc = get_turf(src)
 	mind.transfer_to(stored_changeling)
 	stored_changeling.Paralyze(10 SECONDS) //Make them helpless for 10 seconds
@@ -196,17 +196,17 @@
 		return
 	var/mob/living/basic/true_changeling/horrorform = owner
 	if(!horrorform.stored_changeling)
-		horrorform.balloon_alert(horrorform, LANG("datum.2911850e", null))
+		horrorform.balloon_alert(horrorform, LANG("datum.2911850ed920dc4e", null))
 		return FALSE
 	if(horrorform.stored_changeling.stat == DEAD)
-		horrorform.balloon_alert(horrorform, LANG("datum.960f64f5", null))
+		horrorform.balloon_alert(horrorform, LANG("datum.960f64f5ecb97822", null))
 		return FALSE
 	if(world.time - horrorform.transformed_time < TRUE_CHANGELING_REFORM_THRESHOLD)
 		var/timeleft = (horrorform.transformed_time + TRUE_CHANGELING_REFORM_THRESHOLD) - world.time
-		horrorform.balloon_alert(horrorform, LANG("datum.477205bd", list(round(timeleft/600)+1)))
+		horrorform.balloon_alert(horrorform, LANG("datum.477205bd0e497544", list(round(timeleft/600)+1)))
 		return FALSE
-	horrorform.visible_message(span_warning(LANG("datum.52d94552", list(horrorform))), \
-						span_danger(LANG("datum.724348e9", null)))
+	horrorform.visible_message(span_warning(LANG("datum.52d945528d11d77d", list(horrorform))), \
+						span_danger(LANG("datum.724348e91bebdb1e", null)))
 	horrorform.stored_changeling.loc = get_turf(horrorform)
 	horrorform.mind.transfer_to(horrorform.stored_changeling)
 	horrorform.stored_changeling.Stun(2 SECONDS)
@@ -227,7 +227,7 @@
 		return
 	var/mob/living/basic/true_changeling/horrorform = owner
 	if(horrorform.devouring)
-		horrorform.balloon_alert(horrorform, LANG("datum.bb024e45", null))
+		horrorform.balloon_alert(horrorform, LANG("datum.bb024e45f872a57b", null))
 		return FALSE
 	var/list/potential_targets = list()
 	for(var/mob/living/carbon/human/victim in range(1, usr))
@@ -235,30 +235,30 @@
 			continue
 		potential_targets.Add(victim)
 	if(!length(potential_targets))
-		horrorform.balloon_alert(horrorform, LANG("datum.683ebdd2", null))
+		horrorform.balloon_alert(horrorform, LANG("datum.683ebdd256b4469e", null))
 		return FALSE
 	var/mob/living/carbon/human/lunch
 	if(length(potential_targets) == 1)
 		lunch = potential_targets[1]
 	else
-		lunch = tgui_input_list(horrorform, LANG("datum.d1266dcd", null), LANG("datum.2c0141b3", null), potential_targets)
+		lunch = tgui_input_list(horrorform, LANG("datum.d1266dcd88013954", null), LANG("datum.2c0141b323da4f2f", null), potential_targets)
 	if(!lunch && !ishuman(lunch))
 		return FALSE
 	if(lunch.get_brute_loss() + lunch.get_fire_loss() >= 200) //Overall physical damage, basically
-		horrorform.visible_message(span_warning(LANG("datum.43d50654", list(lunch, horrorform))), \
-						span_danger(LANG("datum.81583f28", list(lunch))))
+		horrorform.visible_message(span_warning(LANG("datum.43d50654edae52bc", list(lunch, horrorform))), \
+						span_danger(LANG("datum.81583f28499289de", list(lunch))))
 		return FALSE
 	horrorform.devouring = TRUE
-	horrorform.visible_message(span_warning(LANG("datum.0c2809d4", list(horrorform, lunch))), \
-					span_danger(LANG("datum.f0d6616c", list(lunch))))
+	horrorform.visible_message(span_warning(LANG("datum.0c2809d4c7887c4b", list(horrorform, lunch))), \
+					span_danger(LANG("datum.f0d6616cfcbf538c", list(lunch))))
 	if(!do_after(usr, 5 SECONDS, lunch))
 		horrorform.devouring = FALSE
 		return FALSE
 	horrorform.devouring = FALSE
 	lunch.adjust_brute_loss(60)
-	horrorform.visible_message(span_warning(LANG("datum.94d1f932", list(horrorform, lunch))), \
-					span_danger(LANG("datum.2ad7f95d", list(lunch))))
-	to_chat(lunch, span_userdanger(LANG("datum.24ee6241", list(horrorform))))
+	horrorform.visible_message(span_warning(LANG("datum.94d1f9326aaad230", list(horrorform, lunch))), \
+					span_danger(LANG("datum.2ad7f95d1670d674", list(lunch))))
+	to_chat(lunch, span_userdanger(LANG("datum.24ee62414c041fdb", list(horrorform))))
 	lunch.spawn_gibs()
 	var/dismembered = FALSE
 	for(var/obj/item/bodypart/guts in lunch.bodyparts)

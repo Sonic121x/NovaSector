@@ -67,22 +67,22 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "lightbulb",
-		SPECIES_PERK_NAME = LANG("datum.6510b188", null),
-		SPECIES_PERK_DESC = LANG("datum.87c94bb3", null)
+		SPECIES_PERK_NAME = LANG("datum.6510b18833d2d26e", null),
+		SPECIES_PERK_DESC = LANG("datum.87c94bb33189be66", null)
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "biohazard",
-		SPECIES_PERK_NAME = LANG("datum.2b40f90f", null),
-		SPECIES_PERK_DESC = LANG("datum.084b9148", null)
+		SPECIES_PERK_NAME = LANG("datum.2b40f90fec2bb295", null),
+		SPECIES_PERK_DESC = LANG("datum.084b9148ab14c25a", null)
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "briefcase-medical",
-		SPECIES_PERK_NAME = LANG("datum.9193e046", null),
-		SPECIES_PERK_DESC = LANG("datum.b9477286", null)
+		SPECIES_PERK_NAME = LANG("datum.9193e0463daf1743", null),
+		SPECIES_PERK_DESC = LANG("datum.b94772867ec0e506", null)
 	))
 
 	return to_add

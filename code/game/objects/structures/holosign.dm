@@ -136,11 +136,11 @@
 
 /obj/structure/holosign/barrier/proc/open(user)
 	if(!openable)
-		balloon_alert(user, LANG("obj.147ad722", null))
+		balloon_alert(user, LANG("obj.147ad722c676de84", null))
 		return
 
 	if(!COOLDOWN_FINISHED(src, cooldown_open))
-		balloon_alert(user, LANG("obj.d4ae5d4d", null))
+		balloon_alert(user, LANG("obj.d4ae5d4dded19efe", null))
 		return
 
 	if(!opened)

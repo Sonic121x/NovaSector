@@ -18,14 +18,14 @@
 	. = ..()
 	var/to_toggle = get_dir(src, user)
 	if(!(to_toggle in GLOB.cardinals))
-		balloon_alert(user, LANG("obj.4677e4bf", null))
+		balloon_alert(user, LANG("obj.4677e4bfad61f509", null))
 		return ITEM_INTERACT_FAILURE
 	if(to_toggle in disabled_dirs)
 		disabled_dirs -= to_toggle
 	else
 		disabled_dirs += to_toggle
 	update_appearance(UPDATE_OVERLAYS)
-	balloon_alert(user, LANG("obj.ac81c7d1", null))
+	balloon_alert(user, LANG("obj.ac81c7d181f317ad", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/manufacturing/router/update_overlays()

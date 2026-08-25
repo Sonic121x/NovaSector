@@ -5,61 +5,184 @@
 	icon = /obj/machinery/teleport/hub::icon
 	icon_state = /obj/machinery/teleport/hub::icon_state
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	/// Custom lamp color a viewer picked via the color picker while creating (ckey -> hex).
+	var/list/picked_colors = list()
+
+/// Pets a player can spawn into their room: display name -> mob type. Acts as the allowlist.
+GLOBAL_LIST_INIT(condo_pets, list(
+	"Corgi" = /mob/living/basic/pet/dog/corgi,
+	"Pug" = /mob/living/basic/pet/dog/pug,
+	"Cat" = /mob/living/basic/pet/cat,
+	"Kitten" = /mob/living/basic/pet/cat/kitten,
+	"Fox" = /mob/living/basic/pet/fox,
+	"Gondola" = /mob/living/basic/pet/gondola,
+))
+
+/// Ambient sound presets a player can set for their room: display name -> AMBIENCE_* key.
+GLOBAL_LIST_INIT(condo_ambiences, list(
+	"Generic" = AMBIENCE_GENERIC,
+	"Creepy" = AMBIENCE_CREEPY,
+	"Spooky" = AMBIENCE_SPOOKY,
+	"Medical" = AMBIENCE_MEDICAL,
+	"Engineering" = AMBIENCE_ENGI,
+	"Mining" = AMBIENCE_MINING,
+	"Holy" = AMBIENCE_HOLY,
+	"Space" = AMBIENCE_SPACE,
+	"Forest" = AMBIENCE_FOREST,
+	"Mushroom" = AMBIENCE_MUSHROOM,
+	"Maintenance" = AMBIENCE_MAINT,
+	"Danger" = AMBIENCE_DANGER,
+))
 
 /obj/machinery/cafe_condo_teleporter/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.764835b0", null))
-	. += span_warning(LANG("obj.0922d328", null))
+	. += span_notice(LANG("obj.764835b0b62d37ca", null))
+	. += span_warning(LANG("obj.0922d32858105be5", null))
 
 /obj/machinery/cafe_condo_teleporter/attack_robot(mob/user)
 	if(user.Adjacent(src))
-		prompt_and_check_in(user, user)
+		ui_interact(user)
 	return TRUE
 
 /obj/machinery/cafe_condo_teleporter/attack_hand(mob/living/user, list/modifiers)
-	prompt_and_check_in(user, user)
+	ui_interact(user)
 	return TRUE
 
 /obj/machinery/cafe_condo_teleporter/attack_tk(mob/user)
-	to_chat(user, span_notice(LANG("obj.25a4abc8", list(src))))
+	to_chat(user, span_notice(LANG("obj.25a4abc8996cfaaf", list(src))))
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
-/// They're adjacent - ask them for their desired room number and, if it's new; what archetype they want.
-/obj/machinery/cafe_condo_teleporter/proc/prompt_and_check_in(mob/user, mob/target)
-	var/requested_condo = tgui_input_number(target, LANG("obj.9c9c5b33", null), LANG("obj.ea08ae31", null), 1, min_value = 1)
-	if(!requested_condo)
-		return
-	if(requested_condo > SHORT_REAL_LIMIT)
-		to_chat(target, span_warning(LANG("obj.ea04451d", list(SHORT_REAL_LIMIT))))
-		return
-	if((requested_condo < 1) || (requested_condo != round(requested_condo)))
-		to_chat(target, span_warning(LANG("obj.3252b69c", null)))
-		return
-	if(!check_target_eligibility(target))
-		return
+/obj/machinery/cafe_condo_teleporter/ui_state(mob/user)
+	return GLOB.physical_state
 
-	if(SScondos.active_condos["[requested_condo]"])
-		SScondos.enter_active_room(requested_condo, target)
+/obj/machinery/cafe_condo_teleporter/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "CondoSelect", name)
+		ui.open()
 
-	else
-		var/datum/map_template/chosen_condo
-		var/map = tgui_input_list(user, LANG("obj.9d6ad98c", null),LANG("obj.852d3c65", null), sort_list(SScondos.condo_templates))
-		if(!map || !check_target_eligibility(target))
-			return
-		// Possible the room became active after we opened this UI - just enter it with a warning.
-		if(SScondos.active_condos["[requested_condo]"])
-			to_chat(target, span_warning(LANG("obj.9472549d", null)))
-			SScondos.enter_active_room(requested_condo, target)
-			return
-		chosen_condo = SScondos.condo_templates[map]
-		SScondos.create_and_enter_condo(requested_condo, chosen_condo, user, src)
+/// the preview pictures for the interior list
+/obj/machinery/cafe_condo_teleporter/ui_assets(mob/user)
+	return list(get_asset_datum(/datum/asset/simple/condo_previews))
+
+/// the interiors + customization options to choose from when creating a room
+/obj/machinery/cafe_condo_teleporter/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/archetypes = list()
+	for(var/template_name in sort_list(SScondos.condo_templates))
+		var/datum/map_template/condo/condo_template = SScondos.condo_templates[template_name]
+		archetypes += list(list(
+			"key" = template_name,
+			"name" = condo_template.name,
+			"image" = condo_preview_asset_name(condo_template.mappath),
+		))
+	data["archetypes"] = archetypes
+	var/list/pet_names = list()
+	for(var/pet_name in GLOB.condo_pets)
+		pet_names += pet_name
+	data["pets"] = pet_names
+	var/list/ambience_names = list()
+	for(var/ambience_name in GLOB.condo_ambiences)
+		ambience_names += ambience_name
+	data["ambiences"] = ambience_names
+	return data
+
+/// the live list of rooms you can see/enter
+/obj/machinery/cafe_condo_teleporter/ui_data(mob/user)
+	var/list/data = list()
+	var/list/rooms = list()
+	for(var/room_id in SScondos.active_condos)
+		var/datum/condo_room/room = SScondos.active_condos[room_id]
+		rooms += list(list(
+			"id" = room.id,
+			"name" = room.display_name,
+			"owner" = room.owner_name,
+			"map" = room.template?.name,
+			"private" = room.private,
+			"mine" = (room.owner_ckey && room.owner_ckey == user.ckey),
+		))
+	data["rooms"] = rooms
+	data["picked_color"] = picked_colors[user.ckey]
+	return data
+
+/obj/machinery/cafe_condo_teleporter/ui_act(action, list/params, datum/tgui/ui)
+	. = ..()
+	if(.)
+		return
+	var/mob/user = ui.user
+	switch(action)
+		if("pick_color")
+			var/picked = input(user, LANG("obj.4c91992f2a355371", null), LANG("obj.9b391b36e6721fde", null), picked_colors[user.ckey] || "#ffffff") as color|null
+			if(picked)
+				picked_colors[user.ckey] = picked
+			return TRUE
+		if("create")
+			if(!check_target_eligibility(user))
+				return TRUE
+			var/datum/map_template/condo/chosen_condo = SScondos.condo_templates[params["key"]]
+			if(!chosen_condo)
+				to_chat(user, span_warning(LANG("obj.319cc4b2b37ada18", null)))
+				return TRUE
+			var/private = params["private"]
+			var/room_name = sanitize(params["name"])
+			var/datum/condo_room/room = SScondos.create_room(chosen_condo, user, src, room_name, private, private ? params["password"] : null)
+			if(!room)
+				return TRUE
+			room.brightness = clamp(round(text2num(params["brightness"])), 0, 3)
+			room.lamp_color = condo_sanitize_lamp_color(params["lamp_color"])
+			room.ambience = params["ambience"]
+			room.apply_lights()
+			room.apply_ambience()
+			setup_room_extras(room, params["pet"], params["pet_name"], params["zero_grav"], user)
+			// the APC powers the room a beat after it loads and resets the bulbs, so re-apply lights
+			addtimer(CALLBACK(room, TYPE_PROC_REF(/datum/condo_room, apply_lights)), 2 SECONDS)
+			ui.close()
+			return TRUE
+
+		if("enter")
+			if(!check_target_eligibility(user))
+				return TRUE
+			var/datum/condo_room/room = SScondos.active_condos[params["id"]]
+			if(!room)
+				return TRUE
+			if(room.try_enter(user))
+				ui.close()
+			return TRUE
+
+/// One-time room extras at creation: a pet (named + bonded to the owner) and/or zero gravity.
+/// (Lighting + ambience live on the room datum so the door panel can change them too.)
+/obj/machinery/cafe_condo_teleporter/proc/setup_room_extras(datum/condo_room/room, pet_choice, pet_label, zero_grav, mob/owner)
+	if(!room?.reservation)
+		return
+	var/turf/anchor = room.reservation.bottom_left_turfs[1]
+	if(!anchor)
+		return
+	if(pet_choice && GLOB.condo_pets[pet_choice])
+		var/turf/landing = locate(
+			anchor.x + room.template.landing_zone_x_offset,
+			anchor.y + room.template.landing_zone_y_offset,
+			anchor.z,
+		) || anchor
+		var/pet_type = GLOB.condo_pets[pet_choice]
+		var/mob/living/basic/pet/new_pet = new pet_type(landing)
+		var/clean_name = pet_label ? reject_bad_name(pet_label) : null
+		if(clean_name)
+			new_pet.name = clean_name
+			new_pet.real_name = clean_name
+		// befriend adds the owner to the pet's friends list, so command-capable pets (dogs) will
+		// obey the owner's follow/stay orders, and the rest treat them as their person
+		if(owner)
+			new_pet.befriend(owner)
+	if(zero_grav)
+		for(var/turf/room_turf as anything in room.reservation.reserved_turfs)
+			room_turf.AddElement(/datum/element/forced_gravity, 0)
 
 /// Sanitycheck to prevent exploitation
 /obj/machinery/cafe_condo_teleporter/proc/check_target_eligibility(mob/to_be_checked)
 	if(!src.Adjacent(to_be_checked))
-		to_chat(to_be_checked, span_warning(LANG("obj.d1040cf6", list(src))))
+		to_chat(to_be_checked, span_warning(LANG("obj.d1040cf6054a1f25", list(src))))
 		return FALSE
 	if(to_be_checked.incapacitated)
-		to_chat(to_be_checked, span_warning(LANG("obj.670b79fe", list(src))))
+		to_chat(to_be_checked, span_warning(LANG("obj.670b79fe9a3f7a34", list(src))))
 		return FALSE
 	return TRUE

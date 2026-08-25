@@ -106,7 +106,7 @@
 	animate(user, pixel_w = dunk_pixel_w, pixel_z = dunk_pixel_z, time = 0.5 SECONDS, easing = BOUNCE_EASING|EASE_IN|EASE_OUT, flags = ANIMATION_PARALLEL|ANIMATION_RELATIVE)
 	animate(pixel_w = -dunk_pixel_w, pixel_z = -dunk_pixel_z, time = 0.5 SECONDS, flags = ANIMATION_RELATIVE)
 
-	visible_message(span_warning(LANG("obj.e214d62a", list(user, tool, src))))
+	visible_message(span_warning(LANG("obj.e214d62af8e27eae", list(user, tool, src))))
 	user.add_mood_event("basketball", /datum/mood_event/basketball_dunk)
 	score(tool, user, 2)
 
@@ -124,17 +124,17 @@
 
 	var/mob/living/loser = baller.pulling
 	if(baller.grab_state < GRAB_AGGRESSIVE)
-		to_chat(baller, span_warning(LANG("obj.d5471d98", null)))
+		to_chat(baller, span_warning(LANG("obj.d5471d9857d59e0e", null)))
 		return
 	loser.forceMove(loc)
 	loser.Paralyze(100)
-	visible_message(span_danger(LANG("obj.e214d62a", list(baller, loser, src))))
+	visible_message(span_danger(LANG("obj.e214d62af8e27eae", list(baller, loser, src))))
 	playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 100, FALSE)
 	baller.adjust_stamina_loss(STAMINA_COST_DUNKING_MOB)
 	baller.stop_pulling()
 
 /obj/structure/hoop/click_ctrl(mob/user)
-	user.balloon_alert_to_viewers(LANG("obj.70e572ae", null))
+	user.balloon_alert_to_viewers(LANG("obj.70e572aea1517f1a", null))
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, TRUE)
 	if(do_after(user, 5 SECONDS, target = src))
 		total_score = 0
@@ -169,9 +169,9 @@
 		var/points = (distance > 2) ? 3 : 2
 		thrower.add_mood_event("basketball", /datum/mood_event/basketball_score)
 		score(AM, thrower, points)
-		visible_message(span_warning(LANG("obj.bacf49d2", list(click_on_hoop ? "Swish!" : "", AM, src))))
+		visible_message(span_warning(LANG("obj.bacf49d25c387166", list(click_on_hoop ? "Swish!" : "", AM, src))))
 	else
-		visible_message(span_danger(LANG("obj.6c393baa", list(AM, src, click_on_hoop ? "rim" : "backboard"))))
+		visible_message(span_danger(LANG("obj.6c393baac8af7ca7", list(AM, src, click_on_hoop ? "rim" : "backboard"))))
 
 // Special hoops for the minigame
 /obj/structure/hoop/minigame
@@ -188,7 +188,7 @@
 /obj/structure/hoop/minigame/score(obj/item/toy/basketball/ball, mob/living/baller, points)
 	var/is_team_hoop = !(baller.ckey in team_ckeys)
 	if(is_team_hoop)
-		baller.balloon_alert_to_viewers(LANG("obj.e7445772", null))
+		baller.balloon_alert_to_viewers(LANG("obj.e7445772bfec9b1d", null))
 		return
 
 	if(..())

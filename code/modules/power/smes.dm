@@ -126,16 +126,16 @@
 /obj/machinery/power/smes/examine(user)
 	. = ..()
 
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "opened")))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "opened")))
 	if(panel_open)
 		if(!terminal)
-			. += span_notice(LANG("obj.fa5fc796", list(EXAMINE_HINT("pried"))))
-		. += span_notice(LANG("obj.17d6a1b5", list(EXAMINE_HINT("wrenched"))))
+			. += span_notice(LANG("obj.fa5fc7965e12e9d0", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.17d6a1b590eeec0d", list(EXAMINE_HINT("wrenched"))))
 
 	if(!terminal)
-		. += span_warning(LANG("obj.bac2224f", list(EXAMINE_HINT("10 cable pieces"))))
+		. += span_warning(LANG("obj.bac2224f175ad728", list(EXAMINE_HINT("10 cable pieces"))))
 	else if(panel_open)
-		. += span_notice(LANG("obj.05bc141a", list(EXAMINE_HINT("cut"))))
+		. += span_notice(LANG("obj.05bc141a6bfa09f3", list(EXAMINE_HINT("cut"))))
 
 /obj/machinery/power/smes/update_overlays()
 	. = ..()
@@ -223,19 +223,19 @@
 	var/turf/terminal_turf = get_turf(user)
 	if(!panel_open)
 		if(!silent && user)
-			balloon_alert(user, LANG("obj.7d532317", null))
+			balloon_alert(user, LANG("obj.7d532317c545f153", null))
 		return FALSE
 	if(terminal_turf.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 		if(!silent && user)
-			balloon_alert(user, LANG("obj.0d1f39e9", null))
+			balloon_alert(user, LANG("obj.0d1f39e91e5c3d13", null))
 		return FALSE
 	if(terminal)
 		if(!silent && user)
-			balloon_alert(user, LANG("obj.9a6e26bd", null))
+			balloon_alert(user, LANG("obj.9a6e26bd7aeebe89", null))
 		return FALSE
 	if(installing_cable.get_amount() < 10)
 		if(!silent && user)
-			balloon_alert(user, LANG("obj.60843c8e", null))
+			balloon_alert(user, LANG("obj.60843c8e396801fc", null))
 		return FALSE
 	return TRUE
 
@@ -250,7 +250,7 @@
 		//select cable layer
 		var/terminal_cable_layer = installing_cable.target_layer
 		if(LAZYACCESS(modifiers, RIGHT_CLICK))
-			var/choice = tgui_input_list(user, LANG("obj.4ece58d6", null), LANG("obj.3925bd26", null), GLOB.cable_name_to_layer)
+			var/choice = tgui_input_list(user, LANG("obj.4ece58d613775621", null), LANG("obj.3925bd2623a78950", null), GLOB.cable_name_to_layer)
 			if(isnull(choice) \
 				|| !user.is_holding(installing_cable) \
 				|| !user.Adjacent(src) \
@@ -259,8 +259,8 @@
 			)
 				return ITEM_INTERACT_BLOCKING
 			terminal_cable_layer = GLOB.cable_name_to_layer[choice]
-		user.visible_message(span_notice(LANG("obj.0a08c985", list(user.name, src))))
-		balloon_alert(user, LANG("obj.a59792f9", null))
+		user.visible_message(span_notice(LANG("obj.0a08c985fb770a03", list(user.name, src))))
+		balloon_alert(user, LANG("obj.a59792f9eab1ed31", null))
 		playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 
 		//use cable
@@ -275,8 +275,8 @@
 			do_sparks(5, TRUE, src)
 			return ITEM_INTERACT_BLOCKING
 		cable.use(10)
-		user.visible_message(span_notice(LANG("obj.bd55397c", list(user.name, src))))
-		balloon_alert(user, LANG("obj.e501673b", null))
+		user.visible_message(span_notice(LANG("obj.bd55397c01779e45", list(user.name, src))))
+		balloon_alert(user, LANG("obj.e501673bff119620", null))
 
 		//build the terminal and link it to the network
 		terminal = new(turf)
@@ -302,7 +302,7 @@
 
 /obj/machinery/power/smes/crowbar_act(mob/living/user, obj/item/tool)
 	if(terminal)
-		balloon_alert(user, LANG("obj.f2afc8f6", null))
+		balloon_alert(user, LANG("obj.f2afc8f677c55bea", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(default_deconstruction_crowbar(user, tool))
@@ -323,15 +323,15 @@
 			if(term && term.dir == REVERSE_DIR(dir))
 				terminal = term
 				terminal.master = src
-				to_chat(user, span_notice(LANG("obj.22d99233", null)))
+				to_chat(user, span_notice(LANG("obj.22d992336c2511b6", null)))
 				set_machine_stat(machine_stat & ~BROKEN)
 				update_appearance(UPDATE_OVERLAYS)
 				return ITEM_INTERACT_SUCCESS
-		to_chat(user, span_alert(LANG("obj.41f75ba8", null)))
+		to_chat(user, span_alert(LANG("obj.41f75ba8516dbfec", null)))
 
 /obj/machinery/power/smes/cable_layer_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.a59b2c79", null))
+		balloon_alert(user, LANG("obj.a59b2c79dd1c6362", null))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 

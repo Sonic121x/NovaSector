@@ -1,7 +1,7 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ///MOD Module - A special device installed in a MODsuit allowing the suit to do new stuff.
 /obj/item/mod/module
-	name = "MOD module"
+	name = "\improper MOD module"
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "module"
 	abstract_type = /obj/item/mod/module
@@ -87,9 +87,9 @@
 		for(var/slot in required_slots)
 			var/list/slot_list = parse_slot_flags(slot)
 			slot_strings += (length(slot_list) == 1 ? "" : "one of ") + english_list(slot_list, and_text = " or ")
-		. += span_notice(LANG("obj.e4f54581", list(english_list(slot_strings))))
+		. += span_notice(LANG("obj.e4f545814896c91d", list(lang_english_list(slot_strings))))
 	if(HAS_TRAIT(user, TRAIT_DIAGNOSTIC_HUD))
-		. += span_notice(LANG("obj.9d8f41bd", list(complexity)))
+		. += span_notice(LANG("obj.9d8f41bd7a7dd5c9", list(complexity)))
 
 /// Looks through the MODsuit's parts to see if it has the parts required to support this module
 /obj/item/mod/module/proc/has_required_parts(list/parts, need_active = FALSE)
@@ -116,18 +116,18 @@
 /// Called when the module is selected from the TGUI, radial or the action button
 /obj/item/mod/module/proc/on_select(mob/activator)
 	if(!mod.wearer && !(allow_flags & MODULE_ALLOW_UNWORN)) //No wearer and cannot be used unworn
-		balloon_alert(activator, LANG("obj.75eba58d", null))
+		balloon_alert(activator, LANG("obj.75eba58d4f426d00", null))
 		return
 	if(((!mod.active || mod.activating) && !(allow_flags & (MODULE_ALLOW_INACTIVE | MODULE_ALLOW_UNWORN))) || module_type == MODULE_PASSIVE) // not active
-		balloon_alert(activator, LANG("obj.ec29f255", null))
+		balloon_alert(activator, LANG("obj.ec29f255cfec6270", null))
 		return
 	if(!has_required_parts(mod.mod_parts, need_active = TRUE) && !(allow_flags & MODULE_ALLOW_UNWORN)) // Doesn't have parts
-		balloon_alert(activator, LANG("obj.0c391088", null))
+		balloon_alert(activator, LANG("obj.0c3910886c4419cb", null))
 		var/list/slot_strings = list()
 		for(var/slot in required_slots)
 			var/list/slot_list = parse_slot_flags(slot)
 			slot_strings += (length(slot_list) == 1 ? "" : "one of ") + english_list(slot_list, and_text = " or ")
-		to_chat(activator, span_warning(LANG("obj.00dff316", list(src, english_list(slot_strings)))))
+		to_chat(activator, span_warning(LANG("obj.00dff316e4903068", list(src, lang_english_list(slot_strings)))))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	if(module_type != MODULE_USABLE)
@@ -149,15 +149,15 @@
 /// Called when the module is activated
 /obj/item/mod/module/proc/activate(mob/activator)
 	if(!COOLDOWN_FINISHED(src, cooldown_timer))
-		balloon_alert(activator, LANG("obj.d4ae5d4d", null))
+		balloon_alert(activator, LANG("obj.d4ae5d4dded19efe", null))
 		return FALSE
 	if((!mod.active || mod.activating || !mod.get_charge()) && !(allow_flags & MODULE_ALLOW_INACTIVE)) // NOVA EDIT CHANGE - ORIGINAL: if(!mod.active || mod.activating || !mod.get_charge())
-		balloon_alert(activator, LANG("obj.3d363622", null))
+		balloon_alert(activator, LANG("obj.3d363622252e11ee", null))
 		return FALSE
 
 	if(!(allow_flags & MODULE_ALLOW_PHASEOUT) && istype(mod.wearer.loc, /obj/effect/dummy/phased_mob))
 		//specifically a to_chat because the user is phased out.
-		to_chat(activator, span_warning(LANG("obj.b36732cb", null)))
+		to_chat(activator, span_warning(LANG("obj.b36732cb487e1527", null)))
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_MODULE_TRIGGERED, mod.wearer) & MOD_ABORT_USE)
 		return FALSE
@@ -167,17 +167,17 @@
 		mod.selected_module = src
 		if(device)
 			if(mod.wearer.put_in_hands(device))
-				balloon_alert(activator, LANG("obj.36e9dcb5", list(device)))
+				balloon_alert(activator, LANG("obj.36e9dcb535782054", list(device)))
 				RegisterSignal(mod.wearer, COMSIG_ATOM_EXITED, PROC_REF(on_exit))
 				RegisterSignal(mod.wearer, COMSIG_KB_MOB_DROPITEM_DOWN, PROC_REF(dropkey))
 			else
-				balloon_alert(activator, LANG("obj.bf5d9b71", list(device)))
+				balloon_alert(activator, LANG("obj.bf5d9b71aa309bcd", list(device)))
 				mod.wearer.transferItemToLoc(device, src, force = TRUE)
 				return FALSE
 		else
 			var/used_button = mod.wearer.client?.prefs.read_preference(/datum/preference/choiced/mod_select) || MIDDLE_CLICK
 			update_signal(used_button)
-			balloon_alert(mod.wearer, LANG("obj.eedb8f15", list(src, used_button))) // As of now, only wearers can "use" mods
+			balloon_alert(mod.wearer, LANG("obj.eedb8f15f1fcd115", list(src, used_button))) // As of now, only wearers can "use" mods
 	active = TRUE
 	SEND_SIGNAL(src, COMSIG_MODULE_ACTIVATED)
 	SEND_SIGNAL(mod, COMSIG_MOD_MODULE_ACTIVATED, src)
@@ -222,14 +222,14 @@
 /// Called when the module is used
 /obj/item/mod/module/proc/used(mob/activator)
 	if(!COOLDOWN_FINISHED(src, cooldown_timer))
-		balloon_alert(activator, LANG("obj.d4ae5d4d", null))
+		balloon_alert(activator, LANG("obj.d4ae5d4dded19efe", null))
 		return FALSE
 	if(!check_power(use_energy_cost))
-		balloon_alert(activator, LANG("obj.07f43d6c", null))
+		balloon_alert(activator, LANG("obj.07f43d6c1593cca8", null))
 		return FALSE
 	if(!(allow_flags & MODULE_ALLOW_PHASEOUT) && istype(mod.wearer.loc, /obj/effect/dummy/phased_mob))
 		//specifically a to_chat because the user is phased out.
-		to_chat(activator, span_warning(LANG("obj.b36732cb", null)))
+		to_chat(activator, span_warning(LANG("obj.b36732cb487e1527", null)))
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_MODULE_TRIGGERED, mod.wearer) & MOD_ABORT_USE)
 		return FALSE
@@ -467,7 +467,7 @@
 
 ///Anomaly Locked - Mostly just a wrapper for modules that don't need to descend from any other module but need the anomaly_locked_module component
 /obj/item/mod/module/anomaly_locked
-	name = "MOD anomaly locked module"
+	name = "\improper MOD anomaly locked module"
 	desc = "A form of a module, locked behind an anomalous core to function."
 	/// Accepted types of anomaly cores.
 	var/list/accepted_anomalies = list(/obj/item/assembly/signaler/anomaly)

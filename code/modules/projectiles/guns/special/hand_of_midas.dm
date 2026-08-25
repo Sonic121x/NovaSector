@@ -29,13 +29,13 @@
 /obj/item/gun/magic/midas_hand/examine(mob/user)
 	. = ..()
 	var/gold_time_converted = gold_time_convert()
-	. += span_notice(LANG("obj.46750772", list(gold_time_converted, gold_time_converted == 1 ? "" : "s")))
-	. += span_notice(LANG("obj.572ff26e", list(src)))
-	. += span_notice(LANG("obj.fcee4fe3", list(src)))
+	. += span_notice(LANG("obj.467507726fa5a7d2", list(gold_time_converted, gold_time_converted == 1 ? "" : "s")))
+	. += span_notice(LANG("obj.572ff26ec682798b", list(src)))
+	. += span_notice(LANG("obj.fcee4fe33a36697f", list(src)))
 
 /obj/item/gun/magic/midas_hand/shoot_with_empty_chamber(mob/living/user)
 	. = ..()
-	balloon_alert(user, LANG("obj.9abe0c46", null))
+	balloon_alert(user, LANG("obj.9abe0c46e79c816c", null))
 
 // Siphon gold from a victim, recharging our gun & removing their Midas Blight debuff in the process.
 /obj/item/gun/magic/midas_hand/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
@@ -50,13 +50,13 @@
 
 /obj/item/gun/magic/midas_hand/proc/suck_gold(mob/living/victim, mob/living/user)
 	if(victim == user)
-		balloon_alert(user, LANG("obj.962b497b", null))
+		balloon_alert(user, LANG("obj.962b497baf6ae31f", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!victim.reagents)
 		return ITEM_INTERACT_BLOCKING
 	var/gold_amount = victim.reagents.get_reagent_amount(/datum/reagent/gold, type_check = REAGENT_SUB_TYPE)
 	if(!gold_amount)
-		balloon_alert(user, LANG("obj.2684dc19", null))
+		balloon_alert(user, LANG("obj.2684dc19bb872e33", null))
 		return ITEM_INTERACT_BLOCKING
 	var/gold_beam = user.Beam(victim, icon_state = "drain_gold")
 	if(!do_after(
@@ -67,7 +67,7 @@
 		extra_checks = CALLBACK(src, PROC_REF(check_gold_range), user, victim),
 	))
 		qdel(gold_beam)
-		balloon_alert(user, LANG("obj.de3713b9", null))
+		balloon_alert(user, LANG("obj.de3713b9ad5fbf8d", null))
 		return ITEM_INTERACT_BLOCKING
 	handle_gold_charges(user, gold_amount)
 	victim.reagents.remove_reagent(/datum/reagent/gold, gold_amount, include_subtypes = TRUE)
@@ -80,7 +80,7 @@
 	if(!istype(tool, /obj/item/coin/gold))
 		return NONE
 	if(charges || gold_timer)
-		balloon_alert(user, LANG("obj.ccd7551d", null))
+		balloon_alert(user, LANG("obj.ccd7551d8ecc934b", null))
 		return ITEM_INTERACT_BLOCKING
 	handle_gold_charges(user, 1.5 SECONDS)
 	qdel(tool)
@@ -90,7 +90,7 @@
 /obj/item/gun/magic/midas_hand/proc/handle_gold_charges(user, gold_amount)
 	gold_timer += gold_amount
 	var/gold_time_converted = gold_time_convert()
-	balloon_alert(user, LANG("obj.697c29e6", list(gold_time_converted, gold_time_converted == 1 ? "" : "s")))
+	balloon_alert(user, LANG("obj.697c29e6339c000a", list(gold_time_converted, gold_time_converted == 1 ? "" : "s")))
 	if(!charges)
 		instant_recharge()
 
@@ -107,11 +107,11 @@
 		return
 
 	var/mob/living/carbon/human/victim = user
-	victim.visible_message(span_suicide(LANG("obj.3397374d", list(victim, src, victim.p_their(), user.p_theyre()))))
+	victim.visible_message(span_suicide(LANG("obj.3397374d9a60f448", list(victim, src, victim.p_their(), user.p_theyre()))))
 	if(!do_after(victim, 1.5 SECONDS))
 		return SHAME
 	playsound(src, 'sound/items/weapons/gun/rifle/shot.ogg', 75, TRUE)
-	to_chat(victim, span_danger(LANG("obj.ccbd09e3", null)))
+	to_chat(victim, span_danger(LANG("obj.ccbd09e382b395f2", null)))
 	var/newcolors = list(rgb(206, 164, 50), rgb(146, 146, 139), rgb(28,28,28), rgb(0,0,0))
 	victim.petrify(statue_timer = INFINITY, save_brain = FALSE, colorlist = newcolors)
 	playsound(victim, 'sound/effects/coin2.ogg', 75, TRUE)

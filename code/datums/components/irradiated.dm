@@ -134,12 +134,12 @@
 
 	var/obj/item/bodypart/affected_limb = human_parent.get_bodypart(human_parent.get_random_valid_zone())
 	human_parent.visible_message(
-		span_boldwarning(LANG("datum.844fcd12", list(human_parent, affected_limb.plaintext_zone))),
-		span_boldwarning(LANG("datum.f28806a3", list(affected_limb.plaintext_zone))),
+		span_boldwarning(LANG("datum.844fcd12c74db0ea", list(human_parent, affected_limb.plaintext_zone))),
+		span_boldwarning(LANG("datum.f28806a355ddf1be", list(affected_limb.plaintext_zone))),
 	)
 
 	if(human_parent.is_blind())
-		to_chat(human_parent, span_boldwarning(LANG("datum.b08d5509", list(affected_limb.plaintext_zone))))
+		to_chat(human_parent, span_boldwarning(LANG("datum.b08d5509d4bf709e", list(affected_limb.plaintext_zone))))
 
 	human_parent.apply_damage(RADIATION_BURN_SPLOTCH_DAMAGE, BURN, affected_limb, wound_clothing = FALSE)
 	playsound(
@@ -182,10 +182,10 @@
 
 	if (isliving(source))
 		var/mob/living/living_source = source
-		to_chat(user, span_bolddanger(LANG("datum.8088beff", list(icon2html(geiger_counter, user), DisplayTimeText(world.time - beginning_of_irradiation, 5), living_source.get_tox_loss()))))
+		to_chat(user, span_bolddanger(LANG("datum.8088beffbc69b2c7", list(icon2html(geiger_counter, user), DisplayTimeText(world.time - beginning_of_irradiation, 5), living_source.get_tox_loss()))))
 	else
 		// In case the green wasn't obvious enough...
-		to_chat(user, span_bolddanger(LANG("datum.a2f92d92", list(icon2html(geiger_counter, user)))))
+		to_chat(user, span_bolddanger(LANG("datum.a2f92d9210f057b9", list(icon2html(geiger_counter, user)))))
 
 	return COMSIG_GEIGER_COUNTER_SCAN_SUCCESSFUL
 

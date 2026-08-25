@@ -11,7 +11,7 @@
 		return NONE
 	var/mob/living/basic/bear/bear = interacting_with
 	if(bear.armored)
-		to_chat(user, span_warning(LANG("obj.dc1ff453", list(bear))))
+		to_chat(user, span_warning(LANG("obj.dc1ff4537c7e781e", list(bear))))
 		return ITEM_INTERACT_BLOCKING
 	bear.armored = TRUE
 	bear.maxHealth += 60
@@ -21,6 +21,6 @@
 	bear.melee_damage_upper += 5
 	bear.wound_bonus += 5
 	bear.update_icons()
-	to_chat(user, span_info(LANG("obj.c11f1911", list(bear, bear.p_their()))))
+	to_chat(user, span_info(LANG("obj.c11f1911dbd498a9", list(bear, bear.p_their()))))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

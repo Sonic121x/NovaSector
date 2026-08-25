@@ -499,6 +499,7 @@
 	new /obj/item/reagent_containers/cup/bottle/carnivorous_blood(src)
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/food/meat/slab/human(src)
+	new /obj/item/paper/guides/carnivorous_blood(src)
 
 /obj/item/storage/box/syndie_kit/nuke
 	name = "nuke core extraction kit"
@@ -793,18 +794,18 @@
 
 	if(IS_NUKE_OP(human_target)) // this wont proc due to ..() but i guess its good as a just-in-case?
 		if(human_target == user)
-			to_chat(user, span_userdanger(LANG("obj.566da373", null)))
+			to_chat(user, span_userdanger(LANG("obj.566da373692aafa5", null)))
 			human_target.Stun(10 SECONDS)
 			human_target.reagents.add_reagent(/datum/reagent/toxin, 10)
 			return FALSE
 		else
-			to_chat(user, span_notice(LANG("obj.1a2566a2", list(human_target))))
-			to_chat(human_target, span_userdanger(LANG("obj.108b9ee0", null)))
+			to_chat(user, span_notice(LANG("obj.1a2566a22dcbf6b3", list(human_target))))
+			to_chat(human_target, span_userdanger(LANG("obj.108b9ee0953b2bd0", null)))
 			human_target.reagents.add_reagent(/datum/reagent/toxin, 2)
 			return FALSE
 
 	if(!human_target.is_antag()) // GTFO. Technically not foolproof but making a heartbreaker or a paradox clone a nuke op sounds hilarious
-		to_chat(human_target, span_notice(LANG("obj.c1f4076e", null)))
+		to_chat(human_target, span_notice(LANG("obj.c1f4076e3febfc2f", null)))
 		human_target.reagents.add_reagent(/datum/reagent/toxin, 15)
 		return FALSE
 
@@ -814,8 +815,8 @@
 	nuke_datum.nukeop_outfit = null
 	human_target.mind?.add_antag_datum(nuke_datum)
 	human_target.add_faction(ROLE_SYNDICATE)
-	to_chat(human_target, span_warning(LANG("obj.d25b2ca8", null)))
-	to_chat(human_target, span_userdanger(LANG("obj.98006100", null)))
+	to_chat(human_target, span_warning(LANG("obj.d25b2ca8f49b6a1a", null)))
+	to_chat(human_target, span_userdanger(LANG("obj.98006100b87e3698", null)))
 	return TRUE
 
 /obj/item/implant/nuclear_operative/removed(mob/target, silent = FALSE, special = FALSE)
@@ -825,8 +826,8 @@
 	var/mob/living/living_target = target
 	living_target.mind.remove_antag_datum(/datum/antagonist/nukeop)
 	living_target.remove_faction(ROLE_SYNDICATE)
-	to_chat(target, span_notice(LANG("obj.d9e5ff51", null)))
-	to_chat(target, span_userdanger(LANG("obj.e5c81136", null)))
+	to_chat(target, span_notice(LANG("obj.d9e5ff5139c2b5db", null)))
+	to_chat(target, span_userdanger(LANG("obj.e5c811363efb9cb3", null)))
 	return TRUE
 
 /obj/item/storage/box/syndie_kit/poster_box

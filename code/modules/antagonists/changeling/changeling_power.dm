@@ -71,7 +71,7 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 	if(!can_sting(user, target))
 		return FALSE
 	if(disabled_by_fire && user.fire_stacks && user.on_fire)
-		user.balloon_alert(user, LANG("datum.30bf3724", null))
+		user.balloon_alert(user, LANG("datum.30bf372408764271", null))
 		return FALSE
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	if(sting_action(user, target))
@@ -95,19 +95,19 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 		return FALSE
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	if(changeling.chem_charges < chemical_cost)
-		user.balloon_alert(user, LANG("datum.a9531cb9", list(chemical_cost)))
+		user.balloon_alert(user, LANG("datum.a9531cb912ab2e80", list(chemical_cost)))
 		return FALSE
 	if(changeling.absorbed_count < req_dna)
-		user.balloon_alert(user, LANG("datum.7c03fca3", list(req_dna)))
+		user.balloon_alert(user, LANG("datum.7c03fca3eb7c43b4", list(req_dna)))
 		return FALSE
 	if(changeling.true_absorbs < req_absorbs)
-		user.balloon_alert(user, LANG("datum.0f38abe9", list(req_absorbs)))
+		user.balloon_alert(user, LANG("datum.0f38abe975251017", list(req_absorbs)))
 		return FALSE
 	if(req_stat < IS_UNCONSCIOUS_OR_CRIT(user) || (req_stat == STABLE && IS_UNCONSCIOUS(user)))
-		user.balloon_alert(user, LANG("datum.7ac2788b", null))
+		user.balloon_alert(user, LANG("datum.7ac2788bbe3be4b1", null))
 		return FALSE
 	if((HAS_TRAIT(user, TRAIT_DEATHCOMA)) && (!ignores_fakedeath))
-		user.balloon_alert(user, LANG("datum.aee0285f", null))
+		user.balloon_alert(user, LANG("datum.aee0285f54ca324b", null))
 		return FALSE
 	return TRUE
 
@@ -117,6 +117,6 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 	if(!ishuman(user))
 		return FALSE
 	if(req_human && ismonkey(user))
-		user.balloon_alert(user, LANG("datum.aa92d828", null))
+		user.balloon_alert(user, LANG("datum.aa92d828a31fd759", null))
 		return FALSE
 	return TRUE

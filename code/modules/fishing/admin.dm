@@ -35,11 +35,11 @@ ADMIN_VERB(fishing_calculator, R_DEBUG, "钓鱼计算器", "A calculator... for 
 		if("recalc")
 			var/rod_type = text2path(params["rod"])
 			if(!rod_type)
-				to_chat(user, span_warning(LANG("datum.6b58b505", null)))
+				to_chat(user, span_warning(LANG("datum.6b58b505f885efbc", null)))
 				return
 			var/hook_type = text2path(params["hook"])
 			if(!hook_type)
-				to_chat(user, span_warning(LANG("datum.508c07b4", null)))
+				to_chat(user, span_warning(LANG("datum.508c07b4f08ec779", null)))
 				return
 			var/bait_type = text2path(params["bait"])
 			var/line_type = text2path(params["line"])

@@ -35,7 +35,7 @@
 		return
 	flick("ecto_sniffer_flick", src)
 	playsound(loc, 'sound/machines/ectoscope_beep.ogg', 75)
-	say(LANG("obj.a7d6e5b1", list(pick(world.file2list("strings/spook_levels.txt")))))
+	say(LANG("obj.a7d6e5b1d8d63e9f", list(pick(world.file2list("strings/spook_levels.txt")))))
 	if(activator?.ckey)
 		ectoplasmic_residues += activator.ckey
 		addtimer(CALLBACK(src, PROC_REF(clear_residue), activator.ckey), 15 SECONDS)
@@ -44,7 +44,7 @@
 	. = ..()
 	add_fingerprint(user)
 	on = !on
-	balloon_alert(user, LANG("obj.6fdb3bd9", list(on ? "on" : "off")))
+	balloon_alert(user, LANG("obj.6fdb3bd9f9636c40", list(on ? "on" : "off")))
 	update_appearance()
 
 /obj/machinery/ecto_sniffer/update_icon_state()
@@ -62,7 +62,7 @@
 /obj/machinery/ecto_sniffer/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 15)
 	set_anchored(!anchored)
-	balloon_alert(user, LANG("obj.cd269c0b", list(anchored ? "anchored" : "unanchored")))
+	balloon_alert(user, LANG("obj.cd269c0bc8605863", list(anchored ? "anchored" : "unanchored")))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/ecto_sniffer/screwdriver_act(mob/living/user, obj/item/screwdrivertool)
@@ -77,7 +77,7 @@
 
 /obj/machinery/ecto_sniffer/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.6ad7a45f", null))
+	. += span_notice(LANG("obj.6ad7a45fa08efbe2", null))
 
 ///Removes the ghost from the ectoplasmic_residues list and lets them know they are free to activate the sniffer again.
 /obj/machinery/ecto_sniffer/proc/clear_residue(ghost_ckey)
@@ -85,4 +85,4 @@
 	var/mob/ghost = get_mob_by_ckey(ghost_ckey)
 	if(!ghost || isliving(ghost))
 		return
-	to_chat(ghost, LANG("obj.d6154c17", list(FOLLOW_LINK(ghost, src), src)))
+	to_chat(ghost, LANG("obj.d6154c17a85aba32", list(FOLLOW_LINK(ghost, src), src)))

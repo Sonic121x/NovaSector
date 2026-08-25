@@ -116,10 +116,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	if(.)
 		return
 	if(!allowed(user))
-		balloon_alert(user, LANG("obj.1bd3ceeb", null))
+		balloon_alert(user, LANG("obj.1bd3ceeb3a56d0d5", null))
 		return
 	if(machine_stat & (NOPOWER|BROKEN|EMPED))
-		balloon_alert(user, LANG("obj.ba15ee03", null))
+		balloon_alert(user, LANG("obj.ba15ee0360fe078d", null))
 		return
 	pick_sign(user)
 
@@ -127,11 +127,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	tool.play_tool_sound(src)
 	panel_open = !panel_open
 	if(panel_open)
-		balloon_alert(user, LANG("obj.cea1d763", null))
+		balloon_alert(user, LANG("obj.cea1d763e6b19d26", null))
 		set_sign(new /datum/barsign/hiddensigns/signoff)
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, LANG("obj.493ec67a", null))
+	balloon_alert(user, LANG("obj.493ec67ab68abfb9", null))
 
 	if(machine_stat & (NOPOWER|BROKEN) || !chosen_sign)
 		set_sign(new /datum/barsign/hiddensigns/signoff)
@@ -142,7 +142,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 
 /obj/machinery/barsign/wrench_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.2152c7cd", null))
+		balloon_alert(user, LANG("obj.2152c7cd805774d4", null))
 		return ITEM_INTERACT_BLOCKING
 
 	tool.play_tool_sound(src)
@@ -157,25 +157,25 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 
 	if(istype(tool, /obj/item/blueprints) && !change_area_name)
 		if(!panel_open)
-			balloon_alert(user, LANG("obj.2152c7cd", null))
+			balloon_alert(user, LANG("obj.2152c7cd805774d4", null))
 			return ITEM_INTERACT_BLOCKING
 
 		change_area_name = TRUE
-		balloon_alert(user, LANG("obj.5a8bc8f1", null))
+		balloon_alert(user, LANG("obj.5a8bc8f114f44d6d", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/stack/cable_coil) && panel_open)
 		var/obj/item/stack/cable_coil/wire = tool
 
 		if(atom_integrity >= max_integrity)
-			balloon_alert(user, LANG("obj.2f10840d", null))
+			balloon_alert(user, LANG("obj.2f10840dae08970d", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!wire.use(2))
-			balloon_alert(user, LANG("obj.491624ce", null))
+			balloon_alert(user, LANG("obj.491624cef58f703b", null))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.65ced1e8", null))
+		balloon_alert(user, LANG("obj.65ced1e8b5b56733", null))
 		atom_integrity = max_integrity
 		set_machine_stat(machine_stat & ~BROKEN)
 		update_appearance()
@@ -202,10 +202,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 
 /obj/machinery/barsign/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(machine_stat & (NOPOWER|BROKEN|EMPED))
-		balloon_alert(user, LANG("obj.ba15ee03", null))
+		balloon_alert(user, LANG("obj.ba15ee0360fe078d", null))
 		return FALSE
 
-	balloon_alert(user, LANG("obj.bec1d718", null))
+	balloon_alert(user, LANG("obj.bec1d718da90cff8", null))
 	addtimer(CALLBACK(src, PROC_REF(finish_emag_act)), 10 SECONDS)
 	return TRUE
 
@@ -214,7 +214,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	set_sign(new /datum/barsign/hiddensigns/syndibarsign)
 
 /obj/machinery/barsign/proc/pick_sign(mob/user)
-	var/picked_name = tgui_input_list(user, LANG("obj.12e064c4", null), LANG("obj.2d0865d0", null), sort_list(get_bar_names()))
+	var/picked_name = tgui_input_list(user, LANG("obj.12e064c434794a96", null), LANG("obj.2d0865d0aba520be", null), sort_list(get_bar_names()))
 	if(isnull(picked_name))
 		return
 	set_sign_by_name(picked_name)
@@ -246,7 +246,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 
 /datum/barsign/New()
 	if(!desc)
-		desc = LANG("datum.3e634863", list(name))
+		desc = LANG("datum.3e634863bf42480c", list(name))
 
 // Specific bar signs.
 
@@ -578,7 +578,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign/all_access, 32)
 		return .
 
 	if(isopenturf(get_step(on_wall, EAST))) //This takes up 2 tiles so we want to make sure we have two tiles to hang it from.
-		balloon_alert(user, LANG("obj.aa061b95", null))
+		balloon_alert(user, LANG("obj.aa061b956aefc484", null))
 		return FALSE
 
 /obj/item/wallframe/barsign/all_access

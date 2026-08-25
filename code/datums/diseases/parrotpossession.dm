@@ -38,8 +38,8 @@
 		UnregisterSignal(inside_parrot, list(COMSIG_PREQDELETED, COMSIG_MOVABLE_MOVED))
 		inside_parrot.forceMove(affected_mob.drop_location())
 		affected_mob.visible_message(
-			span_danger(LANG("datum.0f7b35df", list(inside_parrot, affected_mob))),
-			span_userdanger(LANG("datum.64453ae7", list(inside_parrot))),
+			span_danger(LANG("datum.0f7b35df7627cabf", list(inside_parrot, affected_mob))),
+			span_userdanger(LANG("datum.64453ae796bb7729", list(inside_parrot))),
 		)
 	parrot_controller = null
 	return ..()

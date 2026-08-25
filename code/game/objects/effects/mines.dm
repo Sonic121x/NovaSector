@@ -35,13 +35,13 @@
 /obj/effect/mine/examine(mob/user)
 	. = ..()
 	if(!armed)
-		. += span_info(LANG("obj.8480a677", null))
+		. += span_info(LANG("obj.8480a677c5af8a8c", null))
 
 	var/atom/movable/unlucky_sod = foot_on_mine?.resolve()
 	if(user == unlucky_sod)
-		. += span_bolddanger(LANG("obj.42d4def2", null))
+		. += span_bolddanger(LANG("obj.42d4def23ef30f8d", null))
 	else if(!isnull(unlucky_sod))
-		. += span_danger(LANG("obj.e5ddedf8", list(unlucky_sod)))
+		. += span_danger(LANG("obj.e5ddedf870189702", list(unlucky_sod)))
 
 /obj/effect/mine/update_icon_state()
 	. = ..()
@@ -59,7 +59,7 @@
 	armed = TRUE
 	update_appearance(UPDATE_ICON_STATE)
 	playsound(src, 'sound/machines/nuke/angry_beep.ogg', 40, FALSE, -2)
-	visible_message(span_danger(LANG("obj.9b515b40", list(src))), vision_distance = COMBAT_MESSAGE_RANGE)
+	visible_message(span_danger(LANG("obj.9b515b4042a9160a", list(src))), vision_distance = COMBAT_MESSAGE_RANGE)
 
 /// Can this mine trigger on the passed movable?
 /obj/effect/mine/proc/can_trigger(atom/movable/on_who)
@@ -96,7 +96,7 @@
 		else
 			return //it didn't actually touch the mine, don't blow
 
-	visible_message(span_danger(LANG("obj.e46c4846", list(icon2html(src, viewers(src))))))
+	visible_message(span_danger(LANG("obj.e46c48462fccb9ae", list(icon2html(src, viewers(src))))))
 	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 	if(gonna_blow)
 		RegisterSignal(arrived, COMSIG_MOVABLE_MOVED, PROC_REF(triggermine)) //wait for it to finish the movement before blowing so it takes proper damage
@@ -113,7 +113,7 @@
 
 	if(!foot_on_mine && gone.flags_1 & ON_BORDER_1)
 		if(gone.dir == REVERSE_DIR(direction)) //see if a north facing border atom (ie window) travels south (and other directions as needed)
-			visible_message(span_danger(LANG("obj.e46c4846", list(icon2html(src, viewers(src))))))
+			visible_message(span_danger(LANG("obj.e46c48462fccb9ae", list(icon2html(src, viewers(src))))))
 			playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 			triggermine() //it "passed" over the mine briefly, triggering it in the process
 		return //either it blew up the mine, or it didn't and we don't have to worry about anything else.
@@ -135,9 +135,9 @@
 	if(triggered) //too busy detonating to detonate again
 		return
 	if(triggerer)
-		visible_message(span_danger(LANG("obj.9caa6cf7", list(triggerer, icon2html(src, viewers(src)), src))))
+		visible_message(span_danger(LANG("obj.9caa6cf7051c4a29", list(triggerer, icon2html(src, viewers(src)), src))))
 	else
-		visible_message(span_danger(LANG("obj.af810510", list(icon2html(src, viewers(src)), src))))
+		visible_message(span_danger(LANG("obj.af8105104fbc1749", list(icon2html(src, viewers(src)), src))))
 
 	do_sparks(3, TRUE, src)
 	mineEffect(triggerer)
@@ -192,7 +192,7 @@
 
 /obj/effect/mine/kickmine/mineEffect(mob/victim)
 	if(isliving(victim) && victim.client && Adjacent(victim))
-		to_chat(victim, span_userdanger(LANG("obj.6d610405", null)))
+		to_chat(victim, span_userdanger(LANG("obj.6d610405650bf61c", null)))
 		qdel(victim.client)
 
 /obj/effect/mine/gas
@@ -278,7 +278,7 @@
 		return
 
 	playsound(src, 'sound/items/weapons/armbomb.ogg', 70, TRUE)
-	to_chat(user, span_warning(LANG("obj.c3ee90c8", list(src))))
+	to_chat(user, span_warning(LANG("obj.c3ee90c82487edf5", list(src))))
 	active = TRUE
 	addtimer(CALLBACK(src, PROC_REF(deploy_mine)), 3 SECONDS)
 
@@ -287,7 +287,7 @@
 	do_alert_animation()
 	playsound(loc, 'sound/machines/chime.ogg', 30, FALSE, -3)
 	var/obj/effect/mine/new_mine = new mine_type(get_turf(src))
-	visible_message(span_danger(LANG("obj.90817ac9", list(src, new_mine))))
+	visible_message(span_danger(LANG("obj.90817ac9de48b08d", list(src, new_mine))))
 	var/obj/effect/particle_effect/fluid/smoke/poof = new (get_turf(src))
 	poof.lifetime = 3
 	qdel(src)

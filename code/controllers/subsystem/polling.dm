@@ -292,7 +292,7 @@ SUBSYSTEM_DEF(polling)
 			return FALSE
 	// NOVA EDIT ADDITION BEGIN
 	if(is_banned_from(potential_candidate.ckey, BAN_GHOST_TAKEOVER) || is_banned_from(potential_candidate.ckey, BAN_ANTAGONIST))
-		to_chat(potential_candidate, LANG("datum.d98eeea4", list(role)))
+		to_chat(potential_candidate, LANG("datum.d98eeea434cb2e14", list(role)))
 		return FALSE
 	// NOVA EDIT ADDITION END
 	if(role && potential_candidate.client)

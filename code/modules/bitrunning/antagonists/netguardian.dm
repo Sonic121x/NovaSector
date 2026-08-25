@@ -93,7 +93,7 @@
 /datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire/netguardian/Activate(atom/target_atom)
 	var/mob/living/player = owner
 	playsound(player, 'sound/vehicles/mecha/skyfall_power_up.ogg', 120)
-	player.say(LANG("datum.f584577c", null), "machine")
+	player.say(LANG("datum.f584577cf6732e43", null), "machine")
 
 	var/overlay_icon = 'icons/mob/nonhuman-player/netguardian.dmi'
 	var/list/overlays = list()
@@ -104,7 +104,7 @@
 
 	StartCooldown()
 	if(!do_after(player, 1.5 SECONDS))
-		player.balloon_alert(player, LANG("datum.c22cf976", null))
+		player.balloon_alert(player, LANG("datum.c22cf9764b68afbf", null))
 		StartCooldown(cooldown_time * 0.2)
 		player.cut_overlay(overlays)
 		return TRUE

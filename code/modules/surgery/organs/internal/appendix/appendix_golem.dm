@@ -55,7 +55,7 @@
 		return FALSE
 	if (!islava(owner.loc))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.cd50fc6d", null))
+			owner.balloon_alert(owner, LANG("datum.cd50fc6de3177580", null))
 		return FALSE
 	return TRUE
 
@@ -68,16 +68,16 @@
 /datum/action/cooldown/internal_smelting/proc/smelt_held(mob/target)
 	var/obj/item/stack/ore/held_ore = locate(/obj/item/stack/ore) in target.held_items
 	if (!held_ore?.refined_type)
-		target.balloon_alert(target, LANG("datum.3496c05d", null))
+		target.balloon_alert(target, LANG("datum.3496c05deee70461", null))
 		return
-	target.balloon_alert(owner, LANG("datum.35f17b71", null))
+	target.balloon_alert(owner, LANG("datum.35f17b710108676a", null))
 	if (!do_after(target, smelt_speed, target = held_ore, timed_action_flags = IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(IsAvailable), FALSE), interaction_key = REF(src)))
 		return
 	var/obj/item/smelted = new held_ore.refined_type
 	held_ore.use(1)
 	target.put_in_hands(smelted)
 	if (!held_ore)
-		target.balloon_alert(target, LANG("datum.879fd5fa", null))
+		target.balloon_alert(target, LANG("datum.879fd5fa7deff39a", null))
 		return
 	smelt_speed = max(smelt_speed - speed_up_interval, minimum_smelt_speed)
 	smelt_held(target)

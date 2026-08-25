@@ -79,7 +79,7 @@
 	soundloop = new(src, FALSE)
 	CalculateAffectingAreas()
 	my_area = get_area(src)
-	if(name == initial(name) || lang_unreverse_text(name) == initial(name)) // NOVA EDIT - i18n: name is reverse-localized at Initialize, so also accept the un-reversed form (else the "[area]" prefix is dropped)
+	if(name == initial(name))
 		update_name()
 	if(!merger_typecache)
 		merger_typecache = typecacheof(/obj/machinery/door/firedoor)
@@ -119,16 +119,16 @@
 /obj/machinery/door/firedoor/examine(mob/user)
 	. = ..()
 	if(!density)
-		. += span_notice(LANG("obj.5ff12ab4", null))
+		. += span_notice(LANG("obj.5ff12ab49e093c35", null))
 	else if(!welded)
-		. += span_notice(LANG("obj.d441f88e", null))
-		. += span_notice(LANG("obj.701c4fba", null))
-		. += span_notice(LANG("obj.82d4a47a", null))
-		. += span_notice(LANG("obj.7fcf80a9", null))
+		. += span_notice(LANG("obj.d441f88e047bb904", null))
+		. += span_notice(LANG("obj.701c4fba2345abc5", null))
+		. += span_notice(LANG("obj.82d4a47af1cb2281", null))
+		. += span_notice(LANG("obj.7fcf80a9e9050e75", null))
 	else if(boltslocked)
-		. += span_notice(LANG("obj.aff870de", null))
+		. += span_notice(LANG("obj.aff870de01d03fe2", null))
 	else
-		. += span_notice(LANG("obj.18bd824f", null))
+		. += span_notice(LANG("obj.18bd824f1948502a", null))
 
 /obj/machinery/door/firedoor/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -498,12 +498,12 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 
 	if(!user.combat_mode)
-		user.visible_message(span_notice(LANG("obj.a41de491", list(user, src))), \
-			span_notice(LANG("obj.a57c3d4a", list(src))))
+		user.visible_message(span_notice(LANG("obj.a41de491922a8b46", list(user, src))), \
+			span_notice(LANG("obj.a57c3d4a9f2cf468", list(src))))
 		playsound(src, knock_sound, 50, TRUE)
 	else
-		user.visible_message(span_warning(LANG("obj.6f19d1b0", list(user, src))), \
-			span_warning(LANG("obj.b771210b", list(src))))
+		user.visible_message(span_warning(LANG("obj.6f19d1b0cbe7dd9c", list(user, src))), \
+			span_warning(LANG("obj.b771210bca02af66", list(src))))
 		playsound(src, bash_sound, 100, TRUE)
 
 /obj/machinery/door/firedoor/wrench_act(mob/living/user, obj/item/tool)
@@ -512,24 +512,24 @@
 		return FALSE
 
 	if(boltslocked)
-		to_chat(user, span_notice(LANG("obj.ad9f1f5b", null)))
+		to_chat(user, span_notice(LANG("obj.ad9f1f5ba0e8ee55", null)))
 		return ITEM_INTERACT_SUCCESS
 	tool.play_tool_sound(src)
-	user.visible_message(span_notice(LANG("obj.b19822d5", list(user, src))), \
-		span_notice(LANG("obj.186a5ac8", list(src))))
+	user.visible_message(span_notice(LANG("obj.b19822d55860d78e", list(user, src))), \
+		span_notice(LANG("obj.186a5ac881741b09", list(src))))
 	if(!tool.use_tool(src, user, DEFAULT_STEP_TIME))
 		return ITEM_INTERACT_SUCCESS
 	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)
-	user.visible_message(span_notice(LANG("obj.3389cdfe", list(user, src))), \
-		span_notice(LANG("obj.5aad82a9", list(src))))
+	user.visible_message(span_notice(LANG("obj.3389cdfe83c26343", list(user, src))), \
+		span_notice(LANG("obj.5aad82a9d759e4cc", list(src))))
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/door/firedoor/screwdriver_act(mob/living/user, obj/item/tool)
 	if(operating || !welded)
 		return FALSE
-	user.visible_message(span_notice(LANG("obj.7f7e3c19", list(user, boltslocked ? "unlocks" : "locks", src))), \
-				span_notice(LANG("obj.df939fde", list(boltslocked ? "unlock" : "lock", src))))
+	user.visible_message(span_notice(LANG("obj.7f7e3c1962b19259", list(user, boltslocked ? "unlocks" : "locks", src))), \
+				span_notice(LANG("obj.df939fdeab82f8c9", list(boltslocked ? "unlock" : "lock", src))))
 	tool.play_tool_sound(src)
 	boltslocked = !boltslocked
 	return ITEM_INTERACT_SUCCESS
@@ -540,10 +540,10 @@
 /obj/machinery/door/firedoor/try_to_weld_secondary(obj/item/weldingtool/W, mob/user)
 	if(!W.tool_start_check(user, amount=1))
 		return
-	user.visible_message(span_notice(LANG("obj.35540b7a", list(user, welded ? "unwelding" : "welding", src))), span_notice(LANG("obj.2cd4ac79", list(src))))
+	user.visible_message(span_notice(LANG("obj.35540b7a2dbb244b", list(user, welded ? "unwelding" : "welding", src))), span_notice(LANG("obj.2cd4ac793c9a9f13", list(src))))
 	if(W.use_tool(src, user, DEFAULT_STEP_TIME, volume=50))
 		welded = !welded
-		user.visible_message(span_danger("[user] [welded?"welds":"unwelds"] [src]."), span_notice(LANG("obj.d6171b71", list(welded ? "weld" : "unweld", src))))
+		user.visible_message(span_danger(LANG("obj.6afbb5c3aa5fc504", list(user, welded?"welds":"unwelds", src))), span_notice(LANG("obj.d6171b714b8cf981", list(welded ? "weld" : "unweld", src))))
 		user.log_message("[welded ? "welded":"unwelded"] firedoor [src] with [W].", LOG_GAME)
 		update_appearance()
 		correct_state()
@@ -557,7 +557,7 @@
 
 	if(density)
 		being_held_open = TRUE
-		crowbar_owner.balloon_alert_to_viewers(LANG("obj.c7bd5534", null), LANG("obj.c7bd5534", null))
+		crowbar_owner.balloon_alert_to_viewers(LANG("obj.c7bd55348886061e", null), LANG("obj.c7bd55348886061e", null))
 		COOLDOWN_START(src, activation_cooldown, REACTIVATION_DELAY)
 		open()
 		if(QDELETED(crowbar_owner))
@@ -598,7 +598,7 @@
 	UnregisterSignal(crowbar_owner, COMSIG_LIVING_SET_BODY_POSITION)
 	UnregisterSignal(crowbar_owner, COMSIG_QDELETING)
 	if(crowbar_owner)
-		crowbar_owner.balloon_alert_to_viewers(LANG("obj.f8aa5aa6", null), LANG("obj.f8aa5aa6", null))
+		crowbar_owner.balloon_alert_to_viewers(LANG("obj.f8aa5aa6d9e5a36a", null), LANG("obj.f8aa5aa6d9e5a36a", null))
 
 /obj/machinery/door/firedoor/attack_ai(mob/user)
 	add_fingerprint(user)
@@ -618,7 +618,7 @@
 /obj/machinery/door/firedoor/attack_alien(mob/user, list/modifiers)
 	add_fingerprint(user)
 	if(welded)
-		balloon_alert(user, LANG("obj.1059e89c", null))
+		balloon_alert(user, LANG("obj.1059e89cda730aa5", null))
 		return
 	open()
 	if(active)
@@ -830,11 +830,11 @@
 	. = ..()
 	switch(constructionStep)
 		if(CONSTRUCTION_PANEL_OPEN)
-			. += span_notice(LANG("obj.05340c9f", null))
+			. += span_notice(LANG("obj.05340c9f95797d04", null))
 			if(!reinforced && !directional)
-				. += span_notice(LANG("obj.c0a1cd47", null))
+				. += span_notice(LANG("obj.c0a1cd47c9dfe92b", null))
 		if(CONSTRUCTION_NO_CIRCUIT)
-			. += span_notice(LANG("obj.274ad987", null))
+			. += span_notice(LANG("obj.274ad9871569ffd8", null))
 
 /obj/structure/firelock_frame/update_icon_state()
 	icon_state = "[base_icon_state][constructionStep]"
@@ -846,24 +846,24 @@
 			if(!istype(tool, /obj/item/stack/sheet/plasteel))
 				return NONE
 			if(directional)
-				to_chat(user, span_warning(LANG("obj.212a4b92", list(src))))
+				to_chat(user, span_warning(LANG("obj.212a4b928129355b", list(src))))
 				return ITEM_INTERACT_BLOCKING
 			var/obj/item/stack/sheet/plasteel/plasteel_sheet = tool
 			if(reinforced)
-				to_chat(user, span_warning(LANG("obj.b1291ce0", list(src))))
+				to_chat(user, span_warning(LANG("obj.b1291ce01e4ab273", list(src))))
 				return ITEM_INTERACT_BLOCKING
 			if(plasteel_sheet.get_amount() < 2)
-				to_chat(user, span_warning(LANG("obj.08c912f3", list(src))))
+				to_chat(user, span_warning(LANG("obj.08c912f3abec8782", list(src))))
 				return ITEM_INTERACT_BLOCKING
-			user.visible_message(span_notice(LANG("obj.6fbe4013", list(user, src))), \
-								span_notice(LANG("obj.227abe34", list(src))))
+			user.visible_message(span_notice(LANG("obj.6fbe4013bc914739", list(user, src))), \
+								span_notice(LANG("obj.227abe34738e5362", list(src))))
 			playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)
 			if(!do_after(user, DEFAULT_STEP_TIME, target = src))
 				return ITEM_INTERACT_BLOCKING
 			if(constructionStep != CONSTRUCTION_PANEL_OPEN || reinforced || plasteel_sheet.get_amount() < 2 || !plasteel_sheet)
 				return ITEM_INTERACT_BLOCKING
-			user.visible_message(span_notice(LANG("obj.87ac703f", list(user, src))), \
-								span_notice(LANG("obj.2d51b857", list(src))))
+			user.visible_message(span_notice(LANG("obj.87ac703f5edb940f", list(user, src))), \
+								span_notice(LANG("obj.2d51b8571e648d8a", list(src))))
 			playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)
 			plasteel_sheet.use(2)
 			reinforced = 1
@@ -871,16 +871,16 @@
 
 		if(CONSTRUCTION_NO_CIRCUIT)
 			if(istype(tool, /obj/item/electronics/firelock))
-				user.visible_message(span_notice(LANG("obj.9da348df", list(user, tool, src))), \
-					span_notice(LANG("obj.0913d6ce", list(src))))
+				user.visible_message(span_notice(LANG("obj.9da348dfd58a1d32", list(user, tool, src))), \
+					span_notice(LANG("obj.0913d6cefa79dfbe", list(src))))
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)
 				if(!do_after(user, DEFAULT_STEP_TIME, target = src))
 					return ITEM_INTERACT_BLOCKING
 				if(constructionStep != CONSTRUCTION_NO_CIRCUIT)
 					return ITEM_INTERACT_BLOCKING
 				qdel(tool)
-				user.visible_message(span_notice(LANG("obj.b9ad6174", list(user, src))), \
-					span_notice(LANG("obj.1a9672e4", list(tool))))
+				user.visible_message(span_notice(LANG("obj.b9ad617428a70405", list(user, src))), \
+					span_notice(LANG("obj.1a9672e473f2fc14", list(tool))))
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)
 				constructionStep = CONSTRUCTION_PANEL_OPEN
 				update_appearance()
@@ -890,8 +890,8 @@
 				var/obj/item/electroadaptive_pseudocircuit/raspberrypi = tool
 				if(!raspberrypi.adapt_circuit(user, circuit_cost = DEFAULT_STEP_TIME * 0.0005 * STANDARD_CELL_CHARGE))
 					return ITEM_INTERACT_BLOCKING
-				user.visible_message(span_notice(LANG("obj.bdc98e79", list(user, src))), \
-				span_notice(LANG("obj.323a2c8e", null)))
+				user.visible_message(span_notice(LANG("obj.bdc98e79de4f6d08", list(user, src))), \
+				span_notice(LANG("obj.323a2c8e102a1ec3", null)))
 				constructionStep = CONSTRUCTION_PANEL_OPEN
 				update_appearance()
 				return ITEM_INTERACT_SUCCESS
@@ -901,15 +901,15 @@
 	if(constructionStep != CONSTRUCTION_PANEL_OPEN)
 		return NONE
 	tool.play_tool_sound(src)
-	user.visible_message(span_notice(LANG("obj.10944e50", list(user, src))), \
-						span_notice(LANG("obj.5236e346", list(src))))
+	user.visible_message(span_notice(LANG("obj.10944e50d415960e", list(user, src))), \
+						span_notice(LANG("obj.5236e3460ca2bc9e", list(src))))
 	if(!tool.use_tool(src, user, DEFAULT_STEP_TIME))
 		return ITEM_INTERACT_BLOCKING
 	if(constructionStep != CONSTRUCTION_PANEL_OPEN)
 		return ITEM_INTERACT_BLOCKING
 	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)
-	user.visible_message(span_notice(LANG("obj.7c60c0c9", list(user, src))), \
-						span_notice(LANG("obj.2dfc226a", list(src))))
+	user.visible_message(span_notice(LANG("obj.7c60c0c957c9bdef", list(user, src))), \
+						span_notice(LANG("obj.2dfc226affc064d9", list(src))))
 	new /obj/item/electronics/firelock(drop_location())
 	constructionStep = CONSTRUCTION_NO_CIRCUIT
 	update_appearance()
@@ -919,17 +919,17 @@
 	if(constructionStep != CONSTRUCTION_PANEL_OPEN)
 		return NONE
 	if(locate(/obj/machinery/door/firedoor) in get_turf(src))
-		to_chat(user, span_warning(LANG("obj.0d7012d0", null)))
+		to_chat(user, span_warning(LANG("obj.0d7012d0b08f581f", null)))
 		return ITEM_INTERACT_BLOCKING
 	tool.play_tool_sound(src)
-	user.visible_message(span_notice(LANG("obj.621e2efb", list(user, src))), \
-						span_notice(LANG("obj.c1d24691", list(src))))
+	user.visible_message(span_notice(LANG("obj.621e2efb5eb1bd4b", list(user, src))), \
+						span_notice(LANG("obj.c1d24691dcfea09d", list(src))))
 	if(!tool.use_tool(src, user, DEFAULT_STEP_TIME))
 		return ITEM_INTERACT_BLOCKING
 	if(locate(/obj/machinery/door/firedoor) in get_turf(src))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.6d0c3334", list(user))), \
-						span_notice(LANG("obj.e24d1e2e", null)))
+	user.visible_message(span_notice(LANG("obj.6d0c33343989270e", list(user))), \
+						span_notice(LANG("obj.e24d1e2eb17b1153", null)))
 	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)
 	if(reinforced)
 		new /obj/machinery/door/firedoor/heavy(get_turf(src))
@@ -947,15 +947,15 @@
 		return NONE
 	if(!tool.tool_start_check(user, amount=1))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.4c2cad88", list(user, src))), \
-		span_notice(LANG("obj.c868623f", list(src))))
+	user.visible_message(span_notice(LANG("obj.4c2cad88965d32cf", list(user, src))), \
+		span_notice(LANG("obj.c868623ff4693b9f", list(src))))
 
 	if(!tool.use_tool(src, user, DEFAULT_STEP_TIME, volume=50))
 		return ITEM_INTERACT_BLOCKING
 	if(constructionStep != CONSTRUCTION_NO_CIRCUIT)
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.bba96122", list(user, src))), \
-		span_notice(LANG("obj.3320e9cf", list(src))))
+	user.visible_message(span_notice(LANG("obj.bba96122fed0d09c", list(user, src))), \
+		span_notice(LANG("obj.3320e9cf612486fb", list(src))))
 	var/turf/targetloc = get_turf(src)
 	new /obj/item/stack/sheet/iron(targetloc, directional ? 2 : 3)
 	if(reinforced)
@@ -973,7 +973,7 @@
 /obj/structure/firelock_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
 	switch(rcd_data[RCD_DESIGN_MODE])
 		if(RCD_UPGRADE_SIMPLE_CIRCUITS)
-			user.balloon_alert(user, LANG("obj.3bf49b8d", null))
+			user.balloon_alert(user, LANG("obj.3bf49b8db1d12d4f", null))
 			constructionStep = CONSTRUCTION_PANEL_OPEN
 			update_appearance()
 			return TRUE

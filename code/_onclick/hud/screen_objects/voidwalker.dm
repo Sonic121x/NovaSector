@@ -47,9 +47,9 @@
 
 	var/list/vomits = get_valid_vomits()
 
-	. += span_notice(LANG("atom.5c04004e", null))
-	. += span_notice(LANG("atom.f438102c", null))
-	. += span_notice(LANG("atom.ff21e64a", list(vomits.len)))
+	. += span_notice(LANG("atom.5c04004e82f6a0b7", null))
+	. += span_notice(LANG("atom.f438102c2a7faa79", null))
+	. += span_notice(LANG("atom.ff21e64a9393c506", list(vomits.len)))
 
 
 /atom/movable/screen/vomit_jump/proc/get_valid_vomits()
@@ -72,13 +72,13 @@
 		return
 
 	if(!istype(usr.loc, /obj/effect/dummy/phased_mob/space_dive))
-		usr.balloon_alert(usr, LANG("atom.8a23cdb7", null))
+		usr.balloon_alert(usr, LANG("atom.8a23cdb7a0fd6243", null))
 		return
 
 	var/list/vomits = get_valid_vomits()
 
 	if(!vomits.len)
-		usr.balloon_alert(usr, LANG("atom.1fda59be", null))
+		usr.balloon_alert(usr, LANG("atom.1fda59be007ed4cc", null))
 		return
 
 	var/obj/effect/dummy/phased_mob/space_dive/holder = usr.loc

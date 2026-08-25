@@ -57,7 +57,7 @@
 /// Returns FALSE if we don't bind, TRUE if we succeed.
 /datum/component/object_possession/proc/bind_to_new_object(obj/target)
 	if((target.obj_flags & DANGEROUS_POSSESSION) && CONFIG_GET(flag/forbid_singulo_possession))
-		to_chat(parent, LANG("datum.6038d3b6", list(target)), confidential = TRUE)
+		to_chat(parent, LANG("datum.6038d3b67bd16052", list(target)), confidential = TRUE)
 		return FALSE
 
 	var/mob/user = parent

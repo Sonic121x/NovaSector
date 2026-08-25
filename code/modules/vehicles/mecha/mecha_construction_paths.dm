@@ -74,7 +74,7 @@
 	. = user.transferItemToLoc(I, parent)
 	if(.)
 		var/atom/parent_atom = parent
-		user.balloon_alert_to_viewers(LANG("datum.567e760d", list(I)))
+		user.balloon_alert_to_viewers(LANG("datum.567e760d89d2c2ad", list(I)))
 		parent_atom.add_overlay(I.icon_state+"+o")
 		qdel(I)
 
@@ -616,7 +616,7 @@
 /datum/component/construction/mecha/honker/custom_action(obj/item/I, mob/living/user, diff)
 	if(istype(I, /obj/item/bikehorn))
 		playsound(parent, 'sound/items/bikehorn.ogg', 50, TRUE)
-		user.balloon_alert_to_hearers(LANG("datum.c7832879", null))
+		user.balloon_alert_to_hearers(LANG("datum.c7832879903ac134", null))
 		return TRUE
 
 	return ..()
@@ -680,7 +680,7 @@
 		return FALSE
 
 	if(istype(I, /obj/item/assembly/signaler/anomaly) && !istype(I, required_core))
-		to_chat(user, span_warning(LANG("datum.d2bcde5e", list(initial(required_core.name)))))
+		to_chat(user, span_warning(LANG("datum.d2bcde5e425b6083", list(initial(required_core.name)))))
 		return FALSE
 
 	return TRUE

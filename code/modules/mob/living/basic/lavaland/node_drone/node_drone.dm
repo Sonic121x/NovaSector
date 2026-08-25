@@ -24,7 +24,10 @@
 	pass_flags = PASSTABLE|PASSGRILLE|PASSMOB
 	mob_size = MOB_SIZE_LARGE
 	mob_biotypes = MOB_ROBOTIC
-	faction = list(FACTION_STATION, FACTION_NEUTRAL)
+	// NOVA EDIT CHANGE BEGIN - Drones share the lavaland fauna faction so wave defense is "survive the mobs" instead of "babysit the drone".
+	// ORIGINAL: faction = list(FACTION_STATION, FACTION_NEUTRAL)
+	faction = list(FACTION_STATION, FACTION_NEUTRAL, FACTION_MINING)
+	// NOVA EDIT CHANGE END
 	light_range = 4
 	basic_mob_flags = DEL_ON_DEATH
 	move_force = MOVE_FORCE_VERY_STRONG
@@ -59,17 +62,18 @@
 	explosion(origin = src, light_impact_range = 1, smoke = 1)
 
 /mob/living/basic/node_drone/Destroy()
-	attached_vent?.node = null //clean our reference to the vent both ways.
-	attached_vent = null
+	if(attached_vent)
+		attached_vent.node = null
+		attached_vent = null
 	return ..()
 
 /mob/living/basic/node_drone/examine(mob/user)
 	. = ..()
 	var/sameside = user.faction_check_atom(src, exact_match = FALSE)
 	if(sameside)
-		. += span_notice(LANG("mob.d0e58859", null))
+		. += span_notice(LANG("mob.d0e588593c22d89c", null))
 	else
-		. += span_warning(LANG("mob.0c917354", null))
+		. += span_warning(LANG("mob.0c91735411ab1b30", null))
 
 /mob/living/basic/node_drone/update_icon_state()
 	. = ..()
@@ -79,30 +83,6 @@
 	if(flying_state == FLY_IN_STATE || flying_state == FLY_OUT_STATE)
 		icon_state = "mining_node_flying"
 
-/mob/living/basic/node_drone/update_overlays()
-	. = ..()
-	if(attached_vent)
-		var/time_remaining = COOLDOWN_TIMELEFT(attached_vent, wave_cooldown)
-		var/wave_timers
-		switch(attached_vent?.boulder_size)
-			if(BOULDER_SIZE_SMALL)
-				wave_timers = WAVE_DURATION_SMALL
-			if(BOULDER_SIZE_MEDIUM)
-				wave_timers = WAVE_DURATION_MEDIUM
-			if(BOULDER_SIZE_LARGE)
-				wave_timers = WAVE_DURATION_LARGE
-		var/remaining_fraction = (time_remaining / wave_timers)
-		if(remaining_fraction <= 0.3)
-			. += "node_progress_4"
-			return
-		if(remaining_fraction <= 0.55)
-			. += "node_progress_3"
-			return
-		if(remaining_fraction <= 0.80)
-			. += "node_progress_2"
-			return
-		. += "node_progress_1"
-		return
 
 /mob/living/basic/node_drone/proc/arrive(obj/structure/ore_vent/parent_vent)
 	attached_vent = parent_vent
@@ -122,17 +102,17 @@
 	flying_state = FLY_OUT_STATE
 	update_appearance(UPDATE_ICON_STATE)
 	if(prob(1))
-		say(LANG("mob.970525e3", null))
+		say(LANG("mob.970525e3c788926a", null))
 		funny_ending = TRUE
 	if(success)
-		visible_message(span_notice(LANG("mob.ad98c2ad", null)))
+		visible_message(span_notice(LANG("mob.ad98c2ad154ab042", null)))
 	else
-		visible_message(span_danger(LANG("mob.67b771ef", null)))
+		visible_message(span_danger(LANG("mob.67b771ef5a5da729", null)))
 	animate(src, pixel_z = 400, time = 2 SECONDS, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
 	sleep(2 SECONDS)
 	if(funny_ending)
 		playsound(src, 'sound/effects/explosion/explosion3.ogg', 50, FALSE) //node drone died on the way back to his home planet.
-		visible_message(span_notice(LANG("mob.f8d853f7", null)))
+		visible_message(span_notice(LANG("mob.f8d853f779b18cb7", null)))
 	qdel(src)
 
 

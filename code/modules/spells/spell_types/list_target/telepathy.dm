@@ -23,12 +23,12 @@
 	if(. & SPELL_CANCEL_CAST)
 		return
 
-	message = tgui_input_text(owner, LANG("datum.39b36bd3", list(cast_on)), "[src]", max_length = MAX_MESSAGE_LEN)
+	message = tgui_input_text(owner, LANG("datum.39b36bd335a62961", list(cast_on)), "[src]", max_length = MAX_MESSAGE_LEN)
 	if(QDELETED(src) || QDELETED(owner) || QDELETED(cast_on) || !can_cast_spell())
 		return . | SPELL_CANCEL_CAST
 
 	if(get_dist(cast_on, owner) > target_radius)
-		owner.balloon_alert(owner, LANG("datum.d000a673", null))
+		owner.balloon_alert(owner, LANG("datum.d000a673ca4d930e", null))
 		return . | SPELL_CANCEL_CAST
 
 	if(!message)
@@ -43,13 +43,13 @@
 
 	var/failure_message_for_ghosts = ""
 
-	to_chat(owner, LANG("datum.5edafd57", list(bold_telepathy_span, cast_on, formatted_message)))
+	to_chat(owner, LANG("datum.5edafd5755e59bfd", list(bold_telepathy_span, cast_on, formatted_message)))
 	if(!cast_on.can_block_magic(antimagic_flags, charge_cost = 0) && !(HAS_TRAIT(cast_on, TRAIT_PSIONIC_DAMPENER))) // NOVA EDIT CHANGE - ORIGINAL: if(!cast_on.can_block_magic(antimagic_flags, charge_cost = 0)) //hear no evil
-		cast_on.balloon_alert(cast_on, LANG("datum.d955e950", null))
-		to_chat(cast_on, LANG("datum.04b5b31c", list(bold_telepathy_span, formatted_message)))
+		cast_on.balloon_alert(cast_on, LANG("datum.d955e9509c93251b", null))
+		to_chat(cast_on, LANG("datum.04b5b31c915996d0", list(bold_telepathy_span, formatted_message)))
 	else
-		owner.balloon_alert(owner, LANG("datum.65890d04", null))
-		to_chat(owner, span_warning(LANG("datum.c4fab014", null)))
+		owner.balloon_alert(owner, LANG("datum.65890d045689eaf3", null))
+		to_chat(owner, span_warning(LANG("datum.c4fab0142ba60618", null)))
 		failure_message_for_ghosts = "<span class='[bold_telepathy_span]'> (blocked by antimagic)</span>"
 
 	for(var/mob/dead/ghost as anything in GLOB.dead_mob_list)
@@ -63,4 +63,4 @@
 		var/to_link = FOLLOW_LINK(ghost, cast_on)
 		var/to_mob_name = span_name("[cast_on]")
 
-		to_chat(ghost, "[from_link] [from_mob_name] [formatted_message] [to_link] [to_mob_name]")
+		to_chat(ghost, LANG("datum.bc44c414faed55ab", list(from_link, from_mob_name, formatted_message, to_link, to_mob_name)))

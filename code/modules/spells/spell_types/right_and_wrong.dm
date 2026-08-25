@@ -163,7 +163,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 
 	var/in_hand = to_equip.put_in_hands(spawned_gun) // not always successful
 
-	to_chat(to_equip, span_warning(LANG("_root.6e3ce3ed", list(spawned_gun, in_hand ? "in your hand" : "at your feet"))))
+	to_chat(to_equip, span_warning(LANG("_root.6e3ce3edd56b56e1", list(spawned_gun, in_hand ? "in your hand" : "at your feet"))))
 
 /*
  * Gives [to_equip] a random magical spell from a list.
@@ -187,9 +187,9 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 
 	var/in_hand = to_equip.put_in_hands(spawned_magic)
 
-	to_chat(to_equip, span_warning(LANG("_root.6e3ce3ed", list(spawned_magic, in_hand ? "in your hand" : "at your feet"))))
+	to_chat(to_equip, span_warning(LANG("_root.6e3ce3edd56b56e1", list(spawned_magic, in_hand ? "in your hand" : "at your feet"))))
 	if(magic_type in GLOB.summoned_special_magic)
-		to_chat(to_equip, span_notice(LANG("_root.46ad6c55", null)))
+		to_chat(to_equip, span_notice(LANG("_root.46ad6c55ea8be01c", null)))
 
 /**
  * Triggers Summon Ghosts from [user].
@@ -199,7 +199,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 	var/datum/round_event_control/wizard/ghost/ghost_event = locate() in SSevents.control
 	if(ghost_event)
 		if(user)
-			to_chat(user, span_warning(LANG("_root.e9ac252a", null)))
+			to_chat(user, span_warning(LANG("_root.e9ac252a7b62bad9", null)))
 			message_admins("[ADMIN_LOOKUPFLW(user)] summoned ghosts!")
 			user.log_message("summoned ghosts!", LOG_GAME)
 		else
@@ -209,7 +209,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 	else
 		stack_trace("Unable to run summon ghosts, due to being unable to locate the associated event.")
 		if(user)
-			to_chat(user, span_warning(LANG("_root.2f32172a", null)))
+			to_chat(user, span_warning(LANG("_root.2f32172a5824efea", null)))
 
 /**
  * Triggers Summon Magic from [user].
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
  */
 /proc/summon_magic(mob/user, survivor_probability = 0)
 	if(user)
-		to_chat(user, span_warning(LANG("_root.5b8c718b", null)))
+		to_chat(user, span_warning(LANG("_root.5b8c718b8961f55e", null)))
 		message_admins("[ADMIN_LOOKUPFLW(user)] summoned magic!")
 		user.log_message("summoned magic!", LOG_GAME)
 	else
@@ -238,7 +238,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
  */
 /proc/summon_guns(mob/user, survivor_probability = 0)
 	if(user)
-		to_chat(user, span_warning(LANG("_root.e29d7ee6", null)))
+		to_chat(user, span_warning(LANG("_root.e29d7ee6a2844b2e", null)))
 		message_admins("[ADMIN_LOOKUPFLW(user)] summoned guns!")
 		user.log_message("summoned guns!", LOG_GAME)
 	else
@@ -266,7 +266,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 		if(user)
 			message_admins("[ADMIN_LOOKUPFLW(user)] [ismob(user) ? "":"admin triggered "]intensified summon events!")
 			if(ismob(user))
-				to_chat(user, span_warning(LANG("_root.930cc768", null)))
+				to_chat(user, span_warning(LANG("_root.930cc7680c26bca6", null)))
 				user.log_message("intensified events!", LOG_GAME)
 			else //admin triggered
 				log_admin("[key_name(user)] intensified summon events.")
@@ -284,7 +284,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 		if(user)
 			message_admins("[ADMIN_LOOKUPFLW(user)] [ismob(user) ? "summoned":"admin triggered summon"] events!")
 			if(ismob(user))
-				to_chat(user, span_warning(LANG("_root.e6a415fa", null)))
+				to_chat(user, span_warning(LANG("_root.e6a415fa302f03c6", null)))
 				user.log_message("summoned events!", LOG_GAME)
 			else //admin triggered
 				log_admin("[key_name(user)] summoned events.")

@@ -21,7 +21,7 @@
 		return
 
 	if(!can_unwrench)
-		balloon_alert(user, LANG("obj.1924f91d", null))
+		balloon_alert(user, LANG("obj.1924f91dda458f97", null))
 		return
 
 	balloon_alert(user, "[anchored ? "unwrenching" : "wrenching"]...")
@@ -29,7 +29,7 @@
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 50))
 		return
 
-	visible_message(span_notice("[user] [anchored ? "unwrenches" : "wrenches down"] [src]."), span_notice(LANG("obj.d6171b71", list(anchored ? "unwrench" : "wrench", src))))
+	visible_message(span_notice(LANG("obj.6afbb5c3aa5fc504", list(user, anchored ? "unwrenches" : "wrenches down", src))), span_notice(LANG("obj.d6171b714b8cf981", list(anchored ? "unwrench" : "wrench", src))))
 
 	anchored = !anchored
 	update_icon_state()

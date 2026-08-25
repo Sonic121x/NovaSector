@@ -205,7 +205,7 @@ do { \
 		detach_clothing_traits(TRAIT_VOICE_MATCHES_ID)
 	else
 		if(SStts.tts_enabled)
-			var/popup_input = tgui_input_list(user, LANG("obj.dbbefb2b", null), LANG("obj.4ddbcb68", null), list("Spoof Crew Manifest Voice", "Spoof Any Voice", "Cancel"))
+			var/popup_input = tgui_input_list(user, LANG("obj.dbbefb2b070136a8", null), LANG("obj.4ddbcb680ff6cecd", null), list("Spoof Crew Manifest Voice", "Spoof Any Voice", "Cancel"))
 			if(!popup_input || !after_input_check(user))
 				return
 			switch(popup_input)
@@ -215,9 +215,9 @@ do { \
 						if(target.voice && (target.voice in SStts.available_speakers))
 							possible_voices += target.name
 						CHECK_TICK
-					var/voice_choice = tgui_input_list(user, LANG("obj.9eb194af", null), LANG("obj.7b081612", null), possible_voices)
+					var/voice_choice = tgui_input_list(user, LANG("obj.9eb194affd2ad675", null), LANG("obj.7b081612af1e0d4c", null), possible_voices)
 					if(isnull(voice_choice) || !after_input_check(user))
-						to_chat(user, span_warning(LANG("obj.32f2190d", null)))
+						to_chat(user, span_warning(LANG("obj.32f2190d97eb6425", null)))
 						voice_override = null
 						return
 					var/datum/record/crew/crew_record = find_record(voice_choice)
@@ -225,12 +225,12 @@ do { \
 						voice_override = voice_choice
 						return
 					else
-						to_chat(user, span_warning(LANG("obj.dc03d751", null)))
+						to_chat(user, span_warning(LANG("obj.dc03d751ebc45618", null)))
 						return
 				if("Spoof Any Voice")
-					var/voice_choice = tgui_input_list(user, LANG("obj.9eb194af", null), LANG("obj.7b081612", null), SStts.available_speakers)
+					var/voice_choice = tgui_input_list(user, LANG("obj.9eb194affd2ad675", null), LANG("obj.7b081612af1e0d4c", null), SStts.available_speakers)
 					if(isnull(voice_choice) || !after_input_check(user))
-						to_chat(user, span_warning(LANG("obj.32f2190d", null)))
+						to_chat(user, span_warning(LANG("obj.32f2190d97eb6425", null)))
 						voice_override = null
 						return
 					voice_override = voice_choice
@@ -239,7 +239,7 @@ do { \
 			voice_override = null
 		attach_clothing_traits(TRAIT_VOICE_MATCHES_ID)
 	on = !on
-	to_chat(user, span_notice(LANG("obj.4efe20d1", list(on ? "on" : "off"))))
+	to_chat(user, span_notice(LANG("obj.4efe20d133d36b34", list(on ? "on" : "off"))))
 
 /obj/item/clothing/mask/chameleon/broken
 
@@ -261,7 +261,7 @@ do { \
 	mask?.random_look()
 
 /obj/item/clothing/mask/chameleon/drone/attack_self(mob/user)
-	to_chat(user, span_notice(LANG("obj.fa63bf71", list(src))))
+	to_chat(user, span_notice(LANG("obj.fa63bf71292c927d", list(src))))
 
 // Cham shoes, including chameleon noslips
 /datum/armor/shoes_chameleon

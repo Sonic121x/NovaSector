@@ -24,7 +24,7 @@
 			followers += follower
 
 	if(!length(followers))
-		to_chat(user, span_warning(LANG("datum.6728056c", null)))
+		to_chat(user, span_warning(LANG("datum.6728056cdffd7296", null)))
 		return FALSE
 
 	return ..()
@@ -40,13 +40,13 @@
 		refund(0.8)
 		return
 
-	var/mob/living/carbon/human/target = tgui_input_list(user, LANG("datum.e806b2e6", null), LANG("datum.57a2a9a3", null), followers)
+	var/mob/living/carbon/human/target = tgui_input_list(user, LANG("datum.e806b2e651e9d912", null), LANG("datum.57a2a9a3d10cefa0", null), followers)
 	if(QDELETED(target) || target.stat == DEAD || isnull(target.mind?.holy_role))
 		refund(0.8)
 		return
 
 	if(!user.apply_status_effect(/datum/status_effect/dream_projection, target))
-		to_chat(user, span_warning(LANG("datum.b6f72b4d", null)))
+		to_chat(user, span_warning(LANG("datum.b6f72b4d9af54e56", null)))
 		refund(0.8)
 		return
 
@@ -70,12 +70,12 @@
 	src.target = target
 	return ..()
 
-/datum/status_effect/dream_projection/get_examine_text()
+/datum/status_effect/dream_projection/get_examine_text(mob/examiner)
 	return "[owner.p_They()] [owner.p_are()] in a deep slumber, yet [owner.p_their()] eyes show a distant look, as if [owner.p_they()] [owner.p_are()] somewhere far away..."
 
 /datum/status_effect/dream_projection/on_apply()
 	if(!owner.SetSleeping(20 SECONDS))
-		to_chat(owner, span_warning(LANG("datum.b6f72b4d", null)))
+		to_chat(owner, span_warning(LANG("datum.b6f72b4d9af54e56", null)))
 		return FALSE
 
 	. = ..()
@@ -135,20 +135,20 @@
 
 /datum/status_effect/dream_projection/proc/end_projection()
 	SIGNAL_HANDLER
-	to_chat(owner, span_warning(LANG("datum.df48d4d2", null)))
+	to_chat(owner, span_warning(LANG("datum.df48d4d205aa6726", null)))
 	owner.SetSleeping(10 SECONDS)
 	qdel(src)
 
 /datum/status_effect/dream_projection/proc/interrupt_projection()
 	SIGNAL_HANDLER
-	to_chat(owner, span_warning(LANG("datum.8903cc72", null)))
+	to_chat(owner, span_warning(LANG("datum.8903cc728c7aa93b", null)))
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "gasp")
-	owner.visible_message(span_notice(LANG("datum.73c980c4", list(owner))), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = owner)
+	owner.visible_message(span_notice(LANG("datum.73c980c404607b4a", list(owner))), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = owner)
 	qdel(src)
 
 /datum/status_effect/dream_projection/proc/stop_projection()
 	SIGNAL_HANDLER
-	to_chat(owner, span_warning(LANG("datum.7cd07e36", null)))
+	to_chat(owner, span_warning(LANG("datum.7cd07e3644278375", null)))
 	owner.SetSleeping(10 SECONDS)
 	qdel(src)
 

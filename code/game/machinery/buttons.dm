@@ -141,28 +141,28 @@
 
 /obj/machinery/button/proc/assembly_act(mob/living/user, obj/item/assembly/new_device)
 	if(device)
-		to_chat(user, span_warning(LANG("obj.4ef8514f", null)))
+		to_chat(user, span_warning(LANG("obj.4ef8514f771694ac", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(!(new_device.assembly_behavior & ASSEMBLY_FUNCTIONAL_OUTPUT))
-		to_chat(user, span_warning(LANG("obj.e28d9cef", list(new_device))))
+		to_chat(user, span_warning(LANG("obj.e28d9cef14b4c84d", list(new_device))))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(new_device, src, silent = FALSE))
-		to_chat(user, span_warning(LANG("obj.fd8b000b", list(new_device))))
+		to_chat(user, span_warning(LANG("obj.fd8b000b0d6b6027", list(new_device))))
 		return ITEM_INTERACT_BLOCKING
 
 	device = new_device
 	SEND_SIGNAL(new_device, COMSIG_ASSEMBLY_ADDED_TO_BUTTON, src, user)
-	to_chat(user, span_notice(LANG("obj.57cfbafc", list(new_device))))
+	to_chat(user, span_notice(LANG("obj.57cfbafc9e36f91f", list(new_device))))
 
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/button/proc/airlock_electronics_act(mob/living/user, obj/item/electronics/airlock/new_board)
 	if(board)
-		to_chat(user, span_warning(LANG("obj.fcd5a0c3", null)))
+		to_chat(user, span_warning(LANG("obj.fcd5a0c3f3ca3f00", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(new_board, src, silent = FALSE))
-		to_chat(user, span_warning(LANG("obj.fd8b000b", list(new_board))))
+		to_chat(user, span_warning(LANG("obj.fd8b000b0d6b6027", list(new_board))))
 		return ITEM_INTERACT_BLOCKING
 
 	board = new_board
@@ -170,7 +170,7 @@
 		req_one_access = board.accesses
 	else
 		req_access = board.accesses
-	to_chat(user, span_notice(LANG("obj.57cfbafc", list(new_board))))
+	to_chat(user, span_notice(LANG("obj.57cfbafc9e36f91f", list(new_board))))
 
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -179,22 +179,22 @@
 	if(panel_open || allowed(user))
 		return default_deconstruction_screwdriver(user, tool)
 
-	balloon_alert(user, LANG("obj.1d2a5ed1", null))
+	balloon_alert(user, LANG("obj.1d2a5ed1ed67a4a4", null))
 	flick_overlay_view("[base_icon_state]-overlay-error", 1 SECONDS)
 	return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/button/wrench_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.b8bdd93d", null))
+		balloon_alert(user, LANG("obj.b8bdd93da122504e", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(device || board)
-		balloon_alert(user, LANG("obj.9fe939b8", null))
+		balloon_alert(user, LANG("obj.9fe939b8ec933159", null))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.667a49ab", null)))
+	to_chat(user, span_notice(LANG("obj.667a49abb8dcfe82", null)))
 	if(tool.use_tool(src, user, 40, volume=50))
-		to_chat(user, span_notice(LANG("obj.12c5cc83", null)))
+		to_chat(user, span_notice(LANG("obj.12c5cc83917318aa", null)))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 		deconstruct(TRUE)
 
@@ -221,7 +221,7 @@
 	// The device inside can be emagged by swiping the button
 	// returning TRUE will prevent feedback (so we can do our own)
 	if(!device?.emag_act(user, emag_card))
-		balloon_alert(user, LANG("obj.a98d953c", null))
+		balloon_alert(user, LANG("obj.a98d953c687224e8", null))
 	return TRUE
 
 /obj/machinery/button/attack_ai(mob/user)
@@ -253,12 +253,12 @@
 	if(can_alter_skin)
 		if(skin == "")
 			skin = "-warning"
-			to_chat(user, span_notice(LANG("obj.fb74dbd6", null)))
+			to_chat(user, span_notice(LANG("obj.fb74dbd671943092", null)))
 		else
 			skin = ""
-			to_chat(user, span_notice(LANG("obj.f8a10e82", null)))
+			to_chat(user, span_notice(LANG("obj.f8a10e82125a72db", null)))
 		update_appearance(UPDATE_ICON)
-		balloon_alert(user, LANG("obj.98cf79ea", null))
+		balloon_alert(user, LANG("obj.98cf79eae6d5c823", null))
 
 /obj/machinery/button/attack_hand_secondary(mob/user, list/modifiers)
 	if(!initialized_button)
@@ -280,13 +280,13 @@
 /obj/machinery/button/proc/remove_assembly(mob/user)
 	SEND_SIGNAL(device, COMSIG_ASSEMBLY_REMOVED_FROM_BUTTON, src, user)
 	user.put_in_hands(device)
-	to_chat(user, span_notice(LANG("obj.d613992c", list(device))))
+	to_chat(user, span_notice(LANG("obj.d613992c29801692", list(device))))
 	device = null
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/button/proc/remove_airlock_electronics(mob/user)
 	user.put_in_hands(board)
-	to_chat(user, span_notice(LANG("obj.e80f028e", null)))
+	to_chat(user, span_notice(LANG("obj.e80f028ea4b1b22f", null)))
 	req_access = list()
 	req_one_access = list()
 	board = null
@@ -300,7 +300,7 @@
 		return FALSE
 
 	if(!allowed(user))
-		balloon_alert(user, LANG("obj.1d2a5ed1", null))
+		balloon_alert(user, LANG("obj.1d2a5ed1ed67a4a4", null))
 		flick_overlay_view("[base_icon_state]-overlay-error", 1 SECONDS)
 		return FALSE
 
@@ -338,11 +338,11 @@
 	if(!panel_open)
 		return
 	if(device)
-		. += span_notice(LANG("obj.a29c2c81", list(device)))
+		. += span_notice(LANG("obj.a29c2c81072c9f24", list(device)))
 	if(board)
-		. += span_notice(LANG("obj.a29c2c81", list(board)))
+		. += span_notice(LANG("obj.a29c2c81072c9f24", list(board)))
 	if(isnull(board) && isnull(device))
-		. += span_notice(LANG("obj.5f497e14", list(src)))
+		. += span_notice(LANG("obj.5f497e1458300dd6", list(src)))
 
 /obj/machinery/button/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(panel_open)

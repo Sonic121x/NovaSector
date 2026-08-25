@@ -176,7 +176,7 @@
 
 /obj/structure/closet/secure_closet/brig/genpop/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.71f9e8f8", list(src)))
+	. += span_notice(LANG("obj.71f9e8f8cbe3c8ff", list(src)))
 
 /obj/structure/closet/secure_closet/brig/genpop/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!secure || !istype(tool, /obj/item/card/id))
@@ -185,7 +185,7 @@
 	if(!isnull(id_card))
 		return ITEM_INTERACT_BLOCKING
 
-	say(LANG("obj.81325c24", null))
+	say(LANG("obj.81325c248c011c2e", null))
 	id_card = WEAKREF(tool)
 	name = "genpop storage locker - [astype(tool, /obj/item/card/id/advanced/prisoner).registered_name]"
 	return ITEM_INTERACT_SUCCESS
@@ -199,7 +199,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/closet/secure_closet/brig/genpop/proc/clear_access()
-	say(LANG("obj.61d4bbdd", null))
+	say(LANG("obj.61d4bbdd5ab51d1e", null))
 	locked = FALSE
 	id_card = null
 	name = initial(name)

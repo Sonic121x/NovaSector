@@ -8,6 +8,7 @@
 	desc = "A strange spike with no usage."
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "tail_spike"
+	w_class = WEIGHT_CLASS_SMALL
 	/// If it has a bonus effect, this is how much that effect is
 	var/bonus_value = 10
 	/// ID of the trophy to be sent by the signal
@@ -19,7 +20,7 @@
 
 /obj/item/crusher_trophy/examine(mob/living/user)
 	. = ..()
-	. += span_notice(LANG("obj.8efd7f37", list(effect_desc())))
+	. += span_notice(LANG("obj.8efd7f375ef94987", list(effect_desc())))
 
 /// Returns a string to get added to the examine
 /obj/item/crusher_trophy/proc/effect_desc()
@@ -30,12 +31,12 @@
 /obj/item/crusher_trophy/proc/add_to(obj/item/kinetic_crusher/crusher, mob/living/user)
 	for(var/obj/item/crusher_trophy/trophy as anything in crusher.trophies)
 		if(istype(trophy, denied_type) || istype(src, trophy.denied_type))
-			to_chat(user, span_warning(LANG("obj.e6071d24", list(src, crusher))))
+			to_chat(user, span_warning(LANG("obj.e6071d2474391415", list(src, crusher))))
 			return FALSE
 	if(!user.transferItemToLoc(src, crusher))
 		return FALSE
 	crusher.trophies += src
-	to_chat(user, span_notice(LANG("obj.c1fbc99d", list(src, crusher))))
+	to_chat(user, span_notice(LANG("obj.c1fbc99dd596332a", list(src, crusher))))
 	return TRUE
 
 /// Removes the trophy from our crusher

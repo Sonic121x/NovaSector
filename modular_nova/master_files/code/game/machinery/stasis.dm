@@ -31,11 +31,11 @@
 /obj/item/circuitboard/machine/stasis/multitool_act(mob/living/user)
 	. = ..()
 	announce_when_buckled = !announce_when_buckled
-	to_chat(user, span_notice(LANG("obj.24598a9e", list(announce_when_buckled ? "Enabled" : "Disabled"))))
+	to_chat(user, span_notice(LANG("obj.24598a9e6624b117", list(announce_when_buckled ? "Enabled" : "Disabled"))))
 
 /obj/item/circuitboard/machine/stasis/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.51f81213", list(announce_when_buckled ? "enabled" : "disabled", EXAMINE_HINT("multitool"))))
+	. += span_info(LANG("obj.51f81213c22b6532", list(announce_when_buckled ? "enabled" : "disabled", EXAMINE_HINT("multitool"))))
 
 /datum/aas_config_entry/stasis_announcement
 	name = "Medical Alert: Stasis Announcement"

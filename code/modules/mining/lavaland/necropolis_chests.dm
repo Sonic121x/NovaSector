@@ -26,7 +26,7 @@
 
 	spawned_loot = TRUE
 	qdel(tool)
-	to_chat(user, span_notice(LANG("obj.18d771eb", null)))
+	to_chat(user, span_notice(LANG("obj.18d771eb872302a8", null)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/closet/crate/necropolis/tendril/before_open(mob/living/user, force)
@@ -35,7 +35,7 @@
 		return FALSE
 
 	if(!broken && !force && !spawned_loot)
-		balloon_alert(user, LANG("obj.d43b6987", null))
+		balloon_alert(user, LANG("obj.d43b69873ab22a2f", null))
 		return FALSE
 
 	return TRUE

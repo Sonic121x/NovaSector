@@ -1,7 +1,7 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ADMIN_VERB(policy_panel, R_ADMIN, "政策面板", "View all policy the server has set.", ADMIN_CATEGORY_MAIN)
 	if(!length(global.config?.policy))
-		tgui_alert(usr, LANG("datum.68d41747", null), LANG("datum.d0a5b4c1", null), list("OK"))
+		tgui_alert(usr, LANG("datum.68d417479b926623", null), LANG("datum.d0a5b4c1bdee7f06", null), list("OK"))
 		return
 
 	var/datum/policy_panel/tgui = new

@@ -15,20 +15,20 @@
 			if (data["ckey"])
 				ckey = ckey(data["ckey"])
 			else
-				ckey = input(usr,LANG("datum.bbfc039b", null),LANG("datum.bbfc039b", null),"") as text|null
+				ckey = input(usr,LANG("datum.bbfc039b9262f018", null),LANG("datum.bbfc039b9262f018", null),"") as text|null
 				if (!ckey)
 					return
 				ckey = ckey(ckey)
 			ban["ckey"] = ckey
 
 			if (get_stickyban_from_ckey(ckey))
-				to_chat(usr, span_adminnotice(LANG("datum.cacdbb36", null)), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.cacdbb367e4691c0", null)), confidential = TRUE)
 				return
 
 			if (data["reason"])
 				ban["message"] = data["reason"]
 			else
-				var/reason = input(usr,LANG("datum.ba5380f4", null),LANG("datum.ba5380f4", null),"Ban Evasion") as text|null
+				var/reason = input(usr,LANG("datum.ba5380f4e7abe6d9", null),LANG("datum.ba5380f4e7abe6d9", null),"Ban Evasion") as text|null
 				if (!reason)
 					return
 				ban["message"] = "[reason]"
@@ -60,12 +60,12 @@
 
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3", list(ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3a33b7c6a", list(ckey))), confidential = TRUE)
 				return
-			if (tgui_alert(usr,LANG("datum.8ab89f7e", list(ckey)),LANG("datum.998f7250", null),list("Yes","No")) == "No")
+			if (tgui_alert(usr,LANG("datum.8ab89f7ebccac446", list(ckey)),LANG("datum.998f725019d9d006", null),list("Yes","No")) == "No")
 				return
 			if (!get_stickyban_from_ckey(ckey))
-				to_chat(usr, span_adminnotice(LANG("datum.a40fe984", null)), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.a40fe98426230960", null)), confidential = TRUE)
 				return
 			world.SetConfig("ban",ckey, null)
 			SSstickyban.cache -= ckey
@@ -91,27 +91,27 @@
 			var/alt = ckey(data["alt"])
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3", list(ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3a33b7c6a", list(ckey))), confidential = TRUE)
 				return
 
 			var/key = LAZYACCESS(ban["keys"], alt)
 			if (!key)
-				to_chat(usr, span_adminnotice(LANG("datum.43ebc45d", list(alt, ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.43ebc45dc28f434d", list(alt, ckey))), confidential = TRUE)
 				return
 
-			if (tgui_alert(usr,LANG("datum.c15715db", list(alt, ckey)),LANG("datum.998f7250", null),list("Yes","No")) == "No")
+			if (tgui_alert(usr,LANG("datum.c15715db076cc48b", list(alt, ckey)),LANG("datum.998f725019d9d006", null),list("Yes","No")) == "No")
 				return
 
 			//we have to do this again incase something changes
 			ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice(LANG("datum.a40fe984", null)), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.a40fe98426230960", null)), confidential = TRUE)
 				return
 
 			key = LAZYACCESS(ban["keys"], alt)
 
 			if (!key)
-				to_chat(usr, span_adminnotice(LANG("datum.5f7df4e8", list(alt, ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.5f7df4e8c5878179", list(alt, ckey))), confidential = TRUE)
 				return
 
 			LAZYREMOVE(ban["keys"], alt)
@@ -136,16 +136,16 @@
 			var/ckey = data["ckey"]
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3", list(ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3a33b7c6a", list(ckey))), confidential = TRUE)
 				return
 			var/oldreason = ban["message"]
-			var/reason = input(usr,LANG("datum.ba5380f4", null),LANG("datum.ba5380f4", null),"[ban["message"]]") as text|null
+			var/reason = input(usr,LANG("datum.ba5380f4e7abe6d9", null),LANG("datum.ba5380f4e7abe6d9", null),"[ban["message"]]") as text|null
 			if (!reason || reason == oldreason)
 				return
 			//we have to do this again incase something changed while we waited for input
 			ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice(LANG("datum.a40fe984", null)), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.a40fe98426230960", null)), confidential = TRUE)
 				return
 			ban["message"] = "[reason]"
 
@@ -173,27 +173,27 @@
 			var/alt = ckey(data["alt"])
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3", list(ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3a33b7c6a", list(ckey))), confidential = TRUE)
 				return
 
 			var/key = LAZYACCESS(ban["keys"], alt)
 			if (!key)
-				to_chat(usr, span_adminnotice(LANG("datum.43ebc45d", list(alt, ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.43ebc45dc28f434d", list(alt, ckey))), confidential = TRUE)
 				return
 
-			if (tgui_alert(usr,LANG("datum.d5ce2857", list(alt, ckey)),LANG("datum.998f7250", null),list("Yes","No")) == "No")
+			if (tgui_alert(usr,LANG("datum.d5ce285700638c22", list(alt, ckey)),LANG("datum.998f725019d9d006", null),list("Yes","No")) == "No")
 				return
 
 			//we have to do this again incase something changes
 			ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice(LANG("datum.a40fe984", null)), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.a40fe98426230960", null)), confidential = TRUE)
 				return
 
 			key = LAZYACCESS(ban["keys"], alt)
 
 			if (!key)
-				to_chat(usr, span_adminnotice(LANG("datum.91cbba83", list(alt, ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.91cbba83ec58c045", list(alt, ckey))), confidential = TRUE)
 				return
 			LAZYREMOVE(ban["keys"], alt)
 			key["exempt"] = TRUE
@@ -223,26 +223,26 @@
 			var/alt = ckey(data["alt"])
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3", list(ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3a33b7c6a", list(ckey))), confidential = TRUE)
 				return
 
 			var/key = LAZYACCESS(ban["whitelist"], alt)
 			if (!key)
-				to_chat(usr, span_adminnotice(LANG("datum.0a058075", list(alt, ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.0a0580753f36b7ff", list(alt, ckey))), confidential = TRUE)
 				return
 
-			if (tgui_alert(usr,LANG("datum.be64cdb5", list(alt, ckey)),LANG("datum.998f7250", null),list("Yes","No")) == "No")
+			if (tgui_alert(usr,LANG("datum.be64cdb59d92c8e0", list(alt, ckey)),LANG("datum.998f725019d9d006", null),list("Yes","No")) == "No")
 				return
 
 			//we have to do this again incase something changes
 			ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice(LANG("datum.a40fe984", null)), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.a40fe98426230960", null)), confidential = TRUE)
 				return
 
 			key = LAZYACCESS(ban["whitelist"], alt)
 			if (!key)
-				to_chat(usr, span_adminnotice(LANG("datum.dab72434", list(alt, ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.dab7243456a9e95c", list(alt, ckey))), confidential = TRUE)
 				return
 
 			LAZYREMOVE(ban["whitelist"], alt)
@@ -268,16 +268,16 @@
 			if (!data["ckey"])
 				return
 			if (!SSdbcore.Connect())
-				to_chat(usr, span_adminnotice(LANG("datum.8d6a5cc2", null)), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.8d6a5cc2d941c4ba", null)), confidential = TRUE)
 				return
 
 			var/ckey = data["ckey"]
 
-			if (tgui_alert(usr,LANG("datum.f297a182", list(ckey)),LANG("datum.998f7250", null),list("Yes","No")) == "No")
+			if (tgui_alert(usr,LANG("datum.f297a182482dbd17", list(ckey)),LANG("datum.998f725019d9d006", null),list("Yes","No")) == "No")
 				return
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3", list(ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3a33b7c6a", list(ckey))), confidential = TRUE)
 				return
 
 			ban["timeout"] = TRUE
@@ -295,11 +295,11 @@
 			if (!data["ckey"])
 				return
 			if (!SSdbcore.Connect())
-				to_chat(usr, span_adminnotice(LANG("datum.8d6a5cc2", null)), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.8d6a5cc2d941c4ba", null)), confidential = TRUE)
 				return
 			var/ckey = data["ckey"]
 
-			if (tgui_alert(usr,LANG("datum.3c4426ac", list(ckey)),LANG("datum.998f7250", null),list("Yes","No")) == "No")
+			if (tgui_alert(usr,LANG("datum.3c4426acfc60673c", list(ckey)),LANG("datum.998f725019d9d006", null),list("Yes","No")) == "No")
 				return
 
 			var/ban = get_stickyban_from_ckey(ckey)
@@ -308,7 +308,7 @@
 				cachedban["timeout"] = FALSE
 			if (!ban)
 				if (!cachedban)
-					to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3", list(ckey))), confidential = TRUE)
+					to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3a33b7c6a", list(ckey))), confidential = TRUE)
 					return
 				ban = cachedban
 
@@ -324,15 +324,15 @@
 			if (!data["ckey"])
 				return
 			var/ckey = data["ckey"]
-			if (tgui_alert(usr,LANG("datum.93fe9291", list(ckey)),LANG("datum.998f7250", null),list("Yes","No")) == "No")
+			if (tgui_alert(usr,LANG("datum.93fe9291f04d726f", list(ckey)),LANG("datum.998f725019d9d006", null),list("Yes","No")) == "No")
 				return
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3", list(ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.e3dfb8f3a33b7c6a", list(ckey))), confidential = TRUE)
 				return
 			var/cached_ban = SSstickyban.cache[ckey]
 			if (!cached_ban)
-				to_chat(usr, span_adminnotice(LANG("datum.c82ce451", list(ckey))), confidential = TRUE)
+				to_chat(usr, span_adminnotice(LANG("datum.c82ce45165fc9b1e", list(ckey))), confidential = TRUE)
 			world.SetConfig("ban",ckey,null)
 
 			log_admin_private("[key_name(usr)] has reverted [ckey]'s sticky ban to its state at round start.")
@@ -362,19 +362,19 @@
 	if (ban["admin"])
 		. += "[ban["admin"]]<br />"
 	else
-		. += LANG("datum.f762f232", null)
-	. += LANG("datum.0fce5e3d", null)
+		. += LANG("datum.f762f23204d46ae0", null)
+	. += LANG("datum.0fce5e3d906f3f83", null)
 	for (var/key in ban["keys"])
 		if (ckey(key) == ckey)
 			continue
-		. += LANG("datum.c8b3edbc", list(HrefToken(), ckey, ckey(key), key, HrefToken(), ckey, ckey(key)))
+		. += LANG("datum.c8b3edbc0689d6dd", list(HrefToken(), ckey, ckey(key), key, HrefToken(), ckey, ckey(key)))
 
 	for (var/key in ban["whitelist"])
 		if (ckey(key) == ckey)
 			continue
-		. += LANG("datum.ee052542", list(HrefToken(), ckey, ckey(key), key, HrefToken(), ckey, ckey(key)))
+		. += LANG("datum.ee05254210410447", list(HrefToken(), ckey, ckey(key), key, HrefToken(), ckey, ckey(key)))
 
-	. += LANG("datum.6f19b335", null)
+	. += LANG("datum.6f19b3352a3c574f", null)
 
 /datum/admins/proc/stickyban_show()
 	if(!check_rights(R_BAN))

@@ -43,4 +43,4 @@
 /// Show a little extra on examine
 /datum/element/bombable_turf/proc/on_examined(turf/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice(LANG("datum.76b0ccf3", null))
+	examine_list += span_notice(LANG("datum.76b0ccf30eab24b5", null))

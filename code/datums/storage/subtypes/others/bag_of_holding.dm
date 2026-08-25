@@ -27,7 +27,7 @@
 
 /datum/storage/bag_of_holding/proc/confirm_recursive_insertion(obj/item/to_insert, mob/living/user)
 	var/area/bag_area = get_area(user)
-	var/safety = tgui_alert(user, LANG("datum.9c2eeaed", null), LANG("datum.003e605c", list(to_insert.name)), list("Proceed", "Abort"))
+	var/safety = tgui_alert(user, LANG("datum.9c2eeaed768dc8dc", null), LANG("datum.003e605c9ae9a688", list(to_insert.name)), list("Proceed", "Abort"))
 	return safety == "Proceed" \
 		&& !QDELETED(to_insert) \
 		&& !QDELETED(parent) \
@@ -40,8 +40,8 @@
 /datum/storage/bag_of_holding/proc/create_rift(obj/item/inserted, mob/living/user)
 	var/turf/rift_loc = get_turf(parent)
 	user.visible_message(
-		span_userdanger(LANG("datum.e4acc002", null)),
-		span_danger(LANG("datum.e4acc002", null)),
+		span_userdanger(LANG("datum.e4acc00221213bb9", null)),
+		span_danger(LANG("datum.e4acc00221213bb9", null)),
 	)
 
 	message_admins("[ADMIN_LOOKUPFLW(user)] detonated a bag of holding at [ADMIN_VERBOSEJMP(rift_loc)].")

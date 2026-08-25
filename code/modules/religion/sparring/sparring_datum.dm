@@ -192,7 +192,7 @@
 /datum/sparring_match/proc/violation(mob/living/carbon/human/offender, reason)
 	SIGNAL_HANDLER
 
-	to_chat(offender, span_userdanger(LANG("datum.acf1d5be", list(reason))))
+	to_chat(offender, span_userdanger(LANG("datum.acf1d5be5d4de1c3", list(reason))))
 	if(offender == chaplain)
 		chaplain_violations_allowed--
 		if(!chaplain_violations_allowed)
@@ -209,14 +209,14 @@
 			possible_punishments += PUNISHMENT_BRAND
 		switch(pick(possible_punishments))
 			if(PUNISHMENT_OMEN)
-				to_chat(interfering, span_warning(LANG("datum.510bf08b", list(chaplain))))
+				to_chat(interfering, span_warning(LANG("datum.510bf08b8c6e36f0", list(chaplain))))
 				interfering.AddComponent(/datum/component/omen)
 			if(PUNISHMENT_LIGHTNING)
-				to_chat(interfering, span_warning(LANG("datum.e7180b5e", list(GLOB.deity, chaplain))))
+				to_chat(interfering, span_warning(LANG("datum.e7180b5e4457c33e", list(GLOB.deity, chaplain))))
 				lightningbolt(interfering)
 			if(PUNISHMENT_BRAND)
 				var/mob/living/carbon/human/branded = interfering
-				to_chat(interfering, span_warning(LANG("datum.3685f1bd", list(GLOB.deity, chaplain))))
+				to_chat(interfering, span_warning(LANG("datum.3685f1bd3a14cc89", list(GLOB.deity, chaplain))))
 				var/obj/item/bodypart/branded_limb = pick(branded.get_bodyparts())
 				branded_limb.force_wound_upwards(/datum/wound/burn/flesh/severe/brand, wound_source = "divine intervention")
 				branded.emote("scream")
@@ -230,9 +230,9 @@
 	cleanup_sparring_match()
 
 	if(chaplain) //flubing means we don't know who is still standing
-		to_chat(chaplain, span_bolddanger(LANG("datum.3da716e4", null)))
+		to_chat(chaplain, span_bolddanger(LANG("datum.3da716e418221182", null)))
 	if(opponent)
-		to_chat(opponent, span_bolddanger(LANG("datum.dc9d97e2", null)))
+		to_chat(opponent, span_bolddanger(LANG("datum.dc9d97e2efb1dc0d", null)))
 	qdel(src)
 
 ///helper to remove all the effects after a match ends
@@ -246,8 +246,8 @@
 
 /datum/sparring_match/proc/end_match(mob/living/carbon/human/winner, mob/living/carbon/human/loser, violation_victory = FALSE)
 	cleanup_sparring_match()
-	to_chat(chaplain, span_bolddanger(LANG("datum.904fe4dc", list(violation_victory ? "[loser] DISQUALIFIED!" : "", winner))))
-	to_chat(opponent, span_bolddanger(LANG("datum.904fe4dc", list(violation_victory ? "[loser] DISQUALIFIED!" : "", winner))))
+	to_chat(chaplain, span_bolddanger(LANG("datum.904fe4dcb94af905", list(violation_victory ? "[loser] DISQUALIFIED!" : "", winner))))
+	to_chat(opponent, span_bolddanger(LANG("datum.904fe4dcb94af905", list(violation_victory ? "[loser] DISQUALIFIED!" : "", winner))))
 	win(winner, loser, violation_victory)
 	lose(loser, winner)
 	if(stakes_condition != STAKES_YOUR_SOUL)
@@ -263,16 +263,16 @@
 		if(STAKES_HOLY_MATCH)
 			if(winner == chaplain)
 				if(violation_victory)
-					to_chat(winner, span_warning(LANG("datum.0eb875eb", list(GLOB.deity))))
+					to_chat(winner, span_warning(LANG("datum.0eb875ebe5454fb1", list(GLOB.deity))))
 				else
-					to_chat(winner, span_nicegreen(LANG("datum.9b7dcd7e", list(GLOB.deity))))
+					to_chat(winner, span_nicegreen(LANG("datum.9b7dcd7ee0b2e19e", list(GLOB.deity))))
 				var/datum/religion_sect/spar/sect = GLOB.religious_sect
 				sect.adjust_favor(1, winner)
 				sect.past_opponents += WEAKREF(loser)
 		if(STAKES_MONEY_MATCH)
-			to_chat(winner, span_nicegreen(LANG("datum.2cd200de", list(loser))))
+			to_chat(winner, span_nicegreen(LANG("datum.2cd200decf89f4a8", list(loser))))
 		if(STAKES_YOUR_SOUL)
-			to_chat(winner, span_nicegreen(LANG("datum.e6e599b9", list(loser))))
+			to_chat(winner, span_nicegreen(LANG("datum.e6e599b9e1370472", list(loser))))
 
 /datum/sparring_match/proc/lose(mob/living/carbon/human/loser, mob/living/carbon/human/winner)
 	if(!loser) //shit happened?
@@ -283,15 +283,15 @@
 				var/datum/religion_sect/spar/sect = GLOB.religious_sect
 				sect.matches_lost++
 				if(sect.matches_lost < 3)
-					to_chat(loser, span_userdanger(LANG("datum.61814028", list(GLOB.deity))))
+					to_chat(loser, span_userdanger(LANG("datum.6181402832887aad", list(GLOB.deity))))
 					return
-				to_chat(loser, span_userdanger(LANG("datum.f44936ec", list(GLOB.deity))))
+				to_chat(loser, span_userdanger(LANG("datum.f44936ec690f02a7", list(GLOB.deity))))
 				lightningbolt(loser)
 				loser.add_mood_event("sparring", /datum/mood_event/banished)
 				loser.mind.set_holy_role(NONE)
-				to_chat(loser, span_userdanger(LANG("datum.6d078d97", null)))
+				to_chat(loser, span_userdanger(LANG("datum.6d078d9771aaacf3", null)))
 		if(STAKES_MONEY_MATCH)
-			to_chat(loser, span_userdanger(LANG("datum.786a2802", list(winner))))
+			to_chat(loser, span_userdanger(LANG("datum.786a2802abc536f9", list(winner))))
 			var/datum/bank_account/loser_account = loser.get_bank_account()
 			var/datum/bank_account/winner_account = winner.get_bank_account()
 			if(!loser_account || !winner_account)//the winner is pretty owned in this case but whatever shoulda read the fine print of the contract
@@ -301,6 +301,6 @@
 			var/turf/shard_turf = get_turf(loser)
 			if(!shard_turf)
 				return
-			to_chat(loser, span_userdanger(LANG("datum.237b870d", list(winner))))
+			to_chat(loser, span_userdanger(LANG("datum.237b870df289ce8b", list(winner))))
 			var/obj/item/soulstone/anybody/chaplain/sparring/shard = new(shard_turf)
 			INVOKE_ASYNC(shard, TYPE_PROC_REF(/obj/item/soulstone, capture_soul), loser, winner, forced = TRUE)

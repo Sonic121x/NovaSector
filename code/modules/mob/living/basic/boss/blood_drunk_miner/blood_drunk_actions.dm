@@ -61,7 +61,7 @@
 	var/reload_delay = 0.1 SECONDS
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire/kinetic_accelerator/Activate(atom/target_atom)
-	owner.visible_message(span_danger(LANG("datum.4915091d", list(owner))))
+	owner.visible_message(span_danger(LANG("datum.4915091dd2d63501", list(owner))))
 	owner.face_atom(target_atom)
 	owner.do_alert_animation(alert_delay + (shot_count - 1) * shot_delay)
 	disable_cooldown_actions()

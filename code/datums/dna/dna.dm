@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 	if(!length(actual_mutation.sources))
 		if(!actual_mutation.on_acquiring(holder))
-			to_chat(holder, span_warning(LANG("datum.5040d37b", null)))
+			to_chat(holder, span_warning(LANG("datum.5040d37b0922462a", null)))
 			qdel(actual_mutation)
 			return
 		actual_mutation.setup()
@@ -754,5 +754,5 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			return
 		eyes.Remove(src)
 		qdel(eyes)
-		visible_message(span_notice(LANG("mob.dfdd3227", list(src))), span_userdanger(LANG("mob.2a8c53b6", null)))
+		visible_message(span_notice(LANG("mob.dfdd3227a1e3d9de", list(src))), span_userdanger(LANG("mob.2a8c53b670f99867", null)))
 		addtimer(CALLBACK(src, PROC_REF(adjust_organ_loss), ORGAN_SLOT_BRAIN, 200), 2 SECONDS)

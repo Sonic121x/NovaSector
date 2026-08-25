@@ -160,7 +160,7 @@
 			return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 
 		if(hewmon.stat == HARD_CRIT && !hewmon.has_trauma_type(/datum/brain_trauma/voided))
-			hewmon.balloon_alert(src, LANG("mob.769f36ff", null))
+			hewmon.balloon_alert(src, LANG("mob.769f36ffb00bfbfe", null))
 			hewmon.Stun(5 SECONDS) // blocks some crit movement mechanics from a bunch of sources
 			return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
@@ -217,20 +217,20 @@
 /// Start the kidnap interactions, including surprises for those who are already voided
 /mob/living/basic/voidwalker/proc/try_kidnap(mob/living/carbon/human/victim)
 	if(victim.has_trauma_type(/datum/brain_trauma/voided))
-		victim.balloon_alert(src, LANG("mob.9b3f1038", null))
+		victim.balloon_alert(src, LANG("mob.9b3f1038755fa817", null))
 		new /obj/effect/temp_visual/circle_wave/unsettle(get_turf(victim))
 		victim.SetSleeping(30 SECONDS)
 		return FALSE
 
 	if(victim.stat == DEAD)
-		victim.balloon_alert(src, LANG("mob.0d5de9f8", null))
+		victim.balloon_alert(src, LANG("mob.0d5de9f8156ececb", null))
 		return FALSE
 
 	if(!IS_UNCONSCIOUS_OR_CRIT(victim)) //we're still beating them up!!
 		return TRUE
 
 	if(!istype(get_turf(victim), home_turf) && !(locate(kidnapping_decal) in get_turf(victim)))
-		victim.balloon_alert(src, LANG("mob.0f3e726d", null))
+		victim.balloon_alert(src, LANG("mob.0f3e726dec38aa9c", null))
 		return FALSE
 
 	if(!kidnapping)
@@ -306,11 +306,11 @@
 /// Attempt to convert a wall into passable voidwalker windows
 /mob/living/basic/voidwalker/proc/try_convert_wall(turf/closed/wall/our_wall)
 	if(!conversions_remaining)
-		balloon_alert(src, LANG("mob.bf80228d", null))
+		balloon_alert(src, LANG("mob.bf80228d24a39bc9", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!COOLDOWN_FINISHED(src, wall_conversion))
-		balloon_alert(src, LANG("mob.27448c90", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, wall_conversion)))))
+		balloon_alert(src, LANG("mob.27448c9079b23012", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, wall_conversion)))))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!check_wall_validity(our_wall, src, silent = FALSE))
@@ -320,7 +320,7 @@
 
 	var/obj/particles = new /obj/effect/abstract/particle_holder (our_wall, /particles/void_wall)
 
-	balloon_alert(src, LANG("mob.d763db5f", null))
+	balloon_alert(src, LANG("mob.d763db5f362d384f", null))
 	if(!do_after(src, 8 SECONDS, our_wall, cog_icon = null))
 		qdel(particles)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -350,7 +350,7 @@
 /mob/living/basic/voidwalker/proc/check_wall_validity(turf/closed/wall/wall_to_check, silent = TRUE)
 	if(wall_to_check.hardness < WALL_CONVERT_STRENGTH)
 		if(!silent)
-			balloon_alert(src, LANG("mob.efd191e8", null))
+			balloon_alert(src, LANG("mob.efd191e8dac4a04c", null))
 		return FALSE
 	return TRUE
 

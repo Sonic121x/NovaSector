@@ -22,12 +22,12 @@
 	if(DOING_INTERACTION(owner, BUILDING_WALL_ABILITY))
 		return TRUE
 	if(!isopenturf(target) || isgroundlessturf(target))
-		owner.balloon_alert(owner, LANG("datum.f3cc30a3", null))
+		owner.balloon_alert(owner, LANG("datum.f3cc30a32265c77e", null))
 		return TRUE
 	var/obj/item/stack/rods/our_rods = locate() in owner
 	var/turf/turf_target = target
 	if(turf_target.is_blocked_turf())
-		owner.balloon_alert(owner, LANG("datum.62d831a3", null))
+		owner.balloon_alert(owner, LANG("datum.62d831a3dbaf3612", null))
 		return TRUE
 	var/obj/effect/constructing_effect/effect = new(turf_target, 3 SECONDS)
 
@@ -101,7 +101,7 @@
 			if(isnull(my_sheet))
 				return
 			if(is_type_in_typecache(my_sheet, eject_blacklist))
-				to_chat(owner, span_warning(LANG("datum.64a4f43c", list(my_sheet))))
+				to_chat(owner, span_warning(LANG("datum.64a4f43cf6c59362", list(my_sheet))))
 				return
 
 			my_sheet.forceMove(owner.drop_location())

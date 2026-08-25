@@ -32,7 +32,7 @@
 
 /datum/component/itembound/proc/on_examined(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice(LANG("datum.57e89ba5", null))
+	examine_list += span_notice(LANG("datum.57e89ba535a01c80", null))
 
 /// Ensure that when we move, we still are in the container. If not in the container, remove all the traits.
 /datum/component/itembound/proc/verify_containment()

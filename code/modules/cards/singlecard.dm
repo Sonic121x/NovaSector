@@ -60,17 +60,17 @@
 		return
 
 	if(user.is_holding(src))
-		user.visible_message(span_notice(LANG("obj.4609dced", list(user, user.p_their()))), span_notice(LANG("obj.950390d4", list(cardname))))
+		user.visible_message(span_notice(LANG("obj.4609dcedaa2a24b8", list(user, user.p_their()))), span_notice(LANG("obj.950390d43735831d", list(cardname))))
 		if(blank)
-			. += span_notice(LANG("obj.3d65578b", null))
+			. += span_notice(LANG("obj.3d65578b0848b55e", null))
 	else if(HAS_TRAIT(user, TRAIT_XRAY_VISION))
-		. += span_notice(LANG("obj.4ab82a89", list(cardname)))
+		. += span_notice(LANG("obj.4ab82a8931bc523b", list(cardname)))
 	else
-		. += span_warning(LANG("obj.2d74c8c7", null))
+		. += span_warning(LANG("obj.2d74c8c725c1961b", null))
 
 	var/marked_color = getMarkedColor(user)
 	if(marked_color)
-		. += span_notice(LANG("obj.d13571f6", list(marked_color)))
+		. += span_notice(LANG("obj.d13571f6d3ef33e6", list(marked_color)))
 
 /obj/item/toy/singlecard/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(isnull(held_item) || src == held_item)
@@ -103,7 +103,7 @@
 	return NONE
 
 /obj/item/toy/singlecard/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.efda23f0", list(user, user.p_their(), src, user.p_they(), user.p_have()))))
+	user.visible_message(span_suicide(LANG("obj.efda23f034745dc8", list(user, user.p_their(), src, user.p_they(), user.p_have()))))
 	playsound(src, 'sound/items/weapons/bladeslice.ogg', 50, TRUE)
 	return BRUTELOSS
 
@@ -155,10 +155,10 @@
 		var/obj/item/toy/cards/deck/dealer_deck = tool
 		if(!HAS_TRAIT(dealer_deck, TRAIT_WIELDED)) // recycle card into deck (if unwielded)
 			if(dealer_deck.insert(src))
-				user.balloon_alert_to_viewers(LANG("obj.f9852041", null))
+				user.balloon_alert_to_viewers(LANG("obj.f9852041e2a1f995", null))
 				return ITEM_INTERACT_SUCCESS
 
-			to_chat(user, span_warning(LANG("obj.64e89a57", list(dealer_deck))))
+			to_chat(user, span_warning(LANG("obj.64e89a57828326e1", list(dealer_deck))))
 			return ITEM_INTERACT_BLOCKING
 
 		card = dealer_deck.draw(user)
@@ -172,7 +172,7 @@
 
 		if(istype(tool, /obj/item/toy/cards/deck))
 			// only decks cause a balloon alert
-			user.balloon_alert_to_viewers(LANG("obj.fdb6d5a2", null))
+			user.balloon_alert_to_viewers(LANG("obj.fdb6d5a22f7a17f3", null))
 
 		var/obj/item/toy/cards/cardhand/new_cardhand = new (drop_location())
 		new_cardhand.pixel_x = pixel_x
@@ -201,7 +201,7 @@
 
 	if(marked_cheating_color && !blank && IS_WRITING_UTENSIL(tool)) // You cheated not only the game, but yourself
 		marked_color = marked_cheating_color
-		to_chat(user, span_notice(LANG("obj.86be374a", list(marked_color, src, tool))))
+		to_chat(user, span_notice(LANG("obj.86be374a2ae0b502", list(marked_color, src, tool))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!user.can_write(tool))
@@ -226,7 +226,7 @@
 
 	Flip()
 	if(isturf(src.loc)) // only display this message when flipping in a visible spot like on a table
-		user.balloon_alert_to_viewers(LANG("obj.9d29a000", null))
+		user.balloon_alert_to_viewers(LANG("obj.9d29a000463838dc", null))
 
 /obj/item/toy/singlecard/click_alt(mob/living/carbon/human/user)
 	transform = turn(transform, 90)

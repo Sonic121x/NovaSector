@@ -32,7 +32,7 @@
 
 /obj/item/assembly/voice/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.bf306f89", null))
+	. += span_notice(LANG("obj.bf306f89df98e998", null))
 
 /obj/item/assembly/voice/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
 	. = ..()
@@ -57,15 +57,15 @@
 		if(INCLUSIVE_MODE)
 			recorded = raw_message
 			listening = FALSE
-			say(LANG("obj.3a309903", list(recorded)), sanitize = FALSE, language = message_language)
+			say(LANG("obj.3a309903fe3221ea", list(recorded)), sanitize = FALSE, language = message_language)
 		if(EXCLUSIVE_MODE)
 			recorded = raw_message
 			listening = FALSE
-			say(LANG("obj.3a309903", list(recorded)), sanitize = FALSE, language = message_language)
+			say(LANG("obj.3a309903fe3221ea", list(recorded)), sanitize = FALSE, language = message_language)
 		if(RECOGNIZER_MODE)
 			recorded = speaker.get_voice()
 			listening = FALSE
-			say(LANG("obj.d629613e", null), language = message_language)
+			say(LANG("obj.d629613e2d2a9d6f", null), language = message_language)
 		if(VOICE_SENSOR_MODE)
 			if(length(raw_message))
 				send_pulse()
@@ -91,7 +91,7 @@
 	return FALSE
 
 /obj/item/assembly/voice/proc/send_pulse()
-	visible_message(LANG("obj.c72c06d5", null), visible_message_flags = EMOTE_MESSAGE)
+	visible_message(LANG("obj.c72c06d52ce5d4a2", null), visible_message_flags = EMOTE_MESSAGE)
 	playsound(src, 'sound/effects/whirthunk.ogg', 30)
 	addtimer(CALLBACK(src, PROC_REF(pulse)), 2 SECONDS)
 
@@ -99,7 +99,7 @@
 	..()
 	mode %= modes.len
 	mode++
-	to_chat(user, span_notice(LANG("obj.f0df0b23", list(src, modes[mode]))))
+	to_chat(user, span_notice(LANG("obj.f0df0b23d6add4da", list(src, modes[mode]))))
 	listening = FALSE
 	recorded = ""
 	return TRUE
@@ -108,7 +108,7 @@
 	if(!secured || holder)
 		return FALSE
 	listening = !listening
-	say(LANG("obj.ec82e580", list(listening ? "Now" : "No longer")))
+	say(LANG("obj.ec82e5802b5f2277", list(listening ? "Now" : "No longer")))
 	return TRUE
 
 /obj/item/assembly/voice/attack_self(mob/user)

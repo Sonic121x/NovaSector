@@ -36,8 +36,8 @@
 				//start the timer and let the player know
 				life_support_timer = addtimer(CALLBACK(src, PROC_REF(life_support_failure), human_holder), life_support_failure_threshold, TIMER_STOPPABLE | TIMER_DELETE_ME)
 
-				to_chat(human_holder, span_danger(LANG("datum.6467634a", null)))
-				human_holder.balloon_alert(human_holder, LANG("datum.de273296", null))
+				to_chat(human_holder, span_danger(LANG("datum.6467634a7f40c7c1", null)))
+				human_holder.balloon_alert(human_holder, LANG("datum.de273296d0612433", null))
 				human_holder.set_jitter_if_lower(life_support_failure_threshold) //give us some foley jitter
 				return
 		else
@@ -47,8 +47,8 @@
 				life_support_timer = null
 				life_support_failed = FALSE
 
-				to_chat(human_holder, span_notice(LANG("datum.27cc09d6", null)))
-				human_holder.balloon_alert(human_holder, LANG("datum.aca9c621", null))
+				to_chat(human_holder, span_notice(LANG("datum.27cc09d663a853ba", null)))
+				human_holder.balloon_alert(human_holder, LANG("datum.aca9c621b1b4c7e1", null))
 				human_holder.adjust_jitter(-(life_support_failure_threshold / 2)) // clear half of it, wow, that was unpleasant
 
 /// Proteans already have their own built-in modsuit, so they cannot take the entombed quirk.
@@ -61,8 +61,8 @@
 	// Warn the player and begin the gradual dying process.
 	var/mob/living/carbon/human/human_holder = quirk_holder
 
-	human_holder.visible_message(span_danger(LANG("datum.727bbb9c", list(human_holder, human_holder.p_their()))), span_userdanger(LANG("datum.dd5fce1e", null)))
-	human_holder.balloon_alert(human_holder, LANG("datum.440be450", null))
+	human_holder.visible_message(span_danger(LANG("datum.727bbb9cf55e6b18", list(human_holder, human_holder.p_their()))), span_userdanger(LANG("datum.dd5fce1e079cf504", null)))
+	human_holder.balloon_alert(human_holder, LANG("datum.440be450c2e94ba9", null))
 	playsound(human_holder, 'sound/effects/alert.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE) // OH GOD THE STRESS NOISE
 	life_support_failed = TRUE
 
@@ -139,7 +139,7 @@
 
 	// If the skin itself is role-locked and the user lacks the role, fall back the skin
 	if (should_apply_lock && locked_combinations[capitalize(modsuit_skin)])
-		to_chat(human_holder, span_warning(LANG("datum.a5972d1d", list(modsuit_skin))))
+		to_chat(human_holder, span_warning(LANG("datum.a5972d1de5d8a639", list(modsuit_skin))))
 		modsuit_skin = "civilian"
 		modsuit.skin = modsuit_skin
 
@@ -155,10 +155,10 @@
 
 		if (length(allowed_hardlights))
 			modsuit_hardlight = pick(allowed_hardlights)
-			to_chat(human_holder, span_warning(LANG("datum.d9c082ca", list(modsuit_skin, lock_color_name))))
+			to_chat(human_holder, span_warning(LANG("datum.d9c082cac75bdb81", list(modsuit_skin, lock_color_name))))
 		else
 			modsuit_hardlight = "standard_blue"
-			to_chat(human_holder, span_warning(LANG("datum.18bd7041", list(modsuit_skin, lock_color_name))))
+			to_chat(human_holder, span_warning(LANG("datum.18bd7041e4d42f0d", list(modsuit_skin, lock_color_name))))
 
 	if (!modsuit_hardlight)
 		modsuit_hardlight = "standard_blue"

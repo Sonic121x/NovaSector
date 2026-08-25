@@ -38,7 +38,7 @@
 /obj/item/circuit_component/radio/Initialize(mapload)
 	. = ..()
 	if(signal_cooldown_time > 0)
-		desc = LANG("obj.0fcf2eb7", list(desc, signal_cooldown_time * 0.1))
+		desc = LANG("obj.0fcf2eb7c3395b11", list(desc, signal_cooldown_time * 0.1))
 
 /obj/item/circuit_component/radio/register_shell(atom/movable/shell)
 	parent_shell = shell

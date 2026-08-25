@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 			topiclimiter[SECOND_COUNT] = 0
 		topiclimiter[SECOND_COUNT] += 1
 		if (topiclimiter[SECOND_COUNT] > stl)
-			to_chat(src, span_danger(LANG("client.fc42b749", null)))
+			to_chat(src, span_danger(LANG("client.fc42b74922ed14a2", null)))
 			return
 
 	// Tgui Topic middleware
@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 
 	//byond bug ID:2256651
 	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
-		to_chat(src, span_danger(LANG("client.af875680", null)))
+		to_chat(src, span_danger(LANG("client.af875680826d2717", null)))
 		src << browse("...", "window=asset_cache_browser")
 		return
 	if (href_list["asset_cache_preload_data"])
@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 
 	// TGUIless adminhelp
 	if(href_list["tguiless_adminhelp"])
-		no_tgui_adminhelp(input(src, LANG("client.fe16a79e", null), LANG("client.5506e907", null)) as null|message)
+		no_tgui_adminhelp(input(src, LANG("client.fe16a79ee7310807", null), LANG("client.5506e9074b9d436c", null)) as null|message)
 		return
 
 	if(href_list["commandbar_typing"])
@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 
 /client/proc/is_content_unlocked()
 	if(!prefs.unlock_content)
-		to_chat(src, LANG("client.700fb84d", null))
+		to_chat(src, LANG("client.700fb84d5ba1275c", null))
 		return FALSE
 	return TRUE
 
@@ -226,13 +226,13 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 
 		src.last_message_count++
 		if(src.last_message_count >= SPAM_TRIGGER_AUTOMUTE)
-			to_chat(src, span_danger(LANG("client.997ed42f", null)))
+			to_chat(src, span_danger(LANG("client.997ed42f066bb9ff", null)))
 			cmd_admin_mute(src, mute_type, 1)
 			return TRUE
 		if(src.last_message_count >= SPAM_TRIGGER_WARNING)
 			//"auto-ban" sends the message that the cold and uncaring gamecode has been designed to quiash you like a bug in short measure should you continue, and it's quite intentional that the user isn't told exactly what that entails.
-			to_chat(src, span_userdanger(LANG("client.8c53756b", null)))
-			mob.balloon_alert(mob, LANG("client.e9e00d31", null))
+			to_chat(src, span_userdanger(LANG("client.8c53756b10b95fd2", null)))
+			mob.balloon_alert(mob, LANG("client.e9e00d310c6058df", null))
 			return FALSE
 	else
 		last_message = message
@@ -245,10 +245,10 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	if (holder)
 		var/admin_max_file_size = CONFIG_GET(number/upload_limit_admin)
 		if(filelength > admin_max_file_size)
-			to_chat(src, span_warning(LANG("client.9a9f9a07", list(admin_max_file_size/1024))))
+			to_chat(src, span_warning(LANG("client.9a9f9a0713bced8f", list(admin_max_file_size/1024))))
 			return FALSE
 	else if(filelength > client_max_file_size)
-		to_chat(src, span_warning(LANG("client.9a9f9a07", list(client_max_file_size/1024))))
+		to_chat(src, span_warning(LANG("client.9a9f9a0713bced8f", list(client_max_file_size/1024))))
 		return FALSE
 	return TRUE
 
@@ -387,14 +387,14 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 		if(!GLOB.admin_datums[ckey])
 			var/list/autoadmin_ranks = ranks_from_rank_name(CONFIG_GET(string/autoadmin_rank))
 			if (autoadmin_ranks.len == 0)
-				to_chat(world, LANG("client.a5f1c188", null))
+				to_chat(world, LANG("client.a5f1c1883bb1012c", null))
 			else
 				new /datum/admins(autoadmin_ranks, ckey)
 
 	if(CONFIG_GET(flag/enable_localhost_rank) && !connecting_admin && is_localhost())
 		var/datum/admin_rank/localhost_rank = new("!localhost!", RANK_SOURCE_LOCAL, R_EVERYTHING, R_DBRANKS, R_EVERYTHING) //+EVERYTHING -DBRANKS *EVERYTHING
 		if(QDELETED(localhost_rank))
-			to_chat(world, LANG("client.f76268a8", null))
+			to_chat(world, LANG("client.f76268a8a0c11b27", null))
 			return
 		new /datum/admins(list(localhost_rank), ckey, 1, 1)
 
@@ -482,18 +482,18 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	else if (byond_version < warn_version || (byond_version == warn_version && byond_build < warn_build)) //We have words for this client.
 		if(CONFIG_GET(flag/client_warn_popup))
 			// NOVA EDIT - i18n: 旧 browse 弹窗 raw browse 不过 /datum/browser 的 AC 钩子，直接复用下方 else 分支同款 LANG key 拼装（精确、含占位符/链接）
-			var/msg = "[LANG("client.832182db", null)]<br>"
+			var/msg = "[LANG("client.832182dbdabb60ea", null)]<br>"
 			msg += CONFIG_GET(string/client_warn_message) + "<br><br>"
-			msg += "[LANG("client.2becbdd0", list(byond_version, byond_build))]<br>"
-			msg += "[LANG("client.7dad8d5b", list(warn_version, warn_build))]<br>"
-			msg += "[LANG("client.b16bec0e", null)]<br>"
+			msg += "[LANG("client.2becbdd0a8e46bab", list(byond_version, byond_build))]<br>"
+			msg += "[LANG("client.7dad8d5b25fd6f1c", list(warn_version, warn_build))]<br>"
+			msg += "[LANG("client.b16bec0e848134f0", null)]<br>"
 			src << browse(HTML_SKELETON(msg), "window=warning_popup")
 		else
-			to_chat(src, span_danger(LANG("client.832182db", null)))
+			to_chat(src, span_danger(LANG("client.832182dbdabb60ea", null)))
 			to_chat(src, CONFIG_GET(string/client_warn_message))
-			to_chat(src, LANG("client.2becbdd0", list(byond_version, byond_build)))
-			to_chat(src, LANG("client.7dad8d5b", list(warn_version, warn_build)))
-			to_chat(src, LANG("client.b16bec0e", null))
+			to_chat(src, LANG("client.2becbdd0a8e46bab", list(byond_version, byond_build)))
+			to_chat(src, LANG("client.7dad8d5b25fd6f1c", list(warn_version, warn_build)))
+			to_chat(src, LANG("client.b16bec0e848134f0", null))
 
 	if (connection == "web" && !connecting_admin)
 		if (!CONFIG_GET(flag/allow_webclient))
@@ -569,7 +569,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
-		to_chat(src, span_info(LANG("client.b1b23f96", null)))
+		to_chat(src, span_info(LANG("client.b1b23f962e339966", null)))
 		if(CONFIG_GET(flag/aggressive_changelog))
 			changelog()
 
@@ -582,7 +582,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 		convert_notes_sql(ckey)
 	display_admin_messages(src)
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
-		to_chat(src, span_warning(LANG("client.8d4be7fa", null)))
+		to_chat(src, span_warning(LANG("client.8d4be7fa5b7f02bd", null)))
 
 	update_ambience_pref(prefs.read_preference(/datum/preference/numeric/volume/sound_ambience_volume))
 	check_ip_intel()
@@ -750,7 +750,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
 			if(panic_addr && !connectiontopic_a["redirect"])
 				var/panic_name = CONFIG_GET(string/panic_server_name)
-				to_chat(src, span_notice(LANG("client.4cf0422f", list(panic_name ? panic_name : panic_addr))))
+				to_chat(src, span_notice(LANG("client.4cf0422f0bd8bc9c", list(panic_name ? panic_name : panic_addr))))
 				winset(src, null, "command=.options")
 				src << link("[panic_addr]?redirect=1")
 			qdel(query_client_in_db)
@@ -960,7 +960,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 		clicklimiter[SECOND_COUNT] += 1 + (!!ab)
 
 		if (clicklimiter[SECOND_COUNT] > scl)
-			to_chat(src, span_danger(LANG("client.693418f7", null)))
+			to_chat(src, span_danger(LANG("client.693418f7dad08f89", null)))
 			return
 
 	//check if the server is overloaded and if it is then queue up the click for next tick
@@ -1131,7 +1131,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	var/new_duration = world.realtime + duration
 	if(prefs.hearted_until > new_duration)
 		return
-	to_chat(src, span_nicegreen(LANG("client.993ec091", null)))
+	to_chat(src, span_nicegreen(LANG("client.993ec091927e35cc", null)))
 	prefs.hearted_until = new_duration
 	prefs.hearted = TRUE
 	prefs.save_preferences()
@@ -1172,7 +1172,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 /client/proc/check_panel_loaded()
 	if(stat_panel.is_ready())
 		return
-	to_chat(src, span_userdanger(LANG("client.d5f28dbd", list(REF(src)))))
+	to_chat(src, span_userdanger(LANG("client.d5f28dbd77ad8c63", list(REF(src)))))
 
 /client/proc/open_filter_editor(atom/in_atom)
 	if(holder)

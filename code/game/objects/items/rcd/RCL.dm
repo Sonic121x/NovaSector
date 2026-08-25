@@ -44,7 +44,7 @@
 		return FALSE
 	. = TRUE
 	if(ghetto && prob(10)) //Is it a ghetto RCL? If so, give it a 10% chance to fall apart
-		to_chat(user, span_warning(LANG("obj.7856c70a", null)))
+		to_chat(user, span_warning(LANG("obj.7856c70a2129a4b2", null)))
 		while(loaded.amount > 30) //There are only two kinds of situations: "nodiff" (60,90), or "diff" (31-59, 61-89)
 			var/diff = loaded.amount % 30
 			if(diff)
@@ -57,7 +57,7 @@
 		return
 
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice(LANG("obj.0aa5abaa", null)))
+	to_chat(user, span_notice(LANG("obj.0aa5abaa2652170d", null)))
 	while(loaded.amount > 30) //There are only two kinds of situations: "nodiff" (60,90), or "diff" (31-59, 61-89)
 		var/diff = loaded.amount % 30
 		if(diff)
@@ -80,7 +80,7 @@
 
 	if(!loaded)
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning(LANG("obj.1dbf8014", list(src))))
+			to_chat(user, span_warning(LANG("obj.1dbf8014c030d016", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		loaded = tool //tool.loc is src at this point.
@@ -99,13 +99,13 @@
 	loaded.amount += transfer_amount
 
 	update_appearance()
-	to_chat(user, span_notice(LANG("obj.627e44f8", list(src, loaded.amount))))
+	to_chat(user, span_notice(LANG("obj.627e44f861ccdedf", list(src, loaded.amount))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/rcl/examine(mob/user)
 	. = ..()
 	if(loaded)
-		. += span_info(LANG("obj.085e0c5a", list(loaded.amount, max_amount)))
+		. += span_info(LANG("obj.085e0c5a0f81b112", list(loaded.amount, max_amount)))
 
 /obj/item/rcl/Destroy()
 	QDEL_NULL(loaded)
@@ -138,7 +138,7 @@
 	update_appearance()
 	if(!loaded || !loaded.amount)
 		if(loud)
-			to_chat(user, span_notice(LANG("obj.1501ce08", list(src))))
+			to_chat(user, span_notice(LANG("obj.1501ce085ad85b75", list(src))))
 		if(loaded)
 			QDEL_NULL(loaded)
 			loaded = null
@@ -190,11 +190,11 @@
 	if(!isturf(user.loc))
 		return
 	if(is_empty(user, 0))
-		balloon_alert(user, LANG("obj.54e0bf49", null))
+		balloon_alert(user, LANG("obj.54e0bf49b49e0037", null))
 		return
 
 	if(prob(2) && ghetto) //Give ghetto RCLs a 2% chance to jam, requiring it to be reactviated manually.
-		balloon_alert(user, LANG("obj.e8443221", null))
+		balloon_alert(user, LANG("obj.e84432210c916971", null))
 		active = FALSE
 		return
 	else
@@ -277,7 +277,7 @@
 	if(!isturf(user.loc))
 		return
 	if(is_empty(user, 0))
-		to_chat(user, span_warning(LANG("obj.9104a6b2", list(src))))
+		to_chat(user, span_warning(LANG("obj.9104a6b2d5c7ff59", list(src))))
 		return
 
 	var/turf/T = get_turf(user)
@@ -313,7 +313,7 @@
 		if (current_color_index > colors.len)
 			current_color_index = 1
 		var/cwname = colors[current_color_index]
-		to_chat(user, LANG("obj.691aed39", list(cwname)))
+		to_chat(user, LANG("obj.691aed39c4b1492b", list(cwname)))
 		if(loaded)
 			loaded.set_pipecleaner_color(colors[current_color_index])
 		if(wiring_gui_menu)

@@ -103,7 +103,7 @@
 /obj/machinery/power/solar/crowbar_act(mob/user, obj/item/I)
 	if(I.use_tool(src, user, 0))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		user.visible_message(span_notice(LANG("obj.41d6fa40", list(user, src))), span_notice(LANG("obj.e83f2a0b", list(src))))
+		user.visible_message(span_notice(LANG("obj.41d6fa40fcd55c73", list(user, src))), span_notice(LANG("obj.e83f2a0b0cd3a6a8", list(src))))
 		deconstruct(TRUE)
 	return TRUE
 
@@ -297,17 +297,17 @@
 	if(tracker)
 		//prevent construction if something dense's on our tile
 		if(solarturf.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-			balloon_alert(user, LANG("obj.7dd60dd8", null))
+			balloon_alert(user, LANG("obj.7dd60dd859724567", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!istype(tool, /obj/item/stack/sheet/glass))
-			to_chat(user, span_warning(LANG("obj.0075492d", null)))
+			to_chat(user, span_warning(LANG("obj.0075492da5b20d6b", null)))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/stack/sheet/my_sheet = tool
 		if(!my_sheet.use(2))
-			to_chat(user, span_warning(LANG("obj.b74f8f2c", null)))
+			to_chat(user, span_warning(LANG("obj.b74f8f2c77f7c169", null)))
 			return ITEM_INTERACT_BLOCKING
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-		user.visible_message(span_notice(LANG("obj.0ea81752", list(user))),span_notice(LANG("obj.e92c0650", null)))
+		user.visible_message(span_notice(LANG("obj.0ea817524e805ea0", list(user))),span_notice(LANG("obj.e92c065087d7bc0f", null)))
 		new /obj/machinery/power/tracker/(get_turf(src), src)
 		return ITEM_INTERACT_SUCCESS
 
@@ -317,7 +317,7 @@
 		tracker = TRUE
 		update_appearance()
 		qdel(tool)
-		user.visible_message(span_notice(LANG("obj.48ce76ed", list(user))), span_notice(LANG("obj.4d00b9e1", null)))
+		user.visible_message(span_notice(LANG("obj.48ce76ede835c187", list(user))), span_notice(LANG("obj.4d00b9e1e613b2e4", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	//make a list of all the glass
@@ -332,18 +332,18 @@
 		//items that arent used above, or arent usable glass will make it here.
 		//so we check if its reinfocred glass, or some other item
 		if(istype(tool, /obj/item/stack/sheet/rglass) || istype(tool, /obj/item/stack/sheet/plasmarglass))
-			to_chat(user, span_warning(LANG("obj.632ae05a", null)))
+			to_chat(user, span_warning(LANG("obj.632ae05afe614851", null)))
 		//an else statement can be put here if you want something to happen to all the misc items that make it this far
 		return ITEM_INTERACT_BLOCKING
 
 	//prevent construction if something dense's on our tile
 	if(solarturf.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-		balloon_alert(user, LANG("obj.7dd60dd8", null))
+		balloon_alert(user, LANG("obj.7dd60dd859724567", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(is_glass_sheet(tool))
 		if(!anchored)
-			to_chat(user, span_warning(LANG("obj.dddc80b6", null)))
+			to_chat(user, span_warning(LANG("obj.dddc80b6f04f41cc", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		var/list/glass_material_to_tier = list(
@@ -355,12 +355,12 @@
 
 		var/obj/item/stack/sheet/my_sheet = tool
 		if(!my_sheet.use(2))
-			to_chat(user, span_warning(LANG("obj.d3d37de3", null)))
+			to_chat(user, span_warning(LANG("obj.d3d37de3875e5ab9", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		var/datum/material/glass_material = my_sheet.material_type
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-		user.visible_message(span_notice(LANG("obj.0ea81752", list(user))), span_notice(LANG("obj.e92c0650", null)))
+		user.visible_message(span_notice(LANG("obj.0ea817524e805ea0", list(user))), span_notice(LANG("obj.e92c065087d7bc0f", null)))
 		var/obj/machinery/power/solar/mySolar = new /obj/machinery/power/solar(get_turf(src), src)
 		mySolar.power_tier = glass_material_to_tier[glass_material]
 		mySolar.material_type = glass_material
@@ -375,21 +375,21 @@
 	if(!isturf(loc))
 		return NONE
 	if(!solarturf.can_have_cabling()) //allows catwalks
-		balloon_alert(user, LANG("obj.03dee60e", null))
+		balloon_alert(user, LANG("obj.03dee60e25041a1b", null))
 		return ITEM_INTERACT_BLOCKING
 	for(var/obj/stuff_in_the_way in solarturf) //prevent anchoring on other machinery or solar assemblies
 		if(stuff_in_the_way == src)
 			continue
 		if(istype(stuff_in_the_way, /obj/item/solar_assembly) && stuff_in_the_way.anchored)
-			balloon_alert(user, LANG("obj.73cf5aa4", null))
+			balloon_alert(user, LANG("obj.73cf5aa4b8f8717a", null))
 			return ITEM_INTERACT_BLOCKING
 		if((stuff_in_the_way.density) && !(stuff_in_the_way.flags_1 & ON_BORDER_1))
-			balloon_alert(user, LANG("obj.7dd60dd8", null))
+			balloon_alert(user, LANG("obj.7dd60dd859724567", null))
 			return ITEM_INTERACT_BLOCKING
 	set_anchored(!anchored)
 	user.visible_message(
-		span_notice(LANG("obj.7f4a0e52", list(user, anchored ? null : "un", anchored ? " into place" : null))),
-		span_notice(LANG("obj.ddbfc3b2", list(anchored ? null : "un", anchored ? " into place" : null))),
+		span_notice(LANG("obj.7f4a0e52aa7a06a3", list(user, anchored ? null : "un", anchored ? " into place" : null))),
+		span_notice(LANG("obj.ddbfc3b2ba71d82f", list(anchored ? null : "un", anchored ? " into place" : null))),
 	)
 	tool.play_tool_sound(src, 75)
 	return ITEM_INTERACT_SUCCESS
@@ -400,8 +400,8 @@
 	new /obj/item/electronics/tracker(src.loc)
 	tracker = FALSE
 	update_appearance()
-	user.visible_message(span_notice(LANG("obj.7ea665eb", list(user))), \
-						span_notice(LANG("obj.48861cc1", null)))
+	user.visible_message(span_notice(LANG("obj.7ea665ebd9805346", list(user))), \
+						span_notice(LANG("obj.48861cc1859ab890", null)))
 	return ITEM_INTERACT_SUCCESS
 
 //
@@ -577,12 +577,12 @@
 		return ITEM_INTERACT_BLOCKING
 	var/obj/structure/frame/computer/new_computer = new /obj/structure/frame/computer(src.loc)
 	if (src.machine_stat & BROKEN)
-		to_chat(user, span_notice(LANG("obj.f8d51e40", null)))
+		to_chat(user, span_notice(LANG("obj.f8d51e408a039d97", null)))
 		new /obj/item/shard( src.loc )
 		new_computer.state = 3
 		new_computer.icon_state = "3"
 	else
-		to_chat(user, span_notice(LANG("obj.a211ab7d", null)))
+		to_chat(user, span_notice(LANG("obj.a211ab7dd6a43dbf", null)))
 		new_computer.state = 4
 		new_computer.icon_state = "4"
 	for (var/obj/within in src)

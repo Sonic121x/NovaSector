@@ -48,19 +48,19 @@
 
 /datum/component/crank_recharge/proc/crank(obj/source, mob/user)
 	if(charging_cell.charge >= charging_cell.maxcharge)
-		source.balloon_alert(user, LANG("datum.70b1edda", null))
+		source.balloon_alert(user, LANG("datum.70b1edda3a1d105c", null))
 		return
 	if(is_charging)
 		return
 	if(spin_to_win && !HAS_TRAIT(user, TRAIT_GUNFLIP))
-		source.balloon_alert(user, LANG("datum.3360985b", null))
+		source.balloon_alert(user, LANG("datum.3360985b2b62aa77", null))
 		return
 
 	is_charging = TRUE
 	if(COOLDOWN_FINISHED(src, charge_sound_cooldown))
 		COOLDOWN_START(src, charge_sound_cooldown, charge_sound_cooldown_time)
 		playsound(source, charge_sound, 40)
-	source.balloon_alert(user, LANG("datum.b766a769", null))
+	source.balloon_alert(user, LANG("datum.b766a769d4e181f3", null))
 	if(!do_after(user, cooldown_time, source, interaction_key = DOAFTER_SOURCE_CHARGE_CRANKRECHARGE, timed_action_flags = charge_move))
 		is_charging = FALSE
 		return
@@ -70,4 +70,4 @@
 	is_charging = FALSE
 	if(spin_to_win)
 		source.SpinAnimation(4, 2) //What a badass
-	source.balloon_alert(user, LANG("datum.f0d483fe", null))
+	source.balloon_alert(user, LANG("datum.f0d483feee6ab51c", null))

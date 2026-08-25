@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(newbie_guard_active)
 	if(target_client)
 		to_chat(
 			target_client,
-			span_greenannounce("【新人软管制 / New Player Safeguard】限制已解除。Restrictions lifted.<br>[reason]"),
+			span_greenannounce(LANG("datum.e88bfb9728dade44", list(reason))),
 			type = MESSAGE_TYPE_ADMINPM,
 			skip_i18n_fallback = TRUE,
 		)
@@ -194,7 +194,7 @@ GLOBAL_LIST_EMPTY(newbie_guard_active)
 		if(owner?.client)
 			to_chat(
 				owner,
-				span_greenannounce("【新人软管制 / New Player Safeguard】管理员已关闭该功能，限制解除。<br>An admin disabled this feature; your restrictions are lifted."),
+				span_greenannounce(LANG("datum.16b37a46ed6e99a2", null)),
 				type = MESSAGE_TYPE_ADMINPM,
 				skip_i18n_fallback = TRUE,
 			)
@@ -240,7 +240,7 @@ GLOBAL_LIST_EMPTY(newbie_guard_active)
 		if(target_client)
 			to_chat(
 				target_client,
-				span_warning("【新人软管制 / New Player Safeguard】管理员驳回了你的申诉。你仍然可以通过存活来自动解除限制。<br>An admin declined your appeal. Staying alive still lifts the limits automatically."),
+				span_warning(LANG("datum.ecc7f169da72640e", null)),
 				type = MESSAGE_TYPE_ADMINPM,
 				skip_i18n_fallback = TRUE,
 			)
@@ -256,13 +256,13 @@ GLOBAL_LIST_EMPTY(newbie_guard_active)
 
 	var/mob/living/appealing_living = appealing.mob
 	if(!istype(appealing_living) || !appealing_living.GetComponent(/datum/component/newbie_guard))
-		to_chat(appealing, span_warning("你当前没有受到新人软管制，无需申诉。<br>You are not under the newbie safeguard; there is nothing to appeal."), type = MESSAGE_TYPE_ADMINPM, skip_i18n_fallback = TRUE)
+		to_chat(appealing, span_warning(LANG("datum.806ad025ce2d7e0d", null)), type = MESSAGE_TYPE_ADMINPM, skip_i18n_fallback = TRUE)
 		return
 
 	var/last_appeal = GLOB.newbie_guard_appeal_time[appealing.ckey]
 	if(last_appeal && (world.time - last_appeal) < NEWBIE_GUARD_APPEAL_COOLDOWN)
 		var/wait_seconds = round((NEWBIE_GUARD_APPEAL_COOLDOWN - (world.time - last_appeal)) / 10)
-		to_chat(appealing, span_warning("你刚刚已经提交过申诉，请等待 [wait_seconds] 秒后再试。<br>You just filed an appeal; try again in [wait_seconds] seconds."), type = MESSAGE_TYPE_ADMINPM, skip_i18n_fallback = TRUE)
+		to_chat(appealing, span_warning(LANG("datum.7ebb4fa81cb09f39", list(wait_seconds, wait_seconds))), type = MESSAGE_TYPE_ADMINPM, skip_i18n_fallback = TRUE)
 		return
 
 	GLOB.newbie_guard_appeal_time[appealing.ckey] = world.time
@@ -271,7 +271,7 @@ GLOBAL_LIST_EMPTY(newbie_guard_active)
 	var/deny_link = "<a href='byond://?src=[REF(src)];newbie_guard_deny=[appealing.ckey]'>驳回</a>"
 	message_admins("【新人软管制申诉】[key_name_admin(appealing)]（IP [appealing.address]）请求解除限制。 \[[approve_link]\] \[[deny_link]\]")
 	log_admin("[key_name(appealing)] filed a newbie guard appeal.")
-	to_chat(appealing, span_notice("【新人软管制 / New Player Safeguard】申诉已提交，请等待管理员处理。<br>Your appeal has been sent; please wait for an admin."), type = MESSAGE_TYPE_ADMINPM, skip_i18n_fallback = TRUE)
+	to_chat(appealing, span_notice(LANG("datum.cc258d6648e499e8", null)), type = MESSAGE_TYPE_ADMINPM, skip_i18n_fallback = TRUE)
 
 /// Called from /mob/living/Login().
 /proc/newbie_guard_on_login(mob/living/target)

@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(title)
 /datum/controller/subsystem/title/Initialize()
 	var/dat
 	if(!fexists("[global.config.directory]/nova/title_html.txt"))
-		to_chat(world, span_boldwarning(LANG("datum.627208a5", null)))
+		to_chat(world, span_boldwarning(LANG("datum.627208a55dece665", null)))
 		dat = DEFAULT_TITLE_HTML
 	else
 		dat = file2text("[global.config.directory]/nova/title_html.txt")

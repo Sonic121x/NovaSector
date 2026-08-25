@@ -24,7 +24,7 @@
 	VAR_PROTECTED/obj/item/reagent_containers/applicator/pill/spawn_type
 
 /obj/item/storage/pill_bottle/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.897f80b6", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.897f80b6104f4ed6", list(user, src, user.p_theyre()))))
 	return TOXLOSS
 
 /obj/item/storage/pill_bottle/PopulateContents()

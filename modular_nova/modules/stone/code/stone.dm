@@ -65,15 +65,15 @@ GLOBAL_LIST_INIT(stone_recipes, list (
 
 /obj/item/stack/stone/examine()
 	. = ..()
-	. += span_notice(LANG("obj.633fe518", null))
+	. += span_notice(LANG("obj.633fe5184c700eca", null))
 
 /obj/item/stack/stone/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if((tool.tool_behaviour != TOOL_MINING) && !(istype(tool, /obj/item/chisel)))
 		return ..()
 	playsound(src,  'sound/effects/pickaxe/picaxe1.ogg', 50, TRUE)
-	balloon_alert_to_viewers(LANG("obj.33079829", null))
+	balloon_alert_to_viewers(LANG("obj.33079829a5a3116c", null))
 	if(!do_after(user, 5 SECONDS, target = src))
-		balloon_alert_to_viewers(LANG("obj.21e88fc0", null))
+		balloon_alert_to_viewers(LANG("obj.21e88fc0995288d5", null))
 		return ITEM_INTERACT_BLOCKING
 	new /obj/item/stack/sheet/mineral/stone(get_turf(src), amount)
 	qdel(src)
@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(stone_recipes, list (
 	if(!item_used.tool_start_check(user, amount = 0))
 		return FALSE
 
-	balloon_alert_to_viewers(LANG("turf.0aee0066", null))
+	balloon_alert_to_viewers(LANG("turf.0aee0066ca7ef0b7", null))
 
 	if(!item_used.use_tool(src, user, 5 SECONDS))
 		return FALSE

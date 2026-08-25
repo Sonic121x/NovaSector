@@ -82,7 +82,7 @@
 	if(!isturf(user.loc))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("turf.a8f0e832", null))
+	balloon_alert(user, LANG("turf.a8f0e8323f5959f2", null))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
@@ -108,7 +108,7 @@
 	if(!dug && !broken)
 		return TRUE
 	if(user)
-		balloon_alert(user, LANG("turf.b5a73f00", null))
+		balloon_alert(user, LANG("turf.b5a73f00e80616cb", null))
 	return FALSE
 
 ///Refills the previously dug tile
@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 
 /turf/open/misc/asteroid/snow/burn_tile()
 	if(!burnt)
-		visible_message(span_danger(LANG("turf.2ffc95b8", list(src))))
+		visible_message(span_danger(LANG("turf.2ffc95b8b99f7379", list(src))))
 		slowdown = 0
 		burnt = TRUE
 		update_appearance()
@@ -386,21 +386,21 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 	if(dug)
 		if(tool.use(DIG_SHEET_AMOUNT))
 			user.visible_message(
-				span_notice(LANG("turf.7d192565", list(user, src))),
-				span_notice(LANG("turf.8febbfc7", list(src))),
+				span_notice(LANG("turf.7d192565965de867", list(user, src))),
+				span_notice(LANG("turf.8febbfc71df8e937", list(src))),
 				vision_distance = COMBAT_MESSAGE_RANGE,
 			)
 			refill_dug()
 			return ITEM_INTERACT_SUCCESS
 
-		to_chat(user, LANG("turf.5c447ac1", list(tool.name)))
+		to_chat(user, LANG("turf.5c447ac1a231f680", list(tool.name)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(footprint_entrance_dirs || footprint_exit_dirs)
 		if(tool.use(1))
 			user.visible_message(
-				span_notice(LANG("turf.4027f5a4", list(user, src))),
-				span_notice(LANG("turf.77a07424", list(src))),
+				span_notice(LANG("turf.4027f5a4a2d3cc36", list(user, src))),
+				span_notice(LANG("turf.77a07424a6211b0f", list(src))),
 				vision_distance = COMBAT_MESSAGE_RANGE,
 			)
 			clear_footprints()

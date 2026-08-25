@@ -82,7 +82,7 @@
 /obj/machinery/portable_atmospherics/canister/interact(mob/user)
 	. = ..()
 	if(!allowed(user))
-		to_chat(user, span_alert(LANG("obj.5806cf78", null)))
+		to_chat(user, span_alert(LANG("obj.5806cf78b39fc01a", null)))
 		playsound(src, 'sound/machines/compiler/compiler-failure.ogg', 50, TRUE)
 		return
 
@@ -109,15 +109,15 @@
 /obj/machinery/portable_atmospherics/canister/examine(user)
 	. = ..()
 	if(atom_integrity < max_integrity)
-		. += span_notice(LANG("obj.98771757", null))
-	. += span_notice(LANG("obj.a9cd71f2", list(siunit_pressure(initial(pressure_limit), 0), siunit(temp_limit, "K", 0))))
-	. += span_notice(LANG("obj.0fe8027b", null))
+		. += span_notice(LANG("obj.98771757b5b039e3", null))
+	. += span_notice(LANG("obj.a9cd71f254fb20f5", list(siunit_pressure(initial(pressure_limit), 0), siunit(temp_limit, "K", 0))))
+	. += span_notice(LANG("obj.0fe8027b21e8b623", null))
 	if(internal_cell)
-		. += span_notice(LANG("obj.5c06ab5d", list(internal_cell.percent())))
+		. += span_notice(LANG("obj.5c06ab5de666ad8e", list(internal_cell.percent())))
 	else
-		. += span_notice(LANG("obj.0a6205da", null))
+		. += span_notice(LANG("obj.0a6205dad7fb21d6", null))
 	if(panel_open)
-		. += span_notice(LANG("obj.d0dcb893", null))
+		. += span_notice(LANG("obj.d0dcb8934459c4e6", null))
 
 // Please keep the canister types sorted
 // Basic canister per gas below here
@@ -419,7 +419,7 @@
 
 	var/obj/item/stock_parts/power_store/cell/active_cell = tool
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.7fab4213", null))
+		balloon_alert(user, LANG("obj.7fab421331b2ed6d", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(active_cell, src))
@@ -427,9 +427,9 @@
 
 	if(internal_cell)
 		user.put_in_hands(internal_cell)
-		balloon_alert(user, LANG("obj.8abfa2bc", null))
+		balloon_alert(user, LANG("obj.8abfa2bc219e2946", null))
 	else
-		balloon_alert(user, LANG("obj.65590cb7", null))
+		balloon_alert(user, LANG("obj.65590cb7d3fe2620", null))
 	internal_cell = active_cell
 	return ITEM_INTERACT_SUCCESS
 
@@ -441,7 +441,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	internal_cell.forceMove(drop_location())
-	balloon_alert(user, LANG("obj.0dfdca6e", null))
+	balloon_alert(user, LANG("obj.0dfdca6e675f39e2", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/portable_atmospherics/canister/welder_act_secondary(mob/living/user, obj/item/I)
@@ -450,12 +450,12 @@
 
 	var/pressure = air_contents.return_pressure()
 	if(pressure > 300)
-		to_chat(user, span_alert(LANG("obj.12619175", list(src))))
+		to_chat(user, span_alert(LANG("obj.12619175e936e861", list(src))))
 		message_admins("[src] deconstructed by [ADMIN_LOOKUPFLW(user)]")
 		user.log_message("deconstructed [src] with a welder.", LOG_GAME)
-	to_chat(user, span_notice(LANG("obj.d3772e3f", list(src))))
+	to_chat(user, span_notice(LANG("obj.d3772e3f85248841", list(src))))
 	if(I.use_tool(src, user, 3 SECONDS, volume=50))
-		to_chat(user, span_notice(LANG("obj.bb48c3d8", list(src))))
+		to_chat(user, span_notice(LANG("obj.bb48c3d8cc1eb6ca", list(src))))
 		deconstruct(TRUE)
 
 	return ITEM_INTERACT_SUCCESS
@@ -621,7 +621,7 @@
 
 	switch(action)
 		if("relabel")
-			var/label = tgui_input_list(usr, LANG("obj.6bca2b58", null), LANG("obj.de5b4446", null), GLOB.gas_id_to_canister)
+			var/label = tgui_input_list(usr, LANG("obj.6bca2b5842c9bf7d", null), LANG("obj.de5b4446104c472f", null), GLOB.gas_id_to_canister)
 			if(isnull(label))
 				return
 			var/newtype = GLOB.gas_id_to_canister[label]
@@ -647,7 +647,7 @@
 				pressure = CAN_MAX_RELEASE_PRESSURE
 				. = TRUE
 			else if(pressure == "input")
-				pressure = tgui_input_number(usr, message = "New release pressure", title = "Canister Pressure", default = release_pressure, max_value = CAN_MAX_RELEASE_PRESSURE, min_value = CAN_MIN_RELEASE_PRESSURE, round_value = FALSE)
+				pressure = tgui_input_number(usr, message = LANG("obj.cd24599e9a80bea3", null), title = LANG("obj.6d99668e8dfacc65", null), default = release_pressure, max_value = CAN_MAX_RELEASE_PRESSURE, min_value = CAN_MIN_RELEASE_PRESSURE, round_value = FALSE)
 				if(!isnull(pressure))
 					. = TRUE
 			else if(text2num(pressure) != null)

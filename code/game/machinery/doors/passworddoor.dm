@@ -104,7 +104,7 @@
 			playsound(src, door_deny, 30, TRUE)
 
 /obj/machinery/door/password/proc/ask_for_pass(mob/user)
-	var/guess = tgui_input_text(user, LANG("obj.d627691a", null), LANG("obj.3ee825ef", null), max_length = MAX_MESSAGE_LEN)
+	var/guess = tgui_input_text(user, LANG("obj.d627691adfa8e272", null), LANG("obj.3ee825ef1a9c33b9", null), max_length = MAX_MESSAGE_LEN)
 	if(guess == password)
 		return TRUE
 	return FALSE

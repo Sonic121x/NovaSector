@@ -35,7 +35,7 @@
 		selected = pick(candidates)
 
 	if(!selected)
-		to_chat(invoker, span_brass(LANG("datum.55e31e60", null)))
+		to_chat(invoker, span_brass(LANG("datum.55e31e60f0925e08", null)))
 		invoke_fail()
 
 		if(invocation_chant_timer)
@@ -49,9 +49,9 @@
 
 /datum/scripture/marauder/invoke_success()
 	var/mob/living/basic/clockwork_marauder/new_mob = new (get_turf(invoker))
-	new_mob.visible_message(span_notice(LANG("datum.85df479e", list(new_mob))))
+	new_mob.visible_message(span_notice(LANG("datum.85df479e2d0b2d1d", list(new_mob))))
 	new_mob.PossessByPlayer(selected.key)
-	to_chat(new_mob, span_brass(LANG("datum.8504fe27", list(new_mob.shield_health))))
+	to_chat(new_mob, span_brass(LANG("datum.8504fe2798a10e5a", list(new_mob.shield_health))))
 	selected = null
 
 
@@ -61,7 +61,7 @@
 		return FALSE
 
 	if(length(GLOB.clockwork_marauders) >= MAXIMUM_MARAUDERS)
-		to_chat(user, span_brass(LANG("datum.abea725a", list(MAXIMUM_MARAUDERS))))
+		to_chat(user, span_brass(LANG("datum.abea725a58fd6093", list(MAXIMUM_MARAUDERS))))
 		return FALSE
 
 	return TRUE

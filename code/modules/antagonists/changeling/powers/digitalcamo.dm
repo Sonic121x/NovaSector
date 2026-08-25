@@ -12,10 +12,10 @@
 /datum/action/changeling/digitalcamo/sting_action(mob/user)
 	..()
 	if(active)
-		to_chat(user, span_notice(LANG("datum.47c70ecd", null)))
+		to_chat(user, span_notice(LANG("datum.47c70ecd27b56a8f", null)))
 		user.RemoveElement(/datum/element/digitalcamo)
 	else
-		to_chat(user, span_notice(LANG("datum.97a7edb2", null)))
+		to_chat(user, span_notice(LANG("datum.97a7edb21ee08c0c", null)))
 		user.AddElement(/datum/element/digitalcamo)
 	active = !active
 	return TRUE

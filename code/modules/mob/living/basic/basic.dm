@@ -7,7 +7,7 @@
 	health = 20
 	maxHealth = 20
 	max_stamina = BASIC_MOB_STAMINA_MATCH_HEALTH
-	gender = PLURAL
+	gender = PLURAL // Plural means we randomize by default.
 	living_flags = MOVES_ON_ITS_OWN
 	status_flags = CANPUSH | CANSTUN
 	fire_stack_decay_rate = -5 // Reasonably fast as NPCs will not usually actively extinguish themselves
@@ -86,6 +86,9 @@
 	///We only try to show a gibbing animation if this exists.
 	var/icon_gib = null
 
+	/// If we randomize our gender when its default is set to plural
+	var/randomize_gender = TRUE
+
 	///If the mob can be spawned with a gold slime core. HOSTILE_SPAWN are spawned with plasma, FRIENDLY_SPAWN are spawned with blood.
 	var/gold_core_spawnable = NO_SPAWN
 	///Sentience type, for slime potions. SHOULD BE AN ELEMENT BUT I DONT CARE ABOUT IT FOR NOW
@@ -108,7 +111,7 @@
 /mob/living/basic/Initialize(mapload)
 	. = ..()
 
-	if(gender == PLURAL)
+	if((gender == PLURAL) && randomize_gender)
 		gender = pick(MALE,FEMALE)
 
 	if(!real_name)
@@ -230,7 +233,7 @@
 	. = ..()
 	if(stat != DEAD)
 		return
-	. += span_deadsay(LANG("mob.39d14e68", list(p_they(), p_s(), HAS_MIND_TRAIT(user, TRAIT_NAIVE) ? "asleep" : "dead")))
+	. += span_deadsay(LANG("mob.39d14e68ae35bb40", list(p_they(), p_s(), HAS_MIND_TRAIT(user, TRAIT_NAIVE) ? "asleep" : "dead")))
 
 /mob/living/basic/proc/melee_attack(atom/target, list/modifiers, ignore_cooldown = FALSE)
 	var/early_melee_result = early_melee_attack(target, modifiers, ignore_cooldown)

@@ -28,9 +28,9 @@
 	if (!IS_SPACE_NINJA(user))
 		return
 	if (isnull(detonation_area))
-		. += span_notice(LANG("obj.05eac6fb", null))
+		. += span_notice(LANG("obj.05eac6fbfaf49a10", null))
 	else
-		. += span_notice(LANG("obj.c50bfa6e", list(detonation_area)))
+		. += span_notice(LANG("obj.c50bfa6e1cda1c6b", list(detonation_area)))
 
 /**
  * set_detonation_area
@@ -50,7 +50,7 @@
 
 /obj/item/grenade/c4/ninja/plant_c4(atom/bomb_target, mob/living/user)
 	if(!IS_SPACE_NINJA(user))
-		say(LANG("obj.077f9b52", null))
+		say(LANG("obj.077f9b52c530e7f8", null))
 		return FALSE
 	if(!check_loc(bomb_target, user))
 		return FALSE
@@ -63,7 +63,7 @@
 	if(!check_loc(target, detonator.resolve())) // if its moved, deactivate the c4
 		var/obj/item/grenade/c4/ninja/new_c4 = new /obj/item/grenade/c4/ninja(target.loc)
 		new_c4.detonation_area = detonation_area
-		new_c4.say(LANG("obj.7cd3ea2b", null))
+		new_c4.say(LANG("obj.7cd3ea2bf7c07483", null))
 		target.cut_overlay(plastic_overlay, TRUE)
 		qdel(src)
 		return
@@ -90,10 +90,10 @@
  */
 /obj/item/grenade/c4/ninja/proc/check_loc(atom/bomb_target, mob/user)
 	if(isnull(detonation_area))
-		balloon_alert(user, LANG("obj.f999ee39", null))
+		balloon_alert(user, LANG("obj.f999ee3967c3cd74", null))
 		return FALSE
 	if(get_area(bomb_target) != detonation_area)
 		if (!active)
-			balloon_alert(user, LANG("obj.ca19c283", null))
+			balloon_alert(user, LANG("obj.ca19c283d0f5a276", null))
 		return FALSE
 	return TRUE

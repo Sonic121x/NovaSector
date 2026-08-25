@@ -108,7 +108,7 @@
 		AddElement(/datum/element/ai_flee_while_injured)
 	setup_eating()
 
-	AddComponent(/datum/component/speechmod, replacements = strings("crustacean_replacement.json", "crustacean"))
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("crustacean_replacement.json", "crustacean"))
 	AddComponent(/datum/component/aggro_emote, emote_list = string_list(list("gnashes")))
 	AddComponent(/datum/component/regenerator, outline_colour = regenerate_colour)
 	AddComponent(/datum/component/profound_fisher)
@@ -149,7 +149,7 @@
 	if (!feedback)
 		return
 	spin(spintime = 10, speed = 1)
-	visible_message(LANG("mob.8f4d1466", list(src, tamer)))
+	visible_message(LANG("mob.8f4d146605a22b76", list(src, tamer)))
 
 /// Teleport when you right click away from you
 /mob/living/basic/carp/ranged_secondary_attack(atom/atom_target, modifiers)

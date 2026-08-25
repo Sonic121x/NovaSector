@@ -79,7 +79,7 @@
 /obj/item/implant/tacmap/nuclear/proc/deny_nukie_base_open(mob/living/user)
 	var/turf/user_turf = get_turf(user)
 	if(user_turf.onSyndieBase())
-		user.balloon_alert(user, LANG("obj.1d10bef0", null))
+		user.balloon_alert(user, LANG("obj.1d10bef004b7d729", null))
 		return COMSIG_MINIMAP_ACTION_TRIGGER_CANCEL
 
 /obj/item/implant/tacmap/nuclear/cayenne // subtype used for cayenne and syndie sentience potions in general

@@ -21,7 +21,7 @@
 	return // It's in a can
 
 /obj/item/food/canned/proc/open_can(mob/user)
-	to_chat(user, span_notice(LANG("obj.a6cafdb0", list(src))))
+	to_chat(user, span_notice(LANG("obj.a6cafdb08a25d150", list(src))))
 	playsound(user.loc, 'sound/items/foodcanopen.ogg', 50)
 	reagents.flags |= OPENCONTAINER
 	preserved_food = FALSE
@@ -34,7 +34,7 @@
 
 /obj/item/food/canned/attack(mob/living/target, mob/user, def_zone)
 	if (!is_drainable())
-		to_chat(user, span_warning(LANG("obj.46efe89b", list(src))))
+		to_chat(user, span_warning(LANG("obj.46efe89bcee85265", list(src))))
 		return FALSE
 	return ..()
 
@@ -143,9 +143,9 @@
 /obj/item/food/canned/envirochow/proc/apply_buff(mob/living/simple_animal/hungry_pet, mob/living/dog_mom)
 	hungry_pet.apply_status_effect(/datum/status_effect/limited_buff/health_buff) //the status effect keeps track of the stacks
 	hungry_pet.visible_message(
-		span_notice(LANG("obj.57beace5", list(hungry_pet, src))),
-		span_nicegreen(LANG("obj.5db7a36f", list(src))),
-		span_notice(LANG("obj.055568ca", null)))
+		span_notice(LANG("obj.57beace5fe8238b5", list(hungry_pet, src))),
+		span_nicegreen(LANG("obj.5db7a36faa61ab12", list(src))),
+		span_notice(LANG("obj.055568caf61b6d9e", null)))
 	SEND_SIGNAL(src, COMSIG_FOOD_CONSUMED, hungry_pet, dog_mom ? dog_mom : hungry_pet) //If there is no dog mom, we assume the pet fed itself.
 	playsound(loc, 'sound/items/eatfood.ogg', rand(30, 50), TRUE)
 	qdel(src)
@@ -173,7 +173,7 @@
 	if(can_splat_on)
 		victim.adjust_temp_blindness_up_to(2.5 SECONDS, 3 SECONDS)
 		victim.adjust_confusion_up_to(2.5 SECONDS, 3 SECONDS)
-	victim.visible_message(span_warning(LANG("obj.435f3e65", list(victim, src))), span_userdanger(LANG("obj.3659c69f", list(src))))
+	victim.visible_message(span_warning(LANG("obj.435f3e655ff5afa1", list(victim, src))), span_userdanger(LANG("obj.3659c69ff40a2f3c", list(src))))
 	playsound(victim, SFX_DESECRATION, 50, TRUE)
 
 /obj/item/food/canned/chap
@@ -241,10 +241,10 @@
 
 /obj/item/food/ready_donk/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.f592481c", null))
-	. += LANG("obj.294efb1f", list(span_info("Ready-Donk: a product of Donk Co.")))
-	. += LANG("obj.294efb1f", list(span_info("Heating instructions: open box and pierce film, heat in microwave on high for 2 minutes. Allow to stand for 60 seconds prior to eating. Product will be hot.")))
-	. += LANG("obj.294efb1f", list(span_info("Per 200g serving contains: 8g Sodium; 25g Fat, of which 22g are saturated; 2g Sugar.")))
+	. += span_notice(LANG("obj.f592481c4e76bf14", null))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Ready-Donk: a product of Donk Co.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Heating instructions: open box and pierce film, heat in microwave on high for 2 minutes. Allow to stand for 60 seconds prior to eating. Product will be hot.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Per 200g serving contains: 8g Sodium; 25g Fat, of which 22g are saturated; 2g Sugar.")))
 	return .
 
 /obj/item/food/ready_donk/warm

@@ -28,13 +28,14 @@
 		"ac_short" = I18N_AC_SHORT_ZH,
 		"ac_long" = I18N_AC_LONG_ZH,
 	)
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
 	if(!islist(en_cache))
 		en_cache = list()
-		GLOB.i18n_cache[DEFAULT_UI_LOCALE] = en_cache
+		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE] = en_cache
 	en_cache["ac_short"] = I18N_AC_SHORT
 	en_cache["ac_long"] = I18N_AC_LONG
-	GLOB.i18n_cache[I18N_AC_TEST_LOCALE] = test_cache
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][I18N_AC_TEST_LOCALE] = test_cache
+	GLOB.i18n_runtime_domains.Remove(I18N_AC_TEST_LOCALE)
 
 	// 清掉该 locale 的反查/AC 缓存，逼 lang_fallback_setup 用上面的词对重建自动机。
 	GLOB.i18n_reverse.Remove(I18N_AC_TEST_LOCALE)
@@ -61,7 +62,9 @@
 	GLOB.i18n_fallback_state.Remove(I18N_AC_TEST_LOCALE)
 	GLOB.i18n_fallback_single_state.Remove(I18N_AC_TEST_LOCALE)
 	GLOB.i18n_fallback_cache.Remove(I18N_AC_TEST_LOCALE)
-	GLOB.i18n_cache.Remove(I18N_AC_TEST_LOCALE)
+	var/list/forward_bucket = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET]
+	forward_bucket.Remove(I18N_AC_TEST_LOCALE)
+	GLOB.i18n_runtime_domains.Remove(I18N_AC_TEST_LOCALE)
 	en_cache.Remove("ac_short")
 	en_cache.Remove("ac_long")
 

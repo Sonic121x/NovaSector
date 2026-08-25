@@ -162,11 +162,11 @@
 	if(!slot_string)
 		return
 	if(isbodypart(old_part))
-		to_chat(quirk_holder, span_bolddanger(LANG("datum.0cfb445a", list(slot_string))))
-	else if (old_part.name == "eyes" || lang_unreverse_text(old_part.name) == "eyes") // NOVA EDIT - i18n: organ name is reverse-localized
-		to_chat(quirk_holder, span_bolddanger(LANG("datum.a1daab4a", null)))
+		to_chat(quirk_holder, span_bolddanger(LANG("datum.0cfb445af6133b06", list(slot_string))))
+	else if (old_part.name == "eyes")
+		to_chat(quirk_holder, span_bolddanger(LANG("datum.a1daab4a6295943b", null)))
 	else if (isorgan(old_part))
-		to_chat(quirk_holder, span_bolddanger(LANG("datum.fbe890d5", list(slot_string))))
+		to_chat(quirk_holder, span_bolddanger(LANG("datum.fbe890d54897c996", list(slot_string))))
 
 /datum/quirk/transhumanist/process(seconds_per_tick)
 	var/organics_nearby = 0

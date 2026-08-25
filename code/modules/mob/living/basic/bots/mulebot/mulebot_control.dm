@@ -71,18 +71,18 @@
 		if("destination")
 			var/new_dest
 			if(pda)
-				new_dest = tgui_input_list(user, LANG("mob.c6744401", null), LANG("mob.031a4a1d", null), GLOB.deliverybeacontags, ai_controller.blackboard[BB_MULEBOT_DESTINATION_BEACON])
+				new_dest = tgui_input_list(user, LANG("mob.c674440166ace839", null), LANG("mob.031a4a1dd8bf75a2", null), GLOB.deliverybeacontags, ai_controller.blackboard[BB_MULEBOT_DESTINATION_BEACON])
 			else
 				new_dest = params["value"]
 			if(new_dest)
 				set_destination(new_dest)
 		if("setid")
-			var/new_id = tgui_input_text(user, LANG("mob.a3c6bc88", null), LANG("mob.89704444", null), id, max_length = MAX_NAME_LEN)
+			var/new_id = tgui_input_text(user, LANG("mob.a3c6bc8841fff540", null), LANG("mob.89704444d6b0bf7a", null), id, max_length = MAX_NAME_LEN)
 			if(new_id)
 				set_id(new_id)
 				name = "\improper MULEbot [new_id]"
 		if("sethome")
-			var/new_home = tgui_input_list(user, LANG("mob.ae7a26e6", null), LANG("mob.031a4a1d", null), GLOB.deliverybeacontags, ai_controller.blackboard[BB_MULEBOT_HOME_BEACON])
+			var/new_home = tgui_input_list(user, LANG("mob.ae7a26e63bb9cc1d", null), LANG("mob.031a4a1dd8bf75a2", null), GLOB.deliverybeacontags, ai_controller.blackboard[BB_MULEBOT_HOME_BEACON])
 			if(new_home)
 				ai_controller.set_blackboard_key(BB_MULEBOT_HOME_BEACON, new_home)
 		if("unload")

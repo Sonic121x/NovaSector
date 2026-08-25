@@ -65,12 +65,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 		context[SCREENTIP_CONTEXT_LMB] = "Wash hands"
 		return CONTEXTUAL_SCREENTIP_SET
 
-	if(is_reagent_container(held_item) && held_item.is_refillable() && !held_item.reagents.holder_full())
-		context[SCREENTIP_CONTEXT_LMB] = "Fill container"
+	if(is_reagent_container(held_item))
+		if(held_item.is_refillable() && !held_item.reagents.holder_full())
+			context[SCREENTIP_CONTEXT_LMB] = "Fill container"
+		if(held_item.reagents.total_volume > 0)
+			context[SCREENTIP_CONTEXT_RMB] = "Drain container"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/mop) || astype(held_item, /obj/item/rag)?.blood_level == 0)
 		context[SCREENTIP_CONTEXT_LMB] = "Wet mop"
+		context[SCREENTIP_CONTEXT_RMB] = "Wash out mop"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/stock_parts/water_recycler) && !has_water_reclaimer)
@@ -88,8 +92,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 /obj/structure/sink/examine(mob/user)
 	. = ..()
 	if(has_water_reclaimer)
-		. += span_notice(LANG("obj.6a25c0f2", null))
-	. += span_notice(LANG("obj.31941555", list(reagents.total_volume, reagents.maximum_volume)))
+		. += span_notice(LANG("obj.6a25c0f25c1d92e4", null))
+	. += span_notice(LANG("obj.31941555602f62b7", list(reagents.total_volume, reagents.maximum_volume)))
+	. += span_notice(LANG("obj.fb34d46bda64385b", list(EXAMINE_HINT("right-click"))))
 
 /obj/structure/sink/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -102,10 +107,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 	if(!Adjacent(user))
 		return
 	if(reagents.total_volume < 5)
-		to_chat(user, span_warning(LANG("obj.6e9b3a68", null)))
+		to_chat(user, span_warning(LANG("obj.6e9b3a6890cdcc6c", null)))
 		return
 	if(busy)
-		to_chat(user, span_warning(LANG("obj.d5ba1f8c", null)))
+		to_chat(user, span_warning(LANG("obj.d5ba1f8cb2273d77", null)))
 		return
 
 	var/selected_area = user.parse_zone_with_bodypart(user.zone_selected)
@@ -114,8 +119,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 		washing_face = TRUE
 
 	playsound(src, 'sound/machines/sink-faucet.ogg', 50)
-	user.visible_message(span_notice(LANG("obj.d6e9d9cd", list(user, user.p_their(), washing_face ? "face" : "hands"))), \
-						span_notice(LANG("obj.51a01636", list(washing_face ? "face" : "hands"))))
+	user.visible_message(span_notice(LANG("obj.d6e9d9cdb5ba9e5b", list(user, user.p_their(), washing_face ? "face" : "hands"))), \
+						span_notice(LANG("obj.51a016361a7d4862", list(washing_face ? "face" : "hands"))))
 	busy = TRUE
 
 	if(!do_after(user, 4 SECONDS, target = src))
@@ -131,47 +136,47 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 	else if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		if(!human_user.wash_hands(CLEAN_WASH))
-			to_chat(user, span_warning(LANG("obj.7d1649c9", null)))
+			to_chat(user, span_warning(LANG("obj.7d1649c9f6a1197f", null)))
 			return
 	else
 		user.wash(CLEAN_WASH)
 
-	user.visible_message(span_notice(LANG("obj.b1726f63", list(user, user.p_their(), washing_face ? "face" : "hands", src))), \
-						span_notice(LANG("obj.3892bd55", list(washing_face ? "face" : "hands", src))))
+	user.visible_message(span_notice(LANG("obj.b1726f637e11479d", list(user, user.p_their(), washing_face ? "face" : "hands", src))), \
+						span_notice(LANG("obj.3892bd556b54860b", list(washing_face ? "face" : "hands", src))))
 
 /obj/structure/sink/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = NONE
 	if(busy)
-		to_chat(user, span_warning(LANG("obj.d5ba1f8c", null)))
+		to_chat(user, span_warning(LANG("obj.d5ba1f8cb2273d77", null)))
 		return ITEM_INTERACT_FAILURE
 
 	if(is_reagent_container(tool))
 		var/obj/item/reagent_containers/RG = tool
 		if(!reagents.total_volume)
-			to_chat(user, span_notice(LANG("obj.9043fdab", list(src))))
+			to_chat(user, span_notice(LANG("obj.9043fdab29ed6609", list(src))))
 			return ITEM_INTERACT_FAILURE
 		if(RG.is_refillable())
 			if(!RG.reagents.holder_full())
 				reagents.trans_to(RG, RG.amount_per_transfer_from_this, transferred_by = user)
 				START_PROCESSING(SSobj, src)
-				to_chat(user, span_notice(LANG("obj.3adf2506", list(RG, src))))
+				to_chat(user, span_notice(LANG("obj.3adf2506e97dc688", list(RG, src))))
 				return ITEM_INTERACT_SUCCESS
-			to_chat(user, span_notice(LANG("obj.03adc6e9", list(RG))))
+			to_chat(user, span_notice(LANG("obj.03adc6e9eaa5eda9", list(RG))))
 		return ITEM_INTERACT_FAILURE
 
 	if(istype(tool, /obj/item/mop) || astype(tool, /obj/item/rag)?.blood_level == 0)
 		if(!reagents.total_volume)
-			to_chat(user, span_notice(LANG("obj.9043fdab", list(src))))
+			to_chat(user, span_notice(LANG("obj.9043fdab29ed6609", list(src))))
 			return ITEM_INTERACT_FAILURE
 		reagents.trans_to(tool, 5, transferred_by = user)
 		START_PROCESSING(SSobj, src)
-		to_chat(user, span_notice(LANG("obj.c4984f89", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.c4984f89d406562c", list(tool, src))))
 		playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/stock_parts/water_recycler))
 		if(has_water_reclaimer)
-			to_chat(user, span_warning(LANG("obj.54d98562", null)))
+			to_chat(user, span_warning(LANG("obj.54d98562497bd0d7", null)))
 			return ITEM_INTERACT_FAILURE
 
 		playsound(src, 'sound/machines/click.ogg', 20, TRUE)
@@ -182,19 +187,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 
 	if(istype(tool, /obj/item/storage/fancy/pickles_jar))
 		if(tool.contents.len)
-			to_chat(user, span_notice(LANG("obj.e7bcc65c", null)))
+			to_chat(user, span_notice(LANG("obj.e7bcc65c864c9946", null)))
 			return ITEM_INTERACT_FAILURE
 		qdel(tool)
-		to_chat(user, span_notice(LANG("obj.e45bfaf1", null)))
+		to_chat(user, span_notice(LANG("obj.e45bfaf164005616", null)))
 		user.put_in_active_hand(new /obj/item/reagent_containers/cup/beaker/large(loc))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!user.combat_mode || (tool.item_flags & NOBLUDGEON))
 		if(reagents.total_volume < 5)
-			to_chat(user, span_warning(LANG("obj.6e9b3a68", null)))
+			to_chat(user, span_warning(LANG("obj.6e9b3a6890cdcc6c", null)))
 			return ITEM_INTERACT_FAILURE
 
-		to_chat(user, span_notice(LANG("obj.baf588ee", list(tool))))
+		to_chat(user, span_notice(LANG("obj.baf588ee650ec721", list(tool))))
 		playsound(src, 'sound/machines/sink-faucet.ogg', 50)
 
 		var/obj/item/melee/baton/security/baton = tool
@@ -202,8 +207,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 			flick("baton_active", src)
 			user.Paralyze(baton.knockdown_time)
 			user.set_stutter(baton.knockdown_time)
-			user.visible_message(span_warning(LANG("obj.0ce5feed", list(user, user.p_them(), baton.name))), \
-								span_userdanger(LANG("obj.97884035", list(baton))))
+			user.visible_message(span_warning(LANG("obj.0ce5feedec53b412", list(user, user.p_them(), baton.name))), \
+								span_userdanger(LANG("obj.97884035ea4317d9", list(baton))))
 			playsound(src, baton.on_stun_sound, 50, TRUE)
 			return ITEM_INTERACT_FAILURE
 
@@ -216,9 +221,30 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 		reagents.expose(tool, TOUCH, 5 / max(reagents.total_volume, 5))
 		reagents.remove_all(5)
 		START_PROCESSING(SSobj, src)
-		user.visible_message(span_notice(LANG("obj.39b6ee6a", list(user, tool, src))), \
-							span_notice(LANG("obj.94ce754d", list(tool, src))))
+		user.visible_message(span_notice(LANG("obj.39b6ee6aeac2b202", list(user, tool, src))), \
+							span_notice(LANG("obj.94ce754d4fdc0a00", list(tool, src))))
 		return ITEM_INTERACT_SUCCESS
+
+/obj/structure/sink/item_interaction_secondary(mob/living/user, obj/item/held_item, list/modifiers)
+	if(!is_reagent_container(held_item) && !istype(held_item, /obj/item/mop))
+		return ..()
+
+	if(busy)
+		to_chat(user, span_warning(LANG("obj.d5ba1f8cb2273d77", null)))
+		return ITEM_INTERACT_BLOCKING
+
+	if(held_item.reagents.total_volume <= 0)
+		balloon_alert(user, LANG("obj.0cdc41dcfec8a1db", null))
+		return ITEM_INTERACT_BLOCKING
+
+	held_item.reagents.clear_reagents()
+	playsound(src, 'sound/effects/slosh.ogg', 25, TRUE)
+
+	user.visible_message(
+		span_notice(LANG("obj.7f9a59456fc4d2b1", list(user, held_item, src))),
+		span_notice(LANG("obj.19299be638b3e8f5", list(held_item, src))),
+	)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/sink/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
@@ -229,13 +255,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 	. = ..()
 
 	if(!has_water_reclaimer)
-		to_chat(user, span_warning(LANG("obj.fe8e1f6a", null)))
+		to_chat(user, span_warning(LANG("obj.fe8e1f6afe2b140c", null)))
 		return ITEM_INTERACT_FAILURE
 
 	tool.play_tool_sound(src)
 	has_water_reclaimer = FALSE
 	new/obj/item/stock_parts/water_recycler(get_turf(loc))
-	to_chat(user, span_notice(LANG("obj.fb4e9798", list(src))))
+	to_chat(user, span_notice(LANG("obj.fb4e97983ebf2b04", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/sink/process(seconds_per_tick)
@@ -292,9 +318,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink/kitchen, (-16))
 /obj/item/wallframe/sinkframe/examine(mob/user)
 	. = ..()
 	if(result_path == /obj/structure/sink/greyscale/filled)
-		. += span_notice(LANG("obj.14ac99b9", list(EXAMINE_HINT("water recycler"))))
+		. += span_notice(LANG("obj.14ac99b94523f974", list(EXAMINE_HINT("water recycler"))))
 	else
-		. += span_notice(LANG("obj.5e1899e9", list(EXAMINE_HINT("water recycler"))))
+		. += span_notice(LANG("obj.5e1899e93676da7e", list(EXAMINE_HINT("water recycler"))))
 
 /obj/item/wallframe/sinkframe/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = NONE
@@ -302,7 +328,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink/kitchen, (-16))
 		qdel(tool)
 		result_path = /obj/structure/sink/greyscale/filled
 		playsound(src, 'sound/machines/click.ogg', 20, TRUE)
-		balloon_alert(user, LANG("obj.b932e7d0", null))
+		balloon_alert(user, LANG("obj.b932e7d053cf5464", null))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/item/wallframe/sinkframe/after_attach(obj/structure/sink/greyscale/attached_to)

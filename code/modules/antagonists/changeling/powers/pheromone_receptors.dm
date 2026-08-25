@@ -25,14 +25,14 @@
 	..()
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	if(HAS_TRAIT(user, TRAIT_ANOSMIA)) //Anosmia quirk holders can't smell anything
-		to_chat(user, span_warning(LANG("datum.058fd65a", null)))
+		to_chat(user, span_warning(LANG("datum.058fd65abbb7616e", null)))
 		return
 	if(!receptors_active)
-		to_chat(user, span_warning(LANG("datum.5cf93f10", null)))
+		to_chat(user, span_warning(LANG("datum.5cf93f101cfd8a2d", null)))
 		changeling.chem_recharge_slowdown += 0.25
 		user.apply_status_effect(/datum/status_effect/agent_pinpointer/changeling)
 	else
-		to_chat(user, span_notice(LANG("datum.ae3d68ff", null)))
+		to_chat(user, span_notice(LANG("datum.ae3d68ff7e3cc642", null)))
 		changeling.chem_recharge_slowdown -= 0.25
 		user.remove_status_effect(/datum/status_effect/agent_pinpointer/changeling)
 

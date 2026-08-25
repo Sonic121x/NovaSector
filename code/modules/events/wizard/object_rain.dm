@@ -82,7 +82,7 @@
 		"effectQuiet" = TRUE,))
 
 /datum/round_event/wizard/object_rain/announce(fake)
-	priority_announce(LANG("datum.02861ba3", list(target_region)), "Janitorial alert")
+	priority_announce(LANG("datum.02861ba3b0329bc6", list(target_region)), "Janitorial alert")
 
 /// Return whatever it is you want to rain from the sky here.
 /datum/round_event/wizard/object_rain/proc/get_item()

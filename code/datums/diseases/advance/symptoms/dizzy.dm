@@ -13,10 +13,10 @@
 	desc = "The virus causes inflammation of the vestibular system, leading to bouts of dizziness."
 	illness = "Motion Sickness"
 	stealth = 1
-	resistance = 0
-	stage_speed = -2
-	transmittable = -1
-	level = 4
+	resistance = 1
+	stage_speed = 3
+	transmittable = 3
+	level = 2
 	severity = 2
 	base_message_chance = 50
 	symptom_delay = 22.5
@@ -26,6 +26,7 @@
 		"Transmission 6" = "Also causes druggy vision.",
 		"Stealth 4" = "The symptom remains hidden until active.",
 	)
+	var/suppress_warning = FALSE
 
 /datum/symptom/dizzy/Start(datum/disease/advance/A)
 	. = ..()
@@ -46,7 +47,7 @@
 			if(prob(base_message_chance) && !suppress_warning)
 				to_chat(M, span_warning("[pick("You feel dizzy.", "Your head spins.")]"))
 		else
-			to_chat(M, span_userdanger(LANG("datum.151eedce", null)))
-			M.adjust_dizzy_up_to(1 MINUTES, 140 SECONDS)
+			to_chat(M, span_userdanger(LANG("datum.151eedce1312f276", null)))
+			M.adjust_dizzy_up_to(40 SECONDS, 80 SECONDS)
 			if(power >= 2)
-				M.set_drugginess(80 SECONDS)
+				M.set_drugginess(60 SECONDS)

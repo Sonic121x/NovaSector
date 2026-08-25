@@ -105,7 +105,7 @@
 
 /// Cut the pod open and destroy it
 /obj/structure/meateor_fluff/flesh_pod/proc/cut_open(mob/user)
-	balloon_alert(user, LANG("obj.6e1259d1", null))
+	balloon_alert(user, LANG("obj.6e1259d158fa62f4", null))
 	if (!do_after(user, 3 SECONDS, target = src))
 		return
 	take_damage(max_integrity)

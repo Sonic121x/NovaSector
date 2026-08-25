@@ -28,13 +28,13 @@ GAME_VERB(/obj/item/xenoarch/wave_scanner_backpack, toggle_searcher, "切换搜�
 
 	var/mob/user = usr
 	if(!user.get_item_by_slot(ITEM_SLOT_BACK) == src)
-		to_chat(usr, span_warning(LANG("obj.e0837cee", list(src))))
+		to_chat(usr, span_warning(LANG("obj.e0837ceef6f6542d", list(src))))
 		return
 
 	if(processor.loc == src)
 		// Detach the searcher into the user's hands
 		if(!user.put_in_hands(processor))
-			to_chat(user, span_warning(LANG("obj.6d0262b9", list(processor))))
+			to_chat(user, span_warning(LANG("obj.6d0262b9b4a34729", list(processor))))
 			return
 		playsound(src, 'modular_nova/modules/aesthetics/lightswitch/sound/lightswitch.ogg', 50, FALSE)
 	else
@@ -56,7 +56,7 @@ GAME_VERB(/obj/item/xenoarch/wave_scanner_backpack, toggle_searcher, "切换搜�
 	if(ismob(processor.loc))
 		var/mob/mob_loc = processor.loc
 		if(mob_loc.dropItemToGround(processor))
-			to_chat(mob_loc, span_notice(LANG("obj.9f1e60cb", list(processor, src))))
+			to_chat(mob_loc, span_notice(LANG("obj.9f1e60cb7a53eb90", list(processor, src))))
 			playsound(src, 'modular_nova/modules/aesthetics/lightswitch/sound/lightswitch.ogg', 50, FALSE)
 	else
 		processor.forceMove(src)
@@ -165,6 +165,6 @@ GAME_VERB(/obj/item/xenoarch/wave_scanner_backpack, toggle_searcher, "切换搜�
 			if(nearest_artifact_distance < 0 || cur_dist < nearest_artifact_distance)
 				nearest_artifact_distance = cur_dist + rand() * 2 - 1
 	visible_message(
-		span_info(LANG("obj.b6d4f399", list(src))),
-		blind_message = span_notice(LANG("obj.0e0002b3", null)),
+		span_info(LANG("obj.b6d4f3993b527b35", list(src))),
+		blind_message = span_notice(LANG("obj.0e0002b3a4e16270", null)),
 	)

@@ -34,7 +34,7 @@
 	beauty = FISH_BEAUTY_EXCELLENT
 
 /obj/item/fish/donkfish/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.d3919bb6", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.d3919bb63c4a7f77", list(user, src, user.p_theyre()))))
 	if(!ishuman(user))
 		return TOXLOSS
 
@@ -73,7 +73,7 @@
 	return ..() * 0.04
 
 /obj/item/fish/jumpercable/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.0abcf723", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.0abcf723a75122e9", list(user, src, user.p_theyre()))))
 	electrocute_mob(user, power_source = get_area(src), source = src, siemens_coeff = 1, dist_check = FALSE)
 	tesla_zap(source = user, zap_range = 4, power = electrogenesis_power, cutoff = 1e3, zap_flags = ZAP_LOW_POWER_GEN|ZAP_MOB_DAMAGE)
 	playsound(user, 'sound/items/weapons/zapbang.ogg', 75)
@@ -204,11 +204,11 @@
 // you suicide like a real chainsaw
 /obj/item/fish/chainsawfish/suicide_act(mob/living/user)
 	if(status == FISH_DEAD)
-		user.visible_message(span_suicide(LANG("obj.182337ec", list(user, src, user.p_their(), user.p_their(), user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.182337ec893cb6fa", list(user, src, user.p_their(), user.p_their(), user.p_theyre()))))
 		playsound(src, 'sound/items/weapons/genhit1.ogg', 100, TRUE)
 		return BRUTELOSS
 
-	user.visible_message(span_suicide(LANG("obj.07146c7f", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.07146c7fcaa1409c", list(user, user.p_their(), src, user.p_theyre()))))
 	playsound(src, 'sound/items/weapons/chainsawhit.ogg', 100, TRUE)
 	var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 	if(myhead)

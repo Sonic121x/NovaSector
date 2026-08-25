@@ -14,5 +14,5 @@
 	if(!.)
 		return FALSE
 
-	to_chat(host_role.body, span_warning(LANG("datum.1c636e1c", list(target_role.body.real_name, target_role.name))))
+	to_chat(host_role.body, span_warning(LANG("datum.1c636e1cfcbc89ca", list(target_role.body.real_name, target_role.name))))
 	return TRUE

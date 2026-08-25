@@ -42,7 +42,7 @@
 
 	if(exposed_mob.apply_damage(damage, TOX) && damage >= 6)
 		// yes i know it's not burn damage. the burning is on the inside.
-		to_chat(exposed_mob, span_danger(LANG("datum.651c4f2f", null)))
+		to_chat(exposed_mob, span_danger(LANG("datum.651c4f2fc281a6f3", null)))
 
 /// If bugkiller delivers a lethal dosage, applies this effect which does a funny animation THEN kills 'em
 /// Also makes it so simplemobs / basicmobs no longer delete when they die (if they do)
@@ -61,7 +61,7 @@
 	if(owner.stat == DEAD)
 		return FALSE
 	playsound(owner, 'sound/mobs/humanoids/human/scream/malescream_1.ogg', 25, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, frequency = 5)
-	to_chat(owner, span_userdanger(LANG("datum.e931bd25", null)))
+	to_chat(owner, span_userdanger(LANG("datum.e931bd25c00fa107", null)))
 	owner.spasm_animation(spasm_loops)
 	owner.adjust_eye_blur(duration)
 	return TRUE

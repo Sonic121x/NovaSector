@@ -68,29 +68,29 @@
 	switch(state)
 		if(AIRLOCK_ASSEMBLY_NEEDS_WIRES)
 			if(anchored)
-				. += span_notice(LANG("obj.5050a058", null))
+				. += span_notice(LANG("obj.5050a058c33dad74", null))
 			else
-				. += span_notice(LANG("obj.77a77015", null))
+				. += span_notice(LANG("obj.77a77015d40f6f78", null))
 		if(AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS)
-			. += span_notice(LANG("obj.95f8ce7c", null))
+			. += span_notice(LANG("obj.95f8ce7c7dc3d15d", null))
 		if(AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER)
-			. += span_notice(LANG("obj.637b8cc2", null))
+			. += span_notice(LANG("obj.637b8cc233046d5c", null))
 	if(!mineral && !nomineral && !glass && !noglass)
-		. += span_notice(LANG("obj.25999ffe", null))
+		. += span_notice(LANG("obj.25999ffe3428b79c", null))
 	else if(!mineral && !nomineral && glass && !noglass)
-		. += span_notice(LANG("obj.e918389d", null))
+		. += span_notice(LANG("obj.e918389d3d669d9c", null))
 	else if(!glass && !noglass)
-		. += span_notice(LANG("obj.63aaa883", null))
+		. += span_notice(LANG("obj.63aaa8839aa2581b", null))
 	if(created_name)
-		. += span_notice(LANG("obj.4cbafcc7", list(created_name)))
+		. += span_notice(LANG("obj.4cbafcc7a3cf090f", list(created_name)))
 
 /obj/structure/door_assembly/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(anchored && state == AIRLOCK_ASSEMBLY_NEEDS_WIRES && istype(tool, /obj/item/stack/cable_coil))
 		if(!tool.tool_start_check(user, amount=1))
 			return ITEM_INTERACT_BLOCKING
 
-		user.visible_message(span_notice(LANG("obj.0560dc7b", list(user))), \
-							span_notice(LANG("obj.1cbdf49b", null)))
+		user.visible_message(span_notice(LANG("obj.0560dc7b9c900072", list(user))), \
+							span_notice(LANG("obj.1cbdf49bdae134ff", null)))
 		if(!tool.use_tool(src, user, 40, amount=1))
 			return ITEM_INTERACT_BLOCKING
 
@@ -98,7 +98,7 @@
 			return ITEM_INTERACT_BLOCKING
 
 		state = AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS
-		to_chat(user, span_notice(LANG("obj.a0099c52", null)))
+		to_chat(user, span_notice(LANG("obj.a0099c5235df5e4b", null)))
 		name = "wired airlock assembly"
 		update_name()
 		update_appearance()
@@ -106,8 +106,8 @@
 
 	if(state == AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS && istype(tool, /obj/item/electronics/airlock))
 		tool.play_tool_sound(src, 100)
-		user.visible_message(span_notice(LANG("obj.1dc6640c", list(user))), \
-							span_notice(LANG("obj.fb1066e6", null)))
+		user.visible_message(span_notice(LANG("obj.1dc6640c2caf0f95", list(user))), \
+							span_notice(LANG("obj.fb1066e61a51ca9e", null)))
 		if(!do_after(user, 4 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 
@@ -117,7 +117,7 @@
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.2b65dc12", null)))
+		to_chat(user, span_notice(LANG("obj.2b65dc1211c06809", null)))
 		state = AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER
 		name = "near finished airlock assembly"
 		electronics = tool
@@ -129,21 +129,21 @@
 		var/obj/item/stack/sheet/sheet = tool
 		if(!glass && (istype(sheet, /obj/item/stack/sheet/rglass) || istype(sheet, /obj/item/stack/sheet/glass)))
 			if(noglass)
-				to_chat(user, span_warning(LANG("obj.ad6e1ca4", list(sheet, src))))
+				to_chat(user, span_warning(LANG("obj.ad6e1ca4182a1892", list(sheet, src))))
 				return ITEM_INTERACT_BLOCKING
 			playsound(src, 'sound/items/tools/crowbar.ogg', 100, TRUE)
-			user.visible_message(span_notice(LANG("obj.0886ae47", list(user, sheet.name))), \
-								span_notice(LANG("obj.4f07aac0", list(sheet.name))))
+			user.visible_message(span_notice(LANG("obj.0886ae47c850c8f3", list(user, sheet.name))), \
+								span_notice(LANG("obj.4f07aac030baad1d", list(sheet.name))))
 			if(!do_after(user, 4 SECONDS, target = src))
 				return ITEM_INTERACT_BLOCKING
 			if(sheet.get_amount() < 1 || glass)
 				return ITEM_INTERACT_BLOCKING
 			if(sheet.type == /obj/item/stack/sheet/rglass)
-				to_chat(user, span_notice(LANG("obj.900bec02", list(sheet.name))))
+				to_chat(user, span_notice(LANG("obj.900bec0255fcb1fc", list(sheet.name))))
 				heat_proof_finished = TRUE //reinforced glass makes the airlock heat-proof
 				name = "near finished heat-proofed window airlock assembly"
 			else
-				to_chat(user, span_notice(LANG("obj.b0933218", null)))
+				to_chat(user, span_notice(LANG("obj.b093321866bf487f", null)))
 				name = "near finished window airlock assembly"
 			sheet.use(1)
 			glass = TRUE
@@ -153,26 +153,26 @@
 
 		if(istype(sheet, /obj/item/stack/sheet/mineral) && sheet.construction_path_type)
 			if(nomineral || mineral)
-				to_chat(user, span_warning(LANG("obj.ad6e1ca4", list(sheet, src))))
+				to_chat(user, span_warning(LANG("obj.ad6e1ca4182a1892", list(sheet, src))))
 				return ITEM_INTERACT_BLOCKING
 
 			var/type_path_extension = sheet.construction_path_type
 			var/mineralassembly = text2path("/obj/structure/door_assembly/door_assembly_[type_path_extension]")
 			if(!ispath(mineralassembly))
-				to_chat(user, span_warning(LANG("obj.ad6e1ca4", list(sheet, src))))
+				to_chat(user, span_warning(LANG("obj.ad6e1ca4182a1892", list(sheet, src))))
 				return ITEM_INTERACT_BLOCKING
 
 			if(sheet.get_amount() < 2)
-				to_chat(user, span_warning(LANG("obj.74f6b8a1", null)))
+				to_chat(user, span_warning(LANG("obj.74f6b8a1b31bcf05", null)))
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/items/tools/crowbar.ogg', 100, TRUE)
-			user.visible_message(span_notice(LANG("obj.0886ae47", list(user, sheet.name))), \
-								span_notice(LANG("obj.4f07aac0", list(sheet.name))))
+			user.visible_message(span_notice(LANG("obj.0886ae47c850c8f3", list(user, sheet.name))), \
+								span_notice(LANG("obj.4f07aac030baad1d", list(sheet.name))))
 			if(!do_after(user, 4 SECONDS, target = src) || sheet.get_amount() < 2 || mineral)
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice(LANG("obj.fa170528", list(type_path_extension))))
+			to_chat(user, span_notice(LANG("obj.fa17052811a33fd0", list(type_path_extension))))
 			sheet.use(2)
 			var/obj/structure/door_assembly/replacement_assembly = new mineralassembly(loc)
 
@@ -184,7 +184,7 @@
 				else
 					dropped_glass = new /obj/item/stack/sheet/glass(drop_location())
 				glass = FALSE
-				to_chat(user, span_notice(LANG("obj.97ab5136", list(dropped_glass.singular_name, replacement_assembly))))
+				to_chat(user, span_notice(LANG("obj.97ab5136da083cb3", list(dropped_glass.singular_name, replacement_assembly))))
 
 			transfer_assembly_vars(src, replacement_assembly, TRUE)
 			return ITEM_INTERACT_SUCCESS
@@ -200,10 +200,10 @@
 
 	if(mineral)
 		var/obj/item/stack/sheet/mineral/mineral_path = text2path("/obj/item/stack/sheet/mineral/[mineral]")
-		user.visible_message(span_notice(LANG("obj.595e3c41", list(user, mineral))), span_notice(LANG("obj.c5680a9b", list(mineral))))
+		user.visible_message(span_notice(LANG("obj.595e3c41208e6676", list(user, mineral))), span_notice(LANG("obj.c5680a9bb16235aa", list(mineral))))
 		if(!tool.use_tool(src, user, 40, volume=50))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.04c8751b", list(mineral))))
+		to_chat(user, span_notice(LANG("obj.04c8751b001e383f", list(mineral))))
 		new mineral_path(loc, 2)
 		var/obj/structure/door_assembly/PA = new previous_assembly(loc)
 		transfer_assembly_vars(src, PA)
@@ -212,12 +212,12 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(glass)
-		user.visible_message(span_notice(LANG("obj.6c6545fd", list(user))), \
-							span_notice(LANG("obj.4d93a372", null)))
+		user.visible_message(span_notice(LANG("obj.6c6545fd2bb99689", list(user))), \
+							span_notice(LANG("obj.4d93a37290e9d3dd", null)))
 		if(!tool.use_tool(src, user, 40, volume=50))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.d9d49b97", null)))
+		to_chat(user, span_notice(LANG("obj.d9d49b97309c1a8b", null)))
 		if(heat_proof_finished)
 			new /obj/item/stack/sheet/rglass(get_turf(src))
 			heat_proof_finished = FALSE
@@ -229,27 +229,27 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(!anchored)
-		user.visible_message(span_warning(LANG("obj.e0983c73", list(user))), \
-							span_notice(LANG("obj.86d28134", null)))
+		user.visible_message(span_warning(LANG("obj.e0983c73542f73da", list(user))), \
+							span_notice(LANG("obj.86d28134bf4d5aa0", null)))
 		if(!tool.use_tool(src, user, 40, volume=50))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.74c1dfb1", null)))
+		to_chat(user, span_notice(LANG("obj.74c1dfb1cd1e5356", null)))
 		deconstruct(TRUE)
 		return ITEM_INTERACT_SUCCESS
 	// no return NONE at end because it's not possible we end up here
 
 /obj/structure/door_assembly/wrench_act(mob/living/user, obj/item/tool)
 	if(anchored)
-		user.visible_message(span_notice(LANG("obj.e46bef59", list(user))), \
-							span_notice(LANG("obj.07e30e4a", null)), \
-							span_hear(LANG("obj.7eacbf56", null)))
+		user.visible_message(span_notice(LANG("obj.e46bef59da1abd33", list(user))), \
+							span_notice(LANG("obj.07e30e4a005249bd", null)), \
+							span_hear(LANG("obj.7eacbf566316e99f", null)))
 		if(!tool.use_tool(src, user, 40, volume=100))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!anchored)
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.a50cb0b5", null)))
+		to_chat(user, span_notice(LANG("obj.a50cb0b58a228b72", null)))
 		name = "airlock assembly"
 		set_anchored(FALSE)
 		update_name()
@@ -263,12 +263,12 @@
 			break
 
 	if(door_check)
-		to_chat(user, LANG("obj.f23c1bd4", null))
+		to_chat(user, LANG("obj.f23c1bd4f9f2109a", null))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.ca15796d", list(user))), \
-						span_notice(LANG("obj.e76a0eda", null)), \
-						span_hear(LANG("obj.7eacbf56", null)))
+	user.visible_message(span_notice(LANG("obj.ca15796db0d406f8", list(user))), \
+						span_notice(LANG("obj.e76a0edae595fe5f", null)), \
+						span_hear(LANG("obj.7eacbf566316e99f", null)))
 
 	if(!tool.use_tool(src, user, 40, volume=100))
 		return ITEM_INTERACT_BLOCKING
@@ -276,7 +276,7 @@
 	if(anchored)
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.e09ceceb", null)))
+	to_chat(user, span_notice(LANG("obj.e09cecebf5c415d8", null)))
 	name = "secured airlock assembly"
 	set_anchored(TRUE)
 	update_name()
@@ -286,14 +286,14 @@
 /obj/structure/door_assembly/wirecutter_act(mob/living/user, obj/item/tool)
 	if(state != AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
-	user.visible_message(span_notice(LANG("obj.bf1d728f", list(user))), \
-						span_notice(LANG("obj.7b33ed7c", null)))
+	user.visible_message(span_notice(LANG("obj.bf1d728fc5ac0288", list(user))), \
+						span_notice(LANG("obj.7b33ed7cf88526f4", null)))
 
 	if(!tool.use_tool(src, user, 40, volume=100))
 		return ITEM_INTERACT_BLOCKING
 	if(state != AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS)
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.44227550", null)))
+	to_chat(user, span_notice(LANG("obj.442275504e2c2286", null)))
 	new/obj/item/stack/cable_coil(get_turf(user), 1)
 	state = AIRLOCK_ASSEMBLY_NEEDS_WIRES
 	name = "secured airlock assembly"
@@ -304,8 +304,8 @@
 /obj/structure/door_assembly/crowbar_act(mob/living/user, obj/item/tool)
 	if(state != AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
-	user.visible_message(span_notice(LANG("obj.a05c355a", list(user))), \
-						span_notice(LANG("obj.bef30a55", null)))
+	user.visible_message(span_notice(LANG("obj.a05c355a0fbc637e", list(user))), \
+						span_notice(LANG("obj.bef30a550e4732a2", null)))
 
 	if(!tool.use_tool(src, user, 40, volume=100))
 		return ITEM_INTERACT_BLOCKING
@@ -313,7 +313,7 @@
 	if(state != AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER)
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.a5dac4b8", null)))
+	to_chat(user, span_notice(LANG("obj.a5dac4b826ccd223", null)))
 	state = AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS
 	name = "wired airlock assembly"
 	var/obj/item/electronics/airlock/ae
@@ -331,14 +331,14 @@
 	if(state != AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
-	user.visible_message(span_notice(LANG("obj.041fc707", list(user))), \
-						span_notice(LANG("obj.e58cd140", null)))
+	user.visible_message(span_notice(LANG("obj.041fc707d71bdf45", list(user))), \
+						span_notice(LANG("obj.e58cd140f00ca1cc", null)))
 	if(!tool.use_tool(src, user, 40, volume=100))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!loc || state != AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER)
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.7edea114", null)))
+	to_chat(user, span_notice(LANG("obj.7edea114d4152db8", null)))
 	finish_door()
 	return ITEM_INTERACT_SUCCESS
 

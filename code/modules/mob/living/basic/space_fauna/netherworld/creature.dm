@@ -93,7 +93,7 @@
 	if (!owner)
 		return SPELL_CANCEL_CAST
 	if (!do_after(owner, 6 SECONDS, target = owner.loc))
-		owner.balloon_alert(owner, LANG("datum.c67b5d27", null))
+		owner.balloon_alert(owner, LANG("datum.c67b5d274d6e724b", null))
 		return SPELL_CANCEL_CAST
 	return ..()
 

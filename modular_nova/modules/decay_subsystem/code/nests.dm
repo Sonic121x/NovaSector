@@ -107,7 +107,7 @@
 
 	RegisterSignal(spawned_mob, COMSIG_LIVING_DEATH, PROC_REF(mob_death))
 
-	visible_message(span_danger(LANG("obj.50fe0335", list(spawned_mob, src))))
+	visible_message(span_danger(LANG("obj.50fe0335ad7eb4b0", list(spawned_mob, src))))
 
 /obj/structure/mob_spawner/proc/mob_death(mob/living/dead_guy, gibbed)
 	SIGNAL_HANDLER
@@ -118,16 +118,16 @@
 	. = ..()
 	do_jiggle_nova()
 	if(!retaliated)
-		visible_message(span_danger(LANG("obj.e719f916", list(src))))
+		visible_message(span_danger(LANG("obj.e719f91697486e84", list(src))))
 		var/chosen_mob_type = pick(monster_types)
 		var/mob/living/simple_animal/L = new chosen_mob_type(loc)
-		visible_message(span_danger(LANG("obj.50fe0335", list(L, src))))
+		visible_message(span_danger(LANG("obj.50fe0335ad7eb4b0", list(L, src))))
 		retaliated = TRUE
 		addtimer(CALLBACK(src, PROC_REF(ready_retaliate)), retaliate_cooldown)
 
 /obj/structure/mob_spawner/proc/ready_retaliate()
 	retaliated = FALSE
-	visible_message(span_danger(LANG("obj.7e5c0be2", list(src))))
+	visible_message(span_danger(LANG("obj.7e5c0be2e96282f3", list(src))))
 
 /*
 *	CUSTOM SPAWNERS
@@ -149,9 +149,9 @@
 
 /obj/item/spider_egg/attack_self(mob/user, modifiers)
 	. = ..()
-	to_chat(user, span_danger(LANG("obj.5deefb3b", list(src))))
+	to_chat(user, span_danger(LANG("obj.5deefb3bc2da119e", list(src))))
 	if(do_after(user, 3 SECONDS, src))
-		to_chat(user, span_userdanger(LANG("obj.5369e7cc", list(src))))
+		to_chat(user, span_userdanger(LANG("obj.5369e7cc2aa63be2", list(src))))
 		playsound(src, 'sound/effects/blob/blobattack.ogg', 100)
 		new /mob/living/basic/spider/giant/ (user.loc)
 		qdel(src)
@@ -180,7 +180,7 @@
 	. = ..()
 	if(!swarmed)
 		playsound(src, 'sound/mobs/non-humanoids/bee/bee.ogg', 100)
-		visible_message(span_userdanger(LANG("obj.b1a61e2e", list(src))))
+		visible_message(span_userdanger(LANG("obj.b1a61e2e55a2d5ee", list(src))))
 		for(var/i=1, i<max_mobs, ++i)
 			new /mob/living/basic/bee (loc)
 		swarmed = TRUE

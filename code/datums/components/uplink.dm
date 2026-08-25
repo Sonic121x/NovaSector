@@ -108,7 +108,7 @@
 
 /datum/component/uplink/proc/load_tc(mob/user, obj/item/stack/telecrystal/telecrystals, silent = FALSE)
 	if(!silent)
-		to_chat(user, span_notice(LANG("datum.78596a61", list(telecrystals, parent))))
+		to_chat(user, span_notice(LANG("datum.78596a61dddb4d5c", list(telecrystals, parent))))
 	var/amt = telecrystals.amount
 	uplink_handler.add_telecrystals(amt)
 	telecrystals.use(amt)
@@ -132,10 +132,10 @@
 
 	if(user != owner)
 		return
-	examine_list += span_warning(LANG("datum.0fc3c144", list(parent, unlock_code ? ", the code to unlock it is [span_boldwarning(unlock_code)]" : null)))
+	examine_list += span_warning(LANG("datum.0fc3c1449bcdef56", list(parent, unlock_code ? ", the code to unlock it is [span_boldwarning(unlock_code)]" : null)))
 
 	if(failsafe_code)
-		examine_list += span_warning(LANG("datum.41a0dd78", list(span_boldwarning(failsafe_code))))
+		examine_list += span_warning(LANG("datum.41a0dd78ae26be4d", list(span_boldwarning(failsafe_code))))
 
 /datum/component/uplink/proc/interact(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -257,7 +257,7 @@
 		if("buy_raw_tc")
 			if (uplink_handler.telecrystals <= 0)
 				return
-			var/desired_amount = tgui_input_number(ui.user, LANG("datum.c14353c2", null), LANG("datum.6707c1d8", null), default = uplink_handler.telecrystals, max_value = uplink_handler.telecrystals)
+			var/desired_amount = tgui_input_number(ui.user, LANG("datum.c14353c2eece06f6", null), LANG("datum.6707c1d85c55f01c", null), default = uplink_handler.telecrystals, max_value = uplink_handler.telecrystals)
 			if(!desired_amount || desired_amount < 1)
 				return
 			uplink_handler.purchase_raw_tc(ui.user, desired_amount, parent)
@@ -321,7 +321,7 @@
 	locked = FALSE
 	if(ismob(user))
 		interact(null, user)
-		to_chat(user, span_hear(LANG("datum.714242fb", null)))
+		to_chat(user, span_hear(LANG("datum.714242fbfce07291", null)))
 	return COMPONENT_STOP_RINGTONE_CHANGE
 
 /datum/component/uplink/proc/check_detonate()
@@ -356,7 +356,7 @@
 		return
 	locked = FALSE
 	interact(null, user)
-	to_chat(user, LANG("datum.60f4328f", null))
+	to_chat(user, LANG("datum.60f4328f0732f8d4", null))
 	return COMPONENT_CANNOT_USE_RADIO
 
 // Pen signal responses
@@ -374,7 +374,7 @@
 		previous_attempts.Cut()
 		master.degrees = 0
 		interact(null, user)
-		to_chat(user, span_warning(LANG("datum.fc324379", null)))
+		to_chat(user, span_warning(LANG("datum.fc3243791ade093c", null)))
 
 	else if(compare_list(previous_attempts, failsafe_code))
 		failsafe(user)

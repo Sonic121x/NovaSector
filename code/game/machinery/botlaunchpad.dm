@@ -33,7 +33,7 @@
 		return NONE
 	var/obj/item/multitool/multitool = tool
 	multitool.set_buffer(src)
-	balloon_alert(user, LANG("obj.84afb909", null))
+	balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
 	return ITEM_INTERACT_SUCCESS
 
 // Checks the turf for a bot and launches it if it's the only mob on the pad.
@@ -42,15 +42,15 @@
 	var/atom/possible_bot
 	for(var/mob/living/robot in get_turf(src))
 		if(!isbot(robot))
-			user.balloon_alert(user, LANG("obj.5f208fb8", null))
+			user.balloon_alert(user, LANG("obj.5f208fb88c767ab5", null))
 			return
 		if(!isnull(possible_bot))
-			user.balloon_alert(user, LANG("obj.e7f89750", null))
+			user.balloon_alert(user, LANG("obj.e7f897503f58b73a", null))
 			return
 		possible_bot = robot  // We don't change the launched_bot var here because we are not sure if there is another bot on the pad.
 
 	if(!use_energy(active_power_usage, force = FALSE))
-		balloon_alert(user, LANG("obj.204cf586", null))
+		balloon_alert(user, LANG("obj.204cf586a1a03b27", null))
 		return
 	launched_bot = WEAKREF(possible_bot)
 	podspawn(list(
@@ -63,9 +63,9 @@
 /obj/machinery/botpad/proc/recall(mob/living/user)
 	var/atom/our_bot = launched_bot?.resolve()
 	if(isnull(our_bot))
-		user.balloon_alert(user, LANG("obj.81676f69", null))
+		user.balloon_alert(user, LANG("obj.81676f692409932d", null))
 		return
-	user.balloon_alert(user, LANG("obj.342d35a1", null))
+	user.balloon_alert(user, LANG("obj.342d35a147ad8e72", null))
 	var/mob/living/basic/bot/basic_bot = our_bot
 	basic_bot.summon_bot(src)
 

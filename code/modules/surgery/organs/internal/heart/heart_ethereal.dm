@@ -59,11 +59,11 @@
 
 	switch(timeleft(crystalize_timer_id))
 		if(0 to CRYSTALIZE_STAGE_ENGULFING)
-			examine_list += span_warning(LANG("obj.88802632", list(examined_human)))
+			examine_list += span_warning(LANG("obj.888026322bb0a80f", list(examined_human)))
 		if(CRYSTALIZE_STAGE_ENGULFING to CRYSTALIZE_STAGE_ENCROACHING)
-			examine_list += span_notice(LANG("obj.65a4b8d3", list(examined_human)))
+			examine_list += span_notice(LANG("obj.65a4b8d306956b5e", list(examined_human)))
 		if(CRYSTALIZE_STAGE_SMALL to INFINITY)
-			examine_list += span_notice(LANG("obj.f0bc5f80", list(examined_human)))
+			examine_list += span_notice(LANG("obj.f0bc5f80be093452", list(examined_human)))
 
 ///On stat changes, if the victim is no longer dead but they're crystalizing, cancel it, if they become dead, start the crystalizing process if possible
 /obj/item/organ/heart/ethereal/proc/on_stat_change(mob/living/victim, new_stat)
@@ -84,8 +84,8 @@
 	if(HAS_TRAIT(victim, TRAIT_CANNOT_CRYSTALIZE))
 		return // no reviving during mafia, or other inconvenient times.
 
-	to_chat(victim, span_nicegreen(LANG("obj.e8b35c00", null)))
-	victim.visible_message(span_notice(LANG("obj.97caacaf", list(victim))), ignored_mobs = victim)
+	to_chat(victim, span_nicegreen(LANG("obj.e8b35c00bc2ae7a9", null)))
+	victim.visible_message(span_notice(LANG("obj.97caacaf30229671", list(victim))), ignored_mobs = victim)
 
 	ADD_TRAIT(victim, TRAIT_CORPSELOCKED, SPECIES_TRAIT)
 
@@ -99,8 +99,8 @@
 /obj/item/organ/heart/ethereal/proc/reset_crystalizing(mob/living/defender, mob/living/attacker, zone, obj/item/weapon)
 	SIGNAL_HANDLER
 	defender.visible_message(
-		span_notice(LANG("obj.cc46b25e", list(defender))),
-		span_notice(LANG("obj.59600aa2", null)),
+		span_notice(LANG("obj.cc46b25ebe3e9fe5", list(defender))),
+		span_notice(LANG("obj.59600aa256260361", null)),
 	)
 	deltimer(crystalize_timer_id)
 	crystalize_timer_id = addtimer(CALLBACK(src, PROC_REF(crystalize), defender), CRYSTALIZE_DISARM_WAIT_TIME, TIMER_STOPPABLE) //Lets us restart the timer on disarm
@@ -114,7 +114,7 @@
 		return //Should probably not happen, but lets be safe.
 
 	if(ismob(location) || isitem(location) || iseffect(location) || HAS_TRAIT_FROM(src, TRAIT_HUSK, CHANGELING_DRAIN)) //Stops crystallization if they are eaten by a dragon, turned into a legion, consumed by his grace, etc.
-		to_chat(ethereal, span_warning(LANG("obj.b97ebdf9", null)))
+		to_chat(ethereal, span_warning(LANG("obj.b97ebdf91c3a8de6", null)))
 		stop_crystalization_process(ethereal, FALSE)
 		return
 	COOLDOWN_START(src, crystalize_cooldown, INFINITY) //Prevent cheeky double-healing until we get out, this is against stupid admemery
@@ -157,8 +157,8 @@
 	var/mob/living/carbon/human/ethereal = source
 
 	ethereal.visible_message(
-		span_notice(LANG("obj.cf75b94b", list(ethereal))),
-		span_warning(LANG("obj.6ca15501", null)),
+		span_notice(LANG("obj.cf75b94b5667fea6", list(ethereal))),
+		span_warning(LANG("obj.6ca15501ef207ab1", null)),
 	)
 
 	stop_crystalization_process(ethereal)
@@ -189,8 +189,8 @@
 		stack_trace("Our crystal has no related heart")
 		return INITIALIZE_HINT_QDEL
 	src.ethereal_heart = ethereal_heart
-	ethereal_heart.owner.visible_message(span_notice(LANG("obj.68bb0122", list(ethereal_heart.owner))))
-	to_chat(ethereal_heart.owner, span_notice(LANG("obj.c3d9ec8e", null)))
+	ethereal_heart.owner.visible_message(span_notice(LANG("obj.68bb01220462df2a", list(ethereal_heart.owner))))
+	to_chat(ethereal_heart.owner, span_notice(LANG("obj.c3d9ec8ee8aa7111", null)))
 	playsound(get_turf(src), 'sound/mobs/humanoids/ethereal/ethereal_crystalization.ogg', 50)
 	var/atom/movable/possible_chair = ethereal_heart.owner.buckled
 	possible_chair?.unbuckle_mob(ethereal_heart.owner, force = TRUE)
@@ -221,7 +221,7 @@
 	for(var/mob/living/living in contents)
 		living.forceMove(get_turf(src))
 		REMOVE_TRAIT(living, TRAIT_CORPSELOCKED, SPECIES_TRAIT)
-		visible_message(span_notice(LANG("obj.9e95fa27", list(living)))) // NOVA EDIT CHANGE - Ethereal Rework 2024 - This reads cooler, okay? - ORIGINAL: visible_message(span_notice("The crystals shatters, causing [living] to fall out."))
+		visible_message(span_notice(LANG("obj.9e95fa278b15af1b", list(living)))) // NOVA EDIT CHANGE - Ethereal Rework 2024 - This reads cooler, okay? - ORIGINAL: visible_message(span_notice("The crystals shatters, causing [living] to fall out."))
 
 
 	deltimer(crystal_heal_timer)
@@ -237,7 +237,7 @@
 	var/mob/living/carbon/regenerating = ethereal_heart.owner
 
 	playsound(get_turf(regenerating), 'sound/mobs/humanoids/ethereal/ethereal_revive.ogg', 100)
-	to_chat(regenerating, span_purple(LANG("obj.732e2689", null))) //NOVA EDIT CHANGE - Ethereal Rework 2024 - ORIGINAL: to_chat(regenerating, span_notice("You burst out of the crystal with vigour... </span><span class='userdanger'>But at a cost."))
+	to_chat(regenerating, span_purple(LANG("obj.732e268975726de8", null))) //NOVA EDIT CHANGE - Ethereal Rework 2024 - ORIGINAL: to_chat(regenerating, span_notice("You burst out of the crystal with vigour... </span><span class='userdanger'>But at a cost."))
 	regenerating.revive(HEAL_ALL & ~HEAL_REFRESH_ORGANS)
 	regenerating.apply_status_effect(/datum/status_effect/vulnerable_to_damage) // NOVA EDIT ADDITION - This lasts for five minutes, the full duration of the cooldown.
 

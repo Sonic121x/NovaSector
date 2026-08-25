@@ -51,7 +51,7 @@
 			kill()
 			return
 
-	priority_announce(LANG("datum.1e8aef89", list(start_side_text)), "Collision Emergency Alert")
+	priority_announce(LANG("datum.1e8aef89187a2a80", list(start_side_text)), "Collision Emergency Alert")
 
 /datum/round_event/sandstorm/tick()
 	spawn_meteors(15, GLOB.meteors_sandstorm, start_side)

@@ -71,7 +71,7 @@
 		var/list/sm_chamber = get_area_turfs(/area/station/engineering/supermatter)
 		if(src.loc in sm_chamber)
 			safety_inspection = FALSE
-			priority_announce(LANG("mob.c1fa332a", list(station_name())), "Concerning the results of a safety inspection", type = "Priority")
+			priority_announce(LANG("mob.c1fa332adfa993d6", list(station_name())), "Concerning the results of a safety inspection", type = "Priority")
 			// It's just flavor, no tangible punishment
 	return ..()
 
@@ -128,7 +128,7 @@
 	do_jitter_animation(60)
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, manual_emote), "'s fur stands up, [src.p_their()] body trembling...")
 
-	notify_ghosts(LANG("mob.74ac00af", list(src)),
+	notify_ghosts(LANG("mob.74ac00afc1d01c29", list(src)),
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "Safety Inspection!",

@@ -49,7 +49,7 @@
 	for(var/team in teams)
 		var/obj/machinery/ctf/spawner/spawner = teams[team].spawner
 		notify_ghosts(
-			LANG("datum.78bac1c4", list(spawner.name)),
+			LANG("datum.78bac1c47f43040a", list(spawner.name)),
 			source = spawner,
 			header = "CTF has been activated",
 		)
@@ -118,10 +118,10 @@
 			continue
 		var/list/enemy_team_members = get_players(team)
 		if(user.ckey in enemy_team_members)
-			to_chat(user, span_warning(LANG("datum.f6182fc9", null)))
+			to_chat(user, span_warning(LANG("datum.f6182fc99fb054fb", null)))
 			return FALSE
 		else if(friendly_team_members.len > enemy_team_members.len)
-			to_chat(user, span_warning(LANG("datum.1c81b1e0", list(team_color, team, team))))
+			to_chat(user, span_warning(LANG("datum.1c81b1e0348bfa48", list(team_color, team, team))))
 			return FALSE
 	return TRUE
 

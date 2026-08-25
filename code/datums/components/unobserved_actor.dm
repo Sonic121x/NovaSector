@@ -84,7 +84,7 @@
 /datum/component/unobserved_actor/proc/check_if_seen(mob/living/source)
 	var/observed = can_be_seen(source)
 	if (observed && COOLDOWN_FINISHED(src, message_cooldown))
-		source.balloon_alert(source, LANG("datum.9b46c42a", null))
+		source.balloon_alert(source, LANG("datum.9b46c42aeed95031", null))
 		COOLDOWN_START(src, message_cooldown, 1 SECONDS)
 	return observed
 

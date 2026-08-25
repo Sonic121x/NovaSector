@@ -30,12 +30,12 @@
 /datum/surgery_operation/organ/repair/all_required_strings()
 	. = ..()
 	if(!repeatable)
-		. += LANG("datum.a3673597", null)
+		. += LANG("datum.a367359737b249fd", null)
 
 /datum/surgery_operation/organ/repair/all_blocked_strings()
 	. = ..()
 	if(!repeatable)
-		. += LANG("datum.f5dcfebb", null)
+		. += LANG("datum.f5dcfebbc588510e", null)
 
 /datum/surgery_operation/organ/repair/on_success(obj/item/organ/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	organ.set_organ_damage(organ.maxHealth * heal_to_percent)
@@ -508,7 +508,7 @@
 		organ.brainmob.mind?.remove_antag_datum(/datum/antagonist/brainwashed)
 	organ.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
 	if(organ.damage > organ.maxHealth * 0.1)
-		to_chat(surgeon, LANG("datum.b2d95b75", list(FORMAT_ORGAN_OWNER(organ))))
+		to_chat(surgeon, LANG("datum.b2d95b752418d03f", list(FORMAT_ORGAN_OWNER(organ))))
 
 /datum/surgery_operation/organ/repair/brain/on_failure(obj/item/organ/brain/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	. = ..()

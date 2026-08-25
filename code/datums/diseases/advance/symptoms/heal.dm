@@ -59,7 +59,7 @@
 	resistance = -2
 	stage_speed = 0
 	transmittable = 1
-	level = 6
+	level = 8
 	passive_message = span_notice("You miss the feeling of starlight on your skin.")
 	var/nearspace_penalty = 0.3
 	threshold_descs = list(
@@ -160,7 +160,7 @@
 /datum/symptom/heal/starlight/Heal(mob/living/carbon/carbon_host, datum/disease/advance/our_disease, actual_power)
 	var/heal_amt = actual_power
 	if(carbon_host.get_tox_loss() && prob(5))
-		to_chat(carbon_host, span_notice(LANG("datum.cb977207", null)))
+		to_chat(carbon_host, span_notice(LANG("datum.cb97720725781908", null)))
 	var/needs_update = FALSE
 	needs_update += carbon_host.adjust_tox_loss(-4 * heal_amt, updating_health = FALSE, required_biotype = healable_bodytypes) // Most effective on toxins
 	needs_update += carbon_host.heal_overall_damage(heal_amt, heal_amt, required_bodytype = healable_bodytypes, updating_health = FALSE)
@@ -210,7 +210,7 @@
 		if(food_conversion)
 			living_host.adjust_nutrition(0.3 * food)
 		if(prob(2))
-			to_chat(living_host, span_notice(LANG("datum.6a82e68f", null)))
+			to_chat(living_host, span_notice(LANG("datum.6a82e68fdf98d91e", null)))
 	return TRUE
 
 
@@ -255,7 +255,7 @@
 	var/lost_nutrition = 9 - (reduced_hunger * 5)
 	carbon_host.adjust_nutrition(-lost_nutrition * HUNGER_FACTOR) //Hunger depletes at 10x the normal speed
 	if(prob(2))
-		to_chat(carbon_host, span_notice(LANG("datum.9e4dfc3d", null)))
+		to_chat(carbon_host, span_notice(LANG("datum.9e4dfc3d2607e1a8", null)))
 	return TRUE
 
 /*Nocturnal Regeneration
@@ -298,7 +298,7 @@
 	var/heal_amt = 2 * actual_power
 	carbon_host.heal_overall_damage(heal_amt, heal_amt * 0.5, required_bodytype = healable_bodytypes)
 	if(prob(5))
-		to_chat(carbon_host, span_notice(LANG("datum.35223cce", null)))
+		to_chat(carbon_host, span_notice(LANG("datum.35223ccea9d9a1a6", null)))
 	return TRUE
 
 /datum/symptom/heal/darkness/passive_message_condition(mob/living/living_host)
@@ -372,7 +372,7 @@
 		if(SOFT_CRIT)
 			return power * 0.5
 	if(living_host.get_brute_loss() + living_host.get_fire_loss() >= living_host.maxHealth * 0.7 && !active_coma && !(HAS_TRAIT(living_host, TRAIT_NOSOFTCRIT)))
-		to_chat(living_host, span_warning(LANG("datum.ebcce27e", null)))
+		to_chat(living_host, span_warning(LANG("datum.ebcce27effbadc7f", null)))
 		active_coma = TRUE
 		addtimer(CALLBACK(src, PROC_REF(coma), living_host), 6 SECONDS)
 
@@ -409,7 +409,7 @@
 	resistance = -1
 	stage_speed = 0
 	transmittable = 1
-	level = 6
+	level = 4
 	passive_message = span_notice("Your skin feels oddly dry...")
 	required_organ = ORGAN_SLOT_LIVER
 	threshold_descs = list(
@@ -444,7 +444,7 @@
 /datum/symptom/heal/water/Heal(mob/living/carbon/carbon_host, datum/disease/advance/our_disease, actual_power)
 	var/heal_amt = 2 * actual_power
 	if(carbon_host.heal_overall_damage(heal_amt * 0.5, heal_amt, required_bodytype = healable_bodytypes) && prob(5))
-		to_chat(carbon_host, span_notice(LANG("datum.a6d53134", null)))
+		to_chat(carbon_host, span_notice(LANG("datum.a6d53134e6cf54d0", null)))
 	return TRUE
 
 /datum/symptom/heal/water/passive_message_condition(mob/living/carbon/carbon_host)
@@ -541,21 +541,21 @@
 	var/heal_amt = BASE_HEAL_PLASMA_FIXATION * actual_power
 
 	if(prob(5))
-		to_chat(carbon_host, span_notice(LANG("datum.cef7c4bf", null)))
+		to_chat(carbon_host, span_notice(LANG("datum.cef7c4bf059eae95", null)))
 
 	var/difference = carbon_host.get_body_temp_normal() - carbon_host.bodytemperature
 	if(prob(5))
 		if(difference > -1) // Yes, it's supposed to be -1 and not 0. Probably so you keep getting passive messages even at normal temperature.
-			to_chat(carbon_host, span_notice(LANG("datum.b5443b7c", null)))
+			to_chat(carbon_host, span_notice(LANG("datum.b5443b7cd65a9e0b", null)))
 		if(difference < 0)
-			to_chat(carbon_host, span_notice(LANG("datum.41a989b2", null)))
+			to_chat(carbon_host, span_notice(LANG("datum.41a989b29aa0f688", null)))
 	carbon_host.adjust_bodytemperature(clamp(difference, -20 * temp_rate, 20 * temp_rate))
 	var/needs_update = FALSE
 	needs_update += carbon_host.adjust_tox_loss(-heal_amt, updating_health = FALSE, required_biotype = healable_bodytypes)
 	var/brute_burn_heal = carbon_host.heal_overall_damage(heal_amt, heal_amt, required_bodytype = healable_bodytypes, updating_health = FALSE)
 	needs_update += brute_burn_heal
 	if(brute_burn_heal && prob(5))
-		to_chat(carbon_host, span_notice(LANG("datum.524933da", null)))
+		to_chat(carbon_host, span_notice(LANG("datum.524933dab13885e2", null)))
 	if(needs_update)
 		carbon_host.updatehealth()
 	return TRUE
@@ -575,7 +575,7 @@
 	resistance = -2
 	stage_speed = 2
 	transmittable = -3
-	level = 6
+	level = 7
 	passive_message = span_notice("Your skin glows faintly for a moment.")
 	threshold_descs = list(
 		"Resistance 7" = "Increases healing speed.",
@@ -600,7 +600,7 @@
 	if(needs_update)
 		carbon_host.updatehealth()
 	if(brute_burn_heal && prob(4))
-		to_chat(carbon_host, span_notice(LANG("datum.409f6273", null)))
+		to_chat(carbon_host, span_notice(LANG("datum.409f6273ba8fa314", null)))
 	return TRUE
 
 /datum/symptom/heal/radiation/can_generate_randomly()
@@ -614,9 +614,8 @@
 	resistance = 1
 	stage_speed = 0
 	transmittable = -1
-	level = 4
+	level = 5
 	base_message_chance = 0
-	symptom_cure = null
 	power = 2
 
 	threshold_descs = list(
@@ -630,4 +629,40 @@
 
 /datum/symptom/heal/aggressive_healing/Heal(mob/living/carbon/carbon_host, datum/disease/advance/our_disease, actual_power)
 	carbon_host.heal_overall_damage(actual_power, actual_power, required_bodytype = healable_bodytypes)
+	return TRUE
+
+/datum/symptom/heal/genetic
+	name = "Mutated Regeneration"
+	desc = "The virus slowly repairs tissue damage in hosts with stable genetics."
+	stealth = 1
+	resistance = -3
+	stage_speed = -4
+	transmittable = -4
+	level = 9
+	threshold_descs = list(
+		"Resistance 9" = "Doubles healing speed from stable genetics.",
+		"Stage Speed 6" = "Slightly increases healing speed for all hosts without negative genetic stability.",
+	)
+	power = 0
+	var/stability_divisor = 25
+
+/datum/symptom/heal/genetic/Start(datum/disease/advance/our_disease)
+	. = ..()
+	if(!.)
+		return
+	if(our_disease.totalResistance() >= 9)
+		power = 0.2
+	if(our_disease.totalStageSpeed() >= 6)
+		stability_divisor = 12.5
+
+/datum/symptom/heal/genetic/CanHeal(datum/disease/advance/our_disease)
+	if(!our_disease.affected_mob.has_dna())
+		return power
+	var/dna_stability = our_disease.affected_mob.dna.stability
+	if(dna_stability >= initial(our_disease.affected_mob.dna.stability))
+		return power + (dna_stability - initial(our_disease.affected_mob.dna.stability)) / stability_divisor
+
+/datum/symptom/heal/genetic/Heal(mob/living/carbon/carbon_host, datum/disease/advance/our_disease, actual_power)
+	if(carbon_host.heal_overall_damage(actual_power, actual_power, required_bodytype = healable_bodytypes) && prob(5))
+		to_chat(carbon_host, span_notice(LANG("datum.f7b2d287e94ab5eb", null)))
 	return TRUE

@@ -29,7 +29,7 @@
 		return FALSE
 
 	if(prob(5))
-		to_chat(hallucinator, span_warning(LANG("datum.2209b834", null)))
+		to_chat(hallucinator, span_warning(LANG("datum.2209b8343bbf7216", null)))
 
 	var/turf/selected = pick(valid)
 	feedback_details += "Eye coords: [selected.x], [selected.y], [selected.z]"

@@ -126,10 +126,10 @@
 	allow_custom_character = ALL
 
 /obj/effect/mob_spawn/ghost_role/human/space_bar_patron/attack_hand(mob/user, list/modifiers)
-	var/despawn = tgui_alert(usr, LANG("obj.c55a97bd", null), null, list("Yes", "No"))
+	var/despawn = tgui_alert(usr, LANG("obj.c55a97bd0981fb95", null), null, list("Yes", "No"))
 	if(despawn == "No" || !loc || !Adjacent(user))
 		return
-	user.visible_message(span_notice(LANG("obj.4acbffaf", list(user.name))))
+	user.visible_message(span_notice(LANG("obj.4acbffafa23ccc49", list(user.name))))
 	qdel(user)
 
 /datum/outfit/cryobartender

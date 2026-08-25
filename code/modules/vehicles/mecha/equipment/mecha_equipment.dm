@@ -58,7 +58,7 @@
 		if(special_attaching_interaction(attach_right, M, user))
 			return ITEM_INTERACT_SUCCESS //The rest is handled in the special interactions proc
 		attach(M, attach_right)
-		user.visible_message(span_notice(LANG("obj.c24be4ca", list(user, src, M))), span_notice(LANG("obj.c1fbc99d", list(src, M))))
+		user.visible_message(span_notice(LANG("obj.c24be4ca3d4ab352", list(user, src, M))), span_notice(LANG("obj.c1fbc99dd596332a", list(src, M))))
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 
@@ -78,11 +78,11 @@
 			. = TRUE
 		if("repair")
 			ui.close() // allow watching for baddies and the ingame effects
-			chassis.balloon_alert(usr, LANG("obj.5a3c41d3", null))
+			chassis.balloon_alert(usr, LANG("obj.5a3c41d3f28eb044", null))
 			while(do_after(usr, 1 SECONDS, chassis) && get_integrity() < max_integrity)
 				repair_damage(30)
 			if(get_integrity() == max_integrity)
-				balloon_alert(usr, LANG("obj.fe98aec3", null))
+				balloon_alert(usr, LANG("obj.fe98aec3be0f6ccb", null))
 			. = FALSE
 	var/result = handle_ui_act(action,params,ui,state)
 	if(result) //if handle_ui_act returned anything at all lets just return that instead
@@ -114,10 +114,10 @@
 	if(chassis.is_currently_ejecting)
 		return FALSE
 	if(chassis.equipment_disabled)
-		to_chat(chassis.occupants, span_warning(LANG("obj.dbcebf5b", null)))
+		to_chat(chassis.occupants, span_warning(LANG("obj.dbcebf5bee4d15c5", null)))
 		return FALSE
 	if(get_integrity() <= 1)
-		to_chat(chassis.occupants, span_warning(LANG("obj.11e82cd5", null)))
+		to_chat(chassis.occupants, span_warning(LANG("obj.11e82cd5a980fb28", null)))
 		return FALSE
 	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return FALSE
@@ -166,28 +166,28 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/default_can_attach(obj/vehicle/sealed/mecha/mech, attach_right = FALSE, mob/user)
 	if(!(mech_flags & mech.mech_type))
-		to_chat(user, span_warning(LANG("obj.f7057ece", list(src, mech))))
+		to_chat(user, span_warning(LANG("obj.f7057ece13f7dc12", list(src, mech))))
 		return FALSE
 	if(equipment_slot == MECHA_WEAPON)
 		if(attach_right)
 			// We need to check for length in case a mech doesn't support any arm attachments at all
 			if((!isnull(mech.equip_by_category[MECHA_R_ARM]) || !mech.max_equip_by_category[MECHA_R_ARM]) && (!special_attaching_interaction(attach_right, mech, user, checkonly = TRUE)))
-				to_chat(user, span_warning(LANG("obj.95e4d38f", list(mech, mech.equip_by_category[MECHA_L_ARM] || !mech.max_equip_by_category[MECHA_L_ARM] ? "" : " Try left arm!"))))
+				to_chat(user, span_warning(LANG("obj.95e4d38f021a77f0", list(mech, mech.equip_by_category[MECHA_L_ARM] || !mech.max_equip_by_category[MECHA_L_ARM] ? "" : " Try left arm!"))))
 				return FALSE
 		else
 			if((!isnull(mech.equip_by_category[MECHA_L_ARM]) || !mech.max_equip_by_category[MECHA_L_ARM]) && (!special_attaching_interaction(attach_right, mech, user, checkonly = TRUE)))
-				to_chat(user, span_warning(LANG("obj.55866d6f", list(mech, mech.equip_by_category[MECHA_R_ARM] || !mech.max_equip_by_category[MECHA_R_ARM] ? "" : " Try right arm!"))))
+				to_chat(user, span_warning(LANG("obj.55866d6fdb788adb", list(mech, mech.equip_by_category[MECHA_R_ARM] || !mech.max_equip_by_category[MECHA_R_ARM] ? "" : " Try right arm!"))))
 				return FALSE
 		return TRUE
 	if(unstackable)
 		var/list/obj/item/mecha_parts/mecha_equipment/contents = mech.equip_by_category[equipment_slot]
 		for(var/obj/equipment as anything in contents)
 			if(src.type == equipment.type)
-				to_chat(user, span_warning(LANG("obj.34e17db1", null)))
+				to_chat(user, span_warning(LANG("obj.34e17db1a59c0ff5", null)))
 				return FALSE
 
 	if(length(mech.equip_by_category[equipment_slot]) == mech.max_equip_by_category[equipment_slot])
-		to_chat(user, span_warning(LANG("obj.a915cbd5", null)))
+		to_chat(user, span_warning(LANG("obj.a915cbd54002dd20", null)))
 		return FALSE
 	return TRUE
 

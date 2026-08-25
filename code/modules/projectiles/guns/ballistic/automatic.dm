@@ -273,14 +273,14 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw/examine(mob/user)
 	. = ..()
-	. += LANG("obj.587c1359", list(cover_open ? "close" : "open"))
+	. += LANG("obj.587c135914e96e73", list(cover_open ? "close" : "open"))
 	if(cover_open && magazine)
-		. += span_notice(LANG("obj.50e55fa8", null))
+		. += span_notice(LANG("obj.50e55fa813130bc1", null))
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/click_alt(mob/user)
 	cover_open = !cover_open
-	balloon_alert(user, LANG("obj.79db4d42", list(cover_open ? "opened" : "closed")))
+	balloon_alert(user, LANG("obj.79db4d42235a62d4", list(cover_open ? "opened" : "closed")))
 	playsound(src, 'sound/items/weapons/gun/l6/l6_door.ogg', 60, TRUE)
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
@@ -296,7 +296,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw/try_fire_gun(atom/target, mob/living/user, params)
 	if(cover_open)
-		balloon_alert(user, LANG("obj.77778c5b", null))
+		balloon_alert(user, LANG("obj.77778c5be3f5ebaf", null))
 		return FALSE
 
 	. = ..()
@@ -310,13 +310,13 @@
 		..()
 		return
 	if (!cover_open)
-		balloon_alert(user, LANG("obj.e135a99d", null))
+		balloon_alert(user, LANG("obj.e135a99d247bfd15", null))
 		return
 	..()
 
 /obj/item/gun/ballistic/automatic/l6_saw/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!cover_open && istype(tool, accepted_magazine_type))
-		balloon_alert(user, LANG("obj.e135a99d", null))
+		balloon_alert(user, LANG("obj.e135a99d247bfd15", null))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -419,10 +419,10 @@
 /obj/item/gun/ballistic/automatic/battle_rifle/examine(mob/user)
 	. = ..()
 	if(shots_before_degradation)
-		. += span_notice(LANG("obj.b671765b", list(src, shots_before_degradation)))
+		. += span_notice(LANG("obj.b671765b58a442eb", list(src, shots_before_degradation)))
 	else
-		. += span_notice(LANG("obj.413ebfb4", list(src, degradation_stage, degradation_stage_max, src)))
-	. += span_notice(LANG("obj.443782c7", list(EXAMINE_HINT("look closer"), src)))
+		. += span_notice(LANG("obj.413ebfb45b726665", list(src, degradation_stage, degradation_stage_max, src)))
+	. += span_notice(LANG("obj.443782c7961051dd", list(EXAMINE_HINT("look closer"), src)))
 
 
 
@@ -454,12 +454,12 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	projectile_damage_multiplier = emagged_projectile_damage_multiplier
-	balloon_alert(user, LANG("obj.0bb0d6a5", null))
+	balloon_alert(user, LANG("obj.0bb0d6a530adecdf", null))
 	return TRUE
 
 /obj/item/gun/ballistic/automatic/battle_rifle/multitool_act(mob/living/user, obj/item/tool)
 	if(!tool.use_tool(src, user, 20 SECONDS, volume = 50))
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return ITEM_INTERACT_BLOCKING
 
 	emp_malfunction = FALSE
@@ -468,12 +468,12 @@
 	projectile_speed_multiplier = initial(projectile_speed_multiplier)
 	fire_delay = initial(fire_delay)
 	update_appearance()
-	balloon_alert(user, LANG("obj.9111479c", null))
+	balloon_alert(user, LANG("obj.9111479c48833c8b", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/ballistic/automatic/battle_rifle/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(chambered.loaded_projectile && prob(75) && (emp_malfunction || degradation_stage == degradation_stage_max))
-		balloon_alert_to_hearers(LANG("obj.8fb6d55f", null))
+		balloon_alert_to_hearers(LANG("obj.8fb6d55f9643a84b", null))
 		playsound(src, dry_fire_sound, dry_fire_sound_volume, TRUE)
 		return
 
@@ -521,7 +521,7 @@
 
 /// Proc to handle the countdown for our detonation
 /obj/item/gun/ballistic/automatic/battle_rifle/proc/perform_extreme_malfunction(mob/living/user)
-	balloon_alert(user, LANG("obj.49f01f09", null))
+	balloon_alert(user, LANG("obj.49f01f090236e74c", null))
 	explosion_timer = addtimer(CALLBACK(src, PROC_REF(fucking_explodes_you)), 5 SECONDS, (TIMER_UNIQUE|TIMER_OVERRIDE))
 	playsound(src, 'sound/items/weapons/gun/general/empty_alarm.ogg', 50, FALSE)
 

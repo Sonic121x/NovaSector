@@ -18,12 +18,12 @@
 
 /datum/buildmode_mode/boom/show_help(client/builder)
 	to_chat(builder, span_purple(boxed_message(
-		LANG("datum.1774e165", list(span_bold("Set explosion destructiveness"), span_bold("Kaboom"), span_warning("NOTE:")))))
+		LANG("datum.1774e16547d6f0cf", list(span_bold("Set explosion destructiveness"), span_bold("Kaboom"), span_warning("NOTE:")))))
 	)
 
 /datum/buildmode_mode/boom/change_settings(client/c)
 	for (var/explosion_level in explosions)
-		explosions[explosion_level] = input(c, LANG("datum.593032cd", list(explosion_level)), LANG("datum.8c7e56a2", null)) as num|null
+		explosions[explosion_level] = input(c, LANG("datum.593032cd51bcdef1", list(explosion_level)), LANG("datum.8c7e56a24e9ebe25", null)) as num|null
 		if(explosions[explosion_level] == null || explosions[explosion_level] < 0)
 			explosions[explosion_level] = 0
 

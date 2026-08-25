@@ -156,8 +156,8 @@
 
 /mob/living/simple_animal/hostile/megafauna/proc/celebrate_kill(mob/living/L)
 	visible_message(
-		span_danger(LANG("mob.31196d77", list(src, L))),
-		span_userdanger(LANG("mob.fbff77e5", list(L))))
+		span_danger(LANG("mob.31196d7793b833f0", list(src, L))),
+		span_userdanger(LANG("mob.fbff77e5bf364e78", list(L))))
 
 /mob/living/simple_animal/hostile/megafauna/CanAttack(atom/the_target)
 	. = ..()

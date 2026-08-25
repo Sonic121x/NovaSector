@@ -75,7 +75,7 @@
 
 /obj/item/golfcart_kit/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.649b25a4", list(EXAMINE_HINT("screwed"))))
+	. += span_notice(LANG("obj.649b25a427194502", list(EXAMINE_HINT("screwed"))))
 
 /obj/item/golfcart_kit/proc/play_building_noises(mob/living/user, duration)
 	duration = max(duration - (1 SECONDS), 0.5 SECONDS)
@@ -95,9 +95,9 @@
 
 /obj/item/golfcart_kit/screwdriver_act(mob/living/user, obj/item/tool)
 	if (!isturf(loc))
-		user.balloon_alert(user, LANG("obj.cac4dae3", null))
+		user.balloon_alert(user, LANG("obj.cac4dae3b3c8f95d", null))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.0c813999", list(user, src))), span_notice(LANG("obj.cdc2203e", list(src))))
+	user.visible_message(span_notice(LANG("obj.0c813999361c6db3", list(user, src))), span_notice(LANG("obj.cdc2203e137d04f8", list(src))))
 	var/unboxing_duration = 7 SECONDS
 	INVOKE_ASYNC(src, PROC_REF(play_building_noises), user, unboxing_duration * tool.toolspeed)
 	if(!tool.use_tool(src, user, unboxing_duration))
@@ -105,7 +105,7 @@
 	if (!isturf(loc))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/vehicle/ridden/golfcart/cart = new(get_turf(src))
-	user.visible_message(span_notice(LANG("obj.284475c7", list(user, cart))), span_notice(LANG("obj.19d6614f", list(cart))))
+	user.visible_message(span_notice(LANG("obj.284475c7afa87947", list(user, cart))), span_notice(LANG("obj.19d6614f3825c9a6", list(cart))))
 	qdel(src)
 
 /obj/vehicle/ridden/golfcart/atom_break()
@@ -157,8 +157,8 @@
 	mob.throw_at(get_edge_target_turf(mob, dir), 2, 3)
 	RegisterSignal(mob, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(thrown_mob_landed))
 	mob.visible_message(
-		span_danger(LANG("obj.1395df01", list(src, mob))),
-		span_userdanger(LANG("obj.95075ba0", list(src))),
+		span_danger(LANG("obj.1395df01548a035a", list(src, mob))),
+		span_userdanger(LANG("obj.95075ba06c9fcb79", list(src))),
 	)
 
 ///Called when a resting victim is run over
@@ -174,8 +174,8 @@
 			playsound(src, 'sound/effects/pop_expl.ogg', 50, TRUE)
 			playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
 			victim.visible_message(
-				span_danger(LANG("obj.bb65eec4", list(src, victim))),
-				span_userdanger(LANG("obj.8300e9d1", list(src))),
+				span_danger(LANG("obj.bb65eec42eebe72b", list(src, victim))),
+				span_userdanger(LANG("obj.8300e9d1ec69d67c", list(src))),
 			)
 
 			var/damage = rand(GOLFCART_RUN_OVER_DAMAGE - GOLFCART_RUN_OVER_DAMAGE / 5, GOLFCART_RUN_OVER_DAMAGE + GOLFCART_RUN_OVER_DAMAGE / 5)
@@ -215,20 +215,20 @@
 		return ..()
 	if (istype(attacking_item, /obj/item/v8_engine))
 		if (engine || cell)
-			balloon_alert(user, LANG("obj.f8f50f2f", null))
+			balloon_alert(user, LANG("obj.f8f50f2f9c443901", null))
 			return ITEM_INTERACT_BLOCKING
 		user.transferItemToLoc(attacking_item, src)
 		engine = attacking_item
 		engine_state = ENGINE_UNWRENCHED
-		balloon_alert(user, LANG("obj.ddc17aca", list(engine)))
+		balloon_alert(user, LANG("obj.ddc17aca2d2c2c29", list(engine)))
 		return ITEM_INTERACT_SUCCESS
 	if (istype(attacking_item, /obj/item/stock_parts/power_store/cell))
 		if (cell || engine)
-			balloon_alert(user, LANG("obj.f8f50f2f", null))
+			balloon_alert(user, LANG("obj.f8f50f2f9c443901", null))
 			return ITEM_INTERACT_BLOCKING
 		user.transferItemToLoc(attacking_item, src)
 		cell = attacking_item
-		balloon_alert(user, LANG("obj.ddc17aca", list(cell)))
+		balloon_alert(user, LANG("obj.ddc17aca2d2c2c29", list(cell)))
 		return ITEM_INTERACT_SUCCESS
 	return ..()
 
@@ -295,18 +295,18 @@
 			set_engine_state(ENGINE_WRENCHED)
 	else
 		if(DOING_INTERACTION(user, src))
-			balloon_alert(user, LANG("obj.35cf07e3", null))
+			balloon_alert(user, LANG("obj.35cf07e31eef1659", null))
 			return
 		if(atom_integrity >= max_integrity)
-			balloon_alert(user, LANG("obj.9e4cb9c4", null))
+			balloon_alert(user, LANG("obj.9e4cb9c48761232b", null))
 			return
 		// takes 10 seconds to repair from full
-		balloon_alert(user, LANG("obj.14e41daa", null))
+		balloon_alert(user, LANG("obj.14e41daaf26561ee", null))
 		if (!tool.use_tool(src, user, ((max_integrity - atom_integrity) / max_integrity * 10) SECONDS, volume = 50))
-			balloon_alert(user, LANG("obj.afa6ab5d", null))
+			balloon_alert(user, LANG("obj.afa6ab5da74631e1", null))
 			return
 		repair_damage(max_integrity - atom_integrity)
-		balloon_alert(user, LANG("obj.65ced1e8", null))
+		balloon_alert(user, LANG("obj.65ced1e8b5b56733", null))
 	return
 
 /obj/vehicle/ridden/golfcart/proc/toggle_hood()
@@ -317,48 +317,48 @@
 	if (user in buckled_mobs)
 		return ..()
 	else
-		to_chat(user, span_warning(LANG("obj.18543ba8", null)))
+		to_chat(user, span_warning(LANG("obj.18543ba820f8a381", null)))
 	. = CLICK_ACTION_SUCCESS
 	toggle_hood()
 	if (hood_open)
-		to_chat(user, span_notice(LANG("obj.e5ddda5b", list(src))))
+		to_chat(user, span_notice(LANG("obj.e5ddda5b5af8c74c", list(src))))
 	else
-		to_chat(user, span_notice(LANG("obj.75666cf1", list(src))))
+		to_chat(user, span_notice(LANG("obj.75666cf164d2c959", list(src))))
 
 /obj/vehicle/ridden/golfcart/examine_more(mob/user)
 	. = ..()
 	if (!child.cargo)
 		return
-	. += span_slightly_larger(LANG("obj.6c607395", list(child.cargo)))
+	. += span_slightly_larger(LANG("obj.6c6073952cdb6d30", list(child.cargo)))
 	. += child.cargo.examine(user)
 
 /obj/vehicle/ridden/golfcart/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.17cf29ff", null))
+	. += span_notice(LANG("obj.17cf29ff8498e753", null))
 	if (child.cargo)
-		. += span_info(LANG("obj.fe06eb83", list(child.cargo)))
+		. += span_info(LANG("obj.fe06eb834b97a046", list(child.cargo)))
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
-		. += span_warning(LANG("obj.7cb3bc2e", list(src)))
+		. += span_warning(LANG("obj.7cb3bc2e7b3b9d8e", list(src)))
 		return
 	if (!engine)
 		var/power = 0
 		if (cell)
 			power = floor(cell.charge / cell.maxcharge * 100)
-		. += span_info(LANG("obj.223eda6d", list(power)))
+		. += span_info(LANG("obj.223eda6dc8484ed3", list(power)))
 	if (hood_open)
-		. += span_warning(LANG("obj.bdee87bb", null))
+		. += span_warning(LANG("obj.bdee87bb7834ff53", null))
 		if (engine)
-			. += span_info(LANG("obj.18a86ba5", list(engine)))
+			. += span_info(LANG("obj.18a86ba518eb3cb4", list(engine)))
 			if (engine_state == ENGINE_UNWRENCHED)
-				. += span_notice(LANG("obj.896ad0ee", list(EXAMINE_HINT("wrenched"))))
+				. += span_notice(LANG("obj.896ad0eee7eb618a", list(EXAMINE_HINT("wrenched"))))
 			else if (engine_state == ENGINE_WRENCHED)
-				. += span_notice(LANG("obj.fd57b260", list(EXAMINE_HINT("welded"))))
+				. += span_notice(LANG("obj.fd57b260e13e4d28", list(EXAMINE_HINT("welded"))))
 			// last state is ENGINE_WELDED
 		else if (cell)
-			. += span_info(LANG("obj.18a86ba5", list(cell)))
-			. += span_smallnotice(LANG("obj.05c5ae7f", null))
+			. += span_info(LANG("obj.18a86ba518eb3cb4", list(cell)))
+			. += span_smallnotice(LANG("obj.05c5ae7f4647f685", null))
 		else
-			. += span_info(LANG("obj.b21d2f5d", null))
+			. += span_info(LANG("obj.b21d2f5d4c232681", null))
 
 ///Called when something tries to pass us. Returns TRUE if it is trying to crawl past us.
 /obj/vehicle/ridden/golfcart/proc/allow_crawler_through(atom/crawler)

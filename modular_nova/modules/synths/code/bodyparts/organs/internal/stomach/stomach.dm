@@ -25,17 +25,16 @@
 		if(EMP_HEAVY)
 			owner.nutrition = max(0, owner.nutrition - SYNTH_STOMACH_HEAVY_EMP_CHARGE_LOSS)
 			apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
-			to_chat(owner, span_warning(LANG("obj.2aa33b5f", null)))
+			to_chat(owner, span_warning(LANG("obj.2aa33b5ffd502479", null)))
 
 		if(EMP_LIGHT)
 			owner.nutrition = max(0, owner.nutrition - SYNTH_STOMACH_LIGHT_EMP_CHARGE_LOSS)
 			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
-			to_chat(owner, span_warning(LANG("obj.94d8276d", null)))
+			to_chat(owner, span_warning(LANG("obj.94d8276d4786e01f", null)))
 
 /datum/design/synth_stomach
 	name = "Synthetic Fuel Cell"
 	desc = "A mini electrochemical reactor, for synthetic use only. Converts the chemical energy of a fuel into electricity to power synthetic bodies. Has a low-power mode to ensure baseline functions. Without this, synthetics are unable to stay powered."
-	id = "synth_stomach"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

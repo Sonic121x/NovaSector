@@ -41,7 +41,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "访问新闻播报网络", "Allows you
 /datum/newspanel/ui_static_data(mob/user)
 	. = ..()
 	if (!is_admin(user))
-		to_chat(usr, LANG("datum.27e7aa03", null), confidential = TRUE)
+		to_chat(usr, LANG("datum.27e7aa03e9a82e27", null), confidential = TRUE)
 		return
 
 /datum/newspanel/ui_data(mob/user)
@@ -152,7 +152,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "访问新闻播报网络", "Allows you
 
 		if("createStory")
 			if(!current_channel)
-				to_chat(usr, LANG("datum.5575955f", null))
+				to_chat(usr, LANG("datum.5575955f39b9d36e", null))
 				return TRUE
 			var/current_channel_id = params["current"]
 			create_story(channel_id = current_channel_id)
@@ -238,14 +238,14 @@ ADMIN_VERB(access_news_network, R_ADMIN, "访问新闻播报网络", "Allows you
 			return TRUE
 
 		if("setCriminalName")
-			var/temp_name = tgui_input_text(usr, LANG("datum.37782efd", null), LANG("datum.f19e98eb", null), "John Doe", max_length = MAX_NAME_LEN, multiline = FALSE)
+			var/temp_name = tgui_input_text(usr, LANG("datum.37782efda370560b", null), LANG("datum.f19e98ebcf0d7035", null), "John Doe", max_length = MAX_NAME_LEN, multiline = FALSE)
 			if(!temp_name)
 				return TRUE
 			criminal_name = temp_name
 			return TRUE
 
 		if("setCrimeData")
-			var/temp_desc = tgui_input_text(usr, LANG("datum.bf012c81", null), LANG("datum.f19e98eb", null), "Unknown", max_length = MAX_BROADCAST_LEN, multiline = TRUE)
+			var/temp_desc = tgui_input_text(usr, LANG("datum.bf012c81a191fc19", null), LANG("datum.f19e98ebcf0d7035", null), "Unknown", max_length = MAX_BROADCAST_LEN, multiline = TRUE)
 			if(!temp_desc)
 				return TRUE
 			crime_description = temp_desc
@@ -278,7 +278,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "访问新闻播报网络", "Allows you
  * *user: The mob who is being checked for a held photo object.
  */
 /datum/newspanel/proc/attach_photo(mob/user)
-	to_chat(user, LANG("datum.218a7921", null))
+	to_chat(user, LANG("datum.218a792132c7bce6", null))
 	return
 
 /**
@@ -290,13 +290,13 @@ ADMIN_VERB(access_news_network, R_ADMIN, "访问新闻播报网络", "Allows you
 		return
 	var/datum/feed_channel/potential_channel = GLOB.news_network.network_channels_by_name[channel_name]
 	if(potential_channel)
-		tgui_alert(usr, LANG("datum.fc1f0659", null), list("Okay"))
+		tgui_alert(usr, LANG("datum.fc1f065967ecfb6b", null), list("Okay"))
 		return TRUE
 	if(!channel_desc)
 		return TRUE
 	if(isnull(channel_locked))
 		return TRUE
-	var/choice = tgui_alert(usr, LANG("datum.e41c8fc3", null),LANG("datum.0eacab27", null), list("Confirm","Cancel"))
+	var/choice = tgui_alert(usr, LANG("datum.e41c8fc3b8ebf247", null),LANG("datum.0eacab279a535407", null), list("Confirm","Cancel"))
 	if(choice == "Confirm")
 		GLOB.news_network.create_feed_channel(channel_name, "Centcom Official", channel_desc, locked = channel_locked)
 		SSblackbox.record_feedback("text", "newscaster_channels", 1, "[channel_name]")
@@ -344,7 +344,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "访问新闻播报网络", "Allows you
 		return
 	current_channel = potential_channel
 
-	var/temp_message = tgui_input_text(usr, LANG("datum.cb9369e7", null), LANG("datum.0eacab27", null), feed_channel_message, max_length = MAX_BROADCAST_LEN, multiline = TRUE)
+	var/temp_message = tgui_input_text(usr, LANG("datum.cb9369e76c220c51", null), LANG("datum.0eacab279a535407", null), feed_channel_message, max_length = MAX_BROADCAST_LEN, multiline = TRUE)
 	if(length(temp_message) <= 1)
 		return TRUE
 	if(temp_message)

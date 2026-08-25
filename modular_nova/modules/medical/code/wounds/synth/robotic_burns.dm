@@ -282,7 +282,7 @@
 		if (victim)
 			var/gauze_or_not = (!isnull(gauze) ? ", but [gauze] helps to keep it together" : "")
 			var/clothing_text = (!victim.is_location_accessible(limb.body_zone) ? ", [victim.p_their()] clothing absorbing some of the liquid" : "")
-			victim.visible_message(span_warning(LANG("datum.b296ebf1", list(victim, limb.plaintext_zone, clothing_text, gauze_or_not))))
+			victim.visible_message(span_warning(LANG("datum.b296ebf199bca397", list(victim, limb.plaintext_zone, clothing_text, gauze_or_not))))
 			playsound(victim, 'sound/items/tools/welder.ogg', 25)
 
 		var/damage = (((abs(temp_delta) * heat_shock_delta_to_damage_ratio) * gauze_mult) * heat_shock_damage_mult) * heat_adjustment_used
@@ -296,15 +296,15 @@
 /datum/wound/burn/robotic/overheat/proc/check_temperature()
 	if (chassis_temperature <= cooling_threshold)
 		if (demotes_to)
-			victim.visible_message(span_green(LANG("datum.593bdccc", list(victim, limb.plaintext_zone))), span_green(LANG("datum.64bd48ae", list(limb.plaintext_zone))))
+			victim.visible_message(span_green(LANG("datum.593bdccc09c08303", list(victim, limb.plaintext_zone))), span_green(LANG("datum.64bd48ae561649ac", list(limb.plaintext_zone))))
 			replace_wound(new demotes_to(cooling_threshold - cooling_demote_buffer))
 			return TRUE
 		else
-			victim.visible_message(span_green(LANG("datum.578385d4", list(victim, limb.plaintext_zone))), span_green(LANG("datum.60092b8e", list(limb.plaintext_zone))))
+			victim.visible_message(span_green(LANG("datum.578385d4196dde23", list(victim, limb.plaintext_zone))), span_green(LANG("datum.60092b8e0710bc2f", list(limb.plaintext_zone))))
 			remove_wound()
 			return TRUE
 	else if (promotes_to && chassis_temperature >= heating_threshold)
-		victim.visible_message(span_danger(LANG("datum.0dcdaa5c", list(victim, limb.plaintext_zone))), span_userdanger(LANG("datum.49ca913a", list(limb.plaintext_zone))))
+		victim.visible_message(span_danger(LANG("datum.0dcdaa5c8da901d4", list(victim, limb.plaintext_zone))), span_userdanger(LANG("datum.49ca913a43628c74", list(limb.plaintext_zone))))
 		replace_wound(new promotes_to(heating_threshold + heating_promote_buffer))
 		return TRUE
 
@@ -326,12 +326,12 @@
 /datum/wound/burn/robotic/overheat/get_scanner_description(mob/user)
 	. = ..()
 
-	. += LANG("datum.a6893bf4", list(get_wound_status_info()))
+	. += LANG("datum.a6893bf4cda6fd35", list(get_wound_status_info()))
 
 /datum/wound/burn/robotic/overheat/get_simple_scanner_description(mob/user)
 	. = ..()
 
-	. += LANG("datum.a6893bf4", list(get_wound_status_info()))
+	. += LANG("datum.a6893bf4cda6fd35", list(get_wound_status_info()))
 
 // this wound is unaffected by cryoxadone and pyroxadone
 /datum/wound/burn/robotic/overheat/on_xadone(power)

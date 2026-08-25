@@ -85,7 +85,7 @@
 	old_brain.Remove(human_holder, special = TRUE, movement_flags = NO_ID_TRANSFER)
 
 	new_slime_brain.Insert(human_holder, special = TRUE, movement_flags = NO_ID_TRANSFER)
-	to_chat(human_holder, span_warning(LANG("datum.91ce5813", null)))
+	to_chat(human_holder, span_warning(LANG("datum.91ce5813100fc2f5", null)))
 	if(old_brain)
 		old_brain.moveToNullspace()
 		STOP_PROCESSING(SSobj, old_brain)
@@ -94,7 +94,7 @@
 		qdel(new_slime_stomach)
 		return
 	new_slime_stomach.Insert(human_holder, special = TRUE)
-	to_chat(human_holder, span_warning(LANG("datum.c15bf254", null)))
+	to_chat(human_holder, span_warning(LANG("datum.c15bf254ea3bade0", null)))
 	if(old_stomach)
 		old_stomach.moveToNullspace()
 		STOP_PROCESSING(SSobj, old_stomach)
@@ -152,7 +152,7 @@
 				- 2 * seconds_per_tick,
 			)
 		if(SPT_PROB(5, seconds_per_tick))
-			to_chat(organ_owner, span_purple(LANG("obj.9ebc9628", null)))
+			to_chat(organ_owner, span_purple(LANG("obj.9ebc96282e213815", null)))
 
 	if(chem.type == /datum/reagent/water)
 		if (HAS_TRAIT(organ_owner, TRAIT_SLIME_HYDROPHOBIA) || HAS_TRAIT(organ_owner, TRAIT_WATER_BREATHING))
@@ -161,7 +161,7 @@
 		organ_owner.adjust_blood_volume(-3 * seconds_per_tick)
 		organ_owner.reagents.remove_reagent(chem.type, min(chem.volume * 0.22, 10))
 		if(SPT_PROB(1, seconds_per_tick))
-			to_chat(organ_owner, span_warning(LANG("obj.68ac02fb", null)))
+			to_chat(organ_owner, span_warning(LANG("obj.68ac02fb447f7644", null)))
 		return COMSIG_MOB_STOP_REAGENT_TICK
 
 /obj/item/organ/stomach/slime
@@ -195,29 +195,29 @@
 /obj/item/organ/brain/slime/examine()
 	. = ..()
 	if(gps_active)
-		. += span_notice(LANG("obj.aa31eb1a", null))
-		. += span_red(LANG("obj.a2d21aa5", null))
-	. += span_hypnophrase(LANG("obj.4b1d2628", null))
+		. += span_notice(LANG("obj.aa31eb1a70533d80", null))
+		. += span_red(LANG("obj.a2d21aa576ff0202", null))
+	. += span_hypnophrase(LANG("obj.4b1d2628c4f3bfa2", null))
 
 /obj/item/organ/brain/slime/attack_self(mob/living/user) // Allows a player (presumably an antag) to deactivate the GPS signal on a slime core
 	if(!(gps_active))
 		return
-	user.visible_message(span_warning(LANG("obj.3c0f539e", list(user, user.p_their()))),
-	span_notice(LANG("obj.55e6dfc3", null)),
-	span_notice(LANG("obj.a3a10a91", null))
+	user.visible_message(span_warning(LANG("obj.3c0f539e9549d521", list(user, user.p_their()))),
+	span_notice(LANG("obj.55e6dfc3e1417819", null)),
+	span_notice(LANG("obj.a3a10a9191511471", null))
 	)
 	playsound(user, 'sound/items/handling/surgery/organ1.ogg', 80, TRUE)
 
 	if(!do_after(user, 30 SECONDS, src))
-		user.visible_message(span_warning(LANG("obj.8af75bd6", list(user, user.p_they()))),
-		span_warning(LANG("obj.b4e3b9f8", null)),
-		span_notice(LANG("obj.6619863a", null))
+		user.visible_message(span_warning(LANG("obj.8af75bd6b852e480", list(user, user.p_they()))),
+		span_warning(LANG("obj.b4e3b9f888cc6431", null)),
+		span_notice(LANG("obj.6619863a39f5a96c", null))
 		)
 		return
 
-	user.visible_message(span_warning(LANG("obj.348c75bd", list(user))),
-	span_notice(LANG("obj.800ce2fd", null)),
-	span_notice(LANG("obj.fce3336c", null)))
+	user.visible_message(span_warning(LANG("obj.348c75bd6cb27685", list(user))),
+	span_notice(LANG("obj.800ce2fd280d659e", null)),
+	span_notice(LANG("obj.fce3336c0448717c", null)))
 	playsound(user, 'sound/effects/wounds/crackandbleed.ogg', 80, TRUE)
 	gps_active = FALSE
 	qdel(GetComponent(/datum/component/gps))
@@ -293,7 +293,7 @@
 		AddComponent(/datum/component/gps, "[victim]'s Core")
 
 	// Message the victim and the surrounding area that they have died.
-	victim.visible_message(span_warning(LANG("obj.c7e30e8b", list(victim))), span_notice(LANG("obj.94d10721", null)), span_notice(LANG("obj.e2a17a4f", null)))
+	victim.visible_message(span_warning(LANG("obj.c7e30e8ba3067244", list(victim))), span_notice(LANG("obj.94d10721acecf490", null)), span_notice(LANG("obj.e2a17a4ff0fb2163", null)))
 	qdel(victim) // Remove the Body.
 	UnregisterSignal(victim, COMSIG_LIVING_DEATH)
 
@@ -312,27 +312,27 @@
 	if(!item.is_drainable() || item.reagents.get_reagent_amount(/datum/reagent/toxin/plasma) < 100)
 		return FALSE
 	user.visible_message(
-		span_notice(LANG("obj.0f5d3e98", list(user, item, src))),
-		span_notice(LANG("obj.07336e74", list(item, src)))
+		span_notice(LANG("obj.0f5d3e98513349c7", list(user, item, src))),
+		span_notice(LANG("obj.07336e74f538bf71", list(item, src)))
 	)
 	brainmob?.notify_revival("You are being revived!", sound = null, source = src) // no sound since it's a whopping 60 second wait time after this
 	if(!do_after(user, 15 SECONDS, src))
-		to_chat(user, span_warning(LANG("obj.6c40dd89", list(item, src))))
+		to_chat(user, span_warning(LANG("obj.6c40dd899344a99a", list(item, src))))
 		return FALSE
 
 	user.visible_message(
-		span_notice(LANG("obj.ab769762", list(user, item, src))),
-		span_notice(LANG("obj.d05535be", list(item, src)))
+		span_notice(LANG("obj.ab7697624fd218ea", list(user, item, src))),
+		span_notice(LANG("obj.d05535be12fcd725", list(item, src)))
 	)
 	if(isnull(brainmob))
-		user.balloon_alert(user, LANG("obj.4af1ada2", null))
+		user.balloon_alert(user, LANG("obj.4af1ada260f0d3f6", null))
 		return FALSE
 	brainmob.grab_ghost()
 	if(isnull(brainmob.stored_dna))
-		user.balloon_alert(user, LANG("obj.6423b615", null))
+		user.balloon_alert(user, LANG("obj.6423b61540b9d76d", null))
 		return FALSE
 	if(isnull(brainmob.client))
-		user.balloon_alert(user, LANG("obj.6602fdbf", null))
+		user.balloon_alert(user, LANG("obj.6602fdbf96760219", null))
 		return FALSE
 
 	item.reagents.remove_reagent(/datum/reagent/toxin/plasma, 100) // Consumes the plasma
@@ -358,8 +358,8 @@
 	src.replace_into(body)
 
 	// Notify the player that their body has been rebuilt
-	body.visible_message(span_warning(LANG("obj.6889a589", list(body, body.p_their()))))
-	to_chat(owner, span_purple(LANG("obj.25459c26", null)))
+	body.visible_message(span_warning(LANG("obj.6889a5897dc6bf23", list(body, body.p_their()))))
+	to_chat(owner, span_purple(LANG("obj.25459c26377133d6", null)))
 	return TRUE
 
 /**
@@ -432,8 +432,8 @@
 			healing = FALSE
 			if(SPT_PROB(25, seconds_per_tick))
 				slime.visible_message(
-					span_danger(LANG("datum.9420f814", list(slime))),
-					span_warning(LANG("datum.7b41fefc", null)),
+					span_danger(LANG("datum.9420f814336a9451", list(slime))),
+					span_warning(LANG("datum.7b41fefcd01f6859", null)),
 				)
 
 	else
@@ -442,14 +442,14 @@
 			blood_units_to_lose += 2 * seconds_per_tick
 			if(SPT_PROB(25, seconds_per_tick))
 				slime.visible_message(
-					span_danger(LANG("datum.96f776e1", list(slime))),
-					span_warning(LANG("datum.6ff37823", null)),
+					span_danger(LANG("datum.96f776e13f528486", list(slime))),
+					span_warning(LANG("datum.6ff3782391cf110b", null)),
 				)
 		if(wetness_amount > REGEN_WATER_STACKS)
 			healing = FALSE
 			blood_units_to_lose += 1 * seconds_per_tick
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(slime, span_warning(LANG("datum.f1cfa42c", null)))
+				to_chat(slime, span_warning(LANG("datum.f1cfa42c53cc5859", null)))
 
 	slime.adjust_blood_volume(-blood_units_to_lose)
 
@@ -486,7 +486,7 @@
 		return
 
 	user.apply_status_effect(/datum/status_effect/slime_washing)
-	user.visible_message(span_purple(LANG("datum.16c42ded", list(user, user.p_their()))), span_purple(LANG("datum.fb262fdc", null)))
+	user.visible_message(span_purple(LANG("datum.16c42ded9fc01659", list(user, user.p_their()))), span_purple(LANG("datum.fb262fdc3fe50bcc", null)))
 
 /**
 * Called when you activate it again after casting the ability-- turning it off, so to say.
@@ -496,7 +496,7 @@
 		return
 
 	user.remove_status_effect(/datum/status_effect/slime_washing)
-	user.visible_message(span_notice(LANG("datum.e9972be8", list(user, user.p_their()))), span_notice(LANG("datum.6fea04cc", null)))
+	user.visible_message(span_notice(LANG("datum.e9972be833a86573", list(user, user.p_their()))), span_notice(LANG("datum.6fea04cc616fa141", null)))
 
 /datum/status_effect/slime_washing
 	id = "slime_washing"
@@ -519,7 +519,7 @@
 			if(SPT_PROB(5, seconds_per_tick))
 				slime_person.adjust_nutrition((rand(5,25)))
 
-/datum/status_effect/slime_washing/get_examine_text()
+/datum/status_effect/slime_washing/get_examine_text(mob/examiner)
 	return span_notice("[owner.p_Their()] outer layer is pulling in grime, filth sinking inside of [owner.p_their()] body and vanishing.")
 
 /*
@@ -544,7 +544,7 @@
 
 	ADD_TRAIT(user, TRAIT_SLIME_HYDROPHOBIA, ACTION_TRAIT)
 	user.apply_status_effect(/datum/status_effect/slime_hydrophobia)
-	user.visible_message(span_purple(LANG("datum.21b99687", list(user, owner.p_their()))), span_purple(LANG("datum.d5999846", null)))
+	user.visible_message(span_purple(LANG("datum.21b99687cc781b3e", list(user, owner.p_their()))), span_purple(LANG("datum.d5999846ba8d8b28", null)))
 
 /**
 * Called when you activate it again after casting the ability-- turning it off, so to say.
@@ -555,7 +555,7 @@
 
 	REMOVE_TRAIT(user, TRAIT_SLIME_HYDROPHOBIA, ACTION_TRAIT)
 	user.remove_status_effect(/datum/status_effect/slime_hydrophobia)
-	user.visible_message(span_purple(LANG("datum.c8afeadf", list(user, owner.p_their()))), span_purple(LANG("datum.ac76ad39", null)))
+	user.visible_message(span_purple(LANG("datum.c8afeadf2aece474", list(user, owner.p_their()))), span_purple(LANG("datum.ac76ad391f34b2cd", null)))
 
 /datum/movespeed_modifier/status_effect/slime_hydrophobia
 	multiplicative_slowdown = 1.5
@@ -573,7 +573,7 @@
 	. = ..()
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/slime_hydrophobia, update=TRUE)
 
-/datum/status_effect/slime_hydrophobia/get_examine_text()
+/datum/status_effect/slime_hydrophobia/get_examine_text(mob/examiner)
 	return span_notice("[owner.p_They()] is oozing out an oily coating onto [owner.p_their()] outer membrane, water rolling right off.")
 
 /datum/species/jelly/get_species_description()
@@ -609,44 +609,44 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "scissors",
-			SPECIES_PERK_NAME = LANG("datum.6c59985a", null),
-			SPECIES_PERK_DESC = LANG("datum.a3761f0c", null),
+			SPECIES_PERK_NAME = LANG("datum.6c59985a0f9c6353", null),
+			SPECIES_PERK_DESC = LANG("datum.a3761f0c2cb24acb", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "circle",
-			SPECIES_PERK_NAME = LANG("datum.33cb6963", null),
-			SPECIES_PERK_DESC = LANG("datum.1b47ae9d", null),
+			SPECIES_PERK_NAME = LANG("datum.33cb696335864a7b", null),
+			SPECIES_PERK_DESC = LANG("datum.1b47ae9dc087c156", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "notes-medical",
-			SPECIES_PERK_NAME = LANG("datum.a911d5ba", null),
-			SPECIES_PERK_DESC = LANG("datum.f1fe17b1", null),
+			SPECIES_PERK_NAME = LANG("datum.a911d5bac9e5f4eb", null),
+			SPECIES_PERK_DESC = LANG("datum.f1fe17b136431f05", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "droplet-slash",
-			SPECIES_PERK_NAME = LANG("datum.72927f15", null),
-			SPECIES_PERK_DESC = LANG("datum.1359f561", null),
+			SPECIES_PERK_NAME = LANG("datum.72927f152ec18311", null),
+			SPECIES_PERK_DESC = LANG("datum.1359f56118706da6", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "hand-holding-droplet",
-			SPECIES_PERK_NAME = LANG("datum.b9b1a1ea", null),
-			SPECIES_PERK_DESC = LANG("datum.97228a5b", null),
+			SPECIES_PERK_NAME = LANG("datum.b9b1a1eaf7b7033a", null),
+			SPECIES_PERK_DESC = LANG("datum.97228a5b6e5eb032", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "person-swimming",
-			SPECIES_PERK_NAME = LANG("datum.7d4f88a6", null),
-			SPECIES_PERK_DESC = LANG("datum.b0926c88", null),
+			SPECIES_PERK_NAME = LANG("datum.7d4f88a6b622c527", null),
+			SPECIES_PERK_DESC = LANG("datum.b0926c88a36abab5", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "person-booth",
-			SPECIES_PERK_NAME = LANG("datum.05db1dd9", null),
-			SPECIES_PERK_DESC = LANG("datum.b1aa5166", null),
+			SPECIES_PERK_NAME = LANG("datum.05db1dd984d65ea5", null),
+			SPECIES_PERK_DESC = LANG("datum.b1aa516685ac3f65", null),
 		),
 	)
 
@@ -732,7 +732,7 @@
 		return
 	alterer.visible_message(
 		span_notice("[owner] [shapeshift_text]"),
-		span_notice(LANG("datum.77be045a", null))
+		span_notice(LANG("datum.77be045a4c9de2e2", null))
 	)
 	change_form(alterer)
 
@@ -775,8 +775,8 @@
 /datum/action/innate/alter_form/proc/alter_skin_colours(mob/living/carbon/human/alterer)
 	var/skintone_string = tgui_input_list(
 		alterer,
-		LANG("datum.dfb6cc1e", null),
-		LANG("datum.7aaef146", null),
+		LANG("datum.dfb6cc1e570ff7e8", null),
+		LANG("datum.7aaef146e88b87c1", null),
 		GLOB.skin_tone_names
 	)
 
@@ -833,20 +833,20 @@
 
 	var/marking_reset = tgui_alert(
 		alterer,
-		LANG("datum.1b099a27", null),
-		LANG("datum.9439a802", null),
+		LANG("datum.1b099a2773f0a9cc", null),
+		LANG("datum.9439a8020ebf41f8", null),
 		list("Yes", "No"),
 	)
 	var/mutant_part_reset = tgui_alert(
 		alterer,
-		LANG("datum.69e2f7b0", null),
-		LANG("datum.78c4118f", null),
+		LANG("datum.69e2f7b000961634", null),
+		LANG("datum.78c4118f37e3f6b3", null),
 		list("Yes", "No"),
 	)
 	var/hair_reset = tgui_alert(
 		alterer,
-		LANG("datum.d9a5dee1", null),
-		LANG("datum.9ced8c05", null),
+		LANG("datum.d9a5dee1c98d0368", null),
+		LANG("datum.9ced8c056765e9c3", null),
 		list("Hair", "Facial Hair", "Both", SPRITE_ACCESSORY_NONE),
 	)
 
@@ -916,15 +916,15 @@
 		return
 	switch(target_hair)
 		if("Hair")
-			var/new_style = tgui_input_list(owner, LANG("datum.2e464f6c", null), LANG("datum.68c7fd08", null), SSaccessories.hairstyles_list)
+			var/new_style = tgui_input_list(owner, LANG("datum.2e464f6c2398ac49", null), LANG("datum.68c7fd0872462218", null), SSaccessories.hairstyles_list)
 			if(new_style)
 				alterer.set_hairstyle(new_style, update = TRUE)
 		if("Facial Hair")
-			var/new_style = tgui_input_list(alterer, LANG("datum.df720244", null), LANG("datum.68c7fd08", null), SSaccessories.facial_hairstyles_list)
+			var/new_style = tgui_input_list(alterer, LANG("datum.df720244d72117e8", null), LANG("datum.68c7fd0872462218", null), SSaccessories.facial_hairstyles_list)
 			if(new_style)
 				alterer.set_facial_hairstyle(new_style, update = TRUE)
 		if("Hair Color")
-			var/hair_area = tgui_alert(alterer, LANG("datum.a2fbdd01", null), LANG("datum.acfbf5c7", null), list("Hairstyle", "Facial Hair", "Both"))
+			var/hair_area = tgui_alert(alterer, LANG("datum.a2fbdd01e8dc9980", null), LANG("datum.acfbf5c764cbadcc", null), list("Hairstyle", "Facial Hair", "Both"))
 			if(!hair_area)
 				return
 			var/new_hair_color = tgui_color_picker(alterer, "Select your new hair color", "Hair Color Alterations", alterer.dna.features[FEATURE_MUTANT_COLOR])
@@ -951,8 +951,8 @@
 		key_list.Remove("Genitals")
 	var/dna_alteration = tgui_input_list(
 		alterer,
-		LANG("datum.00f45ca3", null),
-		LANG("datum.a351df4f", null),
+		LANG("datum.00f45ca31fc2e61c", null),
+		LANG("datum.a351df4feae470f5", null),
 		key_list,
 	)
 	if(!dna_alteration)
@@ -960,15 +960,15 @@
 	switch(dna_alteration)
 		if("Body Size")
 			if(oversized_user && !HAS_TRAIT(alterer, TRAIT_OVERSIZED))
-				var/reset_size = tgui_alert(alterer, LANG("datum.ad188441", null), LANG("datum.0eaf6f27", null), list("Yes", "No"))
+				var/reset_size = tgui_alert(alterer, LANG("datum.ad188441eb41b622", null), LANG("datum.0eaf6f27787a7a13", null), list("Yes", "No"))
 				if(reset_size == "Yes")
 					alterer.add_quirk(/datum/quirk/oversized)
 					return
 
 			var/new_body_size = tgui_input_number(
 				alterer,
-				LANG("datum.768912b9", list(BODY_SIZE_MIN * 100, BODY_SIZE_MAX * 100)),
-				LANG("datum.0eaf6f27", null),
+				LANG("datum.768912b9ba1b6585", list(BODY_SIZE_MIN * 100, BODY_SIZE_MAX * 100)),
+				LANG("datum.0eaf6f27787a7a13", null),
 				default = min(alterer.dna.features["body_size"] * 100, BODY_SIZE_MAX * 100),
 				max_value = BODY_SIZE_MAX * 100,
 				min_value = BODY_SIZE_MIN * 100,
@@ -1004,8 +1004,8 @@
 		mutant_part_list[block::feature_key] = block
 	var/chosen_key = tgui_input_list(
 		alterer,
-		LANG("datum.1afe48a5", null),
-		LANG("datum.20a1aa5c", null),
+		LANG("datum.1afe48a53df532bc", null),
+		LANG("datum.20a1aa5c5938fda0", null),
 		mutant_part_list,
 	)
 	if(!chosen_key)
@@ -1014,8 +1014,8 @@
 	var/choice_list = available_choices[chosen_key]
 	var/chosen_name_key = tgui_input_list(
 		alterer,
-		LANG("datum.a3da619c", null),
-		LANG("datum.20a1aa5c", null),
+		LANG("datum.a3da619cd1eafa1a", null),
+		LANG("datum.20a1aa5c5938fda0", null),
 		choice_list,
 	)
 	if(!chosen_name_key)
@@ -1084,8 +1084,8 @@
 	var/list/candidates = GLOB.body_marking_sets
 	var/chosen_name = tgui_input_list(
 		alterer,
-		LANG("datum.c46516be", null),
-		LANG("datum.9c8eed2d", null),
+		LANG("datum.c46516be82fe7960", null),
+		LANG("datum.9c8eed2de0da3231", null),
 		candidates,
 	)
 	if(!chosen_name)
@@ -1107,12 +1107,12 @@
 	if(alterer.get_organ_slot(ORGAN_SLOT_TESTICLES))
 		genital_list += list("Testicles Size")
 	if(!length(genital_list))
-		alterer.balloon_alert(alterer, LANG("datum.e52cb7eb", null))
+		alterer.balloon_alert(alterer, LANG("datum.e52cb7ebc0ef392f", null))
 
 	var/dna_alteration = tgui_input_list(
 		alterer,
-		LANG("datum.be2e024f", null),
-		LANG("datum.0954ca9b", null),
+		LANG("datum.be2e024fc3c4c753", null),
+		LANG("datum.0954ca9b64fe3b5b", null),
 		genital_list
 	)
 	if(!dna_alteration)
@@ -1128,8 +1128,8 @@
 			var/obj/item/organ/genital/breasts/melons = alterer.get_organ_slot(ORGAN_SLOT_BREASTS)
 			var/new_size = tgui_input_list(
 				alterer,
-				LANG("datum.2fbf9488", null),
-				LANG("datum.a351df4f", null),
+				LANG("datum.2fbf94883ca18164", null),
+				LANG("datum.a351df4feae470f5", null),
 				GLOB.breast_size_to_number,
 			)
 			if(!new_size)
@@ -1144,8 +1144,8 @@
 				max_girth = alterer.dna.features["penis_size"]
 			var/new_girth = tgui_input_number(
 				alterer,
-				LANG("datum.761a4cc3", list(max_girth)),
-				LANG("datum.78f80c29", null),
+				LANG("datum.761a4cc3afd591b9", list(max_girth)),
+				LANG("datum.78f80c295b6adf9f", null),
 				max_value = max_girth,
 				min_value = 1
 			)
@@ -1157,8 +1157,8 @@
 			var/obj/item/organ/genital/penis/wang = alterer.get_organ_slot(ORGAN_SLOT_PENIS)
 			var/new_length = tgui_input_number(
 				alterer,
-				LANG("datum.577a274c", list(PENIS_MIN_LENGTH, PENIS_MAX_LENGTH)),
-				LANG("datum.a351df4f", null),
+				LANG("datum.577a274c6cb84df7", list(PENIS_MIN_LENGTH, PENIS_MAX_LENGTH)),
+				LANG("datum.a351df4feae470f5", null),
 				max_value = PENIS_MAX_LENGTH,
 				min_value = PENIS_MIN_LENGTH,
 			)
@@ -1173,17 +1173,17 @@
 		if("Penis Sheath")
 			var/obj/item/organ/genital/penis/schlong = alterer.get_organ_slot(ORGAN_SLOT_PENIS)
 			if(isnull(schlong))
-				to_chat(alterer, span_warning(LANG("datum.26c7b6f4", null)))
+				to_chat(alterer, span_warning(LANG("datum.26c7b6f497f9a92b", null)))
 				return
 			var/datum/bodypart_overlay/mutant/genital/penis/our_overlay = schlong.bodypart_overlay
 			var/datum/sprite_accessory/genital/penis/shaft = our_overlay?.shaft_datum
 			if(!shaft?.can_have_sheath)
-				to_chat(alterer, span_warning(LANG("datum.a39b5480", null)))
+				to_chat(alterer, span_warning(LANG("datum.a39b54801695cc4e", null)))
 				return
 			var/new_sheath = tgui_input_list(
 				alterer,
-				LANG("datum.a6d8073a", null),
-				LANG("datum.a351df4f", null),
+				LANG("datum.a6d8073ad873f8b7", null),
+				LANG("datum.a351df4feae470f5", null),
 				assoc_to_keys(SSaccessories.sprite_accessories[FEATURE_SHEATH]),
 			)
 			if(!new_sheath)
@@ -1199,8 +1199,8 @@
 			var/obj/item/organ/genital/testicles/avocados = alterer.get_organ_slot(ORGAN_SLOT_TESTICLES)
 			var/new_size = tgui_input_list(
 				alterer,
-				LANG("datum.4c74bfeb", null),
-				LANG("datum.78f80c29", null),
+				LANG("datum.4c74bfeb273e0f04", null),
+				LANG("datum.78f80c295b6adf9f", null),
 				GLOB.preference_balls_sizes,
 			)
 			if(new_size)
@@ -1226,10 +1226,10 @@
 	if(slime_restricted && !isjellyperson(slime))
 		return
 	if(core.gps_active)
-		to_chat(owner,span_notice(LANG("datum.a93c22e1", null)))
+		to_chat(owner,span_notice(LANG("datum.a93c22e1bc687a89", null)))
 		core.gps_active = FALSE
 	else
-		to_chat(owner, span_notice(LANG("datum.ad1151d7", null)))
+		to_chat(owner, span_notice(LANG("datum.ad1151d76ef0ed06", null)))
 		core.gps_active = TRUE
 
 #undef SLIME_ACTIONS_ICON_FILE

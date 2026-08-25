@@ -18,13 +18,13 @@
 	. = ..()
 
 	if(istype(user, /mob/living/basic/voidwalker))
-		to_chat(user, span_bolddanger(LANG("obj.37090acf", null)))
+		to_chat(user, span_bolddanger(LANG("obj.37090acf068268c1", null)))
 		return
 
 	if(!uses || !ishuman(user))
 		return
 
-	to_chat(user, span_purple(LANG("obj.648b692f", list(src))))
+	to_chat(user, span_purple(LANG("obj.648b692fe3c6569d", list(src))))
 
 	if(!do_after(user, 10 SECONDS, src))
 		return
@@ -43,7 +43,7 @@
 		starer.cure_trauma_type(/datum/brain_trauma/voided) //this wouldn't make much sense to have anymore
 		starer.gain_trauma(/datum/brain_trauma/voided/stable)
 
-	to_chat(user, span_purple(LANG("obj.d43e5bcf", null)))
+	to_chat(user, span_purple(LANG("obj.d43e5bcf987b3dd3", null)))
 	playsound(get_turf(user), 'sound/effects/curse/curse5.ogg', 60)
 
 /**

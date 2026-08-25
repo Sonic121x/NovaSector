@@ -110,7 +110,7 @@
 	for(var/turf/messy_turf in view(src, 2))
 		new /obj/effect/decal/cleanable/blood(messy_turf)
 		for(var/mob/living/mob_in_turf in messy_turf)
-			mob_in_turf.visible_message(span_danger(LANG("mob.d8e0e6e4", list(mob_in_turf))), span_userdanger(LANG("mob.2e1e9a3c", null)))
+			mob_in_turf.visible_message(span_danger(LANG("mob.d8e0e6e4408cb4f2", list(mob_in_turf))), span_userdanger(LANG("mob.2e1e9a3ceefb81be", null)))
 			mob_in_turf.add_blood_DNA(list("Non-human DNA" = random_human_blood_type()))
 			mob_in_turf.add_mood_event("splattered_with_blood", /datum/mood_event/splattered_with_blood)
 			playsound(mob_in_turf, 'sound/effects/splat.ogg', 50, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE)
@@ -152,9 +152,9 @@
 	if(!istype(living_target))
 		return FALSE //We failed to run the invoke. Might be because we're a structure. Let the squashable element handle it then!
 	if(!HAS_TRAIT(living_target, TRAIT_PIERCEIMMUNE))
-		living_target.visible_message(span_danger(LANG("mob.4666febc", list(living_target, cockroach))), span_userdanger(LANG("mob.8ffa26f5", list(cockroach))))
+		living_target.visible_message(span_danger(LANG("mob.4666febc695dd32b", list(living_target, cockroach))), span_userdanger(LANG("mob.8ffa26f571b2fcbd", list(cockroach))))
 		return TRUE
-	living_target.visible_message(span_notice(LANG("mob.f408d01f", list(living_target, cockroach))), span_notice(LANG("mob.53c98c41", list(cockroach))))
+	living_target.visible_message(span_notice(LANG("mob.f408d01f8d0a69d9", list(living_target, cockroach))), span_notice(LANG("mob.53c98c41828a9f20", list(cockroach))))
 	return FALSE
 
 /// Regal rat royal escort

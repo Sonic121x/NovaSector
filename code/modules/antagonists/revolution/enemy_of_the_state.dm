@@ -30,9 +30,9 @@
 
 /datum/antagonist/enemy_of_the_state/greet()
 	. = ..()
-	to_chat(owner, span_userdanger(LANG("datum.c5424bb6", null)))
-	to_chat(owner, span_bolddanger(LANG("datum.b224d6ef", null)))
-	to_chat(owner, LANG("datum.a81d043a", null))
+	to_chat(owner, span_userdanger(LANG("datum.c5424bb61900a9e1", null)))
+	to_chat(owner, span_bolddanger(LANG("datum.b224d6eff5506a5a", null)))
+	to_chat(owner, LANG("datum.a81d043ae69d2d97", null))
 	owner.announce_objectives()
 
 /datum/antagonist/enemy_of_the_state/roundend_report()

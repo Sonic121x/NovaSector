@@ -17,6 +17,10 @@ const TGUI_SOURCE_DIR = path.join(ROOT, 'tgui/packages/tgui');
 const TGUI_PACKAGE_I18N_DIR = path.join(ROOT, 'tgui/packages/tgui/i18n');
 const STRINGS_I18N_DIR = path.join(ROOT, 'strings/i18n');
 const TGUI_NAMESPACE = 'tgui';
+const CONTEXT_SEPARATOR = '\u0004';
+const CONTEXT_PATTERN = /^[a-z][a-z0-9]*(?:[._/-][a-z0-9]+)*$/;
+const CHECK_MODE = process.argv.slice(3).includes('--check');
+const staleGeneratedFiles = [];
 
 // 可翻 prop 名的**单一来源**是 strings/i18n/policy.json：抽取器与运行时 localize.ts 各存一份
 // 时，新增 prop 只改一边就会出现「目录有键界面不翻」/「界面翻了目录没键」的静默半覆盖。
@@ -407,13 +411,33 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
-function writeJson(filePath, data) {
+function emitGenerated(filePath, content) {
+  const expected = Buffer.isBuffer(content) ? content : Buffer.from(content);
+  if (CHECK_MODE) {
+    const actual = fs.existsSync(filePath) ? fs.readFileSync(filePath) : null;
+    if (!actual || !actual.equals(expected)) {
+      staleGeneratedFiles.push({
+        filePath,
+        actualBytes: actual?.length ?? null,
+        expectedBytes: expected.length,
+      });
+    }
+    return;
+  }
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, expected);
+}
+
+function sortedJson(data, indent = '\t') {
   const sorted = {};
   for (const key of Object.keys(data).sort((a, b) => a.localeCompare(b))) {
     sorted[key] = data[key];
   }
-  fs.writeFileSync(filePath, `${JSON.stringify(sorted, null, '\t')}\n`);
+  return `${JSON.stringify(sorted, null, indent)}\n`;
+}
+
+function writeJson(filePath, data) {
+  emitGenerated(filePath, sortedJson(data));
 }
 
 function stringsCatalogPath(locale) {
@@ -581,6 +605,38 @@ function addDisplayExpr(catalog, node) {
  * 不碰目录里那 590 多条 children 模板（`- {0}, the {1}` / `{0} of 12 total` 之流泛化骨架一旦
  * 进逆匹配面，就会把整句劫持成「中文脚手架裹英文」——DM 侧栽过这一跤）。
  */
+/// 属性值里可以各自成模板的分支。
+///
+/// `tooltip={min ? \`Min (${min})\` : 'Min'}` 里 `templateParts` 对三元直接返回一个纯占位符
+/// （没有 text 段）→ `propTemplate` 返回 null，**三元包一层就整条不抽**，sidecar 里根本没有
+/// `Min ({0})`。三元/`||`/`&&` 的每一支在运行期都是独立的成品串，各自当模板收即可；
+/// 每支仍要各自过 propTemplate 的三道安全线，准入面不放宽。
+function propTemplateBranches(node) {
+  if (!node) return [];
+  if (ts.isJsxExpression(node) || ts.isParenthesizedExpression(node)) {
+    return node.expression ? propTemplateBranches(node.expression) : [];
+  }
+  if (ts.isConditionalExpression(node)) {
+    return [
+      ...propTemplateBranches(node.whenTrue),
+      ...propTemplateBranches(node.whenFalse),
+    ];
+  }
+  if (
+    ts.isBinaryExpression(node) &&
+    (node.operatorToken.kind === ts.SyntaxKind.BarBarToken ||
+      node.operatorToken.kind === ts.SyntaxKind.AmpersandAmpersandToken ||
+      node.operatorToken.kind === ts.SyntaxKind.QuestionQuestionToken)
+  ) {
+    // `+` 链不在此列：那是一整串的组成部分，templateParts 自己会拼。
+    return [
+      ...propTemplateBranches(node.left),
+      ...propTemplateBranches(node.right),
+    ];
+  }
+  return [node];
+}
+
 function propTemplate(node) {
   const parts = templateParts(node);
   if (!parts) return null;
@@ -683,10 +739,9 @@ let currentScope = null;
  * 英文串 -> 出现过的来源集合。与 DM 侧的 strings/i18n/scopes.json 同一用途（语境消歧），
  * 但**分开落盘**：那个文件归 nova-i18n extract（Rust）写，两个写者共用一个文件迟早互相覆盖。
  *
- * 注意 TGUI 目录的 key **就是英文原文**，所以一个 key 可能同时属于多个界面
- * （`"Basic"` 在 Crayon 里是「基础」色系分组，在化学界面里该是「碱性」）。
- * scope 能**报出**这种冲突，但解决不了——同一个 key 只能有一个译文。真要分开译，
- * 得让前端按界面取不同译文，那是另一套改动。
+ * Legacy automatic entries use English source keys, so scopes report ambiguous sharing but cannot
+ * resolve it. Application-owned ambiguous text must use `defineMessage(context, source)`, whose
+ * composite keys are independently translatable and recorded in tgui-contexts.json.
  */
 const textScopes = {};
 
@@ -697,6 +752,9 @@ const textScopes = {};
  * `- {0}, the {1}` / `{0} of 12 total` 这类泛化骨架会把任意同形状的整句劫持成中文脚手架裹英文。
  */
 const propTemplates = new Set();
+
+/** Explicit contextual key -> deterministic authoring metadata. */
+const contextualMessages = new Map();
 
 function noteScope(normalized) {
   if (!currentScope || !normalized) return;
@@ -722,7 +780,6 @@ const DM_LABEL_SOURCES = [
   ['code/__DEFINES/~nova_defines/_globalvars/food.dm', false, /"([^"]+)"\s*=/g],
   // 职业名/部门名：job_types 用 `title = JOB_X`（#define 常量），字面量在 jobs.dm 的 #define 里。
   ['code/__DEFINES/jobs.dm', false, /#define\s+\w+\s+"([^"]+)"/g],
-  ['modular_nova/master_files/code/__DEFINES', true, /#define\s+JOB_\w+\s+"([^"]+)"/g],
   // 怪癖名：各 quirk 子类型的 `name = "..."`。核心 quirks 目录全是 quirk，直接抽；modular_nova 的
   // quirk 散在 master_files/datums/{quirks,traits}、modules/*_quirk、lewd_quirks、changeling 等
   // 20+ 处 → 用 requireMarker '/datum/quirk' 递归扫、只取 quirk 文件的 name(不碰物品/生物名)。
@@ -732,12 +789,10 @@ const DM_LABEL_SOURCES = [
   ['modular_nova/modules/alternative_job_titles', true, /^\s+"([A-Za-z][^"]*)",?\s*$/gm],
   // 人格名（特质与个性→人格 tab；按 datum 路径选择，name 仅显示=安全）。
   ['code/datums/personality', true, /^\s*name\s*=\s*"([^"]+)"/gm],
-  ['modular_nova/master_files/code/datums/personality', true, /^\s*name\s*=\s*"([^"]+)"/gm],
   // 配装分类 Tab 名（loadout 顶部 Head/Face/Suits/Neck…，用 `category_name = "..."`，
   // 与物品名的 `name=` 不同正则；前端按分类切换、显示走目录翻=安全）。
   ['code/modules/loadout/categories', true, /\bcategory_name\s*=\s*"([^"]+)"/g],
   ['code/modules/loadout/loadout_categories.dm', false, /\bcategory_name\s*=\s*"([^"]+)"/g],
-  ['modular_nova/modules/loadout/code', true, /\bcategory_name\s*=\s*"([^"]+)"/g],
   // 下游新增的配装分类（Face/Undersuit/Belt/Weapons/Toys 等）在 loadouts（复数）模块里。
   ['modular_nova/modules/loadouts', true, /\bcategory_name\s*=\s*"([^"]+)"/g],
   // loadouts（复数）模块里的配装**物品名**（Bouquet - Rose 等；按 item_path 选=显示安全）。
@@ -749,16 +804,13 @@ const DM_LABEL_SOURCES = [
   ['code/modules/vending', true, /"name"\s*=\s*"([^"]+)"/g],
   ['modular_nova/modules/modular_vending', true, /"name"\s*=\s*"([^"]+)"/g],
   // 精灵配件名（发型/胡须/纹身/渐变样式…，角色设置下拉，按名选择=标识符）。
-  ['code/datums/sprite_accessories.dm', false, /^\s*name\s*=\s*"([^"]+)"/gm],
-  ['modular_nova/master_files/code/datums/sprite_accessories', true, /^\s*name\s*=\s*"([^"]+)"/gm],
-  ['modular_nova/modules/customization/icons/sprite_accessories', true, /^\s*name\s*=\s*"([^"]+)"/gm],
+  ['code/datums/sprite_accessories', true, /^\s*name\s*=\s*"([^"]+)"/gm],
   // 生殖器/胸部等 sprite accessory（角色外观下拉，如 Pair/Quad/Sextuple；按配件键选=显示安全）。
   ['modular_nova/modules/customization/modules/mob/dead/new_player/sprite_accessories', true, /^\s*name\s*=\s*"([^"]+)"/gm],
   // 语言名（语言 tab）。
   ['code/modules/language', true, /^\s*name\s*=\s*"([^"]+)"/gm],
   // 配装物品名（loadout 配装 tab；偏好按 item_path 存，name 仅显示=安全）。
   ['code/modules/loadout/categories', true, /^\s*name\s*=\s*"([^"]+)"/gm],
-  ['modular_nova/modules/loadout/code', true, /^\s*name\s*=\s*"([^"]+)"/gm],
   // 物种名（角色 tab 物种浏览器；按 speciesKey/id 选择，name 仅显示=安全）。第 4 项剥 \improper/\proper
   // 宏（`name = "\improper Human"` → "Human"，与运行时 TGUI 收到的串对齐）。species_types 目录会混入
   // 少量内联器官/部件名（无害噪音：进 tgui 目录后由 TS 端翻显示、P1 跳过；非物种处仍可被翻）。
@@ -893,6 +945,15 @@ function extractDmLabels(catalog) {
   // 每项 [相对路径, 递归?, 正则(组1=可翻串)]，可选第 4 项 requireMarker：仅对**文件内容含该标记**
   // 的 .dm 抽取（用于类型过滤——如散落各处的 /datum/quirk 名，递归扫但只取 quirk 文件，不碰物品名）。
   for (const [rel, recursive, regex, requireMarker] of DM_LABEL_SOURCES) {
+    // 路径是钉死的，上游一次重命名就让整类标签**静默**不再被抽取（少翻、不崩、不冲突），
+    // 而目录只增不减，历史条目还在，于是界面照常显示中文 —— 缺口要等到有人裁剪目录才暴露。
+    // 实测这么躺着 6 条失效登记，其中 `code/datums/sprite_accessories.dm` 变成了同名目录，
+    // 整套发型/胡须/纹理名早已不在抽取面内。故这里**必须报错**而不是跳过。
+    if (!fs.existsSync(path.join(ROOT, rel))) {
+      throw new Error(
+        `DM_LABEL_SOURCES 登记的路径不存在：${rel}（上游改名？修正或删除该条登记）`,
+      );
+    }
     for (const file of dmFilesUnder(path.join(ROOT, rel), recursive, [])) {
       let source;
       try {
@@ -1000,7 +1061,7 @@ const ANTAG_DEF_DIR = path.join(
   'interfaces/PreferencesMenu/antagonists',
 );
 
-function tsFilesUnder(dir, out = []) {
+function scriptFilesUnder(dir, out = []) {
   let entries;
   try {
     entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -1008,10 +1069,17 @@ function tsFilesUnder(dir, out = []) {
     return out;
   }
   for (const entry of entries) {
+    if (entry.name === 'node_modules') {
+      continue;
+    }
     const entryPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      tsFilesUnder(entryPath, out);
-    } else if (entry.name.endsWith('.ts') || entry.name.endsWith('.tsx')) {
+      scriptFilesUnder(entryPath, out);
+    } else if (
+      /\.(?:[jt]sx?)$/.test(entry.name) &&
+      !entry.name.includes('.test.') &&
+      !entry.name.includes('.sweep.')
+    ) {
       out.push(entryPath);
     }
   }
@@ -1061,10 +1129,235 @@ const CONSTANT_LABEL_TABLES = [
     table: 'CRIMESTATUS2DESC',
     values: true,
   },
+  // 中心指挥投送舱（管理员界面）的整排选项标签。同样住在 .ts 里 → walk() 只扫 .tsx/.jsx，
+  // 整类漏抽；离线渲染扫掠里 PodStatusPage 一个界面就贡献 17 条。
+  // 只收 `title`/`label`/`alt_label`：同一批对象里的 `act`/`key`/`selected`/`icon` 是回传标识符
+  // 与图标名，绝不能进目录（`option.key || option.title` 那处用 title 兜底当回传值，但那读的是
+  // **对象属性**、不是渲染出来的串，auto-localize 只翻显示，回传仍是英文）。
+  // 界面里的**裸字符串数组**常量（`const weaponlist = ['Fist Fight', …]`）。
+  //
+  // **只能逐表登记，没有能一次覆盖的形态规则**：`CodexGigas` 的 `TITLES`
+  // （`['Lord','Prelate','Count',…]`）与这里的 `weaponlist` 形状完全一样，但前者是**恶魔名
+  // 生成器的音节/头衔表**，翻了就毁掉名字生成。既然形态分不开，就只登记确认过的。
+  { file: 'interfaces/NovaTumsPrefs.tsx', table: 'SOUND_TOOLTIPS', values: true },
+  // 轨道面板的视图页签：**键是页签文字、值是图标名**（`heart`/`ghost`/`id-badge`）。
+  // 判据来自漏翻报告里的「同形不同待遇」——`Health` 页签是中文而 `Orbiters` 是英文。
+  { file: 'interfaces/Orbit/constants.ts', table: 'VIEWMODE', keys: true },
+  // 法术书的页签定义（`title` 是页签文字、`blurb` 是说明；`component` 是 React 组件引用）。
+  { file: 'interfaces/Spellbook/constants.ts', table: 'TAB2NAME', props: ['title', 'blurb'] },
+  // 生成面板的列表标题（**值**是文案，键 Objects/Turfs/Mobs 是查表用的）。
+  { file: 'interfaces/SpawnPanel/constants.tsx', table: 'listNames', values: true },
+  // 管道分发器的模式复选框。`act('mode', { mode: tool.bitmask })` 回传的是**位掩码**，
+  // `name` 纯显示；`bitmask` 是数字、不会被 props 白名单收进来。
+  { file: 'interfaces/RapidPipeDispenser.tsx', table: 'TOOLS', props: ['name'] },
+  ...[
+    { file: 'interfaces/SparringContract.tsx', tables: ['weaponlist', 'stakelist', 'weaponblurb', 'stakesblurb'] },
+    { file: 'interfaces/InfuserBook.tsx', tables: ['tabs'] },
+    { file: 'interfaces/ChemRecipeDebug.tsx', tables: ['TEMP_MODES'] },
+    // 管道分发器的根分类页签。`act('category', { category: i })` 回传的是**索引**，纯显示。
+    { file: 'interfaces/RapidPipeDispenser.tsx', tables: ['ROOT_CATEGORIES'] },
+    // 恶魔名生成器的**选词按钮**。`PREFIXES`/`TITLES`/`SUFFIXES` 是真词（`Dark`/`Lord`/`the Red`），
+    // 玩家要读着它们挑选，该翻；**`NAMES` 是音节**（`hal`/`ve`/`odr`），没有词义、也没有对应的中文
+    // 音节，不收。`act(title)` 回传的是**原变量**而不是渲染出来的文本，所以 DM 侧拼出的恶魔名
+    // 始终是英文 —— 按钮翻成中文不会造出中英混排的名字。
+    { file: 'interfaces/CodexGigas.tsx', tables: ['PREFIXES', 'TITLES', 'SUFFIXES'] },
+    // 会计控制台的「经济崩溃」滚动播报词条。
+    { file: 'interfaces/AccountingConsole/helpers.ts', tables: ['doomMessages'] },
+  ].flatMap(({ file, tables }) =>
+    tables.map((table) => ({ file, table, elements: true })),
+  ),
+  ...[
+    'TABPAGES',
+    'REVERSE_OPTIONS',
+    'DELAYS',
+    'REV_DELAYS',
+    'SOUNDS',
+    'BAYS',
+    'EFFECTS_LOAD',
+    'EFFECTS_NORMAL',
+    'EFFECTS_HARM',
+    'EFFECTS_ALL',
+  ].map((table) => ({
+    file: 'interfaces/CentcomPodLauncher/constants.ts',
+    table,
+    props: ['title', 'label', 'alt_label', 'tooltip'],
+  })),
 ];
 
-function extractConstantTableLabels(catalog) {
-  for (const { file, table, props, values } of CONSTANT_LABEL_TABLES) {
+/// 自定义组件上**不在 translatable_props 里**的显示文案 prop。
+///
+/// `<SingleLoadout name="The Classic Wizard" blurb="…" />`：`name` 全局不可翻（标识符浓度太高），
+/// 但这个组件内部是 `<Section title={name}>` —— `title` 在 translatable_props 里，**渲染期照常
+/// 本地化**，缺的只有抽取。所以按「组件 + prop」定点登记，不动全局 prop 清单。
+/// `author` 不收：那是贡献者署名（`Archchancellor Gray`），专名。
+const COMPONENT_PROP_LABELS = [
+  {
+    file: 'interfaces/Spellbook/Loadouts.tsx',
+    component: 'SingleLoadout',
+    props: ['name', 'blurb'],
+  },
+  // 反派「改写目标」按钮：6 个反派界面各传一个 `button_title`，组件内部渲染成
+  // `content={button_title}`（`content` 是可翻 prop，渲染期照常本地化），缺的只有抽取。
+  ...[
+    'AntagInfoChangeling',
+    'AntagInfoMalf',
+    'AntagInfoNinja',
+    'AntagInfoSpy',
+    'AntagInfoWizard',
+    'AntagInfoTraitor',
+  ].map((file) => ({
+    file: `interfaces/${file}.tsx`,
+    component: 'ReplaceObjectivesButton',
+    props: ['button_title', 'button_tooltip'],
+  })),
+  // 传真机的印章下拉：`selected="Choose stamp(optional)"` 是**占位提示文字**，
+  // 运行期由 localizeDropdownProps 翻（它认 `selected`），缺的只有抽取。
+  // 只按「这个文件里的 Dropdown」登记：别处的 `selected={data.x}` 不是字面量，收不到也不该收。
+  { file: 'interfaces/AdminFax.tsx', component: 'Dropdown', props: ['selected'] },
+  // 烧杯显示组件的标题：`title_label` 传进去后渲染成 children，同样只缺抽取。
+  ...['ChemDispenser', 'ChemRecipeDebug', 'ChemHeater', 'ChemMaster'].flatMap(
+    (file) =>
+      // 两个组件名都用（`BeakerDisplay` 与包了一层 Section 的 `BeakerSectionDisplay`）。
+      ['BeakerDisplay', 'BeakerSectionDisplay'].map((component) => ({
+        file: `interfaces/${file}.tsx`,
+        component,
+        props: ['title_label'],
+      })),
+  ),
+];
+
+/// 「局部变量一跳」（TS 侧）：赋给**后来出现在显示位置**的局部变量的字符串字面量。
+///
+/// `const modeText = regexSearch ? 'RegEx Mode' : 'Standard Mode';` 之后 `{modeText}` 渲染 ——
+/// **运行期本来就翻得动**（JSX children 走 auto-localize），缺的只有抽取：字面量既不在 JSX 里、
+/// 也不在可翻 prop 上，walker 看不见它。
+///
+/// 准入面用「该标识符是否出现在显示位置」界定，而不是靠形态猜：
+///   · 显示位置 = JSX 表达式 children（`{modeText}`）或可翻 prop 的值（`title={modeText}`）；
+///   · 只收**纯字面量**赋值，含三元/`||`/`??` 的各支（运行期每支都是独立成品串）。
+/// 这条比 DM 侧那条同名规则**更准**：DM 只能拿「是不是 LANG 实参」当近似，这里能直接看渲染位置。
+/// 用作 `act()` 载荷的局部变量不在显示位置上，天然排除；两者兼有时（`content={x}` + `act(x)`）
+/// 也是安全的 —— auto-localize 只改渲染出来的文本，`act` 送的是变量本身。
+function extractDisplayLocals(catalog) {
+  for (const file of walk(path.join(TGUI_SOURCE_DIR, 'interfaces'))) {
+    if (!file.endsWith('.tsx')) continue;
+    let source;
+    try {
+      source = fs.readFileSync(file, 'utf8');
+    } catch {
+      continue;
+    }
+    const sf = ts.createSourceFile(
+      file,
+      source,
+      ts.ScriptTarget.Latest,
+      true,
+      ts.ScriptKind.TSX,
+    );
+
+    const displayIdents = new Set();
+    // 显示位置上的**函数调用**（`{check_attempts(attempts_left)}`）：它的 return 字面量同样是
+    // 玩家可见文案，而它既不在 JSX 里也不是变量赋值。记下被调用者的名字，下面收它的 return。
+    // 这是 DM 侧 `is_display_descriptor_proc` 的 TS 版，但准入面更准：那边靠 proc 名白名单，
+    // 这边直接看「它的返回值有没有被渲染」。
+    const displayCallees = new Set();
+    const noteIdent = (node) => {
+      if (!node) return;
+      if (ts.isIdentifier(node)) displayIdents.add(node.text);
+      if (ts.isCallExpression(node) && ts.isIdentifier(node.expression)) {
+        displayCallees.add(node.expression.text);
+      }
+    };
+    const findDisplay = (node) => {
+      if (ts.isJsxExpression(node) && node.expression) {
+        // `{modeText}` 作为 children；作为属性值时父节点是 JsxAttribute，下面单独判。
+        if (!node.parent || !ts.isJsxAttribute(node.parent)) noteIdent(node.expression);
+      }
+      if (ts.isJsxAttribute(node)) {
+        const name = node.name.getText(sf);
+        if (
+          (TRANSLATABLE_PROPS.has(name) || OPTION_TEXT_PROPS.has(name)) &&
+          node.initializer &&
+          ts.isJsxExpression(node.initializer)
+        ) {
+          noteIdent(node.initializer.expression);
+        }
+      }
+      ts.forEachChild(node, findDisplay);
+    };
+    findDisplay(sf);
+    if (!displayIdents.size) continue;
+
+    const pushLiterals = (node, out) => {
+      if (!node) return;
+      if (ts.isParenthesizedExpression(node)) return pushLiterals(node.expression, out);
+      if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) {
+        out.push(node.text);
+        return;
+      }
+      if (ts.isConditionalExpression(node)) {
+        pushLiterals(node.whenTrue, out);
+        pushLiterals(node.whenFalse, out);
+        return;
+      }
+      if (
+        ts.isBinaryExpression(node) &&
+        (node.operatorToken.kind === ts.SyntaxKind.BarBarToken ||
+          node.operatorToken.kind === ts.SyntaxKind.QuestionQuestionToken ||
+          node.operatorToken.kind === ts.SyntaxKind.AmpersandAmpersandToken)
+      ) {
+        pushLiterals(node.left, out);
+        pushLiterals(node.right, out);
+      }
+    };
+
+    const collectReturns = (node, out) => {
+      if (ts.isReturnStatement(node) && node.expression) {
+        pushLiterals(node.expression, out);
+      }
+      ts.forEachChild(node, (child) => collectReturns(child, out));
+    };
+
+    const collect = (node) => {
+      if (ts.isVariableDeclaration(node) && ts.isIdentifier(node.name)) {
+        const name = node.name.text;
+        if (displayIdents.has(name)) {
+          const literals = [];
+          pushLiterals(node.initializer, literals);
+          for (const literal of literals) addText(catalog, literal);
+        }
+        if (displayCallees.has(name) && node.initializer) {
+          const literals = [];
+          // 箭头函数的简写体（`=> cond ? 'a' : 'b'`）没有 return 语句。
+          if (
+            ts.isArrowFunction(node.initializer) &&
+            !ts.isBlock(node.initializer.body)
+          ) {
+            pushLiterals(node.initializer.body, literals);
+          } else {
+            collectReturns(node.initializer, literals);
+          }
+          for (const literal of literals) addText(catalog, literal);
+        }
+      }
+      if (
+        ts.isFunctionDeclaration(node) &&
+        node.name &&
+        displayCallees.has(node.name.text) &&
+        node.body
+      ) {
+        const literals = [];
+        collectReturns(node.body, literals);
+        for (const literal of literals) addText(catalog, literal);
+      }
+      ts.forEachChild(node, collect);
+    };
+    collect(sf);
+  }
+}
+
+function extractComponentPropLabels(catalog) {
+  for (const { file, component, props } of COMPONENT_PROP_LABELS) {
     const filePath = path.join(TGUI_SOURCE_DIR, file);
     let source;
     try {
@@ -1077,7 +1370,48 @@ function extractConstantTableLabels(catalog) {
       source,
       ts.ScriptTarget.Latest,
       true,
-      ts.ScriptKind.TS,
+      ts.ScriptKind.TSX,
+    );
+    const wanted = new Set(props);
+    const visit = (node) => {
+      const opening = ts.isJsxSelfClosingElement(node)
+        ? node
+        : ts.isJsxElement(node)
+          ? node.openingElement
+          : null;
+      if (opening && opening.tagName.getText(sf) === component) {
+        for (const attribute of opening.attributes.properties) {
+          if (!ts.isJsxAttribute(attribute)) continue;
+          if (!wanted.has(attribute.name.getText(sf))) continue;
+          // 值可能包在三元 / `&&` / `||` 里（`title_label={recording && 'Virtual beaker'}`）。
+          // 每一支在运行期都是独立的成品串，逐支收。
+          for (const branch of propTemplateBranches(attribute.initializer)) {
+            addText(catalog, literalText(branch) ?? foldStringConcat(branch));
+          }
+        }
+      }
+      ts.forEachChild(node, visit);
+    };
+    visit(sf);
+  }
+}
+
+function extractConstantTableLabels(catalog) {
+  for (const { file, table, props, values, elements, keys } of CONSTANT_LABEL_TABLES) {
+    const filePath = path.join(TGUI_SOURCE_DIR, file);
+    let source;
+    try {
+      source = fs.readFileSync(filePath, 'utf8');
+    } catch {
+      continue;
+    }
+    const sf = ts.createSourceFile(
+      filePath,
+      source,
+      ts.ScriptTarget.Latest,
+      true,
+      // 按扩展名选 ScriptKind：用 TS 解析 .tsx 会把 `<Foo>` 当成类型断言，整个文件的 AST 就错了。
+      filePath.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
     );
     const wanted = new Set(props ?? []);
     const visit = (node) => {
@@ -1090,7 +1424,28 @@ function extractConstantTableLabels(catalog) {
           if (ts.isPropertyAssignment(inner)) {
             const name = propertyName(inner.name);
             if (values || wanted.has(name)) {
-              addText(catalog, literalText(inner.initializer));
+              // 值可能是 `'…' + '…'` 的折行拼接（prettier 对长句的常规排版）。
+              // literalText 只认单个字面量，不折叠 —— 不折就整条抽不到。
+              addText(
+                catalog,
+                literalText(inner.initializer) ??
+                  foldStringConcat(inner.initializer),
+              );
+            }
+          }
+          // `elements`：**裸字符串数组**（`const weaponlist = ['Fist Fight', …]`）。
+          // 这类常量住在 .tsx 里但不在 JSX 中，walk() 看不见；渲染时 `{w}` 作 children
+          // 由 auto-localize 落地，所以缺的只有抽取这一步。
+          // `keys`：**assoc 的键才是文案、值是标识符**。`VIEWMODE = {Health:'heart', …}` 的键
+          // 渲染成页签文字、值是图标名 —— 与 examine_tags 那条「键即文案」同形，与绝大多数
+          // 「键是查表名」的表恰好相反，所以只能逐表登记、不能按形态放开。
+          if (keys && ts.isPropertyAssignment(inner)) {
+            const key = propertyName(inner.name);
+            if (key) addText(catalog, normalizeText(key));
+          }
+          if (elements && ts.isArrayLiteralExpression(inner)) {
+            for (const element of inner.elements) {
+              addText(catalog, literalText(element));
             }
           }
           ts.forEachChild(inner, collect);
@@ -1105,7 +1460,7 @@ function extractConstantTableLabels(catalog) {
 }
 
 function extractAntagonistLabels(catalog) {
-  for (const file of tsFilesUnder(ANTAG_DEF_DIR)) {
+  for (const file of scriptFilesUnder(ANTAG_DEF_DIR)) {
     let source;
     try {
       source = fs.readFileSync(file, 'utf8');
@@ -1146,6 +1501,105 @@ function extractAntagonistLabels(catalog) {
   }
 }
 
+function defineMessageImports(sourceFile) {
+  const names = new Set();
+  for (const statement of sourceFile.statements) {
+    if (
+      !ts.isImportDeclaration(statement) ||
+      !ts.isStringLiteral(statement.moduleSpecifier) ||
+      !/(?:^|\/)i18n(?:\/messages)?$/.test(statement.moduleSpecifier.text)
+    ) {
+      continue;
+    }
+    const bindings = statement.importClause?.namedBindings;
+    if (!bindings || !ts.isNamedImports(bindings)) {
+      continue;
+    }
+    for (const element of bindings.elements) {
+      if ((element.propertyName ?? element.name).text === 'defineMessage') {
+        names.add(element.name.text);
+      }
+    }
+  }
+  return names;
+}
+
+function scriptKind(file) {
+  if (file.endsWith('.tsx')) return ts.ScriptKind.TSX;
+  if (file.endsWith('.jsx')) return ts.ScriptKind.JSX;
+  if (file.endsWith('.js')) return ts.ScriptKind.JS;
+  return ts.ScriptKind.TS;
+}
+
+function directStringLiteral(node) {
+  return node &&
+    (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node))
+    ? node.text
+    : null;
+}
+
+/**
+ * Extract explicit `defineMessage(context, source)` declarations from TS/JS.
+ * Dynamic arguments are hard errors: a runtime-only key could never reach translators.
+ */
+function extractContextMessages(catalog) {
+  for (const file of scriptFilesUnder(TGUI_SOURCE_DIR)) {
+    const source = fs.readFileSync(file, 'utf8');
+    const sourceFile = ts.createSourceFile(
+      file,
+      source,
+      ts.ScriptTarget.Latest,
+      true,
+      scriptKind(file),
+    );
+    const callNames = defineMessageImports(sourceFile);
+    if (!callNames.size) {
+      continue;
+    }
+    currentScope = `tgui:${path
+      .relative(TGUI_SOURCE_DIR, file)
+      .replace(/\\/g, '/')
+      .replace(/\.[^.]+$/, '')}`;
+
+    function visit(node) {
+      if (
+        ts.isCallExpression(node) &&
+        ts.isIdentifier(node.expression) &&
+        callNames.has(node.expression.text)
+      ) {
+        const context = directStringLiteral(node.arguments[0]);
+        const sourceText = directStringLiteral(node.arguments[1]);
+        if (node.arguments.length !== 2 || context === null || sourceText === null) {
+          throw new Error(
+            `${path.relative(ROOT, file)}:${sourceFile.getLineAndCharacterOfPosition(node.getStart()).line + 1}: defineMessage requires two direct string literals`,
+          );
+        }
+        if (!CONTEXT_PATTERN.test(context)) {
+          throw new Error(
+            `${path.relative(ROOT, file)}: invalid translation context ${JSON.stringify(context)}`,
+          );
+        }
+        if (!sourceText.trim() || sourceText.includes(CONTEXT_SEPARATOR)) {
+          throw new Error(
+            `${path.relative(ROOT, file)}: invalid contextual message source`,
+          );
+        }
+        const key = `${context}${CONTEXT_SEPARATOR}${sourceText}`;
+        catalog[key] = sourceText;
+        noteScope(key);
+        const metadata = contextualMessages.get(key) ?? {
+          context,
+          source: sourceText,
+          scopes: new Set(),
+        };
+        metadata.scopes.add(currentScope);
+        contextualMessages.set(key, metadata);
+      }
+      ts.forEachChild(node, visit);
+    }
+    visit(sourceFile);
+  }
+}
 
 // ---------------------------------------------------------------------------
 // 混合 children 的占位符模板
@@ -1229,6 +1683,7 @@ function childrenTemplate(children) {
 
 function extractCatalog() {
   const catalog = {};
+  extractContextMessages(catalog);
   // 这三个来源不是界面文件，语境按来源种类记（够用来把它们和界面串区分开）。
   currentScope = 'dm:labels';
   extractDmLabels(catalog);
@@ -1238,6 +1693,8 @@ function extractCatalog() {
   extractInteractionLabels(catalog);
   currentScope = 'tgui:constants';
   extractConstantTableLabels(catalog);
+  extractComponentPropLabels(catalog);
+  extractDisplayLocals(catalog);
   for (const filePath of walk(TGUI_SOURCE_DIR)) {
     // 界面名即语境。`interfaces/ChemReactionChamber.tsx` -> `tgui:ChemReactionChamber`。
     currentScope = `tgui:${path.basename(filePath).replace(/\.(tsx|jsx|ts|js)$/, '')}`;
@@ -1251,6 +1708,7 @@ function extractCatalog() {
     );
 
     const isFeatureDef = filePath.includes(FEATURE_DEF_DIR);
+    const contextCallNames = defineMessageImports(sourceFile);
 
     // 已被 children 模板吃掉的 JsxText 节点：不再单独入目录，否则那些碎片仍会被
     // 运行时逐段替换、拼出语序错乱的中文。
@@ -1284,10 +1742,12 @@ function extractCatalog() {
             addDisplayExpr(catalog, initializer); // 含三元/|| 两支（content={x?'Retract':'Deploy'}）
             // 运行期拼接（`` title={`Reading: ${x}`} ``）：addDisplayExpr 按「形状不可复原」
             // 整条不抽，改按模板收，运行时由 localize.ts 的逆匹配还原。
-            const template = propTemplate(initializer);
-            if (template) {
-              addText(catalog, template);
-              propTemplates.add(normalizeText(stripGrammarMacros(template)));
+            for (const branch of propTemplateBranches(initializer)) {
+              const template = propTemplate(branch);
+              if (template) {
+                addText(catalog, template);
+                propTemplates.add(normalizeText(stripGrammarMacros(template)));
+              }
             }
           }
         }
@@ -1316,8 +1776,13 @@ function extractCatalog() {
         // 如 PersonalityPage 的 'You have no personality.'）。运行时 auto-localize 会按英文原文翻这些
         // 渲染出的串，缺的只是把它们抽进目录。保守启发式（含空格 + 首字母大写 + 句末标点 + 无
         // </>/{}/=/_ 等标识符/标签字符）只取自然语句，避开 className/key/路径/act 标识符。
+        const isContextArgument =
+          ts.isCallExpression(node.parent) &&
+          ts.isIdentifier(node.parent.expression) &&
+          contextCallNames.has(node.parent.expression.text);
         const t = node.text;
         if (
+          !isContextArgument &&
           /\s/.test(t) &&
           /^[A-Z]/.test(t) &&
           /[.!?]$/.test(t) &&
@@ -1386,32 +1851,44 @@ function extract() {
   const zhCatalog = {};
 
   for (const key of Object.keys(enCatalog)) {
+    const english = enCatalog[key] ?? key;
     const existing = existingZh[key];
-    // 用户已有译文**最优先**，绝不被自动生成覆盖。否则每次 extract 都会把整句人工译文降级为
-    // phraseTranslation/reverse 的词级重组（如「创建指挥报告」→「创建指挥 Report」）。
-    // 只有「尚无译文」的新键才用自动生成回填。
-    if (existing && existing !== key) {
+    // 用户已有译文**最优先**，绝不被自动生成覆盖。Contextual entries 的 catalog key
+    // 是 `context\u0004source`，但 English value 始终是 source。
+    if (existing && existing !== english) {
       zhCatalog[key] = existing;
       continue;
     }
-    // 单词键**只允许沿用既有词对**（reverseZh = 其它命名空间已有译文），不许 phraseTranslation 现编。
-    // 理由：tgui.json 会被 DM 侧 build_i18n_cache 一并扫进**全局反查表**，凭空多出的
-    // 「单词 -> 译文」词对等于扩大整个 DM 侧的误翻面（线缆颜色那次被 i18n_real_catalog 当场抓住），
-    // 而单词恰恰是 act/topic/黑板键浓度最高的形态。多词键不受此限：phraseTranslation 本就是为它们准备的。
-    // 查不到就留英文——sync() 会把「值等于英文」的键滤掉，等于不存在。审计：audit-tgui-label-pairs.mjs。
-    if (!/\s/.test(key)) {
-      zhCatalog[key] = reverseZh[key] ?? key;
+    // First migration into an explicit context inherits the legacy source-key translation. Once
+    // translators edit the composite key, the branch above wins and contexts may diverge.
+    const legacyContextTranslation = key.includes(CONTEXT_SEPARATOR)
+      ? existingZh[english]
+      : undefined;
+    if (
+      legacyContextTranslation &&
+      legacyContextTranslation !== english
+    ) {
+      zhCatalog[key] = legacyContextTranslation;
       continue;
     }
-    zhCatalog[key] = phraseTranslation(key) ?? reverseZh[key] ?? key;
+    // Legacy automatic source lookup keeps single words conservative because they are highly
+    // ambiguous with UI identifiers. Explicit contextual messages can still receive independent
+    // translations through their composite keys.
+    if (!/\s/.test(english)) {
+      zhCatalog[key] = reverseZh[english] ?? english;
+      continue;
+    }
+    zhCatalog[key] =
+      phraseTranslation(english) ?? reverseZh[english] ?? english;
   }
 
   writeJson(stringsCatalogPath('en'), enCatalog);
   writeJson(stringsCatalogPath('zh-Hans'), zhCatalog);
   warnHtmlEntities(enCatalog, zhCatalog);
   writeTguiScopes(enCatalog);
-  writePropTemplates();
-  sync();
+  writeTguiContexts();
+  const propTemplatesContent = writePropTemplates();
+  sync({ en: enCatalog, 'zh-Hans': zhCatalog }, propTemplatesContent);
 }
 
 // 目录里出现 HTML 实体 = 两类真 bug，且都**静默**：
@@ -1439,10 +1916,8 @@ function warnHtmlEntities(enCatalog, zhCatalog) {
 }
 
 /**
- * 落盘 TGUI 语境 sidecar，并报出**跨界面共用**的 key。
- *
- * 放 strings/i18n/tgui-scopes.json（locale 目录之外——build_i18n_cache 会把 locale 目录里
- * 每个 .json 全量并进反查表，见 DM 侧 scopes.json 的同款注意事项）。
+ * Generated metadata lives outside locale directories so it cannot be mistaken for an
+ * authoring catalog or loaded into any runtime translation domain.
  */
 function writeTguiScopes(enCatalog) {
   const out = {};
@@ -1451,13 +1926,16 @@ function writeTguiScopes(enCatalog) {
     if (scopes && scopes.size) out[key] = [...scopes].sort();
   }
   const outPath = path.join(STRINGS_I18N_DIR, 'tgui-scopes.json');
-  fs.writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`);
+  emitGenerated(outPath, `${JSON.stringify(out, null, 2)}\n`);
   // 这个函数跑在**每次 tgui 构建**里，所以默认只出一行。
   // 跨界面共用的短 key（如 "Basic"：Crayon 的色系分组 vs 化学的碱性）只能有一个译文，
   // 各界面语义不同时必然有一边错——但那是需要专门排查的事，不该每次构建都刷屏。
   // 要看明细：I18N_SCOPE_REPORT=1 node tools/i18n/tgui-catalog.mjs extract
   const shared = Object.entries(out).filter(
-    ([key, sc]) => sc.length > 1 && key.split(/\s+/).length <= 2,
+    ([key, sc]) =>
+      !key.includes(CONTEXT_SEPARATOR) &&
+      sc.length > 1 &&
+      key.split(/\s+/).length <= 2,
   );
   console.log(
     `tgui 语境 sidecar: ${Object.keys(out).length} 条（跨界面共用短 key ${shared.length}）`,
@@ -1465,6 +1943,31 @@ function writeTguiScopes(enCatalog) {
   if (process.env.I18N_SCOPE_REPORT) {
     for (const [key, sc] of shared) console.log(`   ${JSON.stringify(key)} ${sc.join(', ')}`);
   }
+}
+
+/** Pure deterministic representation used by extract and freshness checks. */
+function buildTguiContexts() {
+  const out = {};
+  for (const key of [...contextualMessages.keys()].sort()) {
+    const { context, source, scopes } = contextualMessages.get(key);
+    out[key] = {
+      context,
+      source,
+      scopes: [...scopes].sort(),
+    };
+  }
+  return out;
+}
+
+function writeTguiContexts() {
+  const contexts = buildTguiContexts();
+  writeJson(
+    path.join(STRINGS_I18N_DIR, 'tgui-contexts.json'),
+    contexts,
+  );
+  console.log(
+    `tgui contextual messages: ${Object.keys(contexts).length} entries`,
+  );
 }
 
 /**
@@ -1477,17 +1980,21 @@ function writeTguiScopes(enCatalog) {
 function writePropTemplates() {
   const outPath = path.join(STRINGS_I18N_DIR, 'tgui-prop-templates.json');
   const out = [...propTemplates].filter(Boolean).sort();
-  fs.writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`);
+  const content = `${JSON.stringify(out, null, 2)}\n`;
+  emitGenerated(outPath, content);
+  return content;
 }
 
-function sync() {
-  const enSource = readJson(stringsCatalogPath('en'));
+function sync(sourceCatalogs = {}, propTemplatesContent = null) {
+  const enSource = sourceCatalogs.en ?? readJson(stringsCatalogPath('en'));
   for (const locale of LOCALES) {
     const sourcePath = stringsCatalogPath(locale);
     const fallbackPath = packageCatalogPath(locale);
-    const source = fs.existsSync(sourcePath)
-      ? readJson(sourcePath)
-      : readJson(fallbackPath);
+    const source =
+      sourceCatalogs[locale] ??
+      (fs.existsSync(sourcePath)
+        ? readJson(sourcePath)
+        : readJson(fallbackPath));
     const runtimeCatalog = {};
 
     for (const [key, value] of Object.entries(source)) {
@@ -1503,23 +2010,71 @@ function sync() {
   const policySource = path.join(STRINGS_I18N_DIR, 'policy.json');
   const policyTarget = path.join(TGUI_PACKAGE_I18N_DIR, 'policy.json');
   if (fs.existsSync(policySource)) {
-    fs.copyFileSync(policySource, policyTarget);
+    emitGenerated(policyTarget, fs.readFileSync(policySource));
+  } else if (CHECK_MODE) {
+    staleGeneratedFiles.push({
+      filePath: policySource,
+      actualBytes: null,
+      expectedBytes: null,
+      reason: 'missing canonical source',
+    });
   }
   // 逆匹配准入面同理（localize.ts 静态 import，两份都提交）。
   const tplSource = path.join(STRINGS_I18N_DIR, 'tgui-prop-templates.json');
   const tplTarget = path.join(TGUI_PACKAGE_I18N_DIR, 'prop-templates.json');
-  if (fs.existsSync(tplSource)) {
-    fs.copyFileSync(tplSource, tplTarget);
+  if (propTemplatesContent !== null) {
+    emitGenerated(tplTarget, propTemplatesContent);
+  } else if (fs.existsSync(tplSource)) {
+    emitGenerated(tplTarget, fs.readFileSync(tplSource));
+  } else if (CHECK_MODE) {
+    staleGeneratedFiles.push({
+      filePath: tplSource,
+      actualBytes: null,
+      expectedBytes: null,
+      reason: 'missing canonical source',
+    });
   }
 }
 
 const command = process.argv[2] ?? 'sync';
+const flags = process.argv.slice(3);
+if (flags.some((flag) => flag !== '--check')) {
+  console.error(
+    `Unknown flags: ${flags.filter((flag) => flag !== '--check').join(' ')}`,
+  );
+  console.error(
+    'Usage: node tools/i18n/tgui-catalog.mjs [extract|sync] [--check]',
+  );
+  process.exit(1);
+}
 if (command === 'extract') {
   extract();
 } else if (command === 'sync') {
   sync();
 } else {
   console.error(`Unknown command: ${command}`);
-  console.error('Usage: node tools/i18n/tgui-catalog.mjs [extract|sync]');
+  console.error(
+    'Usage: node tools/i18n/tgui-catalog.mjs [extract|sync] [--check]',
+  );
   process.exit(1);
+}
+
+if (CHECK_MODE) {
+  if (staleGeneratedFiles.length) {
+    console.error(
+      `Generated i18n artifacts are stale (${staleGeneratedFiles.length}):`,
+    );
+    for (const stale of staleGeneratedFiles) {
+      const relative = path.relative(ROOT, stale.filePath);
+      const detail = stale.reason
+        ? stale.reason
+        : `${stale.actualBytes ?? 'missing'} bytes on disk, ${stale.expectedBytes} expected`;
+      console.error(`  ${relative}: ${detail}`);
+    }
+    process.exitCode = 1;
+  } else {
+    console.log(
+      'Generated i18n artifacts are fresh (check mode; no files written).',
+    );
+  }
 }

@@ -11,7 +11,7 @@
 	if(!istype(connected_computer, /obj/machinery/computer/shuttle/pod))
 		return FALSE
 	if(!(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED) && !(connected_computer.obj_flags & EMAGGED))
-		to_chat(usr, span_warning(LANG("obj.adf3bbcb", null)))
+		to_chat(usr, span_warning(LANG("obj.adf3bbcb2265c76a", null)))
 		return FALSE
 	if(launch_status == UNLAUNCHED)
 		launch_status = EARLY_LAUNCHED
@@ -41,7 +41,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	locked = FALSE
-	balloon_alert(user, LANG("obj.86ce72ec", null))
+	balloon_alert(user, LANG("obj.86ce72ecf086af63", null))
 	icon_screen = "emagged_general"
 	update_appearance()
 	return TRUE

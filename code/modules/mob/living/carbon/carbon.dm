@@ -51,8 +51,8 @@
 			take_bodypart_damage(5 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
 		else if(!iscarbon(hit_atom) && extra_speed)
 			take_bodypart_damage(5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
-		visible_message(span_danger(LANG("mob.f35ab796", list(src, hit_atom, extra_speed ? " really hard" : ""))),\
-			span_userdanger(LANG("mob.bee14ff5", list(hit_atom, extra_speed ? " extra hard" : ""))))
+		visible_message(span_danger(LANG("mob.f35ab796ad606f8e", list(src, hit_atom, extra_speed ? " really hard" : ""))),\
+			span_userdanger(LANG("mob.bee14ff55e11ad80", list(hit_atom, extra_speed ? " extra hard" : ""))))
 		log_combat(hit_atom, src, "crashes ")
 		oof_noise = TRUE
 
@@ -72,21 +72,21 @@
 		oof_noise = TRUE
 
 		if(blocked)
-			visible_message(span_danger(LANG("mob.3a412ea3", list(src, victim, extra_speed ? " really hard" : "", victim))),\
-				span_userdanger(LANG("mob.14c55b44", list(victim, extra_speed ? " extra hard" : "", victim))))
+			visible_message(span_danger(LANG("mob.3a412ea3602f59c7", list(src, victim, extra_speed ? " really hard" : "", victim))),\
+				span_userdanger(LANG("mob.14c55b44b4e6cb55", list(victim, extra_speed ? " extra hard" : "", victim))))
 			log_combat(src, victim, "crashed into and was blocked by")
 			return
 		else if(HAS_TRAIT(victim, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED))
 			victim.take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
 			victim.apply_damage(10 + 10 * extra_speed, STAMINA)
 			victim.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * 2, 10 SECONDS)
-			visible_message(span_danger(LANG("mob.e953efdb", list(src, victim, extra_speed ? " really hard" : "", victim))),\
-				span_userdanger(LANG("mob.7d8fbb19", list(victim, extra_speed ? " extra hard" : "", victim))))
+			visible_message(span_danger(LANG("mob.e953efdb5f25c6ed", list(src, victim, extra_speed ? " really hard" : "", victim))),\
+				span_userdanger(LANG("mob.7d8fbb1972244890", list(victim, extra_speed ? " extra hard" : "", victim))))
 		else
 			victim.Paralyze(2 SECONDS)
 			victim.take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
-			visible_message(span_danger(LANG("mob.8da43768", list(src, victim, extra_speed ? " really hard" : ""))),\
-				span_userdanger(LANG("mob.bee14ff5", list(victim, extra_speed ? " extra hard" : ""))))
+			visible_message(span_danger(LANG("mob.8da4376893dfbaee", list(src, victim, extra_speed ? " really hard" : ""))),\
+				span_userdanger(LANG("mob.bee14ff55e11ad80", list(victim, extra_speed ? " extra hard" : ""))))
 		log_combat(src, victim, "crashed into")
 
 	if(oof_noise)
@@ -119,13 +119,13 @@
 		var/obj/item/tourniquet = LAZYACCESS(limb?.applied_items, LIMB_ITEM_TOURNIQUET)
 		if(QDELETED(limb) || QDELETED(patient) || QDELETED(tourniquet))
 			return
-		balloon_alert_to_viewers(LANG("mob.61fe49cc", null))
+		balloon_alert_to_viewers(LANG("mob.61fe49ccc34231c5", null))
 		if(!do_after(usr, 4 SECONDS, target = src))
 			return
 		if(QDELETED(limb) || QDELETED(patient) || QDELETED(tourniquet) || limb.owner != patient || tourniquet.loc != limb)
 			return
 
-		balloon_alert_to_viewers(LANG("mob.639db33c", null))
+		balloon_alert_to_viewers(LANG("mob.639db33c0e1121ab", null))
 		usr.put_in_hands(tourniquet)
 		return
 	// NOVA EDIT ADDITION START - Copy above tourniquet code for gauze
@@ -135,13 +135,13 @@
 		var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb?.applied_items, LIMB_ITEM_GAUZE)
 		if(QDELETED(limb) || QDELETED(patient) || QDELETED(gauze))
 			return
-		balloon_alert_to_viewers(LANG("mob.e2c8ef0a", list(gauze)))
+		balloon_alert_to_viewers(LANG("mob.e2c8ef0a03bab582", list(gauze)))
 		if(!do_after(usr, 4 SECONDS, target = src))
 			return
 		if(QDELETED(limb) || QDELETED(patient) || QDELETED(gauze) || limb.owner != patient || gauze.loc != limb)
 			return
 
-		balloon_alert_to_viewers(LANG("mob.2a4235b4", list(gauze)))
+		balloon_alert_to_viewers(LANG("mob.2a4235b4837591d1", list(gauze)))
 		var/obj/item/stack/medical/wrap/gotten = gauze.rip_off()
 		if(gotten && !usr.put_in_hands(gotten))
 			gotten.forceMove(get_turf(usr))
@@ -172,12 +172,12 @@
 		var/obj/item/restraints/cuffs = src.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 		buckle_cd = cuffs.breakouttime
 
-	visible_message(span_warning(LANG("mob.fc9e041d", list(src, p_them()))),
-				span_notice(LANG("mob.910569ff", list(DisplayTimeText(buckle_cd)))))
+	visible_message(span_warning(LANG("mob.fc9e041d4b717b74", list(src, p_them()))),
+				span_notice(LANG("mob.910569ff063da369", list(DisplayTimeText(buckle_cd)))))
 
 	if(!do_after(src, buckle_cd, target = src, timed_action_flags = IGNORE_HELD_ITEM, cog_icon = null))
 		if(buckled)
-			to_chat(src, span_warning(LANG("mob.bca97c0d", null)))
+			to_chat(src, span_warning(LANG("mob.bca97c0d59d379d9", null)))
 		return
 
 	if(QDELETED(src) || isnull(buckled))
@@ -218,27 +218,27 @@
 	if((cuff_break != INSTANT_CUFFBREAK) && (SEND_SIGNAL(src, COMSIG_MOB_REMOVING_CUFFS, cuffs) & COMSIG_MOB_BLOCK_CUFF_REMOVAL))
 		return //The blocking object should sent a fluff-appropriate to_chat about cuff removal being blocked
 	if(cuffs.item_flags & BEING_REMOVED)
-		to_chat(src, span_warning(LANG("mob.2ef54d73", list(cuffs))))
+		to_chat(src, span_warning(LANG("mob.2ef54d7335c01104", list(cuffs))))
 		return
 	cuffs.item_flags |= BEING_REMOVED
 	if (isnull(breakouttime))
 		breakouttime = cuffs.breakouttime
 	if(!cuff_break)
-		visible_message(span_warning(LANG("mob.1c66998e", list(src, cuffs))))
-		to_chat(src, span_notice(LANG("mob.ace3833f", list(cuffs, DisplayTimeText(breakouttime)))))
+		visible_message(span_warning(LANG("mob.1c66998e85d25897", list(src, cuffs))))
+		to_chat(src, span_notice(LANG("mob.ace3833fdc7ebf48", list(cuffs, DisplayTimeText(breakouttime)))))
 		if(do_after(src, breakouttime, target = src, timed_action_flags = IGNORE_HELD_ITEM, cog_icon = null))
 			. = clear_cuffs(cuffs, cuff_break)
 		else
-			to_chat(src, span_warning(LANG("mob.adacd83c", list(cuffs))))
+			to_chat(src, span_warning(LANG("mob.adacd83cbcde80fe", list(cuffs))))
 
 	else if(cuff_break == FAST_CUFFBREAK)
 		breakouttime = 5 SECONDS
-		visible_message(span_warning(LANG("mob.5d0bcda1", list(src, cuffs))))
-		to_chat(src, span_notice(LANG("mob.1ea0a942", list(cuffs))))
+		visible_message(span_warning(LANG("mob.5d0bcda14e9a9434", list(src, cuffs))))
+		to_chat(src, span_notice(LANG("mob.1ea0a942cdbc306e", list(cuffs))))
 		if(do_after(src, breakouttime, target = src, timed_action_flags = IGNORE_HELD_ITEM))
 			. = clear_cuffs(cuffs, cuff_break)
 		else
-			to_chat(src, span_warning(LANG("mob.1e6305d1", list(cuffs))))
+			to_chat(src, span_warning(LANG("mob.1e6305d13db10ff5", list(cuffs))))
 
 	else if(cuff_break == INSTANT_CUFFBREAK)
 		. = clear_cuffs(cuffs, cuff_break)
@@ -257,8 +257,8 @@
 		return FALSE
 	if(I != handcuffed && I != legcuffed)
 		return FALSE
-	visible_message(span_danger(LANG("mob.73932c95", list(src, cuff_break ? "break" : "remove", I))))
-	to_chat(src, span_notice(LANG("mob.5e680a27", list(cuff_break ? "break" : "remove", I))))
+	visible_message(span_danger(LANG("mob.73932c95857cbd55", list(src, cuff_break ? "break" : "remove", I))))
+	to_chat(src, span_notice(LANG("mob.5e680a27fb6982c5", list(cuff_break ? "break" : "remove", I))))
 
 	if(cuff_break)
 		. = !((I == handcuffed) || (I == legcuffed))
@@ -327,8 +327,8 @@
 	if(!force && !blood && (nutrition < 100))
 		if(message)
 			visible_message(
-				span_warning(LANG("mob.8d6963f8", list(src))),
-				span_userdanger(LANG("mob.a5048e5e", null)),
+				span_warning(LANG("mob.8d6963f8ae174df6", list(src))),
+				span_userdanger(LANG("mob.a5048e5e57928cd9", null)),
 			)
 		if(stun)
 			var/stun_time = 20 SECONDS
@@ -342,15 +342,15 @@
 	if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious
 		if(message)
 			visible_message(
-				span_danger(LANG("mob.560d95a6", list(src, p_them()))),
-				span_userdanger(LANG("mob.e3f2e26d", null)),
+				span_danger(LANG("mob.560d95a62ef1c2e5", list(src, p_them()))),
+				span_userdanger(LANG("mob.e3f2e26d2882a975", null)),
 			)
 			add_mood_event("vomit", /datum/mood_event/vomitself)
 		distance = 0
 	else if(message)
 		visible_message(
-			span_danger(LANG("mob.c7a485c5", list(src))),
-			span_userdanger(LANG("mob.f5b2717a", null)),
+			span_danger(LANG("mob.c7a485c5274fb75a", list(src))),
+			span_userdanger(LANG("mob.f5b2717a80864204", null)),
 		)
 		if(!HAS_TRAIT(src, TRAIT_VOMIT_SLURPER))
 			add_mood_event("vomit", /datum/mood_event/vomit)
@@ -400,8 +400,8 @@
  * * amount: int The amount of reagent
  */
 /mob/living/carbon/proc/expel_ingested(atom/bite, amount)
-	visible_message(span_danger(LANG("mob.560d95a6", list(src, p_them()))), \
-					span_userdanger(LANG("mob.6129c94f", list(bite))))
+	visible_message(span_danger(LANG("mob.560d95a62ef1c2e5", list(src, p_them()))), \
+					span_userdanger(LANG("mob.6129c94f858dbd15", list(bite))))
 
 	var/turf/floor = get_turf(src)
 	var/obj/effect/decal/cleanable/vomit/spew = new(floor, get_static_viruses())
@@ -875,7 +875,7 @@
 			organ.Remove(src)
 			organ.forceMove(drop_location())
 	if(organs_amt)
-		to_chat(user, span_notice(LANG("mob.daa4833c", list(src))))
+		to_chat(user, span_notice(LANG("mob.daa4833c1016ec81", list(src))))
 	remove_all_embedded_objects()
 
 /// Creates body parts for this carbon completely from scratch.
@@ -1008,7 +1008,7 @@
 		if(!check_rights(R_SPAWN))
 			return
 
-		var/edit_action = tgui_alert(usr, LANG("mob.ab3c2f64", null), LANG("mob.aec4ac4d", null), list("Replace", "Remove"))
+		var/edit_action = tgui_alert(usr, LANG("mob.ab3c2f647ff1b220", null), LANG("mob.aec4ac4d6c24577f", null), list("Replace", "Remove"))
 		if(!edit_action)
 			return
 
@@ -1022,7 +1022,7 @@
 			for(var/zone in GLOB.all_body_zones)
 				limb_list[parse_zone(zone)] = zone
 
-		var/result = tgui_input_list(usr, LANG("mob.c7f8857f", list(LOWER_TEXT(edit_action))),LANG("mob.99c8fbd1", list(edit_action)), sort_list(limb_list))
+		var/result = tgui_input_list(usr, LANG("mob.c7f8857fb69df9d6", list(LOWER_TEXT(edit_action))),LANG("mob.99c8fbd15b1cc2ce", list(edit_action)), sort_list(limb_list))
 		if (!result)
 			return
 
@@ -1048,7 +1048,7 @@
 				part.drop_limb()
 				admin_ticket_log("[key_name_admin(usr)] has removed [src]'s [part.plaintext_zone]")
 			else
-				to_chat(usr, span_boldwarning(LANG("mob.0b212beb", list(src))))
+				to_chat(usr, span_boldwarning(LANG("mob.0b212beb74611682", list(src))))
 				admin_ticket_log("[key_name_admin(usr)] has attempted to modify the bodyparts of [src]")
 			return
 
@@ -1056,7 +1056,7 @@
 		for (var/obj/item/bodypart/part_type as anything in sort_list(limbtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 			limb_picks[replacetext("[part_type]", "/obj/item/bodypart/", ":")] = part_type
 
-		var/choice = tgui_input_list(usr, LANG("mob.10279f6b", null), LANG("mob.b1b85b77", null), limb_picks)
+		var/choice = tgui_input_list(usr, LANG("mob.10279f6bc0f96f7d", null), LANG("mob.b1b85b77c444faa3", null), limb_picks)
 		if (!choice)
 			return
 
@@ -1066,7 +1066,7 @@
 			admin_ticket_log("key_name_admin(usr)] has replaced [src]'s [part?.type || "missing limb"] with [new_bp.type]")
 			qdel(part)
 		else
-			to_chat(usr, LANG("mob.9f211048", null))
+			to_chat(usr, LANG("mob.9f211048c8e80711", null))
 			admin_ticket_log("[key_name_admin(usr)] has attempted to modify the bodyparts of [src]")
 
 	if(href_list[VV_HK_MODIFY_ORGANS])
@@ -1078,11 +1078,11 @@
 		for(var/i in artpaths)
 			var/datum/martial_art/M = i
 			artnames[initial(M.name)] = M
-		var/result = tgui_input_list(usr, LANG("mob.59620913", null), LANG("mob.918a4230", null), sort_list(artnames, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		var/result = tgui_input_list(usr, LANG("mob.5962091364ccf470", null), LANG("mob.918a4230a25a86ef", null), sort_list(artnames, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		if(!usr)
 			return
 		if(QDELETED(src))
-			to_chat(usr, span_boldwarning(LANG("mob.1c585faa", null)))
+			to_chat(usr, span_boldwarning(LANG("mob.1c585faaf288c2e1", null)))
 			return
 		if(result)
 			var/chosenart = artnames[result]
@@ -1093,11 +1093,11 @@
 
 	if(href_list[VV_HK_GIVE_TRAUMA])
 		var/list/traumas = subtypesof(/datum/brain_trauma)
-		var/result = tgui_input_list(usr, LANG("mob.116e9cf9", null), LANG("mob.23b3404e", null), sort_list(traumas, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		var/result = tgui_input_list(usr, LANG("mob.116e9cf93601c3c0", null), LANG("mob.23b3404e28424011", null), sort_list(traumas, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		if(!usr)
 			return
 		if(QDELETED(src))
-			to_chat(usr, LANG("mob.4068a4c3", null))
+			to_chat(usr, LANG("mob.4068a4c39ab7926b", null))
 			return
 		if(!result)
 			return
@@ -1363,11 +1363,11 @@
 	if(isnull(head))
 		return ..()
 	if(!can_bleed())
-		to_chat(src, span_notice(LANG("mob.03e6c063", null)))
+		to_chat(src, span_notice(LANG("mob.03e6c063f84328b7", null)))
 		return
 	var/add_stacks = HAS_TRAIT(src, TRAIT_BLOOD_FOUNTAIN) ? 7 : 5
 	head.adjustBleedStacks(add_stacks)
-	visible_message(span_notice(LANG("mob.7ed8b6c7", list(src))), span_warning(LANG("mob.537dcbbc", null)))
+	visible_message(span_notice(LANG("mob.7ed8b6c742f02f2c", list(src))), span_warning(LANG("mob.537dcbbc014e0426", null)))
 
 /mob/living/carbon/check_hit_limb_zone_name(hit_zone)
 	if(get_bodypart(hit_zone))
@@ -1388,10 +1388,10 @@
 		if (overeatduration >= OVEREAT_TIME_LIMIT)
 			return
 
-		to_chat(src, span_notice(LANG("mob.3382ad86", null)))
+		to_chat(src, span_notice(LANG("mob.3382ad86492c617f", null)))
 		remove_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
 		return
 
 	if (overeatduration >= OVEREAT_TIME_LIMIT)
-		to_chat(src, span_danger(LANG("mob.4a521717", null)))
+		to_chat(src, span_danger(LANG("mob.4a521717c23d05a5", null)))
 		add_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)

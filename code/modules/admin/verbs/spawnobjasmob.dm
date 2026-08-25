@@ -76,7 +76,7 @@ ADMIN_VERB(spawn_obj_as_mob, R_SPAWN, "生成物体-生物", "Spawn an object as
 
 	basemob = text2path(mainsettings["mobtype"]["value"])
 	if (!ispath(basemob, /mob/living/basic/mimic/copy) || !ispath(chosen_obj, /obj))
-		to_chat(user.mob, LANG("datum.8ffd623a", null), confidential = TRUE)
+		to_chat(user.mob, LANG("datum.8ffd623a0c30c8e5", null), confidential = TRUE)
 
 	basemob = new basemob(get_turf(user.mob), new chosen_obj(get_turf(user.mob)), user.mob, mainsettings["dropitem"]["value"] == "Yes" ? FALSE : TRUE, (mainsettings["googlyeyes"]["value"] == "Yes" ? FALSE : TRUE))
 

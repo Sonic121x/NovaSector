@@ -47,16 +47,16 @@
 		return FOOD_LIKED
 
 /obj/item/food/grown/banana/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.8ac228b0", list(user, src, user.p_them(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.8ac228b02d22c8dd", list(user, src, user.p_them(), user.p_theyre()))))
 	playsound(loc, 'sound/items/bikehorn.ogg', 50, TRUE, -1)
 	sleep(2.5 SECONDS)
 	if(!user)
 		return OXYLOSS
-	user.say(LANG("obj.73acc9bb", null), forced = /datum/reagent/consumable/banana)
+	user.say(LANG("obj.73acc9bb86caa560", null), forced = /datum/reagent/consumable/banana)
 	sleep(2.5 SECONDS)
 	if(!user)
 		return OXYLOSS
-	user.visible_message(LANG("obj.5ca9a09d", list(user)))
+	user.visible_message(LANG("obj.5ca9a09dbe5c24d6", list(user)))
 	return OXYLOSS
 
 //Banana Peel
@@ -85,7 +85,7 @@
 	return list(/datum/reagent/medicine/coagulant/banana_peel = seed.potency * 0.2)
 
 /obj/item/grown/bananapeel/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.d0455b8b", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.d0455b8bdee7a30a", list(user, src, user.p_theyre()))))
 	playsound(loc, 'sound/misc/slip.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
@@ -198,13 +198,13 @@
 /obj/item/food/grown/banana/bunch/monkeybomb/examine(mob/user)
 	. = ..()
 	if(!is_simian(user))
-		. += span_notice(LANG("obj.adde103d", null))
+		. += span_notice(LANG("obj.adde103db250c057", null))
 		return
-	. += span_notice(LANG("obj.88963e52", null))
+	. += span_notice(LANG("obj.88963e529ae4f875", null))
 
 /obj/item/food/grown/banana/bunch/monkeybomb/attack_self(mob/user, modifiers)
 	if(!is_simian(user))
-		return to_chat(user, span_notice(LANG("obj.4613b0b1", null)))
+		return to_chat(user, span_notice(LANG("obj.4613b0b1c6d858d3", null)))
 	else start_ripening()
 
 /// Used for april fools mail

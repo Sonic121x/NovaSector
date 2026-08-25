@@ -33,13 +33,13 @@
 		eye_snatch_enthusiasm *= 0.7
 	user.do_attack_animation(target, used_item = src)
 	target.visible_message(
-		span_warning(LANG("obj.ef464dbc", list(user, src, target))),
-		span_userdanger(LANG("obj.f8df4665", list(user, src))))
+		span_warning(LANG("obj.ef464dbc9c6e9d4f", list(user, src, target))),
+		span_userdanger(LANG("obj.f8df466589d95d8e", list(user, src))))
 	if(!do_after(user, eye_snatch_enthusiasm, target = target, extra_checks = CALLBACK(src, PROC_REF(eyeballs_exist), eyeballies, head, target)))
 		return
 
-	to_chat(target, span_userdanger(LANG("obj.81379bf5", null)))
-	balloon_alert(user, LANG("obj.b06612da", null))
+	to_chat(target, span_userdanger(LANG("obj.81379bf5916e9c88", null)))
+	balloon_alert(user, LANG("obj.b06612da77bcbb69", null))
 	if(!do_after(user, eye_snatch_enthusiasm, target = target, extra_checks = CALLBACK(src, PROC_REF(eyeballs_exist), eyeballies, head, target)))
 		return
 
@@ -48,9 +48,9 @@
 
 	target.apply_damage(20, BRUTE, BODY_ZONE_HEAD, wound_bonus = rand(min_wound, max_wound + 10), attacking_item = src)
 	target.visible_message(
-		span_danger(LANG("obj.e51eb72f", list(src, target))),
-		span_userdanger(LANG("obj.76efd358", null)),
-		span_hear(LANG("obj.eb55cb14", null))
+		span_danger(LANG("obj.e51eb72fb9084806", list(src, target))),
+		span_userdanger(LANG("obj.76efd3585da51af5", null)),
+		span_hear(LANG("obj.eb55cb147c98a7fc", null))
 	)
 	eyeballies.apply_organ_damage(eyeballies.maxHealth)
 	target.emote("scream")
@@ -61,19 +61,19 @@
 		return
 
 	if(!target.is_blind())
-		to_chat(target, span_userdanger(LANG("obj.5f6796c6", null)))
+		to_chat(target, span_userdanger(LANG("obj.5f6796c6c272e50c", null)))
 	if(prob(1))
-		to_chat(target, span_notice(LANG("obj.f340b251", null)))
+		to_chat(target, span_notice(LANG("obj.f340b251aa11d560", null)))
 		var/obj/item/clothing/glasses/eyepatch/new_patch = new(target.loc)
 		target.equip_to_slot_if_possible(new_patch, ITEM_SLOT_EYES, disable_warning = TRUE)
 
-	to_chat(user, span_notice(LANG("obj.8ecf70c4", list(target))))
+	to_chat(user, span_notice(LANG("obj.8ecf70c48b8ea62d", list(target))))
 	playsound(target, 'sound/items/handling/surgery/retractor2.ogg', 100, TRUE)
 	playsound(target, 'sound/effects/pop.ogg', 100, TRAIT_MUTE)
 	eyeballies.Remove(target)
 	eyeballies.forceMove(get_turf(target))
 	notify_ghosts(
-		LANG("obj.3322fd0b", list(target.real_name)),
+		LANG("obj.3322fd0b4a5c058a", list(target.real_name)),
 		source = target,
 		header = "Ouch!",
 	)
@@ -86,7 +86,7 @@
 /obj/item/eyesnatcher/examine(mob/user)
 	. = ..()
 	if(used)
-		. += span_notice(LANG("obj.bebe4393", null))
+		. += span_notice(LANG("obj.bebe439333c0e66f", null))
 
 /obj/item/eyesnatcher/proc/eyeballs_exist(obj/item/organ/eyes/eyeballies, obj/item/bodypart/head/head, mob/living/carbon/human/target)
 	if(!eyeballies || QDELETED(eyeballies))

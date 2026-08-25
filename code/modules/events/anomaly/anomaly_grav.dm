@@ -30,4 +30,4 @@
 /datum/round_event/anomaly/anomaly_grav/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce(LANG("datum.acad88d8", list(ANOMALY_ANNOUNCE_HARMFUL_TEXT, impact_area.name)), "Anomaly Alert" , ANNOUNCER_GRAVANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Gravitational anomaly detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert" , ANNOUNCER_GRANOMALIES)
+	priority_announce(LANG("datum.acad88d8524512b6", list(ANOMALY_ANNOUNCE_HARMFUL_TEXT, impact_area.name)), "Anomaly Alert" , ANNOUNCER_GRAVANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Gravitational anomaly detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert" , ANNOUNCER_GRANOMALIES)

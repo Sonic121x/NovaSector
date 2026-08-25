@@ -100,14 +100,14 @@
 			var/tissue_text = hit_bodypart.get_external_description()
 			extra_wound_details = ", [weapon.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] at the remaining [tissue_text]"
 
-	var/attack_message_spectator = "[src] [message_verb_continuous][message_hit_area] with [weapon][extra_wound_details]!"
-	var/attack_message_victim = "You're [message_verb_continuous][message_hit_area] with [weapon][extra_wound_details]!"
-	var/attack_message_attacker = "You [message_verb_simple] [src][message_hit_area] with [weapon][extra_wound_details]!"
+	var/attack_message_spectator = LANG("mob.26ba31da8ea674fe", list(src, message_verb_continuous, message_hit_area, weapon, extra_wound_details)) // NOVA EDIT CHANGE - I18N - carbon **覆盖**了 /mob/living 的同名消息组，六条全是局部变量赋插值串（codemod 够不着），而人类被打走的正是这条。ORIGINAL: var/attack_message_spectator = "[src] [message_verb_continuous][message_hit_area] with [weapon][extra_wound_details]!"
+	var/attack_message_victim = LANG("mob.dc380739c7d65f35", list(message_verb_continuous, message_hit_area, weapon, extra_wound_details)) // NOVA EDIT CHANGE - I18N - ORIGINAL: var/attack_message_victim = "You're [message_verb_continuous][message_hit_area] with [weapon][extra_wound_details]!"
+	var/attack_message_attacker = LANG("mob.718222aff3bc8ae5", list(message_verb_simple, src, message_hit_area, weapon, extra_wound_details)) // NOVA EDIT CHANGE - I18N - ORIGINAL: var/attack_message_attacker = "You [message_verb_simple] [src][message_hit_area] with [weapon][extra_wound_details]!"
 	if(user in viewers(src, null))
-		attack_message_spectator = "[user] [message_verb_continuous] [src][message_hit_area] with [weapon][extra_wound_details]!"
-		attack_message_victim = "[user] [message_verb_continuous] you[message_hit_area] with [weapon][extra_wound_details]!"
+		attack_message_spectator = LANG("mob.0aee5ce11d538fc1", list(user, message_verb_continuous, src, message_hit_area, weapon, extra_wound_details)) // NOVA EDIT CHANGE - I18N - ORIGINAL: attack_message_spectator = "[user] [message_verb_continuous] [src][message_hit_area] with [weapon][extra_wound_details]!"
+		attack_message_victim = LANG("mob.6bbcb5fb6955c69b", list(user, message_verb_continuous, message_hit_area, weapon, extra_wound_details)) // NOVA EDIT CHANGE - I18N - ORIGINAL: attack_message_victim = "[user] [message_verb_continuous] you[message_hit_area] with [weapon][extra_wound_details]!"
 	if(user == src)
-		attack_message_victim = "You [message_verb_simple] yourself[message_hit_area] with [weapon][extra_wound_details]!"
+		attack_message_victim = LANG("mob.1b7aa6f998f53096", list(message_verb_simple, message_hit_area, weapon, extra_wound_details)) // NOVA EDIT CHANGE - I18N - ORIGINAL: attack_message_victim = "You [message_verb_simple] yourself[message_hit_area] with [weapon][extra_wound_details]!"
 	visible_message(span_danger("[attack_message_spectator]"),\
 		span_userdanger("[attack_message_victim]"), null, COMBAT_MESSAGE_RANGE, user)
 	if(user != src)
@@ -288,7 +288,7 @@
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/helper, force_friendly)
 	var/nosound = FALSE //NOVA EDIT ADDITION - EMOTES
 	if(on_fire)
-		to_chat(helper, span_warning(LANG("mob.7185f4a1", list(p_them()))))
+		to_chat(helper, span_warning(LANG("mob.7185f4a16330539e", list(p_them()))))
 		return
 
 	if(SEND_SIGNAL(src, COMSIG_CARBON_PRE_MISC_HELP, helper) & COMPONENT_BLOCK_MISC_HELP)
@@ -300,21 +300,21 @@
 
 	if(body_position == LYING_DOWN)
 		if(buckled)
-			to_chat(helper, span_warning(LANG("mob.3c8ae24b", list(src))))
+			to_chat(helper, span_warning(LANG("mob.3c8ae24bad9a69f0", list(src))))
 			return
-		helper.visible_message(span_notice(LANG("mob.b37c53ea", list(helper, src, p_them()))), \
-						null, span_hear(LANG("mob.953bef4f", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
-		to_chat(helper, span_notice(LANG("mob.21148bad", list(src, p_them()))))
-		to_chat(src, span_notice(LANG("mob.7c76f215", list(helper))))
+		helper.visible_message(span_notice(LANG("mob.b37c53ea3dcaa7b9", list(helper, src, p_them()))), \
+						null, span_hear(LANG("mob.953bef4f2a56e5b9", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
+		to_chat(helper, span_notice(LANG("mob.21148badeac414d9", list(src, p_them()))))
+		to_chat(src, span_notice(LANG("mob.7c76f215d7ea4ce0", list(helper))))
 	//NOVA EDIT ADDITION BEGIN - EMOTES -- SENSITIVE SNOUT TRAIT ADDITION
 	else if(helper.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		nosound = TRUE
 		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && !IS_UNCONSCIOUS(src) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
-			visible_message(span_warning(LANG("mob.bc3e033a", list(helper, src, p_they(), p_s()))))
+			visible_message(span_warning(LANG("mob.bc3e033ac8415aa3", list(helper, src, p_they(), p_s()))))
 			return
 		else
 			playsound(src, 'modular_nova/modules/emotes/sound/emotes/Nose_boop.ogg', 50, 0)
-			helper.visible_message(span_notice(LANG("mob.f42ec18e", list(helper, src))), span_notice(LANG("mob.2d29e889", list(src))))
+			helper.visible_message(span_notice(LANG("mob.f42ec18e16cd997f", list(helper, src))), span_notice(LANG("mob.2d29e889556f648d", list(src))))
 			if(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT) && is_location_accessible(BODY_ZONE_PRECISE_MOUTH))
 				var/datum/quirk/sensitivesnout/poor_snout = src.get_quirk(/datum/quirk/sensitivesnout)
 				poor_snout?.get_booped(helper)
@@ -323,20 +323,20 @@
 	else if(check_zone(helper.zone_selected) == BODY_ZONE_HEAD && get_bodypart(BODY_ZONE_HEAD)) //Headpats!
 		//NOVA EDIT ADDITION BEGIN - OVERSIZED & DISALLOWED HEADPATS
 		if(HAS_TRAIT(src, TRAIT_OVERSIZED) && !HAS_TRAIT(helper, TRAIT_OVERSIZED))
-			visible_message(span_warning(LANG("mob.a1e348e5", list(helper, src))))
+			visible_message(span_warning(LANG("mob.a1e348e564616b37", list(helper, src))))
 			return
 		else if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && !IS_UNCONSCIOUS(src) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
-			visible_message(span_warning(LANG("mob.d5b951cc", list(helper, src, p_they(), p_s()))))
+			visible_message(span_warning(LANG("mob.d5b951ccec72fda5", list(helper, src, p_they(), p_s()))))
 			return
 		//NOVA EDIT ADDITION END
-		helper.visible_message(span_notice(LANG("mob.b35d589d", list(helper, src, p_them()))), \
-					null, span_hear(LANG("mob.f82cf905", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
-		to_chat(helper, span_notice(LANG("mob.9a3446d2", list(src, p_them()))))
-		to_chat(src, span_notice(LANG("mob.a06f5c12", list(helper))))
+		helper.visible_message(span_notice(LANG("mob.b35d589da0b8f5de", list(helper, src, p_them()))), \
+					null, span_hear(LANG("mob.f82cf9052ca4c298", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
+		to_chat(helper, span_notice(LANG("mob.9a3446d2a8903a94", list(src, p_them()))))
+		to_chat(src, span_notice(LANG("mob.a06f5c12d5a6c91e", list(helper))))
 
 		share_blood_on_touch(helper, ITEM_SLOT_HEAD|ITEM_SLOT_MASK)
 		if(HAS_TRAIT(src, TRAIT_BADTOUCH))
-			to_chat(helper, span_warning(LANG("mob.1c3fab4d", list(src, p_them()))))
+			to_chat(helper, span_warning(LANG("mob.1c3fab4d6b8cd1ec", list(src, p_them()))))
 		//NOVA EDIT ADDITION BEGIN - EMOTES
 		if(HAS_TRAIT(src, TRAIT_EXCITABLE))
 			var/obj/item/organ/tail/src_tail = get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
@@ -345,21 +345,21 @@
 		//NOVA EDIT ADDITION END
 
 	else if ((helper.zone_selected == BODY_ZONE_PRECISE_GROIN) && !isnull(src.get_organ_by_type(/obj/item/organ/tail)))
-		helper.visible_message(span_notice(LANG("mob.b3db66bb", list(helper, src))), \
-					null, span_hear(LANG("mob.f82cf905", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
-		to_chat(helper, span_notice(LANG("mob.2c8aad2d", list(src))))
-		to_chat(src, span_notice(LANG("mob.853f2c72", list(helper))))
+		helper.visible_message(span_notice(LANG("mob.b3db66bbd9d9e03a", list(helper, src))), \
+					null, span_hear(LANG("mob.f82cf9052ca4c298", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
+		to_chat(helper, span_notice(LANG("mob.2c8aad2d334a9ca1", list(src))))
+		to_chat(src, span_notice(LANG("mob.853f2c72eed68e4d", list(helper))))
 		if(HAS_TRAIT(src, TRAIT_BADTOUCH)) //How dare they!
-			to_chat(helper, span_warning(LANG("mob.d2fb0e99", list(src, p_their()))))
+			to_chat(helper, span_warning(LANG("mob.d2fb0e9975760e31", list(src, p_their()))))
 		else
 			add_mood_event("tailpulled", /datum/mood_event/tailpulled)
 
 	else if ((helper.zone_selected == BODY_ZONE_PRECISE_GROIN) && (istype(get_item_by_slot(ITEM_SLOT_HEAD), /obj/item/clothing/head/costume/kitty) || istype(get_item_by_slot(ITEM_SLOT_HEAD), /obj/item/clothing/head/collectable/kitty)))
 		var/obj/item/clothing/head/faketail = get_item_by_slot(ITEM_SLOT_HEAD) // Should probably be COMSIG_CARBON_PRE_MISC_HELP
-		helper.visible_message(span_danger(LANG("mob.e440773a", list(helper, src))), \
-					null, span_hear(LANG("mob.bd2aabe4", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
-		to_chat(helper, span_danger(LANG("mob.4fd5dfbc", list(src))))
-		to_chat(src, span_userdanger(LANG("mob.f704dd8e", list(helper))))
+		helper.visible_message(span_danger(LANG("mob.e440773a48af3dbf", list(helper, src))), \
+					null, span_hear(LANG("mob.bd2aabe47d9469c3", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
+		to_chat(helper, span_danger(LANG("mob.4fd5dfbc0473bb78", list(src))))
+		to_chat(src, span_userdanger(LANG("mob.f704dd8e4dcc9a28", list(helper))))
 		playsound(loc, 'sound/effects/cloth_rip.ogg', 75, TRUE)
 		dropItemToGround(faketail)
 		helper.put_in_hands(faketail)
@@ -367,20 +367,20 @@
 
 	else
 		if (helper.grab_state >= GRAB_AGGRESSIVE)
-			helper.visible_message(span_notice(LANG("mob.e1a3c908", list(helper, src))), \
-						null, span_hear(LANG("mob.953bef4f", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
-			to_chat(helper, span_notice(LANG("mob.ed79a9e9", list(src))))
-			to_chat(src, span_notice(LANG("mob.1b43e6c2", list(helper))))
+			helper.visible_message(span_notice(LANG("mob.e1a3c9085d5e3917", list(helper, src))), \
+						null, span_hear(LANG("mob.953bef4f2a56e5b9", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
+			to_chat(helper, span_notice(LANG("mob.ed79a9e90a0cdccc", list(src))))
+			to_chat(src, span_notice(LANG("mob.1b43e6c2ea121731", list(helper))))
 		else
 			// NOVA EDIT ADDITION START
 			if (HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && !IS_UNCONSCIOUS(src) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
-				visible_message(span_warning(LANG("mob.a9294da7", list(helper, src, p_they(), p_s()))))
+				visible_message(span_warning(LANG("mob.a9294da7ea17f2e6", list(helper, src, p_they(), p_s()))))
 				return
 			// NOVA EDIT ADDITION END
-			helper.visible_message(span_notice(LANG("mob.dde9bc77", list(helper, src, p_them()))), \
-						null, span_hear(LANG("mob.953bef4f", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
-			to_chat(helper, span_notice(LANG("mob.04eb052a", list(src, p_them()))))
-			to_chat(src, span_notice(LANG("mob.98d5d27f", list(helper))))
+			helper.visible_message(span_notice(LANG("mob.dde9bc770d236adc", list(helper, src, p_them()))), \
+						null, span_hear(LANG("mob.953bef4f2a56e5b9", null)), DEFAULT_MESSAGE_RANGE, list(helper, src))
+			to_chat(helper, span_notice(LANG("mob.04eb052a4acf56a6", list(src, p_them()))))
+			to_chat(src, span_notice(LANG("mob.98d5d27f436b6dbe", list(helper))))
 
 		share_blood_on_touch(helper, ITEM_SLOT_HEAD|ITEM_SLOT_MASK|ITEM_SLOT_GLOVES)
 		// Warm them up with hugs
@@ -403,14 +403,14 @@
 
 		// Let people know if they hugged someone really warm or really cold
 		if(helper.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
-			to_chat(src, span_warning(LANG("mob.3cebaa1e", list(helper, helper.p_they(), helper.p_s()))))
+			to_chat(src, span_warning(LANG("mob.3cebaa1eb4ebe27e", list(helper, helper.p_they(), helper.p_s()))))
 		else if(helper.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
-			to_chat(src, span_warning(LANG("mob.baf24455", list(helper, helper.p_they(), helper.p_s()))))
+			to_chat(src, span_warning(LANG("mob.baf2445596979738", list(helper, helper.p_they(), helper.p_s()))))
 
 		if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
-			to_chat(helper, span_warning(LANG("mob.b9032925", list(src, p_them()))))
+			to_chat(helper, span_warning(LANG("mob.b9032925198f3ebe", list(src, p_them()))))
 		else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
-			to_chat(helper, span_warning(LANG("mob.97691d2a", list(src, p_them()))))
+			to_chat(helper, span_warning(LANG("mob.97691d2a662e1921", list(src, p_them()))))
 
 		if(HAS_TRAIT(helper, TRAIT_FRIENDLY) || force_friendly)
 			if (helper.mob_mood.sanity >= SANITY_GREAT)
@@ -420,7 +420,7 @@
 				add_mood_event("friendly_hug", /datum/mood_event/betterhug, helper)
 
 		if(HAS_TRAIT(src, TRAIT_BADTOUCH))
-			to_chat(helper, span_warning(LANG("mob.b7b6138d", list(src, p_them()))))
+			to_chat(helper, span_warning(LANG("mob.b7b6138de39450bb", list(src, p_them()))))
 
 	SEND_SIGNAL(src, COMSIG_CARBON_HELP_ACT, helper)
 	SEND_SIGNAL(helper, COMSIG_CARBON_HELPED, src)
@@ -454,8 +454,8 @@
 			if(!embeds)
 				embeds = TRUE
 				// this way, we only visibly try to examine ourselves if we have something embedded, otherwise we'll still hug ourselves :)
-				visible_message(span_notice(LANG("mob.ad166e55", list(src, p_them()))), \
-					span_notice(LANG("mob.fafd4dff", null)), visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE)
+				visible_message(span_notice(LANG("mob.ad166e55c9e7a247", list(src, p_them()))), \
+					span_notice(LANG("mob.fafd4dff34c89181", null)), visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE)
 			var/harmless = weapon.get_embed().is_harmless()
 			var/stuck_wordage = harmless ? "stuck to" : "embedded in"
 			var/embed_text = "\t <a href='byond://?src=[REF(src)];embedded_object=[REF(weapon)];embedded_limb=[REF(limb)]'> There is [icon2html(weapon, src)] \a [weapon] [stuck_wordage] your [limb.plaintext_zone]!</a>"
@@ -482,16 +482,16 @@
 
 		switch(damage)
 			if(1)
-				to_chat(src, span_warning(LANG("mob.6b19b638", null)))
+				to_chat(src, span_warning(LANG("mob.6b19b63813f2c64b", null)))
 				if(prob(40))
 					eyes.apply_organ_damage(1)
 
 			if(2)
-				to_chat(src, span_warning(LANG("mob.f9e0ed1a", null)))
+				to_chat(src, span_warning(LANG("mob.f9e0ed1a066e4a62", null)))
 				eyes.apply_organ_damage(rand(2, 4))
 
 			if(3 to INFINITY)
-				to_chat(src, span_warning(LANG("mob.19ed56ae", null)))
+				to_chat(src, span_warning(LANG("mob.19ed56ae8ffeeb0c", null)))
 				eyes.apply_organ_damage(rand(12, 16))
 
 		if(eyes.damage > 10)
@@ -500,19 +500,19 @@
 
 			if(eyes.damage > eyes.low_threshold)
 				if(!is_nearsighted_from(EYE_DAMAGE) && prob(eyes.damage - eyes.low_threshold))
-					to_chat(src, span_warning(LANG("mob.f67e9ffb", null)))
+					to_chat(src, span_warning(LANG("mob.f67e9ffb516a027b", null)))
 					eyes.apply_organ_damage(eyes.low_threshold)
 
 				else if(!is_blind() && prob(eyes.damage - eyes.high_threshold))
-					to_chat(src, span_warning(LANG("mob.d97376ae", null)))
+					to_chat(src, span_warning(LANG("mob.d97376aedde35860", null)))
 					eyes.apply_organ_damage(eyes.maxHealth)
 
 			else
-				to_chat(src, span_warning(LANG("mob.d4589b29", null)))
+				to_chat(src, span_warning(LANG("mob.d4589b29c19f0979", null)))
 		return TRUE
 
 	else if(damage == 0 && prob(20)) // just enough protection
-		to_chat(src, span_notice(LANG("mob.e00616b7", null)))
+		to_chat(src, span_notice(LANG("mob.e00616b7ac8f93ea", null)))
 
 /mob/living/carbon/adjust_oxy_loss(amount, updating_health = TRUE, forced, required_biotype)
 	if(!forced && HAS_TRAIT(src, TRAIT_NOBREATH))
@@ -560,19 +560,19 @@
 		return
 	var/starting_hand_index = active_hand_index
 	if(starting_hand_index == grasped_part.held_index)
-		to_chat(src, span_danger(LANG("mob.51d4713e", list(grasped_part.name))))
+		to_chat(src, span_danger(LANG("mob.51d4713e58185a72", list(grasped_part.name))))
 		return
 
 	var/bleed_rate = grasped_part.cached_bleed_rate
 	var/bleeding_text = (bleed_rate ? ", trying to stop the bleeding" : "")
-	to_chat(src, span_warning(LANG("mob.6a1f96e4", list(grasped_part.name, bleeding_text))))
+	to_chat(src, span_warning(LANG("mob.6a1f96e4a3a8ca16", list(grasped_part.name, bleeding_text))))
 	if(!do_after(src, 0.75 SECONDS))
-		to_chat(src, span_danger(LANG("mob.6d01e73b", list(grasped_part.name))))
+		to_chat(src, span_danger(LANG("mob.6d01e73ba455b1ac", list(grasped_part.name))))
 		return
 
 	var/obj/item/hand_item/self_grasp/grasp = new
 	if(starting_hand_index != active_hand_index || !put_in_active_hand(grasp))
-		to_chat(src, span_danger(LANG("mob.6d01e73b", list(grasped_part.name))))
+		to_chat(src, span_danger(LANG("mob.6d01e73ba455b1ac", list(grasped_part.name))))
 		QDEL_NULL(grasp)
 		return
 	grasp.grasp_limb(grasped_part)
@@ -603,7 +603,7 @@
 
 /obj/item/hand_item/self_grasp/Destroy()
 	if(user)
-		to_chat(user, span_warning(LANG("obj.711801a9", list(grasped_part ? " [grasped_part.name]" : "self"))))
+		to_chat(user, span_warning(LANG("obj.711801a97e5c3aea", list(grasped_part ? " [grasped_part.name]" : "self"))))
 		UnregisterSignal(user, COMSIG_QDELETING)
 	if(grasped_part)
 		UnregisterSignal(grasped_part, list(COMSIG_CARBON_REMOVE_LIMB, COMSIG_QDELETING))
@@ -634,7 +634,7 @@
 
 	var/bleed_rate = grasped_part.cached_bleed_rate
 	var/bleeding_text = (bleed_rate ? ", trying to stop the bleeding" : "")
-	user.visible_message(span_danger(LANG("obj.90cd19d3", list(user, user.p_their(), grasped_part.name, bleeding_text))), span_notice(LANG("obj.262a8aae", list(grasped_part.name))), vision_distance=COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_danger(LANG("obj.90cd19d35f29d10f", list(user, user.p_their(), grasped_part.name, bleeding_text))), span_notice(LANG("obj.262a8aae99bd8fd8", list(grasped_part.name))), vision_distance=COMBAT_MESSAGE_RANGE)
 	playsound(get_turf(src), 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -650,7 +650,7 @@
 		return FALSE
 
 	if (run_armor_check(attack_flag = BIO, silent = TRUE) >= 100)
-		to_chat(src, span_warning(LANG("mob.dcfe9701", list(scramble_source))))
+		to_chat(src, span_warning(LANG("mob.dcfe9701a8e188b4", list(scramble_source))))
 		return FALSE
 
 	if (!length(GLOB.bioscrambler_valid_organs) || !length(GLOB.bioscrambler_valid_parts))
@@ -676,10 +676,10 @@
 				qdel(picked_user_part)
 
 	if (!changed_something)
-		to_chat(src, span_notice(LANG("mob.b372b915", list(scramble_source))))
+		to_chat(src, span_notice(LANG("mob.b372b915ba2fbe66", list(scramble_source))))
 		return FALSE
 	update_body(TRUE)
-	balloon_alert(src, LANG("mob.72bc8cc6", null))
+	balloon_alert(src, LANG("mob.72bc8cc692181501", null))
 	return TRUE
 
 /// Fill in the lists of things we can bioscramble into people

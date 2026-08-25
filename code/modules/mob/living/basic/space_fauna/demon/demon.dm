@@ -73,4 +73,4 @@
 	mind.add_antag_datum(antag_type)
 
 	SEND_SOUND(src, 'sound/effects/magic/demon_dies.ogg')
-	to_chat(src, span_bold(LANG("mob.e67283a2", null)))
+	to_chat(src, span_bold(LANG("mob.e67283a26218b6d2", null)))

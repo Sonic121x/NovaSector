@@ -48,9 +48,9 @@
 /mob/living/basic/pet/gondola/gondolapod/examine(mob/user)
 	. = ..()
 	if (contents.len)
-		. += span_notice(LANG("mob.8a9b49a0", null))
+		. += span_notice(LANG("mob.8a9b49a01ab97ba9", null))
 	else
-		. += span_notice(LANG("mob.4acdee06", null))
+		. += span_notice(LANG("mob.4acdee06062c437e", null))
 
 /mob/living/basic/pet/gondola/gondolapod/set_opened()
 	opened = TRUE
@@ -99,7 +99,7 @@
 	var/mob/living/basic/pet/gondola/gondolapod/gondola_owner = owner
 	var/total = gondola_owner.contents.len
 	if (total)
-		to_chat(gondola_owner, span_notice(LANG("datum.21f6789c", list(total))))
+		to_chat(gondola_owner, span_notice(LANG("datum.21f6789c6c6884c3", list(total))))
 	else
-		to_chat(gondola_owner, span_notice(LANG("datum.d99b4df1", null)))
+		to_chat(gondola_owner, span_notice(LANG("datum.d99b4df1a4a951d0", null)))
 	return TRUE

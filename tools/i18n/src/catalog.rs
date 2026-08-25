@@ -4,9 +4,15 @@
 //! 每个命名空间一个 JSON，内容为扁平的 {"key": "模板"}。BTreeMap 保证 key 有序，
 //! 便于 diff 与 Tolgee 同步。
 
-use anyhow::Result;
+use anyhow::{anyhow, Result};
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::Path;
+
+#[derive(Clone)]
+struct CatalogOrigin {
+    template: String,
+    source: String,
+}
 
 #[derive(Default)]
 pub struct Catalog {
@@ -15,6 +21,11 @@ pub struct Catalog {
     /// key 是内容哈希，同一句英文在 `/obj/item/storage/chest` 和 `/datum/wound/chest`
     /// 下会归到同一个 key）。落盘成 scopes.json，供术语表按语境消歧。
     scopes: BTreeMap<String, BTreeSet<String>>,
+    /// First template/source observed for each fully-qualified key.
+    origins: BTreeMap<String, CatalogOrigin>,
+    /// Deferred insertion failures. Extraction has many visitor callbacks that cannot return
+    /// `Result`; `ensure_no_collisions` turns any recorded conflict into a hard command error.
+    collisions: Vec<String>,
 }
 
 impl Catalog {
@@ -24,13 +35,35 @@ impl Catalog {
 
     /// `type_path` 传**完整类型路径**（`/datum/reagent/medicine/multiver`）；命名空间由它推导。
     /// 对 flavor.rs 那种没有类型路径、直接给命名空间名（"news"/"strings"）的调用也成立——
-    /// `namespace_for` 对裸命名空间名是幂等的，此时 scope 就退化成命名空间粒度。
-    pub fn insert(&mut self, type_path: &str, key: &str, template: &str) {
+    /// `namespace_for` 对裸命名空间名是幂等的，此时 source/scope 就退化成命名空间粒度。
+    ///
+    /// 同一 key 的同一模板可来自多个 source；不同模板绝不覆盖首次插入值。
+    pub fn insert(&mut self, type_path: &str, key: &str, template: &str) -> Result<()> {
+        if let Some(origin) = self.origins.get(key) {
+            if origin.template != template {
+                let message = format!(
+                    "目录 key 冲突 `{key}`：首次来源 `{}` 的模板 {:?}，冲突来源 `{type_path}` 的模板 {:?}",
+                    origin.source, origin.template, template
+                );
+                self.collisions.push(message.clone());
+                return Err(anyhow!(message));
+            }
+        } else {
+            self.origins.insert(
+                key.to_string(),
+                CatalogOrigin {
+                    template: template.to_string(),
+                    source: type_path.to_string(),
+                },
+            );
+        }
+
         let namespace = crate::keys::namespace_for(type_path);
         self.namespaces
             .entry(namespace)
             .or_default()
-            .insert(key.to_string(), template.to_string());
+            .entry(key.to_string())
+            .or_insert_with(|| template.to_string());
         let scope = type_path.trim_end_matches('/');
         if !scope.is_empty() {
             self.scopes
@@ -38,6 +71,14 @@ impl Catalog {
                 .or_default()
                 .insert(scope.to_string());
         }
+        Ok(())
+    }
+
+    pub fn ensure_no_collisions(&self) -> Result<()> {
+        if self.collisions.is_empty() {
+            return Ok(());
+        }
+        Err(anyhow!(self.collisions.join("\n")))
     }
 
     /// 合并已存在目录里的条目（保留已被 rewrite 改写、源码中已不再是字面量的 key）。
@@ -46,9 +87,9 @@ impl Catalog {
     /// 只合并**本次抽取已产出的命名空间**：其它文件（tgui.json 归 tgui-catalog.mjs 管、
     /// 手维护 `_state_words.json` 等）不归 extract 所有，吸进来再写回会因排序/缩进
     /// 约定不同造成上万行伪 churn。
-    pub fn load_dir(&mut self, dir: &Path) {
+    pub fn load_dir(&mut self, dir: &Path) -> Result<()> {
         let Ok(entries) = std::fs::read_dir(dir) else {
-            return;
+            return Ok(());
         };
         for entry in entries.flatten() {
             let path = entry.path();
@@ -68,13 +109,34 @@ impl Catalog {
                 continue;
             };
             for (key, value) in map {
-                existing.entry(key).or_insert(value);
+                if let Some(current) = existing.get(&key) {
+                    if current != &value {
+                        return Err(anyhow!(
+                            "目录 key 冲突 `{key}`：本次抽取模板 {:?}，已有目录 {} 的模板 {:?}",
+                            current,
+                            path.display(),
+                            value
+                        ));
+                    }
+                    continue;
+                }
+                existing.insert(key, value);
             }
         }
+        Ok(())
     }
 
     pub fn namespaces(&self) -> &BTreeMap<String, BTreeMap<String, String>> {
         &self.namespaces
+    }
+    pub fn keys(&self) -> impl Iterator<Item = &str> {
+        self.namespaces
+            .values()
+            .flat_map(|namespace| namespace.keys().map(String::as_str))
+    }
+
+    pub fn referenced_keys(&self) -> impl Iterator<Item = &str> {
+        self.scopes.keys().map(String::as_str)
     }
 
     pub fn namespace_count(&self) -> usize {
@@ -86,6 +148,7 @@ impl Catalog {
     }
 
     pub fn write(&self, out: &Path) -> Result<()> {
+        self.ensure_no_collisions()?;
         std::fs::create_dir_all(out)?;
         for (namespace, map) in &self.namespaces {
             let path = out.join(format!("{namespace}.json"));
@@ -102,11 +165,17 @@ impl Catalog {
     ///
     /// 合并语义与 load_dir 一致：已被 rewrite 改写成 `LANG("key")` 的字符串，源码里已无
     /// 字面量、本次抽取产不出，其 scope 从旧文件保留，否则重跑一次就全丢。
-    pub fn write_scopes(&self, path: &Path) -> Result<()> {
+    ///
+    /// 但合并**必须按 live 收口**：目录只增不减，sidecar 若也只增不减，一次跑坏的抽取
+    /// （或换 key 方案的中间态）留下的条目会永久留着，且不在 catalog-audit 的视野里。
+    /// live 与 audit 用的是同一套判据（本次抽出的 key ∪ 源码里仍被 LANG 引用的 key）。
+    pub fn write_scopes(&self, path: &Path, live: &BTreeSet<String>) -> Result<()> {
+        self.ensure_no_collisions()?;
         let mut merged: BTreeMap<String, BTreeSet<String>> = std::fs::read_to_string(path)
             .ok()
             .and_then(|t| serde_json::from_str::<BTreeMap<String, BTreeSet<String>>>(&t).ok())
             .unwrap_or_default();
+        merged.retain(|key, _| live.contains(key));
         // 本次抽取到的 key 以本次为准（类型可能被上游挪过窝）；没抽到的沿用旧值。
         for (key, scopes) in &self.scopes {
             merged.insert(key.clone(), scopes.clone());
@@ -181,4 +250,52 @@ pub fn write_preserving_indent(path: &Path, map: &BTreeMap<String, String>) -> R
     buf.push_str("}\n");
     std::fs::write(path, buf)?;
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn duplicate_key_with_same_template_merges_sources() {
+        let mut catalog = Catalog::new();
+        catalog
+            .insert("/obj/item/a", "obj.0123456789abcdef", "Same template")
+            .unwrap();
+        catalog
+            .insert("/obj/item/b", "obj.0123456789abcdef", "Same template")
+            .unwrap();
+
+        assert_eq!(
+            catalog.namespaces()["obj"]["obj.0123456789abcdef"],
+            "Same template"
+        );
+        assert_eq!(catalog.entry_count(), 1);
+        assert!(catalog.ensure_no_collisions().is_ok());
+    }
+
+    #[test]
+    fn duplicate_key_with_different_template_is_source_attributed_error() {
+        let mut catalog = Catalog::new();
+        catalog
+            .insert("/obj/item/first", "obj.0123456789abcdef", "First template")
+            .unwrap();
+        let error = catalog
+            .insert(
+                "/obj/item/second",
+                "obj.0123456789abcdef",
+                "Second template",
+            )
+            .unwrap_err()
+            .to_string();
+
+        assert!(error.contains("/obj/item/first"));
+        assert!(error.contains("/obj/item/second"));
+        assert_eq!(
+            catalog.namespaces()["obj"]["obj.0123456789abcdef"],
+            "First template",
+            "the conflicting template must never overwrite the first insertion"
+        );
+        assert!(catalog.ensure_no_collisions().is_err());
+    }
 }

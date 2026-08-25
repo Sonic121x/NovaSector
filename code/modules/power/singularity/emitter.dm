@@ -89,7 +89,7 @@
 	if(panel_open)
 		return NONE
 	if(welded)
-		balloon_alert(user, LANG("obj.20d90fcc", null))
+		balloon_alert(user, LANG("obj.20d90fcc9a9a987d", null))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -118,22 +118,22 @@
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
 	if(welded)
-		. += span_info(LANG("obj.a29ae2b3", null))
+		. += span_info(LANG("obj.a29ae2b37230283b", null))
 	else if(anchored)
-		. += span_info(LANG("obj.53651e43", null))
+		. += span_info(LANG("obj.53651e433e4198b0", null))
 	else
-		. += span_info(LANG("obj.ab10df0a", null))
+		. += span_info(LANG("obj.ab10df0a933d65cf", null))
 
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
 	if(!active)
-		. += span_notice(LANG("obj.dc576c8d", null))
+		. += span_notice(LANG("obj.dc576c8db2b788a9", null))
 	else if(!powered)
-		. += span_notice(LANG("obj.b60a9257", null))
+		. += span_notice(LANG("obj.b60a92576b4f85ca", null))
 	else
-		. += span_notice(LANG("obj.5c4c340d", list(DisplayTimeText(minimum_fire_delay * fire_rate_mod), DisplayTimeText(maximum_fire_delay * fire_rate_mod))))
-		. += span_notice(LANG("obj.27638ed6", list(display_power(active_power_usage, convert = FALSE))))
+		. += span_notice(LANG("obj.5c4c340d2e11255d", list(DisplayTimeText(minimum_fire_delay * fire_rate_mod), DisplayTimeText(maximum_fire_delay * fire_rate_mod))))
+		. += span_notice(LANG("obj.27638ed6171d73a7", list(display_power(active_power_usage, convert = FALSE))))
 
 /obj/machinery/power/emitter/should_have_node()
 	return welded
@@ -171,13 +171,13 @@
 /obj/machinery/power/emitter/interact(mob/user)
 	add_fingerprint(user)
 	if(!welded)
-		to_chat(user, span_warning(LANG("obj.31b33047", list(src))))
+		to_chat(user, span_warning(LANG("obj.31b330474ee65671", list(src))))
 		return FALSE
 	if(!powernet)
-		to_chat(user, span_warning(LANG("obj.5cb3e049", list(src))))
+		to_chat(user, span_warning(LANG("obj.5cb3e049056d3327", list(src))))
 		return FALSE
 	if(locked || !allow_switch_interact)
-		to_chat(user, span_warning(LANG("obj.4bc8f4e9", null)))
+		to_chat(user, span_warning(LANG("obj.4bc8f4e999878031", null)))
 		return FALSE
 
 	if(active)
@@ -187,7 +187,7 @@
 		shot_number = 0
 		fire_delay = maximum_fire_delay
 
-	to_chat(user, span_notice(LANG("obj.c2fd54ba", list(active ? "on" : "off", src))))
+	to_chat(user, span_notice(LANG("obj.c2fd54ba4e8294af", list(active ? "on" : "off", src))))
 	message_admins("[src] turned [active ? "ON" : "OFF"] by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
 	log_game("[src] turned [active ? "ON" : "OFF"] by [key_name(user)] in [AREACOORD(src)]")
 	investigate_log("turned [active ? "ON" : "OFF"] by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_ENGINE)
@@ -197,7 +197,7 @@
 /obj/machinery/power/emitter/attack_animal(mob/living/simple_animal/user, list/modifiers)
 	if(ismegafauna(user) && anchored)
 		set_anchored(FALSE)
-		user.visible_message(span_warning(LANG("obj.803715ba", list(user, src))))
+		user.visible_message(span_warning(LANG("obj.803715ba758daee8", list(user, src))))
 	else
 		. = ..()
 	if(. && !anchored)
@@ -277,12 +277,12 @@
 /obj/machinery/power/emitter/can_be_unfasten_wrench(mob/user, silent)
 	if(active)
 		if(!silent)
-			to_chat(user, span_warning(LANG("obj.d2d51d9a", list(src))))
+			to_chat(user, span_warning(LANG("obj.d2d51d9a029e9f35", list(src))))
 		return FAILED_UNFASTEN
 
 	else if(welded)
 		if(!silent)
-			to_chat(user, span_warning(LANG("obj.9092e2c6", list(src))))
+			to_chat(user, span_warning(LANG("obj.9092e2c6bd6db4b5", list(src))))
 		return FAILED_UNFASTEN
 
 	return ..()
@@ -295,35 +295,35 @@
 /obj/machinery/power/emitter/welder_act(mob/living/user, obj/item/item)
 	..()
 	if(active)
-		to_chat(user, span_warning(LANG("obj.c274c56a", list(src))))
+		to_chat(user, span_warning(LANG("obj.c274c56af2d5f42b", list(src))))
 		return TRUE
 
 	if(welded)
 		if(!item.tool_start_check(user, amount=1))
 			return TRUE
-		user.visible_message(span_notice(LANG("obj.62651aed", list(user.name, src))), \
-			span_notice(LANG("obj.41ed57fe", list(src))), \
-			span_hear(LANG("obj.1aa82fa3", null)))
+		user.visible_message(span_notice(LANG("obj.62651aed81728dfd", list(user.name, src))), \
+			span_notice(LANG("obj.41ed57fe66669269", list(src))), \
+			span_hear(LANG("obj.1aa82fa3545466eb", null)))
 		if(!item.use_tool(src, user, 20, 1, 50))
 			return FALSE
 		welded = FALSE
-		to_chat(user, span_notice(LANG("obj.6a908a91", list(src))))
+		to_chat(user, span_notice(LANG("obj.6a908a91e8707af7", list(src))))
 		disconnect_from_network()
 		update_cable_icons_on_turf(get_turf(src))
 		return TRUE
 
 	if(!anchored)
-		to_chat(user, span_warning(LANG("obj.acb3909a", list(src))))
+		to_chat(user, span_warning(LANG("obj.acb3909a82cc6dff", list(src))))
 		return TRUE
 	if(!item.tool_start_check(user, amount=1))
 		return TRUE
-	user.visible_message(span_notice(LANG("obj.9449da47", list(user.name, src))), \
-		span_notice(LANG("obj.7765e0fa", list(src))), \
-		span_hear(LANG("obj.1aa82fa3", null)))
+	user.visible_message(span_notice(LANG("obj.9449da477015e3e3", list(user.name, src))), \
+		span_notice(LANG("obj.7765e0fab90f0928", list(src))), \
+		span_hear(LANG("obj.1aa82fa3545466eb", null)))
 	if(!item.use_tool(src, user, 20, 1, 50))
 		return FALSE
 	welded = TRUE
-	to_chat(user, span_notice(LANG("obj.46f0194b", list(src))))
+	to_chat(user, span_notice(LANG("obj.46f0194bbe668d3b", list(src))))
 	connect_to_network()
 	update_cable_icons_on_turf(get_turf(src))
 	return TRUE
@@ -341,16 +341,16 @@
 /// Attempt to toggle the controls lock of the emitter
 /obj/machinery/power/emitter/proc/togglelock(mob/user)
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning(LANG("obj.d556f112", null)))
+		to_chat(user, span_warning(LANG("obj.d556f1129aeec0ca", null)))
 		return
 	if(!allowed(user))
-		to_chat(user, span_danger(LANG("obj.077f9b52", null)))
+		to_chat(user, span_danger(LANG("obj.077f9b52c530e7f8", null)))
 		return
 	if(!active)
-		to_chat(user, span_warning(LANG("obj.64e7c1bf", list(src))))
+		to_chat(user, span_warning(LANG("obj.64e7c1bfbd6bba70", list(src))))
 		return
 	locked = !locked
-	to_chat(user, span_notice(LANG("obj.d47371c2", list(src.locked ? "lock" : "unlock"))))
+	to_chat(user, span_notice(LANG("obj.d47371c2916c7c06", list(src.locked ? "lock" : "unlock"))))
 
 /obj/machinery/power/emitter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.GetID())
@@ -369,7 +369,7 @@
 
 	if(istype(tool, /obj/item/gun/energy))
 		if(diskie)
-			to_chat(user, span_warning(LANG("obj.907c970e", null)))
+			to_chat(user, span_warning(LANG("obj.907c970e136d160d", null)))
 			return ITEM_INTERACT_BLOCKING
 		if(!integrate(tool,user))
 			return ITEM_INTERACT_BLOCKING
@@ -378,20 +378,20 @@
 	if(istype(tool, /obj/item/emitter_disk))
 		var/obj/item/emitter_disk/config_disk = tool
 		if(!user.transferItemToLoc(config_disk, src))
-			balloon_alert(user, LANG("obj.c7cbf2eb", null))
+			balloon_alert(user, LANG("obj.c7cbf2eb61d75d5b", null))
 			return ITEM_INTERACT_BLOCKING
 		if(diskie)
 			user.put_in_hands(diskie)
-			balloon_alert(user, LANG("obj.6fefc5af", null))
+			balloon_alert(user, LANG("obj.6fefc5af0b0d0233", null))
 		else
-			balloon_alert(user, LANG("obj.0d53bd7c", null))
+			balloon_alert(user, LANG("obj.0d53bd7c092859ce", null))
 		diskie = config_disk
 		projectile_type = diskie.stored_proj
 		projectile_sound = diskie.stored_sound
 		fire_rate_mod = diskie.fire_rate_mod
 		no_shot_counter = diskie.no_shot_counter
 		playsound(src, 'sound/machines/card_slide.ogg', 50)
-		to_chat(user, span_notice(LANG("obj.89753f7c", list(src, config_disk))))
+		to_chat(user, span_notice(LANG("obj.89753f7cb6327bcf", list(src, config_disk))))
 		update_appearance()
 		if(diskie.consumable)
 			qdel(diskie)
@@ -408,7 +408,7 @@
 	if(!user.transferItemToLoc(energy_gun, src))
 		return
 	if(energy_gun.gun_flags & TURRET_INCOMPATIBLE)
-		user.balloon_alert(user, LANG("obj.adfcc7ca", list(energy_gun)))
+		user.balloon_alert(user, LANG("obj.adfcc7cae9ca08fe", list(energy_gun)))
 		return
 	gun = energy_gun
 	gun_properties = gun.get_turret_properties()
@@ -458,7 +458,7 @@
 		return FALSE
 	locked = FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, LANG("obj.04001b57", null))
+	balloon_alert(user, LANG("obj.04001b5727e37d38", null))
 	return TRUE
 
 
@@ -536,7 +536,7 @@
 		playsound(proto_emitter,'sound/vehicles/mecha/mechmove01.ogg', 50, TRUE)
 		proto_emitter.manual = FALSE
 		name = "Switch to Manual Firing"
-		desc = LANG("datum.06164a54", null)
+		desc = LANG("datum.06164a54bc2ab60d", null)
 		button_icon_state = "mech_zoom_on"
 		for(var/obj/item/item in buckled_mob.held_items)
 			if(istype(item, /obj/item/turret_control))
@@ -545,7 +545,7 @@
 		return
 	playsound(proto_emitter,'sound/vehicles/mecha/mechmove01.ogg', 50, TRUE)
 	name = "Switch to Automatic Firing"
-	desc = LANG("datum.f2dbcbf7", null)
+	desc = LANG("datum.f2dbcbf7cc705aca", null)
 	button_icon_state = "mech_zoom_off"
 	proto_emitter.manual = TRUE
 	for(var/things in buckled_mob.held_items)

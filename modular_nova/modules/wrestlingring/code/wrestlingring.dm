@@ -98,12 +98,12 @@
 			if(!tool.tool_start_check(user, amount=0))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice(LANG("obj.93449ef4", list(src))))
+			to_chat(user, span_notice(LANG("obj.93449ef42b686baf", list(src))))
 			if(tool.use_tool(src, user, 40, volume=50))
 				atom_integrity = max_integrity
-				to_chat(user, span_notice(LANG("obj.e94d13eb", list(src))))
+				to_chat(user, span_notice(LANG("obj.e94d13ebf50e7df1", list(src))))
 		else
-			to_chat(user, span_warning(LANG("obj.7f6370b2", list(src))))
+			to_chat(user, span_warning(LANG("obj.7f6370b2939fd6c1", list(src))))
 		return ITEM_INTERACT_SUCCESS
 
 	return ..()
@@ -111,7 +111,7 @@
 /obj/structure/wrestling_corner/wirecutter_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(!anchored)
-		to_chat(user, span_warning(LANG("obj.5c6c193d", null)))
+		to_chat(user, span_warning(LANG("obj.5c6c193d9e017b07", null)))
 		tool.play_tool_sound(src, 100)
 		deconstruct()
 		return TRUE
@@ -125,10 +125,10 @@
 ///Implements behaviour that makes it possible to unanchor the railing.
 /obj/structure/wrestling_corner/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
-	to_chat(user, span_notice(LANG("obj.1e7f4f4f", list(anchored ? "unfasten the turnbuckle from":"fasten the turnbuckle to"))))
+	to_chat(user, span_notice(LANG("obj.1e7f4f4f2a121be7", list(anchored ? "unfasten the turnbuckle from":"fasten the turnbuckle to"))))
 	if(tool.use_tool(src, user, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_anchored), anchored)))
 		set_anchored(!anchored)
-		to_chat(user, span_notice(LANG("obj.1175c81a", list(anchored ? "fasten the turnbuckle to":"unfasten the turnbuckle from"))))
+		to_chat(user, span_notice(LANG("obj.1175c81a0e157390", list(anchored ? "fasten the turnbuckle to":"unfasten the turnbuckle from"))))
 	return TRUE
 
 /obj/structure/wrestling_corner/CanPass(atom/movable/mover, border_dir)

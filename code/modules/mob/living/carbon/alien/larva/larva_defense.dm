@@ -8,9 +8,9 @@
 	var/damage = rand(1, 9)
 	if (prob(90))
 		playsound(loc, SFX_PUNCH, 25, TRUE, -1)
-		visible_message(span_danger(LANG("mob.83af7d2c", list(user, src))), \
-						span_userdanger(LANG("mob.cd11ce48", list(user))), span_hear(LANG("mob.6c7f8149", null)), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_danger(LANG("mob.23132e2f", list(src))))
+		visible_message(span_danger(LANG("mob.83af7d2cabf2a33c", list(user, src))), \
+						span_userdanger(LANG("mob.cd11ce48e95a7874", list(user))), span_hear(LANG("mob.6c7f8149b8c68cd4", null)), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger(LANG("mob.23132e2f530d5b9f", list(src))))
 		if ((stat != DEAD) && (damage > 4.9))
 			Unconscious(rand(100,200))
 
@@ -19,9 +19,9 @@
 		log_combat(user, src, "attacked")
 	else
 		playsound(loc, 'sound/items/weapons/punchmiss.ogg', 25, TRUE, -1)
-		visible_message(span_danger(LANG("mob.a20fe5ff", list(user, src))), \
-						span_danger(LANG("mob.95e7861b", list(user))), span_hear(LANG("mob.b8189c1e", null)), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_warning(LANG("mob.1ee8eb9a", list(src))))
+		visible_message(span_danger(LANG("mob.a20fe5ffb8a96e35", list(user, src))), \
+						span_danger(LANG("mob.95e7861bb1536078", list(user))), span_hear(LANG("mob.b8189c1ed616b3a4", null)), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_warning(LANG("mob.1ee8eb9a639918a2", list(src))))
 		log_combat(user, src, "attacked and missed")
 
 /mob/living/carbon/alien/larva/attack_hulk(mob/living/carbon/human/user)

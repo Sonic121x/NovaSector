@@ -46,7 +46,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 /obj/item/mmi/posibrain/proc/ping_ghosts(msg, newlymade)
 	if(newlymade || GLOB.posibrain_notify_cooldown <= world.time)
 		notify_ghosts(
-			LANG("obj.c80b0da1", list(name, msg, get_area(src), ask_role ? "Personality requested: \[[ask_role]\]" : "")),
+			LANG("obj.c80b0da1b4fde256", list(name, msg, get_area(src), ask_role ? "Personality requested: \[[ask_role]\]" : "")),
 			source = src,
 			header = "Ghost in the Machine",
 			click_interact = TRUE,
@@ -62,9 +62,9 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(!brainmob)
 		set_brainmob(new /mob/living/brain(src))
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SILICONS))
-		to_chat(user, span_warning(LANG("obj.64a878ae", null)))
+		to_chat(user, span_warning(LANG("obj.64a878ae2ef580a7", null)))
 	if(is_occupied())
-		to_chat(user, span_warning(LANG("obj.e873e2ec", list(name))))
+		to_chat(user, span_warning(LANG("obj.e873e2ecda3da8cf", list(name))))
 		return
 	if(next_ask > world.time)
 		to_chat(user, recharge_message)
@@ -78,10 +78,10 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	addtimer(CALLBACK(src, PROC_REF(check_success)), ask_delay)
 
 /obj/item/mmi/posibrain/click_alt(mob/living/user)
-	var/input_seed = tgui_input_text(user, LANG("obj.c6826ce5", null), LANG("obj.43e77270", null), ask_role, max_length = MAX_NAME_LEN)
+	var/input_seed = tgui_input_text(user, LANG("obj.c6826ce5b062a798", null), LANG("obj.43e772701dc8f455", null), ask_role, max_length = MAX_NAME_LEN)
 	if(isnull(input_seed) || !user.can_perform_action(src))
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice(LANG("obj.6af35397", list(input_seed))))
+	to_chat(user, span_notice(LANG("obj.6af35397907b27be", list(input_seed))))
 	ask_role = input_seed
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
@@ -115,11 +115,11 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(QDELETED(brainmob))
 		return
 	if(user.ckey in ckeys_entered)
-		to_chat(user, span_warning(LANG("obj.95bb1e5f", list(src))))
+		to_chat(user, span_warning(LANG("obj.95bb1e5ff6957ca4", list(src))))
 		return
 	if(is_occupied() || is_banned_from(user.ckey, ROLE_POSIBRAIN) || QDELETED(src) || QDELETED(user))
 		return
-	var/posi_ask = tgui_alert(user, LANG("obj.23728653", list(name)), LANG("obj.3c1da715", null), list("Yes","No"))
+	var/posi_ask = tgui_alert(user, LANG("obj.23728653cc881ae2", list(name)), LANG("obj.3c1da715a16e1d9e", null), list("Yes","No"))
 	if(posi_ask != "Yes" || QDELETED(src))
 		return
 	if(HAS_TRAIT(brainmob, TRAIT_SUICIDED)) //clear suicide status if the old occupant suicided.
@@ -150,7 +150,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(QDELETED(brainmob))
 		return
 	if(is_occupied()) //Prevents hostile takeover if two ghosts get the prompt or link for the same brain.
-		to_chat(candidate, span_warning(LANG("obj.dfca3109", list(name))))
+		to_chat(candidate, span_warning(LANG("obj.dfca3109020617b5", list(name))))
 		return FALSE
 	if(candidate.mind && !isobserver(candidate))
 		candidate.mind.transfer_to(brainmob)
@@ -176,14 +176,14 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		switch(brainmob.stat)
 			if(STABLE)
 				if(!brainmob.client)
-					. += LANG("obj.f6906ec4", null) //afk
+					. += LANG("obj.f6906ec494462db0", null) //afk
 			if(DEAD)
-				. += span_deadsay(LANG("obj.6e66cf42", null))
+				. += span_deadsay(LANG("obj.6e66cf42e58e10ea", null))
 	else
 		. += "[dead_message]"
 		if(ask_role)
-			. += span_notice(LANG("obj.669ecac1", list(ask_role)))
-		. += span_boldnotice(LANG("obj.a6197476", list(src)))
+			. += span_notice(LANG("obj.669ecac1952ebcda", list(ask_role)))
+		. += span_boldnotice(LANG("obj.a619747673e708a3", list(src)))
 
 /obj/item/mmi/posibrain/Initialize(mapload, autoping = TRUE)
 	. = ..()

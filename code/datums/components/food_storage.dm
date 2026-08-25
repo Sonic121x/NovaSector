@@ -66,16 +66,16 @@
 		return NONE
 
 	if(inserted_item.w_class > minimum_weight_class)
-		to_chat(user, span_warning(LANG("datum.6b579e25", list(inserted_item, parent))))
+		to_chat(user, span_warning(LANG("datum.6b579e251c08444b", list(inserted_item, parent))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!QDELETED(stored_item))
-		to_chat(user, span_warning(LANG("datum.36dae0c4", list(parent))))
+		to_chat(user, span_warning(LANG("datum.36dae0c4683e71a4", list(parent))))
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice(LANG("datum.9e5bee5e", list(user, inserted_item, parent))),
-		span_notice(LANG("datum.261d0c5f", list(inserted_item, parent))),
+		span_notice(LANG("datum.9e5bee5e0a93456c", list(user, inserted_item, parent))),
+		span_notice(LANG("datum.261d0c5f6914196e", list(inserted_item, parent))),
 	)
 
 	INVOKE_ASYNC(src, PROC_REF(insert_item), inserted_item, user)
@@ -96,8 +96,8 @@
 	if(!food.can_interact(user))
 		return CLICK_ACTION_BLOCKING
 
-	user.visible_message(span_notice(LANG("datum.c682907b", list(user, parent))), \
-					span_notice(LANG("datum.4e863fbf", list(parent))))
+	user.visible_message(span_notice(LANG("datum.c682907b601b14c0", list(user, parent))), \
+					span_notice(LANG("datum.4e863fbf634d138d", list(parent))))
 
 	INVOKE_ASYNC(src, PROC_REF(begin_remove_item), user)
 	return CLICK_ACTION_SUCCESS
@@ -112,11 +112,11 @@
 	if(!do_after(user, 1.5 SECONDS, target = parent))
 		return
 	if(!user.temporarilyRemoveItemFromInventory(inserted_item))
-		to_chat(user, span_warning(LANG("datum.6ee2a600", list(inserted_item, parent))))
+		to_chat(user, span_warning(LANG("datum.6ee2a60008ced4c1", list(inserted_item, parent))))
 		return
 
 	var/atom/food = parent
-	to_chat(user, span_notice(LANG("datum.cd76ff7c", list(inserted_item, parent))))
+	to_chat(user, span_notice(LANG("datum.cd76ff7cee1f7f0c", list(inserted_item, parent))))
 	inserted_item.forceMove(food)
 	user.log_message("inserted [inserted_item] into [parent].", LOG_ATTACK)
 	food.add_fingerprint(user)
@@ -133,7 +133,7 @@
 	if(!do_after(user, 10 SECONDS, target = parent))
 		return
 	if(QDELETED(stored_item))
-		to_chat(user, span_warning(LANG("datum.1bbf91ac", list(parent))))
+		to_chat(user, span_warning(LANG("datum.1bbf91ace515617d", list(parent))))
 		return
 	remove_item(user)
 
@@ -142,10 +142,10 @@
  */
 /datum/component/food_storage/proc/remove_item(mob/user)
 	if(user.put_in_hands(stored_item))
-		user.visible_message(span_warning(LANG("datum.4f7d6a81", list(user, stored_item, parent))), \
-							span_warning(LANG("datum.b15858b0", list(stored_item, parent))))
+		user.visible_message(span_warning(LANG("datum.4f7d6a81b9687f40", list(user, stored_item, parent))), \
+							span_warning(LANG("datum.b15858b023732518", list(stored_item, parent))))
 	else
-		stored_item.visible_message(span_warning(LANG("datum.23a54aed", list(stored_item, parent))))
+		stored_item.visible_message(span_warning(LANG("datum.23a54aed8bd3a8b8", list(stored_item, parent))))
 
 	update_stored_item()
 
@@ -177,7 +177,7 @@
 	var/discovered = FALSE
 	if(prob(good_chance_of_discovery)) //finding the item, without biting it
 		discovered = TRUE
-		to_chat(target, span_warning(LANG("datum.29d4be14", list(parent))))
+		to_chat(target, span_warning(LANG("datum.29d4be14362844eb", list(parent))))
 
 	else if(prob(bad_chance_of_discovery)) //finding the item, BY biting it
 		user.log_message("just fed [key_name(target)] \a [stored_item] which was hidden in [parent].", LOG_ATTACK)

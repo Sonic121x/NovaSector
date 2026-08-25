@@ -18,7 +18,7 @@
 /obj/machinery/computer/rdservercontrol/multitool_act(mob/living/user, obj/item/multitool/tool)
 	if(!QDELETED(tool.buffer) && istype(tool.buffer, /datum/techweb))
 		stored_research = tool.buffer
-		balloon_alert(user, LANG("obj.793f2d81", null))
+		balloon_alert(user, LANG("obj.793f2d8139e58c54", null))
 	return TRUE
 
 /obj/machinery/computer/rdservercontrol/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -26,7 +26,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	playsound(src, SFX_SPARKS, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, LANG("obj.3aea0dc2", null))
+	balloon_alert(user, LANG("obj.3aea0dc2c655e464", null))
 	return TRUE
 
 /obj/machinery/computer/rdservercontrol/ui_interact(mob/user, datum/tgui/ui)
@@ -68,7 +68,7 @@
 	if(.)
 		return TRUE
 	if(!allowed(usr) && !(obj_flags & EMAGGED))
-		balloon_alert(usr, LANG("obj.1bd3ceeb", null))
+		balloon_alert(usr, LANG("obj.1bd3ceeb3a56d0d5", null))
 		playsound(src, 'sound/machines/click.ogg', 20, TRUE)
 		return TRUE
 

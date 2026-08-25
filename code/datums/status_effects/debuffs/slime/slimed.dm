@@ -33,7 +33,7 @@
 
 /// Try to get rid of it
 /atom/movable/screen/alert/status_effect/slimed/proc/remove_slime()
-	owner.balloon_alert(owner, LANG("atom.709da11f", null))
+	owner.balloon_alert(owner, LANG("atom.709da11f92746a51", null))
 	var/datum/status_effect/slimed/slime_effect = owner.has_status_effect(/datum/status_effect/slimed)
 	while (!QDELETED(src) && !isnull(slime_effect))
 		if (!can_wash())
@@ -65,7 +65,7 @@
 /datum/status_effect/slimed/on_apply()
 	if(owner.get_organic_health() <= MIN_HEALTH)
 		return FALSE
-	to_chat(owner, span_userdanger(LANG("datum.ce0b687d", null)))
+	to_chat(owner, span_userdanger(LANG("datum.ce0b687df5d94eaf", null)))
 	return ..()
 
 /datum/status_effect/slimed/on_remove()
@@ -79,17 +79,17 @@
 /datum/status_effect/slimed/proc/remove_stacks(stacks_to_remove = 1)
 	slime_stacks -= stacks_to_remove // lose 1 stack per second
 	if(slime_stacks <= 0)
-		to_chat(owner, span_notice(LANG("datum.289fb41b", null)))
+		to_chat(owner, span_notice(LANG("datum.289fb41b3554d5b8", null)))
 		qdel(src)
 		return
 
 	if(prob(10))
-		to_chat(owner,span_warning(LANG("datum.ec3aef6e", null)))
+		to_chat(owner,span_warning(LANG("datum.ec3aef6e1924231e", null)))
 
 /datum/status_effect/slimed/tick(seconds_between_ticks)
 	// remove from the mob once we have dealt enough damage
 	if(owner.get_organic_health() <= MIN_HEALTH)
-		to_chat(owner, span_warning(LANG("datum.b2ce1993", null)))
+		to_chat(owner, span_warning(LANG("datum.b2ce1993f675c413", null)))
 		qdel(src)
 		return
 
@@ -110,9 +110,9 @@
 			"Your skin feels like it's coming off",
 			"Your body feels like it's melting together"
 		))
-		to_chat(owner, span_userdanger(LANG("datum.7417afe6", list(feedback_text))))
+		to_chat(owner, span_userdanger(LANG("datum.7417afe641341fd7", list(feedback_text))))
 
-/datum/status_effect/slimed/get_examine_text()
+/datum/status_effect/slimed/get_examine_text(mob/examiner)
 	return span_warning("[owner.p_They()] [owner.p_are()] covered in bubbling slime!")
 
 #undef MIN_HEALTH

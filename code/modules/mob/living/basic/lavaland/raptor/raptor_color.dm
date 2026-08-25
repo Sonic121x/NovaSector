@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 	var/mob/living/carbon/human/rider = potential_rider
 	if (rider.mob_height > HUMAN_HEIGHT_SHORTEST)
-		to_chat(rider, span_warning(LANG("datum.ea0b85ab", list(source, source.p_them()))))
+		to_chat(rider, span_warning(LANG("datum.ea0b85ab8c7c1575", list(source, source.p_them()))))
 		return COMPONENT_BLOCK_BUCKLE
 
 // Purple raptors never "fully" grow up, and remain usable as backpacks
@@ -247,7 +247,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 		return TRUE
 
 	if (!silent)
-		to_chat(user, span_warning(LANG("obj.89ea74df", null)))
+		to_chat(user, span_warning(LANG("obj.89ea74df1740c935", null)))
 	return FALSE
 
 /obj/item/mob_holder/purple_raptor/proc/check_flight()
@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 			user.add_movespeed_modifier(/datum/movespeed_modifier/jetpack/raptor)
 		user.AddElement(/datum/element/forced_gravity, 0)
 		ADD_TRAIT(user, TRAIT_PASSTABLE, REF(src))
-		to_chat(user, span_notice(LANG("obj.538e9a65", list(held_mob, held_mob.p_their(), struggling ? ", struggling to keep you up in the air" : ""))))
+		to_chat(user, span_notice(LANG("obj.538e9a6599ff85c9", list(held_mob, held_mob.p_their(), struggling ? ", struggling to keep you up in the air" : ""))))
 		user.set_resting(FALSE, TRUE)
 		user.refresh_gravity()
 		START_PROCESSING(SSprocessing, src)
@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 	user.remove_movespeed_modifier(/datum/movespeed_modifier/jetpack/raptor)
 	user.RemoveElement(/datum/element/forced_gravity, 0)
 	REMOVE_TRAIT(user, TRAIT_PASSTABLE, REF(src))
-	to_chat(user, span_notice(LANG("obj.19040238", list(struggling ? ", [held_mob] on your back breathing out a sigh of releif" : ""))))
+	to_chat(user, span_notice(LANG("obj.19040238d3f5eff6", list(struggling ? ", [held_mob] on your back breathing out a sigh of releif" : ""))))
 	user.refresh_gravity()
 	STOP_PROCESSING(SSprocessing, src)
 	UnregisterSignal(user, list(COMSIG_HUMAN_HEIGHT_UPDATED, SIGNAL_ADDTRAIT(TRAIT_FAT), SIGNAL_REMOVETRAIT(TRAIT_FAT)))

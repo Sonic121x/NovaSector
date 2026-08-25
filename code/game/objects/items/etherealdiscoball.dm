@@ -7,7 +7,7 @@
 
 /obj/item/etherealballdeployer/attack_self(mob/living/carbon/user)
 	.=..()
-	to_chat(user, span_notice(LANG("obj.9d2da1d5", null)))
+	to_chat(user, span_notice(LANG("obj.9d2da1d5a34a6d2a", null)))
 	new /obj/structure/etherealball(user.loc)
 	qdel(src)
 
@@ -37,14 +37,14 @@
 
 	if(TurnedOn)
 		TurnOff()
-		to_chat(user, span_notice(LANG("obj.13efec90", null)))
+		to_chat(user, span_notice(LANG("obj.13efec909c4ec016", null)))
 	else
 		TurnOn()
-		to_chat(user, span_notice(LANG("obj.d74bd321", null)))
+		to_chat(user, span_notice(LANG("obj.d74bd3212025a447", null)))
 
 /obj/structure/etherealball/click_alt(mob/living/carbon/human/user)
 	set_anchored(!anchored)
-	to_chat(user, span_notice(LANG("obj.6a7c1775", list(anchored ? null : "un"))))
+	to_chat(user, span_notice(LANG("obj.6a7c1775754b1dd1", list(anchored ? null : "un"))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/structure/etherealball/proc/TurnOn()

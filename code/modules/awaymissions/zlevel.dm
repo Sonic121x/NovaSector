@@ -10,10 +10,10 @@ GLOBAL_LIST_INIT(potentialConfigRandomZlevels, generate_map_list_from_directory(
 	else if(GLOB.potentialRandomZlevels?.len)
 		map = pick_n_take(GLOB.potentialRandomZlevels)
 	else
-		return to_chat(world, span_boldannounce(LANG("_root.c98e0263", null)))
-	to_chat(world, span_boldannounce(LANG("_root.d6bdcee6", null)))
+		return to_chat(world, span_boldannounce(LANG("_root.c98e0263ddf9acbd", null)))
+	to_chat(world, span_boldannounce(LANG("_root.d6bdcee63b94d0bf", null)))
 	var/loaded = load_new_z_level(map, "Away Mission", config_gateway)
-	to_chat(world, span_boldannounce(LANG("_root.227d9313", list(loaded ? "loaded" : "aborted due to errors"))))
+	to_chat(world, span_boldannounce(LANG("_root.227d9313c847fd25", list(loaded ? "loaded" : "aborted due to errors"))))
 	if(!loaded)
 		message_admins("Away mission [map] loading failed due to errors.")
 		log_admin("Away mission [map] loading failed due to errors.")

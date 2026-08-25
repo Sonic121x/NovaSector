@@ -49,12 +49,12 @@
 
 	if(src.flags_inv & HIDEFACE)
 		src.flags_inv &= ~HIDEFACE
-		to_chat(user, LANG("obj.92da3946", null))
+		to_chat(user, LANG("obj.92da3946e1655a70", null))
 		item_face_toggled = TRUE
 	else
 		src.flags_inv |= HIDEFACE
 		if (!force)
-			to_chat(user, LANG("obj.a919eb61", null))
+			to_chat(user, LANG("obj.a919eb6126cd0678", null))
 		item_face_toggled = FALSE
 
 	return TRUE

@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 
 	INVOKE_ASYNC(cast_on, TYPE_PROC_REF(/atom/movable, say), message = "R'CH T'H F'SH!", forced = "fishing rod infusion invocation")
 	playsound(cast_on, /datum/action/cooldown/spell/touch/mansus_grasp::sound, 15)
-	cast_on.visible_message(span_notice(LANG("datum.e9bb7659", list(cast_on, cast_on.p_their(), held_rod))))
+	cast_on.visible_message(span_notice(LANG("datum.e9bb76598f106e4f", list(cast_on, cast_on.p_their(), held_rod))))
 
 	ADD_TRAIT(held_rod, TRAIT_ROD_MANSUS_INFUSED, REF(held_rod))
 	held_rod.difficulty_modifier -= 20
@@ -126,18 +126,18 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 			// We found a replacement place to put our heart
 			where_to_put_our_heart = look_for_backup
 			our_heretic.living_heart_organ_slot = backup_slot
-			to_chat(user, span_boldnotice(LANG("datum.116bded5", list(look_for_backup.name))))
+			to_chat(user, span_boldnotice(LANG("datum.116bded551b6985f", list(look_for_backup.name))))
 			break
 
 	if(where_to_put_our_heart)
 		where_to_put_our_heart.AddComponent(/datum/component/living_heart)
-		desc = LANG("datum.fc5b5895", list(where_to_put_our_heart.name))
+		desc = LANG("datum.fc5b58956b947dfa", list(where_to_put_our_heart.name))
 		transmute_text = "Should you lose your [where_to_put_our_heart.name], you can transmute a poppy and a pool of blood \
 			to awaken your [where_to_put_our_heart.name] into a Living Heart. \
 			Cybernetic [where_to_put_our_heart.name]\s will block the ritual!"
 
 	else
-		to_chat(user, span_boldnotice(LANG("datum.68e761c1", null)))
+		to_chat(user, span_boldnotice(LANG("datum.68e761c1424188a0", null)))
 
 /datum/heretic_knowledge/living_heart/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
 	var/obj/item/organ/our_living_heart = user.get_organ_slot(our_heretic.living_heart_organ_slot)
@@ -155,14 +155,14 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	var/obj/item/organ/our_living_heart = user.get_organ_slot(our_heretic.living_heart_organ_slot)
 	// No heart, nothing to give living heart to
 	if(QDELETED(our_living_heart))
-		loc.balloon_alert(user, LANG("datum.82c2e336", list(our_heretic.living_heart_organ_slot)))
+		loc.balloon_alert(user, LANG("datum.82c2e336a10b4167", list(our_heretic.living_heart_organ_slot)))
 		return FALSE
 
 	// For sanity's sake, check if they've got a living heart -
 	// even though it's not invokable if you already have one,
 	// they may have gained one unexpectantly in between now and then
 	if(HAS_TRAIT(our_living_heart, TRAIT_LIVING_HEART))
-		loc.balloon_alert(user, LANG("datum.3ce6e3c6", null))
+		loc.balloon_alert(user, LANG("datum.3ce6e3c6c7372080", null))
 		return FALSE
 
 	// By this point they are making a new heart
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	if(is_valid_heart(our_living_heart))
 		return TRUE
 
-	loc.balloon_alert(user, LANG("datum.e0477c4b", list(our_heretic.living_heart_organ_slot))) // "heart can't be awakened!"
+	loc.balloon_alert(user, LANG("datum.e0477c4bbf13525a", list(our_heretic.living_heart_organ_slot))) // "heart can't be awakened!"
 	return FALSE
 
 /datum/heretic_knowledge/living_heart/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	selected_atoms -= our_new_heart
 	// Make it the living heart
 	our_new_heart.AddComponent(/datum/component/living_heart)
-	to_chat(user, span_warning(LANG("datum.de5efd84", list(our_new_heart.name))))
+	to_chat(user, span_warning(LANG("datum.de5efd8415e1523d", list(our_new_heart.name))))
 	playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	return TRUE
 
@@ -209,7 +209,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	return !invoker.feast_of_owls
 
 /datum/heretic_knowledge/feast_of_owls/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
-	var/alert = tgui_alert(user,LANG("datum.5f83baba", null), LANG("datum.f9c939fa", null), list("Yes I'm sure", "No"), 30 SECONDS)
+	var/alert = tgui_alert(user,LANG("datum.5f83baba441d7bc1", null), LANG("datum.f9c939fa66f181ec", null), list("Yes I'm sure", "No"), 30 SECONDS)
 	if(alert != "Yes I'm sure" || QDELETED(user) || QDELETED(src) || get_dist(user, loc) > 2)
 		return FALSE
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
@@ -228,13 +228,13 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 		playsound(loc, 'sound/items/eatfood.ogg', 100, TRUE)
 		heretic_datum.adjust_knowledge_points(1)
 
-		to_chat(user, span_danger(LANG("datum.e6a0807b", null)))
+		to_chat(user, span_danger(LANG("datum.e6a0807bb6310648", null)))
 		user.do_jitter_animation()
 		sleep(1 SECONDS)
 		if(QDELETED(user) || QDELETED(heretic_datum))
 			return FALSE
 
-	to_chat(user, span_danger(span_big(LANG("datum.24ca551a", null))))
+	to_chat(user, span_danger(span_big(LANG("datum.24ca551aa06725f5", null))))
 	var/drain_message = pick_list(HERETIC_INFLUENCE_FILE, "drain_message")
 	to_chat(user, span_hypnophrase(span_big("[drain_message]")))
 	return .

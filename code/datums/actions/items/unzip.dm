@@ -13,8 +13,8 @@
 	SIGNAL_HANDLER
 	if(new_zip)
 		name = "Unzip" 
-		desc = LANG("datum.508af225", null)
+		desc = LANG("datum.508af225578e6d0e", null)
 	else
 		name = "Zip"
-		desc = LANG("datum.fa82961b", null)
+		desc = LANG("datum.fa82961bc9ab83c7", null)
 	build_all_button_icons(UPDATE_BUTTON_NAME)

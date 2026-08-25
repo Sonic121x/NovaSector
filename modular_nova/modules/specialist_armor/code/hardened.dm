@@ -51,7 +51,7 @@
 /obj/item/clothing/suit/armor/sf_hardened/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.cc793058", null)
+	. += LANG("obj.cc7930588f56aed8", null)
 
 	return .
 
@@ -109,7 +109,7 @@
 /obj/item/clothing/head/helmet/toggleable/sf_hardened/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.cc793058", null)
+	. += LANG("obj.cc7930588f56aed8", null)
 
 	return .
 

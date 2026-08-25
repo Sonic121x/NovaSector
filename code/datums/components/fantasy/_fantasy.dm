@@ -121,7 +121,7 @@
 
 	if(canFail && prob((quality - 9)*10))
 		var/turf/place = get_turf(parent)
-		place.visible_message(span_danger(LANG("datum.37604e99", list(parent, span_blue("violently glows blue")))))
+		place.visible_message(span_danger(LANG("datum.37604e999c53cd9c", list(parent, span_blue("violently glows blue")))))
 		master.burn()
 		return
 
@@ -151,4 +151,4 @@
 		span = "<span class='danger'>"
 		effect_description = span_bold("mottled black glow")
 
-	location.visible_message(LANG("datum.6f2e1a10", list(span, originalName, effect_description, parent)))
+	location.visible_message(LANG("datum.6f2e1a107f2bb0d6", list(span, originalName, effect_description, parent)))

@@ -19,7 +19,7 @@
 	end_when = 80
 
 /datum/round_event/aurora_caelus/announce(fake)
-	priority_announce(LANG("datum.7b032584", list(station_name())),
+	priority_announce(LANG("datum.7b032584e7af4793", list(station_name())),
 	sound = 'sound/announcer/notice/notice2.ogg',
 	sender_override = "Nanotrasen Meteorology Division")
 	if (fake)
@@ -40,7 +40,7 @@
 	for(var/area/station/service/kitchen/affected_area in GLOB.areas)
 		var/obj/machinery/oven/roast_ruiner = locate() in affected_area
 		if(roast_ruiner)
-			roast_ruiner.balloon_alert_to_viewers(LANG("datum.7234d85f", null))
+			roast_ruiner.balloon_alert_to_viewers(LANG("datum.7234d85f4839d7fc", null))
 			var/turf/ruined_roast = get_turf(roast_ruiner)
 			ruined_roast.atmos_spawn_air("[GAS_PLASMA]=100;[TURF_TEMPERATURE(1000)]")
 			message_admins("Aurora Caelus event caused an oven to ignite at [ADMIN_VERBOSEJMP(ruined_roast)].")
@@ -51,7 +51,7 @@
 					continue
 				human_blacklist += seymour
 				if(seymour.mind && istype(seymour.mind.assigned_role, /datum/job/cook))
-					seymour.say(LANG("datum.4e7dabad", null), forced = "ruined roast")
+					seymour.say(LANG("datum.4e7dabad5a739626", null), forced = "ruined roast")
 					seymour.emote("scream")
 
 /datum/round_event/aurora_caelus/tick()
@@ -67,7 +67,7 @@
 /datum/round_event/aurora_caelus/end()
 	fade_space()
 	fade_kitchen()
-	priority_announce(LANG("datum.a351f720", list(station_name())),
+	priority_announce(LANG("datum.a351f720145d45fc", list(station_name())),
 	sound = 'sound/announcer/notice/notice2.ogg',
 	sender_override = "Nanotrasen Meteorology Division")
 

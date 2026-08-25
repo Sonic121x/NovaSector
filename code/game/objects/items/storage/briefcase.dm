@@ -50,17 +50,17 @@
 		if(istype(potentially_paper, /obj/item/paper) || istype(potentially_paper, /obj/item/paperplane))
 			papers_found += potentially_paper
 	if(!papers_found.len || !item_loc)
-		user.visible_message(span_suicide(LANG("obj.c02fee9b", list(user, user.p_them(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.c02fee9b04c53807", list(user, user.p_them(), src, user.p_theyre()))))
 		return BRUTELOSS
 
-	user.visible_message(span_suicide(LANG("obj.b19fd0e7", list(user, src, user.p_their()))))
+	user.visible_message(span_suicide(LANG("obj.b19fd0e713e18a28", list(user, src, user.p_their()))))
 	for(var/obj/item/paper as anything in papers_found)	//Throws the papers in a random direction
 		var/turf/turf_to_throw_at = prob(20) ? item_loc : get_ranged_target_turf(item_loc, pick(GLOB.alldirs))
 		paper.throw_at(turf_to_throw_at, 2)
 
 	stoplag(1 SECONDS)
-	user.say(LANG("obj.93e45bd7", null))
-	user.visible_message(span_suicide(LANG("obj.dca6f7b9", list(user, user.p_theyre()))))
+	user.say(LANG("obj.93e45bd795970efb", null))
+	user.visible_message(span_suicide(LANG("obj.dca6f7b9f583c17b", list(user, user.p_theyre()))))
 	return OXYLOSS
 
 // Empty subtype
@@ -163,7 +163,7 @@
 	if(!isturf(user.loc)) //no setting up in a locker
 		return
 	add_fingerprint(user)
-	user.visible_message(span_notice(LANG("obj.641079aa", list(user, src))), span_notice(LANG("obj.03b1181f", list(pad))))
+	user.visible_message(span_notice(LANG("obj.641079aae420122b", list(user, src))), span_notice(LANG("obj.03b1181fdabbc132", list(pad))))
 	if(do_after(user, 3 SECONDS, target = user))
 		pad.forceMove(get_turf(src))
 		pad.update_indicator()
@@ -178,7 +178,7 @@
 	if(remote.pad == WEAKREF(src.pad))
 		return ..()
 	remote.pad = WEAKREF(src.pad)
-	to_chat(user, span_notice(LANG("obj.8d7c3dc4", list(pad, remote))))
+	to_chat(user, span_notice(LANG("obj.8d7c3dc4e50105d6", list(pad, remote))))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/storage/briefcase/gun
@@ -192,7 +192,7 @@
 /obj/item/storage/briefcase/gun/examine_more(mob/user)
 	. = ..()
 	if(user.is_holding(src))
-		. += span_notice(LANG("obj.d332ae7c", null))
+		. += span_notice(LANG("obj.d332ae7c194786cc", null))
 
 /obj/item/storage/briefcase/gun/preloaded
 

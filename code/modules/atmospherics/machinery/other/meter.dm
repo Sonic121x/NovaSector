@@ -137,12 +137,12 @@
 
 /obj/machinery/meter/wrench_act(mob/user, obj/item/wrench)
 	..()
-	to_chat(user, span_notice(LANG("obj.84b25bb7", list(src))))
+	to_chat(user, span_notice(LANG("obj.84b25bb7640cc2b0", list(src))))
 	if (wrench.use_tool(src, user, 40, volume=50))
 		user.visible_message(
-			LANG("obj.cb7d97ff", list(user, src)),
-			span_notice(LANG("obj.5cb76786", list(src))),
-			span_hear(LANG("obj.12db39f3", null)))
+			LANG("obj.cb7d97ffadc2f816", list(user, src)),
+			span_notice(LANG("obj.5cb7678601675b99", list(src))),
+			span_hear(LANG("obj.12db39f338111554", null)))
 		deconstruct()
 	return TRUE
 

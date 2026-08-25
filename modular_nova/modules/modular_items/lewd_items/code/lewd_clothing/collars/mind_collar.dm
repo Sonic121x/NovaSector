@@ -24,7 +24,7 @@
 /obj/item/mind_controller/attack_self(mob/user)
 	if(!collar)
 		return
-	var/new_emotion_pattern = tgui_input_text(user, LANG("obj.8447a6fe", null), max_length = MAX_MESSAGE_LEN)
+	var/new_emotion_pattern = tgui_input_text(user, LANG("obj.8447a6fe1d04cb69", null), max_length = MAX_MESSAGE_LEN)
 	if(!isnull(new_emotion_pattern))
 		collar.emoting = new_emotion_pattern
 	collar.emoting_proc()

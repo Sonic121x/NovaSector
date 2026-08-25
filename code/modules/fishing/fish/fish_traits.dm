@@ -581,7 +581,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 	for(var/obj/item/fish/victim as anything in source.get_aquarium_fishes(TRUE, source))
 		if(victim.status != FISH_ALIVE)
 			continue
-		source.loc.visible_message(span_warning(LANG("datum.4b047078", list(source, pick("whips", "bites", "attacks", "slams"), victim))))
+		source.loc.visible_message(span_warning(LANG("datum.4b0470781225632b", list(source, pick("whips", "bites", "attacks", "slams"), victim))))
 		var/damage = round(rand(4, 20) * (source.size / victim.size)) //smaller fishes take extra damage.
 		victim.damage_fish(damage)
 		return
@@ -692,7 +692,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 		return
 	for(var/obj/item/fish/other_fish in fish.loc.contents)
 		if(fish_tolerance <= 0)
-			fish.loc.visible_message(span_warning(LANG("datum.2e2539b4", list(fish))))
+			fish.loc.visible_message(span_warning(LANG("datum.2e2539b4e30658e8", list(fish))))
 			fish.set_status(FISH_DEAD)
 			return
 		fish_tolerance -= 1
@@ -880,7 +880,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 			memory_type = /datum/memory/witnessed_inking, \
 			mood_event_type = /datum/mood_event/inked, \
 		)
-	target.visible_message(span_warning(LANG("datum.435f3e65", list(target, source))), span_userdanger(LANG("datum.3659c69f", list(source))))
+	target.visible_message(span_warning(LANG("datum.435f3e655ff5afa1", list(target, source))), span_userdanger(LANG("datum.3659c69ff40a2f3c", list(source))))
 	playsound(target, SFX_DESECRATION, 50, TRUE)
 	ADD_TRAIT(source, TRAIT_FISH_INK_ON_COOLDOWN, FISH_TRAIT_DATUM)
 	addtimer(TRAIT_CALLBACK_REMOVE(source, TRAIT_FISH_INK_ON_COOLDOWN, FISH_TRAIT_DATUM), 9 SECONDS)

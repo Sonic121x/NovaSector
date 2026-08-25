@@ -24,11 +24,11 @@
 
 /datum/action/cooldown/spell/touch/mad_touch/on_antimagic_triggered(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
 	victim.visible_message(
-		span_danger(LANG("datum.44d911f3", list(victim))),
-		span_danger(LANG("datum.f092e989", null)),
+		span_danger(LANG("datum.44d911f352202ac7", list(victim))),
+		span_danger(LANG("datum.f092e989ec79f08e", null)),
 	)
 
 /datum/action/cooldown/spell/touch/mad_touch/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/victim, mob/living/carbon/caster)
-	to_chat(caster, span_warning(LANG("datum.a1b0007c", list(victim.name))))
+	to_chat(caster, span_warning(LANG("datum.a1b0007c1aa45f58", list(victim.name))))
 	victim.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 	return TRUE

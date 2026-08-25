@@ -43,7 +43,7 @@
 	if(AI)
 		QDEL_NULL(AI)
 	QDEL_LIST(crowbar_salvage)
-	src.visible_message(span_danger(LANG("obj.6f69a617", list(src))))
+	src.visible_message(span_danger(LANG("obj.6f69a6173954350b", list(src))))
 	playsound(src, 'sound/effects/meteorimpact.ogg', 100, TRUE)
 	for(var/mob/living/witness in range(2, src))
 		shake_camera(witness, 2, 1)
@@ -54,22 +54,22 @@
 	. = ..()
 	if(!AI)
 		return
-	. += span_notice(LANG("obj.5ea22939", null))
+	. += span_notice(LANG("obj.5ea22939de540933", null))
 
 /obj/structure/mecha_wreckage/welder_act(mob/living/user, obj/item/I)
 	..()
 	. = TRUE
 	if(salvage_num <= 0 || !length(welder_salvage))
-		to_chat(user, span_notice(LANG("obj.ff7a3a1d", list(I))))
+		to_chat(user, span_notice(LANG("obj.ff7a3a1d2c339de7", list(I))))
 		return
 	if(!I.use_tool(src, user, 0, volume=50))
 		return
 	if(prob(30))
-		to_chat(user, span_notice(LANG("obj.93800b2c", list(src))))
+		to_chat(user, span_notice(LANG("obj.93800b2cec2fdfe4", list(src))))
 		return
 	var/type = pick(welder_salvage)
 	var/N = new type(get_turf(user))
-	user.visible_message(span_notice(LANG("obj.909aaca8", list(user, N, src))), span_notice(LANG("obj.bf9d5c9d", list(N, src))))
+	user.visible_message(span_notice(LANG("obj.909aaca8a7e33167", list(user, N, src))), span_notice(LANG("obj.bf9d5c9d7e3d3613", list(N, src))))
 	if(!isstack(N))
 		welder_salvage -= type
 	salvage_num--
@@ -78,10 +78,10 @@
 	..()
 	. = TRUE
 	if(wires_removed)
-		to_chat(user, span_notice(LANG("obj.ff7a3a1d", list(I))))
+		to_chat(user, span_notice(LANG("obj.ff7a3a1d2c339de7", list(I))))
 		return
 	var/N = new /obj/item/stack/cable_coil(get_turf(user), rand(1,3))
-	user.visible_message(span_notice(LANG("obj.909aaca8", list(user, N, src))), span_notice(LANG("obj.bf9d5c9d", list(N, src))))
+	user.visible_message(span_notice(LANG("obj.909aaca8a7e33167", list(user, N, src))), span_notice(LANG("obj.bf9d5c9d7e3d3613", list(N, src))))
 	wires_removed = TRUE
 
 /obj/structure/mecha_wreckage/crowbar_act(mob/living/user, obj/item/I)
@@ -90,10 +90,10 @@
 	if(crowbar_salvage.len)
 		var/obj/S = pick(crowbar_salvage)
 		S.forceMove(user.drop_location())
-		user.visible_message(span_notice(LANG("obj.f2c1aebe", list(user, S, src))), span_notice(LANG("obj.c6d17dba", list(S, src))))
+		user.visible_message(span_notice(LANG("obj.f2c1aebe56a8b768", list(user, S, src))), span_notice(LANG("obj.c6d17dba532e883d", list(S, src))))
 		crowbar_salvage -= S
 		return
-	to_chat(user, span_notice(LANG("obj.4147eda5", list(I))))
+	to_chat(user, span_notice(LANG("obj.4147eda577d55d6c", list(I))))
 
 /obj/structure/mecha_wreckage/transfer_ai(interaction, mob/user, mob/living/silicon/ai/ai_mob, obj/item/aicard/card)
 	if(!..())
@@ -103,16 +103,16 @@
 	if(interaction != AI_TRANS_TO_CARD) //AIs can only be transferred in one direction, from the wreck to the card.
 		return
 	if(!AI) //No AI in the wreck
-		to_chat(user, span_warning(LANG("obj.da4175a4", null)))
+		to_chat(user, span_warning(LANG("obj.da4175a46fbf7ba6", null)))
 		return
 	cut_overlays() //Remove the recovery beacon overlay
 	AI.forceMove(card) //Move the dead AI to the card.
 	card.AI = AI
 	if(AI.client) //AI player is still in the dead AI and is connected
-		to_chat(AI, span_notice(LANG("obj.720b30eb", null)))
+		to_chat(AI, span_notice(LANG("obj.720b30ebc55655db", null)))
 	else //Give the AI a heads-up that it is probably going to get fixed.
 		AI.notify_revival("You have been recovered from the wreckage!", source = card)
-	to_chat(user, LANG("obj.b4406c8c", list(span_boldnotice("Backup files recovered"), AI.name, rand(1000,9999), name)))
+	to_chat(user, LANG("obj.b4406c8c2978f932", list(span_boldnotice("Backup files recovered"), AI.name, rand(1000,9999), name)))
 	AI = null
 
 /obj/structure/mecha_wreckage/gygax

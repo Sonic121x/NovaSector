@@ -77,37 +77,37 @@
 /obj/machinery/netpod/examine(mob/user)
 	. = ..()
 
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "close" : "open")))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "close" : "open")))
 	if(isnull(occupant))
 		if(panel_open)
-			. += span_notice(LANG("obj.fa5fc796", list(EXAMINE_HINT("pried"))))
+			. += span_notice(LANG("obj.fa5fc7965e12e9d0", list(EXAMINE_HINT("pried"))))
 		else
-			. += span_notice(LANG("obj.2eaa3b1c", list(EXAMINE_HINT("pried"), state_open ? "closed" : "open")))
+			. += span_notice(LANG("obj.2eaa3b1c82838440", list(EXAMINE_HINT("pried"), state_open ? "closed" : "open")))
 
 	if(isnull(server_ref?.resolve()))
-		. += span_infoplain(LANG("obj.b8effa34", null))
-		. += span_infoplain(LANG("obj.1e9dcde5", null))
+		. += span_infoplain(LANG("obj.b8effa34c8b656fe", null))
+		. += span_infoplain(LANG("obj.1e9dcde542c9dacf", null))
 		return
 
 	if(!isobserver(user))
-		. += span_infoplain(LANG("obj.f1e4f04a", null))
-		. += span_infoplain(LANG("obj.0cf6d959", null))
-		. += span_infoplain(LANG("obj.8cfba2a1", null))
+		. += span_infoplain(LANG("obj.f1e4f04a468a965f", null))
+		. += span_infoplain(LANG("obj.0cf6d95960df10aa", null))
+		. += span_infoplain(LANG("obj.8cfba2a1605537f3", null))
 		if(copy_body)
-			. += span_infoplain(LANG("obj.7f6c2041", null))
-		. += span_infoplain(LANG("obj.ae4e2e73", list(copy_body ? "disable" : "enable")))
+			. += span_infoplain(LANG("obj.7f6c2041fb606458", null))
+		. += span_infoplain(LANG("obj.ae4e2e732162fc49", list(copy_body ? "disable" : "enable")))
 
 	if(isnull(occupant))
-		. += span_infoplain(LANG("obj.bc6aa97b", null))
+		. += span_infoplain(LANG("obj.bc6aa97bf773ed56", null))
 		return
 
-	. += span_infoplain(LANG("obj.735641da", list(occupant)))
+	. += span_infoplain(LANG("obj.735641dae1f8557a", list(occupant)))
 
 	if(isobserver(user))
-		. += span_notice(LANG("obj.4d38f328", null))
+		. += span_notice(LANG("obj.4d38f328dacd0e2f", null))
 		return
 
-	. += span_notice(LANG("obj.84d74ac8", null))
+	. += span_notice(LANG("obj.84d74ac87b54af5f", null))
 
 
 /obj/machinery/netpod/update_icon_state()
@@ -163,7 +163,7 @@
 	copy_body = !copy_body
 	scanning_can_toggle = world.time + SCANNING_TOGGLE_COOLDOWN
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
-	user.balloon_alert_to_viewers(user, LANG("obj.541d7ff6", list(copy_body ? "enabled" : "disabled")))
+	user.balloon_alert_to_viewers(user, LANG("obj.541d7ff69ad11e07", list(copy_body ? "enabled" : "disabled")))
 	return CLICK_ACTION_SUCCESS
 
 #undef BASE_DISCONNECT_DAMAGE

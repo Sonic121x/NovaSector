@@ -18,16 +18,16 @@
 	var/request_key = "[user.ckey]_[REF(src)]"
 	var/last_request = requesters[request_key]
 	if(last_request && world.time < last_request + DOOR_AI_REQUEST_COOLDOWN)
-		to_chat(user, span_warning(LANG("obj.ff184461", null)))
+		to_chat(user, span_warning(LANG("obj.ff1844616baa4718", null)))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	. = ..()
 
 	if(!hasPower())
-		to_chat(user, span_warning(LANG("obj.12e1e022", null)))
+		to_chat(user, span_warning(LANG("obj.12e1e02247902783", null)))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-	src.balloon_alert(user, LANG("obj.5239bd46", null))
+	src.balloon_alert(user, LANG("obj.5239bd468b88b48d", null))
 
 	for(var/mob/living/silicon/ai/AI as anything in GLOB.ai_list)
 		if(AI.stat == DEAD)
@@ -37,11 +37,11 @@
 		if(AI.deployed_shell)
 			if(!is_station_level(AI.deployed_shell.registered_z))
 				continue
-			to_chat(AI.deployed_shell, LANG("obj.d5834809", list(REF(AI), html_encode(user.name), user, src, LINK_DENY, LINK_OPEN, LINK_BOLT, LINK_SHOCK)))
+			to_chat(AI.deployed_shell, LANG("obj.d58348096701edd5", list(REF(AI), html_encode(user.name), user, src, LINK_DENY, LINK_OPEN, LINK_BOLT, LINK_SHOCK)))
 			continue
 		if(!is_station_level(AI.registered_z))
 			continue
-		to_chat(AI, LANG("obj.d5834809", list(REF(AI), html_encode(user.name), user, src, LINK_DENY, LINK_OPEN, LINK_BOLT, LINK_SHOCK)))
+		to_chat(AI, LANG("obj.d58348096701edd5", list(REF(AI), html_encode(user.name), user, src, LINK_DENY, LINK_OPEN, LINK_BOLT, LINK_SHOCK)))
 	requesters[request_key] = world.time
 	addtimer(CALLBACK(src, PROC_REF(clear_stale_requester), request_key, world.time), DOOR_AI_REQUEST_COOLDOWN)
 

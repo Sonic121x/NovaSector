@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	acid = 100
 
 /obj/item/stack/sheet/glass/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.158c891e", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.158c891e5060fd4f", list(user, user.p_their(), src, user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/stack/sheet/glass/fifty
@@ -61,11 +61,11 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	if(istype(tool, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = tool
 		if (get_amount() < 1 || coil.get_amount() < 5)
-			to_chat(user, span_warning(LANG("obj.d1e0d6c6", null)))
+			to_chat(user, span_warning(LANG("obj.d1e0d6c63b3efb12", null)))
 			return ITEM_INTERACT_BLOCKING
 		coil.use(5)
 		use(1)
-		to_chat(user, span_notice(LANG("obj.a6e8b242", list(src))))
+		to_chat(user, span_notice(LANG("obj.a6e8b242db3ea838", list(src))))
 		var/obj/item/stack/light_w/new_tile = new(user.loc)
 		if (!QDELETED(new_tile))
 			new_tile.add_fingerprint(user)
@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	if(istype(tool, /obj/item/stack/rods))
 		var/obj/item/stack/rods/rods = tool
 		if (rods.get_amount() < 1 || get_amount() < 1) // the hell kind of check is this, how would this happen
-			to_chat(user, span_warning(LANG("obj.7c8e0e30", null)))
+			to_chat(user, span_warning(LANG("obj.7c8e0e3029cca63a", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/sheet/rglass/new_glass = new (get_turf(user))
@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(pglass_recipes, list ( \
 
 	var/obj/item/stack/rods/rods = tool
 	if (rods.get_amount() < 1 || get_amount() < 1)
-		to_chat(user, span_warning(LANG("obj.34f3e5a6", null)))
+		to_chat(user, span_warning(LANG("obj.34f3e5a6c149ab45", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/stack/sheet/plasmarglass/RG = new (get_turf(user))
@@ -234,8 +234,10 @@ GLOBAL_LIST_INIT(prglass_recipes, list ( \
 	. += GLOB.prglass_recipes
 
 GLOBAL_LIST_INIT(titaniumglass_recipes, list(
+	new/datum/stack_recipe("directional shuttle window",/obj/structure/window/reinforced/titanium/unanchored, time = 0.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION, category = CAT_WINDOWS), \
 	new/datum/stack_recipe("shuttle window", /obj/structure/window/reinforced/shuttle/unanchored, 2, time = 0.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION | CRAFT_IS_FULLTILE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("titanium glass shard", /obj/item/shard/titanium, time = 40, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND, category = CAT_MISC) \
+	new/datum/stack_recipe("titanium glass shard", /obj/item/shard/titanium, time = 40, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND, category = CAT_MISC), \
+	new/datum/stack_recipe("titanium glass tile", /obj/item/stack/tile/glass/titanium, 1, 4, 20, category = CAT_TILES), \
 	))
 
 /obj/item/stack/sheet/titaniumglass
@@ -266,8 +268,12 @@ GLOBAL_LIST_INIT(titaniumglass_recipes, list(
 	. += GLOB.titaniumglass_recipes
 
 GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
+	new/datum/stack_recipe("directional plastitanium window", /obj/structure/window/reinforced/survival_pod/unanchored, time = 0.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION, category = CAT_WINDOWS), \
 	new/datum/stack_recipe("plastitanium window", /obj/structure/window/reinforced/plasma/plastitanium/unanchored, 2, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_IS_FULLTILE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("plastitanium glass shard", /obj/item/shard/plastitanium, time = 60, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND, category = CAT_MISC) \
+	new/datum/stack_recipe("pod window", /obj/structure/window/reinforced/shuttle/survival_pod/unanchored, 2, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_IS_FULLTILE, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("plastitanium window filler", /obj/item/stack/wall_filling/plastitaniumglass/basic, 2, 1, 10, crafting_flags = NONE, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("plastitanium glass shard", /obj/item/shard/plastitanium, time = 60, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND, category = CAT_MISC), \
+	new/datum/stack_recipe("plastitanium glass tile", /obj/item/stack/tile/glass/plastitanium, 1, 4, 20, category = CAT_TILES), \
 	))
 
 /obj/item/stack/sheet/plastitaniumglass
@@ -335,7 +341,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	acid = 100
 
 /obj/item/shard/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.6458b74d", list(user, user.p_their(), pick("wrists", "throat"), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.6458b74da592e3f1", list(user, user.p_their(), pick("wrists", "throat"), user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/shard/Initialize(mapload)
@@ -382,7 +388,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	if(jab.get_all_covered_flags() & HANDS)
 		return
 
-	to_chat(user, span_warning(LANG("obj.3f07fa75", list(src))))
+	to_chat(user, span_warning(LANG("obj.3f07fa7511239fcd", list(src))))
 	jab.apply_damage(force * 0.5, BRUTE, user.get_active_hand(), attacking_item = src)
 
 /obj/item/shard/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -395,14 +401,14 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 		return NONE
 
 	var/obj/item/stack/sheet/cloth/cloth = tool
-	to_chat(user, span_notice(LANG("obj.1a83cfff", list(cloth, src))))
+	to_chat(user, span_notice(LANG("obj.1a83cfff6ce69137", list(cloth, src))))
 	if(!do_after(user, craft_time, target = src))
 		return ITEM_INTERACT_FAILURE
 
 	var/obj/item/knife/shiv/shiv = new shiv_type
 	shiv.set_custom_materials(custom_materials)
 	cloth.use(1)
-	to_chat(user, span_notice(LANG("obj.6cba4e9e", list(cloth, src))))
+	to_chat(user, span_notice(LANG("obj.6cba4e9e598f7e30", list(cloth, src))))
 	remove_item_from_storage(src, user)
 	qdel(src)
 	user.put_in_hands(shiv)
@@ -411,7 +417,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 /obj/item/shard/welder_act(mob/living/user, obj/item/I)
 	if(I.use_tool(src, user, 0, volume=50))
 		var/obj/item/stack/sheet/new_glass = new weld_material
-		to_chat(user, span_notice(LANG("obj.bb22874c", list(src, new_glass.name))))
+		to_chat(user, span_notice(LANG("obj.bb22874c342014a4", list(src, new_glass.name))))
 		new_glass.forceMove((Adjacent(user) ? user.drop_location() : loc)) //stack merging is handled automatically.
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS

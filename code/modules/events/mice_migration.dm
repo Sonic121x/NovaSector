@@ -22,7 +22,7 @@
 	var/location = pick("maintenance tunnels", "maintenance areas",
 		"\[REDACTED\]", "place with all those juicy wires")
 
-	priority_announce(LANG("datum.700472a1", list(cause, plural, name, movement, location)), "Migration Alert",
+	priority_announce(LANG("datum.700472a1a163e4a6", list(cause, plural, name, movement, location)), "Migration Alert",
 		'sound/mobs/non-humanoids/mouse/mousesqueek.ogg')
 
 /datum/round_event/mice_migration/start()

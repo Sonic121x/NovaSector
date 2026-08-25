@@ -164,7 +164,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	if(client && SSlag_switch.measures[SLOWMODE_SAY] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES) && !forced && src == usr)
 		if(!COOLDOWN_FINISHED(client, say_slowmode))
-			to_chat(src, span_warning(LANG("mob.033682b4", list(SSlag_switch.slowmode_cooldown/10, message))))
+			to_chat(src, span_warning(LANG("mob.033682b474988f17", list(SSlag_switch.slowmode_cooldown/10, message))))
 			return
 		COOLDOWN_START(client, say_slowmode, SSlag_switch.slowmode_cooldown)
 
@@ -541,7 +541,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 /mob/living/proc/radio(message, list/message_mods = list(), list/spans, language)
 	//NOVA EDIT ADDITION BEGIN
 	if((message_mods[MODE_HEADSET] || message_mods[RADIO_EXTENSION]) && !(mobility_flags & MOBILITY_USE) && !isAI(src) && !ispAI(src) && !ismecha(loc)) // If can't use items, you can't press the button
-		to_chat(src, span_warning(LANG("mob.46bbccc8", null)))
+		to_chat(src, span_warning(LANG("mob.46bbccc80d9398ba", null)))
 		return ITALICS | REDUCE_RANGE
 	//NOVA EDIT END
 	var/obj/item/implant/radio/imp = locate() in src

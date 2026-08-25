@@ -3,7 +3,7 @@
 	// Cyborgs cannot speak if silent borg is on.
 	// Unless forced is set, as that's probably stating laws or something.
 	if(!forced && CONFIG_GET(flag/silent_borg))
-		to_chat(src, span_danger(LANG("mob.0d94e9e8", null)))
+		to_chat(src, span_danger(LANG("mob.0d94e9e8c3dacd95", null)))
 		return FALSE
 
 	return ..()

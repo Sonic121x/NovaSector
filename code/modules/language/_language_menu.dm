@@ -30,12 +30,12 @@
 	for(var/datum/language/language as anything in GLOB.all_languages)
 		var/list/lang_data = list()
 
-		lang_data["name"] = initial(language.name)
-		lang_data["desc"] = initial(language.desc)
-		lang_data["key"] = initial(language.key)
+		lang_data["name"] = language::name
+		lang_data["desc"] = language::desc
+		lang_data["key"] = language::key
 		lang_data["is_default"] = (language == language_holder.selected_language)
-		lang_data["icon"] = initial(language.icon)
-		lang_data["icon_state"] = initial(language.icon_state)
+		lang_data["icon"] = language::icon
+		lang_data["icon_state"] = language::icon_state
 		if(speaker)
 			lang_data["can_speak"] = !!speaker.has_language(language, SPOKEN_LANGUAGE)
 			lang_data["could_speak"] = !!(language_holder.omnitongue || speaker.could_speak_language(language))
@@ -72,7 +72,7 @@
 		if("grant_language")
 			if((is_admin || isobserver(speaker)) && language_datum)
 				var/list/choices = list("Only Spoken", "Only Understood", "Both")
-				var/choice = tgui_input_list(user, LANG("datum.cc783534", null), "[language_datum]", choices)
+				var/choice = tgui_input_list(user, LANG("datum.cc783534b1148d55", null), "[language_datum]", choices)
 				if(isnull(choice))
 					return
 				var/adding_flags = NONE
@@ -91,7 +91,7 @@
 					block_being_removed_on += "spoken"
 
 				if(ask_to_remove_block)
-					choice = tgui_alert(user, LANG("datum.cd4b54ef", list(block_being_removed_on.Join(" or "))), "[language_datum]", list("Yes", "No"))
+					choice = tgui_alert(user, LANG("datum.cd4b54ef5f3743d8", list(block_being_removed_on.Join(" or "))), "[language_datum]", list("Yes", "No"))
 					if(choice == "Yes")
 						language_holder.remove_blocked_language(language_datum, adding_flags, LANGUAGE_ALL)
 				language_holder.grant_language(language_datum, adding_flags)
@@ -102,7 +102,7 @@
 		if("remove_language")
 			if((is_admin || isobserver(speaker)) && language_datum)
 				var/list/choices = list("Only Spoken", "Only Understood", "Both")
-				var/choice = tgui_input_list(user, LANG("datum.7cc48e12", null), "[language_datum]", choices)
+				var/choice = tgui_input_list(user, LANG("datum.7cc48e12101c7a46", null), "[language_datum]", choices)
 				if(isnull(choice))
 					return
 				var/removing_flags = NONE

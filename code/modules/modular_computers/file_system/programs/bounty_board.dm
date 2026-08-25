@@ -80,17 +80,17 @@
 				return TRUE
 			for(var/datum/station_request/i in GLOB.request_list)
 				if("[i.req_number]" == "[current_user.account_id]")
-					computer.say(LANG("datum.c9c211c4", null))
+					computer.say(LANG("datum.c9c211c4062da529", null))
 					return TRUE
 			var/datum/station_request/curr_request = new /datum/station_request(current_user.account_holder, bounty_value,bounty_text,current_user.account_id, current_user)
 			GLOB.request_list += list(curr_request)
 			for(var/obj/i in GLOB.allbountyboards)
-				i.say(LANG("datum.ed69b7bd", null))
+				i.say(LANG("datum.ed69b7bd7df8426b", null))
 				playsound(i.loc, 'sound/effects/cashregister.ogg', 30, TRUE)
 			return TRUE
 		if("apply")
 			if(!current_user)
-				computer.say(LANG("datum.2d02fd03", null))
+				computer.say(LANG("datum.2d02fd03d77870f7", null))
 				return TRUE
 			if(current_user.account_holder == active_request.owner)
 				playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
@@ -103,13 +103,13 @@
 				playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 				return
 			request_target.transfer_money(current_user, active_request.value, "Bounties: Request Completed")
-			computer.say(LANG("datum.a408cc95", list(active_request.value, MONEY_NAME)))
+			computer.say(LANG("datum.a408cc9521ec0e64", list(active_request.value, MONEY_NAME)))
 			GLOB.request_list.Remove(active_request)
 			return TRUE
 		if("clear")
 			if(current_user)
 				current_user = null
-				computer.say(LANG("datum.c924fceb", null))
+				computer.say(LANG("datum.c924fceb5411785e", null))
 				return TRUE
 		if("deleteRequest")
 			if(!current_user)
@@ -118,7 +118,7 @@
 			if(active_request.owner != current_user.account_holder)
 				playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
 				return TRUE
-			computer.say(LANG("datum.60a524e0", null))
+			computer.say(LANG("datum.60a524e0ee8fb598", null))
 			GLOB.request_list.Remove(active_request)
 			return TRUE
 		if("bountyVal")

@@ -10,7 +10,7 @@
 /obj/structure/sign/poster/official/trappiste_suppressor/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.d0576451", null)
+	. += LANG("obj.d05764512ae34865", null)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/trappiste_suppressor, 32)
 
@@ -26,6 +26,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/trappiste_suppre
 /obj/structure/sign/poster/official/trappiste_ammunition/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.fb70897e", null)
+	. += LANG("obj.fb70897e6cc22f58", null)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/trappiste_ammunition, 32)

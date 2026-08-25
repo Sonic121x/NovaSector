@@ -34,7 +34,7 @@
 		return
 
 	if(!can_climb_tree(target)) //check if another animal is on the tree
-		to_chat(source, span_warning(LANG("datum.1596b690", list(target))))
+		to_chat(source, span_warning(LANG("datum.1596b6909c5bb436", list(target))))
 		return COMPONENT_HOSTILE_NO_ATTACK
 
 	handle_climb_tree(source, target)
@@ -55,7 +55,7 @@
 /datum/component/tree_climber/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 	if(current_tree)
-		examine_text += LANG("datum.96933566", list(current_tree))
+		examine_text += LANG("datum.96933566a9ef95bd", list(current_tree))
 
 /datum/component/tree_climber/proc/can_climb_tree(obj/structure/flora/tree/target)
 	if(current_tree)

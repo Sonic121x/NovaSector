@@ -17,23 +17,23 @@
 	flick("[icon_state]_active", src) //nice little visual flash when scanning someone else.
 
 	if((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(25))
-		user.visible_message(span_warning(LANG("obj.6b85a607", list(user))), \
-		to_chat(user, span_info(LANG("obj.ab22ee8f", list(M)))))
+		user.visible_message(span_warning(LANG("obj.6b85a607118fb563", list(user))), \
+		to_chat(user, span_info(LANG("obj.ab22ee8f6ec31423", list(M)))))
 		selected_target = user
 		return
 
 	if(!ishuman(M))
-		to_chat(user, span_info(LANG("obj.9634e188", null)))
+		to_chat(user, span_info(LANG("obj.9634e1888bcd86d6", null)))
 		selected_target = null
 		return
 
-	user.visible_message(span_notice(LANG("obj.b66c65fa", list(user, M))), \
-						span_notice(LANG("obj.d207c201", list(M))))
+	user.visible_message(span_notice(LANG("obj.b66c65fa9138bbcf", list(user, M))), \
+						span_notice(LANG("obj.d207c2010c57a6aa", list(M))))
 	selected_target = M
 	return
 
 /obj/item/scanner_wand/attack_self(mob/user)
-	to_chat(user, span_info(LANG("obj.5cda0240", null)))
+	to_chat(user, span_info(LANG("obj.5cda02406a341beb", null)))
 	selected_target = null
 
 /obj/item/scanner_wand/proc/return_patient()

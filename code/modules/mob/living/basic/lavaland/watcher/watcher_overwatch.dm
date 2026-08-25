@@ -46,7 +46,7 @@
 	living_owner.face_atom(target)
 	living_owner.Stun(overwatch_duration, ignore_canstun = TRUE)
 	target.apply_status_effect(/datum/status_effect/overwatch, overwatch_duration, owner, projectile_type, projectile_sound)
-	owner.visible_message(span_warning(LANG("datum.acab1c34", list(owner, target))))
+	owner.visible_message(span_warning(LANG("datum.acab1c34af89b382", list(owner, target))))
 	StartCooldown()
 	return TRUE
 

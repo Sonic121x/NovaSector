@@ -65,6 +65,8 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list( \
 	), \
 
 	new /datum/stack_recipe("runed stone platform", /obj/structure/platform/cult, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("directional runed window", /obj/structure/window/cult/unanchored, time = 0, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("fulltile runed window", /obj/structure/window/cult/fulltile/unanchored, 2, time = 0, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_IS_FULLTILE, category = CAT_WINDOWS), \
 ))
 
 /obj/item/stack/sheet/runed_metal
@@ -87,7 +89,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list( \
 
 /obj/item/stack/sheet/runed_metal/interact(mob/user)
 	if(!IS_CULTIST(user))
-		to_chat(user, span_warning(LANG("obj.e57292e1", null)))
+		to_chat(user, span_warning(LANG("obj.e57292e18798f67f", null)))
 		return FALSE
 
 	var/turf/user_turf = get_turf(user)
@@ -97,7 +99,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list( \
 	var/is_valid_area = user_area && (user_area.area_flags & CULT_PERMITTED)
 
 	if(!is_valid_turf || !is_valid_area)
-		to_chat(user, span_warning(LANG("obj.44b6eb55", null)))
+		to_chat(user, span_warning(LANG("obj.44b6eb55a6cd519e", null)))
 		return FALSE
 
 	return ..()

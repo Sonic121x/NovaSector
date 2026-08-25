@@ -27,7 +27,7 @@
 	return ..()
 
 /obj/item/tourniquet/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.c5e90941", list(user, src, p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.c5e9094146d6954d", list(user, src, p_their(), user.p_theyre()))))
 	if(!do_after(user, 5 SECONDS, user))
 		return SHAME
 	var/obj/item/bodypart/head = user.get_bodypart(BODY_ZONE_HEAD)
@@ -98,8 +98,8 @@
 
 	if(limb.body_zone == BODY_ZONE_HEAD)
 		user.visible_message(
-			span_warning(LANG("obj.8fe7aa06", list(user, src, user == patient ? p_their() : "[patient]'s"))),
-			span_userdanger(LANG("obj.d14d994b", list(src, user == patient ? "your" : "[patient]'s"))),
+			span_warning(LANG("obj.8fe7aa067ce13492", list(user, src, user == patient ? p_their() : "[patient]'s"))),
+			span_userdanger(LANG("obj.d14d994b293ed953", list(src, user == patient ? "your" : "[patient]'s"))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			ignored_mobs = patient,
 		)
@@ -112,8 +112,8 @@
 
 	else if(speed_boosted)
 		user.visible_message(
-			span_notice(LANG("obj.d62df602", list(user, src, user == patient ? p_their() : "[patient]'s", limb.plaintext_zone))),
-			span_notice(LANG("obj.8781c6f9", list(src, user == patient ? "your" : "[patient]'s", limb.plaintext_zone))),
+			span_notice(LANG("obj.d62df60221513c34", list(user, src, user == patient ? p_their() : "[patient]'s", limb.plaintext_zone))),
+			span_notice(LANG("obj.8781c6f9f94049e9", list(src, user == patient ? "your" : "[patient]'s", limb.plaintext_zone))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			ignored_mobs = patient,
 		)
@@ -126,8 +126,8 @@
 
 	else
 		user.visible_message(
-			span_warning(LANG("obj.66e1656a", list(user, src, user == patient ? p_their() : "[patient]'s", limb.plaintext_zone))),
-			span_warning(LANG("obj.9f7afe85", list(src, user == patient ? "your" : "[patient]'s", limb.plaintext_zone))),
+			span_warning(LANG("obj.66e1656aa2c3b93a", list(user, src, user == patient ? p_their() : "[patient]'s", limb.plaintext_zone))),
+			span_warning(LANG("obj.9f7afe857efeac1d", list(src, user == patient ? "your" : "[patient]'s", limb.plaintext_zone))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			ignored_mobs = patient,
 		)

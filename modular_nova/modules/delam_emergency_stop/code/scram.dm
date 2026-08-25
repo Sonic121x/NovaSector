@@ -135,12 +135,12 @@
 		investigate_log("Delam SCRAM tried to activate but an admin disabled it", INVESTIGATE_ATMOS)
 		playsound(src, 'sound/machines/compiler/compiler-failure.ogg', 100, FALSE, MACHINE_SOUND_RANGE, ignore_walls = TRUE, use_reverb = TRUE, falloff_distance = MACHINE_SOUND_FALLOFF_DISTANCE)
 		radio.talk_into(src, LANG("_radio.delam_fault", null), warning_channel) // NOVA EDIT - I18N: talk_into is not a codemod sink
-		audible_message(span_danger(LANG("obj.bb645b94", list(src))))
+		audible_message(span_danger(LANG("obj.bb645b94a7296743", list(src))))
 		return FALSE
 
 	if(world.time - SSticker.round_start_time > 60 MINUTES && trigger_reason != DIVINE_INTERVENTION)
 		playsound(src, 'sound/machines/compiler/compiler-failure.ogg', 100, FALSE, MACHINE_SOUND_RANGE, ignore_walls = TRUE, use_reverb = TRUE, falloff_distance = MACHINE_SOUND_FALLOFF_DISTANCE)
-		audible_message(span_danger(LANG("obj.e7859c36", list(src))))
+		audible_message(span_danger(LANG("obj.e7859c3677638cc1", list(src))))
 		investigate_log("Delam SCRAM signal was received but failed precondition check. (Round time or trigger reason)", INVESTIGATE_ATMOS)
 		return FALSE
 
@@ -151,7 +151,7 @@
 	if(trigger_reason == DIVINE_INTERVENTION)
 		investigate_log("Delam SCRAM was activated by admin intervention", INVESTIGATE_ATMOS)
 		notify_ghosts(
-			LANG("obj.78bac1c4", list(src)),
+			LANG("obj.78bac1c47f43040a", list(src)),
 			source = src,
 			header = "Divine Intervention",
 			ghost_sound = 'sound/machines/warning-buzzer.ogg',
@@ -168,7 +168,7 @@
 		investigate_log("Delam SCRAM was activated by [reason]", INVESTIGATE_ATMOS)
 		// They're probably already deadchat engineering discussing what you did wrong
 		notify_ghosts(
-			LANG("obj.78bac1c4", list(src)),
+			LANG("obj.78bac1c47f43040a", list(src)),
 			source = src,
 			header = "Mistakes Were Made",
 			ghost_sound = 'sound/machines/warning-buzzer.ogg',
@@ -221,7 +221,7 @@
 
 /// Shatter the supermatter chamber windows
 /obj/structure/window/reinforced/plasma/proc/shatter_window()
-	visible_message(span_danger(LANG("obj.d3a1e337", list(src))))
+	visible_message(span_danger(LANG("obj.d3a1e337ee0b8cc6", list(src))))
 	explosion(src, SHATTER_DEVASTATION_RANGE, SHATTER_HEAVY_RANGE, SHATTER_LIGHT_RANGE, SHATTER_FLAME_RANGE, SHATTER_FLASH_RANGE)
 	qdel(src)
 
@@ -230,7 +230,7 @@
 
 	// good job buddy, sacrificing yourself for the greater good
 	playsound(src, 'sound/machines/compiler/compiler-failure.ogg', 100, FALSE, MACHINE_SOUND_RANGE, ignore_walls = TRUE, use_reverb = TRUE, falloff_distance = MACHINE_SOUND_FALLOFF_DISTANCE)
-	visible_message(span_danger(LANG("obj.57e2ff49", list(src))), blind_message = span_danger(LANG("obj.916500b8", list(src))))
+	visible_message(span_danger(LANG("obj.57e2ff497edb7e7f", list(src))), blind_message = span_danger(LANG("obj.916500b81a9e9922", list(src))))
 	deconstruct(FALSE)
 
 /// Drain the internal energy, if the crystal damage is above 100 we heal it a bit. Not much, but should be good to let them recover.
@@ -303,12 +303,12 @@
 		return
 
 	if(!COOLDOWN_FINISHED(src, scram_button))
-		balloon_alert(user, LANG("obj.d4ae5d4d", null))
+		balloon_alert(user, LANG("obj.d4ae5d4dded19efe", null))
 		return
 
 	if(!validate_suppression_status())
 		playsound(src.loc, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE, BUTTON_SOUND_RANGE, falloff_distance = BUTTON_SOUND_FALLOFF_DISTANCE)
-		audible_message(span_danger(LANG("obj.a654238b", list(src)))) // Look through the window, buddy
+		audible_message(span_danger(LANG("obj.a654238bb3c62019", list(src)))) // Look through the window, buddy
 		burn_out()
 		return
 
@@ -317,7 +317,7 @@
 
 	// Give them a cheeky instructions card. But only one! If you lost it, question your engineering prowess in this moment
 	if(button_stage == BUTTON_IDLE)
-		visible_message(span_danger(LANG("obj.a48114cc", list(src))))
+		visible_message(span_danger(LANG("obj.a48114cc208413af", list(src))))
 		user.put_in_hands(new /obj/item/paper/paperslip/corporate/fluff/delam_procedure(get_turf(user)))
 		button_stage = BUTTON_AWAKE
 		return
@@ -330,15 +330,15 @@
 	// For roundstart only, after that it's on you!
 	if(world.time - SSticker.round_start_time > 60 MINUTES)
 		playsound(src.loc, 'sound/machines/compiler/compiler-failure.ogg', 50, FALSE, BUTTON_SOUND_RANGE, falloff_distance = BUTTON_SOUND_FALLOFF_DISTANCE)
-		audible_message(span_danger(LANG("obj.13c72738", list(src))))
+		audible_message(span_danger(LANG("obj.13c727380948a9e1", list(src))))
 		burn_out()
 		return
 
 	// You thought you could sneak this one by your coworkers?
 	button_stage = BUTTON_ARMED
 	update_appearance()
-	radio.talk_into(src, "SUPERMATTER EMERGENCY STOP BUTTON ARMED!", RADIO_CHANNEL_ENGINEERING)
-	visible_message(span_danger(LANG("obj.638ae7b3", list(user, src))))
+	radio.talk_into(src, LANG("obj.c32017683b448279", null), RADIO_CHANNEL_ENGINEERING)
+	visible_message(span_danger(LANG("obj.638ae7b305d8875c", list(user, src))))
 
 	// Let the admins know someone's fucked up
 	message_admins("[ADMIN_LOOKUPFLW(user)] just uncovered [src].")
@@ -348,16 +348,16 @@
 
 /// Confirms with the user that they really want to push the red button. Do it, you won't!
 /obj/machinery/button/delam_scram/proc/confirm_action(mob/user, list/modifiers)
-	if(tgui_alert(usr, LANG("obj.0f8ce3b0", null), LANG("obj.b95a483c", null), list("No", "Yes")) != "Yes")
+	if(tgui_alert(usr, LANG("obj.0f8ce3b0a9685c2f", null), LANG("obj.b95a483c95136a85", null), list("No", "Yes")) != "Yes")
 		button_stage = BUTTON_AWAKE
-		visible_message(span_danger(LANG("obj.6d296c39", list(user, src))))
+		visible_message(span_danger(LANG("obj.6d296c39d2047e27", list(user, src))))
 		update_appearance()
 		return
 
 	// Make scary sound and flashing light
 	playsound(src, 'sound/machines/high_tech_confirm.ogg', 50, FALSE, BUTTON_SOUND_RANGE, ignore_walls = TRUE, use_reverb = TRUE, falloff_distance = BUTTON_SOUND_FALLOFF_DISTANCE)
 	button_stage = BUTTON_PUSHED
-	visible_message(span_danger(LANG("obj.3160e1ea", list(user, src))))
+	visible_message(span_danger(LANG("obj.3160e1ea484ec470", list(user, src))))
 	message_admins("[ADMIN_LOOKUPFLW(user)] pushed [src]!")
 	investigate_log("[key_name(user)] pushed [src]!", INVESTIGATE_ATMOS)
 	flick_overlay_view("[base_icon_state]-overlay-active", 20 SECONDS)
@@ -405,7 +405,7 @@
 
 /obj/item/paper/paperslip/corporate/fluff/delam_procedure/Initialize(mapload)
 	name = "NT-approved delam emergency procedure"
-	desc = LANG("obj.60b9a6b0", null)
+	desc = LANG("obj.60b9a6b052c55051", null)
 	return ..()
 
 /obj/item/paper/paperslip/corporate/fluff/delam_procedure/examine(mob/user)

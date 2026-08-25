@@ -259,15 +259,15 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/immune = HAS_MIND_TRAIT(user, TRAIT_MADNESS_IMMUNE)
 	if(isliving(user))
 		if (!immune && (get_dist(user, src) < SM_HALLUCINATION_RANGE(internal_energy)))
-			. += span_danger(LANG("obj.a690335f", null))
+			. += span_danger(LANG("obj.a690335f5530323d", null))
 		var/mob/living/living_user = user
 		if (HAS_TRAIT(user, TRAIT_REMOTE_TASTING))
-			to_chat(user, span_warning(LANG("obj.9827230b", null)))
+			to_chat(user, span_warning(LANG("obj.9827230ba1a2c056", null)))
 			living_user.electrocute_act(shock_damage = 15, source = src, flags = SHOCK_KNOCKDOWN | SHOCK_NOGLOVES)
-			. += span_notice(LANG("obj.703e1c66", null))
+			. += span_notice(LANG("obj.703e1c661710309b", null))
 
 	if(holiday_lights)
-		. += span_notice(LANG("obj.8cb9d5ae", null))
+		. += span_notice(LANG("obj.8cb9d5aee761354b", null))
 
 	. += delamination_strategy.examine(src)
 	return .
@@ -283,7 +283,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(isclosedturf(local_turf))
 		var/turf/did_it_melt = local_turf.Melt()
 		if(!isclosedturf(did_it_melt)) //In case some joker finds way to place these on indestructible walls
-			visible_message(span_warning(LANG("obj.9b4dc387", list(src, local_turf))))
+			visible_message(span_warning(LANG("obj.9b4dc387dd7d6252", list(src, local_turf))))
 		return
 
 	// PART 2: GAS PROCESSING
@@ -571,7 +571,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(is_main_engine) // NOVA EDIT ADDITION - DELAM_SCRAM
 		SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, final_countdown) // NOVA EDIT ADDITION - DELAM_SCRAM
 	notify_ghosts(
-		LANG("obj.9bd96828", list(src)),
+		LANG("obj.9bd96828a0ae40bd", list(src)),
 		source = src,
 		header = "Meltdown Incoming",
 	)
@@ -591,8 +591,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		delamination_countdown_time = SUPERMATTER_SLIVER_REMOVED_COUNTDOWN_TIME
 		radio.talk_into(
 			src,
-			"WARNING: Projected time until full crystal delamination significantly lower than expected. \
-			Please inspect crystal for structural abnormalities or sabotage!",
+			LANG("obj.7ed40d5ddd1c052b", null),
 			emergency_channel,
 			list(SPAN_COMMAND)
 			)
@@ -1101,7 +1100,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /// Adds the hat flavor text when examined
 /obj/machinery/power/supermatter_crystal/proc/holiday_hat_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_info(LANG("obj.cbe9f65d", null))
+	examine_list += span_info(LANG("obj.cbe9f65df7a2a5da", null))
 
 // Warp Effect //
 

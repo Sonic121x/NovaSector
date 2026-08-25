@@ -6,16 +6,16 @@ ADMIN_VERB(makepAI, R_FUN, "制作 pAI", "Specify a location to spawn a pAI devi
 	for(var/mob/player as anything in GLOB.player_list)
 		if(player.client && player.key)
 			available.Add(player)
-	var/mob/choice = tgui_input_list(user, LANG("datum.9693a445", null), LANG("datum.39711a9b", null), sort_names(available))
+	var/mob/choice = tgui_input_list(user, LANG("datum.9693a4456e9d57f8", null), LANG("datum.39711a9b64d4633d", null), sort_names(available))
 	if(isnull(choice))
 		return
 
-	var/chosen_name = input(choice, LANG("datum.cbd93c97", null), LANG("datum.cbfd823f", null), "Personal AI") as text|null
+	var/chosen_name = input(choice, LANG("datum.cbd93c9765cdc562", null), LANG("datum.cbfd823fed7fad9f", null), "Personal AI") as text|null
 	if (isnull(chosen_name))
 		return
 
 	if(!isobserver(choice))
-		var/confirm = tgui_alert(user, LANG("datum.ae34e922", list(choice.key)), LANG("datum.a84188a3", null), list("Yes", "No"))
+		var/confirm = tgui_alert(user, LANG("datum.ae34e9220706dcb7", list(choice.key)), LANG("datum.a84188a35ea9ba0a", null), list("Yes", "No"))
 		if(confirm != "Yes")
 			return
 	var/obj/item/pai_card/card = new(target)

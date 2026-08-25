@@ -25,7 +25,7 @@
 
 	if(!length(key_emotes))
 		if(intentional && !force_silence)
-			to_chat(src, span_notice(LANG("mob.264e137f", list(act))))
+			to_chat(src, span_notice(LANG("mob.264e137fab6e3751", list(act))))
 		return FALSE
 	var/silenced = FALSE
 	for(var/datum/emote/emote in key_emotes)
@@ -44,7 +44,7 @@
 		SEND_SIGNAL(src, COMSIG_MOB_EMOTED(emote.key))
 		return TRUE
 	if(intentional && !silenced && !force_silence)
-		to_chat(src, span_notice(LANG("mob.e7eda12b", list(act))))
+		to_chat(src, span_notice(LANG("mob.e7eda12bf560053a", list(act))))
 	return FALSE
 
 /datum/emote/help
@@ -107,15 +107,15 @@
 		if(prob(fall_over_prob))
 			flippy_mcgee.Knockdown(1 SECONDS)
 			flippy_mcgee.visible_message(
-				span_notice(LANG("datum.b5bb2363", list(flippy_mcgee))),
-				span_notice(LANG("datum.4c981e64", null))
+				span_notice(LANG("datum.b5bb2363b32f34fa", list(flippy_mcgee))),
+				span_notice(LANG("datum.4c981e649fc800be", null))
 			)
 			if(prob(fall_over_prob/2))
 				flippy_mcgee.adjust_brute_loss(1)
 		else
 			flippy_mcgee.visible_message(
-				span_notice(LANG("datum.93cd805e", list(flippy_mcgee))),
-				span_notice(LANG("datum.c49a9370", null))
+				span_notice(LANG("datum.93cd805ed28f16d4", list(flippy_mcgee))),
+				span_notice(LANG("datum.c49a937072a2d9af", null))
 			)
 
 /datum/emote/flip/backflip
@@ -149,7 +149,7 @@
 		return
 
 	if(prob(BEYBLADE_DIZZINESS_PROBABILITY))
-		to_chat(user, span_warning(LANG("datum.884abfdf", null)))
+		to_chat(user, span_warning(LANG("datum.884abfdf59f34f4a", null)))
 		user.set_dizzy_if_lower(BEYBLADE_DIZZINESS_DURATION)
 		user.adjust_confusion_up_to(BEYBLADE_CONFUSION_INCREMENT, BEYBLADE_CONFUSION_LIMIT)
 

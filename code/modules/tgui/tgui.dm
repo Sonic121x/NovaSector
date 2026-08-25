@@ -287,6 +287,10 @@
 		),
 		// NOVA EDIT ADDITION START - i18n - 注入全服界面语言供 TGUI 本地化 (config.locale)
 		"locale" = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE,
+		// 前端漏翻采集开关。**TGUI 是 DM 侧完全看不见的一面**：静态 JSX 文本、prop、children 模板
+		// 都在浏览器里查表，查不到就原样显示，服务端无从知晓。开关打开时 TS 把 miss 攒批经
+		// `i18n/miss` 消息回传（见 on_message），汇进同一份 i18n_misses.log。
+		"i18nLogMisses" = GLOB.i18n_log_misses,
 		// NOVA EDIT ADDITION END
 	)
 	var/data = custom_data || with_data && src_object.ui_data(user)
@@ -296,13 +300,19 @@
 	var/static_data = with_static_data && src_object.ui_static_data(user)
 	if(static_data)
 		json_data["static_data"] = static_data
-	// NOVA EDIT ADDITION START - i18n - 全服中文时把 ui_data/ui_static_data 里的多词字符串反查为译文
-	// （非 atom datum 的 name/desc/说明等动态内容；只反查含空白的多词串，避免单词碰撞）。
+	// NOVA EDIT ADDITION START - i18n - 全服中文时本地化 ui_data/ui_static_data 里的多词字符串。
+	// **默认不动数据**：只把「英文 → 译文」记进 overlay 随负载下发，由 TS 在渲染期查表显示，于是
+	// 回传值与服务端持有的字符串逐字节相同 —— 「显示文本被当标识符回传」那一整类静默故障（点了
+	// 没反应、无报错）在结构上不可能发生。只有 policy.json 的 payload_prose_keys（证明不可能是
+	// 标识符的长散文）仍就地改写，因为那类常被渲染在 auto-localize 够不到的位置。
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
+		var/list/i18n_overlay = list()
 		if(islist(json_data["data"]))
-			lang_reverse_tree(json_data["data"])
+			lang_reverse_tree(json_data["data"], null, i18n_overlay)
 		if(islist(json_data["static_data"]))
-			lang_reverse_tree(json_data["static_data"])
+			lang_reverse_tree(json_data["static_data"], null, i18n_overlay)
+		if(length(i18n_overlay))
+			json_data["i18n"] = i18n_overlay
 	// NOVA EDIT ADDITION END
 	if(src_object.tgui_shared_states)
 		json_data["shared"] = src_object.tgui_shared_states
@@ -381,6 +391,18 @@
 		if("log")
 			if(href_list["fatal"])
 				close(can_be_suspended = FALSE)
+		// NOVA EDIT ADDITION START - i18n - 前端漏翻回传（config.i18nLogMisses 为真时 TS 才发）。
+		if("i18n/miss")
+			if(!GLOB.i18n_log_misses)
+				return
+			var/list/entries = payload?["misses"]
+			if(!islist(entries))
+				return
+			for(var/entry in entries)
+				if(istext(entry))
+					lang_log_miss_value(entry, "tgui-ui", "[src_object?.type]")
+			return
+		// NOVA EDIT ADDITION END
 		if("setSharedState")
 			if(status != UI_INTERACTIVE)
 				return

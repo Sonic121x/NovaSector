@@ -157,7 +157,7 @@
 	malf_ai.set_syndie_radio()
 	malf_ai.try_sync_laws()
 
-	to_chat(malf_ai, LANG("datum.29e4eb3b", null))
+	to_chat(malf_ai, LANG("datum.29e4eb3bf183aced", null))
 
 	if(malf_ai.malf_picker)
 		return
@@ -266,7 +266,7 @@
 	malf_ai.laws.protected_zeroth = TRUE
 
 	malf_ai.set_syndie_radio()
-	to_chat(malf_ai, LANG("datum.29e4eb3b", null))
+	to_chat(malf_ai, LANG("datum.29e4eb3bf183aced", null))
 
 	malf_ai.add_malf_picker()
 

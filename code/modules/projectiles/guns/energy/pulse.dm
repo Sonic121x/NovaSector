@@ -30,7 +30,7 @@
 	log_game("A pulse rifle prize has been created at [AREACOORD(T)]")
 
 	notify_ghosts(
-		LANG("obj.09353cfe", null),
+		LANG("obj.09353cfee2f7cbce", null),
 		source = src,
 		header = "Pulse rifle prize",
 	)
@@ -72,7 +72,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/pulse)
 
 /obj/item/gun/energy/pulse/destroyer/attack_self(mob/living/user)
-	to_chat(user, span_danger(LANG("obj.59dda4d3", list(src.name))))
+	to_chat(user, span_danger(LANG("obj.59dda4d36a0441ec", list(src.name))))
 
 /obj/item/gun/energy/pulse/pistol
 	name = "pulse pistol"

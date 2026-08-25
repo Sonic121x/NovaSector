@@ -37,7 +37,7 @@
 
 // Organ actions - mirrored to xeno parasites
 /obj/item/organ/body_egg/spideregg_infection/on_find(mob/living/finder)
-	to_chat(finder, span_warning(LANG("obj.468ca7a6", list(owner, zone))))
+	to_chat(finder, span_warning(LANG("obj.468ca7a6151d6a33", list(owner, zone))))
 
 /obj/item/organ/body_egg/spideregg_infection/Initialize(mapload)
 	. = ..()
@@ -92,7 +92,7 @@
 
 // activate the spoods!
 /obj/item/organ/body_egg/spideregg_infection/activate()
-	to_chat(owner, span_warning(LANG("obj.a7745b15", null)))
+	to_chat(owner, span_warning(LANG("obj.a7745b151f6acbfe", null)))
 	var/mob/living/basic/spider/growing/spiderling/spider = new(owner.drop_location())
 	spider.directive = "Flee from [owner.real_name]'s nest. Kill anything in the way."
 

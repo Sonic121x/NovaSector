@@ -28,7 +28,7 @@
 	var/area/area = get_area(src)
 	if(area)
 		notify_ghosts(
-			LANG("obj.29f7c73a", list(area.name)),
+			LANG("obj.29f7c73a9c0434e7", list(area.name)),
 			source = src,
 			header = "Drone Shell Created",
 			click_interact = TRUE,
@@ -54,6 +54,6 @@
 		var/minutes_left = required_playtime - current_playtime
 		var/playtime_left = DisplayTimeText(minutes_left * (1 MINUTES))
 		if(!silent)
-			to_chat(user, span_danger(LANG("obj.367c6ce5", list(playtime_left, required_role))))
+			to_chat(user, span_danger(LANG("obj.367c6ce554285b00", list(playtime_left, required_role))))
 		return FALSE
 	return ..()

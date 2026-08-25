@@ -17,10 +17,10 @@ ADMIN_VERB(air_status, R_DEBUG, "所在位置空气状态", "Gets the air status
 ADMIN_VERB(cmd_admin_robotize, R_FUN, "制造赛博格", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(user, LANG("datum.f838a6c3", null))
+		tgui_alert(user, LANG("datum.f838a6c3d290ac75", null))
 		return
 	if(issilicon(target))
-		tgui_alert(user, LANG("datum.bef9f2e8", null))
+		tgui_alert(user, LANG("datum.bef9f2e833bff145", null))
 		return
 	log_admin("[key_name(user)] has robotized [target.key].")
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, Robotize))
@@ -33,7 +33,7 @@ ADMIN_VERB(cmd_admin_robotize, R_FUN, "制造赛博格", ADMIN_VERB_NO_DESCRIPTI
 	if(!length(types))
 		return
 
-	var/key = input(usr, LANG("client.794af202", null), LANG("client.00117a7e", null)) as null|anything in sort_list(types)
+	var/key = input(usr, LANG("client.794af202d8e0f4ea", null), LANG("client.00117a7eb4ffb8ba", null)) as null|anything in sort_list(types)
 
 	if(!key)
 		return
@@ -80,16 +80,16 @@ ADMIN_VERB(cmd_del_all_hard, R_DEBUG|R_SPAWN, "硬删除全部", "Hard delete al
 	if(!type_to_del)
 		return
 
-	var/choice = alert(user, LANG("datum.010bcc1f", null), LANG("datum.9ee05007", null), "Yes", "No")
+	var/choice = alert(user, LANG("datum.010bcc1fee166db1", null), LANG("datum.9ee05007f6d6c1ae", null), "Yes", "No")
 	if(choice != "Yes")
 		return
 
-	choice = alert(user, LANG("datum.9913e52e", null), LANG("datum.23595b48", null), "Yes", "No")
+	choice = alert(user, LANG("datum.9913e52eadd9850a", null), LANG("datum.23595b48f3b337a7", null), "Yes", "No")
 	var/should_pre_qdel = TRUE
 	if(choice == "No")
 		should_pre_qdel = FALSE
 
-	choice = alert(user, LANG("datum.feda24f1", null), LANG("datum.6b18d6f0", null), "Yield", "Ignore the server")
+	choice = alert(user, LANG("datum.feda24f13135f287", null), LANG("datum.6b18d6f064cd5aef", null), "Yield", "Ignore the server")
 	var/should_check_tick = TRUE
 	if(choice == "Ignore the server")
 		should_check_tick = FALSE
@@ -125,7 +125,7 @@ ADMIN_VERB_VISIBILITY(cmd_admin_grantfullaccess, ADMIN_VERB_VISIBLITY_FLAG_MAPPI
 ADMIN_VERB(cmd_admin_grantfullaccess, R_DEBUG, "授予全部权限", "Grant full access to a mob.", ADMIN_CATEGORY_DEBUG)
 	VERB_ARG_TYPED(M, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(user, LANG("datum.f838a6c3", null))
+		tgui_alert(user, LANG("datum.f838a6c3d290ac75", null))
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -159,7 +159,7 @@ ADMIN_VERB(cmd_admin_grantfullaccess, R_DEBUG, "授予全部权限", "Grant full
 			H.equip_to_slot(id, ITEM_SLOT_ID)
 
 	else
-		tgui_alert(user,LANG("datum.0342d1be", null))
+		tgui_alert(user,LANG("datum.0342d1bee0981c1b", null))
 	BLACKBOX_LOG_ADMIN_VERB("Grant Full Access")
 	log_admin("[key_name(user)] has granted [M.key] full access.")
 	message_admins(span_adminnotice("[key_name_admin(user)] has granted [M.key] full access."))
@@ -167,10 +167,10 @@ ADMIN_VERB(cmd_admin_grantfullaccess, R_DEBUG, "授予全部权限", "Grant full
 ADMIN_VERB(cmd_assume_direct_control, R_ADMIN, "直接接管控制", "Assume direct control of a mob.", ADMIN_CATEGORY_DEBUG)
 	VERB_ARG_TYPED(M, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(M.ckey)
-		if(tgui_alert(user,LANG("datum.cc755301", list(M.key, M.key)),,list("Yes","No")) != "Yes")
+		if(tgui_alert(user,LANG("datum.cc7553017f5f1dd6", list(M.key, M.key)),,list("Yes","No")) != "Yes")
 			return
 	if(!M || QDELETED(M))
-		to_chat(user, span_warning(LANG("datum.fee9fdaf", null)))
+		to_chat(user, span_warning(LANG("datum.fee9fdafd24c01c7", null)))
 		return
 	message_admins(span_adminnotice("[key_name_admin(user)] assumed direct control of [M]."))
 	log_admin("[key_name(user)] assumed direct control of [M].")
@@ -190,17 +190,17 @@ ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "授予直接控制", "Give direct 
 	if(!M)
 		return
 	if(M.ckey)
-		if(tgui_alert(user,LANG("datum.eecd032f", list(M.key, M.key)),,list("Yes","No")) != "Yes")
+		if(tgui_alert(user,LANG("datum.eecd032fb7dcbc61", list(M.key, M.key)),,list("Yes","No")) != "Yes")
 			return
-	var/client/newkey = tgui_input_list(user, LANG("datum.eb214719", null), LANG("datum.fdeacb81", null), sort_list(GLOB.clients))
+	var/client/newkey = tgui_input_list(user, LANG("datum.eb21471916a6fe21", null), LANG("datum.fdeacb819b2381c2", null), sort_list(GLOB.clients))
 	if(isnull(newkey))
 		return
 	var/mob/oldmob = newkey.mob
 	var/delmob = FALSE
-	if((isobserver(oldmob) || tgui_alert(user,LANG("datum.ac29935c", list(newkey)),LANG("datum.ec2ba959", null),list("Yes","No")) != "No"))
+	if((isobserver(oldmob) || tgui_alert(user,LANG("datum.ac29935c48f57e15", list(newkey)),LANG("datum.ec2ba959e4867e17", null),list("Yes","No")) != "No"))
 		delmob = TRUE
 	if(!M || QDELETED(M))
-		to_chat(user, span_warning(LANG("datum.ecf8d7a0", null)))
+		to_chat(user, span_warning(LANG("datum.ecf8d7a0a13d1244", null)))
 		return
 	if(M.ckey)
 		M.ghostize(FALSE)
@@ -247,7 +247,7 @@ ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "测试区域", "Tests the areas for var
 	))
 
 	if(SSticker.current_state == GAME_STATE_STARTUP)
-		to_chat(user, LANG("datum.9c2aff87", null), confidential = TRUE)
+		to_chat(user, LANG("datum.9c2aff87fc5d32ce", null), confidential = TRUE)
 		return
 
 	var/log_message
@@ -427,7 +427,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "测试区域（全部）", "Tests t
 		var/datum/outfit/O = path //not much to initalize here but whatever
 		outfits[initial(O.name)] = path
 
-	var/dresscode = tgui_input_list(usr, LANG("client.05436964", null), LANG("client.0287867f", null), baseoutfits + sort_list(outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+	var/dresscode = tgui_input_list(usr, LANG("client.05436964d3c2a6ef", null), LANG("client.0287867f7f10323a", null), baseoutfits + sort_list(outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 	if (isnull(dresscode))
 		return
 
@@ -441,7 +441,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "测试区域（全部）", "Tests t
 			var/datum/outfit/O = path
 			job_outfits[initial(O.name)] = path
 
-		dresscode = tgui_input_list(usr, LANG("client.5d3c14c3", null), LANG("client.0287867f", null), sort_list(job_outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		dresscode = tgui_input_list(usr, LANG("client.5d3c14c3d9fe6fa0", null), LANG("client.0287867f7f10323a", null), sort_list(job_outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -453,7 +453,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "测试区域（全部）", "Tests t
 			var/datum/outfit/O = path
 			plasmaman_outfits[initial(O.name)] = path
 
-		dresscode = tgui_input_list(usr, LANG("client.2d3ee6f2", null), LANG("client.0287867f", null), sort_list(plasmaman_outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		dresscode = tgui_input_list(usr, LANG("client.2d3ee6f2b303e94b", null), LANG("client.0287867f7f10323a", null), sort_list(plasmaman_outfits, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		dresscode = plasmaman_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -462,7 +462,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "测试区域（全部）", "Tests t
 		var/list/custom_names = list()
 		for(var/datum/outfit/D in GLOB.custom_outfits)
 			custom_names[D.name] = D
-		var/selected_name = tgui_input_list(usr, LANG("client.05436964", null), LANG("client.0287867f", null), sort_list(custom_names, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		var/selected_name = tgui_input_list(usr, LANG("client.05436964d3c2a6ef", null), LANG("client.0287867f7f10323a", null), sort_list(custom_names, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		dresscode = custom_names[selected_name]
 		if(isnull(dresscode))
 			return
@@ -472,7 +472,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "测试区域（全部）", "Tests t
 ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN, "复苏", /mob/living)
 	VERB_ARG_TYPED(M, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living)
 	if(!istype(M))
-		tgui_alert(user,LANG("datum.df33f692", null))
+		tgui_alert(user,LANG("datum.df33f69295a47e4c", null))
 		return
 	M.revive(ADMIN_HEAL_ALL)
 
@@ -490,7 +490,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_check_contents, R_ADMIN, "检查内容物", /mo
 	VERB_ARG_TYPED(mob, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living)
 	var/list/mob_contents = mob.get_contents()
 	for(var/content in mob_contents)
-		to_chat(user, "[content] [ADMIN_VV(content)] [ADMIN_TAG(content)]", confidential = TRUE)
+		to_chat(user, LANG("datum.e4bf1a906e486ccb", list(content, ADMIN_VV(content), ADMIN_TAG(content))), confidential = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Check Contents")
 
 ADMIN_VERB(modify_goals, R_ADMIN, "修改目标", "Modify the station goals for the shift.", ADMIN_CATEGORY_DEBUG)
@@ -506,7 +506,7 @@ ADMIN_VERB(modify_goals, R_ADMIN, "修改目标", "Modify the station goals for 
 	browser.open()
 
 ADMIN_VERB(debug_mob_lists, R_DEBUG, "调试生物列表", "For when you just gotta know.", ADMIN_CATEGORY_DEBUG)
-	var/chosen_list = tgui_input_list(user, LANG("datum.4b0a08c9", null), LANG("datum.4212d113", null), list("Players","Admins","Mobs","Living Mobs","Dead Mobs","Clients","Joined Clients"))
+	var/chosen_list = tgui_input_list(user, LANG("datum.4b0a08c933e7e963", null), LANG("datum.4212d11344b8d906", null), list("Players","Admins","Mobs","Living Mobs","Dead Mobs","Clients","Joined Clients"))
 	if(isnull(chosen_list))
 		return
 	switch(chosen_list)
@@ -605,7 +605,7 @@ ADMIN_VERB(jump_to_ruin, R_DEBUG, "跳转到废墟", "Displays a list of all pla
 
 		names[name] = ruin_landmark
 
-	var/ruinname = tgui_input_list(user, LANG("datum.8df54e6e", null), LANG("datum.56815530", null), sort_list(names))
+	var/ruinname = tgui_input_list(user, LANG("datum.8df54e6ed818ad6e", null), LANG("datum.56815530de57dc27", null), sort_list(names))
 	var/obj/effect/landmark/ruin/landmark = names[ruinname]
 	if(!istype(landmark))
 		return
@@ -633,13 +633,13 @@ ADMIN_VERB(place_ruin, R_DEBUG, "生成废墟", "Attempt to randomly place a spe
 			themed_names[name] = list(ruin, theme, list(ruin.default_area))
 		names += sort_list(themed_names)
 
-	var/ruinname = tgui_input_list(user, LANG("datum.8df54e6e", null), LANG("datum.0849f1d2", null), names)
+	var/ruinname = tgui_input_list(user, LANG("datum.8df54e6ed818ad6e", null), LANG("datum.0849f1d2c1344037", null), names)
 	var/data = names[ruinname]
 	if (!data)
 		return
 	var/datum/map_template/ruin/template = data[1]
 	if (exists[template])
-		var/response = tgui_alert(user,LANG("datum.48f9044e", list(template)), LANG("datum.0849f1d2", null), list("Jump", "Place Another"))
+		var/response = tgui_alert(user,LANG("datum.48f9044e9dc042ab", list(template)), LANG("datum.0849f1d2c1344037", null), list("Jump", "Place Another"))
 		if (!response)
 			return
 		if (response == "Jump")
@@ -655,7 +655,7 @@ ADMIN_VERB(place_ruin, R_DEBUG, "生成废墟", "Attempt to randomly place a spe
 		to_chat(user, span_name("[template.name]"), confidential = TRUE)
 		to_chat(user, span_italics("[template.description]"), confidential = TRUE)
 	else
-		to_chat(user, span_warning(LANG("datum.27dc7eef", list(template.name))), confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.27dc7eef277f21b0", list(template.name))), confidential = TRUE)
 
 ADMIN_VERB(unload_ctf, R_DEBUG, "卸载 CTF", "Despawns the majority of CTF.", ADMIN_CATEGORY_DEBUG)
 	toggle_id_ctf(user, CTF_GHOST_CTF_GAME_ID, unload=TRUE)
@@ -686,8 +686,8 @@ ADMIN_VERB(test_pathfinding, R_DEBUG, "切换寻路测试", "Enables/Disables pa
 ADMIN_VERB(clear_turf_reservations, R_DEBUG, "清除动态地块预留", "Deallocates all reserved space, restoring it to round start conditions.", ADMIN_CATEGORY_DEBUG)
 	var/answer = tgui_alert(
 		user,
-		LANG("datum.ef8c440a", null),
-		LANG("datum.9c54956e", null),
+		LANG("datum.ef8c440a2a51d5d8", null),
+		LANG("datum.9c54956ed39a99d9", null),
 		list("YES", "NO"),
 	)
 	if(answer != "YES")
@@ -714,7 +714,7 @@ ADMIN_VERB(view_runtimes, R_DEBUG, "查看运行时错误", "Opens the runtime v
 		if(GLOB.total_runtimes >= 100000)
 			warning = "There are a TON of runtimes, clicking any button (especially \"linear\") WILL LIKELY crash the server"
 		// Not using TGUI alert, because it's view runtimes, stuff is probably broken
-		alert(user, LANG("datum.dea2126e", list(warning)), LANG("datum.98d2c367", null))
+		alert(user, LANG("datum.dea2126eb6f625b8", list(warning)), LANG("datum.98d2c3670308d37f", null))
 
 ADMIN_VERB(pump_random_event, R_DEBUG, "抽取随机事件", "Schedules the event subsystem to fire a new random event immediately. Some events may fire without notification.", ADMIN_CATEGORY_DEBUG)
 	SSevents.scheduled = world.time
@@ -746,14 +746,14 @@ ADMIN_VERB(show_line_profiling, R_DEBUG, "显示行性能分析", "Shows tracked
 		"Total Time" = GLOBAL_PROC_REF(cmp_profile_time_dsc),
 		"Call Count" = GLOBAL_PROC_REF(cmp_profile_count_dsc),
 	)
-	var/sort = input(user, LANG("datum.d1c54494", null), LANG("datum.8a38adfd", null), "Avg time") as null|anything in sortlist
+	var/sort = input(user, LANG("datum.d1c54494e27b6e3e", null), LANG("datum.8a38adfd1a02bc64", null), "Avg time") as null|anything in sortlist
 	if (!sort)
 		return
 	sort = sortlist[sort]
 	profile_show(user, sort)
 
 ADMIN_VERB(reload_configuration, R_DEBUG, "重新加载配置", "Reloads the configuration from the default path on the disk, wiping any in-round modifications.", ADMIN_CATEGORY_DEBUG)
-	if(tgui_alert(user, LANG("datum.b48abfc1", null), LANG("datum.a0c5403c", null), list("No", "Yes")) != "Yes")
+	if(tgui_alert(user, LANG("datum.b48abfc1fd334111", null), LANG("datum.a0c5403cb9847719", null), list("No", "Yes")) != "Yes")
 		return
 	config.admin_reload()
 
@@ -781,13 +781,60 @@ ADMIN_VERB(reestablish_tts_connection, R_DEBUG, "重新连接 TTS", "Re-establis
 		return
 	message_admins("[key_name_admin(user)] successfully re-established the connection to the TTS HTTP server.")
 	log_admin("[key_name(user)] successfully re-established the connection to the TTS HTTP server.")
+// NOVA EDIT ADDITION START - ADMIN - Runtime TTS control.
+/// Globally enables or disables new TTS requests without dropping the backend connection.
+ADMIN_VERB(toggle_tts_runtime, R_ADMIN, "TTS 全局开关", "Enable or disable text-to-speech during the round.", ADMIN_CATEGORY_MAIN)
+	var/currently_enabled = SStts.is_runtime_enabled()
+	var/action = tgui_alert(
+		user,
+		LANG("datum.ca2e901e4e7c37cb", list(currently_enabled ? "开启" : "关闭")),
+		LANG("datum.00491f07a5a9bb18", null),
+		list("开启", "关闭", "取消"),
+	)
+	if(!action || action == "取消")
+		return
+	if(!check_rights_for(user, R_ADMIN))
+		return
+
+	var/enable = action == "开启"
+	if(enable == currently_enabled)
+		to_chat(user, span_notice(LANG("datum.b37838bd6d251551", list(enable ? "开启" : "关闭"))))
+		return
+	if(!SStts.set_admin_enabled(enable))
+		to_chat(user, span_warning(LANG("datum.350130bd55bd510d", null)))
+		message_admins(span_adminnotice("[key_name_admin(user)] failed to enable TTS."))
+		log_admin("[key_name(user)] failed to enable TTS.")
+		return
+
+	var/status = SStts.is_runtime_enabled() ? "enabled" : "disabled"
+	to_chat(user, span_notice(LANG("datum.2a03cbc6a501af40", list(status == "enabled" ? "开启" : "关闭"))))
+	message_admins(span_adminnotice("[key_name_admin(user)] [status] TTS."))
+	log_admin("[key_name(user)] [status] TTS.")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle TTS", capitalize(status)))
+
+/// Plays a real adapter-backed TTS sample directly to the invoking administrator.
+ADMIN_VERB(test_tts_runtime, R_ADMIN, "测试 TTS", "Play a Chinese TTS sample to yourself.", ADMIN_CATEGORY_MAIN)
+	if(!SStts.is_runtime_enabled())
+		to_chat(user, span_warning(LANG("datum.057c961255ff1e39", null)))
+		return
+	if(!length(SStts.available_speakers))
+		to_chat(user, span_warning(LANG("datum.75c0ce6ecc073f68", null)))
+		return
+
+	var/speaker = SStts.available_speakers[1]
+	var/identifier = "[sha1("admin-tts-test-[world.time]-[user.ckey]")].[world.time]"
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user, "你好，空间站。管理员文字转语音测试成功。", null, speaker, "", list(), local = TRUE, identifier = identifier)
+	to_chat(user, span_notice(LANG("datum.84d0f1919bb9ad92", list(speaker))))
+	log_admin("[key_name(user)] tested TTS with voice [speaker].")
+// NOVA EDIT ADDITION END
+
 
 ADMIN_VERB(allow_browser_inspect, R_DEBUG, "允许浏览器检查", "Allow browser debugging via inspect", ADMIN_CATEGORY_DEBUG)
 	if(user.byond_version < 516)
-		to_chat(user, span_warning(LANG("datum.f2915ec6", null)))
+		to_chat(user, span_warning(LANG("datum.f2915ec6465cc369", null)))
 		return
 
-	to_chat(user, span_notice(LANG("datum.2b331da3", null)))
+	to_chat(user, span_notice(LANG("datum.2b331da36cee10d0", null)))
 	winset(user, null, list("browser-options" = "+devtools"))
 
 /proc/generate_timer_source_output(list/datum/timedevent/events)
@@ -848,75 +895,75 @@ ADMIN_VERB(check_missing_sprites, R_DEBUG, "调试已穿戴物品精灵", "We're
 		//Is there an explicit worn_icon to pick against the worn_icon_state? Easy street expected behavior.
 		if(sprite.worn_icon)
 			if(!icon_exists(sprite.worn_icon, sprite.icon_state))
-				to_chat(user, span_warning(LANG("datum.b2c423c5", list(sprite.type, sprite.slot_flags))), confidential = TRUE)
+				to_chat(user, span_warning(LANG("datum.b2c423c52c565925", list(sprite.type, sprite.slot_flags))), confidential = TRUE)
 		else if(sprite.worn_icon_state)
 			if(sprite.slot_flags & ITEM_SLOT_MASK)
 				actual_file_name = 'icons/mob/clothing/mask.dmi'
 				if(!icon_exists(actual_file_name, sprite.worn_icon_state))
-					to_chat(user, span_warning(LANG("datum.41e0e69f", list(sprite.type))), confidential = TRUE)
+					to_chat(user, span_warning(LANG("datum.41e0e69fa0aa4615", list(sprite.type))), confidential = TRUE)
 			if(sprite.slot_flags & ITEM_SLOT_NECK)
 				actual_file_name = 'icons/mob/clothing/neck.dmi'
 				if(!icon_exists(actual_file_name, sprite.worn_icon_state))
-					to_chat(user, span_warning(LANG("datum.ae93a270", list(sprite.type))), confidential = TRUE)
+					to_chat(user, span_warning(LANG("datum.ae93a270f210de7c", list(sprite.type))), confidential = TRUE)
 			if(sprite.slot_flags & ITEM_SLOT_BACK)
 				actual_file_name = 'icons/mob/clothing/back.dmi'
 				if(!icon_exists(actual_file_name, sprite.worn_icon_state))
-					to_chat(user, span_warning(LANG("datum.8b85493a", list(sprite.type))), confidential = TRUE)
+					to_chat(user, span_warning(LANG("datum.8b85493ade194b51", list(sprite.type))), confidential = TRUE)
 			if(sprite.slot_flags & ITEM_SLOT_HEAD)
 				actual_file_name = 'icons/mob/clothing/head/default.dmi'
 				if(!icon_exists(actual_file_name, sprite.worn_icon_state))
-					to_chat(user, span_warning(LANG("datum.2281f1fe", list(sprite.type))), confidential = TRUE)
+					to_chat(user, span_warning(LANG("datum.2281f1feb7ef29b6", list(sprite.type))), confidential = TRUE)
 			if(sprite.slot_flags & ITEM_SLOT_BELT)
 				actual_file_name = 'icons/mob/clothing/belt.dmi'
 				if(!icon_exists(actual_file_name, sprite.worn_icon_state))
-					to_chat(user, span_warning(LANG("datum.47ed69ae", list(sprite.type))), confidential = TRUE)
+					to_chat(user, span_warning(LANG("datum.47ed69aeaca11225", list(sprite.type))), confidential = TRUE)
 			if(sprite.slot_flags & ITEM_SLOT_SUITSTORE)
 				actual_file_name = 'icons/mob/clothing/belt_mirror.dmi'
 				if(!icon_exists(actual_file_name, sprite.worn_icon_state))
-					to_chat(user, span_warning(LANG("datum.e0d9522f", list(sprite.type))), confidential = TRUE)
+					to_chat(user, span_warning(LANG("datum.e0d9522f8758f5b6", list(sprite.type))), confidential = TRUE)
 		else if(sprite.icon_state)
 			if(sprite.slot_flags & ITEM_SLOT_MASK)
 				actual_file_name = 'icons/mob/clothing/mask.dmi'
 				if(!icon_exists(actual_file_name, sprite.icon_state))
-					to_chat(user, span_warning(LANG("datum.41e0e69f", list(sprite.type))), confidential = TRUE)
+					to_chat(user, span_warning(LANG("datum.41e0e69fa0aa4615", list(sprite.type))), confidential = TRUE)
 			if(sprite.slot_flags & ITEM_SLOT_NECK)
 				actual_file_name = 'icons/mob/clothing/neck.dmi'
 				if(!icon_exists(actual_file_name, sprite.icon_state))
-					to_chat(user, span_warning(LANG("datum.ae93a270", list(sprite.type))), confidential = TRUE)
+					to_chat(user, span_warning(LANG("datum.ae93a270f210de7c", list(sprite.type))), confidential = TRUE)
 			if(sprite.slot_flags & ITEM_SLOT_BACK)
 				actual_file_name = 'icons/mob/clothing/back.dmi'
 				if(!icon_exists(actual_file_name, sprite.icon_state))
-					to_chat(user, span_warning(LANG("datum.8b85493a", list(sprite.type))), confidential = TRUE)
+					to_chat(user, span_warning(LANG("datum.8b85493ade194b51", list(sprite.type))), confidential = TRUE)
 			if(sprite.slot_flags & ITEM_SLOT_HEAD)
 				actual_file_name = 'icons/mob/clothing/head/default.dmi'
 				if(!icon_exists(actual_file_name, sprite.icon_state))
-					to_chat(user, span_warning(LANG("datum.2281f1fe", list(sprite.type))), confidential = TRUE)
+					to_chat(user, span_warning(LANG("datum.2281f1feb7ef29b6", list(sprite.type))), confidential = TRUE)
 			if(sprite.slot_flags & ITEM_SLOT_BELT)
 				actual_file_name = 'icons/mob/clothing/belt.dmi'
 				if(!icon_exists(actual_file_name, sprite.icon_state))
-					to_chat(user, span_warning(LANG("datum.47ed69ae", list(sprite.type))), confidential = TRUE)
+					to_chat(user, span_warning(LANG("datum.47ed69aeaca11225", list(sprite.type))), confidential = TRUE)
 			if(sprite.slot_flags & ITEM_SLOT_SUITSTORE)
 				actual_file_name = 'icons/mob/clothing/belt_mirror.dmi'
 				if(!icon_exists(actual_file_name, sprite.icon_state))
-					to_chat(user, span_warning(LANG("datum.e0d9522f", list(sprite.type))), confidential = TRUE)
+					to_chat(user, span_warning(LANG("datum.e0d9522f8758f5b6", list(sprite.type))), confidential = TRUE)
 
 #ifndef OPENDREAM_REAL
 ADMIN_VERB(start_tracy, R_DEBUG, "立即运行 Tracy", "Start running the byond-tracy profiler immediately", ADMIN_CATEGORY_DEBUG)
 	if(Tracy.enabled)
-		to_chat(user, span_warning(LANG("datum.109dc2d5", null)), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.109dc2d553ac2b2f", null)), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
 		return
 	else if(Tracy.error)
-		to_chat(user, span_danger(LANG("datum.dd043f8d", list(Tracy.error))), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+		to_chat(user, span_danger(LANG("datum.dd043f8d84d95c7c", list(Tracy.error))), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
 		return
 	message_admins(span_adminnotice("[key_name_admin(user)] is trying to start the byond-tracy profiler."))
 	log_admin("[key_name(user)] is trying to start the byond-tracy profiler.")
 	if(!Tracy.enable("[user.ckey]"))
 		var/error = Tracy.error || "N/A"
-		to_chat(user, span_danger(LANG("datum.b719a155", list(error))), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+		to_chat(user, span_danger(LANG("datum.b719a15579e05a9e", list(error))), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
 		message_admins(span_adminnotice("[key_name_admin(user)] tried to start the byond-tracy profiler, but it failed to initialize ([error])"))
 		log_admin("[key_name(user)] tried to start the byond-tracy profiler, but it failed to initialize ([error])")
 		return
-	to_chat(user, span_notice(LANG("datum.8df7fb52", null)), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+	to_chat(user, span_notice(LANG("datum.8df7fb5209fa4d8f", null)), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
 	message_admins(span_adminnotice("[key_name_admin(user)] started the byond-tracy profiler."))
 	log_admin("[key_name(user)] started the byond-tracy profiler.")
 	if(Tracy.trace_path)
@@ -1009,11 +1056,11 @@ ADMIN_VERB(show_powernets, R_DEBUG, "为电网线路上色", "Colors every node 
 			marker.powernet_owner = REF(net)
 
 ADMIN_VERB(count_instances, R_DEBUG, "统计原子/数据体", "Count how many atom or datum instances there are of each type, then output it to a JSON to download.", ADMIN_CATEGORY_DEBUG)
-	var/option = tgui_alert(user, LANG("datum.0e991529", null), LANG("datum.b7b8d5c4", null), list("Atoms", "Datums"))
+	var/option = tgui_alert(user, LANG("datum.0e991529f5521a68", null), LANG("datum.b7b8d5c49a9bb002", null), list("Atoms", "Datums"))
 	if(!option)
 		return
 	var/list/result
-	to_chat(user, span_notice(LANG("datum.e96235c9", list(option))), type = MESSAGE_TYPE_DEBUG)
+	to_chat(user, span_notice(LANG("datum.e96235c982990653", list(option))), type = MESSAGE_TYPE_DEBUG)
 	switch(option)
 		if("Atoms")
 			result = count_atoms()
@@ -1021,7 +1068,7 @@ ADMIN_VERB(count_instances, R_DEBUG, "统计原子/数据体", "Count how many a
 			result = count_datums()
 
 	if(result)
-		to_chat(user, span_adminnotice(LANG("datum.1a7725e9", list(length(result)))), type = MESSAGE_TYPE_DEBUG)
+		to_chat(user, span_adminnotice(LANG("datum.1a7725e983103df9", list(length(result)))), type = MESSAGE_TYPE_DEBUG)
 		var/tmp_path = "tmp/instance_count_[user.ckey].json"
 		fdel(tmp_path)
 		rustg_file_write(json_encode(result, JSON_PRETTY_PRINT), tmp_path)
@@ -1054,16 +1101,16 @@ ADMIN_VERB(count_instances, R_DEBUG, "统计原子/数据体", "Count how many a
 ADMIN_VERB_VISIBILITY(export_save_to_dev_preference, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
 ADMIN_VERB(export_save_to_dev_preference, R_DEBUG, "将存档导出为开发者偏好设置", "Exports your savefile to be used by any guests that connect to your localost.", ADMIN_CATEGORY_SERVER)
 	if(!user.is_localhost())
-		tgui_alert(user, LANG("datum.03700606", null), LANG("datum.08903686", null), list("OK"))
+		tgui_alert(user, LANG("datum.03700606a1d64cbd", null), LANG("datum.089036860ba76218", null), list("OK"))
 		log_admin("[key_name(user)] attempted to export preferences to [DEV_PREFS_PATH] - this is normally locked to localhost only!")
 		stack_trace("Export Save as Dev Preferences was called by a non-localhost user!")
 		return
 	if(is_guest_key(user.key))
-		tgui_alert(user, LANG("datum.c457cc05", null), LANG("datum.08903686", null), list("OK"))
+		tgui_alert(user, LANG("datum.c457cc0510b00cc5", null), LANG("datum.089036860ba76218", null), list("OK"))
 		return
 	var/datum/preferences/user_prefs = user.prefs
 	var/datum/json_savefile/dev_save = new(DEV_PREFS_PATH)
 	user_prefs.save_preferences()
 	user_prefs.savefile.copy_to_savefile(dev_save)
 	dev_save.save()
-	tgui_alert(user, LANG("datum.59d2fe22", list(DEV_PREFS_PATH)), LANG("datum.072ec1dc", null), list("OK thanks"))
+	tgui_alert(user, LANG("datum.59d2fe22d6005185", list(DEV_PREFS_PATH)), LANG("datum.072ec1dc73b920ff", null), list("OK thanks"))

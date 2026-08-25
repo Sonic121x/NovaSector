@@ -50,12 +50,12 @@
 	. = ..()
 
 	if(uses)
-		. += span_notice(LANG("obj.9ae8a28d", list(uses)))
+		. += span_notice(LANG("obj.9ae8a28da183e1f1", list(uses)))
 	else
-		. += span_notice(LANG("obj.8e9d619b", null))
+		. += span_notice(LANG("obj.8e9d619bedff2e61", null))
 
 	if(isprimitivedemihuman(user) || isobserver(user))
-		. += span_notice(LANG("obj.e0861086", null))
+		. += span_notice(LANG("obj.e08610866072a4d2", null))
 
 	return .
 
@@ -105,7 +105,7 @@
 	if(!(user.ckey in team.players_spawned)) // One spawn per person
 		return TRUE
 	if(!silent)
-		to_chat(user, span_warning(LANG("obj.3adad72e", null)))
+		to_chat(user, span_warning(LANG("obj.3adad72eb1406588", null)))
 	return FALSE
 
 
@@ -133,47 +133,47 @@
 		return
 
 	if(target.stat == DEAD)
-		to_chat(user, span_danger(LANG("obj.fe0345fb", null)))
+		to_chat(user, span_danger(LANG("obj.fe0345fb6a514241", null)))
 		return
 
 	if(target.ckey && target != user)
 		if(!target.get_organ_by_type(/obj/item/organ/brain) || (target.mind && !target.ssd_indicator))
-			to_chat(user, span_danger(LANG("obj.cdb6921c", null)))
+			to_chat(user, span_danger(LANG("obj.cdb6921cef26bed7", null)))
 			return
 
 		if(target.lastclienttime + ssd_time >= world.time)
-			to_chat(user, span_userdanger(LANG("obj.1c34ad73", list(target, src, round(((ssd_time - (world.time - target.lastclienttime)) / (1 MINUTES)), 1)))))
+			to_chat(user, span_userdanger(LANG("obj.1c34ad730a77c854", list(target, src, round(((ssd_time - (world.time - target.lastclienttime)) / (1 MINUTES)), 1)))))
 			log_admin("[key_name(user)] has attempted to put [key_name(target)] back into [src], but they were only disconnected for [round(((world.time - target.lastclienttime) / (1 MINUTES)), 1)] minutes.")
 			message_admins("[key_name(user)] has attempted to put [key_name(target)] back into [src]. [ADMIN_JMP(src)]")
 			return
 
-		else if(tgui_alert(user, LANG("obj.4de87da9", list(target, src)), LANG("obj.ce673bcd", null), list("Yes", "No")) == "Yes")
+		else if(tgui_alert(user, LANG("obj.4de87da9c33db199", list(target, src)), LANG("obj.ce673bcd36a25df7", null), list("Yes", "No")) == "Yes")
 
-			visible_message(span_infoplain(LANG("obj.2462b77d", list(user, target, src))))
+			visible_message(span_infoplain(LANG("obj.2462b77df720f242", list(user, target, src))))
 
 			if(!do_after(user, 3 SECONDS, target))
-				balloon_alert(user, LANG("obj.0765bfde", null))
+				balloon_alert(user, LANG("obj.0765bfde62890817", null))
 				return
 
-			to_chat(user, span_danger(LANG("obj.6635fb59", list(target, src))))
+			to_chat(user, span_danger(LANG("obj.6635fb59f38784e0", list(target, src))))
 			log_admin("[key_name(user)] has put [key_name(target)] back into [src].")
 			message_admins("[key_name(user)] has put [key_name(target)] back into [src]. [ADMIN_JMP(src)]")
 
 	if(target == user)
-		if(tgui_alert(target, LANG("obj.641d1330", null), LANG("obj.c8f6a36c", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(target, LANG("obj.641d133059e76fda", null), LANG("obj.c8f6a36cd26bc1e7", null), list("Yes", "No")) != "Yes")
 			return
 
-		visible_message(span_infoplain(LANG("obj.d1cc4edc", list(user, src))))
+		visible_message(span_infoplain(LANG("obj.d1cc4edc4048f619", list(user, src))))
 
 		if(!do_after(user, 3 SECONDS, target))
-			balloon_alert(user, LANG("obj.0765bfde", null))
+			balloon_alert(user, LANG("obj.0765bfde62890817", null))
 			return
 
 	if(LAZYLEN(target.buckled_mobs) > 0)
 		if(target == user)
-			to_chat(user, span_danger(LANG("obj.23870eb4", list(src))))
+			to_chat(user, span_danger(LANG("obj.23870eb4233ef6b7", list(src))))
 		else
-			to_chat(user, span_danger(LANG("obj.86bf64e2", list(target, src))))
+			to_chat(user, span_danger(LANG("obj.86bf64e26b1cdae7", list(target, src))))
 
 		return
 
@@ -182,9 +182,9 @@
 		return
 
 	if(target == user)
-		visible_message(span_infoplain(LANG("obj.e45d2fe9", list(user, src))))
+		visible_message(span_infoplain(LANG("obj.e45d2fe9a169e5e8", list(user, src))))
 	else
-		visible_message(span_infoplain(LANG("obj.cc53e273", list(user, target, src))))
+		visible_message(span_infoplain(LANG("obj.cc53e2731ad75c06", list(user, target, src))))
 
 	log_admin("[key_name(target)] returned to [src].")
 	message_admins("[key_name_admin(target)] returned to [src]. [ADMIN_JMP(src)]")
@@ -265,9 +265,9 @@
 /datum/team/primitive_catgirls/roundend_report()
 	var/list/report = list()
 
-	report += span_header(LANG("datum.8c133ae7", null))
+	report += span_header(LANG("datum.8c133ae76fabe2ee", null))
 	if(length(members))
-		report += LANG("datum.f3efa5d0", list(member_name))
+		report += LANG("datum.f3efa5d0d94b8c26", list(member_name))
 		report += printplayerlist(members)
 	else
 		report += "<b>But none of its members woke up!</b>"

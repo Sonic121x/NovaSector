@@ -46,7 +46,7 @@
 	if(user.mind && (user.mind in immune_minds))
 		return
 	if(get_dist(user, src) <= 1)
-		. += span_notice(LANG("obj.5fad32d6", list(src)))
+		. += span_notice(LANG("obj.5fad32d6c63eea6a", list(src)))
 		flare()
 
 /obj/structure/trap/proc/flare()
@@ -163,13 +163,13 @@
 /obj/item/bountytrap/proc/announce_fugitive()
 	spark_system.start()
 	playsound(src, 'sound/machines/ding.ogg', 50, TRUE)
-	radio.talk_into(src, "Fugitive has triggered this trap in the [get_area_name(src)]!", RADIO_CHANNEL_COMMON)
+	radio.talk_into(src, LANG("obj.b92cec94f6446204", list(get_area_name(src))), RADIO_CHANNEL_COMMON)
 
 /obj/item/bountytrap/attack_self(mob/living/user)
 	var/turf/target_turf = get_turf(src)
 	if(!user || !user.transferItemToLoc(src, target_turf))//visibly unequips
 		return
-	to_chat(user, span_notice(LANG("obj.83489202", list(src))))
+	to_chat(user, span_notice(LANG("obj.834892029dc4e8eb", list(src))))
 	stored_trap.forceMove(target_turf)//moves trap to ground
 	forceMove(stored_trap)//moves item into trap
 
@@ -187,7 +187,7 @@
 	icon_state = "trap-fire"
 
 /obj/structure/trap/fire/trap_effect(mob/living/victim)
-	to_chat(victim, span_danger(LANG("obj.ce2413c6", null)))
+	to_chat(victim, span_danger(LANG("obj.ce2413c6d5f292c2", null)))
 	victim.Paralyze(2 SECONDS)
 	new /obj/effect/hotspot(get_turf(src))
 
@@ -199,7 +199,7 @@
 /obj/structure/trap/chill/trap_effect(mob/living/victim)
 	if(HAS_TRAIT(victim, TRAIT_RESISTCOLD))
 		return
-	to_chat(victim, span_bolddanger(LANG("obj.f7277a3c", null)))
+	to_chat(victim, span_bolddanger(LANG("obj.f7277a3c21d77f6e", null)))
 	victim.Paralyze(2 SECONDS)
 	victim.adjust_bodytemperature(-300)
 	victim.apply_status_effect(/datum/status_effect/freon)
@@ -212,7 +212,7 @@
 
 
 /obj/structure/trap/damage/trap_effect(mob/living/victim)
-	to_chat(victim, span_bolddanger(LANG("obj.08314dff", null)))
+	to_chat(victim, span_bolddanger(LANG("obj.08314dff0daeb945", null)))
 	victim.Paralyze(10 SECONDS)
 	victim.adjust_brute_loss(35)
 	var/obj/structure/flora/rock/style_random/giant_rock = new(get_turf(src))
@@ -236,7 +236,7 @@
 	icon_state = "trap-cult"
 
 /obj/structure/trap/cult/trap_effect(mob/living/victim)
-	to_chat(victim, span_bolddanger(LANG("obj.301c3a9c", null)))
+	to_chat(victim, span_bolddanger(LANG("obj.301c3a9ce7c4a9ab", null)))
 	victim.electrocute_act(10, src, flags = SHOCK_NOGLOVES) // electrocute act does a message.
 	victim.Paralyze(2 SECONDS)
 	new /mob/living/basic/construct/proteon/hostile(loc)

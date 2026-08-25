@@ -66,18 +66,18 @@
 
 /obj/item/borg/projectile_dampen/attack_self(mob/user)
 	if (!COOLDOWN_FINISHED(src, cycle_cooldown))
-		to_chat(user, span_boldwarning(LANG("obj.1b981ae7", list(src))))
+		to_chat(user, span_boldwarning(LANG("obj.1b981ae7c10733dd", list(src))))
 		return
 	COOLDOWN_START(src, cycle_cooldown, PKBORG_DAMPEN_CYCLE_DELAY)
 	if(!active)
 		if(!user.has_buckled_mobs())
 			activate_field()
 		else
-			to_chat(user, span_warning(LANG("obj.7975915e", list(src))))
+			to_chat(user, span_warning(LANG("obj.7975915e9d6e3cfb", list(src))))
 	else
 		deactivate_field()
 	update_appearance()
-	to_chat(user, span_boldnotice(LANG("obj.d6171b71", list(active ? "activate":"deactivate", src))))
+	to_chat(user, span_boldnotice(LANG("obj.d6171b714b8cf981", list(active ? "activate":"deactivate", src))))
 
 /obj/item/borg/projectile_dampen/update_icon_state()
 	icon_state = "[base_icon_state][active]"
@@ -95,7 +95,7 @@
 
 /obj/item/borg/projectile_dampen/proc/deactivate_field()
 	QDEL_NULL(dampening_field)
-	visible_message(span_warning(LANG("obj.5e249c74", list(src))))
+	visible_message(span_warning(LANG("obj.5e249c743f7da5d2", list(src))))
 	tracked_bullet_cost.Cut()
 	active = FALSE
 
@@ -135,7 +135,7 @@
 	energy = clamp(energy - usage, 0, maxenergy)
 	if(energy <= 0)
 		deactivate_field()
-		visible_message(span_warning(LANG("obj.3dda0bcd", list(src))))
+		visible_message(span_warning(LANG("obj.3dda0bcdd4c86ced", list(src))))
 
 /obj/item/borg/projectile_dampen/proc/process_recharge(seconds_per_tick)
 	if(!istype(host))
@@ -329,7 +329,7 @@
 	if(tool_behaviour == TOOL_MULTITOOL)
 		var/obj/item/multitool/tool = atoms[/obj/item/multitool/cyborg]
 		if(tool?.buffer)
-			. += span_notice(LANG("obj.7e304987", list(tool.buffer)))
+			. += span_notice(LANG("obj.7e30498708db500c", list(tool.buffer)))
 
 /obj/item/borg/cyborg_omnitool/botany
 	name = "botanical omni-toolset"

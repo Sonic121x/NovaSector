@@ -70,7 +70,7 @@
  * Used in wizard grand rituals' optional cheesy alternative.
  */
 /obj/item/food/cheese/wheel/proc/consume_cheese()
-	visible_message(span_revenwarning(LANG("obj.8bda7e35", null)))
+	visible_message(span_revenwarning(LANG("obj.8bda7e3564a3cf82", null)))
 	do_sparks(number = 1, cardinal_only = TRUE, source = get_turf(src))
 	qdel(src)
 

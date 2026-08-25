@@ -9,5 +9,5 @@
 	mind_control_duration = 900
 
 /obj/item/organ/heart/gland/access/activate()
-	to_chat(owner, span_notice(LANG("obj.fa54e6d1", null)))
+	to_chat(owner, span_notice(LANG("obj.fa54e6d1e5a24501", null)))
 	owner.AddComponent(/datum/component/simple_access, SSid_access.get_region_access_list(list(REGION_ALL_GLOBAL)), src)

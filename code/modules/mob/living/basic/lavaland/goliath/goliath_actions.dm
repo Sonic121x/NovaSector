@@ -30,7 +30,7 @@
 			new /obj/effect/goliath_tentacle(adjacent_target)
 
 	if (isliving(target))
-		owner.visible_message(span_warning(LANG("datum.0a04682e", list(owner, target))))
+		owner.visible_message(span_warning(LANG("datum.0a04682ef19f97e0", list(owner, target))))
 	StartCooldown()
 	return TRUE
 
@@ -53,7 +53,7 @@
 		var/turf/adjacent_target = get_step(target, dir)
 		if(adjacent_target)
 			new /obj/effect/goliath_tentacle/drag(adjacent_target, owner)
-	owner.visible_message(span_warning(LANG("datum.30a69d5b", list(owner))))
+	owner.visible_message(span_warning(LANG("datum.30a69d5bb02a03d4", list(owner))))
 	StartCooldown()
 	return TRUE
 
@@ -73,7 +73,7 @@
 /datum/action/cooldown/mob_cooldown/tentacle_grasp/Activate(atom/target)
 	new /obj/effect/temp_visual/effect_trail/burrowed_tentacle(owner.loc, target, owner)
 	if (isliving(target))
-		owner.visible_message(span_warning(LANG("datum.b824a2ec", list(owner, target))))
+		owner.visible_message(span_warning(LANG("datum.b824a2ece77a22b4", list(owner, target))))
 	StartCooldown()
 	return TRUE
 

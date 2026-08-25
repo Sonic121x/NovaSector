@@ -15,10 +15,10 @@
 
 /datum/surgery_operation/limb/autopsy/all_required_strings()
 	. = list()
-	. += LANG("datum.38e769ea", null)
+	. += LANG("datum.38e769eab7bc1a6e", null)
 	. += ..()
-	. += LANG("datum.75e2af90", null)
-	. += LANG("datum.f8b7fe6e", null)
+	. += LANG("datum.75e2af90d115d6c5", null)
+	. += LANG("datum.f8b7fe6e381668c5", null)
 
 /datum/surgery_operation/limb/autopsy/state_check(obj/item/bodypart/limb)
 	if(limb.body_zone != BODY_ZONE_CHEST)

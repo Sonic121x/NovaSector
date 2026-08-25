@@ -26,12 +26,12 @@
 
 /obj/item/rolling_table_dock/examine(mob/user)
 	. = ..()
-	. += LANG("obj.5d5580ef", list(loaded ? "loaded" : "empty"))
+	. += LANG("obj.5d5580ef5be00e58", list(loaded ? "loaded" : "empty"))
 
 /obj/item/rolling_table_dock/deploy_rolling_table(mob/user, atom/location)
 	if(loaded)
 		loaded.forceMove(location)
-		user.visible_message(span_notice(LANG("obj.1596d21d", list(user, loaded))), balloon_alert(user, LANG("obj.2585aae8", list(loaded))))
+		user.visible_message(span_notice(LANG("obj.1596d21de1f59c58", list(user, loaded))), balloon_alert(user, LANG("obj.2585aae8f2fdac64", list(loaded))))
 		loaded = null
 	else
-		balloon_alert(user, LANG("obj.8f5eb52b", null))
+		balloon_alert(user, LANG("obj.8f5eb52bda600d07", null))

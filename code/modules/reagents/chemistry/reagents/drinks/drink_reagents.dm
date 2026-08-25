@@ -173,7 +173,7 @@
 /datum/reagent/consumable/superlaughter/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	if(SPT_PROB(16, seconds_per_tick))
-		affected_mob.visible_message(span_danger(LANG("datum.93015b7d", list(affected_mob))), span_userdanger(LANG("datum.c9168707", null)))
+		affected_mob.visible_message(span_danger(LANG("datum.93015b7db7b4ef9e", list(affected_mob))), span_userdanger(LANG("datum.c9168707eaef4491", null)))
 		affected_mob.Stun(5)
 		affected_mob.add_mood_event("chemical_laughter", /datum/mood_event/chemical_superlaughter)
 
@@ -334,7 +334,7 @@
 		if(SPT_PROB(10, seconds_per_tick))
 			var/helped = iter_wound.tea_life_process()
 			if(!to_chatted && helped)
-				to_chat(affected_mob, span_notice(LANG("datum.4b1ef937", null)))
+				to_chat(affected_mob, span_notice(LANG("datum.4b1ef9379ad33ec6", null)))
 			to_chatted = TRUE
 
 // Different handling, different name.
@@ -523,14 +523,14 @@
 	. = ..()
 	REMOVE_TRAIT(affected_mob, TRAIT_DOUBLE_TAP, type)
 	if(current_cycle > 10)
-		to_chat(affected_mob, span_warning(LANG("datum.0931f103", null)))
+		to_chat(affected_mob, span_warning(LANG("datum.0931f103940b8f0a", null)))
 		affected_mob.adjust_stamina_loss(min(80, current_cycle * 3), required_biotype = affected_biotype)
 		affected_mob.adjust_drowsiness((current_cycle-1) * 2 SECONDS)
 
 /datum/reagent/consumable/rootbeer/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	if(current_cycle > 3 && !effect_enabled) // takes a few seconds for the bonus to kick in to prevent microdosing
-		to_chat(affected_mob, span_notice(LANG("datum.3c0cfe01", null)))
+		to_chat(affected_mob, span_notice(LANG("datum.3c0cfe01d4c16ef0", null)))
 		ADD_TRAIT(affected_mob, TRAIT_DOUBLE_TAP, type)
 		effect_enabled = TRUE
 
@@ -630,7 +630,7 @@
 	. = ..()
 	if(exposed_mob?.mind?.get_skill_level(/datum/skill/gaming) >= SKILL_LEVEL_LEGENDARY && (methods & INGEST) && !HAS_TRAIT(exposed_mob, TRAIT_GAMERGOD))
 		ADD_TRAIT(exposed_mob, TRAIT_GAMERGOD, "pwr_game")
-		to_chat(exposed_mob, span_nicegreen(LANG("datum.0a463d90", null)))
+		to_chat(exposed_mob, span_nicegreen(LANG("datum.0a463d907cf0a2af", null)))
 
 /datum/reagent/consumable/pwr_game/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -1062,7 +1062,7 @@
 /datum/reagent/consumable/grenadine/on_mob_metabolize(mob/living/drinker)
 	. = ..()
 	if(IS_REVOLUTIONARY(drinker))
-		to_chat(drinker, span_warning(LANG("datum.5b9eda7a", null)))
+		to_chat(drinker, span_warning(LANG("datum.5b9eda7a8630ad1d", null)))
 
 /datum/reagent/consumable/grenadine/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -1438,7 +1438,7 @@
 		affected_mob.add_movespeed_modifier(/datum/movespeed_modifier/punch_punishment)
 		if(SPT_PROB(10, seconds_per_tick))
 			affected_mob.Knockdown(3 SECONDS, 6 SECONDS) //Gives daze effect. Using the cooler is a commitment and if you get jumped during it or have to run away to fight something, you should be vulnerable.
-			to_chat(affected_mob, span_warning(LANG("datum.85bf08e8", null)))
+			to_chat(affected_mob, span_warning(LANG("datum.85bf08e87834de30", null)))
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
 

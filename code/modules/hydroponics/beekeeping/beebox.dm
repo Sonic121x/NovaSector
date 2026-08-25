@@ -104,22 +104,22 @@
 	. = ..()
 
 	if(!queen_bee)
-		. += span_warning(LANG("obj.69c43591", null))
+		. += span_warning(LANG("obj.69c43591525fc9cb", null))
 
 	var/half_bee = get_max_bees()*0.5
 	if(half_bee && (bees.len >= half_bee))
-		. += span_notice(LANG("obj.0d525bea", null))
+		. += span_notice(LANG("obj.0d525bea1d688d9f", null))
 
-	. += span_notice(LANG("obj.91479fcf", list(bee_resources)))
-	. += span_notice(LANG("obj.b7980fd8", list(bee_resources)))
-	. += span_notice(LANG("obj.cf0470d3", list(bee_resources*2)))
+	. += span_notice(LANG("obj.91479fcfdb6d89b5", list(bee_resources)))
+	. += span_notice(LANG("obj.b7980fd8f042af48", list(bee_resources)))
+	. += span_notice(LANG("obj.cf0470d35cb5528b", list(bee_resources*2)))
 
 	if(honeycombs.len)
 		var/plural = honeycombs.len > 1
-		. += span_notice(LANG("obj.fa09448f", list(plural? "are" : "is", honeycombs.len, plural ? "s":"")))
+		. += span_notice(LANG("obj.fa09448face37b93", list(plural? "are" : "is", honeycombs.len, plural ? "s":"")))
 
 	if(honeycombs.len >= get_max_honeycomb())
-		. += span_warning(LANG("obj.5a6b6f26", null))
+		. += span_warning(LANG("obj.5a6b6f261c7f406d", null))
 
 /obj/structure/beebox/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -130,19 +130,19 @@
 	if(istype(tool, /obj/item/honey_frame))
 		var/obj/item/honey_frame/frame = tool
 		if(honey_frames.len == BEEBOX_MAX_FRAMES)
-			to_chat(user, span_warning(LANG("obj.d4ac7949", null)))
+			to_chat(user, span_warning(LANG("obj.d4ac79494865218c", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(frame, src))
 			return ITEM_INTERACT_BLOCKING
 
-		visible_message(span_notice(LANG("obj.c68c197f", list(user))))
+		visible_message(span_notice(LANG("obj.c68c197f85f78c5e", list(user))))
 		honey_frames += frame
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/queen_bee))
 		if(queen_bee)
-			to_chat(user, span_warning(LANG("obj.769d7d0e", null)))
+			to_chat(user, span_warning(LANG("obj.769d7d0e7b1634f9", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/queen_bee/new_queen = tool
@@ -154,10 +154,10 @@
 		new_queen.queen.forceMove(src)
 
 		if(!queen_bee)
-			to_chat(user, span_warning(LANG("obj.86fde01f", null)))
+			to_chat(user, span_warning(LANG("obj.86fde01fe9713446", null)))
 			return ITEM_INTERACT_BLOCKING
 
-		visible_message(span_notice(LANG("obj.abcedef0", list(user, queen_bee))))
+		visible_message(span_notice(LANG("obj.abcedef07c34e0df", list(user, queen_bee))))
 		var/relocated = 0
 		for(var/mob/living/basic/bee/relocating_bee as anything in bees)
 			if(relocating_bee.reagent_incompatible(queen_bee))
@@ -167,7 +167,7 @@
 					relocating_bee.forceMove(drop_location())
 				relocated++
 		if(relocated)
-			to_chat(user, span_warning(LANG("obj.b6d682fc", null)))
+			to_chat(user, span_warning(LANG("obj.b6d682fcaacfc65c", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -184,24 +184,24 @@
 				worker.forceMove(drop_location())
 			bees_attack = TRUE
 		if(bees_attack)
-			visible_message(span_danger(LANG("obj.ad42e0a1", list(user))))
+			visible_message(span_danger(LANG("obj.ad42e0a1fbbe2c70", list(user))))
 		else
-			visible_message(span_danger(LANG("obj.da54237f", list(user, src))))
+			visible_message(span_danger(LANG("obj.da54237f6c8e80a2", list(user, src))))
 	else
-		var/option = tgui_alert(user, LANG("obj.b323dbb5", null), LANG("obj.de401597", null), list("Honey Frame", "Queen Bee"))
+		var/option = tgui_alert(user, LANG("obj.b323dbb5d625639b", null), LANG("obj.de401597604b0704", null), list("Honey Frame", "Queen Bee"))
 		if(!option || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 		switch(option)
 			if("Honey Frame")
 				if(!honey_frames.len)
-					to_chat(user, span_warning(LANG("obj.2e96e245", null)))
+					to_chat(user, span_warning(LANG("obj.2e96e245fe326e43", null)))
 					return
 
 				var/obj/item/honey_frame/frame = pick_n_take(honey_frames)
 				if(frame)
 					if(!user.put_in_active_hand(frame))
 						frame.forceMove(drop_location())
-					visible_message(span_notice(LANG("obj.9e192168", list(user))))
+					visible_message(span_notice(LANG("obj.9e192168b9762f88", list(user))))
 
 					var/amtH = frame.honeycomb_capacity
 					var/fallen = 0
@@ -213,11 +213,11 @@
 							fallen++
 					if(fallen)
 						var/multiple = fallen > 1
-						visible_message(span_notice(LANG("obj.adab4c28", list(user, multiple ? "[fallen]" : "a", multiple ? "s" : ""))))
+						visible_message(span_notice(LANG("obj.adab4c280fc9bb98", list(user, multiple ? "[fallen]" : "a", multiple ? "s" : ""))))
 
 			if("Queen Bee")
 				if(!queen_bee || queen_bee.loc != src)
-					to_chat(user, span_warning(LANG("obj.44f6a5e1", null)))
+					to_chat(user, span_warning(LANG("obj.44f6a5e114814ec3", null)))
 					return
 				var/obj/item/queen_bee/queen = new()
 				queen_bee.forceMove(queen)
@@ -226,7 +226,7 @@
 				queen.name = queen_bee.name
 				if(!user.put_in_active_hand(queen))
 					queen.forceMove(drop_location())
-				visible_message(span_notice(LANG("obj.fb00e3ff", list(user))))
+				visible_message(span_notice(LANG("obj.fb00e3ffd2d95451", list(user))))
 				queen_bee = null
 
 /obj/structure/beebox/atom_deconstruct(disassembled = TRUE)

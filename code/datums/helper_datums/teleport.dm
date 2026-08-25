@@ -37,7 +37,7 @@
 				precision = max(rand(1,100)*interference,100)
 				if(isliving(teleatom))
 					var/mob/living/MM = teleatom
-					to_chat(MM, span_warning(LANG("_root.3209e952", null)))
+					to_chat(MM, span_warning(LANG("_root.3209e9526672ddf7", null)))
 
 			// if effects are not specified and not explicitly disabled, sparks
 			if((!effectin || !effectout) && !no_effects)
@@ -71,7 +71,7 @@
 
 	if(!destturf || (!forced && !check_teleport_valid(teleatom, destturf, channel, original_destination = destination)))
 		if(ismob(teleatom))
-			teleatom.balloon_alert(teleatom, LANG("_root.e69c953f", null))
+			teleatom.balloon_alert(teleatom, LANG("_root.e69c953f465a2b88", null))
 		return FALSE
 
 	if(SEND_SIGNAL(teleatom, COMSIG_MOVABLE_TELEPORTING, destination, channel))
@@ -113,7 +113,7 @@
 				continue
 
 			if(get_turf(rider) != destturf) //precision made them teleport somewhere else
-				to_chat(rider, span_warning(LANG("_root.c2fef14f", list(teleatom))))
+				to_chat(rider, span_warning(LANG("_root.c2fef14fcbc3ae00", list(teleatom))))
 				continue
 
 			// [mob/living].forceMove() forces mobs to unbuckle, so we need to buckle them again

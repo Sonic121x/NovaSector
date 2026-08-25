@@ -13,13 +13,13 @@
 
 /datum/unit_test/i18n_phobia_localized_regex/Run()
 	var/saved_locale = GLOB.i18n_server_locale
-	var/saved_loaded = GLOB.i18n_phobia_words_loaded
-	var/list/saved_words = GLOB.i18n_phobia_words.Copy()
+	var/list/saved_tables = GLOB.i18n_scoped_tables["phobia_words.json"]
 
 	// 注入合成词表，绕开磁盘 JSON（测试不依赖 phobia_words.json 的具体内容）。
 	GLOB.i18n_server_locale = I18N_PHOBIA_TEST_LOCALE
-	GLOB.i18n_phobia_words_loaded = TRUE
-	GLOB.i18n_phobia_words = list("unittest_cat" = list("外星人", "飞碟"))
+	GLOB.i18n_scoped_tables["phobia_words.json"] = list(
+		I18N_PHOBIA_TEST_LOCALE = list("unittest_cat" = list("外星人", "飞碟")),
+	)
 
 	var/regex/localized = construct_phobia_regex_localized("unittest_cat")
 	TEST_ASSERT_NOTNULL(localized, "已登记词表的类别应能构建出本地化正则")
@@ -51,12 +51,13 @@
 
 	// ⑥ locale==en 时词表为空 → 不构建正则（默认态零行为变化）。
 	GLOB.i18n_server_locale = DEFAULT_UI_LOCALE
-	GLOB.i18n_phobia_words_loaded = FALSE
-	GLOB.i18n_phobia_words = list()
+	GLOB.i18n_scoped_tables -= "phobia_words.json"
 	TEST_ASSERT_NULL(construct_phobia_regex_localized("unittest_cat"), "locale==en 时不应有本地化触发正则")
 
 	GLOB.i18n_server_locale = saved_locale
-	GLOB.i18n_phobia_words = saved_words
-	GLOB.i18n_phobia_words_loaded = saved_loaded
+	if(islist(saved_tables))
+		GLOB.i18n_scoped_tables["phobia_words.json"] = saved_tables
+	else
+		GLOB.i18n_scoped_tables -= "phobia_words.json"
 
 #undef I18N_PHOBIA_TEST_LOCALE

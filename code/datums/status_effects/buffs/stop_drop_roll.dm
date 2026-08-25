@@ -18,7 +18,7 @@
 		return FALSE
 
 	if(!owner.Knockdown(tick_interval * 2, ignore_canstun = TRUE) || owner.body_position != LYING_DOWN)
-		to_chat(owner, span_warning(LANG("datum.b1fa4f84", null)))
+		to_chat(owner, span_warning(LANG("datum.b1fa4f84a45b522a", null)))
 		return FALSE
 
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(stop_rolling))
@@ -44,8 +44,8 @@
 
 /datum/status_effect/stop_drop_roll/proc/start_rolling()
 	owner.visible_message(
-		span_danger(LANG("datum.60dd7723", list(owner, owner.p_them()))),
-		span_notice(LANG("datum.bfc63208", null)),
+		span_danger(LANG("datum.60dd7723d4ff7eba", list(owner, owner.p_them()))),
+		span_notice(LANG("datum.bfc6320813ae7f49", null)),
 	)
 	// Start with one weaker roll
 	reduce_firestacks(0.25)
@@ -76,14 +76,14 @@
 	SIGNAL_HANDLER
 
 	if(!QDELING(owner))
-		to_chat(owner, span_notice(LANG("datum.7f698e49", null)))
+		to_chat(owner, span_notice(LANG("datum.7f698e49468be8c1", null)))
 	qdel(src)
 
 /// Called when we've successfully extinguished ourselves.
 /datum/status_effect/stop_drop_roll/proc/stop_rolling_successful()
 	owner.visible_message(
-		span_danger(LANG("datum.4b0ab137", list(owner, owner.p_them()))),
-		span_notice(LANG("datum.b1a86997", null)),
+		span_danger(LANG("datum.4b0ab13760903dfe", list(owner, owner.p_them()))),
+		span_notice(LANG("datum.b1a86997bd7f029f", null)),
 	)
 	qdel(src)
 
@@ -108,8 +108,8 @@
 
 /datum/status_effect/stop_drop_roll/hallucinating/start_rolling()
 	owner.visible_message(
-		span_danger(LANG("datum.27c557c1", list(owner))),
-		span_notice(LANG("datum.bfc63208", null)),
+		span_danger(LANG("datum.27c557c1e6ecb45f", list(owner))),
+		span_notice(LANG("datum.bfc6320813ae7f49", null)),
 	)
 	reduce_firestacks(1) // more effective cause it's not real
 
@@ -131,7 +131,7 @@
 		hallucination.clear_fire()
 
 	owner.visible_message(
-		span_danger(LANG("datum.b06c240d", list(owner))),
-		span_notice(LANG("datum.b1a86997", null)),
+		span_danger(LANG("datum.b06c240dbe67215a", list(owner))),
+		span_notice(LANG("datum.b1a86997bd7f029f", null)),
 	)
 	qdel(src)

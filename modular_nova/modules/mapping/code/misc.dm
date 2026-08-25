@@ -32,10 +32,10 @@
 
 /obj/item/claymore/cutlass/luna/examine(mob/living/user)
 	. = ..()
-	. += span_notice(LANG("obj.9c0a6a7e", null))
+	. += span_notice(LANG("obj.9c0a6a7eea26ddd0", null))
 	for(var/found_fragment in fragments)
 		var/obj/item/luna_fragment/fragment = found_fragment
-		. += span_notice(LANG("obj.7676b82f", list(fragment, fragment.effect_desc)))
+		. += span_notice(LANG("obj.7676b82f7067923d", list(fragment, fragment.effect_desc)))
 
 /obj/item/claymore/cutlass/luna/Destroy()
 	QDEL_LIST(fragments)
@@ -47,14 +47,14 @@
 
 /obj/item/claymore/cutlass/luna/crowbar_act(mob/living/user, obj/item/tool)
 	if(LAZYLEN(fragments))
-		to_chat(user, span_notice(LANG("obj.84e041d9", list(src))))
+		to_chat(user, span_notice(LANG("obj.84e041d9b613fcab", list(src))))
 		tool.play_tool_sound(src)
 		for(var/found_fragment in fragments)
 			var/obj/item/luna_fragment/Fragment = found_fragment
 			Fragment.remove_upgrade(src, user)
 			Fragment.forceMove(get_turf(src))
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_warning(LANG("obj.76706398", list(src))))
+	to_chat(user, span_warning(LANG("obj.76706398884218f0", list(src))))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/claymore/cutlass/luna/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -71,7 +71,7 @@
 	if(!can_bloodbeam)
 		return
 	if(interacting_with == user)
-		balloon_alert(user, LANG("obj.224c61eb", null))
+		balloon_alert(user, LANG("obj.224c61eb79a11f6c", null))
 		return ITEM_INTERACT_BLOCKING
 	send_sword_laser(interacting_with, user, modifiers)
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -114,13 +114,13 @@
 	var/obj/item/claymore/cutlass/luna/upgrade_appliable = our_sord
 	for(var/obj/item/luna_fragment/found_fragment as anything in upgrade_appliable.fragments)
 		if(istype(src, found_fragment))
-			to_chat(user, span_warning(LANG("obj.b4fa9882", list(src, upgrade_appliable))))
+			to_chat(user, span_warning(LANG("obj.b4fa9882daec91a9", list(src, upgrade_appliable))))
 			return FALSE
 	if(!user.transferItemToLoc(src, upgrade_appliable))
 		return
 	upgrade_appliable.fragments += src
-	balloon_alert(user, LANG("obj.90a1e821", null))
-	to_chat(user, span_notice(LANG("obj.c1fbc99d", list(src, upgrade_appliable))))
+	balloon_alert(user, LANG("obj.90a1e821955f42a4", null))
+	to_chat(user, span_notice(LANG("obj.c1fbc99dd596332a", list(src, upgrade_appliable))))
 	if(!has_spoken)
 		var/mob/taylor = user
 		taylor.playsound_local(src.loc, hallucination_sound, 30, FALSE, 3)
@@ -134,7 +134,7 @@
 
 /obj/item/luna_fragment/examine(mob/living/user)
 	. = ..()
-	. += span_notice(LANG("obj.d7c5404d", null))
+	. += span_notice(LANG("obj.d7c5404d4f0654e2", null))
 	if(has_spoken)
 		. += span_blue(hallucination_text) // If you're gonna take it back outta the sword, you should at least be able to revisit the text.
 

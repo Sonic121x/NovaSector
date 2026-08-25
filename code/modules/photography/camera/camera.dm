@@ -98,15 +98,15 @@
 
 /obj/item/camera/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.54bf8bd7", list(pictures_left)))
-	. += span_notice(LANG("obj.0cb0bf37", null))
-	. += span_notice(LANG("obj.102d70c2", null))
-	. += span_notice(LANG("obj.a4b44f36", list(EXAMINE_HINT("[APERTURE_TO_METERS(picture_size_x)]x[APERTURE_TO_METERS(picture_size_y)]"))))
+	. += span_notice(LANG("obj.54bf8bd7c27b8514", list(pictures_left)))
+	. += span_notice(LANG("obj.0cb0bf3769351499", null))
+	. += span_notice(LANG("obj.102d70c20fb5df60", null))
+	. += span_notice(LANG("obj.a4b44f366f83f0ba", list(EXAMINE_HINT("[APERTURE_TO_METERS(picture_size_x)]x[APERTURE_TO_METERS(picture_size_y)]"))))
 
 	if(isnull(disk))
-		. += span_notice(LANG("obj.5d8d1bda", null))
+		. += span_notice(LANG("obj.5d8d1bda0b34ed83", null))
 	else
-		. += span_notice(LANG("obj.256c289c", list(disk.name)))
+		. += span_notice(LANG("obj.256c289c5c7604c3", list(disk.name)))
 
 /obj/item/camera/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -126,12 +126,12 @@
 
 	if(user)
 		if(loc != user)
-			to_chat(user, span_warning(LANG("obj.df42aeed", null)))
+			to_chat(user, span_warning(LANG("obj.df42aeedbe20ad56", null)))
 			return FALSE
-		desired_x = tgui_input_number(user, LANG("obj.507e9348", null), LANG("obj.83e3de03", null), picture_size_x, CAMERA_PICTURE_SIZE_HARD_LIMIT, 1)
+		desired_x = tgui_input_number(user, LANG("obj.507e9348da020135", null), LANG("obj.83e3de03bec38ef8", null), picture_size_x, CAMERA_PICTURE_SIZE_HARD_LIMIT, 1)
 		if(!desired_x || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH|ALLOW_PAI) || loc != user)
 			return FALSE
-		desired_y = tgui_input_number(user, LANG("obj.2161e974", null), LANG("obj.83e3de03", null), picture_size_y, CAMERA_PICTURE_SIZE_HARD_LIMIT, 1)
+		desired_y = tgui_input_number(user, LANG("obj.2161e974d1461d7f", null), LANG("obj.83e3de03bec38ef8", null), picture_size_y, CAMERA_PICTURE_SIZE_HARD_LIMIT, 1)
 		if(!desired_y || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH|ALLOW_PAI) || loc != user)
 			return FALSE
 
@@ -139,7 +139,7 @@
 	picture_size_y = clamp(desired_y, 1, CAMERA_PICTURE_SIZE_HARD_LIMIT)
 
 	if(user)
-		to_chat(user, span_notice(LANG("obj.58b72f20", list(EXAMINE_HINT("[APERTURE_TO_METERS(picture_size_x)]x[APERTURE_TO_METERS(picture_size_y)]")))))
+		to_chat(user, span_notice(LANG("obj.58b72f200d1f7b6e", list(EXAMINE_HINT("[APERTURE_TO_METERS(picture_size_x)]x[APERTURE_TO_METERS(picture_size_y)]")))))
 
 	return TRUE
 
@@ -199,12 +199,12 @@
 
 	if(!on)
 		if(user)
-			user.balloon_alert(user, LANG("obj.a9061853", null))
+			user.balloon_alert(user, LANG("obj.a9061853897e2ae3", null))
 		return FALSE
 
 	if(blending)
 		if(user)
-			user.balloon_alert(user, LANG("obj.91acb640", null))
+			user.balloon_alert(user, LANG("obj.91acb640d5b65a4f", null))
 		return FALSE
 
 	blending = TRUE
@@ -347,20 +347,20 @@
 	var/obj/item/photo/new_photo
 	if(user)
 		if(!pictures_left)
-			to_chat(user, span_warning(LANG("obj.858446e3", null)))
+			to_chat(user, span_warning(LANG("obj.858446e3852d81a1", null)))
 			return
 
 		new_photo = new(src, picture)
 
-		to_chat(user, span_notice(LANG("obj.528b8286", list(pictures_left))))
+		to_chat(user, span_notice(LANG("obj.528b828628dd83d8", list(pictures_left))))
 
 		var/name_customized = FALSE
 		if(can_customise)
-			var/customise = tgui_alert(user, LANG("obj.dd7d7cb0", null), LANG("obj.61e3a16f", null), list("Yes", "No"))
+			var/customise = tgui_alert(user, LANG("obj.dd7d7cb0c32e02fc", null), LANG("obj.61e3a16f20d83e5c", null), list("Yes", "No"))
 			if(customise == "Yes")
-				var/name1 = tgui_input_text(user, LANG("obj.438188aa", null), LANG("obj.e81360ea", null), max_length = 32)
-				var/desc1 = tgui_input_text(user, LANG("obj.4bdb2db7", null), LANG("obj.495197c1", null), max_length = 128)
-				var/caption = tgui_input_text(user, LANG("obj.25cccceb", null), LANG("obj.bc426663", null), max_length = 256)
+				var/name1 = tgui_input_text(user, LANG("obj.438188aa7d21d473", null), LANG("obj.e81360eaaea292c0", null), max_length = 32)
+				var/desc1 = tgui_input_text(user, LANG("obj.4bdb2db7053671ec", null), LANG("obj.495197c1be2f241d", null), max_length = 128)
+				var/caption = tgui_input_text(user, LANG("obj.25ccccebe2eb49e5", null), LANG("obj.bc4266636e4892be", null), max_length = 256)
 				if(name1)
 					picture.picture_name = name1
 					name_customized = TRUE
@@ -375,12 +375,12 @@
 		var/mob/living/holder = loc
 
 		if(!pictures_left)
-			to_chat(holder, span_warning(LANG("obj.858446e3", null)))
+			to_chat(holder, span_warning(LANG("obj.858446e3852d81a1", null)))
 			return
 
 		new_photo = new(get_turf(src), picture)
 
-		to_chat(holder, span_notice(LANG("obj.528b8286", list(pictures_left))))
+		to_chat(holder, span_notice(LANG("obj.528b828628dd83d8", list(pictures_left))))
 
 	new_photo.set_picture(picture, TRUE, TRUE)
 	if(CONFIG_GET(flag/picture_logging_camera))
@@ -403,7 +403,7 @@
 /obj/item/camera/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/camera_film))
 		if(pictures_left)
-			balloon_alert(user, LANG("obj.95dd4470", null))
+			balloon_alert(user, LANG("obj.95dd4470b0297c1e", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.temporarilyRemoveItemFromInventory(tool))
 			return ITEM_INTERACT_BLOCKING
@@ -414,13 +414,13 @@
 
 	if(istype(tool, /obj/item/disk/holodisk))
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, LANG("obj.c7cbf2eb", null))
+			balloon_alert(user, LANG("obj.c7cbf2eb61d75d5b", null))
 			return TRUE
 		if(disk)
 			user.put_in_hands(disk)
-			balloon_alert(user, LANG("obj.6fefc5af", null))
+			balloon_alert(user, LANG("obj.6fefc5af0b0d0233", null))
 		else
-			balloon_alert(user, LANG("obj.8c1b1c98", null))
+			balloon_alert(user, LANG("obj.8c1b1c9813930aa6", null))
 		playsound(src, 'sound/machines/card_slide.ogg', 50)
 		disk = tool
 		return ITEM_INTERACT_SUCCESS
@@ -433,7 +433,7 @@
 /obj/item/camera/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(disk)
 		if(!ismob(interacting_with))
-			to_chat(user, span_warning(LANG("obj.8f2ab71d", null)))
+			to_chat(user, span_warning(LANG("obj.8f2ab71df7f5f878", null)))
 			return ITEM_INTERACT_BLOCKING
 		if(disk.record)
 			QDEL_NULL(disk.record)
@@ -457,7 +457,7 @@
 
 /obj/item/camera/item_ctrl_click(mob/user)
 	print_monochrome = !print_monochrome
-	user.balloon_alert(user, LANG("obj.94bde98c", list(print_monochrome ? "monochrome" : "in color")))
+	user.balloon_alert(user, LANG("obj.94bde98cb30861b8", list(print_monochrome ? "monochrome" : "in color")))
 	if(silent) // Don't out your silent cameras
 		user.playsound_local(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 	else

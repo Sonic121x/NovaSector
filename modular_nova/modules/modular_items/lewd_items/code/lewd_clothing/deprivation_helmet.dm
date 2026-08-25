@@ -65,7 +65,7 @@
 	var/mob/living/carbon/human/affected_human = usr
 	if(istype(deprivation_helmet))
 		if(deprivation_helmet == affected_human.head)
-			to_chat(usr, span_notice(LANG("datum.9049a337", null)))
+			to_chat(usr, span_notice(LANG("datum.9049a337656c6b03", null)))
 		else
 			deprivation_helmet.SwitchHelmet("vision")
 
@@ -82,7 +82,7 @@
 	var/mob/living/carbon/human/affected_human = usr
 	if(istype(deprivation_helmet))
 		if(deprivation_helmet == affected_human.head)
-			to_chat(usr, span_notice(LANG("datum.9049a337", null)))
+			to_chat(usr, span_notice(LANG("datum.9049a337656c6b03", null)))
 		else
 			deprivation_helmet.SwitchHelmet("hearing")
 
@@ -99,7 +99,7 @@
 	var/mob/living/carbon/human/affected_human = usr
 	if(istype(deprivation_helmet))
 		if(deprivation_helmet == affected_human.head)
-			to_chat(usr, span_notice(LANG("datum.9049a337", null)))
+			to_chat(usr, span_notice(LANG("datum.9049a337656c6b03", null)))
 		else
 			deprivation_helmet.SwitchHelmet("speech")
 
@@ -111,12 +111,12 @@
 		if("speech")
 			if(muzzle == TRUE)
 				playsound_if_pref(usr, 'sound/items/weapons/magout.ogg', 40, TRUE)
-				to_chat(usr, span_notice(LANG("obj.7417b211", null)))
+				to_chat(usr, span_notice(LANG("obj.7417b21198a3ea57", null)))
 				if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 					REMOVE_TRAIT(usr, TRAIT_MUTE, CLOTHING_TRAIT)
 			else
 				playsound_if_pref(usr, 'sound/items/weapons/magin.ogg', 40, TRUE)
-				to_chat(usr, span_notice(LANG("obj.71cd5bd5", null)))
+				to_chat(usr, span_notice(LANG("obj.71cd5bd5db09a80b", null)))
 				if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 					ADD_TRAIT(usr, TRAIT_MUTE, CLOTHING_TRAIT)
 					to_chat(usr, DEPHELMET_GAGGED_TEXT)
@@ -124,12 +124,12 @@
 		if("hearing")
 			if(earmuffs == TRUE)
 				playsound_if_pref(usr, 'sound/items/weapons/magout.ogg', 40, TRUE)
-				to_chat(usr, span_notice(LANG("obj.759b9e24", null)))
+				to_chat(usr, span_notice(LANG("obj.759b9e2469fe9666", null)))
 				if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 					REMOVE_TRAIT(usr, TRAIT_DEAF, CLOTHING_TRAIT)
 			else
 				playsound_if_pref(usr, 'sound/items/weapons/magin.ogg', 40, TRUE)
-				to_chat(usr, span_notice(LANG("obj.4fbe5557", null)))
+				to_chat(usr, span_notice(LANG("obj.4fbe5557ae81c01d", null)))
 				if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 					ADD_TRAIT(usr, TRAIT_DEAF, CLOTHING_TRAIT)
 					to_chat(usr, DEPHELMET_DEAF_TEXT)
@@ -138,12 +138,12 @@
 			var/mob/living/carbon/human/user = usr
 			if(prevent_vision == TRUE)
 				playsound_if_pref(usr, 'sound/items/weapons/magout.ogg', 40, TRUE)
-				to_chat(usr, span_notice(LANG("obj.946e1e76", null)))
+				to_chat(usr, span_notice(LANG("obj.946e1e76ada06a6b", null)))
 				if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 					user.cure_blind("deprivation_helmet_[REF(src)]")
 			else
 				playsound_if_pref(usr, 'sound/items/weapons/magin.ogg', 40, TRUE)
-				to_chat(usr, span_notice(LANG("obj.8756f215", null)))
+				to_chat(usr, span_notice(LANG("obj.8756f2154fe03e04", null)))
 				if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 					user.become_blind("deprivation_helmet_[REF(src)]")
 					to_chat(usr, DEPHELMET_BLIND_TEXT)

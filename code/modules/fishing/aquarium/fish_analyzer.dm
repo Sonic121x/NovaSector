@@ -51,7 +51,7 @@
 
 /obj/item/fish_analyzer/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.89b193b1", null))
+	. += span_notice(LANG("obj.89b193b1b39a55ea", null))
 
 /obj/item/fish_analyzer/update_icon_state()
 	. = ..()
@@ -93,10 +93,10 @@
 
 /obj/item/fish_analyzer/ui_interact(mob/living/user, datum/tgui/ui)
 	if(isnull(scanned_object))
-		balloon_alert(user, LANG("obj.20ddafce", null))
+		balloon_alert(user, LANG("obj.20ddafce6e61ae4b", null))
 		return TRUE
 	if(istype(user) && !(scanned_object in (view(7, get_turf(src)) | user.get_equipped_items(INCLUDE_HELD))))
-		balloon_alert(user, LANG("obj.d7f51219", null))
+		balloon_alert(user, LANG("obj.d7f51219c7329026", null))
 		unregister_scanned()
 		return TRUE
 
@@ -109,7 +109,7 @@
 	if(!istype(user)) //observers shouldn't disrupt things.
 		return ..()
 	if(!scanned_object || !(scanned_object in (view(7, get_turf(src)) | user.get_equipped_items(INCLUDE_HELD))))
-		balloon_alert(user, LANG("obj.d7f51219", null))
+		balloon_alert(user, LANG("obj.d7f51219c7329026", null))
 		unregister_scanned()
 		return UI_CLOSE
 	return ..()

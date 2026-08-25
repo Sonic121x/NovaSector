@@ -77,7 +77,7 @@
 	else
 		result = new result_type (location)
 		if(location != source.loc)
-			result.visible_message(span_boldnotice(LANG("datum.b13b5661", list(result, source.loc))))
+			result.visible_message(span_boldnotice(LANG("datum.b13b5661d77d0e31", list(result, source.loc))))
 			playsound(result, 'sound/effects/fish_splash.ogg', 60)
 		if(isbasicmob(result))
 			for(var/trait_type in source.fish_traits)
@@ -88,7 +88,7 @@
 
 	if(is_evo || location == source.loc)
 		var/message_verb = del_on_grow ? "grows into" : "lays"
-		location.visible_message(span_notice(LANG("datum.49dafcf1", list(source, message_verb, result))), vision_distance = 3)
+		location.visible_message(span_notice(LANG("datum.49dafcf1a4404c5a", list(source, message_verb, result))), vision_distance = 3)
 
 	if(inherit_name && HAS_TRAIT(source, TRAIT_WAS_RENAMED))
 		if(ismob(result))

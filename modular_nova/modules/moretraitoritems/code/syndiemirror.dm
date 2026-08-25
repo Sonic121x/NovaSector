@@ -20,45 +20,45 @@
 
 	var/location = user.zone_selected
 	if(!(location in list(BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_HEAD)) && !user.combat_mode)
-		balloon_alert(user, LANG("obj.6b848742", null))
+		balloon_alert(user, LANG("obj.6b8487428f9e3667", null))
 		return
 
 	if(user.zone_selected != BODY_ZONE_HEAD)
 		return ..()
 
-	var/selected_part = tgui_alert(user, LANG("obj.0b4ef4b8", list(target_human)), LANG("obj.e455fc28", null), list("Hair", "Facial Hair", "Cancel"))
+	var/selected_part = tgui_alert(user, LANG("obj.0b4ef4b8c17ca8b9", list(target_human)), LANG("obj.e455fc28e6cda30c", null), list("Hair", "Facial Hair", "Cancel"))
 
 	if(!selected_part || selected_part == "Cancel")
 		return
 
 	if(selected_part == "Hair")
 
-		var/hair_id = tgui_input_list(user, LANG("obj.b89bab7d", null), LANG("obj.f7de00bf", null), SSaccessories.hairstyles_list)
+		var/hair_id = tgui_input_list(user, LANG("obj.b89bab7d678c189b", null), LANG("obj.f7de00bf4d0a17f5", null), SSaccessories.hairstyles_list)
 		if(!hair_id)
 			return
 
 		if(hair_id == "Bald")
-			to_chat(target_human, span_danger(LANG("obj.1da57b82", null)))
+			to_chat(target_human, span_danger(LANG("obj.1da57b82a4c4be00", null)))
 
-		to_chat(user, span_notice(LANG("obj.4029bdad", list(target_human))))
+		to_chat(user, span_notice(LANG("obj.4029bdad9e443f04", list(target_human))))
 
 
 		if(do_after(user, haircut_duration, target_human))
 			target_human.set_hairstyle(hair_id, update = TRUE)
-			user.visible_message(span_notice(LANG("obj.239b02cf", list(target_human))), span_notice(LANG("obj.e0994307", list(target_human))))
+			user.visible_message(span_notice(LANG("obj.239b02cf06fc1ce9", list(target_human))), span_notice(LANG("obj.e0994307eb0d8950", list(target_human))))
 	else
-		var/facial_hair_id = tgui_input_list(user, LANG("obj.c5cd9bad", null), LANG("obj.f7de00bf", null), SSaccessories.facial_hairstyles_list)
+		var/facial_hair_id = tgui_input_list(user, LANG("obj.c5cd9badbbe070d3", null), LANG("obj.f7de00bf4d0a17f5", null), SSaccessories.facial_hairstyles_list)
 		if(!facial_hair_id)
 			return
 
 		if(facial_hair_id == "Shaved")
-			to_chat(target_human, span_danger(LANG("obj.c034279e", null)))
+			to_chat(target_human, span_danger(LANG("obj.c034279e885b853b", null)))
 
-		to_chat(user, LANG("obj.122201fb", list(target_human)))
+		to_chat(user, LANG("obj.122201fb8d456abf", list(target_human)))
 
 		if(do_after(user, facial_haircut_duration, target_human))
 			target_human.set_facial_hairstyle(facial_hair_id, update = TRUE)
-			user.visible_message(span_notice(LANG("obj.aadb00ed", list(target_human))), span_notice(LANG("obj.3afdebe8", list(target_human))))
+			user.visible_message(span_notice(LANG("obj.aadb00ed08faa167", list(target_human))), span_notice(LANG("obj.3afdebe8bb30c66e", list(target_human))))
 
 /obj/item/storage/box/syndie_kit/chameleon/PopulateContents()
 	. = ..()

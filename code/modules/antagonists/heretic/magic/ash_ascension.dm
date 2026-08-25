@@ -150,13 +150,13 @@
 
 		for(var/mob/living/L in T.contents)
 			if(L.can_block_magic())
-				L.visible_message(span_danger(LANG("datum.44d911f3", list(L))), span_danger(LANG("datum.f092e989", null)))
+				L.visible_message(span_danger(LANG("datum.44d911f352202ac7", list(L))), span_danger(LANG("datum.f092e989ec79f08e", null)))
 				continue
 			if((L in hit_list) || L == source)
 				continue
 			hit_list += L
 			L.adjust_fire_loss(20)
-			to_chat(L, span_userdanger(LANG("datum.6a9ea3c2", list(source))))
+			to_chat(L, span_userdanger(LANG("datum.6a9ea3c2ec215596", list(source))))
 
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)

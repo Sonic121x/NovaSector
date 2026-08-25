@@ -57,13 +57,13 @@
 	var/price = item.price + shipment_fee
 
 	if(!uplink.current_user)///There is no ID card on the user, or the ID card has no account
-		to_chat(user, span_warning(LANG("datum.f96fad92", null)))
+		to_chat(user, span_warning(LANG("datum.f96fad92161f247d", null)))
 		return FALSE
 	var/balance = uplink?.current_user.account_balance
 
 	// I can't get the price of the item and shipping in a clean way to the UI, so I have to do this.
 	if(balance < price)
-		to_chat(user, span_warning(LANG("datum.eb7b9c26", list(MONEY_NAME, uplink, item, method))))
+		to_chat(user, span_warning(LANG("datum.eb7b9c2613dc376c", list(MONEY_NAME, uplink, item, method))))
 		return FALSE
 
 	if(item.buy(uplink, user, method, legal_status))

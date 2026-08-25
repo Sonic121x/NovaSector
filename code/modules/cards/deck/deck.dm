@@ -54,7 +54,7 @@
 			initial_cards += "[person] of [suit]"
 
 /obj/item/toy/cards/deck/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.49c39ba4", list(user, user.p_their(), src))))
+	user.visible_message(span_suicide(LANG("obj.49c39ba4db2e904c", list(user, user.p_their(), src))))
 	playsound(src, 'sound/items/cards/cardshuffle.ogg', 50, TRUE)
 	return BRUTELOSS
 
@@ -62,7 +62,7 @@
 	. = ..()
 
 	if(HAS_TRAIT(user, TRAIT_XRAY_VISION) && count_cards() > 0)
-		. += span_notice(LANG("obj.0d61a841", list(fetch_card_atoms()[1].cardname)))
+		. += span_notice(LANG("obj.0d61a8411d643403", list(fetch_card_atoms()[1].cardname)))
 
 	// This can only happen if card_atoms have been generated
 	if(LAZYLEN(card_atoms) > 0)
@@ -70,9 +70,9 @@
 
 		var/marked_color = card.getMarkedColor(user)
 		if(marked_color)
-			. += span_notice(LANG("obj.bcdc7aa8", list(marked_color)))
+			. += span_notice(LANG("obj.bcdc7aa851035617", list(marked_color)))
 
-	. += span_notice(LANG("obj.8dc21e50", null)) // This should be a context screentip
+	. += span_notice(LANG("obj.8dc21e507f571073", null)) // This should be a context screentip
 
 /obj/item/toy/cards/deck/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(src == held_item)
@@ -109,7 +109,7 @@
 	COOLDOWN_START(src, shuffle_cooldown, shuffle_time)
 	shuffle_inplace(fetch_card_atoms())
 	playsound(src, 'sound/items/cards/cardshuffle.ogg', 50, TRUE)
-	user.balloon_alert_to_viewers(LANG("obj.6f2833b7", null))
+	user.balloon_alert_to_viewers(LANG("obj.6f2833b7b04b2448", null))
 	addtimer(CALLBACK(src, PROC_REF(CardgameEvent), user), 60 SECONDS, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 /**
@@ -117,7 +117,7 @@
  */
 /obj/item/toy/cards/deck/proc/get_top_card(mob/living/user)
 	if(count_cards() == 0)
-		to_chat(user, span_warning(LANG("obj.aee197f9", null)))
+		to_chat(user, span_warning(LANG("obj.aee197f983056b73", null)))
 		return
 	var/list/cards = fetch_card_atoms()
 	return cards[1]
@@ -155,7 +155,7 @@
 		card.Flip()
 	card.pickup(user)
 	user.put_in_hands(card)
-	user.balloon_alert_to_viewers(LANG("obj.b2fdfc7e", null))
+	user.balloon_alert_to_viewers(LANG("obj.b2fdfc7e19eb0fcb", null))
 
 /obj/item/toy/cards/deck/attack_hand_secondary(mob/living/user, list/modifiers)
 	attack_hand(user, modifiers, flip_card = TRUE)
@@ -163,7 +163,7 @@
 
 /obj/item/toy/cards/deck/click_alt(mob/living/user)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
-		to_chat(user, span_notice(LANG("obj.cf06320f", list(src))))
+		to_chat(user, span_notice(LANG("obj.cf06320f0c299caf", list(src))))
 		return CLICK_ACTION_BLOCKING
 
 	shuffle_cards(user)
@@ -195,11 +195,11 @@
 		return NONE
 
 	if (!insert(tool))
-		to_chat(user, span_warning(LANG("obj.64e89a57", list(src))))
+		to_chat(user, span_warning(LANG("obj.64e89a57828326e1", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/card_grammar = istype(tool, /obj/item/toy/singlecard) ? "card" : "cards"
-	user.balloon_alert_to_viewers(LANG("obj.172d66d1", list(card_grammar)))
+	user.balloon_alert_to_viewers(LANG("obj.172d66d1bb1bc420", list(card_grammar)))
 	return ITEM_INTERACT_SUCCESS
 
 /// This is how we play 52 card pickup
@@ -212,7 +212,7 @@
 	if(!istype(thrower)) // if a mob didn't throw it (need two people to play 52 pickup)
 		return
 
-	target.visible_message(span_warning(LANG("obj.4dcb2baa", list(target))), span_warning(LANG("obj.cd0eeeca", null)))
+	target.visible_message(span_warning(LANG("obj.4dcb2baa8c491082", list(target))), span_warning(LANG("obj.cd0eeecae02dddec", null)))
 	target.add_mood_event("lost_52_card_pickup", /datum/mood_event/lost_52_card_pickup)
 	thrower.add_mood_event("won_52_card_pickup", /datum/mood_event/won_52_card_pickup)
 	add_memory_in_range(target, 7, /datum/memory/playing_card_pickup, protagonist = thrower, deuteragonist = target, antagonist = src)

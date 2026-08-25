@@ -102,7 +102,9 @@
 
 		var/name = entry::name
 
-		titles["[entry]"] = "[name] ([inject]u, [cooldown / 10] second cooldown)"
+		// NOVA EDIT CHANGE - I18N - 整条标签是运行期拼的、永远不是目录键；试剂名走 LANG 实参反查。
+		// ORIGINAL: titles["[entry]"] = "[name] ([inject]u, [cooldown / 10] second cooldown)"
+		titles["[entry]"] = LANG("datum.62b29086370fd5ed", list(name, inject, cooldown / 10))
 
 	data[CHOICED_PREFERENCE_DISPLAY_NAMES] = titles
 

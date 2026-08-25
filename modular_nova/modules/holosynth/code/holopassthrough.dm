@@ -46,15 +46,15 @@
 	var/turf/first_step = get_step(get_turf(owner), dir_to_move)
 	var/turf/final_destination = wumpee.fulltile ? get_step(first_step, dir_to_move) : first_step
 	if(is_phase_blocked(first_step, wumpee, owner))
-		ascarbon.balloon_alert(ascarbon, LANG("datum.62d831a3", null))
+		ascarbon.balloon_alert(ascarbon, LANG("datum.62d831a3dbaf3612", null))
 		return
 	if(wumpee.fulltile && is_phase_blocked(final_destination, wumpee, owner))
-		ascarbon.balloon_alert(ascarbon, LANG("datum.62d831a3", null))
+		ascarbon.balloon_alert(ascarbon, LANG("datum.62d831a3dbaf3612", null))
 		return
 	// Phasing past our leash would just rubber-band us back — bail up front instead of running the full do_after.
 	var/datum/component/leash/leash = owner.GetComponent(/datum/component/leash)
 	if(leash?.owner && get_dist(final_destination, leash.owner) > leash.distance)
-		ascarbon.balloon_alert(ascarbon, LANG("datum.f5e75781", null))
+		ascarbon.balloon_alert(ascarbon, LANG("datum.f5e75781e8f1dc46", null))
 		return
 
 	var/modified_pass_time = wumpee.fulltile ? (HOLOSYNTH_GLASS_FULLTILE_MULTIPLIER * pass_time) : pass_time
@@ -86,7 +86,7 @@
 		return
 
 	if(ascarbon.handcuffed || ascarbon.legcuffed)
-		ascarbon.balloon_alert(ascarbon, LANG("datum.eae3c3df", null))
+		ascarbon.balloon_alert(ascarbon, LANG("datum.eae3c3df19373c80", null))
 		return
 
 	ADD_TRAIT(owner, TRAIT_PASSWINDOW, type)
@@ -153,7 +153,7 @@
 	if(!passer)
 		return
 	passer.auto_phase = !passer.auto_phase
-	to_chat(owner, span_notice(LANG("datum.96031ceb", list(passer.auto_phase ? "enabled" : "disabled"))))
+	to_chat(owner, span_notice(LANG("datum.96031cebe8e7858e", list(passer.auto_phase ? "enabled" : "disabled"))))
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 #undef HOLOSYNTH_GLASS_PASS_TIME

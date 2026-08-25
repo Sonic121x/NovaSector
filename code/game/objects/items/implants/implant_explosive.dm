@@ -68,14 +68,14 @@
 		if(popup)
 			return FALSE
 		popup = TRUE
-		var/response = tgui_alert(imp_in, LANG("obj.6a87d4a8", list(name)), LANG("obj.9813cad0", list(name)), list("Yes", "No"))
+		var/response = tgui_alert(imp_in, LANG("obj.6a87d4a82e1cea37", list(name)), LANG("obj.9813cad0a2a465a2", list(name)), list("Yes", "No"))
 		popup = FALSE
 		if(response != "Yes")
 			return FALSE
 	if(cause == "death" && HAS_TRAIT(imp_in, TRAIT_PREVENT_IMPLANT_AUTO_EXPLOSION))
 		return FALSE
 	if(announce_activation)
-		to_chat(imp_in, span_notice(LANG("obj.47ec381b", list(name))))
+		to_chat(imp_in, span_notice(LANG("obj.47ec381bbc08950d", list(name))))
 	active = TRUE
 	var/turf/boomturf = get_turf(imp_in)
 	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [ADMIN_VERBOSEJMP(boomturf)], with cause of [cause].")
@@ -90,7 +90,7 @@
 		if(istype(target_implant, /obj/item/implant/explosive)) //we don't use our own type here, because macrobombs inherit this proc and need to be able to upgrade microbombs
 			var/obj/item/implant/explosive/other_implant = target_implant
 			if(other_implant.master_implant && master_implant) //we cant have two master implants at once
-				target.balloon_alert(user, LANG("obj.77f36b33", null))
+				target.balloon_alert(user, LANG("obj.77f36b33ab2420c2", null))
 				return FALSE
 			if(master_implant)
 				merge_implants(src, other_implant)
@@ -125,12 +125,12 @@
  */
 /obj/item/implant/explosive/proc/timed_explosion()
 	if (isnull(imp_in))
-		visible_message(span_warning(LANG("obj.c9a523c0", list(src))))
+		visible_message(span_warning(LANG("obj.c9a523c066137900", list(src))))
 	else
-		imp_in.visible_message(span_warning(LANG("obj.c9a523c0", list(imp_in))))
+		imp_in.visible_message(span_warning(LANG("obj.c9a523c066137900", list(imp_in))))
 		if(notify_ghosts)
 			notify_ghosts(
-				LANG("obj.b6019462", list(imp_in.real_name)),
+				LANG("obj.b60194621a1d56ca", list(imp_in.real_name)),
 				source = src,
 				header = "Tick Tick Tick...",
 				notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -142,7 +142,7 @@
 	if(!panic_beep_sound)
 		sleep(delay * 0.25)
 	if(imp_in && !IS_UNCONSCIOUS_OR_CRIT(imp_in) && !no_paralyze)
-		imp_in.visible_message(span_warning(LANG("obj.4f2b1df7", list(imp_in))))
+		imp_in.visible_message(span_warning(LANG("obj.4f2b1df7c7806f36", list(imp_in))))
 		imp_in.Paralyze(14 SECONDS)
 
 	if(!panic_beep_sound)

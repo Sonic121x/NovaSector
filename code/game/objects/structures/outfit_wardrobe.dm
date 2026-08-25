@@ -38,7 +38,7 @@
 		return
 
 	if(one_use && HAS_TRAIT_FROM(human_user, TRAIT_WARDROBE_USED, wardrobe_id))
-		to_chat(human_user, span_notice(LANG("obj.2603d480", null)))
+		to_chat(human_user, span_notice(LANG("obj.2603d4809997d3ba", null)))
 		return
 
 	var/list/display_classes = list()
@@ -58,7 +58,7 @@
 		display_classes[dressup] = option
 
 	if(!length(display_classes))
-		to_chat(human_user, span_warning(LANG("obj.7326360d", null)))
+		to_chat(human_user, span_warning(LANG("obj.7326360d0f4e1585", null)))
 		return
 
 	sort_list(display_classes)

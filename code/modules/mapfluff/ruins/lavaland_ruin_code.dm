@@ -4,11 +4,7 @@
 ///Wizard tower item
 /obj/item/disk/design_disk/knight_gear
 	name = "Magic Disk of Smithing"
-
-/obj/item/disk/design_disk/knight_gear/Initialize(mapload)
-	. = ..()
-	blueprints += new /datum/design/knight_armour
-	blueprints += new /datum/design/knight_helmet
+	blueprints = list(/datum/design/knight_armour, /datum/design/knight_helmet)
 
 //Free Golems
 
@@ -16,15 +12,11 @@
 	name = "Golem Creation Disk"
 	desc = "A gift from the Liberator."
 	icon_state = "datadisk1"
-
-/obj/item/disk/design_disk/golem_shell/Initialize(mapload)
-	. = ..()
-	blueprints += new /datum/design/golem_shell
+	blueprints = list(/datum/design/golem_shell)
 
 /datum/design/golem_shell
 	name = "Golem Shell Construction"
 	desc = "Allows for the construction of a Golem Shell."
-	id = "golem"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*20)
 	build_path = /obj/item/golem_shell
@@ -49,18 +41,18 @@
 	var/obj/item/stack/stack_food = tool
 	var/stack_type = stack_food.merge_type
 	if (!is_path_in_list(stack_type, GLOB.golem_stack_food_directory))
-		balloon_alert(user, LANG("obj.7dd03480", null))
+		balloon_alert(user, LANG("obj.7dd034800531696d", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(stack_food.amount < required_stacks)
-		balloon_alert(user, LANG("obj.2a12f334", null))
+		balloon_alert(user, LANG("obj.2a12f33458288767", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!do_after(user, delay = 4 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!stack_food.use(required_stacks))
-		balloon_alert(user, LANG("obj.2a12f334", null))
+		balloon_alert(user, LANG("obj.2a12f33458288767", null))
 		return ITEM_INTERACT_BLOCKING
 
 	new shell_type(get_turf(src), /* creator = */ user, /* made_of = */ stack_type)
@@ -70,14 +62,14 @@
 /obj/item/golem_shell/crowbar_act(mob/living/user, obj/item/tool)
 	. = ..()
 
-	to_chat(user, span_notice(LANG("obj.3deec6dd", null)))
+	to_chat(user, span_notice(LANG("obj.3deec6ddad931d58", null)))
 	playsound(src, 'sound/items/tools/crowbar.ogg',  70)
 	if(!do_after(user, delay = 1 SECONDS, target = src))
 		return
 	if(QDELETED(src))
 		return
 	new /obj/item/stack/sheet/mineral/adamantine(get_turf(src), 1) //Return less than was used to construct the shell
-	to_chat(user, span_notice(LANG("obj.4896d1fe", null)))
+	to_chat(user, span_notice(LANG("obj.4896d1feeeed20d2", null)))
 	playsound(src, 'sound/effects/rock/rock_break.ogg', 40)
 	qdel(src)
 	return

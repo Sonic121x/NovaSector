@@ -104,13 +104,13 @@
 	var/list/admin_forced_args
 
 /datum/event_admin_setup/mass_hallucination/prompt_admins()
-	var/force = tgui_alert(usr, LANG("datum.22d021f5", null), event_control.name, list("Yes", "No", "Cancel"))
+	var/force = tgui_alert(usr, LANG("datum.22d021f5989dd02c", null), event_control.name, list("Yes", "No", "Cancel"))
 	if(force == "Cancel")
 		return ADMIN_CANCEL_EVENT
 	if(force != "Yes")
 		return
 
-	var/force_what = tgui_alert(usr, LANG("datum.a47c0075", null), event_control.name, list("Hallucination", "Custom Delusion", "Cancel"))
+	var/force_what = tgui_alert(usr, LANG("datum.a47c0075fd714b7d", null), event_control.name, list("Hallucination", "Custom Delusion", "Cancel"))
 	switch(force_what)
 		if("Cancel")
 			return ADMIN_CANCEL_EVENT

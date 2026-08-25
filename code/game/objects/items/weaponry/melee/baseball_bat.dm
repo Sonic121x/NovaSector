@@ -41,12 +41,12 @@
 	if(!homerun_able)
 		return ..()
 	if(homerun_ready)
-		to_chat(user, span_warning(LANG("obj.6b3ffa99", null)))
+		to_chat(user, span_warning(LANG("obj.6b3ffa994cc6c8e3", null)))
 		return ..()
-	to_chat(user, span_warning(LANG("obj.bf363863", null)))
+	to_chat(user, span_warning(LANG("obj.bf363863ac8986d7", null)))
 	playsound(get_turf(src), 'sound/effects/magic/lightning_chargeup.ogg', 65, TRUE)
 	if(do_after(user, 9 SECONDS, target = src))
-		to_chat(user, span_userdanger(LANG("obj.a6997682", null)))
+		to_chat(user, span_userdanger(LANG("obj.a699768239ffa9ab", null)))
 		homerun_ready = TRUE
 	return ..()
 
@@ -58,7 +58,7 @@
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		return
 	if(homerun_ready)
-		user.visible_message(span_userdanger(LANG("obj.44b428d0", null)))
+		user.visible_message(span_userdanger(LANG("obj.44b428d0ff236379", null)))
 		if(!QDELETED(target))
 			target.throw_at(throw_target, rand(8,10), 14, user)
 		SSexplosions.medturf += throw_target

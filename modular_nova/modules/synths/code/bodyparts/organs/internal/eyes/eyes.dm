@@ -14,16 +14,15 @@
 
 	switch(severity)
 		if(EMP_HEAVY)
-			to_chat(owner, span_warning(LANG("obj.dd0ddb0c", null)))
+			to_chat(owner, span_warning(LANG("obj.dd0ddb0c131e9125", null)))
 			apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 		if(EMP_LIGHT)
-			to_chat(owner, span_warning(LANG("obj.5188865a", null)))
+			to_chat(owner, span_warning(LANG("obj.5188865aa2b7275e", null)))
 			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 
 /datum/design/synth_eyes
 	name = "Optical Sensors"
 	desc = "A very basic set of optical sensors with no extra vision modes or functions."
-	id = "synth_eyes"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

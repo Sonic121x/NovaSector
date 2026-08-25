@@ -57,7 +57,7 @@
 	var/mob/living/carbon/wearer = clothing.loc
 	if(wearer.is_blind() && !wearer.is_blind_from(EYES_COVERED))
 		return
-	to_chat(wearer, span_warning(LANG("datum.f65ecc4d", list(clothing.name))))
+	to_chat(wearer, span_warning(LANG("datum.f65ecc4d87eecf93", list(clothing.name))))
 
 /datum/component/clothing_dirt/proc/on_equip(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
@@ -78,7 +78,7 @@
 	SIGNAL_HANDLER
 	var/obj/item/clothing/clothing = parent
 	if (dirtiness > 0)
-		examine_list += span_warning(LANG("datum.1c27b241", list(clothing.tint >= TINT_MILD ? "Won't see much while wearing it until you wash it off." : "Any more and you might struggle to see through it.")))
+		examine_list += span_warning(LANG("datum.1c27b241d91c247f", list(clothing.tint >= TINT_MILD ? "Won't see much while wearing it until you wash it off." : "Any more and you might struggle to see through it.")))
 
 /datum/component/clothing_dirt/proc/on_overlays_updated(obj/item/clothing/source, list/overlays)
 	SIGNAL_HANDLER
@@ -178,8 +178,8 @@
 	remove_tint(FALSE)
 	dirtiness = min(3, dirtiness + rand(2, 3))
 	apply_tint(TRUE)
-	user.visible_message(span_danger(LANG("datum.92c48529", list(user, spraycan, wearer))))
-	to_chat(wearer, span_userdanger(LANG("datum.8794109e", list(user, spraycan))))
+	user.visible_message(span_danger(LANG("datum.92c485299131660b", list(user, spraycan, wearer))))
+	to_chat(wearer, span_userdanger(LANG("datum.8794109efb908341", list(user, spraycan))))
 	return COMPONENT_CANCEL_SPRAYPAINT
 
 /datum/component/clothing_dirt/proc/on_clean(obj/item/clothing/source, clean_types)

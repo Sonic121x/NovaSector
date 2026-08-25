@@ -26,7 +26,7 @@
 
 /datum/reagent/inverse/lidocaine/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
-	to_chat(affected_mob, span_userdanger(LANG("datum.a5ef8d31", null)))
+	to_chat(affected_mob, span_userdanger(LANG("datum.a5ef8d3101983288", null)))
 	affected_mob.adjust_organ_loss(ORGAN_SLOT_HEART, 3.75 * seconds_per_tick * metabolization_ratio, 85, required_organ_flag = affected_organ_flags)
 	if(affected_mob.adjust_stamina_loss(6.25 * seconds_per_tick * metabolization_ratio, updating_stamina = FALSE))
 		. = UPDATE_MOB_HEALTH

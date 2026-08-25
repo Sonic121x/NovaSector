@@ -73,8 +73,8 @@
 		last_ticket_luxury = !last_ticket_luxury
 		if(!ticket_book.atom_storage.can_insert(created_ticket, messages = FALSE))
 			qdel(created_ticket)
-			bank_card_talk(LANG("datum.97b2f6d3", null))
+			bank_card_talk(LANG("datum.97b2f6d393c1a603", null))
 			// We can stop here, it's joever for trying to place tickets in the book this payday. You snooze you lose!
 			return
 		created_ticket.forceMove(ticket_book)
-		bank_card_talk(LANG("datum.a6b7a756", list(last_ticket_luxury ? "luxury item" : "standard")))
+		bank_card_talk(LANG("datum.a6b7a75680b71683", list(last_ticket_luxury ? "luxury item" : "standard")))

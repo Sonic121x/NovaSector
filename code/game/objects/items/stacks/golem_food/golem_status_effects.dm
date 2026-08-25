@@ -141,12 +141,12 @@
 
 /datum/status_effect/golem/on_remove()
 	if(mineral_name)
-		to_chat(owner, span_warning(LANG("datum.8322c37b", list(mineral_name))))
+		to_chat(owner, span_warning(LANG("datum.8322c37bdf0e241a", list(mineral_name))))
 	QDEL_LIST(active_overlays)
 	owner.remove_filter("[id]_filter")
 	return ..()
 
-/datum/status_effect/golem/get_examine_text()
+/datum/status_effect/golem/get_examine_text(mob/examiner)
 	if(mineral_name)
 		return span_notice("[owner.p_Their()] body has been augmented with veins of [mineral_name].")
 
@@ -517,14 +517,14 @@
 	. = ..()
 	if (!.)
 		return
-	to_chat(owner, span_notice(LANG("datum.cdb43058", null)))
+	to_chat(owner, span_notice(LANG("datum.cdb43058f8b638cf", null)))
 	lightbulb = owner.mob_light(glow_range, glow_power, glow_color)
 	owner.add_filter(LIGHTBULB_FILTER, 2, list("type" = "outline", "color" = glow_color, "alpha" = 60, "size" = 1))
 
 /datum/status_effect/golem/lightbulb/on_remove()
 	QDEL_NULL(lightbulb)
 	owner.remove_filter(LIGHTBULB_FILTER)
-	to_chat(owner, span_warning(LANG("datum.ef7b0770", null)))
+	to_chat(owner, span_warning(LANG("datum.ef7b077068a6b809", null)))
 	return ..()
 
 #undef LIGHTBULB_FILTER

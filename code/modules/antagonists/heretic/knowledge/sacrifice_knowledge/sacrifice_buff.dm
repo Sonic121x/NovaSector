@@ -38,12 +38,12 @@
 	// In softcrit you're, strong enough to stay up.
 	if(owner.health <= owner.crit_threshold && owner.health >= owner.hardcrit_threshold)
 		if(prob(5))
-			to_chat(owner, span_hypnophrase(LANG("datum.eae49626", null)))
+			to_chat(owner, span_hypnophrase(LANG("datum.eae4962627ca79d2", null)))
 		healing_amount *= 2
 	// ...But reach hardcrit and you're done. You now die faster.
 	if (owner.health < owner.hardcrit_threshold)
 		if(prob(5))
-			to_chat(owner, span_big(span_hypnophrase(LANG("datum.852fa2c7", null))))
+			to_chat(owner, span_big(span_hypnophrase(LANG("datum.852fa2c7ec8471bc", null))))
 		healing_amount *= -0.5
 
 	if(owner.health > owner.crit_threshold && prob(4))

@@ -56,7 +56,7 @@
 	if(!target || !iscarbon(owner))
 		return
 	if(world.time < use_delay)
-		to_chat(owner, span_warning(LANG("datum.437630d8", list(DisplayTimeText(use_delay - world.time), target))))
+		to_chat(owner, span_warning(LANG("datum.437630d847842773", list(DisplayTimeText(use_delay - world.time), target))))
 		return
 	var/mob/living/carbon/human/C = owner
 	var/mob/eye/camera/remote/remote_eye = C.remote_control
@@ -64,11 +64,11 @@
 
 	var/area/target_area = get_area(remote_eye)
 	if((target_area.area_flags & NOTELEPORT) && !istype(target_area, /area/centcom/abductor_ship))
-		to_chat(owner, span_warning(LANG("datum.ee429b36", null)))
+		to_chat(owner, span_warning(LANG("datum.ee429b3658cac512", null)))
 		return
 
 	if(target_area.motion_monitored)
-		to_chat(owner, span_warning(LANG("datum.ee429b36", null)))
+		to_chat(owner, span_warning(LANG("datum.ee429b3658cac512", null)))
 		return
 
 	use_delay = (world.time + abductor_pad_cooldown)
@@ -100,7 +100,7 @@
 	if(!target || !iscarbon(owner))
 		return
 	if(world.time < use_delay)
-		to_chat(owner, span_warning(LANG("datum.212bc590", null)))
+		to_chat(owner, span_warning(LANG("datum.212bc590814e6242", null)))
 		return
 	var/mob/living/carbon/human/C = owner
 	var/mob/eye/camera/remote/remote_eye = C.remote_control
@@ -108,11 +108,11 @@
 
 	var/area/target_area = get_area(remote_eye)
 	if((target_area.area_flags & NOTELEPORT) && !istype(target_area, /area/centcom/abductor_ship))
-		to_chat(owner, span_warning(LANG("datum.ee429b36", null)))
+		to_chat(owner, span_warning(LANG("datum.ee429b3658cac512", null)))
 		return
 
 	if(target_area.motion_monitored)
-		to_chat(owner, span_warning(LANG("datum.ee429b36", null)))
+		to_chat(owner, span_warning(LANG("datum.ee429b3658cac512", null)))
 		return
 
 	use_delay = (world.time + teleport_self_cooldown)

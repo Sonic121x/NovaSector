@@ -23,7 +23,7 @@
 		return FALSE
 	if(shop_spot_ref?.resolve())
 		if(feedback)
-			owner.balloon_alert(owner, LANG("datum.1b77637c", null))
+			owner.balloon_alert(owner, LANG("datum.1b77637cdcede838", null))
 		return FALSE
 	return TRUE
 

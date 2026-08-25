@@ -38,9 +38,9 @@
 	var/obj/item/card/id/stored_card = computer.GetID()
 	if(istype(stored_card) && stored_card.registered_name)
 		username = "user [stored_card.registered_name]"
-	to_chat(borgo, span_userdanger(LANG("datum.9e83c38b", list(username))))//Damning evidence may be contained, so warn the borg
+	to_chat(borgo, span_userdanger(LANG("datum.9e83c38b6f0130e8", list(username))))//Damning evidence may be contained, so warn the borg
 	borgo.logevent("File request by [username]: /var/logs/syslog")
-	borgo.balloon_alert(user, LANG("datum.0c29e299", null))
+	borgo.balloon_alert(user, LANG("datum.0c29e2991cc339c6", null))
 	return TRUE
 
 /datum/computer_file/program/borg_monitor/process_tick(seconds_per_tick)
@@ -51,7 +51,7 @@
 	var/turf/here = get_turf(computer)
 	var/turf/there = get_turf(DL_source)
 	if(!here.Adjacent(there))//If someone walked away, cancel the download
-		to_chat(DL_source, span_danger(LANG("datum.88d34bfa", null)))//Let the borg know the upload stopped
+		to_chat(DL_source, span_danger(LANG("datum.88d34bfa70982b64", null)))//Let the borg know the upload stopped
 		DL_source = null
 		DL_progress = -1
 		return
@@ -122,9 +122,9 @@
 	if(!ID)
 		return FALSE
 	if(robot.stat == DEAD) //Dead borgs will listen to you no longer
-		to_chat(user, span_warning(LANG("datum.0105be06", list(robot))))
+		to_chat(user, span_warning(LANG("datum.0105be06c7ddaf40", list(robot))))
 		return FALSE
-	var/message = tgui_input_text(user, LANG("datum.74b3ea97", null), LANG("datum.5673afd0", null), max_length = MAX_MESSAGE_LEN)
+	var/message = tgui_input_text(user, LANG("datum.74b3ea97d2e103fe", null), LANG("datum.5673afd0a63b1d53", null), max_length = MAX_MESSAGE_LEN)
 	if(!message)
 		return FALSE
 	send_message(message, robot, user)
@@ -135,11 +135,11 @@
 		return FALSE
 	if(robot.stat == DEAD) //Dead borgs will listen to you no longer
 		if(user)
-			to_chat(user, span_warning(LANG("datum.0105be06", list(robot))))
+			to_chat(user, span_warning(LANG("datum.0105be06c7ddaf40", list(robot))))
 			return FALSE
 	to_chat(robot, "<br><br>[span_notice("Message from [ID] -- \"[message]\"")]<br>")
 	if(user)
-		to_chat(user, LANG("datum.039ae405", list(robot, message)))
+		to_chat(user, LANG("datum.039ae405877f10fc", list(robot, message)))
 	robot.logevent("Message from [ID] -- \"[message]\"")
 	SEND_SOUND(robot, 'sound/machines/beep/twobeep_high.ogg')
 	if(robot.connected_ai)

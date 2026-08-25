@@ -94,4 +94,4 @@
 
 /mob/living/basic/butterfly/lavaland/temporary/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("mob.16c696a0", null))
+	. += span_notice(LANG("mob.16c696a0ced1417a", null))

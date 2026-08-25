@@ -24,5 +24,5 @@
 		return
 
 	// A balloon alert would be too distracting mid-combat.
-	to_chat(parent_mob, span_warning(LANG("datum.656951a6", null)))
+	to_chat(parent_mob, span_warning(LANG("datum.656951a65c231449", null)))
 	return COMPONENT_HOSTILE_NO_ATTACK

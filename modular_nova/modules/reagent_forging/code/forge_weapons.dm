@@ -22,8 +22,8 @@
 
 /obj/item/forging/reagent_weapon/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.d81d8f4a", list(src)))
-	. += span_notice(LANG("obj.446f7f21", null))
+	. += span_notice(LANG("obj.d81d8f4a31140771", list(src)))
+	. += span_notice(LANG("obj.446f7f210d3987e8", null))
 
 /obj/item/forging/reagent_weapon/sword
 	name = "forged sword"
@@ -242,8 +242,8 @@
 
 /obj/item/shield/buckler/reagent_weapon/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.d81d8f4a", list(src)))
-	. += span_notice(LANG("obj.446f7f21", null))
+	. += span_notice(LANG("obj.d81d8f4a31140771", list(src)))
+	. += span_notice(LANG("obj.446f7f210d3987e8", null))
 
 /obj/item/shield/buckler/reagent_weapon/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(atom_integrity >= max_integrity)
@@ -257,7 +257,7 @@
 			var/fixing_amount = min(max_integrity - atom_integrity, 5)
 			atom_integrity += fixing_amount
 			user.mind.adjust_experience(/datum/skill/smithing, 5)
-			balloon_alert(user, LANG("obj.05360c87", null))
+			balloon_alert(user, LANG("obj.05360c87e806ce4b", null))
 		return ITEM_INTERACT_SUCCESS
 	return ..()
 
@@ -378,7 +378,7 @@
 /obj/item/forging/reagent_weapon/bokken/attack(mob/living/carbon/target_mob, mob/living/user, params)
 	. = ..()
 	if(!iscarbon(target_mob))
-		user.visible_message(span_warning(LANG("obj.57bbc80b", list(src, target_mob))))
+		user.visible_message(span_warning(LANG("obj.57bbc80b4b5cae1c", list(src, target_mob))))
 		playsound(src, 'sound/items/weapons/genhit.ogg', 75, TRUE)
 		return
 	playsound(src, pick('sound/items/weapons/genhit1.ogg', 'sound/items/weapons/genhit2.ogg', 'sound/items/weapons/genhit3.ogg'), 100, TRUE)

@@ -66,13 +66,13 @@
 	if(!istype(tool, /obj/item/stack/sheet/glass))
 		return
 	if(!broken)
-		balloon_alert(user, LANG("obj.28d3220c", null))
+		balloon_alert(user, LANG("obj.28d3220caf4c6889", null))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/stack/sheet/glass/glass = tool
 	if(glass.get_amount() < 2)
-		balloon_alert(user, LANG("obj.0410e04b", null))
+		balloon_alert(user, LANG("obj.0410e04b1eef57cd", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.39c521c1", null))
+	balloon_alert(user, LANG("obj.39c521c1f81da0df", null))
 	if(!do_after(user, 2 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	glass.use(2)
@@ -201,10 +201,10 @@
 		return
 	var/obj/item/fish/fish = item
 	if(fish.size > maximum_relative_size)
-		balloon_alert(user, LANG("obj.d655e63b", null))
+		balloon_alert(user, LANG("obj.d655e63ba60cb213", null))
 		return COMSIG_CANNOT_INSERT_IN_AQUARIUM
 	if(current_summed_size > max_total_size)
-		balloon_alert(user, LANG("obj.9af47108", null))
+		balloon_alert(user, LANG("obj.9af4710878f00445", null))
 		return COMSIG_CANNOT_INSERT_IN_AQUARIUM
 	return COMSIG_CAN_INSERT_IN_AQUARIUM
 
@@ -254,7 +254,7 @@
 /obj/item/fish_tank/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT_FROM(src, TRAIT_STOP_FISH_REPRODUCTION_AND_GROWTH, INNATE_TRAIT))
-		. += span_warning(LANG("obj.1bf0de2b", null))
+		. += span_warning(LANG("obj.1bf0de2be5187be0", null))
 
 ///The lawyer's own pet goldfish's fish tank. It used to be an aquarium, but now it can be held and carried around.
 /obj/item/fish_tank/lawyer

@@ -232,12 +232,10 @@ I18N_CODEX_STDIO=inherit
   由 `tgui-catalog.mjs extract` 合并进 tgui 目录。优势——`init_possible_values()` 返回值经预处理器展开
   → **自动覆盖所有 choiced 下拉（含 #define 定义的选项）**，新增下拉**不必再加规则**；类型作用域的
   name/title 对上游移动文件免疫。`resync.sh` 会刷新它。
-- **单词专用层（`labels.rs` 的 `SINGLE_WORD_TYPE_VAR_RULES`）**：投票/恶意 AI 模块/化学反应/设计/材料/
-  试剂的 name **只收单词值**。多词 name 由 DM 侧 P1 在负载里就地翻好，进了前端目录反而会让 P1 跳过、
-  改由 TS 只翻显示，一旦该界面把它渲染在非可翻位置就退化成英文；单词 name 过不了 P1 的多词门槛、
-  本来恒为英文，进目录是纯增益。`extract` 里配套一道守门：**单词键的译文只许沿用其它命名空间的既有
-  词对**（`reverseZh`），`phraseTranslation` 现编的值不收——`tgui.json` 会被 DM 侧 `build_i18n_cache`
-  扫进**全局反查表**，凭空多出的单词词对就是扩大全局误翻面。改动这批规则后按下面的审计命令验一遍。
+- **单词专用层（`labels.rs` 的 `SINGLE_WORD_TYPE_VAR_RULES`）**：补静态 TSX 扫描看不到的投票、AI 模块、
+  化学反应、设计、材料与试剂名。DM 负载本身保持 canonical 值，单词与多词都可经 overlay 做整串精确
+  翻译；TS 子串替换器仍只收多词 key，防止短词从标识符或其它单词内部开火。`tgui.json` 属于独立
+  `tgui` 运行时域，不进入 DM 全局反查表。
 - **正则层（`tgui-catalog.mjs` 的 `DM_LABEL_SOURCES`，残留/兜底）**：覆盖 AST 够不着的路径作用域数据
   （配装/服装 obj 名按目录界定）与无法枚举的宏（DefineMap 无公开迭代器 → JOB_*/AUGMENT_SLOT_* 等
   #define 值仍走正则文件扫描）。两层 **addText 合并去重**，正则保证零回归。
@@ -508,11 +506,10 @@ some_command_that_dumps_ui | node tools/i18n/pseudo-scan.mjs --min 5
 - `TEST_FOCUS(/datum/unit_test/i18n_unreverse)` —— `lang_reverse_text ↔ lang_unreverse_text` 往返
   不变量（守护 chem dispenser 等「UI 回传译名查英文键表」解药；回归即「中文名按了没反应」）。
 
-> **早期初始化时序**（母版试剂表 / `meta_gas_info` 等 GLOBAL_LIST_INIT 早于 `i18n_cache`）：
-> 既有方案是 `lang_build_reverse` 的「cache 未就绪返回空表且不缓存」加固 + **逐家族 SS Init 反查
-> pass**（`SSair`/`SSmaterials`/`SSreagents` 等，幂等、locale==en 零开销）。这是规范模式：**新出现
-> 一个早期 datum 家族就在其 SS Init 加一遍反查**（一行），不引入运行期 pending-replay 框架（会给
-> 热路径 Initialize/New 加成本、且现有家族已覆盖）。
+> **初始化时序**：全局初始化只解码 English bootstrap；`world.ConfigLoaded()` 调
+> `lang_initialize_runtime()` 固定 locale、加载唯一 active locale，并一次性预热 domain、exact/normalized
+> reverse、type-var、template 与 AC 索引。BOOTSTRAP 期早调用只返回英文且不缓存空状态；初始化完成后
+> 才进入 `I18N_RUNTIME_READY`。早建的展示型字符串池在同一入口集中重放，匹配/标识符表明确跳过。
 
 ## 注意
 

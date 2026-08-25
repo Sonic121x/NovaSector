@@ -52,17 +52,17 @@
 
 /obj/item/inspector/crowbar_act(mob/living/user, obj/item/tool)
 	cell_cover_open = !cell_cover_open
-	balloon_alert(user, LANG("obj.b788caa2", list(cell_cover_open ? "opened" : "closed")))
+	balloon_alert(user, LANG("obj.b788caa272919770", list(cell_cover_open ? "opened" : "closed")))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/inspector/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(cell_cover_open && istype(tool, /obj/item/stock_parts/power_store/cell))
 		if(cell)
-			to_chat(user, span_warning(LANG("obj.3d7d4031", list(src))))
+			to_chat(user, span_warning(LANG("obj.3d7d40314d136d07", list(src))))
 			return ITEM_INTERACT_BLOCKING
 		if(user.transferItemToLoc(tool, src))
 			cell = tool
-			to_chat(user, span_notice(LANG("obj.b9a8027e", list(cell, src))))
+			to_chat(user, span_notice(LANG("obj.b9a8027ed409de44", list(cell, src))))
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
 	return NONE
@@ -70,8 +70,8 @@
 /obj/item/inspector/item_ctrl_click(mob/user)
 	if(!cell_cover_open || !cell)
 		return CLICK_ACTION_BLOCKING
-	user.visible_message(span_notice(LANG("obj.ea367116", list(user, cell, src))), \
-		span_notice(LANG("obj.1973523e", list(cell))))
+	user.visible_message(span_notice(LANG("obj.ea367116b2948c11", list(user, cell, src))), \
+		span_notice(LANG("obj.1973523e4f545786", list(cell))))
 	cell.add_fingerprint(user)
 	user.put_in_hands(cell)
 	cell = null
@@ -79,24 +79,24 @@
 
 /obj/item/inspector/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.3cab1051", null))
+	. += span_info(LANG("obj.3cab1051dcd082e9", null))
 	if(!cell_cover_open)
-		. += span_notice(LANG("obj.84935762", null))
+		. += span_notice(LANG("obj.849357622e5fb50f", null))
 		return
-	. += span_notice(LANG("obj.eea3dbb6", null))
+	. += span_notice(LANG("obj.eea3dbb62eee04fb", null))
 	if(!cell)
-		. += span_notice(LANG("obj.e4ac54e1", null))
+		. += span_notice(LANG("obj.e4ac54e10fd34ca8", null))
 	else
-		. += span_notice(LANG("obj.ac8e8981", list(cell)))
+		. += span_notice(LANG("obj.ac8e898109646d16", list(cell)))
 
 /obj/item/inspector/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!user.Adjacent(interacting_with))
 		return ITEM_INTERACT_BLOCKING
 	if(cell_cover_open)
-		balloon_alert(user, LANG("obj.b93a1c09", null))
+		balloon_alert(user, LANG("obj.b93a1c09027c18b7", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!cell || !cell.use(0.001 * STANDARD_CELL_CHARGE))
-		balloon_alert(user, LANG("obj.480a0be7", null))
+		balloon_alert(user, LANG("obj.480a0be7e257be1b", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(iscarbon(interacting_with)) // Prevents scanning people
@@ -104,11 +104,11 @@
 
 	if(contraband_scan(interacting_with, user))
 		playsound(src, 'sound/machines/uplink/uplinkerror.ogg', 40)
-		balloon_alert(user, LANG("obj.3cd1e965", null))
+		balloon_alert(user, LANG("obj.3cd1e965826b9e98", null))
 		return ITEM_INTERACT_SUCCESS
 
 	playsound(src, 'sound/machines/ping.ogg', 20)
-	balloon_alert(user, LANG("obj.1e8e1077", null))
+	balloon_alert(user, LANG("obj.1e8e10772ed40dde", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/inspector/add_context(atom/source, list/context, obj/item/held_item, mob/user)

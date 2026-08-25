@@ -23,7 +23,7 @@
 	. = ..()
 	if(!sample)
 		return
-	. += span_notice(LANG("obj.61f23338", null))
+	. += span_notice(LANG("obj.61f23338b7fc7605", null))
 	for(var/i in sample.micro_organisms)
 		var/datum/micro_organism/MO = i
 		. += MO.get_details()
@@ -46,7 +46,7 @@
 
 /obj/item/petri_dish/proc/deposit_sample(user, datum/biological_sample/deposited_sample)
 	sample = deposited_sample
-	to_chat(user, span_notice(LANG("obj.63e44201", list(src))))
+	to_chat(user, span_notice(LANG("obj.63e442013c4fb5f7", list(src))))
 	update_appearance()
 
 /// Petri dish with random sample already in it.

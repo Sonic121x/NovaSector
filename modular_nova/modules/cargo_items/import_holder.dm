@@ -35,8 +35,8 @@
 
 /obj/item/goodycase_holder/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.8247b879", list(length(goodycase_list), max_goodycases)))
-	. += span_notice(LANG("obj.e426bafc", null))
+	. += span_notice(LANG("obj.8247b879ed2c4d70", list(length(goodycase_list), max_goodycases)))
+	. += span_notice(LANG("obj.e426bafc4e2154f2", null))
 
 /obj/item/goodycase_holder/update_appearance(updates)
 	. = ..()
@@ -47,28 +47,28 @@
 
 /obj/item/goodycase_holder/attack_self(mob/user, modifiers)
 	if(length(goodycase_list) < 1)
-		to_chat(user, span_notice(LANG("obj.12f289bb", null)))
+		to_chat(user, span_notice(LANG("obj.12f289bb059b84d3", null)))
 		return
 
-	var/obj/obj_choice = tgui_input_list(user, LANG("obj.8663600b", null), LANG("obj.937d4b3e", null), goodycase_list)
+	var/obj/obj_choice = tgui_input_list(user, LANG("obj.8663600ba5dbea2e", null), LANG("obj.937d4b3e57e22bcb", null), goodycase_list)
 	if(isnull(obj_choice))
 		return
 
 	obj_choice.forceMove(get_turf(src))
 	goodycase_list -= obj_choice
-	to_chat(user, span_notice(LANG("obj.7207df57", list(obj_choice, src, get_turf(src)))))
+	to_chat(user, span_notice(LANG("obj.7207df574db90456", list(obj_choice, src, get_turf(src)))))
 	update_appearance()
 
 /obj/item/goodycase_holder/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/storage/lockbox/order))
 		if(length(goodycase_list) >= max_goodycases)
-			to_chat(user, span_warning(LANG("obj.6a5bebbd", list(src))))
+			to_chat(user, span_warning(LANG("obj.6a5bebbdce812640", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		goodycase_list += tool
 		tool.forceMove(src)
 		update_appearance()
-		to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 		return ITEM_INTERACT_BLOCKING
 
 	return ..()
@@ -76,7 +76,6 @@
 /datum/design/goodycase_holder
 	name = "Goody Case Holder"
 	desc = "The solution to the plethora of goody cases that litter the cargonian halls."
-	id = "goodycase_holder"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/goodycase_holder
 	materials = list(

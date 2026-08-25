@@ -86,32 +86,32 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "bolt",
-			SPECIES_PERK_NAME = LANG("datum.565fa598", null),
-			SPECIES_PERK_DESC = LANG("datum.3a81b6b4", null),
+			SPECIES_PERK_NAME = LANG("datum.565fa59846a46368", null),
+			SPECIES_PERK_DESC = LANG("datum.3a81b6b4c1992566", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "lightbulb",
-			SPECIES_PERK_NAME = LANG("datum.795ea640", null),
-			SPECIES_PERK_DESC = LANG("datum.efb60e73", null),
+			SPECIES_PERK_NAME = LANG("datum.795ea640d1ef6a1c", null),
+			SPECIES_PERK_DESC = LANG("datum.efb60e737af43a32", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "gem",
-			SPECIES_PERK_NAME = LANG("datum.5cd3b293", null),
-			SPECIES_PERK_DESC = LANG("datum.d6371206", null),
+			SPECIES_PERK_NAME = LANG("datum.5cd3b29322cadb9d", null),
+			SPECIES_PERK_DESC = LANG("datum.d63712065cafe953", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "fist-raised",
-			SPECIES_PERK_NAME = LANG("datum.35f19693", null),
-			SPECIES_PERK_DESC = LANG("datum.734d0fe9", null),
+			SPECIES_PERK_NAME = LANG("datum.35f196932b495c75", null),
+			SPECIES_PERK_DESC = LANG("datum.734d0fe9f6f2d895", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "biohazard",
-			SPECIES_PERK_NAME = LANG("datum.0a516cff", null),
-			SPECIES_PERK_DESC = LANG("datum.f12e8066", null),
+			SPECIES_PERK_NAME = LANG("datum.0a516cff1d77d9ae", null),
+			SPECIES_PERK_DESC = LANG("datum.f12e80666f0489a4", null),
 		),
 	)
 

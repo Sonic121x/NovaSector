@@ -124,7 +124,7 @@
 		return FALSE
 	// NOVA EDIT ADDITION START
 	if(acquirer.has_borer())
-		to_chat(acquirer, span_warning(LANG("datum.e91c9d57", null)))
+		to_chat(acquirer, span_warning(LANG("datum.e91c9d57e5b43032", null)))
 	// NOVA EDIT ADDITION END
 	if(LAZYLEN(species_allowed) && !LAZYFIND(species_allowed, acquirer.dna.species.id))
 		return FALSE

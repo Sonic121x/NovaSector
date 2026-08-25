@@ -35,15 +35,15 @@
 	. = ..()
 	if(active)
 		if(!issynthetic(linked_mob))
-			to_chat(linked_mob, span_warning(LANG("datum.35c1d1b5", null)))
-			to_chat(linked_mob, span_warning(LANG("datum.1bb20653", null)))
-			to_chat(linked_mob, span_warning(LANG("datum.d322fd07", null)))
+			to_chat(linked_mob, span_warning(LANG("datum.35c1d1b5fcaf0eeb", null)))
+			to_chat(linked_mob, span_warning(LANG("datum.1bb20653c0e97f2e", null)))
+			to_chat(linked_mob, span_warning(LANG("datum.d322fd0721e359e0", null)))
 		martial_to_learn.teach(linked_mob)
 		linked_mob.log_message("learned the martial art [martial_to_learn]", LOG_ATTACK, color = "orange")
-		to_chat(linked_mob, span_danger(LANG("datum.7dcae8f7", null)))
-		to_chat(linked_mob, span_danger(LANG("datum.fc3d2fb8", null)))
-		to_chat(linked_mob, span_danger(LANG("datum.385de8e2", null)))
-		to_chat(linked_mob, span_danger(LANG("datum.1e774a96", null)))
+		to_chat(linked_mob, span_danger(LANG("datum.7dcae8f75af3b726", null)))
+		to_chat(linked_mob, span_danger(LANG("datum.fc3d2fb8ac3a3e5a", null)))
+		to_chat(linked_mob, span_danger(LANG("datum.385de8e27b2e6939", null)))
+		to_chat(linked_mob, span_danger(LANG("datum.1e774a96ff8e3eab", null)))
 		return
 	martial_to_learn.unlearn(linked_mob)
 
@@ -108,9 +108,9 @@
 	// Similar to a normal punch, should we have a value of 0 for our lower force, we simply miss outright.
 	if(!lower_force)
 		playsound(defender.loc, active_arm.unarmed_miss_sound, 25, TRUE, -1)
-		defender.visible_message(span_warning(LANG("datum.a12205d1", list(attacker, defender))), \
-			span_danger(LANG("datum.db4abd6b", list(attacker))), span_hear(LANG("datum.b8189c1e", null)), COMBAT_MESSAGE_RANGE, attacker)
-		to_chat(attacker, span_warning(LANG("datum.426d14b5", list(defender))))
+		defender.visible_message(span_warning(LANG("datum.a12205d1fa34b011", list(attacker, defender))), \
+			span_danger(LANG("datum.db4abd6b282ea92a", list(attacker))), span_hear(LANG("datum.b8189c1ed616b3a4", null)), COMBAT_MESSAGE_RANGE, attacker)
+		to_chat(attacker, span_warning(LANG("datum.426d14b5798f11f4", list(defender))))
 		log_combat(attacker, defender, "attempted to hit", "crush")
 		return FALSE
 
@@ -120,14 +120,14 @@
 	playsound(defender, attack_sound, 25, TRUE, -1)
 
 	defender.visible_message(
-		span_danger(LANG("datum.42adf5cd", list(attacker, defender))),
-		span_userdanger(LANG("datum.74372ae1", list(attacker))),
-		span_hear(LANG("datum.d91738b7", null)),
+		span_danger(LANG("datum.42adf5cd8b1a7537", list(attacker, defender))),
+		span_userdanger(LANG("datum.74372ae1e613c3d2", list(attacker))),
+		span_hear(LANG("datum.d91738b7e53de940", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
 
-	to_chat(attacker, span_danger(LANG("datum.b4da0e59", list(defender))))
+	to_chat(attacker, span_danger(LANG("datum.b4da0e599c3a8b68", list(defender))))
 
 	defender.apply_damage(damage, damage_type, affecting, armor_block)
 
@@ -180,13 +180,13 @@
 
 	attacker.do_attack_animation(defender)
 	defender.visible_message(
-		span_danger(LANG("datum.ed2e91e6", list(attacker, defender))),
-		span_userdanger(LANG("datum.ab02e6c5", list(attacker))),
-		span_hear(LANG("datum.d91738b7", null)),
+		span_danger(LANG("datum.ed2e91e60a9f915e", list(attacker, defender))),
+		span_userdanger(LANG("datum.ab02e6c563fa753e", list(attacker))),
+		span_hear(LANG("datum.d91738b7e53de940", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	to_chat(attacker, span_danger(LANG("datum.a7f070e8", list(defender))))
+	to_chat(attacker, span_danger(LANG("datum.a7f070e80a3da484", list(defender))))
 	playsound(attacker, 'sound/effects/pop_expl.ogg', 50, TRUE)
 	var/atom/throw_target = get_edge_target_turf(defender, attacker.dir)
 	new /obj/effect/temp_visual/explosion/fast(get_turf(defender))
@@ -242,14 +242,14 @@
 	if(isbodypart(affecting) && !IS_ROBOTIC_LIMB(affecting))
 		var/new_def_zone = affecting.body_zone
 		hitting_projectile.def_zone = new_def_zone
-		attacker.visible_message(span_warning(LANG("datum.1f8ec8b2", list(attacker, hitting_projectile, attacker.p_their()))))
+		attacker.visible_message(span_warning(LANG("datum.1f8ec8b27124568d", list(attacker, hitting_projectile, attacker.p_their()))))
 		COOLDOWN_START(src, parry_cooldown_timer, 5 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(parry_availability), attacker), 5 SECONDS)
 		attacker.projectile_hit(hitting_projectile, new_def_zone)
 		return COMPONENT_BULLET_ACTED
 
 	hitting_projectile.set_angle((hitting_projectile.angle + 180) % 360 + rand(-3, 3))
-	hitting_projectile.visible_message(span_warning(LANG("datum.0b95cb4e", list(attacker, hitting_projectile, attacker.p_their()))))
+	hitting_projectile.visible_message(span_warning(LANG("datum.0b95cb4e537954b8", list(attacker, hitting_projectile, attacker.p_their()))))
 	hitting_projectile.firer = attacker
 	hitting_projectile.speed *= 1.25
 	hitting_projectile.damage *= 1.25
@@ -268,18 +268,18 @@
 /// * attacker - The mob to notify about parry availability
 /datum/martial_art/blood_steal/proc/parry_availability(mob/living/attacker)
 	if(COOLDOWN_FINISHED(src, parry_cooldown_timer))
-		attacker.balloon_alert(holder, LANG("datum.29e44720", null))
+		attacker.balloon_alert(holder, LANG("datum.29e447205a709fea", null))
 
 /// Displays help information about the Blood Steal martial art abilities
 /// This verb shows the user information about the Feedbacker and Knuckleblaster attacks,
 /// as well as the active defense mode for parrying projectiles
 /datum/martial_art/blood_steal/get_style_help()
 	. = list()
-	. += LANG("datum.b92b9945", null)
+	. += LANG("datum.b92b9945175e1059", null)
 
-	. += LANG("datum.12a75e2d", list(span_notice("Feedbacker")))
-	. += LANG("datum.a71f8b82", list(span_notice("Knuckleblaster")))
+	. += LANG("datum.12a75e2d38182e80", list(span_notice("Feedbacker")))
+	. += LANG("datum.a71f8b824e19ba02", list(span_notice("Knuckleblaster")))
 
-	. += LANG("datum.e55f7ae2", null)
+	. += LANG("datum.e55f7ae25c55c274", null)
 
 #undef MARTIALART_BLOODSTEAL

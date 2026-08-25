@@ -88,7 +88,7 @@
 	if(!istype(tool,/obj/item/skillchip))
 		return NONE
 	if(inserted_skillchip)
-		to_chat(user,span_notice(LANG("obj.79dadda3", null)))
+		to_chat(user,span_notice(LANG("obj.79dadda3e2e73c9e", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
@@ -126,9 +126,9 @@
 	var/mob/living/carbon/carbon_occupant = occupant
 	var/implant_msg = carbon_occupant.implant_skillchip(inserted_skillchip, FALSE)
 	if(implant_msg)
-		to_chat(carbon_occupant,span_notice(LANG("obj.6c1f297e", list(implant_msg))))
+		to_chat(carbon_occupant,span_notice(LANG("obj.6c1f297eb92bbc51", list(implant_msg))))
 	else
-		to_chat(carbon_occupant,span_notice(LANG("obj.601d05d1", null)))
+		to_chat(carbon_occupant,span_notice(LANG("obj.601d05d1931ac3ae", null)))
 		inserted_skillchip = null
 
 	update_appearance()
@@ -139,7 +139,7 @@
 		return
 
 	if(to_be_removed.is_on_cooldown())
-		to_chat(occupant, span_notice(LANG("obj.34a93719", null)))
+		to_chat(occupant, span_notice(LANG("obj.34a93719852e8c21", null)))
 		CRASH("Unusual error - [usr] attempted to start removal of [to_be_removed] when the interface state should not have allowed it.")
 
 	working = TRUE
@@ -155,15 +155,15 @@
 	var/mob/living/carbon/carbon_occupant = occupant
 
 	if(to_be_removed.is_on_cooldown())
-		to_chat(carbon_occupant,span_notice(LANG("obj.28c8b230", null)))
+		to_chat(carbon_occupant,span_notice(LANG("obj.28c8b2301daabdbd", null)))
 		return
 
 	if(!istype(carbon_occupant))
-		to_chat(carbon_occupant,span_notice(LANG("obj.8909706a", null)))
+		to_chat(carbon_occupant,span_notice(LANG("obj.8909706a87d2c4e3", null)))
 		return
 
 	if(!carbon_occupant.remove_skillchip(to_be_removed))
-		to_chat(carbon_occupant,span_notice(LANG("obj.c897c2b8", null)))
+		to_chat(carbon_occupant,span_notice(LANG("obj.c897c2b8b5ca1fef", null)))
 		return
 
 	if(to_be_removed.removable)
@@ -171,29 +171,29 @@
 	else
 		qdel(to_be_removed)
 
-	to_chat(carbon_occupant, span_notice(LANG("obj.601d05d1", null)))
+	to_chat(carbon_occupant, span_notice(LANG("obj.601d05d1931ac3ae", null)))
 
 /obj/machinery/skill_station/proc/toggle_chip_active(obj/item/skillchip/to_be_toggled)
 	var/mob/living/carbon/carbon_occupant = occupant
 
 	if(to_be_toggled.is_on_cooldown())
-		to_chat(carbon_occupant,span_notice(LANG("obj.9477eb84", null)))
+		to_chat(carbon_occupant,span_notice(LANG("obj.9477eb84a9b50caa", null)))
 		return
 
 	if(!istype(carbon_occupant))
-		to_chat(carbon_occupant,span_notice(LANG("obj.8909706a", null)))
+		to_chat(carbon_occupant,span_notice(LANG("obj.8909706a87d2c4e3", null)))
 		return
 
 	if(to_be_toggled.is_active())
 		var/active_msg = to_be_toggled.try_deactivate_skillchip(FALSE, FALSE)
 		if(active_msg)
-			to_chat(carbon_occupant,span_notice(LANG("obj.df63b833", list(active_msg))))
+			to_chat(carbon_occupant,span_notice(LANG("obj.df63b833ba62414b", list(active_msg))))
 		return
 
 	// This code will fire when to_be_toggled.active is FALSE
 	var/active_msg = to_be_toggled.try_activate_skillchip(FALSE, FALSE)
 	if(active_msg)
-		to_chat(carbon_occupant,span_notice(LANG("obj.33ab955e", list(active_msg))))
+		to_chat(carbon_occupant,span_notice(LANG("obj.33ab955e35ebefb8", list(active_msg))))
 
 /obj/machinery/skill_station/ui_data(mob/user)
 	. = ..()
@@ -286,7 +286,7 @@
 				stack_trace("[usr] tried to toggle skillchip activation when [src] was in an invalid state.")
 				return TRUE
 			if(inserted_skillchip)
-				to_chat(occupant,span_notice(LANG("obj.55cb250d", null)))
+				to_chat(occupant,span_notice(LANG("obj.55cb250d47409480", null)))
 				var/mob/living/carbon/human/H = occupant
 				H.put_in_hands(inserted_skillchip)
 				inserted_skillchip = null

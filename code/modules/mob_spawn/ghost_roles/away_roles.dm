@@ -17,7 +17,7 @@
 
 /obj/effect/mob_spawn/ghost_role/human/skeleton/special(mob/living/new_spawn, mob/mob_possessor, apply_prefs)
 	. = ..()
-	to_chat(new_spawn, LANG("obj.8ad7fdc7", null))
+	to_chat(new_spawn, LANG("obj.8ad7fdc7ca930e32", null))
 	new_spawn.AddComponent(/datum/component/stationstuck, PUNISHMENT_MURDER, "You experience a feeling like a stressed twine being pulled until it snaps. Then, merciful nothing.")
 
 /obj/effect/mob_spawn/ghost_role/human/zombie
@@ -33,5 +33,5 @@
 
 /obj/effect/mob_spawn/ghost_role/human/zombie/special(mob/living/new_spawn, mob/mob_possessor, apply_prefs)
 	. = ..()
-	to_chat(new_spawn, LANG("obj.8ad7fdc7", null))
+	to_chat(new_spawn, LANG("obj.8ad7fdc7ca930e32", null))
 	new_spawn.AddComponent(/datum/component/stationstuck, PUNISHMENT_MURDER, "You experience a feeling like a stressed twine being pulled until it snaps. Then, merciful nothing.")

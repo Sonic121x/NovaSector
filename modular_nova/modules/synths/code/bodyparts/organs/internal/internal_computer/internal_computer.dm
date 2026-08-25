@@ -124,24 +124,24 @@
 		return
 	if(isnull(id_item))
 		if(stored_id)
-			to_chat(synth, span_notice(LANG("obj.658a6932", null)))
+			to_chat(synth, span_notice(LANG("obj.658a693253d8ee0f", null)))
 		stored_id = null
 		return
 	if(istype(id_item, /obj/item/card/id))
 		stored_id = id_item
-		to_chat(synth, span_notice(LANG("obj.e1e47404", list(id_item))))
+		to_chat(synth, span_notice(LANG("obj.e1e47404597c0b2b", list(id_item))))
 		RegisterSignal(id_item, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_id_item_unequipped))
 	else if(istype(id_item, /obj/item/modular_computer))
 		var/obj/item/modular_computer/pda = id_item
 		stored_id = pda.stored_id
-		to_chat(synth, span_notice(LANG("obj.e1e47404", list(pda))))
+		to_chat(synth, span_notice(LANG("obj.e1e47404597c0b2b", list(pda))))
 		RegisterSignal(pda, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_id_item_unequipped))
 		RegisterSignal(pda, COMSIG_MODULAR_COMPUTER_INSERTED_ID, PROC_REF(on_id_item_stored))
 		RegisterSignal(pda.stored_id, COMSIG_MOVABLE_MOVED, PROC_REF(on_id_item_moved))
 	else if(istype(id_item, /obj/item/storage/wallet))
 		var/obj/item/storage/wallet/your_wallet = id_item
 		stored_id = your_wallet.GetID()
-		to_chat(synth, span_notice(LANG("obj.e1e47404", list(your_wallet))))
+		to_chat(synth, span_notice(LANG("obj.e1e47404597c0b2b", list(your_wallet))))
 		RegisterSignal(your_wallet, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_id_item_unequipped))
 		RegisterSignal(your_wallet, COMSIG_STORAGE_STORED_ITEM, PROC_REF(on_id_item_stored))
 		RegisterSignal(your_wallet.GetID(), COMSIG_ITEM_UNSTORED, PROC_REF(on_id_item_moved))
@@ -166,10 +166,10 @@
 	var/obj/item/organ/brain/synth/robotbrain = targetmachine.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(istype(robotbrain))
 		if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
-			balloon_alert(user, LANG("obj.102762f4", null))
+			balloon_alert(user, LANG("obj.102762f46e4a84bd", null))
 			if(do_after(user, 5 SECONDS))
-				balloon_alert(user, LANG("obj.01a424ed", null))
-				to_chat(targetmachine, span_notice(LANG("obj.4b5ced8e", list(user, src))))
+				balloon_alert(user, LANG("obj.01a424ed3fd98f0d", null))
+				to_chat(targetmachine, span_notice(LANG("obj.4b5ced8e887011ec", list(user, src))))
 				robotbrain.internal_computer.interact(user)
 			return
 
@@ -177,10 +177,10 @@
 	var/obj/item/organ/brain/cybernetic/cortical/cortbrain = targetmachine.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(istype(cortbrain))
 		if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
-			balloon_alert(user, LANG("obj.102762f4", null))
+			balloon_alert(user, LANG("obj.102762f46e4a84bd", null))
 			if(do_after(user, 5 SECONDS))
-				balloon_alert(user, LANG("obj.01a424ed", null))
-				to_chat(targetmachine, span_notice(LANG("obj.4b5ced8e", list(user, src))))
+				balloon_alert(user, LANG("obj.01a424ed3fd98f0d", null))
+				to_chat(targetmachine, span_notice(LANG("obj.4b5ced8e887011ec", list(user, src))))
 				cortbrain.internal_computer.interact(user)
 			return
 	return ..()

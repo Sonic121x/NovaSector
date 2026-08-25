@@ -55,11 +55,11 @@
 	var/success = C.equip_to_slot_if_possible(new /obj/item/clothing/gloves/color/yellow/sprayon, ITEM_SLOT_GLOVES, qdel_on_fail = TRUE, disable_warning = TRUE)
 	if(success)
 		if(C == user)
-			C.visible_message(span_notice(LANG("obj.f9b914b5", list(U))))
+			C.visible_message(span_notice(LANG("obj.f9b914b59a5d4a0d", list(U))))
 		else
-			C.visible_message(span_warning(LANG("obj.3bdd69fd", list(U, C))))
+			C.visible_message(span_warning(LANG("obj.3bdd69fd4dd92edd", list(U, C))))
 	else
-		C.visible_message(span_warning(LANG("obj.1f212ea2", list(C))))
+		C.visible_message(span_warning(LANG("obj.1f212ea2ea94ad92", list(C))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/gloves/color/yellow/sprayon
@@ -90,7 +90,7 @@
 	charges_remaining--
 	if(charges_remaining <= 0)
 		var/turf/location = get_turf(src)
-		location.visible_message(span_warning(LANG("obj.da384fef", list(src, p_s())))) // just like my dreams after working with .dm
+		location.visible_message(span_warning(LANG("obj.da384fef6067fefe", list(src, p_s())))) // just like my dreams after working with .dm
 		qdel(src)
 
 	. |= COMPONENT_CLEANED

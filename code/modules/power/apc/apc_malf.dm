@@ -16,9 +16,9 @@
 	if(get_malf_status(malf) != APC_AI_NO_HACK)
 		return
 	if(malf.malfhacking)
-		to_chat(malf, span_warning(LANG("obj.232dbf06", null)))
+		to_chat(malf, span_warning(LANG("obj.232dbf0625ea4459", null)))
 		return
-	to_chat(malf, span_notice(LANG("obj.c369e869", null)))
+	to_chat(malf, span_notice(LANG("obj.c369e869adbeabdd", null)))
 	malf.malfhack = src
 	malf.malfhacking = addtimer(CALLBACK(malf, TYPE_PROC_REF(/mob/living/silicon/ai/, malfhacked), src), 30 SECONDS + 10*malf.hacked_apcs.len SECONDS, TIMER_STOPPABLE)
 
@@ -30,17 +30,17 @@
 	if(!istype(malf))
 		return
 	if(istype(malf.loc, /obj/machinery/power/apc)) // Already in an APC
-		to_chat(malf, span_warning(LANG("obj.968d31e4", null)))
+		to_chat(malf, span_warning(LANG("obj.968d31e472636901", null)))
 		return
 	if(!malf.can_shunt)
-		to_chat(malf, span_warning(LANG("obj.2200459d", null)))
+		to_chat(malf, span_warning(LANG("obj.2200459dbfb67264", null)))
 		return
 	if(!is_station_level(z))
 		return
 	INVOKE_ASYNC(src, PROC_REF(malfshunt), malf)
 
 /obj/machinery/power/apc/proc/malfshunt(mob/living/silicon/ai/malf)
-	var/confirm = tgui_alert(malf, LANG("obj.04af11f3", null), LANG("obj.5a3041d8", list(name)), list("Yes", "No"))
+	var/confirm = tgui_alert(malf, LANG("obj.04af11f3507cae56", null), LANG("obj.5a3041d808d7043e", list(name)), list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 	malf.ShutOffDoomsdayDevice()
@@ -89,19 +89,19 @@
 	if(!.)
 		return
 	if(card.AI)
-		to_chat(user, span_warning(LANG("obj.e96f2bf3", list(card))))
+		to_chat(user, span_warning(LANG("obj.e96f2bf3d2665244", list(card))))
 		return FALSE
 	if(!occupier)
-		to_chat(user, span_warning(LANG("obj.ce3dc006", list(src))))
+		to_chat(user, span_warning(LANG("obj.ce3dc00600fbbd58", list(src))))
 		return FALSE
 	if(!occupier.mind || !occupier.client)
-		to_chat(user, span_warning(LANG("obj.87a3b3da", list(occupier))))
+		to_chat(user, span_warning(LANG("obj.87a3b3da54daf26e", list(occupier))))
 		return FALSE
 	if(occupier.linked_core) //if they have an active linked_core, they can't be transferred from an APC
-		to_chat(user, span_warning(LANG("obj.0196183b", list(occupier))) )
+		to_chat(user, span_warning(LANG("obj.0196183bb1dbc1d7", list(occupier))) )
 		return FALSE
 	if(transfer_in_progress)
-		to_chat(user, span_warning(LANG("obj.4d3b28cf", null)))
+		to_chat(user, span_warning(LANG("obj.4d3b28cf04674c01", null)))
 		return FALSE
 	if(interaction != AI_TRANS_TO_CARD || IS_UNCONSCIOUS_OR_CRIT(occupier))
 		return FALSE
@@ -109,30 +109,30 @@
 	if(!user_turf)
 		return FALSE
 	transfer_in_progress = TRUE
-	user.visible_message(span_notice(LANG("obj.936825ea", list(user, card, src))), span_notice(LANG("obj.91fafcee", null)))
+	user.visible_message(span_notice(LANG("obj.936825ea7e37117b", list(user, card, src))), span_notice(LANG("obj.91fafceef4878638", null)))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	SEND_SOUND(occupier, sound('sound/announcer/notice/notice2.ogg')) //To alert the AI that someone's trying to card them if they're tabbed out
-	if(tgui_alert(occupier, LANG("obj.cb27ec1c", list(user, card.name)), LANG("obj.401c4350", null), list("Yes - Transfer Me", "No - Keep Me Here")) == "No - Keep Me Here")
-		to_chat(user, span_danger(LANG("obj.019aacdb", null)))
+	if(tgui_alert(occupier, LANG("obj.cb27ec1cd985b642", list(user, card.name)), LANG("obj.401c435019fb0fe5", null), list("Yes - Transfer Me", "No - Keep Me Here")) == "No - Keep Me Here")
+		to_chat(user, span_danger(LANG("obj.019aacdbbee70c93", null)))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 		transfer_in_progress = FALSE
 		return FALSE
 	if(user.loc != user_turf)
-		to_chat(user, span_danger(LANG("obj.4c511b4e", null)))
-		to_chat(occupier, span_warning(LANG("obj.80ed7eae", list(user))))
+		to_chat(user, span_danger(LANG("obj.4c511b4e43b64ff8", null)))
+		to_chat(occupier, span_warning(LANG("obj.80ed7eae653f755f", list(user))))
 		transfer_in_progress = FALSE
 		return FALSE
-	to_chat(user, span_notice(LANG("obj.c78b1142", list(card))))
-	to_chat(occupier, span_notice(LANG("obj.a1b9ce6c", list(card))))
+	to_chat(user, span_notice(LANG("obj.c78b1142b49b5785", list(card))))
+	to_chat(occupier, span_notice(LANG("obj.a1b9ce6c8e0a94cb", list(card))))
 	if(!do_after(user, 5 SECONDS, target = src))
-		to_chat(occupier, span_warning(LANG("obj.3ec24835", list(user))))
+		to_chat(occupier, span_warning(LANG("obj.3ec24835fa4864fb", list(user))))
 		transfer_in_progress = FALSE
 		return FALSE
 	if(!occupier || !card)
 		transfer_in_progress = FALSE
 		return FALSE
-	user.visible_message(span_notice(LANG("obj.e626614c", list(user, occupier, card))), span_notice(LANG("obj.7a313b00", list(occupier, card))))
-	to_chat(occupier, span_notice(LANG("obj.7a3cd229", list(user, card.name))))
+	user.visible_message(span_notice(LANG("obj.e626614c94744c55", list(user, occupier, card))), span_notice(LANG("obj.7a313b006553adf9", list(occupier, card))))
+	to_chat(occupier, span_notice(LANG("obj.7a3cd229872e8e0b", list(user, card.name))))
 	occupier.forceMove(card)
 	card.AI = occupier
 	occupier.shunted = FALSE

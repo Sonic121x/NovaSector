@@ -2,10 +2,10 @@ GLOBAL_LIST_EMPTY(bunker_passthrough)
 
 ADMIN_VERB(addbunkerbypass, R_ADMIN, "添加恐慌地堡豁免", "Allows a given ckey to connect despite the panic bunker for a given round.", ADMIN_CATEGORY_MAIN)
 	if(!CONFIG_GET(flag/sql_enabled))
-		to_chat(usr, span_adminnotice(LANG("datum.5bf16f98", null)))
+		to_chat(usr, span_adminnotice(LANG("datum.5bf16f98199b79cc", null)))
 		return
 
-	var/ckeytobypass = input(user, LANG("datum.964a8230", null), LANG("datum.1efabe26", null)) as text|null
+	var/ckeytobypass = input(user, LANG("datum.964a82305a0a5ee8", null), LANG("datum.1efabe261593dcfd", null)) as text|null
 	if(!ckeytobypass)
 		return
 
@@ -20,10 +20,10 @@ ADMIN_VERB_CUSTOM_EXIST_CHECK(addbunkerbypass)
 
 ADMIN_VERB(revokebunkerbypass, R_ADMIN, "撤销恐慌地堡豁免", "Revoke's a ckey's permission to bypass the panic bunker for a given round.", ADMIN_CATEGORY_MAIN)
 	if(!CONFIG_GET(flag/sql_enabled))
-		to_chat(usr, span_adminnotice(LANG("datum.5bf16f98", null)))
+		to_chat(usr, span_adminnotice(LANG("datum.5bf16f98199b79cc", null)))
 		return
 
-	var/ckeytobypass = input(user, LANG("datum.ba961577", null), LANG("datum.1efabe26", null)) as text|null
+	var/ckeytobypass = input(user, LANG("datum.ba9615774dde303f", null), LANG("datum.1efabe261593dcfd", null)) as text|null
 	if(!ckeytobypass)
 		return
 

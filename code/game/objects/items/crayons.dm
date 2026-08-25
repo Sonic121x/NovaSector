@@ -203,7 +203,7 @@
 	return isfloorturf(surface)
 
 /obj/item/toy/crayon/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.9f0a58d2", list(user, src, user.p_their(), user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.9f0a58d2f041a5b6", list(user, src, user.p_their(), user.p_their(), user.p_theyre()))))
 	user.add_atom_colour(color_transition_filter(paint_color, SATURATION_OVERRIDE), ADMIN_COLOUR_PRIORITY)
 	return (BRUTELOSS|OXYLOSS)
 
@@ -307,10 +307,10 @@
 		if(self_contained)
 			qdel(src)
 		else
-			balloon_alert(user, LANG("obj.6ef93b07", null))
+			balloon_alert(user, LANG("obj.6ef93b07027da376", null))
 		return TRUE
 	if(charges_left < amount && requires_full)
-		balloon_alert(user, LANG("obj.4a21c5c5", null))
+		balloon_alert(user, LANG("obj.4a21c5c5971b4eed", null))
 		return TRUE
 
 	return FALSE
@@ -417,7 +417,7 @@
 			set_painting_tool_color(paint_color)
 			. = TRUE
 		if("enter_text")
-			var/txt = tgui_input_text(usr, LANG("obj.ec26454b", null), LANG("obj.7990a4f3", null), text_buffer, max_length = MAX_MESSAGE_LEN)
+			var/txt = tgui_input_text(usr, LANG("obj.ec26454bc17d1ad9", null), LANG("obj.7990a4f388b1033f", null), text_buffer, max_length = MAX_MESSAGE_LEN)
 			if(isnull(txt))
 				return
 			txt = crayon_text_strip(txt)
@@ -449,7 +449,7 @@
 		target = target.loc
 
 	if(!isValidSurface(target))
-		target.balloon_alert(user, LANG("obj.59d6d4b0", null))
+		target.balloon_alert(user, LANG("obj.59d6d4b006ab9639", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/drawing = drawtype
@@ -523,10 +523,10 @@
 		clicky = clamp(text2num(LAZYACCESS(modifiers, ICON_Y)) - 16, -(ICON_SIZE_Y/2), ICON_SIZE_Y/2)
 
 	if(!instant)
-		to_chat(user, span_notice(LANG("obj.e319a257", list(temp, target))))
+		to_chat(user, span_notice(LANG("obj.e319a257751dd97a", list(temp, target))))
 
 	if(pre_noise)
-		audible_message(span_notice(LANG("obj.715ca92d", null)))
+		audible_message(span_notice(LANG("obj.715ca92ddd7a92b1", null)))
 		playsound(user.loc, 'sound/effects/spray.ogg', 5, TRUE, 5)
 
 	var/wait_time = DRAW_TIME
@@ -562,7 +562,7 @@
 					affected_turfs += left
 					affected_turfs += right
 				else
-					balloon_alert(user, LANG("obj.ad6c6384", null))
+					balloon_alert(user, LANG("obj.ad6c6384cbc2d930", null))
 					return ITEM_INTERACT_BLOCKING
 		created_art.add_hiddenprint(user)
 		if(istagger)
@@ -571,16 +571,16 @@
 			created_art.AddElement(/datum/element/art, BAD_ART)
 
 	if(!instant)
-		to_chat(user, span_notice(LANG("obj.e05b51bc", list(temp))))
+		to_chat(user, span_notice(LANG("obj.e05b51bcbb93cf54", list(temp))))
 	else
-		to_chat(user, span_notice(LANG("obj.bc3b9c10", list(temp, target.name))))
+		to_chat(user, span_notice(LANG("obj.bc3b9c103eb531e0", list(temp, target.name))))
 
 	if(length(text_buffer) > 1)
 		text_buffer = copytext(text_buffer, length(text_buffer[1]) + 1)
 		SStgui.update_uis(src)
 
 	if(post_noise)
-		audible_message(span_hear(LANG("obj.715ca92d", null)))
+		audible_message(span_hear(LANG("obj.715ca92ddd7a92b1", null)))
 		playsound(user.loc, 'sound/effects/spray.ogg', 5, TRUE, 5)
 
 	var/fraction = min(1, . / reagents.maximum_volume)
@@ -595,7 +595,7 @@
 ///Checks if the user is still adjacent to the target (used for do_after extra_checks)
 /obj/item/toy/crayon/proc/adjacency_check(mob/user, atom/target)
 	if(!user.Adjacent(target))
-		user.balloon_alert(user, LANG("obj.12bfeff6", null))
+		user.balloon_alert(user, LANG("obj.12bfeff6c26d0f1d", null))
 		return FALSE
 	return TRUE
 
@@ -613,13 +613,13 @@
 	if(!IS_DEAD_OR_FAKING(pwned_human))
 		return NONE
 
-	interacting_with.balloon_alert(user, LANG("obj.556795b7", null))
+	interacting_with.balloon_alert(user, LANG("obj.556795b7200209d4", null))
 	if(!do_after(user, DRAW_TIME, target = pwned_human))
 		return ITEM_INTERACT_FAILURE
 	if(!use_charges(user, 1))
 		return ITEM_INTERACT_FAILURE
 
-	to_chat(user, span_notice(LANG("obj.0d7f1cca", list(pwned_human))))
+	to_chat(user, span_notice(LANG("obj.0d7f1ccac7e11161", list(pwned_human))))
 	var/obj/effect/decal/cleanable/crayon/chalk_line = new(get_turf(pwned_human), paint_color, "body", "chalk outline", null, null, "A vaguely [pwned_human] shaped body outline.", outline_strength)
 	chalk_line.pixel_y = (pwned_human.pixel_y + pwned_human.pixel_z)
 	chalk_line.pixel_x = (pwned_human.pixel_x + pwned_human.pixel_w)
@@ -755,13 +755,13 @@
 /obj/item/storage/crayons/attack_self(mob/user)
 	. = ..()
 	if(contents.len > 0)
-		balloon_alert(user, LANG("obj.eb494343", null))
+		balloon_alert(user, LANG("obj.eb494343d179b078", null))
 		return
 	if(flags_1 & HOLOGRAM_1)
 		return
 
 	var/obj/item/stack/sheet/cardboard/cardboard = new (user.drop_location())
-	to_chat(user, span_notice(LANG("obj.e1d3ffa3", list(src))))
+	to_chat(user, span_notice(LANG("obj.e1d3ffa35e354e25", list(src))))
 	user.put_in_active_hand(cardboard)
 	qdel(src)
 
@@ -853,12 +853,12 @@
 /obj/item/toy/crayon/spraycan/suicide_act(mob/living/user)
 	var/used = min(charges_left, 10)
 	if(is_capped || !actually_paints || !use_charges(user, 10, FALSE))
-		user.visible_message(span_suicide(LANG("obj.f371b59f", list(user, src, user.p_their()))))
-		user.say(LANG("obj.d42a3bbe", null), forced = "spraycan suicide")
+		user.visible_message(span_suicide(LANG("obj.f371b59f24b61667", list(user, src, user.p_their()))))
+		user.say(LANG("obj.d42a3bbee5e2ee8f", null), forced = "spraycan suicide")
 		return SHAME
 
-	user.visible_message(span_suicide(LANG("obj.59ba7571", list(user, src, user.p_their(), user.p_their()))))
-	user.say(LANG("obj.30531ece", null), forced = "spraycan suicide")
+	user.visible_message(span_suicide(LANG("obj.59ba7571ec5666c0", list(user, src, user.p_their(), user.p_their()))))
+	user.say(LANG("obj.30531ece4ba08bd4", null), forced = "spraycan suicide")
 	if(pre_noise || post_noise)
 		playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
 	if(can_change_colour)
@@ -873,10 +873,10 @@
 	. = ..()
 	if(charges != INFINITE_CHARGES)
 		if(charges_left)
-			. += LANG("obj.4a138c11", list(PERCENT(charges_left/charges)))
+			. += LANG("obj.4a138c11797bd584", list(PERCENT(charges_left/charges)))
 		else
-			. += LANG("obj.53b0d090", null)
-	. += span_notice(LANG("obj.ffde040d", list(src, is_capped ? "take the cap off" : "put the cap on")))
+			. += LANG("obj.53b0d090ad9fbc27", null)
+	. += span_notice(LANG("obj.ffde040dcd2e2881", list(src, is_capped ? "take the cap off" : "put the cap on")))
 
 
 /obj/item/toy/crayon/spraycan/can_use_on(atom/target, mob/user, list/modifiers)
@@ -893,7 +893,7 @@
 
 /obj/item/toy/crayon/spraycan/use_on(atom/target, mob/user, list/modifiers)
 	if(is_capped)
-		balloon_alert(user, LANG("obj.0c73c2ec", null))
+		balloon_alert(user, LANG("obj.0c73c2ec9ac951ca", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(check_empty(user))
@@ -911,8 +911,8 @@
 			return ITEM_INTERACT_BLOCKING
 
 		var/mob/living/carbon/carbon_target = target
-		user.visible_message(span_danger(LANG("obj.92c48529", list(user, src, target))))
-		to_chat(target, span_userdanger(LANG("obj.8794109e", list(user, src))))
+		user.visible_message(span_danger(LANG("obj.92c485299131660b", list(user, src, target))))
+		to_chat(target, span_userdanger(LANG("obj.8794109efb908341", list(user, src))))
 
 		if(carbon_target.client)
 			carbon_target.set_eye_blur_if_lower(6 SECONDS)
@@ -929,7 +929,7 @@
 		reagents.expose(carbon_target, VAPOR, fraction * volume_multiplier)
 
 	else if(actually_paints && target.is_atom_colour(paint_color, min_priority_index = WASHABLE_COLOUR_PRIORITY))
-		balloon_alert(user, LANG("obj.e3750ae8", list(target.p_theyre())))
+		balloon_alert(user, LANG("obj.e3750ae81185b25f", list(target.p_theyre())))
 		return ITEM_INTERACT_BLOCKING
 
 	var/saturation_mode = SATURATION_MULTIPLY
@@ -945,7 +945,7 @@
 
 		if(pre_noise || post_noise)
 			playsound(user.loc, 'sound/effects/spray.ogg', 5, TRUE, 5)
-		user.visible_message(span_notice(LANG("obj.7343a347", list(user, target))), span_notice(LANG("obj.5a4bd3e3", list(target))))
+		user.visible_message(span_notice(LANG("obj.7343a34797159278", list(user, target))), span_notice(LANG("obj.5a4bd3e33a8e8c63", list(target))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!isobj(target) || (target.flags_1 & UNPAINTABLE_1))
@@ -959,28 +959,28 @@
 
 		if(pre_noise || post_noise)
 			playsound(user.loc, 'sound/effects/spray.ogg', 5, TRUE, 5)
-		user.visible_message(span_notice(LANG("obj.7343a347", list(user, target))), span_notice(LANG("obj.5a4bd3e3", list(target))))
+		user.visible_message(span_notice(LANG("obj.7343a34797159278", list(user, target))), span_notice(LANG("obj.5a4bd3e33a8e8c63", list(target))))
 		return ITEM_INTERACT_SUCCESS
 
 	if (color_is_dark && saturation_mode == SATURATION_OVERRIDE && !(target.flags_1 & ALLOW_DARK_PAINTS_1))
-		to_chat(user, span_warning(LANG("obj.8c180d20", null)))
+		to_chat(user, span_warning(LANG("obj.8c180d207377cf91", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(target, /obj/item/pipe))
 		if(!GLOB.pipe_color_name.Find(paint_color))
-			balloon_alert(user, LANG("obj.422b88b8", null))
+			balloon_alert(user, LANG("obj.422b88b82321cef8", null))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/pipe/target_pipe = target
 		target_pipe.pipe_color = paint_color
 		target.add_atom_colour(paint_color, FIXED_COLOUR_PRIORITY)
-		balloon_alert(user, LANG("obj.4da583d6", list(GLOB.pipe_color_name[paint_color])))
+		balloon_alert(user, LANG("obj.4da583d630a718fb", list(GLOB.pipe_color_name[paint_color])))
 	else if(istype(target, /obj/machinery/atmospherics))
 		if(!GLOB.pipe_color_name.Find(paint_color))
-			balloon_alert(user, LANG("obj.422b88b8", null))
+			balloon_alert(user, LANG("obj.422b88b82321cef8", null))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/machinery/atmospherics/target_pipe = target
 		target_pipe.paint(paint_color)
-		balloon_alert(user, LANG("obj.4da583d6", list(GLOB.pipe_color_name[paint_color])))
+		balloon_alert(user, LANG("obj.4da583d630a718fb", list(GLOB.pipe_color_name[paint_color])))
 	else if (is_type_in_typecache(target, direct_color_types))
 		target.add_atom_colour(paint_color, WASHABLE_COLOUR_PRIORITY)
 	else
@@ -1000,7 +1000,7 @@
 
 	if(pre_noise || post_noise)
 		playsound(user.loc, 'sound/effects/spray.ogg', 5, TRUE, 5)
-	user.visible_message(span_notice(LANG("obj.7343a347", list(user, target))), span_notice(LANG("obj.5a4bd3e3", list(target))))
+	user.visible_message(span_notice(LANG("obj.7343a34797159278", list(user, target))), span_notice(LANG("obj.5a4bd3e33a8e8c63", list(target))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/toy/crayon/spraycan/proc/color_limb(obj/item/bodypart/limb, mob/living/user)
@@ -1054,7 +1054,7 @@
 
 /obj/item/toy/crayon/spraycan/borg/use_charges(mob/user, amount = 1, requires_full = TRUE, override_infinity = FALSE)
 	if(!iscyborg(user))
-		to_chat(user, span_notice(LANG("obj.4ed300a0", null)))
+		to_chat(user, span_notice(LANG("obj.4ed300a06ab8d5c6", null)))
 		qdel(src)
 		return FALSE
 

@@ -68,7 +68,7 @@
 /obj/item/paperplane/suicide_act(mob/living/user)
 	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	user.Stun(20 SECONDS)
-	user.visible_message(span_suicide(LANG("obj.c56c1078", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.c56c1078fd3316ae", list(user, src, user.p_their(), user.p_theyre()))))
 	user.adjust_eye_blur(12 SECONDS)
 	if(eyes)
 		eyes.apply_organ_damage(rand(impact_eye_damage_lower, impact_eye_damage_higher)) // NOVA EDIT START - Better paper planes
@@ -81,7 +81,7 @@
 		. += "[base_icon_state]_[stamp]"
 
 /obj/item/paperplane/attack_self(mob/user)
-	balloon_alert(user, LANG("obj.ad6adfd4", null))
+	balloon_alert(user, LANG("obj.ad6adfd4ccde9563", null))
 
 	var/atom/location = drop_location()
 	// Need to keep a reference to the internal paper
@@ -94,7 +94,7 @@
 
 /obj/item/paperplane/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(IS_WRITING_UTENSIL(tool))
-		to_chat(user, span_warning(LANG("obj.3071fdcf", list(src))))
+		to_chat(user, span_warning(LANG("obj.3071fdcf4890576d", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(istype(tool, /obj/item/stamp)) //we don't randomize stamps on a paperplane
 		internal_paper.item_interaction(user, tool) //spoofed attack to update internal paper.
@@ -118,7 +118,7 @@
 		return
 	if(hit_human.is_eyes_covered())
 		return
-	visible_message(span_danger(LANG("obj.17299be1", list(src, hit_human, eyes ? "" : " socket"))))
+	visible_message(span_danger(LANG("obj.17299be1d6ba8064", list(src, hit_human, eyes ? "" : " socket"))))
 	hit_human.adjust_eye_blur(12 SECONDS)
 	eyes?.apply_organ_damage(rand(6, 8))
 	hit_human.Paralyze(4 SECONDS)

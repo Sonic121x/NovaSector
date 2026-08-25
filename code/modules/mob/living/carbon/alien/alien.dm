@@ -136,8 +136,8 @@ Des: Removes all infected images from the alien.
 
 /mob/living/carbon/alien/proc/alien_evolve(mob/living/carbon/alien/new_xeno)
 	visible_message(
-		span_alertalien(LANG("mob.266d235c", list(src))),
-		span_noticealien(LANG("mob.240e9dea", null)),
+		span_alertalien(LANG("mob.266d235c909d05ba", list(src))),
+		span_noticealien(LANG("mob.240e9dea06a0b7b2", null)),
 	)
 
 	new_xeno.setDir(dir)
@@ -179,7 +179,7 @@ Des: Removes all infected images from the alien.
 	// Strip the trailing "(id)" and un-reverse the base to english (the regex's id group is optional). no-op on en.
 	// ORIGINAL: if(!alien_name_regex.Find(old_name))
 	var/static/regex/alien_id_suffix = new(" \\(\\d+\\)$")
-	if(!alien_name_regex.Find(lang_unreverse_text(alien_id_suffix.Replace(old_name, "")))) // check to make sure there's no admins doing funny stuff with naming these aliens
+	if(!alien_name_regex.Find(alien_id_suffix.Replace(old_name, ""))) // check to make sure there's no admins doing funny stuff with naming these aliens
 		name = old_name
 		real_name = old_real_name
 		return

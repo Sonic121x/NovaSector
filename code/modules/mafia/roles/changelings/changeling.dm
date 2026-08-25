@@ -22,7 +22,7 @@
 /datum/mafia_role/mafia/proc/mafia_text(datum/mafia_controller/source)
 	SIGNAL_HANDLER
 
-	to_chat(body, LANG("datum.928146ac", null))
+	to_chat(body, LANG("datum.928146acb27f3892", null))
 
 /datum/mafia_role/mafia/thoughtfeeder
 	name = "Thoughtfeeder"

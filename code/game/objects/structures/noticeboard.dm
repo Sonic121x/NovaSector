@@ -45,11 +45,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, 32)
 		return NONE
 
 	if(!allowed(user))
-		to_chat(user, span_warning(LANG("obj.8bc7b3c4", null)))
+		to_chat(user, span_warning(LANG("obj.8bc7b3c4791d8983", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(notices >= MAX_NOTICES)
-		to_chat(user, span_warning(LANG("obj.030e9b00", null)))
+		to_chat(user, span_warning(LANG("obj.030e9b00c6f255ca", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
@@ -57,7 +57,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, 32)
 
 	notices++
 	update_appearance(UPDATE_ICON)
-	to_chat(user, span_notice(LANG("obj.aebf79f7", list(tool))))
+	to_chat(user, span_notice(LANG("obj.aebf79f78b71446d", list(tool))))
 	return ITEM_INTERACT_SUCCESS
 
 
@@ -122,7 +122,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, 32)
 	item.forceMove(drop_location())
 	if(user)
 		user.put_in_hands(item)
-		balloon_alert(user, LANG("obj.a9ab49eb", null))
+		balloon_alert(user, LANG("obj.a9ab49eb0bcede15", null))
 	notices--
 	update_appearance(UPDATE_ICON)
 

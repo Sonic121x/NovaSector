@@ -30,7 +30,7 @@
 	. = ..()
 	owner.announce_objectives()
 	if(!isovermind(owner.current))
-		to_chat(owner.current, span_notice(LANG("datum.6882cf63", null)))
+		to_chat(owner.current, span_notice(LANG("datum.6882cf6378974ff4", null)))
 	else
 		has_already_popped = TRUE
 
@@ -102,7 +102,7 @@
 	. = ..()
 	if(owner)
 		addtimer(CALLBACK(src, PROC_REF(Activate), TRUE), autoplace_time, TIMER_UNIQUE|TIMER_OVERRIDE)
-		to_chat(owner, span_bolddanger(LANG("datum.d1763763", list(DisplayTimeText(autoplace_time)))))
+		to_chat(owner, span_bolddanger(LANG("datum.d176376355202522", list(DisplayTimeText(autoplace_time)))))
 
 /datum/action/innate/blobpop/Activate(timer_activated = FALSE)
 	var/mob/living/old_body = owner
@@ -117,11 +117,11 @@
 	. = TRUE
 	var/turf/target_turf = get_turf(owner)
 	if(target_turf.density)
-		to_chat(owner, span_warning(LANG("datum.239cde2e", null)))
+		to_chat(owner, span_warning(LANG("datum.239cde2e67270370", null)))
 		. = FALSE
 	var/area/target_area = get_area(target_turf)
 	if(isspaceturf(target_turf) || !(target_area?.area_flags & BLOBS_ALLOWED) || !is_station_level(target_turf.z))
-		to_chat(owner, span_warning(LANG("datum.303c76bb", null)))
+		to_chat(owner, span_warning(LANG("datum.303c76bb76dae0b5", null)))
 		. = FALSE
 
 	var/placement_override = BLOB_FORCE_PLACEMENT
@@ -129,7 +129,7 @@
 		if(!timer_activated)
 			return
 		placement_override = BLOB_RANDOM_PLACEMENT
-		to_chat(owner, span_warning(LANG("datum.470ee210", null)))
+		to_chat(owner, span_warning(LANG("datum.470ee2107c03af47", null)))
 
 	var/mob/eye/blob/blob_cam = new /mob/eye/blob(get_turf(old_body), blobtag.starting_points_human_blob)
 	owner.mind.transfer_to(blob_cam)
@@ -139,7 +139,7 @@
 	blobtag.has_already_popped = TRUE
 
 	notify_ghosts(
-		LANG("datum.7248a099", list(get_area_name(blob_cam.blob_core))),
+		LANG("datum.7248a0991860bd92", list(get_area_name(blob_cam.blob_core))),
 		source = blob_cam.blob_core,
 		ghost_sound = 'sound/music/antag/blobalert.ogg',
 		header = "Blob Awakening!",
@@ -151,7 +151,7 @@
 	if(owner?.current)
 		var/mob/eye/blob/blob_cam = owner.current
 		if(istype(blob_cam))
-			. += LANG("datum.74a1094d", list(length(blob_cam.blobs_legit), blob_cam.blobwincount))
+			. += LANG("datum.74a1094d2aaa565e", list(length(blob_cam.blobs_legit), blob_cam.blobwincount))
 
 /// A subtype of blob meant to represent the infective version.
 /datum/antagonist/blob/infection

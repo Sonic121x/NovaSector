@@ -26,7 +26,7 @@
 /obj/item/stack/spacecash/update_desc()
 	. = ..()
 	var/total_worth = get_item_credit_value()
-	desc = LANG("obj.a468d0cc", list(total_worth, MONEY_NAME_AUTOPURAL(total_worth)))
+	desc = LANG("obj.a468d0ccd7ae2c5a", list(total_worth, MONEY_NAME_AUTOPURAL(total_worth)))
 
 /obj/item/stack/spacecash/get_item_credit_value()
 	return (amount*value)

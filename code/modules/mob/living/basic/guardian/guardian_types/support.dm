@@ -42,12 +42,12 @@
 /mob/living/basic/guardian/support/proc/after_healed(mob/living/healed)
 	do_attack_animation(healed, ATTACK_EFFECT_PUNCH)
 	healed.visible_message(
-		message = span_notice(LANG("mob.56552669", list(src, healed))),
-		self_message = span_userdanger(LANG("mob.cffdc7ae", list(src))),
+		message = span_notice(LANG("mob.56552669f1a88422", list(src, healed))),
+		self_message = span_userdanger(LANG("mob.cffdc7ae5ebe1698", list(src))),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 		ignored_mobs = src,
 	)
-	to_chat(src, span_notice(LANG("mob.2ac5ea2b", list(healed))))
+	to_chat(src, span_notice(LANG("mob.2ac5ea2b9ec8de8c", list(healed))))
 	playsound(healed, attack_sound, 50, TRUE, TRUE, frequency = -1) // play punch sound in REVERSE
 
 
@@ -79,11 +79,11 @@
 /datum/action/cooldown/mob_cooldown/guardian_bluespace_beacon/Activate(atom/movable/target)
 	var/turf/beacon_loc = owner.loc
 	if(!isfloorturf(beacon_loc))
-		owner.balloon_alert(owner, LANG("datum.ad6c6384", null))
+		owner.balloon_alert(owner, LANG("datum.ad6c6384cbc2d930", null))
 		return FALSE
 
 	if (!isnull(beacon))
-		beacon.visible_message(LANG("datum.60f2b4e8", list(beacon)))
+		beacon.visible_message(LANG("datum.60f2b4e8e6f16d22", list(beacon)))
 		new /obj/effect/temp_visual/guardian/phase/out(beacon.loc)
 		qdel(beacon)
 
@@ -92,7 +92,7 @@
 		var/mob/living/basic/guardian/guardian_owner = owner
 		beacon.add_atom_colour(guardian_owner.guardian_colour, FIXED_COLOUR_PRIORITY)
 	RegisterSignal(beacon, COMSIG_QDELETING, PROC_REF(on_beacon_deleted))
-	to_chat(src, span_bolddanger(LANG("datum.f2a29293", null)))
+	to_chat(src, span_bolddanger(LANG("datum.f2a29293315814b4", null)))
 	StartCooldown()
 	return TRUE
 
@@ -116,21 +116,21 @@
 	if(!istype(target)) // Turfs
 		return FALSE
 	if (isnull(beacon))
-		source.balloon_alert(source, LANG("datum.cbe78550", null))
+		source.balloon_alert(source, LANG("datum.cbe785505b0f2793", null))
 		return FALSE
 	if (isguardian(source))
 		var/mob/living/basic/guardian/guardian_mob = source
 		if (!guardian_mob.is_deployed())
-			source.balloon_alert(source, LANG("datum.fdb35491", null))
+			source.balloon_alert(source, LANG("datum.fdb35491e85a8cd4", null))
 			return FALSE
 	if (!source.can_perform_action(target))
-		target.balloon_alert(source, LANG("datum.f5e75781", null))
+		target.balloon_alert(source, LANG("datum.f5e75781e8f1dc46", null))
 		return FALSE
 	if (target.anchored)
-		target.balloon_alert(source, LANG("datum.73bdfe0e", null))
+		target.balloon_alert(source, LANG("datum.73bdfe0e62c8ab3c", null))
 		return FALSE
 	if((beacon.z != target.z) && !(target.z in SSmapping.get_connected_levels(beacon.z)))
-		target.balloon_alert(source, LANG("datum.e045149d", null))
+		target.balloon_alert(source, LANG("datum.e045149dd36d50ac", null))
 		return FALSE
 	return TRUE
 
@@ -138,10 +138,10 @@
 /datum/action/cooldown/mob_cooldown/guardian_bluespace_beacon/proc/perform_teleport(mob/living/source, atom/target)
 	source.do_attack_animation(target)
 	playsound(target, 'sound/items/weapons/punch1.ogg', 50, TRUE, TRUE, frequency = -1)
-	source.balloon_alert(source, LANG("datum.bda2b65d", null))
+	source.balloon_alert(source, LANG("datum.bda2b65d8ddca1b2", null))
 	target.visible_message(
-		span_danger(LANG("datum.56a19e75", list(target))), \
-		span_userdanger(LANG("datum.d65336fc", null)))
+		span_danger(LANG("datum.56a19e750a9bfef1", list(target))), \
+		span_userdanger(LANG("datum.d65336fceab31cda", null)))
 	if(!do_after(source, teleport_time, target))
 		return
 	new /obj/effect/temp_visual/guardian/phase/out(target.loc)
@@ -149,8 +149,8 @@
 		var/mob/living/living_target = target
 		living_target.flash_act()
 	target.visible_message(
-		span_danger(LANG("datum.ef006406", list(target))), \
-		span_userdanger(LANG("datum.d3d7bf6c", null)), \
+		span_danger(LANG("datum.ef00640653c4f145", list(target))), \
+		span_userdanger(LANG("datum.d3d7bf6c978f5276", null)), \
 	)
 	do_teleport(target, beacon, precision = 0, channel = TELEPORT_CHANNEL_BLUESPACE)
 	new /obj/effect/temp_visual/guardian/phase(get_turf(target))

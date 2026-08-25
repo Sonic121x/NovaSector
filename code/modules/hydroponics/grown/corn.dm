@@ -58,7 +58,7 @@
 	if(!tool.get_sharpness())
 		return NONE
 
-	to_chat(user, span_notice(LANG("obj.5d3a4a5f", list(tool))))
+	to_chat(user, span_notice(LANG("obj.5d3a4a5f9ffbed4d", list(tool))))
 	new /obj/item/cigarette/pipe/cobpipe (user.loc)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -92,7 +92,7 @@
 
 /obj/item/grown/snapcorn/attack_self(mob/user)
 	..()
-	to_chat(user, span_notice(LANG("obj.92fcb708", null)))
+	to_chat(user, span_notice(LANG("obj.92fcb7088c1cb256", null)))
 	var/obj/item/toy/snappop/S = new /obj/item/toy/snappop(user.loc)
 	if(ishuman(user))
 		user.put_in_hands(S)

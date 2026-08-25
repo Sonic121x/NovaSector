@@ -307,7 +307,7 @@
 		return list("_maps/[map_path]/[map_file]")
 	. = list()
 	for (var/file in map_file)
-		. += LANG("datum.d5ebf7ad", list(map_path, file))
+		. += LANG("datum.d5ebf7ad099ab93e", list(map_path, file))
 
 /datum/map_config/proc/MakeNextMap()
 	return config_filename == PATH_TO_NEXT_MAP_JSON || fcopy(config_filename, PATH_TO_NEXT_MAP_JSON)

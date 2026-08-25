@@ -125,10 +125,10 @@
 
 /obj/machinery/ore_silo/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.c246f12a", null))
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
+	. += span_notice(LANG("obj.c246f12a465b0eae", null))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
 	if(panel_open)
-		. += span_notice(LANG("obj.3a115eca", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.3a115ecaeb354764", list(EXAMINE_HINT("pried"))))
 
 /obj/machinery/ore_silo/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = NONE
@@ -167,7 +167,7 @@
 
 /obj/machinery/ore_silo/multitool_act(mob/living/user, obj/item/multitool/I)
 	I.set_buffer(src)
-	balloon_alert(user, LANG("obj.84afb909", null))
+	balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
 	return ITEM_INTERACT_SUCCESS
 
 
@@ -214,15 +214,15 @@
 	if(user_data[SILICON_OVERRIDE] || user_data[CHAMELEON_OVERRIDE] || astype(user_data["accesses"], /list)?.Find(ACCESS_QM))
 		return COMPONENT_ORE_SILO_ALLOW
 	if(user_data[ID_READ_FAILURE])
-		physical_receptacle.say(LANG("obj.5c9f8139", null))
+		physical_receptacle.say(LANG("obj.5c9f81397e147902", null))
 		return COMPONENT_ORE_SILO_DENY
 	if(!user_data["account_id"] || !isnum(user_data["account_id"]))
 		if(prob(5))
-			physical_receptacle.say(LANG("obj.3995e616", null))
-		physical_receptacle.say(LANG("obj.a2b942c6", null))
+			physical_receptacle.say(LANG("obj.3995e616a4dace89", null))
+		physical_receptacle.say(LANG("obj.a2b942c6b104fba6", null))
 		return COMPONENT_ORE_SILO_DENY
 	if(banned_users.Find(user_data["account_id"]))
-		physical_receptacle.say(LANG("obj.e0a19881", null))
+		physical_receptacle.say(LANG("obj.e0a198813755a2ae", null))
 		return COMPONENT_ORE_SILO_DENY
 	return COMPONENT_ORE_SILO_ALLOW
 
@@ -352,7 +352,7 @@
 		CRASH("Bad arguments passed to [callee]")
 	var/emagged = obj_flags & EMAGGED
 	if((isAI(user) || iscyborg(user) || isdrone(user)) && !emagged)
-		to_chat(user, span_danger(LANG("obj.fc8a223f", null)))
+		to_chat(user, span_danger(LANG("obj.fc8a223f0cba95fe", null)))
 		user.flash_act(intensity = 1, affect_silicon = TRUE)
 		handle_access_action_feedback(
 			BAN_ATTEMPT_FAILURE_SOULLESS_MACHINE,
@@ -368,7 +368,7 @@
 	// like ban people who haven't joined the round yet
 	var/haxxor_card_ban_immunity = !isnull(target_user_data[CHAMELEON_OVERRIDE])
 
-	to_chat(user, span_warning(LANG("obj.d499369f", list(target_is_banned ? "un" : "", target_user_data["name"]))))
+	to_chat(user, span_warning(LANG("obj.d499369f0d6693ba", list(target_is_banned ? "un" : "", target_user_data["name"]))))
 	// No feedback if emagged
 	if(emagged)
 		if(!haxxor_card_ban_immunity && isnum(target_bank_id))

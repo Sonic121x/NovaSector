@@ -13,7 +13,7 @@
 
 /obj/machinery/computer/quantum_console/Initialize(mapload, obj/item/circuitboard/circuit)
 	. = ..()
-	desc = LANG("obj.985051d0", list(CURRENT_STATION_YEAR))
+	desc = LANG("obj.985051d0dee38a8d", list(CURRENT_STATION_YEAR))
 
 /obj/machinery/computer/quantum_console/post_machine_initialize()
 	. = ..()
@@ -22,7 +22,7 @@
 /obj/machinery/computer/quantum_console/examine(mob/user)
 	. = ..()
 	if(!server_ref)
-		. += span_warning(LANG("obj.71077482", null))
+		. += span_warning(LANG("obj.71077482dd9c7211", null))
 
 /obj/machinery/computer/quantum_console/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()

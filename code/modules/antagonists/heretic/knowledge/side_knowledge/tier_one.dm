@@ -24,7 +24,7 @@
 /datum/heretic_knowledge/medallion
 	name = "Ashen Eyes"
 	desc = "Sculpt an Eldritch Medallion.<br>\
-		The Eldritch Medallion grants you thermal vision while worn, and also functions as a focus."
+		The Eldritch Medallion grants you thermal vision while worn."
 	transmute_text = "Transmute a pair of eyes, a candle, and a glass shard."
 	gain_text = "Piercing eyes guided them through the mundane. Neither darkness nor terror could stop them."
 	required_atoms = list(
@@ -189,7 +189,7 @@
 		stack_trace("Somehow, no book in codex cicatrix selected atoms! [english_list(selected_atoms)]")
 	playsound(body, 'sound/items/poster/poster_ripped.ogg', 100, TRUE)
 	body.do_jitter_animation()
-	body.visible_message(span_danger(LANG("datum.30f31915", list(ripped_thing, exterior_text, le_book || "the book"))))
+	body.visible_message(span_danger(LANG("datum.30f3191500d3a1b9", list(ripped_thing, exterior_text, le_book || "the book"))))
 	return ..()
 
 /**
@@ -305,5 +305,5 @@
 		return ..()
 
 	if(feedback)
-		to_chat(the_spell.owner, span_mansus(LANG("datum.4794c0a3", list(the_spell))))
+		to_chat(the_spell.owner, span_mansus(LANG("datum.4794c0a3efe571e2", list(the_spell))))
 	return SPELL_CANCEL_CAST

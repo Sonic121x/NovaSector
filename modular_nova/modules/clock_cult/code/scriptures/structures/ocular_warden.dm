@@ -18,7 +18,7 @@
 		return FALSE
 
 	if(locate(/obj/structure/destructible/clockwork/gear_base/powered/ocular_warden) in range(OCULAR_WARDEN_PLACE_RANGE))
-		user.balloon_alert(user, LANG("datum.d54a2564", null))
+		user.balloon_alert(user, LANG("datum.d54a256493f4049b", null))
 		return FALSE
 
 	return TRUE

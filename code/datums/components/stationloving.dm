@@ -67,7 +67,7 @@
 
 	var/mob/holder = get(movable_parent, /mob)
 	if(holder)
-		to_chat(holder, span_danger(LANG("datum.6f639612", null)))
+		to_chat(holder, span_danger(LANG("datum.6f639612e9b77b0c", null)))
 		holder.temporarilyRemoveItemFromInventory(parent, TRUE) // prevents ghost diskie
 
 	movable_parent.forceMove(target_turf)

@@ -37,17 +37,17 @@
 /obj/machinery/computer/emergency_shuttle/examine(mob/user)
 	. = ..()
 	if(hijack_announce)
-		. += span_danger(LANG("obj.0258e2ce", null))
+		. += span_danger(LANG("obj.0258e2ce6f84170f", null))
 	if(user?.mind?.get_hijack_speed())
-		. += span_danger(LANG("obj.ef0abdc6", list(SSshuttle.emergency.hijack_status, HIJACK_COMPLETED)))
-		. += span_notice(LANG("obj.8a6f5cb3", list((hijack_stage_time * user.mind.get_hijack_speed()) / 10, hijack_stage_cooldown/10)))
+		. += span_danger(LANG("obj.ef0abdc678c5f465", list(SSshuttle.emergency.hijack_status, HIJACK_COMPLETED)))
+		. += span_notice(LANG("obj.8a6f5cb3d0bc86ed", list((hijack_stage_time * user.mind.get_hijack_speed()) / 10, hijack_stage_cooldown/10)))
 		if(hijack_announce)
-			. += span_warning(LANG("obj.0811c763", null))
+			. += span_warning(LANG("obj.0811c763c2a0dafa", null))
 
 /obj/machinery/computer/emergency_shuttle/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!isidcard(tool))
 		return NONE
-	say(LANG("obj.c773488f", null))
+	say(LANG("obj.c773488f3945493a", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/emergency_shuttle/ui_state(mob/user)
@@ -97,7 +97,7 @@
 
 	var/area/my_area = get_area(src)
 	if(!istype(my_area, /area/shuttle/escape))
-		say(LANG("obj.a01d90ad", null))
+		say(LANG("obj.a01d90adfb433e9a", null))
 		return
 
 	var/mob/living/user = usr
@@ -106,11 +106,11 @@
 	var/obj/item/card/id/ID = user.get_idcard(TRUE)
 
 	if(!ID)
-		to_chat(user, span_warning(LANG("obj.45670a0e", null)))
+		to_chat(user, span_warning(LANG("obj.45670a0e80a6fbdb", null)))
 		return .
 
 	if(!(ACCESS_COMMAND in ID.access))
-		to_chat(user, span_warning(LANG("obj.e4eb1bb0", null)))
+		to_chat(user, span_warning(LANG("obj.e4eb1bb0452b0708", null)))
 		return .
 
 	if(user in acted_recently)
@@ -138,7 +138,7 @@
 		var/remaining = max(0, auth_need - new_len)
 		if(new_len && remaining)
 			priority_announce(
-				LANG("obj.657b9e6f", list(remaining)),
+				LANG("obj.657b9e6f949f58dd", list(remaining)),
 				"Emergency Shuttle Status",
 				sound = 'sound/announcer/notice/notice1.ogg',
 				type = ANNOUNCEMENT_TYPE_PRIORITY,
@@ -147,7 +147,7 @@
 			)
 		if(repeal)
 			priority_announce(
-				LANG("obj.1f5d144d", list(remaining)),
+				LANG("obj.1f5d144d160e1a47", list(remaining)),
 				"Emergency Shuttle Status",
 				sound = 'sound/announcer/notice/notice2.ogg',
 				type = ANNOUNCEMENT_TYPE_PRIORITY,
@@ -200,7 +200,7 @@
 		// shuttle timers use 1/10th seconds internally
 		SSshuttle.emergency.setTimer(ENGINE_START_TIME)
 		var/system_error = obj_flags & EMAGGED ? "SYSTEM ERROR:" : null
-		minor_announce(LANG("obj.115fe2d4", list(TIME_LEFT)), system_error, alert=TRUE)
+		minor_announce(LANG("obj.115fe2d4ad65c998", list(TIME_LEFT)), system_error, alert=TRUE)
 		. = TRUE
 
 /obj/machinery/computer/emergency_shuttle/proc/increase_hijack_stage()
@@ -212,7 +212,7 @@
 	if(hijack_announce)
 		announce_hijack_stage()
 	hijack_last_stage_increase = world.time
-	say(LANG("obj.5edd4149", null))
+	say(LANG("obj.5edd4149ff65efa7", null))
 	if(shuttle.mode == SHUTTLE_ESCAPE)
 		if(shuttle.hijack_status == HIJACK_COMPLETED)
 			shuttle.setTimer(hijack_completion_flight_time_set)
@@ -230,29 +230,29 @@
 	if(!IsReachableBy(user))
 		return
 	if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
-		to_chat(user, span_warning(LANG("obj.8a3b318a", list(src))))
+		to_chat(user, span_warning(LANG("obj.8a3b318a03542e3c", list(src))))
 		return
 	var/area/my_area = get_area(src)
 	if(!istype(my_area, /area/shuttle/escape))
-		say(LANG("obj.a01d90ad", null))
+		say(LANG("obj.a01d90adfb433e9a", null))
 		return
 	if(!user?.mind?.get_hijack_speed())
-		to_chat(user, span_warning(LANG("obj.d0741f46", list(src))))
+		to_chat(user, span_warning(LANG("obj.d0741f462f1b78a5", list(src))))
 		return
 	if(!EMERGENCY_AT_LEAST_DOCKED) // prevent advancing hijack stages on BYOS shuttles until the shuttle has "docked"
-		to_chat(user, span_warning(LANG("obj.566bd8c4", null)))
+		to_chat(user, span_warning(LANG("obj.566bd8c4799189e7", null)))
 		return
 	if(hijack_hacking == TRUE)
 		return
 	if(SSshuttle.emergency.hijack_status >= HIJACK_COMPLETED)
-		to_chat(user, span_warning(LANG("obj.49ca9c23", null)))
+		to_chat(user, span_warning(LANG("obj.49ca9c236230851b", null)))
 		return
 	if(hijack_last_stage_increase >= world.time - hijack_stage_cooldown)
-		say(LANG("obj.8b3ff67d", null))
+		say(LANG("obj.8b3ff67dbef649bf", null))
 		return
 	hijack_hacking = TRUE
-	to_chat(user, span_boldwarning(LANG("obj.559e17cc", list(SSshuttle.emergency.hijack_status == HIJACK_NOT_BEGUN? "begin" : "continue", src))))
-	say(LANG("obj.08d2a3d9", null))
+	to_chat(user, span_boldwarning(LANG("obj.559e17cc17068ba7", list(SSshuttle.emergency.hijack_status == HIJACK_NOT_BEGUN? "begin" : "continue", src))))
+	say(LANG("obj.08d2a3d91f8ec578", null))
 	var/turf/console_hijack_turf = get_turf(src)
 	message_admins("[src] is being overriden for hijack by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(console_hijack_turf)]")
 	user.log_message("is hijacking [src].", LOG_GAME)
@@ -263,10 +263,10 @@
 		message_admins("[ADMIN_LOOKUPFLW(user)] has hijacked [src] in [ADMIN_VERBOSEJMP(console_hijack_turf)].  Hijack stage increased to stage [SSshuttle.emergency.hijack_status] out of [HIJACK_COMPLETED].")
 		user.log_message("has hijacked [src]. Hijack stage increased to stage [SSshuttle.emergency.hijack_status] out of [HIJACK_COMPLETED].", LOG_GAME)
 		. = TRUE
-		to_chat(user, span_notice(LANG("obj.0ac91401", list(src, hijack_stage_cooldown/10))))
+		to_chat(user, span_notice(LANG("obj.0ac91401d8a9b5c7", list(src, hijack_stage_cooldown/10))))
 		visible_message(
-			span_warning(LANG("obj.0e254c11", list(user.name, src))),
-			blind_message = span_hear(LANG("obj.cbb8daa4", null)),
+			span_warning(LANG("obj.0e254c1167787eb7", list(user.name, src))),
+			blind_message = span_hear(LANG("obj.cbb8daa446054f7f", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)
@@ -299,7 +299,7 @@
 		return FALSE
 
 	if((obj_flags & EMAGGED) || ENGINES_STARTED) //SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LAUNCH IN 10 SECONDS
-		balloon_alert(user, LANG("obj.deb1b28a", null))
+		balloon_alert(user, LANG("obj.deb1b28a1eaa6cae", null))
 		return FALSE
 
 	var/time = TIME_LEFT

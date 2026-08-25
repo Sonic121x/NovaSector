@@ -21,7 +21,6 @@
 
 /datum/design/electropack/shockcollar
 	name = "Shockcollar"
-	id = "shockcollar"
 	build_type = AUTOLATHE
 	build_path = /obj/item/electropack/shockcollar
 	materials = list(
@@ -35,7 +34,7 @@
 
 /obj/item/electropack/shockcollar/can_mob_unequip(mob/user)
 	if(user.get_item_by_slot(slot_flags) == src)
-		to_chat(user, span_warning(LANG("obj.af72e6ec", null)))
+		to_chat(user, span_warning(LANG("obj.af72e6ece0ed5fa5", null)))
 		return FALSE
 	return ..()
 
@@ -53,7 +52,7 @@
 		addtimer(VARSET_CALLBACK(src, shock_cooldown, FALSE), 100)
 		step(affected_mob, pick(GLOB.cardinals))
 
-		to_chat(affected_mob, span_danger(LANG("obj.2c2ccf81", null)))
+		to_chat(affected_mob, span_danger(LANG("obj.2c2ccf817720c115", null)))
 		do_sparks(3, TRUE, affected_mob)
 
 		affected_mob.Paralyze(30)

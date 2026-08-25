@@ -177,6 +177,18 @@
 	var/is_visual = running_emote_type & EMOTE_VISIBLE
 	var/is_audible = running_emote_type & EMOTE_AUDIBLE
 	var/space = should_have_space_before_emote(html_decode(msg)[1]) ? " " : "" // NOVA EDIT ADDITION
+	// NOVA EDIT ADDITION START - I18N - 下面每处 `[user]` 都是 BYOND 渲染 atom：给的是**英文名**，
+	// 而且非专名还会自动补一个 "The "。emote 的**消息**上面刚翻过，名字却没有 → 玩家看到
+	// 「The wolf 发出最后一声咆哮后死去。」这类半截句（漏翻采集里 `The creature`/`The hatchling`
+	// 计数直接打满上限，是聊天面剩余漏翻的头号来源；死亡消息只是其中最显眼的一种，所有 emote 同病）。
+	// 走显示边界拿译名（mob 版会把角色名/宠物挂牌这类**身份名**排除在外，只翻类型标签）；
+	// 未命中或英文服时保持 `"[user]"` 原样，冠词与英文输出逐字节不变。
+	var/user_display = "[user]"
+	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
+		var/localized_user_name = user.lang_localize_name_for_display(user.name)
+		if(localized_user_name != user.name)
+			user_display = localized_user_name
+	// NOVA EDIT ADDITION END
 	var/additional_message_flags = get_message_flags(intentional)
 
 	// Emote doesn't get printed to chat, runechat only
@@ -200,22 +212,22 @@
 					runechat_flags = EMOTE_MESSAGE,
 				)
 			else if(is_important)
-				to_chat(viewer, span_emote("<b>[user]</b> [msg]"))
+				to_chat(viewer, span_emote("<b>[user_display]</b> [msg]"))
 			else if(is_audible && is_visual)
 				viewer.show_message(
-					span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE,
-					span_emote("You see how <b>[user]</b> [msg]"), MSG_VISUAL,
+					span_emote("<b>[user_display]</b> [msg]"), MSG_AUDIBLE,
+					span_emote("You see how <b>[user_display]</b> [msg]"), MSG_VISUAL,
 				)
 			else if(is_audible)
-				viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE)
+				viewer.show_message(span_emote("<b>[user_display]</b> [msg]"), MSG_AUDIBLE)
 			else if(is_visual)
-				viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_VISUAL)
+				viewer.show_message(span_emote("<b>[user_display]</b> [msg]"), MSG_VISUAL)
 		return // Early exit so no dchat message
 
 	// The emote has some important information, and should always be shown to the user
 	else if(is_important)
 		for(var/mob/viewer as anything in viewers(user))
-			to_chat(viewer, span_emote("<b>[user]</b> [msg]"))
+			to_chat(viewer, span_emote("<b>[user_display]</b> [msg]"))
 			if(user.runechat_prefs_check(viewer, EMOTE_MESSAGE))
 				viewer.create_chat_message(
 					speaker = user,
@@ -227,7 +239,7 @@
 	else if(is_visual && is_audible)
 		user.audible_message(
 			message = msg,
-			deaf_message = span_emote(LANG("datum.925c6790", list(user, msg))),
+			deaf_message = span_emote(LANG("datum.925c6790ca04918f", list(user, msg))),
 			self_message = msg,
 			audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE|additional_message_flags,
 			separation = space, // NOVA EDIT ADDITION
@@ -265,7 +277,7 @@
 		else if(is_visual && is_audible)
 			hologram.audible_message(
 				message = msg,
-				deaf_message = LANG("datum.3b266acd", list(user, msg)),
+				deaf_message = LANG("datum.3b266acd31b1d21f", list(user, msg)),
 				self_message = msg,
 				audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE,
 				separation = space,
@@ -289,7 +301,7 @@
 			)
 	// NOVA EDIT ADDITION END
 	if(!isnull(user.client))
-		var/dchatmsg = "<b>[user]</b>[space][msg]" // NOVA EDIT CHANGE - ORIGINAL: var/dchatmsg = "<b>[user]</b> [msg]"
+		var/dchatmsg = "<b>[user_display]</b>[space][msg]" // NOVA EDIT CHANGE - ORIGINAL: var/dchatmsg = "<b>[user_display]</b> [msg]"
 		for(var/mob/ghost as anything in GLOB.dead_mob_list - viewers(get_turf(user)))
 			if(isnull(ghost.client) || isnewplayer(ghost))
 				continue
@@ -325,7 +337,7 @@
 	if(user.nextsoundemote > world.time) // NOVA EDIT CHANGE - ORIGINAL: if(user.emotes_used && user.emotes_used[src] + cooldown > world.time)
 		var/datum/emote/default_emote = /datum/emote
 		if(cooldown > initial(default_emote.cooldown)) // only worry about longer-than-normal emotes
-			to_chat(user, span_danger(LANG("datum.ec9895bb", list(DisplayTimeText(user.nextsoundemote - world.time)))))
+			to_chat(user, span_danger(LANG("datum.ec9895bb936c212e", list(DisplayTimeText(user.nextsoundemote - world.time)))))
 		return FALSE
 	//if(!user.emotes_used)
 	//	user.emotes_used = list()
@@ -458,28 +470,28 @@
 	if(status_check && !is_type_in_typecache(user, mob_type_ignore_stat_typecache))
 		if(IS_UNCONSCIOUS(user) && !(can_use_flags & EMOTE_CANUSE_UNCONSCIOUS))
 			if(intentional)
-				to_chat(user, span_warning(LANG("datum.b0df7fb7", list(key))))
+				to_chat(user, span_warning(LANG("datum.b0df7fb7cfe537a7", list(key))))
 			return FALSE
 		if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED) && (can_use_flags & EMOTE_CANUSE_REQUIRE_HANDS))
 			if(intentional)
-				to_chat(user, span_warning(LANG("datum.a6c43807", list(key))))
+				to_chat(user, span_warning(LANG("datum.a6c43807910b0261", list(key))))
 			return FALSE
 
 		switch(user.stat)
 			if(SOFT_CRIT)
 				if(!(can_use_flags & EMOTE_CANUSE_SOFTCRIT))
 					if(intentional)
-						to_chat(user, span_warning(LANG("datum.06026301", list(key))))
+						to_chat(user, span_warning(LANG("datum.060263017f74632c", list(key))))
 					return FALSE
 			if(HARD_CRIT)
 				if(!(can_use_flags & EMOTE_CANUSE_HARDCRIT))
 					if(intentional)
-						to_chat(user, span_warning(LANG("datum.06026301", list(key))))
+						to_chat(user, span_warning(LANG("datum.060263017f74632c", list(key))))
 					return FALSE
 			if(DEAD)
 				if(!(can_use_flags & EMOTE_CANUSE_DEAD))
 					if(intentional)
-						to_chat(user, span_warning(LANG("datum.9cfbc2db", list(key))))
+						to_chat(user, span_warning(LANG("datum.9cfbc2db1e9bbc48", list(key))))
 					return FALSE
 
 	if(HAS_TRAIT(user, TRAIT_EMOTEMUTE))

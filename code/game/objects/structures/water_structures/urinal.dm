@@ -33,22 +33,22 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/urinal, 32)
 		var/mob/living/grabbed_mob = user.pulling
 		if(user.grab_state >= GRAB_AGGRESSIVE)
 			if(grabbed_mob.loc != get_turf(src))
-				to_chat(user, span_notice(LANG("obj.d8939e1d", list(grabbed_mob.name, src))))
+				to_chat(user, span_notice(LANG("obj.d8939e1d18fe2b06", list(grabbed_mob.name, src))))
 				return
 			user.changeNext_move(CLICK_CD_MELEE)
-			user.visible_message(span_danger(LANG("obj.9570ee0c", list(user, grabbed_mob, src))), span_danger(LANG("obj.4a5b07de", list(grabbed_mob, src))))
+			user.visible_message(span_danger(LANG("obj.9570ee0c03b31447", list(user, grabbed_mob, src))), span_danger(LANG("obj.4a5b07de597e7ddf", list(grabbed_mob, src))))
 			grabbed_mob.emote("scream")
 			grabbed_mob.adjust_brute_loss(8)
 		else
-			to_chat(user, span_warning(LANG("obj.ef8434d1", null)))
+			to_chat(user, span_warning(LANG("obj.ef8434d1d066a322", null)))
 		return
 
 	if(exposed)
 		if(hidden_item)
-			to_chat(user, span_notice(LANG("obj.81a23449", list(hidden_item))))
+			to_chat(user, span_notice(LANG("obj.81a23449b13247cc", list(hidden_item))))
 			user.put_in_hands(hidden_item)
 		else
-			to_chat(user, span_warning(LANG("obj.7328f9a6", null)))
+			to_chat(user, span_warning(LANG("obj.7328f9a62bbc98e9", null)))
 		return
 	return ..()
 
@@ -57,37 +57,37 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/urinal, 32)
 		return NONE
 
 	if(hidden_item)
-		to_chat(user, span_warning(LANG("obj.7afad231", null)))
+		to_chat(user, span_warning(LANG("obj.7afad2316272cee2", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(tool.w_class > WEIGHT_CLASS_TINY)
-		to_chat(user, span_warning(LANG("obj.b28ad6a7", list(tool))))
+		to_chat(user, span_warning(LANG("obj.b28ad6a77b229198", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
-		to_chat(user, span_warning(LANG("obj.b02cbe56", list(tool))))
+		to_chat(user, span_warning(LANG("obj.b02cbe5644a6eeed", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 
 	hidden_item = tool
-	to_chat(user, span_notice(LANG("obj.0bc0520a", list(tool))))
+	to_chat(user, span_notice(LANG("obj.0bc0520a2c084cfc", list(tool))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/urinal/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
-	to_chat(user, span_notice(LANG("obj.94975cdd", list(exposed ? "screw the cap back into place" : "unscrew the cap to the drain protector"))))
+	to_chat(user, span_notice(LANG("obj.94975cdd85e26e44", list(exposed ? "screw the cap back into place" : "unscrew the cap to the drain protector"))))
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, TRUE)
 	if(I.use_tool(src, user, 20))
 		user.visible_message(span_notice("[user] [exposed ? "screws the cap back into place" : "unscrew the cap to the drain protector"]!"),
-			span_notice(LANG("obj.52638468", list(exposed ? "screw the cap back into place" : "unscrew the cap on the drain"))),
-			span_hear(LANG("obj.98c5495a", null)))
+			span_notice(LANG("obj.52638468bb05caa5", list(exposed ? "screw the cap back into place" : "unscrew the cap on the drain"))),
+			span_hear(LANG("obj.98c5495ae16a8d32", null)))
 		exposed = !exposed
 	return TRUE
 
 /obj/structure/urinal/wrench_act_secondary(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(user)
 	deconstruct(TRUE)
-	balloon_alert(user, LANG("obj.112ea80a", null))
+	balloon_alert(user, LANG("obj.112ea80a3ac380f3", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/urinal/atom_deconstruct(disassembled = TRUE)
@@ -116,6 +116,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/urinal, 32)
 	preserved_food = TRUE
 
 /obj/item/food/urinalcake/attack_self(mob/living/user)
-	user.visible_message(span_notice(LANG("obj.3255392e", list(user, src))), span_notice(LANG("obj.e29f2321", list(src))), LANG("obj.a5b23264", null))
+	user.visible_message(span_notice(LANG("obj.3255392e195d78f3", list(user, src))), span_notice(LANG("obj.e29f23218ea41596", list(src))), LANG("obj.a5b232644f56e74f", null))
 	icon_state = "urinalcake_squish"
 	addtimer(VARSET_CALLBACK(src, icon_state, "urinalcake"), 0.8 SECONDS)

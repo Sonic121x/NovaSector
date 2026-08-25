@@ -230,20 +230,37 @@ const ItemList = (props: ItemListProps) => {
             ability.absorbs_required <= absorb_count &&
             ability.dna_required <= dna_count;
 
-          const requirementTooltip = [
-            `${ability.genetic_point_required} DNA`,
-            ...(ability.absorbs_required > 0
-              ? [`${ability.absorbs_required} absorptions`]
-              : []),
-            ...(ability.dna_required > 0
-              ? [`${ability.dna_required} DNA`]
-              : []),
-          ].join(', ');
+          // NOVA EDIT CHANGE START - I18N: 数值包成占位符，整条按 children 模板进目录。
+          // 原来在 TS 里拼出来的整串（`Cost: 3 DNA`、`3 DNA, 1 absorptions`）是运行期
+          // 产物、永远不是目录键 —— 框架词恒为英文。
+          // ORIGINAL:
+          //   const requirementTooltip = [`${ability.genetic_point_required} DNA`, …].join(', ');
+          //   const costDisplay = ability.dna_required > 0
+          //     ? `Cost: ${ability.dna_required} DNA`
+          //     : `Cost: ${ability.genetic_point_required} DNA`;
+          const requirementTooltip = (
+            <Box>
+              <Box inline>{ability.genetic_point_required} DNA</Box>
+              {ability.absorbs_required > 0 && (
+                <Box inline>, {ability.absorbs_required} absorptions</Box>
+              )}
+              {ability.dna_required > 0 && (
+                <Box inline>, {ability.dna_required} DNA</Box>
+              )}
+            </Box>
+          );
 
           const costDisplay =
-            ability.dna_required > 0
-              ? `Cost: ${ability.dna_required} DNA`
-              : `Cost: ${ability.genetic_point_required} DNA`;
+            ability.dna_required > 0 ? (
+              <>
+                Cost: <span>{ability.dna_required}</span> DNA
+              </>
+            ) : (
+              <>
+                Cost: <span>{ability.genetic_point_required}</span> DNA
+              </>
+            );
+          // NOVA EDIT CHANGE END
 
           return (
             <Stack.Item key={ability.path} mt={compactMode ? 0.5 : 1}>

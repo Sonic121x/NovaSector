@@ -24,7 +24,7 @@
 /obj/machinery/power/manufacturing/examine(mob/user)
 	. = ..()
 	if(may_be_moved)
-		. += LANG("obj.c2d89ffa", null)
+		. += LANG("obj.c2d89ffac66e4b21", null)
 	. += length(contents - circuit) ? "It contains:" : "It contains no items."
 	for(var/atom/movable/thing as anything in contents - circuit)
 		var/text = thing.name

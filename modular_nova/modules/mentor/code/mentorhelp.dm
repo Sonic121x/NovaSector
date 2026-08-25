@@ -23,7 +23,7 @@ GAME_VERB(/client, mentorhelp, "导师帮助", "Mentor")
 			SEND_SOUND(mentor_client, 'sound/items/bikehorn.ogg')
 			to_chat(mentor_client, mentor_msg)
 
-	to_chat(src, span_mentor(LANG("client.25d147d7", list(msg))))
+	to_chat(src, span_mentor(LANG("client.25d147d73c704d7b", list(msg))))
 	return
 
 /proc/get_mentor_counts()

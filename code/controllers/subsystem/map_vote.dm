@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(map_vote)
 	last_message_at = world.time
 
 	var/list/messages = args.Copy()
-	to_chat(world, span_purple(boxed_message(LANG("datum.cf76b400", list(jointext(messages, "<br>"))))))
+	to_chat(world, span_purple(boxed_message(LANG("datum.cf76b400deaf88c2", list(jointext(messages, "<br>"))))))
 
 /datum/controller/subsystem/map_vote/proc/finalize_map_vote(datum/vote/map_vote/map_vote)
 	if(already_voted)

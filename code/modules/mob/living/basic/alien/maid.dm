@@ -25,9 +25,9 @@
 
 	target.wash(CLEAN_SCRUB)
 	if(istype(target, /obj/effect/decal/cleanable))
-		visible_message(span_notice(LANG("mob.7b34e496", list(src, target))))
+		visible_message(span_notice(LANG("mob.7b34e496f895f816", list(src, target))))
 	else
-		visible_message(span_notice(LANG("mob.e37b7726", list(src, target))))
+		visible_message(span_notice(LANG("mob.e37b77265fc19ffa", list(src, target))))
 	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
 /**

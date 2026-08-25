@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 
 /obj/item/stack/marker_beacon/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.4bec5504", list(singular_name, picked_color)))
+	. += span_notice(LANG("obj.4bec550407d61bc5", list(singular_name, picked_color)))
 
 /obj/item/stack/marker_beacon/update_icon_state()
 	icon_state = "[initial(icon_state)][LOWER_TEXT(picked_color)]"
@@ -48,19 +48,19 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 
 /obj/item/stack/marker_beacon/attack_self(mob/user)
 	if(!isturf(user.loc))
-		to_chat(user, span_warning(LANG("obj.d86190c0", list(singular_name))))
+		to_chat(user, span_warning(LANG("obj.d86190c0018876b6", list(singular_name))))
 		return
 	if(locate(/obj/structure/marker_beacon) in user.loc)
-		to_chat(user, span_warning(LANG("obj.e51e3fee", list(singular_name))))
+		to_chat(user, span_warning(LANG("obj.e51e3fee1bbb5553", list(singular_name))))
 		return
 	if(use(1))
-		to_chat(user, span_notice(LANG("obj.14caf882", list(amount ? "a":"the", singular_name))))
+		to_chat(user, span_notice(LANG("obj.14caf882aac9fcfc", list(amount ? "a":"the", singular_name))))
 		playsound(user, 'sound/machines/click.ogg', 50, TRUE)
 		var/obj/structure/marker_beacon/M = new(user.loc, picked_color)
 		transfer_fingerprints_to(M)
 
 /obj/item/stack/marker_beacon/click_alt(mob/living/user)
-	var/input_color = tgui_input_list(user, LANG("obj.5d507f45", null), LANG("obj.287a5f1a", null), GLOB.marker_beacon_colors)
+	var/input_color = tgui_input_list(user, LANG("obj.5d507f4591df21fa", null), LANG("obj.287a5f1a43447695", null), GLOB.marker_beacon_colors)
 	if(isnull(input_color) || !user.can_perform_action(src))
 		return CLICK_ACTION_BLOCKING
 	picked_color = input_color
@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 
 /obj/structure/marker_beacon/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.fc3a7b99", list(picked_color)))
+	. += span_notice(LANG("obj.fc3a7b993b993a44", list(picked_color)))
 
 /obj/structure/marker_beacon/update_appearance(updates)
 	while(!picked_color || !GLOB.marker_beacon_colors[picked_color])
@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 	. = ..()
 	if(.)
 		return
-	to_chat(user, span_notice(LANG("obj.71262792", list(src))))
+	to_chat(user, span_notice(LANG("obj.71262792366bd608", list(src))))
 	if(do_after(user, remove_speed, target = src))
 		var/obj/item/stack/marker_beacon/M = new(loc)
 		M.picked_color = picked_color
@@ -136,7 +136,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 /obj/structure/marker_beacon/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stack/marker_beacon))
 		var/obj/item/stack/marker_beacon/collection = tool
-		to_chat(user, span_notice(LANG("obj.71262792", list(src))))
+		to_chat(user, span_notice(LANG("obj.71262792366bd608", list(src))))
 		if(!do_after(user, remove_speed, target = src) || collection.amount + 1 > collection.max_amount)
 			return ITEM_INTERACT_BLOCKING
 
@@ -148,7 +148,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 	if(istype(tool, /obj/item/light_eater))
 		var/obj/effect/decal/cleanable/ash/A = new /obj/effect/decal/cleanable/ash(drop_location())
 		A.desc += "\nLooks like this used to be \a [src] some time ago."
-		visible_message(span_danger(LANG("obj.c92ed8d3", list(src, tool))))
+		visible_message(span_danger(LANG("obj.c92ed8d36744f957", list(src, tool))))
 		playsound(src, 'sound/items/tools/welder.ogg', 50, TRUE)
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 	return NONE
 
 /obj/structure/marker_beacon/click_alt(mob/living/user)
-	var/input_color = tgui_input_list(user, LANG("obj.5d507f45", null), LANG("obj.287a5f1a", null), GLOB.marker_beacon_colors)
+	var/input_color = tgui_input_list(user, LANG("obj.5d507f4591df21fa", null), LANG("obj.287a5f1a43447695", null), GLOB.marker_beacon_colors)
 	if(isnull(input_color) || !user.can_perform_action(src))
 		return CLICK_ACTION_BLOCKING
 	picked_color = input_color

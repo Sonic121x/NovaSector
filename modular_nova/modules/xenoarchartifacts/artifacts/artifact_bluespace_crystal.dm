@@ -57,9 +57,9 @@
 			continue
 
 		living_mob.visible_message(
-			span_warning(LANG("obj.fc07fa9a", list(living_mob))),
-			span_warning(LANG("obj.325c879e", null)),
-			blind_message = span_hear(LANG("obj.f3571fe9", null)),
+			span_warning(LANG("obj.fc07fa9ac46bc9fe", list(living_mob))),
+			span_warning(LANG("obj.325c879ecfa8a524", null)),
+			blind_message = span_hear(LANG("obj.f3571fe903b01dd2", null)),
 		)
 		if(living_mob.buckled)
 			living_mob.buckled.unbuckle_mob()

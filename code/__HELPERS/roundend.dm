@@ -251,7 +251,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 	//Set news report and mode result
 	SSdynamic.set_round_result()
 
-	to_chat(world, span_infoplain(span_big(span_bold(LANG("datum.351d28ad", null)))))
+	to_chat(world, span_infoplain(span_big(span_bold(LANG("datum.351d28ade636e3cc", null)))))
 	log_game("The round has ended.")
 	// NOVA EDIT ADDITION START - I18N - Localized compact Discord round-end alert
 	for(var/channel_tag in CONFIG_GET(str_list/channel_announce_end_game))
@@ -376,9 +376,9 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		if(SSblackbox.first_death)
 			var/list/ded = SSblackbox.first_death
 			if(ded.len)
-				parts += "[FOURSPACES][LANG("datum.fdc519ac", list(ded["name"], ded["role"], ded["area"], ded["damage"], ded["last_words"] ? LANG("datum.eb109e14", list(ded["last_words"])) : ""))]"
+				parts += "[FOURSPACES][LANG("datum.fdc519ac07739dbb", list(ded["name"], ded["role"], ded["area"], ded["damage"], ded["last_words"] ? LANG("datum.eb109e145e1438d4", list(ded["last_words"])) : ""))]"
 			else
-				parts += "[FOURSPACES][LANG("datum.3ad62a83", null)]"
+				parts += "[FOURSPACES][LANG("datum.3ad62a838c10e29c", null)]"
 
 	parts += "[FOURSPACES][GLOB.i18n_server_locale != DEFAULT_UI_LOCALE ? "回合" : "Round"]: [SSdynamic.current_tier.name]" // NOVA EDIT - I18N - single-word label gated inline
 	for(var/datum/dynamic_ruleset/rule as anything in SSdynamic.executed_rulesets - SSdynamic.unreported_rulesets)
@@ -481,14 +481,21 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		var/mob/living/silicon/ai/aiPlayer = i
 		var/datum/mind/aiMind = aiPlayer.deployed_shell?.mind || aiPlayer.mind
 		if(aiMind)
-			parts += "<b>[aiPlayer.name]</b>'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was [span_redtext("deactivated")]"] were:" //NOVA EDIT CHANGE
+			// NOVA EDIT CHANGE START - i18n: 手工 LANG 化。原句是「三元嵌在插值里」的裸拼接，
+			// 模板以冒号收尾又带占位符，抽取的两道闸门都挡着；`parts` 也不是注册累加器。
+			// 拆成两条完整模板（而不是把英文分句当实参传），中文语序才排得开。
+			// ORIGINAL: parts += "<b>[aiPlayer.name]</b>'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was [span_redtext("deactivated")]"] were:"
+			parts += aiPlayer.stat != DEAD \
+				? LANG("datum.c9614dfa3e5164f5", list(aiPlayer.name)) \
+				: LANG("datum.9a3724cc3403ed49", list(aiPlayer.name, span_redtext("deactivated")))
+			// NOVA EDIT CHANGE END
 			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
 
-		parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
+		parts += LANG("datum.1c8f9492d4fdd9e4", list(aiPlayer.law_change_counter)) // NOVA EDIT CHANGE - i18n - ORIGINAL: parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
 
 		if (aiPlayer.connected_robots.len)
 			var/borg_num = aiPlayer.connected_robots.len
-			parts += LANG("datum.007e216c", list(aiPlayer.real_name))
+			parts += LANG("datum.007e216c5e0c8155", list(aiPlayer.real_name))
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				borg_num--
 				if(robo.mind)
@@ -503,7 +510,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		if (!robo.connected_ai && robo.mind)
 			//NOVA EDIT CHANGE BEGIN - ROUNDEND
 			//parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>) [(robo.stat != DEAD)? "[span_greentext("survived")] as an AI-less borg!" : "was [span_redtext("unable to survive")] the rigors of being a cyborg without an AI."] Its laws were:"
-			parts += "[borg_spacer?"<br>":""][robo.stat != DEAD ? LANG("datum.ca3200c9", list(robo.name)) : LANG("datum.563f3781", list(robo.name))]"
+			parts += "[borg_spacer?"<br>":""][robo.stat != DEAD ? LANG("datum.ca3200c906c44b94", list(robo.name)) : LANG("datum.563f3781c6496759", list(robo.name))]"
 			//NOVA EDIT CHANGE END
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
@@ -626,10 +633,10 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		hardcores += human_player
 	if(!length(hardcores))
 		return
-	. += LANG("datum.095babc2", null)
+	. += LANG("datum.095babc2249bd0ed", null)
 	. += "<ul class='playerlist'>"
 	for(var/mob/living/carbon/human/human_player in hardcores)
-		. += LANG("datum.a04c8408", list(printplayer(human_player.mind), round(human_player.hardcore_survival_score)))
+		. += LANG("datum.a04c84086697c4bf", list(printplayer(human_player.mind), round(human_player.hardcore_survival_score)))
 	. += "</ul></div>"
 
 /datum/controller/subsystem/ticker/proc/antag_report()
@@ -694,7 +701,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 	var/datum/action/report/R = new
 	C.persistent_client.player_actions += R
 	R.Grant(C.mob)
-	to_chat(C,span_infoplain(LANG("datum.23cab8f6", list(REF(R)))))
+	to_chat(C,span_infoplain(LANG("datum.23cab8f60925ee6f", list(REF(R)))))
 
 /datum/action/report
 	name = "Show roundend report"
@@ -772,7 +779,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		parts += "<span class='infoplain'>Total Achievements Earned: <B>[length(GLOB.achievements_unlocked)]!</B></span><BR>"
 		parts += "<ul class='playerlist'>"
 		for(var/datum/achievement_report/cheevo_report in GLOB.achievements_unlocked)
-			parts += LANG("datum.eacda27e", list(cheevo_report.winner, cheevo_report.cheevo, cheevo_report.award_location)) // NOVA EDIT - No ckeys in the round end report - ORIGINAL: parts += "<BR>[cheevo_report.winner_key] was <b>[cheevo_report.winner]</b>, who earned the [span_greentext("'[cheevo_report.cheevo]'")] achievement at [cheevo_report.award_location]!<BR>"
+			parts += LANG("datum.eacda27e4b421c8f", list(cheevo_report.winner, cheevo_report.cheevo, cheevo_report.award_location)) // NOVA EDIT - No ckeys in the round end report - ORIGINAL: parts += "<BR>[cheevo_report.winner_key] was <b>[cheevo_report.winner]</b>, who earned the [span_greentext("'[cheevo_report.cheevo]'")] achievement at [cheevo_report.award_location]!<BR>"
 		parts += "</ul>"
 		return "<div class='panel greenborder'><ul>[parts.Join()]</ul></div>"
 

@@ -100,7 +100,7 @@
 
 /datum/round_event/earthquake/start()
 	notify_ghosts(
-		LANG("datum.b66054cb", list(get_area_name(epicenter))),
+		LANG("datum.b66054cb0255c672", list(get_area_name(epicenter))),
 		source = epicenter,
 		header = "Rumble Rumble Rumble!",
 	)
@@ -135,12 +135,12 @@
 			for(var/mob/living/quake_victim in turf_to_quake)
 				quake_victim.Knockdown(7 SECONDS)
 				quake_victim.Paralyze(5 SECONDS)
-				to_chat(quake_victim, span_warning(LANG("datum.8dad94d6", null)))
+				to_chat(quake_victim, span_warning(LANG("datum.8dad94d6378dca1c", null)))
 
 		for(var/turf/turf_to_quake in underbelly)
 			turf_to_quake.Shake(pixelshiftx = 0.5, pixelshifty = 0.5, duration = 1 SECONDS)
 			for(var/mob/living/carbon/quake_victim in turf_to_quake)
-				to_chat(quake_victim, span_warning(LANG("datum.e3d02ebf", null))) ///You're about to find out
+				to_chat(quake_victim, span_warning(LANG("datum.e3d02ebfb37a04db", null))) ///You're about to find out
 
 	// Step one of the destruction, which clears natural tiles out from the underbelly and does a bit of initial damage to the topside.
 	if(activeFor == end_when - 1)

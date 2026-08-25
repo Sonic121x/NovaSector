@@ -39,7 +39,7 @@
 	bay.detach()
 	bay.forceMove(src) //for later detaching
 	attach(mech, attach_right)
-	user.visible_message(span_notice(LANG("obj.70d1eef5", list(user, src))), span_notice(LANG("obj.6d214c52", list(initial(name)))))
+	user.visible_message(span_notice(LANG("obj.70d1eef54e8146c3", list(user, src))), span_notice(LANG("obj.6d214c5221f719ea", list(initial(name)))))
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/detach(atom/moveto)
@@ -201,7 +201,7 @@
 	var/has_molten = FALSE
 	for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thegun in themech.flat_equipment)
 		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo))
-			to_chat(user, span_warning(LANG("obj.221888f2", list(themech, thegun))))
+			to_chat(user, span_warning(LANG("obj.221888f2085b8389", list(themech, thegun))))
 			return ITEM_INTERACT_BLOCKING
 		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno))
 			has_molten = TRUE
@@ -216,7 +216,7 @@
 	var/has_cryo = FALSE
 	for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thegun in themech.flat_equipment)
 		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno))
-			to_chat(user, span_warning(LANG("obj.221888f2", list(themech, thegun))))
+			to_chat(user, span_warning(LANG("obj.221888f2085b8389", list(themech, thegun))))
 			return ITEM_INTERACT_BLOCKING
 		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo))
 			has_cryo = TRUE
@@ -272,14 +272,14 @@
 	if(!action_checks(target))
 		return
 	playsound(chassis, 'sound/items/airhorn/airhorn.ogg', 100, TRUE)
-	to_chat(source, LANG("obj.a7e4a2c8", list(icon2html(src, source))))
+	to_chat(source, LANG("obj.a7e4a2c8e6052c3b", list(icon2html(src, source))))
 	for(var/mob/living/carbon/M in ohearers(6, chassis))
 		if(HAS_TRAIT(M, TRAIT_DEAF))
 			continue
 		var/turf/turf_check = get_turf(M)
 		if(isspaceturf(turf_check) && !turf_check.Adjacent(src)) //in space nobody can hear you honk.
 			continue
-		to_chat(M, LANG("obj.09f6523a", null))
+		to_chat(M, LANG("obj.09f6523a4e825cd0", null))
 		M.SetSleeping(0)
 		M.adjust_stutter(40 SECONDS)
 		M.sound_damage(deafen = 30 SECONDS)
@@ -578,7 +578,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/punching_glove/action(mob/source, atom/target, list/modifiers)
 	. = ..()
 	if(.)
-		to_chat(usr, LANG("obj.a7e4a2c8", list(icon2html(src, usr))))
+		to_chat(usr, LANG("obj.a7e4a2c8e6052c3b", list(icon2html(src, usr))))
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/punching_glove/proj_init(obj/item/punching_glove/PG)
 	if(!istype(PG))
@@ -669,14 +669,14 @@
 		. = ..()
 		var/mob/living/mobtarget = target
 		if(mobtarget.move_resist == MOVE_FORCE_OVERPOWERING) //No megafauna or bolted AIs, please.
-			balloon_alert(source, LANG("obj.efd191e8", null))
+			balloon_alert(source, LANG("obj.efd191e8dac4a04c", null))
 			return
 		if(secmech.cargo_hold.contents.len >= secmech.cargo_hold.cargo_capacity)
-			balloon_alert(source, LANG("obj.ad6c6384", null))
+			balloon_alert(source, LANG("obj.ad6c6384cbc2d930", null))
 			return
 
 		playsound(chassis, clampsound, 50, FALSE, -6)
-		mobtarget.visible_message(span_notice(LANG("obj.ed706a6a", list(chassis, mobtarget))),span_userdanger(LANG("obj.e672bef8", list(chassis, src, secmech.cargo_hold))))
+		mobtarget.visible_message(span_notice(LANG("obj.ed706a6a6a71275b", list(chassis, mobtarget))),span_userdanger(LANG("obj.e672bef88f1d88bc", list(chassis, src, secmech.cargo_hold))))
 		if(!do_after_cooldown(mobtarget, source, flags = MECH_DO_AFTER_DIR_CHANGE_FLAG|MECH_DO_AFTER_ADJACENCY_FLAG))
 			return
 		mobtarget.forceMove(secmech.cargo_hold)

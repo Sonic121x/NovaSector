@@ -120,7 +120,7 @@
 	else
 		order = attending_venue.order_food_line(wanted_item)
 
-	. += span_notice(LANG("mob.a9c0ffcc", list(order)))
+	. += span_notice(LANG("mob.a9c0ffcc46dcd67d", list(order)))
 
 /mob/living/basic/robot_customer/death()
 	new /obj/effect/gibspawner/robot(drop_location())

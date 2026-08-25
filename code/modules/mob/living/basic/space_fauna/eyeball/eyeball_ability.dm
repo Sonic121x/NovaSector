@@ -8,19 +8,19 @@
 
 /datum/action/cooldown/spell/pointed/death_glare/is_valid_target(atom/cast_on)
 	if(!isliving(cast_on))
-		to_chat(owner, span_warning(LANG("datum.4c46e9e4", null)))
+		to_chat(owner, span_warning(LANG("datum.4c46e9e46d89f007", null)))
 		return FALSE
 	var/mob/living/living_target = cast_on
 	if(living_target.has_movespeed_modifier(/datum/movespeed_modifier/glare_slowdown))
-		to_chat(owner, span_warning(LANG("datum.c37e2ffb", null)))
+		to_chat(owner, span_warning(LANG("datum.c37e2ffb7afdce22", null)))
 		return FALSE
 	if(!can_see(living_target, owner, 9))
-		to_chat(owner, span_warning(LANG("datum.2f965663", null)))
+		to_chat(owner, span_warning(LANG("datum.2f96566382d0d19d", null)))
 		return FALSE
 	var/direction_to_compare = get_dir(living_target, owner)
 	var/target_direction = living_target.dir
 	if(direction_to_compare != target_direction)
-		to_chat(owner, span_warning(LANG("datum.c1f98e1f", null)))
+		to_chat(owner, span_warning(LANG("datum.c1f98e1f7dda2b53", null)))
 		return FALSE
 
 	return TRUE
@@ -29,7 +29,7 @@
 	. = ..()
 	cast_on.add_filter("glare", 2, list("type" = "outline", "color" = glare_outline, "size" = 1))
 	cast_on.add_movespeed_modifier(/datum/movespeed_modifier/glare_slowdown)
-	to_chat(cast_on, span_warning(LANG("datum.14637e9b", null)))
+	to_chat(cast_on, span_warning(LANG("datum.14637e9b959c7feb", null)))
 	addtimer(CALLBACK(src, PROC_REF(remove_effect), cast_on), 5 SECONDS)
 	return TRUE
 

@@ -62,17 +62,17 @@
 /datum/blobstrain/debris_devourer/examine(mob/user)
 	. = ..()
 	if (isobserver(user))
-		. += span_notice(LANG("datum.3b7af377", list(round(max(min(DEBRIS_DENSITY, 10),0)))))
+		. += span_notice(LANG("datum.3b7af377ea4d2be4", list(round(max(min(DEBRIS_DENSITY, 10),0)))))
 	else
 		switch (round(max(min(DEBRIS_DENSITY, 10),0)))
 			if (0)
-				. += span_notice(LANG("datum.57c10414", null))
+				. += span_notice(LANG("datum.57c10414968e315e", null))
 			if (1 to 3)
-				. += span_notice(LANG("datum.9298d6c3", null)) // these roughly correspond with force description strings
+				. += span_notice(LANG("datum.9298d6c3ed686104", null)) // these roughly correspond with force description strings
 			if (4 to 7)
-				. += span_notice(LANG("datum.6fba288e", null))
+				. += span_notice(LANG("datum.6fba288e41564304", null))
 			if (8 to 10)
-				. += span_notice(LANG("datum.179a13d2", null))
+				. += span_notice(LANG("datum.179a13d217b687d4", null))
 
 /datum/blobstrain/debris_devourer/on_blobmob_atom_interacted(mob/living/minion, atom/interacted_atom, adjacent, modifiers)
 	. = ..()
@@ -80,7 +80,7 @@
 		return
 
 	if(minion.contents.len >= minion.mob_size * 5)
-		to_chat(minion, span_warning(LANG("datum.6e6ef8c5", null)))
+		to_chat(minion, span_warning(LANG("datum.6e6ef8c5f6a8beb4", null)))
 		return
 
 	playsound(minion, 'sound/items/eatfood.ogg', 60, TRUE)

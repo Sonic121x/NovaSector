@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(market)
 
 				lowest_cd_pad.add_to_queue(purchase)
 
-				to_chat(buyer, span_notice(LANG("datum.3026d593", list(purchase.uplink, lowest_cd_pad))))
+				to_chat(buyer, span_notice(LANG("datum.3026d593c76a5b97", list(purchase.uplink, lowest_cd_pad))))
 
 			// Get random area, throw it somewhere there.
 			if(SHIPPING_METHOD_TELEPORT)
@@ -99,7 +99,7 @@ SUBSYSTEM_DEF(market)
 					continue
 				queued_purchases -= purchase
 
-				to_chat(buyer, span_notice(LANG("datum.9e0999d0", list(purchase.uplink, get_area(targetturf)))))
+				to_chat(buyer, span_notice(LANG("datum.9e0999d002e563ee", list(purchase.uplink, get_area(targetturf)))))
 
 				// do_teleport does not want to teleport items from nullspace, so it just forceMoves and does sparks.
 				addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/controller/subsystem/market, fake_teleport), purchase, targetturf), 60 SECONDS)
@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(market)
 				purchase.post_purchase_effects(item)
 				delivery_pod.throw_at(purchase.uplink, 3, 3, spin = FALSE)
 
-				to_chat(buyer, span_notice(LANG("datum.6eabcced", list(purchase.uplink, dir2text(startSide)))))
+				to_chat(buyer, span_notice(LANG("datum.6eabcced5d28e9e7", list(purchase.uplink, dir2text(startSide)))))
 				qdel(purchase)
 
 			if(SHIPPING_METHOD_SUPPLYPOD)
@@ -125,7 +125,7 @@ SUBSYSTEM_DEF(market)
 				))
 				purchase.entry.spawn_item(spawned_pod, purchase)
 
-				to_chat(buyer, span_notice(LANG("datum.9db0dda1", list(purchase.uplink))))
+				to_chat(buyer, span_notice(LANG("datum.9db0dda1ad97fd39", list(purchase.uplink))))
 				qdel(purchase)
 
 		if(MC_TICK_CHECK)
@@ -168,5 +168,5 @@ SUBSYSTEM_DEF(market)
 		initialize_item(path, market_whitelist)
 
 	for(var/obj/machinery/ltsrbt/pad as anything in telepads)
-		pad.say(LANG("datum.68864820", list(market_name)))
+		pad.say(LANG("datum.68864820f2b67222", list(market_name)))
 		playsound(src, 'sound/effects/cashregister.ogg', 40, FALSE)

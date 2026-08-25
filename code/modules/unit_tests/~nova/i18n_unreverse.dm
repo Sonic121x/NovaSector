@@ -17,10 +17,10 @@
 /datum/unit_test/i18n_unreverse/Run()
 	var/saved_locale = GLOB.i18n_server_locale
 
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
 	if(!islist(en_cache))
 		en_cache = list()
-		GLOB.i18n_cache[DEFAULT_UI_LOCALE] = en_cache
+		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE] = en_cache
 
 	// 合成「试剂名」对：多词整串（无占位符），模拟 chem dispenser 的 Welding Fuel 类。
 	var/list/test_pairs = list(
@@ -32,7 +32,8 @@
 		var/list/pair = test_pairs[key]
 		en_cache[key] = pair[1]
 		test_cache[key] = pair[2]
-	GLOB.i18n_cache[I18N_TEST_LOCALE] = test_cache
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][I18N_TEST_LOCALE] = test_cache
+	GLOB.i18n_runtime_domains.Remove(I18N_TEST_LOCALE)
 
 	// --- locale==en：两个方向都应 no-op（默认态零行为变化）。 ---
 	GLOB.i18n_server_locale = DEFAULT_UI_LOCALE
@@ -66,7 +67,8 @@
 	GLOB.i18n_server_locale = saved_locale
 	for(var/key in test_pairs)
 		en_cache -= key
-	GLOB.i18n_cache -= I18N_TEST_LOCALE
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET] -= I18N_TEST_LOCALE
+	GLOB.i18n_runtime_domains.Remove(I18N_TEST_LOCALE)
 	GLOB.i18n_reverse -= I18N_TEST_LOCALE
 	GLOB.i18n_unreverse -= I18N_TEST_LOCALE
 

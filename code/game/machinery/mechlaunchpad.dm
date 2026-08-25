@@ -19,8 +19,8 @@
 
 /obj/machinery/mechpad/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.3a5b3c21", null))
-	. += span_notice(LANG("obj.3f7bee32", list(mech_only ? "cut" : "mend")))
+	. += span_notice(LANG("obj.3a5b3c21f282af5b", null))
+	. += span_notice(LANG("obj.3f7bee320cbc2fc6", list(mech_only ? "cut" : "mend")))
 
 /obj/machinery/mechpad/update_icon_state()
 	. = ..()
@@ -37,14 +37,14 @@
 		return NONE
 
 	multitool.set_buffer(src)
-	balloon_alert(user, LANG("obj.84afb909", null))
+	balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/mechpad/wirecutter_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
 		return NONE
 	mech_only = !mech_only
-	to_chat(user, span_notice(LANG("obj.8ef70580", list(mech_only ? "mend" : "cut"))))
+	to_chat(user, span_notice(LANG("obj.8ef7058047acb86f", list(mech_only ? "mend" : "cut"))))
 	return ITEM_INTERACT_SUCCESS
 
 /**

@@ -56,10 +56,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 	if(istype(tool, /obj/item/stack/sheet/glass) && broken)
 		var/obj/item/stack/sheet/glass/glass_stack = tool
 		if(glass_stack.get_amount() < 2)
-			balloon_alert(user, LANG("obj.327936c4", null))
+			balloon_alert(user, LANG("obj.327936c48148cb46", null))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.f2b23f18", null))
+		balloon_alert(user, LANG("obj.f2b23f18ac237926", null))
 		if(!glass_stack.use_tool(src, user, 2 SECONDS, 2))
 			return ITEM_INTERACT_BLOCKING
 
@@ -76,7 +76,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 			return ITEM_INTERACT_BLOCKING
 
 		if(HAS_TRAIT(tool, TRAIT_WIELDED))
-			balloon_alert(user, LANG("obj.1db68799", null))
+			balloon_alert(user, LANG("obj.1db68799972c9b76", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
@@ -93,19 +93,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(atom_integrity == max_integrity)
-		balloon_alert(user, LANG("obj.88cc0c7c", null))
+		balloon_alert(user, LANG("obj.88cc0c7c9991f538", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_start_check(user, amount = 2))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.b52342a8", null))
+	balloon_alert(user, LANG("obj.b52342a8e93a2ba2", null))
 	if(!tool.use_tool(src, user, 4 SECONDS, volume= 50, amount = 2))
 		return ITEM_INTERACT_BLOCKING
 
 	repair_damage(max_integrity - get_integrity())
 	update_appearance()
-	balloon_alert(user, LANG("obj.65ced1e8", null))
+	balloon_alert(user, LANG("obj.65ced1e8b5b56733", null))
 	return ITEM_INTERACT_SUCCESS
 
 
@@ -215,16 +215,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 	. += locked ? "locked" : "unlocked"
 
 /obj/structure/fireaxecabinet/proc/toggle_lock(mob/user)
-	to_chat(user, span_notice(LANG("obj.b9c41d11", null)))
+	to_chat(user, span_notice(LANG("obj.b9c41d119ad8fcc3", null)))
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, TRUE)
 	if(do_after(user, 2 SECONDS, target = src))
-		to_chat(user, span_notice(LANG("obj.9dedbb03", list(locked ? "disable" : "re-enable"))))
+		to_chat(user, span_notice(LANG("obj.9dedbb03e5eb1e8d", list(locked ? "disable" : "re-enable"))))
 		locked = !locked
 		update_appearance()
 
 /obj/structure/fireaxecabinet/proc/toggle_open(mob/user)
 	if(locked)
-		balloon_alert(user, LANG("obj.13d01237", null))
+		balloon_alert(user, LANG("obj.13d012373762eeb1", null))
 		return
 	else
 		open = !open

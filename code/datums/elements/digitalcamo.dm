@@ -41,7 +41,7 @@
 /datum/element/digitalcamo/proc/on_examine(datum/source, mob/M, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_warning(LANG("datum.cf0a0dbf", list(source.p_their())))
+	examine_list += span_warning(LANG("datum.cf0a0dbf288a41fd", list(source.p_their())))
 
 /datum/element/digitalcamo/proc/can_track(datum/source, mob/user)
 	SIGNAL_HANDLER

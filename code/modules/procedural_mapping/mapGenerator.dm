@@ -139,34 +139,34 @@
 
 ADMIN_VERB(debug_nature_map_generator, R_DEBUG, "测试自然地图生成器", "Test the nature map generator", ADMIN_CATEGORY_DEBUG)
 	var/datum/map_generator/nature/N = new()
-	var/startInput = input(user, LANG("datum.1ff2d245", null), LANG("datum.892abeeb", null), "1;1;1") as text|null
+	var/startInput = input(user, LANG("datum.1ff2d245d2ed9dc3", null), LANG("datum.892abeeb9015d0d8", null), "1;1;1") as text|null
 
 	if (isnull(startInput))
 		return
 
-	var/endInput = input(user, LANG("datum.113a3b57", null), LANG("datum.892abeeb", null), "[world.maxx];[world.maxy];[user.mob.z]") as text|null
+	var/endInput = input(user, LANG("datum.113a3b57b9b5f02d", null), LANG("datum.892abeeb9015d0d8", null), "[world.maxx];[world.maxy];[user.mob.z]") as text|null
 	if (isnull(endInput))
 		return
 
 	//maxx maxy and current z so that if you fuck up, you only fuck up one entire z level instead of the entire universe
 	if(!startInput || !endInput)
-		to_chat(user, LANG("datum.e4f62e31", null))
+		to_chat(user, LANG("datum.e4f62e3141fba73b", null))
 		return
 
 	var/list/startCoords = splittext(startInput, ";")
 	var/list/endCoords = splittext(endInput, ";")
 	if(!startCoords || !endCoords)
-		to_chat(user, LANG("datum.2485b4f3", null))
-		to_chat(user, LANG("datum.8ba8422e", list(startInput)))
-		to_chat(user, LANG("datum.d8fd7484", list(endInput)))
+		to_chat(user, LANG("datum.2485b4f3767724d6", null))
+		to_chat(user, LANG("datum.8ba8422ec3f31c10", list(startInput)))
+		to_chat(user, LANG("datum.d8fd74845a5aa737", list(endInput)))
 		return
 
 	var/turf/Start = locate(text2num(startCoords[1]),text2num(startCoords[2]),text2num(startCoords[3]))
 	var/turf/End = locate(text2num(endCoords[1]),text2num(endCoords[2]),text2num(endCoords[3]))
 	if(!Start || !End)
-		to_chat(user, LANG("datum.7e75e68e", null))
-		to_chat(user, LANG("datum.4930ee47", list(startCoords[1], startCoords[2], startCoords[3])))
-		to_chat(user, LANG("datum.2d3b836c", list(endCoords[1], endCoords[2], endCoords[3])))
+		to_chat(user, LANG("datum.7e75e68e1c3ab9fc", null))
+		to_chat(user, LANG("datum.4930ee477a14d72b", list(startCoords[1], startCoords[2], startCoords[3])))
+		to_chat(user, LANG("datum.2d3b836cb7bb218e", list(endCoords[1], endCoords[2], endCoords[3])))
 		return
 
 	var/static/list/clusters = list(
@@ -182,13 +182,13 @@ ADMIN_VERB(debug_nature_map_generator, R_DEBUG, "测试自然地图生成器", "
 		"All atoms" = CLUSTER_CHECK_ALL_ATOMS,
 	)
 
-	var/moduleClusters = input(LANG("datum.f69eb53f", null),LANG("datum.892abeeb", null)) as null|anything in clusters
+	var/moduleClusters = input(LANG("datum.f69eb53fca14bc25", null),LANG("datum.892abeeb9015d0d8", null)) as null|anything in clusters
 	//null for default
 
 	var/theCluster = 0
 	if(moduleClusters != "None")
 		if(!clusters[moduleClusters])
-			to_chat(user, LANG("datum.7f14aa20", null))
+			to_chat(user, LANG("datum.7f14aa208a61deba", null))
 			return
 		theCluster = clusters[moduleClusters]
 	else
@@ -199,9 +199,9 @@ ADMIN_VERB(debug_nature_map_generator, R_DEBUG, "测试自然地图生成器", "
 			M.clusterCheckFlags = theCluster
 
 
-	to_chat(user, LANG("datum.86c4e3f5", null))
+	to_chat(user, LANG("datum.86c4e3f5cf465547", null))
 	N.defineRegion(Start, End)
-	to_chat(user, LANG("datum.39462895", null))
-	to_chat(user, LANG("datum.e9306dc8", null))
+	to_chat(user, LANG("datum.3946289560df05eb", null))
+	to_chat(user, LANG("datum.e9306dc82b33fa38", null))
 	N.generate()
-	to_chat(user, LANG("datum.d7ae2a6c", null))
+	to_chat(user, LANG("datum.d7ae2a6c2269892f", null))

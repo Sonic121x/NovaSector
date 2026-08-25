@@ -66,6 +66,7 @@
 	flags_cover = NONE
 	dirt_state = null
 	alternate_worn_layer = HAIR_LAYER
+	texture_type = /datum/bodypart_texture/mesh/black
 
 /datum/armor/bio_hood_plague
 	bio = 100
@@ -133,7 +134,7 @@
 
 /// When we catch a bullet, fling away
 /obj/item/clothing/head/cowboy/proc/on_intercepted_bullet(mob/living/victim, obj/projectile/bullet)
-	victim.visible_message(span_warning(LANG("obj.daed300f", list(bullet, victim))))
+	victim.visible_message(span_warning(LANG("obj.daed300fcb2cf913", list(bullet, victim))))
 	victim.dropItemToGround(src, force = TRUE, silent = TRUE)
 	throw_at(get_edge_target_turf(loc, pick(GLOB.alldirs)), range = 3, speed = 3)
 	playsound(victim, SFX_RICOCHET, 100, TRUE)
@@ -243,7 +244,7 @@
 /obj/item/clothing/head/costume/rice_hat/click_alt(mob/user)
 	reversed = !reversed
 	worn_icon_state = "[base_icon_state][reversed ? "_kim" : ""]"
-	to_chat(user, span_notice(LANG("obj.e5e67234", list(reversed ? "lower" : "raise"))))
+	to_chat(user, span_notice(LANG("obj.e5e67234e334a36c", list(reversed ? "lower" : "raise"))))
 	update_appearance()
 
 /obj/item/clothing/head/costume/lizard
@@ -367,11 +368,11 @@
 	if(earflaps)
 		icon_state = upsprite
 		inhand_icon_state = upsprite
-		to_chat(user, span_notice(LANG("obj.198e5bb9", null)))
+		to_chat(user, span_notice(LANG("obj.198e5bb95c737bb0", null)))
 	else
 		icon_state = downsprite
 		inhand_icon_state = downsprite
-		to_chat(user, span_notice(LANG("obj.c35617d9", null)))
+		to_chat(user, span_notice(LANG("obj.c35617d9f21bff2f", null)))
 	earflaps = !earflaps
 
 /obj/item/clothing/head/costume/ushanka/polar

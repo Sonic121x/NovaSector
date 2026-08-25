@@ -81,15 +81,15 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice(LANG("obj.e69769dd", null))
-	. += span_notice(LANG("obj.14992dfd", list(on ? "" : "in")))
+	. += span_notice(LANG("obj.e69769dde0bfcc79", null))
+	. += span_notice(LANG("obj.14992dfd5e2c24d8", list(on ? "" : "in")))
 	if(locked)
-		. += span_boldwarning(LANG("obj.b6211735", null))
+		. += span_boldwarning(LANG("obj.b6211735955e1785", null))
 		return
-	. += span_notice(LANG("obj.d9c3580b", list(max_range)))
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "close" : "open")))
+	. += span_notice(LANG("obj.d9c3580bb3c1652e", list(max_range)))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "close" : "open")))
 	if(panel_open)
-		. += span_notice(LANG("obj.fa5fc796", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.fa5fc7965e12e9d0", list(EXAMINE_HINT("pried"))))
 
 /obj/machinery/atmos_shield_gen/RefreshParts()
 	. = ..()
@@ -109,22 +109,22 @@
 
 /obj/machinery/atmos_shield_gen/screwdriver_act(mob/user, obj/item/tool)
 	if(!panel_open && locked)
-		balloon_alert(user, LANG("obj.5d71bae2", null))
+		balloon_alert(user, LANG("obj.5d71bae27aaf9422", null))
 		return ITEM_INTERACT_FAILURE
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/atmos_shield_gen/crowbar_act(mob/user, obj/item/tool)
 	if(on)
-		balloon_alert(user, LANG("obj.19a396d6", null))
+		balloon_alert(user, LANG("obj.19a396d6413f5298", null))
 		return ITEM_INTERACT_FAILURE
 	return default_deconstruction_crowbar(user, tool)
 
 /obj/machinery/atmos_shield_gen/wrench_act(mob/living/user, obj/item/tool)
 	if(on)
-		balloon_alert(user, LANG("obj.19a396d6", null))
+		balloon_alert(user, LANG("obj.19a396d6413f5298", null))
 		return ITEM_INTERACT_FAILURE
 	if(locked)
-		balloon_alert(user, LANG("obj.08c1dea0", null))
+		balloon_alert(user, LANG("obj.08c1dea07efd53e9", null))
 		return ITEM_INTERACT_FAILURE
 	if(default_unfasten_wrench(user, tool) && !anchored)
 		turn_off()
@@ -133,10 +133,10 @@
 /obj/machinery/atmos_shield_gen/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(!anchored)
-		balloon_alert(user, LANG("obj.e0a7c3ce", null))
+		balloon_alert(user, LANG("obj.e0a7c3cede561161", null))
 		return
 	if(locked && !issilicon(user))
-		balloon_alert(user, LANG("obj.5d71bae2", null))
+		balloon_alert(user, LANG("obj.5d71bae27aaf9422", null))
 		return
 	toggle(user)
 
@@ -146,9 +146,9 @@
 		return
 	if(allowed(user))
 		locked = !locked
-		balloon_alert(user, LANG("obj.f5bfa677", list(locked ? "" : "un")))
+		balloon_alert(user, LANG("obj.f5bfa677b0db4149", list(locked ? "" : "un")))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	balloon_alert(user, LANG("obj.ddafd752", null))
+	balloon_alert(user, LANG("obj.ddafd75296a2dc2d", null))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/atmos_shield_gen/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -159,7 +159,7 @@
 		return ITEM_INTERACT_SUCCESS
 	if(istype(tool, /obj/item/card/id) && check_access(tool))
 		locked = !locked
-		balloon_alert(user, LANG("obj.f5bfa677", list(locked ? "" : "un")))
+		balloon_alert(user, LANG("obj.f5bfa677b0db4149", list(locked ? "" : "un")))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/atmos_shield_gen/process_early()
@@ -214,13 +214,13 @@
 		on = GENERATOR_WANTPOWER
 		update_appearance(UPDATE_OVERLAYS)
 	if(!isnull(user))
-		balloon_alert(user, LANG("obj.8fcfde3c", list(on ? "on" : "off")))
+		balloon_alert(user, LANG("obj.8fcfde3cd8c5cffd", list(on ? "on" : "off")))
 
 /obj/machinery/atmos_shield_gen/proc/turn_off(power_failure = FALSE)
 	if(!on)
 		return
 	if(power_failure)
-		balloon_alert_to_viewers(LANG("obj.b3e1b703", null))
+		balloon_alert_to_viewers(LANG("obj.b3e1b703b228ad7a", null))
 		playsound(src, 'sound/machines/cryo_warning.ogg', 65)
 	on = power_failure ? GENERATOR_WANTPOWER : GENERATOR_INACTIVE
 	master?.turn_off(power_failure)

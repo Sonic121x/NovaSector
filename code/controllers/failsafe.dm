@@ -73,15 +73,15 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 			if(Master.processing && Master.iteration)
 				if (defcon > 1 && (!Master.stack_end_detector || !Master.stack_end_detector.check()))
 
-					to_chat(GLOB.admins, span_boldannounce(LANG("datum.42bc2ac4", null)))
+					to_chat(GLOB.admins, span_boldannounce(LANG("datum.42bc2ac4b8037d7d", null)))
 					defcon = 0
 					var/rtn = Recreate_MC()
 					if(rtn > 0)
 						master_iteration = 0
-						to_chat(GLOB.admins, span_adminnotice(LANG("datum.6ce0c198", null)))
+						to_chat(GLOB.admins, span_adminnotice(LANG("datum.6ce0c19895b92b34", null)))
 					else if(rtn < 0)
 						log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
-						to_chat(GLOB.admins, span_boldannounce(LANG("datum.4e3cce2a", list(defcon_pretty()))))
+						to_chat(GLOB.admins, span_boldannounce(LANG("datum.4e3cce2a0808e90c", list(defcon_pretty()))))
 				// Check if processing is done yet.
 				if(Master.iteration == master_iteration)
 					switch(defcon)
@@ -93,20 +93,20 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 							--defcon
 
 						if(2)
-							to_chat(GLOB.admins, span_boldannounce(LANG("datum.2b753c9e", list(defcon_pretty(), (5-defcon) * processing_interval, processing_interval))))
+							to_chat(GLOB.admins, span_boldannounce(LANG("datum.2b753c9ec61497ed", list(defcon_pretty(), (5-defcon) * processing_interval, processing_interval))))
 							--defcon
 
 						if(1)
-							to_chat(GLOB.admins, span_boldannounce(LANG("datum.edc5ca9c", list(defcon_pretty(), (5-defcon) * processing_interval))))
+							to_chat(GLOB.admins, span_boldannounce(LANG("datum.edc5ca9c56e31e43", list(defcon_pretty(), (5-defcon) * processing_interval))))
 							--defcon
 							var/rtn = Recreate_MC()
 							if(rtn > 0)
 								defcon = 4
 								master_iteration = 0
-								to_chat(GLOB.admins, span_adminnotice(LANG("datum.6ce0c198", null)))
+								to_chat(GLOB.admins, span_adminnotice(LANG("datum.6ce0c19895b92b34", null)))
 							else if(rtn < 0)
 								log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
-								to_chat(GLOB.admins, span_boldannounce(LANG("datum.4e3cce2a", list(defcon_pretty()))))
+								to_chat(GLOB.admins, span_boldannounce(LANG("datum.4e3cce2a0808e90c", list(defcon_pretty()))))
 							//if the return number was 0, it just means the mc was restarted too recently, and it just needs some time before we try again
 							//no need to handle that specially when defcon 0 can handle it
 
@@ -115,7 +115,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 							if(rtn > 0)
 								defcon = 4
 								master_iteration = 0
-								to_chat(GLOB.admins, span_adminnotice(LANG("datum.6ce0c198", null)))
+								to_chat(GLOB.admins, span_adminnotice(LANG("datum.6ce0c19895b92b34", null)))
 				else
 					defcon = min(defcon + 1,5)
 					master_iteration = Master.iteration
@@ -144,7 +144,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 		master_iteration = 0
 		SSticker.Recover(); //Recover the ticket system so the Masters runlevel gets set
 		Master.Initialize(10, FALSE, FALSE) //Need to manually start the MC, normally world.new would do this
-		to_chat(GLOB.admins, span_adminnotice(LANG("datum.bbf60cb9", list(defcon_pretty()))))
+		to_chat(GLOB.admins, span_adminnotice(LANG("datum.bbf60cb9d9f8ea18", list(defcon_pretty()))))
 	else
 		log_game("FailSafe: Failsafe in emergency state and was unable to recreate MC while in defcon state [defcon_pretty()].")
 		message_admins(span_boldannounce("Failsafe in emergency state and master down, trying to recreate MC while in defcon level [defcon_pretty()] failed."))
@@ -160,7 +160,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 	if (. == 1) //We were able to create a new master
 		SSticker.Recover(); //Recover the ticket system so the Masters runlevel gets set
 		Master.Initialize(10, FALSE, FALSE) //Need to manually start the MC, normally world.new would do this
-		to_chat(GLOB.admins, span_adminnotice(LANG("_root.9f98cf38", null)))
+		to_chat(GLOB.admins, span_adminnotice(LANG("_root.9f98cf38da82a83d", null)))
 	else
 		message_admins(span_boldannounce("Failed to create new MC!"))
 
@@ -174,7 +174,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 	if (. == 1) //We were able to create a new master
 		SSticker.Recover(); //Recover the ticket system so the Masters runlevel gets set
 		Master.Initialize(10, FALSE, FALSE) //Need to manually start the MC, normally world.new would do this
-		to_chat(GLOB.admins, span_adminnotice(LANG("_root.bca746c5", null)))
+		to_chat(GLOB.admins, span_adminnotice(LANG("_root.bca746c5d90f42b3", null)))
 	else
 		message_admins(span_boldannounce("Failed to create new MC!"))
 

@@ -51,26 +51,26 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_RUNNING,
-		SPECIES_PERK_NAME = LANG("datum.76aa7803", null),
-		SPECIES_PERK_DESC = LANG("datum.46847837", null),
+		SPECIES_PERK_NAME = LANG("datum.76aa7803a52cb308", null),
+		SPECIES_PERK_DESC = LANG("datum.46847837877391f3", null),
 	))
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHRIMP,
-		SPECIES_PERK_NAME = LANG("datum.f94f3cde", null),
-		SPECIES_PERK_DESC = LANG("datum.4e2bcf57", null),
+		SPECIES_PERK_NAME = LANG("datum.f94f3cded792ab13", null),
+		SPECIES_PERK_DESC = LANG("datum.4e2bcf578b58ea8d", null),
 	))
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SKULL_CROSSBONES,
-		SPECIES_PERK_NAME = LANG("datum.cb0292fe", null),
-		SPECIES_PERK_DESC = LANG("datum.75214cb1", null),
+		SPECIES_PERK_NAME = LANG("datum.cb0292fe474b2948", null),
+		SPECIES_PERK_DESC = LANG("datum.75214cb1c09edfc5", null),
 	))
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_HAND_FIST,
-		SPECIES_PERK_NAME = LANG("datum.341921a3", null),
-		SPECIES_PERK_DESC = LANG("datum.d2910fae", null),
+		SPECIES_PERK_NAME = LANG("datum.341921a3d462a628", null),
+		SPECIES_PERK_DESC = LANG("datum.d2910fae406eb5e6", null),
 	))
 	return to_add
 

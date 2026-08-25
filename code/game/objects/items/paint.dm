@@ -66,7 +66,7 @@
 
 /obj/item/paint/anycolor/attack_self(mob/user)
 	if(paintleft <= 0)
-		balloon_alert(user, LANG("obj.2917cb63", null))
+		balloon_alert(user, LANG("obj.2917cb63bb15bd79", null))
 		return	// Don't do any of the following because there's no paint left to be able to change the color of
 	var/list/possible_colors = list(
 		"black" = image(icon = src.icon, icon_state = "paint_black"),

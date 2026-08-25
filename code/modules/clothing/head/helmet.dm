@@ -17,6 +17,7 @@
 	flags_cover = HEADCOVERSEYES|EARS_COVERED
 	flags_inv = HIDEHAIR
 	dog_fashion = /datum/dog_fashion/head/helmet
+	resistance_flags = NONE
 
 /datum/armor/head_helmet
 	melee = 35
@@ -54,14 +55,14 @@
 	// There's a flashlight in us. Remove it first, or it'll be lost forever!
 	var/obj/item/flashlight/seclite/blocking_us = locate() in src
 	if(blocking_us)
-		to_chat(user, span_warning(LANG("obj.5fc82641", list(blocking_us))))
+		to_chat(user, span_warning(LANG("obj.5fc82641be1e70e2", list(blocking_us))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!attached_signaler.secured)
-		to_chat(user, span_warning(LANG("obj.b73da904", list(attached_signaler))))
+		to_chat(user, span_warning(LANG("obj.b73da904ad426d9f", list(attached_signaler))))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.0c27fe26", list(attached_signaler, src))))
+	to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(attached_signaler, src))))
 
 	qdel(attached_signaler)
 	var/obj/item/bot_assembly/secbot/secbot_frame = new(drop_location())
@@ -75,16 +76,16 @@
 	. = ..()
 	if(.)
 		return
-	balloon_alert(user, LANG("obj.20ef99d4", list(flags_inv & HIDEHAIR ? "loosening" : "tightening")))
+	balloon_alert(user, LANG("obj.20ef99d42c588c1f", list(flags_inv & HIDEHAIR ? "loosening" : "tightening")))
 	if(!do_after(user, 3 SECONDS, src))
 		return
 	flags_inv ^= HIDEHAIR
-	balloon_alert(user, LANG("obj.030db21d", list(flags_inv & HIDEHAIR ? "tightened" : "loosened")))
+	balloon_alert(user, LANG("obj.030db21d488e0ad2", list(flags_inv & HIDEHAIR ? "tightened" : "loosened")))
 	return TRUE
 
 /obj/item/clothing/head/helmet/sec/click_alt(mob/user)
 	flipped_visor = !flipped_visor
-	balloon_alert(user, LANG("obj.7abc9479", null))
+	balloon_alert(user, LANG("obj.7abc9479fcefd7df", null))
 	// base_icon_state is modified for seclight attachment component
 	base_icon_state = "[initial(base_icon_state)][flipped_visor ? "-novisor" : ""]"
 	icon_state = base_icon_state
@@ -733,7 +734,7 @@
 	)
 
 /obj/item/clothing/head/helmet/durability/holymelon/proc/drain_antimagic(mob/user)
-	to_chat(user, span_warning(LANG("obj.86aa8c51", list(src))))
+	to_chat(user, span_warning(LANG("obj.86aa8c514eaacd1c", list(src))))
 
 /obj/item/clothing/head/helmet/durability/holymelon/proc/decay()
 	take_damage(8, BRUTE, 0, 0)

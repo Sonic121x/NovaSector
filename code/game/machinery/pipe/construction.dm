@@ -280,7 +280,7 @@ GAME_VERB_SRC(/obj/item/pipe, flip, view(1), "反转管道", null)
 	for(var/obj/machinery/atmospherics/machine in loc)
 		// Only one dense/requires density object per tile, eg connectors/cryo/heater/coolers.
 		if(machine.pipe_flags & flags & PIPING_ONE_PER_TURF)
-			to_chat(user, span_warning(LANG("obj.6801c9e6", null)))
+			to_chat(user, span_warning(LANG("obj.6801c9e639875ace", null)))
 			return TRUE
 		// skip checks if we don't overlap layers, either by being on the same layer or by something being on all layers
 		if(machine.piping_layer != piping_layer && !((machine.pipe_flags | flags) & PIPING_ALL_LAYER))
@@ -295,7 +295,7 @@ GAME_VERB_SRC(/obj/item/pipe, flip, view(1), "反转管道", null)
 			// We have a conflict!
 			if (length(potentially_conflicting_machines) != 1 || !try_smart_reconfiguration(machine, our_init_dirs, user))
 				// No solutions found
-				to_chat(user, span_warning(LANG("obj.18f032d8", null)))
+				to_chat(user, span_warning(LANG("obj.18f032d8597b10f4", null)))
 				return TRUE
 	// no conflicts found
 
@@ -306,9 +306,9 @@ GAME_VERB_SRC(/obj/item/pipe, flip, view(1), "反转管道", null)
 
 	wrench.play_tool_sound(src)
 	user.visible_message( \
-		span_notice(LANG("obj.78b56604", list(user, src))), \
-		span_notice(LANG("obj.09ea7751", list(src))), \
-		span_hear(LANG("obj.706a8c3e", null)))
+		span_notice(LANG("obj.78b566041ef9833d", list(user, src))), \
+		span_notice(LANG("obj.09ea7751a04b5e09", list(src))), \
+		span_hear(LANG("obj.706a8c3e44c4464e", null)))
 
 	qdel(src)
 
@@ -323,9 +323,9 @@ GAME_VERB_SRC(/obj/item/pipe, flip, view(1), "反转管道", null)
 	if(welder.use_tool(src, user, 2 SECONDS, volume=2))
 		new /obj/item/sliced_pipe(drop_location())
 		user.visible_message( \
-			LANG("obj.e5ff7242", list(user, src)), \
-			span_notice(LANG("obj.de170f33", list(src))), \
-			span_hear(LANG("obj.1aa82fa3", null)))
+			LANG("obj.e5ff72424a24f1bb", list(user, src)), \
+			span_notice(LANG("obj.de170f333e336094", list(src))), \
+			span_hear(LANG("obj.1aa82fa3545466eb", null)))
 
 		qdel(src)
 
@@ -420,7 +420,7 @@ GAME_VERB_SRC(/obj/item/pipe, flip, view(1), "反转管道", null)
 	T.flipped = flipped
 
 /obj/item/pipe/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.01606d69", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.01606d693f7b52e7", list(user, src, user.p_their(), user.p_theyre()))))
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		for(var/i in 1 to 20)
@@ -433,8 +433,8 @@ GAME_VERB_SRC(/obj/item/pipe, flip, view(1), "反转管道", null)
 
 /obj/item/pipe/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.1dbff2af", list(piping_layer)))
-	. += span_notice(LANG("obj.4e24506d", null))
+	. += span_notice(LANG("obj.1dbff2afa6d661f7", list(piping_layer)))
+	. += span_notice(LANG("obj.4e24506d73b5d746", null))
 
 /obj/item/pipe/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -442,20 +442,20 @@ GAME_VERB_SRC(/obj/item/pipe, flip, view(1), "反转管道", null)
 		return
 	var/layer_to_set = (piping_layer >= PIPING_LAYER_MAX) ? PIPING_LAYER_MIN : (piping_layer + 1)
 	set_piping_layer(layer_to_set)
-	balloon_alert(user, LANG("obj.6ec5da5e", list(piping_layer)))
+	balloon_alert(user, LANG("obj.6ec5da5edc55267b", list(piping_layer)))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 
 /obj/item/pipe/trinary/flippable/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.6cd9d125", null))
+	. += span_notice(LANG("obj.6cd9d12511c8752a", null))
 
 /obj/item/pipe/trinary/flippable/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
 	do_a_flip()
-	balloon_alert(user, LANG("obj.8890f816", null))
+	balloon_alert(user, LANG("obj.8890f816a48aa31a", null))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/pipe_meter
@@ -475,11 +475,11 @@ GAME_VERB_SRC(/obj/item/pipe, flip, view(1), "反转管道", null)
 			pipe = P
 			break
 	if(!pipe)
-		to_chat(user, span_warning(LANG("obj.74479136", null)))
+		to_chat(user, span_warning(LANG("obj.74479136b80cb8af", null)))
 		return TRUE
 	new /obj/machinery/meter(loc, piping_layer)
 	W.play_tool_sound(src)
-	to_chat(user, span_notice(LANG("obj.dfb66755", null)))
+	to_chat(user, span_notice(LANG("obj.dfb6675544e6fbda", null)))
 	qdel(src)
 
 /obj/item/pipe_meter/screwdriver_act(mob/living/user, obj/item/S)
@@ -488,12 +488,12 @@ GAME_VERB_SRC(/obj/item/pipe, flip, view(1), "反转管道", null)
 		return TRUE
 
 	if(!isturf(loc))
-		to_chat(user, span_warning(LANG("obj.063958e7", null)))
+		to_chat(user, span_warning(LANG("obj.063958e7db23ebd3", null)))
 		return TRUE
 
 	new /obj/machinery/meter/turf(loc, piping_layer)
 	S.play_tool_sound(src)
-	to_chat(user, span_notice(LANG("obj.b62a38d9", list(loc))))
+	to_chat(user, span_notice(LANG("obj.b62a38d9bc63ed97", list(loc))))
 	qdel(src)
 
 /obj/item/pipe_meter/dropped()

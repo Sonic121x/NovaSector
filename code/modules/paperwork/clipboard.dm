@@ -46,7 +46,7 @@
 	var/obj/item/paper/top_paper
 
 /obj/item/clipboard/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.d944a01b", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.d944a01b9bf6ccf8", list(user, user.p_their(), src, user.p_theyre()))))
 	return BRUTELOSS //The clipboard's clip is very strong. Industrial duty. Can kill a man easily.
 
 /obj/item/clipboard/Initialize(mapload)
@@ -63,9 +63,9 @@
 /obj/item/clipboard/examine()
 	. = ..()
 	if(!integrated_pen && pen)
-		. += span_notice(LANG("obj.cf363a97", list(pen)))
+		. += span_notice(LANG("obj.cf363a9730af07f2", list(pen)))
 	else if(top_paper)
-		. += span_notice(LANG("obj.cf363a97", list(top_paper)))
+		. += span_notice(LANG("obj.cf363a9730af07f2", list(top_paper)))
 
 /// Take out the topmost paper
 /obj/item/clipboard/proc/remove_paper(obj/item/paper/paper, mob/user)
@@ -73,13 +73,13 @@
 		return
 	paper.forceMove(user.loc)
 	user.put_in_hands(paper)
-	to_chat(user, span_notice(LANG("obj.cbed3266", list(paper, src))))
+	to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(paper, src))))
 
 /obj/item/clipboard/proc/remove_pen(mob/user)
 	var/obj/item/pen/pen = src.pen
 	pen.forceMove(user.loc)
 	user.put_in_hands(pen)
-	to_chat(user, span_notice(LANG("obj.cbed3266", list(pen, src))))
+	to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(pen, src))))
 
 /obj/item/clipboard/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -131,7 +131,7 @@
 			UnregisterSignal(top_paper, COMSIG_ATOM_UPDATED_ICON)
 		RegisterSignal(tool, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_top_paper_change))
 		top_paper = tool
-		to_chat(user, span_notice(LANG("obj.5d5208ad", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.5d5208adef9d8d1e", list(tool, src))))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -140,7 +140,7 @@
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		pen = tool
-		to_chat(user, span_notice(LANG("obj.ed1a28f3", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.ed1a28f3ecd8242e", list(tool, src))))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -201,7 +201,7 @@
 				if(!integrated_pen)
 					remove_pen(usr)
 				else
-					to_chat(usr, span_warning(LANG("obj.6babffe5", list(src, pen))))
+					to_chat(usr, span_warning(LANG("obj.6babffe5750c681c", list(src, pen))))
 				. = TRUE
 		// Take paper out
 		if("remove_paper")
@@ -221,7 +221,7 @@
 			var/obj/item/paper/paper = locate(params["ref"]) in src
 			if(istype(paper))
 				top_paper = paper
-				to_chat(usr, span_notice(LANG("obj.24e3e6b1", list(paper))))
+				to_chat(usr, span_notice(LANG("obj.24e3e6b15dd7a5e4", list(paper))))
 				update_icon()
 				. = TRUE
 		// Rename the paper (it's a verb)

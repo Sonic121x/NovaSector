@@ -41,7 +41,7 @@
 	SIGNAL_HANDLER
 
 	if(parent in view(user.client?.view || world.view, user))
-		examine_list += span_notice(LANG("datum.334bd33d", list(hanging_support_atom, span_bold("\the [parent]"), span_bold(lang_reverse_text("fall to the ground"))))) // NOVA EDIT - i18n: 反查「fall to the ground」短语
+		examine_list += span_notice(LANG("datum.334bd33d5a9550c8", list(hanging_support_atom, span_bold("\the [parent]"), span_bold(lang_reverse_text("fall to the ground"))))) // NOVA EDIT - i18n: 反查「fall to the ground」短语
 
 /// When the type of turf changes, if it is changing into a floor we should drop our contents
 /datum/component/atom_mounted/proc/on_turf_changing(turf/source, path, new_baseturfs, flags, post_change_callbacks)
@@ -107,7 +107,7 @@
 	PRIVATE_PROC(TRUE)
 
 	var/obj/hanging_parent = parent
-	hanging_parent.visible_message(message = span_warning(LANG("datum.7e48e931", list(hanging_parent))), vision_distance = 5)
+	hanging_parent.visible_message(message = span_warning(LANG("datum.7e48e931cce91541", list(hanging_parent))), vision_distance = 5)
 	hanging_parent.deconstruct(FALSE)
 
 /// Returns a list of potential turfs to mount on. This should not check if those turfs are valid but only locate them

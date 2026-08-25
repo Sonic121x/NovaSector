@@ -22,18 +22,18 @@
 	for(var/obj/structure/carp_rift/rift as anything in dragon.rift_list)
 		var/area/used_location = get_area(rift)
 		if(used_location == rift_location)
-			owner.balloon_alert(owner, LANG("datum.65adc34b", null))
+			owner.balloon_alert(owner, LANG("datum.65adc34b595da955", null))
 			return
 
 	if(!(rift_location in dragon.chosen_rift_areas))
-		owner.balloon_alert(owner, LANG("datum.064e3674", null))
+		owner.balloon_alert(owner, LANG("datum.064e367496f00f22", null))
 		return
 
 	var/turf/rift_spawn_turf = get_turf(dragon)
 	if(isopenspaceturf(rift_spawn_turf))
-		owner.balloon_alert(dragon, LANG("datum.7593fbd1", null))
+		owner.balloon_alert(dragon, LANG("datum.7593fbd1f40d3a0c", null))
 		return
-	owner.balloon_alert(owner, LANG("datum.0049dff2", null))
+	owner.balloon_alert(owner, LANG("datum.0049dff2033af0ab", null))
 	if(!do_after(owner, 10 SECONDS, target = owner))
 		return
 	if(locate(/obj/structure/carp_rift) in owner.loc)
@@ -45,15 +45,15 @@
 	dragon.rift_list += new_rift
 	// NOVA EDIT ADDITION START, announce on first rift - reset stats if dragon manages to retry
 	if(!dragon.announced)
-		priority_announce(LANG("datum.3c3f0633", list(station_name())), "Lifesign Alert")
+		priority_announce(LANG("datum.3c3f0633bdb949b0", list(station_name())), "Lifesign Alert")
 		dragon.announced = TRUE
 	if(HAS_TRAIT(owner, TRAIT_RIFT_FAILURE))
 		REMOVE_TRAIT(owner, TRAIT_RIFT_FAILURE, REF(dragon))
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/dragon_depression)
 	// NOVA EDIT ADDITION END
-	to_chat(owner, span_boldwarning(LANG("datum.4ad66ba5", null)))
+	to_chat(owner, span_boldwarning(LANG("datum.4ad66ba584a358bb", null)))
 	notify_ghosts(
-		LANG("datum.ddff340d", null),
+		LANG("datum.ddff340d10a2ba02", null),
 		source = new_rift,
 		header = "Carp Rift Opened",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -76,14 +76,14 @@
 	if(!dragon_mob)
 		return
 	if(!is_station_level(dragon_mob.z))
-		dragon_mob.balloon_alert(dragon_mob, LANG("datum.4e357dbb", null))
+		dragon_mob.balloon_alert(dragon_mob, LANG("datum.4e357dbb4f3cab0f", null))
 		return
 
-	var/area/chosen_area = tgui_input_list(owner, LANG("datum.e0e9d885", null), LANG("datum.8c302f0d", null), dragon_datum.chosen_rift_areas)
+	var/area/chosen_area = tgui_input_list(owner, LANG("datum.e0e9d8859abc44fc", null), LANG("datum.8c302f0d8df29070", null), dragon_datum.chosen_rift_areas)
 	if(!chosen_area)
 		return
 	if(chosen_area == get_area(dragon_mob))
-		dragon_mob.balloon_alert(dragon_mob, LANG("datum.949c6edc", null))
+		dragon_mob.balloon_alert(dragon_mob, LANG("datum.949c6edcef0d8b35", null))
 		return
 
 	var/turf/chosen_turf = pick(get_area_turfs(chosen_area))
@@ -192,12 +192,12 @@
 /obj/structure/carp_rift/examine(mob/user)
 	. = ..()
 	if(time_charged < max_charge)
-		. += span_notice(LANG("obj.eb794219", list((time_charged / max_charge) * 100)))
+		. += span_notice(LANG("obj.eb794219ea0d9cc5", list((time_charged / max_charge) * 100)))
 	else
-		. += span_warning(LANG("obj.b0b753cc", null))
+		. += span_warning(LANG("obj.b0b753cce52c5f82", null))
 
 	if(isobserver(user))
-		. += span_notice(LANG("obj.536c6445", list(carp_stored)))
+		. += span_notice(LANG("obj.536c6445c481f9f2", list(carp_stored)))
 
 /obj/structure/carp_rift/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	playsound(src, 'sound/effects/magic/lightningshock.ogg', 50, TRUE)
@@ -206,7 +206,7 @@
 	STOP_PROCESSING(SSobj, src)
 	if(charge_state != CHARGE_COMPLETED)
 		if(dragon)
-			to_chat(dragon.owner.current, span_boldwarning(LANG("obj.e1368a6a", null)))
+			to_chat(dragon.owner.current, span_boldwarning(LANG("obj.e1368a6aebb9e17f", null)))
 			dragon.destroy_rifts()
 	dragon = null
 	return ..()
@@ -254,7 +254,7 @@
 			set_light_color(LIGHT_COLOR_PURPLE)
 			update_light()
 		notify_ghosts(
-			LANG("obj.35340ae1", null),
+			LANG("obj.35340ae1ef0e74d5", null),
 			source = src,
 			header = "Carp Spawn Available",
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -265,7 +265,7 @@
 	if(time_charged >= max_charge)
 		charge_state = CHARGE_COMPLETED
 		var/area/location = get_area(src)
-		priority_announce(LANG("obj.dbb195b4", list(initial(location.name))), LANG("obj.9ecd04f6", list(command_name())), has_important_message = TRUE)
+		priority_announce(LANG("obj.dbb195b4bc04d6a1", list(initial(location.name))), LANG("obj.9ecd04f6ac2e1e13", list(command_name())), has_important_message = TRUE)
 		atom_integrity = INFINITY
 		icon_state = "carp_rift_charged"
 		set_light_color(LIGHT_COLOR_DIM_YELLOW)
@@ -290,7 +290,7 @@
 	if(charge_state < CHARGE_FINALWARNING && time_charged >= (max_charge * 0.5))
 		charge_state = CHARGE_FINALWARNING
 		var/area/A = get_area(src)
-		priority_announce(LANG("obj.ee23861c", list(initial(A.name))), LANG("obj.9ecd04f6", list(command_name())), ANNOUNCER_SPANOMALIES)
+		priority_announce(LANG("obj.ee23861c3df7f172", list(initial(A.name))), LANG("obj.9ecd04f6ac2e1e13", list(command_name())), ANNOUNCER_SPANOMALIES)
 
 /**
  * Used to create carp controlled by ghosts when the option is available.
@@ -307,14 +307,14 @@
 	var/is_listed = FALSE
 	if (user.ckey in ckey_list)
 		if(carp_stored == 1)
-			to_chat(user, span_warning(LANG("obj.d8c34444", null)))
+			to_chat(user, span_warning(LANG("obj.d8c344440bc936f2", null)))
 			return FALSE
 		is_listed = TRUE
-	var/carp_ask = tgui_alert(user, LANG("obj.12be2aee", null), LANG("obj.0c1a6fb0", null), list("Yes", "No"))
+	var/carp_ask = tgui_alert(user, LANG("obj.12be2aee1d401e61", null), LANG("obj.0c1a6fb06dc89d7b", null), list("Yes", "No"))
 	if(carp_ask != "Yes" || QDELETED(src) || QDELETED(user))
 		return FALSE
 	if(carp_stored <= 0)
-		to_chat(user, span_warning(LANG("obj.7186335a", null)))
+		to_chat(user, span_warning(LANG("obj.7186335a05c78f6b", null)))
 		return FALSE
 
 	if(isnull(dragon))
@@ -332,7 +332,7 @@
 	var/datum/antagonist/space_carp/carp_antag = new(src)
 	newcarp.mind.add_antag_datum(carp_antag)
 	dragon.carp += newcarp.mind
-	to_chat(newcarp, span_boldwarning(LANG("obj.2dd3928d", null)))
+	to_chat(newcarp, span_boldwarning(LANG("obj.2dd3928da99db4ee", null)))
 	carp_stored--
 	if(carp_stored <= 0 && charge_state < CHARGE_COMPLETED)
 		icon_state = "carp_rift"
@@ -343,7 +343,7 @@
 /obj/structure/carp_rift/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(HAS_TRAIT(attacking_item, TRAIT_TELEKINESIS_CONTROLLED))
 		if(user)
-			to_chat(user, span_warning(LANG("obj.20c2064a", list(src, user))))
+			to_chat(user, span_warning(LANG("obj.20c2064a7cf5d47c", list(src, user))))
 		return FALSE
 	. = ..()
 
@@ -351,7 +351,7 @@
 	if(HAS_TRAIT(hit_by, TRAIT_TELEKINESIS_CONTROLLED))
 		var/mob/thrower = throwingdatum.thrower?.resolve()
 		if(thrower && ismob(thrower))
-			to_chat(thrower, span_warning(LANG("obj.20c2064a", list(src, hit_by))))
+			to_chat(thrower, span_warning(LANG("obj.20c2064a7cf5d47c", list(src, hit_by))))
 		return
 	. = ..()
 

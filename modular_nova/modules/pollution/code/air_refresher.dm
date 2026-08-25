@@ -14,18 +14,18 @@
 /obj/item/air_refresher/examine(mob/user)
 	. = ..()
 	if(uses_remaining)
-		. += LANG("obj.5bf37df5", list(uses_remaining))
+		. += LANG("obj.5bf37df5de0917f2", list(uses_remaining))
 	else
-		. += LANG("obj.53b0d090", null)
+		. += LANG("obj.53b0d090ad9fbc27", null)
 
 /obj/item/air_refresher/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(uses_remaining <= 0)
-		to_chat(user, span_warning(LANG("obj.9104a6b2", list(src))))
+		to_chat(user, span_warning(LANG("obj.9104a6b2d5c7ff59", list(src))))
 		return NONE
 	uses_remaining--
 	var/turf/aimed_turf = get_turf(interacting_with)
 	aimed_turf.pollute_turf(/datum/pollutant/fragrance/air_refresher, 200)
-	user.visible_message(span_notice(LANG("obj.fe3fb593", list(user, src))), span_notice(LANG("obj.6ee21b95", list(src))))
+	user.visible_message(span_notice(LANG("obj.fe3fb593e76d30d1", list(user, src))), span_notice(LANG("obj.6ee21b956ac72b0b", list(src))))
 	user.changeNext_move(CLICK_CD_RANGE*2)
 	playsound(aimed_turf, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 	return ITEM_INTERACT_SUCCESS
@@ -41,7 +41,7 @@
 /obj/machinery/pollution_scrubber/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	on = !on
-	balloon_alert(user, LANG("obj.fd6a54a9", list(on ? "on" : "off")))
+	balloon_alert(user, LANG("obj.fd6a54a92ed0f4ab", list(on ? "on" : "off")))
 
 	update_appearance()
 

@@ -16,7 +16,7 @@
 
 /obj/item/book/granter/action/spell/blind/recoil(mob/living/user)
 	. = ..()
-	to_chat(user, span_warning(LANG("obj.1319893e", null)))
+	to_chat(user, span_warning(LANG("obj.1319893e0cb595d5", null)))
 	user.adjust_temp_blindness(20 SECONDS)
 
 /obj/item/book/granter/action/spell/blind/wgw

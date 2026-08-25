@@ -197,11 +197,11 @@
 
 			if((rank < hotswap_rank) && (rank_changed >= hotswap_rank))
 				var/mob/mob_parent = parent
-				mob_parent.balloon_alert(mob_parent, LANG("datum.e88482ad", null))
+				mob_parent.balloon_alert(mob_parent, LANG("datum.e88482ad528498a2", null))
 
 			else if((rank >= hotswap_rank) && (rank_changed < hotswap_rank))
 				var/mob/mob_parent = parent
-				mob_parent.balloon_alert(mob_parent, LANG("datum.e8f3291f", null))
+				mob_parent.balloon_alert(mob_parent, LANG("datum.e8f3291f7178af76", null))
 
 			rank = rank_changed
 
@@ -320,13 +320,13 @@
 /datum/component/style/proc/hotswap_interact(mob/living/source, obj/item/weapon, atom/target, list/modifiers)
 	var/datum/storage/atom_storage = target.loc.atom_storage
 	if(!atom_storage.can_insert(weapon, source, messages = FALSE))
-		source.balloon_alert(source, LANG("datum.f25349a1", null))
+		source.balloon_alert(source, LANG("datum.f25349a1016122aa", null))
 		return
 
 	if (atom_storage.attempt_insert(weapon, source, override = TRUE) && source.put_in_hands(target))
-		source.visible_message(span_notice(LANG("datum.bc5426b0", list(source, weapon, target))), span_notice(LANG("datum.a58b6ae1", list(weapon, target))))
+		source.visible_message(span_notice(LANG("datum.bc5426b032fbbb8a", list(source, weapon, target))), span_notice(LANG("datum.a58b6ae195f8cdd6", list(weapon, target))))
 	else
-		source.balloon_alert(source, LANG("datum.f25349a1", null))
+		source.balloon_alert(source, LANG("datum.f25349a1016122aa", null))
 
 /// Increase our permanent multiplier based on the modifier.
 /datum/component/style/proc/adjust_permanent_multiplier(modifier)

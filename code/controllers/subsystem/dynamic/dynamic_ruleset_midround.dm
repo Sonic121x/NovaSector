@@ -54,7 +54,7 @@
 	addtimer(CALLBACK(src, PROC_REF(announce_spiders)), rand(375, 600) SECONDS)
 
 /datum/dynamic_ruleset/midround/spiders/proc/announce_spiders()
-	priority_announce(LANG("datum.9d5038a3", list(station_name())), "Lifesign Alert", ANNOUNCER_ALIENS)
+	priority_announce(LANG("datum.9d5038a31b818751", list(station_name())), "Lifesign Alert", ANNOUNCER_ALIENS)
 
 /datum/dynamic_ruleset/midround/spiders/false_alarm()
 	announce_spiders()
@@ -107,7 +107,7 @@
 	var/list/admin_pool = list("[RULESET_CONFIG_CANCEL]" = TRUE, "[RANDOM_PIRATE_POOL]" = TRUE)
 	for(var/datum/pirate_gang/gang as anything in default_pirate_pool())
 		admin_pool[gang.name] = gang
-	var/picked = tgui_input_list(admin, LANG("datum.564be559", null), LANG("datum.62837e54", null), admin_pool)
+	var/picked = tgui_input_list(admin, LANG("datum.564be559f68328b2", null), LANG("datum.62837e54793b5b6d", null), admin_pool)
 	if(!picked || picked == RULESET_CONFIG_CANCEL)
 		return RULESET_CONFIG_CANCEL
 	if(picked == RANDOM_PIRATE_POOL)
@@ -192,13 +192,13 @@
 			var/mob/spawned_mob = spawner.create_from_ghost(our_candidate)
 			candidates -= our_candidate
 			notify_ghosts(
-				LANG("datum.48d5a6bb", list(chosen_gang.ship_name, spawned_mob)),
+				LANG("datum.48d5a6bb229961d0", list(chosen_gang.ship_name, spawned_mob)),
 				source = spawned_mob,
 				header = "Pirates!",
 			)
 		else
 			notify_ghosts(
-				LANG("datum.48d5a6bb", list(chosen_gang.ship_name, spawner)),
+				LANG("datum.48d5a6bb229961d0", list(chosen_gang.ship_name, spawner)),
 				source = spawner,
 				header = "Pirate Spawn Here!",
 			)
@@ -429,7 +429,7 @@
 	return pick(GLOB.blobstart)
 
 /datum/dynamic_ruleset/midround/from_ghosts/blob/false_alarm()
-	priority_announce(LANG("datum.4bada0d0", list(station_name())), "Biohazard Alert", ANNOUNCER_OUTBREAK5)
+	priority_announce(LANG("datum.4bada0d03b828da2", list(station_name())), "Biohazard Alert", ANNOUNCER_OUTBREAK5)
 
 	// Set status displays to biohazard alert even for false alarm
 	send_status_display_biohazard_alert()
@@ -466,7 +466,7 @@
 	addtimer(CALLBACK(src, PROC_REF(announce_xenos)), rand(375, 600) SECONDS)
 
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph/proc/announce_xenos()
-	priority_announce(LANG("datum.9d5038a3", list(station_name())), "Lifesign Alert", ANNOUNCER_ALIENS)
+	priority_announce(LANG("datum.9d5038a31b818751", list(station_name())), "Lifesign Alert", ANNOUNCER_ALIENS)
 
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph/false_alarm()
 	announce_xenos()
@@ -519,7 +519,7 @@
 	candidate.current.move_into_vent(vent)
 
 /datum/dynamic_ruleset/midround/from_ghosts/blood_worms/proc/announce_worms()
-	priority_announce(LANG("datum.9d5038a3", list(station_name())), "Lifesign Alert", ANNOUNCER_ALIENS)
+	priority_announce(LANG("datum.9d5038a31b818751", list(station_name())), "Lifesign Alert", ANNOUNCER_ALIENS)
 
 /datum/dynamic_ruleset/midround/from_ghosts/blood_worms/false_alarm()
 	announce_worms()
@@ -583,7 +583,7 @@
 	addtimer(CALLBACK(src, PROC_REF(announce_space_dragon)), rand(5, 10) SECONDS)
 
 /datum/dynamic_ruleset/midround/from_ghosts/space_dragon/proc/announce_space_dragon()
-	priority_announce(LANG("datum.3c3f0633", list(station_name())), "Lifesign Alert")
+	priority_announce(LANG("datum.3c3f0633bdb949b0", list(station_name())), "Lifesign Alert")
 
 /datum/dynamic_ruleset/midround/from_ghosts/space_dragon/false_alarm()
 	announce_space_dragon()
@@ -770,7 +770,7 @@
 	var/list/admin_pool = list("[RULESET_CONFIG_CANCEL]" = TRUE, "[RANDOM_CLONE_TARGET]" = TRUE)
 	for(var/mob/living/carbon/human/target as anything in find_clone_candidates())
 		admin_pool["[target.real_name], the [target.mind.assigned_role.title]"] = target
-	var/picked = tgui_input_list(admin, LANG("datum.df632e86", null), LANG("datum.1c58c863", null), admin_pool)
+	var/picked = tgui_input_list(admin, LANG("datum.df632e8611b5db68", null), LANG("datum.1c58c863de3754c5", null), admin_pool)
 	if(!picked || picked == RULESET_CONFIG_CANCEL)
 		return RULESET_CONFIG_CANCEL
 	if(picked != RANDOM_CLONE_TARGET)
@@ -904,13 +904,13 @@
 		RULESET_CONFIG_CANCEL,
 	)
 
-	var/picked_fugitive_backstory = tgui_input_list(admin, LANG("datum.dd847d7b", null), LANG("datum.6b6f6c56", null), fugitive_backstories)
+	var/picked_fugitive_backstory = tgui_input_list(admin, LANG("datum.dd847d7b1961f038", null), LANG("datum.6b6f6c56295a65ae", null), fugitive_backstories)
 	if(!picked_fugitive_backstory || picked_fugitive_backstory == RULESET_CONFIG_CANCEL)
 		return RULESET_CONFIG_CANCEL
 	if(picked_fugitive_backstory != RANDOM_BACKSTORY)
 		fugitive_backstory = picked_fugitive_backstory
 
-	var/picked_hunter_backstory = tgui_input_list(admin, LANG("datum.f39062b4", null), LANG("datum.5396b4c8", null), hunter_backstories)
+	var/picked_hunter_backstory = tgui_input_list(admin, LANG("datum.f39062b44f6d5c68", null), LANG("datum.5396b4c879d32b01", null), hunter_backstories)
 	if(!picked_hunter_backstory || picked_hunter_backstory == RULESET_CONFIG_CANCEL)
 		return RULESET_CONFIG_CANCEL
 	if(picked_hunter_backstory != RANDOM_BACKSTORY)
@@ -1020,13 +1020,13 @@
 				var/mob/spawned_mob = spawner.create_from_ghost(our_candidate)
 				candidates -= our_candidate
 				notify_ghosts(
-					LANG("datum.a28ace14", list(spawner.prompt_name, spawned_mob)),
+					LANG("datum.a28ace146ef1fb8a", list(spawner.prompt_name, spawned_mob)),
 					source = spawned_mob,
 					header = "Come look!",
 				)
 			else
 				notify_ghosts(
-					LANG("datum.1fa06707", list(spawner.prompt_name)),
+					LANG("datum.1fa067077c32a8cc", list(spawner.prompt_name)),
 					source = spawner,
 					header = "Spawn Here!",
 				)
@@ -1117,16 +1117,6 @@
 	max_antag_cap = 1
 	repeatable = TRUE
 
-/datum/dynamic_ruleset/midround/from_living/set_config_value(nvar, nval)
-	if(nvar == NAMEOF(src, min_antag_cap) || nvar == NAMEOF(src, max_antag_cap))
-		return FALSE
-	return ..()
-
-/datum/dynamic_ruleset/midround/from_living/vv_edit_var(var_name, var_value)
-	if(var_name == NAMEOF(src, min_antag_cap) || var_name == NAMEOF(src, max_antag_cap))
-		return FALSE
-	return ..()
-
 /datum/dynamic_ruleset/midround/from_living/collect_candidates()
 	return GLOB.alive_player_list
 
@@ -1178,7 +1168,7 @@
 /datum/dynamic_ruleset/midround/from_living/traitor/false_alarm()
 	priority_announce(
 		"Attention crew, it appears that someone on your station has hijacked your telecommunications and broadcasted an unknown signal.",
-		LANG("datum.34bd7ec6", list(command_name())),
+		LANG("datum.34bd7ec69a2575e5", list(command_name())),
 	)
 
 /datum/dynamic_ruleset/midround/from_living/traitor/mass
@@ -1255,7 +1245,7 @@
 /datum/dynamic_ruleset/midround/from_living/blob/assign_role(datum/mind/candidate)
 	candidate.add_antag_datum(/datum/antagonist/blob/infection)
 	notify_ghosts(
-		LANG("datum.6c19b4fd", list(candidate.current.real_name)),
+		LANG("datum.6c19b4fdc5d0ba0c", list(candidate.current.real_name)),
 		source = candidate.current,
 		header = "So Bulbous...",
 	)
@@ -1286,7 +1276,7 @@
 	var/obj/item/organ/brain/brain = candidate.current.get_organ_by_type(__IMPLIED_TYPE__)
 	brain.brain_gain_trauma(/datum/brain_trauma/special/obsessed)
 	notify_ghosts(
-		LANG("datum.8b4eb665", list(candidate.current.real_name)),
+		LANG("datum.8b4eb665faccc0fa", list(candidate.current.real_name)),
 		source = candidate.current,
 		header = "Love Can Bloom",
 	)

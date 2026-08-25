@@ -25,8 +25,8 @@
 	if(!IS_HERETIC(user))
 		return
 
-	. += span_notice(LANG("obj.5f188deb", null))
-	. += span_notice(LANG("obj.d447cf5e", null))
+	. += span_notice(LANG("obj.5f188debe1ab9089", null))
+	. += span_notice(LANG("obj.d447cf5e3ca92f83", null))
 
 /obj/effect/heretic_rune/attack_paw(mob/living/user, list/modifiers)
 	return attack_hand(user, modifiers)
@@ -56,7 +56,7 @@
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
 	var/list/rituals = heretic_datum.get_rituals()
 	if(!length(rituals))
-		loc.balloon_alert(user, LANG("obj.bc2aa081", null))
+		loc.balloon_alert(user, LANG("obj.bc2aa0811713def9", null))
 		is_in_use = FALSE
 		return
 
@@ -195,9 +195,9 @@
 
 	if(length(what_are_we_missing))
 		// Let them know it screwed up
-		loc.balloon_alert(user, LANG("obj.1a08c859", null))
+		loc.balloon_alert(user, LANG("obj.1a08c859d700b410", null))
 		// Then let them know what they're missing
-		to_chat(user, span_mansus(LANG("obj.4a4e2a45", list(english_list(what_are_we_missing), ritual.name))))
+		to_chat(user, span_mansus(LANG("obj.4a4e2a45af83ff7b", list(lang_english_list(what_are_we_missing), ritual.name))))
 		return FALSE
 
 	//Everything's good, proceed and collect from the available stacks what's needed if needed.
@@ -251,7 +251,7 @@
 	// No feedback is given on failure here -
 	// the ritual itself should handle it (providing specifics as to why it failed)
 	if(ritual_result)
-		loc.balloon_alert(user, LANG("obj.3c6f6a53", null))
+		loc.balloon_alert(user, LANG("obj.3c6f6a53d408524c", null))
 
 	return ritual_result
 

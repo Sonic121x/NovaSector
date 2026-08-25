@@ -7,4 +7,4 @@
 		var/obj/item/clothing/under/undershirt = w_uniform
 		var/sensor_text = undershirt.get_sensor_text()
 		if(sensor_text)
-			. += LANG("mob.baa481b4", list(sensor_text))
+			. += LANG("mob.baa481b48e9f2319", list(sensor_text))

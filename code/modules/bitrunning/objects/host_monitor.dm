@@ -23,12 +23,12 @@
 
 	var/datum/component/avatar_connection/connection = user.GetComponent(/datum/component/avatar_connection)
 	if(isnull(connection))
-		balloon_alert(user, LANG("obj.e7d518c6", null))
+		balloon_alert(user, LANG("obj.e7d518c63f015323", null))
 		return
 
 	var/mob/living/pilot = connection.old_body_ref?.resolve()
 	if(isnull(pilot))
-		balloon_alert(user, LANG("obj.de0d9729", null))
+		balloon_alert(user, LANG("obj.de0d9729db0afb9d", null))
 		return
 
-	to_chat(user, span_notice(LANG("obj.302dc5f0", list(pilot.health / pilot.maxHealth * 100))))
+	to_chat(user, span_notice(LANG("obj.302dc5f0c31cdefc", list(pilot.health / pilot.maxHealth * 100))))

@@ -39,9 +39,9 @@
 		return
 
 	if(loaded_item)
-		. += span_notice(LANG("obj.474bf33b", list(EXAMINE_HINT("Left-Click"))))
+		. += span_notice(LANG("obj.474bf33bf4aff3e7", list(EXAMINE_HINT("Left-Click"))))
 	else
-		. += span_notice(LANG("obj.47388c0e", list(EXAMINE_HINT("Left-Click"))))
+		. += span_notice(LANG("obj.47388c0e734b90ba", list(EXAMINE_HINT("Left-Click"))))
 
 /obj/machinery/rnd/destructive_analyzer/base_item_interaction(mob/living/user, obj/item/weapon, list/modifiers)
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
@@ -51,12 +51,12 @@
 	if(!is_insertion_ready(user))
 		return ..()
 	if(!user.transferItemToLoc(weapon, src))
-		to_chat(user, span_warning(LANG("obj.22012438", list(weapon, src))))
+		to_chat(user, span_warning(LANG("obj.22012438cf113442", list(weapon, src))))
 		return ITEM_INTERACT_BLOCKING
 
 	busy = TRUE
 	loaded_item = weapon
-	to_chat(user, span_notice(LANG("obj.8bd6463a", list(weapon, src))))
+	to_chat(user, span_notice(LANG("obj.8bd6463a9b06e766", list(weapon, src))))
 	flick("[base_icon_state]_la", src)
 	addtimer(CALLBACK(src, PROC_REF(finish_loading)), 1 SECONDS)
 	return ITEM_INTERACT_SUCCESS
@@ -87,24 +87,19 @@
 		data["indestructible"] = !(loaded_item.resistance_flags & INDESTRUCTIBLE)
 		data["loaded_item"] = loaded_item
 		data["already_deconstructed"] = !!stored_research.deconstructed_items[loaded_item.type]
-		var/list/points = techweb_item_point_check(loaded_item)
+		var/list/points = SSresearch.techweb_point_items[loaded_item.type]
 		data["recoverable_points"] = techweb_point_display_generic(points)
 
-		var/list/boostable_nodes = techweb_item_unlock_check(loaded_item)
-		for(var/id in boostable_nodes)
-			var/datum/techweb_node/unlockable_node = SSresearch.techweb_node_by_id(id)
-			var/list/node_data = list()
-			node_data["node_name"] = unlockable_node.display_name
-			node_data["node_id"] = unlockable_node.id
-			node_data["node_hidden"] = !!stored_research.hidden_nodes[unlockable_node.id]
-			data["node_data"] += list(node_data)
+		var/list/boostable_nodes = SSresearch.techweb_unlock_items[loaded_item.type]
+		for(var/node_path in boostable_nodes)
+			var/datum/techweb_node/unlockable_node = SSresearch.techweb_nodes[node_path]
+			data["node_data"] += list(list(
+				"node_name" = unlockable_node.display_name,
+				"node_path" = node_path,
+				"node_hidden" = !!stored_research.hidden_nodes[node_path],
+			))
 	else
 		data["loaded_item"] = null
-	return data
-
-/obj/machinery/rnd/destructive_analyzer/ui_static_data(mob/user)
-	var/list/data = list()
-	data["research_point_id"] = DESTRUCTIVE_ANALYZER_DESTROY_POINTS
 	return data
 
 /obj/machinery/rnd/destructive_analyzer/ui_act(action, params, datum/tgui/ui)
@@ -116,14 +111,15 @@
 	switch(action)
 		if("eject_item")
 			if(busy)
-				balloon_alert(user, LANG("obj.adac0bea", null))
+				balloon_alert(user, LANG("obj.adac0beafa92b15b", null))
 				return TRUE
 			if(loaded_item)
 				unload_item()
 				return TRUE
 		if("deconstruct")
-			if(!user_try_decon_id(params["deconstruct_id"]))
-				say(LANG("obj.e159d195", null))
+			var/node_path = text2path(params["deconstruct_path"])
+			if(!try_deconstruct_loaded_item(node_path))
+				say(LANG("obj.e159d19560496d30", null))
 			return TRUE
 
 /obj/machinery/rnd/destructive_analyzer/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
@@ -190,35 +186,32 @@
 		if(mob_thing.stat != DEAD)
 			mob_thing.investigate_log("has been killed by a destructive analyzer.", INVESTIGATE_DEATHS)
 		mob_thing.death()
-	var/list/point_value = techweb_item_point_check(thing)
-	if(point_value && !stored_research.deconstructed_items[thing.type])
+	var/list/points = SSresearch.techweb_point_items[thing.type]
+	if(length(points) && !stored_research.deconstructed_items[thing.type])
 		stored_research.deconstructed_items[thing.type] = TRUE
-		stored_research.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = point_value))
+		stored_research.adjust_multiple_points(points)
 	qdel(thing)
 
 /**
- * Attempts to destroy the loaded item using a provided research id.
+ * Attempts to destroy the loaded item using a provided techweb node path.
+ * If no node path is provided, we will deconstruct for points instead
  * Args:
  * id - The techweb ID node that we're meant to unlock if applicable.
  */
-/obj/machinery/rnd/destructive_analyzer/proc/user_try_decon_id(id)
+/obj/machinery/rnd/destructive_analyzer/proc/try_deconstruct_loaded_item(node_path)
 	if(!istype(loaded_item))
 		return FALSE
-	if(isnull(id))
-		return FALSE
 
-	var/item_type = loaded_item.type
-	if(id == DESTRUCTIVE_ANALYZER_DESTROY_POINTS)
-		if(!destroy_item(gain_research_points = TRUE))
-			return FALSE
-		return TRUE
+	if(isnull(node_path))
+		return destroy_item(gain_research_points = TRUE)
 
-	var/datum/techweb_node/node_to_discover = SSresearch.techweb_node_by_id(id)
+	var/datum/techweb_node/node_to_discover = SSresearch.techweb_nodes[node_path]
 	if(!istype(node_to_discover))
 		return FALSE
+	var/item_type = loaded_item.type
 	if(!destroy_item())
 		return FALSE
-	SSblackbox.record_feedback("nested tally", "item_deconstructed", 1, list("[node_to_discover.id]", "[item_type]"))
+	SSblackbox.record_feedback("nested tally", "item_deconstructed", 1, list("[node_path]", "[item_type]"))
 	stored_research.unhide_node(node_to_discover)
 	return TRUE
 

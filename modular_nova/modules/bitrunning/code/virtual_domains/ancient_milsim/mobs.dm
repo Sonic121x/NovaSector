@@ -32,7 +32,7 @@
 
 /mob/living/basic/trooper/cin_soldier/melee/bullet_act(obj/projectile/projectile)
 	if(prob(projectile_deflect_chance))
-		visible_message(span_danger(LANG("mob.092e7dde", list(src, projectile))))
+		visible_message(span_danger(LANG("mob.092e7dde7a6a1df8", list(src, projectile))))
 		return BULLET_ACT_BLOCK
 	return ..()
 
@@ -73,7 +73,7 @@
 
 /mob/living/basic/trooper/cin_soldier/ranged/shotgun_revolver/bullet_act(obj/projectile/projectile)
 	if(prob(projectile_deflect_chance))
-		visible_message(span_danger(LANG("mob.092e7dde", list(src, projectile))))
+		visible_message(span_danger(LANG("mob.092e7dde7a6a1df8", list(src, projectile))))
 		return BULLET_ACT_BLOCK
 	return ..()
 

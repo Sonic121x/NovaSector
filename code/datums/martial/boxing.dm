@@ -89,7 +89,7 @@
 
 /datum/martial_art/boxing/grab_act(mob/living/attacker, mob/living/defender)
 	if(honorable_boxer && !ignore_grab_restriction)
-		attacker.balloon_alert(attacker, LANG("datum.4888073e", null))
+		attacker.balloon_alert(attacker, LANG("datum.4888073e82e0b96a", null))
 		return MARTIAL_ATTACK_FAIL
 	return MARTIAL_ATTACK_INVALID //UNLESS YOU'RE EVIL
 
@@ -104,7 +104,7 @@
 
 	if(honorable_boxer) //Being a good sport, you never hit someone on the ground or already knocked down. It shows you're the better person.
 		if((defender.body_position == LYING_DOWN && defender.get_stamina_loss() >= 100) || IS_UNCONSCIOUS(defender)) //If they're in stamcrit or unconscious, don't bloody punch them
-			attacker.balloon_alert(attacker, LANG("datum.772a3842", null))
+			attacker.balloon_alert(attacker, LANG("datum.772a38420e40e7ab", null))
 			return FALSE
 
 	var/obj/item/bodypart/arm/active_arm = attacker.get_active_hand()
@@ -146,9 +146,9 @@
 	// Similar to a normal punch, should we have a value of 0 for our lower force, we simply miss outright.
 	if(!lower_force)
 		playsound(defender.loc, active_arm.unarmed_miss_sound, 25, TRUE, -1)
-		defender.visible_message(span_warning(LANG("datum.02d8b90b", list(attacker, defender))), \
-			span_danger(LANG("datum.1c13df50", list(attacker))), span_hear(LANG("datum.b8189c1e", null)), COMBAT_MESSAGE_RANGE, attacker)
-		to_chat(attacker, span_warning(LANG("datum.67d5615c", list(defender))))
+		defender.visible_message(span_warning(LANG("datum.02d8b90bf7cab7c8", list(attacker, defender))), \
+			span_danger(LANG("datum.1c13df50e998dbb3", list(attacker))), span_hear(LANG("datum.b8189c1ed616b3a4", null)), COMBAT_MESSAGE_RANGE, attacker)
+		to_chat(attacker, span_warning(LANG("datum.67d5615ccb5f4c93", list(defender))))
 		log_combat(attacker, defender, "attempted to hit", "punch (boxing) ")
 		return FALSE
 
@@ -231,14 +231,14 @@
 	playsound(defender, attack_sound, 25, TRUE, -1)
 
 	defender.visible_message(
-		span_danger("[attacker] [current_atk_verb] [defender]!"),
-		span_userdanger(LANG("datum.c61afe56", list(current_atk_verbed, attacker))),
-		span_hear(LANG("datum.6c7f8149", null)),
+		span_danger(LANG("datum.dd02d8c90a5dee7a", list(attacker, current_atk_verb, defender))),
+		span_userdanger(LANG("datum.c61afe56230b45a4", list(current_atk_verbed, attacker))),
+		span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
 
-	to_chat(attacker, span_danger(LANG("datum.22d557f3", list(current_atk_verbed, defender))))
+	to_chat(attacker, span_danger(LANG("datum.22d557f300d422c9", list(current_atk_verbed, defender))))
 
 	// Determines the total amount of experience earned per punch
 	var/experience_earned = round(damage/4, 1)
@@ -279,26 +279,26 @@
 /datum/martial_art/boxing/proc/crit_effect(mob/living/attacker, mob/living/defender, armor_block = 0, damage_type = STAMINA, damage = 0)
 	if(defender.get_timed_status_effect_duration(/datum/status_effect/staggered))
 		defender.visible_message(
-			span_danger(LANG("datum.454b0e16", list(attacker, defender))),
-			span_userdanger(LANG("datum.1ace6279", list(attacker))),
-			span_hear(LANG("datum.6c7f8149", null)),
+			span_danger(LANG("datum.454b0e163b68a5f7", list(attacker, defender))),
+			span_userdanger(LANG("datum.1ace6279c0000c05", list(attacker))),
+			span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 			COMBAT_MESSAGE_RANGE,
 			attacker,
 		)
-		to_chat(attacker, span_danger(LANG("datum.00087ddb", list(defender))))
+		to_chat(attacker, span_danger(LANG("datum.00087ddbe1a4f1cd", list(defender))))
 		defender.apply_effect(20 SECONDS, EFFECT_KNOCKDOWN, armor_block)
 		defender.SetSleeping(10 SECONDS)
 		log_combat(attacker, defender, "knocked out (boxing) ")
 	else
 		defender.visible_message(
-			span_danger(LANG("datum.962ddadc", list(attacker, defender))),
-			span_userdanger(LANG("datum.706ff840", list(attacker))),
-			span_hear(LANG("datum.6c7f8149", null)),
+			span_danger(LANG("datum.962ddadceaa1df0c", list(attacker, defender))),
+			span_userdanger(LANG("datum.706ff84088f01398", list(attacker))),
+			span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 			COMBAT_MESSAGE_RANGE,
 			attacker,
 		)
 		defender.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 10 SECONDS)
-		to_chat(attacker, span_danger(LANG("datum.fde652f7", list(defender))))
+		to_chat(attacker, span_danger(LANG("datum.fde652f7c6bdbd50", list(defender))))
 		log_combat(attacker, defender, "staggered (boxing) ")
 
 	if(attacker.pulling == defender && attacker.grab_state >= GRAB_AGGRESSIVE) // dubious a normal boxer will be in a state where this happens, buuuut.
@@ -367,8 +367,8 @@
 		perform_extra_effect(boxer, attacker)
 
 	boxer.visible_message(
-		span_danger(LANG("datum.73829518", list(boxer, block_text, attack_text))),
-		span_userdanger(LANG("datum.22d557f3", list(block_text, attack_text))),
+		span_danger(LANG("datum.73829518320af0f7", list(boxer, block_text, attack_text))),
+		span_userdanger(LANG("datum.22d557f300d422c9", list(block_text, attack_text))),
 	)
 	if(block_text == "evade")
 		playsound(boxer.loc, active_arm.unarmed_miss_sound, 25, TRUE, -1)
@@ -383,16 +383,16 @@
 /datum/martial_art/boxing/get_style_help()
 	. = list()
 
-	. += LANG("datum.a77f13cb", null)
-	. += LANG("datum.992f91de", null)
+	. += LANG("datum.a77f13cb21ec2ef4", null)
+	. += LANG("datum.992f91de25f70aa3", null)
 
-	. += LANG("datum.3b73f12c", list(span_notice("Straight Punch")))
-	. += LANG("datum.58758684", list(span_notice("Jab")))
-	. += LANG("datum.57a429f3", list(span_notice("Left/Right Hook")))
-	. += LANG("datum.4fdb50c5", list(span_notice("Uppercut")))
+	. += LANG("datum.3b73f12c9e5414d5", list(span_notice("Straight Punch")))
+	. += LANG("datum.5875868472e93bbb", list(span_notice("Jab")))
+	. += LANG("datum.57a429f3cd35817b", list(span_notice("Left/Right Hook")))
+	. += LANG("datum.4fdb50c5a878d379", list(span_notice("Uppercut")))
 
-	. += LANG("datum.65ebfffc", null)
-	. += LANG("datum.f7479c58", null)
+	. += LANG("datum.65ebfffc9d11c66e", null)
+	. += LANG("datum.f7479c586df306cc", null)
 	return .
 
 // Boxing Variants!
@@ -411,16 +411,16 @@
 /datum/martial_art/boxing/evil/get_style_help()
 	. = list()
 
-	. += LANG("datum.b667ba4c", null)
-	. += LANG("datum.992f91de", null)
+	. += LANG("datum.b667ba4c345b2b50", null)
+	. += LANG("datum.992f91de25f70aa3", null)
 
-	. += LANG("datum.3b73f12c", list(span_notice("Straight Punch")))
-	. += LANG("datum.58758684", list(span_notice("Jab")))
-	. += LANG("datum.57a429f3", list(span_notice("Left/Right Hook")))
-	. += LANG("datum.d413901e", list(span_notice("Uppercut")))
-	. += LANG("datum.f479f0b5", list(span_notice("Sucker Punch")))
+	. += LANG("datum.3b73f12c9e5414d5", list(span_notice("Straight Punch")))
+	. += LANG("datum.5875868472e93bbb", list(span_notice("Jab")))
+	. += LANG("datum.57a429f3cd35817b", list(span_notice("Left/Right Hook")))
+	. += LANG("datum.d413901ebfd4bba5", list(span_notice("Uppercut")))
+	. += LANG("datum.f479f0b5ad1696b9", list(span_notice("Sucker Punch")))
 
-	. += LANG("datum.65ebfffc", null)
+	. += LANG("datum.65ebfffc9d11c66e", null)
 	return .
 
 /// Hunter Boxing: for the uncaring, completely deranged one-spacer ecological disaster.
@@ -443,18 +443,18 @@
 /datum/martial_art/boxing/hunter/get_style_help()
 	. = list()
 
-	. += LANG("datum.df134b0e", null)
-	. += LANG("datum.992f91de", null)
+	. += LANG("datum.df134b0e69bcffa9", null)
+	. += LANG("datum.992f91de25f70aa3", null)
 
-	. += LANG("datum.3b73f12c", list(span_notice("Straight Punch")))
-	. += LANG("datum.58758684", list(span_notice("Jab")))
-	. += LANG("datum.57a429f3", list(span_notice("Left/Right Hook")))
-	. += LANG("datum.0e20e366", list(span_notice("Uppercut")))
+	. += LANG("datum.3b73f12c9e5414d5", list(span_notice("Straight Punch")))
+	. += LANG("datum.5875868472e93bbb", list(span_notice("Jab")))
+	. += LANG("datum.57a429f3cd35817b", list(span_notice("Left/Right Hook")))
+	. += LANG("datum.0e20e36640ad72de", list(span_notice("Uppercut")))
 
-	. += LANG("datum.65ebfffc", null)
-	. += LANG("datum.36623ed7", null)
+	. += LANG("datum.65ebfffc9d11c66e", null)
+	. += LANG("datum.36623ed7b41a5ecb", null)
 
-	. += LANG("datum.cc667305", null)
+	. += LANG("datum.cc6673058a982396", null)
 	return .
 
 /datum/martial_art/boxing/hunter/honor_check(mob/living/possible_boxer)
@@ -479,13 +479,13 @@
 	var/second_word_pick = pick(second_word_strike)
 
 	defender.visible_message(
-		span_danger(LANG("datum.844bdfdc", list(attacker, defender, first_word_pick, second_word_pick))),
-		span_userdanger(LANG("datum.f1bd5e9e", list(attacker))),
-		span_hear(LANG("datum.6c7f8149", null)),
+		span_danger(LANG("datum.844bdfdcceb3c233", list(attacker, defender, first_word_pick, second_word_pick))),
+		span_userdanger(LANG("datum.f1bd5e9ee15153e9", list(attacker))),
+		span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	to_chat(attacker, span_danger(LANG("datum.abf44ab6", list(defender, first_word_pick, second_word_pick))))
+	to_chat(attacker, span_danger(LANG("datum.abf44ab6d56f0b28", list(defender, first_word_pick, second_word_pick))))
 	if(ishuman(attacker))
 		var/mob/living/carbon/human/human_attacker = attacker
 		human_attacker.force_say()

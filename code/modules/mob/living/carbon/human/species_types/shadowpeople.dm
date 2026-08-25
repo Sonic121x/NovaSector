@@ -78,20 +78,20 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "moon",
-			SPECIES_PERK_NAME = LANG("datum.65a823f4", null),
-			SPECIES_PERK_DESC = LANG("datum.b172651a", null),
+			SPECIES_PERK_NAME = LANG("datum.65a823f46a4c1c49", null),
+			SPECIES_PERK_DESC = LANG("datum.b172651a934b1f20", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "eye",
-			SPECIES_PERK_NAME = LANG("datum.ac6f015f", null),
-			SPECIES_PERK_DESC = LANG("datum.110ab3d4", null),
+			SPECIES_PERK_NAME = LANG("datum.ac6f015f15b87f50", null),
+			SPECIES_PERK_DESC = LANG("datum.110ab3d41c67405d", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "sun",
-			SPECIES_PERK_NAME = LANG("datum.d4804e7a", null),
-			SPECIES_PERK_DESC = LANG("datum.dbdfb2a8", null),
+			SPECIES_PERK_NAME = LANG("datum.d4804e7a8d450f85", null),
+			SPECIES_PERK_DESC = LANG("datum.dbdfb2a8d99ec6e1", null),
 		),
 	)
 
@@ -124,8 +124,8 @@
 		flashed.adjust_confusion_up_to(1 SECONDS, 3 SECONDS)
 
 	INVOKE_ASYNC(flashed, TYPE_PROC_REF(/mob, emote), "scream")
-	flashed.visible_message(span_danger(LANG("datum.76a40350", list(flashed))), \
-		span_danger(LANG("datum.dc75ceec", null)), \
-		span_danger(LANG("datum.0b4f450b", null)))
+	flashed.visible_message(span_danger(LANG("datum.76a40350b453a42a", list(flashed))), \
+		span_danger(LANG("datum.dc75ceece958f92c", null)), \
+		span_danger(LANG("datum.0b4f450b4159fc50", null)))
 
 	return FLASH_OVERRIDDEN

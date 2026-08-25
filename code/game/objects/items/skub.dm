@@ -13,7 +13,7 @@
 	AddComponent(/datum/component/container_item/tank_holder, "holder_skub", FALSE)
 
 /obj/item/skub/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.72897749", list(user))))
+	user.visible_message(span_suicide(LANG("obj.72897749014ff746", list(user))))
 	user.gib(DROP_ALL_REMAINS)
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE, -1)
 	return MANUAL_SUICIDE

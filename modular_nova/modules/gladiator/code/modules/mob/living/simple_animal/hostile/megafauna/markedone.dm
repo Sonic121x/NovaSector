@@ -122,10 +122,10 @@
 /mob/living/simple_animal/hostile/megafauna/gladiator/examine()
 	if(stat >= DEAD)
 		. = ..()
-		. += span_boldwarning(LANG("mob.cf29e043", null))
+		. += span_boldwarning(LANG("mob.cf29e043adff7986", null))
 	else
 		. = ..()
-		. += span_boldwarning(LANG("mob.045dd466", list(phase)))
+		. += span_boldwarning(LANG("mob.045dd466c69114c1", list(phase)))
 
 /// Gets him mad at you if you're a species he's not racist towards, and provides the 50% to block attacks in the first and fourth phases
 /mob/living/simple_animal/hostile/megafauna/gladiator/adjustHealth(amount, updating_health, forced)
@@ -195,11 +195,11 @@
 	if(isliving(A))
 		var/mob/living/living_atom = A
 		forceMove(get_turf(living_atom))
-		visible_message(span_danger(LANG("mob.b28257ff", list(src, living_atom))))
+		visible_message(span_danger(LANG("mob.b28257ff017a2b6e", list(src, living_atom))))
 		living_atom.Paralyze(20)
 		discharge()
 	else if(istype(A, /turf/closed))
-		visible_message(span_danger(LANG("mob.fecb5e36", list(src, A))))
+		visible_message(span_danger(LANG("mob.fecb5e367d351c13", list(src, A))))
 		discharge(1.5)
 
 /// Makes the Marked One unhappy and more befitting of his "hostile" subtype status.
@@ -345,9 +345,9 @@
 			if(!FAST_FACTION_CHECK(faction, slapped.faction, null, null, FALSE) && !(slapped in hit_things))
 				playsound(src, 'modular_nova/modules/gladiator/Clang_cut.ogg', 75, 0)
 				if(slapped.apply_damage(40, BRUTE, BODY_ZONE_CHEST, slapped.run_armor_check(BODY_ZONE_CHEST), wound_bonus = CANT_WOUND))
-					visible_message(span_danger(LANG("mob.3af77145", list(src, slapped))))
+					visible_message(span_danger(LANG("mob.3af77145ce343b10", list(src, slapped))))
 				else
-					visible_message(span_danger(LANG("mob.ffb76b34", list(src, slapped))))
+					visible_message(span_danger(LANG("mob.ffb76b34825e8c67", list(src, slapped))))
 					spinning = FALSE
 				hit_things |= slapped
 		if(!spinning)
@@ -445,7 +445,7 @@
 			for(var/mob/living/target in stomp_turf)
 				if(target == src || target.throwing)
 					continue
-				to_chat(target, span_userdanger(LANG("mob.f138f919", list(src))))
+				to_chat(target, span_userdanger(LANG("mob.f138f919dad23792", list(src))))
 				var/turf/thrownat = get_ranged_target_turf_direct(src, target, throw_range, rand(-10, 10))
 				target.throw_at(thrownat, 8, 2, null, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
 				target.apply_damage(20, BRUTE, wound_bonus=CANT_WOUND)

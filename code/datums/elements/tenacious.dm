@@ -21,7 +21,7 @@
 	REMOVE_TRAIT(target, TRAIT_TENACIOUS, ELEMENT_TRAIT(type))
 	var/mob/living/carbon/human/valid_target = target
 	if(valid_target.remove_movespeed_modifier(/datum/movespeed_modifier/tenacious))
-		valid_target.balloon_alert(valid_target, LANG("datum.54d47df1", null))
+		valid_target.balloon_alert(valid_target, LANG("datum.54d47df11de949e5", null))
 	return ..()
 
 ///signal called by the stat of the target changing
@@ -29,7 +29,7 @@
 	SIGNAL_HANDLER
 
 	if(new_stat == SOFT_CRIT)
-		target.balloon_alert(target, LANG("datum.5e3e9427", null))
+		target.balloon_alert(target, LANG("datum.5e3e9427ed618622", null))
 		target.add_movespeed_modifier(/datum/movespeed_modifier/tenacious)
 	else if(target.remove_movespeed_modifier(/datum/movespeed_modifier/tenacious))
-		target.balloon_alert(target, LANG("datum.54d47df1", null))
+		target.balloon_alert(target, LANG("datum.54d47df11de949e5", null))

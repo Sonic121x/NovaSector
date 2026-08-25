@@ -52,13 +52,13 @@
 			talk_action.brain_ref = source
 
 		if(the_real_ling.key)
-			to_chat(the_real_ling, span_ghostalert(LANG("datum.71cdfe0f", null)))
+			to_chat(the_real_ling, span_ghostalert(LANG("datum.71cdfe0f0677b650", null)))
 		else
 			the_real_ling.notify_revival("Your decoy brain has been placed in an MMI, re-enter your body to talk via it!", source = the_real_ling, flashwindow = TRUE)
 		talk_action.Grant(the_real_ling)
 
 	else if(talk_action?.owner == the_real_ling)
-		to_chat(the_real_ling, span_ghostalert(LANG("datum.be9ef7a8", null)))
+		to_chat(the_real_ling, span_ghostalert(LANG("datum.be9ef7a86708f54d", null)))
 		talk_action.Remove(the_real_ling)
 
 /// Clear up the decoy if the ling is de-linged

@@ -93,7 +93,7 @@
 
 /datum/round_event/supermatter_surge/announce(fake)
 	var/class_to_announce = fake ? pick(1, 2, 3, 4) : surge_class
-	priority_announce("The Crystal Integrity Monitoring System has detected unusual atmospheric properties in the supermatter chamber, energy output from the supermatter crystal has increased significantly. Engineering intervention is required to stabilize the engine.", LANG("datum.98df1881", list(class_to_announce)), 'sound/machines/engine_alert/engine_alert3.ogg')
+	priority_announce("The Crystal Integrity Monitoring System has detected unusual atmospheric properties in the supermatter chamber, energy output from the supermatter crystal has increased significantly. Engineering intervention is required to stabilize the engine.", LANG("datum.98df18811be1ea07", list(class_to_announce)), 'sound/machines/engine_alert/engine_alert3.ogg')
 
 /datum/round_event/supermatter_surge/start()
 	engine.bullet_energy = surge_class + SURGE_BULLET_ENERGY_ADDITION

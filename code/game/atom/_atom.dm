@@ -506,7 +506,7 @@
 		return
 	if(buckle_message_cooldown <= world.time)
 		buckle_message_cooldown = world.time + 25
-		balloon_alert(user, LANG("atom.22c89fbc", null))
+		balloon_alert(user, LANG("atom.22c89fbccef4e19d", null))
 	return
 
 /**
@@ -682,7 +682,7 @@
 /atom/proc/StartProcessingAtom(mob/living/user, obj/item/process_item, list/chosen_option)
 	var/processing_time = chosen_option[TOOL_PROCESSING_TIME]
 	var/sound_to_play = chosen_option[TOOL_PROCESSING_SOUND]
-	to_chat(user, span_notice(LANG("atom.6d07c8c1", list(src))))
+	to_chat(user, span_notice(LANG("atom.6d07c8c13173c7e4", list(src))))
 	if(sound_to_play)
 		playsound(src, sound_to_play, 50, TRUE)
 	if(!process_item.use_tool(src, user, processing_time, volume=50))
@@ -701,7 +701,7 @@
 			created_atom.pixel_x += rand(-8,8)
 			created_atom.pixel_y += rand(-8,8)
 		created_atoms.Add(created_atom)
-	to_chat(user, span_notice(LANG("atom.6e139a25", list(amount_to_create, initial(atom_to_create.gender) == PLURAL ? "[initial(atom_to_create.name)]" : "[initial(atom_to_create.name)][plural_s(initial(atom_to_create.name))]", src))))
+	to_chat(user, span_notice(LANG("atom.6e139a25dd29b0e7", list(amount_to_create, initial(atom_to_create.gender) == PLURAL ? "[initial(atom_to_create.name)]" : "[initial(atom_to_create.name)][plural_s(initial(atom_to_create.name))]", src))))
 	SEND_SIGNAL(src, COMSIG_ATOM_PROCESSED, user, process_item, created_atoms)
 	UsedforProcessing(user, process_item, chosen_option, created_atoms)
 

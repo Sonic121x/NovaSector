@@ -61,7 +61,7 @@
 	return ..()
 
 /obj/item/wirecutters/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.82e84495", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.82e84495d909fa28", list(user, user.p_their(), src, user.p_theyre()))))
 	playsound(loc, usesound, 50, TRUE, -1)
 	return BRUTELOSS
 

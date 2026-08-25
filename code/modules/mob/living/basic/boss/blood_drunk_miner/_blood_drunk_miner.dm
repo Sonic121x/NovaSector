@@ -169,8 +169,8 @@ Difficulty: Medium
 
 	changeNext_move(CLICK_CD_MELEE)
 	victim.visible_message(
-		span_danger(LANG("mob.63c38c5e", list(src, victim, p_their()))),
-		span_userdanger(LANG("mob.92e05745", list(src))),
+		span_danger(LANG("mob.63c38c5e78958f9c", list(src, victim, p_their()))),
+		span_userdanger(LANG("mob.92e057456bada6b1", list(src))),
 	)
 
 	var/delay = HAS_TRAIT(miner_saw, TRAIT_TRANSFORM_ACTIVE) ? 0.5 SECONDS : 0.3 SECONDS

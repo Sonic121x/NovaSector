@@ -92,4 +92,4 @@
 		return
 	sword.melee_attack_chain(user, stabbing)
 	if(prob(5) && check_holidays(APRIL_FOOLS))
-		user.say(LANG("datum.87a8954b", null), forced = "*teleports behind you**")
+		user.say(LANG("datum.87a8954bf287787e", null), forced = "*teleports behind you**")

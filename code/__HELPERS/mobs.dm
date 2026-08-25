@@ -405,7 +405,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 	var/list/borgs = active_free_borgs()
 	if(borgs.len)
 		if(user)
-			. = input(user,LANG("_root.50f8e154", null), LANG("_root.6a0425b6", null), borgs[1]) in sort_list(borgs)
+			. = input(user,LANG("_root.50f8e154e5202f64", null), LANG("_root.6a0425b68e8be831", null), borgs[1]) in sort_list(borgs)
 		else
 			. = pick(borgs)
 	return .
@@ -414,7 +414,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 	var/list/ais = active_ais(FALSE, z, skip_syndicate, only_syndicate)
 	if(ais.len)
 		if(user)
-			. = input(user,LANG("_root.9c8188ec", null), LANG("_root.a67d88fd", null), ais[1]) in sort_list(ais)
+			. = input(user,LANG("_root.9c8188ec06c76570", null), LANG("_root.a67d88fd5d0754a5", null), ais[1]) in sort_list(ais)
 		else
 			. = pick(ais)
 	return .

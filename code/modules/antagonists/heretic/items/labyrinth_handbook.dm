@@ -16,7 +16,7 @@
 		return
 	var/throwtarget = get_edge_target_turf(loc, get_dir(loc, get_step_away(bumpee, loc)))
 	bumpee.safe_throw_at(throwtarget, 10, 10, src, force = MOVE_FORCE_EXTREMELY_STRONG)
-	visible_message(span_danger(LANG("obj.d704522d", list(src, bumpee))))
+	visible_message(span_danger(LANG("obj.d704522d5fc640bc", list(src, bumpee))))
 
 ///A heretic item that spawns a barrier at the clicked turf, 3 uses
 /obj/item/heretic_labyrinth_handbook
@@ -50,8 +50,8 @@
 	. = ..()
 	if(!IS_HERETIC_OR_MONSTER(user))
 		return
-	. += span_hypnophrase(LANG("obj.2a5fc1be", null))
-	. += span_notice(LANG("obj.90243b63", list(charges)))
+	. += span_hypnophrase(LANG("obj.2a5fc1be21212c62", null))
+	. += span_notice(LANG("obj.90243b632107bf96", list(charges)))
 
 /obj/item/heretic_labyrinth_handbook/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(HAS_TRAIT(interacting_with, TRAIT_COMBAT_MODE_SKIP_INTERACTION))
@@ -62,21 +62,21 @@
 	if(!IS_HERETIC(user))
 		if(ishuman(user))
 			var/mob/living/carbon/human/human_user = user
-			to_chat(human_user, span_userdanger(LANG("obj.fea76f02", null)))
+			to_chat(human_user, span_userdanger(LANG("obj.fea76f02326f7ac2", null)))
 			human_user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 30, 190)
 			human_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 			human_user.dropItemToGround(src)
 		return ITEM_INTERACT_BLOCKING
 
 	if(charges <= 0)
-		balloon_alert(user, LANG("obj.cfa89008", null))
+		balloon_alert(user, LANG("obj.cfa89008ef0113c3", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/turf/turf_target = get_turf(interacting_with)
 	if(locate(barrier_type) in turf_target)
-		user.balloon_alert(user, LANG("obj.a2ef4f74", null))
+		user.balloon_alert(user, LANG("obj.a2ef4f74c6395498", null))
 		return ITEM_INTERACT_BLOCKING
-	turf_target.visible_message(span_warning(LANG("obj.bc1adea3", null)))
+	turf_target.visible_message(span_warning(LANG("obj.bc1adea36fbcc8b3", null)))
 	new /obj/effect/temp_visual/paper_scatter(turf_target)
 	playsound(turf_target, 'sound/effects/magic/smoke.ogg', 30)
 	new barrier_type(turf_target, user)

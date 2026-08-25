@@ -75,9 +75,9 @@
 /datum/action/cooldown/mob_cooldown/fire_breath/proc/on_burn_mob(mob/living/barbecued, mob/living/source)
 	if(fire_temperature <= TCMB)
 		barbecued.apply_status_effect(/datum/status_effect/ice_block_talisman, 2 SECONDS)
-		to_chat(barbecued, span_userdanger(LANG("datum.b79c19d4", list(source))))
+		to_chat(barbecued, span_userdanger(LANG("datum.b79c19d46b692908", list(source))))
 	else
-		to_chat(barbecued, span_userdanger(LANG("datum.317e74a8", list(source))))
+		to_chat(barbecued, span_userdanger(LANG("datum.317e74a84339439b", list(source))))
 	barbecued.adjust_fire_loss(fire_damage)
 
 /// Shoot three lines of fire in a sort of fork pattern approximating a cone

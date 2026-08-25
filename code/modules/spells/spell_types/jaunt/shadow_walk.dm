@@ -36,7 +36,7 @@
 	var/turf/cast_turf = get_turf(owner)
 	if(!cast_turf.check_lumcount_below(light_threshold))
 		if(feedback)
-			to_chat(owner, span_warning(LANG("datum.44e16a52", null)))
+			to_chat(owner, span_warning(LANG("datum.44e16a52f22be856", null)))
 		return FALSE
 	return TRUE
 
@@ -47,7 +47,7 @@
 		return
 
 	playsound(get_turf(owner), 'sound/effects/nightmare_poof.ogg', 50, TRUE, -1, ignore_walls = FALSE)
-	cast_on.visible_message(span_boldwarning(LANG("datum.0e7030d6", list(cast_on))))
+	cast_on.visible_message(span_boldwarning(LANG("datum.0e7030d6c3f9c861", list(cast_on))))
 	cast_on.SetAllImmobility(0)
 	cast_on.set_stamina_loss(0, FALSE)
 	enter_jaunt(cast_on)
@@ -95,7 +95,7 @@
 /obj/effect/dummy/phased_mob/shadow/phased_check(mob/living/user, direction)
 	. = ..()
 	if(. && isspaceturf(.))
-		to_chat(user, span_warning(LANG("obj.1461d35f", null)))
+		to_chat(user, span_warning(LANG("obj.1461d35ff9033fd9", null)))
 		return FALSE
 	if(check_light_level(.))
 		if(!light_step_warning())
@@ -106,9 +106,9 @@
 
 	if(istype(reveal_turf))
 		if(forced_out)
-			reveal_turf.visible_message(span_boldwarning(LANG("obj.6decdbbe", list(jaunter))))
+			reveal_turf.visible_message(span_boldwarning(LANG("obj.6decdbbe617156b2", list(jaunter))))
 		else
-			reveal_turf.visible_message(span_boldwarning(LANG("obj.8b1c105f", list(jaunter))))
+			reveal_turf.visible_message(span_boldwarning(LANG("obj.8b1c105f203cbd77", list(jaunter))))
 		playsound(reveal_turf, 'sound/effects/nightmare_reappear.ogg', 50, TRUE, -1, ignore_walls = FALSE)
 
 	return ..()
@@ -135,7 +135,7 @@
 
 /obj/effect/dummy/phased_mob/shadow/proc/light_step_warning()
 	if(!light_alert_given) //Give the user a warning that they're leaving the darkness
-		balloon_alert(jaunter, LANG("obj.f70fd6f6", null))
+		balloon_alert(jaunter, LANG("obj.f70fd6f62f44a561", null))
 		light_alert_given = TRUE
 		COOLDOWN_START(src, light_step_cooldown, 0.75 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(reactivate_light_alert)), 1 SECONDS) //You get a .5 second window to bypass the warning before it comes back

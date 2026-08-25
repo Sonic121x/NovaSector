@@ -3,7 +3,7 @@
 
 ///Energy Shield - Gives you a rechargeable energy shield that nullifies attacks.
 /obj/item/mod/module/energy_shield
-	name = "MOD energy shield module"
+	name = "\improper MOD energy shield module"
 	desc = "A personal, protective forcefield typically seen in military applications. \
 		This advanced deflector shield is essentially a scaled down version of those seen on starships, \
 		and the power cost can be an easy indicator of this. However, it is capable of blocking nearly any incoming attack, \
@@ -73,7 +73,7 @@
 	return NONE
 
 /obj/item/mod/module/energy_shield/wizard
-	name = "MOD battlemage shield module"
+	name = "\improper MOD battlemage shield module"
 	desc = "The caster wielding this spell gains a visible barrier around them, channeling arcane power through \
 		specialized runes engraved onto the surface of the suit to generate a wall of force. \
 		This shield can perfectly nullify attacks ranging from high-caliber rifles to magic missiles, \
@@ -91,7 +91,7 @@
 
 ///Magic Nullifier - Protects you from magic.
 /obj/item/mod/module/anti_magic
-	name = "MOD magic nullifier module"
+	name = "\improper MOD magic nullifier module"
 	desc = "A series of obsidian rods installed into critical points around the suit, \
 		vibrated at a certain low frequency to enable them to resonate. \
 		This creates a low-range, yet strong, magic nullification field around the user, \
@@ -109,7 +109,7 @@
 	mod.wearer.remove_traits(list(TRAIT_ANTIMAGIC, TRAIT_HOLY), REF(src))
 
 /obj/item/mod/module/anti_magic/wizard
-	name = "MOD magic neutralizer module"
+	name = "\improper MOD magic neutralizer module"
 	desc = "The caster wielding this spell gains an invisible barrier around them, channeling arcane power through \
 		specialized runes engraved onto the surface of the suit to generate anti-magic field. \
 		The field will neutralize all magic that comes into contact with the user. \
@@ -125,7 +125,7 @@
 
 ///Insignia - Gives you a skin specific stripe.
 /obj/item/mod/module/insignia
-	name = "MOD insignia module"
+	name = "\improper MOD insignia module"
 	desc = "Despite the existence of IFF systems, radio communique, and modern methods of deductive reasoning involving \
 		the wearer's own eyes, colorful paint jobs remain a popular way for different factions in the galaxy to display who \
 		they are. This system utilizes a series of tiny moving paint sprayers to both apply and remove different \
@@ -168,7 +168,7 @@
 
 ///Anti Slip - Prevents you from slipping on water.
 /obj/item/mod/module/noslip
-	name = "MOD anti slip module"
+	name = "\improper MOD anti slip module"
 	desc = "These are a modified variant of standard magnetic boots, utilizing piezoelectric crystals on the soles. \
 		The two plates on the bottom of the boots automatically extend and magnetize as the user steps; \
 		a pull that's too weak to offer them the ability to affix to a hull, but just strong enough to \
@@ -204,7 +204,7 @@
 
 ///Flamethrower - Launches fire across the area.
 /obj/item/mod/module/flamethrower
-	name = "MOD flamethrower module"
+	name = "\improper MOD flamethrower module"
 	desc = "A custom-manufactured flamethrower, used to burn through your path. Burn well."
 	icon_state = "flamethrower"
 	module_type = MODULE_ACTIVE
@@ -229,7 +229,7 @@
 
 ///Power kick - Lets the user launch themselves at someone to kick them.
 /obj/item/mod/module/power_kick
-	name = "MOD power kick module"
+	name = "\improper MOD power kick module"
 	desc = "This module uses high-power myomer to generate an incredible amount of energy, transferred into the power of a kick."
 	icon_state = "power_kick"
 	module_type = MODULE_ACTIVE
@@ -249,10 +249,10 @@
 	. = ..()
 	if(!.)
 		return
-	mod.wearer.visible_message(span_warning(LANG("obj.d1adb849", list(mod.wearer))), \
-		blind_message = span_hear(LANG("obj.cc2e7fe1", null)))
+	mod.wearer.visible_message(span_warning(LANG("obj.d1adb849894a2d29", list(mod.wearer))), \
+		blind_message = span_hear(LANG("obj.cc2e7fe155833cfe", null)))
 	playsound(src, 'sound/items/modsuit/loader_charge.ogg', 75, TRUE)
-	balloon_alert(mod.wearer, LANG("obj.9dc8c02a", null))
+	balloon_alert(mod.wearer, LANG("obj.9dc8c02ab4e05ae4", null))
 	animate(mod.wearer, 0.3 SECONDS, pixel_z = 16, flags = ANIMATION_RELATIVE, easing = SINE_EASING|EASE_OUT)
 	addtimer(CALLBACK(mod.wearer, TYPE_PROC_REF(/atom, SpinAnimation), 3, 2), 0.3 SECONDS)
 	if(!do_after(mod.wearer, 1 SECONDS, target = mod))
@@ -290,7 +290,7 @@
 
 ///Chameleon - lets the suit disguise as any item that would fit on that slot.
 /obj/item/mod/module/chameleon
-	name = "MOD chameleon module"
+	name = "\improper MOD chameleon module"
 	desc = "A module using chameleon technology to disguise the suit as another object."
 	icon_state = "chameleon"
 	module_type = MODULE_USABLE
@@ -321,7 +321,7 @@
 
 /obj/item/mod/module/chameleon/used(mob/activator)
 	if(mod.active || mod.activating)
-		balloon_alert(activator, LANG("obj.7913b0b7", null))
+		balloon_alert(activator, LANG("obj.7913b0b70e3a0cf3", null))
 		return FALSE
 	return ..()
 
@@ -329,7 +329,7 @@
 	if(current_disguise)
 		return_look()
 		return
-	var/picked_name = tgui_input_list(activator, LANG("obj.902ee4e7", null), LANG("obj.e9bc5fb4", null), possible_disguises)
+	var/picked_name = tgui_input_list(activator, LANG("obj.902ee4e741922cd0", null), LANG("obj.e9bc5fb4dc960d63", null), possible_disguises)
 	if(!possible_disguises[picked_name] || mod.active || mod.activating)
 		return
 	current_disguise = possible_disguises[picked_name]
@@ -366,7 +366,7 @@
 
 ///Plate Compression - Compresses the suit to normal size
 /obj/item/mod/module/plate_compression
-	name = "MOD plate compression module"
+	name = "\improper MOD plate compression module"
 	desc = "A module that keeps the suit in a very tightly fit state, lowering the overall size. \
 		Due to the pressure on all the parts, typical storage modules do not fit."
 	icon_state = "plate_compression"
@@ -394,7 +394,7 @@
 	mod.forceMove(mod.drop_location())
 
 /obj/item/mod/module/demoralizer
-	name = "MOD psi-echo demoralizer module"
+	name = "\improper MOD psi-echo demoralizer module"
 	desc = "One incredibly morbid member of the RND team at Roseus Galactic posed a question to her colleagues. \
 	'I desire the power to scar my enemies mentally as I murder them. Who will stop me implementing this in our next project?' \
 	And thus the Psi-Echo Demoralizer Device was reluctantly invented. The future of psychological warfare, today!"
@@ -413,7 +413,7 @@
 	QDEL_NULL(demoralizer)
 
 /obj/item/mod/module/infiltrator
-	name = "MOD infiltration core programs module"
+	name = "\improper MOD infiltration core programs module"
 	desc = "The primary stealth systems operating within the suit. Utilizing electromagnetic signals, \
 		the wearer simply cannot be observed closely, or heard clearly by those around them.\
 		It also contains some dampening systems to help protect a user from blows to the head."
@@ -463,7 +463,7 @@
 
 ///Medbeam - Medbeam but built into a modsuit
 /obj/item/mod/module/medbeam
-	name = "MOD medical beamgun module"
+	name = "\improper MOD medical beamgun module"
 	desc = "A wrist mounted variant of the medbeam gun, allowing the user to heal their allies without the risk of dropping it."
 	icon_state = "chronogun"
 	module_type = MODULE_ACTIVE
@@ -476,10 +476,10 @@
 	required_slots = list(ITEM_SLOT_BACK)
 
 /obj/item/gun/medbeam/mod
-	name = "MOD medbeam"
+	name = "\improper MOD medbeam"
 
 /obj/item/mod/module/stealth/wraith
-	name = "MOD Wraith Cloaking Module"
+	name = "\improper MOD Wraith Cloaking Module"
 	desc = "A more destructive adaptation of the stealth module. Incompatible with armor modules"
 	icon_state = "cloak_traitor"
 	stealth_alpha = 30
@@ -496,10 +496,10 @@
 	if(!. || target == mod.wearer)
 		return
 	if(get_dist(mod.wearer, target) > 6)
-		balloon_alert(mod.wearer, LANG("obj.b40a17eb", null))
+		balloon_alert(mod.wearer, LANG("obj.b40a17ebc7e69d14", null))
 		return
 	if(istype(target, /obj/machinery/power/apc)) //Bit too strong for a module so this is blacklisted
-		balloon_alert(mod.wearer, LANG("obj.0d9212bd", null))
+		balloon_alert(mod.wearer, LANG("obj.0d9212bdac618ef0", null))
 		return
 
 	var/list/things_to_disrupt = list(target)
@@ -541,7 +541,7 @@
 /obj/item/mod/module/stealth/wraith/unstealth(datum/source)
 	if(!stealth_active)
 		return
-	to_chat(mod.wearer, span_warning(LANG("obj.af764fe4", list(src))))
+	to_chat(mod.wearer, span_warning(LANG("obj.af764fe44d9000ba", list(src))))
 	do_sparks(2, TRUE, src)
 	drain_power(use_energy_cost)
 	// Don't deactivate() directly as the module may not be active in the first place when stealthing
@@ -555,5 +555,5 @@
 /obj/item/mod/module/stealth/wraith/examine_more(mob/user)
 	. = ..()
 	. += span_info( \
-		LANG("obj.fdeab785", null) \
+		LANG("obj.fdeab78501561196", null) \
 	)

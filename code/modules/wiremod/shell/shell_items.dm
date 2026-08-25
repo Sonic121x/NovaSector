@@ -13,11 +13,11 @@
 	var/screw_delay = 3 SECONDS
 
 /obj/item/shell/screwdriver_act(mob/living/user, obj/item/tool)
-	user.visible_message(span_notice(LANG("obj.afa85974", list(user, src))), span_notice(LANG("obj.5d9d7253", list(src))))
+	user.visible_message(span_notice(LANG("obj.afa85974ba1a81c1", list(user, src))), span_notice(LANG("obj.5d9d72537af25534", list(src))))
 	tool.play_tool_sound(src)
 	if(!do_after(user, screw_delay, src))
 		return
-	user.visible_message(span_notice(LANG("obj.9da3076f", list(user, src))), span_notice(LANG("obj.0b6dd6ef", list(src))))
+	user.visible_message(span_notice(LANG("obj.9da3076f22595499", list(user, src))), span_notice(LANG("obj.0b6dd6ef71981b64", list(src))))
 
 	var/turf/drop_loc = drop_location()
 

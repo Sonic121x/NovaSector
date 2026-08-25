@@ -23,7 +23,7 @@
 		affected_mob.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#1d2953")
 		if(affected_mob.dna && affected_mob.dna.species)
 			affected_mob.set_haircolor(null, override = TRUE)
-		to_chat(affected_mob, span_notice(LANG("datum.9b8f156c", null)))
+		to_chat(affected_mob, span_notice(LANG("datum.9b8f156c70e8aa99", null)))
 	..()
 
 
@@ -38,7 +38,7 @@
 			cure()
 			return FALSE
 		if(SPT_PROB(1.5 * stage, seconds_per_tick))
-			to_chat(affected_mob, span_revennotice(LANG("datum.f6266806", list(pick("sick and tired", "disoriented", "tired and confused", "nauseated", "faint", "dizzy")))))
+			to_chat(affected_mob, span_revennotice(LANG("datum.f626680645b01b33", list(pick("sick and tired", "disoriented", "tired and confused", "nauseated", "faint", "dizzy")))))
 			affected_mob.adjust_confusion(8 SECONDS)
 			need_mob_update += affected_mob.adjust_stamina_loss(20, updating_stamina = FALSE)
 			new /obj/effect/temp_visual/revenant(affected_mob.loc)
@@ -64,11 +64,11 @@
 		if(5)
 			if(!finalstage)
 				finalstage = TRUE
-				to_chat(affected_mob, span_revenbignotice(LANG("datum.b64c520b", list(pick("nothing's worth it anymore", "nobody ever needed your help", "nothing you did mattered", "everything you tried to do was worthless")))))
+				to_chat(affected_mob, span_revenbignotice(LANG("datum.b64c520bc127c44c", list(pick("nothing's worth it anymore", "nobody ever needed your help", "nothing you did mattered", "everything you tried to do was worthless")))))
 				affected_mob.adjust_stamina_loss(22.5 * seconds_per_tick, updating_stamina = FALSE)
 				new /obj/effect/temp_visual/revenant(affected_mob.loc)
 				if(affected_mob.dna && affected_mob.dna.species)
 					affected_mob.set_haircolor("#1d2953", override = TRUE)
-				affected_mob.visible_message(span_warning(LANG("datum.af9d2f1f", list(affected_mob))), span_revennotice(LANG("datum.997ceab9", null)))
+				affected_mob.visible_message(span_warning(LANG("datum.af9d2f1f6d8e24cb", list(affected_mob))), span_revennotice(LANG("datum.997ceab9f86abb7c", null)))
 				affected_mob.add_atom_colour("#1d2953", TEMPORARY_COLOUR_PRIORITY)
 				addtimer(CALLBACK(src, PROC_REF(cure)), 10 SECONDS)

@@ -65,10 +65,10 @@
 	if(!infection)
 		infection = new()
 		infection.Insert(target)
-		to_chat(user, span_alien(LANG("_root.517e88a6", list(target, target.p_their(), infection, target.p_Theyve()))))
+		to_chat(user, span_alien(LANG("_root.517e88a698767b4d", list(target, target.p_their(), infection, target.p_Theyve()))))
 
 /obj/item/mutant_hand/zombie/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.3ca0591e", list(user, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.3ca0591e0a202b25", list(user, user.p_their(), user.p_theyre()))))
 	var/obj/item/bodypart/head = user.get_bodypart(BODY_ZONE_HEAD)
 	if(head)
 		head.dismember()

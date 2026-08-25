@@ -47,15 +47,15 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "lightbulb",
-		SPECIES_PERK_NAME = LANG("datum.000169c9", null),
-		SPECIES_PERK_DESC = LANG("datum.88206ebc", null),
+		SPECIES_PERK_NAME = LANG("datum.000169c90b1204dd", null),
+		SPECIES_PERK_DESC = LANG("datum.88206ebc9596f738", null),
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "crutch",
-		SPECIES_PERK_NAME = LANG("datum.5bd04994", null),
-		SPECIES_PERK_DESC = LANG("datum.41b571aa", null),
+		SPECIES_PERK_NAME = LANG("datum.5bd04994a8e04104", null),
+		SPECIES_PERK_DESC = LANG("datum.41b571aa8a718d71", null),
 	))
 
 	return to_add

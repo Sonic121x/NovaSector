@@ -39,7 +39,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/steps/screwdriver_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice(LANG("obj.f0ab830f", list(src))))
+	to_chat(user, span_notice(LANG("obj.f0ab830f6d35475f", list(src))))
 	if(tool.use_tool(src, user, 2 SECONDS, volume=50))
 		deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -55,6 +55,6 @@
 	var/entered_dir = get_dir(our_turf, old_loc)
 	if (entered_dir == dir)
 		arrived.Knockdown(1 SECONDS)
-		to_chat(arrived, span_warning(LANG("obj.0a5635b8", list(src))))
+		to_chat(arrived, span_warning(LANG("obj.0a5635b8fe676be0", list(src))))
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/steps, 0)

@@ -24,11 +24,11 @@ GLOBAL_DATUM_INIT(closet_teleport_controller, /datum/closet_teleport_controller,
 			continue
 		if(length(eigen_targets[already_linked]) > 1) //Eigenstates are notorious for having cliques!
 			if(!subtle)
-				target.visible_message(LANG("datum.7a96195c", list(target)))
+				target.visible_message(LANG("datum.7a96195c709356fb", list(target)))
 			targets -= target
 			continue
 		if(!subtle)
-			target.visible_message(LANG("datum.c4532063", list(target))) //If we're in a eigenlink all on our own and are open to new friends
+			target.visible_message(LANG("datum.c45320638865f82b", list(target))) //If we're in a eigenlink all on our own and are open to new friends
 		remove_eigen_entry(target) //clearup for new stuff
 	//Do we still have targets?
 	if(!length(targets))
@@ -36,7 +36,7 @@ GLOBAL_DATUM_INIT(closet_teleport_controller, /datum/closet_teleport_controller,
 	var/atom/visible_atom = targets[1] //The object that'll handle the messages
 	if(length(targets) == 1)
 		if(!subtle)
-			visible_atom.visible_message(LANG("datum.c768b056", list(targets[1])))
+			visible_atom.visible_message(LANG("datum.c768b05634a9e479", list(targets[1])))
 		return FALSE
 
 	var/subtle_keyword = subtle ? "subtle" : ""
@@ -55,7 +55,7 @@ GLOBAL_DATUM_INIT(closet_teleport_controller, /datum/closet_teleport_controller,
 			do_sparks(3, FALSE, target)
 
 	if(!subtle)
-		visible_atom.visible_message(LANG("datum.430c6bd3", null))
+		visible_atom.visible_message(LANG("datum.430c6bd332d7d0af", null))
 	id_counter++
 	return TRUE
 
@@ -115,7 +115,7 @@ GLOBAL_DATUM_INIT(closet_teleport_controller, /datum/closet_teleport_controller,
 		thing_to_send.forceMove(eigen_target)
 	else
 		if(!subtle)
-			object_sent_from.balloon_alert(thing_to_send, LANG("datum.bccffc95", null))
+			object_sent_from.balloon_alert(thing_to_send, LANG("datum.bccffc95efe66ad7", null))
 		return FALSE
 	//Create ONE set of sparks for ALL times in iteration
 	if(!subtle && spark_time != world.time)
@@ -127,7 +127,7 @@ GLOBAL_DATUM_INIT(closet_teleport_controller, /datum/closet_teleport_controller,
 ///Prevents tool use on the item
 /datum/closet_teleport_controller/proc/tool_interact(atom/source, mob/user, obj/item/item)
 	SIGNAL_HANDLER
-	to_chat(user, span_notice(LANG("datum.90bfc273", list(source, item, source.p_them()))))
+	to_chat(user, span_notice(LANG("datum.90bfc273d04b5a66", list(source, item, source.p_them()))))
 	return ITEM_INTERACT_BLOCKING
 
 // For testing purposes, primarily

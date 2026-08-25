@@ -41,11 +41,11 @@
 /obj/item/autosurgeon/multi/load_organ(obj/item/organ/loaded_organ, mob/living/user)
 	if(user)
 		if(length(stored_organs) >= max_organs)// if list length exceeds var set above
-			to_chat(user, span_alert(LANG("obj.97a30b06", list(src))))// tell the dork
+			to_chat(user, span_alert(LANG("obj.97a30b066c73f3e6", list(src))))// tell the dork
 			return// go home
 
 		if(uses <= 0)// if this has configurable use counts and its spent
-			to_chat(user, span_alert(LANG("obj.5aa6b652", list(src))))// tell them
+			to_chat(user, span_alert(LANG("obj.5aa6b652a3f8c5b8", list(src))))// tell them
 			return// sleep
 
 		if(organ_whitelist.len)// Checks our whitelist for anything in it
@@ -55,11 +55,11 @@
 					organ_whitelisted = TRUE// set a bool we can check
 					break
 			if(!organ_whitelisted)// down here if its not true
-				to_chat(user, span_alert(LANG("obj.fbb43e6b", list(src, loaded_organ))))// break the news
+				to_chat(user, span_alert(LANG("obj.fbb43e6b3e1fb536", list(src, loaded_organ))))// break the news
 				return// close the door
 
 		if(!user.transferItemToLoc(loaded_organ, src))// no magically exfilling items out of your hand that you shouldnt be getting rid of, by checking if you can transfer it. crazy stuff
-			to_chat(user, span_alert(LANG("obj.1dbf8014", list(loaded_organ))))// silly goober turn off your antidrop or get rid of possessive or whatever
+			to_chat(user, span_alert(LANG("obj.1dbf8014c030d016", list(loaded_organ))))// silly goober turn off your antidrop or get rid of possessive or whatever
 			return// its over
 
 	stored_organs += loaded_organ// append our storage with the item we were processing
@@ -70,28 +70,28 @@
 // Now we use our storage
 /obj/item/autosurgeon/multi/use_autosurgeon(mob/living/target, mob/living/user, implant_time)
 	if(!length(stored_organs))// if we arent storing anything
-		to_chat(user, span_alert(LANG("obj.b1872ccd", list(src))))// state the apparently not obvious truth
+		to_chat(user, span_alert(LANG("obj.b1872ccd10d42718", list(src))))// state the apparently not obvious truth
 		return// were done
 
 	if(uses <= 0)// if its charge based and out of charges
-		to_chat(user, span_alert(LANG("obj.8104ad50", list(src))))// you cant use this anymore
+		to_chat(user, span_alert(LANG("obj.8104ad50cb01368d", list(src))))// you cant use this anymore
 		return// to dust
 
 	if(implant_time)// ITS IMPLANTIN' TIME
 		user.visible_message(
-			span_notice(LANG("obj.4e79cbb5", list(user, src, target))),
-			span_notice(LANG("obj.a3bf96f5", list(src, target))),
+			span_notice(LANG("obj.4e79cbb58488df32", list(user, src, target))),
+			span_notice(LANG("obj.a3bf96f544f86236", list(src, target))),
 		)// Notify we're starting our action
 		if(!do_after(user, (implant_time * surgery_speed), target))// check the usual suspects for our do after
 			return// is done
 
 	if(target != user)// If we use this on someone other than ourselves
 		log_combat(user, target, "autosurgeon implanted [english_list(stored_organs)] into", "[src]", "in [AREACOORD(target)]")// Combat log its usage
-		user.visible_message(span_notice(LANG("obj.9cb3659c", list(user, src, target))), span_notice(LANG("obj.8bbf310a", list(src, target))))// Tell everyone nearby what we did. Or you.
+		user.visible_message(span_notice(LANG("obj.9cb3659c4de2284e", list(user, src, target))), span_notice(LANG("obj.8bbf310a84f60973", list(src, target))))// Tell everyone nearby what we did. Or you.
 	else
 		user.visible_message(
-			span_notice(LANG("obj.474deacb", list(user, src, user.p_their()))),
-			span_notice(LANG("obj.ceb24710", list(src))),
+			span_notice(LANG("obj.474deacba75bc0ea", list(user, src, user.p_their()))),
+			span_notice(LANG("obj.ceb247107540422f", list(src))),
 		)
 
 	var/list/installed = list()// holding bin for things were inserting
@@ -120,31 +120,31 @@
 	if(length(installed))// we have stuff in installed
 		playsound(target.loc, 'sound/items/weapons/circsawhit.ogg', 50, vary = TRUE)// same as autosurgeon
 	if(length(failed))// collects our washouts
-		balloon_alert(user, LANG("obj.f42b761b", list(length(failed), length(failed) > 1 ? "s" : "")))// informs our user
+		balloon_alert(user, LANG("obj.f42b761bab610e7b", list(length(failed), length(failed) > 1 ? "s" : "")))// informs our user
 
 	update_appearance()// update appearance based on results of above performance
 
 	if(uses <= 0)// if that was the last monkey finger
-		desc = LANG("obj.8c69c278", list(initial(desc)))// tell them its trash now
+		desc = LANG("obj.8c69c278a06af8a9", list(initial(desc)))// tell them its trash now
 
 // handles removing our stack of nonsense
 /obj/item/autosurgeon/multi/screwdriver_act(mob/living/user, obj/item/screwtool)
 	if(..())// what even is that? the parent uses it, I'm not touching that
 		return TRUE
 	if(!length(stored_organs))// if theres nothing in our list
-		to_chat(user, span_warning(LANG("obj.215a92c5", list(src))))// surprise, nothing to remove
+		to_chat(user, span_warning(LANG("obj.215a92c5e4dd44f5", list(src))))// surprise, nothing to remove
 	else// if there is something in our list
 		var/atom/drop_loc = user.drop_location()// prep our drop location
 		for(var/obj/item/organ/organ as anything in stored_organs)// from anything in our multistor
 			organ.forceMove(drop_loc)// and then i threw it on the ground
-		to_chat(user, span_notice(LANG("obj.41afa19d", list(src))))// yeah, we threw it on the ground
+		to_chat(user, span_notice(LANG("obj.41afa19dc6ccb556", list(src))))// yeah, we threw it on the ground
 		stored_organs = list()
 		update_multi_name()// update our name again
 
 		screwtool.play_tool_sound(src)// it is mandatory to have feedback
 		uses--// FUSSING COSTS TIME AND ENERGY
 		if(uses <= 0)// if its useless
-			desc = LANG("obj.8c69c278", list(initial(desc)))// let them know???
+			desc = LANG("obj.8c69c278a06af8a9", list(initial(desc)))// let them know???
 		update_appearance(UPDATE_ICON)// update our icon one last time
 	return TRUE
 // NOVA EDIT END

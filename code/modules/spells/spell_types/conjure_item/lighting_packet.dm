@@ -38,4 +38,4 @@
 	. = ..()
 	if(ishuman(thrower))
 		var/mob/living/carbon/human/human_thrower = thrower
-		human_thrower.say(LANG("obj.da08eb57", null), forced = "spell")
+		human_thrower.say(LANG("obj.da08eb571c917d09", null), forced = "spell")

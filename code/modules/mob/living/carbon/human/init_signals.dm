@@ -63,8 +63,8 @@
 	if(!dropItemToGround(changed, force = TRUE))
 		return
 	visible_message(
-		span_warning(LANG("mob.766265d2", list(changed, src))),
-		span_warning(LANG("mob.35ab0d86", list(changed))),
+		span_warning(LANG("mob.766265d222e1cf06", list(changed, src))),
+		span_warning(LANG("mob.35ab0d866e740472", list(changed))),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 	)
 	playsound(src, SFX_RUSTLE, 50, TRUE, -5, frequency = 0.8)

@@ -21,7 +21,7 @@
 /datum/element/reagent_scoopable_atom/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_info(LANG("datum.7515092e", list(reagent_to_extract::name)))
+	examine_list += span_info(LANG("datum.7515092e6af2b328", list(reagent_to_extract::name)))
 
 /datum/element/reagent_scoopable_atom/proc/on_item_interaction(atom/source, mob/living/user, obj/item/tool, list/modifiers)
 	SIGNAL_HANDLER
@@ -33,6 +33,6 @@
 	if(!reagent_to_extract)
 		return ITEM_INTERACT_BLOCKING
 	if(!container.reagents.add_reagent(reagent_to_extract, rand(5, 10)))
-		to_chat(user, span_warning(LANG("datum.8e2d390c", list(container))))
-	user.visible_message(span_notice(LANG("datum.14a5f544", list(user, LOWER_TEXT(reagent_to_extract::name), source, container))), span_notice(LANG("datum.c775c2bb", list(LOWER_TEXT(reagent_to_extract::name), source, container))))
+		to_chat(user, span_warning(LANG("datum.8e2d390ca03cb226", list(container))))
+	user.visible_message(span_notice(LANG("datum.14a5f54418403ce8", list(user, LOWER_TEXT(reagent_to_extract::name), source, container))), span_notice(LANG("datum.c775c2bb75f6b433", list(LOWER_TEXT(reagent_to_extract::name), source, container))))
 	return ITEM_INTERACT_SUCCESS

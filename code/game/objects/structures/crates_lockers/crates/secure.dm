@@ -33,7 +33,7 @@
 
 /obj/structure/closet/crate/secure/proc/boom(mob/user)
 	if(user)
-		to_chat(user, span_danger(LANG("obj.11eb8ecf", null)))
+		to_chat(user, span_danger(LANG("obj.11eb8ecf9f865c12", null)))
 		log_bomber(user, "has detonated a", src)
 	dump_contents()
 	explosion(src, heavy_impact_range = 1, light_impact_range = 5, flash_range = 5)

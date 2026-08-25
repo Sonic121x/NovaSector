@@ -10,7 +10,7 @@
 
 /datum/antagonist/ship_crew/greet()
 	. = ..()
-	to_chat(owner, LANG("datum.f3e5d435", null))
+	to_chat(owner, LANG("datum.f3e5d435b521772a", null))
 	owner.announce_objectives()
 
 /datum/antagonist/ship_crew/get_team()

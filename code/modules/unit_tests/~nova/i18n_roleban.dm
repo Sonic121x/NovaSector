@@ -6,12 +6,13 @@
 
 /datum/unit_test/i18n_roleban/Run()
 	var/saved_locale = GLOB.i18n_server_locale
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
 	if(!islist(en_cache))
 		en_cache = list()
-		GLOB.i18n_cache[DEFAULT_UI_LOCALE] = en_cache
+		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE] = en_cache
 	en_cache["roleban_title"] = JOB_HEAD_OF_SECURITY
-	GLOB.i18n_cache[I18N_ROLEBAN_TEST_LOCALE] = list("roleban_title" = I18N_ROLEBAN_TRANSLATED_TITLE)
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][I18N_ROLEBAN_TEST_LOCALE] = list("roleban_title" = I18N_ROLEBAN_TRANSLATED_TITLE)
+	GLOB.i18n_runtime_domains.Remove(I18N_ROLEBAN_TEST_LOCALE)
 
 	GLOB.i18n_reverse.Remove(I18N_ROLEBAN_TEST_LOCALE)
 	GLOB.i18n_fallback_state.Remove(I18N_ROLEBAN_TEST_LOCALE)
@@ -54,7 +55,9 @@
 	GLOB.i18n_fallback_state.Remove(I18N_ROLEBAN_TEST_LOCALE)
 	GLOB.i18n_fallback_single_state.Remove(I18N_ROLEBAN_TEST_LOCALE)
 	GLOB.i18n_fallback_cache.Remove(I18N_ROLEBAN_TEST_LOCALE)
-	GLOB.i18n_cache.Remove(I18N_ROLEBAN_TEST_LOCALE)
+	var/list/forward_bucket = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET]
+	forward_bucket.Remove(I18N_ROLEBAN_TEST_LOCALE)
+	GLOB.i18n_runtime_domains.Remove(I18N_ROLEBAN_TEST_LOCALE)
 	en_cache.Remove("roleban_title")
 
 #undef I18N_ROLEBAN_TEST_LOCALE

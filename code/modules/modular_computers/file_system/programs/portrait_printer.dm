@@ -68,7 +68,7 @@
 	if(!(computer.hardware_flag & PROGRAM_CONSOLE))
 		return
 	if(computer.stored_paper < CANVAS_PAPER_COST)
-		to_chat(usr, span_notice(LANG("datum.ca37f652", list(CANVAS_PAPER_COST))))
+		to_chat(usr, span_notice(LANG("datum.ca37f65269591523", list(CANVAS_PAPER_COST))))
 		return
 
 	//canvas printing!
@@ -76,10 +76,10 @@
 
 	var/obj/item/canvas/new_canvas = chosen_portrait.spawn_canvas(get_turf(computer.physical))
 	if(!new_canvas)
-		to_chat(usr, span_notice(LANG("datum.0bd81edf", null)))
+		to_chat(usr, span_notice(LANG("datum.0bd81edf3cf9b55f", null)))
 		return
 	computer.stored_paper -= CANVAS_PAPER_COST
-	to_chat(usr, span_notice(LANG("datum.96956646", list(chosen_portrait.title))))
+	to_chat(usr, span_notice(LANG("datum.9695664615f203be", list(chosen_portrait.title))))
 	playsound(computer.physical, 'sound/machines/printer.ogg', 100, TRUE)
 
 /datum/computer_file/program/portrait_printer/proc/download_painting(selected_painting)
@@ -87,6 +87,6 @@
 	var/icon/portrait_icon = chosen_portrait.get_icon()
 	var/datum/computer_file/image/image_file = new(portrait_icon, display_name = chosen_portrait.title, source_photo_or_painting = chosen_portrait)
 	if(!computer.store_file(image_file, usr))
-		to_chat(usr, span_notice(LANG("datum.24d874c4", list(chosen_portrait.title, /datum/computer_file/image::filetype))))
+		to_chat(usr, span_notice(LANG("datum.24d874c4c8451e39", list(chosen_portrait.title, /datum/computer_file/image::filetype))))
 		return
-	to_chat(usr, span_notice(LANG("datum.78d6eda2", list(chosen_portrait.title, /datum/computer_file/image::filetype))))
+	to_chat(usr, span_notice(LANG("datum.78d6eda2d6400916", list(chosen_portrait.title, /datum/computer_file/image::filetype))))

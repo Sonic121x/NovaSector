@@ -57,26 +57,26 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "grin-tongue",
-			SPECIES_PERK_NAME = LANG("datum.69b65c12", null),
-			SPECIES_PERK_DESC = LANG("datum.a490edc3", null),
+			SPECIES_PERK_NAME = LANG("datum.69b65c1277750e01", null),
+			SPECIES_PERK_DESC = LANG("datum.a490edc3c89766dd", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "fist-raised",
-			SPECIES_PERK_NAME = LANG("datum.f5ba5055", null),
-			SPECIES_PERK_DESC = LANG("datum.d3f1b65a", null),
+			SPECIES_PERK_NAME = LANG("datum.f5ba505551e02718", null),
+			SPECIES_PERK_DESC = LANG("datum.d3f1b65a89224247", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "sun",
-			SPECIES_PERK_NAME = LANG("datum.af977724", null),
-			SPECIES_PERK_DESC = LANG("datum.6df6e9f8", null),
+			SPECIES_PERK_NAME = LANG("datum.af977724fbdd9803", null),
+			SPECIES_PERK_DESC = LANG("datum.6df6e9f8e2ed8fe2", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "briefcase-medical",
-			SPECIES_PERK_NAME = LANG("datum.957014e1", null),
-			SPECIES_PERK_DESC = LANG("datum.555345de", null),
+			SPECIES_PERK_NAME = LANG("datum.957014e1b073ddb9", null),
+			SPECIES_PERK_DESC = LANG("datum.555345de226a7fdb", null),
 		),
 	)
 

@@ -20,4 +20,4 @@
 	syllable_max = 4,
 	force_use_syllables = FALSE,
 )
-	return LANG("datum.526d55c3", list(rand(1, 999))) // NOVA EDIT CHANGE - I18N - ORIGINAL: return "monkey ([rand(1, 999)])"
+	return LANG("datum.526d55c3d706abf5", list(rand(1, 999))) // NOVA EDIT CHANGE - I18N - ORIGINAL: return "monkey ([rand(1, 999)])"

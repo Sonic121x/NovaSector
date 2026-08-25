@@ -45,6 +45,6 @@
 /obj/structure/destructible/clockwork/crowbar_act(mob/living/user, obj/item/tool)
 	if(IS_CLOCK(user))
 		setDir(turn(dir, 90))
-		balloon_alert(user, LANG("obj.1c8f3836", list(dir2text(dir))))
+		balloon_alert(user, LANG("obj.1c8f3836750bdb0b", list(dir2text(dir))))
 
 	return TRUE

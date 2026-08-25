@@ -77,14 +77,14 @@
 		human.adjust_fire_loss(1) //Still deal some damage in case a cold environment would be preventing us from the sweet release to robot heaven
 		human.adjust_bodytemperature(13) //We're overheating!!
 		if(prob(10))
-			to_chat(human, span_warning(LANG("datum.c8d8f006", null)))
+			to_chat(human, span_warning(LANG("datum.c8d8f006f1d8de92", null)))
 			do_sparks(3, TRUE, human)
 
 /datum/species/synthetic/spec_revival(mob/living/carbon/human/transformer)
 	switch_to_screen(transformer, "Console")
 	addtimer(CALLBACK(src, PROC_REF(switch_to_screen), transformer, saved_screen), 5 SECONDS)
 	playsound(transformer.loc, 'sound/machines/chime.ogg', 50, TRUE)
-	transformer.visible_message(span_notice(LANG("datum.d3da1d8f", list(transformer, screen ? "monitor lights up" : "eyes flicker to life"))), span_notice(LANG("datum.241670af", null)))
+	transformer.visible_message(span_notice(LANG("datum.d3da1d8f29163415", list(transformer, screen ? "monitor lights up" : "eyes flicker to life"))), span_notice(LANG("datum.241670af6d7b5a69", null)))
 
 /datum/species/synthetic/on_species_gain(mob/living/carbon/human/transformer, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
@@ -177,7 +177,7 @@
 	oversized_quirk.old_organs += list(old_stomach)
 
 	new_synth_stomach.Insert(human_holder, special = TRUE)
-	to_chat(human_holder, span_warning(LANG("datum.55519864", null)))
+	to_chat(human_holder, span_warning(LANG("datum.5551986446588c8e", null)))
 	if(old_stomach)
 		old_stomach.moveToNullspace()
 		STOP_PROCESSING(SSobj, old_stomach)
@@ -185,17 +185,17 @@
 /datum/species/synthetic/proc/on_emag_act(mob/living/carbon/human/source, mob/user)
 	SIGNAL_HANDLER
 	if(source == user)
-		to_chat(source, span_warning(LANG("datum.9beb1c1e", null)))
+		to_chat(source, span_warning(LANG("datum.9beb1c1e060f9777", null)))
 		return FALSE
 	if(emag_effect)
 		return
 	emag_effect = TRUE
 	playsound(source.loc, 'sound/misc/interference.ogg', 50)
-	to_chat(source, span_warning(LANG("datum.d3bcbb5d", null)))
+	to_chat(source, span_warning(LANG("datum.d3bcbb5d0a57724d", null)))
 	if(IS_UNCONSCIOUS_OR_CRIT(source))
-		to_chat(user, span_warning(LANG("datum.69d48dc1", list(source))))
+		to_chat(user, span_warning(LANG("datum.69d48dc17092095e", list(source))))
 		return
-	source.visible_message(span_danger(LANG("datum.e8ad7350", list(user, source, forced_speech == 0 ? "!" : " yet nothing happens..?"))), span_userdanger(LANG("datum.8dc8c1d5", list(user))))
+	source.visible_message(span_danger(LANG("datum.e8ad73508ef8904e", list(user, source, forced_speech == 0 ? "!" : " yet nothing happens..?"))), span_userdanger(LANG("datum.8dc8c1d5014ca421", list(user))))
 	if(!forced_speech)
 		if(prob(40))
 			forced_speech = rand(3, 5)
@@ -275,29 +275,29 @@
 	perk_descriptions += list(list( //tryin to keep traits minimal since synths will get a lot of traits when my upstream traits pr is merged
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "robot",
-		SPECIES_PERK_NAME = LANG("datum.961b3412", null),
-		SPECIES_PERK_DESC = LANG("datum.bbf8c074", null)
+		SPECIES_PERK_NAME = LANG("datum.961b341238b3efca", null),
+		SPECIES_PERK_DESC = LANG("datum.bbf8c0747b5e9f7e", null)
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "star-of-life",
-		SPECIES_PERK_NAME = LANG("datum.8d371daf", null),
-		SPECIES_PERK_DESC = LANG("datum.c271e17d", list(plural_form)),
+		SPECIES_PERK_NAME = LANG("datum.8d371daf1312d82b", null),
+		SPECIES_PERK_DESC = LANG("datum.c271e17d7f78452f", list(plural_form)),
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "music",
-		SPECIES_PERK_NAME = LANG("datum.0029bd24", null),
-		SPECIES_PERK_DESC = LANG("datum.cc772e06", list(plural_form)),
+		SPECIES_PERK_NAME = LANG("datum.0029bd24562642e1", null),
+		SPECIES_PERK_DESC = LANG("datum.cc772e0657dec8ea", list(plural_form)),
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "robot",
-		SPECIES_PERK_NAME = LANG("datum.45e4f320", null),
-		SPECIES_PERK_DESC = LANG("datum.e5d203a3", list(plural_form))
+		SPECIES_PERK_NAME = LANG("datum.45e4f320e23be05f", null),
+		SPECIES_PERK_DESC = LANG("datum.e5d203a323bf84f6", list(plural_form))
 	))
 
 	return perk_descriptions

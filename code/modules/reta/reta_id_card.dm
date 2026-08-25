@@ -49,7 +49,7 @@
 	var/mob/living/carbon/human/holder = get_id_holder()
 	if(holder)
 		playsound(holder, 'sound/machines/cryo_warning.ogg', 25, TRUE)
-		holder.balloon_alert(holder, LANG("obj.e05854b2", list(dept)))
+		holder.balloon_alert(holder, LANG("obj.e05854b23fb708bb", list(dept)))
 
 	// Enhanced logging
 	var/access_names = list()
@@ -70,8 +70,8 @@
 	// User feedback before clearing
 	var/mob/living/carbon/human/holder = get_id_holder()
 	if(holder)
-		holder.balloon_alert(holder, LANG("obj.96ee7a2c", list(dept)))
-		to_chat(holder, span_warning(LANG("obj.e7e8fd42", list(dept))))
+		holder.balloon_alert(holder, LANG("obj.96ee7a2c1b5239d3", list(dept)))
+		to_chat(holder, span_warning(LANG("obj.e7e8fd42aac7020e", list(dept))))
 
 	// Remove department's temporary access from the main access list
 	var/list/dept_access = reta_temp_access[dept]
@@ -111,8 +111,8 @@
 	// User feedback before clearing
 	var/mob/living/carbon/human/holder = get_id_holder()
 	if(holder)
-		holder.balloon_alert(holder, LANG("obj.eae77ee7", null))
-		to_chat(holder, span_warning(LANG("obj.9328cc61", null)))
+		holder.balloon_alert(holder, LANG("obj.eae77ee7d9d37b92", null))
+		to_chat(holder, span_warning(LANG("obj.9328cc61659aa88f", null)))
 
 	// Collect all temporary access flags for logging
 	var/list/all_temp_access = list()

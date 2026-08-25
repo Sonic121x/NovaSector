@@ -54,7 +54,7 @@
 		alert.name = "Queue Deletion"
 		alert.desc = "The server is resetting. Oblivion awaits."
 
-		to_chat(baddie, span_userdanger(LANG("obj.9648d43c", null)))
+		to_chat(baddie, span_userdanger(LANG("obj.9648d43c72651f4a", null)))
 
 
 /// Removes a specific threat - used when station spawning
@@ -130,7 +130,7 @@
 
 /// Oh boy - transports the antag station side
 /obj/machinery/quantum_server/proc/station_spawn(mob/living/antag, obj/machinery/byteforge/chosen_forge)
-	antag.balloon_alert(antag, LANG("obj.9ef11a33", null))
+	antag.balloon_alert(antag, LANG("obj.9ef11a33f0292426", null))
 	chosen_forge.setup_particles(angry = TRUE)
 	var/obj/machinery/announcement_system/aas = get_announcement_system(null, src, list(RADIO_CHANNEL_SUPPLY))
 	if (aas)
@@ -157,7 +157,7 @@
 		bitrunners_alive++
 		timeout *= 5
 	if(bitrunners_alive)
-		to_chat(antag, span_warning(LANG("obj.d276702a", list(bitrunners_alive))))
+		to_chat(antag, span_warning(LANG("obj.d276702a388b3b1c", list(bitrunners_alive))))
 
 	if(!do_after(antag, timeout) || QDELETED(chosen_forge) || QDELETED(antag) || QDELETED(src) || !is_ready || !is_operational)
 		chosen_forge.setup_particles()

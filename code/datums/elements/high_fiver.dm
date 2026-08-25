@@ -23,8 +23,8 @@
 	SIGNAL_HANDLER
 
 	offerer.visible_message(
-		span_notice(LANG("datum.39652e34", list(offerer, offerer.p_their()))),
-		span_notice(LANG("datum.fa3158e2", null)),
+		span_notice(LANG("datum.39652e3489560ca4", list(offerer, offerer.p_their()))),
+		span_notice(LANG("datum.fa3158e20f6e779e", null)),
 		vision_distance = 2,
 	)
 	offerer.apply_status_effect(/datum/status_effect/offering/no_item_received/high_five, source, /atom/movable/screen/alert/give/highfive)
@@ -51,7 +51,7 @@
 	var/descriptor = "high-[high_ten ? "ten" : "five"]"
 
 	if(open_hands_taker <= 0)
-		to_chat(taker, span_warning(LANG("datum.5a944a67", list(descriptor, offerer))))
+		to_chat(taker, span_warning(LANG("datum.5a944a6789647027", list(descriptor, offerer))))
 		taker.add_mood_event(descriptor, /datum/mood_event/high_five_full_hand) // not so successful now!
 		return COMPONENT_OFFER_INTERRUPT
 
@@ -60,22 +60,22 @@
 	taker.add_mob_memory(/datum/memory/high_five, deuteragonist = offerer, high_five_type = descriptor, high_ten = high_ten)
 
 	if(high_ten)
-		to_chat(taker, span_nicegreen(LANG("datum.5884409f", list(offerer))))
+		to_chat(taker, span_nicegreen(LANG("datum.5884409f501c6bec", list(offerer))))
 		offerer.visible_message(
-			span_notice(LANG("datum.41681855", list(taker, offerer))),
-			span_nicegreen(LANG("datum.d0fce5f3", list(taker))),
-			span_hear(LANG("datum.6c7f8149", null)),
+			span_notice(LANG("datum.4168185587f284df", list(taker, offerer))),
+			span_nicegreen(LANG("datum.d0fce5f31c9c95ca", list(taker))),
+			span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 			ignored_mobs = taker,
 		)
 
 		offerer.add_mood_event(descriptor, /datum/mood_event/high_ten)
 		taker.add_mood_event(descriptor, /datum/mood_event/high_ten)
 	else
-		to_chat(taker, span_nicegreen(LANG("datum.ab9cb292", list(offerer))))
+		to_chat(taker, span_nicegreen(LANG("datum.ab9cb2926156c147", list(offerer))))
 		offerer.visible_message(
-			span_notice(LANG("datum.61c9a265", list(taker, offerer))),
-			span_nicegreen(LANG("datum.7b8be00d", list(taker))),
-			span_hear(LANG("datum.6c7f8149", null)),
+			span_notice(LANG("datum.61c9a2658dcb66d7", list(taker, offerer))),
+			span_nicegreen(LANG("datum.7b8be00dbbb50d91", list(taker))),
+			span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 			ignored_mobs = taker,
 		)
 

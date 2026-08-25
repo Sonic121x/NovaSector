@@ -97,20 +97,20 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "moon",
-			SPECIES_PERK_NAME = LANG("datum.3c216cb8", null),
-			SPECIES_PERK_DESC = LANG("datum.735b18a4", null),
+			SPECIES_PERK_NAME = LANG("datum.3c216cb8339e58f9", null),
+			SPECIES_PERK_DESC = LANG("datum.735b18a420cc2f24", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "biohazard",
-			SPECIES_PERK_NAME = LANG("datum.869839ca", null),
-			SPECIES_PERK_DESC = LANG("datum.5c3a27c9", null),
+			SPECIES_PERK_NAME = LANG("datum.869839ca0a09fac1", null),
+			SPECIES_PERK_DESC = LANG("datum.5c3a27c94a9da7e1", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "tint",
-			SPECIES_PERK_NAME = LANG("datum.046e1fdf", null),
-			SPECIES_PERK_DESC = LANG("datum.152ea922", null),
+			SPECIES_PERK_NAME = LANG("datum.046e1fdfb0274006", null),
+			SPECIES_PERK_DESC = LANG("datum.152ea92292a24345", null),
 		),
 	)
 
@@ -123,8 +123,8 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "tint",
-		SPECIES_PERK_NAME = LANG("datum.5716883f", null),
-		SPECIES_PERK_DESC = LANG("datum.07fef1de", list(plural_form)),
+		SPECIES_PERK_NAME = LANG("datum.5716883f966b0bd5", null),
+		SPECIES_PERK_DESC = LANG("datum.07fef1de1d0a0f77", list(plural_form)),
 		),
 	)
 

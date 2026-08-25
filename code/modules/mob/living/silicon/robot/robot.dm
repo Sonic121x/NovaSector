@@ -177,11 +177,11 @@
 		return
 
 	if(wires.is_cut(WIRE_RESET_MODEL))
-		to_chat(src,span_userdanger(LANG("mob.ebe078e6", null)))
+		to_chat(src,span_userdanger(LANG("mob.ebe078e6ac5fa2b7", null)))
 		return
 
 	if(lockcharge == TRUE)
-		to_chat(src,span_userdanger(LANG("mob.fb386521", null)))
+		to_chat(src,span_userdanger(LANG("mob.fb386521159725d3", null)))
 		return
 
 	// NOVA EDIT START - Making the cyborg model list static to reduce how many times it's generated.
@@ -268,14 +268,14 @@
 
 /mob/living/silicon/robot/proc/toggle_ionpulse()
 	if(!ionpulse)
-		to_chat(src, span_notice(LANG("mob.149d67a8", null)))
+		to_chat(src, span_notice(LANG("mob.149d67a885e5fad0", null)))
 		return
 
 	if(!ion_trail)
 		ion_trail = new(src)
 
 	ionpulse_on = !ionpulse_on
-	to_chat(src, span_notice(LANG("mob.d1e9603e", list(ionpulse_on ? null :"de"))))
+	to_chat(src, span_notice(LANG("mob.d1e9603e363aa218", list(ionpulse_on ? null :"de"))))
 	if(ionpulse_on)
 		ion_trail.start()
 	else
@@ -284,12 +284,12 @@
 /mob/living/silicon/robot/get_status_tab_items()
 	. = ..()
 	if(cell)
-		. += LANG("mob.b1a7b653", list(display_energy(cell.charge), display_energy(cell.maxcharge)))
+		. += LANG("mob.b1a7b65343465100", list(display_energy(cell.charge), display_energy(cell.maxcharge)))
 	else
-		. += LANG("mob.36c17f5e", null)
+		. += LANG("mob.36c17f5e4c831e0b", null)
 
 	if(connected_ai)
-		. += LANG("mob.575291cf", list(connected_ai.name))
+		. += LANG("mob.575291cfa42e730f", list(connected_ai.name))
 
 /mob/living/silicon/robot/proc/alarm_triggered(datum/source, alarm_type, area/source_area)
 	SIGNAL_HANDLER
@@ -320,10 +320,10 @@
 ///Toggles the Cyborg's cover lock, user is provided only if it's someone else doing it (not the borg itself)
 /mob/living/silicon/robot/proc/toggle_cover(mob/user)
 	locked = !locked
-	balloon_alert(src, LANG("mob.79db4d42", list(locked ? "locked" : "unlocked")))
+	balloon_alert(src, LANG("mob.79db4d42235a62d4", list(locked ? "locked" : "unlocked")))
 	update_icons()
 	if(user)
-		balloon_alert(user, LANG("mob.6750ac57", list(emagged ? "lock glitches" : "[locked ? "locked" : "unlocked"]")))
+		balloon_alert(user, LANG("mob.6750ac577b8ab4f5", list(emagged ? "lock glitches" : "[locked ? "locked" : "unlocked"]")))
 	logevent("[emagged ? "ChÃ¥vÃis" : "Chassis"] cover lock has been [locked ? "engaged" : "released"]")
 
 /mob/living/silicon/robot/regenerate_icons()
@@ -501,7 +501,7 @@
 	. = ..()
 	if(lamp_enabled)
 		toggle_headlamp(TRUE)
-		balloon_alert(src, LANG("mob.a68aa180", null))
+		balloon_alert(src, LANG("mob.a68aa18052d86c36", null))
 	COOLDOWN_START(src, disabled_time, disrupt_duration)
 	return TRUE
 
@@ -518,7 +518,7 @@
 	lamp_functional = FALSE
 	playsound(src, 'sound/effects/footstep/glass_step.ogg', 50)
 	toggle_headlamp(TRUE)
-	to_chat(src, span_danger(LANG("mob.be4a660a", null)))
+	to_chat(src, span_danger(LANG("mob.be4a660a3d0861a0", null)))
 
 /**
  * Handles headlamp toggling, disabling, and color setting.
@@ -536,7 +536,7 @@
 /mob/living/silicon/robot/proc/toggle_headlamp(turn_off = FALSE, update_color = FALSE)
 	//if both lamp is enabled AND the update_color flag is on, keep the lamp on. Otherwise, if anything listed is true, disable the lamp.
 	if(!COOLDOWN_FINISHED(src, disabled_time))
-		balloon_alert(src, LANG("mob.492a03fe", null))
+		balloon_alert(src, LANG("mob.492a03fe8030d17e", null))
 		return FALSE
 
 	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || IS_UNCONSCIOUS_OR_CRIT(src) || low_power_mode))
@@ -609,7 +609,7 @@
 		removing.update_appearance()
 
 	else
-		to_chat(src, span_bolddanger(LANG("mob.4f95f26d", null)))
+		to_chat(src, span_bolddanger(LANG("mob.4f95f26d69f10b4b", null)))
 		ghostize()
 		stack_trace("Borg MMI lacked a brainmob")
 
@@ -632,7 +632,7 @@
 
 /mob/living/silicon/robot/can_perform_action(atom/target, action_bitflags)
 	if(lockcharge || low_power_mode)
-		to_chat(src, span_warning(LANG("mob.93b3c965", null)))
+		to_chat(src, span_warning(LANG("mob.93b3c96537cf2a59", null)))
 		return FALSE
 	return ..()
 
@@ -839,15 +839,15 @@
 	if(!user.temporarilyRemoveItemFromInventory(new_upgrade)) //calling the upgrade's dropped() proc /before/ we add action buttons
 		return FALSE
 	if(!new_upgrade.action(src, user))
-		to_chat(user, span_danger(LANG("mob.b68282e0", null)))
+		to_chat(user, span_danger(LANG("mob.b68282e00a5abe01", null)))
 		new_upgrade.forceMove(loc) //gets lost otherwise
 		return FALSE
-	to_chat(user, span_notice(LANG("mob.23c68f5b", list(src))))
+	to_chat(user, span_notice(LANG("mob.23c68f5b9fbd5ecc", list(src))))
 	add_to_upgrades(new_upgrade)
 
 ///Moves the upgrade inside the robot and registers relevant signals.
 /mob/living/silicon/robot/proc/add_to_upgrades(obj/item/borg/upgrade/new_upgrade)
-	to_chat(src, LANG("mob.1e8630b8", list(new_upgrade)))
+	to_chat(src, LANG("mob.1e8630b84e11bc61", list(new_upgrade)))
 	if(new_upgrade.one_use)
 		logevent("Firmware [new_upgrade] run successfully.")
 		qdel(new_upgrade)
@@ -996,10 +996,10 @@
 	if(incapacitated)
 		return FALSE
 	if(!HAS_TRAIT(target, TRAIT_CAN_MOUNT_CYBORGS))
-		target.visible_message(span_warning(LANG("mob.d388ba33", list(target, src))))
+		target.visible_message(span_warning(LANG("mob.d388ba332af804d6", list(target, src))))
 		return FALSE
 	if(model && !model.allow_riding)
-		target.visible_message(span_boldwarning(LANG("mob.d241b7c5", list(target, src))))
+		target.visible_message(span_boldwarning(LANG("mob.d241b7c51c24434c", list(target, src))))
 		return FALSE
 
 	return ..()
@@ -1014,7 +1014,7 @@
 
 /mob/living/silicon/robot/can_resist()
 	if(lockcharge)
-		balloon_alert(src, LANG("mob.024f9f0d", null))
+		balloon_alert(src, LANG("mob.024f9f0d6348dda1", null))
 		return FALSE
 	return ..()
 
@@ -1075,7 +1075,7 @@
 	.[/datum/job/cyborg::title] = minutes
 
 /mob/living/silicon/robot/proc/untip_roleplay()
-	to_chat(src, span_notice(LANG("mob.e76b35b7", null)))
+	to_chat(src, span_notice(LANG("mob.e76b35b76964765b", null)))
 
 /mob/living/silicon/robot/get_fire_overlay(stacks, on_fire)
 	return make_generic_fire_overlay()
@@ -1092,7 +1092,7 @@
 	if(!length(buckled_mobs))
 		return
 	for(var/mob/living/buckled_mob as anything in buckled_mobs)
-		buckled_mob.visible_message(span_warning(LANG("mob.9b2b8c30", list(buckled_mob, src, src))))
+		buckled_mob.visible_message(span_warning(LANG("mob.9b2b8c3079683aa8", list(buckled_mob, src, src))))
 		buckled_mob.Paralyze(1 SECONDS)
 		unbuckle_mob(buckled_mob)
 	do_sparks(5, 0, src)

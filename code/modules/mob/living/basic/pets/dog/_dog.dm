@@ -106,7 +106,7 @@
 ///Proc to run on a successful taming attempt
 /mob/living/basic/pet/dog/tamed(mob/living/tamer, atom/food)
 	. = ..()
-	visible_message(span_notice(LANG("mob.7f59ee93", list(src, tamer))))
+	visible_message(span_notice(LANG("mob.7f59ee93f277ee8a", list(src, tamer))))
 
 /// A dog bone fully heals a dog, and befriends it if it's not your friend.
 /obj/item/dog_bone

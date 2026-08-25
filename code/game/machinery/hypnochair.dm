@@ -96,7 +96,7 @@
 		return
 	victim = C
 	if(C.get_eye_protection() <= 0)
-		to_chat(C, span_warning(LANG("obj.f8116b08", null)))
+		to_chat(C, span_warning(LANG("obj.f8116b083498865a", null)))
 		C.become_blind(HYPNOCHAIR_TRAIT)
 		ADD_TRAIT(C, TRAIT_DEAF, HYPNOCHAIR_TRAIT)
 	interrogating = TRUE
@@ -127,7 +127,7 @@
 	update_appearance()
 	var/temp_trigger = trigger_phrase
 	trigger_phrase = "" //Erase evidence, in case the subject is able to look at the panel afterwards
-	audible_message(span_notice(LANG("obj.8978c8c2", list(src))))
+	audible_message(span_notice(LANG("obj.8978c8c209229561", list(src))))
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 
 	if(QDELETED(victim) || victim != occupant)
@@ -182,20 +182,20 @@
 /obj/machinery/hypnochair/container_resist_act(mob/living/user)
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice(LANG("obj.485787b2", list(user, src))), \
-		span_notice(LANG("obj.43ad33b1", list(src, DisplayTimeText(600)))), \
-		span_hear(LANG("obj.a1d9c573", list(src))))
+	user.visible_message(span_notice(LANG("obj.485787b2b8d67ec7", list(user, src))), \
+		span_notice(LANG("obj.43ad33b141e25411", list(src, DisplayTimeText(600)))), \
+		span_hear(LANG("obj.a1d9c5733c600b1c", list(src))))
 	if(do_after(user,(600), target = src))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || state_open)
 			return
-		user.visible_message(span_warning(LANG("obj.37696909", list(user, src))), \
-			span_notice(LANG("obj.81c31f6b", list(src))))
+		user.visible_message(span_warning(LANG("obj.37696909131e91b5", list(user, src))), \
+			span_notice(LANG("obj.81c31f6b9b00625a", list(src))))
 		open_machine()
 
 /obj/machinery/hypnochair/relaymove(mob/living/user, direction)
 	if(message_cooldown <= world.time)
 		message_cooldown = world.time + 50
-		to_chat(user, span_warning(LANG("obj.c4e897cb", list(src))))
+		to_chat(user, span_warning(LANG("obj.c4e897cb78099448", list(src))))
 
 
 /obj/machinery/hypnochair/mouse_drop_receive(atom/target, mob/user, params)

@@ -117,9 +117,9 @@
 	var/scope = isgun(parent) ? "scope in" : "zoom out"
 	switch(zoom_method)
 		if(ZOOM_METHOD_RIGHT_CLICK)
-			examine_list += span_notice(LANG("datum.80c831f8", list(scope)))
+			examine_list += span_notice(LANG("datum.80c831f8905a7e63", list(scope)))
 		if(ZOOM_METHOD_WIELD)
-			examine_list += span_notice(LANG("datum.56bb0cc0", list(scope)))
+			examine_list += span_notice(LANG("datum.56bb0cc03202d8e6", list(scope)))
 
 /**
  * We find and return the best target to hit on a given turf.
@@ -163,7 +163,7 @@
 	if(isnull(user.client))
 		return
 	if(HAS_TRAIT(user, TRAIT_USER_SCOPED))
-		user.balloon_alert(user, LANG("datum.0ca096fc", null))
+		user.balloon_alert(user, LANG("datum.0ca096fc49d43b96", null))
 		return
 	user.playsound_local(parent, 'sound/items/weapons/scope.ogg', 75, TRUE)
 	tracker = user.overlay_fullscreen("scope", /atom/movable/screen/fullscreen/cursor_catcher/scope, isgun(parent))

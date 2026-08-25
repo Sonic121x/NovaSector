@@ -47,18 +47,18 @@
 			continue
 		potential_targets["[human_to_check.real_name]"] = human_to_check
 
-	var/chosen_mob = tgui_input_list(user, LANG("datum.0f16b371", null), name, sort_list(potential_targets, GLOBAL_PROC_REF(cmp_text_asc)))
+	var/chosen_mob = tgui_input_list(user, LANG("datum.0f16b371653ea08e", null), name, sort_list(potential_targets, GLOBAL_PROC_REF(cmp_text_asc)))
 	if(isnull(chosen_mob))
 		return FALSE
 
 	var/mob/living/carbon/human/to_curse = potential_targets[chosen_mob]
 	if(QDELETED(to_curse))
-		loc.balloon_alert(user, LANG("datum.c24e891b", null))
+		loc.balloon_alert(user, LANG("datum.c24e891b35b7d714", null))
 		return FALSE
 
 	// Yes, you COULD curse yourself, not sure why but you could
 	if(to_curse == user)
-		var/are_you_sure = tgui_alert(user, LANG("datum.09f4d8cf", null), name, list("Yes", "No"))
+		var/are_you_sure = tgui_alert(user, LANG("datum.09f4d8cfe580f208", null), name, list("Yes", "No"))
 		if(are_you_sure != "Yes")
 			return FALSE
 
@@ -67,21 +67,21 @@
 
 	var/turf/curse_turf = get_turf(to_curse)
 	if(!is_valid_z_level(curse_turf, loc) || get_dist(curse_turf, loc) > max_range * 1.5) // Give a bit of leeway on max range for people moving around
-		loc.balloon_alert(user, LANG("datum.bcd15e0f", null))
+		loc.balloon_alert(user, LANG("datum.bcd15e0fbc1f8b88", null))
 		return FALSE
 
 	if(IS_HERETIC(to_curse) && to_curse != user)
-		to_chat(user, span_warning(LANG("datum.e29ffd22", list(to_curse.p_their(), to_curse))))
+		to_chat(user, span_warning(LANG("datum.e29ffd22de9dfe22", list(to_curse.p_their(), to_curse))))
 		return TRUE
 
 	if(to_curse.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY, charge_cost = 0))
-		to_chat(to_curse, span_warning(LANG("datum.117d2177", null)))
+		to_chat(to_curse, span_warning(LANG("datum.117d21774ca73c65", null)))
 		return TRUE
 
 	log_combat(user, to_curse, "cursed via heretic ritual", addition = "([name])")
 	var/obj/item/codex_cicatrix/morbus/cursed_book = locate() in selected_atoms
 	curse(to_curse, cursed_book)
-	to_chat(user, span_mansus(LANG("datum.52792f4a", list(name, to_curse.real_name))))
+	to_chat(user, span_mansus(LANG("datum.52792f4a8d4d12cd", list(name, to_curse.real_name))))
 
 	fingerprints = null
 	blood_samples = null
@@ -152,10 +152,10 @@
 
 /datum/heretic_knowledge/curse/paralysis/curse(mob/living/carbon/human/chosen_mob)
 	if(chosen_mob.usable_legs <= 0) // What're you gonna do, curse someone who already can't walk?
-		to_chat(chosen_mob, span_notice(LANG("datum.b08e7511", null)))
+		to_chat(chosen_mob, span_notice(LANG("datum.b08e7511bcd87b5d", null)))
 		return
 
-	to_chat(chosen_mob, span_danger(LANG("datum.1dddd5d3", list(chosen_mob.usable_legs == 1 ? "":"s"))))
+	to_chat(chosen_mob, span_danger(LANG("datum.1dddd5d38ef49c4c", list(chosen_mob.usable_legs == 1 ? "":"s"))))
 	chosen_mob.add_traits(list(TRAIT_PARALYSIS_L_LEG, TRAIT_PARALYSIS_R_LEG), type)
 	return ..()
 
@@ -165,7 +165,7 @@
 
 	chosen_mob.remove_traits(list(TRAIT_PARALYSIS_L_LEG, TRAIT_PARALYSIS_R_LEG), type)
 	if(chosen_mob.usable_legs > 1)
-		to_chat(chosen_mob, span_green(LANG("datum.7d77bab6", list(chosen_mob.usable_legs == 1 ? "":"s"))))
+		to_chat(chosen_mob, span_green(LANG("datum.7d77bab661ca7b47", list(chosen_mob.usable_legs == 1 ? "":"s"))))
 	return ..()
 
 //---- Curse of Corrosion
@@ -186,7 +186,7 @@
 	research_tree_icon_state = "curse_corrosion"
 
 /datum/heretic_knowledge/curse/corrosion/curse(mob/living/carbon/human/chosen_mob)
-	to_chat(chosen_mob, span_danger(LANG("datum.156c31c7", null)))
+	to_chat(chosen_mob, span_danger(LANG("datum.156c31c7ac9feb29", null)))
 	chosen_mob.apply_status_effect(/datum/status_effect/corrosion_curse)
 	return ..()
 
@@ -195,7 +195,7 @@
 		return
 
 	chosen_mob.remove_status_effect(/datum/status_effect/corrosion_curse)
-	to_chat(chosen_mob, span_green(LANG("datum.079139a3", null)))
+	to_chat(chosen_mob, span_green(LANG("datum.079139a3cf40f324", null)))
 	return ..()
 
 //---- Curse of Transmutation
@@ -214,7 +214,7 @@
 		if(initial(species_type.changesource_flags) & RACE_SWAP)
 			chooseable_races[species_type.name] = species_type
 
-	var/species_name = tgui_input_list(user, LANG("datum.6e03ad2e", null), LANG("datum.765f27f3", null), chooseable_races)
+	var/species_name = tgui_input_list(user, LANG("datum.6e03ad2e452c3da5", null), LANG("datum.765f27f3fd5bd57c", null), chooseable_races)
 	if(!species_name)
 		return FALSE
 	chosen_species = chooseable_races[species_name]
@@ -222,11 +222,11 @@
 
 /datum/heretic_knowledge/curse/transmutation/curse(mob/living/carbon/human/chosen_mob, obj/item/codex_cicatrix/morbus/cursing_book)
 	if(chosen_mob.dna.species == chosen_species)
-		to_chat(chosen_mob, span_warning(LANG("datum.897ec64d", null)))
+		to_chat(chosen_mob, span_warning(LANG("datum.897ec64d30172ba1", null)))
 		return
 	chosen_mob.apply_status_effect(/datum/status_effect/race_swap, chosen_species)
 	cursing_book.transmuted_victims += WEAKREF(chosen_mob)
-	to_chat(chosen_mob, span_danger(LANG("datum.303b3a63", null)))
+	to_chat(chosen_mob, span_danger(LANG("datum.303b3a63e2e2a739", null)))
 	return ..()
 
 /datum/heretic_knowledge/curse/transmutation/uncurse(mob/living/carbon/human/chosen_mob)

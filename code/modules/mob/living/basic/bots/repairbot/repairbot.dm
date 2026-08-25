@@ -115,19 +115,19 @@
 		var/obj/item/stack/our_sheet = locate(content) in src
 		if(isnull(our_sheet))
 			if(!user.transferItemToLoc(potential_stack, src))
-				user.balloon_alert(user, LANG("mob.edd6b8ce", null))
+				user.balloon_alert(user, LANG("mob.edd6b8cef2ef1cd1", null))
 				return
-			balloon_alert(user, LANG("mob.c638b4d2", null))
+			balloon_alert(user, LANG("mob.c638b4d25766050c", null))
 			return
 		if(our_sheet.amount >= our_sheet.max_amount)
-			user?.balloon_alert(user, LANG("mob.8abfbb3d", null))
+			user?.balloon_alert(user, LANG("mob.8abfbb3d836014f5", null))
 			return
 		if(!our_sheet.can_merge(potential_stack))
-			user?.balloon_alert(user, LANG("mob.2c7f60a8", null))
+			user?.balloon_alert(user, LANG("mob.2c7f60a89fc4d5be", null))
 			return
 		var/atom/movable/to_move = potential_stack.split_stack(min(our_sheet.max_amount - our_sheet.amount, potential_stack.amount))
 		to_move.forceMove(src)
-		balloon_alert(user, LANG("mob.c638b4d2", null))
+		balloon_alert(user, LANG("mob.c638b4d25766050c", null))
 		return
 
 /mob/living/basic/bot/repairbot/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -211,7 +211,7 @@
 
 /mob/living/basic/bot/repairbot/proc/attempt_use_stack(obj/item/stack_to_use, atom/target)
 	if(!isdatum(stack_to_use))
-		to_chat(src, span_warning(LANG("mob.7f54dec1", list(stack_to_use))))
+		to_chat(src, span_warning(LANG("mob.7f54dec179508f92", list(stack_to_use))))
 		return
 	stack_to_use.melee_attack_chain(src, target)
 
@@ -360,7 +360,7 @@
 	carried.set_bot(src)
 	if(carried.icon_state == "toolbox_default")
 		carried.add_atom_colour(toolbox_color, FIXED_COLOUR_PRIORITY)
-	user.visible_message(span_warning(LANG("mob.20aafc4f", list(user, src))))
+	user.visible_message(span_warning(LANG("mob.20aafc4f91ce14a7", list(user, src))))
 	user.put_in_hands(carried)
 
 /obj/item/carried_repairbot
@@ -392,7 +392,7 @@
 /obj/item/carried_repairbot/proc/release_bot(bypass_delete = FALSE)
 	if(!isnull(our_bot))
 		our_bot.forceMove(drop_location())
-		our_bot.balloon_alert_to_viewers(LANG("obj.92212a11", null))
+		our_bot.balloon_alert_to_viewers(LANG("obj.92212a119339d371", null))
 	if(!bypass_delete)
 		qdel(src)
 

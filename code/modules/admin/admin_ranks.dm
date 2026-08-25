@@ -139,7 +139,7 @@ GLOBAL_PROTECT(protected_ranks)
 ///	Return a list containing the backup data if they were loaded from the database backup json
 /proc/load_admin_ranks(dbfail, no_update)
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("_root.a8100776", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("_root.a81007763652992b", null)), confidential = TRUE)
 		return
 	GLOB.admin_ranks.Cut()
 	GLOB.protected_ranks.Cut()
@@ -341,7 +341,7 @@ GLOBAL_PROTECT(protected_ranks)
 	set waitfor = FALSE
 
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("_root.5c4866c8", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("_root.5c4866c87f306d02", null)), confidential = TRUE)
 		return
 
 	var/list/sql_ranks = list()
@@ -385,7 +385,7 @@ GLOBAL_PROTECT(protected_ranks)
 
 /proc/sync_admins_with_db()
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("_root.5c4866c8", null)))
+		to_chat(usr, span_adminprefix(LANG("_root.5c4866c87f306d02", null)))
 		return
 
 	if(CONFIG_GET(flag/admin_legacy_system) || !SSdbcore.IsConnected()) //we're already using legacy system so there's nothing to save
@@ -403,7 +403,7 @@ GLOBAL_PROTECT(protected_ranks)
 
 /proc/save_admin_backup()
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("_root.5c4866c8", null)))
+		to_chat(usr, span_adminprefix(LANG("_root.5c4866c87f306d02", null)))
 		return
 
 	if(CONFIG_GET(flag/admin_legacy_system)) //we're already using legacy system so there's nothing to save

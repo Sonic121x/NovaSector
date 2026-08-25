@@ -126,7 +126,7 @@
 // Additional examine text
 /obj/structure/chair/milking_machine/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.cfc49dbd", null))
+	. += span_notice(LANG("obj.cfc49dbd39fb2e28", null))
 
 /*
 *	APPEARANCE MANAGEMENT
@@ -148,7 +148,7 @@
 		return TRUE
 	machine_color = choice
 	update_icon()
-	to_chat(user, span_notice(LANG("obj.a06fb715", null)))
+	to_chat(user, span_notice(LANG("obj.a06fb7157abc08a5", null)))
 	return TRUE
 
 // Checking if we can use the menu
@@ -278,12 +278,12 @@
 		return ..()
 
 	if(affected_mob.arousal >= 60 && (current_mode != MILKING_PUMP_MODE_OFF) && (current_mode != MILKING_PUMP_MODE_LOW))
-		to_chat(affected_mob, span_purple(LANG("obj.c39ebd4b", null)))
+		to_chat(affected_mob, span_purple(LANG("obj.c39ebd4bdfdfdce1", null)))
 		return FALSE
 
-	affected_mob.visible_message(span_notice(LANG("obj.4d9602b6", list(affected_mob, affected_mob.p_them(), src))),\
-		span_notice(LANG("obj.bd5bbd6c", list(src))),\
-		span_hear(LANG("obj.4ea246f9", null)))
+	affected_mob.visible_message(span_notice(LANG("obj.4d9602b6fcfb4230", list(affected_mob, affected_mob.p_them(), src))),\
+		span_notice(LANG("obj.bd5bbd6c6da394e8", list(src))),\
+		span_hear(LANG("obj.4ea246f9d4c98190", null)))
 	unbuckle_mob(affected_mob)
 	return TRUE
 
@@ -320,17 +320,17 @@
 	if(beaker && new_beaker)
 		try_put_in_hand(beaker, user)
 		beaker = new_beaker
-		to_chat(user, span_notice(LANG("obj.e4a3d849", null)))
+		to_chat(user, span_notice(LANG("obj.e4a3d84930e339d3", null)))
 		return TRUE
 
 	if(beaker)
 		try_put_in_hand(beaker, user)
 		beaker = null
-		to_chat(user, span_notice(LANG("obj.4a9d437c", list(src))))
+		to_chat(user, span_notice(LANG("obj.4a9d437c7c812f7b", list(src))))
 
 	if(new_beaker)
 		beaker = new_beaker
-		to_chat(user, span_notice(LANG("obj.b2436965", list(src))))
+		to_chat(user, span_notice(LANG("obj.b243696537194e2b", list(src))))
 
 	return TRUE
 
@@ -407,13 +407,13 @@
 	current_mob.adjust_pain(pain_amounts[current_mode] * seconds_per_tick)
 
 /obj/structure/chair/milking_machine/click_ctrl_shift(mob/user)
-	to_chat(user, span_notice(LANG("obj.9014c0cc", list(src))))
+	to_chat(user, span_notice(LANG("obj.9014c0cc15e008c2", list(src))))
 	if(!do_after(user, 8 SECONDS, src))
-		to_chat(user, span_warning(LANG("obj.a485293d", list(src))))
+		to_chat(user, span_warning(LANG("obj.a485293d03b5855d", list(src))))
 		return
 
 	deconstruct(TRUE)
-	to_chat(user, span_notice(LANG("obj.fd5c1c1d", list(src))))
+	to_chat(user, span_notice(LANG("obj.fd5c1c1d92627348", list(src))))
 
 // Machine deconstruction process handler
 /obj/structure/chair/milking_machine/atom_deconstruct(disassembled)
@@ -589,7 +589,7 @@
 		return
 	if(action == "ejectCreature")
 		unbuckle_mob(current_mob)
-		to_chat(usr, span_notice(LANG("obj.a8a1f902", list(current_mob, src))))
+		to_chat(usr, span_notice(LANG("obj.a8a1f902ee486674", list(current_mob, src))))
 		return TRUE
 
 	if(action == "ejectBeaker")
@@ -601,28 +601,28 @@
 		current_mode = MILKING_PUMP_MODE_OFF
 		pump_state = MILKING_PUMP_STATE_OFF
 		update_all_visuals()
-		to_chat(usr, span_notice(LANG("obj.24bed793", list(src))))
+		to_chat(usr, span_notice(LANG("obj.24bed793620d8689", list(src))))
 		return TRUE
 
 	if(action == "setLowMode")
 		current_mode = MILKING_PUMP_MODE_LOW
 		pump_state = MILKING_PUMP_STATE_ON
 		update_all_visuals()
-		to_chat(usr, span_notice(LANG("obj.4e7ad275", list(src))))
+		to_chat(usr, span_notice(LANG("obj.4e7ad27540d98dff", list(src))))
 		return TRUE
 
 	if(action == "setMediumMode")
 		current_mode = MILKING_PUMP_MODE_MEDIUM
 		pump_state = MILKING_PUMP_STATE_ON
 		update_all_visuals()
-		to_chat(usr, span_notice(LANG("obj.b32e0682", list(src))))
+		to_chat(usr, span_notice(LANG("obj.b32e068295981a81", list(src))))
 		return TRUE
 
 	if(action == "setHardMode")
 		current_mode = MILKING_PUMP_MODE_HARD
 		pump_state = MILKING_PUMP_STATE_ON
 		update_all_visuals()
-		to_chat(usr, span_notice(LANG("obj.b339e16b", list(src))))
+		to_chat(usr, span_notice(LANG("obj.b339e16beda6d427", list(src))))
 		return TRUE
 
 	if(action == "unplug")
@@ -631,25 +631,25 @@
 		pump_state = MILKING_PUMP_STATE_OFF
 		current_selected_organ = null
 		update_all_visuals()
-		to_chat(usr, span_notice(LANG("obj.ebf01deb", null)))
+		to_chat(usr, span_notice(LANG("obj.ebf01debc19a9fce", null)))
 		return TRUE
 
 	if(action == "setBreasts")
 		current_selected_organ = current_breasts
 		update_all_visuals()
-		to_chat(usr, span_notice(LANG("obj.80cd6825", list(current_selected_organ))))
+		to_chat(usr, span_notice(LANG("obj.80cd68254dc3c56d", list(current_selected_organ))))
 		return TRUE
 
 	if(action == "setVagina")
 		current_selected_organ = current_vagina
 		update_all_visuals()
-		to_chat(usr, span_notice(LANG("obj.80cd6825", list(current_selected_organ))))
+		to_chat(usr, span_notice(LANG("obj.80cd68254dc3c56d", list(current_selected_organ))))
 		return TRUE
 
 	if(action == "setTesticles")
 		current_selected_organ = current_testicles
 		update_all_visuals()
-		to_chat(usr, span_notice(LANG("obj.80cd6825", list(current_selected_organ))))
+		to_chat(usr, span_notice(LANG("obj.80cd68254dc3c56d", list(current_selected_organ))))
 		return TRUE
 
 	if(action == "setMilk")
@@ -681,7 +681,7 @@
 
 /obj/structure/chair/milking_machine/examine(mob/user)
 	. = ..()
-	. += span_purple(LANG("obj.c1a93939", list(src)))
+	. += span_purple(LANG("obj.c1a93939eb9daced", list(src)))
 
 #undef MILKING_PUMP_MODE_OFF
 #undef MILKING_PUMP_MODE_LOW

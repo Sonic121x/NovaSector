@@ -32,9 +32,9 @@
 	// Let people who got afflicted know they're suddenly a matchstick
 	// But skip the caster - they'll know anyways.
 	if(victim != caster)
-		to_chat(victim, span_warning(LANG("datum.fb61db92", null)))
+		to_chat(victim, span_warning(LANG("datum.fb61db92dec6b720", null)))
 
 /datum/action/cooldown/spell/aoe/sacred_flame/cast(mob/living/cast_on)
 	. = ..()
 	cast_on.ignite_mob()
-	to_chat(cast_on, span_danger(LANG("datum.d4b10a6d", null)))
+	to_chat(cast_on, span_danger(LANG("datum.d4b10a6dbdf021c2", null)))

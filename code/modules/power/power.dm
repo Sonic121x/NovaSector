@@ -51,10 +51,10 @@
 	. = ..()
 	if(can_change_cable_layer)
 		if(!QDELETED(powernet))
-			. += span_notice(LANG("obj.cb2b8542", list(LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"]))))
+			. += span_notice(LANG("obj.cb2b8542d36e115c", list(LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"]))))
 		else
-			. += span_warning(LANG("obj.90491e4d", list(LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"]))))
-		. += span_notice(LANG("obj.6f005fa2", list(EXAMINE_HINT("multitool"))))
+			. += span_warning(LANG("obj.90491e4d4428331b", list(LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"]))))
+		. += span_notice(LANG("obj.6f005fa2f413be8f", list(EXAMINE_HINT("multitool"))))
 
 /obj/machinery/power/multitool_act(mob/living/user, obj/item/tool)
 	if(can_change_cable_layer)
@@ -65,12 +65,12 @@
 
 /// Called on multitool_act when we can change cable layers, override to add more conditions
 /obj/machinery/power/proc/cable_layer_act(mob/living/user, obj/item/tool)
-	var/choice = tgui_input_list(user, LANG("obj.3473b94a", null), LANG("obj.3925bd26", null), GLOB.cable_name_to_layer)
+	var/choice = tgui_input_list(user, LANG("obj.3473b94ac30a2276", null), LANG("obj.3925bd2623a78950", null), GLOB.cable_name_to_layer)
 	if(isnull(choice) || QDELETED(src) || QDELETED(user) || QDELETED(tool) || !user.Adjacent(src) || !user.is_holding(tool))
 		return ITEM_INTERACT_BLOCKING
 
 	cable_layer = GLOB.cable_name_to_layer[choice]
-	balloon_alert(user, LANG("obj.e6bec412", list(choice)))
+	balloon_alert(user, LANG("obj.e6bec4126100bee9", list(choice)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/proc/add_avail(amount)

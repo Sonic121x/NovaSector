@@ -46,4 +46,4 @@
 			buckled_human.adjust_arousal(buckled_arousal_penis * arousal_mult)
 			do_message = TRUE
 		if (do_message && SPT_PROB(message_chance, seconds_per_tick))
-			to_chat(buckled_human, span_userlove(LANG("obj.5a610d02", list(src))))
+			to_chat(buckled_human, span_userlove(LANG("obj.5a610d02be6238f6", list(src))))

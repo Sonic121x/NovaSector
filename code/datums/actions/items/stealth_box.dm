@@ -24,7 +24,7 @@
 		return FALSE
 	//Box closing from here on out.
 	if(!isturf(owner.loc)) //Don't let the player use this to escape mechs/welded closets.
-		to_chat(owner, span_warning(LANG("datum.94275088", null)))
+		to_chat(owner, span_warning(LANG("datum.94275088f5f9c890", null)))
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, box_cooldown))
 		return FALSE
@@ -52,7 +52,7 @@
 	var/obj/structure/closet/cardboard/agent/box = owner.loc
 	owner.playsound_local(box, 'sound/misc/box_deploy.ogg', 50, TRUE)
 	box.open()
-	owner.visible_message(span_suicide(LANG("datum.1e51eba1", list(owner, box, owner.p_they()))))
+	owner.visible_message(span_suicide(LANG("datum.1e51eba16305d051", list(owner, box, owner.p_they()))))
 	owner.throw_at(get_turf(owner))
 	if(isliving(owner))
 		var/mob/living/suicider = owner

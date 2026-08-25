@@ -18,7 +18,7 @@
 
 /datum/antagonist/wishgranter/greet()
 	. = ..()
-	to_chat(owner, LANG("datum.c6663482", null))
+	to_chat(owner, LANG("datum.c66634829f899c1d", null))
 	owner.announce_objectives()
 
 /datum/antagonist/wishgranter/proc/give_powers()

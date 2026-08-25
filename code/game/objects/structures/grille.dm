@@ -61,9 +61,9 @@
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	if(anchored)
-		. += span_notice(LANG("obj.2e0de192", list(EXAMINE_HINT("screws"), EXAMINE_HINT("cut"))))
+		. += span_notice(LANG("obj.2e0de192188ff4ec", list(EXAMINE_HINT("screws"), EXAMINE_HINT("cut"))))
 	else
-		. += span_notice(LANG("obj.3119bad7", list(EXAMINE_HINT("unscrewed"), EXAMINE_HINT("cut"))))
+		. += span_notice(LANG("obj.3119bad7b2baafa1", list(EXAMINE_HINT("unscrewed"), EXAMINE_HINT("cut"))))
 
 /obj/structure/grille/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -115,7 +115,7 @@
 			var/turf/T = loc
 
 			if(repair_grille())
-				balloon_alert(user, LANG("obj.5d0d7ecc", null))
+				balloon_alert(user, LANG("obj.5d0d7eccb4a76615", null))
 			if(!clear_tile(user))
 				return FALSE
 
@@ -126,7 +126,7 @@
 			//checks if its a valid build direction
 			if(!initial(window_path.fulltile))
 				if(!valid_build_direction(loc, user.dir, is_fulltile = FALSE))
-					balloon_alert(user, LANG("obj.6cae9ae5", null))
+					balloon_alert(user, LANG("obj.6cae9ae586914e25", null))
 					return FALSE
 
 			var/obj/structure/window/WD = new window_path(T, user.dir)
@@ -149,10 +149,10 @@
 	if(!unanchored_items_on_tile)
 		return TRUE
 
-	to_chat(user, span_notice(LANG("obj.6f96b2a3", list(unanchored_items_on_tile == 1 ? "[last_item_moved]" : "some things"))))
+	to_chat(user, span_notice(LANG("obj.6f96b2a330173186", list(unanchored_items_on_tile == 1 ? "[last_item_moved]" : "some things"))))
 
 	if(unanchored_items_on_tile - CLEAR_TILE_MOVE_LIMIT > 0)
-		to_chat(user, span_warning(LANG("obj.5466fff0", null)))
+		to_chat(user, span_warning(LANG("obj.5466fff03a02cd4b", null)))
 		return FALSE
 
 	return TRUE
@@ -187,7 +187,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_KICK)
-	user.visible_message(span_warning(LANG("obj.9180d57a", list(user, src))), null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_warning(LANG("obj.9180d57ad1fcbb70", list(user, src))), null, null, COMBAT_MESSAGE_RANGE)
 	log_combat(user, src, "hit")
 	if(!shock(user, 70))
 		take_damage(rand(5,10), BRUTE, MELEE, 1)
@@ -195,7 +195,7 @@
 /obj/structure/grille/attack_alien(mob/living/user, list/modifiers)
 	user.do_attack_animation(src)
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message(span_warning(LANG("obj.1bffef78", list(user, src))), null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_warning(LANG("obj.1bffef7842763222", list(user, src))), null, null, COMBAT_MESSAGE_RANGE)
 	if(!shock(user, 70))
 		take_damage(20, BRUTE, MELEE, 1)
 
@@ -228,8 +228,8 @@
 	if(!tool.use_tool(src, user, 0, volume=100))
 		return FALSE
 	set_anchored(!anchored)
-	user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] [src]."), \
-		span_notice(LANG("obj.1175c81a", list(anchored ? "fasten [src] to" : "unfasten [src] from"))))
+	user.visible_message(span_notice(LANG("obj.6afbb5c3aa5fc504", list(user, anchored ? "fastens" : "unfastens", src))), \
+		span_notice(LANG("obj.1175c81a0e157390", list(anchored ? "fasten [src] to" : "unfasten [src] from"))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/grille/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -239,8 +239,8 @@
 		if(shock(user, 90))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/stack/rods/grille_to_be = tool
-		user.visible_message(span_notice(LANG("obj.21144cca", list(user))), \
-							span_notice(LANG("obj.90815e95", null)))
+		user.visible_message(span_notice(LANG("obj.21144cca62bc1b24", list(user))), \
+							span_notice(LANG("obj.90815e95f2675e7a", null)))
 		repair_grille()
 		grille_to_be.use(1)
 		return ITEM_INTERACT_SUCCESS
@@ -249,22 +249,22 @@
 	if(!broken && (is_glass_sheet(tool) || istype(tool, /obj/item/stack/sheet/bronze)))
 		var/obj/item/stack/to_spend = tool
 		if (to_spend.get_amount() < 2)
-			to_chat(user, span_warning(LANG("obj.0f46f4af", null)))
+			to_chat(user, span_warning(LANG("obj.0f46f4af233d7b7f", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		var/dir_to_set = SOUTHWEST
 		if(!anchored)
-			to_chat(user, span_warning(LANG("obj.79102fe3", list(src))))
+			to_chat(user, span_warning(LANG("obj.79102fe36de4f058", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		for(var/obj/structure/window/competitor in loc)
-			to_chat(user, span_warning(LANG("obj.a3c6a7b7", null)))
+			to_chat(user, span_warning(LANG("obj.a3c6a7b7ec1e883d", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!clear_tile(user))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.1c659472", null)))
+		to_chat(user, span_notice(LANG("obj.1c659472f7175207", null)))
 		if(!do_after(user, 2 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 
@@ -286,6 +286,10 @@
 			building_window = new/obj/structure/window/reinforced/fulltile(drop_location()) //reinforced window
 		else if(istype(tool, /obj/item/stack/sheet/titaniumglass))
 			building_window = new/obj/structure/window/reinforced/shuttle(drop_location())
+		else if(istype(tool, /obj/item/stack/wall_filling/plastitaniumglass/basic))
+			building_window = new/obj/structure/window/reinforced/plasma/plastitanium/windowfill(drop_location())
+		else if(istype(tool, /obj/item/stack/wall_filling/plastitaniumglass/pod))
+			building_window = new/obj/structure/window/reinforced/shuttle/survival_pod(drop_location())
 		else if(istype(tool, /obj/item/stack/sheet/plastitaniumglass))
 			building_window = new/obj/structure/window/reinforced/plasma/plastitanium(drop_location())
 		else if(istype(tool, /obj/item/stack/sheet/bronze))
@@ -294,13 +298,18 @@
 		else if (istype(tool, /obj/item/stack/sheet/spaceshipglass))
 			building_window = new /obj/structure/window/reinforced/shuttle/spaceship(drop_location())
 		// NOVA EDIT ADDITION END
+		else if(istype(tool, /obj/item/stack/sheet/runed_metal))
+			building_window = new/obj/structure/window/cult/fulltile(drop_location())
 		else
 			building_window = new/obj/structure/window/fulltile(drop_location()) //normal window
 		building_window.setDir(dir_to_set)
 		building_window.set_anchored(FALSE)
 		building_window.state = 0
-		to_spend.use(2)
-		to_chat(user, span_notice(LANG("obj.7a67ae81", list(to_spend, src))))
+		if((istype(tool, /obj/item/stack/wall_filling)))
+			to_spend.use(1)
+		else
+			to_spend.use(2)
+		to_chat(user, span_notice(LANG("obj.7a67ae81e5981d09", list(to_spend, src))))
 		return ITEM_INTERACT_SUCCESS
 //window placing end
 

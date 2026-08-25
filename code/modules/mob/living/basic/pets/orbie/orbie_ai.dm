@@ -59,7 +59,7 @@
 	if(QDELETED(target))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
-	living_pawn.manual_emote(LANG("datum.669a6e56", list(target)))
+	living_pawn.manual_emote(LANG("datum.669a6e5636b18790", list(target)))
 	living_pawn.spin(spintime = 4, speed = 1)
 	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/mob, ClickOn), target)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED

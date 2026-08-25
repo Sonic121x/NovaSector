@@ -14,7 +14,7 @@
 /obj/machinery/computer/atmos_alert/examine(mob/user)
 	. = ..()
 	var/obj/item/circuitboard/computer/atmos_alert/my_circuit = circuit
-	. += span_info(LANG("obj.44843f37", list(my_circuit.station_only ? "track all station and mining alarms" : "track alarms on the same z-level")))
+	. += span_info(LANG("obj.44843f37fb31f6a7", list(my_circuit.station_only ? "track all station and mining alarms" : "track alarms on the same z-level")))
 
 /obj/machinery/computer/atmos_alert/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -44,11 +44,11 @@
 		if("clear")
 			var/zone = params["zone"]
 			if(zone in priority_alarms)
-				to_chat(usr, span_notice(LANG("obj.e5a6526c", list(zone))))
+				to_chat(usr, span_notice(LANG("obj.e5a6526caaf5e0d7", list(zone))))
 				priority_alarms -= zone
 				. = TRUE
 			if(zone in minor_alarms)
-				to_chat(usr, span_notice(LANG("obj.32477533", list(zone))))
+				to_chat(usr, span_notice(LANG("obj.324775330df20f14", list(zone))))
 				minor_alarms -= zone
 				. = TRUE
 	update_appearance()

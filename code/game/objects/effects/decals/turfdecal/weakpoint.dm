@@ -5,6 +5,8 @@
 #define CRACK_DELAY_CHANCE 33
 #define CRACK_LENGTH_DEFAULT 8
 
+GLOBAL_LIST_EMPTY(weakpoints_spawned)
+
 /obj/effect/weakpoint
 	name = "weakpoint crack"
 	desc = "A suspicious crack runs along the ground."
@@ -13,7 +15,7 @@
 	base_icon_state = "weakpoint"
 	layer = ABOVE_NORMAL_TURF_LAYER
 	move_resist = INFINITY
-	alpha = 0
+	alpha = 255
 
 	/// The required strength of explosion for a weakpoint to propogate
 	var/required_strength = EXPLODE_LIGHT
@@ -35,6 +37,8 @@
 
 /obj/effect/weakpoint/Initialize(mapload)
 	. = ..()
+	GLOB.weakpoints_spawned += src
+	alpha = 0
 	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE, INVISIBILITY_OBSERVER, use_anchor = TRUE)
 	RegisterSignal(src, COMSIG_TURF_CHANGE, PROC_REF(turf_changed))
 	register_context()
@@ -43,7 +47,7 @@
 /obj/effect/weakpoint/ex_act(severity, target)
 	. = ..()
 	if(severity < required_strength)
-		balloon_alert_to_hearers(LANG("obj.8149d1d9", null))
+		balloon_alert_to_hearers(LANG("obj.8149d1d95cb92b9f", null))
 		playsound(source = src, soundin = SFX_HULL_CREAKING, vol = 50, vary = TRUE, pressure_affected = FALSE, ignore_walls = TRUE)
 		return //return ominous sounds when we're under the threshold.
 
@@ -66,10 +70,10 @@
 	qdel(src)
 
 /obj/effect/weakpoint/welder_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice(LANG("obj.3419c731", list(src))))
+	to_chat(user, span_notice(LANG("obj.3419c73185b8ac2b", list(src))))
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 1, volume=50))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.ed5cd50a", list(src))))
+	to_chat(user, span_notice(LANG("obj.ed5cd50a1f61f695", list(src))))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -78,7 +82,7 @@
 		var/obj/item/stack/medical/wrap/sticky_tape/duct_tape = tool
 		if(!duct_tape.use(1))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.8d167dc0", list(src, duct_tape))))
+		to_chat(user, span_notice(LANG("obj.8d167dc0b813bdcd", list(src, duct_tape))))
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
 	return ..()
@@ -92,8 +96,12 @@
 
 /obj/effect/weakpoint/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.b5a61be0", list(src)))
-	. += span_warning(LANG("obj.6ea60a41", list(src)))
+	. += span_notice(LANG("obj.b5a61be063f04216", list(src)))
+	. += span_warning(LANG("obj.6ea60a414f123268", list(src)))
+
+/obj/effect/weakpoint/Destroy(force)
+	GLOB.weakpoints_spawned -= src
+	return ..()
 
 /**
  * Generates a list of turfs from the start location meandering along a randomized set of turns.
@@ -178,7 +186,7 @@
 		active_count++
 
 	notify_ghosts(
-		LANG("turf.1165d1e0", list(get_area(src))),
+		LANG("turf.1165d1e0956c5623", list(get_area(src))),
 		source = pick(new_cracks),
 		header = "Weakpoint created",
 		ghost_sound = 'sound/effects/hit_kick.ogg',

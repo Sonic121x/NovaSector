@@ -64,7 +64,7 @@
 					[checked_atom.p_their()] body begins to shine with a brilliant light before crystallizing from the inside out and joining \the [src]!"),
 				span_userdanger("The crystal mass lunges on you and hits you in the chest. As your vision is filled with a blinding light, you think to yourself \"Damn it.\""))
 		else if(istype(checked_atom, /obj/cascade_portal))
-			checked_atom.visible_message(span_userdanger(LANG("obj.34d43a08", list(checked_atom, src))))
+			checked_atom.visible_message(span_userdanger(LANG("obj.34d43a08a4cb65b6", list(checked_atom, src))))
 			playsound(get_turf(checked_atom), 'sound/effects/magic/charge.ogg', 50, TRUE)
 			playsound(get_turf(checked_atom), 'sound/effects/supermatter.ogg', 50, TRUE)
 			qdel(checked_atom)
@@ -78,9 +78,9 @@
 	SIGNAL_HANDLER
 
 	visible_message(
-		span_warning(LANG("obj.831cd4e0", list(hitting_projectile, src))),
+		span_warning(LANG("obj.831cd4e0a1c1b21a", list(hitting_projectile, src))),
 		null,
-		span_hear(LANG("obj.e2bdcbdd", null)),
+		span_hear(LANG("obj.e2bdcbdd647d1301", null)),
 	)
 
 	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
@@ -94,7 +94,7 @@
 	if(!iscarbon(user))
 		return
 	var/mob/living/carbon/jedi = user
-	to_chat(jedi, span_userdanger(LANG("obj.d2253e90", null)))
+	to_chat(jedi, span_userdanger(LANG("obj.d2253e90ef9fab41", null)))
 	jedi.ghostize()
 	var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in jedi.organs
 	if(rip_u)
@@ -152,9 +152,9 @@
  */
 /obj/cascade_portal/proc/consume(atom/movable/consumed_object)
 	if(isliving(consumed_object))
-		consumed_object.visible_message(span_danger(LANG("obj.41a7cab0", list(consumed_object, src, consumed_object.p_their()))),
-			span_userdanger(LANG("obj.c65958f0", list(src))),
-			span_hear(LANG("obj.f72a4908", null)))
+		consumed_object.visible_message(span_danger(LANG("obj.41a7cab0c3ba670c", list(consumed_object, src, consumed_object.p_their()))),
+			span_userdanger(LANG("obj.c65958f0a882f61a", list(src))),
+			span_hear(LANG("obj.f72a4908640b9968", null)))
 
 		var/list/arrival_turfs = get_area_turfs(/area/centcom/central_command_areas/evacuation)
 		var/turf/arrival_turf
@@ -173,7 +173,7 @@
 		new /obj/effect/particle_effect/sparks(consumed_object)
 		playsound(consumed_object, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	else if(isitem(consumed_object))
-		consumed_object.visible_message(span_danger(LANG("obj.f30b7966", list(consumed_object, src))), null,
-			span_hear(LANG("obj.931af088", null)))
+		consumed_object.visible_message(span_danger(LANG("obj.f30b796641671283", list(consumed_object, src))), null,
+			span_hear(LANG("obj.931af0884480098e", null)))
 
 		qdel(consumed_object)

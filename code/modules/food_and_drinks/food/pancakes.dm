@@ -52,14 +52,14 @@
 		return ..()
 
 	qdel(tool)
-	to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 	AddComponent(/datum/component/grillable, cook_result = newresult)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/food/pancakes/raw/examine(mob/user)
 	. = ..()
-	if(name == initial(name) || lang_unreverse_text(name) == initial(name)) // NOVA EDIT - i18n: name is reverse-localized at Initialize
-		. += span_notice(LANG("obj.14bb14ef", null))
+	if(name == initial(name))
+		. += span_notice(LANG("obj.14bb14efeaff5ce7", null))
 
 /obj/item/food/pancakes/blueberry
 	name = "blueberry pancake"
@@ -111,30 +111,30 @@
 		if(0)
 			desc = initial(desc)
 		if(1 to 2)
-			desc = LANG("obj.fd8d7811", null)
+			desc = LANG("obj.fd8d7811ba5f657e", null)
 		if(3 to 6)
-			desc = LANG("obj.8c4e6273", null)
+			desc = LANG("obj.8c4e62736c4dba14", null)
 		if(7 to 9)
-			desc = LANG("obj.5130d994", null)
+			desc = LANG("obj.5130d99401be17a1", null)
 		if(PANCAKE_MAX_STACK to INFINITY)
-			desc = LANG("obj.26b2bb44", null)
+			desc = LANG("obj.26b2bb44e525fda8", null)
 	. = ..()
 	if (pancakeCount)
 		for(var/obj/item/food/pancakes/ING in contents)
 			ingredients_listed += "[ING.name], "
-		. += LANG("obj.accf60d7", list(contents.len?"[ingredients_listed]":"no ingredient, ", initial(name)))
+		. += LANG("obj.accf60d7161bf688", list(contents.len?"[ingredients_listed]":"no ingredient, ", initial(name)))
 
 /obj/item/food/pancakes/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/food/pancakes))
 		var/obj/item/food/pancakes/pancake = tool
 		if((contents.len >= PANCAKE_MAX_STACK) || ((pancake.contents.len + contents.len) > PANCAKE_MAX_STACK))
-			to_chat(user, span_warning(LANG("obj.64a8d357", list(src))))
+			to_chat(user, span_warning(LANG("obj.64a8d357c88182f0", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(pancake, src))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.d1633fb2", list(pancake, src))))
+		to_chat(user, span_notice(LANG("obj.d1633fb2ee343105", list(pancake, src))))
 		pancake.name = initial(pancake.name)
 		contents += pancake
 		update_snack_overlays(pancake)

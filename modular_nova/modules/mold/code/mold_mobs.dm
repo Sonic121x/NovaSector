@@ -137,7 +137,7 @@
 
 	var/mob/living/carbon/disease_target = target
 	if(can_inject(disease_target))
-		to_chat(disease_target, span_danger(LANG("mob.59772bf0", list(src))))
+		to_chat(disease_target, span_danger(LANG("mob.59772bf0c6476b0d", list(src))))
 		disease_target.ForceContractDisease(new given_disease(), FALSE, TRUE)
 
 /datum/ai_controller/basic_controller/diseased_rat

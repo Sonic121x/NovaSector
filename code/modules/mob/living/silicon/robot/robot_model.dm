@@ -225,10 +225,10 @@
 			continue
 
 		storage_datum.energy += charger.materials.use_materials(list(SSmaterials.get_material(storage_datum.mat_type) = to_stock), action = "restocked", name = "units", user_data = ID_DATA(robot))
-		charger.balloon_alert(robot, LANG("obj.3c47112a", list(to_stock, initial(storage_datum.mat_type.name))))
+		charger.balloon_alert(robot, LANG("obj.3c47112a0310d93a", list(to_stock, initial(storage_datum.mat_type.name))))
 		playsound(charger, 'sound/items/weapons/gun/general/mag_bullet_insert.ogg', 50, vary = FALSE)
 		return
-	charger.balloon_alert(robot, LANG("obj.ebd3d28c", null))
+	charger.balloon_alert(robot, LANG("obj.ebd3d28c1bd0531c", null))
 	charger.sendmats = FALSE
 
 
@@ -273,7 +273,7 @@
 
 /obj/item/robot_model/proc/be_transformed_to(obj/item/robot_model/old_model, forced = FALSE)
 	if(HAS_TRAIT(robot, TRAIT_NO_TRANSFORM))
-		robot.balloon_alert(robot, LANG("obj.7428856d", null))
+		robot.balloon_alert(robot, LANG("obj.7428856d12b102c5", null))
 		return FALSE
 	if(islist(borg_skins) && !forced)
 		var/mob/living/silicon/robot/cyborg = loc
@@ -293,7 +293,7 @@
 		var/list/details = borg_skins[borg_skin]
 		//NOVA EDIT START
 		if(cyborg.hasExpanded && (((TRAIT_R_WIDE in details[SKIN_FEATURES]) && (TRAIT_R_WIDE in model_features)) || ((TRAIT_R_TALL in details[SKIN_FEATURES]) && (TRAIT_R_TALL in model_features))))
-			to_chat(cyborg, span_warning(LANG("obj.da14591a", null)))
+			to_chat(cyborg, span_warning(LANG("obj.da14591ad3ce56ac", null)))
 			return FALSE
 		//NOVA EDIT END
 		if(!isnull(details[SKIN_ICON_STATE]))
@@ -572,13 +572,13 @@
 
 	if(!buffer_on)
 		if(!COOLDOWN_FINISHED(src, toggle_cooldown))
-			robot_owner.balloon_alert(robot_owner, LANG("datum.3d010229", null))
+			robot_owner.balloon_alert(robot_owner, LANG("datum.3d0102298fe1d1ef", null))
 			return FALSE
 		COOLDOWN_START(src, toggle_cooldown, 4 SECONDS)
 		if(!allow_buffer_activate())
 			return FALSE
 
-		robot_owner.balloon_alert(robot_owner, LANG("datum.451d7cab", null))
+		robot_owner.balloon_alert(robot_owner, LANG("datum.451d7cab0fba89b6", null))
 		// Start the sound. it'll just last the 4 seconds it takes for us to rev up
 		wash_audio.start()
 		// We're just gonna shake the borg a bit. Not a ton, but just enough that it feels like the audio makes sense
@@ -596,9 +596,9 @@
 			return FALSE
 	else
 		if(!COOLDOWN_FINISHED(src, toggle_cooldown))
-			robot_owner.balloon_alert(robot_owner, LANG("datum.b5fb1763", null))
+			robot_owner.balloon_alert(robot_owner, LANG("datum.b5fb1763b64e7fec", null))
 			return FALSE
-		robot_owner.balloon_alert(robot_owner, LANG("datum.2c77a474", null))
+		robot_owner.balloon_alert(robot_owner, LANG("datum.2c77a474f326b868", null))
 
 	toggle_wash()
 
@@ -666,12 +666,12 @@
 /datum/action/toggle_buffer/proc/allow_buffer_activate()
 	var/mob/living/silicon/robot/robot_owner = owner
 	if(block_buffer_change)
-		robot_owner.balloon_alert(robot_owner, LANG("datum.6737c758", null))
+		robot_owner.balloon_alert(robot_owner, LANG("datum.6737c7580252ee21", null))
 		return FALSE
 
 	var/obj/item/reagent_containers/cup/bucket/our_bucket = bucket_ref?.resolve()
 	if(!buffer_on && our_bucket?.reagents?.total_volume < 0.1)
-		robot_owner.balloon_alert(robot_owner, LANG("datum.46f75ac3", null))
+		robot_owner.balloon_alert(robot_owner, LANG("datum.46f75ac3d10dfe74", null))
 		return FALSE
 	return TRUE
 
@@ -684,7 +684,7 @@
 	var/datum/reagents/reagents = our_bucket?.reagents
 
 	if(!reagents || reagents.total_volume < 0.1)
-		robot_owner.balloon_alert(robot_owner, LANG("datum.3068ced7", null))
+		robot_owner.balloon_alert(robot_owner, LANG("datum.3068ced7b56f8261", null))
 		deactivate_wash()
 		return
 
@@ -851,7 +851,7 @@
 
 /obj/item/robot_model/peacekeeper/do_transform_animation()
 	..()
-	to_chat(loc, span_userdanger(LANG("obj.be772dc5", null))) // NOVA EDIT CHANGE - Changes 1st sentence verbiage off ASIMOV/HUMAN Focus - ORIGINAL: "Under ASIMOV, you are an enforcer of the PEACE and preventer of HUMAN HARM."
+	to_chat(loc, span_userdanger(LANG("obj.be772dc5dda36ce8", null))) // NOVA EDIT CHANGE - Changes 1st sentence verbiage off ASIMOV/HUMAN Focus - ORIGINAL: "Under ASIMOV, you are an enforcer of the PEACE and preventer of HUMAN HARM."
 
 /obj/item/robot_model/security
 	name = "Security"
@@ -874,7 +874,7 @@
 
 /obj/item/robot_model/security/do_transform_animation()
 	..()
-	to_chat(loc, span_userdanger(LANG("obj.2af6053f", null)))
+	to_chat(loc, span_userdanger(LANG("obj.2af6053f425da0af", null)))
 
 /obj/item/robot_model/security/respawn_consumable(mob/living/silicon/robot/cyborg, coeff = 1)
 	..()

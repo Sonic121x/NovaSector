@@ -80,9 +80,18 @@ export function NifProgram(props: { src: NifProgramData }) {
               color="yellow"
               mr="5px"
             />
-            {!activation_cost
-              ? 'No activation cost'
-              : `${+(activation_cost / max_power) * 100}% per activation`}
+            {/* NOVA EDIT CHANGE - I18N: 百分比包成占位符，整条按 children 模板
+                `{0}% per activation` 进目录 —— 原来的模板字面量拼出的整串是运行期
+                产物、永远不是目录键，框架词恒为英文。
+                ORIGINAL: `${+(activation_cost / max_power) * 100}% per activation` */}
+            {!activation_cost ? (
+              'No activation cost'
+            ) : (
+              <>
+                <span>{+(activation_cost / max_power) * 100}</span>% per
+                activation
+              </>
+            )}
           </Table.Cell>
           <Table.Cell>
             <Icon
@@ -90,9 +99,15 @@ export function NifProgram(props: { src: NifProgramData }) {
               color="orange"
               mr="5px"
             />
-            {!active_cost
-              ? 'No active drain'
-              : `${(active_cost / max_power) * 100}% consumed while active`}
+            {/* NOVA EDIT CHANGE - I18N - ORIGINAL: `${(active_cost / max_power) * 100}% consumed while active` */}
+            {!active_cost ? (
+              'No active drain'
+            ) : (
+              <>
+                <span>{(active_cost / max_power) * 100}</span>% consumed while
+                active
+              </>
+            )}
           </Table.Cell>
           <Table.Cell>
             <Icon name="power-off" color={active ? 'green' : 'red'} mr="5px" />

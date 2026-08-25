@@ -15,7 +15,7 @@
 	resistance = -2
 	stage_speed = -3
 	transmittable = -2
-	level = 5
+	level = 8
 	severity = 5
 	base_message_chance = 50
 	symptom_delay = 52.5
@@ -28,6 +28,7 @@
 	)
 	/// At max stage: If FALSE, cause blindness. If TRUE, cause their eyes to fall out.
 	var/remove_eyes = FALSE
+	var/suppress_warning = FALSE
 
 /datum/symptom/visionloss/Start(datum/disease/advance/A)
 	. = ..()
@@ -49,10 +50,10 @@
 	switch(source_disease.stage)
 		if(1, 2)
 			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(infected_mob, span_warning(LANG("datum.ce8cbe9f", null)))
+				to_chat(infected_mob, span_warning(LANG("datum.ce8cbe9fdeca8a7b", null)))
 
 		if(3, 4)
-			to_chat(infected_mob, span_boldwarning(LANG("datum.e50633b6", null)))
+			to_chat(infected_mob, span_boldwarning(LANG("datum.e50633b6c2686792", null)))
 			infected_mob.set_eye_blur_if_lower(20 SECONDS)
 			eyes.apply_organ_damage(1)
 
@@ -67,15 +68,15 @@
 			if(prob(eyes.damage - eyes.low_threshold + 1))
 				if(remove_eyes)
 					infected_mob.visible_message(
-						span_warning(LANG("datum.d36b898e", list(infected_mob))),
-						span_userdanger(LANG("datum.41d46c34", null)),
+						span_warning(LANG("datum.d36b898ed6224447", list(infected_mob))),
+						span_userdanger(LANG("datum.41d46c3404609278", null)),
 					)
 					eyes.Remove(infected_mob)
 					eyes.forceMove(get_turf(infected_mob))
 
 				else if(!infected_mob.is_blind_from(EYE_DAMAGE))
-					to_chat(infected_mob, span_userdanger(LANG("datum.1319893e", null)))
+					to_chat(infected_mob, span_userdanger(LANG("datum.1319893e0cb595d5", null)))
 					eyes.apply_organ_damage(eyes.maxHealth)
 
 			else
-				to_chat(infected_mob, span_userdanger(LANG("datum.264e2a0d", null)))
+				to_chat(infected_mob, span_userdanger(LANG("datum.264e2a0d8f40ffba", null)))

@@ -37,7 +37,7 @@
 		radiation_pulse(get_turf(src), max_range = 2, threshold = RAD_EXTREME_INSULATION)
 
 /obj/item/nuke_core/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.fd87d5b8", list(user, src, user.p_them(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.fd87d5b859e84498", list(user, src, user.p_them(), user.p_theyre()))))
 	return TOXLOSS
 
 //nuke core box, for carrying the core
@@ -61,7 +61,7 @@
 	ncore.forceMove(src)
 	core = ncore
 	icon_state = "core_container_loaded"
-	to_chat(user, span_warning(LANG("obj.aed32796", null)))
+	to_chat(user, span_warning(LANG("obj.aed32796ebc7d8a8", null)))
 	addtimer(CALLBACK(src, PROC_REF(seal)), 5 SECONDS)
 	return TRUE
 
@@ -71,14 +71,14 @@
 		icon_state = "core_container_sealed"
 		playsound(src, 'sound/items/deconstruct.ogg', 60, TRUE)
 		if(ismob(loc))
-			to_chat(loc, span_warning(LANG("obj.508d5b07", list(src, core))))
+			to_chat(loc, span_warning(LANG("obj.508d5b071e05785c", list(src, core))))
 
 /obj/item/nuke_core_container/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/nuke_core))
 		return NONE
 
 	if(!user.temporarilyRemoveItemFromInventory(tool))
-		to_chat(user, span_warning(LANG("obj.3a8dccbd", list(tool))))
+		to_chat(user, span_warning(LANG("obj.3a8dccbd7d6b0798", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 
 	load(tool, user)
@@ -184,18 +184,18 @@
 	if(istype(tool, /obj/item/hemostat/supermatter))
 		var/obj/item/hemostat/supermatter/tongs = tool
 		if (tongs.sliver)
-			to_chat(user, span_warning(LANG("obj.bf256f4f", list(tongs))))
+			to_chat(user, span_warning(LANG("obj.bf256f4f6dfbb395", list(tongs))))
 			return ITEM_INTERACT_BLOCKING
 		forceMove(tongs)
 		tongs.sliver = src
 		tongs.update_appearance()
-		to_chat(user, span_notice(LANG("obj.ec4910a6", list(src, tongs))))
+		to_chat(user, span_notice(LANG("obj.ec4910a6ece94091", list(src, tongs))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/scalpel/supermatter) || istype(tool, /obj/item/nuke_core_container/supermatter/)) // we don't want it to dust
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.e1cf0050", list(src, src, tool))))
+	to_chat(user, span_notice(LANG("obj.e1cf00508741bbe3", list(src, src, tool))))
 	radiation_pulse(user, max_range = 2, threshold = RAD_EXTREME_INSULATION, chance = 40)
 	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
 	qdel(tool)
@@ -216,9 +216,9 @@
 	else
 		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)] via throw impact.")
 		investigate_log("has consumed [key_name(victim)] via throw impact.", INVESTIGATE_ENGINE)
-	victim.visible_message(span_danger(LANG("obj.e16012cf", list(victim, src))),\
-		span_userdanger(LANG("obj.3496da58", list(src, src))),\
-		span_hear(LANG("obj.458bfed2", null)))
+	victim.visible_message(span_danger(LANG("obj.e16012cf3c4302aa", list(victim, src))),\
+		span_userdanger(LANG("obj.3496da58e0e0927c", list(src, src))),\
+		span_hear(LANG("obj.458bfed29e23eaa7", null)))
 	victim.investigate_log("has been dusted by [src].", INVESTIGATE_DEATHS)
 	victim.dust()
 	radiation_pulse(src, max_range = 2, threshold = RAD_EXTREME_INSULATION, chance = 40)
@@ -229,9 +229,9 @@
 	..()
 	if(!isliving(user) || HAS_TRAIT(user, TRAIT_GODMODE)) //try to keep this in sync with supermatter's consume fail conditions
 		return FALSE
-	user.visible_message(span_danger(LANG("obj.188a090a", list(user, src, user.p_their()))),\
-			span_userdanger(LANG("obj.3d905c68", list(src))),\
-			span_hear(LANG("obj.458bfed2", null)))
+	user.visible_message(span_danger(LANG("obj.188a090a079bea6b", list(user, src, user.p_their()))),\
+			span_userdanger(LANG("obj.3d905c68e4a0defd", list(src))),\
+			span_hear(LANG("obj.458bfed29e23eaa7", null)))
 	radiation_pulse(user, max_range = 2, threshold = RAD_EXTREME_INSULATION, chance = 40)
 	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
 	user.investigate_log("has been dusted by [src].", INVESTIGATE_DEATHS)
@@ -254,7 +254,7 @@
 	T.sliver = null
 	T.icon_state = "supermatter_tongs"
 	icon_state = "core_container_loaded"
-	to_chat(user, span_warning(LANG("obj.aed32796", null)))
+	to_chat(user, span_warning(LANG("obj.aed32796ebc7d8a8", null)))
 	addtimer(CALLBACK(src, PROC_REF(seal)), 5 SECONDS)
 	return TRUE
 
@@ -264,7 +264,7 @@
 		icon_state = "core_container_sealed"
 		playsound(src, 'sound/items/Deconstruct.ogg', 60, TRUE)
 		if(ismob(loc))
-			to_chat(loc, span_warning(LANG("obj.7df8e4a5", list(src, sliver))))
+			to_chat(loc, span_warning(LANG("obj.7df8e4a5d36d7f45", list(src, sliver))))
 
 /obj/item/scalpel/supermatter
 	name = "supermatter scalpel"
@@ -320,7 +320,7 @@
 /obj/item/hemostat/supermatter/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum) // no instakill supermatter javelins
 	if(sliver)
 		sliver.forceMove(loc)
-		visible_message(span_notice(LANG("obj.05b5ac35", list(sliver, src))))
+		visible_message(span_notice(LANG("obj.05b5ac35dd5fbd66", list(sliver, src))))
 		sliver = null
 		update_appearance()
 	return ..()
@@ -343,9 +343,9 @@
 		qdel(AM)
 	if (user)
 		log_combat(user, AM, "consumed", sliver, "via [src]")
-		user.visible_message(span_danger(LANG("obj.09226cd2", list(user, AM, src))),\
-			span_userdanger(LANG("obj.e8594687", list(AM, src, AM, sliver))),\
-			span_hear(LANG("obj.458bfed2", null)))
+		user.visible_message(span_danger(LANG("obj.09226cd2eb7a8d6e", list(user, AM, src))),\
+			span_userdanger(LANG("obj.e859468736f59b33", list(AM, src, AM, sliver))),\
+			span_hear(LANG("obj.458bfed29e23eaa7", null)))
 		user.investigate_log("has been dusted by [src].", INVESTIGATE_DEATHS)
 		user.dust()
 	radiation_pulse(src, max_range = 2, threshold = RAD_EXTREME_INSULATION, chance = 40)

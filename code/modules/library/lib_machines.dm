@@ -114,20 +114,20 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 			return TRUE
 		if("search")
 			if(!prevent_db_spam())
-				say(LANG("obj.0d9e5574", null))
+				say(LANG("obj.0d9e557434debdb1", null))
 				return
 			INVOKE_ASYNC(src, PROC_REF(update_db_info))
 			return TRUE
 		if("switch_page")
 			if(!prevent_db_spam())
-				say(LANG("obj.0d9e5574", null))
+				say(LANG("obj.0d9e557434debdb1", null))
 				return
 			search_page = sanitize_page_input(params["page"], search_page, page_count)
 			INVOKE_ASYNC(src, PROC_REF(update_db_info))
 			return TRUE
 		if("clear_data") //The cap just walked in on your browsing, quick! delete it!
 			if(!prevent_db_spam())
-				say(LANG("obj.0d9e5574", null))
+				say(LANG("obj.0d9e557434debdb1", null))
 				return
 			title = initial(title)
 			author = initial(author)
@@ -499,7 +499,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 			return TRUE
 		if("upload")
 			if(!prevent_db_spam())
-				say(LANG("obj.0d9e5574", null))
+				say(LANG("obj.0d9e557434debdb1", null))
 				return
 			var/upload_category = params["category"]
 			if(!(upload_category in SSlibrary.upload_categories)) //Nice try
@@ -510,20 +510,20 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		if("news_post")
 			// We grey out the button UI-side, but let's just be safe to guard against spammy spammers.
 			if(!COOLDOWN_FINISHED(src, newscaster_cooldown))
-				say(LANG("obj.8b8371f4", null))
+				say(LANG("obj.8b8371f481f31b9a", null))
 				return
 			if(!GLOB.news_network)
-				say(LANG("obj.95ec6c6e", null))
+				say(LANG("obj.95ec6c6eb9859096", null))
 			var/datum/feed_channel/library_channel = GLOB.news_network.network_channels_by_name[LIBRARY_NEWSFEED]
 			if(isnull(library_channel))
 				GLOB.news_network.create_feed_channel(LIBRARY_NEWSFEED, "Library", "The official station book club!", null)
 
 			var/obj/machinery/libraryscanner/scan = get_scanner()
 			if(!scan)
-				say(LANG("obj.1c542547", null))
+				say(LANG("obj.1c5425476d83c633", null))
 				return
 			GLOB.news_network.submit_article(scan.cache.content, "[scan.cache.author]: [scan.cache.title]", LIBRARY_NEWSFEED, null)
-			say(LANG("obj.16d801e8", null))
+			say(LANG("obj.16d801e86098bd6b", null))
 			COOLDOWN_START(src, newscaster_cooldown, NEWSCASTER_COOLDOWN)
 			return TRUE
 		if("print_book")
@@ -554,19 +554,19 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 
 	var/obj/item/barcodescanner/scanner = tool
 	if(scanner.computer_ref?.resolve() == src)
-		balloon_alert(user, LANG("obj.7bf47bb9", null))
+		balloon_alert(user, LANG("obj.7bf47bb9ec09b549", null))
 		return ITEM_INTERACT_BLOCKING
 
 	scanner.computer_ref = WEAKREF(src)
-	balloon_alert(user, LANG("obj.05b26abe", null))
-	audible_message(span_hear(LANG("obj.4b0186e9", list(src))))
+	balloon_alert(user, LANG("obj.05b26abe9e08d631", null))
+	audible_message(span_hear(LANG("obj.4b0186e92ec02ffc", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/libraryconsole/bookmanagement/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!density || obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, LANG("obj.544a7fad", null))
+	balloon_alert(user, LANG("obj.544a7fadb748beed", null))
 	return TRUE
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/set_screen_state(new_state)
@@ -583,36 +583,36 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/print_forbidden_lore(mob/user)
 	can_spawn_lore = FALSE
 	new /obj/item/melee/cultblade/dagger(get_turf(src))
-	to_chat(user, span_warning(LANG("obj.d23917cd", null)))
-	user.visible_message(span_warning(LANG("obj.34409348", list(user, user.p_their(), user.p_they(), user.p_s(), user.p_they(), user.p_s()))), vision_distance = 2)
+	to_chat(user, span_warning(LANG("obj.d23917cd3ccf31db", null)))
+	user.visible_message(span_warning(LANG("obj.34409348ae9e31d4", list(user, user.p_their(), user.p_they(), user.p_s(), user.p_they(), user.p_s()))), vision_distance = 2)
 	if(ishuman(user))
 		var/mob/living/carbon/human/fool = user
 		fool.age = clamp(fool.age + 10, AGE_MIN, AGE_MAX) //Fuck you
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/shun_the_corp(mob/user)
 	can_spawn_lore = FALSE
-	to_chat(user, span_warning(LANG("obj.30599ec9", null)))
+	to_chat(user, span_warning(LANG("obj.30599ec9a87af75f", null)))
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/upload_from_scanner(upload_category)
 	var/obj/machinery/libraryscanner/scan = get_scanner()
 	if(!scan)
-		say(LANG("obj.16d40f2e", null))
+		say(LANG("obj.16d40f2e22f1a451", null))
 		return
 	if(!scan.cache)
-		say(LANG("obj.b645a84d", null))
+		say(LANG("obj.b645a84d3ca700f2", null))
 		return
 	if (!SSdbcore.Connect())
-		say(LANG("obj.b5711164", null))
+		say(LANG("obj.b57111644b9ad9ac", null))
 		return
 	var/datum/book_info/book = scan.cache
 	if(!book.title)
-		say(LANG("obj.70657d4b", null))
+		say(LANG("obj.70657d4bba536744", null))
 		return
 	if(!book.author)
-		say(LANG("obj.396aafe8", null))
+		say(LANG("obj.396aafe887750445", null))
 		return
 	if(!book.content)
-		say(LANG("obj.6da4173f", null))
+		say(LANG("obj.6da4173f6e897f98", null))
 		return
 	var/msg = "has uploaded the book titled [book.title], [length(book.content)] signs"
 	var/datum/db_query/query_library_upload = SSdbcore.NewQuery({"
@@ -621,19 +621,19 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 	"}, list("title" = book.title, "author" = book.author, "content" = book.content, "category" = upload_category, "ckey" = usr.ckey, "round_id" = GLOB.round_id))
 	if(!query_library_upload.Execute())
 		qdel(query_library_upload)
-		say(LANG("obj.3a377796", null))
+		say(LANG("obj.3a377796b095aae8", null))
 		return
 	usr.log_message(msg, LOG_GAME)
 	qdel(query_library_upload)
 	library_updated()
-	say(LANG("obj.3845563a", null))
+	say(LANG("obj.3845563a83577049", null))
 	update_db_info()
 
 /// Call this proc to attempt a print. It will return false if the print failed, true otherwise, longside some ux
 /// Accepts a callback to call when the print "finishes"
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/attempt_print(datum/callback/call_after)
 	if(!COOLDOWN_FINISHED(src, printer_cooldown))
-		say(LANG("obj.feadc081", null))
+		say(LANG("obj.feadc081d248d5e1", null))
 		return FALSE
 	COOLDOWN_START(src, printer_cooldown, PRINTER_COOLDOWN)
 	playsound(src, 'sound/machines/printer.ogg', 50)
@@ -657,7 +657,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/print_book(id)
 	if (!SSdbcore.Connect())
-		say(LANG("obj.b5711164", null))
+		say(LANG("obj.b57111644b9ad9ac", null))
 		can_connect = FALSE
 		return
 
@@ -667,7 +667,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 	)
 	if(!query_library_print.Execute())
 		qdel(query_library_print)
-		say(LANG("obj.eca8810b", null))
+		say(LANG("obj.eca8810bc6544c72", null))
 		return
 
 	while(query_library_print.NextRow())
@@ -683,7 +683,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 			fill.set_author(author, trusted = TRUE)
 			fill.set_content(content, trusted = TRUE)
 			printed_book.gen_random_icon_state()
-			visible_message(span_notice(LANG("obj.9dcdbbf0", list(src))))
+			visible_message(span_notice(LANG("obj.9dcdbbf0b8788cbc", list(src))))
 			log_paper("[key_name(usr)] has printed \"[title]\" (id: [id]) by [author] from a book management console.")
 		break
 	qdel(query_library_print)
@@ -759,7 +759,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 	switch(action)
 		if("scan")
 			if(cache?.compare(held_book.book_data))
-				say(LANG("obj.7e289cca", null))
+				say(LANG("obj.7e289cca2d569418", null))
 				return
 			cache = held_book.book_data.return_copy()
 			flick("bigscanner1", src)
@@ -809,7 +809,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 	if(isidcard(tool))
 		var/obj/item/card/id/idcard = tool
 		scanned_name = idcard.registered_name
-		balloon_alert(user, LANG("obj.98f57ecb", null))
+		balloon_alert(user, LANG("obj.98f57ecb62270a5f", null))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -819,19 +819,19 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		return
 
 	if(busy)
-		to_chat(user, span_warning(LANG("obj.4203cd0d", null)))
+		to_chat(user, span_warning(LANG("obj.4203cd0d78637a95", null)))
 		return
 
 	if(!scanned_name)
 		scanned_name = "unknown author"
-		say(LANG("obj.0a0ae235", null))
+		say(LANG("obj.0a0ae235513ac501", null))
 		return
 
 	if(!user.transferItemToLoc(draw_from, src))
 		return
 
-	user.visible_message(span_notice(LANG("obj.ed52d749", list(user, src))), span_notice(LANG("obj.d1a9c5cc", list(src))))
-	audible_message(span_hear(LANG("obj.126f54a1", list(src))))
+	user.visible_message(span_notice(LANG("obj.ed52d749b132b03b", list(user, src))), span_notice(LANG("obj.d1a9c5cc9bb93f52", list(src))))
+	audible_message(span_hear(LANG("obj.126f54a15e96e2e6", list(src))))
 	busy = TRUE
 	playsound(src, 'sound/machines/printer.ogg', 50)
 	flick("binder1", src)
@@ -846,7 +846,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		draw_from.forceMove(drop_location())
 		return
 
-	visible_message(span_notice(LANG("obj.af0b9ec6", list(src))))
+	visible_message(span_notice(LANG("obj.af0b9ec6282c93bd", list(src))))
 	var/obj/item/book/bound_book = new(loc)
 	bound_book.book_data.set_content_using_paper(draw_from)
 	bound_book.book_data.set_author(scanned_name, trusted = FALSE)

@@ -42,5 +42,5 @@
 		addressed_to = "[first_name(name)]"
 
 	add_raw_text("[addressed_to],")
-	add_raw_text(LANG("obj.351802d3", null))
-	add_raw_text(LANG("obj.64a52674", list(SIGNATURE_FONT, pick(GLOB.first_names), rand(2,12))))
+	add_raw_text(LANG("obj.351802d387e008f4", null))
+	add_raw_text(LANG("obj.64a526743fa21d3d", list(SIGNATURE_FONT, pick(GLOB.first_names), rand(2,12))))

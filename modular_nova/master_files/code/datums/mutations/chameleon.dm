@@ -17,7 +17,7 @@
 		return
 
 	ADD_TRAIT(user, TRAIT_CHAMELEON_SKIN, GENETIC_MUTATION)
-	to_chat(user, LANG("datum.f3acda6d", null))
+	to_chat(user, LANG("datum.f3acda6de5e7fa66", null))
 
 /datum/action/cooldown/spell/chameleon_skin_activate/proc/chameleon_skin_deactivate(mob/user = usr)
 	if(!HAS_TRAIT_FROM(user,TRAIT_CHAMELEON_SKIN, GENETIC_MUTATION))

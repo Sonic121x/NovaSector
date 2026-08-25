@@ -60,12 +60,12 @@
 
 /obj/item/broadcast_camera/attack_self_secondary(mob/user, modifiers)
 	. = ..()
-	broadcast_name = tgui_input_text(user = user, title = "Broadcast Name", message = "What will be the name of your broadcast?", default = "[broadcast_name]", max_length = MAX_CHARTER_LEN)
+	broadcast_name = tgui_input_text(user = user, title = LANG("obj.f1e2536ddbe16aed", null), message = LANG("obj.23f17299147acab3", null), default = "[broadcast_name]", max_length = MAX_CHARTER_LEN)
 
 /obj/item/broadcast_camera/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.4625f45c", list(broadcast_name)))
-	. += span_notice(LANG("obj.b64a0d65", list(active_microphone ? "On" : "Off")))
+	. += span_notice(LANG("obj.4625f45c5d5cfd4d", list(broadcast_name)))
+	. += span_notice(LANG("obj.b64a0d65e74d75f5", list(active_microphone ? "On" : "Off")))
 
 /obj/item/broadcast_camera/on_enter_storage(datum/storage/master_storage)
 	. = ..()
@@ -101,7 +101,7 @@
 
 	set_light_on(TRUE)
 	playsound(source = src, soundin = 'sound/machines/terminal/terminal_processing.ogg', vol = 20, vary = FALSE, ignore_walls = FALSE)
-	balloon_alert_to_viewers(LANG("obj.5834efd6", null))
+	balloon_alert_to_viewers(LANG("obj.5834efd6d1bb0393", null))
 
 /// When deactivating the camera
 /obj/item/broadcast_camera/proc/on_deactivating()
@@ -114,13 +114,13 @@
 
 	set_light_on(FALSE)
 	playsound(source = src, soundin = 'sound/machines/terminal/terminal_prompt_deny.ogg', vol = 20, vary = FALSE, ignore_walls = FALSE)
-	balloon_alert_to_viewers(LANG("obj.eba14af0", null))
+	balloon_alert_to_viewers(LANG("obj.eba14af0be201dcc", null))
 
 /obj/item/broadcast_camera/click_alt(mob/user)
 	active_microphone = !active_microphone
 
 	/// Text popup for letting the user know that the microphone has changed state
-	balloon_alert(user, LANG("obj.3e20605b", list(active_microphone ? "" : "de")))
+	balloon_alert(user, LANG("obj.3e20605b48cb359c", list(active_microphone ? "" : "de")))
 
 	///If the radio exists as an object, set its state accordingly
 	if(active)

@@ -74,8 +74,8 @@
 	for (var/mob/living/candidate in view(gust_distance, owner))
 		if(candidate == owner || candidate.faction_check_atom(owner))
 			continue
-		owner.visible_message(span_boldwarning(LANG("datum.2d0417ef", list(candidate))))
-		to_chat(candidate, span_userdanger(LANG("datum.3f16c9d8", null)))
+		owner.visible_message(span_boldwarning(LANG("datum.2d0417ef818dc109", list(candidate))))
+		to_chat(candidate, span_userdanger(LANG("datum.3f16c9d8230a3e75", null)))
 		var/dir_to_target = get_dir(get_turf(owner), get_turf(candidate))
 		var/throwtarget = get_edge_target_turf(target, dir_to_target)
 		candidate.safe_throw_at(throwtarget, range = 10, speed = 1, thrower = owner)

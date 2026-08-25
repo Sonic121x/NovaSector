@@ -571,11 +571,11 @@
 /obj/item/radio/examine(mob/user)
 	. = ..()
 	if (frequency && in_range(src, user))
-		. += span_notice(LANG("obj.3ae86b23", list(span_radio("[frequency/10]"))))
+		. += span_notice(LANG("obj.3ae86b232df12ba8", list(span_radio("[frequency/10]"))))
 	if (unscrewed)
-		. += span_notice(LANG("obj.99b57f84", null))
+		. += span_notice(LANG("obj.99b57f8410b7e835", null))
 	else
-		. += span_notice(LANG("obj.afa1344e", null))
+		. += span_notice(LANG("obj.afa1344ef71c169f", null))
 
 /obj/item/radio/update_overlays()
 	. = ..()
@@ -598,27 +598,27 @@
 	unscrewed = !unscrewed
 	tool.play_tool_sound(src, 10)
 	if(unscrewed)
-		to_chat(user, span_notice(LANG("obj.9b983d2b", list(src))))
+		to_chat(user, span_notice(LANG("obj.9b983d2b5fe9be87", list(src))))
 	else
-		to_chat(user, span_notice(LANG("obj.65612a44", list(src))))
+		to_chat(user, span_notice(LANG("obj.65612a44bf5a20a6", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/radio/screwdriver_act(mob/living/user, obj/item/tool)
 	switch(keylock)
 		if(RADIO_KEYSLOT_LOCKED)
-			to_chat(user, span_warning(LANG("obj.873bb41d", list(src))))
+			to_chat(user, span_warning(LANG("obj.873bb41d31911db4", list(src))))
 			return ITEM_INTERACT_BLOCKING
 		if(RADIO_KEYSLOT_EMAGGABLE_LOCK)
-			to_chat(user, span_warning(LANG("obj.be62367d", list(src))))
+			to_chat(user, span_warning(LANG("obj.be62367de27073ea", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 	var/list/removed_keys = remove_keys(user)
 	if(length(removed_keys) > 1)
-		to_chat(user, span_notice(LANG("obj.142b0102", list(src))))
+		to_chat(user, span_notice(LANG("obj.142b0102e289e690", list(src))))
 	else if(length(removed_keys) == 1)
-		to_chat(user, span_notice(LANG("obj.cbed3266", list(removed_keys[1], src))))
+		to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(removed_keys[1], src))))
 	else
-		to_chat(user, span_warning(LANG("obj.f62ac913", list(src))))
+		to_chat(user, span_warning(LANG("obj.f62ac91324bd5f4d", list(src))))
 	tool.play_tool_sound(src, 10)
 	return TRUE
 
@@ -642,20 +642,20 @@
 /// Attempts to install the given encryption key into the radio
 /obj/item/radio/proc/install_key(mob/living/user, obj/item/encryptionkey/key)
 	if(keyslot)
-		loc.balloon_alert(user, LANG("obj.f9866fda", null))
+		loc.balloon_alert(user, LANG("obj.f9866fda8950bd01", null))
 		return ITEM_INTERACT_BLOCKING
 	if(freqlock || keylock)
-		loc.balloon_alert(user, LANG("obj.77ed1723", null))
+		loc.balloon_alert(user, LANG("obj.77ed1723414d887b", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(key, src))
-		loc.balloon_alert(user, LANG("obj.b3c67530", null))
+		loc.balloon_alert(user, LANG("obj.b3c67530261e2e10", null))
 		return ITEM_INTERACT_BLOCKING
 
 	keyslot = key
 	recalculateChannels()
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
-	loc.balloon_alert(user, LANG("obj.40711314", null))
+	loc.balloon_alert(user, LANG("obj.40711314e0f6385a", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/radio/emp_act(severity)
@@ -665,14 +665,14 @@
 	emped++ //There's been an EMP; better count it
 	var/curremp = emped //Remember which EMP this was
 	if (listening && ismob(loc)) // if the radio is turned on and on someone's person they notice
-		to_chat(loc, span_warning(LANG("obj.7953334c", list(src))))
+		to_chat(loc, span_warning(LANG("obj.7953334c1b87261e", list(src))))
 	for (var/ch_name in channels)
 		channels[ch_name] = 0
 	set_on(FALSE)
 	addtimer(CALLBACK(src, PROC_REF(end_emp_effect), curremp), 20 SECONDS)
 
 /obj/item/radio/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.83e70013", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.83e700137f03028a", list(user, src, user.p_their(), user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/radio/proc/end_emp_effect(curremp)
@@ -685,7 +685,7 @@
 /obj/item/radio/proc/make_silly()
 	name = "\improper Little-Crew: Assistant's First Radio"
 	icon_state = "walkieian"
-	desc = LANG("obj.0a5eb76e", null)
+	desc = LANG("obj.0a5eb76e3d0258de", null)
 	overlay_speaker_idle = null
 	overlay_mic_idle = null
 	overlay_mic_active = null

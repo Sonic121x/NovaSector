@@ -32,9 +32,9 @@
 	switch(disease.stage)
 		if(5)
 			ADD_TRAIT(head, TRAIT_DISFIGURED, DISEASE_TRAIT)
-			victim.visible_message(span_warning(LANG("datum.1fe1ec9b", list(victim))), span_notice(LANG("datum.ec546e6a", null)))
+			victim.visible_message(span_warning(LANG("datum.1fe1ec9ba8cd46c9", list(victim))), span_notice(LANG("datum.ec546e6a7d99f589", null)))
 		else
-			victim.visible_message(span_warning(LANG("datum.988e04d6", list(victim))), span_notice(LANG("datum.098e19b1", null)))
+			victim.visible_message(span_warning(LANG("datum.988e04d6021c632f", list(victim))), span_notice(LANG("datum.098e19b164ef3c8e", null)))
 
 
 /datum/symptom/disfiguration/End(datum/disease/advance/disease)

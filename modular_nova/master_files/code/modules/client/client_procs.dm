@@ -2,7 +2,7 @@
 ////  Toggles Selected quirks on selected mobs
 /client/proc/toggle_quirk(mob/living/carbon/human/selected_mob)
 	if (!istype(selected_mob))
-		to_chat(usr, LANG("client.7d5ef419", null))
+		to_chat(usr, LANG("client.7d5ef419b6dc3426", null))
 		return
 
 	var/list/options = list("Clear"="Clear")
@@ -11,10 +11,10 @@
 		var/qname = initial(applicable_quirk.name)
 		options[selected_mob.has_quirk(applicable_quirk) ? "[qname] (Remove)" : "[qname] (Add)"] = applicable_quirk
 
-	var/result = tgui_input_list(usr, LANG("client.b1be79e5", null), LANG("client.dbe7a3d7", null), options)
+	var/result = tgui_input_list(usr, LANG("client.b1be79e5649e97ba", null), LANG("client.dbe7a3d7aa20fd69", null), options)
 
 	if(QDELETED(selected_mob))
-		to_chat(usr, LANG("client.4068a4c3", null))
+		to_chat(usr, LANG("client.4068a4c39ab7926b", null))
 		return
 
 	if(result)
@@ -31,7 +31,7 @@
 ////  "Teaches" Martial arts to the selected mob
 /client/proc/teach_martial_art(mob/living/carbon/selected_mob)
 	if (!istype(selected_mob))
-		to_chat(usr, LANG("client.5519505c", null))
+		to_chat(usr, LANG("client.5519505c2d10dd12", null))
 		return
 
 	var/list/artpaths = subtypesof(/datum/martial_art)
@@ -39,12 +39,12 @@
 	for(var/martial_art_skill in artpaths)
 		var/datum/martial_art/martial_skill = martial_art_skill
 		artnames[initial(martial_skill.name)] = martial_skill
-	var/result = tgui_input_list(usr, LANG("client.59620913", null), LANG("client.918a4230", null), artnames)
+	var/result = tgui_input_list(usr, LANG("client.5962091364ccf470", null), LANG("client.918a4230a25a86ef", null), artnames)
 	if(isnull(result))
 		return
 
 	if(QDELETED(selected_mob))
-		to_chat(usr, LANG("client.4068a4c3", null))
+		to_chat(usr, LANG("client.4068a4c39ab7926b", null))
 		return
 	if(result)
 		var/chosenart = artnames[result]
@@ -56,9 +56,9 @@
 ////  Sets species of the selected client
 /client/proc/set_species(mob/living/carbon/human/selected_mob)
 	if (istype(selected_mob))
-		var/result = tgui_input_list(usr, LANG("client.ae3418a8", null),LANG("client.85a5d525", null), GLOB.species_list)
+		var/result = tgui_input_list(usr, LANG("client.ae3418a89c0ef66d", null),LANG("client.85a5d525356ee5fa", null), GLOB.species_list)
 		if(QDELETED(selected_mob))
-			to_chat(usr, LANG("client.4068a4c3", null))
+			to_chat(usr, LANG("client.4068a4c39ab7926b", null))
 			return
 		if(result)
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [selected_mob] to [result]")

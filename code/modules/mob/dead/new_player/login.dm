@@ -31,11 +31,11 @@
 		to_chat(src, "<div class=\"motd\">[motd]</div>", handle_whitespace=FALSE)
 
 	if(GLOB.admin_notice)
-		to_chat(src, span_notice(LANG("mob.1a3c22d3", list(GLOB.admin_notice))))
+		to_chat(src, span_notice(LANG("mob.1a3c22d3931861cd", list(GLOB.admin_notice))))
 
 	var/spc = CONFIG_GET(number/soft_popcap)
 	if(spc && living_player_count() >= spc)
-		to_chat(src, span_notice(LANG("mob.d3f06be8", list(CONFIG_GET(string/soft_popcap_message)))))
+		to_chat(src, span_notice(LANG("mob.d3f06be87ec29c35", list(CONFIG_GET(string/soft_popcap_message)))))
 
 	add_sight(SEE_TURFS)
 
@@ -55,7 +55,7 @@
 
 	if(SSticker.current_state < GAME_STATE_SETTING_UP)
 		var/tl = SSticker.GetTimeLeft()
-		to_chat(src, LANG("mob.96b99a07", list(tl > 0 ? "in about [DisplayTimeText(tl)]" : "soon")))
+		to_chat(src, LANG("mob.96b99a079b65c40b", list(tl > 0 ? "in about [DisplayTimeText(tl)]" : "soon")))
 
 	if(GLOB.unrecommended_builds[num2text(client.byond_build)])
 		INVOKE_ASYNC(src, PROC_REF(unrcommended_build_alert))
@@ -64,4 +64,4 @@
 	var/warning = "Hey! The build of byond you are running ([client.byond_build]) has one or more potential issues that may cause major gameplay disruptions.\n\n\
 		You may continue to play, but be aware you may encounter the following issue while playing:\n\"[GLOB.unrecommended_builds[num2text(client.byond_build)]]\"\n\n\
 		If possible, we recommend updating your BYOND version.\nIf you are on the latest version, download an earlier release instead from www.byond.com/download/build."
-	alert(src, warning, LANG("mob.e0b5b8ba", null), "OK")
+	alert(src, warning, LANG("mob.e0b5b8ba6d0bedc5", null), "OK")

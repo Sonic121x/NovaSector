@@ -30,10 +30,10 @@
 	. = ..()
 
 	if(covered)
-		. += span_notice(LANG("turf.5415cbef", null))
+		. += span_notice(LANG("turf.5415cbeff4717a24", null))
 	else
-		. += span_notice(LANG("turf.348d6a27", null))
-		. += span_notice(LANG("turf.ff9d66d1", null))
+		. += span_notice(LANG("turf.348d6a274fa3bce8", null))
+		. += span_notice(LANG("turf.ff9d66d17aebc7c4", null))
 
 /turf/open/floor/catwalk_floor/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -61,7 +61,7 @@
 
 /turf/open/floor/catwalk_floor/crowbar_act(mob/user, obj/item/crowbar)
 	if(covered)
-		user.balloon_alert(user, LANG("turf.627322fd", null))
+		user.balloon_alert(user, LANG("turf.627322fda424d134", null))
 		return FALSE
 	. = ..()
 

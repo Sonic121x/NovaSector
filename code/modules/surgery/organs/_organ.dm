@@ -204,7 +204,7 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 
 	if(HAS_MIND_TRAIT(user, TRAIT_ENTRAILS_READER) || isobserver(user))
 		if(HAS_TRAIT(src, TRAIT_CLIENT_STARTING_ORGAN))
-			. += span_info(LANG("obj.ecb75485", null))
+			. += span_info(LANG("obj.ecb7548563c55668", null))
 
 	if(organ_flags & ORGAN_FAILING)
 		. += span_warning("[src] [failing_desc]")
@@ -212,9 +212,9 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 
 	if(damage > high_threshold)
 		if(IS_ROBOTIC_ORGAN(src))
-			. += span_warning(LANG("obj.24cae1f3", list(src)))
+			. += span_warning(LANG("obj.24cae1f3eda5faf1", list(src)))
 			return
-		. += span_warning(LANG("obj.18314176", list(src)))
+		. += span_warning(LANG("obj.183141768d6a94d3", list(src)))
 
 /// Returns a line to be displayed regarding valid insertion zones
 /obj/item/organ/proc/zones_tip()
@@ -529,9 +529,9 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 	if(!HAS_TRAIT(eater, TRAIT_READY_TO_OPERATE))
 		return NONE
 	if(eater == feeder)
-		to_chat(feeder, span_warning(LANG("obj.56846e55", list(source))))
+		to_chat(feeder, span_warning(LANG("obj.56846e55adba2110", list(source))))
 	else
-		to_chat(feeder, span_warning(LANG("obj.68da28d4", list(source, eater))))
+		to_chat(feeder, span_warning(LANG("obj.68da28d469c85c9c", list(source, eater))))
 	return BLOCK_EAT_ATTEMPT
 
 /// Get all possible organ slots by checking every organ, and then store it and give it whenever needed

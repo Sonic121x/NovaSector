@@ -216,7 +216,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 	if (shock(user, 50))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.6e0b244d", list(user))), span_notice(LANG("obj.85b64017", null)))
+	user.visible_message(span_notice(LANG("obj.6e0b244d48650744", list(user))), span_notice(LANG("obj.85b640174740057b", null)))
 	investigate_log("was cut by [key_name(usr)] in [AREACOORD(src)]", INVESTIGATE_WIRES)
 	deconstruct()
 	return ITEM_INTERACT_SUCCESS
@@ -527,7 +527,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 
 /obj/item/stack/cable_coil/examine(mob/user)
 	. = ..()
-	. += LANG("obj.6d90d850", null)
+	. += LANG("obj.6d90d8503cc080ca", null)
 
 /obj/item/stack/cable_coil/update_name()
 	if(novariants)
@@ -539,7 +539,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 	if(novariants)
 		return
 	. = ..()
-	desc = LANG("obj.a89449cb", list((amount < 3) ? "piece" : "coil"))
+	desc = LANG("obj.a89449cb94b0ff58", list((amount < 3) ? "piece" : "coil"))
 
 /obj/item/stack/cable_coil/proc/set_cable_color(new_color)
 	color = GLOB.cable_colors[new_color]
@@ -555,16 +555,16 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 
 /obj/item/stack/cable_coil/suicide_act(mob/living/user)
 	if(locate(/obj/structure/chair/stool) in get_turf(user))
-		user.visible_message(span_suicide(LANG("obj.a4a763c0", list(user, src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.a4a763c0771f3e3d", list(user, src, user.p_theyre()))))
 	else
-		user.visible_message(span_suicide(LANG("obj.2a557471", list(user, user.p_them(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.2a557471bd55eaf0", list(user, user.p_them(), src, user.p_theyre()))))
 	return OXYLOSS
 
 /obj/item/stack/cable_coil/proc/check_menu(mob/living/user)
 	if(!istype(user))
 		return FALSE
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning(LANG("obj.e8ba50af", null)))
+		to_chat(user, span_warning(LANG("obj.e8ba50af79992c6d", null)))
 		return FALSE
 	if(user.incapacitated || !user.Adjacent(src))
 		return FALSE
@@ -611,7 +611,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 			target_layer = CABLE_LAYER_3
 		if("Multilayer cable hub")
 			name = "multilayer cable hub"
-			desc = LANG("obj.700bc0b5", null)
+			desc = LANG("obj.700bc0b528614f20", null)
 			icon = 'icons/obj/pipes_n_cables/structures.dmi'
 			icon_state = "cable_bridge"
 			novariants = TRUE
@@ -620,7 +620,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 			target_layer = CABLE_LAYER_2
 		if("Multi Z layer cable hub")
 			name = "multi z layer cable hub"
-			desc = LANG("obj.d52d2ab4", null)
+			desc = LANG("obj.d52d2ab45c8423c1", null)
 			icon = 'icons/obj/pipes_n_cables/structures.dmi'
 			icon_state = "cablerelay-broken-cable"
 			novariants = TRUE
@@ -651,8 +651,8 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 
 /obj/item/stack/cable_coil/proc/try_heal_loop(atom/interacting_with, mob/living/user, repeating = FALSE)
 	var/mob/living/carbon/human/attacked_humanoid = interacting_with
-	var/obj/item/clothing/under/uniform = attacked_humanoid.w_uniform
-	if(!istype(uniform) || uniform.repair_sensors(user))
+
+	if(astype(attacked_humanoid.w_uniform, /obj/item/clothing/under)?.repair_sensors(user))
 		return ITEM_INTERACT_SUCCESS
 
 	var/obj/item/bodypart/affecting = attacked_humanoid.get_bodypart(check_zone(user.zone_selected))
@@ -660,11 +660,11 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 		return NONE
 
 	if (!affecting.burn_dam)
-		balloon_alert(user, LANG("obj.aca69bd8", null))
+		balloon_alert(user, LANG("obj.aca69bd8ad34eb10", null))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.78934db0", list(user, attacked_humanoid == user ? user.p_their() : "[attacked_humanoid]'s", affecting.name))),
-		span_notice(LANG("obj.ddb7d553", list(attacked_humanoid == user ? "your" : "[attacked_humanoid]'s", affecting.name))))
+	user.visible_message(span_notice(LANG("obj.78934db067cefedc", list(user, attacked_humanoid == user ? user.p_their() : "[attacked_humanoid]'s", affecting.name))),
+		span_notice(LANG("obj.ddb7d553243966bb", list(attacked_humanoid == user ? "your" : "[attacked_humanoid]'s", affecting.name))))
 
 	var/use_delay = repeating ? 1 SECONDS : 0
 	if(user == attacked_humanoid)
@@ -695,20 +695,20 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 		return
 
 	if(!isturf(target_turf) || target_turf.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !target_turf.can_have_cabling())
-		to_chat(user, span_warning(LANG("obj.a9de4bb0", null)))
+		to_chat(user, span_warning(LANG("obj.a9de4bb0fd6011df", null)))
 		return
 
 	if(get_amount() < 1) // Out of cable
-		to_chat(user, span_warning(LANG("obj.0626178f", null)))
+		to_chat(user, span_warning(LANG("obj.0626178f1c72a5e0", null)))
 		return
 
 	if(get_dist(target_turf,user) > 1) // Too far
-		to_chat(user, span_warning(LANG("obj.d812aa05", null)))
+		to_chat(user, span_warning(LANG("obj.d812aa05bb7bf22e", null)))
 		return
 
 	for(var/obj/structure/cable/old_cable in target_turf)
 		if(old_cable.cable_layer & target_layer)
-			to_chat(user, span_warning(LANG("obj.99890162", null)))
+			to_chat(user, span_warning(LANG("obj.99890162bf4c7d5e", null)))
 			return
 
 	var/obj/structure/cable/new_cable = new target_type(target_turf)
@@ -798,9 +798,9 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 
 /obj/structure/cable/multilayer/examine(mob/user)
 	. += ..()
-	. += span_notice(LANG("obj.e1844a9d", list(cable_layer & CABLE_LAYER_1 ? "Connect" : "Disconnect")))
-	. += span_notice(LANG("obj.6b86f266", list(cable_layer & CABLE_LAYER_2 ? "Connect" : "Disconnect")))
-	. += span_notice(LANG("obj.3b40bdbc", list(cable_layer & CABLE_LAYER_3 ? "Connect" : "Disconnect")))
+	. += span_notice(LANG("obj.e1844a9de97eceba", list(cable_layer & CABLE_LAYER_1 ? "Connect" : "Disconnect")))
+	. += span_notice(LANG("obj.6b86f2669210f59a", list(cable_layer & CABLE_LAYER_2 ? "Connect" : "Disconnect")))
+	. += span_notice(LANG("obj.3b40bdbcae92e84d", list(cable_layer & CABLE_LAYER_3 ? "Connect" : "Disconnect")))
 
 GLOBAL_LIST(hub_radial_layer_list)
 
@@ -824,13 +824,13 @@ GLOBAL_LIST(hub_radial_layer_list)
 	switch(layer_result)
 		if("Layer 1")
 			CL = CABLE_LAYER_1
-			to_chat(user, span_warning(LANG("obj.2b35d65d", null)))
+			to_chat(user, span_warning(LANG("obj.2b35d65d78502d40", null)))
 		if("Layer 2")
 			CL = CABLE_LAYER_2
-			to_chat(user, span_warning(LANG("obj.772ee4f3", null)))
+			to_chat(user, span_warning(LANG("obj.772ee4f3a1393785", null)))
 		if("Layer 3")
 			CL = CABLE_LAYER_3
-			to_chat(user, span_warning(LANG("obj.66489bed", null)))
+			to_chat(user, span_warning(LANG("obj.66489bedefa5d4ab", null)))
 
 	cut_cable_from_powernet(FALSE)
 
@@ -846,7 +846,7 @@ GLOBAL_LIST(hub_radial_layer_list)
 	if(!istype(user))
 		return FALSE
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning(LANG("obj.e8ba50af", null)))
+		to_chat(user, span_warning(LANG("obj.e8ba50af79992c6d", null)))
 		return FALSE
 	if(user.incapacitated || !user.Adjacent(src))
 		return FALSE
@@ -861,7 +861,7 @@ GLOBAL_LIST(hub_radial_layer_list)
 	auto_propagate_cut_cable(src) // update the powernets
 
 /obj/structure/cable/multilayer/click_ctrl(mob/user)
-	to_chat(user, span_warning(LANG("obj.b2f37a74", null)))
+	to_chat(user, span_warning(LANG("obj.b2f37a748ddb4211", null)))
 	addtimer(CALLBACK(src, PROC_REF(Reload)), 10, TIMER_UNIQUE) //spam protect
 	return CLICK_ACTION_SUCCESS
 

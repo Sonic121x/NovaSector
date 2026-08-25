@@ -90,9 +90,9 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 /obj/machinery/deepfryer/examine(mob/user)
 	. = ..()
 	if(frying)
-		. += LANG("obj.cae69383", list(frying))
+		. += LANG("obj.cae69383004b5acb", list(frying))
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.1ead62ba", list(fry_speed*100, oil_use)))
+		. += span_notice(LANG("obj.1ead62bacfb75dc2", list(fry_speed*100, oil_use)))
 
 /obj/machinery/deepfryer/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -109,9 +109,9 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 /obj/machinery/deepfryer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/reagent_containers/applicator/pill))
 		if(!reagents.total_volume)
-			to_chat(user, span_warning(LANG("obj.c3382d27", list(tool))))
+			to_chat(user, span_warning(LANG("obj.c3382d276dc62445", list(tool))))
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice(LANG("obj.36dcc29b", list(user, tool, src))), span_notice(LANG("obj.a6017650", list(tool, src))))
+		user.visible_message(span_notice(LANG("obj.36dcc29b0db4cb74", list(user, tool, src))), span_notice(LANG("obj.a601765007d9b7b6", list(tool, src))))
 		tool.reagents.trans_to(src, tool.reagents.total_volume, transferred_by = user)
 		qdel(tool)
 		return ITEM_INTERACT_SUCCESS
@@ -123,11 +123,11 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 		return NONE // pour it in
 
 	if(!reagents.has_reagent(/datum/reagent/consumable/nutriment/fat, check_subtypes = TRUE))
-		to_chat(user, span_warning(LANG("obj.316c1150", list(src))))
+		to_chat(user, span_warning(LANG("obj.316c115075531f9a", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(tool.resistance_flags & INDESTRUCTIBLE)
-		to_chat(user, span_warning(LANG("obj.4616dd4e", list(tool))))
+		to_chat(user, span_warning(LANG("obj.4616dd4e3c0e30b3", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/deepfry_blacklisted = is_type_in_typecache(tool, deepfry_blacklisted_items) || is_type_in_typecache(tool, GLOB.oilfry_blacklisted_items)
@@ -158,14 +158,14 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	if(cook_time >= FRYING_TIME_PERFECT && !frying_fried)
 		frying_fried = TRUE //frying... frying... fried
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, TRUE)
-		audible_message(span_notice(LANG("obj.2e353a8b", list(src))))
+		audible_message(span_notice(LANG("obj.2e353a8ba1aba460", list(src))))
 	else if (cook_time >= FRYING_TIME_WARNING && !frying_burnt)
 		frying_burnt = TRUE
 		var/list/anosmia_havers = list()
 		for(var/mob/smeller in get_hearers_in_view(DEFAULT_MESSAGE_RANGE, src))
 			if(HAS_TRAIT(smeller, TRAIT_ANOSMIA))
 				anosmia_havers += smeller
-		visible_message(span_warning(LANG("obj.1de935a1", list(src))), ignored_mobs = anosmia_havers)
+		visible_message(span_warning(LANG("obj.1de935a1109b1e36", list(src))), ignored_mobs = anosmia_havers)
 
 	use_energy(active_power_usage)
 
@@ -187,10 +187,10 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	flick("fryer_stop", src)
 
 /obj/machinery/deepfryer/proc/start_fry(obj/item/frying_item, mob/user)
-	to_chat(user, span_notice(LANG("obj.6635fb59", list(frying_item, src))))
+	to_chat(user, span_notice(LANG("obj.6635fb59f38784e0", list(frying_item, src))))
 	if(istype(frying_item, /obj/item/freeze_cube))
 		log_bomber(user, "put a freeze cube in a", src)
-		visible_message(span_userdanger(LANG("obj.688fb9e4", list(src))))
+		visible_message(span_userdanger(LANG("obj.688fb9e4e2ce0103", list(src))))
 		playsound(src, 'sound/effects/pray_chaplain.ogg', 100)
 		add_filter("entropic_ray", 10, list("type" = "rays", "size" = 35, "color" = COLOR_VIVID_YELLOW))
 		addtimer(CALLBACK(src, PROC_REF(blow_up)), 5 SECONDS)
@@ -208,7 +208,7 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	fry_loop.start()
 
 /obj/machinery/deepfryer/proc/blow_up()
-	visible_message(span_userdanger(LANG("obj.18271731", list(src))))
+	visible_message(span_userdanger(LANG("obj.182717319d4bad80", list(src))))
 	explosion(src, devastation_range = 1, heavy_impact_range = 3, light_impact_range = 5, flame_range = 7)
 	deconstruct(FALSE)
 
@@ -217,7 +217,7 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 
 /obj/machinery/deepfryer/attack_hand(mob/living/user, list/modifiers)
 	if(frying)
-		to_chat(user, span_notice(LANG("obj.daa0023e", list(frying, src))))
+		to_chat(user, span_notice(LANG("obj.daa0023e3c36c4e8", list(frying, src))))
 		frying.forceMove(drop_location())
 		if(Adjacent(user) && !issilicon(user))
 			user.put_in_hands(frying)
@@ -225,17 +225,17 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 
 	else if(user.pulling && iscarbon(user.pulling) && reagents.total_volume)
 		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, span_warning(LANG("obj.d5471d98", null)))
+			to_chat(user, span_warning(LANG("obj.d5471d9857d59e0e", null)))
 			return
 		var/mob/living/carbon/dunking_target = user.pulling
 		log_combat(user, dunking_target, "dunked", null, "into [src]")
-		user.visible_message(span_danger(LANG("obj.13093ec1", list(user, dunking_target, src))))
+		user.visible_message(span_danger(LANG("obj.13093ec1eab39409", list(user, dunking_target, src))))
 		reagents.expose(dunking_target, TOUCH)
 		var/bio_multiplier = dunking_target.getarmor(BODY_ZONE_HEAD, BIO) * 0.01
 		var/target_temp = dunking_target.bodytemperature
 		var/cold_multiplier = 1
 		if(target_temp < TCMB + 10) // a tiny bit of leeway
-			dunking_target.visible_message(span_userdanger(LANG("obj.0b02fbff", list(dunking_target))))
+			dunking_target.visible_message(span_userdanger(LANG("obj.0b02fbff0c49be43", list(dunking_target))))
 			dunking_target.investigate_log("has been gibbed by entropic difference (being dunked into [src]).", INVESTIGATE_DEATHS)
 			dunking_target.gib(DROP_ALL_REMAINS)
 			log_combat(user, dunking_target, "blew up", null, "by dunking them into [src]")

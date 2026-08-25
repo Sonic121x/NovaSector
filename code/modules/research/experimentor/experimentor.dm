@@ -148,9 +148,9 @@
 /obj/machinery/rnd/experimentor/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.e81f9784", null))
-		. += span_notice(LANG("obj.b4891401", list(span_bold("[malfunction_probability_coeff]"))))
-		. += span_notice(LANG("obj.2f472c96", list(span_bold("[cooldown]"))))
+		. += span_notice(LANG("obj.e81f9784ce523943", null))
+		. += span_notice(LANG("obj.b48914011dab4f3a", list(span_bold("[malfunction_probability_coeff]"))))
+		. += span_notice(LANG("obj.2f472c96b65d1533", list(span_bold("[cooldown]"))))
 
 /obj/machinery/rnd/experimentor/on_deconstruction(disassembled)
 	. = ..()
@@ -202,13 +202,13 @@
 		item_data["isRelic"] = istype(loaded_item, /obj/item/relic)
 
 		item_data["associatedNodes"] = list()
-		var/list/unlockable_nodes = techweb_item_unlock_check(loaded_item)
-		for(var/node_id in unlockable_nodes)
-			var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_id)
+		var/list/unlockable_nodes = SSresearch.techweb_unlock_items[loaded_item.type]
+		for(var/node_path in unlockable_nodes)
+			var/datum/techweb_node/node = SSresearch.techweb_nodes[node_path]
 
 			item_data["associatedNodes"] += list(list(
 				"name" = node.display_name,
-				"isUnlocked" = !(node_id in stored_research.hidden_nodes),
+				"isUnlocked" = !stored_research.hidden_nodes[node_path],
 			))
 
 		data["loadedItem"] = item_data
@@ -239,7 +239,7 @@
 
 	var/atom/drop_atom = get_step(src, EAST) || drop_location()
 	if(should_clone)
-		visible_message(span_notice(LANG("obj.9036a7d4", list(loaded_item))))
+		visible_message(span_notice(LANG("obj.9036a7d4f508b6fc", list(loaded_item))))
 		new loaded_item.type(drop_atom)
 		return
 
@@ -265,8 +265,10 @@
 		reaction = match_reaction(loaded_item, reaction)
 
 	if(reaction != FAIL)
-		var/picked_node_id = pick(techweb_item_unlock_check(loaded_item))
-		stored_research.unhide_node(SSresearch.techweb_node_by_id(picked_node_id))
+		var/list/boostable_nodes = SSresearch.techweb_unlock_items[loaded_item.type]
+		if(length(boostable_nodes))
+			var/picked_node_path = pick(boostable_nodes)
+			stored_research.unhide_node(SSresearch.techweb_nodes[picked_node_path])
 
 	run_experiment(reaction)
 	use_energy(750 JOULES)
@@ -278,11 +280,11 @@
 	var/malf_coefficient = rand(1, 100)
 	switch(malf_coefficient)
 		if(1 to 15)
-			visible_message(span_warning(LANG("obj.ceb3a21c", list(src))))
+			visible_message(span_warning(LANG("obj.ceb3a21c8e672ee0", list(src))))
 			item_reactions["[loaded_item.type]"] = pick(get_available_reactions())
 			item_eject()
 		if(16 to 35)
-			visible_message(span_warning(LANG("obj.922561e5", list(src, loaded_item))))
+			visible_message(span_warning(LANG("obj.922561e55ca3b43c", list(src, loaded_item))))
 			do_smoke(1, src, src)
 			var/mob/living/tracked_ian = tracked_ian_ref?.resolve()
 			if(tracked_ian)
@@ -293,14 +295,14 @@
 				new /mob/living/basic/pet/dog/corgi(loc)
 				investigate_log("Experimentor has spawned a new corgi.", INVESTIGATE_EXPERIMENTOR)
 		if(36 to 50)
-			visible_message(span_warning(LANG("obj.e157b44c", null)))
+			visible_message(span_warning(LANG("obj.e157b44ca900b6bb", null)))
 			for(var/mob/living/m in view(4,src))
-				to_chat(m, span_danger(LANG("obj.95fc1a00", list(src))))
+				to_chat(m, span_danger(LANG("obj.95fc1a0071393fef", list(src))))
 				playsound(src, pick('sound/effects/curse/curse1.ogg', 'sound/effects/curse/curse2.ogg', 'sound/effects/curse/curse3.ogg'), 30)
 				m.apply_damage(50, BRUTE, BODY_ZONE_CHEST)
 				investigate_log("Experimentor has taken 50 brute a blood sacrifice from [m]", INVESTIGATE_EXPERIMENTOR)
 		if(51 to 75)
-			visible_message(span_warning(LANG("obj.cf3d95b6", list(src))))
+			visible_message(span_warning(LANG("obj.cf3d95b6b8b88215", list(src))))
 			do_smoke(1, src, src)
 			var/mob/living/tracked_runtime = tracked_runtime_ref?.resolve()
 			if(tracked_runtime)
@@ -311,15 +313,15 @@
 				new /mob/living/basic/pet/cat(loc)
 				investigate_log("Experimentor failed to steal Runtime the cat and instead spawned a new cat.", INVESTIGATE_EXPERIMENTOR)
 		if(76 to 98)
-			visible_message(span_warning(LANG("obj.309e356c", list(src))))
+			visible_message(span_warning(LANG("obj.309e356c90ba5418", list(src))))
 			do_sparks(3, FALSE, src, src)
 			use_energy(500 KILO JOULES)
 			investigate_log("Experimentor has drained power from its APC", INVESTIGATE_EXPERIMENTOR)
 		if(99)
-			visible_message(span_warning(LANG("obj.1f42519c", list(src))))
+			visible_message(span_warning(LANG("obj.1f42519cf1a5fc46", list(src))))
 			addtimer(CALLBACK(src, PROC_REF(boom)), 5 SECONDS)
 		if(100)
-			visible_message(span_warning(LANG("obj.1f42519c", list(src))))
+			visible_message(span_warning(LANG("obj.1f42519cf1a5fc46", list(src))))
 			addtimer(CALLBACK(src, PROC_REF(honk)), 5 SECONDS)
 
 
@@ -343,11 +345,11 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(weapon, src))
-		to_chat(user, span_warning(LANG("obj.2aed385c", list(weapon))))
+		to_chat(user, span_warning(LANG("obj.2aed385c26026d55", list(weapon))))
 		return ITEM_INTERACT_BLOCKING
 
 	loaded_item = weapon
-	to_chat(user, span_notice(LANG("obj.df230513", list(weapon))))
+	to_chat(user, span_notice(LANG("obj.df230513b850b85b", list(weapon))))
 	flick("h_lathe_load", src)
 	try_generate_reaction_for_item(loaded_item)
 	return ITEM_INTERACT_SUCCESS

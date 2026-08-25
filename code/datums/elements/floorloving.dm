@@ -19,4 +19,4 @@
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 	if (isliving(parent))
 		var/mob/living/living_parent = parent
-		living_parent.balloon_alert(living_parent, LANG("datum.e277db5c", null))
+		living_parent.balloon_alert(living_parent, LANG("datum.e277db5c09b9aa4f", null))

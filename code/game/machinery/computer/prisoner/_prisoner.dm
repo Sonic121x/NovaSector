@@ -21,7 +21,7 @@
 /obj/machinery/computer/prisoner/examine(mob/user)
 	. = ..()
 	if(contained_id)
-		. += span_notice(LANG("obj.91ac6969", null))
+		. += span_notice(LANG("obj.91ac69699994341e", null))
 
 /obj/machinery/computer/prisoner/click_alt(mob/user)
 	id_eject(user)
@@ -31,17 +31,17 @@
 	if(!istype(new_id))
 		return
 	if(!isnull(contained_id))
-		balloon_alert(user, LANG("obj.012de839", null))
+		balloon_alert(user, LANG("obj.012de8394b84e34b", null))
 		return
 	if(!user.transferItemToLoc(new_id, src))
 		return
 	contained_id = new_id
-	balloon_alert_to_viewers(LANG("obj.441aa028", null))
+	balloon_alert_to_viewers(LANG("obj.441aa02823e144e3", null))
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 
 /obj/machinery/computer/prisoner/proc/id_eject(mob/user)
 	if(isnull(contained_id))
-		balloon_alert(user, LANG("obj.94788ab7", null))
+		balloon_alert(user, LANG("obj.94788ab7b8081e08", null))
 		return
 
 	if(!issilicon(user) && Adjacent(user))
@@ -49,7 +49,7 @@
 	else
 		contained_id.forceMove(drop_location())
 
-	balloon_alert_to_viewers(LANG("obj.179d4b52", null))
+	balloon_alert_to_viewers(LANG("obj.179d4b527ea59335", null))
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 
 /obj/machinery/computer/prisoner/item_interaction(mob/living/user, obj/item/tool, list/modifiers)

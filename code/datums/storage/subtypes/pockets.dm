@@ -15,9 +15,9 @@
 		return
 
 	if(quickdraw)
-		to_chat(user, span_notice(LANG("datum.31b84461", list(to_insert, parent))))
+		to_chat(user, span_notice(LANG("datum.31b84461d41ea85d", list(to_insert, parent))))
 	else
-		to_chat(user, span_notice(LANG("datum.13b96f71", list(to_insert, parent))))
+		to_chat(user, span_notice(LANG("datum.13b96f7128638a9b", list(to_insert, parent))))
 
 ///Small pockets
 /datum/storage/pockets/small

@@ -37,13 +37,13 @@
 		return NONE
 	if(istype(tool, gun_category) && open)
 		if(LAZYLEN(contents) == capacity)
-			to_chat(user, span_warning(LANG("obj.8e2d390c", list(src))))
+			to_chat(user, span_warning(LANG("obj.8e2d390ca03cb226", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.484469c5", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.484469c5c3495b4d", list(tool, src))))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 

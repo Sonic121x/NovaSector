@@ -105,12 +105,12 @@
 /mob/living/basic/seedling/proc/treat_hydro_tray(obj/machinery/hydroponics/hydro)
 
 	if(hydro.plant_status == HYDROTRAY_PLANT_DEAD)
-		balloon_alert(src, LANG("mob.781a4238", null))
+		balloon_alert(src, LANG("mob.781a423892640f25", null))
 		hydro.set_seed(null)
 		return
 
 	if(hydro.weedlevel > 0)
-		balloon_alert(src, LANG("mob.e8f1844a", null))
+		balloon_alert(src, LANG("mob.e8f1844a03606526", null))
 		hydro.set_weedlevel(0)
 		return
 
@@ -252,7 +252,7 @@
 	var/mob/living/basic/seedling/seed_owner = owner
 	if(seed_owner.combatant_state != SEEDLING_STATE_NEUTRAL)
 		if(feedback)
-			seed_owner.balloon_alert(seed_owner, LANG("datum.944c88c7", null))
+			seed_owner.balloon_alert(seed_owner, LANG("datum.944c88c7a2ebfa2d", null))
 		return FALSE
 	return TRUE
 
@@ -300,7 +300,7 @@
 	var/mob/living/basic/seedling/seed_owner = owner
 	if(seed_owner.combatant_state != SEEDLING_STATE_NEUTRAL)
 		if(feedback)
-			seed_owner.balloon_alert(seed_owner, LANG("datum.944c88c7", null))
+			seed_owner.balloon_alert(seed_owner, LANG("datum.944c88c7a2ebfa2d", null))
 		return FALSE
 	return TRUE
 

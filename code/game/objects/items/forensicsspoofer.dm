@@ -41,7 +41,7 @@
 	if(.)
 		return
 	scan_mode = !scan_mode
-	balloon_alert(user, LANG("obj.f35c4f6c", list(scan_mode ? "scanning" : "applying")))
+	balloon_alert(user, LANG("obj.f35c4f6c1484d77b", list(scan_mode ? "scanning" : "applying")))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 // ok due to shenanigans basically every item interact adds your fingerprints to it which isnt ideal so we have this
@@ -58,7 +58,7 @@
 		return
 	playsound(src, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
 	user.visible_message(
-		span_notice(LANG("obj.714a7407", list(user, src, target)))
+		span_notice(LANG("obj.714a74073cb872b3", list(user, src, target)))
 	)
 
 /obj/item/forensics_spoofer/proc/clear_values(list/the_list)
@@ -68,12 +68,12 @@
 /obj/item/forensics_spoofer/proc/scan(atom/target, mob/living/user)
 	do_fake_scan(target, user)
 	if(isnull(target.forensics))
-		target.balloon_alert(user, LANG("obj.b3b4b84f", null))
+		target.balloon_alert(user, LANG("obj.b3b4b84f84998150", null))
 		return ITEM_INTERACT_FAILURE
 	var/list/new_fibers = LAZYCOPY(target.forensics.fibers) - fibers
 	var/list/new_prints = LAZYCOPY(target.forensics.fingerprints) - fingerprints
 	var/new_len = length(new_fibers) + length(new_prints)
-	balloon_alert(user, LANG("obj.3e80d8d9", list(new_len ? new_len : "no")))
+	balloon_alert(user, LANG("obj.3e80d8d902ddf26f", list(new_len ? new_len : "no")))
 	if(new_len)
 		var/list/message = list(span_bold("Scan results (Unstored Only):"))
 		for(var/text in new_fibers)
@@ -87,7 +87,7 @@
 		to_chat(user, boxed_message(jointext(message, "\n")), type = MESSAGE_TYPE_INFO)
 	if(length(fingerprints) < max_storage)
 		while(length(fingerprints) + length(new_prints) > max_storage)
-			var/to_remove = tgui_input_list(user, LANG("obj.1a62e74f", null), LANG("obj.ce5258f1", null), new_fibers)
+			var/to_remove = tgui_input_list(user, LANG("obj.1a62e74fc0b4f8b5", null), LANG("obj.ce5258f1bcee0291", null), new_fibers)
 			if(isnull(to_remove))
 				return ITEM_INTERACT_FAILURE
 			new_prints -= to_remove
@@ -97,7 +97,7 @@
 			fingerprints[fingerprint] = get_name_from_fingerprint(fingerprint)
 	if(length(fibers) < max_storage)
 		while(length(fibers) + length(new_fibers) > max_storage)
-			var/to_remove = tgui_input_list(user, LANG("obj.1a62e74f", null), LANG("obj.ce5258f1", null), new_fibers)
+			var/to_remove = tgui_input_list(user, LANG("obj.1a62e74fc0b4f8b5", null), LANG("obj.ce5258f1bcee0291", null), new_fibers)
 			if(isnull(to_remove))
 				return ITEM_INTERACT_FAILURE
 			new_fibers -= to_remove
@@ -108,13 +108,13 @@
 /obj/item/forensics_spoofer/proc/tamper(atom/target, mob/living/user, do_fibers = FALSE)
 	do_fake_scan(target, user)
 	if((!do_fibers && isnull(chosen_fingerprint)) || (do_fibers && isnull(chosen_fiber)))
-		balloon_alert(user, LANG("obj.ab17b86f", list(do_fibers ? "fiber" : "fingerprint"))) // we CAN automatically select it but if they dont have it selected then they likely didnt know of it in the first place so they learn it now
+		balloon_alert(user, LANG("obj.ab17b86f89a7d52c", list(do_fibers ? "fiber" : "fingerprint"))) // we CAN automatically select it but if they dont have it selected then they likely didnt know of it in the first place so they learn it now
 		return ITEM_INTERACT_FAILURE
 	if(!COOLDOWN_FINISHED(src, tamper_cooldown))
-		balloon_alert(user, LANG("obj.0071c578", null))
+		balloon_alert(user, LANG("obj.0071c578510020de", null))
 		return ITEM_INTERACT_FAILURE
 	if(!isnull(target.forensics) && LAZYFIND(do_fibers ? target.forensics.fibers : target.forensics.fingerprints, do_fibers ? chosen_fiber : chosen_fingerprint))
-		balloon_alert(user, LANG("obj.7c13ff07", null))
+		balloon_alert(user, LANG("obj.7c13ff07d4f9bcd2", null))
 		return ITEM_INTERACT_FAILURE
 
 	if(do_fibers)
@@ -124,7 +124,7 @@
 		target.add_fingerprint_list(list(chosen_fingerprint))
 		user.log_message("has tampered with the fingerprints/fibers of [src]. Added [chosen_fingerprint]", LOG_ATTACK)
 
-	target.balloon_alert(user, LANG("obj.685295ad", list(do_fibers ? "fiber" : "fingerprint")))
+	target.balloon_alert(user, LANG("obj.685295ad08132316", list(do_fibers ? "fiber" : "fingerprint")))
 	target.add_hiddenprint(user)
 	COOLDOWN_START(src, tamper_cooldown, tamper_cooldown_time)
 

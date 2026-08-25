@@ -75,31 +75,31 @@
 	if(scanning_mode == SCAN_SALES_TAG && isidcard(tool))
 		var/obj/item/card/id/potential_acc = tool
 		if(!potential_acc.registered_account)
-			to_chat(user, span_warning(LANG("obj.51d0d893", null)))
+			to_chat(user, span_warning(LANG("obj.51d0d893aa8f5b8c", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(payments_acc == potential_acc.registered_account)
-			to_chat(user, span_notice(LANG("obj.bde32b20", null)))
+			to_chat(user, span_notice(LANG("obj.bde32b20fdab4985", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		payments_acc = potential_acc.registered_account
 		playsound(src, 'sound/machines/ping.ogg', 40, TRUE)
-		to_chat(user, span_notice(LANG("obj.37931711", list(src))))
+		to_chat(user, span_notice(LANG("obj.37931711e356b6ed", list(src))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/paper))
 		if (paper_count >= max_paper_count)
-			to_chat(user, span_notice(LANG("obj.d0c8fa5b", list(src))))
+			to_chat(user, span_notice(LANG("obj.d0c8fa5b04b8e819", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		paper_count += PAPER_PER_SHEET
 		qdel(tool)
 		if (paper_count >= max_paper_count)
 			paper_count = max_paper_count
-			to_chat(user, span_notice(LANG("obj.60720976", list(src))))
+			to_chat(user, span_notice(LANG("obj.607209767ae525aa", list(src))))
 			return ITEM_INTERACT_SUCCESS
 
-		to_chat(user, span_notice(LANG("obj.c2d63d9c", list(src, paper_count))))
+		to_chat(user, span_notice(LANG("obj.c2d63d9cfb07eff9", list(src, paper_count))))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -108,56 +108,56 @@
 	. = ..()
 	if(scanning_mode == SCAN_SALES_TAG)
 		if(paper_count <= 0)
-			to_chat(user, span_warning(LANG("obj.dd4e47aa", null)))
+			to_chat(user, span_warning(LANG("obj.dd4e47aa9f2b617e", null)))
 			return
 		if(!payments_acc)
-			to_chat(user, span_warning(LANG("obj.eb7c0a75", list(src))))
+			to_chat(user, span_warning(LANG("obj.eb7c0a75fd746c70", list(src))))
 			return
 		paper_count--
 		playsound(src, 'sound/machines/click.ogg', 40, TRUE)
-		to_chat(user, span_notice(LANG("obj.193ff4f4", null)))
+		to_chat(user, span_notice(LANG("obj.193ff4f4a019fd4c", null)))
 		var/obj/item/barcode/new_barcode = new /obj/item/barcode(src)
 		new_barcode.payments_acc = payments_acc		// The sticker gets the scanner's registered account.
 		new_barcode.cut_multiplier = cut_multiplier		// Also the registered percent cut.
 		user.put_in_hands(new_barcode)
 	if(scanning_mode == SCAN_PRICE_TAG)
 		if(loc != user)
-			to_chat(user, span_warning(LANG("obj.860d9859", list(src))))
+			to_chat(user, span_warning(LANG("obj.860d98594672d2f9", list(src))))
 			return
-		var/chosen_price = tgui_input_number(user, LANG("obj.9087a660", null), LANG("obj.75d9be55", null), new_custom_price)
+		var/chosen_price = tgui_input_number(user, LANG("obj.9087a66028b2c34a", null), LANG("obj.75d9be558cb9fea6", null), new_custom_price)
 		if(!chosen_price || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH) || loc != user)
 			return
 		new_custom_price = chosen_price
-		to_chat(user, span_notice(LANG("obj.660ec8be", list(src, new_custom_price, MONEY_SYMBOL))))
+		to_chat(user, span_notice(LANG("obj.660ec8bebacc60e6", list(src, new_custom_price, MONEY_SYMBOL))))
 
 /obj/item/universal_scanner/item_ctrl_click(mob/user)
 	. = CLICK_ACTION_BLOCKING
 	if(scanning_mode == SCAN_SALES_TAG)
 		payments_acc = null
-		to_chat(user, span_notice(LANG("obj.a24c91ba", null)))
+		to_chat(user, span_notice(LANG("obj.a24c91ba85b22c40", null)))
 		return CLICK_ACTION_SUCCESS
 
 /obj/item/universal_scanner/click_alt(mob/user)
 	if(!scanning_mode == SCAN_SALES_TAG)
 		return CLICK_ACTION_BLOCKING
-	var/potential_cut = input(LANG("obj.64a2bf7c", null),LANG("obj.9464744c", list(round(cut_min*100), round(cut_max*100)))) as num|null
+	var/potential_cut = input(LANG("obj.64a2bf7c13540cc7", null),LANG("obj.9464744c35f078e2", list(round(cut_min*100), round(cut_max*100)))) as num|null
 	if(!potential_cut)
 		cut_multiplier = initial(cut_multiplier)
 	cut_multiplier = clamp(round(potential_cut/100, cut_min), cut_min, cut_max)
-	to_chat(user, span_notice(LANG("obj.e1da57ad", list(round(cut_multiplier*100)))))
+	to_chat(user, span_notice(LANG("obj.e1da57adb1b0b029", list(round(cut_multiplier*100)))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/universal_scanner/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.139ddceb", list(paper_count, max_paper_count)))
+	. += span_notice(LANG("obj.139ddcebc3da0a52", list(paper_count, max_paper_count)))
 
 	if(scanning_mode == SCAN_SALES_TAG)
-		. += span_notice(LANG("obj.7e0bbac3", list(round(cut_multiplier*100))))
+		. += span_notice(LANG("obj.7e0bbac3ee915114", list(round(cut_multiplier*100))))
 		if(payments_acc)
-			. += span_notice(LANG("obj.5f19d3b2", null))
+			. += span_notice(LANG("obj.5f19d3b2f0f82253", null))
 
 	if(scanning_mode == SCAN_PRICE_TAG)
-		. += span_notice(LANG("obj.bfdb21d8", list(new_custom_price, MONEY_SYMBOL)))
+		. += span_notice(LANG("obj.bfdb21d8831cd264", list(new_custom_price, MONEY_SYMBOL)))
 
 /obj/item/universal_scanner/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	switch(scanning_mode)
@@ -181,27 +181,30 @@
 	for(var/exported_datum in report.total_amount)
 		price += report.total_value[exported_datum]
 
-	var/message = "Scanned [target]"
+	// NOVA EDIT CHANGE START - i18n: 手工 LANG 化。原本是往局部 `message` 上逐段 `+=` 拼句，
+	// 每一段单独看都是碎片（", no export value."），既进不了目录、进了也只会被字面 AC 在半句
+	// 处替换。改成每个分支一条**完整模板**，「无法确定价值」那半句作为可选后缀实参传入，
+	// 英文输出逐字节不变，中文语序由译文自己安排。
+	// ORIGINAL 见 git 历史（`message = "Scanned [target]"` 起的那一段逐段拼接）。
+	var/message
 	var/warning = FALSE
 	if(length(target.contents))
-		message = "Scanned [target] and its contents"
+		var/undeterminable = report.all_contents_scannable ? "" : LANG("obj.c191398477bf147a", null)
 		if(price)
-			message += ", total value: <b>[price]</b> [MONEY_NAME]"
+			message = LANG("obj.00275d2b3618279f", list(target, price, MONEY_NAME, undeterminable))
 		else
-			message += ", no export values"
+			message = LANG("obj.ec041646b97f1f2f", list(target, undeterminable))
 			warning = TRUE
-		if(!report.all_contents_scannable)
-			message += " (Undeterminable value detected, final value may differ)"
-		message += "."
 	else
 		if(!report.all_contents_scannable)
-			message += ", unable to determine value."
+			message = LANG("obj.c16a657c6f2f6ff0", list(target))
 			warning = TRUE
 		else if(price)
-			message += ", value: <b>[price]</b> [MONEY_NAME]."
+			message = LANG("obj.4177d9b2b10f32ec", list(target, price, MONEY_NAME))
 		else
-			message += ", no export value."
+			message = LANG("obj.b805c824dda85d5b", list(target))
 			warning = TRUE
+	// NOVA EDIT CHANGE END
 	if(warning)
 		to_chat(user, span_warning(message))
 	else
@@ -215,11 +218,11 @@
 		if(!parcel.sticker)
 			return
 		var/obj/item/barcode/our_code = parcel.sticker
-		to_chat(user, span_notice(LANG("obj.6b4da252", list(our_code.payments_acc.account_holder, our_code.cut_multiplier * 100))))
+		to_chat(user, span_notice(LANG("obj.6b4da252c776dcea", list(our_code.payments_acc.account_holder, our_code.cut_multiplier * 100))))
 
 	if(istype(target, /obj/item/barcode))
 		var/obj/item/barcode/our_code = target
-		to_chat(user, span_notice(LANG("obj.af1eaef4", list(our_code.payments_acc.account_holder, our_code.cut_multiplier * 100))))
+		to_chat(user, span_notice(LANG("obj.af1eaef47df235a3", list(our_code.payments_acc.account_holder, our_code.cut_multiplier * 100))))
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/scan_human = user
@@ -228,23 +231,23 @@
 			var/datum/bank_account/scanner_account = scan_human.get_bank_account()
 
 			if(!istype(get_area(cube), /area/shuttle/supply))
-				to_chat(user, span_warning(LANG("obj.3ef940be", null)))
+				to_chat(user, span_warning(LANG("obj.3ef940beb096eedf", null)))
 
 			else if(cube.bounty_handler_account)
-				to_chat(user, span_warning(LANG("obj.159ad7f3", null)))
+				to_chat(user, span_warning(LANG("obj.159ad7f33843c7df", null)))
 
 			else if(scanner_account)
 				cube.AddComponent(/datum/component/pricetag, list(scanner_account), cube.handler_tip, FALSE)
 
 				cube.bounty_handler_account = scanner_account
-				cube.bounty_handler_account.bank_card_talk(LANG("obj.0a7b1fcc", list(price ? "<b>[price * cube.handler_tip]</b> [MONEY_NAME_SINGULAR] " : "")))
+				cube.bounty_handler_account.bank_card_talk(LANG("obj.0a7b1fcce0a105b6", list(price ? "<b>[price * cube.handler_tip]</b> [MONEY_NAME_SINGULAR] " : "")))
 
 				for(var/datum/bank_account/shareholder in cube.bounty_holder_accounts)
 					if(shareholder != cube.bounty_handler_account) //No need to send a tracking update to the person scanning it
-						shareholder.bank_card_talk(LANG("obj.6bef883c", list(cube, get_area(cube), scan_human, scan_human.job)))
+						shareholder.bank_card_talk(LANG("obj.6bef883c7a2065db", list(cube, get_area(cube), scan_human, scan_human.job)))
 
 			else
-				to_chat(user, span_warning(LANG("obj.7431fd1a", null)))
+				to_chat(user, span_warning(LANG("obj.7431fd1ab3c8a366", null)))
 
 /**
  * Scans an object, target, and sets its custom_price variable to new_custom_price, presenting it to the user.
@@ -253,7 +256,7 @@
 	if(isitem(target))
 		var/obj/item/selected_target = target
 		selected_target.custom_price = new_custom_price
-		to_chat(user, span_notice(LANG("obj.b496c063", list(selected_target, new_custom_price, MONEY_SYMBOL))))
+		to_chat(user, span_notice(LANG("obj.b496c0637d5d6c1a", list(selected_target, new_custom_price, MONEY_SYMBOL))))
 
 /**
  * check_menu: Checks if we are allowed to interact with a radial menu

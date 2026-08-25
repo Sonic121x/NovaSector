@@ -33,7 +33,7 @@
 	if(QDELETED(used_multitool.buffer) || !istype(used_multitool.buffer, /datum/techweb))
 		return ITEM_INTERACT_BLOCKING
 	linked_techweb = used_multitool.buffer
-	computer.balloon_alert(user, LANG("datum.0624d195", null))
+	computer.balloon_alert(user, LANG("datum.0624d1959b8eaa2d", null))
 	return ITEM_INTERACT_SUCCESS
 
 /datum/computer_file/program/scipaper_program/proc/recheck_file_presence()
@@ -69,9 +69,9 @@
 		singular_partner["path"] = partner.type
 		singular_partner["boostedNodes"] = list()
 		singular_partner["acceptedExperiments"] = list()
-		for (var/node_id in partner.boostable_nodes)
-			var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_id)
-			singular_partner["boostedNodes"] += list(list("name" = node.display_name, "discount" = partner.boostable_nodes[node_id], "id" = node_id))
+		for (var/node_path, discount in partner.boostable_nodes)
+			var/datum/techweb_node/node = SSresearch.techweb_nodes[node_path]
+			singular_partner["boostedNodes"] += list(list("name" = node.display_name, "discount" = discount, "id" = node_path))
 		for (var/datum/experiment/ordnance/ordnance_experiment as anything in partner.accepted_experiments)
 			singular_partner["acceptedExperiments"] += initial(ordnance_experiment.name)
 		parsed_partners += list(singular_partner)
@@ -218,11 +218,11 @@
 			return TRUE
 		if("purchase_boost")
 			var/datum/scientific_partner/partner = locate(text2path(params["boost_seller"])) in SSresearch.scientific_partners
-			var/datum/techweb_node/node = SSresearch.techweb_node_by_id(params["purchased_boost"])
+			var/datum/techweb_node/node = SSresearch.techweb_nodes[text2path(params["purchased_boost"])]
 			if(partner && node)
 				var/possible_boost = partner.purchase_boost(linked_techweb, node)
 				if(possible_boost)
-					computer.say(LANG("datum.2525303a", list(possible_boost == SCIPAPER_ALREADY_BOUGHT ? ", refunding [partner.boostable_nodes[params["purchased_boost"]]] points" : "")))
+					computer.say(LANG("datum.2525303a24ceceaf", list(possible_boost == SCIPAPER_ALREADY_BOUGHT ? ", refunding [partner.boostable_nodes[params["purchased_boost"]]] points" : "")))
 					playsound(computer, 'sound/machines/ping.ogg', 25)
 					return TRUE
 			playsound(computer, 'sound/machines/terminal/terminal_error.ogg', 25)
@@ -231,7 +231,7 @@
 /// Publication and adding points.
 /datum/computer_file/program/scipaper_program/proc/publish()
 	if(linked_techweb.add_scientific_paper(paper_to_be))
-		computer.say(LANG("datum.e5096fa9", list(paper_to_be.title)))
+		computer.say(LANG("datum.e5096fa926bd4608", list(paper_to_be.title)))
 		paper_to_be = new
 		UnregisterSignal(selected_file, COMSIG_COMPUTER_FILE_DELETE)
 		selected_file = null

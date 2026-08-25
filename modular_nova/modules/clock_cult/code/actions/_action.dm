@@ -53,7 +53,7 @@
 		scripture.begin_invoke(owner, activation_slab)
 
 	else
-		to_chat(owner, span_brass(LANG("datum.f26b86d6", list(name))))
+		to_chat(owner, span_brass(LANG("datum.f26b86d6660cbbc1", list(name))))
 
 /datum/action/item_action/toggle/clock
 	button_icon = 'modular_nova/modules/clock_cult/icons/background_clock.dmi'

@@ -390,10 +390,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/moffuchis_pizz
 
 /obj/structure/sign/poster/contraband/donk_co/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.651bbda5", null))
-	. += LANG("obj.294efb1f", list(span_info("DONK CO. BRAND DONK POCKETS: IRRESISTABLY DONK!")))
-	. += LANG("obj.294efb1f", list(span_info("AVAILABLE IN OVER 200 DONKTASTIC FLAVOURS: TRY CLASSIC MEAT, HOT AND SPICY, NEW YORK PEPPERONI PIZZA, BREAKFAST SAUSAGE AND EGG, PHILADELPHIA CHEESESTEAK, HAMBURGER DONK-A-RONI, CHEESE-O-RAMA, AND MANY MORE!")))
-	. += LANG("obj.294efb1f", list(span_info("AVAILABLE FROM ALL GOOD RETAILERS, AND MANY BAD ONES TOO!")))
+	. += span_notice(LANG("obj.651bbda56f722ed1", null))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("DONK CO. BRAND DONK POCKETS: IRRESISTABLY DONK!")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("AVAILABLE IN OVER 200 DONKTASTIC FLAVOURS: TRY CLASSIC MEAT, HOT AND SPICY, NEW YORK PEPPERONI PIZZA, BREAKFAST SAUSAGE AND EGG, PHILADELPHIA CHEESESTEAK, HAMBURGER DONK-A-RONI, CHEESE-O-RAMA, AND MANY MORE!")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("AVAILABLE FROM ALL GOOD RETAILERS, AND MANY BAD ONES TOO!")))
 	return .
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/donk_co, 32)
@@ -475,10 +475,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/blasto_deterge
 
 /obj/structure/sign/poster/contraband/eistee/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.651bbda5", null))
-	. += LANG("obj.294efb1f", list(span_info("Get a taste of the tropics with Amethyst Sunrise, one of the many new flavours of EisT Energy now available from EisT.")))
-	. += LANG("obj.294efb1f", list(span_info("With pink grapefruit, yuzu, and yerba mate, Amethyst Sunrise gives you a great start in the morning, or a welcome boost throughout the day.")))
-	. += LANG("obj.294efb1f", list(span_info("Get EisT Energy today at your nearest retailer, or online at eist.de.tg/store/.")))
+	. += span_notice(LANG("obj.651bbda56f722ed1", null))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Get a taste of the tropics with Amethyst Sunrise, one of the many new flavours of EisT Energy now available from EisT.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("With pink grapefruit, yuzu, and yerba mate, Amethyst Sunrise gives you a great start in the morning, or a welcome boost throughout the day.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Get EisT Energy today at your nearest retailer, or online at eist.de.tg/store/.")))
 	return .
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/eistee, 32)
@@ -490,11 +490,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/eistee, 32)
 
 /obj/structure/sign/poster/contraband/little_fruits/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.651bbda5", null))
-	. += LANG("obj.294efb1f", list(span_info("Oh no, there's been a terrible accident at the Little Fruits factory! We shrunk the fruits!")))
-	. += LANG("obj.294efb1f", list(span_info("Wait, hang on, that's what we've always done! That's right, at Little Fruits our gummy candies are made to be as healthy as the real deal, but smaller and sweeter, too!")))
-	. += LANG("obj.294efb1f", list(span_info("Get yourself a bag of our Classic Mix today, or perhaps you're interested in our other options? See our full range today on the extranet at little_fruits.kr.tg.")))
-	. += LANG("obj.294efb1f", list(span_info("Little Fruits: Size Matters.")))
+	. += span_notice(LANG("obj.651bbda56f722ed1", null))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Oh no, there's been a terrible accident at the Little Fruits factory! We shrunk the fruits!")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Wait, hang on, that's what we've always done! That's right, at Little Fruits our gummy candies are made to be as healthy as the real deal, but smaller and sweeter, too!")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Get yourself a bag of our Classic Mix today, or perhaps you're interested in our other options? See our full range today on the extranet at little_fruits.kr.tg.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Little Fruits: Size Matters.")))
 	return .
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/little_fruits, 32)
@@ -527,16 +527,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/triumphal_arch
 
 /obj/structure/sign/poster/contraband/mothic_rations/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.651bbda5", null))
-	. += LANG("obj.294efb1f", list(span_info("Va Lümla Commissary Menu (Spring 335)")))
-	. += LANG("obj.294efb1f", list(span_info("Sparkweed Cigarettes, Half-Pack (6): 1 Ticket")))
-	. += LANG("obj.294efb1f", list(span_info("Töchtaüse Schnapps, Bottle (4 Measures): 2 Tickets")))
-	. += LANG("obj.294efb1f", list(span_info("Activin Gum, Pack (4): 1 Ticket")))
-	. += LANG("obj.294efb1f", list(span_info("A18 Sustenance Bar, Breakfast, Bar (4): 1 Ticket")))
-	. += LANG("obj.294efb1f", list(span_info("Pizza, Margherita, Standard Slice: 1 Ticket")))
-	. += LANG("obj.294efb1f", list(span_info("Keratin Wax, Medicated, Tin (20 Measures): 2 Tickets")))
-	. += LANG("obj.294efb1f", list(span_info("Setae Soap, Herb Scent, Bottle (20 Measures): 2 Tickets")))
-	. += LANG("obj.294efb1f", list(span_info("Additional Bedding, Floral Print, Sheet: 5 Tickets")))
+	. += span_notice(LANG("obj.651bbda56f722ed1", null))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Va Lümla Commissary Menu (Spring 335)")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Sparkweed Cigarettes, Half-Pack (6): 1 Ticket")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Töchtaüse Schnapps, Bottle (4 Measures): 2 Tickets")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Activin Gum, Pack (4): 1 Ticket")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("A18 Sustenance Bar, Breakfast, Bar (4): 1 Ticket")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Pizza, Margherita, Standard Slice: 1 Ticket")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Keratin Wax, Medicated, Tin (20 Measures): 2 Tickets")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Setae Soap, Herb Scent, Bottle (20 Measures): 2 Tickets")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Additional Bedding, Floral Print, Sheet: 5 Tickets")))
 	return .
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/mothic_rations, 32)
@@ -576,11 +576,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/thunderdrome, 
 
 /obj/structure/sign/poster/contraband/rush_propaganda/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.651bbda5", null))
-	. += LANG("obj.294efb1f", list(span_info("TerraGov needs you!")))
-	. += LANG("obj.294efb1f", list(span_info("A new life in the colonies awaits intrepid adventurers! All registered colonists are guaranteed transport, land and subsidies!")))
-	. += LANG("obj.294efb1f", list(span_info("You could join the legacy of hardworking humans who settled such new frontiers as Mars, Adasta or Saint Mungo!")))
-	. += LANG("obj.294efb1f", list(span_info("To apply, inquire at your nearest Colonial Affairs office for evaluation. Our locations can be found at www.terra.gov/colonial_affairs.")))
+	. += span_notice(LANG("obj.651bbda56f722ed1", null))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("TerraGov needs you!")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("A new life in the colonies awaits intrepid adventurers! All registered colonists are guaranteed transport, land and subsidies!")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("You could join the legacy of hardworking humans who settled such new frontiers as Mars, Adasta or Saint Mungo!")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("To apply, inquire at your nearest Colonial Affairs office for evaluation. Our locations can be found at www.terra.gov/colonial_affairs.")))
 	return .
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/rush_propaganda, 32)
@@ -599,12 +599,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/tipper_cream_s
 
 /obj/structure/sign/poster/contraband/tea_over_tizira/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.651bbda5", null))
-	. += LANG("obj.294efb1f", list(span_info("At the climax of the Human-Lizard war, the human crew of a bomber rescue two enemy soldiers from the vacuum of space. Seeing the souls behind the propaganda, they begin to question their orders, and imprisonment turns to hospitality.")))
-	. += LANG("obj.294efb1f", list(span_info("Is victory worth losing our humanity?")))
-	. += LANG("obj.294efb1f", list(span_info("Starring Dara Reilly, Anton DuBois, Jennifer Clarke, Raz-Parla and Seri-Lewa. An Adriaan van Jenever production. A Carlos de Vivar film. Screenplay by Robert Dane. Music by Joel Karlsbad. Produced by Adriaan van Jenever. Directed by Carlos de Vivar.")))
-	. += LANG("obj.294efb1f", list(span_info("Heartbreaking and thought-provoking- Tea Over Tizira asks questions that few have had the boldness to ask before: The London New Inquirer")))
-	. += LANG("obj.294efb1f", list(span_info("Rated PG13. A Pangalactic Studios Picture.")))
+	. += span_notice(LANG("obj.651bbda56f722ed1", null))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("At the climax of the Human-Lizard war, the human crew of a bomber rescue two enemy soldiers from the vacuum of space. Seeing the souls behind the propaganda, they begin to question their orders, and imprisonment turns to hospitality.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Is victory worth losing our humanity?")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Starring Dara Reilly, Anton DuBois, Jennifer Clarke, Raz-Parla and Seri-Lewa. An Adriaan van Jenever production. A Carlos de Vivar film. Screenplay by Robert Dane. Music by Joel Karlsbad. Produced by Adriaan van Jenever. Directed by Carlos de Vivar.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Heartbreaking and thought-provoking- Tea Over Tizira asks questions that few have had the boldness to ask before: The London New Inquirer")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Rated PG13. A Pangalactic Studios Picture.")))
 	return .
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/tea_over_tizira, 32)
@@ -630,12 +630,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/microwave, 32)
 
 /obj/structure/sign/poster/contraband/blood_geometer/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.651bbda5", null))
-	. += LANG("obj.294efb1f", list(span_info("THE BLOOD GEOMETER. This name strikes fear into all who know the truth behind the blood-stained moniker of the blood goddess, her true name lost to time.")))
-	. += LANG("obj.294efb1f", list(span_info("In this <i>purely fictional</i> film, follow Ace Ironlungs as he delves into his deadliest mystery yet, and watch him uncover the real culprits behind the bloody plot hatched to bring about a new age of chaos.")))
-	. += LANG("obj.294efb1f", list(span_info("Starring Mason Williams as Ace Ironlungs, Sandra Faust as Vera Killian, and Brody Hart as Cody Parker. A Darrel Hatchkinson film. Screenplay by Adam Allan, music by Joel Karlsbad, directed by Darrel Hatchkinson.")))
-	. += LANG("obj.294efb1f", list(span_info("Thrilling, scary and genuinely worrying. The Blood Geometer has shocked us to our very cores with such striking visuals and overwhelming gore. - New Canadanian Film Guild")))
-	. += LANG("obj.294efb1f", list(span_info("Rated M for mature. A Pangalactic Studios Picture.")))
+	. += span_notice(LANG("obj.651bbda56f722ed1", null))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("THE BLOOD GEOMETER. This name strikes fear into all who know the truth behind the blood-stained moniker of the blood goddess, her true name lost to time.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("In this <i>purely fictional</i> film, follow Ace Ironlungs as he delves into his deadliest mystery yet, and watch him uncover the real culprits behind the bloody plot hatched to bring about a new age of chaos.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Starring Mason Williams as Ace Ironlungs, Sandra Faust as Vera Killian, and Brody Hart as Cody Parker. A Darrel Hatchkinson film. Screenplay by Adam Allan, music by Joel Karlsbad, directed by Darrel Hatchkinson.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Thrilling, scary and genuinely worrying. The Blood Geometer has shocked us to our very cores with such striking visuals and overwhelming gore. - New Canadanian Film Guild")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Rated M for mature. A Pangalactic Studios Picture.")))
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/blood_geometer, 32)
 
@@ -668,7 +668,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/roroco, 32)
 /obj/structure/sign/poster/contraband/fake_bombable/examine(mob/user)
 	var/turf/our_wall = get_turf_pixel(src)
 	. = our_wall.examine(user)
-	. += span_notice(LANG("obj.76b0ccf3", null))
+	. += span_notice(LANG("obj.76b0ccf30eab24b5", null))
 
 /obj/structure/sign/poster/contraband/fake_bombable/ex_act(severity, target)
 	addtimer(CALLBACK(src, PROC_REF(fall_off_wall)), 2.5 SECONDS)
@@ -678,7 +678,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/roroco, 32)
 	if(QDELETED(src) || !isturf(loc))
 		return
 	var/turf/our_wall = get_turf_pixel(src)
-	our_wall.balloon_alert_to_viewers(LANG("obj.7d945692", null))
+	our_wall.balloon_alert_to_viewers(LANG("obj.7d94569251ceda13", null))
 	roll_and_drop(loc)
 	playsound(loc, 'sound/items/handling/paper_drop.ogg', 50, TRUE)
 

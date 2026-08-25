@@ -119,10 +119,10 @@
 		return ..()
 	var/obj/item/disk/computer/virus/clown/installed_cartridge = inserted_disk
 	if(!installed_cartridge.charges)
-		to_chat(user, span_notice(LANG("obj.8ea342eb", null)))
+		to_chat(user, span_notice(LANG("obj.8ea342ebf696e303", null)))
 		return ..()
 
-	to_chat(user, span_notice(LANG("obj.0b3d292f", list(target))))
+	to_chat(user, span_notice(LANG("obj.0b3d292f8b5ff485", list(target))))
 	var/sig_list = list(COMSIG_ATOM_ATTACK_HAND)
 	if(istype(target,/obj/machinery/door/airlock))
 		sig_list = list(COMSIG_AIRLOCK_OPEN, COMSIG_AIRLOCK_CLOSE)
@@ -159,14 +159,14 @@
 	if(!is_type_in_list(tool, contained_item))
 		return NONE
 	if(tool.w_class >= WEIGHT_CLASS_SMALL) // Anything equal to or larger than small won't work
-		user.balloon_alert(user, LANG("obj.a5e64cbb", null))
+		user.balloon_alert(user, LANG("obj.a5e64cbb628dd24c", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 	if(inserted_item)
 		swap_pen(user, tool)
 	else
-		balloon_alert(user, LANG("obj.94d2a5ff", list(tool)))
+		balloon_alert(user, LANG("obj.94d2a5ff4fc6b8fa", list(tool)))
 		inserted_item = tool
 		playsound(src, 'sound/machines/pda_button/pda_button1.ogg', 50, TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -191,7 +191,7 @@
 		return
 
 	if(inserted_item)
-		balloon_alert(user, LANG("obj.c6b4aa68", list(inserted_item)))
+		balloon_alert(user, LANG("obj.c6b4aa687c2eb2c1", list(inserted_item)))
 		user.put_in_hands(inserted_item)
 		inserted_item = null
 		update_appearance()
@@ -199,7 +199,7 @@
 
 /obj/item/modular_computer/pda/proc/swap_pen(mob/user, obj/item/tool)
 	if(inserted_item)
-		balloon_alert(user, LANG("obj.b3764cc1", null))
+		balloon_alert(user, LANG("obj.b3764cc126c356cf", null))
 		user.put_in_hands(inserted_item)
 		inserted_item = tool
 		update_appearance()
@@ -222,7 +222,7 @@
 			alt_type = MSG_AUDIBLE,
 		)
 	else
-		visible_message(span_danger(LANG("obj.e64b7ad7", list(src))), span_warning(LANG("obj.3fa816f2", null)))
+		visible_message(span_danger(LANG("obj.e64b7ad721a42632", list(src))), span_warning(LANG("obj.3fa816f2919bed27", null)))
 
 	target.client?.give_award(/datum/award/achievement/misc/clickbait, target)
 

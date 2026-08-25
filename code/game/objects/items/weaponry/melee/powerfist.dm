@@ -52,23 +52,23 @@
 /obj/item/melee/powerfist/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src))
-		. += span_notice(LANG("obj.019d2a69", null))
+		. += span_notice(LANG("obj.019d2a69da853da8", null))
 		return
 	if(tank)
-		. += span_notice(LANG("obj.42dd9fda", list(icon2html(tank, user), tank)))
-		. += span_notice(LANG("obj.db598e2e", null))
+		. += span_notice(LANG("obj.42dd9fda5dedb634", list(icon2html(tank, user), tank)))
+		. += span_notice(LANG("obj.db598e2ec773ebb9", null))
 
-	. += span_notice(LANG("obj.ffe2641a", list(pressure_setting_to_text(fist_pressure_setting))))
+	. += span_notice(LANG("obj.ffe2641afb5e74a5", list(pressure_setting_to_text(fist_pressure_setting))))
 
 /obj/item/melee/powerfist/wrench_act(mob/living/user, obj/item/tool)
 	fist_pressure_setting = fist_pressure_setting >= HIGH_PRESSURE ? LOW_PRESSURE : fist_pressure_setting + 1
 	tool.play_tool_sound(src)
-	balloon_alert(user, LANG("obj.d1a5a78c", list(pressure_setting_to_text(fist_pressure_setting))))
+	balloon_alert(user, LANG("obj.d1a5a78cab68fe74", list(pressure_setting_to_text(fist_pressure_setting))))
 	return TRUE
 
 /obj/item/melee/powerfist/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!tank)
-		balloon_alert(user, LANG("obj.c78df2ef", null))
+		balloon_alert(user, LANG("obj.c78df2ef788d35ec", null))
 		return
 	update_tank(tank, TANK_REMOVING, user)
 	return TRUE
@@ -78,11 +78,11 @@
 		return NONE
 
 	if(tank)
-		to_chat(user, span_notice(LANG("obj.a5df63a8", null)))
+		to_chat(user, span_notice(LANG("obj.a5df63a84c3a569f", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(astype(tool, /obj/item/tank/internals).volume <= 3)
-		to_chat(user, span_warning(LANG("obj.a09c5951", list(tool, src))))
+		to_chat(user, span_warning(LANG("obj.a09c595106b1ac72", list(tool, src))))
 		return ITEM_INTERACT_BLOCKING
 
 	update_tank(tool, TANK_INSERTING, user)
@@ -91,28 +91,28 @@
 /obj/item/melee/powerfist/proc/update_tank(obj/item/tank/internals/the_tank, removing = TANK_INSERTING, mob/living/carbon/human/user)
 	if(removing)
 		if(!tank)
-			to_chat(user, span_notice(LANG("obj.96a0bfe8", list(src))))
+			to_chat(user, span_notice(LANG("obj.96a0bfe8e5bf4fbf", list(src))))
 			return
-		to_chat(user, span_notice(LANG("obj.870413e7", list(the_tank, src))))
+		to_chat(user, span_notice(LANG("obj.870413e7cda9a700", list(the_tank, src))))
 		tank.forceMove(get_turf(user))
 		user.put_in_hands(tank)
 		tank = null
 		return
 
 	if(tank)
-		to_chat(user, span_warning(LANG("obj.a5a5404f", list(src))))
+		to_chat(user, span_warning(LANG("obj.a5a5404f96390518", list(src))))
 		return
 	if(!user.transferItemToLoc(the_tank, src))
 		return
-	to_chat(user, span_notice(LANG("obj.08206c7e", list(the_tank, src))))
+	to_chat(user, span_notice(LANG("obj.08206c7e1040abca", list(the_tank, src))))
 	tank = the_tank
 
 /obj/item/melee/powerfist/attack(mob/living/target, mob/living/user)
 	if(!tank)
-		to_chat(user, span_warning(LANG("obj.239e4ee8", list(src))))
+		to_chat(user, span_warning(LANG("obj.239e4ee8c2a22d2a", list(src))))
 		return
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning(LANG("obj.c2a13fcc", null)))
+		to_chat(user, span_warning(LANG("obj.c2a13fcc69a895f5", null)))
 		return
 	var/turf/our_turf = get_turf(src)
 	if(!our_turf)
@@ -120,24 +120,24 @@
 
 	var/datum/gas_mixture/gas_used = tank.remove_air(gas_per_fist * fist_pressure_setting)
 	if(!gas_used)
-		to_chat(user, span_warning(LANG("obj.47096764", list(src))))
+		to_chat(user, span_warning(LANG("obj.470967648afaaf2d", list(src))))
 		target.apply_damage((force / 5), BRUTE)
 		playsound(loc, 'sound/items/weapons/punch1.ogg', 50, TRUE)
-		target.visible_message(span_danger(LANG("obj.9d61b1ea", list(user, user.p_they(), user.p_es(), target.name))), \
-			span_userdanger(LANG("obj.6d49be37", list(user))))
+		target.visible_message(span_danger(LANG("obj.9d61b1eae896b01a", list(user, user.p_they(), user.p_es(), target.name))), \
+			span_userdanger(LANG("obj.6d49be37518ff190", list(user))))
 		return
 
 	if(!molar_cmp_equals(gas_used.total_moles(), gas_per_fist * fist_pressure_setting))
 		our_turf.assume_air(gas_used)
-		to_chat(user, span_warning(LANG("obj.bef15588", list(src))))
+		to_chat(user, span_warning(LANG("obj.bef15588b2444e41", list(src))))
 		playsound(loc, 'sound/items/weapons/punch4.ogg', 50, TRUE)
 		target.apply_damage((force / 2), BRUTE)
-		target.visible_message(span_danger(LANG("obj.56f3c2a5", list(user, user.p_they(), user.p_es(), target.name))), \
-			span_userdanger(LANG("obj.cdc29886", list(user))))
+		target.visible_message(span_danger(LANG("obj.56f3c2a5b762723c", list(user, user.p_they(), user.p_es(), target.name))), \
+			span_userdanger(LANG("obj.cdc29886ba1aeb17", list(user))))
 		return
 
-	target.visible_message(span_danger(LANG("obj.9e547937", list(user, user.p_they(), user.p_es(), target.name))), \
-		span_userdanger(LANG("obj.10e0ad1c", list(user))))
+	target.visible_message(span_danger(LANG("obj.9e5479375d42bb0c", list(user, user.p_they(), user.p_es(), target.name))), \
+		span_userdanger(LANG("obj.10e0ad1cbea2f035", list(user))))
 	new /obj/effect/temp_visual/kinetic_blast(target.loc)
 	target.apply_damage(force * fist_pressure_setting, BRUTE, wound_bonus = CANT_WOUND)
 	playsound(src, 'sound/items/weapons/resonator_blast.ogg', 50, TRUE)

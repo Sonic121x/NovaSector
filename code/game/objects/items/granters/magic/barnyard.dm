@@ -24,7 +24,7 @@
 
 /obj/item/book/granter/action/spell/barnyard/recoil(mob/living/user)
 	if(ishuman(user))
-		to_chat(user, LANG("obj.191feb24", null))
+		to_chat(user, LANG("obj.191feb243430a057", null))
 		var/obj/item/clothing/magic_mask = new /obj/item/clothing/mask/animal/horsehead/cursed(user.drop_location())
 		var/mob/living/carbon/human/human_user = user
 		if(!user.dropItemToGround(human_user.wear_mask))
@@ -32,4 +32,4 @@
 		user.equip_to_slot_if_possible(magic_mask, ITEM_SLOT_MASK, TRUE, TRUE)
 		qdel(src)
 	else
-		to_chat(user,span_notice(LANG("obj.f3e612fd", null))) //It still lives here
+		to_chat(user,span_notice(LANG("obj.f3e612fd8d63164b", null))) //It still lives here

@@ -11,7 +11,7 @@
 		return
 
 	if (IS_CHANGELING(src))
-		to_chat(src, span_good(LANG("mob.3c0f4dc1", null)))
+		to_chat(src, span_good(LANG("mob.3c0f4dc1a740d899", null)))
 
 		if (!expel_worm_action)
 			expel_worm_action = new(src)

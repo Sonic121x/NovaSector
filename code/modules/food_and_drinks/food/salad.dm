@@ -237,10 +237,10 @@
 		// There was no soup in the pot, do normal examine
 		return
 
-	examine_list += LANG("obj.0cd99d60", null)
+	examine_list += LANG("obj.0cd99d6004d59753", null)
 	examine_list += soups_found
 	if(unknown_volume > 0)
-		examine_list += LANG("obj.d7680a11", list(round(unknown_volume, 0.01)))
+		examine_list += LANG("obj.d7680a110b4db223", list(round(unknown_volume, 0.01)))
 
 	return STOP_GENERIC_REAGENT_EXAMINE
 

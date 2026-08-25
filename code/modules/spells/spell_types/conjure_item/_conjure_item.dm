@@ -39,7 +39,7 @@
 	var/mob/living/living_owner = owner
 	if(living_owner.usable_hands < 1)
 		if(feedback)
-			owner.balloon_alert(owner, LANG("datum.1dee07cc", null))
+			owner.balloon_alert(owner, LANG("datum.1dee07cc4730d063", null))
 		return FALSE
 
 	return TRUE

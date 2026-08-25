@@ -32,8 +32,8 @@
 
 	if(to_beam.can_block_magic(antimagic_flags))
 		to_beam.visible_message(
-			span_warning(LANG("datum.55c1b3d9", list(to_beam))),
-			span_userdanger(LANG("datum.6372b935", null)),
+			span_warning(LANG("datum.55c1b3d920f994a2", list(to_beam))),
+			span_userdanger(LANG("datum.6372b935066e865d", null)),
 		)
 
 	else

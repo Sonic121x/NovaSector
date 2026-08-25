@@ -71,20 +71,20 @@
 
 	var/link_count = length(linked_bscs)
 
-	. += span_notice(LANG("obj.64f54f22", list(span_boldnotice("[rock_count] boulders"))))
-	. += span_notice(LANG("obj.222e4f9d", list(span_boldnotice("[link_count] collectors"))))
-	. += span_notice(LANG("obj.42f554ba", list(boulders_processing_max)))
-	. += span_notice(LANG("obj.975cb95d", list(EXAMINE_HINT("[toggled_on ? "Off" : "On"]"), EXAMINE_HINT("Right Click"))))
+	. += span_notice(LANG("obj.64f54f22a2317900", list(span_boldnotice("[rock_count] boulders"))))
+	. += span_notice(LANG("obj.222e4f9db17680c6", list(span_boldnotice("[link_count] collectors"))))
+	. += span_notice(LANG("obj.42f554ba1aca1cc8", list(boulders_processing_max)))
+	. += span_notice(LANG("obj.975cb95d9ac91c9e", list(EXAMINE_HINT("[toggled_on ? "Off" : "On"]"), EXAMINE_HINT("Right Click"))))
 
 	if(anchored)
-		. += span_notice(LANG("obj.7641f909", list(EXAMINE_HINT("anchored"))))
+		. += span_notice(LANG("obj.7641f909d43c346d", list(EXAMINE_HINT("anchored"))))
 	else
-		. += span_warning(LANG("obj.cea02383", list(EXAMINE_HINT("anchored"))))
+		. += span_warning(LANG("obj.cea02383436f1ad3", list(EXAMINE_HINT("anchored"))))
 
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
 
 	if(panel_open)
-		. += span_notice(LANG("obj.3a115eca", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.3a115ecaeb354764", list(EXAMINE_HINT("pried"))))
 
 /obj/machinery/lrm/update_icon_state()
 	icon_state = initial(icon_state)
@@ -113,18 +113,18 @@
 /obj/machinery/lrm/multitool_act(mob/living/user, obj/item/multitool/buffer_holder)
 	. = ..()
 	if(!buffer_holder.buffer)
-		balloon_alert_to_viewers(LANG("obj.a0c02ef3", null))
+		balloon_alert_to_viewers(LANG("obj.a0c02ef36069011f", null))
 		return ITEM_INTERACT_SUCCESS
 	if(!istype(buffer_holder.buffer, /obj/structure/ore_box/boulder_collector))
-		balloon_alert_to_viewers(LANG("obj.1bf038fc", null))
+		balloon_alert_to_viewers(LANG("obj.1bf038fc2eeb225b", null))
 		return ITEM_INTERACT_SUCCESS
 	if(buffer_holder.buffer in linked_bscs)
-		balloon_alert_to_viewers(LANG("obj.9ddd4804", null))
+		balloon_alert_to_viewers(LANG("obj.9ddd480436feefdc", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(buffer_holder.buffer, /obj/structure/ore_box/boulder_collector))
 		linked_bscs += WEAKREF(buffer_holder.buffer)
-		balloon_alert_to_viewers(LANG("obj.d710365c", null))
+		balloon_alert_to_viewers(LANG("obj.d710365cd14175c4", null))
 		return ITEM_INTERACT_SUCCESS
 
 
@@ -154,11 +154,11 @@
 
 	var/result = pre_collect_boulder()
 	if(result == LRM_TURF_BLOCKED_BY_BOULDER)
-		balloon_alert(user, LANG("obj.a5ca1017", null))
+		balloon_alert(user, LANG("obj.a5ca1017d69acdbb", null))
 	else if(result == LRM_NO_BOULDER)
-		balloon_alert(user, LANG("obj.7d4551da", null))
+		balloon_alert(user, LANG("obj.7d4551da4d5969cd", null))
 	else if(result)
-		balloon_alert(user, LANG("obj.bda2b65d", null))
+		balloon_alert(user, LANG("obj.bda2b65d8ddca1b2", null))
 	COOLDOWN_START(src, manual_teleport_cooldown, LRM_TELEPORTATION_TIME)
 
 	return TRUE
@@ -175,10 +175,10 @@
 	if(!COOLDOWN_FINISHED(src, manual_teleport_cooldown))
 		return FALSE
 	if(panel_open)
-		balloon_alert(user, LANG("obj.5ddfc4f0", null))
+		balloon_alert(user, LANG("obj.5ddfc4f037e5eca3", null))
 		return FALSE
 	if(batch_processing)
-		balloon_alert(user, LANG("obj.ebb5e2ee", null))
+		balloon_alert(user, LANG("obj.ebb5e2ee55277515", null))
 		return FALSE
 	playsound(src, 'sound/machines/mining/manual_teleport.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
@@ -192,13 +192,13 @@
 
 	var/result = pre_collect_boulder()
 	if(result == LRM_TURF_BLOCKED_BY_BOULDER)
-		balloon_alert(user, LANG("obj.a5ca1017", null))
+		balloon_alert(user, LANG("obj.a5ca1017d69acdbb", null))
 	else if(result == LRM_NO_BOULDER)
-		balloon_alert(user, LANG("obj.7d4551da", null))
+		balloon_alert(user, LANG("obj.7d4551da4d5969cd", null))
 	else if(result == LRM_UNSTABLE_BOULDER)
-		balloon_alert(user, LANG("obj.fc653568", null))
+		balloon_alert(user, LANG("obj.fc6535687f27acdf", null))
 	else if(result)
-		balloon_alert(user, LANG("obj.bda2b65d", null))
+		balloon_alert(user, LANG("obj.bda2b65d8ddca1b2", null))
 
 	COOLDOWN_START(src, manual_teleport_cooldown, LRM_TELEPORTATION_TIME)
 
@@ -213,13 +213,13 @@
 
 	var/result = pre_collect_boulder()
 	if(result == LRM_TURF_BLOCKED_BY_BOULDER)
-		balloon_alert(user, LANG("obj.a5ca1017", null))
+		balloon_alert(user, LANG("obj.a5ca1017d69acdbb", null))
 	else if(result == LRM_NO_BOULDER)
-		balloon_alert(user, LANG("obj.7d4551da", null))
+		balloon_alert(user, LANG("obj.7d4551da4d5969cd", null))
 	else if(result == LRM_UNSTABLE_BOULDER)
-		balloon_alert(user, LANG("obj.fc653568", null))
+		balloon_alert(user, LANG("obj.fc6535687f27acdf", null))
 	else if(result)
-		balloon_alert(user, LANG("obj.bda2b65d", null))
+		balloon_alert(user, LANG("obj.bda2b65d8ddca1b2", null))
 
 	COOLDOWN_START(src, manual_teleport_cooldown, LRM_TELEPORTATION_TIME)
 
@@ -230,7 +230,7 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || panel_open)
 		return
 	if(!anchored)
-		balloon_alert(user, LANG("obj.c16d48e2", null))
+		balloon_alert(user, LANG("obj.c16d48e2e8f5ec29", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	toggle_auto_on(user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -244,10 +244,10 @@
  */
 /obj/machinery/lrm/proc/toggle_auto_on(mob/user)
 	if(panel_open)
-		balloon_alert(user, LANG("obj.5ddfc4f0", null))
+		balloon_alert(user, LANG("obj.5ddfc4f037e5eca3", null))
 		return
 	if(!anchored)
-		balloon_alert(user, LANG("obj.c16d48e2", null))
+		balloon_alert(user, LANG("obj.c16d48e2e8f5ec29", null))
 		return
 	if(!is_operational || machine_stat & (BROKEN | NOPOWER))
 		return
@@ -264,7 +264,7 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || panel_open)
 		return
 	if(!anchored)
-		balloon_alert(user, LANG("obj.d10c084a", null))
+		balloon_alert(user, LANG("obj.d10c084a11db8d72", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	toggle_auto_on(user)
@@ -277,7 +277,7 @@
 	if(!user.can_perform_action(src, ALLOW_SILICON_REACH | FORBID_TELEKINESIS_REACH))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!anchored)
-		balloon_alert(user, LANG("obj.d10c084a", null))
+		balloon_alert(user, LANG("obj.d10c084a11db8d72", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	toggle_auto_on(user)
@@ -344,14 +344,14 @@
 	if(isnull(chosen_rock) || chosen_rock.brm_stable)
 
 		batch_processing = FALSE
-		balloon_alert_to_viewers(LANG("obj.c8f4763c", null))
+		balloon_alert_to_viewers(LANG("obj.c8f4763c4d1e7f29", null))
 		return LRM_UNSTABLE_BOULDER
 
 	chosen_rock.forceMove(drop_location())
 	chosen_rock.pixel_x = rand(-2, 2)
 	chosen_rock.pixel_y = rand(-2, 2)
 	LAZYREMOVE(collector.available_boulders, chosen_rock_ref)
-	balloon_alert_to_viewers(LANG("obj.cb9cbebc", null))
+	balloon_alert_to_viewers(LANG("obj.cb9cbebc390af044", null))
 	use_energy(active_power_usage)
 
 	//try again if we have more boulders to work with

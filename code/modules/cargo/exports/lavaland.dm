@@ -88,4 +88,4 @@
 /datum/export/lavaland/megafauna/total_printout(datum/export_report/ex, notes = TRUE) //in the unlikely case a miner feels like selling megafauna loot
 	. = ..()
 	if(. && notes)
-		. += LANG("datum.96dfb6dc", null)
+		. += LANG("datum.96dfb6dccd288a1f", null)

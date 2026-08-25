@@ -61,7 +61,7 @@
 	wizard_murder.explanation_text = "Kill [wizard.current.name], the one who did this."
 	antag_datum.objectives += wizard_murder
 
-	to_chat(aggrieved_crewmate.current, span_warning(LANG("datum.9736bd84", null)))
+	to_chat(aggrieved_crewmate.current, span_warning(LANG("datum.9736bd84f6b3ae8b", null)))
 	aggrieved_crewmate.announce_objectives()
 
 /**

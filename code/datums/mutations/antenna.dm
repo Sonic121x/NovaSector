@@ -77,13 +77,13 @@
 		return FALSE
 	var/mob/living/living_cast_on = cast_on
 	if(!living_cast_on.mind)
-		to_chat(owner, span_warning(LANG("datum.2187cad6", list(cast_on))))
+		to_chat(owner, span_warning(LANG("datum.2187cad60a59dca5", list(cast_on))))
 		return FALSE
 	if(living_cast_on.stat == DEAD)
-		to_chat(owner, span_warning(LANG("datum.01e50bce", list(cast_on))))
+		to_chat(owner, span_warning(LANG("datum.01e50bcef3be90ac", list(cast_on))))
 		return FALSE
 	if(living_cast_on.mob_biotypes & MOB_ROBOTIC)
-		to_chat(owner, span_warning(LANG("datum.9e7b9ce4", list(cast_on, cast_on.p_their()))))
+		to_chat(owner, span_warning(LANG("datum.9e7b9ce439b2f8fb", list(cast_on, cast_on.p_their()))))
 		return FALSE
 
 	return TRUE
@@ -91,28 +91,28 @@
 /datum/action/cooldown/spell/pointed/mindread/cast(mob/living/cast_on)
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags, charge_cost = 0))
-		to_chat(owner, span_warning(LANG("datum.c9f0817e", list(cast_on))))
+		to_chat(owner, span_warning(LANG("datum.c9f0817e14353844", list(cast_on))))
 		return
 
 	if(cast_on == owner)
-		to_chat(owner, span_warning(LANG("datum.5a5202d0", null)))
+		to_chat(owner, span_warning(LANG("datum.5a5202d04ab02dc7", null)))
 		return
 
 	if(cast_on.has_status_effect(/datum/status_effect/heretic_passive/moon))
-		to_chat(owner, span_hypnophrase(span_bolddanger(LANG("datum.4c032272", null))))
+		to_chat(owner, span_hypnophrase(span_bolddanger(LANG("datum.4c0322721c54ead8", null))))
 		if(isliving(owner))
 			var/mob/living/reader = owner
 			reader.apply_status_effect(/datum/status_effect/moon_converted)
 		return
 
 	if(HAS_TRAIT(cast_on, TRAIT_EVIL))
-		to_chat(owner, span_warning(LANG("datum.0d80fa5a", list(cast_on, HAS_TRAIT(owner, TRAIT_EVIL) ? "It's nice to find someone who is like-minded." : "What is wrong with this person?"))))
+		to_chat(owner, span_warning(LANG("datum.0d80fa5adfff4f51", list(cast_on, HAS_TRAIT(owner, TRAIT_EVIL) ? "It's nice to find someone who is like-minded." : "What is wrong with this person?"))))
 
 	var/list/log_info = list()
 	var/list/discovered_info = list("<i>You plunge into [cast_on]'s mind and discover...</i>")
 	if(prob(20))
 		// chance to alert the read-ee
-		to_chat(cast_on, span_danger(LANG("datum.33325e19", null)))
+		to_chat(cast_on, span_danger(LANG("datum.33325e19167b16b7", null)))
 		log_info += "Target alerted!"
 
 	var/list/recent_speech = cast_on.copy_recent_speech(copy_amount = 3, line_chance = 50)
@@ -156,15 +156,15 @@
 	if(QDELETED(examiner))
 		return
 	if(antimagic)
-		to_chat(examiner, boxed_message(span_warning(LANG("datum.b4eedb0c", list(examined, examined.p_their())))))
+		to_chat(examiner, boxed_message(span_warning(LANG("datum.b4eedb0c48a72264", list(examined, examined.p_their())))))
 		return
 
 	var/list/log_info = list()
 	if(prob(10))
-		to_chat(examined, span_danger(LANG("datum.33325e19", null)))
+		to_chat(examined, span_danger(LANG("datum.33325e19167b16b7", null)))
 		log_info += "Target alerted!"
 
-	to_chat(examiner, boxed_message(span_notice(LANG("datum.7ea00d19", list(examined, read_text)))))
+	to_chat(examiner, boxed_message(span_notice(LANG("datum.7ea00d190ddcb382", list(examined, read_text)))))
 	log_info += "Current thought: \"[read_text]\""
 
 	log_combat(examiner, examined, "mind read (triggered on examine)", null, "info: [english_list(log_info, and_text = ", ")]")

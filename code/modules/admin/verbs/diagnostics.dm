@@ -65,7 +65,7 @@ ADMIN_VERB(radio_report, R_DEBUG, "无线电报告", "Shows a report of all radi
 	BLACKBOX_LOG_ADMIN_VERB("Show Radio Report")
 
 ADMIN_VERB(reload_admins, R_NONE, "重新加载管理员", "Reloads all admins from the database.", ADMIN_CATEGORY_MAIN)
-	var/confirm = tgui_alert(user, LANG("datum.69fe2405", null), LANG("datum.3c1da715", null), list("Yes", "No"))
+	var/confirm = tgui_alert(user, LANG("datum.69fe24050bd6ae95", null), LANG("datum.3c1da715a16e1d9e", null), list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -75,7 +75,7 @@ ADMIN_VERB(reload_admins, R_NONE, "重新加载管理员", "Reloads all admins f
 
 ADMIN_VERB(toggle_cdn, R_SERVER|R_DEBUG, "切换 CDN", "Toggles the CDN for the server.", ADMIN_CATEGORY_SERVER)
 	var/static/admin_disabled_cdn_transport = null
-	if (alert(user, LANG("datum.cdf219d7", null), LANG("datum.3c1da715", null), "Yes", "No") != "Yes")
+	if (alert(user, LANG("datum.cdf219d7b371e0eb", null), LANG("datum.3c1da715a16e1d9e", null), "Yes", "No") != "Yes")
 		return
 	var/current_transport = CONFIG_GET(string/asset_transport)
 	if (!current_transport || current_transport == "simple")
@@ -86,8 +86,8 @@ ADMIN_VERB(toggle_cdn, R_SERVER|R_DEBUG, "切换 CDN", "Toggles the CDN for the 
 			message_admins("[key_name_admin(user)] re-enabled the CDN asset transport")
 			log_admin("[key_name(user)] re-enabled the CDN asset transport")
 		else
-			to_chat(user, span_adminnotice(LANG("datum.7abb8f81", null)))
-			if (tgui_alert(user, LANG("datum.9c6a6599", null), LANG("datum.54829cac", null), list("Try disabling filename mutations", "Nevermind")) == "Try disabling filename mutations")
+			to_chat(user, span_adminnotice(LANG("datum.7abb8f81c1476976", null)))
+			if (tgui_alert(user, LANG("datum.9c6a6599d09c5fd0", null), LANG("datum.54829cacf17517e8", null), list("Try disabling filename mutations", "Nevermind")) == "Try disabling filename mutations")
 				SSassets.transport.dont_mutate_filenames = !SSassets.transport.dont_mutate_filenames
 				message_admins("[key_name_admin(user)] [(SSassets.transport.dont_mutate_filenames ? "disabled" : "re-enabled")] asset filename transforms")
 				log_admin("[key_name(user)] [(SSassets.transport.dont_mutate_filenames ? "disabled" : "re-enabled")] asset filename transforms")

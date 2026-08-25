@@ -12,7 +12,7 @@
 	var/turf/location
 
 /datum/status_effect/crucible_soul/on_apply()
-	to_chat(owner,span_notice(LANG("datum.8a17c2eb", null)))
+	to_chat(owner,span_notice(LANG("datum.8a17c2ebf6ce6616", null)))
 	owner.alpha = 180
 	owner.pass_flags |= PASSCLOSEDTURF | PASSGLASS | PASSGRILLE | PASSMACHINE | PASSSTRUCTURE | PASSTABLE | PASSMOB | PASSDOORS | PASSVEHICLE
 	location = get_turf(owner)
@@ -21,14 +21,14 @@
 	return TRUE
 
 /datum/status_effect/crucible_soul/on_remove()
-	to_chat(owner,span_notice(LANG("datum.c73803f0", null)))
+	to_chat(owner,span_notice(LANG("datum.c73803f0564816d7", null)))
 	owner.alpha = initial(owner.alpha)
 	owner.pass_flags &= ~(PASSCLOSEDTURF | PASSGLASS | PASSGRILLE | PASSMACHINE | PASSSTRUCTURE | PASSTABLE | PASSMOB | PASSDOORS | PASSVEHICLE)
 	owner.forceMove(location)
 	owner.apply_status_effect(/datum/status_effect/crucible_soul_cooldown)
 	location = null
 
-/datum/status_effect/crucible_soul/get_examine_text()
+/datum/status_effect/crucible_soul/get_examine_text(mob/examiner)
 	return span_notice("[owner.p_They()] [owner.p_do()]n't seem to be all here.")
 
 /datum/action/cancel_crucible_soul
@@ -91,7 +91,7 @@
 			found_wound.remove_wound()
 	if(length(drinker.get_missing_limbs()))
 		drinker.regenerate_limbs()
-		to_chat(drinker, span_hypnophrase(LANG("datum.b0c15ef5", null)))
+		to_chat(drinker, span_hypnophrase(LANG("datum.b0c15ef59b45b0ad", null)))
 	playsound(drinker, 'sound/effects/chemistry/ahaha.ogg', 50, TRUE, -1, extrarange = SILENCED_SOUND_EXTRARANGE, frequency = 0.5)
 
 /datum/status_effect/marshal/tick(seconds_between_ticks)
@@ -236,9 +236,9 @@
 
 	playsound(get_turf(source), 'sound/items/weapons/parry.ogg', 100, TRUE)
 	source.visible_message(
-		span_warning(LANG("datum.e2a17443", list(to_remove, source, attack_text))),
-		span_warning(LANG("datum.eceba002", list(to_remove, attack_text))),
-		span_hear(LANG("datum.9d4e541d", null)),
+		span_warning(LANG("datum.e2a1744320b3abda", list(to_remove, source, attack_text))),
+		span_warning(LANG("datum.eceba002bba9fd9b", list(to_remove, attack_text))),
+		span_hear(LANG("datum.9d4e541de39a79cb", null)),
 	)
 
 	qdel(to_remove)
@@ -314,28 +314,28 @@
 	UnregisterSignal(owner, COMSIG_CARBON_CUFF_ATTEMPTED)
 	UnregisterSignal(owner, COMSIG_BEING_STRIPPED)
 	owner.visible_message(
-		span_warning(LANG("datum.b9d79320", list(owner))),
-		span_notice(LANG("datum.55cc845d", null)),
+		span_warning(LANG("datum.b9d7932002166b3e", list(owner))),
+		span_notice(LANG("datum.55cc845d873fef04", null)),
 	)
 
-/datum/status_effect/caretaker_refuge/get_examine_text()
+/datum/status_effect/caretaker_refuge/get_examine_text(mob/examiner)
 	return span_warning("[owner.p_Theyre()] enveloped in an unholy haze!")
 
 /datum/status_effect/caretaker_refuge/proc/nullrod_handler(datum/source, obj/item/weapon)
 	SIGNAL_HANDLER
 	playsound(get_turf(owner), 'sound/effects/curse/curse1.ogg', 80, TRUE)
-	owner.visible_message(span_warning(LANG("datum.ceddfd89", list(weapon, owner))))
+	owner.visible_message(span_warning(LANG("datum.ceddfd89092ef27f", list(weapon, owner))))
 	owner.remove_status_effect(type)
 
 /datum/status_effect/caretaker_refuge/proc/no_strip(atom/source, mob/user, obj/item/equipping)
 	SIGNAL_HANDLER
-	to_chat(user, span_warning(LANG("datum.bfb3b90b", list(source))))
+	to_chat(user, span_warning(LANG("datum.bfb3b90b83962191", list(source))))
 	return COMPONENT_CANT_STRIP
 
 /datum/status_effect/caretaker_refuge/proc/prevent_spell_usage(datum/source, datum/spell)
 	SIGNAL_HANDLER
 	if(!istype(spell, /datum/action/cooldown/spell/caretaker))
-		owner.balloon_alert(owner, LANG("datum.e4871913", null))
+		owner.balloon_alert(owner, LANG("datum.e4871913ba1fb5ef", null))
 		return SPELL_CANCEL_CAST
 
 /datum/status_effect/caretaker_refuge/proc/prevent_cuff(datum/source, mob/attemptee)
@@ -377,7 +377,7 @@
 
 /datum/status_effect/heretic_lastresort/on_apply()
 	ADD_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_STATUS_EFFECT(id))
-	to_chat(owner, span_userdanger(LANG("datum.b9757440", null)))
+	to_chat(owner, span_userdanger(LANG("datum.b97574405d2d3c8d", null)))
 	return TRUE
 
 /datum/status_effect/heretic_lastresort/on_remove()

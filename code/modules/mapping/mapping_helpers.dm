@@ -741,7 +741,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 /obj/effect/mapping_helpers/atom_injector/component_injector/generate_stack_trace()
 	. = ..()
-	. += LANG("obj.60da6736", list(component_type, list2params(component_args)))
+	. += LANG("obj.60da6736fccce13e", list(component_type, list2params(component_args)))
 
 ///This helper applies elements to things on the map directly.
 /obj/effect/mapping_helpers/atom_injector/element_injector
@@ -764,7 +764,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 /obj/effect/mapping_helpers/atom_injector/element_injector/generate_stack_trace()
 	. = ..()
-	. += LANG("obj.f9751ec1", list(element_type, list2params(element_args)))
+	. += LANG("obj.f9751ec1a63dafee", list(element_type, list2params(element_args)))
 
 ///This helper applies traits to things on the map directly.
 /obj/effect/mapping_helpers/atom_injector/trait_injector
@@ -787,7 +787,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 /obj/effect/mapping_helpers/atom_injector/trait_injector/generate_stack_trace()
 	. = ..()
-	. += LANG("obj.f21128ab", list(trait_name))
+	. += LANG("obj.f21128ab5036cb6d", list(trait_name))
 
 ///This helper applies dynamic human icons to things on the map
 /obj/effect/mapping_helpers/atom_injector/human_icon_injector
@@ -826,7 +826,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 /obj/effect/mapping_helpers/atom_injector/human_icon_injector/generate_stack_trace()
 	. = ..()
-	. += LANG("obj.8e87753e", list(outfit_path, species_path, mob_spawn_path, r_hand, l_hand))
+	. += LANG("obj.8e87753ead414b60", list(outfit_path, species_path, mob_spawn_path, r_hand, l_hand))
 
 ///Fetches an external dmi and applies to the target object
 /obj/effect/mapping_helpers/atom_injector/custom_icon
@@ -871,7 +871,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 /obj/effect/mapping_helpers/atom_injector/custom_icon/generate_stack_trace()
 	. = ..()
-	. += LANG("obj.f42237c3", list(target_variable, icon_url))
+	. += LANG("obj.f42237c37489d28b", list(target_variable, icon_url))
 
 ///Fetches an external sound and applies to the target object
 /obj/effect/mapping_helpers/atom_injector/custom_sound
@@ -916,7 +916,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 /obj/effect/mapping_helpers/atom_injector/custom_sound/generate_stack_trace()
 	. = ..()
-	. += LANG("obj.345d4c78", list(target_variable, sound_url))
+	. += LANG("obj.345d4c78b14b9ea2", list(target_variable, sound_url))
 
 /obj/effect/mapping_helpers/dead_body_placer
 	name = "Dead Body placer"

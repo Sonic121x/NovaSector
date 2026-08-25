@@ -34,7 +34,7 @@
 	icon = initial(icon)
 	RemoveInvisibility(type)
 	set_species(dna.species.monkey_species) // NOVA EDIT CHANGE - ORIGINAL: set_species(/datum/species/monkey)
-	to_chat(src, span_boldnotice(LANG("mob.5c5ea5c4", list(dna.species.name))))
+	to_chat(src, span_boldnotice(LANG("mob.5c5ea5c4b39222aa", list(dna.species.name))))
 	name = LOWER_TEXT(dna.species.name)
 	regenerate_icons()
 	set_name()
@@ -75,7 +75,7 @@
 	icon = initial(icon)
 	RemoveInvisibility(type)
 	set_species(species)
-	to_chat(src, span_boldnotice(LANG("mob.5c5ea5c4", list(dna.species.name))))
+	to_chat(src, span_boldnotice(LANG("mob.5c5ea5c4b39222aa", list(dna.species.name))))
 	SEND_SIGNAL(src, COMSIG_MONKEY_HUMANIZE)
 	return src
 
@@ -100,7 +100,7 @@
 				break
 			landmark_loc += sloc.loc
 		if(!length(landmark_loc))
-			to_chat(src, LANG("mob.a84e8deb", null))
+			to_chat(src, LANG("mob.a84e8deb09b4d387", null))
 			for(var/obj/effect/landmark/start/ai/sloc in GLOB.landmarks_list)
 				landmark_loc += sloc.loc
 
@@ -160,7 +160,7 @@
 	return new_borg
 
 /mob/living/silicon/robot/proc/replace_banned_cyborg()
-	to_chat(src, LANG("mob.c2abb127", null))
+	to_chat(src, LANG("mob.c2abb127832954ab", null))
 	ghostize(FALSE)
 
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("Do you want to play as [span_notice(name)]?", check_jobban = JOB_CYBORG, poll_time = 5 SECONDS, checked_target = src, alert_pic = src, role_name_text = "cyborg")
@@ -180,7 +180,7 @@
 	if(!new_xeno)
 		return
 
-	to_chat(new_xeno, span_boldnotice(LANG("mob.8a7c4e6e", null)))
+	to_chat(new_xeno, span_boldnotice(LANG("mob.8a7c4e6e54596b6c", null)))
 
 /mob/proc/slimeize(reproduce)
 	var/mob/living/basic/slime/new_slime = transform_into_mob(/mob/living/basic/slime)
@@ -194,14 +194,14 @@
 			step_away(brainless_child, new_slime)
 
 	new_slime.set_combat_mode(TRUE)
-	to_chat(new_slime, span_boldnotice(LANG("mob.a14d4f0c", null)))
+	to_chat(new_slime, span_boldnotice(LANG("mob.a14d4f0c2f809636", null)))
 
 /mob/proc/corgize()
 	var/mob/living/basic/pet/dog/corgi/new_corgi = transform_into_mob(/mob/living/basic/pet/dog/corgi)
 	if(!new_corgi)
 		return
 	new_corgi.set_combat_mode(TRUE)
-	to_chat(new_corgi, span_boldnotice(LANG("mob.2c57593a", null)))
+	to_chat(new_corgi, span_boldnotice(LANG("mob.2c57593ae0f876bd", null)))
 
 /**
  * Turns the source atom into a crab crab, the peak of evolutionary design.
@@ -210,7 +210,7 @@
 	var/mob/living/basic/crab/new_crab = transform_into_mob(/mob/living/basic/crab)
 	if(!new_crab)
 		return
-	to_chat(new_crab, span_boldnotice(LANG("mob.c463c654", null)))
+	to_chat(new_crab, span_boldnotice(LANG("mob.c463c654bc586791", null)))
 	new_crab.set_combat_mode(TRUE)
 
 /mob/proc/gorillize(genetics_gorilla = FALSE)
@@ -218,13 +218,13 @@
 	if(!ideal_body)
 		return
 	SSblackbox.record_feedback("amount", "gorillas_created", 1)
-	to_chat(ideal_body, span_boldnotice(LANG("mob.8f8f1128", null)))
+	to_chat(ideal_body, span_boldnotice(LANG("mob.8f8f1128338360e9", null)))
 	ideal_body.set_combat_mode(TRUE)
 	return ideal_body
 
 /mob/proc/Animalize()
 	var/list/mobtypes = valid_typesof(/mob/living/simple_animal) + valid_typesof(/mob/living/basic)
-	var/mobpath = tgui_input_list(usr, LANG("mob.12b851bf", list(src)), LANG("mob.6ae5a861", null), sort_list(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+	var/mobpath = tgui_input_list(usr, LANG("mob.12b851bff9dc359d", list(src)), LANG("mob.6ae5a8613d8c5961", null), sort_list(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 	if(isnull(mobpath))
 		return
 
@@ -232,7 +232,7 @@
 	if(!new_mob)
 		return
 	new_mob.set_combat_mode(TRUE)
-	to_chat(new_mob, span_boldnotice(LANG("mob.98f874d1", null)))
+	to_chat(new_mob, span_boldnotice(LANG("mob.98f874d1a3c6d479", null)))
 
 ///Creates a new mob, deletes the old one, transfers old mob into new mob
 /mob/proc/transform_into_mob(mob_path, delete_items = FALSE)

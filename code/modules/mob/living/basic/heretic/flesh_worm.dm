@@ -98,7 +98,7 @@
 /mob/living/basic/heretic_summon/armsy/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	if(!istype(target, /obj/item/bodypart/arm))
 		return ..()
-	visible_message(span_warning(LANG("mob.3db76372", list(src, target))))
+	visible_message(span_warning(LANG("mob.3db763726a9e0e56", list(src, target))))
 	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	qdel(target)
 	on_arm_eaten()
@@ -122,7 +122,7 @@
 	if(current_stacks < stacks_to_grow)
 		return
 
-	visible_message(span_boldwarning(LANG("mob.c798ae44", list(src))))
+	visible_message(span_boldwarning(LANG("mob.c798ae4488fdbd6c", list(src))))
 	current_stacks = 0
 	new_segment(behind = src)
 

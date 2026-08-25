@@ -26,7 +26,7 @@
 				spell_improved = TRUE
 
 		if(spell_improved)
-			to_chat(caster, span_notice(LANG("datum.e30f3a84", null)))
+			to_chat(caster, span_notice(LANG("datum.e30f3a84f468cc4b", null)))
 
 //--//
 
@@ -53,4 +53,4 @@
 			upgraded_a_spell = spell.level_spell(TRUE)
 
 		if(upgraded_a_spell)
-			to_chat(caster, span_notice(LANG("datum.54e61a32", null)))
+			to_chat(caster, span_notice(LANG("datum.54e61a3255b28c74", null)))

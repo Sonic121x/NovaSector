@@ -41,9 +41,9 @@
 		var/obj/item/item_hitting = hitby
 		var/tap_vol = istype(item_hitting) ? item_hitting.get_clamped_volume() : 50
 		source.visible_message(
-			span_warning(LANG("datum.99f2eb3c", list(source))),
-			span_warning(LANG("datum.e7a1b543", list(attack_text))),
-			span_hear(LANG("datum.34acf327", null)),
+			span_warning(LANG("datum.99f2eb3ce8374027", list(source))),
+			span_warning(LANG("datum.e7a1b5437e68fd6a", list(attack_text))),
+			span_hear(LANG("datum.34acf327d0f39f88", null)),
 			COMBAT_MESSAGE_RANGE,
 		)
 		playsound(source, 'sound/items/weapons/tap.ogg', tap_vol, TRUE, -1)

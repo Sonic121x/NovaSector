@@ -126,10 +126,10 @@
 	SIGNAL_HANDLER
 	enabled = !enabled
 	var/atom/host = parent
-	host.balloon_alert(user, LANG("datum.886d6bfb", list(enabled ? "on" : "off")))
+	host.balloon_alert(user, LANG("datum.886d6bfb20e40401", list(enabled ? "on" : "off")))
 	refresh_ray()
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /datum/component/holoray_trail/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_info(LANG("datum.21bc598e", list(enabled ? "on" : "off")))
+	examine_list += span_info(LANG("datum.21bc598e93804093", list(enabled ? "on" : "off")))

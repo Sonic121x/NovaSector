@@ -24,4 +24,4 @@
 
 	// spawn b/c we need this to run during init but can't immediately because parent may still be initializing
 	spawn(1)
-		tgui_alert(parent, LANG("datum.658e5fe2", list(save_data["real_name"])), LANG("datum.223201be", list(save_data["real_name"])))
+		tgui_alert(parent, LANG("datum.658e5fe26ec1ea64", list(save_data["real_name"])), LANG("datum.223201be2cd1a05c", list(save_data["real_name"])))

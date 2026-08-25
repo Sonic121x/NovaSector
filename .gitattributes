@@ -58,3 +58,5 @@ strings/i18n/** merge=theirs
 ## 不会波及同目录手写的 localize.ts / catalog.ts 等源码。
 tgui/packages/tgui/i18n/*.json merge=theirs
 tools/i18n/dm_labels.json merge=theirs
+# Mark compiled behavior trees as generated files, to avoid clogging up github diff. We have the actual thingy to give a useful BT diff anyways.
+build/behavior_trees/**/*.compiled.json linguist-generated

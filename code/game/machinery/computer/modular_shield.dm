@@ -9,7 +9,7 @@
 
 //lets monkeys randomly mash buttons to toggle the generators
 /obj/machinery/computer/modular_shield/attack_paw(mob/user, list/modifiers)
-	balloon_alert(user, LANG("obj.c02803d2", null))
+	balloon_alert(user, LANG("obj.c02803d261de8761", null))
 	if(!do_after(user, 4 SECONDS, target = src))
 		return
 	for(var/obj/machinery/modular_shield_generator/generator as anything in generators)
@@ -24,7 +24,7 @@
 	generators |= tool.buffer
 	RegisterSignal(tool.buffer, COMSIG_QDELETING, PROC_REF(generator_deleted))
 	tool.set_buffer(null)
-	to_chat(user, span_notice(LANG("obj.f0e56642", list(tool))))
+	to_chat(user, span_notice(LANG("obj.f0e5664207cbb025", list(tool))))
 	return ITEM_INTERACT_SUCCESS
 
 ///checks if all connected generators exist

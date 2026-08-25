@@ -69,11 +69,11 @@
 
 /obj/machinery/power/portagrav/examine(mob/user)
 	. = ..()
-	. += LANG("obj.62eee539", list(on ? "on" : "off"))
-	. += LANG("obj.6860392a", list(!isnull(cell) ? "[round(cell.percent(), 1)]%" : "NO CELL"))
-	. += LANG("obj.421c7a18", list(anchored ? "" : " not"))
+	. += LANG("obj.62eee539c1582dc1", list(on ? "on" : "off"))
+	. += LANG("obj.6860392aba59f705", list(!isnull(cell) ? "[round(cell.percent(), 1)]%" : "NO CELL"))
+	. += LANG("obj.421c7a183b45329f", list(anchored ? "" : " not"))
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.a322e9c4", list(on ? "off" : "on")))
+		. += span_notice(LANG("obj.a322e9c4d26091f5", list(on ? "off" : "on")))
 
 /obj/machinery/power/portagrav/RefreshParts()
 	. = ..()
@@ -101,10 +101,10 @@
 	if(!istype(tool, /obj/item/stock_parts/power_store/cell))
 		return NONE
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.6901e151", null))
+		balloon_alert(user, LANG("obj.6901e1513948708e", null))
 		return ITEM_INTERACT_BLOCKING
 	if(cell)
-		balloon_alert(user, LANG("obj.62f73cd5", null))
+		balloon_alert(user, LANG("obj.62f73cd529e01ae3", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_FAILURE
@@ -122,7 +122,7 @@
 /obj/machinery/power/portagrav/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(on)
-		balloon_alert(user, LANG("obj.19a396d6", null))
+		balloon_alert(user, LANG("obj.19a396d6413f5298", null))
 		return
 	default_unfasten_wrench(user, tool)
 	if(anchored && wire_mode)
@@ -152,9 +152,9 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	visible_message(span_warning(LANG("obj.b7523a48", list(src))))
+	visible_message(span_warning(LANG("obj.b7523a488c133b30", list(src))))
 	if(user)
-		balloon_alert(user, LANG("obj.6ece93b7", null))
+		balloon_alert(user, LANG("obj.6ece93b7fb5b998b", null))
 		user.log_message("emagged [src].", LOG_ATTACK)
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
@@ -168,14 +168,14 @@
 /obj/machinery/power/portagrav/proc/turn_on(mob/user)
 	if(!anchored)
 		if(!isnull(user))
-			balloon_alert(user, LANG("obj.e0a7c3ce", null))
+			balloon_alert(user, LANG("obj.e0a7c3cede561161", null))
 		return FALSE
 	if((!wire_mode && cell?.charge < draw_per_range * range) || (wire_mode && surplus() < draw_per_range * range))
 		if(!isnull(user))
-			balloon_alert(user, LANG("obj.7005f2d2", null))
+			balloon_alert(user, LANG("obj.7005f2d2db44de44", null))
 		return FALSE
 	if(!isnull(user))
-		balloon_alert(user, LANG("obj.9fae209b", null))
+		balloon_alert(user, LANG("obj.9fae209bc47e34ea", null))
 	on = TRUE
 	START_PROCESSING(SSmachines, src)
 	gravity_field = new(src, range = src.range, gravity = grav_strength)
@@ -184,7 +184,7 @@
 /obj/machinery/power/portagrav/proc/turn_off(mob/user)
 	on = FALSE
 	if(!isnull(user))
-		balloon_alert(user, LANG("obj.49613fe4", null))
+		balloon_alert(user, LANG("obj.49613fe46788cb6a", null))
 	STOP_PROCESSING(SSmachines, src)
 	QDEL_NULL(gravity_field)
 	update_appearance()

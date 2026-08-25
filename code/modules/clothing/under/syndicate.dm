@@ -76,8 +76,8 @@
 
 /obj/item/clothing/under/syndicate/tacticool/examine(mob/user)
 	. = ..()
-	. += LANG("obj.f70a9344", null)
-	. += LANG("obj.132b5002", null)
+	. += LANG("obj.f70a9344ffca3f0d", null)
+	. += LANG("obj.132b5002f403001f", null)
 
 /obj/item/clothing/under/syndicate/tacticool/dye_item(dye_color, dye_key_override)
 	if(dye_color == DYE_SYNDICATE)

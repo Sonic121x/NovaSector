@@ -102,18 +102,18 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/machinery/computer/shuttle/mining/attack_hand(mob/user, list/modifiers)
 	if(is_station_level(user.z) && user.mind && IS_HEAD_REVOLUTIONARY(user) && !(user.mind in dumb_rev_heads))
-		to_chat(user, span_warning(LANG("obj.64b04683", null)))
+		to_chat(user, span_warning(LANG("obj.64b04683a064fc92", null)))
 		dumb_rev_heads += user.mind
 		return
 
 	if (HAS_TRAIT(user, TRAIT_FORBID_MINING_SHUTTLE_CONSOLE_OUTSIDE_STATION) && !is_station_level(user.z))
-		to_chat(user, span_warning(LANG("obj.5064b82b", null)))
+		to_chat(user, span_warning(LANG("obj.5064b82be86855a6", null)))
 		return
 
 	if(isliving(user))
 		var/mob/living/living_user = user
 		for(var/obj/item/implant/exile/exile_implant in living_user.implants)
-			to_chat(living_user, span_warning(LANG("obj.1a88f091", null)))
+			to_chat(living_user, span_warning(LANG("obj.1a88f091748ec50c", null)))
 			return
 
 	return ..()
@@ -182,9 +182,9 @@
 /obj/structure/closet/crate/miningcar/examine(mob/user)
 	. = ..()
 	if(on_rails)
-		. += span_notice(LANG("obj.e04e3b00", null))
+		. += span_notice(LANG("obj.e04e3b0021ee3260", null))
 	else
-		. += span_notice(LANG("obj.646107af", null))
+		. += span_notice(LANG("obj.646107af20f040c8", null))
 
 // We don't want the locked crate overlay show up.
 /obj/structure/closet/crate/miningcar/closet_update_overlays(list/new_overlays)
@@ -250,16 +250,16 @@
 		return
 	if(get_integrity() <= max_integrity * 0.05)
 		smacked.visible_message(
-			span_danger(LANG("obj.3040ce29", list(src, smacked))),
-			span_userdanger(LANG("obj.dc13b692", list(src))),
+			span_danger(LANG("obj.3040ce29f50218f7", list(src, smacked))),
+			span_userdanger(LANG("obj.dc13b6923bda9c01", list(src))),
 		)
 		playsound(src, 'sound/effects/break_stone.ogg', 50, vary = TRUE)
 		momentum = 0
 
 	else
 		smacked.visible_message(
-			span_danger(LANG("obj.1eb45639", list(src, smacked))),
-			span_userdanger(LANG("obj.de5be33c", list(src))),
+			span_danger(LANG("obj.1eb456391fd2d397", list(src, smacked))),
+			span_userdanger(LANG("obj.de5be33c9e8fd749", list(src))),
 		)
 	playsound(src, 'sound/effects/bang.ogg', 50, vary = TRUE)
 	take_damage(max_integrity * 0.05)
@@ -326,7 +326,7 @@
  * * new_destination - The turf the cart will be moved to.
  */
 /obj/structure/closet/crate/miningcar/proc/try_take_off_rails(mob/living/user, turf/open/new_destination)
-	balloon_alert(user, LANG("obj.391ce66f", null))
+	balloon_alert(user, LANG("obj.391ce66fb1852773", null))
 	if(!do_after(user, 2 SECONDS, src))
 		return
 	update_rail_state(FALSE)
@@ -342,7 +342,7 @@
  * * new_destination - The turf the cart will be moved to.
  */
 /obj/structure/closet/crate/miningcar/proc/try_put_on_rails(mob/living/user, turf/open/new_destination)
-	balloon_alert(user, LANG("obj.6042bcb3", null))
+	balloon_alert(user, LANG("obj.6042bcb383b2b494", null))
 	if(!do_after(user, 2 SECONDS, src))
 		return
 	var/obj/structure/minecart_rail/set_rail = locate() in new_destination
@@ -389,7 +389,7 @@
 			return
 		if(DOING_INTERACTION_WITH_TARGET(bumper, src))
 			return
-		balloon_alert(bumper, LANG("obj.d4319c91", null))
+		balloon_alert(bumper, LANG("obj.d4319c91a3fcad57", null))
 		if(!do_after(bumper, 1.5 SECONDS, src))
 			return
 		if(QDELETED(rail) || !on_rails || !can_travel_on_turf(next_turf, movedir))
@@ -442,10 +442,10 @@
 	// Can't go straight and cant turn = STOP
 	GLOB.move_manager.stop_looping(src, SSconveyors)
 	if(momentum >= 8)
-		visible_message(span_warning(LANG("obj.08574e59", list(src))))
+		visible_message(span_warning(LANG("obj.08574e59124f059e", list(src))))
 		throw_contents()
 	else
-		visible_message(span_notice(LANG("obj.71fc0e74", list(src))))
+		visible_message(span_notice(LANG("obj.71fc0e74a39d21c4", list(src))))
 	momentum = 0
 	return MOVELOOP_SKIP_STEP
 
@@ -458,9 +458,9 @@
 		// There is a break and it is powered, so STOP
 		if(stop_break && cable?.avail(10 KILO JOULES))
 			if(momentum >= 8)
-				visible_message(span_notice(LANG("obj.1d67d132", list(src))))
+				visible_message(span_notice(LANG("obj.1d67d132c2c0b161", list(src))))
 			else
-				visible_message(span_notice(LANG("obj.7e4c92ff", list(src))))
+				visible_message(span_notice(LANG("obj.7e4c92ff2eecb07d", list(src))))
 			momentum = 0
 			GLOB.move_manager.stop_looping(src, SSconveyors)
 			cable.add_delayedload(10 KILO JOULES)
@@ -481,7 +481,7 @@
 	// No more momentum = STOP
 	if(momentum <= 0)
 		GLOB.move_manager.stop_looping(src, SSconveyors)
-		visible_message(span_notice(LANG("obj.71fc0e74", list(src))))
+		visible_message(span_notice(LANG("obj.71fc0e74a39d21c4", list(src))))
 		return
 
 	// Handles slowing down the move loop / cart
@@ -515,7 +515,7 @@
 
 	if(!length(to_yeet))
 		if(!was_open)
-			visible_message(span_warning(LANG("obj.dcb6ec85", list(src))))
+			visible_message(span_warning(LANG("obj.dcb6ec855413dc0e", list(src))))
 		return
 
 	var/throw_distance = clamp(ceil(momentum / 3) - 4, 1, 5)
@@ -524,10 +524,10 @@
 		yeeten.throw_at(some_distant_turf, throw_distance, 3, quickstart = TRUE)
 
 	if(was_open)
-		visible_message(span_warning(LANG("obj.3025fd12", list(src))))
+		visible_message(span_warning(LANG("obj.3025fd124f279466", list(src))))
 	else
 		// Update this message if someone allows multiple people to ride one minecart
-		visible_message(span_warning(LANG("obj.c97897c1", list(src, yeet_rider ? " and throwing its rider":""))))
+		visible_message(span_warning(LANG("obj.c97897c1d4fae93e", list(src, yeet_rider ? " and throwing its rider":""))))
 
 /obj/structure/minecart_rail
 	name = "cart rail"

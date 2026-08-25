@@ -105,7 +105,7 @@
 
 	if(enrage(target))
 		if(move_to_delay == initial(move_to_delay))
-			visible_message(span_colossus(LANG("mob.d73559cb", null)))
+			visible_message(span_colossus(LANG("mob.d73559cb8206ce6e", null)))
 		ranged_cooldown = world.time + 3 SECONDS
 		telegraph()
 		dir_shots.fire_in_directions(src, target, GLOB.alldirs)

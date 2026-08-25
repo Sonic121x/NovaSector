@@ -54,9 +54,9 @@
 
 	// mimic a ritual effect
 	if(locate(/obj/structure/closet/crate/secure/bitrunning/encrypted) in range(1, rune))
-		rune.balloon_alert_to_viewers(LANG("datum.04638766", null))
+		rune.balloon_alert_to_viewers(LANG("datum.046387666516f985", null))
 	else
-		rune.balloon_alert_to_viewers(LANG("datum.00e741d9", null))
+		rune.balloon_alert_to_viewers(LANG("datum.00e741d9fd59fd26", null))
 	flick("[rune.icon_state]_active", rune)
 	playsound(rune, 'sound/effects/magic/castsummon.ogg', 50, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_exponent = 10, ignore_walls = FALSE)
 

@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(lag_switch)
 
 	slowmode_cooldown = length_secs
 	if(measures[SLOWMODE_SAY])
-		to_chat(world, span_boldannounce(LANG("datum.9e1b01b3", list(length))))
+		to_chat(world, span_boldannounce(LANG("datum.9e1b01b31e63ac69", list(length))))
 	return TRUE
 
 /// Handle the state change for individual measures
@@ -107,32 +107,32 @@ SUBSYSTEM_DEF(lag_switch)
 						ghost.client.view_size.resetToDefault()
 		if(SLOWMODE_SAY)
 			if(state)
-				to_chat(world, span_boldannounce(LANG("datum.3eca8f54", list(slowmode_cooldown/10))))
+				to_chat(world, span_boldannounce(LANG("datum.3eca8f54dfe2f62b", list(slowmode_cooldown/10))))
 			else
 				for(var/client/C as anything in GLOB.clients)
 					COOLDOWN_RESET(C, say_slowmode)
-				to_chat(world, span_boldannounce(LANG("datum.cb1fed18", null)))
+				to_chat(world, span_boldannounce(LANG("datum.cb1fed18e0880e28", null)))
 		if(DISABLE_NON_OBSJOBS)
 			world.update_status()
 		if(DISABLE_PARALLAX)
 			if (state)
-				to_chat(world, span_boldannounce(LANG("datum.ed39404a", null)))
+				to_chat(world, span_boldannounce(LANG("datum.ed39404a951ef5e4", null)))
 			else
-				to_chat(world, span_boldannounce(LANG("datum.a556f670", null)))
+				to_chat(world, span_boldannounce(LANG("datum.a556f6702213d78f", null)))
 
 			for (var/mob/mob as anything in GLOB.mob_list)
 				mob.hud_used?.update_parallax_pref()
 		if (DISABLE_FOOTSTEPS)
 			if (state)
-				to_chat(world, span_boldannounce(LANG("datum.9e1fe7b3", null)))
+				to_chat(world, span_boldannounce(LANG("datum.9e1fe7b388cca937", null)))
 			else
-				to_chat(world, span_boldannounce(LANG("datum.c2320ea1", null)))
+				to_chat(world, span_boldannounce(LANG("datum.c2320ea1555e179d", null)))
 		// NOVA EDIT ADDITION
 		if (DISABLE_CREATOR)
 			if (state)
-				to_chat(world, span_boldannounce(LANG("datum.144751c6", null)))
+				to_chat(world, span_boldannounce(LANG("datum.144751c6154cb8c0", null)))
 			else
-				to_chat(world, span_boldannounce(LANG("datum.a1469f6b", null)))
+				to_chat(world, span_boldannounce(LANG("datum.a1469f6b8c2267c8", null)))
 		// NOVA EDIT END
 
 	return TRUE

@@ -89,30 +89,30 @@
 		return FALSE
 
 	if(!isliving(user) || issilicon(user))
-		to_chat(user, span_warning(LANG("obj.5f4c6057", null)))
+		to_chat(user, span_warning(LANG("obj.5f4c60575b3143f8", null)))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
 	var/mob/living/player = user
 	var/obj/item/card/id/auth = player.get_idcard(TRUE)
 	if(!auth)
-		to_chat(user, span_warning(LANG("obj.8b31afc2", null)))
+		to_chat(user, span_warning(LANG("obj.8b31afc22e82259c", null)))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
 	var/datum/bank_account/account = auth.registered_account
 	if(!account?.account_holder || account.account_holder == "Unassigned")
-		to_chat(user, span_warning(LANG("obj.7db024c5", null)))
+		to_chat(user, span_warning(LANG("obj.7db024c5d9456622", null)))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
 	var/amount = params["amount"]
 	if(!amount || !isnum(amount) || amount <= 0 || amount > warrant.fine || !account.adjust_money(-amount, "Paid fine for [target.name]"))
-		to_chat(user, span_warning(LANG("obj.bcfa0451", null)))
+		to_chat(user, span_warning(LANG("obj.bcfa0451e960d295", null)))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
-	account.bank_card_talk(LANG("obj.0cb1439c", list(amount, MONEY_SYMBOL, target.name, warrant.fine, MONEY_SYMBOL)))
+	account.bank_card_talk(LANG("obj.0cb1439c79f4abfa", list(amount, MONEY_SYMBOL, target.name, warrant.fine, MONEY_SYMBOL)))
 	log_econ("[amount][MONEY_SYMBOL] was transferred from [user]'s transaction to [target.name]'s [warrant.fine][MONEY_SYMBOL] fine")
 	SSblackbox.record_feedback("amount", "credits_transferred", amount)
 	warrant.pay_fine(amount)
@@ -150,7 +150,7 @@
 /// Prints a bounty for a listed fine.
 /obj/machinery/computer/warrant/proc/print_bounty(mob/user, list/params)
 	if(printing)
-		balloon_alert(user, LANG("obj.0e053e73", null))
+		balloon_alert(user, LANG("obj.0e053e738bc59bb7", null))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
@@ -171,7 +171,7 @@
 	bounty_text += "<center><b>FINE:</b> [warrant.fine] [MONEY_NAME]</center>"
 
 	printing = TRUE
-	balloon_alert(user, LANG("obj.9390106f", null))
+	balloon_alert(user, LANG("obj.9390106fbf0f739e", null))
 	playsound(src, 'sound/machines/printer.ogg', 100, TRUE)
 
 	var/obj/item/paper/bounty = new(null)

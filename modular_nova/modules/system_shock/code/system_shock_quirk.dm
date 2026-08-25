@@ -33,8 +33,8 @@
 /datum/quirk/system_shock/proc/do_system_shock()
 	var/knockout_length = rand(8 SECONDS, 10 SECONDS)
 	quirk_holder.set_static_vision(knockout_length)
-	quirk_holder.balloon_alert(quirk_holder, LANG("datum.a45fdb93", null))
-	to_chat(quirk_holder, span_danger(LANG("datum.67cf7d2a", null)))
+	quirk_holder.balloon_alert(quirk_holder, LANG("datum.a45fdb933b6bd3d0", null))
+	to_chat(quirk_holder, span_danger(LANG("datum.67cf7d2a521d3826", null)))
 	addtimer(CALLBACK(src, PROC_REF(knock_out), knockout_length - 0.4 SECONDS), 2 SECONDS)
 	//The intent with the 0.4 seconds is so that the visual static effect lasts longer than the actual knockout/sleeping effect.
 	COOLDOWN_START(src, system_shock_cooldown, knockout_length + 5 SECONDS)

@@ -21,7 +21,7 @@
 	bio = 50
 
 /obj/item/clothing/mask/breath/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.47ea391f", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.47ea391fca2942a4", list(user, src, user.p_their(), user.p_theyre()))))
 	return OXYLOSS
 
 /obj/item/clothing/mask/breath/attack_self(mob/user)
@@ -37,7 +37,7 @@
 /obj/item/clothing/mask/breath/examine(mob/user)
 	. = ..()
 	if(adjustable)
-		. += span_notice(LANG("obj.10c89ab8", list(src)))
+		. += span_notice(LANG("obj.10c89ab80b545b48", list(src)))
 
 /obj/item/clothing/mask/breath/medical
 	desc = "A close-fitting sterile mask that can be connected to an air supply."
@@ -70,7 +70,7 @@
 
 /obj/item/clothing/mask/breath/muzzle/attack_paw(mob/user, list/modifiers)
 	if(user.get_item_by_slot(ITEM_SLOT_MASK) == src)
-		to_chat(user, span_warning(LANG("obj.8114e6da", null)))
+		to_chat(user, span_warning(LANG("obj.8114e6da11d98bec", null)))
 		return
 	return ..()
 

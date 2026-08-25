@@ -56,14 +56,14 @@
 /obj/structure/floodlight_frame/examine(mob/user)
 	. = ..()
 	if(state == FLOODLIGHT_NEEDS_WIRES)
-		. += span_notice(LANG("obj.c47f06a1", list(EXAMINE_HINT("5 cable pieces"))))
-		. += span_notice(LANG("obj.d2176364", list(EXAMINE_HINT("unwrenching"))))
+		. += span_notice(LANG("obj.c47f06a14c95b202", list(EXAMINE_HINT("5 cable pieces"))))
+		. += span_notice(LANG("obj.d217636448954d9f", list(EXAMINE_HINT("unwrenching"))))
 	else if(state == FLOODLIGHT_NEEDS_SECURING)
-		. += span_notice(LANG("obj.81dc1daa", list(EXAMINE_HINT("screwed"))))
-		. += span_notice(LANG("obj.9cc03bb2", list(EXAMINE_HINT("cut"))))
+		. += span_notice(LANG("obj.81dc1daa050e7f94", list(EXAMINE_HINT("screwed"))))
+		. += span_notice(LANG("obj.9cc03bb2de1247bf", list(EXAMINE_HINT("cut"))))
 	else if(state == FLOODLIGHT_NEEDS_LIGHTS)
-		. += span_notice(LANG("obj.75008cfd", list(EXAMINE_HINT("light tube"))))
-		. += span_notice(LANG("obj.69b0efe6", list(EXAMINE_HINT("unscrewed"))))
+		. += span_notice(LANG("obj.75008cfde1294261", list(EXAMINE_HINT("light tube"))))
+		. += span_notice(LANG("obj.69b0efe6812f1dc1", list(EXAMINE_HINT("unscrewed"))))
 
 /obj/structure/floodlight_frame/screwdriver_act(mob/living/user, obj/item/O)
 	. = ..()
@@ -81,7 +81,7 @@
 	if(state != FLOODLIGHT_NEEDS_WIRES)
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.44f0e678", null))
+	balloon_alert(user, LANG("obj.44f0e678d88c8044", null))
 	if(!tool.use_tool(src, user, 30, volume=50))
 		return ITEM_INTERACT_BLOCKING
 	new /obj/item/stack/sheet/iron(loc, 5)
@@ -103,7 +103,7 @@
 	if(istype(tool, /obj/item/stack/cable_coil) && state == FLOODLIGHT_NEEDS_WIRES)
 		var/obj/item/stack/coil = tool
 		if(!coil.use(5))
-			balloon_alert(user, LANG("obj.f3b6711a", null))
+			balloon_alert(user, LANG("obj.f3b6711a653dbe84", null))
 			return ITEM_INTERACT_BLOCKING
 
 		icon_state = "floodlight_c2"
@@ -113,11 +113,11 @@
 
 	if(istype(tool, /obj/item/light/tube))
 		if(state != FLOODLIGHT_NEEDS_LIGHTS)
-			balloon_alert(user, LANG("obj.1cfa8d9a", null))
+			balloon_alert(user, LANG("obj.1cfa8d9a2b807e7e", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if(astype(tool, /obj/item/light/tube).status == LIGHT_BROKEN) // light tube broken.
-			balloon_alert(user, LANG("obj.4f7f78d9", null))
+			balloon_alert(user, LANG("obj.4f7f78d914720878", null))
 			return ITEM_INTERACT_BLOCKING
 
 		new /obj/machinery/power/floodlight(loc)
@@ -210,14 +210,14 @@
 /obj/machinery/power/floodlight/examine(mob/user)
 	. = ..()
 	if(!anchored)
-		. += span_notice(LANG("obj.d92c9017", null))
+		. += span_notice(LANG("obj.d92c90174e0ad397", null))
 	else
-		. += span_notice(LANG("obj.d238302c", list(setting)))
+		. += span_notice(LANG("obj.d238302c2546e440", list(setting)))
 	if(panel_open)
-		. += span_notice(LANG("obj.0ba941a7", list(EXAMINE_HINT("screwed"))))
-		. += span_notice(LANG("obj.307d05d0", list(EXAMINE_HINT("hand"))))
+		. += span_notice(LANG("obj.0ba941a7af27f07e", list(EXAMINE_HINT("screwed"))))
+		. += span_notice(LANG("obj.307d05d05cf03143", list(EXAMINE_HINT("hand"))))
 	else
-		. += span_notice(LANG("obj.a0863acb", list(EXAMINE_HINT("screwed"))))
+		. += span_notice(LANG("obj.a0863acb463a5e51", list(EXAMINE_HINT("screwed"))))
 
 /obj/machinery/power/floodlight/process()
 	var/turf/T = get_turf(src)
@@ -256,11 +256,11 @@
 		if(FLOODLIGHT_HIGH)
 			setting_text = "high power"
 	if(user)
-		to_chat(user, span_notice(LANG("obj.97730fcf", list(src, setting_text))))
+		to_chat(user, span_notice(LANG("obj.97730fcfe98529ab", list(src, setting_text))))
 
 /obj/machinery/power/floodlight/cable_layer_act(mob/living/user, obj/item/tool)
 	if(anchored)
-		balloon_alert(user, LANG("obj.3e939160", null))
+		balloon_alert(user, LANG("obj.3e9391607cda6ee1", null))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -276,11 +276,11 @@
 /obj/machinery/power/floodlight/screwdriver_act(mob/living/user, obj/item/tool)
 	if(panel_open)
 		panel_open = FALSE
-		balloon_alert(user, LANG("obj.934f975d", null))
+		balloon_alert(user, LANG("obj.934f975d064e5a26", null))
 		return ITEM_INTERACT_SUCCESS
 	change_setting(FLOODLIGHT_OFF)
 	panel_open = TRUE
-	balloon_alert(user, LANG("obj.a5d09eaa", null))
+	balloon_alert(user, LANG("obj.a5d09eaac9d517af", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/floodlight/attack_hand(mob/user, list/modifiers)

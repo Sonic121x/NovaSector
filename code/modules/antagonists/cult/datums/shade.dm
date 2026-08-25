@@ -12,10 +12,10 @@
 
 /datum/antagonist/cult/shade/check_invoke_validity()
 	if(isnull(release_time))
-		to_chat(owner.current, span_alert(LANG("datum.b75f250c", null)))
+		to_chat(owner.current, span_alert(LANG("datum.b75f250c35aa0ad6", null)))
 		return FALSE
 
 	if(release_time + invoke_delay > world.time)
-		to_chat(owner.current, span_alert(LANG("datum.1534692b", null)))
+		to_chat(owner.current, span_alert(LANG("datum.1534692bbd6eb7e0", null)))
 		return FALSE
 	return TRUE

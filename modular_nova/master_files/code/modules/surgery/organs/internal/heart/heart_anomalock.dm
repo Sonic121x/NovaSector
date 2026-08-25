@@ -33,7 +33,7 @@
 	var/emp_resist = TRUE
 
 /datum/status_effect/voltaic_overdrive/on_remove()
-	to_chat(owner, span_userdanger(LANG("datum.7b2209fc", null)))
+	to_chat(owner, span_userdanger(LANG("datum.7b2209fce3132ebc", null)))
 	return ..()
 
 /obj/item/organ/heart/cybernetic/anomalock/weak

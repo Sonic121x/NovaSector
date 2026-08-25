@@ -15,7 +15,7 @@
 	resistance = -2
 	stage_speed = -2
 	transmittable = 0
-	level = 6
+	level = 4
 	symptom_delay = 57.5
 	severity = 4
 	symptom_cure = /datum/reagent/medicine/ondansetron
@@ -44,22 +44,22 @@
 	switch(A.stage)
 		if(1)
 			if(prob(50))
-				to_chat(M, span_warning(LANG("datum.3c3a63b3", null)))
+				to_chat(M, span_warning(LANG("datum.3c3a63b3af68cf4b", null)))
 		if(2)
 			if(prob(50))
-				to_chat(M, span_warning(LANG("datum.3fe833b4", null)))
+				to_chat(M, span_warning(LANG("datum.3fe833b43634b01f", null)))
 		if(3)
 			if(prob(50))
-				to_chat(M, span_warning(LANG("datum.b0b16b42", null)))
+				to_chat(M, span_warning(LANG("datum.b0b16b423b4e9774", null)))
 
 			M.adjust_drowsiness_up_to(10 SECONDS, 140 SECONDS)
 
 		if(4)
 			if(prob(50))
 				if(yawning)
-					to_chat(M, span_warning(LANG("datum.92009a1c", null)))
+					to_chat(M, span_warning(LANG("datum.92009a1c378892f7", null)))
 				else
-					to_chat(M, span_warning(LANG("datum.c4783223", null))) //you can't really yawn while nodding off, can you?
+					to_chat(M, span_warning(LANG("datum.c47832236fcfa262", null))) //you can't really yawn while nodding off, can you?
 
 			M.adjust_drowsiness_up_to(20 SECONDS, 140 SECONDS)
 

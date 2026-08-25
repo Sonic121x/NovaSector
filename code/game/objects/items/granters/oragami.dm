@@ -23,13 +23,13 @@
 
 /datum/action/innate/origami/Activate()
 	ADD_TRAIT(owner, TRAIT_PAPER_MASTER, ACTION_TRAIT)
-	to_chat(owner, span_notice(LANG("datum.b41d73d3", null)))
+	to_chat(owner, span_notice(LANG("datum.b41d73d32069ccac", null)))
 	active = TRUE
 	build_all_button_icons(UPDATE_BUTTON_ICON)
 
 /datum/action/innate/origami/Deactivate()
 	REMOVE_TRAIT(owner, TRAIT_PAPER_MASTER, ACTION_TRAIT)
-	to_chat(owner, span_notice(LANG("datum.b138ed17", null)))
+	to_chat(owner, span_notice(LANG("datum.b138ed17cef5d2a1", null)))
 	active = FALSE
 	build_all_button_icons(UPDATE_BUTTON_ICON)
 

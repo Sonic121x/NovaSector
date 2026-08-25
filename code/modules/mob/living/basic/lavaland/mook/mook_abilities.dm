@@ -21,7 +21,7 @@
 	var/mob/living/basic/mining/mook/mook_owner = owner
 	if(mook_owner.attack_state != MOOK_ATTACK_NEUTRAL)
 		if(feedback)
-			mook_owner.balloon_alert(mook_owner, LANG("datum.f0175b9f", null))
+			mook_owner.balloon_alert(mook_owner, LANG("datum.f0175b9f0caa8fe9", null))
 		return FALSE
 	return TRUE
 

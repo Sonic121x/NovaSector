@@ -29,25 +29,25 @@
 				if(2)
 					organ_owner.manual_emote(pick("oofs silently.", "looks like [organ_owner.p_their()] bones hurt.", "grimaces, as though [organ_owner.p_their()] bones hurt."))
 				if(3)
-					to_chat(organ_owner, span_warning(LANG("obj.8d18c471", null)))
+					to_chat(organ_owner, span_warning(LANG("obj.8d18c4715ec8bc83", null)))
 		if(chem.overdosed)
 			if(SPT_PROB(2, seconds_per_tick)) //big oof
 				var/selected_part = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG) //God help you if the same limb gets picked twice quickly...
 				var/obj/item/bodypart/bodypart = organ_owner.get_bodypart(selected_part) //We're so sorry skeletons, you're so misunderstood
 				if(bodypart)
 					playsound(organ_owner, SFX_DESECRATION, 50, vary = TRUE) //You just want to socialize
-					organ_owner.visible_message(span_warning(LANG("obj.97413545", list(organ_owner))), span_danger(LANG("obj.bc9299a1", null)))
+					organ_owner.visible_message(span_warning(LANG("obj.97413545451c0d02", list(organ_owner))), span_danger(LANG("obj.bc9299a108532c7a", null)))
 					INVOKE_ASYNC(organ_owner, TYPE_PROC_REF(/atom/movable, say), "OOF!!", forced = chem.type)
 					organ_owner.apply_damage(200, BRUTE, bodypart)
 				else
-					to_chat(organ_owner, span_warning(LANG("obj.35e758b5", list(parse_zone(selected_part)))))
+					to_chat(organ_owner, span_warning(LANG("obj.35e758b5681fd734", list(parse_zone(selected_part)))))
 					INVOKE_ASYNC(organ_owner, TYPE_PROC_REF(/mob, emote), "sigh")
 		organ_owner.reagents.remove_reagent(chem.type, chem.metabolization_rate * seconds_per_tick)
 		return COMSIG_MOB_STOP_REAGENT_TICK // Stop metabolism
 	if(chem.type == /datum/reagent/consumable/milk)
 		if(chem.volume > 50)
 			organ_owner.reagents.remove_reagent(chem.type, (chem.volume - 50))
-			to_chat(organ_owner, span_warning(LANG("obj.004aeecb", null)))
+			to_chat(organ_owner, span_warning(LANG("obj.004aeecbc55af4e9", null)))
 		organ_owner.heal_bodypart_damage(0.5 * milk_brute_healing * seconds_per_tick, 0.5 * milk_burn_healing * seconds_per_tick)
 		for(var/datum/wound/iter_wound as anything in organ_owner.all_wounds)
 			iter_wound.on_xadone(0.5 * seconds_per_tick)

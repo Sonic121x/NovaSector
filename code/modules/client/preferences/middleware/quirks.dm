@@ -31,7 +31,7 @@
 		message += "Would you like to continue?"
 	else
 		message += "If you do not have enough points to cover the removed quirks, your quirks will be reset. Would you like to continue?"
-	var/response = tgui_alert(user, message.Join(" "), LANG("datum.5a0b3375", null), list("Yes", "No"))
+	var/response = tgui_alert(user, message.Join(" "), LANG("datum.5a0b33756ccbb4f0", null), list("Yes", "No"))
 	if(response != "Yes")
 		return TRUE
 

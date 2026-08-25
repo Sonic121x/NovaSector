@@ -24,7 +24,7 @@
 /datum/emote/living/tongue/run_emote(mob/user, params, type_override, intentional)
 	var/mob/living/carbon/human/human_user = user
 	if(istype(human_user) && !human_user.get_organ_slot(ORGAN_SLOT_TONGUE))
-		to_chat(human_user, span_warning(LANG("datum.ea44e495", null)))
+		to_chat(human_user, span_warning(LANG("datum.ea44e495dc1bc5a6", null)))
 		return
 	. = ..()
 	QDEL_IN(human_user.give_emote_overlay(/datum/bodypart_overlay/simple/emote/tongue), 5.2 SECONDS)
@@ -121,6 +121,12 @@
 	var/custom_message = user.death_message
 	if(custom_message)
 		message_animal_or_basic = custom_message
+
+	if(user.has_quirk(/datum/quirk/death_mimicry))
+		user.Unconscious(30 SECONDS, ignore_canstun=TRUE)
+		ADD_TRAIT(user, TRAIT_FAKEDEATH, QUIRK_TRAIT)
+		addtimer(TRAIT_CALLBACK_REMOVE(user, TRAIT_FAKEDEATH, QUIRK_TRAIT), 30 SECONDS)
+
 	. = ..()
 	message_animal_or_basic = initial(message_animal_or_basic)
 
@@ -169,17 +175,14 @@
 		return
 	wings.make_flap_sound(human_user)
 
-	// open/close functional wings
-	var/obj/item/organ/wings/functional/wings_functional = wings
-	if(!istype(wings_functional))
+	if(!wings.has_open_sprite)
 		return
-	var/open = FALSE
-	if(wings_functional.wings_open)
-		open = TRUE
-		wings_functional.close_wings()
+	var/open = wings.wings_open
+	if(open)
+		wings.close_wings()
 	else
-		wings_functional.open_wings()
-	addtimer(CALLBACK(wings_functional, open ? TYPE_PROC_REF(/obj/item/organ/wings/functional, open_wings) : TYPE_PROC_REF(/obj/item/organ/wings/functional, close_wings)), wing_time)
+		wings.open_wings()
+	addtimer(CALLBACK(wings, open ? TYPE_PROC_REF(/obj/item/organ/wings, open_wings) : TYPE_PROC_REF(/obj/item/organ/wings, close_wings)), wing_time)
 
 /datum/emote/living/flap/aflap
 	key = "aflap"
@@ -290,12 +293,12 @@
 
 	var/obj/item/kiss_blower = new kiss_type(user)
 	if(user.put_in_hands(kiss_blower))
-		to_chat(user, span_notice(LANG("datum.efeeee03", null)))
+		to_chat(user, span_notice(LANG("datum.efeeee03fb2ee61e", null)))
 		ink_action?.StartCooldown()
 		return
 
 	qdel(kiss_blower)
-	to_chat(user, span_warning(LANG("datum.a0641d6d", null)))
+	to_chat(user, span_warning(LANG("datum.a0641d6dfb59bc38", null)))
 
 /datum/emote/living/laugh
 	key = "laugh"
@@ -753,14 +756,14 @@
 		return FALSE
 
 	if(!isnull(user.ckey) && is_banned_from(user.ckey, "Emote"))
-		to_chat(user, span_boldwarning(LANG("datum.1d03d61a", null)))
+		to_chat(user, span_boldwarning(LANG("datum.1d03d61ad13b1804", null)))
 		return FALSE
 
 	if(QDELETED(user))
 		return FALSE
 
 	if(user.client && user.client.prefs.muted & MUTE_IC)
-		to_chat(user, span_boldwarning(LANG("datum.edad7622", null)))
+		to_chat(user, span_boldwarning(LANG("datum.edad7622f650b603", null)))
 		return FALSE
 
 /datum/emote/living/custom/proc/emote_is_valid(mob/user, input)
@@ -774,13 +777,13 @@
 
 	var/static/regex/stop_bad_mime = regex(@"says|exclaims|yells|asks")
 	if(stop_bad_mime.Find(input, 1, 1))
-		to_chat(user, span_danger(LANG("datum.65f1e625", null)))
+		to_chat(user, span_danger(LANG("datum.65f1e625e14cfb23", null)))
 		return FALSE
 
 	var/list/filter_result = is_ic_filtered(input)
 
 	if(filter_result)
-		to_chat(user, span_warning(LANG("datum.dd58a2e7", null)))
+		to_chat(user, span_warning(LANG("datum.dd58a2e7d20c60c2", null)))
 		to_chat(user, span_warning("\"[input]\""))
 		REPORT_CHAT_FILTER_TO_USER(user, filter_result)
 		log_filter("IC Emote", input, filter_result)
@@ -790,7 +793,7 @@
 	filter_result = is_soft_ic_filtered(input)
 
 	if(filter_result)
-		if(tgui_alert(user,LANG("datum.ac82e7e2", list(filter_result[CHAT_FILTER_INDEX_WORD], filter_result[CHAT_FILTER_INDEX_REASON])), LANG("datum.b0fe106c", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(user,LANG("datum.ac82e7e2e21c78a6", list(filter_result[CHAT_FILTER_INDEX_WORD], filter_result[CHAT_FILTER_INDEX_REASON])), LANG("datum.b0fe106c90796ca4", null), list("Yes", "No")) != "Yes")
 			SSblackbox.record_feedback("tally", "soft_ic_blocked_words", 1, LOWER_TEXT(config.soft_ic_filter_regex.match))
 			log_filter("Soft IC Emote", input, filter_result)
 			return FALSE
@@ -810,7 +813,7 @@
 	return stripped_multiline_input(usr, "Choose an emote to display.", "Me" , null, MAX_MESSAGE_LEN) // NOVA EDIT CHANGE - ORIGINAL : return copytext(sanitize(input("Choose an emote to display.") as text|null), 1, MAX_MESSAGE_LEN)
 
 /datum/emote/living/custom/proc/get_custom_emote_type_from_user()
-	var/type = input(LANG("datum.84071f4a", null)) as null|anything in list("Visible", "Hearable", "Both")
+	var/type = input(LANG("datum.84071f4a7b2b1252", null)) as null|anything in list("Visible", "Hearable", "Both")
 
 	switch(type)
 		if("Visible")
@@ -820,7 +823,7 @@
 		if("Both")
 			return EMOTE_VISIBLE | EMOTE_AUDIBLE
 		else
-			tgui_alert(usr,LANG("datum.0c48235d", null))
+			tgui_alert(usr,LANG("datum.0c48235d491f81c0", null))
 			return FALSE
 
 /datum/emote/living/custom/run_emote(mob/user, params, type_override = null, intentional = FALSE)

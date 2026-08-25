@@ -41,7 +41,8 @@
 /obj/machinery/computer/order_console/mining/order_groceries(mob/living/purchaser, obj/item/card/id/card, list/groceries)
 	var/list/things_to_order = list()
 	for(var/datum/orderable_item/item as anything in groceries)
-		things_to_order[item.purchase_path] = groceries[item]
+		var/purchase_path = item.get_purchased_item(purchaser, card)
+		things_to_order[purchase_path] = groceries[item]
 
 	var/datum/supply_pack/custom/mining_pack = new(
 		purchaser = purchaser, \
@@ -62,7 +63,7 @@
 		cost_type = credit_type,
 		can_be_cancelled = FALSE,
 	)
-	say(LANG("obj.7e5306e0", null))
+	say(LANG("obj.7e5306e0ef9ee55e", null))
 	aas_config_announce(/datum/aas_config_entry/order_console, list(), src, list(radio_channel), capitalize(blackbox_key))
 	SSshuttle.shopping_list += new_order
 
@@ -102,17 +103,17 @@
 
 /obj/item/card/mining_point_card/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.08f40b7f", list(points)))
+	. += span_notice(LANG("obj.08f40b7f1aa252bd", list(points)))
 
 /obj/item/card/mining_point_card/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!isidcard(tool))
 		return NONE
 	var/obj/item/card/id/attacking_id = tool
-	balloon_alert(user, LANG("obj.15ef6553", null))
-	var/point_movement = tgui_alert(user, LANG("obj.90fa83f2", null), LANG("obj.36c7058b", null), list(TO_USER_ID, TO_POINT_CARD))
+	balloon_alert(user, LANG("obj.15ef65539da39741", null))
+	var/point_movement = tgui_alert(user, LANG("obj.90fa83f200ab4bd8", null), LANG("obj.36c7058b6ed59b83", null), list(TO_USER_ID, TO_POINT_CARD))
 	if(!point_movement)
 		return ITEM_INTERACT_BLOCKING
-	var/amount = tgui_input_number(user, LANG("obj.e9da4f50", list(attacking_id.registered_account.mining_points, points)), LANG("obj.bfebd140", null), min_value = 0, round_value = 1)
+	var/amount = tgui_input_number(user, LANG("obj.e9da4f50eb4610a9", list(attacking_id.registered_account.mining_points, points)), LANG("obj.bfebd14087fd650b", null), min_value = 0, round_value = 1)
 	if(!amount)
 		return ITEM_INTERACT_BLOCKING
 	switch(point_movement)
@@ -121,14 +122,14 @@
 				amount = points
 			attacking_id.registered_account.mining_points += amount
 			points -= amount
-			to_chat(user, span_notice(LANG("obj.2fb09f9c", list(amount, src, attacking_id))))
+			to_chat(user, span_notice(LANG("obj.2fb09f9c14f5f56d", list(amount, src, attacking_id))))
 			return ITEM_INTERACT_SUCCESS
 		if(TO_POINT_CARD)
 			if(amount > attacking_id.registered_account.mining_points)
 				amount = attacking_id.registered_account.mining_points
 			attacking_id.registered_account.mining_points -= amount
 			points += amount
-			to_chat(user, span_notice(LANG("obj.2fb09f9c", list(amount, attacking_id, src))))
+			to_chat(user, span_notice(LANG("obj.2fb09f9c14f5f56d", list(amount, attacking_id, src))))
 			return ITEM_INTERACT_SUCCESS
 	return NONE
 

@@ -31,8 +31,8 @@
 /datum/action/cooldown/spell/death_loop/cast(mob/living/cast_on)
 	. = ..()
 	cast_on.visible_message(
-		span_warning(LANG("datum.28723c94", list(cast_on))),
-		span_notice(LANG("datum.76881efc", null)),
+		span_warning(LANG("datum.28723c94124c2f5c", list(cast_on))),
+		span_notice(LANG("datum.76881efcd6d75d35", null)),
 	)
 	ADD_TRAIT(cast_on, TRAIT_NODEATH, REF(src))
 	ADD_TRAIT(cast_on, TRAIT_SUCCUMB_OVERRIDE, REF(src))
@@ -148,7 +148,7 @@
 		return
 	if(ishuman(hit_atom))
 		var/mob/living/carbon/human/living_target_getting_hit = hit_atom
-		living_target_getting_hit.visible_message(span_warning(LANG("obj.ac06f900", list(living_target_getting_hit))), span_userdanger(LANG("obj.5c9d1f20", null)))
+		living_target_getting_hit.visible_message(span_warning(LANG("obj.ac06f900c85c1494", list(living_target_getting_hit))), span_userdanger(LANG("obj.5c9d1f2033ad3617", null)))
 		living_target_getting_hit.adjust_fire_stacks(2)
 		living_target_getting_hit.ignite_mob()
 		playsound(living_target_getting_hit, SFX_SEAR, 50, TRUE)

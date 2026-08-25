@@ -19,10 +19,10 @@
 /obj/item/book/granter/martial/cqc/on_reading_finished(mob/living/carbon/user)
 	. = ..()
 	if(uses <= 0)
-		to_chat(user, span_warning(LANG("obj.72b2e234", list(src))))
+		to_chat(user, span_warning(LANG("obj.72b2e2340d166c2e", list(src))))
 
 /obj/item/book/granter/martial/cqc/recoil(mob/living/user)
-	to_chat(user, span_warning(LANG("obj.e64b7ad7", list(src))))
+	to_chat(user, span_warning(LANG("obj.e64b7ad721a42632", list(src))))
 	playsound(src,'sound/effects/explosion/explosion1.ogg',40,TRUE)
 	user.flash_act(1, 1)
 	user.adjust_brute_loss(6)

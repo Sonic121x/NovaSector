@@ -60,10 +60,10 @@
 	var/obj/item/card/id/id = living_user.get_idcard()
 	if(!id?.registered_account)
 		return
-	var/choice = tgui_input_list(living_user, LANG("obj.65586d14", null), LANG("obj.24bf5f87", null), subtypesof(/datum/bounty))
+	var/choice = tgui_input_list(living_user, LANG("obj.65586d144c5c1081", null), LANG("obj.24bf5f879c52bac9", null), subtypesof(/datum/bounty))
 	var/datum/bounty/new_chore = text2path("[choice]")
 	id.registered_account.set_bounty(new new_chore, id)
-	balloon_alert(user, LANG("obj.bd697b4b", null))
+	balloon_alert(user, LANG("obj.bd697b4b92b1d690", null))
 	playsound(src, 'sound/effects/coin2.ogg', 30, TRUE)
 	qdel(src)
 
@@ -78,12 +78,12 @@
 	if(!isliving(user))
 		return
 	var/mob/living/living_user = user
-	var/choice = tgui_input_list(living_user, LANG("obj.65586d14", null), LANG("obj.24bf5f87", null), subtypesof(/datum/bounty))
+	var/choice = tgui_input_list(living_user, LANG("obj.65586d144c5c1081", null), LANG("obj.24bf5f879c52bac9", null), subtypesof(/datum/bounty))
 	var/datum/bounty/new_chore = text2path("[choice]")
 	if(new_chore.global_exempt)
-		to_chat(user, span_warning(LANG("obj.3615f262", null)))
+		to_chat(user, span_warning(LANG("obj.3615f26292bb8618", null)))
 		return
 	GLOB.shared_crew_bounties += new_chore
-	balloon_alert(user, LANG("obj.5ea5fde6", null))
+	balloon_alert(user, LANG("obj.5ea5fde6d54ee5ba", null))
 	playsound(src, 'sound/effects/coin2.ogg', 30, TRUE)
 	qdel(src)

@@ -152,7 +152,7 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 
 	// Only admins should be sending actions
 	if (!check_rights(R_ADMIN))
-		to_chat(usr, LANG("datum.8fda4fd5", null), confidential = TRUE)
+		to_chat(usr, LANG("datum.8fda4fd52e4a2fb7", null), confidential = TRUE)
 		return
 
 	if (action == "toggleprint")
@@ -162,7 +162,7 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 	// Get the request this relates to
 	var/id = params["id"] != null ? text2num(params["id"]) : null
 	if (!id)
-		to_chat(usr, LANG("datum.9ece0b61", null), confidential = TRUE)
+		to_chat(usr, LANG("datum.9ece0b6135cfbe8c", null), confidential = TRUE)
 		CRASH("Received an action without a request ID, this shouldn't happen!")
 	var/datum/request/request = !id ? null : requests_by_id[id]
 
@@ -186,13 +186,13 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 			return TRUE
 		if ("tp")
 			if(!SSticker.HasRoundStarted())
-				tgui_alert(usr,LANG("datum.8a212f07", null))
+				tgui_alert(usr,LANG("datum.8a212f0792509a20", null))
 				return TRUE
 			var/mob/M = request.owner?.mob
 			if(!ismob(M))
 				var/datum/mind/D = M
 				if(!istype(D))
-					to_chat(usr, LANG("datum.0c07ee28", null), confidential = TRUE)
+					to_chat(usr, LANG("datum.0c07ee28332ab28d", null), confidential = TRUE)
 					return TRUE
 				else
 					D.traitor_panel()
@@ -204,7 +204,7 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 		if ("logs")
 			var/mob/M = request.owner?.mob
 			if(!ismob(M))
-				to_chat(usr, LANG("datum.7ba1e557", null), confidential = TRUE)
+				to_chat(usr, LANG("datum.7ba1e55740ebfe3d", null), confidential = TRUE)
 				return TRUE
 			show_individual_logging_panel(M, null, null)
 			return TRUE
@@ -215,14 +215,14 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 
 		if ("rply")
 			if (request.req_type == REQUEST_PRAYER)
-				to_chat(usr, LANG("datum.d8362be1", null), confidential = TRUE)
+				to_chat(usr, LANG("datum.d8362be15f5feb73", null), confidential = TRUE)
 				return TRUE
 			var/mob/M = request.owner?.mob
 			usr.client.admin_headset_message(M, request.req_type == REQUEST_SYNDICATE ? RADIO_CHANNEL_SYNDICATE : RADIO_CHANNEL_CENTCOM)
 			return TRUE
 		if ("setcode")
 			if (request.req_type != REQUEST_NUKE)
-				to_chat(usr, LANG("datum.e6bed7bd", null), confidential = TRUE)
+				to_chat(usr, LANG("datum.e6bed7bd8b76dc80", null), confidential = TRUE)
 				return TRUE
 			var/code = random_nukecode()
 			for(var/obj/machinery/nuclearbomb/selfdestruct/SD in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb/selfdestruct))
@@ -231,14 +231,14 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 			return TRUE
 		if ("show")
 			if(request.req_type != REQUEST_FAX)
-				to_chat(usr, LANG("datum.e3621219", null), confidential = TRUE)
+				to_chat(usr, LANG("datum.e36212197615a97b", null), confidential = TRUE)
 				return TRUE
 			var/obj/item/paper/request_message = request.additional_information["paper"]
 			request_message.ui_interact(usr)
 			return TRUE
 		if ("print")
 			if (request.req_type != REQUEST_FAX)
-				to_chat(usr, LANG("datum.71232f90", null), confidential = TRUE)
+				to_chat(usr, LANG("datum.71232f90571d7638", null), confidential = TRUE)
 				return TRUE
 			for(var/obj/machinery/fax/admin/FAX as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/fax/admin))
 				if(FAX.fax_id != request.additional_information["destination_id"])
@@ -249,10 +249,10 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 				return TRUE
 		if ("play")
 			if(request.req_type != REQUEST_INTERNET_SOUND)
-				to_chat(usr, LANG("datum.e34e9ac9", null), confidential = TRUE)
+				to_chat(usr, LANG("datum.e34e9ac970b41d50", null), confidential = TRUE)
 				return TRUE
 			if(findtext(request.message, ":") && !findtext(request.message, GLOB.is_http_protocol))
-				to_chat(usr, LANG("datum.1bd3b71d", null), confidential = TRUE)
+				to_chat(usr, LANG("datum.1bd3b71d38c0b81a", null), confidential = TRUE)
 				return TRUE
 
 			web_sound(usr, request.message)

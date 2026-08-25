@@ -102,7 +102,7 @@
 		ram_target = assembly_target
 
 	if(!ram_target)
-		to_chat(user, span_warning(LANG("datum.7dcc1b4e", null)))
+		to_chat(user, span_warning(LANG("datum.7dcc1b4e2509893d", null)))
 		return
 
 	// Wind-up with do_after (2 seconds)
@@ -111,8 +111,8 @@
 
 	playsound(chassis, 'sound/effects/clang.ogg', 70, TRUE)
 	user.visible_message(
-		span_danger(LANG("datum.3b9990b9", list(chassis, ram_target))),
-		span_danger(LANG("datum.3ac11040", list(ram_target))),
+		span_danger(LANG("datum.3b9990b9c98bd1bb", list(chassis, ram_target))),
+		span_danger(LANG("datum.3ac11040aa5714e8", list(ram_target))),
 		null,
 		COMBAT_MESSAGE_RANGE
 	)

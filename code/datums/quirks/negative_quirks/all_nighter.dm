@@ -99,7 +99,7 @@
 		quirk_holder.clear_mood_event("all_nighter", /datum/mood_event/all_nighter)
 	if(!all_nighter && !happy_camper)
 		quirk_holder.add_mood_event("all_nighter", /datum/mood_event/all_nighter)
-		to_chat(quirk_holder, span_danger(LANG("datum.8f7e8c2c", null)))
+		to_chat(quirk_holder, span_danger(LANG("datum.8f7e8c2c9f338ecf", null)))
 
 	//adjusts bag overlay accordingly
 	if(bodypart_overlay && beauty_sleep)

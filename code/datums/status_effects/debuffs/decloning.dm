@@ -14,7 +14,7 @@
 /datum/status_effect/decloning/on_apply()
 	if(owner.has_reagent(/datum/reagent/medicine/mutadone))
 		return FALSE
-	to_chat(owner, span_userdanger(LANG("datum.d0f4a9b6", null)))
+	to_chat(owner, span_userdanger(LANG("datum.d0f4a9b65c96f872", null)))
 	return TRUE
 
 /datum/status_effect/decloning/on_remove()
@@ -26,10 +26,10 @@
 		var/strike_restore = MUTADONE_HEAL * seconds_between_ticks
 
 		if(strikes_left <= 50 && strikes_left + strike_restore > 50)
-			to_chat(owner, span_notice(LANG("datum.234e2b48", null)))
+			to_chat(owner, span_notice(LANG("datum.234e2b4806076044", null)))
 			owner.remove_movespeed_modifier(/datum/movespeed_modifier/decloning)
 		else if(SPT_PROB(5, seconds_between_ticks))
-			to_chat(owner, span_warning(LANG("datum.44c655ec", null)))
+			to_chat(owner, span_warning(LANG("datum.44c655ec7825334d", null)))
 
 		strikes_left = min(strikes_left + strike_restore, 100)
 
@@ -45,7 +45,7 @@
 
 	var/strike_reduce = 3
 	if(strikes_left > 50 && strikes_left - strike_reduce <= 50)
-		to_chat(owner, span_danger(LANG("datum.f8aab29b", null)))
+		to_chat(owner, span_danger(LANG("datum.f8aab29b4baf3396", null)))
 		owner.add_movespeed_modifier(/datum/movespeed_modifier/decloning)
 
 	strikes_left = max(strikes_left - strike_reduce, 0)
@@ -58,15 +58,15 @@
 			"You feel your limbs shifting around.",
 		)))
 	else if(prob(33))
-		to_chat(owner, span_danger(LANG("datum.c57cd2ac", null)))
+		to_chat(owner, span_danger(LANG("datum.c57cd2ac7d8d3112", null)))
 		owner.set_jitter_if_lower(30 SECONDS)
 
 	if(strikes_left == 0)
-		owner.visible_message(span_danger(LANG("datum.4134b297", list(owner))), span_boldwarning(LANG("datum.5a99cf6c", null)))
+		owner.visible_message(span_danger(LANG("datum.4134b29778560156", list(owner))), span_boldwarning(LANG("datum.5a99cf6c1fa16f23", null)))
 		owner.dust()
 		return
 
-/datum/status_effect/decloning/get_examine_text()
+/datum/status_effect/decloning/get_examine_text(mob/examiner)
 	switch(strikes_left)
 		if(68 to 100)
 			return span_warning("[owner.p_Their()] body looks a bit deformed.")

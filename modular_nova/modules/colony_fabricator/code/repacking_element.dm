@@ -32,7 +32,7 @@
 /datum/element/repackable/proc/examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice(LANG("datum.023d022d", null))
+	examine_list += span_notice(LANG("datum.023d022d751463df", null))
 
 /// Checks if the user can actually interact with the structures in question, then invokes the proc to make it repack
 /datum/element/repackable/proc/on_right_click(atom/source, mob/user)
@@ -45,7 +45,7 @@
 
 /// Removes the element target and spawns a new one of whatever item_to_pack_into is
 /datum/element/repackable/proc/repack(atom/source, mob/user)
-	source.balloon_alert_to_viewers(LANG("datum.afdeea76", null))
+	source.balloon_alert_to_viewers(LANG("datum.afdeea761aee04f2", null))
 	if(!do_after(user, 3 SECONDS, target = source))
 		return
 

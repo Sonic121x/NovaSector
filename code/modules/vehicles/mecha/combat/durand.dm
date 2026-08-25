@@ -96,14 +96,14 @@
 
 	if(!defense_mode && cell?.charge < 100) // If it's off, and we have less than 100 units of power
 		if (user)
-			balloon_alert(user, LANG("obj.847c6ee4", null))
+			balloon_alert(user, LANG("obj.847c6ee475af64f8", null))
 		return
 
 	switching = TRUE
 	defense_mode = !defense_mode
 
 	if(user)
-		balloon_alert(user, LANG("obj.ac69276f", list(defense_mode ? "enabled" : "disabled")))
+		balloon_alert(user, LANG("obj.ac69276f2e0696c8", list(defense_mode ? "enabled" : "disabled")))
 		log_message("User has toggled defense mode -- now [defense_mode ? "enabled" : "disabled"].", LOG_MECHA)
 	else
 		log_message("defense mode state changed -- now [defense_mode ? "enabled" : "disabled"].", LOG_MECHA)

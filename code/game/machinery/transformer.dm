@@ -36,7 +36,7 @@
 /obj/machinery/transformer/examine(mob/user)
 	. = ..()
 	if(cooldown && (issilicon(user) || isobserver(user)))
-		. += LANG("obj.138b66cb", list(DisplayTimeText(cooldown_timer - world.time)))
+		. += LANG("obj.138b66cb788e68aa", list(DisplayTimeText(cooldown_timer - world.time)))
 
 /obj/machinery/transformer/Destroy()
 	QDEL_NULL(countdown)

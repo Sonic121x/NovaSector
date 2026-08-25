@@ -43,7 +43,7 @@
 /obj/machinery/arc_furnace/examine(mob/user)
 	. = ..()
 	if(length(contents))
-		. += span_notice(LANG("obj.1b5808be", list(contents[1])))
+		. += span_notice(LANG("obj.1b5808be89f6bb3e", list(contents[1])))
 	AddElement(/datum/element/tool_blocker, TOOL_SCREWDRIVER)
 	AddElement(/datum/element/tool_blocker, TOOL_CROWBAR)
 
@@ -64,16 +64,16 @@
 
 /obj/machinery/arc_furnace/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(operating)
-		balloon_alert(user, LANG("obj.8de55ff8", null))
+		balloon_alert(user, LANG("obj.8de55ff8d655fcad", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(length(contents))
-		balloon_alert(user, LANG("obj.b8dcd0aa", null))
+		balloon_alert(user, LANG("obj.b8dcd0aaa04aac08", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/stack/ore))
 		tool.forceMove(src)
-		balloon_alert(user, LANG("obj.73a2d20c", null))
+		balloon_alert(user, LANG("obj.73a2d20cafdd5eff", null))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -88,7 +88,7 @@
 		return
 
 	if(!length(contents))
-		balloon_alert(user, LANG("obj.76a90f7c", null))
+		balloon_alert(user, LANG("obj.76a90f7c0f5ea424", null))
 		return
 
 	var/choice = show_radial_menu(user, src, radial_options, require_near = !issilicon(user))
@@ -122,15 +122,15 @@
 /// Starts the smelting process, checking if the machine has power or if it's broken at all
 /obj/machinery/arc_furnace/proc/smelt_it_up(mob/user)
 	if(machine_stat & (NOPOWER|BROKEN))
-		balloon_alert(user, LANG("obj.6de0942f", null))
+		balloon_alert(user, LANG("obj.6de0942f4ac779ae", null))
 		return
 	if(operating)
-		balloon_alert(user, LANG("obj.26f62a97", null))
+		balloon_alert(user, LANG("obj.26f62a97eeec02f4", null))
 		return
 
 	var/obj/item/stack/ore/ore_to_smelt = contents[1]
 	if(!istype(ore_to_smelt))
-		balloon_alert(user, LANG("obj.441869ff", null))
+		balloon_alert(user, LANG("obj.441869ff5b198e21", null))
 
 	operating = TRUE
 	/// How long the smelting is going to take based off the stack size

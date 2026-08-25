@@ -100,7 +100,7 @@ GENERAL_PROTECT_DATUM(/datum/json_savefile)
 	var/temporary_file_storage = "data/preferences_export_working_directory/[file_name]"
 
 	if(!text2file(json_encode(tree, JSON_PRETTY_PRINT), temporary_file_storage))
-		tgui_alert(requester, LANG("datum.e95dbce0", null), LANG("datum.55f8ff4f", null))
+		tgui_alert(requester, LANG("datum.e95dbce06a9468d7", null), LANG("datum.55f8ff4fe12105fc", null))
 		return
 
 	var/exportable_json = file(temporary_file_storage)
@@ -112,10 +112,10 @@ GENERAL_PROTECT_DATUM(/datum/json_savefile)
 /// Just done like this to make the code in the export_json_to_client() proc a bit cleaner.
 /datum/json_savefile/proc/json_export_checks(mob/requester)
 	if(!COOLDOWN_FINISHED(src, download_cooldown))
-		tgui_alert(requester, LANG("datum.2b0c3c69", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, download_cooldown)))), LANG("datum.55f8ff4f", null))
+		tgui_alert(requester, LANG("datum.2b0c3c69d2e4e623", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, download_cooldown)))), LANG("datum.55f8ff4fe12105fc", null))
 		return FALSE
 
-	if(tgui_alert(requester, LANG("datum.1b23178a", null), LANG("datum.55f8ff4f", null), list("Cancel", "Yes")) == "Yes")
+	if(tgui_alert(requester, LANG("datum.1b23178a36d04ac3", null), LANG("datum.55f8ff4fe12105fc", null), list("Cancel", "Yes")) == "Yes")
 		return TRUE
 
 	return FALSE

@@ -16,7 +16,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/glasses/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice(LANG("obj.e3a56819", list(src))))
+		to_chat(user, span_notice(LANG("obj.e3a56819956401fe", list(src))))
 		qdel(src)
 		return
 	. = ..()
@@ -32,7 +32,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/under/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice(LANG("obj.e3a56819", list(src))))
+		to_chat(user, span_notice(LANG("obj.e3a56819956401fe", list(src))))
 		qdel(src)
 		return
 	. = ..()
@@ -49,7 +49,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/suit/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice(LANG("obj.e3a56819", list(src))))
+		to_chat(user, span_notice(LANG("obj.e3a56819956401fe", list(src))))
 		qdel(src)
 		return
 	. = ..()
@@ -66,7 +66,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/head/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice(LANG("obj.e3a56819", list(src))))
+		to_chat(user, span_notice(LANG("obj.e3a56819956401fe", list(src))))
 		qdel(src)
 		return
 	. = ..()
@@ -82,7 +82,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/shoes/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice(LANG("obj.e3a56819", list(src))))
+		to_chat(user, span_notice(LANG("obj.e3a56819956401fe", list(src))))
 		qdel(src)
 		return
 	. = ..()
@@ -98,7 +98,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/gloves/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice(LANG("obj.e3a56819", list(src))))
+		to_chat(user, span_notice(LANG("obj.e3a56819956401fe", list(src))))
 		qdel(src)
 		return
 	. = ..()
@@ -114,7 +114,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/mask/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice(LANG("obj.e3a56819", list(src))))
+		to_chat(user, span_notice(LANG("obj.e3a56819956401fe", list(src))))
 		qdel(src)
 		return
 	. = ..()
@@ -131,7 +131,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && IS_CHANGELING(user))
-		to_chat(user, span_notice(LANG("obj.e3a56819", list(src))))
+		to_chat(user, span_notice(LANG("obj.e3a56819956401fe", list(src))))
 		qdel(src)
 		return
 	. = ..()
@@ -145,12 +145,14 @@
 	var/icon/cached_flat_icon
 	/// HUD job icon of the ID
 	var/hud_icon
+	///HUD job icon state of the ID
+	var/hud_icon_state
 
 /obj/item/changeling/id/equipped(mob/user, slot, initial)
 	. = ..()
 	if(!hud_icon)
 		return
-	user.set_hud_image_state(ID_HUD, hud_icon)
+	user.set_hud_image_state(ID_HUD, hud_icon, hud_icon_state)
 
 /**
  * Returns cached flat icon of the ID, creates one if there is not one already cached

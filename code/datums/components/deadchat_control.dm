@@ -49,7 +49,7 @@
 		var/mob/mob_parent = parent
 		parent_name = "[mob_parent.real_name]"
 	notify_ghosts(
-		LANG("datum.84d119ca", list(parent_name)),
+		LANG("datum.84d119cae8a6a73e", list(parent_name)),
 		source = parent,
 		header = "Ghost Possession!",
 	)
@@ -77,17 +77,17 @@
 			return
 		var/cooldown = ckey_to_cooldown[source.ckey] - world.time
 		if(cooldown > 0)
-			to_chat(source, span_warning(LANG("datum.6d2a628e", list(CEILING(cooldown * 0.1, 1)))))
+			to_chat(source, span_warning(LANG("datum.6d2a628eb831e6ed", list(CEILING(cooldown * 0.1, 1)))))
 			return MOB_DEADSAY_SIGNAL_INTERCEPT
 		ckey_to_cooldown[source.ckey] = world.time + input_cooldown
 		addtimer(CALLBACK(src, PROC_REF(end_cooldown), source.ckey), input_cooldown)
 		inputs[message].Invoke()
-		to_chat(source, span_notice(LANG("datum.64a8e1f4", list(message, input_cooldown * 0.1))))
+		to_chat(source, span_notice(LANG("datum.64a8e1f43f134ff4", list(message, input_cooldown * 0.1))))
 		return MOB_DEADSAY_SIGNAL_INTERCEPT
 
 	if(deadchat_mode & DEMOCRACY_MODE)
 		ckey_to_cooldown[source.ckey] = message
-		to_chat(source, span_notice(LANG("datum.bf9b152b", list(message))))
+		to_chat(source, span_notice(LANG("datum.bf9b152b5a9e610b", list(message))))
 		return MOB_DEADSAY_SIGNAL_INTERCEPT
 
 /datum/component/deadchat_control/proc/democracy_loop()
@@ -183,12 +183,12 @@
 
 /// Async proc handling the alert input and associated logic for an admin removing this component via the VV dropdown.
 /datum/component/deadchat_control/proc/async_handle_vv_topic(mob/user, list/href_list)
-	if(tgui_alert(user, LANG("datum.ba1ecec0", list(parent)), LANG("datum.6203ef2d", list(parent)), list("Remove", "Cancel")) == "Remove")
+	if(tgui_alert(user, LANG("datum.ba1ecec0a8857b72", list(parent)), LANG("datum.6203ef2d72f9af68", list(parent)), list("Remove", "Cancel")) == "Remove")
 		// Quick sanity check as this is an async call.
 		if(QDELETED(src))
 			return
 
-		to_chat(user, span_notice(LANG("datum.5ca39375", list(parent))))
+		to_chat(user, span_notice(LANG("datum.5ca393750fd50816", list(parent))))
 		log_admin("[key_name(user)] has removed deadchat control from [parent]")
 		message_admins(span_notice("[key_name(user)] has removed deadchat control from [parent]"))
 
@@ -201,12 +201,12 @@
 	if(!isobserver(user))
 		return
 
-	examine_list += span_notice(LANG("datum.0366779e", list(A.p_Theyre(), (deadchat_mode & DEMOCRACY_MODE) ? "democracy" : "anarchy")))
+	examine_list += span_notice(LANG("datum.0366779e7c3febf4", list(A.p_Theyre(), (deadchat_mode & DEMOCRACY_MODE) ? "democracy" : "anarchy")))
 
 	if(deadchat_mode & DEMOCRACY_MODE)
-		examine_list += span_notice(LANG("datum.283d4fe2", list(input_cooldown * 0.1)))
+		examine_list += span_notice(LANG("datum.283d4fe26842275c", list(input_cooldown * 0.1)))
 	else if(deadchat_mode & ANARCHY_MODE)
-		examine_list += span_notice(LANG("datum.28be2737", list(input_cooldown * 0.1)))
+		examine_list += span_notice(LANG("datum.28be273798fcab66", list(input_cooldown * 0.1)))
 
 	var/extended_examine = "<span class='notice'>Command list:"
 
@@ -223,7 +223,7 @@
 	var/mob/ghost = get_mob_by_ckey(ghost_ckey)
 	if(!ghost || isliving(ghost))
 		return
-	to_chat(ghost, LANG("datum.03a79835", list(FOLLOW_LINK(ghost, parent), parent)))
+	to_chat(ghost, LANG("datum.03a7983520bfcbd5", list(FOLLOW_LINK(ghost, parent), parent)))
 
 /**
  * Deadchat Moves Things

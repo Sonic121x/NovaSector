@@ -17,7 +17,7 @@
 /datum/round_event/anomaly/anomaly_bioscrambler/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.find_bioscrambler_area()
-	priority_announce(LANG("datum.23757fbf", list(ANOMALY_ANNOUNCE_MEDIUM_TEXT, impact_area.name)), "Anomaly Alert", ANNOUNCER_ANOMALIES)
+	priority_announce(LANG("datum.23757fbf7fe61559", list(ANOMALY_ANNOUNCE_MEDIUM_TEXT, impact_area.name)), "Anomaly Alert", ANNOUNCER_ANOMALIES)
 
 /**
  * Returns an area which is safe to place a bioscrambler anomaly.

@@ -66,11 +66,11 @@
 	. = ..()
 	if(HAS_MIND_TRAIT(user, TRAIT_ENTRAILS_READER)|| isobserver(user))
 		if(liked_foodtypes)
-			. += span_info(LANG("obj.bb4a08db", list(english_list(bitfield_to_list(liked_foodtypes, FOOD_FLAGS_IC)))))
+			. += span_info(LANG("obj.bb4a08db50ee6504", list(lang_english_list(bitfield_to_list(liked_foodtypes, FOOD_FLAGS_IC)))))
 		if(disliked_foodtypes)
-			. += span_info(LANG("obj.7dd0e374", list(english_list(bitfield_to_list(disliked_foodtypes, FOOD_FLAGS_IC)))))
+			. += span_info(LANG("obj.7dd0e374883ef241", list(lang_english_list(bitfield_to_list(disliked_foodtypes, FOOD_FLAGS_IC)))))
 		if(toxic_foodtypes)
-			. += span_info(LANG("obj.8f7b6387", list(english_list(bitfield_to_list(toxic_foodtypes, FOOD_FLAGS_IC)))))
+			. += span_info(LANG("obj.8f7b6387e3045cc5", list(lang_english_list(bitfield_to_list(toxic_foodtypes, FOOD_FLAGS_IC)))))
 
 /**
  * Used in setting up the "languages possible" list.
@@ -217,6 +217,23 @@
 		new /regex(@"\bx([\-|r|R]|\b)", "g") = "ecks$1",
 		new /regex(@"\bX([\-|r|R]|\b)", "g") = "ECKS$1",
 	)
+	// NOVA EDIT ADDITION START - I18N - 中文版拟声。上面那张表是**字母级**替换（s→sss / s→z），
+	// 中文文本里一个拉丁字母都没有 → 整个效果在中文服上是空转，蜥蜴人说话和常人无异。
+	// 中文没有可替换的对应音字母，硬换字会毁掉词义，所以改成**标点锚定**：句末补一声，
+	// 本来就有的拟声字拉长。全角半角标点都认（中文输入法默认全角）。
+	var/static/list/chinese_speech_replacements = list(
+		new /regex("嘶+", "g") = "嘶嘶嘶",
+		"。" = "嘶。",
+		"！" = "嘶！",
+		"？" = "嘶？",
+		"，" = "嘶，",
+		// 半角标点**必须锚定前一个汉字**：合并英文表之后，裸的 "."/"!"/"?" 会在英文句子上开火，
+		// 把 "She is so sassy." 变成 "…sassy嘶."。锚定之后它只在中文字后面触发。
+		new /regex("(\[一-鿿\])\\.", "g") = "$1嘶.",
+		new /regex("(\[一-鿿\])!", "g") = "$1嘶!",
+		new /regex("(\[一-鿿\])\\?", "g") = "$1嘶?",
+	)
+	// NOVA EDIT ADDITION END
 	// NOVA EDIT ADDITION START - Russian version - yes copy pasted from above because static lists are great.
 	var/static/list/russian_speech_replacements = list(
 		new /regex("s+", "g") = "sss",
@@ -235,7 +252,15 @@
 
 /obj/item/organ/tongue/lizard/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/speechmod, replacements = CONFIG_GET(flag/russian_text_formation) ? russian_speech_replacements : speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech))) // NOVA EDIT CHANGE - ORIGINAL: AddComponent(/datum/component/speechmod, replacements = speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech)))
+	// NOVA EDIT CHANGE START - I18N - 中文拟声表**叠加**在英文表之上（不是替换）。
+	// 两套规则管的是两种文本形态：`s→sss` 只在拉丁字母上开火、`。→嘶。` 只在中文标点上开火，
+	// 合在一张表里互不干扰。整张替换掉的写法会让中文服上的英文发言丢掉效果，
+	// 也会让上游的 speech_modifiers 单测直接红（它断言的正是英文输入的变形结果）。
+	var/static/list/chinese_merged
+	if(lang_locale_is_chinese() && isnull(chinese_merged))
+		chinese_merged = lang_merge_speech_replacements(speech_replacements, chinese_speech_replacements)
+	AddComponent(/datum/component/speechmod, replacements = chinese_merged || (CONFIG_GET(flag/russian_text_formation) ? russian_speech_replacements : speech_replacements), should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech))) // NOVA EDIT CHANGE - ORIGINAL: AddComponent(/datum/component/speechmod, replacements = speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech)))
+	// NOVA EDIT CHANGE END
 
 /obj/item/organ/tongue/lizard/silver
 	name = "silver tongue"
@@ -281,11 +306,11 @@
 
 	if(isnull(statue))
 		if(feedback)
-			owner.balloon_alert(owner, LANG("datum.1db49ae6", null))
+			owner.balloon_alert(owner, LANG("datum.1db49ae6bbacf9fa", null))
 		return FALSE // permanently bricked
 	if(IS_UNCONSCIOUS_OR_CRIT(owner))
 		if(feedback)
-			owner.balloon_alert(owner, LANG("datum.65a3f894", null))
+			owner.balloon_alert(owner, LANG("datum.65a3f8941adb45e3", null))
 		return FALSE
 
 	return TRUE
@@ -296,13 +321,13 @@
 	var/is_statue = owner.loc == statue
 	if(!is_statue)
 		owner.visible_message(
-			span_notice(LANG("datum.f310af96", list(owner))),
-			span_notice(LANG("datum.dd675abf", null)),
+			span_notice(LANG("datum.f310af969a80423c", list(owner))),
+			span_notice(LANG("datum.dd675abfca24cbe8", null)),
 		)
 
 	owner.balloon_alert(owner, is_statue ? "breaking free..." : "striking a pose...")
 	if(!do_after(owner, (is_statue ? 0.5 SECONDS : 3 SECONDS), target = get_turf(owner)))
-		owner.balloon_alert(owner, LANG("datum.c67b5d27", null))
+		owner.balloon_alert(owner, LANG("datum.c67b5d274d6e724b", null))
 		return
 
 	StartCooldown()
@@ -311,15 +336,15 @@
 	statue.desc = "statue depicting [owner.real_name]"
 
 	if(is_statue)
-		statue.visible_message(span_danger(LANG("datum.9c94ee86", list(statue))))
+		statue.visible_message(span_danger(LANG("datum.9c94ee86eba1a92d", list(statue))))
 		owner.forceMove(get_turf(statue))
 		statue.moveToNullspace()
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
 	else
 		owner.visible_message(
-			span_notice(LANG("datum.aa360fa0", list(owner))),
-			span_notice(LANG("datum.b366833e", null)),
+			span_notice(LANG("datum.aa360fa0e411ba45", list(owner))),
+			span_notice(LANG("datum.b366833ec8137988", null)),
 		)
 		statue.set_visuals(owner.appearance)
 		statue.forceMove(get_turf(owner))
@@ -346,7 +371,7 @@
 	var/mob/living/carbon/carbon_owner = owner
 	UnregisterSignal(carbon_owner, COMSIG_MOVABLE_MOVED)
 
-	to_chat(carbon_owner, span_userdanger(LANG("datum.fdc91240", null)))
+	to_chat(carbon_owner, span_userdanger(LANG("datum.fdc912404473091a", null)))
 	carbon_owner.forceMove(get_turf(statue))
 	carbon_owner.dust(just_ash = TRUE, drop_items = TRUE)
 	carbon_owner.investigate_log("has been dusted from having their Silverscale Statue deconstructed / destroyed.", INVESTIGATE_DEATHS)
@@ -414,21 +439,21 @@
 		return
 
 	if(tongue.mothership == mothership)
-		to_chat(tongue_holder, span_notice(LANG("obj.927b529d", list(src))))
+		to_chat(tongue_holder, span_notice(LANG("obj.927b529d31980879", list(src))))
 
-	tongue_holder.visible_message(span_notice(LANG("obj.4cf26e6b", list(tongue_holder, src))), span_notice(LANG("obj.f5ce4436", list(src))))
+	tongue_holder.visible_message(span_notice(LANG("obj.4cf26e6b7df267d0", list(tongue_holder, src))), span_notice(LANG("obj.f5ce4436a57f34c7", list(src))))
 	if(do_after(tongue_holder, delay=15, target=src))
-		to_chat(tongue_holder, span_notice(LANG("obj.58fe1589", list(src))))
+		to_chat(tongue_holder, span_notice(LANG("obj.58fe1589d8544540", list(src))))
 		mothership = tongue.mothership
 
 /obj/item/organ/tongue/abductor/examine(mob/examining_mob)
 	. = ..()
 	if(HAS_MIND_TRAIT(examining_mob, TRAIT_ABDUCTOR_TRAINING) || isobserver(examining_mob))
-		. += span_notice(LANG("obj.583cd70c", null))
+		. += span_notice(LANG("obj.583cd70c6bbbe26a", null))
 		if(!mothership)
-			. += span_notice(LANG("obj.6305d16c", null))
+			. += span_notice(LANG("obj.6305d16c2681e0c5", null))
 		else
-			. += span_notice(LANG("obj.1790fafa", list(mothership)))
+			. += span_notice(LANG("obj.1790fafaa9ce1d0b", list(mothership)))
 
 /obj/item/organ/tongue/abductor/modify_speech(datum/source, list/speech_args)
 	//Hacks
@@ -640,14 +665,14 @@
 /obj/item/organ/tongue/robot/on_mob_insert(mob/living/carbon/receiver)
 	. = ..()
 	receiver.grant_language(/datum/language/machine, source = LANGUAGE_TONGUE)
-	to_chat(receiver, span_boldnotice(LANG("obj.7ce36525", list(/datum/language/machine::name))))
+	to_chat(receiver, span_boldnotice(LANG("obj.7ce36525de151fef", list(/datum/language/machine::name))))
 
 /obj/item/organ/tongue/robot/on_mob_remove(mob/living/carbon/owner)
 	. = ..()
 	if(QDELING(owner))
 		return
 	owner.remove_language(/datum/language/machine, source = LANGUAGE_TONGUE)
-	to_chat(owner, span_boldnotice(LANG("obj.314e1cd9", null)))
+	to_chat(owner, span_boldnotice(LANG("obj.314e1cd91baaa936", null)))
 
 /obj/item/organ/tongue/snail
 	name = "radula"

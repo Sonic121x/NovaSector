@@ -18,7 +18,7 @@
 	// AIs cannot speak if silent AI is on.
 	// Unless forced is set, as that's probably stating laws or something.
 	if(!forced && CONFIG_GET(flag/silent_ai))
-		to_chat(src, span_danger(LANG("mob.72d4e1fa", null)))
+		to_chat(src, span_danger(LANG("mob.72d4e1faef6195b8", null)))
 		return FALSE
 
 	return ..()
@@ -27,7 +27,7 @@
 	if(incapacitated)
 		return FALSE
 	if(!radio_enabled) //AI cannot speak if radio is disabled (via intellicard) or depowered.
-		to_chat(src, span_danger(LANG("mob.ee7eb432", null)))
+		to_chat(src, span_danger(LANG("mob.ee7eb43243067712", null)))
 		return FALSE
 	. = ..()
 	if(.)
@@ -55,7 +55,7 @@
 	var/obj/machinery/holopad/active_pad = current
 	// Only continue if there is a hologram and its master is the user.
 	if(!istype(active_pad) || !active_pad.masters[src])
-		to_chat(src, span_alert(LANG("mob.91a0a164", null)))
+		to_chat(src, span_alert(LANG("mob.91a0a16449869dc9", null)))
 		return
 
 	var/obj/effect/overlay/holo_pad_hologram/ai_holo = active_pad.masters[src]
@@ -99,13 +99,13 @@ GAME_VERB_DESC(/mob/living/silicon/ai, announcement_help, "公告帮助", "Displ
 /mob/living/silicon/ai/proc/announcement()
 	var/static/announcing_vox = 0 // Stores the time of the last announcement
 	if(announcing_vox > world.time)
-		to_chat(src, span_notice(LANG("mob.fa4aec51", list(DisplayTimeText(announcing_vox - world.time)))))
+		to_chat(src, span_notice(LANG("mob.fa4aec516cfc855c", list(DisplayTimeText(announcing_vox - world.time)))))
 		return
 
 	var/message = tgui_input_text(
 		src,
-		LANG("mob.6ded948c", null),
-		LANG("mob.4893e36f", null),
+		LANG("mob.6ded948c828c2778", null),
+		LANG("mob.4893e36f7545bce4", null),
 		src.last_announcement,
 		max_length = MAX_MESSAGE_LEN,
 	)
@@ -119,7 +119,7 @@ GAME_VERB_DESC(/mob/living/silicon/ai, announcement_help, "公告帮助", "Displ
 		return
 
 	if(control_disabled)
-		to_chat(src, span_warning(LANG("mob.24013b93", null)))
+		to_chat(src, span_warning(LANG("mob.24013b93d3625801", null)))
 		return
 
 	var/list/words = splittext(trim(message), " ")
@@ -137,7 +137,7 @@ GAME_VERB_DESC(/mob/living/silicon/ai, announcement_help, "公告帮助", "Displ
 			incorrect_words += word
 
 	if(incorrect_words.len)
-		to_chat(src, span_notice(LANG("mob.5d25ab4d", list(english_list(incorrect_words)))))
+		to_chat(src, span_notice(LANG("mob.5d25ab4d5a21f99b", list(lang_english_list(incorrect_words)))))
 		return
 
 	announcing_vox = world.time + VOX_DELAY
@@ -151,7 +151,7 @@ GAME_VERB_DESC(/mob/living/silicon/ai, announcement_help, "公告帮助", "Displ
 		var/turf/player_turf = get_turf(player_mob)
 		if(is_valid_z_level(ai_turf, player_turf))
 			players += player_mob
-	minor_announce(capitalize(message), LANG("mob.c7600a37", list(name)), players = players, should_play_sound = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(does_target_have_vox_off)))
+	minor_announce(capitalize(message), LANG("mob.c7600a37352acb03", list(name)), players = players, should_play_sound = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(does_target_have_vox_off)))
 
 	for(var/word in words)
 		play_vox_word(word, ai_turf, null)

@@ -117,7 +117,7 @@
 	if(. & EMP_PROTECT_SELF || !IS_ROBOTIC_ORGAN(src))
 		return
 	if(prob(15/severity) && owner)
-		to_chat(owner, span_warning(LANG("obj.b103ab54", list(src))))
+		to_chat(owner, span_warning(LANG("obj.b103ab5472229717", list(src))))
 		// give the owner an idea about why his implant is glitching
 		Retract()
 
@@ -159,9 +159,9 @@
 	active_item.resistance_flags = active_item::resistance_flags
 	if(owner)
 		owner.visible_message(
-			span_notice(LANG("obj.2b660e88", list(owner, active_item, owner.p_their(), parse_zone(zone)))),
-			span_notice(LANG("obj.effa8412", list(active_item, parse_zone(zone)))),
-			span_hear(LANG("obj.5f2c0be9", null)),
+			span_notice(LANG("obj.2b660e8897d3d08a", list(owner, active_item, owner.p_their(), parse_zone(zone)))),
+			span_notice(LANG("obj.effa84122676eb86", list(active_item, parse_zone(zone)))),
+			span_hear(LANG("obj.5f2c0be9496d203f", null)),
 		)
 
 		owner.transferItemToLoc(active_item, src, TRUE)
@@ -197,16 +197,16 @@
 			if(!owner.dropItemToGround(hand_item))
 				failure_message += span_warning("Your [hand_item] interferes with [src]!")
 				continue
-			to_chat(owner, span_notice(LANG("obj.6c0d424a", list(hand_item, src))))
+			to_chat(owner, span_notice(LANG("obj.6c0d424afa1a7296", list(hand_item, src))))
 			success = owner.put_in_hand(active_item, owner.get_empty_held_index_for_side(side))
 			break
 		if(!success)
 			for(var/i in failure_message)
 				to_chat(owner, i)
 			return
-	owner.visible_message(span_notice(LANG("obj.c85432cb", list(owner, active_item, owner.p_their(), parse_zone(zone)))),
-		span_notice(LANG("obj.d3afb912", list(active_item, parse_zone(zone)))),
-		span_hear(LANG("obj.5f2c0be9", null)))
+	owner.visible_message(span_notice(LANG("obj.c85432cbb9236b7d", list(owner, active_item, owner.p_their(), parse_zone(zone)))),
+		span_notice(LANG("obj.d3afb912b918e3aa", list(active_item, parse_zone(zone)))),
+		span_hear(LANG("obj.5f2c0be9496d203f", null)))
 	playsound(get_turf(owner), extend_sound, 50, TRUE)
 
 	if(length(items_list) > 1)
@@ -219,7 +219,7 @@
 
 /obj/item/organ/cyberimp/arm/toolkit/ui_action_click()
 	if((organ_flags & ORGAN_FAILING) || (!active_item && !contents.len))
-		to_chat(owner, span_warning(LANG("obj.c71343d8", null)))
+		to_chat(owner, span_warning(LANG("obj.c71343d8c78461e7", null)))
 		return
 
 	if(!active_item || (active_item in src))
@@ -247,9 +247,9 @@
 		return
 	if(prob(30/severity) && owner && !(organ_flags & ORGAN_FAILING))
 		Retract()
-		owner.visible_message(span_danger(LANG("obj.56edd909", list(owner, parse_zone(zone)))))
+		owner.visible_message(span_danger(LANG("obj.56edd9092f25fdfd", list(owner, parse_zone(zone)))))
 		playsound(get_turf(owner), 'sound/items/weapons/flashbang.ogg', 100, TRUE)
-		to_chat(owner, span_userdanger(LANG("obj.8afd771b", list(parse_zone(zone)))))
+		to_chat(owner, span_userdanger(LANG("obj.8afd771bdaa3fb85", list(parse_zone(zone)))))
 		owner.adjust_fire_stacks(20)
 		owner.ignite_mob()
 		owner.adjust_fire_loss(25)
@@ -308,7 +308,7 @@
 		if(istype(potential_tool, /obj/item/stamp/chameleon))
 			return FALSE
 
-	balloon_alert(user, LANG("obj.cab34edf", null))
+	balloon_alert(user, LANG("obj.cab34edf50611752", null))
 	items_list += WEAKREF(new /obj/item/stamp/chameleon(src))
 	return TRUE
 
@@ -318,7 +318,7 @@
 		if(istype(potential_knife, /obj/item/knife/combat/cyborg))
 			return FALSE
 
-	balloon_alert(user, LANG("obj.54ee1fae", null))
+	balloon_alert(user, LANG("obj.54ee1faee99c5a22", null))
 	items_list += WEAKREF(new /obj/item/knife/combat/cyborg(src))
 	return TRUE
 
@@ -508,13 +508,13 @@
 	. = ..()
 	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
 		return
-	owner.balloon_alert(owner, LANG("obj.ece5764c", null))
+	owner.balloon_alert(owner, LANG("obj.ece5764c6f87253b", null))
 	organ_flags |= ORGAN_FAILING
 	addtimer(CALLBACK(src, PROC_REF(reboot)), 90 / severity)
 
 /obj/item/organ/cyberimp/arm/strongarm/proc/reboot()
 	organ_flags &= ~ORGAN_FAILING
-	owner.balloon_alert(owner, LANG("obj.c7ddb052", null))
+	owner.balloon_alert(owner, LANG("obj.c7ddb05213c7f3b8", null))
 
 /obj/item/organ/cyberimp/arm/strongarm/proc/on_attack_hand(mob/living/carbon/human/source, atom/target, proximity, modifiers)
 	SIGNAL_HANDLER
@@ -537,11 +537,11 @@
 
 	if(organ_flags & ORGAN_FAILING)
 		if(source.body_position != LYING_DOWN && living_target != source && prob(50))
-			to_chat(source, span_danger(LANG("obj.a7361a8e", list(picked_hit_type, living_target))))
+			to_chat(source, span_danger(LANG("obj.a7361a8e93490167", list(picked_hit_type, living_target))))
 			source.Knockdown(3 SECONDS)
 			source.forceMove(get_turf(living_target))
 		else
-			to_chat(source, span_danger(LANG("obj.c00adc53", null)))
+			to_chat(source, span_danger(LANG("obj.c00adc5351ae258b", null)))
 			source.Paralyze(1 SECONDS)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -591,14 +591,14 @@
 
 	// Some mobs gib when killed, so we're logging early. At this point, we're definitely hitting, so...
 	living_target.visible_message(
-		span_danger(LANG("obj.f0c1dcda", list(source, picked_hit_type, living_target, ground_bounce ? " into [target_turf]" : ""))),
-		span_userdanger(LANG("obj.291aabf5", list(picked_hit_type, source, ground_bounce ? " into [target_turf]" : ""))),
-		span_hear(LANG("obj.6c7f8149", null)),
+		span_danger(LANG("obj.f0c1dcda0a43a30e", list(source, picked_hit_type, living_target, ground_bounce ? " into [target_turf]" : ""))),
+		span_userdanger(LANG("obj.291aabf5b6d7c128", list(picked_hit_type, source, ground_bounce ? " into [target_turf]" : ""))),
+		span_hear(LANG("obj.6c7f8149b8c68cd4", null)),
 		COMBAT_MESSAGE_RANGE,
 		source,
 	)
 
-	to_chat(source, span_danger(LANG("obj.ddf7e598", list(picked_hit_type, target, ground_bounce ? " into [target_turf]" : ""))))
+	to_chat(source, span_danger(LANG("obj.ddf7e598608c8312", list(picked_hit_type, target, ground_bounce ? " into [target_turf]" : ""))))
 
 	log_combat(source, target, "[picked_hit_type]ed", "muscle implant")
 

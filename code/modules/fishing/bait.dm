@@ -23,7 +23,7 @@
 
 /obj/item/bait_can/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.3c03d0a2", list(uses_left ? " has got [uses_left] [bait_type::name] left" : "'s empty")))
+	. += span_info(LANG("obj.3c03d0a2dceef26a", list(uses_left ? " has got [uses_left] [bait_type::name] left" : "'s empty")))
 
 /obj/item/bait_can/update_icon_state()
 	. = ..()
@@ -36,10 +36,10 @@
 
 /obj/item/bait_can/proc/retrieve_bait(mob/user)
 	if(!uses_left)
-		user.balloon_alert(user, LANG("obj.6bdf3fe5", null))
+		user.balloon_alert(user, LANG("obj.6bdf3fe55052831d", null))
 		return
 	if(!COOLDOWN_FINISHED(src, bait_removal_cooldown))
-		user.balloon_alert(user, LANG("obj.5cf1376b", null))
+		user.balloon_alert(user, LANG("obj.5cf1376bf66c8e0b", null))
 		return
 	COOLDOWN_START(src, bait_removal_cooldown, cooldown_time)
 	update_appearance()
@@ -94,9 +94,9 @@
 
 /obj/item/fishing_lure/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.9015dc5f", list(spin_frequency[1] * 0.1, spin_frequency[2] * 0.1)))
+	. += span_info(LANG("obj.9015dc5fa865ae3b", list(spin_frequency[1] * 0.1, spin_frequency[2] * 0.1)))
 	if(HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISHING_SPOT))
-		. += span_tinynotice(LANG("obj.39ea7e75", null))
+		. += span_tinynotice(LANG("obj.39ea7e75d351c3bc", null))
 
 /obj/item/fishing_lure/examine_more(mob/user)
 	. = ..()
@@ -111,7 +111,7 @@
 	if(!length(known_fishes))
 		return
 
-	. += span_info(LANG("obj.a12b48bb", list(english_list(known_fishes))))
+	. += span_info(LANG("obj.a12b48bbe36a96f5", list(lang_english_list(known_fishes))))
 
 ///Check if the fish is in the list of catchable fish for this fishing lure. Return value is a multiplier.
 /obj/item/fishing_lure/check_bait(obj/item/fish/fish)

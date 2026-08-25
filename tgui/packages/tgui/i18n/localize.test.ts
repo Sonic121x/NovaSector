@@ -4,6 +4,7 @@ import { Dropdown } from 'tgui-core/components';
 
 import { configAtom, store } from '../events/store';
 import type { Config } from '../events/types';
+import { mergeCatalogOverlay, resetCatalogOverlay } from './catalog';
 import { localizeProps } from './localize';
 import propTemplates from './prop-templates.json';
 import zhHans from './zh-Hans.json';
@@ -21,6 +22,12 @@ describe('localizeProps', () => {
     expect(SAMPLE_ZH).toBeTruthy();
     const props = localizeProps({ content: SAMPLE }) as Record<string, string>;
     expect(props.content).toBe(SAMPLE_ZH);
+  });
+
+  test('legacy JSX adapter keeps unknown text as its English fallback', () => {
+    const source = 'Zzqv unknown upstream message';
+    const props = localizeProps({ content: source }) as Record<string, string>;
+    expect(props.content).toBe(source);
   });
 
   test('confirmContent 也算可翻 prop（policy.json 单一来源）', () => {
@@ -141,11 +148,38 @@ describe('localizeProps', () => {
     expect(propTemplates).toContain(key);
     const zh = (zhHans as Record<string, string>)[key];
     expect(zh).toBeTruthy();
-    const props = localizeProps({ title: 'Reading: Zzyzx Manifesto' }) as Record<
-      string,
-      string
-    >;
+    const props = localizeProps({
+      title: 'Reading: Zzyzx Manifesto',
+    }) as Record<string, string>;
     expect(props.title).toBe(zh.replace('{0}', 'Zzyzx Manifesto'));
+  });
+
+  test('prop 模板缓存随 locale 切换失效', () => {
+    const source = 'Reading: Zzyzx Manifesto';
+    store.set(configAtom, { locale: 'en' } as Config);
+    expect(
+      (localizeProps({ title: source }) as Record<string, string>).title,
+    ).toBe(source);
+
+    store.set(configAtom, { locale: 'zh-Hans' } as Config);
+    const zh = (zhHans as Record<string, string>)['Reading: {0}'];
+    expect(
+      (localizeProps({ title: source }) as Record<string, string>).title,
+    ).toBe(zh.replace('{0}', 'Zzyzx Manifesto'));
+  });
+
+  test('prop 模板缓存随 overlay 生命周期失效', () => {
+    const source = 'Reading: Zzyzx Manifesto';
+    mergeCatalogOverlay({ 'Reading: {0}': '负载模板：{0}' });
+    expect(
+      (localizeProps({ title: source }) as Record<string, string>).title,
+    ).toBe('负载模板：Zzyzx Manifesto');
+
+    resetCatalogOverlay();
+    const zh = (zhHans as Record<string, string>)['Reading: {0}'];
+    expect(
+      (localizeProps({ title: source }) as Record<string, string>).title,
+    ).toBe(zh.replace('{0}', 'Zzyzx Manifesto'));
   });
 
   // 逆匹配是整串匹配，形状对不上就不该动（否则等于子串替换、会从句子中间开火）。
@@ -163,5 +197,116 @@ describe('localizeProps', () => {
     ) as Record<string, unknown>;
     expect(props.options).toEqual([unknownOption]);
     expect(props.displayText).toBeUndefined();
+  });
+});
+
+// 负载 overlay：运行期才成形的值（atom 名、datum 描述、拼接句）不可能在编译期抽取的静态目录里。
+// DM 侧把它们随负载下发（`json_data["i18n"]`），值本身保持 canonical English —— 于是 act() 回传
+// 与服务端持有的字符串逐字节相同。这几条守「overlay 真的接进了查表链」以及它的生命周期。
+describe('负载 overlay', () => {
+  const RUNTIME = 'Zxqv Thranok Unit';
+  const RUNTIME_ZH = '兹克夫单元';
+
+  test('overlay 里的运行期值在可翻 prop 上被替换', () => {
+    mergeCatalogOverlay({ [RUNTIME]: RUNTIME_ZH });
+    const props = localizeProps({ content: RUNTIME }) as Record<string, string>;
+    expect(props.content).toBe(RUNTIME_ZH);
+    resetCatalogOverlay();
+  });
+
+  test('overlay 合并而非替换：static_data 只在开窗时下发一次', () => {
+    mergeCatalogOverlay({ [RUNTIME]: RUNTIME_ZH });
+    mergeCatalogOverlay({ Other: '其它' });
+    const props = localizeProps({ content: RUNTIME }) as Record<string, string>;
+    expect(props.content).toBe(RUNTIME_ZH);
+    resetCatalogOverlay();
+  });
+
+  test('窗口挂起后清空：复用给别的界面时不留误翻面', () => {
+    mergeCatalogOverlay({ [RUNTIME]: RUNTIME_ZH });
+    resetCatalogOverlay();
+    const props = localizeProps({ content: RUNTIME }) as Record<string, string>;
+    expect(props.content).toBe(RUNTIME);
+  });
+
+  test('大小写包装（capitalize/toTitleCase）仍能命中', () => {
+    mergeCatalogOverlay({ 'power chromosome': '力量染色体' });
+    // 界面写的是 capitalize(x) / toTitleCase(x)，渲染到的串与负载原值只差大小写。
+    for (const wrapped of ['Power chromosome', 'Power Chromosome']) {
+      const props = localizeProps({ content: wrapped }) as Record<
+        string,
+        string
+      >;
+      expect(props.content).toBe('力量染色体');
+    }
+    resetCatalogOverlay();
+  });
+
+  test('拼进更大串里的运行期值靠子串替换落地', () => {
+    mergeCatalogOverlay({
+      'Zxqv Thranok Unit': '兹克夫单元',
+      'quiet dark drift': '静暗漂流',
+    });
+    // `` {`${x.name} - ${x.desc}`} `` 这种整串永远不是目录键。
+    const props = localizeProps({
+      content: 'Zxqv Thranok Unit - quiet dark drift',
+    }) as Record<string, string>;
+    expect(props.content).toBe('兹克夫单元 - 静暗漂流');
+    resetCatalogOverlay();
+  });
+
+  test('子串替换有词边界：不得咬进另一个词中间', () => {
+    mergeCatalogOverlay({ 'Zxqv Thranok': '兹克夫' });
+    const props = localizeProps({ content: 'Zxqv Thranoks' }) as Record<
+      string,
+      string
+    >;
+    expect(props.content).toBe('Zxqv Thranoks');
+    resetCatalogOverlay();
+  });
+
+  test('子串替换最长优先：短键不得遮住长键', () => {
+    mergeCatalogOverlay({
+      'Zxqv Thranok': '兹克夫',
+      'Zxqv Thranok Unit': '兹克夫单元',
+    });
+    const props = localizeProps({
+      content: 'Zxqv Thranok Unit: 5u',
+    }) as Record<string, string>;
+    expect(props.content).toBe('兹克夫单元: 5u');
+    resetCatalogOverlay();
+  });
+
+  test('混排 children 里的负载值不受碎片闸门连坐', () => {
+    mergeCatalogOverlay({ 'Zxqv Thranok Unit': '兹克夫单元' });
+    // ["Zxqv Thranok Unit", " costs ", 5, " credits"]：碎片 " costs " 永远不是目录键，
+    // 从前靠 P1 就地改写、名字本来就是中文；整条闸门不能把它一起打回英文。
+    const props = localizeProps({
+      children: ['Zxqv Thranok Unit', ' costs ', 5, ' credits'],
+    }) as Record<string, unknown>;
+    expect((props.children as unknown[])[0]).toBe('兹克夫单元');
+    expect((props.children as unknown[])[1]).toBe(' costs ');
+    resetCatalogOverlay();
+  });
+
+  test('单词键只做整串精确查表，不参与子串替换', () => {
+    // P1 的多词门槛放开后单词值也进 overlay（「TGUI 单词名恒为英文」那类才有解），
+    // 但单词做子串替换会从另一个词内部开火 —— 这条界线必须在 TS 侧显式守住。
+    mergeCatalogOverlay({ Zxqv: '兹克夫' });
+    const exact = localizeProps({ content: 'Zxqv' }) as Record<string, string>;
+    expect(exact.content).toBe('兹克夫');
+    const inside = localizeProps({ content: 'Zxqv Thranok reactor' }) as Record<
+      string,
+      string
+    >;
+    expect(inside.content).toBe('Zxqv Thranok reactor');
+    resetCatalogOverlay();
+  });
+
+  test('静态目录条目不受 overlay 影响', () => {
+    mergeCatalogOverlay({ [RUNTIME]: RUNTIME_ZH });
+    const props = localizeProps({ content: SAMPLE }) as Record<string, string>;
+    expect(props.content).toBe(SAMPLE_ZH);
+    resetCatalogOverlay();
   });
 });

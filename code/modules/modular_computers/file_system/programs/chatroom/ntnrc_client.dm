@@ -142,7 +142,7 @@
 				if(!computer)
 					// This program shouldn't even be runnable without computer.
 					CRASH("Var computer is null!")
-				computer.visible_message(span_warning(LANG("datum.712976d5", list(computer, logfile.size))))
+				computer.visible_message(span_warning(LANG("datum.712976d508c65633", list(computer, logfile.size))))
 			return TRUE
 		if("PRG_renamechannel")
 			if(!authed)

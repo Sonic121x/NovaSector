@@ -11,7 +11,7 @@
 
 	if(!HAS_TRAIT(to_insert, TRAIT_AQUARIUM_CONTENT))
 		if(messages && user)
-			user.balloon_alert(user, LANG("datum.60b37357", null))
+			user.balloon_alert(user, LANG("datum.60b37357a4cd8af6", null))
 		return FALSE
 	return .
 

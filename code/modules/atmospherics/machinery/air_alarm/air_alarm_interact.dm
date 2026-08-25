@@ -3,12 +3,12 @@
 /obj/machinery/airalarm/crowbar_act(mob/living/user, obj/item/tool)
 	if(buildstage != AIR_ALARM_BUILD_NO_WIRES)
 		return
-	user.visible_message(span_notice(LANG("obj.fe9f9988", list(user.name, name))), \
-						span_notice(LANG("obj.330c1e13", null)))
+	user.visible_message(span_notice(LANG("obj.fe9f998800789e9c", list(user.name, name))), \
+						span_notice(LANG("obj.330c1e13c35d6733", null)))
 	tool.play_tool_sound(src)
 	if (tool.use_tool(src, user, 20))
 		if (buildstage == AIR_ALARM_BUILD_NO_WIRES)
-			to_chat(user, span_notice(LANG("obj.d9785d64", null)))
+			to_chat(user, span_notice(LANG("obj.d9785d64a404cde5", null)))
 			new /obj/item/electronics/airalarm(drop_location())
 			playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 			buildstage = AIR_ALARM_BUILD_NO_CIRCUIT
@@ -20,7 +20,7 @@
 		return
 	tool.play_tool_sound(src)
 	toggle_panel_open()
-	to_chat(user, span_notice(LANG("obj.37462ae8", list(panel_open ? "exposed" : "unexposed"))))
+	to_chat(user, span_notice(LANG("obj.37462ae82f3a8d36", list(panel_open ? "exposed" : "unexposed"))))
 	update_appearance()
 	return TRUE
 
@@ -28,7 +28,7 @@
 	if(!(buildstage == AIR_ALARM_BUILD_COMPLETE && panel_open && wires.is_all_cut()))
 		return
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice(LANG("obj.29430b26", null)))
+	to_chat(user, span_notice(LANG("obj.29430b26a5f97483", null)))
 	var/obj/item/stack/cable_coil/cables = new(drop_location(), 5)
 	user.put_in_hands(cables)
 	buildstage = AIR_ALARM_BUILD_NO_WIRES
@@ -38,7 +38,7 @@
 /obj/machinery/airalarm/wrench_act(mob/living/user, obj/item/tool)
 	if(buildstage != AIR_ALARM_BUILD_NO_CIRCUIT)
 		return
-	to_chat(user, span_notice(LANG("obj.5aa4bf16", list(src))))
+	to_chat(user, span_notice(LANG("obj.5aa4bf16595de619", list(src))))
 	tool.play_tool_sound(src)
 	var/obj/item/wallframe/airalarm/alarm_frame = new(drop_location())
 	user.put_in_hands(alarm_frame)
@@ -53,7 +53,7 @@
 
 /obj/machinery/airalarm/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
 	if(rcd_data[RCD_DESIGN_MODE] == RCD_WALLFRAME)
-		balloon_alert(user, LANG("obj.3bf49b8d", null))
+		balloon_alert(user, LANG("obj.3bf49b8db1d12d4f", null))
 		buildstage = AIR_ALARM_BUILD_NO_WIRES
 		update_appearance()
 		return TRUE
@@ -70,25 +70,25 @@
 
 /obj/machinery/airalarm/proc/togglelock(mob/living/user)
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, span_warning(LANG("obj.499cb459", null)))
+		to_chat(user, span_warning(LANG("obj.499cb459ff1b5e11", null)))
 	else
 		if(HAS_SILICON_ACCESS(user))
 			locked = !locked
 			return
 		if(src.allowed(usr) && !wires.is_cut(WIRE_IDSCAN))
 			locked = !locked
-			to_chat(user, span_notice(LANG("obj.5957d086", list(locked ? "lock" : "unlock"))))
+			to_chat(user, span_notice(LANG("obj.5957d086f5c23b81", list(locked ? "lock" : "unlock"))))
 			if(!locked)
 				ui_interact(user)
 		else
-			to_chat(user, span_danger(LANG("obj.077f9b52", null)))
+			to_chat(user, span_danger(LANG("obj.077f9b52c530e7f8", null)))
 
 /obj/machinery/airalarm/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	visible_message(span_warning(LANG("obj.b7523a48", list(src))))
-	balloon_alert(user, LANG("obj.fd657733", null))
+	visible_message(span_warning(LANG("obj.b7523a488c133b30", list(src))))
+	balloon_alert(user, LANG("obj.fd65773343054de1", null))
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 
@@ -121,11 +121,11 @@
 
 			var/obj/item/stack/cable_coil/cable = tool
 			if(cable.get_amount() < 5)
-				to_chat(user, span_warning(LANG("obj.44b093d6", null)))
+				to_chat(user, span_warning(LANG("obj.44b093d6c2fcf0f0", null)))
 				return ITEM_INTERACT_BLOCKING
 
-			user.visible_message(span_notice(LANG("obj.24088500", list(user.name))), \
-								span_notice(LANG("obj.dcfa80c4", null)))
+			user.visible_message(span_notice(LANG("obj.24088500d5173da2", list(user.name))), \
+								span_notice(LANG("obj.dcfa80c488f6516c", null)))
 			if(!do_after(user, 2 SECONDS, target = src))
 				return ITEM_INTERACT_BLOCKING
 
@@ -133,7 +133,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			cable.use(5)
-			to_chat(user, span_notice(LANG("obj.038ce342", null)))
+			to_chat(user, span_notice(LANG("obj.038ce342751e1f53", null)))
 			wires.repair()
 			aidisabled = FALSE
 			locked = FALSE
@@ -149,7 +149,7 @@
 				if(!user.temporarilyRemoveItemFromInventory(tool))
 					return ITEM_INTERACT_BLOCKING
 
-				to_chat(user, span_notice(LANG("obj.a4c18684", null)))
+				to_chat(user, span_notice(LANG("obj.a4c1868474c29672", null)))
 				buildstage = AIR_ALARM_BUILD_NO_WIRES
 				update_appearance()
 				qdel(tool)
@@ -159,8 +159,8 @@
 				if(!astype(tool, /obj/item/electroadaptive_pseudocircuit).adapt_circuit(user, circuit_cost = 0.025 * STANDARD_CELL_CHARGE))
 					return ITEM_INTERACT_BLOCKING
 
-				user.visible_message(span_notice(LANG("obj.bdc98e79", list(user, src))), \
-				span_notice(LANG("obj.1f2fc2a5", null)))
+				user.visible_message(span_notice(LANG("obj.bdc98e79de4f6d08", list(user, src))), \
+				span_notice(LANG("obj.1f2fc2a598bb4954", null)))
 				buildstage = AIR_ALARM_BUILD_NO_WIRES
 				update_appearance()
 				return ITEM_INTERACT_SUCCESS
@@ -199,6 +199,6 @@
 /obj/item/wallframe/airalarm/try_build(atom/support, mob/user)
 	var/area/A = get_area(user)
 	if(A.always_unpowered)
-		balloon_alert(user, LANG("obj.503cb4c5", null))
+		balloon_alert(user, LANG("obj.503cb4c57dfefe6a", null))
 		return FALSE
 	return ..()

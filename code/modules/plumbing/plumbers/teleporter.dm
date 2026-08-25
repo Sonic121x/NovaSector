@@ -15,7 +15,7 @@
 
 /obj/machinery/plumbing/sender/multitool_act(mob/living/user, obj/item/multitool/M)
 	if(!istype(M.buffer, /obj/machinery/plumbing/receiver))
-		to_chat(user, span_warning(LANG("obj.a79082e5", null)))
+		to_chat(user, span_warning(LANG("obj.a79082e5266f9884", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(target)
@@ -23,7 +23,7 @@
 
 	set_teleport_target(M.buffer)
 
-	to_chat(user, span_green(LANG("obj.3e693269", list(src, M.buffer))))
+	to_chat(user, span_green(LANG("obj.3e693269605ba8cf", list(src, M.buffer))))
 	return ITEM_INTERACT_SUCCESS
 
 ///Lose our previous target and make our previous target lose us. Seperate proc because I feel like I'll need this again
@@ -66,7 +66,7 @@
 
 /obj/machinery/plumbing/receiver/multitool_act(mob/living/user, obj/item/multitool/M)
 	M.set_buffer(src)
-	balloon_alert(user, LANG("obj.84afb909", null))
+	balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/plumbing/receiver/process(seconds_per_tick)

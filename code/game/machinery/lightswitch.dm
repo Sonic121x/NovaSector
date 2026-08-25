@@ -73,8 +73,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
-	. += LANG("obj.62eee539", list((machine_stat & NOPOWER) ? "unpowered" : (area.lightswitch ? "on" : "off")))
-	. += span_notice(LANG("obj.2fc65237", null))
+	. += LANG("obj.62eee539c1582dc1", list((machine_stat & NOPOWER) ? "unpowered" : (area.lightswitch ? "on" : "off")))
+	. += span_notice(LANG("obj.2fc65237fe53e006", null))
 
 /obj/machinery/light_switch/interact(mob/user)
 	. = ..()
@@ -82,10 +82,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 	set_lights(!area.lightswitch)
 
 /obj/machinery/light_switch/screwdriver_act(mob/living/user, obj/item/tool)
-	user.visible_message(span_notice(LANG("obj.4c49fa3f", list(user, src))), span_notice(LANG("obj.f4529b06", list(src))))
+	user.visible_message(span_notice(LANG("obj.4c49fa3fbcd58fe1", list(user, src))), span_notice(LANG("obj.f4529b06f210d08d", list(src))))
 	if(!tool.use_tool(src, user, 40, volume = 50))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.096e3f6f", list(user, src))), span_notice(LANG("obj.aa18b3fe", list(src))))
+	user.visible_message(span_notice(LANG("obj.096e3f6f8e66d37a", list(user, src))), span_notice(LANG("obj.aa18b3fe3f2cb677", list(src))))
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS

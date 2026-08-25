@@ -20,10 +20,10 @@
 /obj/item/clothing/mask/madness_mask/examine(mob/user)
 	. = ..()
 	if(IS_HERETIC_OR_MONSTER(user))
-		. += span_notice(LANG("obj.e45d15b3", null))
-		. += span_notice(LANG("obj.409f3f13", null))
+		. += span_notice(LANG("obj.e45d15b34fe0be61", null))
+		. += span_notice(LANG("obj.409f3f1331550631", null))
 	else
-		. += span_danger(LANG("obj.36fd86e3", null))
+		. += span_danger(LANG("obj.36fd86e31e718efd", null))
 
 /obj/item/clothing/mask/madness_mask/equipped(mob/user, slot)
 	. = ..()
@@ -39,7 +39,7 @@
 		return
 
 	ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
-	to_chat(user, span_userdanger(LANG("obj.49d7f8f8", list(src))))
+	to_chat(user, span_userdanger(LANG("obj.49d7f8f87c029743", list(src))))
 
 /obj/item/clothing/mask/madness_mask/dropped(mob/M)
 	local_user = null

@@ -47,8 +47,8 @@
 ///signal sent from examining target
 /datum/element/deliver_first/proc/on_examine(obj/structure/closet/target, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_warning(LANG("datum.a3a2a650", list(GLOB.areas_by_type[goal_area_type])))
-	examine_list += span_warning(LANG("datum.0e568dec", null))
+	examine_list += span_warning(LANG("datum.a3a2a6504827066c", list(GLOB.areas_by_type[goal_area_type])))
+	examine_list += span_warning(LANG("datum.0e568dec0c3bc7b2", null))
 
 ///registers the signal that blocks target from opening when outside of the valid area, returns if it is now unlocked
 /datum/element/deliver_first/proc/area_check(obj/structure/closet/target)
@@ -66,7 +66,7 @@
 
 /datum/element/deliver_first/proc/on_emag(obj/structure/closet/target, mob/emagger)
 	SIGNAL_HANDLER
-	emagger.balloon_alert(emagger, LANG("datum.9ff22eda", null))
+	emagger.balloon_alert(emagger, LANG("datum.9ff22eda52f70f87", null))
 	remove_lock(target)
 
 ///signal called before opening target, blocks opening
@@ -79,7 +79,7 @@
 		if(opening_crate.manifest) //we don't want to send feedback if they're just tearing off the manifest
 			return BLOCK_OPEN
 	if(user)
-		target.balloon_alert(user, LANG("datum.b5be80c5", null))
+		target.balloon_alert(user, LANG("datum.b5be80c52fb38cf3", null))
 	if(COOLDOWN_FINISHED(src, deny_cooldown))
 		playsound(target, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 		COOLDOWN_START(src, deny_cooldown, DENY_SOUND_COOLDOWN)
@@ -97,7 +97,7 @@
 
 ///called to remove the element in a flavorful way, either from delivery or from emagging/breaking open the crate
 /datum/element/deliver_first/proc/remove_lock(obj/structure/closet/target)
-	target.visible_message(span_notice(LANG("datum.ef519bb6", list(target))))
+	target.visible_message(span_notice(LANG("datum.ef519bb6e75d2d9f", list(target))))
 	var/datum/effect_system/basic/spark_spread/spark_system = new(target.loc, 4, 0)
 	spark_system.start()
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)

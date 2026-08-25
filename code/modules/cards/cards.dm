@@ -127,7 +127,7 @@
 		return
 
 	if(count_cards() == 0)
-		to_chat(user, span_warning(LANG("obj.aee197f9", null)))
+		to_chat(user, span_warning(LANG("obj.aee197f983056b73", null)))
 		return
 
 	var/list/cards = fetch_card_atoms()

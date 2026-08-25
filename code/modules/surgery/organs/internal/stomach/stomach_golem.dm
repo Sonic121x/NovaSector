@@ -6,7 +6,7 @@
 	color = COLOR_GOLEM_GRAY
 	organ_flags = ORGAN_MINERAL
 	organ_traits = list(TRAIT_ROCK_EATER)
-	hunger_modifier = 10 // golems burn fuel quickly
+	hunger_modifier = 8 // golems burn fuel quickly
 	/// How slow are you when the "hungry" icon appears?
 	var/min_hunger_slowdown = 0.5
 	/// How slow are you if you have absolutely nothing in the tank?
@@ -27,7 +27,7 @@
 	SIGNAL_HANDLER
 	if(istype(eating, /obj/item/food/golem_food))
 		return
-	source.balloon_alert(source, LANG("obj.77a262b8", null))
+	source.balloon_alert(source, LANG("obj.77a262b8ec84418b", null))
 	return BLOCK_EAT_ATTEMPT
 
 /// Golem stomach cannot process nutriment except from minerals
@@ -71,14 +71,14 @@
 	. = ..()
 	if (!.)
 		return FALSE
-	owner.visible_message(span_warning(LANG("datum.6a3e8ea9", list(owner))), span_warning(LANG("datum.9c634111", null)))
+	owner.visible_message(span_warning(LANG("datum.6a3e8ea95b33c925", list(owner))), span_warning(LANG("datum.9c63411141c5a49c", null)))
 	owner.add_traits(list(TRAIT_IMMOBILIZED, TRAIT_FORCED_STANDING, TRAIT_HANDS_BLOCKED, TRAIT_INCAPACITATED), TRAIT_STATUS_EFFECT(id))
 	return TRUE
 
-/datum/status_effect/golem_statued/get_examine_text()
+/datum/status_effect/golem_statued/get_examine_text(mob/examiner)
 	return span_warning("[owner.p_They()] [owner.p_are()] as still as a statue!")
 
 /datum/status_effect/golem_statued/on_remove()
-	owner.visible_message(span_notice(LANG("datum.233459f4", list(owner))), span_notice(LANG("datum.f8e45967", null)))
+	owner.visible_message(span_notice(LANG("datum.233459f41db9db5a", list(owner))), span_notice(LANG("datum.f8e459677be74775", null)))
 	owner.remove_traits(list(TRAIT_IMMOBILIZED, TRAIT_FORCED_STANDING, TRAIT_HANDS_BLOCKED, TRAIT_INCAPACITATED), TRAIT_STATUS_EFFECT(id))
 	return ..()

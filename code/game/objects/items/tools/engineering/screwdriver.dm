@@ -54,7 +54,7 @@
 	acid = 30
 
 /obj/item/screwdriver/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.7c03dfc3", list(user, src, user.p_their(), pick("temple", "heart"), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.7c03dfc3308cc547", list(user, src, user.p_their(), pick("temple", "heart"), user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/screwdriver/Initialize(mapload)
@@ -138,19 +138,19 @@
 
 	tool_behaviour = (active ? TOOL_WRENCH : TOOL_SCREWDRIVER)
 	if(user)
-		balloon_alert(user, LANG("obj.07b7e630", list(active ? "bolt bit" : "screw bit")))
+		balloon_alert(user, LANG("obj.07b7e630c2be57ee", list(active ? "bolt bit" : "screw bit")))
 	playsound(src, 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/screwdriver/power/examine()
 	. = ..()
-	. += LANG("obj.f362b056", list(tool_behaviour == TOOL_SCREWDRIVER ? "screw" : "bolt"))
+	. += LANG("obj.f362b0565ac71a21", list(tool_behaviour == TOOL_SCREWDRIVER ? "screw" : "bolt"))
 
 /obj/item/screwdriver/power/suicide_act(mob/living/user)
 	if(tool_behaviour == TOOL_SCREWDRIVER)
-		user.visible_message(span_suicide(LANG("obj.86f425b9", list(user, src, user.p_their(), user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.86f425b92bc6fb70", list(user, src, user.p_their(), user.p_theyre()))))
 	else
-		user.visible_message(span_suicide(LANG("obj.8f30b233", list(user, src, user.p_their(), user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.8f30b2336320402c", list(user, src, user.p_their(), user.p_theyre()))))
 	playsound(loc, 'sound/items/tools/drill_use.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 

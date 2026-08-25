@@ -30,11 +30,11 @@ NOVA EDIT END */
 
 /obj/machinery/cell_charger/examine(mob/user)
 	. = ..()
-	. += LANG("obj.f2da67ae", list(charging ? "\a [charging]" : "no cell"))
+	. += LANG("obj.f2da67ae3c0759cc", list(charging ? "\a [charging]" : "no cell"))
 	if(charging)
-		. += LANG("obj.d4f7effc", list(round(charging.percent(), 1)))
+		. += LANG("obj.d4f7effcec36aa12", list(round(charging.percent(), 1)))
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.4cd8967d", list(display_power(charge_rate, convert = FALSE))))
+		. += span_notice(LANG("obj.4cd8967dcf5cfefe", list(display_power(charge_rate, convert = FALSE))))
 
 /obj/machinery/cell_charger/wrench_act(mob/living/user, obj/item/tool)
 	if(charging)
@@ -57,18 +57,18 @@ NOVA EDIT END */
 		return NONE
 
 	if(machine_stat & BROKEN)
-		to_chat(user, span_warning(LANG("obj.e2c73115", list(src))))
+		to_chat(user, span_warning(LANG("obj.e2c73115e801b359", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(!anchored)
-		to_chat(user, span_warning(LANG("obj.f467682f", list(src))))
+		to_chat(user, span_warning(LANG("obj.f467682f5bf33467", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(charging)
-		to_chat(user, span_warning(LANG("obj.19b677e5", null)))
+		to_chat(user, span_warning(LANG("obj.19b677e5df5cb8e0", null)))
 		return ITEM_INTERACT_BLOCKING
 	// NOVA EDIT ADDITION START
 	var/obj/item/stock_parts/power_store/cell/inserting_cell = tool
 	if(inserting_cell.chargerate <= 0)
-		to_chat(user, span_warning(LANG("obj.d4b2e04f", list(inserting_cell))))
+		to_chat(user, span_warning(LANG("obj.d4b2e04f1ab025de", list(inserting_cell))))
 		return
 	// NOVA EDIT ADDITION END
 
@@ -76,15 +76,15 @@ NOVA EDIT END */
 	if(!isarea(charge_area))
 		return ITEM_INTERACT_BLOCKING
 	if(!charge_area.power_equip) // There's no APC in this area, don't try to cheat power!
-		to_chat(user, span_warning(LANG("obj.ebb2a520", list(src))))
+		to_chat(user, span_warning(LANG("obj.ebb2a520235ba42f", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 
 	charging = tool
 	user.visible_message(
-		span_notice(LANG("obj.c4a3d920", list(user, src))),
-		span_notice(LANG("obj.0e4e6b90", list(src))),
+		span_notice(LANG("obj.c4a3d9201d508013", list(user, src))),
+		span_notice(LANG("obj.0e4e6b90adadf964", list(src))),
 	)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -114,14 +114,14 @@ NOVA EDIT END */
 		return
 
 	charging.add_fingerprint(user)
-	user.visible_message(span_notice(LANG("obj.4a2c1fdd", list(user, charging, src))), span_notice(LANG("obj.cbed3266", list(charging, src))))
+	user.visible_message(span_notice(LANG("obj.4a2c1fddbcf43cde", list(user, charging, src))), span_notice(LANG("obj.cbed32661d4c054a", list(charging, src))))
 	user.put_in_hands(removecell(drop_location()))
 
 /obj/machinery/cell_charger/attack_tk(mob/user)
 	if(!charging)
 		return
 
-	to_chat(user, span_notice(LANG("obj.2e70f313", list(charging, src))))
+	to_chat(user, span_notice(LANG("obj.2e70f3132b99713e", list(charging, src))))
 	removecell(drop_location())
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 

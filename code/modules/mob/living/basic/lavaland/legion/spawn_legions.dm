@@ -23,7 +23,7 @@
 	if (!.)
 		return
 	if (!isturf(owner.loc))
-		owner.balloon_alert(owner, LANG("datum.ad6c6384", null))
+		owner.balloon_alert(owner, LANG("datum.ad6c6384cbc2d930", null))
 		return FALSE
 	return TRUE
 
@@ -41,7 +41,7 @@
 		if (length(near_turfs))
 			target_turf = pick(near_turfs)
 		else if(target_turf.is_blocked_turf(exclude_mobs = TRUE))
-			owner.balloon_alert(owner, LANG("datum.ad6c6384", null))
+			owner.balloon_alert(owner, LANG("datum.ad6c6384cbc2d930", null))
 			StartCooldown(0.5 SECONDS)
 			return
 

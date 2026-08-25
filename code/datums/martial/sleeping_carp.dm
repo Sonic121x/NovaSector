@@ -83,13 +83,13 @@
 
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
 	defender.visible_message(
-		span_danger(LANG("datum.5de43719", list(attacker, defender, affecting))),
-		span_userdanger(LANG("datum.2600e742", list(attacker, affecting))),
-		span_hear(LANG("datum.36e1e105", null)),
+		span_danger(LANG("datum.5de43719b1fc073f", list(attacker, defender, affecting))),
+		span_userdanger(LANG("datum.2600e7427eec2b7d", list(attacker, affecting))),
+		span_hear(LANG("datum.36e1e10559840c5b", null)),
 		null,
 		attacker,
 	)
-	to_chat(attacker, span_danger(LANG("datum.9e09e996", list(defender, affecting))))
+	to_chat(attacker, span_danger(LANG("datum.9e09e996bdc78610", list(defender, affecting))))
 	playsound(defender, 'sound/items/weapons/punch1.ogg', 25, TRUE, -1)
 	log_combat(attacker, defender, "wrist wrenched (Sleeping Carp)")
 	defender.apply_damage(20, BRUTE, affecting, wound_bonus = 30)
@@ -100,9 +100,9 @@
 /datum/martial_art/the_sleeping_carp/proc/launch_kick(mob/living/attacker, mob/living/defender)
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
 	defender.visible_message(
-		span_warning(LANG("datum.af0d6b24", list(attacker, defender))),
-		span_userdanger(LANG("datum.41e34cba", list(attacker))),
-		span_hear(LANG("datum.6c7f8149", null)),
+		span_warning(LANG("datum.af0d6b24d6fa30ba", list(attacker, defender))),
+		span_userdanger(LANG("datum.41e34cba2c10d51b", list(attacker))),
+		span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
@@ -119,12 +119,12 @@
 	playsound(attacker, 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
 	if(defender.body_position == STANDING_UP)
 		defender.Knockdown(4 SECONDS)
-		defender.visible_message(span_warning(LANG("datum.70df35be", list(attacker, defender))), \
-					span_userdanger(LANG("datum.e5e0b723", list(attacker))), span_hear(LANG("datum.6c7f8149", null)), COMBAT_MESSAGE_RANGE, attacker)
+		defender.visible_message(span_warning(LANG("datum.70df35be3bcbbbeb", list(attacker, defender))), \
+					span_userdanger(LANG("datum.e5e0b723aa01a83d", list(attacker))), span_hear(LANG("datum.6c7f8149b8c68cd4", null)), COMBAT_MESSAGE_RANGE, attacker)
 	else
 		defender.drop_all_held_items()
-		defender.visible_message(span_warning(LANG("datum.76344bc4", list(attacker, defender))), \
-					span_userdanger(LANG("datum.770a4ed5", list(attacker))), span_hear(LANG("datum.6c7f8149", null)), COMBAT_MESSAGE_RANGE, attacker)
+		defender.visible_message(span_warning(LANG("datum.76344bc4bdc4199c", list(attacker, defender))), \
+					span_userdanger(LANG("datum.770a4ed57bc2c4a7", list(attacker))), span_hear(LANG("datum.6c7f8149b8c68cd4", null)), COMBAT_MESSAGE_RANGE, attacker)
 	defender.apply_damage(40, STAMINA)
 	defender.adjust_dizzy_up_to(10 SECONDS, 10 SECONDS)
 	defender.adjust_temp_blindness_up_to(2 SECONDS, 10 SECONDS)
@@ -136,9 +136,9 @@
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
 	playsound(attacker, 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
 	defender.visible_message(
-		span_warning(LANG("datum.b6ab64c9", list(attacker, attacker.p_their(), defender))),
-		span_userdanger(LANG("datum.9f1eb581", list(defender))),
-		span_hear(LANG("datum.6c7f8149", null)),
+		span_warning(LANG("datum.b6ab64c99005d9c8", list(attacker, attacker.p_their(), defender))),
+		span_userdanger(LANG("datum.9f1eb581f2f888c3", list(defender))),
+		span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
@@ -166,8 +166,8 @@
 	playsound(defender, 'sound/items/weapons/punch1.ogg', 25, TRUE, -1)
 	if(!IS_UNCONSCIOUS(defender) && defender.get_stamina_loss() >= 80) //We put our target to sleep.
 		defender.visible_message(
-			span_danger(LANG("datum.a09d7870", list(attacker, defender))),
-			span_userdanger(LANG("datum.4f4d2cbb", list(attacker))),
+			span_danger(LANG("datum.a09d78705580c4b2", list(attacker, defender))),
+			span_userdanger(LANG("datum.4f4d2cbba8034670", list(attacker))),
 		)
 		grab_log_description = "grabbed and nerve pinched"
 		defender.Unconscious(10 SECONDS)
@@ -185,12 +185,12 @@
 		if(!isnull(head))
 			playsound(defender, 'sound/effects/wounds/crack1.ogg', 100)
 			defender.visible_message(
-				span_danger(LANG("datum.45b3e8b3", list(attacker, defender))),
-				span_userdanger(LANG("datum.810237f6", list(attacker))),
-				span_hear(LANG("datum.c20f8aa4", null)),
+				span_danger(LANG("datum.45b3e8b3cdc5d85e", list(attacker, defender))),
+				span_userdanger(LANG("datum.810237f60a34e0cf", list(attacker))),
+				span_hear(LANG("datum.c20f8aa4fd916933", null)),
 				ignored_mobs = attacker
 			)
-			to_chat(attacker, span_danger(LANG("datum.bb7d46bd", list(defender))))
+			to_chat(attacker, span_danger(LANG("datum.bb7d46bd5d9cb21d", list(defender))))
 			log_combat(attacker, defender, "snapped neck")
 			defender.apply_damage(100, BRUTE, BODY_ZONE_HEAD, wound_bonus=CANT_WOUND)
 			if(!HAS_TRAIT(defender, TRAIT_NODEATH))
@@ -259,8 +259,8 @@
 
 
 	carp_user.visible_message(
-		span_danger(LANG("datum.8b7e67e7", list(carp_user, hitting_projectile, carp_user.p_They(), carp_user.p_their()))),
-		span_userdanger(LANG("datum.975cc868", list(hitting_projectile))),
+		span_danger(LANG("datum.8b7e67e7267bb677", list(carp_user, hitting_projectile, carp_user.p_They(), carp_user.p_their()))),
+		span_userdanger(LANG("datum.975cc8681b2236b4", list(hitting_projectile))),
 	)
 	playsound(carp_user, SFX_BULLET_MISS, 75, TRUE)
 	hitting_projectile.firer = carp_user
@@ -277,8 +277,8 @@
 		return
 	var/obj/item/melee/touch_attack/touch_weapon = attack_weapon
 	carp_user.visible_message(
-		span_danger(LANG("datum.89f25827", list(carp_user, attacker, touch_weapon))),
-		span_userdanger(LANG("datum.8d995965", list(attacker, touch_weapon))),
+		span_danger(LANG("datum.89f258278218a5de", list(carp_user, attacker, touch_weapon))),
+		span_userdanger(LANG("datum.8d995965ad72d941", list(attacker, touch_weapon))),
 	)
 	return COMPONENT_NO_AFTERATTACK
 
@@ -298,8 +298,8 @@
 		return NONE
 
 	carp_user.visible_message(
-		span_danger(LANG("datum.86baffa1", list(carp_user, attack_text))),
-		span_userdanger(LANG("datum.a149ae43", list(attack_text))),
+		span_danger(LANG("datum.86baffa1467907af", list(carp_user, attack_text))),
+		span_userdanger(LANG("datum.a149ae43f7b93f22", list(attack_text))),
 	)
 	playsound(carp_user.loc, 'sound/items/weapons/punchmiss.ogg', 25, TRUE, -1)
 	return SUCCESSFUL_BLOCK
@@ -378,7 +378,7 @@
 /datum/martial_art/the_sleeping_carp/get_style_help()
 	. = list()
 
-	. += span_info(LANG("datum.ae08ea7d", list(span_notice("Gnashing Teeth"), span_notice("Crashing Wave Kick"), span_notice("Keelhaul"), span_notice("Kraken Wrack"), span_notice("Grabs and Shoves"))))
+	. += span_info(LANG("datum.ae08ea7dea946714", list(span_notice("Gnashing Teeth"), span_notice("Crashing Wave Kick"), span_notice("Keelhaul"), span_notice("Kraken Wrack"), span_notice("Grabs and Shoves"))))
 	return .
 
 /obj/item/staff/bostaff
@@ -413,7 +413,7 @@
 /obj/item/staff/bostaff/attack(mob/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
-		to_chat(user, span_warning(LANG("obj.e5d5cfc2", list(src))))
+		to_chat(user, span_warning(LANG("obj.e5d5cfc207ee6359", list(src))))
 		user.Paralyze(6 SECONDS)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -427,7 +427,7 @@
 		return ..()
 	var/mob/living/carbon/C = target
 	if(IS_UNCONSCIOUS_OR_CRIT(C))
-		to_chat(user, span_warning(LANG("obj.114a2625", null)))
+		to_chat(user, span_warning(LANG("obj.114a2625a7d9703b", null)))
 		return
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		if(!HAS_TRAIT(src, TRAIT_WIELDED))
@@ -436,21 +436,21 @@
 			return ..()
 		var/mob/living/carbon/human/H = target
 		var/list/fluffmessages = list("club", "smack", "broadside", "beat", "slam")
-		H.visible_message(span_warning(LANG("obj.2fae1205", list(user, pick(fluffmessages), H, src))), \
-						span_userdanger(LANG("obj.7fb98adc", list(user, pick(fluffmessages), src))), span_hear(LANG("obj.6c7f8149", null)), null, user)
-		to_chat(user, span_danger(LANG("obj.ee318175", list(pick(fluffmessages), H, src))))
+		H.visible_message(span_warning(LANG("obj.2fae120559e5f3d1", list(user, pick(fluffmessages), H, src))), \
+						span_userdanger(LANG("obj.7fb98adcd70a8bea", list(user, pick(fluffmessages), src))), span_hear(LANG("obj.6c7f8149b8c68cd4", null)), null, user)
+		to_chat(user, span_danger(LANG("obj.ee3181758dd838ea", list(pick(fluffmessages), H, src))))
 		playsound(get_turf(user), 'sound/effects/woodhit.ogg', 75, TRUE, -1)
 		H.adjust_stamina_loss(rand(13,20))
 		if(prob(10))
-			H.visible_message(span_warning(LANG("obj.b250dd93", list(H))), \
-							span_userdanger(LANG("obj.1ced27e2", null)))
+			H.visible_message(span_warning(LANG("obj.b250dd93af5d065f", list(H))), \
+							span_userdanger(LANG("obj.1ced27e2e01caaff", null)))
 			H.Paralyze(8 SECONDS)
 		if(H.staminaloss && !H.IsSleeping())
 			var/total_health = (H.health - H.staminaloss)
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !IS_UNCONSCIOUS_OR_CRIT(H))
-				H.visible_message(span_warning(LANG("obj.5b2d66f3", list(user, H, H.p_them()))), \
-								span_userdanger(LANG("obj.1ace6279", list(user))), span_hear(LANG("obj.6c7f8149", null)), null, user)
-				to_chat(user, span_danger(LANG("obj.8afcd6a2", list(H, H.p_them()))))
+				H.visible_message(span_warning(LANG("obj.5b2d66f3433de5d4", list(user, H, H.p_them()))), \
+								span_userdanger(LANG("obj.1ace6279c0000c05", list(user))), span_hear(LANG("obj.6c7f8149b8c68cd4", null)), null, user)
+				to_chat(user, span_danger(LANG("obj.8afcd6a2295027ae", list(H, H.p_them()))))
 				H.SetSleeping(60 SECONDS)
 				H.adjust_organ_loss(ORGAN_SLOT_BRAIN, 15, 150)
 	else

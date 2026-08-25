@@ -40,7 +40,7 @@
 /obj/item/clothing/suit/hooded/cloak/godslayer/examine(mob/user)
 	. = ..()
 	if(loc == user && !COOLDOWN_FINISHED(src, effect_cooldown))
-		. += LANG("obj.78534566", list(COOLDOWN_TIMELEFT(src, effect_cooldown) / 10))
+		. += LANG("obj.78534566c7ba249e", list(COOLDOWN_TIMELEFT(src, effect_cooldown) / 10))
 
 /obj/item/clothing/suit/hooded/cloak/godslayer/equipped(mob/user, slot)
 	. = ..()
@@ -58,7 +58,7 @@
 	if(new_stat != STABLE && new_stat != DEAD && COOLDOWN_FINISHED(src, effect_cooldown))
 		COOLDOWN_START(src, effect_cooldown, effect_cooldown_time) //This needs to happen first, otherwise there's an infinite loop
 		user.heal_ordered_damage(heal_amount, damage_heal_order)
-		user.visible_message(span_notice(LANG("obj.44b7a9b7", list(user))), span_notice(LANG("obj.fb8d4fcf", null)))
+		user.visible_message(span_notice(LANG("obj.44b7a9b7fad8ba81", list(user))), span_notice(LANG("obj.fb8d4fcf03188003", null)))
 		playsound(user.loc, 'sound/effects/magic/clockwork/ratvar_attack.ogg', 50)
 
 /obj/item/clothing/head/hooded/cloakhood/godslayer

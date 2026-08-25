@@ -158,17 +158,17 @@
 				inserted_coin.throw_at(user, 3, 10)
 				if(prob(10))
 					balance = max(balance - SPIN_PRICE, 0)
-				to_chat(user, span_warning(LANG("obj.2d8c3364", list(src))))
+				to_chat(user, span_warning(LANG("obj.2d8c33649a2c41e4", list(src))))
 				return ITEM_INTERACT_BLOCKING
 			else
 				if(!user.temporarilyRemoveItemFromInventory(inserted_coin))
 					return ITEM_INTERACT_BLOCKING
-				balloon_alert(user, LANG("obj.b79d7e6e", null))
+				balloon_alert(user, LANG("obj.b79d7e6ebc7ee9c2", null))
 				balance += inserted_coin.value
 				qdel(inserted_coin)
 				return ITEM_INTERACT_SUCCESS
 		else
-			balloon_alert(user, LANG("obj.7e85c926", null))
+			balloon_alert(user, LANG("obj.7e85c926553bd63e", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(inserted, /obj/item/holochip))
@@ -176,56 +176,56 @@
 			var/obj/item/holochip/inserted_chip = inserted
 			if(!user.temporarilyRemoveItemFromInventory(inserted_chip))
 				return ITEM_INTERACT_BLOCKING
-			balloon_alert(user, LANG("obj.4637db38", list(inserted_chip.credits, MONEY_NAME_AUTOPURAL(inserted_chip.credits))))
+			balloon_alert(user, LANG("obj.4637db381c3fa075", list(inserted_chip.credits, MONEY_NAME_AUTOPURAL(inserted_chip.credits))))
 			balance += inserted_chip.credits
 			qdel(inserted_chip)
 			return ITEM_INTERACT_SUCCESS
 		else
-			balloon_alert(user, LANG("obj.5bddb4e5", null))
+			balloon_alert(user, LANG("obj.5bddb4e58eaf1772", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/card/id/id_card = inserted.GetID()
 	if(isidcard(id_card))
 		if(house_bank_account)
-			say(LANG("obj.7f2d84ba", list(house_bank_account.account_holder)))
+			say(LANG("obj.7f2d84ba48460937", list(house_bank_account.account_holder)))
 			playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 			return ITEM_INTERACT_BLOCKING
 
 		var/datum/bank_account/id_bank_account = id_card.registered_account
 
 		if(!id_bank_account)
-			say(LANG("obj.9cf22ea9", null))
+			say(LANG("obj.9cf22ea917d3e33a", null))
 			playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 			return ITEM_INTERACT_BLOCKING
 
 		if(!id_bank_account.has_money(PRIZE_SMALL))
-			say(LANG("obj.27d50c09", list(PRIZE_SMALL)))
+			say(LANG("obj.27d50c0994cfee77", list(PRIZE_SMALL)))
 			playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 			return ITEM_INTERACT_BLOCKING
 
-		var/msg = tgui_input_text(user, LANG("obj.37f4d822", null), LANG("obj.c3b5a0c4", null), "Slot Machine", max_length = MAX_NAME_LEN)
+		var/msg = tgui_input_text(user, LANG("obj.37f4d8227ca7146c", null), LANG("obj.c3b5a0c4b53c178d", null), "Slot Machine", max_length = MAX_NAME_LEN)
 		if(msg)
 			name = msg
 
 		playsound(src, 'sound/machines/terminal/terminal_success.ogg', 50, TRUE)
-		desc = LANG("obj.0f7b350a", list(id_bank_account.account_holder, user.p_their()))
+		desc = LANG("obj.0f7b350a430b1596", list(id_bank_account.account_holder, user.p_their()))
 		house_bank_account = id_bank_account
-		to_chat(user, span_notice(LANG("obj.7a3c236e", list(id_bank_account.account_holder))))
+		to_chat(user, span_notice(LANG("obj.7a3c236ef97fc2ec", list(id_bank_account.account_holder))))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
 
 /obj/machinery/computer/slot_machine/multitool_act(mob/living/user, obj/item/tool)
 	if(balance > 0)
-		say(LANG("obj.6e4637f2", null)) //Prevents converting coins into holocredits and vice versa
+		say(LANG("obj.6e4637f2ad58c026", null)) //Prevents converting coins into holocredits and vice versa
 		return ITEM_INTERACT_BLOCKING
 
 	if(paymode == HOLOCHIP)
 		paymode = COIN
-		balloon_alert(user, LANG("obj.2da8e220", null))
+		balloon_alert(user, LANG("obj.2da8e220b229ecae", null))
 	else
 		paymode = HOLOCHIP
-		balloon_alert(user, LANG("obj.ed46aee5", null))
+		balloon_alert(user, LANG("obj.ed46aee5209b865f", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/slot_machine/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -235,7 +235,7 @@
 	var/datum/effect_system/basic/spark_spread/spark_system = new(src.loc, 4, 0)
 	spark_system.start()
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, LANG("obj.5ee30b3c", null))
+	balloon_alert(user, LANG("obj.5ee30b3cab4ff3df", null))
 	return TRUE
 
 /obj/machinery/computer/slot_machine/ui_assets(mob/user)
@@ -315,7 +315,7 @@
 	if(house_bank_account.has_money(payout))
 		return TRUE
 
-	say(LANG("obj.dd2b67ba", list(house_bank_account.account_holder)))
+	say(LANG("obj.dd2b67ba63b9418a", list(house_bank_account.account_holder)))
 	playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 	return FALSE
 
@@ -327,13 +327,13 @@
 		return
 
 	if(!use_energy(active_power_usage, force = FALSE))
-		say(LANG("obj.baec13b6", null))
+		say(LANG("obj.baec13b63b1a85c5", null))
 		return
 
 	var/the_name
 	if(user)
 		the_name = user.real_name
-		visible_message(span_notice(LANG("obj.8e5c1d09", list(user))))
+		visible_message(span_notice(LANG("obj.8e5c1d09ed757d65", list(user))))
 		if(isliving(user))
 			var/mob/living/living_user = user
 			living_user.add_mood_event("slots_spin", /datum/mood_event/slots)
@@ -373,16 +373,16 @@
 /// Check if the machine can be spun
 /obj/machinery/computer/slot_machine/proc/can_spin(mob/user)
 	if(machine_stat & NOPOWER)
-		balloon_alert(user, LANG("obj.b3e1b703", null))
+		balloon_alert(user, LANG("obj.b3e1b703b228ad7a", null))
 		return FALSE
 	if(machine_stat & BROKEN)
-		balloon_alert(user, LANG("obj.5f75e927", null))
+		balloon_alert(user, LANG("obj.5f75e9272d5299dc", null))
 		return FALSE
 	if(working)
-		balloon_alert(user, LANG("obj.50cdaf38", null))
+		balloon_alert(user, LANG("obj.50cdaf38320e8e1b", null))
 		return FALSE
 	if(balance < SPIN_PRICE)
-		balloon_alert(user, LANG("obj.85bb910a", null))
+		balloon_alert(user, LANG("obj.85bb910a40b3190b", null))
 		return FALSE
 	return TRUE
 
@@ -395,7 +395,7 @@
 
 /// Triggers a negative effect for a slot machine if all trap icons are lined up in the middle
 /obj/machinery/computer/slot_machine/proc/activate_trap(mob/living/user)
-	say(LANG("obj.873f87d8", null))
+	say(LANG("obj.873f87d8f4a8661d", null))
 
 	switch(trap_path)
 		if(/obj/item/restraints/handcuffs)
@@ -423,8 +423,8 @@
 	else if(check_middle_row_all(jackpot_path))
 		winning = WINNING_JACKPOT
 		var/prize = money + PRIZE_JACKPOT
-		say(LANG("obj.86070d49", list(prize, MONEY_NAME)))
-		priority_announce(LANG("obj.62ddf924", list(user ? user.real_name : usrname, get_area(src))))
+		say(LANG("obj.86070d498a0c88b3", list(prize, MONEY_NAME)))
+		priority_announce(LANG("obj.62ddf9241dc774fd", list(user ? user.real_name : usrname, get_area(src))))
 		user.add_mood_event(SLOTS_MOOD_CATEGORY, /datum/mood_event/slots/win/jackpot)
 		add_memory_in_range(user, 7, /datum/memory/won_jackpot, protagonist = user, deuteragonist = src)
 		jackpots += 1
@@ -441,25 +441,25 @@
 
 	else if(linelength == 5)
 		winning = WINNING_BIG
-		say(LANG("obj.62089b46", list(MONEY_NAME)))
+		say(LANG("obj.62089b46d71ab474", list(MONEY_NAME)))
 		give_money(PRIZE_BIG)
 		user.add_mood_event(SLOTS_MOOD_CATEGORY, /datum/mood_event/slots/win/big)
 
 	else if(linelength == 4)
 		winning = WINNING_SMALL
-		say(LANG("obj.acf60727", list(MONEY_NAME)))
+		say(LANG("obj.acf607271258d82c", list(MONEY_NAME)))
 		give_money(PRIZE_SMALL)
 		user.add_mood_event(SLOTS_MOOD_CATEGORY, /datum/mood_event/slots/win)
 
 	else if(linelength == 3)
 		winning = WINNING_FREESPIN
-		balloon_alert(user, LANG("obj.cdce0a9c", null))
+		balloon_alert(user, LANG("obj.cdce0a9c8cb22386", null))
 		balance += SPIN_PRICE * 4
 		money = max(money - SPIN_PRICE * 4, money)
 
 	else
 		winning = WINNING_NOTHING
-		balloon_alert(user, LANG("obj.f168b3e8", null))
+		balloon_alert(user, LANG("obj.f168b3e8b02146b6", null))
 		did_player_win = FALSE
 		user.add_mood_event(SLOTS_MOOD_CATEGORY, /datum/mood_event/slots/loss)
 

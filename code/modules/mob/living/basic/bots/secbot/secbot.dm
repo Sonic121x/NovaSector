@@ -99,7 +99,7 @@
 	speed += 3
 	addtimer(VARSET_CALLBACK(src, speed, speed - 3), 6 SECONDS)
 	playsound(src, 'sound/machines/defib/defib_zap.ogg', 50)
-	visible_message(span_warning(LANG("mob.563c8dcb", list(src))))
+	visible_message(span_warning(LANG("mob.563c8dcb23e96835", list(src))))
 
 /mob/living/basic/bot/secbot/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -147,9 +147,9 @@
 
 	// Turns an oversight into a feature. Beepsky will now announce when pacifists taunt him over sec comms.
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		user.visible_message(span_notice(LANG("mob.b90dd7e1", list(user, src, p_them()))), \
-			span_notice(LANG("mob.cfaad9c8", list(src, p_them()))), span_hear(LANG("mob.cf9e616d", null)), DEFAULT_MESSAGE_RANGE, user)
-		speak("Taunted by pacifist scumbag [RUNECHAT_BOLD("[user]")] in [get_area(src)].", radio_channel)
+		user.visible_message(span_notice(LANG("mob.b90dd7e18ae00601", list(user, src, p_them()))), \
+			span_notice(LANG("mob.cfaad9c87f91d55b", list(src, p_them()))), span_hear(LANG("mob.cf9e616d58974115", null)), DEFAULT_MESSAGE_RANGE, user)
+		speak(LANG("mob.b9c06d4d2aae3a02", list(RUNECHAT_BOLD("[user]"), get_area(src))), radio_channel)
 
 		// Interrupt the attack chain. We've already handled this scenario for pacifists.
 		return
@@ -157,14 +157,14 @@
 	return ..()
 
 /mob/living/basic/bot/secbot/proc/retrieve_emag_message()
-	audible_message(span_danger(LANG("mob.1798b7cd", list(src))))
+	audible_message(span_danger(LANG("mob.1798b7cd2aeb74d1", list(src))))
 
 /mob/living/basic/bot/secbot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	if(!(bot_access_flags & BOT_COVER_EMAGGED))
 		return
 	if(user)
-		balloon_alert(user, LANG("mob.ac6a1d0d", null))
+		balloon_alert(user, LANG("mob.ac6a1d0d7f09d707", null))
 
 	retrieve_emag_message()
 	security_mode_flags &= ~SECBOT_DECLARE_ARRESTS
@@ -179,7 +179,7 @@
 	var/threat = ai_controller.blackboard[BB_CURRENT_CRIMINAL_ASSESSMENT] || 5
 	if(security_mode_flags & SECBOT_DECLARE_ARRESTS)
 		var/area/location = get_area(src)
-		speak("[security_mode_flags & SECBOT_HANDCUFF_TARGET ? "Arresting" : "Detaining"] level [threat] scumbag [RUNECHAT_BOLD("[current_target]")] in [location].", radio_channel)
+		speak(LANG("mob.8c643727a3d14fac", list(security_mode_flags & SECBOT_HANDCUFF_TARGET ? "Arresting" : "Detaining", threat, RUNECHAT_BOLD("[current_target]"), location)), radio_channel)
 	payment_check(current_target)
 	update_bot_mode(new_mode = BOT_PREP_ARREST)
 
@@ -215,18 +215,18 @@
 		return FALSE
 	var/obj/item/card/id/target_id = human_target.get_idcard()
 	if(!target_id)
-		say(LANG("mob.0f42df65", null))
+		say(LANG("mob.0f42df65e12b862c", null))
 		return TRUE
 	var/datum/bank_account/insurance = target_id.registered_account
 	if(!insurance)
-		say(LANG("mob.9d50e71d", null))
+		say(LANG("mob.9d50e71d8279bb1c", null))
 		return TRUE
 	if(!insurance.adjust_money(-fair_market_price, "Securitron fine"))
-		say(LANG("mob.f488ec3b", null))
+		say(LANG("mob.f488ec3ba8ca5a94", null))
 		return TRUE
 
 	SSeconomy.get_dep_account(payment_department)?.adjust_money(fair_market_price)
-	say(LANG("mob.c363e471", list(fair_market_price, MONEY_NAME)))
+	say(LANG("mob.c363e4717ce52e1d", list(fair_market_price, MONEY_NAME)))
 	return FALSE
 
 /mob/living/basic/bot/secbot/generate_speak_list()

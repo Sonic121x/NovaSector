@@ -397,7 +397,7 @@
 /mob/living/simple_animal/hostile/proc/Aggro()
 	vision_range = aggro_vision_range
 	if(target && emote_taunt.len && prob(taunt_chance))
-		manual_emote(LANG("mob.6fef9504", list(pick(emote_taunt), target)))
+		manual_emote(LANG("mob.6fef9504dfcf62e4", list(pick(emote_taunt), target)))
 		taunt_chance = max(taunt_chance-7,2)
 
 
@@ -444,7 +444,7 @@
 	if(CheckFriendlyFire(A))
 		return
 	if(!(simple_mob_flags & SILENCE_RANGED_MESSAGE))
-		visible_message(span_danger(LANG("mob.32a383b7", list(src, ranged_message, A))))
+		visible_message(span_danger(LANG("mob.32a383b796bd53bd", list(src, ranged_message, A))))
 
 
 	if(rapid > 1)

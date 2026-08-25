@@ -105,7 +105,7 @@
 /datum/component/ghostrole_on_revive/proc/brain_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_info(LANG("datum.743906f6", list(source.p_their())))
+	examine_list += span_info(LANG("datum.743906f65f841907", list(source.p_their())))
 
 /datum/component/ghostrole_on_revive/proc/on_revive(mob/living/source)
 	SIGNAL_HANDLER
@@ -153,7 +153,7 @@
 
 	else if(refuse_revival_if_failed)
 		reviving.death()
-		reviving.visible_message(span_deadsay(LANG("datum.61967927", list(reviving))))
+		reviving.visible_message(span_deadsay(LANG("datum.61967927b84e9d33", list(reviving))))
 
 
 /datum/component/ghostrole_on_revive/proc/add_orbit_twitching(mob/living/parent_mob)

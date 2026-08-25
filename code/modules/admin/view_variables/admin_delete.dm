@@ -14,7 +14,7 @@
 		else
 			jmp_coords = coords = "in nullspace"
 
-	if (tgui_alert(usr, LANG("client.69e783da", list(D, coords)), LANG("client.15bc27b6", null), list("Yes", "No")) == "Yes")
+	if (tgui_alert(usr, LANG("client.69e783da80114100", list(D, coords)), LANG("client.15bc27b6fe454546", null), list("Yes", "No")) == "Yes")
 		log_admin("[key_name(usr)] deleted [D] [coords]")
 		message_admins("[key_name_admin(usr)] deleted [D] [jmp_coords]")
 		BLACKBOX_LOG_ADMIN_VERB("Delete")

@@ -36,7 +36,7 @@
 		gorilla_transformation = new(owner)
 		gorilla_transformation.Grant(owner)
 		spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC // Max level lets you cast it naked, for monkey larp.
-		to_chat(owner, span_notice(LANG("datum.f64b7876", null)))
+		to_chat(owner, span_notice(LANG("datum.f64b78762afba3e5", null)))
 
 /datum/action/cooldown/spell/conjure/simian/cast(atom/cast_on)
 	. = ..()

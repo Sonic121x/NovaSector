@@ -15,21 +15,21 @@
 
 /obj/item/reagent_containers/chem_pack/click_alt(mob/living/user)
 	if(reagents.flags & SEALED_CONTAINER)
-		balloon_alert(user, LANG("obj.7274a41d", null))
+		balloon_alert(user, LANG("obj.7274a41d88d49d17", null))
 		return CLICK_ACTION_BLOCKING
 
 	if(iscarbon(user) && (HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50)))
-		to_chat(user, span_warning(LANG("obj.3c4214b4", null)))
+		to_chat(user, span_warning(LANG("obj.3c4214b48272b678", null)))
 		splash_reagents(user, user, allow_closed_splash = TRUE)
 		return CLICK_ACTION_BLOCKING
 
 	update_container_flags(SEALED_CONTAINER | DRAWABLE | INJECTABLE)
-	balloon_alert(user, LANG("obj.0d96a927", null))
+	balloon_alert(user, LANG("obj.0d96a9278b4c0ecc", null))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/reagent_containers/chem_pack/examine()
 	. = ..()
 	if(reagents.flags & SEALED_CONTAINER)
-		. += span_notice(LANG("obj.3e382fa1", null))
+		. += span_notice(LANG("obj.3e382fa17092c522", null))
 	else
-		. += span_notice(LANG("obj.2ac1d1fb", null))
+		. += span_notice(LANG("obj.2ac1d1fbb39f4f15", null))

@@ -3,7 +3,7 @@
 
 ///Welding Protection - Makes the helmet protect from flashes and welding.
 /obj/item/mod/module/welding
-	name = "MOD welding protection module"
+	name = "\improper MOD welding protection module"
 	desc = "A module installed into the visor of the suit, this projects a \
 		polarized, holographic overlay in front of the user's eyes. It's rated high enough for \
 		immunity against extremities such as spot and arc welding, solar eclipses, and handheld flashlights."
@@ -28,7 +28,7 @@
 		head_cover.flash_protect = initial(head_cover.flash_protect)
 
 /obj/item/mod/module/welding/syndicate
-	name = "MODsuit flash-protected optical suite"
+	name = "\improper MODsuit flash-protected optical suite"
 	complexity = 0
 	removable = FALSE
 	incompatible_modules = list(/obj/item/mod/module/welding, /obj/item/mod/module/welding/syndicate, /obj/item/mod/module/stealth/wraith)
@@ -60,7 +60,7 @@
 
 ///T-Ray Scan - Scans the terrain for undertile objects.
 /obj/item/mod/module/t_ray
-	name = "MOD t-ray scan module"
+	name = "\improper MOD t-ray scan module"
 	desc = "A module installed into the visor of the suit, allowing the user to use a pulse of terahertz radiation \
 		to essentially echolocate things beneath the floor, mostly cables and pipes. \
 		A staple of atmospherics work, and counter-smuggling work."
@@ -79,7 +79,7 @@
 
 ///Magnetic Stability - Gives the user a slowdown but makes them negate gravity and be immune to slips.
 /obj/item/mod/module/magboot
-	name = "MOD magnetic stability module"
+	name = "\improper MOD magnetic stability module"
 	desc = "These are powerful electromagnets fitted into the suit's boots, allowing users both \
 		excellent traction no matter the condition indoors, and to essentially hitch a ride on the exterior of a hull. \
 		However, these basic models do not feature computerized systems to automatically toggle them on and off, \
@@ -118,14 +118,14 @@
 		module_slowdowns += slowdown_active
 
 /obj/item/mod/module/magboot/advanced
-	name = "MOD advanced magnetic stability module"
+	name = "\improper MOD advanced magnetic stability module"
 	removable = FALSE
 	complexity = 0
 	slowdown_active = 0
 
 ///Emergency Tether - Shoots a grappling hook projectile in 0g that throws the user towards it.
 /obj/item/mod/module/tether
-	name = "MOD emergency tether module"
+	name = "\improper MOD emergency tether module"
 	desc = "A custom-built grappling-hook powered by a winch capable of hauling the user. \
 		While some older models of cargo-oriented grapples have capacities of a few tons, \
 		these are only capable of working in zero-gravity environments, a blessing to some Engineers."
@@ -140,7 +140,7 @@
 
 /obj/item/mod/module/tether/used()
 	if(HAS_TRAIT_FROM(mod.wearer, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(mod.wearer, LANG("obj.5550f24a", null))
+		balloon_alert(mod.wearer, LANG("obj.5550f24a003f6456", null))
 		playsound(src, 'sound/items/weapons/gun/general/dry_fire.ogg', 25, TRUE)
 		return FALSE
 	return ..()
@@ -278,8 +278,8 @@
 
 /obj/item/tether_anchor/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.98b0d388", list(src)))
-	. += span_info(LANG("obj.ec3c22c2", null))
+	. += span_info(LANG("obj.98b0d388242fcbc8", list(src)))
+	. += span_info(LANG("obj.ec3c22c25d34e8dd", null))
 
 /obj/item/tether_anchor/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -295,14 +295,14 @@
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(user, LANG("obj.5550f24a", null))
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return
 
 	if (parent_module && HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(parent_module)))
-		balloon_alert(user, LANG("obj.5550f24a", null))
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return
 
-	balloon_alert(user, LANG("obj.8133fa02", null))
+	balloon_alert(user, LANG("obj.8133fa0296376ad7", null))
 	user.AddComponent(/datum/component/tether, src, 7, "tether", tether_trait_source = REF(src))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -321,33 +321,33 @@
 		return
 
 	if(HAS_TRAIT_FROM(target, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(user, LANG("obj.5550f24a", null))
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return
 
 	if (parent_module && HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(parent_module)))
-		balloon_alert(user, LANG("obj.5550f24a", null))
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return
 
 	if (target == user)
-		balloon_alert(user, LANG("obj.8133fa02", null))
+		balloon_alert(user, LANG("obj.8133fa0296376ad7", null))
 		user.AddComponent(/datum/component/tether, src, 7, "tether", tether_trait_source = REF(src), no_target_trait = TRUE)
 		return
 
-	balloon_alert(user, LANG("obj.7b2e6eab", null))
-	to_chat(target, span_userdanger(LANG("obj.be29c7c5", list(user))))
+	balloon_alert(user, LANG("obj.7b2e6eab6fd5562f", null))
+	to_chat(target, span_userdanger(LANG("obj.be29c7c523f8538e", list(user))))
 	if (!do_after(user, 5 SECONDS, target))
 		return
 
 	if(HAS_TRAIT_FROM(target, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(user, LANG("obj.5550f24a", null))
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return
 
 	if (parent_module && HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(parent_module)))
-		balloon_alert(user, LANG("obj.5550f24a", null))
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return
 
-	balloon_alert(user, LANG("obj.8133fa02", null))
-	to_chat(target, span_userdanger(LANG("obj.1ef2d7c5", list(user))))
+	balloon_alert(user, LANG("obj.8133fa0296376ad7", null))
+	to_chat(target, span_userdanger(LANG("obj.1ef2d7c5a3290a21", list(user))))
 	target.AddComponent(/datum/component/tether, src, 7, "tether", tether_trait_source = REF(src), no_target_trait = TRUE)
 
 /obj/item/tether_anchor/proc/tether_snapped(datum/component/tether/tether, tether_source)
@@ -371,7 +371,7 @@
 
 ///Radiation Protection - Protects the user from radiation, gives them a geiger counter and rad info in the panel.
 /obj/item/mod/module/rad_protection
-	name = "MOD radiation protection module"
+	name = "\improper MOD radiation protection module"
 	desc = "A module utilizing polymers and reflective shielding to protect the user against ionizing radiation; \
 		a common danger in space. This comes with software to notify the wearer that they're even in a radioactive area, \
 		giving a voice to an otherwise silent killer."
@@ -414,7 +414,7 @@
 
 ///Constructor - Lets you build quicker and create RCD holograms.
 /obj/item/mod/module/constructor
-	name = "MOD constructor module"
+	name = "\improper MOD constructor module"
 	desc = "This module entirely occupies the wearer's forearm, notably causing conflict with \
 		advanced arm servos meant to carry crewmembers. However, it functions as an \
 		extremely advanced construction hologram scanner, as well as containing the \
@@ -441,7 +441,7 @@
 
 ///Safety-First Head Protection - Protects your brain matter from sudden impacts.
 /obj/item/mod/module/headprotector
-	name = "MOD safety-first head protection module"
+	name = "\improper MOD safety-first head protection module"
 	desc = "A series of dampening plates are installed along the back and upper areas of \
 		the helmet. These plates absorb abrupt kinetic shocks delivered to the skull. \
 		The bulk of this module prevents it from being installed in any suit that is capable \
@@ -461,7 +461,7 @@
 
 ///Mister - Sprays water over an area.
 /obj/item/mod/module/mister
-	name = "MOD water mister module"
+	name = "\improper MOD water mister module"
 	desc = "A module containing a mister, able to spray it over areas."
 	icon_state = "mister"
 	module_type = MODULE_ACTIVE
@@ -480,7 +480,7 @@
 
 ///Resin Mister - Sprays resin over an area.
 /obj/item/mod/module/mister/atmos
-	name = "MOD resin mister module"
+	name = "\improper MOD resin mister module"
 	desc = "An atmospheric resin mister, able to fix up areas quickly."
 	device = /obj/item/extinguisher/mini/nozzle/mod
 	volume = 250
@@ -491,5 +491,5 @@
 	reagents.add_reagent(/datum/reagent/water, volume)
 
 /obj/item/extinguisher/mini/nozzle/mod
-	name = "MOD atmospheric mister"
+	name = "\improper MOD atmospheric mister"
 	desc = "An atmospheric resin mister with three modes, mounted as a module."

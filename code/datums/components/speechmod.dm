@@ -78,7 +78,12 @@
 		message = replacetextEx(message, to_replace, replacement)
 	message = trim(message)
 	if (prob(end_string_chance))
-		message += islist(end_string) ? pick(end_string) : end_string
+		// NOVA EDIT CHANGE - I18N - 语音突变的**后缀**是无条件追加的（`", mate"`、`" Honh honh honh!"`、
+		// `"!!"`），而替换词表的 key 是英文单词、在中文句子里永不匹配 —— 于是中文服上这类突变只剩
+		// 一条英文尾巴挂在中文句尾。后缀是纯显示、不参与任何比较，在这里整串反查即可（全仓 13 个
+		// 调用点共用这一处；locale==en 时 lang_reverse_text 原样返回）。
+		// ORIGINAL: message += islist(end_string) ? pick(end_string) : end_string
+		message += lang_reverse_text(islist(end_string) ? pick(end_string) : end_string)
 	speech_args[SPEECH_MESSAGE] = trim(message)
 
 	if (uppercase)

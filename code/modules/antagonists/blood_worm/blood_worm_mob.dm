@@ -169,11 +169,14 @@
 		return FALSE
 	if (host)
 		ADD_TRAIT(host, TRAIT_MIND_TEMPORARILY_GONE, BLOOD_WORM_HOST_TRAIT)
+	var/atom/movable/screen/alert/bloodworm_info/info_alert = throw_alert(ALERT_BLOODWORM_INFO, /atom/movable/screen/alert/bloodworm_info)
+	info_alert.worm_owner = src
 
 /mob/living/basic/blood_worm/Logout()
 	. = ..()
 	if (host)
 		REMOVE_TRAIT(host, TRAIT_MIND_TEMPORARILY_GONE, BLOOD_WORM_HOST_TRAIT)
+	clear_alert(ALERT_BLOODWORM_INFO)
 
 /mob/living/basic/blood_worm/process(seconds_per_tick, times_fired)
 	if (!host)
@@ -275,8 +278,8 @@
 		return ..()
 
 	revive(HEAL_ALL)
-	to_chat(reviver, span_userdanger(LANG("mob.517bec8e", list(src))))
-	balloon_alert(reviver, LANG("mob.4af409be", null))
+	to_chat(reviver, span_userdanger(LANG("mob.517bec8e707511e6", list(src))))
+	balloon_alert(reviver, LANG("mob.4af409be8d19b752", null))
 
 /mob/living/basic/blood_worm/hatchling
 	name = "hatchling blood worm"

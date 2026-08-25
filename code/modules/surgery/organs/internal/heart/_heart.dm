@@ -66,8 +66,8 @@
 
 	if(!beating)
 		user.visible_message(
-			span_notice(LANG("obj.fdb4487f", list(user, src))),
-			span_notice(LANG("obj.c52b0915", list(src))),
+			span_notice(LANG("obj.fdb4487f360bcac3", list(user, src))),
+			span_notice(LANG("obj.c52b0915a8db37b6", list(src))),
 		)
 		Restart()
 		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 8 SECONDS)
@@ -130,8 +130,8 @@
 	if(!beating || (organ_flags & ORGAN_FAILING))
 		if(owner.can_heartattack() && Stop())
 			if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-				owner.visible_message(span_danger(LANG("obj.32fa6902", list(owner, owner.p_their(), owner.p_their()))))
-			to_chat(owner, span_userdanger(LANG("obj.ba4fe027", null)))
+				owner.visible_message(span_danger(LANG("obj.32fa6902c51fe3e2", list(owner, owner.p_their(), owner.p_their()))))
+			to_chat(owner, span_userdanger(LANG("obj.ba4fe0273f839766", null)))
 		return
 
 	// Beyond deals with sound effects, so nothing needs to be done if no client
@@ -141,7 +141,7 @@
 	if(owner.stat == SOFT_CRIT)
 		if(beat != BEAT_SLOW)
 			beat = BEAT_SLOW
-			to_chat(owner, span_notice(LANG("obj.49d50bba", null)))
+			to_chat(owner, span_notice(LANG("obj.49d50bba235e76b9", null)))
 			SEND_SOUND(owner, sound('sound/effects/health/slowbeat.ogg', repeat = TRUE, channel = CHANNEL_HEARTBEAT, volume = 40))
 
 	else if(owner.stat == HARD_CRIT)
@@ -242,8 +242,8 @@
 		addtimer(CALLBACK(src, PROC_REF(Restart)), 10 SECONDS / severity)
 		if(owner_needs_us)
 			owner.visible_message(
-				span_danger(LANG("obj.32fa6902", list(owner, owner.p_their(), owner.p_their()))),
-				span_userdanger(LANG("obj.ba4fe027", null)),
+				span_danger(LANG("obj.32fa6902c51fe3e2", list(owner, owner.p_their(), owner.p_their()))),
+				span_userdanger(LANG("obj.ba4fe0273f839766", null)),
 			)
 
 /obj/item/organ/heart/cybernetic/on_life(seconds_per_tick)
@@ -332,7 +332,7 @@
 	. = ..()
 	if(owner.health < 5 && COOLDOWN_FINISHED(src, adrenaline_cooldown))
 		COOLDOWN_START(src, adrenaline_cooldown, rand(25 SECONDS, 1 MINUTES))
-		to_chat(owner, span_userdanger(LANG("obj.ffaaec57", null)))
+		to_chat(owner, span_userdanger(LANG("obj.ffaaec57fca0e2d1", null)))
 		owner.heal_overall_damage(brute = 15, burn = 15, required_bodytype = BODYTYPE_ORGANIC)
 		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/ephedrine) < 20)
 			owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 10)

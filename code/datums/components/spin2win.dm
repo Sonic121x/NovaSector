@@ -55,23 +55,23 @@
 /datum/component/spin2win/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice(LANG("datum.62c969c2", list(parent)))
+	examine_list += span_notice(LANG("datum.62c969c2bfeca373", list(parent)))
 	if(spinning)
-		examine_list += span_warning(LANG("datum.ec13f8a4", null))
+		examine_list += span_warning(LANG("datum.ec13f8a4ea756112", null))
 		return
 	if(COOLDOWN_FINISHED(src, spin_cooldown))
-		examine_list += span_notice(LANG("datum.5679d998", list(DisplayTimeText(spin_cooldown_time))))
+		examine_list += span_notice(LANG("datum.5679d998be26c965", list(DisplayTimeText(spin_cooldown_time))))
 	else
-		examine_list += span_notice(LANG("datum.c9389468", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, spin_cooldown)))))
+		examine_list += span_notice(LANG("datum.c9389468b3e50e33", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, spin_cooldown)))))
 
 /datum/component/spin2win/proc/on_attack_self(datum/source, mob/user, location, direction)
 	SIGNAL_HANDLER
 
 	if(spinning)
-		user.balloon_alert(user, LANG("datum.8c159a0f", null))
+		user.balloon_alert(user, LANG("datum.8c159a0fddbea9ab", null))
 		return
 	if(!COOLDOWN_FINISHED(src, spin_cooldown))
-		user.balloon_alert(user, LANG("datum.d4ae5d4d", null))
+		user.balloon_alert(user, LANG("datum.d4ae5d4dded19efe", null))
 		return
 
 	start_spinning(user)

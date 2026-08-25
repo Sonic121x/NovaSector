@@ -36,7 +36,7 @@
 		var/obj/item/clothing/clothing_parent = parent
 		var/mob/parent_loc = clothing_parent.loc
 		if(!force && istype(parent_loc))
-			parent_loc.balloon_alert(parent_loc, LANG("datum.8cce7dfe", list(parent)))
+			parent_loc.balloon_alert(parent_loc, LANG("datum.8cce7dfeb25f9f15", list(parent)))
 	deltimer(fire_immunity_timer)
 	return ..()
 
@@ -78,7 +78,7 @@
 /datum/component/spray_fireproofed/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice(LANG("datum.bd9c270f", list(spray_health <= 500 ? " It is beginning to wear off.": "")))
+	examine_list += span_notice(LANG("datum.bd9c270f2c3106cd", list(spray_health <= 500 ? " It is beginning to wear off.": "")))
 
 /// There is a limit to how much flame protection is offered by the spray. After 60 seconds (by default), the spray begins to wear down. It will need time to cool off again before granting full immunity.
 /datum/component/spray_fireproofed/proc/on_pre_fire_act(obj/source, exposed_temperature, exposed_volume)

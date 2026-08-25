@@ -127,12 +127,12 @@
 
 /obj/item/coin/mark/forge_mark/attack_self(mob/user)
 	if(icon_state == "coin_forge_mark_down")
-		to_chat(user, span_notice(LANG("obj.04699ce2", list(src))))
+		to_chat(user, span_notice(LANG("obj.04699ce28a3a6753", list(src))))
 		icon_state = "coin_forge_mark_up"
 		update_appearance()
 		return TRUE
 	else
-		to_chat(user, span_notice(LANG("obj.26e8f236", list(src))))
+		to_chat(user, span_notice(LANG("obj.26e8f236e91bb64b", list(src))))
 		icon_state = "coin_forge_mark_down"
 		update_appearance()
 		return TRUE

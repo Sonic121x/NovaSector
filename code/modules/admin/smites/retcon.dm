@@ -7,7 +7,7 @@
 	var/fade_out_timer
 
 /datum/smite/retcon/configure(client/user)
-	timer = tgui_input_number(user, LANG("datum.8db8cba1", null), LANG("datum.350e933f", null), 5)
+	timer = tgui_input_number(user, LANG("datum.8db8cba13647588b", null), LANG("datum.350e933f2fb49356", null), 5)
 
 	if (isnull(timer))
 		return FALSE

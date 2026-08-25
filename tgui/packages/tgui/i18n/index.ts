@@ -1,26 +1,86 @@
 // THIS IS A NOVA SECTOR UI FILE
-// 轻量、零运行时依赖的 TGUI 本地化助手。
-//
-// BYOND 内嵌的 CEF 浏览器在运行时无网络，所以生产环境用「内置 JSON 目录」而非在线
-// 翻译服务。locale 取自全服 config.locale（由 code/modules/tgui/tgui.dm 的 get_payload 注入）。
-// 这些 JSON 即在线本地化平台导入/导出的源/目标 —— 平台仅作开发期管理，运行时不需要其 SDK。
-//
-// 占位符语义与 DM 端 LANG 一致：{0}/{1}… 按位置替换，允许按中文语序重排。
+// Explicit contextual messages are the application-facing API. The custom JSX runtime below
+// remains only as a legacy/upstream adapter for source that cannot carry typed display contracts.
+// Catalogs are bundled because BYOND's embedded browser has no runtime network dependency.
+// Placeholders use the DM-compatible positional form {0}, {1}, and may be reordered by locale.
 
 import { createElement as reactCreateElement } from 'react';
 import { useBackend } from '../backend';
 import { translate } from './catalog';
+import {
+  localizedDropdownOption,
+  localizedOption,
+  translateMessage,
+  type CanonicalOptionValue,
+  type LocalizedDropdownOption,
+  type LocalizedMessage,
+  type LocalizedOption,
+  type LocalizedText,
+  type MessageArgument,
+} from './messages';
 import { localizeNode, localizeProps } from './localize';
 
 export { translate, translateCurrent } from './catalog';
+export {
+  defineMessage,
+  localizedDropdownOption,
+  localizedOption,
+  messageKey,
+  translateMessage,
+  translateMessageCurrent,
+  translateOption,
+  translateOptionCurrent,
+} from './messages';
+export type {
+  CanonicalOptionValue,
+  LocalizedDropdownOption,
+  LocalizedMessage,
+  LocalizedOption,
+  LocalizedText,
+  MessageArgument,
+} from './messages';
 
-/** 在组件内获取翻译函数，locale 取自全服 config.locale。 */
+/** Low-level hook for existing stable catalog keys; never pass payload identifiers here. */
 export function useT(): (key: string, args?: Array<string | number>) => string {
   const { config } = useBackend();
   const locale = config?.locale ?? 'en';
   return (key, args) => translate(locale, key, args);
 }
 
+export type MessageTranslator = {
+  text(
+    message: LocalizedMessage,
+    args?: ReadonlyArray<MessageArgument>,
+  ): LocalizedText;
+  option<const Value extends CanonicalOptionValue>(
+    value: Value,
+    message: LocalizedMessage,
+    args?: ReadonlyArray<MessageArgument>,
+  ): LocalizedOption<Value>;
+  dropdownOption<const Value extends CanonicalOptionValue>(
+    value: Value,
+    message: LocalizedMessage,
+    args?: ReadonlyArray<MessageArgument>,
+  ): LocalizedDropdownOption<Value>;
+};
+
+/** Context-aware translator for application code. Canonical values only enter option.value. */
+export function useTranslator(): MessageTranslator {
+  const { config } = useBackend();
+  const locale = config?.locale ?? 'en';
+  return {
+    text: (message, args) => translateMessage(locale, message, args),
+    option: (value, message, args) =>
+      localizedOption(value, translateMessage(locale, message, args)),
+    dropdownOption: (value, message, args) =>
+      localizedDropdownOption(
+        value,
+        translateMessage(locale, message, args),
+      ),
+  };
+}
+
+/** React classic-runtime entrypoint for the legacy/upstream automatic adapter. */
 export function createElement(
   type: unknown,
   props: unknown,

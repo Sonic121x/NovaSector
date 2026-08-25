@@ -7,17 +7,17 @@
 		return
 
 	if(!length(avatar_connection_refs))
-		balloon_alert_to_viewers(LANG("obj.b015a834", null))
+		balloon_alert_to_viewers(LANG("obj.b015a834e6ec28e8", null))
 		playsound(src, 'sound/machines/terminal/terminal_off.ogg', 40, vary = TRUE)
 		reset()
 		return
 
-	balloon_alert_to_viewers(LANG("obj.47ed17ba", null))
+	balloon_alert_to_viewers(LANG("obj.47ed17ba5278d5a9", null))
 	playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 100, vary = TRUE)
 	user.visible_message(
-		span_danger(LANG("obj.4273d21e", list(user))),
-		span_notice(LANG("obj.40edcdde", null)),
-		span_danger(LANG("obj.b2e34517", null)),
+		span_danger(LANG("obj.4273d21ea5536529", list(user))),
+		span_notice(LANG("obj.40edcdde4c2e0a12", null)),
+		span_danger(LANG("obj.b2e34517f32e2a28", null)),
 	)
 
 	SEND_SIGNAL(src, COMSIG_BITRUNNER_SHUTDOWN_ALERT, user)
@@ -34,15 +34,15 @@
 		return FALSE
 
 	if(isnull(map_key))
-		balloon_alert_to_viewers(LANG("obj.c7fc5176", null))
+		balloon_alert_to_viewers(LANG("obj.c7fc5176b6b78ed9", null))
 		return FALSE
 
 	if(generated_domain)
-		balloon_alert_to_viewers(LANG("obj.2daf155d", null))
+		balloon_alert_to_viewers(LANG("obj.2daf155dc5d76bd7", null))
 		return FALSE
 
 	if(length(avatar_connection_refs))
-		balloon_alert_to_viewers(LANG("obj.706e5aea", null))
+		balloon_alert_to_viewers(LANG("obj.706e5aeac7556fd2", null))
 		return FALSE
 
 	is_ready = FALSE
@@ -50,7 +50,7 @@
 
 	/// If any one of these fail, it reverts the entire process
 	if(!load_domain(map_key) || !load_map_items() || !load_mob_segments())
-		balloon_alert_to_viewers(LANG("obj.8608c642", null))
+		balloon_alert_to_viewers(LANG("obj.8608c6429009cb76", null))
 		scrub_vdom()
 		is_ready = TRUE
 		return FALSE
@@ -76,7 +76,7 @@
 		setup_glitch()
 
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 30, vary = TRUE)
-	balloon_alert_to_viewers(LANG("obj.e73fc37d", null))
+	balloon_alert_to_viewers(LANG("obj.e73fc37d01cd0e58", null))
 	generated_domain.start_time = world.time
 	points -= generated_domain.cost
 	update_use_power(ACTIVE_POWER_USE)
@@ -86,7 +86,7 @@
 		start_broadcasting_network(BITRUNNER_CAMERA_NET)
 
 	if(generated_domain.announce_to_ghosts)
-		notify_ghosts(LANG("obj.add68644", null),
+		notify_ghosts(LANG("obj.add686447408491b", null),
 			src,
 			"Matrix Glitch",
 		)
@@ -105,28 +105,28 @@
 		return FALSE
 
 	if(generated_domain.mission_min_candidates && (!COOLDOWN_FINISHED(src, polling_cooldown)))
-		say(LANG("obj.12caee26", list(DisplayTimeText(polling_cooldown))))
+		say(LANG("obj.12caee2613a3c124", list(DisplayTimeText(polling_cooldown))))
 		playsound(src, "sound/machines/buzz-[pick("sigh", "two")].ogg", 50, TRUE)
 		return FALSE
 
 	var/list/mob/lucky_ghosts
 	if(generated_domain.mission_min_candidates)
 		playsound(src, 'sound/machines/chime.ogg', 50, TRUE)
-		say(LANG("obj.fd3a5e1c", null))
+		say(LANG("obj.fd3a5e1caad02648", null))
 		var/list/mob/candidates = SSpolling.poll_ghost_candidates("Do you want to play as a virtual [generated_domain.spawner_role] in a bitrunner domain?", ROLE_GHOST_ROLE, ROLE_GHOST_ROLE, 15 SECONDS, POLL_IGNORE_SHUTTLE_DENIZENS, TRUE)
 		for(var/amount in 1 to generated_domain.mission_max_candidates)
 			if(length(candidates)) // If no candidates, fails in code below anyways
 				LAZYADD(lucky_ghosts, pick_n_take(candidates))
 
 		if(length(lucky_ghosts) < generated_domain.mission_min_candidates)
-			notify_ghosts(LANG("obj.a4f80f40", list(generated_domain.spawner_role)))
+			notify_ghosts(LANG("obj.a4f80f4043d595e1", list(generated_domain.spawner_role)))
 			playsound(src, "sound/machines/buzz-[pick("sigh", "two")].ogg", 50, TRUE)
-			say(LANG("obj.703af0a6", null))
+			say(LANG("obj.703af0a669b684e5", null))
 			COOLDOWN_START(src, polling_cooldown, POLLING_COOLDOWN_TIME)
 			return FALSE
 
 		playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
-		say(LANG("obj.07d3d8bd", null))
+		say(LANG("obj.07d3d8bde702668e", null))
 
 	generated_domain.load_advanced_npcs(lucky_ghosts)
 	RegisterSignal(generated_domain, COMSIG_LAZY_TEMPLATE_LOADED, PROC_REF(on_template_loaded))

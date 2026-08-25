@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 		return FALSE
 
 	if(invoker.get_active_held_item() != invoking_slab && !iscyborg(invoker))
-		to_chat(invoker, span_brass(LANG("datum.f26b86d6", list(name))))
+		to_chat(invoker, span_brass(LANG("datum.f26b86d6660cbbc1", list(name))))
 		return FALSE
 
 	var/invokers = 0
@@ -156,7 +156,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 			break
 
 	if(invokers < invokers_required)
-		to_chat(invoker, span_brass(LANG("datum.118e54dc", list(invokers_required, name))))
+		to_chat(invoker, span_brass(LANG("datum.118e54dc5c7b9fa3", list(invokers_required, name))))
 		return FALSE
 
 	return TRUE
@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 /// Start invoking a scripture, calling end_invoke() if it doesn't finish
 /datum/scripture/proc/begin_invoke(mob/living/invoking_mob, obj/item/clockwork/clockwork_slab/slab, bypass_unlock_checks = FALSE)
 	if(invoking_mob.get_active_held_item() != slab && !iscyborg(invoking_mob))
-		to_chat(invoking_mob, span_brass(LANG("datum.fd0ef693", list(slab.name))))
+		to_chat(invoking_mob, span_brass(LANG("datum.fd0ef69376da5c44", list(slab.name))))
 		return
 
 	slab.invoking_scripture = src
@@ -186,7 +186,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 	if(do_after(invoking_mob, invocation_time, target = invoking_mob, extra_checks = CALLBACK(src, PROC_REF(check_special_requirements), invoking_mob)))
 		invoke()
 
-		to_chat(invoking_mob, span_brass(LANG("datum.b8d13ba2", list(name))))
+		to_chat(invoking_mob, span_brass(LANG("datum.b8d13ba2980294f2", list(name))))
 
 		if(end_on_invocation)
 			end_invoke()
@@ -220,7 +220,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 		if(istype(clockwork_struct, /obj/structure/destructible/clockwork/trap))
 			continue
 
-		invoker.balloon_alert(invoker, LANG("datum.a559c1ea", null))
+		invoker.balloon_alert(invoker, LANG("datum.a559c1eaf1d10da9", null))
 		return FALSE
 
 	return TRUE
@@ -335,7 +335,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 		loop_timer_id = null
 
 	if(!silent)
-		to_chat(invoker, span_brass(LANG("datum.d497c095", list(name))))
+		to_chat(invoker, span_brass(LANG("datum.d497c0950331c6b2", list(name))))
 	qdel(progress)
 
 	pointed_spell.unset_click_ability(invoker)

@@ -26,11 +26,11 @@
 		return
 	if (!isbot(owner))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.26edc649", null))
+			owner.balloon_alert(owner, LANG("datum.26edc6490c62d93c", null))
 		return FALSE
 	if (!length(automated_announcements))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.951e9d32", null))
+			owner.balloon_alert(owner, LANG("datum.951e9d32ad2d181c", null))
 		return FALSE
 	return TRUE
 

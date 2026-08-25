@@ -61,7 +61,7 @@
 	if(!tongue)
 		return
 	if(SPT_PROB(4.0, seconds_per_tick))
-		owner.manual_emote(LANG("datum.3a724350", list(owner.p_their())))
-		owner.say(LANG("datum.2f2629e5", null), forced = /datum/reagent/impurity/rosenol)
+		owner.manual_emote(LANG("datum.3a7243507b2fb380", list(owner.p_their())))
+		owner.say(LANG("datum.2f2629e51a87ea4f", null), forced = /datum/reagent/impurity/rosenol)
 	if(SPT_PROB(2.0, seconds_per_tick))
 		owner.say(pick("Ah! That was a mistake!", "Horrible.", "Watch out everybody, the potato is really hot.", "When I was six I ate a bag of plums.", "And if there is one thing I can't stand it's tomatoes.", "And if there is one thing I love it's tomatoes.", "We had a captain who was so strict, you weren't allowed to breathe in their station.", "The unrobust ones just used to keel over and die, you'd hear them going down behind you."), forced = /datum/reagent/impurity/rosenol)

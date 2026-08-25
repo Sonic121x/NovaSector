@@ -23,11 +23,11 @@
 	if(erp_mode)
 		erp_mode = FALSE
 		holosign_type = /obj/structure/holosign/privacy
-		balloon_alert(user, LANG("obj.1faf5925", null))
+		balloon_alert(user, LANG("obj.1faf59255647b930", null))
 	else
 		erp_mode = TRUE
 		holosign_type = /obj/structure/holosign/privacy/erp
-		balloon_alert(user, LANG("obj.2c7f5499", null))
+		balloon_alert(user, LANG("obj.2c7f5499217629d8", null))
 	return ..()
 
 /obj/structure/holosign/privacy

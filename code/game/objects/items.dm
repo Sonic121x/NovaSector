@@ -467,21 +467,19 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "移至顶部", null)
 		. += research_scan(user)
 
 /obj/item/proc/research_scan(mob/user)
-	/// Research prospects, including boostable nodes and point values. Deliver to a console to know whether the boosts have already been used.
-	var/list/research_msg = list("<font color='purple'>[LANG("obj.533d7aa9", null)]</font> ") // NOVA EDIT - I18N
-	///Separator between the items on the list
+	// Research prospects, including boostable nodes and point values. Deliver to a console to know whether the boosts have already been used.
+	var/list/research_msg = list("<font color='purple'>Research prospects:</font> ")
+	// Separator between the items on the list
 	var/sep = ""
-	///Nodes that can be boosted
-	var/list/boostable_nodes = techweb_item_unlock_check(src)
-	if (boostable_nodes)
-		for(var/id in boostable_nodes)
-			var/datum/techweb_node/node = SSresearch.techweb_node_by_id(id)
-			if(!node)
-				continue
+	// Nodes that can be boosted
+	var/list/boostable_nodes = SSresearch.techweb_unlock_items[type]
+	if(length(boostable_nodes))
+		for(var/boost_path in boostable_nodes)
+			var/datum/techweb_node/node = SSresearch.techweb_nodes[boost_path]
 			research_msg += sep
 			research_msg += node.display_name
 			sep = ", "
-	var/list/points = techweb_item_point_check(src)
+	var/list/points = SSresearch.techweb_point_items[type]
 	if (length(points))
 		sep = ", "
 		research_msg += techweb_point_display_generic(points)
@@ -490,7 +488,7 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "移至顶部", null)
 		research_msg += "None"
 
 	// Extractable materials. Only shows the names, not the amounts.
-	research_msg += ".<br><font color='purple'>[LANG("obj.19d9ab4c", null)]</font> " // NOVA EDIT - I18N
+	research_msg += ".<br><font color='purple'>[LANG("obj.19d9ab4c3c61fa67", null)]</font> " // NOVA EDIT - I18N
 	if (length(custom_materials))
 		sep = ""
 		for(var/mat in custom_materials)
@@ -533,7 +531,7 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "移至顶部", null)
 		affixes.Add("---SUFFIXES---")
 		affixes.Add(suffixes)
 		//admin picks, cleanup the ones we didn't do and handle chosen
-		var/picked_affix_name = tgui_input_list(usr, LANG("obj.d6c2ebb8", list(src)), LANG("obj.4a0c8da4", list(src)), affixes)
+		var/picked_affix_name = tgui_input_list(usr, LANG("obj.d6c2ebb8fb0b0c09", list(src)), LANG("obj.4a0c8da452b7913f", list(src)), affixes)
 		if(isnull(picked_affix_name))
 			return
 		if(!affixes[picked_affix_name] || QDELETED(src))
@@ -552,9 +550,9 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "移至顶部", null)
 		var/announce = FALSE
 		//Apply fantasy with affix. failing this should never happen, but if it does it should not be silent.
 		if(AddComponent(/datum/component/fantasy, fantasy_quality, list(affix), canFail, announce) == COMPONENT_INCOMPATIBLE)
-			to_chat(usr, span_warning(LANG("obj.aba4f286", list(src))))
+			to_chat(usr, span_warning(LANG("obj.aba4f2860fae2860", list(src))))
 			CRASH("fantasy component incompatible with object of type: [type]")
-		to_chat(usr, span_notice(LANG("obj.aeaf22ac", list(before_name, picked_affix_name))))
+		to_chat(usr, span_notice(LANG("obj.aeaf22ac5ad4dea7", list(before_name, picked_affix_name))))
 		log_admin("[key_name(usr)] has added [picked_affix_name] fantasy affix to [before_name]")
 		message_admins(span_notice("[key_name(usr)] has added [picked_affix_name] fantasy affix to [before_name]"))
 
@@ -578,7 +576,7 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "移至顶部", null)
 		var/grav = user.has_gravity()
 		if(grav > STANDARD_GRAVITY)
 			var/grav_power = min(3,grav - STANDARD_GRAVITY)
-			to_chat(user,span_notice(LANG("obj.4acae372", list(src))))
+			to_chat(user,span_notice(LANG("obj.4acae3728b33f029", list(src))))
 			if(!do_after(user, 30 * grav_power, src))
 				return
 
@@ -627,7 +625,7 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "移至顶部", null)
 	if(!ayy.can_hold_items(src))
 		if(src in ayy.contents) // To stop Aliens having items stuck in their pockets
 			ayy.dropItemToGround(src)
-		to_chat(user, span_warning(LANG("obj.ef0f29a1", null)))
+		to_chat(user, span_warning(LANG("obj.ef0f29a151871b95", null)))
 		return
 	attack_paw(ayy, modifiers)
 
@@ -645,7 +643,7 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "移至顶部", null)
 		return TRUE
 
 	if(prob(final_block_chance))
-		owner.visible_message(span_danger(LANG("obj.7237e40a", list(owner, attack_text, src))))
+		owner.visible_message(span_danger(LANG("obj.7237e40af9015b24", list(owner, attack_text, src))))
 		var/owner_turf = get_turf(owner)
 		new block_effect(owner_turf, COLOR_YELLOW)
 		playsound(src, block_sound, BLOCK_SOUND_VOLUME, vary = TRUE)
@@ -1383,7 +1381,7 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 		return
 	user.dropItemToGround(src, silent = TRUE)
 	if(throwforce && (HAS_TRAIT(user, TRAIT_PACIFISM)) || HAS_TRAIT(user, TRAIT_NO_THROWING))
-		to_chat(user, span_notice(LANG("obj.3b0b0198", list(src))))
+		to_chat(user, span_notice(LANG("obj.3b0b01988a755128", list(src))))
 		return
 	return src
 
@@ -1410,8 +1408,8 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 /obj/item/proc/on_accidental_consumption(mob/living/carbon/victim, mob/living/carbon/user, obj/item/source_item, discover_after = TRUE)
 	if(get_sharpness() && force >= 5) //if we've got something sharp with a decent force (ie, not plastic)
 		INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob, emote), "scream")
-		victim.visible_message(span_warning(LANG("obj.b149a228", list(victim, victim.p_theyve()))), \
-							span_boldwarning(LANG("obj.0e926ed9", null)))
+		victim.visible_message(span_warning(LANG("obj.b149a22819a92a93", list(victim, victim.p_theyve()))), \
+							span_boldwarning(LANG("obj.0e926ed944512699", null)))
 
 		victim.apply_damage(max(15, force), BRUTE, BODY_ZONE_HEAD, wound_bonus = 10, sharpness = TRUE)
 		victim.losebreath += 2
@@ -1455,8 +1453,8 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 			discover_after = FALSE
 
 		victim.adjust_disgust(33)
-		victim.visible_message(span_warning(LANG("obj.e6dd30e7", list(victim, victim.p_theyve()))), \
-						span_warning(LANG("obj.7ae88ffe", null)))
+		victim.visible_message(span_warning(LANG("obj.e6dd30e76c9772d8", list(victim, victim.p_theyve()))), \
+						span_warning(LANG("obj.7ae88ffea21988fe", null)))
 		return discover_after
 
 	if(w_class > WEIGHT_CLASS_TINY) //small items like soap or toys that don't have mat datums
@@ -1466,7 +1464,7 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 	var/obj/item/organ/stomach/stomach = victim.get_organ_by_type(/obj/item/organ/stomach)
 	if (stomach?.consume_thing(src))
 		victim.losebreath += 2
-		to_chat(victim, span_warning(LANG("obj.a699c032", list(source_item? "Something small was in \the [source_item]..." : ""))))
+		to_chat(victim, span_warning(LANG("obj.a699c0323168c67d", list(source_item? "Something small was in \the [source_item]..." : ""))))
 		return FALSE
 
 	// victim's chest (for cavity implanting the item)
@@ -1474,12 +1472,12 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 	if(victim_cavity.cavity_item)
 		victim.vomit(vomit_flags = (MOB_VOMIT_MESSAGE | MOB_VOMIT_HARM), lost_nutrition = 5, distance = 0)
 		forceMove(drop_location())
-		to_chat(victim, span_warning(LANG("obj.c9d386f7", list(name, source_item? "Was that in \the [source_item]?" : ""))))
+		to_chat(victim, span_warning(LANG("obj.c9d386f7020db4d5", list(name, source_item? "Was that in \the [source_item]?" : ""))))
 		return FALSE
 
 	victim.transferItemToLoc(src, victim, TRUE)
 	victim.losebreath += 2
-	to_chat(victim, span_warning(LANG("obj.a699c032", list(source_item? "Something small was in \the [source_item]..." : ""))))
+	to_chat(victim, span_warning(LANG("obj.a699c0323168c67d", list(source_item? "Something small was in \the [source_item]..." : ""))))
 	return FALSE
 
 #undef MAX_MATS_PER_BITE
@@ -1854,17 +1852,17 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 /obj/item/proc/item_start_equip(atom/target, obj/item/equipping, mob/user, show_visible_message = TRUE)
 
 	if(show_visible_message)
-		if(HAS_TRAIT(equipping, TRAIT_DANGEROUS_OBJECT))
+		if(HAS_TRAIT(equipping, TRAIT_DANGEROUS_EQUIP))
 			target.visible_message(
-				span_danger(LANG("obj.4e36be0d", list(user, equipping, target))),
-				span_userdanger(LANG("obj.8d22214d", list(user, equipping))),
+				span_danger(LANG("obj.4e36be0de3586d4a", list(user, equipping, target))),
+				span_userdanger(LANG("obj.8d22214d2513dfa7", list(user, equipping))),
 				ignored_mobs = user,
 			)
 
 		else
 			target.visible_message(
-				span_notice(LANG("obj.4e36be0d", list(user, equipping, target))),
-				span_notice(LANG("obj.8d22214d", list(user, equipping))),
+				span_notice(LANG("obj.4e36be0de3586d4a", list(user, equipping, target))),
+				span_notice(LANG("obj.8d22214d2513dfa7", list(user, equipping))),
 				ignored_mobs = user,
 			)
 
@@ -1876,10 +1874,10 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 					LAZYADD(victim_human.afk_thefts, new_entry)
 
 			else if(victim_human.is_blind())
-				to_chat(target, span_userdanger(LANG("obj.72339f07", null)))
+				to_chat(target, span_userdanger(LANG("obj.72339f0710adbf37", null)))
 	user.do_item_attack_animation(target, used_item = equipping, animation_type = ATTACK_ANIMATION_BLUNT)
 
-	to_chat(user, span_notice(LANG("obj.9cff2ef4", list(equipping, target))))
+	to_chat(user, span_notice(LANG("obj.9cff2ef46d48de1b", list(equipping, target))))
 
 	user.log_message("is putting [equipping] on [key_name(target)]", LOG_ATTACK, color="red")
 	target.log_message("is having [equipping] put on them by [key_name(user)]", LOG_VICTIM, color="orange", log_globally=FALSE)
@@ -2228,7 +2226,7 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 
 /obj/item/vv_get_header()
 	. = ..()
-	. += LANG("obj.9734bd49", list(HrefToken(), REF(src), uppertext(damtype), HrefToken(), REF(src), force, HrefToken(), REF(src), wound_bonus, HrefToken(), REF(src), exposed_wound_bonus))
+	. += LANG("obj.9734bd4901841929", list(HrefToken(), REF(src), uppertext(damtype), HrefToken(), REF(src), force, HrefToken(), REF(src), wound_bonus, HrefToken(), REF(src), exposed_wound_bonus))
 
 /// Fetches, or lazyloads, our embedding datum
 /obj/item/proc/get_embed()

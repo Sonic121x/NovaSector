@@ -123,7 +123,7 @@
 	if(!user.can_perform_action(src))
 		return
 
-	var/input = tgui_input_text(user, title = "Deca-code lock", message = "Enter [code_length] digits. All digits must be unique.", max_length = code_length)
+	var/input = tgui_input_text(user, title = LANG("obj.14eee6fcc5fbceff", null), message = LANG("obj.69270ce2099e68d0", list(code_length)), max_length = code_length)
 
 	if(input == code)
 		if(!spawned_loot)
@@ -134,10 +134,10 @@
 		return
 
 	if(!validate_input(input))
-		to_chat(user, span_notice(LANG("obj.3f95a505", null)))
+		to_chat(user, span_notice(LANG("obj.3f95a50585ffc6e6", null)))
 		return
 
-	to_chat(user, span_warning(LANG("obj.503e48f9", null)))
+	to_chat(user, span_warning(LANG("obj.503e48f9f8b8fdae", null)))
 	previous_attempts += list(bulls_and_cows(input))
 	attempts--
 

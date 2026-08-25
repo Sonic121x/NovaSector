@@ -45,7 +45,7 @@
 /obj/machinery/cell_charger_multi/click_alt(mob/user, list/modifiers)
 	if(!can_interact(user) || !LAZYLEN(charging_batteries))
 		return
-	to_chat(user, span_notice(LANG("obj.1869cd63", null)))
+	to_chat(user, span_notice(LANG("obj.1869cd6368929d26", null)))
 	for(var/i in charging_batteries)
 		removecell()
 	return CLICK_ACTION_SUCCESS
@@ -53,14 +53,14 @@
 /obj/machinery/cell_charger_multi/examine(mob/user)
 	. = ..()
 	if(!LAZYLEN(charging_batteries))
-		. += LANG("obj.4d1f049a", list(src))
+		. += LANG("obj.4d1f049a8bc14a84", list(src))
 	else
-		. += LANG("obj.894e8427", list(LAZYLEN(charging_batteries), src))
+		. += LANG("obj.894e8427d8b3773c", list(LAZYLEN(charging_batteries), src))
 		for(var/obj/item/stock_parts/power_store/cell/charging in charging_batteries)
-			. += LANG("obj.ef59e67c", list(charging, round(charging.percent(), 1)))
+			. += LANG("obj.ef59e67cb6b77620", list(charging, round(charging.percent(), 1)))
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.950628d2", list(display_power(charge_rate, convert = FALSE))))
-	. += span_notice(LANG("obj.6b876f29", null))
+		. += span_notice(LANG("obj.950628d2734e1f1b", list(display_power(charge_rate, convert = FALSE))))
+	. += span_notice(LANG("obj.6b876f29e7ec3797", null))
 
 /obj/machinery/cell_charger_multi/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/stock_parts/power_store/cell) || panel_open)
@@ -74,30 +74,30 @@
 		return NONE
 
 	if(machine_stat & BROKEN)
-		to_chat(user, span_warning(LANG("obj.e2c73115", list(src))))
+		to_chat(user, span_warning(LANG("obj.e2c73115e801b359", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(!anchored)
-		to_chat(user, span_warning(LANG("obj.f467682f", list(src))))
+		to_chat(user, span_warning(LANG("obj.f467682f5bf33467", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/stock_parts/power_store/cell/inserting_cell = tool
 	if(inserting_cell.chargerate <= 0)
-		to_chat(user, span_warning(LANG("obj.d4b2e04f", list(inserting_cell))))
+		to_chat(user, span_warning(LANG("obj.d4b2e04f1ab025de", list(inserting_cell))))
 		return ITEM_INTERACT_BLOCKING
 	if(LAZYLEN(charging_batteries) >= max_batteries)
-		to_chat(user, span_warning(LANG("obj.4599e642", list(src))))
+		to_chat(user, span_warning(LANG("obj.4599e6423f3a5dbe", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	else
 		var/area/current_area = loc.loc // Gets our locations location, like a dream within a dream
 		if(!isarea(current_area))
 			return ITEM_INTERACT_BLOCKING
 		if(current_area.power_equip == 0) // There's no APC in this area, don't try to cheat power!
-			to_chat(user, span_warning(LANG("obj.ebb2a520", list(src))))
+			to_chat(user, span_warning(LANG("obj.ebb2a520235ba42f", list(src))))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool,src))
 			return ITEM_INTERACT_BLOCKING
 
 		LAZYADD(charging_batteries, tool)
-		user.visible_message(span_notice(LANG("obj.c4a3d920", list(user, src))), span_notice(LANG("obj.0e4e6b90", list(src))))
+		user.visible_message(span_notice(LANG("obj.c4a3d9201d508013", list(user, src))), span_notice(LANG("obj.0e4e6b90adadf964", list(src))))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -128,7 +128,7 @@
 	if(!LAZYLEN(charging_batteries))
 		return
 
-	to_chat(user, span_notice(LANG("obj.2e70f313", list(removecell(user), src))))
+	to_chat(user, span_notice(LANG("obj.2e70f3132b99713e", list(removecell(user), src))))
 
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -171,7 +171,7 @@
 	user.put_in_hands(charging)
 	charging.add_fingerprint(user)
 
-	user.visible_message(span_notice(LANG("obj.4a2c1fdd", list(user, charging, src))), span_notice(LANG("obj.cbed3266", list(charging, src))))
+	user.visible_message(span_notice(LANG("obj.4a2c1fddbcf43cde", list(user, charging, src))), span_notice(LANG("obj.cbed32661d4c054a", list(charging, src))))
 
 /obj/machinery/cell_charger_multi/proc/removecell(mob/user)
 	if(!LAZYLEN(charging_batteries))
@@ -181,7 +181,7 @@
 		var/list/buttons = list()
 		for(var/obj/item/stock_parts/power_store/cell/battery in charging_batteries)
 			buttons["[battery.name] ([round(battery.percent(), 1)]%)"] = battery
-		var/cell_name = tgui_input_list(user, LANG("obj.8ba5d457", null), LANG("obj.bbe3072d", null), buttons)
+		var/cell_name = tgui_input_list(user, LANG("obj.8ba5d457784be70c", null), LANG("obj.bbe3072dc2846a30", null), buttons)
 		charging = buttons[cell_name]
 	else
 		charging = LAZYACCESS(charging_batteries, 1)
@@ -210,7 +210,6 @@
 /datum/design/board/cell_charger_multi
 	name = "Multi-Cell Charger Board"
 	desc = "The circuit board for a multi-cell charger."
-	id = "multi_cell_charger"
 	build_path = /obj/item/circuitboard/machine/cell_charger_multi
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING

@@ -48,7 +48,7 @@
 			to_chat(owner, span_warning("01001001 00100111 01101101 00100000 01100110 01110101 01100011 01101011 01100101 01100100 00101110"))
 			apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, SYNTH_EMP_BRAIN_DAMAGE_MAXIMUM, required_organ_flag = ORGAN_ROBOTIC)
 		if(EMP_LIGHT)
-			to_chat(owner, span_warning(LANG("obj.3af1a266", null)))
+			to_chat(owner, span_warning(LANG("obj.3af1a266b42a6d90", null)))
 			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, SYNTH_EMP_BRAIN_DAMAGE_MAXIMUM, required_organ_flag = ORGAN_ROBOTIC)
 
 /obj/item/organ/brain/synth/apply_organ_damage(damage_amount, maximum, required_organ_flag)
@@ -58,11 +58,11 @@
 		last_message_time = world.time
 
 		if(damage > BRAIN_DAMAGE_SEVERE)
-			to_chat(owner, span_warning(LANG("obj.e81066eb", null)))
+			to_chat(owner, span_warning(LANG("obj.e81066eb77bde2f5", null)))
 			return
 
 		if(damage > BRAIN_DAMAGE_MILD)
-			to_chat(owner, span_warning(LANG("obj.30eb8b4b", null)))
+			to_chat(owner, span_warning(LANG("obj.30eb8b4b6ad7bb03", null)))
 
 /obj/item/organ/brain/synth/Destroy()
 	QDEL_NULL(internal_computer)
@@ -100,7 +100,6 @@
 /datum/design/synth_posi
 	name = "Compact Positronic Brain"
 	desc = "Inactive compact positronic brain."
-	id = "synth_posi"
 	build_type = MECHFAB
 	construction_time = 30 SECONDS
 	materials = list(
@@ -132,8 +131,8 @@
 
 /datum/design/synth_posi/proc/on_successful_revive(obj/item/organ/brain/synth/our_posi)
 	var/mob/living/carbon/human/owner = our_posi.owner
-	var/inputed_name = tgui_input_text(owner, LANG("datum.c39c4020", null), LANG("datum.e810a59f", null), owner.real_name, max_length = MAX_NAME_LEN)
-	var/pronouns = tgui_input_list(owner, LANG("datum.4a93d89b", null), LANG("datum.5019ec94", null), list(MALE, FEMALE, PLURAL, NEUTER), NEUTER)
+	var/inputed_name = tgui_input_text(owner, LANG("datum.c39c40203907560f", null), LANG("datum.e810a59fe9dda22a", null), owner.real_name, max_length = MAX_NAME_LEN)
+	var/pronouns = tgui_input_list(owner, LANG("datum.4a93d89bce4cdb7d", null), LANG("datum.5019ec94c1fee0fe", null), list(MALE, FEMALE, PLURAL, NEUTER), NEUTER)
 	if(!isnull(inputed_name))
 		owner.fully_replace_character_name(newname = inputed_name)
 	if(!isnull(pronouns))

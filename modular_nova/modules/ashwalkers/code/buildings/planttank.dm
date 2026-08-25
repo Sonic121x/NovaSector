@@ -22,11 +22,11 @@
 
 /obj/structure/plant_tank/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.7119a775", null))
-	. += span_notice(LANG("obj.17448eb1", list(operation_number)))
+	. += span_notice(LANG("obj.7119a77581127558", null))
+	. += span_notice(LANG("obj.17448eb1b2ed5983", list(operation_number)))
 	var/datum/component/simple_farm/find_farm = GetComponent(/datum/component/simple_farm)
 	if(!find_farm)
-		. += span_notice(LANG("obj.884eae86", null))
+		. += span_notice(LANG("obj.884eae86cd9490ef", null))
 
 /obj/structure/plant_tank/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/food) || istype(tool, /obj/item/stack/worm_fertilizer))
@@ -40,7 +40,7 @@
 		else
 			qdel(tool)
 
-		balloon_alert(user, LANG("obj.b25cae35", list(tool)))
+		balloon_alert(user, LANG("obj.b25cae3550bffe99", list(tool)))
 		user.mind?.adjust_experience(/datum/skill/primitive, 2)
 		operation_number += 2
 		if(prob(user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
@@ -54,10 +54,10 @@
 			foods += food_item
 
 		if(!length(foods))
-			balloon_alert(user, LANG("obj.e07b5a1b", null))
+			balloon_alert(user, LANG("obj.e07b5a1bea6ed3e6", null))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.f3b2a498", null))
+		balloon_alert(user, LANG("obj.f3b2a49870781a8f", null))
 
 		for(var/obj/item/food/food_item in foods)
 			qdel(food_item)
@@ -70,11 +70,11 @@
 
 	if(istype(tool, /obj/item/stack/ore/glass))
 		if(connected_farm)
-			balloon_alert(user, LANG("obj.47cd9db7", list(tool)))
+			balloon_alert(user, LANG("obj.47cd9db73bd58933", list(tool)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!tool.use(5))
-			balloon_alert(user, LANG("obj.acbb2297", null))
+			balloon_alert(user, LANG("obj.acbb2297f142a2b5", null))
 			return ITEM_INTERACT_BLOCKING
 
 		connected_farm = AddComponent(/datum/component/simple_farm, TRUE, TRUE, list(0, 12))
@@ -120,17 +120,17 @@
 	operation_number--
 
 /obj/structure/plant_tank/wrench_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, LANG("obj.e8caa39b", list(anchored ? "un" : "")))
+	balloon_alert(user, LANG("obj.e8caa39b6b91e64c", list(anchored ? "un" : "")))
 	tool.play_tool_sound(src, 50)
 	if(!tool.use_tool(src, user, 2 SECONDS))
 		return TRUE
 
 	anchored = !anchored
-	balloon_alert(user, LANG("obj.1e8c7ea2", list(anchored ? "" : "un")))
+	balloon_alert(user, LANG("obj.1e8c7ea22ad920d6", list(anchored ? "" : "un")))
 	return TRUE
 
 /obj/structure/plant_tank/screwdriver_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, LANG("obj.5a199e01", null))
+	balloon_alert(user, LANG("obj.5a199e01223ef916", null))
 	tool.play_tool_sound(src, 50)
 	if(!tool.use_tool(src, user, 2 SECONDS))
 		return TRUE

@@ -22,13 +22,13 @@
 	REMOVE_TRAIT(remove_from, TRAIT_MIMING, "[type]")
 
 /datum/action/cooldown/spell/vow_of_silence/before_cast(atom/cast_on)
-	if(tgui_alert(usr, LANG("datum.86d9c12b", null), LANG("datum.58657891", null), list("I'm Sure", "Abort")) != "I'm Sure")
+	if(tgui_alert(usr, LANG("datum.86d9c12b6222b573", null), LANG("datum.5865789161944402", null), list("I'm Sure", "Abort")) != "I'm Sure")
 		return SPELL_CANCEL_CAST
 	return ..()
 
 /datum/action/cooldown/spell/vow_of_silence/cast(mob/living/carbon/human/cast_on)
 	. = ..()
-	to_chat(cast_on, span_notice(LANG("datum.ad27cffc", null)))
+	to_chat(cast_on, span_notice(LANG("datum.ad27cffc46597c02", null)))
 	cast_on.log_message("broke [cast_on.p_their()] vow of silence.", LOG_GAME)
 	cast_on.add_mood_event("vow", /datum/mood_event/broken_vow)
 	REMOVE_TRAIT(cast_on, TRAIT_MIMING, "[type]")

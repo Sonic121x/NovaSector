@@ -97,7 +97,7 @@
 		for(var/turf/checked_turf in locs)
 			for(var/atom/movable/blocker in checked_turf)
 				if(blocker.density && blocker != src) //something is blocking the door
-					say(LANG("obj.c1f19636", null))
+					say(LANG("obj.c1f19636b1e70932", null))
 					playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 60, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 					layer = OPEN_DOOR_LAYER
 					set_airlock_state(AIRLOCK_OPEN, animated = FALSE, force_type = forced)
@@ -152,7 +152,7 @@
 /obj/machinery/door/airlock/tram/crush()
 	for(var/turf/checked_turf in locs)
 		for(var/mob/living/future_pancake in checked_turf)
-			future_pancake.visible_message(span_warning(LANG("obj.390f85f0", list(src, future_pancake))), span_userdanger(LANG("obj.f14fe5c9", list(src))))
+			future_pancake.visible_message(span_warning(LANG("obj.390f85f0c686b553", list(src, future_pancake))), span_userdanger(LANG("obj.f14fe5c945b27ae9", list(src))))
 			var/sig_return = SEND_SIGNAL(future_pancake, COMSIG_LIVING_DOORCRUSHED, src)
 			future_pancake.add_splatter_floor(loc)
 			log_combat(src, future_pancake, "crushed")
@@ -181,7 +181,7 @@
 		return
 
 	playsound(src, 'sound/machines/buzz/buzz-two.ogg', 60, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
-	say(LANG("obj.fccc9b8d", null))
+	say(LANG("obj.fccc9b8dfeced93e", null))
 	close(forced = BYPASS_DOOR_CHECKS)
 
 /**
@@ -212,7 +212,7 @@
  */
 /obj/machinery/door/airlock/tram/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.767a416d", list(EXAMINE_HINT("just your hands"))))
+	. += span_notice(LANG("obj.767a416db49cf74c", list(EXAMINE_HINT("just your hands"))))
 
 /**
  * Tram doors can be opened with hands when unpowered
@@ -224,7 +224,7 @@
 	if(!hasPower()  && density)
 		COOLDOWN_START(src, release_cooldown, 1.2 SECONDS)
 		playsound(src, soundin = 'sound/machines/airlock/airlockforced.ogg', vol = 40, vary = FALSE)
-		balloon_alert_to_viewers(LANG("obj.0d9f9de7", null), vision_distance = COMBAT_MESSAGE_RANGE)
+		balloon_alert_to_viewers(LANG("obj.0d9f9de746e92772", null), vision_distance = COMBAT_MESSAGE_RANGE)
 		if(do_after(user, 1.2 SECONDS, target = src))
 			open(forced = BYPASS_DOOR_CHECKS)
 
@@ -250,7 +250,7 @@
 		return // we're already animating, don't reset that
 	COOLDOWN_START(src, release_cooldown, 1.2 SECONDS)
 	playsound(src, soundin = 'sound/machines/airlock/airlockforced.ogg', vol = 40, vary = FALSE)
-	balloon_alert_to_viewers(LANG("obj.0d9f9de7", null), vision_distance = COMBAT_MESSAGE_RANGE)
+	balloon_alert_to_viewers(LANG("obj.0d9f9de746e92772", null), vision_distance = COMBAT_MESSAGE_RANGE)
 	if(do_after(user, delay = 0.6 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE | IGNORE_SLOWDOWNS))
 		open(forced = BYPASS_DOOR_CHECKS)
 

@@ -22,7 +22,7 @@
 	)
 
 /obj/item/book/granter/action/spell/summon_cheese/recoil(mob/living/user)
-	to_chat(user, span_warning(LANG("obj.076bcf0d", list(src))))
+	to_chat(user, span_warning(LANG("obj.076bcf0d42c25b09", list(src))))
 	var/obj/item/food/cheese/wedge/book_cheese = new
 	user.temporarilyRemoveItemFromInventory(src, force = TRUE)
 	user.put_in_hands(book_cheese)

@@ -5,17 +5,20 @@
 //! 后续增量将扩展到 proc 体内的 to_chat / visible_message / balloon_alert 等汇聚点，
 //! 并把内插字符串转换为 {0}/{1} 占位符模板、改写调用点为 LANG/LANGU。
 
+mod audit;
 mod catalog;
 mod dm_string;
-mod template;
 mod extract;
 mod flavor;
+mod governance;
 mod keys;
 mod labels;
 mod lint;
 mod migrate;
 mod pseudo;
 mod rewrite;
+mod semantics;
+mod template;
 
 use anyhow::Result;
 use clap::{Parser, Subcommand};
@@ -42,7 +45,7 @@ enum Cmd {
         #[arg(long)]
         dry_run: bool,
     },
-    /// 幂等改写：把汇聚点调用里的纯字符串消息替换为 LANG("key", null)（v1）。
+    /// 幂等改写：把汇聚点调用里的纯字符串消息替换为 LANG("key", null)（v2）。
     Rewrite {
         /// 项目入口 .dme。
         #[arg(long, default_value = "tgstation.dme")]
@@ -83,6 +86,9 @@ enum Cmd {
         /// 标识符碰撞基线文件（只对不在基线里的新碰撞失败）。
         #[arg(long, default_value = "tools/i18n/identifier-baseline.txt")]
         baseline: PathBuf,
+        /// 「目录里有、源码里仍是裸字面量」的基线（只对新增失败）。
+        #[arg(long, default_value = "tools/i18n/bare-english-baseline.txt")]
+        bare_baseline: PathBuf,
         /// 用当前全部碰撞重写基线（首次采纳 / 修复后刷新）。
         #[arg(long)]
         update_baseline: bool,
@@ -110,7 +116,19 @@ enum Cmd {
         #[arg(long, default_value = "tools/i18n/dm_labels.json")]
         out: PathBuf,
     },
-    /// 计算英文模板的稳定目录 key（`<ns>.<blake3 前 8 位>`）。手工 LANG 化裸拼接行时用：
+    /// 审计自动目录项的 ownership/liveness。默认只读并在发现 stale 项时失败。
+    CatalogAudit {
+        /// 项目入口 .dme（用与 extract 相同的语义重建 live key 集合）。
+        #[arg(long, default_value = "tgstation.dme")]
+        dme: PathBuf,
+        /// 目录根（含 catalog-domains.json 与 locale 子目录）。
+        #[arg(long, default_value = "strings/i18n")]
+        catalog: PathBuf,
+        /// 只删除已证明 stale 的 extract-owned 项；manual/domain 与 TGUI 文件永不修改。
+        #[arg(long)]
+        apply: bool,
+    },
+    /// 计算英文模板的稳定目录 key（`<ns>.<BLAKE3 前 64 位>`）。手工 LANG 化裸拼接行时用：
     /// 取 key → 模板手工写进 en 目录（zh 同 key 填译文）→ 源码写 LANG("<key>", args)。
     Key {
         /// 命名空间（obj/mob/datum/…，通常=类型路径首段）。
@@ -123,23 +141,42 @@ enum Cmd {
 fn main() -> Result<()> {
     let cli = Cli::parse();
     match cli.cmd {
-        Cmd::Extract { dme, out, dry_run } => extract::run(&dme, &out, dry_run),
+        Cmd::Extract { dme, out, dry_run } => extract::run(&dme, &out, dry_run).map(|_| ()),
         Cmd::Rewrite {
             dme,
             filter,
             dry_run,
         } => rewrite::run(&dme, filter.as_deref(), dry_run),
-        Cmd::Verbs { dme, locale, revert, dry_run } => rewrite::run_verbs(&dme, &locale, revert, dry_run),
+        Cmd::Verbs {
+            dme,
+            locale,
+            revert,
+            dry_run,
+        } => rewrite::run_verbs(&dme, &locale, revert, dry_run),
         Cmd::Lint {
             dme,
             catalog,
             locale,
             baseline,
+            bare_baseline,
             update_baseline,
             no_ast,
-        } => lint::run(&dme, &catalog, &locale, Some(baseline), update_baseline, no_ast),
+        } => lint::run(
+            &dme,
+            &catalog,
+            &locale,
+            Some(baseline),
+            Some(bare_baseline),
+            update_baseline,
+            no_ast,
+        ),
         Cmd::Pseudo { catalog, locale } => pseudo::run(&catalog, &locale),
         Cmd::Labels { dme, out } => labels::run(&dme, &out),
+        Cmd::CatalogAudit {
+            dme,
+            catalog,
+            apply,
+        } => audit::run(&dme, &catalog, apply),
         Cmd::Key {
             namespace,
             template,

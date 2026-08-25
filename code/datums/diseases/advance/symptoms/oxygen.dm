@@ -14,7 +14,7 @@
 	resistance = -3
 	stage_speed = -3
 	transmittable = -4
-	level = 6
+	level = 7
 	base_message_chance = 3
 	symptom_delay = 1
 	delay_variation = 0
@@ -42,12 +42,12 @@
 			infected_mob.losebreath = max(0, infected_mob.losebreath - 4)
 			infected_mob.adjust_oxy_loss(-7)
 			if(prob(base_message_chance))
-				to_chat(infected_mob, span_notice(LANG("datum.41c2a203", null)))
+				to_chat(infected_mob, span_notice(LANG("datum.41c2a203dd100ceb", null)))
 			if(regenerate_blood)
 				infected_mob.adjust_blood_volume(1, maximum = BLOOD_VOLUME_NORMAL)
 		else
 			if(prob(base_message_chance))
-				to_chat(infected_mob, span_notice(LANG("datum.314465a6", null)))
+				to_chat(infected_mob, span_notice(LANG("datum.314465a6297ee9a6", null)))
 	return
 
 /datum/symptom/oxygen/on_stage_change(datum/disease/advance/advanced_disease)
@@ -58,11 +58,11 @@
 	if(advanced_disease.stage >= 4)
 		ADD_TRAIT(infected_mob, TRAIT_NOBREATH, DISEASE_TRAIT)
 		if(advanced_disease.stage == 4)
-			to_chat(infected_mob, span_notice(LANG("datum.16eefac6", null)))
+			to_chat(infected_mob, span_notice(LANG("datum.16eefac6a6d8baf1", null)))
 	else
 		REMOVE_TRAIT(infected_mob, TRAIT_NOBREATH, DISEASE_TRAIT)
 		if(advanced_disease.stage_peaked && advanced_disease.stage == 3)
-			to_chat(infected_mob, span_notice(LANG("datum.26289339", null)))
+			to_chat(infected_mob, span_notice(LANG("datum.26289339c0094c08", null)))
 	return TRUE
 
 /datum/symptom/oxygen/End(datum/disease/advance/advanced_disease)

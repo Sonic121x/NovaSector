@@ -201,7 +201,7 @@ GLOBAL_LIST_INIT(mystery_fishing, list(
 
 /// The box has finished choosing, mark it as available for grabbing
 /obj/structure/mystery_box/proc/present_weapon()
-	visible_message(span_notice(LANG("obj.cf1ed391", list(src, presented_item))), vision_distance = COMBAT_MESSAGE_RANGE)
+	visible_message(span_notice(LANG("obj.cf1ed391f7e06847", list(src, presented_item))), vision_distance = COMBAT_MESSAGE_RANGE)
 	box_state = MYSTERY_BOX_PRESENTING
 	box_expire_timer = addtimer(CALLBACK(src, PROC_REF(start_expire_offer)), MBOX_DURATION_PRESENTING, TIMER_STOPPABLE)
 
@@ -222,7 +222,7 @@ GLOBAL_LIST_INIT(mystery_fishing, list(
 	box_expire_timer = null
 	addtimer(CALLBACK(src, PROC_REF(ready_again)), MBOX_DURATION_STANDBY)
 	if(uses_left <= 0)
-		visible_message(LANG("obj.1a8eed52", list(src)))
+		visible_message(LANG("obj.1a8eed5238821b9b", list(src)))
 		deconstruct(disassembled = FALSE)
 
 /// The cooldown between activations has finished, shake to show that
@@ -235,7 +235,7 @@ GLOBAL_LIST_INIT(mystery_fishing, list(
 /// Someone attacked the box with an empty hand, spawn the shown prize and give it to them, then close the box
 /obj/structure/mystery_box/proc/grant_weapon(mob/living/user)
 	var/atom/movable/instantiated_weapon = new presented_item.selected_path(loc)
-	user.visible_message(span_notice(LANG("obj.7b2c674d", list(user, presented_item, src))), span_notice(LANG("obj.82af12e9", list(presented_item, src))), vision_distance = COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_notice(LANG("obj.7b2c674d61c7c131", list(user, presented_item, src))), span_notice(LANG("obj.82af12e9ebd3eb13", list(presented_item, src))), vision_distance = COMBAT_MESSAGE_RANGE)
 	playsound(src, grant_sound, 70, FALSE, channel = current_sound_channel, falloff_exponent = 10)
 	close_box()
 
@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(mystery_fishing, list(
 
 /obj/structure/mystery_box/fishing/activate(mob/living/user)
 	if(user.mind && minds_that_opened_us?[WEAKREF(user.mind)] >= 3)
-		to_chat(user, span_warning(LANG("obj.bf27436a", list(src))))
+		to_chat(user, span_warning(LANG("obj.bf27436ae694b72d", list(src))))
 		return
 	return ..()
 

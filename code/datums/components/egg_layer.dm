@@ -62,12 +62,12 @@
 	if(isliving(at_least_atom))
 		var/mob/living/potentially_dead_horse = at_least_atom
 		if(potentially_dead_horse.stat == DEAD)
-			to_chat(attacker, span_warning(LANG("datum.01e50bce", list(parent))))
+			to_chat(attacker, span_warning(LANG("datum.01e50bcef3be90ac", list(parent))))
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 	if(eggs_left > max_eggs_held)
-		to_chat(attacker, span_warning(LANG("datum.42ca0324", list(parent))))
+		to_chat(attacker, span_warning(LANG("datum.42ca0324c73438c9", list(parent))))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
-	attacker.visible_message(span_notice(LANG("datum.61640911", list(attacker, food, parent))), span_notice(LANG("datum.781810b1", list(food, parent))))
+	attacker.visible_message(span_notice(LANG("datum.61640911f229dc3e", list(attacker, food, parent))), span_notice(LANG("datum.781810b14308b4ae", list(food, parent))))
 	at_least_atom.visible_message(pick(feed_messages))
 	qdel(food)
 	eggs_left += min(eggs_left + eggs_added_from_eating, max_eggs_held)

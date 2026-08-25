@@ -188,6 +188,11 @@
 
 	//the path of the fish_source datum to use for the fishing_spot component
 	var/fish_source_path = /datum/fish_source/vending
+	/**
+	 * used to check for discounting and for displaying discounted prices in the UI; not a static proc-local var because the code for displaying and applying
+	 * discounts isn't unified across DM and tgui
+	 */
+	var/static/datum/id_trim/job/big_boss_trim = /datum/id_trim/job/captain
 
 /datum/armor/machinery_vending
 	melee = 20
@@ -360,20 +365,20 @@
 	if(isnull(refill_canister))
 		return // you can add the comment here instead
 
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
 	if(panel_open)
-		. += span_notice(LANG("obj.feb87e11", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.feb87e117b205d5b", list(EXAMINE_HINT("pried"))))
 
 	var/list/total_stock = total_stock()
 	if(total_stock[2])
 		if(total_stock[1] < total_stock[2])
-			. += span_notice(LANG("obj.b4898151", list(src, span_boldnotice("\a [initial(refill_canister.machine_name)] [initial(refill_canister.name)]"))))
+			. += span_notice(LANG("obj.b4898151b99a428d", list(src, span_boldnotice("\a [initial(refill_canister.machine_name)] [initial(refill_canister.name)]"))))
 		else
-			. += span_notice(LANG("obj.a8c0dec7", list(src)))
+			. += span_notice(LANG("obj.a8c0dec7acba2a39", list(src)))
 	if(credits_contained < CREDITS_DUMP_THRESHOLD && credits_contained > 0)
-		. += span_notice(LANG("obj.c9dbdf57", list(MONEY_NAME)))
+		. += span_notice(LANG("obj.c9dbdf57d84e17ce", list(MONEY_NAME)))
 	else if (credits_contained > PAYCHECK_CREW)
-		. += span_notice(LANG("obj.8d1dcd9e", list(MONEY_NAME)))
+		. += span_notice(LANG("obj.8d1dcd9ea8dd9653", list(MONEY_NAME)))
 
 /obj/machinery/vending/update_appearance(updates = ALL)
 	. = ..()
@@ -421,7 +426,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, LANG("obj.c10d3ad2", null))
+	balloon_alert(user, LANG("obj.c10d3ad20877b858", null))
 	return TRUE
 
 

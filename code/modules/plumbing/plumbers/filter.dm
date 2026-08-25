@@ -43,7 +43,7 @@
 		if("add")
 			var/which = params["which"]
 
-			var/selected_reagent = tgui_input_list(usr, LANG("obj.e9f57c3f", list(which)), LANG("obj.c5160de6", null), GLOB.name2reagent)
+			var/selected_reagent = tgui_input_list(usr, LANG("obj.e9f57c3f35d243da", list(which)), LANG("obj.c5160de6a7b5b7a3", null), GLOB.name2reagent)
 			if(!selected_reagent)
 				return
 			if(QDELETED(ui) || ui.status != UI_INTERACTIVE)
@@ -63,7 +63,7 @@
 					return TRUE
 
 		if("remove")
-			var/chem_id = GLOB.name2reagent[params["reagent"]] || GLOB.name2reagent[lang_unreverse_text(params["reagent"])] // NOVA EDIT CHANGE - i18n - ORIGINAL: var/chem_id = GLOB.name2reagent[params["reagent"]]
+			var/chem_id = GLOB.name2reagent[params["reagent"]]
 			if(!chem_id)
 				return FALSE
 

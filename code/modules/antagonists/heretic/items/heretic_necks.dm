@@ -65,7 +65,7 @@
 		team_color = pick(COLOR_CULT_RED, COLOR_GREEN)
 
 	user.add_traits(list(TRAIT_MANSUS_TOUCHED, TRAIT_BLOOD_FOUNTAIN), REF(src))
-	to_chat(user, span_alert(LANG("obj.eaa13bd8", null)))
+	to_chat(user, span_alert(LANG("obj.eaa13bd8ef134032", null)))
 	component = user.AddComponent( \
 		/datum/component/aura_healing, \
 		range = 3, \
@@ -86,7 +86,7 @@
 		return
 
 	if(HAS_TRAIT_FROM(user, TRAIT_MANSUS_TOUCHED, REF(src)))
-		to_chat(user, span_notice(LANG("obj.eaeb2777", null)))
+		to_chat(user, span_notice(LANG("obj.eaeb2777ba118561", null)))
 
 	if(IS_HERETIC_OR_MONSTER(user) && active)
 		for(var/datum/action/cooldown/spell/spell_action in user.actions)
@@ -105,10 +105,10 @@
 
 /obj/item/clothing/neck/heretic_focus/crimson_medallion/attack_self(mob/living/user, modifiers)
 	. = ..()
-	to_chat(user, span_danger(LANG("obj.a1ac525b", list(src))))
+	to_chat(user, span_danger(LANG("obj.a1ac525bb362ab85", list(src))))
 	if(!do_after(user, 1.25 SECONDS, src))
 		return
-	to_chat(user, span_danger(LANG("obj.8120c7ec", list(src))))
+	to_chat(user, span_danger(LANG("obj.8120c7ecf415759b", list(src))))
 	new /obj/effect/gibspawner/generic(get_turf(src))
 	var/heal_amt = user.adjust_brute_loss(-50)
 	user.adjust_fire_loss( -(50 - abs(heal_amt)) ) // no double dipping
@@ -123,13 +123,13 @@
 
 	var/magic_dude
 	if(IS_CULTIST(user))
-		. += span_cult_bold(LANG("obj.a8dda446", null))
+		. += span_cult_bold(LANG("obj.a8dda4463ad68ef8", null))
 		magic_dude = TRUE
 	if(IS_HERETIC_OR_MONSTER(user))
 		magic_dude = TRUE
 
 	if(magic_dude)
-		. += span_red(LANG("obj.3146792a", null))
+		. += span_red(LANG("obj.3146792a9e17f89b", null))
 
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
@@ -190,7 +190,7 @@
 /obj/item/clothing/neck/moon_amulet/examine(mob/user)
 	. = ..()
 	if(IS_HERETIC(user))
-		. += span_notice(LANG("obj.0d1afbf9", null))
+		. += span_notice(LANG("obj.0d1afbf96a68eff1", null))
 
 /obj/item/clothing/neck/moon_amulet/equipped(mob/living/user, slot)
 	. = ..()
@@ -245,7 +245,7 @@
 		return FALSE
 	var/mob/living/living_user = user
 	if(!IS_HERETIC_OR_MONSTER(living_user))
-		living_user.balloon_alert(living_user, LANG("obj.34e18934", null))
+		living_user.balloon_alert(living_user, LANG("obj.34e18934aafe08d4", null))
 		living_user.add_mood_event("Moon Amulet Insanity", /datum/mood_event/amulet_insanity)
 		living_user.mob_mood.adjust_sanity(-50)
 		return FALSE
@@ -258,10 +258,10 @@
 		return TRUE
 	var/mob/living/carbon/human/human_target = target
 	if(IS_HERETIC_OR_MONSTER(human_target))
-		living_user.balloon_alert(living_user, LANG("obj.98b1e538", null))
+		living_user.balloon_alert(living_user, LANG("obj.98b1e53829ea9a95", null))
 		return FALSE
 	if(human_target.has_status_effect(/datum/status_effect/moon_slept) || human_target.has_status_effect(/datum/status_effect/moon_converted))
-		human_target.balloon_alert(living_user, LANG("obj.19307f15", null))
+		human_target.balloon_alert(living_user, LANG("obj.19307f1581d94c8a", null))
 		human_target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 25)
 		return FALSE
 	if(human_target.can_block_magic(MAGIC_RESISTANCE_MOON))
@@ -269,16 +269,16 @@
 	if(!human_target.mob_mood)
 		return FALSE
 	if(human_target.mob_mood.sanity_level < sanity_threshold)
-		human_target.balloon_alert(living_user, LANG("obj.9bfa0589", null))
+		human_target.balloon_alert(living_user, LANG("obj.9bfa0589d94f413d", null))
 		human_target.add_mood_event("Moon Amulet Insanity", /datum/mood_event/amulet_insanity)
 		human_target.mob_mood.adjust_sanity(-sanity_damage)
 	else
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-			human_target.balloon_alert(living_user, LANG("obj.7bd4abf9", null))
+			human_target.balloon_alert(living_user, LANG("obj.7bd4abf9d631ff49", null))
 			human_target.apply_status_effect(/datum/status_effect/moon_slept)
 			return TRUE
 		SEND_SIGNAL(user, COMSIG_MOB_APPLIED_MOONLIGHT_AMULET, target)
-		human_target.balloon_alert(living_user, LANG("obj.0a493994", null))
+		human_target.balloon_alert(living_user, LANG("obj.0a493994c82c464d", null))
 		human_target.apply_status_effect(/datum/status_effect/moon_converted)
 		living_user.log_message("made [human_target] insane.", LOG_GAME)
 		human_target.log_message("was driven insane by [living_user]", LOG_GAME)

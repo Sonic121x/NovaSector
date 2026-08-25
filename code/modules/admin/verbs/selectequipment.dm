@@ -39,7 +39,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "选择装备", /mob)
 	user = CLIENT_FROM_VAR(_user)
 
 	if(!ishuman(target) && !isobserver(target))
-		tgui_alert(usr,LANG("datum.0342d1be", null))
+		tgui_alert(usr,LANG("datum.0342d1bee0981c1b", null))
 		return
 	target_mob = target
 
@@ -204,7 +204,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "选择装备", /mob)
 
 /client/proc/admin_apply_outfit(mob/target, dresscode)
 	if(!ishuman(target) && !isobserver(target))
-		tgui_alert(usr,LANG("client.0342d1be", null))
+		tgui_alert(usr,LANG("client.0342d1bee0981c1b", null))
 		return
 
 	if(!dresscode)
@@ -217,7 +217,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "选择装备", /mob)
 	else
 		human_target = target
 		if(human_target.l_store || human_target.r_store || human_target.s_store) //saves a lot of time for admins and coders alike
-			if(tgui_alert(usr,LANG("client.d5f970f6", null), LANG("client.c500167d", null), list("Delete Them", "Drop Them")) == "Delete Them")
+			if(tgui_alert(usr,LANG("client.d5f970f6b6f7b812", null), LANG("client.c500167d7c64e7af", null), list("Delete Them", "Drop Them")) == "Delete Them")
 				delete_pocket = TRUE
 
 	BLACKBOX_LOG_ADMIN_VERB("Select Equipment")

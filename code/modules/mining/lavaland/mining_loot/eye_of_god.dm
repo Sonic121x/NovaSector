@@ -37,7 +37,7 @@
 	scan_ability?.Remove(user)
 
 /obj/item/clothing/glasses/godeye/proc/pain(mob/living/victim)
-	to_chat(victim, span_userdanger(LANG("obj.d308ef9a", list(src))))
+	to_chat(victim, span_userdanger(LANG("obj.d308ef9a28f59782", list(src))))
 	victim.emote("scream")
 	victim.flash_act()
 
@@ -57,11 +57,11 @@
 
 /datum/action/cooldown/spell/pointed/scan/is_valid_target(atom/cast_on)
 	if(!isliving(cast_on))
-		owner.balloon_alert(owner, LANG("datum.c526d249", null))
+		owner.balloon_alert(owner, LANG("datum.c526d249681a05e9", null))
 		return FALSE
 	var/mob/living/living_cast_on = cast_on
 	if(living_cast_on.stat == DEAD)
-		owner.balloon_alert(owner, LANG("datum.1ed5f66b", null))
+		owner.balloon_alert(owner, LANG("datum.1ed5f66b9b619efa", null))
 		return FALSE
 
 	return TRUE
@@ -70,11 +70,11 @@
 	. = ..()
 
 	if(cast_on.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
-		to_chat(owner, span_warning(LANG("datum.a5e057bb", null)))
+		to_chat(owner, span_warning(LANG("datum.a5e057bbed02fa6a", null)))
 		return
 
 	if(cast_on == owner)
-		to_chat(owner, span_warning(LANG("datum.e513efa0", null)))
+		to_chat(owner, span_warning(LANG("datum.e513efa09c8b05de", null)))
 		return
 
 	var/mob/living/living_owner = owner
@@ -83,18 +83,18 @@
 	var/datum/status_effect/agent_pinpointer/scan_pinpointer = living_owner.apply_status_effect(/datum/status_effect/agent_pinpointer/scan)
 	scan_pinpointer.scan_target = living_scanned
 
-	to_chat(living_scanned, span_warning(LANG("datum.459327b8", list(living_owner))))
+	to_chat(living_scanned, span_warning(LANG("datum.459327b8f0db5652", list(living_owner))))
 	living_scanned.add_filter("scan", 2, list("type" = "outline", "color" = COLOR_RED, "size" = 1))
 	addtimer(CALLBACK(living_scanned, TYPE_PROC_REF(/datum, remove_filter), "scan"), 30 SECONDS)
 
 	healthscan(living_owner, living_scanned, SCANNER_VERBOSE, SCANPOWER_ADVANCED)
 
 	owner.playsound_local(get_turf(owner), 'sound/effects/magic/smoke.ogg', 50, TRUE)
-	owner.balloon_alert(owner, LANG("datum.c26f8331", list(living_scanned)))
+	owner.balloon_alert(owner, LANG("datum.c26f8331c1feb7ea", list(living_scanned)))
 	addtimer(CALLBACK(src, PROC_REF(send_cooldown_end_message), cooldown_time))
 
 /datum/action/cooldown/spell/pointed/scan/proc/send_cooldown_end_message()
-	owner?.balloon_alert(owner, LANG("datum.799e704d", null))
+	owner?.balloon_alert(owner, LANG("datum.799e704dc3720c61", null))
 
 /datum/status_effect/agent_pinpointer/scan
 	duration = 15 SECONDS

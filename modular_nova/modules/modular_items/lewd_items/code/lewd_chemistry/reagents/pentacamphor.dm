@@ -21,11 +21,11 @@
 /datum/reagent/drug/aphrodisiac/camphor/pentacamphor/overdose_start(mob/living/carbon/human/exposed_mob, metabolization_ratio)
 	if(HAS_TRAIT(exposed_mob, TRAIT_BIMBO))
 		exposed_mob.cure_trauma_type(/datum/brain_trauma/very_special/bimbo, TRAUMA_RESILIENCE_ABSOLUTE)
-		to_chat(exposed_mob, span_notice(LANG("datum.50b1384b", null)))
+		to_chat(exposed_mob, span_notice(LANG("datum.50b1384b756f200d", null)))
 		REMOVE_TRAIT(exposed_mob, TRAIT_BIMBO, TRAIT_LEWDCHEM)
 		return
 	if(!HAS_TRAIT(exposed_mob, TRAIT_NEVERBONER))
-		to_chat(exposed_mob, span_notice(LANG("datum.bc259c1e", null)))
+		to_chat(exposed_mob, span_notice(LANG("datum.bc259c1ef9bcad3b", null)))
 		ADD_TRAIT(exposed_mob, TRAIT_NEVERBONER, TRAIT_LEWDCHEM)
 
 /datum/chemical_reaction/pentacamphor

@@ -17,7 +17,7 @@
 	. = ..()
 
 /datum/antagonist/abductee/greet()
-	to_chat(owner, span_warning(LANG("datum.01fb4b5c", null)))
+	to_chat(owner, span_warning(LANG("datum.01fb4b5c1a912034", null)))
 	to_chat(owner, "<big>[span_warning("<b>You can't remember how you got here...</b>")]</big>")
 	owner.announce_objectives()
 	play_stinger()

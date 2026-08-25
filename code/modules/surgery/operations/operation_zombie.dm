@@ -22,16 +22,16 @@
 
 /datum/surgery_operation/limb/bionecrosis/all_required_strings()
 	. = ..()
-	. += LANG("datum.5816f2fb", null)
+	. += LANG("datum.5816f2fb34093d5f", null)
 
 /datum/surgery_operation/limb/bionecrosis/any_required_strings()
 	. = ..()
 	for(var/datum/reagent/chem as anything in zombie_chems)
-		. += LANG("datum.73dd224d", list(chem::name))
+		. += LANG("datum.73dd224d14dff73f", list(chem::name))
 
 /datum/surgery_operation/limb/bionecrosis/all_blocked_strings()
 	. = ..()
-	. += LANG("datum.e2a6f344", null)
+	. += LANG("datum.e2a6f344e7c16779", null)
 
 /datum/surgery_operation/limb/bionecrosis/state_check(obj/item/bodypart/limb)
 	if(locate(/obj/item/organ/zombie_infection) in limb)

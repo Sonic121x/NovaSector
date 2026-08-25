@@ -49,7 +49,7 @@
 	SIGNAL_HANDLER
 	var/turf/our_turf = get_turf(src)
 	playsound(our_turf, 'sound/effects/magic/castsummon.ogg', vol = 100, vary = TRUE)
-	visible_message(span_boldwarning(LANG("obj.01e67b05", null)))
+	visible_message(span_boldwarning(LANG("obj.01e67b05aa6b3b22", null)))
 	UnregisterSignal(former_master, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING)) // Just in case they die THEN delete
 	new /obj/effect/temp_visual/destabilising_tear(our_turf)
 	qdel(src)
@@ -64,12 +64,12 @@
 	. = ..()
 	if (!isobserver(user) || gathering_candidates)
 		return
-	. += span_notice(LANG("obj.56a1d6d5", null))
+	. += span_notice(LANG("obj.56a1d6d5620d4279", null))
 
 /// Turn a ghost into an 'orrible beast
 /obj/structure/lock_tear/proc/ghost_to_monster(mob/dead/observer/user, should_ask = TRUE)
 	if(should_ask)
-		var/ask = tgui_alert(user, LANG("obj.aeb57de1", null), LANG("obj.b0439e09", null), list("Yes", "No"))
+		var/ask = tgui_alert(user, LANG("obj.aeb57de14bd5f5ed", null), LANG("obj.b0439e09b2aaf691", null), list("Yes", "No"))
 		if(ask != "Yes" || QDELETED(src) || QDELETED(user))
 			return FALSE
 	var/monster_type = pick(monster_types)

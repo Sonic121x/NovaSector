@@ -2,8 +2,8 @@
 ADMIN_VERB(cinematic, R_FUN, "过场动画", "Show a cinematic to all players.", ADMIN_CATEGORY_FUN)
 	var/datum/cinematic/choice = tgui_input_list(
 		user,
-		LANG("datum.c0d105b5", null),
-		LANG("datum.fed0a958", null),
+		LANG("datum.c0d105b53ab1ee30", null),
+		LANG("datum.fed0a9585ae0b73f", null),
 		sort_list(subtypesof(/datum/cinematic), GLOBAL_PROC_REF(cmp_typepaths_asc)),
 	)
 	if(!choice || !ispath(choice, /datum/cinematic))

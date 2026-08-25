@@ -63,14 +63,14 @@
 
 /obj/item/toy/cards/deck/tarot/haunted/proc/on_wield(obj/item/source, mob/living/carbon/user)
 	ADD_TRAIT(user, TRAIT_SIXTHSENSE, MAGIC_TRAIT)
-	to_chat(user, span_notice(LANG("obj.fa2c2e19", null)))
+	to_chat(user, span_notice(LANG("obj.fa2c2e19e0667684", null)))
 
 	if(!COOLDOWN_FINISHED(src, ghost_alert_cooldown))
 		return
 
 	COOLDOWN_START(src, ghost_alert_cooldown, TAROT_GHOST_TIMER)
 	notify_ghosts(
-		LANG("obj.f1060c69", list(name, get_area(src))),
+		LANG("obj.f1060c694cb049ea", list(name, get_area(src))),
 		source = src,
 		header = "Haunted Tarot Deck",
 		ghost_sound = 'sound/effects/ghost2.ogg',
@@ -79,6 +79,6 @@
 
 /obj/item/toy/cards/deck/tarot/haunted/proc/on_unwield(obj/item/source, mob/living/carbon/user)
 	REMOVE_TRAIT(user, TRAIT_SIXTHSENSE, MAGIC_TRAIT)
-	to_chat(user, span_notice(LANG("obj.4c057d5e", null)))
+	to_chat(user, span_notice(LANG("obj.4c057d5e72dfe211", null)))
 
 #undef TAROT_GHOST_TIMER

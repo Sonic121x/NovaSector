@@ -30,11 +30,9 @@
 	// 撞车（"Adaptive Manipulator" 之类整条命中就直接改了角色名；姓 Cook / Baker 被当职业名译掉是同类）。
 	// 名字不该翻，此前靠「GLOB 阶段 locale 尚未就绪」侥幸没翻，现在写成显式规则。
 	//
-	// i18n_locale_resolved 门：GLOBAL_LIST_INIT 那批（ai_names / station_prefixes / 各类词池）都在
-	// config 之前建表，历来就没被翻过——把这个既成事实写成显式条件，而不是让它继续依赖初始化时序
-	// 的巧合（那样既查不出问题，哪天时序一变又会悄悄开始翻名字）。**确实该翻的**早期 flavor 表
-	// （fishing_tips / junkmail）由 lang_relocalize_early_string_lists() 在 ConfigLoaded 里补。
-	if(GLOB.i18n_locale_resolved \
+	// READY 门让 GLOB 阶段的名字池保持 canonical English；该翻的早期 flavor 表由
+	// lang_initialize_runtime() 在 ConfigLoaded 内补翻。
+	if(lang_runtime_is_ready() \
 		&& GLOB.i18n_server_locale != DEFAULT_UI_LOCALE \
 		&& findtext(filename, "[STRING_DIRECTORY]/") \
 		&& !findtext(filename, "[STRING_DIRECTORY]/names/"))

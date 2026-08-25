@@ -91,16 +91,16 @@
 /obj/machinery/power/turbine/examine(mob/user)
 	. = ..()
 	if(installed_part)
-		. += span_notice(LANG("obj.6df13067", list(installed_part.current_tier)))
+		. += span_notice(LANG("obj.6df130670c756ccd", list(installed_part.current_tier)))
 		if(installed_part.current_tier + 1 < TURBINE_PART_TIER_FOUR)
-			. += span_notice(LANG("obj.bdc46d2e", list(installed_part.current_tier + 1)))
-		. += span_notice(LANG("obj.08c3e19a", list(installed_part, EXAMINE_HINT("pried"))))
+			. += span_notice(LANG("obj.bdc46d2e9bf4d613", list(installed_part.current_tier + 1)))
+		. += span_notice(LANG("obj.08c3e19aada1cf2f", list(installed_part, EXAMINE_HINT("pried"))))
 	else
-		. += span_warning(LANG("obj.94e64e27", list(initial(part_path.name))))
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
+		. += span_warning(LANG("obj.94e64e2776c8617f", list(initial(part_path.name))))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "closed" : "open")))
 	if(panel_open)
-		. += span_notice(LANG("obj.5bb9b460", list(EXAMINE_HINT("wrench"))))
-		. += span_notice(LANG("obj.553cbc20", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.5bb9b46009a48b89", list(EXAMINE_HINT("wrench"))))
+		. += span_notice(LANG("obj.553cbc205d3ee02d", list(EXAMINE_HINT("pried"))))
 
 ///Is this machine currently running
 /obj/machinery/power/turbine/proc/is_active()
@@ -168,10 +168,10 @@
 /obj/machinery/power/turbine/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if(is_active())
-		balloon_alert(user, LANG("obj.837cbcec", null))
+		balloon_alert(user, LANG("obj.837cbcec3c1f7d5e", null))
 		return
 	if(!anchored)
-		balloon_alert(user, LANG("obj.fc0b549c", null))
+		balloon_alert(user, LANG("obj.fc0b549c5b08ec06", null))
 		return
 
 	tool.play_tool_sound(src, 50)
@@ -195,13 +195,13 @@
 /obj/machinery/power/turbine/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.c6eae104", null))
+		balloon_alert(user, LANG("obj.c6eae10428718fb1", null))
 		return
 	if(!installed_part)
-		balloon_alert(user, LANG("obj.9131c6de", null))
+		balloon_alert(user, LANG("obj.9131c6de55462078", null))
 		return
 	if(is_active())
-		balloon_alert(user, LANG("obj.65adde74", list(src)))
+		balloon_alert(user, LANG("obj.65adde7445855819", list(src)))
 		return
 
 	user.put_in_hands(installed_part)
@@ -254,10 +254,10 @@
 
 	//not in a state to accept the part. block so we don't bash the machine and damage it
 	if(is_active())
-		balloon_alert(user, LANG("obj.06695743", null))
+		balloon_alert(user, LANG("obj.06695743c6d18665", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.fedd4878", null))
+		balloon_alert(user, LANG("obj.fedd48781b14c5ea", null))
 		return ITEM_INTERACT_BLOCKING
 
 	//install the part
@@ -265,9 +265,9 @@
 		return ITEM_INTERACT_BLOCKING
 	if(installed_part)
 		user.put_in_hands(installed_part)
-		balloon_alert(user, LANG("obj.01cd256a", null))
+		balloon_alert(user, LANG("obj.01cd256af8f503dd", null))
 	else
-		balloon_alert(user, LANG("obj.1c600683", null))
+		balloon_alert(user, LANG("obj.1c600683ab482e6e", null))
 	user.transferItemToLoc(object, src)
 	installed_part = object
 	efficiency = installed_part.get_tier_value(TURBINE_MAX_EFFICIENCY)
@@ -435,9 +435,9 @@
 /obj/machinery/power/turbine/core_rotor/examine(mob/user)
 	. = ..()
 	if(!panel_open)
-		. += span_notice(LANG("obj.7962f52d", list(EXAMINE_HINT("screw"))))
+		. += span_notice(LANG("obj.7962f52d7850cea9", list(EXAMINE_HINT("screw"))))
 	if(!all_parts_connected)
-		. += span_warning(LANG("obj.581f93ed", list(EXAMINE_HINT("multitool"))))
+		. += span_warning(LANG("obj.581f93ed01bf8d64", list(EXAMINE_HINT("multitool"))))
 
 ///Adds overlays to this turbines appearance
 /obj/machinery/power/turbine/core_rotor/set_overlays(list/overlays)
@@ -450,7 +450,7 @@
 
 /obj/machinery/power/turbine/core_rotor/cable_layer_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.a59b2c79", null))
+		balloon_alert(user, LANG("obj.a59b2c79dd1c6362", null))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -464,10 +464,10 @@
 		return ITEM_INTERACT_SUCCESS
 
 	//log rotor to link later to computer
-	balloon_alert(user, LANG("obj.8a8fca14", null))
+	balloon_alert(user, LANG("obj.8a8fca14950dfd03", null))
 	var/obj/item/multitool/multitool = tool
 	multitool.set_buffer(src)
-	to_chat(user, span_notice(LANG("obj.cd58d744", list(tool))))
+	to_chat(user, span_notice(LANG("obj.cd58d74437d8c774", list(tool))))
 
 	//success
 	return ITEM_INTERACT_SUCCESS

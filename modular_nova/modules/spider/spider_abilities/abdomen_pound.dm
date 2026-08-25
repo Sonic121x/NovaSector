@@ -59,13 +59,13 @@
 /datum/action/cooldown/mob_cooldown/abdomen_pound/proc/begin_sequence()
 	owner.add_traits(applied_traits, REF(src)) // No moving till we're done
 	owner.update_appearance(UPDATE_ICON)
-	owner.balloon_alert(owner, LANG("datum.340d5d28", null))
+	owner.balloon_alert(owner, LANG("datum.340d5d28a38ad9c2", null))
 	animate(owner, pixel_y = 10, time = windup_time)
 	active_timer = addtimer(CALLBACK(src, PROC_REF(ground_pound)), windup_time, TIMER_DELETE_ME | TIMER_STOPPABLE)
 	for (var/mob/living/candidate in view(pound_distance, owner))
 		if(candidate == owner || candidate.faction_check_atom(owner))
 			continue
-		owner.balloon_alert_to_viewers(LANG("datum.66d84dcf", null))
+		owner.balloon_alert_to_viewers(LANG("datum.66d84dcf7057f735", null))
 
 /// Slam it into the ground
 /datum/action/cooldown/mob_cooldown/abdomen_pound/proc/ground_pound()
@@ -76,8 +76,8 @@
 	for (var/mob/living/candidate in view(pound_distance, owner))
 		if(candidate == owner || candidate.faction_check_atom(owner))
 			continue
-		owner.visible_message(span_boldwarning(LANG("datum.2e853f8d", list(candidate))))
-		to_chat(candidate, span_userdanger(LANG("datum.2b80a689", null)))
+		owner.visible_message(span_boldwarning(LANG("datum.2e853f8dcf2ffd97", list(candidate))))
+		to_chat(candidate, span_userdanger(LANG("datum.2b80a6897e8a0d56", null)))
 		var/dir_to_target = get_dir(get_turf(owner), get_turf(candidate))
 		var/throwtarget = get_edge_target_turf(target, dir_to_target)
 		candidate.safe_throw_at(throwtarget, range = 7, speed = 1, thrower = owner)

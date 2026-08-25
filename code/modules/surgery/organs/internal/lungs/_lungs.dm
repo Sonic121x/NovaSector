@@ -390,12 +390,12 @@
 	if (freon_pp > gas_stimulation_min)
 		breather.reagents.add_reagent(/datum/reagent/freon, 1)
 	if (prob(freon_pp))
-		to_chat(breather, span_alert(LANG("obj.dde4d571", null)))
+		to_chat(breather, span_alert(LANG("obj.dde4d571fc4a8368", null)))
 	if (freon_pp > 40)
 		breather.emote("gasp")
 		breather.adjust_fire_loss(15)
 		if (prob(freon_pp / 2))
-			to_chat(breather, span_alert(LANG("obj.fdeef8ec", null)))
+			to_chat(breather, span_alert(LANG("obj.fdeef8ec85ac6193", null)))
 			breather.set_silence_if_lower(6 SECONDS)
 	else
 		breather.adjust_fire_loss(freon_pp / 4)
@@ -415,7 +415,7 @@
 	// Euphoria side-effect.
 	if(healium_pp > gas_stimulation_min)
 		if(prob(15))
-			to_chat(breather, span_alert(LANG("obj.4fda1284", null)))
+			to_chat(breather, span_alert(LANG("obj.4fda1284fc4ed2c8", null)))
 			healium_euphoria = EUPHORIA_ACTIVE
 			breather.emote("gasp")
 	else
@@ -469,22 +469,22 @@
 			// At lower pp, give out a little warning
 			breather.clear_mood_event("smell")
 			if(prob(5))
-				to_chat(breather, span_notice(LANG("obj.bdb286ee", null)))
+				to_chat(breather, span_notice(LANG("obj.bdb286ee4f577792", null)))
 		if(5 to 15)
 			//At somewhat higher pp, warning becomes more obvious
 			if(prob(15))
-				to_chat(breather, span_warning(LANG("obj.31657472", null)))
+				to_chat(breather, span_warning(LANG("obj.31657472ef414eb0", null)))
 				breather.add_mood_event("smell", /datum/mood_event/disgust/bad_smell)
 		if(15 to 30)
 			//Small chance to vomit. By now, people have internals on anyway
 			if(prob(5))
-				to_chat(breather, span_warning(LANG("obj.591c0f7c", null)))
+				to_chat(breather, span_warning(LANG("obj.591c0f7c4438b122", null)))
 				breather.add_mood_event("smell", /datum/mood_event/disgust/nauseating_stench)
 				breather.vomit(VOMIT_CATEGORY_DEFAULT)
 		if(30 to INFINITY)
 			//Higher chance to vomit. Let the horror start
 			if(prob(15))
-				to_chat(breather, span_warning(LANG("obj.591c0f7c", null)))
+				to_chat(breather, span_warning(LANG("obj.591c0f7c4438b122", null)))
 				breather.add_mood_event("smell", /datum/mood_event/disgust/nauseating_stench)
 				breather.vomit(VOMIT_CATEGORY_DEFAULT)
 		else
@@ -547,7 +547,7 @@
 	if((prob(nitrium_pp) && (nitrium_pp > 15)))
 		// Nitrium side-effect.
 		breather.adjust_organ_loss(ORGAN_SLOT_LUNGS, nitrium_pp * 0.1)
-		to_chat(breather, span_notice(LANG("obj.f17e8542", null)))
+		to_chat(breather, span_notice(LANG("obj.f17e854291e47cc9", null)))
 	// Metabolize to reagents.
 	if (nitrium_pp > 5)
 		var/existing = breather.reagents.get_reagent_amount(/datum/reagent/nitrium_low_metabolization)
@@ -769,7 +769,7 @@
 			breath_effect_prob = 25
 		if(breath_temperature < cold_level_1_threshold)
 			if(prob(sqrt(breath_effect_prob) * 4))
-				to_chat(breather, span_warning(LANG("obj.9c838501", list(cold_message, name))))
+				to_chat(breather, span_warning(LANG("obj.9c83850117ac4cb1", list(cold_message, name))))
 				if(prob(50))
 					breather.emote("shiver")
 			if(prob(breath_effect_prob))
@@ -795,7 +795,7 @@
 			heat_message_prob = 25
 		if(breath_temperature > heat_level_1_threshold)
 			if(prob(sqrt(heat_message_prob) * 4))
-				to_chat(breather, span_warning(LANG("obj.9c838501", list(hot_message, name))))
+				to_chat(breather, span_warning(LANG("obj.9c83850117ac4cb1", list(hot_message, name))))
 
 	// The air you breathe out should match your body temperature
 	breath.temperature = breather.bodytemperature
@@ -846,7 +846,7 @@
 		if(do_i_cough)
 			owner.emote("cough")
 	if(organ_flags & ORGAN_FAILING && !IS_UNCONSCIOUS_OR_CRIT(owner))
-		owner.visible_message(span_danger(LANG("obj.c094df16", list(owner, owner.p_their()))), span_userdanger(LANG("obj.d062df62", null)))
+		owner.visible_message(span_danger(LANG("obj.c094df16bdb4964b", list(owner, owner.p_their()))), span_userdanger(LANG("obj.d062df626ab6c7be", null)))
 		failed = TRUE
 
 /obj/item/organ/lungs/get_availability(datum/species/owner_species, mob/living/owner_mob)

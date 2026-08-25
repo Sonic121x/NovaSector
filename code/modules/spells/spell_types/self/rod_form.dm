@@ -93,17 +93,17 @@
 /obj/effect/immovablerod/wizard/penetrate(mob/living/penetrated)
 	if(penetrated.can_block_magic())
 		penetrated.visible_message(
-			span_danger(LANG("obj.ecda7c96", list(src, penetrated))),
-			span_userdanger(LANG("obj.10039ff5", list(src))),
-			span_danger(LANG("obj.3b73601e", null))
+			span_danger(LANG("obj.ecda7c96a896d9fd", list(src, penetrated))),
+			span_userdanger(LANG("obj.10039ff5f6eb4c56", list(src))),
+			span_danger(LANG("obj.3b73601e87b96f25", null))
 			)
 		stop_travel()
 		return
 
 	penetrated.visible_message(
-		span_danger(LANG("obj.c2b59118", list(penetrated))),
-		span_userdanger(LANG("obj.a037ec7d", list(src))),
-		span_danger(LANG("obj.425d6ace", null)),
+		span_danger(LANG("obj.c2b59118778b9754", list(penetrated))),
+		span_userdanger(LANG("obj.a037ec7d5389174b", list(src))),
+		span_danger(LANG("obj.425d6ace1ba48b42", null)),
 		)
 	penetrated.adjust_brute_loss(70 + damage_bonus)
 
@@ -113,10 +113,10 @@
 		return ..() // There's no wizard in this rod? It's pretty much a normal rod at this point
 
 	strongman.visible_message(
-		span_boldwarning(LANG("obj.2db788e8", list(src, wizard, strongman))),
-		span_warning(LANG("obj.482404e9", list(src, wizard)))
+		span_boldwarning(LANG("obj.2db788e815a9a6fb", list(src, wizard, strongman))),
+		span_warning(LANG("obj.482404e9b3663a1d", list(src, wizard)))
 		)
-	to_chat(wizard, span_boldwarning(LANG("obj.3a279d69", list(strongman))))
+	to_chat(wizard, span_boldwarning(LANG("obj.3a279d695c2f5ca1", list(strongman))))
 	stop_travel()
 	wizard.Stun(6 SECONDS)
 	wizard.apply_damage(25, BRUTE)

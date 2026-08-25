@@ -91,15 +91,15 @@
 			previous_power_state = 1
 			icon_state = "autocloner_on"
 			visible_message(
-				span_notice(LANG("obj.23d8959e", list(src))),
-				blind_message = span_hear(LANG("obj.d61da387", null)),
+				span_notice(LANG("obj.23d8959e27de5093", list(src))),
+				blind_message = span_hear(LANG("obj.d61da38708344f97", null)),
 			)
 
 		// slowly grow a mob
 		if(SPT_PROB(2.5, seconds_per_tick))
 			visible_message(
 				span_notice("[src] [pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")]."),
-				blind_message = span_hear(LANG("obj.8f953243", list(pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")))),
+				blind_message = span_hear(LANG("obj.8f9532438b3438c3", list(pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")))),
 			)
 
 		// if we've finished growing...
@@ -107,11 +107,11 @@
 			time_spent_spawning = 0
 			update_use_power(IDLE_POWER_USE)
 			visible_message(
-				span_notice(LANG("obj.8978c8c2", list(src))),
-				blind_message = span_hear(LANG("obj.31354520", null)),
+				span_notice(LANG("obj.8978c8c209229561", list(src))),
+				blind_message = span_hear(LANG("obj.313545203a59c236", null)),
 			)
 			icon_state = "autocloner_on"
-			desc = LANG("obj.236b9e99", null)
+			desc = LANG("obj.236b9e999f481f00", null)
 			if(spawn_type)
 				new spawn_type(get_turf(src))
 
@@ -119,11 +119,11 @@
 		if(time_spent_spawning / time_per_spawn > 0.75)
 			update_use_power(ACTIVE_POWER_USE)
 			icon_state = "autocloner_process"
-			desc = LANG("obj.302be775", null)
+			desc = LANG("obj.302be77597d15bc5", null)
 		else
 			update_use_power(IDLE_POWER_USE)
 			icon_state = "autocloner_on"
-			desc = LANG("obj.236b9e99", null)
+			desc = LANG("obj.236b9e999f481f00", null)
 
 		time_spent_spawning = time_spent_spawning + world.time - last_process
 	else
@@ -131,8 +131,8 @@
 			previous_power_state = 0
 			icon_state = "autocloner_off"
 			visible_message(
-				span_notice(LANG("obj.3c51a444", list(src))),
-				blind_message = span_hear(LANG("obj.f3669972", null)),
+				span_notice(LANG("obj.3c51a44460b5683b", list(src))),
+				blind_message = span_hear(LANG("obj.f3669972c02163cb", null)),
 			)
 
 		// cloned mob slowly breaks down

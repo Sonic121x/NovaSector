@@ -21,7 +21,7 @@
 	. = ..()
 	if(!.)
 		return
-	to_chat(user, span_notice(LANG("datum.5e73b13a", null)))
+	to_chat(user, span_notice(LANG("datum.5e73b13a3ce330b0", null)))
 	heal_target(user, 25)
 
 /datum/artifact_effect/heal/do_effect_aura(seconds_per_tick)
@@ -30,7 +30,7 @@
 		return
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/receiver in range(range, curr_turf))
-		to_chat(receiver, span_notice(LANG("datum.869265e6", null)))
+		to_chat(receiver, span_notice(LANG("datum.869265e61c453ce4", null)))
 		heal_target(receiver, rand(1,3)/2 * seconds_per_tick)
 
 /datum/artifact_effect/heal/do_effect_pulse(seconds_per_tick)
@@ -40,13 +40,13 @@
 	var/used_power = .
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/receiver in range(range, curr_turf))
-		to_chat(receiver, span_notice(LANG("datum.869265e6", null)))
+		to_chat(receiver, span_notice(LANG("datum.869265e61c453ce4", null)))
 		heal_target(receiver, 2.5 * used_power * seconds_per_tick)
 
 /datum/artifact_effect/heal/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/receiver in range(7, curr_turf))
-		to_chat(receiver, span_notice(LANG("datum.7b9c29eb", null)))
+		to_chat(receiver, span_notice(LANG("datum.7b9c29ebfba91cfa", null)))
 		heal_target(receiver, 50)
 
 /datum/artifact_effect/roboheal
@@ -72,7 +72,7 @@
 		return
 	if(!issilicon(user))
 		return
-	to_chat(user, span_notice(LANG("datum.0ceedd17", null)))
+	to_chat(user, span_notice(LANG("datum.0ceedd17c9a670bb", null)))
 	heal_target(user, 25)
 
 /datum/artifact_effect/roboheal/do_effect_aura(seconds_per_tick)
@@ -81,7 +81,7 @@
 		return
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/silicon/receiver in range(range, curr_turf))
-		to_chat(receiver, span_notice(LANG("datum.6717886a", null)))
+		to_chat(receiver, span_notice(LANG("datum.6717886acbe32244", null)))
 		heal_target(receiver, 0.5 * seconds_per_tick)
 
 /datum/artifact_effect/roboheal/do_effect_pulse(seconds_per_tick)
@@ -91,13 +91,13 @@
 	var/used_power = .
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/silicon/receiver in range(range, curr_turf))
-		to_chat(receiver, span_notice(LANG("datum.6e93c0d1", null)))
+		to_chat(receiver, span_notice(LANG("datum.6e93c0d18174c133", null)))
 		heal_target(receiver, 2.5 * used_power * seconds_per_tick)
 
 /datum/artifact_effect/roboheal/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/silicon/receiver in range(7, curr_turf))
-		to_chat(receiver, span_notice(LANG("datum.6e93c0d1", null)))
+		to_chat(receiver, span_notice(LANG("datum.6e93c0d18174c133", null)))
 		heal_target(receiver, 50)
 
 /datum/artifact_effect/hurt
@@ -122,7 +122,7 @@
 	. = ..()
 	if(!.)
 		return
-	to_chat(user, span_warning(LANG("datum.c3c154f8", null)))
+	to_chat(user, span_warning(LANG("datum.c3c154f829f01e59", null)))
 	deal_damage(user, 10)
 	return TRUE
 
@@ -132,7 +132,7 @@
 		return
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/receiver in range(range, curr_turf))
-		to_chat(receiver, span_warning(LANG("datum.cb37d103", null)))
+		to_chat(receiver, span_warning(LANG("datum.cb37d1032306409f", null)))
 		deal_damage(receiver, 0.5 * seconds_per_tick)
 
 /datum/artifact_effect/hurt/do_effect_pulse(seconds_per_tick)
@@ -142,13 +142,13 @@
 	var/used_power = .
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/receiver in range(range, curr_turf))
-		to_chat(receiver, span_notice(LANG("datum.65ba1159", null)))
+		to_chat(receiver, span_notice(LANG("datum.65ba11592ad4c03b", null)))
 		deal_damage(receiver, 2.5 * (used_power / 3) * seconds_per_tick)
 
 /datum/artifact_effect/hurt/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/receiver in range(7, curr_turf))
-		to_chat(receiver, span_warning(LANG("datum.91e3881f", null)))
+		to_chat(receiver, span_warning(LANG("datum.91e3881f35717a5a", null)))
 		deal_damage(receiver, 50)
 
 /datum/artifact_effect/robohurt
@@ -174,7 +174,7 @@
 		return
 	if(!issilicon(user))
 		return
-	to_chat(user, span_warning(LANG("datum.e2ebcb42", null)))
+	to_chat(user, span_warning(LANG("datum.e2ebcb42c145ad74", null)))
 	deal_damage(user, 10)
 
 /datum/artifact_effect/robohurt/do_effect_aura(seconds_per_tick)
@@ -183,7 +183,7 @@
 		return
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/silicon/receiver in range(range, curr_turf))
-		to_chat(receiver, span_warning(LANG("datum.cc1dff80", null)))
+		to_chat(receiver, span_warning(LANG("datum.cc1dff8035e84570", null)))
 		deal_damage(receiver, 0.5 * seconds_per_tick)
 
 /datum/artifact_effect/robohurt/do_effect_pulse(seconds_per_tick)
@@ -193,11 +193,11 @@
 	var/used_power = .
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/silicon/receiver in range(range, curr_turf))
-		to_chat(receiver, span_warning(LANG("datum.e3ba8292", null)))
+		to_chat(receiver, span_warning(LANG("datum.e3ba8292a5208ccc", null)))
 		deal_damage(receiver, 0.25 * used_power * seconds_per_tick)
 
 /datum/artifact_effect/robohurt/do_effect_destroy()
 	var/turf/curr_turf = get_turf(holder)
 	for(var/mob/living/silicon/receiver in range(7, curr_turf))
-		to_chat(receiver, span_warning(LANG("datum.b9d5eb5e", null)))
+		to_chat(receiver, span_warning(LANG("datum.b9d5eb5e1e7d18d9", null)))
 		deal_damage(receiver, 50)

@@ -40,19 +40,19 @@
 		if(EARTHCRACKER_ACTIVE)
 			if(activation_timer)
 				return FALSE
-			var/response = tgui_alert(user, LANG("obj.cc4c4e5d", null), LANG("obj.bd9ac51e", null), list("Yes", "No")) == "Yes"
+			var/response = tgui_alert(user, LANG("obj.cc4c4e5db64d47ae", null), LANG("obj.bd9ac51ecbefd7fa", null), list("Yes", "No")) == "Yes"
 			if(!response)
 				return FALSE
 			if(!user.Adjacent(src))
 				return FALSE
 			flick("[base_icon_state]-active", src)
 			if(is_mining_level(z))
-				activation_timer = addtimer(CALLBACK(src, PROC_REF(mining_act), user), 1.2 SECONDS)
+				activation_timer = addtimer(CALLBACK(src, PROC_REF(mining_act), user), 0.8 SECONDS)
 				return TRUE
-			activation_timer = addtimer(CALLBACK(src, PROC_REF(strike_the_earth)), 1.2 SECONDS)
+			activation_timer = addtimer(CALLBACK(src, PROC_REF(strike_the_earth)), 0.8 SECONDS)
 			return TRUE
 		if(EARTHCRACKER_SPENT)
-			balloon_alert(user, LANG("obj.804f0d80", null))
+			balloon_alert(user, LANG("obj.804f0d80e98acef6", null))
 			return FALSE
 
 /obj/item/earthcracker/update_icon_state()
@@ -67,15 +67,15 @@
 
 /obj/item/earthcracker/wrench_act(mob/living/user, obj/item/tool)
 	if(anchored && status == EARTHCRACKER_SPENT)
-		balloon_alert(user, LANG("obj.b39d99ef", null))
+		balloon_alert(user, LANG("obj.b39d99ef315633e8", null))
 		animate(src, 0.6 SECONDS, alpha = 0, easing = CIRCULAR_EASING|EASE_IN)
 		addtimer(CALLBACK(src, PROC_REF(post_break)), 0.6 SECONDS)
 		return ITEM_INTERACT_SUCCESS
 	if(!anchored && status == EARTHCRACKER_READY)
-		balloon_alert(user, LANG("obj.351a7565", null))
+		balloon_alert(user, LANG("obj.351a756536a89514", null))
 		return ITEM_INTERACT_SUCCESS
 	if(anchored && status == EARTHCRACKER_ACTIVE)
-		balloon_alert(user, LANG("obj.a718ca4c", null))
+		balloon_alert(user, LANG("obj.a718ca4c284d403a", null))
 		if(!tool.use_tool(src, user, 8 SECONDS, volume = 50))
 			return ITEM_INTERACT_FAILURE
 		anchored = FALSE
@@ -95,24 +95,24 @@
 /obj/item/earthcracker/examine(mob/user)
 	. = ..()
 	if(status == EARTHCRACKER_SPENT)
-		. += span_warning(LANG("obj.7da2b815", list(EXAMINE_HINT("Wrench"))))
+		. += span_warning(LANG("obj.7da2b8157330a823", list(EXAMINE_HINT("Wrench"))))
 	else
-		. += span_info(LANG("obj.c0ea306b", list(EXAMINE_HINT("Wrench"))))
+		. += span_info(LANG("obj.c0ea306bf209ad5e", list(EXAMINE_HINT("Wrench"))))
 
 /obj/item/earthcracker/proc/handle_arming(mob/user)
 	var/turf/arm_location = get_turf(user)
 	if(!arm_location)
 		return FALSE
 	if(isgroundlessturf(arm_location))
-		balloon_alert(user, LANG("obj.8523d735", null))
+		balloon_alert(user, LANG("obj.8523d735d36241ac", null))
 		return FALSE
 
 	if(status == EARTHCRACKER_SPENT)
-		balloon_alert(user, LANG("obj.804f0d80", null))
+		balloon_alert(user, LANG("obj.804f0d80e98acef6", null))
 		return FALSE
-	balloon_alert(user, LANG("obj.defea432", null))
+	balloon_alert(user, LANG("obj.defea43250bcd6de", null))
 	if(!do_after(user, 3 SECONDS, src))
-		balloon_alert(user, LANG("obj.23b99830", null))
+		balloon_alert(user, LANG("obj.23b99830c001cf8c", null))
 		return FALSE
 
 	forceMove(arm_location)

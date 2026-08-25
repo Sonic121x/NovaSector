@@ -62,7 +62,7 @@
 	if((item_flags & ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
 		return
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_notice(LANG("obj.3b0b0198", list(src))))
+		to_chat(user, span_notice(LANG("obj.3b0b01988a755128", list(src))))
 		release()
 		return
 
@@ -84,14 +84,14 @@
 	if(isliving(loc))
 		var/mob/living/captor = loc
 		if(display_messages)
-			to_chat(captor, span_warning(LANG("obj.9eb18c65", list(released_mob))))
+			to_chat(captor, span_warning(LANG("obj.9eb18c65843ff813", list(released_mob))))
 		captor.dropItemToGround(src)
 	else
 		released_mob.forceMove(drop_location())
 	released_mob.reset_perspective()
 	released_mob.setDir(SOUTH)
 	if(display_messages)
-		released_mob.visible_message(span_warning(LANG("obj.25d2d428", list(released_mob))))
+		released_mob.visible_message(span_warning(LANG("obj.25d2d428894d454c", list(released_mob))))
 	if(!QDELETED(src))
 		qdel(src)
 	return TRUE
@@ -109,8 +109,8 @@
 
 /obj/item/mob_holder/on_found(mob/finder)
 	if(held_mob?.will_escape_storage())
-		to_chat(finder, span_warning(LANG("obj.8d109f54", list(held_mob.name))))
-		finder.visible_message(span_warning(LANG("obj.fa0c4845", list(held_mob.name, finder))), ignored_mobs = finder)
+		to_chat(finder, span_warning(LANG("obj.8d109f54e5d7c764", list(held_mob.name))))
+		finder.visible_message(span_warning(LANG("obj.fa0c48454381be6a", list(held_mob.name, finder))), ignored_mobs = finder)
 		release(display_messages = FALSE)
 		return
 
@@ -126,7 +126,7 @@
 		qdel(src)
 		return
 	name = "drone (hiding)"
-	desc = LANG("obj.3f16f27c", null)
+	desc = LANG("obj.3f16f27c15a40b37", null)
 
 /obj/item/mob_holder/drone/update_visuals(mob/living/contained)
 	var/mob/living/basic/drone/drone = contained

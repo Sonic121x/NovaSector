@@ -3,7 +3,7 @@
 
 ///Cloaking - Lowers the user's visibility, can be interrupted by being touched or attacked.
 /obj/item/mod/module/stealth
-	name = "MOD prototype cloaking module"
+	name = "\improper MOD prototype cloaking module"
 	desc = "A complete retrofitting of the suit, this is a form of visual concealment tech employing esoteric technology \
 		to bend light around the user, as well as mimetic materials to make the surface of the suit match the \
 		surroundings based off sensor data. For some reason, this tech is rarely seen."
@@ -39,7 +39,7 @@
 /obj/item/mod/module/stealth/proc/unstealth(datum/source)
 	SIGNAL_HANDLER
 
-	to_chat(mod.wearer, span_warning(LANG("obj.af764fe4", list(src))))
+	to_chat(mod.wearer, span_warning(LANG("obj.af764fe44d9000ba", list(src))))
 	do_sparks(2, TRUE, src)
 	drain_power(use_energy_cost)
 	deactivate()
@@ -60,7 +60,7 @@
 
 //Advanced Cloaking - Doesn't turf off on bump, less power drain, more stealthy.
 /obj/item/mod/module/stealth/ninja
-	name = "MOD advanced cloaking module"
+	name = "\improper MOD advanced cloaking module"
 	desc = "The latest in stealth technology, this module is a definite upgrade over previous versions. \
 		The field has been tuned to be even more responsive and fast-acting, with enough stability to \
 		continue operation of the field even if the user bumps into others. \
@@ -84,7 +84,7 @@
 
 ///Camera Vision - Prevents flashes, blocks tracking.
 /obj/item/mod/module/welding/camera_vision
-	name = "MOD camera vision module"
+	name = "\improper MOD camera vision module"
 	desc = "A module installed into the suit's helmet. This specialized piece of technology is built for subterfuge, \
 		replacing the standard visor with a nanotech display; capable of displaying specialized imagery at \
 		just the right frequency to jam all known forms of camera tracking and facial recognition, \
@@ -118,7 +118,7 @@
 
 //Ninja Star Dispenser - Dispenses ninja stars.
 /obj/item/mod/module/dispenser/ninja
-	name = "MOD ninja star dispenser module"
+	name = "\improper MOD ninja star dispenser module"
 	desc = "This piece of Spider Clan technology can exploit known energy-matter equivalence principles, \
 		using the nanites already hosted in the wearer's suit to transmute into monomolecular shuriken. \
 		While these lack the intense bleeding edge of conventional throwing stars, \
@@ -154,7 +154,7 @@
 	new /obj/effect/temp_visual/emp/pulse(get_turf(src))
 	new /obj/effect/temp_visual/emp(get_turf(hit_atom))
 	playsound(src, 'sound/effects/empulse.ogg', 60, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
-	visible_message(LANG("obj.2316a14b", list(src)))
+	visible_message(LANG("obj.2316a14b1fe8ce73", list(src)))
 	if(isturf(loc)) // if we didn't embed in anything, go away
 		qdel(src)
 
@@ -177,7 +177,7 @@
 
 ///Hacker - This module hooks onto your right-clicks with empty hands and causes ninja actions.
 /obj/item/mod/module/hacker
-	name = "MOD hacker module"
+	name = "\improper MOD hacker module"
 	desc = "Built for one purpose, electronic warfare, this module is built into the hands. \
 		Using near-field communication alongside precise electro-stimulation of the wires in machines, \
 		this decker's dream is normally used to pass through doors like a phantom. \
@@ -215,9 +215,9 @@
 
 /obj/item/mod/module/hacker/proc/charge_message(atom/drained_atom, drain_amount)
 	if(drain_amount)
-		to_chat(mod.wearer, span_notice(LANG("obj.d3fff60d", list(drain_amount, drained_atom))))
+		to_chat(mod.wearer, span_notice(LANG("obj.d3fff60dad11954a", list(drain_amount, drained_atom))))
 	else
-		to_chat(mod.wearer, span_warning(LANG("obj.1adcfe3b", list(drained_atom))))
+		to_chat(mod.wearer, span_warning(LANG("obj.1adcfe3b03c6053a", list(drained_atom))))
 
 //Security Records, Ninja objective This notifies the AI and sets everyone on arrest.
 /obj/machinery/computer/records/security/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
@@ -247,12 +247,12 @@
 /obj/machinery/computer/records/security/proc/can_hack(mob/living/hacker, feedback = FALSE)
 	if(machine_stat & (NOPOWER|BROKEN))
 		if(feedback && hacker)
-			balloon_alert(hacker, LANG("obj.426ce8db", null))
+			balloon_alert(hacker, LANG("obj.426ce8db826676a8", null))
 		return FALSE
 	var/area/console_area = get_area(src)
 	if(!console_area || !(console_area.area_flags & VALID_TERRITORY))
 		if(feedback && hacker)
-			balloon_alert(hacker, LANG("obj.dbddc2b1", null))
+			balloon_alert(hacker, LANG("obj.dbddc2b10a38a884", null))
 		return FALSE
 	return TRUE
 
@@ -350,9 +350,9 @@
 	// If the traitor theft objective is still present, this will destroy it...
 	if(!source_code_hdd)
 		return ..()
-	to_chat(ninja, span_notice(LANG("obj.c7ca2810", list(src))))
+	to_chat(ninja, span_notice(LANG("obj.c7ca281001175840", list(src))))
 	AI_notify_hack()
-	to_chat(ninja, span_notice(LANG("obj.83f9e920", null)))
+	to_chat(ninja, span_notice(LANG("obj.83f9e920c1857e02", null)))
 	INVOKE_ASYNC(src, PROC_REF(ninjadrain_charge), ninja, hacking_module)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -360,7 +360,7 @@
 	if(!do_after(ninja, 30 SECONDS, target = src, cog_icon = null))
 		return
 	overload_source_code_hdd()
-	to_chat(ninja, span_notice(LANG("obj.ef612b0d", null)))
+	to_chat(ninja, span_notice(LANG("obj.ef612b0d29991889", null)))
 	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
 	if(!ninja_antag)
 		return
@@ -371,15 +371,15 @@
 /obj/machinery/rnd/server/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(!ninja || !hacking_module)
 		return NONE
-	to_chat(ninja, span_notice(LANG("obj.dc20d2e0", null)))
+	to_chat(ninja, span_notice(LANG("obj.dc20d2e0fe5795a9", null)))
 	INVOKE_ASYNC(src, PROC_REF(ninjadrain_charge), ninja, hacking_module)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/rnd/server/proc/ninjadrain_charge(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(!do_after(ninja, 30 SECONDS, target = src, cog_icon = null))
 		return
-	stored_research.modify_points_all(0)
-	to_chat(ninja, span_notice(LANG("obj.922fe35b", null)))
+	stored_research.adjust_all_points(-INFINITY)
+	to_chat(ninja, span_notice(LANG("obj.922fe35bc8464efc", null)))
 	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
 	if(!ninja_antag)
 		return
@@ -421,7 +421,7 @@
 			return NONE
 		var/datum/objective/door_jack/objective = locate() in ninja_antag.objectives
 		if(objective && objective.doors_required == hacking_module.door_hack_counter)
-			ninja.balloon_alert(ninja, LANG("obj.c283ff86", null))
+			ninja.balloon_alert(ninja, LANG("obj.c283ff86998fa26c", null))
 		if(objective && objective.doors_required <= hacking_module.door_hack_counter)
 			objective.completed = TRUE
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -496,7 +496,7 @@
 	if(!ninja || !hacking_module || (has_faction(ROLE_NINJA)))
 		return NONE
 
-	to_chat(src, span_danger(LANG("mob.22b5cb3b", null)))
+	to_chat(src, span_danger(LANG("mob.22b5cb3b108f4059", null)))
 	INVOKE_ASYNC(src, PROC_REF(ninjadrain_charge), ninja, hacking_module)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -505,7 +505,7 @@
 		return
 	spark_system.start()
 	playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	to_chat(src, span_danger(LANG("mob.118bccfb", null)))
+	to_chat(src, span_danger(LANG("mob.118bccfba9abcb0c", null)))
 	faction = list(ROLE_NINJA)
 	bubble_icon = "syndibot"
 	UnlinkSelf()
@@ -518,7 +518,7 @@
 		"Medical" = "/obj/item/robot_model/ninja/ninja_medical",
 		"Saboteur" = "/obj/item/robot_model/ninja_saboteur",
 	)
-	var/choice = input(src,LANG("mob.5fca178d", null),LANG("mob.a1b9dfd8", null)) in sort_list(modelselected)
+	var/choice = input(src,LANG("mob.5fca178dcb126938", null),LANG("mob.a1b9dfd8a131b32e", null)) in sort_list(modelselected)
 	model.transform_to(modelselected[choice])
 	// NOVA EDIT ADDITION END
 
@@ -537,7 +537,7 @@
 	if(hacking_module.mod.subtract_charge(DEFAULT_CHARGE_DRAIN*10))
 		//Got that electric touch
 		do_sparks(5, FALSE, loc)
-		visible_message(span_danger(LANG("mob.e7ae6904", list(ninja, src, ninja.p_their()))), span_userdanger(LANG("mob.6c491285", list(ninja, ninja.p_their()))))
+		visible_message(span_danger(LANG("mob.e7ae6904e39712e2", list(ninja, src, ninja.p_their()))), span_userdanger(LANG("mob.6c49128527353ec7", list(ninja, ninja.p_their()))))
 		addtimer(CALLBACK(src, PROC_REF(ninja_knockdown)), 0.3 SECONDS)
 	return NONE
 
@@ -548,7 +548,7 @@
 //CAMERAS, emps cameras disabling AI vision
 /obj/machinery/camera/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(isEmpProof(TRUE))
-		balloon_alert(ninja, LANG("obj.7ce57912", null))
+		balloon_alert(ninja, LANG("obj.7ce579124e5ed9ed", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!hacking_module.mod.subtract_charge(DEFAULT_CHARGE_DRAIN * 5))
@@ -559,7 +559,7 @@
 
 //BOTS, overloads them and causes a explosion
 /mob/living/basic/bot/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
-	to_chat(src, span_boldwarning(LANG("mob.2805861b", null)))
+	to_chat(src, span_boldwarning(LANG("mob.2805861b74da515e", null)))
 	if(!do_after(ninja, 1.5 SECONDS, target = src, cog_icon = null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -568,7 +568,7 @@
 
 	do_sparks(number = 3, cardinal_only = FALSE, source = src)
 	playsound(get_turf(src), 'sound/machines/warning-buzzer.ogg', 35, TRUE)
-	balloon_alert(ninja, LANG("mob.7f767476", null))
+	balloon_alert(ninja, LANG("mob.7f767476aaddc585", null))
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), src, 0, 1, 2, 3), 2.5 SECONDS)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -583,7 +583,7 @@
 //ENERGY WEAPONS, drains power from the weapon to supply your modsuit
 /obj/item/gun/energy/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(cell.charge == 0)
-		balloon_alert(ninja, LANG("obj.2b5c9a9e", null))
+		balloon_alert(ninja, LANG("obj.2b5c9a9e1387cacf", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!do_after(ninja, 1.5 SECONDS, target = src, cog_icon = null))
@@ -593,14 +593,14 @@
 	hacking_module.charge_message(src, cell.charge)
 	cell.charge = 0
 	update_appearance()
-	visible_message(span_warning(LANG("obj.15d52529", list(ninja, src))))
+	visible_message(span_warning(LANG("obj.15d52529c535fa8f", list(ninja, src))))
 	do_sparks(number = 3, cardinal_only = FALSE, source = src)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 //VENDING MACHINES, overload vending machines to throw its suppy at people
 /obj/machinery/vending/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(shoot_inventory)
-		balloon_alert(ninja, LANG("obj.e5d5677d", null))
+		balloon_alert(ninja, LANG("obj.e5d5677de6ec46ae", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!do_after(ninja, 2 SECONDS, target = src, cog_icon = null))
@@ -610,14 +610,14 @@
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	do_sparks(number = 3, cardinal_only = FALSE, source = src)
-	balloon_alert(ninja, LANG("obj.829fa681", null))
+	balloon_alert(ninja, LANG("obj.829fa681a9cce25f", null))
 	wires.on_pulse(WIRE_THROW)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 //RECYCLER, emaggs the recycler disabling its safety
 /obj/machinery/recycler/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(obj_flags & EMAGGED)
-		balloon_alert(ninja, LANG("obj.e5d5677d", null))
+		balloon_alert(ninja, LANG("obj.e5d5677de6ec46ae", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	AI_notify_hack()
@@ -632,7 +632,7 @@
 //ELEVATOR CONTROLS//
 /obj/machinery/elevator_control_panel/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(obj_flags & EMAGGED)
-		balloon_alert(ninja, LANG("obj.e5d5677d", null))
+		balloon_alert(ninja, LANG("obj.e5d5677de6ec46ae", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!do_after(ninja, 2 SECONDS, target = src, cog_icon = null))
@@ -647,11 +647,11 @@
 /obj/machinery/computer/tram_controls/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	var/datum/round_event/tram_malfunction/malfunction_event = locate(/datum/round_event/tram_malfunction) in SSevents.running
 	if(malfunction_event)
-		balloon_alert(ninja, LANG("obj.5d7159ce", null))
+		balloon_alert(ninja, LANG("obj.5d7159ce59d87726", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(specific_transport_id != TRAMSTATION_LINE_1)
-		balloon_alert(ninja, LANG("obj.22020377", null))
+		balloon_alert(ninja, LANG("obj.220203771cc7e830", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	AI_notify_hack()
@@ -689,7 +689,7 @@
 #undef NINJA_MAX_DRAIN
 ///Weapon Recall - Teleports your katana to you, prevents gun use.
 /obj/item/mod/module/weapon_recall
-	name = "MOD weapon recall module"
+	name = "\improper MOD weapon recall module"
 	desc = "The cornerstone of a clanmember's life as a blademaster, and a module symbolizing their eternal bond with their weapon. \
 		This hooks to the micro bluespace drive inside an energy katana's handle, capable of recalling it to the user's \
 		skilled hands wherever they are. However, those that make such a bond with their weapon are cursed to \
@@ -718,23 +718,23 @@
 	if(!linked_weapon)
 		var/obj/item/weapon_to_link = mod.wearer.is_holding_item_of_type(accepted_type)
 		if(!weapon_to_link)
-			balloon_alert(mod.wearer, LANG("obj.72452fd7", null))
+			balloon_alert(mod.wearer, LANG("obj.72452fd742a684d6", null))
 			return
 		set_weapon(weapon_to_link)
-		balloon_alert(mod.wearer, LANG("obj.10ef8ea4", list(linked_weapon.name)))
+		balloon_alert(mod.wearer, LANG("obj.10ef8ea4c453cbb3", list(linked_weapon.name)))
 		return
 	if(linked_weapon in mod.wearer.get_all_contents())
-		balloon_alert(mod.wearer, LANG("obj.90dbdb49", null))
+		balloon_alert(mod.wearer, LANG("obj.90dbdb49a4105739", null))
 		return
 	var/distance = get_dist(mod.wearer, linked_weapon)
 	var/in_view = (linked_weapon in view(mod.wearer)) && !(linked_weapon in get_turf(mod.wearer))
 	if(!in_view && !drain_power(use_energy_cost * distance))
-		balloon_alert(mod.wearer, LANG("obj.07f43d6c", null))
+		balloon_alert(mod.wearer, LANG("obj.07f43d6c1593cca8", null))
 		return
 	linked_weapon.forceMove(linked_weapon.drop_location())
 	if(in_view)
 		do_sparks(5, FALSE, linked_weapon)
-		mod.wearer.visible_message(span_danger(LANG("obj.83bf9e06", list(linked_weapon, mod.wearer))),span_warning(LANG("obj.3fdc05cd", list(linked_weapon))))
+		mod.wearer.visible_message(span_danger(LANG("obj.83bf9e0639e999c2", list(linked_weapon, mod.wearer))),span_warning(LANG("obj.3fdc05cd400eca10", list(linked_weapon))))
 		linked_weapon.throw_at(mod.wearer, distance+1, linked_weapon.throw_speed, mod.wearer)
 	else
 		recall_weapon()
@@ -780,7 +780,7 @@
 
 //Reinforced DNA Lock - Gibs if wrong DNA, emp-proof.
 /obj/item/mod/module/dna_lock/reinforced
-	name = "MOD reinforced DNA lock module"
+	name = "\improper MOD reinforced DNA lock module"
 	desc = "A module which engages with the various locks and seals tied to the suit's systems, \
 		enabling it to only be worn by someone corresponding with the user's exact DNA profile. \
 		Due to utilizing a skintight dampening shield, this one is entirely sealed against electromagnetic interference; \
@@ -793,10 +793,10 @@
 	if(. != MOD_CANCEL_ACTIVATE || !isliving(user) || user != mod.wearer)
 		return
 	if(mod.ai_assistant == user)
-		to_chat(mod.ai_assistant, span_danger(LANG("obj.0f2bc449", null)))
+		to_chat(mod.ai_assistant, span_danger(LANG("obj.0f2bc449db38c2e0", null)))
 		return
 	var/mob/living/living_user = user
-	to_chat(living_user, span_danger(LANG("obj.881ae3a3", null)))
+	to_chat(living_user, span_danger(LANG("obj.881ae3a31c611dd2", null)))
 	living_user.investigate_log("has been gibbed by using a MODsuit equipped with [src].", INVESTIGATE_DEATHS)
 	living_user.gib(DROP_ALL_REMAINS)
 
@@ -805,7 +805,7 @@
 
 //EMP Pulse - In addition to normal shielding, can also launch an EMP itself.
 /obj/item/mod/module/emp_shield/pulse
-	name = "MOD EMP pulse module"
+	name = "\improper MOD EMP pulse module"
 	desc = "This module is normally set to activate on dramatic gestures, inverting and expanding the suit's \
 		EMP dampening shield to cause an electromagnetic pulse of its own. While this won't interfere with the wearer, \
 		it will piss off everyone around them."
@@ -821,7 +821,7 @@
 
 /// Ninja Status Readout - Like the normal status display (see the base type), but with a clock.
 /obj/item/mod/module/status_readout/ninja
-	name = "MOD Spider Clan status readout module"
+	name = "\improper MOD Spider Clan status readout module"
 	desc = "A once-common module, this technology unfortunately went out of fashion in the safer regions of space; \
 		and, according to the extra markings on this particular unit's casing, right into the arachnid grip of the Spider Clan. \
 		Like other similar units, this one hooks into the suit's spine, and is capable of capturing and displaying \
@@ -835,7 +835,7 @@
 
 ///Energy Net - Ensnares enemies in a net that prevents movement.
 /obj/item/mod/module/energy_net
-	name = "MOD energy net module"
+	name = "\improper MOD energy net module"
 	desc = "A custom-built net-thrower. While conventional implementations of this capturing device \
 		utilize monomolecular fibers or cutting razorwire, this uses hardlight technology to deploy a \
 		trapping field capable of immobilizing even the strongest opponents."
@@ -858,7 +858,7 @@
 	if(!.)
 		return
 	if(IS_SPACE_NINJA(mod.wearer) && isliving(target))
-		mod.wearer.say(LANG("obj.5f7bfdc1", null), forced = type)
+		mod.wearer.say(LANG("obj.5f7bfdc1dfabd5b9", null), forced = type)
 	var/obj/projectile/net = new /obj/projectile/energy_net(mod.wearer.loc, src)
 	net.aim_projectile(target, mod.wearer)
 	net.firer = mod.wearer
@@ -906,7 +906,7 @@
 	var/obj/item/mod/module/energy_net/module = net_module?.resolve()
 	if(module)
 		module.add_net(net)
-	firer?.visible_message(span_danger(LANG("obj.b40584cf", list(firer, target))), span_notice(LANG("obj.4bdab913", list(target))))
+	firer?.visible_message(span_danger(LANG("obj.b40584cfc873240a", list(firer, target))), span_notice(LANG("obj.4bdab9133022b95d", list(target))))
 	if(target.buckled)
 		target.buckled.unbuckle_mob(target, force = TRUE)
 	net.buckle_mob(target, force = TRUE)
@@ -943,7 +943,7 @@
 
 /obj/structure/energy_net/atom_destruction(damage_flag)
 	for(var/mob/recovered_mob as anything in buckled_mobs)
-		recovered_mob.visible_message(span_notice(LANG("obj.a753fc88", list(recovered_mob))), span_notice(LANG("obj.0eec0cbd", null)), span_hear(LANG("obj.32db2b33", null)))
+		recovered_mob.visible_message(span_notice(LANG("obj.a753fc88cb6b230c", list(recovered_mob))), span_notice(LANG("obj.0eec0cbd6be4b736", null)), span_hear(LANG("obj.32db2b33513b2e18", null)))
 	return ..()
 
 /obj/structure/energy_net/attack_paw(mob/user, list/modifiers)
@@ -957,7 +957,7 @@
 
 ///Adrenaline Boost - Stops all stuns the ninja is affected with, increases his speed.
 /obj/item/mod/module/adrenaline_boost
-	name = "MOD adrenaline boost module"
+	name = "\improper MOD adrenaline boost module"
 	desc = "The secrets of the Spider Clan are many. The exact specifications of their suits, \
 		the techniques they use to make every singular cut make their enemies weep with admiration, \
 		but one of their greatest mysteries is the chemical compound their assassin-saboteurs use in times of need. \
@@ -983,14 +983,14 @@
 
 /obj/item/mod/module/adrenaline_boost/used()
 	if(!reagents.has_reagent(reagent_required, reagent_required_amount))
-		balloon_alert(mod.wearer, LANG("obj.c0d39a14", null))
+		balloon_alert(mod.wearer, LANG("obj.c0d39a143f2b1626", null))
 		return FALSE
 	return ..()
 
 /obj/item/mod/module/adrenaline_boost/on_use(mob/activator)
 	if(IS_SPACE_NINJA(mod.wearer))
 		mod.wearer.say(pick_list_replacements(NINJA_FILE, "lines"), forced = type)
-	to_chat(mod.wearer, span_notice(LANG("obj.2292fe9c", null)))
+	to_chat(mod.wearer, span_notice(LANG("obj.2292fe9c0fc380b2", null)))
 	mod.wearer.SetAllImmobility(0)
 	mod.wearer.adjust_stamina_loss(-200)
 	mod.wearer.remove_status_effect(/datum/status_effect/speech/stutter)
@@ -1016,15 +1016,15 @@
 	if(!attacking_item.is_open_container())
 		return FALSE
 	if(reagents.has_reagent(reagent_required, reagent_required_amount))
-		balloon_alert(mod.wearer, LANG("obj.70b1edda", null))
+		balloon_alert(mod.wearer, LANG("obj.70b1edda3a1d105c", null))
 		return FALSE
 	if(!attacking_item.reagents.trans_to(src, reagent_required_amount, target_id = reagent_required))
 		return FALSE
-	balloon_alert(mod.wearer, LANG("obj.3fd35936", list(reagents.has_reagent(reagent_required, reagent_required_amount) ? "fully" : "partially")))
+	balloon_alert(mod.wearer, LANG("obj.3fd35936de8fc4ac", list(reagents.has_reagent(reagent_required, reagent_required_amount) ? "fully" : "partially")))
 	return TRUE
 
 /obj/item/mod/module/adrenaline_boost/proc/boost_aftereffects(mob/affected_mob)
 	if(!affected_mob)
 		return
 	reagents.trans_to(affected_mob, reagents.total_volume)
-	to_chat(affected_mob, span_danger(LANG("obj.473eb83a", null)))
+	to_chat(affected_mob, span_danger(LANG("obj.473eb83a671becf9", null)))

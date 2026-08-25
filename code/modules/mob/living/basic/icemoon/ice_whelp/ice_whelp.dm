@@ -70,7 +70,7 @@
 
 /// Carve a stone into a beautiful self-portrait
 /mob/living/basic/mining/ice_whelp/proc/create_sculpture(atom/target)
-	balloon_alert(src, LANG("mob.dc5f1041", null))
+	balloon_alert(src, LANG("mob.dc5f10411441bcf5", null))
 	if(!do_after(src, 5 SECONDS, target = target))
 		return
 	var/obj/structure/statue/custom/dragon_statue = new(get_turf(target))
@@ -83,7 +83,7 @@
 /// Gib and consume our fellow ice drakes
 /mob/living/basic/mining/ice_whelp/proc/cannibalize_victim(mob/living/target)
 	start_pulling(target)
-	balloon_alert(src, LANG("mob.b40356dd", null))
+	balloon_alert(src, LANG("mob.b40356dd50cead26", null))
 	if(!do_after(src, 5 SECONDS, target))
 		return
 	target.gib(DROP_ALL_REMAINS)

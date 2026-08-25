@@ -97,14 +97,14 @@
 
 /obj/machinery/space_heater/examine(mob/user)
 	. = ..()
-	. += LANG("obj.85c15b93", list(src, on ? "on" : "off", panel_open ? "open" : "closed"))
+	. += LANG("obj.85c15b93bc46d9a0", list(src, on ? "on" : "off", panel_open ? "open" : "closed"))
 	if(cell)
-		. += LANG("obj.00f8f6f7", list(cell ? round(cell.percent(), 1) : 0))
+		. += LANG("obj.00f8f6f702faa55b", list(cell ? round(cell.percent(), 1) : 0))
 	else
-		. += span_warning(LANG("obj.b21d2f5d", null))
+		. += span_warning(LANG("obj.b21d2f5d4c232681", null))
 	if(in_range(user, src) || isobserver(user))
 		. += heating_examine()
-		. += span_notice(LANG("obj.a322e9c4", list(on ? "off" : "on")))
+		. += span_notice(LANG("obj.a322e9c4d26091f5", list(on ? "off" : "on")))
 
 ///Returns the heating power of this machine as an examine
 /obj/machinery/space_heater/proc/heating_examine()
@@ -209,8 +209,8 @@
 /obj/machinery/space_heater/screwdriver_act(mob/living/user, obj/item/tool)
 	. = default_deconstruction_screwdriver(user, tool)
 	user.visible_message(
-		span_notice(LANG("obj.e2fd01b7", list(user, panel_open ? "opens" : "closes", src))),
-		span_notice(LANG("obj.8e621188", list(panel_open ? "open" : "close", src))),
+		span_notice(LANG("obj.e2fd01b794c0fa23", list(user, panel_open ? "opens" : "closes", src))),
+		span_notice(LANG("obj.8e621188323a559e", list(panel_open ? "open" : "close", src))),
 	)
 	return .
 
@@ -221,18 +221,18 @@
 	if(istype(tool, /obj/item/stock_parts/power_store/cell))
 		add_fingerprint(user)
 		if(!panel_open)
-			to_chat(user, span_warning(LANG("obj.3e6ca1e0", null)))
+			to_chat(user, span_warning(LANG("obj.3e6ca1e02e20a65e", null)))
 			return ITEM_INTERACT_BLOCKING
 		if(cell)
-			to_chat(user, span_warning(LANG("obj.3606d540", null)))
+			to_chat(user, span_warning(LANG("obj.3606d540ec89a97b", null)))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		cell = tool
 		tool.add_fingerprint(usr)
 		user.visible_message(
-			span_notice(LANG("obj.05c6f8ca", list(user, tool, src))),
-			span_notice(LANG("obj.8ce99939", list(tool, src))),
+			span_notice(LANG("obj.05c6f8cadd77b915", list(user, tool, src))),
+			span_notice(LANG("obj.8ce99939bf01b695", list(tool, src))),
 		)
 		SStgui.update_uis(src)
 		return ITEM_INTERACT_SUCCESS
@@ -310,13 +310,13 @@
 	mode = HEATER_MODE_STANDBY
 	if(!isnull(user))
 		if(QDELETED(cell))
-			balloon_alert(user, LANG("obj.0210855e", null))
+			balloon_alert(user, LANG("obj.0210855e097c27b8", null))
 		else if(!cell.charge())
-			balloon_alert(user, LANG("obj.c0d39a14", null))
+			balloon_alert(user, LANG("obj.c0d39a143f2b1626", null))
 		else if(!is_operational)
-			balloon_alert(user, LANG("obj.1dd04a29", null))
+			balloon_alert(user, LANG("obj.1dd04a2923de7c70", null))
 		else
-			balloon_alert(user, LANG("obj.8fcfde3c", list(on ? "on" : "off")))
+			balloon_alert(user, LANG("obj.8fcfde3cd8c5cffd", list(on ? "on" : "off")))
 	update_appearance()
 	if(on)
 		SSair.start_processing_machine(src)
@@ -363,7 +363,7 @@
 	// Conducted energy per joule of thermal energy difference in a tick.
 	var/conduction_energy = beaker_conduction_power * (set_mode == HEATER_MODE_AUTO ? 0.5 : 1) * our_subsystem.wait / (1 SECONDS)
 	// This accounts for the timestep inaccuracy.
-	. += span_notice(LANG("obj.53ab7728", list(conduction_energy < 1 ? display_power(-log(1 - conduction_energy) SECONDS / our_subsystem.wait, convert = FALSE) : "∞W")))
+	. += span_notice(LANG("obj.53ab7728b39b5dcf", list(conduction_energy < 1 ? display_power(-log(1 - conduction_energy) SECONDS / our_subsystem.wait, convert = FALSE) : "∞W")))
 
 /obj/machinery/space_heater/improvised_chem_heater/toggle_power(user)
 	. = ..()
@@ -433,7 +433,7 @@
 		if(!user.transferItemToLoc(container, src))
 			return ITEM_INTERACT_BLOCKING
 		replace_beaker(user, container)
-		to_chat(user, span_notice(LANG("obj.d3cc5907", list(container, src))))
+		to_chat(user, span_notice(LANG("obj.d3cc5907b340a6e2", list(container, src))))
 		ui_interact(user)
 		return ITEM_INTERACT_SUCCESS
 
@@ -445,7 +445,7 @@
 
 /obj/machinery/space_heater/improvised_chem_heater/proc/try_insert_cell(mob/living/user, obj/item/stock_parts/power_store/cell/battery, silent = FALSE)
 	if(cell)
-		to_chat(user, span_warning(LANG("obj.3606d540", null)))
+		to_chat(user, span_warning(LANG("obj.3606d540ec89a97b", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(battery, src))
@@ -455,7 +455,7 @@
 	battery.add_fingerprint(user)
 
 	if(!silent)
-		user.visible_message(span_notice(LANG("obj.e75ad685", list(user, src))), span_notice(LANG("obj.416c5a90", list(src))))
+		user.visible_message(span_notice(LANG("obj.e75ad6854d11601c", list(user, src))), span_notice(LANG("obj.416c5a904e2acc47", list(src))))
 	SStgui.update_uis(src)
 	return ITEM_INTERACT_SUCCESS
 

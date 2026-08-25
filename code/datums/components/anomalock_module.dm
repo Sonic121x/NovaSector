@@ -49,7 +49,7 @@
 /datum/component/anomaly_locked_module/proc/on_module_triggered(obj/item/mod/module/source, mob/living/wearer)
 	SIGNAL_HANDLER
 	if(!core)
-		source.balloon_alert(wearer, LANG("datum.9c969525", null))
+		source.balloon_alert(wearer, LANG("datum.9c96952522f32061", null))
 		return MOD_ABORT_USE
 
 /datum/component/anomaly_locked_module/proc/on_item_interact(obj/item/mod/module/source, mob/living/user, obj/item/tool, list/modifiers)
@@ -57,7 +57,7 @@
 	if(!is_type_in_typecache(tool, accepted_anomalies))
 		return 0
 	if(core)
-		source.balloon_alert(user, LANG("datum.00b328e3", null))
+		source.balloon_alert(user, LANG("datum.00b328e3912c1db9", null))
 		return ITEM_INTERACT_FAILURE
 	if(pre_insert_callback)
 		var/callback_return
@@ -74,7 +74,7 @@
 	if(!user.transferItemToLoc(tool, source))
 		return ITEM_INTERACT_FAILURE
 	core = tool
-	source.balloon_alert(user, LANG("datum.de575d7b", null))
+	source.balloon_alert(user, LANG("datum.de575d7bc9109c27", null))
 	playsound(source, 'sound/machines/click.ogg', 30, TRUE)
 	source.update_appearance(UPDATE_ICON_STATE)
 	if(core_insert_callback)
@@ -88,18 +88,18 @@
 /datum/component/anomaly_locked_module/proc/on_screwdriver_act(obj/item/mod/module/source, mob/living/user, obj/item/tool)
 	SIGNAL_HANDLER
 	if(!core)
-		source.balloon_alert(user, LANG("datum.9c969525", null))
+		source.balloon_alert(user, LANG("datum.9c96952522f32061", null))
 		return ITEM_INTERACT_FAILURE
 	if(!core_removable)
-		source.balloon_alert(user, LANG("datum.34c3361c", null))
+		source.balloon_alert(user, LANG("datum.34c3361cda2041ab", null))
 	INVOKE_ASYNC(src, PROC_REF(try_remove_core), source, user, tool)
 	return ITEM_INTERACT_SUCCESS
 
 /datum/component/anomaly_locked_module/proc/try_remove_core(obj/item/mod/module/source, mob/living/user, obj/item/tool)
 	if(!do_after(user, 3 SECONDS, source))
-		source.balloon_alert(user, LANG("datum.c67b5d27", null))
+		source.balloon_alert(user, LANG("datum.c67b5d274d6e724b", null))
 		return
-	source.balloon_alert(user, LANG("datum.8b10ca6a", null))
+	source.balloon_alert(user, LANG("datum.8b10ca6a98faa6f4", null))
 	core.forceMove(source.drop_location())
 	if(source.Adjacent(user) && !issilicon(user))
 		user.put_in_hands(core)
@@ -117,14 +117,14 @@
 	if(!length(accepted_anomalies))
 		return
 	if(core)
-		examine_list += span_notice(LANG("datum.38c48b00", list(core.name, core_removable ? "You could remove it with a <b>screwdriver</b>..." : "Unfortunately, due to a design quirk, it's unremovable.")))
+		examine_list += span_notice(LANG("datum.38c48b00c0728b25", list(core.name, core_removable ? "You could remove it with a <b>screwdriver</b>..." : "Unfortunately, due to a design quirk, it's unremovable.")))
 		return
 	var/list/core_list = list()
 	for(var/atom/core_path as anything in accepted_anomalies)
 		core_list += initial(core_path.name)
-	examine_list += span_notice(LANG("datum.1d9be268", list(english_list(core_list, and_text = " or "))))
+	examine_list += span_notice(LANG("datum.1d9be268809d3921", list(lang_english_list(core_list, and_text = " or "))))
 	if(!core_removable)
-		examine_list += span_notice(LANG("datum.8a5d1e4d", null))
+		examine_list += span_notice(LANG("datum.8a5d1e4d240758fe", null))
 
 /datum/component/anomaly_locked_module/proc/on_update_icon_state(obj/item/mod/module/source)
 	SIGNAL_HANDLER

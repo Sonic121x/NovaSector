@@ -275,7 +275,7 @@ rough example of the "cone" made by the 3 dirs checked
 ///Returns a chosen path that is the closest to a list of matches
 /proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if (value == FALSE) //nothing should be calling us with a number, so this is safe
-		value = input(LANG("_root.a7c03590", null), LANG("_root.9f6c983d", null)) as null|text
+		value = input(LANG("_root.a7c03590ada53495", null), LANG("_root.9f6c983dd076dd9d", null)) as null|text
 		if (isnull(value))
 			return
 	value = trim(value)
@@ -297,7 +297,7 @@ rough example of the "cone" made by the 3 dirs checked
 	else if(random)
 		chosen = pick(matches) || null
 	else
-		chosen = input(LANG("_root.1f8be430", null), LANG("_root.c93f9473", null), matches[1]) as null|anything in sort_list(matches)
+		chosen = input(LANG("_root.1f8be4309cf25cee", null), LANG("_root.c93f94739fcec82e", null), matches[1]) as null|anything in sort_list(matches)
 	if(!chosen)
 		return
 	chosen = matches[chosen]

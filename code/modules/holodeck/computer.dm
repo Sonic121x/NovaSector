@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 				emergency_shutdown()
 			nerf(obj_flags & EMAGGED,FALSE)
 			obj_flags ^= EMAGGED
-			say(LANG("obj.a0c41511", null))
+			say(LANG("obj.a0c41511c91edec9", null))
 			usr.log_message("disabled Holodeck safeties.", LOG_GAME)
 
 ///this is what makes the holodeck not spawn anything on broken tiles (space and non engine plating / non holofloors)
@@ -203,7 +203,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 		force = TRUE
 
 	if (!force && (!COOLDOWN_FINISHED(src, holodeck_cooldown) || spawning_simulation))
-		say(LANG("obj.24cd3fea", null))
+		say(LANG("obj.24cd3fea9a0925ee", null))
 		return
 
 	if(spawning_simulation)
@@ -231,7 +231,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	spawned = template.created_atoms //populate the spawned list with the atoms belonging to the holodeck
 
 	if(istype(template, /datum/map_template/holodeck/thunderdome1218) && !SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_MEDISIM])
-		say(LANG("obj.1a320a22", null))
+		say(LANG("obj.1a320a22689f2bbd", null))
 		SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_MEDISIM] = TRUE
 
 	nerf(!(obj_flags & EMAGGED))
@@ -348,9 +348,9 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	if(istype(holo_atom, /obj/item/organ))
 		var/obj/item/organ/holo_organ = holo_atom
 		if(holo_organ.owner) // a mob has the holo organ inside them... oh dear
-			to_chat(holo_organ.owner, span_warning(LANG("obj.a3ba6527", list(holo_organ))))
+			to_chat(holo_organ.owner, span_warning(LANG("obj.a3ba65275d55459d", list(holo_organ))))
 	if(!silent)
-		visible_message(span_notice(LANG("obj.1b5ff63e", list(holo_atom))))
+		visible_message(span_notice(LANG("obj.1b5ff63e77419eab", list(holo_atom))))
 
 	if(is_type_in_list(holo_atom.loc, special_locs))
 		qdel(holo_atom.loc)
@@ -377,7 +377,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	if(!floorcheck()) //if any turfs in the floor of the holodeck are broken
 		emergency_shutdown()
 		damaged = TRUE
-		visible_message(LANG("obj.daef0b4b", null))
+		visible_message(LANG("obj.daef0b4b5a88239a", null))
 		for(var/turf/holo_turf in linked)
 			if(prob(30))
 				do_sparks(2, 1, holo_turf)
@@ -437,17 +437,17 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	if(obj_flags & EMAGGED)
 		return FALSE
 	if(!LAZYLEN(emag_programs))
-		balloon_alert(user, LANG("obj.e2094240", null))
+		balloon_alert(user, LANG("obj.e2094240491abb1c", null))
 		return FALSE
 	playsound(src, SFX_SPARKS, 75, TRUE)
 	obj_flags |= EMAGGED
 	if (user)
-		balloon_alert(user, LANG("obj.07b3e831", null)) // im gonna keep this once since this perfectly describes it
-		to_chat(user, span_warning(LANG("obj.789904c0", null)))
+		balloon_alert(user, LANG("obj.07b3e831b4cc0bc7", null)) // im gonna keep this once since this perfectly describes it
+		to_chat(user, span_warning(LANG("obj.789904c0cff07db1", null)))
 		user.log_message("emagged the Holodeck Control Console.", LOG_GAME)
 		message_admins("[ADMIN_LOOKUPFLW(user)] emagged the Holodeck Control Console.")
 
-	say(LANG("obj.1b4698a9", null))
+	say(LANG("obj.1b4698a99e43dd64", null))
 	nerf(!(obj_flags & EMAGGED),FALSE)
 	return TRUE
 

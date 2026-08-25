@@ -29,7 +29,7 @@
 	return name
 
 /datum/sortrouter_filter/proc/edit(mob/user)
-	to_chat(user, LANG("datum.5b104feb", null))
+	to_chat(user, LANG("datum.5b104febdc08c6f7", null))
 
 /datum/sortrouter_filter/proc/meets_conditions(atom/checking)
 
@@ -55,7 +55,7 @@
 	name = "input is tagged X"
 
 /datum/sortrouter_filter/is_tagged/edit(mob/user)
-	var/target = tgui_input_list(user, LANG("datum.643f4765", null), LANG("datum.a01fc126", null), sort_list(GLOB.TAGGERLOCATIONS))
+	var/target = tgui_input_list(user, LANG("datum.643f47656b4003d5", null), LANG("datum.a01fc1264ba0fd3c", null), sort_list(GLOB.TAGGERLOCATIONS))
 	if(isnull(target) || !user.can_perform_action(sorter, ALLOW_SILICON_REACH))
 		return
 	value = GLOB.TAGGERLOCATIONS.Find(target)
@@ -75,7 +75,7 @@
 	name = "input's name contains"
 
 /datum/sortrouter_filter/name_contains/edit(mob/user)
-	var/target = tgui_input_text(user, LANG("datum.8354c9b9", null), LANG("datum.e81360ea", null), value, 12)
+	var/target = tgui_input_text(user, LANG("datum.8354c9b9a02f1f6b", null), LANG("datum.e81360eaaea292c0", null), value, 12)
 	if(isnull(target)|| !user.can_perform_action(sorter, ALLOW_SILICON_REACH))
 		return
 	value = target
@@ -95,8 +95,8 @@
 	name = initial(name)
 	if(!currently_listening)
 		name = "awaiting item"
-		to_chat(user, LANG("datum.7c6059c8", null))
-		sorter.balloon_alert(user, LANG("datum.2a0be425", null))
+		to_chat(user, LANG("datum.7c6059c8a0216d47", null))
+		sorter.balloon_alert(user, LANG("datum.2a0be425d780a534", null))
 		currently_listening = TRUE
 		RegisterSignal(sorter, COMSIG_ATOM_ATTACKBY, PROC_REF(sorter_hit))
 	else
@@ -107,7 +107,7 @@
 	currently_listening = FALSE
 	value = attacking_item.type
 	name = attacking_item.name
-	sorter.balloon_alert(user, LANG("datum.caeb546f", null))
+	sorter.balloon_alert(user, LANG("datum.caeb546f7f380efb", null))
 	UnregisterSignal(sorter, COMSIG_ATOM_ATTACKBY)
 	return COMPONENT_NO_AFTERATTACK
 

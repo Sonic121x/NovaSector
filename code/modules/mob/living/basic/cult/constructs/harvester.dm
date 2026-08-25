@@ -53,9 +53,9 @@
 		return ..() //if any arms or legs exist, attack
 
 	carbon_target.Paralyze(6 SECONDS)
-	visible_message(span_danger(LANG("mob.b28257ff", list(src, carbon_target))))
+	visible_message(span_danger(LANG("mob.b28257ff017a2b6e", list(src, carbon_target))))
 	if(theme == THEME_CULT)
-		to_chat(src, span_cult_large(LANG("mob.0242a2de", list(carbon_target.p_them()))))
+		to_chat(src, span_cult_large(LANG("mob.0242a2de99f876b4", list(carbon_target.p_them()))))
 
 /datum/action/innate/seek_master
 	name = "Seek your Master"
@@ -85,18 +85,18 @@
 		the_construct.construct_master = cult_status.cult_team.blood_target
 
 	if(!the_construct.construct_master)
-		to_chat(the_construct, span_cult_italic(LANG("datum.594ffa72", null)))
+		to_chat(the_construct, span_cult_italic(LANG("datum.594ffa72bafa7a15", null)))
 		the_construct.seeking = FALSE
 		return
 	if(tracking)
 		tracking = FALSE
 		the_construct.seeking = FALSE
-		to_chat(the_construct, span_cult_italic(LANG("datum.47f9afa7", null)))
+		to_chat(the_construct, span_cult_italic(LANG("datum.47f9afa7ffd66241", null)))
 		return
 	else
 		tracking = TRUE
 		the_construct.seeking = TRUE
-		to_chat(the_construct, span_cult_italic(LANG("datum.1c4b546d", null)))
+		to_chat(the_construct, span_cult_italic(LANG("datum.1c4b546d1fc923af", null)))
 
 /datum/action/innate/seek_prey
 	name = "Seek the Harvest"
@@ -114,20 +114,20 @@
 	var/mob/living/basic/construct/harvester/the_construct = owner
 
 	if(the_construct.seeking)
-		desc = LANG("datum.82148b4c", null)
+		desc = LANG("datum.82148b4c2b05c378", null)
 		button_icon_state = "cult_mark"
 		the_construct.seeking = FALSE
-		to_chat(the_construct, span_cult_italic(LANG("datum.970d2bf4", null)))
+		to_chat(the_construct, span_cult_italic(LANG("datum.970d2bf47076d1bd", null)))
 		return
 
 	if(!LAZYLEN(GLOB.cult_narsie.souls_needed))
-		to_chat(the_construct, span_cult_italic(LANG("datum.fcb6dc1a", null)))
+		to_chat(the_construct, span_cult_italic(LANG("datum.fcb6dc1ae0a086b7", null)))
 		return
 
 	the_construct.construct_master = pick(GLOB.cult_narsie.souls_needed)
 	var/mob/living/real_target = the_construct.construct_master //We can typecast this way because Narsie only allows /mob/living into the souls list
-	to_chat(the_construct, span_cult_italic(LANG("datum.1a80032c", list(real_target.real_name, real_target.p_them()))))
-	desc = LANG("datum.dcc1b228", null)
+	to_chat(the_construct, span_cult_italic(LANG("datum.1a80032c6d2b409a", list(real_target.real_name, real_target.p_them()))))
+	desc = LANG("datum.dcc1b2285a3da239", null)
 	button_icon_state = "sintouch"
 	the_construct.seeking = TRUE
 
@@ -169,8 +169,8 @@
 
 /mob/living/basic/construct/harvester/heretic/proc/on_master_death(mob/self, mob/master)
 	SIGNAL_HANDLER
-	to_chat(src, span_userdanger(LANG("mob.22ab4fdc", list(construct_master, construct_master.p_their()))))
-	visible_message(span_alert(LANG("mob.6b3d6252", list(src))))
+	to_chat(src, span_userdanger(LANG("mob.22ab4fdc0cbc570c", list(construct_master, construct_master.p_their()))))
+	visible_message(span_alert(LANG("mob.6b3d6252ee7067a1", list(src))))
 	death()
 
 /mob/living/basic/construct/harvester/heretic/attack_animal(mob/living/simple_animal/user, list/modifiers)
@@ -221,7 +221,7 @@
 	do_rust_heretic_act(land)
 
 	if(prob(7))
-		to_chat(src, span_notice(LANG("mob.cef8e740", null)))
+		to_chat(src, span_notice(LANG("mob.cef8e7402748db29", null)))
 
 /mob/living/basic/construct/harvester/heretic/proc/is_cultist_handler(mob/victim)
 	return IS_CULTIST(victim)

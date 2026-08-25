@@ -136,20 +136,20 @@
 		if ((target_zone in allowedList) && affecting)
 
 			if (user.handcuffed)
-				to_chat(user, span_alert(LANG("datum.ac619cad", null)))
+				to_chat(user, span_alert(LANG("datum.ac619cad1cefbd49", null)))
 				return FALSE
 
 			// Robot Arms Fail
 			if (!IS_ORGANIC_LIMB(affecting))
-				to_chat(user, LANG("datum.f64eacb9", null))
+				to_chat(user, LANG("datum.f64eacb9d2a0ffab", null))
 				return FALSE
 
 			// Pry it off...
-			user.visible_message(LANG("datum.5f800618", list(user, p_their(), affecting.name)), span_notice(LANG("datum.b7e14cd9", list(affecting.name))))
+			user.visible_message(LANG("datum.5f800618f1300c64", list(user, p_their(), affecting.name)), span_notice(LANG("datum.b7e14cd9775bd44f", list(affecting.name))))
 			if (!do_after(user, 3 SECONDS, target))
 				return TRUE
 
-			user.visible_message(LANG("datum.9550d599", list(user, affecting.name)), span_notice(LANG("datum.0c8a4ff0", list(affecting.name))))
+			user.visible_message(LANG("datum.9550d59999df9690", list(user, affecting.name)), span_notice(LANG("datum.0c8a4ff0c5c24ae3", list(affecting.name))))
 			playsound(get_turf(user), 'sound/effects/meatslap.ogg', 40, 1) //ill change these sounds later
 
 			// Destroy Limb, Drop Meat, Pick Up
@@ -183,16 +183,16 @@
 
 		if((target_zone in limbs))
 			if(user == target)
-				user.visible_message(LANG("datum.a00150e5", list(user, attacking_item, target)), span_notice(LANG("datum.83347fed", list(attacking_item))))
+				user.visible_message(LANG("datum.a00150e51d0c9bc4", list(user, attacking_item, target)), span_notice(LANG("datum.83347fedafdd5947", list(attacking_item))))
 			else
-				user.visible_message(LANG("datum.a00150e5", list(user, attacking_item, target)), span_notice(LANG("datum.2611cce4", list(attacking_item, target))))
+				user.visible_message(LANG("datum.a00150e51d0c9bc4", list(user, attacking_item, target)), span_notice(LANG("datum.2611cce4dae21740", list(attacking_item, target))))
 
 			// Leave Melee Chain (so deleting the meat doesn't throw an error) <--- aka, deleting the meat that called this very proc.
 			spawn(1)
 				if(do_after(user, 3 SECONDS, target))
 					// Attach the part!
 					var/obj/item/bodypart/newBP = target.newBodyPart(target_zone, FALSE)
-					target.visible_message(LANG("datum.436af93d", list(target, newBP.name)), span_notice(LANG("datum.997dc0b9", list(newBP.name))))
+					target.visible_message(LANG("datum.436af93d600b1a01", list(target, newBP.name)), span_notice(LANG("datum.997dc0b98a24bc09", list(newBP.name))))
 					newBP.try_attach_limb(target)
 					qdel(attacking_item)
 					playsound(get_turf(target), 'sound/effects/meatslap.ogg', 50, 1)

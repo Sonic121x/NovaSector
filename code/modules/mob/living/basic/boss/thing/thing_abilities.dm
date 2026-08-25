@@ -27,7 +27,7 @@
 
 	ADD_TRAIT(caster, TRAIT_IMMOBILIZED, MEGAFAUNA_TRAIT)
 	caster.Shake(1.4, 0.8, 0.3 SECONDS)
-	caster.visible_message(span_danger(LANG("datum.2a04cd41", list(caster))))
+	caster.visible_message(span_danger(LANG("datum.2a04cd4114c8738b", list(caster))))
 
 	for(var/turf/open/target in RANGE_TURFS(2, caster) - caster.loc)
 		new /obj/effect/temp_visual/telegraphing/exclamation/animated(target, 1.5 SECONDS)
@@ -64,7 +64,7 @@
 	animate(decoy, alpha = 0, color = COLOR_RED, transform = matrix()*2, time = 3)
 
 /datum/action/cooldown/mob_cooldown/charge/the_thing/hit_target(atom/movable/source, mob/living/target, damage_dealt)
-	target.visible_message(span_danger(LANG("datum.67180270", list(source, target))), span_userdanger(LANG("datum.38581246", list(source))))
+	target.visible_message(span_danger(LANG("datum.671802708cbdb0ac", list(source, target))), span_userdanger(LANG("datum.385812461eeca4ca", list(source))))
 	target.apply_damage(damage_dealt, BRUTE)
 	target.Knockdown(0.5 SECONDS)
 	playsound(get_turf(target), 'sound/items/weapons/rapierhit.ogg', 100, TRUE)
@@ -120,14 +120,14 @@
 		return
 	. = ..()
 	ADD_TRAIT(caster, TRAIT_IMMOBILIZED, MEGAFAUNA_TRAIT)
-	caster.visible_message(span_danger(LANG("datum.e3780934", list(caster, caster.p_s()))))
+	caster.visible_message(span_danger(LANG("datum.e378093460c1e327", list(caster, caster.p_s()))))
 	for(var/turf/open/target in RANGE_TURFS(2, caster))
 		new /obj/effect/temp_visual/telegraphing/exclamation(target, 1.2 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(shriek), owner), 1.2 SECONDS)
 
 /datum/action/cooldown/mob_cooldown/the_thing/shriek/proc/shriek(atom/caster)
 	REMOVE_TRAIT(caster, TRAIT_IMMOBILIZED, MEGAFAUNA_TRAIT)
-	caster.visible_message(span_danger(LANG("datum.c68f377a", list(caster))))
+	caster.visible_message(span_danger(LANG("datum.c68f377aa7c77d57", list(caster))))
 	SEND_SOUND(caster, sound('sound/effects/screech.ogg'))
 	for(var/mob/living/target in range(2, caster))
 		if(target == owner)
@@ -158,7 +158,7 @@
 	. = ..()
 	targetted_turf = get_turf(targetted_turf)
 	owner.Shake(1.4, 0.8, 0.3 SECONDS)
-	owner.visible_message(span_danger(LANG("datum.2a04cd41", list(owner))))
+	owner.visible_message(span_danger(LANG("datum.2a04cd4114c8738b", list(owner))))
 	var/list/turf/target_turfs = find_turfs(targetted_turf)
 	for(var/turf/open/target in target_turfs)
 		new /obj/effect/temp_visual/telegraphing/exclamation/animated(target, 1.5 SECONDS)
@@ -196,7 +196,7 @@
 		return
 	. = ..()
 	var/turf/owner_turf = get_turf(owner)
-	owner.visible_message(span_danger(LANG("datum.d754a9c6", list(owner))))
+	owner.visible_message(span_danger(LANG("datum.d754a9c6e9dae303", list(owner))))
 	var/list/potential = RANGE_TURFS(4, owner_turf)
 
 	for(var/i = 1 to rand(2,4))

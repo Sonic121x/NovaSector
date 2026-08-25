@@ -93,7 +93,7 @@
 	ai_controller?.set_blackboard_key(BB_LEGION_CORPSE, consumed)
 	ai_controller?.set_blackboard_key(BB_LEGION_RECENT_LINES, consumed.copy_recent_speech(line_chance = 80))
 	stored_mob = consumed
-	visible_message(span_warning(LANG("mob.cb9f6128", list(src, p_their()))))
+	visible_message(span_warning(LANG("mob.cb9f61287eb37753", list(src, p_their()))))
 	if (prob(75))
 		return
 	// Congratulations you have won a special prize: cancer
@@ -172,6 +172,7 @@
 		max_spawned = 3,\
 		spawn_text = "peels itself off from",\
 		faction = faction,\
+		spawner_logic = SPAWN_CONTINUOUS_BEHAVIOR,\
 	)
 
 /// Create what we want to drop on death, in proc form so we can always return a static list

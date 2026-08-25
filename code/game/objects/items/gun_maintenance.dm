@@ -23,7 +23,7 @@
 
 /obj/item/gun_maintenance_supplies/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.62f679cb", list(uses, max_uses)))
+	. += span_info(LANG("obj.62f679cb65959514", list(uses, max_uses)))
 
 /obj/item/gun_maintenance_supplies/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ..()
@@ -31,7 +31,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(!isgun(interacting_with))
-		balloon_alert(user, LANG("obj.d5d11148", null))
+		balloon_alert(user, LANG("obj.d5d11148a6dc787c", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/gun/gun_to_fix = interacting_with
@@ -58,10 +58,10 @@
 		use_charge = TRUE
 
 	if(!use_charge)
-		balloon_alert(user, LANG("obj.cf566437", null))
+		balloon_alert(user, LANG("obj.cf56643785b9d2ce", null))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.5456b6d0", null))
+	balloon_alert(user, LANG("obj.5456b6d04881d386", null))
 	use_the_kit()
 	return ITEM_INTERACT_SUCCESS
 

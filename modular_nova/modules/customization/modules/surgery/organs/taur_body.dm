@@ -118,7 +118,7 @@
 		desc = initial(desc)
 	else
 		name = "Mermaid Transform"
-		desc = LANG("datum.45e09b35", null)
+		desc = LANG("datum.45e09b3519b04339", null)
 	return ..()
 
 /datum/action/cooldown/spell/mermaid_toggle/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force = FALSE)
@@ -420,10 +420,10 @@ GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "（半人马）切换�
 	if(!overlay.can_lay_down)
 		return
 	if(owner.resting)
-		to_chat(owner, span_notice(LANG("obj.4e342753", null)))
+		to_chat(owner, span_notice(LANG("obj.4e342753cefc646d", null)))
 	if(overlay.laying_down)
 		// Rising up
-		to_chat(owner, span_notice(LANG("obj.37e7b54a", null)))
+		to_chat(owner, span_notice(LANG("obj.37e7b54a96cdc589", null)))
 		if(!do_after(owner, LAYDOWN_COOLDOWN))
 			return
 		if(!overlay.laying_down) // Prevent multiple standups at once
@@ -435,7 +435,7 @@ GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "（半人马）切换�
 
 		owner.SetImmobilized(0, TRUE)
 		REMOVE_TRAIT(owner, TRAIT_UNDENSE, TRAIT_TAUR_LOAF)
-		to_chat(owner, span_notice(LANG("obj.0f313ebe", null)))
+		to_chat(owner, span_notice(LANG("obj.0f313ebe6f116ebd", null)))
 	else
 		// And laying back down
 		overlay.laying_down = TRUE
@@ -445,7 +445,7 @@ GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "（半人马）切换�
 
 		owner.Immobilize(INFINITY, TRUE)
 		ADD_TRAIT(owner, TRAIT_UNDENSE, TRAIT_TAUR_LOAF)
-		to_chat(owner, span_notice(LANG("obj.69b6e0d0", null)))
+		to_chat(owner, span_notice(LANG("obj.69b6e0d04f2da7ec", null)))
 		if(owner.has_gravity())
 			playsound(owner, "bodyfall", 50, TRUE)
 

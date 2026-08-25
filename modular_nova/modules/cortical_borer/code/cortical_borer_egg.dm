@@ -41,7 +41,7 @@
 	forceMove(host_egg)
 	var/area/src_area = get_area(src)
 	if(src_area)
-		notify_ghosts(LANG("obj.57f1c758", list(src_area.name)),
+		notify_ghosts(LANG("obj.57f1c758f02d0847", list(src_area.name)),
 			source = src,
 			notify_flags = NOTIFY_CATEGORY_NOFLASH & ~GHOST_NOTIFY_NOTIFY_SUICIDERS,
 			click_interact = TRUE,
@@ -63,7 +63,7 @@
 	return ..()
 
 /obj/item/borer_egg/attack_self(mob/user, modifiers)
-	to_chat(user, span_notice(LANG("obj.bf7fe563", list(src))))
+	to_chat(user, span_notice(LANG("obj.bf7fe563a8015893", list(src))))
 	new /obj/effect/decal/cleanable/food/egg_smudge(get_turf(user))
 	if(host_spawner)
 		QDEL_NULL(host_spawner)

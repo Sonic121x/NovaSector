@@ -107,7 +107,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 				item.forceMove(drop_location())
 				ui.user.put_in_hands(item)
 				unfreeze_item(item)
-				visible_message(LANG("obj.69d6f3de", list(src, item)))
+				visible_message(LANG("obj.69d6f3de659e4e2d", list(src, item)))
 				message_admins("[item] was retrieved by [ui.user] from cryostorage at [ADMIN_COORDJMP(src)]")
 			else
 				CRASH("Invalid REF# for ui_act. Not inside internal list!")
@@ -243,7 +243,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	..()
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant && mob_occupant.stat != DEAD)
-		to_chat(occupant, span_notice(LANG("obj.316d26f6", null)))
+		to_chat(occupant, span_notice(LANG("obj.316d26f6411ed1df", null)))
 
 	var/mob/living/carbon/human/human_occupant = occupant
 	if(istype(human_occupant) && human_occupant.mind)
@@ -283,8 +283,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	tucked = FALSE
 
 /obj/machinery/cryopod/container_resist_act(mob/living/user)
-	visible_message(span_notice(LANG("obj.8616ec7e", list(occupant, src))),
-		span_notice(LANG("obj.adaf0a2d", list(src))))
+	visible_message(span_notice(LANG("obj.8616ec7ef6eb4cb4", list(occupant, src))),
+		span_notice(LANG("obj.adaf0a2d27164b52", list(src))))
 	open_machine()
 
 /obj/machinery/cryopod/relaymove(mob/user)
@@ -442,7 +442,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		if(!quiet)
 			control_computer.announce("CRYO_LEAVE", mob_occupant.real_name, announce_rank, occupant_job)
 
-	visible_message(span_notice(LANG("obj.fc2316e9", list(src, mob_occupant.real_name))))
+	visible_message(span_notice(LANG("obj.fc2316e90ea251d2", list(src, mob_occupant.real_name))))
 
 	if(!HAS_TRAIT_FROM(mob_occupant, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE)) // Don't let ghost cafe people store items
 		for(var/obj/item/item_content in mob_occupant)
@@ -499,17 +499,17 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		return
 
 	if(occupant)
-		to_chat(user, span_notice(LANG("obj.e96f2bf3", list(src))))
+		to_chat(user, span_notice(LANG("obj.e96f2bf3d2665244", list(src))))
 		return
 
 	if(target.stat == DEAD)
-		to_chat(user, span_notice(LANG("obj.e5420922", null)))
+		to_chat(user, span_notice(LANG("obj.e5420922b4d4ca05", null)))
 		return
 
 // Allows admins to enable players to override SSD Time check.
 	if(allow_timer_override)
-		if(tgui_alert(user, LANG("obj.4de87da9", list(target, src)), LANG("obj.5ec2df55", null), list("Yes", "No")) != "No")
-			to_chat(user, span_danger(LANG("obj.c1400d39", list(target, src, target.p_Theyre()))))
+		if(tgui_alert(user, LANG("obj.4de87da9c33db199", list(target, src)), LANG("obj.5ec2df55a2eef241", null), list("Yes", "No")) != "No")
+			to_chat(user, span_danger(LANG("obj.c1400d397360efa8", list(target, src, target.p_Theyre()))))
 			log_admin("[key_name(user)] has put [key_name(target)] into a overridden stasis pod.")
 			message_admins("[key_name(user)] has put [key_name(target)] into a overridden stasis pod. [ADMIN_JMP(src)]")
 
@@ -523,14 +523,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		if (target.get_organ_by_type(/obj/item/organ/brain) ) //Target the Brain
 			if(!target.mind || target.ssd_indicator ) // Is the character empty / AI Controlled
 				if(target.lastclienttime + ssd_time >= world.time)
-					to_chat(user, span_notice(LANG("obj.b81885df", list(target, src, round(((ssd_time - (world.time - target.lastclienttime)) / (1 MINUTES)), 1)))))
+					to_chat(user, span_notice(LANG("obj.b81885df2a404051", list(target, src, round(((ssd_time - (world.time - target.lastclienttime)) / (1 MINUTES)), 1)))))
 					log_admin("[key_name(user)] has attempted to put [key_name(target)] into a stasis pod, but they were only disconnected for [round(((world.time - target.lastclienttime) / (1 MINUTES)), 1)] minutes.")
 					message_admins("[key_name(user)] has attempted to put [key_name(target)] into a stasis pod. [ADMIN_JMP(src)]")
 					return
-				else if(tgui_alert(user, LANG("obj.4de87da9", list(target, src)), LANG("obj.5ec2df55", null), list("Yes", "No")) == "Yes")
+				else if(tgui_alert(user, LANG("obj.4de87da9c33db199", list(target, src)), LANG("obj.5ec2df55a2eef241", null), list("Yes", "No")) == "Yes")
 					if(target.mind.assigned_role.req_admin_notify)
-						tgui_alert(user, LANG("obj.64072e62", list(AHELP_FIRST_MESSAGE)))
-					to_chat(user, span_danger(LANG("obj.c1400d39", list(target, src, target.p_Theyre()))))
+						tgui_alert(user, LANG("obj.64072e625554f1aa", list(AHELP_FIRST_MESSAGE)))
+					to_chat(user, span_danger(LANG("obj.c1400d397360efa8", list(target, src, target.p_Theyre()))))
 					log_admin("[key_name(user)] has put [key_name(target)] into a stasis pod.")
 					message_admins("[key_name(user)] has put [key_name(target)] into a stasis pod. [ADMIN_JMP(src)]")
 
@@ -540,30 +540,30 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 					name = "[name] ([target.name])"
 
 		else if(iscyborg(target))
-			to_chat(user, span_danger(LANG("obj.e1dde844", list(target, src, target.p_Theyre()))))
+			to_chat(user, span_danger(LANG("obj.e1dde844d968d42a", list(target, src, target.p_Theyre()))))
 		else
-			to_chat(user, span_danger(LANG("obj.7bf95b6d", list(target, src, target.p_Theyre()))))
+			to_chat(user, span_danger(LANG("obj.7bf95b6dbecf014c", list(target, src, target.p_Theyre()))))
 		return
 
 	if(target == user)
 		var/fridge_text = "Enter cryosleep?"
 		if(!despawn_to_ghostcafe || !quiet)
 			fridge_text += " ([CONFIG_GET(string/cryo_policy)])"
-		if(tgui_alert(target, fridge_text, LANG("obj.adeeb696", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(target, fridge_text, LANG("obj.adeeb6969f89ddf9", null), list("Yes", "No")) != "Yes")
 			return
 
 	if(target == user)
 		if(target.mind.assigned_role.req_admin_notify)
-			tgui_alert(target, LANG("obj.44ef89c0", list(AHELP_FIRST_MESSAGE)))
+			tgui_alert(target, LANG("obj.44ef89c06dc7b8cd", list(AHELP_FIRST_MESSAGE)))
 		var/datum/antagonist/antag = target.mind.has_antag_datum(/datum/antagonist)
 		if(antag)
-			tgui_alert(target, LANG("obj.464111d1", list(antag.name, AHELP_FIRST_MESSAGE)))
+			tgui_alert(target, LANG("obj.464111d1ec22508f", list(antag.name, AHELP_FIRST_MESSAGE)))
 
 	if(LAZYLEN(target.buckled_mobs) > 0)
 		if(target == user)
-			to_chat(user, span_danger(LANG("obj.adfbcbff", null)))
+			to_chat(user, span_danger(LANG("obj.adfbcbff96564d65", null)))
 		else
-			to_chat(user, span_danger(LANG("obj.50015290", list(target))))
+			to_chat(user, span_danger(LANG("obj.50015290b80543f6", list(target))))
 		return
 
 	if(!istype(target) || !can_interact(user) || !target.Adjacent(user) || !ismob(target) || isanimal(target) || !istype(user.loc, /turf) || target.buckled)
@@ -571,15 +571,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		// rerun the checks in case of shenanigans
 
 	if(occupant)
-		to_chat(user, span_notice(LANG("obj.e96f2bf3", list(src))))
+		to_chat(user, span_notice(LANG("obj.e96f2bf3d2665244", list(src))))
 		return
 
 	if(target == user)
-		visible_message(span_infoplain(LANG("obj.f73ff919", list(user))))
+		visible_message(span_infoplain(LANG("obj.f73ff919f546d18a", list(user))))
 	else
-		visible_message(span_infoplain(LANG("obj.593efded", list(user, target))))
+		visible_message(span_infoplain(LANG("obj.593efded1f803555", list(user, target))))
 
-	to_chat(target, span_warning(LANG("obj.ce93bc5f", list(time_till_despawn /10))))
+	to_chat(target, span_warning(LANG("obj.ce93bc5f518fe111", list(time_till_despawn /10))))
 
 	log_admin("[key_name(target)] entered a stasis pod.")
 	message_admins("[key_name_admin(target)] entered a stasis pod. [ADMIN_JMP(src)]")
@@ -598,9 +598,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		if(!occupant || !istype(occupant, /mob/living))
 			return
 		if(tucked)
-			to_chat(user, span_warning(LANG("obj.459bd601", list(occupant.name))))
+			to_chat(user, span_warning(LANG("obj.459bd6015df112e3", list(occupant.name))))
 			return
-		to_chat(user, span_notice(LANG("obj.2819dd72", list(occupant.name))))
+		to_chat(user, span_notice(LANG("obj.2819dd72f8d68077", list(occupant.name))))
 		qdel(tool)
 		user.add_mood_event("tucked", /datum/mood_event/tucked_in, occupant)
 		tucked = TRUE

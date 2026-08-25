@@ -33,10 +33,10 @@
 /obj/item/clothing/mask/neck_gaiter/click_alt_secondary(mob/user)
 	alternate_worn_layer = (alternate_worn_layer == initial(alternate_worn_layer) ? NONE : initial(alternate_worn_layer))
 	user.update_clothing(ITEM_SLOT_MASK)
-	balloon_alert(user, LANG("obj.d521fa2f", list(alternate_worn_layer == initial(alternate_worn_layer) ? "below" : "above")))
+	balloon_alert(user, LANG("obj.d521fa2f1ddc0cfd", list(alternate_worn_layer == initial(alternate_worn_layer) ? "below" : "above")))
 
 /obj/item/clothing/mask/neck_gaiter/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.b4a3a1fb", list(src)))
-	. += span_notice(LANG("obj.10c89ab8", list(src)))
+	. += span_notice(LANG("obj.b4a3a1fbe98ca999", list(src)))
+	. += span_notice(LANG("obj.10c89ab80b545b48", list(src)))
 

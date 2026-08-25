@@ -41,10 +41,10 @@
 	if(!cat_tongue.feral_mode)
 		background_icon_state = "bg_default"
 		button_icon_state = "feral_mode_off"
-		to_chat(cat_tongue.owner, span_notice(LANG("datum.d8ec2d0d", null)))
+		to_chat(cat_tongue.owner, span_notice(LANG("datum.d8ec2d0dd3423012", null)))
 	else
 		background_icon_state = "bg_default_on"
 		button_icon_state = "feral_mode_on"
-		to_chat(cat_tongue.owner, span_notice(LANG("datum.600b107e", null)))
+		to_chat(cat_tongue.owner, span_notice(LANG("datum.600b107e6f1a513a", null)))
 	build_all_button_icons()
 	return TRUE

@@ -361,9 +361,9 @@
 
 	. = ..()
 	if(brute_dam > DAMAGE_PRECISION)
-		. += span_warning(LANG("obj.4fb413ed", list(brute_dam > 30 ? "severe" : "minor")))
+		. += span_warning(LANG("obj.4fb413ed3c7ac554", list(brute_dam > 30 ? "severe" : "minor")))
 	if(burn_dam > DAMAGE_PRECISION)
-		. += span_warning(LANG("obj.0433916e", list(burn_dam > 30 ? "severe" : "minor")))
+		. += span_warning(LANG("obj.0433916ed2880bd0", list(burn_dam > 30 ? "severe" : "minor")))
 
 	for(var/datum/wound/wound as anything in wounds)
 		var/wound_desc = wound.get_limb_examine_description()
@@ -444,7 +444,7 @@
 		else
 			is_disabled += " and"
 
-	check_list += LANG("obj.be1c3f59", list(no_damage ? "notice" : "warning", lang_zone(plaintext_zone), is_disabled, self_aware ? " has " : " looks ", status)) // NOVA EDIT - i18n: 部位名专用反查（chest/head 等单词不碰储物箱）
+	check_list += LANG("obj.be1c3f59d72dc049", list(no_damage ? "notice" : "warning", lang_zone(plaintext_zone), is_disabled, self_aware ? " has " : " looks ", status)) // NOVA EDIT - i18n: 部位名专用反查（chest/head 等单词不碰储物箱）
 
 	var/adept_organ_feeler = owner == examiner && HAS_TRAIT(examiner, TRAIT_SELF_AWARE)
 	for(var/obj/item/organ/organ in src)
@@ -452,16 +452,16 @@
 			continue
 		var/feeling = organ.feel_for_damage(adept_organ_feeler)
 		if(feeling)
-			check_list += LANG("obj.294efb1f", list(feeling))
+			check_list += LANG("obj.294efb1fdb8925bb", list(feeling))
 
 	for(var/datum/wound/wound as anything in wounds)
 		var/wound_desc = wound.get_self_check_description(adept_organ_feeler)
 		if(wound_desc)
-			check_list += LANG("obj.294efb1f", list(wound_desc))
+			check_list += LANG("obj.294efb1fdb8925bb", list(wound_desc))
 
 	var/surgery_check = get_surgery_self_check()
 	if(surgery_check)
-		check_list += LANG("obj.294efb1f", list(surgery_check))
+		check_list += LANG("obj.294efb1fdb8925bb", list(surgery_check))
 
 	for(var/obj/item/embedded_thing as anything in embedded_objects)
 		if(embedded_thing.get_embed().stealthy_embed)
@@ -507,7 +507,7 @@
 				bleed_text = span_warning("It's bleeding profusely!")
 
 		if(bleed_text)
-			check_list += LANG("obj.294efb1f", list(span_tooltip("You are loosing blood. You should wrap your limb in gauze \
+			check_list += LANG("obj.294efb1fdb8925bb", list(span_tooltip("You are loosing blood. You should wrap your limb in gauze \
 				or apply pressure to it by grabbing yourself (while targeting the limb) to stem the flow.", bleed_text)))
 
 	return jointext(check_list, "<br>")
@@ -626,23 +626,23 @@
 		if(HAS_TRAIT(victim, TRAIT_LIMBATTACHMENT) || HAS_TRAIT(src, TRAIT_EASY_ATTACH) || HAS_TRAIT(victim, TRAIT_ROBOTIC_LIMBATTACHMENT)) // NOVA EDIT CHANGE - ORIGINAL: if(HAS_TRAIT(victim, TRAIT_LIMBATTACHMENT) || HAS_TRAIT(src, TRAIT_EASY_ATTACH))
 			// NOVA EDIT ADDITION START - robot_limb_detach_quirk - but first let peg limbs through, and also let androids through
 			if (!(HAS_TRAIT(src, TRAIT_EASY_ATTACH)) && !HAS_TRAIT(victim, TRAIT_LIMBATTACHMENT) && HAS_TRAIT(victim, TRAIT_ROBOTIC_LIMBATTACHMENT) && !(bodytype & BODYTYPE_ROBOTIC)) //if we're trying to attach something that's not robotic, end out - but ONLY if we have this quirk
-				to_chat(user, span_warning(LANG("obj.0da35f4c", list(human_victim, src))))
+				to_chat(user, span_warning(LANG("obj.0da35f4ca6a1e5b7", list(human_victim, src))))
 				return
 			// NOVA EDIT ADDITION END
 			if(!human_victim.get_bodypart(body_zone))
 				user.temporarilyRemoveItemFromInventory(src, TRUE)
 				if(!try_attach_limb(victim))
-					to_chat(user, span_warning(LANG("obj.b058d4fc", list(human_victim, src))))
+					to_chat(user, span_warning(LANG("obj.b058d4fc2cf32981", list(human_victim, src))))
 					forceMove(human_victim.loc)
 					return
 				if(check_for_frankenstein(victim))
 					bodypart_flags |= BODYPART_IMPLANTED
 				if(human_victim == user)
-					human_victim.visible_message(span_warning(LANG("obj.48b7c795", list(human_victim, src, human_victim.p_their()))),\
-					span_notice(LANG("obj.1f30b9d2", list(src))))
+					human_victim.visible_message(span_warning(LANG("obj.48b7c7952f14e472", list(human_victim, src, human_victim.p_their()))),\
+					span_notice(LANG("obj.1f30b9d2cec2391f", list(src))))
 				else
-					human_victim.visible_message(span_warning(LANG("obj.3bf0dccb", list(user, src, human_victim))),\
-					span_notice(LANG("obj.fe4a7862", list(user, src))))
+					human_victim.visible_message(span_warning(LANG("obj.3bf0dccb1b1d31b3", list(user, src, human_victim))),\
+					span_notice(LANG("obj.fe4a786262186701", list(user, src))))
 				return
 	return ..()
 
@@ -672,7 +672,7 @@
 		operation_zone = body_zone
 	for(var/datum/surgery_operation/operation as anything in operations)
 		if ((operation.operation_flags & OPERATION_NO_PATIENT_REQUIRED) && operation.show_as_next_step(src, operation_zone))
-			. += span_notice(LANG("obj.26e26c14", list(operation, src, operation.get_recommended_tool())))
+			. += span_notice(LANG("obj.26e26c145b4e3db1", list(operation, src, operation.get_recommended_tool())))
 
 //empties the bodypart from its organs and other things inside it
 /obj/item/bodypart/proc/drop_organs(mob/user, violent_removal)
@@ -1357,6 +1357,17 @@
 	if (dropped)
 		image_dir = SOUTH
 
+	// Stumps are FAKE limbs that hold the spot for REAL limbs. thusly no sprite of their own, so early return!
+	if(IS_STUMP(src))
+		SEND_SIGNAL(src, COMSIG_BODYPART_GET_LIMB_ICON, ., dropped)
+		return .
+
+	// Arms past the first pair get body_zone suffixed (l_arm_2 and so on). No state exists for them
+	// This guard is bad :)
+	if(held_index >= 3)
+		SEND_SIGNAL(src, COMSIG_BODYPART_GET_LIMB_ICON, ., dropped)
+		return .
+
 	// Handles invisibility (not alpha or actual invisibility but invisibility)
 	if(is_invisible)
 		. += image(icon_invisible, "invisible_[body_zone]", -BODYPARTS_LAYER, dir = image_dir)
@@ -1902,7 +1913,7 @@
 		return FALSE
 	current_gauze.absorption_capacity -= seep_amt
 	if(current_gauze.absorption_capacity <= 0)
-		owner.visible_message(span_danger(LANG("obj.fc7026a0", list(current_gauze.name, owner, name))), span_warning(LANG("obj.822624df", list(current_gauze.name, name))), vision_distance=COMBAT_MESSAGE_RANGE)
+		owner.visible_message(span_danger(LANG("obj.fc7026a00d5a908c", list(current_gauze.name, owner, name))), span_warning(LANG("obj.822624dfa1ee6cfe", list(current_gauze.name, name))), vision_distance=COMBAT_MESSAGE_RANGE)
 		qdel(current_gauze)
 	return TRUE
 
@@ -1984,7 +1995,7 @@
 	if(can_be_disabled && (get_damage() / max_damage) >= robotic_emp_paralyze_damage_percent_threshold)
 		ADD_TRAIT(src, TRAIT_PARALYSIS, EMP_TRAIT)
 		addtimer(TRAIT_CALLBACK_REMOVE(src, TRAIT_PARALYSIS, EMP_TRAIT), time_needed)
-		owner?.visible_message(span_danger(LANG("obj.9c4793c3", list(owner, plaintext_zone))))
+		owner?.visible_message(span_danger(LANG("obj.9c4793c3cab28767", list(owner, plaintext_zone))))
 
 	return TRUE
 

@@ -77,7 +77,7 @@
 //changed compared to kintetic_crusher.dm. We don't fire a projectile and we don't care if the cursor is over the player.
 /obj/item/kinetic_crusher/runic_greatsword/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED) && !acts_as_if_wielded)
-		balloon_alert(user, LANG("obj.a2400a32", null))
+		balloon_alert(user, LANG("obj.a2400a32698ab487", null))
 		return ITEM_INTERACT_BLOCKING
 	runic_spin()
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -165,16 +165,16 @@
 		return
 
 	if(!isprimitivedemihuman(user))
-		to_chat(user, span_warning(LANG("obj.5d3f1a5d", list(src))))
+		to_chat(user, span_warning(LANG("obj.5d3f1a5d561fddee", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
-	user.balloon_alert(user, LANG("obj.10c6aebc", null))
+	user.balloon_alert(user, LANG("obj.10c6aebcd6bac704", null))
 	playsound(src, 'sound/effects/break_stone.ogg', 50, TRUE)
 	if(!do_after(user, 30 SECONDS, target = src))
-		user.visible_message(span_warning(LANG("obj.24513b40", list(user))))
+		user.visible_message(span_warning(LANG("obj.24513b40235be288", list(user))))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.aa1f6a22", list(user))))
+	user.visible_message(span_notice(LANG("obj.aa1f6a22286803b3", list(user))))
 	new /obj/item/hearthkin_ship_fragment_active(get_turf(src))
 	playsound(src, 'sound/effects/break_stone.ogg', 50, TRUE)
 	qdel(src)

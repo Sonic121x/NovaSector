@@ -207,7 +207,7 @@
 /obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/proc/hide_book(id, reason, client/admin)
 	if(!SSdbcore.Connect())
 		can_connect = FALSE
-		to_chat(admin, span_danger(LANG("obj.cfa9a578", null)))
+		to_chat(admin, span_danger(LANG("obj.cfa9a5781ea2050f", null)))
 		return
 	if(!check_rights_for(admin, R_BAN))
 		log_admin_private("[admin.ckey] tried to hide a book without the required perms")
@@ -242,7 +242,7 @@
 /obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/proc/unhide_book(id, reason, client/admin)
 	if(!SSdbcore.Connect())
 		can_connect = FALSE
-		to_chat(admin, span_danger(LANG("obj.cfa9a578", null)))
+		to_chat(admin, span_danger(LANG("obj.cfa9a5781ea2050f", null)))
 		return
 	if(!check_rights_for(admin, R_BAN))
 		log_admin_private("[admin.ckey] tried to unhide a book without the required perms")

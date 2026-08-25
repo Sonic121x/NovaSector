@@ -55,16 +55,16 @@
 		return
 
 	if(current_mass > 0)
-		. += span_notice(LANG("obj.6d48de1f", null))
+		. += span_notice(LANG("obj.6d48de1f3ca74ce0", null))
 
 	if(current_mass < max_mass)
 		var/to_fill = max_mass - current_mass
-		. += span_notice(LANG("obj.e3f00bd5", list(src, to_fill, to_fill == 1 ? "":"s", to_fill == 1 ? "":"s")))
+		. += span_notice(LANG("obj.e3f00bd5cdc0fc5d", list(src, to_fill, to_fill == 1 ? "":"s", to_fill == 1 ? "":"s")))
 	else
-		. += span_boldnotice(LANG("obj.b3fb9f79", list(src)))
+		. += span_boldnotice(LANG("obj.b3fb9f79f6ae7cce", list(src)))
 
-	. += span_notice(LANG("obj.21028f16", list(anchored ? "unanchor and move":"anchor in place", src)))
-	. += span_info(LANG("obj.918b6975", null))
+	. += span_notice(LANG("obj.21028f160248803a", list(anchored ? "unanchor and move":"anchor in place", src)))
+	. += span_info(LANG("obj.918b697518c8fe5c", null))
 	for(var/obj/item/eldritch_potion/potion as anything in subtypesof(/obj/item/eldritch_potion))
 		var/potion_string = span_info("\tThe " + initial(potion.name) + " - " + initial(potion.crucible_tip))
 		. += potion_string
@@ -82,26 +82,26 @@
 	if(istype(tool, /obj/item/codex_cicatrix) || istype(tool, /obj/item/melee/touch_attack/mansus_fist))
 		playsound(src, 'sound/items/deconstruct.ogg', 30, TRUE, ignore_walls = FALSE)
 		set_anchored(!anchored)
-		balloon_alert(user, LANG("obj.ec9196c7", list(anchored ? "":"un")))
+		balloon_alert(user, LANG("obj.ec9196c7343f779d", list(anchored ? "":"un")))
 		return ITEM_INTERACT_SUCCESS
 	if(istype(tool, /obj/item/reagent_containers/cup/beaker/eldritch))
 		if(current_mass < max_mass)
-			balloon_alert(user, LANG("obj.38ce68de", null))
+			balloon_alert(user, LANG("obj.38ce68de3dc732ca", null))
 			return ITEM_INTERACT_SUCCESS
 		var/obj/item/reagent_containers/cup/beaker/eldritch/to_fill = tool
 		if(to_fill.reagents.total_volume >= to_fill.reagents.maximum_volume)
-			balloon_alert(user, LANG("obj.c63806ce", null))
+			balloon_alert(user, LANG("obj.c63806ced7c32664", null))
 			return ITEM_INTERACT_SUCCESS
 		to_fill.reagents.add_reagent(/datum/reagent/eldritch, 50)
 		do_item_attack_animation(src, used_item = tool, animation_type = ATTACK_ANIMATION_BLUNT)
 		current_mass--
-		balloon_alert(user, LANG("obj.0edbc871", null))
+		balloon_alert(user, LANG("obj.0edbc871377bf975", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(isbodypart(tool))
 		var/obj/item/bodypart/consumed = tool
 		if(!IS_ORGANIC_LIMB(consumed))
-			balloon_alert(user, LANG("obj.6b93e725", null))
+			balloon_alert(user, LANG("obj.6b93e72551ed530b", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!IS_HERETIC_OR_MONSTER(user))
 			if(user.combat_mode)
@@ -114,10 +114,10 @@
 	if(isorgan(tool))
 		var/obj/item/organ/consumed = tool
 		if(!IS_ORGANIC_ORGAN(consumed))
-			balloon_alert(user, LANG("obj.6b93e725", null))
+			balloon_alert(user, LANG("obj.6b93e72551ed530b", null))
 			return ITEM_INTERACT_BLOCKING
 		if(consumed.organ_flags & ORGAN_VITAL) // Basically, don't eat organs like brains
-			balloon_alert(user, LANG("obj.7279062c", null))
+			balloon_alert(user, LANG("obj.7279062c77b140f4", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!IS_HERETIC_OR_MONSTER(user))
 			if(user.combat_mode)
@@ -143,11 +143,11 @@
 		return TRUE
 
 	if(in_use)
-		balloon_alert(user, LANG("obj.d2232fc9", null))
+		balloon_alert(user, LANG("obj.d2232fc97a3a2f66", null))
 		return TRUE
 
 	if(current_mass < max_mass)
-		balloon_alert(user, LANG("obj.38ce68de", null))
+		balloon_alert(user, LANG("obj.38ce68de3dc732ca", null))
 		return TRUE
 
 	INVOKE_ASYNC(src, PROC_REF(show_radial), user)
@@ -194,8 +194,8 @@
 	var/obj/item/spawned_pot = new spawned_type(drop_location())
 
 	playsound(src, 'sound/effects/desecration/desecration-02.ogg', 75, TRUE)
-	visible_message(span_notice(LANG("obj.15aea8e2", list(src, spawned_pot.name))))
-	balloon_alert(user, LANG("obj.5ba1ecf2", null))
+	visible_message(span_notice(LANG("obj.15aea8e2a6a014ac", list(src, spawned_pot.name))))
+	balloon_alert(user, LANG("obj.5ba1ecf23672ed57", null))
 
 	current_mass = 0
 	update_appearance(UPDATE_ICON_STATE)
@@ -213,7 +213,7 @@
 	if(QDELETED(arm))
 		return
 
-	to_chat(user, span_userdanger(LANG("obj.c4831532", list(src, arm.plaintext_zone))))
+	to_chat(user, span_userdanger(LANG("obj.c48315328091f2e5", list(src, arm.plaintext_zone))))
 	arm.dismember()
 	consume_fuel(consumed = arm)
 
@@ -224,15 +224,15 @@
 /obj/structure/destructible/eldritch_crucible/proc/consume_fuel(mob/living/feeder, obj/item/consumed)
 	if(current_mass >= max_mass)
 		if(feeder)
-			balloon_alert(feeder, LANG("obj.b6ed89af", null))
+			balloon_alert(feeder, LANG("obj.b6ed89afa2a82d2c", null))
 		return
 
 	current_mass++
 	playsound(src, 'sound/items/eatfood.ogg', 100, TRUE)
-	visible_message(span_notice(LANG("obj.71e20609", list(src, consumed))))
+	visible_message(span_notice(LANG("obj.71e20609cdaa33a5", list(src, consumed))))
 
 	if(feeder)
-		balloon_alert(feeder, LANG("obj.7563b9d9", list(current_mass, max_mass)))
+		balloon_alert(feeder, LANG("obj.7563b9d9f7c10234", list(current_mass, max_mass)))
 
 	qdel(consumed)
 	update_appearance(UPDATE_ICON_STATE)
@@ -277,13 +277,13 @@
 	playsound(src, 'sound/effects/bubbles/bubbles.ogg', 50, TRUE)
 
 	if(!IS_HERETIC_OR_MONSTER(user))
-		to_chat(user, span_danger(LANG("obj.e4b6db2e", list(src))))
+		to_chat(user, span_danger(LANG("obj.e4b6db2e05397016", list(src))))
 		user.reagents?.add_reagent(/datum/reagent/eldritch, 10)
 		user.adjust_disgust(50)
 		qdel(src)
 		return TRUE
 
-	to_chat(user, span_notice(LANG("obj.27dc7ded", list(src))))
+	to_chat(user, span_notice(LANG("obj.27dc7ded7ee57e8e", list(src))))
 	potion_effect(user)
 	qdel(src)
 	return TRUE
@@ -307,7 +307,7 @@
 
 /obj/item/eldritch_potion/crucible_soul/attack_self(mob/user)
 	if(user.has_status_effect(/datum/status_effect/crucible_soul_cooldown))
-		balloon_alert(user, LANG("obj.d4ae5d4d", null))
+		balloon_alert(user, LANG("obj.d4ae5d4dded19efe", null))
 		return TRUE
 	return ..()
 

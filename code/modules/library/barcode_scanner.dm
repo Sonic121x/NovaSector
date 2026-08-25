@@ -49,7 +49,7 @@
 /obj/item/barcodescanner/proc/interact_with_book(obj/item/book/target_book, mob/living/user)
 	var/obj/machinery/computer/libraryconsole/bookmanagement/linked_computer = computer_ref?.resolve()
 	if(isnull(linked_computer))
-		user.balloon_alert(user, LANG("obj.c10591b9", null))
+		user.balloon_alert(user, LANG("obj.c10591b96c7a3aa2", null))
 		return ITEM_INTERACT_BLOCKING
 
 	switch(scan_mode)
@@ -61,11 +61,11 @@
 					continue
 				checkouts -= checkout_ref
 				linked_computer.checkout_update()
-				balloon_alert(user, LANG("obj.da86fec3", null))
+				balloon_alert(user, LANG("obj.da86fec33854368f", null))
 				playsound(src, 'sound/items/barcodebeep.ogg', 20, FALSE)
 				return ITEM_INTERACT_SUCCESS
 
-			user.balloon_alert(user, LANG("obj.59b7ec18", null))
+			user.balloon_alert(user, LANG("obj.59b7ec180e70c4bb", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if(BARCODE_SCANNER_CHECKOUT)
@@ -73,23 +73,23 @@
 			for(var/checkout_ref in checkouts)
 				var/datum/borrowbook/maybe_ours = checkouts[checkout_ref]
 				if(target_book.book_data.compare(maybe_ours.book_data))
-					user.balloon_alert(user, LANG("obj.ea567610", null))
+					user.balloon_alert(user, LANG("obj.ea567610e11c908d", null))
 					return ITEM_INTERACT_BLOCKING
 			for(var/copy_ref in linked_computer.inventory)
 				if(!target_book.book_data.compare(linked_computer.inventory[copy_ref]))
 					continue
 				linked_computer.checking_out_book = target_book.book_data
-				balloon_alert(user, LANG("obj.06a7f87b", null))
+				balloon_alert(user, LANG("obj.06a7f87bd19e60aa", null))
 				playsound(src, 'sound/items/barcodebeep.ogg', 20, FALSE)
 				return ITEM_INTERACT_SUCCESS
-			user.balloon_alert(user, LANG("obj.d82f1725", null))
+			user.balloon_alert(user, LANG("obj.d82f17257759b6b5", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if(BARCODE_SCANNER_INVENTORY)
 			var/datum/book_info/our_copy = target_book.book_data.return_copy()
 			linked_computer.inventory[ref(our_copy)] = our_copy
 			linked_computer.inventory_update()
-			balloon_alert(user, LANG("obj.343374d0", null))
+			balloon_alert(user, LANG("obj.343374d0ba696ddf", null))
 			playsound(src, 'sound/items/barcodebeep.ogg', 20, FALSE)
 			return ITEM_INTERACT_SUCCESS
 
@@ -100,18 +100,18 @@
 	if(.)
 		return
 	if(!computer_ref?.resolve())
-		balloon_alert(user, LANG("obj.77b37f2f", null))
+		balloon_alert(user, LANG("obj.77b37f2f13fa85c2", null))
 		return
 	switch(scan_mode)
 		if(BARCODE_SCANNER_CHECKIN)
 			scan_mode = BARCODE_SCANNER_CHECKOUT
-			balloon_alert(user, LANG("obj.1361e854", null))
+			balloon_alert(user, LANG("obj.1361e854185c8712", null))
 		if(BARCODE_SCANNER_CHECKOUT)
 			scan_mode = BARCODE_SCANNER_INVENTORY
-			balloon_alert(user, LANG("obj.608dcf88", null))
+			balloon_alert(user, LANG("obj.608dcf887d0524b9", null))
 		if(BARCODE_SCANNER_INVENTORY)
 			scan_mode = BARCODE_SCANNER_CHECKIN
-			balloon_alert(user, LANG("obj.2f121511", null))
+			balloon_alert(user, LANG("obj.2f121511f2088937", null))
 	playsound(loc, 'sound/items/click.ogg', 20, TRUE)
 
 #undef BARCODE_SCANNER_CHECKIN

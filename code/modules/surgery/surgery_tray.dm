@@ -50,7 +50,7 @@
 /obj/item/surgery_tray/update_desc()
 	. = ..()
 	if(is_portable)
-		desc = LANG("obj.54360783", null)
+		desc = LANG("obj.54360783eac12191", null)
 	else
 		desc = initial(desc)
 
@@ -59,7 +59,7 @@
 	. += is_portable \
 		? span_notice("You can click and drag it to yourself to pick it up, then use it in your hand to make it a cart!") \
 		: span_notice("You can click and drag it to yourself to turn it into a tray!")
-	. += span_notice(LANG("obj.eb0dfa45", null))
+	. += span_notice(LANG("obj.eb0dfa457eb1e7cc", null))
 
 /obj/item/surgery_tray/update_overlays()
 	. = ..()
@@ -101,7 +101,7 @@
 	is_portable = new_mode
 	density = !is_portable
 	if(user)
-		user.visible_message(span_notice(LANG("obj.750a51d2", list(user, is_portable ? "retracts" : "extends", src))), span_notice(LANG("obj.544de364", list(is_portable ? "retract" : "extend", src))))
+		user.visible_message(span_notice(LANG("obj.750a51d2b3820ded", list(user, is_portable ? "retracts" : "extends", src))), span_notice(LANG("obj.544de3644b9caf92", list(is_portable ? "retract" : "extend", src))))
 
 	if(is_portable)
 		interaction_flags_item |= INTERACT_ITEM_ATTACK_HAND_PICKUP
@@ -125,10 +125,10 @@
 		return
 	var/turf/open/placement_turf = get_turf(user)
 	if(isgroundlessturf(placement_turf) || isclosedturf(placement_turf))
-		balloon_alert(user, LANG("obj.595347e7", null))
+		balloon_alert(user, LANG("obj.595347e7ce07a67e", null))
 		return TRUE
 	if(!user.transferItemToLoc(src, placement_turf))
-		balloon_alert(user, LANG("obj.6b5fa3df", null))
+		balloon_alert(user, LANG("obj.6b5fa3df483df972", null))
 		return TRUE
 	set_tray_mode(FALSE, user)
 	return
@@ -137,7 +137,7 @@
 	if(!user.can_perform_action(src, NEED_HANDS))
 		return ..()
 	if(!length(contents))
-		balloon_alert(user, LANG("obj.6ef93b07", null))
+		balloon_alert(user, LANG("obj.6ef93b07027da376", null))
 	else
 		var/obj/item/grabbies = pick(contents)
 		if(atom_storage.remove_single(user, grabbies, drop_location()))
@@ -147,11 +147,11 @@
 /obj/item/surgery_tray/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice(LANG("obj.40506102", list(src))))
+	to_chat(user, span_notice(LANG("obj.405061027de64f87", list(src))))
 	if(!tool.use_tool(src, user, 1 SECONDS))
 		return
 	deconstruct(TRUE)
-	to_chat(user, span_notice(LANG("obj.1ff26ff4", list(src))))
+	to_chat(user, span_notice(LANG("obj.1ff26ff418de3617", list(src))))
 
 /obj/item/surgery_tray/dump_contents()
 	var/atom/drop_point = drop_location()

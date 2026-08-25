@@ -22,8 +22,8 @@
 
 /obj/item/mod/paint/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.6dbdfdae", null))
-	. += span_notice(LANG("obj.890c4af2", null))
+	. += span_notice(LANG("obj.6dbdfdaea02cb971", null))
+	. += span_notice(LANG("obj.890c4af2f5d9a5ec", null))
 
 /obj/item/mod/paint/ui_interact(mob/user, datum/tgui/ui)
 	if(!editing_mod)
@@ -80,43 +80,43 @@
 			var/green_value = current_color[2] + current_color[6] + current_color[10] //rg + gg + bg
 			var/blue_value = current_color[3] + current_color[7] + current_color[11] //rb + gb + bb
 			if(red_value > MODPAINT_MAX_SECTION_COLORS)
-				balloon_alert(usr, LANG("obj.94c8081a", list(red_value*100, MODPAINT_MAX_SECTION_COLORS*100)))
+				balloon_alert(usr, LANG("obj.94c8081a386692ae", list(red_value*100, MODPAINT_MAX_SECTION_COLORS*100)))
 				return
 			else if(red_value < MODPAINT_MIN_SECTION_COLORS)
-				balloon_alert(usr, LANG("obj.00a80405", list(red_value*100, MODPAINT_MIN_SECTION_COLORS*100)))
+				balloon_alert(usr, LANG("obj.00a80405988ccc2d", list(red_value*100, MODPAINT_MIN_SECTION_COLORS*100)))
 				return
 			if(green_value > MODPAINT_MAX_SECTION_COLORS)
-				balloon_alert(usr, LANG("obj.891561e0", list(green_value*100, MODPAINT_MAX_SECTION_COLORS*100)))
+				balloon_alert(usr, LANG("obj.891561e04a142ba4", list(green_value*100, MODPAINT_MAX_SECTION_COLORS*100)))
 				return
 			else if(green_value < MODPAINT_MIN_SECTION_COLORS)
-				balloon_alert(usr, LANG("obj.081c98a3", list(green_value*100, MODPAINT_MIN_SECTION_COLORS*100)))
+				balloon_alert(usr, LANG("obj.081c98a3c78e931a", list(green_value*100, MODPAINT_MIN_SECTION_COLORS*100)))
 				return
 			if(blue_value > MODPAINT_MAX_SECTION_COLORS)
-				balloon_alert(usr, LANG("obj.76ffe680", list(blue_value*100, MODPAINT_MAX_SECTION_COLORS*100)))
+				balloon_alert(usr, LANG("obj.76ffe68006fdaa64", list(blue_value*100, MODPAINT_MAX_SECTION_COLORS*100)))
 				return
 			else if(blue_value < MODPAINT_MIN_SECTION_COLORS)
-				balloon_alert(usr, LANG("obj.3a65a150", list(blue_value*100, MODPAINT_MIN_SECTION_COLORS*100)))
+				balloon_alert(usr, LANG("obj.3a65a150d278e16e", list(blue_value*100, MODPAINT_MIN_SECTION_COLORS*100)))
 				return
 			for(var/color_value in total_colors)
 				total_color_value += color_value
 				if(color_value > MODPAINT_MAX_COLOR_VALUE)
-					balloon_alert(usr, LANG("obj.4e96163f", list(color_value*100, MODPAINT_MAX_COLOR_VALUE*100)))
+					balloon_alert(usr, LANG("obj.4e96163f0da97b2f", list(color_value*100, MODPAINT_MAX_COLOR_VALUE*100)))
 					return
 				else if(color_value < MODPAINT_MIN_COLOR_VALUE)
-					balloon_alert(usr, LANG("obj.8c969074", list(color_value*100, MODPAINT_MIN_COLOR_VALUE*100)))
+					balloon_alert(usr, LANG("obj.8c969074a3727534", list(color_value*100, MODPAINT_MIN_COLOR_VALUE*100)))
 					return
 			if(total_color_value > MODPAINT_MAX_OVERALL_COLORS)
-				balloon_alert(usr, LANG("obj.12331105", list(total_color_value*100, MODPAINT_MAX_OVERALL_COLORS*100)))
+				balloon_alert(usr, LANG("obj.12331105a3b5f99e", list(total_color_value*100, MODPAINT_MAX_OVERALL_COLORS*100)))
 				return
 			else if(total_color_value < MODPAINT_MIN_OVERALL_COLORS)
-				balloon_alert(usr, LANG("obj.8920fe70", list(total_color_value*100, MODPAINT_MIN_OVERALL_COLORS*100)))
+				balloon_alert(usr, LANG("obj.8920fe70692dcf6f", list(total_color_value*100, MODPAINT_MIN_OVERALL_COLORS*100)))
 				return
 			editing_mod.set_mod_color(current_color)
 			SStgui.close_uis(src)
 
 /obj/item/mod/paint/proc/paint_skin(obj/item/mod/control/mod, mob/user)
 	if(length(mod.theme.variants) <= 1)
-		balloon_alert(user, LANG("obj.5d7beb29", null))
+		balloon_alert(user, LANG("obj.5d7beb29e7804ad8", null))
 		return
 	var/list/skins = list()
 	for(var/mod_skin_name in mod.theme.variants)
@@ -124,7 +124,7 @@
 		skins[mod_skin_name] = image(icon = mod_skin[MOD_ICON_OVERRIDE] || mod.icon, icon_state = "[mod_skin_name]-control")
 	var/pick = show_radial_menu(user, mod, skins, custom_check = CALLBACK(src, PROC_REF(check_menu), mod, user), require_near = TRUE)
 	if(!pick)
-		balloon_alert(user, LANG("obj.34b37f4b", null))
+		balloon_alert(user, LANG("obj.34b37f4ba49f0bd6", null))
 		return
 	mod.theme.set_skin(mod, pick)
 
@@ -141,7 +141,7 @@
 #undef MODPAINT_MIN_OVERALL_COLORS
 
 /obj/item/mod/skin_applier
-	name = "MOD skin applier"
+	name = "\improper MOD skin applier"
 	desc = "This one-use skin applier will add a skin to MODsuits of a specific type. Must be used on an inactive control unit."
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	icon_state = null
@@ -149,20 +149,20 @@
 
 /obj/item/mod/skin_applier/Initialize(mapload)
 	. = ..()
-	name = "MOD [skin] skin applier"
+	name = "\improper MOD [skin] skin applier"
 
 /obj/item/mod/skin_applier/interact_with_atom(atom/attacked_atom, mob/living/user, params)
 	if(!istype(attacked_atom, /obj/item/mod/control))
 		return NONE
 	var/obj/item/mod/control/mod = attacked_atom
 	if(mod.active || mod.activating)
-		balloon_alert(user, LANG("obj.7913b0b7", null))
+		balloon_alert(user, LANG("obj.7913b0b70e3a0cf3", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!(skin in mod.theme.variants))
-		balloon_alert(user, LANG("obj.63aa9e2d", null))
+		balloon_alert(user, LANG("obj.63aa9e2dee5dc2f8", null))
 		return ITEM_INTERACT_BLOCKING
 	mod.theme.set_skin(mod, skin)
-	balloon_alert(user, LANG("obj.a87eb440", null))
+	balloon_alert(user, LANG("obj.a87eb440401fad16", null))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 

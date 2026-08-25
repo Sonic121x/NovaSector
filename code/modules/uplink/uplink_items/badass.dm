@@ -24,7 +24,7 @@
 		return
 
 	notify_ghosts(
-		LANG("datum.a4d793a5", list(user.real_name)),
+		LANG("datum.a4d793a5f5b22967", list(user.real_name)),
 		source = .,
 		header = "What are they THINKING?",
 	)

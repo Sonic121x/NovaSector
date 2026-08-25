@@ -55,7 +55,7 @@
 		spark_system.start()
 
 /obj/effect/meteor/dark_matteor/shield_defense(obj/machinery/satellite/meteor_shield/defender)
-	defender.visible_message(span_danger(LANG("obj.7c3d8808", list(defender, src))))
+	defender.visible_message(span_danger(LANG("obj.7c3d8808ac3eb0b3", list(defender, src))))
 	new /obj/effect/temp_visual/explosion/fast(get_turf(defender))
 	qdel(defender)
 	return FALSE

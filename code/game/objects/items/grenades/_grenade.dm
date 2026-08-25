@@ -66,7 +66,7 @@
 	RegisterSignal(src, COMSIG_ITEM_USED_AS_INGREDIENT, PROC_REF(on_used_as_ingredient))
 
 /obj/item/grenade/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.05aef5c0", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.05aef5c06744fff1", list(user, src, user.p_theyre()))))
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE)
 	arm_grenade(user, det_time)
 	user.transferItemToLoc(src, user, TRUE)//>eat a grenade set to 5 seconds >rush captain
@@ -108,16 +108,16 @@
  */
 /obj/item/grenade/proc/botch_check(mob/living/carbon/human/user)
 	if(sticky && prob(50)) // to add risk to sticky tape grenade cheese, no return cause we still prime as normal after.
-		to_chat(user, span_warning(LANG("obj.ad59b8fb", list(src))))
+		to_chat(user, span_warning(LANG("obj.ad59b8fbf9d5cee4", list(src))))
 		ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 
 	var/clumsy = HAS_TRAIT(user, TRAIT_CLUMSY)
 	if(clumsy && (clumsy_check == GRENADE_CLUMSY_FUMBLE) && prob(50))
-		to_chat(user, span_warning(LANG("obj.0cac9174", null)))
+		to_chat(user, span_warning(LANG("obj.0cac91749d8c0a31", null)))
 		arm_grenade(user, 5, FALSE)
 		return TRUE
 	else if(!clumsy && (clumsy_check == GRENADE_NONCLUMSY_FUMBLE))
-		to_chat(user, span_warning(LANG("obj.6369db90", list(src, span_clown("HONK")))))
+		to_chat(user, span_warning(LANG("obj.6369db90461c8f14", list(src, span_clown("HONK")))))
 		arm_grenade(user, 5, FALSE)
 		return TRUE
 
@@ -125,17 +125,17 @@
 	. = ..()
 	if(display_timer)
 		if(det_time > 0)
-			. += LANG("obj.611a39c5", list(DisplayTimeText(det_time)))
+			. += LANG("obj.611a39c536f6e750", list(DisplayTimeText(det_time)))
 		else
-			. += LANG("obj.d5ab0ca5", list(src))
+			. += LANG("obj.d5ab0ca5ec626c01", list(src))
 	if (dud_flags & GRENADE_USED)
-		. += span_warning(LANG("obj.116b4221", list(p_theyve())))
+		. += span_warning(LANG("obj.116b4221e9a74d3f", list(p_theyve())))
 
 /obj/item/grenade/attack_self(mob/user)
 	if(HAS_TRAIT(src, TRAIT_NODROP))
-		to_chat(user, span_notice(LANG("obj.9dd76f84", list(src))))
+		to_chat(user, span_notice(LANG("obj.9dd76f8465073b8b", list(src))))
 		if(do_after(user, 7 SECONDS, target = src))
-			to_chat(user, span_notice(LANG("obj.93d7a2d7", list(src))))
+			to_chat(user, span_notice(LANG("obj.93d7a2d7cb2fd27d", list(src))))
 			REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		return
 
@@ -157,7 +157,7 @@
 	if(user)
 		add_fingerprint(user)
 		if(msg)
-			to_chat(user, span_warning(LANG("obj.cfa52eca", list(src, capitalize(DisplayTimeText(det_time))))))
+			to_chat(user, span_warning(LANG("obj.cfa52ecaad5ac8b2", list(src, capitalize(DisplayTimeText(det_time))))))
 	if(shrapnel_type && shrapnel_radius)
 		shrapnel_initialized = TRUE
 		AddComponent(/datum/component/pellet_cloud, projectile_type = shrapnel_type, magnitude = shrapnel_radius)
@@ -226,9 +226,9 @@
 	if(change_det_time())
 		tool.play_tool_sound(src)
 		if(det_time == 0)
-			to_chat(user, span_notice(LANG("obj.a057a771", null)))
+			to_chat(user, span_notice(LANG("obj.a057a771994f78fc", null)))
 		else
-			to_chat(user, span_notice(LANG("obj.0c97dd37", list(DisplayTimeText(det_time)))))
+			to_chat(user, span_notice(LANG("obj.0c97dd376d22887a", list(DisplayTimeText(det_time)))))
 		return TRUE
 
 /obj/item/grenade/multitool_act(mob/living/user, obj/item/tool)
@@ -238,17 +238,17 @@
 
 	. = TRUE
 
-	var/newtime = tgui_input_list(user, LANG("obj.504dadf9", null), LANG("obj.8a311a4d", null), possible_fuse_time)
+	var/newtime = tgui_input_list(user, LANG("obj.504dadf91f2c313f", null), LANG("obj.8a311a4d01b92aa8", null), possible_fuse_time)
 	if (isnull(newtime))
 		return
 	if(!user.can_perform_action(src))
 		return
 	if(newtime == "Instant" && change_det_time(0))
-		to_chat(user, span_notice(LANG("obj.a057a771", null)))
+		to_chat(user, span_notice(LANG("obj.a057a771994f78fc", null)))
 		return
 	newtime = round(text2num(newtime))
 	if(change_det_time(newtime))
-		to_chat(user, span_notice(LANG("obj.0c97dd37", list(DisplayTimeText(det_time)))))
+		to_chat(user, span_notice(LANG("obj.0c97dd376d22887a", list(DisplayTimeText(det_time)))))
 
 /**
  * Sets det_time to a number in SECONDS
@@ -286,7 +286,7 @@
 
 /obj/item/grenade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(damage && attack_type == PROJECTILE_ATTACK && damage_type != STAMINA && prob(15))
-		owner.visible_message(span_danger(LANG("obj.722c4e7e", list(attack_text, owner, src))))
+		owner.visible_message(span_danger(LANG("obj.722c4e7e8e0126d5", list(attack_text, owner, src))))
 		var/turf/source_turf = get_turf(src)
 		var/logmsg = "held a grenade detonated by a projectile ([hitby]) at [COORD(source_turf)]"
 		owner.log_message(logmsg, LOG_GAME)

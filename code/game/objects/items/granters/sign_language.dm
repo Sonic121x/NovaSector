@@ -17,12 +17,12 @@
 	if (!iscarbon(user))
 		return
 	if (user.GetComponent(/datum/component/sign_language))
-		to_chat(user, span_warning(LANG("obj.cc0fbef0", null)))
+		to_chat(user, span_warning(LANG("obj.cc0fbef066639b1e", null)))
 		return
 	return TRUE
 
 /obj/item/book/granter/sign_language/recoil(mob/living/user)
-	to_chat(user, span_warning(LANG("obj.200a54f4", null)))
+	to_chat(user, span_warning(LANG("obj.200a54f47e228769", null)))
 
 /// Called when the reading is completely finished. This is where the actual granting should happen.
 /obj/item/book/granter/sign_language/on_reading_finished(mob/living/user)

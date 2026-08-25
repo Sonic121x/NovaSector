@@ -86,7 +86,7 @@
 		return
 	var/obj/item/pai_card/pai_holder = owner.loc
 	if(!istype(pai_holder.loc, /obj/item/modular_computer))
-		owner.balloon_alert(owner, LANG("datum.fef37683", null))
+		owner.balloon_alert(owner, LANG("datum.fef37683a7f4cb8f", null))
 		return
 	var/obj/item/modular_computer/computer_host = pai_holder.loc
 	computer_host.interact(owner)

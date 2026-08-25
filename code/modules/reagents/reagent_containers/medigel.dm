@@ -60,38 +60,38 @@
 
 /obj/item/reagent_containers/medigel/mode_change_message(mob/user)
 	var/squirt_mode = amount_per_transfer_from_this == initial(amount_per_transfer_from_this)
-	to_chat(user, span_notice(LANG("obj.21b32362", list(squirt_mode ? "extended sprays":"short bursts", amount_per_transfer_from_this))))
+	to_chat(user, span_notice(LANG("obj.21b323621dbd101b", list(squirt_mode ? "extended sprays":"short bursts", amount_per_transfer_from_this))))
 
 /obj/item/reagent_containers/medigel/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isliving(interacting_with))
 		return NONE
 	if(!reagents || !reagents.total_volume)
-		to_chat(user, span_warning(LANG("obj.02d482cc", list(src))))
+		to_chat(user, span_warning(LANG("obj.02d482cc1aef0cef", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	user.changeNext_move(CLICK_CD_MELEE)
 	if(interacting_with == user)
-		interacting_with.visible_message(span_notice(LANG("obj.b97b1831", list(user, apply_method, src, user.p_them()))))
+		interacting_with.visible_message(span_notice(LANG("obj.b97b1831153d4291", list(user, apply_method, src, user.p_them()))))
 		if(self_delay)
 			if(!do_after(user, self_delay, interacting_with))
 				return ITEM_INTERACT_BLOCKING
 			if(!reagents || !reagents.total_volume)
 				return ITEM_INTERACT_BLOCKING
-		to_chat(interacting_with, span_notice(LANG("obj.7d788d27", list(apply_method, src))))
+		to_chat(interacting_with, span_notice(LANG("obj.7d788d27df68ee87", list(apply_method, src))))
 
 	else
 		log_combat(user, interacting_with, "attempted to apply", src, reagents.get_reagent_log_string())
 		interacting_with.visible_message(
-			span_danger(LANG("obj.af7ed728", list(user, apply_method, src, interacting_with))),
-			span_userdanger(LANG("obj.55908223", list(user, apply_method, src))),
+			span_danger(LANG("obj.af7ed728020b22cc", list(user, apply_method, src, interacting_with))),
+			span_userdanger(LANG("obj.55908223edf36040", list(user, apply_method, src))),
 		)
 		if(!do_after(user, CHEM_INTERACT_DELAY(3 SECONDS, user), interacting_with))
 			return ITEM_INTERACT_BLOCKING
 		if(!reagents || !reagents.total_volume)
 			return ITEM_INTERACT_BLOCKING
 		interacting_with.visible_message(
-			span_danger(LANG("obj.9b4d2f27", list(user, apply_method, interacting_with, src))),
-			span_userdanger(LANG("obj.8f8cad87", list(user, apply_method, src))),
+			span_danger(LANG("obj.9b4d2f273bfbd8aa", list(user, apply_method, interacting_with, src))),
+			span_userdanger(LANG("obj.8f8cad87c137cd79", list(user, apply_method, src))),
 		)
 
 	log_combat(user, interacting_with, "applied", src, reagents.get_reagent_log_string())
@@ -124,14 +124,14 @@
 /obj/item/reagent_containers/medigel/synthflesh/examine(mob/user)
 	. = ..()
 	if(reagents.total_volume >= 60)
-		. += span_info(LANG("obj.1bd2a6d8", null))
+		. += span_info(LANG("obj.1bd2a6d8f1e974be", null))
 
 /obj/item/reagent_containers/medigel/synthflesh/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(iscarbon(interacting_with) && reagents?.total_volume)
 		var/mob/living/carbon/carbies = interacting_with
 		if(HAS_TRAIT_FROM(carbies, TRAIT_HUSK, BURN) && carbies.get_fire_loss() > UNHUSK_DAMAGE_THRESHOLD * 2.5)
 			// give them a warning if the mob is a husk but synthflesh won't unhusk yet
-			carbies.visible_message(span_boldwarning(LANG("obj.b7d1172b", list(carbies))))
+			carbies.visible_message(span_boldwarning(LANG("obj.b7d1172b4fc87af9", list(carbies))))
 
 	return ..()
 

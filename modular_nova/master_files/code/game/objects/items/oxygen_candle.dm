@@ -14,7 +14,7 @@
 /obj/item/oxygen_candle/attack_self(mob/user)
 	if(!pulled)
 		playsound(src, 'sound/effects/fuse.ogg', 75, 1)
-		balloon_alert(user, LANG("obj.b0c31e2d", null))
+		balloon_alert(user, LANG("obj.b0c31e2d9b734306", null))
 		icon_state = "oxycandle_burning"
 		pulled = TRUE
 		processing = TRUE

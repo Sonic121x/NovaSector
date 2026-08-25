@@ -36,7 +36,7 @@
 /datum/round_event/grey_tide/announce(fake)
 	if(fake)
 		severity = rand(1,3)
-	priority_announce(LANG("datum.cfdc6e64", list(station_name(), severity)), "Security Alert")
+	priority_announce(LANG("datum.cfdc6e640bb60783", list(station_name(), severity)), "Security Alert")
 
 /datum/round_event/grey_tide/start()
 	if(!length(grey_tide_areas))

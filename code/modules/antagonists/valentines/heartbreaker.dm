@@ -17,5 +17,5 @@
 
 /datum/antagonist/heartbreaker/greet()
 	. = ..()
-	to_chat(owner, span_boldwarning(LANG("datum.87144542", null)))
+	to_chat(owner, span_boldwarning(LANG("datum.87144542703d6494", null)))
 	owner.announce_objectives()

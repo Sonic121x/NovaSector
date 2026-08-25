@@ -306,9 +306,9 @@
 	var/obj/item/stack/medical/wrap/current_gauze = LAZYACCESS(applied_items, LIMB_ITEM_GAUZE)
 	if(!LAZYLEN(wounds) && current_gauze && !replaced) // no more wounds = no need for the gauze anymore
 		if (owner)
-			owner.visible_message(span_notice(LANG("obj.3cbf90d7", list(current_gauze.name, owner, name))), span_notice(LANG("obj.3f50dfd2", list(current_gauze, plaintext_zone))))
+			owner.visible_message(span_notice(LANG("obj.3cbf90d7d4009513", list(current_gauze.name, owner, name))), span_notice(LANG("obj.3f50dfd2d46406d4", list(current_gauze, plaintext_zone))))
 		else
-			visible_message(span_notice(LANG("obj.350f5141", list(current_gauze.name, name))))
+			visible_message(span_notice(LANG("obj.350f51410031c236", list(current_gauze.name, name))))
 		qdel(current_gauze)
 
 	refresh_bleed_rate()

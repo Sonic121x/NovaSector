@@ -98,7 +98,7 @@
 			var/turf/closed/mineral/gibtonite/giberal_turf = target
 			if(giberal_turf.stage != GIBTONITE_UNSTRUCK)
 				playsound(chassis, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
-				to_chat(source, span_warning(LANG("obj.0b1b3180", list(icon2html(src, source)))))
+				to_chat(source, span_warning(LANG("obj.0b1b31805e682de8", list(icon2html(src, source)))))
 				return
 
 	else
@@ -121,9 +121,9 @@
 	if(DOING_INTERACTION_WITH_TARGET(source, target) && do_after_cooldown(target, source, DOAFTER_SOURCE_MECHADRILL))
 		return
 
-	target.visible_message(span_warning(LANG("obj.fbfd70ea", list(chassis, target))), \
-				span_userdanger(LANG("obj.c5d557d3", list(chassis))), \
-				span_hear(LANG("obj.059c723d", null)))
+	target.visible_message(span_warning(LANG("obj.fbfd70ea73cfef29", list(chassis, target))), \
+				span_userdanger(LANG("obj.c5d557d3221be298", list(chassis))), \
+				span_hear(LANG("obj.059c723dbedc3ed0", null)))
 
 	log_message("Started drilling [target]", LOG_MECHA)
 
@@ -194,8 +194,8 @@
 	chassis.collect_ore()
 
 /obj/item/mecha_parts/mecha_equipment/drill/proc/drill_mob(mob/living/target, mob/living/user)
-	target.visible_message(span_danger(LANG("obj.ac1c47d1", list(chassis, target, src))), \
-						span_userdanger(LANG("obj.cd795524", list(chassis, src))))
+	target.visible_message(span_danger(LANG("obj.ac1c47d14770fd0f", list(chassis, target, src))), \
+						span_userdanger(LANG("obj.cd7955248b3776dd", list(chassis, src))))
 	log_combat(user, target, "drilled", "[name]", "Combat mode: [user.combat_mode ? "On" : "Off"])(DAMTYPE: [uppertext(damtype)])")
 	if(target.stat == DEAD && target.get_brute_loss() >= (target.maxHealth * 2))
 		log_combat(user, target, "gibbed", name)

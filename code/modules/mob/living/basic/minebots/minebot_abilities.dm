@@ -12,7 +12,7 @@
 
 /datum/action/cooldown/mob_cooldown/minedrone/Activate()
 	owner.set_light_on(!owner.light_on)
-	owner.balloon_alert(owner, LANG("datum.cad5a2e5", list(owner.light_on ? "on" : "off")))
+	owner.balloon_alert(owner, LANG("datum.cad5a2e59941eaad", list(owner.light_on ? "on" : "off")))
 
 /datum/action/cooldown/mob_cooldown/minedrone/dump_ore
 	name = "Dump Ore"
@@ -23,7 +23,7 @@
 		return TRUE
 
 	if(feedback)
-		owner.balloon_alert(owner, LANG("datum.522067e9", null))
+		owner.balloon_alert(owner, LANG("datum.522067e9a55c8cf7", null))
 	return FALSE
 
 /datum/action/cooldown/mob_cooldown/minedrone/dump_ore/Activate()
@@ -48,7 +48,7 @@
 
 	owner.sync_lighting_plane_cutoff()
 
-	to_chat(owner, span_notice(LANG("datum.c6cd7787", list((owner.sight & SEE_TURFS) ? "on" : "off"))))
+	to_chat(owner, span_notice(LANG("datum.c6cd77878cc0422f", list((owner.sight & SEE_TURFS) ? "on" : "off"))))
 
 /datum/action/cooldown/mob_cooldown/missile_launcher
 	name = "Launch Missile"
@@ -69,7 +69,7 @@
 	if(lavaland_equipment_pressure_check(get_turf(owner)))
 		return TRUE
 	if(feedback)
-		owner.balloon_alert(owner, LANG("datum.aba09546", null))
+		owner.balloon_alert(owner, LANG("datum.aba095460076b197", null))
 	return FALSE
 
 /datum/action/cooldown/mob_cooldown/missile_launcher/Activate(atom/target)
@@ -109,7 +109,7 @@
 	if(lavaland_equipment_pressure_check(get_turf(owner)))
 		return TRUE
 	if(feedback)
-		owner.balloon_alert(owner, LANG("datum.aba09546", null))
+		owner.balloon_alert(owner, LANG("datum.aba095460076b197", null))
 	return FALSE
 
 /datum/action/cooldown/mob_cooldown/drop_landmine/Activate(atom/target)

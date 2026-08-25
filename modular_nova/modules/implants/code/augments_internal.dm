@@ -17,11 +17,11 @@
 
 	human_owner.AdjustUnconscious(-5 SECONDS * seconds_per_tick, FALSE)
 	human_owner.AdjustSleeping(-5 SECONDS * seconds_per_tick, FALSE)
-	to_chat(owner, span_notice(LANG("obj.41298d8e", null)))
+	to_chat(owner, span_notice(LANG("obj.41298d8ecbb083ac", null)))
 	cooldown = addtimer(CALLBACK(src, PROC_REF(sleepytimerend)), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE | TIMER_DELETE_ME)
 
 /obj/item/organ/cyberimp/brain/anti_sleep/proc/sleepytimerend()
-	to_chat(owner, span_notice(LANG("obj.61042d2b", null)))
+	to_chat(owner, span_notice(LANG("obj.61042d2bec2f13af", null)))
 	cooldown = null
 
 /obj/item/organ/cyberimp/brain/anti_sleep/emp_act(severity)

@@ -39,8 +39,8 @@
 		return
 
 	user.visible_message(
-		span_warning(LANG("obj.c40f7ec1", list(user, src, user.p_their()))),
-		span_warning(LANG("obj.f8000d14", null)),
+		span_warning(LANG("obj.c40f7ec1049e5a79", list(user, src, user.p_their()))),
+		span_warning(LANG("obj.f8000d14f629b26b", null)),
 	)
 
 	icon_screen = "slots_screen_working"
@@ -57,17 +57,17 @@
 /// Validates that the user can use the cursed slot machine. User is the person using the slot machine. Returns TRUE if we can, FALSE otherwise.
 /obj/structure/cursed_slot_machine/proc/check_and_set_usage(mob/living/carbon/human/user)
 	if(in_use)
-		balloon_alert_to_viewers(LANG("obj.50cdaf38", null))
+		balloon_alert_to_viewers(LANG("obj.50cdaf38320e8e1b", null))
 		return FALSE
 
 	var/signal_value = SEND_SIGNAL(user, COMSIG_CURSED_SLOT_MACHINE_USE, max_curse_amount)
 
 	if(!COOLDOWN_FINISHED(src, spin_cooldown) || (signal_value & SLOT_MACHINE_USE_POSTPONE))
-		to_chat(user, span_danger(LANG("obj.f62b8c91", null)))
+		to_chat(user, span_danger(LANG("obj.f62b8c91a2db7c86", null)))
 		return FALSE
 
 	if(signal_value & SLOT_MACHINE_USE_CANCEL) // failsafe in case we don't want to let the machine be used for some reason (like if we're maxed out on curses but not getting gibbed)
-		say(LANG("obj.51ad7ddd", null))
+		say(LANG("obj.51ad7dddc880d21b", null))
 		return FALSE
 
 	in_use = TRUE
@@ -86,13 +86,13 @@
 
 		SEND_SIGNAL(user, COMSIG_CURSED_SLOT_MACHINE_LOST)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
-		balloon_alert_to_viewers(LANG("obj.0a26d47c", null))
+		balloon_alert_to_viewers(LANG("obj.0a26d47c3a52119a", null))
 		return
 
 	playsound(src, 'sound/machines/lavaland/cursed_slot_machine_jackpot.ogg', 50, FALSE)
 	new prize(get_turf(src))
 	if(user)
-		to_chat(user, span_boldwarning(LANG("obj.3d84ca5b", null)))
+		to_chat(user, span_boldwarning(LANG("obj.3d84ca5ba896ae8a", null)))
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CURSED_SLOT_MACHINE_WON)
 	qdel(src)
@@ -113,7 +113,7 @@
 /obj/structure/cursed_money/proc/collapse()
 	if(QDELETED(src))
 		return
-	visible_message(span_warning(LANG("obj.2bff6ada", list(src))))
+	visible_message(span_warning(LANG("obj.2bff6ada32465b4e", list(src))))
 	qdel(src)
 
 /obj/structure/cursed_money/attack_hand(mob/living/user, list/modifiers)
@@ -121,8 +121,8 @@
 	if(.)
 		return
 	user.visible_message(
-		span_warning(LANG("obj.bd96ad1b", list(user))),
-		span_warning(LANG("obj.3fda8865", list(span_boldwarning("You open the bag...!")))),
+		span_warning(LANG("obj.bd96ad1baf364cb0", list(user))),
+		span_warning(LANG("obj.3fda8865351d593b", list(span_boldwarning("You open the bag...!")))),
 	)
 	var/turf/location = get_turf(user)
 	var/obj/item/dice/d20/fate/one_use/critical_fail = new(location)

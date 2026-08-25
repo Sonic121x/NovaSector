@@ -25,7 +25,7 @@
 
 /obj/item/assembly/shock_kit/wrench_act(mob/living/user, obj/item/I)
 	..()
-	to_chat(user, span_notice(LANG("obj.fd5c1c1d", list(src))))
+	to_chat(user, span_notice(LANG("obj.fd5c1c1d92627348", list(src))))
 	if(helmet_part)
 		helmet_part.forceMove(drop_location())
 		helmet_part.master = null

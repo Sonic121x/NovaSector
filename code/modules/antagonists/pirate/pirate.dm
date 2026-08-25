@@ -14,7 +14,7 @@
 
 /datum/antagonist/pirate/greet()
 	. = ..()
-	to_chat(owner, LANG("datum.56a844c9", list(MONEY_NAME)))
+	to_chat(owner, LANG("datum.56a844c9b82a05e6", list(MONEY_NAME)))
 	owner.announce_objectives()
 
 /datum/antagonist/pirate/get_team()
@@ -106,7 +106,7 @@
 /datum/team/pirate/roundend_report()
 	var/list/parts = list()
 
-	parts += span_header(LANG("datum.9027b23a", null))
+	parts += span_header(LANG("datum.9027b23abda52c3f", null))
 
 	var/all_dead = TRUE
 	for(var/datum/mind/M in members)
@@ -117,7 +117,7 @@
 	parts += "Loot stolen: "
 	var/datum/objective/loot/L = locate() in objectives
 	parts += L.loot_listing()
-	parts += LANG("datum.b7e5eef3", list(L.get_loot_value(), L.target_value, MONEY_NAME))
+	parts += LANG("datum.b7e5eef38b701af0", list(L.get_loot_value(), L.target_value, MONEY_NAME))
 
 	if(L.check_completion() && !all_dead)
 		parts += "<span class='greentext big'>The pirate crew was successful!</span>"

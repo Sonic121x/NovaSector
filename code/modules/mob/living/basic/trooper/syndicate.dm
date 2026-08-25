@@ -40,7 +40,7 @@
 
 /mob/living/basic/trooper/syndicate/melee/projectile_hit(obj/projectile/hitting_projectile, def_zone, piercing_hit, blocked)
 	if(prob(projectile_deflect_chance))
-		visible_message(span_danger(LANG("mob.4153262f", list(src, hitting_projectile))))
+		visible_message(span_danger(LANG("mob.4153262f6b80bdb8", list(src, hitting_projectile))))
 		return BULLET_ACT_BLOCK
 	return ..()
 

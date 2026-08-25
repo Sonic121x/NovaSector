@@ -38,7 +38,7 @@
 	desc = "A first aid kit with the ability to heal common types of injuries."
 
 /obj/item/storage/medkit/regular/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.bc4862b6", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.bc4862b64d9f8360", list(user, user.p_them(), src, user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/storage/medkit/regular/PopulateContents()
@@ -153,7 +153,7 @@
 	return "burn"
 
 /obj/item/storage/medkit/fire/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.98d8895b", list(user, src, user.p_them(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.98d8895b1de9d09f", list(user, src, user.p_them(), user.p_theyre()))))
 	return FIRELOSS
 
 /obj/item/storage/medkit/fire/PopulateContents()
@@ -177,7 +177,7 @@
 	return "tox"
 
 /obj/item/storage/medkit/toxin/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.576eca15", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.576eca150e0e9f50", list(user, src, user.p_theyre()))))
 	return TOXLOSS
 
 
@@ -204,7 +204,7 @@
 	return "oxy"
 
 /obj/item/storage/medkit/o2/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.90110bbd", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.90110bbd9c74cb76", list(user, user.p_their(), src, user.p_theyre()))))
 	return OXYLOSS
 
 /obj/item/storage/medkit/o2/PopulateContents()
@@ -228,7 +228,7 @@
 	return "brute"
 
 /obj/item/storage/medkit/brute/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.939da5a1", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.939da5a1c6f8e3ae", list(user, user.p_them(), src, user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/storage/medkit/brute/PopulateContents()
@@ -375,12 +375,12 @@
 		return ..()
 	//Making a medibot!
 	if(contents.len >= 1)
-		balloon_alert(user, LANG("obj.ca142d62", null))
+		balloon_alert(user, LANG("obj.ca142d621fdf23fb", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/bot_assembly/medbot/medbot_assembly = new(drop_location())
 	medbot_assembly.set_skin(get_medbot_skin())
-	medbot_assembly.balloon_alert(user, LANG("obj.045a060f", null))
+	medbot_assembly.balloon_alert(user, LANG("obj.045a060fc996efce", null))
 	medbot_assembly.robot_arm = tool.type
 	medbot_assembly.medkit_type = type
 	qdel(tool)
@@ -457,13 +457,13 @@
 		var/obj/item/reagent_containers/RC = tool
 		var/units = RC.reagents.trans_to(src, RC.amount_per_transfer_from_this, transferred_by = user)
 		if(units)
-			balloon_alert(user, LANG("obj.d29d3114", list(units)))
+			balloon_alert(user, LANG("obj.d29d3114219fcbfd", list(units)))
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
 	if(istype(tool, /obj/item/plunger))
-		balloon_alert(user, LANG("obj.137d3098", null))
+		balloon_alert(user, LANG("obj.137d309854f31bcb", null))
 		if(do_after(user, 1 SECONDS, target = src))
-			balloon_alert(user, LANG("obj.d21fd627", null))
+			balloon_alert(user, LANG("obj.d21fd627b9aa4a2e", null))
 			reagents.clear_reagents()
 		return ITEM_INTERACT_SUCCESS
 	return ..()
@@ -472,14 +472,14 @@
 	if(HAS_TRAIT(user, TRAIT_RESISTCOLD)) //if they're immune to cold, just do the box suicide
 		var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 		if(myhead)
-			user.visible_message(span_suicide(LANG("obj.7154be6d", list(user, user.p_their(), src, user.p_theyre()))))
+			user.visible_message(span_suicide(LANG("obj.7154be6dfe702e93", list(user, user.p_their(), src, user.p_theyre()))))
 			if (myhead.dismember())
 				myhead.forceMove(src) //force your enemies to kill themselves with your head collection box!
 			playsound(user, "desecration-01.ogg", 50, TRUE, -1)
 			return BRUTELOSS
-		user.visible_message(span_suicide(LANG("obj.f98873ca", list(user, user.p_them(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.f98873cab0cbe89e", list(user, user.p_them(), src, user.p_theyre()))))
 		return BRUTELOSS
-	user.visible_message(span_suicide(LANG("obj.abd9352f", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.abd9352fc2be76a7", list(user, user.p_their(), src, user.p_theyre()))))
 	user.adjust_bodytemperature(-300)
 	user.apply_status_effect(/datum/status_effect/freon)
 	return FIRELOSS

@@ -20,8 +20,8 @@
 
 /datum/surgery_operation/basic/dissection/all_required_strings()
 	. += ..()
-	. += LANG("datum.75e2af90", null)
-	. += LANG("datum.34910bb1", null)
+	. += LANG("datum.75e2af90d115d6c5", null)
+	. += LANG("datum.34910bb15be56154", null)
 
 /datum/surgery_operation/basic/dissection/state_check(mob/living/patient)
 	return !HAS_TRAIT_FROM(patient, TRAIT_DISSECTED, EXPERIMENTAL_SURGERY_TRAIT) && patient.stat == DEAD
@@ -114,7 +114,7 @@
 
 /obj/item/research_notes/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.ddfaef18", list(value)))
+	. += span_notice(LANG("obj.ddfaef184ce7c9de", list(value)))
 
 /obj/item/research_notes/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/research_notes))

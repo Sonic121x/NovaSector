@@ -231,7 +231,7 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/blink_spam(blink_counter, target_slowness, cross_counter)
 	update_cooldowns(list(COOLDOWN_UPDATE_SET_RANGED = max(0.5 SECONDS, major_attack_cooldown - anger_modifier * 0.75)))
 	if(health < maxHealth * 0.5 && blink_counter > 1)
-		visible_message(span_hierophant(LANG("mob.b44f16c5", null)))
+		visible_message(span_hierophant(LANG("mob.b44f16c5a723bd12", null)))
 		var/oldcolor = color
 		animate(src, color = "#660099", time = 6)
 		SLEEP_CHECK_DEATH(6, src)
@@ -252,7 +252,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/cross_blast_spam(blink_counter, target_slowness, cross_counter)
 	update_cooldowns(list(COOLDOWN_UPDATE_SET_RANGED = max(0.5 SECONDS, major_attack_cooldown - anger_modifier * 0.75)))
-	visible_message(span_hierophant(LANG("mob.4712f875", null)))
+	visible_message(span_hierophant(LANG("mob.4712f87544b464f2", null)))
 	blinking = TRUE
 	var/oldcolor = color
 	animate(src, color = "#660099", time = 6)
@@ -272,7 +272,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/chaser_swarm(blink_counter, target_slowness, cross_counter)
 	update_cooldowns(list(COOLDOWN_UPDATE_SET_RANGED = max(0.5 SECONDS, major_attack_cooldown - anger_modifier * 0.75)))
-	visible_message(span_hierophant(LANG("mob.482108cc", null)))
+	visible_message(span_hierophant(LANG("mob.482108cccf10e0a1", null)))
 	blinking = TRUE
 	var/oldcolor = color
 	animate(src, color = "#660099", time = 6)
@@ -369,7 +369,7 @@ Difficulty: Hard
 		B.damage = 30
 	animate(src, alpha = 0, time = 2, easing = SINE_EASING|EASE_OUT) //fade out
 	SLEEP_CHECK_DEATH(1, src)
-	visible_message(span_hierophant_warning(LANG("mob.4bb7a725", list(src))))
+	visible_message(span_hierophant_warning(LANG("mob.4bb7a725a18425e7", list(src))))
 	ADD_TRAIT(src, TRAIT_UNDENSE, VANISHING_TRAIT)
 	SLEEP_CHECK_DEATH(2, src)
 	forceMove(T)
@@ -377,7 +377,7 @@ Difficulty: Hard
 	animate(src, alpha = 255, time = 2, easing = SINE_EASING|EASE_IN) //fade IN
 	SLEEP_CHECK_DEATH(1, src)
 	REMOVE_TRAIT(src, TRAIT_UNDENSE, VANISHING_TRAIT)
-	visible_message(span_hierophant_warning(LANG("mob.61581aad", list(src))))
+	visible_message(span_hierophant_warning(LANG("mob.61581aadb868bdab", list(src))))
 	SLEEP_CHECK_DEATH(1, src) //at this point the blasts we made detonate
 	blinking = FALSE
 
@@ -426,14 +426,14 @@ Difficulty: Hard
 	if(!beacon || client)
 		return
 	sitting_at_center = TRUE
-	visible_message(span_hierophant_warning(LANG("mob.3633537b", null)))
+	visible_message(span_hierophant_warning(LANG("mob.3633537bc961a31e", null)))
 	blink(beacon)
 	adjustHealth(min((health - maxHealth) * 0.5, -250)) //heal for 50% of our missing health, minimum 10% of maximum health
 	wander = FALSE
 	if(health > maxHealth * 0.9)
-		visible_message(span_hierophant(LANG("mob.646da8f5", null)))
+		visible_message(span_hierophant(LANG("mob.646da8f5a6b705b9", null)))
 	else
-		visible_message(span_hierophant(LANG("mob.f6f51cac", null)))
+		visible_message(span_hierophant(LANG("mob.f6f51cac40042e7b", null)))
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/death()
 	if(health > 0 || stat == DEAD)
@@ -441,15 +441,15 @@ Difficulty: Hard
 
 	set_stat(DEAD)
 	blinking = TRUE //we do a fancy animation, release a huge burst(), and leave our staff.
-	visible_message(span_hierophant(LANG("mob.0de96414", null)))
-	visible_message(span_hierophant_warning(LANG("mob.9c1aed9d", list(src))))
+	visible_message(span_hierophant(LANG("mob.0de96414ab153278", null)))
+	visible_message(span_hierophant_warning(LANG("mob.9c1aed9df0f9414b", list(src))))
 	INVOKE_ASYNC(src, PROC_REF(hierophant_burst), null, get_turf(src), 10)
 	set_stat(STABLE) // deathgasp won't run if dead, stupid
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/celebrate_kill(mob/living/L)
 	visible_message(span_hierophant_warning("\"[pick(kill_phrases)]\""))
-	visible_message(span_hierophant_warning(LANG("mob.bd300b27", list(src, L))),span_userdanger(LANG("mob.5fe4783a", list(L))))
+	visible_message(span_hierophant_warning(LANG("mob.bd300b271ea971b3", list(src, L))),span_userdanger(LANG("mob.5fe4783a4e060539", list(L))))
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/CanAttack(atom/the_target)
 	. = ..()
@@ -718,7 +718,7 @@ Difficulty: Hard
 		if(L.client)
 			flash_color(L.client, "#660099", 1)
 		playsound(L,'sound/items/weapons/sear.ogg', 50, TRUE, -4)
-		to_chat(L, span_userdanger(LANG("obj.91bf91e6", list(name))))
+		to_chat(L, span_userdanger(LANG("obj.91bf91e631bd9373", list(name))))
 		var/limb_to_hit = L.get_bodypart(L.get_random_valid_zone(even_weights = TRUE))
 		var/armor = L.run_armor_check(limb_to_hit, MELEE, "Your armor absorbs [src]!", "Your armor blocks part of [src]!", FALSE, 50, "Your armor was penetrated by [src]!")
 		L.apply_damage(damage, BURN, limb_to_hit, armor, wound_bonus=CANT_WOUND)
@@ -740,7 +740,7 @@ Difficulty: Hard
 			var/mob/living/occupant = O
 			if(friendly_fire_check && caster?.faction_check_atom(occupant))
 				continue
-			to_chat(occupant, span_userdanger(LANG("obj.32dae680", list(M.name, name))))
+			to_chat(occupant, span_userdanger(LANG("obj.32dae6806b56170a", list(M.name, name))))
 			playsound(M,'sound/items/weapons/sear.ogg', 50, TRUE, -4)
 			M.take_damage(damage, BURN, 0, 0)
 
@@ -772,16 +772,16 @@ Difficulty: Hard
 
 	var/obj/item/hierophant_club/club = tool
 	if(club.beacon != src)
-		to_chat(user, span_hierophant_warning(LANG("obj.7de78a10", null)))
+		to_chat(user, span_hierophant_warning(LANG("obj.7de78a1048088714", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.3641a3ec", null)))
+	to_chat(user, span_notice(LANG("obj.3641a3ec197e5977", null)))
 	if(!do_after(user, 5 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(src,'sound/effects/magic/blind.ogg', 100, TRUE, -4)
 	new /obj/effect/temp_visual/hierophant/telegraph/teleport(get_turf(src), user)
-	to_chat(user, span_hierophant_warning(LANG("obj.f2870dcf", list(src))))
+	to_chat(user, span_hierophant_warning(LANG("obj.f2870dcf548cd2cb", list(src))))
 	club.beacon = null
 	club.update_appearance(UPDATE_ICON_STATE)
 	user.update_mob_action_buttons()

@@ -87,7 +87,7 @@
 
 /obj/item/grown/log/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.get_sharpness())
-		user.balloon_alert(user, LANG("obj.dac102ae", list(plank_count, plank_name)))
+		user.balloon_alert(user, LANG("obj.dac102ae2c2f1de9", list(plank_count, plank_name)))
 		new plank_type(user.loc, plank_count)
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
@@ -95,10 +95,10 @@
 	if(CheckAccepted(tool))
 		var/obj/item/food/grown/leaf = tool
 		if(!HAS_TRAIT(leaf, TRAIT_DRIED))
-			balloon_alert(user, LANG("obj.a6ee2a30", null))
+			balloon_alert(user, LANG("obj.a6ee2a30bd5706a5", null))
 			return ITEM_INTERACT_BLOCKING
 
-		user.balloon_alert(user, LANG("obj.d1ec31a1", null))
+		user.balloon_alert(user, LANG("obj.d1ec31a15652c8ad", null))
 		var/obj/item/flashlight/flare/torch/new_torch = new /obj/item/flashlight/flare/torch(user.loc)
 		user.dropItemToGround(tool)
 		user.put_in_active_hand(new_torch)
@@ -176,7 +176,7 @@
 		if(LAZYLEN(buckled_mobs))
 			return
 		if(buckle_mob(fallen_mob, TRUE))
-			to_chat(fallen_mob, span_userdanger(LANG("obj.1af7f6dd", list(src))))
+			to_chat(fallen_mob, span_userdanger(LANG("obj.1af7f6ddc05ff41a", list(src))))
 			fallen_mob.apply_damage(25 * levels, BRUTE, sharpness = SHARP_POINTY)
 			if(iscarbon(fallen_mob))
 				var/mob/living/carbon/fallen_carbon = fallen_mob
@@ -187,10 +187,10 @@
 /obj/structure/punji_sticks/unbuckle_mob(mob/living/buckled_mob, force, can_fall)
 	if(force)
 		return ..()
-	to_chat(buckled_mob, span_warning(LANG("obj.2fa6d181", list(src))))
+	to_chat(buckled_mob, span_warning(LANG("obj.2fa6d18143106c5e", list(src))))
 	buckled_mob.apply_damage(5, BRUTE, sharpness = SHARP_POINTY)
 	if(!do_after(buckled_mob, 5 SECONDS, target = src))
-		to_chat(buckled_mob, span_userdanger(LANG("obj.4bbdcf02", list(src))))
+		to_chat(buckled_mob, span_userdanger(LANG("obj.4bbdcf028a4d5c12", list(src))))
 		return
 	return ..()
 

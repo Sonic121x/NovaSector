@@ -86,7 +86,7 @@
 /obj/item/construction/rcd/examine(mob/user)
 	. = ..()
 	if(construction_upgrades)
-		. += LANG("obj.00a804a0", null)
+		. += LANG("obj.00a804a088798ee9", null)
 		if(construction_upgrades & RCD_UPGRADE_FRAMES)
 			. += /obj/item/rcd_upgrade/frames::name
 		if(construction_upgrades & RCD_UPGRADE_SIMPLE_CIRCUITS)
@@ -107,7 +107,7 @@
 
 /obj/item/construction/rcd/ui_action_click(mob/user, actiontype)
 	if (!COOLDOWN_FINISHED(src, destructive_scan_cooldown))
-		to_chat(user, span_warning(LANG("obj.cdab7dec", list(src))))
+		to_chat(user, span_warning(LANG("obj.cdab7decce1c2bc2", list(src))))
 		return
 
 	COOLDOWN_START(src, destructive_scan_cooldown, RCD_DESTRUCTIVE_SCAN_COOLDOWN)
@@ -117,11 +117,11 @@
 	var/turf/T = get_turf(user)
 
 	if(!isopenturf(T)) // Oh fuck
-		user.visible_message(span_suicide(LANG("obj.7fa5d3e5", list(user, user.p_them(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.7fa5d3e579f2aa61", list(user, user.p_them(), src, user.p_theyre()))))
 		return BRUTELOSS
 
 	mode = RCD_TURF
-	user.visible_message(span_suicide(LANG("obj.ff34aeae", list(user, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.ff34aeaede82e2bc", list(user, user.p_their(), user.p_theyre()))))
 	if(useResource(16, user)) // It takes 16 resources to construct a wall
 		var/success = T.rcd_act(user, src, list("[RCD_DESIGN_MODE]" = RCD_TURF, "[RCD_DESIGN_PATH]" = /turf/open/floor/plating/rcd))
 		T = get_turf(user)
@@ -133,7 +133,7 @@
 		user.gib(DROP_ALL_REMAINS)
 		return MANUAL_SUICIDE
 
-	user.visible_message(span_suicide(LANG("obj.ab7f036d", list(user))))
+	user.visible_message(span_suicide(LANG("obj.ab7f036d8953f571", list(user))))
 	return SHAME
 
 /**
@@ -171,7 +171,7 @@
 			//check if we can build our window on the grill
 			if(target_turf.is_blocked_turf(exclude_mobs = !is_full_tile, source_atom = null, ignore_atoms = structures_to_ignore, type_list = TRUE))
 				playsound(user, SFX_TOOL_SWITCH, 20, TRUE)
-				balloon_alert(user, LANG("obj.fa928166", null))
+				balloon_alert(user, LANG("obj.fa928166c3175fe1", null))
 				return FALSE
 
 		/**
@@ -191,7 +191,7 @@
 
 			if(ignore_types && target_turf.is_blocked_turf(exclude_mobs = FALSE, source_atom = null, ignore_atoms = ignore_types, type_list = TRUE))
 				playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
-				balloon_alert(user, LANG("obj.c5d5633d", null))
+				balloon_alert(user, LANG("obj.c5d5633d0af518e0", null))
 				return FALSE
 
 		//check if turf is blocked in for dense structures
@@ -226,7 +226,7 @@
 			//check if the structure can fit on this turf
 			if(target_turf.is_blocked_turf(exclude_mobs = ignore_mobs, source_atom = null, ignore_atoms = ignored_types, type_list = TRUE))
 				playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
-				balloon_alert(user, LANG("obj.08a96e4b", null))
+				balloon_alert(user, LANG("obj.08a96e4b13589fee", null))
 				return FALSE
 
 	return TRUE
@@ -261,7 +261,7 @@
 
 	//straight up can't touch this
 	if(mode == RCD_DECONSTRUCT && (target.resistance_flags & INDESTRUCTIBLE))
-		balloon_alert(user, LANG("obj.09c08211", null))
+		balloon_alert(user, LANG("obj.09c082115c5729c4", null))
 		return ITEM_INTERACT_BLOCKING
 
 	rcd_results[RCD_DESIGN_MODE] = mode
@@ -473,8 +473,8 @@
 	interact_with_atom(target, user, modifiers)
 
 /obj/item/construction/rcd/proc/detonate_pulse()
-	audible_message(span_danger(LANG("obj.36ccbfb7", list(src))), \
-	span_danger(LANG("obj.8e10116f", list(src))))
+	audible_message(span_danger(LANG("obj.36ccbfb7948e70de", list(src))), \
+	span_danger(LANG("obj.8e10116f5e13454e", list(src))))
 	// 5 seconds to get rid of it
 	addtimer(CALLBACK(src, PROC_REF(detonate_pulse_explode)), 5 SECONDS)
 
@@ -502,10 +502,10 @@
 	if(!iscyborg(borgy))
 		return FALSE
 	if(!borgy.cell)
-		balloon_alert(user, LANG("obj.ba8f2f7d", null))
+		balloon_alert(user, LANG("obj.ba8f2f7d51fc8b56", null))
 		return FALSE
 	if(borgy.cell.charge < (amount * energyfactor))
-		balloon_alert(user, LANG("obj.206fba9f", null))
+		balloon_alert(user, LANG("obj.206fba9f64179ead", null))
 		return FALSE
 	if(!dry_run)
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
@@ -613,7 +613,7 @@
 		return FALSE
 	var/obj/vehicle/sealed/mecha/gundam = owner
 	if(!gundam.has_charge(amount * MASS_TO_ENERGY))
-		gundam.balloon_alert(user, LANG("obj.206fba9f", null))
+		gundam.balloon_alert(user, LANG("obj.206fba9f64179ead", null))
 		return FALSE
 	if(!dry_run)
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
@@ -624,8 +624,8 @@
 	var/obj/item/mecha_parts/mecha_equipment/rcd/ourshell = loc
 	if(!istype(ourshell))
 		return
-	ourshell.audible_message(span_danger(LANG("obj.36ccbfb7", list(ourshell))), \
-	span_danger(LANG("obj.8e10116f", list(ourshell))))
+	ourshell.audible_message(span_danger(LANG("obj.36ccbfb7948e70de", list(ourshell))), \
+	span_danger(LANG("obj.8e10116f5e13454e", list(ourshell))))
 	// 5 seconds to get rid of it
 	addtimer(CALLBACK(src, PROC_REF(detonate_pulse_explode)), 5 SECONDS)
 

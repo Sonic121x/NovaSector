@@ -88,7 +88,7 @@
 	if (!should_be_regenning(parent))
 		return
 	var/mob/living/living_parent = parent
-	living_parent.visible_message(span_notice(LANG("datum.e5c2127f", list(living_parent))))
+	living_parent.visible_message(span_notice(LANG("datum.e5c2127f790a7f24", list(living_parent))))
 	START_PROCESSING(SSobj, src)
 	regeneration_start_timer = null
 	if (!outline_colour)

@@ -260,13 +260,13 @@
 
 /obj/item/gun/ballistic/automatic/pistol/stickman/equipped(mob/user, slot)
 	..()
-	to_chat(user, span_notice(LANG("obj.dcfb4f98", list(src))))
+	to_chat(user, span_notice(LANG("obj.dcfb4f98225a4bbe", list(src))))
 	if(prob(50))
-		to_chat(user, span_notice(LANG("obj.1eaa06b5", null)))
+		to_chat(user, span_notice(LANG("obj.1eaa06b5d0a2efb2", null)))
 		qdel(src)
 		user.update_icons()
 	else
-		to_chat(user, span_notice(LANG("obj.181b9d60", null)))
+		to_chat(user, span_notice(LANG("obj.181b9d604c8a7970", null)))
 		user.dropItemToGround(src)
 
 #define DOORHICKEY_GUN_MIN_DAMAGE 70
@@ -293,10 +293,10 @@
 	if (forced)
 		return ..()
 
-	balloon_alert(user, LANG("obj.df39269d", null))
+	balloon_alert(user, LANG("obj.df39269daba4ef3b", null))
 	playsound(user, 'sound/items/tools/screwdriver_operating.ogg', 75, FALSE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	if (!do_after(user, 2 SECONDS, src))
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return
 	. = ..()
 
@@ -305,12 +305,12 @@
 	if (!.)
 		return
 
-	balloon_alert(user, LANG("obj.fadcb15c", null))
+	balloon_alert(user, LANG("obj.fadcb15c52dd0247", null))
 	playsound(user, 'sound/items/tools/screwdriver_operating.ogg', 75, FALSE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	if (do_after(user, 2 SECONDS, src))
 		return TRUE
 
-	balloon_alert(user, LANG("obj.c67b5d27", null))
+	balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 	unload_ammo(user, forced = TRUE)
 	return FALSE
 
@@ -353,9 +353,9 @@
 	if (prob(damage_to_take - atom_integrity) && poor_sod)
 		shrapnel_bomb = TRUE
 
-	user.visible_message(span_danger(LANG("obj.3f825e62", list(src, shrapnel_bomb ? ", chunk of it embedding in [user]'s [user.parse_zone_with_bodypart(poor_sod.body_zone)]" : ""))),
-		span_userdanger(LANG("obj.3f825e62", list(src, shrapnel_bomb ? ", chunk of it embedding in your [poor_sod]!" : ""))),
-		span_hear(LANG("obj.8ec8a59b", null)))
+	user.visible_message(span_danger(LANG("obj.3f825e62b966591e", list(src, shrapnel_bomb ? ", chunk of it embedding in [user]'s [user.parse_zone_with_bodypart(poor_sod.body_zone)]" : ""))),
+		span_userdanger(LANG("obj.3f825e62b966591e", list(src, shrapnel_bomb ? ", chunk of it embedding in your [poor_sod]!" : ""))),
+		span_hear(LANG("obj.8ec8a59be6a4cd26", null)))
 
 	if (poor_sod)
 		poor_sod.receive_damage((damage_to_take - atom_integrity) * 0.5, wound_bonus = -10, exposed_wound_bonus = 20, sharpness = SHARP_EDGED, damage_source = src)
@@ -394,10 +394,7 @@
 
 /obj/item/disk/design_disk/liberator
 	name = "illegal 3D printer design disk"
-
-/obj/item/disk/design_disk/liberator/Initialize(mapload)
-	. = ..()
-	blueprints += new /datum/design/liberator_gun
+	blueprints = list(/datum/design/liberator_gun)
 
 #undef DOORHICKEY_GUN_MIN_DAMAGE
 #undef DOORHICKEY_GUN_MAX_DAMAGE

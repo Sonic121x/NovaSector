@@ -76,8 +76,8 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, LANG("obj.fc341850", null))
-	to_chat(user, span_warning(LANG("obj.28d4b8d6", list(src, src))))
+	balloon_alert(user, LANG("obj.fc341850100350c4", null))
+	to_chat(user, span_warning(LANG("obj.28d4b8d69da4f8f7", list(src, src))))
 	return TRUE
 
 /**
@@ -114,7 +114,7 @@
 	var/list/options = gps_locators
 	if(area_aim)
 		options += GLOB.teleportlocs
-	var/victim = tgui_input_list(user, LANG("obj.04cb3631", null), LANG("obj.2db5299a", null), options)
+	var/victim = tgui_input_list(user, LANG("obj.04cb36317d8e1805", null), LANG("obj.2db5299afb62834f", null), options)
 	if(isnull(victim))
 		return
 	if(isnull(options[victim]))

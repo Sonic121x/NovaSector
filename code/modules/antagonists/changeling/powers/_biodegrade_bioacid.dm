@@ -12,7 +12,7 @@
 
 /datum/reagent/toxin/acid/bio_acid/expose_mob(mob/living/exposed_mob, methods = TOUCH, reac_volume, show_message = TRUE, touch_protection)
 	if(IS_CHANGELING(exposed_mob))
-		to_chat(exposed_mob, span_changeling(LANG("datum.261281e1", null)))
+		to_chat(exposed_mob, span_changeling(LANG("datum.261281e12ab30f79", null)))
 		volume = min(0.1, volume)
 		holder.update_total()
 		return

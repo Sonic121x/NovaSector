@@ -111,12 +111,12 @@ ADMIN_VERB(cmd_show_at_markers, R_DEBUG, "显示回合开始活跃地块标记",
 		count++
 
 	if(count)
-		to_chat(user, LANG("datum.8113b3f5", list(count)), confidential = TRUE)
+		to_chat(user, LANG("datum.8113b3f50c55b6c7", list(count)), confidential = TRUE)
 	else
 		for(var/t in GLOB.active_turfs_startlist)
 			new /obj/effect/abstract/marker/at(t)
 			count++
-		to_chat(user, LANG("datum.50547654", list(count)), confidential = TRUE)
+		to_chat(user, LANG("datum.505476541776e0ca", list(count)), confidential = TRUE)
 
 	BLACKBOX_LOG_ADMIN_VERB("Show Roundstart Active Turf Markers")
 
@@ -131,7 +131,7 @@ ADMIN_VERB(disable_mapping_verbs, R_DEBUG, "禁用地图编辑命令", "Disable 
 
 ADMIN_VERB_VISIBILITY(count_objects_on_z_level, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(count_objects_on_z_level, R_DEBUG, "统计 Z 层物体", "Counts the number of objects of a certain type on a specific z-level.", ADMIN_CATEGORY_MAPPING)
-	var/level = input(user, LANG("datum.fd40161b", null),LANG("datum.75959238", null)) as text|null
+	var/level = input(user, LANG("datum.fd40161bbda95165", null),LANG("datum.759592382c04ce83", null)) as text|null
 	if(!level)
 		return
 	var/num_level = text2num(level)
@@ -140,7 +140,7 @@ ADMIN_VERB(count_objects_on_z_level, R_DEBUG, "统计 Z 层物体", "Counts the 
 	if(!isnum(num_level))
 		return
 
-	var/type_text = input(user, LANG("datum.de1bc4fe", null),LANG("datum.b999e666", null)) as text|null
+	var/type_text = input(user, LANG("datum.de1bc4fe2e1ada31", null),LANG("datum.b999e666dc340efa", null)) as text|null
 	if(!type_text)
 		return
 	var/type_path = text2path(type_text)
@@ -164,12 +164,12 @@ ADMIN_VERB(count_objects_on_z_level, R_DEBUG, "统计 Z 层物体", "Counts the 
 					count++
 					atom_list += A
 
-	to_chat(world, LANG("datum.8e2c1ecd", list(count, type_path, num_level)), confidential = TRUE)
+	to_chat(world, LANG("datum.8e2c1ecd5102bbe9", list(count, type_path, num_level)), confidential = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Count Objects Zlevel")
 
 ADMIN_VERB_VISIBILITY(count_objects_all, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(count_objects_all, R_DEBUG, "统计全部对象", "Counts the number of objects of a certain type in the game world.", ADMIN_CATEGORY_MAPPING)
-	var/type_text = input(user, LANG("datum.de1bc4fe", null),"") as text|null
+	var/type_text = input(user, LANG("datum.de1bc4fe2e1ada31", null),"") as text|null
 	if(!type_text)
 		return
 	var/type_path = text2path(type_text)
@@ -182,7 +182,7 @@ ADMIN_VERB(count_objects_all, R_DEBUG, "统计全部对象", "Counts the number 
 		if(istype(A,type_path))
 			count++
 
-	to_chat(world, LANG("datum.a718b19b", list(count, type_path)), confidential = TRUE)
+	to_chat(world, LANG("datum.a718b19bbc5d8d57", list(count, type_path)), confidential = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Count Objects All")
 
 GLOBAL_VAR_INIT(say_disabled, FALSE)
@@ -208,6 +208,8 @@ ADMIN_VERB(create_mapping_job_icons, R_DEBUG, "生成职位地标图标", "Gener
 			if(JOB_CYBORG)
 				job_key_to_icon["Cyborg"] = icon('icons/mob/silicon/robots.dmi', "robot", SOUTH, 1) // NOVA EDIT CHANGE - ORIGINAL: final.Insert(icon('icons/mob/silicon/robots.dmi', "robot", SOUTH, 1), "Cyborg")
 			else
+				if(!JB.outfit) //only screenshot icons with an outfit // NOVA EDIT ADDITION
+					continue // NOVA EDIT ADDITION
 				for(var/obj/item/I in D)
 					qdel(I)
 				randomize_human_normie(D)
@@ -387,7 +389,7 @@ ADMIN_VERB(check_for_obstructed_atmospherics, R_DEBUG, "检查受阻的大气管
 			results += "There is an obstruction on top of an atmospherics machine at: [ADMIN_VERBOSEJMP(iterated_turf)].<br>"
 
 	if(results.len == 1) // only the header is in the list, we're good
-		to_chat(user, LANG("datum.0f6fb297", null), confidential = TRUE)
+		to_chat(user, LANG("datum.0f6fb2979e70219a", null), confidential = TRUE)
 	else
 		var/datum/browser/popup = new(user.mob, "atmospherics_obstructions", "Atmospherics Obstructions", 900, 750)
 		popup.set_content(results.Join())

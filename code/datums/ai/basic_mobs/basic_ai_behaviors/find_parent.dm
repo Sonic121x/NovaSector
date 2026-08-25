@@ -46,7 +46,7 @@
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	var/mob/living/baby = controller.pawn
 	if(parent.stat == DEAD)
-		baby.manual_emote(LANG("datum.b0ab12e7", null))
+		baby.manual_emote(LANG("datum.b0ab12e7650c8079", null))
 	else
-		baby.manual_emote(LANG("datum.87891725", null))
+		baby.manual_emote(LANG("datum.8789172535f46d3b", null))
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED

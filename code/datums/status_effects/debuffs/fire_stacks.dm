@@ -141,7 +141,7 @@
 	/// Cached particle type
 	var/cached_state
 
-/datum/status_effect/fire_handler/fire_stacks/get_examine_text()
+/datum/status_effect/fire_handler/fire_stacks/get_examine_text(mob/examiner)
 	if(owner.on_fire)
 		return
 
@@ -248,7 +248,7 @@
 
 	on_fire = TRUE
 	if(!silent)
-		owner.visible_message(span_warning(LANG("datum.8f730aca", list(owner))), span_userdanger(LANG("datum.14b3c7da", null)))
+		owner.visible_message(span_warning(LANG("datum.8f730acab07b6d7d", list(owner))), span_userdanger(LANG("datum.14b3c7da5ef7ff36", null)))
 
 	if(moblight_type)
 		if(moblight)
@@ -339,7 +339,7 @@
 	QDEL_NULL(slipperiness)
 	REMOVE_TRAIT(owner, TRAIT_NO_SLIP_WATER, TRAIT_STATUS_EFFECT(id))
 
-/datum/status_effect/fire_handler/wet_stacks/get_examine_text()
+/datum/status_effect/fire_handler/wet_stacks/get_examine_text(mob/examiner)
 	return "[owner.p_They()] look[owner.p_s()] a little soaked."
 
 /datum/status_effect/fire_handler/wet_stacks/tick(seconds_between_ticks)

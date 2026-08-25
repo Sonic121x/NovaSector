@@ -1,6 +1,6 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/mod/core
-	name = "MOD core"
+	name = "\improper MOD core"
 	desc = "A non-functional MOD core. Inform the admins if you see this."
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	icon_state = "mod-core"
@@ -67,7 +67,7 @@
 		([round((100 * charge_amount) / max_charge_amount, 1)]%)"
 
 /obj/item/mod/core/infinite
-	name = "MOD infinite core"
+	name = "\improper MOD infinite core"
 	icon_state = "mod-core-infinite"
 	desc = "A fusion core using the rare Fixium to sustain enough energy for the lifetime of the MOD's user. \
 		This might be because of the slowly killing poison inside, but those are just rumors."
@@ -100,7 +100,7 @@
 	return "Infinite"
 
 /obj/item/mod/core/standard
-	name = "MOD standard core"
+	name = "\improper MOD standard core"
 	icon_state = "mod-core-standard"
 	desc = "Growing in the most lush, fertile areas of the planet Sprout, there is a crystal known as the Heartbloom. \
 		These rare, organic piezoelectric crystals are of incredible cultural significance to the artist castes of the \
@@ -237,13 +237,13 @@
 
 /obj/item/mod/core/standard/proc/mod_uninstall_cell(mob/living/user)
 	if(!cell)
-		mod.balloon_alert(user, LANG("obj.0210855e", null))
+		mod.balloon_alert(user, LANG("obj.0210855e097c27b8", null))
 		return
-	mod.balloon_alert(user, LANG("obj.d17f808d", null))
+	mod.balloon_alert(user, LANG("obj.d17f808dc26b600d", null))
 	if(!do_after(user, 1.5 SECONDS, target = mod))
-		mod.balloon_alert(user, LANG("obj.c67b5d27", null))
+		mod.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return
-	mod.balloon_alert(user, LANG("obj.0dfdca6e", null))
+	mod.balloon_alert(user, LANG("obj.0dfdca6e675f39e2", null))
 	playsound(mod, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	var/obj/item/cell_to_move = cell
 	cell_to_move.forceMove(drop_location())
@@ -261,15 +261,15 @@
 	if(!istype(attacking_item, /obj/item/stock_parts/power_store/cell))
 		return FALSE
 	if(!mod.open)
-		mod.balloon_alert(user, LANG("obj.252eb885", null))
+		mod.balloon_alert(user, LANG("obj.252eb885a049a2db", null))
 		playsound(mod, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(cell)
-		mod.balloon_alert(user, LANG("obj.c7ff5001", null))
+		mod.balloon_alert(user, LANG("obj.c7ff500142ca334f", null))
 		playsound(mod, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	install_cell(attacking_item)
-	mod.balloon_alert(user, LANG("obj.0e9b65ee", null))
+	mod.balloon_alert(user, LANG("obj.0e9b65ee8bac5441", null))
 	playsound(mod, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return TRUE
 
@@ -296,7 +296,7 @@
 		mod.update_charge_alert()
 
 /obj/item/mod/core/ethereal
-	name = "MOD ethereal core"
+	name = "\improper MOD ethereal core"
 	icon_state = "mod-core-ethereal"
 	desc = "A reverse engineered core of a Modular Outerwear Device. Using natural liquid electricity from Ethereals, \
 		preventing the need to use external sources to convert electric charge. As the suits are naturally charged by \
@@ -361,7 +361,7 @@
 #define PLASMA_CORE_SHEET_CHARGE (2 * STANDARD_CELL_CHARGE)
 
 /obj/item/mod/core/plasma
-	name = "MOD plasma core"
+	name = "\improper MOD plasma core"
 	icon_state = "mod-core-plasma"
 	desc = "Nanotrasen's attempt at capitalizing on their plasma research. These plasma cores are refueled \
 		through plasma fuel, allowing for easy continued use by their mining squads."
@@ -439,14 +439,14 @@
 	if(uses_needed <= 0 || !plasma.use(uses_needed))
 		return FALSE
 	add_charge(uses_needed * charge_given)
-	balloon_alert(user, LANG("obj.ed4d5313", null))
+	balloon_alert(user, LANG("obj.ed4d5313d502f384", null))
 	return TRUE
 
 #undef PLASMA_CORE_ORE_CHARGE
 #undef PLASMA_CORE_SHEET_CHARGE
 
 /obj/item/mod/core/plasma/lavaland
-	name = "MOD plasma flower core"
+	name = "\improper MOD plasma flower core"
 	icon_state = "mod-core-plasma-flower"
 	desc = "A strange flower from the desolate wastes of lavaland. It pulses with a strange purple glow.  \
 		The wires coming out of it could be hooked into a MODsuit."
@@ -500,7 +500,7 @@
 	QDEL_IN(flower_boots, 1 SECONDS)
 
 /obj/item/mod/core/soul
-	name = "MOD soul shard core"
+	name = "\improper MOD soul shard core"
 	desc = "A soul shard haphazardly jammed into a hand-crafted MOD core frame."
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/mod/core/soul"
@@ -547,7 +547,7 @@
 	set_theme(stone.theme)
 	for(var/mob/living/basic/shade/shade in stone)
 		shade.forceMove(get_turf(src))
-		shade.visible_message(span_warning(LANG("obj.38425edd", list(shade, stone, src))), span_warning(LANG("obj.ea1f0f51", list(stone, src))))
+		shade.visible_message(span_warning(LANG("obj.38425eddb105f59f", list(shade, stone, src))), span_warning(LANG("obj.ea1f0f5186972e2d", list(stone, src))))
 	return ..()
 
 /obj/item/mod/core/soul/proc/set_theme(new_theme)

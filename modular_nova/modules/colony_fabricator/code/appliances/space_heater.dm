@@ -29,7 +29,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted, 29)
 	efficiency = src::efficiency
 
 /obj/machinery/space_heater/wall_mounted/default_unfasten_wrench(mob/living/user, obj/item/wrench, time)
-	user.balloon_alert(user, LANG("obj.44f0e678", null))
+	user.balloon_alert(user, LANG("obj.44f0e678d88c8044", null))
 	wrench.play_tool_sound(src)
 	if(wrench.use_tool(src, user, 1 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
@@ -84,7 +84,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted, 29)
 	user.transferItemToLoc(tool, src)
 	if(!isnull(cell))
 		user.put_in_hands(cell)
-		user.balloon_alert(user, LANG("obj.c58bb764", null))
+		user.balloon_alert(user, LANG("obj.c58bb76422062b99", null))
 	cell = tool
 	return ITEM_INTERACT_SUCCESS
 
@@ -104,9 +104,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted, 29)
 /obj/item/wallframe/wall_heater/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += span_notice(LANG("obj.299b6069", list(ispath(cell) ? cell::name : cell.name)))
+		. += span_notice(LANG("obj.299b60698c0c0a65", list(ispath(cell) ? cell::name : cell.name)))
 	else
-		. += span_notice(LANG("obj.c3a1afba", list(span_bold("cell"))))
+		. += span_notice(LANG("obj.c3a1afba05cfbad6", list(span_bold("cell"))))
 
 /obj/item/wallframe/wall_heater/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()

@@ -29,7 +29,7 @@
 	for(var/datum/bitrunning_gimmick/loadout as anything in selectable_loadouts)
 		names += initial(loadout.name)
 
-	var/choice = tgui_input_list(user, message = "Select a gimmick loadout",  title = "Bitrunning Program", items = names)
+	var/choice = tgui_input_list(user, message = LANG("obj.41f214dcd3791e6f", null),  title = LANG("obj.2c000b3694e0948f", null), items = names)
 	if(isnull(choice) || !user.is_holding(src))
 		return
 
@@ -37,7 +37,7 @@
 		if(initial(loadout.name) == choice)
 			granted_loadout = new loadout()
 
-	balloon_alert(user, LANG("obj.f52a7dba", null))
+	balloon_alert(user, LANG("obj.f52a7dba801411b1", null))
 	playsound(user, 'sound/items/click.ogg', 50, TRUE)
 	choice_made = choice
 

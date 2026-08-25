@@ -123,10 +123,10 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	blobstrain.on_gain()
 
 	if (had_strain)
-		to_chat(src, span_notice(LANG("mob.3cac6a9a", list(blobstrain.color, blobstrain.name))))
-		to_chat(src, span_notice(LANG("mob.085481ce", list(blobstrain.color, blobstrain.name, blobstrain.description))))
+		to_chat(src, span_notice(LANG("mob.3cac6a9a5519b2fb", list(blobstrain.color, blobstrain.name))))
+		to_chat(src, span_notice(LANG("mob.085481ce4f52a4d6", list(blobstrain.color, blobstrain.name, blobstrain.description))))
 		if(blobstrain.effectdesc)
-			to_chat(src, span_notice(LANG("mob.085481ce", list(blobstrain.color, blobstrain.name, blobstrain.effectdesc))))
+			to_chat(src, span_notice(LANG("mob.085481ce4f52a4d6", list(blobstrain.color, blobstrain.name, blobstrain.effectdesc))))
 	SEND_SIGNAL(src, COMSIG_BLOB_SELECTED_STRAIN, blobstrain)
 
 /mob/eye/blob/can_z_move(direction, turf/start, turf/destination, z_move_flags = NONE, mob/living/rider)
@@ -138,7 +138,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/turf/target_turf = .
 	if(!is_valid_turf(target_turf)) // Allows unplaced blobs to travel through station z-levels
 		if(z_move_flags & ZMOVE_FEEDBACK)
-			to_chat(src, span_warning(LANG("mob.8b7a5af9", null)))
+			to_chat(src, span_warning(LANG("mob.8b7a5af9e03e5e36", null)))
 		return null
 
 /mob/eye/blob/proc/is_valid_turf(turf/tile)
@@ -151,8 +151,8 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	if(!blob_core)
 		if(!placed)
 			if(manualplace_min_time && world.time >= manualplace_min_time)
-				to_chat(src, span_boldnotice(LANG("mob.d25948b2", null)))
-				to_chat(src, span_bolddanger(LANG("mob.ab478224", list(DisplayTimeText(autoplace_max_time - world.time)))))
+				to_chat(src, span_boldnotice(LANG("mob.d25948b23f5460ee", null)))
+				to_chat(src, span_bolddanger(LANG("mob.ab478224de4243aa", list(DisplayTimeText(autoplace_max_time - world.time)))))
 				manualplace_min_time = 0
 			if(autoplace_max_time && world.time >= autoplace_max_time)
 				place_blob_core(BLOB_RANDOM_PLACEMENT)
@@ -168,14 +168,14 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		begin_victory()
 
 	else if(!free_strain_rerolls && (last_reroll_time + BLOB_POWER_REROLL_FREE_TIME<world.time))
-		to_chat(src, span_boldnotice(LANG("mob.dbba95d5", null)))
+		to_chat(src, span_boldnotice(LANG("mob.dbba95d5bfe8ac13", null)))
 		free_strain_rerolls = 1
 
 	if(!victory_in_progress && max_count < blobs_legit.len)
 		max_count = blobs_legit.len
 
 	if(announcement_time && (world.time >= announcement_time || blobs_legit.len >= announcement_size) && !has_announced)
-		priority_announce(LANG("mob.4bada0d0", list(station_name())), "Biohazard Alert", ANNOUNCER_OUTBREAK5)
+		priority_announce(LANG("mob.4bada0d03b828da2", list(station_name())), "Biohazard Alert", ANNOUNCER_OUTBREAK5)
 		SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_TOMBSTONE] = TRUE
 
 		// Set status displays to biohazard alert
@@ -209,7 +209,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		max_blob_points = INFINITY
 		blob_points = INFINITY
 	else
-		to_chat(src, span_blob(LANG("mob.30fec253", null)))
+		to_chat(src, span_blob(LANG("mob.30fec253fd920555", null)))
 	addtimer(CALLBACK(src, PROC_REF(victory)), 45 SECONDS)
 
 /// Actually *do* the blob's victory: give them their greentext and, depending on the end_round_on_victory variable, decide if everyone dies or if it's just a jumpscare.
@@ -222,7 +222,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			main_objective.completed = TRUE
 
 	if(end_round_on_victory)
-		to_chat(world, span_blobannounce(LANG("mob.82d7fc5f", list(real_name))))
+		to_chat(world, span_blobannounce(LANG("mob.82d7fc5f3bd767e0", list(real_name))))
 		SSticker.news_report = BLOB_WIN
 		SSticker.force_ending = FORCE_END_ROUND
 
@@ -296,17 +296,17 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	. = ..()
 	if(!. || !client)
 		return FALSE
-	to_chat(src, span_blobannounce(LANG("mob.cfcc522b", null)))
+	to_chat(src, span_blobannounce(LANG("mob.cfcc522b65d986b7", null)))
 	if(!placed && autoplace_max_time <= world.time)
-		to_chat(src, span_bolddanger(LANG("mob.ab478224", list(DisplayTimeText(autoplace_max_time - world.time)))))
-		to_chat(src, span_bolddanger(LANG("mob.04a4ef71", list(manualplace_min_time ? "will be able to":"can"))))
+		to_chat(src, span_bolddanger(LANG("mob.ab478224de4243aa", list(DisplayTimeText(autoplace_max_time - world.time)))))
+		to_chat(src, span_bolddanger(LANG("mob.04a4ef714b94054f", list(manualplace_min_time ? "will be able to":"can"))))
 	update_health_hud()
 	add_points(0)
 
 /mob/eye/blob/examine(mob/user)
 	. = ..()
 	if(blobstrain)
-		. += LANG("mob.a1e2b6e4", list(blobstrain.color, blobstrain.name))
+		. += LANG("mob.a1e2b6e479c9ae6e", list(blobstrain.color, blobstrain.name))
 
 /mob/eye/blob/update_health_hud(healthpercent)
 	if(!blob_core)
@@ -341,7 +341,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, span_boldwarning(LANG("mob.edad7622", null)))
+			to_chat(src, span_boldwarning(LANG("mob.edad7622f650b603", null)))
 			return
 		if (!(ignore_spam || forced) && src.client.handle_spam_prevention(message, MUTE_IC))
 			return
@@ -371,15 +371,15 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 /mob/eye/blob/get_status_tab_items()
 	. = ..()
 	if(blob_core)
-		. += LANG("mob.7786c79e", list(blob_core.get_integrity()))
-		. += LANG("mob.98a48fb8", list(blob_points, max_blob_points))
-		. += LANG("mob.41c202a1", list(blobs_legit.len, blobwincount))
+		. += LANG("mob.7786c79ee33e6a4b", list(blob_core.get_integrity()))
+		. += LANG("mob.98a48fb845688ff9", list(blob_points, max_blob_points))
+		. += LANG("mob.41c202a1b188343f", list(blobs_legit.len, blobwincount))
 	if(free_strain_rerolls)
-		. += LANG("mob.637bd3ab", list(free_strain_rerolls))
+		. += LANG("mob.637bd3aba320ebc9", list(free_strain_rerolls))
 	if(!placed)
 		if(manualplace_min_time)
-			. += LANG("mob.5760c2e1", list(max(round((manualplace_min_time - world.time)*0.1, 0.1), 0)))
-		. += LANG("mob.4aae48eb", list(max(round((autoplace_max_time - world.time)*0.1, 0.1), 0)))
+			. += LANG("mob.5760c2e11d0ceb6c", list(max(round((manualplace_min_time - world.time)*0.1, 0.1), 0)))
+		. += LANG("mob.4aae48eb0eeace99", list(max(round((autoplace_max_time - world.time)*0.1, 0.1), 0)))
 
 /mob/eye/blob/Move(NewLoc, Dir = 0)
 	if(placed)

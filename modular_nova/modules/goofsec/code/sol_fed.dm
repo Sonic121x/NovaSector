@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			announcer = "Sol Federation Marshal Department"
 			poll_question = "The station has called for the Marshals. Will you respond?"
 		if(EMERGENCY_RESPONSE_ATMOS)
-			team_size = tgui_input_number(usr, LANG("obj.5fcfb34a", null), LANG("obj.d18ed2c6", null), 3, 3, 1)
+			team_size = tgui_input_number(usr, LANG("obj.5fcfb34a63468780", null), LANG("obj.d18ed2c69ce893e8", null), 3, 3, 1)
 			cops_to_send = /datum/antagonist/ert/request_911/atmos
 			announcement_message = "Crewmembers of [station_name()]. this is the Sol Federation's 811 dispatch. We've received a report of stationwide structural damage, atmospherics loss, fire, or otherwise, and we are \
 				sending an Advanced Atmospherics team to support your station.\n\n\
@@ -192,7 +192,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 				phone.w_class = WEIGHT_CLASS_SMALL	//They get that COMPACT phone hell yea
 				var/phone_equipped = phone.equip_to_best_slot(cop)
 				if(!phone_equipped)
-					to_chat(cop, LANG("obj.163ba92a", list(phone.name)))
+					to_chat(cop, LANG("obj.163ba92ae2d7d251", list(phone.name)))
 					phone.forceMove(get_turf(cop))
 
 			//Logging and cleanup
@@ -208,7 +208,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		return FALSE
 
 	if (GLOB.cops_arrived)
-		to_chat(user, span_warning(LANG("obj.6209b46f", null)))
+		to_chat(user, span_warning(LANG("obj.6209b46f3468fd8d", null)))
 		playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 		return FALSE
 
@@ -216,15 +216,15 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		var/obj/item/held_item = user.get_active_held_item()
 		var/obj/item/card/id/id_card = held_item?.GetID()
 		if (!istype(id_card))
-			to_chat(user, span_warning(LANG("obj.79240bdf", null)))
+			to_chat(user, span_warning(LANG("obj.79240bdf200ae125", null)))
 			playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 			return FALSE
 		if (!(ACCESS_CAPTAIN in id_card.access))
-			to_chat(user, span_warning(LANG("obj.d75ab765", null)))
+			to_chat(user, span_warning(LANG("obj.d75ab765612801b2", null)))
 			playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 			return FALSE
 	else
-		to_chat(user, LANG("obj.7650582e", null))
+		to_chat(user, LANG("obj.7650582edddbbf21", null))
 		return FALSE
 	return TRUE
 
@@ -237,15 +237,15 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		var/obj/item/held_item = user.get_active_held_item()
 		var/obj/item/card/id/id_card = held_item?.GetID()
 		if (!istype(id_card))
-			to_chat(user, span_warning(LANG("obj.79240bdf", null)))
+			to_chat(user, span_warning(LANG("obj.79240bdf200ae125", null)))
 			playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 			return FALSE
 		if (!(ACCESS_CAPTAIN in id_card.access))
-			to_chat(user, span_warning(LANG("obj.d75ab765", null)))
+			to_chat(user, span_warning(LANG("obj.d75ab765612801b2", null)))
 			playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 			return FALSE
 	else
-		to_chat(user, LANG("obj.323119c4", null))
+		to_chat(user, LANG("obj.323119c45c1beb65", null))
 		return FALSE
 	return TRUE
 
@@ -257,13 +257,13 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	var/call_solfed_check1 = "Are you sure you want to message the Sol Federation? Un-necessary communications may result in a \
 		large fine or 25 years in federal prison."
 	/// Boolean for Solfed message
-	if(tgui_input_list(user, call_solfed_check1, LANG("obj.a55d189b", null), list("Yes", "No")) != "Yes")
+	if(tgui_input_list(user, call_solfed_check1, LANG("obj.a55d189bad6a8da3", null), list("Yes", "No")) != "Yes")
 		return
 	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the faulty SolFed call consequences.")
 	/// Variable for reason in calling the feeds
 	var/reason_to_call_da_feds = stripped_input(user, "What do you wish to call the Federation for?", "Call the Federation", null, MAX_MESSAGE_LEN)
 	if(!reason_to_call_da_feds)
-		to_chat(user, LANG("obj.b2ea3940", null))
+		to_chat(user, LANG("obj.b2ea3940336c4d3d", null))
 		return
 
 	GLOB.fedmessage = reason_to_call_da_feds
@@ -277,22 +277,22 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	log_game("[key_name(user)] has called the Sol Federation for the following reason:\n[GLOB.fedmessage]")
 	deadchat_broadcast(" has called the Sol Federation for the following reason:\n[GLOB.fedmessage]", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
 
-	to_chat(user, span_notice(LANG("obj.b1f871f9", null)))
+	to_chat(user, span_notice(LANG("obj.b1f871f9f635df6d", null)))
 	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 
 /obj/machinery/computer/communications/proc/calling_911(mob/user, called_group_pretty = "EMTs", called_group = EMERGENCY_RESPONSE_EMT)
 	message_admins("[ADMIN_LOOKUPFLW(user)] is considering calling the Sol Federation [called_group_pretty].")
 	var/call_911_msg_are_you_sure = "Are you sure you want to call 911? Faulty 911 calls results in a $20,000 fine and a 5 year superjail \
 		sentence."
-	if(tgui_input_list(user, call_911_msg_are_you_sure, LANG("obj.a55d189b", null), list("Yes", "No")) != "Yes")
+	if(tgui_input_list(user, call_911_msg_are_you_sure, LANG("obj.a55d189bad6a8da3", null), list("Yes", "No")) != "Yes")
 		return
 	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the faulty 911 call consequences.")
-	if(tgui_input_list(user, GLOB.call911_do_and_do_not[called_group], LANG("obj.ddc9dafa", list(called_group_pretty)), list("Yes", "No")) != "Yes")
+	if(tgui_input_list(user, GLOB.call911_do_and_do_not[called_group], LANG("obj.ddc9dafa283ae5ca", list(called_group_pretty)), list("Yes", "No")) != "Yes")
 		return
 	message_admins("[ADMIN_LOOKUPFLW(user)] has read and acknowleged the recommendations for what to call and not call [called_group_pretty] for.")
 	var/reason_to_call_911 = stripped_input(user, "What do you wish to call 911 [called_group_pretty] for?", "Call 911", null, MAX_MESSAGE_LEN)
 	if(!reason_to_call_911)
-		to_chat(user, LANG("obj.e48a2a79", null))
+		to_chat(user, LANG("obj.e48a2a79996ff91e", null))
 		return
 	GLOB.cops_arrived = TRUE
 	GLOB.call_911_msg = reason_to_call_911
@@ -302,7 +302,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	deadchat_broadcast(" has called the Sol Federation [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
 
 	call_911(called_group)
-	to_chat(user, span_notice(LANG("obj.5b04b06d", list(called_group_pretty))))
+	to_chat(user, span_notice(LANG("obj.5b04b06d9ce526a7", list(called_group_pretty))))
 	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 
 /datum/antagonist/ert/request_911
@@ -630,10 +630,10 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /obj/item/solfed_reporter/proc/pre_checks(mob/user)
 	if(GLOB.solfed_responder_info[type_of_callers][SOLFED_AMT] == 0)
-		to_chat(user, span_warning(LANG("obj.0128c0d3", null)))
+		to_chat(user, span_warning(LANG("obj.0128c0d3cb48b6b8", null)))
 		return FALSE
 	if(!user.mind.has_antag_datum(type_to_check))
-		to_chat(user, span_warning(LANG("obj.06cc7954", null)))
+		to_chat(user, span_warning(LANG("obj.06cc7954f6bc7517", null)))
 		return FALSE
 	return TRUE
 
@@ -652,7 +652,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		GLOB.solfed_responder_info[type_of_callers][SOLFED_VOTES]++
 		var/current_votes = GLOB.solfed_responder_info[type_of_callers][SOLFED_VOTES]
 		var/amount_of_responders = GLOB.solfed_responder_info[type_of_callers][SOLFED_AMT]
-		to_chat(user, span_warning(LANG("obj.d9d96f05", list(current_votes, amount_of_responders))))
+		to_chat(user, span_warning(LANG("obj.d9d96f05bc7ad6c5", list(current_votes, amount_of_responders))))
 		if(current_votes >= amount_of_responders * 0.5)
 			GLOB.solfed_responder_info[type_of_callers][SOLFED_DECLARED] = TRUE
 			if(fine_station)
@@ -701,7 +701,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 					phone.name = "[cell_phone_number] branded cell phone"
 					var/phone_equipped = phone.equip_to_best_slot(cop)
 					if(!phone_equipped)
-						to_chat(cop, LANG("obj.163ba92a", list(phone.name)))
+						to_chat(cop, LANG("obj.163ba92ae2d7d251", list(phone.name)))
 						phone.forceMove(get_turf(cop))
 
 					//Logging and cleanup
@@ -726,8 +726,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 /obj/item/solfed_reporter/swat_caller/questions(mob/user)
 	var/question = "Does the situation require additional S.W.A.T. backup, involve the station impeding you from doing your job, \
 		or involve the station making a fraudulent 911 call and needing an arrest made on the caller?"
-	if(tgui_input_list(user, question, LANG("obj.5fb95d86", null), list("Yes", "No")) != "Yes")
-		to_chat(user, LANG("obj.7bf95de9", null))
+	if(tgui_input_list(user, question, LANG("obj.5fb95d866fe1cf34", null), list("Yes", "No")) != "Yes")
+		to_chat(user, LANG("obj.7bf95de9630911b4", null))
 		return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has voted to summon S.W.A.T backup.")
 	return TRUE
@@ -762,8 +762,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			administrative action against your account."
 	)
 	for(var/question in list_of_questions)
-		if(tgui_input_list(user, question, LANG("obj.b95441a8", null), list("Yes", "No")) != "Yes")
-			to_chat(user, LANG("obj.29a9cfe7", null))
+		if(tgui_input_list(user, question, LANG("obj.b95441a85c6b8125", null), list("Yes", "No")) != "Yes")
+			to_chat(user, LANG("obj.29a9cfe79b50e376", null))
 			return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the consequences of a false claim of Treason administratively, \
 		and has voted that the station is engaging in Treason.")
@@ -789,8 +789,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	cell_phone_number = "Dogginos"
 
 /obj/item/solfed_reporter/pizza_managers/questions(mob/user)
-	if(tgui_input_list(user, LANG("obj.b1767b1d", null), LANG("obj.450c0637", null), list("Yes", "No")) != "Yes")
-		to_chat(user, LANG("obj.903fd6fd", null))
+	if(tgui_input_list(user, LANG("obj.b1767b1d71a97689", null), LANG("obj.450c06370d892ac8", null), list("Yes", "No")) != "Yes")
+		to_chat(user, LANG("obj.903fd6fdfb5b4c15", null))
 		return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has voted to summon Dogginos management to resolve the lack of payment.")
 	return TRUE
@@ -839,13 +839,13 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 /obj/item/beamout_tool/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!user.mind.has_antag_datum(/datum/antagonist/ert))
-		to_chat(user, span_warning(LANG("obj.55c04fb7", null)))
+		to_chat(user, span_warning(LANG("obj.55c04fb74bcddba6", null)))
 		return
 	message_admins("[ADMIN_LOOKUPFLW(user)] has begun to beam-out using their beam-out tool.")
-	to_chat(user, LANG("obj.bf24e932", null))
-	user.balloon_alert(user, LANG("obj.e3fc963c", null))
+	to_chat(user, LANG("obj.bf24e9326e06ea46", null))
+	user.balloon_alert(user, LANG("obj.e3fc963c218baab8", null))
 	if(do_after(user, 30 SECONDS))
-		to_chat(user, LANG("obj.5e305e75", null))
+		to_chat(user, LANG("obj.5e305e758961a89f", null))
 		message_admins("[ADMIN_LOOKUPFLW(user)] has beamed themselves out.")
 		if(isliving(user))
 			var/mob/living/living_user = user
@@ -864,7 +864,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			do_sparks(10, TRUE, user_turf, spark_type = /datum/effect_system/basic/spark_spread/quantum)
 			qdel(user)
 	else
-		user.balloon_alert(user, LANG("obj.f2813b79", null))
+		user.balloon_alert(user, LANG("obj.f2813b792eb91f5a", null))
 
 #undef SOLFED_AMT
 #undef SOLFED_VOTES

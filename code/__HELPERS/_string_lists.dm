@@ -49,9 +49,7 @@ GLOBAL_VAR(string_filename_current_key)
 	// NOVA EDIT ADDITION START - i18n - strings/ flavor 数据已并入主目录（strings 命名空间）：全服非英文
 	// 时递归反查字符串叶子（译文在 strings/i18n/<locale>/strings.json）。多词门槛 + 「只有 flavor 被抽进
 	// 目录」→ names/口音表/词频表等天然 no-op，无需运行时白名单。(取代旧的平行副本方案。)
-	// i18n_locale_resolved 显式门：phobia.json 由 GLOBAL_LIST_INIT(phobia_regexes) 在 GLOB 阶段就加载，
-	// 那时 config 还没读、locale 恒为 en，这里翻不了而且**静默**——加载完就进 string_cache，之后再没人碰。
-	// 早于 config 的加载改由 lang_relocalize_early_string_lists() 在 ConfigLoaded 里补翻并重建正则。
-	if(GLOB.i18n_locale_resolved && GLOB.i18n_server_locale != DEFAULT_UI_LOCALE && islist(GLOB.string_cache[filepath]))
+	// READY 门保证 GLOB 阶段只缓存 canonical English；ConfigLoaded 的单一初始化入口随后补翻 flavor 表。
+	if(lang_runtime_is_ready() && GLOB.i18n_server_locale != DEFAULT_UI_LOCALE && islist(GLOB.string_cache[filepath]))
 		lang_reverse_tree(GLOB.string_cache[filepath])
 	// NOVA EDIT ADDITION END

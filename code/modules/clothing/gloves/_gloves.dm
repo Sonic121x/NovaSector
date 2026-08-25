@@ -42,7 +42,7 @@
 		. |= COMPONENT_CLEANED|COMPONENT_CLEANED_GAIN_XP
 
 /obj/item/clothing/gloves/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.7c28fc00", list(src, user, user.p_their()))))
+	user.visible_message(span_suicide(LANG("obj.7c28fc002dc3a3c2", list(src, user, user.p_their()))))
 	return OXYLOSS
 
 /obj/item/clothing/gloves/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, bodyshape = NONE)
@@ -84,12 +84,12 @@
 	if (!can_cut_with(tool))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.f36aa85d", null))
+	balloon_alert(user, LANG("obj.f36aa85d10c4af9c", null))
 
 	if(!do_after(user, 3 SECONDS, target=src, extra_checks = CALLBACK(src, PROC_REF(can_cut_with), tool)))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.b44aa67c", null))
+	balloon_alert(user, LANG("obj.b44aa67c9c66da47", null))
 	qdel(src)
 	user.put_in_hands(new cut_type)
 	return ITEM_INTERACT_SUCCESS

@@ -57,11 +57,11 @@
 			var/obj/item/mecha_parts/mecha_tracking/our_mecha_tracker = locate(params["tracker_ref"])
 			if(!istype(our_mecha_tracker))
 				return
-			var/message = tgui_input_text(usr, LANG("obj.58b44bad", null), LANG("obj.d2feee32", null), max_length = MAX_MESSAGE_LEN)
+			var/message = tgui_input_text(usr, LANG("obj.58b44bad2ea677be", null), LANG("obj.d2feee3227b1c423", null), max_length = MAX_MESSAGE_LEN)
 			var/obj/vehicle/sealed/mecha/our_mecha = our_mecha_tracker.chassis
 			if(trim(message) && our_mecha)
 				to_chat(our_mecha.occupants, message)
-				to_chat(usr, span_notice(LANG("obj.f32fb30b", null)))
+				to_chat(usr, span_notice(LANG("obj.f32fb30b8ea27039", null)))
 				. = TRUE
 		if("shock")
 			var/obj/item/mecha_parts/mecha_tracking/our_mecha_tracker = locate(params["tracker_ref"])
@@ -123,12 +123,12 @@
 
 /obj/item/mecha_parts/mecha_tracking/try_attach_part(mob/user, obj/vehicle/sealed/mecha/mecha_to_attach, attach_right = FALSE)
 	if(!(mecha_to_attach.mecha_flags & flag_to_check))
-		to_chat(user, span_notice(LANG("obj.2c5e056f", list(src, mecha_to_attach))))
+		to_chat(user, span_notice(LANG("obj.2c5e056fe5bb94bf", list(src, mecha_to_attach))))
 		return
 
 	for(var/obj/item/mecha_parts/mecha_tracking/tracker as anything in mecha_to_attach.trackers)
 		if(tracker.flag_to_check == flag_to_check)
-			to_chat(user, span_notice(LANG("obj.d6cdee85", list(src, mecha_to_attach))))
+			to_chat(user, span_notice(LANG("obj.d6cdee85f3f0e192", list(src, mecha_to_attach))))
 			return
 
 	if(!..())

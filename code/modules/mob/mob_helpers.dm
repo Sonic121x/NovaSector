@@ -323,10 +323,17 @@
 			to_chat(ghost, span_ghostalert(message))
 			continue
 
-		var/interact_link = click_interact ? " <a href='byond://?src=[REF(ghost)];play=[REF(source)]'>(Play)</a>" : ""
-		var/view_link = " <a href='byond://?src=[REF(ghost)];view=[REF(source)]'>(View)</a>"
+		// NOVA EDIT CHANGE START - i18n: 只翻**锚文本**，`href` 原样留在 DM 里拼 —— 把整条
+		// `<a href=…>` 收进模板会让链接跟着译文走（AGENTS 里那 71 条含 <a> 的模板不登记剥标签
+		// 变体，就是这个道理）。这里锚文本单独 LANG，链接一个字节都不动。
+		// ORIGINAL: 见下方两行注释。
+		// ORIGINAL: var/interact_link = click_interact ? " <a href='byond://?src=[REF(ghost)];play=[REF(source)]'>(Play)</a>" : ""
+		// ORIGINAL: var/view_link = " <a href='byond://?src=[REF(ghost)];view=[REF(source)]'>(View)</a>"
+		var/interact_link = click_interact ? " <a href='byond://?src=[REF(ghost)];play=[REF(source)]'>[LANG("_root.c83585ae0bccd5c5", null)]</a>" : ""
+		var/view_link = " <a href='byond://?src=[REF(ghost)];view=[REF(source)]'>[LANG("_root.bd8f8d4bb83c635d", null)]</a>"
+		// NOVA EDIT CHANGE END
 
-		to_chat(ghost, span_ghostalert("[message][custom_link][interact_link][view_link]"))
+		to_chat(ghost, span_ghostalert(LANG("_root.92d294b5e6fdb362", list(message, custom_link, interact_link, view_link))))
 
 		var/atom/movable/screen/alert/notify_action/toast = ghost.throw_alert(
 			category = "[REF(source)]_notify_action",
@@ -334,7 +341,10 @@
 		)
 		toast.add_overlay(alert_overlay)
 		toast.click_interact = click_interact
-		toast.desc = "Click to [click_interact ? "play" : "view"]."
+		// NOVA EDIT CHANGE - i18n: 拆成两条完整句子；原本 "play"/"view" 是嵌在插值里的单词，
+		// 既进不了目录（单 token）、也没法让中文换语序。
+		// ORIGINAL: toast.desc = "Click to [click_interact ? "play" : "view"]."
+		toast.desc = click_interact ? LANG("_root.1231541620e1e8db", null) : LANG("_root.63a351d8c1ac3d47", null)
 		toast.name = header
 		toast.target_ref = WEAKREF(source)
 
@@ -369,10 +379,10 @@
  */
 /proc/offer_control(mob/M)
 	if(isdead(M))
-		to_chat(usr, LANG("_root.874b77af", null))
+		to_chat(usr, LANG("_root.874b77af8e5e5b99", null))
 		return FALSE
 
-	to_chat(M, LANG("_root.e9faa125", null))
+	to_chat(M, LANG("_root.e9faa1254c9fa160", null))
 	if(usr)
 		log_admin("[key_name(usr)] has offered control of ([key_name(M)]) to ghosts.")
 		message_admins("[key_name_admin(usr)] has offered control of ([ADMIN_LOOKUPFLW(M)]) to ghosts")
@@ -384,14 +394,14 @@
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("Do you want to play as [whomst]?", check_jobban = ROLE_PAI, poll_time = 10 SECONDS, checked_target = M, alert_pic = M, role_name_text = "ghost control")
 
 	if(chosen_one)
-		to_chat(M, LANG("_root.5d33e7c4", null))
+		to_chat(M, LANG("_root.5d33e7c4460ebb32", null))
 		message_admins("[key_name_admin(chosen_one)] has taken control of ([ADMIN_LOOKUPFLW(M)])")
 		M.ghostize(FALSE)
 		M.PossessByPlayer(chosen_one.key)
 		M.client?.init_verbs()
 		return TRUE
 	else
-		to_chat(M, LANG("_root.cb900832", null))
+		to_chat(M, LANG("_root.cb9008321ab4aebb", null))
 		message_admins("No ghosts were willing to take control of [ADMIN_LOOKUPFLW(M)])")
 		return FALSE
 

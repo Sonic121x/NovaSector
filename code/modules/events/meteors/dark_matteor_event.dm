@@ -26,7 +26,7 @@
 	spawn_meteor(list(/obj/effect/meteor/dark_matteor = 1), null, target, distance_from_edge = 10)
 
 /datum/round_event/dark_matteor/announce(fake)
-	priority_announce(LANG("datum.d584250f", list(GLOB.station_name)), "Meteor Alert", 'sound/announcer/alarm/airraid.ogg')
+	priority_announce(LANG("datum.d584250fedac7c5f", list(GLOB.station_name)), "Meteor Alert", 'sound/announcer/alarm/airraid.ogg')
 
 /datum/event_admin_setup/warn_admin/dark_matteor
 	warning_text = "Dark Matt-eors spawn singularities. The round is ending once a dark matt-eor hits the station. Proceed anyways?"

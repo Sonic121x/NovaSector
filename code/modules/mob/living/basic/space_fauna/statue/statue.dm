@@ -115,7 +115,7 @@
 	aoe_radius = 14
 
 /datum/action/cooldown/spell/aoe/blindness/cast(atom/cast_on)
-	cast_on.visible_message(span_danger(LANG("datum.bb68ff6f", list(cast_on))))
+	cast_on.visible_message(span_danger(LANG("datum.bb68ff6fe7ca4f27", list(cast_on))))
 	return ..()
 
 /datum/action/cooldown/spell/aoe/blindness/get_things_to_cast_on(atom/center)

@@ -225,7 +225,7 @@
 	var/mob/user = usr
 
 	if(!allowed(usr))
-		to_chat(usr, span_warning(LANG("obj.077f9b52", null)))
+		to_chat(usr, span_warning(LANG("obj.077f9b52c530e7f8", null)))
 		return FALSE
 
 	switch(action)

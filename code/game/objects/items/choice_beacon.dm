@@ -46,7 +46,7 @@
 		for(var/option_name in display_names)
 			menu[lang_reverse_text(option_name)] = display_names[option_name]
 	// NOVA EDIT ADDITION END
-	var/choice = tgui_input_list(user, LANG("obj.61abbbd2", null), LANG("obj.71faa22a", null), menu) // NOVA EDIT - I18N - ORIGINAL: display_names
+	var/choice = tgui_input_list(user, LANG("obj.61abbbd2c5b8dff2", null), LANG("obj.71faa22a542e632f", null), menu) // NOVA EDIT - I18N - ORIGINAL: display_names
 	if(isnull(choice) || isnull(menu[choice])) // NOVA EDIT - I18N - ORIGINAL: display_names[choice]
 		return
 	if(!can_use_beacon(user))
@@ -56,7 +56,7 @@
 
 /// Consumes a use of the beacon, sending the user a message and creating their item in the process
 /obj/item/choice_beacon/proc/consume_use(obj/choice_path, mob/living/user)
-	to_chat(user, span_hear(LANG("obj.3e8dd1ea", list(company_source, company_message))))
+	to_chat(user, span_hear(LANG("obj.3e8dd1eaf3cd7cf0", list(company_source, company_message))))
 
 	spawn_option(choice_path, user)
 	uses--
@@ -65,7 +65,7 @@
 		qdel(src)
 		return
 
-	to_chat(user, span_notice(LANG("obj.4bbbaf9b", list(uses, uses > 1 ? "s" : "", uses > 1 ? "" : "s", src))))
+	to_chat(user, span_notice(LANG("obj.4bbbaf9bd12d5dd4", list(uses, uses > 1 ? "s" : "", uses > 1 ? "" : "s", src))))
 
 /// Actually spawns the item selected by the user
 /obj/item/choice_beacon/proc/spawn_option(obj/choice_path, mob/living/user)

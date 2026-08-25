@@ -89,7 +89,7 @@
 	var/area/new_area = placer.findValidArea()
 	var/turf/new_turf = placer.findValidTurf(new_area)
 
-	priority_announce(LANG("obj.691d7668", list(new_area.name)), "Anomaly Alert")
+	priority_announce(LANG("obj.691d7668fd55642a", list(new_area.name)), "Anomaly Alert")
 	src.forceMove(new_turf)
 	prepare_area()
 

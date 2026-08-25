@@ -63,7 +63,7 @@
 
 	if(isnull(tool_behaviour))
 		update_weight_class(WEIGHT_CLASS_TINY)
-		balloon_alert(user, LANG("obj.02a8ddc2", null))
+		balloon_alert(user, LANG("obj.02a8ddc242ea2564", null))
 	else
 		update_weight_class(WEIGHT_CLASS_SMALL)
 		balloon_alert(user, mistake_occured ? "oops! [tool_behaviour] out" : "[tool_behaviour] out")
@@ -129,9 +129,9 @@
 	. = ..()
 
 	if(tool_behaviour)
-		. += LANG("obj.10b36c8d", list(tool_behaviour))
+		. += LANG("obj.10b36c8db701f33a", list(tool_behaviour))
 	else
-		. += LANG("obj.5378d752", null)
+		. += LANG("obj.5378d75241778b10", null)
 
 /obj/item/spess_knife/update_icon_state()
 	icon_state = initial(icon_state)

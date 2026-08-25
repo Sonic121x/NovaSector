@@ -34,7 +34,7 @@ Slimecrossing Mobs
 
 // Just in case.
 /mob/living/basic/slime/transformed_slime/reproduce()
-	to_chat(src, span_warning(LANG("mob.41a4a6dd", null))) // Mood
+	to_chat(src, span_warning(LANG("mob.41a4a6dd0e6a823f", null))) // Mood
 	return
 
 //Slime corgi - Chilling Pink

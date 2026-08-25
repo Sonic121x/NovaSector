@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Global list of ALL loadout datums instantiated.
 /// Loadout datums are created by loadout categories.
 GLOBAL_LIST_EMPTY(all_loadout_datums)
@@ -177,8 +178,8 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/list/loadout = manager.get_current_loadout()// NOVA EDIT CHANGE - Multiple loadout presets - ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	var/input_name = tgui_input_text(
 		user = user,
-		message = "What name do you want to give the [name]? Leave blank to clear.",
-		title = "[name] name",
+		message = LANG("datum.b4bfb8f86ddb7317", list(name)),
+		title = LANG("datum.d79eb0a1416e1b5a", list(name)),
 		default = loadout?[item_path]?[INFO_NAMED], // plop in existing name (if any)
 		max_length = MAX_NAME_LEN,
 	)

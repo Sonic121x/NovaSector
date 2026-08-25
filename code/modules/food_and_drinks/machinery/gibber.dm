@@ -27,7 +27,7 @@
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_cleaned))
 	if(prob(5))
 		name = "meat grinder"
-		desc = LANG("obj.0b1c92a9", null)
+		desc = LANG("obj.0b1c92a9a8e9fc1e", null)
 		dirty = TRUE
 		update_appearance(UPDATE_OVERLAYS)
 
@@ -45,10 +45,10 @@
 /obj/machinery/gibber/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.4f41ff84", list(efficiency, gibtime*0.1)))
+		. += span_notice(LANG("obj.4f41ff84952ff1dc", list(efficiency, gibtime*0.1)))
 		for(var/datum/stock_part/servo/servo in component_parts)
 			if(servo.tier >= 2)
-				. += span_notice(LANG("obj.8ab40c90", list(src)))
+				. += span_notice(LANG("obj.8ab40c9037e2b5c8", list(src)))
 
 /obj/machinery/gibber/update_overlays()
 	. = ..()
@@ -92,36 +92,36 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
-		to_chat(user, span_danger(LANG("obj.fc4d37c9", null)))
+		to_chat(user, span_danger(LANG("obj.fc4d37c9634c4b81", null)))
 		return
 
 	if(!anchored)
-		to_chat(user, span_warning(LANG("obj.7ba35faf", list(src))))
+		to_chat(user, span_warning(LANG("obj.7ba35faf6cf7c0ef", list(src))))
 		return
 
 	if(user.pulling && isliving(user.pulling))
 		var/mob/living/L = user.pulling
 		if(!iscarbon(L))
-			to_chat(user, span_warning(LANG("obj.6284e4b5", list(src))))
+			to_chat(user, span_warning(LANG("obj.6284e4b5eba5c5a0", list(src))))
 			return
 		var/mob/living/carbon/C = L
 		if(C.buckled || C.has_buckled_mobs())
-			to_chat(user, span_warning(LANG("obj.2ea65959", list(C))))
+			to_chat(user, span_warning(LANG("obj.2ea6595934d14b00", list(C))))
 			return
 
 		if(!ignore_clothing)
 			for(var/obj/item/I in C.held_items + C.get_equipped_items())
 				if(!HAS_TRAIT(I, TRAIT_NODROP))
-					to_chat(user, span_warning(LANG("obj.68f77223", null)))
+					to_chat(user, span_warning(LANG("obj.68f77223ae882548", null)))
 					return
 
-		user.visible_message(span_danger(LANG("obj.fa9f1c74", list(user, C, src))))
+		user.visible_message(span_danger(LANG("obj.fa9f1c7425d95c9a", list(user, C, src))))
 
 		add_fingerprint(user)
 
 		if(do_after(user, gibtime, target = src))
 			if(C && user.pulling == C && !C.buckled && !C.has_buckled_mobs() && !occupant)
-				user.visible_message(span_danger(LANG("obj.a6a57d11", list(user, C, src))))
+				user.visible_message(span_danger(LANG("obj.a6a57d110f93fddf", list(user, C, src))))
 				C.forceMove(src)
 				set_occupant(C)
 				update_appearance()
@@ -162,18 +162,18 @@ GAME_VERB_SRC(/obj/machinery/gibber, eject, oview(1), "清空绞肉机", null)
 		return
 
 	if(!occupant)
-		audible_message(span_hear(LANG("obj.75409ca1", null)))
+		audible_message(span_hear(LANG("obj.75409ca1bf3570b5", null)))
 		return
 
 	if(occupant.flags_1 & HOLOGRAM_1)
-		audible_message(span_hear(LANG("obj.95e0fb19", null)))
+		audible_message(span_hear(LANG("obj.95e0fb19615a2333", null)))
 		playsound(loc, 'sound/machines/hiss.ogg', 20, TRUE)
 		qdel(occupant)
 		set_occupant(null)
 		return
 
 	use_energy(active_power_usage)
-	audible_message(span_hear(LANG("obj.35ad5caf", null)))
+	audible_message(span_hear(LANG("obj.35ad5cafc382d03e", null)))
 	playsound(loc, 'sound/machines/juicer.ogg', 50, TRUE)
 	operating = TRUE
 	update_appearance()

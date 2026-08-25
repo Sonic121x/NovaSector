@@ -76,7 +76,7 @@
 		return
 	need_mob_update += owner.adjust_brute_loss(2, updating_health = FALSE, forced = TRUE)
 	if(COOLDOWN_FINISHED(src, starving_message))
-		to_chat(owner, span_warning(LANG("obj.7ad39fc6", null)))
+		to_chat(owner, span_warning(LANG("obj.7ad39fc6d9a14bf3", null)))
 		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown, multiplicative_slowdown = 2)
 		COOLDOWN_START(src, starving_message, 20 SECONDS)
 	if(need_mob_update)
@@ -107,7 +107,7 @@
 	if(istype(eating, /obj/item/food/golem_food))
 		var/obj/item/food/golem_food/food = eating
 		if(metal > (PROTEAN_STOMACH_FULL - 0.3) && food.owner.loc == owner)
-			balloon_alert(owner, LANG("obj.1205d2c0", null))
+			balloon_alert(owner, LANG("obj.1205d2c0e030ec99", null))
 			return BLOCK_EAT_ATTEMPT
 
 /// If we ate a sheet of metal, add it to storage.

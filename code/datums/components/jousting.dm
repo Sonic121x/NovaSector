@@ -60,7 +60,7 @@
 
 /datum/component/jousting/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice(LANG("datum.45847321", null))
+	examine_list += span_notice(LANG("datum.45847321bbb4f8f8", null))
 
 /datum/component/jousting/proc/on_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER

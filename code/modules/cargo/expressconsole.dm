@@ -45,17 +45,17 @@
 /obj/machinery/computer/cargo/express/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (tool.GetID() && allowed(user))
 		locked = !locked
-		to_chat(user, span_notice(LANG("obj.d72f945d", list(locked ? "lock" : "unlock"))))
+		to_chat(user, span_notice(LANG("obj.d72f945d46441985", list(locked ? "lock" : "unlock"))))
 		return ITEM_INTERACT_SUCCESS
 
 	if (istype(tool, /obj/item/disk/cargo/bluespace_pod))
 		if (pod_type == /obj/structure/closet/supplypod/bluespacepod)
-			balloon_alert(user, LANG("obj.7d09f139", null))
+			balloon_alert(user, LANG("obj.7d09f139044f50ff", null))
 			return ITEM_INTERACT_FAILURE
 		if(!user.temporarilyRemoveItemFromInventory(tool))
 			return ITEM_INTERACT_FAILURE
 		pod_type = /obj/structure/closet/supplypod/bluespacepod // doesnt affect our circuit board, making reversal possible
-		to_chat(user, span_notice(LANG("obj.9a575be2", list(src))))
+		to_chat(user, span_notice(LANG("obj.9a575be2d70b08f4", list(src))))
 		tool.forceMove(src)
 		return ITEM_INTERACT_SUCCESS
 
@@ -65,7 +65,7 @@
 			beacon.link_console(src, user)
 			return ITEM_INTERACT_SUCCESS
 
-		to_chat(user, span_alert(LANG("obj.f663f8b7", list(src, beacon))))
+		to_chat(user, span_alert(LANG("obj.f663f8b73205d8ac", list(src, beacon))))
 		return ITEM_INTERACT_FAILURE
 
 	return NONE
@@ -75,8 +75,8 @@
 		return FALSE
 	if(user)
 		if (emag_card)
-			user.visible_message(span_warning(LANG("obj.f9eb3449", list(user, emag_card, src))))
-		to_chat(user, span_notice(LANG("obj.6ff51e71", null)))
+			user.visible_message(span_warning(LANG("obj.f9eb34497a25192c", list(user, emag_card, src))))
+		to_chat(user, span_notice(LANG("obj.6ff51e7141bdd00a", null)))
 	obj_flags |= EMAGGED
 	contraband = TRUE
 	// This also sets this on the circuit board
@@ -145,7 +145,7 @@
 
 		if("add")//Generate Supply Order first
 			if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_EXPRESSPOD_CONSOLE))
-				say(LANG("obj.220d397b", null))
+				say(LANG("obj.220d397babf720b3", null))
 				return
 			var/id = params["id"]
 			id = text2path(id) || id

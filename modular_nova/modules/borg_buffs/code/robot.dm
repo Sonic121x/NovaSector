@@ -125,23 +125,22 @@
 
 /obj/item/cooking/cyborg/power/examine()
 	. = ..()
-	. += LANG("obj.fc5144aa", list(tool_behaviour == TOOL_KNIFE ? "knife" : "rolling pin"))
+	. += LANG("obj.fc5144aa05ea9b3b", list(tool_behaviour == TOOL_KNIFE ? "knife" : "rolling pin"))
 
 /obj/item/cooking/cyborg/power/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	if(tool_behaviour != TOOL_ROLLINGPIN)
 		tool_behaviour = TOOL_ROLLINGPIN
-		to_chat(user, span_notice(LANG("obj.127a6e47", list(src))))
+		to_chat(user, span_notice(LANG("obj.127a6e471c216fe0", list(src))))
 		icon_state = "rolling_bolt_cyborg"
 	else
 		tool_behaviour = TOOL_KNIFE
-		to_chat(user, span_notice(LANG("obj.935df823", list(src))))
+		to_chat(user, span_notice(LANG("obj.935df82372aadaf3", list(src))))
 		icon_state = "knife_screw_cyborg"
 
 // Wirebrush for janiborg
 /datum/design/borg_wirebrush
 	name = "Wire-brush Module"
-	id = "borg_upgrade_brush"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/wirebrush
 	materials = list(

@@ -162,7 +162,7 @@
 	if(isnull(user.client))
 		return
 	if(!QDELETED(current_user))
-		to_chat(user, span_warning(LANG("obj.2d515444", null)))
+		to_chat(user, span_warning(LANG("obj.2d515444f04d7e15", null)))
 		return
 
 	if(eyeobj)
@@ -172,7 +172,7 @@
 	/* We're attempting to initialize the eye past this point */
 
 	if(!CreateEye())
-		to_chat(user, span_warning(LANG("obj.3ab9b129", list(src))))
+		to_chat(user, span_warning(LANG("obj.3ab9b129e668f045", list(src))))
 		return
 
 	SEND_SIGNAL(src, COMSIG_ADVANCED_CAMERA_EYE_CREATED, eyeobj)
@@ -236,7 +236,7 @@
 	var/list/cameras_by_tag = SScameras.get_available_camera_by_tag_list(origin.networks, origin.z_lock)
 
 	playsound(origin, 'sound/machines/terminal/terminal_prompt.ogg', 25, FALSE)
-	var/camera = tgui_input_list(usr, LANG("datum.f2e8bac6", null), LANG("datum.65c72ac4", null), cameras_by_tag)
+	var/camera = tgui_input_list(usr, LANG("datum.f2e8bac6540ae518", null), LANG("datum.65c72ac4f17f355b", null), cameras_by_tag)
 	if(isnull(camera))
 		return
 
@@ -262,9 +262,9 @@
 		return
 	var/mob/eye/camera/remote/remote_eye = owner.remote_control
 	if(remote_eye.zMove(UP))
-		to_chat(owner, span_notice(LANG("datum.42490421", null)))
+		to_chat(owner, span_notice(LANG("datum.424904218786fa94", null)))
 	else
-		to_chat(owner, span_notice(LANG("datum.d5b76daa", null)))
+		to_chat(owner, span_notice(LANG("datum.d5b76daa7732c947", null)))
 
 /datum/action/innate/camera_multiz_down
 	name = "Move down a floor"
@@ -276,12 +276,12 @@
 		return
 	var/mob/eye/camera/remote/remote_eye = owner.remote_control
 	if(remote_eye.zMove(DOWN))
-		to_chat(owner, span_notice(LANG("datum.86deeb2e", null)))
+		to_chat(owner, span_notice(LANG("datum.86deeb2eb4bfc307", null)))
 	else
-		to_chat(owner, span_notice(LANG("datum.fad086fd", null)))
+		to_chat(owner, span_notice(LANG("datum.fad086fdedec0420", null)))
 
 /obj/machinery/computer/camera_advanced/human_ai/screwdriver_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, LANG("obj.d75b9c7f", null))
+	balloon_alert(user, LANG("obj.d75b9c7f84a2b2c3", null))
 	if(!do_after(user, 5 SECONDS, src))
 		return ITEM_INTERACT_BLOCKING
 	tool.play_tool_sound(src, 40)

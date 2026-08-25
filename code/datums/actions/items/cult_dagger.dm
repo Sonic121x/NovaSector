@@ -19,7 +19,7 @@
 
 /datum/action/item_action/cult_dagger/do_effect(trigger_flags)
 	if(!isliving(owner))
-		to_chat(owner, span_warning(LANG("datum.2b7541c8", null)))
+		to_chat(owner, span_warning(LANG("datum.2b7541c8c259b920", null)))
 		return FALSE
 
 	var/obj/item/target_item = target
@@ -35,7 +35,7 @@
 		return TRUE
 
 	if (living_owner.usable_hands <= 0)
-		to_chat(living_owner, span_warning(LANG("datum.4d70522f", null)))
+		to_chat(living_owner, span_warning(LANG("datum.4d70522f060d0201", null)))
 	else
-		to_chat(living_owner, span_warning(LANG("datum.86b9ca92", null)))
+		to_chat(living_owner, span_warning(LANG("datum.86b9ca924a677805", null)))
 	return FALSE

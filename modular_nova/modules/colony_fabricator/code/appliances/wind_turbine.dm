@@ -35,9 +35,9 @@
 	. = ..()
 	var/area/turbine_area = get_area(src)
 	if(!turbine_area.outdoors)
-		. += span_notice(LANG("obj.452ecee1", null))
+		. += span_notice(LANG("obj.452ecee1223b619d", null))
 	if(pressure_too_low)
-		. += span_notice(LANG("obj.760bf17f", null))
+		. += span_notice(LANG("obj.760bf17f8ef92c21", null))
 
 
 /obj/machinery/power/colony_wind_turbine/process()

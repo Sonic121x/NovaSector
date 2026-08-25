@@ -19,6 +19,6 @@
 /datum/wires/scanner_gate/get_status()
 	var/obj/machinery/scanner_gate/scanner = holder
 	. = list()
-	. += LANG("datum.11db0ccf", list(scanner.light_pass ? "on" : "off"))
-	. += LANG("datum.a2999979", list(scanner.light_fail ? "on" : "off"))
-	. += LANG("datum.643df2a9", list(scanner.ignore_signals ? "on" : "off"))
+	. += LANG("datum.11db0ccf8e342ea3", list(scanner.light_pass ? "on" : "off"))
+	. += LANG("datum.a29999799dd5e7fc", list(scanner.light_fail ? "on" : "off"))
+	. += LANG("datum.643df2a99ae250fc", list(scanner.ignore_signals ? "on" : "off"))

@@ -25,15 +25,16 @@
 	return ..()
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/memento(mob/living/carbon/human/user)
-	to_chat(user, span_warning(LANG("obj.0e16b0d7", null)))
+	to_chat(user, span_warning(LANG("obj.0e16b0d793190c7e", null)))
 	if (!do_after(user, 4 SECONDS, target = user))
 		return
 
-	to_chat(user, span_notice(LANG("obj.eafd974e", null)))
+	to_chat(user, span_notice(LANG("obj.eafd974ec564489c", null)))
 	user.add_traits(list(TRAIT_NODEATH, TRAIT_NOHARDCRIT, TRAIT_NOCRITDAMAGE), CLOTHING_TRAIT)
 	RegisterSignal(user, COMSIG_LIVING_HEALTH_UPDATE, PROC_REF(check_health))
 	icon_state = "memento_mori_active"
 	active_owner = user
+	ADD_TRAIT(src, TRAIT_DANGEROUS_UNEQUIP, TRAIT_GENERIC)
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/mori()
 	icon_state = "memento_mori"
@@ -42,8 +43,9 @@
 	UnregisterSignal(active_owner, COMSIG_LIVING_HEALTH_UPDATE)
 	var/mob/living/carbon/human/stored_owner = active_owner //to avoid infinite looping when dust unequips the pendant
 	active_owner = null
-	to_chat(stored_owner, span_userdanger(LANG("obj.4b638a33", null)))
+	to_chat(stored_owner, span_userdanger(LANG("obj.4b638a3354ea5aaf", null)))
 	stored_owner.dust(just_ash = TRUE, drop_items = TRUE)
+	REMOVE_TRAIT(src, TRAIT_DANGEROUS_UNEQUIP, TRAIT_GENERIC)
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/check_health(mob/living/source)
 	SIGNAL_HANDLER
@@ -66,13 +68,13 @@
 	new /obj/effect/temp_visual/guardian/phase/out(get_turf(guardian))
 	guardian.locked = TRUE
 	guardian.forceMove(src)
-	to_chat(guardian, span_userdanger(LANG("obj.a67a0756", null)))
+	to_chat(guardian, span_userdanger(LANG("obj.a67a0756433fd390", null)))
 	guardian.playsound_local(get_turf(guardian), 'sound/effects/magic/summonitems_generic.ogg', 50, TRUE)
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/regurgitate_guardian(mob/living/basic/guardian/guardian)
 	guardian.locked = FALSE
 	guardian.recall(forced = TRUE)
-	to_chat(guardian, span_notice(LANG("obj.c10c0528", null)))
+	to_chat(guardian, span_notice(LANG("obj.c10c052898fa1bd3", null)))
 	guardian.playsound_local(get_turf(guardian), 'sound/effects/magic/repulse.ogg', 50, TRUE)
 
 /datum/action/item_action/hands_free/memento_mori

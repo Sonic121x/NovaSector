@@ -110,8 +110,8 @@
 
 /obj/machinery/air_sensor/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.446a44e1", null))
-	. += span_notice(LANG("obj.ebcaf9f6", null))
+	. += span_notice(LANG("obj.446a44e1dc841534", null))
+	. += span_notice(LANG("obj.ebcaf9f67d4369ce", null))
 
 /obj/machinery/air_sensor/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -119,7 +119,7 @@
 	//switched off version of this air sensor but still anchored to the ground
 	var/obj/item/air_sensor/sensor = new(drop_location())
 	sensor.set_anchored(TRUE)
-	sensor.balloon_alert(user, LANG("obj.d1fb76aa", null))
+	sensor.balloon_alert(user, LANG("obj.d1fb76aa24064e92", null))
 
 	//delete self
 	qdel(src)
@@ -140,7 +140,7 @@
 ///right click with multi tool to disconnect everything
 /obj/machinery/air_sensor/multitool_act_secondary(mob/living/user, obj/item/tool)
 	reset()
-	balloon_alert(user, LANG("obj.b4d47ea0", null))
+	balloon_alert(user, LANG("obj.b4d47ea00d2408b1", null))
 	return TRUE
 
 /obj/machinery/air_sensor/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
@@ -150,9 +150,9 @@
 	switch(type)
 		if(INLET, OUTLET)
 			var/port = "[type == INLET ? "input" : "output"] port"
-			user.balloon_alert(user, LANG("obj.920ca7ea", list(port)))
-			to_chat(user, span_notice(LANG("obj.5d8623f7", list(src, multi_tool.buffer, port))))
-	to_chat(user, span_notice(LANG("obj.877a4dfa", list(src))))
+			user.balloon_alert(user, LANG("obj.920ca7ea12f96fa9", list(port)))
+			to_chat(user, span_notice(LANG("obj.5d8623f77b1ec110", list(src, multi_tool.buffer, port))))
+	to_chat(user, span_notice(LANG("obj.877a4dfa32bde15c", list(src))))
 	multi_tool.set_buffer(src)
 
 	return ITEM_INTERACT_SUCCESS
@@ -191,11 +191,11 @@
 /obj/item/air_sensor/examine(mob/user)
 	. = ..()
 	if(anchored)
-		. += span_notice(LANG("obj.d7528bd7", list(EXAMINE_HINT("wrenched"))))
+		. += span_notice(LANG("obj.d7528bd72dd0e22a", list(EXAMINE_HINT("wrenched"))))
 	else
-		. += span_notice(LANG("obj.cd726d33", list(EXAMINE_HINT("wrenched"))))
-	. +=  span_notice(LANG("obj.5f2a74d5", list(EXAMINE_HINT("welded"))))
-	. +=  span_notice(LANG("obj.50896f4e", null))
+		. += span_notice(LANG("obj.cd726d33d4bcd66b", list(EXAMINE_HINT("wrenched"))))
+	. +=  span_notice(LANG("obj.5f2a74d53db3726a", list(EXAMINE_HINT("welded"))))
+	. +=  span_notice(LANG("obj.50896f4ef2217f47", null))
 
 /obj/item/air_sensor/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -213,7 +213,7 @@
 		available_sensors += GLOB.station_gas_chambers[chamber_id]
 
 	//make the choice
-	var/chamber_name = tgui_input_list(user, LANG("obj.365f366e", null), LANG("obj.7a50f4a5", null), available_sensors)
+	var/chamber_name = tgui_input_list(user, LANG("obj.365f366e298a6663", null), LANG("obj.7a50f4a543a5fe35", null), available_sensors)
 	if(isnull(chamber_name))
 		return
 
@@ -235,7 +235,7 @@
 
 		//make real air sensor in its place
 		var/obj/machinery/air_sensor/new_sensor = new sensor(get_turf(src))
-		new_sensor.balloon_alert(user, LANG("obj.5087a0fb", null))
+		new_sensor.balloon_alert(user, LANG("obj.5087a0fb9e136c24", null))
 		qdel(src)
 
 		break
@@ -248,10 +248,10 @@
 	if(!tool.tool_start_check(user, amount = 1))
 		return ITEM_INTERACT_BLOCKING
 
-	loc.balloon_alert(user, LANG("obj.f5bb869c", null))
+	loc.balloon_alert(user, LANG("obj.f5bb869c82af3d63", null))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 30, amount = 1))
 		return ITEM_INTERACT_BLOCKING
-	loc.balloon_alert(user, LANG("obj.8a680189", null))
+	loc.balloon_alert(user, LANG("obj.8a680189c68b8c03", null))
 
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS

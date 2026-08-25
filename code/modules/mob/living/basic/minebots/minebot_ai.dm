@@ -108,7 +108,7 @@
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	if(target.health >= target.maxHealth * repair_threshold)
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/atom/movable, say), LANG("datum.967cf907", list(target))) // NOVA EDIT - I18N: 字符串是回调实参、不是 sink 直调，codemod 够不着
+	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/atom/movable, say), LANG("datum.967cf90783ea03c7", list(target))) // NOVA EDIT - I18N: 字符串是回调实参、不是 sink 直调，codemod 够不着
 	INVOKE_ASYNC(controller, TYPE_PROC_REF(/datum/ai_controller, ai_interact), target)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 

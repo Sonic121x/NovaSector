@@ -17,9 +17,9 @@
 	. = ..()
 	// NOVA EDIT CHANGE - i18n: the desc is composed at runtime (base + charge sentence), so the uplink JSON asset's
 	// whole-string reverse misses it and the base stayed english. Reverse the base and LANG the charge {0} template
-	// (datum.b01173f1) so the composed desc is fully localized here. lang_reverse_text/LANG no-op on en / en locale.
+	// (datum.b01173f142facf65) so the composed desc is fully localized here. lang_reverse_text/LANG no-op on en / en locale.
 	// ORIGINAL: desc += " Implant has enough energy for [FREEDOM_IMPLANT_CHARGES] uses before it becomes inert and harmlessly self-destructs."
-	desc = "[lang_reverse_text(desc)][LANG("datum.b01173f1", list(FREEDOM_IMPLANT_CHARGES))]"
+	desc = "[lang_reverse_text(desc)][LANG("datum.b01173f142facf65", list(FREEDOM_IMPLANT_CHARGES))]"
 
 /datum/uplink_item/implants/radio
 	name = "Internal Syndicate Radio Implant"

@@ -69,7 +69,7 @@
 	heretic_datum.update_data_for_all_viewers()
 
 /datum/status_effect/heretic_passive/proc/recharge_spells()
-	owner.balloon_alert(owner, LANG("datum.3f87cef2", null))
+	owner.balloon_alert(owner, LANG("datum.3f87cef2b29061cb", null))
 	var/list/main_path_knowledge = heretic_datum.get_researched_knowledge_by_category(HERETIC_KNOWLEDGE_TREE) \
 		+ heretic_datum.get_researched_knowledge_by_category(HERETIC_KNOWLEDGE_START)
 	var/list/side_path_knowledge = heretic_datum.get_researched_knowledge_by_category(HERETIC_KNOWLEDGE_DRAFT) \
@@ -93,7 +93,7 @@
 		"Resistance to high and low pressure."
 	)
 	/// Tracks total seconds nearby mobs are on fire, used to determine when to recharge spells
-	var/seconds_of_fire = 0
+	VAR_PRIVATE/seconds_of_fire = 0
 
 /datum/status_effect/heretic_passive/ash/on_apply()
 	. = ..()
@@ -114,8 +114,8 @@
 /datum/status_effect/heretic_passive/ash/tick(seconds_between_ticks)
 	. = ..()
 	var/seconds_gained = 0
-	for(var/mob/living/nearby_guy in view(owner, 3))
-		if(!nearby_guy.on_fire || nearby_guy.stat == DEAD || nearby_guy == owner)
+	for(var/mob/living/nearby_guy in oview(owner, 3))
+		if(nearby_guy.stat == DEAD || !nearby_guy.on_fire)
 			continue
 		if(ismonkey(nearby_guy) && isnull(nearby_guy.mind))
 			continue
@@ -201,7 +201,7 @@
 /datum/status_effect/heretic_passive/blade/proc/z_impact_react(datum/source, levels, turf/fell_on)
 	SIGNAL_HANDLER
 	new /obj/effect/temp_visual/mook_dust(fell_on)
-	owner.visible_message(span_notice(LANG("datum.885554a2", list(owner, fell_on, p_their()))))
+	owner.visible_message(span_notice(LANG("datum.885554a2048e1bf8", list(owner, fell_on, p_their()))))
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/atom, SpinAnimation), 0.5 SECONDS, 0)
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob/, emote), "flip")
 	return ZIMPACT_CANCEL_DAMAGE | ZIMPACT_NO_MESSAGE | ZIMPACT_NO_SPIN
@@ -272,18 +272,18 @@
 /// Does the actual counter-attack
 /datum/status_effect/heretic_passive/blade/proc/counter_attack(mob/living/carbon/human/source, mob/living/target, obj/item/melee/sickly_blade/weapon, attack_text)
 	playsound(get_turf(source), 'sound/items/weapons/parry.ogg', 100, TRUE)
-	source.balloon_alert(source, LANG("datum.be0e57d7", null))
+	source.balloon_alert(source, LANG("datum.be0e57d75969dbb9", null))
 	source.visible_message(
-		span_warning(LANG("datum.d58426c0", list(source, attack_text, target))),
-		span_warning(LANG("datum.31e70d1f", list(attack_text, target))),
-		span_hear(LANG("datum.bdccfbc8", null)),
+		span_warning(LANG("datum.d58426c07d0547f6", list(source, attack_text, target))),
+		span_warning(LANG("datum.31e70d1f7ac698a0", list(attack_text, target))),
+		span_hear(LANG("datum.bdccfbc8c01ec661", null)),
 	)
 	weapon.melee_attack_chain(source, target)
 
 /// Gives feedback to the user
 /datum/status_effect/heretic_passive/blade/proc/reset_riposte(mob/living/carbon/human/source)
 	riposte_ready = TRUE
-	source.balloon_alert(source, LANG("datum.754a9472", null))
+	source.balloon_alert(source, LANG("datum.754a94724f1aadcb", null))
 
 //---- Cosmic Passive
 // Level 1 Cosmic fields will speed up the caster and provide stamina regen
@@ -319,7 +319,7 @@
 	if(!isliving(target) || target == source || target.stat <= HARD_CRIT)
 		return
 
-	if(locate(/obj/effect/forcefield/cosmic_field) in target.loc)
+	if(locate(/obj/effect/forcefield/cosmic_field) in range(1, target))
 		addtimer(CALLBACK(src, PROC_REF(check_crit), target), 0.2 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
 /datum/status_effect/heretic_passive/cosmic/proc/check_crit(mob/living/target)
@@ -389,16 +389,11 @@
 	tongue.disliked_foodtypes = NONE
 	tongue.toxic_foodtypes = NONE
 
-/// Any time you take a bite of something, if it's meat or an organ you will heal some damage
-/datum/status_effect/heretic_passive/flesh/proc/on_eat(mob/eater, atom/food)
+/// Any time you take a bite of something, if it's meat or gory (probably an organ) you will heal some damage
+/datum/status_effect/heretic_passive/flesh/proc/on_eat(mob/eater, atom/food, foodtypes)
 	SIGNAL_HANDLER
-	var/obj/item/organ/consumed_organ = food
-	if(istype(consumed_organ) && consumed_organ.foodtype_flags & MEAT)
-		heal_glutton() // Heal the owner if they eat meat
-		return
-	var/obj/item/food/consumed_food = food
-	if(istype(consumed_food) && consumed_food.foodtypes & MEAT)
-		heal_glutton() // Heal the owner if they eat meat
+	if(foodtypes & (MEAT | GORE)) //All edible organs are gory, but not all of them are meat (podpeople, fishpeople.) If someone adds edible non-meat, non-gory organs, then I guess back to the drawing board.
+		heal_glutton()
 
 /datum/status_effect/heretic_passive/flesh/proc/heal_glutton()
 	var/healed_amount = owner.heal_overall_damage(2, 2, updating_health = FALSE)
@@ -705,19 +700,18 @@
 /datum/status_effect/heretic_passive/void
 	name = "Aristocrat's Way"
 	id = "void_passive"
-	recharge_description = "Recharge spells by knocking foes who are exposed to sub-zero temperature into critical condition."
+	recharge_description = "Recharge spells by freezing nearby foes."
 	passive_descriptions = list(
 		"Cold and low pressure immunity.",
 		"You no longer need to breathe.",
 		"Water, ice and slippery surfaces no slip you."
 	)
-
-	var/list/gained_charges_from
+	/// Tracks total seconds nearby mobs are exposed to cold temperature, used to determine when to recharge spells
+	VAR_PRIVATE/seconds_of_cold = 0
 
 /datum/status_effect/heretic_passive/void/on_apply()
 	. = ..()
 	owner.add_traits(list(TRAIT_RESISTCOLD, TRAIT_RESISTLOWPRESSURE), REF(src))
-	RegisterSignal(owner, COMSIG_USER_PRE_ITEM_ATTACK, PROC_REF(hit_someone))
 
 /datum/status_effect/heretic_passive/void/heretic_level_upgrade()
 	. = ..()
@@ -730,27 +724,27 @@
 /datum/status_effect/heretic_passive/void/on_remove()
 	. = ..()
 	owner.remove_traits(list(TRAIT_RESISTCOLD, TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_NO_SLIP_WATER, TRAIT_NO_SLIP_ICE, TRAIT_NO_SLIP_SLIDE), REF(src))
-	UnregisterSignal(owner, COMSIG_USER_PRE_ITEM_ATTACK)
 
-/datum/status_effect/heretic_passive/void/proc/hit_someone(mob/living/source, mob/living/target, obj/item/used_weapon)
-	SIGNAL_HANDLER
+/datum/status_effect/heretic_passive/void/tick(seconds_between_ticks)
+	. = ..()
+	var/seconds_gained = 0
+	for(var/mob/living/nearby_guy in oview(owner, 4))
+		// -75c required - easily achievable with void chill but can also be achieved via spacing (even on icebox)
+		if(nearby_guy.stat == DEAD || nearby_guy.bodytemperature > T0C - 75)
+			continue
+		if(ismonkey(nearby_guy) && isnull(nearby_guy.mind))
+			continue
 
-	if(!isliving(target) || target == source || target.stat <= HARD_CRIT || LAZYFIND(gained_charges_from, REF(target)))
+		seconds_gained += seconds_between_ticks
+		if(seconds_gained >= 6)
+			break
+
+	seconds_of_cold += seconds_gained
+	if(seconds_of_cold < 30)
 		return
 
-	var/turf/target_turf = get_turf(target)
-	if(target_turf?.GetTemperature() <= T0C)
-		addtimer(CALLBACK(src, PROC_REF(check_crit), target), 0.2 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
-
-/datum/status_effect/heretic_passive/void/proc/check_crit(mob/living/target)
-	if(QDELETED(target) || target.stat == STABLE)
-		return
-	LAZYADD(gained_charges_from, REF(target))
-	addtimer(CALLBACK(src, PROC_REF(remove_gained_from), REF(target)), 5 MINUTES, TIMER_DELETE_ME|TIMER_UNIQUE)
+	seconds_of_cold = 0
 	recharge_spells()
-
-/datum/status_effect/heretic_passive/void/proc/remove_gained_from(target_ref)
-	LAZYREMOVE(gained_charges_from, target_ref)
 
 #undef HERETIC_LEVEL_START
 #undef HERETIC_LEVEL_UPGRADE

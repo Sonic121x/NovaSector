@@ -6,10 +6,6 @@
 /datum/config_entry/string/i18n_server_locale
 	default = LANGUAGE_LOCALE_EN
 
-/datum/config_entry/string/i18n_server_locale/ValidateAndSet(str_val)
-	. = ..()
-	if(.)
-		GLOB.i18n_server_locale = config_entry_value
 
 // i18n: 是否启用「聊天层 AC 子串兜底」（默认关）。开启后全服中文时会对每条聊天里的残留英文做
 // 子串替换，覆盖「英文拼进变量再 to_chat」等长尾；代价是热路径每行开销 + 多词短语可能误翻。
@@ -17,10 +13,6 @@
 /datum/config_entry/flag/i18n_chat_fallback
 	default = FALSE
 
-/datum/config_entry/flag/i18n_chat_fallback/ValidateAndSet(str_val)
-	. = ..()
-	if(.)
-		GLOB.i18n_chat_fallback = config_entry_value
 
 // i18n: 是否启用「运行期漏翻采集」（默认关）。全服 locale≠en 时把经过所有翻译层后仍是英文的
 // 多词串去重记入 [log_directory]/i18n_misses.log，离线聚合归类见 tools/i18n/miss-scan.mjs。

@@ -93,4 +93,4 @@
 /obj/item/clothing/head/beanie/black/dboy/examine(mob/user)
 	. = ..()
 	if(IS_WEAKREF_OF(user, beanie_owner))
-		. += span_purple(LANG("obj.500691bf", null))
+		. += span_purple(LANG("obj.500691bfa10cc454", null))

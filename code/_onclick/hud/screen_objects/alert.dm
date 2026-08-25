@@ -443,7 +443,7 @@
 	var/obj/item/receiving = offer.offered_item
 	var/receiving_name = get_receiving_name(taker, offerer, receiving)
 	name = "[offerer] is offering [receiving_name]"
-	desc = LANG("atom.60e3f2cb", list(offerer, receiving_name, additional_desc_text))
+	desc = LANG("atom.60e3f2cb41023f30", list(offerer, receiving_name, additional_desc_text))
 	icon_state = "template"
 	cut_overlays()
 	add_overlay(receiving)
@@ -534,8 +534,8 @@
 		return
 
 	too_slowing_this_guy = TRUE
-	offerer.visible_message(span_notice(LANG("atom.445b4eb0", list(rube, offerer))), span_nicegreen(LANG("atom.5151a7a8", list(rube))), ignored_mobs=rube)
-	to_chat(rube, span_nicegreen(LANG("atom.013b2b77", list(offerer))))
+	offerer.visible_message(span_notice(LANG("atom.445b4eb00eda92d5", list(rube, offerer))), span_nicegreen(LANG("atom.5151a7a85a8f344c", list(rube))), ignored_mobs=rube)
+	to_chat(rube, span_nicegreen(LANG("atom.013b2b7787bd1ebe", list(offerer))))
 	addtimer(CALLBACK(src, PROC_REF(too_slow_p2), offerer, rube), 0.5 SECONDS)
 
 /// Part two of the ultimate prank
@@ -543,7 +543,7 @@
 	var/mob/living/rube = owner
 	var/mob/living/offerer = offer?.owner
 	if(!QDELETED(rube) && !QDELETED(offerer))
-		offerer.visible_message(span_danger(LANG("atom.5fbb74d7", list(offerer, rube))), span_nicegreen(LANG("atom.809f34e8", list(rube, rube.p_them()))), span_hear(LANG("atom.576f52df", null)), ignored_mobs=rube)
+		offerer.visible_message(span_danger(LANG("atom.5fbb74d78cee6dd5", list(offerer, rube))), span_nicegreen(LANG("atom.809f34e89fd1397f", list(rube, rube.p_them()))), span_hear(LANG("atom.576f52dfc175eb4a", null)), ignored_mobs=rube)
 		to_chat(rube, span_userdanger("[uppertext("NO! [offerer] PULLS [offerer.p_their()] HAND AWAY FROM YOURS! YOU'RE TOO SLOW!")]"))
 		playsound(offerer, 'sound/items/weapons/thudswoosh.ogg', 100, TRUE, 1)
 		rube.Knockdown(1 SECONDS)
@@ -558,7 +558,7 @@
 	SIGNAL_HANDLER
 
 	if(QDELETED(offer.offered_item))
-		examine_list += span_warning(LANG("atom.8c862410", list(source, source.p_they(), source.p_s())))
+		examine_list += span_warning(LANG("atom.8c862410804000a8", list(source, source.p_they(), source.p_s())))
 
 /atom/movable/screen/alert/give/hand
 	screentip_override_text = "Take Hand"
@@ -604,7 +604,7 @@
 	var/title = pick(death_titles)
 
 	//Succumbing with a message
-	var/last_whisper = tgui_input_text(usr, LANG("atom.2aeeb8ed", null), title, max_length = CHAT_MESSAGE_MAX_LENGTH, encode = FALSE) // saycode already handles sanitization
+	var/last_whisper = tgui_input_text(usr, LANG("atom.2aeeb8edcc4b5e65", null), title, max_length = CHAT_MESSAGE_MAX_LENGTH, encode = FALSE) // saycode already handles sanitization
 	if(isnull(last_whisper))
 		return
 	if(length(last_whisper))
@@ -675,7 +675,7 @@
 	// construct track
 	if(construct_owner?.seeking && construct_owner.construct_master)
 		blood_target = construct_owner.construct_master
-		desc = LANG("atom.13006b08", list(construct_owner.construct_master))
+		desc = LANG("atom.13006b08df2093cb", list(construct_owner.construct_master))
 
 	// cult track
 	var/datum/antagonist/cult/antag = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
@@ -694,7 +694,7 @@
 				angle = 0
 				cut_overlays()
 				icon_state = "runed_sense0"
-				desc = LANG("atom.e6b2afcf", list(sac_objective.target))
+				desc = LANG("atom.e6b2afcfbbc49683", list(sac_objective.target))
 				add_overlay(sac_objective.sac_image)
 			else
 				var/datum/objective/eldergod/summon_objective = locate() in antag.cult_team.objectives
@@ -703,7 +703,7 @@
 				var/list/location_list = list()
 				for(var/area/area_to_check in summon_objective.summon_spots)
 					location_list += area_to_check.get_original_area_name()
-				desc = LANG("atom.e22f0f66", list(english_list(location_list)))
+				desc = LANG("atom.e22f0f663f0616d9", list(lang_english_list(location_list)))
 				if(icon_state == "runed_sense1")
 					return
 				animate(src, transform = null, time = 1, loop = 0)
@@ -718,13 +718,13 @@
 	var/turf/Q = get_turf(owner)
 	if(!P || !Q || (P.z != Q.z)) //The target is on a different Z level, we cannot sense that far.
 		icon_state = "runed_sense2"
-		desc = LANG("atom.669f3507", null)
+		desc = LANG("atom.669f35074e51d611", null)
 		return
 	if(isliving(blood_target))
 		var/mob/living/real_target = blood_target
-		desc = LANG("atom.9a9fed76", list(real_target.real_name, get_area_name(blood_target)))
+		desc = LANG("atom.9a9fed76872f1064", list(real_target.real_name, get_area_name(blood_target)))
 	else
-		desc = LANG("atom.9a9fed76", list(blood_target, get_area_name(blood_target)))
+		desc = LANG("atom.9a9fed76872f1064", list(blood_target, get_area_name(blood_target)))
 
 	var/target_angle = get_angle(Q, P)
 	var/target_dist = get_dist(P, Q)

@@ -17,7 +17,7 @@
 /datum/action/cooldown/spell/list_target/PreActivate(atom/caster)
 	var/list/list_targets = get_list_targets(caster, target_radius)
 	if(!length(list_targets))
-		caster.balloon_alert(caster, LANG("datum.41e497a4", null))
+		caster.balloon_alert(caster, LANG("datum.41e497a406158c8b", null))
 		return FALSE
 
 	var/atom/chosen = tgui_input_list(caster, choose_target_message, name, sort_names(list_targets))
@@ -25,7 +25,7 @@
 		return FALSE
 
 	if(get_dist(chosen, caster) > target_radius)
-		caster.balloon_alert(caster, LANG("datum.d000a673", null))
+		caster.balloon_alert(caster, LANG("datum.d000a673ca4d930e", null))
 		return FALSE
 
 	return Activate(chosen)

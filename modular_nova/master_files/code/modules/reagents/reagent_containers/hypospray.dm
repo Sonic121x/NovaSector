@@ -23,7 +23,7 @@
 // Sends a more generic chat message when an unused medipen is empty
 /obj/item/reagent_containers/hypospray/medipen/inject(mob/living/affected_mob, mob/user)
 	if(!reagents?.total_volume || (init_empty && used_up && unused))
-		to_chat(user, span_warning(LANG("obj.67849a15", list(src))))
+		to_chat(user, span_warning(LANG("obj.67849a15b3c35045", list(src))))
 		return FALSE
 
 	// Attempt the injection

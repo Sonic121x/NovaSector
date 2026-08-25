@@ -44,7 +44,7 @@
 		return
 
 	if(living_user.usable_hands <= 0)
-		source.balloon_alert(living_user, LANG("datum.602a5533", null))
+		source.balloon_alert(living_user, LANG("datum.602a55339e17c0f1", null))
 		return
 
 	do_icon_toggle(source, living_user)
@@ -61,7 +61,7 @@
 /datum/component/toggle_icon/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice(LANG("datum.7eaeb659", list(source, toggle_noun)))
+	examine_list += span_notice(LANG("datum.7eaeb65922500ebb", list(source, toggle_noun)))
 
 /*
  * Signal proc for COMSIG_ATOM_REQUESTING_CONTEXT_FROM_ITEM.
@@ -86,7 +86,7 @@
  * user - the mob doing the toggling
  */
 /datum/component/toggle_icon/proc/do_icon_toggle(atom/source, mob/living/user)
-	source.balloon_alert(user, LANG("datum.6befe2b0", list(toggle_noun)))
+	source.balloon_alert(user, LANG("datum.6befe2b0109bae84", list(toggle_noun)))
 
 	toggled = !toggled
 

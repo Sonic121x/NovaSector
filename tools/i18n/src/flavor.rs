@@ -43,11 +43,84 @@ const FLAVOR_FILES: &[&str] = &[
 /// 只收**部分 section** 的 strings JSON：同文件其余 section 是 `@pick(...)` 生成器子池 /
 /// 字母变换表（如 traumas.json 的 y_replacements=["y","i","e"]、semicolon=[";"]），整文件收会
 /// 往目录塞单字符噪音、翻译还会破坏生成逻辑。句子 section 里的 `@pick(x)` 宏逐字保留（译者同）。
-const FLAVOR_JSON_SECTIONS: &[(&str, &[&str])] = &[(
-    // 脑创伤呓语（brain_damage：胡话整句）+ 神明幻觉 ALLCAPS 台词（god_*）。
-    "traumas.json",
-    &["brain_damage", "god_foe", "god_aggressive", "god_neutral", "god_unstun", "god_heal"],
-)];
+const FLAVOR_JSON_SECTIONS: &[(&str, &[&str])] = &[
+    (
+        // 探索无人机（exodrone）的事件文本与星球描述——整段经 TGUI 显示给玩家。
+        // **不收 `probe_names`**（Cassini/Galileo 是探测器专名）与 `trading_station_names`
+        // （"Big Bill Hells's used mechs" 这类商号专名，而且被 `name = "\"[x]\" trading station"`
+        // 拼进一个英文框架里 —— 只译商号会得到「"中文" trading station」这种半截货）。
+        // `planet_types` 是 `{name, description, habitable…}` 的对象数组，collect_json_strings 只
+        // 收字符串叶子，布尔字段与 assoc 键天然不进目录。
+        // `alien_fauna` 被 replacetext 填进 description 的 BEAST 占位（description 本身在目录里）。
+        "exodrone.json",
+        &[
+            "planet_types",
+            "alien_fauna",
+            "fluff_generic",
+            "fluff_space",
+            "fluff_trading",
+            "fluff_ruins",
+        ],
+    ),
+    (
+        // 幻觉假聊天/心灵感应台词（玩家在幻觉里"听到"的整句）。**只收整句 section**：
+        //   · `weird` 是乱码（`#@§*&£` / `EEEeeeeEEEE`），翻不得；
+        //   · `add_name` 只有 `%TARGETNAME% ` 这类占位前缀，没有可译文本；
+        //   · `people`/`accusations`/`contraband`/`threat`/`location`/`sublocation`/`chemicals`
+        //     是**碎片**，被 fake_chat.dm 里的裸字面量框架按英文语序拼成整句
+        //     （`"[people] is [accusations]!"`）。只译碎片会产出「舰长 is 叛徒!」——比全英文更糟，
+        //     要收就得连那些框架一起接 LANG。
+        // `@pick(add_name)` 宏与 `%TARGETNAME%` 逐字保留（译者同）。
+        "hallucination.json",
+        &[
+            "advice",
+            "aggressive",
+            "conversation",
+            "didyouhearthat",
+            "doubt",
+            "escape",
+            "getout",
+            "greetings",
+            "help",
+            "infection_advice",
+            "suspicion",
+            // 碎片池：被 fake_chat.dm 的句式框架拼成整句。**框架已接 LANG 并在译文侧调好语序**
+            // （威胁那条是 `{1}有{0}`），所以这些碎片现在译了是对的 —— 在框架还是裸字面量的时候
+            // 译它们只会产出「舰长 is 叛徒!」，两者必须同时做。
+            "people",
+            "accusations",
+            "contraband",
+            "threat",
+            "location",
+            "sublocation",
+            // 化学合成器随机吐出的药品名（synthesizer.dm 直接当显示名用）。
+            "chemicals",
+        ],
+    ),
+    (
+        // 脑创伤呓语（brain_damage：胡话整句）+ 神明幻觉 ALLCAPS 台词（god_*）。
+        "traumas.json",
+        &[
+            "brain_damage",
+            "god_foe",
+            "god_aggressive",
+            "god_neutral",
+            "god_unstun",
+            "god_heal",
+            // brain_damage 的句子里用 `@pick(x)` 拼进来的**子池**。框架早就译好了（`@pick(george)
+            // @pick(mellens) 在搞我，救命！！！`），子池没译就是中文句子里嵌着英文碎片。
+            // 收这四个：都是「拼错的真词」（`abdoocters`=abductors、`eppilapse`=epilepsy、
+            // `deth squads`、`sheadow lings`），在句中当名词/动词用。
+            "create_nouns",
+            "create_verbs",
+            "mutations",
+            "bug",
+            // **不收** `servers`（basil/sybil/terry/colonel hall 是 /tg/ 服务器专名）、`george`/`mellens`
+            // （人名），以及 `random_gibberish`/`y_replacements`/`semicolon` —— 后三者是**字母级**
+            // 变换表（`y`→`i`/`e`、`;`），翻了当场把拼错效果弄坏。
+        ],
+    ),
+];
 
 /// 递归纳入其下所有 .json 的 flavor 子目录。
 const FLAVOR_DIRS: &[&str] = &["antagonist_flavor", "wounds"];
@@ -91,8 +164,7 @@ pub(crate) fn extract_blanks(repo_root: &Path, catalog: &mut Catalog) {
         let Ok(text) = std::fs::read_to_string(repo_root.join(rel)) else {
             continue;
         };
-        let Ok(serde_json::Value::Array(blanks)) =
-            serde_json::from_str::<serde_json::Value>(&text)
+        let Ok(serde_json::Value::Array(blanks)) = serde_json::from_str::<serde_json::Value>(&text)
         else {
             continue;
         };
@@ -178,17 +250,17 @@ fn collect_interaction_messages(value: &serde_json::Value, catalog: &mut Catalog
     let is_hide = matches!(map.get("category"), Some(serde_json::Value::String(c)) if c == "hide");
     if !is_hide {
         for field in ["message", "user_messages", "target_messages"] {
-        if let Some(serde_json::Value::Array(msgs)) = map.get(field) {
-            for m in msgs {
-                if let serde_json::Value::String(m) = m {
-                    let m = m.trim();
-                    // "json error" 占位与空串跳过；其余整句模板入目录。
-                    if !m.is_empty() && m != "json error" {
-                        emit(catalog, "interactions", m);
+            if let Some(serde_json::Value::Array(msgs)) = map.get(field) {
+                for m in msgs {
+                    if let serde_json::Value::String(m) = m {
+                        let m = m.trim();
+                        // "json error" 占位与空串跳过；其余整句模板入目录。
+                        if !m.is_empty() && m != "json error" {
+                            emit(catalog, "interactions", m);
+                        }
                     }
                 }
             }
-        }
         }
     }
     // master json：值为交互对象，递归。
@@ -237,11 +309,25 @@ fn extract_flavor_file(path: &Path, catalog: &mut Catalog) {
 }
 
 /// 递归取 JSON 的字符串叶子（数组元素 / 关联值）；key 不取（程序标识）。
+/// flavor 碎片池里**同时被当 DM 标识符**用的那批（`nova-i18n lint` 的碰撞规则实测报出来的）。
+///
+/// 幻觉的地点/威胁/化学品池全是短名词（`cargo`/`Air`/`hulk`），进目录就等于往**全局反查表**里
+/// 塞这些词对：运行期任何恰好等于该串的显示值都会被反查成中文，而它们同时是 `switch`/下标键。
+/// 这几个词在幻觉里显英文只是少译一处，弄坏查表则是功能故障 —— 取舍很清楚。
+///
+/// **维护方式是可证伪的**：改这张表之后跑 `nova-i18n lint`，碰撞告警数不许比基线多。
+const FLAVOR_IDENT_BLOCKLIST: &[&str] = &[
+    // 幻觉地点/威胁/化学品池
+    "Air", "cargo", "cult", "Energy", "hulk", "Infinity",
+    // 脑损伤 create_verbs（`gib` 是 proc 名，`spawn` 是 DM 关键字兼 act 键）
+    "gib", "spawn",
+];
+
 fn collect_json_strings(value: &serde_json::Value, catalog: &mut Catalog) {
     match value {
         serde_json::Value::String(s) => {
             let s = s.trim();
-            if !s.is_empty() {
+            if !s.is_empty() && !FLAVOR_IDENT_BLOCKLIST.contains(&s) {
                 emit(catalog, "strings", s);
             }
         }

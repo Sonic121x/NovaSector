@@ -138,7 +138,7 @@
 	var/outfit_name = stripped_input(usr,"Enter the outfit name")
 	outfit.name = outfit_name
 	GLOB.custom_outfits += outfit
-	to_chat(usr,LANG("mob.15fc7b14", null))
+	to_chat(usr,LANG("mob.15fc7b145545d4d4", null))
 
 /datum/outfit/varedit/post_equip(mob/living/carbon/human/human, visuals_only)
 	. = ..()

@@ -2,7 +2,7 @@
 
 GAME_VERB(/mob/living, container_emote, "使用载具/容器做表情", "IC")
 	if (isturf(src.loc))
-		to_chat(src, span_danger(LANG("mob.72c5eb7d", null)))
+		to_chat(src, span_danger(LANG("mob.72c5eb7d3817ff77", null)))
 		return
 	if (loc && (!src.IsUnconscious())) // If user's location is a turf, if it is not null, and if the user is not unconcious, continue.
 		usr.emote("exme")
@@ -20,10 +20,10 @@ GAME_VERB(/mob/living, container_emote, "使用载具/容器做表情", "IC")
 	if(QDELETED(user))
 		return FALSE
 	if(is_banned_from(user, "emote"))
-		tgui_alert(user, LANG("datum.bf0be85c", null))
+		tgui_alert(user, LANG("datum.bf0be85c1f082cee", null))
 		return FALSE
 	else if(user.client?.prefs?.muted & MUTE_IC)
-		tgui_alert(user, LANG("datum.edad7622", null))
+		tgui_alert(user, LANG("datum.edad7622f650b603", null))
 		return FALSE
 
 	var/times_searched = 0
@@ -47,21 +47,21 @@ GAME_VERB(/mob/living, container_emote, "使用载具/容器做表情", "IC")
 		can_use = FALSE
 
 	if (!can_use)
-		to_chat(user, span_danger(LANG("datum.72c5eb7d", null))) // If user is banned from chat, emotes, or the user is not within anything (ex. a locker) return.
+		to_chat(user, span_danger(LANG("datum.72c5eb7d3817ff77", null))) // If user is banned from chat, emotes, or the user is not within anything (ex. a locker) return.
 		return FALSE //im keeping this to_chat because this seems like a really common use case and i dont want to annoy players
 	else if(!params) // User didn't put anything after *exme when using the say hotkey, or just used the emote raw? Open a window.
-		container_emote = tgui_input_text(user, LANG("datum.fe4a0cf5", null), LANG("datum.f7cae660", null), max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+		container_emote = tgui_input_text(user, LANG("datum.fe4a0cf59b898a7d", null), LANG("datum.f7cae660bde13e60", null), max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 		if(!container_emote)
 			return FALSE
 		var/list/choices = list("Visible","Audible")
-		var/type = tgui_input_list(user, LANG("datum.8c0ae2fb", null), LANG("datum.f7cae660", null), choices, FALSE)
+		var/type = tgui_input_list(user, LANG("datum.8c0ae2fbf945c034", null), LANG("datum.f7cae660bde13e60", null), choices, FALSE)
 		switch(type)
 			if("Visible")
 				emote_type = EMOTE_VISIBLE
 			if("Audible")
 				emote_type = EMOTE_AUDIBLE
 			else
-				tgui_alert(user, LANG("datum.457a775a", null))
+				tgui_alert(user, LANG("datum.457a775af4e374ff", null))
 				return
 		container_message = container_emote //Ill be honest I dont know why this is a thing but I'm too afraid to remove it.
 	else
@@ -88,7 +88,7 @@ GAME_VERB(/mob/living, container_emote, "使用载具/容器做表情", "IC")
 	if (length(locs_we_can_use) == 1)
 		picked_loc = pick(locs_we_can_use)
 	else
-		picked_loc = tgui_input_list(user, LANG("datum.ba74ed7e", null), LANG("datum.9371dee2", null), locs_we_can_use, FALSE)
+		picked_loc = tgui_input_list(user, LANG("datum.ba74ed7e06b7d9c1", null), LANG("datum.9371dee2115a1f38", null), locs_we_can_use, FALSE)
 
 	// Since the tgui input sleeps, we can no longer trust the status of any variable after this point
 	// Ex. we cannot assume the user exists anymore

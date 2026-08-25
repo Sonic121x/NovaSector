@@ -18,17 +18,17 @@
 		if(penetrated_text)
 			to_chat(src, span_userdanger("[penetrated_text]"))
 		else
-			to_chat(src, span_userdanger(LANG("mob.5ea2041f", null)))
+			to_chat(src, span_userdanger(LANG("mob.5ea2041f27b482ec", null)))
 	else if(our_armor >= 100)
 		if(absorb_text)
 			to_chat(src, span_notice("[absorb_text]"))
 		else
-			to_chat(src, span_notice(LANG("mob.b7e6ef51", null)))
+			to_chat(src, span_notice(LANG("mob.b7e6ef5138a96a66", null)))
 	else
 		if(soften_text)
 			to_chat(src, span_warning("[soften_text]"))
 		else
-			to_chat(src, span_warning(LANG("mob.b6ff10d8", null)))
+			to_chat(src, span_warning(LANG("mob.b6ff10d80bfee1f0", null)))
 	return our_armor
 
 /mob/living/proc/getarmor(def_zone, type)
@@ -134,16 +134,20 @@
 	var/hit_limb_zone = check_hit_limb_zone_name(def_zone)
 	var/organ_hit_text = ""
 	if (hit_limb_zone)
-		organ_hit_text = " in \the [parse_zone_with_bodypart(hit_limb_zone)]"
+		// NOVA EDIT CHANGE - I18N - 受伤部位短语整条走 LANG：拼好的 " in the chest" 整串永远不是
+		// 目录键，只有部位名本身在目录里 → 中文句子里嵌着 " in the chest"。
+		// ORIGINAL: organ_hit_text = " in \the [parse_zone_with_bodypart(hit_limb_zone)]"
+		organ_hit_text = LANG("mob.0605e73f00e4c83f", list(parse_zone_with_bodypart(hit_limb_zone)))
+		// NOVA EDIT END
 
 	switch (proj.suppressed)
 		if (SUPPRESSED_QUIET)
-			to_chat(src, span_userdanger(LANG("mob.3d93b648", list(proj, organ_hit_text))))
+			to_chat(src, span_userdanger(LANG("mob.3d93b648b4b1c995", list(proj, organ_hit_text))))
 		if (SUPPRESSED_NONE)
-			visible_message(span_danger(LANG("mob.b8e00457", list(src, proj, organ_hit_text))), \
-					span_userdanger(LANG("mob.c436bcdf", list(proj, organ_hit_text))), null, COMBAT_MESSAGE_RANGE)
+			visible_message(span_danger(LANG("mob.b8e00457ca5b5718", list(src, proj, organ_hit_text))), \
+					span_userdanger(LANG("mob.c436bcdf02833230", list(proj, organ_hit_text))), null, COMBAT_MESSAGE_RANGE)
 			if(is_blind())
-				to_chat(src, span_userdanger(LANG("mob.2b66bba3", list(organ_hit_text))))
+				to_chat(src, span_userdanger(LANG("mob.2b66bba36a73c86a", list(organ_hit_text))))
 
 	if(proj.is_hostile_projectile())
 		apply_projectile_effects(proj, def_zone, blocked)
@@ -252,8 +256,8 @@
 		else
 			playsound(loc, 'sound/items/weapons/genhit.ogg', 50, TRUE, -1) //Item sounds are handled in the item itself
 			if(!isvendor(AM) && !iscarbon(AM)) //Vendors have special interactions, while carbon mobs already generate visible messages!
-				visible_message(span_danger(LANG("mob.9b9be5a9", list(src, AM))), \
-							span_userdanger(LANG("mob.33f28339", list(AM))))
+				visible_message(span_danger(LANG("mob.9b9be5a9ea0ec222", list(src, AM))), \
+							span_userdanger(LANG("mob.33f28339161e1e19", list(AM))))
 		log_combat(AM, src, "hit ")
 		return ..()
 
@@ -277,8 +281,8 @@
 		log_hit_combat(throwingdatum?.get_thrower(), thrown_item)
 		return ..()
 
-	visible_message(span_danger(LANG("mob.9b9be5a9", list(src, thrown_item))),
-		span_userdanger(LANG("mob.33f28339", list(thrown_item))))
+	visible_message(span_danger(LANG("mob.9b9be5a9ea0ec222", list(src, thrown_item))),
+		span_userdanger(LANG("mob.33f28339161e1e19", list(thrown_item))))
 	if(!thrown_item.throwforce)
 		log_hit_combat(throwingdatum?.get_thrower(), thrown_item)
 		return
@@ -316,8 +320,8 @@
 		return FALSE
 	INVOKE_ASYNC(item, TYPE_PROC_REF(/obj/item, attempt_pickup), src, TRUE)
 	if(get_active_held_item() == item) //if our attack_hand() picks up the item...
-		visible_message(span_warning(LANG("mob.1c3e7825", list(src, item))), \
-						span_userdanger(LANG("mob.d1752982", list(item))))
+		visible_message(span_warning(LANG("mob.1c3e7825d2c58703", list(src, item))), \
+						span_userdanger(LANG("mob.d175298287211456", list(item))))
 		return TRUE
 
 ///Checks the requites for catching a throw item.
@@ -358,11 +362,11 @@
 		return
 
 	if(!(status_flags & CANPUSH) || HAS_TRAIT(src, TRAIT_PUSHIMMUNE))
-		to_chat(user, span_warning(LANG("mob.817ef0a0", list(src))))
+		to_chat(user, span_warning(LANG("mob.817ef0a09fa7e08e", list(src))))
 		return FALSE
 
 	if(user.grab_state >= GRAB_AGGRESSIVE && HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning(LANG("mob.b942a603", list(src))))
+		to_chat(user, span_warning(LANG("mob.b942a603aafe7807", list(src))))
 		return FALSE
 
 	grippedby(user)
@@ -383,9 +387,9 @@
 	if(user.grab_state) //only the first upgrade is instantaneous
 		var/old_grab_state = user.grab_state
 		var/grab_upgrade_time = instant ? 0 : 30
-		visible_message(span_danger(LANG("mob.3fb0f052", list(user, user.p_their(), src))), \
-						span_userdanger(LANG("mob.d2a382bf", list(user, user.p_their()))), span_hear(LANG("mob.7314bbd1", null)), null, user)
-		to_chat(user, span_danger(LANG("mob.84e264a3", list(src))))
+		visible_message(span_danger(LANG("mob.3fb0f05289c4d3be", list(user, user.p_their(), src))), \
+						span_userdanger(LANG("mob.d2a382bff9e2fbc2", list(user, user.p_their()))), span_hear(LANG("mob.7314bbd171d7d8b7", null)), null, user)
+		to_chat(user, span_danger(LANG("mob.84e264a3b124cea2", list(src))))
 		switch(user.grab_state)
 			if(GRAB_AGGRESSIVE)
 				log_combat(user, src, "attempted to neck grab", addition="neck grab")
@@ -400,28 +404,28 @@
 		if(GRAB_AGGRESSIVE)
 			var/add_log = ""
 			if(HAS_TRAIT(user, TRAIT_PACIFISM))
-				visible_message(span_danger(LANG("mob.44b45775", list(user, src))),
-								span_danger(LANG("mob.686f06f7", list(user))), span_hear(LANG("mob.7314bbd1", null)), null, user)
-				to_chat(user, span_danger(LANG("mob.27fb4b7d", list(src))))
+				visible_message(span_danger(LANG("mob.44b4577511280083", list(user, src))),
+								span_danger(LANG("mob.686f06f724be9623", list(user))), span_hear(LANG("mob.7314bbd171d7d8b7", null)), null, user)
+				to_chat(user, span_danger(LANG("mob.27fb4b7d9b1e4b98", list(src))))
 				add_log = " (pacifist)"
 			else
-				visible_message(span_danger(LANG("mob.3d4572c2", list(user, src))), \
-								span_userdanger(LANG("mob.082a0486", list(user))), span_hear(LANG("mob.7314bbd1", null)), null, user)
-				to_chat(user, span_danger(LANG("mob.08cd2c37", list(src))))
+				visible_message(span_danger(LANG("mob.3d4572c225103c77", list(user, src))), \
+								span_userdanger(LANG("mob.082a0486831416d7", list(user))), span_hear(LANG("mob.7314bbd171d7d8b7", null)), null, user)
+				to_chat(user, span_danger(LANG("mob.08cd2c374f857633", list(src))))
 			stop_pulling()
 			log_combat(user, src, "grabbed", addition="aggressive grab[add_log]")
 		if(GRAB_NECK)
 			log_combat(user, src, "grabbed", addition="neck grab")
-			visible_message(span_danger(LANG("mob.d035543c", list(user, src))),\
-							span_userdanger(LANG("mob.4a245b22", list(user))), span_hear(LANG("mob.7314bbd1", null)), null, user)
-			to_chat(user, span_danger(LANG("mob.33f0d717", list(src))))
+			visible_message(span_danger(LANG("mob.d035543ca4a6ab55", list(user, src))),\
+							span_userdanger(LANG("mob.4a245b2234612515", list(user))), span_hear(LANG("mob.7314bbd171d7d8b7", null)), null, user)
+			to_chat(user, span_danger(LANG("mob.33f0d7171743e3fd", list(src))))
 			if(!buckled && !density)
 				Move(user.loc)
 		if(GRAB_KILL)
 			log_combat(user, src, "strangled", addition="kill grab")
-			visible_message(span_danger(LANG("mob.0e871a75", list(user, src))), \
-							span_userdanger(LANG("mob.b813d555", list(user))), span_hear(LANG("mob.7314bbd1", null)), null, user)
-			to_chat(user, span_danger(LANG("mob.789d764f", list(src))))
+			visible_message(span_danger(LANG("mob.0e871a757525d030", list(user, src))), \
+							span_userdanger(LANG("mob.b813d55519638937", list(user))), span_hear(LANG("mob.7314bbd171d7d8b7", null)), null, user)
+			to_chat(user, span_danger(LANG("mob.789d764f77f79e78", list(src))))
 			if(!buckled && !density)
 				Move(user.loc)
 	user.set_pull_offsets(src, user.grab_state)
@@ -435,16 +439,16 @@
 	if(user.melee_damage_upper == 0)
 		if(user != src)
 			visible_message(
-				span_notice("[user] [user.friendly_verb_continuous] [src]!"),
-				span_notice(LANG("mob.9ab70b39", list(user, user.friendly_verb_continuous))),
+				span_notice(LANG("mob.dd02d8c90a5dee7a", list(user, user.friendly_verb_continuous, src))),
+				span_notice(LANG("mob.9ab70b397edc0103", list(user, user.friendly_verb_continuous))),
 				vision_distance = COMBAT_MESSAGE_RANGE,
 				ignored_mobs = user,
 			)
-			to_chat(user, span_notice(LANG("mob.22d557f3", list(user.friendly_verb_simple, src))))
+			to_chat(user, span_notice(LANG("mob.22d557f300d422c9", list(user.friendly_verb_simple, src))))
 		return FALSE
 
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning(LANG("mob.e164ac61", null)))
+		to_chat(user, span_warning(LANG("mob.e164ac6113da56a4", null)))
 		return FALSE
 
 	var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
@@ -455,8 +459,8 @@
 		playsound(src, user.attack_sound, 50, TRUE, TRUE)
 
 	user.do_attack_animation(src)
-	visible_message(span_danger("[user] [lang_localize_arg(user.attack_verb_continuous)] [src]!"), // NOVA EDIT - I18N - 第三人称攻击消息是纯占位模板（无可译文本、codemod 不抽），动词须就地反查；名字已由 Initialize 反查
-		span_userdanger(LANG("mob.9ab70b39", list(user, user.attack_verb_continuous))),
+	visible_message(span_danger(LANG("mob.dd02d8c90a5dee7a", list(user, lang_localize_arg(user.attack_verb_continuous), src))), // NOVA EDIT - I18N - 第三人称攻击消息是纯占位模板（无可译文本、codemod 不抽），动词须就地反查；名字已由 Initialize 反查
+		span_userdanger(LANG("mob.9ab70b397edc0103", list(user, user.attack_verb_continuous))),
 		null,
 		COMBAT_MESSAGE_RANGE,
 		user,
@@ -468,7 +472,7 @@
 
 	var/armor_block = run_armor_check(user.zone_selected, MELEE, armour_penetration = user.armour_penetration)
 
-	to_chat(user, span_danger(LANG("mob.22d557f3", list(user.attack_verb_simple, src))))
+	to_chat(user, span_danger(LANG("mob.22d557f300d422c9", list(user.attack_verb_simple, src))))
 	var/damage_done = apply_damage(
 		damage = damage,
 		damagetype = user.melee_damage_type,
@@ -499,13 +503,13 @@
 	if (!user.combat_mode)
 		return FALSE
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning(LANG("mob.e164ac61", null)))
+		to_chat(user, span_warning(LANG("mob.e164ac6113da56a4", null)))
 		return FALSE
 
 	if(!user.get_bodypart(BODY_ZONE_HEAD))
 		return FALSE
 	if(user.is_mouth_covered(ITEM_SLOT_MASK))
-		to_chat(user, span_warning(LANG("mob.e8d21f09", null)))
+		to_chat(user, span_warning(LANG("mob.e8d21f091bd39e3c", null)))
 		return FALSE
 
 	if(check_block(user, 1, "[user]'s bite", UNARMED_ATTACK, 0, BRUTE))
@@ -515,21 +519,21 @@
 	if (HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER) || prob(75))
 		log_combat(user, src, "attacked")
 		playsound(loc, 'sound/items/weapons/bite.ogg', 50, TRUE, -1)
-		visible_message(span_danger(LANG("mob.4f554285", list(user.name, src))), \
-						span_userdanger(LANG("mob.a597d194", list(user.name))), span_hear(LANG("mob.a88c3258", null)), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_danger(LANG("mob.bcc2c3f4", list(src))))
+		visible_message(span_danger(LANG("mob.4f554285e4dd794e", list(user.name, src))), \
+						span_userdanger(LANG("mob.a597d1941e95818d", list(user.name))), span_hear(LANG("mob.a88c3258544405bc", null)), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger(LANG("mob.bcc2c3f4794cea26", list(src))))
 		return TRUE
 	else
-		visible_message(span_danger(LANG("mob.f669f0df", list(user.name, src))), \
-						span_danger(LANG("mob.4870f385", list(user.name))), span_hear(LANG("mob.e8eabf78", null)), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_warning(LANG("mob.2ebed70e", list(src))))
+		visible_message(span_danger(LANG("mob.f669f0dfc5455db2", list(user.name, src))), \
+						span_danger(LANG("mob.4870f38590b424a9", list(user.name))), span_hear(LANG("mob.e8eabf780ab4a773", null)), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_warning(LANG("mob.2ebed70edc453e34", list(src))))
 
 	return FALSE
 
 /mob/living/attack_larva(mob/living/carbon/alien/larva/L, list/modifiers)
 	if(L.combat_mode)
 		if(HAS_TRAIT(L, TRAIT_PACIFISM))
-			to_chat(L, span_warning(LANG("mob.e164ac61", null)))
+			to_chat(L, span_warning(LANG("mob.e164ac6113da56a4", null)))
 			return FALSE
 
 		if(check_block(L, 1, "[L]'s bite", UNARMED_ATTACK, 0, BRUTE))
@@ -538,20 +542,20 @@
 		L.do_attack_animation(src)
 		if(prob(90))
 			log_combat(L, src, "attacked")
-			visible_message(span_danger(LANG("mob.4f554285", list(L.name, src))), \
-							span_userdanger(LANG("mob.a597d194", list(L.name))), span_hear(LANG("mob.a88c3258", null)), COMBAT_MESSAGE_RANGE, L)
-			to_chat(L, span_danger(LANG("mob.bcc2c3f4", list(src))))
+			visible_message(span_danger(LANG("mob.4f554285e4dd794e", list(L.name, src))), \
+							span_userdanger(LANG("mob.a597d1941e95818d", list(L.name))), span_hear(LANG("mob.a88c3258544405bc", null)), COMBAT_MESSAGE_RANGE, L)
+			to_chat(L, span_danger(LANG("mob.bcc2c3f4794cea26", list(src))))
 			playsound(loc, 'sound/items/weapons/bite.ogg', 50, TRUE, -1)
 			return TRUE
 		else
-			visible_message(span_danger(LANG("mob.f669f0df", list(L.name, src))), \
-							span_danger(LANG("mob.4870f385", list(L.name))), span_hear(LANG("mob.e8eabf78", null)), COMBAT_MESSAGE_RANGE, L)
-			to_chat(L, span_warning(LANG("mob.2ebed70e", list(src))))
+			visible_message(span_danger(LANG("mob.f669f0dfc5455db2", list(L.name, src))), \
+							span_danger(LANG("mob.4870f38590b424a9", list(L.name))), span_hear(LANG("mob.e8eabf780ab4a773", null)), COMBAT_MESSAGE_RANGE, L)
+			to_chat(L, span_warning(LANG("mob.2ebed70edc453e34", list(src))))
 			return FALSE
 
-	visible_message(span_notice(LANG("mob.4eac7c41", list(L.name, src))), \
-					span_notice(LANG("mob.ed5a4a9e", list(L.name))), null, null, L)
-	to_chat(L, span_notice(LANG("mob.27a84919", list(src))))
+	visible_message(span_notice(LANG("mob.4eac7c4100f1f859", list(L.name, src))), \
+					span_notice(LANG("mob.ed5a4a9e192108e3", list(L.name))), null, null, L)
+	to_chat(L, span_notice(LANG("mob.27a849198cf848d9", list(src))))
 	return FALSE
 
 /mob/living/attack_alien(mob/living/carbon/alien/adult/user, list/modifiers)
@@ -564,22 +568,22 @@
 
 	if(user.combat_mode)
 		if(HAS_TRAIT(user, TRAIT_PACIFISM))
-			to_chat(user, span_warning(LANG("mob.e164ac61", null)))
+			to_chat(user, span_warning(LANG("mob.e164ac6113da56a4", null)))
 			return FALSE
 		if(check_block(user, user.melee_damage_upper, "[user]'s slash", UNARMED_ATTACK, 0, BRUTE))
 			return FALSE
 		user.do_attack_animation(src)
 		return TRUE
 
-	visible_message(span_notice(LANG("mob.3805e140", list(user, src))), \
-					span_notice(LANG("mob.55c1b637", list(user))), null, null, user)
-	to_chat(user, span_notice(LANG("mob.27fa182f", list(src))))
+	visible_message(span_notice(LANG("mob.3805e140c50e8fac", list(user, src))), \
+					span_notice(LANG("mob.55c1b63739ae1692", list(user))), null, null, user)
+	to_chat(user, span_notice(LANG("mob.27fa182f7c7c7888", list(src))))
 	return FALSE
 
 /mob/living/attack_hulk(mob/living/carbon/human/user)
 	..()
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning(LANG("mob.450cd43a", list(src))))
+		to_chat(user, span_warning(LANG("mob.450cd43a10233d57", list(src))))
 		return FALSE
 	return TRUE
 
@@ -612,9 +616,9 @@
 		adjust_stamina_loss(shock_damage)
 	if(!(flags & SHOCK_SUPPRESS_MESSAGE))
 		visible_message(
-			span_danger(LANG("mob.d2d8eb7d", list(src, source))), \
-			span_userdanger(LANG("mob.0f9914f6", null)), \
-			span_hear(LANG("mob.495976fb", null)) \
+			span_danger(LANG("mob.d2d8eb7d77f8f273", list(src, source))), \
+			span_userdanger(LANG("mob.0f9914f64d665752", null)), \
+			span_hear(LANG("mob.495976fb42ec6752", null)) \
 		)
 	return shock_damage
 
@@ -708,12 +712,12 @@
 		SEND_SOUND(src, sound('sound/items/weapons/flash_ring.ogg',0, 1, 0, 250))
 
 	if(ears.damage >= 15 && prob(ears.damage - 5))
-		to_chat(src, span_userdanger(LANG("mob.787b4fed", null)))
+		to_chat(src, span_userdanger(LANG("mob.787b4fed6d77dedc", null)))
 		// Makes you deaf, enough that you need a proper source of healing, it won't self heal
 		// you need earmuffs, inacusiate, or replacement
 		ears.set_organ_damage(ears.maxHealth)
 	else if(ears.damage >= 5)
-		to_chat(src, span_warning(LANG("mob.29df2670", list(ears.damage >= 15 ? " badly!":"!"))))
+		to_chat(src, span_warning(LANG("mob.29df267072595ae4", list(ears.damage >= 15 ? " badly!":"!"))))
 
 
 //to damage the clothes worn by a mob
@@ -827,9 +831,9 @@
 			return
 		if((shove_flags & SHOVE_BLOCKED) && !(shove_flags & (SHOVE_KNOCKDOWN_BLOCKED|SHOVE_CAN_KICK_SIDE)))
 			var/knocked_down = target.Knockdown(SHOVE_KNOCKDOWN_SOLID, daze_amount = 3 SECONDS)
-			target.visible_message(span_danger(LANG("mob.53e00938", list(name, target.name, knocked_down ? ", knocking [target.p_them()] down" : ""))),
-				span_userdanger(LANG("mob.e2265f52", list(knocked_down ? "'re knocked down" : " resist falling down", name))), span_hear(LANG("mob.ec85c958", list(knocked_down ? "followed by a loud thud!" : ""))), COMBAT_MESSAGE_RANGE, src)
-			to_chat(src, span_danger(LANG("mob.5523666e", list(target.name, knocked_down ? ", knocking [target.p_them()] down" : ""))))
+			target.visible_message(span_danger(LANG("mob.53e00938e19b5106", list(name, target.name, knocked_down ? ", knocking [target.p_them()] down" : ""))),
+				span_userdanger(LANG("mob.e2265f52d2bc929d", list(knocked_down ? "'re knocked down" : " resist falling down", name))), span_hear(LANG("mob.ec85c958ba658bb6", list(knocked_down ? "followed by a loud thud!" : ""))), COMBAT_MESSAGE_RANGE, src)
+			to_chat(src, span_danger(LANG("mob.5523666e6e868444", list(target.name, knocked_down ? ", knocking [target.p_them()] down" : ""))))
 			log_combat(src, target, "shoved", "[knocked_down ? "knocking them down[weapon ? " with [weapon]" : ""]" : ""]")
 			if(ishuman(target))
 				var/mob/living/carbon/human/human_target = target
@@ -839,9 +843,9 @@
 	if(shove_flags & SHOVE_CAN_KICK_SIDE) //KICK HIM IN THE NUTS
 		if(target.Paralyze(SHOVE_CHAIN_PARALYZE))
 			target.apply_status_effect(/datum/status_effect/no_side_kick)
-			target.visible_message(span_danger(LANG("mob.5d62b827", list(name, target.name, target.p_their()))),
-							span_userdanger(LANG("mob.db133c79", list(name))), span_hear(LANG("mob.b75dfa76", null)), COMBAT_MESSAGE_RANGE, src)
-			to_chat(src, span_danger(LANG("mob.5d840f0a", list(target.name, target.p_their()))))
+			target.visible_message(span_danger(LANG("mob.5d62b827425e695f", list(name, target.name, target.p_their()))),
+							span_userdanger(LANG("mob.db133c79b4edde3b", list(name))), span_hear(LANG("mob.b75dfa76034c79c2", null)), COMBAT_MESSAGE_RANGE, src)
+			to_chat(src, span_danger(LANG("mob.5d840f0a1b3208d9", list(target.name, target.p_their()))))
 			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, SetKnockdown), 0), SHOVE_CHAIN_PARALYZE)
 			log_combat(src, target, "kicks", "onto their side (paralyzing)")
 			return
@@ -855,8 +859,8 @@
 	if(target_held_item && target.get_timed_status_effect_duration(/datum/status_effect/staggered) && is_type_in_typecache(target_held_item, GLOB.shove_disarming_types) || target_held_item && target.body_position == LYING_DOWN)
 		target.dropItemToGround(target_held_item)
 		append_message = "causing [target.p_them()] to drop [target_held_item]"
-		target.visible_message(span_danger(LANG("mob.654b1725", list(target.name, target_held_item))),
-			span_warning(LANG("mob.bbdacc31", list(target_held_item))), null, COMBAT_MESSAGE_RANGE)
+		target.visible_message(span_danger(LANG("mob.654b172517839dcc", list(target.name, target_held_item))),
+			span_warning(LANG("mob.bbdacc315fa5700b", list(target_held_item))), null, COMBAT_MESSAGE_RANGE)
 
 	if(shove_flags & SHOVE_CAN_STAGGER)
 		target.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 10 SECONDS)
@@ -880,9 +884,9 @@
 
 ///Send the chat feedback message for shoving
 /mob/living/proc/get_shoving_message(mob/living/shover, obj/item/weapon, shove_flags)
-	visible_message(span_danger(LANG("mob.53e00938", list(shover, name, weapon ? " with [weapon]" : ""))),
-		span_userdanger(LANG("mob.f2fa237f", list(shover, weapon ? " with [weapon]" : ""))), span_hear(LANG("mob.7314bbd1", null)), COMBAT_MESSAGE_RANGE, shover)
-	to_chat(shover, span_danger(LANG("mob.5523666e", list(name, weapon ? " with [weapon]" : ""))))
+	visible_message(span_danger(LANG("mob.53e00938e19b5106", list(shover, name, weapon ? " with [weapon]" : ""))),
+		span_userdanger(LANG("mob.f2fa237fc970f902", list(shover, weapon ? " with [weapon]" : ""))), span_hear(LANG("mob.7314bbd171d7d8b7", null)), COMBAT_MESSAGE_RANGE, shover)
+	to_chat(shover, span_danger(LANG("mob.5523666e6e868444", list(name, weapon ? " with [weapon]" : ""))))
 
 /mob/living/proc/check_block(atom/hit_by, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
 	if(SEND_SIGNAL(src, COMSIG_LIVING_CHECK_BLOCK, hit_by, damage, attack_text, attack_type, armour_penetration, damage_type) & SUCCESSFUL_BLOCK)

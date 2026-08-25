@@ -17,9 +17,9 @@
 
 		if(current_volume >= REZADONE_LING_UNHUSK_AMOUNT)
 			exposed_mob.cure_husk(CHANGELING_DRAIN)
-			exposed_mob.visible_message(span_nicegreen(LANG("datum.2251ea72", list(exposed_mob, exposed_mob))))
+			exposed_mob.visible_message(span_nicegreen(LANG("datum.2251ea72af332333", list(exposed_mob, exposed_mob))))
 		else if (show_message)
-			exposed_mob.visible_message(span_boldnotice(LANG("datum.c8f1d1e2", list(exposed_mob))))
+			exposed_mob.visible_message(span_boldnotice(LANG("datum.c8f1d1e2066f28e2", list(exposed_mob))))
 
 // Allowing us to cure husks created by changeling. Requires 2 times more synthflesh to cure than a normal husk
 /datum/reagent/medicine/c2/synthflesh/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE)
@@ -34,7 +34,7 @@
 
 		if(current_volume >= SYNTHFLESH_LING_UNHUSK_MAX || current_volume * current_purity >= SYNTHFLESH_LING_UNHUSK_AMOUNT)
 			exposed_mob.cure_husk(CHANGELING_DRAIN)
-			exposed_mob.visible_message(span_nicegreen(LANG("datum.2251ea72", list(exposed_mob, exposed_mob))))
+			exposed_mob.visible_message(span_nicegreen(LANG("datum.2251ea72af332333", list(exposed_mob, exposed_mob))))
 		else if (show_message)
-			exposed_mob.visible_message(span_boldnotice(LANG("datum.c8f1d1e2", list(exposed_mob))))
+			exposed_mob.visible_message(span_boldnotice(LANG("datum.c8f1d1e2066f28e2", list(exposed_mob))))
 

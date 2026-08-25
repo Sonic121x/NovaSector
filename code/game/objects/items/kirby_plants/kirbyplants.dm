@@ -59,14 +59,14 @@
 
 /obj/item/kirbyplants/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!dead && trimmable && HAS_TRAIT(user, TRAIT_BONSAI) && isturf(loc) && tool.get_sharpness())
-		to_chat(user,span_notice(LANG("obj.f4ecfa94", list(src))))
+		to_chat(user,span_notice(LANG("obj.f4ecfa94e67cc72c", list(src))))
 		if(!do_after(user, 3 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user,span_notice(LANG("obj.e2c5d0d3", list(src))))
+		to_chat(user,span_notice(LANG("obj.e2c5d0d38ddd0617", list(src))))
 		change_visual()
 
 	if(dead && istype(tool, /obj/item/seeds))
-		to_chat(user,span_notice(LANG("obj.e8c7e696", null)))
+		to_chat(user,span_notice(LANG("obj.e8c7e69610c000c3", null)))
 		if(!do_after(user, 3 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 		qdel(tool)
@@ -125,7 +125,7 @@
 
 /obj/item/kirbyplants/random/dead/update_desc(updates)
 	. = ..()
-	desc = LANG("obj.05cae887", list(dead ? "\nIt doesn't look very healthy...":null))
+	desc = LANG("obj.05cae887f8709661", list(dead ? "\nIt doesn't look very healthy...":null))
 
 /obj/item/kirbyplants/random/fullysynthetic
 	name = "plastic potted plant"

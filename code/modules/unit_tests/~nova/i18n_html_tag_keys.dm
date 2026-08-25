@@ -16,12 +16,12 @@
 
 /datum/unit_test/i18n_html_tag_keys/Run()
 	var/saved_locale = GLOB.i18n_server_locale
-	if(!islist(GLOB.i18n_cache[LANGUAGE_LOCALE_ZH_HANS]))
+	if(!islist(GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][LANGUAGE_LOCALE_ZH_HANS]))
 		return // 该 locale 目录不存在（精简签出）：跳过而不是误报。
 	GLOB.i18n_server_locale = LANGUAGE_LOCALE_ZH_HANS
 
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
-	var/list/zh_cache = GLOB.i18n_cache[LANGUAGE_LOCALE_ZH_HANS]
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
+	var/list/zh_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][LANGUAGE_LOCALE_ZH_HANS]
 
 	// ① 边缘标签：整句被 <b> 包住。运行期送到查表的是**剥了标签的裸句**。
 	var/eggs_key
@@ -103,5 +103,45 @@
 		"整行作用域上含 <a> 的模板仍未命中：[vote_out]")
 	TEST_ASSERT(findtext(vote_out, "byond://winset?command=vote"), \
 		"译文把投票链接弄丢了——玩家将无法点击投票：[vote_out]")
+
+	// ⑤ `span_tooltip()` 把提示文字放进 **HTML 属性**（`data-content="…"`），而切块器只翻标签
+	// **之间**的文本 —— 属性一律跳过（`class`/`href` 里是样式名和链接，碰了当场把配色和跳转
+	// 弄坏）。于是健康扫描仪那批悬浮提示整条英文，而它锚定的正文是中文，译文一直躺在目录里。
+	// 判据就是这个反差：**同一行里，锚文本中文、tooltip 英文**。
+	var/tooltip_key
+	for(var/key in en_cache)
+		if(en_cache[key] == "Reattach or replace surgically.")
+			tooltip_key = key
+			break
+	TEST_ASSERT(tooltip_key, "目录里应有断肢处理提示（上游改了文案就更新本测试）")
+	TEST_ASSERT_NOTEQUAL(zh_cache[tooltip_key], en_cache[tooltip_key], "该键应已译")
+
+	// 按 conditional_tooltip / span_tooltip 的真实展开形态构造，别手写等价物。
+	var/tooltip_line = span_tooltip("Reattach or replace surgically.", "<font color='#ff3333'>Dismembered</font>")
+	var/tooltip_out = lang_fallback_apply_html(tooltip_line)
+	TEST_ASSERT(!findtext(tooltip_out, "Reattach or replace surgically."), \
+		"tooltip 提示文字住在属性里，切块器跳过了它：[tooltip_out]")
+	// 其余属性绝不能被碰：翻了 class 名样式就没了，翻了 data-component 组件就挂了。
+	TEST_ASSERT(findtext(tooltip_out, "data-component=\"Tooltip\""), \
+		"data-component 被改动了，TGUI 的 Tooltip 组件会失效：[tooltip_out]")
+	TEST_ASSERT(findtext(tooltip_out, "class=\"tooltip\""), \
+		"class 属性被改动了，悬浮样式会丢：[tooltip_out]")
+
+	// ⑥ 句中内联标签的**多段**形态：一句话里有两个 `<b>`，切块后是三个半句，谁都不是键。
+	// ② 那条只有一个内联标签，两者走的是同一条前置 pass，但「run 要跨过几个标签」不同 ——
+	// 玩家报的停尸板检查（`The top is <b>screwed</b> on, but the main <b>bolts</b> are also
+	// visible.`）就是两个标签这一档，而同一块检查文本里别的行都是中文。
+	var/bolts_key
+	for(var/key in en_cache)
+		if(en_cache[key] == "The top is <b>screwed</b> on, but the main <b>bolts</b> are also visible.")
+			bolts_key = key
+			break
+	TEST_ASSERT(bolts_key, "目录里应有桌子拆解提示（上游改了文案就更新本测试）")
+	TEST_ASSERT_NOTEQUAL(zh_cache[bolts_key], en_cache[bolts_key], "该键应已译")
+
+	var/bolts_line = span_notice(en_cache[bolts_key])
+	var/bolts_out = lang_fallback_apply_html(bolts_line)
+	TEST_ASSERT(!findtext(bolts_out, "are also visible"), \
+		"跨两个内联标签的整句没能整段查表：[bolts_out]")
 
 	GLOB.i18n_server_locale = saved_locale

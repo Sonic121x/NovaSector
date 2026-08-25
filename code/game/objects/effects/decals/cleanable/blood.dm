@@ -305,6 +305,8 @@
 
 /obj/effect/decal/cleanable/blood/trail_holder/Initialize(mapload, list/datum/disease/diseases, list/blood_or_dna = get_default_blood_type())
 	. = ..()
+	if(. == INITIALIZE_HINT_QDEL)
+		return
 	icon_state = "nothing"
 	update_appearance() // Cut possible overlays
 	if(mapload)
@@ -488,7 +490,7 @@
 
 /obj/effect/decal/cleanable/blood/trail/update_desc(updates)
 	. = ..()
-	desc = LANG("obj.13163bec", list(dried ? "dried " : "", get_blood_string()))
+	desc = LANG("obj.13163becfd5101f1", list(dried ? "dried " : "", get_blood_string()))
 
 /obj/effect/decal/cleanable/blood/trail/lazy_init_reagents()
 	if(!istype(loc, /obj/effect/decal/cleanable/blood/trail_holder))
@@ -538,6 +540,8 @@
 
 /obj/effect/decal/cleanable/blood/gibs/Initialize(mapload, list/datum/disease/diseases, list/blood_or_dna = get_default_blood_type())
 	. = ..()
+	if(. == INITIALIZE_HINT_QDEL)
+		return
 	leave_blood = has_blood_flag(GET_ATOM_BLOOD_DNA(src), BLOOD_COVER_TURFS)
 	if(squishy)
 		AddElement(/datum/element/squish_sound)
@@ -692,6 +696,8 @@
 
 /obj/effect/decal/cleanable/blood/footprints/Initialize(mapload, list/datum/disease/diseases, list/blood_or_dna = get_default_blood_type())
 	. = ..()
+	if(. == INITIALIZE_HINT_QDEL)
+		return
 	icon_state = "" // All of the footprint visuals come from overlays
 	if(mapload)
 		entered_dirs |= dir // Keep the same appearance as in the map editor
@@ -769,7 +775,7 @@
 	if(LAZYLEN(species_types) + LAZYLEN(shoe_types) == 0)
 		return
 
-	. += LANG("obj.bfd46e14", null)
+	. += LANG("obj.bfd46e14a4c5a954", null)
 	for(var/obj/item/clothing/shoes/sole as anything in shoe_types)
 		var/article = initial(sole.article) || (initial(sole.gender) == PLURAL ? "Some" : "A")
 		. += "[icon2html(initial(sole.icon), user, initial(sole.icon_state))] [article] <B>[initial(sole.name)]</B>."
@@ -777,13 +783,13 @@
 	for(var/species in species_types)
 		switch(species)
 			if("unknown")
-				. += LANG("obj.eb53a644", null)
+				. += LANG("obj.eb53a644479b68f4", null)
 			if(SPECIES_MONKEY)
-				. += LANG("obj.8b05c893", null)
+				. += LANG("obj.8b05c8939d92fd92", null)
 			if(SPECIES_HUMAN)
-				. += LANG("obj.a0d92689", null)
+				. += LANG("obj.a0d92689df3bd26f", null)
 			else
-				. += LANG("obj.41a63db0", list(species))
+				. += LANG("obj.41a63db0356d2257", list(species))
 
 /obj/effect/decal/cleanable/blood/hitsplatter
 	name = "blood splatter"
@@ -818,6 +824,8 @@
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Initialize(mapload, list/datum/disease/diseases, list/blood_or_dna = get_default_blood_type(), splatter_strength)
 	. = ..()
+	if(. == INITIALIZE_HINT_QDEL)
+		return
 	leave_blood = has_blood_flag(GET_ATOM_BLOOD_DNA(src), BLOOD_COVER_TURFS)
 	prev_loc = loc //Just so we are sure prev_loc exists
 	if(splatter_strength)

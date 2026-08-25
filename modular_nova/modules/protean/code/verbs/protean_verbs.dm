@@ -14,7 +14,7 @@ GAME_VERB_PROC_DESC(/mob/living/carbon, protean_heal, "治疗器官和四肢", "
 	if(isnull(suit))
 		return
 	if(incapacitated && loc != suit)
-		balloon_alert(src, LANG("mob.7ac2788b", null))
+		balloon_alert(src, LANG("mob.7ac2788bbe3be4b1", null))
 		return
 
 	brain.replace_limbs()
@@ -25,7 +25,7 @@ GAME_VERB_PROC_DESC(/mob/living/carbon, lock_suit, "锁定套装", "Locks your s
 		return
 
 	suit.toggle_lock()
-	to_chat(src, span_notice(LANG("mob.d31e1132", list(suit.modlocked ? "<b>lock</b>" : "<b>unlock</b>", isprotean(suit.wearer) || loc == suit ? "" : "onto [suit.wearer]"))))
+	to_chat(src, span_notice(LANG("mob.d31e11321bc63010", list(suit.modlocked ? "<b>lock</b>" : "<b>unlock</b>", isprotean(suit.wearer) || loc == suit ? "" : "onto [suit.wearer]"))))
 	playsound(src, 'sound/machines/click.ogg', 25)
 
 GAME_VERB_PROC_DESC(/mob/living/carbon, suit_transformation, "切换套装变形", "Either leave or enter your suit.", "Protean")
@@ -42,7 +42,7 @@ GAME_VERB_PROC_DESC(/mob/living/carbon, suit_transformation, "切换套装变形
 		if(!incapacitated)
 			brain.go_into_suit()
 		else
-			balloon_alert(src, LANG("mob.7ac2788b", null))
+			balloon_alert(src, LANG("mob.7ac2788bbe3be4b1", null))
 
 GAME_VERB_PROC_DESC(/mob/living/carbon, remove_assimilated_modsuit, "移除同化模组服", "Pry out an absorbed modsuit from your protean suit.", "Protean")
 	var/obj/item/mod/control/pre_equipped/protean/suit = get_protean_modsuit(src)
@@ -62,13 +62,13 @@ GAME_VERB_PROC_DESC(/mob/living/carbon, low_power, "切换低功耗模式", "Tog
 		return
 	var/obj/item/organ/stomach/protean/stomach = get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(!istype(stomach))
-		to_chat(src, span_warning(LANG("mob.f360a083", null)))
+		to_chat(src, span_warning(LANG("mob.f360a083dd230dff", null)))
 		return
 	if(loc == suit)
-		to_chat(src, span_notice(LANG("mob.fd750461", null)))
+		to_chat(src, span_notice(LANG("mob.fd750461f10658ff", null)))
 		return
 	if(!do_after(src, 2.5 SECONDS))
-		src.loc.balloon_alert(src, LANG("mob.08fef07e", null))
+		src.loc.balloon_alert(src, LANG("mob.08fef07e4f494aba", null))
 		return
 	var/datum/status_effect/protean_low_power_mode/effect = /datum/status_effect/protean_low_power_mode/low_power
 	if(istype(has_status_effect(effect), effect))

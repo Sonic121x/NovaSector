@@ -81,7 +81,7 @@
 	tick_interval = 1 SECONDS
 
 /datum/status_effect/corrosion_curse/on_apply()
-	to_chat(owner, span_userdanger(LANG("datum.aed280ef", null)))
+	to_chat(owner, span_userdanger(LANG("datum.aed280efa24c89ca", null)))
 	return TRUE
 
 /datum/status_effect/corrosion_curse/tick(seconds_between_ticks)
@@ -212,8 +212,8 @@
 	owner.adjust_brute_loss(-150 + owner.mob_mood.sanity)
 	owner.adjust_fire_loss(-150 + owner.mob_mood.sanity)
 
-	to_chat(owner, span_hypnophrase((LANG("datum.b10a4bb7", null))))
-	owner.balloon_alert(owner, LANG("datum.9aaa5912", null))
+	to_chat(owner, span_hypnophrase((LANG("datum.b10a4bb7df6cbc65", null))))
+	owner.balloon_alert(owner, LANG("datum.9aaa5912d4b8f016", null))
 	owner.SetUnconscious(60 SECONDS, ignore_canstun = FALSE)
 	ADD_TRAIT(owner, TRAIT_MUTE, TRAIT_STATUS_EFFECT(id))
 	RegisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
@@ -241,7 +241,7 @@
 
 /datum/status_effect/moon_converted/on_remove()
 	// Span warning and unconscious so they realize they aren't evil anymore
-	to_chat(owner, span_warning(LANG("datum.ba3547d6", null)))
+	to_chat(owner, span_warning(LANG("datum.ba3547d64ac1899e", null)))
 	REMOVE_TRAIT(owner, TRAIT_MUTE, TRAIT_STATUS_EFFECT(id))
 	owner.AdjustUnconscious(5 SECONDS, ignore_canstun = FALSE)
 	owner.log_message("[owner] is no longer insane.", LOG_GAME)
@@ -261,9 +261,9 @@
 /datum/status_effect/moon_slept/on_apply()
 	. = owner.SetUnconscious(duration * 0.5, ignore_canstun = FALSE)
 	if(!.)
-		owner.balloon_alert(owner, LANG("datum.4fca8f91", null))
-	to_chat(owner, span_hypnophrase((LANG("datum.95f7702f", null))))
-	owner.balloon_alert(owner, LANG("datum.15aa5592", null))
+		owner.balloon_alert(owner, LANG("datum.4fca8f91fa5479c9", null))
+	to_chat(owner, span_hypnophrase((LANG("datum.95f7702fd747ea49", null))))
+	owner.balloon_alert(owner, LANG("datum.15aa559293f09390", null))
 
 /atom/movable/screen/alert/status_effect/moon_converted
 	name = "Moon Converted"
@@ -386,7 +386,7 @@
 		return
 
 	owner.apply_damage(scratch_damage, BRUTE, bodypart)
-	to_chat(owner, span_notice(LANG("datum.39e3733b", list(bodypart.plaintext_zone))))
+	to_chat(owner, span_notice(LANG("datum.39e3733b05984678", list(bodypart.plaintext_zone))))
 
 /atom/movable/screen/alert/status_effect/eldritch_painting/beauty
 	name = "Lady Out of Gates"
@@ -404,7 +404,7 @@
 	if(isnull(tile))
 		return
 
-	to_chat(owner, span_notice(LANG("datum.cd22f65b", null)))
+	to_chat(owner, span_notice(LANG("datum.cd22f65bc8ac571d", null)))
 	tile.rust_heretic_act()
 
 /atom/movable/screen/alert/status_effect/eldritch_painting/rusting
@@ -440,7 +440,7 @@
 /datum/status_effect/moon_parade/on_apply()
 	if(!istype(leashed_to))
 		return FALSE
-	owner.balloon_alert(owner, LANG("datum.f418aca8", list(leashed_to)))
+	owner.balloon_alert(owner, LANG("datum.f418aca8f47b0eb3", list(leashed_to)))
 	leash_component = owner.AddComponent(/datum/component/leash, leashed_to, distance = 1)
 	RegisterSignal(leashed_to, COMSIG_QDELETING, PROC_REF(delete_self))
 	RegisterSignal(owner, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE, PROC_REF(block_move))
@@ -464,7 +464,7 @@
 		return
 	damage_received += damage_amount
 	if(damage_received >= damage_release_threshold)
-		owner.balloon_alert(owner, LANG("datum.8bc69f3a", null))
+		owner.balloon_alert(owner, LANG("datum.8bc69f3ab993208f", null))
 		qdel(src)
 
 // Blocks movement in order to make it appear like the character is transfixed to the projectile and wandering after it

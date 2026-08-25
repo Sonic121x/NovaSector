@@ -109,11 +109,9 @@
 	if(!mass)
 		mass = rand(10, 800)
 	// NOVA EDIT ADDITION START - i18n - 全服中文时反查试剂 name/description/taste（覆盖聊天 [试剂] 等单词类插值；P1 的 TGUI 多词门槛漏掉的单词名靠这里）
-	// i18n_locale_resolved 门：GLOB.chemical_reagents_list 母版表在 config 之前建好，那批实例走到这里时
-	// locale 恒为 en、翻不动——它们由 SSreagents.Initialize 的补反查兜底（见 subsystem/processing/reagents.dm）。
-	// 这里只服务**运行期新建**的试剂实例（烧杯里的那些）。写成显式条件，免得早调用告警把这个已处理的
-	// 情形当成新问题报出来。
-	if(GLOB.i18n_locale_resolved && GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
+	// READY 门让 GLOB 母版实例保持 canonical English；SSreagents.Initialize 会在 runtime ready 后重建，
+	// 此处只服务运行期新实例。
+	if(lang_runtime_is_ready() && GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		name = lang_reverse_text(name)
 		description = lang_reverse_text(description)
 		taste_description = lang_reverse_text(taste_description)
@@ -287,7 +285,7 @@
 
 /// Called when an overdose starts. Returning UPDATE_MOB_HEALTH will cause updatehealth() to be called on the holder mob by /datum/reagents/proc/metabolize.
 /datum/reagent/proc/overdose_start(mob/living/affected_mob, metabolization_ratio)
-	to_chat(affected_mob, span_userdanger(LANG("datum.e71854ea", list(name))))
+	to_chat(affected_mob, span_userdanger(LANG("datum.e71854ead8c771e7", list(name))))
 	affected_mob.add_mood_event("[type]_overdose", /datum/mood_event/overdose, name)
 	return
 

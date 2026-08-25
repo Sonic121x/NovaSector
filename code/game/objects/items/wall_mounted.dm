@@ -33,7 +33,7 @@
 
 /obj/item/wallframe/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.fa5fc796", list(EXAMINE_HINT("wrenched"))))
+	. += span_notice(LANG("obj.fa5fc7965e12e9d0", list(EXAMINE_HINT("wrenched"))))
 
 /**
  * Returns an structure to mount on from the atom passed
@@ -54,9 +54,9 @@
 		return ITEM_INTERACT_FAILURE
 
 	playsound(loc, 'sound/machines/click.ogg', 75, TRUE)
-	user.visible_message(span_notice(LANG("obj.fe7f09cf", list(user.name, src))),
-		span_notice(LANG("obj.24f9e520", list(src))),
-		span_hear(LANG("obj.dcc6c1b0", null)))
+	user.visible_message(span_notice(LANG("obj.fe7f09cf0da305f4", list(user.name, src))),
+		span_notice(LANG("obj.24f9e520f3702cd4", list(src))),
+		span_hear(LANG("obj.dcc6c1b00318bad4", null)))
 
 	var/floor_to_support = get_dir(user, support_structure)
 	var/obj/hanging_object = new result_path(get_turf(user))
@@ -86,18 +86,18 @@
 */
 /obj/item/wallframe/proc/try_build(atom/support, mob/user)
 	if(get_dist(support, user) > 1)
-		balloon_alert(user, LANG("obj.72b79433", null))
+		balloon_alert(user, LANG("obj.72b79433dc0681bc", null))
 		return FALSE
 	var/floor_to_support = get_dir(user, support)
 	if(!(floor_to_support in GLOB.cardinals))
-		balloon_alert(user, LANG("obj.66fb33f1", null))
+		balloon_alert(user, LANG("obj.66fb33f1cc223c28", null))
 		return FALSE
 	var/turf/T = get_turf(user)
 	if(!isfloorturf(T))
-		balloon_alert(user, LANG("obj.76e1c3bd", null))
+		balloon_alert(user, LANG("obj.76e1c3bd20a1e9f0", null))
 		return FALSE
 	if(check_wall_item(T, floor_to_support, wall_external))
-		balloon_alert(user, LANG("obj.599bb150", null))
+		balloon_alert(user, LANG("obj.599bb150b3099f25", null))
 		return FALSE
 
 	return TRUE
@@ -115,7 +115,7 @@
 	return interact_with_atom(get_step(get_turf(user), user.dir), user)
 
 /obj/item/wallframe/wrench_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice(LANG("obj.fc814806", list(src))))
+	to_chat(user, span_notice(LANG("obj.fc81480614a78c5d", list(src))))
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
 

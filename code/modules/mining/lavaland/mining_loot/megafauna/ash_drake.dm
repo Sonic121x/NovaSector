@@ -44,6 +44,7 @@
 
 /obj/item/clothing/suit/hooded/cloak/drake/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, /datum/bodypart_texture/mesh/drake)
 	allowed = GLOB.mining_suit_allowed
 
 /obj/item/clothing/head/hooded/cloakhood/drake
@@ -59,6 +60,10 @@
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/clothing/head/hooded/cloakhood/drake/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_HEAD, /datum/bodypart_texture/mesh/drake)
 
 // Spectral blade
 
@@ -109,13 +114,13 @@
 
 /obj/item/melee/ghost_sword/attack_self(mob/user)
 	if(!COOLDOWN_FINISHED(src, summon_cooldown))
-		to_chat(user, span_warning(LANG("obj.6c5d71bc", null)))
+		to_chat(user, span_warning(LANG("obj.6c5d71bcec3b025d", null)))
 		return
 
 	COOLDOWN_START(src, summon_cooldown, 60 SECONDS)
-	to_chat(user, span_notice(LANG("obj.7d5120b1", null)))
+	to_chat(user, span_notice(LANG("obj.7d5120b1392979cc", null)))
 	notify_ghosts(
-		LANG("obj.022bc66f", list(user.real_name, user.p_their(), name)),
+		LANG("obj.022bc66f06404366", list(user.real_name, user.p_their(), name)),
 		source = user,
 		ignore_key = POLL_IGNORE_SPECTRAL_BLADE,
 		header = "Spectral blade",
@@ -146,13 +151,13 @@
 
 /obj/item/melee/ghost_sword/attack(mob/living/target, mob/living/carbon/human/user)
 	var/ghost_counter = ghost_check()
-	user.visible_message(span_danger(LANG("obj.76b2aca0", list(user, ghost_counter))))
+	user.visible_message(span_danger(LANG("obj.76b2aca0c5624c27", list(user, ghost_counter))))
 	. = ..()
 
 /obj/item/melee/ghost_sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	var/ghost_counter = ghost_check()
 	final_block_chance += clamp((ghost_counter * 5), 0, 75)
-	owner.visible_message(span_danger(LANG("obj.34f9fd20", list(owner, ghost_counter))))
+	owner.visible_message(span_danger(LANG("obj.34f9fd20dad56a13", list(owner, ghost_counter))))
 	return ..()
 
 // Dragon's blood
@@ -172,7 +177,7 @@
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger(LANG("obj.26637981", null)))
+			to_chat(user, span_danger(LANG("obj.2663798145a99d3c", null)))
 			consumer.dna.features = list(
 				FEATURE_MUTANT_COLOR = "#A02720",
 				FEATURE_TAIL_LIZARD = "Dark Tiger",
@@ -189,18 +194,18 @@
 			consumer.set_eye_color("#FEE5A3")
 			consumer.set_species(/datum/species/lizard)
 			consumer.dna.add_mutation(/datum/mutation/firebreath, MUTATION_SOURCE_MUTATOR)
-			var/obj/item/organ/wings/functional/dragon/wings = new()
+			var/obj/item/organ/wings/dragon/wings = new()
 			wings.Insert(consumer)
 
 		if(2)
-			to_chat(user, span_danger(LANG("obj.106940f4", null)))
+			to_chat(user, span_danger(LANG("obj.106940f49b72fe92", null)))
 			consumer.set_species(/datum/species/skeleton)
 		if(3)
-			to_chat(user, span_danger(LANG("obj.93c9b102", null)))
+			to_chat(user, span_danger(LANG("obj.93c9b102847b1eda", null)))
 			var/datum/action/cooldown/spell/shapeshift/dragon/dragon_shapeshift = new(user.mind || user)
 			dragon_shapeshift.Grant(user)
 		if(4)
-			to_chat(user, span_danger(LANG("obj.92793011", null)))
+			to_chat(user, span_danger(LANG("obj.92793011c5c55095", null)))
 			ADD_TRAIT(user, TRAIT_LAVA_IMMUNE, type)
 
 	playsound(user,'sound/items/drink.ogg', 30, TRUE)
@@ -261,18 +266,18 @@
 			return ITEM_INTERACT_FAILURE
 
 		COOLDOWN_START(src, use_cooldown, reset_cooldown)
-		user.visible_message(span_danger(LANG("obj.9dd77252", list(user, old_name, reset_string))))
+		user.visible_message(span_danger(LANG("obj.9dd77252c4c10982", list(user, old_name, reset_string))))
 		playsound(target_turf,'sound/effects/magic/fireball.ogg', 200, TRUE)
 		return ITEM_INTERACT_SUCCESS
 
 	var/obj/effect/temp_visual/lavastaff/lava_visual = new /obj/effect/temp_visual/lavastaff(target_turf)
 	lava_visual.alpha = 0
 	animate(lava_visual, alpha = 255, time = create_delay)
-	user.visible_message(span_danger(LANG("obj.59c3217a", list(user, src, target_turf))))
+	user.visible_message(span_danger(LANG("obj.59c3217a5a9c1999", list(user, src, target_turf))))
 	COOLDOWN_START(src, use_cooldown, create_delay + 1)
 
 	if(!do_after(user, create_delay, target_turf))
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		COOLDOWN_RESET(src, use_cooldown)
 		qdel(lava_visual)
 		return ITEM_INTERACT_FAILURE
@@ -282,7 +287,7 @@
 		qdel(lava_visual)
 		return ITEM_INTERACT_FAILURE
 
-	user.visible_message(span_danger(LANG("obj.9dd77252", list(user, old_name, transform_string))))
+	user.visible_message(span_danger(LANG("obj.9dd77252c4c10982", list(user, old_name, transform_string))))
 	message_admins("[ADMIN_LOOKUPFLW(user)] fired the lava staff at [ADMIN_VERBOSEJMP(target_turf)]")
 	user.log_message("fired the lava staff at [AREACOORD(target_turf)].", LOG_ATTACK)
 	COOLDOWN_START(src, use_cooldown, create_cooldown)

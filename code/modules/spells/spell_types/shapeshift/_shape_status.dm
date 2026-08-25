@@ -75,7 +75,7 @@
 /// Called when the transformed mob tries to change into a different kind of mob, we wouldn't handle this well so we'll just turn back
 /datum/status_effect/shapechange_mob/proc/on_mob_transformed(mob/living/source)
 	var/mob/living/revealed_mob = caster_mob
-	source.visible_message(span_warning(LANG("datum.91b5e5ae", list(revealed_mob))))
+	source.visible_message(span_warning(LANG("datum.91b5e5ae638a7946", list(revealed_mob))))
 	restore_caster()
 	revealed_mob.Paralyze(10 SECONDS, ignore_canstun = TRUE)
 

@@ -37,15 +37,15 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, LANG("obj.48da8c36", null))
+		balloon_alert(user, LANG("obj.48da8c36ba7806a1", null))
 		return ITEM_INTERACT_BLOCKING
 
-	user.balloon_alert_to_viewers(LANG("obj.dba42904", list(src)), LANG("obj.b52342a8", null))
+	user.balloon_alert_to_viewers(LANG("obj.dba42904c751e1ea", list(src)), LANG("obj.b52342a8e93a2ba2", null))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 10, volume=50))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.65ced1e8", null))
+	balloon_alert(user, LANG("obj.65ced1e8b5b56733", null))
 	repair_damage(20)
 	return ITEM_INTERACT_SUCCESS
 
@@ -85,10 +85,10 @@
 	AddElement(/datum/element/uses_girder_wall_recipes)
 
 /obj/structure/barricade/wooden/crowbar_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, LANG("obj.247ce104", null))
+	balloon_alert(user, LANG("obj.247ce104c13a3376", null))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume=50))
 		return
-	loc.balloon_alert(user, LANG("obj.4c490938", null))
+	loc.balloon_alert(user, LANG("obj.4c4909384303f95b", null))
 	tool.play_tool_sound(src)
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src), drop_amount)
 	qdel(src)
@@ -158,7 +158,7 @@
 
 /obj/item/grenade/barrier/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.70f0513d", null))
+	. += span_notice(LANG("obj.70f0513d7573d68a", null))
 
 /obj/item/grenade/barrier/click_alt(mob/living/carbon/user)
 	toggle_mode(user)
@@ -173,7 +173,7 @@
 		if(HORIZONTAL)
 			mode = SINGLE
 
-	to_chat(user, span_notice(LANG("obj.959ebba6", list(src, mode))))
+	to_chat(user, span_notice(LANG("obj.959ebba69dbf0118", list(src, mode))))
 
 /obj/item/grenade/barrier/detonate(mob/living/lanced_by)
 	. = ..()

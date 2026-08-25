@@ -33,9 +33,9 @@
 /datum/fish_source/chasm/on_start_fishing(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
 	. = ..()
 	if(istype(rod.hook, /obj/item/fishing_hook/rescue))
-		to_chat(fisherman, span_notice(LANG("datum.5cce93c9", null)))
+		to_chat(fisherman, span_notice(LANG("datum.5cce93c9fbfeec44", null)))
 		return
-	to_chat(fisherman, span_danger(LANG("datum.70e2aa19", null)))
+	to_chat(fisherman, span_danger(LANG("datum.70e2aa191edf61da", null)))
 
 /datum/fish_source/chasm/roll_reward(obj/item/fishing_rod/rod, mob/fisherman)
 	var/rolled_reward = ..()

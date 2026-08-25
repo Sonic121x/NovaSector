@@ -72,7 +72,7 @@
 	var/mob/living/our_mob = parent
 	if (our_mob.stat == DEAD || our_mob.key || awaiting_ghosts)
 		return
-	examine_text += span_boldnotice(LANG("datum.191fe794", null))
+	examine_text += span_boldnotice(LANG("datum.191fe79465fea148", null))
 
 /// Send out a request for a brain
 /datum/component/ghost_direct_control/proc/request_ghost_control(poll_question, role_name, poll_length, poll_ignore_key, poll_announce_chosen, poll_chat_border_icon)
@@ -104,20 +104,20 @@
 	if (!hopeful_ghost.client)
 		return
 	if (!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER))
-		to_chat(hopeful_ghost, span_warning(LANG("datum.90034770", null)))
+		to_chat(hopeful_ghost, span_warning(LANG("datum.9003477049b70374", null)))
 		return
 	if (awaiting_ghosts)
-		to_chat(hopeful_ghost, span_warning(LANG("datum.e2734d02", null)))
+		to_chat(hopeful_ghost, span_warning(LANG("datum.e2734d02a0b80764", null)))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if (!SSticker.HasRoundStarted())
-		to_chat(hopeful_ghost, span_warning(LANG("datum.14782a6e", null)))
+		to_chat(hopeful_ghost, span_warning(LANG("datum.14782a6e854a9746", null)))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	INVOKE_ASYNC(src, PROC_REF(attempt_possession), our_mob, hopeful_ghost)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /// We got far enough to establish that this mob is a valid target, let's try to posssess it
 /datum/component/ghost_direct_control/proc/attempt_possession(mob/our_mob, mob/dead/observer/hopeful_ghost)
-	var/ghost_asked = tgui_alert(usr, LANG("datum.41bb31fc", list(our_mob)), LANG("datum.77344162", null), list("Yes", "No"))
+	var/ghost_asked = tgui_alert(usr, LANG("datum.41bb31fcac4be77c", list(our_mob)), LANG("datum.773441628de640b4", null), list("Yes", "No"))
 	if (ghost_asked != "Yes" || QDELETED(our_mob))
 		return
 	assume_direct_control(hopeful_ghost)
@@ -125,20 +125,20 @@
 /// Grant possession of our mob, component is now no longer required
 /datum/component/ghost_direct_control/proc/assume_direct_control(mob/harbinger)
 	if (QDELETED(src))
-		to_chat(harbinger, span_warning(LANG("datum.8f21dcce", null)))
+		to_chat(harbinger, span_warning(LANG("datum.8f21dcce80803b4c", null)))
 		return
 	if (is_banned_from(harbinger.ckey, list(ban_type)))
-		to_chat(harbinger, span_warning(LANG("datum.57af51b2", null)))
+		to_chat(harbinger, span_warning(LANG("datum.57af51b204dbc683", null)))
 		return
 	if (!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER))
-		to_chat(harbinger, span_warning(LANG("datum.90034770", null)))
+		to_chat(harbinger, span_warning(LANG("datum.9003477049b70374", null)))
 		return
 	var/mob/living/new_body = parent
 	if (new_body.stat == DEAD)
-		to_chat(harbinger, span_warning(LANG("datum.92fd4c82", null)))
+		to_chat(harbinger, span_warning(LANG("datum.92fd4c825ac7273c", null)))
 		return
 	if (new_body.key)
-		to_chat(harbinger, span_warning(LANG("datum.398fedb5", list(parent))))
+		to_chat(harbinger, span_warning(LANG("datum.398fedb5d83340f0", list(parent))))
 		qdel(src)
 		return
 	if (extra_control_checks && !extra_control_checks.Invoke(harbinger))

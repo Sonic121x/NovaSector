@@ -27,13 +27,13 @@
 /obj/item/gun/ballistic/proc/handle_box_reload(mob/user, obj/item/ammo, num_loaded)
 	SEND_SIGNAL(src, COMSIG_UPDATE_AMMO_HUD)
 	if(!istype(ammo, /obj/item/ammo_box))
-		balloon_alert(user, LANG("obj.fc9700d6", list(num_loaded, cartridge_wording)))
+		balloon_alert(user, LANG("obj.fc9700d635a802ce", list(num_loaded, cartridge_wording)))
 		return
 	var/obj/item/ammo_box/reloader = ammo
 	if(reloader.reload_delay)
 		var/penalty = reloader.reload_delay
 		user.changeNext_move(penalty) // cooldown to simulate having to fumble for another round
-		balloon_alert(user, LANG("obj.d4ac3187", list(num_loaded, cartridge_wording, penalty * 0.1)))
+		balloon_alert(user, LANG("obj.d4ac3187eabf4759", list(num_loaded, cartridge_wording, penalty * 0.1)))
 
 /obj/effect/temp_visual/dir_setting/firing_effect
 	light_system = OVERLAY_LIGHT

@@ -8,12 +8,12 @@
 // stolen from the wall clock
 /obj/structure/grandfatherclock/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.953a9fbf", list(round_timestamp())))
-	. += span_info(LANG("obj.6f4389ed", list(time2text(world.realtime, "hh:mm:ss"))))
+	. += span_info(LANG("obj.953a9fbf0c99db4e", list(round_timestamp())))
+	. += span_info(LANG("obj.6f4389ed22a6c39d", list(time2text(world.realtime, "hh:mm:ss"))))
 	if(soundloop)
-		. += span_notice(LANG("obj.c808037b", null))
+		. += span_notice(LANG("obj.c808037b058c7299", null))
 	else
-		. += span_notice(LANG("obj.6fb04977", null))
+		. += span_notice(LANG("obj.6fb04977c5a712fc", null))
 
 
 // . += span_notice("The <b>screws</b> on the clock hands are loose, freely ticking away.")
@@ -33,17 +33,17 @@
 
 /obj/structure/grandfatherclock/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!soundloop)
-		balloon_alert(user, LANG("obj.8610e373", null))
+		balloon_alert(user, LANG("obj.8610e37394dee17e", null))
 		if(do_after(user, 2 SECONDS, src))
 			soundloop = new(src, TRUE)
-			balloon_alert(user, LANG("obj.294160c5", null))
+			balloon_alert(user, LANG("obj.294160c59ec1e733", null))
 			return ITEM_INTERACT_SUCCESS
 		return ..()
 
-	balloon_alert(user, LANG("obj.cdf1f0ca", null))
+	balloon_alert(user, LANG("obj.cdf1f0ca39ec9903", null))
 	if(do_after(user, 2 SECONDS, src))
 		QDEL_NULL(soundloop)
-		balloon_alert(user, LANG("obj.4b5727f9", null))
+		balloon_alert(user, LANG("obj.4b5727f9f9c7ff2b", null))
 		return ITEM_INTERACT_SUCCESS
 	return ..()
 /obj/structure/sign/painting/meat

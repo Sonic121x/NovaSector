@@ -14,7 +14,7 @@
 		return
 
 	if(istype(shipped, /obj/vehicle/sealed/mecha))
-		shipped.balloon_alert_to_viewers(LANG("datum.6fb88fa2", null))
+		shipped.balloon_alert_to_viewers(LANG("datum.6fb88fa291ae8ad7", null))
 
 	var/obj/item/mecha_diagnostic/diagnostic_sheet = shipped
 	if(!diagnostic_sheet.mech_data)

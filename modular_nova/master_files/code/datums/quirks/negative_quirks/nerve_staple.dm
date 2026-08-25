@@ -19,5 +19,5 @@
 	. = ..()
 	if (!staple || staple != quirk_holder.get_item_by_slot(ITEM_SLOT_EYES))
 		return
-	to_chat(quirk_holder, span_warning(LANG("datum.7ef47fce", list(istype(quirk_holder.loc, /turf/open/floor) ? " on the floor" : ""))))
+	to_chat(quirk_holder, span_warning(LANG("datum.7ef47fce6070d867", list(istype(quirk_holder.loc, /turf/open/floor) ? " on the floor" : ""))))
 	qdel(staple)

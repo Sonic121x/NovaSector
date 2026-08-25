@@ -28,7 +28,7 @@
 
 	for(var/mob/living/falling_victim in falling_movables)
 		if(soft_object == falling_victim)
-			to_chat(falling_victim, span_notice(LANG("datum.58da6a04", null)))
+			to_chat(falling_victim, span_notice(LANG("datum.58da6a04a5c7da53", null)))
 		else
-			to_chat(falling_victim, span_notice(LANG("datum.421ff1c1", list(soft_object))))
+			to_chat(falling_victim, span_notice(LANG("datum.421ff1c180818cb5", list(soft_object))))
 	return FALL_INTERCEPTED | FALL_NO_MESSAGE

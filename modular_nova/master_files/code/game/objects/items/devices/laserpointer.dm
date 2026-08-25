@@ -20,18 +20,18 @@
 
 /obj/item/laser_pointer/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!upgradable)
-		balloon_alert(user, LANG("obj.0c1764f5", null))
+		balloon_alert(user, LANG("obj.0c1764f567365537", null))
 		return
 	return ..()
 
 /obj/item/laser_pointer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stock_parts/micro_laser) || istype(tool, /obj/item/stack/ore/bluespace_crystal))
 		if(!upgradable)
-			balloon_alert(user, LANG("obj.e0b58e88", null))
+			balloon_alert(user, LANG("obj.e0b58e884b740f09", null))
 			return ITEM_INTERACT_BLOCKING
 	return ..()
 
 /obj/item/laser_pointer/examine(mob/user)
 	. = ..()
 	if(!upgradable)
-		. += span_notice(LANG("obj.54abf789", null))
+		. += span_notice(LANG("obj.54abf7892e2eb466", null))

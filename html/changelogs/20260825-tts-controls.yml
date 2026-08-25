@@ -1,0 +1,7 @@
+author: "sernseek"
+delete-after: True
+changes:
+  - bugfix: "Text-to-speech now preserves Chinese text instead of stripping it before synthesis."
+  - admin: "Administrators can explicitly enable, disable, and test TTS during a round."
+  - rscadd: "Station-wide, security-level, round-start, and automated radio announcements now use localized TTS instead of prerecorded English speech when TTS is available."
+  - qol: "Captain, AI, and forged Syndicate announcements use the announcing character's selected TTS voice, while automated systems use a stable newsreader voice for cache reuse."

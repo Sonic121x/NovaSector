@@ -54,7 +54,7 @@
 	SIGNAL_HANDLER
 
 	if(owner)
-		to_chat(owner, span_boldwarning(LANG("datum.45c73b3d", null)))
+		to_chat(owner, span_boldwarning(LANG("datum.45c73b3d048de3ce", null)))
 	unmark_item()
 
 /datum/action/cooldown/spell/summonitem/cast(mob/living/cast_on)
@@ -80,9 +80,9 @@
 	var/obj/item/potential_mark = caster.get_active_held_item()
 	if(!potential_mark)
 		if(caster.get_inactive_held_item())
-			to_chat(caster, span_warning(LANG("datum.9a09fa56", null)))
+			to_chat(caster, span_warning(LANG("datum.9a09fa56a92c938d", null)))
 		else
-			to_chat(caster, span_warning(LANG("datum.43b3622a", null)))
+			to_chat(caster, span_warning(LANG("datum.43b3622afa0294bb", null)))
 		return FALSE
 
 	var/link_message = ""
@@ -100,12 +100,12 @@
 
 /// If we have a marked item and it's in our hand, we will try to unlink it
 /datum/action/cooldown/spell/summonitem/proc/try_unlink_item(mob/living/caster)
-	to_chat(caster, span_notice(LANG("datum.167e7a53", list(marked_item))))
+	to_chat(caster, span_notice(LANG("datum.167e7a53eb03cc77", list(marked_item))))
 	if(!do_after(caster, 5 SECONDS, marked_item))
-		to_chat(caster, span_notice(LANG("datum.a1245771", list(marked_item))))
+		to_chat(caster, span_notice(LANG("datum.a124577186a15055", list(marked_item))))
 		return FALSE
 
-	to_chat(caster, span_notice(LANG("datum.b5a59aed", list(marked_item))))
+	to_chat(caster, span_notice(LANG("datum.b5a59aed54fc0a45", list(marked_item))))
 	unmark_item()
 	return TRUE
 
@@ -134,9 +134,9 @@
 
 				// Items in silicons warp the whole silicon
 				var/mob/holding_mark = item_to_retrieve.loc
-				holding_mark.loc.visible_message(span_warning(LANG("datum.65665160", list(holding_mark))))
+				holding_mark.loc.visible_message(span_warning(LANG("datum.6566516035489fa8", list(holding_mark))))
 				holding_mark.forceMove(caster.loc)
-				holding_mark.loc.visible_message(span_warning(LANG("datum.4e88a79e", list(holding_mark))))
+				holding_mark.loc.visible_message(span_warning(LANG("datum.4e88a79e68e40f6e", list(holding_mark))))
 				SEND_SIGNAL(holding_mark, COMSIG_MAGIC_RECALL, caster, item_to_retrieve)
 				playsound(holding_mark, 'sound/effects/magic/summonitems_generic.ogg', 50, TRUE)
 				return
@@ -167,13 +167,13 @@
 		if (!holder.dropItemToGround(item_to_retrieve, force = TRUE))
 			return
 
-	item_to_retrieve.loc?.visible_message(span_warning(LANG("datum.65665160", list(item_to_retrieve))))
+	item_to_retrieve.loc?.visible_message(span_warning(LANG("datum.6566516035489fa8", list(item_to_retrieve))))
 
 	if(isitem(item_to_retrieve) && caster.put_in_hands(item_to_retrieve))
-		item_to_retrieve.loc.visible_message(span_warning(LANG("datum.ff6f288a", list(item_to_retrieve, caster))))
+		item_to_retrieve.loc.visible_message(span_warning(LANG("datum.ff6f288a839fc2b4", list(item_to_retrieve, caster))))
 	else
 		item_to_retrieve.forceMove(caster.drop_location())
-		item_to_retrieve.loc.visible_message(span_warning(LANG("datum.4e88a79e", list(item_to_retrieve))))
+		item_to_retrieve.loc.visible_message(span_warning(LANG("datum.4e88a79e68e40f6e", list(item_to_retrieve))))
 
 	playsound(get_turf(item_to_retrieve), 'sound/effects/magic/summonitems_generic.ogg', 50, TRUE)
 
@@ -197,11 +197,11 @@
 		return .
 
 	if(!istype(potential_mark, /obj/item/melee/baton/abductor))
-		to_chat(caster, span_warning(LANG("datum.6075ac11", list(potential_mark))))
+		to_chat(caster, span_warning(LANG("datum.6075ac11b3850c9a", list(potential_mark))))
 		return FALSE
 
 	return TRUE
 
 /datum/action/cooldown/spell/summonitem/abductor/try_unlink_item(mob/living/caster)
-	to_chat(caster, span_warning(LANG("datum.5df4a889", list(marked_item))))
+	to_chat(caster, span_warning(LANG("datum.5df4a889a91d855c", list(marked_item))))
 	return FALSE

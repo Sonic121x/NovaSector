@@ -42,11 +42,11 @@
 
 	var/num = get_part_rating()
 	if (!num)
-		. += span_notice(LANG("obj.b78d0e82", null))
+		. += span_notice(LANG("obj.b78d0e827268e0c2", null))
 	else if(num == INFINITY)
-		. += span_notice(LANG("obj.d673f2e4", null))
+		. += span_notice(LANG("obj.d673f2e4692ea1e0", null))
 	else
-		. += span_notice(LANG("obj.6fd94d47", list(num)))
+		. += span_notice(LANG("obj.6fd94d47b77d6817", list(num)))
 
 /obj/item/vending_refill/get_part_rating()
 	. = 0

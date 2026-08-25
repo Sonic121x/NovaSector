@@ -102,10 +102,10 @@ GLOBAL_VAR(antag_prototypes)
 
 /datum/mind/proc/traitor_panel()
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr, LANG("datum.c14ed660", null), LANG("datum.055c248b", null))
+		tgui_alert(usr, LANG("datum.c14ed660448de340", null), LANG("datum.055c248babf1d3c0", null))
 		return
 	if(QDELETED(src))
-		tgui_alert(usr, LANG("datum.70a9c349", null), LANG("datum.c53e77e4", null))
+		tgui_alert(usr, LANG("datum.70a9c349b4f90d16", null), LANG("datum.c53e77e4b558c086", null))
 		return
 
 	var/out = "<B>[name]</B>[(current && (current.real_name != name))?" (as [current.real_name])":""]<br>"

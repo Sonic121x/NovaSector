@@ -192,7 +192,7 @@
 			hud_list[hud] = list()
 
 		else
-			var/image/I = image('modular_nova/master_files/icons/mob/huds/hud.dmi', src, "")	//NOVA EDIT: original filepath 'icons/mob/huds/hud.dmi'
+			var/image/I = image(DEFAULT_HUDS_DMI, src, "")
 			I.appearance_flags = RESET_COLOR|PIXEL_SCALE|KEEP_APART
 			hud_list[hud] = I
 		set_hud_image_active(hud, update_huds = FALSE) //by default everything is active. but dont add it to huds to keep control.
@@ -254,7 +254,7 @@ GAME_VERB_PROC(/mob, Cell, "电池", "Admin")
 	// voice muffling
 	if(IS_UNCONSCIOUS(src))
 		if(type & MSG_AUDIBLE) //audio
-			to_chat(src, LANG("mob.2919bfef", null))
+			to_chat(src, LANG("mob.2919bfef93eef36a", null))
 		return FALSE
 	to_chat(src, msg, avoid_highlighting = avoid_highlighting, skip_i18n_fallback = (skip_i18n_fallback && .)) // NOVA EDIT - i18n - only skip the AC for the original (player-speech) msg, not the deaf/blind alt fallback (. is FALSE when we swapped to alt_msg)
 	return .
@@ -640,7 +640,7 @@ GAME_VERB_CONTEXT(/mob, examinate, "检查", "", null, /atom)
 /mob/living/blind_examine_check(atom/examined_thing)
 	//need to be next to something and awake
 	if(!Adjacent(examined_thing) || incapacitated)
-		to_chat(src, span_warning(LANG("mob.c0ccefad", null)))
+		to_chat(src, span_warning(LANG("mob.c0ccefad26ae62c4", null)))
 		return FALSE
 
 	//you can examine things you're holding directly, but you can't examine other things if your hands are full
@@ -651,22 +651,22 @@ GAME_VERB_CONTEXT(/mob, examinate, "检查", "", null, /atom)
 		if(HAS_TRAIT(active_item, TRAIT_BLIND_TOOL))
 			boosted = TRUE
 		else if(active_item != examined_thing)
-			to_chat(src, span_warning(LANG("mob.7419666c", null)))
+			to_chat(src, span_warning(LANG("mob.7419666cad879401", null)))
 			return FALSE
 
 	//you can only initiate exaimines if you have a hand, it's not disabled, and only as many examines as you have hands
 	/// our active hand, to check if it's disabled/detached
 	var/obj/item/bodypart/active_hand = has_active_hand()? get_active_hand() : null
 	if(!active_hand || active_hand.bodypart_disabled || do_after_count() >= usable_hands)
-		to_chat(src, span_warning(LANG("mob.8897d08f", null)))
+		to_chat(src, span_warning(LANG("mob.8897d08f642842f0", null)))
 		return FALSE
 
 	//you can only queue up one examine on something at a time
 	if(DOING_INTERACTION_WITH_TARGET(src, examined_thing))
 		return FALSE
 
-	to_chat(src, span_notice(LANG("mob.f6b10602", null)))
-	visible_message(span_notice(LANG("mob.d05e9db9", list(name, examined_thing.name))))
+	to_chat(src, span_notice(LANG("mob.f6b106023e033ad0", null)))
+	visible_message(span_notice(LANG("mob.d05e9db90511f4c5", list(name, examined_thing.name))))
 
 	/// how long it takes for the blind person to find the thing they're examining
 	var/examine_delay_length = rand(1 SECONDS, 2 SECONDS)
@@ -680,7 +680,7 @@ GAME_VERB_CONTEXT(/mob, examinate, "检查", "", null, /atom)
 		examine_delay_length *= 2
 
 	if(examine_delay_length > 0 && !do_after(src, examine_delay_length, target = examined_thing))
-		to_chat(src, span_notice(LANG("mob.93ed1824", null)))
+		to_chat(src, span_notice(LANG("mob.93ed182426052c86", null)))
 		return FALSE
 
 	//now we touch the thing we're examining
@@ -830,7 +830,7 @@ GAME_VERB(/mob, abandon_mob, "重生", "OOC")
 
 	switch(CONFIG_GET(flag/allow_respawn))
 		if(RESPAWN_FLAG_NEW_CHARACTER)
-			if(tgui_alert(usr, LANG("mob.d9177f13", null), LANG("mob.7625587d", null), list("Ok", "Nevermind")) != "Ok")
+			if(tgui_alert(usr, LANG("mob.d9177f13033bd2ab", null), LANG("mob.7625587de33ddd45", null), list("Ok", "Nevermind")) != "Ok")
 				return
 
 		if(RESPAWN_FLAG_FREE)
@@ -838,13 +838,13 @@ GAME_VERB(/mob, abandon_mob, "重生", "OOC")
 
 		if(RESPAWN_FLAG_DISABLED)
 			if (!check_rights_for(usr.client, R_ADMIN))
-				to_chat(usr, span_boldnotice(LANG("mob.cbff20c4", null)))
+				to_chat(usr, span_boldnotice(LANG("mob.cbff20c418d20498", null)))
 				return
-			if (tgui_alert(usr, LANG("mob.ea1bb66a", null), LANG("mob.7625587d", null), list("Yes", "No")) != "Yes")
+			if (tgui_alert(usr, LANG("mob.ea1bb66adf7c771b", null), LANG("mob.7625587de33ddd45", null), list("Yes", "No")) != "Yes")
 				return
 
 	if (stat != DEAD)
-		to_chat(usr, span_boldnotice(LANG("mob.e1359dbe", null)))
+		to_chat(usr, span_boldnotice(LANG("mob.e1359dbea289c5d4", null)))
 		return
 
 	if(!check_respawn_delay())
@@ -853,25 +853,25 @@ GAME_VERB(/mob, abandon_mob, "重生", "OOC")
 	//NOVA EDIT ADDITION START
 	if(ckey)
 		if(is_banned_from(ckey, BAN_RESPAWN))
-			to_chat(usr, LANG("mob.1de184f7", null))
+			to_chat(usr, LANG("mob.1de184f737b2294e", null))
 			return
 
 	//DNR TRAIT
 	if(!istype(src, /mob/dead/observer)) //Quick check to make sure they Ghosted first (so we can use stay_dead())
-		to_chat(usr, span_boldnotice(LANG("mob.b02a8a58", null)))
+		to_chat(usr, span_boldnotice(LANG("mob.b02a8a589cc8f7d5", null)))
 		return
 	var/mob/dead/observer/user_ghost = src //We already know they're a ghost from the above
 	//Check if the ghost is tied to a body; if so, after confirming they want to abandon it, set the body DNR
 	//(Respawn already detaches them from the body permanently... just doesn't actually make the body itself unrevivable)
 	if(user_ghost.can_reenter_corpse)
-		if(tgui_alert(usr, LANG("mob.5d242575", null), LANG("mob.7625587d", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, LANG("mob.5d242575e41ec9c7", null), LANG("mob.7625587de33ddd45", null), list("Yes", "No")) != "Yes")
 			return
 		user_ghost.stay_dead()
 	//NOVA EDIT ADDITION END
 
 	usr.log_message("used the respawn button.", LOG_GAME)
 
-	to_chat(usr, span_boldnotice(LANG("mob.6cdd4f80", null)))
+	to_chat(usr, span_boldnotice(LANG("mob.6cdd4f80ed0b3664", null)))
 
 	if(!client)
 		usr.log_message("respawn failed due to disconnect.", LOG_GAME)
@@ -901,10 +901,10 @@ GAME_VERB(/mob, abandon_mob, "重生", "OOC")
 
 	if(death_time < required_delay)
 		if(!check_rights_for(usr.client, R_ADMIN))
-			to_chat(usr, LANG("mob.dbe71e92", list(DisplayTimeText(death_time, 1))))
-			to_chat(usr, span_warning(LANG("mob.1c8a18b8", list(DisplayTimeText(required_delay, 1)))))
+			to_chat(usr, LANG("mob.dbe71e922d3169af", list(DisplayTimeText(death_time, 1))))
+			to_chat(usr, span_warning(LANG("mob.1c8a18b8c75e2c8c", list(DisplayTimeText(required_delay, 1)))))
 			return FALSE
-		if(tgui_alert(usr, LANG("mob.92dfb30e", list(DisplayTimeText(death_time, 1), DisplayTimeText(required_delay, 1))), LANG("mob.7625587d", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, LANG("mob.92dfb30e8369d7a7", list(DisplayTimeText(death_time, 1), DisplayTimeText(required_delay, 1))), LANG("mob.7625587de33ddd45", null), list("Yes", "No")) != "Yes")
 			return FALSE
 	return TRUE
 
@@ -941,7 +941,7 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 	var/obj/item/held_item = get_active_held_item()
 	if(SEND_SIGNAL(src, COMSIG_MOB_SWAPPING_HANDS, held_item) & COMPONENT_BLOCK_SWAP)
 		if (!silent)
-			to_chat(src, span_warning(LANG("mob.d060ffb3", list(held_item))))
+			to_chat(src, span_warning(LANG("mob.d060ffb34901efab", list(held_item))))
 		return FALSE
 
 	var/result = perform_hand_swap(held_index)
@@ -1061,8 +1061,8 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	if(magic_flags & MAGIC_RESISTANCE)
 		visible_message(
-			span_warning(LANG("mob.f97030cf", list(src, ismob(antimagic_source) ? p_they() : antimagic_source))),
-			span_userdanger(LANG("mob.6fbd53ce", list(ismob(antimagic_source) ? "you" : antimagic_source))),
+			span_warning(LANG("mob.f97030cf7fcc4ae6", list(src, ismob(antimagic_source) ? p_they() : antimagic_source))),
+			span_userdanger(LANG("mob.6fbd53cec7b02974", list(ismob(antimagic_source) ? "you" : antimagic_source))),
 		)
 		antimagic_effect = mutable_appearance('icons/effects/effects.dmi', "shield-red", MOB_SHIELD_LAYER)
 		antimagic_color = LIGHT_COLOR_BLOOD_MAGIC
@@ -1070,8 +1070,8 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	else if(magic_flags & MAGIC_RESISTANCE_HOLY)
 		visible_message(
-			span_warning(LANG("mob.99326fe1", list(src, ismob(antimagic_source) ? p_they() : antimagic_source))),
-			span_userdanger(LANG("mob.0d3e2a29", list(ismob(antimagic_source) ? "you" : antimagic_source))),
+			span_warning(LANG("mob.99326fe1cee35685", list(src, ismob(antimagic_source) ? p_they() : antimagic_source))),
+			span_userdanger(LANG("mob.0d3e2a2946e41e98", list(ismob(antimagic_source) ? "you" : antimagic_source))),
 		)
 		antimagic_effect = mutable_appearance('icons/mob/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
 		antimagic_color = LIGHT_COLOR_HOLY_MAGIC
@@ -1079,8 +1079,8 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	else if(magic_flags & MAGIC_RESISTANCE_MIND)
 		visible_message(
-			span_warning(LANG("mob.16521a8e", list(src, ismob(antimagic_source) ? p_they() : antimagic_source))),
-			span_userdanger(LANG("mob.1ef155d3", list(ismob(antimagic_source) ? "you" : antimagic_source))),
+			span_warning(LANG("mob.16521a8e375ea15b", list(src, ismob(antimagic_source) ? p_they() : antimagic_source))),
+			span_userdanger(LANG("mob.1ef155d350fdc7c2", list(ismob(antimagic_source) ? "you" : antimagic_source))),
 		)
 		antimagic_effect = mutable_appearance('icons/mob/effects/genetics.dmi', "telekinesishead", MOB_SHIELD_LAYER)
 		antimagic_color = LIGHT_COLOR_DARK_BLUE
@@ -1320,15 +1320,15 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	if(!IS_WRITING_UTENSIL(writing_instrument))
 		if(!silent_if_not_writing_tool)
-			to_chat(src, span_warning(LANG("mob.3bf5639d", list(writing_instrument))))
+			to_chat(src, span_warning(LANG("mob.3bf5639d99e4912e", list(writing_instrument))))
 		return FALSE
 
 	if(!is_literate())
-		to_chat(src, span_warning(LANG("mob.2007d97f", null)))
+		to_chat(src, span_warning(LANG("mob.2007d97fb6b773e6", null)))
 		return FALSE
 
 	if(!has_light_nearby() && !has_nightvision())
-		to_chat(src, span_warning(LANG("mob.d1afb06e", null)))
+		to_chat(src, span_warning(LANG("mob.d1afb06e96c3522f", null)))
 		return FALSE
 
 	if(has_gravity())
@@ -1337,7 +1337,7 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 	var/obj/item/pen/pen = writing_instrument
 
 	if(istype(pen) && pen.requires_gravity)
-		to_chat(src, span_warning(LANG("mob.77177cef", list(writing_instrument))))
+		to_chat(src, span_warning(LANG("mob.77177cef4125f09e", list(writing_instrument))))
 		return FALSE
 
 	return TRUE
@@ -1365,12 +1365,12 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 /mob/proc/can_read(atom/viewed_atom, reading_check_flags = (READING_CHECK_LITERACY|READING_CHECK_LIGHT), silent = FALSE)
 	if((reading_check_flags & READING_CHECK_LITERACY) && !is_literate())
 		if(!silent)
-			to_chat(src, span_warning(LANG("mob.98f97dd6", list(viewed_atom))))
+			to_chat(src, span_warning(LANG("mob.98f97dd657c0e18d", list(viewed_atom))))
 		return FALSE
 
 	if((reading_check_flags & READING_CHECK_LIGHT) && !has_light_nearby() && !has_nightvision())
 		if(!silent)
-			to_chat(src, span_warning(LANG("mob.d5533a31", null)))
+			to_chat(src, span_warning(LANG("mob.d5533a3118147dee", null)))
 		return FALSE
 
 	return TRUE
@@ -1467,7 +1467,7 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	if(href_list[VV_HK_GIVE_ACCESS])
 		AddComponent(/datum/component/simple_access, SSid_access.get_region_access_list(list(REGION_ALL_GLOBAL)))
-		to_chat(usr, span_notice(LANG("mob.8fe4cb35", null)))
+		to_chat(usr, span_notice(LANG("mob.8fe4cb356a6a97d4", null)))
 /**
  * extra var handling for the logging var
  */

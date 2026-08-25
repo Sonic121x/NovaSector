@@ -82,7 +82,7 @@
 	if(!istype(M))
 		return FALSE
 	if(!silent)
-		M.visible_message(span_notice(LANG("obj.65c114e9", list(M, src))))
+		M.visible_message(span_notice(LANG("obj.65c114e92e5c2d96", list(M, src))))
 	M.forceMove(src)
 	add_occupant(M)
 	return TRUE
@@ -103,7 +103,7 @@
 		M.throw_at(target_turf, 5, 10)
 
 	if(!silent)
-		M.visible_message(span_notice(LANG("obj.ae0bed74", list(M, src))))
+		M.visible_message(span_notice(LANG("obj.ae0bed74e5a0e856", list(M, src))))
 	return TRUE
 
 /obj/vehicle/sealed/proc/exit_location(M)
@@ -114,10 +114,10 @@
 		return NONE
 
 	if(!user.transferItemToLoc(tool, src))
-		to_chat(user, span_warning(LANG("obj.dc050dd7", list(tool))))
+		to_chat(user, span_warning(LANG("obj.dc050dd751b8faab", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.8ce99939", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.8ce99939bf01b695", list(tool, src))))
 	if(inserted_key) // Just in case there's an invalid key
 		inserted_key.forceMove(drop_location())
 	inserted_key = tool
@@ -126,12 +126,12 @@
 
 /obj/vehicle/sealed/proc/remove_key(mob/user)
 	if(!inserted_key)
-		to_chat(user, span_warning(LANG("obj.84c88407", list(src))))
+		to_chat(user, span_warning(LANG("obj.84c8840740282d47", list(src))))
 		return
 	if(!is_occupant(user) || !(occupants[user] & VEHICLE_CONTROL_DRIVE))
-		to_chat(user, span_warning(LANG("obj.f6a0eeca", list(src, src))))
+		to_chat(user, span_warning(LANG("obj.f6a0eeca32ebad47", list(src, src))))
 		return
-	to_chat(user, span_notice(LANG("obj.cbed3266", list(inserted_key, src))))
+	to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(inserted_key, src))))
 	if(!HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 		user.put_in_hands(inserted_key)
 	else

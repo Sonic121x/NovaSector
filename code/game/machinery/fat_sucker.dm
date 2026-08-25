@@ -53,7 +53,7 @@
 
 /obj/machinery/fat_sucker/close_machine(mob/user, density_to_set = TRUE)
 	if(panel_open)
-		to_chat(user, span_warning(LANG("obj.99a22073", null)))
+		to_chat(user, span_warning(LANG("obj.99a22073817277fe", null)))
 		return
 	..()
 	playsound(src, 'sound/machines/click.ogg', 50)
@@ -62,7 +62,7 @@
 			occupant.forceMove(drop_location())
 			set_occupant(null)
 			return
-		to_chat(occupant, span_notice(LANG("obj.1d4849e6", list(src))))
+		to_chat(occupant, span_notice(LANG("obj.1d4849e619e6913a", list(src))))
 		addtimer(CALLBACK(src, PROC_REF(start_extracting)), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
 		update_appearance()
 
@@ -75,18 +75,18 @@
 
 /obj/machinery/fat_sucker/container_resist_act(mob/living/user)
 	if(!free_exit || state_open)
-		to_chat(user, span_notice(LANG("obj.84b863bd", null)))
+		to_chat(user, span_notice(LANG("obj.84b863bd6765c3e3", null)))
 		user.changeNext_move(CLICK_CD_BREAKOUT)
 		user.last_special = world.time + CLICK_CD_BREAKOUT
-		user.visible_message(span_notice(LANG("obj.485787b2", list(user, src))), \
-			span_notice(LANG("obj.43ad33b1", list(src, DisplayTimeText(breakout_time)))), \
-			span_hear(LANG("obj.a1d9c573", list(src))))
+		user.visible_message(span_notice(LANG("obj.485787b2b8d67ec7", list(user, src))), \
+			span_notice(LANG("obj.43ad33b141e25411", list(src, DisplayTimeText(breakout_time)))), \
+			span_hear(LANG("obj.a1d9c5733c600b1c", list(src))))
 		if(do_after(user, breakout_time, target = src, cog_icon = null))
 			if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || state_open)
 				return
 			free_exit = TRUE
-			user.visible_message(span_warning(LANG("obj.37696909", list(user, src))), \
-				span_notice(LANG("obj.81c31f6b", list(src))))
+			user.visible_message(span_warning(LANG("obj.37696909131e91b5", list(user, src))), \
+				span_notice(LANG("obj.81c31f6b9b00625a", list(src))))
 			open_machine()
 		return
 	open_machine()
@@ -97,17 +97,17 @@
 	else if(!processing || free_exit)
 		open_machine()
 	else
-		to_chat(user, span_warning(LANG("obj.891d1b15", null)))
+		to_chat(user, span_warning(LANG("obj.891d1b15196749aa", null)))
 
 /obj/machinery/fat_sucker/click_alt(mob/living/user)
 	if(user == occupant)
-		to_chat(user, span_warning(LANG("obj.62b1d2b7", null)))
+		to_chat(user, span_warning(LANG("obj.62b1d2b7334222c6", null)))
 		return CLICK_ACTION_BLOCKING
 	if(!(obj_flags & EMAGGED) && !allowed(user))
-		to_chat(user, span_warning(LANG("obj.5f30df62", null)))
+		to_chat(user, span_warning(LANG("obj.5f30df6282c85f9c", null)))
 		return CLICK_ACTION_BLOCKING
 	free_exit = !free_exit
-	to_chat(user, span_notice(LANG("obj.bc511e42", list(free_exit ? "unlocked" : "locked"))))
+	to_chat(user, span_notice(LANG("obj.bc511e4247a0ede7", list(free_exit ? "unlocked" : "locked"))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/fat_sucker/update_overlays()
@@ -166,7 +166,7 @@
 			update_appearance()
 			set_light(2, 1, "#ff0000")
 		else
-			say(LANG("obj.8cb00a4a", null))
+			say(LANG("obj.8cb00a4a94227512", null))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 			overlays += "[icon_state]_red" //throw a red light icon over it, to show that it won't work
 
@@ -193,10 +193,10 @@
 
 /obj/machinery/fat_sucker/screwdriver_act(mob/living/user, obj/item/tool)
 	if(occupant)
-		to_chat(user, span_warning(LANG("obj.29741746", list(src))))
+		to_chat(user, span_warning(LANG("obj.297417466fc8e075", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(state_open)
-		to_chat(user, span_warning(LANG("obj.2bc99427", list(src, panel_open ? "close" : "open"))))
+		to_chat(user, span_warning(LANG("obj.2bc99427122c999f", list(src, panel_open ? "close" : "open"))))
 		return ITEM_INTERACT_BLOCKING
 	return default_deconstruction_screwdriver(user, tool)
 
@@ -208,6 +208,6 @@
 		return FALSE
 	start_at = 100
 	stop_at = 0
-	to_chat(user, span_notice(LANG("obj.e0940361", null)))
+	to_chat(user, span_notice(LANG("obj.e09403616cd5326d", null)))
 	obj_flags |= EMAGGED
 	return TRUE

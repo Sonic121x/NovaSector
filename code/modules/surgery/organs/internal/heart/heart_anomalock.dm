@@ -40,7 +40,7 @@
 
 /obj/item/organ/heart/cybernetic/anomalock/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.49b4e965", null))
+	. += span_info(LANG("obj.49b4e96594074d40", null))
 
 /obj/item/organ/heart/cybernetic/anomalock/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
@@ -94,12 +94,12 @@
 	if(owner.has_status_effect(/datum/status_effect/voltaic_overdrive))
 		var/datum/status_effect/voltaic_overdrive/our_drive = owner.has_status_effect(/datum/status_effect/voltaic_overdrive)
 		if(our_drive.emp_resist)
-			to_chat(owner, span_danger(LANG("obj.af0ce7dc", null)))
+			to_chat(owner, span_danger(LANG("obj.af0ce7dc115b539f", null)))
 			return EMP_PROTECT_ALL
 	if(activate_survival(owner))
-		to_chat(owner, span_userdanger(LANG("obj.9e3c554a", null)))
+		to_chat(owner, span_userdanger(LANG("obj.9e3c554ab22d847d", null)))
 		return EMP_PROTECT_ALL
-	to_chat(owner, span_danger(LANG("obj.8f5e065e", null)))
+	to_chat(owner, span_danger(LANG("obj.8f5e065e77121315", null)))
 	// NOVA EDIT ADDITION END
 
 /obj/item/organ/heart/cybernetic/anomalock/proc/add_lightning_overlay(time_to_last = 10 SECONDS)
@@ -165,33 +165,33 @@
 
 ///Alerts our owner that the organ is ready to do its thing again
 /obj/item/organ/heart/cybernetic/anomalock/proc/notify_cooldown(mob/living/carbon/organ_owner)
-	balloon_alert(organ_owner, LANG("obj.7249910a", null))
+	balloon_alert(organ_owner, LANG("obj.7249910ac8b53ec8", null))
 	playsound(organ_owner, 'sound/items/eshield_recharge.ogg', 40)
 
 /obj/item/organ/heart/cybernetic/anomalock/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, required_anomaly))
 		return NONE
 	if(!isnull(core))
-		balloon_alert(user, LANG("obj.e3ef097d", null))
+		balloon_alert(user, LANG("obj.e3ef097dc22a2ed0", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.1a2673f9", null))
+	balloon_alert(user, LANG("obj.1a2673f997ae855a", null))
 	playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/organ/heart/cybernetic/anomalock/screwdriver_act(mob/living/user, obj/item/tool)
 	if(isnull(core))
-		balloon_alert(user, LANG("obj.9c969525", null))
+		balloon_alert(user, LANG("obj.9c96952522f32061", null))
 		return ITEM_INTERACT_BLOCKING
 	if((organ_flags & ORGAN_FAILING) || !core_removable)
-		balloon_alert(user, LANG("obj.2c698594", null))
+		balloon_alert(user, LANG("obj.2c698594e61739d5", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.4afc363a", null))
+	balloon_alert(user, LANG("obj.4afc363abc5bbb3a", null))
 	if(!do_after(user, 3 SECONDS, target = src))
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.8b10ca6a", null))
+	balloon_alert(user, LANG("obj.8b10ca6a98faa6f4", null))
 	user.put_in_hands(core)
 	return ITEM_INTERACT_SUCCESS
 
@@ -247,7 +247,7 @@
 	owner.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	owner.reagents.add_reagent(/datum/reagent/medicine/coagulant, 5)
 	owner.add_filter("emp_shield", 2, outline_filter(1, "#639BFF"))
-	to_chat(owner, span_revendanger(LANG("datum.b51ae5e3", null)))
+	to_chat(owner, span_revendanger(LANG("datum.b51ae5e316ba0f1a", null)))
 	owner.add_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA), TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/voltaic_overdrive/on_remove()
@@ -255,7 +255,7 @@
 	UnregisterSignal(owner, COMSIG_CARBON_LOSE_ORGAN)
 	owner.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	owner.remove_filter("emp_shield")
-	owner.balloon_alert(owner, LANG("datum.76bbdcf0", null))
+	owner.balloon_alert(owner, LANG("datum.76bbdcf0b0a39ad6", null))
 	owner.remove_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA), TRAIT_STATUS_EFFECT(id))
 
 /// Called when an organ is lost in the owner. In the event the owner just lost their voltaic (presumably, the one giving this effect), ends the buff and clears the overlay.
@@ -272,9 +272,9 @@
 
 /obj/item/organ/heart/cybernetic/anomalock/hear_beat_noise(mob/living/hearer)
 	if(prob(1))
-		to_chat(hearer, span_danger(LANG("obj.517ebb07", null))) //the guy is LITERALLY sparking like a tesla coil.
+		to_chat(hearer, span_danger(LANG("obj.517ebb070d1e154c", null))) //the guy is LITERALLY sparking like a tesla coil.
 	else
-		to_chat(hearer, span_danger(LANG("obj.484d6548", null)))
+		to_chat(hearer, span_danger(LANG("obj.484d6548da389045", null)))
 	if(hearer.electrocute_act(15, "stethoscope", flags = SHOCK_NOGLOVES)) //the stethoscope is in your ears. (returns true if it does damage so we only scream in that case)
 		hearer.emote("scream")
 	return span_danger("[owner.p_Their()] heart produces [beat_noise].")

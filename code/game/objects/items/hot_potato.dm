@@ -51,7 +51,7 @@
 
 /obj/item/hot_potato/proc/detonate()
 	var/atom/location = loc
-	location.visible_message(span_userdanger("[src] [detonate_explosion? "explodes" : "activates"]!"), span_userdanger(LANG("obj.fdc960fd", list(src))))
+	location.visible_message(span_userdanger("[src] [detonate_explosion? "explodes" : "activates"]!"), span_userdanger(LANG("obj.fdc960fdd81efe11", list(src))))
 	if(detonate_explosion && isliving(loc))
 		var/mob/living/victim_mob = loc
 		if(victim_mob.is_holding(src))
@@ -66,8 +66,8 @@
 
 /obj/item/hot_potato/attack_self(mob/user)
 	if(activate(timer, user))
-		user.visible_message(span_boldwarning(LANG("obj.6f7433e7", list(user, src))), span_boldwarning(LANG("obj.d7c36b83", list(src))),
-		span_boldwarning(LANG("obj.a7ded507", null)))
+		user.visible_message(span_boldwarning(LANG("obj.6f7433e7c9e74fa6", list(user, src))), span_boldwarning(LANG("obj.d7c36b83e10cc1e4", list(src))),
+		span_boldwarning(LANG("obj.a7ded507735e6e62", null)))
 		return
 	return ..()
 
@@ -90,14 +90,14 @@
 /obj/item/hot_potato/examine(mob/user)
 	. = ..()
 	if(active)
-		. += span_warning(LANG("obj.cf1a3101", list(src)))
+		. += span_warning(LANG("obj.cf1a310189ee67a2", list(src)))
 		if(show_timer)
-			. += span_warning(LANG("obj.0639cada", list(src, DisplayTimeText(activation_time - world.time))))
+			. += span_warning(LANG("obj.0639cada246bf2df", list(src, DisplayTimeText(activation_time - world.time))))
 
 /obj/item/hot_potato/equipped(mob/user)
 	. = ..()
 	if(active)
-		to_chat(user, span_userdanger(LANG("obj.40002173", list(src))))
+		to_chat(user, span_userdanger(LANG("obj.400021737cd71ec2", list(src))))
 
 /obj/item/hot_potato/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
@@ -110,9 +110,9 @@
 	if(!istype(victim) || user != loc || victim == user)
 		return FALSE
 	if(!victim.client)
-		to_chat(user, span_boldwarning(LANG("obj.e6dfc6fc", list(src))))
+		to_chat(user, span_boldwarning(LANG("obj.e6dfc6fc9f792183", list(src))))
 	if(IS_UNCONSCIOUS_OR_CRIT(victim) || !victim.usable_legs)
-		to_chat(user, span_boldwarning(LANG("obj.2dd88d24", list(src))))
+		to_chat(user, span_boldwarning(LANG("obj.2dd88d24806c2645", list(src))))
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	. = FALSE
 	if(!victim.put_in_hands(src))
@@ -128,11 +128,11 @@
 		. = TRUE
 	if(.)
 		log_combat(user, victim, "forced a hot potato with explosive variables ([detonate_explosion]-[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_flash_range]/[detonate_fire_range]) onto")
-		user.visible_message(span_userdanger(LANG("obj.545300e4", list(user, src, victim))), span_userdanger(LANG("obj.69df4b7a", list(src, victim))), span_boldwarning(LANG("obj.1801cd2d", null)))
+		user.visible_message(span_userdanger(LANG("obj.545300e41f898433", list(user, src, victim))), span_userdanger(LANG("obj.69df4b7a2423117e", list(src, victim))), span_boldwarning(LANG("obj.1801cd2d32d5b352", null)))
 		colorize(null)
 	else
 		log_combat(user, victim, "tried to force a hot potato with explosive variables ([detonate_explosion]-[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_flash_range]/[detonate_fire_range]) onto")
-		user.visible_message(span_boldwarning(LANG("obj.0b6012c7", list(user, src, victim))), span_boldwarning(LANG("obj.30441b52", list(src, victim))), span_boldwarning(LANG("obj.f2fce4a6", null)))
+		user.visible_message(span_boldwarning(LANG("obj.0b6012c7aaec8966", list(user, src, victim))), span_boldwarning(LANG("obj.30441b521baa510a", list(src, victim))), span_boldwarning(LANG("obj.f2fce4a64df6938f", null)))
 		user.put_in_hands(src)
 
 /obj/item/hot_potato/dropped(mob/user)
@@ -156,7 +156,7 @@
 	active = TRUE
 	if(detonate_explosion) //doesn't send a notification unless it's a genuine, exploding hot potato.
 		notify_ghosts(
-			LANG("obj.8dbb2a79", list(user.real_name)),
+			LANG("obj.8dbb2a79e6a71f06", list(user.real_name)),
 			source = src,
 			header = "Hot Hot Hot!",
 		)

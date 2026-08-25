@@ -31,7 +31,7 @@
 
 /datum/action/cooldown/spell/touch/star_touch/on_antimagic_triggered(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
 	victim.visible_message(
-		span_danger(LANG("datum.f092e989", null)),
+		span_danger(LANG("datum.f092e989ec79f08e", null)),
 	)
 
 /datum/action/cooldown/spell/touch/star_touch/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/victim, mob/living/carbon/caster)
@@ -118,7 +118,7 @@
 	var/datum/action/cooldown/spell/touch/star_touch/star_touch_spell = spell_which_made_us?.resolve()
 	var/mob/living/basic/heretic_summon/star_gazer/star_gazer_mob = star_touch_spell?.get_star_gazer()
 	if(!star_gazer_mob)
-		balloon_alert(user, LANG("obj.4cd0e06b", null))
+		balloon_alert(user, LANG("obj.4cd0e06bfd72540a", null))
 		return ..()
 	new /obj/effect/temp_visual/cosmic_explosion(get_turf(user))
 	do_teleport(
@@ -205,7 +205,7 @@
 	SIGNAL_HANDLER
 	if(successful_teleport)
 		return
-	to_chat(owner, span_warning(LANG("datum.71bd2568", list(current_target))))
+	to_chat(owner, span_warning(LANG("datum.71bd2568b5739ebf", list(current_target))))
 	active = FALSE
 	lose_target()
 	duration = 0

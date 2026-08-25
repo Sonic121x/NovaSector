@@ -72,8 +72,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 
 	if(do_spin())
 		playsound(usr, SFX_REVOLVER_SPIN, 30, FALSE)
-		visible_message(span_notice(LANG("obj.2bcb73d6", list(user, src))), span_notice(LANG("obj.b2483544", list(src))))
-		balloon_alert(user, LANG("obj.400a3b38", null))
+		visible_message(span_notice(LANG("obj.2bcb73d689ee3b4b", list(user, src))), span_notice(LANG("obj.b2483544fa9b9bd2", list(src))))
+		balloon_alert(user, LANG("obj.400a3b3892f5f247", null))
 	else
 		verbs -= /obj/item/gun/ballistic/revolver/verb/spin
 
@@ -95,8 +95,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 /obj/item/gun/ballistic/revolver/examine(mob/user)
 	. = ..()
 	var/live_ammo = get_ammo(FALSE, FALSE)
-	. += LANG("obj.88488fc4", list(live_ammo ? live_ammo : "None"))
-	. += span_notice(LANG("obj.53ced635", list(EXAMINE_HINT("alt-click"))))
+	. += LANG("obj.88488fc4fe1c7d5c", list(live_ammo ? live_ammo : "None"))
+	. += span_notice(LANG("obj.53ced635666f4d42", list(EXAMINE_HINT("alt-click"))))
 
 /obj/item/gun/ballistic/revolver/ignition_effect(atom/A, mob/user)
 	if(last_fire && last_fire + 15 SECONDS > world.time)
@@ -226,17 +226,17 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 
 /obj/item/gun/ballistic/revolver/russian/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.9ea2df3d", list(EXAMINE_HINT("alt-right-click"))))
+	. += span_notice(LANG("obj.9ea2df3d23ce7651", list(EXAMINE_HINT("alt-right-click"))))
 
 /obj/item/gun/ballistic/revolver/russian/click_alt_secondary(mob/user)
 	if(loc != user)
-		to_chat(user, span_warning(LANG("obj.88d11d27", null)))
+		to_chat(user, span_warning(LANG("obj.88d11d2714030f47", null)))
 		return CLICK_ACTION_BLOCKING
-	var/new_aim_time = tgui_input_number(user, LANG("obj.7cb8fcd1", null), LANG("obj.fb0ce01c", null), (aim_time / (1 SECONDS)), 10, 0)
+	var/new_aim_time = tgui_input_number(user, LANG("obj.7cb8fcd182249b92", null), LANG("obj.fb0ce01cf9f40fce", null), (aim_time / (1 SECONDS)), 10, 0)
 	if(loc != user || user.incapacitated)
 		return CLICK_ACTION_BLOCKING
 	aim_time = new_aim_time * (1 SECONDS)
-	to_chat(user, span_warning(LANG("obj.907ed761", list(aim_time, aim_time == 0 ? "... Good luck" : ""))))
+	to_chat(user, span_warning(LANG("obj.907ed761134da5dc", list(aim_time, aim_time == 0 ? "... Good luck" : ""))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/gun/ballistic/revolver/russian/dropped(mob/user, silent)
@@ -279,21 +279,21 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 		shoot_with_empty_chamber(user)
 		spun = FALSE
 		user.visible_message(
-			span_danger(LANG("obj.e95dedf3", list(user, src))),
-			span_danger(LANG("obj.90852171", list(src))),
+			span_danger(LANG("obj.e95dedf36a594b4b", list(user, src))),
+			span_danger(LANG("obj.90852171a38e6757", list(src))),
 		)
 		return TRUE // no melee attack
 	if(!spun)
-		to_chat(user, span_warning(LANG("obj.02973238", list(src))))
+		to_chat(user, span_warning(LANG("obj.0297323871561774", list(src))))
 		return TRUE // no melee attack
 	if(HAS_TRAIT(user, TRAIT_CURSED)) // I cannot live, I cannot die, trapped in myself, body my holding cell.
-		to_chat(user, span_warning(LANG("obj.89afa55a", null)))
+		to_chat(user, span_warning(LANG("obj.89afa55a1bc944d2", null)))
 		return TRUE // no melee attack
 	if(loc != user)
 		if(tk_firing(user))
-			to_chat(user, span_warning(LANG("obj.59c428ee", null)))
+			to_chat(user, span_warning(LANG("obj.59c428ee6a6162ca", null)))
 		else
-			to_chat(user, span_warning(LANG("obj.b953bec6", null)))
+			to_chat(user, span_warning(LANG("obj.b953bec62704d067", null)))
 		return TRUE // no melee attack
 
 	return ..() // try to shoot the gun
@@ -303,8 +303,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 	if(aim_time <= 0)
 		return FALSE
 	user.visible_message(
-		span_danger(LANG("obj.381a74d9", list(user, src, user.p_their(), parse_zone(user.zone_selected)))),
-		span_userdanger(LANG("obj.f1efe36d", list(src, parse_zone(user.zone_selected)))),
+		span_danger(LANG("obj.381a74d972083816", list(user, src, user.p_their(), parse_zone(user.zone_selected)))),
+		span_userdanger(LANG("obj.f1efe36d753bbd41", list(src, parse_zone(user.zone_selected)))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	if(prob(10) && !HAS_TRAIT(user, TRAIT_FEARLESS))
@@ -312,8 +312,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 	if(!do_after(user, aim_time, target))
 		if(!user.incapacitated)
 			user.visible_message(
-				span_danger(LANG("obj.f83820b0", list(user, user.p_their(), src))),
-				span_userdanger(LANG("obj.eb0ac5dc", list(src))),
+				span_danger(LANG("obj.f83820b03ef16ab7", list(user, user.p_their(), src))),
+				span_userdanger(LANG("obj.eb0ac5dc9eed3a7f", list(src))),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		return TRUE
@@ -350,18 +350,18 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 		if(loaded_rounds && is_target_face)
 			user.add_mood_event("russian_roulette_win", /datum/mood_event/russian_roulette_win, loaded_rounds)
 		user.visible_message(
-			span_danger(LANG("obj.e7e64728", list(user, is_target_face ? "": " cowardly", src, user.p_their(), aimed_at_readable))),
-			span_danger(LANG("obj.3dbfa656", list(is_target_face ? "": " cowardly", src, aimed_at_readable))),
-			span_hear(LANG("obj.dc441496", null)),
+			span_danger(LANG("obj.e7e647285a3e7344", list(user, is_target_face ? "": " cowardly", src, user.p_their(), aimed_at_readable))),
+			span_danger(LANG("obj.3dbfa656a01ba7f0", list(is_target_face ? "": " cowardly", src, aimed_at_readable))),
+			span_hear(LANG("obj.dc441496dc57a1a7", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 		return TRUE // so they don't hit themselves in the forehead. because returning FALSE translates to "do melee attack" for whatever reason
 
 	user.visible_message(
-		span_danger(LANG("obj.787bde19", list(user, is_target_face ? "": " cowardly", src, user.p_their(), aimed_at_readable))),
-		span_danger(LANG("obj.73f6fe2e", list(is_target_face ? "": " cowardly", src, aimed_at_readable, user.stat >= HARD_CRIT ? " <b>Everything suddenly goes black.</b>" : ""))),
-		span_hear(LANG("obj.d69ae26b", list(!IS_UNCONSCIOUS_OR_CRIT(user) ? "" : ", followed by a thud"))),
+		span_danger(LANG("obj.787bde19e5b8a3a8", list(user, is_target_face ? "": " cowardly", src, user.p_their(), aimed_at_readable))),
+		span_danger(LANG("obj.73f6fe2e3434fc99", list(is_target_face ? "": " cowardly", src, aimed_at_readable, user.stat >= HARD_CRIT ? " <b>Everything suddenly goes black.</b>" : ""))),
+		span_hear(LANG("obj.d69ae26b3095d0a6", list(!IS_UNCONSCIOUS_OR_CRIT(user) ? "" : ", followed by a thud"))),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
@@ -392,15 +392,15 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 			qdel(stone)
 			return
 		user.visible_message(
-			span_danger(LANG("obj.4e14d537", list(user, src))),
-			span_userdanger(LANG("obj.2bd83ab4", null)),
+			span_danger(LANG("obj.4e14d5374cc62f4a", list(user, src))),
+			span_userdanger(LANG("obj.2bd83ab48c9e02df", null)),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 		return
 
 	user.visible_message(
-		span_danger(LANG("obj.9a26ddce", list(user))),
-		span_userdanger(LANG("obj.4f50106a", null)),
+		span_danger(LANG("obj.9a26ddce93c7750c", list(user))),
+		span_userdanger(LANG("obj.4f50106a0505a8d1", null)),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	user.dust(drop_items = TRUE)
@@ -414,7 +414,7 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 	if(HAS_TRAIT(user, TRAIT_CLUMSY) || is_clown_job(user.mind?.assigned_role))
 		return ..()
 	if(process_fire(user, user, FALSE, null, BODY_ZONE_HEAD))
-		user.visible_message(span_warning(LANG("obj.8e788618", list(user, user.p_them()))), span_userdanger(LANG("obj.2cb5408d", null)))
+		user.visible_message(span_warning(LANG("obj.8e788618e677c47a", list(user, user.p_them()))), span_userdanger(LANG("obj.2cb5408d069531fa", null)))
 		user.emote("scream")
 		user.drop_all_held_items()
 		user.Paralyze(80)

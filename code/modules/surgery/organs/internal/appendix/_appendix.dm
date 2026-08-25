@@ -55,7 +55,7 @@
 	if(isnull(owner.client))
 		return
 	notify_ghosts(
-		LANG("obj.6a3bce7f", list(owner.real_name)),
+		LANG("obj.6a3bce7f539eb546", list(owner.real_name)),
 		source = owner,
 		header = "Whoa, Sick!",
 	)
@@ -71,7 +71,7 @@
 				organ_owner.emote("cough")
 		if(2)
 			if(SPT_PROB(1.5, seconds_per_tick))
-				to_chat(organ_owner, span_warning(LANG("obj.2115cb5f", null)))
+				to_chat(organ_owner, span_warning(LANG("obj.2115cb5fcfc86bc3", null)))
 				organ_owner.adjust_organ_loss(ORGAN_SLOT_APPENDIX, 5)
 				organ_owner.Stun(rand(40, 60))
 				organ_owner.adjust_tox_loss(1, forced = TRUE)

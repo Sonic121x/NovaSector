@@ -18,5 +18,5 @@
 
 	var/mob/living/liver = attacked
 	if(liver.stat == HARD_CRIT)
-		liver.balloon_alert(attacker, LANG("datum.90d16b60", null))
+		liver.balloon_alert(attacker, LANG("datum.90d16b60c5bd6333", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN

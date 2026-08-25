@@ -45,7 +45,7 @@
 		return FALSE
 	if(HAS_TRAIT(owner, TRAIT_SUICIDED))
 		if(feedback)
-			to_chat(owner, span_warning(LANG("datum.b30e3160", null)))
+			to_chat(owner, span_warning(LANG("datum.b30e316026fa6bd4", null)))
 		return FALSE
 	return TRUE
 
@@ -55,36 +55,36 @@
 		return FALSE
 
 	if(!isliving(cast_on))
-		to_chat(owner, span_warning(LANG("datum.f95fb47c", null)))
+		to_chat(owner, span_warning(LANG("datum.f95fb47c70c484fb", null)))
 		return FALSE
 
 	if(HAS_TRAIT(cast_on, TRAIT_MIND_TEMPORARILY_GONE))
-		to_chat(owner, span_warning(LANG("datum.0209e773", null)))
+		to_chat(owner, span_warning(LANG("datum.0209e7739370f3b8", null)))
 		return FALSE
 
 	if(HAS_TRAIT(cast_on, TRAIT_NO_MINDSWAP))
-		to_chat(owner, span_warning(LANG("datum.6a516455", list(cast_on.p_their()))))
+		to_chat(owner, span_warning(LANG("datum.6a516455ce4d506f", list(cast_on.p_their()))))
 		return FALSE
 
 	if(is_type_in_typecache(cast_on, blacklisted_mobs))
-		to_chat(owner, span_warning(LANG("datum.2f5293ec", list(pick("powerful", "strange", "arcane", "obscene")))))
+		to_chat(owner, span_warning(LANG("datum.2f5293ec5ee40856", list(pick("powerful", "strange", "arcane", "obscene")))))
 		return FALSE
 
 	if(isguardian(cast_on))
 		var/mob/living/basic/guardian/stand = cast_on
 		if(stand.summoner && stand.summoner == owner)
-			to_chat(owner, span_warning(LANG("datum.5c1de4a3", null)))
+			to_chat(owner, span_warning(LANG("datum.5c1de4a3eeccdb49", null)))
 			return FALSE
 
 	var/mob/living/living_target = cast_on
 	if(living_target.stat == DEAD)
-		to_chat(owner, span_warning(LANG("datum.39e1cbff", null)))
+		to_chat(owner, span_warning(LANG("datum.39e1cbffbdee2486", null)))
 		return FALSE
 	if(!living_target.mind && target_requires_mind)
-		to_chat(owner, span_warning(LANG("datum.a2f9ce29", list(living_target.p_They(), living_target.p_do()))))
+		to_chat(owner, span_warning(LANG("datum.a2f9ce2954a9c0d5", list(living_target.p_They(), living_target.p_do()))))
 		return FALSE
 	if(!living_target.key && target_requires_key)
-		to_chat(owner, span_warning(LANG("datum.43679342", list(living_target.p_They(), living_target.p_s(), living_target.p_their()))))
+		to_chat(owner, span_warning(LANG("datum.43679342d7a464c3", list(living_target.p_They(), living_target.p_s(), living_target.p_their()))))
 		return FALSE
 
 	return TRUE
@@ -113,7 +113,7 @@
 		|| mind_to_swap.has_antag_datum(/datum/antagonist/rev) \
 		|| IS_FAKE_KEY(mind_to_swap.key) \
 	)
-		to_chat(caster, span_warning(LANG("datum.a81ad667", list(to_swap.p_Their()))))
+		to_chat(caster, span_warning(LANG("datum.a81ad667c2da60c4", list(to_swap.p_Their()))))
 		return FALSE
 
 	// MIND TRANSFER BEGIN

@@ -1,6 +1,5 @@
 /datum/design/borg_snack_dispenser
 	name = "Snack Dispenser Module"
-	id = "borg_upgrade_snacks"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/snack_dispenser
 	materials = list(
@@ -70,24 +69,24 @@
 
 /obj/item/borg_snack_dispenser/examine(mob/user)
 	. = ..()
-	. += LANG("obj.77d6cd79", list(initial(selected_snack.name)))
-	. += LANG("obj.4a8f942a", list((launch_mode ? "disable" : "enable")))
+	. += LANG("obj.77d6cd79bf28054d", list(initial(selected_snack.name)))
+	. += LANG("obj.4a8f942a45de3842", list((launch_mode ? "disable" : "enable")))
 
 /obj/item/borg_snack_dispenser/attack_self(mob/user, modifiers)
 	var/list/choices = list()
 	for(var/atom/snack as anything in valid_snacks)
 		choices[initial(snack.name)] = snack
 	if(!length(choices))
-		to_chat(user, span_warning(LANG("obj.17a032d6", null)))
+		to_chat(user, span_warning(LANG("obj.17a032d6e318bf09", null)))
 	if(length(choices) == 1)
 		selected_snack = choices[1]
 	else
-		var/selected = tgui_input_list(user, LANG("obj.fbaf03cc", null), LANG("obj.15b3bb0a", null), choices)
+		var/selected = tgui_input_list(user, LANG("obj.fbaf03cc81f800bd", null), LANG("obj.15b3bb0a7b46dfc9", null), choices)
 		if(!selected)
 			return
 		selected_snack = choices[selected]
 	var/snack_name = initial(selected_snack.name)
-	to_chat(user, span_notice(LANG("obj.58c37d8a", list(src, snack_name))))
+	to_chat(user, span_notice(LANG("obj.58c37d8a298e6980", list(src, snack_name))))
 
 /obj/item/borg_snack_dispenser/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	var/mob/living/patron = interacting_with
@@ -95,52 +94,52 @@
 		return NONE
 	var/empty_hand = LAZYACCESS(patron.get_empty_held_indexes(), 1)
 	if(!empty_hand)
-		to_chat(user, span_warning(LANG("obj.68dbfe36", list(patron))))
+		to_chat(user, span_warning(LANG("obj.68dbfe36c427cc89", list(patron))))
 		return ITEM_INTERACT_BLOCKING
 	if(!selected_snack)
-		to_chat(user, span_warning(LANG("obj.0632e7e4", null)))
+		to_chat(user, span_warning(LANG("obj.0632e7e4a69bdd6c", null)))
 		return ITEM_INTERACT_BLOCKING
 	var/mob/living/silicon/robot/borg = user
 	if(!istype(borg))
 		CRASH("[src] being used by non borg [borg]")
 	if(borg.cell.charge < borg_charge_cutoff)
-		to_chat(borg, span_danger(LANG("obj.b0f15a3c", list(src, borg_charge_cutoff))))
+		to_chat(borg, span_danger(LANG("obj.b0f15a3c146f6955", list(src, borg_charge_cutoff))))
 		return ITEM_INTERACT_BLOCKING
 	if(!borg.cell.use(borg_charge_usage))
-		to_chat(borg, span_danger(LANG("obj.2d4d9eb3", null)))
+		to_chat(borg, span_danger(LANG("obj.2d4d9eb333504de9", null)))
 		return ITEM_INTERACT_BLOCKING
 	var/atom/snack = new selected_snack(src)
 	patron.put_in_hand(snack, empty_hand)
 	borg.do_item_attack_animation(patron, null, snack)
 	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
-	to_chat(patron, span_notice(LANG("obj.c0fc7897", list(borg, snack))))
-	to_chat(borg, span_notice(LANG("obj.1b2020b5", list(snack, patron))))
+	to_chat(patron, span_notice(LANG("obj.c0fc789766a5386a", list(borg, snack))))
+	to_chat(borg, span_notice(LANG("obj.1b2020b502a0f791", list(snack, patron))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/borg_snack_dispenser/click_alt(mob/user)
 	launch_mode = !launch_mode
-	to_chat(user, span_notice(LANG("obj.f8866048", list(src, (launch_mode ? "now" : "no longer")))))
+	to_chat(user, span_notice(LANG("obj.f886604852695dde", list(src, (launch_mode ? "now" : "no longer")))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/borg_snack_dispenser/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!launch_mode)
 		return NONE
 	if(!selected_snack)
-		to_chat(user, span_warning(LANG("obj.0632e7e4", null)))
+		to_chat(user, span_warning(LANG("obj.0632e7e4a69bdd6c", null)))
 		return ITEM_INTERACT_BLOCKING
 	var/mob/living/silicon/robot/borg = user
 	if(!istype(borg))
 		CRASH("[src] being used by non borg [borg]")
 	if(borg.cell.charge < borg_charge_cutoff)
-		to_chat(borg, span_danger(LANG("obj.b0f15a3c", list(src, borg_charge_cutoff))))
+		to_chat(borg, span_danger(LANG("obj.b0f15a3c146f6955", list(src, borg_charge_cutoff))))
 		return ITEM_INTERACT_BLOCKING
 	if(!borg.cell.use(borg_charge_usage))
-		to_chat(borg, span_danger(LANG("obj.2d4d9eb3", null)))
+		to_chat(borg, span_danger(LANG("obj.2d4d9eb333504de9", null)))
 		return ITEM_INTERACT_BLOCKING
 	var/atom/movable/snack = new selected_snack(get_turf(src))
 	snack.throw_at(interacting_with, 7, 2, borg, TRUE, FALSE)
 	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
-	borg.visible_message(span_notice(LANG("obj.78331797", list(src, snack, interacting_with))))
+	borg.visible_message(span_notice(LANG("obj.783317970f14f7df", list(src, snack, interacting_with))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/food/cookie/bacon

@@ -13,7 +13,7 @@
 /obj/item/gun/magic/wand/bald/zap_self(mob/living/user, suicide)
 	. = ..()
 	if (!suicide)
-		visible_message(span_notice(LANG("obj.df8804e0", list(user, user.p_themselves()))))
+		visible_message(span_notice(LANG("obj.df8804e00803dc51", list(user, user.p_themselves()))))
 	var/obj/projectile/magic/bald/trimmer = new(user.drop_location())
 	trimmer.firer = user
 	user.projectile_hit(trimmer, BODY_ZONE_HEAD)
@@ -23,13 +23,13 @@
 	var/obj/item/bodypart/head/dome = user.get_bodypart(BODY_ZONE_HEAD)
 	if (!dome || ((dome.head_flags & HEAD_HAIR) && user.hairstyle != "Bald"))
 		. = ..()
-		visible_message(span_suicide(LANG("obj.0b3dcee2", list(user, user.p_themselves()))))
+		visible_message(span_suicide(LANG("obj.0b3dcee27750ee1b", list(user, user.p_themselves()))))
 		return SHAME
 
 	charges--
 	user.apply_status_effect(/datum/status_effect/bald_flare)
 	dome.dismember(wounding_type = WOUND_SLASH, silent = TRUE)
-	visible_message(span_suicide(LANG("obj.0844d33d", list(user, user.p_their()))))
+	visible_message(span_suicide(LANG("obj.0844d33d69b9a700", list(user, user.p_their()))))
 
 /obj/item/gun/magic/wand/bald/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	zone_override = BODY_ZONE_HEAD // Head only
@@ -71,14 +71,14 @@
 			hat.forceMove(target.drop_location())
 			hat.deconstruct(FALSE)
 			if (QDELETED(hat)) // IDK maybe it's disagreed
-				visible_message(span_warning(LANG("obj.6c0ca294", list(target, hat, src))))
+				visible_message(span_warning(LANG("obj.6c0ca2944b0dc056", list(target, hat, src))))
 				log_combat(firer, target, "magically destroyed wig", src)
 			return
 
 		if(hat.flags_inv & HIDEHAIR)
 			var/obj/item/clothing/clothing_hat = hat // Not all hats are clothing
 			if (!istype(clothing_hat) || !(clothing_hat.clothing_flags & SNUG_FIT))
-				visible_message(span_warning(LANG("obj.5c7a0e35", list(hat, target))))
+				visible_message(span_warning(LANG("obj.5c7a0e351739fb11", list(hat, target))))
 				target.dropItemToGround(hat)
 			return
 
@@ -88,7 +88,7 @@
 		mutant_hair.Remove(target, special = FALSE)
 		qdel(mutant_hair)
 		target.Knockdown(1 SECONDS)
-		visible_message(span_warning(LANG("obj.21f369a2", list(target, src))))
+		visible_message(span_warning(LANG("obj.21f369a255e5fb4d", list(target, src))))
 		log_combat(firer, target, "magically shaved bald", src)
 		return
 
@@ -96,7 +96,7 @@
 	if ((dome?.head_flags & HEAD_HAIR) && target.hairstyle != "Bald")
 		target.set_hairstyle("Bald")
 		target.Knockdown(1 SECONDS)
-		visible_message(span_warning(LANG("obj.21f369a2", list(target, src))))
+		visible_message(span_warning(LANG("obj.21f369a255e5fb4d", list(target, src))))
 		log_combat(firer, target, "magically shaved bald", src)
 		return
 
@@ -112,7 +112,7 @@
 
 /datum/status_effect/bald_flare/on_apply()
 	. = ..()
-	owner.visible_message(span_warning(LANG("datum.89ddbfcd", list(owner))))
+	owner.visible_message(span_warning(LANG("datum.89ddbfcd0db38d2c", list(owner))))
 	for(var/mob/living/viewers in (viewers(3, owner) - owner))
 		viewers.flash_act()
 

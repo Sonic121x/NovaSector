@@ -4,12 +4,18 @@
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
+	transparent_when_unavailable = FALSE
 	///Does the ability require a specific slime lifestage?
 	var/life_stage_required
 	///Does the ability requires the slime to hit max growth?
 	var/needs_growth = FALSE
 	///Does the ability cost nutrition?
 	var/nutrition_cost = 0
+
+/datum/action/innate/slime/create_button(mob/viewer)
+	var/atom/movable/screen/movable/action_button/button = ..()
+	button.maptext_x = 2
+	return button
 
 /datum/action/innate/slime/IsAvailable(feedback = FALSE)
 	. = ..()
@@ -38,26 +44,34 @@
 	needs_growth = TRUE
 	nutrition_cost = SLIME_EVOLUTION_COST
 
+/datum/action/innate/slime/evolve/update_button_status(atom/movable/screen/movable/action_button/button, force = FALSE)
+	. = ..()
+	var/mob/living/basic/slime/slime_owner = owner
+	if(!isnull(life_stage_required) && slime_owner.life_stage != life_stage_required)
+		button.maptext = ""
+		return
+	button.maptext = MAPTEXT_TINY_UNICODE("[slime_owner.amount_grown]/[SLIME_EVOLUTION_THRESHOLD]")
+
 ///Turns a baby slime into an adult slime
 /datum/action/innate/slime/evolve/Activate()
 	if(IS_UNCONSCIOUS_OR_CRIT(owner))
 		if(owner.stat == DEAD)
-			owner.balloon_alert(owner, LANG("datum.1bf49ad4", null))
+			owner.balloon_alert(owner, LANG("datum.1bf49ad4e413a0a1", null))
 		else if(IS_UNCONSCIOUS(owner))
-			owner.balloon_alert(owner, LANG("datum.dc8b5a42", null))
+			owner.balloon_alert(owner, LANG("datum.dc8b5a428036bfca", null))
 		else
-			owner.balloon_alert(owner, LANG("datum.b49fe510", null))
+			owner.balloon_alert(owner, LANG("datum.b49fe5107e2b7291", null))
 		return FALSE
 
 	var/mob/living/basic/slime/slime_owner = owner
 	if(slime_owner.life_stage == SLIME_LIFE_STAGE_ADULT)
-		slime_owner.balloon_alert(slime_owner, LANG("datum.78aaed48", null))
+		slime_owner.balloon_alert(slime_owner, LANG("datum.78aaed48d605bc2a", null))
 		return
 	if(slime_owner.amount_grown < SLIME_EVOLUTION_THRESHOLD)
-		slime_owner.balloon_alert(slime_owner, LANG("datum.941ffa1d", null))
+		slime_owner.balloon_alert(slime_owner, LANG("datum.941ffa1d92c44635", null))
 		return
 	if(slime_owner.nutrition < nutrition_cost)
-		slime_owner.balloon_alert(slime_owner, LANG("datum.41106740", null))
+		slime_owner.balloon_alert(slime_owner, LANG("datum.41106740bbd4a7a1", null))
 		return
 
 	slime_owner.adjust_nutrition(-nutrition_cost)
@@ -77,6 +91,14 @@
 	life_stage_required = SLIME_LIFE_STAGE_ADULT
 	needs_growth = TRUE
 
+/datum/action/innate/slime/reproduce/update_button_status(atom/movable/screen/movable/action_button/button, force = FALSE)
+	. = ..()
+	var/mob/living/basic/slime/slime_owner = owner
+	if(!isnull(life_stage_required) && slime_owner.life_stage != life_stage_required)
+		button.maptext = ""
+		return
+	button.maptext = MAPTEXT_TINY_UNICODE("[slime_owner.amount_grown]/[SLIME_EVOLUTION_THRESHOLD]")
+
 /datum/action/innate/slime/reproduce/Activate()
 	var/mob/living/basic/slime/slime_owner = owner
 	slime_owner.reproduce()
@@ -86,22 +108,22 @@
 
 	if(IS_UNCONSCIOUS_OR_CRIT(src))
 		if(stat == DEAD)
-			balloon_alert(src, LANG("mob.1bf49ad4", null))
+			balloon_alert(src, LANG("mob.1bf49ad4e413a0a1", null))
 		else if(IS_UNCONSCIOUS(src))
-			balloon_alert(src, LANG("mob.dc8b5a42", null))
+			balloon_alert(src, LANG("mob.dc8b5a428036bfca", null))
 		else
-			balloon_alert(src, LANG("mob.b49fe510", null))
+			balloon_alert(src, LANG("mob.b49fe5107e2b7291", null))
 		return FALSE
 
 	if(!isopenturf(loc))
-		balloon_alert(src, LANG("mob.323611bb", null))
+		balloon_alert(src, LANG("mob.323611bb99cf22ef", null))
 
 	if(life_stage != SLIME_LIFE_STAGE_ADULT)
-		balloon_alert(src, LANG("mob.9fbbcd48", null))
+		balloon_alert(src, LANG("mob.9fbbcd488c9bd407", null))
 		return
 
 	if(amount_grown < SLIME_EVOLUTION_THRESHOLD)
-		balloon_alert(src, LANG("mob.68fdc7fb", null))
+		balloon_alert(src, LANG("mob.68fdc7fb52016ac8", null))
 		return
 
 	var/list/friends_list = list()
@@ -114,7 +136,7 @@
 
 	overcrowded = length(friends_list) >= SLIME_OVERCROWD_AMOUNT
 	if(overcrowded)
-		balloon_alert(src, LANG("mob.1d87ef8f", null))
+		balloon_alert(src, LANG("mob.1d87ef8f3a47acc0", null))
 		return
 
 	var/new_nutrition = floor(nutrition * 0.9)
@@ -143,6 +165,8 @@
 		if(ckey) // Player slimes are more robust at spliting. Once an oversight of poor copypasta, now a feature!
 			baby.set_nutrition(new_nutrition)
 		baby.powerlevel = new_powerlevel
+		var/atom/movable/screen/slime_power/power_hud = baby.hud_used?.screen_objects[HUD_MOB_SLIME_POWER]
+		power_hud?.update_maptext()
 		if(mutation_chance)
 			baby.mutation_chance = clamp(mutation_chance + rand(-5, 5), 0, 100)
 		else

@@ -69,7 +69,7 @@
 /datum/heretic_knowledge/limited_amount/starting/base_cosmic/on_mansus_grasp(mob/living/source, mob/living/target)
 	. = ..()
 
-	to_chat(target, span_danger(LANG("datum.19ca7250", null)))
+	to_chat(target, span_danger(LANG("datum.19ca7250b60a4207", null)))
 	target.apply_status_effect(/datum/status_effect/star_mark, source)
 	create_cosmic_field(get_turf(source), source)
 
@@ -328,14 +328,14 @@
 
 	var/mob/living/to_reset = bad_dog.resolve()
 
-	to_chat(owner, span_mansus(LANG("datum.8ecae6d1", list(to_reset))))
+	to_chat(owner, span_mansus(LANG("datum.8ecae6d106816dc4", list(to_reset))))
 	var/mob/chosen_one = SSpolling.poll_ghost_candidates("Do you want to play as [span_danger("[owner.real_name]'s")] [span_notice(to_reset.name)]?", check_jobban = ROLE_PAI, poll_time = 10 SECONDS, alert_pic = to_reset, jump_target = owner, role_name_text = to_reset.name, amount_to_pick = 1)
 	if(isnull(chosen_one))
-		to_chat(owner, span_mansus(LANG("datum.3ba03427", list(to_reset))))
+		to_chat(owner, span_mansus(LANG("datum.3ba03427a2b55dcc", list(to_reset))))
 		StartCooldown()
 		return FALSE
-	to_chat(to_reset, span_mansus(LANG("datum.2d7c1cd4", null)))
-	to_chat(owner, span_mansus(LANG("datum.77f103d2", list(to_reset))))
+	to_chat(to_reset, span_mansus(LANG("datum.2d7c1cd4cc3a0da3", null)))
+	to_chat(owner, span_mansus(LANG("datum.77f103d2a904179e", list(to_reset))))
 	message_admins("[key_name_admin(chosen_one)] has taken control of ([ADMIN_LOOKUPFLW(to_reset)])")
 	to_reset.ghostize(FALSE)
 	to_reset.PossessByPlayer(chosen_one.key)

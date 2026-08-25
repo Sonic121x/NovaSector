@@ -25,5 +25,5 @@
 
 /turf/closed/wall/material/finalize_material_effects(list/materials)
 	. = ..()
-	desc = LANG("turf.2d73a0c8", list(get_material_english_list(materials)))
+	desc = LANG("turf.2d73a0c8464b7da6", list(get_material_english_list(materials)))
 

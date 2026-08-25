@@ -51,7 +51,7 @@
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 	soundloop.stop()
 	soundloop2.stop()
-	to_chat(loc, span_userdanger(LANG("obj.3d30ee53", null)))
+	to_chat(loc, span_userdanger(LANG("obj.3d30ee5389409f89", null)))
 	addtimer(CALLBACK(src, PROC_REF(snap)), 0.2 SECONDS)
 	COOLDOWN_RESET(src, kill_countdown) // reset the countdown in case it wasn't finished
 
@@ -77,39 +77,39 @@
 		if(40 SECONDS to 50 SECONDS)
 			fear_string = "shakily"
 
-	carbon_user.visible_message(span_danger(LANG("obj.45910ea5", list(carbon_user, src))), \
-		span_danger(LANG("obj.f3239277", list(isnull(fear_string) ? "" : " [fear_string]", src))), LANG("obj.3bb492c8", null))
+	carbon_user.visible_message(span_danger(LANG("obj.45910ea570347ec7", list(carbon_user, src))), \
+		span_danger(LANG("obj.f32392772e696cdf", list(isnull(fear_string) ? "" : " [fear_string]", src))), LANG("obj.3bb492c83a7faac6", null))
 	if(!do_after(user, 2 SECONDS, target = src))
 		struggling = FALSE
 		return
 	if(!prob(escape_chance))
-		to_chat(user, span_warning(LANG("obj.49f7a530", null)))
+		to_chat(user, span_warning(LANG("obj.49f7a530d9c9731a", null)))
 		escape_chance++
 	else
-		user.visible_message(span_warning(LANG("obj.321fa72d", list(user, name))), \
-		span_userdanger(LANG("obj.f52e2263", null)), LANG("obj.e2559f06", null))
+		user.visible_message(span_warning(LANG("obj.321fa72d4f49177c", list(user, name))), \
+		span_userdanger(LANG("obj.f52e22634a937252", null)), LANG("obj.e2559f06650b2ed3", null))
 		REMOVE_TRAIT(src, TRAIT_NODROP, REVERSE_BEAR_TRAP_TRAIT)
 	struggling = FALSE
 
 /obj/item/reverse_bear_trap/attack(mob/living/target, mob/living/user)
 	if(target.get_item_by_slot(ITEM_SLOT_HEAD))
-		to_chat(user, span_warning(LANG("obj.65bcb577", list(target.p_their()))))
+		to_chat(user, span_warning(LANG("obj.65bcb577c7b77a02", list(target.p_their()))))
 		return
-	target.visible_message(span_warning(LANG("obj.ba5dd763", list(user, src, target))), \
-		span_userdanger(LANG("obj.958675a5", list(target, src))), LANG("obj.e325c27b", null))
-	to_chat(user, span_danger(LANG("obj.6fc81037", list(src, target))))
+	target.visible_message(span_warning(LANG("obj.ba5dd763f2cfd2ac", list(user, src, target))), \
+		span_userdanger(LANG("obj.958675a5384e00e5", list(target, src))), LANG("obj.e325c27b21fba1ab", null))
+	to_chat(user, span_danger(LANG("obj.6fc8103794c333ca", list(src, target))))
 
 	if(!do_after(user, 3 SECONDS, target = target) || target.get_item_by_slot(ITEM_SLOT_HEAD))
 		return
-	target.visible_message(span_warning(LANG("obj.b66759c7", list(user, src, target))), \
-		span_userdanger(LANG("obj.99e303ed", list(user, src))), LANG("obj.f8581491", null))
-	to_chat(user, span_danger(LANG("obj.953c9369", list(src, target))))
+	target.visible_message(span_warning(LANG("obj.b66759c7467b7715", list(user, src, target))), \
+		span_userdanger(LANG("obj.99e303ede09d1fb6", list(user, src))), LANG("obj.f8581491dbade22d", null))
+	to_chat(user, span_danger(LANG("obj.953c936909c01f86", list(src, target))))
 
 	user.dropItemToGround(src)
 	target.equip_to_slot_if_possible(src, ITEM_SLOT_HEAD)
 	arm()
 	notify_ghosts(
-		LANG("obj.b54135c1", list(user.real_name, target.real_name)),
+		LANG("obj.b54135c12e1ad41a", list(user.real_name, target.real_name)),
 		source = src,
 		header = "Reverse bear trap armed",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -121,11 +121,11 @@
 	reset()
 	var/mob/living/carbon/human/victim = loc
 	if(!istype(victim) || victim.get_item_by_slot(ITEM_SLOT_HEAD) != src)
-		visible_message(span_warning(LANG("obj.bb1d55eb", list(src))))
+		visible_message(span_warning(LANG("obj.bb1d55eb2ae60f86", list(src))))
 		playsound(src, 'sound/effects/snap.ogg', 75, TRUE)
 	else
 		var/mob/living/carbon/human/jill = loc
-		jill.visible_message(span_boldwarning(LANG("obj.2978b1c2", list(src, jill, jill.p_their()))), span_userdanger(LANG("obj.6588413c", list(src))))
+		jill.visible_message(span_boldwarning(LANG("obj.2978b1c2bcc3f8ea", list(src, jill, jill.p_their()))), span_userdanger(LANG("obj.6588413c69f891c5", list(src))))
 		jill.emote("scream")
 		playsound(src, 'sound/effects/snap.ogg', 75, TRUE, frequency = 0.5)
 		playsound(src, 'sound/effects/splat.ogg', 50, TRUE, frequency = 0.5)

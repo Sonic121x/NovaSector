@@ -11,7 +11,7 @@
 	if(user != owner || owner.incapacitated)
 		return FALSE
 	if(owner.control_disabled)
-		to_chat(user, span_warning(LANG("datum.8391efa0", null)))
+		to_chat(user, span_warning(LANG("datum.8391efa0aa2720e1", null)))
 		return FALSE
 	return TRUE
 
@@ -76,7 +76,7 @@
 
 			owner.bot_ref = WEAKREF(bot)
 			owner.setting_waypoint = TRUE
-			to_chat(our_user, span_notice(LANG("datum.5350f02f", null)))
+			to_chat(our_user, span_notice(LANG("datum.5350f02f502486b3", null)))
 		if("interface") //Remotely connect to a bot!
 			owner.bot_ref = WEAKREF(bot)
 			var/mob/living/basic/bot/basic_bot = bot

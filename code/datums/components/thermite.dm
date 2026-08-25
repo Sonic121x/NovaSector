@@ -100,7 +100,7 @@
 /datum/component/thermite/proc/on_examine(turf/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_warning(LANG("datum.a5c2b2be", list(source.p_Theyre())))
+	examine_list += span_warning(LANG("datum.a5c2b2beb7dc1a84", list(source.p_Theyre())))
 
 /// Used to maintain the thermite overlay on the parent [/turf].
 /datum/component/thermite/proc/on_update_overlays(turf/parent_turf, list/overlays)
@@ -183,7 +183,7 @@
 		return NONE
 
 	user.apply_damage(5, BURN, user.get_active_hand())
-	to_chat(user, span_userdanger(LANG("datum.9c01f728", list(source))))
+	to_chat(user, span_userdanger(LANG("datum.9c01f72882503f66", list(source))))
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(source, SFX_SEAR, 50, TRUE)
 	return COMPONENT_CANCEL_ATTACK_CHAIN

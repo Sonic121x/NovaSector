@@ -19,11 +19,11 @@
 		return FALSE
 	if(!istype(owner, /mob/living/basic/wumborian_fugu)) // A shame but there's not any good way to make this work on other mobs
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.4ba0f4b2", null))
+			owner.balloon_alert(owner, LANG("datum.4ba0f4b2f3d7390a", null))
 		return FALSE
 	if(HAS_TRAIT(owner, TRAIT_FUGU_GLANDED))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.b924ae17", null))
+			owner.balloon_alert(owner, LANG("datum.b924ae170449d499", null))
 		return FALSE
 	return TRUE
 

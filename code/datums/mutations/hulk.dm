@@ -65,12 +65,12 @@
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /datum/mutation/hulk/proc/scream_attack(mob/living/carbon/human/source)
-	source.say(LANG("datum.2dbde827", null), forced="hulk")
+	source.say(LANG("datum.2dbde827b4b3771b", null), forced="hulk")
 
 /datum/mutation/hulk/on_life(seconds_per_tick)
 	if(owner.health < owner.crit_threshold)
 		on_losing(owner)
-		to_chat(owner, span_danger(LANG("datum.f0b72529", null)))
+		to_chat(owner, span_danger(LANG("datum.f0b72529b79802a7", null)))
 		qdel(src)
 
 /datum/mutation/hulk/on_losing(mob/living/carbon/human/owner)
@@ -116,7 +116,7 @@
 		var/mob/living/carbon/human/human_throwable = possible_throwable
 		//if(human_throwable.obscured_slots & HIDEJUMPSUIT) // ORIGINAL
 		if(human_throwable.obscured_slots & HIDETAIL) // NOVA EDIT CHANGE
-			to_chat(user, span_warning(LANG("datum.4ebccc36", list(human_throwable, human_throwable.p_their(), human_throwable.wear_suit.name))))
+			to_chat(user, span_warning(LANG("datum.4ebccc36f2ac52b0", list(human_throwable, human_throwable.p_their(), human_throwable.wear_suit.name))))
 			return
 
 	user.face_atom(clicked_atom)
@@ -132,21 +132,21 @@
 
 	log_combat(the_hulk, yeeted_person, "has started swinging by tail")
 	yeeted_person.Stun(2 SECONDS)
-	yeeted_person.visible_message(span_danger(LANG("datum.739c7d06", list(the_hulk, yeeted_person))), \
-					span_userdanger(LANG("datum.8e4984a3", list(the_hulk))), span_hear(LANG("datum.7314bbd1", null)), null, the_hulk)
-	to_chat(the_hulk, span_danger(LANG("datum.f9376ab4", list(yeeted_person))))
+	yeeted_person.visible_message(span_danger(LANG("datum.739c7d06d6f3e24f", list(the_hulk, yeeted_person))), \
+					span_userdanger(LANG("datum.8e4984a385231e57", list(the_hulk))), span_hear(LANG("datum.7314bbd171d7d8b7", null)), null, the_hulk)
+	to_chat(the_hulk, span_danger(LANG("datum.f9376ab455c79d02", list(yeeted_person))))
 
 	if(!do_after(the_hulk, 2 SECONDS, yeeted_person))
-		yeeted_person.visible_message(span_danger(LANG("datum.d29299ac", list(yeeted_person, the_hulk))), \
-					span_userdanger(LANG("datum.b86e7f81", list(the_hulk))), span_hear(LANG("datum.7314bbd1", null)), null, the_hulk)
-		to_chat(the_hulk, span_danger(LANG("datum.b26903d2", list(yeeted_person))))
+		yeeted_person.visible_message(span_danger(LANG("datum.d29299ac01c45a5b", list(yeeted_person, the_hulk))), \
+					span_userdanger(LANG("datum.b86e7f812ebea455", list(the_hulk))), span_hear(LANG("datum.7314bbd171d7d8b7", null)), null, the_hulk)
+		to_chat(the_hulk, span_danger(LANG("datum.b26903d213cfde07", list(yeeted_person))))
 		return
 
 	// we're officially a-go!
 	yeeted_person.Paralyze(8 SECONDS)
-	yeeted_person.visible_message(span_danger(LANG("datum.80d80b5b", list(the_hulk, yeeted_person, yeeted_person.p_their()))), \
-					span_userdanger(LANG("datum.9147f085", list(the_hulk))), span_hear(LANG("datum.e5679020", null)), null, the_hulk)
-	to_chat(the_hulk, span_danger(LANG("datum.ad85dd35", list(yeeted_person, yeeted_person.p_their()))))
+	yeeted_person.visible_message(span_danger(LANG("datum.80d80b5baf4a8744", list(the_hulk, yeeted_person, yeeted_person.p_their()))), \
+					span_userdanger(LANG("datum.9147f085f3891356", list(the_hulk))), span_hear(LANG("datum.e5679020cba47dd2", null)), null, the_hulk)
+	to_chat(the_hulk, span_danger(LANG("datum.ad85dd359cc90157", list(yeeted_person, yeeted_person.p_their()))))
 	the_hulk.emote("scream")
 	yeeted_person.emote("scream")
 	swing_loop(the_hulk, yeeted_person, 0, original_dir)
@@ -162,7 +162,7 @@
 	if(!yeeted_person || !the_hulk || the_hulk.incapacitated)
 		return
 	if(get_dist(the_hulk, yeeted_person) > 1 || !isturf(the_hulk.loc) || !isturf(yeeted_person.loc))
-		to_chat(the_hulk, span_warning(LANG("datum.37c35807", list(yeeted_person))))
+		to_chat(the_hulk, span_warning(LANG("datum.37c35807a2507d80", list(yeeted_person))))
 		return
 
 	var/delay = 5
@@ -205,14 +205,14 @@
 		log_combat(the_hulk, yeeted_person, "has smacked this person into someone while tail swinging") // i have no idea how to better word this
 
 		if(collateral_mob == the_hulk) // if the hulk moves wrong and crosses himself
-			the_hulk.visible_message(span_warning(LANG("datum.8c560e08", list(the_hulk, the_hulk.p_them(), yeeted_person))), span_userdanger(LANG("datum.a559f48f", list(yeeted_person))), ignored_mobs = yeeted_person)
-			to_chat(yeeted_person, span_userdanger(LANG("datum.783766fa", list(the_hulk, the_hulk.p_them()))))
+			the_hulk.visible_message(span_warning(LANG("datum.8c560e088dfaece0", list(the_hulk, the_hulk.p_them(), yeeted_person))), span_userdanger(LANG("datum.a559f48f67f96771", list(yeeted_person))), ignored_mobs = yeeted_person)
+			to_chat(yeeted_person, span_userdanger(LANG("datum.783766fa86d282da", list(the_hulk, the_hulk.p_them()))))
 			the_hulk.adjust_brute_loss(step)
 			return
 
-		yeeted_person.visible_message(span_warning(LANG("datum.10184e16", list(the_hulk, yeeted_person, collateral_mob, collateral_mob.p_them()))), \
-			span_userdanger(LANG("datum.7661fba6", list(collateral_mob))), ignored_mobs = collateral_mob)
-		to_chat(collateral_mob, span_userdanger(LANG("datum.f5fb0ff6", list(the_hulk, yeeted_person))))
+		yeeted_person.visible_message(span_warning(LANG("datum.10184e16ad3eeef8", list(the_hulk, yeeted_person, collateral_mob, collateral_mob.p_them()))), \
+			span_userdanger(LANG("datum.7661fba6741e8d8b", list(collateral_mob))), ignored_mobs = collateral_mob)
+		to_chat(collateral_mob, span_userdanger(LANG("datum.f5fb0ff653b9e101", list(the_hulk, yeeted_person))))
 
 		collateral_mob.adjust_brute_loss(step*0.5)
 		collateral_mob.throw_at(collat_throw_target, round(step * 0.25) + 1, round(step * 0.25) + 1)
@@ -223,8 +223,8 @@
 	if(step >= HULK_TAILTHROW_STEPS)
 		finish_swing(the_hulk, yeeted_person, original_dir)
 	else if(step < 0)
-		the_hulk.visible_message(span_danger(LANG("datum.11ff996a", list(the_hulk, the_hulk.p_their(), yeeted_person))), span_warning(LANG("datum.f959e98a", list(yeeted_person))), ignored_mobs = yeeted_person)
-		to_chat(yeeted_person, span_userdanger(LANG("datum.773af8e8", list(the_hulk, the_hulk.p_their()))))
+		the_hulk.visible_message(span_danger(LANG("datum.11ff996a049aa57e", list(the_hulk, the_hulk.p_their(), yeeted_person))), span_warning(LANG("datum.f959e98ab135fab4", list(yeeted_person))), ignored_mobs = yeeted_person)
+		to_chat(yeeted_person, span_userdanger(LANG("datum.773af8e8cdacd5d2", list(the_hulk, the_hulk.p_their()))))
 	else
 		addtimer(CALLBACK(src, PROC_REF(swing_loop), the_hulk, yeeted_person, step, original_dir), delay)
 
@@ -233,14 +233,14 @@
 	if(!yeeted_person || !the_hulk || the_hulk.incapacitated)
 		return
 	if(get_dist(the_hulk, yeeted_person) > 1 || !isturf(the_hulk.loc) || !isturf(yeeted_person.loc))
-		to_chat(the_hulk, span_warning(LANG("datum.37c35807", list(yeeted_person))))
+		to_chat(the_hulk, span_warning(LANG("datum.37c35807a2507d80", list(yeeted_person))))
 		return
 
 	the_hulk.setDir(original_dir)
 	yeeted_person.forceMove(the_hulk.loc) // Maybe this will help with the wallthrowing bug.
-	yeeted_person.visible_message(span_danger(LANG("datum.dd353802", list(the_hulk, yeeted_person))), \
-					span_userdanger(LANG("datum.c6e01d9e", list(the_hulk))), span_hear(LANG("datum.79118e97", null)), null, the_hulk)
-	to_chat(the_hulk, span_danger(LANG("datum.a94c3e80", list(yeeted_person))))
+	yeeted_person.visible_message(span_danger(LANG("datum.dd353802e5a94b6f", list(the_hulk, yeeted_person))), \
+					span_userdanger(LANG("datum.c6e01d9ebd6cd291", list(the_hulk))), span_hear(LANG("datum.79118e974e62c959", null)), null, the_hulk)
+	to_chat(the_hulk, span_danger(LANG("datum.a94c3e800bf2af08", list(yeeted_person))))
 	playsound(the_hulk.loc, SFX_SWING_HIT, 50, TRUE)
 	var/turf/T = get_edge_target_turf(the_hulk, the_hulk.dir)
 	if(!isturf(T))
@@ -290,6 +290,6 @@
 	conflicts = list(/datum/mutation/hulk)
 
 /datum/mutation/hulk/ork/add_speechmod()
-	AddComponent(/datum/component/speechmod, replacements = strings("ork_replacement.json", "ork"), end_string = "!!", uppercase = TRUE)
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("ork_replacement.json", "ork"), end_string = "!!", uppercase = TRUE)
 
 #undef HULK_TAILTHROW_STEPS

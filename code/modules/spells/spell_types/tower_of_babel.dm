@@ -19,7 +19,7 @@ GLOBAL_DATUM(tower_of_babel, /datum/tower_of_babel)
 			// wizards are not only immune but can speak all languages to taunt their victims over the radio
 			target.grant_all_languages(source = LANGUAGE_BABEL)
 			ADD_TRAIT(target.mind, TRAIT_TOWER_OF_BABEL, MAGIC_TRAIT)
-			to_chat(target, span_reallybig(span_hypnophrase(LANG("datum.107be080", null))))
+			to_chat(target, span_reallybig(span_hypnophrase(LANG("datum.107be0806c17f119", null))))
 			continue
 
 		if(target.stat == DEAD)
@@ -51,7 +51,7 @@ GLOBAL_DATUM(tower_of_babel, /datum/tower_of_babel)
 		return
 
 	if(to_curse.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND) || HAS_MIND_TRAIT(to_curse, TRAIT_TOWER_OF_BABEL))
-		to_chat(to_curse, span_notice(LANG("_root.ee899aba", null)))
+		to_chat(to_curse, span_notice(LANG("_root.ee899aba2f11076e", null)))
 		return
 
 	to_curse.apply_status_effect(/datum/status_effect/tower_of_babel/magical, INFINITY)
@@ -72,7 +72,7 @@ GLOBAL_DATUM(tower_of_babel, /datum/tower_of_babel)
 
 /client/proc/tower_of_babel()
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr,LANG("client.8a212f07", null))
+		tgui_alert(usr,LANG("client.8a212f0792509a20", null))
 		return
 
 	GLOB.tower_of_babel = new /datum/tower_of_babel(usr)

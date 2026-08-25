@@ -8,7 +8,7 @@
 	picture.picture_name = "Image [number] (taken by [loc.name])"
 	stored[picture] = TRUE
 	playsound(src, SFX_POLAROID, 75, TRUE, -3)
-	balloon_alert(user, LANG("obj.3fb11283", null))
+	balloon_alert(user, LANG("obj.3fb112834df9e975", null))
 
 /**
  * Handles selecting and printing stored images.
@@ -22,10 +22,10 @@
 	var/mob/living/silicon/pai/pai = loc
 	var/datum/picture/selection = selectpicture(user)
 	if(!istype(selection))
-		balloon_alert(user, LANG("obj.f76d9d32", null))
+		balloon_alert(user, LANG("obj.f76d9d32a551205a", null))
 		return FALSE
 	printpicture(user, selection)
-	user.visible_message(span_notice(LANG("obj.ddc57374", list(pai.name))), span_notice(LANG("obj.ea70dffc", null)))
+	user.visible_message(span_notice(LANG("obj.ddc5737483250999", list(pai.name))), span_notice(LANG("obj.ea70dffc1019f291", null)))
 	return TRUE
 
 /**

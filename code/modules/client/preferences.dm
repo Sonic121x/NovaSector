@@ -239,7 +239,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return
 
 	if(SSlag_switch.measures[DISABLE_CREATOR] && action != "change_slot")
-		to_chat(usr, LANG("datum.cb24e133", null))
+		to_chat(usr, LANG("datum.cb24e133b58064a7", null))
 		return
 
 	log_creator("[key_name(usr)] ACTED [action] | PREFERENCE: [params["preference"]] | VALUE: [params["value"]]")
@@ -726,7 +726,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			log_game("BYOND membership lookup for [parent.ckey] failed due to a connection error but succeeded after retry.")
 
 	if(isnull(byond_member))
-		to_chat(parent, span_warning(LANG("datum.50a3c652", null)))
+		to_chat(parent, span_warning(LANG("datum.50a3c65280ab5b32", null)))
 
 	unlock_content = !!byond_member
 	donator_status = !!GLOB.donator_list[parent.ckey] // NOVA EDIT ADDITION - DONATOR CHECK

@@ -176,7 +176,7 @@
 	if(who_placed_us)
 		ADD_TRAIT(grilled_result, TRAIT_HANDMADE, who_placed_us)
 
-	grill_source.visible_message(LANG("datum.9ee78220", list(HAS_TRAIT(parent, TRAIT_GRILLABLE) ? "notice" : "warning", parent, grilled_result)))
+	grill_source.visible_message(LANG("datum.9ee782204c1076fd", list(HAS_TRAIT(parent, TRAIT_GRILLABLE) ? "notice" : "warning", parent, grilled_result)))
 	grilled_result.pixel_x = original_object.pixel_x
 	grilled_result.pixel_y = original_object.pixel_y
 	qdel(parent)
@@ -188,18 +188,18 @@
 	if(!current_cook_time) //Not grilled yet
 		if(HAS_TRAIT(parent, TRAIT_GRILLABLE))
 			if(initial(cook_result.name) == PLURAL)
-				examine_list += span_notice(LANG("datum.224db634", list(parent, span_bold("grilled"), initial(cook_result.name))))
+				examine_list += span_notice(LANG("datum.224db63491ac5e2c", list(parent, span_bold("grilled"), initial(cook_result.name))))
 			else
-				examine_list += span_notice(LANG("datum.73ea291d", list(parent, span_bold("grilled"), initial(cook_result.name))))
+				examine_list += span_notice(LANG("datum.73ea291d962a7b4f", list(parent, span_bold("grilled"), initial(cook_result.name))))
 		return
 
 	if(HAS_TRAIT(parent, TRAIT_GRILLABLE))
 		if(current_cook_time <= required_cook_time * 0.75)
-			examine_list += span_notice(LANG("datum.f5d265cf", list(parent)))
+			examine_list += span_notice(LANG("datum.f5d265cfadac44d4", list(parent)))
 		else if(current_cook_time <= required_cook_time)
-			examine_list += span_notice(LANG("datum.1d34841e", list(parent)))
+			examine_list += span_notice(LANG("datum.1d34841e831c64a0", list(parent)))
 	else
-		examine_list += span_danger(LANG("datum.3fce69d7", list(parent)))
+		examine_list += span_danger(LANG("datum.3fce69d7ae665de0", list(parent)))
 
 /datum/component/grillable/proc/add_grilled_item_overlay(datum/source, list/overlays)
 	SIGNAL_HANDLER

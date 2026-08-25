@@ -16,7 +16,7 @@
 /datum/blobstrain/reagent/reactive_spines/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag)
 	if(damage && ((damage_type == BRUTE) || (damage_type == BURN)) && B.get_integrity() - damage > 0 && COOLDOWN_FINISHED(src, retaliate_cooldown)) // Is there any damage, is it burn or brute, will we be alive, and has the cooldown finished?
 		COOLDOWN_START(src, retaliate_cooldown, 2.5 SECONDS) // 2.5 seconds before auto-retaliate can whack everything within 1 tile again
-		B.visible_message(span_boldwarning(LANG("datum.5097a055", null)))
+		B.visible_message(span_boldwarning(LANG("datum.5097a055eb94885a", null)))
 		for(var/atom/thing in range(1, B))
 			if(!thing.can_blob_attack())
 				continue

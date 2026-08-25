@@ -83,8 +83,8 @@
 	return ..()
 
 /obj/machinery/sleeper/container_resist_act(mob/living/user)
-	visible_message(span_notice(LANG("obj.8616ec7e", list(occupant, src))),
-		span_notice(LANG("obj.adaf0a2d", list(src))))
+	visible_message(span_notice(LANG("obj.8616ec7ef6eb4cb4", list(occupant, src))),
+		span_notice(LANG("obj.adaf0a2d27164b52", list(src))))
 	open_machine()
 
 /obj/machinery/sleeper/Exited(atom/movable/gone, direction)
@@ -123,10 +123,10 @@
 
 /obj/machinery/sleeper/screwdriver_act(mob/living/user, obj/item/I)
 	if(occupant)
-		to_chat(user, span_warning(LANG("obj.29741746", list(src))))
+		to_chat(user, span_warning(LANG("obj.297417466fc8e075", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(state_open)
-		to_chat(user, span_warning(LANG("obj.2bc99427", list(src, panel_open ? "close" : "open"))))
+		to_chat(user, span_warning(LANG("obj.2bc99427122c999f", list(src, panel_open ? "close" : "open"))))
 		return ITEM_INTERACT_BLOCKING
 	return default_deconstruction_screwdriver(user, I)
 
@@ -159,7 +159,7 @@
 
 /obj/machinery/sleeper/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.20128ad3", list(src, state_open ? "close" : "open")))
+	. += span_notice(LANG("obj.20128ad320b60a5a", list(src, state_open ? "close" : "open")))
 
 /obj/machinery/sleeper/process()
 	use_energy(idle_power_usage)
@@ -255,13 +255,13 @@
 			if(inject_chem(chem, usr))
 				. = TRUE
 				if((obj_flags & EMAGGED) && prob(5))
-					to_chat(usr, span_warning(LANG("obj.300439fe", null)))
+					to_chat(usr, span_warning(LANG("obj.300439fe5fef3d97", null)))
 
 /obj/machinery/sleeper/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
 
-	balloon_alert(user, LANG("obj.22385b67", null))
+	balloon_alert(user, LANG("obj.22385b67127e268b", null))
 	obj_flags |= EMAGGED
 
 	var/list/av_chem = available_chems.Copy()

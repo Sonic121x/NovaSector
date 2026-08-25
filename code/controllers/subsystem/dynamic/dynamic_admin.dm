@@ -186,7 +186,7 @@ ADMIN_VERB(dynamic_panel, R_ADMIN, "动态模式面板", "Mess with dynamic.", A
 			var/list/tiers = list()
 			for(var/datum/dynamic_tier/tier as anything in subtypesof(/datum/dynamic_tier))
 				tiers[tier::config_tag] = tier
-			var/picked = tgui_input_list(ui.user, LANG("datum.f0a15b51", null), LANG("datum.9f37e99b", null), tiers, ui_state = ADMIN_STATE(R_ADMIN))
+			var/picked = tgui_input_list(ui.user, LANG("datum.f0a15b5184e3b645", null), LANG("datum.9f37e99b12c5d40c", null), tiers, ui_state = ADMIN_STATE(R_ADMIN))
 			if(picked && !SSticker.HasRoundStarted())
 				SSdynamic.set_tier(tiers[picked])
 				message_admins("[key_name_admin(ui.user)] set the dynamic tier to [picked].")

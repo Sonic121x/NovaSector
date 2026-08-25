@@ -47,14 +47,14 @@
 
 /obj/machinery/doppler_array/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.dc4d5c51", list(dir2text(dir))))
+	. += span_notice(LANG("obj.dc4d5c5100f33d21", list(dir2text(dir))))
 
 /obj/machinery/doppler_array/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/disk/computer))
 		return NONE
 	eject_disk(user)
 	if(!user.transferItemToLoc(tool, src))
-		balloon_alert(user, LANG("obj.f84f0f5d", null))
+		balloon_alert(user, LANG("obj.f84f0f5d8dcd2ecb", null))
 		return ITEM_INTERACT_BLOCKING
 	inserted_disk = tool
 	return ITEM_INTERACT_SUCCESS

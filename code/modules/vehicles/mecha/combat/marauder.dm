@@ -98,12 +98,12 @@
 	var/obj/vehicle/sealed/mecha/marauder/maradeur = chassis
 	if(!TIMER_COOLDOWN_FINISHED(maradeur, COOLDOWN_MECHA_SMOKE))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.7467263f", null))
+			owner.balloon_alert(owner, LANG("datum.7467263f10ec05b3", null))
 		return FALSE
 
 	if (!maradeur.smoke_charges)
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.850022b8", null))
+			owner.balloon_alert(owner, LANG("datum.850022b8787ec192", null))
 		return FALSE
 
 /datum/action/vehicle/sealed/mecha/mech_smoke/Trigger(mob/clicker, trigger_flags)
@@ -132,7 +132,7 @@
 	maradeur.zoom_mode = !maradeur.zoom_mode
 	button_icon_state = "mech_zoom_[maradeur.zoom_mode ? "on" : "off"]"
 	maradeur.log_message("Toggled zoom mode.", LOG_MECHA)
-	to_chat(owner, LANG("datum.1f8518f6", list(icon2html(maradeur, owner), maradeur.zoom_mode ? "blue" : "red", maradeur.zoom_mode ? "en" : "dis")))
+	to_chat(owner, LANG("datum.1f8518f6392b45ad", list(icon2html(maradeur, owner), maradeur.zoom_mode ? "blue" : "red", maradeur.zoom_mode ? "en" : "dis")))
 	if(maradeur.zoom_mode)
 		owner.client.view_size.setTo(4.5)
 		SEND_SOUND(owner, sound('sound/vehicles/mecha/imag_enh.ogg', volume=50))

@@ -27,12 +27,12 @@
 
 	if(!HAS_TRAIT(user, TRAIT_SPOOKY_INSTRUMENT_PLAYER)) //this weapon wasn't meant for mortals.
 		if(rattle_bones(user, stam_dam_mult = stam_damage_mult * 2))
-			to_chat(user, span_userdanger(LANG("datum.6daed1e7", null)))
+			to_chat(user, span_userdanger(LANG("datum.6daed1e7656f4129", null)))
 			if(ishuman(user))
 				INVOKE_ASYNC(src, PROC_REF(spectral_change), user, user, source)
 		return
 
-	to_chat(target, span_userdanger(LANG("datum.0698531a", null)))
+	to_chat(target, span_userdanger(LANG("datum.0698531a06e80991", null)))
 
 	if(rattle_bones(target))
 		INVOKE_ASYNC(src, PROC_REF(spectral_change), target, user, source)
@@ -68,15 +68,15 @@
 		return
 
 	if(single_use)
-		to_chat(user, span_warning(LANG("datum.5f10186d", list(source))))
+		to_chat(user, span_warning(LANG("datum.5f10186d5bb025ae", list(source))))
 		Detach(source)
 
 	human.Paralyze(2 SECONDS)
 	human.set_species(/datum/species/skeleton)
-	human.visible_message(span_warning(LANG("datum.2f83fd04", list(human))))
-	to_chat(human, span_boldnotice(LANG("datum.27b0fc44", null)))
+	human.visible_message(span_warning(LANG("datum.2f83fd04f3741dda", list(human))))
+	to_chat(human, span_boldnotice(LANG("datum.27b0fc44e5506ee0", null)))
 	to_chat(human,
-		span_boldnotice(LANG("datum.7252a1f4", list(too_spooky ? "Help your fellow skeletons into bringing out the spooky-pocalypse." : "")))
+		span_boldnotice(LANG("datum.7252a1f4a33490fe", list(too_spooky ? "Help your fellow skeletons into bringing out the spooky-pocalypse." : "")))
 	)
 	INVOKE_ASYNC(src, PROC_REF(change_name), human) //time for a new name!
 
@@ -84,7 +84,7 @@
 		return
 	var/turf/turf = get_turf(human)
 	if(!prob(90))
-		to_chat(human, span_boldwarning(LANG("datum.a134b50e", null)))
+		to_chat(human, span_boldwarning(LANG("datum.a134b50eec281bc2", null)))
 		return
 	var/obj/item/instrument = pick(
 		/obj/item/instrument/saxophone/spectral,
@@ -94,7 +94,7 @@
 	new instrument(turf)
 
 /datum/element/spooky/proc/change_name(mob/living/carbon/human/spooked)
-	var/skeleton_name = spooked.client ? sanitize_name(tgui_input_text(spooked, LANG("datum.475ee1f0", null), LANG("datum.50540c7a", null), spooked.real_name, MAX_NAME_LEN)) : null
+	var/skeleton_name = spooked.client ? sanitize_name(tgui_input_text(spooked, LANG("datum.475ee1f0337936cb", null), LANG("datum.50540c7a7a398b92", null), spooked.real_name, MAX_NAME_LEN)) : null
 	if(!skeleton_name)
 		skeleton_name = "\improper spooky skeleton"
 	spooked.fully_replace_character_name(null, skeleton_name, log_new_name = TRUE)

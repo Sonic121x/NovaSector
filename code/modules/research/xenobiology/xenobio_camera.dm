@@ -140,14 +140,14 @@
 /// Handles inserting a slime potion into the console, potentially swapping out an existing one.
 /obj/machinery/computer/camera_advanced/xenobio/proc/slimepotion_act(mob/living/user, obj/item/slimepotion/slime/used_potion)
 	if(!user.transferItemToLoc(used_potion, src))
-		balloon_alert(user, LANG("obj.372d420f", null))
+		balloon_alert(user, LANG("obj.372d420f22216691", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!QDELETED(current_potion))
 		try_put_in_hand(current_potion, user)
-		balloon_alert(user, LANG("obj.c58bb764", null))
+		balloon_alert(user, LANG("obj.c58bb76422062b99", null))
 	else
-		balloon_alert(user, LANG("obj.c638b4d2", null))
+		balloon_alert(user, LANG("obj.c638b4d25766050c", null))
 
 	current_potion = used_potion
 	var/atom/movable/screen/xenobio_console/xeno_hud = user.hud_used?.screen_objects[HUD_XENOBIO_CONSOLE]
@@ -158,7 +158,7 @@
 /// Handles inserting a monkey cube into the console.
 /obj/machinery/computer/camera_advanced/xenobio/proc/monkeycube_act(mob/living/user, obj/item/food/monkeycube/used_cube)
 	stored_monkeys += 1
-	balloon_alert(user, LANG("obj.ff85f369", list(stored_monkeys)))
+	balloon_alert(user, LANG("obj.ff85f3698d7a209b", list(stored_monkeys)))
 	var/atom/movable/screen/xenobio_console/xeno_hud = user.hud_used?.screen_objects[HUD_XENOBIO_CONSOLE]
 	if(xeno_hud)
 		xeno_hud.on_update_hud(LAZYLEN(stored_slimes), stored_monkeys, max_slimes)
@@ -174,10 +174,10 @@
 			stored_monkeys += 1
 			qdel(storage_item)
 	if(!loaded_any)
-		balloon_alert(user, LANG("obj.3b5e8e26", null))
+		balloon_alert(user, LANG("obj.3b5e8e261eb4f645", null))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.ff85f369", list(stored_monkeys)))
+	balloon_alert(user, LANG("obj.ff85f3698d7a209b", list(stored_monkeys)))
 	var/atom/movable/screen/xenobio_console/xeno_hud = user.hud_used?.screen_objects[HUD_XENOBIO_CONSOLE]
 	if(xeno_hud)
 		xeno_hud.on_update_hud(LAZYLEN(stored_slimes), stored_monkeys, max_slimes)
@@ -187,26 +187,26 @@
 	if(!istype(tool)) // Needed as long as this uses a var on the multitool.
 		return NONE
 	if(QDELETED(tool.buffer))
-		balloon_alert(user, LANG("obj.6c22c8e1", null))
+		balloon_alert(user, LANG("obj.6c22c8e145ce6c55", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!istype(tool.buffer, /obj/machinery/monkey_recycler))
-		balloon_alert(user, LANG("obj.c1b52f6b", null))
+		balloon_alert(user, LANG("obj.c1b52f6b3081558b", null))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.a794c3c3", null))
+	balloon_alert(user, LANG("obj.a794c3c37024fd32", null))
 	connected_recycler_ref = WEAKREF(tool.buffer)
 	return ITEM_INTERACT_SUCCESS
 
 /// Validates whether the target turf can be interacted with.
 /obj/machinery/computer/camera_advanced/xenobio/proc/validate_turf(mob/living/user, turf/open/target_turf)
 	if(!SScameras.is_visible_by_cameras(target_turf))
-		target_turf.balloon_alert(user, LANG("obj.75aa5f0a", null))
+		target_turf.balloon_alert(user, LANG("obj.75aa5f0a497af6a6", null))
 		return FALSE
 
 	var/area/turfarea = get_area(target_turf)
 	var/mob/eye/camera/remote/xenobio/remote_eye = user.remote_control
 	if(turfarea.name != remote_eye.allowed_area && !(turfarea.area_flags & XENOBIOLOGY_COMPATIBLE))
-		target_turf.balloon_alert(user, LANG("obj.3043f66f", null))
+		target_turf.balloon_alert(user, LANG("obj.3043f66fe3c8747b", null))
 		return FALSE
 
 	return TRUE
@@ -218,9 +218,9 @@
 		return
 
 	if(stored_slimes.len == 1)
-		target_turf.visible_message(span_notice(LANG("obj.6e3a44d3", null)))
+		target_turf.visible_message(span_notice(LANG("obj.6e3a44d346a6aad9", null)))
 	else
-		target_turf.visible_message(span_notice(LANG("obj.202907e0", list(stored_slimes.len))))
+		target_turf.visible_message(span_notice(LANG("obj.202907e0739557a9", list(stored_slimes.len))))
 
 	for(var/mob/living/basic/slime/stored_slime in stored_slimes)
 		stored_slime.forceMove(target_turf)
@@ -240,17 +240,17 @@
 		return FALSE
 
 	if(stored_slimes.len >= max_slimes)
-		to_chat(user, span_warning(LANG("obj.0b2410a0", null)))
-		target_slime.balloon_alert(user, LANG("obj.159ebc90", null))
+		to_chat(user, span_warning(LANG("obj.0b2410a0dea6b9e0", null)))
+		target_slime.balloon_alert(user, LANG("obj.159ebc909f438e48", null))
 		return TRUE
 
 	if(target_slime.ckey)
-		to_chat(user, span_warning(LANG("obj.4d732469", null)))
+		to_chat(user, span_warning(LANG("obj.4d732469379a02c7", null)))
 		return FALSE
 
 	if(target_slime.buckled)
 		target_slime.stop_feeding(silent = TRUE)
-	target_slime.visible_message(span_notice(LANG("obj.d054f086", null)))
+	target_slime.visible_message(span_notice(LANG("obj.d054f0861d3ec5f7", null)))
 	suck_up(target_slime)
 	target_slime.forceMove(src)
 	stored_slimes += target_slime
@@ -264,13 +264,13 @@
 ///Places one monkey, if possible
 /obj/machinery/computer/camera_advanced/xenobio/proc/feed_slime(mob/living/user, turf/open/target_turf)
 	if(stored_monkeys < 1)
-		to_chat(user, span_warning(LANG("obj.9c064048", list(src, stored_monkeys))))
-		target_turf.balloon_alert(user, LANG("obj.e93ab252", null))
+		to_chat(user, span_warning(LANG("obj.9c0640489492a321", list(src, stored_monkeys))))
+		target_turf.balloon_alert(user, LANG("obj.e93ab252579e5efe", null))
 		return
 
 	var/cap = CONFIG_GET(number/monkeycap)
 	if (LAZYLEN(SSmobs.cubemonkeys) >= cap)
-		to_chat(user, span_warning(LANG("obj.d675af0d", list(cap))))
+		to_chat(user, span_warning(LANG("obj.d675af0d315c1ec8", list(cap))))
 		return
 
 	var/mob/living/carbon/human/species/monkey/food = new /mob/living/carbon/human/species/monkey(target_turf, null, TRUE)
@@ -292,9 +292,9 @@
 	PRIVATE_PROC(TRUE)
 	var/obj/machinery/monkey_recycler/connected_recycler = connected_recycler_ref?.resolve()
 	if(isnull(connected_recycler))
-		to_chat(user, span_warning(LANG("obj.9b3b2796", null)))
+		to_chat(user, span_warning(LANG("obj.9b3b2796fbc5b760", null)))
 		if(target_atom)
-			target_atom.balloon_alert(user, LANG("obj.b6fd66f1", null))
+			target_atom.balloon_alert(user, LANG("obj.b6fd66f1dd5c1539", null))
 		return FALSE
 	return TRUE
 
@@ -303,11 +303,11 @@
 	PRIVATE_PROC(TRUE)
 	if(!ismonkey(target_human))
 		if(user)
-			target_human.balloon_alert(user, LANG("obj.7673769d", null))
+			target_human.balloon_alert(user, LANG("obj.7673769de2608c6b", null))
 		return FALSE
 	if(target_human.stat != DEAD)
 		if(user)
-			target_human.balloon_alert(user, LANG("obj.f5271c5d", null))
+			target_human.balloon_alert(user, LANG("obj.f5271c5dfec0a80a", null))
 		return FALSE
 	return TRUE
 
@@ -342,7 +342,7 @@
 		return
 
 	suck_up(target_monkey)
-	target_monkey.visible_message(span_notice(LANG("obj.9049b83f", list(target_monkey.p_theyre()))))
+	target_monkey.visible_message(span_notice(LANG("obj.9049b83fa6b7aee0", list(target_monkey.p_theyre()))))
 	connected_recycler.use_energy(500 JOULES)
 	stored_monkeys += connected_recycler.cube_production
 	stored_monkeys = round(stored_monkeys, 0.1) //Prevents rounding errors
@@ -457,7 +457,7 @@
 		return
 
 	if(QDELETED(xeno_console.current_potion))
-		to_chat(owner, span_warning(LANG("datum.5575e647", null)))
+		to_chat(owner, span_warning(LANG("datum.5575e647cf64c88e", null)))
 		return
 
 	for(var/mob/living/basic/slime/potioned_slime in eye_turf)
@@ -482,11 +482,11 @@
 	// 目录外，只有 Alt-click 那行被聊天 AC 层从**半句**处替换掉（「Alt-点击黏击以feed it a potion。」），
 	// 正是碎片入目录会造成的语序错乱。整行成条才治得住。
 	// ORIGINAL: render_list += "<b>Click shortcuts:</b>" 起五行英文字面量。
-	render_list += "<b>[LANG("datum.5372def5", null)]</b>"
-	render_list += LANG("datum.35c91b95", null)
-	render_list += LANG("datum.eace4378", null)
-	render_list += LANG("datum.bdeabe47", null)
-	render_list += LANG("datum.9d6aa669", null)
+	render_list += "<b>[LANG("datum.5372def5df1a3aa7", null)]</b>"
+	render_list += LANG("datum.35c91b95c1abfd3e", null)
+	render_list += LANG("datum.eace4378cf4a41af", null)
+	render_list += LANG("datum.bdeabe477eb7058d", null)
+	render_list += LANG("datum.9d6aa669cfdff548", null)
 	// NOVA EDIT CHANGE END
 
 	to_chat(owner, boxed_message(jointext(render_list, "\n")))
@@ -507,7 +507,7 @@
 		return
 
 	if(QDELETED(current_potion))
-		to_chat(user, span_warning(LANG("obj.5575e647", null)))
+		to_chat(user, span_warning(LANG("obj.5575e647cf64c88e", null)))
 		return
 
 	spit_atom(current_potion, slime_turf)

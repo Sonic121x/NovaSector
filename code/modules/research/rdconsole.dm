@@ -78,31 +78,31 @@ Nothing else in the console has ID requirements.
 
 	if(istype(tool, /obj/item/disk/tech_disk))
 		if(t_disk)
-			to_chat(user, span_warning(LANG("obj.4c379a83", null)))
+			to_chat(user, span_warning(LANG("obj.4c379a83ff3924c4", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning(LANG("obj.1dbf8014", list(tool))))
+			to_chat(user, span_warning(LANG("obj.1dbf8014c030d016", list(tool))))
 			return ITEM_INTERACT_BLOCKING
 
 		t_disk = tool
-		to_chat(user, span_notice(LANG("obj.76db938f", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.76db938f9f9c4ccc", list(tool, src))))
 		return ITEM_INTERACT_SUCCESS
 
 	if (!istype(tool, /obj/item/disk/design_disk))
-		to_chat(user, span_warning(LANG("obj.b0cc5fbc", null)))
+		to_chat(user, span_warning(LANG("obj.b0cc5fbcf6f211fe", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(d_disk)
-		to_chat(user, span_warning(LANG("obj.2c8f972c", null)))
+		to_chat(user, span_warning(LANG("obj.2c8f972ccc38e605", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
-		to_chat(user, span_warning(LANG("obj.1dbf8014", list(tool))))
+		to_chat(user, span_warning(LANG("obj.1dbf8014c030d016", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 
 	d_disk = tool
-	to_chat(user, span_notice(LANG("obj.76db938f", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.76db938f9f9c4ccc", list(tool, src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/rdconsole/multitool_act(mob/living/user, obj/item/multitool/tool)
@@ -113,67 +113,78 @@ Nothing else in the console has ID requirements.
 
 /obj/machinery/computer/rdconsole/proc/enqueue_node(id, mob/user)
 	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		say(LANG("obj.d0d6c45f", null))
+		say(LANG("obj.d0d6c45f12db34e9", null))
 		return FALSE
 	stored_research.enqueue_node(id, user)
 	return TRUE
 
 /obj/machinery/computer/rdconsole/proc/dequeue_node(id, mob/user)
 	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		say(LANG("obj.a58ea08a", null))
+		say(LANG("obj.a58ea08a5e2c7b84", null))
 		return FALSE
 	stored_research.dequeue_node(id, user)
 	return TRUE
 
-/obj/machinery/computer/rdconsole/proc/research_node(id, mob/user)
-	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		say(LANG("obj.c8163dbe", null))
+/obj/machinery/computer/rdconsole/proc/research_node(node_path, mob/user)
+	if(!stored_research)
+		say(LANG("obj.acb34cefa09ea5cc", null))
 		return FALSE
-	var/datum/techweb_node/TN = SSresearch.techweb_node_by_id(id)
-	if(!istype(TN))
-		say(LANG("obj.82fe29cd", null))
+	if(!stored_research.available_nodes[node_path])
+		say(LANG("obj.77ef8c4fcd09d13b", null))
 		return FALSE
-	var/list/price = TN.get_price(stored_research)
-	if(stored_research.can_afford(price))
-		user.investigate_log("researched [id]([json_encode(price)]) on techweb id [stored_research.id].", INVESTIGATE_RESEARCH)
-		if(istype(stored_research, /datum/techweb/science))
-			SSblackbox.record_feedback("associative", "science_techweb_unlock", 1, list("id" = "[id]", "name" = TN.display_name, "price" = "[json_encode(price)]", "time" = ISOtime()))
-		if(stored_research.research_node_id(id, research_source = src))
-			say(LANG("obj.9d1c2f30", list(TN.display_name)))
-			var/logname = "Unknown"
-			if(HAS_AI_ACCESS(user))
-				logname = "AI [user.name]"
-			if(iscyborg(user))
-				logname = "CYBORG [user.name]"
-			if(iscarbon(user))
-				var/obj/item/card/id/idcard = user.get_active_held_item()
-				if(istype(idcard))
-					logname = "[idcard.registered_name]"
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				var/obj/item/I = H.wear_id
-				if(istype(I))
-					var/obj/item/card/id/ID = I.GetID()
-					if(istype(ID))
-						logname = "[ID.registered_name]"
-			stored_research.research_logs += list(list(
-				"node_name" = TN.display_name,
-				"node_cost" = price[TECHWEB_POINT_TYPE_GENERIC],
-				"node_researcher" = logname,
-				"node_research_location" = "[get_area(src)] ([src.x],[src.y],[src.z])",
-			))
-			return TRUE
-		else
-			say(LANG("obj.4e8cca8a", null))
-			return FALSE
-	say(LANG("obj.8a4d3feb", null))
-	return FALSE
+	if(stored_research.researched_nodes[node_path])
+		say(LANG("obj.b06096aa9d347da9", null))
+		return FALSE
+
+	var/datum/techweb_node/unlocked_node = SSresearch.techweb_nodes[node_path]
+	if(!istype(unlocked_node))
+		say(LANG("obj.82fe29cde43ce4b9", null))
+		return FALSE
+
+	var/list/price = unlocked_node.get_price(stored_research)
+	if(!stored_research.can_afford(price))
+		say(LANG("obj.8a4d3febf4c65c82", null))
+		return FALSE
+
+	if(!stored_research.research_node(unlocked_node, research_source = src))
+		say(LANG("obj.4e8cca8a706a86f7", null))
+		return FALSE
+
+	user.investigate_log("researched [unlocked_node.display_name]([json_encode(price)]) on techweb id [stored_research.id].", INVESTIGATE_RESEARCH)
+	if(istype(stored_research, /datum/techweb/science))
+		SSblackbox.record_feedback("associative", "science_techweb_unlock", 1, list("path" = "[node_path]", "name" = unlocked_node.display_name, "price" = "[json_encode(price)]", "time" = ISOtime()))
+
+	say(LANG("obj.9d1c2f30413f1470", list(unlocked_node.display_name)))
+
+	var/logname = "Unknown"
+	if(HAS_AI_ACCESS(user))
+		logname = "AI [user.name]"
+	if(iscyborg(user))
+		logname = "CYBORG [user.name]"
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		var/obj/item/card/id/id = human_user.wear_id?.GetID()
+		if(istype(id))
+			logname = "[id.registered_name]"
+	else if(iscarbon(user))
+		var/obj/item/card/id/idcard = user.get_active_held_item()
+		if(istype(idcard))
+			logname = "[idcard.registered_name]"
+
+	stored_research.research_logs += list(list(
+		"node_name" = unlocked_node.display_name,
+		"node_cost" = price[TECHWEB_POINT_TYPE_GENERIC],
+		"node_researcher" = logname,
+		"node_research_location" = "[get_area(src)] ([src.x],[src.y],[src.z])",
+	))
+	return TRUE
 
 /obj/machinery/computer/rdconsole/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	if (obj_flags & EMAGGED)
 		return
-	balloon_alert(user, LANG("obj.2d8166d5", null))
+	balloon_alert(user, LANG("obj.2d8166d5176414a7", null))
 	playsound(src, SFX_SPARKS, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	obj_flags |= EMAGGED
 	var/obj/item/circuitboard/computer/rdconsole/board = circuit
@@ -219,43 +230,41 @@ Nothing else in the console has ID requirements.
 	)
 
 	if (t_disk)
-		data["t_disk"] = list (
-			"stored_research" = t_disk.stored_research.researched_nodes,
+		data["t_disk"] = list(
+			"stored_research" = t_disk.stored_nodes,
 		)
 	if (d_disk)
-		data["d_disk"] = list("blueprints" = list())
-		for (var/datum/design/D in d_disk.blueprints)
-			data["d_disk"]["blueprints"] += D.id
-
+		data["d_disk"] = list(
+			"blueprints" = d_disk.blueprints,
+		)
 
 	// Serialize all nodes to display
-	for(var/v in stored_research.tiers)
-		var/datum/techweb_node/n = SSresearch.techweb_node_by_id(v)
-		var/enqueued_by_user = FALSE
-
-		if((v in stored_research.research_queue_nodes) && stored_research.research_queue_nodes[v] == user)
-			enqueued_by_user = TRUE
+	for(var/node_path, node_tier in stored_research.tiers)
+		var/datum/techweb_node/node = SSresearch.techweb_nodes[node_path]
 
 		// Ensure node is supposed to be visible
-		if (stored_research.hidden_nodes[v])
+		if (stored_research.hidden_nodes[node_path])
 			continue
 
+		var/mob/node_queuer = stored_research.research_queue_nodes[node_path]
+		var/enqueued_by_user = !isnull(node_queuer) && node_queuer == user
+
 		data["nodes"] += list(list(
-			"id" = n.id,
-			"is_free" = n.is_free(stored_research),
-			"can_unlock" = stored_research.can_unlock_node(n),
-			"have_experiments_done" = stored_research.have_experiments_for_node(n),
-			"tier" = stored_research.tiers[n.id],
+			"path" = node_path,
+			"is_free" = node.is_free(stored_research),
+			"can_unlock" = stored_research.can_unlock_node(node),
+			"have_experiments_done" = stored_research.have_experiments_for_node(node),
+			"tier" = node_tier,
 			"enqueued_by_user" = enqueued_by_user,
-			"discount_boosted" = n.discount_boosted
+			"discount_boosted" = !!stored_research.boosted_nodes[node_path],
 		))
 
 	// Get experiments and serialize them
 	var/list/exp_to_process = stored_research.available_experiments.Copy()
-	for (var/e in stored_research.completed_experiments)
-		exp_to_process += stored_research.completed_experiments[e]
-	for (var/datum/experiment/ex as anything in exp_to_process)
-		data["experiments"][ex.type] = ex.to_ui_data()
+	for (var/experiment_type, experiment in stored_research.completed_experiments)
+		exp_to_process += experiment
+	for (var/datum/experiment/experiment as anything in exp_to_process)
+		data["experiments"][experiment.type] = experiment.to_ui_data()
 	return data
 
 /**
@@ -272,72 +281,65 @@ Nothing else in the console has ID requirements.
 	return id_cache[id]
 
 /obj/machinery/computer/rdconsole/ui_static_data(mob/user)
-	. = list(
-		"static_data" = list(),
-		"point_types_abbreviations" = SSresearch.point_types,
-	)
-
 	// Build node cache...
 	// Note this looks a bit ugly but its to reduce the size of the JSON payload
 	// by the greatest amount that we can, as larger JSON payloads result in
 	// hanging when the user opens the UI
-	var/node_cache = list()
-	for (var/node_id in SSresearch.techweb_nodes)
-		var/datum/techweb_node/node = SSresearch.techweb_nodes[node_id] || SSresearch.error_node
-		var/compressed_id = "[compress_id(node.id)]"
-		node_cache[compressed_id] = list(
+	var/list/node_cache = list()
+	for (var/node_path, _node in SSresearch.techweb_nodes)
+		var/datum/techweb_node/node = _node
+
+		var/list/node_data = list(
 			"name" = node.display_name,
 			"description" = node.description
 		)
+
 		if (LAZYLEN(node.research_costs))
-			node_cache[compressed_id]["costs"] = list()
-			for (var/node_cost in node.research_costs)
-				node_cache[compressed_id]["costs"]["[compress_id(node_cost)]"] = node.research_costs[node_cost]
-		if (LAZYLEN(node.prereq_ids))
-			node_cache[compressed_id]["prereq_ids"] = list()
-			for (var/prerequisite_node in node.prereq_ids)
-				node_cache[compressed_id]["prereq_ids"] += compress_id(prerequisite_node)
-		if (LAZYLEN(node.design_ids))
-			node_cache[compressed_id]["design_ids"] = list()
-			for (var/unlocked_design in node.design_ids)
-				node_cache[compressed_id]["design_ids"] += compress_id(unlocked_design)
-		if (LAZYLEN(node.unlock_ids))
-			node_cache[compressed_id]["unlock_ids"] = list()
-			for (var/unlocked_node in node.unlock_ids)
-				node_cache[compressed_id]["unlock_ids"] += compress_id(unlocked_node)
+			node_data["costs"] = list()
+			for (var/point_type, point_amount in node.research_costs)
+				node_data["costs"]["[compress_id(point_type)]"] = point_amount
+		if (LAZYLEN(node.prerequisite_nodes))
+			node_data["prerequisite_nodes"] = list()
+			for (var/prerequisite_node in node.prerequisite_nodes)
+				node_data["prerequisite_nodes"] += compress_id(prerequisite_node)
+		if (LAZYLEN(node.unlocked_designs))
+			node_data["unlocked_designs"] = list()
+			for (var/unlocked_design in node.unlocked_designs)
+				node_data["unlocked_designs"] += compress_id(unlocked_design)
+		if (LAZYLEN(node.unlocked_nodes))
+			node_data["unlocked_nodes"] = list()
+			for (var/unlocked_node in node.unlocked_nodes)
+				node_data["unlocked_nodes"] += compress_id(unlocked_node)
 		if (LAZYLEN(node.required_experiments))
-			node_cache[compressed_id]["required_experiments"] = node.required_experiments
+			node_data["required_experiments"] = node.required_experiments
 		if (LAZYLEN(node.discount_experiments))
-			node_cache[compressed_id]["discount_experiments"] = node.discount_experiments
+			node_data["discount_experiments"] = node.discount_experiments
 		if (LAZYLEN(node.discount_boosts))
-			node_cache[compressed_id]["discount_boosts"] = node.discount_boosts
+			node_data["discount_boosts"] = node.discount_boosts
+
+		var/compressed_id = "[compress_id(node_path)]"
+		node_cache[compressed_id] = node_data
 
 	// Build design cache
-	var/design_cache = list()
+	var/list/design_cache = list()
 	var/datum/asset/spritesheet_batched/research_designs/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/research_designs)
 	var/size32x32 = "[spritesheet.name]32x32"
-	for (var/design_id in SSresearch.techweb_designs)
-		var/datum/design/design = SSresearch.techweb_designs[design_id] || SSresearch.error_design
-		var/compressed_id = "[compress_id(design.id)]"
-		var/size = spritesheet.icon_size_id(design.id)
+	for (var/design_path, _design in SSresearch.techweb_designs)
+		var/datum/design/design = _design
 
-		var/cost = list()
-		var/list/materials = design.materials
-		for(var/datum/material/mat in materials)
-			cost[lang_unreverse_text(mat.name)] = OPTIMAL_COST(materials[mat]) // NOVA EDIT CHANGE - I18N - key cost by the english material name so it matches the available map (P1 doesn't translate assoc keys) - ORIGINAL: cost[mat.name] = OPTIMAL_COST(materials[mat])
+		var/list/cost = list()
+		for(var/datum/material/mat, amount in design.materials)
+			cost[mat.name] = OPTIMAL_COST(amount)
 
+		var/size = spritesheet.icon_size_id(design.asset_id)
+		var/compressed_id = "[compress_id(design_path)]"
 		design_cache[compressed_id] = list(
 			design.name,
 			cost,
 			design.build_type,
 			design.departmental_flags,
-			"[size == size32x32 ? "" : "[size] "][design.id]"
+			"[size == size32x32 ? "" : "[size] "][design.asset_id]"
 		)
-
-	// Ensure id cache is included for decompression
-	var/flat_id_cache = list()
-	for (var/id in id_cache)
-		flat_id_cache += id
 
 	var/list/department_flags = list()
 	for (var/datum/job_department/department as anything in subtypesof(/datum/job_department))
@@ -349,13 +351,16 @@ Nothing else in the console has ID requirements.
 	build_types -= "[AWAY_IMPRINTER]"
 	build_types -= "[AWAY_LATHE]"
 
-	.["static_data"] = list(
-		"node_cache" = node_cache,
-		"design_cache" = design_cache,
-		"id_cache" = flat_id_cache,
-		"SHEET_MATERIAL_AMOUNT" = SHEET_MATERIAL_AMOUNT,
-		"build_types" = build_types,
-		"department_flags" = department_flags,
+	return list(
+		"point_types_abbreviations" = SSresearch.point_types,
+		"static_data" = list(
+			"node_cache" = node_cache,
+			"design_cache" = design_cache,
+			"id_cache" = assoc_to_keys(id_cache),
+			"SHEET_MATERIAL_AMOUNT" = SHEET_MATERIAL_AMOUNT,
+			"build_types" = build_types,
+			"department_flags" = department_flags,
+		),
 	)
 
 /obj/machinery/computer/rdconsole/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -369,30 +374,30 @@ Nothing else in the console has ID requirements.
 
 	// Check if the console is locked to block any actions occuring
 	if (board.locked && action != "toggleLock")
-		say(LANG("obj.647b971b", null))
+		say(LANG("obj.647b971b5edcbdc9", null))
 		return TRUE
 
 	switch (action)
 		if ("toggleLock")
 			if(obj_flags & EMAGGED)
-				to_chat(usr, span_boldwarning(LANG("obj.45bb9000", null)))
+				to_chat(usr, span_boldwarning(LANG("obj.45bb9000b7c94bb6", null)))
 				return TRUE
 			if(allowed(usr))
 				board.locked = !board.locked
 			else
-				to_chat(usr, span_boldwarning(LANG("obj.96cdd2af", null)))
+				to_chat(usr, span_boldwarning(LANG("obj.96cdd2afe46e79cd", null)))
 			return TRUE
 
 		if ("researchNode")
-			research_node(params["node_id"], usr)
+			research_node(text2path(params["node_path"]), usr)
 			return TRUE
 
 		if ("enqueueNode")
-			enqueue_node(params["node_id"], usr)
+			enqueue_node(text2path(params["node_path"]), usr)
 			return TRUE
 
 		if ("dequeueNode")
-			dequeue_node(params["node_id"], usr)
+			dequeue_node(text2path(params["node_path"]), usr)
 			return TRUE
 
 		if ("ejectDisk")
@@ -402,37 +407,36 @@ Nothing else in the console has ID requirements.
 		if ("uploadDisk")
 			if (params["type"] == RND_DESIGN_DISK)
 				if(QDELETED(d_disk))
-					say(LANG("obj.94315700", null))
+					say(LANG("obj.943157007c8c3eb1", null))
 					return TRUE
-				for(var/D in d_disk.blueprints)
-					if(D)
-						stored_research.add_design(D, TRUE)
-				say(LANG("obj.e8f0d152", null))
+				for(var/design_path in d_disk.blueprints)
+					stored_research.add_design(design_path, TRUE)
+				say(LANG("obj.e8f0d1524040b0ff", null))
 				d_disk.on_upload(stored_research, src)
 				return TRUE
 			if (params["type"] == RND_TECH_DISK)
 				if(!COOLDOWN_FINISHED(src, cooldowncopy)) // prevents MC hang
-					say(LANG("obj.d8db2984", null))
+					say(LANG("obj.d8db2984c51f7b15", null))
 					return
 				if (QDELETED(t_disk))
-					say(LANG("obj.2dbab853", null))
+					say(LANG("obj.2dbab8539f8cb593", null))
 					return TRUE
 				COOLDOWN_START(src, cooldowncopy, 5 SECONDS)
-				say(LANG("obj.d2991b26", null))
-				t_disk.stored_research.copy_research_to(stored_research)
+				say(LANG("obj.d2991b26d042acda", null))
+				stored_research.absorb_techdisk(t_disk)
 			return TRUE
 
 		//Tech disk-only action.
 		if ("loadTech")
 			if(!COOLDOWN_FINISHED(src, cooldowncopy)) // prevents MC hang
-				say(LANG("obj.d8db2984", null))
+				say(LANG("obj.d8db2984c51f7b15", null))
 				return
 			if(QDELETED(t_disk))
-				say(LANG("obj.2dbab853", null))
+				say(LANG("obj.2dbab8539f8cb593", null))
 				return
 			COOLDOWN_START(src, cooldowncopy, 5 SECONDS)
-			say(LANG("obj.de2b87b4", null))
-			stored_research.copy_research_to(t_disk.stored_research)
+			say(LANG("obj.de2b87b4ec7ca5aa", null))
+			t_disk.stored_nodes |= stored_research.researched_nodes
 			return TRUE
 
 /obj/machinery/computer/rdconsole/proc/eject_disk(type)

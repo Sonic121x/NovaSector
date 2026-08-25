@@ -16,7 +16,7 @@
 		return
 	var/mob/M = user.mob
 	if(!M.pulling)
-		to_chat(user, span_notice(LANG("datum.6187601d", null)))
+		to_chat(user, span_notice(LANG("datum.6187601d65fa2aa9", null)))
 	else
 		M.stop_pulling()
 	return TRUE
@@ -97,7 +97,7 @@
 	var/mob/user_mob = user.mob
 	var/obj/item/item_dropped = user_mob.get_active_held_item()
 	if(!item_dropped)
-		to_chat(user, span_warning(LANG("datum.cda11ce7", null)))
+		to_chat(user, span_warning(LANG("datum.cda11ce76305889a", null)))
 		return TRUE
 	user.mob.dropItemToGround(item_dropped)
 	return TRUE
@@ -118,7 +118,7 @@
 	var/mob/user_mob = user.mob
 	var/obj/item/item_dropped = user_mob.get_active_held_item()
 	if(!item_dropped)
-		to_chat(user, span_warning(LANG("datum.cda11ce7", null)))
+		to_chat(user, span_warning(LANG("datum.cda11ce76305889a", null)))
 		return TRUE
 	if(!user_mob.Adjacent(target) || target.is_blocked_turf(source_atom = item_dropped))
 		return TRUE

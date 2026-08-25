@@ -20,7 +20,7 @@
 
 /obj/item/ai_module/law/core/full/asimov/configure(mob/user)
 	. = TRUE
-	var/targName = tgui_input_text(user, LANG("obj.37449d33", null), LANG("obj.23f74816", null), subject, max_length = MAX_NAME_LEN)
+	var/targName = tgui_input_text(user, LANG("obj.37449d3379241655", null), LANG("obj.23f74816ead0181a", null), subject, max_length = MAX_NAME_LEN)
 	if(!targName || !user.is_holding(src))
 		return
 	subject = targName
@@ -35,7 +35,7 @@
 
 /obj/item/ai_module/law/core/full/asimovpp/configure(mob/user)
 	. = TRUE
-	var/target_name = tgui_input_text(user, LANG("obj.48190ee3", null), LANG("obj.9dbc23c0", null), subject, max_length = MAX_NAME_LEN)
+	var/target_name = tgui_input_text(user, LANG("obj.48190ee3f9c5d191", null), LANG("obj.9dbc23c0a2f4a36e", null), subject, max_length = MAX_NAME_LEN)
 	if(!target_name || !user.is_holding(src))
 		return
 	laws.Cut()

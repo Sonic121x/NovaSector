@@ -93,7 +93,7 @@
 		return
 	holder.data[type] = TRUE
 
-	to_chat(user, span_greenannounce(LANG("datum.efad0ec1", list(name))))
+	to_chat(user, span_greenannounce(LANG("datum.efad0ec14f01e1cc", list(name))))
 	var/sound/sound_to_send = LAZYACCESS(GLOB.achievement_sounds, user.client.prefs.read_preference(/datum/preference/choiced/sound_achievement))
 	if(sound_to_send)
 		SEND_SOUND(user, sound_to_send)

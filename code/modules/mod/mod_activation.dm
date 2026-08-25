@@ -22,7 +22,7 @@
 	if(!istype(part) || user.incapacitated)
 		return
 	if(activating)
-		balloon_alert(user, LANG("obj.36ef03dc", list(active ? "unsealing" : "sealing")))
+		balloon_alert(user, LANG("obj.36ef03dc0b6f9baa", list(active ? "unsealing" : "sealing")))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	var/parts_to_check = parts - part
@@ -48,13 +48,13 @@
 /// Quickly deploys all parts (or retracts if all are on the wearer)
 /obj/item/mod/control/proc/quick_deploy(mob/user)
 	if(activating)
-		balloon_alert(user, LANG("obj.36ef03dc", list(active ? "unsealing" : "sealing")))
+		balloon_alert(user, LANG("obj.36ef03dc0b6f9baa", list(active ? "unsealing" : "sealing")))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	var/deploy = check_retracted()
-	wearer.visible_message(span_notice(LANG("obj.f8565331", list(wearer, src, deploy ? "deploys" : "retracts"))),
-		span_notice(LANG("obj.d8b57c6c", list(src, deploy ? "deploys" : "retracts"))),
-		span_hear(LANG("obj.66e6f68e", null)))
+	wearer.visible_message(span_notice(LANG("obj.f85653310f3ff74f", list(wearer, src, deploy ? "deploys" : "retracts"))),
+		span_notice(LANG("obj.d8b57c6c505eca47", list(src, deploy ? "deploys" : "retracts"))),
+		span_hear(LANG("obj.66e6f68e4abe62e4", null)))
 	playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	for(var/obj/item/part as anything in get_parts())
 		if(deploy && part.loc == src)
@@ -76,7 +76,7 @@
 	if(part.loc != src)
 		if(!user)
 			return FALSE
-		balloon_alert(user, LANG("obj.43c4d631", null))
+		balloon_alert(user, LANG("obj.43c4d6316af6b42d", null))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	if(part_datum.can_overslot)
 		var/obj/item/overslot = wearer.get_item_by_slot(part.slot_flags)
@@ -89,9 +89,9 @@
 		wearer.update_clothing(slot_flags|part.slot_flags)
 		SEND_SIGNAL(src, COMSIG_MOD_PART_DEPLOYED, user, part_datum)
 		if(user)
-			wearer.visible_message(span_notice(LANG("obj.e4db9d52", list(wearer, part.name, part.p_s()))),
-				span_notice(LANG("obj.ddac5225", list(part, part.p_s()))),
-				span_hear(LANG("obj.66e6f68e", null)))
+			wearer.visible_message(span_notice(LANG("obj.e4db9d524e48e4ee", list(wearer, part.name, part.p_s()))),
+				span_notice(LANG("obj.ddac522580a742b1", list(part, part.p_s()))),
+				span_hear(LANG("obj.66e6f68e4abe62e4", null)))
 			playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		if(!active || part_datum.sealed)
 			return TRUE
@@ -100,7 +100,7 @@
 			return TRUE
 		else if(delayed_seal_part(part))
 			return TRUE
-		balloon_alert(user, LANG("obj.9ac8e1a6", null))
+		balloon_alert(user, LANG("obj.9ac8e1a6d51d8da4", null))
 		retract(user, part, instant = TRUE)
 	else
 		if(part_datum.overslotting)
@@ -109,7 +109,7 @@
 				wearer.dropItemToGround(overslot, force = TRUE, silent = TRUE)
 		if(!user)
 			return FALSE
-		balloon_alert(user, LANG("obj.1cc00d42", null))
+		balloon_alert(user, LANG("obj.1cc00d4267936cb8", null))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return FALSE
 
@@ -140,7 +140,7 @@
 	if(part.loc == src)
 		if(!user)
 			return FALSE
-		balloon_alert(user, LANG("obj.a49af397", null))
+		balloon_alert(user, LANG("obj.a49af397d7825c55", null))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_MOD_PART_RETRACTING, user, part_datum) & MOD_CANCEL_RETRACTION)
@@ -151,7 +151,7 @@
 		if(instant)
 			seal_part(part, is_sealed = FALSE)
 		else if(!delayed_seal_part(part))
-			balloon_alert(user, LANG("obj.4fad4c0f", null))
+			balloon_alert(user, LANG("obj.4fad4c0f7853a3c0", null))
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return FALSE
 	REMOVE_TRAIT(part, TRAIT_NODROP, MOD_TRAIT)
@@ -164,9 +164,9 @@
 	wearer.update_clothing(slot_flags|part.slot_flags)
 	if(!user)
 		return TRUE
-	wearer.visible_message(span_notice(LANG("obj.efd6a43b", list(wearer, part.name, part.p_s(), src))),
-		span_notice(LANG("obj.9ec5ac80", list(part, part.p_s(), src))),
-		span_hear(LANG("obj.66e6f68e", null)))
+	wearer.visible_message(span_notice(LANG("obj.efd6a43bddfa1bb8", list(wearer, part.name, part.p_s(), src))),
+		span_notice(LANG("obj.9ec5ac809b3b78cd", list(part, part.p_s(), src))),
+		span_hear(LANG("obj.66e6f68e4abe62e4", null)))
 	if (!unsealing)
 		playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
@@ -175,27 +175,27 @@
 /obj/item/mod/control/proc/toggle_activate(mob/user, force_deactivate = FALSE)
 	if(!wearer)
 		if(!force_deactivate)
-			balloon_alert(user, LANG("obj.75eba58d", null))
+			balloon_alert(user, LANG("obj.75eba58d4f426d00", null))
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(!force_deactivate && (SEND_SIGNAL(src, COMSIG_MOD_ACTIVATE, user) & MOD_CANCEL_ACTIVATE))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(locked && !active && !allowed(user) && !force_deactivate)
-		balloon_alert(user, LANG("obj.57d0b858", null))
+		balloon_alert(user, LANG("obj.57d0b858ec350b65", null))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(!get_charge() && !force_deactivate)
-		balloon_alert(user, LANG("obj.64853493", null))
+		balloon_alert(user, LANG("obj.64853493b9d0bea5", null))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(open && !force_deactivate)
-		balloon_alert(user, LANG("obj.2a428bad", null))
+		balloon_alert(user, LANG("obj.2a428bad1848a353", null))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(activating)
 		if(!force_deactivate)
-			balloon_alert(user, LANG("obj.efcdedd8", list(active ? "shutting down" : "starting up")))
+			balloon_alert(user, LANG("obj.efcdedd88b34fc6c", list(active ? "shutting down" : "starting up")))
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	for(var/obj/item/mod/module/module as anything in modules)
@@ -205,12 +205,12 @@
 	activating = TRUE
 	mod_link.end_call()
 	var/original_active_status = active
-	to_chat(wearer, span_notice(LANG("obj.477386cc", list(active ? "shutting down" : "starting up"))))
+	to_chat(wearer, span_notice(LANG("obj.477386cc6d9cf5e7", list(active ? "shutting down" : "starting up"))))
 	//deploy the control unit
 	if(original_active_status)
 		if(delayed_activation())
 			playsound(src, 'sound/machines/synth/synth_no.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, frequency = 6000)
-			to_chat(wearer, span_notice(LANG("obj.871f66cc", null)))
+			to_chat(wearer, span_notice(LANG("obj.871f66ccd1c3b3bf", null)))
 		else
 			activating = FALSE
 			return
@@ -226,7 +226,7 @@
 				seal_part(sealed_part, is_sealed = !get_part_datum(sealed_part).sealed)
 			if(original_active_status)
 				control_activation(is_on = TRUE)
-			to_chat(wearer, span_notice(LANG("obj.7a7a36b9", null)))
+			to_chat(wearer, span_notice(LANG("obj.7a7a36b9083700d5", null)))
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return
 		sealed_parts += part
@@ -240,13 +240,13 @@
 			activating = FALSE
 			for(var/obj/item/sealed_part as anything in sealed_parts)
 				seal_part(sealed_part, is_sealed = !get_part_datum(sealed_part).sealed)
-			to_chat(wearer, span_notice(LANG("obj.7a7a36b9", null)))
+			to_chat(wearer, span_notice(LANG("obj.7a7a36b9083700d5", null)))
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return
 
-	to_chat(wearer, span_notice(LANG("obj.3c3748d7", list(active ? "started up. Parts sealed. Welcome" : "shut down. Parts unsealed. Goodbye", wearer))))
+	to_chat(wearer, span_notice(LANG("obj.3c3748d73a8f8a80", list(active ? "started up. Parts sealed. Welcome" : "shut down. Parts unsealed. Goodbye", wearer))))
 	if(ai_assistant)
-		to_chat(ai_assistant, span_notice(LANG("obj.5a8b54f9", list(active ? "ACTIVATED. WELCOME" : "DEACTIVATED. GOODBYE", ai_assistant))))
+		to_chat(ai_assistant, span_notice(LANG("obj.5a8b54f9e9011c79", list(active ? "ACTIVATED. WELCOME" : "DEACTIVATED. GOODBYE", ai_assistant))))
 	activating = FALSE
 	SEND_SIGNAL(src, COMSIG_MOD_TOGGLED, user)
 	return TRUE
@@ -255,7 +255,7 @@
 	. = FALSE
 	var/datum/mod_part/part_datum = get_part_datum(part)
 	if(do_after(wearer, activation_step_time, wearer, MOD_ACTIVATION_STEP_FLAGS, extra_checks = CALLBACK(src, PROC_REF(get_wearer)), cog_icon = null))
-		to_chat(wearer, span_notice(LANG("obj.dbb9c3e2", list(part, !part_datum.sealed ? part_datum.sealed_message : part_datum.unsealed_message)))) // NOVA EDIT - I18N: 密封短语是 #define，抽取器够不着 → 收进 _state_words，由 lang_localize_arg 翻实参
+		to_chat(wearer, span_notice(LANG("obj.dbb9c3e25f54066e", list(part, !part_datum.sealed ? part_datum.sealed_message : part_datum.unsealed_message)))) // NOVA EDIT - I18N: 密封短语是 #define，抽取器够不着 → 收进 _state_words，由 lang_localize_arg 翻实参
 		playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		seal_part(part, is_sealed = !part_datum.sealed)
 		return TRUE

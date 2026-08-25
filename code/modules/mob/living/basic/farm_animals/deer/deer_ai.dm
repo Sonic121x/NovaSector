@@ -40,7 +40,7 @@
 	hunt_cooldown = 15 SECONDS
 
 /datum/bt_node/ai_behavior/hunt_target/deer_mark/target_caught(mob/living/hunter, atom/hunted)
-	hunter.manual_emote(LANG("datum.99629078", list(hunted)))
+	hunter.manual_emote(LANG("datum.99629078e565fd49", list(hunted)))
 	hunter.ai_controller?.set_blackboard_key(BB_DEER_TREEHOME, hunted)
 
 

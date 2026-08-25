@@ -28,7 +28,7 @@
 
 	for(var/mob/target as anything in GLOB.player_list)
 		if(!isnewplayer(target) && !HAS_TRAIT(target, TRAIT_DEAF) && is_station_level(target.z))
-			to_chat(target, span_brass(LANG("_root.e1ac942c", null)))
+			to_chat(target, span_brass(LANG("_root.e1ac942c65a6b03c", null)))
 
 	sleep(7 SECONDS)
 
@@ -43,7 +43,7 @@
 		atom_area = get_area(atom_turf)
 
 	send_clock_message(null, "A portal has been opened at [atom_area] to our holy city, it is a glorious day in the name of Ratvar.", "<span class='bigbrass'>", msg_ghosts = FALSE)
-	notify_ghosts(LANG("_root.7f5b95e4", list(atom_area)),
+	notify_ghosts(LANG("_root.7f5b95e4818cab85", list(atom_area)),
 		source = atom_area,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "Portal to Reebe",
@@ -67,14 +67,14 @@
 	if(!atom_area)
 		atom_area = get_area(portal)
 
-	priority_announce(LANG("_root.4acfc2b5", list(atom_area)))
+	priority_announce(LANG("_root.4acfc2b5232c4806", list(atom_area)))
 
 	for(var/obj/effect/landmark/late_cog_portals/late_portal in GLOB.landmarks_list)
 		var/obj/effect/landmark/portal_exit/new_exit = new(get_turf(late_portal))
 		new_exit.id = "reebe_entry"
 		qdel(late_portal)
 
-	portal.visible_message(LANG("_root.90b375b6", list(portal)))
+	portal.visible_message(LANG("_root.90b375b614db6660", list(portal)))
 	portal.desc += " It feels easier to enter, now."
 	new /obj/effect/temp_visual/steam_release(get_turf(portal))
 	animate(portal, 3 SECONDS, color = "#326de3")

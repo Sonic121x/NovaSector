@@ -602,4 +602,4 @@
 
 	instantiated_art.teach(player)
 
-	to_chat(player, span_revenboldnotice(LANG("datum.09396859", list(uppertext(instantiated_art.name)))))
+	to_chat(player, span_revenboldnotice(LANG("datum.093968597057428e", list(uppertext(instantiated_art.name)))))

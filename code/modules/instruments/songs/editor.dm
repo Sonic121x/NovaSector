@@ -106,12 +106,12 @@
 		if("import_song")
 			var/song_text = ""
 			do
-				song_text = tgui_input_text(user, LANG("datum.c6ac2bca", null), name, max_length = (MUSIC_MAXLINES * MUSIC_MAXLINECHARS), multiline = TRUE)
+				song_text = tgui_input_text(user, LANG("datum.c6ac2bcadd7ff160", null), name, max_length = (MUSIC_MAXLINES * MUSIC_MAXLINECHARS), multiline = TRUE)
 				if(!in_range(parent, user))
 					return
 
 				if(length_char(song_text) >= MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
-					var/should_continue = tgui_alert(user, LANG("datum.77b54c36", null), LANG("datum.acf3640b", null), list("Yes", "No"))
+					var/should_continue = tgui_alert(user, LANG("datum.77b54c36eebbd522", null), LANG("datum.acf3640b5e935a18", null), list("Yes", "No"))
 					if(should_continue != "Yes")
 						break
 			while(length_char(song_text) > MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
@@ -123,7 +123,7 @@
 			tempo = sanitize_tempo(5) // default 120 BPM
 			return TRUE
 		if("add_new_line")
-			var/newline = tgui_input_text(user, LANG("datum.82770ab1", null), parent.name, max_length = MUSIC_MAXLINECHARS)
+			var/newline = tgui_input_text(user, LANG("datum.82770ab143182ebc", null), parent.name, max_length = MUSIC_MAXLINECHARS)
 			if(!newline || !in_range(parent, user))
 				return
 			if(lines.len > MUSIC_MAXLINES)
@@ -141,7 +141,7 @@
 			var/line_to_edit = params["line_editing"]
 			if(line_to_edit > lines.len || line_to_edit < 1)
 				return FALSE
-			var/new_line_text = tgui_input_text(user, LANG("datum.9981ce49", null), parent.name, lines[line_to_edit], max_length = MUSIC_MAXLINECHARS)
+			var/new_line_text = tgui_input_text(user, LANG("datum.9981ce49b20f45d3", null), parent.name, lines[line_to_edit], max_length = MUSIC_MAXLINECHARS)
 			if(isnull(new_line_text) || !in_range(parent, user))
 				return FALSE
 			lines[line_to_edit] = new_line_text
@@ -210,13 +210,13 @@
 			tempo = sanitize_tempo(5) // default 120 BPM
 		if(lines.len > MUSIC_MAXLINES)
 			if(user)
-				to_chat(user, LANG("datum.fa21178b", null))
+				to_chat(user, LANG("datum.fa21178bba3926f6", null))
 			lines.Cut(MUSIC_MAXLINES + 1)
 		var/linenum = 1
 		for(var/l in lines)
 			if(length_char(l) > MUSIC_MAXLINECHARS)
 				if(user)
-					to_chat(user, LANG("datum.29bfb118", list(linenum)))
+					to_chat(user, LANG("datum.29bfb118ee692c2b", list(linenum)))
 				lines.Remove(l)
 			else
 				linenum++

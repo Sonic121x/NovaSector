@@ -14,7 +14,7 @@
 	. = ..()
 	employee_name = new_employee_name
 	name = "paper- [employee_name] employment contract"
-	add_raw_text(LANG("obj.71f0e971", list(employee_name, employee_name))
+	add_raw_text(LANG("obj.71f0e971b4709140", list(employee_name, employee_name))
 	)
 /obj/structure/filingcabinet/employment/addFile(mob/living/carbon/human/employee)
 	new /obj/item/paper/work_contract(src, employee.mind.name)

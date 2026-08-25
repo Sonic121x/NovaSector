@@ -45,9 +45,9 @@
 
 	if(obeys_hardhats && target_head_armor >= 15) // 15 melee armor is enough that most head items dont have this, but anything above a hardhat should protect you
 		poor_target.visible_message(
-			span_warning(LANG("datum.3f2e30db", list(source, poor_target, poor_target.p_they()))),
-			span_userdanger(LANG("datum.f31f83eb", list(source))),
-			span_hear(LANG("datum.639f02d9", list(crushes_people ? "crash" : "bonk"))),
+			span_warning(LANG("datum.3f2e30dbaa19a271", list(source, poor_target, poor_target.p_they()))),
+			span_userdanger(LANG("datum.f31f83eb78a7f36a", list(source))),
+			span_hear(LANG("datum.639f02d9cddf445a", list(crushes_people ? "crash" : "bonk"))),
 		)
 
 		if(crushes_people)
@@ -65,9 +65,9 @@
 		poor_target.apply_damage(fall_damage * levels, forced = TRUE, spread_damage = TRUE, wound_bonus = fall_wound_bonus)
 
 	poor_target.visible_message(
-		span_userdanger(LANG("datum.800d12d6", list(source, poor_target, crushes_people ? "crushing [poor_target.p_them()]" : "hitting [poor_target.p_them()]", target_head ? "on the head!" : "!"))),
-		span_userdanger(LANG("datum.04ed122a", list(crushes_people ? "crushed" : "hit", source))),
-		span_hear(LANG("datum.639f02d9", list(crushes_people ? "crash" : "bonk"))),
+		span_userdanger(LANG("datum.800d12d6cd38a017", list(source, poor_target, crushes_people ? "crushing [poor_target.p_them()]" : "hitting [poor_target.p_them()]", target_head ? "on the head!" : "!"))),
+		span_userdanger(LANG("datum.04ed122a7fcee927", list(crushes_people ? "crushed" : "hit", source))),
+		span_hear(LANG("datum.639f02d9cddf445a", list(crushes_people ? "crash" : "bonk"))),
 	)
 
 	playsound(poor_target, impact_sound, 50, TRUE)

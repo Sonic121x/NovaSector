@@ -79,7 +79,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	if(locked)
 		if(COOLDOWN_FINISHED(src, breakout_message_cooldown))
 			COOLDOWN_START(src, breakout_message_cooldown, BREAKOUT_COOLDOWN)
-			to_chat(user, span_warning(LANG("obj.c4e897cb", list(src))))
+			to_chat(user, span_warning(LANG("obj.c4e897cb78099448", list(src))))
 		return
 	open()
 
@@ -88,10 +88,10 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	if(.)
 		return
 	if(locked)
-		to_chat(user, span_danger(LANG("obj.c706331d", null)))
+		to_chat(user, span_danger(LANG("obj.c706331d8d8e2d98", null)))
 		return
 	if(!connected)
-		to_chat(user, LANG("obj.33df4073", null))
+		to_chat(user, LANG("obj.33df40731963f2a6", null))
 		return
 	if(connected.loc == src)
 		open()
@@ -117,15 +117,15 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	user.visible_message(null, \
-		span_notice(LANG("obj.03c1b8cc", list(src, DisplayTimeText(BREAKDOWN_TIME)))), \
-		span_hear(LANG("obj.a1d9c573", list(src))))
+		span_notice(LANG("obj.03c1b8cc689e06f3", list(src, DisplayTimeText(BREAKDOWN_TIME)))), \
+		span_hear(LANG("obj.a1d9c5733c600b1c", list(src))))
 	if(!do_after(user, BREAKDOWN_TIME, target = src))
 		return
 	if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src)
 		return
 	user.visible_message(
-		span_warning(LANG("obj.37696909", list(user, src))),
-		span_notice(LANG("obj.81c31f6b", list(src))),
+		span_warning(LANG("obj.37696909131e91b5", list(user, src))),
+		span_notice(LANG("obj.81c31f6b9b00625a", list(src))),
 	)
 	open()
 
@@ -367,17 +367,17 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 /obj/structure/bodycontainer/morgue/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.3f64bee0", list(beeper ? "enabled" : "disabled")))
+	. += span_notice(LANG("obj.3f64bee0d27e7cde", list(beeper ? "enabled" : "disabled")))
 
 /obj/structure/bodycontainer/morgue/click_alt(mob/user)
 	beeper = !beeper
-	to_chat(user, span_notice(LANG("obj.81afc371", list(beeper ? "on" : "off"))))
+	to_chat(user, span_notice(LANG("obj.81afc37167d6be93", list(beeper ? "on" : "off"))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/structure/bodycontainer/morgue/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, LANG("obj.a5315f1a", null))
+	balloon_alert(user, LANG("obj.a5315f1afc331c4d", null))
 	obj_flags |= EMAGGED
 	update_appearance(UPDATE_ICON)
 	return TRUE
@@ -407,7 +407,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	. = ..()
 	underlays.Cut()
 
-	if(name != initial(name) && lang_unreverse_text(name) != initial(name)) // NOVA EDIT - i18n: a reverse-localized default name isn't a rename (else every morgue gets the label overlay)
+	if(name != initial(name))
 		. += "[base_icon_state]_label"
 
 #undef MORGUE_EMPTY
@@ -444,7 +444,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	return ..()
 
 /obj/structure/bodycontainer/crematorium/attack_robot(mob/user) //Borgs can't use crematoriums without help
-	to_chat(user, span_warning(LANG("obj.c79322c0", list(src))))
+	to_chat(user, span_warning(LANG("obj.c79322c0b92b7a71", list(src))))
 	return
 
 /obj/structure/bodycontainer/crematorium/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
@@ -467,10 +467,10 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	// Make sure we don't delete the actual morgue and its tray
 	var/list/conts = get_all_contents() - src - connected
 	if(!length(conts))
-		audible_message(span_hear(LANG("obj.8caced47", null)))
+		audible_message(span_hear(LANG("obj.8caced47034e52fb", null)))
 		return
 
-	audible_message(span_hear(LANG("obj.ba096ac4", null)))
+	audible_message(span_hear(LANG("obj.ba096ac4d5497010", null)))
 	locked = TRUE
 	update_appearance()
 
@@ -564,7 +564,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	if (connected)
 		connected.close()
 	else
-		to_chat(user, span_warning(LANG("obj.276fd280", null)))
+		to_chat(user, span_warning(LANG("obj.276fd2808bbd5bdb", null)))
 	add_fingerprint(user)
 
 /obj/structure/tray/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -592,7 +592,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 			return
 	O.forceMove(src.loc)
 	if (user != O)
-		visible_message(span_warning(LANG("obj.5235890c", list(user, O, src))))
+		visible_message(span_warning(LANG("obj.5235890c7d667124", list(user, O, src))))
 
 /*
  * Crematorium tray

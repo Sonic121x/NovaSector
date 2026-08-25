@@ -81,7 +81,7 @@
 	var/mob/mob_source = source
 
 	if (!mob_source.can_put_in_hand(equipping, hand_index))
-		to_chat(src, span_warning(LANG("datum.d9b5cebb", list(equipping))))
+		to_chat(src, span_warning(LANG("datum.d9b5cebb62f55045", list(equipping))))
 		return FALSE
 
 	return TRUE

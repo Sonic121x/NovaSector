@@ -59,7 +59,7 @@
 	new_file.calculate_size()
 	var/file_stored = target_disk ? target_disk.add_file(new_file) : computer.store_file(new_file, user)
 	if(!file_stored)
-		to_chat(user, span_warning(LANG("datum.44a423a7", null)))
+		to_chat(user, span_warning(LANG("datum.44a423a7ed0da2ea", null)))
 		qdel(new_file)
 		return
 

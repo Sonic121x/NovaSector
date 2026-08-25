@@ -15,14 +15,14 @@
 		return
 
 	if(is_absorbing)
-		owner.balloon_alert(owner, LANG("datum.6deac844", null))
+		owner.balloon_alert(owner, LANG("datum.6deac8444ac40d43", null))
 		return
 
 	if(!owner.pulling || !iscarbon(owner.pulling))
-		owner.balloon_alert(owner, LANG("datum.26fa5f54", null))
+		owner.balloon_alert(owner, LANG("datum.26fa5f5417019556", null))
 		return
 	if(owner.grab_state <= GRAB_NECK)
-		owner.balloon_alert(owner, LANG("datum.c94c592f", null))
+		owner.balloon_alert(owner, LANG("datum.c94c592f86e3d796", null))
 		return
 
 	var/mob/living/carbon/target = owner.pulling
@@ -40,7 +40,7 @@
 		return
 
 	SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "4"))
-	owner.visible_message(span_danger(LANG("datum.d937450a", list(owner, target))), span_notice(LANG("datum.1876b9ef", list(target))))
+	owner.visible_message(span_danger(LANG("datum.d937450ae7e88f9e", list(owner, target))), span_notice(LANG("datum.1876b9ef7bf9ca2d", list(target))))
 
 	if(target.client && target.mind)
 		var/mob/eye/imaginary_friend/hivemind/new_member = new(target.loc)
@@ -53,7 +53,7 @@
 
 	var/true_absorbtion = (!isnull(target.client) || !isnull(target.mind) || !isnull(target.last_mind))
 	if (!true_absorbtion)
-		to_chat(owner, span_changeling(span_bold(LANG("datum.5944122c", list(target)))))
+		to_chat(owner, span_changeling(span_bold(LANG("datum.5944122c93382cf4", list(target)))))
 
 	if(!changeling.has_profile_with_dna(target.dna))
 		changeling.add_new_profile(target)
@@ -118,17 +118,17 @@
 
 	if(recent_speech.len)
 		changeling.antag_memory += "Some of [target]'s speech patterns, we should study these to better impersonate [target.p_them()]: "
-		to_chat(owner, span_boldnotice(LANG("datum.45ecc4e3", list(target, target.p_them()))))
+		to_chat(owner, span_boldnotice(LANG("datum.45ecc4e36aaa874d", list(target, target.p_them()))))
 		for(var/spoken_memory in recent_speech)
 			changeling.antag_memory += " \"[spoken_memory]\""
 			to_chat(owner, span_notice("\"[spoken_memory]\""))
 		changeling.antag_memory += ". We have no more knowledge of [target]'s speech patterns. "
-		to_chat(owner, span_boldnotice(LANG("datum.25c00917", list(target))))
+		to_chat(owner, span_boldnotice(LANG("datum.25c009177007fd4f", list(target))))
 
 
 	var/datum/antagonist/changeling/target_ling = IS_CHANGELING(target)
 	if(target_ling)//If the target was a changeling, suck out their extra juice and objective points!
-		to_chat(owner, span_boldnotice(LANG("datum.7152d375", list(target))))
+		to_chat(owner, span_boldnotice(LANG("datum.7152d3755b25a534", list(target))))
 
 		// Gain half of their genetic points.
 		var/genetic_points_to_add = round(target_ling.total_genetic_points / 2)
@@ -153,18 +153,18 @@
 	for(var/absorbing_iteration in 1 to 3)
 		switch(absorbing_iteration)
 			if(1)
-				to_chat(owner, span_notice(LANG("datum.efc89d3e", null)))
+				to_chat(owner, span_notice(LANG("datum.efc89d3e8bcdb50d", null)))
 			if(2)
-				owner.visible_message(span_warning(LANG("datum.81e0a6f8", list(owner))), span_notice(LANG("datum.0e04c1d3", null)))
+				owner.visible_message(span_warning(LANG("datum.81e0a6f8b70abdd1", list(owner))), span_notice(LANG("datum.0e04c1d33fb7e8e2", null)))
 			if(3)
 				absorbing_loop = new(owner, start_immediately = TRUE)
-				owner.visible_message(span_danger(LANG("datum.6fe7f6bf", list(owner, target))), span_notice(LANG("datum.b0b54953", list(target))))
-				to_chat(target, span_userdanger(LANG("datum.c05e1a38", null)))
+				owner.visible_message(span_danger(LANG("datum.6fe7f6bf4fbe7c2c", list(owner, target))), span_notice(LANG("datum.b0b54953dd5726fd", list(target))))
+				to_chat(target, span_userdanger(LANG("datum.c05e1a38e8ce51ab", null)))
 				target.take_overall_damage(40)
 
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "[absorbing_iteration]"))
 		if(!do_after(owner, 15 SECONDS, target, cog_icon = null))
-			owner.balloon_alert(owner, LANG("datum.c67b5d27", null))
+			owner.balloon_alert(owner, LANG("datum.c67b5d274d6e724b", null))
 			qdel(absorbing_loop)
 			is_absorbing = FALSE
 			return FALSE
@@ -218,7 +218,7 @@
 		exit_hivemind()
 
 /mob/eye/imaginary_friend/hivemind/proc/exit_hivemind()
-	var/response = tgui_alert(src, LANG("mob.8736418a", null), LANG("mob.d25e56ec", null), list("Exit", "Stay"))
+	var/response = tgui_alert(src, LANG("mob.8736418a2a9d8a61", null), LANG("mob.d25e56ec0c9f04d0", null), list("Exit", "Stay"))
 	if(response != "Exit" || QDELETED(src))
 		return
 	ghostize(TRUE)
@@ -280,12 +280,12 @@
 		qdel(src)
 		return FALSE
 
-	var/chosen = tgui_input_list(owner, LANG("datum.61ffd144", null), LANG("datum.9b71a0c6", null), freeloaders)
+	var/chosen = tgui_input_list(owner, LANG("datum.61ffd1444791d405", null), LANG("datum.9b71a0c6fcd1ee0c", null), freeloaders)
 	var/mob/eye/imaginary_friend/hivemind/freeloader = freeloaders[chosen]
 	if(QDELETED(freeloader) || QDELETED(src))
 		return FALSE
 
-	to_chat(freeloader, span_userdanger(LANG("datum.8605b927", null)))
+	to_chat(freeloader, span_userdanger(LANG("datum.8605b9273fcbd16b", null)))
 	qdel(freeloader)
 	..()
 	return TRUE

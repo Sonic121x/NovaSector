@@ -45,7 +45,7 @@
 		)
 	if(hitting_projectile.suppressed != SUPPRESSED_VERY)
 		visible_message(
-			span_danger(LANG("obj.b8e00457", list(src, hitting_projectile, damage_sustained ? "" : ", [no_damage_feedback]"))),
+			span_danger(LANG("obj.b8e00457ca5b5718", list(src, hitting_projectile, damage_sustained ? "" : ", [no_damage_feedback]"))),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 		)
 
@@ -58,7 +58,7 @@
 	else
 		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
 	var/damage = take_damage(hulk_damage(), BRUTE, MELEE, 0, get_dir(src, user))
-	user.visible_message(span_danger(LANG("obj.97aaed12", list(user, src, damage ? "" : ", [no_damage_feedback]"))), span_danger(LANG("obj.c8deea95", list(src, damage ? "" : ", [no_damage_feedback]"))), null, COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_danger(LANG("obj.97aaed127428431c", list(user, src, damage ? "" : ", [no_damage_feedback]"))), span_danger(LANG("obj.c8deea95c21195d8", list(src, damage ? "" : ", [no_damage_feedback]"))), null, COMBAT_MESSAGE_RANGE)
 	return TRUE
 
 /obj/blob_act(obj/structure/blob/B)

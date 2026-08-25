@@ -30,8 +30,8 @@
 /datum/vote/custom_vote/create_vote(mob/vote_creator)
 	var/custom_count_method = tgui_input_list(
 		user = vote_creator,
-		message = "Single or multiple choice?",
-		title = "Choice Method",
+		message = LANG("datum.bbe82c356b82235c", null),
+		title = LANG("datum.84e9a377ea157578", null),
 		items = list("Single", "Multiple"),
 		default = "Single",
 	)
@@ -44,13 +44,13 @@
 			return FALSE
 		else
 			stack_trace("Got '[custom_count_method]' in create_vote() for custom voting.")
-			to_chat(vote_creator, span_boldwarning(LANG("datum.af397410", null)))
+			to_chat(vote_creator, span_boldwarning(LANG("datum.af39741091b78e82", null)))
 			return FALSE
 
 	var/custom_win_method = tgui_input_list(
 		user = vote_creator,
-		message = "How should the vote winner be determined?",
-		title = "Winner Method",
+		message = LANG("datum.607a30ba21af44a8", null),
+		title = LANG("datum.5553562d2fd6336a", null),
 		items = list("Simple", "Weighted Random", "No Winner"),
 		default = "Simple",
 	)
@@ -65,13 +65,13 @@
 			return FALSE
 		else
 			stack_trace("Got '[custom_win_method]' in create_vote() for custom voting.")
-			to_chat(vote_creator, span_boldwarning(LANG("datum.52bffd7f", null)))
+			to_chat(vote_creator, span_boldwarning(LANG("datum.52bffd7fcbfdd95c", null)))
 			return FALSE
 
 	var/display_stats = tgui_alert(
 		vote_creator,
-		LANG("datum.7998d1d2", null),
-		LANG("datum.8c4cf8fe", null),
+		LANG("datum.7998d1d2c53dba24", null),
+		LANG("datum.8c4cf8fef3b2b93c", null),
 		list("Yes", "No"),
 	)
 
@@ -82,8 +82,8 @@
 	if (!display_statistics)
 		var/set_print_result = tgui_alert(
 			vote_creator,
-			LANG("datum.52aba783", null),
-			LANG("datum.136c1bae", null),
+			LANG("datum.52aba783adabfc19", null),
+			LANG("datum.136c1bae7036305c", null),
 			list("Yes", "No"),
 		)
 
@@ -92,13 +92,13 @@
 
 		print_results = set_print_result == "Yes"
 
-	override_question = tgui_input_text(vote_creator, LANG("datum.499af380", null), LANG("datum.43aff5cd", null))
+	override_question = tgui_input_text(vote_creator, LANG("datum.499af3807ef2b8c8", null), LANG("datum.43aff5cd95e8d9aa", null))
 	if(!override_question)
 		return FALSE
 
 	default_choices = list()
 	for(var/i in 1 to MAX_CUSTOM_VOTE_OPTIONS)
-		var/option = tgui_input_text(vote_creator, LANG("datum.f2cced25", list(MAX_CUSTOM_VOTE_OPTIONS)), LANG("datum.9cb8b820", null), max_length = MAX_NAME_LEN)
+		var/option = tgui_input_text(vote_creator, LANG("datum.f2cced25a446e307", list(MAX_CUSTOM_VOTE_OPTIONS)), LANG("datum.9cb8b82064c9e7e8", null), max_length = MAX_NAME_LEN)
 		if(!vote_creator?.client)
 			return FALSE
 		if(!option)
@@ -116,6 +116,6 @@
 
 /datum/vote/custom_vote/initiate_vote(initiator, duration)
 	. = ..()
-	. += LANG("datum.65aac1b5", list(override_question))
+	. += LANG("datum.65aac1b5abce675a", list(override_question))
 
 #undef MAX_CUSTOM_VOTE_OPTIONS

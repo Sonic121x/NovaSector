@@ -139,7 +139,7 @@
 
 	used = TRUE
 	var/turf/cur_tur = get_turf(src)
-	cur_tur.visible_message(span_nicegreen(LANG("obj.b9e59501", list(incoming_shot, src))))
+	cur_tur.visible_message(span_nicegreen(LANG("obj.b9e59501b636a036", list(incoming_shot, src))))
 	iterate_splitshots(shooter, incoming_shot)
 	QDEL_IN(src, 0.25 SECONDS) // may not be needed
 

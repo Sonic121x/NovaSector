@@ -81,7 +81,7 @@
 			kitty_tail.Insert(soon_to_be_felinid, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 	if(!silent)
-		to_chat(soon_to_be_felinid, span_boldnotice(LANG("_root.94a1aa23", null)))
+		to_chat(soon_to_be_felinid, span_boldnotice(LANG("_root.94a1aa23890a1f77", null)))
 		playsound(get_turf(soon_to_be_felinid), 'sound/effects/meow1.ogg', 50, TRUE, -1)
 
 /proc/purrbation_remove(mob/living/carbon/human/purrbated_human, silent = FALSE)
@@ -115,7 +115,7 @@
 			var/obj/item/organ/new_ears = new target_species.mutantears()
 			new_ears.Insert(purrbated_human, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 	if(!silent)
-		to_chat(purrbated_human, span_boldnotice(LANG("_root.21830445", null)))
+		to_chat(purrbated_human, span_boldnotice(LANG("_root.218304451e4953ef", null)))
 
 /datum/species/human/felinid/prepare_human_for_preview(mob/living/carbon/human/human_for_preview)
 	human_for_preview.set_haircolor("#ffcccc", update = FALSE) // pink
@@ -165,32 +165,32 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "grin-tongue",
-			SPECIES_PERK_NAME = LANG("datum.62de8b3c", null),
-			SPECIES_PERK_DESC = LANG("datum.cff916c1", null),
+			SPECIES_PERK_NAME = LANG("datum.62de8b3c2d75be9b", null),
+			SPECIES_PERK_DESC = LANG("datum.cff916c152c41e3d", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = FA_ICON_PERSON_FALLING,
-			SPECIES_PERK_NAME = LANG("datum.1f38b723", null),
-			SPECIES_PERK_DESC = LANG("datum.07ab212c", null),
+			SPECIES_PERK_NAME = LANG("datum.1f38b723a08b6c5d", null),
+			SPECIES_PERK_DESC = LANG("datum.07ab212c314855af", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "assistive-listening-systems",
-			SPECIES_PERK_NAME = LANG("datum.bb136bbd", null),
-			SPECIES_PERK_DESC = LANG("datum.c9ae9ae8", null),
+			SPECIES_PERK_NAME = LANG("datum.bb136bbdf22cb336", null),
+			SPECIES_PERK_DESC = LANG("datum.c9ae9ae89992156d", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "shower",
-			SPECIES_PERK_NAME = LANG("datum.5a8385f8", null),
-			SPECIES_PERK_DESC = LANG("datum.f79e4d83", null),
+			SPECIES_PERK_NAME = LANG("datum.5a8385f8f66b6fe0", null),
+			SPECIES_PERK_DESC = LANG("datum.f79e4d839f89b697", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_ANGRY,
-			SPECIES_PERK_NAME = LANG("datum.f0feccbc", null),
-			SPECIES_PERK_DESC = LANG("datum.a9f0d4a9", null),
+			SPECIES_PERK_NAME = LANG("datum.f0feccbc5767a638", null),
+			SPECIES_PERK_DESC = LANG("datum.a9f0d4a9ad627d31", null),
 		),
 	)
 	return to_add

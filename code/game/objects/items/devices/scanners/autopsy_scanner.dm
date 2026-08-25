@@ -27,20 +27,20 @@
 	var/mob/living/scanned = interacting_with
 
 	if(!IS_DEAD_OR_FAKING(scanned)) // good job, you found a loophole
-		to_chat(user, span_deadsay(LANG("obj.2965ff93", list(icon2html(src, user)))))
+		to_chat(user, span_deadsay(LANG("obj.2965ff93eb6bfa62", list(icon2html(src, user)))))
 		return ITEM_INTERACT_BLOCKING
 
 	. = ITEM_INTERACT_SUCCESS
 
 	// Clumsiness/brain damage check
 	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
-		user.visible_message(span_warning(LANG("obj.248424c2", list(user))), \
-							span_notice(LANG("obj.6f2bddff", null)))
-		to_chat(user, LANG("obj.cf456ff6", list(span_info("Analyzing results for The floor:\n\tOverall status: <b>Healthy</b>"), span_info("Key: <font color='#00cccc'>Suffocation</font>/<font color='#00cc66'>Toxin</font>/<font color='#ffcc33'>Burn</font>/<font color='#ff3333'>Brute</font>"), span_info("\tDamage specifics: <font color='#66cccc'>0</font>-<font color='#00cc66'>0</font>-<font color='#ff9933'>0</font>-<font color='#ff3333'>0</font>"), span_info("Body temperature: ???"))))
+		user.visible_message(span_warning(LANG("obj.248424c2caac2d7b", list(user))), \
+							span_notice(LANG("obj.6f2bddff34b91911", null)))
+		to_chat(user, LANG("obj.cf456ff6bfcc62c4", list(span_info("Analyzing results for The floor:\n\tOverall status: <b>Healthy</b>"), span_info("Key: <font color='#00cccc'>Suffocation</font>/<font color='#00cc66'>Toxin</font>/<font color='#ffcc33'>Burn</font>/<font color='#ff3333'>Brute</font>"), span_info("\tDamage specifics: <font color='#66cccc'>0</font>-<font color='#00cc66'>0</font>-<font color='#ff9933'>0</font>-<font color='#ff3333'>0</font>"), span_info("Body temperature: ???"))))
 		return
 
-	user.visible_message(span_notice(LANG("obj.82a06b4d", list(user, scanned))))
-	to_chat(user, span_deadsay(LANG("obj.0c812736", list(icon2html(src, user)))))
+	user.visible_message(span_notice(LANG("obj.82a06b4d712a306f", list(user, scanned))))
+	to_chat(user, span_deadsay(LANG("obj.0c812736059cb18c", list(icon2html(src, user)))))
 
 	healthscan(user, scanned, scanpower = SCANPOWER_ADVANCED)
 
@@ -240,9 +240,9 @@
 
 	autopsy_information += "<b>Coroner's Notes:</b>" //Bottom of the page, anything past here is player-written
 
-	final_report_text += jointext(autopsy_information, "")
+	final_report_text += lang_localize_autopsy(jointext(autopsy_information, "")) // NOVA EDIT CHANGE - i18n: localize composed report structural labels (bypasses sink/P1; same as health_analyzer) - ORIGINAL: final_report_text += jointext(autopsy_information, "")
 	autopsy_report.add_raw_text(final_report_text, advanced_html = TRUE)
 	autopsy_report.update_appearance()
 	user.put_in_hands(autopsy_report)
-	user.balloon_alert(user, LANG("obj.e8f5d34f", null))
+	user.balloon_alert(user, LANG("obj.e8f5d34f53c7130e", null))
 	return TRUE

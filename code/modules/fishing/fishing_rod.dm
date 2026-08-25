@@ -127,20 +127,20 @@
 	if(bait)
 		equipped_stuff += "[icon2html(bait, user)] <b>[bait]</b>"
 	if(length(equipped_stuff))
-		. += span_notice(LANG("obj.dd85ec64", list(english_list(equipped_stuff))))
+		. += span_notice(LANG("obj.dd85ec6479efb9f7", list(lang_english_list(equipped_stuff))))
 	if(!bait)
-		. += span_warning(LANG("obj.32754eb0", null))
+		. += span_warning(LANG("obj.32754eb0f252dbf1", null))
 	if(HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISH))
 		. += "" //add a new line
-		. += span_notice(LANG("obj.d23a5cd0", null))
+		. += span_notice(LANG("obj.d23a5cd0747de8f0", null))
 		return
 	if(HAS_TRAIT(src, TRAIT_ROD_MANSUS_INFUSED))
 		if(IS_HERETIC(user))
-			. += span_purple(LANG("obj.f252ad7a", null))
+			. += span_purple(LANG("obj.f252ad7a795181b4", null))
 		else
-			. += span_purple(LANG("obj.5370c755", null))
+			. += span_purple(LANG("obj.5370c755186dc754", null))
 	else if(IS_HERETIC(user))
-		. += span_purple(LANG("obj.3205e25e", null))
+		. += span_purple(LANG("obj.3205e25e07df48d6", null))
 
 /obj/item/fishing_rod/examine_more(mob/user)
 	. = ..()
@@ -149,7 +149,7 @@
 
 	var/list/block = list()
 	var/get_percent = HAS_MIND_TRAIT(user, TRAIT_EXAMINE_DEEPER_FISH)
-	block += span_info(LANG("obj.78f96eed", list(get_cast_range())))
+	block += span_info(LANG("obj.78f96eedf1ee1b3a", list(get_cast_range())))
 	block += get_stat_info(get_percent, difficulty_modifier * 0.01, "Fishing will be", "easier", "harder", "with this fishing rod")
 	block += get_stat_info(get_percent, experience_multiplier - 1, "You will gain experience", "faster", "slower")
 	block += get_stat_info(get_percent, completion_speed_mult - 1, "The minigame completion speed is", "faster", "slower")
@@ -163,11 +163,11 @@
 
 	block = list()
 	if(HAS_TRAIT(src, TRAIT_ROD_IGNORE_ENVIRONMENT))
-		block += span_info(LANG("obj.9e215080", null))
+		block += span_info(LANG("obj.9e21508050a63698", null))
 	if(HAS_TRAIT_NOT_FROM(src, TRAIT_ROD_REMOVE_FISHING_DUD, INNATE_TRAIT)) // Duds are innately removed by baits, we all know that.
-		block += span_info(LANG("obj.05732498", null))
+		block += span_info(LANG("obj.0573249823d50e51", null))
 	if(HAS_TRAIT(src, TRAIT_ROD_LAVA_USABLE))
-		block += span_info(LANG("obj.83664179", null))
+		block += span_info(LANG("obj.8366417984903e2c", null))
 	if(length(block))
 		. += boxed_message(block.Join("\n"))
 
@@ -259,7 +259,7 @@
 		return
 
 	if(currently_hooked.anchored || currently_hooked.move_resist >= MOVE_FORCE_STRONG)
-		balloon_alert(user, LANG("obj.603e3616", list(currently_hooked.p_they())))
+		balloon_alert(user, LANG("obj.603e3616aa0203f4", list(currently_hooked.p_they())))
 		return
 
 	//About thirty minutes of non-stop reeling to get from zero to master... not worth it but hey, you do what you do.
@@ -377,7 +377,7 @@
 
 /obj/item/fishing_rod/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!hook)
-		balloon_alert(user, LANG("obj.c02cf4e9", null))
+		balloon_alert(user, LANG("obj.c02cf4e9e5051bdc", null))
 		return ITEM_INTERACT_BLOCKING
 
 	// Reel in if able
@@ -403,7 +403,7 @@
 	if(casting || currently_hooked)
 		return
 	if(!hook)
-		balloon_alert(user, LANG("obj.c02cf4e9", null))
+		balloon_alert(user, LANG("obj.c02cf4e9e5051bdc", null))
 		return
 	if(!COOLDOWN_FINISHED(src, casting_cd))
 		return
@@ -590,16 +590,16 @@
 	// Trying to remove the item
 	if(!new_item && current_item)
 		user.put_in_hands(current_item)
-		balloon_alert(user, LANG("obj.2a4235b4", list(slot)))
+		balloon_alert(user, LANG("obj.2a4235b4837591d1", list(slot)))
 	// Trying to insert item into empty slot
 	else if(new_item && !current_item)
 		if(!slot_check(new_item, slot))
 			return
 		if(user.transferItemToLoc(new_item,src))
 			set_slot(new_item, slot)
-			balloon_alert(user, LANG("obj.7bd56e79", list(slot)))
+			balloon_alert(user, LANG("obj.7bd56e79b809f32a", list(slot)))
 		else
-			balloon_alert(user, LANG("obj.2410a229", null))
+			balloon_alert(user, LANG("obj.2410a22944cfb073", null))
 			return
 	/// Trying to swap item
 	else if(new_item && current_item)
@@ -608,9 +608,9 @@
 		if(user.transferItemToLoc(new_item, src))
 			user.put_in_hands(current_item)
 			set_slot(new_item, slot)
-			balloon_alert(user, LANG("obj.43586bcc", list(slot)))
+			balloon_alert(user, LANG("obj.43586bcce3afbe2e", list(slot)))
 		else
-			balloon_alert(user, LANG("obj.2410a229", null))
+			balloon_alert(user, LANG("obj.2410a22944cfb073", null))
 			return
 
 	update_icon()
@@ -710,7 +710,7 @@
 /obj/item/fishing_rod/telescopic/cast_line(atom/target, mob/user, proximity_flag)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		if(!proximity_flag)
-			balloon_alert(user, LANG("obj.75b8476a", null))
+			balloon_alert(user, LANG("obj.75b8476ab983b898", null))
 		return
 	return ..()
 
@@ -802,7 +802,7 @@
 
 /obj/item/fishing_rod/tech/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.89b193b1", null))
+	. += span_notice(LANG("obj.89b193b1b39a55ea", null))
 
 /obj/item/fishing_rod/tech/use_slot(slot, mob/user, obj/item/new_item)
 	if(slot == ROD_SLOT_BAIT)

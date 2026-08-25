@@ -62,7 +62,7 @@
 					neckgrab_throw = TRUE
 				stop_pulling()
 				if(HAS_TRAIT(src, TRAIT_PACIFISM) || HAS_TRAIT(src, TRAIT_NO_THROWING))
-					to_chat(src, span_notice(LANG("mob.306ecad3", list(throwable_mob))))
+					to_chat(src, span_notice(LANG("mob.306ecad336a659da", list(throwable_mob))))
 					return FALSE
 	else
 		thrown_thing = held_item.on_thrown(src, target)
@@ -114,8 +114,8 @@
 	frequency_number = frequency_number + (rand(-5,5)/100); //Adds a bit of randomness in the frequency to not sound exactly the same.
 	//The volume of the sound takes the minimum between the distance thrown or the max range an item, but no more than 50. Short throws are quieter. A fast throwing speed also makes the noise sharper.
 	playsound(src, throwsound, clamp(8*min(get_dist(loc,target),thrown_thing.throw_range), 10, 50), vary = TRUE, extrarange = -1, frequency = frequency_number)
-	visible_message(span_danger("[src] [verb_text][plural_s(verb_text)] [thrown_thing][power_throw_text]"), \
-					span_danger(LANG("mob.487aa5e9", list(verb_text, thrown_thing, power_throw_text))))
+	visible_message(span_danger(LANG("mob.9403c88fb17b8ea4", list(src, verb_text, plural_s(verb_text), thrown_thing, power_throw_text))), \
+					span_danger(LANG("mob.487aa5e91aa07e39", list(verb_text, thrown_thing, power_throw_text))))
 	log_message("has thrown [thrown_thing] [power_throw_text]", LOG_ATTACK)
 
 	var/drift_force = max(0.5 NEWTONS, 1 NEWTONS + power_throw)
@@ -136,52 +136,52 @@
  */
 /mob/living/proc/give(mob/living/offered, obj/item/item_bypass)
 	if(has_status_effect(/datum/status_effect/offering))
-		to_chat(src, span_warning(LANG("mob.8f11a8ec", null)))
+		to_chat(src, span_warning(LANG("mob.8f11a8ec7815bfd4", null)))
 		return
 
 	if(src.incapacitated)
-		to_chat(src, span_warning(LANG("mob.df8a593f", null)))
+		to_chat(src, span_warning(LANG("mob.df8a593f2814a468", null)))
 		return
 
 	var/obj/item/offered_item = item_bypass ? item_bypass : get_active_held_item()
 	// if it's an abstract item, should consider it to be non-existent (unless it's a HAND_ITEM, which means it's an obj/item that is just a representation of our hand)
 	if(!offered_item || ((offered_item.item_flags & ABSTRACT && !HAS_TRAIT(offered_item, TRAIT_BORG_GIVE)) && !HAS_TRAIT(offered_item, TRAIT_OFFERED_WHEN_PULLED) && !(offered_item.item_flags & HAND_ITEM)))
-		to_chat(src, span_warning(LANG("mob.15fe831e", null)))
+		to_chat(src, span_warning(LANG("mob.15fe831e6a090b46", null)))
 		return
 
 	if(offered)
 		if(offered == src)
 			if(!swap_hand(get_inactive_hand_index())) //have to swap hands first to take something
-				to_chat(src, span_warning(LANG("mob.e6f9d759", list(offered_item))))
+				to_chat(src, span_warning(LANG("mob.e6f9d759a070dcb0", list(offered_item))))
 				return
 			if(!put_in_active_hand(offered_item))
-				to_chat(src, span_warning(LANG("mob.e6f9d759", list(offered_item))))
+				to_chat(src, span_warning(LANG("mob.e6f9d759a070dcb0", list(offered_item))))
 				return
 			else
-				to_chat(src, span_notice(LANG("mob.7d1c80f1", list(offered_item))))
+				to_chat(src, span_notice(LANG("mob.7d1c80f17edd03b4", list(offered_item))))
 				return
 
 		if(offered.incapacitated)
-			to_chat(src, span_warning(LANG("mob.9d696b5b", list(offered.p_Theyre(), offered.p_their()))))
+			to_chat(src, span_warning(LANG("mob.9d696b5b47ccad13", list(offered.p_Theyre(), offered.p_their()))))
 			return
 
 		if(!offered.IsReachableBy(src))
-			to_chat(src, span_warning(LANG("mob.1fa5537c", list(offered.p_them()))))
+			to_chat(src, span_warning(LANG("mob.1fa5537c6c0a0373", list(offered.p_them()))))
 			return
 
 		if(!HAS_TRAIT(offered, TRAIT_CAN_HOLD_ITEMS))
-			to_chat(src, span_warning(LANG("mob.4410cf3a", list(offered.p_They()))))
+			to_chat(src, span_warning(LANG("mob.4410cf3a8138d254", list(offered.p_They()))))
 			return
 	else if(!(locate(/mob/living) in orange(1, src)))
-		to_chat(src, span_warning(LANG("mob.8dd4bef3", null)))
+		to_chat(src, span_warning(LANG("mob.8dd4bef355b9dbda", null)))
 		return
 
 	if(offered_item.on_offered(src)) // see if the item interrupts with its own behavior
 		return
 
-	balloon_alert_to_viewers(LANG("mob.a639a5ec", null))
-	visible_message(span_notice(LANG("mob.54e59a38", list(src, offered ? "[offered] " : "", offered_item))), \
-					span_notice(LANG("mob.00e399b7", list(offered ? "[offered] " : "", offered_item))), null, 2)
+	balloon_alert_to_viewers(LANG("mob.a639a5ecba1731fa", null))
+	visible_message(span_notice(LANG("mob.54e59a38a43f4d25", list(src, offered ? "[offered] " : "", offered_item))), \
+					span_notice(LANG("mob.00e399b7f7ac1ac3", list(offered ? "[offered] " : "", offered_item))), null, 2)
 
 	apply_status_effect(/datum/status_effect/offering, offered_item, null, offered)
 
@@ -197,27 +197,27 @@
 /mob/living/proc/take(mob/living/offerer, obj/item/offered_item, bypass)
 	clear_alert("[offerer]")
 	if(src.incapacitated)
-		to_chat(src, span_warning(LANG("mob.3b05dcda", null)))
+		to_chat(src, span_warning(LANG("mob.3b05dcda77e6ba81", null)))
 		return
 	if(get_dist(src, offerer) > 1)
-		to_chat(src, span_warning(LANG("mob.cc991ad9", list(offerer))))
+		to_chat(src, span_warning(LANG("mob.cc991ad9a4a5e062", list(offerer))))
 		return
 	if(!offered_item || offerer.get_active_held_item() != offered_item && !bypass)
-		to_chat(src, span_warning(LANG("mob.6ca67056", list(offerer))))
+		to_chat(src, span_warning(LANG("mob.6ca67056f8049285", list(offerer))))
 		return
 	if(!get_empty_held_indexes())
-		to_chat(src, span_warning(LANG("mob.fc35c47c", null)))
+		to_chat(src, span_warning(LANG("mob.fc35c47c3d639d83", null)))
 		return
 
 	if(offered_item.on_offer_taken(offerer, src)) // see if the item has special behavior for being accepted
 		return
 
 	if(!offerer.temporarilyRemoveItemFromInventory(offered_item))
-		visible_message(span_notice(LANG("mob.2e286561", list(offerer, offered_item))))
+		visible_message(span_notice(LANG("mob.2e286561e8b1aab3", list(offerer, offered_item))))
 		return
 
-	visible_message(span_notice(LANG("mob.7b2c674d", list(src, offered_item, offerer))), \
-					span_notice(LANG("mob.82af12e9", list(offered_item, offerer))))
+	visible_message(span_notice(LANG("mob.7b2c674d61c7c131", list(src, offered_item, offerer))), \
+					span_notice(LANG("mob.82af12e9ebd3eb13", list(offered_item, offerer))))
 	offered_item.do_pickup_animation(src, offerer)
 	put_in_hands(offered_item)
 

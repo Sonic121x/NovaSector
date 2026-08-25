@@ -7,7 +7,7 @@
 /obj/structure/sign/poster/official/carwo_grenade/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.00908154", null)
+	. += LANG("obj.009081542a35602c", null)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/carwo_grenade, 32)
 
@@ -21,6 +21,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/carwo_grenade, 3
 /obj/structure/sign/poster/official/carwo_magazine/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.99c5fbdc", null)
+	. += LANG("obj.99c5fbdc43f1e7a5", null)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/carwo_magazine, 32)

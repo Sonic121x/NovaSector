@@ -203,7 +203,7 @@
 	if(seed.potency < 95)
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.cc79026e", list(tool))))
+	to_chat(user, span_notice(LANG("obj.cc79026ec8c3eaf7", list(tool))))
 	remove_item_from_storage(user)
 	if(seed.resistance_flags & FIRE_PROOF)
 		user.put_in_hands(new /obj/item/clothing/head/wizard/chanterelle/fireproof())
@@ -277,7 +277,7 @@
 	if(isspaceturf(user.loc))
 		return FALSE
 	if(!isturf(user.loc))
-		to_chat(user, span_warning(LANG("obj.e94dd832", list(src))))
+		to_chat(user, span_warning(LANG("obj.e94dd832cf86c37b", list(src))))
 		return FALSE
 	var/count = 0
 	var/maxcount = 1
@@ -288,10 +288,10 @@
 	for(var/obj/structure/glowshroom/G in user.loc)
 		count++
 	if(count >= maxcount)
-		to_chat(user, span_warning(LANG("obj.9824012c", list(src))))
+		to_chat(user, span_warning(LANG("obj.9824012cdb5a5bc7", list(src))))
 		return FALSE
 	new effect_path(user.loc, seed)
-	to_chat(user, span_notice(LANG("obj.19efdae6", list(src))))
+	to_chat(user, span_notice(LANG("obj.19efdae6bab2b6ae", list(src))))
 	seed = null // We pass our seed to our planted shroom, null it here
 	qdel(src)
 	return TRUE

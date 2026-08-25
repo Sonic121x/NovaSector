@@ -104,7 +104,7 @@
 		owner.Immobilize(emp_immobilize_duration / severity)
 	if(emp_stun_duration > 0)
 		owner.Stun(emp_stun_duration / severity)
-		to_chat(owner, span_warning(LANG("obj.4a51aedf", null)))
+		to_chat(owner, span_warning(LANG("obj.4a51aedf4ab6792e", null)))
 
 /obj/item/organ/cyberimp/brain/anti_drop
 	name = "anti-drop implant"
@@ -121,19 +121,19 @@
 	if(active)
 		var/list/hold_list = owner.get_empty_held_indexes()
 		if(LAZYLEN(hold_list) == owner.held_items.len)
-			to_chat(owner, span_notice(LANG("obj.0c936321", null)))
+			to_chat(owner, span_notice(LANG("obj.0c93632124c6af33", null)))
 			active = FALSE
 			return
 		for(var/obj/item/held_item as anything in owner.held_items)
 			if(!held_item)
 				continue
 			stored_items += held_item
-			to_chat(owner, span_notice(LANG("obj.7ce37900", list(owner.get_held_index_name(owner.get_held_index_of_item(held_item))))))
+			to_chat(owner, span_notice(LANG("obj.7ce37900e5fb3d86", list(owner.get_held_index_name(owner.get_held_index_of_item(held_item))))))
 			ADD_TRAIT(held_item, TRAIT_NODROP, IMPLANT_TRAIT)
 			RegisterSignal(held_item, COMSIG_ITEM_DROPPED, PROC_REF(on_held_item_dropped))
 	else
 		release_items()
-		to_chat(owner, span_notice(LANG("obj.2b06be1b", null)))
+		to_chat(owner, span_notice(LANG("obj.2b06be1bd97518ec", null)))
 
 
 /obj/item/organ/cyberimp/brain/anti_drop/emp_act(severity)
@@ -147,7 +147,7 @@
 	for(var/obj/item/stored_item as anything in stored_items)
 		throw_target = pick(oview(range))
 		stored_item.throw_at(throw_target, range, 2)
-		to_chat(owner, span_warning(LANG("obj.77cb4abe", list(owner.get_held_index_name(owner.get_held_index_of_item(stored_item)), stored_item))))
+		to_chat(owner, span_warning(LANG("obj.77cb4abe7a56223e", list(owner.get_held_index_name(owner.get_held_index_of_item(stored_item)), stored_item))))
 	stored_items = list()
 
 
@@ -230,7 +230,7 @@
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/implant_ready()
 	if(owner)
-		to_chat(owner, span_purple(LANG("obj.e1222d0d", null)))
+		to_chat(owner, span_purple(LANG("obj.e1222d0d62f40d61", null)))
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/give_stun_buffs(mob/living/give_to = owner)
 	give_to.add_traits(list(TRAIT_STUNIMMUNE, TRAIT_BATON_RESISTANCE), REF(src))
@@ -261,17 +261,17 @@
 
 /obj/item/organ/cyberimp/brain/connector/ui_action_click()
 
-	to_chat(owner, span_warning(LANG("obj.0b0ac49a", list(src))))
+	to_chat(owner, span_warning(LANG("obj.0b0ac49ac3b1856d", list(src))))
 	playsound(owner, 'sound/items/taperecorder/tape_flip.ogg', 20, vary = TRUE) // asmr
 
 	if(!do_after(owner, 1.5 SECONDS, owner)) // othwerwise it doesnt appear
-		to_chat(owner, span_warning(LANG("obj.0360a261", null)))
+		to_chat(owner, span_warning(LANG("obj.0360a261d8084c5b", null)))
 		return
 
 	if(organ_flags & ORGAN_FAILING)
 		var/holy_shit_my_brain = remove_brain(owner.get_organ_by_type(ORGAN_SLOT_BRAIN))
 		if(holy_shit_my_brain)
-			to_chat(owner, span_warning(LANG("obj.1e077260", list(holy_shit_my_brain, src))))
+			to_chat(owner, span_warning(LANG("obj.1e0772605afa2a70", list(holy_shit_my_brain, src))))
 		return
 
 	var/obj/item/skillchip/skillchip = owner.get_active_held_item()
@@ -279,7 +279,7 @@
 		if(istype(skillchip, /obj/item/skillchip))
 			insert_skillchip(skillchip)
 		else
-			to_chat(owner, span_warning(LANG("obj.43090057", list(owner.get_active_held_item(), src)))) // make it kill you if you shove a crayon inside or something
+			to_chat(owner, span_warning(LANG("obj.43090057032c4852", list(owner.get_active_held_item(), src)))) // make it kill you if you shove a crayon inside or something
 	else // no inhand item, assume removal
 		var/obj/item/organ/brain/chippy_brain = owner.get_organ_by_type(/obj/item/organ/brain)
 		if(!chippy_brain)
@@ -309,10 +309,10 @@
 		skillchip.forceMove(owner.drop_location())
 		owner.put_in_hands(skillchip, del_on_fail = FALSE)
 		playsound(owner, 'sound/machines/click.ogg', 10, vary = TRUE)
-		to_chat(owner, span_warning(LANG("obj.604c7b94", list(skillchip, src))))
+		to_chat(owner, span_warning(LANG("obj.604c7b94ff4abde3", list(skillchip, src))))
 		return
 
-	to_chat(owner, span_warning(LANG("obj.288a05f9", null))) // heh
+	to_chat(owner, span_warning(LANG("obj.288a05f919694fa8", null))) // heh
 
 /obj/item/organ/cyberimp/brain/connector/emp_act(severity)
 	. = ..()
@@ -324,8 +324,8 @@
 		loops = 2
 	for(var/i in 1 to loops)
 		// you either lose a chip or a bit of your brain
-		owner.visible_message(span_warning(LANG("obj.ccbee4df", list(owner))),\
-			span_boldwarning(LANG("obj.af177029", null)))
+		owner.visible_message(span_warning(LANG("obj.ccbee4df47d9d51a", list(owner))),\
+			span_boldwarning(LANG("obj.af177029c74603f9", null)))
 		var/obj/item/organ/brain/chippy_brain = owner.get_organ_by_type(ORGAN_SLOT_BRAIN)
 		var/obj/item/skillchip/skillchip = chippy_brain?.skillchips[1]
 		if(skillchip)
@@ -372,21 +372,21 @@
 /obj/item/organ/cyberimp/brain/surgical_processor/examine(mob/user)
 	. = ..()
 	if(length(loaded_surgeries))
-		. += span_info(LANG("obj.76560367", null))
+		. += span_info(LANG("obj.76560367b4ba8a90", null))
 		for(var/datum/surgery_operation/downloaded_surgery as anything in GLOB.operations.get_instances_from(loaded_surgeries))
 			if(!(downloaded_surgery.operation_flags & OPERATION_LOCKED))
 				continue
 			// for simplicitly, filters out mechanical subtypes of normal surgeries
 			if((downloaded_surgery.operation_flags & OPERATION_MECHANIC) && (downloaded_surgery.parent_type in loaded_surgeries))
 				continue
-			. += span_info(LANG("obj.56ec4dc4", list(capitalize(downloaded_surgery.rnd_name || downloaded_surgery.name))))
+			. += span_info(LANG("obj.56ec4dc48b04c4ad", list(capitalize(downloaded_surgery.rnd_name || downloaded_surgery.name))))
 
 	else
-		. += span_info(LANG("obj.54cc383c", null))
-		. += span_info(LANG("obj.0502643a", null))
+		. += span_info(LANG("obj.54cc383c86839480", null))
+		. += span_info(LANG("obj.0502643a89fca824", null))
 
 /obj/item/organ/cyberimp/brain/surgical_processor/proc/load_surgeries(mob/living/user, obj/design_holder)
-	balloon_alert(user, LANG("obj.2842c08c", null))
+	balloon_alert(user, LANG("obj.2842c08cdcc6966f", null))
 	playsound(src, 'sound/machines/terminal/terminal_processing.ogg', 25, TRUE)
 	if(do_after(user, 1 SECONDS, target = design_holder))
 		if(istype(design_holder, /obj/item/disk/surgery))
@@ -445,7 +445,7 @@
 
 	// causes the surgeon to go crazy and start stabbing people
 	owner.apply_status_effect(/datum/status_effect/forced_combat, duration, (rand(8, 16) / severity))
-	to_chat(owner, span_boldwarning(LANG("obj.1309f61c", null)))
+	to_chat(owner, span_boldwarning(LANG("obj.1309f61cfd43d7c3", null)))
 
 /datum/mood_event/surgery_emp_active
 	description = "THE PATIENT WILL NOT SURVIVE UNLESS THE OPERATION IS COMPLETE!"
@@ -500,5 +500,5 @@
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
 	if(prob(60/severity))
-		to_chat(owner, span_warning(LANG("obj.1ddc6c12", null)))
+		to_chat(owner, span_warning(LANG("obj.1ddc6c126efd0b8f", null)))
 		owner.losebreath += 2

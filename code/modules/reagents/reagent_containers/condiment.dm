@@ -38,7 +38,7 @@
 	return ..()
 
 /obj/item/reagent_containers/condiment/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.d1ee45de", list(user, src, user.p_they()))))
+	user.visible_message(span_suicide(LANG("obj.d1ee45deedca8df2", list(user, src, user.p_they()))))
 	return OXYLOSS
 
 /obj/item/reagent_containers/condiment/proc/try_eat(atom/target, mob/living/user)
@@ -48,21 +48,21 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	if(target == user)
 		user.visible_message(
-			span_notice(LANG("obj.43bd1281", list(user, src))),
-			span_notice(LANG("obj.7333b534", list(src))),
+			span_notice(LANG("obj.43bd12811c65c286", list(user, src))),
+			span_notice(LANG("obj.7333b5345f70a601", list(src))),
 		)
 	else
 		target.visible_message(
-			span_warning(LANG("obj.ea51e711", list(user, target, src))),
-			span_warning(LANG("obj.81aaf870", list(user, src))),
+			span_warning(LANG("obj.ea51e7114dd6263d", list(user, target, src))),
+			span_warning(LANG("obj.81aaf8703b67454b", list(user, src))),
 		)
 		if(!do_after(user, 3 SECONDS, target))
 			return ITEM_INTERACT_BLOCKING
 		if(!reagents || !reagents.total_volume)
 			return ITEM_INTERACT_BLOCKING // The condiment might be empty after the delay.
 		target.visible_message(
-			span_warning(LANG("obj.57f4c86a", list(user, target, src))),
-			span_warning(LANG("obj.71a5734b", list(user, src))),
+			span_warning(LANG("obj.57f4c86aab7b4eb6", list(user, target, src))),
+			span_warning(LANG("obj.71a5734bec78ac6b", list(user, src))),
 		)
 		log_combat(user, target, "fed", reagents.get_reagent_log_string())
 
@@ -112,8 +112,8 @@
 	var/datum/chemical_reaction/recipe = GLOB.chemical_reactions_list[/datum/chemical_reaction/food/cheesewheel]
 	var/milk_required = recipe.required_reagents[/datum/reagent/consumable/milk]
 	var/enzyme_required = recipe.required_catalysts[/datum/reagent/consumable/enzyme]
-	. += span_notice(LANG("obj.65ae3bd9", list(milk_required, enzyme_required)))
-	. += span_warning(LANG("obj.d027859f", null))
+	. += span_notice(LANG("obj.65ae3bd9dc985fad", list(milk_required, enzyme_required)))
+	. += span_warning(LANG("obj.d027859feb281d4d", null))
 
 /obj/item/reagent_containers/condiment/sugar
 	name = "sugar sack"
@@ -134,7 +134,7 @@
 	var/eggwhite_required = standard_recipe.required_reagents[/datum/reagent/consumable/eggwhite]
 	var/sugar_required = standard_recipe.required_reagents[/datum/reagent/consumable/sugar]
 	var/soymilk_required = alt_recipe.required_reagents[/datum/reagent/consumable/soymilk]
-	. += span_notice(LANG("obj.a2a5bd33", list(flour_required, sugar_required, eggyolk_required, eggwhite_required, soymilk_required)))
+	. += span_notice(LANG("obj.a2a5bd333137176a", list(flour_required, sugar_required, eggyolk_required, eggwhite_required, soymilk_required)))
 
 /obj/item/reagent_containers/condiment/saltshaker //Separate from above since it's a small shaker rather then
 	name = "salt shaker" // a large one.
@@ -149,12 +149,12 @@
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/saltshaker/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.09c26c10", list(user, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.09c26c1076a42771", list(user, user.p_theyre()))))
 	var/newname = "[name]"
 	name = "[user.name]"
 	user.name = newname
 	user.real_name = newname
-	desc = LANG("obj.f61ade7a", null)
+	desc = LANG("obj.f61ade7a457cfc7b", null)
 	return TOXLOSS
 
 /obj/item/reagent_containers/condiment/saltshaker/interact_with_atom(atom/target, mob/living/user, list/modifiers)
@@ -163,9 +163,9 @@
 		return .
 	if(isturf(target))
 		if(!reagents.has_reagent(/datum/reagent/consumable/salt, 2))
-			to_chat(user, span_warning(LANG("obj.fbef5466", null)))
+			to_chat(user, span_warning(LANG("obj.fbef546612acce16", null)))
 			return
-		user.visible_message(span_notice(LANG("obj.83f89ba0", list(user, target))), span_notice(LANG("obj.9ac9c7cc", list(target))))
+		user.visible_message(span_notice(LANG("obj.83f89ba00e6c2dc2", list(user, target))), span_notice(LANG("obj.9ac9c7cc364ca6b9", list(target))))
 		reagents.remove_reagent(/datum/reagent/consumable/salt, 2)
 		new/obj/effect/decal/cleanable/food/salt(target)
 		return ITEM_INTERACT_SUCCESS
@@ -198,8 +198,8 @@
 	var/datum/chemical_reaction/recipe = GLOB.chemical_reactions_list[/datum/chemical_reaction/food/cheesewheel]
 	var/milk_required = recipe.required_reagents[/datum/reagent/consumable/milk]
 	var/enzyme_required = recipe.required_catalysts[/datum/reagent/consumable/enzyme]
-	. += span_notice(LANG("obj.65ae3bd9", list(milk_required, enzyme_required)))
-	. += span_warning(LANG("obj.d027859f", null))
+	. += span_notice(LANG("obj.65ae3bd9dc985fad", list(milk_required, enzyme_required)))
+	. += span_warning(LANG("obj.d027859feb281d4d", null))
 
 /obj/item/reagent_containers/condiment/flour
 	name = "flour sack"
@@ -220,9 +220,9 @@
 	var/cakebatter_flour_required = recipe_cakebatter.required_reagents[/datum/reagent/consumable/flour]
 	var/cakebatter_eggyolk_required = recipe_cakebatter.required_reagents[/datum/reagent/consumable/eggyolk]
 	var/cakebatter_sugar_required = recipe_cakebatter.required_reagents[/datum/reagent/consumable/sugar]
-	. += LANG("obj.ffa2fde2", null)
-	. += span_notice(LANG("obj.9c76c008", list(dough_flour_required, dough_water_required)))
-	. += span_notice(LANG("obj.7a58d541", list(cakebatter_flour_required, cakebatter_eggyolk_required, cakebatter_sugar_required)))
+	. += LANG("obj.ffa2fde253c8cb6a", null)
+	. += span_notice(LANG("obj.9c76c008aa6b451f", list(dough_flour_required, dough_water_required)))
+	. += span_notice(LANG("obj.7a58d5416df25580", list(cakebatter_flour_required, cakebatter_eggyolk_required, cakebatter_sugar_required)))
 
 /obj/item/reagent_containers/condiment/soymilk
 	name = "soy milk"
@@ -477,14 +477,14 @@
 	//You can tear the bag open above food to put the condiments on it, obviously.
 	if(IS_EDIBLE(target))
 		if(!reagents.total_volume)
-			to_chat(user, span_warning(LANG("obj.a13c23b6", list(src))))
+			to_chat(user, span_warning(LANG("obj.a13c23b62a6dbc42", list(src))))
 			qdel(src)
 			return ITEM_INTERACT_BLOCKING
 		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			to_chat(user, span_warning(LANG("obj.daf8f9f7", list(src, target))) )
+			to_chat(user, span_warning(LANG("obj.daf8f9f7af0deeec", list(src, target))) )
 			qdel(src)
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.457d9dd3", list(src, target))))
+		to_chat(user, span_notice(LANG("obj.457d9dd38949c1ef", list(src, target))))
 		reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user)
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
@@ -496,7 +496,7 @@
 
 	if(!reagents.total_volume)
 		icon_state = "condi_empty"
-		desc = LANG("obj.f99f1771", null)
+		desc = LANG("obj.f99f17711d355a0d", null)
 		return
 	var/datum/reagent/main_reagent = reagents.get_master_reagent()
 
@@ -506,7 +506,7 @@
 		desc = temp_list[3]
 	else
 		icon_state = "condi_mixed"
-		desc = LANG("obj.7418c06b", list(originalname))
+		desc = LANG("obj.7418c06b61df0109", list(originalname))
 
 //Ketchup
 /obj/item/reagent_containers/condiment/pack/ketchup

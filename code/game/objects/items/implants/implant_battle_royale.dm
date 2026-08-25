@@ -63,7 +63,7 @@
 	if (has_exploded || QDELETED(src))
 		return
 	if (!special && prob(removed_explode_chance))
-		target.visible_message(span_boldwarning(LANG("obj.dcd8e6bc", list(src))))
+		target.visible_message(span_boldwarning(LANG("obj.dcd8e6bc8220232a", list(src))))
 		playsound(loc, 'sound/items/timer.ogg', 50, vary = FALSE)
 		explode(target)
 	target?.mind?.remove_antag_datum(/datum/antagonist/survivalist/battle_royale)
@@ -83,7 +83,7 @@
 		return
 	if (!source.itch() || prob(80))
 		return
-	to_chat(source, span_boldwarning(LANG("obj.2788fbcb", null)))
+	to_chat(source, span_boldwarning(LANG("obj.2788fbcb8301d1d2", null)))
 
 /// Start the battle royale
 /obj/item/implant/explosive/battle_royale/proc/start_battle(target_area_name, list/limited_areas)
@@ -121,7 +121,7 @@
 	if (is_type_in_list(get_area(source), limited_areas))
 		return
 	playsound(imp_in, 'sound/items/timer.ogg', 50, vary = FALSE)
-	to_chat(imp_in, span_boldwarning(LANG("obj.1e689f9b", list(target_area_name))))
+	to_chat(imp_in, span_boldwarning(LANG("obj.1e689f9b98ae4e18", list(target_area_name))))
 	addtimer(CALLBACK(src, PROC_REF(check_area_deadly)), 5 SECONDS, TIMER_DELETE_ME)
 
 /// After a grace period they're still out of bounds, killing time

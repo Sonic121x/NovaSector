@@ -6,12 +6,12 @@
 
 /obj/machinery/power/apc/examine()
 	. = ..()
-	. += LANG("obj.299cd915", list(arc_shielded ? "has" : "does not have"))
+	. += LANG("obj.299cd9151f050899", list(arc_shielded ? "has" : "does not have"))
 	if(panel_open)
 		if(arc_shielded)
-			. += LANG("obj.8e4dbe43", null)
+			. += LANG("obj.8e4dbe4314ec330e", null)
 		else
-			. += LANG("obj.9332b3fc", null)
+			. += LANG("obj.9332b3fcedfd0709", null)
 
 /obj/machinery/power/apc/late_process(seconds_per_tick)
 	. = ..()
@@ -70,10 +70,10 @@
 /// Handles interaction of adding arc shielding to apc with bronze
 /obj/machinery/power/apc/proc/bronze_act(mob/living/user, obj/item/stack/sheet/bronze/bronze)
 	if(arc_shielded)
-		balloon_alert(user, LANG("obj.cc26e78c", null))
+		balloon_alert(user, LANG("obj.cc26e78ce890e727", null))
 		return ITEM_INTERACT_BLOCKING
 	bronze.use(1)
-	balloon_alert(user, LANG("obj.b6b95150", null))
+	balloon_alert(user, LANG("obj.b6b95150f35066c1", null))
 	arc_shielded = TRUE
 	playsound(src, 'sound/items/tools/rped.ogg', 20)
 	return ITEM_INTERACT_SUCCESS
@@ -81,7 +81,7 @@
 /obj/machinery/power/apc/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(panel_open && arc_shielded)
-		balloon_alert(user, LANG("obj.cf2b2bcb", null))
+		balloon_alert(user, LANG("obj.cf2b2bcbe072643f", null))
 		arc_shielded = FALSE
 		tool.play_tool_sound(src, 50)
 

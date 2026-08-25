@@ -60,11 +60,11 @@
 
 	if(cult_converted)
 		for(var/mob/living/cultist as anything in invokers)
-			to_chat(cultist, span_cult_italic(LANG("mob.d13bc3c7", list(src))))
+			to_chat(cultist, span_cult_italic(LANG("mob.d13bc3c766e9bc46", list(src))))
 		return STOP_SACRIFICE|SILENCE_SACRIFICE_MESSAGE
 
 	for(var/mob/living/cultist as anything in invokers)
-		to_chat(cultist, span_cult_italic(LANG("mob.f7bcbdfb", null)))
+		to_chat(cultist, span_cult_italic(LANG("mob.f7bcbdfb1e38e1c1", null)))
 
 	cult_converted = TRUE
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "BAAAAAAAAH!")

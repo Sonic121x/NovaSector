@@ -22,7 +22,7 @@
 				status += LB.heavy_brute_msg
 
 		if(burndamage >= 20 && status)
-			status += LANG("mob.4cbed25e", null)
+			status += LANG("mob.4cbed25e0ca56ee1", null)
 		switch(burndamage)
 			if(20 to 50)
 				status += LB.light_burn_msg
@@ -33,23 +33,23 @@
 
 		if(status)
 			any_bodypart_damage = TRUE
-			. += LANG("mob.32521617", list(t_His, LB.name, status))
+			. += LANG("mob.32521617c00eaeb8", list(t_His, LB.name, status))
 
 		for(var/thing in LB.wounds)
 			any_bodypart_damage = TRUE
 			var/datum/wound/W = thing
 			switch(W.severity)
 				if(WOUND_SEVERITY_TRIVIAL)
-					. += LANG("mob.d2ac56ce", list(t_His, LB.name, W.a_or_from, W.get_topic_name(user)))
+					. += LANG("mob.d2ac56ce9f718713", list(t_His, LB.name, W.a_or_from, W.get_topic_name(user)))
 				if(WOUND_SEVERITY_MODERATE)
-					. += LANG("mob.faf36cc6", list(t_His, LB.name, W.a_or_from, W.get_topic_name(user)))
+					. += LANG("mob.faf36cc6996a55b7", list(t_His, LB.name, W.a_or_from, W.get_topic_name(user)))
 				if(WOUND_SEVERITY_SEVERE)
-					. += LANG("mob.a29cd597", list(t_His, LB.name, W.a_or_from, W.get_topic_name(user)))
+					. += LANG("mob.a29cd597781e7d83", list(t_His, LB.name, W.a_or_from, W.get_topic_name(user)))
 				if(WOUND_SEVERITY_CRITICAL)
-					. += LANG("mob.b2137071", list(t_His, LB.name, W.a_or_from, W.get_topic_name(user)))
+					. += LANG("mob.b2137071f44b1a3e", list(t_His, LB.name, W.a_or_from, W.get_topic_name(user)))
 
 	if(!any_bodypart_damage)
-		. += LANG("mob.d4aac760", list(t_He, t_Has))
+		. += LANG("mob.d4aac760936343fe", list(t_He, t_Has))
 
 	var/list/visible_scars
 	if(all_scars)
@@ -59,6 +59,6 @@
 				LAZYADD(visible_scars, S)
 
 	if(!visible_scars)
-		. += LANG("mob.cded1d50", list(t_He, t_Has))
+		. += LANG("mob.cded1d50dfff74ac", list(t_He, t_Has))
 
 	return .

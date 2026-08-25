@@ -38,7 +38,7 @@
 		chosen_clothing = null //our lord and savior no longer cares about this apparel
 		return TRUE
 	chosen_clothing = null
-	to_chat(user, span_warning(LANG("datum.0a5cf1f1", null)))
+	to_chat(user, span_warning(LANG("datum.0a5cf1f1ab836223", null)))
 	return FALSE
 
 
@@ -56,44 +56,44 @@
 
 /datum/religion_rites/burning_sacrifice/perform_rite(mob/living/user, atom/religious_tool)
 	if(!ismovable(religious_tool))
-		to_chat(user, span_warning(LANG("datum.3ebb81f1", null)))
+		to_chat(user, span_warning(LANG("datum.3ebb81f1929b18a9", null)))
 		return FALSE
 	var/atom/movable/movable_reltool = religious_tool
 	if(!movable_reltool)
 		return FALSE
 	if(!LAZYLEN(movable_reltool.buckled_mobs))
-		to_chat(user, span_warning(LANG("datum.23f81a21", null)))
+		to_chat(user, span_warning(LANG("datum.23f81a21cbf956fc", null)))
 		return FALSE
 	for(var/corpse in movable_reltool.buckled_mobs)
 		if(!iscarbon(corpse))// only works with carbon corpse since most normal mobs can't be set on fire.
-			to_chat(user, span_warning(LANG("datum.8cabb78d", null)))
+			to_chat(user, span_warning(LANG("datum.8cabb78d7e615fd3", null)))
 			return FALSE
 		chosen_sacrifice = corpse
 		if(chosen_sacrifice.stat != DEAD)
-			to_chat(user, span_warning(LANG("datum.30fc41e6", null)))
+			to_chat(user, span_warning(LANG("datum.30fc41e6285947c5", null)))
 			return FALSE
 		if(!chosen_sacrifice.on_fire && !HAS_TRAIT_FROM(chosen_sacrifice, TRAIT_HUSK, BURN))
-			to_chat(user, span_warning(LANG("datum.a07380b8", null)))
+			to_chat(user, span_warning(LANG("datum.a07380b895012245", null)))
 			return FALSE
 		return ..()
 
 /datum/religion_rites/burning_sacrifice/invoke_effect(mob/living/user, atom/movable/religious_tool)
 	..()
 	if(!(chosen_sacrifice in religious_tool.buckled_mobs)) //checks one last time if the right corpse is still buckled
-		to_chat(user, span_warning(LANG("datum.16671353", null)))
+		to_chat(user, span_warning(LANG("datum.166713535b9ae10a", null)))
 		chosen_sacrifice = null
 		return FALSE
 	if(!chosen_sacrifice.on_fire && !HAS_TRAIT_FROM(chosen_sacrifice, TRAIT_HUSK, BURN))
-		to_chat(user, span_warning(LANG("datum.4a9cf984", null)))
+		to_chat(user, span_warning(LANG("datum.4a9cf98463dc1321", null)))
 		chosen_sacrifice = null
 		return FALSE
 	if(chosen_sacrifice.stat != DEAD)
-		to_chat(user, span_warning(LANG("datum.b3b4ceb7", null)))
+		to_chat(user, span_warning(LANG("datum.b3b4ceb7e6959bf9", null)))
 		chosen_sacrifice = null
 		return FALSE
 	var/favor_gained = 100 + round(chosen_sacrifice.get_fire_loss())
 	GLOB.religious_sect.adjust_favor(favor_gained, user)
-	to_chat(user, span_notice(LANG("datum.0b1f910b", list(GLOB.deity, GLOB.deity, favor_gained))))
+	to_chat(user, span_notice(LANG("datum.0b1f910bc4c1e759", list(GLOB.deity, GLOB.deity, favor_gained))))
 	chosen_sacrifice.dust(force = TRUE)
 	playsound(get_turf(religious_tool), 'sound/effects/supermatter.ogg', 50, TRUE)
 	chosen_sacrifice = null
@@ -134,7 +134,7 @@
 			continue
 		enchant_target = can_enchant
 		return ..()
-	to_chat(user, span_warning(LANG("datum.ffa50a9d", list(religious_tool))))
+	to_chat(user, span_warning(LANG("datum.ffa50a9db3c48b47", list(religious_tool))))
 	return FALSE
 
 /datum/religion_rites/blazing_star/invoke_effect(mob/living/user, atom/movable/religious_tool)
@@ -143,9 +143,9 @@
 	var/turf/tool_turf = get_turf(religious_tool)
 	enchant_target = null
 	if(QDELETED(enchanting) || !(tool_turf == enchanting.loc)) //check if the arrow is still there
-		to_chat(user, span_warning(LANG("datum.a4aeac01", null)))
+		to_chat(user, span_warning(LANG("datum.a4aeac01f2519693", null)))
 		return FALSE
-	enchanting.visible_message(span_notice(LANG("datum.e64ec40a", list(enchant_target))))
+	enchanting.visible_message(span_notice(LANG("datum.e64ec40a7e8ee886", list(enchant_target))))
 	playsound(tool_turf, 'sound/effects/pray.ogg', 50, TRUE)
 	new /obj/item/ammo_casing/arrow/holy/blazing(tool_turf)
 	qdel(enchanting)

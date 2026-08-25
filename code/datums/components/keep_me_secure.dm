@@ -72,17 +72,17 @@
 /datum/component/keep_me_secure/proc/on_examine(mob/living/source, mob/examiner, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_boldnotice(LANG("datum.98780910", list(parent)))
+	examine_list += span_boldnotice(LANG("datum.98780910387516b7", list(parent)))
 	if(is_secured())
-		examine_list += span_notice(LANG("datum.216a9413", null))
+		examine_list += span_notice(LANG("datum.216a9413886762e7", null))
 	else
-		examine_list += span_warning(LANG("datum.e174a235", null))
-	examine_list += span_notice(LANG("datum.859339a4", null))
+		examine_list += span_warning(LANG("datum.e174a235511c028e", null))
+	examine_list += span_notice(LANG("datum.859339a45a7f04df", null))
 
 /// signal sent when parent is examined more
 /datum/component/keep_me_secure/proc/on_examine_more(mob/living/source, mob/examiner, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice(LANG("datum.edfcf34b", list(parent)))
-	examine_list += span_notice(LANG("datum.741847f1", null))
-	examine_list += span_notice(LANG("datum.c5281bd4", null))
+	examine_list += span_notice(LANG("datum.edfcf34bf3fd4a6d", list(parent)))
+	examine_list += span_notice(LANG("datum.741847f161732d29", null))
+	examine_list += span_notice(LANG("datum.c5281bd468e87abc", null))

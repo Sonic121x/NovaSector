@@ -36,9 +36,9 @@
 	if(!scanner_taggable)
 		return
 	if(gps_tagged)
-		. += span_notice(LANG("obj.87719a64", list(assigned_tag)))
+		. += span_notice(LANG("obj.87719a64febc4f0a", list(assigned_tag)))
 	else
-		. += span_notice(LANG("obj.16d820bf", list(scanner_descriptor)))
+		. += span_notice(LANG("obj.16d820bf79d39124", list(scanner_descriptor)))
 
 /obj/structure/spawner/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(scanner_taggable && is_type_in_list(tool, scanner_types))
@@ -50,9 +50,9 @@
 /// Tag the spawner, prefixing its GPS entry with an identifier - or giving it one, if nonexistent.
 /obj/structure/spawner/proc/gps_tag(mob/user)
 	if(gps_tagged)
-		to_chat(user, span_warning(LANG("obj.d71d9076", list(src))))
+		to_chat(user, span_warning(LANG("obj.d71d9076936be231", list(src))))
 		return
-	to_chat(user, span_notice(LANG("obj.1fe95f8d", list(src))))
+	to_chat(user, span_notice(LANG("obj.1fe95f8dedaf0ae1", list(src))))
 	playsound(src, 'sound/machines/beep/twobeep.ogg', 100)
 	gps_tagged = TRUE
 	assigned_tag = "\[[mob_gps_id]-[rand(100,999)]\] " + spawner_gps_id
@@ -204,13 +204,13 @@
 
 /obj/structure/spawner/nether/examine(mob/user)
 	. = ..()
-	. += LANG("obj.98bc5219", list(span_warning("Entering the link would be a very bad idea.")))
+	. += LANG("obj.98bc52192958b396", list(span_warning("Entering the link would be a very bad idea.")))
 
 /obj/structure/spawner/nether/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	user.visible_message(
-		span_warning(LANG("obj.0a35c4b6", list(user))),
-		span_userdanger(LANG("obj.0293a5ce", null))
+		span_warning(LANG("obj.0a35c4b6b2ffabf3", list(user))),
+		span_userdanger(LANG("obj.0293a5ce17cdb2c4", null))
 	)
 	contents.Add(user)
 
@@ -223,7 +223,7 @@
 			var/mob/living/basic/blankbody/newmob = new(loc)
 			newmob.name = "[living_mob]"
 			newmob.desc = "It's [living_mob], but [living_mob.p_their()] flesh has an ashy texture, and [living_mob.p_their()] face is featureless save an eerie smile."
-			src.visible_message(span_warning(LANG("obj.c2292f43", list(living_mob))))
+			src.visible_message(span_warning(LANG("obj.c2292f433277ebcc", list(living_mob))))
 			qdel(living_mob)
 
 /obj/structure/spawner/sentient
@@ -233,7 +233,7 @@
 /obj/structure/spawner/sentient/Initialize(mapload)
 	. = ..()
 	notify_ghosts(
-		LANG("obj.6148cca5", list(name, get_area(src))),
+		LANG("obj.6148cca5269c70f7", list(name, get_area(src))),
 		source = src,
 		header = "Sentient Spawner Created",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -277,16 +277,16 @@
 	if(!IS_CULTIST(user) && isliving(user))
 		var/mob/living/living_user = user
 		living_user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 15)
-		. += span_danger(LANG("obj.158eacb2", list(src)))
+		. += span_danger(LANG("obj.158eacb2d6c9da92", list(src)))
 	else
-		. += span_cult(LANG("obj.caf4e47b", list(spawn_time * 0.1, max_mobs)))
+		. += span_cult(LANG("obj.caf4e47b11d05fb8", list(spawn_time * 0.1, max_mobs)))
 
 /obj/structure/spawner/sentient/proteon_spawner/became_player_controlled(mob/living/basic/construct/proteon/proteon)
 	proteon.mind.add_antag_datum(/datum/antagonist/cult)
 	proteon.add_filter("awoken_proteon", 3, list("type" = "outline", "color" = COLOR_CULT_RED, "size" = 2))
-	visible_message(span_cult_bold(LANG("obj.a3455471", list(proteon))))
+	visible_message(span_cult_bold(LANG("obj.a3455471e9f66488", list(proteon))))
 	playsound(proteon, 'sound/items/haunted/ghostitemattack.ogg', 100, TRUE)
-	proteon.balloon_alert_to_viewers(LANG("obj.5f8822ca", null))
+	proteon.balloon_alert_to_viewers(LANG("obj.5f8822ca6001bf4a", null))
 	addtimer(CALLBACK(src, PROC_REF(remove_wake_outline), proteon), 8 SECONDS)
 
 /obj/structure/spawner/sentient/proteon_spawner/proc/remove_wake_outline(mob/proteon)
@@ -295,4 +295,4 @@
 
 /obj/structure/spawner/sentient/proteon_spawner/handle_deconstruct(disassembled)
 	playsound(src, 'sound/effects/hallucinations/veryfar_noise.ogg', 75)
-	visible_message(span_cult_bold(LANG("obj.1fc8b953", list(src))))
+	visible_message(span_cult_bold(LANG("obj.1fc8b953c593c3b2", list(src))))

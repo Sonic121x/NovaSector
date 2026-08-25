@@ -12,7 +12,7 @@
 
 /obj/machinery/fugitive_capture/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.6e0cf53d", null))
+	. += span_notice(LANG("obj.6e0cf53dd0d71100", null))
 
 /obj/machinery/fugitive_capture/mouse_drop_receive(mob/target, mob/user, params)
 	var/mob/living/fugitive_hunter = user
@@ -21,7 +21,7 @@
 	var/mob/living/carbon/human/fugitive = target
 	var/datum/antagonist/fugitive/fug_antag = fugitive.mind.has_antag_datum(/datum/antagonist/fugitive)
 	if(!fug_antag)
-		to_chat(fugitive_hunter, span_warning(LANG("obj.3f67b38a", null)))
+		to_chat(fugitive_hunter, span_warning(LANG("obj.3f67b38a0ccd3d06", null)))
 		return
 	if(do_after(fugitive_hunter, 5 SECONDS, target = fugitive))
 		add_prisoner(fugitive, fug_antag)
@@ -29,7 +29,7 @@
 /obj/machinery/fugitive_capture/proc/add_prisoner(mob/living/carbon/human/fugitive, datum/antagonist/fugitive/antag)
 	fugitive.forceMove(src)
 	antag.is_captured = TRUE
-	to_chat(fugitive, span_userdanger(LANG("obj.625c7a87", null)))
+	to_chat(fugitive, span_userdanger(LANG("obj.625c7a87b4558e54", null)))
 	fugitive.ghostize(TRUE) //so they cannot suicide, round end stuff.
 	use_energy(active_power_usage)
 
@@ -84,7 +84,7 @@
 	for(var/mob/living/carbon/human/potential_victim in range(1, get_turf(src)))
 		var/datum/antagonist/fugitive/fug_antag = potential_victim.mind.has_antag_datum(/datum/antagonist/fugitive)
 		if(fug_antag)
-			potential_victim.visible_message(span_alert(LANG("obj.b2cb1b95", list(potential_victim, src))))
+			potential_victim.visible_message(span_alert(LANG("obj.b2cb1b955bda25fb", list(potential_victim, src))))
 			add_prisoner(potential_victim, fug_antag)
 
 /// Psyker gear
@@ -112,7 +112,7 @@
 	return ..()
 
 /obj/item/clothing/suit/armor/reactive/psykerboost/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger(LANG("obj.b00b8045", list(src, attack_text, owner))))
+	owner.visible_message(span_danger(LANG("obj.b00b80457632d5cc", list(src, attack_text, owner))))
 	for(var/datum/action/cooldown/spell/psychic_ability in owner.actions)
 		if(psychic_ability.school == SCHOOL_PSYCHIC)
 			psychic_ability.reset_spell_cooldown()
@@ -120,7 +120,7 @@
 	return TRUE
 
 /obj/item/clothing/suit/armor/reactive/psykerboost/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger(LANG("obj.96775297", list(src, attack_text, owner))))
+	owner.visible_message(span_danger(LANG("obj.96775297f251ec3d", list(src, attack_text, owner))))
 	for(var/datum/action/cooldown/spell/psychic_ability in owner.actions)
 		if(psychic_ability.school == SCHOOL_PSYCHIC)
 			psychic_ability.StartCooldown()
@@ -185,13 +185,13 @@
 
 /obj/machinery/fugitive_locator/interact(mob/user)
 	if(!COOLDOWN_FINISHED(src, locate_cooldown))
-		balloon_alert_to_viewers(LANG("obj.1ab78062", null), vision_distance = 3)
+		balloon_alert_to_viewers(LANG("obj.1ab78062ad41903d", null), vision_distance = 3)
 		return
 	var/mob/living/bounty = locate_fugitive()
 	if(!bounty)
-		say(LANG("obj.3abfa17d", null))
+		say(LANG("obj.3abfa17d8106133b", null))
 	else
-		say(LANG("obj.a1404649", list(bounty.real_name, get_area_name(bounty))))
+		say(LANG("obj.a1404649b0763d4f", list(bounty.real_name, get_area_name(bounty))))
 
 	COOLDOWN_START(src, locate_cooldown, 40 SECONDS)
 

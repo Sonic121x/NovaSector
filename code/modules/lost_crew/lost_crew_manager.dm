@@ -60,7 +60,7 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 
 	if(!HAS_TRAIT(new_body, TRAIT_HUSK))
 		paper.name = "DO NOT REMOVE BRAIN"
-		paper.add_raw_text(LANG("datum.40c57a71", null))
+		paper.add_raw_text(LANG("datum.40c57a71eccd8ce5", null))
 		var/obj/item/organ/brain/boombrain = new_body.get_organ_by_type(/obj/item/organ/brain)
 		//I swear to fuck I will explode you. you're not clever
 		//everyone thought of this, but I am the fool for having any faith
@@ -70,7 +70,7 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 		boombrain.AddElement(/datum/element/dangerous_organ_removal)
 	else
 		paper.name = "BODYSWAPPING PERMITTED"
-		paper.add_raw_text(LANG("datum.3c3d51fa", null))
+		paper.add_raw_text(LANG("datum.3c3d51fad1da0a4f", null))
 
 	var/obj/item/organ/brain/hersens = new_body.get_organ_by_type(/obj/item/organ/brain)
 	hersens.AddComponent(
@@ -145,7 +145,7 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 	if (user.mind == mind)
 		return TRUE
 	if (!silent)
-		balloon_alert(user, LANG("obj.1bd3ceeb", null))
+		balloon_alert(user, LANG("obj.1bd3ceeb3a56d0d5", null))
 	return FALSE
 
 /obj/item/storage/lockbox/mind/toggle_locked(mob/living/user)
@@ -153,7 +153,7 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 		return
 
 	atom_storage.set_locked(STORAGE_NOT_LOCKED)
-	balloon_alert(user, LANG("obj.6a4e03ca", null))
+	balloon_alert(user, LANG("obj.6a4e03ca38b93195", null))
 
 /obj/item/storage/lockbox/mind/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(broken || user.mind != mind)

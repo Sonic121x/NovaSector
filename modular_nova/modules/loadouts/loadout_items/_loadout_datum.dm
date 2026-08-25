@@ -157,7 +157,7 @@
 /// Tells the client we couldn't equip their item
 /datum/loadout_item/proc/message_client(client, target, msg)
 	if(client)
-		to_chat(target, span_warning(LANG("datum.1f1ce51e", list(initial(item_path.name), msg))))
+		to_chat(target, span_warning(LANG("datum.1f1ce51ea03b4729", list(initial(item_path.name), msg))))
 	return FALSE
 
 /datum/loadout_item/get_ui_buttons()
@@ -197,8 +197,8 @@
 	var/list/loadout = manager.get_current_loadout()
 	var/input_desc = tgui_input_text(
 		user = user,
-		message = "What description do you want to give the [name]? Leave blank to clear.",
-		title = "[name] description",
+		message = LANG("datum.972f076e50b4909e", list(name)),
+		title = LANG("datum.613131a6f11f7938", list(name)),
 		default = loadout?[item_path]?[INFO_DESCRIBED], // plop in existing description (if any)
 		max_length = MAX_DESC_LEN,
 	)

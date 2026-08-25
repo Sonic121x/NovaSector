@@ -27,21 +27,21 @@
 	. = ..()
 	switch(build_step)
 		if(PTURRET_UNSECURED)
-			. += span_notice(LANG("obj.a84cc481", null))
+			. += span_notice(LANG("obj.a84cc4810875c88e", null))
 		if(PTURRET_BOLTED)
-			. += span_notice(LANG("obj.2470ea44", null))
+			. += span_notice(LANG("obj.2470ea4426377025", null))
 		if(PTURRET_START_INTERNAL_ARMOUR)
-			. += span_notice(LANG("obj.6e7d0497", null))
+			. += span_notice(LANG("obj.6e7d0497afc8b04a", null))
 		if(PTURRET_INTERNAL_ARMOUR_ON)
-			. += span_notice(LANG("obj.8b2585d8", null))
+			. += span_notice(LANG("obj.8b2585d8cb342cfc", null))
 		if(PTURRET_GUN_EQUIPPED)
-			. += span_notice(LANG("obj.96cd0482", null))
+			. += span_notice(LANG("obj.96cd04824962f8a5", null))
 		if(PTURRET_SENSORS_ON)
-			. += span_notice(LANG("obj.df8ffaef", null))
+			. += span_notice(LANG("obj.df8ffaef8988522c", null))
 		if(PTURRET_CLOSED)
-			. += span_notice(LANG("obj.fba70fe5", null))
+			. += span_notice(LANG("obj.fba70fe5a698d9d0", null))
 		if(PTURRET_START_EXTERNAL_ARMOUR)
-			. += span_notice(LANG("obj.fe821959", null))
+			. += span_notice(LANG("obj.fe8219597ab66426", null))
 
 /obj/machinery/porta_turret_construct/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	//this is a bit unwieldy but self-explanatory
@@ -51,9 +51,9 @@
 				return NONE
 			var/obj/item/stack/sheet/iron/sheet = tool
 			if(!sheet.use(2))
-				to_chat(user, span_warning(LANG("obj.04b62eca", null)))
+				to_chat(user, span_warning(LANG("obj.04b62eca8f816390", null)))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.4851aace", null)))
+			to_chat(user, span_notice(LANG("obj.4851aacec1ef2028", null)))
 			build_step = PTURRET_START_INTERNAL_ARMOUR
 			icon_state = "turret_frame2"
 			return ITEM_INTERACT_SUCCESS
@@ -63,12 +63,12 @@
 				return NONE
 			var/obj/item/gun/energy/egun = tool
 			if(egun.gun_flags & TURRET_INCOMPATIBLE)
-				to_chat(user, span_notice(LANG("obj.778e73ad", list(tool))))
+				to_chat(user, span_notice(LANG("obj.778e73ad822e886a", list(tool))))
 				return ITEM_INTERACT_BLOCKING
 			if(!user.transferItemToLoc(egun, src))
 				return ITEM_INTERACT_BLOCKING
 			installed_gun = egun
-			to_chat(user, span_notice(LANG("obj.8d75ca3c", list(tool))))
+			to_chat(user, span_notice(LANG("obj.8d75ca3c3aef8898", list(tool))))
 			build_step = PTURRET_GUN_EQUIPPED
 			return ITEM_INTERACT_SUCCESS
 
@@ -78,7 +78,7 @@
 			build_step = PTURRET_SENSORS_ON
 			if(!user.temporarilyRemoveItemFromInventory(tool))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.9155598b", null)))
+			to_chat(user, span_notice(LANG("obj.9155598b4b6c26e7", null)))
 			qdel(tool)
 			return ITEM_INTERACT_SUCCESS
 
@@ -87,9 +87,9 @@
 				return NONE
 			var/obj/item/stack/sheet/iron/sheet = tool
 			if(!sheet.use(2))
-				to_chat(user, span_warning(LANG("obj.04b62eca", null)))
+				to_chat(user, span_warning(LANG("obj.04b62eca8f816390", null)))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice(LANG("obj.79e65025", null)))
+			to_chat(user, span_notice(LANG("obj.79e65025a4b15291", null)))
 			build_step = PTURRET_START_EXTERNAL_ARMOUR
 			return ITEM_INTERACT_SUCCESS
 
@@ -99,27 +99,27 @@
 	switch(build_step)
 		if(PTURRET_UNSECURED)
 			tool.play_tool_sound(src, 100)
-			to_chat(user, span_notice(LANG("obj.f7528b3f", null)))
+			to_chat(user, span_notice(LANG("obj.f7528b3f08c30430", null)))
 			set_anchored(TRUE)
 			build_step = PTURRET_BOLTED
 			return ITEM_INTERACT_SUCCESS
 
 		if(PTURRET_BOLTED)
 			tool.play_tool_sound(src, 75)
-			to_chat(user, span_notice(LANG("obj.bcca06ea", null)))
+			to_chat(user, span_notice(LANG("obj.bcca06ea9f06193f", null)))
 			set_anchored(FALSE)
 			build_step = PTURRET_UNSECURED
 			return ITEM_INTERACT_SUCCESS
 
 		if(PTURRET_START_INTERNAL_ARMOUR)
 			tool.play_tool_sound(src, 100)
-			to_chat(user, span_notice(LANG("obj.aba62bc7", null)))
+			to_chat(user, span_notice(LANG("obj.aba62bc7e842e72c", null)))
 			build_step = PTURRET_INTERNAL_ARMOUR_ON
 			return ITEM_INTERACT_SUCCESS
 
 		if(PTURRET_INTERNAL_ARMOUR_ON)
 			tool.play_tool_sound(src, 100)
-			to_chat(user, span_notice(LANG("obj.c4d29f81", null)))
+			to_chat(user, span_notice(LANG("obj.c4d29f8148edda98", null)))
 			build_step = PTURRET_START_INTERNAL_ARMOUR
 			return ITEM_INTERACT_SUCCESS
 
@@ -129,14 +129,14 @@
 	switch(build_step)
 		if(PTURRET_UNSECURED)
 			tool.play_tool_sound(src, 75)
-			to_chat(user, span_notice(LANG("obj.3b9141f0", null)))
+			to_chat(user, span_notice(LANG("obj.3b9141f08c10ee6a", null)))
 			new /obj/item/stack/sheet/iron(loc, 5)
 			qdel(src)
 			return ITEM_INTERACT_SUCCESS
 
 		if(PTURRET_START_EXTERNAL_ARMOUR)
 			tool.play_tool_sound(src, 75)
-			to_chat(user, span_notice(LANG("obj.9a6d42fe", null)))
+			to_chat(user, span_notice(LANG("obj.9a6d42fe7275a4fa", null)))
 			new /obj/item/stack/sheet/iron(loc, 2)
 			build_step = PTURRET_CLOSED
 			return ITEM_INTERACT_SUCCESS
@@ -149,11 +149,11 @@
 			if(!tool.tool_start_check(user, amount = 5)) //uses up 5 fuel
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice(LANG("obj.5ed7eef0", null)))
+			to_chat(user, span_notice(LANG("obj.5ed7eef08d006c41", null)))
 			if(!tool.use_tool(src, user, 20, volume = 50, amount = 5)) //uses up 5 fuel
 				return ITEM_INTERACT_BLOCKING
 			build_step = PTURRET_BOLTED
-			to_chat(user, span_notice(LANG("obj.30973bfa", null)))
+			to_chat(user, span_notice(LANG("obj.30973bfa26bc2a7c", null)))
 			new /obj/item/stack/sheet/iron(drop_location(), 2)
 			return ITEM_INTERACT_SUCCESS
 
@@ -161,11 +161,11 @@
 			if(!tool.tool_start_check(user, amount = 5))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice(LANG("obj.2d1b1711", null)))
+			to_chat(user, span_notice(LANG("obj.2d1b1711ccd8b6b5", null)))
 			if(!tool.use_tool(src, user, 30, volume = 50, amount = 5))
 				return ITEM_INTERACT_BLOCKING
 			build_step = PTURRET_EXTERNAL_ARMOUR_ON
-			to_chat(user, span_notice(LANG("obj.37af307f", null)))
+			to_chat(user, span_notice(LANG("obj.37af307fb41bf5de", null)))
 
 			//The final step: create a full turret
 
@@ -189,13 +189,13 @@
 		if(PTURRET_SENSORS_ON)
 			tool.play_tool_sound(src, 100)
 			build_step = PTURRET_CLOSED
-			to_chat(user, span_notice(LANG("obj.37f20c65", null)))
+			to_chat(user, span_notice(LANG("obj.37f20c651b02c340", null)))
 			return ITEM_INTERACT_SUCCESS
 
 		if(PTURRET_CLOSED)
 			tool.play_tool_sound(src, 100)
 			build_step = PTURRET_SENSORS_ON
-			to_chat(user, span_notice(LANG("obj.18593ec2", null)))
+			to_chat(user, span_notice(LANG("obj.18593ec271714b18", null)))
 			return ITEM_INTERACT_SUCCESS
 
 	return ITEM_INTERACT_SKIP_TO_ATTACK
@@ -216,11 +216,11 @@
 			build_step = PTURRET_INTERNAL_ARMOUR_ON
 
 			installed_gun.forceMove(loc)
-			to_chat(user, span_notice(LANG("obj.4c752c2b", list(installed_gun))))
+			to_chat(user, span_notice(LANG("obj.4c752c2be748bd24", list(installed_gun))))
 			installed_gun = null
 
 		if(PTURRET_SENSORS_ON)
-			to_chat(user, span_notice(LANG("obj.dc8d81b4", null)))
+			to_chat(user, span_notice(LANG("obj.dc8d81b4b4e5dae5", null)))
 			new /obj/item/assembly/prox_sensor(loc)
 			build_step = PTURRET_GUN_EQUIPPED
 

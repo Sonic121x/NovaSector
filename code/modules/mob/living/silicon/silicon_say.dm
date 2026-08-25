@@ -37,14 +37,14 @@
 			if(isAI(hearing_mob))
 				to_chat(
 					hearing_mob,
-					span_binarysay(LANG("mob.13e4d550", list(REF(hearing_mob), html_encode(namepart), span_name("[namepart] ([designation])"), messagepart))),
+					span_binarysay(LANG("mob.13e4d5505aa304ca", list(REF(hearing_mob), html_encode(namepart), span_name("[namepart] ([designation])"), messagepart))),
 					type = MESSAGE_TYPE_RADIO,
 					avoid_highlighting = (src == hearing_mob)
 				)
 			else
 				to_chat(
 					hearing_mob,
-					span_binarysay(LANG("mob.338e2f96", list(span_name("[namepart]"), messagepart))),
+					span_binarysay(LANG("mob.338e2f96668967b0", list(span_name("[namepart]"), messagepart))),
 					type = MESSAGE_TYPE_RADIO,
 					avoid_highlighting = (src == hearing_mob)
 				)
@@ -63,7 +63,7 @@
 
 			to_chat(
 				hearing_mob,
-				span_binarysay(LANG("mob.3e904dce", list(follow_link, span_name("[namepart]"), messagepart))),
+				span_binarysay(LANG("mob.3e904dce30b8db2b", list(follow_link, span_name("[namepart]"), messagepart))),
 				type = MESSAGE_TYPE_RADIO,
 				avoid_highlighting = (src == hearing_mob)
 			)

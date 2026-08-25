@@ -24,7 +24,7 @@
 
 /obj/machinery/power/manufacturing/unloader/multitool_act(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, LANG("obj.d5c37f29", null))
+	balloon_alert(user, LANG("obj.d5c37f2967fe616a", null))
 	flip_side = !flip_side
 	update_appearance()
 

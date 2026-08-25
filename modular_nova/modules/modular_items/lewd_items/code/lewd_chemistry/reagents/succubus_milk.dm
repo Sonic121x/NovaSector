@@ -127,34 +127,34 @@
 			if(BREAST_SIZE_FLATCHESTED)
 				return
 			if(BREAST_SIZE_BEYOND_MEASUREMENT)
-				exposed_mob.visible_message(span_notice(LANG("datum.bac41663", list(exposed_mob, pick(words_for_bigger), pick(bigger_boob_text_list), pick(public_bigger_action_text_list)))))
-				to_chat(exposed_mob, span_purple(LANG("datum.1fcb21d6", list(pick(words_for_bigger), pick(bigger_boob_text_list), pick(action_text_list), mob_breasts.genital_size))))
+				exposed_mob.visible_message(span_notice(LANG("datum.bac41663d2babd3f", list(exposed_mob, pick(words_for_bigger), pick(bigger_boob_text_list), pick(public_bigger_action_text_list)))))
+				to_chat(exposed_mob, span_purple(LANG("datum.1fcb21d643b0096b", list(pick(words_for_bigger), pick(bigger_boob_text_list), pick(action_text_list), mob_breasts.genital_size))))
 			else
 				if(mob_breasts?.genital_size >= (max_breast_size - 2))
-					exposed_mob.visible_message(span_notice(LANG("datum.bac41663", list(exposed_mob, pick(words_for_bigger), pick(bigger_boob_text_list), pick(public_bigger_action_text_list)))))
-					to_chat(exposed_mob, span_purple(LANG("datum.13004b1c", list(pick(words_for_bigger), pick(bigger_boob_text_list), pick(action_text_list), translation))))
+					exposed_mob.visible_message(span_notice(LANG("datum.bac41663d2babd3f", list(exposed_mob, pick(words_for_bigger), pick(bigger_boob_text_list), pick(public_bigger_action_text_list)))))
+					to_chat(exposed_mob, span_purple(LANG("datum.13004b1ce1efe41a", list(pick(words_for_bigger), pick(bigger_boob_text_list), pick(action_text_list), translation))))
 				else
-					exposed_mob.visible_message(span_notice(LANG("datum.4af0ffab", list(exposed_mob, pick(boob_text_list), pick(public_action_text_list)))))
-					to_chat(exposed_mob, span_purple(LANG("datum.1c41ac9f", list(pick(boob_text_list), pick(action_text_list), translation))))
+					exposed_mob.visible_message(span_notice(LANG("datum.4af0ffab954b29db", list(exposed_mob, pick(boob_text_list), pick(public_action_text_list)))))
+					to_chat(exposed_mob, span_purple(LANG("datum.1c41ac9f509d652d", list(pick(boob_text_list), pick(action_text_list), translation))))
 	else
 		switch(translation)
 			if(BREAST_SIZE_FLATCHESTED)
 				return
 
 			if(BREAST_SIZE_BEYOND_MEASUREMENT)
-				exposed_mob.visible_message(span_notice(LANG("datum.4af0ffab", list(exposed_mob, pick(boob_text_list), pick(public_bigger_action_text_list)))))
-				to_chat(exposed_mob, span_purple(LANG("datum.1fcb21d6", list(pick(words_for_bigger), pick(bigger_boob_text_list), pick(action_text_list), mob_breasts.genital_size))))
+				exposed_mob.visible_message(span_notice(LANG("datum.4af0ffab954b29db", list(exposed_mob, pick(boob_text_list), pick(public_bigger_action_text_list)))))
+				to_chat(exposed_mob, span_purple(LANG("datum.1fcb21d643b0096b", list(pick(words_for_bigger), pick(bigger_boob_text_list), pick(action_text_list), mob_breasts.genital_size))))
 			else
 				if(mob_breasts?.genital_size >= (max_breast_size - 2))
-					exposed_mob.visible_message(span_notice(LANG("datum.4af0ffab", list(exposed_mob, pick(boob_text_list), pick(public_bigger_action_text_list)))))
-					to_chat(exposed_mob, span_purple(LANG("datum.13004b1c", list(pick(words_for_bigger), pick(bigger_boob_text_list), pick(action_text_list), translation))))
+					exposed_mob.visible_message(span_notice(LANG("datum.4af0ffab954b29db", list(exposed_mob, pick(boob_text_list), pick(public_bigger_action_text_list)))))
+					to_chat(exposed_mob, span_purple(LANG("datum.13004b1ce1efe41a", list(pick(words_for_bigger), pick(bigger_boob_text_list), pick(action_text_list), translation))))
 				else
-					exposed_mob.visible_message(span_notice(LANG("datum.68c952b5", list(exposed_mob, pick(covered_boobs_list), pick(notice_boobs)))))
-					to_chat(exposed_mob, span_purple(LANG("datum.1c41ac9f", list(pick(boob_text_list), pick(action_text_list), translation))))
+					exposed_mob.visible_message(span_notice(LANG("datum.68c952b539a69511", list(exposed_mob, pick(covered_boobs_list), pick(notice_boobs)))))
+					to_chat(exposed_mob, span_purple(LANG("datum.1c41ac9f509d652d", list(pick(boob_text_list), pick(action_text_list), translation))))
 
 // Notify the user that they're overdosing. Doesn't affect their mood.
 /datum/reagent/drug/aphrodisiac/succubus_milk/overdose_start(mob/living/carbon/human/exposed_mob, metabolization_ratio)
-	to_chat(exposed_mob, span_userdanger(LANG("datum.6edb1afb", list(name))))
+	to_chat(exposed_mob, span_userdanger(LANG("datum.6edb1afbc6f2b172", list(name))))
 	exposed_mob.add_mood_event("[type]_overdose", /datum/mood_event/minor_overdose, name)
 
 /datum/chemical_reaction/succubus_milk

@@ -146,14 +146,14 @@
 /datum/component/puzzgrid/proc/out_of_lives()
 	var/atom/movable/movable_parent = parent
 	if (istype(movable_parent))
-		movable_parent.say(LANG("datum.6f4ceab6", null), forced = "puzzgrid component")
+		movable_parent.say(LANG("datum.6f4ceab660daaf5d", null), forced = "puzzgrid component")
 
 	fail()
 
 /datum/component/puzzgrid/proc/out_of_time()
 	var/atom/movable/movable_parent = parent
 	if (istype(movable_parent))
-		movable_parent.say(LANG("datum.55ce74a6", null), forced = "puzzgrid component")
+		movable_parent.say(LANG("datum.55ce74a6f44572b3", null), forced = "puzzgrid component")
 
 	fail()
 
@@ -292,16 +292,16 @@ ADMIN_VERB(validate_puzzgrids, R_DEBUG, "验证 Puzzgrid 配置", "Validate the 
 
 		var/line_json_decoded = safe_json_decode(line)
 		if (isnull(line_json_decoded))
-			to_chat(user, span_warning(LANG("datum.326dc9be", list(line_number, line))))
+			to_chat(user, span_warning(LANG("datum.326dc9be1292ff1e", list(line_number, line))))
 			continue
 
 		var/datum/puzzgrid/puzzgrid = new
 		var/populate_result = puzzgrid.populate(line_json_decoded)
 
 		if (populate_result != TRUE)
-			to_chat(user, span_warning(LANG("datum.a800f772", list(line_number, populate_result))))
+			to_chat(user, span_warning(LANG("datum.a800f77279feb40b", list(line_number, populate_result))))
 
-	to_chat(user, span_notice(LANG("datum.7f466809", null)))
+	to_chat(user, span_notice(LANG("datum.7f466809d9ee5fc2", null)))
 
 #undef PUZZGRID_CONFIG
 #undef PUZZGRID_GROUP_COUNT

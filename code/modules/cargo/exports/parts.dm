@@ -43,4 +43,4 @@
 /datum/export/refill_canister/total_printout(datum/export_report/ex, notes = TRUE)
 	. = ..()
 	if(. && notes)
-		. += LANG("datum.04332c39", null)
+		. += LANG("datum.04332c3906fb0d72", null)

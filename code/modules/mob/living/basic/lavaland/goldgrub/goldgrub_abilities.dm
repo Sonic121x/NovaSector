@@ -8,12 +8,12 @@
 /datum/action/cooldown/mob_cooldown/spit_ore/IsAvailable(feedback)
 	if(is_jaunting(owner))
 		if(feedback)
-			owner.balloon_alert(owner, LANG("datum.63f9f23a", null))
+			owner.balloon_alert(owner, LANG("datum.63f9f23a4a7240e9", null))
 		return FALSE
 
 	if(!length(owner.contents))
 		if(feedback)
-			owner.balloon_alert(owner, LANG("datum.7d329646", null))
+			owner.balloon_alert(owner, LANG("datum.7d3296464e278794", null))
 		return FALSE
 	return TRUE
 
@@ -37,7 +37,7 @@
 
 	if(!isasteroidturf(location) && !ismineralturf(location))
 		if(feedback)
-			owner.balloon_alert(owner, LANG("datum.67c8f07a", null))
+			owner.balloon_alert(owner, LANG("datum.67c8f07afa1addca", null))
 		return FALSE
 
 	return TRUE
@@ -51,11 +51,11 @@
 		return
 
 	if(get_turf(owner) != current_loc)
-		to_chat(owner, span_warning(LANG("datum.cb91c92e", null)))
+		to_chat(owner, span_warning(LANG("datum.cb91c92edc249bdd", null)))
 		return
 
 	if(!is_jaunting(owner))
-		owner.visible_message(span_danger(LANG("datum.2a2c29f3", list(owner))))
+		owner.visible_message(span_danger(LANG("datum.2a2c29f3ec2c1c9c", list(owner))))
 		playsound(get_turf(owner), 'sound/effects/break_stone.ogg', 50, TRUE, -1)
 		holder = new /obj/effect/dummy/phased_mob/grub_burrow(current_loc, owner)
 		return TRUE
@@ -63,7 +63,7 @@
 	holder = owner.loc
 	holder.eject_jaunter()
 	holder = null
-	owner.visible_message(span_danger(LANG("datum.5b8bb693", list(owner))))
+	owner.visible_message(span_danger(LANG("datum.5b8bb6938142a303", list(owner))))
 
 	if(ismineralturf(current_loc))
 		var/turf/closed/mineral/mineral_turf = current_loc
@@ -86,5 +86,5 @@
 		return
 
 	if(!ismineralturf(.) && !isasteroidturf(.))
-		to_chat(user, span_warning(LANG("obj.a1b4bb83", null)))
+		to_chat(user, span_warning(LANG("obj.a1b4bb838ec47654", null)))
 		return null

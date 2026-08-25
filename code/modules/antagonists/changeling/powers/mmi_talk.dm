@@ -116,7 +116,7 @@
 
 	var/obj/item/mmi/mmi = brain_ref.loc
 	if(IS_UNCONSCIOUS_OR_CRIT(mmi.brainmob))
-		to_chat(usr, span_warning(LANG("datum.5d107a2d", null)))
+		to_chat(usr, span_warning(LANG("datum.5d107a2d12bff669", null)))
 	else
 		// Say will perform input sanitization and such for us
 		mmi.brainmob.say(params["message"], sanitize = TRUE)

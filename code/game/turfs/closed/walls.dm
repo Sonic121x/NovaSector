@@ -87,7 +87,7 @@
 /turf/closed/wall/examine(mob/user)
 	. = ..()
 	if(initial(smoothing_flags) & SMOOTH_DIAGONAL_CORNERS)
-		. += span_notice(LANG("turf.3fa870fd", null))
+		. += span_notice(LANG("turf.3fa870fd6cf39713", null))
 	. += deconstruction_hints(user)
 
 /turf/closed/wall/proc/deconstruction_hints(mob/user)
@@ -170,9 +170,9 @@
 	else
 		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
 		add_dent(WALL_DENT_HIT)
-		user.visible_message(span_danger(LANG("turf.b4956fef", list(user, src))), \
-					span_danger(LANG("turf.512fbab3", list(src))), \
-					span_hear(LANG("turf.ae515fb8", null)))
+		user.visible_message(span_danger(LANG("turf.b4956fefa1bdb34a", list(user, src))), \
+					span_danger(LANG("turf.512fbab35c301591", list(src))), \
+					span_hear(LANG("turf.ae515fb874e66efe", null)))
 	return TRUE
 
 /**
@@ -196,13 +196,13 @@
 	if(.)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	to_chat(user, span_notice(LANG("turf.51ef75fb", null)))
+	to_chat(user, span_notice(LANG("turf.51ef75fb5d24f770", null)))
 	playsound(src, 'sound/items/weapons/genhit.ogg', 25, TRUE)
 	add_fingerprint(user)
 
 /turf/closed/wall/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning(LANG("turf.e8ba50af", null)))
+		to_chat(user, span_warning(LANG("turf.e8ba50af79992c6d", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	add_fingerprint(user)
@@ -221,10 +221,10 @@
 		if(!W.tool_start_check(user, amount=1))
 			return FALSE
 
-		to_chat(user, span_notice(LANG("turf.853e8530", null)))
+		to_chat(user, span_notice(LANG("turf.853e853058afb68c", null)))
 		if(W.use_tool(src, user, 0, volume=100))
 			if(iswallturf(src) && LAZYLEN(dent_decals))
-				to_chat(user, span_notice(LANG("turf.f0c63713", null)))
+				to_chat(user, span_notice(LANG("turf.f0c637132d4562c6", null)))
 				cut_overlay(dent_decals)
 				dent_decals.Cut()
 			return TRUE
@@ -236,10 +236,10 @@
 		if(!I.tool_start_check(user, amount=round(slicing_duration / 50), heat_required = HIGH_TEMPERATURE_REQUIRED))
 			return FALSE
 
-		to_chat(user, span_notice(LANG("turf.c6b262f9", null)))
+		to_chat(user, span_notice(LANG("turf.c6b262f9cdb69ae9", null)))
 		if(I.use_tool(src, user, slicing_duration, volume=100))
 			if(iswallturf(src))
-				to_chat(user, span_notice(LANG("turf.e7544464", null)))
+				to_chat(user, span_notice(LANG("turf.e7544464fa1c6043", null)))
 				dismantle_wall()
 			return TRUE
 
@@ -252,14 +252,14 @@
 	var/obj/item/stack/rods = I
 	var/amount_needed = /obj/structure/wall_support::rods_amount
 	if(rods.get_amount() < amount_needed)
-		to_chat(user, span_warning(LANG("turf.ae76df5c", list(amount_needed))))
+		to_chat(user, span_warning(LANG("turf.ae76df5c47812571", list(amount_needed))))
 		return FALSE
-	to_chat(user, span_notice(LANG("turf.7c9674ff", null)))
+	to_chat(user, span_notice(LANG("turf.7c9674ffc18ad6de", null)))
 	if(do_after(user, 2 SECONDS, target = src))
 		var/obj/structure/wall_support/WS = new(src)
 		rods.use(amount_needed)
 		rods.transfer_fingerprints_to(WS)
-		to_chat(user, span_notice(LANG("turf.7a67ae81", list(WS, src))))
+		to_chat(user, span_notice(LANG("turf.7a67ae81e5981d09", list(WS, src))))
 		return TRUE
 	return FALSE
 
@@ -355,6 +355,6 @@
 	else
 		smoothing_flags |= SMOOTH_DIAGONAL_CORNERS
 	QUEUE_SMOOTH(src)
-	to_chat(user, span_notice(LANG("turf.53505ab9", list(src))))
+	to_chat(user, span_notice(LANG("turf.53505ab9def68cf6", list(src))))
 	tool.play_tool_sound(src)
 	return ITEM_INTERACT_SUCCESS

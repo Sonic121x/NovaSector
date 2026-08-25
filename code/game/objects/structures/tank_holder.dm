@@ -37,21 +37,21 @@
 /obj/structure/tank_holder/examine(mob/user)
 	. = ..()
 	if(anchored)
-		. += span_notice(LANG("obj.36b5eeeb", null))
+		. += span_notice(LANG("obj.36b5eeeb08f6fe05", null))
 	else
-		. += span_notice(LANG("obj.d6821321", null))
+		. += span_notice(LANG("obj.d6821321c5af3df2", null))
 	if(tank)
-		. += span_notice(LANG("obj.e85dcccb", list(tank)))
+		. += span_notice(LANG("obj.e85dcccb5dbc917b", list(tank)))
 	else
-		. += span_notice(LANG("obj.53b0d090", null))
-	. += span_notice(LANG("obj.0492e070", null))
+		. += span_notice(LANG("obj.53b0d090ad9fbc27", null))
+	. += span_notice(LANG("obj.0492e070a161ee9d", null))
 
 /obj/structure/tank_holder/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(user.combat_mode)
 		return NONE
 
 	if(!SEND_SIGNAL(tool, COMSIG_CONTAINER_TRY_ATTACH, src, user))
-		to_chat(user, span_warning(LANG("obj.b972e3dd", list(tool, src))))
+		to_chat(user, span_warning(LANG("obj.b972e3ddbff0ca9c", list(tool, src))))
 		return ITEM_INTERACT_BLOCKING
 
 	return ITEM_INTERACT_SUCCESS
@@ -60,11 +60,11 @@
 	if(user.combat_mode)
 		return NONE
 
-	to_chat(user, span_notice(LANG("obj.8b820c98", list(anchored ? "unwrench" : "wrench", src))))
+	to_chat(user, span_notice(LANG("obj.8b820c989748b0b7", list(anchored ? "unwrench" : "wrench", src))))
 	if(!tool.use_tool(src, user, 20, volume=50))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.5e680a27", list(anchored ? "unwrench" : "wrench", src))))
+	to_chat(user, span_notice(LANG("obj.5e680a27fb6982c5", list(anchored ? "unwrench" : "wrench", src))))
 	set_anchored(!anchored)
 	return ITEM_INTERACT_SUCCESS
 
@@ -91,7 +91,7 @@
 		return ..()
 	if(!Adjacent(user) || issilicon(user))
 		return ..()
-	to_chat(user, span_notice(LANG("obj.82af12e9", list(tank, src))))
+	to_chat(user, span_notice(LANG("obj.82af12e9ebd3eb13", list(tank, src))))
 	add_fingerprint(user)
 	tank.add_fingerprint(user)
 	user.put_in_hands(tank)

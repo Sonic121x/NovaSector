@@ -96,7 +96,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/necropolis_gate/attack_hand(mob/user, list/modifiers)
 	if(locked)
-		to_chat(user, span_bolddanger(LANG("obj.c8ae7385", list(open ? "stuck open":"locked"))))
+		to_chat(user, span_bolddanger(LANG("obj.c8ae738599413035", list(open ? "stuck open":"locked"))))
 		return
 	toggle_the_gate(user)
 	return ..()
@@ -108,7 +108,7 @@
 	var/turf/T = get_turf(src)
 	if(open)
 		new /obj/effect/temp_visual/necropolis(T)
-		visible_message(span_boldwarning(LANG("obj.5e1d6c62", null)))
+		visible_message(span_boldwarning(LANG("obj.5e1d6c62f04043c0", null)))
 		sleep(0.1 SECONDS)
 		playsound(T, 'sound/effects/stonedoor_openclose.ogg', 300, TRUE, frequency = 80000)
 		sleep(0.1 SECONDS)
@@ -131,7 +131,7 @@
 		cut_overlay(door_overlay)
 		new /obj/effect/temp_visual/necropolis/open(T)
 		sleep(0.2 SECONDS)
-		visible_message(span_warning(LANG("obj.30b994df", null)))
+		visible_message(span_warning(LANG("obj.30b994dfa6d2a159", null)))
 		playsound(T, 'sound/effects/stonedoor_openclose.ogg', 300, TRUE, frequency = 20000)
 		sleep(2.2 SECONDS)
 		sight_blocker.forceMove(src)
@@ -162,10 +162,10 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/necropolis_gate/legion_gate/attack_hand(mob/user, list/modifiers)
 	if(!open && !changing_openness)
-		var/safety = tgui_alert(user, LANG("obj.64d9dd2e", null), LANG("obj.3a7eb13e", null), list("Proceed", "Abort"))
+		var/safety = tgui_alert(user, LANG("obj.64d9dd2e96274e50", null), LANG("obj.3a7eb13ed58b79e5", null), list("Proceed", "Abort"))
 		if(safety == "Abort" || !in_range(src, user) || !src || open || changing_openness || user.incapacitated)
 			return
-		user.visible_message(span_warning(LANG("obj.063d5068", list(user, src))), span_bolddanger(LANG("obj.467cb6ab", list(src))))
+		user.visible_message(span_warning(LANG("obj.063d5068b10ecb39", list(user, src))), span_bolddanger(LANG("obj.467cb6ab875ab640", list(src))))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 100, TRUE)
 		sleep(5 SECONDS)
 	return ..()
@@ -177,7 +177,7 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 	if(.)
 		locked = TRUE
 		var/turf/T = get_turf(src)
-		visible_message(span_userdanger(LANG("obj.5d9c4a61", null)))
+		visible_message(span_userdanger(LANG("obj.5d9c4a618782b521", null)))
 		if(legion_damaged)
 			message_admins("Legion took damage while the necropolis gate was closed, and has released itself!")
 			log_game("Legion took damage while the necropolis gate was closed and released itself.")
@@ -188,12 +188,12 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 		var/sound/legion_sound = sound('sound/mobs/non-humanoids/legion/legion_spawn.ogg')
 		for(var/mob/M in GLOB.player_list)
 			if(is_valid_z_level(get_turf(M), T))
-				to_chat(M, span_userdanger(LANG("obj.af626213", null)))
+				to_chat(M, span_userdanger(LANG("obj.af626213ed93141a", null)))
 				M.playsound_local(T, null, 100, FALSE, 0, FALSE, pressure_affected = FALSE, sound_to_use = legion_sound)
 				flash_color(M, flash_color = "#FF0000", flash_time = 50)
 		var/mutable_appearance/release_overlay = mutable_appearance('icons/effects/effects.dmi', "legiondoor")
 		notify_ghosts(
-			LANG("obj.d604cbb1", list(get_area(src))),
+			LANG("obj.d604cbb17249f3e2", list(get_area(src))),
 			source = src,
 			alert_overlay = release_overlay,
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,

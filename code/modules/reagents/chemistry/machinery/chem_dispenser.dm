@@ -181,10 +181,10 @@
 /obj/machinery/chem_dispenser/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += span_notice(LANG("obj.83607a9b", list(src)))
+		. += span_notice(LANG("obj.83607a9b007a48ee", list(src)))
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.e1d14930", list(display_power(recharge_amount, convert = FALSE), siunit(power_cost, "J/u", 3))))
-	. += span_notice(LANG("obj.52489082", null))
+		. += span_notice(LANG("obj.e1d14930fda07469", list(display_power(recharge_amount, convert = FALSE), siunit(power_cost, "J/u", 3))))
+	. += span_notice(LANG("obj.52489082585a053c", null))
 
 /obj/machinery/chem_dispenser/on_set_is_operational(old_value)
 	if(old_value) //Turned off
@@ -224,9 +224,9 @@
 
 /obj/machinery/chem_dispenser/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.9bab397b", null))
+		balloon_alert(user, LANG("obj.9bab397b17f019dd", null))
 		return FALSE
-	balloon_alert(user, LANG("obj.a9c7d53b", null))
+	balloon_alert(user, LANG("obj.a9c7d53b1b53577f", null))
 	dispensable_reagents |= emagged_reagents//add the emagged reagents to the dispensable ones
 	obj_flags |= EMAGGED
 	return TRUE
@@ -355,15 +355,15 @@
 				return
 			var/reagent_name = params["reagent"]
 			if(!recording_recipe)
-				var/reagent = GLOB.name2reagent[reagent_name] || GLOB.name2reagent[lang_unreverse_text(reagent_name)] // NOVA EDIT CHANGE - i18n - 实例 name 已译、表键是英文，逆向反查兜底 - ORIGINAL: var/reagent = GLOB.name2reagent[reagent_name]
+				var/reagent = GLOB.name2reagent[reagent_name]
 				if(beaker && dispensable_reagents.Find(reagent))
 					var/datum/reagents/holder = beaker.reagents
 					var/to_dispense = max(0, min(amount, holder.maximum_volume - holder.total_volume))
 					if(!to_dispense)
-						say(LANG("obj.371fe5cf", null))
+						say(LANG("obj.371fe5cfb9d54cbc", null))
 						return
 					if(!cell.use(to_dispense * power_cost))
-						say(LANG("obj.151cff6f", null))
+						say(LANG("obj.151cff6fb63745f4", null))
 						return
 					beaker.add_hiddenprint(ui.user)
 					holder.add_reagent(reagent, to_dispense, reagtemp = dispensed_temperature, added_purity = base_reagent_purity)
@@ -401,7 +401,7 @@
 			if(!LAZYLEN(chemicals_to_dispense))
 				return
 			for(var/key in chemicals_to_dispense)
-				var/reagent = GLOB.name2reagent[key] || GLOB.name2reagent[lang_unreverse_text(key)] // NOVA EDIT CHANGE - i18n - ORIGINAL: var/reagent = GLOB.name2reagent[key]
+				var/reagent = GLOB.name2reagent[key]
 				var/dispense_amount = chemicals_to_dispense[key]
 				if(!dispensable_reagents.Find(reagent))
 					return
@@ -413,7 +413,7 @@
 					if(!to_dispense)
 						continue
 					if(!cell.use(to_dispense * power_cost))
-						say(LANG("obj.151cff6f", null))
+						say(LANG("obj.151cff6fb63745f4", null))
 						return
 					beaker.add_hiddenprint(ui.user)
 					holder.add_reagent(reagent, to_dispense, reagtemp = dispensed_temperature, added_purity = base_reagent_purity)
@@ -423,7 +423,7 @@
 			return TRUE
 
 		if("clear_recipes")
-			if(is_operational && tgui_alert(ui.user, LANG("obj.f2f93223", null), LANG("obj.65ed6063", null), list("Yes", "No")) == "Yes")
+			if(is_operational && tgui_alert(ui.user, LANG("obj.f2f932236ea91e79", null), LANG("obj.65ed606362fbfa61", null), list("Yes", "No")) == "Yes")
 				saved_recipes = list()
 				return TRUE
 
@@ -435,17 +435,17 @@
 		if("save_recording")
 			if(!is_operational)
 				return
-			var/name = tgui_input_text(ui.user, LANG("obj.9016fe3a", null), LANG("obj.63014c04", null), max_length = MAX_NAME_LEN, encode = FALSE)
+			var/name = tgui_input_text(ui.user, LANG("obj.9016fe3a5aa6ca84", null), LANG("obj.63014c04af880a8e", null), max_length = MAX_NAME_LEN, encode = FALSE)
 			if(!ui.user.can_perform_action(src, ALLOW_SILICON_REACH))
 				return
-			if(saved_recipes[name] && tgui_alert(ui.user, LANG("obj.3ab497df", list(name)),, list("Yes", "No")) == "No")
+			if(saved_recipes[name] && tgui_alert(ui.user, LANG("obj.3ab497dfe1496011", list(name)),, list("Yes", "No")) == "No")
 				return
 			if(name && recording_recipe)
 				for(var/reagent in recording_recipe)
-					var/reagent_id = GLOB.name2reagent[reagent] || GLOB.name2reagent[lang_unreverse_text(reagent)] // NOVA EDIT CHANGE - i18n - ORIGINAL: var/reagent_id = GLOB.name2reagent[reagent]
+					var/reagent_id = GLOB.name2reagent[reagent]
 					if(!dispensable_reagents.Find(reagent_id))
-						visible_message(span_warning(LANG("obj.9f1f2989", list(src))), span_hear(LANG("obj.c2e63776", null)))
-						to_chat(ui.user, span_warning(LANG("obj.69924594", list(src, reagent))))
+						visible_message(span_warning(LANG("obj.9f1f2989394f9812", list(src))), span_hear(LANG("obj.c2e63776d067d9b7", null)))
+						to_chat(ui.user, span_warning(LANG("obj.699245944020db97", list(src, reagent))))
 						playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 						return
 				saved_recipes[name] = recording_recipe
@@ -459,11 +459,11 @@
 		//NOVA EDIT ADDITION BEGIN - CHEMISTRY QOL
 		if("custom_amount")
 			if(!beaker)
-				to_chat(usr, span_warning(LANG("obj.93a3fcbf", null)))
+				to_chat(usr, span_warning(LANG("obj.93a3fcbf3e5c15b4", null)))
 				return
 			if(customTransferAmount)
 				transferAmounts -= customTransferAmount
-			customTransferAmount = clamp(input(usr, LANG("obj.cf059c6f", null), LANG("obj.9749dd49", null), 0) as num|null, 0, beaker.volume)
+			customTransferAmount = clamp(input(usr, LANG("obj.cf059c6f34f45272", null), LANG("obj.9749dd491955cd84", null), 0) as num|null, 0, beaker.volume)
 			transferAmounts += customTransferAmount
 			return TRUE
 		//NOVA EDIT ADDITION END
@@ -528,7 +528,7 @@
 	cell.use(total * power_cost)
 	cell.emp_act(severity)
 	work_animation()
-	visible_message(span_danger(LANG("obj.6d845762", list(src))))
+	visible_message(span_danger(LANG("obj.6d845762f24b1cc7", list(src))))
 
 /obj/machinery/chem_dispenser/RefreshParts()
 	. = ..()

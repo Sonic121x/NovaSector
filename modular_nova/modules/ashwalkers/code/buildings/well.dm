@@ -12,14 +12,14 @@
 		return
 	flick("puddle-oil-splash", src)
 	reagents.expose(user, TOUCH, 20) //Covers target in 20u of fuel.
-	to_chat(user, span_warning(LANG("obj.792a46c3", null)))
+	to_chat(user, span_warning(LANG("obj.792a46c3bc1690a2", null)))
 
 /obj/structure/water_source/fuel_well/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	flick("puddle-oil-splash", src)
 	return ..()
 
 /obj/structure/water_source/fuel_well/shovel_act(mob/living/user, obj/item/tool)
-	to_chat(user, LANG("obj.c188d34b", list(src)))
+	to_chat(user, LANG("obj.c188d34b91752433", list(src)))
 	tool.play_tool_sound(src)
 	deconstruct()
 
@@ -27,11 +27,11 @@
 	var/obj/item/weldingtool/attacking_welder = tool
 	if(istype(attacking_welder) && !attacking_welder.welding)
 		if(attacking_welder.reagents.has_reagent(/datum/reagent/fuel, attacking_welder.max_fuel))
-			to_chat(user, span_warning(LANG("obj.c9271270", list(attacking_welder.name))))
+			to_chat(user, span_warning(LANG("obj.c927127059a90967", list(attacking_welder.name))))
 			return
 
 		reagents.trans_to(attacking_welder, attacking_welder.max_fuel, transferred_by = user)
-		user.visible_message(span_notice(LANG("obj.3f21aaca", list(user, user.p_their(), attacking_welder.name))), span_notice(LANG("obj.e125cbe7", list(attacking_welder))))
+		user.visible_message(span_notice(LANG("obj.3f21aaca699f8ff3", list(user, user.p_their(), attacking_welder.name))), span_notice(LANG("obj.e125cbe727e270a3", list(attacking_welder))))
 		playsound(src, 'sound/effects/refill.ogg', 50, TRUE)
 		attacking_welder.update_appearance()
 		return
@@ -75,18 +75,18 @@
 //attack hand is for cleaning stuff, but if the well isn't working, then we can't wash!
 /obj/structure/water_source/brick_well/attack_hand(mob/living/user, list/modifiers)
 	if(!cover_work())
-		to_chat(user, span_warning(LANG("obj.f235da32", list(src, get_turf(src)))))
+		to_chat(user, span_warning(LANG("obj.f235da32e3599d1f", list(src, get_turf(src)))))
 		return
 
 	return ..()
 
 /obj/structure/water_source/brick_well/shovel_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice(LANG("obj.9f054c5c", list(src))))
+	to_chat(user, span_notice(LANG("obj.9f054c5c8e0247b6", list(src))))
 	tool.play_tool_sound(src)
 	if(!do_after(user, 5 SECONDS, target = src))
 		return
 
-	to_chat(user, span_notice(LANG("obj.a33d1bb6", list(src))))
+	to_chat(user, span_notice(LANG("obj.a33d1bb641d47707", list(src))))
 	tool.play_tool_sound(src)
 	deconstruct()
 
@@ -94,24 +94,24 @@
 /obj/structure/water_source/brick_well/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stack/sheet/mineral/wood))
 		if(well_covered)
-			to_chat(user, span_notice(LANG("obj.0d3178b1", list(src))))
+			to_chat(user, span_notice(LANG("obj.0d3178b119ee39a9", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!tool.use(3))
-			to_chat(user, span_warning(LANG("obj.3c2fca98", list(src))))
+			to_chat(user, span_warning(LANG("obj.3c2fca986bc33112", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.96289978", null)))
+		to_chat(user, span_notice(LANG("obj.9628997894f597bd", null)))
 		if(!do_after(user, 5 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.43e27bb8", null)))
+		to_chat(user, span_notice(LANG("obj.43e27bb8cc628cc5", null)))
 		well_covered = TRUE
 		add_overlay("well_cover")
 		return ITEM_INTERACT_SUCCESS
 
 	if(!cover_work())
-		to_chat(user, span_warning(LANG("obj.f235da32", list(src, get_turf(src)))))
+		to_chat(user, span_warning(LANG("obj.f235da32e3599d1f", list(src, get_turf(src)))))
 		return ITEM_INTERACT_BLOCKING
 
 	return ..()

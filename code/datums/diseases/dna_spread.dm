@@ -47,11 +47,11 @@
 			if(SPT_PROB(4, seconds_per_tick))
 				affected_mob.emote("cough")
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger(LANG("datum.e17753b8", null)))
+				to_chat(affected_mob, span_danger(LANG("datum.e17753b815f9a749", null)))
 				if(prob(20))
 					affected_mob.take_bodypart_damage(1, updating_health = FALSE)
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger(LANG("datum.6c562ebe", null)))
+				to_chat(affected_mob, span_danger(LANG("datum.6c562ebe4f40bc9d", null)))
 				if(prob(20))
 					affected_mob.adjust_tox_loss(2, FALSE)
 		if(4)
@@ -60,7 +60,7 @@
 				original_dna = new affected_mob.dna.type
 				affected_mob.dna.copy_dna(original_dna)
 
-				to_chat(affected_mob, span_danger(LANG("datum.089ce467", null)))
+				to_chat(affected_mob, span_danger(LANG("datum.089ce4671fd70fd0", null)))
 				var/datum/dna/transform_dna = strain_data["dna"]
 
 				transform_dna.copy_dna(affected_mob.dna, COPY_DNA_SE|COPY_DNA_SPECIES)
@@ -79,5 +79,5 @@
 		affected_mob.updateappearance(mutcolor_update=1)
 		affected_mob.domutcheck()
 
-		to_chat(affected_mob, span_notice(LANG("datum.fd69a5b8", null)))
+		to_chat(affected_mob, span_notice(LANG("datum.fd69a5b84b742df7", null)))
 	return ..()

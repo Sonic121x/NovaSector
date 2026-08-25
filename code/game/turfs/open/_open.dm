@@ -137,14 +137,14 @@
 /turf/open/examine(mob/user)
 	. = ..()
 	if(leave_footprints && (footprint_entrance_dirs || footprint_exit_dirs) && (LAZYLEN(footprint_shoe_types) || LAZYLEN(footprint_species_types)))
-		. += LANG("turf.bfd46e14", null)
+		. += LANG("turf.bfd46e14a4c5a954", null)
 		for(var/obj/item/clothing/shoes/sole as anything in footprint_shoe_types)
 			var/article = initial(sole.article) || (initial(sole.gender) == PLURAL ? "Some" : "A")
 			. += "[icon2html(initial(sole.icon), user, initial(sole.icon_state))] [article] <b>[initial(sole.name)]</b>."
 
 		for(var/species in footprint_species_types)
 			var/datum/species/species_type = GLOB.species_list[species]
-			. += LANG("turf.b99cc5e1", list(species_type ? format_text(species_type::plural_form) : "unknown"))
+			. += LANG("turf.b99cc5e1f6b50e5d", list(species_type ? format_text(species_type::plural_form) : "unknown"))
 
 //direction is direction of travel of A
 /turf/open/zPassIn(direction)
@@ -569,7 +569,7 @@
 
 	if(!(lube & SLIDE_ICE))
 		// Ice slides are intended to be combo'd so don't give the feedback
-		to_chat(slipper, span_notice(LANG("turf.567ad8f7", list(slippable ? " on \the [slippable]" : ""))))
+		to_chat(slipper, span_notice(LANG("turf.567ad8f7d400ee5e", list(slippable ? " on \the [slippable]" : ""))))
 		playsound(slipper.loc, 'sound/misc/slip.ogg', 50, TRUE, -3)
 
 	SEND_SIGNAL(slipper, COMSIG_ON_CARBON_SLIP)
@@ -624,36 +624,36 @@
 	var/obj/structure/lattice/catwalk_bait = locate(/obj/structure/lattice, src)
 	var/obj/structure/lattice/catwalk/existing_catwalk = locate(/obj/structure/lattice/catwalk, src)
 	if(existing_catwalk)
-		to_chat(user, span_warning(LANG("turf.41fe1fe4", null)))
+		to_chat(user, span_warning(LANG("turf.41fe1fe47891e2f8", null)))
 		return
 
 	if(catwalk_bait)
 		if(used_rods.use(1))
-			to_chat(user, span_notice(LANG("turf.e2e9b010", null)))
+			to_chat(user, span_notice(LANG("turf.e2e9b010790f2588", null)))
 			playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 			catwalk_bait.replace_with_catwalk()
 		else
-			to_chat(user, span_warning(LANG("turf.660a6b98", null)))
+			to_chat(user, span_warning(LANG("turf.660a6b98eae1bdb5", null)))
 		return
 
 	if(used_rods.use(1))
-		to_chat(user, span_notice(LANG("turf.b8bd3ae8", null)))
+		to_chat(user, span_notice(LANG("turf.b8bd3ae8f6533c4d", null)))
 		playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 		var/obj/structure/lattice/new_lattice = new (src)
 		if(istype(used_rods, /obj/item/stack/rods/shuttle) && !istype(loc, /area/shuttle))
 			new_lattice.AddElement(/datum/element/shuttle_construction_lattice)
 	else
-		to_chat(user, span_warning(LANG("turf.ff0f6921", null)))
+		to_chat(user, span_warning(LANG("turf.ff0f6921a3782b2a", null)))
 
 /// Very similar to build_with_rods, this exists to allow consistent behavior between different types in terms of how
 /// Building floors works
 /turf/open/proc/build_with_floor_tiles(obj/item/stack/tile/iron/used_tiles, user)
 	var/obj/structure/lattice/lattice = locate(/obj/structure/lattice, src)
 	if(!has_valid_support() && !lattice)
-		balloon_alert(user, LANG("turf.a27ee14b", null))
+		balloon_alert(user, LANG("turf.a27ee14b5eac1943", null))
 		return
 	if(!used_tiles.use(1))
-		balloon_alert(user, LANG("turf.2b8f530c", null))
+		balloon_alert(user, LANG("turf.2b8f530cbf221e79", null))
 		return
 
 	playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
@@ -676,10 +676,10 @@
 /turf/open/proc/build_with_transport_tiles(obj/item/stack/thermoplastic/used_tiles, user)
 	var/obj/structure/transport/linear/platform = locate(/obj/structure/transport/linear, src)
 	if(!platform)
-		balloon_alert(user, LANG("turf.9a62edf0", null))
+		balloon_alert(user, LANG("turf.9a62edf0261050c0", null))
 		return
 	if(!used_tiles.use(1))
-		balloon_alert(user, LANG("turf.97fe95fa", null))
+		balloon_alert(user, LANG("turf.97fe95faad06075f", null))
 		return
 
 	playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
@@ -698,10 +698,10 @@
 /turf/open/proc/build_with_titanium(obj/item/stack/sheet/mineral/titanium/used_stack, user)
 	var/obj/structure/transport/linear/platform = locate(/obj/structure/transport/linear, src)
 	if(!platform)
-		to_chat(user, span_warning(LANG("turf.dd6e2b03", null)))
+		to_chat(user, span_warning(LANG("turf.dd6e2b038cad98dd", null)))
 		return
 	if(!used_stack.use(2))
-		balloon_alert(user, LANG("turf.c1ad2d1f", null))
+		balloon_alert(user, LANG("turf.c1ad2d1f439db5a8", null))
 		return
 
 	playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)

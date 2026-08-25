@@ -38,7 +38,7 @@
 /obj/machinery/atmospherics/miner/examine(mob/user)
 	. = ..()
 	if(broken)
-		. += LANG("obj.6114d41b", list(broken_message))
+		. += LANG("obj.6114d41be2a15752", list(broken_message))
 
 /obj/machinery/atmospherics/miner/proc/check_operation()
 	if(!active)
@@ -143,7 +143,7 @@
 
 /obj/machinery/atmospherics/miner/attack_ai(mob/living/silicon/user)
 	if(broken)
-		to_chat(user, LANG("obj.a7d07d95", list(src, broken_message)))
+		to_chat(user, LANG("obj.a7d07d957adc8e78", list(src, broken_message)))
 	..()
 
 /obj/machinery/atmospherics/miner/n2o

@@ -45,16 +45,16 @@
 	. = ..()
 	if(!(machine_stat & BROKEN))
 		if(cart_griddle.machine_stat & BROKEN)
-			. += span_warning(LANG("obj.07019d55", null))
+			. += span_warning(LANG("obj.07019d55e38e3875", null))
 		else
-			. += span_notice(LANG("obj.8241254e", null))
-		. += span_notice(LANG("obj.c7d69e5c", null)) //weirdly enough, these fridges don't break
-		. += span_notice(LANG("obj.86f899f5", null))
+			. += span_notice(LANG("obj.8241254e7cbdf256", null))
+		. += span_notice(LANG("obj.c7d69e5cdace4312", null)) //weirdly enough, these fridges don't break
+		. += span_notice(LANG("obj.86f899f5c4246253", null))
 
 /obj/machinery/food_cart/proc/pack_up()
 	if(!unpacked)
 		return
-	visible_message(span_notice(LANG("obj.10504e82", list(src))))
+	visible_message(span_notice(LANG("obj.10504e82f2de78f6", list(src))))
 	for(var/o in packed_things)
 		var/obj/object = o
 		UnregisterSignal(object, COMSIG_MOVABLE_MOVED)
@@ -66,9 +66,9 @@
 	if(unpacked)
 		return
 	if(!check_setup_place())
-		to_chat(user, span_warning(LANG("obj.62179021", null)))
+		to_chat(user, span_warning(LANG("obj.621790211ddd41e7", null)))
 		return
-	visible_message(span_notice(LANG("obj.fc672b81", list(src))))
+	visible_message(span_notice(LANG("obj.fc672b81d38a3240", list(src))))
 	set_anchored(TRUE)
 	var/iteration = 1
 	var/turf/grabbed_turf = get_step(get_turf(src), EAST)
@@ -83,15 +83,15 @@
 /obj/machinery/food_cart/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(machine_stat & BROKEN)
-		to_chat(user, span_warning(LANG("obj.c695c81a", list(src))))
+		to_chat(user, span_warning(LANG("obj.c695c81ad5138761", list(src))))
 		return
 	var/obj/item/card/id/id_card = user.get_idcard(hand_first = TRUE)
 	if(!check_access(id_card))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		return
-	to_chat(user, span_notice(LANG("obj.930d236d", list(unpacked ? "pack up" :"unpack", src))))
+	to_chat(user, span_notice(LANG("obj.930d236d481f5689", list(unpacked ? "pack up" :"unpack", src))))
 	if(!do_after(user, 5 SECONDS, src))
-		to_chat(user, span_warning(LANG("obj.d8c1f2e6", list(unpacked ? "" :"un", src))))
+		to_chat(user, span_warning(LANG("obj.d8c1f2e656a12226", list(unpacked ? "" :"un", src))))
 		return
 	if(unpacked)
 		pack_up()

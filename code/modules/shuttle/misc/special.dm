@@ -40,7 +40,7 @@
 /obj/machinery/power/emitter/energycannon/magical/Initialize(mapload)
 	. = ..()
 	if(prob(50))
-		desc = LANG("obj.e385799a", null)
+		desc = LANG("obj.e385799a3973a8ca", null)
 	update_appearance()
 
 /obj/machinery/power/emitter/energycannon/magical/update_icon_state()
@@ -51,11 +51,11 @@
 	. = ..()
 	if(active_tables.len >= tables_required)
 		if(!active)
-			visible_message(LANG("obj.bd793093", list(src)))
+			visible_message(LANG("obj.bd793093bdeabe5d", list(src)))
 		active = TRUE
 	else
 		if(active)
-			visible_message(LANG("obj.1e232dbe", list(src)))
+			visible_message(LANG("obj.1e232dbee468f3ae", list(src)))
 		active = FALSE
 	update_appearance()
 
@@ -107,7 +107,7 @@
 	for(var/i in found - sleepers)
 		var/mob/living/L = i
 		L.add_atom_colour(COLOR_PURPLE, TEMPORARY_COLOUR_PRIORITY)
-		L.visible_message(span_revennotice(LANG("obj.0eba5697", list(L, L.p_they(), L.p_s()))),
+		L.visible_message(span_revennotice(LANG("obj.0eba569701ebd012", list(L, L.p_they(), L.p_s()))),
 			span_revendanger("[desc]"))
 		// Don't let them sit suround unconscious forever
 		addtimer(CALLBACK(src, PROC_REF(sleeper_dreams), L), 10 SECONDS)
@@ -121,7 +121,7 @@
 	for(var/i in sleepers - found)
 		var/mob/living/L = i
 		L.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_PURPLE)
-		L.visible_message(LANG("obj.a7e3e79e", list(L)))
+		L.visible_message(LANG("obj.a7e3e79e8b53efc3", list(L)))
 		L.grab_ghost()
 
 	sleepers = found
@@ -136,7 +136,7 @@
 
 /obj/structure/table/abductor/wabbajack/proc/sleeper_dreams(mob/living/sleeper)
 	if(sleeper in sleepers)
-		to_chat(sleeper, span_revennotice(LANG("obj.772ab2af", null)))
+		to_chat(sleeper, span_revennotice(LANG("obj.772ab2af20d4432d", null)))
 		sleeper.ghostize(TRUE)
 
 /obj/structure/table/abductor/wabbajack/left
@@ -191,7 +191,7 @@
 		var/throwtarget = get_edge_target_turf(src, boot_dir)
 		M.Paralyze(40)
 		M.throw_at(throwtarget, 5, 1)
-		to_chat(M, span_notice(LANG("obj.50793f20", null)))
+		to_chat(M, span_notice(LANG("obj.50793f20cf70da73", null)))
 
 /obj/structure/table/wood/shuttle_bar/proc/is_barstaff(mob/living/user)
 	. = FALSE
@@ -230,7 +230,7 @@
 			var/obj/vehicle/vehicle = mover
 			for(var/mob/living/rat in vehicle.occupants)
 				if(!(rat in approved_passengers))
-					say(LANG("obj.2f904ea0", null))
+					say(LANG("obj.2f904ea0babfc1c9", null))
 					return FALSE
 		return TRUE
 	if(isitem(mover))
@@ -238,7 +238,7 @@
 	if(isstructure(mover))
 		var/obj/structure/struct = mover
 		for(var/mob/living/rat in struct.contents)
-			say(LANG("obj.66cc9917", null))
+			say(LANG("obj.66cc991770eda56c", null))
 			return FALSE
 		return TRUE
 
@@ -269,7 +269,7 @@
 		if(I.registered_account)
 			account = I.registered_account
 		else if(!check_times[AM] || check_times[AM] < world.time) //Let's not spam the message
-			to_chat(AM, span_notice(LANG("obj.30eba6c0", null)))
+			to_chat(AM, span_notice(LANG("obj.30eba6c00afe4264", null)))
 			check_times[AM] = world.time + LUXURY_MESSAGE_COOLDOWN
 	else if(isliving(AM))
 		var/mob/living/L = AM
@@ -341,7 +341,7 @@
 		if(armless)
 			if(!AM.pulling || !iscash(AM.pulling) && !istype(AM.pulling, /obj/item/card/id))
 				if(!check_times[AM] || check_times[AM] < world.time) //Let's not spam the message
-					to_chat(AM, span_notice(LANG("obj.c51df783", list(src))))
+					to_chat(AM, span_notice(LANG("obj.c51df78321a93a10", list(src))))
 					check_times[AM] = world.time + LUXURY_MESSAGE_COOLDOWN
 
 	if(payees[AM] >= threshold)
@@ -361,7 +361,7 @@
 				AM.pulling = holocred
 			payees[AM] -= payees[AM]
 
-		say(LANG("obj.4eedfcee", list(driver_holdout ? "[driver_holdout]" : "[AM]", change ? " Here is your change." : "")))
+		say(LANG("obj.4eedfceefe02f60a", list(driver_holdout ? "[driver_holdout]" : "[AM]", change ? " Here is your change." : "")))
 		approved_passengers |= AM
 		if(vehicle)
 			approved_passengers |= vehicle
@@ -374,7 +374,7 @@
 		for(var/obj/I in counted_money)
 			qdel(I)
 		if(!check_times[AM] || check_times[AM] < world.time) //Let's not spam the message
-			to_chat(AM, span_notice(LANG("obj.8cec45e6", list(payees[AM], MONEY_SYMBOL, threshold-payees[AM], MONEY_SYMBOL))))
+			to_chat(AM, span_notice(LANG("obj.8cec45e6c2e3648d", list(payees[AM], MONEY_SYMBOL, threshold-payees[AM], MONEY_SYMBOL))))
 			check_times[AM] = world.time + LUXURY_MESSAGE_COOLDOWN
 		alarm_beep()
 		return ..()

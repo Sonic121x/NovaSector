@@ -11,9 +11,9 @@
 
 
 /obj/machinery/netpod/container_resist_act(mob/living/user)
-	user.visible_message(span_notice(LANG("obj.8616ec7e", list(occupant, src))),
-		span_notice(LANG("obj.adaf0a2d", list(src))),
-		span_notice(LANG("obj.f867c29d", null)))
+	user.visible_message(span_notice(LANG("obj.8616ec7ef6eb4cb4", list(occupant, src))),
+		span_notice(LANG("obj.adaf0a2d27164b52", list(src))),
+		span_notice(LANG("obj.f867c29d88684f1e", null)))
 	open_machine()
 
 
@@ -49,9 +49,9 @@
 		return ITEM_INTERACT_SUCCESS
 
 	user.visible_message(
-		span_danger(LANG("obj.44411a9a", list(user, src))),
-		span_notice(LANG("obj.68c3aeb6", list(src))),
-		span_notice(LANG("obj.e8e1ff73", null))
+		span_danger(LANG("obj.44411a9a23efb065", list(user, src))),
+		span_notice(LANG("obj.68c3aeb6cb28ee15", list(src))),
+		span_notice(LANG("obj.e8e1ff73b4a188b4", null))
 	)
 	playsound(src, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE)
 

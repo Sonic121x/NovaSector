@@ -45,8 +45,8 @@
 
 	apply_damage(hitting_projectile.damage * 0.5, hitting_projectile.damage_type)
 	visible_message(
-		span_danger(LANG("mob.9d7df035", list(hitting_projectile, src))),
-		span_userdanger(LANG("mob.a09bc027", list(hitting_projectile))),
+		span_danger(LANG("mob.9d7df035df091423", list(hitting_projectile, src))),
+		span_userdanger(LANG("mob.a09bc027755624f1", list(hitting_projectile))),
 	)
 
 	hitting_projectile.reflect(src)

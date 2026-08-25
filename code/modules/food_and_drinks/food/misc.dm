@@ -393,7 +393,7 @@
 /obj/item/food/butter/examine(mob/user)
 	. = ..()
 	if (can_stick)
-		. += span_notice(LANG("obj.9387c5d1", null))
+		. += span_notice(LANG("obj.9387c5d1c9137b48", null))
 
 /obj/item/food/butter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/stack/rods) || !can_stick)
@@ -401,10 +401,10 @@
 
 	var/obj/item/stack/rods/rods = tool
 	if(!rods.use(1))//borgs can still fail this if they have no metal
-		to_chat(user, span_warning(LANG("obj.02ef851f", list(src))))
+		to_chat(user, span_warning(LANG("obj.02ef851ffc109df9", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.f9dc8b09", null)))
+	to_chat(user, span_notice(LANG("obj.f9dc8b09c6be85a4", null)))
 	user.temporarilyRemoveItemFromInventory(src)
 	var/obj/item/food/butter/on_a_stick/new_item = new(drop_location())
 	if (new_item.IsReachableBy(user))
@@ -872,5 +872,5 @@
 	if(can_splat_on)
 		victim.adjust_temp_blindness_up_to(2.5 SECONDS, 3 SECONDS)
 		victim.adjust_confusion_up_to(2.5 SECONDS, 3 SECONDS)
-	victim.visible_message(span_warning(LANG("obj.435f3e65", list(victim, src))), span_userdanger(LANG("obj.3659c69f", list(src))))
+	victim.visible_message(span_warning(LANG("obj.435f3e655ff5afa1", list(victim, src))), span_userdanger(LANG("obj.3659c69ff40a2f3c", list(src))))
 	playsound(victim, SFX_DESECRATION, 50, TRUE)

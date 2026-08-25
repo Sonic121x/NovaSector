@@ -16,7 +16,7 @@
 
 /obj/item/gun/grenadelauncher/examine(mob/user)
 	. = ..()
-	. += LANG("obj.5985ebcc", list(grenades.len, max_grenades))
+	. += LANG("obj.5985ebcc528ff659", list(grenades.len, max_grenades))
 
 /obj/item/gun/grenadelauncher/apply_fantasy_bonuses(bonus)
 	. = ..()
@@ -32,20 +32,20 @@
 	if(istype(tool, /obj/item/grenade/c4))
 		return NONE
 	if(grenades.len == max_grenades)
-		balloon_alert(user, LANG("obj.53488f9b", null))
+		balloon_alert(user, LANG("obj.53488f9b0696fdd9", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 	grenades += tool
-	balloon_alert(user, LANG("obj.b47984d1", list(grenades.len, max_grenades)))
+	balloon_alert(user, LANG("obj.b47984d14f39f159", list(grenades.len, max_grenades)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/grenadelauncher/can_shoot()
 	return grenades.len
 
 /obj/item/gun/grenadelauncher/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	user.visible_message(span_danger(LANG("obj.9630b723", list(user))), \
-						span_danger(LANG("obj.bc69f277", null)))
+	user.visible_message(span_danger(LANG("obj.9630b72309c5b210", list(user))), \
+						span_danger(LANG("obj.bc69f2776bbdf1a1", null)))
 	var/obj/item/grenade/F = grenades[1] //Now with less copypasta!
 	grenades -= F
 	F.forceMove(user.loc)

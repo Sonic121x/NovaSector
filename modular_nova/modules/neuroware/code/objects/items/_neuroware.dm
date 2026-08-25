@@ -74,23 +74,23 @@
 /obj/item/disk/neuroware/examine()
 	. = ..()
 	if(uses <= 0)
-		. += span_notice(LANG("obj.2ad07b37", null))
+		. += span_notice(LANG("obj.2ad07b370cfa3ffa", null))
 		return
 	if(can_hack)
-		. += span_notice(LANG("obj.7cbe818b", list(can_overdose ? "enabled" : "disabled")))
-	. += span_notice(LANG("obj.2166be46", list(uses, uses > 1 ? "s" : "")))
+		. += span_notice(LANG("obj.7cbe818bc19558b6", list(can_overdose ? "enabled" : "disabled")))
+	. += span_notice(LANG("obj.2166be462d3f330e", list(uses, uses > 1 ? "s" : "")))
 
 // Toggle reagent overdose (overload) prevention
 /obj/item/disk/neuroware/screwdriver_act(mob/living/user, obj/item/screwdriver)
 	if(!can_hack)
 		return FALSE
 	if(uses <= 0)
-		balloon_alert(user, LANG("obj.09a80560", null))
+		balloon_alert(user, LANG("obj.09a805600797f12e", null))
 		return FALSE
-	balloon_alert(user, LANG("obj.77d10271", list(can_overdose ? "enabling" : "disabling")))
+	balloon_alert(user, LANG("obj.77d10271e167d540", list(can_overdose ? "enabling" : "disabling")))
 	screwdriver.play_tool_sound(src, 100)
 	if(!screwdriver.use_tool(src, user, 2 SECONDS))
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return FALSE
 
 	can_overdose = !can_overdose
@@ -102,7 +102,7 @@
 		vary = TRUE,
 		extrarange = SILENCED_SOUND_EXTRARANGE
 	)
-	balloon_alert(user, LANG("obj.10fa174c", list(can_overdose ? "disabled" : "enabled")))
+	balloon_alert(user, LANG("obj.10fa174cf01e7d3e", list(can_overdose ? "disabled" : "enabled")))
 	return TRUE
 
 /obj/item/disk/neuroware/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
@@ -140,7 +140,7 @@
 	if(!ishuman(target))
 		return
 	if(uses == 0)
-		balloon_alert(user, LANG("obj.09a80560", null))
+		balloon_alert(user, LANG("obj.09a805600797f12e", null))
 		return
 
 	var/slot_name = SYNTH_SLOT_NAME
@@ -150,36 +150,36 @@
 	if(isnull(owner_brain) || !(owner_brain.organ_flags & ORGAN_ROBOTIC))
 		var/obj/item/organ/cyberimp/brain/nif/nif_implant = target.get_organ_slot(ORGAN_SLOT_BRAIN_NIF)
 		if(isnull(nif_implant) || nif_implant.broken)
-			balloon_alert(user, LANG("obj.8d5a63f7", null))
+			balloon_alert(user, LANG("obj.8d5a63f76f6c7381", null))
 			return
 		// Target lacks a robotic brain, so use the NIF
 		slot_name = "[nif_implant] slot"
 
 	if(is_lewd && !(target.client?.prefs.read_preference(/datum/preference/toggle/erp/aphro)))
-		balloon_alert(user, LANG("obj.8aa326ce", null))
+		balloon_alert(user, LANG("obj.8aa326ce7db2b39b", null))
 		return
 
 	if(target != user)
 		target.visible_message(
-			span_danger(LANG("obj.4e1d1f43", list(user, src, target, slot_name))),
-			span_userdanger(LANG("obj.fa677b2b", list(user, src, slot_name)))
+			span_danger(LANG("obj.4e1d1f43b3b3a095", list(user, src, target, slot_name))),
+			span_userdanger(LANG("obj.fa677b2b1feebb24", list(user, src, slot_name)))
 		)
 		if(target.is_blind())
-			to_chat(target, span_userdanger(LANG("obj.e2972de4", list(slot_name))))
+			to_chat(target, span_userdanger(LANG("obj.e2972de4ceb612ce", list(slot_name))))
 		if(external_delay > 0)
-			user.balloon_alert_to_viewers(LANG("obj.44d8e422", null))
+			user.balloon_alert_to_viewers(LANG("obj.44d8e4221c5d35f3", null))
 			if(!do_after(user, 5 SECONDS, target))
 				return
 		target.visible_message(
-			span_danger(LANG("obj.0aebbd49", list(user, src, target, slot_name))),
-			span_userdanger(LANG("obj.412a98cc", list(user, src, slot_name)))
+			span_danger(LANG("obj.0aebbd497a8db5af", list(user, src, target, slot_name))),
+			span_userdanger(LANG("obj.412a98ccf8cc3ca8", list(user, src, slot_name)))
 		)
 		if(target.is_blind())
-			to_chat(target, span_userdanger(LANG("obj.d2df7897", list(slot_name))))
+			to_chat(target, span_userdanger(LANG("obj.d2df7897c3233984", list(slot_name))))
 
 	// Prevent reagent overdose if safety is enabled
 	if(length(list_reagents) && !can_overdose && check_overdose(target, list_reagents))
-		balloon_alert(user, LANG("obj.f6b80793", null))
+		balloon_alert(user, LANG("obj.f6b807935e6ab75c", null))
 		return
 
 	// Actually perform the installation

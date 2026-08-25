@@ -77,25 +77,25 @@
 		if(istype(contents[1], /obj/item/forging/complete))
 			var/obj/item/forging/complete/contained_forge_item = contents[1]
 
-			. += span_notice(LANG("obj.a5b85afd", list(src, initial(contained_forge_item.name))))
+			. += span_notice(LANG("obj.a5b85afd17565359", list(src, initial(contained_forge_item.name))))
 			var/obj/item/completion_item = contained_forge_item.spawning_item
-			. += span_notice(LANG("obj.55c9b51b", list(WEAPON_COMPLETION_WOOD_AMOUNT, initial(completion_item.name))))
+			. += span_notice(LANG("obj.55c9b51b35d56614", list(WEAPON_COMPLETION_WOOD_AMOUNT, initial(completion_item.name))))
 			return // We don't want to show any selected recipes if there's weapon head on the bench
 
 	if(!selected_recipe)
 		return
 
 	var/obj/resulting_item = selected_recipe.resulting_item
-	. += span_notice(LANG("obj.0a6586ba", list(initial(resulting_item.name))))
-	. += span_notice(LANG("obj.7250c00a", null))
+	. += span_notice(LANG("obj.0a6586bae4126f39", list(initial(resulting_item.name))))
+	. += span_notice(LANG("obj.7250c00ab16f01c3", null))
 
 	if(!length(selected_recipe.recipe_requirements))
-		. += span_boldwarning(LANG("obj.af6ef1e2", null))
+		. += span_boldwarning(LANG("obj.af6ef1e290f22d5d", null))
 		return
 
 	for(var/obj/requirement_item as anything in selected_recipe.recipe_requirements)
 		if(!selected_recipe.recipe_requirements[requirement_item])
-			. += span_boldwarning(LANG("obj.7d942dd0", list(requirement_item)))
+			. += span_boldwarning(LANG("obj.7d942dd08dea5240", list(requirement_item)))
 			continue
 
 		. += span_notice("<b>[selected_recipe.recipe_requirements[requirement_item]]</b> - [initial(requirement_item.name)]")
@@ -115,7 +115,7 @@
 /obj/structure/reagent_crafting_bench/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(in_use)
-		balloon_alert(user, LANG("obj.d4caebbf", null))
+		balloon_alert(user, LANG("obj.d4caebbff40e9118", null))
 		return
 
 	update_appearance()
@@ -123,26 +123,26 @@
 	if(length(contents))
 		var/obj/item/contained_item = contents[1]
 		user.put_in_hands(contained_item)
-		balloon_alert(user, LANG("obj.a5cc9afc", list(contained_item)))
+		balloon_alert(user, LANG("obj.a5cc9afccb64ed0b", list(contained_item)))
 		update_appearance()
 		return
 
 	if(selected_recipe)
 		clear_recipe()
-		balloon_alert_to_viewers(LANG("obj.43606738", null))
+		balloon_alert_to_viewers(LANG("obj.436067387bc7ede7", null))
 		update_appearance()
 		return
 
 	var/chosen_recipe = show_radial_menu(user, src, radial_choice_list, radius = 38, require_near = TRUE, tooltips = TRUE)
 
 	if(!chosen_recipe)
-		balloon_alert(user, LANG("obj.8f0f83fa", null))
+		balloon_alert(user, LANG("obj.8f0f83fade0c205a", null))
 		return
 
 	var/datum/crafting_bench_recipe/recipe_to_use = recipe_names_to_path[chosen_recipe]
 	selected_recipe = new recipe_to_use
 
-	balloon_alert(user, LANG("obj.62281d41", null))
+	balloon_alert(user, LANG("obj.62281d4110f70e4b", null))
 	update_appearance()
 
 /// Clears the current recipe and sets hits to completion to zero
@@ -152,16 +152,16 @@
 
 /obj/structure/reagent_crafting_bench/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(in_use)
-		balloon_alert(user, LANG("obj.d4caebbf", null))
+		balloon_alert(user, LANG("obj.d4caebbff40e9118", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/forging/complete))
 		if(length(contents))
-			balloon_alert(user, LANG("obj.e3949c3a", null))
+			balloon_alert(user, LANG("obj.e3949c3ac85254e1", null))
 			return ITEM_INTERACT_SUCCESS
 
 		tool.forceMove(src)
-		balloon_alert_to_viewers(LANG("obj.56f6de96", list(tool)))
+		balloon_alert_to_viewers(LANG("obj.56f6de960acf761c", list(tool)))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -169,10 +169,10 @@
 
 /obj/structure/reagent_crafting_bench/wrench_act(mob/living/user, obj/item/tool)
 	if(in_use)
-		balloon_alert(user, LANG("obj.80cb9d94", null))
+		balloon_alert(user, LANG("obj.80cb9d94631d96db", null))
 		return
 
-	user.balloon_alert_to_viewers(LANG("obj.b5ba9871", null))
+	user.balloon_alert_to_viewers(LANG("obj.b5ba987161d1a2e3", null))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 
@@ -184,18 +184,18 @@
 
 /obj/structure/reagent_crafting_bench/hammer_act(mob/living/user, obj/item/tool)
 	if(in_use)
-		balloon_alert(user, LANG("obj.d4caebbf", null))
+		balloon_alert(user, LANG("obj.d4caebbff40e9118", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(length(contents))
 		if(!istype(contents[1], /obj/item/forging/complete))
-			balloon_alert(user, LANG("obj.b390a7eb", null))
+			balloon_alert(user, LANG("obj.b390a7ebe58fc17c", null))
 			return ITEM_INTERACT_SUCCESS
 
 		var/obj/item/forging/complete/weapon_to_finish = contents[1]
 
 		if(!weapon_to_finish.spawning_item)
-			balloon_alert(user, LANG("obj.d264ea14", list(weapon_to_finish)))
+			balloon_alert(user, LANG("obj.d264ea142e522f14", list(weapon_to_finish)))
 			return ITEM_INTERACT_SUCCESS
 
 		var/list/wood_required_for_weapons = list(
@@ -203,7 +203,7 @@
 		)
 
 		if(!can_we_craft_this(wood_required_for_weapons))
-			balloon_alert(user, LANG("obj.6c0cc018", null))
+			balloon_alert(user, LANG("obj.6c0cc0180ca3231b", null))
 			return ITEM_INTERACT_SUCCESS
 
 		var/list/things_to_use = can_we_craft_this(wood_required_for_weapons, TRUE)
@@ -215,16 +215,16 @@
 
 		playsound(src, 'modular_nova/modules/reagent_forging/sound/forge.ogg', 50, TRUE)
 
-		balloon_alert_to_viewers(LANG("obj.3291f812", list(thing_just_made)))
+		balloon_alert_to_viewers(LANG("obj.3291f81254f820ba", list(thing_just_made)))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
 	if(!selected_recipe)
-		balloon_alert(user, LANG("obj.b3f60f0a", null))
+		balloon_alert(user, LANG("obj.b3f60f0aed6b7b0a", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!can_we_craft_this(selected_recipe.recipe_requirements))
-		balloon_alert(user, LANG("obj.23d287f1", null))
+		balloon_alert(user, LANG("obj.23d287f18ec849fa", null))
 		return ITEM_INTERACT_SUCCESS
 
 	in_use = TRUE
@@ -239,12 +239,12 @@
 		var/skill_modifier = user.mind.get_skill_modifier(selected_recipe.relevant_skill, SKILL_SPEED_MODIFIER) * 1 SECONDS
 
 		if(!do_after(user, skill_modifier, src))
-			balloon_alert(user, LANG("obj.80efa915", null))
+			balloon_alert(user, LANG("obj.80efa915cb0ab722", null))
 			in_use = FALSE
 			return ITEM_INTERACT_SUCCESS
 
 		if(!can_we_craft_this(selected_recipe.recipe_requirements))
-			balloon_alert(user, LANG("obj.23d287f1", null))
+			balloon_alert(user, LANG("obj.23d287f18ec849fa", null))
 			in_use = FALSE
 			return ITEM_INTERACT_SUCCESS
 

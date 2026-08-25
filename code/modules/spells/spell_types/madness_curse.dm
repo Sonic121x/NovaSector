@@ -3,7 +3,7 @@ GLOBAL_VAR_INIT(curse_of_madness_triggered, FALSE)
 
 /proc/curse_of_madness(mob/user, message)
 	if(user) //in this case either someone holding a spellbook or a badmin
-		to_chat(user, span_warning(LANG("_root.9d403e76", list(message))))
+		to_chat(user, span_warning(LANG("_root.9d403e76fff82eed", list(message))))
 		message_admins("[ADMIN_LOOKUPFLW(user)] sent a curse of madness with the message \"[message]\"!")
 		user.log_message("sent a curse of madness with the message \"[message]\"!", LOG_GAME)
 
@@ -18,14 +18,14 @@ GLOBAL_VAR_INIT(curse_of_madness_triggered, FALSE)
 		if(curse_turf && !is_station_level(curse_turf.z))
 			continue
 		if(to_curse.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND))
-			to_chat(to_curse, span_notice(LANG("_root.ee899aba", null)))
+			to_chat(to_curse, span_notice(LANG("_root.ee899aba2f11076e", null)))
 			continue
 		give_madness(to_curse, message)
 
 /proc/give_madness(mob/living/carbon/human/to_curse, message)
 	to_curse.playsound_local(get_turf(to_curse), 'sound/effects/magic/curse.ogg', 40, 1)
 	to_chat(to_curse, span_reallybig(span_hypnophrase(message)))
-	to_chat(to_curse, span_warning(LANG("_root.446fb636", null)))
+	to_chat(to_curse, span_warning(LANG("_root.446fb636bb98d793", null)))
 	switch(rand(1, 10))
 		if(1 to 3)
 			to_curse.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)

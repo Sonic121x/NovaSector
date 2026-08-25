@@ -27,7 +27,7 @@
 		return FALSE
 
 	if(!broken && !force && !created_items)
-		balloon_alert(user, LANG("obj.5d71bae2", null))
+		balloon_alert(user, LANG("obj.5d71bae27aaf9422", null))
 		return FALSE
 
 	return TRUE
@@ -39,7 +39,7 @@
 		return ..()
 	if(prob(75))
 		return ..()
-	visible_message(span_danger(LANG("obj.fa3c61cd", null)))
+	visible_message(span_danger(LANG("obj.fa3c61cd75a85216", null)))
 	explosion(src, heavy_impact_range = 1, light_impact_range = 2, flash_range = 2)
 	qdel(src)
 
@@ -52,7 +52,7 @@
 		new item_path(src)
 	unlock_contents = list()
 	qdel(tool)
-	to_chat(user, span_notice(LANG("obj.1047b1e7", null)))
+	to_chat(user, span_notice(LANG("obj.1047b1e72b1bffa3", null)))
 	playsound(src, 'sound/machines/airlock/boltsup.ogg', 50, vary = FALSE)
 	togglelock(user)
 	return ITEM_INTERACT_SUCCESS
@@ -64,8 +64,8 @@
 		add_fingerprint(user)
 	locked = !locked
 	user.visible_message(
-		span_notice("[user] [locked ? "locks" : "unlocks"] [src]."),
-		span_notice(LANG("obj.d6171b71", list(locked ? "locked" : "unlocked", src))),
+		span_notice(LANG("obj.6afbb5c3aa5fc504", list(user, locked ? "locks" : "unlocks", src))),
+		span_notice(LANG("obj.d6171b714b8cf981", list(locked ? "locked" : "unlocked", src))),
 	)
 	update_appearance()
 

@@ -41,7 +41,7 @@
 
 	var/is_first_brother = team.members.len == 1
 	if (!is_first_brother)
-		to_chat(carbon_owner, span_boldwarning(LANG("datum.f59bc4b2", null)))
+		to_chat(carbon_owner, span_boldwarning(LANG("datum.f59bc4b21c571aab", null)))
 
 	return ..()
 
@@ -72,11 +72,11 @@
 		return
 
 	if (flashed.stat != STABLE)
-		flashed.balloon_alert(source, LANG("datum.b49fe510", null))
+		flashed.balloon_alert(source, LANG("datum.b49fe5107e2b7291", null))
 		return
 
 	if (IS_UNCONSCIOUS(flashed))
-		flashed.balloon_alert(source, LANG("datum.dc8b5a42", null))
+		flashed.balloon_alert(source, LANG("datum.dc8b5a428036bfca", null))
 		return
 
 #ifdef TESTING
@@ -84,26 +84,26 @@
 		flashed.mind_initialize()
 #else
 	if (isnull(flashed.mind) || !GET_CLIENT(flashed))
-		flashed.balloon_alert(source, LANG("datum.96a90739", list(flashed.p_their())))
+		flashed.balloon_alert(source, LANG("datum.96a907396c9e6082", list(flashed.p_their())))
 		return
 #endif
 
 	for(var/datum/objective/brother_objective in source.mind.get_all_objectives())
 		// If the objective has a target, are we flashing them?
 		if(flashed == brother_objective.target?.current)
-			flashed.balloon_alert(source, LANG("datum.945d2802", null))
+			flashed.balloon_alert(source, LANG("datum.945d28029dadfb01", null))
 			return
 
 	if (flashed.mind.has_antag_datum(/datum/antagonist/brother))
-		flashed.balloon_alert(source, LANG("datum.9e06faa2", list(flashed.p_theyre())))
+		flashed.balloon_alert(source, LANG("datum.9e06faa248bde5cd", list(flashed.p_theyre())))
 		return
 
 	if (HAS_MIND_TRAIT(flashed, TRAIT_UNCONVERTABLE))
-		flashed.balloon_alert(source, LANG("datum.5b91a8f9", list(flashed.p_they(), flashed.p_s())))
+		flashed.balloon_alert(source, LANG("datum.5b91a8f95dc06572", list(flashed.p_they(), flashed.p_s())))
 		return
 
 	if (!team.add_brother(flashed, key_name(source))) // Shouldn't happen given the former, more specific checks but just in case
-		flashed.balloon_alert(source, LANG("datum.31bf8acd", null))
+		flashed.balloon_alert(source, LANG("datum.31bf8acdce324142", null))
 		return
 
 	source.log_message("converted [key_name(flashed)] to blood brother", LOG_ATTACK)
@@ -118,7 +118,7 @@
 		protagonist = flashed, \
 		antagonist = owner.current, \
 	)
-	flashed.balloon_alert(source, LANG("datum.72ad5488", null))
+	flashed.balloon_alert(source, LANG("datum.72ad54889665fdbe", null))
 
 /datum/antagonist/brother/antag_panel_data()
 	return "Conspirators : [get_brother_names()] | Remaining: [team.brothers_left]"
@@ -129,7 +129,7 @@
 
 /// Add or remove the potential to put more bros in here
 /datum/antagonist/brother/proc/update_recruitments_remaining(mob/admin)
-	var/new_count = tgui_input_number(admin, LANG("datum.dcd666e6", null), LANG("datum.4f1d1b63", null), default = 1, min_value = 0)
+	var/new_count = tgui_input_number(admin, LANG("datum.dcd666e66070031e", null), LANG("datum.4f1d1b638d0b4d99", null), default = 1, min_value = 0)
 	if (isnull(new_count))
 		return
 	team.set_brothers_left(new_count)
@@ -184,7 +184,7 @@
 	return brother_text
 
 /datum/antagonist/brother/greet()
-	to_chat(owner.current, span_alertsyndie(LANG("datum.aef74aab", null)))
+	to_chat(owner.current, span_alertsyndie(LANG("datum.aef74aab72066680", null)))
 	owner.announce_objectives()
 
 /datum/antagonist/brother/proc/finalize_brother()
@@ -239,7 +239,7 @@
 	if (isnull(member.current))
 		return
 	for (var/datum/mind/brother_mind as anything in members)
-		to_chat(brother_mind, span_warning(LANG("datum.ce70b71a", list(span_bold("[member.current.real_name]")))))
+		to_chat(brother_mind, span_warning(LANG("datum.ce70b71a2e89a4ef", list(span_bold("[member.current.real_name]")))))
 	update_name()
 
 /// Adds a new brother to the team
@@ -259,9 +259,9 @@
 		if (brother_mind == new_brother.mind)
 			continue
 
-		to_chat(brother_mind, span_notice(LANG("datum.dba90d09", list(span_bold("[new_brother.real_name]")))))
+		to_chat(brother_mind, span_notice(LANG("datum.dba90d09e71bd3d8", list(span_bold("[new_brother.real_name]")))))
 		if (brothers_left <= 0)
-			to_chat(brother_mind, span_notice(LANG("datum.34d8ae94", null)))
+			to_chat(brother_mind, span_notice(LANG("datum.34d8ae94e3c6e4d7", null)))
 
 	return TRUE
 

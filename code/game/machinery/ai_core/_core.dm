@@ -89,25 +89,25 @@
 
 /obj/structure/ai_core/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.95981e5e", list(anchored ? "tightened" : "loosened")))
-	. += span_notice(LANG("obj.bce36251", list(is_station_level(z) ? " to the station's core rack or" : "")))
+	. += span_notice(LANG("obj.95981e5ef8bc15e8", list(anchored ? "tightened" : "loosened")))
+	. += span_notice(LANG("obj.bce36251b2bebeef", list(is_station_level(z) ? " to the station's core rack or" : "")))
 
 	switch(state)
 		if(CORE_STATE_EMPTY)
-			. += span_notice(LANG("obj.154d655e", null))
+			. += span_notice(LANG("obj.154d655efeabd807", null))
 		if(CORE_STATE_CIRCUIT)
-			. += span_notice(LANG("obj.d8fef889", null))
+			. += span_notice(LANG("obj.d8fef889ce098c3f", null))
 		if(CORE_STATE_SCREWED)
-			. += span_notice(LANG("obj.3b22edee", null))
+			. += span_notice(LANG("obj.3b22edee6996dc70", null))
 		if(CORE_STATE_CABLED)
 			if(core_mmi)
-				. += span_notice(LANG("obj.4a4946f0", list(AI_CORE_BRAIN(core_mmi))))
+				. += span_notice(LANG("obj.4a4946f09f8e6f91", list(AI_CORE_BRAIN(core_mmi))))
 			else
-				. += span_notice(LANG("obj.ff6f3985", null))
+				. += span_notice(LANG("obj.ff6f3985a372a740", null))
 		if(CORE_STATE_GLASSED)
-			. += span_notice(LANG("obj.55a19de7", list((core_mmi?.brainmob?.mind && !suicide_check()) ? "and neural interface " : "")))
+			. += span_notice(LANG("obj.55a19de73b7946b2", list((core_mmi?.brainmob?.mind && !suicide_check()) ? "and neural interface " : "")))
 		if(CORE_STATE_FINISHED)
-			. += span_notice(LANG("obj.47ea0a83", list((core_mmi?.brainmob?.mind && !suicide_check()) ? " the neural interface can be <b>screwed</b> in." : ".")))
+			. += span_notice(LANG("obj.47ea0a83a7cf6082", list((core_mmi?.brainmob?.mind && !suicide_check()) ? " the neural interface can be <b>screwed</b> in." : ".")))
 
 /obj/structure/ai_core/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(state < CORE_STATE_FINISHED)
@@ -138,8 +138,8 @@
 
 /obj/structure/ai_core/latejoin_inactive/examine(mob/user)
 	. = ..()
-	. += span_info(LANG("obj.28e0223c", list(active? "on" : "off")))
-	. += span_notice(LANG("obj.d9bac254", list(active ? "deactivate" : "activate", EXAMINE_HINT("right clicking"))))
+	. += span_info(LANG("obj.28e0223c47d2ddd2", list(active? "on" : "off")))
+	. += span_notice(LANG("obj.d9bac254a4eaa05b", list(active ? "deactivate" : "activate", EXAMINE_HINT("right clicking"))))
 
 /obj/structure/ai_core/latejoin_inactive/proc/is_available() //If people still manage to use this feature to spawn-kill AI latejoins ahelp them.
 	if(!available)
@@ -148,15 +148,17 @@
 		return TRUE
 	if(!active)
 		return FALSE
-	var/turf/T = get_turf(src)
-	var/area/A = get_area(src)
-	if(!(A.area_flags & BLOBS_ALLOWED))
+	var/turf/ai_turf = get_turf(src)
+	var/area/ai_area = get_area(src)
+	if(!(ai_area.area_flags & BLOBS_ALLOWED))
 		return FALSE
-	if(!A.power_equip)
+	if(!ai_area.power_equip)
 		return FALSE
-	if(!SSmapping.level_trait(T.z,ZTRAIT_STATION))
+	if(!SSmapping.level_trait(ai_turf.z, ZTRAIT_STATION))
 		return FALSE
-	if(!isfloorturf(T))
+	if(!isfloorturf(ai_turf))
+		if(locate(/obj/structure/transport/linear) in ai_turf.contents) // carveout for maps that have the AI core on a lift platform.
+			return TRUE
 		return FALSE
 	return TRUE
 
@@ -165,13 +167,13 @@
 		return ITEM_INTERACT_BLOCKING
 
 	active = !active
-	balloon_alert(user, LANG("obj.31e077e1", list(active ? "activated" : "deactivated")))
+	balloon_alert(user, LANG("obj.31e077e16ba9e3de", list(active ? "activated" : "deactivated")))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/ai_core/multitool_act(mob/living/user, obj/item/multitool/tool)
 	tool.play_tool_sound(src, 50)
 	tool.set_buffer(src)
-	balloon_alert(user, LANG("obj.2ea8f2e7", null))
+	balloon_alert(user, LANG("obj.2ea8f2e73a046411", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/ai_core/proc/ai_structure_to_mob()
@@ -209,7 +211,7 @@ That prevents a few funky behaviors.
 	SHOULD_CALL_PARENT(TRUE)
 	if(istype(card))
 		if(card.flush)
-			to_chat(user, span_alert(LANG("atom.5bbe6ecb", null)))
+			to_chat(user, span_alert(LANG("atom.5bbe6ecbf0296a1d", null)))
 			return FALSE
 	return TRUE
 
@@ -218,24 +220,24 @@ That prevents a few funky behaviors.
 		return
 	if(core_mmi && core_mmi.brainmob)
 		if(core_mmi.brainmob.mind)
-			to_chat(user, span_warning(LANG("obj.af9523b6", list(src))))
+			to_chat(user, span_warning(LANG("obj.af9523b62e052073", list(src))))
 			return
 		else if(suicide_check())
-			to_chat(user, span_warning(LANG("obj.34a308f7", list(AI_CORE_BRAIN(core_mmi), src))))
+			to_chat(user, span_warning(LANG("obj.34a308f707364b43", list(AI_CORE_BRAIN(core_mmi), src))))
 			return
 	//Transferring a carded AI to a core.
 	if(interaction == AI_TRANS_FROM_CARD)
 		AI.set_control_disabled(FALSE)
 		AI.radio_enabled = TRUE
 		AI.forceMove(loc) // to replace the terminal.
-		to_chat(AI, span_notice(LANG("obj.e2359246", null)))
-		to_chat(user, LANG("obj.8779c42c", list(span_boldnotice("Transfer successful"), AI.name, rand(1000,9999))))
+		to_chat(AI, span_notice(LANG("obj.e23592469cd69819", null)))
+		to_chat(user, LANG("obj.8779c42caea32b69", list(span_boldnotice("Transfer successful"), AI.name, rand(1000,9999))))
 		card.AI = null
 		AI.battery = circuit.battery
 		AI.posibrain_inside = isnull(core_mmi) || core_mmi.braintype == "Android"
 		qdel(src)
 	else //If for some reason you use an empty card on an empty AI terminal.
-		to_chat(user, span_alert(LANG("obj.8cd86912", null)))
+		to_chat(user, span_alert(LANG("obj.8cd86912c68049cc", null)))
 
 /obj/item/circuitboard/aicore
 	name = "AI Core"

@@ -86,7 +86,7 @@
 			r_store = equipping
 			update_pockets()
 		else
-			to_chat(src, span_danger(LANG("mob.8bd6e8c0", null)))
+			to_chat(src, span_danger(LANG("mob.8bd6e8c0df406672", null)))
 			return
 
 	has_equipped(equipping, slot)

@@ -34,7 +34,7 @@
 		return
 	living_pawn.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 	playsound(target, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
-	target.visible_message(span_danger(LANG("datum.e1cea82b", list(living_pawn, target))), span_danger(LANG("datum.526fb6fb", list(living_pawn))))
+	target.visible_message(span_danger(LANG("datum.e1cea82b7e137968", list(living_pawn, target))), span_danger(LANG("datum.526fb6fb8ccb5a9d", list(living_pawn))))
 
 
 /**
@@ -61,11 +61,11 @@
 		if(IS_UNCONSCIOUS_OR_CRIT(iter_living) || !HAS_TRAIT(iter_living, TRAIT_HATED_BY_DOGS))
 			continue
 		if(!isnull(dog.buckled))
-			dog.audible_message(span_notice(LANG("datum.a5a4c01e", list(dog, iter_living, dog.p_they(), dog.p_are()))), hearing_distance = COMBAT_MESSAGE_RANGE)
+			dog.audible_message(span_notice(LANG("datum.a5a4c01ed285fb97", list(dog, iter_living, dog.p_they(), dog.p_are()))), hearing_distance = COMBAT_MESSAGE_RANGE)
 			continue
 		if(!strategy?.is_valid_target(dog, iter_living))
 			continue
-		dog.audible_message(span_warning(LANG("datum.687129ab", list(dog, iter_living, iter_living.p_their()))), hearing_distance = COMBAT_MESSAGE_RANGE)
+		dog.audible_message(span_warning(LANG("datum.687129abaa060319", list(dog, iter_living, iter_living.p_their()))), hearing_distance = COMBAT_MESSAGE_RANGE)
 		controller.set_blackboard_key(target_key, iter_living)
 		controller.set_blackboard_key(BB_DOG_HARASS_HARM, FALSE)
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
@@ -85,7 +85,7 @@
 
 	var/obj/item/carry_item = controller.blackboard[BB_SIMPLE_CARRY_ITEM]
 	if(carry_item && SPT_PROB(5, seconds_per_tick))
-		living_pawn.visible_message(span_notice(LANG("datum.bb3ac531", list(living_pawn, carry_item, living_pawn.p_their()))), vision_distance = COMBAT_MESSAGE_RANGE)
+		living_pawn.visible_message(span_notice(LANG("datum.bb3ac5312ed2b592", list(living_pawn, carry_item, living_pawn.p_their()))), vision_distance = COMBAT_MESSAGE_RANGE)
 
 	var/move_chance = controller.blackboard[BB_DOG_IS_SLOW] ? 2.5 : 5
 	if(isturf(living_pawn.loc) && !living_pawn.pulledby)

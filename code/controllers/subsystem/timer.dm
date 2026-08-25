@@ -221,13 +221,13 @@ SUBSYSTEM_DEF(timer)
  */
 /datum/controller/subsystem/timer/proc/get_timer_debug_string(datum/timedevent/TE)
 	. = "Timer: [TE]"
-	. += LANG("datum.f9141531", list(TE.prev ? TE.prev : "NULL", TE.next ? TE.next : "NULL"))
+	. += LANG("datum.f9141531de1fdc80", list(TE.prev ? TE.prev : "NULL", TE.next ? TE.next : "NULL"))
 	if(TE.spent)
-		. += LANG("datum.e4ccaf8a", list(TE.spent))
+		. += LANG("datum.e4ccaf8a22a1168b", list(TE.spent))
 	if(QDELETED(TE))
-		. += LANG("datum.21b30b7f", null)
+		. += LANG("datum.21b30b7f68fdb954", null)
 	if(!TE.callBack)
-		. += LANG("datum.c8891f8c", null)
+		. += LANG("datum.c8891f8cffa3d52e", null)
 
 /**
  * Destroys the existing buckets and creates new buckets from the existing timed events

@@ -74,7 +74,7 @@
 	summon_objective.owner = our_heretic.owner
 	our_heretic.objectives += summon_objective
 
-	to_chat(user, span_mansus(LANG("datum.238e3cc9", null)))
+	to_chat(user, span_mansus(LANG("datum.238e3cc9e258ef34", null)))
 	our_heretic.owner.announce_objectives()
 
 /datum/heretic_knowledge/limited_amount/starting/base_flesh/on_mansus_grasp(mob/living/source, mob/living/target)
@@ -84,22 +84,22 @@
 		return
 
 	if(LAZYLEN(created_items) >= limit)
-		target.balloon_alert(source, LANG("datum.fc153e74", null))
+		target.balloon_alert(source, LANG("datum.fc153e74f2df868b", null))
 		return COMPONENT_BLOCK_HAND_USE
 
 	if(HAS_TRAIT(target, TRAIT_HUSK))
-		target.balloon_alert(source, LANG("datum.62afb343", null))
+		target.balloon_alert(source, LANG("datum.62afb343bad22764", null))
 		return COMPONENT_BLOCK_HAND_USE
 
 	if(!IS_VALID_GHOUL_MOB(target))
-		target.balloon_alert(source, LANG("datum.4005a641", null))
+		target.balloon_alert(source, LANG("datum.4005a641978d3a6c", null))
 		return COMPONENT_BLOCK_HAND_USE
 
 	target.grab_ghost()
 
 	// The grab failed, so they're mindless or playerless. We can't continue
 	if(!target.mind || !target.client)
-		target.balloon_alert(source, LANG("datum.f686d151", null))
+		target.balloon_alert(source, LANG("datum.f686d151ab3d0ec8", null))
 		return COMPONENT_BLOCK_HAND_USE
 
 	make_ghoul(source, target)
@@ -154,21 +154,21 @@
 		if(body.stat != DEAD)
 			continue
 		if(!IS_VALID_GHOUL_MOB(body) || HAS_TRAIT(body, TRAIT_HUSK))
-			to_chat(user, span_hierophant_warning(LANG("datum.f668aac7", list(body))))
+			to_chat(user, span_hierophant_warning(LANG("datum.f668aac70256c72d", list(body))))
 			continue
 
 		// We'll select any valid bodies here. If they're clientless, we'll give them a new one.
 		selected_atoms += body
 		return TRUE
 
-	loc.balloon_alert(user, LANG("datum.3d374e71", null))
+	loc.balloon_alert(user, LANG("datum.3d374e710a3e2fa1", null))
 	return FALSE
 
 /datum/heretic_knowledge/limited_amount/flesh_ghoul/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	var/mob/living/carbon/human/soon_to_be_ghoul = locate() in selected_atoms
 	if(QDELETED(soon_to_be_ghoul)) // No body? No ritual
 		stack_trace("[type] reached on_finished_recipe without a human in selected_atoms to make a ghoul out of.")
-		loc.balloon_alert(user, LANG("datum.3d374e71", null))
+		loc.balloon_alert(user, LANG("datum.3d374e710a3e2fa1", null))
 		return FALSE
 
 	soon_to_be_ghoul.grab_ghost()
@@ -177,7 +177,7 @@
 		message_admins("[ADMIN_LOOKUPFLW(user)] is creating a voiceless dead of a body with no player.")
 		var/mob/chosen_one = SSpolling.poll_ghosts_for_target("Do you want to play as [span_danger(soon_to_be_ghoul.real_name)], a [span_notice("voiceless dead")]?", check_jobban = ROLE_HERETIC, role = ROLE_HERETIC, poll_time = 5 SECONDS, checked_target = soon_to_be_ghoul, alert_pic = mutable_appearance('icons/mob/human/human.dmi', "husk"), jump_target = soon_to_be_ghoul, role_name_text = "voiceless dead")
 		if(isnull(chosen_one))
-			loc.balloon_alert(user, LANG("datum.4aba41bf", null))
+			loc.balloon_alert(user, LANG("datum.4aba41bf85313a4b", null))
 			return FALSE
 		message_admins("[key_name_admin(chosen_one)] has taken control of ([key_name_admin(soon_to_be_ghoul)]) to replace an AFK player.")
 		soon_to_be_ghoul.ghostize(FALSE)

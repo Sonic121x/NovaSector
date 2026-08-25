@@ -135,7 +135,7 @@
 	if(ui_reagent_id)
 		var/datum/reagent/reagent = GLOB.chemical_reagents_list[ui_reagent_id]
 		if(!reagent)
-			to_chat(user, LANG("datum.b70f4a0c", null))
+			to_chat(user, LANG("datum.b70f4a0cb7a86e1f", null))
 			ui_reagent_id = null
 		else
 			data["reagent_mode_reagent"] = list("name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 名字纯显示，同条负载的 id 才是标识符。ORIGINAL: "name" = reagent.name
@@ -156,7 +156,7 @@
 	if (ui_reaction_id)
 		var/datum/chemical_reaction/reaction = GLOB.chemical_reactions_list[ui_reaction_id]
 		if(!reaction)
-			to_chat(user, LANG("datum.8bd9bf49", null))
+			to_chat(user, LANG("datum.8bd9bf4904fdb11c", null))
 			ui_reaction_id = null
 			return data
 		//Required holder
@@ -172,7 +172,10 @@
 		if(!length(reaction.results))
 			has_product = FALSE
 			var/list/names = splittext("[reaction.type]", "/")
-			var/product_name = names[names.len]
+			// NOVA EDIT CHANGE - i18n: 这个显示名是从类型路径末段现切的，源码里没有任何字面量可抽
+			// （同条负载里的 id 才是标识符）。走域内表 reaction_names.json，不进全局反查表。
+			// ORIGINAL: var/product_name = names[names.len]
+			var/product_name = lang_reaction_name(names[names.len])
 			data["reagent_mode_recipe"] = list("name" = product_name, "id" = reaction.type, "hasProduct" = has_product, "reagentCol" = COLOR_WHITE, "thermodynamics" = generate_thermodynamic_profile(reaction), "explosive" = generate_explosive_profile(reaction), "lowerpH" = reaction.optimal_ph_min, "upperpH" = reaction.optimal_ph_max, "thermics" = determine_reaction_thermics(reaction), "thermoUpper" = reaction.rate_up_lim, "minPurity" = reaction.purity_min, "inversePurity" = "N/A", "tempMin" = reaction.required_temp, "explodeTemp" = reaction.overheat_temp, "reqContainer" = container_name, "subReactLen" = 1, "subReactIndex" = 1)
 
 		//If we do have a product then we find it
@@ -269,7 +272,7 @@
 		ui_reaction_index = index
 	var/list/sub_reactions = GLOB.chemical_reactions_list_product_index[path]
 	if(!length(sub_reactions))
-		to_chat(usr, LANG("datum.2484f901", null))
+		to_chat(usr, LANG("datum.2484f90100cacc05", null))
 		return FALSE
 	if(ui_reaction_index > length(sub_reactions))
 		ui_reaction_index = 1
@@ -297,23 +300,23 @@
 				reagent_choices = list()
 				for(var/reagent_name in GLOB.name2reagent)
 					reagent_choices[lang_reverse_text(reagent_name)] = GLOB.name2reagent[reagent_name]
-			var/input_reagent = tgui_input_list(usr, LANG("datum.b9a56639", null), LANG("datum.c5160de6", null), reagent_choices)
+			var/input_reagent = tgui_input_list(usr, LANG("datum.b9a56639842f0c67", null), LANG("datum.c5160de6a7b5b7a3", null), reagent_choices)
 			if(isnull(input_reagent))
 				return FALSE
 			var/input_type = reagent_choices[input_reagent] || get_reagent_type_from_product_string(input_reagent) //from string to type
 			var/datum/reagent/reagent = GLOB.chemical_reagents_list[input_type]
 			// NOVA EDIT ADDITION END
 			if(!reagent)
-				to_chat(usr, LANG("datum.b70f4a0c", null))
+				to_chat(usr, LANG("datum.b70f4a0cb7a86e1f", null))
 				return FALSE
 			ui_reagent_id = reagent.type
 			return TRUE
 		if("search_recipe")
-			var/input_reagent = (input(LANG("datum.6f251b5d", null), LANG("datum.8c7e56a2", null)) as text|null)
+			var/input_reagent = (input(LANG("datum.6f251b5d89ebed3e", null), LANG("datum.8c7e56a24e9ebe25", null)) as text|null)
 			input_reagent = get_reagent_type_from_product_string(input_reagent) //from string to type
 			var/datum/reagent/reagent = GLOB.chemical_reagents_list[input_reagent]
 			if(!reagent)
-				to_chat(usr, LANG("datum.d383e9a6", null))
+				to_chat(usr, LANG("datum.d383e9a6a466cb26", null))
 				return
 			ui_reaction_id = get_reaction_from_indexed_possibilities(reagent.type)
 			return TRUE

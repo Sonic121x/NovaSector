@@ -40,9 +40,9 @@
 	. = ..()
 
 	if(ACCESS_WEAPONS in GetAccess())
-		. += span_info(LANG("obj.097f68aa", null))
+		. += span_info(LANG("obj.097f68aa3a94a345", null))
 	else
-		. += span_info(LANG("obj.9c17a127", null))
+		. += span_info(LANG("obj.9c17a127366ee5de", null))
 
 // NOVA EDIT ADDITION - I18N - 便衣 ID 卡的职务名本地化。
 //

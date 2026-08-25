@@ -56,10 +56,10 @@
 
 /obj/machinery/mailsorter/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.bae2cc1d", list(length(mail_list) < 100 ? " " : " no more ", length(mail_list) < 100 ? "[100 - length(mail_list)] " : "")))
-	. += span_notice(LANG("obj.bf9945c3", list(length(mail_list) >= 2 ? "are" : "is", length(mail_list) ? length(mail_list) : "no")))
+	. += span_notice(LANG("obj.bae2cc1d61bce127", list(length(mail_list) < 100 ? " " : " no more ", length(mail_list) < 100 ? "[100 - length(mail_list)] " : "")))
+	. += span_notice(LANG("obj.bf9945c3945c8f95", list(length(mail_list) >= 2 ? "are" : "is", length(mail_list) ? length(mail_list) : "no")))
 	if(panel_open)
-		. += span_notice(LANG("obj.5da71edf", null))
+		. += span_notice(LANG("obj.5da71edf8754f531", null))
 
 /obj/machinery/mailsorter/Destroy()
 	QDEL_LIST(mail_list)
@@ -101,7 +101,7 @@
 	if (currentstate != STATE_IDLE)
 		return
 	if (length(mail_list) == 0)
-		to_chat(user, span_warning(LANG("obj.751f0dcf", null)))
+		to_chat(user, span_warning(LANG("obj.751f0dcfdfe75b9e", null)))
 		return
 	var/choice = show_radial_menu(
 		user,
@@ -117,14 +117,14 @@
 			pick_mail(user)
 		if ("Dump")
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
-			to_chat(user, span_notice(LANG("obj.64363dbe", list(src, length(mail_list)))))
+			to_chat(user, span_notice(LANG("obj.64363dbef5291c01", list(src, length(mail_list)))))
 			dump_all_mail()
 		if ("Sort")
 			sort_mail(user)
 
 /// Prompts the player to select a department to sort the mail for. Returns if `null`.
 /obj/machinery/mailsorter/proc/sort_mail(mob/user)
-	var/sorting_dept = tgui_input_list(user, LANG("obj.5e061e26", null),LANG("obj.5a388381", null), sorting_departments)
+	var/sorting_dept = tgui_input_list(user, LANG("obj.5e061e267a782910", null),LANG("obj.5a3883818b917545", null), sorting_departments)
 	if (!sorting_dept)
 		return
 	currentstate = STATE_SORTING
@@ -160,13 +160,13 @@
 		currentstate = STATE_NO
 		update_appearance(UPDATE_OVERLAYS)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
-		say(LANG("obj.e75ca099", list(sorting_dept)))
+		say(LANG("obj.e75ca09985b80546", list(sorting_dept)))
 	else
 		currentstate = STATE_YES
 		update_appearance(UPDATE_OVERLAYS)
-		say(LANG("obj.4259f688", list(sorted)))
+		say(LANG("obj.4259f6888b160d50", list(sorted)))
 		playsound(src, 'sound/machines/ping.ogg', 20, TRUE)
-		to_chat(user, span_notice(LANG("obj.d0480b16", list(src, length(sorted_mail)))))
+		to_chat(user, span_notice(LANG("obj.d0480b16c6fadd02", list(src, length(sorted_mail)))))
 		var/turf/unload_turf = get_unload_turf()
 		for (var/obj/item/mail/mail_in_list in sorted_mail)
 			mail_in_list.forceMove(unload_turf)
@@ -178,10 +178,10 @@
 /obj/machinery/mailsorter/proc/check_sorted(mob/user, unable_to_sort, total_to_sort)
 	if (unable_to_sort > 0)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
-		say(LANG("obj.e8768631", list(unable_to_sort)))
+		say(LANG("obj.e8768631634e2e72", list(unable_to_sort)))
 	else
 		playsound(src, 'sound/machines/ping.ogg', 20, TRUE)
-		say(LANG("obj.946bdc1b", list(total_to_sort)))
+		say(LANG("obj.946bdc1b6d31f1e9", list(total_to_sort)))
 	addtimer(CALLBACK(src, PROC_REF(update_state_after_sorting)), 1 SECONDS)
 
 /obj/machinery/mailsorter/proc/update_state_after_sorting()
@@ -191,7 +191,7 @@
 /obj/machinery/mailsorter/item_interaction(mob/user, obj/item/thingy, params)
 	if (istype(thingy, /obj/item/storage/bag/mail))
 		if (length(thingy.contents) < 1)
-			to_chat(user, span_warning(LANG("obj.cd703f63", list(thingy))))
+			to_chat(user, span_warning(LANG("obj.cd703f632bcefad9", list(thingy))))
 			return
 		var/loaded = 0
 		for (var/obj/item/mail in thingy.contents)
@@ -200,33 +200,33 @@
 				accept_check(mail) \
 			)
 				if (length(mail_list) + 1 > MAIL_CAPACITY )
-					to_chat(user, span_warning(LANG("obj.9f7179a1", list(src))))
+					to_chat(user, span_warning(LANG("obj.9f7179a127eef99b", list(src))))
 					return FALSE
 				else if (load(mail, user))
 					loaded++
 					mail_list += mail
 		if(loaded)
-			user.visible_message(span_notice(LANG("obj.d8b0a4dd", list(user, src, thingy))), \
-			span_notice(LANG("obj.ae0abc0e", list(src, thingy))))
+			user.visible_message(span_notice(LANG("obj.d8b0a4ddafdd080b", list(user, src, thingy))), \
+			span_notice(LANG("obj.ae0abc0ea867df87", list(src, thingy))))
 			if(length(thingy.contents))
-				to_chat(user, span_warning(LANG("obj.94d8d593", null)))
+				to_chat(user, span_warning(LANG("obj.94d8d5939d74917b", null)))
 			return TRUE
 		else
-			to_chat(user, span_warning(LANG("obj.49073a2c", list(thingy, src))))
+			to_chat(user, span_warning(LANG("obj.49073a2c25b37b33", list(thingy, src))))
 			return FALSE
 	else if (istype(thingy, /obj/item/mail))
 		if (length(mail_list) + 1 > MAIL_CAPACITY )
-			to_chat(user, span_warning(LANG("obj.9f7179a1", list(src))))
+			to_chat(user, span_warning(LANG("obj.9f7179a127eef99b", list(src))))
 		else
 			thingy.forceMove(src)
 			mail_list += thingy
-			to_chat(user, span_notice(LANG("obj.da36cc96", list(src, thingy))))
+			to_chat(user, span_notice(LANG("obj.da36cc9612694740", list(src, thingy))))
 
 /// Prompts the user to select an anvelope from the list of all the envelopes inside.
 /obj/machinery/mailsorter/proc/pick_mail(mob/user)
 	if(!length(mail_list))
 		return
-	var/obj/item/mail/mail_throw = tgui_input_list(user, LANG("obj.3d130988", null),LANG("obj.5a388381", null), mail_list)
+	var/obj/item/mail/mail_throw = tgui_input_list(user, LANG("obj.3d130988aaa90238", null),LANG("obj.5a3883818b917545", null), mail_list)
 	if(!mail_throw)
 		return
 	currentstate = STATE_SORTING
@@ -236,7 +236,7 @@
 
 /// Ejects a single envelope the player has picked onto the `unload_turf`.
 /obj/machinery/mailsorter/proc/pick_envelope(mob/user, obj/item/mail/mail_throw)
-	to_chat(user, span_notice(LANG("obj.149b11dd", list(src, mail_throw))))
+	to_chat(user, span_notice(LANG("obj.149b11dd01b3412c", list(src, mail_throw))))
 	var/turf/unload_turf = get_unload_turf()
 	mail_throw.forceMove(unload_turf)
 	mail_throw.throw_at(unload_turf, 2, 3)
@@ -249,7 +249,7 @@
 	if(ismob(thingy.loc))
 		var/mob/owner = thingy.loc
 		if(!owner.transferItemToLoc(thingy, src))
-			to_chat(owner, span_warning(LANG("obj.e235f1cb", list(thingy, src))))
+			to_chat(owner, span_warning(LANG("obj.e235f1cb6f31aa7e", list(thingy, src))))
 			return FALSE
 		return TRUE
 	else
@@ -263,7 +263,7 @@
 	if(!panel_open)
 		return CLICK_ACTION_BLOCKING
 	output_dir = turn(output_dir, -90)
-	to_chat(user, span_notice(LANG("obj.73016afe", list(src, dir2text(output_dir)))))
+	to_chat(user, span_notice(LANG("obj.73016afee24aaf9c", list(src, dir2text(output_dir)))))
 	update_appearance(UPDATE_OVERLAYS)
 	return CLICK_ACTION_SUCCESS
 

@@ -4,7 +4,7 @@
 ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_ADMIN, "私密消息", /mob)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	message_admins("[key_name_admin(user)] has started answering [ADMIN_LOOKUPFLW(target)]'s prayer.")
-	var/msg = input(user, LANG("datum.008d3052", null), LANG("datum.03de8cc3", list(target.key))) as text|null
+	var/msg = input(user, LANG("datum.008d305248b8414e", null), LANG("datum.03de8cc32676dc73", list(target.key))) as text|null
 
 	if(!msg)
 		message_admins("[key_name_admin(user)] decided not to answer [ADMIN_LOOKUPFLW(target)]'s prayer")
@@ -12,8 +12,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_ADMIN, "私密消息", 
 
 	msg = user.reformat_narration(msg)
 
-	target.balloon_alert(target, LANG("datum.d955e950", null))
-	to_chat(target, LANG("datum.5ea2cf68", list(msg)), confidential = TRUE)
+	target.balloon_alert(target, LANG("datum.d955e9509c93251b", null))
+	to_chat(target, LANG("datum.5ea2cf68ed4e7f4b", list(msg)), confidential = TRUE)
 
 	log_admin("SubtlePM: [key_name(user)] -> [key_name(target)] : [msg]")
 	msg = span_adminnotice("<b> SubtleMessage: [key_name_admin(user)] -> [key_name_admin(target)] :</b> [msg]")
@@ -36,24 +36,24 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_headset_message, R_ADMIN, "耳机消息",
 	if(ishuman(target))
 		human_recipient = target
 		if(!istype(human_recipient.ears, /obj/item/radio/headset))
-			to_chat(usr, LANG("client.eab59e40", null), confidential = TRUE)
+			to_chat(usr, LANG("client.eab59e40a3d06c34", null), confidential = TRUE)
 			return
 	else if(issilicon(target))
 		silicon_recipient = target
 		if(!istype(silicon_recipient.radio, /obj/item/radio))
-			to_chat(usr, LANG("client.eda1e55f", null), confidential = TRUE)
+			to_chat(usr, LANG("client.eda1e55fa88870f8", null), confidential = TRUE)
 			return
 	else
-		to_chat(usr, LANG("client.fde4ec38", null), confidential = TRUE)
+		to_chat(usr, LANG("client.fde4ec38cde92187", null), confidential = TRUE)
 		return
 
 	if (!sender)
-		sender = input(LANG("client.25741089", null), LANG("client.2bc502a9", null)) as null|anything in list(RADIO_CHANNEL_CENTCOM,RADIO_CHANNEL_SYNDICATE)
+		sender = input(LANG("client.257410895b3135bc", null), LANG("client.2bc502a9402b7c6c", null)) as null|anything in list(RADIO_CHANNEL_CENTCOM,RADIO_CHANNEL_SYNDICATE)
 		if(!sender)
 			return
 
 	message_admins("[key_name_admin(src)] has started answering [key_name_admin(target)]'s [sender] request.")
-	var/input = input(LANG("client.deaf7443", list(key_name(target))),LANG("client.3bc3c9ab", list(sender)), "") as text|null
+	var/input = input(LANG("client.deaf744352a0971f", list(key_name(target))),LANG("client.3bc3c9ab0ff0da45", list(sender)), "") as text|null
 	if(!input)
 		message_admins("[key_name_admin(src)] decided not to answer [key_name_admin(target)]'s [sender] request.")
 		return
@@ -62,13 +62,13 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_headset_message, R_ADMIN, "耳机消息",
 
 	log_directed_talk(mob, target, input, LOG_ADMIN, "reply")
 	message_admins("[key_name_admin(src)] replied to [key_name_admin(target)]'s [sender] message with: \"[input]\"")
-	target.balloon_alert(target, LANG("client.d955e950", null))
-	to_chat(target, span_hear(LANG("client.06743bb0", list(human_recipient ? "ears" : "radio receiver", sender == "Syndicate" ? "your benefactor" : "Central Command", sender == "Syndicate" ? ", agent." : ":", input))), confidential = TRUE)
+	target.balloon_alert(target, LANG("client.d955e9509c93251b", null))
+	to_chat(target, span_hear(LANG("client.06743bb07ab9e2ca", list(human_recipient ? "ears" : "radio receiver", sender == "Syndicate" ? "your benefactor" : "Central Command", sender == "Syndicate" ? ", agent." : ":", input))), confidential = TRUE)
 
 	BLACKBOX_LOG_ADMIN_VERB("Headset Message")
 
 ADMIN_VERB(cmd_admin_world_narrate, R_ADMIN, "全局旁白", "Send a direct narration to all connected players.", ADMIN_CATEGORY_EVENTS)
-	var/msg = input(user, LANG("datum.008d3052", null), LANG("datum.7c26d5bd", null)) as text|null
+	var/msg = input(user, LANG("datum.008d305248b8414e", null), LANG("datum.7c26d5bdd15d05f5", null)) as text|null
 	if (!msg)
 		return
 	msg = user.reformat_narration(msg)
@@ -79,10 +79,10 @@ ADMIN_VERB(cmd_admin_world_narrate, R_ADMIN, "全局旁白", "Send a direct narr
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_local_narrate, R_ADMIN, "本地旁白", /atom)
 	VERB_ARG_TYPED(locale, VERB_ARG_TYPE_ATOM, VERB_ARG_SOURCE_WORLD, /atom)
-	var/range = input(user, LANG("datum.c5d1936b", null), LANG("datum.520ed99b", null), 7) as num|null
+	var/range = input(user, LANG("datum.c5d1936b8767b864", null), LANG("datum.520ed99b8d335b8d", null), 7) as num|null
 	if(!range)
 		return
-	var/msg = input(user, LANG("datum.008d3052", null), LANG("datum.4d8da095", null)) as text|null
+	var/msg = input(user, LANG("datum.008d305248b8414e", null), LANG("datum.4d8da095a47a166c", null)) as text|null
 	if (!msg)
 		return
 	msg = user.reformat_narration(msg)
@@ -95,7 +95,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_local_narrate, R_ADMIN, "本地旁白", /
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_direct_narrate, R_ADMIN, "直接旁白", /mob)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
-	var/msg = input(user, LANG("datum.008d3052", null), LANG("datum.5d97ad04", null)) as text|null
+	var/msg = input(user, LANG("datum.008d305248b8414e", null), LANG("datum.5d97ad044f5c4b58", null)) as text|null
 
 	if( !msg )
 		return
@@ -110,14 +110,14 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_direct_narrate, R_ADMIN, "直接旁白", 
 	BLACKBOX_LOG_ADMIN_VERB("Direct Narrate")
 
 ADMIN_VERB(cmd_admin_add_freeform_ai_law, R_ADMIN, "添加自定义 AI 法则", "Add a custom law to the Silicons.", ADMIN_CATEGORY_EVENTS)
-	var/input = input(user, LANG("datum.d01816bc", null), LANG("datum.29297405", null), "") as text|null
+	var/input = input(user, LANG("datum.d01816bc4358d2ab", null), LANG("datum.29297405de146a0b", null), "") as text|null
 	if(!input)
 		return
 
 	log_admin("Admin [key_name(user)] has added a new AI law - [input]")
 	message_admins("Admin [key_name_admin(user)] has added a new AI law - [input]")
 
-	var/show_log = tgui_alert(user, LANG("datum.5d9fa149", null), LANG("datum.affb7d7e", null), list("Yes", "No"))
+	var/show_log = tgui_alert(user, LANG("datum.5d9fa14976f91f27", null), LANG("datum.affb7d7ed9357b02", null), list("Yes", "No"))
 	var/announce_ion_laws = (show_log == "Yes" ? 100 : 0)
 
 	var/datum/round_event/ion_storm/ion = new
@@ -135,11 +135,11 @@ ADMIN_VERB(toggle_nuke, R_DEBUG|R_ADMIN, "切换核弹", "Arm or disarm a nuke."
 	var/list/nukes = list()
 	for (var/obj/machinery/nuclearbomb/bomb in world)
 		nukes += bomb
-	var/obj/machinery/nuclearbomb/nuke = tgui_input_list(user, "", LANG("datum.dc37cb91", null), nukes)
+	var/obj/machinery/nuclearbomb/nuke = tgui_input_list(user, "", LANG("datum.dc37cb911e53b8ba", null), nukes)
 	if (isnull(nuke))
 		return
 	if(!nuke.timing)
-		var/newtime = tgui_input_number(user, LANG("datum.fe354fbd", null), LANG("datum.f03e09c8", null), nuke.timer_set)
+		var/newtime = tgui_input_number(user, LANG("datum.fe354fbd3417b00e", null), LANG("datum.f03e09c831ea09c0", null), nuke.timer_set)
 		if(!newtime)
 			return
 		nuke.timer_set = newtime
@@ -151,7 +151,7 @@ ADMIN_VERB(toggle_nuke, R_DEBUG|R_ADMIN, "切换核弹", "Arm or disarm a nuke."
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Nuke", "[nuke.timing]")) // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 
 ADMIN_VERB(change_sec_level, R_ADMIN, "设置警戒等级", "Changes the security level. Announcement effects only.", ADMIN_CATEGORY_EVENTS)
-	var/level = tgui_input_list(user, LANG("datum.2b07c557", null), LANG("datum.867fbc31", null), SSsecurity_level.available_levels)
+	var/level = tgui_input_list(user, LANG("datum.2b07c55708c72c7f", null), LANG("datum.867fbc31449cfafc", null), SSsecurity_level.available_levels)
 
 	if(!level)
 		return
@@ -168,8 +168,8 @@ ADMIN_VERB(command_report_footnote, R_ADMIN, "指挥部报告脚注", "Adds a fo
 
 	command_report_footnote.message = tgui_input_text(
 		user,
-		LANG("datum.0c3ef29f", null),
-		LANG("datum.394670e9", null),
+		LANG("datum.0c3ef29f29b545eb", null),
+		LANG("datum.394670e9b6d066e6", null),
 	)
 	if(!command_report_footnote.message)
 		GLOB.communications_controller.block_command_report -= 1
@@ -178,8 +178,8 @@ ADMIN_VERB(command_report_footnote, R_ADMIN, "指挥部报告脚注", "Adds a fo
 
 	command_report_footnote.signature = tgui_input_text(
 		user,
-		LANG("datum.a004306f", null),
-		LANG("datum.6221e12f", null),
+		LANG("datum.a004306fdd490dbd", null),
+		LANG("datum.6221e12f44470f44", null),
 	)
 
 	if(!command_report_footnote.signature)
@@ -198,8 +198,8 @@ ADMIN_VERB(command_report_content, R_FUN, "指挥部报告内容", "Sets the mai
 	GLOB.communications_controller.block_command_report += 1
 	GLOB.communications_controller.command_report_main_content = tgui_input_text(
 		user,
-		LANG("datum.f7b6bce3", null),
-		LANG("datum.57bd42d3", null),
+		LANG("datum.f7b6bce323a66c8c", null),
+		LANG("datum.57bd42d377762f84", null),
 	)
 	GLOB.communications_controller.block_command_report -= 1
 	message_admins("[key_name_admin(user)] has [GLOB.communications_controller.command_report_main_content ? "set" : "cleared"] the main content of the roundstart command report.")
@@ -210,8 +210,8 @@ ADMIN_VERB(delay_command_report, R_FUN, "延迟指挥部报告", "Prevents the r
 
 ///Reformats a narration message. First provides a prompt asking if the user wants to reformat their message, then allows them to pick from a list of spans to use.
 /client/proc/reformat_narration(input)
-	if(tgui_alert(mob, LANG("client.827ba886", null), LANG("client.7bdd69db", null), list("Yes", "No")) == "Yes")
-		var/text_span = tgui_input_list(mob, LANG("client.ec1363e7", null), LANG("client.d6101a86", null), GLOB.spanname_to_formatting)
+	if(tgui_alert(mob, LANG("client.827ba886ca266cd1", null), LANG("client.7bdd69db12d5b0f2", null), list("Yes", "No")) == "Yes")
+		var/text_span = tgui_input_list(mob, LANG("client.ec1363e77401a1ac", null), LANG("client.d6101a86f733bf38", null), GLOB.spanname_to_formatting)
 		if(isnull(text_span)) //In case the user just quit the prompt.
 			return text_span
 		text_span = GLOB.spanname_to_formatting[text_span]

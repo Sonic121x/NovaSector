@@ -82,7 +82,7 @@
 	if(SSlag_switch.measures[DISABLE_DEAD_KEYLOOP])
 		less_input_message = " - Notice: Observer freelook is currently disabled."
 	// Don't convert this to tgui please, it's way too important
-	var/this_is_like_playing_right = alert(usr, LANG("mob.7659283e", list(less_input_message)), LANG("mob.3697893f", null), "Yes", "No") //NOVA EDIT CHANGE
+	var/this_is_like_playing_right = alert(usr, LANG("mob.7659283eddbb393e", list(less_input_message)), LANG("mob.3697893f9724f4ed", null), "Yes", "No") //NOVA EDIT CHANGE
 	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Yes")
 		ready = PLAYER_NOT_READY
 		show_title_screen() // NOVA EDIT ADDITION
@@ -94,11 +94,11 @@
 
 	observer.started_as_observer = TRUE
 	var/obj/effect/landmark/observer_start/O = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
-	to_chat(src, span_notice(LANG("mob.587970cf", null)))
+	to_chat(src, span_notice(LANG("mob.587970cff91c0be3", null)))
 	if (O)
 		observer.forceMove(O.loc)
 	else
-		to_chat(src, span_notice(LANG("mob.b435623c", null)))
+		to_chat(src, span_notice(LANG("mob.b435623c162fada4", null)))
 		stack_trace("There's no freaking observer landmark available on this map or you're making observers before the map is initialised")
 
 	observer.PossessByPlayer(key)
@@ -121,28 +121,28 @@
 	jobtitle = lang_reverse_text(jobtitle) // NOVA EDIT - i18n: 职业名整词反查，使下面 LANG 模板里的 [jobtitle] 插值在中文句中也中文（locale==en 时 no-op）
 	switch(retval)
 		if(JOB_AVAILABLE)
-			return LANG("_root.66f779c8", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is available."
+			return LANG("_root.66f779c8bdae903a", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is available."
 		if(JOB_UNAVAILABLE_GENERIC)
-			return LANG("_root.9baf6ed8", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is unavailable."
+			return LANG("_root.9baf6ed882fcf1fc", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is unavailable."
 		if(JOB_UNAVAILABLE_BANNED)
-			return LANG("_root.b8b337fb", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "You are currently banned from [jobtitle]."
+			return LANG("_root.b8b337fb2a4e7cd9", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "You are currently banned from [jobtitle]."
 		if(JOB_UNAVAILABLE_PLAYTIME)
-			return LANG("_root.4261eb64", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "You do not have enough relevant playtime for [jobtitle]."
+			return LANG("_root.4261eb64a0b84c01", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "You do not have enough relevant playtime for [jobtitle]."
 		if(JOB_UNAVAILABLE_ACCOUNTAGE)
-			return LANG("_root.f31a300a", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "Your account is not old enough for [jobtitle]."
+			return LANG("_root.f31a300a312186dc", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "Your account is not old enough for [jobtitle]."
 		if(JOB_UNAVAILABLE_SLOTFULL)
-			return LANG("_root.c0df588f", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is already filled to capacity."
+			return LANG("_root.c0df588fb7b43555", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is already filled to capacity."
 		//NOVA EDIT ADDITION
 		if(JOB_NOT_NOVA_STAR)
-			return LANG("_root.c986f9da", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "You need to be Nova star to join as [jobtitle]."
+			return LANG("_root.c986f9daa90532a6", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "You need to be Nova star to join as [jobtitle]."
 		if(JOB_UNAVAILABLE_QUIRK)
-			return LANG("_root.18edf263", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is restricted due to your selected quirks."
+			return LANG("_root.18edf26380e4a234", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is restricted due to your selected quirks."
 		if(JOB_UNAVAILABLE_LANGUAGE)
-			return LANG("_root.9d71bf5e", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is restricted due to your selected languages."
+			return LANG("_root.9d71bf5e9e454c8a", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is restricted due to your selected languages."
 		if(JOB_UNAVAILABLE_SPECIES)
-			return LANG("_root.ac4f17ee", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is restricted due to your selected species."
+			return LANG("_root.ac4f17ee374ed1bd", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is restricted due to your selected species."
 		if(JOB_UNAVAILABLE_FLAVOUR)
-			return LANG("_root.98013e2c", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] requires you to have flavour text for your character."
+			return LANG("_root.98013e2c48b5ae32", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] requires you to have flavour text for your character."
 		if(JOB_UNAVAILABLE_AUGMENT)
 			return "[jobtitle] is restricted due to your selected body augments."
 		if(JOB_UNAVAILABLE_MEDREC)
@@ -151,9 +151,9 @@
 			return "[jobtitle] requires you to have security records text for your character."
 		//NOVA EDIT END
 		if(JOB_UNAVAILABLE_ANTAG_INCOMPAT)
-			return LANG("_root.4d3e09db", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is not compatible with some antagonist role assigned to you."
+			return LANG("_root.4d3e09db83faf5db", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "[jobtitle] is not compatible with some antagonist role assigned to you."
 		if(JOB_UNAVAILABLE_AGE)
-			return LANG("_root.5d71d9b3", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "Your character is not old enough for [jobtitle]."
+			return LANG("_root.5d71d9b3157fa635", list(jobtitle)) // NOVA EDIT - i18n - ORIGINAL: return "Your character is not old enough for [jobtitle]."
 
 	return GENERIC_JOB_UNAVAILABLE_ERROR
 
@@ -194,7 +194,7 @@
 	// Check that they're picking someone new for new character respawning
 	if(CONFIG_GET(flag/allow_respawn) == RESPAWN_FLAG_NEW_CHARACTER)
 		if("[client.prefs.default_slot]" in persistent_client.joined_as_slots)
-			tgui_alert(usr, LANG("mob.4e81f583", null))
+			tgui_alert(usr, LANG("mob.4e81f5837f197990", null))
 			return FALSE
 
 	var/error = IsJobUnavailable(rank)
@@ -204,7 +204,7 @@
 
 	if(SSshuttle.arrivals)
 		if(SSshuttle.arrivals.damaged && CONFIG_GET(flag/arrivals_shuttle_require_safe_latejoin))
-			tgui_alert(usr,LANG("mob.e574e36f", null))
+			tgui_alert(usr,LANG("mob.e574e36fe85ac9c0", null))
 			return FALSE
 
 		if(CONFIG_GET(flag/arrivals_shuttle_require_undocked))
@@ -217,7 +217,7 @@
 	var/datum/job/job = SSjob.get_job(rank)
 
 	if(!SSjob.assign_role(src, job, TRUE))
-		tgui_alert(usr, LANG("mob.74a88cfd", null))
+		tgui_alert(usr, LANG("mob.74a88cfd3da0c0f2", null))
 		return FALSE
 
 	var/latejoin_period = CEILING(STATION_TIME_PASSED() / (5 MINUTES), 5)
@@ -385,7 +385,7 @@
 	var/has_antags = length(client.prefs.be_special) > 0
 	if(client.prefs.job_preferences.len == 0)
 		if(warn)
-			to_chat(src, span_danger(LANG("mob.ee06e25c", null)))
+			to_chat(src, span_danger(LANG("mob.ee06e25c824529a3", null)))
 		ready = PLAYER_NOT_READY
 		if(has_antags)
 			log_admin("[src.ckey] has no jobs enabled, return to lobby if job is unavailable enabled and [client.prefs.be_special.len] \
@@ -424,14 +424,14 @@
 GAME_VERB_PROC(/mob/dead/new_player, reset_menu_hud, "重置大厅菜单 HUD", "OOC")
 	var/mob/dead/new_player/new_player = usr
 	if(!COOLDOWN_FINISHED(new_player, reset_hud_cooldown))
-		to_chat(new_player, span_warning(LANG("mob.2751ef75", list(DisplayTimeText(COOLDOWN_TIMELEFT(new_player, reset_hud_cooldown))))))
+		to_chat(new_player, span_warning(LANG("mob.2751ef75cb67de2e", list(DisplayTimeText(COOLDOWN_TIMELEFT(new_player, reset_hud_cooldown))))))
 		return
 	if(!new_player?.client)
 		return
 	COOLDOWN_START(new_player, reset_hud_cooldown, RESET_HUD_INTERVAL)
 	qdel(new_player.hud_used)
 	create_mob_hud()
-	to_chat(new_player, span_info(LANG("mob.d7313b83", list(DisplayTimeText(RESET_HUD_INTERVAL)))))
+	to_chat(new_player, span_info(LANG("mob.d7313b833309d296", list(DisplayTimeText(RESET_HUD_INTERVAL)))))
 	hud_used.show_hud(hud_used.hud_version)
 
 ///Auto deadmins an admin when they click to toggle the ready button or join game button in the menu

@@ -56,15 +56,15 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(climbed_thing)
 		structure_climber.Paralyze(40)
-		structure_climber.visible_message(span_warning(LANG("datum.e1072e08", list(structure_climber, climbed_thing))), span_warning(LANG("datum.a148e446", list(climbed_thing))), span_hear(LANG("datum.1a82c789", list(structure_climber))))
+		structure_climber.visible_message(span_warning(LANG("datum.e1072e0852faee94", list(structure_climber, climbed_thing))), span_warning(LANG("datum.a148e446bebf8093", list(climbed_thing))), span_hear(LANG("datum.1a82c789ad4786da", list(structure_climber))))
 
 
 /datum/element/climbable/proc/climb_structure(atom/climbed_thing, mob/living/user, params)
 	if(!can_climb(climbed_thing, user))
 		return
 	climbed_thing.add_fingerprint(user)
-	user.visible_message(span_warning(LANG("datum.9ee22a17", list(user, climbed_thing))), \
-								span_notice(LANG("datum.865c668b", list(climbed_thing))))
+	user.visible_message(span_warning(LANG("datum.9ee22a17c977fc6e", list(user, climbed_thing))), \
+								span_notice(LANG("datum.865c668b04fe63f2", list(climbed_thing))))
 	// Time in deciseoncds it takes to complete the climb do_after()
 	var/adjusted_climb_time = climb_time
 	// Time in deciseonds that the mob is stunned after climbing successfully.
@@ -93,8 +93,8 @@
 		if(QDELETED(climbed_thing)) //Checking if structure has been destroyed
 			return
 		if(do_climb(climbed_thing, user, params))
-			user.visible_message(span_warning(LANG("datum.574fa0b2", list(user, climbed_thing))), \
-								span_notice(LANG("datum.a92461a5", list(climbed_thing))))
+			user.visible_message(span_warning(LANG("datum.574fa0b20f9cf3f5", list(user, climbed_thing))), \
+								span_notice(LANG("datum.a92461a5b9a965cd", list(climbed_thing))))
 			log_combat(user, climbed_thing, "climbed onto")
 			if(adjusted_climb_stun)
 				user.Stun(adjusted_climb_stun)
@@ -104,7 +104,7 @@
 					buckle_target.buckle_mob(user)
 			user.mind?.adjust_experience(/datum/skill/athletics, round(ATHLETICS_SKILL_MISC_EXP/(fitness_level || 1), 1)) //Get a bit fitter with every climb. But it has diminishing returns at a certain point.
 		else
-			to_chat(user, span_warning(LANG("datum.ce56a1d9", list(climbed_thing))))
+			to_chat(user, span_warning(LANG("datum.ce56a1d916327ed9", list(climbed_thing))))
 	LAZYREMOVEASSOC(current_climbers, climbed_thing, user)
 
 

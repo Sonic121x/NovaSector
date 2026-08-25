@@ -46,7 +46,7 @@
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	INVOKE_ASYNC(controller, TYPE_PROC_REF(/datum/ai_controller, ai_interact), target)
 	if(istype(target, /turf/closed/mineral/gibtonite))
-		living_pawn.manual_emote(LANG("datum.141bbf32", null))
+		living_pawn.manual_emote(LANG("datum.141bbf3282a9a7f7", null))
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/bt_node/ai_behavior/mine_wall/finish_action(datum/ai_controller/controller, succeeded)

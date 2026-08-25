@@ -222,12 +222,12 @@
 	if(isnull(time_until_next))
 		return
 	if (time_until_next == 0)
-		examine_texts += span_warning(LANG("datum.b0af1abf", null))
+		examine_texts += span_warning(LANG("datum.b0af1abf140bd2ce", null))
 	else
-		examine_texts += span_notice(LANG("datum.5e938eba", list(DisplayTimeText(time_until_next))))
+		examine_texts += span_notice(LANG("datum.5e938eba4ee035b8", list(DisplayTimeText(time_until_next))))
 
 	if(!check_accuracy())
-		examine_texts += span_smallnoticeital(LANG("datum.68355b83", null))
+		examine_texts += span_smallnoticeital(LANG("datum.68355b83b108261e", null))
 
 /datum/component/weather_announcer/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))

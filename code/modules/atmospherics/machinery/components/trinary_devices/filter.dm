@@ -28,7 +28,7 @@
 /obj/machinery/atmospherics/components/trinary/filter/click_ctrl(mob/user)
 	if(is_operational)
 		set_on(!on)
-		balloon_alert(user, LANG("obj.8fcfde3c", list(on ? "on" : "off")))
+		balloon_alert(user, LANG("obj.8fcfde3cd8c5cffd", list(on ? "on" : "off")))
 		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
@@ -39,7 +39,7 @@
 
 	transfer_rate = MAX_TRANSFER_RATE
 	investigate_log("was set to [transfer_rate] L/s by [key_name(user)]", INVESTIGATE_ATMOS)
-	balloon_alert(user, LANG("obj.d0decc22", list(transfer_rate)))
+	balloon_alert(user, LANG("obj.d0decc224c00c1d3", list(transfer_rate)))
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/atmospherics/components/trinary/filter/update_overlays()
@@ -177,7 +177,7 @@
 /obj/machinery/atmospherics/components/trinary/filter/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		balloon_alert(user, LANG("obj.55d6a7ad", null))
+		balloon_alert(user, LANG("obj.55d6a7ad89ca7417", null))
 		return FALSE
 
 // mapping

@@ -245,13 +245,13 @@
 	for(var/i in 1 to code_length)
 		if(code_input[i] < solution[i])
 			playsound(holder, "sound/machines/defib/defib_saftyOff.ogg", 100)
-			holder.visible_message(span_notice(LANG("datum.52d82d9c", list(holder))))
+			holder.visible_message(span_notice(LANG("datum.52d82d9c7ef8f4f3", list(holder))))
 		else if(code_input[i] > solution[i])
 			playsound(holder, "sound/machines/defib/defib_saftyOn.ogg", 100)
-			holder.visible_message(span_notice(LANG("datum.ab7227ec", list(holder))))
+			holder.visible_message(span_notice(LANG("datum.ab7227ecacdaa651", list(holder))))
 		else
 			playsound(holder, "sound/machines/defib/defib_ready.ogg", 100)
-			holder.visible_message(span_notice(LANG("datum.8e9e0102", list(holder))))
+			holder.visible_message(span_notice(LANG("datum.8e9e010227809e20", list(holder))))
 		sleep(0.5 SECONDS)
 	..()
 
@@ -303,7 +303,7 @@
 		playsound(holder, "sound/machines/synth/synth_no.ogg", 100)
 		sleep(0.25 SECONDS)
 
-	holder.visible_message(span_notice(LANG("datum.60f2b145", list(holder, bulls, cows))))
+	holder.visible_message(span_notice(LANG("datum.60f2b1454ade5097", list(holder, bulls, cows))))
 
 	..()
 

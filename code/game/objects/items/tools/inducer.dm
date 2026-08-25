@@ -80,14 +80,14 @@
 
 	var/obj/item/stock_parts/power_store/our_cell = get_cell(src, user)
 	if(!QDELETED(our_cell))
-		. += span_notice(LANG("obj.a9d97eae", list(display_energy(our_cell.charge))))
+		. += span_notice(LANG("obj.a9d97eaed5460284", list(display_energy(our_cell.charge))))
 		if(opened)
-			. += span_notice(LANG("obj.b0f8c071", null))
-			. += span_notice(LANG("obj.ce305ae1", null))
+			. += span_notice(LANG("obj.b0f8c071405793b2", null))
+			. += span_notice(LANG("obj.ce305ae13590eba0", null))
 	else
-		. += span_warning(LANG("obj.65452ac4", null))
+		. += span_warning(LANG("obj.65452ac44d6e839e", null))
 
-	. += span_notice(LANG("obj.e45263dc", list(EXAMINE_HINT("screwed"), opened ? "shut" : "open")))
+	. += span_notice(LANG("obj.e45263dc39909a2b", list(EXAMINE_HINT("screwed"), opened ? "shut" : "open")))
 
 /obj/item/inducer/update_overlays()
 	. = ..()
@@ -110,7 +110,7 @@
 		return
 
 	opened = !opened
-	to_chat(user, span_notice(LANG("obj.a7ac68d8", list(opened ? "open" : "close"))))
+	to_chat(user, span_notice(LANG("obj.a7ac68d898171348", list(opened ? "open" : "close"))))
 	update_appearance(UPDATE_OVERLAYS)
 
 	return ITEM_INTERACT_SUCCESS
@@ -123,15 +123,15 @@
 
 	if(istype(tool, /obj/item/stock_parts/power_store))
 		if(!opened)
-			balloon_alert(user, LANG("obj.c3fdd085", null))
+			balloon_alert(user, LANG("obj.c3fdd0858199d5fc", null))
 			return ITEM_INTERACT_FAILURE
 
 		if(!QDELETED(powerdevice))
-			balloon_alert(user, LANG("obj.d2ad27b2", null))
+			balloon_alert(user, LANG("obj.d2ad27b2fb0eb6cd", null))
 			return ITEM_INTERACT_FAILURE
 
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, LANG("obj.c7cbf2eb", null))
+			balloon_alert(user, LANG("obj.c7cbf2eb61d75d5b", null))
 			return ITEM_INTERACT_FAILURE
 
 		powerdevice = tool
@@ -139,12 +139,12 @@
 
 	else if(istype(tool, /obj/item/stack/sheet/mineral/plasma) && !QDELETED(powerdevice))
 		if(!powerdevice.used_charge())
-			balloon_alert(user, LANG("obj.42739bb4", null))
+			balloon_alert(user, LANG("obj.42739bb492b100de", null))
 			return ITEM_INTERACT_FAILURE
 
 		tool.use(1)
 		powerdevice.give(1.5 * STANDARD_CELL_CHARGE)
-		balloon_alert(user, LANG("obj.aac7e166", null))
+		balloon_alert(user, LANG("obj.aac7e1661ebd251c", null))
 
 		return ITEM_INTERACT_SUCCESS
 
@@ -159,24 +159,24 @@
 
 	//basic checks
 	if(opened)
-		balloon_alert(user, LANG("obj.33c8300c", null))
+		balloon_alert(user, LANG("obj.33c8300c4f2d2178", null))
 		return ITEM_INTERACT_FAILURE
 
 	if(recharging || (!isturf(interacting_with) && user.loc == interacting_with))
 		return ITEM_INTERACT_FAILURE
 
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning(LANG("obj.41d5752e", list(src))))
+		to_chat(user, span_warning(LANG("obj.41d5752e5eac12cb", list(src))))
 		return ITEM_INTERACT_FAILURE
 
 	var/obj/item/stock_parts/power_store/our_cell = get_cell(src, user)
 
 	if(QDELETED(our_cell))
-		balloon_alert(user, LANG("obj.48299e41", null))
+		balloon_alert(user, LANG("obj.48299e411d7e5893", null))
 		return ITEM_INTERACT_FAILURE
 
 	if(!our_cell.charge)
-		balloon_alert(user, LANG("obj.c0d39a14", null))
+		balloon_alert(user, LANG("obj.c0d39a143f2b1626", null))
 		return ITEM_INTERACT_FAILURE
 
 	var/obj/item/stock_parts/power_store/target_cell = interacting_with.get_cell(src, user)
@@ -185,12 +185,12 @@
 		return ITEM_INTERACT_FAILURE
 
 	if(!target_cell.used_charge())
-		balloon_alert(user, LANG("obj.42739bb4", null))
+		balloon_alert(user, LANG("obj.42739bb492b100de", null))
 		return ITEM_INTERACT_FAILURE
 
 	//begin recharging
 	recharging = TRUE
-	user.visible_message(span_notice(LANG("obj.571e129a", list(user, interacting_with, src))), span_notice(LANG("obj.8965d95d", list(interacting_with, src))))
+	user.visible_message(span_notice(LANG("obj.571e129a0d611da4", list(user, interacting_with, src))), span_notice(LANG("obj.8965d95dede2db2b", list(interacting_with, src))))
 
 	var/done_any = FALSE
 	while(target_cell.used_charge())
@@ -216,13 +216,13 @@
 
 	// Only show a message if we succeeded at least once
 	if(done_any)
-		user.visible_message(span_notice(LANG("obj.ab8d3172", list(user, interacting_with))), span_notice(LANG("obj.85e4228f", list(interacting_with))))
+		user.visible_message(span_notice(LANG("obj.ab8d31721d7a6118", list(user, interacting_with))), span_notice(LANG("obj.85e4228fa822dfdd", list(interacting_with))))
 
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/inducer/attack_self(mob/user)
 	if(opened && !QDELETED(powerdevice))
-		user.visible_message(span_notice(LANG("obj.6eec8634", list(user, powerdevice, src))), span_notice(LANG("obj.1973523e", list(powerdevice))))
+		user.visible_message(span_notice(LANG("obj.6eec863436b99805", list(user, powerdevice, src))), span_notice(LANG("obj.1973523e4f545786", list(powerdevice))))
 		powerdevice.update_appearance()
 		user.put_in_hands(powerdevice)
 		update_appearance(UPDATE_OVERLAYS)
@@ -261,18 +261,18 @@
 
 	var/obj/item/stock_parts/power_store/our_cell = get_cell(src, user)
 	if(!QDELETED(our_cell))
-		. += span_notice(LANG("obj.a9d97eae", list(display_energy(our_cell.charge))))
+		. += span_notice(LANG("obj.a9d97eaed5460284", list(display_energy(our_cell.charge))))
 		if(opened)
-			. += span_notice(LANG("obj.ce305ae1", null))
+			. += span_notice(LANG("obj.ce305ae13590eba0", null))
 	else
-		. += span_warning(LANG("obj.65452ac4", null))
-	. += span_notice(LANG("obj.e45263dc", list(EXAMINE_HINT("screwed"), opened ? "shut" : "open")))
+		. += span_warning(LANG("obj.65452ac44d6e839e", null))
+	. += span_notice(LANG("obj.e45263dc39909a2b", list(EXAMINE_HINT("screwed"), opened ? "shut" : "open")))
 
 /obj/item/inducer/cyborg/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	return NONE
 
 /obj/item/inducer/cyborg/interact_with_atom(atom/movable/interacting_with, mob/living/user, list/modifiers)
 	if(iscyborg(user) && iscyborg(interacting_with))
-		balloon_alert(user, LANG("obj.a11e4871", null))
+		balloon_alert(user, LANG("obj.a11e4871a80fce6e", null))
 		return ITEM_INTERACT_FAILURE
 	return ..()

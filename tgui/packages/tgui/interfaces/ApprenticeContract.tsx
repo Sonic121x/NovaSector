@@ -25,7 +25,7 @@ export const ApprenticeContract = (props) => {
           <Stack.Item grow>
             <ApprenticeSelection
               iconName="fire"
-              fluffName="Apprentice of Destruction"
+              title="Apprentice of Destruction" // NOVA EDIT CHANGE - I18N - ORIGINAL: fluffName="Apprentice of Destruction"
               schoolTitle="destruction"
               assetName="destruction.png"
               blurb={`
@@ -35,7 +35,7 @@ export const ApprenticeContract = (props) => {
             />
             <ApprenticeSelection
               iconName="route"
-              fluffName="Student of Translocation"
+              title="Student of Translocation" // NOVA EDIT CHANGE - I18N - ORIGINAL: fluffName="Student of Translocation"
               schoolTitle="bluespace"
               assetName="bluespace.png"
               blurb={`
@@ -46,7 +46,7 @@ export const ApprenticeContract = (props) => {
             />
             <ApprenticeSelection
               iconName="medkit"
-              fluffName="Neophyte of Restoration"
+              title="Neophyte of Restoration" // NOVA EDIT CHANGE - I18N - ORIGINAL: fluffName="Neophyte of Restoration"
               schoolTitle="healing"
               assetName="healing.png"
               blurb={`
@@ -57,7 +57,7 @@ export const ApprenticeContract = (props) => {
             />
             <ApprenticeSelection
               iconName="user-secret"
-              fluffName="Robeless Pupil"
+              title="Robeless Pupil" // NOVA EDIT CHANGE - I18N - ORIGINAL: fluffName="Robeless Pupil"
               schoolTitle="robeless"
               assetName="robeless.png"
               blurb={`
@@ -74,7 +74,11 @@ export const ApprenticeContract = (props) => {
 
 const ApprenticeSelection = (props) => {
   const { act } = useBackend();
-  const { iconName, fluffName, schoolTitle, assetName, blurb } = props;
+  // NOVA EDIT CHANGE - I18N: 学徒称号改经 `title` prop 传入 —— `title` 在
+  // strings/i18n/policy.json 的 translatable_props 里，抽取器与运行时都认得它；
+  // 自定义 prop 名（原 `fluffName`）两侧都够不着，整类恒为英文。
+  // ORIGINAL: const { iconName, fluffName, schoolTitle, assetName, blurb } = props;
+  const { iconName, title, schoolTitle, assetName, blurb } = props;
   return (
     <Section>
       <Stack align="middle" fill>
@@ -106,7 +110,8 @@ const ApprenticeSelection = (props) => {
         </Stack.Item>
         <Stack.Item grow>
           <Box fontSize="20px" height="30%">
-            <Icon name={iconName} /> {fluffName}
+            {/* NOVA EDIT CHANGE - I18N - ORIGINAL: {fluffName} */}
+            <Icon name={iconName} /> {title}
           </Box>
           <BlockQuote height="70%" fontSize="16px">
             {blurb}

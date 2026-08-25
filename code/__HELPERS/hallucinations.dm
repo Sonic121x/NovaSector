@@ -166,7 +166,7 @@ GLOBAL_LIST_INIT_TYPED(random_hallucination_weighted_list, /list, generate_hallu
 		for(var/datum/hallucination/hallucination_type as anything in GLOB.random_hallucination_weighted_list[tier])
 			total_weight += GLOB.random_hallucination_weighted_list[tier][hallucination_type]
 
-	to_chat(usr, span_boldnotice(LANG("_root.e3533dc4", list(total_weight))))
+	to_chat(usr, span_boldnotice(LANG("_root.e3533dc414c12a20", list(total_weight))))
 	return total_weight
 
 ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "显示幻觉权重", "View the weight of each hallucination subtype in the random weighted list.", ADMIN_CATEGORY_DEBUG)
@@ -252,17 +252,17 @@ ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "显示幻觉权
 			if(initial(delusion_type.abstract_hallucination_parent) == delusion_type)
 				delusions -= delusion_type
 
-	var/chosen = tgui_input_list(user, LANG("_root.600abcb8", null), LANG("_root.c59913cd", null), delusions)
+	var/chosen = tgui_input_list(user, LANG("_root.600abcb801d007be", null), LANG("_root.c59913cdc3eb0778", null), delusions)
 	if(!chosen || !ispath(chosen, /datum/hallucination/delusion))
 		return
 
 	var/list/delusion_args = list()
 	var/static/list/options = list("Yes", "No")
-	var/duration = tgui_input_number(user, LANG("_root.abe62312", null), LANG("_root.8998adea", null), max_value = INFINITY, min_value = 1, default = 30)
-	var/affects_us = (tgui_alert(user, LANG("_root.8b6a2599", null), LANG("_root.8e75602a", null), options) == "Yes")
-	var/affects_others = (tgui_alert(user, LANG("_root.2aaf5209", null), LANG("_root.b27655ea", null), options) == "Yes")
-	var/skip_nearby = (tgui_alert(user, LANG("_root.1d114b20", null), LANG("_root.cc170e65", null), options) == "Yes")
-	var/play_wabbajack = (tgui_alert(user, LANG("_root.08351d1d", null), LANG("_root.b3cfe24d", null), options) == "Yes")
+	var/duration = tgui_input_number(user, LANG("_root.abe62312af682b4b", null), LANG("_root.8998adea8bbc6b59", null), max_value = INFINITY, min_value = 1, default = 30)
+	var/affects_us = (tgui_alert(user, LANG("_root.8b6a259931fefd57", null), LANG("_root.8e75602aec5d7bb2", null), options) == "Yes")
+	var/affects_others = (tgui_alert(user, LANG("_root.2aaf52095fd27eff", null), LANG("_root.b27655ea8e895bbc", null), options) == "Yes")
+	var/skip_nearby = (tgui_alert(user, LANG("_root.1d114b20a6ed6a17", null), LANG("_root.cc170e65f0b2be8f", null), options) == "Yes")
+	var/play_wabbajack = (tgui_alert(user, LANG("_root.08351d1d211868bc", null), LANG("_root.b3cfe24d2166bc01", null), options) == "Yes")
 
 	delusion_args = list(
 		chosen,
@@ -275,15 +275,15 @@ ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "显示幻觉权
 	)
 
 	if(ispath(chosen, /datum/hallucination/delusion/custom))
-		var/custom_icon_file = input(user, LANG("_root.1cead7ea", null), LANG("_root.e4d4ac1e", null)) as null|file
+		var/custom_icon_file = input(user, LANG("_root.1cead7eaebbf10cb", null), LANG("_root.e4d4ac1e90bc7928", null)) as null|file
 		if(!custom_icon_file)
 			return
 
-		var/custom_icon_state = tgui_input_text(user, LANG("_root.e05ee5bb", null), LANG("_root.77143ff1", null))
+		var/custom_icon_state = tgui_input_text(user, LANG("_root.e05ee5bb70e2da02", null), LANG("_root.77143ff16663daaa", null))
 		if(!custom_icon_state)
 			return
 
-		var/custom_name = tgui_input_text(user, LANG("_root.f8de00d3", null), LANG("_root.30697ff9", null), max_length = MAX_NAME_LEN)
+		var/custom_name = tgui_input_text(user, LANG("_root.f8de00d3861a79f3", null), LANG("_root.30697ff9ed85e1d0", null), max_length = MAX_NAME_LEN)
 
 		delusion_args += list(
 			custom_icon_file = custom_icon_file,

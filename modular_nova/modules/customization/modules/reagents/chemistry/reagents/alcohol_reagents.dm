@@ -144,7 +144,7 @@
 
 /datum/reagent/consumable/ethanol/gunfire/on_mob_life(mob/living/carbon/M, seconds_per_tick, metabolization_ratio)
 	if (prob(3))
-		to_chat(M,span_notice(LANG("datum.9829f0d0", null)))
+		to_chat(M,span_notice(LANG("datum.9829f0d067168744", null)))
 	return ..()
 
 /datum/reagent/consumable/ethanol/hellfire

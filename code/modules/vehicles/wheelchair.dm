@@ -71,10 +71,10 @@
 
 /obj/vehicle/ridden/wheelchair/wrench_act(mob/living/user, obj/item/tool) //Attackby should stop it attacking the wheelchair after moving away during decon
 	..()
-	balloon_alert(user, LANG("obj.3f23092d", null))
+	balloon_alert(user, LANG("obj.3f23092d1b8549cb", null))
 	if(!tool.use_tool(src, user, 4 SECONDS, volume=50))
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_notice(LANG("obj.205b1c2c", null)))
+	to_chat(user, span_notice(LANG("obj.205b1c2c3754aedc", null)))
 	deconstruct(disassembled = TRUE)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -105,7 +105,7 @@
 		return FALSE
 	remove_bell()
 	remove_bomb()
-	user.visible_message(span_notice(LANG("obj.9f9707bf", list(user, src))), span_notice(LANG("obj.f518f3ec", list(src))))
+	user.visible_message(span_notice(LANG("obj.9f9707bf5b4472dd", list(user, src))), span_notice(LANG("obj.f518f3ec9656196a", list(src))))
 	var/obj/vehicle/ridden/wheelchair/wheelchair_folded = new foldabletype(get_turf(src))
 	user.put_in_hands(wheelchair_folded)
 	qdel(src)
@@ -128,15 +128,15 @@
 /obj/vehicle/ridden/wheelchair/examine(mob/user)
 	. =..()
 	if(bell_attached)
-		. += span_notice(LANG("obj.26a67896", list(bell_attached)))
+		. += span_notice(LANG("obj.26a67896b45e42d7", list(bell_attached)))
 	if(bomb_attached)
-		. += span_warning(LANG("obj.3945bad2", null))
+		. += span_warning(LANG("obj.3945bad2eca74a0d", null))
 
 /obj/vehicle/ridden/wheelchair/proc/remove_bell()
 	if (!bell_attached)
 		return
 	bell_attached.forceMove(get_turf(src))
-	visible_message(span_notice(LANG("obj.66302be8", list(bell_attached))))
+	visible_message(span_notice(LANG("obj.66302be8084b5cb4", list(bell_attached))))
 	bell_attached = null
 	update_appearance()
 
@@ -144,7 +144,7 @@
 	if (!bomb_attached)
 		return
 	bomb_attached.forceMove(get_turf(src))
-	visible_message(span_notice(LANG("obj.66302be8", list(bomb_attached))))
+	visible_message(span_notice(LANG("obj.66302be8084b5cb4", list(bomb_attached))))
 	bomb_attached = null
 	update_appearance()
 

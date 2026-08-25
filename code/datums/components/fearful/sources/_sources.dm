@@ -99,7 +99,7 @@
 		return 0
 
 	if (COOLDOWN_FINISHED(src, message_cd) && SPT_PROB(15, seconds_per_tick))
-		to_chat(owner, span_warning(LANG("datum.49292017", null)))
+		to_chat(owner, span_warning(LANG("datum.49292017fcbcc3cd", null)))
 		COOLDOWN_START(src, message_cd, TERROR_MESSAGE_CD)
 
 	return 15
@@ -144,7 +144,7 @@
 		return 0
 
 	if (COOLDOWN_FINISHED(src, message_cd) && SPT_PROB(15, seconds_per_tick))
-		to_chat(owner, span_warning(LANG("datum.2dc66b7d", null)))
+		to_chat(owner, span_warning(LANG("datum.2dc66b7d0eeee66b", null)))
 		COOLDOWN_START(src, message_cd, TERROR_MESSAGE_CD)
 
 	return 15
@@ -166,7 +166,7 @@
 			return 0
 
 	if (COOLDOWN_FINISHED(src, message_cd) && SPT_PROB(10, seconds_per_tick))
-		to_chat(owner, span_warning(LANG("datum.dcadebab", null)))
+		to_chat(owner, span_warning(LANG("datum.dcadebabc27d4ea2", null)))
 		COOLDOWN_START(src, message_cd, TERROR_MESSAGE_CD)
 
 	return 2.5 // Pretty low, ~4 minutes to reach passive cap

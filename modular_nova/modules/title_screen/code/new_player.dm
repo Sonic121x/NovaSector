@@ -57,12 +57,12 @@
 
 	if(href_list["toggle_ready"])
 		if(SSticker && SSticker.current_state > GAME_STATE_PREGAME)
-			to_chat(src, span_notice(LANG("mob.8079e6a7", null)))
+			to_chat(src, span_notice(LANG("mob.8079e6a71c654607", null)))
 			return
 		play_lobby_button_sound()
 		if(CONFIG_GET(flag/min_flavor_text))
 			if(!is_admin(client) && length_char(client?.prefs?.read_preference(/datum/preference/text/flavor_text)) < CONFIG_GET(number/flavor_text_character_requirement))
-				to_chat(src, span_notice(LANG("mob.ec2281b1", list(CONFIG_GET(number/flavor_text_character_requirement), length_char(client.prefs.read_preference(/datum/preference/text/flavor_text))))))
+				to_chat(src, span_notice(LANG("mob.ec2281b1ddd14b4d", list(CONFIG_GET(number/flavor_text_character_requirement), length_char(client.prefs.read_preference(/datum/preference/text/flavor_text))))))
 				return
 
 		if(ready == PLAYER_NOT_READY)
@@ -153,16 +153,16 @@
 	if(LAZYLEN(servers) == 1)
 		var/server_name = servers[1]
 		var/server_ip = servers[server_name]
-		var/confirm = tgui_alert(src, LANG("mob.a04f30de", list(server_name, server_ip)), LANG("mob.632a24f2", null), list("Send me there", "Stay here"))
+		var/confirm = tgui_alert(src, LANG("mob.a04f30dea86e55d7", list(server_name, server_ip)), LANG("mob.632a24f22bf94944", null), list("Send me there", "Stay here"))
 		if(confirm == "Connect me!")
 			to_chat_immediate(src, "So long, spaceman.")
 			client << link(server_ip)
 		return
-	var/server_name = tgui_input_list(src, LANG("mob.fb214cc7", null), LANG("mob.993e96ea", null), servers)
+	var/server_name = tgui_input_list(src, LANG("mob.fb214cc7952a08e6", null), LANG("mob.993e96ea3f0ea689", null), servers)
 	if(!server_name)
 		return
 	var/server_ip = servers[server_name]
-	var/confirm = tgui_alert(src, LANG("mob.a04f30de", list(server_name, server_ip)), LANG("mob.632a24f2", null), list("Connect me!", "Stay here!"))
+	var/confirm = tgui_alert(src, LANG("mob.a04f30dea86e55d7", list(server_name, server_ip)), LANG("mob.632a24f22bf94944", null), list("Connect me!", "Stay here!"))
 	if(confirm == "Connect me!")
 		to_chat_immediate(src, "So long, spaceman.")
 		src.client << link(server_ip)

@@ -808,7 +808,7 @@
 /obj/item/food/nugget/Initialize(mapload)
 	. = ..()
 	var/shape = pick("lump", "star", "lizard", "corgi")
-	desc = LANG("obj.b431662c", list(meat_source, shape))
+	desc = LANG("obj.b431662cd59a592d", list(meat_source, shape))
 	icon_state = "nugget_[shape]"
 
 ///subtype harvested from fish caught from, you guess it, the deepfryer

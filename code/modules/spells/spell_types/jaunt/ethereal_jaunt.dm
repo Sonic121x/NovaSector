@@ -87,7 +87,7 @@
 	if(!found_exit)
 		// It's possible no exit was found, because we literally didn't even move
 		if(get_turf(cast_on) != start_point)
-			to_chat(cast_on, span_danger(LANG("datum.2726f851", null)))
+			to_chat(cast_on, span_danger(LANG("datum.2726f851955f5026", null)))
 		// Either way, default to where we started
 		found_exit = start_point
 
@@ -223,7 +223,7 @@
 		return
 	var/atom/new_loc = .
 	if (HAS_TRAIT(new_loc, TRAIT_TURF_BLESSED))
-		to_chat(user, span_warning(LANG("obj.1fa44391", null)))
+		to_chat(user, span_warning(LANG("obj.1fa443913aa8cb49", null)))
 		return null
 
 /// Red coloured variant

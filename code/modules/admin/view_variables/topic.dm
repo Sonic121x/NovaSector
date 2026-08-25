@@ -22,14 +22,14 @@
 
 		var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
 		if(!istype(M))
-			to_chat(usr, LANG("client.d9988527", null), confidential = TRUE)
+			to_chat(usr, LANG("client.d99885271fca7066", null), confidential = TRUE)
 			return
 
 		var/new_name = stripped_input(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN)
 
 		// If the new name is something that would be restricted by IC chat filters,
 		// give the admin a warning but allow them to do it anyway if they want.
-		if(is_ic_filtered(new_name) || is_soft_ic_filtered(new_name) && tgui_alert(usr, LANG("client.9b4d40a4", null), LANG("client.fc9f6a2c", null), list("Confirm", "Cancel")) == "Cancel")
+		if(is_ic_filtered(new_name) || is_soft_ic_filtered(new_name) && tgui_alert(usr, LANG("client.9b4d40a4361fec9f", null), LANG("client.fc9f6a2c02e9e4c4", null), list("Confirm", "Cancel")) == "Cancel")
 			return
 
 		if( !new_name || !M )
@@ -44,7 +44,7 @@
 
 		var/atom/A = locate(href_list["rotatedatum"])
 		if(!istype(A))
-			to_chat(usr, LANG("client.c4e29691", null), confidential = TRUE)
+			to_chat(usr, LANG("client.c4e296918ace7905", null), confidential = TRUE)
 			return
 
 		switch(href_list["rotatedir"])
@@ -63,13 +63,13 @@
 
 		var/Text = href_list["adjustDamage"]
 
-		var/amount = input(LANG("client.30cacb39", null),LANG("client.f478806c", list(Text)),0) as num|null
+		var/amount = input(LANG("client.30cacb394a790e65", null),LANG("client.f478806c1414a510", list(Text)),0) as num|null
 
 		if (isnull(amount))
 			return
 
 		if(!L)
-			to_chat(usr, LANG("client.4068a4c3", null), confidential = TRUE)
+			to_chat(usr, LANG("client.4068a4c39ab7926b", null), confidential = TRUE)
 			return
 
 		var/newamt
@@ -93,7 +93,7 @@
 				L.adjust_stamina_loss(amount, forced = TRUE)
 				newamt = L.get_stamina_loss()
 			else
-				to_chat(usr, LANG("client.19bd3e86", list(Text, L)), confidential = TRUE)
+				to_chat(usr, LANG("client.19bd3e86653d81c4", list(Text, L)), confidential = TRUE)
 				return
 
 		if(amount != 0)
@@ -124,9 +124,9 @@
 
 		var/new_val
 		if(href_list["var_tweak"] == "damtype")
-			new_val = input(LANG("client.ca4ec840", list(editing)),LANG("client.19927a68", null), existing_val) in list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN)
+			new_val = input(LANG("client.ca4ec8406d7281e1", list(editing)),LANG("client.19927a68ef533e90", null), existing_val) in list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN)
 		else
-			new_val = input(LANG("client.1a67ed87", list(editing, href_list["var_tweak"])),LANG("client.dd6af93a", list(href_list["var_tweak"])), existing_val) as num|null
+			new_val = input(LANG("client.1a67ed871ef56886", list(editing, href_list["var_tweak"])),LANG("client.dd6af93af46e6883", list(href_list["var_tweak"])), existing_val) as num|null
 		if(isnull(new_val) || new_val == existing_val || QDELETED(editing) || !check_rights(R_VAREDIT))
 			return
 

@@ -51,7 +51,7 @@
 	if (isnull(canister))
 		return
 
-	. += span_blue(LANG("obj.d961714a", list(canister)))
+	. += span_blue(LANG("obj.d961714ab154df7b", list(canister)))
 	if (!show_puffs_left)
 		return
 
@@ -60,7 +60,7 @@
 		puffs_left = span_blue("[puffs_left]")
 	else
 		puffs_left = span_danger("[puffs_left]")
-	. += LANG("obj.42970442", list(puffs_left))
+	. += LANG("obj.4297044223ed76e7", list(puffs_left))
 
 /obj/item/inhaler/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -138,30 +138,30 @@
 /// Tries to remove the canister, if any is inserted.
 /obj/item/inhaler/proc/try_remove_canister(mob/living/user, modifiers)
 	if (isnull(canister))
-		balloon_alert(user, LANG("obj.f51f2234", null))
+		balloon_alert(user, LANG("obj.f51f223479ae6d96", null))
 		return FALSE
 
 	if (canister.removal_time > 0)
-		balloon_alert(user, LANG("obj.fd5d6c3b", null))
+		balloon_alert(user, LANG("obj.fd5d6c3b8e38416e", null))
 		if (!do_after(user, canister.removal_time, src))
 			return FALSE
 
-	balloon_alert(user, LANG("obj.2962ecf1", null))
+	balloon_alert(user, LANG("obj.2962ecf167aeb2c1", null))
 	playsound(src, canister.post_insert_sound, canister.post_insert_volume)
 	set_canister(null, user)
 
 // Tries to insert a canister, if none is already inserted.
 /obj/item/inhaler/proc/try_insert_canister(obj/item/reagent_containers/inhaler_canister/new_canister, mob/living/user, params)
 	if (!isnull(canister))
-		balloon_alert(user, LANG("obj.d25f9c5e", null))
+		balloon_alert(user, LANG("obj.d25f9c5e46112b49", null))
 		return FALSE
 
-	balloon_alert(user, LANG("obj.27e2ddbc", null))
+	balloon_alert(user, LANG("obj.27e2ddbcef2cc86f", null))
 	playsound(src, new_canister.pre_insert_sound, new_canister.pre_insert_volume)
 	if (!do_after(user, new_canister.insertion_time, src))
 		return FALSE
 	playsound(src, new_canister.post_insert_sound, new_canister.post_insert_volume)
-	balloon_alert(user, LANG("obj.78c3bc9a", null))
+	balloon_alert(user, LANG("obj.78c3bc9a38f1418e", null))
 	set_canister(new_canister, user)
 
 	return TRUE
@@ -183,29 +183,29 @@
 /obj/item/inhaler/proc/can_puff(mob/living/target_mob, mob/living/user, silent = FALSE)
 	if (isnull(canister))
 		if (!silent)
-			balloon_alert(user, LANG("obj.e2058036", null))
+			balloon_alert(user, LANG("obj.e2058036c52e2eb8", null))
 		return FALSE
 	if (isnull(canister.reagents) || canister.reagents.total_volume <= 0)
 		if (!silent)
-			balloon_alert(user, LANG("obj.1bd706b2", null))
+			balloon_alert(user, LANG("obj.1bd706b27c0c368e", null))
 		return FALSE
 	if (!iscarbon(target_mob)) // maybe mix this into a general has mouth check
 		if (!silent)
-			balloon_alert(user, LANG("obj.5197b796", null))
+			balloon_alert(user, LANG("obj.5197b796fdc1e641", null))
 		return FALSE
 	var/mob/living/carbon/carbon_target = target_mob
 	if (carbon_target.is_mouth_covered())
 		if (!silent)
-			balloon_alert(user, LANG("obj.d8e7ee37", null))
+			balloon_alert(user, LANG("obj.d8e7ee375417b919", null))
 		return FALSE
 	if (HAS_TRAIT(carbon_target, TRAIT_NOBREATH))
 		if (!silent)
-			balloon_alert(user, LANG("obj.5197b796", null))
+			balloon_alert(user, LANG("obj.5197b796fdc1e641", null))
 		return FALSE
 	var/obj/item/organ/lungs/lungs = carbon_target.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if (isnull(lungs) || lungs.received_pressure_mult <= 0)
 		if (!silent)
-			balloon_alert(user, LANG("obj.5197b796", null))
+			balloon_alert(user, LANG("obj.5197b796fdc1e641", null))
 		return FALSE
 
 	return TRUE
@@ -261,11 +261,11 @@
 
 /obj/item/reagent_containers/inhaler_canister/handle_deconstruct(disassembled)
 	if (!reagents?.total_volume)
-		visible_message(span_warning(LANG("obj.d563f573", list(src))))
+		visible_message(span_warning(LANG("obj.d563f573dce3678f", list(src))))
 		return ..()
 
 	do_chem_smoke(1, src, get_turf(src), carry = reagents, log = TRUE)
-	visible_message(span_warning(LANG("obj.3ba682cb", list(src))))
+	visible_message(span_warning(LANG("obj.3ba682cbcbf9c310", list(src))))
 	return ..()
 
 /obj/item/inhaler/medical

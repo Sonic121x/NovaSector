@@ -57,13 +57,13 @@
 				return TRUE
 			var/datum/coupon_code/coupon = SSmodular_computers.discount_coupons[code]
 			if(isnull(coupon))
-				user_id.registered_account.bank_card_talk(LANG("datum.30855aa6", null), TRUE)
+				user_id.registered_account.bank_card_talk(LANG("datum.30855aa6317b1aba", null), TRUE)
 				return TRUE
 			if(coupon.expires_in && coupon.expires_in < world.time)
-				user_id.registered_account.bank_card_talk(LANG("datum.1fc97fa2", null), TRUE)
+				user_id.registered_account.bank_card_talk(LANG("datum.1fc97fa2681c2ad2", null), TRUE)
 				return TRUE
 			if(coupon in user_id.registered_account.redeemed_coupons)
-				user_id.registered_account.bank_card_talk(LANG("datum.afff93be", list(code)), TRUE)
+				user_id.registered_account.bank_card_talk(LANG("datum.afff93be74472f43", list(code)), TRUE)
 				return TRUE
 			coupon.copy(user_id.registered_account)
 			var/static/list/goodbye = list(
@@ -74,7 +74,7 @@
 				"Congratulations!",
 				"Bye Bye~.",
 			)
-			user_id.registered_account.bank_card_talk(LANG("datum.6f511e74", list(code, pick(goodbye))), TRUE)
+			user_id.registered_account.bank_card_talk(LANG("datum.6f511e74cccb8ecc", list(code, pick(goodbye))), TRUE)
 			//Well, guess you're redeeming something else too.
 			if(prob(40) && computer.used_capacity < computer.max_capacity)
 				var/datum/computer_file/warez = new()
@@ -94,7 +94,7 @@
 		return FALSE
 	var/obj/item/card/id/user_id = computer.stored_id
 	if(!(user_id?.registered_account))
-		computer.balloon_alert(user, LANG("datum.8076d787", null))
+		computer.balloon_alert(user, LANG("datum.8076d787b2c8c98a", null))
 		return TRUE
 	var/obj/machinery/photocopier/copier = tapped_atom
 	if(copier.check_busy(user))
@@ -104,7 +104,7 @@
 		if(!coupon.printed)
 			num_coupons++
 	if(!num_coupons)
-		computer.balloon_alert(user, LANG("datum.48a1abbe", null))
+		computer.balloon_alert(user, LANG("datum.48a1abbeaea73b46", null))
 		return TRUE
 	copier.do_copies(CALLBACK(src, PROC_REF(print_coupon), user_id.registered_account), user, COUPON_PAPER_USE, COUPON_TONER_USE, num_coupons)
 	return TRUE

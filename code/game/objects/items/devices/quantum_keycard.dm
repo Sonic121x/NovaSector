@@ -35,21 +35,21 @@
 /obj/item/quantum_keycard/examine(mob/user)
 	. = ..()
 	if(qpad)
-		. += LANG("obj.c70bbc2b", null)
+		. += LANG("obj.c70bbc2b4015f7c9", null)
 
 		var/area_name = get_area_name(qpad)
 		if(area_name)
-			. += span_notice(LANG("obj.d36dbc28", list(area_name)))
+			. += span_notice(LANG("obj.d36dbc284609d795", list(area_name)))
 
-		. += span_notice(LANG("obj.dab672c0", null))
+		. += span_notice(LANG("obj.dab672c0c15329bd", null))
 	else
-		. += span_notice(LANG("obj.1efd1379", list(src)))
+		. += span_notice(LANG("obj.1efd1379256f4431", list(src)))
 
 /obj/item/quantum_keycard/click_alt(mob/living/user)
-	to_chat(user, span_notice(LANG("obj.a24b4962", list(src))))
+	to_chat(user, span_notice(LANG("obj.a24b496277e0cba8", list(src))))
 	if(!do_after(user, 4 SECONDS, target = src))
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice(LANG("obj.6db9b013", null)))
+	to_chat(user, span_notice(LANG("obj.6db9b01371ca1158", null)))
 	set_pad()
 	return CLICK_ACTION_SUCCESS
 

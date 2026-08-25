@@ -42,8 +42,8 @@
 	if(!hydra_quirk.original_name) // sets the archived 'real' name if not set.
 		hydra_quirk.original_name = hydra.real_name
 	hydra.real_name = hydra_quirk.original_name
-	hydra.visible_message(span_notice(LANG("datum.78664ff6", list(hydra.name))), \
-							span_notice(LANG("datum.0082db02", list(hydra_quirk.original_name))), ignored_mobs=owner)
+	hydra.visible_message(span_notice(LANG("datum.78664ff61631e590", list(hydra.name))), \
+							span_notice(LANG("datum.0082db02ae2ded2d", list(hydra_quirk.original_name))), ignored_mobs=owner)
 
 /datum/action/innate/hydra/Activate() //Oops, all hydra!
 	var/mob/living/carbon/human/hydra = owner
@@ -51,7 +51,7 @@
 	if(!hydra_quirk.original_name) // sets the archived 'real' name if not set.
 		hydra_quirk.original_name = hydra.real_name
 	var/list/names = splittext(hydra_quirk.original_name,"-")
-	var/selhead = input(LANG("datum.ab6e0efa", null),LANG("datum.f4acd399", null)) in names
+	var/selhead = input(LANG("datum.ab6e0efa7693a2bc", null),LANG("datum.f4acd399af702dbd", null)) in names
 	hydra.real_name = selhead
-	hydra.visible_message(span_notice(LANG("datum.d7f4faab", list(hydra.name, selhead))), \
-							span_notice(LANG("datum.0082db02", list(selhead))), ignored_mobs=owner)
+	hydra.visible_message(span_notice(LANG("datum.d7f4faab893c02d0", list(hydra.name, selhead))), \
+							span_notice(LANG("datum.0082db02ae2ded2d", list(selhead))), ignored_mobs=owner)

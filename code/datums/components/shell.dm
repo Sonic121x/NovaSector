@@ -133,21 +133,21 @@
 		return
 
 	if(!attached_circuit)
-		examine_text += span_notice(LANG("datum.75523855", null))
+		examine_text += span_notice(LANG("datum.75523855d1973e8b", null))
 		return
 
-	examine_text += span_notice(LANG("datum.446e065d", list(source)))
-	examine_text += span_notice(LANG("datum.5baa16e7", list(locked? "locked" : "unlocked")))
+	examine_text += span_notice(LANG("datum.446e065dd5ea3692", list(source)))
+	examine_text += span_notice(LANG("datum.5baa16e7072f7d1e", list(locked? "locked" : "unlocked")))
 	var/obj/item/stock_parts/power_store/cell = attached_circuit.cell
-	examine_text += span_notice(LANG("datum.00f8f6f7", list(cell ? round(cell.percent(), 1) : 0)))
+	examine_text += span_notice(LANG("datum.00f8f6f702faa55b", list(cell ? round(cell.percent(), 1) : 0)))
 
 	if (shell_flags & SHELL_FLAG_USB_PORT)
-		examine_text += span_notice(LANG("datum.673807e0", null))
+		examine_text += span_notice(LANG("datum.673807e03447bb86", null))
 
 	if(shell_flags & SHELL_FLAG_REQUIRE_ANCHOR)
-		examine_text += span_notice(LANG("datum.c8bf911d", null))
+		examine_text += span_notice(LANG("datum.c8bf911d09f6033a", null))
 		if(!source.anchored)
-			examine_text += span_danger(LANG("datum.4cb38fcd", null))
+			examine_text += span_danger(LANG("datum.4cb38fcdfbde8126", null))
 
 
 /**
@@ -169,7 +169,7 @@
 		return
 
 	if(istype(item, /obj/item/stock_parts/power_store/cell))
-		source.balloon_alert(user, LANG("datum.c74c44c3", null))
+		source.balloon_alert(user, LANG("datum.c74c44c30f494d7a", null))
 		return
 
 	if(istype(item, /obj/item/inducer))
@@ -184,7 +184,7 @@
 			return ITEM_INTERACT_SUCCESS
 
 		if(!attached_circuit.owner_id && isidcard(item))
-			source.balloon_alert(user, LANG("datum.40c92cc8", list(item)))
+			source.balloon_alert(user, LANG("datum.40c92cc8d073f752", list(item)))
 			attached_circuit.owner_id = WEAKREF(item)
 			return ITEM_INTERACT_SUCCESS
 
@@ -201,11 +201,11 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(attached_circuit)
-		source.balloon_alert(user, LANG("datum.0d1ffa78", null))
+		source.balloon_alert(user, LANG("datum.0d1ffa7867d65c88", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(logic_board.current_size > capacity)
-		source.balloon_alert(user, LANG("datum.b3250e5c", list(parent)))
+		source.balloon_alert(user, LANG("datum.b3250e5ca08b530f", list(parent)))
 		return ITEM_INTERACT_BLOCKING
 
 	logic_board.inserter_mind = WEAKREF(user.mind)
@@ -229,7 +229,7 @@
 	if(locked)
 		if(shell_flags & SHELL_FLAG_ALLOW_FAILURE_ACTION)
 			return
-		source.balloon_alert(user, LANG("datum.2ffcba26", null))
+		source.balloon_alert(user, LANG("datum.2ffcba260e4b2ba0", null))
 		return ITEM_INTERACT_BLOCKING
 
 	attached_circuit.interact(user)
@@ -249,11 +249,11 @@
 	if(locked)
 		if(shell_flags & SHELL_FLAG_ALLOW_FAILURE_ACTION)
 			return
-		source.balloon_alert(user, LANG("datum.2ffcba26", null))
+		source.balloon_alert(user, LANG("datum.2ffcba260e4b2ba0", null))
 		return ITEM_INTERACT_BLOCKING
 
 	tool.play_tool_sound(parent)
-	source.balloon_alert(user, LANG("datum.efcab462", list(attached_circuit, parent)))
+	source.balloon_alert(user, LANG("datum.efcab462f5af5f88", list(attached_circuit, parent)))
 	remove_circuit()
 	return ITEM_INTERACT_BLOCKING
 
@@ -275,11 +275,11 @@
 /datum/component/shell/proc/on_circuit_add_component_manually(atom/source, obj/item/circuit_component/added_comp, mob/living/user)
 	SIGNAL_HANDLER
 	if(locked)
-		source.balloon_alert(user, LANG("datum.2ffcba26", null))
+		source.balloon_alert(user, LANG("datum.2ffcba260e4b2ba0", null))
 		return COMPONENT_CANCEL_ADD_COMPONENT
 
 	if(attached_circuit.current_size + added_comp.circuit_size > capacity)
-		source.balloon_alert(user, LANG("datum.8b8513b0", null))
+		source.balloon_alert(user, LANG("datum.8b8513b02690a313", null))
 		return COMPONENT_CANCEL_ADD_COMPONENT
 
 /datum/component/shell/proc/override_power_usage(datum/source, power_to_use)
@@ -368,15 +368,15 @@
 		return
 
 	if (!(shell_flags & SHELL_FLAG_USB_PORT))
-		source.balloon_alert(user, LANG("datum.c7aa7856", null))
+		source.balloon_alert(user, LANG("datum.c7aa785623c0351b", null))
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
 	if (isnull(attached_circuit))
-		source.balloon_alert(user, LANG("datum.2c275e5e", null))
+		source.balloon_alert(user, LANG("datum.2c275e5e5e5e85dd", null))
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
 	if(attached_circuit.locked)
-		source.balloon_alert(user, LANG("datum.15ea22f4", null))
+		source.balloon_alert(user, LANG("datum.15ea22f4239fb0ab", null))
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
 	usb_cable.attached_circuit = attached_circuit

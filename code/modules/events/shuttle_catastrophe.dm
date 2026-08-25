@@ -36,7 +36,7 @@
 			message += " You have been awarded a bonus from [command_name()] for smart spending."
 	else
 		message += "Your replacement shuttle will be the [new_shuttle.name] until further notice."
-	priority_announce(message, LANG("datum.a8b6a945", list(command_name())))
+	priority_announce(message, LANG("datum.a8b6a9451f70dcd7", list(command_name())))
 
 /datum/round_event/shuttle_catastrophe/setup()
 	if(SSshuttle.shuttle_insurance || !isnull(new_shuttle)) //If an admin has overridden it don't re-roll it

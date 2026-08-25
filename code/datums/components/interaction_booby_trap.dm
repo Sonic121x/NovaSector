@@ -76,7 +76,7 @@
 	if (explode_timer)
 		return
 	explode_timer = addtimer(CALLBACK(src, PROC_REF(explode), source), 0.5 SECONDS)
-	source.balloon_alert_to_hearers(LANG("datum.023d36cd", null))
+	source.balloon_alert_to_hearers(LANG("datum.023d36cdf40e2014", null))
 	playsound(parent, triggered_sound, 50, FALSE)
 	return
 
@@ -100,4 +100,4 @@
 /datum/component/interaction_booby_trap/proc/on_examine(atom/source, mob/examiner, list/examine_list)
 	SIGNAL_HANDLER
 	var/defuse_hint = (defuse_tool) ? "Perhaps [tool_behaviour_name(defuse_tool)] could help..." : ""
-	examine_list += span_warning(LANG("datum.dffa5e81", list(defuse_hint)))
+	examine_list += span_warning(LANG("datum.dffa5e8176f77b38", list(defuse_hint)))

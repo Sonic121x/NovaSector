@@ -23,18 +23,18 @@
 	. = ..()
 
 	if(isobserver(user))
-		. += span_info(LANG("obj.3b9e14c7", null))
+		. += span_info(LANG("obj.3b9e14c79a328cb0", null))
 
 /obj/effect/anomaly/ectoplasm/examine_more(mob/user)
 	. = ..()
 
 	switch(effect_power)
 		if(0 to 25)
-			. += span_notice(LANG("obj.21ca4cda", null))
+			. += span_notice(LANG("obj.21ca4cdae8b502fe", null))
 		if(26 to 49)
-			. += span_notice(LANG("obj.10e7ed73", null))
+			. += span_notice(LANG("obj.10e7ed732f39aab2", null))
 		if(50 to 100)
-			. += span_alert(LANG("obj.85a482df", null))
+			. += span_alert(LANG("obj.85a482df7f181500", null))
 
 /obj/effect/anomaly/ectoplasm/anomalyEffect(seconds_per_tick)
 	. = ..()
@@ -84,7 +84,7 @@
 				var/mob/living/carbon/human/mob_to_infect = impacted_thing
 				mob_to_infect.ForceContractDisease(new /datum/disease/revblight(), FALSE, TRUE)
 				new /obj/effect/temp_visual/revenant(get_turf(mob_to_infect))
-				to_chat(mob_to_infect, span_revenminor(LANG("obj.828370a3", null)))
+				to_chat(mob_to_infect, span_revenminor(LANG("obj.828370a3d43f1f16", null)))
 
 			if(istype(impacted_thing, /obj/structure/window))
 				var/obj/structure/window/window_to_damage = impacted_thing
@@ -189,7 +189,7 @@
 		if(policy)
 			to_chat(new_ghost, policy)
 		else
-			to_chat(new_ghost, span_revenboldnotice(LANG("obj.aa3fad47", null)))
+			to_chat(new_ghost, span_revenboldnotice(LANG("obj.aa3fad47174fd5db", null)))
 		new_ghost.log_message("was returned to the living world as a ghost by an ectoplasmic anomaly.", LOG_GAME)
 
 /**
@@ -204,7 +204,7 @@
 
 /proc/cleanup_ghosts(list/delete_list)
 	for(var/mob/living/mob_to_delete as anything in delete_list)
-		mob_to_delete.visible_message(span_alert(LANG("_root.35cb8c08", list(mob_to_delete))), span_alert(LANG("_root.be4ed8cb", null)), span_hear(LANG("_root.bf737edb", null)))
+		mob_to_delete.visible_message(span_alert(LANG("_root.35cb8c08c8f2a680", list(mob_to_delete))), span_alert(LANG("_root.be4ed8cb56244d08", null)), span_hear(LANG("_root.bf737edb74f22ced", null)))
 		playsound(mob_to_delete, pick(delete_list), 50)
 		new /obj/effect/temp_visual/revenant/cracks(get_turf(mob_to_delete))
 		new /obj/effect/decal/cleanable/greenglow/ecto(get_turf(mob_to_delete))

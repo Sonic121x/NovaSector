@@ -126,10 +126,10 @@
 	. = ..()
 	if(G.trigger_guard == TRIGGER_GUARD_NORMAL)
 		if(check_chunky_fingers())
-			balloon_alert(src, LANG("mob.97cabc49", null))
+			balloon_alert(src, LANG("mob.97cabc49707aa840", null))
 			return FALSE
 	if(HAS_TRAIT(src, TRAIT_NOGUNS))
-		to_chat(src, span_warning(LANG("mob.8caaa8ce", null)))
+		to_chat(src, span_warning(LANG("mob.8caaa8ce788b8073", null)))
 		return FALSE
 
 /mob/living/carbon/human/proc/check_chunky_fingers()
@@ -362,7 +362,7 @@
 /mob/living/carbon/human/proc/item_heal(mob/user, brute_heal, burn_heal, heal_message_brute, heal_message_burn, required_bodytype)
 	var/obj/item/bodypart/affecting = src.get_bodypart(check_zone(user.zone_selected))
 	if (!affecting || !(affecting.bodytype & required_bodytype))
-		to_chat(user, span_warning(LANG("mob.7f6370b2", list(affecting))))
+		to_chat(user, span_warning(LANG("mob.7f6370b2939fd6c1", list(affecting))))
 		return FALSE
 
 	var/brute_damaged = affecting.brute_dam > 0
@@ -370,7 +370,7 @@
 
 	var/nothing_to_heal = ((brute_heal <= 0 || !brute_damaged) && (burn_heal <= 0 || !burn_damaged))
 	if (nothing_to_heal)
-		to_chat(user, span_notice(LANG("mob.7f6370b2", list(affecting))))
+		to_chat(user, span_notice(LANG("mob.7f6370b2939fd6c1", list(affecting))))
 		return FALSE
 
 	src.update_damage_overlays()
@@ -382,8 +382,8 @@
 	else
 		message = "[heal_message_burn] on"
 	affecting.heal_damage(brute_heal, burn_heal, required_bodytype)
-	user.visible_message(span_notice(LANG("mob.8973b0c7", list(user, message, src, affecting.name))), \
-		span_notice(LANG("mob.f48cdd80", list(message, src == user ? "your" : "[src]'s", affecting.name))))
+	user.visible_message(span_notice(LANG("mob.8973b0c7a1274475", list(user, message, src, affecting.name))), \
+		span_notice(LANG("mob.f48cdd80f1e6b87f", list(message, src == user ? "your" : "[src]'s", affecting.name))))
 	return TRUE
 
 /// Sets both mob's and eye organ's eye color values

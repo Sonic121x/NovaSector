@@ -278,12 +278,12 @@
 					design_category = sub_category
 					selected_design = design_info["datum"]
 					selected_direction = floor.dir
-					balloon_alert(user, LANG("obj.9ca7cc3f", list(selected_design.name)))
+					balloon_alert(user, LANG("obj.9ca7cc3f8a2ec299", list(selected_design.name)))
 
 					return ITEM_INTERACT_SUCCESS
 
 		//can't infer floor type!
-		balloon_alert(user, LANG("obj.98abe25b", null))
+		balloon_alert(user, LANG("obj.98abe25bd3cbdf82", null))
 		return ITEM_INTERACT_BLOCKING
 
 	//resource sanity check before & after delay along with special effects
@@ -310,7 +310,7 @@
 	var/obj/item/stack/tile/final_tile = selected_design.new_tile(user.drop_location(), selected_direction)
 	if(QDELETED(final_tile)) //if you were standing on a stack of tiles this newly spawned tile could get merged with it cause its spawned on your location
 		qdel(rcd_effect)
-		balloon_alert(user, LANG("obj.16264005", null))
+		balloon_alert(user, LANG("obj.16264005c5f0c5b3", null))
 		return ITEM_INTERACT_BLOCKING
 	//step 2 lay tile
 	var/turf/open/new_turf = final_tile.place_tile(floor, user)
@@ -333,7 +333,7 @@
 		return NONE
 
 	if(istype(floor, /turf/open/floor/plating)) //cant deconstruct normal plating thats the RCD's job
-		balloon_alert(user, LANG("obj.ba839479", null))
+		balloon_alert(user, LANG("obj.ba839479b887b08c", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/floor_designs = GLOB.floor_designs
@@ -352,7 +352,7 @@
 					cost = design_info["tile_cost"]
 					break
 	if(!cost)
-		balloon_alert(user, LANG("obj.5fa3210e", null))
+		balloon_alert(user, LANG("obj.5fa3210ec2a20afd", null))
 		return ITEM_INTERACT_BLOCKING
 
 	//resource sanity check before & after delay along with beam effects
@@ -416,10 +416,10 @@
 	if(!iscyborg(borgy))
 		return FALSE
 	if(!borgy.cell)
-		balloon_alert(user, LANG("obj.ba8f2f7d", null))
+		balloon_alert(user, LANG("obj.ba8f2f7d51fc8b56", null))
 		return FALSE
 	if(borgy.cell.charge < (amount * RTD_BORG_ENERGY_FACTOR))
-		balloon_alert(user, LANG("obj.206fba9f", null))
+		balloon_alert(user, LANG("obj.206fba9f64179ead", null))
 		return FALSE
 	if(!dry_run)
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)

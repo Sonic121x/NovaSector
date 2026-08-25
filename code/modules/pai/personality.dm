@@ -13,14 +13,14 @@
 
 /datum/pai_candidate/proc/savefile_save(mob/user)
 	if(is_guest_key(user.key))
-		to_chat(usr, span_warning(LANG("datum.efaa03cf", null)))
+		to_chat(usr, span_warning(LANG("datum.efaa03cf869ae3df", null)))
 		return FALSE
 	var/savefile/F = new /savefile(src.savefile_path(user))
 	WRITE_FILE(F["name"], name)
 	WRITE_FILE(F["description"], description)
 	WRITE_FILE(F["comments"], comments)
 	WRITE_FILE(F["version"], 1)
-	to_chat(usr, span_boldnotice(LANG("datum.e9e46543", null)))
+	to_chat(usr, span_boldnotice(LANG("datum.e9e46543895228be", null)))
 	return TRUE
 
 // loads the savefile corresponding to the mob's ckey
@@ -48,7 +48,7 @@
 	if (isnull(version) || version != 1)
 		fdel(path)
 		if (!silent)
-			tgui_alert(user, LANG("datum.49fb47f7", null))
+			tgui_alert(user, LANG("datum.49fb47f71d97fb39", null))
 		return FALSE
 
 	F["name"] >> src.name

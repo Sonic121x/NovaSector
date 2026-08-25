@@ -34,11 +34,11 @@
 /datum/action/cooldown/spell/pointed/blind/cast(mob/living/carbon/human/cast_on)
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
-		to_chat(cast_on, span_notice(LANG("datum.b977530c", null)))
-		to_chat(owner, span_warning(LANG("datum.2ce7047e", null)))
+		to_chat(cast_on, span_notice(LANG("datum.b977530cb30ca62f", null)))
+		to_chat(owner, span_warning(LANG("datum.2ce7047e239a5e7e", null)))
 		return FALSE
 
-	to_chat(cast_on, span_warning(LANG("datum.ba5ddcea", null)))
+	to_chat(cast_on, span_warning(LANG("datum.ba5ddcea549be34b", null)))
 	cast_on.adjust_temp_blindness(eye_blind_duration)
 	cast_on.set_eye_blur_if_lower(eye_blur_duration)
 	return TRUE

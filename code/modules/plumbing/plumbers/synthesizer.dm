@@ -102,7 +102,7 @@
 				. = TRUE
 
 		if("select")
-			var/new_reagent = GLOB.name2reagent[params["reagent"]] || GLOB.name2reagent[lang_unreverse_text(params["reagent"])] // NOVA EDIT CHANGE - i18n - ORIGINAL: var/new_reagent = GLOB.name2reagent[params["reagent"]]
+			var/new_reagent = GLOB.name2reagent[params["reagent"]]
 			if(new_reagent in dispensable_reagents)
 				reagent_id = new_reagent
 				. = TRUE

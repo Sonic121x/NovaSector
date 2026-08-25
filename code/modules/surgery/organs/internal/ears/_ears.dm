@@ -31,7 +31,7 @@
 /obj/item/organ/ears/on_life(seconds_per_tick)
 	// only inform when things got worse, needs to happen before we heal
 	if((damage > low_threshold && prev_damage < low_threshold) || (damage > high_threshold && prev_damage < high_threshold))
-		to_chat(owner, span_warning(LANG("obj.a6949e3b", null)))
+		to_chat(owner, span_warning(LANG("obj.a6949e3b6693aeb9", null)))
 
 	. = ..()
 	// if we have non-damage related deafness like mutations, quirks or clothing (earmuffs), don't bother processing here.
@@ -285,12 +285,12 @@
 
 /obj/item/organ/ears/penguin/on_mob_insert(mob/living/carbon/human/ear_owner)
 	. = ..()
-	to_chat(ear_owner, span_notice(LANG("obj.4acfd376", null)))
+	to_chat(ear_owner, span_notice(LANG("obj.4acfd3763c17078b", null)))
 	ear_owner.AddElementTrait(TRAIT_WADDLING, ORGAN_TRAIT, /datum/element/waddling)
 
 /obj/item/organ/ears/penguin/on_mob_remove(mob/living/carbon/human/ear_owner)
 	. = ..()
-	to_chat(ear_owner, span_notice(LANG("obj.60ba1ea5", null)))
+	to_chat(ear_owner, span_notice(LANG("obj.60ba1ea5ec8c675a", null)))
 	REMOVE_TRAIT(ear_owner, TRAIT_WADDLING, ORGAN_TRAIT)
 
 /obj/item/organ/ears/cybernetic

@@ -24,7 +24,7 @@
 /datum/action/cooldown/spell/self_amputation/cast(mob/living/carbon/cast_on)
 	. = ..()
 	if(HAS_TRAIT(cast_on, TRAIT_NODISMEMBER))
-		to_chat(cast_on, span_notice(LANG("datum.46d68b01", null)))
+		to_chat(cast_on, span_notice(LANG("datum.46d68b019691a839", null)))
 		return
 
 	var/list/parts = list()
@@ -36,7 +36,7 @@
 		parts += to_remove
 
 	if(!length(parts))
-		to_chat(cast_on, span_notice(LANG("datum.e23c223d", null)))
+		to_chat(cast_on, span_notice(LANG("datum.e23c223d110e6937", null)))
 		return
 
 	var/obj/item/bodypart/to_remove = pick(parts)

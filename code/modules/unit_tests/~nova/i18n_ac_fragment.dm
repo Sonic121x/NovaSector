@@ -23,7 +23,23 @@
 	TEST_ASSERT(!lang_fallback_pattern_safe("and "), \
 		"「and 」同上：trim 后无空格即非多词短语。")
 
+	// 续接标点打头的碎片（无论多长）同样不得进字典。
+	TEST_ASSERT(!lang_fallback_pattern_safe(", Col"), \
+		"「, Col」以逗号续接，会把 Smith, Colonel 从单词内部咬成 Smith, 列onel。")
+	TEST_ASSERT(!lang_fallback_pattern_safe("- Make yourself a"), \
+		"「- 」打头的列表项碎片不得参与子串替换。")
+	TEST_ASSERT(!lang_fallback_pattern_safe("...at \["), \
+		"省略号打头的续接碎片不得参与子串替换。")
+	TEST_ASSERT(!lang_fallback_pattern_safe(", threatening to sever it entirely"), \
+		"长碎片同样要挡：词数超过三词只说明它不是虚词短语，不说明它能独立成句。")
+
 	// 反向断言：正常显示串不能被这道闸门误杀。
+	TEST_ASSERT(lang_fallback_pattern_safe(".357 Phasic Speed Loader (Revolver)"), \
+		"句点后跟数字是弹药口径不是句子续接，误杀会让整类枪械名回退英文。")
+	TEST_ASSERT(lang_fallback_pattern_safe("'Time Of Valor 2' Medbay"), \
+		"引号打头的是区域专名（全仓 700+ 条），不是碎片。")
+	TEST_ASSERT(lang_fallback_pattern_safe("(WALL PIERCE)"), \
+		"括号打头的是完整标签，不是碎片。")
 	TEST_ASSERT(lang_fallback_pattern_safe("Security Officer"), \
 		"普通多词显示名被闸门挡掉了——闸门过严会让整类专有名词回退英文。")
 	TEST_ASSERT(lang_fallback_pattern_safe("The door is locked."), \
@@ -33,12 +49,14 @@
 
 	// 2) 端到端：注入碎片词对，确认它无法在真实句子中间开火。
 	var/saved_locale = GLOB.i18n_server_locale
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
 	if(!islist(en_cache))
 		en_cache = list()
-		GLOB.i18n_cache[DEFAULT_UI_LOCALE] = en_cache
+		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE] = en_cache
 	en_cache["frag_oneof"] = "one of"
-	GLOB.i18n_cache[I18N_FRAG_TEST_LOCALE] = list("frag_oneof" = "其中一只")
+	en_cache["frag_col"] = ", Col"
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][I18N_FRAG_TEST_LOCALE] = list("frag_oneof" = "其中一只", "frag_col" = ", 列")
+	GLOB.i18n_runtime_domains.Remove(I18N_FRAG_TEST_LOCALE)
 
 	GLOB.i18n_reverse.Remove(I18N_FRAG_TEST_LOCALE)
 	GLOB.i18n_fallback_state.Remove(I18N_FRAG_TEST_LOCALE)
@@ -52,12 +70,20 @@
 		"碎片 pattern 在单词内部开火了：[sentence] 实得 [got]。\
 		AC 无词边界概念，碎片必须在 lang_fallback_setup 建字典时就被挡掉。")
 
+	var/titled = "Smith, Colonel of the Fifth."
+	var/titled_got = lang_fallback_apply(titled)
+	TEST_ASSERT_EQUAL(titled_got, titled, \
+		"续接标点碎片在单词内部开火了：[titled] 实得 [titled_got]。")
+
 	GLOB.i18n_server_locale = saved_locale
 	GLOB.i18n_reverse.Remove(I18N_FRAG_TEST_LOCALE)
 	GLOB.i18n_fallback_state.Remove(I18N_FRAG_TEST_LOCALE)
 	GLOB.i18n_fallback_single_state.Remove(I18N_FRAG_TEST_LOCALE)
 	GLOB.i18n_fallback_cache.Remove(I18N_FRAG_TEST_LOCALE)
-	GLOB.i18n_cache.Remove(I18N_FRAG_TEST_LOCALE)
+	var/list/forward_bucket = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET]
+	forward_bucket.Remove(I18N_FRAG_TEST_LOCALE)
+	GLOB.i18n_runtime_domains.Remove(I18N_FRAG_TEST_LOCALE)
 	en_cache.Remove("frag_oneof")
+	en_cache.Remove("frag_col")
 
 #undef I18N_FRAG_TEST_LOCALE

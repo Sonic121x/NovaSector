@@ -102,21 +102,21 @@
 	. = ..()
 	var/list/out = list()
 	if(!in_range(user, src))
-		out += span_notice(LANG("obj.019d2a69", null))
+		out += span_notice(LANG("obj.019d2a69da853da8", null))
 		return
 	if(selfcharge)
 		if(length(loadedItems))
-			out += span_info(LANG("obj.4e1b01d9", list(icon2html(pick(loadedItems), user), length(loadedItems), charge_type::name)))
+			out += span_info(LANG("obj.4e1b01d9fdfc0280", list(icon2html(pick(loadedItems), user), length(loadedItems), charge_type::name)))
 	else
 		for(var/obj/item/I in loadedItems)
-			out += span_info(LANG("obj.3aa7d7f3", list(icon2html(I, user), I)))
+			out += span_info(LANG("obj.3aa7d7f3658b88cc", list(icon2html(I, user), I)))
 			CHECK_TICK
 	if(!length(loadedItems))
-		out += span_info(LANG("obj.c65df9cd", null))
+		out += span_info(LANG("obj.c65df9cd0d856391", null))
 	if(tank)
-		out += span_notice(LANG("obj.5d938895", list(icon2html(tank, user), tank)))
+		out += span_notice(LANG("obj.5d938895198f7b6e", list(icon2html(tank, user), tank)))
 	if(needs_air == TRUE)
-		. += span_notice(LANG("obj.e5993bcb", list(pressure_setting_to_text(pressure_setting))))
+		. += span_notice(LANG("obj.e5993bcb0ff3d3e1", list(pressure_setting_to_text(pressure_setting))))
 	. += out.Join("\n")
 
 /obj/item/pneumatic_cannon/screwdriver_act(mob/living/user, obj/item/tool)
@@ -130,7 +130,7 @@
 		return
 	playsound(src, 'sound/items/tools/ratchet.ogg', 50, TRUE)
 	pressure_setting = pressure_setting >= HIGH_PRESSURE ? LOW_PRESSURE : pressure_setting + 1
-	balloon_alert(user, LANG("obj.e44914ad", list(pressure_setting_to_text(pressure_setting))))
+	balloon_alert(user, LANG("obj.e44914add0fda62f", list(pressure_setting_to_text(pressure_setting))))
 	return TRUE
 
 /obj/item/pneumatic_cannon/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -147,18 +147,18 @@
 			return ITEM_INTERACT_BLOCKING
 
 		if(astype(tool, /obj/item/tank/internals).volume <= 3)
-			to_chat(user, span_warning(LANG("obj.a09c5951", list(tool, src))))
+			to_chat(user, span_warning(LANG("obj.a09c595106b1ac72", list(tool, src))))
 			return ITEM_INTERACT_BLOCKING
 
 		updateTank(tool, FALSE, user)
 		return ITEM_INTERACT_SUCCESS
 
 	if(tool.type == type)
-		to_chat(user, span_warning(LANG("obj.942f48b2", null)))
+		to_chat(user, span_warning(LANG("obj.942f48b2abb91c67", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(loadedWeightClass >= maxWeightClass)
-		to_chat(user, span_warning(LANG("obj.9eeb865e", list(src))))
+		to_chat(user, span_warning(LANG("obj.9eeb865e7697c4bc", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	load_item(tool, user)
@@ -169,15 +169,15 @@
 		return TRUE
 	if(allowed_typecache && !is_type_in_typecache(I, allowed_typecache))
 		if(user)
-			to_chat(user, span_warning(LANG("obj.1754ab5d", list(I, src))))
+			to_chat(user, span_warning(LANG("obj.1754ab5dfe4f3817", list(I, src))))
 		return
 	if((loadedWeightClass + I.w_class) > maxWeightClass) //Only make messages if there's a user
 		if(user)
-			to_chat(user, span_warning(LANG("obj.38c7e0e0", list(I, src))))
+			to_chat(user, span_warning(LANG("obj.38c7e0e0dcb4b5bf", list(I, src))))
 		return FALSE
 	if(I.w_class > w_class)
 		if(user)
-			to_chat(user, span_warning(LANG("obj.906e5504", list(I, src))))
+			to_chat(user, span_warning(LANG("obj.906e5504ef5d7d79", list(I, src))))
 		return FALSE
 	return TRUE
 
@@ -187,7 +187,7 @@
 	if(user) //Only use transfer proc if there's a user, otherwise just set loc.
 		if(!user.transferItemToLoc(I, src))
 			return FALSE
-		to_chat(user, span_notice(LANG("obj.c585d252", list(I, src))))
+		to_chat(user, span_notice(LANG("obj.c585d2520de03a7b", list(I, src))))
 	else
 		I.forceMove(src)
 	loadedItems += I
@@ -225,20 +225,20 @@
 	if(!can_trigger_gun(user))
 		return
 	if(!loadedItems || !loadedWeightClass)
-		to_chat(user, span_warning(LANG("obj.ffe6ee14", list(src))))
+		to_chat(user, span_warning(LANG("obj.ffe6ee14eeb9d3ae", list(src))))
 		return
 	if(!tank && needs_air)
-		to_chat(user, span_warning(LANG("obj.402336f9", list(src))))
+		to_chat(user, span_warning(LANG("obj.402336f92287dcbb", list(src))))
 		return
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning(LANG("obj.9c99e5d8", list(src))) )
+		to_chat(user, span_warning(LANG("obj.9c99e5d8a6b60e98", list(src))) )
 		return
 	if(tank && !tank.remove_air(gasPerThrow * pressure_setting))
-		to_chat(user, span_warning(LANG("obj.44e13a4e", list(src))))
+		to_chat(user, span_warning(LANG("obj.44e13a4e1736f0b6", list(src))))
 		return
 	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(75) && clumsyCheck && iscarbon(user))
 		var/mob/living/carbon/C = user
-		C.visible_message(span_warning(LANG("obj.a25a0b73", list(C, C.p_their(), src))), span_userdanger(LANG("obj.d11ee206", list(src))))
+		C.visible_message(span_warning(LANG("obj.a25a0b73e5dbe7e0", list(C, C.p_their(), src))), span_userdanger(LANG("obj.d11ee206ea780b74", list(src))))
 		C.dropItemToGround(src, TRUE)
 		if(prob(10))
 			target = get_turf(user)
@@ -247,15 +247,15 @@
 			target = pick(possible_targets)
 		discharge = 1
 	if(!discharge)
-		user.visible_message(span_danger(LANG("obj.c9fb73f0", list(user, src))), \
-				    		 span_danger(LANG("obj.ef04ddfa", list(src))))
+		user.visible_message(span_danger(LANG("obj.c9fb73f012701ff2", list(user, src))), \
+				    		 span_danger(LANG("obj.ef04ddfa9bf239de", list(src))))
 	log_combat(user, target, "fired at", src)
 	var/turf/T = get_target(target, get_turf(src))
 	playsound(src, fire_sound, 50, TRUE)
 	fire_items(T, user)
 	if(pressure_setting >= 3 && iscarbon(user))
 		var/mob/living/carbon/C = user
-		C.visible_message(span_warning(LANG("obj.8ffe4af2", list(C))), span_userdanger(LANG("obj.f177fce5", list(src))))
+		C.visible_message(span_warning(LANG("obj.8ffe4af2732fb5f5", list(C))), span_userdanger(LANG("obj.f177fce532eba586", list(src))))
 		C.Paralyze(60)
 
 /obj/item/pneumatic_cannon/proc/fire_items(turf/target, mob/user)
@@ -321,17 +321,17 @@
 	if(removing)
 		if(!tank)
 			return
-		to_chat(user, span_notice(LANG("obj.870413e7", list(thetank, src))))
+		to_chat(user, span_notice(LANG("obj.870413e7cda9a700", list(thetank, src))))
 		tank.forceMove(user.drop_location())
 		user.put_in_hands(tank)
 		tank = null
 	if(!removing)
 		if(tank)
-			to_chat(user, span_warning(LANG("obj.a5a5404f", list(src))))
+			to_chat(user, span_warning(LANG("obj.a5a5404f96390518", list(src))))
 			return
 		if(!user.transferItemToLoc(thetank, src))
 			return
-		to_chat(user, span_notice(LANG("obj.08206c7e", list(thetank, src))))
+		to_chat(user, span_notice(LANG("obj.08206c7e1040abca", list(thetank, src))))
 		tank = thetank
 	update_appearance()
 

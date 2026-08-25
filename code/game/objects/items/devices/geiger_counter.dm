@@ -26,18 +26,18 @@
 	. = ..()
 	if(!scanning)
 		return
-	. += span_info(LANG("obj.e25285fe", null))
+	. += span_info(LANG("obj.e25285fe1b7742e6", null))
 	switch(last_perceived_radiation_danger)
 		if(null)
-			. += span_notice(LANG("obj.bc53102c", null))
+			. += span_notice(LANG("obj.bc53102cf6d98c13", null))
 		if(PERCEIVED_RADIATION_DANGER_LOW)
-			. += span_alert(LANG("obj.2bf55f10", null))
+			. += span_alert(LANG("obj.2bf55f1002efb706", null))
 		if(PERCEIVED_RADIATION_DANGER_MEDIUM)
-			. += span_warning(LANG("obj.38686c30", null))
+			. += span_warning(LANG("obj.38686c30ab17e782", null))
 		if(PERCEIVED_RADIATION_DANGER_HIGH)
-			. += span_danger(LANG("obj.aa45e48a", null))
+			. += span_danger(LANG("obj.aa45e48aafc9103c", null))
 		if(PERCEIVED_RADIATION_DANGER_EXTREME)
-			. += span_suicide(LANG("obj.dcea44bc", null))
+			. += span_suicide(LANG("obj.dcea44bc67a568ac", null))
 
 /obj/item/geiger_counter/update_icon_state()
 	if(!scanning)
@@ -66,7 +66,7 @@
 		qdel(GetComponent(/datum/component/geiger_sound))
 
 	update_appearance(UPDATE_ICON)
-	balloon_alert(user, LANG("obj.008b17a1", list(scanning ? "on" : "off")))
+	balloon_alert(user, LANG("obj.008b17a1596d43a6", list(scanning ? "on" : "off")))
 
 /obj/item/geiger_counter/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(SHOULD_SKIP_INTERACTION(interacting_with, src, user))
@@ -77,7 +77,7 @@
 	if(!CAN_IRRADIATE(interacting_with))
 		return NONE
 
-	user.visible_message(span_notice(LANG("obj.ef72f9ec", list(user, interacting_with, src))), span_notice(LANG("obj.40e34539", list(interacting_with, src))))
+	user.visible_message(span_notice(LANG("obj.ef72f9eca4024bd2", list(user, interacting_with, src))), span_notice(LANG("obj.40e34539c33515b7", list(interacting_with, src))))
 	addtimer(CALLBACK(src, PROC_REF(scan), interacting_with, user), 20, TIMER_UNIQUE) // Let's not have spamming GetAllContents
 	return ITEM_INTERACT_SUCCESS
 
@@ -109,13 +109,13 @@
 	if (SEND_SIGNAL(target, COMSIG_GEIGER_COUNTER_SCAN, user, src) & COMSIG_GEIGER_COUNTER_SCAN_SUCCESSFUL)
 		return
 
-	to_chat(user, span_notice(LANG("obj.1f84066b", list(icon2html(src, user), isliving(target) ? "Subject" : "Target"))))
+	to_chat(user, span_notice(LANG("obj.1f84066b56f1128f", list(icon2html(src, user), isliving(target) ? "Subject" : "Target"))))
 
 /obj/item/geiger_counter/click_alt(mob/living/user)
 	if(!scanning)
-		to_chat(user, span_warning(LANG("obj.d528d657", list(src))))
+		to_chat(user, span_warning(LANG("obj.d528d65746a56e13", list(src))))
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice(LANG("obj.ab060bf8", list(src))))
+	to_chat(user, span_notice(LANG("obj.ab060bf86cf7b969", list(src))))
 	last_perceived_radiation_danger = null
 	update_appearance(UPDATE_ICON)
 	return CLICK_ACTION_SUCCESS

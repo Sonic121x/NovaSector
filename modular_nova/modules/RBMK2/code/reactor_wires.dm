@@ -32,17 +32,17 @@
 /datum/wires/rbmk2/get_status()
 	var/obj/machinery/power/rbmk2/machine = holder
 	. = list()
-	. += LANG("datum.50637ffa", list(machine.power && machine.powernet ? "yellow" : "off"))
-	. += LANG("datum.3e1ae9d6", list(machine.stored_rod ? "purple" : "off"))
-	. += LANG("datum.0b8d503c", list(machine.active ? "green" : "off"))
-	. += LANG("datum.2c3bcfb8", list(machine.safety ? "blue" : "flashing red"))
+	. += LANG("datum.50637ffafedc0b84", list(machine.power && machine.powernet ? "yellow" : "off"))
+	. += LANG("datum.3e1ae9d681719f9a", list(machine.stored_rod ? "purple" : "off"))
+	. += LANG("datum.0b8d503ccae7f5b4", list(machine.active ? "green" : "off"))
+	. += LANG("datum.2c3bcfb8d9293d5f", list(machine.safety ? "blue" : "flashing red"))
 	if(machine.vent_reverse_direction)
-		. += LANG("datum.1c191eb5", list(machine.venting ? "flashing orange and white" : "flashing red"))
+		. += LANG("datum.1c191eb5e95e03ba", list(machine.venting ? "flashing orange and white" : "flashing red"))
 	else
-		. += LANG("datum.1c191eb5", list(machine.venting ? "green" : "flashing red"))
-	. += LANG("datum.52a85cc6", list(machine.overclocked ? "blinking blue" : "off"))
-	. += LANG("datum.a1d8dfbf", list(machine.cooling_limiter))
-	. += LANG("datum.230eb30a", list(machine.tampered ? "flashing red" : "green"))
+		. += LANG("datum.1c191eb5e95e03ba", list(machine.venting ? "green" : "flashing red"))
+	. += LANG("datum.52a85cc663285d34", list(machine.overclocked ? "blinking blue" : "off"))
+	. += LANG("datum.a1d8dfbf08869f94", list(machine.cooling_limiter))
+	. += LANG("datum.230eb30ac5842bfc", list(machine.tampered ? "flashing red" : "green"))
 
 /datum/wires/rbmk2/on_pulse(wire, user)
 	var/obj/machinery/power/rbmk2/machine = holder

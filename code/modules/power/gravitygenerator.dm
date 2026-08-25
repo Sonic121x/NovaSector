@@ -227,13 +227,13 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		return
 	switch(broken_state)
 		if(GRAV_NEEDS_SCREWDRIVER)
-			. += span_notice(LANG("obj.bf7169dd", null))
+			. += span_notice(LANG("obj.bf7169ddb1285adc", null))
 		if(GRAV_NEEDS_WELDING)
-			. += span_notice(LANG("obj.18bfbd2d", null))
+			. += span_notice(LANG("obj.18bfbd2de7813195", null))
 		if(GRAV_NEEDS_PLASTEEL)
-			. += span_notice(LANG("obj.39afc639", null))
+			. += span_notice(LANG("obj.39afc639fff8be3e", null))
 		if(GRAV_NEEDS_WRENCH)
-			. += span_notice(LANG("obj.cf81dcb1", null))
+			. += span_notice(LANG("obj.cf81dcb17b282768", null))
 
 // Fixing the gravity generator.
 /obj/machinery/gravity_generator/main/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -243,10 +243,10 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		return NONE
 	var/obj/item/stack/sheet/plasteel/metal = tool
 	if(metal.get_amount() < 10)
-		to_chat(user, span_warning(LANG("obj.603bc93f", null)))
+		to_chat(user, span_warning(LANG("obj.603bc93f1fdbd0d3", null)))
 		return ITEM_INTERACT_BLOCKING
 	metal.use(10)
-	to_chat(user, span_notice(LANG("obj.fa6968d9", null)))
+	to_chat(user, span_notice(LANG("obj.fa6968d913e7bd7b", null)))
 	playsound(src.loc, 'sound/machines/click.ogg', 75, TRUE)
 	broken_state++
 	update_appearance()
@@ -257,7 +257,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		return NONE
 	if(!tool.use_tool(src, user, 0, volume=50))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.ccb3ab0b", null)))
+	to_chat(user, span_notice(LANG("obj.ccb3ab0ba591ede1", null)))
 	broken_state++
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -265,7 +265,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 /obj/machinery/gravity_generator/main/wrench_act(mob/living/user, obj/item/tool)
 	if(!(machine_stat & BROKEN) || (broken_state != GRAV_NEEDS_WRENCH))
 		return NONE
-	to_chat(user, span_notice(LANG("obj.44d86fa5", null)))
+	to_chat(user, span_notice(LANG("obj.44d86fa5eee87595", null)))
 	tool.play_tool_sound(src)
 	set_fix()
 	return ITEM_INTERACT_SUCCESS
@@ -273,7 +273,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 /obj/machinery/gravity_generator/main/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!(machine_stat & BROKEN) || (broken_state != GRAV_NEEDS_SCREWDRIVER))
 		return NONE
-	to_chat(user, span_notice(LANG("obj.f2155f27", null)))
+	to_chat(user, span_notice(LANG("obj.f2155f27cff54201", null)))
 	tool.play_tool_sound(src)
 	broken_state++
 	update_appearance()

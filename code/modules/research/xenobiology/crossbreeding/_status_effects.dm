@@ -13,8 +13,8 @@
 
 /datum/status_effect/rainbow_protection/on_apply()
 	owner.add_traits(list(TRAIT_GODMODE, TRAIT_PACIFISM), TRAIT_STATUS_EFFECT(id))
-	owner.visible_message(span_warning(LANG("datum.ada79b7b", list(owner))),
-		span_notice(LANG("datum.84b42af2", null)))
+	owner.visible_message(span_warning(LANG("datum.ada79b7b07d1c6a1", list(owner))),
+		span_notice(LANG("datum.84b42af2e1528076", null)))
 	// okay, now time for the rainbow animation.
 	owner.add_filter("rainbow_protection_[REF(src)]", 2, color_matrix_filter(list(0,0,0, 0,0.75,0, 0,0,1, 0,0.25,0), COLORSPACE_HSL))
 	var/color_filter = owner.get_filter("rainbow_protection_[REF(src)]")
@@ -27,8 +27,8 @@
 /datum/status_effect/rainbow_protection/on_remove()
 	owner.remove_filter("rainbow_protection_[REF(src)]")
 	owner.remove_traits(list(TRAIT_GODMODE, TRAIT_PACIFISM), TRAIT_STATUS_EFFECT(id))
-	owner.visible_message(span_notice(LANG("datum.98382e78", list(owner))),
-		span_warning(LANG("datum.acff69e0", null)))
+	owner.visible_message(span_notice(LANG("datum.98382e7858d6bbf1", list(owner))),
+		span_warning(LANG("datum.acff69e04a7cf58d", null)))
 
 /atom/movable/screen/alert/status_effect/slimeskin
 	name = "Adamantine Slimeskin"
@@ -46,8 +46,8 @@
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.physiology.damage_resistance += 10
-	owner.visible_message(span_warning(LANG("datum.c2e8b446", list(owner))),
-		span_notice(LANG("datum.db53eb5f", null)))
+	owner.visible_message(span_warning(LANG("datum.c2e8b44682c7e075", list(owner))),
+		span_notice(LANG("datum.db53eb5f5dc0650a", null)))
 	return ..()
 
 /datum/status_effect/slimeskin/on_remove()
@@ -55,8 +55,8 @@
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.physiology.damage_resistance -= 10
-	owner.visible_message(span_warning(LANG("datum.3cb0c3a5", list(owner))),
-		span_notice(LANG("datum.ddf60702", null)))
+	owner.visible_message(span_warning(LANG("datum.3cb0c3a5559c528d", list(owner))),
+		span_notice(LANG("datum.ddf607029f01ab9d", null)))
 
 /datum/status_effect/slimerecall
 	id = "slime_recall"
@@ -69,8 +69,8 @@
 
 /datum/status_effect/slimerecall/on_apply()
 	RegisterSignal(owner, COMSIG_LIVING_RESIST, PROC_REF(resistField))
-	to_chat(owner, span_danger(LANG("datum.050c2363", null)))
-	to_chat(owner, span_notice(LANG("datum.b15d18ac", null)))
+	to_chat(owner, span_danger(LANG("datum.050c2363fb477780", null)))
+	to_chat(owner, span_notice(LANG("datum.b15d18acb680fd7e", null)))
 	bluespace = icon('icons/effects/effects.dmi',"chronofield")
 	owner.add_overlay(bluespace)
 	return ..()
@@ -84,12 +84,12 @@
 	UnregisterSignal(owner, COMSIG_LIVING_RESIST)
 	owner.cut_overlay(bluespace)
 	if(interrupted || !ismob(target))
-		to_chat(owner, span_warning(LANG("datum.57dd41e1", null)))
+		to_chat(owner, span_warning(LANG("datum.57dd41e1d6cee073", null)))
 		return
 	var/turf/old_location = get_turf(owner)
 	if(do_teleport(owner, target.loc, channel = TELEPORT_CHANNEL_QUANTUM)) //despite being named a bluespace teleportation method the quantum channel is used to preserve precision teleporting with a bag of holding
-		old_location.visible_message(span_warning(LANG("datum.fe2a44b4", list(owner))))
-		to_chat(owner, span_warning(LANG("datum.d30bfab3", list(target))))
+		old_location.visible_message(span_warning(LANG("datum.fe2a44b4c964633a", list(owner))))
+		to_chat(owner, span_warning(LANG("datum.d30bfab36fd8445c", list(target))))
 
 /atom/movable/screen/alert/status_effect/freon/stasis
 	desc = "You're frozen inside of a protective ice cube! While inside, you can't do anything, but are immune to harm! Resist to get out."
@@ -379,7 +379,7 @@
 			huggables += L
 	if(length(huggables))
 		var/mob/living/carbon/hugged = pick(huggables)
-		owner.visible_message(span_notice(LANG("datum.1c007b3b", list(owner, hugged))), span_notice(LANG("datum.5d508689", list(hugged))))
+		owner.visible_message(span_notice(LANG("datum.1c007b3b9e40a8bb", list(owner, hugged))), span_notice(LANG("datum.5d508689407f8eb7", list(hugged))))
 
 /datum/status_effect/tarcookie
 	id = "tarcookie"
@@ -485,7 +485,7 @@
 		return
 	if(linked_extract.get_held_mob() == owner)
 		return
-	owner.balloon_alert(owner, LANG("datum.f4ecc4f4", list(colour)))
+	owner.balloon_alert(owner, LANG("datum.f4ecc4f4c4634732", list(colour)))
 	if(!QDELETED(linked_extract))
 		linked_extract.linked_effect = null
 		START_PROCESSING(SSobj,linked_extract)
@@ -503,7 +503,7 @@
 /datum/status_effect/stabilized/grey/tick(seconds_between_ticks)
 	for(var/mob/living/basic/slime/slimes_in_range in range(1, get_turf(owner)))
 		if(!slimes_in_range.has_ally(owner))
-			to_chat(owner, span_notice(LANG("datum.5121bdeb", list(linked_extract, slimes_in_range))))
+			to_chat(owner, span_notice(LANG("datum.5121bdebfc3d9b8e", list(linked_extract, slimes_in_range))))
 			slimes_in_range.befriend(owner)
 	return ..()
 
@@ -560,7 +560,7 @@
 
 	return ..()
 
-/datum/status_effect/stabilized/purple/get_examine_text()
+/datum/status_effect/stabilized/purple/get_examine_text(mob/examiner)
 	if(healed_last_tick)
 		return span_warning("[owner.p_They()] [owner.p_are()] regenerating slowly, purplish goo filling in small injuries!")
 
@@ -596,7 +596,7 @@
 		if(sheets.len)
 			var/obj/item/stack/sheet/S = pick(sheets)
 			S.add(1)
-			to_chat(owner, span_notice(LANG("datum.877aa0b0", list(linked_extract, S))))
+			to_chat(owner, span_notice(LANG("datum.877aa0b0dc65062f", list(linked_extract, S))))
 	return ..()
 
 
@@ -606,7 +606,7 @@
 	var/cooldown = 10
 	var/max_cooldown = 10
 
-/datum/status_effect/stabilized/yellow/get_examine_text()
+/datum/status_effect/stabilized/yellow/get_examine_text(mob/examiner)
 	return span_warning("Nearby electronics seem just a little more charged wherever [owner.p_they()] go[owner.p_es()].")
 
 /datum/status_effect/stabilized/yellow/tick(seconds_between_ticks)
@@ -644,7 +644,7 @@
 	var/obj/item/item = owner.get_active_held_item()
 	if(item)
 		if(IS_EDIBLE(item) && (item.microwave_act(microwaver = owner) & COMPONENT_MICROWAVE_SUCCESS))
-			to_chat(owner, span_warning(LANG("datum.4c149c6f", list(linked_extract, item))))
+			to_chat(owner, span_warning(LANG("datum.4c149c6f348626d4", list(linked_extract, item))))
 		else
 			item.attackby(fire, owner)
 	return ..()
@@ -653,7 +653,7 @@
 	REMOVE_TRAIT(owner, TRAIT_RESISTHEATHANDS, TRAIT_STATUS_EFFECT(id))
 	QDEL_NULL(fire)
 
-/datum/status_effect/stabilized/darkpurple/get_examine_text()
+/datum/status_effect/stabilized/darkpurple/get_examine_text(mob/examiner)
 	return span_notice("[owner.p_Their()] fingertips burn brightly!")
 
 /datum/status_effect/stabilized/darkblue
@@ -664,25 +664,25 @@
 	if(owner.fire_stacks > 0 && prob(80))
 		owner.adjust_wet_stacks(1)
 		if(owner.fire_stacks <= 0)
-			to_chat(owner, span_notice(LANG("datum.3982074a", list(linked_extract))))
+			to_chat(owner, span_notice(LANG("datum.3982074a2b1449e1", list(linked_extract))))
 	var/obj/O = owner.get_active_held_item()
 	if(O)
 		O.extinguish() //All shamelessly copied from water's expose_obj, since I didn't seem to be able to get it here for some reason.
 		O.wash(CLEAN_TYPE_ACID)
 	// Monkey cube
 	if(istype(O, /obj/item/food/monkeycube))
-		to_chat(owner, span_warning(LANG("datum.398078f3", list(linked_extract, O))))
+		to_chat(owner, span_warning(LANG("datum.398078f3ed87d8ee", list(linked_extract, O))))
 		var/obj/item/food/monkeycube/cube = O
 		cube.Expand()
 
 	// Dehydrated carp
 	else if(istype(O, /obj/item/toy/plush/carpplushie/dehy_carp))
-		to_chat(owner, span_warning(LANG("datum.398078f3", list(linked_extract, O))))
+		to_chat(owner, span_warning(LANG("datum.398078f3ed87d8ee", list(linked_extract, O))))
 		var/obj/item/toy/plush/carpplushie/dehy_carp/dehy = O
 		dehy.Swell() // Makes a carp
 
 	else if(istype(O, /obj/item/stack/sheet/hairlesshide))
-		to_chat(owner, span_warning(LANG("datum.dce72588", list(linked_extract, O))))
+		to_chat(owner, span_warning(LANG("datum.dce72588b741e879", list(linked_extract, O))))
 		var/obj/item/stack/sheet/hairlesshide/HH = O
 		new /obj/item/stack/sheet/wethide(get_turf(HH), HH.amount)
 		qdel(HH)
@@ -731,7 +731,7 @@
 		linked_alert.icon_state = "slime_bluespace_on"
 
 	if(healthcheck && (healthcheck - owner.health) > 5)
-		owner.visible_message(span_warning(LANG("datum.1f8532c8", list(linked_extract, owner))))
+		owner.visible_message(span_warning(LANG("datum.1f8532c87bfbe3cb", list(linked_extract, owner))))
 		do_sparks(5,FALSE,owner)
 		var/turf/emergency_turf = find_safe_turf(owner.z, extended_safety_checks = TRUE)
 		var/range = 0
@@ -739,7 +739,7 @@
 			emergency_turf = get_turf(owner)
 			range = 50
 		if(do_teleport(owner, emergency_turf, range, channel = TELEPORT_CHANNEL_BLUESPACE))
-			to_chat(owner, span_notice(LANG("datum.f3a415fa", list(linked_extract))))
+			to_chat(owner, span_notice(LANG("datum.f3a415fa3d444457", list(linked_extract))))
 			do_sparks(5,FALSE,owner)
 			owner.apply_status_effect(/datum/status_effect/bluespacestabilization)
 	healthcheck = owner.health
@@ -788,20 +788,20 @@
 /datum/status_effect/stabilized/cerulean/tick(seconds_between_ticks)
 	if(owner.stat == DEAD)
 		if(clone && clone.stat != DEAD)
-			owner.visible_message(span_warning(LANG("datum.334bd2bf", list(owner, linked_extract, owner.p_their()))),
-				span_notice(LANG("datum.877534df", list(linked_extract))))
+			owner.visible_message(span_warning(LANG("datum.334bd2bfbd85d5b2", list(owner, linked_extract, owner.p_their()))),
+				span_notice(LANG("datum.877534df494a5071", list(linked_extract))))
 			if(owner.mind)
 				owner.mind.transfer_to(clone)
 			clone = null
 			qdel(linked_extract)
 		if(!clone || clone.stat == DEAD)
-			to_chat(owner, span_notice(LANG("datum.bba4d87d", list(linked_extract))))
+			to_chat(owner, span_notice(LANG("datum.bba4d87d41bc4579", list(linked_extract))))
 			qdel(linked_extract)
 	..()
 
 /datum/status_effect/stabilized/cerulean/on_remove()
 	if(clone)
-		clone.visible_message(span_warning(LANG("datum.cbf3de68", list(clone))))
+		clone.visible_message(span_warning(LANG("datum.cbf3de681d7e5c15", list(clone))))
 		clone.unequip_everything()
 		qdel(clone)
 
@@ -836,7 +836,7 @@
 	var/originalname
 
 /datum/status_effect/stabilized/green/on_apply()
-	to_chat(owner, span_warning(LANG("datum.2c1d4eab", null)))
+	to_chat(owner, span_warning(LANG("datum.2c1d4eab17201d7f", null)))
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		originalDNA = new H.dna.type
@@ -846,14 +846,14 @@
 	return ..()
 
 // Only occasionally give examiners a warning.
-/datum/status_effect/stabilized/green/get_examine_text()
+/datum/status_effect/stabilized/green/get_examine_text(mob/examiner)
 	if(prob(50))
 		return span_warning("[owner.p_They()] look[owner.p_s()] a bit green and gooey...")
 
 	return null
 
 /datum/status_effect/stabilized/green/on_remove()
-	to_chat(owner, span_notice(LANG("datum.fd69a5b8", null)))
+	to_chat(owner, span_notice(LANG("datum.fd69a5b84b742df7", null)))
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human = owner
 		originalDNA.copy_dna(human.dna, COPY_DNA_SE|COPY_DNA_SPECIES|COPY_DNA_MUTATIONS)
@@ -889,7 +889,7 @@
 /datum/status_effect/stabilized/pink/on_apply()
 	faction_name = FACTION_PINK_EXTRACT(owner)
 	owner.add_ally(faction_name)
-	to_chat(owner, span_notice(LANG("datum.64dd5457", list(linked_extract))))
+	to_chat(owner, span_notice(LANG("datum.64dd5457ba879a99", list(linked_extract))))
 	return ..()
 
 /datum/status_effect/stabilized/pink/tick(seconds_between_ticks)
@@ -898,9 +898,9 @@
 	if(has_ally)
 		if(owner.has_status_effect(/datum/status_effect/brokenpeace))
 			owner.remove_ally(faction_name)
-			to_chat(owner, span_userdanger(LANG("datum.46d095e6", null)))
+			to_chat(owner, span_userdanger(LANG("datum.46d095e69e775453", null)))
 	else if(!owner.has_status_effect(/datum/status_effect/brokenpeace))
-		to_chat(owner, span_notice(LANG("datum.64dd5457", list(linked_extract))))
+		to_chat(owner, span_notice(LANG("datum.64dd5457ba879a99", list(linked_extract))))
 		owner.add_ally(faction_name)
 	return ..()
 
@@ -954,7 +954,7 @@
 		qdel(linked_extract)
 	return ..()
 
-/datum/status_effect/stabilized/oil/get_examine_text()
+/datum/status_effect/stabilized/oil/get_examine_text(mob/examiner)
 	return span_warning("[owner.p_They()] smell[owner.p_s()] of sulfur and oil!")
 
 /// How much damage is dealt per healing done for the stabilized back.
@@ -990,10 +990,10 @@
 		return
 
 	draining_ref = WEAKREF(draining)
-	to_chat(owner, span_boldnotice(LANG("datum.ac198230", list(draining, draining.p_them(), draining.p_their()))))
-	to_chat(draining, span_userdanger(LANG("datum.4935a86f", list(owner))))
+	to_chat(owner, span_boldnotice(LANG("datum.ac19823087480eff", list(draining, draining.p_them(), draining.p_their()))))
+	to_chat(draining, span_userdanger(LANG("datum.4935a86f24c53c57", list(owner))))
 
-/datum/status_effect/stabilized/black/get_examine_text()
+/datum/status_effect/stabilized/black/get_examine_text(mob/examiner)
 	var/mob/living/draining = draining_ref?.resolve()
 	if(!draining)
 		return null
@@ -1006,7 +1006,7 @@
 
 	var/mob/living/drained = draining_ref.resolve()
 	if(drained.stat == DEAD)
-		to_chat(owner, span_warning(LANG("datum.d735e2ed", list(drained))))
+		to_chat(owner, span_warning(LANG("datum.d735e2ed3adcc630", list(drained))))
 		draining_ref = null
 		return
 
@@ -1039,7 +1039,7 @@
 /datum/status_effect/stabilized/lightpink/tick(seconds_between_ticks)
 	for(var/mob/living/carbon/human/H in range(1, get_turf(owner)))
 		if(H != owner && H.stat != DEAD && H.health <= 0 && !H.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
-			to_chat(owner, LANG("datum.37b18444", list(linked_extract, H, H.p_them())))
+			to_chat(owner, LANG("datum.37b18444c8cda551", list(linked_extract, H, H.p_them())))
 			H.reagents.add_reagent(/datum/reagent/medicine/epinephrine,5)
 	return ..()
 
@@ -1051,7 +1051,7 @@
 	id = "stabilizedadamantine"
 	colour = SLIME_TYPE_ADAMANTINE
 
-/datum/status_effect/stabilized/adamantine/get_examine_text()
+/datum/status_effect/stabilized/adamantine/get_examine_text(mob/examiner)
 	return span_warning("[owner.p_They()] [owner.p_have()] strange metallic coating on [owner.p_their()] skin.")
 
 /datum/status_effect/stabilized/gold
@@ -1105,7 +1105,7 @@
 			if(X.regencore)
 				X.regencore.interact_with_atom(owner, owner)
 				X.regencore = null
-				owner.visible_message(span_warning(LANG("datum.afa2aac1", list(owner, owner.p_their()))))
+				owner.visible_message(span_warning(LANG("datum.afa2aac15107a79c", list(owner, owner.p_their()))))
 				qdel(src)
 				qdel(linked_extract)
 	return ..()

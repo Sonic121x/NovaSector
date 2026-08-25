@@ -35,7 +35,7 @@
 /obj/item/clothing/suit/space/emergency/proc/user_damaged(datum/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
 	if(damage && !torn && prob(50))
-		balloon_alert_to_viewers(LANG("obj.18b80090", list(src)))
+		balloon_alert_to_viewers(LANG("obj.18b8009076bb572c", list(src)))
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
 		torn = TRUE
 		playsound(src, 'sound/items/weapons/slashmiss.ogg', 50, TRUE)
@@ -51,7 +51,7 @@
 /obj/item/clothing/suit/space/emergency/examine(mob/user)
 	. = ..()
 	if(torn)
-		. += span_danger(LANG("obj.65bc5c83", null))
+		. += span_danger(LANG("obj.65bc5c837d7a5144", null))
 
 
 // The helmet

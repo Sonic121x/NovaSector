@@ -16,7 +16,7 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/gloves/ring/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide(LANG("obj.792c2a0b", list(src, user.p_their(), user, src))))
+	user.visible_message(span_suicide(LANG("obj.792c2a0b525e9d8a", list(src, user.p_their(), user, src))))
 	return OXYLOSS
 
 /obj/item/clothing/gloves/ring/diamond
@@ -27,7 +27,7 @@
 	worn_icon_state = "dring"
 
 /obj/item/clothing/gloves/ring/diamond/attack_self(mob/user)
-	user.visible_message(span_warning(LANG("obj.5b9c5314", list(user, src))),span_warning(LANG("obj.a2e1c01e", list(src))))
+	user.visible_message(span_warning(LANG("obj.5b9c53144ecd2ed1", list(user, src))),span_warning(LANG("obj.a2e1c01e3ba95ed5", list(src))))
 
 /obj/item/clothing/gloves/ring/silver
 	name = "silver ring"

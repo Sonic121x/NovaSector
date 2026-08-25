@@ -107,7 +107,7 @@
 /obj/item/device/custom_kit/medigun_fastcharge/pre_convert_check(obj/target_obj, mob/user)
 	var/obj/item/gun/energy/cell_loaded/medigun/standard/our_medigun = target_obj
 	if(length(our_medigun.installedcells))
-		balloon_alert(user, LANG("obj.c5e89022", null))
+		balloon_alert(user, LANG("obj.c5e89022bf0d5ab5", null))
 		return FALSE
 	return TRUE
 

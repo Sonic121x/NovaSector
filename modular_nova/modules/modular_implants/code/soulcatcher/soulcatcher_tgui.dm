@@ -98,7 +98,7 @@
 			return TRUE
 
 		if("rename_room")
-			var/new_room_name = tgui_input_text(user,LANG("datum.11efcdbe", null), name, target_room.name, max_length = MAX_NAME_LEN)
+			var/new_room_name = tgui_input_text(user,LANG("datum.11efcdbe9e6e3732", null), name, target_room.name, max_length = MAX_NAME_LEN)
 			if(!new_room_name)
 				return FALSE
 
@@ -106,7 +106,7 @@
 			return TRUE
 
 		if("redescribe_room")
-			var/new_room_desc = tgui_input_text(user,LANG("datum.b4f25aba", null), name, target_room.room_description, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+			var/new_room_desc = tgui_input_text(user,LANG("datum.b4f25abae59fe8a8", null), name, target_room.room_description, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 			if(!new_room_desc)
 				return FALSE
 
@@ -127,7 +127,7 @@
 			return TRUE
 
 		if("modify_name")
-			var/new_name = tgui_input_text(user,LANG("datum.83c57758", null), name, target_room.outside_voice, max_length = MAX_NAME_LEN, multiline = TRUE)
+			var/new_name = tgui_input_text(user,LANG("datum.83c57758feccf36d", null), name, target_room.outside_voice, max_length = MAX_NAME_LEN, multiline = TRUE)
 			if(!new_name)
 				return FALSE
 
@@ -161,7 +161,7 @@
 					for(var/datum/soulcatcher_room/room in soulcatcher_component.soulcatcher_rooms)
 						available_rooms += room
 
-			var/datum/soulcatcher_room/transfer_room = tgui_input_list(user, LANG("datum.ffdb0710", null), name, available_rooms)
+			var/datum/soulcatcher_room/transfer_room = tgui_input_list(user, LANG("datum.ffdb0710bf487056", null), name, available_rooms)
 			if(!(transfer_room in available_rooms))
 				return FALSE
 
@@ -212,7 +212,7 @@
 			return TRUE
 
 		if("change_name")
-			var/new_name = tgui_input_text(user, LANG("datum.ea2e0724", list(target_soul)), LANG("datum.49410bda", null), target_soul, max_length = MAX_NAME_LEN)
+			var/new_name = tgui_input_text(user, LANG("datum.ea2e0724c61d3259", list(target_soul)), LANG("datum.49410bda6648d9c5", null), target_soul, max_length = MAX_NAME_LEN)
 			if(!new_name)
 				return FALSE
 
@@ -220,7 +220,7 @@
 			return TRUE
 
 		if("reset_name")
-			if(tgui_alert(user, LANG("datum.8d8271c1", list(target_soul)), LANG("datum.49410bda", null), list("Yes", "No")) != "Yes")
+			if(tgui_alert(user, LANG("datum.8d8271c121187ac7", list(target_soul)), LANG("datum.49410bda6648d9c5", null), list("Yes", "No")) != "Yes")
 				return FALSE
 
 			target_soul.reset_name()
@@ -232,7 +232,7 @@
 			if(params["narration"])
 				message_sender = FALSE
 
-			message_to_send = tgui_input_text(user, LANG("datum.e2196c58", null), name, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+			message_to_send = tgui_input_text(user, LANG("datum.e2196c58f2802f77", null), name, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 
 			if(!message_to_send)
 				return FALSE
@@ -241,7 +241,7 @@
 			return TRUE
 
 		if("delete_self")
-			if(tgui_alert(user, LANG("datum.97bfc2ae", null), parent, list("Yes", "No")) != "Yes")
+			if(tgui_alert(user, LANG("datum.97bfc2ae4c12fdd8", null), parent, list("Yes", "No")) != "Yes")
 				return FALSE
 
 			remove_self()
@@ -330,7 +330,7 @@
 
 	switch(action)
 		if("change_name")
-			var/new_name = tgui_input_text(user, LANG("datum.2bd1c76b", null), LANG("datum.49410bda", null), user_soul.name, max_length = MAX_NAME_LEN)
+			var/new_name = tgui_input_text(user, LANG("datum.2bd1c76b1f62157e", null), LANG("datum.49410bda6648d9c5", null), user_soul.name, max_length = MAX_NAME_LEN)
 			if(!new_name)
 				return FALSE
 
@@ -338,7 +338,7 @@
 			return TRUE
 
 		if("reset_name")
-			if(tgui_alert(user, LANG("datum.9a30553f", null), LANG("datum.49410bda", null), list("Yes", "No")) != "Yes")
+			if(tgui_alert(user, LANG("datum.9a30553f9fb0085a", null), LANG("datum.49410bda6648d9c5", null), list("Yes", "No")) != "Yes")
 				return FALSE
 
 			user_soul.reset_name()

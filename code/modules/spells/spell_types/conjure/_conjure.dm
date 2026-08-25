@@ -25,7 +25,7 @@
 /datum/action/cooldown/spell/conjure/cast(atom/cast_on)
 	. = ..()
 	if(create_summon_timer && !do_after(owner, create_summon_timer, target = cast_on.loc))
-		owner?.balloon_alert(owner, LANG("datum.3b4a18b9", null))
+		owner?.balloon_alert(owner, LANG("datum.3b4a18b975e856db", null))
 		return
 	var/list/to_summon_in = list()
 	for(var/turf/summon_turf in range(summon_radius, cast_on))

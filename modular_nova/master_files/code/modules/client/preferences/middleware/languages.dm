@@ -112,7 +112,7 @@
 
 	var/max_languages = preferences.all_quirks.Find(TRAIT_LINGUIST) ? MAX_LANGUAGES_LINGUIST : MAX_LANGUAGES_NORMAL
 	if(preferences.languages && !(name_to_language[language_name] in preferences.languages) && preferences.languages.len == max_languages) // this is a new language and we're at the limit
-		to_chat(user, span_warning(LANG("datum.18f1c4b5", null)))
+		to_chat(user, span_warning(LANG("datum.18f1c4b5fa88ed6d", null)))
 		return TRUE
 
 	preferences.languages[name_to_language[language_name]] = LANGUAGE_SPOKEN
@@ -129,7 +129,7 @@
 
 	var/max_languages = preferences.all_quirks.Find(TRAIT_LINGUIST) ? MAX_LANGUAGES_LINGUIST : MAX_LANGUAGES_NORMAL
 	if(preferences.languages && !(name_to_language[language_name] in preferences.languages) && preferences.languages.len == max_languages) // this is a new language and we're at the limit
-		to_chat(user, span_warning(LANG("datum.18f1c4b5", null)))
+		to_chat(user, span_warning(LANG("datum.18f1c4b5fa88ed6d", null)))
 		return TRUE
 
 	preferences.languages[name_to_language[language_name]] = LANGUAGE_UNDERSTOOD

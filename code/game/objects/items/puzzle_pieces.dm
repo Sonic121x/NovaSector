@@ -114,7 +114,7 @@
 	if(puzzle_id && puzzle_id != try_id)
 		return FALSE
 	if(!density)
-		visible_message(span_warning(LANG("obj.7a7c11f6", null)))
+		visible_message(span_warning(LANG("obj.7a7c11f62d99b09c", null)))
 		return TRUE
 	if(open_message)
 		visible_message(span_notice(open_message))
@@ -129,7 +129,7 @@
 	if(!istype(tool, /obj/item/keycard))
 		return NONE
 	if(!try_puzzle_open(astype(tool, /obj/item/keycard).puzzle_id))
-		to_chat(user, span_notice(LANG("obj.ba6733a2", list(src))))
+		to_chat(user, span_notice(LANG("obj.ba6733a2f9b219ee", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	return ITEM_INTERACT_SUCCESS
 
@@ -190,7 +190,7 @@
 /obj/item/pressure_plate/hologrid/examine(mob/user)
 	. = ..()
 	if(claimed)
-		. += span_notice(LANG("obj.999c6d66", null))
+		. += span_notice(LANG("obj.999c6d662d0ba855", null))
 
 /obj/item/pressure_plate/hologrid/trigger()
 	if(!claimed)
@@ -303,7 +303,7 @@
 	for(var/checking_light in light_list)
 		if(!checking_light)
 			return
-	visible_message(span_boldnotice(LANG("obj.ab5e3534", list(src))))
+	visible_message(span_boldnotice(LANG("obj.ab5e3534825f45b5", list(src))))
 	powered = TRUE
 	SEND_SIGNAL(src, COMSIG_PUZZLE_COMPLETED)
 	playsound(src, 'sound/machines/synth/synth_yes.ogg', 100, TRUE)
@@ -363,7 +363,7 @@
 		return
 	used = single_use
 	update_icon_state()
-	visible_message(span_notice(LANG("obj.ec678311", list(user, src))), span_notice(LANG("obj.65312797", list(src))))
+	visible_message(span_notice(LANG("obj.ec678311656c9614", list(user, src))), span_notice(LANG("obj.6531279754a9421f", list(src))))
 	playsound(src, 'sound/machines/terminal/terminal_button07.ogg', 45, TRUE)
 	on_puzzle_complete()
 
@@ -381,7 +381,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/button, 32)
 		return
 	var/obj/item/keycard/key = attacking_item
 	var/correct_card = key.puzzle_id == id
-	balloon_alert_to_viewers(LANG("obj.c2395146", list(correct_card ? "correct" : "incorrect", correct_card ? "" : "!")))
+	balloon_alert_to_viewers(LANG("obj.c239514627e2e93b", list(correct_card ? "correct" : "incorrect", correct_card ? "" : "!")))
 	playsound(src, 'sound/machines/card_slide.ogg', 45, TRUE)
 	if(!correct_card)
 		return
@@ -418,7 +418,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/keycardpad, 32)
 	if(isnull(pass_input) || !user.can_perform_action(src, ALLOW_SILICON_REACH) || !user.can_interact_with(src))
 		return
 	var/correct = pass_input == password
-	balloon_alert_to_viewers(LANG("obj.e07b9ffb", list(correct ? "correct" : "wrong", correct ? "" : "!")))
+	balloon_alert_to_viewers(LANG("obj.e07b9ffbf8193007", list(correct ? "correct" : "wrong", correct ? "" : "!")))
 	if(!correct)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 45, TRUE)
 		return
@@ -635,7 +635,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/puzzle/password/pin, 32)
 	icon_state = pick(pass_character)
 	if(!text2num(icon_state))
 		name = "letter"
-		desc = LANG("obj.ebcf6b81", null)
+		desc = LANG("obj.ebcf6b81728ee34d", null)
 	return TRUE
 
 /obj/effect/decal/cleanable/crayon/puzzle/pin

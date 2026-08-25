@@ -62,9 +62,9 @@
 				part_type = /obj/item/bodypart/leg/right/flesh
 
 		carbon_mob.visible_message(
-			span_danger(LANG("datum.6aab42a1", list(carbon_mob, carbon_mob.p_s()))),
-			span_bolddanger(LANG("datum.060f0102", null)),
-			blind_message = span_hear(LANG("datum.3efeb9b1", null)),
+			span_danger(LANG("datum.6aab42a18bc3dbe7", list(carbon_mob, carbon_mob.p_s()))),
+			span_bolddanger(LANG("datum.060f01025cd50aec", null)),
+			blind_message = span_hear(LANG("datum.3efeb9b11be3dc1b", null)),
 		)
 		var/obj/item/bodypart/new_bodypart = new part_type()
 		var/mob/living/basic/living_limb_flesh/parasite = new /mob/living/basic/living_limb_flesh

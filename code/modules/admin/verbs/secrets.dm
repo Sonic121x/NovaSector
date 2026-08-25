@@ -95,7 +95,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 
 		//Buttons for helpful stuff. This is where people land in the tgui
 		if("clear_virus")
-			var/choice = tgui_alert(usr, LANG("datum.b2e990e3", null),, list("Yes", "Cancel"))
+			var/choice = tgui_alert(usr, LANG("datum.b2e990e3f5ab4a42", null),, list("Yes", "Cancel"))
 			if(choice == "Yes")
 				message_admins("[key_name_admin(holder)] has cured all diseases.")
 				for(var/thing in SSdisease.active_diseases)
@@ -127,7 +127,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 			toggle_id_ctf(holder, CTF_GHOST_CTF_GAME_ID)
 
 		if("tdomereset")
-			var/delete_mobs = tgui_alert(usr, LANG("datum.cefbc622", null), LANG("datum.554fd740", null), list("Yes", "No", "Cancel"))
+			var/delete_mobs = tgui_alert(usr, LANG("datum.cefbc6220fdeb44f", null), LANG("datum.554fd740d7807949", null), list("Yes", "No", "Cancel"))
 			if(!delete_mobs || delete_mobs == "Cancel")
 				return
 
@@ -148,22 +148,22 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 			thunderdome_template.load(thunderdome_corner)
 
 		if("set_name")
-			var/new_name = input(holder, LANG("datum.5e93b118", null), LANG("datum.29297405", null), "") as text|null
+			var/new_name = input(holder, LANG("datum.5e93b118677ca3d7", null), LANG("datum.29297405de146a0b", null), "") as text|null
 			if(!new_name)
 				return
 			set_station_name(new_name)
 			log_admin("[key_name(holder)] renamed the station to \"[new_name]\".")
 			message_admins(span_adminnotice("[key_name_admin(holder)] renamed the station to: [new_name]."))
-			priority_announce(LANG("datum.089a9a15", list(command_name(), new_name)))
+			priority_announce(LANG("datum.089a9a1506461a29", list(command_name(), new_name)))
 		if("reset_name")
-			var/confirmed = tgui_alert(usr,LANG("datum.b2cb7e5d", null), LANG("datum.3c1da715", null), list("Yes", "No", "Cancel"))
+			var/confirmed = tgui_alert(usr,LANG("datum.b2cb7e5dfb01a777", null), LANG("datum.3c1da715a16e1d9e", null), list("Yes", "No", "Cancel"))
 			if(confirmed != "Yes")
 				return
 			var/new_name = new_station_name()
 			set_station_name(new_name)
 			log_admin("[key_name(holder)] reset the station name.")
 			message_admins(span_adminnotice("[key_name_admin(holder)] reset the station name."))
-			priority_announce(LANG("datum.089a9a15", list(command_name(), new_name)))
+			priority_announce(LANG("datum.089a9a1506461a29", list(command_name(), new_name)))
 		if("moveferry")
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Send CentCom Ferry"))
 			if(!SSshuttle.toggleShuttle("ferry","ferry_home","ferry_away"))
@@ -178,7 +178,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 				message_admins("[key_name_admin(holder)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 				log_admin("[key_name(holder)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 			else
-				to_chat(holder, span_admin(LANG("datum.0b0a9ad6", null)), confidential = TRUE)
+				to_chat(holder, span_admin(LANG("datum.0b0a9ad684920f6e", null)), confidential = TRUE)
 		if("movelaborshuttle")
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Send Labor Shuttle"))
 			if(!SSshuttle.toggleShuttle("laborcamp","laborcamp_home","laborcamp_away"))
@@ -190,7 +190,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Virus Outbreak"))
 			var/datum/round_event_control/event
-			var/prompt = tgui_alert(usr, LANG("datum.3ab075e9", null), LANG("datum.1f16d0f6", null), list("Advanced", "Simple", "Make Your Own"))
+			var/prompt = tgui_alert(usr, LANG("datum.3ab075e9e4b4ce20", null), LANG("datum.1f16d0f6edad1f98", null), list("Advanced", "Simple", "Make Your Own"))
 			switch(prompt)
 				if("Make Your Own")
 					AdminCreateVirus(holder)
@@ -211,7 +211,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 		if("allspecies")
 			if(!is_funmin)
 				return
-			var/result = input(holder, LANG("datum.04cfe579", null),LANG("datum.85a5d525", null)) as null|anything in sortTim(GLOB.species_list, GLOBAL_PROC_REF(cmp_text_asc))
+			var/result = input(holder, LANG("datum.04cfe5790b47e3a0", null),LANG("datum.85a5d525356ee5fa", null)) as null|anything in sortTim(GLOB.species_list, GLOBAL_PROC_REF(cmp_text_asc))
 			if(result)
 				SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Mass Species Change", "[result]"))
 				log_admin("[key_name(holder)] turned all humans into [result]")
@@ -253,7 +253,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 		if("onlyone")
 			if(!is_funmin)
 				return
-			var/response = tgui_alert(usr,LANG("datum.88f7acf4", null), LANG("datum.96de7de8", null), list("Instant!", HIGHLANDER_DELAY_TEXT))
+			var/response = tgui_alert(usr,LANG("datum.88f7acf4ad73bebf", null), LANG("datum.96de7de85b764f12", null), list("Instant!", HIGHLANDER_DELAY_TEXT))
 			switch(response)
 				if("Instant!")
 					holder.only_one()
@@ -267,7 +267,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Guns"))
 			var/survivor_probability = 0
-			switch(tgui_alert(usr,LANG("datum.c892bd05", null),,list("No Antags","Some Antags","All Antags!")))
+			switch(tgui_alert(usr,LANG("datum.c892bd05fa80a645", null),,list("No Antags","Some Antags","All Antags!")))
 				if("Some Antags")
 					survivor_probability = 25
 				if("All Antags!")
@@ -280,7 +280,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Magic"))
 			var/survivor_probability = 0
-			switch(tgui_alert(usr,LANG("datum.d9cdcd85", null),,list("No Antags","Some Antags","All Antags!")))
+			switch(tgui_alert(usr,LANG("datum.d9cdcd855dc70b04", null),,list("No Antags","Some Antags","All Antags!")))
 				if("Some Antags")
 					survivor_probability = 25
 				if("All Antags!")
@@ -291,7 +291,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 		if("towerOfBabel")
 			if(!is_funmin)
 				return
-			if(tgui_alert(usr,LANG("datum.8b8d6c10", null),,list("Yes","No")) == "Yes")
+			if(tgui_alert(usr,LANG("datum.8b8d6c10a001be88", null),,list("Yes","No")) == "Yes")
 				SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Tower of babel"))
 				holder.tower_of_babel()
 
@@ -304,7 +304,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 			if(!is_funmin)
 				return
 			if(SSevents.wizardmode)
-				switch(tgui_alert(usr,LANG("datum.ab3c2f64", null),,list("Intensify Summon Events","Turn Off Summon Events","Nothing")))
+				switch(tgui_alert(usr,LANG("datum.ab3c2f647ff1b220", null),,list("Intensify Summon Events","Turn Off Summon Events","Nothing")))
 					if("Intensify Summon Events")
 						summon_events(holder)
 						SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Intensify"))
@@ -313,7 +313,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 						SSevents.resetFrequency()
 						SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Disable"))
 			else
-				if(tgui_alert(usr,LANG("datum.6a20cf23", null),,list("Yes","No")) == "Yes")
+				if(tgui_alert(usr,LANG("datum.6a20cf2389a3bd04", null),,list("Yes","No")) == "Yes")
 					summon_events(holder)
 					SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Activate"))
 
@@ -339,13 +339,13 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 			if (!is_funmin)
 				return
 			if (SSshuttle.emergency.mode != SHUTTLE_ESCAPE)
-				to_chat(usr, span_warning(LANG("datum.a2916245", null)), confidential = TRUE)
+				to_chat(usr, span_warning(LANG("datum.a2916245e7fc153a", null)), confidential = TRUE)
 				return
-			var/make_announcement = tgui_alert(usr, LANG("datum.61d2e8cb", null), LANG("datum.35572a56", null), list("Yes", "Custom Text", "No")) || "No"
+			var/make_announcement = tgui_alert(usr, LANG("datum.61d2e8cbc4db002e", null), LANG("datum.35572a5632c0fe52", null), list("Yes", "Custom Text", "No")) || "No"
 			var/announcement_text = "Emergency shuttle trajectory overriden, rerouting course back to [station_name()]."
 			if (make_announcement == "Custom Text")
-				announcement_text = tgui_input_text(usr, LANG("datum.98bfecea", null), LANG("datum.35572a56", null), multiline = TRUE) || announcement_text
-			var/new_timer = tgui_input_number(usr, LANG("datum.a0d7e85f", null), LANG("datum.abac6b10", null), 180, 600)
+				announcement_text = tgui_input_text(usr, LANG("datum.98bfecea386ff6cf", null), LANG("datum.35572a5632c0fe52", null), multiline = TRUE) || announcement_text
+			var/new_timer = tgui_input_number(usr, LANG("datum.a0d7e85f75a78909", null), LANG("datum.abac6b10a3e88590", null), 180, 600)
 			if (isnull(new_timer) || SSshuttle.emergency.mode != SHUTTLE_ESCAPE)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Send Shuttle Back"))
@@ -422,7 +422,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 			var/list/prefs = settings["mainsettings"]
 
 			if (prefs["amount"]["value"] < 1 || prefs["portalnum"]["value"] < 1)
-				to_chat(holder, span_warning(LANG("datum.2e78d2be", null)), confidential = TRUE)
+				to_chat(holder, span_warning(LANG("datum.2e78d2befa6a9a0b", null)), confidential = TRUE)
 				return
 
 			var/mob/path_to_spawn = prefs["typepath"]["value"]
@@ -430,7 +430,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 				path_to_spawn = text2path(path_to_spawn)
 
 			if (!ispath(path_to_spawn))
-				to_chat(holder, span_notice(LANG("datum.160674b9", list(path_to_spawn))), confidential = TRUE)
+				to_chat(holder, span_notice(LANG("datum.160674b9370c3be9", list(path_to_spawn))), confidential = TRUE)
 				return
 
 			var/list/candidates = list()
@@ -472,7 +472,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Bomb Cap"))
 
-			var/newBombCap = input(holder,LANG("datum.a96784cf", null), LANG("datum.e71c4a77", null), GLOB.MAX_EX_LIGHT_RANGE) as num|null
+			var/newBombCap = input(holder,LANG("datum.a96784cf6bf690b4", null), LANG("datum.e71c4a777964d796", null), GLOB.MAX_EX_LIGHT_RANGE) as num|null
 			if (!CONFIG_SET(number/bombcap, newBombCap))
 				return
 
@@ -482,14 +482,14 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 			if(!is_debugger)
 				return
 			if(isnull(GLOB.department_cd_override))
-				var/set_override = tgui_input_number(usr, LANG("datum.5c39479f", null),LANG("datum.2e7d6cc9", null), 5)
+				var/set_override = tgui_input_number(usr, LANG("datum.5c39479f3fce5428", null),LANG("datum.2e7d6cc939052b22", null), 5)
 				if(isnull(set_override))
 					return //user clicked cancel
 				GLOB.department_cd_override = set_override
 			else
-				var/choice = tgui_alert(usr, LANG("datum.18cba685", null), LANG("datum.4d49ff8c", null), list("Override", "End Override", "Cancel"))
+				var/choice = tgui_alert(usr, LANG("datum.18cba685cb85d507", null), LANG("datum.4d49ff8c0d0ce31a", null), list("Override", "End Override", "Cancel"))
 				if(choice == "Override")
-					var/set_override = tgui_input_number(usr, LANG("datum.5c39479f", null), LANG("datum.faf8c6f0", null), 5)
+					var/set_override = tgui_input_number(usr, LANG("datum.5c39479f3fce5428", null), LANG("datum.faf8c6f04b4e7691", null), 5)
 					GLOB.department_cd_override = set_override
 					return
 				if(choice == "End Override")
@@ -511,23 +511,23 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 			if(!is_funmin)
 				return
 			if(!SSticker.HasRoundStarted())
-				tgui_alert(usr,LANG("datum.8a212f07", null))
+				tgui_alert(usr,LANG("datum.8a212f0792509a20", null))
 				return
 			if(GLOB.everyone_an_antag)
-				var/are_we_antagstacking = tgui_alert(usr, LANG("datum.a0451e66", null), LANG("datum.c80d1832", null), list("Confirm", "Abort"))
+				var/are_we_antagstacking = tgui_alert(usr, LANG("datum.a0451e666cbf15f8", null), LANG("datum.c80d18329cefa0ba", null), list("Confirm", "Abort"))
 				if(are_we_antagstacking != "Confirm")
 					return
 
-			var/chosen_antag = tgui_input_list(usr, LANG("datum.57858c19", null), LANG("datum.b876458c", null), list(ROLE_TRAITOR, ROLE_CHANGELING, ROLE_HERETIC, ROLE_CULTIST, ROLE_NINJA, ROLE_WIZARD, ROLE_NIGHTMARE))
+			var/chosen_antag = tgui_input_list(usr, LANG("datum.57858c19c0a0a743", null), LANG("datum.b876458c452e33b2", null), list(ROLE_TRAITOR, ROLE_CHANGELING, ROLE_HERETIC, ROLE_CULTIST, ROLE_NINJA, ROLE_WIZARD, ROLE_NIGHTMARE))
 			if(!chosen_antag)
 				return
-			var/objective = tgui_input_text(usr, LANG("datum.63b0ed30", null), LANG("datum.161e2014", null))
+			var/objective = tgui_input_text(usr, LANG("datum.63b0ed3013326359", null), LANG("datum.161e201425e206dd", null))
 			if(!objective)
 				return
-			var/confirmation = tgui_alert(usr, LANG("datum.00549fb9", list(chosen_antag, objective)), LANG("datum.f56e50aa", null), list("Confirm", "Abort"))
+			var/confirmation = tgui_alert(usr, LANG("datum.00549fb9ec4f816d", list(chosen_antag, objective)), LANG("datum.f56e50aa77067fc7", null), list("Confirm", "Abort"))
 			if(confirmation != "Confirm")
 				return
-			var/keep_generic_objecives = tgui_alert(usr, LANG("datum.339f014d", null), LANG("datum.4161f937", null), list("Yes", "No"))
+			var/keep_generic_objecives = tgui_alert(usr, LANG("datum.339f014dd066807f", null), LANG("datum.4161f937d9c877c9", null), list("Yes", "No"))
 			keep_generic_objecives = (keep_generic_objecives != "Yes") ? FALSE : TRUE
 
 			GLOB.everyone_an_antag = new /datum/everyone_is_an_antag_controller(chosen_antag, objective, keep_generic_objecives)
@@ -541,7 +541,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Mass Braindamage"))
 			for(var/mob/living/carbon/human/human_mob in GLOB.player_list)
-				to_chat(human_mob, span_bolddanger(LANG("datum.b417f675", null)), confidential = TRUE)
+				to_chat(human_mob, span_bolddanger(LANG("datum.b417f67519b63b24", null)), confidential = TRUE)
 				human_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 60, 80)
 			message_admins("[key_name_admin(holder)] made everybody brain damaged")
 		if("floorlava")
@@ -549,11 +549,11 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 		if("anime")
 			if(!is_funmin)
 				return
-			var/animetype = tgui_alert(usr,LANG("datum.ba2369ee", null),,list("Yes","No","Cancel"))
+			var/animetype = tgui_alert(usr,LANG("datum.ba2369ee412b93c2", null),,list("Yes","No","Cancel"))
 
 			var/droptype
 			if(animetype == "Yes")
-				droptype = tgui_alert(usr,LANG("datum.a759b7a1", null),,list("Yes","No","Cancel"))
+				droptype = tgui_alert(usr,LANG("datum.a759b7a13ccd028c", null),,list("Yes","No","Cancel"))
 
 			if(animetype == "Cancel" || droptype == "Cancel")
 				return
@@ -584,7 +584,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 						if(droptype == "Yes")
 							ADD_TRAIT(anime_uniform, TRAIT_NODROP, ADMIN_TRAIT)
 				else
-					to_chat(human_mob, span_warning(LANG("datum.5796c9e5", null)), confidential = TRUE)
+					to_chat(human_mob, span_warning(LANG("datum.5796c9e5afb68212", null)), confidential = TRUE)
 		if("masspurrbation")
 			if(!is_funmin)
 				return
@@ -620,7 +620,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 			var/mob/living/basic/drone/nerd
 			var/teamsize
 
-			teamsize = input(usr, LANG("datum.ad1bbaf0", null), LANG("datum.b286d060", null), 2) as num|null
+			teamsize = input(usr, LANG("datum.ad1bbaf0040704dd", null), LANG("datum.b286d0609328cd05", null), 2) as num|null
 
 			if(teamsize <= 0)
 				return FALSE
@@ -643,13 +643,13 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 			if(!is_funmin)
 				return
 			if(GLOB.ctf_games.len <= 0)
-				tgui_alert(usr, LANG("datum.41de8b69", null))
+				tgui_alert(usr, LANG("datum.41de8b690ae50c3d", null))
 				return
-			var/selected_game = tgui_input_list(usr, LANG("datum.9a3c7a05", null), LANG("datum.c4ce99c4", null), GLOB.ctf_games)
+			var/selected_game = tgui_input_list(usr, LANG("datum.9a3c7a05e74375fb", null), LANG("datum.c4ce99c47e5bc624", null), GLOB.ctf_games)
 			if(isnull(selected_game))
 				return
 			var/datum/ctf_controller/ctf_controller = GLOB.ctf_games[selected_game]
-			var/choice = tgui_alert(usr, LANG("datum.0f3997c9", list(ctf_controller.instagib_mode ? "Return to standard" : "Enable instagib")), LANG("datum.c4ce99c4", null), list("Yes", "No"))
+			var/choice = tgui_alert(usr, LANG("datum.0f3997c98ad7331f", list(ctf_controller.instagib_mode ? "Return to standard" : "Enable instagib")), LANG("datum.c4ce99c47e5bc624", null), list("Yes", "No"))
 			if(choice != "Yes")
 				return
 			ctf_controller.toggle_instagib_mode()
@@ -659,7 +659,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 		if("mass_heal")
 			if(!is_funmin)
 				return
-			var/heal_mobs = tgui_alert(usr, LANG("datum.32ff8aa9", null), LANG("datum.28736e8d", null), list("Yes", "No"))
+			var/heal_mobs = tgui_alert(usr, LANG("datum.32ff8aa9d5abfb2d", null), LANG("datum.28736e8d2fadc379", null), list("Yes", "No"))
 			if(!heal_mobs || heal_mobs != "Yes")
 				return
 
@@ -698,8 +698,8 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 				return TRUE
 
 			GLOB.meteor_mode = new()
-			var/start_when = tgui_input_number(usr, LANG("datum.74ccb6a6", null), LANG("datum.bfcabcaa", null), (5 MINUTES) / 10, (24 HOURS) / 10, 0)
-			var/ramp_speed = tgui_input_number(usr, LANG("datum.c14ad1c2", null), LANG("datum.48dce3b8", null), (5 MINUTES) / 10, (24 HOURS) / 10, (30 SECONDS) / 10)
+			var/start_when = tgui_input_number(usr, LANG("datum.74ccb6a63d2e7ac3", null), LANG("datum.bfcabcaa2d80ee0d", null), (5 MINUTES) / 10, (24 HOURS) / 10, 0)
+			var/ramp_speed = tgui_input_number(usr, LANG("datum.c14ad1c2645f7e5f", null), LANG("datum.48dce3b803d468b8", null), (5 MINUTES) / 10, (24 HOURS) / 10, (30 SECONDS) / 10)
 			if(!is_funmin) // deadminnied?
 				QDEL_NULL(GLOB.meteor_mode)
 				return TRUE
@@ -763,7 +763,7 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 		return
 	if (make_announcement != "No")
 		priority_announce(
-			text = LANG("_root.4128ea27", list(SSshuttle.emergency)),
+			text = LANG("_root.4128ea270245cce9", list(SSshuttle.emergency)),
 			title = "Emergency Shuttle Override",
 			sound = ANNOUNCER_SHUTTLEDOCK,
 			sender_override = "Emergency Shuttle Uplink Alert",

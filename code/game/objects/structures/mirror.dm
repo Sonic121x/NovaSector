@@ -65,10 +65,13 @@
 		update_signals = list(COMSIG_ATOM_BREAK), \
 		check_reflect_signals = list(SIGNAL_ADDTRAIT(TRAIT_NO_MIRROR_REFLECTION), SIGNAL_REMOVETRAIT(TRAIT_NO_MIRROR_REFLECTION)), \
 	)
+	if(cursable)
+		if(mapload && prob(ROUNDSTART_CURSED_CHANCE))
+			AddComponent(/datum/component/revenant_prison, create_on_release = TRUE)
+		else
+			ADD_TRAIT(src, TRAIT_COZY_REVENANT_HOME, INNATE_TRAIT)
 	if(mapload)
 		find_and_mount_on_atom()
-		if(prob(ROUNDSTART_CURSED_CHANCE) && cursable)
-			AddComponent(/datum/component/revenant_prison, create_on_release = TRUE)
 	update_choices()
 	register_context()
 
@@ -107,12 +110,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 
 /obj/structure/mirror/wrench_act_secondary(mob/living/user, obj/item/tool)
 	if(!deconstructable)
-		balloon_alert(user, LANG("obj.490a1292", null))
+		balloon_alert(user, LANG("obj.490a12928d97ac5b", null))
 		return NONE
-	user.visible_message(span_notice(LANG("obj.ac4b08c7", list(user, src))), span_notice(LANG("obj.4e190a11", list(src))))
+	user.visible_message(span_notice(LANG("obj.ac4b08c7e7e15d9e", list(user, src))), span_notice(LANG("obj.4e190a11804b4d88", list(src))))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 3 SECONDS))
-		user.visible_message(span_notice(LANG("obj.03a71949", list(user, src))), span_notice(LANG("obj.aa18b3fe", list(src))))
+		user.visible_message(span_notice(LANG("obj.03a71949a614a108", list(user, src))), span_notice(LANG("obj.aa18b3fe3f2cb677", list(src))))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 		deconstruct()
 		return ITEM_INTERACT_SUCCESS
@@ -153,38 +156,38 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 /obj/structure/mirror/proc/change_beard(mob/living/carbon/human/beard_dresser)
 	if(beard_dresser.physique == FEMALE)
 		if(beard_dresser.facial_hairstyle == "Shaved")
-			balloon_alert(beard_dresser, LANG("obj.2baa2eba", null))
+			balloon_alert(beard_dresser, LANG("obj.2baa2eba4b7488f8", null))
 			return
-		var/shave_beard = tgui_alert(beard_dresser, LANG("obj.b9c92f08", null), LANG("obj.62de8b3c", null), list("Yes", "No"))
+		var/shave_beard = tgui_alert(beard_dresser, LANG("obj.b9c92f08426959fc", null), LANG("obj.62de8b3c2d75be9b", null), list("Yes", "No"))
 		if(shave_beard == "Yes" && can_use_mirror(beard_dresser))
 			beard_dresser.set_facial_hairstyle("Shaved", update = TRUE)
 		return
 
-	var/new_style = tgui_input_list(beard_dresser, LANG("obj.be20145f", null), LANG("obj.62de8b3c", null), SSaccessories.facial_hairstyles_list)
+	var/new_style = tgui_input_list(beard_dresser, LANG("obj.be20145f8fc21fba", null), LANG("obj.62de8b3c2d75be9b", null), SSaccessories.facial_hairstyles_list)
 
 	if(isnull(new_style) || !can_use_mirror(beard_dresser))
 		return
 
 	if(HAS_TRAIT(beard_dresser, TRAIT_SHAVED))
-		to_chat(beard_dresser, span_notice(LANG("obj.f67f3b8d", null)))
+		to_chat(beard_dresser, span_notice(LANG("obj.f67f3b8dfd17e8bd", null)))
 		beard_dresser.add_mood_event("bald_hair_day", /datum/mood_event/bald_reminder)
 		return
 
 	beard_dresser.set_facial_hairstyle(new_style, update = TRUE)
 
 /obj/structure/mirror/proc/change_hair(mob/living/carbon/human/hairdresser)
-	var/new_style = tgui_input_list(hairdresser, LANG("obj.f24e1bc1", null), LANG("obj.62de8b3c", null), SSaccessories.hairstyles_list)
+	var/new_style = tgui_input_list(hairdresser, LANG("obj.f24e1bc145540758", null), LANG("obj.62de8b3c2d75be9b", null), SSaccessories.hairstyles_list)
 	if(isnull(new_style) || !can_use_mirror(hairdresser))
 		return
 	if(HAS_TRAIT(hairdresser, TRAIT_BALD))
-		to_chat(hairdresser, span_notice(LANG("obj.e474f3cd", null)))
+		to_chat(hairdresser, span_notice(LANG("obj.e474f3cd053790f2", null)))
 		hairdresser.add_mood_event("bald_hair_day", /datum/mood_event/bald_reminder)
 		return
 
 	hairdresser.set_hairstyle(new_style, update = TRUE)
 
 /obj/structure/mirror/proc/change_name(mob/living/carbon/human/user)
-	var/newname = sanitize_name(tgui_input_text(user, LANG("obj.3dc7eef8", null), LANG("obj.b4bf4c54", null), user.name, MAX_NAME_LEN), allow_numbers = TRUE) //It's magic so whatever.
+	var/newname = sanitize_name(tgui_input_text(user, LANG("obj.3dc7eef85b4ea632", null), LANG("obj.b4bf4c54d223e79b", null), user.name, MAX_NAME_LEN), allow_numbers = TRUE) //It's magic so whatever.
 	if(!newname || !can_use_mirror(user))
 		return
 	user.real_name = newname
@@ -196,7 +199,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 
 // Erm ackshually the proper term is species. Get it right??
 /obj/structure/mirror/proc/change_race(mob/living/carbon/human/race_changer)
-	var/racechoice = tgui_input_list(race_changer, LANG("obj.d842af96", null), LANG("obj.838e24b8", null), selectable_races)
+	var/racechoice = tgui_input_list(race_changer, LANG("obj.d842af96028ad702", null), LANG("obj.838e24b8bdb41a12", null), selectable_races)
 	if(isnull(racechoice) || !can_use_mirror(race_changer))
 		return
 
@@ -207,7 +210,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	var/datum/species/newrace = GLOB.species_prototypes[new_race_path]
 	var/attributes_desc = newrace.get_physical_attributes()
 
-	var/answer = tgui_alert(race_changer, attributes_desc, LANG("obj.cec93002", list(newrace)), list("Yes", "No"))
+	var/answer = tgui_alert(race_changer, attributes_desc, LANG("obj.cec93002eb9c9a5a", list(newrace)), list("Yes", "No"))
 	if(!answer || !can_use_mirror(race_changer))
 		return
 	if(answer != "Yes")
@@ -217,7 +220,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	on_species_change(race_changer, newrace)
 	race_changer.set_species(new_race_path, icon_update = FALSE)
 	if(HAS_TRAIT(race_changer, TRAIT_USES_SKINTONES))
-		var/new_s_tone = tgui_input_list(race_changer, LANG("obj.affd0a03", null), LANG("obj.838e24b8", null), GLOB.skin_tones)
+		var/new_s_tone = tgui_input_list(race_changer, LANG("obj.affd0a0304a40b58", null), LANG("obj.838e24b8bdb41a12", null), GLOB.skin_tones)
 		if(new_s_tone && can_use_mirror(race_changer))
 			race_changer.skin_tone = new_s_tone
 			race_changer.dna.update_ui_block(/datum/dna_block/identity/skin_tone)
@@ -229,7 +232,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 				race_changer.dna.features[FEATURE_MUTANT_COLOR] = sanitize_hexcolor(new_mutantcolor)
 				race_changer.dna.update_uf_block(/datum/dna_block/feature/mutant_color)
 			else
-				to_chat(race_changer, span_notice(LANG("obj.8ef8e412", null)))
+				to_chat(race_changer, span_notice(LANG("obj.8ef8e4123b4a2a98", null)))
 
 	race_changer.update_body(is_creating = TRUE)
 
@@ -242,25 +245,25 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 // saved you a click (many)
 /obj/structure/mirror/proc/change_sex(mob/living/carbon/human/sexy)
 
-	var/chosen_sex = tgui_input_list(sexy, LANG("obj.06e45421", null), LANG("obj.15bc27b6", null), list("Warlock", "Witch", "Wizard", "Itzard")) // YOU try coming up with the 'it' version of wizard
+	var/chosen_sex = tgui_input_list(sexy, LANG("obj.06e4542192c248f6", null), LANG("obj.15bc27b6fe454546", null), list("Warlock", "Witch", "Wizard", "Itzard")) // YOU try coming up with the 'it' version of wizard
 	if(!chosen_sex || !can_use_mirror(sexy))
 		return
 
 	switch(chosen_sex)
 		if("Warlock")
 			sexy.gender = MALE
-			to_chat(sexy, span_notice(LANG("obj.1acbd57e", null)))
+			to_chat(sexy, span_notice(LANG("obj.1acbd57e4da81408", null)))
 		if("Witch")
 			sexy.gender = FEMALE
-			to_chat(sexy, span_notice(LANG("obj.bf69e8f9", null)))
+			to_chat(sexy, span_notice(LANG("obj.bf69e8f9cc5248cd", null)))
 		if("Wizard")
 			sexy.gender = PLURAL
-			to_chat(sexy, span_notice(LANG("obj.eeb46680", null)))
+			to_chat(sexy, span_notice(LANG("obj.eeb466807863ebe0", null)))
 		if("Itzard")
 			sexy.gender = NEUTER
-			to_chat(sexy, span_notice(LANG("obj.d933fcaa", null)))
+			to_chat(sexy, span_notice(LANG("obj.d933fcaa4ed6ab5f", null)))
 
-	var/chosen_physique = tgui_input_list(sexy, LANG("obj.1403ad51", null), LANG("obj.15bc27b6", null), list("Warlock Physique", "Witch Physique", "Wizards Don't Need Gender"))
+	var/chosen_physique = tgui_input_list(sexy, LANG("obj.1403ad51d10d4fbf", null), LANG("obj.15bc27b6fe454546", null), list("Warlock Physique", "Witch Physique", "Wizards Don't Need Gender"))
 
 	if(chosen_physique && chosen_physique != "Wizards Don't Need Gender" && can_use_mirror(sexy))
 		sexy.physique = (chosen_physique == "Warlock Physique") ? MALE : FEMALE
@@ -276,12 +279,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	user.set_eye_color(sanitize_hexcolor(new_eye_color))
 	user.dna.update_ui_block(/datum/dna_block/identity/eye_colors)
 	user.update_eyes()
-	to_chat(user, span_notice(LANG("obj.b6775531", null)))
+	to_chat(user, span_notice(LANG("obj.b67755311b91d9b2", null)))
 
 /obj/structure/mirror/examine(mob/user)
 	. = ..()
 	if(deconstructable)
-		. += span_notice(LANG("obj.407e40ef", null))
+		. += span_notice(LANG("obj.407e40ef951f3c91", null))
 
 /obj/structure/mirror/examine_status(mob/living/carbon/human/user)
 	if(broken)
@@ -299,10 +302,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	return .
 
 /obj/structure/mirror/attacked_by(obj/item/I, mob/living/user, list/modifiers, list/attack_modifiers)
+	if(broken)
+		return ..()
 	. = ..()
-	if(broken || . <= 0) // breaking a mirror truly gets you bad luck!
+	if(!broken || . <= 0) // breaking a mirror truly gets you bad luck!
 		return
-	to_chat(user, span_warning(LANG("obj.f2986fd5", list(src))))
+	to_chat(user, span_warning(LANG("obj.f2986fd5443519a7", list(src))))
 	user.AddComponent(/datum/component/omen, incidents_left = 7)
 
 /obj/structure/mirror/bullet_act(obj/projectile/proj)
@@ -312,7 +317,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	. = ..()
 	if(broken) // breaking a mirror truly gets you bad luck!
 		var/mob/living/unlucky_dude = proj.firer
-		to_chat(unlucky_dude, span_warning(LANG("obj.f2986fd5", list(src))))
+		to_chat(unlucky_dude, span_warning(LANG("obj.f2986fd5443519a7", list(src))))
 		unlucky_dude.AddComponent(/datum/component/omen, incidents_left = 7)
 
 /obj/structure/mirror/atom_break(damage_flag)
@@ -322,7 +327,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	icon_state = "mirror_broke"
 	playsound(src, SFX_SHATTER, 70, TRUE)
 	if(desc == initial(desc))
-		desc = LANG("obj.70489aa0", null)
+		desc = LANG("obj.70489aa06ef38d50", null)
 	broken = TRUE
 
 /obj/structure/mirror/atom_deconstruct(disassembled = TRUE)
@@ -344,9 +349,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	if(!I.tool_start_check(user, amount=1))
 		return TRUE
 
-	balloon_alert(user, LANG("obj.b52342a8", null))
+	balloon_alert(user, LANG("obj.b52342a8e93a2ba2", null))
 	if(I.use_tool(src, user, 10, volume = 50))
-		balloon_alert(user, LANG("obj.65ced1e8", null))
+		balloon_alert(user, LANG("obj.65ced1e8b5b56733", null))
 		broken = FALSE
 		icon_state = initial(icon_state)
 		desc = initial(desc)
@@ -391,7 +396,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	cursable = FALSE
 
 /obj/structure/mirror/magic/change_beard(mob/living/carbon/human/beard_dresser) // magical mirrors do nothing but give you the damn beard
-	var/new_style = tgui_input_list(beard_dresser, LANG("obj.be20145f", null), LANG("obj.62de8b3c", null), SSaccessories.facial_hairstyles_list)
+	var/new_style = tgui_input_list(beard_dresser, LANG("obj.be20145f8fc21fba", null), LANG("obj.62de8b3c2d75be9b", null), SSaccessories.facial_hairstyles_list)
 	if(isnull(new_style) || !can_use_mirror(beard_dresser))
 		return
 
@@ -399,7 +404,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 
 //Magic mirrors can change hair color as well
 /obj/structure/mirror/magic/change_hair(mob/living/carbon/human/user)
-	var/hairchoice = tgui_alert(user, LANG("obj.49a85821", null), LANG("obj.1fc0c9f4", null), list("Style", "Color"))
+	var/hairchoice = tgui_alert(user, LANG("obj.49a858218567a4a7", null), LANG("obj.1fc0c9f4472e7c9d", null), list("Style", "Color"))
 	if(!can_use_mirror(user))
 		return
 	if(hairchoice == "Style") //So you just want to use a mirror then?
@@ -422,7 +427,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	if(HAS_TRAIT(race_changer, TRAIT_ADVANCEDTOOLUSER) && HAS_TRAIT(race_changer, TRAIT_LITERATE))
 		return
 
-	to_chat(race_changer, span_alert(LANG("obj.f23bbfeb", null)))
+	to_chat(race_changer, span_alert(LANG("obj.f23bbfeb2a050551", null)))
 	// Prevents wizards from being soft locked out of everything
 	// If this stays after the species was changed once more, well, the magic mirror did it. It's magic i aint gotta explain shit
 	race_changer.add_traits(list(TRAIT_LITERATE, TRAIT_ADVANCEDTOOLUSER), SPECIES_TRAIT)
@@ -451,14 +456,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	new /obj/item/shard(loc) // never gives the frame back
 
 /obj/structure/mirror/magic/lesser/heretic/welder_act(mob/living/user, obj/item/I)
-	to_chat(user, span_alert(LANG("obj.5535e2df", list(src))))
+	to_chat(user, span_alert(LANG("obj.5535e2dfc26fd4de", list(src))))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/structure/mirror/magic/lesser/heretic/pre_change(mob/living/carbon/human/user, picked)
 	if(IS_HERETIC(user))
 		return TRUE
 
-	to_chat(user, span_hypnophrase(LANG("obj.c5875af2", list(src))))
+	to_chat(user, span_hypnophrase(LANG("obj.c5875af218704dc2", list(src))))
 	user.Immobilize(5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(change_something), user, picked), 5 SECONDS)
 	return FALSE
@@ -468,34 +473,34 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 		return
 
 	if(!user.Adjacent(src))
-		to_chat(user, span_warning(LANG("obj.d19761b4", list(src))))
+		to_chat(user, span_warning(LANG("obj.d19761b46d700f63", list(src))))
 		return
 	if(broken)
-		to_chat(user, span_warning(LANG("obj.7a829ebc", list(src))))
+		to_chat(user, span_warning(LANG("obj.7a829ebc5b4b7c28", list(src))))
 		return
 
 	// randomizes your stuff, doesn't affect DNA though so you could easily get genetics to fix you
 	switch(picked)
 		if(CHANGE_HAIR, CHANGE_BEARD)
-			to_chat(user, span_hypnophrase(LANG("obj.8f4e4371", list(pick("it can be improved", "it needs to be changed", "it must be different")))))
+			to_chat(user, span_hypnophrase(LANG("obj.8f4e437112257a7b", list(pick("it can be improved", "it needs to be changed", "it must be different")))))
 			user.set_hairstyle(random_hairstyle(user.gender))
 			user.set_facial_hairstyle(random_facial_hairstyle(user.gender))
 		if(CHANGE_RACE)
-			to_chat(user, span_hypnophrase(LANG("obj.f408e7ef", list(pick("I must become anew", "I need to be different", "I want to be something else")))))
+			to_chat(user, span_hypnophrase(LANG("obj.f408e7ef17515f5a", list(pick("I must become anew", "I need to be different", "I want to be something else")))))
 			var/list/options = assoc_to_values(selectable_races) - user.dna.species.type
 			var/datum/species/newrace = GLOB.species_prototypes[pick(options)]
 			on_species_change(user, newrace)
 			user.set_species(newrace.type, icon_update = FALSE)
 		if(CHANGE_SEX)
-			to_chat(user, span_hypnophrase(LANG("obj.c2d773c2", null))) // the wording used here needs to be very deliberate...
+			to_chat(user, span_hypnophrase(LANG("obj.c2d773c22cdb33ed", null))) // the wording used here needs to be very deliberate...
 			var/list/options = list(MALE, FEMALE, PLURAL, NEUTER) - user.gender
 			user.gender = pick(options)
 			user.physique = user.gender
 		if(CHANGE_EYES)
-			to_chat(user, span_hypnophrase(LANG("obj.8e60a070", list(pick("They're simply not right", "they must be replaced", "they are both wrong")))))
+			to_chat(user, span_hypnophrase(LANG("obj.8e60a0700f6e7109", list(pick("They're simply not right", "they must be replaced", "they are both wrong")))))
 			user.set_eye_color(random_eye_color())
 		if(CHANGE_NAME) // not enabled by default but for badmin support
-			to_chat(user, span_hypnophrase(LANG("obj.62d2d797", list(pick("Something else would be better", "it must be changed", "Something more appropriate would be good")))))
+			to_chat(user, span_hypnophrase(LANG("obj.62d2d797839e2794", list(pick("Something else would be better", "it must be changed", "Something more appropriate would be good")))))
 			user.real_name = user.generate_random_mob_name()
 			user.update_visible_name()
 
@@ -520,20 +525,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	if (!changed || QDELETED(user) || !IN_GIVEN_RANGE(user, src, 3)) // 3 range gives a tiny bit of leeway if you try to run away after using it
 		return
 	user.visible_message(
-		span_bolddanger(LANG("obj.8181b64c", list(user, user.p_their()))),
-		span_notice(LANG("obj.db85e607", null)),
+		span_bolddanger(LANG("obj.8181b64c9940f68a", list(user, user.p_their()))),
+		span_notice(LANG("obj.db85e6071ecfcec2", null)),
 	)
 
 	var/turf/user_turf = get_turf(user)
-	var/list/levels = SSmapping.levels_by_trait(ZTRAIT_SPACE_RUINS)
-	var/turf/dest
-	if(length(levels))
-		dest = locate(user_turf.x, user_turf.y, pick(levels))
-
-	user_turf.ChangeTurf(/turf/open/chasm, flags = CHANGETURF_INHERIT_AIR)
-	var/turf/open/chasm/new_chasm = user_turf
-	new_chasm.set_target(dest)
-	new_chasm.drop(user)
+	var/turf/open/chasm/pride/new_chasm = user_turf.ChangeTurf(/turf/open/chasm/pride, flags = CHANGETURF_INHERIT_AIR)
+	// `ChangeTurf()` can itself lead to `drop()` if there's lattice present, so
+	// we only force the user down if they're still on the same turf.
+	if(get_turf(user) == user_turf)
+		new_chasm.drop(user)
 
 #undef CHANGE_HAIR
 #undef CHANGE_BEARD

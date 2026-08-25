@@ -138,29 +138,29 @@
 
 /obj/machinery/transport/crossing_signal/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.a5319df9", list(panel_open ? "open" : "closed")))
+	. += span_notice(LANG("obj.a5319df9eab9ca69", list(panel_open ? "open" : "closed")))
 	if(panel_open)
-		. += span_notice(LANG("obj.03cc0996", list(EXAMINE_HINT("wrench."))))
+		. += span_notice(LANG("obj.03cc0996c5a86da1", list(EXAMINE_HINT("wrench."))))
 	switch(operating_status)
 		if(TRANSPORT_REMOTE_WARNING)
-			. += span_notice(LANG("obj.ac94eff0", list(EXAMINE_HINT("remote warning"))))
-			. += span_notice(LANG("obj.2b683900", null))
+			. += span_notice(LANG("obj.ac94eff0ee148509", list(EXAMINE_HINT("remote warning"))))
+			. += span_notice(LANG("obj.2b6839004f298208", null))
 		if(TRANSPORT_REMOTE_FAULT)
-			. += span_notice(LANG("obj.0814e66c", list(EXAMINE_HINT("telecoms failure"))))
-			. += span_notice(LANG("obj.065f6a47", null))
+			. += span_notice(LANG("obj.0814e66c3565d06c", list(EXAMINE_HINT("telecoms failure"))))
+			. += span_notice(LANG("obj.065f6a470fe028ea", null))
 		if(TRANSPORT_LOCAL_FAULT)
-			. += span_notice(LANG("obj.c95233aa", list(EXAMINE_HINT("local fault"))))
-			. += span_notice(LANG("obj.07c6f86d", null))
+			. += span_notice(LANG("obj.c95233aa8c5e10bb", list(EXAMINE_HINT("local fault"))))
+			. += span_notice(LANG("obj.07c6f86d79511294", null))
 	switch(dir)
 		if(NORTH, SOUTH)
-			. += span_notice(LANG("obj.4d0cb9a3", null))
+			. += span_notice(LANG("obj.4d0cb9a35d74c67c", null))
 		if(EAST, WEST)
-			. += span_notice(LANG("obj.3d875294", null))
+			. += span_notice(LANG("obj.3d8752943f42d27b", null))
 
 /obj/machinery/transport/crossing_signal/emag_act(mob/living/user)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, LANG("obj.53eb4acf", null))
+	balloon_alert(user, LANG("obj.53eb4acf6d9fb329", null))
 	operating_status = TRANSPORT_LOCAL_FAULT
 	obj_flags |= EMAGGED
 	return TRUE
@@ -172,7 +172,7 @@
 
 	tool.play_tool_sound(src, 50)
 	setDir(turn(dir,-90))
-	balloon_alert(user, LANG("obj.025b0c2e", null))
+	balloon_alert(user, LANG("obj.025b0c2e96508b56", null))
 	find_uplink()
 	return CLICK_ACTION_SUCCESS
 
@@ -185,7 +185,7 @@
 		if(OUTBOUND)
 			sign_dir = INBOUND
 
-	to_chat(user, span_notice(LANG("obj.b61a0c66", list(src))))
+	to_chat(user, span_notice(LANG("obj.b61a0c66a46daf90", list(src))))
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -498,19 +498,19 @@
 
 /obj/machinery/transport/guideway_sensor/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.a5319df9", list(panel_open ? "open" : "closed")))
+	. += span_notice(LANG("obj.a5319df9eab9ca69", list(panel_open ? "open" : "closed")))
 	if(panel_open)
-		. += span_notice(LANG("obj.ac3cf8bd", list(EXAMINE_HINT("wrench."))))
+		. += span_notice(LANG("obj.ac3cf8bd2cd18ee7", list(EXAMINE_HINT("wrench."))))
 	switch(operating_status)
 		if(TRANSPORT_REMOTE_WARNING)
-			. += span_notice(LANG("obj.ac94eff0", list(EXAMINE_HINT("remote warning"))))
-			. += span_notice(LANG("obj.ba027247", null))
+			. += span_notice(LANG("obj.ac94eff0ee148509", list(EXAMINE_HINT("remote warning"))))
+			. += span_notice(LANG("obj.ba0272478a22c761", null))
 		if(TRANSPORT_REMOTE_FAULT)
-			. += span_notice(LANG("obj.0814e66c", list(EXAMINE_HINT("remote fault"))))
-			. += span_notice(LANG("obj.544aa103", null))
+			. += span_notice(LANG("obj.0814e66c3565d06c", list(EXAMINE_HINT("remote fault"))))
+			. += span_notice(LANG("obj.544aa1033f5d7739", null))
 		if(TRANSPORT_LOCAL_FAULT)
-			. += span_notice(LANG("obj.c95233aa", list(EXAMINE_HINT("local fault"))))
-			. += span_notice(LANG("obj.07c6f86d", null))
+			. += span_notice(LANG("obj.c95233aa8c5e10bb", list(EXAMINE_HINT("local fault"))))
+			. += span_notice(LANG("obj.07c6f86d79511294", null))
 
 /obj/machinery/transport/guideway_sensor/screwdriver_act(mob/living/user, obj/item/tool)
 	return default_deconstruction_screwdriver(user, tool)

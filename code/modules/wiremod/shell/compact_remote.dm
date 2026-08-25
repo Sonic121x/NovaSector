@@ -47,7 +47,7 @@
  */
 /obj/item/circuit_component/compact_remote/proc/send_trigger(atom/source, mob/user)
 	SIGNAL_HANDLER
-	source.balloon_alert(user, LANG("obj.ac74636c", null))
+	source.balloon_alert(user, LANG("obj.ac74636ccf4ffcfe", null))
 	playsound(source, SFX_TERMINAL_TYPE, 25, FALSE)
 	entity.set_output(user)
 	signal.set_output(COMPONENT_SIGNAL)

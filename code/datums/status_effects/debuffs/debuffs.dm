@@ -312,7 +312,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 					carbon_owner.mind.adjust_experience(/datum/skill/athletics, seconds_between_ticks * sleep_quality * SLEEP_QUALITY_WORKOUT_MULTIPLER)
 					carbon_owner.adjust_timed_status_effect(-1 * seconds_between_ticks * sleep_quality * SLEEP_QUALITY_WORKOUT_MULTIPLER, /datum/status_effect/exercised)
 					if(prob(2))
-						to_chat(carbon_owner, span_notice(LANG("datum.44987336", null)))
+						to_chat(carbon_owner, span_notice(LANG("datum.44987336acb48853", null)))
 
 			if(health_ratio > 0.8) // only heals minor physical damage
 				need_mob_update += owner.adjust_brute_loss(-0.4 * sleep_quality * seconds_between_ticks, updating_health = FALSE, required_bodytype = BODYTYPE_ORGANIC)
@@ -542,11 +542,11 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	new /obj/effect/temp_visual/bleed(get_turf(owner))
 
 /datum/status_effect/stacking/saw_bleed/threshold_cross_effect()
-	owner.adjust_brute_loss(bleed_damage)
 	new /obj/effect/temp_visual/bleed/explode(get_turf(owner))
+	playsound(owner, SFX_DESECRATION, 100, TRUE, -1)
 	for(var/splatter_dir in GLOB.alldirs)
 		owner.create_splatter(splatter_dir)
-	playsound(owner, SFX_DESECRATION, 100, TRUE, -1)
+	owner.adjust_brute_loss(bleed_damage)
 
 /datum/status_effect/stacking/saw_bleed/bloodletting
 	id = "bloodletting"
@@ -587,7 +587,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	if(prob(10))
 		owner.emote(pick("gasp", "gag", "choke"))
 
-/datum/status_effect/neck_slice/get_examine_text()
+/datum/status_effect/neck_slice/get_examine_text(mob/examiner)
 	return span_warning("[owner.p_Their()] neck is cut and is bleeding profusely!")
 
 /// Applies a curse with various possible effects
@@ -680,7 +680,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	. = ..()
 	owner.add_traits(list(TRAIT_PACIFISM, TRAIT_MUTE), REF(src))
 	owner.add_mood_event(REF(src), /datum/mood_event/gondola)
-	to_chat(owner, span_notice(LANG("datum.71e829fc", null)))
+	to_chat(owner, span_notice(LANG("datum.71e829fcd961f1f3", null)))
 
 /datum/status_effect/gonbola_pacify/on_remove()
 	owner.remove_traits(list(TRAIT_PACIFISM, TRAIT_MUTE), REF(src))
@@ -726,9 +726,9 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	REMOVE_TRAIT(owner, TRAIT_MUTE, TRAIT_STATUS_EFFECT(id))
 	owner.remove_status_effect(/datum/status_effect/dizziness)
 	owner.remove_client_colour(REF(src))
-	to_chat(owner, span_warning(LANG("datum.45edac63", null)))
+	to_chat(owner, span_warning(LANG("datum.45edac6340489d06", null)))
 
-/datum/status_effect/trance/get_examine_text()
+/datum/status_effect/trance/get_examine_text(mob/examiner)
 	return span_warning("[owner.p_They()] seem[owner.p_s()] slow and unfocused.")
 
 /datum/status_effect/trance/proc/hypnotize(datum/source, list/hearing_args)
@@ -760,13 +760,13 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	switch(rand(1,5))
 		if(1)
 			if((owner.mobility_flags & MOBILITY_MOVE) && isturf(owner.loc))
-				to_chat(owner, span_warning(LANG("datum.31a2b028", null)))
+				to_chat(owner, span_warning(LANG("datum.31a2b028fcc36ca3", null)))
 				step(owner, pick(GLOB.cardinals))
 		if(2)
 			var/obj/item/held_item = owner.get_active_held_item()
 			if(!held_item)
 				return
-			to_chat(owner, span_warning(LANG("datum.c460dc69", null)))
+			to_chat(owner, span_warning(LANG("datum.c460dc6942a51bdb", null)))
 			owner.log_message("used [held_item] due to a Muscle Spasm", LOG_ATTACK)
 			held_item.attack_self(owner)
 		if(3)
@@ -780,13 +780,13 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 			for(var/mob/living/nearby_mobs in oview(owner, range))
 				targets += nearby_mobs
 			if(LAZYLEN(targets))
-				to_chat(owner, span_warning(LANG("datum.1a12789c", null)))
+				to_chat(owner, span_warning(LANG("datum.1a12789c4b1e48fe", null)))
 				owner.log_message(" attacked someone due to a Muscle Spasm", LOG_ATTACK) //the following attack will log itself
 				owner.ClickOn(pick(targets))
 			owner.set_combat_mode(FALSE)
 		if(4)
 			owner.set_combat_mode(TRUE)
-			to_chat(owner, span_warning(LANG("datum.1a12789c", null)))
+			to_chat(owner, span_warning(LANG("datum.1a12789c4b1e48fe", null)))
 			owner.log_message("attacked [owner.p_them()]self to a Muscle Spasm", LOG_ATTACK)
 			owner.ClickOn(owner)
 			owner.set_combat_mode(FALSE)
@@ -796,7 +796,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 			for(var/turf/nearby_turfs in oview(owner, 3))
 				targets += nearby_turfs
 			if(LAZYLEN(targets) && held_item)
-				to_chat(owner, span_warning(LANG("datum.1a12789c", null)))
+				to_chat(owner, span_warning(LANG("datum.1a12789c4b1e48fe", null)))
 				owner.log_message("threw [held_item] due to a Muscle Spasm", LOG_ATTACK)
 				owner.throw_item(pick(targets))
 
@@ -809,7 +809,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 
 /datum/status_effect/convulsing/on_creation(mob/living/zappy_boy)
 	. = ..()
-	to_chat(zappy_boy, span_boldwarning(LANG("datum.72bf2cd3", null)))
+	to_chat(zappy_boy, span_boldwarning(LANG("datum.72bf2cd33ce0bf68", null)))
 
 /datum/status_effect/convulsing/tick(seconds_between_ticks)
 	var/mob/living/carbon/H = owner
@@ -817,8 +817,8 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 		var/obj/item/I = H.get_active_held_item()
 		if(I && H.dropItemToGround(I))
 			H.visible_message(
-				span_notice(LANG("datum.98cb0284", list(H, I.name))),
-				span_userdanger(LANG("datum.d4cd2f78", null)),
+				span_notice(LANG("datum.98cb02842ff37442", list(H, I.name))),
+				span_userdanger(LANG("datum.d4cd2f7834285ee6", null)),
 			)
 			H.adjust_jitter(10 SECONDS)
 
@@ -837,7 +837,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 
 /datum/status_effect/dna_melt/on_creation(mob/living/new_owner, set_duration)
 	. = ..()
-	to_chat(new_owner, span_boldwarning(LANG("datum.7de430da", null)))
+	to_chat(new_owner, span_boldwarning(LANG("datum.7de430da391f1aac", null)))
 
 /datum/status_effect/dna_melt/on_remove()
 	if(!ishuman(owner))
@@ -988,7 +988,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 /datum/status_effect/ants/on_creation(mob/living/new_owner, amount_left)
 	if(isnum(amount_left) && new_owner.stat < HARD_CRIT)
 		if(!IS_UNCONSCIOUS(new_owner)) // Unconscious people won't get messages
-			to_chat(new_owner, span_userdanger(LANG("datum.0c157ca2", null)))
+			to_chat(new_owner, span_userdanger(LANG("datum.0c157ca2aad4d19e", null)))
 		ants_remaining += amount_left
 		RegisterSignal(new_owner, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(ants_washed))
 	. = ..()
@@ -998,7 +998,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	if(isnum(amount_left) && ants_remaining >= 1 && victim.stat < HARD_CRIT)
 		if(!IS_UNCONSCIOUS(victim)) // Unconscious people won't get messages
 			if(prob(99))
-				to_chat(victim, span_userdanger(LANG("datum.13ea6e8f", null)))
+				to_chat(victim, span_userdanger(LANG("datum.13ea6e8fff768691", null)))
 			else
 				INVOKE_ASYNC(victim, TYPE_PROC_REF(/atom/movable, say), "AAHH! THIS SITUATION HAS ONLY BEEN MADE WORSE WITH THE ADDITION OF YET MORE ANTS!!", forced = /datum/status_effect/ants)
 		ants_remaining += amount_left
@@ -1006,7 +1006,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 
 /datum/status_effect/ants/on_remove()
 	ants_remaining = 0
-	to_chat(owner, span_notice(LANG("datum.af4898f0", null)))
+	to_chat(owner, span_notice(LANG("datum.af4898f0f62494c5", null)))
 	UnregisterSignal(owner, COMSIG_COMPONENT_CLEAN_ACT)
 	. = ..()
 
@@ -1018,7 +1018,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	if(owner.remove_status_effect(/datum/status_effect/ants))
 		return COMPONENT_CLEANED|COMPONENT_CLEANED_GAIN_XP
 
-/datum/status_effect/ants/get_examine_text()
+/datum/status_effect/ants/get_examine_text(mob/examiner)
 	return span_warning("[owner.p_They()] [owner.p_are()] covered in ants!")
 
 /datum/status_effect/ants/tick(seconds_between_ticks)
@@ -1034,16 +1034,16 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 		if(prob(50)) // Most of the damage is done through random chance. When tested yielded an average 100 brute with 200u ants.
 			switch(rand(1,50))
 				if (1 to 8) //16% Chance
-					to_chat(victim, span_danger(LANG("datum.aee70297", null)))
+					to_chat(victim, span_danger(LANG("datum.aee70297dbefbcc8", null)))
 					owner.apply_damage(0.4 * seconds_between_ticks, BRUTE, BODY_ZONE_HEAD)
 				if (9 to 29) //40% chance
-					to_chat(victim, span_danger(LANG("datum.efe7e4f9", null)))
+					to_chat(victim, span_danger(LANG("datum.efe7e4f94a3ef95a", null)))
 					owner.apply_damage(1.2 * seconds_between_ticks, BRUTE, pick(GLOB.arm_zones))
 				if (30 to 49) //38% chance
-					to_chat(victim, span_danger(LANG("datum.7b0fa781", null)))
+					to_chat(victim, span_danger(LANG("datum.7b0fa78130ce1f40", null)))
 					owner.apply_damage(1.2 * seconds_between_ticks, BRUTE, pick(GLOB.leg_zones))
 				if(50) // 2% chance
-					to_chat(victim, span_danger(LANG("datum.ef7630bb", null)))
+					to_chat(victim, span_danger(LANG("datum.ef7630bb7a5e785b", null)))
 					victim.set_eye_blur_if_lower(6 SECONDS)
 					ants_remaining -= 5 // To balance out the blindness, it'll be a little shorter.
 	ants_remaining--
@@ -1064,11 +1064,11 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	var/mob/living/living = owner
 	if(!istype(living) || !living.can_resist() || living != owner)
 		return
-	to_chat(living, span_notice(LANG("atom.65df0df0", null)))
+	to_chat(living, span_notice(LANG("atom.65df0df0729f8c01", null)))
 	if(!do_after(living, 2 SECONDS, target = living))
 		return
 	for (var/datum/status_effect/ants/ant_covered in living.status_effects)
-		to_chat(living, span_notice(LANG("atom.e2be2a1c", null)))
+		to_chat(living, span_notice(LANG("atom.e2be2a1c443e70bc", null)))
 		ant_covered.ants_remaining -= 10 // 5 Times more ants removed per second than just waiting in place
 
 /datum/status_effect/ants/fire

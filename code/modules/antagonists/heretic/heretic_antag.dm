@@ -301,8 +301,8 @@
 		return
 	var/confirmed = tgui_alert(
 		owner.current,
-		message = "Are you sure? You will no longer be able to Ascend.",
-		title = "Reject the call?",
+		message = LANG("datum.e97bafc6cb330068", null),
+		title = LANG("datum.cbdc9b35bd6720b4", null),
 		buttons = list("Yes", "No"),
 	) == "Yes"
 	if (!confirmed)
@@ -337,7 +337,7 @@
 
 /datum/antagonist/heretic/farewell()
 	if(!silent && owner.current)
-		to_chat(owner.current, span_userdanger(LANG("datum.a550bda4", null)))
+		to_chat(owner.current, span_userdanger(LANG("datum.a550bda4ec677bd5", null)))
 	return ..()
 
 /datum/antagonist/heretic/on_gain()
@@ -429,8 +429,8 @@
 		return
 	var/mob/heretic_mob = owner.current
 	unlimited_blades = TRUE
-	to_chat(heretic_mob, span_boldwarning(LANG("datum.724bfbbd", null)))
-	heretic_mob.balloon_alert(heretic_mob, LANG("datum.e3c32e0d", null))
+	to_chat(heretic_mob, span_boldwarning(LANG("datum.724bfbbdd0e7ed7b", null)))
+	heretic_mob.balloon_alert(heretic_mob, LANG("datum.e3c32e0d3c423c4b", null))
 	update_heretic_aura()
 	var/datum/action/cooldown/spell/shadow_cloak/cloak_spell = locate() in heretic_mob.actions
 	cloak_spell.Remove(heretic_mob)
@@ -512,15 +512,15 @@
 /datum/antagonist/heretic/proc/try_draw_rune(mob/living/user, turf/target_turf, drawing_time = 20 SECONDS, additional_checks)
 	for(var/turf/nearby_turf as anything in RANGE_TURFS(1, target_turf))
 		if(!isopenturf(nearby_turf) || is_type_in_typecache(nearby_turf, blacklisted_rune_turfs))
-			target_turf.balloon_alert(user, LANG("datum.871ab3ef", null))
+			target_turf.balloon_alert(user, LANG("datum.871ab3efe695b995", null))
 			return
 
 	if(locate(/obj/effect/heretic_rune) in range(3, target_turf))
-		target_turf.balloon_alert(user, LANG("datum.7af63d54", null))
+		target_turf.balloon_alert(user, LANG("datum.7af63d5418699b5f", null))
 		return
 
 	if(drawing_rune)
-		target_turf.balloon_alert(user, LANG("datum.3d30c111", null))
+		target_turf.balloon_alert(user, LANG("datum.3d30c111553ee02c", null))
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(draw_rune), user, target_turf, drawing_time, additional_checks)
@@ -538,7 +538,7 @@
 	drawing_rune = TRUE
 
 	var/rune_colour = GLOB.heretic_path_to_color[heretic_path?.route || PATH_START]
-	target_turf.balloon_alert(user, LANG("datum.10bc15c6", null))
+	target_turf.balloon_alert(user, LANG("datum.10bc15c69e4bf28b", null))
 	var/obj/effect/temp_visual/drawing_heretic_rune/drawing_effect
 	if (drawing_time < (10 SECONDS))
 		drawing_effect = new /obj/effect/temp_visual/drawing_heretic_rune/fast(target_turf, rune_colour)
@@ -546,14 +546,14 @@
 		drawing_effect = new(target_turf, rune_colour)
 
 	if(!do_after(user, drawing_time, target_turf, extra_checks = additional_checks, cog_icon = null))
-		target_turf.balloon_alert(user, LANG("datum.c67b5d27", null))
+		target_turf.balloon_alert(user, LANG("datum.c67b5d274d6e724b", null))
 		new /obj/effect/temp_visual/drawing_heretic_rune/fail(target_turf, rune_colour)
 		qdel(drawing_effect)
 		drawing_rune = FALSE
 		return
 
 	qdel(drawing_effect)
-	target_turf.balloon_alert(user, LANG("datum.676d721a", null))
+	target_turf.balloon_alert(user, LANG("datum.676d721a5e8339bc", null))
 	new /obj/effect/heretic_rune/big(target_turf, rune_colour)
 	drawing_rune = FALSE
 
@@ -605,7 +605,7 @@
 	haunted_blade.gender_reveal(outline_color = null, ray_color = COLOR_HERETIC_GREEN)
 
 	for(var/mob/living/culto as anything in invokers)
-		to_chat(culto, span_cult_large(LANG("datum.f58d3a68", null)))
+		to_chat(culto, span_cult_large(LANG("datum.f58d3a68fe609bf8", null)))
 
 	// Locate a cultist team (Is there a better way??)
 	var/mob/living/random_cultist = pick(invokers)
@@ -836,12 +836,12 @@
  */
 /datum/antagonist/heretic/proc/give_living_heart(mob/admin)
 	if(!admin.client?.holder)
-		to_chat(admin, span_warning(LANG("datum.dddf66eb", null)))
+		to_chat(admin, span_warning(LANG("datum.dddf66eb7b180133", null)))
 		return
 
 	var/datum/heretic_knowledge/living_heart/heart_knowledge = get_knowledge(/datum/heretic_knowledge/living_heart)
 	if(!heart_knowledge)
-		to_chat(admin, span_warning(LANG("datum.d4d9eb8b", null)))
+		to_chat(admin, span_warning(LANG("datum.d4d9eb8b00f0d6a8", null)))
 		return
 
 	heart_knowledge.on_research(owner.current, src)
@@ -851,17 +851,17 @@
  */
 /datum/antagonist/heretic/proc/add_marked_as_target(mob/admin)
 	if(!admin.client?.holder)
-		to_chat(admin, span_warning(LANG("datum.dddf66eb", null)))
+		to_chat(admin, span_warning(LANG("datum.dddf66eb7b180133", null)))
 		return
 
 	var/mob/living/carbon/human/new_target = admin.client?.holder.marked_datum
 	if(!istype(new_target))
-		to_chat(admin, span_warning(LANG("datum.06283c25", null)))
+		to_chat(admin, span_warning(LANG("datum.06283c2536283e2f", null)))
 		return
 
-	if(tgui_alert(admin, LANG("datum.6375d72f", null), LANG("datum.c61774cb", null), list("Yes", "No")) == "Yes")
-		to_chat(owner.current, span_danger(LANG("datum.ceb53cb3", null)))
-		to_chat(owner.current, span_danger(LANG("datum.b88a54a4", list(new_target.real_name, new_target.mind?.assigned_role?.title || "human"))))
+	if(tgui_alert(admin, LANG("datum.6375d72fe710bbea", null), LANG("datum.c61774cb2443c4e8", null), list("Yes", "No")) == "Yes")
+		to_chat(owner.current, span_danger(LANG("datum.ceb53cb345170fa7", null)))
+		to_chat(owner.current, span_danger(LANG("datum.b88a54a4b354012c", list(new_target.real_name, new_target.mind?.assigned_role?.title || "human"))))
 
 	add_sacrifice_target(new_target)
 
@@ -870,14 +870,14 @@
  */
 /datum/antagonist/heretic/proc/remove_target(mob/admin)
 	if(!admin.client?.holder)
-		to_chat(admin, span_warning(LANG("datum.dddf66eb", null)))
+		to_chat(admin, span_warning(LANG("datum.dddf66eb7b180133", null)))
 		return
 
 	var/list/removable = list()
 	for(var/mob/living/carbon/human/old_target as anything in sac_targets)
 		removable[old_target.name] = old_target
 
-	var/name_of_removed = tgui_input_list(admin, LANG("datum.3a273619", null), LANG("datum.e5a5bc00", null), removable)
+	var/name_of_removed = tgui_input_list(admin, LANG("datum.3a2736192e866be0", null), LANG("datum.e5a5bc00dfe31a9e", null), removable)
 	if(QDELETED(src) || !admin.client?.holder || isnull(name_of_removed))
 		return
 	var/mob/living/carbon/human/chosen_target = removable[name_of_removed]
@@ -885,21 +885,21 @@
 		return
 
 	if(!remove_sacrifice_target(chosen_target))
-		to_chat(admin, span_warning(LANG("datum.8360d073", list(name_of_removed, owner))))
+		to_chat(admin, span_warning(LANG("datum.8360d0736e70b154", list(name_of_removed, owner))))
 		return
 
-	if(tgui_alert(admin, LANG("datum.6375d72f", null), LANG("datum.c61774cb", null), list("Yes", "No")) == "Yes")
-		to_chat(owner.current, span_danger(LANG("datum.18b68f72", null)))
+	if(tgui_alert(admin, LANG("datum.6375d72fe710bbea", null), LANG("datum.c61774cb2443c4e8", null), list("Yes", "No")) == "Yes")
+		to_chat(owner.current, span_danger(LANG("datum.18b68f728c1faccd", null)))
 
 /**
  * Admin proc for easily adding / removing knowledge points.
  */
 /datum/antagonist/heretic/proc/admin_change_points(mob/admin)
 	if(!admin.client?.holder)
-		to_chat(admin, span_warning(LANG("datum.dddf66eb", null)))
+		to_chat(admin, span_warning(LANG("datum.dddf66eb7b180133", null)))
 		return
 
-	var/change_num = tgui_input_number(admin, LANG("datum.865305fb", null), LANG("datum.4c684fb6", null), 0, 100, -100)
+	var/change_num = tgui_input_number(admin, LANG("datum.865305fb11e911e9", null), LANG("datum.4c684fb6d08f96fa", null), 0, 100, -100)
 	if(!change_num || QDELETED(src))
 		return
 
@@ -910,12 +910,12 @@
  */
 /datum/antagonist/heretic/proc/admin_give_focus(mob/admin)
 	if(!admin.client?.holder)
-		to_chat(admin, span_warning(LANG("datum.dddf66eb", null)))
+		to_chat(admin, span_warning(LANG("datum.dddf66eb7b180133", null)))
 		return
 
 	var/mob/living/pawn = owner.current
 	pawn.equip_to_slot_if_possible(new /obj/item/clothing/neck/heretic_focus(get_turf(pawn)), ITEM_SLOT_NECK, TRUE, TRUE)
-	to_chat(pawn, span_mansus(LANG("datum.73cd4578", null)))
+	to_chat(pawn, span_mansus(LANG("datum.73cd4578b4117596", null)))
 
 /datum/antagonist/heretic/antag_panel_data()
 	var/list/string_of_knowledge = list()
@@ -933,13 +933,13 @@
 	. = ..()
 
 	. += "<br>"
-	. += LANG("datum.8c06fe40", null)
+	. += LANG("datum.8c06fe40b9c3d129", null)
 	if(LAZYLEN(sac_targets))
 		for(var/mob/living/carbon/human/target as anything in sac_targets)
-			. += LANG("datum.71f1421c", list(target.real_name, target.mind?.assigned_role?.title || "human"))
+			. += LANG("datum.71f1421cd4cc8a73", list(target.real_name, target.mind?.assigned_role?.title || "human"))
 
 	else
-		. += LANG("datum.fa63c79d", null)
+		. += LANG("datum.fa63c79d44502ee4", null)
 	. += "<br>"
 
 /datum/antagonist/heretic/proc/purchase_knowledge(datum/heretic_knowledge/knowledge_type, category = HERETIC_KNOWLEDGE_TREE, update = TRUE)

@@ -36,11 +36,11 @@
 /obj/machinery/byteforge/examine(mob/user)
 	. = ..()
 
-	. += span_notice(LANG("obj.29ab3afa", null))
+	. += span_notice(LANG("obj.29ab3afa6c6f7614", null))
 
-	. += span_notice(LANG("obj.f3fabb12", list(EXAMINE_HINT("screwed"), panel_open ? "close" : "open")))
+	. += span_notice(LANG("obj.f3fabb12d30acb3c", list(EXAMINE_HINT("screwed"), panel_open ? "close" : "open")))
 	if(panel_open)
-		. += span_notice(LANG("obj.fa5fc796", list(EXAMINE_HINT("pried"))))
+		. += span_notice(LANG("obj.fa5fc7965e12e9d0", list(EXAMINE_HINT("pried"))))
 
 /obj/machinery/byteforge/update_appearance(updates)
 	. = ..()

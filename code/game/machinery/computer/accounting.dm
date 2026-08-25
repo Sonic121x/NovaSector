@@ -73,7 +73,7 @@
 			bank_account.payday_modifier = clamp(round(text2num(params["pay_mod"]), 0.05), MIN_PAY_MOD, MAX_PAY_MOD)
 			var/new_check_total = bank_account.payday_modifier * bank_account.account_job.paycheck
 			var/raise_or_cut = new_check_total > old_modifier * bank_account.account_job.paycheck ? "raised" : "cut"
-			bank_account.bank_card_talk(LANG("obj.a26d4ddf", list(raise_or_cut, new_check_total, MONEY_SYMBOL)), force = TRUE)
+			bank_account.bank_card_talk(LANG("obj.a26d4ddf6a4f230a", list(raise_or_cut, new_check_total, MONEY_SYMBOL)), force = TRUE)
 			SSeconomy.add_audit_entry(bank_account, new_check_total, "Paycheck [raise_or_cut]")
 			return TRUE
 

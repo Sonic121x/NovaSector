@@ -282,7 +282,7 @@
 		multiplier *= 3
 	affected_mob.adjust_blood_volume(-2 * multiplier * seconds_per_tick)
 	if(SPT_PROB(10, seconds_per_tick))
-		to_chat(affected_mob, span_danger(LANG("datum.9f682e09", null)))
+		to_chat(affected_mob, span_danger(LANG("datum.9f682e09368a6461", null)))
 		if(SPT_PROB(25, seconds_per_tick))
 			affected_mob.emote("scream")
 	return UPDATE_MOB_HEALTH
@@ -300,6 +300,22 @@
 			continue
 		data += dna
 
+/obj/item/paper/guides/carnivorous_blood
+	name = "Thank you for your purchase!"
+	default_raw_text = "We thank you for your purchase of a sample of Carnivorous Blood for your \[MEDICAL RESEARCH\].\
+	<br>We at Interdyne Pharmaceuticals love to see passion for the field of \[BLOODOLOGY\].\
+	<br>We hope to see you succeed in your goal of \[JUSTGIVEIT\].\
+	<br>Please exercise caution. Interdyne Pharmaceuticals is not responsible for bodily harm caused by the substance.\
+	<br>\
+	<br>☣BIOHAZARD WARNING☣\
+	<ul>\
+	<li>NEVER allow Carnivorous Blood to enter a living being's bloodstream. The substance has been found to rapidly deplete blood cell counts.\
+	<li>NEVER mix Carnivorous Blood with actual blood outside a living being. Doing so will greatly increase the risk to the blood's donor if the substance finds itself within their bloodstream.\
+	<li>If three or more beings have had their blood mixed with a sample of Carnivorous Blood, this additional risk no longer applies, though the sample should be disposed of immediately.\
+	<li>NEVER mix liquified meat, or any other high-protein liquid, with Carnivorous Blood. Doing so will cause the substance to rapidly self-replicate.\
+	</ul>\
+	"
+
 /datum/reagent/toxin/slimejelly
 	name = "Slime Jelly"
 	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
@@ -314,7 +330,7 @@
 /datum/reagent/toxin/slimejelly/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	if(SPT_PROB(5, seconds_per_tick))
-		to_chat(affected_mob, span_danger(LANG("datum.e0ed8990", null)))
+		to_chat(affected_mob, span_danger(LANG("datum.e0ed8990423927a2", null)))
 		if(affected_mob.adjust_tox_loss(rand(20, 60) * metabolization_ratio, updating_health = FALSE, required_biotype = affected_biotype))
 			return UPDATE_MOB_HEALTH
 	else if(SPT_PROB(23, seconds_per_tick))
@@ -791,7 +807,7 @@
 	if(SPT_PROB(30, seconds_per_tick))
 		switch(pick(1, 2, 3, 4))
 			if(1)
-				to_chat(affected_mob, span_danger(LANG("datum.677f8e05", null)))
+				to_chat(affected_mob, span_danger(LANG("datum.677f8e05bfe86bc1", null)))
 				affected_mob.set_eye_blur_if_lower(6 SECONDS)
 			if(2)
 				affected_mob.emote("cough")
@@ -799,7 +815,7 @@
 				affected_mob.emote("sneeze")
 			if(4)
 				if(prob(75))
-					to_chat(affected_mob, span_danger(LANG("datum.2443e090", null)))
+					to_chat(affected_mob, span_danger(LANG("datum.2443e090a7330d25", null)))
 					if(affected_mob.adjust_brute_loss(4 * metabolization_ratio, updating_health = FALSE, required_bodytype = affected_bodytype))
 						return UPDATE_MOB_HEALTH
 
@@ -916,7 +932,7 @@
 		affected_mob.losebreath += 1
 		need_mob_update = TRUE
 	if(SPT_PROB(4, seconds_per_tick))
-		to_chat(affected_mob, span_danger(LANG("datum.fd5d0842", null)))
+		to_chat(affected_mob, span_danger(LANG("datum.fd5d08421ce8153c", null)))
 		affected_mob.Stun(40)
 		need_mob_update += affected_mob.adjust_tox_loss(8 * normalise_creation_purity() * metabolization_ratio, updating_health = FALSE, required_biotype = affected_biotype)
 	if(need_mob_update)
@@ -995,7 +1011,7 @@
 			if(!affected_mob.undergoing_cardiac_arrest() && affected_mob.can_heartattack())
 				affected_mob.set_heartattack(TRUE)
 				if(!IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-					affected_mob.visible_message(span_userdanger(LANG("datum.a043844a", list(affected_mob, affected_mob.p_their(), affected_mob.p_their()))))
+					affected_mob.visible_message(span_userdanger(LANG("datum.a043844a532a0911", list(affected_mob, affected_mob.p_their(), affected_mob.p_their()))))
 			else
 				affected_mob.losebreath += 10
 				need_mob_update = affected_mob.adjust_oxy_loss(rand(5,25), updating_health = FALSE, required_biotype = affected_biotype)
@@ -1144,7 +1160,7 @@
 	if(current_cycle > 33 && SPT_PROB(7.5, seconds_per_tick))
 		affected_mob.spew_organ()
 		affected_mob.vomit(VOMIT_CATEGORY_BLOOD, lost_nutrition = 0, distance = 4)
-		to_chat(affected_mob, span_userdanger(LANG("datum.dab23ebc", null)))
+		to_chat(affected_mob, span_userdanger(LANG("datum.dab23ebcaafe35d2", null)))
 
 /datum/reagent/toxin/curare
 	name = "Curare"
@@ -1389,7 +1405,7 @@
 		if(2)
 			affected_mob.manual_emote(pick("oofs silently.", "looks like [affected_mob.p_their()] bones hurt.", "grimaces, as though [affected_mob.p_their()] bones hurt."))
 		if(3)
-			to_chat(affected_mob, span_warning(LANG("datum.8d18c471", null)))
+			to_chat(affected_mob, span_warning(LANG("datum.8d18c4715ec8bc83", null)))
 
 /datum/reagent/toxin/bonehurtingjuice/overdose_process(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -1398,13 +1414,13 @@
 		var/obj/item/bodypart/BP = affected_mob.get_bodypart(selected_part)
 		if(BP)
 			playsound(affected_mob, SFX_DESECRATION, 50, TRUE, -1)
-			affected_mob.visible_message(span_warning(LANG("datum.fb0437ae", list(affected_mob))), span_danger(LANG("datum.9a577421", null)))
-			affected_mob.say(LANG("datum.deeba4c2", null), forced = type)
+			affected_mob.visible_message(span_warning(LANG("datum.fb0437ae5d4469cf", list(affected_mob))), span_danger(LANG("datum.9a5774219481dc7f", null)))
+			affected_mob.say(LANG("datum.deeba4c2c280c023", null), forced = type)
 			affected_mob.apply_damage(20, BRUTE, BP, wound_bonus = rand(30, 130))
 
 		else //SUCH A LUST FOR REVENGE!!!
-			to_chat(affected_mob, span_warning(LANG("datum.3b9a9467", null)))
-			affected_mob.say(LANG("datum.c936f751", null), forced = type)
+			to_chat(affected_mob, span_warning(LANG("datum.3b9a94678d587794", null)))
+			affected_mob.say(LANG("datum.c936f751432f9e63", null), forced = type)
 
 /datum/reagent/toxin/bonehurtingjuice/used_on_fish(obj/item/fish/fish)
 	if(HAS_TRAIT(fish, TRAIT_FISH_MADE_OF_BONE))
@@ -1455,7 +1471,7 @@
 	if(need_mob_update)
 		. = UPDATE_MOB_HEALTH
 	if(SPT_PROB(0.5, seconds_per_tick))
-		to_chat(affected_mob, span_notice(LANG("datum.6cd5efe5", null)))
+		to_chat(affected_mob, span_notice(LANG("datum.6cd5efe576957e7c", null)))
 		affected_mob.adjust_confusion(5 SECONDS)
 
 /datum/reagent/toxin/hunterspider
@@ -1520,7 +1536,7 @@
 			if(SPT_PROB(5, seconds_per_tick))
 				var/obj/item/organ/tongue/tongue = affected_mob.get_organ_slot(ORGAN_SLOT_TONGUE)
 				if(tongue)
-					to_chat(affected_mob, span_warning(LANG("datum.0249e2c9", list(tongue.name))))
+					to_chat(affected_mob, span_warning(LANG("datum.0249e2c9dc8062d3", list(tongue.name))))
 				affected_mob.set_slurring_if_lower(25 SECONDS * metabolization_ratio)
 			affected_mob.adjust_disgust(17.5 * metabolization_ratio * seconds_per_tick)
 		if(13 to 21)
@@ -1550,7 +1566,7 @@
 			affected_mob.adjust_disgust(15 * metabolization_ratio * seconds_per_tick)
 			affected_mob.set_slurring_if_lower(15 SECONDS * metabolization_ratio * seconds_per_tick)
 			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(affected_mob, span_danger(LANG("datum.444d81b6", null)))
+				to_chat(affected_mob, span_danger(LANG("datum.444d81b6d34b241a", null)))
 			need_mob_update += affected_mob.adjust_stamina_loss(25 * metabolization_ratio * seconds_per_tick, updating_stamina = FALSE)
 			if(SPT_PROB(8, seconds_per_tick))
 				paralyze_limb(affected_mob)
@@ -1572,7 +1588,7 @@
 
 	if(current_cycle > 38 && !length(traits_not_applied) && SPT_PROB(5, seconds_per_tick) && !affected_mob.undergoing_cardiac_arrest())
 		affected_mob.set_heartattack(TRUE)
-		to_chat(affected_mob, span_bolddanger(LANG("datum.522a6669", null)))
+		to_chat(affected_mob, span_bolddanger(LANG("datum.522a6669e7f5ec37", null)))
 
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
@@ -1663,7 +1679,7 @@
 		return // There's too little waste to do anything.
 	if(istype(exposed_obj, /obj/effect/decal/cleanable/greenglow/waste))
 		var/obj/effect/decal/cleanable/greenglow/waste/goo = exposed_obj
-		goo.visible_message(span_warning(LANG("datum.c0bf1d85", list(goo))))
+		goo.visible_message(span_warning(LANG("datum.c0bf1d85799aa2b3", list(goo))))
 		goo.pre_dissolve(FALSE)
 	return ..()
 
@@ -1690,7 +1706,7 @@
 	if(!disaster_zone)
 		return
 	if(prob(10))
-		disaster_zone.balloon_alert_to_viewers(LANG("datum.e51d7bf6", null))
+		disaster_zone.balloon_alert_to_viewers(LANG("datum.e51d7bf6bbecfb9e", null))
 	spew_waste(5) //You can't just dump the industrial waste down the kitchen sink. High range to disincentivize using the chem disposaler.
 
 /**
@@ -1758,7 +1774,7 @@
 	if(prob(10))
 		new /mob/living/basic/spider/growing/spiderling (get_turf(affected_mob))
 		affected_mob.vomit(VOMIT_CATEGORY_BLOOD, lost_nutrition = 20)
-		to_chat(affected_mob, span_warning(LANG("datum.9a962110", null)))
+		to_chat(affected_mob, span_warning(LANG("datum.9a962110cea8f25c", null)))
 
 	if(current_cycle >= transformation_cycle)
 		affected_mob.mind?.add_antag_datum(/datum/antagonist/spider)

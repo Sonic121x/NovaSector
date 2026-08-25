@@ -83,5 +83,5 @@
 	. = ..()
 	if(.)
 		return
-	to_chat(user, span_notice(LANG("obj.e07275bb", list(src))))
+	to_chat(user, span_notice(LANG("obj.e07275bb6cef5f4f", list(src))))
 	deconstruct(TRUE)

@@ -74,7 +74,7 @@
 	acid = 50
 
 /obj/item/storage/backpack/holding/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.9c2e1615", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.9c2e1615d1d0a1b6", list(user, src, user.p_theyre()))))
 	user.dropItemToGround(src, TRUE)
 	user.Stun(100, ignore_canstun = TRUE)
 	sleep(2 SECONDS)
@@ -96,7 +96,7 @@
 	regenerate_presents()
 
 /obj/item/storage/backpack/santabag/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.a235471b", list(user, src, user.p_their(), user.p_they(), user.p_are()))))
+	user.visible_message(span_suicide(LANG("obj.a235471bc70c8cc9", list(user, src, user.p_their(), user.p_they(), user.p_are()))))
 	return OXYLOSS
 
 /obj/item/storage/backpack/santabag/proc/regenerate_presents()

@@ -12,12 +12,12 @@
 
 /obj/item/suspiciousphone/attack_self(mob/living/user)
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning(LANG("obj.8bead461", null)))
+		to_chat(user, span_warning(LANG("obj.8bead4617ce9d011", null)))
 		return
 	if(dumped)
-		to_chat(user, span_warning(LANG("obj.6644dda3", null)))
+		to_chat(user, span_warning(LANG("obj.6644dda3357f758b", null)))
 		return FALSE
-	if(tgui_alert(user, LANG("obj.915f079d", null), LANG("obj.5cb2cca8", null), list("Yes", "No")) == "Yes")
+	if(tgui_alert(user, LANG("obj.915f079d9d24dadd", null), LANG("obj.5cb2cca89df6000e", null), list("Yes", "No")) == "Yes")
 		if(dumped || QDELETED(src)) //Prevents fuckers from cheesing alert
 			return FALSE
 		var/turf/targetturf = get_safe_random_station_turf_equal_weight()
@@ -32,7 +32,7 @@
 		for(var/datum/bank_account/B as anything in accounts_to_rob)
 			B.dumpeet(dump_machine.dump)
 
-		to_chat(user, span_notice(LANG("obj.14d9517e", null)))
+		to_chat(user, span_notice(LANG("obj.14d9517e94542533", null)))
 		user.log_message("activated Protocol CRAB-17.", LOG_GAME)
 
 		dumped = TRUE
@@ -60,7 +60,7 @@
 
 /obj/structure/checkoutmachine/examine(mob/living/user)
 	. = ..()
-	. += span_info(LANG("obj.c4f9b0d3", null))
+	. += span_info(LANG("obj.c4f9b0d3ae980f9a", null))
 
 /**
  * Check whether any accounts in the accounts_to_rob list are still being drained.
@@ -74,7 +74,7 @@
 
 /obj/structure/checkoutmachine/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!canwalk)
-		balloon_alert(user, LANG("obj.6597e34d", null))
+		balloon_alert(user, LANG("obj.6597e34d5075016c", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(check_if_finished())
@@ -83,7 +83,7 @@
 
 	var/obj/item/card/id/card = tool.GetID()
 	if(!card)
-		balloon_alert(user, LANG("obj.95a5a5f6", list(tool.name)))
+		balloon_alert(user, LANG("obj.95a5a5f66eac0da5", list(tool.name)))
 
 		var/throwtarget = get_step(user, get_dir(src, user))
 		user.safe_throw_at(throwtarget, 1, 1, force = MOVE_FORCE_EXTREMELY_STRONG)
@@ -92,14 +92,14 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(!card.registered_account)
-		balloon_alert(user, LANG("obj.2d056b63", null))
+		balloon_alert(user, LANG("obj.2d056b63dcb66cff", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!LAZYFIND(card.registered_account.being_dumped, src))
-		balloon_alert(user, LANG("obj.e8afc149", null))
+		balloon_alert(user, LANG("obj.e8afc149a6377b23", null))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_warning(LANG("obj.10340b2d", null))) // This is a reference and not a typo
+	to_chat(user, span_warning(LANG("obj.10340b2d5ec2c00e", null))) // This is a reference and not a typo
 	accounts_to_rob -= card.registered_account
 	card.registered_account.stop_dump(src)
 
@@ -192,7 +192,7 @@
 /obj/structure/checkoutmachine/Destroy()
 	stop_dumping()
 	STOP_PROCESSING(SSfastprocess, src)
-	priority_announce(LANG("obj.1c6c07dd", list(get_area(src))), sender_override = "CRAB-17 Protocol")
+	priority_announce(LANG("obj.1c6c07dd145b61d1", list(get_area(src))), sender_override = "CRAB-17 Protocol")
 	if(internal_account.account_balance)
 		expel_cash()
 	QDEL_NULL(internal_account)
@@ -223,7 +223,7 @@
 		var/datum/bank_account/account = bogdanoff?.get_bank_account() || internal_account
 		account.transfer_money(B, amount, "?VIVA¿: !LA CRABBE¡")
 		B.money_crabbed += amount
-		B.bank_card_talk(LANG("obj.099773db", list(percentage_lost * 100, get_area(src))))
+		B.bank_card_talk(LANG("obj.099773db44341ff6", list(percentage_lost * 100, get_area(src))))
 	addtimer(CALLBACK(src, PROC_REF(dump)), 15 SECONDS) //Drain every 15 seconds
 
 /obj/structure/checkoutmachine/process()
@@ -289,7 +289,7 @@
 /obj/effect/dumpeet_target/proc/startLaunch()
 	DF = new /obj/effect/dumpeet_fall(drop_location())
 	dump.setup_siphoning()
-	priority_announce(LANG("obj.c35b67f6", list(get_area(src))), sender_override = "CRAB-17 Protocol")
+	priority_announce(LANG("obj.c35b67f69c0f7b01", list(get_area(src))), sender_override = "CRAB-17 Protocol")
 	animate(DF, pixel_z = -8, time = 5, , easing = LINEAR_EASING)
 	playsound(src,  'sound/items/weapons/mortar_whistle.ogg', 70, TRUE, 6)
 	addtimer(CALLBACK(src, PROC_REF(end_launch)), 5, TIMER_CLIENT_TIME) //Go onto the last step after a very short falling animation

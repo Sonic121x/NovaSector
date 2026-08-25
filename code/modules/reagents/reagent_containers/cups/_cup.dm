@@ -80,15 +80,15 @@
 			var/list/translated_types = list()
 			for(var/food_type in types)
 				translated_types += lang_reverse_text(LOWER_TEXT(food_type))
-			. += span_notice(LANG("obj.5d48423d", list(english_list(translated_types, and_text = "、", comma_text = "、"))))
+			. += span_notice(LANG("obj.5d48423d0f93c783", list(english_list(translated_types, and_text = "、", comma_text = "、"))))
 		else
-			. += span_notice(LANG("obj.5d48423d", list(LOWER_TEXT(english_list(types)))))
+			. += span_notice(LANG("obj.5d48423d0f93c783", list(LOWER_TEXT(lang_english_list(types)))))
 		// NOVA EDIT END
 	if(can_lid)
 		if(has_lid)
-			. += span_notice(LANG("obj.07366373", list(!isnull(lid_assembly) ? "with an assembly attached ontop of it" : "")))
+			. += span_notice(LANG("obj.073663730b652c54", list(!isnull(lid_assembly) ? "with an assembly attached ontop of it" : "")))
 		else
-			. += span_notice(LANG("obj.226f6fdb", list(EXAMINE_HINT("Alt-Click"))))
+			. += span_notice(LANG("obj.226f6fdb4b14e0fa", list(EXAMINE_HINT("Alt-Click"))))
 
 /**
  * Checks if the mob actually liked drinking this cup.
@@ -109,15 +109,15 @@
 	var/food_taste_reaction = gourmand.get_food_taste_reaction(src, drink_type)
 	switch(food_taste_reaction)
 		if(FOOD_TOXIC)
-			to_chat(gourmand,span_warning(LANG("obj.19446d29", null)))
+			to_chat(gourmand,span_warning(LANG("obj.19446d290901e609", null)))
 			gourmand.adjust_disgust(25 + 30 * fraction)
 			gourmand.add_mood_event("toxic_food", /datum/mood_event/disgusting_food)
 		if(FOOD_DISLIKED)
-			to_chat(gourmand,span_notice(LANG("obj.f5c1a01c", null)))
+			to_chat(gourmand,span_notice(LANG("obj.f5c1a01c1820cb2d", null)))
 			gourmand.adjust_disgust(11 + 15 * fraction)
 			gourmand.add_mood_event("gross_food", /datum/mood_event/gross_food)
 		if(FOOD_LIKED)
-			to_chat(gourmand,span_notice(LANG("obj.aa141915", null)))
+			to_chat(gourmand,span_notice(LANG("obj.aa1419154cc9e3c8", null)))
 			gourmand.adjust_disgust(-5 + -2.5 * fraction)
 			gourmand.add_mood_event("fav_food", /datum/mood_event/favorite_food)
 
@@ -130,19 +130,19 @@
 		if(DOING_INTERACTION_WITH_TARGET(user, target_mob))
 			return ITEM_INTERACT_BLOCKING
 		target_mob.visible_message(
-			span_danger(LANG("obj.ff0a489b", list(user, target_mob, src))),
-			span_userdanger(LANG("obj.ccd5c758", list(user, src))),
+			span_danger(LANG("obj.ff0a489b10538e41", list(user, target_mob, src))),
+			span_userdanger(LANG("obj.ccd5c7582e2cd053", list(user, src))),
 		)
 		if(!do_after(user, 3 SECONDS, target_mob))
 			return ITEM_INTERACT_BLOCKING
 		if(!reagents || !reagents.total_volume)
 			return ITEM_INTERACT_BLOCKING // The drink might be empty after the delay, such as by spam-feeding
 		target_mob.visible_message(
-			span_danger(LANG("obj.3a0ec431", list(user, target_mob, src))),
-			span_userdanger(LANG("obj.8f8c5865", list(user, src))),
+			span_danger(LANG("obj.3a0ec4310bea28be", list(user, target_mob, src))),
+			span_userdanger(LANG("obj.8f8c5865dc32d950", list(user, src))),
 		)
 		if(target_mob.is_blind())
-			to_chat(target_mob, span_notice(LANG("obj.29599226", null)))
+			to_chat(target_mob, span_notice(LANG("obj.29599226df2820ad", null)))
 		log_combat(user, target_mob, "fed", reagents.get_reagent_log_string())
 
 	else
@@ -150,19 +150,19 @@
 			if(DOING_INTERACTION_WITH_TARGET(user, user))
 				return ITEM_INTERACT_BLOCKING
 			user.visible_message(
-				span_notice(LANG("obj.4de62e04", list(user, src))),
+				span_notice(LANG("obj.4de62e040cdee7a0", list(user, src))),
 				ignored_mobs = list(user),
 			)
-			to_chat(user, span_notice(LANG("obj.d3904c62", list(src))))
+			to_chat(user, span_notice(LANG("obj.d3904c62728ebdd1", list(src))))
 			if(!do_after(user, 1.25 SECONDS, user))
 				return ITEM_INTERACT_BLOCKING
 			if(!reagents || !reagents.total_volume)
 				return ITEM_INTERACT_BLOCKING
 			user.visible_message(
-				span_notice(LANG("obj.2221cda6", list(user, src))),
+				span_notice(LANG("obj.2221cda618187e6d", list(user, src))),
 				ignored_mobs = list(user),
 			)
-		to_chat(user, span_notice(LANG("obj.d0158148", list(src))))
+		to_chat(user, span_notice(LANG("obj.d015814857f16b4e", list(src))))
 
 	SEND_SIGNAL(src, COMSIG_GLASS_DRANK, target_mob, user)
 	SEND_SIGNAL(target_mob, COMSIG_GLASS_DRANK, src, user) // NOVA EDIT ADDITION - Hemophages can't casually drink what's not going to regenerate their blood
@@ -215,18 +215,18 @@
 	if (!pour_amount)
 		return NONE
 	if (concrete.volume < pour_amount)
-		user.balloon_alert(user, LANG("obj.67f80a7f", null))
+		user.balloon_alert(user, LANG("obj.67f80a7fbb40cc83", null))
 		return ITEM_INTERACT_FAILURE
-	user.balloon_alert(user, LANG("obj.2d9bfdba", null))
+	user.balloon_alert(user, LANG("obj.2d9bfdbaa23474c0", null))
 	user.visible_message(
-		span_notice(LANG("obj.f81f95ec", list(user, target))),
-		span_notice(LANG("obj.fb79679f", list(target))),
+		span_notice(LANG("obj.f81f95ec2d9e820e", list(user, target))),
+		span_notice(LANG("obj.fb79679f10c905d1", list(target))),
 	)
 	if (!do_after(user, 1 SECONDS, target=target))
-		user.balloon_alert(user, LANG("obj.0c4ac08a", null))
+		user.balloon_alert(user, LANG("obj.0c4ac08abe367aff", null))
 		return ITEM_INTERACT_FAILURE
 	if(concrete.volume < pour_amount) // check if volume has changed during do_after
-		user.balloon_alert(user, LANG("obj.67f80a7f", null))
+		user.balloon_alert(user, LANG("obj.67f80a7fbb40cc83", null))
 		return ITEM_INTERACT_FAILURE
 	playsound(src, 'sound/effects/slosh.ogg', 25, TRUE)
 	concrete.expose_atom(target, pour_amount, TOUCH)
@@ -248,7 +248,7 @@
 /obj/item/reagent_containers/cup/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(has_lid && istype(tool, /obj/item/assembly_holder))
 		if (lid_assembly)
-			to_chat(user, span_warning(LANG("obj.b72494af", list(src))))
+			to_chat(user, span_warning(LANG("obj.b72494af0bbc2548", list(src))))
 			return ITEM_INTERACT_BLOCKING
 
 		if (attach_assembly(tool, user))
@@ -258,18 +258,18 @@
 
 	if (lid_assembly && istype(tool, /obj/item/stock_parts/power_store/cell))
 		if (attached_cell)
-			to_chat(user, span_warning(LANG("obj.9a686952", list(src, attached_cell))))
+			to_chat(user, span_warning(LANG("obj.9a686952ea3992b9", list(src, attached_cell))))
 			return ITEM_INTERACT_BLOCKING
 
 		if (isnull(locate(/obj/item/assembly/igniter) in lid_assembly))
-			to_chat(user, span_warning(LANG("obj.0d6efae8", list(lid_assembly, src))))
+			to_chat(user, span_warning(LANG("obj.0d6efae81b008485", list(lid_assembly, src))))
 			return ITEM_INTERACT_BLOCKING
 
 		if (!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning(LANG("obj.1dbf8014", list(tool))))
+			to_chat(user, span_warning(LANG("obj.1dbf8014c030d016", list(tool))))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.47073f56", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.47073f565b320510", list(tool, src))))
 		add_fingerprint(user)
 		log_bomber(user, "attached [tool.name] to", src)
 		attached_cell = tool
@@ -281,15 +281,15 @@
 
 	if (attached_cell && istype(tool, /obj/item/stack/cable_coil))
 		if (cell_wired)
-			to_chat(user, span_warning(LANG("obj.0d76cb80", list(attached_cell, lid_assembly))))
+			to_chat(user, span_warning(LANG("obj.0d76cb802eb80bb7", list(attached_cell, lid_assembly))))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/cable_coil/cable = tool
 		if (!cable.use(5))
-			to_chat(user, span_warning(LANG("obj.9a34e0cc", list(attached_cell))))
+			to_chat(user, span_warning(LANG("obj.9a34e0ccd4156539", list(attached_cell))))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.0dfac850", list(attached_cell, lid_assembly))))
+		to_chat(user, span_notice(LANG("obj.0dfac850f334bac7", list(attached_cell, lid_assembly))))
 		add_fingerprint(user)
 		cell_wired = TRUE
 		update_appearance()
@@ -300,9 +300,9 @@
 
 	if(istype(tool, /obj/item/food/egg)) //breaking eggs
 		if(reagents.holder_full())
-			to_chat(user, span_notice(LANG("obj.8e2d390c", list(src))))
+			to_chat(user, span_notice(LANG("obj.8e2d390ca03cb226", list(src))))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.0980f1cd", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.0980f1cd43ca1f50", list(tool, src))))
 		tool.reagents.trans_to(src, tool.reagents.total_volume, transferred_by = user)
 		qdel(tool)
 		return ITEM_INTERACT_SUCCESS
@@ -359,7 +359,7 @@
 		return NONE
 
 	if (cell_wired)
-		balloon_alert(user, LANG("obj.867b8104", null))
+		balloon_alert(user, LANG("obj.867b8104b0075b26", null))
 		return CLICK_ACTION_BLOCKING
 
 	if (attached_cell)
@@ -367,7 +367,7 @@
 		// Exited() automatically clears it
 		our_cell.forceMove(drop_location())
 		user.put_in_hands(our_cell)
-		balloon_alert(user, LANG("obj.ef781eae", null))
+		balloon_alert(user, LANG("obj.ef781eae3433f0fa", null))
 		update_appearance()
 		return CLICK_ACTION_SUCCESS
 
@@ -375,13 +375,13 @@
 		var/obj/item/our_assembly = lid_assembly
 		our_assembly.forceMove(drop_location())
 		user.put_in_hands(our_assembly)
-		balloon_alert(user, LANG("obj.fef65fff", null))
+		balloon_alert(user, LANG("obj.fef65fffbff2c338", null))
 		update_appearance()
 		return CLICK_ACTION_SUCCESS
 
 	has_lid = !has_lid
 	update_appearance()
-	balloon_alert(user, LANG("obj.9f36c533", list(has_lid ? "sealed" : "unsealed")))
+	balloon_alert(user, LANG("obj.9f36c533bc0c51e8", list(has_lid ? "sealed" : "unsealed")))
 	if (has_lid)
 		add_container_flags(SEALED_CONTAINER)
 	else
@@ -395,16 +395,16 @@
 	new /obj/item/stack/cable_coil(drop_location(), 5)
 	cell_wired = FALSE
 	update_appearance()
-	balloon_alert(user, LANG("obj.235c600d", null))
+	balloon_alert(user, LANG("obj.235c600de3eb1488", null))
 	tool.play_tool_sound(src, 50)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/cup/proc/attach_assembly(obj/item/assembly_holder/assembly, mob/living/user)
 	if (!user.transferItemToLoc(assembly, src))
-		to_chat(user, span_warning(LANG("obj.1dbf8014", list(assembly))))
+		to_chat(user, span_warning(LANG("obj.1dbf8014c030d016", list(assembly))))
 		return FALSE
 
-	to_chat(user, span_notice(LANG("obj.59892fe6", list(assembly, src))))
+	to_chat(user, span_notice(LANG("obj.59892fe6623129d3", list(assembly, src))))
 	add_fingerprint(user)
 	lid_assembly = assembly
 	lid_assembly.master = src
@@ -651,25 +651,25 @@
 		var/is_right_clicking = LAZYACCESS(modifiers, RIGHT_CLICK)
 		if(is_right_clicking)
 			if(tool.reagents.total_volume == 0)
-				user.balloon_alert(user, LANG("obj.76cfe055", list(tool)))
+				user.balloon_alert(user, LANG("obj.76cfe0557d9c4c2d", list(tool)))
 				return ITEM_INTERACT_BLOCKING
 			if(reagents.total_volume == reagents.maximum_volume)
-				user.balloon_alert(user, LANG("obj.21d5a38a", list(tool)))
+				user.balloon_alert(user, LANG("obj.21d5a38ae9e8687a", list(tool)))
 				return ITEM_INTERACT_BLOCKING
 			tool.reagents.remove_all(tool.reagents.total_volume * SQUEEZING_DISPERSAL_RATIO)
 			tool.reagents.trans_to(src, tool.reagents.total_volume, transferred_by = user)
-			user.balloon_alert(user, LANG("obj.207c6bd9", list(tool)))
+			user.balloon_alert(user, LANG("obj.207c6bd96da78a2e", list(tool)))
 			return ..()
 		// NOVA EDIT ADDITION END
 		if(reagents.total_volume < 1)
-			user.balloon_alert(user, LANG("obj.6ef93b07", null))
+			user.balloon_alert(user, LANG("obj.6ef93b07027da376", null))
 			return ITEM_INTERACT_BLOCKING
 		reagents.trans_to(tool, 5, transferred_by = user)
-		user.balloon_alert(user, LANG("obj.2232fa1b", list(tool)))
+		user.balloon_alert(user, LANG("obj.2232fa1bf2ac07b2", list(tool)))
 		playsound(src, 'sound/effects/slosh.ogg', 25, TRUE)
 		return ITEM_INTERACT_SUCCESS
 	if(isprox(tool)) //This works with wooden buckets for now. Somewhat unintended, but maybe someone will add sprites for it soon(TM)
-		to_chat(user, span_notice(LANG("obj.0c27fe26", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(tool, src))))
 		qdel(tool)
 		var/obj/item/bot_assembly/cleanbot/new_cleanbot_ass = new(null, src)
 		user.put_in_hands(new_cleanbot_ass)
@@ -681,7 +681,7 @@
 	. = ..()
 	if (slot & ITEM_SLOT_HEAD)
 		if(reagents.total_volume)
-			to_chat(user, span_userdanger(LANG("obj.e3839231", list(src))))
+			to_chat(user, span_userdanger(LANG("obj.e38392312b4b84dc", list(src))))
 			reagents.expose(user, TOUCH)
 			reagents.clear_reagents()
 		update_container_flags(NONE)
@@ -726,7 +726,7 @@
 		return CLICK_ACTION_BLOCKING
 	grinded.forceMove(drop_location())
 	grinded = null
-	balloon_alert(user, LANG("obj.0ea67d8b", null))
+	balloon_alert(user, LANG("obj.0ea67d8b39314542", null))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/reagent_containers/cup/mortar/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -735,10 +735,10 @@
 		return .
 	if(istype(tool, /obj/item/pestle))
 		if(!grinded)
-			to_chat(user, span_warning(LANG("obj.aa682157", null)))
+			to_chat(user, span_warning(LANG("obj.aa682157cec724ea", null)))
 			return ITEM_INTERACT_BLOCKING
 		if(user.get_stamina_loss() > 50)
-			to_chat(user, span_warning(LANG("obj.d351611a", null)))
+			to_chat(user, span_warning(LANG("obj.d351611a73999759", null)))
 			return ITEM_INTERACT_BLOCKING
 		var/list/choose_options = list(
 			"Grind" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_grind"),
@@ -747,7 +747,7 @@
 		var/picked_option = show_radial_menu(user, src, choose_options, radius = 38, require_near = TRUE)
 		if(!grinded || !in_range(src, user) || !user.is_holding(tool) || !picked_option)
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.cd5418c3", null)))
+		to_chat(user, span_notice(LANG("obj.cd5418c398533f98", null)))
 		if(!do_after(user, 2.5 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 		user.adjust_stamina_loss(40)
@@ -756,10 +756,10 @@
 				return juice_item(grinded, user) ? ITEM_INTERACT_BLOCKING : ITEM_INTERACT_SUCCESS
 			if("Grind")
 				return grind_item(grinded, user) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.d845b15c", list(grinded))))
+		to_chat(user, span_notice(LANG("obj.d845b15cbe21c426", list(grinded))))
 		return ITEM_INTERACT_BLOCKING
 	if(grinded)
-		to_chat(user, span_warning(LANG("obj.d12fa4f8", null)))
+		to_chat(user, span_warning(LANG("obj.d12fa4f8bcb17561", null)))
 		return ITEM_INTERACT_BLOCKING
 	if(!tool.blend_requirements(src, user))
 		return ITEM_INTERACT_BLOCKING
@@ -775,30 +775,30 @@
 
 /obj/item/reagent_containers/cup/mortar/proc/grind_item(obj/item/item, mob/living/carbon/human/user)
 	if(item.flags_1 & HOLOGRAM_1)
-		to_chat(user, span_notice(LANG("obj.2708cfa5", list(item))))
+		to_chat(user, span_notice(LANG("obj.2708cfa5091c138b", list(item))))
 		qdel(item)
 		return
 
 	if(!item.grind(reagents, user))
 		if(isstack(item))
-			to_chat(user, span_notice(LANG("obj.10d463a7", list(src, item))))
+			to_chat(user, span_notice(LANG("obj.10d463a7660f5ddc", list(src, item))))
 		else
-			to_chat(user, span_danger(LANG("obj.b0102c67", list(item))))
+			to_chat(user, span_danger(LANG("obj.b0102c6717af1327", list(item))))
 		return
 
-	to_chat(user, span_notice(LANG("obj.f1f901f2", list(item))))
+	to_chat(user, span_notice(LANG("obj.f1f901f2f99534df", list(item))))
 
 /obj/item/reagent_containers/cup/mortar/proc/juice_item(obj/item/item, mob/living/carbon/human/user)
 	if(item.flags_1 & HOLOGRAM_1)
-		to_chat(user, span_notice(LANG("obj.89badf16", list(item))))
+		to_chat(user, span_notice(LANG("obj.89badf16da556d7a", list(item))))
 		qdel(item)
 		return
 
 	if(!item.juice(reagents, user))
-		to_chat(user, span_notice(LANG("obj.9d6b7d5a", list(item))))
+		to_chat(user, span_notice(LANG("obj.9d6b7d5a879b8fcb", list(item))))
 		return
 
-	to_chat(user, span_notice(LANG("obj.2e31c9bc", list(item))))
+	to_chat(user, span_notice(LANG("obj.2e31c9bc2e3273e4", list(item))))
 
 //Coffeepots: for reference, a standard cup is 30u, to allow 20u for sugar/sweetener/milk/creamer
 /obj/item/reagent_containers/cup/coffeepot
@@ -832,5 +832,5 @@
 	can_lid = TRUE
 
 /obj/item/reagent_containers/cup/tube/attach_assembly(obj/item/assembly_holder/assembly, mob/living/user)
-	to_chat(user, span_warning(LANG("obj.a60c7979", list(src, assembly))))
+	to_chat(user, span_warning(LANG("obj.a60c79798e0151ce", list(src, assembly))))
 	return FALSE

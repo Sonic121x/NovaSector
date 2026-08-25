@@ -109,16 +109,16 @@
 
 	var/obj/item/holochip/merged_holochip = tool
 	credits += merged_holochip.credits
-	balloon_alert(user, LANG("obj.71582d76", null))
+	balloon_alert(user, LANG("obj.71582d7611a7c87d", null))
 	update_appearance()
 	qdel(merged_holochip)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/holochip/click_alt(mob/user)
 	if(loc != user)
-		to_chat(user, span_warning(LANG("obj.9a84bf97", null)))
+		to_chat(user, span_warning(LANG("obj.9a84bf97f79f22c5", null)))
 		return CLICK_ACTION_BLOCKING
-	var/split_amount = tgui_input_number(user, LANG("obj.9e18f6a9", list(MONEY_NAME, credits, MONEY_SYMBOL)), LANG("obj.b2a9e22d", null), max_value = credits)
+	var/split_amount = tgui_input_number(user, LANG("obj.9e18f6a9e465718e", list(MONEY_NAME, credits, MONEY_SYMBOL)), LANG("obj.b2a9e22dfd074d50", null), max_value = credits)
 	if(!split_amount || QDELETED(user) || QDELETED(src) || issilicon(user) || !usr.can_perform_action(src, NEED_DEXTERITY|FORBID_TELEKINESIS_REACH) || loc != user)
 		return CLICK_ACTION_BLOCKING
 	var/new_credits = spend(split_amount, TRUE)
@@ -127,7 +127,7 @@
 		if(!user.put_in_hands(chip))
 			chip.forceMove(user.drop_location())
 		add_fingerprint(user)
-	to_chat(user, span_notice(LANG("obj.7c1a5de2", list(split_amount, MONEY_NAME))))
+	to_chat(user, span_notice(LANG("obj.7c1a5de256ce7d9e", list(split_amount, MONEY_NAME))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/holochip/emp_act(severity)
@@ -136,7 +136,7 @@
 		return
 	var/wipe_chance = 60 / severity
 	if(prob(wipe_chance))
-		visible_message(span_warning(LANG("obj.960220e0", list(src))))
+		visible_message(span_warning(LANG("obj.960220e0af288b37", list(src))))
 		qdel(src) //rip cash
 
 /obj/item/holochip/thousand

@@ -24,7 +24,7 @@ GLOBAL_LIST_EMPTY(ctf_voting_controllers)
 		volunteers.Cut()
 		toggle_id_ctf(activated_id = game_id)
 	else
-		to_chat(user, span_notice(LANG("datum.d2dafc52", list(volunteer_count, CTF_REQUIRED_PLAYERS))))
+		to_chat(user, span_notice(LANG("datum.d2dafc5207a026f1", list(volunteer_count, CTF_REQUIRED_PLAYERS))))
 
 /// Removes an existing vote for user.
 /datum/ctf_voting_controller/proc/unvote(mob/user)
@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(ctf_voting_controllers)
 		return
 
 	volunteers -= user.ckey
-	to_chat(user, span_notice(LANG("datum.61e59b4d", null)))
+	to_chat(user, span_notice(LANG("datum.61e59b4d61ccb088", null)))
 
 /// Returns the existing [/datum/ctf_voting_controller] for the given ID, or makes one
 /proc/get_ctf_voting_controller(game_id)

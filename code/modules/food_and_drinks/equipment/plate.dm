@@ -32,10 +32,10 @@
 	if(!IS_EDIBLE(tool))
 		return NONE
 	if(tool.w_class > biggest_w_class)
-		balloon_alert(user, LANG("obj.a5e64cbb", null))
+		balloon_alert(user, LANG("obj.a5e64cbb628dd24c", null))
 		return ITEM_INTERACT_BLOCKING
 	if(contents.len >= max_items)
-		balloon_alert(user, LANG("obj.dccfcc57", null))
+		balloon_alert(user, LANG("obj.dccfcc574a859d31", null))
 		return ITEM_INTERACT_BLOCKING
 	//Center the icon where the user clicked.
 	if(!LAZYACCESS(modifiers, ICON_X) || !LAZYACCESS(modifiers, ICON_Y))
@@ -44,7 +44,7 @@
 		return ITEM_INTERACT_BLOCKING
 	tool.pixel_x = clamp(text2num(LAZYACCESS(modifiers, ICON_X)) - 16, -max_x_offset, max_x_offset)
 	tool.pixel_y = min(text2num(LAZYACCESS(modifiers, ICON_Y)) + placement_offset, max_height_offset)
-	to_chat(user, span_notice(LANG("obj.7a67ae81", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.7a67ae81e5981d09", list(tool, src))))
 	AddToPlate(tool, user)
 	return ITEM_INTERACT_SUCCESS
 

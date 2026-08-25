@@ -21,14 +21,14 @@ Regenerative extracts:
 		return
 	var/mob/living/H = interacting_with
 	if(H.stat == DEAD)
-		to_chat(user, span_warning(LANG("obj.c3bb95df", list(src))))
+		to_chat(user, span_warning(LANG("obj.c3bb95df1f8a9992", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(H != user)
-		user.visible_message(span_notice(LANG("obj.6722e0bd", list(user, src, H, H.p_their()))),
-			span_notice(LANG("obj.237b656e", list(src, H, H.p_their()))))
+		user.visible_message(span_notice(LANG("obj.6722e0bd62bce28b", list(user, src, H, H.p_their()))),
+			span_notice(LANG("obj.237b656e6426a174", list(src, H, H.p_their()))))
 	else
-		user.visible_message(span_notice(LANG("obj.a18018e6", list(user, src, user.p_them(), user.p_their()))),
-			span_notice(LANG("obj.99657655", list(src))))
+		user.visible_message(span_notice(LANG("obj.a18018e684e961c5", list(user, src, user.p_them(), user.p_their()))),
+			span_notice(LANG("obj.99657655c67e2908", list(src))))
 	core_effect_before(H, user)
 	user.do_attack_animation(interacting_with)
 	H.revive(HEAL_ALL & ~HEAL_REFRESH_ORGANS)
@@ -45,7 +45,7 @@ Regenerative extracts:
 	colour = SLIME_TYPE_ORANGE
 
 /obj/item/slimecross/regenerative/orange/core_effect_before(mob/living/target, mob/user)
-	target.visible_message(span_warning(LANG("obj.37be1be9", list(src))))
+	target.visible_message(span_warning(LANG("obj.37be1be9040847d7", list(src))))
 	for(var/turf/targetturf in RANGE_TURFS(1,target))
 		if(!locate(/obj/effect/hotspot) in targetturf)
 			new /obj/effect/hotspot(targetturf)
@@ -65,20 +65,20 @@ Regenerative extracts:
 	if(isturf(target.loc))
 		var/turf/open/T = get_turf(target)
 		T.MakeSlippery(TURF_WET_WATER, min_wet_time = 10, wet_time_to_add = 5)
-		target.visible_message(span_warning(LANG("obj.7bf7150a", null)))
+		target.visible_message(span_warning(LANG("obj.7bf7150a85626296", null)))
 
 /obj/item/slimecross/regenerative/metal
 	colour = SLIME_TYPE_METAL
 	effect_desc = "Fully heals the target and encases the target in a locker."
 
 /obj/item/slimecross/regenerative/metal/core_effect(mob/living/target, mob/user)
-	target.visible_message(span_warning(LANG("obj.6e6a8607", list(target))))
+	target.visible_message(span_warning(LANG("obj.6e6a860755c14a27", list(target))))
 	var/obj/structure/closet/C = new /obj/structure/closet(target.loc)
 	C.name = "slimy closet"
 	C.desc = "Looking closer, it seems to be made of a sort of solid, opaque, metal-like goo."
 	if(target.mob_size > C.max_mob_size) //Prevents capturing megafauna or other large mobs in the closets
 		C.bust_open()
-		C.visible_message(span_warning(LANG("obj.c375817f", list(target, C.name))))
+		C.visible_message(span_warning(LANG("obj.c375817fce770db2", list(target, C.name))))
 	else //This can't be allowed to actually happen to the too-big mobs or it breaks some actions
 		target.forceMove(C)
 
@@ -94,7 +94,7 @@ Regenerative extracts:
 	if(batteries.len)
 		var/obj/item/stock_parts/power_store/ToCharge = pick(batteries)
 		ToCharge.charge = ToCharge.maxcharge
-		to_chat(target, span_notice(LANG("obj.2a57b276", null)))
+		to_chat(target, span_notice(LANG("obj.2a57b276a34851e3", null)))
 
 /obj/item/slimecross/regenerative/darkpurple
 	colour = SLIME_TYPE_DARK_PURPLE
@@ -107,7 +107,7 @@ Regenerative extracts:
 	equipped += target.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/purple(null), ITEM_SLOT_GLOVES)
 	equipped += target.equip_to_slot_or_del(new /obj/item/clothing/head/soft/purple(null), ITEM_SLOT_HEAD)
 	if(equipped > 0)
-		target.visible_message(span_notice(LANG("obj.818fba9b", null)))
+		target.visible_message(span_notice(LANG("obj.818fba9b59962887", null)))
 
 /obj/item/slimecross/regenerative/darkblue
 	colour = SLIME_TYPE_DARK_BLUE
@@ -127,7 +127,7 @@ Regenerative extracts:
 		var/obj/item/clothing/C = H.get_item_by_slot(ITEM_SLOT_HEAD)
 		fireproof(C)
 	if(fireproofed)
-		target.visible_message(span_notice(LANG("obj.7ff32aa4", list(target))))
+		target.visible_message(span_notice(LANG("obj.7ff32aa4072fec4b", list(target))))
 
 /obj/item/slimecross/regenerative/darkblue/proc/fireproof(obj/item/clothing/clothing_piece)
 	clothing_piece.name = "fireproofed [clothing_piece.name]"
@@ -143,7 +143,7 @@ Regenerative extracts:
 
 /obj/item/slimecross/regenerative/silver/core_effect(mob/living/target, mob/user)
 	target.set_nutrition(NUTRITION_LEVEL_FULL - 1)
-	to_chat(target, span_notice(LANG("obj.d8359be5", null)))
+	to_chat(target, span_notice(LANG("obj.d8359be540580bd8", null)))
 
 /obj/item/slimecross/regenerative/bluespace
 	colour = SLIME_TYPE_BLUESPACE
@@ -153,11 +153,11 @@ Regenerative extracts:
 /obj/item/slimecross/regenerative/bluespace/core_effect(mob/living/target, mob/user)
 	var/turf/old_location = get_turf(target)
 	if(do_teleport(target, T, channel = TELEPORT_CHANNEL_QUANTUM)) //despite being named a bluespace teleportation method the quantum channel is used to preserve precision teleporting with a bag of holding
-		old_location.visible_message(span_warning(LANG("obj.c3b6f23a", list(target))))
-		to_chat(target, span_danger(LANG("obj.b0ea622a", null)))
+		old_location.visible_message(span_warning(LANG("obj.c3b6f23aa50694a9", list(target))))
+		to_chat(target, span_danger(LANG("obj.b0ea622a6ca0762b", null)))
 
 	if(HAS_TRAIT(target, TRAIT_NO_TELEPORT))
-		old_location.visible_message(span_warning(LANG("obj.4699fa74", list(target))))
+		old_location.visible_message(span_warning(LANG("obj.4699fa7486f28088", list(target))))
 
 /obj/item/slimecross/regenerative/bluespace/Initialize(mapload)
 	. = ..()
@@ -168,7 +168,7 @@ Regenerative extracts:
 	effect_desc = "Fully heals the target. After 10 seconds, relocate the target to the initial position the core was used with their previous health status."
 
 /obj/item/slimecross/regenerative/sepia/core_effect_before(mob/living/target, mob/user)
-	to_chat(target, span_notice(LANG("obj.5f0f8138", null)))
+	to_chat(target, span_notice(LANG("obj.5f0f813880da3358", null)))
 	target.AddComponent(/datum/component/dejavu)
 
 /obj/item/slimecross/regenerative/cerulean
@@ -181,14 +181,14 @@ Regenerative extracts:
 	X.name = name
 	X.desc = desc
 	user.put_in_active_hand(X)
-	to_chat(user, span_notice(LANG("obj.a4ab9ad7", null)))
+	to_chat(user, span_notice(LANG("obj.a4ab9ad711c3afe8", null)))
 
 /obj/item/slimecross/regenerative/pyrite
 	colour = SLIME_TYPE_PYRITE
 	effect_desc = "Fully heals and randomly colors the target."
 
 /obj/item/slimecross/regenerative/pyrite/core_effect(mob/living/target, mob/user)
-	target.visible_message(span_warning(LANG("obj.69ab02d8", list(target, target.p_them()))))
+	target.visible_message(span_warning(LANG("obj.69ab02d889e3cdee", list(target, target.p_them()))))
 	target.add_atom_colour(color_transition_filter(rgb(rand(0,255), rand(0,255), rand(0,255)), SATURATION_OVERRIDE), WASHABLE_COLOUR_PRIORITY)
 
 /obj/item/slimecross/regenerative/red
@@ -196,7 +196,7 @@ Regenerative extracts:
 	effect_desc = "Fully heals the target and injects them with some ephedrine."
 
 /obj/item/slimecross/regenerative/red/core_effect(mob/living/target, mob/user)
-	to_chat(target, span_notice(LANG("obj.5d137fd8", null)))
+	to_chat(target, span_notice(LANG("obj.5d137fd8cd407ffd", null)))
 	target.reagents.add_reagent(/datum/reagent/medicine/ephedrine,3)
 
 /obj/item/slimecross/regenerative/green
@@ -205,7 +205,7 @@ Regenerative extracts:
 
 /obj/item/slimecross/regenerative/green/core_effect(mob/living/target, mob/user)
 	if(isslime(target))
-		target.visible_message(span_warning(LANG("obj.15949140", list(target))))
+		target.visible_message(span_warning(LANG("obj.159491402046a32a", list(target))))
 		var/mob/living/basic/slime/target_slime = target
 		target_slime.set_slime_type()
 	if(target.mob_biotypes & MOB_SLIME)
@@ -216,7 +216,7 @@ Regenerative extracts:
 	effect_desc = "Fully heals the target and injects them with some krokodil."
 
 /obj/item/slimecross/regenerative/pink/core_effect(mob/living/target, mob/user)
-	to_chat(target, span_notice(LANG("obj.562fa2d7", null)))
+	to_chat(target, span_notice(LANG("obj.562fa2d73c5bf709", null)))
 	target.reagents.add_reagent(/datum/reagent/drug/krokodil,4)
 
 /obj/item/slimecross/regenerative/gold
@@ -246,9 +246,9 @@ Regenerative extracts:
 	var/dummytype = target.type
 	if(target.mob_biotypes & MOB_SPECIAL) //Prevents megafauna and voidwalker duping in a lame way
 		dummytype = /mob/living/basic/slime
-		to_chat(user, span_warning(LANG("obj.e62336e8", list(target))))
+		to_chat(user, span_warning(LANG("obj.e62336e8e4d693b7", list(target))))
 	var/mob/living/dummy = new dummytype(target.loc)
-	to_chat(target, span_notice(LANG("obj.015c60b5", null)))
+	to_chat(target, span_notice(LANG("obj.015c60b5d5d4e504", null)))
 	if(iscarbon(target) && iscarbon(dummy))
 		var/mob/living/carbon/carbon_target = target
 		var/mob/living/carbon/carbon_dummy = dummy
@@ -271,7 +271,7 @@ Regenerative extracts:
 		return
 	var/mob/living/U = user
 	U.revive(HEAL_ALL & ~HEAL_REFRESH_ORGANS)
-	to_chat(U, span_notice(LANG("obj.34af3312", null)))
+	to_chat(U, span_notice(LANG("obj.34af3312485f1099", null)))
 
 /obj/item/slimecross/regenerative/adamantine
 	colour = SLIME_TYPE_ADAMANTINE

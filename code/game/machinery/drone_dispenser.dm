@@ -173,13 +173,13 @@
 	. = ..()
 	var/material_requirement_string = "It needs "
 	if (iron_cost > 0)
-		material_requirement_string += LANG("obj.ba974162", list(iron_cost / SHEET_MATERIAL_AMOUNT))
+		material_requirement_string += LANG("obj.ba974162f52d6cd2", list(iron_cost / SHEET_MATERIAL_AMOUNT))
 		if (glass_cost > 0)
-			material_requirement_string += LANG("obj.2162713f", null)
+			material_requirement_string += LANG("obj.2162713f2ce0b5cb", null)
 	if (glass_cost > 0)
-		material_requirement_string += LANG("obj.a420eab2", list(glass_cost / SHEET_MATERIAL_AMOUNT))
+		material_requirement_string += LANG("obj.a420eab2d983dfe9", list(glass_cost / SHEET_MATERIAL_AMOUNT))
 	if (iron_cost > 0 || glass_cost > 0)
-		material_requirement_string += LANG("obj.17773f3d", null)
+		material_requirement_string += LANG("obj.17773f3d7be90b6a", null)
 		. += span_notice(material_requirement_string)
 	if((mode == DRONE_RECHARGING) && !machine_stat && recharging_text)
 		. += span_warning("[recharging_text]")
@@ -258,27 +258,27 @@
 /obj/machinery/drone_dispenser/crowbar_act(mob/living/user, obj/item/tool)
 	materials.retrieve_all()
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice(LANG("obj.a914fe5b", list(src))))
+	to_chat(user, span_notice(LANG("obj.a914fe5b5c846ca8", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/drone_dispenser/welder_act(mob/living/user, obj/item/tool)
 	if(!(machine_stat & BROKEN))
-		to_chat(user, span_warning(LANG("obj.5eef566d", list(src))))
+		to_chat(user, span_warning(LANG("obj.5eef566d3215401a", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_start_check(user, amount=1))
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice(LANG("obj.afa10dcf", list(user, src, tool))),
-		span_notice(LANG("obj.73be3293", list(src))))
+		span_notice(LANG("obj.afa10dcf6ddbe3cd", list(user, src, tool))),
+		span_notice(LANG("obj.73be3293e780ed1f", list(src))))
 
 	if(!tool.use_tool(src, user, 40, volume=50))
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice(LANG("obj.6fab948a", list(user, src))),
-		span_notice(LANG("obj.83a8b8a7", list(src))))
+		span_notice(LANG("obj.6fab948aa1fdea11", list(user, src))),
+		span_notice(LANG("obj.83a8b8a75f74ae54", list(src))))
 
 	set_machine_stat(machine_stat & ~BROKEN)
 	atom_integrity = max_integrity

@@ -26,7 +26,7 @@
 	else
 		//check if they're blind
 		if (user.is_blind())
-			user.balloon_alert(user, LANG("obj.1b730dbc", null))
+			user.balloon_alert(user, LANG("obj.1b730dbc0969f1aa", null))
 			return
 
 		zoom.zoom(user)
@@ -44,7 +44,7 @@
 			do_nothing_chance = 10
 	if(prob(do_nothing_chance))
 		return
-	to_chat(owner, span_warning(LANG("obj.4e8e3731", null)))
+	to_chat(owner, span_warning(LANG("obj.4e8e3731ddbc2ce5", null)))
 	// Apply static vision overlay
 	owner.overlay_fullscreen("emp_static", /atom/movable/screen/fullscreen/flash/static)
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, clear_fullscreen), "emp_static"), severity == EMP_LIGHT ? 0.75 SECONDS : 1.5 SECONDS)
@@ -68,8 +68,8 @@
 			effect_chance = 30
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger(LANG("obj.3afbe1aa", list(owner, active_item))),
-			span_warning(LANG("obj.ebbd9df2", null))
+			span_danger(LANG("obj.3afbe1aa53ed44ed", list(owner, active_item))),
+			span_warning(LANG("obj.ebbd9df24d971f67", null))
 		)
 		if(active_item)
 			Retract()
@@ -98,8 +98,8 @@
 			effect_chance = 50
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger(LANG("obj.04c45439", list(owner))),
-			span_warning(LANG("obj.a5356239", null))
+			span_danger(LANG("obj.04c454397a74a92a", list(owner))),
+			span_warning(LANG("obj.a53562393bec82ac", null))
 		)
 		if(active_item)
 			Retract()
@@ -128,8 +128,8 @@
 			effect_chance = 40
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger(LANG("obj.068cbd17", list(owner))),
-			span_warning(LANG("obj.710095ff", null))
+			span_danger(LANG("obj.068cbd173901b68f", list(owner))),
+			span_warning(LANG("obj.710095ff797f1cb8", null))
 		)
 		if(active_item)
 			Retract()
@@ -159,8 +159,8 @@
 			effect_chance = 25
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger(LANG("obj.208fa22e", list(owner))),
-			span_warning(LANG("obj.d42e98e2", null))
+			span_danger(LANG("obj.208fa22e3c0265e6", list(owner))),
+			span_warning(LANG("obj.d42e98e2d9d4edfe", null))
 		)
 		if(active_item)
 			Retract()
@@ -200,8 +200,8 @@
 				spilled_items = TRUE
 			if(spilled_items)
 				owner.visible_message(
-					span_danger(LANG("obj.f2d40d7d", list(owner))),
-					span_warning(LANG("obj.730c09ae", null))
+					span_danger(LANG("obj.f2d40d7d7dd9a05b", list(owner))),
+					span_warning(LANG("obj.730c09aef90a6c30", null))
 				)
 				do_sparks(2, TRUE, owner)
 				playsound(owner, 'sound/items/trayhit/trayhit1.ogg', 50, TRUE)
@@ -224,8 +224,8 @@
 			effect_chance = 30
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger(LANG("obj.31ed1db0", list(owner))),
-			span_warning(LANG("obj.aa3f356e", null))
+			span_danger(LANG("obj.31ed1db00432130b", list(owner))),
+			span_warning(LANG("obj.aa3f356e5b74e571", null))
 		)
 		do_sparks(3, TRUE, owner)
 		owner.adjust_fire_stacks(1)
@@ -248,8 +248,8 @@
 			effect_chance = 35
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger(LANG("obj.ad922bd0", list(owner))),
-			span_warning(LANG("obj.2eb25acf", null))
+			span_danger(LANG("obj.ad922bd05f595efd", list(owner))),
+			span_warning(LANG("obj.2eb25acf08ec081b", null))
 		)
 		if(active_item)
 			Retract()
@@ -289,8 +289,8 @@
 			papers_spat_out++
 		if(papers_spat_out > 0)
 			owner.visible_message(
-				span_warning(LANG("obj.51d0d780", list(owner))),
-				span_warning(LANG("obj.5a34d6ee", null))
+				span_warning(LANG("obj.51d0d780116b3197", list(owner))),
+				span_warning(LANG("obj.5a34d6eed3116e4e", null))
 			)
 			playsound(owner, 'sound/items/poster/poster_ripped.ogg', 50, TRUE)
 		break
@@ -312,8 +312,8 @@
 			effect_chance = 25
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger(LANG("obj.e0266902", list(owner))),
-			span_warning(LANG("obj.2215234e", null))
+			span_danger(LANG("obj.e0266902bc3f972e", list(owner))),
+			span_warning(LANG("obj.2215234e85c01f5e", null))
 		)
 		do_sparks(3, TRUE, owner)
 		if(active_item)

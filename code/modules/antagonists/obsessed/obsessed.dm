@@ -43,10 +43,10 @@
 /datum/antagonist/obsessed/admin_add(datum/mind/new_owner,mob/admin)
 	var/mob/living/carbon/C = new_owner.current
 	if(!istype(C))
-		to_chat(admin, LANG("datum.fa68a9ea", list(roundend_category)))
+		to_chat(admin, LANG("datum.fa68a9ea5275e625", list(roundend_category)))
 		return
 	if(!C.get_organ_by_type(/obj/item/organ/brain)) // If only I had a brain
-		to_chat(admin, LANG("datum.15390326", list(roundend_category)))
+		to_chat(admin, LANG("datum.153903267d1d0b87", list(roundend_category)))
 		return
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] into [name].")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")

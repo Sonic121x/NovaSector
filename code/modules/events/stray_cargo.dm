@@ -43,24 +43,23 @@
 	var/crate_type
 	/// Set to TRUE to emag the launched crate rather than just unlocking it.
 	var/emag_crate = FALSE
+	/// Upper bound of how many random seconds to wait before dropping the pod (replaces start_when)
+	var/upper_bound_wait_time = 40
+	/// Lower bound of how many random seconds to wait before dropping the pod (replaces start_when)
+	var/lower_bound_wait_time = 20
 
 /datum/round_event/stray_cargo/announce(fake)
 	if(fake)
 		impact_area = find_event_area()
-	priority_announce(LANG("datum.c8ed4dc5", list(impact_area.name)), "Collision Alert")
+	priority_announce(LANG("datum.c8ed4dc5458b4cfd", list(impact_area.name)), "Collision Alert")
 
 /**
 * Tries to find a valid area, throws an error if none are found
 * Also randomizes the start timer
 */
 /datum/round_event/stray_cargo/setup()
-	start_when = rand(20, 40)
-	if(admin_override_turf)
-		impact_area = get_area(admin_override_turf)
-	else
-		impact_area = find_event_area()
-	if(!impact_area)
-		CRASH("No valid areas for cargo pod found.")
+	start_when = rand(lower_bound_wait_time , upper_bound_wait_time)
+	impact_area = get_impact_area()
 	var/list/turf_test = get_area_turfs(impact_area)
 	if(!turf_test.len)
 		CRASH("Stray Cargo Pod : No valid turfs found for [impact_area] - [impact_area.type]")
@@ -72,8 +71,23 @@
 			if(initial(pack_type.order_flags) & ORDER_SPECIAL)
 				stray_spawnable_supply_packs -= pack
 
+/datum/round_event/stray_cargo/proc/get_impact_area()
+	if(admin_override_turf)
+		. = get_area(admin_override_turf)
+	else
+		. = find_event_area()
+	if(isnull(.))
+		CRASH("No valid areas for cargo pod found.")
+
 ///Spawns a random supply pack, puts it in a pod, and spawns it on a random tile of the selected area
 /datum/round_event/stray_cargo/start()
+	var/turf/landing_zone = get_landing_zone()
+	var/obj/structure/closet/supplypod/pod = make_pod()
+	var/obj/container = get_contents()
+	send_pod(landing_zone, pod, container)
+
+///Selects a place for the pod to land in
+/datum/round_event/stray_cargo/proc/get_landing_zone()
 	var/list/turf/valid_turfs = get_area_turfs(impact_area)
 	//Only target non-dense turfs to prevent wall-embedded pods
 	for(var/i in valid_turfs)
@@ -85,6 +99,14 @@
 		landing_zone = admin_override_turf
 	else
 		landing_zone = pick(valid_turfs)
+	return landing_zone
+
+///Handles the creation of the pod, in case it needs to be modified beforehand
+/datum/round_event/stray_cargo/proc/make_pod()
+	return new /obj/structure/closet/supplypod
+
+///Generates the contents of the pod
+/datum/round_event/stray_cargo/proc/get_contents()
 	var/pack_type
 	if(admin_override_contents)
 		pack_type = admin_override_contents
@@ -105,8 +127,8 @@
 	var/storage_override
 	if(initial(supply_pack.order_flags) & ORDER_GOODY) // We offer goody items inside of briefcases, but regular crates still default to their standard crates.
 		storage_override = /obj/item/storage/briefcase/empty
-	var/obj/container = supply_pack.generate(null, crate_override = (crate_type || storage_override))
 
+	var/obj/container = supply_pack.generate(null, crate_override = (crate_type || storage_override))
 	if(container && istype(container, /obj/structure/closet/crate)) //empty supply packs are a thing! get memed on.
 		var/obj/structure/closet/crate/crate = container
 		if(emag_crate)
@@ -114,15 +136,16 @@
 		else
 			crate.locked = FALSE //Unlock secure crates
 			crate.update_appearance()
-	var/obj/structure/closet/supplypod/pod = make_pod()
-	var/obj/effect/pod_landingzone/landing_marker = new(landing_zone, pod, container)
-	var/static/mutable_appearance/target_appearance = mutable_appearance('icons/obj/supplypods_32x32.dmi', "LZ")
-	notify_ghosts(LANG("datum.481cd65c", list(control.name)), source = get_turf(landing_marker), header = "Cargo Inbound", alert_overlay = target_appearance)
+	return container
 
-///Handles the creation of the pod, in case it needs to be modified beforehand
-/datum/round_event/stray_cargo/proc/make_pod()
-	var/obj/structure/closet/supplypod/S = new
-	return S
+///Sends the pod to the given location, containing the container
+/datum/round_event/stray_cargo/proc/send_pod(landing_zone, pod, container)
+	var/obj/effect/pod_landingzone/landing_marker = new(landing_zone, pod, container)
+	create_ghost_notification(landing_marker)
+
+/datum/round_event/stray_cargo/proc/create_ghost_notification(landing_marker)
+	var/static/mutable_appearance/target_appearance = mutable_appearance('icons/obj/supplypods_32x32.dmi', "LZ")
+	notify_ghosts(LANG("datum.481cd65ca56dbf4e", list(control.name)), source = get_turf(landing_marker), header = "Cargo Inbound", alert_overlay = target_appearance)
 
 ///Picks an area that wouldn't risk critical damage if hit by a pod explosion
 /datum/round_event/stray_cargo/proc/find_event_area()
@@ -160,7 +183,7 @@
 	var/pack_type_override
 
 /datum/event_admin_setup/syndicate_cargo_pod/prompt_admins()
-	var/admin_selected_pack = tgui_alert(usr,LANG("datum.d0d70c8b", null), LANG("datum.0a06d68f", null), list("Yes", "No", "Cancel"))
+	var/admin_selected_pack = tgui_alert(usr,LANG("datum.d0d70c8b6b6b0df7", null), LANG("datum.0a06d68f358589b6", null), list("Yes", "No", "Cancel"))
 	switch(admin_selected_pack)
 		if("Yes")
 			return override_contents()
@@ -172,7 +195,7 @@
 ///This proc prompts admins to set a TC value and uplink type for the crate, those values are then passed to a new syndicate pack's setup_contents() to generate the contents before spawning it.
 /datum/event_admin_setup/syndicate_cargo_pod/proc/override_contents()
 	var/datum/supply_pack/misc/syndicate/custom_value/syndicate_pack = new
-	var/pack_telecrystals = tgui_input_number(usr, LANG("datum.52a22223", null), LANG("datum.2c2b14a3", null), 30)
+	var/pack_telecrystals = tgui_input_number(usr, LANG("datum.52a222231ca0e57e", null), LANG("datum.2c2b14a39d2f3b99", null), 30)
 	if(isnull(pack_telecrystals))
 		return ADMIN_CANCEL_EVENT
 	var/list/possible_uplinks = list(
@@ -182,7 +205,7 @@
 		"Lone Op" = UPLINK_LONE_OP,
 		"Spy" = UPLINK_SPY
 		)
-	var/uplink_type = tgui_input_list(usr, LANG("datum.a8d3b428", null), LANG("datum.ea38f878", null), possible_uplinks)
+	var/uplink_type = tgui_input_list(usr, LANG("datum.a8d3b428c9f1f4cc", null), LANG("datum.ea38f8781755f502", null), possible_uplinks)
 	var/selection
 	if(!isnull(uplink_type))
 		selection = possible_uplinks[uplink_type]

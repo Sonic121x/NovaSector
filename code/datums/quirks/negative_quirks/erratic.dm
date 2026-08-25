@@ -41,14 +41,14 @@
 	if(random_index % 2 == 0)
 		random_index = 0
 		replace_personalities(base_personalities)
-		to_chat(quirk_holder, span_notice(LANG("datum.96e9f687", null)))
+		to_chat(quirk_holder, span_notice(LANG("datum.96e9f6879d00fa5e", null)))
 		announce_personality_change()
 		return
 
 	var/max = CONFIG_GET(number/max_personalities)
 	var/list/new_personality = prob(1) ? list() : SSpersonalities.select_random_personalities(max - 2, max + 1)
 	replace_personalities(new_personality)
-	to_chat(quirk_holder, span_notice(LANG("datum.5c7c958b", null)))
+	to_chat(quirk_holder, span_notice(LANG("datum.5c7c958b3c010851", null)))
 	announce_personality_change()
 
 /datum/quirk/erratic/proc/replace_personalities(list/new_personalities)
@@ -59,4 +59,4 @@
 	var/list/new_personality = list()
 	for(var/datum/personality/personality_type as anything in quirk_holder.personalities)
 		new_personality += initial(personality_type.name)
-	to_chat(quirk_holder, span_green(LANG("datum.74d7da23", list(english_list(new_personality)))))
+	to_chat(quirk_holder, span_green(LANG("datum.74d7da23f6538db2", list(lang_english_list(new_personality)))))

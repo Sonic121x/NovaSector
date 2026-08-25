@@ -16,19 +16,19 @@
 		return ..()
 
 	user.visible_message(
-		span_warning(LANG("obj.664a40e4", list(user, src, user.p_their(), user.p_their()))),
-		span_danger(LANG("obj.8b489642", list(src))),
+		span_warning(LANG("obj.664a40e4bc1d155b", list(user, src, user.p_their(), user.p_their()))),
+		span_danger(LANG("obj.8b4896420268f34e", list(src))),
 	)
 	playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 
 	if(locate(/datum/action/cooldown/spell/jaunt/bloodcrawl) in user.actions)
-		to_chat(user, span_warning(LANG("obj.97b6dab6", null)))
+		to_chat(user, span_warning(LANG("obj.97b6dab6be296408", null)))
 		qdel(src)
 		return
 
 	user.visible_message(
-		span_warning(LANG("obj.62b29bd2", list(user))),
-		span_userdanger(LANG("obj.ea9df6a6", null)),
+		span_warning(LANG("obj.62b29bd206257510", list(user))),
+		span_userdanger(LANG("obj.ea9df6a6ef57b06b", null)),
 	)
 
 	user.temporarilyRemoveItemFromInventory(src, TRUE)

@@ -120,7 +120,7 @@
 			var/list/localized_scoops = list()
 			for(var/flavour in scoops)
 				localized_scoops += lang_reverse_text(flavour)
-			source.desc = LANG("datum.a9fd8b90", list(initial(source.name), jointext(localized_scoops, "、"), scoops_len))
+			source.desc = LANG("datum.a9fd8b904e2796c4", list(initial(source.name), jointext(localized_scoops, "、"), scoops_len))
 		else
 			source.desc = "A delicious [initial(source.name)] filled with scoops of [english_list(scoops)] ice cream. That's as many as [scoops_len] scoops!"
 		// NOVA EDIT CHANGE END
@@ -128,7 +128,7 @@
 /datum/component/ice_cream_holder/proc/on_examine(atom/source, mob/mob, list/examine_list)
 	SIGNAL_HANDLER
 	if(length(scoops) < max_scoops)
-		examine_list += span_tinynoticeital(LANG("datum.6d3177e7", null))
+		examine_list += span_tinynoticeital(LANG("datum.6d3177e7e8efd404", null))
 
 /datum/component/ice_cream_holder/proc/on_examine_more(atom/source, mob/mob, list/examine_list)
 	SIGNAL_HANDLER
@@ -139,11 +139,11 @@
 		var/key = scoops[1]
 		var/datum/ice_cream_flavour/flavour = GLOB.ice_cream_flavours[LAZYACCESS(special_scoops, key) || key]
 		if(flavour?.desc) //I scream.
-			examine_list += LANG("datum.47954931", list(source.p_Theyre(), flavour ? flavour.name : "broken, unhappy"))
+			examine_list += LANG("datum.479549313d561b99", list(source.p_Theyre(), flavour ? flavour.name : "broken, unhappy"))
 		else
 			examine_list += replacetext(replacetext("[source.p_Theyre()] [flavour.desc]", "$CONE_NAME", initial(source.name)), "$CUSTOM_NAME", key)
 	else /// Many flavours.
-		examine_list += LANG("datum.bf4b23bc", list(source.p_Theyre(), english_list(scoops), scoops_len))
+		examine_list += LANG("datum.bf4b23bcd44d2df0", list(source.p_Theyre(), lang_english_list(scoops), scoops_len))
 
 /datum/component/ice_cream_holder/proc/on_update_overlays(atom/source, list/new_overlays)
 	SIGNAL_HANDLER
@@ -165,7 +165,7 @@
 	if(!istype(target, /obj/machinery/icecream_vat))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if(length(scoops) >= max_scoops)
-		target.balloon_alert(user, LANG("datum.16d16463", null))
+		target.balloon_alert(user, LANG("datum.16d16463a07a811e", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	var/obj/machinery/icecream_vat/dispenser = target
 	dispenser.add_flavor_to_cone(src, user, source)

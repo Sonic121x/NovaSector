@@ -418,7 +418,7 @@
 	symptoms += SSdisease.list_symptoms.Copy()
 	do
 		if(user)
-			var/symptom = tgui_input_list(user, LANG("_root.7ae826de", list(i)), LANG("_root.a8c6cdd1", null), sort_list(symptoms, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+			var/symptom = tgui_input_list(user, LANG("_root.7ae826dea7e5a91b", list(i)), LANG("_root.a8c6cdd1fe4e7f5f", null), sort_list(symptoms, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 			if(isnull(symptom))
 				return
 			else if(istext(symptom))
@@ -432,7 +432,7 @@
 
 	if(D.symptoms.len > 0)
 
-		var/new_name = tgui_input_text(user, LANG("_root.50798e0d", null), LANG("_root.fbcf69b9", null), max_length = MAX_NAME_LEN)
+		var/new_name = tgui_input_text(user, LANG("_root.50798e0d72410c28", null), LANG("_root.fbcf69b99d6d8089", null), max_length = MAX_NAME_LEN)
 		if(!new_name)
 			return
 		D.Refresh()
@@ -441,7 +441,7 @@
 
 		var/list/targets = list("Random")
 		targets += sort_names(GLOB.human_list)
-		var/target = tgui_input_list(user, LANG("_root.0aee4b73", null), LANG("_root.62f433be", null), targets)
+		var/target = tgui_input_list(user, LANG("_root.0aee4b73657b0c2f", null), LANG("_root.62f433be8f261dc5", null), targets)
 		if(isnull(target))
 			return
 		var/mob/living/carbon/human/H
@@ -455,13 +455,13 @@
 					found = H.ForceContractDisease(D)
 					break
 				if(!found)
-					to_chat(user, LANG("_root.962814fb", null))
+					to_chat(user, LANG("_root.962814fbe44eabc5", null))
 		else
 			H = target
 			if(istype(H) && D.infectable_biotypes & H.mob_biotypes)
 				H.ForceContractDisease(D)
 			else
-				to_chat(user, LANG("_root.5b7affb2", null))
+				to_chat(user, LANG("_root.5b7affb279d405cb", null))
 				return
 
 		message_admins("[key_name_admin(user)] has triggered a custom virus outbreak of [D.admin_details()] in [ADMIN_LOOKUPFLW(H)]")

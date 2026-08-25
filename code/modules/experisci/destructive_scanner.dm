@@ -10,7 +10,6 @@
 	icon = 'icons/obj/machines/destructive_scanner.dmi'
 	icon_state = "tube_open"
 	circuit = /obj/item/circuitboard/machine/destructive_scanner
-	layer = MOB_LAYER
 	var/scanning = FALSE
 
 // Late load to ensure the component initialization occurs after the machines are initialized
@@ -35,7 +34,7 @@
 	for(var/mob/living/living_mob in pickup_zone)
 		if(!(obj_flags & EMAGGED) && ishuman(living_mob)) //Can only kill humans when emagged.
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 25)
-			say(LANG("obj.f9e2d167", null))
+			say(LANG("obj.f9e2d16744511ebe", null))
 			return
 		aggressive = TRUE
 	start_closing(aggressive)
@@ -98,7 +97,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	playsound(src, SFX_SPARKS, 75, TRUE, SILENCED_SOUND_EXTRARANGE)
-	balloon_alert(user, LANG("obj.34eff806", null))
+	balloon_alert(user, LANG("obj.34eff806b6354706", null))
 	return TRUE
 
 /obj/machinery/destructive_scanner/update_icon_state()

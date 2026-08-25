@@ -22,4 +22,4 @@
 /datum/element/radiation_protected_clothing/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 
-	examine_text += span_notice(LANG("datum.c10a7c1e", null))
+	examine_text += span_notice(LANG("datum.c10a7c1e5c6035cd", null))

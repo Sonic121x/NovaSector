@@ -59,8 +59,8 @@
 	choke_loop = new /datum/looping_sound/choking(owner)
 	check_audio_state()
 
-	owner.visible_message(span_bolddanger(LANG("datum.2167431e", list(owner))), \
-		span_userdanger(LANG("datum.52102b68", null)), \
+	owner.visible_message(span_bolddanger(LANG("datum.2167431e2d0d70c8", list(owner))), \
+		span_userdanger(LANG("datum.52102b685570234b", null)), \
 	)
 
 	//barticles
@@ -122,7 +122,7 @@
 		var/atom/target = get_edge_target_turf(source, source.dir)
 		choking_on.throw_at(target, distance, 1, source)
 
-/datum/status_effect/choke/get_examine_text()
+/datum/status_effect/choke/get_examine_text(mob/examiner)
 	return span_boldwarning("[owner.p_They()] [owner.p_are()] choking!")
 
 /datum/status_effect/choke/proc/remove_choke(datum/source)
@@ -163,7 +163,7 @@
 
 /datum/status_effect/choke/proc/attempt_eat(mob/source, atom/eating)
 	SIGNAL_HANDLER
-	source.balloon_alert(source, LANG("datum.7a5e319e", null))
+	source.balloon_alert(source, LANG("datum.7a5e319e34f8ae23", null))
 	return BLOCK_EAT_ATTEMPT
 
 /datum/status_effect/choke/proc/helped(mob/source, mob/helping)
@@ -180,10 +180,10 @@
 	if(victim == aggressor)
 		return
 	if(DOING_INTERACTION_WITH_TARGET(aggressor, victim))
-		victim.balloon_alert(aggressor, LANG("datum.5ede19df", null))
+		victim.balloon_alert(aggressor, LANG("datum.5ede19df4ba21ad1", null))
 		return
 	if(DOING_INTERACTION(aggressor, "heimlich"))
-		victim.balloon_alert(aggressor, LANG("datum.9c1c9ddc", null))
+		victim.balloon_alert(aggressor, LANG("datum.9c1c9ddc50737e4a", null))
 		return
 
 	if(!thrusting_continues(victim, aggressor, before_work = TRUE))
@@ -198,12 +198,12 @@
 
 	var/mob/living/livin_victim = victim
 	if(iscarbon(aggressor) && livin_victim.body_position == STANDING_UP)
-		owner.visible_message(span_warning(LANG("datum.533d724e", list(aggressor, aggressor.p_their(), victim, aggressor.p_their()))), \
-			span_boldwarning(LANG("datum.9b320145", list(aggressor, aggressor.p_their(), capitalize(GLOB.deity)))), \
+		owner.visible_message(span_warning(LANG("datum.533d724e48f6cd3e", list(aggressor, aggressor.p_their(), victim, aggressor.p_their()))), \
+			span_boldwarning(LANG("datum.9b32014573cf10f4", list(aggressor, aggressor.p_their(), capitalize(GLOB.deity)))), \
 			)
 	else
-		owner.visible_message(span_warning(LANG("datum.504a5f99", list(aggressor, aggressor.p_their(), hand_name, victim))), \
-			span_boldwarning(LANG("datum.80196d1d", list(aggressor, hand_name))))
+		owner.visible_message(span_warning(LANG("datum.504a5f99371d241c", list(aggressor, aggressor.p_their(), hand_name, victim))), \
+			span_boldwarning(LANG("datum.80196d1d17df3dd9", list(aggressor, hand_name))))
 
 	if(!do_after(aggressor, 7 SECONDS, victim, extra_checks = CALLBACK(src, PROC_REF(thrusting_continues), victim, aggressor), interaction_key = "heimlich"))
 		aggressor.stop_pulling()
@@ -211,8 +211,8 @@
 	aggressor.stop_pulling()
 
 	var/atom/movable/choking_on = choking_on_ref?.resolve()
-	owner.visible_message(span_green(LANG("datum.16f6f06d", list(victim, choking_on, victim.p_theyre()))), \
-			span_green(LANG("datum.c312c671", null)))
+	owner.visible_message(span_green(LANG("datum.16f6f06d4523ba7e", list(victim, choking_on, victim.p_theyre()))), \
+			span_green(LANG("datum.c312c67145cddc44", null)))
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
 		var/obj/item/bodypart/chest = carbon_victim.get_bodypart(BODY_ZONE_CHEST)
@@ -234,13 +234,13 @@
 				continue
 			free_hands += 1
 		if(free_hands < 2)
-			victim.balloon_alert(aggressor, LANG("datum.dae38a5d", null))
+			victim.balloon_alert(aggressor, LANG("datum.dae38a5d8331d46c", null))
 			return FALSE
 
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
 		if(IS_DEAD_OR_FAKING(carbon_victim))
-			victim.balloon_alert(aggressor, LANG("datum.adef2bb1", null))
+			victim.balloon_alert(aggressor, LANG("datum.adef2bb19dd0a1bd", null))
 			return FALSE
 
 	if(!choking_on_ref)
@@ -249,17 +249,17 @@
 	if(!before_work)
 		// This check isn't valid at first because it looks dumb if other things fail
 		if(victim.pulledby != aggressor)
-			victim.balloon_alert(aggressor, LANG("datum.9995a04a", null))
+			victim.balloon_alert(aggressor, LANG("datum.9995a04ae906757b", null))
 			return FALSE
 
 		// Similarly, but also this is a burden of knowhow that's cringe
 		if(aggressor.dir != get_dir(aggressor, victim))
-			victim.balloon_alert(aggressor, LANG("datum.f2e13ce9", null))
+			victim.balloon_alert(aggressor, LANG("datum.f2e13ce9a5fc7502", null))
 			return FALSE
 
 		// See above
 		if(victim.dir != aggressor.dir)
-			victim.balloon_alert(aggressor, LANG("datum.30146632", null))
+			victim.balloon_alert(aggressor, LANG("datum.30146632e0a55ebb", null))
 			return FALSE
 
 	// If we ain't starting, deal a tad bit of brute, as a treat

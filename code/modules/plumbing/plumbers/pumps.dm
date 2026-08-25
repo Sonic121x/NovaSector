@@ -41,7 +41,7 @@
 			update_appearance()
 		if(!geyser) //we didnt find one, abort
 			geyserless = TRUE
-			visible_message(span_warning(LANG("obj.5c290b5d", list(src))))
+			visible_message(span_warning(LANG("obj.5c290b5d30564a38", list(src))))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50)
 			return
 

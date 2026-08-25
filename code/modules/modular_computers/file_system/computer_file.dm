@@ -98,6 +98,6 @@
 /datum/computer_file/program/proc/event_networkfailure(background)
 	kill_program()
 	if(background)
-		computer.visible_message(span_danger(LANG("datum.756e8d88", list(computer, filename, filetype, rand(100,999)))))
+		computer.visible_message(span_danger(LANG("datum.756e8d88a54dba67", list(computer, filename, filetype, rand(100,999)))))
 	else
-		computer.visible_message(span_danger(LANG("datum.c4ae5155", list(computer))))
+		computer.visible_message(span_danger(LANG("datum.c4ae5155b841c9b2", list(computer))))

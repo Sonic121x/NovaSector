@@ -140,7 +140,7 @@
 /mob/living/can_z_move(direction, turf/start, turf/destination, z_move_flags = ZMOVE_FLIGHT_FLAGS, mob/living/rider)
 	if(z_move_flags & ZMOVE_INCAPACITATED_CHECKS && incapacitated)
 		if(z_move_flags & ZMOVE_FEEDBACK)
-			to_chat(rider || src, span_warning(LANG("mob.e4ee5d59", list(rider ? src : "You"))))
+			to_chat(rider || src, span_warning(LANG("mob.e4ee5d59805a29f7", list(rider ? src : "You"))))
 		return FALSE
 	if(!buckled || !(z_move_flags & ZMOVE_ALLOW_BUCKLED))
 		if(!(z_move_flags & ZMOVE_FALL_CHECKS) && incorporeal_move && (!rider || rider.incorporeal_move))
@@ -158,7 +158,7 @@
 			if(!(z_move_flags & ZMOVE_CAN_FLY_CHECKS) && !buckled.anchored)
 				return buckled.can_z_move(direction, start, destination, z_move_flags, src)
 			if(z_move_flags & ZMOVE_FEEDBACK)
-				to_chat(src, span_warning(LANG("mob.63a21e6a", list(buckled))))
+				to_chat(src, span_warning(LANG("mob.63a21e6a53f7efce", list(buckled))))
 			return FALSE
 
 /mob/set_currently_z_moving(value)

@@ -20,7 +20,7 @@
 	return
 
 /datum/action/changeling/sting/proc/set_sting(mob/user)
-	to_chat(user, span_notice(LANG("datum.ae858c00", null)))
+	to_chat(user, span_notice(LANG("datum.ae858c008691e06d", null)))
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	changeling.chosen_sting = src
 
@@ -30,7 +30,7 @@
 		sting.SetInvisibility(0, id=type)
 
 /datum/action/changeling/sting/proc/unset_sting(mob/user)
-	to_chat(user, span_warning(LANG("datum.d5390fe5", null)))
+	to_chat(user, span_warning(LANG("datum.d5390fe5f0f0931c", null)))
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	changeling.chosen_sting = null
 
@@ -50,14 +50,14 @@
 		return
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	if(!changeling.chosen_sting)
-		to_chat(user, LANG("datum.6ec24bd7", null))
+		to_chat(user, LANG("datum.6ec24bd7e1243a1f", null))
 	if(!iscarbon(target))
 		return
 	if(!isturf(user.loc))
 		return
 	var/mob/living/carbon/human/to_check = target // NOVA EDIT START - STINGS DO NOT AFFECT ROBOTIC ENTITIES
 	if(to_check.mob_biotypes & MOB_ROBOTIC)
-		to_chat(user, LANG("datum.3f12a13e", null))
+		to_chat(user, LANG("datum.3f12a13e8918d6ce", null))
 		return // NOVA EDIT END
 	if(!length(get_path_to(user, target, max_distance = changeling.sting_range, simulated_only = FALSE)))
 		return // no path within the sting's range is found. what a weird place to use the pathfinding system
@@ -69,9 +69,9 @@
 /datum/action/changeling/sting/sting_feedback(mob/user, mob/target)
 	if(!target)
 		return
-	to_chat(user, span_notice(LANG("datum.e8f44b1e", list(target.name))))
+	to_chat(user, span_notice(LANG("datum.e8f44b1efc474139", list(target.name))))
 	if(IS_CHANGELING(target))
-		to_chat(target, span_warning(LANG("datum.8ab80b34", null)))
+		to_chat(target, span_warning(LANG("datum.8ab80b34b0ce2ae9", null)))
 	return 1
 
 /datum/action/changeling/sting/transformation
@@ -113,7 +113,7 @@
 	if(!new_selected_dna || changeling.chosen_sting || selected_dna) // selected other sting or other DNA while sleeping
 		return
 	if(verify_valid_species && (TRAIT_NO_DNA_COPY in new_selected_dna.dna.species.inherent_traits))
-		user.balloon_alert(user, LANG("datum.1be8328e", null))
+		user.balloon_alert(user, LANG("datum.1be8328e334eb800", null))
 		return
 	selected_dna = new_selected_dna
 	return ..()
@@ -129,10 +129,10 @@
 		|| HAS_TRAIT(target, TRAIT_HUSK) \
 		|| HAS_TRAIT(target, TRAIT_BADDNA) \
 		|| (HAS_TRAIT(target, TRAIT_NO_DNA_COPY) && !ismonkey(target))) // sure, go ahead, make a monk-clone
-		user.balloon_alert(user, LANG("datum.74adc456", null))
+		user.balloon_alert(user, LANG("datum.74adc456fe5862e2", null))
 		return FALSE
 	if(target.has_status_effect(/datum/status_effect/temporary_transformation/trans_sting))
-		user.balloon_alert(user, LANG("datum.817662bc", null))
+		user.balloon_alert(user, LANG("datum.817662bc03568885", null))
 		return FALSE
 	return TRUE
 
@@ -169,7 +169,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		if((HAS_TRAIT(L, TRAIT_HUSK)) || !L.has_dna())
-			user.balloon_alert(user, LANG("datum.74adc456", null))
+			user.balloon_alert(user, LANG("datum.74adc456fe5862e2", null))
 			return FALSE
 	return TRUE
 
@@ -177,17 +177,17 @@
 
 	var/obj/item/held = target.get_active_held_item()
 	if(held && !target.dropItemToGround(held))
-		to_chat(user, span_warning(LANG("datum.200f9200", list(held, target.p_their()))))
+		to_chat(user, span_warning(LANG("datum.200f9200de2ea4d2", list(held, target.p_their()))))
 		return
 
 	..()
 	log_combat(user, target, "stung", object = "false armblade sting")
 	if(ismonkey(target))
-		to_chat(user, span_notice(LANG("datum.162dd1d9", list(target.name))))
+		to_chat(user, span_notice(LANG("datum.162dd1d98ef09b3b", list(target.name))))
 
 	var/obj/item/melee/arm_blade/false/blade = new(target,1)
 	target.put_in_hands(blade)
-	target.visible_message(span_warning(LANG("datum.4f914b98", list(target.name))), span_userdanger(LANG("datum.5b7b8ca8", null)), span_hear(LANG("datum.581bebe7", null)))
+	target.visible_message(span_warning(LANG("datum.4f914b98691c0007", list(target.name))), span_userdanger(LANG("datum.5b7b8ca89bec0f92", null)), span_hear(LANG("datum.581bebe73d25d191", null)))
 	playsound(target, 'sound/effects/blob/blobattack.ogg', 30, TRUE)
 
 	addtimer(CALLBACK(src, PROC_REF(remove_fake), target, blade), 1 MINUTES)
@@ -195,8 +195,8 @@
 
 /datum/action/changeling/sting/false_armblade/proc/remove_fake(mob/target, obj/item/melee/arm_blade/false/blade)
 	playsound(target, 'sound/effects/blob/blobattack.ogg', 30, TRUE)
-	target.visible_message(span_warning(LANG("datum.1f76d95a", list(target, target.p_their(), blade.name))),
-	span_warning(LANG("datum.671445a8", list(blade))), span_italics(LANG("datum.581bebe7", null)))
+	target.visible_message(span_warning(LANG("datum.1f76d95a5c03dc82", list(target, target.p_their(), blade.name))),
+	span_warning(LANG("datum.671445a85960b770", list(blade))), span_italics(LANG("datum.581bebe73d25d191", null)))
 
 	qdel(blade)
 	target.update_held_items()
@@ -247,16 +247,16 @@
 /datum/action/changeling/sting/blind/sting_action(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/eyes/eyes = target.get_organ_slot(ORGAN_SLOT_EYES)
 	if(!eyes)
-		user.balloon_alert(user, LANG("datum.ac2c42c3", null))
+		user.balloon_alert(user, LANG("datum.ac2c42c3636700d9", null))
 		return FALSE
 
 	if(IS_ROBOTIC_ORGAN(eyes))
-		user.balloon_alert(user, LANG("datum.ac1d1725", null))
+		user.balloon_alert(user, LANG("datum.ac1d17257288c6dc", null))
 		return FALSE
 
 	..()
 	log_combat(user, target, "stung", "blind sting")
-	to_chat(target, span_danger(LANG("datum.264e2a0d", null)))
+	to_chat(target, span_danger(LANG("datum.264e2a0d8f40ffba", null)))
 	eyes.apply_organ_damage(eyes.maxHealth * 0.8)
 	target.adjust_temp_blindness(40 SECONDS)
 	target.set_eye_blur_if_lower(80 SECONDS)

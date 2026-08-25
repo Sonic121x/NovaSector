@@ -295,13 +295,13 @@
 	..()
 	if(!welder.tool_start_check(user, amount=1))
 		return TRUE
-	to_chat(user, span_notice(LANG("obj.bfb4b9b7", null)))
+	to_chat(user, span_notice(LANG("obj.bfb4b9b7db0a6aad", null)))
 	if(welder.use_tool(src, user, 20, volume=50))
 		if(!welded)
-			user.visible_message(span_notice(LANG("obj.4c4fc731", list(user))),span_notice(LANG("obj.953fc8d7", null)), span_hear(LANG("obj.1aa82fa3", null)))
+			user.visible_message(span_notice(LANG("obj.4c4fc731ca462051", list(user))),span_notice(LANG("obj.953fc8d76022422f", null)), span_hear(LANG("obj.1aa82fa3545466eb", null)))
 			welded = TRUE
 		else
-			user.visible_message(span_notice(LANG("obj.01bc643e", list(user))), span_notice(LANG("obj.a3b1792c", null)), span_hear(LANG("obj.1aa82fa3", null)))
+			user.visible_message(span_notice(LANG("obj.01bc643e9b1ec633", list(user))), span_notice(LANG("obj.a3b1792c6ba89ef4", null)), span_hear(LANG("obj.1aa82fa3545466eb", null)))
 			welded = FALSE
 		update_appearance(UPDATE_ICON)
 		pipe_vision_img = image(src, loc, dir = dir)
@@ -313,18 +313,18 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, span_warning(LANG("obj.a6e44f07", list(src))))
+		to_chat(user, span_warning(LANG("obj.a6e44f07b2cb8ca0", list(src))))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/examine(mob/user)
 	. = ..()
 	if(welded)
-		. += LANG("obj.717685e0", null)
+		. += LANG("obj.717685e07bde5f57", null)
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/attack_alien(mob/user, list/modifiers)
 	if(!welded || !(do_after(user, 2 SECONDS, target = src)))
 		return
-	user.visible_message(span_warning(LANG("obj.66d277ff", list(user, src))), span_notice(LANG("obj.0c5f6f9e", null)), span_hear(LANG("obj.94e00bf8", null)))
+	user.visible_message(span_warning(LANG("obj.66d277ffdcbbc8c3", list(user, src))), span_notice(LANG("obj.0c5f6f9ec52cd36d", null)), span_hear(LANG("obj.94e00bf828aa7a81", null)))
 	welded = FALSE
 	update_appearance(UPDATE_ICON)
 	pipe_vision_img = image(src, loc, dir = dir)

@@ -153,7 +153,7 @@
 
 /obj/machinery/modular_shield_generator/multitool_act(mob/living/user, obj/item/multitool/multi)
 	multi.set_buffer(src)
-	balloon_alert(user, LANG("obj.bb9065b6", null))
+	balloon_alert(user, LANG("obj.bb9065b6437d1b0c", null))
 	return ITEM_INTERACT_SUCCESS
 
 ///toggles the forcefield on and off
@@ -489,9 +489,9 @@
 	. = ..()
 
 	if(isnull(shield_generator) && isnull(connected_node))
-		. += LANG("obj.309f9a47", null)
+		. += LANG("obj.309f9a47c9faf023", null)
 		return
-	. += LANG("obj.f9c4372c", null)
+	. += LANG("obj.f9c4372c2dc33a55", null)
 
 /obj/machinery/modular_shield/module/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -500,9 +500,9 @@
 	tool.play_tool_sound(src, 50)
 	update_icon_state()
 	if(panel_open)
-		balloon_alert(user, LANG("obj.32c8e93e", null))
+		balloon_alert(user, LANG("obj.32c8e93edbd99bde", null))
 		return TRUE
-	balloon_alert(user, LANG("obj.271bf781", null))
+	balloon_alert(user, LANG("obj.271bf78141737850", null))
 	return TRUE
 
 /obj/machinery/modular_shield/module/multitool_act(mob/living/user, obj/item/tool)
@@ -545,7 +545,7 @@
 /obj/machinery/modular_shield/module/proc/try_connect(user)
 
 	if(shield_generator || connected_node)
-		balloon_alert(user, LANG("obj.b44dcb2a", null))
+		balloon_alert(user, LANG("obj.b44dcb2a9f6c35c2", null))
 		update_icon_state()
 		return
 
@@ -554,7 +554,7 @@
 	if(shield_generator)
 
 		LAZYOR(shield_generator.connected_modules, (src))
-		balloon_alert(user, LANG("obj.3e0b9429", null))
+		balloon_alert(user, LANG("obj.3e0b9429dfb57031", null))
 		update_icon_state()
 		shield_generator.calculate_boost()
 		return
@@ -567,7 +567,7 @@
 		if(!connected_node.allow_boosters && is_booster)
 			connected_node = null
 			update_icon_state()
-			balloon_alert(user, LANG("obj.dad98bd0", null))
+			balloon_alert(user, LANG("obj.dad98bd0076b7f35", null))
 			return
 
 		LAZYOR(connected_node.connected_through_us, (src))
@@ -575,15 +575,15 @@
 		shield_generator = connected_node.shield_generator
 		if(shield_generator)
 			LAZYOR(shield_generator.connected_modules, (src))
-			balloon_alert(user, LANG("obj.3e0b9429", null))
+			balloon_alert(user, LANG("obj.3e0b9429dfb57031", null))
 			update_icon_state()
 			shield_generator.calculate_boost()
 			return
 		update_icon_state()
-		balloon_alert(user, LANG("obj.21e7edbb", null))
+		balloon_alert(user, LANG("obj.21e7edbb8e103686", null))
 		return
 	update_icon_state()
-	balloon_alert(user, LANG("obj.60623922", null))
+	balloon_alert(user, LANG("obj.6062392293de9f78", null))
 
 /obj/machinery/modular_shield/module/node
 	name = "modular shield node"

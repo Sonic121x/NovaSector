@@ -74,7 +74,7 @@
 	if(card?.registered_account?.account_job?.paycheck_department == payment_department)
 		use_energy(active_power_usage)
 		paying_customer = TRUE
-		say(LANG("obj.e89c41c1", null))
+		say(LANG("obj.e89c41c1b49b7466", null))
 		return
 	var/bonus_fee = pandemonium ? rand(10,30) : 0
 	if(attempt_charge(src, paying, bonus_fee) & COMPONENT_OBJ_CANCEL_CHARGE )
@@ -82,7 +82,7 @@
 	use_energy(active_power_usage)
 	paying_customer = TRUE
 	icon_state = "[base_icon_state]_active"
-	say(LANG("obj.c4cd8293", null))
+	say(LANG("obj.c4cd829370c5f4bb", null))
 	return
 
 /obj/machinery/medical_kiosk/proc/clearScans() //Called it enough times to be it's own proc
@@ -125,20 +125,20 @@
 
 	var/obj/item/scanner_wand/wand = tool
 	if(scanner_wand)
-		balloon_alert(user, LANG("obj.d6054a91", null))
+		balloon_alert(user, LANG("obj.d6054a91a96b7bc7", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
-		balloon_alert(user, LANG("obj.edd6b8ce", null))
+		balloon_alert(user, LANG("obj.edd6b8cef2ef1cd1", null))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.2b5df12c", list(user, tool, src))))
-	balloon_alert(user, LANG("obj.439e2543", null))
+	user.visible_message(span_notice(LANG("obj.2b5df12c906c3264", list(user, tool, src))))
+	balloon_alert(user, LANG("obj.439e25434248f6d5", null))
 	//This will be the scanner returning scanner_wand's selected_target variable and assigning it to the altPatient var
 	if(wand.selected_target)
 		var/datum/weakref/target_ref = WEAKREF(wand.return_patient())
 		if(patient_ref != target_ref)
 			clearScans()
 		patient_ref = target_ref
-		user.visible_message(span_notice(LANG("obj.07cefc96", list(wand.return_patient()))))
+		user.visible_message(span_notice(LANG("obj.07cefc9665363cfe", list(wand.return_patient()))))
 		wand.selected_target = null
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	scanner_wand = tool
@@ -151,14 +151,14 @@
 	if(!ishuman(user) || !user.can_perform_action(src))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!scanner_wand)
-		balloon_alert(user, LANG("obj.db9d9aa7", null))
+		balloon_alert(user, LANG("obj.db9d9aa7d5eda639", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!user.put_in_hands(scanner_wand))
-		balloon_alert(user, LANG("obj.da9fc6f8", null))
+		balloon_alert(user, LANG("obj.da9fc6f8809efba5", null))
 		scanner_wand = null
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	user.visible_message(span_notice(LANG("obj.75deeac2", list(user, scanner_wand, src))))
-	balloon_alert(user, LANG("obj.e419468e", null))
+	user.visible_message(span_notice(LANG("obj.75deeac240b8e382", list(user, scanner_wand, src))))
+	balloon_alert(user, LANG("obj.e419468ee85c2393", null))
 	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 	scanner_wand = null
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -173,8 +173,8 @@
 		return
 	if(user)
 		if (emag_card)
-			user.visible_message(span_warning(LANG("obj.d9c51228", list(user, src))))
-		balloon_alert(user, LANG("obj.965f2362", null))
+			user.visible_message(span_warning(LANG("obj.d9c512280216fbfe", list(user, src))))
+		balloon_alert(user, LANG("obj.965f2362d79ac54a", null))
 	obj_flags |= EMAGGED
 	var/obj/item/circuitboard/board = circuit
 	board.obj_flags |= EMAGGED //Mirrors emag status onto the board as well.
@@ -184,25 +184,25 @@
 /obj/machinery/medical_kiosk/examine(mob/user)
 	. = ..()
 	if(scanner_wand == null)
-		. += span_notice(LANG("obj.617034f4", list(src)))
+		. += span_notice(LANG("obj.617034f46bc1fb56", list(src)))
 	else
-		. += span_notice(LANG("obj.9651ae35", list(src)))
+		. += span_notice(LANG("obj.9651ae356c20f395", list(src)))
 
 /obj/machinery/medical_kiosk/ui_interact(mob/user, datum/tgui/ui)
 	var/patient_distance = 0
 	if(!ishuman(user))
-		to_chat(user, span_warning(LANG("obj.cec346d4", list(src))))
+		to_chat(user, span_warning(LANG("obj.cec346d4d351e540", list(src))))
 		if (ui)
 			ui.close()
 		return
 	var/mob/living/carbon/human/patient = patient_ref?.resolve()
 	patient_distance = get_dist(src.loc, patient)
 	if(patient == null)
-		say(LANG("obj.5fc303a7", null))
+		say(LANG("obj.5fc303a7eb09a99f", null))
 		patient_ref = WEAKREF(user)
 	else if(patient_distance>5)
 		patient_ref = null
-		say(LANG("obj.a38b067b", null))
+		say(LANG("obj.a38b067b3db79a74", null))
 		clearScans()
 		return
 	ui = SStgui.try_update_ui(user, src, ui)

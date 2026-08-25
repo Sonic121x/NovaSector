@@ -18,8 +18,8 @@
 			effect_chance = 45
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger(LANG("obj.4896f345", list(owner))),
-			span_warning(LANG("obj.5ff16f10", null))
+			span_danger(LANG("obj.4896f3454da7d94f", list(owner))),
+			span_warning(LANG("obj.5ff16f1000f78037", null))
 		)
 		if(active_item)
 			Retract()
@@ -62,7 +62,7 @@
 /obj/item/synth_powercord/proc/try_power_draw(obj/target, mob/living/carbon/human/user)
 	// Only robotic species can use this
 	if(!(user.mob_biotypes & MOB_ROBOTIC))
-		to_chat(user, span_warning(LANG("obj.41a05d3e", list(target))))
+		to_chat(user, span_warning(LANG("obj.41a05d3eac0784f5", list(target))))
 		return
 
 	/// The current user's nutrition level in joules.
@@ -71,20 +71,20 @@
 
 	var/obj/item/organ/stomach/synth/synth_cell = user.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(QDELETED(synth_cell) || !istype(synth_cell))
-		to_chat(user, span_warning(LANG("obj.41a05d3e", list(target))))
+		to_chat(user, span_warning(LANG("obj.41a05d3eac0784f5", list(target))))
 		return
 
 	if(nutrition_level_joules > SYNTH_CHARGE_ALMOST_FULL)
-		user.balloon_alert(user, LANG("obj.63ae3ffe", null))
+		user.balloon_alert(user, LANG("obj.63ae3ffe8640410e", null))
 		return
 
-	user.visible_message(span_notice(LANG("obj.4551481e", list(user, target))), span_notice(LANG("obj.19533075", list(target))))
+	user.visible_message(span_notice(LANG("obj.4551481e6ba75b91", list(user, target))), span_notice(LANG("obj.19533075f8a84212", list(target))))
 	do_power_draw(target, user)
 
 	if(QDELETED(target))
 		return
 
-	user.visible_message(span_notice(LANG("obj.804f8940", list(user, target))), span_notice(LANG("obj.71e01213", list(target))))
+	user.visible_message(span_notice(LANG("obj.804f894022c0a7d5", list(user, target))), span_notice(LANG("obj.71e012131b16178e", list(target))))
 
 /**
  * Runs a loop to charge a synth cell (stomach) from a power cell or APC.
@@ -109,7 +109,7 @@
 	var/minimum_cell_charge = target_apc ? SYNTH_APC_MINIMUM_PERCENT : 0
 
 	if(!target_cell || target_cell.percent() < minimum_cell_charge)
-		user.balloon_alert(user, LANG("obj.6254c613", null))
+		user.balloon_alert(user, LANG("obj.6254c6139336a9dd", null))
 		return
 	var/wait = SSmachines.wait / (1 SECONDS)
 	var/energy_needed
@@ -117,7 +117,7 @@
 		// Check if the charge level of the cell is below the minimum.
 		// Prevents synths from overloading the cell.
 		if(target_cell.percent() < minimum_cell_charge)
-			user.balloon_alert(user, LANG("obj.6254c613", null))
+			user.balloon_alert(user, LANG("obj.6254c6139336a9dd", null))
 			break
 
 		// Attempt to drain charge from the cell.
@@ -138,7 +138,7 @@
 			// The cell could be sabotaged, which causes it to explode and qdelete.
 			if(QDELETED(target_cell))
 				return
-			user.balloon_alert(user, LANG("obj.e4f5eccf", list(target_apc ? "APC" : "Cell")))
+			user.balloon_alert(user, LANG("obj.e4f5eccf851dcc57", list(target_apc ? "APC" : "Cell")))
 			break
 
 		// If charging was successful, then increase user nutrition and emit sparks.
@@ -146,13 +146,12 @@
 		user.nutrition = min(user.nutrition + nutrition_gained, NUTRITION_LEVEL_FULL)
 		do_sparks(1, FALSE, target_cell.loc)
 		if(user.nutrition > NUTRITION_LEVEL_ALMOST_FULL)
-			user.balloon_alert(user, LANG("obj.2a34860b", null))
+			user.balloon_alert(user, LANG("obj.2a34860b654dd615", null))
 			break
 
 /datum/design/synth_charger
 	name = "Charging Cord Implant"
 	desc = "An internal power cord for synthetic use only. Requires connection the synthetic fuel cell to function."
-	id = "synth_charger"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

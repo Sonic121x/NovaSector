@@ -99,19 +99,19 @@
 
 /obj/item/disk/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.4add0e25", list(span_bold("[read_only ? "protected" : "unprotected"]"))))
+	. += span_notice(LANG("obj.4add0e25760d40db", list(span_bold("[read_only ? "protected" : "unprotected"]"))))
 
 	if(custom_description)
-		. += span_notice(LANG("obj.89581f5c", null))
+		. += span_notice(LANG("obj.89581f5ccb0b94a4", null))
 		. += span_notice(span_italics("\"[custom_description]\""))
 
 /obj/item/disk/tool_act(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/pen))
 		if(sticker_icon_state != STARTING_STICKER)
-			to_chat(user, span_warning(LANG("obj.f554aa51", null)))
+			to_chat(user, span_warning(LANG("obj.f554aa51f37125d9", null)))
 			return ITEM_INTERACT_FAILURE
 
-		var/newdescription = sanitize_text(tgui_input_text(user, LANG("obj.2e96b467", null), LANG("obj.91b89937", null), max_length = MAX_TEXT_LENGTH, multiline = TRUE))
+		var/newdescription = sanitize_text(tgui_input_text(user, LANG("obj.2e96b4676a9d361f", null), LANG("obj.91b8993748102f33", null), max_length = MAX_TEXT_LENGTH, multiline = TRUE))
 		if(!newdescription)
 			return ITEM_INTERACT_FAILURE
 
@@ -119,7 +119,7 @@
 			return ITEM_INTERACT_FAILURE
 
 		playsound(src, SFX_WRITING_PEN, 30)
-		to_chat(user, span_notice(LANG("obj.4895e627", list(src))))
+		to_chat(user, span_notice(LANG("obj.4895e6271be4ccd4", list(src))))
 
 		custom_description = newdescription
 		set_sticker_icon_state(pick("o_text1", "o_text2", "o_text3"))
@@ -129,10 +129,10 @@
 
 /obj/item/disk/attack_self(mob/user)
 	if(read_only_locked)
-		to_chat(user, span_warning(LANG("obj.13f9262c", null)))
+		to_chat(user, span_warning(LANG("obj.13f9262c576e55cd", null)))
 		return
 	read_only = !read_only
-	to_chat(user, span_notice(LANG("obj.6bdbc175", list(span_bold("[read_only ? "protected" : "unprotected"]")))))
+	to_chat(user, span_notice(LANG("obj.6bdbc175f2869ed6", list(span_bold("[read_only ? "protected" : "unprotected"]")))))
 
 /obj/item/disk/click_alt_secondary(mob/user)
 	if(sticker_icon_state != STARTING_STICKER)
@@ -157,7 +157,7 @@
 		return CLICK_ACTION_BLOCKING
 
 	set_sticker_icon_state(sticker_variants[pick])
-	to_chat(user, span_notice(LANG("obj.25195931", list(src, pick))))
+	to_chat(user, span_notice(LANG("obj.25195931438d6bb9", list(src, pick))))
 	return CLICK_ACTION_SUCCESS
 
 /// Can we select a new sticker?
@@ -227,7 +227,7 @@
 
 /obj/item/disk_stack/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.07904c3c", list(span_bold("[length(stacked_disks)]"))))
+	. += span_notice(LANG("obj.07904c3ca4227fb2", list(span_bold("[length(stacked_disks)]"))))
 
 /obj/item/disk_stack/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/disk_stack))
@@ -238,12 +238,12 @@
 
 /obj/item/disk_stack/proc/add_to_stack(mob/living/user, obj/item/disk/newdisk)
 	if(length(stacked_disks) >= MAX_DISK_STACK_SIZE)
-		balloon_alert(user, LANG("obj.4f9bdbbf", null))
+		balloon_alert(user, LANG("obj.4f9bdbbfc7cc6836", null))
 		return ITEM_INTERACT_BLOCKING
 
 	newdisk.forceMove(src)
 	stacked_disks += newdisk
-	balloon_alert(user, LANG("obj.c6936cd8", null))
+	balloon_alert(user, LANG("obj.c6936cd81a7ad837", null))
 	update_appearance(UPDATE_OVERLAYS)
 	return ITEM_INTERACT_SUCCESS
 
@@ -265,10 +265,10 @@
 
 	var/obj/item/disk/top = stacked_disks[length(stacked_disks)]
 	user.put_in_hands(top)
-	balloon_alert(user, LANG("obj.559b08a3", null))
 
 	if(length(stacked_disks) > 1)
 		update_appearance(UPDATE_OVERLAYS)
+		balloon_alert(user, LANG("obj.559b08a3d2065aca", null))
 		return TRUE
 
 	var/obj/item/disk/last_disk = stacked_disks[1]
@@ -282,6 +282,7 @@
 		last_disk.pixel_x = pixel_x
 		last_disk.pixel_y = pixel_y
 
+	last_disk.balloon_alert(user, LANG("obj.559b08a3d2065aca", null))
 	qdel(src)
 	return TRUE
 
@@ -302,11 +303,11 @@
 	diskstack.update_appearance(UPDATE_OVERLAYS)
 
 	if(!amount_counter)
-		balloon_alert(user, LANG("obj.a5ca1017", null))
+		balloon_alert(user, LANG("obj.a5ca1017d69acdbb", null))
 		return ITEM_INTERACT_BLOCKING
 
 	update_appearance(UPDATE_OVERLAYS)
-	to_chat(user, span_notice(LANG("obj.e4a9cb4d", null)))
+	to_chat(user, span_notice(LANG("obj.e4a9cb4dab65862f", null)))
 
 	if(!length(diskstack.stacked_disks))
 		qdel(diskstack)
@@ -325,7 +326,7 @@
 		each_disk.forceMove(landing)
 		each_disk.throw_at(get_step(src, pick(NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST)), 1, 0.8)
 
-	visible_message(span_warning(LANG("obj.7498b193", null)))
+	visible_message(span_warning(LANG("obj.7498b19361ff00e1", null)))
 	qdel(src)
 
 /obj/item/disk_stack/attack_hand_secondary(mob/user, list/modifiers)

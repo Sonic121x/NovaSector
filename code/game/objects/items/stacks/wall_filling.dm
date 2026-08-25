@@ -26,7 +26,7 @@
 
 /obj/item/stack/wall_filling/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.030520cc", list(src)))
+	. += span_notice(LANG("obj.030520cce5aa6014", list(src)))
 	if(throwforce && !is_cyborg) //do not want to divide by zero or show the message to borgs who can't throw
 		var/damage_value
 		switch(ceil(MAX_LIVING_HEALTH / throwforce)) //throws to crit a human
@@ -42,22 +42,22 @@
 				damage_value = "mediocre"
 		if(!damage_value)
 			return
-		. += span_notice(LANG("obj.9a8a884d", list(damage_value)))
+		. += span_notice(LANG("obj.9a8a884d8e612595", list(damage_value)))
 
 /obj/item/stack/wall_filling/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (tool.tool_behaviour != TOOL_WELDER)
 		return ..()
 
 	if(!made_from)
-		to_chat(user, span_warning(LANG("obj.59f6af92", null)))
+		to_chat(user, span_warning(LANG("obj.59f6af92d3a8d698", null)))
 		stack_trace("A wall filling of type [type] doesn't have its made_from set.")
 		return
 	if(!tool.use_tool(src, user, 0, volume=40))
 		return
 	var/obj/item/new_item = new made_from(user.drop_location(), 2)
-	user.visible_message(span_notice(LANG("obj.50a33dd4", list(user, src, new_item, tool))), \
-		span_notice(LANG("obj.2628de4d", list(src, new_item, tool))), \
-		span_hear(LANG("obj.1aa82fa3", null)))
+	user.visible_message(span_notice(LANG("obj.50a33dd456d81013", list(user, src, new_item, tool))), \
+		span_notice(LANG("obj.2628de4d944c5a1c", list(src, new_item, tool))), \
+		span_hear(LANG("obj.1aa82fa3545466eb", null)))
 	var/holding = user.is_holding(src)
 	use(1)
 	if(holding && QDELETED(src))
@@ -93,6 +93,38 @@ GLOBAL_LIST_EMPTY(wall_reskin_lists)
 	. = ..()
 	if(wall_reskin_types)
 		wall_reskin_types = wall_reskin_list(wall_reskin_types)
+
+/obj/item/stack/wall_filling/sandstone
+	name = "sandstone wall filling"
+	singular_name = "sandstone wall filler"
+	desc = "A filling for a standard sandstone wall."
+	icon_state = "sandbrick-wall-fill"
+	inhand_icon_state = null
+	mats_per_unit = list(/datum/material/sandstone =SHEET_MATERIAL_AMOUNT*2)
+	merge_type = /obj/item/stack/wall_filling/sandstone
+	made_from = /obj/item/stack/sheet/mineral/sandstone
+	wall_reskin_types = list(
+		/obj/item/stack/wall_filling/sandstone/basic,
+		/obj/item/stack/wall_filling/sandstone/ornate,
+		/obj/item/stack/wall_filling/sandstone/basalt,
+	)
+
+/obj/item/stack/wall_filling/sandstone/basic
+	merge_type = /obj/item/stack/wall_filling/sandstone/basic
+
+/obj/item/stack/wall_filling/sandstone/ornate
+	name = "ornate sandstone wall filling"
+	singular_name = "ornate sandstone wall filler"
+	icon_state = "sandornate-wall-fill"
+	desc = "A filling for a ornate sandstone wall. Is someone here building a pyramid or something?"
+	merge_type = /obj/item/stack/wall_filling/sandstone/ornate
+
+/obj/item/stack/wall_filling/sandstone/basalt
+	name = "basalt sandstone wall filling"
+	singular_name = "basalt sandstone wall filler"
+	icon_state = "basaltbrick-wall-fill"
+	desc = "A filling for a basalt wall, made out of sandstone. Not sure how it works, not the weirdest thing you've seen."
+	merge_type = /obj/item/stack/wall_filling/sandstone/basalt
 
 /obj/item/stack/wall_filling/plastitanium
 	name = "plastitanium wall filling"
@@ -133,3 +165,29 @@ GLOBAL_LIST_EMPTY(wall_reskin_lists)
 	icon_state = "redpod-wall-fill"
 	desc = "A filling for a red dark shuttle wall. Quite the menacing vibe."
 	merge_type = /obj/item/stack/wall_filling/plastitanium/redpod
+
+
+///Window-fill. Same, but for windows.
+/obj/item/stack/wall_filling/plastitaniumglass
+	name = "plastitaniumglass window filling"
+	singular_name = "plastitanium window filler"
+	desc = "A filling for a standard plastitanium glass window."
+	icon_state = "plastitanium-window-fill"
+	inhand_icon_state = "sheet-plastitaniumglass"
+	mats_per_unit = list(/datum/material/alloy/plastitaniumglass=SHEET_MATERIAL_AMOUNT*2)
+	merge_type = /obj/item/stack/wall_filling/plastitaniumglass
+	made_from = /obj/item/stack/sheet/plastitaniumglass
+	wall_reskin_types = list(
+		/obj/item/stack/wall_filling/plastitaniumglass/basic,
+		/obj/item/stack/wall_filling/plastitaniumglass/pod,
+	)
+
+/obj/item/stack/wall_filling/plastitaniumglass/basic
+	merge_type = /obj/item/stack/wall_filling/plastitaniumglass/basic
+
+/obj/item/stack/wall_filling/plastitaniumglass/pod
+	name = "pod window filling"
+	singular_name = "pod window filler"
+	icon_state = "pod-window-fill"
+	desc = "A filling for a elegant yet formidable window. Mostly seen in hostile enviroments."
+	merge_type = /obj/item/stack/wall_filling/plastitaniumglass/pod

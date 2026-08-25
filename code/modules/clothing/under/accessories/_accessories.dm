@@ -43,17 +43,17 @@
 
 	if(atom_storage && attach_to.atom_storage)
 		if(user)
-			attach_to.balloon_alert(user, LANG("obj.2972456b", null))
+			attach_to.balloon_alert(user, LANG("obj.2972456b7a2d2396", null))
 		return FALSE
 
 	if(attachment_slot && !(attach_to.body_parts_covered & attachment_slot))
 		if(user)
-			attach_to.balloon_alert(user, LANG("obj.957513f2", null))
+			attach_to.balloon_alert(user, LANG("obj.957513f29ab50241", null))
 		return FALSE
 
 	if(length(attach_to.attached_accessories) >= attach_to.max_number_of_accessories)
 		if(user)
-			attach_to.balloon_alert(user, LANG("obj.12b04990", null))
+			attach_to.balloon_alert(user, LANG("obj.12b04990d0f7b98f", null))
 		return FALSE
 
 	return TRUE
@@ -193,7 +193,7 @@
 		return
 
 	forceMove(source.drop_location()) //This calls remove_accessory()
-	source.visible_message(span_warning(LANG("obj.73a87d59", list(src, source))))
+	source.visible_message(span_warning(LANG("obj.73a87d5938a52dba", list(src, source))))
 
 /// Signal proc for [COMSIG_ATOM_UPDATE_OVERLAYS] on the uniform we're pinned to to add our overlays to the inventory icon
 /obj/item/clothing/accessory/proc/on_uniform_update(obj/item/source, list/overlays)
@@ -206,13 +206,13 @@
 		return
 	if(user.can_perform_action(src, NEED_DEXTERITY))
 		above_suit = !above_suit
-		balloon_alert(user, LANG("obj.d521fa2f", list(above_suit ? "above" : "below")))
+		balloon_alert(user, LANG("obj.d521fa2f1ddc0cfd", list(above_suit ? "above" : "below")))
 		return TRUE
 
 /obj/item/clothing/accessory/examine(mob/user)
 	. = ..()
-	. += LANG("obj.4361f54c", null)
-	. += LANG("obj.a0af4e47", null)
+	. += LANG("obj.4361f54cab503d15", null)
+	. += LANG("obj.a0af4e4784809b98", null)
 
 /obj/item/clothing/accessory/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()

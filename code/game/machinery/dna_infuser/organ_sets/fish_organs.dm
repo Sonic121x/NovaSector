@@ -284,6 +284,7 @@
 	feature_key = FEATURE_TAIL_FISH
 	color_source = ORGAN_COLOR_OVERRIDE
 	draw_on_husks = HUSK_OVERLAY_GRAYSCALE
+	mesh_in_suits = TRUE
 
 /datum/bodypart_overlay/mutant/tail/fish/on_mob_insert(obj/item/organ/parent, mob/living/carbon/receiver)
 	//Initialize the related dna feature block if we don't have any so it doesn't error out.
@@ -329,7 +330,7 @@
 		gills = new()
 		AddElement(/datum/element/noticable_organ, "%PRONOUN_Theyve a set of gills on %PRONOUN_their neck.", BODY_ZONE_PRECISE_MOUTH)
 	AddComponent(/datum/component/bubble_icon_override, "fish", BUBBLE_ICON_PRIORITY_ORGAN)
-	AddComponent(/datum/component/speechmod, replacements = strings("crustacean_replacement.json", "crustacean"))
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("crustacean_replacement.json", "crustacean"))
 
 /obj/item/organ/lungs/fish/Destroy()
 	QDEL_NULL(gills)

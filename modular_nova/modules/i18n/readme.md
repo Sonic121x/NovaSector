@@ -20,8 +20,8 @@ Module ID: I18N
      （锚检测 → 逐字面段验证 → 捕获实参递归本地化 → 按 zh 模板重排填充）。
    - `miss_log.dm` —— 运行期漏翻采集（config `I18N_LOG_MISSES`，默认关）。
    - `fonts.dm` + `fonts/*.ttf` —— maptext 中文像素字体（见下「字体」）。
-3. **TGUI（TypeScript）**：`packages/tgui` 的 JSX 静态文本与可翻 props 自动查前端目录；
-   动态内容由 DM 端 P1 预本地化后经 props 传来。
+3. **TGUI（TypeScript）**：`packages/tgui` 的 JSX 静态文本、可翻 props 与显式 `defineMessage(context, source)`
+   消息查前端目录；动态 DM 负载保持 canonical 值，译文通过 `json_data["i18n"]` overlay 只作用于显示。
 4. **翻译**：机翻预填（`tools/i18n/mt/`）+ 人工校对（`strings/i18n/` 是扁平 JSON，可导入任意在线平台）。
 
 **locale 解析**：`LANG(key, args)` 与 `LANGU(user, key, args)` 均使用**全服 locale**
@@ -35,21 +35,25 @@ TGUI 的 `config.locale` 同源注入。
 显示边界才翻：
 
 - `/atom/get_examine_name`（examine 名）、`/atom/examine` 的 `desc`、`/atom/MouseEntered` 的 hover
-  screentip，统一走 `lang_localize_name_for_display`（精确反查 → 复合名 AC）。
+  screentip，统一走 `lang_localize_name_for_display`（**按类型取键** → 精确反查 → 「区域名 + 类型名」
+  分段翻；显示边界不过字面 AC）。
 - `/mob` 覆盖该 proc：`name` 偏离 `initial(name)` 即视为**身份名**（角色名、宠物挂牌、赛博编号、
   ERT 头衔）一律不翻，哪怕撞上目录短语；仍等于 `initial(name)` 的才是类型标签。
 - 普通 atom 的 `TRAIT_WAS_RENAMED` 继续保护 item/loadout 玩家改名。
-- 其余 TGUI 显示字段仍由既有 P1（`lang_reverse_phrase_tgui`）与各界面定点 `lang_localize_display_name`
-  负责，这次没有新增。
+- TGUI 负载不再被就地改写：P1（`lang_reverse_phrase_tgui`）只把「英文 → 译文」收进 overlay
+  （`json_data["i18n"]`），值保持 canonical English，由前端渲染期查表。只有 `payload_prose_keys`
+  那批散文仍就地翻。
 
-**聊天不受影响**（容易误判成缺口，写清楚免得下次又绕回来）：`[src]` 出现在句子里时，rewrite 已经把它
-抬成 LANG 实参（`LANG("obj.…", list(src))`，仅 `list(src` 这一形状全仓 3000+ 处），运行期由
-`lang_localize_arg` 逐个实参精确反查——**它没有多词门槛**，单词名照样命中。所以名字保持英文之后，
-聊天/`visible_message`/balloon 反而走上了更干净的一条路（此前实例名已是中文，这一步是空转）。
+**聊天曾经有一处结构性缺口，2026-08-20 才修**（这里原来写着「聊天不受影响」，是错的，留作教训）：
+`[src]` 出现在句子里时 rewrite 会把它抬成 LANG 实参（`LANG("obj.…", list(src))`，仅 `list(src` 这一
+形状全仓 3000+ 处），但 `lang_interpolate` **只对 `istext(arg)` 的实参**调 `lang_localize_arg` ——
+atom 实参走的是 `"[arg]"`，插进去的是**英文名**，还会被 BYOND 自动补一个 "The "。所以真实表现是
+「你仔细查看The floor，但没发现什么值得注意的……」，只能指望聊天层字面 AC 去捞，而 AC 有多词门槛、
+单词名永远捞不着。现在 atom 实参统一走显示边界 `lang_localize_name_for_display`。
 
-**缺口的实际范围（比初判小）**：名字不作为 LANG 实参、而是整串出现在**非边界路径**时，只剩字面 AC
-与 P1 兜，而这**两条都是多词门槛**（`lang_reverse_phrase_tgui` 见到无空格的值直接原样返回；
-`lang_fallback_pattern_safe` 要求 trim 后多词）。但要分清两件事：
+**其余缺口的范围**：名字不作为 LANG 实参、而是整串出现在**非边界路径**时，只剩字面 AC 与 P1 兜。
+P1 的多词门槛已随「不动数据」一起撤掉（单词值只走整串精确反查），AC 仍要求 trim 后多词。
+但要分清两件事：
 
 - **`/datum` 的 name 从来不走 atom 那个钩子**（材料、试剂、设计、配方、货运包…），所以那些界面里的
   单词名是**既有状态**，与这次改动无关，历来靠逐界面定点本地化解决（`material_container.dm` 的
@@ -73,23 +77,17 @@ TGUI 的 `config.locale` 同源注入。
   材料容器的 `id` 顺手从 `lang_unreverse_text(material.name)` 简化成 `material.name`——实例名现在
   本就是英文，不必再倒查。
 
-**「name 兼作 act 标识符」的单词名走前端目录桥**（`labels.rs SINGLE_WORD_TYPE_VAR_RULES`）：
-`/datum/vote`、`/datum/ai_module`、`/datum/chemical_reaction`、`/datum/design`、`/datum/material`、
-`/datum/reagent` 的 name 在 TGUI 里既显示又当回传键/客户端比较键（`act('buy', {name})`、`voteName`、
-置顶反应列表、`recipe.name === selected_recipe`、`MATERIAL_ICONS[name]`），所以 DM 端不能改数据。
-落地路径按词数分叉，这条桥**只收单词**：
+**标识符兼作显示值时，翻译只作用于显示契约**：
 
-- **多词** name 由 P1 在负载里就地翻好，已经能显示中文。塞进前端目录只会让 P1 按「本身是 tgui 目录键」
-  跳过、改由 TS 只翻显示；一旦某界面把它渲染在非可翻位置（模板串、非 translatable prop），就从中文退化成英文。
-- **单词** name 连 P1 的多词门槛都过不了，本来恒为英文 → 进前端目录是纯增益（实测新增 545 条标签、
-  目录新增 506 键）。
-
-两道安全线：① 单词键的译文**只允许沿用其它命名空间的既有词对**（`tgui-catalog.mjs extract` 里
-`reverseZh`；`phraseTranslation` 现编的值对单词键一律不收）——`tgui.json` 会被 `build_i18n_cache`
-一并扫进 DM 侧**全局反查表**，凭空多出的单词词对等于扩大整个 DM 侧误翻面，而单词正是 act/topic/黑板键
-浓度最高的形态；② 查不到译文就留英文，`sync()` 会把「值等于英文」的键滤掉，等于不存在。
-落地实测：506 条新键里 462 条沿用既有译文、**0 条新造词对、0 条与既有译文冲突**，`nova-i18n lint`
-告警数不变（27，全是既有 ident 碰撞基线）。
+- 常规 DM 负载由 `lang_reverse_tree` 收集 overlay；原值逐字节不变，`act()`、比较与查表继续使用 canonical
+  English。散文键只有在 `policy.json` 的 `payload_prose_keys` 显式登记后才允许就地翻译。
+- 静态标签由 `labels.rs` 按类型/proc 语义桥进前端目录。单词值与多词值都可进入 overlay 的整串精确查表，
+  但子串替换仍只接收多词 key，防止单词从标识符或其它单词内部开火。
+- 新代码需要消歧时使用 `defineMessage(context, source)`；需要“值不动、标签翻译”时使用
+  `localizedOption` / `localizedDropdownOption`。上下文 key 与普通 source key 分开编译，payload overlay
+  不能覆盖显式消息。
+- 运行时域由 `strings/i18n/catalog-domains.json` 声明。`tgui.json` 属于 `tgui` 域，不再进入 DM
+  `global_reverse`；`_state_words.json` 等域内表也不会扩大全局反查面。
 
 已补上的两处宽覆盖边界：
 
@@ -99,13 +97,9 @@ TGUI 的 `config.locale` 同源注入。
 - 径向菜单（`code/_onclick/hud/screen_objects/radial.dm`）：切片 `name` 只当 tooltip 标题
   （标识符走 `E.choice`），在 `setup_menu` 里过 `lang_localize_display_name`。
 
-量级参考：obj/mob/turf/atom/area 命名空间下「名字形」（无句末标点、≤4 词、≤40 字符）已译条目中
-单词占 **约 10%**（2122 / 21174）；多词名（"cable coil"、"medical kit"，SS13 的绝对多数）在这些路径上
-仍由 AC/P1 覆盖。剩余长尾的补法是**逐界面**在 ui_data 里过 `lang_localize_display_name`（前提：该处
-act 走 ref/id，不拿 name 拼动作串），或按类型桥进前端目录（`labels.rs TYPE_VAR_RULES`）。
-**不要**为此放宽 P1 的多词门槛或往字面 AC 字典里塞单词——那两条是安全线。往前端目录桥单词时还要确认
-该英文串**已在 DM 侧目录里有译文**：`tgui.json` 同样被 `build_i18n_cache` 扫进全局反查表，塞进从未
-出现过的新词对等于扩大 DM 侧的误翻面（线缆颜色那次就是被 `i18n_real_catalog` 当场抓住的）。
+剩余长尾的补法是：在 ui_data 里保留 canonical value 并让 overlay 翻显示；或按类型桥进前端目录
+（`labels.rs TYPE_VAR_RULES`）。不要为个别界面放宽聊天字面 AC：AC 的职责只剩运行期拼接且无法
+LANG 化的散文，不适合短标签与标识符。
 
 **目录位置**：`strings/i18n/<locale>/<namespace>.json`。必须在 `strings/`（已被 git 跟踪）；
 不可用 `data/`（被 .gitignore 忽略）。
@@ -116,7 +110,14 @@ act 走 ref/id，不拿 name 拼动作串），或按类型桥进前端目录（
 - `strings/i18n/<locale>/*.json` —— 译文目录。DM 运行时从 `STRING_DIRECTORY/i18n/` 加载。
   `_` 前缀的是**手维护**表（`_state_words` 状态词、`_fallback` 人工 AC 补充、`_map_names` 地图名、
   `_map_descs` 地图 desc、`_wires` 电线名…）。
-- `strings/i18n/policy.json` —— **三端标识符策略单一来源**：DM（`payload_skip_keys`/`pref_desc_keys`）、
+- `strings/i18n/catalog-domains.json` —— **运行时域与文件所有权清单**。`forward`、`global_reverse`、
+  `tgui` 与 named scoped domain 的边界以它为准；新增目录文件必须先登记。
+- `strings/i18n/type_vars.json` —— **类型显示名/描述表**（`extract` 产出，勿手改）：`type → 目录 key`，
+  DM 继承已在 build 期展开。显示边界（`lang_localize_name_for_display` / `lang_localize_desc_for_display`）
+  在 `name/desc` 仍等于类型初值时按**类型**直取键走正向目录，不再拿运行期字符串倒查——没有多词门槛
+  （单词名也能落地）、没有同形异义碰撞。miss 时回落原有反查链。**实例数据永不改写**，该不变量由
+  `nova-i18n lint` 规则 C 守（类型变量声明不得含 LANG；运行期 `name = LANG(...)` 只放行白名单）。
+- `strings/i18n/policy.json` —— **三端标识符策略单一来源**：DM（`payload_skip_keys`/`payload_prose_keys`）、
   TS（`translatable_props`/`option_text_props`/`no_auto_translate`，经 `tgui-catalog.mjs sync` 复制到
   `tgui/packages/tgui/i18n/policy.json`，两份都提交）、Rust（`identifier_dot_procs`）共读。
   **新增「值兼标识符」登记只改这一个文件。**

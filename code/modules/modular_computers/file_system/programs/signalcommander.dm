@@ -73,12 +73,12 @@
 
 	if(!COOLDOWN_FINISHED(src, signal_cooldown))
 		if(user)
-			computer.balloon_alert(user, LANG("datum.5aabc0e3", null))
+			computer.balloon_alert(user, LANG("datum.5aabc0e3805b10b3", null))
 		return
 
 	COOLDOWN_START(src, signal_cooldown, signal_cooldown_time)
 	if(user)
-		computer.balloon_alert(user, LANG("datum.619d443f", null))
+		computer.balloon_alert(user, LANG("datum.619d443f7d09bab4", null))
 
 	var/time = time2text(world.realtime,"hh:mm:ss", TIMEZONE_UTC)
 	var/turf/T = get_turf(computer)

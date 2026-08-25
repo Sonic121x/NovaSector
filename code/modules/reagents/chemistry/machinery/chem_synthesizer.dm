@@ -41,7 +41,7 @@
 			if(QDELETED(beaker))
 				return FALSE
 
-			var/selected_reagent = tgui_input_list(ui.user, LANG("obj.b9a56639", null), LANG("obj.c5160de6", null), GLOB.name2reagent)
+			var/selected_reagent = tgui_input_list(ui.user, LANG("obj.b9a56639842f0c67", null), LANG("obj.c5160de6a7b5b7a3", null), GLOB.name2reagent)
 			if(!selected_reagent)
 				return FALSE
 
@@ -57,7 +57,7 @@
 			if(beaker)
 				return
 			beaker = new /obj/item/reagent_containers/cup/beaker/bluespace(src)
-			visible_message(span_notice(LANG("obj.2c8c745e", list(src))))
+			visible_message(span_notice(LANG("obj.2c8c745e8054a939", list(src))))
 			return TRUE
 
 		if("amount")

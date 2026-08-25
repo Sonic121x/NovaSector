@@ -35,7 +35,7 @@
 	var/His = HG.word
 	var/Him = HG.word2
 	name = "[His] Grace"
-	desc = LANG("atom.518df7e8", list(His, Him))
+	desc = LANG("atom.518df7e8eec7bdbc", list(His, Him))
 	icon_state = "[LOWER_TEXT(His)]_grace"
 	desc += "<br><font size=3><b>Current Bloodthirst: [HG.bloodlust]</b></font>\
 	<br>Becomes undroppable at <b>[HIS_GRACE_FAMISHED]</b>\
@@ -80,12 +80,12 @@
 	alert_type = /atom/movable/screen/alert/status_effect/wish_granters_gift
 
 /datum/status_effect/wish_granters_gift/on_apply()
-	to_chat(owner, span_notice(LANG("datum.b0f5447a", null)))
+	to_chat(owner, span_notice(LANG("datum.b0f5447af8a52c8f", null)))
 	return ..()
 
 /datum/status_effect/wish_granters_gift/on_remove()
 	owner.revive(ADMIN_HEAL_ALL)
-	owner.visible_message(span_warning(LANG("datum.2cccda3c", list(owner))), span_notice(LANG("datum.eaea70de", null)))
+	owner.visible_message(span_warning(LANG("datum.2cccda3c5cfa14d5", list(owner))), span_notice(LANG("datum.eaea70de074def3b", null)))
 
 
 /atom/movable/screen/alert/status_effect/wish_granters_gift
@@ -240,7 +240,7 @@
 	var/exhaustion_limit = new_owner.mind?.get_skill_modifier(/datum/skill/athletics, SKILL_VALUE_MODIFIER)
 	if(duration + bonus_time >= exhaustion_limit)
 		duration = exhaustion_limit
-		to_chat(new_owner, span_warning(LANG("datum.2fdf9a26", null))) // NOVA EDIT CHANGE - ORIGINAL: to_chat(new_owner, span_userdanger("Your muscles are exhausted! Might be a good idea to sleep..."))
+		to_chat(new_owner, span_warning(LANG("datum.2fdf9a2697305c61", null))) // NOVA EDIT CHANGE - ORIGINAL: to_chat(new_owner, span_userdanger("Your muscles are exhausted! Might be a good idea to sleep..."))
 		//INVOKE_ASYNC(new_owner, TYPE_PROC_REF(/mob, emote), "scream") // NOVA EDIT REMOVAL - squelch workout notificiation, swimming really spams this - hope this gets changes upstream sometime
 		return // exhaustion_limit
 
@@ -308,7 +308,7 @@
 	QDEL_NULL(aura_healing)
 	owner.remove_traits(list(TRAIT_PACIFISM, TRAIT_HIPPOCRATIC_OATH, TRAIT_MEDICAL_HUD), HIPPOCRATIC_OATH_TRAIT)
 
-/datum/status_effect/hippocratic_oath/get_examine_text()
+/datum/status_effect/hippocratic_oath/get_examine_text(mob/examiner)
 	return span_notice("[owner.p_They()] seem[owner.p_s()] to have an aura of healing and helpfulness about [owner.p_them()].")
 
 /datum/status_effect/hippocratic_oath/tick(seconds_between_ticks)
@@ -332,11 +332,11 @@
 					else
 						consume_owner() //we can't regrow, abort abort
 						return
-					to_chat(itemUser, span_notice(LANG("datum.6375c9f7", null)))
+					to_chat(itemUser, span_notice(LANG("datum.6375c9f7c94798dd", null)))
 				else
 					//Otherwise get rid of whatever else is in their hand and return the rod to said hand
 					itemUser.put_in_hand(newRod, hand, forced = TRUE)
-					to_chat(itemUser, span_notice(LANG("datum.e77ea144", null)))
+					to_chat(itemUser, span_notice(LANG("datum.e77ea144c7e444a2", null)))
 			//Because a servant of medicines stops at nothing to help others, lets keep them on their toes and give them an additional boost.
 			if(itemUser.health < itemUser.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(itemUser), "#375637")
@@ -351,7 +351,7 @@
 				itemUser.updatehealth()
 
 /datum/status_effect/hippocratic_oath/proc/consume_owner()
-	owner.visible_message(span_notice(LANG("datum.6eda7f2a", list(owner))))
+	owner.visible_message(span_notice(LANG("datum.6eda7f2a3eff3b3c", list(owner))))
 	var/list/chems = list(/datum/reagent/medicine/sal_acid, /datum/reagent/medicine/c2/convermol, /datum/reagent/medicine/oxandrolone)
 	var/mob/living/basic/snake/spawned = new(owner.loc, pick(chems))
 	spawned.name = "Asclepius's Snake"
@@ -414,12 +414,12 @@
 /datum/status_effect/lightningorb/on_apply()
 	. = ..()
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/yellow_orb)
-	to_chat(owner, span_notice(LANG("datum.65f52012", null)))
+	to_chat(owner, span_notice(LANG("datum.65f52012c68c991a", null)))
 
 /datum/status_effect/lightningorb/on_remove()
 	. = ..()
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/yellow_orb)
-	to_chat(owner, span_notice(LANG("datum.96fb85d5", null)))
+	to_chat(owner, span_notice(LANG("datum.96fb85d57e7e80cf", null)))
 
 /atom/movable/screen/alert/status_effect/lightningorb
 	name = "Lightning Orb"
@@ -436,7 +436,7 @@
 
 /datum/status_effect/mayhem/on_apply()
 	. = ..()
-	to_chat(owner, LANG("datum.38ba388b", null))
+	to_chat(owner, LANG("datum.38ba388bb3b4b275", null))
 	SEND_SOUND(owner, sound('sound/effects/hallucinations/veryfar_noise.ogg'))
 	owner.cause_hallucination( \
 		/datum/hallucination/delusion/preset/demon, \
@@ -458,7 +458,7 @@
 		owner.reagents.add_reagent(/datum/reagent/medicine/adminordrazine, 25)
 
 	owner.log_message("entered a blood frenzy", LOG_ATTACK)
-	to_chat(owner, span_narsiesmall(LANG("datum.b446e955", null)))
+	to_chat(owner, span_narsiesmall(LANG("datum.b446e95539ec4fc1", null)))
 
 	var/datum/client_colour/colour = owner.add_client_colour(/datum/client_colour/bloodlust, REF(src))
 	QDEL_IN(colour, 1.1 SECONDS)
@@ -466,7 +466,7 @@
 
 /datum/status_effect/mayhem/on_remove()
 	. = ..()
-	to_chat(owner, span_notice(LANG("datum.e023c96b", null)))
+	to_chat(owner, span_notice(LANG("datum.e023c96baee97243", null)))
 	owner.log_message("exited a blood frenzy", LOG_ATTACK)
 	QDEL_NULL(chainsaw)
 
@@ -524,8 +524,8 @@
 	. = ..()
 	var/health_increase = round(max(fragile_mob_health_buff, historic_max_health * health_buff_modifier))
 	owner.maxHealth += health_increase
-	owner.balloon_alert_to_viewers(LANG("datum.9c1d706a", null))
-	to_chat(owner, span_nicegreen(LANG("datum.0fc9c5d1", null)))
+	owner.balloon_alert_to_viewers(LANG("datum.9c1d706a32a3ccf9", null))
+	to_chat(owner, span_nicegreen(LANG("datum.0fc9c5d1d6dd4ec9", null)))
 
 	if(isanimal(owner))	//dumb animals have their own proc for healing.
 		var/mob/living/simple_animal/healthy_animal = owner
@@ -535,7 +535,7 @@
 
 /datum/status_effect/limited_buff/health_buff/maxed_out()
 	. = ..()
-	to_chat(owner, span_warning(LANG("datum.7a6d2351", null)))
+	to_chat(owner, span_warning(LANG("datum.7a6d23517eae1937", null)))
 
 /datum/status_effect/nest_sustenance
 	id = "nest_sustenance"
@@ -727,12 +727,12 @@
 	alert_type = null
 
 /datum/status_effect/rev_resilience/on_apply()
-	to_chat(owner, span_warning(LANG("datum.3b388b99", null)))
+	to_chat(owner, span_warning(LANG("datum.3b388b998a67c457", null)))
 	owner.add_traits(list(TRAIT_HARDLY_WOUNDED,TRAIT_ANALGESIA,TRAIT_FEARLESS), TRAIT_STATUS_EFFECT(id))
 	return TRUE
 
 /datum/status_effect/rev_resilience/on_remove()
-	to_chat(owner, span_notice(LANG("datum.92d96c75", null)))
+	to_chat(owner, span_notice(LANG("datum.92d96c7509aa7c25", null)))
 	owner.remove_traits(list(TRAIT_HARDLY_WOUNDED,TRAIT_ANALGESIA,TRAIT_FEARLESS), TRAIT_STATUS_EFFECT(id))
 
 //status effect granted when taking attack damage while metabolizing synthpax

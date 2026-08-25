@@ -107,8 +107,8 @@
 		return_to_spawnloc()
 		return
 	add_traits(list(TRAIT_GODMODE, TRAIT_IMMOBILIZED), MEGAFAUNA_TRAIT)
-	balloon_alert_to_viewers(LANG("mob.027cd1d2", null))
-	visible_message(span_danger(LANG("mob.3b7d6495", list(src))))
+	balloon_alert_to_viewers(LANG("mob.027cd1d245926bf8", null))
+	visible_message(span_danger(LANG("mob.3b7d64951fd21fa9", list(src))))
 	phase_invulnerability_timer = addtimer(CALLBACK(src, PROC_REF(phase_too_slow)), phase_invul_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 	add_filter(PHASEREGEN_FILTER, 2, list("type" = "outline", "color" = COLOR_PALE_GREEN, "alpha" = 0, "size" = 1))
 	var/filter = get_filter(PHASEREGEN_FILTER)
@@ -143,7 +143,7 @@
 	for(var/turf/open/target in RANGE_TURFS(1, loc))
 		new /obj/effect/temp_visual/mook_dust(target)
 	playsound(loc, 'sound/effects/meteorimpact.ogg', 40, TRUE)
-	visible_message(span_danger(LANG("mob.dbad92f9", list(src))))
+	visible_message(span_danger(LANG("mob.dbad92f99fb1f1a9", list(src))))
 	forceMove(spawn_loc)
 
 /// The Thing is successfully hit by incendiary fire while downed by damage (alternatively takes too much damage if not ruin spawned)
@@ -167,8 +167,8 @@
 /mob/living/basic/boss/thing/proc/phase_too_slow()
 	phase_invulnerability_timer = null
 	remove_traits(list(TRAIT_GODMODE, TRAIT_IMMOBILIZED), MEGAFAUNA_TRAIT)
-	balloon_alert_to_viewers(LANG("mob.ec6aa788", null))
-	visible_message(span_danger(LANG("mob.9efb24cd", list(src))))
+	balloon_alert_to_viewers(LANG("mob.ec6aa788a1c7849f", null))
+	visible_message(span_danger(LANG("mob.9efb24cd5d3aeffc", list(src))))
 	adjust_health(-(maxHealth/3) * 0.5) //half of a phase (which is a third of maxhealth)
 	var/filter = get_filter(PHASEREGEN_FILTER)
 	if(!isnull(filter))
@@ -271,7 +271,7 @@
 		return
 	if(!user.can_perform_action(src) || !user.can_interact_with(src))
 		return
-	balloon_alert_to_viewers(LANG("obj.e40cb529", null))
+	balloon_alert_to_viewers(LANG("obj.e40cb529930c096f", null))
 	icon_state = "thingdepleter_overriding"
 	if(!do_after(user, 1 SECONDS, target = src))
 		if(density)

@@ -20,18 +20,18 @@
 
 /obj/item/stack/light_w/examine(mob/user)
 	. = ..()
-	. += span_warning(LANG("obj.6b366c3f", list(src)))
+	. += span_warning(LANG("obj.6b366c3f53481183", list(src)))
 
 /obj/item/stack/light_w/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/stack/sheet/iron))
 		return ..()
 	var/obj/item/stack/sheet/iron/steel = tool
 	if(!steel.use(1))
-		to_chat(user, span_warning(LANG("obj.f75625c3", null)))
+		to_chat(user, span_warning(LANG("obj.f75625c3a550e094", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/stack/tile/light/finished_tiles = new(user.drop_location())
-	to_chat(user, span_notice(LANG("obj.d856f148", null)))
+	to_chat(user, span_notice(LANG("obj.d856f14878a65f56", null)))
 	if(!QDELETED(finished_tiles))
 		finished_tiles.add_fingerprint(user)
 	use(1)

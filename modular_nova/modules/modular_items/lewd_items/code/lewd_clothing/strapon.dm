@@ -126,7 +126,7 @@
 	if(src == user.belt)
 		toggle(user)
 	else
-		to_chat(user, span_warning(LANG("obj.2c6aaa2f", null)))
+		to_chat(user, span_warning(LANG("obj.2c6aaa2fcf61f3c1", null)))
 
 /obj/item/clothing/strapon/proc/toggle(mob/living/carbon/human/user)
 	playsound_if_pref(user, 'modular_nova/modules/modular_items/lewd_items/sounds/latex.ogg', 40, TRUE)
@@ -135,8 +135,8 @@
 	if(strapon_item && user.is_holding(strapon_item))
 		strapon_item.forceMove(src)
 		user.visible_message(
-			span_notice(LANG("obj.b538aec7", list(user))),
-			span_notice(LANG("obj.d6698bb9", null)),
+			span_notice(LANG("obj.b538aec7ca1ec605", list(user))),
+			span_notice(LANG("obj.d6698bb9ad281181", null)),
 		)
 		return
 
@@ -148,13 +148,13 @@
 
 	if(user.put_in_hands(strapon_item))
 		user.visible_message(
-			span_notice(LANG("obj.72b89516", list(user, user.p_their()))),
-			span_notice(LANG("obj.b197ece4", null)),
+			span_notice(LANG("obj.72b89516c07e9c1a", list(user, user.p_their()))),
+			span_notice(LANG("obj.b197ece47e8313df", null)),
 		)
 	else
 		user.visible_message(
-			span_notice(LANG("obj.e58de30e", list(user, user.p_their(), user.p_their()))),
-			span_notice(LANG("obj.4996774f", null)),
+			span_notice(LANG("obj.e58de30ef00d977a", list(user, user.p_their(), user.p_their()))),
+			span_notice(LANG("obj.4996774fde1a6495", null)),
 		)
 
 /// Makes a new item within contents
@@ -209,7 +209,7 @@
 		return
 
 	if(!target_mob.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger(LANG("obj.8d0a0182", list(target_mob))))
+		to_chat(user, span_danger(LANG("obj.8d0a01828f0e2a19", list(target_mob))))
 		return
 
 	var/message = ""
@@ -218,10 +218,10 @@
 	switch(user.zone_selected)
 		if(BODY_ZONE_PRECISE_GROIN)
 			if(!vagina)
-				to_chat(user, span_danger(LANG("obj.1e01aa77", list(target_mob))))
+				to_chat(user, span_danger(LANG("obj.1e01aa7740db0c55", list(target_mob))))
 				return
 			if(!(target_mob.is_bottomless() || vagina.visibility_preference == GENITAL_ALWAYS_SHOW))
-				to_chat(user, span_danger(LANG("obj.27926522", list(target_mob))))
+				to_chat(user, span_danger(LANG("obj.27926522fd6429b1", list(target_mob))))
 				return
 			message = pick(
 				"delicately rubs [target_mob]'s vagina with [src]",
@@ -244,7 +244,7 @@
 
 		if(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_PRECISE_EYES)
 			if(target_mob.is_mouth_covered())
-				to_chat(user, span_danger(LANG("obj.64a8a5e2", list(target_mob))))
+				to_chat(user, span_danger(LANG("obj.64a8a5e2314e81fe", list(target_mob))))
 				return
 			message = pick(
 				"fucks [target_mob]'s mouth with [src]",
@@ -268,7 +268,7 @@
 
 		else
 			if(!target_mob.is_bottomless())
-				to_chat(user, span_danger(LANG("obj.577ff0ee", list(target_mob))))
+				to_chat(user, span_danger(LANG("obj.577ff0eecbce7a03", list(target_mob))))
 				return
 			message = pick(
 				"fucks [target_mob]'s ass with [src]",

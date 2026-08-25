@@ -94,7 +94,7 @@
 
 /obj/item/storage/toolbox/guncase/traitor/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.77f127d8", null))
+	. += span_notice(LANG("obj.77f127d87e4b1d70", null))
 
 /obj/item/storage/toolbox/guncase/traitor/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -118,16 +118,16 @@
 /obj/item/storage/toolbox/guncase/traitor/click_alt_secondary(mob/user)
 	. = ..()
 	if(currently_exploding)
-		user.balloon_alert(user, LANG("obj.b98ad083", null))
+		user.balloon_alert(user, LANG("obj.b98ad083bad44465", null))
 		return
 
-	var/i_dont_even_think_once_about_blowing_stuff_up = tgui_alert(user, LANG("obj.4a09f031", null), LANG("obj.2754c85b", null), list("Yes","No"))
+	var/i_dont_even_think_once_about_blowing_stuff_up = tgui_alert(user, LANG("obj.4a09f031e3231c6b", null), LANG("obj.2754c85b02b195a4", null), list("Yes","No"))
 
 	if(i_dont_even_think_once_about_blowing_stuff_up != "Yes" || currently_exploding || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING))
 		return
 
 	explosion_timer = addtimer(CALLBACK(src, PROC_REF(think_fast_chucklenuts)), 5 SECONDS, (TIMER_UNIQUE|TIMER_OVERRIDE))
-	to_chat(user, span_warning(LANG("obj.f0976dcc", list(src))))
+	to_chat(user, span_warning(LANG("obj.f0976dccb5899355", list(src))))
 	log_bomber(user, "has activated a", src, "for detonation")
 	playsound(src, 'sound/items/weapons/armbomb.ogg', 50, TRUE)
 	currently_exploding = TRUE
@@ -277,10 +277,10 @@
 
 	if(is_simian(user))
 		atom_storage.locked = STORAGE_NOT_LOCKED
-		to_chat(user, span_notice(LANG("obj.cf9b90f2", list(src))))
+		to_chat(user, span_notice(LANG("obj.cf9b90f234162899", list(src))))
 		playsound(src, 'sound/items/click.ogg', 25, TRUE)
 		return TRUE
-	to_chat(user, span_warning(LANG("obj.cf3b22cd", null)))
+	to_chat(user, span_warning(LANG("obj.cf3b22cdb9de610f", null)))
 	playsound(src, SFX_SCREECH, 75, TRUE)
 	return FALSE
 
@@ -329,14 +329,14 @@
 		return NONE
 	if(!tool.toolspeed)
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.6d69dc2b", null))
+	balloon_alert(user, LANG("obj.6d69dc2ba89e58df", null))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 20))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.ddc1329a", null))
+	balloon_alert(user, LANG("obj.ddc1329a475e1243", null))
 	user.visible_message(
-		span_danger(LANG("obj.2a0f4de0", list(user, src, tool))),
-		span_danger(LANG("obj.acf5f95a", list(src, tool))),
+		span_danger(LANG("obj.2a0f4de079b6287d", list(user, src, tool))),
+		span_danger(LANG("obj.acf5f95aa290b2ea", list(src, tool))),
 		null,
 		COMBAT_MESSAGE_RANGE,
 	)

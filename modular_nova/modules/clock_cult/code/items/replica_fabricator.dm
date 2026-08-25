@@ -40,10 +40,10 @@
 	. = ..()
 	if(IS_CLOCK(user))
 		. += "[span_brass("Current power: ")][span_clockyellow("[power]")] [span_brass("W / ")][span_clockyellow("[max_power]")] [span_brass("W.")]"
-		. += span_brass(LANG("obj.6f7179c6", null))
-		. += span_brass(LANG("obj.f9e23f9c", null))
-		. += span_brass(LANG("obj.1a2e81ff", null))
-		. += span_brass(LANG("obj.28d8ff5d", null))
+		. += span_brass(LANG("obj.6f7179c6c8101607", null))
+		. += span_brass(LANG("obj.f9e23f9c2392ebaa", null))
+		. += span_brass(LANG("obj.1a2e81ff7759896b", null))
+		. += span_brass(LANG("obj.28d8ff5d675f89b3", null))
 
 
 /obj/item/clockwork/replica_fabricator/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -60,11 +60,11 @@
 	var/turf/creation_turf = get_turf(interacting_with)
 
 	if(locate(selected_output.to_create_path) in creation_turf)
-		to_chat(user, span_clockyellow(LANG("obj.b67f44f6", null)))
+		to_chat(user, span_clockyellow(LANG("obj.b67f44f621e6ba1f", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(power < selected_output.cost)
-		to_chat(user, span_clockyellow(LANG("obj.320d1653", list(src, selected_output.cost))))
+		to_chat(user, span_clockyellow(LANG("obj.320d1653efbb7b64", list(src, selected_output.cost))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/effect/temp_visual/ratvar/constructing_effect/effect = new(creation_turf, selected_output.creation_delay)
@@ -101,10 +101,10 @@
 		return
 
 	if(power < BRASS_POWER_COST)
-		to_chat(user, span_clockyellow(LANG("obj.d263fb55", list(BRASS_POWER_COST))))
+		to_chat(user, span_clockyellow(LANG("obj.d263fb5558fd08ab", list(BRASS_POWER_COST))))
 		return
 
-	var/sheets = tgui_input_number(user, LANG("obj.9be98f31", null), LANG("obj.c567cd91", null), 0, round(power / BRASS_POWER_COST), 0)
+	var/sheets = tgui_input_number(user, LANG("obj.9be98f316d1906e3", null), LANG("obj.c567cd9148b33081", null), 0, round(power / BRASS_POWER_COST), 0)
 	if(!sheets)
 		return
 
@@ -113,7 +113,7 @@
 	var/obj/item/stack/sheet/bronze/sheet_stack = new(null, sheets)
 	user.put_in_hands(sheet_stack)
 	playsound(src, 'sound/machines/click.ogg', 50, 1)
-	to_chat(user, span_clockyellow(LANG("obj.a60dc29c", list(sheets))))
+	to_chat(user, span_clockyellow(LANG("obj.a60dc29cb4c4171c", list(sheets))))
 
 
 /obj/item/clockwork/replica_fabricator/attack_self(mob/user, modifiers)
@@ -139,7 +139,7 @@
 /// Attempt to convert the targeted item into power, if it's a sheet item
 /obj/item/clockwork/replica_fabricator/proc/attempt_convert_materials(atom/attacking_item, mob/user)
 	if(power >= max_power)
-		to_chat(user, span_clockyellow(LANG("obj.66be4105", list(src))))
+		to_chat(user, span_clockyellow(LANG("obj.66be4105f6695b2c", list(src))))
 		return
 
 	if(istype(attacking_item, /obj/item/stack/sheet/bronze))
@@ -149,7 +149,7 @@
 			var/amount_to_take = clamp(round((max_power - power) / BRASS_POWER_COST), 0, bronze_stack.amount)
 
 			if(!amount_to_take)
-				to_chat(user, span_clockyellow(LANG("obj.97f691d4", list(src))))
+				to_chat(user, span_clockyellow(LANG("obj.97f691d4a4172a5f", list(src))))
 				return
 
 			bronze_stack.use(amount_to_take)
@@ -160,7 +160,7 @@
 			qdel(bronze_stack)
 
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
-		to_chat(user, span_clockyellow(LANG("obj.7c3e1c97", list(bronze_stack.amount, bronze_stack.amount * BRASS_POWER_COST))))
+		to_chat(user, span_clockyellow(LANG("obj.7c3e1c9779bc76a5", list(bronze_stack.amount, bronze_stack.amount * BRASS_POWER_COST))))
 
 		return TRUE
 
@@ -171,7 +171,7 @@
 			var/amount_to_take = clamp(round((max_power - power) / REGULAR_POWER_COST), 0, stack.amount)
 
 			if(!amount_to_take)
-				to_chat(user, span_clockyellow(LANG("obj.97f691d4", list(src))))
+				to_chat(user, span_clockyellow(LANG("obj.97f691d4a4172a5f", list(src))))
 				return
 
 			stack.use(amount_to_take)
@@ -182,7 +182,7 @@
 			qdel(stack)
 
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
-		to_chat(user, span_clockyellow(LANG("obj.8ad793c4", list(stack.amount, stack.name, stack.amount * REGULAR_POWER_COST))))
+		to_chat(user, span_clockyellow(LANG("obj.8ad793c4c8ba7b1b", list(stack.amount, stack.name, stack.amount * REGULAR_POWER_COST))))
 
 		return TRUE
 
@@ -210,7 +210,7 @@
 /datum/replica_fabricator_output/proc/on_create(atom/created_atom, turf/creation_turf, mob/creator)
 	SHOULD_CALL_PARENT(TRUE)
 	playsound(creation_turf, 'sound/machines/clockcult/integration_cog_install.ogg', 50, 1) // better sound?
-	to_chat(creator, span_clockyellow(LANG("datum.1034c05a", list(name, cost))))
+	to_chat(creator, span_clockyellow(LANG("datum.1034c05a6f2af9a7", list(name, cost))))
 
 
 /datum/replica_fabricator_output/brass_floor

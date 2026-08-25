@@ -54,10 +54,10 @@
 
 /obj/item/grenade/iedcasing/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.6ac8a0ed", null))
-	. += span_notice(LANG("obj.ab7d1b5b", null))
+	. += span_notice(LANG("obj.6ac8a0edc3ab439b", null))
+	. += span_notice(LANG("obj.ab7d1b5bd03baa13", null))
 	if(contents.len > 1) // above 1, so more than just the activator
-		. += span_warning(LANG("obj.b9a2ca47", null))
+		. += span_warning(LANG("obj.b9a2ca47c9135f07", null))
 	if(isnull(activator))
 		return
 	. += activator.examine(user)
@@ -133,7 +133,7 @@
 	add_fingerprint(user)
 	activator.activate()
 	update_icon(UPDATE_ICON_STATE)
-	user.balloon_alert_to_viewers(LANG("obj.781196e4", null))
+	user.balloon_alert_to_viewers(LANG("obj.781196e4dfef40e8", null))
 	COOLDOWN_START(src, spam_cd, 1 SECONDS)
 
 /obj/item/grenade/iedcasing/detonate(mob/living/lanced_by) //Blowing that can up
@@ -214,16 +214,16 @@
 /obj/item/sliced_pipe/examine(mob/user)
 	. = ..()
 	if(!wires_are_in)
-		. += span_notice(LANG("obj.49ef3fb9", null))
-		. += span_notice(LANG("obj.0532e684", null))
+		. += span_notice(LANG("obj.49ef3fb97c457541", null))
+		. += span_notice(LANG("obj.0532e6844e4f50e8", null))
 	else
-		. += span_notice(LANG("obj.f721afd3", null))
+		. += span_notice(LANG("obj.f721afd3faceb605", null))
 
 /obj/item/sliced_pipe/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!wires_are_in)
 		// here we can stuff in additional objects for a cooler effect
 		if(is_type_in_typecache(tool, allowed) && contents.len < MAX_STUFFINGS)
-			balloon_alert(user, LANG("obj.0d2c11af", null))
+			balloon_alert(user, LANG("obj.0d2c11af0df1af74", null))
 			var/atom/movable/to_put = tool
 			if(isstack(tool))
 				var/obj/item/stack/as_stack = tool
@@ -237,14 +237,14 @@
 		if(tool.reagents)
 			return NONE
 		if(reagents.total_volume < 5)
-			balloon_alert(user, LANG("obj.54c02df4", null))
+			balloon_alert(user, LANG("obj.54c02df4fb131245", null))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/cable_coil/coil = tool
 		if(!istype(coil))
 			return ITEM_INTERACT_BLOCKING
 		if (coil.get_amount() < 15)
-			balloon_alert(user, LANG("obj.1643231e", null))
+			balloon_alert(user, LANG("obj.1643231e1822940d", null))
 			return ITEM_INTERACT_BLOCKING
 		coil.use(15)
 
@@ -257,7 +257,7 @@
 		power *= cur_power
 		power -= contents.len / 2
 
-		balloon_alert(user, LANG("obj.a641ab5a", null))
+		balloon_alert(user, LANG("obj.a641ab5a8e2ba769", null))
 		icon_state = "[icon_state]-cable"
 		reagents.flags = SEALED_CONTAINER
 		wires_are_in = TRUE
@@ -268,11 +268,11 @@
 	if(!istype(assembly) || !(assembly.type in allowed_activators))
 		return ITEM_INTERACT_BLOCKING
 	if(assembly.secured)
-		balloon_alert(user, LANG("obj.80dcbc8c", null))
+		balloon_alert(user, LANG("obj.80dcbc8c923736f9", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(assembly, src))
 		return ITEM_INTERACT_BLOCKING
-	user.balloon_alert(user, LANG("obj.b0ad167d", null))
+	user.balloon_alert(user, LANG("obj.b0ad167d3c297e25", null))
 
 	var/obj/item/grenade/iedcasing/pipebomb = new(drop_location())
 	for(var/atom/movable/item_inside as anything in contents)

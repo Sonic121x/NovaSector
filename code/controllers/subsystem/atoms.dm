@@ -201,16 +201,16 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/proc/InitLog()
 	. = ""
 	for(var/path in BadInitializeCalls)
-		. += LANG("datum.ffc8cf7d", list(path))
+		. += LANG("datum.ffc8cf7d9d9fb91e", list(path))
 		var/fails = BadInitializeCalls[path]
 		if(fails & BAD_INIT_DIDNT_INIT)
-			. += LANG("datum.da73789a", null)
+			. += LANG("datum.da73789a77ead2ec", null)
 		if(fails & BAD_INIT_NO_HINT)
-			. += LANG("datum.6db7867c", null)
+			. += LANG("datum.6db7867c09cfdb0e", null)
 		if(fails & BAD_INIT_QDEL_BEFORE)
-			. += LANG("datum.5ac3b224", null)
+			. += LANG("datum.5ac3b22438c73eb1", null)
 		if(fails & BAD_INIT_SLEPT)
-			. += LANG("datum.6d5eb86c", null)
+			. += LANG("datum.6d5eb86ca468e587", null)
 
 /// Prepares an atom to be deleted once the atoms SS is initialized.
 /datum/controller/subsystem/atoms/proc/prepare_deletion(atom/target)

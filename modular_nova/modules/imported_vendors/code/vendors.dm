@@ -123,7 +123,7 @@
 
 /obj/machinery/vending/imported/yangyu/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.c9c5e613", null))
+	. += span_notice(LANG("obj.c9c5e613a508d7d4", null))
 	return .
 
 /obj/item/vending_refill/snack/imported/yangyu

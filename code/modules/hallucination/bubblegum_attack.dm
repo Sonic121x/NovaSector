@@ -87,8 +87,8 @@
 		step_away(hallucinator, fake_bubbles)
 		shake_camera(hallucinator, 4, 3)
 		hallucinator.visible_message(
-			span_warning(LANG("datum.bfb3faee", list(hallucinator))),
-			span_userdanger(LANG("datum.95075ba0", list(fake_bubbles))),
+			span_warning(LANG("datum.bfb3faeeceb593a4", list(hallucinator))),
+			span_userdanger(LANG("datum.95075ba06c9fcb79", list(fake_bubbles))),
 		)
 		QDEL_IN(src, 3 SECONDS)
 

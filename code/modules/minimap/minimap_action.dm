@@ -29,7 +29,7 @@
 	// Toggle off if already visible.
 	if(has_minimap_huds(hud))
 		remove_huds(hud)
-		to_chat(clicker, span_notice(LANG("datum.4722e230", null)))
+		to_chat(clicker, span_notice(LANG("datum.4722e23024177d62", null)))
 		return
 
 	if(SEND_SIGNAL(clicker, COMSIG_MINIMAP_ACTION_TRIGGER) & COMSIG_MINIMAP_ACTION_TRIGGER_CANCEL)
@@ -37,17 +37,17 @@
 
 	var/anchor_z = get_anchor_z_level(clicker?.z)
 	if(is_forbidden_minimap_z(anchor_z))
-		to_chat(clicker, span_warning(LANG("datum.d55f8dc5", null)))
-		clicker.balloon_alert(clicker, LANG("datum.01b86f2b", null))
+		to_chat(clicker, span_warning(LANG("datum.d55f8dc51adcb203", null)))
+		clicker.balloon_alert(clicker, LANG("datum.01b86f2b22a5309b", null))
 		return
 	var/display_z = get_opening_display_z_level(anchor_z, clicker?.z)
 
 	var/datum/minimap/minimap = get_minimap_for_z(display_z)
 	if(isnull(minimap))
-		clicker.balloon_alert(clicker, LANG("datum.12a3c0ba", null))
+		clicker.balloon_alert(clicker, LANG("datum.12a3c0bae29c6f0b", null))
 		return
 	add_huds(hud, minimap, isnull(fixed_z_level) ? null : display_z)
-	to_chat(clicker, span_notice(LANG("datum.21f826cd", null)))
+	to_chat(clicker, span_notice(LANG("datum.21f826cd8417779f", null)))
 
 /datum/action/minimap/Grant(mob/grant_to)
 	. = ..()
@@ -110,7 +110,7 @@
 	var/anchor_z = get_anchor_z_level(new_z_level)
 	if(is_forbidden_minimap_z(anchor_z))
 		remove_huds(owner_hud)
-		to_chat(owner_mob, span_warning(LANG("datum.4b70fd9c", null)))
+		to_chat(owner_mob, span_warning(LANG("datum.4b70fd9ceb4e3c33", null)))
 		return
 	if(isnull(fixed_z_level))
 		return

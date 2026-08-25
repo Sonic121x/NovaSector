@@ -27,7 +27,7 @@
 	hallucinator.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_dead, REF(src))
 	hallucinator.add_traits(list(TRAIT_MUTE, TRAIT_EMOTEMUTE), REF(src))
 
-	to_chat(hallucinator, span_deadsay(LANG("datum.3799d9e7", list(hallucinator.real_name, get_area_name(hallucinator)))))
+	to_chat(hallucinator, span_deadsay(LANG("datum.3799d9e7bb7c774a", list(hallucinator.real_name, get_area_name(hallucinator)))))
 
 	var/delay = 0
 

@@ -16,7 +16,7 @@
  * Initial check if manually unwrapping
  */
 /obj/item/delivery/proc/attempt_pre_unwrap_contents(mob/user, time = 1.5 SECONDS)
-	to_chat(user, span_notice(LANG("obj.7a94bf13", null)))
+	to_chat(user, span_notice(LANG("obj.7a94bf136aa5b2cc", null)))
 	return do_after(user, time, target = user)
 
 /**
@@ -61,14 +61,14 @@
 	. = ..()
 	if(note)
 		if(!in_range(user, src))
-			. += span_info(LANG("obj.f04df8ed", list(EXAMINE_HINT(note.name))))
+			. += span_info(LANG("obj.f04df8ed8a05779d", list(EXAMINE_HINT(note.name))))
 		else
-			. += span_info(LANG("obj.5c28d3a3", list(EXAMINE_HINT(note.name))))
+			. += span_info(LANG("obj.5c28d3a346fa1b29", list(EXAMINE_HINT(note.name))))
 			. += note.examine(user)
 	if(sticker)
-		. += span_notice(LANG("obj.71807808", list(EXAMINE_HINT("barcode"), EXAMINE_HINT("export."))))
+		. += span_notice(LANG("obj.7180780854705f22", list(EXAMINE_HINT("barcode"), EXAMINE_HINT("export."))))
 	if(sort_tag)
-		. += span_notice(LANG("obj.94d6c3a6", list(EXAMINE_HINT("sorting tag"), EXAMINE_HINT("[GLOB.TAGGERLOCATIONS[sort_tag]]."))))
+		. += span_notice(LANG("obj.94d6c3a699b4358d", list(EXAMINE_HINT("sorting tag"), EXAMINE_HINT("[GLOB.TAGGERLOCATIONS[sort_tag]]."))))
 
 /obj/item/delivery/proc/disposal_handling(disposal_source, obj/structure/disposalholder/disposal_holder, obj/machinery/disposal/disposal_machine, hasmob)
 	SIGNAL_HANDLER
@@ -80,17 +80,17 @@
 		var/atom/movable/movable_loc = loc //can't unwrap the wrapped container if it's inside something.
 		movable_loc.relay_container_resist_act(user, container)
 		return
-	to_chat(user, span_notice(LANG("obj.966c22fa", list(container))))
+	to_chat(user, span_notice(LANG("obj.966c22fa96e2de9b", list(container))))
 	if(do_after(user, 5 SECONDS, target = container))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != container || container.loc != src)
 			return
-		to_chat(user, span_notice(LANG("obj.4bf27ae3", list(container))))
+		to_chat(user, span_notice(LANG("obj.4bf27ae382a112a2", list(container))))
 		container.forceMove(loc)
 		unwrap_contents()
 		post_unwrap_contents(user)
 	else
 		if(user.loc == src) //so we don't get the message if we resisted multiple times and succeeded.
-			to_chat(user, span_warning(LANG("obj.e5c385f1", list(container))))
+			to_chat(user, span_warning(LANG("obj.e5c385f194281f95", list(container))))
 
 /obj/item/delivery/update_icon_state()
 	. = ..()
@@ -122,9 +122,9 @@
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/stack/wrapping_paper/wrapping_paper = tool
 		if(!wrapping_paper.use(3))
-			to_chat(user, span_warning(LANG("obj.7f44344b", null)))
+			to_chat(user, span_warning(LANG("obj.7f44344b5179998a", null)))
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice(LANG("obj.7eb9f94d", list(user))))
+		user.visible_message(span_notice(LANG("obj.7eb9f94d645eca95", list(user))))
 		giftwrapped = TRUE
 		greyscale_config = text2path("/datum/greyscale_config/gift[icon_state]")
 		set_greyscale(colors = wrapping_paper.greyscale_colors)
@@ -133,12 +133,12 @@
 
 	if(istype(tool, /obj/item/paper))
 		if(note)
-			to_chat(user, span_warning(LANG("obj.c71b2862", null)))
+			to_chat(user, span_warning(LANG("obj.c71b2862cbe2cca8", null)))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning(LANG("obj.3326bf5a", list(tool))))
+			to_chat(user, span_warning(LANG("obj.3326bf5acb707046", list(tool))))
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice(LANG("obj.c24be4ca", list(user, tool, src))), span_notice(LANG("obj.c1fbc99d", list(tool, src))))
+		user.visible_message(span_notice(LANG("obj.c24be4ca3d4ab352", list(user, tool, src))), span_notice(LANG("obj.c1fbc99dd596332a", list(tool, src))))
 		note = tool
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
@@ -148,15 +148,15 @@
 		if(sales_tagger.scanning_mode != SCAN_SALES_TAG)
 			return ITEM_INTERACT_BLOCKING
 		if(sticker)
-			to_chat(user, span_warning(LANG("obj.14e3b20c", null)))
+			to_chat(user, span_warning(LANG("obj.14e3b20ccbfb390b", null)))
 			return ITEM_INTERACT_BLOCKING
 		if(!(sales_tagger.payments_acc))
-			to_chat(user, span_warning(LANG("obj.cba92c53", list(sales_tagger))))
+			to_chat(user, span_warning(LANG("obj.cba92c53e3feb5a7", list(sales_tagger))))
 			return ITEM_INTERACT_BLOCKING
 		if(sales_tagger.paper_count <= 0)
-			to_chat(user, span_warning(LANG("obj.3b0e27cd", list(sales_tagger))))
+			to_chat(user, span_warning(LANG("obj.3b0e27cd91480ce4", list(sales_tagger))))
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice(LANG("obj.10af87a7", list(user, src))), span_notice(LANG("obj.7eef88ad", list(src))))
+		user.visible_message(span_notice(LANG("obj.10af87a7d61e494c", list(user, src))), span_notice(LANG("obj.7eef88ad929aaa0d", list(src))))
 		sales_tagger.paper_count -= 1
 		sticker = new /obj/item/barcode(src)
 		sticker.payments_acc = sales_tagger.payments_acc	//new tag gets the tagger's current account.
@@ -172,13 +172,13 @@
 	if(istype(tool, /obj/item/barcode))
 		var/obj/item/barcode/stickerA = tool
 		if(sticker)
-			to_chat(user, span_warning(LANG("obj.14e3b20c", null)))
+			to_chat(user, span_warning(LANG("obj.14e3b20ccbfb390b", null)))
 			return ITEM_INTERACT_BLOCKING
 		if(!(stickerA.payments_acc))
-			to_chat(user, span_warning(LANG("obj.79873f08", null)))
+			to_chat(user, span_warning(LANG("obj.79873f081baa64d9", null)))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning(LANG("obj.3326bf5a", list(tool))))
+			to_chat(user, span_warning(LANG("obj.3326bf5acb707046", list(tool))))
 			return ITEM_INTERACT_BLOCKING
 		sticker = stickerA
 		for(var/obj/wrapped_item in get_all_contents())
@@ -191,7 +191,7 @@
 	if(istype(tool, /obj/item/boxcutter))
 		var/obj/item/boxcutter/boxcutter_item = tool
 		if(!HAS_TRAIT(boxcutter_item, TRAIT_TRANSFORM_ACTIVE))
-			balloon_alert(user, LANG("obj.271bb5a8", null))
+			balloon_alert(user, LANG("obj.271bb5a88a56d189", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!attempt_pre_unwrap_contents(user, time = 0.5 SECONDS))
 			return ITEM_INTERACT_BLOCKING
@@ -280,11 +280,11 @@
 	desc = "Used to fool the disposal mail network into thinking that you're a harmless parcel. Does actually work as a regular destination tagger as well."
 
 /obj/item/dest_tagger/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.61f8c7ff", list(user, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.61f8c7ff0a1be29d", list(user, user.p_their(), user.p_theyre()))))
 	if (islizard(user))
-		to_chat(user, span_notice(LANG("obj.a23ae7b6", null)))//lizard nerf
+		to_chat(user, span_notice(LANG("obj.a23ae7b6ab4bb75d", null)))//lizard nerf
 	else
-		to_chat(user, span_notice(LANG("obj.f5abfedf", null)))
+		to_chat(user, span_notice(LANG("obj.f5abfedf2d6054cc", null)))
 	playsound(src, 'sound/machines/beep/twobeep_high.ogg', 100, TRUE)
 	return BRUTELOSS
 
@@ -351,36 +351,36 @@
 
 /obj/item/sales_tagger/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.f9a45b64", list(src, paper_count, max_paper_count)))
-	. += span_notice(LANG("obj.7e0bbac3", list(round(cut_multiplier*100))))
+	. += span_notice(LANG("obj.f9a45b6431b23640", list(src, paper_count, max_paper_count)))
+	. += span_notice(LANG("obj.7e0bbac3ee915114", list(round(cut_multiplier*100))))
 	if(payments_acc)
-		. += span_notice(LANG("obj.5f19d3b2", null))
+		. += span_notice(LANG("obj.5f19d3b2f0f82253", null))
 
 /obj/item/sales_tagger/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(isidcard(tool))
 		var/obj/item/card/id/potential_acc = tool
 		if(!potential_acc.registered_account)
-			to_chat(user, span_warning(LANG("obj.51d0d893", null)))
+			to_chat(user, span_warning(LANG("obj.51d0d893aa8f5b8c", null)))
 			return ITEM_INTERACT_BLOCKING
 		if(payments_acc == potential_acc.registered_account)
-			to_chat(user, span_notice(LANG("obj.bde32b20", null)))
+			to_chat(user, span_notice(LANG("obj.bde32b20fdab4985", null)))
 			return ITEM_INTERACT_BLOCKING
 		payments_acc = potential_acc.registered_account
 		playsound(src, 'sound/machines/ping.ogg', 40, TRUE)
-		to_chat(user, span_notice(LANG("obj.37931711", list(src))))
+		to_chat(user, span_notice(LANG("obj.37931711e356b6ed", list(src))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/paper))
 		if ((paper_count >= max_paper_count))
-			to_chat(user, span_notice(LANG("obj.d0c8fa5b", list(src))))
+			to_chat(user, span_notice(LANG("obj.d0c8fa5b04b8e819", list(src))))
 			return ITEM_INTERACT_BLOCKING
 		paper_count += 10
 		qdel(tool)
 		if (paper_count >= max_paper_count)
 			paper_count = max_paper_count
-			to_chat(user, span_notice(LANG("obj.60720976", list(src))))
+			to_chat(user, span_notice(LANG("obj.607209767ae525aa", list(src))))
 			return ITEM_INTERACT_SUCCESS
-		to_chat(user, span_notice(LANG("obj.c2d63d9c", list(src, paper_count))))
+		to_chat(user, span_notice(LANG("obj.c2d63d9cfb07eff9", list(src, paper_count))))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -388,14 +388,14 @@
 /obj/item/sales_tagger/attack_self(mob/user)
 	. = ..()
 	if(paper_count <= 0)
-		to_chat(user, span_warning(LANG("obj.dd4e47aa", null)))
+		to_chat(user, span_warning(LANG("obj.dd4e47aa9f2b617e", null)))
 		return
 	if(!payments_acc)
-		to_chat(user, span_warning(LANG("obj.eb7c0a75", list(src))))
+		to_chat(user, span_warning(LANG("obj.eb7c0a75fd746c70", list(src))))
 		return
 	paper_count -= 1
 	playsound(src, 'sound/machines/click.ogg', 40, TRUE)
-	to_chat(user, span_notice(LANG("obj.193ff4f4", null)))
+	to_chat(user, span_notice(LANG("obj.193ff4f4a019fd4c", null)))
 	var/obj/item/barcode/new_barcode = new /obj/item/barcode(src)
 	new_barcode.payments_acc = payments_acc		// The sticker gets the scanner's registered account.
 	new_barcode.cut_multiplier = cut_multiplier		// Also the registered percent cut.
@@ -403,13 +403,13 @@
 
 /obj/item/sales_tagger/item_ctrl_click(mob/user)
 	payments_acc = null
-	to_chat(user, span_notice(LANG("obj.a24c91ba", null)))
+	to_chat(user, span_notice(LANG("obj.a24c91ba85b22c40", null)))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/sales_tagger/click_alt(mob/user)
-	var/potential_cut = input(LANG("obj.64a2bf7c", null),LANG("obj.9464744c", list(round(cut_min*100), round(cut_max*100)))) as num|null
+	var/potential_cut = input(LANG("obj.64a2bf7c13540cc7", null),LANG("obj.9464744c35f078e2", list(round(cut_min*100), round(cut_max*100)))) as num|null
 	if(!potential_cut)
 		cut_multiplier = initial(cut_multiplier)
 	cut_multiplier = clamp(round(potential_cut/100, cut_min), cut_min, cut_max)
-	to_chat(user, span_notice(LANG("obj.e1da57ad", list(round(cut_multiplier*100)))))
+	to_chat(user, span_notice(LANG("obj.e1da57adb1b0b029", list(round(cut_multiplier*100)))))
 	return CLICK_ACTION_SUCCESS

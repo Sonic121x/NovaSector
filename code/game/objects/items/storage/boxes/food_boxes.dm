@@ -89,15 +89,15 @@
 /obj/item/storage/box/papersack/update_desc(updates)
 	switch(design_choice)
 		if("None")
-			desc = LANG("obj.5d892fde", null)
+			desc = LANG("obj.5d892fdecb48e5f0", null)
 		if("NanotrasenStandard")
-			desc = LANG("obj.4cf6d997", null)
+			desc = LANG("obj.4cf6d997c4a9f09e", null)
 		if("SyndiSnacks")
-			desc = LANG("obj.8dc7b5be", null)
+			desc = LANG("obj.8dc7b5be9aaac9cf", null)
 		if("Heart")
-			desc = LANG("obj.55d3535e", null)
+			desc = LANG("obj.55d3535e6460a72e", null)
 		if("SmileyFace")
-			desc = LANG("obj.e344dccd", null)
+			desc = LANG("obj.e344dccd54a118e6", null)
 	return ..()
 
 /obj/item/storage/box/papersack/tool_act(mob/living/user, obj/item/tool, list/modifiers)
@@ -106,7 +106,7 @@
 		if(!choice || choice == design_choice)
 			return ITEM_INTERACT_BLOCKING
 		design_choice = choice
-		balloon_alert(user, LANG("obj.c173e63f", null))
+		balloon_alert(user, LANG("obj.c173e63fee599b44", null))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 	if(tool.get_sharpness() && !contents.len)
@@ -135,10 +135,10 @@
 	if(user.incapacitated)
 		return FALSE
 	if(contents.len)
-		balloon_alert(user, LANG("obj.ca142d62", null))
+		balloon_alert(user, LANG("obj.ca142d621fdf23fb", null))
 		return FALSE
 	if(!P || !user.is_holding(P))
-		balloon_alert(user, LANG("obj.93d76554", null))
+		balloon_alert(user, LANG("obj.93d7655475d04785", null))
 		return FALSE
 	return TRUE
 
@@ -166,7 +166,7 @@
 	if(theme_name)
 		var/disp_theme = (GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) ? lang_reverse_text(theme_name) : theme_name // NOVA EDIT - I18N - localize the cuisine theme in the box name
 		name = "[name] ([disp_theme])" // NOVA EDIT - I18N - ORIGINAL: name = "[name] ([theme_name])"
-		desc = LANG("obj.9ac3110c", list(theme_name))
+		desc = LANG("obj.9ac3110c0933ee2f", list(theme_name))
 		inhand_icon_state = "syringe_kit"
 
 /obj/item/storage/box/ingredients/wildcard
@@ -359,15 +359,15 @@
 
 /obj/item/storage/box/gum/wake_up/examine_more(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.8951e838", null))
-	. += LANG("obj.294efb1f", list(span_info("For the relief of tiredness and drowsiness while working.")))
-	. += LANG("obj.294efb1f", list(span_info("Do not chew more than one strip every 12 hours. Do not use as a complete substitute for sleep.")))
-	. += LANG("obj.294efb1f", list(span_info("Do not give to children under 16. Do not exceed the maximum dosage. Do not ingest. Do not take for more than 3 days consecutively. Do not take in conjunction with other medication. May cause adverse reactions in patients with pre-existing heart conditions.")))
-	. += LANG("obj.294efb1f", list(span_info("Side effects of Activin use may include twitchy antennae, overactive wings, loss of keratin sheen, loss of setae coverage, arrythmia, blurred vision, and euphoria. Cease taking the medication if side effects occur.")))
-	. += LANG("obj.294efb1f", list(span_info("Repeated use may cause addiction.")))
-	. += LANG("obj.294efb1f", list(span_info("If the maximum dosage is exceeded, inform a member of your assigned vessel's medical staff immediately. Do not induce vomiting.")))
-	. += LANG("obj.294efb1f", list(span_info("Ingredients: each strip contains 500mg of Activin (dextro-methamphetamine). Other ingredients include Green Dye 450 (Verdant Meadow) and artificial herb flavouring.")))
-	. += LANG("obj.294efb1f", list(span_info("Storage: keep in a cool dry place. Do not use after the use-by date: 32/4/350.")))
+	. += span_notice(LANG("obj.8951e8383d1a3cbe", null))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("For the relief of tiredness and drowsiness while working.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Do not chew more than one strip every 12 hours. Do not use as a complete substitute for sleep.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Do not give to children under 16. Do not exceed the maximum dosage. Do not ingest. Do not take for more than 3 days consecutively. Do not take in conjunction with other medication. May cause adverse reactions in patients with pre-existing heart conditions.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Side effects of Activin use may include twitchy antennae, overactive wings, loss of keratin sheen, loss of setae coverage, arrythmia, blurred vision, and euphoria. Cease taking the medication if side effects occur.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Repeated use may cause addiction.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("If the maximum dosage is exceeded, inform a member of your assigned vessel's medical staff immediately. Do not induce vomiting.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Ingredients: each strip contains 500mg of Activin (dextro-methamphetamine). Other ingredients include Green Dye 450 (Verdant Meadow) and artificial herb flavouring.")))
+	. += LANG("obj.294efb1fdb8925bb", list(span_info("Storage: keep in a cool dry place. Do not use after the use-by date: 32/4/350.")))
 	return .
 
 /obj/item/storage/box/gum/wake_up/PopulateContents()

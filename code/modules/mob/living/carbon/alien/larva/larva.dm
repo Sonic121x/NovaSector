@@ -36,7 +36,6 @@
 	)
 
 	var/amount_grown = 0
-	var/max_grown = 100
 	var/time_of_birth
 
 
@@ -47,24 +46,17 @@
 		/datum/action/cooldown/alien/larva_evolve,
 	)
 	grant_actions_by_list(innate_actions)
-
 	return ..()
-
-//This needs to be fixed
-// This comment is 12 years old I hope it's fixed by now
-/mob/living/carbon/alien/larva/get_status_tab_items()
-	. = ..()
-	. += LANG("mob.d20378e1", list(amount_grown, max_grown))
 
 /mob/living/carbon/alien/larva/Login()
 	. = ..()
 	if(!. || !client)
 		return FALSE
-	to_chat(src, LANG("mob.c898de39", null))
+	to_chat(src, LANG("mob.c898de39169586f6", null))
 
 /mob/living/carbon/alien/larva/adjustPlasma(amount)
 	if(stat != DEAD && amount > 0)
-		amount_grown = min(amount_grown + 1, max_grown)
+		amount_grown = min(amount_grown + 1, XENOMORPH_MAX_GROWTH)
 	..(amount)
 
 //can't equip anything

@@ -88,7 +88,7 @@
 /mob/living/basic/pet/dog/corgi/examine(mob/user)
 	. = ..()
 	if(access_card)
-		. += LANG("mob.b3e288b8", list(icon2html(access_card, user), access_card, p_them()))
+		. += LANG("mob.b3e288b82e44a099", list(icon2html(access_card, user), access_card, p_them()))
 
 /**
  * Corgis get full protection from their equipped fashion items if attacked in a way that passes def_zone,
@@ -118,23 +118,23 @@
 		return ..()
 
 	if(shaved)
-		to_chat(user, span_warning(LANG("mob.18f1e18b", list(p_they(), p_have()))))
+		to_chat(user, span_warning(LANG("mob.18f1e18b000e5962", list(p_they(), p_have()))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!can_be_shaved)
-		to_chat(user, span_warning(LANG("mob.b6c70b82", list(p_they(), p_do()))))
+		to_chat(user, span_warning(LANG("mob.b6c70b823a632e20", list(p_they(), p_do()))))
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice(LANG("mob.215295a5", list(user, src, tool))),
-		span_notice(LANG("mob.490e22db", list(src, tool))),
-		span_hear(LANG("mob.bc0b5d56", null)),
+		span_notice(LANG("mob.215295a5e722676f", list(user, src, tool))),
+		span_notice(LANG("mob.490e22dbfbc20ee1", list(src, tool))),
+		span_hear(LANG("mob.bc0b5d5637cb0a87", null)),
 	)
 
 	if(!do_after(user, 5 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("mob.3ca61c66", list(user, src, tool))))
+	user.visible_message(span_notice(LANG("mob.3ca61c6694a72d91", list(user, src, tool))))
 	playsound(get_turf(src), 'sound/items/hair-clippers.ogg', 20, TRUE)
 	shaved = TRUE
 	icon_living = "[icon_living]_shaved"
@@ -230,24 +230,24 @@
 /mob/living/basic/pet/dog/corgi/proc/place_on_head(obj/item/item_to_add, mob/living/user)
 	if(inventory_head)
 		if(user)
-			balloon_alert(user, LANG("mob.877a0958", null))
+			balloon_alert(user, LANG("mob.877a0958a2729c1c", null))
 		return FALSE
 
 	if(isnull(item_to_add))
 		if (!isnull(user))
-			user.visible_message(span_notice(LANG("mob.d1411f1b", list(user, src))), span_notice(LANG("mob.98fc1a7b", list(src))))
+			user.visible_message(span_notice(LANG("mob.d1411f1ba70fd4b4", list(user, src))), span_notice(LANG("mob.98fc1a7bae12b06c", list(src))))
 			if(flags_1 & HOLOGRAM_1)
 				return
 			user.add_mood_event(REF(src), /datum/mood_event/pet_animal, src)
 		return FALSE
 
 	if(user && !user.temporarilyRemoveItemFromInventory(item_to_add))
-		to_chat(user, span_warning(LANG("mob.c73ad1c5", list(item_to_add, src))))
+		to_chat(user, span_warning(LANG("mob.c73ad1c501d069df", list(item_to_add, src))))
 		return FALSE
 
 	//Various hats and items (worn on his head) change Ian's behaviour. His attributes are reset when a hat is removed.
 	if(!ispath(item_to_add.dog_fashion, /datum/dog_fashion/head))
-		to_chat(user, span_warning(LANG("mob.b7bcb772", list(item_to_add, src))))
+		to_chat(user, span_warning(LANG("mob.b7bcb7725545c2af", list(item_to_add, src))))
 		item_to_add.forceMove(drop_location())
 		if(prob(25))
 			step_rand(item_to_add)
@@ -256,12 +256,12 @@
 
 	if (user)
 		if(IS_DEAD_OR_FAKING(src))
-			to_chat(user, span_notice(LANG("mob.65cc710d", list(real_name, item_to_add, p_them()))))
+			to_chat(user, span_notice(LANG("mob.65cc710d56754f6b", list(real_name, item_to_add, p_them()))))
 		else
 			user.visible_message(
-				span_notice(LANG("mob.62d82673", list(user, item_to_add, real_name, src, user))),
-				span_notice(LANG("mob.5447687d", list(item_to_add, real_name, src, p_their()))),
-				span_hear(LANG("mob.2f0583aa", null)),
+				span_notice(LANG("mob.62d82673435e6264", list(user, item_to_add, real_name, src, user))),
+				span_notice(LANG("mob.5447687dc6f36e29", list(item_to_add, real_name, src, p_their()))),
+				span_hear(LANG("mob.2f0583aacac3c9b0", null)),
 			)
 
 	item_to_add.forceMove(src)
@@ -321,13 +321,13 @@
 		inventory_head.forceMove(drop_location())
 		inventory_head = null
 	place_on_head(pick(possible_headwear))
-	visible_message(span_notice(LANG("mob.2cc063a8", list(src, inventory_head, p_their()))))
+	visible_message(span_notice(LANG("mob.2cc063a8881a8ee7", list(src, inventory_head, p_their()))))
 
 ///Deadchat plays command that drops the current hat off Ian.
 /mob/living/basic/pet/dog/corgi/proc/drop_hat()
 	if(!inventory_head)
 		return
-	visible_message(span_notice(LANG("mob.2ab41de4", list(src, p_their(), inventory_head))))
+	visible_message(span_notice(LANG("mob.2ab41de49b31c1a4", list(src, p_their(), inventory_head))))
 	inventory_head.forceMove(drop_location())
 	inventory_head = null
 	update_corgi_fluff()
@@ -399,7 +399,7 @@
 		icon_living = "old_corgi"
 		held_state = "old_corgi"
 		icon_dead = "old_corgi_dead"
-		desc = LANG("mob.4fc73b31", list(record_age)) //RIP
+		desc = LANG("mob.4fc73b31097da46c", list(record_age)) //RIP
 		ai_controller?.set_blackboard_key(BB_DOG_IS_SLOW, TRUE)
 		is_slow = TRUE
 		speed = 2
@@ -512,8 +512,8 @@
 	SIGNAL_HANDLER
 	if (!is_type_in_list(prey, edible_types) || istype(prey, type))
 		return
-	visible_message(span_warning(LANG("mob.183c666d", list(src, prey))), \
-		LANG("mob.5a4e3cb0", null))
+	visible_message(span_warning(LANG("mob.183c666db293845e", list(src, prey))), \
+		LANG("mob.5a4e3cb008d2acaf", null))
 	playsound(src, 'sound/effects/magic/demon_attack1.ogg', 75, TRUE)
 	new /obj/effect/temp_visual/cult/sac(get_turf(prey))
 	narsie_act()
@@ -535,8 +535,8 @@
 
 /mob/living/basic/pet/dog/corgi/narsie/narsie_act()
 	if(stat == DEAD) //Nar'Sie loves her doggy
-		visible_message(span_warning(LANG("mob.7b09edc5", list(src))), \
-		span_cult_large(LANG("mob.f19db68b", null)))
+		visible_message(span_warning(LANG("mob.7b09edc58d78cdb4", list(src))), \
+		span_cult_large(LANG("mob.f19db68b627166a7", null)))
 		revive(ADMIN_HEAL_ALL) //also means that a dead Nars-Ian can consume a pet and revive
 	adjust_brute_loss(-maxHealth)
 

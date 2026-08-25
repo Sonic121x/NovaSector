@@ -308,11 +308,11 @@
 				return
 			for(var/datum/opposing_force_objective/objective as anything in objectives)
 				if(objective.status == OPFOR_OBJECTIVE_STATUS_NOT_REVIEWED)
-					to_chat(usr, boxed_message(span_command_headset(span_pink(LANG("datum.cbedb888", null)))))
+					to_chat(usr, boxed_message(span_command_headset(span_pink(LANG("datum.cbedb8880f7e046c", null)))))
 					return
 			for(var/datum/opposing_force_selected_equipment/equipment as anything in selected_equipment)
 				if(equipment.status == OPFOR_EQUIPMENT_STATUS_NOT_REVIEWED)
-					to_chat(usr, boxed_message(span_command_headset(span_pink(LANG("datum.c91ec825", null)))))
+					to_chat(usr, boxed_message(span_command_headset(span_pink(LANG("datum.c91ec825956320af", null)))))
 					return
 			SSopposing_force.approve(src, usr)
 		if("approve_all")
@@ -328,7 +328,7 @@
 		if("deny")
 			if(!check_rights(R_ADMIN))
 				return
-			var/denied_reason = tgui_input_text(usr, LANG("datum.f1363150", null), LANG("datum.345314bc", null), max_length = MAX_MESSAGE_LEN)
+			var/denied_reason = tgui_input_text(usr, LANG("datum.f13631504f8ec907", null), LANG("datum.345314bc6ed6c881", null), max_length = MAX_MESSAGE_LEN)
 			// Checking to see if the user is spamming the button, async and all.
 			if((status == OPFOR_STATUS_DENIED) || !denied_reason)
 				return
@@ -348,7 +348,7 @@
 		if("deny_objective")
 			if(!check_rights(R_ADMIN))
 				return
-			var/denied_reason = tgui_input_text(usr, LANG("datum.f1363150", null), LANG("datum.c9accefd", null), max_length = MAX_NAME_LEN)
+			var/denied_reason = tgui_input_text(usr, LANG("datum.f13631504f8ec907", null), LANG("datum.c9accefd37563a41", null), max_length = MAX_NAME_LEN)
 			if(!denied_reason)
 				return
 			deny_objective(usr, edited_objective, denied_reason)
@@ -365,7 +365,7 @@
 				return
 			if(!check_rights(R_ADMIN))
 				return
-			var/denied_reason = tgui_input_text(usr, LANG("datum.f1363150", null), LANG("datum.c9accefd", null), max_length = MAX_NAME_LEN)
+			var/denied_reason = tgui_input_text(usr, LANG("datum.f13631504f8ec907", null), LANG("datum.c9accefd37563a41", null), max_length = MAX_NAME_LEN)
 			if(!denied_reason)
 				return
 			deny_equipment(usr, equipment, denied_reason)
@@ -383,11 +383,11 @@
 
 /datum/opposing_force/proc/handle(mob/user)
 	if(handling_admin)
-		var/choice = tgui_alert(user, LANG("datum.70ea9c74", null), LANG("datum.0ab73cbb", null), list("Yes", "No"))
+		var/choice = tgui_alert(user, LANG("datum.70ea9c74189e63e3", null), LANG("datum.0ab73cbb93736ec6", null), list("Yes", "No"))
 		if(choice == "No")
 			return
 	handling_admin = get_admin_ckey(user)
-	to_chat(mind_reference.current, boxed_message(span_nicegreen(LANG("datum.1bdd6533", list(handling_admin)))))
+	to_chat(mind_reference.current, boxed_message(span_nicegreen(LANG("datum.1bdd65333424b29b", list(handling_admin)))))
 	send_admins_opfor_message("HANDLE: [ADMIN_LOOKUPFLW(user)] is handling [mind_reference.key]'s OPFOR application.")
 	send_system_message("[handling_admin] has assigned themselves to this application")
 	add_log(user.ckey, "Assigned self to application")
@@ -455,7 +455,7 @@
 	if(!can_edit)
 		return
 	if(LAZYLEN(selected_equipment) >= OPFOR_EQUIPMENT_LIMIT)
-		to_chat(user, span_warning(LANG("datum.7f200130", null)))
+		to_chat(user, span_warning(LANG("datum.7f2001303cd91fd9", null)))
 		return
 	var/datum/opposing_force_selected_equipment/new_selected = new(incoming_equipment)
 	selected_equipment += new_selected
@@ -483,7 +483,7 @@
 
 /datum/opposing_force/proc/request_update(mob/user)
 	if(request_updates_muted)
-		to_chat(user, span_warning(LANG("datum.a0b96040", null)))
+		to_chat(user, span_warning(LANG("datum.a0b960400396bce9", null)))
 		return
 	if(status != OPFOR_STATUS_AWAITING_APPROVAL || !COOLDOWN_FINISHED(src, request_update_cooldown))
 		return
@@ -500,14 +500,14 @@
 
 /datum/opposing_force/proc/submit_to_subsystem(mob/user)
 	if(blocked)
-		to_chat(user, span_warning(LANG("datum.5028844c", null)))
+		to_chat(user, span_warning(LANG("datum.5028844ca2747d04", null)))
 		return
 	if(status != OPFOR_STATUS_NOT_SUBMITTED && status != OPFOR_STATUS_CHANGES_REQUESTED)
 		return FALSE
 	// Subsystem checks, no point in bloating the system if it's not accepting more.
 	var/availability = SSopposing_force.check_availability()
 	if(availability != OPFOR_SUBSYSTEM_READY)
-		to_chat(usr, span_warning(LANG("datum.729169e6", list(availability))))
+		to_chat(usr, span_warning(LANG("datum.729169e6bd39dc20", list(availability))))
 		return FALSE
 
 	var/queue_position = SSopposing_force.add_to_queue(src)
@@ -523,12 +523,12 @@
 	add_log(user.ckey, "Submitted to the OPFOR subsystem")
 	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has submitted the application for review")
 	send_admins_opfor_message(span_command_headset("SUBMISSION: [ADMIN_LOOKUPFLW(user)] has submitted their OPFOR application. They are number [queue_position] in the queue."))
-	to_chat(usr, boxed_message(span_nicegreen((LANG("datum.483d0d65", list(queue_position))))))
+	to_chat(usr, boxed_message(span_nicegreen((LANG("datum.483d0d65308c9026", list(queue_position))))))
 
 /datum/opposing_force/proc/modify_request(mob/user)
 	if(status == OPFOR_STATUS_CHANGES_REQUESTED)
 		return
-	var/choice = tgui_alert(user, LANG("datum.b1634c02", null), LANG("datum.3c1da715", null), list("Yes", "No"))
+	var/choice = tgui_alert(user, LANG("datum.b1634c02c7db0277", null), LANG("datum.3c1da715a16e1d9e", null), list("Yes", "No"))
 	if(choice != "Yes")
 		return
 	if(status == OPFOR_STATUS_CHANGES_REQUESTED) // The alert is not async, so this could change, thus being spammed.
@@ -556,7 +556,7 @@
 		opfor.status = OPFOR_OBJECTIVE_STATUS_DENIED
 	SEND_SOUND(mind_reference.current, sound('modular_nova/modules/opposing_force/sound/denied.ogg'))
 	add_log(denier.ckey, "Denied application")
-	to_chat(mind_reference.current, boxed_message(span_redtext(LANG("datum.acdbc82c", list(denier ? get_admin_ckey(denier) : "the OPFOR subsystem")))))
+	to_chat(mind_reference.current, boxed_message(span_redtext(LANG("datum.acdbc82c1533f9e9", list(denier ? get_admin_ckey(denier) : "the OPFOR subsystem")))))
 	send_system_message(get_admin_ckey(denier) + " has denied the application with the following reason: [reason]")
 	send_admins_opfor_message("[span_red("DENIED")]: [ADMIN_LOOKUPFLW(denier)] has denied [ckey]'s application([reason ? reason : "No reason specified"])")
 	ticket_counter_add_handled(denier.key, 1)
@@ -575,7 +575,7 @@
 			continue
 		objective_denied = TRUE
 		break
-	to_chat(mind_reference.current, boxed_message(span_greentext(LANG("datum.34d118f5", list(objective_denied ? span_bold("partially approved (please view your OPFOR for details)") : span_bold("fully approved"), approver ? get_admin_ckey(approver) : "the OPFOR subsystem")))))
+	to_chat(mind_reference.current, boxed_message(span_greentext(LANG("datum.34d118f5bf539476", list(objective_denied ? span_bold("partially approved (please view your OPFOR for details)") : span_bold("fully approved"), approver ? get_admin_ckey(approver) : "the OPFOR subsystem")))))
 	send_system_message("[approver ? get_admin_ckey(approver) : "The OPFOR subsystem"] has approved the application")
 	send_admins_opfor_message("[span_green("APPROVED")]: [ADMIN_LOOKUPFLW(approver)] has approved [ckey]'s application")
 	ticket_counter_add_handled(approver.key, 1)
@@ -583,7 +583,7 @@
 /datum/opposing_force/proc/close_application(mob/user)
 	if(status == OPFOR_STATUS_NOT_SUBMITTED)
 		return
-	var/choice = tgui_alert(user, LANG("datum.26c2d033", null), LANG("datum.3c1da715", null), list("Yes", "No"))
+	var/choice = tgui_alert(user, LANG("datum.26c2d033c822699e", null), LANG("datum.3c1da715a16e1d9e", null), list("Yes", "No"))
 	if(choice != "Yes")
 		return
 	if(status == OPFOR_STATUS_NOT_SUBMITTED) // The alert is not async, so this could change, thus being spammed.
@@ -671,7 +671,7 @@
 	if(!can_edit)
 		return
 	if(LAZYLEN(objectives) >= OPFOR_MAX_OBJECTIVES)
-		to_chat(user, span_warning(LANG("datum.ef389da1", null)))
+		to_chat(user, span_warning(LANG("datum.ef389da10ef6eebe", null)))
 		return
 	var/datum/opposing_force_objective/opfor_objective = new
 	objectives += opfor_objective
@@ -691,13 +691,13 @@
 	opposing_force_objective.denied_reason = deny_reason
 	add_log(user.ckey, "Denied objective([opposing_force_objective.title]) WITH REASON: [deny_reason]")
 	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has denied objective '[opposing_force_objective.title]' with the reason '[deny_reason]'")
-	to_chat(mind_reference?.current, span_warning(LANG("datum.4ffaf4c6", list(span_bold("[opposing_force_objective.title]")))))
+	to_chat(mind_reference?.current, span_warning(LANG("datum.4ffaf4c6f7080799", list(span_bold("[opposing_force_objective.title]")))))
 
 /datum/opposing_force/proc/approve_objective(mob/user, datum/opposing_force_objective/opposing_force_objective)
 	opposing_force_objective.status = OPFOR_OBJECTIVE_STATUS_APPROVED
 	add_log(user.ckey, "Approved objective([opposing_force_objective.title])")
 	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has approved objective '[opposing_force_objective.title]'")
-	to_chat(mind_reference?.current, span_warning(LANG("datum.8e513765", list(span_bold("[opposing_force_objective.title]")))))
+	to_chat(mind_reference?.current, span_warning(LANG("datum.8e51376584c2717d", list(span_bold("[opposing_force_objective.title]")))))
 
 /**
  * System procs
@@ -740,7 +740,7 @@
 
 /datum/opposing_force/proc/broadcast_queue_change()
 	var/queue_number = SSopposing_force.get_queue_position(src)
-	to_chat(mind_reference.current, boxed_message(span_nicegreen(LANG("datum.1a569b70", list(queue_number)))))
+	to_chat(mind_reference.current, boxed_message(span_nicegreen(LANG("datum.1a569b70173e10f6", list(queue_number)))))
 	send_system_message("Application is now number [queue_number] in the queue")
 
 /datum/opposing_force/proc/send_message(mob/user, message)
@@ -843,7 +843,7 @@
 		send_system_message("ERROR: You are muted.")
 		return
 	if(user.ckey != handling_admin && GLOB.directory[handling_admin])
-		to_chat(GLOB.directory[handling_admin], span_pink(LANG("datum.14ce816a", list(user, REF(src)))))
+		to_chat(GLOB.directory[handling_admin], span_pink(LANG("datum.14ce816a864756cd", list(user, REF(src)))))
 		SEND_SOUND(GLOB.directory[handling_admin], sound('sound/misc/bloop.ogg'))
 		send_system_message("Handling admin pinged.")
 		COOLDOWN_START(src, ping_cooldown, OPFOR_PING_COOLDOWN)
@@ -855,7 +855,7 @@
 		send_system_message("ERROR: You do not have permission to do that.")
 		return
 	send_system_message("User pinged.")
-	to_chat(mind_reference.current, span_pink(LANG("datum.7401ff4e", list(get_admin_ckey(user)))))
+	to_chat(mind_reference.current, span_pink(LANG("datum.7401ff4ec090ea5c", list(get_admin_ckey(user)))))
 	SEND_SOUND(mind_reference.current, sound('sound/misc/bloop.ogg'))
 
 /datum/opposing_force/proc/roundend_report()
@@ -863,20 +863,20 @@
 	report += span_greentext(mind_reference.current?.real_name)
 
 	if(set_backstory)
-		report += LANG("datum.73f23651", null)
+		report += LANG("datum.73f23651697e4065", null)
 		report += "[set_backstory]<br>"
 
 	if(objectives.len)
-		report += LANG("datum.69f00916", null)
+		report += LANG("datum.69f0091603ed7694", null)
 		for(var/datum/opposing_force_objective/opfor_objective in objectives)
 			if(opfor_objective.status != OPFOR_OBJECTIVE_STATUS_APPROVED)
 				continue
-			report += LANG("datum.8ff39033", list(opfor_objective.title))
-			report += LANG("datum.31dcde53", list(opfor_objective.description))
+			report += LANG("datum.8ff39033c2010cbe", list(opfor_objective.title))
+			report += LANG("datum.31dcde53b81a84d9", list(opfor_objective.description))
 			report += "<br>"
 
 	if(selected_equipment.len)
-		report += LANG("datum.180ddcfe", null)
+		report += LANG("datum.180ddcfe591fcaa9", null)
 		for(var/datum/opposing_force_selected_equipment/opfor_equipment in selected_equipment)
 			if(opfor_equipment.status != OPFOR_EQUIPMENT_STATUS_APPROVED)
 				continue
@@ -896,11 +896,11 @@
 
 /// Allows a user to import an OPFOR from json
 /datum/opposing_force/proc/json_import(mob/importer)
-	var/file_uploaded = input(importer, LANG("datum.6a099157", null), LANG("datum.03676ccb", null)) as null|file
+	var/file_uploaded = input(importer, LANG("datum.6a099157fa956aac", null), LANG("datum.03676ccbd2008a59", null)) as null|file
 	if(!file_uploaded)
 		return
 	if(copytext("[file_uploaded]", -5) != ".json") //5 == length(".json")
-		to_chat(importer, span_warning(LANG("datum.93cb4c73", list(file_uploaded))))
+		to_chat(importer, span_warning(LANG("datum.93cb4c73ba470007", list(file_uploaded))))
 		return
 
 	QDEL_LIST(objectives)
@@ -953,7 +953,7 @@
 		QDEL_LIST(objectives)
 		QDEL_LIST(selected_equipment)
 		set_backstory = null
-		to_chat(importer, span_warning(LANG("datum.f23c7777", null)))
+		to_chat(importer, span_warning(LANG("datum.f23c777715efef2c", null)))
 		add_log(importer.ckey, "Attempted to upload a corrupted JSON, purging leftover data...")
 
 

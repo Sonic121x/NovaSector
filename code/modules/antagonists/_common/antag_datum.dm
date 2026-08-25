@@ -258,7 +258,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if(!silent)
 		greet()
 		if(ui_name)
-			to_chat(owner.current, span_boldnotice(LANG("datum.1627c459", null)))
+			to_chat(owner.current, span_boldnotice(LANG("datum.1627c459e373207c", null)))
 			info_button.Trigger()
 		var/type_policy = get_policy("[type]") // path to text
 		if(type_policy)
@@ -307,7 +307,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = jobban_flag || pref_flag, role = pref_flag, poll_time = 5 SECONDS, checked_target = owner.current, alert_pic = owner.current, role_name_text = name)
 	if(chosen_one)
-		to_chat(owner, LANG("datum.a2252bd9", null))
+		to_chat(owner, LANG("datum.a2252bd960dc95cb", null))
 		message_admins("[key_name_admin(chosen_one)] has taken control of ([key_name_admin(owner)]) to replace antagonist banned player.")
 		log_game("[key_name(chosen_one)] has taken control of ([key_name(owner)]) to replace antagonist banned player.")
 		owner.current.ghostize(FALSE)
@@ -351,8 +351,8 @@ GLOBAL_LIST_EMPTY(antagonists)
  */
 /datum/antagonist/proc/greet()
 	if(!silent)
-		to_chat(owner.current, span_big(LANG("datum.f77135c0", list(src))))
-		to_chat(owner.current, span_infoplain(span_doyourjobidiot(LANG("datum.59053bd5", null)))) // NOVA EDIT ADDITION - RP REMINDER
+		to_chat(owner.current, span_big(LANG("datum.f77135c0170b3009", list(src))))
+		to_chat(owner.current, span_infoplain(span_doyourjobidiot(LANG("datum.59053bd5636e9185", null)))) // NOVA EDIT ADDITION - RP REMINDER
 		play_stinger()
 
 /// Plays the antag stinger sound, if we have one
@@ -368,7 +368,7 @@ GLOBAL_LIST_EMPTY(antagonists)
  */
 /datum/antagonist/proc/farewell()
 	if(!silent && owner.current)
-		to_chat(owner.current, span_userdanger(LANG("datum.7cc72ef8", list(src))))
+		to_chat(owner.current, span_userdanger(LANG("datum.7cc72ef87eefd4b3", list(src))))
 
 /**
  * Proc that assigns this antagonist's ascribed moodlet to the player.
@@ -416,9 +416,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 				break
 
 	if(objectives.len == 0 || objectives_complete)
-		report += "<span class='greentext big'>[LANG("datum.edebafa5", list(name))]</span>"
+		report += "<span class='greentext big'>[LANG("datum.edebafa52fecf7a3", list(name))]</span>"
 	else
-		report += "<span class='redtext big'>[LANG("datum.cd8dd865", list(name))]</span>"
+		report += "<span class='redtext big'>[LANG("datum.cd8dd8654cea6403", list(name))]</span>"
 
 	return report.Join("<br>")
 
@@ -428,7 +428,7 @@ GLOBAL_LIST_EMPTY(antagonists)
  * Appears at start of roundend_catagory section.
  */
 /datum/antagonist/proc/roundend_report_header()
-	return span_header("[LANG("datum.6935f01c", list(roundend_category))]<br>") // NOVA EDIT - I18N - LANG 模板（原整串反查只救目录里恰好有的组合，"The Aliens were:" 等组合命不中）
+	return span_header("[LANG("datum.6935f01ca7db57db", list(roundend_category))]<br>") // NOVA EDIT - I18N - LANG 模板（原整串反查只救目录里恰好有的组合，"The Aliens were:" 等组合命不中）
 
 /**
  * Proc that sends string data for the round-end report.
@@ -515,7 +515,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	return finish_preview_icon(preview_icon)
 
 /datum/antagonist/proc/edit_memory(mob/user)
-	var/new_memo = tgui_input_text(user, LANG("datum.134420a7", null), LANG("datum.4afa0de8", null), antag_memory, multiline = TRUE)
+	var/new_memo = tgui_input_text(user, LANG("datum.134420a7cfc0100f", null), LANG("datum.4afa0de85f820975", null), antag_memory, multiline = TRUE)
 	if (isnull(new_memo))
 		return
 	antag_memory = new_memo
@@ -582,12 +582,12 @@ GLOBAL_LIST_EMPTY(antagonists)
 		return FALSE
 	var/mob/living/owner_mob = owner.current
 	if (!force && !can_assign_self_objectives)
-		owner_mob.balloon_alert(owner_mob, LANG("datum.c3d89266", null))
+		owner_mob.balloon_alert(owner_mob, LANG("datum.c3d892668bd54dfb", null))
 		return FALSE
 	var/custom_objective_text = tgui_input_text(
 		owner_mob,
-		message = "Specify your new objective.",
-		title = "Custom Objective",
+		message = LANG("datum.01d6d38e89c73567", null),
+		title = LANG("datum.42cbc6d887b5f2c8", null),
 		default = default_custom_objective,
 		max_length = CUSTOM_OBJECTIVE_MAX_LENGTH,
 	)

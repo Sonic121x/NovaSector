@@ -140,7 +140,7 @@
 	var/turf/brief_spawn
 
 	if(ertemplate.use_custom_shuttle && ertemplate.ert_template)
-		to_chat(usr, span_boldnotice(LANG("datum.efe7279e", null)))
+		to_chat(usr, span_boldnotice(LANG("datum.efe7279e004a2ebd", null)))
 		var/datum/map_template/shuttle/ship = new ertemplate.ert_template
 		var/x = rand(TRANSITIONEDGE, world.maxx - TRANSITIONEDGE - ship.width)
 		var/y = rand(TRANSITIONEDGE, world.maxy - TRANSITIONEDGE - ship.height)
@@ -179,7 +179,7 @@
 			admin_officer.PossessByPlayer(usr.key)
 
 		else
-			to_chat(usr, span_warning(LANG("datum.946bf803", null)))
+			to_chat(usr, span_warning(LANG("datum.946bf8032645c514", null)))
 
 	//Pick the (un)lucky players
 	var/numagents = min(ertemplate.teamsize, length(candidates))
@@ -266,7 +266,7 @@
 	message_admins("[capitalize(ertemplate.polldesc)] has spawned with the mission: [ertemplate.mission]")
 	// NOVA EDIT ADDITION BEGIN
 	if(ertemplate.notify_players)
-		priority_announce(LANG("datum.e6117052", list(uppertext(ertemplate.code))), "ERT Request", ANNOUNCER_ERTYES)
+		priority_announce(LANG("datum.e6117052a0815d1e", list(uppertext(ertemplate.code))), "ERT Request", ANNOUNCER_ERTYES)
 	// NOVA EDIT END
 	return TRUE
 

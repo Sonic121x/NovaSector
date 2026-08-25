@@ -26,16 +26,16 @@
 
 /obj/item/storm_staff/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.9cdb11b8", list(thunder_charges)))
-	. += span_notice(LANG("obj.b6f677dc", null))
-	. += span_notice(LANG("obj.6ea731f4", null))
-	. += span_notice(LANG("obj.7a43f62e", null))
+	. += span_notice(LANG("obj.9cdb11b8193784a4", list(thunder_charges)))
+	. += span_notice(LANG("obj.b6f677dce22d4402", null))
+	. += span_notice(LANG("obj.6ea731f408c3dbe5", null))
+	. += span_notice(LANG("obj.7a43f62eee2a1c35", null))
 
 /obj/item/storm_staff/attack_self(mob/user)
 	var/area/user_area = get_area(user)
 	var/turf/user_turf = get_turf(user)
 	if(!user_area || !user_turf || (is_type_in_list(user_area, excluded_areas)))
-		to_chat(user, span_warning(LANG("obj.712f1a8e", null)))
+		to_chat(user, span_warning(LANG("obj.712f1a8ed8142563", null)))
 		return
 	var/datum/weather/affected_weather
 	for(var/datum/weather/weather as anything in SSweather.processing)
@@ -45,17 +45,17 @@
 	if(!affected_weather)
 		return
 	if(affected_weather.stage == END_STAGE)
-		balloon_alert(user, LANG("obj.f4f6871c", null))
+		balloon_alert(user, LANG("obj.f4f6871c5fe3f2f3", null))
 		return
 	if(affected_weather.stage == WIND_DOWN_STAGE)
-		balloon_alert(user, LANG("obj.ebeb3a9d", null))
+		balloon_alert(user, LANG("obj.ebeb3a9df70aef89", null))
 		return
-	balloon_alert(user, LANG("obj.17c6b8a9", null))
+	balloon_alert(user, LANG("obj.17c6b8a93d2b9e7b", null))
 	if(!do_after(user, 3 SECONDS, target = src))
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return
-	user.visible_message(span_warning(LANG("obj.db79c540", list(user, src))), \
-	span_notice(LANG("obj.ef573bb4", list(src))))
+	user.visible_message(span_warning(LANG("obj.db79c540b0033f2a", list(user, src))), \
+	span_notice(LANG("obj.ef573bb422b94bde", list(src))))
 	playsound(user, 'sound/effects/magic/staff_change.ogg', 200, FALSE)
 	var/old_color = user.color
 	user.color = list(340/255, 240/255, 0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
@@ -73,18 +73,18 @@
 
 /obj/item/storm_staff/proc/thunder_blast(atom/target, mob/user)
 	if(!thunder_charges)
-		balloon_alert(user, LANG("obj.9437a7cf", null))
+		balloon_alert(user, LANG("obj.9437a7cf4ae0b95e", null))
 		return FALSE
 	var/turf/target_turf = get_turf(target)
 	var/area/target_area = get_area(target)
 	if(!target_turf || !target_area || (is_type_in_list(target_area, excluded_areas)))
-		balloon_alert(user, LANG("obj.5f68120e", null))
+		balloon_alert(user, LANG("obj.5f68120e23d6e3c1", null))
 		return FALSE
 	if(target_turf in targeted_turfs)
-		balloon_alert(user, LANG("obj.e1360a78", null))
+		balloon_alert(user, LANG("obj.e1360a7870d1d181", null))
 		return FALSE
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		balloon_alert(user, LANG("obj.582b950b", null))
+		balloon_alert(user, LANG("obj.582b950b2360865e", null))
 		return FALSE
 	var/power_boosted = FALSE
 	for(var/datum/weather/weather as anything in SSweather.processing)
@@ -95,7 +95,7 @@
 			break
 	playsound(src, 'sound/effects/magic/lightningshock.ogg', 10, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_distance = 0)
 	targeted_turfs += target_turf
-	balloon_alert(user, LANG("obj.16d662a0", list(target_turf)))
+	balloon_alert(user, LANG("obj.16d662a08fa31ac9", list(target_turf)))
 	new /obj/effect/temp_visual/telegraphing/circle(target_turf)
 	addtimer(CALLBACK(src, PROC_REF(throw_thunderbolt), target_turf, power_boosted), 1.5 SECONDS)
 	thunder_charges--
@@ -120,11 +120,11 @@
 	for(var/turf/turf as anything in affected_turfs)
 		new /obj/effect/temp_visual/electricity(turf)
 		for(var/mob/living/hit_mob in turf)
-			to_chat(hit_mob, span_userdanger(LANG("obj.d028d146", null)))
+			to_chat(hit_mob, span_userdanger(LANG("obj.d028d146d6fe3e90", null)))
 			hit_mob.electrocute_act(15 * (isanimal_or_basicmob(hit_mob) ? 3 : 1) * (turf == target ? 2 : 1) * (boosted ? 2 : 1), src, flags = SHOCK_TESLA|SHOCK_NOSTUN)
 
 		for(var/obj/hit_thing in turf)
 			hit_thing.take_damage(20, BURN, ENERGY, FALSE)
 	playsound(target, 'sound/effects/magic/lightningbolt.ogg', 100, TRUE)
-	target.visible_message(span_danger(LANG("obj.5fc332ba", list(target))))
+	target.visible_message(span_danger(LANG("obj.5fc332ba91a2092b", list(target))))
 	explosion(target, light_impact_range = (boosted ? 1 : 0), flame_range = (boosted ? 2 : 1), silent = TRUE)

@@ -2,13 +2,13 @@
 ADMIN_VERB_VISIBILITY(set_server_fps, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(set_server_fps, R_DEBUG, "设置服务器 FPS", "Sets game speed in frames-per-second. Can potentially break the game", ADMIN_CATEGORY_DEBUG)
 	var/cfg_fps = CONFIG_GET(number/fps)
-	var/new_fps = round(input(user, LANG("datum.26b759ed", list(cfg_fps)),LANG("datum.f364b783", null), world.fps) as num|null)
+	var/new_fps = round(input(user, LANG("datum.26b759edde5d62d6", list(cfg_fps)),LANG("datum.f364b783771a651f", null), world.fps) as num|null)
 
 	if(new_fps <= 0)
-		to_chat(user, span_danger(LANG("datum.42da98c4", null)), confidential = TRUE)
+		to_chat(user, span_danger(LANG("datum.42da98c4c191af4a", null)), confidential = TRUE)
 		return
 	if(new_fps > cfg_fps * 1.5)
-		if(tgui_alert(user, LANG("datum.fe8ba640", list(new_fps, cfg_fps)),LANG("datum.59b208b7", null),list("Confirm","ABORT-ABORT-ABORT")) != "Confirm")
+		if(tgui_alert(user, LANG("datum.fe8ba64008bc119c", list(new_fps, cfg_fps)),LANG("datum.59b208b7aed572a9", null),list("Confirm","ABORT-ABORT-ABORT")) != "Confirm")
 			return
 
 	var/msg = "[key_name(user)] has modified world.fps to [new_fps]"

@@ -46,7 +46,7 @@
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 5.5, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 2, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/aicard/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.a88bcb63", list(user, user.p_them(), src))))
+	user.visible_message(span_suicide(LANG("obj.a88bcb63c4325e10", list(user, user.p_them(), src))))
 	return BRUTELOSS
 
 /obj/item/aicard/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -173,25 +173,25 @@
 			if(flush)
 				flush = FALSE
 			else
-				var/confirm = tgui_alert(usr, LANG("obj.fd1883ca", null), name, list("Yes", "No"))
+				var/confirm = tgui_alert(usr, LANG("obj.fd1883ca4fd1f10a", null), name, list("Yes", "No"))
 				if(confirm == "Yes" && !..())
 					flush = TRUE
 					wipe_ai()
 			. = TRUE
 		if("wireless")
 			AI.set_control_disabled(!AI.control_disabled)
-			to_chat(AI, span_warning(LANG("obj.95d9adcc", list(src, AI.control_disabled ? "disabled" : "enabled"))))
+			to_chat(AI, span_warning(LANG("obj.95d9adcc84ba0461", list(src, AI.control_disabled ? "disabled" : "enabled"))))
 			. = TRUE
 		if("radio")
 			AI.radio_enabled = !AI.radio_enabled
-			to_chat(AI, span_warning(LANG("obj.96bd9bed", list(AI.radio_enabled ? "enabled" : "disabled"))))
+			to_chat(AI, span_warning(LANG("obj.96bd9bedceeeffc1", list(AI.radio_enabled ? "enabled" : "disabled"))))
 			. = TRUE
 	update_appearance()
 
 /obj/item/aicard/proc/wipe_ai()
 	set waitfor = FALSE
 	if(AI && AI.loc == src)
-		to_chat(AI, span_userdanger(LANG("obj.e267db08", null)))
+		to_chat(AI, span_userdanger(LANG("obj.e267db089d78b8e7", null)))
 		while(AI.stat != DEAD && flush)
 			AI.adjust_oxy_loss(5)
 			AI.updatehealth()

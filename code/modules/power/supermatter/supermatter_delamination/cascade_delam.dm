@@ -23,7 +23,7 @@
 
 	sm.radio.talk_into(
 		sm,
-		"DANGER: HYPERSTRUCTURE OSCILLATION FREQUENCY OUT OF BOUNDS.",
+		LANG("datum.f69e5ce818b1cb64", null),
 		sm.damage >= sm.emergency_point ? sm.emergency_channel : sm.warning_channel
 	)
 	var/list/messages = list(
@@ -88,7 +88,7 @@
 	if(!sm.should_alert_common())
 		return FALSE
 
-	priority_announce(LANG("datum.3e55b37c", list(station_name())),
+	priority_announce(LANG("datum.3e55b37ce12bb2c9", list(station_name())),
 	"Nanotrasen Star Observation Association", 'sound/announcer/alarm/airraid.ogg')
 	announcement_triggered = TRUE
 	return TRUE

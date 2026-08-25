@@ -53,14 +53,14 @@
 	. = ..()
 	if(!buildable_sign)
 		return ITEM_INTERACT_FAILURE
-	user.visible_message(span_notice(LANG("obj.5ce1ea33", list(user, src))), \
-		span_notice(LANG("obj.28344c5b", list(src))))
+	user.visible_message(span_notice(LANG("obj.5ce1ea33a8837f28", list(user, src))), \
+		span_notice(LANG("obj.28344c5bb9ec0e57", list(src))))
 	I.play_tool_sound(src)
 	if(!I.use_tool(src, user, 4 SECONDS))
 		return ITEM_INTERACT_FAILURE
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-	user.visible_message(span_notice(LANG("obj.875275dc", list(user, src))), \
-		span_notice(LANG("obj.32b2f4c0", list(src))))
+	user.visible_message(span_notice(LANG("obj.875275dcc9dcec88", list(user, src))), \
+		span_notice(LANG("obj.32b2f4c041f25d41", list(src))))
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -69,16 +69,16 @@
 	if(user.combat_mode)
 		return FALSE
 	if(atom_integrity == max_integrity)
-		to_chat(user, span_warning(LANG("obj.e346a00a", null)))
+		to_chat(user, span_warning(LANG("obj.e346a00ad308d92c", null)))
 		return TRUE
 	if(!I.tool_start_check(user, amount=1))
 		return TRUE
-	user.visible_message(span_notice(LANG("obj.992cf3c3", list(user, src))), \
-		span_notice(LANG("obj.e15bcf13", list(src))))
+	user.visible_message(span_notice(LANG("obj.992cf3c31f855163", list(user, src))), \
+		span_notice(LANG("obj.e15bcf1330bd6b20", list(src))))
 	if(!I.use_tool(src, user, 4 SECONDS, volume =50 ))
 		return TRUE
-	user.visible_message(span_notice(LANG("obj.17fe1725", list(user, src))), \
-		span_notice(LANG("obj.616dfcb1", list(src))))
+	user.visible_message(span_notice(LANG("obj.17fe1725b7d7e9a3", list(user, src))), \
+		span_notice(LANG("obj.616dfcb178896bec", list(src))))
 	atom_integrity = max_integrity
 	return TRUE
 
@@ -89,16 +89,16 @@
 	if(!length(GLOB.editable_sign_types))
 		CRASH("GLOB.editable_sign_types failed to populate")
 
-	var/choice = tgui_input_list(user, LANG("obj.6625191a", null), LANG("obj.136f3177", null), GLOB.editable_sign_types)
+	var/choice = tgui_input_list(user, LANG("obj.6625191abf0ea94a", null), LANG("obj.136f317754e0bd35", null), GLOB.editable_sign_types)
 	if(isnull(choice))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!Adjacent(user)) //Make sure user is adjacent still.
-		to_chat(user, span_warning(LANG("obj.04b699fe", null)))
+		to_chat(user, span_warning(LANG("obj.04b699fe82a676e3", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice(LANG("obj.b93bbfc1", list(user, src))), \
-						span_notice(LANG("obj.82e7edbe", list(src))))
+	user.visible_message(span_notice(LANG("obj.b93bbfc139d77d64", list(user, src))), \
+						span_notice(LANG("obj.82e7edbe10401782", list(src))))
 	if(!do_after(user, 4 SECONDS, target = src)) //Small delay for changing signs instead of it being instant, so somebody could be shoved or stunned to prevent them from doing so.
 		return ITEM_INTERACT_BLOCKING
 
@@ -111,8 +111,8 @@
 	changedsign.pixel_y = pixel_y
 	changedsign.atom_integrity = atom_integrity
 	qdel(src)
-	user.visible_message(span_notice(LANG("obj.8e3751a9", list(user))), \
-						span_notice(LANG("obj.22d094cf", null)))
+	user.visible_message(span_notice(LANG("obj.8e3751a99355a107", list(user))), \
+						span_notice(LANG("obj.22d094cfba6dfb79", null)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/sign/atom_deconstruct(disassembled)
@@ -176,17 +176,19 @@
 		return ..()
 	if(!length(GLOB.editable_sign_types))
 		CRASH("GLOB.editable_sign_types failed to populate")
-	var/choice = tgui_input_list(user, LANG("obj.6625191a", null), LANG("obj.136f3177", null), GLOB.editable_sign_types)
+	var/choice = tgui_input_list(user, LANG("obj.6625191abf0ea94a", null), LANG("obj.136f317754e0bd35", null), GLOB.editable_sign_types)
 	if(isnull(choice))
 		return ITEM_INTERACT_BLOCKING
 	if(!Adjacent(user)) //Make sure user is adjacent still.
-		to_chat(user, span_warning(LANG("obj.04b699fe", null)))
+		to_chat(user, span_warning(LANG("obj.04b699fe82a676e3", null)))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.82e7edbe", list(src))))
+	user.visible_message(span_notice(LANG("obj.b93bbfc139d77d64", list(user, src))), \
+						span_notice(LANG("obj.82e7edbe10401782", list(src))))
 	if(!do_after(user, 4 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	set_sign_type(GLOB.editable_sign_types[choice])
-	user.visible_message(span_notice(LANG("obj.22d094cf", null)))
+	user.visible_message(span_notice(LANG("obj.8e3751a99355a107", list(user))), \
+						span_notice(LANG("obj.22d094cfba6dfb79", null)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/sign/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -196,7 +198,7 @@
 	var/turf/user_turf = get_turf(user)
 	var/dir = get_dir(user_turf, target_turf)
 	if(!(dir in GLOB.cardinals))
-		balloon_alert(user, LANG("obj.66fb33f1", null))
+		balloon_alert(user, LANG("obj.66fb33f1cc223c28", null))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/structure/sign/placed_sign = new sign_path(user_turf) //We place the sign on the turf the user is standing, and pixel shift it to the target wall, as below.
 	//This is to mimic how signs and other wall objects are usually placed by mappers, and so they're only visible from one side of a wall.
@@ -208,8 +210,8 @@
 		placed_sign.pixel_x = 32
 	else if(dir & WEST)
 		placed_sign.pixel_x = -32
-	user.visible_message(span_notice(LANG("obj.44286aef", list(user, src, target_turf))), \
-		span_notice(LANG("obj.bcd62313", list(target_turf))))
+	user.visible_message(span_notice(LANG("obj.44286aefef2dbd0d", list(user, src, target_turf))), \
+		span_notice(LANG("obj.bcd6231360db0e2c", list(target_turf))))
 	playsound(target_turf, 'sound/items/deconstruct.ogg', 50, TRUE)
 	placed_sign.update_integrity(get_integrity())
 	placed_sign.setDir(dir)
@@ -222,16 +224,16 @@
 	if(user.combat_mode)
 		return FALSE
 	if(atom_integrity == max_integrity)
-		to_chat(user, span_warning(LANG("obj.e346a00a", null)))
+		to_chat(user, span_warning(LANG("obj.e346a00ad308d92c", null)))
 		return TRUE
 	if(!I.tool_start_check(user, amount=1))
 		return TRUE
-	user.visible_message(span_notice(LANG("obj.992cf3c3", list(user, src))), \
-		span_notice(LANG("obj.e15bcf13", list(src))))
+	user.visible_message(span_notice(LANG("obj.992cf3c31f855163", list(user, src))), \
+		span_notice(LANG("obj.e15bcf1330bd6b20", list(src))))
 	if(!I.use_tool(src, user, 4 SECONDS, volume =50 ))
 		return TRUE
-	user.visible_message(span_notice(LANG("obj.17fe1725", list(user, src))), \
-		span_notice(LANG("obj.616dfcb1", list(src))))
+	user.visible_message(span_notice(LANG("obj.17fe1725b7d7e9a3", list(user, src))), \
+		span_notice(LANG("obj.616dfcb178896bec", list(src))))
 	atom_integrity = max_integrity
 	return TRUE
 
@@ -241,7 +243,7 @@
 /obj/item/sign/proc/set_sign_type(obj/structure/sign/fake_type)
 	name = initial(fake_type.name)
 	if(fake_type != /obj/structure/sign/blank)
-		desc = LANG("obj.fee310c5", list(initial(fake_type.desc)))
+		desc = LANG("obj.fee310c57580f325", list(initial(fake_type.desc)))
 	else
 		desc = initial(desc)
 	icon_state = initial(fake_type.icon_state)

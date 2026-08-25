@@ -130,7 +130,7 @@
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/stack/cable_coil/cabling = tool
 		cabling.use(1)
-		cabling.visible_message(span_notice(LANG("obj.547ee95c", list(user, src, cabling))))
+		cabling.visible_message(span_notice(LANG("obj.547ee95cb8d5368f", list(user, src, cabling))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/clothing/accessory))
@@ -138,9 +138,9 @@
 
 	if(istype(tool, /obj/item/suit_sensor))
 		if(has_sensor != NO_SENSORS)
-			balloon_alert(user, LANG("obj.f822c56b", null))
+			balloon_alert(user, LANG("obj.f822c56b17d215ea", null))
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, LANG("obj.c646dd3e", null))
+		balloon_alert(user, LANG("obj.c646dd3e171d54ab", null))
 		if(!do_after(user, 5 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/suit_sensor/sensor = tool
@@ -150,7 +150,7 @@
 			set_has_sensor(HAS_SENSORS)
 			set_sensor_mode(sensor.sensor_mode)
 		qdel(tool)
-		balloon_alert(user, LANG("obj.efa03e7a", null))
+		balloon_alert(user, LANG("obj.efa03e7a0b7101c6", null))
 		playsound(source = src, soundin = 'sound/effects/sparks/sparks4.ogg', vol = 50, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -158,9 +158,9 @@
 
 /obj/item/clothing/under/wirecutter_act(mob/living/user, obj/item/tool)
 	if(has_sensor == NO_SENSORS)
-		balloon_alert(user, LANG("obj.b576791e", null))
+		balloon_alert(user, LANG("obj.b576791e4be20167", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, LANG("obj.17ea51bc", null))
+	balloon_alert(user, LANG("obj.17ea51bcba379277", null))
 	if(!do_after(user, 5 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/suit_sensor/sensor = new (drop_location())
@@ -245,7 +245,7 @@
 	if(has_sensor == BROKEN_SENSORS || has_sensor == NO_SENSORS)
 		return
 
-	visible_message(span_warning(LANG("obj.ad98f318", list(src))), blind_message = span_warning(LANG("obj.3b20ae44", list(src))), vision_distance = COMBAT_MESSAGE_RANGE)
+	visible_message(span_warning(LANG("obj.ad98f318bcf6be24", list(src))), blind_message = span_warning(LANG("obj.3b20ae447d7bdd56", list(src))), vision_distance = COMBAT_MESSAGE_RANGE)
 	set_has_sensor(BROKEN_SENSORS)
 	set_sensor_mode(SENSOR_LIVING) // NOVA EDIT ADDITION
 	sensor_malfunction()
@@ -257,7 +257,7 @@
 /obj/item/clothing/under/proc/repair_sensors(mob/user)
 	if(has_sensor != BROKEN_SENSORS)
 		if(user)
-			balloon_alert(user, LANG("obj.58a92383", list(has_sensor == NO_SENSORS ? "missing" : "not broken")))
+			balloon_alert(user, LANG("obj.58a9238361c77676", list(has_sensor == NO_SENSORS ? "missing" : "not broken")))
 		return FALSE
 
 	playsound(source = src, soundin = 'sound/effects/sparks/sparks4.ogg', vol = 100, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
@@ -326,7 +326,7 @@
 
 	set_sensor_mode(clamp(sensor_mode + pick(-1,1), SENSOR_OFF, SENSOR_COORDS)) // NOVA EDIT CHANGE ORIGINAL: set_sensor_mode(pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS))
 	playsound(source = src, soundin = 'sound/effects/sparks/sparks3.ogg', vol = 75, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
-	visible_message(span_warning(LANG("obj.617a6797", list(src))), blind_message = span_warning(LANG("obj.3b20ae44", list(src))), vision_distance = COMBAT_MESSAGE_RANGE)
+	visible_message(span_warning(LANG("obj.617a679794f5110c", list(src))), blind_message = span_warning(LANG("obj.3b20ae447d7bdd56", list(src))), vision_distance = COMBAT_MESSAGE_RANGE)
 
 /**
  * Called by medical scanners a simple summary of the status
@@ -368,7 +368,7 @@
 	accessory.attach(src)
 
 	if(user && attach_message)
-		balloon_alert(user, LANG("obj.f671f64d", null))
+		balloon_alert(user, LANG("obj.f671f64ddc25df5b", null))
 
 	update_appearance()
 	return TRUE
@@ -383,7 +383,7 @@
 
 	user.put_in_hands(popped_accessory)
 	if(attach_message)
-		popped_accessory.balloon_alert(user, LANG("obj.de016798", null))
+		popped_accessory.balloon_alert(user, LANG("obj.de016798ffbde66d", null))
 
 /// Removes the passed accesory from our accessories list
 /obj/item/clothing/under/proc/remove_accessory(obj/item/clothing/accessory/removed, update = TRUE)
@@ -425,26 +425,26 @@
 /obj/item/clothing/under/examine(mob/user)
 	. = ..()
 	if(can_adjust)
-		. += LANG("obj.617841c5", list(src, adjusted == ALT_STYLE ? "normally" : "casually"))
+		. += LANG("obj.617841c5cf17830a", list(src, adjusted == ALT_STYLE ? "normally" : "casually"))
 	if(has_sensor == BROKEN_SENSORS)
-		. += span_warning(LANG("obj.56fd7bc0", null))
+		. += span_warning(LANG("obj.56fd7bc0673639d3", null))
 	else if(has_sensor > NO_SENSORS)
 		switch(sensor_mode)
 			if(SENSOR_OFF)
-				. += LANG("obj.cb8daeb7", null)
+				. += LANG("obj.cb8daeb75ff356ff", null)
 			if(SENSOR_LIVING)
-				. += LANG("obj.22584281", null)
+				. += LANG("obj.22584281869c6507", null)
 			if(SENSOR_VITALS)
-				. += LANG("obj.52237525", null)
+				. += LANG("obj.522375251afd0118", null)
 			if(SENSOR_COORDS)
-				. += LANG("obj.7b9f0004", null)
+				. += LANG("obj.7b9f0004396c5784", null)
 	else
 		. += span_tooltip(lang_reverse_text("You can always get new suit sensors to install from a lathe."), lang_reverse_text("It isn't equipped with medical sensors.")) // NOVA EDIT - I18N: span_tooltip args reversed (codemod mangles both args into one key)
 
 	if(LAZYLEN(attached_accessories))
 		var/list/accessories = list_accessories_with_icon(user)
-		. += LANG("obj.da83e7bd", list(english_list(accessories)))
-		. += LANG("obj.fa3a64e1", list(attached_accessories[1]))
+		. += LANG("obj.da83e7bd90e50978", list(lang_english_list(accessories)))
+		. += LANG("obj.fa3a64e1bdacd14f", list(attached_accessories[1]))
 
 /// Helper to list out all accessories with an icon besides it, for use in examine
 /obj/item/clothing/under/proc/list_accessories_with_icon(mob/user)
@@ -460,7 +460,7 @@ GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "调整制服传感器", nu
 		return
 
 	var/current_mode_text = GLOB.suit_sensor_mode_to_defines[sensor_mode + 1]
-	var/new_mode = tgui_input_list(user_mob, LANG("obj.24e97e1e", null), LANG("obj.e765235b", null), GLOB.suit_sensor_mode_to_defines, current_mode_text)
+	var/new_mode = tgui_input_list(user_mob, LANG("obj.24e97e1ed4448163", null), LANG("obj.e765235b4209b8dc", null), GLOB.suit_sensor_mode_to_defines, current_mode_text)
 	if(isnull(new_mode))
 		return
 	if(!can_toggle_sensors(user_mob))
@@ -470,20 +470,20 @@ GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "调整制服传感器", nu
 	if (loc == user_mob)
 		switch(sensor_mode)
 			if(SENSOR_OFF)
-				to_chat(user_mob, span_notice(LANG("obj.37ff0635", null)))
+				to_chat(user_mob, span_notice(LANG("obj.37ff0635604a673e", null)))
 			if(SENSOR_LIVING)
-				to_chat(user_mob, span_notice(LANG("obj.4d6371ab", null)))
+				to_chat(user_mob, span_notice(LANG("obj.4d6371abc309820c", null)))
 			if(SENSOR_VITALS)
-				to_chat(user_mob, span_notice(LANG("obj.67d31d55", null)))
+				to_chat(user_mob, span_notice(LANG("obj.67d31d55fb3a9411", null)))
 			if(SENSOR_COORDS)
-				to_chat(user_mob, span_notice(LANG("obj.03395326", null)))
+				to_chat(user_mob, span_notice(LANG("obj.0339532693cede07", null)))
 
 /obj/item/clothing/under/item_ctrl_click(mob/user)
 	if(!can_toggle_sensors(user))
 		return CLICK_ACTION_BLOCKING
 
 	set_sensor_mode(SENSOR_COORDS)
-	balloon_alert(user, LANG("obj.0d33f568", null))
+	balloon_alert(user, LANG("obj.0d33f56854e3bbca", null))
 	return CLICK_ACTION_SUCCESS
 
 /// Checks if the toggler is allowed to toggle suit sensors currently
@@ -491,25 +491,25 @@ GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "调整制服传感器", nu
 	if(!can_use(toggler) || toggler.stat == DEAD) //make sure they didn't hold the window open.
 		return FALSE
 	if(get_dist(toggler, src) > 1)
-		balloon_alert(toggler, LANG("obj.f5e75781", null))
+		balloon_alert(toggler, LANG("obj.f5e75781e8f1dc46", null))
 		return FALSE
 
 	switch(has_sensor)
 		if(LOCKED_SENSORS)
-			balloon_alert(toggler, LANG("obj.cf083aaf", null))
+			balloon_alert(toggler, LANG("obj.cf083aaf071f0450", null))
 			return FALSE
 		if(BROKEN_SENSORS)
-			balloon_alert(toggler, LANG("obj.e4cf865a", null))
+			balloon_alert(toggler, LANG("obj.e4cf865ac0b23446", null))
 			return FALSE
 		if(NO_SENSORS)
-			balloon_alert(toggler, LANG("obj.ab31e8cc", null))
+			balloon_alert(toggler, LANG("obj.ab31e8ccf0ee00ec", null))
 			return FALSE
 
 	return TRUE
 
 /obj/item/clothing/under/click_alt(mob/user)
 	if(!can_adjust)
-		balloon_alert(user, LANG("obj.7c1df17e", null))
+		balloon_alert(user, LANG("obj.7c1df17eaa6f2713", null))
 		return CLICK_ACTION_BLOCKING
 	if(!can_use(user))
 		return NONE
@@ -518,14 +518,14 @@ GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "调整制服传感器", nu
 
 /obj/item/clothing/under/click_alt_secondary(mob/user)
 	if(!LAZYLEN(attached_accessories))
-		balloon_alert(user, LANG("obj.f9e59eb4", null))
+		balloon_alert(user, LANG("obj.f9e59eb460dbdfc8", null))
 		return
 	pop_accessory(user)
 
 GAME_VERB_SRC(/obj/item/clothing/under, jumpsuit_adjust, usr, "调整连体服样式", null)
 
 	if(!can_adjust)
-		balloon_alert(usr, LANG("obj.7c1df17e", null))
+		balloon_alert(usr, LANG("obj.7c1df17eaa6f2713", null))
 		return
 	if(!can_use(usr))
 		return
@@ -533,9 +533,9 @@ GAME_VERB_SRC(/obj/item/clothing/under, jumpsuit_adjust, usr, "调整连体服�
 
 /obj/item/clothing/under/proc/rolldown()
 	if(toggle_jumpsuit_adjust())
-		to_chat(usr, span_notice(LANG("obj.df390365", null)))
+		to_chat(usr, span_notice(LANG("obj.df390365e3227901", null)))
 	else
-		to_chat(usr, span_notice(LANG("obj.8e1ff3ac", null)))
+		to_chat(usr, span_notice(LANG("obj.8e1ff3acec5ffb06", null)))
 
 	update_appearance()
 

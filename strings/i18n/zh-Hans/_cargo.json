@@ -21,7 +21,19 @@
 	"cargo_lbl_received": "已接收",
 	"cargo_lbl_credits": "信用点",
 	"cargo_unit_vending_refill": "贩卖机补货罐",
-	"cargo_unit_cardboard_box": "纸箱",
+	"cargo_unit_cardboard_box": "纸板盒子",
 	"shuttle_status_transit_towards": "正在前往",
-	"shuttle_status_recharging": "充能中"
+	"shuttle_status_recharging": "充能中",
+	"Oxygen Canister": "氧气罐",
+	"Oxygen canister crate": "氧气罐板条箱",
+	"Nitrogen Canister": "氮气罐",
+	"Nitrogen canister crate": "氮气罐板条箱",
+	"Carbon Dioxide Canister": "二氧化碳罐",
+	"Carbon Dioxide canister crate": "二氧化碳罐板条箱",
+	"Water Vapor Canister": "水蒸气罐",
+	"Water Vapor canister crate": "水蒸气罐板条箱",
+	"Nitrous Oxide Canister": "一氧化二氮罐",
+	"Nitrous Oxide canister crate": "一氧化二氮罐板条箱",
+	"BZ Canister": "BZ罐",
+	"BZ canister crate": "BZ罐板条箱"
 }

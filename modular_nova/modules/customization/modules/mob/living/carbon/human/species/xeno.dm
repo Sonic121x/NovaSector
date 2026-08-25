@@ -31,8 +31,8 @@
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant/xenohybrid,
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/mutant/xenohybrid,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/mutant/xenohybrid,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/digitigrade/xenohybrid,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/digitigrade/xenohybrid,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant/xenohybrid,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant/xenohybrid,
 	)
 
 	meat = /obj/item/food/meat/slab/xeno
@@ -61,15 +61,15 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "biohazard",
-		SPECIES_PERK_NAME = LANG("datum.cc3e21ac", null),
-		SPECIES_PERK_DESC = LANG("datum.e8561c70", null)
+		SPECIES_PERK_NAME = LANG("datum.cc3e21ac73b3a5cb", null),
+		SPECIES_PERK_DESC = LANG("datum.e8561c70181eeeb8", null)
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "fire",
-		SPECIES_PERK_NAME = LANG("datum.336a8700", null),
-		SPECIES_PERK_DESC = LANG("datum.8c7d3bc0", null)
+		SPECIES_PERK_NAME = LANG("datum.336a8700e15dcfec", null),
+		SPECIES_PERK_DESC = LANG("datum.8c7d3bc0ec5540be", null)
 	))
 
 	return to_add
@@ -107,7 +107,7 @@
 
 /datum/action/cooldown/alien/make_structure/plant_weeds/Activate(atom/target)
 	if(build_duration && !do_after(owner, build_duration))
-		owner.balloon_alert(owner, LANG("datum.c67b5d27", null))
+		owner.balloon_alert(owner, LANG("datum.c67b5d274d6e724b", null))
 		return
 	return ..()
 

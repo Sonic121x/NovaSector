@@ -43,10 +43,10 @@
 	ADD_TRAIT(partner, TRAIT_KNOTTED, REF(src))
 
 	knotter.visible_message(
-		span_purple(LANG("datum.e7bb9ac5", list(knotter, partner, partner_slot ? "'s [partner_slot]" : ""))),
-		span_userlove(LANG("datum.50a985b4", list(partner, partner_slot ? "'s [partner_slot]" : ""))),
+		span_purple(LANG("datum.e7bb9ac51f940687", list(knotter, partner, partner_slot ? "'s [partner_slot]" : ""))),
+		span_userlove(LANG("datum.50a985b4515a65b5", list(partner, partner_slot ? "'s [partner_slot]" : ""))),
 	)
-	to_chat(partner, span_userlove(LANG("datum.8873c384", list(knotter, knotter.p_them()))))
+	to_chat(partner, span_userlove(LANG("datum.8873c384f6a8fa4e", list(knotter, knotter.p_them()))))
 
 	knotter.grab(partner)
 	if(knotter.pulling == partner)
@@ -90,10 +90,10 @@
 	var/mob/living/knotter = parent
 	if(!silent && knotter && !QDELETED(knotter) && partner && !QDELETED(partner))
 		knotter.visible_message(
-			span_purple(LANG("datum.735cf54f", list(knotter, partner))),
-			span_purple(LANG("datum.ab251705", list(partner))),
+			span_purple(LANG("datum.735cf54ff680e50b", list(knotter, partner))),
+			span_purple(LANG("datum.ab251705639cb627", list(partner))),
 		)
-		to_chat(partner, span_purple(LANG("datum.fb8424d0", list(knotter))))
+		to_chat(partner, span_purple(LANG("datum.fb8424d0b37f8dbf", list(knotter))))
 
 	if(knotter?.pulling == partner)
 		knotter.stop_pulling()
@@ -150,7 +150,7 @@
 /datum/component/knotted/proc/on_resist(mob/living/source)
 	SIGNAL_HANDLER
 
-	source.balloon_alert(source, LANG("datum.e8c25402", null))
+	source.balloon_alert(source, LANG("datum.e8c25402d896c78f", null))
 	qdel(src)
 
 #undef KNOT_DEFAULT_DURATION

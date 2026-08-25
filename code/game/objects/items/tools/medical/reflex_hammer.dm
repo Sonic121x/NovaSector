@@ -17,6 +17,6 @@
 	AddElement(/datum/element/kneejerk)
 
 /obj/item/reflexhammer/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.da5988d9", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.da5988d93270f5c9", list(user, user.p_them(), src, user.p_theyre()))))
 	playsound(loc, 'sound/items/gavel.ogg', 50, TRUE, -1)
 	return STAMINALOSS | SHAME

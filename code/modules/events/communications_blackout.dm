@@ -22,7 +22,7 @@
 
 	for(var/mob/living/silicon/ai/A in GLOB.ai_list) //AIs are always aware of communication blackouts.
 		to_chat(A, "<br>[span_warning("<b>[alert]</b>")]<br>")
-		to_chat(A, span_notice(LANG("datum.dea14415", list(/datum/saymode/holopad::key))))
+		to_chat(A, span_notice(LANG("datum.dea14415a7e92719", list(/datum/saymode/holopad::key))))
 
 	if(prob(30) || fake) //most of the time, we don't want an announcement, so as to allow AIs to fake blackouts.
 		priority_announce(alert, "Anomaly Alert", sound = ANNOUNCER_COMMSBLACKOUT) //NOVA EDIT CHANGE - ORIGINAL: priority_announce(alert, "Anomaly Alert")

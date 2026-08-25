@@ -101,14 +101,14 @@
 		return NONE
 
 	if (!lazy_init_reagents()?.total_volume)
-		to_chat(user, span_notice(LANG("obj.56281268", list(src))))
+		to_chat(user, span_notice(LANG("obj.56281268011f0490", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if (!reagents.trans_to(tool, reagents.total_volume, transferred_by = user))
-		to_chat(user, span_warning(LANG("obj.21d5a38a", list(tool))))
+		to_chat(user, span_warning(LANG("obj.21d5a38ae9e8687a", list(tool))))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.f8364cb7", list(reagents.total_volume > 0 ? "some of " : "", src, tool))))
+	to_chat(user, span_notice(LANG("obj.f8364cb71fadf395", list(reagents.total_volume > 0 ? "some of " : "", src, tool))))
 	if (!reagents.total_volume) //scooped up all of it
 		qdel(src)
 	return ITEM_INTERACT_SUCCESS

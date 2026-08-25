@@ -29,6 +29,6 @@
 			aux_controller = potential_aux_console
 			break
 	if(!aux_controller)
-		say(LANG("obj.cd88da8b", null))
+		say(LANG("obj.cd88da8b493fa1a4", null))
 		return null
 	return aux_controller

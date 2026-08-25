@@ -82,7 +82,7 @@
 
 /obj/item/paper/crumpled/bloody/fluff/stations/lavaland/sacred_temple/ui_status(mob/user, datum/ui_state/state)
 	if(!user.has_language(/datum/language/primitive_catgirl))
-		to_chat(user, span_warning(LANG("obj.d785ed85", null)))
+		to_chat(user, span_warning(LANG("obj.d785ed854451902e", null)))
 		return UI_CLOSE
 
 	. = ..()

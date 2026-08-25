@@ -38,8 +38,8 @@
 	SET_PLANE_EXPLICIT(shock_image, ABOVE_GAME_PLANE, hallucinator)
 	SET_PLANE_EXPLICIT(electrocution_skeleton_anim, ABOVE_GAME_PLANE, hallucinator)
 
-	to_chat(hallucinator, span_userdanger(LANG("datum.ee423401", null)))
-	hallucinator.visible_message(span_warning(LANG("datum.b9883f93", list(hallucinator))), ignored_mobs = hallucinator)
+	to_chat(hallucinator, span_userdanger(LANG("datum.ee423401d663201e", null)))
+	hallucinator.visible_message(span_warning(LANG("datum.b9883f9383657150", list(hallucinator))), ignored_mobs = hallucinator)
 	hallucinator.client?.images |= shock_image
 	hallucinator.client?.images |= electrocution_skeleton_anim
 

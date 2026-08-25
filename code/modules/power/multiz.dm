@@ -15,5 +15,5 @@
 /obj/structure/cable/multilayer/multiz/examine(mob/user)
 	. = ..()
 	var/turf/T = get_turf(src)
-	. += span_notice(LANG("obj.f89cd65a", list(locate(/obj/structure/cable/multilayer/multiz) in (GET_TURF_BELOW(T)) ? "Detected" : "Undetected")))
-	. += span_notice(LANG("obj.e0d3c93e", list(locate(/obj/structure/cable/multilayer/multiz) in (GET_TURF_ABOVE(T)) ? "Detected" : "Undetected")))
+	. += span_notice(LANG("obj.f89cd65a12fd9ae4", list(locate(/obj/structure/cable/multilayer/multiz) in (GET_TURF_BELOW(T)) ? "Detected" : "Undetected")))
+	. += span_notice(LANG("obj.e0d3c93edee23177", list(locate(/obj/structure/cable/multilayer/multiz) in (GET_TURF_ABOVE(T)) ? "Detected" : "Undetected")))

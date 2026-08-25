@@ -26,7 +26,7 @@
 
 /obj/item/desynchronizer/attack_self(mob/living/user)
 	if(world.time < next_use)
-		to_chat(user, span_warning(LANG("obj.ebecee81", list(src))))
+		to_chat(user, span_warning(LANG("obj.ebecee81f11d5508", list(src))))
 		return
 	if(!sync_holder)
 		desync(user)
@@ -36,16 +36,16 @@
 /obj/item/desynchronizer/examine(mob/user)
 	. = ..()
 	if(world.time < next_use)
-		. += span_warning(LANG("obj.d52e4c2c", list(DisplayTimeText(next_use - world.time))))
-	. += span_notice(LANG("obj.7c8e2011", list(DisplayTimeText(duration))))
-	. += span_notice(LANG("obj.5397c69a", null))
+		. += span_warning(LANG("obj.d52e4c2c734d2197", list(DisplayTimeText(next_use - world.time))))
+	. += span_notice(LANG("obj.7c8e20112397f0a2", list(DisplayTimeText(duration))))
+	. += span_notice(LANG("obj.5397c69a3d1a52cd", null))
 
 /obj/item/desynchronizer/click_alt(mob/living/user)
-	var/new_duration = tgui_input_number(user, LANG("obj.b5bfbc12", null), LANG("obj.32768661", null), duration / 10, max_duration, 5)
+	var/new_duration = tgui_input_number(user, LANG("obj.b5bfbc12fe0467c6", null), LANG("obj.32768661f912fe51", null), duration / 10, max_duration, 5)
 	if(!new_duration || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, NEED_DEXTERITY))
 		return CLICK_ACTION_BLOCKING
 	duration = new_duration
-	to_chat(user, span_notice(LANG("obj.a836a4e8", list(DisplayTimeText(duration)))))
+	to_chat(user, span_notice(LANG("obj.a836a4e877b0fa72", list(DisplayTimeText(duration)))))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/desynchronizer/proc/desync(mob/living/user)
@@ -53,7 +53,7 @@
 		return
 	sync_holder = new(drop_location())
 	new /obj/effect/temp_visual/desynchronizer(drop_location())
-	to_chat(user, span_notice(LANG("obj.a2c5a289", list(src))))
+	to_chat(user, span_notice(LANG("obj.a2c5a289a1ffe74a", list(src))))
 	user.forceMove(sync_holder)
 	last_use = world.time
 	icon_state = "desynchronizer-on"

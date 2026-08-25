@@ -28,5 +28,5 @@
 		return
 	if(last_warning + 3 SECONDS < world.time)
 		last_warning = world.time
-		to_chat(parent, span_warning(LANG("obj.983cdbf2", null)))
+		to_chat(parent, span_warning(LANG("obj.983cdbf21fb92ffb", null)))
 	return COMPONENT_BLOCK_PHASED_MOVE

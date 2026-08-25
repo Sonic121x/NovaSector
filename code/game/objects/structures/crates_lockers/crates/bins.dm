@@ -38,7 +38,7 @@
 	if(!istype(tool, /obj/item/storage/bag/trash) || !opened)
 		return ..()
 	var/obj/item/storage/bag/trash/garbage_bag = tool
-	to_chat(user, span_notice(LANG("obj.d62fd2e6", null)))
+	to_chat(user, span_notice(LANG("obj.d62fd2e6f21dcf4f", null)))
 	for(var/obj/item/garbage in src)
 		garbage_bag.atom_storage?.attempt_insert(garbage, user, TRUE)
 	do_animate()
@@ -65,5 +65,5 @@
 
 	items_to_sweep.Cut()
 
-	to_chat(user, span_notice(LANG("obj.2c5626d8", list(src))))
+	to_chat(user, span_notice(LANG("obj.2c5626d8b787d1aa", list(src))))
 	playsound(broom.loc, 'sound/items/weapons/thudswoosh.ogg', 30, TRUE, -1)

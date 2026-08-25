@@ -25,7 +25,7 @@
 	. = ..()
 	if(uses <= 0)
 		name = "empty scroll"
-		desc = LANG("obj.e75602d9", null)
+		desc = LANG("obj.e75602d9c7399aee", null)
 		icon_state = "blankscroll"
 	else
 		name = initial(name)

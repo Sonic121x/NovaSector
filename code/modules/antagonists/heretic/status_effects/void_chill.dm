@@ -116,4 +116,4 @@
 		return
 	var/datum/status_effect/void_chill/chill_effect = attached_effect
 	if(chill_effect.stacks >= 5)
-		desc = LANG("atom.af402c97", null)
+		desc = LANG("atom.af402c97e18a55a5", null)

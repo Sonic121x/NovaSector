@@ -21,7 +21,7 @@
 	. = ..()
 	set_drunk_value(drunk_value)
 
-/datum/status_effect/inebriated/get_examine_text()
+/datum/status_effect/inebriated/get_examine_text(mob/examiner)
 	// Dead people don't look drunk
 	if(IS_DEAD_OR_FAKING(owner))
 		return null
@@ -238,7 +238,7 @@
 	if(drunk_value >= 83.4) // NOVA EDIT CHANGE - Alcohol impairment curve smoothing - ORIGINAL: if(drunk_value >= 81)
 		owner.adjust_tox_loss(1)
 		if(!IS_UNCONSCIOUS_OR_CRIT(owner) && prob(5))
-			to_chat(owner, span_warning(LANG("datum.47634e46", null)))
+			to_chat(owner, span_warning(LANG("datum.47634e46e44f05d1", null)))
 
 	// Over 91, we gain even more toxloss, brain damage, and have a chance of dropping into a long sleep
 	if(drunk_value >= 93.4) // NOVA EDIT CHANGE - Alcohol impairment curve smoothing - ORIGINAL: if(drunk_value >= 91)
@@ -264,7 +264,7 @@
 		return
 	*/ // NOVA EDIT REMOVAL END
 	if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(owner.z))// Don't put us in a deep sleep if the shuttle's here. QoL, mainly.
-		to_chat(owner, span_warning(LANG("datum.71fdc048", null)))
+		to_chat(owner, span_warning(LANG("datum.71fdc048f7e539f3", null)))
 	else
 		owner.Sleeping(90 SECONDS)
 

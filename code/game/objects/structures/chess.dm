@@ -11,9 +11,9 @@
 
 /obj/structure/chess/wrench_act(mob/user, obj/item/tool)
 	if(flags_1 & HOLOGRAM_1)
-		balloon_alert(user, LANG("obj.761468ab", null))
+		balloon_alert(user, LANG("obj.761468ab2512abf5", null))
 		return TRUE
-	to_chat(user, span_notice(LANG("obj.a2357045", null)))
+	to_chat(user, span_notice(LANG("obj.a2357045733355ff", null)))
 	if(!do_after(user, 0.5 SECONDS, target = src))
 		return TRUE
 	var/obj/item/stack/sheet/iron/metal_sheets = new (drop_location(), 2)

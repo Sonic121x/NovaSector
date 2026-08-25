@@ -163,7 +163,7 @@
 		message_admins("Vending machine exploit attempted by [ADMIN_LOOKUPFLW(user)]!")
 		return
 	if (item_record.amount <= 0)
-		speak("Sold out of [item_record.name].")
+		speak(LANG("obj.54ca6252cf0d2178", list(item_record.name)))
 		flick(icon_deny, src)
 		return
 	if(!all_products_free)
@@ -174,11 +174,11 @@
 			living_user = user
 			card_used = living_user.get_idcard(TRUE)
 		if(QDELETED(card_used))
-			speak("You do not possess an ID to purchase [item_record.name].")
+			speak(LANG("obj.ba9e42629aaeca9f", list(item_record.name)))
 			return
 
 		if(age_restrictions && item_record.age_restricted && (!card_used.registered_age || card_used.registered_age < AGE_MINOR))
-			speak("You are not of legal age to purchase [item_record.name].")
+			speak(LANG("obj.8aa783267cc6527f", list(item_record.name)))
 			if(!(user in GLOB.narcd_underages))
 				aas_config_announce(/datum/aas_config_entry/vendomat_age_control, list(
 					"PERSON" = usr.name,
@@ -190,7 +190,7 @@
 			flick(icon_deny, src)
 			return
 
-		if(!proceed_payment(card_used, living_user, item_record, price_to_use, params["discountless"]))
+		if(!proceed_payment(card_used, living_user, item_record, price_to_use, params["premium"]))
 			return
 
 	if(last_shopper != REF(user) || purchase_message_cooldown < world.time)
@@ -212,10 +212,10 @@
 
 	var/sigreturn = SEND_SIGNAL(user, COMSIG_MOB_VENDING_PURCHASE, src, vended_item)
 	if(!(sigreturn & VENDING_NO_PICKUP) && IsReachableBy(user) && user.put_in_hands(vended_item))
-		to_chat(user, span_notice(LANG("obj.3d630a50", list(item_record.name))))
+		to_chat(user, span_notice(LANG("obj.3d630a5005388908", list(item_record.name))))
 		vended_item.do_pickup_animation(user, src)
 	else
-		to_chat(user, span_warning(LANG("obj.1700eeb6", list(capitalize(format_text(item_record.name))))))
+		to_chat(user, span_warning(LANG("obj.1700eeb66d0841df", list(capitalize(format_text(item_record.name))))))
 
 	SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[item_record.product_path]"))
 
@@ -270,9 +270,9 @@
  * mob_paying - the mob that is trying to purchase the item.
  * product_to_vend - the product record of the item we're trying to vend.
  * price_to_use - price of the item we're trying to vend.
- * discountless - whether or not to apply discounts
+ * premium - whether or not to apply premium pricing
  */
-/obj/machinery/vending/proc/proceed_payment(obj/item/card/id/paying_id_card, mob/living/mob_paying, datum/data/vending_product/product_to_vend, price_to_use, discountless)
+/obj/machinery/vending/proc/proceed_payment(obj/item/card/id/paying_id_card, mob/living/mob_paying, datum/data/vending_product/product_to_vend, price_to_use, premium)
 	PROTECTED_PROC(TRUE)
 
 	//returned items are free
@@ -283,10 +283,10 @@
 	var/datum/bank_account/account = paying_id_card.registered_account
 
 	//deduct money from person
-	if(!discountless && account.account_job?.paycheck_department == payment_department)
+	if(discount_check(paying_id_card, premium))
 		price_to_use = max(round(price_to_use * DEPARTMENT_DISCOUNT), 1) //No longer free, but signifigantly cheaper.
 	if(attempt_charge(src, mob_paying, price_to_use) & COMPONENT_OBJ_CANCEL_CHARGE)
-		speak("You do not possess the funds to purchase [product_to_vend.name].")
+		speak(LANG("obj.b8076adde9e25c2b", list(product_to_vend.name)))
 		flick(icon_deny,src)
 		return FALSE
 
@@ -295,3 +295,11 @@
 	log_econ("[price_to_use] [MONEY_NAME] were inserted into [src] by [account.account_holder] to buy [product_to_vend].")
 	credits_contained += round(price_to_use * VENDING_CREDITS_COLLECTION_AMOUNT)
 	return TRUE
+
+/obj/machinery/vending/proc/discount_check(obj/item/card/id/paying_id_card, premium)
+	PROTECTED_PROC(TRUE)
+	if(premium)
+		return FALSE
+	var/datum/bank_account/account = paying_id_card.registered_account
+	//captain gets a discount in every department
+	return istype(paying_id_card.trim, big_boss_trim) || account.account_job?.paycheck_department == payment_department

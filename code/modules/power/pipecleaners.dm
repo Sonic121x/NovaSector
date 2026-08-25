@@ -138,13 +138,13 @@ By design, d1 is the smallest direction and d2 is the highest
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/stack/pipe_cleaner_coil/coil = tool
 	if (coil.get_amount() < 1)
-		to_chat(user, span_warning(LANG("obj.b55ad191", null)))
+		to_chat(user, span_warning(LANG("obj.b55ad191d54552ce", null)))
 		return ITEM_INTERACT_BLOCKING
 	coil.pipe_cleaner_join(src, user)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/pipe_cleaner/proc/cut_pipe_cleaner(mob/user)
-	user.visible_message(span_notice(LANG("obj.1cedba92", list(user))), span_notice(LANG("obj.26a00abf", null)))
+	user.visible_message(span_notice(LANG("obj.1cedba925dc24ec8", list(user))), span_notice(LANG("obj.26a00abfc734a8af", null)))
 	stored.add_fingerprint(user)
 	investigate_log("was pulled up by [key_name(usr)] in [AREACOORD(src)]", INVESTIGATE_WIRES)
 	deconstruct()
@@ -248,9 +248,9 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/item/stack/pipe_cleaner_coil/suicide_act(mob/living/user)
 	if(locate(/obj/structure/chair/stool) in get_turf(user))
-		user.visible_message(span_suicide(LANG("obj.a4a763c0", list(user, src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.a4a763c0771f3e3d", list(user, src, user.p_theyre()))))
 	else
-		user.visible_message(span_suicide(LANG("obj.2a557471", list(user, user.p_them(), src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.2a557471bd55eaf0", list(user, user.p_them(), src, user.p_theyre()))))
 	return OXYLOSS
 
 /obj/item/stack/pipe_cleaner_coil/Initialize(mapload, new_amount = null, list/mat_override=null, mat_amt=1, param_color = null)
@@ -314,15 +314,15 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 
 	if(!isturf(T) || !T.can_have_cabling())
-		to_chat(user, span_warning(LANG("obj.f96f6eb7", null)))
+		to_chat(user, span_warning(LANG("obj.f96f6eb7a9ca0b47", null)))
 		return
 
 	if(get_amount() < 1) // Out of pipe_cleaner
-		to_chat(user, span_warning(LANG("obj.e795dcdc", null)))
+		to_chat(user, span_warning(LANG("obj.e795dcdc4ecf1280", null)))
 		return
 
 	if(get_dist(T,user) > 1) // Too far
-		to_chat(user, span_warning(LANG("obj.691faab3", null)))
+		to_chat(user, span_warning(LANG("obj.691faab30b064181", null)))
 		return
 
 	var/dirn
@@ -336,7 +336,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	for(var/obj/structure/pipe_cleaner/LC in T)
 		if(LC.d2 == dirn && LC.d1 == 0)
-			to_chat(user, span_warning(LANG("obj.876bb537", null)))
+			to_chat(user, span_warning(LANG("obj.876bb5375d69b84f", null)))
 			return
 
 	var/obj/structure/pipe_cleaner/C = get_new_pipe_cleaner(T)
@@ -364,7 +364,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 
 	if(get_dist(C, user) > 1) // make sure it's close enough
-		to_chat(user, span_warning(LANG("obj.691faab3", null)))
+		to_chat(user, span_warning(LANG("obj.691faab30b064181", null)))
 		return
 
 
@@ -380,7 +380,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	if((C.d1 == dirn || C.d2 == dirn) && !forceddir)
 		if(!U.can_have_cabling()) //checking if it's a plating or catwalk
 			if (showerror)
-				to_chat(user, span_warning(LANG("obj.90f4e79d", null)))
+				to_chat(user, span_warning(LANG("obj.90f4e79ddcccd686", null)))
 			return
 		else
 			// pipe_cleaner is pointing at us, we're standing on an open tile
@@ -391,7 +391,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			for(var/obj/structure/pipe_cleaner/LC in U) // check to make sure there's not a pipe_cleaner there already
 				if(LC.d1 == fdirn || LC.d2 == fdirn)
 					if (showerror)
-						to_chat(user, span_warning(LANG("obj.876bb537", null)))
+						to_chat(user, span_warning(LANG("obj.876bb5375d69b84f", null)))
 					return
 
 			var/obj/structure/pipe_cleaner/NC = get_new_pipe_cleaner(U)
@@ -422,7 +422,7 @@ By design, d1 is the smallest direction and d2 is the highest
 				continue
 			if((LC.d1 == nd1 && LC.d2 == nd2) || (LC.d1 == nd2 && LC.d2 == nd1) ) // make sure no pipe_cleaner matches either direction
 				if (showerror)
-					to_chat(user, span_warning(LANG("obj.876bb537", null)))
+					to_chat(user, span_warning(LANG("obj.876bb5375d69b84f", null)))
 
 				return
 

@@ -22,7 +22,7 @@
 	AddElement(/datum/element/kneejerk)
 
 /obj/item/gavelhammer/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.394cd9d2", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.394cd9d265af51ef", list(user, user.p_them(), src, user.p_theyre()))))
 	playsound(loc, 'sound/items/gavel.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
@@ -41,6 +41,6 @@
 	if(!istype(tool, /obj/item/gavelhammer))
 		return NONE
 	playsound(loc, 'sound/items/gavel.ogg', 100, TRUE)
-	user.visible_message(span_warning(LANG("obj.42c638b6", list(user, src, tool))))
+	user.visible_message(span_warning(LANG("obj.42c638b658c7d275", list(user, src, tool))))
 	user.changeNext_move(CLICK_CD_MELEE)
 	return ITEM_INTERACT_SUCCESS

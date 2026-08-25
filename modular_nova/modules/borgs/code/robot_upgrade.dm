@@ -162,7 +162,7 @@
 	if(!.)
 		return
 	if(borgo.hasAdvanced)
-		to_chat(user, span_warning(LANG("obj.47637a71", null)))
+		to_chat(user, span_warning(LANG("obj.47637a7106b3e272", null)))
 		return FALSE;
 
 	var/obj/item/stack/sheet/plasteel/cyborg/plasteel_holder = new(borgo.model)
@@ -259,7 +259,7 @@
 /obj/item/borg/hydraulic_clamp/better/examine(mob/user)
 	. = ..()
 	var/crate_count = contents.len
-	. += LANG("obj.c2e12e60", list(crate_count > 0 ? crate_count : "no", crate_count > 1 ? "s" : ""))
+	. += LANG("obj.c2e12e6084ae6c91", list(crate_count > 0 ? crate_count : "no", crate_count > 1 ? "s" : ""))
 
 /obj/item/borg/hydraulic_clamp/mail
 	name = "integrated rapid mail delivery device"
@@ -278,7 +278,6 @@
 
 /datum/design/borg_upgrade_clamp
 	name = "improved Integrated Hydraulic Clamp Module"
-	id = "borg_upgrade_clamp"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/better_clamp
 	materials = list(
@@ -308,7 +307,7 @@
 		return
 	var/obj/item/borg/hydraulic_clamp/better/big_clamp = locate() in cyborg.model.modules
 	if(big_clamp)
-		to_chat(user, span_warning(LANG("obj.325242d5", null)))
+		to_chat(user, span_warning(LANG("obj.325242d51eb45ef6", null)))
 		return FALSE
 
 	big_clamp = new(cyborg.model)
@@ -370,10 +369,10 @@
 	if(!.)
 		return
 	if(borg.hasAffection)
-		to_chat(usr, span_warning(LANG("obj.d476f03d", null)))
+		to_chat(usr, span_warning(LANG("obj.d476f03de4d7e399", null)))
 		return FALSE
 	if(!(TRAIT_R_WIDE in borg.model.model_features))
-		to_chat(usr, span_warning(LANG("obj.ac52b8ab", null)))
+		to_chat(usr, span_warning(LANG("obj.ac52b8ab6c48a011", null)))
 		return FALSE
 
 	var/obj/item/quadborg_tongue/quadtongue = new /obj/item/quadborg_tongue(borg.model)
@@ -410,12 +409,12 @@
 	if(!istype(mob))
 		return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(interacting_with, TRAIT_AFFECTION_AVERSION)) // Checks for Affection Aversion trait
-		to_chat(user, span_warning(LANG("obj.d3e97a9e", list(interacting_with))))
+		to_chat(user, span_warning(LANG("obj.d3e97a9e657f2bdf", list(interacting_with))))
 		return ITEM_INTERACT_BLOCKING
 	if(check_zone(borg.zone_selected) == "head")
-		borg.visible_message(span_warning(LANG("obj.22e854db", list(borg, mob))), span_notice(LANG("obj.07757fa2", list(mob))))
+		borg.visible_message(span_warning(LANG("obj.22e854db74824fe7", list(borg, mob))), span_notice(LANG("obj.07757fa27ae5c807", list(mob))))
 	else
-		borg.visible_message(span_warning(LANG("obj.2494f9fd", list(borg, mob))), span_notice(LANG("obj.2d2621f9", list(mob))))
+		borg.visible_message(span_warning(LANG("obj.2494f9fd4d69745d", list(borg, mob))), span_notice(LANG("obj.2d2621f96ecbc845", list(mob))))
 	playsound(borg, 'sound/effects/blob/attackblob.ogg', 50, 1)
 	return ITEM_INTERACT_SUCCESS
 
@@ -431,11 +430,11 @@
 
 /obj/item/quadborg_nose/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(HAS_TRAIT(interacting_with, TRAIT_AFFECTION_AVERSION)) // Checks for Affection Aversion trait
-		to_chat(user, span_warning(LANG("obj.6f4e619c", list(interacting_with))))
+		to_chat(user, span_warning(LANG("obj.6f4e619cb0499679", list(interacting_with))))
 		return ITEM_INTERACT_BLOCKING
 
 	do_attack_animation(interacting_with, null, src)
-	user.visible_message(span_notice(LANG("obj.a4ccf845", list(user, pick("nuzzles", "pushes", "boops"), interacting_with.name))))
+	user.visible_message(span_notice(LANG("obj.a4ccf845338f5b03", list(user, pick("nuzzles", "pushes", "boops"), interacting_with.name))))
 	return ITEM_INTERACT_SUCCESS
 
 /// The Shrinkening
@@ -455,10 +454,10 @@
 	if(.)
 
 		if(borg.hasShrunk)
-			to_chat(usr, span_warning(LANG("obj.cd8c9ce8", null)))
+			to_chat(usr, span_warning(LANG("obj.cd8c9ce8be7848e7", null)))
 			return FALSE
 		if(TRAIT_R_SMALL in borg.model.model_features)
-			to_chat(usr, span_warning(LANG("obj.81a5b808", null)))
+			to_chat(usr, span_warning(LANG("obj.81a5b808764cd3a6", null)))
 			return FALSE
 		borg.hasShrunk = TRUE
 		ADD_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
@@ -508,7 +507,7 @@
 		return
 	var/obj/item/kinky_shocker/cur_shocker = locate() in borg.model.modules
 	if(cur_shocker)
-		to_chat(usr, span_warning(LANG("obj.06524a4e", null)))
+		to_chat(usr, span_warning(LANG("obj.06524a4eb53b3c39", null)))
 		return FALSE
 
 	var/obj/item/kinky_shocker/shocker = new /obj/item/kinky_shocker()
@@ -589,7 +588,7 @@
 /obj/item/borg/apparatus/cargo_papermanipulator/examine()
 	. = ..()
 	if(stored)
-		. += LANG("obj.929ca228", list(stored))
-	. += span_notice(LANG("obj.47397b29", null))
+		. += LANG("obj.929ca228fbd7968b", list(stored))
+	. += span_notice(LANG("obj.47397b29a2524baf", null))
 
 #undef ENGINEERING_CYBORG_CHARGE_PER_STACK

@@ -141,7 +141,7 @@
 	var/obj/item/card/id/id_card = bartender.wear_id
 	if(bartender.age < AGE_MINOR)
 		id_card.registered_age = AGE_MINOR
-		to_chat(bartender, span_notice(LANG("datum.cefa5a00", list(AGE_MINOR))))
+		to_chat(bartender, span_notice(LANG("datum.cefa5a00b79bae52", list(AGE_MINOR))))
 
 //Preserved terrarium/seed vault: Spawns in seed vault structures in lavaland. Ghosts become plantpeople and are advised to begin growing plants in the room near them.
 /obj/effect/mob_spawn/ghost_role/human/seed_vault
@@ -236,13 +236,13 @@
 	if(!(user.ckey in team.players_spawned))//one per person unless you get a bonus spawn
 		return TRUE
 	if(!silent)
-		to_chat(user, span_warning(LANG("obj.cf022da7", null)))
+		to_chat(user, span_warning(LANG("obj.cf022da74e18cb7e", null)))
 	return FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/ash_walker/special(mob/living/carbon/human/spawned_human, mob/mob_possessor, apply_prefs)
 	. = ..()
 	spawned_human.fully_replace_character_name(null, spawned_human.generate_random_mob_name(TRUE))
-	to_chat(spawned_human, LANG("obj.534b4198", null))
+	to_chat(spawned_human, LANG("obj.534b41989021505a", null))
 
 	spawned_human.mind.add_antag_datum(/datum/antagonist/ashwalker, team)
 
@@ -260,7 +260,7 @@
 	src.forceMove(eggshell)
 	if(spawner_area)
 		notify_ghosts(
-			LANG("obj.5c7e8a8b", list(spawner_area.name)), // NOVA EDIT - i18n: 多行 notify_ghosts 改写器漏改,手接既有 key
+			LANG("obj.5c7e8a8b9d504c7c", list(spawner_area.name)), // NOVA EDIT - i18n: 多行 notify_ghosts 改写器漏改,手接既有 key
 			source = src,
 			header = "Ash Walker Egg",
 			click_interact = TRUE,

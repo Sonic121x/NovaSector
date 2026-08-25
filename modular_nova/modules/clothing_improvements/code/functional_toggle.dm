@@ -19,7 +19,7 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 	. = ..()
 	
 	if(!only_functional)
-		. += span_info(LANG("obj.aa0df157", null))
+		. += span_info(LANG("obj.aa0df15762b176e9", null))
 
 #define PREV_SLOT_FLAGS "fs_slots"
 #define PREV_COLD_PROTECTION "fs_cold"
@@ -34,10 +34,10 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 		return NONE
 	var/mob/living/carbon/char = user
 	if((char.get_item_by_slot(ITEM_SLOT_NECK) == src) || (char.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src))
-		to_chat(user, span_warning(LANG("obj.3374cd4e", list(src))))
+		to_chat(user, span_warning(LANG("obj.3374cd4e2a15cf3c", list(src))))
 		return CLICK_ACTION_BLOCKING
 	if(!user.is_holding(src))
-		to_chat(user, span_warning(LANG("obj.d48ac390", list(src))))
+		to_chat(user, span_warning(LANG("obj.d48ac3903f5f0214", list(src))))
 		return CLICK_ACTION_BLOCKING
 	if(slot_flags & ITEM_SLOT_OCLOTHING)
 		functional_suit_values = list(
@@ -52,14 +52,14 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 		heat_protection = null
 		slowdown = 0
 		set_armor(/datum/armor/none)
-		user.visible_message(span_notice(LANG("obj.b7d2a7d2", list(user, user.p_their(), src))), span_notice(LANG("obj.c5df9463", list(src))))
+		user.visible_message(span_notice(LANG("obj.b7d2a7d2f2bfec8f", list(user, user.p_their(), src))), span_notice(LANG("obj.c5df9463890fc5e2", list(src))))
 	else
 		slot_flags = functional_suit_values[PREV_SLOT_FLAGS]
 		cold_protection = functional_suit_values[PREV_COLD_PROTECTION]
 		heat_protection = functional_suit_values[PREV_HEAT_PROTECTION]
 		slowdown = functional_suit_values[PREV_SLOWDOWN]
 		set_armor(functional_suit_values[PREV_ARMOR_DATUM])
-		user.visible_message(span_notice(LANG("obj.67e852fe", list(user, user.p_their(), src))), span_notice(LANG("obj.b064f37c", list(src))))
+		user.visible_message(span_notice(LANG("obj.67e852fe1c3332fa", list(user, user.p_their(), src))), span_notice(LANG("obj.b064f37c5b49a60f", list(src))))
 	return CLICK_ACTION_SUCCESS
 
 #undef PREV_SLOT_FLAGS

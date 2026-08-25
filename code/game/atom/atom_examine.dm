@@ -18,9 +18,10 @@
 	. += get_name_chaser(user)
 	if(desc)
 		// NOVA EDIT CHANGE - i18n: desc 保持 canonical English，避免在每个 atom 初始化时改写 appearance；
-		// 只在 examine 显示边界反查。运行时动态赋值/重置的 desc 也由同一条路径覆盖。
+		// 只在 examine 显示边界翻。desc 仍等于类型初值时按**类型**取目录 key（精确、含单词描述），
+		// 否则（地图实例覆盖、运行期赋值/追加）回落整串反查。
 		// locale==en 或查不到时原样返回。ORIGINAL: . += "<i>[desc]</i>"
-		. += "<i>[lang_reverse_text(desc)]</i>"
+		. += "<i>[lang_localize_desc_for_display(desc)]</i>"
 
 	var/list/tags_list = examine_tags(user)
 	var/list/post_descriptor = examine_post_descriptor(user)
@@ -40,9 +41,9 @@
 		else if(findtext(tag_string[length(tag_string)], regex(@">.*?and .*?<")))
 			tag_and = " "
 		tag_string = english_list(tag_string, and_text = tag_and, comma_text = tag_comma)
-		. += LANG("atom.0e340ddb", list(lang_pronoun(p_They()), lang_pronoun(p_are()), tag_string, lang_reverse_text(examine_descriptor(user)), post_desc_string)) // NOVA EDIT - i18n: 反查描述词(machine/structure/item…)+代词专用反查(He/is→他/是)，模板译文里占位符就位即成中文
+		. += LANG("atom.0e340ddb80a1ff83", list(lang_pronoun(p_They()), lang_pronoun(p_are()), tag_string, lang_reverse_text(examine_descriptor(user)), post_desc_string)) // NOVA EDIT - i18n: 反查描述词(machine/structure/item…)+代词专用反查(He/is→他/是)，模板译文里占位符就位即成中文
 	else if(post_desc_string)
-		. += LANG("atom.82f39ea0", list(p_They(), p_are(), lang_reverse_text(examine_descriptor(user)), post_desc_string)) // NOVA EDIT - i18n: 反查描述词(machine/structure/item…)，词进 ui.json
+		. += LANG("atom.82f39ea0c9f0e0a2", list(p_They(), p_are(), lang_reverse_text(examine_descriptor(user)), post_desc_string)) // NOVA EDIT - i18n: 反查描述词(machine/structure/item…)，词进 ui.json
 
 	if(reagents)
 		var/user_sees_reagents = user.can_see_reagents()
@@ -50,20 +51,20 @@
 		if(!(reagent_sigreturn & STOP_GENERIC_REAGENT_EXAMINE))
 			if(reagents.flags & TRANSPARENT)
 				if(reagents.total_volume)
-					. += LANG("atom.e9f1f44b", list(reagents.total_volume, user_sees_reagents ? ":" : "."))
+					. += LANG("atom.e9f1f44b12d3ed3a", list(reagents.total_volume, user_sees_reagents ? ":" : "."))
 					if(user_sees_reagents || (reagent_sigreturn & ALLOW_GENERIC_REAGENT_EXAMINE)) //Show each individual reagent for detailed examination
 						for(var/datum/reagent/current_reagent as anything in reagents.reagent_list)
-							. += LANG("atom.5b87b0e6", list(round(current_reagent.volume, CHEMICAL_VOLUME_ROUNDING), current_reagent.name))
+							. += LANG("atom.5b87b0e65d339f24", list(round(current_reagent.volume, CHEMICAL_VOLUME_ROUNDING), current_reagent.name))
 						if(reagents.is_reacting)
-							. += span_warning(LANG("atom.b103a790", null))
-						. += span_notice(LANG("atom.e0cf0e9e", list(round(reagents.ph, 0.01), reagents.chem_temp)))
+							. += span_warning(LANG("atom.b103a79011256e3f", null))
+						. += span_notice(LANG("atom.e0cf0e9e6dbe3ad2", list(round(reagents.ph, 0.01), reagents.chem_temp)))
 				else
-					. += LANG("atom.252461f2", null)
+					. += LANG("atom.252461f292e74fd5", null)
 			else if(reagents.flags & AMOUNT_VISIBLE)
 				if(reagents.total_volume)
-					. += span_notice(LANG("atom.5600f9ef", list(reagents.total_volume)))
+					. += span_notice(LANG("atom.5600f9efd453a9b7", list(reagents.total_volume)))
 				else
-					. += span_danger(LANG("atom.552a4105", null))
+					. += span_danger(LANG("atom.552a41054f376fdf", null))
 
 		if(HAS_TRAIT(user, TRAIT_KEEN_NOSE))
 			var/sniff_text = get_sniff_examine(user)
@@ -150,13 +151,7 @@
 		var/datum/material/current_material = SSmaterials.get_material(custom_material)
 		var/mat_name = lang_material(current_material.name) // NOVA EDIT - i18n: 材料名专用反查（零碰撞，按材料义翻；单词材料全局会按错义译）
 		mats_list += span_tooltip(LANG("atom.made_out_of_tooltip", list(mat_name)), mat_name) // NOVA EDIT - i18n: tooltip 文本本地化。ORIGINAL: span_tooltip("It is made out of [mat_name].", mat_name)
-	// NOVA EDIT CHANGE - i18n: 材料列表连接词中文用顿号（"铁 and 玻璃" → "铁、玻璃"）。ORIGINAL: . += LANG("atom.18275935", list(english_list(mats_list)))
-	var/mat_and = " and "
-	var/mat_comma = ", "
-	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
-		mat_and = "、"
-		mat_comma = "、"
-	. += LANG("atom.18275935", list(english_list(mats_list, and_text = mat_and, comma_text = mat_comma)))
+	. += LANG("atom.1827593576cd6b63", list(lang_english_list(mats_list))) // NOVA EDIT CHANGE - i18n: scoped locale list formatting. ORIGINAL: . += LANG("atom.1827593576cd6b63", list(english_list(mats_list)))
 
 /**
  * Called when a mob examines (shift click or verb) this atom twice (or more) within EXAMINE_MORE_WINDOW (default 1 second)
@@ -190,7 +185,7 @@
 				material_string += span_tooltip("[lang_localize_arg("[property]")]: [lang_localize_arg(tooltip_hint)]", lang_localize_arg(descriptor)) // NOVA EDIT - I18N: 描述符/提示逐项翻（get_descriptor 的 return 字面量已进目录）
 
 		if (length(material_string))
-			. += span_info(LANG("atom.120458d2", list(capitalize(material.name), lang_english_list(material_string)))) // NOVA EDIT - I18N
+			. += span_info(LANG("atom.120458d2dd2fe467", list(capitalize(material.name), lang_english_list(material_string)))) // NOVA EDIT - I18N
 
 /**
  * Get the name of this object for examine
@@ -210,9 +205,14 @@
 	// NOVA EDIT ADDITION START - i18n: 中文无冠词。丢弃 article 槽与 \a 前缀，只留 before + 名字
 	// （examine 名里的「a/an/the」是 \a 宏由引擎渲染、非 LANG 模板，故在此源头去掉；名字本身另由反查翻译）。
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
-		override[EXAMINE_POSITION_ARTICLE] = null
-		override -= null
-		return jointext(override, " ")
+		// `list -= null` 只删**第一个** null（DM 的 Remove 语义），而这里有两个空槽（被清掉的 article
+		// 与本就为空的 before）→ 剩下的那个 null 被 jointext 连成前导空格，玩家看到「那是  核心模块架」。
+		// 逐项挑非空，别依赖 `-=` 的删除条数。
+		var/list/parts = list()
+		for(var/slot in EXAMINE_POSITION_BEFORE to length(override))
+			if(length(override[slot]))
+				parts += override[slot]
+		return jointext(parts, " ")
 	// NOVA EDIT ADDITION END
 
 	if(!isnull(override[EXAMINE_POSITION_ARTICLE]))

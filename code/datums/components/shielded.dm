@@ -203,6 +203,6 @@
 /// Default on_hit proc, since cult robes are stupid and have different descriptions/sparks
 /datum/component/shielded/proc/default_run_hit_callback(mob/living/owner, attack_text, current_charges)
 	do_sparks(2, TRUE, owner)
-	owner.visible_message(span_danger(LANG("datum.90bf1744", list(owner, attack_text))))
+	owner.visible_message(span_danger(LANG("datum.90bf17443ab6aa71", list(owner, attack_text))))
 	if(current_charges <= 0)
-		owner.visible_message(span_warning(LANG("datum.ba967d83", list(owner))))
+		owner.visible_message(span_warning(LANG("datum.ba967d83131378f4", list(owner))))

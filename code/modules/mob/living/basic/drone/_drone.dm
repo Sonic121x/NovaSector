@@ -172,18 +172,18 @@
 	return length(lines) ? jointext(lines, "\n") : base_laws
 
 /mob/living/basic/drone/med_hud_set_health()
-	set_hud_image_state(DIAG_HUD, "huddiag[RoundDiagBar(health/maxHealth)]")
+	set_hud_image_state(DIAG_HUD, hud_state = "huddiag[RoundDiagBar(health/maxHealth)]")
 
 /mob/living/basic/drone/med_hud_set_status()
 	if(stat == DEAD)
-		set_hud_image_state(DIAG_STAT_HUD, "huddead2")
+		set_hud_image_state(DIAG_STAT_HUD, hud_state = "huddead2")
 		return
 
 	if(incapacitated)
-		set_hud_image_state(DIAG_STAT_HUD, "hudoffline")
+		set_hud_image_state(DIAG_STAT_HUD, hud_state = "hudoffline")
 		return
 
-	set_hud_image_state(DIAG_STAT_HUD, "hudstat")
+	set_hud_image_state(DIAG_STAT_HUD, hud_state = "hudstat")
 
 /mob/living/basic/drone/Destroy()
 	GLOB.drones_list -= src
@@ -233,37 +233,37 @@
 	for(var/obj/item/held_thing in held_items)
 		if((held_thing.item_flags & (ABSTRACT|HAND_ITEM)) || HAS_TRAIT(held_thing, TRAIT_EXAMINE_SKIP))
 			continue
-		. += LANG("mob.7e508273", list(held_thing.examine_title(user), get_held_index_name(get_held_index_of_item(held_thing))))
+		. += LANG("mob.7e508273d4133464", list(held_thing.examine_title(user), get_held_index_name(get_held_index_of_item(held_thing))))
 
 	//Internal storage
 	if(internal_storage && !(internal_storage.item_flags & ABSTRACT))
-		. += LANG("mob.30690125", list(internal_storage.examine_title(user)))
+		. += LANG("mob.30690125b88d448d", list(internal_storage.examine_title(user)))
 
 	//Cosmetic hat - provides no function other than looks
 	if(head && !(head.item_flags & ABSTRACT))
-		. += LANG("mob.499182b9", list(head.examine_title(user)))
+		. += LANG("mob.499182b98679af23", list(head.examine_title(user)))
 
 	//Braindead
 	if(!client && stat != DEAD)
-		. += LANG("mob.a7ef884e", null)
+		. += LANG("mob.a7ef884ed2defd51", null)
 
 	//Hacked
 	if(hacked)
-		. += span_warning(LANG("mob.fb95a4e0", null))
+		. += span_warning(LANG("mob.fb95a4e0a14f8b44", null))
 
 	//Damaged
 	if(health != maxHealth)
 		if(health > maxHealth * 0.33) //Between maxHealth and about a third of maxHealth, between 30 and 10 for normal drones
-			. += span_warning(LANG("mob.aa0d27bf", null))
+			. += span_warning(LANG("mob.aa0d27bf937afa09", null))
 		else //otherwise, below about 33%
-			. += span_boldwarning(LANG("mob.34c83af0", null))
+			. += span_boldwarning(LANG("mob.34c83af00a7170ba", null))
 
 	//Dead
 	if(stat == DEAD)
 		if(client)
-			. += span_deadsay(LANG("mob.deee784c", null))
+			. += span_deadsay(LANG("mob.deee784cccf1c32f", null))
 		else
-			. += span_deadsay(LANG("mob.422cef40", null))
+			. += span_deadsay(LANG("mob.422cef40335973e5", null))
 
 /mob/living/basic/drone/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null) //Secbots won't hunt maintenance drones.
 	return -10
@@ -273,18 +273,18 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	Stun(70)
-	to_chat(src, span_danger(LANG("mob.a1165eea", null)))
+	to_chat(src, span_danger(LANG("mob.a1165eeaef69b889", null)))
 	if(severity == 1)
 		adjust_brute_loss(heavy_emp_damage)
-		to_chat(src, span_userdanger(LANG("mob.9a31ac5b", null)))
+		to_chat(src, span_userdanger(LANG("mob.9a31ac5b255e656e", null)))
 
 /mob/living/basic/drone/proc/alarm_triggered(datum/source, alarm_type, area/source_area)
 	SIGNAL_HANDLER
-	to_chat(src, LANG("mob.fc8f672c", list(alarm_type, source_area.name)))
+	to_chat(src, LANG("mob.fc8f672c9d705b45", list(alarm_type, source_area.name)))
 
 /mob/living/basic/drone/proc/alarm_cleared(datum/source, alarm_type, area/source_area)
 	SIGNAL_HANDLER
-	to_chat(src, LANG("mob.2707e92b", list(alarm_type, source_area.name)))
+	to_chat(src, LANG("mob.2707e92b7a9df528", list(alarm_type, source_area.name)))
 
 /mob/living/basic/drone/proc/set_shy(new_shy)
 	shy = new_shy

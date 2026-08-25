@@ -180,7 +180,7 @@
 	//25% chance to occur
 	if(prob(25))
 		name = "Liler' Pump"
-		desc = LANG("obj.74f88de7", null)
+		desc = LANG("obj.74f88de7156f13cf", null)
 		var/matrix/lil_pump = matrix()
 		lil_pump.Scale(0.8)
 		src.transform = lil_pump

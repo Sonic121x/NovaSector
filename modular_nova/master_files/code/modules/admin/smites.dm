@@ -23,7 +23,7 @@
 /datum/smite/cone_of_shame/effect(client/user, mob/living/target)
 	. = ..()
 	if (!iscarbon(target) && !iscyborg(target))
-		to_chat(user, span_warning(LANG("datum.749b91f2", null)), confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.749b91f28d1bc254", null)), confidential = TRUE)
 		return
 	var/obj/item/clothing/head/cone_of_shame/bad_dog/thecone = new
 	if(iscarbon(target))
@@ -33,13 +33,13 @@
 			shamed.dropItemToGround(worn_necky)
 		if(shamed.equip_to_slot_if_possible(thecone, ITEM_SLOT_NECK, qdel_on_fail = TRUE, disable_warning = TRUE, redraw_mob = TRUE))
 			smite_item_protection(thecone)
-			shamed.visible_message(span_warning(LANG("datum.e44fe85d", list(shamed))))
+			shamed.visible_message(span_warning(LANG("datum.e44fe85de6cf4af2", list(shamed))))
 		return
 	if(iscyborg(target))
 		var/mob/living/silicon/robot/borgy = target
 		borgy.place_on_head(thecone)
 		smite_item_protection(thecone)
-		borgy.visible_message(span_warning(LANG("datum.e44fe85d", list(borgy))))
+		borgy.visible_message(span_warning(LANG("datum.e44fe85de6cf4af2", list(borgy))))
 		return
 	qdel(thecone)
 
@@ -50,7 +50,7 @@
 /datum/smite/maidification/effect(client/user, mob/living/target)
 	. = ..()
 	if (!iscarbon(target))
-		to_chat(user, span_warning(LANG("datum.0c41c4cf", null)), confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.0c41c4cfc5eec94d", null)), confidential = TRUE)
 		return
 	var/list/outfit_options = list(
 		"Maid Uniform - Frilly" = list(
@@ -77,7 +77,7 @@
 			/obj/item/clothing/gloves/tactical_maid = ITEM_SLOT_GLOVES,
 		),
 	)
-	var/chosen_outfit = tgui_input_list(user, LANG("datum.5cec3fde", null), LANG("datum.e120f311", null), outfit_options)
+	var/chosen_outfit = tgui_input_list(user, LANG("datum.5cec3fdec00feab0", null), LANG("datum.e120f311ec2f2c09", null), outfit_options)
 	if(!chosen_outfit)
 		return
 	var/list/items = outfit_options[chosen_outfit]
@@ -88,4 +88,4 @@
 		if(target.equip_to_slot_or_del(new_item, slot))
 			smite_item_protection(new_item)
 	if(!QDELETED(shamed))
-		shamed.visible_message(span_warning(LANG("datum.082b521b", list(shamed))))
+		shamed.visible_message(span_warning(LANG("datum.082b521b689309ec", list(shamed))))

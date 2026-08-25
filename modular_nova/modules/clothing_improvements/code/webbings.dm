@@ -23,7 +23,7 @@
 
 	if(!isnull(attach_to.atom_storage))
 		if(user)
-			attach_to.balloon_alert(user, LANG("obj.68951c6c", null))
+			attach_to.balloon_alert(user, LANG("obj.68951c6c67a8f9ed", null))
 		return FALSE
 	return TRUE
 

@@ -104,16 +104,16 @@
 	if(current_dish)
 		old_dish = current_dish
 	if(!user.transferItemToLoc(new_dish, src))
-		balloon_alert(user, LANG("obj.08fb3b1d", null))
+		balloon_alert(user, LANG("obj.08fb3b1d5f7540eb", null))
 		return ITEM_INTERACT_FAILURE
 	current_dish = new_dish
 	update_static_data_for_all_viewers()
 	if(old_dish)
 		if(!user.put_in_hands(old_dish))
 			old_dish.forceMove(get_turf(src))
-		balloon_alert(user, LANG("obj.39c6657a", null))
+		balloon_alert(user, LANG("obj.39c6657a9a072032", null))
 	else
-		balloon_alert(user, LANG("obj.866b4e38", null))
+		balloon_alert(user, LANG("obj.866b4e389a4cefd6", null))
 	return ITEM_INTERACT_SUCCESS
 
 ///Take the inserted dish, or drop it on the floor
@@ -124,7 +124,7 @@
 		current_dish.forceMove(get_turf(src))
 	current_dish = null
 	update_static_data_for_all_viewers()
-	balloon_alert(user, LANG("obj.e09114ec", null))
+	balloon_alert(user, LANG("obj.e09114ec9f5534c1", null))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/microscope/unanchored

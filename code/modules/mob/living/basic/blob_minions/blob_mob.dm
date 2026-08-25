@@ -55,4 +55,4 @@
 /// Called when our factory is destroyed
 /mob/living/basic/blob_minion/proc/on_factory_destroyed()
 	SIGNAL_HANDLER
-	to_chat(src, span_userdanger(LANG("mob.a3e8864c", null)))
+	to_chat(src, span_userdanger(LANG("mob.a3e8864c3a342b50", null)))

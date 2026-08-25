@@ -21,16 +21,16 @@ Consuming extracts:
 		return NONE
 
 	if(last_produced + cooldown > world.time)
-		to_chat(user, span_warning(LANG("obj.2fb66683", list(src))))
+		to_chat(user, span_warning(LANG("obj.2fb6668352908a59", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/datum/reagent/nutriments = tool.reagents.has_reagent(/datum/reagent/consumable/nutriment)
 	if(!nutriments)
-		to_chat(user, span_warning(LANG("obj.c450eaa4", list(src))))
+		to_chat(user, span_warning(LANG("obj.c450eaa456042476", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	nutriment_eaten += nutriments.volume
-	to_chat(user, span_notice(LANG("obj.aff7c238", list(src, tool))))
+	to_chat(user, span_notice(LANG("obj.aff7c23819dd72ad", list(src, tool))))
 	qdel(tool)
 	playsound(src, 'sound/items/eatfood.ogg', 20, TRUE)
 
@@ -38,7 +38,7 @@ Consuming extracts:
 		return ITEM_INTERACT_SUCCESS
 
 	nutriment_eaten = 0
-	user.visible_message(span_notice(LANG("obj.a85dd0ec", list(src))))
+	user.visible_message(span_notice(LANG("obj.a85dd0ecaeded947", list(src))))
 	playsound(src, 'sound/effects/splat.ogg', 40, TRUE)
 	last_produced = world.time
 	for(var/i in 1 to cookies)
@@ -72,16 +72,16 @@ Consuming extracts:
 	var/mob/living/living_mob = interacting_with
 	var/fed = FALSE
 	if(living_mob == user)
-		living_mob.visible_message(span_notice(LANG("obj.bd6d6680", list(user, src))), span_notice(LANG("obj.0a3b7200", list(src))))
+		living_mob.visible_message(span_notice(LANG("obj.bd6d66807b923e64", list(user, src))), span_notice(LANG("obj.0a3b720072b9511f", list(src))))
 		fed = TRUE
 	else
-		living_mob.visible_message(span_danger(LANG("obj.324f0486", list(user, living_mob, src))), span_userdanger(LANG("obj.4d361912", list(user, src))))
+		living_mob.visible_message(span_danger(LANG("obj.324f04860fad91bd", list(user, living_mob, src))), span_userdanger(LANG("obj.4d3619121debc92f", list(user, src))))
 		if(do_after(user, 2 SECONDS, target = living_mob))
 			fed = TRUE
-			living_mob.visible_message(span_danger(LANG("obj.723d26c4", list(user, living_mob, src))), span_warning(LANG("obj.ab585e83", list(user, src))))
+			living_mob.visible_message(span_danger(LANG("obj.723d26c455d2d8e8", list(user, living_mob, src))), span_warning(LANG("obj.ab585e83bab91604", list(user, src))))
 	if(fed)
 		if(!HAS_TRAIT(living_mob, TRAIT_AGEUSIA))
-			to_chat(living_mob, span_notice(LANG("obj.c5883c1f", list(taste))))
+			to_chat(living_mob, span_notice(LANG("obj.c5883c1fab73d395", list(taste))))
 		playsound(get_turf(living_mob), 'sound/items/eatfood.ogg', 20, TRUE)
 		if(nutrition)
 			living_mob.reagents.add_reagent(/datum/reagent/consumable/nutriment, nutrition)
@@ -258,8 +258,8 @@ Consuming extracts:
 
 /obj/item/slime_cookie/bluespace/proc/fail_effect(mob/living/eater)
 	eater.visible_message(
-		message = span_warning(LANG("obj.9983f9f3", list(eater))),
-		self_message = span_warning(LANG("obj.95600d95", null))
+		message = span_warning(LANG("obj.9983f9f396482ab1", list(eater))),
+		self_message = span_warning(LANG("obj.95600d95402ebe7a", null))
 	)
 	eater.Knockdown(0.1 SECONDS)
 	new /obj/effect/particle_effect/sparks(get_turf(eater))
@@ -292,7 +292,7 @@ Consuming extracts:
 
 /obj/item/slime_cookie/cerulean/do_effect(mob/living/M, mob/user)
 	if(prob(50))
-		to_chat(M, span_notice(LANG("obj.95f49937", list(src))))
+		to_chat(M, span_notice(LANG("obj.95f49937710f18fe", list(src))))
 		var/obj/item/slime_cookie/cerulean/C = new(get_turf(M))
 		C.taste = taste + " and a sugar cookie"
 

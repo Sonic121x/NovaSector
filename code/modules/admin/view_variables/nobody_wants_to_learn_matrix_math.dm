@@ -53,7 +53,7 @@
 			var/matrix_var_name = params["var_name"]
 			var/matrix_var_value = params["var_value"]
 			if(testing_matrix.vv_edit_var(matrix_var_name, matrix_var_value) == FALSE)
-				to_chat(src, LANG("datum.ca4d337b", null), confidential = TRUE)
+				to_chat(src, LANG("datum.ca4d337b35f6ebd1", null), confidential = TRUE)
 				return
 			set_transform()
 		if("scale")

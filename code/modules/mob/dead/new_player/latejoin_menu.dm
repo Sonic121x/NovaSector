@@ -11,7 +11,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 	for(var/datum/job/job as anything in SSjob.joinable_occupations)
 		jobs += job.title
 
-	var/input_contents = input(user, LANG("datum.d90e81b8", null), LANG("datum.67faa477", null)) as null|anything in jobs
+	var/input_contents = input(user, LANG("datum.d90e81b8d2e2d464", null), LANG("datum.67faa47774b95ab7", null)) as null|anything in jobs
 
 	if(!input_contents)
 		return
@@ -37,7 +37,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 
 /datum/latejoin_menu/proc/scream_at_player(mob/dead/new_player/player)
 	if(istype(player) && !player.jobs_menu_mounted)
-		to_chat(player, span_notice(LANG("datum.87087c28", null)))
+		to_chat(player, span_notice(LANG("datum.87087c28d5ebb494", null)))
 
 /datum/latejoin_menu/ui_data(mob/user)
 	var/mob/dead/new_player/owner = user
@@ -146,17 +146,17 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 				params["job"] = job
 
 			if(!SSticker?.IsRoundInProgress())
-				tgui_alert(owner, LANG("datum.59f8e275", null), LANG("datum.a75e79b9", null))
+				tgui_alert(owner, LANG("datum.59f8e275199aabd9", null), LANG("datum.a75e79b9fabedfa4", null))
 				return TRUE
 
 			if(SSlag_switch.measures[DISABLE_NON_OBSJOBS])
-				tgui_alert(owner, LANG("datum.66a42caa", null), LANG("datum.a75e79b9", null))
+				tgui_alert(owner, LANG("datum.66a42caa66548685", null), LANG("datum.a75e79b9fabedfa4", null))
 				return TRUE
 
 			// NOVA EDIT ADDITION START - Flavourtext requirement
 			if(CONFIG_GET(flag/min_flavor_text))
 				if(length_char(owner.client.prefs.read_preference(/datum/preference/text/flavor_text)) < CONFIG_GET(number/flavor_text_character_requirement))
-					to_chat(owner, span_notice(LANG("datum.d926f941", list(CONFIG_GET(number/flavor_text_character_requirement), length_char(owner.client.prefs.read_preference(/datum/preference/text/flavor_text))))))
+					to_chat(owner, span_notice(LANG("datum.d926f9413e9cbdad", list(CONFIG_GET(number/flavor_text_character_requirement), length_char(owner.client.prefs.read_preference(/datum/preference/text/flavor_text))))))
 					return
 			// NOVA EDIT END
 
@@ -171,7 +171,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 
 			if(SSticker.queued_players.len && !(ckey(owner.key) in GLOB.admin_datums))
 				if((living_player_count() >= relevant_cap) || (owner != SSticker.queued_players[1]))
-					tgui_alert(owner, LANG("datum.7434c3ca", null), LANG("datum.a75e79b9", null))
+					tgui_alert(owner, LANG("datum.7434c3cad5b7fc7c", null), LANG("datum.a75e79b9fabedfa4", null))
 					return TRUE
 
 			// SAFETY: AttemptLateSpawn has it's own sanity checks. This is perfectly safe.
@@ -205,20 +205,20 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 			dept_data += job_datum.title
 
 	if(dept_data.len <= 0) //Congratufuckinglations
-		tgui_alert(owner, LANG("datum.d278e545", null), LANG("datum.a75e79b9", null))
+		tgui_alert(owner, LANG("datum.d278e545c73d16e3", null), LANG("datum.a75e79b9fabedfa4", null))
 		return
 
 	var/random_job
 
 	while(random_job != JOB_CHOICE_YES)
 		if(dept_data.len <= 0)
-			tgui_alert(owner, LANG("datum.586effc6", null), LANG("datum.a75e79b9", null))
+			tgui_alert(owner, LANG("datum.586effc6554c6f37", null), LANG("datum.a75e79b9fabedfa4", null))
 			return
 
 		var/random = pick_n_take(dept_data)
 		var/list/random_job_options = list(JOB_CHOICE_YES, JOB_CHOICE_REROLL, JOB_CHOICE_CANCEL)
 
-		random_job = tgui_alert(owner, "[random]?", LANG("datum.ef72a51e", null), random_job_options)
+		random_job = tgui_alert(owner, "[random]?", LANG("datum.ef72a51e90aa5426", null), random_job_options)
 
 		if(random_job == JOB_CHOICE_CANCEL)
 			return

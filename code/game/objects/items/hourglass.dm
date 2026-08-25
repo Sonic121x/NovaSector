@@ -23,11 +23,11 @@
 
 /obj/item/hourglass/proc/toggle(mob/user)
 	if(!timing_id)
-		to_chat(user,span_notice(LANG("obj.dca8322d", list(src))))
+		to_chat(user,span_notice(LANG("obj.dca8322d85ec79e9", list(src))))
 		start()
 		flick("hourglass_flip",src)
 	else
-		to_chat(user,span_notice(LANG("obj.cfad3ec2", list(src)))) //Sand magically flows back because that's more convinient to use.
+		to_chat(user,span_notice(LANG("obj.cfad3ec2677fe4c4", list(src)))) //Sand magically flows back because that's more convinient to use.
 		stop()
 
 /obj/item/hourglass/update_icon_state()
@@ -56,7 +56,7 @@
 	update_appearance()
 
 /obj/item/hourglass/proc/finish()
-	visible_message(span_notice(LANG("obj.8d7da0ca", list(src))))
+	visible_message(span_notice(LANG("obj.8d7da0ca3a9c16f4", list(src))))
 	stop()
 
 /obj/item/hourglass/Destroy()

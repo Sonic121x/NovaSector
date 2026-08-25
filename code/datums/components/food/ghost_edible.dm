@@ -30,7 +30,7 @@
 		var/mob/mob_parent = parent
 		parent_name = "[mob_parent.real_name]"
 	notify_ghosts(
-		LANG("datum.7c76187d", list(parent_name)),
+		LANG("datum.7c76187dc7959f90", list(parent_name)),
 		source = parent,
 		header = "Something Tasty!",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -59,7 +59,7 @@
 	playsound(atom_parent.loc,'sound/items/eatfood.ogg', vol = rand(10,50), vary = TRUE)
 	atom_parent.reagents.remove_all(bite_consumption)
 	if (atom_parent.reagents.total_volume <= 0)
-		atom_parent.visible_message(span_notice(LANG("datum.93b1abe8", list(atom_parent))))
+		atom_parent.visible_message(span_notice(LANG("datum.93b1abe829ac476b", list(atom_parent))))
 		new /obj/item/ectoplasm(atom_parent.loc)
 		qdel(parent)
 		return

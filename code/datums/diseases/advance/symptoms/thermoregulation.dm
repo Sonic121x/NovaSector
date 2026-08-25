@@ -14,7 +14,7 @@
 	resistance = 1
 	stage_speed = -2
 	transmittable = 0
-	level = 5
+	level = 4
 	severity = 0
 	threshold_descs = list(
 		"Resistance 8" = "Increases thermal regulation speed."
@@ -35,6 +35,6 @@
 		var/mob/living/carbon/carbon_host = A.affected_mob
 		var/difference = carbon_host.dna.species.bodytemp_normal - carbon_host.bodytemperature
 		if(!(carbon_host.dna.species.bodytemp_cold_damage_limit < carbon_host.bodytemperature < carbon_host.dna.species.bodytemp_heat_damage_limit)) // No need to spam chat
-			to_chat(carbon_host, span_notice(LANG("datum.d78a80e9", list(difference < 0 ? "warmth" : "chill"))))
+			to_chat(carbon_host, span_notice(LANG("datum.d78a80e9386b5581", list(difference < 0 ? "warmth" : "chill"))))
 		var/stage_power = (A.stage == 3) ? power * 5 : power * 10 // Half as strong at stage 3
 		carbon_host.adjust_bodytemperature(clamp(difference, -stage_power, stage_power))

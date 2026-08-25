@@ -64,7 +64,7 @@
 		AddToGrill(new_pancake)
 		if(griddled_objects.len >= max_items)
 			break
-	visible_message(span_notice(LANG("obj.890a692d", list(exposing_reagent, src))))
+	visible_message(span_notice(LANG("obj.890a692dcda4bbfb", list(exposing_reagent, src))))
 	return NONE
 
 /obj/machinery/griddle/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -73,12 +73,12 @@
 
 	if(tool.atom_storage)
 		if(length(griddled_objects) >= max_items)
-			balloon_alert(user, LANG("obj.2cb7d354", null))
+			balloon_alert(user, LANG("obj.2cb7d3546d66854d", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!istype(tool, /obj/item/storage/bag/tray))
 			// Non-tray dumping requires a do_after
-			to_chat(user, span_notice(LANG("obj.66f69281", list(tool, src))))
+			to_chat(user, span_notice(LANG("obj.66f692814914ab0d", list(tool, src))))
 			if(!do_after(user, 2 SECONDS, target = tool))
 				return ITEM_INTERACT_BLOCKING
 
@@ -93,12 +93,12 @@
 				AddToGrill(tray_item, user)
 		if(!loaded)
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.6732f6a8", list(loaded, src))))
+		to_chat(user, span_notice(LANG("obj.6732f6a8ae1a863c", list(loaded, src))))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
 	if(griddled_objects.len >= max_items)
-		to_chat(user, span_notice(LANG("obj.d55d248d", list(src))))
+		to_chat(user, span_notice(LANG("obj.d55d248da427e3ff", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	//Center the icon where the user clicked.
@@ -111,7 +111,7 @@
 	//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
 	tool.pixel_x = clamp(text2num(LAZYACCESS(modifiers, ICON_X)) - 16, -(ICON_SIZE_X/2), ICON_SIZE_X/2)
 	tool.pixel_y = clamp(text2num(LAZYACCESS(modifiers, ICON_Y)) - 16, -(ICON_SIZE_Y/2), ICON_SIZE_Y/2)
-	to_chat(user, span_notice(LANG("obj.7a67ae81", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.7a67ae81e5981d09", list(tool, src))))
 	AddToGrill(tool, user)
 	return ITEM_INTERACT_SUCCESS
 
@@ -206,7 +206,7 @@
 		to_dump.pixel_y = to_dump.base_pixel_y + rand(-5, 5)
 		AddToGrill(to_dump, user)
 
-	to_chat(user, span_notice(LANG("obj.7a8d83d9", list(storage.parent, src))))
+	to_chat(user, span_notice(LANG("obj.7a8d83d9b07eda28", list(storage.parent, src))))
 	return STORAGE_DUMP_HANDLED
 
 /obj/machinery/griddle/process(seconds_per_tick)
@@ -215,7 +215,7 @@
 			continue
 		griddled_item.fire_act(1000) //Hot hot hot!
 		if(prob(10))
-			visible_message(span_danger(LANG("obj.9b9bd71a", list(griddled_item, src))))
+			visible_message(span_danger(LANG("obj.9b9bd71a00698281", list(griddled_item, src))))
 
 		use_energy(active_power_usage)
 

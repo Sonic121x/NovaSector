@@ -53,7 +53,7 @@
 /obj/machinery/mech_bay_recharge_port/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.e81ad5a4", list(siunit(recharge_power, "W", 1))))
+		. += span_notice(LANG("obj.e81ad5a41367530e", list(siunit(recharge_power, "W", 1))))
 
 /obj/machinery/mech_bay_recharge_port/process(seconds_per_tick)
 	if(machine_stat & NOPOWER || !recharge_console)

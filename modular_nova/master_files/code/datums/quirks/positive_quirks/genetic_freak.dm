@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(genetic_mutation_choice, list(
 
 	// Check if this mutation is restricted for the selected species
 	if(is_mutation_restricted_for_species(value, mob_species))
-		to_chat(preferences.parent, span_warning(LANG("datum.a56f9c21", list(value))))
+		to_chat(preferences.parent, span_warning(LANG("datum.a56f9c2145390d17", list(value))))
 		return FALSE
 
 	return TRUE

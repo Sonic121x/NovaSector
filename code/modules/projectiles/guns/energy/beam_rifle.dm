@@ -38,7 +38,7 @@
 /obj/item/gun/energy/event_horizon/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 
 	if(!HAS_TRAIT(user, TRAIT_USER_SCOPED))
-		balloon_alert(user, LANG("obj.bc7366f5", null))
+		balloon_alert(user, LANG("obj.bc7366f5b1f80010", null))
 		return
 
 	. = ..()

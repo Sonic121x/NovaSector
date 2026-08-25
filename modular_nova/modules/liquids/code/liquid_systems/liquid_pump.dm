@@ -29,23 +29,23 @@
 
 /obj/structure/liquid_pump/attack_hand(mob/user)
 	if(!anchored)
-		to_chat(user, span_warning(LANG("obj.ed8d24fe", list(src))))
+		to_chat(user, span_warning(LANG("obj.ed8d24fe49cd10d1", list(src))))
 		return
-	to_chat(user, span_notice(LANG("obj.c2fd54ba", list(src, turned_on ? "off" : "on"))))
+	to_chat(user, span_notice(LANG("obj.c2fd54ba4e8294af", list(src, turned_on ? "off" : "on"))))
 	toggle_working()
 
 /obj/structure/liquid_pump/click_alt(mob/living/user)
-	to_chat(user, span_notice(LANG("obj.a22a1b24", list(src, spewing_mode ? "off" : "on"))))
+	to_chat(user, span_notice(LANG("obj.a22a1b249e56fccc", list(src, spewing_mode ? "off" : "on"))))
 	spewing_mode = !spewing_mode
 	update_icon()
 	return CLICK_ACTION_SUCCESS
 
 /obj/structure/liquid_pump/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.7d1f90a8", list(anchored ? "down and secured" : "up")))
-	. += span_notice(LANG("obj.78e6399f", list(turned_on ? "ON" : "OFF")))
-	. += span_notice(LANG("obj.1b4626cc", list(spewing_mode ? "SPEWING" : "SIPHONING")))
-	. += span_notice(LANG("obj.e59f8bc2", list(reagents.total_volume, reagents.maximum_volume)))
+	. += span_notice(LANG("obj.7d1f90a83669cf4f", list(anchored ? "down and secured" : "up")))
+	. += span_notice(LANG("obj.78e6399fa4f4dfa4", list(turned_on ? "ON" : "OFF")))
+	. += span_notice(LANG("obj.1b4626cc75c4ee25", list(spewing_mode ? "SPEWING" : "SIPHONING")))
+	. += span_notice(LANG("obj.e59f8bc265e82fb0", list(reagents.total_volume, reagents.maximum_volume)))
 
 /obj/structure/liquid_pump/process()
 	if(!isturf(loc))

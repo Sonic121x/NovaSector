@@ -13,9 +13,9 @@
 
 /obj/item/clothing/under/akula_wetsuit/refit/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.9710c283", null))
+	. += span_notice(LANG("obj.9710c283f64a439b", null))
 
 /obj/item/clothing/under/akula_wetsuit/refit/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.faae1958", null)
+	. += LANG("obj.faae1958023fca89", null)

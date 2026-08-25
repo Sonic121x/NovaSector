@@ -75,7 +75,7 @@
 		return
 
 	if((user.ckey in pickup_restriction_ckeys) && !COOLDOWN_FINISHED(src, pickup_cooldown))
-		user.balloon_alert(user, LANG("obj.e3f32e15", list(COOLDOWN_TIMELEFT(src, pickup_cooldown) *0.1)))
+		user.balloon_alert(user, LANG("obj.e3f32e15f2cbb2f2", list(COOLDOWN_TIMELEFT(src, pickup_cooldown) *0.1)))
 		return
 
 	reset_pickup_restriction()
@@ -120,20 +120,20 @@
 
 	switch(blocking_dir_bonus)
 		if(FACING_EACHOTHER)
-			stealer.balloon_alert_to_viewers(LANG("obj.091af933", null))
+			stealer.balloon_alert_to_viewers(LANG("obj.091af933a70121b1", null))
 			INVOKE_ASYNC(stealer, TYPE_PROC_REF(/mob, put_in_hands), src)
 		if(FACING_INIT_FACING_TARGET_TARGET_FACING_PERPENDICULAR)
 			if(prob(50))
 				if(!baller.dropItemToGround(src))
 					return
-				stealer.balloon_alert_to_viewers(LANG("obj.8e4dfd7b", null))
+				stealer.balloon_alert_to_viewers(LANG("obj.8e4dfd7b66570224", null))
 			else
-				stealer.balloon_alert_to_viewers(LANG("obj.091af933", null))
+				stealer.balloon_alert_to_viewers(LANG("obj.091af933a70121b1", null))
 				INVOKE_ASYNC(stealer, TYPE_PROC_REF(/mob, put_in_hands), src)
 		if(FACING_SAME_DIR)
 			if(!baller.dropItemToGround(src))
 				return
-			stealer.balloon_alert_to_viewers(LANG("obj.8e4dfd7b", null))
+			stealer.balloon_alert_to_viewers(LANG("obj.8e4dfd7b66570224", null))
 
 /obj/item/toy/basketball/proc/on_equipped_mob_knockdown(mob/living/user, amount)
 	SIGNAL_HANDLER
@@ -148,7 +148,7 @@
 	if(!user.dropItemToGround(src))
 		return
 
-	user.balloon_alert_to_viewers(LANG("obj.e8cd5212", null))
+	user.balloon_alert_to_viewers(LANG("obj.e8cd5212f09aa423", null))
 
 /obj/item/toy/basketball/attack(mob/living/carbon/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!iscarbon(target) || user.combat_mode)

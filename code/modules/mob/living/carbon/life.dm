@@ -126,14 +126,14 @@
 					breath = null // uh oh where'd the air go
 					check_breath(breath)
 					if(oxyloss <= OXYGEN_DAMAGE_CHOKING_THRESHOLD && !IS_UNCONSCIOUS_OR_CRIT(src))
-						to_chat(src, LANG("mob.842f5279", null))
+						to_chat(src, LANG("mob.842f5279a54d2d84", null))
 					else
 						//Try and drink water
 						var/datum/reagents/tempr = our_turf.liquids.take_reagents_flat(CHOKE_REAGENTS_INGEST_ON_BREATH_AMOUNT)
 						tempr.trans_to(src, tempr.total_volume, methods = INGEST)
 						qdel(tempr)
-						visible_message(LANG("mob.3659fcf2", list(src, our_turf.liquids.reagents_to_text())), \
-									LANG("mob.a68798ca", list(our_turf.liquids.reagents_to_text())))
+						visible_message(LANG("mob.3659fcf2636eee4d", list(src, our_turf.liquids.reagents_to_text())), \
+									LANG("mob.a68798ca752f3ae6", list(our_turf.liquids.reagents_to_text())))
 					return FALSE
 				if(isopenturf(our_turf))
 					var/turf/open/open_turf = our_turf
@@ -365,22 +365,22 @@
 				// At lower pp, give out a little warning
 				clear_mood_event("smell")
 				if(prob(5))
-					to_chat(src, span_notice(LANG("mob.bdb286ee", null)))
+					to_chat(src, span_notice(LANG("mob.bdb286ee4f577792", null)))
 			if(5 to 20)
 				//At somewhat higher pp, warning becomes more obvious
 				if(prob(15))
-					to_chat(src, span_warning(LANG("mob.31657472", null)))
+					to_chat(src, span_warning(LANG("mob.31657472ef414eb0", null)))
 					add_mood_event("smell", /datum/mood_event/disgust/bad_smell)
 			if(15 to 30)
 				//Small chance to vomit. By now, people have internals on anyway
 				if(prob(5))
-					to_chat(src, span_warning(LANG("mob.591c0f7c", null)))
+					to_chat(src, span_warning(LANG("mob.591c0f7c4438b122", null)))
 					add_mood_event("smell", /datum/mood_event/disgust/nauseating_stench)
 					vomit(VOMIT_CATEGORY_DEFAULT)
 			if(30 to INFINITY)
 				//Higher chance to vomit. Let the horror start
 				if(prob(25))
-					to_chat(src, span_warning(LANG("mob.591c0f7c", null)))
+					to_chat(src, span_warning(LANG("mob.591c0f7c4438b122", null)))
 					add_mood_event("smell", /datum/mood_event/disgust/nauseating_stench)
 					vomit(VOMIT_CATEGORY_DEFAULT)
 			else

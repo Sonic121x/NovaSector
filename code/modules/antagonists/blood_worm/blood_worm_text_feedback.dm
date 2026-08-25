@@ -64,29 +64,14 @@
 
 	result += span_notice("[target.p_They()] [target.p_have()] [rounded_volume] unit[rounded_volume == 1 ? "" : "s"] of blood[growth_string]. [target.p_Their()] blood is <b>[synth_string]</b> synthetic.")
 
-/mob/living/basic/blood_worm/get_status_tab_items()
-	return ..() + get_special_status_tab_items()
+/mob/living/basic/blood_worm/proc/get_info_title()
+	. = "Worm Health: [round((health / maxHealth) * 100)]%"
 
-/mob/living/basic/blood_worm/proc/on_host_get_status_tab_items(datum/source, list/items)
-	SIGNAL_HANDLER
-	items += "Worm Health: [round((health / maxHealth) * 100)]%"
-	items += get_special_status_tab_items()
-
-/mob/living/basic/blood_worm/proc/get_special_status_tab_items()
-	. = list()
-
-	var/normal = consumed_normal_blood
-	var/synth = consumed_synth_blood
-	var/total = normal + synth
-
-	var/total_required = cocoon_action?.total_blood_required
-
-	if (total_required > 0)
-		. += LANG("mob.92b8912b", list(FLOOR(total / total_required * 100, 1)))
-	. += LANG("mob.44aa35a7", null)
-	. += LANG("mob.b90295d5", list(ceil(normal)))
-	. += LANG("mob.501f0300", list(ceil(synth), maximum_synth_blood))
-	. += LANG("mob.e28ede9d", list(ceil(total), total_required))
+/mob/living/basic/blood_worm/proc/get_info_desc()
+	. = "Blood Consumed<br/>"
+	. += LANG("mob.9dee6fbbf52571e4", list(ceil(consumed_normal_blood)))
+	. += LANG("mob.07271c6c5c0ad8e8", list(ceil(consumed_synth_blood), maximum_synth_blood))
+	. += LANG("mob.b3954dcdab610da0", list(ceil(consumed_normal_blood + consumed_synth_blood)))
 
 /// Sends text to the blood worm, whether they are possessing a host or not.
 /mob/living/basic/blood_worm/proc/to_chat_self(text)

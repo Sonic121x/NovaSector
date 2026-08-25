@@ -36,14 +36,14 @@
 	for(var/obj/effect/landmark/transport/nav_beacon/tram/platform/platform as anything in SStransport.nav_beacons[specific_transport_id])
 		LAZYADD(available_platforms, platform.name)
 
-	var/selected_platform = tgui_input_list(user, LANG("obj.741bc8ce", null), LANG("obj.2a9ec0ea", null), available_platforms)
+	var/selected_platform = tgui_input_list(user, LANG("obj.741bc8cef321088e", null), LANG("obj.2a9ec0ea650a17d4", null), available_platforms)
 	for(var/obj/effect/landmark/transport/nav_beacon/tram/platform/potential_platform as anything in SStransport.nav_beacons[specific_transport_id])
 		if(potential_platform.name == selected_platform)
 			destination = potential_platform.platform_code
 			break
 
-	balloon_alert(user, LANG("obj.0b8200d7", list(selected_platform)))
-	to_chat(user, span_notice(LANG("obj.35a0efdd", list(src, selected_platform))))
+	balloon_alert(user, LANG("obj.0b8200d79a5d0c43", list(selected_platform)))
+	to_chat(user, span_notice(LANG("obj.35a0efdd06e76f44", list(src, selected_platform))))
 
 ///set safety bypass
 /obj/item/assembly/control/transport/remote/item_ctrl_click(mob/user)
@@ -53,24 +53,24 @@
 		if(RAPID_MODE)
 			options &= ~RAPID_MODE
 	update_appearance()
-	balloon_alert(user, LANG("obj.a72852bf", list(options ? "fast" : "safe")))
+	balloon_alert(user, LANG("obj.a72852bfd5dc43d4", list(options ? "fast" : "safe")))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/assembly/control/transport/remote/examine(mob/user)
 	. = ..()
 	if(!specific_transport_id)
-		. += LANG("obj.59acba55", null)
-		. += LANG("obj.4122d173", null)
+		. += LANG("obj.59acba55419ddb9b", null)
+		. += LANG("obj.4122d1733debafc4", null)
 		return
-	. += LANG("obj.17586260", list(options ? "on" : "off"))
+	. += LANG("obj.1758626035f48519", list(options ? "on" : "off"))
 	if(cooldown)
-		. += LANG("obj.ea68d8fe", list(DisplayTimeText(cooldown, 1)))
+		. += LANG("obj.ea68d8fe170bffab", list(DisplayTimeText(cooldown, 1)))
 	else
-		. += LANG("obj.fcea8009", null)
-	. += LANG("obj.e4536749", null)
-	. += LANG("obj.c1427208", null)
-	. += LANG("obj.d217f6c5", null)
-	. += LANG("obj.f81f3d84", null)
+		. += LANG("obj.fcea80098baf6693", null)
+	. += LANG("obj.e4536749dbee6ef4", null)
+	. += LANG("obj.c142720818515913", null)
+	. += LANG("obj.d217f6c50b3f56cd", null)
+	. += LANG("obj.f81f3d84cc44d06d", null)
 
 /obj/item/assembly/control/transport/remote/update_icon_state()
 	. = ..()
@@ -92,7 +92,7 @@
 		return
 
 	if(cooldown)
-		balloon_alert(user, LANG("obj.c74548dc", list(DisplayTimeText(cooldown, 1))))
+		balloon_alert(user, LANG("obj.c74548dc9a060a7b", list(DisplayTimeText(cooldown, 1))))
 		return
 
 	activate(user)
@@ -101,10 +101,10 @@
 ///send our selected commands to the tram
 /obj/item/assembly/control/transport/remote/activate(mob/user)
 	if(!specific_transport_id)
-		balloon_alert(user, LANG("obj.a4141a48", null))
+		balloon_alert(user, LANG("obj.a4141a4878bfeb9f", null))
 		return
 	if(!destination)
-		balloon_alert(user, LANG("obj.4bf240e2", null))
+		balloon_alert(user, LANG("obj.4bf240e2ee98c2bf", null))
 		return
 
 	SEND_SIGNAL(src, COMSIG_TRANSPORT_REQUEST, specific_transport_id, destination, options)
@@ -119,11 +119,11 @@
 	for(var/datum/transport_controller/linear/tram/tram as anything in SStransport.transports_by_type[TRANSPORT_TYPE_TRAM])
 		LAZYADD(transports_available, tram.specific_transport_id)
 
-	specific_transport_id = tgui_input_list(user, LANG("obj.022bb138", null), LANG("obj.fc3f6f16", null), transports_available)
+	specific_transport_id = tgui_input_list(user, LANG("obj.022bb13891904c96", null), LANG("obj.fc3f6f1677abcf8c", null), transports_available)
 
 	if(specific_transport_id)
-		balloon_alert(user, LANG("obj.b69231f3", null))
+		balloon_alert(user, LANG("obj.b69231f303a13c96", null))
 	else
-		balloon_alert(user, LANG("obj.b6682898", null))
+		balloon_alert(user, LANG("obj.b6682898b81ddfac", null))
 
 	update_appearance()

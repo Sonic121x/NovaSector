@@ -32,7 +32,7 @@
 	. = ..()
 	var/list/turf/to_switcharoo = get_targets_to_scramble(cast_on)
 	if(!length(to_switcharoo))
-		to_chat(cast_on, span_warning(LANG("datum.2e9b3b3c", null)))
+		to_chat(cast_on, span_warning(LANG("datum.2e9b3b3cc37c1219", null)))
 		reset_spell_cooldown()
 		return
 

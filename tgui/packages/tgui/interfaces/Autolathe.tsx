@@ -199,7 +199,7 @@ const PrintButton = (props: PrintButtonProps) => {
         ])}
         color={'transparent'}
         onClick={() =>
-          canPrint && act('make', { id: design.id, multiplier: quantity })
+          canPrint && act('make', { design_path: design.path, multiplier: quantity })
         }
       >
         &times;{quantity}
@@ -281,7 +281,7 @@ const AutolatheRecipe = (props: AutolatheRecipeProps) => {
             !canPrint && 'FabricatorRecipe__Title--disabled',
           ])}
           onClick={() =>
-            canPrint && act('make', { id: design.id, multiplier: 1 })
+            canPrint && act('make', { design_path: design.path, multiplier: 1 })
           }
         >
           <div className="FabricatorRecipe__Icon">
@@ -322,7 +322,7 @@ const AutolatheRecipe = (props: AutolatheRecipeProps) => {
           buttonText={`[Max: ${maxmult}]`}
           onCommit={(value) =>
             act('make', {
-              id: design.id,
+              design_path: design.path,
               multiplier: value,
             })
           }

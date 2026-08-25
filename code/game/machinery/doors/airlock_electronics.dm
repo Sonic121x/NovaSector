@@ -21,7 +21,7 @@
 
 /obj/item/electronics/airlock/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.7d0b59c2", null))
+	. += span_notice(LANG("obj.7d0b59c202d2ad8c", null))
 
 /**
  * Create a copy of the electronics

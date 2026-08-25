@@ -1,1 +1,9 @@
-{}
+{
+	"antag.opfor.candidate_description\u0004You are encouraged to OPFOR to perform an antagonistic action in some form.": "You are encouraged to OPFOR to perform an antagonistic action in some form.",
+	"antag.opfor.candidate_title\u0004You are an OPFOR candidate!": "You are an OPFOR candidate!",
+	"antag.opfor.inspiration_hint\u0004If you do not have any ideas, check #player-submitted-opfors on the Discord for inspiration.": "If you do not have any ideas, check #player-submitted-opfors on the Discord for inspiration.",
+	"antag.opfor.remove_hint\u0004And if you do not wish to OPFOR, simply press the button below to remove your status.": "And if you do not wish to OPFOR, simply press the button below to remove your status.",
+	"antag.opfor.remove_status_tooltip\u0004Remove your OPFOR candidate status.": "Remove your OPFOR candidate status.",
+	"antag.opfor.remove_status\u0004Remove Status": "Remove Status",
+	"surgery.operating_computer.all_tools\u0004All tools": "All tools"
+}

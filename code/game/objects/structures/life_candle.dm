@@ -50,14 +50,14 @@
 	if(!user.mind)
 		return
 	if(user.mind in linked_minds)
-		user.visible_message(span_notice(LANG("obj.224df406", list(user, src))), span_warning(LANG("obj.538ce1f4", list(src))))
+		user.visible_message(span_notice(LANG("obj.224df4067adba271", list(user, src))), span_warning(LANG("obj.538ce1f4768280af", list(src))))
 		linked_minds -= user.mind
 		if(!linked_minds.len)
 			REMOVE_TRAIT(src, TRAIT_MOVE_FLOATING, LIFECANDLE_TRAIT)
 	else
 		if(!linked_minds.len)
 			ADD_TRAIT(src, TRAIT_MOVE_FLOATING, LIFECANDLE_TRAIT)
-		user.visible_message(span_notice(LANG("obj.8b41f20b", list(user, src, user.p_their()))), span_warning(LANG("obj.eaec2c62", list(src))))
+		user.visible_message(span_notice(LANG("obj.8b41f20be956bdb4", list(user, src, user.p_their()))), span_warning(LANG("obj.eaec2c624ced14d1", list(src))))
 		linked_minds |= user.mind
 
 	update_appearance()
@@ -75,9 +75,9 @@
 /obj/structure/life_candle/examine(mob/user)
 	. = ..()
 	if(linked_minds.len)
-		. += LANG("obj.cd0c2060", list(src, linked_minds.len))
+		. += LANG("obj.cd0c2060455f1a1c", list(src, linked_minds.len))
 	else
-		. += LANG("obj.1d5fdbd8", null)
+		. += LANG("obj.1d5fdbd8a5939bf8", null)
 
 /obj/structure/life_candle/process()
 	if(!linked_minds.len)

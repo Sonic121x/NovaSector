@@ -25,7 +25,7 @@
 	if(!.)
 		return
 
-	to_chat(on_who, span_notice(LANG("datum.b88ee65e", null)))
+	to_chat(on_who, span_notice(LANG("datum.b88ee65eae0ccbaa", null)))
 	build_all_button_icons()
 
 /datum/action/cooldown/ink_spit/unset_click_ability(mob/on_who, refund_cooldown = TRUE)
@@ -47,8 +47,8 @@
 
 	var/modifiers = params2list(params)
 	clicker.visible_message(
-		span_danger(LANG("datum.57e3b0cc", list(clicker))),
-		span_bold(LANG("datum.ba23fa18", null)),
+		span_danger(LANG("datum.57e3b0cc6b96c4b9", list(clicker))),
+		span_bold(LANG("datum.ba23fa18ee2b8212", null)),
 	)
 	var/obj/projectile/ink_spit/ink = new /obj/projectile/ink_spit(clicker.loc)
 	ink.aim_projectile(target, clicker, modifiers)

@@ -124,29 +124,29 @@
 	var/shown_name = get_face_name()
 	var/obj/item/organ/brain/brain = locate(/obj/item/organ/brain) in src
 	if(!brain)
-		. += span_info(LANG("obj.0aa19236", list(src)))
+		. += span_info(LANG("obj.0aa19236e8a1fc5e", list(src)))
 	else if(brain.suicided || (brain.brainmob && HAS_TRAIT(brain.brainmob, TRAIT_SUICIDED)))
-		. += span_info(LANG("obj.cc4b9630", list(shown_name)))
+		. += span_info(LANG("obj.cc4b9630ad6f6017", list(shown_name)))
 	else if(brain.brainmob)
 		if(brain.brainmob?.health <= HEALTH_THRESHOLD_DEAD)
-			. += span_info(LANG("obj.eabd7fc2", null))
+			. += span_info(LANG("obj.eabd7fc29cbfa57d", null))
 		if(brain.brainmob.key || brain.brainmob.get_ghost(FALSE, TRUE))
-			. += span_info(LANG("obj.97411915", null))
+			. += span_info(LANG("obj.974119155a67b887", null))
 		else
-			. += span_info(LANG("obj.05dc92dc", null))
+			. += span_info(LANG("obj.05dc92dca912c6c0", null))
 	else if(brain?.decoy_override)
-		. += span_info(LANG("obj.05dc92dc", null))
+		. += span_info(LANG("obj.05dc92dca912c6c0", null))
 	else
-		. += span_info(LANG("obj.6072472a", null))
+		. += span_info(LANG("obj.6072472a5933acd7", null))
 
 	if(!(locate(/obj/item/organ/eyes) in src))
-		. += span_info(LANG("obj.bb710eab", list(shown_name)))
+		. += span_info(LANG("obj.bb710eabf83a9b89", list(shown_name)))
 
 	if(!(locate(/obj/item/organ/ears) in src))
-		. += span_info(LANG("obj.a7327ecc", list(shown_name)))
+		. += span_info(LANG("obj.a7327ecc494bea32", list(shown_name)))
 
 	if(!(locate(/obj/item/organ/tongue) in src))
-		. += span_info(LANG("obj.31b0f39d", list(shown_name)))
+		. += span_info(LANG("obj.31b0f39de3d77122", list(shown_name)))
 
 /obj/item/bodypart/head/proc/get_face_name()
 	if (HAS_TRAIT(src, TRAIT_DISFIGURED))
@@ -164,10 +164,10 @@
 
 /obj/item/bodypart/head/drop_organs(mob/user, violent_removal)
 	if(user)
-		user.visible_message(span_warning(LANG("obj.f297a76c", list(user, src))), span_notice(LANG("obj.6c7d5582", list(src))))
+		user.visible_message(span_warning(LANG("obj.f297a76ce2ff1c8f", list(user, src))), span_notice(LANG("obj.6c7d5582f68480b4", list(src))))
 	var/obj/item/organ/brain/brain = locate(/obj/item/organ/brain) in src
 	if(brain && violent_removal && prob(90)) //ghetto surgery can damage the brain.
-		to_chat(user, span_warning(LANG("obj.b4847c81", list(brain))))
+		to_chat(user, span_warning(LANG("obj.b4847c81814cf31a", list(brain))))
 		brain.set_organ_damage(brain.maxHealth)
 	return ..()
 

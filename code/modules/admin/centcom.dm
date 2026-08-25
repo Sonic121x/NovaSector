@@ -5,7 +5,7 @@
 		return
 
 	if(!CONFIG_GET(string/centcom_ban_db))
-		to_chat(usr, span_warning(LANG("datum.c6c3ded5", null)))
+		to_chat(usr, span_warning(LANG("datum.c6c3ded5c18242a3", null)))
 		return
 
 	// Make the request
@@ -69,7 +69,7 @@
 		return
 
 	if(!CONFIG_GET(string/centcom_ban_db))
-		to_chat(usr, span_warning(LANG("datum.c6c3ded5", null)))
+		to_chat(usr, span_warning(LANG("datum.c6c3ded5c18242a3", null)))
 		return
 
 	// Make the request

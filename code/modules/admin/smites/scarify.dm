@@ -6,8 +6,8 @@
 /datum/smite/scarify/effect(client/user, mob/living/target)
 	. = ..()
 	if(!iscarbon(target))
-		to_chat(user, span_warning(LANG("datum.0c41c4cf", null)), confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.0c41c4cfc5eec94d", null)), confidential = TRUE)
 		return
 	var/mob/living/carbon/dude = target
 	dude.generate_fake_scars(rand(1, 4))
-	to_chat(dude, span_warning(LANG("datum.c7eb6eca", null)))
+	to_chat(dude, span_warning(LANG("datum.c7eb6ecae2b819af", null)))

@@ -46,7 +46,7 @@ clamping the Knockback_Force value below. */
 	var/target_angle = get_angle(attacktarget, usertarget)
 	var/move_target = get_ranged_target_turf(usertarget, angle2dir(target_angle), knockback_force)
 	usertarget.throw_at(move_target, knockback_force, knockback_speed)
-	usertarget.visible_message(span_warning(LANG("datum.f38273a1", list(usertarget, I, attacktarget))), span_warning(LANG("datum.7a528096", list(I, attacktarget))))
+	usertarget.visible_message(span_warning(LANG("datum.f38273a1c601a3b9", list(usertarget, I, attacktarget))), span_warning(LANG("datum.7a528096f03f91de", list(I, attacktarget))))
 
 /datum/element/selfknockback/proc/Projectile_SelfKnockback(obj/projectile/proj)
 	SIGNAL_HANDLER

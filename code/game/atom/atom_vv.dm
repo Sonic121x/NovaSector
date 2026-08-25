@@ -10,7 +10,7 @@
 	if(!ismovable(src))
 		var/turf/curturf = get_turf(src)
 		if(curturf)
-			. += LANG("atom.a98f9a3a", list(HrefToken(), curturf.x, curturf.y, curturf.z))
+			. += LANG("atom.a98f9a3a13c7ce91", list(HrefToken(), curturf.x, curturf.y, curturf.z))
 	VV_DROPDOWN_OPTION(VV_HK_MODIFY_TRANSFORM, "Modify Transform")
 	VV_DROPDOWN_OPTION(VV_HK_DEBUG_APPEARANCE, "Debug Appearance")
 	VV_DROPDOWN_OPTION(VV_HK_DOWNLOAD_SPRITE, "Download Sprite")
@@ -36,7 +36,7 @@
 
 	if(href_list[VV_HK_ADD_REAGENT])
 		if(!reagents)
-			var/amount = tgui_input_number(usr, LANG("atom.5e9da115", list(src)), LANG("atom.79ad2c0f", null), 50)
+			var/amount = tgui_input_number(usr, LANG("atom.5e9da115acc0fdda", list(src)), LANG("atom.79ad2c0f9c08fe47", null), 50)
 			if(!amount)
 				return
 			create_reagents(amount)
@@ -45,11 +45,11 @@
 			return
 
 		var/chosen_id
-		switch(tgui_alert(usr, LANG("atom.dc95397f", null), LANG("atom.a21ddbb3", null), list("Search", "Choose from a list", "I'm feeling lucky")))
+		switch(tgui_alert(usr, LANG("atom.dc95397ff9abf213", null), LANG("atom.a21ddbb3b32efd08", null), list("Search", "Choose from a list", "I'm feeling lucky")))
 			if("Search")
 				var/valid_id
 				while(!valid_id)
-					chosen_id = tgui_input_text(usr, LANG("atom.d4cf7df6", null), LANG("atom.13046490", null))
+					chosen_id = tgui_input_text(usr, LANG("atom.d4cf7df60e6e7714", null), LANG("atom.130464905b6cdd46", null))
 					if(isnull(chosen_id)) //Get me out of here!
 						break
 					if (!ispath(text2path(chosen_id)))
@@ -59,15 +59,15 @@
 					else
 						valid_id = TRUE
 					if(!valid_id)
-						to_chat(usr, span_warning(LANG("atom.66e644d8", null)))
+						to_chat(usr, span_warning(LANG("atom.66e644d87af88862", null)))
 			if("Choose from a list")
-				chosen_id = tgui_input_list(usr, LANG("atom.2aa83079", null), LANG("atom.a34b595f", null), sort_list(subtypesof(/datum/reagent), GLOBAL_PROC_REF(cmp_typepaths_asc)))
+				chosen_id = tgui_input_list(usr, LANG("atom.2aa830799bc2e4a5", null), LANG("atom.a34b595fc59be99a", null), sort_list(subtypesof(/datum/reagent), GLOBAL_PROC_REF(cmp_typepaths_asc)))
 			if("I'm feeling lucky")
 				chosen_id = pick(subtypesof(/datum/reagent))
 
 		if(!chosen_id)
 			return
-		var/amount = tgui_input_number(usr, LANG("atom.acdb4d7b", null), LANG("atom.3b3f4833", null), reagents.maximum_volume - reagents.total_volume, reagents.maximum_volume)
+		var/amount = tgui_input_number(usr, LANG("atom.acdb4d7b70fc1fdf", null), LANG("atom.3b3f4833177ca9c5", null), reagents.maximum_volume - reagents.total_volume, reagents.maximum_volume)
 		if(!amount)
 			return
 		reagents.add_reagent(chosen_id, amount)
@@ -112,53 +112,53 @@
 		message_admins(span_notice(message))
 
 	if(href_list[VV_HK_ADD_AI])
-		var/result = tgui_input_list(usr, LANG("atom.640de2a9", null), LANG("atom.fff81a5e", null), sort_list(subtypesof(/datum/ai_controller), GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		var/result = tgui_input_list(usr, LANG("atom.640de2a9789f45be", null), LANG("atom.fff81a5e17e1c0ba", null), sort_list(subtypesof(/datum/ai_controller), GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		if(result)
 			ai_controller = new result(src)
 
 	if(href_list[VV_HK_MODIFY_TRANSFORM])
-		var/result = input(usr, LANG("atom.87afafb8", null),LANG("atom.502f2082", null)) as null|anything in list("Scale","Translate","Rotate","Shear")
+		var/result = input(usr, LANG("atom.87afafb85017fc9a", null),LANG("atom.502f20827e2d9f5c", null)) as null|anything in list("Scale","Translate","Rotate","Shear")
 		var/matrix/M = transform
 		if(!result)
 			return
 		switch(result)
 			if("Scale")
-				var/x = input(usr, LANG("atom.53fee51e", null),LANG("atom.502f2082", null)) as null|num
-				var/y = input(usr, LANG("atom.d8cf5989", null),LANG("atom.502f2082", null)) as null|num
+				var/x = input(usr, LANG("atom.53fee51eba3750b6", null),LANG("atom.502f20827e2d9f5c", null)) as null|num
+				var/y = input(usr, LANG("atom.d8cf59895fb198fd", null),LANG("atom.502f20827e2d9f5c", null)) as null|num
 				if(isnull(x) || isnull(y))
 					return
 				transform = M.Scale(x,y)
 			if("Translate")
-				var/x = input(usr, LANG("atom.ef5f1db9", null),LANG("atom.502f2082", null)) as null|num
-				var/y = input(usr, LANG("atom.0163f037", null),LANG("atom.502f2082", null)) as null|num
+				var/x = input(usr, LANG("atom.ef5f1db9a3653d80", null),LANG("atom.502f20827e2d9f5c", null)) as null|num
+				var/y = input(usr, LANG("atom.0163f037773e8390", null),LANG("atom.502f20827e2d9f5c", null)) as null|num
 				if(isnull(x) || isnull(y))
 					return
 				transform = M.Translate(x,y)
 			if("Shear")
-				var/x = input(usr, LANG("atom.53fee51e", null),LANG("atom.502f2082", null)) as null|num
-				var/y = input(usr, LANG("atom.d8cf5989", null),LANG("atom.502f2082", null)) as null|num
+				var/x = input(usr, LANG("atom.53fee51eba3750b6", null),LANG("atom.502f20827e2d9f5c", null)) as null|num
+				var/y = input(usr, LANG("atom.d8cf59895fb198fd", null),LANG("atom.502f20827e2d9f5c", null)) as null|num
 				if(isnull(x) || isnull(y))
 					return
 				transform = M.Shear(x,y)
 			if("Rotate")
-				var/angle = input(usr, LANG("atom.0b9647f1", null),LANG("atom.502f2082", null)) as null|num
+				var/angle = input(usr, LANG("atom.0b9647f12d1e9115", null),LANG("atom.502f20827e2d9f5c", null)) as null|num
 				if(isnull(angle))
 					return
 				transform = M.Turn(angle)
 		SEND_SIGNAL(src, COMSIG_ATOM_VV_MODIFY_TRANSFORM)
 
 	if(href_list[VV_HK_SPIN_ANIMATION])
-		var/num_spins = input(usr, LANG("atom.548a341c", null), LANG("atom.4979cc62", null)) in list("Yes", "No")
+		var/num_spins = input(usr, LANG("atom.548a341c4956beb9", null), LANG("atom.4979cc623c111693", null)) in list("Yes", "No")
 		if(num_spins == "No")
-			num_spins = input(usr, LANG("atom.7cdbbbf8", null), LANG("atom.4979cc62", null)) as null|num
+			num_spins = input(usr, LANG("atom.7cdbbbf8bf70b2f3", null), LANG("atom.4979cc623c111693", null)) as null|num
 		else
 			num_spins = -1
 		if(!num_spins)
 			return
-		var/spins_per_sec = input(usr, LANG("atom.7e3529c0", null), LANG("atom.4979cc62", null)) as null|num
+		var/spins_per_sec = input(usr, LANG("atom.7e3529c034285002", null), LANG("atom.4979cc623c111693", null)) as null|num
 		if(!spins_per_sec)
 			return
-		var/direction = input(usr, LANG("atom.0b76de35", null), LANG("atom.4979cc62", null)) in list("Clockwise", "Counter-clockwise")
+		var/direction = input(usr, LANG("atom.0b76de35fa4613b1", null), LANG("atom.4979cc623c111693", null)) in list("Clockwise", "Counter-clockwise")
 		switch(direction)
 			if("Clockwise")
 				direction = 1
@@ -171,15 +171,15 @@
 	if(href_list[VV_HK_STOP_ALL_ANIMATIONS])
 		// Critical: Needs to be accessible in case of animation spam breaking shit
 		// Do not TGUIfy
-		var/result = input(usr, LANG("atom.77344162", null), LANG("atom.aa79af7e", null)) in list("Yes", "No")
+		var/result = input(usr, LANG("atom.773441628de640b4", null), LANG("atom.aa79af7e71ee3093", null)) in list("Yes", "No")
 		if(result == "Yes")
 			animate(src, transform = null, flags = ANIMATION_END_NOW) // Literally just fucking stop animating entirely because admin said so
 		return
 
 	if(href_list[VV_HK_AUTO_RENAME])
-		var/newname = input(usr, LANG("atom.04b1bd5b", null), LANG("atom.19468889", null)) as null|text
+		var/newname = input(usr, LANG("atom.04b1bd5bd5140e8d", null), LANG("atom.19468889a14b0a8a", null)) as null|text
 		// Check the new name against the chat filter. If it triggers the IC chat filter, give an option to confirm.
-		if(newname && !(is_ic_filtered(newname) || is_soft_ic_filtered(newname) && tgui_alert(usr, LANG("atom.9b4d40a4", null), LANG("atom.fc9f6a2c", null), list("Confirm", "Cancel")) != "Confirm"))
+		if(newname && !(is_ic_filtered(newname) || is_soft_ic_filtered(newname) && tgui_alert(usr, LANG("atom.9b4d40a4361fec9f", null), LANG("atom.fc9f6a2c02e9e4c4", null), list("Confirm", "Cancel")) != "Confirm"))
 			vv_auto_rename(newname)
 
 	if(href_list[VV_HK_EDIT_FILTERS])

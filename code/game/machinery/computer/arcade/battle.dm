@@ -125,8 +125,8 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, LANG("obj.a4c5f0f1", null))
-	to_chat(user, span_warning(LANG("obj.a9f0bf6d", null)))
+	balloon_alert(user, LANG("obj.a4c5f0f137202d15", null))
+	to_chat(user, span_warning(LANG("obj.a9f0bf6d8a621686", null)))
 	setup_new_opponent(user)
 	feedback_message = "If you die in the game, you die for real!"
 	SStgui.update_uis(src)
@@ -228,7 +228,7 @@
 				var/current_world = all_worlds.Find(latest_unlocked_world)
 				latest_unlocked_world = all_worlds[current_world + 1]
 				ui_panel = UI_PANEL_WORLD_MAP
-				say(LANG("obj.a5cdbf64", list(latest_unlocked_world)))
+				say(LANG("obj.a5cdbf64696f0709", list(latest_unlocked_world)))
 		enemies_defeated++
 	if(obj_flags & EMAGGED)
 		obj_flags &= ~EMAGGED
@@ -268,7 +268,7 @@
 	if(player_current_hp <= 0)
 		ui_panel = UI_PANEL_GAMEOVER
 		feedback_message = "GAME OVER."
-		say(LANG("obj.f2b37538", null))
+		say(LANG("obj.f2b375389a5d4e65", null))
 		playsound(loc, 'sound/machines/arcade/lose.ogg', 40, TRUE)
 		lose_game(user)
 		return
@@ -455,7 +455,7 @@
 			switch(action)
 				if("sleep")
 					if(player_gold < DEFAULT_ITEM_PRICE / 2)
-						say(LANG("obj.553fb1a1", null))
+						say(LANG("obj.553fb1a1fa5b38cf", null))
 						return TRUE
 					player_gold -= DEFAULT_ITEM_PRICE / 2
 					playsound(loc, 'sound/vehicles/mecha/skyfall_power_up.ogg', 40)
@@ -467,15 +467,15 @@
 					// 会送中文进来，此处必须先兜一次逆向反查、再拒绝未知键——原来直接 `gear.world_available`
 					// 在查不到时是 null 解引用 runtime。ORIGINAL: var/datum/battle_arcade_gear/gear = battle_arcade_gear_list[params["purchasing_item"]]
 					var/purchasing_item = params["purchasing_item"]
-					var/datum/battle_arcade_gear/gear = battle_arcade_gear_list[purchasing_item] || battle_arcade_gear_list[lang_unreverse_text(purchasing_item)]
+					var/datum/battle_arcade_gear/gear = battle_arcade_gear_list[purchasing_item]
 					if(isnull(gear))
 						return TRUE
 					// NOVA EDIT CHANGE END
 					if(latest_unlocked_world != gear.world_available || equipped_gear[gear.slot] == gear)
-						say(LANG("obj.bbce64d1", null))
+						say(LANG("obj.bbce64d1440622f0", null))
 						return TRUE
 					if(player_gold < (DEFAULT_ITEM_PRICE * all_worlds[latest_unlocked_world]))
-						say(LANG("obj.1dda4b33", null))
+						say(LANG("obj.1dda4b330a4578f5", null))
 						return TRUE
 					player_gold -= DEFAULT_ITEM_PRICE * all_worlds[latest_unlocked_world]
 					equipped_gear[gear.slot] = gear
@@ -489,7 +489,7 @@
 					var/world_travelling = all_worlds.Find(params["selected_arena"])
 					var/max_unlocked_worlds = all_worlds.Find(latest_unlocked_world)
 					if(world_travelling > max_unlocked_worlds)
-						say(LANG("obj.2070d72c", null))
+						say(LANG("obj.2070d72ce76d055d", null))
 						return TRUE
 					player_current_world = all_worlds[world_travelling]
 					setup_new_opponent(gamer)
@@ -533,7 +533,7 @@
 					return TRUE
 				if(BATTLE_ARCADE_PLAYER_HEAVY_ATTACK)
 					if(player_current_mp < SPELL_MP_COST)
-						say(LANG("obj.dc280b1c", null))
+						say(LANG("obj.dc280b1c60e79cff", null))
 						player_turn = TRUE
 						return TRUE
 					player_current_mp -= SPELL_MP_COST
@@ -541,7 +541,7 @@
 					return TRUE
 				if(BATTLE_ARCADE_PLAYER_COUNTERATTACK)
 					if(player_current_mp < SPELL_MP_COST)
-						say(LANG("obj.75cafd82", null))
+						say(LANG("obj.75cafd82f4d88993", null))
 						player_turn = TRUE
 						return TRUE
 					player_current_mp -= SPELL_MP_COST

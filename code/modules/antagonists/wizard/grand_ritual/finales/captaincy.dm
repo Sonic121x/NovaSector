@@ -18,7 +18,7 @@
 		crewmate.Unconscious(3 SECONDS) // Everyone falls unconscious but not everyone gets told about a new captain
 		if (crewmate == invoker || IS_HUMAN_INVADER(crewmate))
 			continue
-		to_chat(crewmate, span_notice(LANG("datum.175f0f20", list(span_hypnophrase("I'm so glad that [invoker.real_name] is our legally appointed Captain!")))))
+		to_chat(crewmate, span_notice(LANG("datum.175f0f209ec3dae7", list(span_hypnophrase("I'm so glad that [invoker.real_name] is our legally appointed Captain!")))))
 		if (is_captain_job(crewmate.mind.assigned_role))
 			former_captains += crewmate
 			demote_to_assistant(crewmate)
@@ -28,7 +28,7 @@
 
 	dress_candidate(invoker)
 	GLOB.manifest.modify(invoker.real_name, JOB_CAPTAIN, JOB_CAPTAIN)
-	minor_announce(LANG("datum.dec8c76d", list(invoker.real_name)))
+	minor_announce(LANG("datum.dec8c76d1a6e3362", list(invoker.real_name)))
 
 	// Enlist some crew to try and restore the natural order
 	for (var/mob/living/carbon/human/former_captain as anything in former_captains)

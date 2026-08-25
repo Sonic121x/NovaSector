@@ -22,16 +22,15 @@
 
 	switch(severity)
 		if(EMP_HEAVY)
-			to_chat(owner, span_warning(LANG("obj.1193783a", null)))
+			to_chat(owner, span_warning(LANG("obj.1193783a658a32ef", null)))
 			apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 		if(EMP_LIGHT)
-			to_chat(owner, span_warning(LANG("obj.14f596a9", null)))
+			to_chat(owner, span_warning(LANG("obj.14f596a92af5a57b", null)))
 			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 
 /datum/design/synth_heart
 	name = "Hydraulic Pump Engine"
 	desc = "An electronic device that handles the hydraulic pumps, powering one's robotic limbs. Without this, synthetics are unable to move."
-	id = "synth_heart"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

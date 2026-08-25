@@ -113,26 +113,26 @@
 
 /mob/living/basic/hivebot/mechanic/proc/repair_machine(obj/machinery/fixable)
 	if(fixable.get_integrity() >= fixable.max_integrity)
-		to_chat(src, span_warning(LANG("mob.a826384c", null)))
+		to_chat(src, span_warning(LANG("mob.a826384cee8089e3", null)))
 		return
 	if(!COOLDOWN_FINISHED(src, repair_cooldown))
-		balloon_alert(src, LANG("mob.ba1fd79a", null))
+		balloon_alert(src, LANG("mob.ba1fd79a5b8c3b5c", null))
 		return
 	fixable.repair_damage(fixable.max_integrity - fixable.get_integrity())
 	do_sparks(number = 3, cardinal_only = TRUE, source = fixable)
-	to_chat(src, span_warning(LANG("mob.94bfb26d", null)))
+	to_chat(src, span_warning(LANG("mob.94bfb26dd2b1c469", null)))
 	COOLDOWN_START(src, repair_cooldown, 50 SECONDS)
 
 /mob/living/basic/hivebot/mechanic/proc/repair_hivebot(mob/living/basic/bot_target)
 	if(bot_target.health >= bot_target.maxHealth)
-		to_chat(src, span_warning(LANG("mob.53696491", null)))
+		to_chat(src, span_warning(LANG("mob.536964912ecc9ea2", null)))
 		return
 	if(!COOLDOWN_FINISHED(src, repair_cooldown))
-		balloon_alert(src, LANG("mob.ba1fd79a", null))
+		balloon_alert(src, LANG("mob.ba1fd79a5b8c3b5c", null))
 		return
 	bot_target.revive(HEAL_ALL)
 	do_sparks(number = 3, cardinal_only = TRUE, source = bot_target)
-	to_chat(src, span_warning(LANG("mob.94bfb26d", null)))
+	to_chat(src, span_warning(LANG("mob.94bfb26dd2b1c469", null)))
 	COOLDOWN_START(src, repair_cooldown, 50 SECONDS)
 
 /obj/item/ammo_casing/hivebot

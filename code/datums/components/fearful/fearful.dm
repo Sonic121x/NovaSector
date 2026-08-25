@@ -133,15 +133,15 @@
 		return
 
 	if(terror_buildup >= TERROR_BUILDUP_HEART_ATTACK)
-		examine_list += span_danger(LANG("datum.6d974458", list(source.p_They(), source.p_are())))
+		examine_list += span_danger(LANG("datum.6d97445804b60a21", list(source.p_They(), source.p_are())))
 	else if(terror_buildup > TERROR_BUILDUP_PANIC)
-		examine_list += span_boldwarning(LANG("datum.7826c2b3", list(source.p_They(), source.p_are())))
+		examine_list += span_boldwarning(LANG("datum.7826c2b338f66520", list(source.p_They(), source.p_are())))
 	else if(terror_buildup >= TERROR_BUILDUP_TERROR)
-		examine_list += span_boldwarning(LANG("datum.1dd7ce84", list(source, source.p_They(), source.p_are())))
+		examine_list += span_boldwarning(LANG("datum.1dd7ce84aa614c19", list(source, source.p_They(), source.p_are())))
 	else if(terror_buildup >= TERROR_BUILDUP_FEAR)
-		examine_list += span_warning(LANG("datum.a701d296", list(source, capitalize(source.p_are()), source.p_they())))
+		examine_list += span_warning(LANG("datum.a701d296880c1ea9", list(source, capitalize(source.p_are()), source.p_they())))
 	else if (terror_buildup)
-		examine_list += span_smallnotice(LANG("datum.ada20494", list(source, source.p_They())))
+		examine_list += span_smallnotice(LANG("datum.ada2049471a89909", list(source, source.p_They())))
 
 /datum/component/fearful/proc/comfort_owner(mob/living/carbon/source, mob/living/hugger)
 	SIGNAL_HANDLER
@@ -163,9 +163,9 @@
 			source.Knockdown(0.5 SECONDS)
 			terror_buildup += HUG_TERROR_AMOUNT
 			source.visible_message(
-				span_warning(LANG("datum.8d88e3d8", list(source, hugger, hugger.p_their(), source.p_them()))),
-				span_boldwarning(LANG("datum.a4e9fc9a", null)),
-				span_hear(LANG("datum.ca3e82f1", null)),
+				span_warning(LANG("datum.8d88e3d87b8e3dac", list(source, hugger, hugger.p_their(), source.p_them()))),
+				span_boldwarning(LANG("datum.a4e9fc9ae1e9720a", null)),
+				span_hear(LANG("datum.ca3e82f1e88bb972", null)),
 				)
 			return COMPONENT_BLOCK_MISC_HELP
 
@@ -176,17 +176,17 @@
 	if (hug_buildup > 0)
 		terror_buildup += hug_buildup
 		source.visible_message(
-			span_warning(LANG("datum.3d251bff", list(source, hugger, source.p_them()))),
-			span_boldwarning(LANG("datum.a07b5488", list(hugger))),
-			span_hear(LANG("datum.ca3e82f1", null)),
+			span_warning(LANG("datum.3d251bffb70baf2e", list(source, hugger, source.p_them()))),
+			span_boldwarning(LANG("datum.a07b54885a6ff63a", list(hugger))),
+			span_hear(LANG("datum.ca3e82f1e88bb972", null)),
 			)
 		return COMPONENT_BLOCK_MISC_HELP
 
 	if(terror_buildup >= TERROR_BUILDUP_TERROR)
 		source.visible_message(
-			span_notice(LANG("datum.74f8d4ef", list(source, hugger, source.p_them()))),
-			span_nicegreen(LANG("datum.b8be0ae7", list(hugger))),
-			span_hear(LANG("datum.5197d49c", null)),
+			span_notice(LANG("datum.74f8d4ef5393446a", list(source, hugger, source.p_them()))),
+			span_nicegreen(LANG("datum.b8be0ae70eac993e", list(hugger))),
+			span_hear(LANG("datum.5197d49ca95097c1", null)),
 		)
 	terror_buildup -= HUG_TERROR_AMOUNT
 

@@ -101,7 +101,7 @@
 	if(prob(hitting_projectile.armour_penetration) || (hitting_projectile.armor_flag != BOMB && hitting_projectile.armor_flag != ENERGY))
 		return NONE
 
-	visible_message(span_danger(LANG("mob.b537e181", list(hitting_projectile, source))))
+	visible_message(span_danger(LANG("mob.b537e18148b83861", list(hitting_projectile, source))))
 	return COMPONENT_BULLET_BLOCKED
 
 /mob/living/basic/mining/goldgrub/proc/barf_contents(gibbed)
@@ -110,7 +110,7 @@
 		ore.forceMove(loc)
 
 	if(!gibbed)
-		visible_message(span_danger(LANG("mob.f2459977", list(src))))
+		visible_message(span_danger(LANG("mob.f2459977805002f7", list(src))))
 
 /mob/living/basic/mining/goldgrub/proc/generate_loot()
 	var/loot_amount = rand(1,3)
@@ -147,16 +147,6 @@
 		eggs_added_from_eating = 1,\
 		max_eggs_held = 1,\
 	)
-
-/mob/living/basic/mining/goldgrub/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	if(!istype(arrived, /obj/item/stack/ore))
-		return
-	if(!can_lay_eggs)
-		return
-	if(!istype(arrived, /obj/item/stack/ore/bluespace_crystal) || prob(60))
-		return
-	new /obj/item/food/egg/green/grub_egg(get_turf(src))
 
 /mob/living/basic/mining/goldgrub/update_overlays()
 	. = ..()

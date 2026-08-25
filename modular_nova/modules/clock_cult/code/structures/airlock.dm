@@ -40,7 +40,7 @@
 	else
 		user.Paralyze(20)
 		user.electrocute_act(25, src, 1, SHOCK_NOGLOVES|SHOCK_SUPPRESS_MESSAGE)
-		to_chat(user, span_warning(LANG("obj.17e56ce0", list(src))))
+		to_chat(user, span_warning(LANG("obj.17e56ce0d136fd38", list(src))))
 		return FALSE
 
 

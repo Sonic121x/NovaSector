@@ -37,7 +37,7 @@
 	var/honorific_title
 
 /obj/item/card/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.84d2df68", list(user, user.p_their(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.84d2df68e9cfefa9", list(user, user.p_their(), src, user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/card/update_overlays()
@@ -568,7 +568,7 @@
 		var/minor
 		if(registered_name && registered_age && registered_age < AGE_MINOR)
 			minor = " <b>[registered_age]</b>" //NOVA EDIT CHANGE
-		user.visible_message(span_notice(LANG("obj.b087d486", list(user, icon2html(src, viewers(user)), src.name, minor))), span_notice(LANG("obj.faf1c563", list(src.name, minor))))
+		user.visible_message(span_notice(LANG("obj.b087d486e0212498", list(user, icon2html(src, viewers(user)), src.name, minor))), span_notice(LANG("obj.faf1c56333c2bf8d", list(src.name, minor))))
 	add_fingerprint(user)
 
 /obj/item/card/id/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
@@ -612,11 +612,11 @@
 
 /obj/item/card/id/proc/try_project_paystand(mob/user, turf/target)
 	if(!COOLDOWN_FINISHED(src, last_holopay_projection))
-		balloon_alert(user, LANG("obj.29fe70af", null))
+		balloon_alert(user, LANG("obj.29fe70af0644addc", null))
 		return
 	if(!can_be_used_in_payment(user))
-		balloon_alert(user, LANG("obj.71aa69ba", null))
-		to_chat(user, span_warning(LANG("obj.3cee2709", null)))
+		balloon_alert(user, LANG("obj.71aa69ba23c1d597", null))
+		to_chat(user, span_warning(LANG("obj.3cee2709cc47e909", null)))
 		return
 	/// Determines where the holopay will be placed based on tile contents
 	var/turf/projection
@@ -629,8 +629,8 @@
 	else if(can_proj_holopay(user_loc))
 		projection = user_loc
 	if(!projection)
-		balloon_alert(user, LANG("obj.4f1f894b", null))
-		to_chat(user, span_warning(LANG("obj.19bb503d", null)))
+		balloon_alert(user, LANG("obj.4f1f894b1a60d89b", null))
+		to_chat(user, span_warning(LANG("obj.19bb503d7f425eae", null)))
 		return
 	/// Success: Valid tile for holopay placement
 	if(my_store)
@@ -697,7 +697,7 @@
  */
 /obj/item/card/id/proc/set_holopay_name(name)
 	if(length(name) < 3 || length(name) > MAX_NAME_LEN)
-		to_chat(usr, span_warning(LANG("obj.0a9ccf5d", null)))
+		to_chat(usr, span_warning(LANG("obj.0a9ccf5da621eff6", null)))
 	else
 		holopay_name = html_encode(trim(name, MAX_NAME_LEN))
 
@@ -715,7 +715,7 @@
 
 /obj/item/card/id/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/rupee))
-		to_chat(user, span_warning(LANG("obj.a13ccb63", null)))
+		to_chat(user, span_warning(LANG("obj.a13ccb63ec37d47a", null)))
 		return ITEM_INTERACT_BLOCKING
 	else if(iscash(tool))
 		return insert_money(tool, user) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
@@ -725,7 +725,7 @@
 		var/money_added = mass_insert_money(money_contained, user)
 		if(!money_added)
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.baa0f519", list(money_added, MONEY_NAME))))
+		to_chat(user, span_notice(LANG("obj.baa0f519efafb7f9", list(money_added, MONEY_NAME))))
 		return ITEM_INTERACT_SUCCESS
 	/// NOVA EDIT ADDITION START - Trim Tokens - Proc defined in modular_nova/modules/trim_tokens/code/cards_id.dm
 	else if(istype(tool, /obj/item/trim_token))
@@ -749,21 +749,21 @@
 		physical_currency = TRUE
 
 	if(!registered_account)
-		to_chat(user, span_warning(LANG("obj.036839d2", list(src, money))))
+		to_chat(user, span_warning(LANG("obj.036839d28b5990d6", list(src, money))))
 		return FALSE
 	var/cash_money = money.get_item_credit_value()
 	if(!cash_money)
-		to_chat(user, span_warning(LANG("obj.e8aecaae", list(money))))
+		to_chat(user, span_warning(LANG("obj.e8aecaaea1bea055", list(money))))
 		return FALSE
 	registered_account.adjust_money(cash_money, "System: Deposit")
 	SSblackbox.record_feedback("amount", "credits_inserted", cash_money)
 	log_econ("[cash_money] [MONEY_NAME] were inserted into [src] owned by [src.registered_name]")
 	if(physical_currency)
-		to_chat(user, span_notice(LANG("obj.9749c69b", list(money, src, cash_money, MONEY_NAME))))
+		to_chat(user, span_notice(LANG("obj.9749c69bfe432738", list(money, src, cash_money, MONEY_NAME))))
 	else
-		to_chat(user, span_notice(LANG("obj.648e8d5c", list(money, src, cash_money, MONEY_NAME))))
+		to_chat(user, span_notice(LANG("obj.648e8d5c85cfdf50", list(money, src, cash_money, MONEY_NAME))))
 
-	to_chat(user, span_notice(LANG("obj.2f1b7d6d", list(registered_account.account_balance, MONEY_SYMBOL))))
+	to_chat(user, span_notice(LANG("obj.2f1b7d6d4f575349", list(registered_account.account_balance, MONEY_SYMBOL))))
 	qdel(money)
 	return TRUE
 
@@ -776,7 +776,7 @@
  */
 /obj/item/card/id/proc/mass_insert_money(list/money, mob/user)
 	if(!registered_account)
-		to_chat(user, span_warning(LANG("obj.45e87ee3", list(src))))
+		to_chat(user, span_warning(LANG("obj.45e87ee38c70d2fc", list(src))))
 		return FALSE
 
 	if (!money || !length(money))
@@ -805,60 +805,60 @@
 /obj/item/card/id/proc/set_new_account(mob/living/user)
 	. = FALSE
 	if(loc != user)
-		to_chat(user, span_warning(LANG("obj.784bf3f1", null)))
+		to_chat(user, span_warning(LANG("obj.784bf3f12c4ef751", null)))
 		return FALSE
 	var/list/user_memories = user.mind.memories
 	var/datum/memory/key/account/user_key = user_memories[/datum/memory/key/account]
 	var/default_account = (istype(user_key) && user_key.remembered_id) || 11111
-	var/new_bank_id = tgui_input_number(user, LANG("obj.aee8f391", null), LANG("obj.0bb92a6b", null), default_account, 999999, 111111)
+	var/new_bank_id = tgui_input_number(user, LANG("obj.aee8f3915408165a", null), LANG("obj.0bb92a6b9dd4fba0", null), default_account, 999999, 111111)
 	if(!new_bank_id || QDELETED(user) || QDELETED(src) || issilicon(user) || !alt_click_can_use_id(user) || loc != user)
 		return FALSE
 	if(registered_account?.account_id == new_bank_id)
-		to_chat(user, span_warning(LANG("obj.f06b127d", null)))
+		to_chat(user, span_warning(LANG("obj.f06b127d33eaa6bd", null)))
 		return FALSE
 	var/datum/bank_account/account = SSeconomy.bank_accounts_by_id["[new_bank_id]"]
 	if(isnull(account))
-		to_chat(user, span_warning(LANG("obj.e6775559", null)))
+		to_chat(user, span_warning(LANG("obj.e6775559d286ce60", null)))
 		return FALSE
 	set_account(account, transfer_funds = TRUE)
-	to_chat(user, span_notice(LANG("obj.8944d2e3", list(account.account_balance, MONEY_NAME))))
+	to_chat(user, span_notice(LANG("obj.8944d2e37e504535", list(account.account_balance, MONEY_NAME))))
 	return TRUE
 
 /obj/item/card/id/click_alt(mob/living/user)
 	if(!alt_click_can_use_id(user))
 		return NONE
 	if (LAZYLEN(registered_account.being_dumped))
-		registered_account.bank_card_talk(span_warning(LANG("obj.9dff87ac", null)), TRUE)
+		registered_account.bank_card_talk(span_warning(LANG("obj.9dff87ac5a1848b6", null)), TRUE)
 		return CLICK_ACTION_SUCCESS
 	if(registered_account.account_debt)
-		var/choice = tgui_alert(user, LANG("obj.2264b9a7", null), LANG("obj.02d6f4c5", null), list("Withdraw", "Pay Debt"))
+		var/choice = tgui_alert(user, LANG("obj.2264b9a7a8d3de97", null), LANG("obj.02d6f4c552b27c8a", null), list("Withdraw", "Pay Debt"))
 		if(!choice || QDELETED(user) || QDELETED(src) || !alt_click_can_use_id(user) || loc != user)
 			return CLICK_ACTION_BLOCKING
 		if(choice == "Pay Debt")
 			pay_debt(user)
 			return CLICK_ACTION_SUCCESS
 	if(loc != user)
-		to_chat(user, span_warning(LANG("obj.784bf3f1", null)))
+		to_chat(user, span_warning(LANG("obj.784bf3f12c4ef751", null)))
 		return CLICK_ACTION_BLOCKING
 	if(registered_account.replaceable && !registered_account.account_balance)
-		var/choice = tgui_alert(user, LANG("obj.e135a793", null), LANG("obj.02d6f4c5", null), list("Link Account", "Leave Unassigned"))
+		var/choice = tgui_alert(user, LANG("obj.e135a7939d152777", null), LANG("obj.02d6f4c552b27c8a", null), list("Link Account", "Leave Unassigned"))
 		if(!choice || QDELETED(user) || QDELETED(src) || !alt_click_can_use_id(user) || loc != user)
 			return CLICK_ACTION_BLOCKING
 		if(choice == "Link Account")
 			set_new_account(user)
 			return CLICK_ACTION_SUCCESS
-	var/amount_to_remove = tgui_input_number(user, LANG("obj.1db1578a", list(registered_account.account_balance, MONEY_SYMBOL)), LANG("obj.fe43b473", null), max_value = registered_account.account_balance)
+	var/amount_to_remove = tgui_input_number(user, LANG("obj.1db1578a9cf41e5c", list(registered_account.account_balance, MONEY_SYMBOL)), LANG("obj.fe43b473b8ccc1e9", null), max_value = registered_account.account_balance)
 	if(!amount_to_remove || QDELETED(user) || QDELETED(src) || issilicon(user) || loc != user)
 		return CLICK_ACTION_BLOCKING
 	if(!alt_click_can_use_id(user))
 		return CLICK_ACTION_BLOCKING
 	if(!registered_account.adjust_money(-amount_to_remove, "System: Withdrawal"))
 		var/difference = amount_to_remove - registered_account.account_balance
-		registered_account.bank_card_talk(span_warning(LANG("obj.4473ab22", list(difference, MONEY_NAME_AUTOPURAL(difference)))), TRUE)
+		registered_account.bank_card_talk(span_warning(LANG("obj.4473ab224cfa4a83", list(difference, MONEY_NAME_AUTOPURAL(difference)))), TRUE)
 		return CLICK_ACTION_BLOCKING
 	var/obj/item/holochip/holochip = new (user.drop_location(), amount_to_remove)
 	user.put_in_hands(holochip)
-	to_chat(user, span_notice(LANG("obj.026d4b72", list(amount_to_remove, MONEY_NAME))))
+	to_chat(user, span_notice(LANG("obj.026d4b72b20eecf6", list(amount_to_remove, MONEY_NAME))))
 	SSblackbox.record_feedback("amount", "credits_removed", amount_to_remove)
 	log_econ("[amount_to_remove] [MONEY_NAME] were removed from [src] owned by [registered_name]")
 	return CLICK_ACTION_SUCCESS
@@ -871,7 +871,7 @@
 		set_new_account(user)
 
 /obj/item/card/id/proc/pay_debt(user)
-	var/amount_to_pay = tgui_input_number(user, LANG("obj.daf2cebb", list(registered_account.account_balance, MONEY_SYMBOL)), LANG("obj.e3e73480", null), max_value = min(registered_account.account_balance, registered_account.account_debt))
+	var/amount_to_pay = tgui_input_number(user, LANG("obj.daf2cebb09897ed3", list(registered_account.account_balance, MONEY_SYMBOL)), LANG("obj.e3e734807a998a1a", null), max_value = min(registered_account.account_balance, registered_account.account_debt))
 	if(!amount_to_pay || QDELETED(src) || loc != user || !alt_click_can_use_id(user))
 		return
 	var/prev_debt = registered_account.account_debt
@@ -888,25 +888,25 @@
 		return
 
 	if(registered_account && !isnull(registered_account.account_id))
-		. += LANG("obj.64d20363", list(registered_account.account_holder, registered_account.account_balance, MONEY_SYMBOL))
+		. += LANG("obj.64d2036319b47616", list(registered_account.account_holder, registered_account.account_balance, MONEY_SYMBOL))
 		if(ACCESS_COMMAND in access)
 			var/datum/bank_account/linked_dept = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
-			. += LANG("obj.736a52f8", list(lang_reverse_text(linked_dept.account_holder), linked_dept.account_balance, MONEY_SYMBOL)) // NOVA EDIT - i18n: 反查部门预算账户名(Command Budget 等)
+			. += LANG("obj.736a52f8d0ee4cf1", list(lang_reverse_text(linked_dept.account_holder), linked_dept.account_balance, MONEY_SYMBOL)) // NOVA EDIT - i18n: 反查部门预算账户名(Command Budget 等)
 	else
-		. += span_notice(LANG("obj.ff0f1597", null))
+		. += span_notice(LANG("obj.ff0f15976458ebea", null))
 
 	if(HAS_TRAIT(user, TRAIT_ID_APPRAISER))
 		. += HAS_TRAIT(src, TRAIT_JOB_FIRST_ID_CARD) ? span_boldnotice("Hmm... yes, this ID was issued from Central Command!") : span_boldnotice("This ID was created in this sector, not by Central Command.")
 		if(HAS_TRAIT(src, TRAIT_TASTEFULLY_THICK_ID_CARD) && (user.is_holding(src) || (IsReachableBy(user) && user.put_in_hands(src, ignore_animation = FALSE))))
 			ADD_TRAIT(src, TRAIT_NODROP, "psycho")
-			. += span_hypnophrase(LANG("obj.b2bcbd9f", null))
+			. += span_hypnophrase(LANG("obj.b2bcbd9f1c95b9de", null))
 			var/sound/slowbeat = sound('sound/effects/health/slowbeat.ogg', repeat = TRUE)
 			user.playsound_local(get_turf(src), slowbeat, 40, 0, channel = CHANNEL_HEARTBEAT, use_reverb = FALSE)
 			if(isliving(user))
 				var/mob/living/living_user = user
 				living_user.adjust_jitter(10 SECONDS)
 			addtimer(CALLBACK(src, PROC_REF(drop_card), user), 10 SECONDS)
-	. += span_notice(LANG("obj.48fad01f", null))
+	. += span_notice(LANG("obj.48fad01f9347f923", null))
 
 /obj/item/card/id/proc/drop_card(mob/user)
 	user.stop_sound_channel(CHANNEL_HEARTBEAT)
@@ -916,7 +916,7 @@
 	for(var/mob/living/carbon/human/viewing_mob in viewers(2, user))
 		if(IS_UNCONSCIOUS_OR_CRIT(viewing_mob) || viewing_mob == user)
 			continue
-		viewing_mob.say(LANG("obj.2a7c91b3", list(first_name(user.name))), forced = "psycho")
+		viewing_mob.say(LANG("obj.2a7c91b38fb667ec", list(first_name(user.name))), forced = "psycho")
 		break
 
 /obj/item/card/id/examine_more(mob/user)
@@ -924,33 +924,33 @@
 	if(!user.can_read(src))
 		return
 
-	. += span_notice(LANG("obj.c1961515", list(src)))
+	. += span_notice(LANG("obj.c1961515b2e91b6e", list(src)))
 
 	if(registered_age)
-		. += LANG("obj.8f92c333", list(registered_age, (registered_age < AGE_MINOR) ? "There's a holographic stripe that reads <b>[span_danger("'MINOR: DO NOT SERVE ALCOHOL OR TOBACCO'")]</b> along the bottom of the card." : ""))
+		. += LANG("obj.8f92c333263b86cc", list(registered_age, (registered_age < AGE_MINOR) ? "There's a holographic stripe that reads <b>[span_danger("'MINOR: DO NOT SERVE ALCOHOL OR TOBACCO'")]</b> along the bottom of the card." : ""))
 	if(registered_account)
 		if(registered_account.mining_points)
-			. += LANG("obj.9a12c1cc", list(registered_account.mining_points))
-		. += LANG("obj.64d20363", list(registered_account.account_holder, registered_account.account_balance, MONEY_SYMBOL))
+			. += LANG("obj.9a12c1ccf1805a6b", list(registered_account.mining_points))
+		. += LANG("obj.64d2036319b47616", list(registered_account.account_holder, registered_account.account_balance, MONEY_SYMBOL))
 		if(registered_account.account_debt)
-			. += span_warning(LANG("obj.125b11d6", list(registered_account.account_debt, MONEY_SYMBOL, 100*DEBT_COLLECTION_COEFF)))
+			. += span_warning(LANG("obj.125b11d690184b4c", list(registered_account.account_debt, MONEY_SYMBOL, 100*DEBT_COLLECTION_COEFF)))
 		if(registered_account.account_job)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
 			if(D)
-				. += LANG("obj.d59824b6", list(lang_reverse_text(D.account_holder), D.account_balance, MONEY_SYMBOL)) // NOVA EDIT - i18n: 反查部门预算账户名
-		. += span_info(LANG("obj.268a971c", null))
-		. += span_info(LANG("obj.581073e9", list(MONEY_NAME)))
+				. += LANG("obj.d59824b69d8f8535", list(lang_reverse_text(D.account_holder), D.account_balance, MONEY_SYMBOL)) // NOVA EDIT - i18n: 反查部门预算账户名
+		. += span_info(LANG("obj.268a971c4bb6866f", null))
+		. += span_info(LANG("obj.581073e958783d66", list(MONEY_NAME)))
 		if(registered_account.replaceable)
-			. += span_info(LANG("obj.779d8cdc", null))
+			. += span_info(LANG("obj.779d8cdcb999e8cf", null))
 		if(registered_account.civilian_bounty)
-			. += span_info(LANG("obj.0e0c8cb5", null))
+			. += span_info(LANG("obj.0e0c8cb528f556b7", null))
 			. += span_info("<i>[registered_account.bounty_text()]</i>")
-			. += span_info(LANG("obj.582b85d7", list(registered_account.bounty_num())))
-			. += span_info(LANG("obj.eb59093f", list(registered_account.bounty_value())))
+			. += span_info(LANG("obj.582b85d702f48a4e", list(registered_account.bounty_num())))
+			. += span_info(LANG("obj.eb59093f541cf4f1", list(registered_account.bounty_value())))
 		if(registered_account.account_holder == user.real_name)
-			. += span_boldnotice(LANG("obj.8c2f4fb1", null))
+			. += span_boldnotice(LANG("obj.8c2f4fb10f203fbe", null))
 	else
-		. += span_info(LANG("obj.f37c154f", null))
+		. += span_info(LANG("obj.f37c154fc4bd2cb9", null))
 
 	return .
 
@@ -1030,6 +1030,10 @@
 	return trim?.assignment || assignment
 
 /// Returns the trim sechud icon state.
+/obj/item/card/id/proc/get_trim_sechud_icon()
+	return trim?.sechud_icon || DEFAULT_HUDS_DMI
+
+/// Returns the trim sechud icon state.
 /obj/item/card/id/proc/get_trim_sechud_icon_state()
 	return trim?.sechud_icon_state || SECHUD_UNKNOWN
 
@@ -1043,11 +1047,11 @@
 		return
 
 	if(!trim)
-		balloon_alert(user, LANG("obj.3064988c", null))
+		balloon_alert(user, LANG("obj.3064988c6c141596", null))
 		return
 
 	if(!length(trim.honorifics))
-		balloon_alert(user, LANG("obj.61b9848b", null))
+		balloon_alert(user, LANG("obj.61b9848b7e300b04", null))
 		return
 
 	var/list/choices = list()
@@ -1056,7 +1060,7 @@
 		if(trim.honorific_positions & readable_names[i]) //If the positions list has the same bit value as the readable list.
 			choices += i
 
-	var/chosen_position = tgui_input_list(user, LANG("obj.9dc5bb17", null), LANG("obj.94949985", null), choices)
+	var/chosen_position = tgui_input_list(user, LANG("obj.9dc5bb1755b7913d", null), LANG("obj.949499857c63b849", null), choices)
 	if(user.incapacitated || !in_contents_of(user))
 		return
 	var/honorific_position_to_use = readable_names[chosen_position]
@@ -1065,25 +1069,25 @@
 	honorific_title = null //We reset this regardless so that we don't stack titles on accident.
 
 	if(honorific_position_to_use & HONORIFIC_POSITION_NONE)
-		balloon_alert(user, LANG("obj.713acf40", null))
+		balloon_alert(user, LANG("obj.713acf40661aa7ae", null))
 	else
-		var/new_honorific = tgui_input_list(user, LANG("obj.4fc9bd57", null), LANG("obj.1f5234e6", null), trim.honorifics)
+		var/new_honorific = tgui_input_list(user, LANG("obj.4fc9bd5745a2e8fd", null), LANG("obj.1f5234e67a070a3e", null), trim.honorifics)
 		if(!new_honorific || user.incapacitated || !in_contents_of(user))
 			return
 		chosen_honorific = new_honorific
 		switch(honorific_position_to_use)
 			if(HONORIFIC_POSITION_FIRST)
 				honorific_position = HONORIFIC_POSITION_FIRST
-				balloon_alert(user, LANG("obj.020aec31", null))
+				balloon_alert(user, LANG("obj.020aec31ba33b1bb", null))
 			if(HONORIFIC_POSITION_LAST)
 				honorific_position = HONORIFIC_POSITION_LAST
-				balloon_alert(user, LANG("obj.bc21fa4b", null))
+				balloon_alert(user, LANG("obj.bc21fa4b9b46f3da", null))
 			if(HONORIFIC_POSITION_FIRST_FULL)
 				honorific_position = HONORIFIC_POSITION_FIRST_FULL
-				balloon_alert(user, LANG("obj.f8e58b57", null))
+				balloon_alert(user, LANG("obj.f8e58b57d3a7dd3b", null))
 			if(HONORIFIC_POSITION_LAST_FULL)
 				honorific_position = HONORIFIC_POSITION_LAST_FULL
-				balloon_alert(user, LANG("obj.fa93d3ce", null))
+				balloon_alert(user, LANG("obj.fa93d3cea69f6a05", null))
 
 	update_label()
 
@@ -1153,7 +1157,7 @@
 	if(department_account)
 		set_account(department_account)
 		name = "departmental card ([department_name])"
-		desc = LANG("obj.be0c5ba8", list(department_name))
+		desc = LANG("obj.be0c5ba8bafe8152", list(department_name))
 	SSeconomy.dep_cards += src
 
 /obj/item/card/id/departmental_budget/Destroy()
@@ -1169,7 +1173,7 @@
 	icon_state = "car_budget" //saving up for a new tesla
 
 /obj/item/card/id/departmental_budget/click_alt(mob/living/user)
-	registered_account.bank_card_talk(span_warning(LANG("obj.fb3b9182", null)), TRUE) //prevents the vault bank machine being useless and putting money from the budget to your card to go over personal crates
+	registered_account.bank_card_talk(span_warning(LANG("obj.fb3b9182add1ea7c", null)), TRUE) //prevents the vault bank machine being useless and putting money from the budget to your card to go over personal crates
 	return CLICK_ACTION_BLOCKING
 
 /obj/item/card/id/advanced
@@ -1234,9 +1238,9 @@
 
 /obj/item/card/id/advanced/proc/recolor_id(mob/living/user, obj/item/toy/crayon/our_crayon)
 	if(our_crayon.is_capped)
-		balloon_alert(user, LANG("obj.0c73c2ec", null))
+		balloon_alert(user, LANG("obj.0c73c2ec9ac951ca", null))
 		return ITEM_INTERACT_BLOCKING
-	var/choice = tgui_alert(usr, LANG("obj.047f4295", null), LANG("obj.d0426924", null), list("Department", "Subdepartment"))
+	var/choice = tgui_alert(usr, LANG("obj.047f4295b7b9362e", null), LANG("obj.d04269242d873651", null), list("Department", "Subdepartment"))
 	if(isnull(choice) \
 		|| QDELETED(user) \
 		|| QDELETED(src) \
@@ -1251,12 +1255,12 @@
 			if(!do_after(user, 2 SECONDS))
 				return ITEM_INTERACT_BLOCKING
 			department_color_override = our_crayon.paint_color
-			balloon_alert(user, LANG("obj.620759a1", null))
+			balloon_alert(user, LANG("obj.620759a16f647f19", null))
 		if("Subdepartment")
 			if(!do_after(user, 1 SECONDS))
 				return ITEM_INTERACT_BLOCKING
 			subdepartment_color_override = our_crayon.paint_color
-			balloon_alert(user, LANG("obj.620759a1", null))
+			balloon_alert(user, LANG("obj.620759a16f647f19", null))
 	update_icon()
 	return ITEM_INTERACT_SUCCESS
 
@@ -1529,7 +1533,7 @@
 /obj/item/card/id/advanced/debug/alt_click_can_use_id(mob/living/user)
 	. = ..()
 	if(!. || isnull(user.client?.holder)) // admins only as a safety so people don't steal all the dollars. spawn in a holochip if you want them to get some dosh
-		registered_account.bank_card_talk(span_warning(LANG("obj.b62133d1", null)), force = TRUE)
+		registered_account.bank_card_talk(span_warning(LANG("obj.b62133d1d4b16a45", null)), force = TRUE)
 		return FALSE
 
 	return TRUE
@@ -1537,7 +1541,7 @@
 /obj/item/card/id/advanced/debug/can_be_used_in_payment(mob/living/user)
 	. = ..()
 	if(!. || isnull(user.client?.holder))
-		registered_account.bank_card_talk(span_warning(LANG("obj.b62133d1", null)), force = TRUE)
+		registered_account.bank_card_talk(span_warning(LANG("obj.b62133d1d4b16a45", null)), force = TRUE)
 		return FALSE
 
 	return TRUE
@@ -1581,10 +1585,10 @@
 /obj/item/card/id/advanced/prisoner/proc/set_sentence_time(mob/living/user, obj/item/card/id/our_card)
 	var/list/id_access = our_card.GetAccess()
 	if(!(ACCESS_BRIG in id_access))
-		balloon_alert(user, LANG("obj.1bd3ceeb", null))
+		balloon_alert(user, LANG("obj.1bd3ceeb3a56d0d5", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.is_holding(src))
-		to_chat(user, span_warning(LANG("obj.784bf3f1", null)))
+		to_chat(user, span_warning(LANG("obj.784bf3f12c4ef751", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(timed) // If we already have a time set, reset the card
@@ -1592,19 +1596,19 @@
 		time_to_assign = initial(time_to_assign)
 		registered_name = initial(registered_name)
 		STOP_PROCESSING(SSobj, src)
-		to_chat(user, LANG("obj.ca977e40", null))
+		to_chat(user, LANG("obj.ca977e4052bf7c1f", null))
 		return ITEM_INTERACT_SUCCESS
 
-	var/choice = tgui_input_number(user, LANG("obj.4dbd622c", null), LANG("obj.2ca77ac0", null))
+	var/choice = tgui_input_number(user, LANG("obj.4dbd622c60f6e7be", null), LANG("obj.2ca77ac0afeafd35", null))
 	if(isnull(choice) || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH) || !user.is_holding(src))
 		return ITEM_INTERACT_BLOCKING
 	time_to_assign = choice
-	to_chat(user, LANG("obj.094273ac", list(DisplayTimeText(time_to_assign * 10))))
+	to_chat(user, LANG("obj.094273ac294d39ab", list(DisplayTimeText(time_to_assign * 10))))
 	timed = TRUE
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/card/id/advanced/prisoner/proc/start_timer()
-	say(LANG("obj.d38e1b90", null))
+	say(LANG("obj.d38e1b904c32b64d", null))
 	START_PROCESSING(SSobj, src)
 
 /obj/item/card/id/advanced/prisoner/examine(mob/user)
@@ -1614,25 +1618,25 @@
 
 	if(timed)
 		if(time_to_assign > 0)
-			. += span_notice(LANG("obj.3f21a2cd", list(DisplayTimeText(time_to_assign * 10))))
+			. += span_notice(LANG("obj.3f21a2cddc778d1f", list(DisplayTimeText(time_to_assign * 10))))
 		else if(time_left <= 0)
-			. += span_notice(LANG("obj.be0e3b12", null))
+			. += span_notice(LANG("obj.be0e3b12f9fcbc92", null))
 		else
-			. += span_notice(LANG("obj.87e1f1ab", list(DisplayTimeText(time_left * 10))))
+			. += span_notice(LANG("obj.87e1f1ab8de9dbbf", list(DisplayTimeText(time_left * 10))))
 
-	. += span_notice(LANG("obj.b837484d", list(EXAMINE_HINT("Swipe"), timed ? "re" : "")))
-	. += span_notice(LANG("obj.774d5864", list(EXAMINE_HINT("swipe"))))
+	. += span_notice(LANG("obj.b837484d58ebddda", list(EXAMINE_HINT("Swipe"), timed ? "re" : "")))
+	. += span_notice(LANG("obj.774d5864f5a2bdad", list(EXAMINE_HINT("swipe"))))
 
 /obj/item/card/id/advanced/prisoner/process(seconds_per_tick)
 	if(!timed)
 		return
 	time_left -= seconds_per_tick
 	if(time_left <= 0)
-		say(LANG("obj.2e1b11d1", null))
+		say(LANG("obj.2e1b11d164e8b691", null))
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/card/id/advanced/prisoner/attack_self(mob/user)
-	to_chat(usr, span_notice(LANG("obj.a2f450bd", list(points, goal))))
+	to_chat(usr, span_notice(LANG("obj.a2f450bd845f1bef", list(points, goal))))
 
 /obj/item/card/id/advanced/prisoner/one
 	name = "Prisoner #13-001"
@@ -1697,17 +1701,17 @@
 /obj/item/card/id/advanced/plainclothes/examine(mob/user)
 	. = ..()
 	if(trim_assignment_override)
-		. += span_smallnotice(LANG("obj.9536522b", null))
+		. += span_smallnotice(LANG("obj.9536522b7f290f15", null))
 	else
-		. += span_smallnotice(LANG("obj.48a660a5", null))
+		. += span_smallnotice(LANG("obj.48a660a53b43d57d", null))
 
 /obj/item/card/id/advanced/plainclothes/attack_self(mob/user)
-	var/popup_input = tgui_input_list(user, LANG("obj.dbbefb2b", null), LANG("obj.919e2009", null), list("Show", "Flip"))
+	var/popup_input = tgui_input_list(user, LANG("obj.dbbefb2b070136a8", null), LANG("obj.919e2009c62b2321", null), list("Show", "Flip"))
 	if(!popup_input || !after_input_check(user))
 		return TRUE
 	if(popup_input == "Show")
 		return ..()
-	balloon_alert(user, LANG("obj.d5c37f29", null))
+	balloon_alert(user, LANG("obj.d5c37f2967fe616a", null))
 	if(trim_assignment_override)
 		SSid_access.remove_trim_override(src)
 	else
@@ -1768,17 +1772,17 @@
 	// to sneakily steal their accesses by swiping our agent ID card near them. As a result, we
 	// return ITEM_INTERACT_BLOCKING to cancel any part of the following the attack chain.
 	if(ishuman(interacting_with))
-		interacting_with.balloon_alert(user, LANG("obj.99bff57d", null))
+		interacting_with.balloon_alert(user, LANG("obj.99bff57dcd6f00d4", null))
 
 		if(!do_after(user, 2 SECONDS, interacting_with, cog_icon = null))
-			interacting_with.balloon_alert(user, LANG("obj.c67b5d27", null))
+			interacting_with.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 			return ITEM_INTERACT_BLOCKING
 
 		var/mob/living/carbon/human/human_target = interacting_with
 		var/list/target_id_cards = human_target.get_all_contents_type(/obj/item/card/id)
 
 		if(!length(target_id_cards))
-			interacting_with.balloon_alert(user, LANG("obj.d78b7df7", null))
+			interacting_with.balloon_alert(user, LANG("obj.d78b7df7f7fa1eb8", null))
 			return ITEM_INTERACT_BLOCKING
 
 		var/selected_id = pick(target_id_cards)
@@ -1790,7 +1794,7 @@
 	if(isitem(interacting_with))
 		var/obj/item/target_item = interacting_with
 
-		interacting_with.balloon_alert(user, LANG("obj.99bff57d", null))
+		interacting_with.balloon_alert(user, LANG("obj.99bff57dcd6f00d4", null))
 
 		var/list/target_id_cards = target_item.get_all_contents_type(/obj/item/card/id)
 		var/target_item_id = target_item.GetID()
@@ -1799,7 +1803,7 @@
 			target_id_cards |= target_item_id
 
 		if(!length(target_id_cards))
-			interacting_with.balloon_alert(user, LANG("obj.d78b7df7", null))
+			interacting_with.balloon_alert(user, LANG("obj.d78b7df7f7fa1eb8", null))
 			return ITEM_INTERACT_BLOCKING
 
 		var/selected_id = pick(target_id_cards)
@@ -1880,7 +1884,7 @@
 
 	var/obj/item/card/id/target_card = theft_target?.resolve()
 	if(QDELETED(target_card))
-		to_chat(usr, span_notice(LANG("obj.eb5f2795", null)))
+		to_chat(usr, span_notice(LANG("obj.eb5f27952f320031", null)))
 		target_card = null
 		return TRUE
 
@@ -1888,7 +1892,7 @@
 	var/turf/our_turf = get_turf(src)
 	var/turf/target_turf = get_turf(target_card)
 	if(!our_turf.Adjacent(target_turf))
-		to_chat(usr, span_notice(LANG("obj.eb5f2795", null)))
+		to_chat(usr, span_notice(LANG("obj.eb5f27952f320031", null)))
 		target_card = null
 		return TRUE
 
@@ -1902,17 +1906,17 @@
 				return TRUE
 
 			if(!(access_type in target_card.access))
-				to_chat(usr, span_notice(LANG("obj.de93f293", null)))
+				to_chat(usr, span_notice(LANG("obj.de93f293432434ed", null)))
 				LOG_ID_ACCESS_CHANGE(usr, src, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
 				return TRUE
 
 			if(!can_add_wildcards(list(access_type), try_wildcard))
-				to_chat(usr, span_notice(LANG("obj.de93f293", null)))
+				to_chat(usr, span_notice(LANG("obj.de93f293432434ed", null)))
 				LOG_ID_ACCESS_CHANGE(usr, src, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
 				return TRUE
 
 			if(!add_access(list(access_type), try_wildcard))
-				to_chat(usr, span_notice(LANG("obj.de93f293", null)))
+				to_chat(usr, span_notice(LANG("obj.de93f293432434ed", null)))
 				LOG_ID_ACCESS_CHANGE(usr, src, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
 				return TRUE
 
@@ -1924,7 +1928,7 @@
 /obj/item/card/id/advanced/chameleon/attack_self(mob/user)
 	if(!user.can_perform_action(user, NEED_DEXTERITY| FORBID_TELEKINESIS_REACH))
 		return ..()
-	var/popup_input = tgui_input_list(user, LANG("obj.dbbefb2b", null), LANG("obj.90d645dd", null), list("Show", "Forge/Reset", "Change Account ID"))
+	var/popup_input = tgui_input_list(user, LANG("obj.dbbefb2b070136a8", null), LANG("obj.90d645dd440f6da9", null), list("Show", "Forge/Reset", "Change Account ID"))
 	if(!popup_input || !after_input_check(user))
 		return TRUE
 	switch(popup_input)
@@ -1944,11 +1948,11 @@
 		update_label()
 		update_appearance()
 		forged = FALSE
-		to_chat(user, span_notice(LANG("obj.dcbb7879", null)))
+		to_chat(user, span_notice(LANG("obj.dcbb78796065dccc", null)))
 		return
 
 	///forge the ID if not forged.s
-	var/input_name = tgui_input_text(user, LANG("obj.f6a5f81a", null), LANG("obj.a70a8604", null), registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), max_length = MAX_NAME_LEN, encode = FALSE)
+	var/input_name = tgui_input_text(user, LANG("obj.f6a5f81a0df653b3", null), LANG("obj.a70a860420afa6fc", null), registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), max_length = MAX_NAME_LEN, encode = FALSE)
 
 	if(!after_input_check(user))
 		return TRUE
@@ -1963,18 +1967,18 @@
 		else
 			input_name = "[pick(GLOB.first_names)] [pick(GLOB.last_names)]"
 
-	var/target_occupation = tgui_input_text(user, LANG("obj.7c2ff98c", null), LANG("obj.c279ab28", null), assignment ? assignment : "Assistant", max_length = MAX_NAME_LEN)
+	var/target_occupation = tgui_input_text(user, LANG("obj.7c2ff98c7ecda4f0", null), LANG("obj.c279ab28b14bdaf5", null), assignment ? assignment : "Assistant", max_length = MAX_NAME_LEN)
 	if(!after_input_check(user))
 		return TRUE
 	var/default_age = AGE_MIN
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		default_age = human_user.age ? clamp(human_user.age, AGE_MIN, AGE_MAX) : AGE_MIN
-	var/new_age = tgui_input_number(user, LANG("obj.51d5176c", null), LANG("obj.6ab5ab02", null), default_age, AGE_MAX, AGE_MIN)
+	var/new_age = tgui_input_number(user, LANG("obj.51d5176cce5514c0", null), LANG("obj.6ab5ab02e40e8f65", null), default_age, AGE_MAX, AGE_MIN)
 	if(!after_input_check(user))
 		return TRUE
 
-	var/wallet_spoofing = tgui_alert(user, LANG("obj.032f37bf", null), LANG("obj.34f6ae58", null), list("Yes", "No"))
+	var/wallet_spoofing = tgui_alert(user, LANG("obj.032f37bf09db8ded", null), LANG("obj.34f6ae58e5efee2a", null), list("Yes", "No"))
 	if(!after_input_check(user))
 		return
 
@@ -1989,7 +1993,7 @@
 	update_label()
 	update_appearance()
 	forged = TRUE
-	to_chat(user, span_notice(LANG("obj.39c783f0", null)))
+	to_chat(user, span_notice(LANG("obj.39c783f08e79b2a3", null)))
 	user.log_message("forged \the [initial(name)] with name \"[registered_name]\", occupation \"[assignment]\" and trim \"[trim?.assignment]\".", LOG_GAME)
 
 	if(!ishuman(user) || registered_account)
@@ -1999,7 +2003,7 @@
 	var/datum/bank_account/account = SSeconomy.bank_accounts_by_id["[owner.account_id]"]
 	if(account)
 		set_account(account)
-		to_chat(user, span_notice(LANG("obj.0464de9d", null)))
+		to_chat(user, span_notice(LANG("obj.0464de9d8ba3729b", null)))
 
 /obj/item/card/id/advanced/chameleon/add_item_context(obj/item/source, list/context, atom/target, mob/living/user,)
 	. = ..()
@@ -2111,12 +2115,12 @@
 /obj/item/card/cardboard/proc/modify_card(mob/living/user, obj/item/item)
 	if(!user.mind)
 		return
-	var/popup_input = tgui_input_list(user, LANG("obj.4f2894fd", null), LANG("obj.35317957", null), list("Name", "Assignment", "Trim", "Reset"))
+	var/popup_input = tgui_input_list(user, LANG("obj.4f2894fd189a7be9", null), LANG("obj.35317957d1c18847", null), list("Name", "Assignment", "Trim", "Reset"))
 	if(!after_input_check(user, item, popup_input))
 		return
 	switch(popup_input)
 		if("Name")
-			var/raw_input = tgui_input_text(user, LANG("obj.34be26e5", null), LANG("obj.835af484", null), scribbled_name || (ishuman(user) ? user.real_name : user.name), max_length = MAX_NAME_LEN)
+			var/raw_input = tgui_input_text(user, LANG("obj.34be26e51d1af964", null), LANG("obj.835af484767fe37c", null), scribbled_name || (ishuman(user) ? user.real_name : user.name), max_length = MAX_NAME_LEN)
 			var/input_name = sanitize_name(raw_input, allow_numbers = TRUE)
 			if(!after_input_check(user, item, input_name, scribbled_name))
 				return
@@ -2125,7 +2129,7 @@
 			var/list/details = item.get_writing_implement_details()
 			details_colors[INDEX_NAME_COLOR] = details["color"] || COLOR_BLACK
 		if("Assignment")
-			var/input_assignment = tgui_input_text(user, LANG("obj.55baa58a", null), LANG("obj.c9ae5c73", null), scribbled_assignment || "Assistant", max_length = MAX_NAME_LEN)
+			var/input_assignment = tgui_input_text(user, LANG("obj.55baa58aaaa5bf0f", null), LANG("obj.c9ae5c7310164c0d", null), scribbled_assignment || "Assistant", max_length = MAX_NAME_LEN)
 			if(!after_input_check(user, item, input_assignment, scribbled_assignment))
 				return
 			playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
@@ -2141,7 +2145,7 @@
 					if(trim?.trim_state && trim.assignment)
 						possible_trims |= replacetext(trim.trim_state, "trim_", "")
 				sortTim(possible_trims, GLOBAL_PROC_REF(cmp_typepaths_asc))
-			var/input_trim = tgui_input_list(user, LANG("obj.3fdb257b", null), LANG("obj.866d932c", null), possible_trims)
+			var/input_trim = tgui_input_list(user, LANG("obj.3fdb257b1388280d", null), LANG("obj.866d932cb216a459", null), possible_trims)
 			if(!input_trim || !after_input_check(user, item, input_trim, scribbled_trim))
 				return
 			playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
@@ -2167,7 +2171,7 @@
 /obj/item/card/cardboard/attack_self(mob/user)
 	if(!Adjacent(user))
 		return
-	user.visible_message(span_notice(LANG("obj.ba4fa098", list(user, icon2html(src, viewers(user)), name))), span_notice(LANG("obj.3f13aa85", list(name))))
+	user.visible_message(span_notice(LANG("obj.ba4fa098a36e1d83", list(user, icon2html(src, viewers(user)), name))), span_notice(LANG("obj.3f13aa85be06bcd1", list(name))))
 	add_fingerprint(user)
 
 /obj/item/card/cardboard/update_name()
@@ -2204,7 +2208,7 @@
 
 /obj/item/card/cardboard/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.c510155f", null))
+	. += span_notice(LANG("obj.c510155fda4c244b", null))
 
 /obj/item/card/cardboard/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()

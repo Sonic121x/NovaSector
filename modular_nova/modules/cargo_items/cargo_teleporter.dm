@@ -17,8 +17,8 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 
 /obj/item/cargo_teleporter/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.c5a16e61", null))
-	. += span_notice(LANG("obj.673fe44f", null))
+	. += span_notice(LANG("obj.c5a16e61c5979509", null))
+	. += span_notice(LANG("obj.673fe44fc89ee9e7", null))
 
 /obj/item/cargo_teleporter/Destroy()
 	if(length(marker_children))
@@ -30,17 +30,17 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 
 /obj/item/cargo_teleporter/attack_self(mob/user, modifiers)
 	if(length(marker_children) >= 3)
-		to_chat(user, span_warning(LANG("obj.914f223c", list(src))))
+		to_chat(user, span_warning(LANG("obj.914f223c101a5cbd", list(src))))
 		return
 
-	to_chat(user, span_notice(LANG("obj.8d4706e7", null)))
+	to_chat(user, span_notice(LANG("obj.8d4706e7a4f4f46d", null)))
 	var/obj/effect/decal/cleanable/cargo_mark/spawned_marker = new /obj/effect/decal/cleanable/cargo_mark(get_turf(src))
 	playsound(src, 'sound/machines/click.ogg', 50)
 	spawned_marker.parent_item = src
 	marker_children += spawned_marker
 
 /obj/item/cargo_teleporter/click_alt(mob/user)
-	var/option_selection = tgui_input_list(user, LANG("obj.ab3c2f64", null), LANG("obj.0f787456", null), list("Remove all markers", "Set default marker"))
+	var/option_selection = tgui_input_list(user, LANG("obj.ab3c2f647ff1b220", null), LANG("obj.0f787456e774f6cf", null), list("Remove all markers", "Set default marker"))
 	if(isnull(option_selection))
 		return CLICK_ACTION_BLOCKING
 
@@ -52,26 +52,26 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 		return CLICK_ACTION_SUCCESS
 
 	if(option_selection == "Set default marker")
-		var/cargo_mark_selection = tgui_input_list(user, LANG("obj.bc23398a", null), LANG("obj.7be8426e", null), GLOB.cargo_marks)
+		var/cargo_mark_selection = tgui_input_list(user, LANG("obj.bc23398ab5768f2a", null), LANG("obj.7be8426eadcbe6d5", null), GLOB.cargo_marks)
 		if(isnull(cargo_mark_selection))
 			return CLICK_ACTION_BLOCKING
 
 		selected_mark = cargo_mark_selection
-		to_chat(user, span_notice(LANG("obj.cbef4e70", list(selected_mark))))
+		to_chat(user, span_notice(LANG("obj.cbef4e7074da3356", list(selected_mark))))
 		return CLICK_ACTION_SUCCESS
 
 /obj/item/cargo_teleporter/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!COOLDOWN_FINISHED(src, use_cooldown))
-		to_chat(user, span_warning(LANG("obj.ed35e11f", list(src))))
+		to_chat(user, span_warning(LANG("obj.ed35e11fda3cbcbb", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(isnull(selected_mark))
-		var/choice = tgui_input_list(user, LANG("obj.bc23398a", null), LANG("obj.7be8426e", null), GLOB.cargo_marks)
+		var/choice = tgui_input_list(user, LANG("obj.bc23398ab5768f2a", null), LANG("obj.7be8426eadcbe6d5", null), GLOB.cargo_marks)
 		if(isnull(choice))
 			return ITEM_INTERACT_BLOCKING
 
 		selected_mark = choice
-		to_chat(user, span_notice(LANG("obj.cbef4e70", list(selected_mark))))
+		to_chat(user, span_notice(LANG("obj.cbef4e7074da3356", list(selected_mark))))
 
 	if(get_dist(user, interacting_with) > 1)
 		return ITEM_INTERACT_BLOCKING
@@ -113,7 +113,6 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 /datum/design/cargo_teleporter
 	name = "Cargo Teleporter"
 	desc = "A wonderful item that can set markers and teleport things to those markers."
-	id = "cargotele"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/cargo_teleporter
 	materials = list(
@@ -141,7 +140,7 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 	if(!istype(tool, /obj/item/cargo_teleporter))
 		return ..()
 
-	to_chat(user, span_notice(LANG("obj.2258075e", list(src, tool))))
+	to_chat(user, span_notice(LANG("obj.2258075e3ba54cd0", list(src, tool))))
 	playsound(src, 'sound/machines/click.ogg', 50)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

@@ -7,8 +7,8 @@
 	window_flash(player_client)
 	switch(tgui_alert(
 			player,
-			LANG("datum.9d14aede", null),
-			LANG("datum.6e91946c", null),
+			LANG("datum.9d14aede1d04241d", null),
+			LANG("datum.6e91946c0329559b", null),
 			list("Operative alias", "Random alias", "Keep current name"),
 			1 MINUTES,
 		))

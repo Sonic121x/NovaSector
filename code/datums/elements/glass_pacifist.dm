@@ -14,6 +14,6 @@
 	SIGNAL_HANDLER
 
 	if(istype(hit, /obj/structure/window))
-		owner.visible_message(span_notice(LANG("datum.138de2ca", list(owner, hit))))
+		owner.visible_message(span_notice(LANG("datum.138de2ca39425499", list(owner, hit))))
 		new /obj/effect/temp_visual/heart(hit.loc)
 		return COMPONENT_CANCEL_ATTACK_CHAIN

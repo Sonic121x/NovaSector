@@ -65,7 +65,7 @@
 	// Special check for if you're trapped in a body you can't control because it's owned by a ling.
 	if(IS_CHANGELING(brain_owner) && !(movement_flags & NO_ID_TRANSFER))
 		if(brainmob && !IS_DEAD_OR_FAKING(brain_owner))
-			to_chat(brainmob, span_danger(LANG("obj.5faf9bb1", null)))
+			to_chat(brainmob, span_danger(LANG("obj.5faf9bb10eb6bc53", null)))
 		forceMove(brain_owner)
 		brain_owner.update_body_parts()
 		return
@@ -117,7 +117,7 @@
 	// Delete skillchips first as parent proc sets owner to null, and skillchips need to know the brain's owner.
 	if(!QDELETED(organ_owner) && length(skillchips))
 		if(!special)
-			to_chat(organ_owner, span_notice(LANG("obj.403340e2", null)))
+			to_chat(organ_owner, span_notice(LANG("obj.403340e251c7cfb1", null)))
 			for(var/chip in skillchips)
 				var/obj/item/skillchip/skillchip = chip
 				// Run the try_ proc with force = TRUE.
@@ -168,7 +168,7 @@
 
 	if(L.mind && L.mind.current && !decoy_override)
 		L.mind.transfer_to(brainmob)
-		to_chat(brainmob, span_notice(LANG("obj.f07cc098", null)))
+		to_chat(brainmob, span_notice(LANG("obj.f07cc098d37983e7", null)))
 
 /obj/item/organ/brain/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/borg/apparatus/organ_storage))
@@ -181,7 +181,7 @@
 	if(!length(skillchips) || tool.get_sharpness() != SHARP_EDGED)
 		return NONE
 
-	to_chat(user,span_notice(LANG("obj.3d2a2f8a", list(src))))
+	to_chat(user,span_notice(LANG("obj.3d2a2f8a8d805f91", list(src))))
 	if(!do_after(user, 15 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
@@ -212,21 +212,21 @@
 		user.do_attack_animation(src)
 		playsound(loc, 'sound/effects/meatslap.ogg', 50)
 		set_organ_damage(maxHealth) //fails the brain as the brain was attacked, they're pretty fragile.
-		visible_message(span_danger(LANG("obj.846115ad", list(user, src, item))))
-		to_chat(user, span_danger(LANG("obj.c57da0f4", list(src, item))))
+		visible_message(span_danger(LANG("obj.846115adf019747f", list(user, src, item))))
+		to_chat(user, span_danger(LANG("obj.c57da0f4127a54eb", list(src, item))))
 
 /obj/item/organ/brain/proc/check_for_repair(obj/item/item, mob/user)
 	if(damage && item.is_drainable() && item.reagents.has_reagent(/datum/reagent/medicine/mannitol) && (organ_flags & ORGAN_ORGANIC)) //attempt to heal the brain
 		if(brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
-			to_chat(user, span_warning(LANG("obj.57f2d422", list(src))))
+			to_chat(user, span_warning(LANG("obj.57f2d422a8170aff", list(src))))
 			return TRUE
 
-		user.visible_message(span_notice(LANG("obj.36b95001", list(user, item, src))), span_notice(LANG("obj.09d70374", list(item, src))))
+		user.visible_message(span_notice(LANG("obj.36b950010de56066", list(user, item, src))), span_notice(LANG("obj.09d70374d6ac85e0", list(item, src))))
 		if(!do_after(user, 3 SECONDS, src))
-			to_chat(user, span_warning(LANG("obj.6c40dd89", list(item, src))))
+			to_chat(user, span_warning(LANG("obj.6c40dd899344a99a", list(item, src))))
 			return TRUE
 		var/and_bright_shade = !shade_color ? "" : " and turn a slightly brighter shade of [shade_color]"
-		user.visible_message(span_notice(LANG("obj.66fef8d1", list(user, item, src, and_bright_shade))), span_notice(LANG("obj.029c8ce3", list(item, src, and_bright_shade))))
+		user.visible_message(span_notice(LANG("obj.66fef8d1fe5ee2db", list(user, item, src, and_bright_shade))), span_notice(LANG("obj.029c8ce39691eb90", list(item, src, and_bright_shade))))
 		var/amount = item.reagents.get_reagent_amount(/datum/reagent/medicine/mannitol)
 		var/healto = max(0, damage - amount * 2)
 		item.reagents.remove_all(ROUND_UP(item.reagents.total_volume / amount * (damage - healto) * 0.5)) //only removes however much solution is needed while also taking into account how much of the solution is mannitol
@@ -237,14 +237,14 @@
 /obj/item/organ/brain/examine(mob/user)
 	. = ..()
 	if(length(skillchips))
-		. += span_info(LANG("obj.d2be189b", null))
+		. += span_info(LANG("obj.d2be189b0e6f3a5a", null))
 	. += brain_damage_examine()
 	if (smooth_brain)
-		. += span_notice(LANG("obj.c493d591", null))
+		. += span_notice(LANG("obj.c493d591387803a4", null))
 	if(brain_size < 1)
-		. += span_notice(LANG("obj.ddc86c08", null))
+		. += span_notice(LANG("obj.ddc86c082513ad56", null))
 	if(brain_size > 1)
-		. += span_notice(LANG("obj.d961631f", null))
+		. += span_notice(LANG("obj.d961631f8e187689", null))
 
 /// Needed so subtypes can override examine text while still calling parent
 /obj/item/organ/brain/proc/brain_damage_examine()
@@ -307,7 +307,7 @@
 	var/target_has_brain = C.get_organ_by_type(/obj/item/organ/brain)
 
 	if(!target_has_brain && C.is_eyes_covered())
-		to_chat(user, span_warning(LANG("obj.7338963e", list(C.p_their()))))
+		to_chat(user, span_warning(LANG("obj.7338963e686370a2", list(C.p_their()))))
 		return
 
 	//since these people will be dead M != usr
@@ -323,10 +323,10 @@
 						span_userdanger("[msg]"))
 
 		if(C != user)
-			to_chat(C, span_notice(LANG("obj.86ea0b90", list(user, src))))
-			to_chat(user, span_notice(LANG("obj.c6c98f5c", list(src, C))))
+			to_chat(C, span_notice(LANG("obj.86ea0b907f7cce5f", list(user, src))))
+			to_chat(user, span_notice(LANG("obj.c6c98f5c778cd639", list(src, C))))
 		else
-			to_chat(user, span_notice(LANG("obj.bf192f0a", list(src))) )
+			to_chat(user, span_notice(LANG("obj.bf192f0a6a5beb5a", list(src))) )
 
 		Insert(C)
 	else
@@ -346,7 +346,7 @@
 	if(HAS_TRAIT(src, TRAIT_BRAIN_DAMAGE_NODEATH))
 		return
 	if(damage >= BRAIN_DAMAGE_DEATH) //rip
-		to_chat(owner, span_userdanger(LANG("obj.88fba09b", null)))
+		to_chat(owner, span_userdanger(LANG("obj.88fba09bc00a5a5c", null)))
 		owner.investigate_log("has been killed by brain damage.", INVESTIGATE_DEATHS)
 		owner.death()
 
@@ -441,7 +441,7 @@
 		brain_message = span_warning("You can feel your mind flickering on and off...")
 
 	if(.)
-		. += LANG("obj.65aac1b5", list(brain_message))
+		. += LANG("obj.65aac1b5abce675a", list(brain_message))
 	else
 		return brain_message
 

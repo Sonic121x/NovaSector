@@ -115,10 +115,10 @@
 	var/message = ""
 	var/targetedsomewhere = FALSE
 	if(!toy_on)
-		to_chat(user, span_notice(LANG("obj.b31fb9df", list(src))))
+		to_chat(user, span_notice(LANG("obj.b31fb9dfcfe6e17b", list(src))))
 		return
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger(LANG("obj.bc6595c0", list(target))))
+		to_chat(user, span_danger(LANG("obj.bc6595c02bc7720d", list(target))))
 		return
 
 	switch(user.zone_selected) //to let code know what part of body we gonna vibe
@@ -142,7 +142,7 @@
 				target.adjust_pleasure(DEFAULT_PLEASURE_INCREASE)
 
 			else
-				to_chat(user, span_danger(LANG("obj.c5b0317d", list(target))))
+				to_chat(user, span_danger(LANG("obj.c5b0317d58c50f81", list(target))))
 				return
 
 			if(prob(50) && (target.stat != DEAD))
@@ -160,7 +160,7 @@
 					target.try_lewd_autoemote(pick("twitch_s", "moan"))
 
 			else
-				to_chat(user, span_danger(LANG("obj.b0aede84", list(target))))
+				to_chat(user, span_danger(LANG("obj.b0aede841acb5a5f", list(target))))
 				return
 	if(!targetedsomewhere)
 		return
@@ -171,13 +171,13 @@
 	toggle_mode()
 	switch(vibration_mode)
 		if("low")
-			to_chat(user, span_notice(LANG("obj.e12c5aec", null)))
+			to_chat(user, span_notice(LANG("obj.e12c5aecb6f6b59c", null)))
 		if("medium")
-			to_chat(user, span_notice(LANG("obj.64762236", null)))
+			to_chat(user, span_notice(LANG("obj.647622368df23f9b", null)))
 		if("hard")
-			to_chat(user, span_notice(LANG("obj.f9232b07", null)))
+			to_chat(user, span_notice(LANG("obj.f9232b0792f75964", null)))
 		if("off")
-			to_chat(user, span_notice(LANG("obj.d11412a8", null)))
+			to_chat(user, span_notice(LANG("obj.d11412a82348c7ff", null)))
 	update_icon()
 	update_icon_state()
 

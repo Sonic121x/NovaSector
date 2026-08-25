@@ -13,7 +13,7 @@
 /obj/item/target/welder_act(mob/living/user, obj/item/tool)
 	if(tool.use_tool(src, user, 0 SECONDS, volume = 40))
 		LAZYNULL(bullethole_overlays)
-		balloon_alert(user, LANG("obj.25b88f46", null))
+		balloon_alert(user, LANG("obj.25b88f467452ae3c", null))
 		update_appearance(UPDATE_OVERLAYS)
 	return TRUE
 

@@ -89,7 +89,7 @@
 /obj/item/clothing/head/helmet/perceptomatrix/proc/pre_cast_core_check(mob/caster, datum/action/cooldown/spell/spell)
 	SIGNAL_HANDLER
 	if((!core_installed) && spell.school == SCHOOL_PSYCHIC)
-		to_chat(caster, span_warning(LANG("obj.7eb66829", list(src))))
+		to_chat(caster, span_warning(LANG("obj.7eb6682918c286b7", list(src))))
 		return SPELL_CANCEL_CAST
 
 /obj/item/clothing/head/helmet/perceptomatrix/proc/update_anomaly_state()
@@ -128,7 +128,7 @@
 /obj/item/clothing/head/helmet/perceptomatrix/examine(mob/user)
 	. = ..()
 	if (!core_installed)
-		. += span_warning(LANG("obj.fbbc84ec", null))
+		. += span_warning(LANG("obj.fbbc84ec5714fa2f", null))
 
 /obj/item/clothing/head/helmet/perceptomatrix/update_icon_state()
 	icon_state = base_icon_state + (core_installed ? "" : "_inactive")
@@ -138,7 +138,7 @@
 /obj/item/clothing/head/helmet/perceptomatrix/item_interaction(mob/user, obj/item/weapon, params)
 	if (!istype(weapon, /obj/item/assembly/signaler/anomaly/hallucination))
 		return NONE
-	balloon_alert(user, LANG("obj.14b48e79", null))
+	balloon_alert(user, LANG("obj.14b48e798b316996", null))
 	if (!do_after(user, delay = 3 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	qdel(weapon)
@@ -188,8 +188,8 @@
 /datum/action/cooldown/spell/pointed/percept_hallucination/proc/blows_up_pancakes_with_mind(obj/item/food/pancakes/pancakes)
 
 	owner.visible_message(
-		span_userdanger(LANG("datum.2b2c0f3e", list(owner, pancakes, owner.p_their()))),
-		span_userdanger(LANG("datum.959f2f8f", list(pancakes)))
+		span_userdanger(LANG("datum.2b2c0f3e5fa3e53a", list(owner, pancakes, owner.p_their()))),
+		span_userdanger(LANG("datum.959f2f8fff80ddde", list(pancakes)))
 	)
 
 	for(var/mob/chef in get_hearers_in_view(7, pancakes))
@@ -197,7 +197,7 @@
 			continue
 		// if cooked by chef, or if EITHER 5% chance OR its april fools. a || (b || c)
 		if(HAS_TRAIT_FROM(pancakes, TRAIT_HANDMADE, REF(chef.mind)) || (prob(5) || check_holidays(APRIL_FOOLS)))
-			chef.say(LANG("datum.fb5cc88a", null))
+			chef.say(LANG("datum.fb5cc88a855d2b64", null))
 
 	playsound(pancakes, 'sound/effects/fuse.ogg', 80)
 	animate(pancakes, time = 1, pixel_z = 12, easing = ELASTIC_EASING)
@@ -227,11 +227,11 @@
 		return
 
 	if(cast_on.can_block_magic(antimagic_flags))
-		to_chat(cast_on, span_notice(LANG("datum.5ac94142", null)))
-		to_chat(owner, span_warning(LANG("datum.41e3f094", list(cast_on))))
+		to_chat(cast_on, span_notice(LANG("datum.5ac94142daca9ec2", null)))
+		to_chat(owner, span_warning(LANG("datum.41e3f0946373e5cf", list(cast_on))))
 		return
 
-	to_chat(cast_on, span_warning(LANG("datum.a0d626a6", null)))
+	to_chat(cast_on, span_warning(LANG("datum.a0d626a6826f8177", null)))
 	cast_on.emote("scream")
 	cast_on.set_eye_blur_if_lower(eye_blur_duration)
 	cast_on.adjust_staggered(stagger_duration)

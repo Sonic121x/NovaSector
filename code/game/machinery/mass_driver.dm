@@ -50,7 +50,7 @@
 				continue
 			O_limit++
 			if(O_limit >= 20)
-				audible_message(span_notice(LANG("obj.8569ebcd", list(src))))
+				audible_message(span_notice(LANG("obj.8569ebcdc5e8c549", list(src))))
 				break
 			use_energy(power_per_obj)
 			O.throw_at(target, drive_range * power, power)

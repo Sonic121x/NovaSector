@@ -51,7 +51,7 @@
 
 /datum/component/tackler/Destroy()
 	var/mob/P = parent
-	to_chat(P, span_notice(LANG("datum.7db37096", null)))
+	to_chat(P, span_notice(LANG("datum.7db37096f531e9f9", null)))
 	return ..()
 
 /datum/component/tackler/RegisterWithParent()
@@ -83,23 +83,23 @@
 		return
 
 	if(HAS_TRAIT(user, TRAIT_HULK))
-		to_chat(user, span_warning(LANG("datum.69d04b0f", null)))
+		to_chat(user, span_warning(LANG("datum.69d04b0f7d63d525", null)))
 		return
 
 	if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
-		to_chat(user, span_warning(LANG("datum.c621993b", null)))
+		to_chat(user, span_warning(LANG("datum.c621993b350d8c7e", null)))
 		return
 
 	if(user.body_position == LYING_DOWN)
-		to_chat(user, span_warning(LANG("datum.08ca4d20", null)))
+		to_chat(user, span_warning(LANG("datum.08ca4d201a344c63", null)))
 		return
 
 	if(tackling)
-		to_chat(user, span_warning(LANG("datum.95f00adc", null)))
+		to_chat(user, span_warning(LANG("datum.95f00adcfe71b72b", null)))
 		return
 
 	if(user.get_timed_status_effect_duration(/datum/status_effect/staggered)) // can't tackle if you're staggered
-		to_chat(user, span_warning(LANG("datum.83430fd9", null)))
+		to_chat(user, span_warning(LANG("datum.83430fd98f1a4d8e", null)))
 		return
 
 	user.face_atom(clicked_atom)
@@ -110,9 +110,9 @@
 
 	var/leap_word = (isfeline(user) || HAS_TRAIT(user, TRAIT_CATLIKE_INSTINCT) || HAS_TRAIT(user, TRAIT_TACKLING_TAILED_POUNCE)) ? "pounce" : "leap" // If catlike/feline, "pounce" instead of "leap".
 	if(can_see(user, clicked_atom, 7))
-		user.visible_message(span_warning(LANG("datum.4555a460", list(user, leap_word, clicked_atom))), span_danger(LANG("datum.e6b84df4", list(leap_word, clicked_atom))))
+		user.visible_message(span_warning(LANG("datum.4555a460c2472636", list(user, leap_word, clicked_atom))), span_danger(LANG("datum.e6b84df4cdf84646", list(leap_word, clicked_atom))))
 	else
-		user.visible_message(span_warning(LANG("datum.e6c02bcd", list(user, leap_word))), span_danger(LANG("datum.52638468", list(leap_word))))
+		user.visible_message(span_warning(LANG("datum.e6c02bcdfc5fde2d", list(user, leap_word))), span_danger(LANG("datum.52638468bb05caa5", list(leap_word))))
 
 	if(get_dist(user, clicked_atom) < min_distance)
 		var/tackle_angle = get_angle(user, clicked_atom)
@@ -161,8 +161,8 @@
 	tackle.gentle = TRUE
 
 	if(target.check_block(user, 0, user.name, attack_type = LEAP_ATTACK))
-		user.visible_message(span_danger(LANG("datum.efe2e446", list(user, target))), span_userdanger(LANG("datum.55b3a23c", list(target))), ignored_mobs = target)
-		to_chat(target, span_userdanger(LANG("datum.b5a98e30", list(target, user))))
+		user.visible_message(span_danger(LANG("datum.efe2e446f81255a4", list(user, target))), span_userdanger(LANG("datum.55b3a23c6542c5a5", list(target))), ignored_mobs = target)
+		to_chat(target, span_userdanger(LANG("datum.b5a98e3016d521e7", list(target, user))))
 		neutral_outcome(user, target, tackle_word) //Forces a neutral outcome so you're not screwed too much from being blocked while tackling
 		return COMPONENT_MOVABLE_IMPACT_FLIP_HITPUSH
 
@@ -217,8 +217,8 @@
 			neutral_outcome(user, target, roll, tackle_word) //Default to neutral
 
 		if(1 to 20)
-			user.visible_message(span_warning(LANG("datum.3b112e7b", list(user, tackle_word, target))), span_userdanger(LANG("datum.3effc617", list(tackle_word, target))), ignored_mobs = target)
-			to_chat(target, span_userdanger(LANG("datum.ef5d3e62", list(user, tackle_word))))
+			user.visible_message(span_warning(LANG("datum.3b112e7bc4d0bfd7", list(user, tackle_word, target))), span_userdanger(LANG("datum.3effc617328eca56", list(tackle_word, target))), ignored_mobs = target)
+			to_chat(target, span_userdanger(LANG("datum.ef5d3e6278c6bd9e", list(user, tackle_word))))
 
 			target.apply_damage(30, STAMINA)
 			target.Paralyze(0.5 SECONDS)
@@ -227,8 +227,8 @@
 			target.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * 2, 10 SECONDS)
 
 		if(21 to 49) // really good hit, the target is definitely worse off here. Without positive modifiers, this is as good a tackle as you can land
-			user.visible_message(span_warning(LANG("datum.c080abe5", list(user, tackle_word, target, target.p_them(), user.p_their()))), span_userdanger(LANG("datum.7e6f748d", list(tackle_word, target, target.p_them()))), ignored_mobs = target)
-			to_chat(target, span_userdanger(LANG("datum.29007525", list(user, tackle_word))))
+			user.visible_message(span_warning(LANG("datum.c080abe5b15e11ee", list(user, tackle_word, target, target.p_them(), user.p_their()))), span_userdanger(LANG("datum.7e6f748d43b202f4", list(tackle_word, target, target.p_them()))), ignored_mobs = target)
+			to_chat(target, span_userdanger(LANG("datum.290075251a5da8fb", list(user, tackle_word))))
 
 			// Ignore_canstun has to be true, or else a stunimmune user would stay knocked down.
 			user.SetKnockdown(0, ignore_canstun = TRUE)
@@ -243,16 +243,16 @@
 		if(50 to INFINITY) // absolutely BODIED
 			var/stamcritted_user = HAS_TRAIT_FROM(user, TRAIT_INCAPACITATED, STAMINA)
 			if(stamcritted_user) // in case the user went into stamcrit from the tackle itself and cannot actually aggro grab (since they will be crit) we make the tackle effectivelly mutually assured...stamina crit
-				user.visible_message(span_warning(LANG("datum.6475fb60", list(user, tackle_word, target))), span_userdanger(LANG("datum.39ee39ca", list(tackle_word, target))), ignored_mobs = target)
-				to_chat(target, span_userdanger(LANG("datum.998e040d", list(user, tackle_word))))
+				user.visible_message(span_warning(LANG("datum.6475fb60af563f27", list(user, tackle_word, target))), span_userdanger(LANG("datum.39ee39caf3798cc3", list(tackle_word, target))), ignored_mobs = target)
+				to_chat(target, span_userdanger(LANG("datum.998e040d22a9cb74", list(user, tackle_word))))
 				user.forceMove(get_turf(target))
 				target.apply_damage(100, STAMINA) // CRASHING THIS PLANE WITH NO SURVIVORS
 				target.Paralyze(1 SECONDS)
 				target.Knockdown(5 SECONDS)
 				target.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * 3, 10 SECONDS)
 			else
-				user.visible_message(span_warning(LANG("datum.d9202802", list(user, tackle_word, target, target.p_them()))), span_userdanger(LANG("datum.5daae7c5", list(tackle_word, target, target.p_them()))), ignored_mobs = target)
-				to_chat(target, span_userdanger(LANG("datum.64e2b3ec", list(user, tackle_word))))
+				user.visible_message(span_warning(LANG("datum.d92028025c7a74a1", list(user, tackle_word, target, target.p_them()))), span_userdanger(LANG("datum.5daae7c576c1b806", list(tackle_word, target, target.p_them()))), ignored_mobs = target)
+				to_chat(target, span_userdanger(LANG("datum.64e2b3ec1e8c6407", list(user, tackle_word))))
 
 				// Ignore_canstun has to be true, or else a stunimmune user would stay knocked down.
 				user.SetKnockdown(0, ignore_canstun = TRUE)
@@ -274,8 +274,8 @@
 /datum/component/tackler/proc/neutral_outcome(mob/living/carbon/user, mob/living/carbon/target, roll = 1, tackle_word = "tackle")
 
 
-	user.visible_message(span_warning(LANG("datum.13ddbebe", list(user, tackle_word, target))), span_userdanger(LANG("datum.dafafa5c", list(tackle_word, target, target.p_them()))), ignored_mobs = target)
-	to_chat(target, span_userdanger(LANG("datum.b5c60062", list(user, tackle_word))))
+	user.visible_message(span_warning(LANG("datum.13ddbebe50d3f129", list(user, tackle_word, target))), span_userdanger(LANG("datum.dafafa5c25fc7775", list(tackle_word, target, target.p_them()))), ignored_mobs = target)
+	to_chat(target, span_userdanger(LANG("datum.b5c60062b643d34b", list(user, tackle_word))))
 
 	user.SetKnockdown(0, ignore_canstun = TRUE)
 	user.get_up(TRUE)
@@ -314,8 +314,8 @@
 			neutral_outcome(user, target, roll, tackle_word) //Default to neutral
 
 		if(1 to 20) // It's not completely terrible! But you are somewhat vulernable for doing it.
-			user.visible_message(span_warning(LANG("datum.14f56906", list(user, tackle_word, target, target.p_them()))), span_userdanger(LANG("datum.c60e14db", list(tackle_word, target, target.p_them()))), ignored_mobs = target)
-			to_chat(target, span_userdanger(LANG("datum.56dd2cc0", list(user, tackle_word))))
+			user.visible_message(span_warning(LANG("datum.14f5690625d31a45", list(user, tackle_word, target, target.p_them()))), span_userdanger(LANG("datum.c60e14db65b05f45", list(tackle_word, target, target.p_them()))), ignored_mobs = target)
+			to_chat(target, span_userdanger(LANG("datum.56dd2cc08af9105c", list(user, tackle_word))))
 
 			user.Knockdown(1 SECONDS)
 			user.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * 2, 10 SECONDS)
@@ -323,16 +323,16 @@
 			target.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * 2, 10 SECONDS)
 
 		if(21 to 49) // oughe
-			user.visible_message(span_warning(LANG("datum.b259f9b1", list(user, tackle_word, target, user.p_them()))), span_userdanger(LANG("datum.24159532", list(tackle_word, target))), ignored_mobs = target)
-			to_chat(target, span_userdanger(LANG("datum.11f05829", list(user, tackle_word, user.p_them()))))
+			user.visible_message(span_warning(LANG("datum.b259f9b12c030ccd", list(user, tackle_word, target, user.p_them()))), span_userdanger(LANG("datum.2415953285f7ef29", list(tackle_word, target))), ignored_mobs = target)
+			to_chat(target, span_userdanger(LANG("datum.11f05829174d6eca", list(user, tackle_word, user.p_them()))))
 
 			user.Knockdown(3 SECONDS)
 			user.apply_damage(40, STAMINA)
 			user.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * 2, 10 SECONDS)
 
 		if(50 to INFINITY) // It has been decided that you will suffer
-			user.visible_message(span_danger(LANG("datum.a22fbf54", list(user, user.p_their(), tackle_word, user.p_their(), target, user.p_them()))), span_userdanger(LANG("datum.d3fb5927", list(tackle_word, target))), ignored_mobs = target)
-			to_chat(target, span_userdanger(LANG("datum.d4296f04", list(user, user.p_their(), tackle_word, user.p_their(), user.p_them()))))
+			user.visible_message(span_danger(LANG("datum.a22fbf54f659c5be", list(user, user.p_their(), tackle_word, user.p_their(), target, user.p_them()))), span_userdanger(LANG("datum.d3fb592741a7d48d", list(tackle_word, target))), ignored_mobs = target)
+			to_chat(target, span_userdanger(LANG("datum.d4296f047059f757", list(user, user.p_their(), tackle_word, user.p_their(), user.p_them()))))
 
 			user.Paralyze(3 SECONDS)
 			user.apply_damage(80, STAMINA)
@@ -450,7 +450,8 @@
 
 	if(HAS_TRAIT(sacker, TRAIT_TACKLING_WINGED_ATTACKER))
 		var/obj/item/organ/wings/moth/sacker_moth_wing = sacker.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
-		if(!sacker_moth_wing || sacker_moth_wing.burnt)
+		//Flight potion wings cannot burn off. Only the moth's natural fragile pair can cost us the bonus
+		if(isnull(sacker_moth_wing) || (istype(sacker_moth_wing) && sacker_moth_wing.burnt))
 			attack_mod -= 2
 	var/obj/item/organ/wings/sacker_wing = sacker.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
 	if(sacker_wing)
@@ -535,13 +536,13 @@
 
 	var/oopsie = rand(danger_zone, 100)
 	if(oopsie >= 94 && oopsie_mod < 0) // good job avoiding getting paralyzed! gold star!
-		to_chat(user, span_notice(LANG("datum.338a8077", null)))
+		to_chat(user, span_notice(LANG("datum.338a80773ed37693", null)))
 	oopsie += oopsie_mod
 
 	switch(oopsie)
 		if(99 to INFINITY)
 			// can you imagine standing around minding your own business when all of the sudden some guy fucking launches himself into a wall at full speed and irreparably paralyzes himself?
-			user.visible_message(span_danger(LANG("datum.17dae783", list(user, hit, user.p_their()))), span_userdanger(LANG("datum.5db89ca6", list(hit))))
+			user.visible_message(span_danger(LANG("datum.17dae78316b58b4a", list(user, hit, user.p_their()))), span_userdanger(LANG("datum.5db89ca68d394f1f", list(hit))))
 			user.apply_damage(40, BRUTE, BODY_ZONE_HEAD, wound_bonus = 40)
 			user.apply_damage(30, STAMINA)
 			playsound(user, 'sound/effects/blob/blobattack.ogg', 60, TRUE)
@@ -553,7 +554,7 @@
 			user.flash_act(1, TRUE, TRUE, length = 4.5)
 
 		if(97 to 98)
-			user.visible_message(span_danger(LANG("datum.e1096c0a", list(user, hit, user.p_their()))), span_userdanger(LANG("datum.4782b3e7", list(hit))))
+			user.visible_message(span_danger(LANG("datum.e1096c0a47a1ab5d", list(user, hit, user.p_their()))), span_userdanger(LANG("datum.4782b3e77a638b3f", list(hit))))
 			user.apply_damage(30, BRUTE, BODY_ZONE_HEAD, wound_bonus = 25)
 			user.apply_damage(30, STAMINA)
 			user.gain_trauma_type(BRAIN_TRAUMA_MILD)
@@ -564,7 +565,7 @@
 			user.flash_act(1, TRUE, TRUE, length = 4.5)
 
 		if(93 to 96)
-			user.visible_message(span_danger(LANG("datum.e525fce8", list(user, hit))), span_userdanger(LANG("datum.2cc72c44", list(hit))))
+			user.visible_message(span_danger(LANG("datum.e525fce8f2d2998b", list(user, hit))), span_userdanger(LANG("datum.2cc72c4425a472ef", list(hit))))
 			user.apply_damage(30, BRUTE, spread_damage = TRUE)
 			user.apply_damage(30, STAMINA)
 			user.Unconscious(10 SECONDS)
@@ -574,7 +575,7 @@
 			user.flash_act(1, TRUE, TRUE, length = 3.5)
 
 		if(86 to 92)
-			user.visible_message(span_danger(LANG("datum.bc4389ab", list(user, hit))), span_userdanger(LANG("datum.3898c584", list(hit))))
+			user.visible_message(span_danger(LANG("datum.bc4389ab42f7ec23", list(user, hit))), span_userdanger(LANG("datum.3898c584036ac26d", list(hit))))
 			user.apply_damage(30, BRUTE, spread_damage = TRUE)
 			user.apply_damage(30, STAMINA)
 			user.adjust_confusion(15 SECONDS)
@@ -586,7 +587,7 @@
 			user.flash_act(1, TRUE, TRUE, length = 2.5)
 
 		if(68 to 85)
-			user.visible_message(span_danger(LANG("datum.6ed8ff40", list(user, hit, user.p_them()))), span_userdanger(LANG("datum.d5cf3f01", list(hit))))
+			user.visible_message(span_danger(LANG("datum.6ed8ff40223f34e6", list(user, hit, user.p_them()))), span_userdanger(LANG("datum.d5cf3f01f7449662", list(hit))))
 			user.apply_damage(10, BRUTE, spread_damage = TRUE)
 			user.apply_damage(30, STAMINA)
 			user.adjust_confusion(10 SECONDS)
@@ -594,7 +595,7 @@
 			shake_camera(user, 3, 4)
 
 		if(1 to 67)
-			user.visible_message(span_danger(LANG("datum.83e05307", list(user, hit))), span_userdanger(LANG("datum.38590633", list(hit))))
+			user.visible_message(span_danger(LANG("datum.83e05307efab19c9", list(user, hit))), span_userdanger(LANG("datum.38590633cfaeff96", list(hit))))
 			user.apply_damage(10, BRUTE, spread_damage = TRUE)
 			user.apply_damage(20, STAMINA)
 			user.Knockdown(2 SECONDS)
@@ -626,10 +627,10 @@
 		windscreen_casualty.atom_destruction()
 		user.adjust_stamina_loss(10 * speed)
 		user.Paralyze(3 SECONDS)
-		user.visible_message(span_danger(LANG("datum.7ed12590", list(user, windscreen_casualty, user.p_them()))), span_userdanger(LANG("datum.b4eb5997", list(windscreen_casualty))))
+		user.visible_message(span_danger(LANG("datum.7ed125900139cc58", list(user, windscreen_casualty, user.p_them()))), span_userdanger(LANG("datum.b4eb599790161826", list(windscreen_casualty))))
 
 	else
-		user.visible_message(span_danger(LANG("datum.70d9ac99", list(user, windscreen_casualty))), span_userdanger(LANG("datum.2482c9d5", list(windscreen_casualty))))
+		user.visible_message(span_danger(LANG("datum.70d9ac9957aa080b", list(user, windscreen_casualty))), span_userdanger(LANG("datum.2482c9d540519cc7", list(windscreen_casualty))))
 		user.Paralyze(1 SECONDS)
 		user.Knockdown(3 SECONDS)
 		windscreen_casualty.take_damage(30 * speed)
@@ -677,7 +678,7 @@
 		else
 			HOW_big_of_a_miss_did_we_just_make = ", making a ginormous mess!" // an extra exclamation point!! for emphasis!!!
 
-	owner.visible_message(span_danger(LANG("datum.20564466", list(owner, kevved, HOW_big_of_a_miss_did_we_just_make))), span_userdanger(LANG("datum.a94e2a65", list(kevved, HOW_big_of_a_miss_did_we_just_make))))
+	owner.visible_message(span_danger(LANG("datum.205644661275dd62", list(owner, kevved, HOW_big_of_a_miss_did_we_just_make))), span_userdanger(LANG("datum.a94e2a652319da2c", list(kevved, HOW_big_of_a_miss_did_we_just_make))))
 	owner.adjust_stamina_loss(15 + messes.len * 2, updating_stamina = FALSE)
 	owner.adjust_brute_loss(8 + messes.len, updating_health = FALSE)
 	owner.Paralyze(0.4 SECONDS * messes.len) // .4 seconds of paralyze for each thing you knock around
@@ -692,7 +693,7 @@
 		if(prob(25 * (src.speed - 1))) // if our tackle speed is higher than 1, with chance (speed - 1 * 25%), throw the thing at our tackle speed + 1
 			item_launch_speed = speed + 1
 		item_in_mess.throw_at(get_ranged_target_turf(item_in_mess, pick(GLOB.alldirs), range = item_launch_distance), range = item_launch_distance, speed = item_launch_speed)
-		item_in_mess.visible_message(span_danger(LANG("datum.9013ac79", list(item_in_mess, item_launch_speed < EMBED_THROWSPEED_THRESHOLD ? "" : " dangerously fast")))) // standard embed speed
+		item_in_mess.visible_message(span_danger(LANG("datum.9013ac7960ee6084", list(item_in_mess, item_launch_speed < EMBED_THROWSPEED_THRESHOLD ? "" : " dangerously fast")))) // standard embed speed
 
 	var/datum/thrownthing/tackle = tackle_ref?.resolve()
 

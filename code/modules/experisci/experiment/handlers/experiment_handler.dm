@@ -95,7 +95,7 @@
 	if ((isnull(selected_experiment) && !(config_flags & EXPERIMENT_CONFIG_ALWAYS_ACTIVE)) || (config_flags & EXPERIMENT_CONFIG_SILENT_FAIL))
 		return
 	playsound(user, 'sound/machines/buzz/buzz-sigh.ogg', 25)
-	to_chat(user, span_notice(LANG("datum.74d216af", list(target))))
+	to_chat(user, span_notice(LANG("datum.74d216af442c2e92", list(target))))
 
 /**
  * Checks that an experiment can be run using the provided target, used for preventing the cancellation of the attack chain inappropriately
@@ -123,16 +123,16 @@
 /datum/component/experiment_handler/proc/try_run_handheld_experiment_async(datum/source, atom/target, mob/user)
 	if (selected_experiment == null && !(config_flags & EXPERIMENT_CONFIG_ALWAYS_ACTIVE))
 		if(!(config_flags & EXPERIMENT_CONFIG_SILENT_FAIL))
-			to_chat(user, span_notice(LANG("datum.05dbd701", null)))
+			to_chat(user, span_notice(LANG("datum.05dbd701230d3f58", null)))
 		return
 	if(!(config_flags & EXPERIMENT_CONFIG_IMMEDIATE_ACTION) && !do_after(user, 1 SECONDS, target = target))
 		return
 	if(action_experiment(source, target))
 		playsound(user, 'sound/machines/ping.ogg', 25)
-		to_chat(user, span_notice(LANG("datum.fbbf9389", list(target))))
+		to_chat(user, span_notice(LANG("datum.fbbf938996d38a10", list(target))))
 	else if(!(config_flags & EXPERIMENT_CONFIG_SILENT_FAIL))
 		playsound(user, 'sound/machines/buzz/buzz-sigh.ogg', 25)
-		to_chat(user, span_notice(LANG("datum.74d216af", list(target))))
+		to_chat(user, span_notice(LANG("datum.74d216af442c2e92", list(target))))
 
 /**
  * Hooks on destructive scans to try and run an experiment (When using a handheld handler)
@@ -143,7 +143,7 @@
 	if (selected_experiment == null)
 		if(!(config_flags & EXPERIMENT_CONFIG_SILENT_FAIL))
 			playsound(our_scanner, 'sound/machines/buzz/buzz-sigh.ogg', 25)
-			to_chat(our_scanner, span_notice(LANG("datum.733c67a7", null)))
+			to_chat(our_scanner, span_notice(LANG("datum.733c67a75c5fb956", null)))
 		return
 	var/successful_scan
 	for(var/scan_target in scanned_atoms)
@@ -151,10 +151,10 @@
 			successful_scan = TRUE
 	if(successful_scan)
 		playsound(our_scanner, 'sound/machines/ping.ogg', 25)
-		to_chat(our_scanner, span_notice(LANG("datum.d38f0a24", null)))
+		to_chat(our_scanner, span_notice(LANG("datum.d38f0a2457cfa594", null)))
 	else if(!(config_flags & EXPERIMENT_CONFIG_SILENT_FAIL))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 25)
-		our_scanner.say(LANG("datum.557a5593", null))
+		our_scanner.say(LANG("datum.557a559399913beb", null))
 
 /// Hooks on a successful autopsy experiment
 /datum/component/experiment_handler/proc/try_run_autopsy_experiment(obj/source, mob/living/target)
@@ -162,7 +162,7 @@
 
 	if (action_experiment(source, target))
 		playsound(source, 'sound/machines/ping.ogg', 25)
-		source.say(LANG("datum.f644582d", null))
+		source.say(LANG("datum.f644582db2345e82", null))
 
 /**
  * Announces a message to this experiment handler

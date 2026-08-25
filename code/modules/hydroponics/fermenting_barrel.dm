@@ -52,16 +52,16 @@
 	if(open)
 		var/fruit_count = contents.len
 		if(fruit_count)
-			. += span_notice(LANG("obj.4efe80a5", list(fruit_count)))
-			. += span_notice(LANG("obj.bd271499", list(EXAMINE_HINT("Right-click"), src)))
-		. += span_notice(LANG("obj.c05b560b", null))
+			. += span_notice(LANG("obj.4efe80a5713a2529", list(fruit_count)))
+			. += span_notice(LANG("obj.bd271499ec753fbf", list(EXAMINE_HINT("Right-click"), src)))
+		. += span_notice(LANG("obj.c05b560bafcb27db", null))
 	else
-		. += span_notice(LANG("obj.15d570d6", null))
+		. += span_notice(LANG("obj.15d570d6fb8fa2a9", null))
 
 /obj/structure/fermenting_barrel/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(open)
 		if(istype(tool, /obj/item/food/grown) && insert_fruit(user, tool))
-			balloon_alert(user, LANG("obj.22727303", null))
+			balloon_alert(user, LANG("obj.227273039ad603ac", null))
 			return ITEM_INTERACT_SUCCESS
 
 		if(istype(tool, /obj/item/storage/bag/plants))
@@ -74,7 +74,7 @@
 			if(!inserted_fruits)
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, LANG("obj.6eb70280", list(inserted_fruits)))
+			balloon_alert(user, LANG("obj.6eb70280b2d43efc", list(inserted_fruits)))
 			return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -105,11 +105,11 @@
 		return .
 
 	if(!length(contents))
-		balloon_alert(user, LANG("obj.6ef93b07", null))
+		balloon_alert(user, LANG("obj.6ef93b07027da376", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	dump_contents()
-	balloon_alert(user, LANG("obj.23fe6c97", list(src)))
+	balloon_alert(user, LANG("obj.23fe6c97f4262827", list(src)))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/fermenting_barrel/wrench_act(mob/living/user, obj/item/tool)
@@ -154,16 +154,16 @@
 /// Adds the fruit to the barrel to queue the fermentation
 /obj/structure/fermenting_barrel/proc/insert_fruit(mob/user, obj/item/food/grown/fruit, obj/item/storage/bag/plants/bag = null)
 	if(reagents.total_volume + potential_volume > reagents.maximum_volume)
-		balloon_alert(user, LANG("obj.2cb7d354", null))
+		balloon_alert(user, LANG("obj.2cb7d3546d66854d", null))
 		return FALSE
 	if(!fruit.can_distill)
-		balloon_alert(user, LANG("obj.958896fa", null))
+		balloon_alert(user, LANG("obj.958896faa523aeca", null))
 		return FALSE
 	if(bag && !bag.atom_storage.attempt_remove(fruit, src))
-		balloon_alert(user, LANG("obj.acbebe31", null))
+		balloon_alert(user, LANG("obj.acbebe31cf73d407", null))
 		return FALSE
 	else if (!user.transferItemToLoc(fruit, src))
-		balloon_alert(user, LANG("obj.64310c6c", null))
+		balloon_alert(user, LANG("obj.64310c6c7e7e77da", null))
 		return FALSE
 	potential_volume += fruit.reagents.total_volume
 	return TRUE

@@ -26,14 +26,14 @@
 /obj/item/implantpad/examine(mob/user)
 	. = ..()
 	if(!inserted_case)
-		. += span_info(LANG("obj.1b5f6bf0", null))
+		. += span_info(LANG("obj.1b5f6bf077d688dd", null))
 		return
 
 	if(Adjacent(user))
-		. += span_info(LANG("obj.eaca0139", list(inserted_case)))
+		. += span_info(LANG("obj.eaca0139f8d2f814", list(inserted_case)))
 	else
-		. += span_warning(LANG("obj.6af3f4ff", null))
-	. += span_info(LANG("obj.cba63c8b", list(inserted_case)))
+		. += span_warning(LANG("obj.6af3f4ff32643c3b", null))
+	. += span_info(LANG("obj.cba63c8b08994ed5", list(inserted_case)))
 
 /obj/item/implantpad/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -46,7 +46,7 @@
 		return NONE
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
-	user.balloon_alert(user, LANG("obj.c2fd0905", null))
+	user.balloon_alert(user, LANG("obj.c2fd0905b0b6f62c", null))
 	inserted_case = tool
 	update_static_data_for_all_viewers()
 	update_appearance(UPDATE_ICON)
@@ -95,12 +95,12 @@
 ///Removes the implant from the pad and puts it in the user's hands if possible.
 /obj/item/implantpad/proc/remove_implant(mob/user)
 	if(!inserted_case)
-		user.balloon_alert(user, LANG("obj.060f689c", null))
+		user.balloon_alert(user, LANG("obj.060f689ce74e247d", null))
 		return FALSE
 	add_fingerprint(user)
 	inserted_case.add_fingerprint(user)
 	user.put_in_hands(inserted_case)
-	user.balloon_alert(user, LANG("obj.7eb3ffb4", null))
+	user.balloon_alert(user, LANG("obj.7eb3ffb401f9de31", null))
 	update_appearance(UPDATE_ICON)
 	update_static_data_for_all_viewers()
 	return TRUE
@@ -108,38 +108,38 @@
 /// Saves the currently inserted implant's deathrattle group.
 /obj/item/implantpad/proc/save_deathrattle_group(mob/user)
 	if(!inserted_case)
-		user.balloon_alert(user, LANG("obj.060f689c", null))
+		user.balloon_alert(user, LANG("obj.060f689ce74e247d", null))
 		return FALSE
 	if(!istype(inserted_case.imp, /obj/item/implant/deathrattle))
-		user.balloon_alert(user, LANG("obj.36313258", null))
+		user.balloon_alert(user, LANG("obj.36313258a9141651", null))
 		return FALSE
 	var/obj/item/implant/deathrattle/inserted_implant = inserted_case.imp
 	var/datum/deathrattle_group/current_group = inserted_implant.current_group
 	if(!current_group)
-		user.balloon_alert(user, LANG("obj.27252a99", null))
+		user.balloon_alert(user, LANG("obj.27252a990d60ee19", null))
 		return FALSE
 	saved_deathrattle_group = current_group
-	user.balloon_alert(user, LANG("obj.431c3263", list(current_group.name)))
+	user.balloon_alert(user, LANG("obj.431c3263867a418b", list(current_group.name)))
 	update_static_data_for_all_viewers()
 	return TRUE
 
 /// Sets the currently inserted implant's deathrattle group to saved.
 /obj/item/implantpad/proc/set_deathrattle_group(mob/user)
 	if(!inserted_case)
-		user.balloon_alert(user, LANG("obj.060f689c", null))
+		user.balloon_alert(user, LANG("obj.060f689ce74e247d", null))
 		return FALSE
 	if(!saved_deathrattle_group)
-		user.balloon_alert(user, LANG("obj.bf3d50d8", null))
+		user.balloon_alert(user, LANG("obj.bf3d50d825f606a2", null))
 		return FALSE
 	if(!istype(inserted_case.imp, /obj/item/implant/deathrattle))
-		user.balloon_alert(user, LANG("obj.36313258", null))
+		user.balloon_alert(user, LANG("obj.36313258a9141651", null))
 		return FALSE
 	var/obj/item/implant/deathrattle/inserted_implant = inserted_case.imp
 	if(!istype(saved_deathrattle_group, inserted_implant.deathrattle_group_type))
-		user.balloon_alert(user, LANG("obj.6272c3f2", null))
+		user.balloon_alert(user, LANG("obj.6272c3f2beff64bc", null))
 		return FALSE
 	saved_deathrattle_group.register(inserted_implant)
-	user.balloon_alert(user, LANG("obj.4b9878a9", list(saved_deathrattle_group.name)))
+	user.balloon_alert(user, LANG("obj.4b9878a9ad063b36", list(saved_deathrattle_group.name)))
 	inserted_case.name = "[initial(inserted_case.name)] - [saved_deathrattle_group.name]"
 	update_static_data_for_all_viewers()
 	return TRUE
@@ -147,20 +147,20 @@
 /// Initializes and saves a new deathrattle group, then registers the current implant to it.
 /obj/item/implantpad/proc/init_deathrattle_group(mob/user)
 	if(!inserted_case)
-		user.balloon_alert(user, LANG("obj.060f689c", null))
+		user.balloon_alert(user, LANG("obj.060f689ce74e247d", null))
 		return FALSE
 	if(!istype(inserted_case.imp, /obj/item/implant/deathrattle))
-		user.balloon_alert(user, LANG("obj.36313258", null))
+		user.balloon_alert(user, LANG("obj.36313258a9141651", null))
 		return FALSE
 	var/obj/item/implant/deathrattle/inserted_implant = inserted_case.imp
 	if(inserted_implant.current_group)
-		user.balloon_alert(user, LANG("obj.ba215ea3", null))
+		user.balloon_alert(user, LANG("obj.ba215ea32889d42d", null))
 		return FALSE
 	// init and save new group
 	saved_deathrattle_group = new inserted_implant.deathrattle_group_type
 	// register current implant
 	saved_deathrattle_group.register(inserted_implant)
-	user.balloon_alert(user, LANG("obj.87640da5", list(saved_deathrattle_group.name)))
+	user.balloon_alert(user, LANG("obj.87640da50d2b6872", list(saved_deathrattle_group.name)))
 	inserted_case.name += " - [saved_deathrattle_group.name]"
 	update_static_data_for_all_viewers()
 	return TRUE

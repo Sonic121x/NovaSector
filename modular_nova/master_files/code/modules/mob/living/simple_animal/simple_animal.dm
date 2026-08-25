@@ -22,13 +22,13 @@
 	if(key || stat)
 		return
 	if(is_banned_from(user.ckey, BAN_MOB_CONTROL))
-		to_chat(user, LANG("mob.2fdfbaa8", null))
+		to_chat(user, LANG("mob.2fdfbaa81d14abc4", null))
 		return
-	var/query = tgui_alert(user, LANG("mob.41bb31fc", list(src)), LANG("mob.b251a324", null), list("Yes", "No"))
+	var/query = tgui_alert(user, LANG("mob.41bb31fcac4be77c", list(src)), LANG("mob.b251a324e8c587e4", null), list("Yes", "No"))
 	if(!query || query == "No" || !src || QDELETED(src))
 		return
 	if(key)
-		to_chat(user, span_warning(LANG("mob.45f21b5e", null)))
+		to_chat(user, span_warning(LANG("mob.45f21b5e926e2acd", null)))
 		return
 	key = user.key
 	var/string_to_send = CONFIG_GET(string/pc_mob_text)

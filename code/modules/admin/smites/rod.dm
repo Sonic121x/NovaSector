@@ -5,7 +5,7 @@
 	var/force_looping = FALSE
 
 /datum/smite/rod/configure(client/user)
-	var/loop_input = tgui_alert(usr,LANG("datum.9820a3d3", null), LANG("datum.8ae1b7f8", null), list("Yes", "No"))
+	var/loop_input = tgui_alert(usr,LANG("datum.9820a3d389f7488e", null), LANG("datum.8ae1b7f8e648aad8", null), list("Yes", "No"))
 
 	force_looping = (loop_input == "Yes")
 

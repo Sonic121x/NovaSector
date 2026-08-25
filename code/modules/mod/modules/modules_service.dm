@@ -3,7 +3,7 @@
 
 ///Bike Horn - Plays a bike horn sound.
 /obj/item/mod/module/bikehorn
-	name = "MOD bike horn module"
+	name = "\improper MOD bike horn module"
 	desc = "A shoulder-mounted piece of heavy sonic artillery, this module uses the finest femto-manipulator technology to \
 		precisely deliver an almost lethal squeeze to... a bike horn, producing a significantly memorable sound."
 	icon_state = "bikehorn"
@@ -20,7 +20,7 @@
 
 ///Advanced Balloon Blower - Blows a long balloon.
 /obj/item/mod/module/balloon/advanced
-	name = "MOD advanced balloon blower module"
+	name = "\improper MOD advanced balloon blower module"
 	desc = "A relatively new piece of technology developed by finest clown engineers to make long balloons and balloon animals \
 		at party-appropriate rate."
 	cooldown_time = 20 SECONDS
@@ -29,7 +29,7 @@
 
 ///Microwave Beam - Microwaves items instantly.
 /obj/item/mod/module/microwave_beam
-	name = "MOD microwave beam module"
+	name = "\improper MOD microwave beam module"
 	desc = "An oddly domestic device, this module is installed into the user's palm, \
 		hooking up with culinary scanners located in the helmet to blast food with precise microwave radiation, \
 		allowing them to cook food from a distance, with the greatest of ease. Not recommended for use against grapes."
@@ -49,7 +49,7 @@
 	if(!isitem(target))
 		return
 	if(!isturf(target.loc))
-		balloon_alert(mod.wearer, LANG("obj.cff36f54", null))
+		balloon_alert(mod.wearer, LANG("obj.cff36f54adb1401f", null))
 		return
 	var/obj/item/microwave_target = target
 	do_sparks(2, TRUE, mod.wearer)
@@ -57,13 +57,13 @@
 	if(microwave_target.microwave_act(microwaver = mod.wearer) & COMPONENT_MICROWAVE_SUCCESS)
 		playsound(src, 'sound/machines/microwave/microwave-end.ogg', 50, FALSE)
 	else
-		balloon_alert(mod.wearer, LANG("obj.fc614343", null))
+		balloon_alert(mod.wearer, LANG("obj.fc614343acb1b5f1", null))
 	do_sparks(2, TRUE, microwave_target)
 	drain_power(use_energy_cost)
 
 //Waddle - Makes you waddle and squeak.
 /obj/item/mod/module/waddle
-	name = "MOD waddle module"
+	name = "\improper MOD waddle module"
 	desc = "Some of the most primitive technology in use by Honk Co. This module works off an automatic intention system, \
 		utilizing its sensitivity to the pilot's often-limited brainwaves to directly read their next step, \
 		affecting the boots they're installed in. Employing a twin-linked gravitonic drive to create \
@@ -94,7 +94,7 @@
 
 // recharging cleaner spray module
 /obj/item/mod/module/mister/cleaner
-	name = "MOD janitorial mister module"
+	name = "\improper MOD janitorial mister module"
 	desc = "A space cleaner mister, able to clean up messes quickly. Synthesizes its own supply over time (if active)."
 	device = /obj/item/reagent_containers/spray/mister/janitor
 	volume = 100
@@ -112,7 +112,7 @@
 		reagents.add_reagent(/datum/reagent/space_cleaner, refill_add)
 
 /obj/item/mod/module/selfcleaner
-	name = "MOD perfumer module"
+	name = "\improper MOD perfumer module"
 	desc = "A small spray to clean oneself up. Has a pleasant scent."
 	icon_state = "cleaner"
 	module_type = MODULE_USABLE

@@ -60,9 +60,9 @@
 /datum/element/airbag/proc/disarm_airbag(atom/movable/clicked_atom, mob/living/clicker)
 	var/empty_hand = LAZYACCESS(clicker.get_empty_held_indexes(), 1)
 	if(!empty_hand)
-		clicked_atom.balloon_alert(clicker, LANG("datum.043f1522", null))
+		clicked_atom.balloon_alert(clicker, LANG("datum.043f15220608f1ed", null))
 		return
-	clicked_atom.balloon_alert_to_viewers(LANG("datum.06c6b2ba", null))
+	clicked_atom.balloon_alert_to_viewers(LANG("datum.06c6b2ba157c1c87", null))
 	if(do_after(clicker, DISARM_TIME, clicked_atom))
 		playsound(clicked_atom, 'sound/machines/click.ogg', 75, TRUE, -3)
 		clicker.put_in_hands(new disarmed_type(clicker))
@@ -121,7 +121,7 @@
 	if(!loc.Adjacent(target) || !istype(target, /obj/structure/window))
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_AIRBAGGED))
-		user.balloon_alert(user, LANG("obj.dc054d33", null))
+		user.balloon_alert(user, LANG("obj.dc054d332b14a35a", null))
 		return FALSE
 	return TRUE
 
@@ -182,7 +182,6 @@
 /datum/design/airbag
 	name = "Airbag"
 	desc = "Keep that vacuum of space from sucking!"
-	id = "airbag"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE | COLONY_FABRICATOR
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 5)
 	build_path = /obj/item/airbag

@@ -41,7 +41,7 @@
 	affected_mob.Paralyze(1 SECONDS)
 
 	if(!affected_mob.adjust_brute_loss(20, updating_health = TRUE, forced = TRUE))
-		visible_message(span_clockred(LANG("obj.e1f7c967", list(src, affected_mob))))
+		visible_message(span_clockred(LANG("obj.e1f7c967643786a0", list(src, affected_mob))))
 		return
 
 	playsound(loc, 'modular_nova/modules/clock_cult/sound/magic/ratvar_attack.ogg', 40)
@@ -49,12 +49,12 @@
 		affected_mob.do_jitter_animation()
 		affected_mob.death()
 		playsound(loc, 'sound/effects/magic/exit_blood.ogg', 60)
-		to_chat(affected_mob, span_clockred(LANG("obj.bfb32e36", null)))
+		to_chat(affected_mob, span_clockred(LANG("obj.bfb32e36537448fd", null)))
 		check_special_role(affected_mob)
 		GLOB.clock_vitality += (affected_mob.client ? 30 : 10) // 100 (for clients) total in the ideal situation, since it'll take 7 pulses to go from full to crit
 		return
 
-	affected_mob.visible_message(span_clockred(LANG("obj.a5fdc8da", list(affected_mob))), span_clockred(LANG("obj.417e1fad", null)))
+	affected_mob.visible_message(span_clockred(LANG("obj.a5fdc8da358402af", list(affected_mob))), span_clockred(LANG("obj.417e1fad9567a38e", null)))
 	GLOB.clock_vitality += (affected_mob.client ? 10 : 0) // Monkey or whatever? You get jackshit
 
 

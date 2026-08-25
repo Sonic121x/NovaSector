@@ -23,13 +23,13 @@
 	if(!target.is_dunkable()) // container should be a valid target for dunking
 		return NONE
 	if(!target.is_drainable())
-		to_chat(user, span_warning(LANG("datum.f566fb67", list(target))))
+		to_chat(user, span_warning(LANG("datum.f566fb676c09d5f0", list(target))))
 		return ITEM_INTERACT_BLOCKING
 	if(target.reagents.trans_to(source, dunk_amount, transferred_by = user)) //if reagents were transferred, show the message
-		to_chat(user, span_notice(LANG("datum.237a256a", list(target, target))))
+		to_chat(user, span_notice(LANG("datum.237a256ad336a364", list(target, target))))
 		return ITEM_INTERACT_SUCCESS
 	if(!target.reagents.total_volume)
-		to_chat(user, span_warning(LANG("datum.02d482cc", list(target))))
+		to_chat(user, span_warning(LANG("datum.02d482cc1aef0cef", list(target))))
 	else
-		to_chat(user, span_warning(LANG("datum.21d5a38a", list(source))))
+		to_chat(user, span_warning(LANG("datum.21d5a38ae9e8687a", list(source))))
 	return ITEM_INTERACT_BLOCKING

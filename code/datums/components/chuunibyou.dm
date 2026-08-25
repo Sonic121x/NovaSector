@@ -98,13 +98,13 @@
 
 	casting_spell = FALSE
 	if(!COOLDOWN_FINISHED(src, heal_cooldown))
-		to_chat(source, span_danger(LANG("datum.a4714582", null)))
+		to_chat(source, span_danger(LANG("datum.a47145823ad1edc5", null)))
 		return
 	COOLDOWN_START(src, heal_cooldown, CHUUNIBYOU_COOLDOWN_TIME)
 
 	source.heal_overall_damage(heal_amount)
 	playsound(source, 'sound/effects/magic/staff_healing.ogg', 30)
-	to_chat(source, span_danger(LANG("datum.4039960f", null)))
+	to_chat(source, span_danger(LANG("datum.4039960f7692d528", null)))
 
 /datum/component/chuunibyou/no_healing
 	heal_amount = 0

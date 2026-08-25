@@ -47,7 +47,7 @@ GAME_VERB_HIDDEN(/mob/living, suicide, "suicide")
 	if(!can_suicide())
 		return FALSE
 
-	var/confirm = tgui_alert(src, LANG("mob.0f68d22d", null), LANG("mob.65e1185a", null), list("Yes", "No"))
+	var/confirm = tgui_alert(src, LANG("mob.0f68d22d04ad8f5c", null), LANG("mob.65e1185a13d8a0cd", null), list("Yes", "No"))
 
 	// ensure our situation didn't change while we were sleeping waiting for the tgui_alert.
 	if(!can_suicide() || (ckey != oldkey))
@@ -56,37 +56,37 @@ GAME_VERB_HIDDEN(/mob/living, suicide, "suicide")
 	if(confirm == "Yes")
 		return TRUE
 
-	balloon_alert(src, LANG("mob.b87f37d6", null))
+	balloon_alert(src, LANG("mob.b87f37d6a9bf2f97", null))
 	return FALSE
 
 /// Checks if we are in a valid state to suicide (not already suiciding, capable of actually killing ourselves, area checks, etc.) Returns TRUE if we can suicide, FALSE if we can not.
 /mob/living/proc/can_suicide()
 	// NOVA EDIT ADDITION START
 	if(CONFIG_GET(flag/disable_suicide))
-		to_chat(src, span_warning(LANG("mob.c8482502", null)))
+		to_chat(src, span_warning(LANG("mob.c8482502aa0e9391", null)))
 		return FALSE
 	// NOVA EDIT ADDITION END
 	if(HAS_TRAIT_FROM_ONLY(src, TRAIT_SUICIDED, REF(src)))
-		to_chat(src, span_warning(LANG("mob.873efd69", null)))
+		to_chat(src, span_warning(LANG("mob.873efd6965a95a2a", null)))
 		return FALSE
 
 	var/area/checkable = get_area(src)
 	if(checkable.area_flags & BLOCK_SUICIDE)
-		to_chat(src, span_warning(LANG("mob.bb3aaa78", null)))
+		to_chat(src, span_warning(LANG("mob.bb3aaa78198a4611", null)))
 		return FALSE
 
 	if(!IS_UNCONSCIOUS_OR_CRIT(src))
 		return TRUE
 
 	if(stat == DEAD)
-		to_chat(src, span_warning(LANG("mob.28e380e1", null)))
+		to_chat(src, span_warning(LANG("mob.28e380e16f4584ea", null)))
 		return FALSE
 
 	if(IS_UNCONSCIOUS(src))
-		to_chat(src, span_warning(LANG("mob.48cfee80", null)))
+		to_chat(src, span_warning(LANG("mob.48cfee80ab915af9", null)))
 		return FALSE
 
-	to_chat(src, span_warning(LANG("mob.8f3165ed", null)))
+	to_chat(src, span_warning(LANG("mob.8f3165edd3088663", null)))
 	return FALSE
 
 /// Inserts in logging and death + mind dissociation when we're fully done with ending the life of our mob, as well as adjust the health. We will disallow re-entering the body when this is called.

@@ -6,7 +6,7 @@
 /// Admin command to manually trigger RETA access grant for admins
 ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA 门禁权限", "Manually trigger RETA access for testing", ADMIN_CATEGORY_EVENTS)
 
-	var/calling_dept = tgui_input_list(user, LANG("datum.5f6a3c68", null), LANG("datum.57dd1cc5", null), list("Security", "Engineering", "Medical", "Science", "Service", "Command", "Cargo", "Mining"))
+	var/calling_dept = tgui_input_list(user, LANG("datum.5f6a3c6879049c40", null), LANG("datum.57dd1cc55bc66435", null), list("Security", "Engineering", "Medical", "Science", "Service", "Command", "Cargo", "Mining"))
 	if(!calling_dept)
 		return
 
@@ -19,7 +19,7 @@ ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA 门禁权限", "Manually trigger 
 
 	while(length(remaining_depts))
 		remaining_depts += "DONE - Finish selection"
-		var/choice = tgui_input_list(user, LANG("datum.f76a1f2a", list(calling_dept, english_list(selected_depts))), LANG("datum.c2a93820", null), remaining_depts)
+		var/choice = tgui_input_list(user, LANG("datum.f76a1f2a192c2f7c", list(calling_dept, lang_english_list(selected_depts))), LANG("datum.c2a93820e43c0d2e", null), remaining_depts)
 
 		if(!choice || choice == "DONE - Finish selection")
 			break
@@ -32,7 +32,7 @@ ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA 门禁权限", "Manually trigger 
 		message_admins("No departments selected for RETA response.")
 		return
 
-	var/duration = tgui_input_number(user, LANG("datum.0095f737", null), LANG("datum.ca0e94f0", null), 5, 60, 1)
+	var/duration = tgui_input_number(user, LANG("datum.0095f73780dd3d7e", null), LANG("datum.ca0e94f045f5a37a", null), 5, 60, 1)
 	if(!duration)
 		return
 

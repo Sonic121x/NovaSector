@@ -18,7 +18,7 @@ Recurring extracts:
 /obj/item/slimecross/recurring/Initialize(mapload)
 	. = ..()
 	extract = new extract_type(src.loc)
-	visible_message(span_notice(LANG("obj.5be3ca25", list(src))))
+	visible_message(span_notice(LANG("obj.5be3ca2559828e64", list(src))))
 	extract.name = name
 	extract.desc = desc
 	extract.icon = icon
@@ -35,7 +35,7 @@ Recurring extracts:
 		extract.extract_uses++
 		cooldown = max_cooldown
 	else if(extract.extract_uses <= 0)
-		extract.visible_message(span_warning(LANG("obj.4f98d5b8", list(extract))))
+		extract.visible_message(span_warning(LANG("obj.4f98d5b81c989176", list(extract))))
 		extract.desc = "A tiny, inert core, bleeding dark, cerulean-colored goo."
 		extract.icon_state = "prismatic"
 		qdel(src)

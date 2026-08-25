@@ -6,7 +6,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 GAME_VERB(/client, ooc, VERB_OOC, null)
 	VERB_ARG(msg, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(usr, span_danger(LANG("client.b79ad8a3", null)))
+		to_chat(usr, span_danger(LANG("client.b79ad8a388d1b3a4", null)))
 		return
 
 	var/client_initalized = VALIDATE_CLIENT_INITIALIZATION(src)
@@ -14,21 +14,21 @@ GAME_VERB(/client, ooc, VERB_OOC, null)
 		if(!client_initalized)
 			unvalidated_client_error() // we only want to throw this warning message when it's directly related to client failure.
 
-		to_chat(usr, span_warning(LANG("client.384eafcb", list(span_big(msg)))))
+		to_chat(usr, span_warning(LANG("client.384eafcb1bc626ec", list(span_big(msg)))))
 		return
 
 	if(isnull(holder))
 		if(!GLOB.ooc_allowed)
-			to_chat(src, span_danger(LANG("client.e44735a2", null)))
+			to_chat(src, span_danger(LANG("client.e44735a20e8fbcfd", null)))
 			return
 		if(!GLOB.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, span_danger(LANG("client.ff2d29bb", null)))
+			to_chat(usr, span_danger(LANG("client.ff2d29bb3106e672", null)))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, span_danger(LANG("client.058db9ff", null)))
+			to_chat(src, span_danger(LANG("client.058db9ff84dbe18d", null)))
 			return
 	if(is_banned_from(ckey, "OOC"))
-		to_chat(src, span_danger(LANG("client.aaaae170", null)))
+		to_chat(src, span_danger(LANG("client.aaaae170c8fb6787", null)))
 		return
 	if(QDELETED(src))
 		return
@@ -47,7 +47,7 @@ GAME_VERB(/client, ooc, VERB_OOC, null)
 	var/list/soft_filter_result = filter_result || is_soft_ooc_filtered(msg)
 
 	if (soft_filter_result)
-		if(tgui_alert(usr,LANG("client.6308a68e", list(soft_filter_result[CHAT_FILTER_INDEX_WORD], soft_filter_result[CHAT_FILTER_INDEX_REASON])), LANG("client.b0fe106c", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr,LANG("client.6308a68e8adba21f", list(soft_filter_result[CHAT_FILTER_INDEX_WORD], soft_filter_result[CHAT_FILTER_INDEX_REASON])), LANG("client.b0fe106c90796ca4", null), list("Yes", "No")) != "Yes")
 			return
 		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[html_encode(msg)]\"")
 		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
@@ -58,20 +58,20 @@ GAME_VERB(/client, ooc, VERB_OOC, null)
 	msg = emoji_parse(msg)
 
 	if(SSticker.HasRoundStarted() && ((msg[1] in list(".",";",":","#")) || findtext_char(msg, "say", 1, 5)))
-		if(tgui_alert(usr,LANG("client.296c835c", list(raw_msg)), LANG("client.11754bf0", null), list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr,LANG("client.296c835cf0598c67", list(raw_msg)), LANG("client.11754bf045fdd0a5", null), list("Yes", "No")) != "Yes")
 			return
 
 	if(!holder)
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, span_boldannounce(LANG("client.6044b5d6", null)))
+			to_chat(src, span_boldannounce(LANG("client.6044b5d66e366729", null)))
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
 
 	if(!(get_chat_toggles(src) & CHAT_OOC))
-		to_chat(src, span_danger(LANG("client.a877c979", null)))
+		to_chat(src, span_danger(LANG("client.a877c979d7d49962", null)))
 		return
 
 	mob.log_talk(raw_msg, LOG_OOC)
@@ -116,22 +116,22 @@ GAME_VERB(/client, ooc, VERB_OOC, null)
 			if(!holder.fakekey || receiver.holder)
 				if(check_rights_for(src, R_ADMIN))
 					var/ooc_color = ooc_colour ? ooc_colour : prefs.read_preference(/datum/preference/color/ooc_color)
-					to_chat(receiver, span_adminooc("[CONFIG_GET(flag/allow_admin_ooccolor) && ooc_color ? "<font color=[ooc_color]>" :"" ][span_prefix("OOC:")] <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span>"), avoid_highlighting = avoid_highlight)
+					to_chat(receiver, span_adminooc(LANG("client.71cc21bfa8dbf7ae", list(CONFIG_GET(flag/allow_admin_ooccolor) && ooc_color ? "<font color=[ooc_color]>" :"", span_prefix("OOC:"), keyname, holder.fakekey ? "/([holder.fakekey])" : "", msg))), avoid_highlighting = avoid_highlight)
 				else
-					to_chat(receiver, span_adminobserverooc(span_prefix(LANG("client.e7be096b", list(keyname, holder.fakekey ? "/([holder.fakekey])" : "", msg)))), avoid_highlighting = avoid_highlight)
+					to_chat(receiver, span_adminobserverooc(span_prefix(LANG("client.e7be096b79828369", list(keyname, holder.fakekey ? "/([holder.fakekey])" : "", msg)))), avoid_highlighting = avoid_highlight)
 			else
 				if(GLOB.OOC_COLOR)
-					to_chat(receiver, "<span class='oocplain'><font color='[GLOB.OOC_COLOR]'><b>[span_prefix("OOC:")] <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font></span>", avoid_highlighting = avoid_highlight)
+					to_chat(receiver, LANG("client.c4796ab371493006", list(GLOB.OOC_COLOR, span_prefix("OOC:"), holder.fakekey ? holder.fakekey : key, msg)), avoid_highlighting = avoid_highlight)
 				else
-					to_chat(receiver, span_ooc(span_prefix(LANG("client.e41c9dd4", list(holder.fakekey ? holder.fakekey : key, msg)))), avoid_highlighting = avoid_highlight)
+					to_chat(receiver, span_ooc(span_prefix(LANG("client.e41c9dd40499751b", list(holder.fakekey ? holder.fakekey : key, msg)))), avoid_highlighting = avoid_highlight)
 
 		else if(!(key in receiver.prefs.ignoring))
 			if(ooc_colour)
-				to_chat(receiver, "<span class='oocplain'><font color='[ooc_colour]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font></span>", avoid_highlighting = avoid_highlight)
+				to_chat(receiver, LANG("client.c4796ab371493006", list(ooc_colour, span_prefix("OOC:"), keyname, msg)), avoid_highlighting = avoid_highlight)
 			else if(GLOB.OOC_COLOR)
-				to_chat(receiver, "<span class='oocplain'><font color='[GLOB.OOC_COLOR]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font></span>", avoid_highlighting = avoid_highlight)
+				to_chat(receiver, LANG("client.c4796ab371493006", list(GLOB.OOC_COLOR, span_prefix("OOC:"), keyname, msg)), avoid_highlighting = avoid_highlight)
 			else
-				to_chat(receiver, span_ooc(span_prefix(LANG("client.e41c9dd4", list(keyname, msg)))), avoid_highlighting = avoid_highlight)
+				to_chat(receiver, span_ooc(span_prefix(LANG("client.e41c9dd40499751b", list(keyname, msg)))), avoid_highlighting = avoid_highlight)
 
 
 /proc/toggle_ooc(toggle = null)
@@ -142,7 +142,7 @@ GAME_VERB(/client, ooc, VERB_OOC, null)
 			return
 	else //otherwise just toggle it
 		GLOB.ooc_allowed = !GLOB.ooc_allowed
-	to_chat(world, LANG("_root.636a249b", list(GLOB.ooc_allowed ? "enabled" : "disabled")))
+	to_chat(world, LANG("_root.636a249bae7516ab", list(GLOB.ooc_allowed ? "enabled" : "disabled")))
 
 /proc/toggle_dooc(toggle = null)
 	if(toggle != null)
@@ -163,7 +163,7 @@ ADMIN_VERB(set_ooc_color, R_FUN, "设置玩家 OOC 颜色", "Modifies the global
 	GLOB.OOC_COLOR = new_color
 
 ADMIN_VERB(reset_ooc_color, R_FUN, "重置玩家 OOC 颜色", "Returns player OOC color to default.", ADMIN_CATEGORY_SERVER)
-	if(tgui_alert(user, LANG("datum.26e132eb", null), LANG("datum.53dce6c2", null), list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, LANG("datum.26e132ebc91f2f58", null), LANG("datum.53dce6c2a48479d7", null), list("Yes", "No")) != "Yes")
 		return
 	message_admins("[key_name_admin(user)] has reset the players' ooc color.")
 	log_admin("[key_name_admin(user)] has reset player ooc color.")
@@ -172,21 +172,21 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "重置玩家 OOC 颜色", "Returns player OO
 //Checks admin notice
 GAME_VERB_DESC(/client, admin_notice, "管理员通知", "Check the admin notice if it has been set", "Admin")
 	if(GLOB.admin_notice)
-		to_chat(src, LANG("client.4311435f", list(span_boldnotice("Admin Notice:"), GLOB.admin_notice)))
+		to_chat(src, LANG("client.4311435f90b24fac", list(span_boldnotice("Admin Notice:"), GLOB.admin_notice)))
 	else
-		to_chat(src, span_notice(LANG("client.9b2b211e", null)))
+		to_chat(src, span_notice(LANG("client.9b2b211e892ce176", null)))
 
 GAME_VERB_DESC(/client, motd, "MOTD", "Check the Message of the Day", "OOC")
 	var/motd = global.config.motd
 	if(motd)
 		to_chat(src, "<span class='infoplain'><div class=\"motd\">[motd]</div></span>", handle_whitespace=FALSE)
 	else
-		to_chat(src, span_notice(LANG("client.f74ead16", null)))
+		to_chat(src, span_notice(LANG("client.f74ead167815939e", null)))
 
 GAME_VERB_PROC_DESC(/client, self_notes, "查看管理员备注", "View the notes that admins have written about you", "OOC")
 
 	if(!CONFIG_GET(flag/see_own_notes))
-		to_chat(usr, span_notice(LANG("client.3f633650", null)))
+		to_chat(usr, span_notice(LANG("client.3f633650d5973e58", null)))
 		return
 
 	browse_messages(null, usr.ckey, null, TRUE)
@@ -194,7 +194,7 @@ GAME_VERB_PROC_DESC(/client, self_notes, "查看管理员备注", "View the note
 GAME_VERB_PROC_DESC(/client, self_playtime, "查看记录的游玩时间", "View the amount of playtime for roles the server has tracked.", "OOC")
 
 	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(usr, span_notice(LANG("client.8cad0082", null)))
+		to_chat(usr, span_notice(LANG("client.8cad0082e63e8e69", null)))
 		return
 
 	new /datum/job_report_menu(src, usr)
@@ -242,7 +242,7 @@ GAME_VERB_DESC(/client, select_ignore, "忽略", "Ignore a player's messages on 
 	// Check if the list is empty
 	if(!length(players))
 		// Express that there are no players we can ignore in chat
-		to_chat(src, span_infoplain(LANG("client.7fef25cf", null)))
+		to_chat(src, span_infoplain(LANG("client.7fef25cf2597ad81", null)))
 
 		// Stop running
 		return
@@ -251,7 +251,7 @@ GAME_VERB_DESC(/client, select_ignore, "忽略", "Ignore a player's messages on 
 	players = sort_list(players)
 
 	// Request the player to ignore
-	var/selection = tgui_input_list(src, LANG("client.6123f9f9", null), LANG("client.284fb6b0", null), players)
+	var/selection = tgui_input_list(src, LANG("client.6123f9f9d91354ed", null), LANG("client.284fb6b0135f80fd", null), players)
 
 	// Stop running if we didn't receieve a valid selection
 	if(isnull(selection) || !(selection in players))
@@ -263,7 +263,7 @@ GAME_VERB_DESC(/client, select_ignore, "忽略", "Ignore a player's messages on 
 	// Check if the selected player is on our ignore list
 	if(selection in prefs.ignoring)
 		// Express that the selected player is already on our ignore list in chat
-		to_chat(src, span_infoplain(LANG("client.6ac3c5f5", list(selection))))
+		to_chat(src, span_infoplain(LANG("client.6ac3c5f5e2aac557", list(selection))))
 
 		// Stop running
 		return
@@ -275,20 +275,20 @@ GAME_VERB_DESC(/client, select_ignore, "忽略", "Ignore a player's messages on 
 	prefs.save_preferences()
 
 	// Express that we've ignored the selected player in chat
-	to_chat(src, span_infoplain(LANG("client.4185e6d3", list(selection))))
+	to_chat(src, span_infoplain(LANG("client.4185e6d3078bf7d6", list(selection))))
 
 // Unignore verb
 GAME_VERB_DESC(/client, select_unignore, "取消忽略", "Stop ignoring a player's messages on the OOC channel", "OOC")
 	// Check if we've ignored any players
 	if(!length(prefs.ignoring))
 		// Express that we haven't ignored any players in chat
-		to_chat(src, span_infoplain(LANG("client.a078a38d", null)))
+		to_chat(src, span_infoplain(LANG("client.a078a38dffb76b65", null)))
 
 		// Stop running
 		return
 
 	// Request the player to unignore
-	var/selection = tgui_input_list(src, LANG("client.6123f9f9", null), LANG("client.7b269124", null), prefs.ignoring)
+	var/selection = tgui_input_list(src, LANG("client.6123f9f9d91354ed", null), LANG("client.7b2691242e7fa082", null), prefs.ignoring)
 
 	// Stop running if we didn't receive a selection
 	if(isnull(selection))
@@ -297,7 +297,7 @@ GAME_VERB_DESC(/client, select_unignore, "取消忽略", "Stop ignoring a player
 	// Check if the selected player is not on our ignore list
 	if(!(selection in prefs.ignoring))
 		// Express that the selected player is not on our ignore list in chat
-		to_chat(src, span_infoplain(LANG("client.079cbe60", list(selection))))
+		to_chat(src, span_infoplain(LANG("client.079cbe605fc8d0d3", list(selection))))
 
 		// Stop running
 		return
@@ -309,7 +309,7 @@ GAME_VERB_DESC(/client, select_unignore, "取消忽略", "Stop ignoring a player
 	prefs.save_preferences()
 
 	// Express that we've unignored the selected player in chat
-	to_chat(src, span_infoplain(LANG("client.abb0f938", list(selection))))
+	to_chat(src, span_infoplain(LANG("client.abb0f938f672d6db", list(selection))))
 
 GAME_VERB_PROC_DESC(/client, show_previous_roundend_report, "你的上一回合", "View the last round end report you've seen", "OOC")
 
@@ -433,28 +433,28 @@ GAME_VERB_DESC(/client, map_vote_tally_count, "显示地图投票统计", "View 
 GAME_VERB_DESC(/client, linkforumaccount, "关联论坛账号", "Validates your byond account to your forum account. Required to post on the forums.", "OOC")
 	var/uri = CONFIG_GET(string/forum_link_uri)
 	if(!uri)
-		to_chat(src, span_warning(LANG("client.882f982c", null)))
+		to_chat(src, span_warning(LANG("client.882f982c75e27ffe", null)))
 		return
 
 	if (!SSdbcore.Connect())
-		to_chat(src, span_danger(LANG("client.a2fe5725", null)))
+		to_chat(src, span_danger(LANG("client.a2fe5725f13299ef", null)))
 		return
 
 	if  (is_guest_key(ckey))
-		to_chat(src, span_danger(LANG("client.128e3843", null)))
+		to_chat(src, span_danger(LANG("client.128e3843136c5e96", null)))
 		return
 
 	var/token = generate_account_link_token()
 
 	var/datum/db_query/query_set_token = SSdbcore.NewQuery("INSERT INTO phpbb.tg_byond_oauth_tokens (`token`, `key`) VALUES (:token, :key)", list("token" = token, "key" = key))
 	if(!query_set_token.Execute())
-		to_chat(src, span_danger(LANG("client.bec52bf6", null)))
+		to_chat(src, span_danger(LANG("client.bec52bf6478da122", null)))
 		qdel(query_set_token)
 		return
 
 	qdel(query_set_token)
 
-	to_chat(src, LANG("client.566925c9", list(uri, token, uri, token)))
+	to_chat(src, LANG("client.566925c91ceff881", list(uri, token, uri, token)))
 	src << link("[uri]?token=[token]")
 
 /client/proc/generate_account_link_token()
@@ -470,12 +470,12 @@ GAME_VERB_DESC(/client, linkforumaccount, "关联论坛账号", "Validates your 
 	var/datum/db_query/query_get_token = SSdbcore.NewQuery("SELECT [random_string()], [random_string()]", list(random_string_args(entropychain), random_string_args(entropychain)))
 
 	if(!query_get_token.Execute())
-		to_chat(src, span_danger(LANG("client.6a89b42c", null)))
+		to_chat(src, span_danger(LANG("client.6a89b42c31f0b711", null)))
 		qdel(query_get_token)
 		return
 
 	if(!query_get_token.NextRow())
-		to_chat(src, span_danger(LANG("client.122a5fe9", null)))
+		to_chat(src, span_danger(LANG("client.122a5fe9f01f566b", null)))
 		qdel(query_get_token)
 		return
 

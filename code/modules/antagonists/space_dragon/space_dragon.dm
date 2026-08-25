@@ -38,8 +38,8 @@
 
 /datum/antagonist/space_dragon/greet()
 	. = ..()
-	to_chat(owner, LANG("datum.bc4ebe33", null))
-	to_chat(owner, span_boldwarning(LANG("datum.249b1dd7", null)))
+	to_chat(owner, LANG("datum.bc4ebe338e05afa2", null))
+	to_chat(owner, span_boldwarning(LANG("datum.249b1dd7ee4fd587", null)))
 	owner.announce_objectives()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/effects/magic/demon_attack1.ogg', 80)
 
@@ -143,10 +143,10 @@
 		return
 	riftTimer = min(riftTimer + 1, maxRiftTimer + 1)
 	if(riftTimer == (maxRiftTimer - 60))
-		to_chat(owner.current, span_boldwarning(LANG("datum.0dca4626", null)))
+		to_chat(owner.current, span_boldwarning(LANG("datum.0dca4626f918811d", null)))
 		return
 	if(riftTimer >= maxRiftTimer)
-		to_chat(owner.current, span_boldwarning(LANG("datum.11421a7e", null)))
+		to_chat(owner.current, span_boldwarning(LANG("datum.11421a7e2ee02256", null)))
 		destroy_rifts()
 		SEND_SOUND(owner.current, sound('sound/effects/magic/demon_dies.ogg'))
 		owner.current.death(/* gibbed = */ TRUE)
@@ -192,7 +192,7 @@
 	permanant_empower()
 	var/datum/objective/summon_carp/main_objective = locate() in objectives
 	main_objective?.completed = TRUE
-	priority_announce(LANG("datum.479b0b2f", list(station_name())), LANG("datum.9ecd04f6", list(command_name())), has_important_message = TRUE)
+	priority_announce(LANG("datum.479b0b2fbc151ac8", list(station_name())), LANG("datum.9ecd04f6ac2e1e13", list(command_name())), has_important_message = TRUE)
 	sound_to_playing_players('sound/mobs/non-humanoids/space_dragon/space_dragon_roar.ogg', volume = 75)
 	for(var/obj/structure/carp_rift/rift as anything in rift_list)
 		rift.carp_stored = 999999

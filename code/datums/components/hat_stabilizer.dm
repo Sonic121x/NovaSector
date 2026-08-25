@@ -89,7 +89,7 @@
 	var/obj/item/hat = remove_hat()
 	if(!hat)
 		return
-	hat.visible_message(span_danger(LANG("datum.bc790b2b", list(hat, hatless))))
+	hat.visible_message(span_danger(LANG("datum.bc790b2bc0db282f", list(hat, hatless))))
 	hat.throw_at(get_edge_target_turf(get_turf(hat), pick(GLOB.alldirs)), 2, 1, spin = TRUE)
 
 /datum/component/hat_stabilizer/proc/drop_hat(mob/hatless)
@@ -101,9 +101,9 @@
 /datum/component/hat_stabilizer/proc/on_examine(datum/source, mob/user, list/base_examine)
 	SIGNAL_HANDLER
 	if(attached_hat)
-		base_examine += span_notice(LANG("datum.81911b04", list(attached_hat, loose_hat ? "loosely" : "", parent)))
+		base_examine += span_notice(LANG("datum.81911b04471ab73c", list(attached_hat, loose_hat ? "loosely" : "", parent)))
 	else
-		base_examine += span_notice(LANG("datum.5c99b731", list(parent)))
+		base_examine += span_notice(LANG("datum.5c99b73126ba34a0", list(parent)))
 
 /datum/component/hat_stabilizer/proc/get_worn_overlays(atom/movable/source, list/overlays, mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	SIGNAL_HANDLER
@@ -154,12 +154,12 @@
 		return
 
 	if(attached_hat)
-		movable_parent.balloon_alert(user, LANG("datum.3e3b122e", null))
+		movable_parent.balloon_alert(user, LANG("datum.3e3b122e1b782cb3", null))
 		return
 	if(isclothing(hitting_item))
 		var/obj/item/clothing/hat = hitting_item
 		if(hat.clothing_flags & STACKABLE_HELMET_EXEMPT)
-			movable_parent.balloon_alert(user, LANG("datum.c91fe7f9", null))
+			movable_parent.balloon_alert(user, LANG("datum.c91fe7f92b517526", null))
 			return
 
 	if(!user.transferItemToLoc(hitting_item, parent, force = FALSE, silent = TRUE))
@@ -174,7 +174,7 @@
 	head_angle = pick(1, -1)
 
 	if (!isnull(user))
-		movable_parent.balloon_alert(user, LANG("datum.cfd398c7", null))
+		movable_parent.balloon_alert(user, LANG("datum.cfd398c721315266", null))
 
 	if (!isclothing(parent))
 		movable_parent.update_appearance()
@@ -205,9 +205,9 @@
 		return
 	var/atom/movable/movable_parent = parent
 	if (remove_hat(user))
-		movable_parent.balloon_alert(user, LANG("datum.9254066e", null))
+		movable_parent.balloon_alert(user, LANG("datum.9254066e97b36d65", null))
 	else
-		movable_parent.balloon_alert_to_viewers(LANG("datum.5032c8f6", null))
+		movable_parent.balloon_alert_to_viewers(LANG("datum.5032c8f6f3d9c4dd", null))
 
 /datum/component/hat_stabilizer/proc/on_retraction()
 
@@ -224,7 +224,7 @@
 	if(!isnull(user))
 		. = user.put_in_active_hand(attached_hat)
 	else
-		movable_parent.balloon_alert_to_viewers(LANG("datum.5032c8f6", null))
+		movable_parent.balloon_alert_to_viewers(LANG("datum.5032c8f6f3d9c4dd", null))
 
 	if (!isclothing(parent))
 		attached_hat = null

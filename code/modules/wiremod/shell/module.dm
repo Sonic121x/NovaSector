@@ -1,6 +1,6 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/mod/module/circuit
-	name = "MOD circuit adapter module"
+	name = "\improper MOD circuit adapter module"
 	desc = "A module shell that allows a circuit to be inserted into, and interface with, a MODsuit."
 	module_type = MODULE_USABLE
 	complexity = 1
@@ -127,7 +127,7 @@
 		return FALSE
 	if(!mod.active || mod.activating)
 		if(mod.wearer)
-			module.balloon_alert(mod.wearer, LANG("datum.ec29f255", null))
+			module.balloon_alert(mod.wearer, LANG("datum.ec29f255cfec6270", null))
 		return FALSE
 	circuit_component.user.set_output(owner)
 	circuit_component.signal.set_output(COMPONENT_SIGNAL)

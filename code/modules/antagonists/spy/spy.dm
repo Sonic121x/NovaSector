@@ -52,7 +52,7 @@
 
 	var/datum/component/spy_uplink/uplink = uplink_weakref?.resolve()
 	if(isnull(uplink))
-		tgui_alert(usr, LANG("datum.7b31d118", null), LANG("datum.486c2dd3", null))
+		tgui_alert(usr, LANG("datum.7b31d118e8f3b2eb", null), LANG("datum.486c2dd31c9d4a81", null))
 		return
 
 	uplink.ui_interact(usr)
@@ -63,18 +63,18 @@
 
 	var/datum/component/spy_uplink/uplink = uplink_weakref?.resolve()
 	if(isnull(uplink))
-		tgui_alert(usr, LANG("datum.7b31d118", null), LANG("datum.486c2dd3", null))
+		tgui_alert(usr, LANG("datum.7b31d118e8f3b2eb", null), LANG("datum.486c2dd31c9d4a81", null))
 		return
 
 	uplink.handler.force_refresh()
-	tgui_alert(usr, LANG("datum.38f6a64e", null), LANG("datum.9fd516bd", null))
+	tgui_alert(usr, LANG("datum.38f6a64e82e73037", null), LANG("datum.9fd516bd25489064", null))
 
 /datum/antagonist/spy/proc/admin_create_spy_uplink()
 	if(!check_rights(R_ADMIN|R_DEBUG))
 		return
 
 	if(!auto_create_spy_uplink(owner.current, give_backup = FALSE))
-		tgui_alert(usr, LANG("datum.4f70a000", list(owner.current)), LANG("datum.486c2dd3", null))
+		tgui_alert(usr, LANG("datum.4f70a000493f8bb2", list(owner.current)), LANG("datum.486c2dd31c9d4a81", null))
 
 /datum/antagonist/spy/proc/bounty_handler_vv()
 	if(!check_rights(R_ADMIN|R_DEBUG))
@@ -82,7 +82,7 @@
 
 	var/datum/component/spy_uplink/uplink = uplink_weakref?.resolve()
 	if(isnull(uplink))
-		tgui_alert(usr, LANG("datum.7b31d118", null), LANG("datum.486c2dd3", null))
+		tgui_alert(usr, LANG("datum.7b31d118e8f3b2eb", null), LANG("datum.486c2dd31c9d4a81", null))
 		return
 
 	usr.client?.debug_variables(uplink.handler)
@@ -100,7 +100,7 @@
 		if(give_backup)
 			var/datum/action/backup_uplink/backup = new(src)
 			backup.Grant(spy)
-			to_chat(spy, span_boldnotice(LANG("datum.d77e3283", null)))
+			to_chat(spy, span_boldnotice(LANG("datum.d77e328359b45d14", null)))
 		return FALSE
 
 	return TRUE
@@ -236,15 +236,15 @@
 	var/mob/living/spy = usr
 	var/obj/item/held_thing = spy.get_active_held_item()
 	if(isnull(held_thing))
-		spy.balloon_alert(spy, LANG("datum.06dce00b", null))
+		spy.balloon_alert(spy, LANG("datum.06dce00b86d2c9bc", null))
 		return
 
 	if(!is_type_in_list(held_thing, valid_types))
-		held_thing.balloon_alert(spy, LANG("datum.2a5c32b1", null))
+		held_thing.balloon_alert(spy, LANG("datum.2a5c32b1348c535b", null))
 		return
 
 	var/datum/antagonist/spy/spy_datum = target
 	spy_datum.create_spy_uplink(spy, held_thing)
-	held_thing.balloon_alert(spy, LANG("datum.8ea2b041", null))
+	held_thing.balloon_alert(spy, LANG("datum.8ea2b041175a3842", null))
 
 	qdel(src)

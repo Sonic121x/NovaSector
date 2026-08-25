@@ -45,7 +45,7 @@
 
 /obj/machinery/stasis/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.da3c2068", list(stasis_enabled ? "turn off" : "turn on")))
+	. += span_notice(LANG("obj.da3c2068ced63307", list(stasis_enabled ? "turn off" : "turn on")))
 
 /obj/machinery/stasis/proc/play_power_sound()
 	var/_running = stasis_running()
@@ -63,9 +63,9 @@
 	stasis_enabled = !stasis_enabled
 	stasis_can_toggle = world.time + STASIS_TOGGLE_COOLDOWN
 	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
-	user.visible_message(span_notice(LANG("obj.6516aa25", list(src, stasis_enabled ? "powers on" : "shuts down"))), \
-				span_notice(LANG("obj.767bf180", list(stasis_enabled ? "power on" : "shut down", src))), \
-				span_hear(LANG("obj.5e28d30e", list(stasis_enabled ? "power on" : "shut down"))))
+	user.visible_message(span_notice(LANG("obj.6516aa25499991be", list(src, stasis_enabled ? "powers on" : "shuts down"))), \
+				span_notice(LANG("obj.767bf1806ccd199e", list(stasis_enabled ? "power on" : "shut down", src))), \
+				span_hear(LANG("obj.5e28d30e58476e83", list(stasis_enabled ? "power on" : "shut down"))))
 	play_power_sound()
 	update_appearance()
 	return CLICK_ACTION_SUCCESS

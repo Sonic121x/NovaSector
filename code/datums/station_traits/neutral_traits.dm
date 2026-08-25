@@ -234,7 +234,7 @@
 
 /datum/station_trait/birthday/proc/announce_birthday()
 	report_message = "We here at Nanotrasen would all like to wish [birthday_person ? birthday_person_name : "Employee Name"] a very happy birthday."
-	priority_announce(LANG("datum.2e1e7e83", list(birthday_person ? birthday_person_name : "Employee Name", birthday_person ? thtotext(birthday_person.age + 1) : "255th")))
+	priority_announce(LANG("datum.2e1e7e83ce75a877", list(birthday_person ? birthday_person_name : "Employee Name", birthday_person ? thtotext(birthday_person.age + 1) : "255th")))
 	if(birthday_person)
 		playsound(birthday_person, 'sound/items/party_horn.ogg', 50)
 		birthday_person.add_mood_event("birthday", /datum/mood_event/birthday)
@@ -277,7 +277,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/birthday_invite/proc/setup_card(birthday_name)
-	desc = LANG("obj.de1e13b6", list(birthday_name))
+	desc = LANG("obj.de1e13b62d6dd6a7", list(birthday_name))
 	icon_state = "paperslip_words"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 
@@ -461,16 +461,16 @@
 	switch(skub_stance)
 		if(PRO_SKUB)
 			skubbers[player.ckey] = ANTI_SKUB
-			lobby_button.balloon_alert(player, LANG("datum.cc608b9a", null))
+			lobby_button.balloon_alert(player, LANG("datum.cc608b9af8eabc66", null))
 		if(ANTI_SKUB)
 			skubbers[player.ckey] = SKUB_IDFC
-			lobby_button.balloon_alert(player, LANG("datum.ec79c9fb", null))
+			lobby_button.balloon_alert(player, LANG("datum.ec79c9fbe5388842", null))
 		if(SKUB_IDFC)
 			skubbers[player.ckey] = RANDOM_SKUB
-			lobby_button.balloon_alert(player, LANG("datum.474993b6", null))
+			lobby_button.balloon_alert(player, LANG("datum.474993b6b7793ea8", null))
 		if(RANDOM_SKUB)
 			skubbers[player.ckey] = PRO_SKUB
-			lobby_button.balloon_alert(player, LANG("datum.cc44a4e7", null))
+			lobby_button.balloon_alert(player, LANG("datum.cc44a4e7eda66769", null))
 
 /datum/station_trait/skub/proc/on_lobby_button_update_overlays(atom/movable/screen/lobby/button/sign_up/lobby_button, list/overlays)
 	SIGNAL_HANDLER

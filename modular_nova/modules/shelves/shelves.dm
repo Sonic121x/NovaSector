@@ -38,14 +38,14 @@
 
 /obj/structure/cargo_shelf/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.cbaba876", list(src)))
+	. += span_notice(LANG("obj.cbaba87674e4e252", list(src)))
 	if(crate_count() < capacity) // If there's an empty space in the shelf, let the examiner know.
-		. += span_notice(LANG("obj.7b54145c", list(src)))
+		. += span_notice(LANG("obj.7b54145c3997dc3f", list(src)))
 	if(crate_count()) // If there are any crates in the shelf, let the examiner know.
-		. += span_notice(LANG("obj.602498c3", list(src)))
-		. += span_notice(LANG("obj.1c59f63b", list(src)))
+		. += span_notice(LANG("obj.602498c3a2d80407", list(src)))
+		. += span_notice(LANG("obj.1c59f63b40d05d8d", list(src)))
 		for(var/obj/structure/closet/crate/crate in contents)
-			. += span_notice(LANG("obj.d58b175e", list(icon2html(crate, user), crate)))
+			. += span_notice(LANG("obj.d58b175e28b9d77c", list(icon2html(crate, user), crate)))
 
 /obj/structure/cargo_shelf/wrench_act_secondary(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
@@ -53,13 +53,13 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/cargo_shelf/relay_container_resist_act(mob/living/user, obj/structure/closet/crate)
-	to_chat(user, span_notice(LANG("obj.131cb2d0", list(crate, src))))
+	to_chat(user, span_notice(LANG("obj.131cb2d04cddeb1a", list(crate, src))))
 	if(do_after(user, 30 SECONDS, target = crate))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != crate || crate.loc != src)
 			return // If the user is in a strange condition, return early.
-		visible_message(span_warning(LANG("obj.73a87d59", list(crate, src))),
-			span_notice(LANG("obj.5415abf5", list(crate, src))),
-			span_notice(LANG("obj.34acf327", null)))
+		visible_message(span_warning(LANG("obj.73a87d5938a52dba", list(crate, src))),
+			span_notice(LANG("obj.5415abf54d9d72c2", list(crate, src))),
+			span_notice(LANG("obj.34acf327d0f39f88", null)))
 		crate.forceMove(get_spill_location()) // Try to push it somewhere
 
 /// Spits out how many crates are currently stored, counting the non nulls
@@ -73,19 +73,19 @@
 /// Returns if this crate can actually be loaded
 /obj/structure/cargo_shelf/proc/can_load(obj/structure/closet/crate/crate, mob/user, y_offset)
 	if(crate_count() >= capacity) // If we don't find an empty slot, return early.
-		balloon_alert(user, LANG("obj.2f9c3550", null))
+		balloon_alert(user, LANG("obj.2f9c35506ec45831", null))
 		return FALSE
 	if (y_offset <= 12)
 		if(crates_stored[1])
-			balloon_alert(user, LANG("obj.c2d5cd66", null))
+			balloon_alert(user, LANG("obj.c2d5cd6604af090a", null))
 			return FALSE
 	else if (y_offset <= 21)
 		if(crates_stored[2])
-			balloon_alert(user, LANG("obj.c2d5cd66", null))
+			balloon_alert(user, LANG("obj.c2d5cd6604af090a", null))
 			return FALSE
 	else
 		if(crates_stored[3])
-			balloon_alert(user, LANG("obj.c2d5cd66", null))
+			balloon_alert(user, LANG("obj.c2d5cd6604af090a", null))
 			return FALSE
 	return TRUE
 
@@ -103,12 +103,12 @@
 /obj/structure/cargo_shelf/proc/unload(obj/structure/closet/crate/crate, mob/user, turf/unload_turf)
 	var/unloading_to_turf = istype(unload_turf)
 	if(unloading_to_turf && unload_turf.is_blocked_turf(exclude_mobs = TRUE)) // Shelf to shelf
-		unload_turf.balloon_alert(user, LANG("obj.ad6c6384", null))
+		unload_turf.balloon_alert(user, LANG("obj.ad6c6384cbc2d930", null))
 		return FALSE
 	if(!do_after(user, use_delay, target = crate))
 		return FALSE
 	if(unloading_to_turf && unload_turf.is_blocked_turf(exclude_mobs = TRUE)) // make sure we still are able to put it here
-		unload_turf.balloon_alert(user, LANG("obj.ad6c6384", null))
+		unload_turf.balloon_alert(user, LANG("obj.ad6c6384cbc2d930", null))
 		return FALSE
 	if(!locate(crate) in src)
 		return FALSE // If something has happened to the crate while we were waiting, abort!
@@ -140,7 +140,7 @@
 			if(crate.welded || crate.locked)
 				continue
 			crate.open(force = TRUE) // Break some open, cause a little chaos.
-			crate.visible_message(span_warning(LANG("obj.5a918971", list(crate))))
+			crate.visible_message(span_warning(LANG("obj.5a91897158332f0b", list(crate))))
 
 // Returns a valid open turf to scatter crates
 /obj/structure/cargo_shelf/proc/get_spill_location(radius = 2)
@@ -174,7 +174,7 @@
 	// -----------------------------------------
 	if (istype(over, /turf/open) && istype(loc, /obj/structure/cargo_shelf))
 		if(get_dist(user, over_location) > 1)
-			balloon_alert(user, LANG("obj.f5e75781", null))
+			balloon_alert(user, LANG("obj.f5e75781e8f1dc46", null))
 			return
 		var/obj/structure/cargo_shelf/shelf = loc
 		shelf.unload(src, user, over)
@@ -257,15 +257,15 @@
 	if(building)
 		return
 	building = TRUE
-	to_chat(user, span_notice(LANG("obj.11bacef4", list(src))))
+	to_chat(user, span_notice(LANG("obj.11bacef4c99caa5e", list(src))))
 	if(do_after(user, 5 SECONDS, target = user, show_progress = TRUE))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			building = FALSE
 			return
 		var/obj/structure/cargo_shelf/rack = new /obj/structure/cargo_shelf(get_turf(src))
 		user.visible_message(
-			span_notice(LANG("obj.3dc1a1cd", list(user, rack))),
-			span_notice(LANG("obj.e671a056", list(rack))),
+			span_notice(LANG("obj.3dc1a1cd50cf1a2f", list(user, rack))),
+			span_notice(LANG("obj.e671a0568840ef34", list(rack))),
 		)
 		rack.add_fingerprint(user)
 		qdel(src)

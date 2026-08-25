@@ -33,14 +33,14 @@
 		return NONE
 
 	if (target.get_integrity() >= target.max_integrity)
-		target.balloon_alert(fixer, LANG("datum.200cc1db", null))
+		target.balloon_alert(fixer, LANG("datum.200cc1db7185a414", null))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	target.repair_damage(heal_amount)
 	fixer.Beam(target, icon_state = "sendbeam", time = 0.4 SECONDS)
 	fixer.visible_message(
-		span_danger(LANG("datum.639f2d4f", list(fixer, target))),
-		span_danger(LANG("datum.dc4682b1", list(target, round(target.get_integrity() * 100 / target.max_integrity)))),
+		span_danger(LANG("datum.639f2d4fef2753bc", list(fixer, target))),
+		span_danger(LANG("datum.dc4682b1a1cf9875", list(target, round(target.get_integrity() * 100 / target.max_integrity)))),
 	)
 
 	return COMPONENT_CANCEL_ATTACK_CHAIN

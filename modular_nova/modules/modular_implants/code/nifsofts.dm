@@ -93,16 +93,16 @@
 		return FALSE
 
 	if(installed_nif.broken)
-		installed_nif.balloon_alert(installed_nif.linked_mob, LANG("datum.7e1fdd6b", null))
+		installed_nif.balloon_alert(installed_nif.linked_mob, LANG("datum.7e1fdd6b96edda56", null))
 		return FALSE
 
 	if(cooldown && on_cooldown)
-		installed_nif.balloon_alert(installed_nif.linked_mob, LANG("datum.c236a4b7", list(src.name)))
+		installed_nif.balloon_alert(installed_nif.linked_mob, LANG("datum.c236a4b767c65b36", list(src.name)))
 		return FALSE
 
 	if(active)
 		active = FALSE
-		installed_nif.balloon_alert(installed_nif.linked_mob, LANG("datum.c552cb43", list(src.name)))
+		installed_nif.balloon_alert(installed_nif.linked_mob, LANG("datum.c552cb43c69616ce", list(src.name)))
 		installed_nif.power_usage -= active_cost
 		return TRUE
 
@@ -110,7 +110,7 @@
 		return FALSE
 
 	if(active_mode)
-		installed_nif.balloon_alert(installed_nif.linked_mob, LANG("datum.23c755c9", list(src.name)))
+		installed_nif.balloon_alert(installed_nif.linked_mob, LANG("datum.23c755c97a447a24", list(src.name)))
 		installed_nif.power_usage += active_cost
 		active = TRUE
 
@@ -190,7 +190,7 @@
 	var/nifsoft_desc = initial(loaded_nifsoft.program_desc)
 
 	if(nifsoft_desc)
-		. += span_cyan_nova(LANG("obj.5f86e24a", list(nifsoft_desc)))
+		. += span_cyan_nova(LANG("obj.5f86e24a66965c32", list(nifsoft_desc)))
 
 
 /// Attempts to install the NIFSoft on the disk to the target
@@ -203,7 +203,7 @@
 	var/datum/nifsoft/installed_nifsoft = new loaded_nifsoft(installed_nif, TRUE)
 
 	if(!installed_nifsoft.parent_nif)
-		balloon_alert(target, LANG("obj.e2706996", null))
+		balloon_alert(target, LANG("obj.e270699605d3805a", null))
 		return FALSE
 
 	if(!reusable)
@@ -214,7 +214,7 @@
 
 /obj/item/disk/nifsoft_uploader/attack(mob/living/mob, mob/living/user, params)
 	if(mob != user && !do_after(user, 5 SECONDS, mob))
-		balloon_alert(user, LANG("obj.e2706996", null))
+		balloon_alert(user, LANG("obj.e270699605d3805a", null))
 		return FALSE
 
 	attempt_software_install(mob)

@@ -31,7 +31,7 @@ GLOBAL_PROTECT(poll_options)
 	if(!poll)
 		return
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger(LANG("mob.cfa9a578", null)))
+		to_chat(src, span_danger(LANG("mob.cfa9a5781ea2050f", null)))
 		return
 	switch(poll.poll_type)
 		if(POLLTYPE_OPTION)
@@ -321,15 +321,15 @@ GLOBAL_PROTECT(poll_options)
  */
 /mob/dead/new_player/proc/vote_on_poll_handler(datum/poll_question/poll, href_list)
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger(LANG("mob.cfa9a578", null)))
+		to_chat(src, span_danger(LANG("mob.cfa9a5781ea2050f", null)))
 		return
 	if(!poll || !href_list)
 		return
 	if(IsAdminAdvancedProcCall())
 		usr.log_message("attempted to rig the vote by voting as [key].", LOG_ADMIN)
 		message_admins("[key_name_admin(usr)] attempted to rig the vote by voting as [key].")
-		to_chat(usr, span_danger(LANG("mob.33a6d151", list(key))))
-		to_chat(src, span_danger(LANG("mob.36aa7756", null)))
+		to_chat(usr, span_danger(LANG("mob.33a6d15116afe0df", list(key))))
+		to_chat(src, span_danger(LANG("mob.36aa77560d92b4d4", null)))
 		return
 	var/admin_rank
 	if(client.holder)
@@ -357,11 +357,11 @@ GLOBAL_PROTECT(poll_options)
 	if(query_validate_poll_vote.NextRow())
 		vote_id = text2num(query_validate_poll_vote.item[1])
 		if(vote_id && !poll.allow_revoting)
-			to_chat(usr, span_danger(LANG("mob.a616942d", null)))
+			to_chat(usr, span_danger(LANG("mob.a616942dd69cda98", null)))
 			qdel(query_validate_poll_vote)
 			return
 	else
-		to_chat(usr, span_danger(LANG("mob.759d37b1", null)))
+		to_chat(usr, span_danger(LANG("mob.759d37b14163a747", null)))
 		qdel(query_validate_poll_vote)
 		return
 	qdel(query_validate_poll_vote)
@@ -380,7 +380,7 @@ GLOBAL_PROTECT(poll_options)
 	if(vote_success)
 		if(!vote_id)
 			poll.poll_votes++
-		to_chat(usr, span_notice(LANG("mob.5c106da3", null)))
+		to_chat(usr, span_notice(LANG("mob.5c106da378731e57", null)))
 
 /**
  * Processes vote form data and saves results to the database for an option type poll.
@@ -388,13 +388,13 @@ GLOBAL_PROTECT(poll_options)
  */
 /mob/dead/new_player/proc/vote_on_poll_option(datum/poll_question/poll, href_list, admin_rank, sql_poll_id, vote_id)
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger(LANG("mob.cfa9a578", null)))
+		to_chat(src, span_danger(LANG("mob.cfa9a5781ea2050f", null)))
 		return
 	if(IsAdminAdvancedProcCall())
 		return
 	var/datum/poll_option/option = locate(href_list["voteoptionref"]) in poll.options
 	if(!option)
-		to_chat(src, span_danger(LANG("mob.8b4cfb10", null)))
+		to_chat(src, span_danger(LANG("mob.8b4cfb1009120370", null)))
 		return
 	var/datum/db_query/query_vote_option = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("poll_vote")] (id, datetime, pollid, optionid, ckey, ip, adminrank)
@@ -420,13 +420,13 @@ GLOBAL_PROTECT(poll_options)
  */
 /mob/dead/new_player/proc/vote_on_poll_text(href_list, admin_rank, sql_poll_id, vote_id)
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger(LANG("mob.cfa9a578", null)))
+		to_chat(src, span_danger(LANG("mob.cfa9a5781ea2050f", null)))
 		return
 	if(IsAdminAdvancedProcCall())
 		return
 	var/reply_text = href_list["replytext"]
 	if(!reply_text || (length(reply_text) > 2048))
-		to_chat(src, span_danger(LANG("mob.deb16852", null)))
+		to_chat(src, span_danger(LANG("mob.deb16852389dd5f4", null)))
 		return
 	var/datum/db_query/query_vote_text = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("poll_textreply")] (id, datetime, pollid, ckey, ip, replytext, adminrank)
@@ -452,7 +452,7 @@ GLOBAL_PROTECT(poll_options)
  */
 /mob/dead/new_player/proc/vote_on_poll_rating(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger(LANG("mob.cfa9a578", null)))
+		to_chat(src, span_danger(LANG("mob.cfa9a5781ea2050f", null)))
 		return
 	if(IsAdminAdvancedProcCall())
 		return
@@ -495,14 +495,14 @@ GLOBAL_PROTECT(poll_options)
  */
 /mob/dead/new_player/proc/vote_on_poll_multi(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger(LANG("mob.cfa9a578", null)))
+		to_chat(src, span_danger(LANG("mob.cfa9a5781ea2050f", null)))
 		return
 	if(IsAdminAdvancedProcCall())
 		return
 	if(length(href_list) > 2)
 		href_list.Cut(1,3) //first two values aren't options
 	else
-		to_chat(src, span_danger(LANG("mob.7dd3685b", null)))
+		to_chat(src, span_danger(LANG("mob.7dd3685b2d6a2d06", null)))
 
 	var/special_columns = list(
 		"datetime" = "NOW()",
@@ -513,7 +513,7 @@ GLOBAL_PROTECT(poll_options)
 	var/vote_count = 0
 	for(var/h in href_list)
 		if(vote_count == poll.options_allowed)
-			to_chat(src, span_danger(LANG("mob.38ff06b4", list(poll.options_allowed))))
+			to_chat(src, span_danger(LANG("mob.38ff06b4a1336a53", list(poll.options_allowed))))
 			break
 		vote_count++
 		var/datum/poll_option/option = locate(h) in poll.options
@@ -542,13 +542,13 @@ GLOBAL_PROTECT(poll_options)
  */
 /mob/dead/new_player/proc/vote_on_poll_irv(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
 	if(!SSdbcore.Connect())
-		to_chat(src, span_danger(LANG("mob.cfa9a578", null)))
+		to_chat(src, span_danger(LANG("mob.cfa9a5781ea2050f", null)))
 		return
 	if(IsAdminAdvancedProcCall())
 		return
 	var/list/votelist = splittext(href_list["IRVdata"], ",")
 	if(!length(votelist))
-		to_chat(src, span_danger(LANG("mob.a25d4878", null)))
+		to_chat(src, span_danger(LANG("mob.a25d487879ebc534", null)))
 
 	var/list/special_columns = list(
 		"datetime" = "NOW()",
@@ -560,7 +560,7 @@ GLOBAL_PROTECT(poll_options)
 	for(var/o in votelist)
 		var/datum/poll_option/option = locate(o) in option_copy
 		if (!option)
-			to_chat(src, span_warning(LANG("mob.b7a2fa5d", null)))
+			to_chat(src, span_warning(LANG("mob.b7a2fa5d8823e782", null)))
 		sql_votes += list(list(
 			"pollid" = sql_poll_id,
 			"optionid" = option.option_id,

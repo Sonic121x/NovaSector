@@ -52,7 +52,7 @@
 		return
 	var/obj/item/mecha_parts/mecha_equipment/kinetic_dampener/dampener = locate(/obj/item/mecha_parts/mecha_equipment/kinetic_dampener) in chassis.contents
 	if(!dampener)
-		to_chat(clicker, span_warning(LANG("datum.e908be21", null)))
+		to_chat(clicker, span_warning(LANG("datum.e908be21dc75a654", null)))
 		return FALSE
 
 	var/desired_state = !dampener.active
@@ -61,7 +61,7 @@
 	if(success)
 		button_icon_state = dampener.active ? "mech_defense_mode_on" : "mech_defense_mode_off"
 		build_all_button_icons()
-		to_chat(clicker, span_notice(LANG("datum.5393ccc1", list(dampener.active ? "on" : "off"))))
+		to_chat(clicker, span_notice(LANG("datum.5393ccc1c4ed6666", list(dampener.active ? "on" : "off"))))
 	else
 		// set_active() already printed the “no power” message
 		return FALSE
@@ -80,7 +80,7 @@
 	// Check if chassis exists and has enough energy to start
 	if(QDELETED(chassis) || !chassis.use_energy(energy_drain))
 		for(var/mob/living/pilot in chassis.return_controllers_with_flag(VEHICLE_CONTROL_DRIVE))
-			to_chat(pilot, span_warning(LANG("obj.e3c832d2", null)))
+			to_chat(pilot, span_warning(LANG("obj.e3c832d2d9deef04", null)))
 		src.active = FALSE
 		return FALSE
 	// Clear any old field
@@ -103,5 +103,5 @@
 		// not enough power, shut down
 		set_active(FALSE)
 		for(var/mob/living/pilot in chassis.return_controllers_with_flag(VEHICLE_CONTROL_DRIVE))
-			to_chat(pilot, span_warning(LANG("obj.9e3efa99", null)))
+			to_chat(pilot, span_warning(LANG("obj.9e3efa993565bb4a", null)))
 		return PROCESS_KILL

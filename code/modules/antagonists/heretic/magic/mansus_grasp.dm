@@ -26,8 +26,8 @@
 
 /datum/action/cooldown/spell/touch/mansus_grasp/on_antimagic_triggered(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
 	victim.visible_message(
-		span_danger(LANG("datum.44d911f3", list(victim))),
-		span_danger(LANG("datum.f092e989", null)),
+		span_danger(LANG("datum.44d911f352202ac7", list(victim))),
+		span_danger(LANG("datum.f092e989ec79f08e", null)),
 	)
 
 /datum/action/cooldown/spell/touch/mansus_grasp/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
@@ -59,9 +59,9 @@
 		carbon_hit.mob_light(range = 1.5, power = 2.5, color = COLOR_CULT_RED, duration = 0.5 SECONDS)
 		playsound(carbon_hit, 'sound/effects/magic/curse.ogg', 50, TRUE)
 
-		to_chat(caster, span_warning(LANG("datum.47b37f3e", list(carbon_hit))))
-		to_chat(carbon_hit, span_warning(LANG("datum.7869aeb1", list(caster))))
-		carbon_hit.balloon_alert_to_viewers(LANG("datum.6e603691", null))
+		to_chat(caster, span_warning(LANG("datum.47b37f3e7c198382", list(carbon_hit))))
+		to_chat(carbon_hit, span_warning(LANG("datum.7869aeb169e833e8", list(caster))))
+		carbon_hit.balloon_alert_to_viewers(LANG("datum.6e60369181a62d03", null))
 		return TRUE
 
 	carbon_hit.adjust_timed_status_effect(4 SECONDS, /datum/status_effect/speech/slurring/heretic)
@@ -111,7 +111,7 @@
 	remove_hand_with_no_refund(user)
 
 /obj/item/melee/touch_attack/mansus_fist/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.49ccf75f", list(user, user.p_their(), user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.49ccf75ff36055c1", list(user, user.p_their(), user.p_their(), user.p_theyre()))))
 	var/mob/living/carbon/carbon_user = user //iscarbon already used in spell's parent
 	var/datum/action/cooldown/spell/touch/mansus_grasp/source = spell_which_made_us?.resolve()
 	if(QDELETED(source) || !IS_HERETIC(user))

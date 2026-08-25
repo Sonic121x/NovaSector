@@ -131,17 +131,17 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 		var/obj/item/card/emag/battlecruiser/caller_card = emag_card
 		if (user)
 			if(!IS_TRAITOR(user))
-				to_chat(user, span_danger(LANG("obj.a7f7d0a9", null)))
+				to_chat(user, span_danger(LANG("obj.a7f7d0a9e64d1588", null)))
 				return FALSE
 		if(battlecruiser_called)
 			if (user)
-				to_chat(user, span_danger(LANG("obj.dc9c4f71", null)))
+				to_chat(user, span_danger(LANG("obj.dc9c4f71c5a1dda6", null)))
 			return FALSE
 		battlecruiser_called = TRUE
 		caller_card.use_charge(user)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(summon_battlecruiser), caller_card.team), rand(20 SECONDS, 1 MINUTES))
 		playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 50, FALSE)
-		priority_announce("Attention crew: deep-space sensors detect a Syndicate battlecruiser-class signature subspace rift forming near your station. Estimated time until arrival: three to five minutes.", LANG("obj.34bd7ec6", list(command_name()))) //NOVA EDIT ADDITION: announcement on battlecruiser call
+		priority_announce("Attention crew: deep-space sensors detect a Syndicate battlecruiser-class signature subspace rift forming near your station. Estimated time until arrival: three to five minutes.", LANG("obj.34bd7ec69a2575e5", list(command_name()))) //NOVA EDIT ADDITION: announcement on battlecruiser call
 		return TRUE
 
 	if(obj_flags & EMAGGED)
@@ -149,7 +149,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 	obj_flags |= EMAGGED
 	if (authenticated)
 		authorize_access = SSid_access.get_region_access_list(list(REGION_ALL_STATION))
-	balloon_alert(user, LANG("obj.c1aff91c", null))
+	balloon_alert(user, LANG("obj.c1aff91ce03e47fd", null))
 	playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 50, FALSE)
 	return TRUE
 
@@ -203,11 +203,11 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				var/obj/item/held_item = user.get_active_held_item()
 				var/obj/item/card/id/id_card = held_item?.GetID()
 				if (!istype(id_card))
-					to_chat(user, span_warning(LANG("obj.79240bdf", null)))
+					to_chat(user, span_warning(LANG("obj.79240bdf200ae125", null)))
 					playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 					return
 				if (!(ACCESS_CAPTAIN in id_card.access))
-					to_chat(user, span_warning(LANG("obj.d75ab765", null)))
+					to_chat(user, span_warning(LANG("obj.d75ab765612801b2", null)))
 					playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 					return
 
@@ -215,14 +215,14 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			if (new_sec_level < SEC_LEVEL_GREEN || new_sec_level > SEC_LEVEL_AMBER) //NOVA EDIT CHANGE - ALERTS
 				return
 			if (SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_DELTA)
-				to_chat(user, span_warning(LANG("obj.063be43e", null)))
+				to_chat(user, span_warning(LANG("obj.063be43e3b11cfcb", null)))
 				return
 			if (SSsecurity_level.get_current_level_as_number() == new_sec_level)
 				return
 
 			SSsecurity_level.set_level(new_sec_level)
 
-			to_chat(user, span_notice(LANG("obj.a922c8ed", null)))
+			to_chat(user, span_notice(LANG("obj.a922c8ed0b6c0d40", null)))
 			playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 
 			// Only notify people if an actual change happened
@@ -254,13 +254,13 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			var/emagged = obj_flags & EMAGGED
 			if (emagged)
 				message_syndicate(message, user)
-				to_chat(user, span_danger(LANG("obj.c101b635", null)))
+				to_chat(user, span_danger(LANG("obj.c101b635129352e8", null)))
 			else if(syndicate)
 				message_syndicate(message, user)
-				to_chat(user, span_danger(LANG("obj.540e7c2c", null)))
+				to_chat(user, span_danger(LANG("obj.540e7c2ccd9621db", null)))
 			else
 				message_centcom(message, user)
-				to_chat(user, span_notice(LANG("obj.4fe931f7", null)))
+				to_chat(user, span_notice(LANG("obj.4fe931f70fbf022b", null)))
 
 			var/associates = (emagged || syndicate) ? "the Syndicate": "CentCom"
 			user.log_talk(message, LOG_SAY, tag = "message to [associates]")
@@ -278,8 +278,21 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				return
 			if (!can_purchase_this_shuttle(shuttle))
 				return
+			if (istype(shuttle, /datum/map_template/shuttle/emergency/departmental))
+				var/datum/map_template/shuttle/emergency/departmental/dept_shuttle = shuttle
+				if(dept_shuttle.department_type)
+					var/max_crew_count = 0
+					for(var/dept_type in SSjob.joinable_departments_by_type)
+						var/crew_count = get_department_employee_count(dept_type)
+						if(crew_count > max_crew_count)
+							max_crew_count = crew_count
+
+					var/crew_in_department = get_department_employee_count(dept_shuttle.department_type)
+					if(crew_in_department <= 0 || crew_in_department < max_crew_count)
+						to_chat(user, span_alert(LANG("obj.5a2f475bde1355b0", null)))
+						return
 			if (!shuttle.prerequisites_met())
-				to_chat(user, span_alert(LANG("obj.2e89e7c6", null)))
+				to_chat(user, span_alert(LANG("obj.2e89e7c6a083cd16", null)))
 				return
 			var/datum/bank_account/bank_account = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if (bank_account.account_balance < shuttle.credit_cost)
@@ -293,7 +306,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			bank_account.adjust_money(-shuttle.credit_cost)
 
 			var/purchaser_name = (obj_flags & EMAGGED) ? scramble_message_replace_chars("AUTHENTICATION FAILURE: CVE-2018-17107", 60) : user.real_name
-			minor_announce(LANG("obj.3f5ebe7e", list(purchaser_name, shuttle.name, shuttle.credit_cost, MONEY_NAME, shuttle.extra_desc ? " [shuttle.extra_desc]" : "")) , "Shuttle Purchase")
+			minor_announce(LANG("obj.3f5ebe7e04d7ec87", list(purchaser_name, shuttle.name, shuttle.credit_cost, MONEY_NAME, shuttle.extra_desc ? " [shuttle.extra_desc]" : "")) , "Shuttle Purchase")
 
 			message_admins("[ADMIN_LOOKUPFLW(user)] purchased [shuttle.name].")
 			log_shuttle("[key_name(user)] has purchased [shuttle.name].")
@@ -311,9 +324,9 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				return
 			var/reason = trim(html_encode(params["reason"]), MAX_MESSAGE_LEN)
 			nuke_request(reason, user)
-			to_chat(user, span_notice(LANG("obj.264742bb", null)))
+			to_chat(user, span_notice(LANG("obj.264742bb96f16e2c", null)))
 			user.log_message("has requested the nuclear codes from CentCom with reason \"[reason]\"", LOG_SAY)
-			priority_announce(LANG("obj.bf978e4d", list(user)), "Nuclear Self-Destruct Codes Requested", SSstation.announcer.get_rand_report_sound())
+			priority_announce(LANG("obj.bf978e4dc38e7072", list(user)), "Nuclear Self-Destruct Codes Requested", SSstation.announcer.get_rand_report_sound())
 			playsound(src, 'sound/machines/terminal/terminal_prompt.ogg', 50, FALSE)
 			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("restoreBackupRoutingData")
@@ -321,7 +334,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				return
 			if (!(obj_flags & EMAGGED))
 				return
-			to_chat(user, span_notice(LANG("obj.0bec1635", null)))
+			to_chat(user, span_notice(LANG("obj.0bec163501dc5ea3", null)))
 			playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 			obj_flags &= ~EMAGGED
 		if ("sendToOtherSector")
@@ -339,12 +352,12 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			GLOB.communications_controller.soft_filtering = FALSE
 			var/list/hard_filter_result = is_ic_filtered(message)
 			if(hard_filter_result)
-				tgui_alert(user, LANG("obj.cc7c1035", list(hard_filter_result[CHAT_FILTER_INDEX_WORD])))
+				tgui_alert(user, LANG("obj.cc7c1035abd44d36", list(hard_filter_result[CHAT_FILTER_INDEX_WORD])))
 				return
 
 			var/list/soft_filter_result = is_soft_ooc_filtered(message)
 			if(soft_filter_result)
-				if(tgui_alert(user,LANG("obj.033f2d55", list(soft_filter_result[CHAT_FILTER_INDEX_WORD], soft_filter_result[CHAT_FILTER_INDEX_REASON])), LANG("obj.b0fe106c", null), list("Yes", "No")) != "Yes")
+				if(tgui_alert(user,LANG("obj.033f2d55a34a5603", list(soft_filter_result[CHAT_FILTER_INDEX_WORD], soft_filter_result[CHAT_FILTER_INDEX_REASON])), LANG("obj.b0fe106c90796ca4", null), list("Yes", "No")) != "Yes")
 					return
 				message_admins("[ADMIN_LOOKUPFLW(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". They may be using a disallowed term for a cross-station message. Increasing delay time to reject.\n\n Message: \"[html_encode(message)]\"")
 				log_admin_private("[key_name(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". They may be using a disallowed term for a cross-station message. Increasing delay time to reject.\n\n Message: \"[message]\"")
@@ -361,7 +374,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			to_chat(
 				GLOB.admins,
 				span_adminnotice( \
-					LANG("obj.3a1f365b", list(ADMIN_LOOKUPFLW(user), destination, GLOB.communications_controller.soft_filtering ? DisplayTimeText(EXTENDED_CROSS_SECTOR_CANCEL_TIME) : DisplayTimeText(CROSS_SECTOR_CANCEL_TIME), REF(src), html_encode(message))) \
+					LANG("obj.3a1f365b0de0f47f", list(ADMIN_LOOKUPFLW(user), destination, GLOB.communications_controller.soft_filtering ? DisplayTimeText(EXTENDED_CROSS_SECTOR_CANCEL_TIME) : DisplayTimeText(CROSS_SECTOR_CANCEL_TIME), REF(src), html_encode(message))) \
 				)
 			)
 
@@ -410,7 +423,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				authenticated = TRUE
 				authorize_access = SSid_access.get_region_access_list(list(REGION_ALL_STATION))
 				authorize_name = "Unknown"
-				to_chat(user, span_warning(LANG("obj.3e53aa9c", list(src))))
+				to_chat(user, span_warning(LANG("obj.3e53aa9cfd691c52", list(src))))
 				playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 25, FALSE)
 			else if(isliving(user))
 				var/mob/living/L = user
@@ -442,19 +455,19 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 		// Request codes for the Captain's Spare ID safe.
 		if("requestSafeCodes")
 			if(SSjob.assigned_captain)
-				to_chat(user, span_warning(LANG("obj.859c54d7", null)))
+				to_chat(user, span_warning(LANG("obj.859c54d7703701b7", null)))
 				return
 
 			if(SSjob.safe_code_timer_id)
-				to_chat(user, span_warning(LANG("obj.9a54917a", null)))
+				to_chat(user, span_warning(LANG("obj.9a54917ae367f13f", null)))
 				return
 
 			if(SSjob.safe_code_requested)
-				to_chat(user, span_warning(LANG("obj.fe41434d", null)))
+				to_chat(user, span_warning(LANG("obj.fe41434d437a97a6", null)))
 				return
 
 			if(!SSid_access.spare_id_safe_code)
-				to_chat(user, span_warning(LANG("obj.93cb4b70", null)))
+				to_chat(user, span_warning(LANG("obj.93cb4b70d28799e6", null)))
 				return
 
 			var/turf/pod_location = get_turf(src)
@@ -462,7 +475,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			SSjob.safe_code_request_loc = pod_location
 			SSjob.safe_code_requested = TRUE
 			SSjob.safe_code_timer_id = addtimer(CALLBACK(SSjob, TYPE_PROC_REF(/datum/controller/subsystem/job, send_spare_id_safe_code), pod_location), 120 SECONDS, TIMER_UNIQUE | TIMER_STOPPABLE)
-			minor_announce(LANG("obj.837938f1", list(get_area(pod_location))))
+			minor_announce(LANG("obj.837938f1fe09575a", list(get_area(pod_location))))
 		// NOVA EDIT ADDITION START
 		if ("messagethefeds")
 			if(!message_federation(usr))
@@ -494,7 +507,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			deadchat_broadcast(" has dialed for a pizza order from Dogginos using an emagged communications console.", span_name("[usr.real_name]"), usr, message_type=DEADCHAT_ANNOUNCEMENT)
 			GLOB.pizza_order = pick(GLOB.pizza_names)
 			call_911(EMERGENCY_RESPONSE_EMAG)
-			to_chat(usr, span_notice(LANG("obj.5f7f9c68", list(GLOB.pizza_order))))
+			to_chat(usr, span_notice(LANG("obj.5f7f9c68b29c3fa4", list(GLOB.pizza_order))))
 			playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 		if("toggleEngOverride")
 			if(emergency_access_cooldown(usr)) //if were in cooldown, dont allow the following code
@@ -512,14 +525,14 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 		// NOVA EDIT ADDITION END
 /obj/machinery/computer/communications/proc/emergency_access_cooldown(mob/user)
 	if(toggle_uses == toggle_max_uses) //you have used up free uses already, do it one more time and start a cooldown
-		to_chat(user, span_warning(LANG("obj.cd642620", list(DisplayTimeText(EMERGENCY_ACCESS_COOLDOWN)))))
+		to_chat(user, span_warning(LANG("obj.cd6426201c0eb1c0", list(DisplayTimeText(EMERGENCY_ACCESS_COOLDOWN)))))
 		COOLDOWN_START(src, emergency_access_cooldown, EMERGENCY_ACCESS_COOLDOWN)
 		++toggle_uses //add a use so that this if() is false the next time you try this button
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, emergency_access_cooldown))
 		var/time_left = DisplayTimeText(COOLDOWN_TIMELEFT(src, emergency_access_cooldown), 1)
-		to_chat(user, span_warning(LANG("obj.93daf892", list(time_left))))
+		to_chat(user, span_warning(LANG("obj.93daf892384a91b4", list(time_left))))
 		return TRUE //dont use the button, we are in cooldown
 	else if((last_toggled + EMERGENCY_ACCESS_COOLDOWN) < world.time)
 		toggle_uses = 0 //either cooldown is done, or we just havent touched it in 30 seconds, either way reset uses
@@ -667,6 +680,27 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 					if (!can_purchase_this_shuttle(shuttle_template))
 						continue
 
+					var/department_locked = FALSE
+					var/department_name_string = ""
+
+					if (istype(shuttle_template, /datum/map_template/shuttle/emergency/departmental))
+						var/datum/map_template/shuttle/emergency/departmental/dept_shuttle = shuttle_template
+						department_name_string = dept_shuttle.department_name
+
+						if (dept_shuttle.department_type)
+							var/crew_in_department = get_department_employee_count(dept_shuttle.department_type)
+							if(crew_in_department <= 0)
+								department_locked = TRUE
+							else
+								for(var/other_id in SSmapping.shuttle_templates)
+									var/datum/map_template/shuttle/emergency/departmental/other_shuttle = SSmapping.shuttle_templates[other_id]
+									if(!istype(other_shuttle) || other_shuttle == dept_shuttle || !other_shuttle.department_type)
+										continue
+									var/crew_in_other_department = get_department_employee_count(other_shuttle.department_name)
+									if(crew_in_department < crew_in_other_department)
+										department_locked = TRUE
+										break
+
 					shuttles += list(list(
 						"name" = lang_localize_display_name(shuttle_template.name), // NOVA EDIT - I18N: 纯显示（act 走 shuttle id）。ORIGINAL: "name" = shuttle_template.name,
 						"description" = shuttle_template.description,
@@ -676,6 +710,8 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 						"emagOnly" = shuttle_template.emag_only,
 						"prerequisites" = shuttle_template.prerequisites,
 						"ref" = REF(shuttle_template),
+						"department_locked" = department_locked,
+						"department_name" = department_name_string,
 					))
 
 				data["budget"] = bank_account.account_balance
@@ -710,7 +746,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			return
 
 		if (isnull(send_cross_comms_message_timer))
-			to_chat(usr, span_warning(LANG("obj.3c2954fe", null)))
+			to_chat(usr, span_warning(LANG("obj.3c2954fe4077f853", null)))
 			return
 
 		deltimer(send_cross_comms_message_timer)
@@ -779,6 +815,19 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 
 	return FALSE
 
+/// Used in checks of dept-locked shuttles.
+/// Determines number of employees in department.
+/obj/machinery/computer/communications/proc/get_department_employee_count(datum/job_department/target_department_type)
+	if(!target_department_type)
+		return
+	var/datum/job_department/current_department = SSjob.joinable_departments_by_type[target_department_type]
+	if(!istype(current_department))
+		return
+	var/total_crew_count = 0
+	for(var/datum/job/current_job in current_department.department_jobs)
+		total_crew_count += current_job.current_positions
+	return total_crew_count
+
 /obj/machinery/computer/communications/proc/can_send_messages_to_other_sectors(mob/user)
 	if (!authenticated_as_non_silicon_captain(user))
 		return
@@ -788,9 +837,9 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 /obj/machinery/computer/communications/proc/make_announcement(mob/living/user)
 	var/is_ai = HAS_SILICON_ACCESS(user)
 	if(!GLOB.communications_controller.can_announce(user, is_ai))
-		to_chat(user, span_alert(LANG("obj.201fe056", null)))
+		to_chat(user, span_alert(LANG("obj.201fe056c6504649", null)))
 		return
-	var/input = tgui_input_text(user, LANG("obj.05aea922", null), LANG("obj.4893e36f", null), max_length = MAX_MESSAGE_LEN)
+	var/input = tgui_input_text(user, LANG("obj.05aea92233e3262f", null), LANG("obj.4893e36f7545bce4", null), max_length = MAX_MESSAGE_LEN)
 	if(!input || !user.can_perform_action(src, ALLOW_SILICON_REACH))
 		return
 	if(user.try_speak(input))
@@ -801,9 +850,9 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 		//No cheating, mime/random mute guy!
 		input = "..."
 		user.visible_message(
-			span_notice(LANG("obj.68f64916", list(user, src))),
-			span_notice(LANG("obj.f75292af", null)),
-			span_hear(LANG("obj.b099ac96", null)),
+			span_notice(LANG("obj.68f64916895d0aaa", list(user, src))),
+			span_notice(LANG("obj.f75292af9a70c8b2", null)),
+			span_hear(LANG("obj.b099ac96b240058c", null)),
 			vision_distance = 4,
 		)
 
@@ -876,12 +925,12 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 /obj/machinery/computer/communications/proc/can_hack(mob/living/hacker, feedback = FALSE)
 	if(machine_stat & (NOPOWER|BROKEN))
 		if(feedback && hacker)
-			balloon_alert(hacker, LANG("obj.426ce8db", null))
+			balloon_alert(hacker, LANG("obj.426ce8db826676a8", null))
 		return FALSE
 	var/area/console_area = get_area(src)
 	if(!console_area || !(console_area.area_flags & VALID_TERRITORY))
 		if(feedback && hacker)
-			balloon_alert(hacker, LANG("obj.dbddc2b1", null))
+			balloon_alert(hacker, LANG("obj.dbddc2b10a38a884", null))
 		return FALSE
 	return TRUE
 
@@ -924,14 +973,14 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 		if(HACK_FUGITIVES) // Triggers fugitives, which can cause confusion / chaos as the crew decides which side help
 			priority_announce(
 				"Attention crew: sector monitoring reports a jump-trace from an unidentified vessel destined for your system. Prepare for probable contact.",
-				LANG("obj.34bd7ec6", list(command_name())),
+				LANG("obj.34bd7ec69a2575e5", list(command_name())),
 			)
 			SSdynamic.force_run_midround(/datum/dynamic_ruleset/midround/from_ghosts/fugitives)
 
 		if(HACK_SLEEPER) // Trigger one or multiple sleeper agents with the crew (or for latejoining crew)
 			priority_announce(
 				"Attention crew, it appears that someone on your station has hijacked your telecommunications and broadcasted an unknown signal.",
-				LANG("obj.34bd7ec6", list(command_name())),
+				LANG("obj.34bd7ec69a2575e5", list(command_name())),
 			)
 			var/max_number_of_sleepers = clamp(round(length(GLOB.alive_player_list) / 40), 1, 3)
 			if(!SSdynamic.force_run_midround(/datum/dynamic_ruleset/midround/from_living/traitor, forced_max_cap = max_number_of_sleepers))

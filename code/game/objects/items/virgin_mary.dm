@@ -24,14 +24,14 @@
 	if(isnull(user.mind))
 		return
 	if(HAS_TRAIT(user, TRAIT_MAFIAINITIATE)) //Only one nickname fuckhead
-		to_chat(user, span_warning(LANG("obj.321de230", null)))
+		to_chat(user, span_warning(LANG("obj.321de230119a61b9", null)))
 		return
 	if(used_up)
 		return
 
 	ADD_TRAIT(user, TRAIT_MAFIAINITIATE, TRAIT_GENERIC) // Adding the trait early because you could burn multiple at once for a very long name
-	to_chat(user, span_notice(LANG("obj.60b79987", null)))
-	var/nickname = tgui_input_text(user, LANG("obj.cbce6872", null), LANG("obj.69515c1b", null), max_length = NICKNAME_CAP)
+	to_chat(user, span_notice(LANG("obj.60b79987ef448039", null)))
+	var/nickname = tgui_input_text(user, LANG("obj.cbce6872c604ffb8", null), LANG("obj.69515c1b3d66040b", null), max_length = NICKNAME_CAP)
 	nickname = reject_bad_name(nickname, allow_numbers = FALSE, max_length = NICKNAME_CAP, ascii_only = TRUE)
 	if(!nickname)
 		REMOVE_TRAIT(user, TRAIT_MAFIAINITIATE, TRAIT_GENERIC)
@@ -44,14 +44,14 @@
 		new_name = "[user.real_name] \"[nickname]\""
 	user.real_name = new_name
 	used_up = TRUE
-	user.say(LANG("obj.d7a73f94", null), forced = /obj/item/virgin_mary)
-	to_chat(user, span_userdanger(LANG("obj.8ad28133", null)))
+	user.say(LANG("obj.d7a73f94f2bed006", null), forced = /obj/item/virgin_mary)
+	to_chat(user, span_userdanger(LANG("obj.8ad281330af51427", null)))
 
 #undef NICKNAME_CAP
 
 /obj/item/virgin_mary/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.c1b89b9e", list(user, user.p_theyre()))))
-	user.say(LANG("obj.03e034a1", null), forced = /obj/item/virgin_mary)
+	user.visible_message(span_suicide(LANG("obj.c1b89b9e2eb2a74a", list(user, user.p_theyre()))))
+	user.say(LANG("obj.03e034a170f6f4aa", null), forced = /obj/item/virgin_mary)
 	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), 7.5 SECONDS)
 	addtimer(CALLBACK(user, TYPE_PROC_REF(/atom/movable, say), "O my Mother, preserve me this day from mortal sin..."), 5 SECONDS)
 	return MANUAL_SUICIDE

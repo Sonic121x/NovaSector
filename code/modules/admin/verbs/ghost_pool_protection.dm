@@ -72,7 +72,7 @@ ADMIN_VERB(ghost_pool_protection, R_ADMIN, "幽灵池保护", "Choose which ways
 		if("no_roles")
 			new_role_flags = NONE
 		if("apply_settings")
-			to_chat(usr, LANG("datum.ec375f1b", null))
+			to_chat(usr, LANG("datum.ec375f1bcfddefec", null))
 			var/msg
 			switch(new_role_flags)
 				if(ALL)

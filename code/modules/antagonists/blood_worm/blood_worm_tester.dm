@@ -30,21 +30,21 @@
 
 /obj/item/blood_worm_tester/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	if (spent)
-		target_mob.balloon_alert(user, LANG("obj.4a150fb2", null))
+		target_mob.balloon_alert(user, LANG("obj.4a150fb2bd9304d4", null))
 		return
 	if (!ISADVANCEDTOOLUSER(user))
-		target_mob.balloon_alert(user, LANG("obj.1a8b1918", null))
+		target_mob.balloon_alert(user, LANG("obj.1a8b1918cb2bdf8c", null))
 		return
 	if (!ishuman(target_mob))
-		target_mob.balloon_alert(user, LANG("obj.42b0d6ec", null))
+		target_mob.balloon_alert(user, LANG("obj.42b0d6ecfa46f762", null))
 		return
 	if (!target_mob.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))
 		return
 
 	if (target_mob != user)
 		user.visible_message(
-			message = span_danger(LANG("obj.6c674550", list(user, user.p_s(), target_mob, src))),
-			self_message = span_danger(LANG("obj.ac1ef747", list(target_mob, src))),
+			message = span_danger(LANG("obj.6c6745508678dbfd", list(user, user.p_s(), target_mob, src))),
+			self_message = span_danger(LANG("obj.ac1ef747e1e69220", list(target_mob, src))),
 			ignored_mobs = target_mob,
 		)
 
@@ -54,8 +54,8 @@
 		)
 	else
 		user.visible_message(
-			message = span_notice(LANG("obj.7c83c01c", list(user, user.p_s(), user.p_themselves(), src))),
-			self_message = span_notice(LANG("obj.6d58d5b3", list(src))),
+			message = span_notice(LANG("obj.7c83c01c43adb2f5", list(user, user.p_s(), user.p_themselves(), src))),
+			self_message = span_notice(LANG("obj.6d58d5b34b010620", list(src))),
 		)
 
 	log_combat(user, target_mob, "tested", src)
@@ -66,7 +66,7 @@
 
 	playsound(src, 'sound/items/hypospray.ogg', vol = 50, vary = TRUE)
 
-	say(LANG("obj.93ade2f2", null))
+	say(LANG("obj.93ade2f22afd63d5", null))
 
 	// Handling it as a timer instead of a do_after prevents abusing the do_after to do antag checks.
 	// Otherwise, if the target runs away from the testing do_after, then that means they're likely a host.
@@ -81,8 +81,8 @@
 
 /obj/item/blood_worm_tester/proc/report_results(is_worm)
 	if (is_worm)
-		say(LANG("obj.87fe0f8f", null))
+		say(LANG("obj.87fe0f8fafec8c21", null))
 		playsound(src, 'sound/machines/beep/twobeep.ogg', vol = 50, vary = TRUE)
 	else
-		say(LANG("obj.11ec1765", null))
+		say(LANG("obj.11ec176571221e25", null))
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', vol = 40, vary = TRUE)

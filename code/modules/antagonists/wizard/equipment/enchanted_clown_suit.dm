@@ -53,7 +53,7 @@
 	cast_message(cast_on)
 	if (!do_after(cast_on, cast_time, cast_on))
 		casting = FALSE
-		cast_on.balloon_alert(cast_on, LANG("datum.c67b5d27", null))
+		cast_on.balloon_alert(cast_on, LANG("datum.c67b5d274d6e724b", null))
 		StartCooldown(2 SECONDS) // Prevents chat spam
 		return . | SPELL_CANCEL_CAST
 	casting = FALSE
@@ -63,7 +63,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/conjure_item/clown_pockets/post_created(atom/cast_on, atom/created)
-	cast_on.visible_message(span_notice(LANG("datum.5324cc7c", list(cast_on, created))), span_notice(LANG("datum.81f47a13", list(created))))
+	cast_on.visible_message(span_notice(LANG("datum.5324cc7cf101acea", list(cast_on, created))), span_notice(LANG("datum.81f47a13a701df74", list(created))))
 
 /datum/action/cooldown/spell/conjure_item/clown_pockets/can_cast_spell(feedback = TRUE)
 	. = ..()
@@ -71,12 +71,12 @@
 		return
 	if (casting)
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.85c8ba2b", null))
+			owner.balloon_alert(owner, LANG("datum.85c8ba2b5b092ca0", null))
 		return FALSE
 
 /// Prints a funny message, exists so I can override it to print a different message
 /datum/action/cooldown/spell/conjure_item/clown_pockets/proc/cast_message(mob/cast_on)
-	cast_on.visible_message(span_notice(LANG("datum.d3f88a02", list(cast_on, cast_on.p_their()))), span_notice(LANG("datum.7358ce6f", null)))
+	cast_on.visible_message(span_notice(LANG("datum.d3f88a02cc462eea", list(cast_on, cast_on.p_their()))), span_notice(LANG("datum.7358ce6f47a5040f", null)))
 
 /// Longer cooldown variant which is attached to the enchanted clown suit
 /datum/action/cooldown/spell/conjure_item/clown_pockets/enchantment
@@ -84,7 +84,7 @@
 	cooldown_time = 60 SECONDS
 
 /datum/action/cooldown/spell/conjure_item/clown_pockets/enchantment/cast_message(mob/cast_on)
-	cast_on.visible_message(span_notice(LANG("datum.b0a2b767", list(cast_on, cast_on.p_their()))), span_notice(LANG("datum.6aa07b45", null)))
+	cast_on.visible_message(span_notice(LANG("datum.b0a2b7675d8fb838", list(cast_on, cast_on.p_their()))), span_notice(LANG("datum.6aa07b45954fefcb", null)))
 
 /// Enchanted clown suit
 /obj/item/clothing/under/rank/civilian/clown/magic

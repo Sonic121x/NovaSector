@@ -19,7 +19,7 @@
 
 
 /obj/structure/destructible/clockwork/trap/delay/multitool_act(mob/living/user, obj/item/tool)
-	delay_time = tgui_input_number(user, LANG("obj.5ab69af6", null), LANG("obj.9bc5a903", null), 1 SECONDS, 120 SECONDS, 1 SECONDS)
+	delay_time = tgui_input_number(user, LANG("obj.5ab69af643baa521", null), LANG("obj.9bc5a903bc29707b", null), 1 SECONDS, 120 SECONDS, 1 SECONDS)
 	return TRUE
 
 

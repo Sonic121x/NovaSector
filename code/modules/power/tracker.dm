@@ -128,7 +128,7 @@
 /obj/machinery/power/tracker/crowbar_act(mob/user, obj/item/I)
 	if(I.use_tool(src, user, 0))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		user.visible_message(span_notice(LANG("obj.41d6fa40", list(user, src))), span_notice(LANG("obj.e83f2a0b", list(src))))
+		user.visible_message(span_notice(LANG("obj.41d6fa40fcd55c73", list(user, src))), span_notice(LANG("obj.e83f2a0b0cd3a6a8", list(src))))
 		deconstruct(TRUE)
 	return TRUE
 

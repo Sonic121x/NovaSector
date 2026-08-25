@@ -9,12 +9,12 @@
 
 /obj/item/rna_extractor/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if((istype(tool, /obj/item/rna_vial) && loaded_vial != null))
-		to_chat(user, span_warning(LANG("obj.9476963a", list(src))))
+		to_chat(user, span_warning(LANG("obj.9476963a231d5d29", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(istype(tool, /obj/item/rna_vial))
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.dbb74bc7", list(tool, src))))
+		to_chat(user, span_notice(LANG("obj.dbb74bc7f70fecc2", list(tool, src))))
 		loaded_vial = tool
 		playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 		update_appearance()
@@ -31,36 +31,36 @@
 		return
 	var/mob/living/carbon/human/target = interacting_with
 	if(!loaded_vial)
-		to_chat(user, span_danger(LANG("obj.02d482cc", list(src))))
+		to_chat(user, span_danger(LANG("obj.02d482cc1aef0cef", list(src))))
 		return
 	if(loaded_vial.contains_rna)
-		to_chat(user, span_danger(LANG("obj.c9e8ba43", list(src))))
+		to_chat(user, span_danger(LANG("obj.c9e8ba43a2a5d2d5", list(src))))
 		return
 	if(!ismutant(target))
-		to_chat(user, span_danger(LANG("obj.73424ee2", list(target))))
+		to_chat(user, span_danger(LANG("obj.73424ee2d20932b3", list(target))))
 		return
 	var/datum/component/mutant_infection/target_infection = target.GetComponent(/datum/component/mutant_infection)
 	if(!target_infection)
-		to_chat(user, span_danger(LANG("obj.73424ee2", list(target))))
+		to_chat(user, span_danger(LANG("obj.73424ee2d20932b3", list(target))))
 		return
 	if(target_infection.extract_rna())
 		loaded_vial.load_rna(target)
-		to_chat(user, span_notice(LANG("obj.efe7a564", list(src, target))))
+		to_chat(user, span_notice(LANG("obj.efe7a564480c73b8", list(src, target))))
 		playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 		update_appearance()
 	else
-		to_chat(user, span_warning(LANG("obj.7746bc59", list(target))))
+		to_chat(user, span_warning(LANG("obj.7746bc5922c6d996", list(target))))
 
 /obj/item/rna_extractor/proc/unload_vial(mob/living/user)
 	if(loaded_vial)
 		loaded_vial.forceMove(user.loc)
 		user.put_in_hands(loaded_vial)
-		to_chat(user, span_notice(LANG("obj.cbed3266", list(loaded_vial, src))))
+		to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(loaded_vial, src))))
 		loaded_vial = null
 		update_appearance()
 		playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
 	else
-		to_chat(user, span_notice(LANG("obj.a776223e", list(src))))
+		to_chat(user, span_notice(LANG("obj.a776223e1d5fa171", list(src))))
 		return
 
 /obj/item/rna_extractor/update_overlays()
@@ -71,7 +71,7 @@
 /obj/item/rna_extractor/examine(mob/user)
 	. = ..()
 	if(loaded_vial)
-		. += LANG("obj.4ae9cd5d", null)
+		. += LANG("obj.4ae9cd5d77b0594d", null)
 
 /obj/item/rna_extractor/Destroy()
 	if(loaded_vial)
@@ -103,7 +103,7 @@
 /obj/item/rna_vial/examine(mob/user)
 	. = ..()
 	if(contains_rna)
-		. += LANG("obj.f7c805cb", null)
+		. += LANG("obj.f7c805cbe457b77c", null)
 
 /obj/item/hnz_cure
 	name = "HNZ-1 cure vial"
@@ -115,17 +115,17 @@
 /obj/item/hnz_cure/attack(mob/living/M, mob/living/user, params)
 	. = ..()
 	if(used)
-		to_chat(user, span_danger(LANG("obj.f98ac6d4", list(src))))
+		to_chat(user, span_danger(LANG("obj.f98ac6d443f5aa5e", list(src))))
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!H.GetComponent(/datum/component/mutant_infection))
-			to_chat(user, span_danger(LANG("obj.73424ee2", list(H))))
+			to_chat(user, span_danger(LANG("obj.73424ee2d20932b3", list(H))))
 			return
 		if(do_after(user, 4 SECONDS))
 			cure_target(H)
 			playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE, -6)
-			to_chat(user, span_notice(LANG("obj.f5990369", list(H, src))))
+			to_chat(user, span_notice(LANG("obj.f59903699cc35ff3", list(H, src))))
 			used = TRUE
 			update_appearance()
 
@@ -177,7 +177,7 @@
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 	loaded_item = tool
-	to_chat(user, span_notice(LANG("obj.b5230998", list(tool, src))))
+	to_chat(user, span_notice(LANG("obj.b5230998cb0bd86c", list(tool, src))))
 	flick("h_lathe_load", src)
 	update_appearance()
 	playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
@@ -228,11 +228,11 @@
 		return
 	else
 		if(status != STATUS_IDLE)
-			to_chat(usr, span_warning(LANG("obj.5c118aad", list(src))))
+			to_chat(usr, span_warning(LANG("obj.5c118aadb01916ec", list(src))))
 		else if(!loaded_item)
-			to_chat(usr, span_warning(LANG("obj.e76cc4f3", list(src))))
+			to_chat(usr, span_warning(LANG("obj.e76cc4f331a17c9e", list(src))))
 		else if(!process || process != loaded_item) //Interface exploit protection (such as hrefs or swapping items with interface set to old item)
-			to_chat(usr, span_danger(LANG("obj.5cfd33ca", list(src))))
+			to_chat(usr, span_danger(LANG("obj.5cfd33ca148cd3c0", list(src))))
 		else
 			if(operation == "virus")
 				status = STATUS_RECOMBINATING_VIRUS

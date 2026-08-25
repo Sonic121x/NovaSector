@@ -36,7 +36,7 @@
 	abort_blast = FALSE
 	owner.face_atom(target)
 	owner.move_resist = MOVE_FORCE_VERY_STRONG
-	owner.balloon_alert_to_viewers(LANG("datum.b766a769", null))
+	owner.balloon_alert_to_viewers(LANG("datum.b766a769d4e181f3", null))
 	var/mutable_appearance/direction_overlay = mutable_appearance('icons/mob/simple/lavaland/lavaland_monsters.dmi', "brimdemon_telegraph_dir")
 	var/mutable_appearance/direction_emissive = emissive_appearance('icons/mob/simple/lavaland/lavaland_monsters.dmi', "brimdemon_telegraph_dir", owner, alpha = 150, effect_type = EMISSIVE_NO_BLOOM)
 	owner.add_overlay(direction_overlay)
@@ -79,7 +79,7 @@
 
 /// Create a laser in the direction we are facing
 /datum/action/cooldown/mob_cooldown/brimbeam/proc/fire_laser()
-	owner.visible_message(span_danger(LANG("datum.ae094d75", list(owner))))
+	owner.visible_message(span_danger(LANG("datum.ae094d75a35233c1", list(owner))))
 	playsound(owner, 'sound/mobs/non-humanoids/brimdemon/brimdemon.ogg', 150, FALSE, 0, 3)
 	var/turf/target_turf = get_ranged_target_turf(owner, owner.dir, beam_range)
 	var/turf/origin_turf = get_turf(owner)
@@ -100,7 +100,7 @@
 		new_brimbeam.assign_creator(owner)
 		for(var/mob/living/hit_mob in affected_turf)
 			hit_mob.apply_damage(25, BURN, blocked = hit_mob.run_armor_check(null, LASER, silent = TRUE), wound_bonus = CANT_WOUND)
-			to_chat(hit_mob, span_userdanger(LANG("datum.c8ece10a", list(owner))))
+			to_chat(hit_mob, span_userdanger(LANG("datum.c8ece10a793c88c3", list(owner))))
 		RegisterSignal(new_brimbeam, COMSIG_QDELETING, PROC_REF(extinguish_laser)) // In case idk a singularity eats it or something
 	if(!length(beam_parts))
 		return FALSE

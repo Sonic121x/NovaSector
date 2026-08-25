@@ -19,7 +19,7 @@
 ///signal called on parent being examined
 /datum/element/wall_engraver/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice(LANG("datum.34e73833", null))
+	examine_list += span_notice(LANG("datum.34e73833244404d2", null))
 
 ///signal called on parent being used to right click attack something
 /datum/element/wall_engraver/proc/on_item_pre_attack_secondary(datum/source, atom/target, mob/living/user)
@@ -33,13 +33,13 @@
 	if(!istype(wall) || !user.mind)
 		return
 	if(HAS_TRAIT_FROM(wall, TRAIT_NOT_ENGRAVABLE, ENGRAVED_TRAIT))
-		user.balloon_alert(user, LANG("datum.a8695848", null))
+		user.balloon_alert(user, LANG("datum.a8695848b4a66492", null))
 		return
 	if(HAS_TRAIT(wall, TRAIT_NOT_ENGRAVABLE))
-		user.balloon_alert(user, LANG("datum.a5e0ccfb", null))
+		user.balloon_alert(user, LANG("datum.a5e0ccfb53375250", null))
 		return
 	if(!length(user.mind?.memories))
-		user.balloon_alert(user, LANG("datum.97a68106", null))
+		user.balloon_alert(user, LANG("datum.97a6810681133cce", null))
 		return
 	var/datum/memory/memory_to_engrave = user.mind.select_memory("engrave")
 	if(!memory_to_engrave)
@@ -49,10 +49,10 @@
 	item.add_fingerprint(user)
 	playsound(item, item.hitsound, 30, TRUE, -1)
 	user.do_attack_animation(wall)
-	user.balloon_alert(user, LANG("datum.b6cd9c06", null))
+	user.balloon_alert(user, LANG("datum.b6cd9c0693b715de", null))
 	if(!do_after(user, 5 SECONDS, target = wall))
 		return
-	user.balloon_alert(user, LANG("datum.06dc20af", null))
+	user.balloon_alert(user, LANG("datum.06dc20afe8288da2", null))
 	user.do_attack_animation(wall)
 
 	var/do_persistent_save = !(memory_to_engrave.memory_flags & MEMORY_FLAG_NOPERSISTENCE)

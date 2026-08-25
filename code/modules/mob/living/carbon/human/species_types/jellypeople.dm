@@ -71,7 +71,7 @@
 	if(slime.get_blood_volume() <= 0)
 		slime.adjust_blood_volume(JELLY_REGEN_RATE_EMPTY * slime.physiology.blood_regen_mod * seconds_per_tick)
 		slime.adjust_brute_loss(2.5 * seconds_per_tick)
-		to_chat(slime, span_danger(LANG("datum.cc505a62", null)))
+		to_chat(slime, span_danger(LANG("datum.cc505a622fe32ee0", null)))
 
 	// Same logic applies here.
 	if(slime.get_blood_volume() < BLOOD_VOLUME_NORMAL)
@@ -83,7 +83,7 @@
 	// If you're on saline, you don't feel the effects of bloodloss.
 	if(slime.get_blood_volume(apply_modifiers = TRUE) < BLOOD_VOLUME_OKAY)
 		if(SPT_PROB(2.5, seconds_per_tick))
-			to_chat(slime, span_danger(LANG("datum.47f21517", null)))
+			to_chat(slime, span_danger(LANG("datum.47f21517d3dbb062", null)))
 
 	// Saline can prevent you from cannibalizing yourself.
 	if(slime.get_blood_volume(apply_modifiers = TRUE) < BLOOD_VOLUME_BAD)
@@ -118,7 +118,7 @@
 	var/obj/item/bodypart/consumed_limb = target.get_bodypart(pick(limbs_to_consume))
 	consumed_limb.drop_limb()
 
-	to_chat(target, span_userdanger(LANG("datum.66645a3a", list(consumed_limb.name))))
+	to_chat(target, span_userdanger(LANG("datum.66645a3a77119984", list(consumed_limb.name))))
 	qdel(consumed_limb)
 	target.adjust_blood_volume(65 * target.physiology.blood_regen_mod) // NOVA EDIT CHANGE - This is because losing a limb now costs 60 blood, so this refunds it with a bit extra; ORIGINAL: target.adjust_blood_volume(20 * target.physiology.blood_regen_mod)
 
@@ -145,8 +145,20 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "tint",
-		SPECIES_PERK_NAME = LANG("datum.0a45e45b", null),
-		SPECIES_PERK_DESC = LANG("datum.23ede26d", list(plural_form, initial(blood_type.reagent_type.name))),
+		SPECIES_PERK_NAME = LANG("datum.0a45e45bc636040a", null),
+		SPECIES_PERK_DESC = LANG("datum.23ede26d9117dd6f", list(plural_form, initial(blood_type.reagent_type.name))),
+	))
+
+	return to_add
+
+/datum/species/jelly/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = FA_ICON_PERSON_RUNNING,
+		SPECIES_PERK_NAME = LANG("datum.1018265307e81c70", null),
+		SPECIES_PERK_DESC = LANG("datum.7d5ecddcd459c120", list(plural_form)),
 	))
 
 	return to_add
@@ -176,13 +188,13 @@
 	var/mob/living/carbon/human/H = owner
 	var/list/limbs_to_heal = H.get_missing_limbs()
 	if(!length(limbs_to_heal))
-		to_chat(H, span_notice(LANG("datum.11b683c4", null)))
+		to_chat(H, span_notice(LANG("datum.11b683c4f1259db7", null)))
 		return
-	to_chat(H, span_notice(LANG("datum.098e14c5", list(length(limbs_to_heal) >= 2 ? "limbs" : "limb"))))
+	to_chat(H, span_notice(LANG("datum.098e14c5c7e93acc", list(length(limbs_to_heal) >= 2 ? "limbs" : "limb"))))
 	if(H.get_blood_volume() >= blood_per_limb * length(limbs_to_heal) + BLOOD_VOLUME_OKAY)
 		H.regenerate_limbs()
 		H.adjust_blood_volume(-blood_per_limb * length(limbs_to_heal))
-		to_chat(H, span_notice(LANG("datum.2e6fd382", null)))
+		to_chat(H, span_notice(LANG("datum.2e6fd382e957cf40", null)))
 		return
 	else if(H.get_blood_volume() >= blood_per_limb)//We can partially heal some limbs
 		while(H.get_blood_volume() >= BLOOD_VOLUME_OKAY + blood_per_limb)
@@ -190,9 +202,9 @@
 			H.regenerate_limb(healed_limb)
 			limbs_to_heal -= healed_limb
 			H.adjust_blood_volume(-blood_per_limb)
-		to_chat(H, span_warning(LANG("datum.bb8b9fa3", null)))
+		to_chat(H, span_warning(LANG("datum.bb8b9fa3deed745d", null)))
 		return
-	to_chat(H, span_warning(LANG("datum.f6ff03b3", null)))
+	to_chat(H, span_warning(LANG("datum.f6ff03b31da1509e", null)))
 
 ////////////////////////////////////////////////////////SLIMEPEOPLE///////////////////////////////////////////////////////////////////
 
@@ -279,7 +291,7 @@
 	. = ..() // NOVA EDIT CHANGE - ORIGINAL: SIGNAL_HANDLER
 	if(source.get_blood_volume() >= BLOOD_VOLUME_SLIME_SPLIT)
 		if(SPT_PROB(2.5, seconds_per_tick))
-			to_chat(source, span_notice(LANG("datum.787a311d", null)))
+			to_chat(source, span_notice(LANG("datum.787a311d65477b34", null)))
 
 	else if(source.nutrition >= NUTRITION_LEVEL_WELL_FED)
 		source.adjust_blood_volume(1.5 * seconds_per_tick)
@@ -309,8 +321,8 @@
 		return
 	CHECK_DNA_AND_SPECIES(H)
 	H.visible_message(
-		span_notice(LANG("datum.30ed0bfa", list(owner))),
-		span_notice(LANG("datum.03d94680", null)),
+		span_notice(LANG("datum.30ed0bfa053cf04c", list(owner))),
+		span_notice(LANG("datum.03d94680385a46ad", null)),
 	)
 
 	ADD_TRAIT(src, TRAIT_NO_TRANSFORM, REF(src))
@@ -319,9 +331,9 @@
 		if(H.get_blood_volume() >= BLOOD_VOLUME_SLIME_SPLIT)
 			make_dupe()
 		else
-			to_chat(H, span_warning(LANG("datum.a15b9c5a", null)))
+			to_chat(H, span_warning(LANG("datum.a15b9c5a58765959", null)))
 	else
-		to_chat(H, span_warning(LANG("datum.d87a7cde", null)))
+		to_chat(H, span_warning(LANG("datum.d87a7cde41c137b8", null)))
 
 	REMOVE_TRAIT(src, TRAIT_NO_TRANSFORM, REF(src))
 
@@ -352,8 +364,8 @@
 	H.transfer_quirk_datums(spare)
 	H.mind.transfer_to(spare)
 	spare.visible_message(
-		span_warning(LANG("datum.1ce48dc3", list(H, H.p_them()))),
-		span_notice(LANG("datum.a726ca69", null)),
+		span_warning(LANG("datum.1ce48dc35390f3b6", list(H, H.p_them()))),
+		span_notice(LANG("datum.a726ca698b542a4b", null)),
 	)
 
 
@@ -367,7 +379,7 @@
 
 /datum/action/innate/swap_body/Activate()
 	if(!isslimeperson(owner))
-		to_chat(owner, span_warning(LANG("datum.c9a90912", null)))
+		to_chat(owner, span_warning(LANG("datum.c9a90912c57b231c", null)))
 		Remove(owner)
 	else
 		ui_interact(owner)
@@ -490,13 +502,13 @@
 	if(!can_swap(dupe)) //sanity check
 		return
 	if(!IS_UNCONSCIOUS_OR_CRIT(M.current))
-		M.current.visible_message(span_notice(LANG("datum.437c2d3c", list(M.current))),
-			span_notice(LANG("datum.97f627b5", null)))
+		M.current.visible_message(span_notice(LANG("datum.437c2d3c55edc7e4", list(M.current))),
+			span_notice(LANG("datum.97f627b568c00ff4", null)))
 	else
-		to_chat(M.current, span_notice(LANG("datum.2442314d", null)))
+		to_chat(M.current, span_notice(LANG("datum.2442314de0d76a5a", null)))
 	M.current.transfer_quirk_datums(dupe)
 	M.transfer_to(dupe)
-	dupe.visible_message(span_notice(LANG("datum.f0b7f66c", list(dupe))), span_notice(LANG("datum.026e037a", null)))
+	dupe.visible_message(span_notice(LANG("datum.f0b7f66cb9a81596", list(dupe))), span_notice(LANG("datum.026e037aeb9489ad", null)))
 
 
 ///////////////////////////////////LUMINESCENTS//////////////////////////////////////////
@@ -597,10 +609,10 @@
 	var/datum/species/jelly/luminescent/species = target
 	if(!istype(species) || !species.current_extract)
 		name = "Integrate Extract"
-		desc = LANG("datum.afe54029", null)
+		desc = LANG("datum.afe540294c59cdf8", null)
 	else
 		name = "Eject Extract"
-		desc = LANG("datum.5daacb39", null)
+		desc = LANG("datum.5daacb3978f1be8a", null)
 
 	return ..()
 
@@ -625,18 +637,18 @@
 			to_remove.forceMove(human_owner.drop_location())
 
 		species.current_extract = null
-		human_owner.balloon_alert(human_owner, LANG("datum.2dcc5387", list(to_remove.name)))
+		human_owner.balloon_alert(human_owner, LANG("datum.2dcc5387c5383bb5", list(to_remove.name)))
 
 	else
 		var/obj/item/slime_extract/to_integrate = human_owner.get_active_held_item()
 		if(!istype(to_integrate) || to_integrate.extract_uses <= 0)
-			human_owner.balloon_alert(human_owner, LANG("datum.735806fb", null))
+			human_owner.balloon_alert(human_owner, LANG("datum.735806fb0c377c69", null))
 			return
 		if(!human_owner.temporarilyRemoveItemFromInventory(to_integrate))
 			return
 		to_integrate.forceMove(human_owner)
 		species.current_extract = to_integrate
-		human_owner.balloon_alert(human_owner, LANG("datum.ca199e48", list(to_integrate.name)))
+		human_owner.balloon_alert(human_owner, LANG("datum.ca199e48430b5bf6", list(to_integrate.name)))
 
 	for(var/datum/action/to_update as anything in species.luminescent_actions)
 		to_update.build_all_button_icons()
@@ -745,34 +757,34 @@
 	for(var/mob/living/recipient in oview(telepath))
 		recipient_options.Add(recipient)
 	if(!length(recipient_options))
-		to_chat(telepath, span_warning(LANG("datum.f20e11b6", null)))
+		to_chat(telepath, span_warning(LANG("datum.f20e11b6b80fbd6a", null)))
 		return
-	var/mob/living/recipient = tgui_input_list(telepath, LANG("datum.2a466622", null), LANG("datum.ecb4d278", null), sort_names(recipient_options))
+	var/mob/living/recipient = tgui_input_list(telepath, LANG("datum.2a466622a20c82d8", null), LANG("datum.ecb4d27856a700a6", null), sort_names(recipient_options))
 	if(isnull(recipient) || telepath.stat == DEAD || !is_species(telepath, /datum/species/jelly/stargazer))
 		return
-	var/msg = tgui_input_text(telepath, title = "Telepathy", max_length = MAX_MESSAGE_LEN)
+	var/msg = tgui_input_text(telepath, title = LANG("datum.ecb4d27856a700a6", null), max_length = MAX_MESSAGE_LEN)
 	if(isnull(msg) || telepath.stat == DEAD || !is_species(telepath, /datum/species/jelly/stargazer))
 		return
 	if(!(recipient in oview(telepath)))
-		to_chat(telepath, span_warning(LANG("datum.b2ad0aa0", list(recipient))))
+		to_chat(telepath, span_warning(LANG("datum.b2ad0aa018f8d870", list(recipient))))
 		return
 	if(recipient.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
-		to_chat(telepath, span_warning(LANG("datum.c9f0817e", list(recipient))))
+		to_chat(telepath, span_warning(LANG("datum.c9f0817e14353844", list(recipient))))
 		return
 	//NOVA EDIT ADDITION START -  Telepathy Block Quirk
 	if(HAS_TRAIT(recipient, TRAIT_PSIONIC_DAMPENER))
-		to_chat(telepath, span_warning(LANG("datum.d5208656", list(recipient))))
+		to_chat(telepath, span_warning(LANG("datum.d5208656bad5a7a0", list(recipient))))
 		return
 	//NOVA EDIT ADDITION END
 	log_directed_talk(telepath, recipient, msg, LOG_SAY, "slime telepathy")
 	to_chat(recipient, "[span_notice("You hear an alien voice in your head... ")]<font color=#008CA2>[msg]</font>")
-	to_chat(telepath, span_notice(LANG("datum.9348c95c", list(msg, recipient))))
+	to_chat(telepath, span_notice(LANG("datum.9348c95c76676dca", list(msg, recipient))))
 	for(var/dead in GLOB.dead_mob_list)
 		if(!isobserver(dead))
 			continue
 		var/follow_link_user = FOLLOW_LINK(dead, telepath)
 		var/follow_link_target = FOLLOW_LINK(dead, recipient)
-		to_chat(dead, "[follow_link_user] [span_name("[telepath]")] [span_alertalien("Slime Telepathy --> ")] [follow_link_target] [span_name("[recipient]")] [span_noticealien("[msg]")]")
+		to_chat(dead, LANG("datum.68be7e1750e53f24", list(follow_link_user, span_name("[telepath]"), span_alertalien("Slime Telepathy --> "), follow_link_target, span_name("[recipient]"), span_noticealien("[msg]"))))
 
 /datum/action/innate/link_minds
 	name = "Link Minds"
@@ -805,21 +817,21 @@
 
 /datum/action/innate/link_minds/Activate()
 	if(!isliving(owner.pulling) || owner.grab_state < GRAB_AGGRESSIVE)
-		to_chat(owner, span_warning(LANG("datum.c49c4879", null)))
+		to_chat(owner, span_warning(LANG("datum.c49c4879d4d64105", null)))
 		return
 
 	var/mob/living/living_target = owner.pulling
 	if(living_target.stat == DEAD)
-		to_chat(owner, span_warning(LANG("datum.43a298a5", null)))
+		to_chat(owner, span_warning(LANG("datum.43a298a53dd28fec", null)))
 		return
 
-	to_chat(owner, span_notice(LANG("datum.d639c400", list(living_target))))
-	to_chat(living_target, span_warning(LANG("datum.9655f8d1", null)))
+	to_chat(owner, span_notice(LANG("datum.d639c4003b83eac2", list(living_target))))
+	to_chat(living_target, span_warning(LANG("datum.9655f8d193a79ada", null)))
 	currently_linking = TRUE
 
 	if(!do_after(owner, 6 SECONDS, target = living_target, extra_checks = CALLBACK(src, PROC_REF(while_link_callback), living_target)))
-		to_chat(owner, span_warning(LANG("datum.1769a18c", list(living_target))))
-		to_chat(living_target, span_warning(LANG("datum.87466815", null)))
+		to_chat(owner, span_warning(LANG("datum.1769a18c0e38d614", list(living_target))))
+		to_chat(living_target, span_warning(LANG("datum.8746681502462cac", null)))
 		currently_linking = FALSE
 		return
 
@@ -829,8 +841,8 @@
 
 	var/datum/component/mind_linker/linker = target
 	if(!linker.link_mob(living_target))
-		to_chat(owner, span_warning(LANG("datum.1769a18c", list(living_target))))
-		to_chat(living_target, span_warning(LANG("datum.87466815", null)))
+		to_chat(owner, span_warning(LANG("datum.1769a18c0e38d614", list(living_target))))
+		to_chat(living_target, span_warning(LANG("datum.8746681502462cac", null)))
 
 
 /// Callback ran during the do_after of Activate() to see if we can keep linking with someone.

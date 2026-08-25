@@ -36,7 +36,7 @@
 	. = ..()
 
 	if(HAS_TRAIT(cast_on, TRAIT_NODISMEMBER))
-		to_chat(cast_on, span_warning(LANG("datum.9fdea796", null)))
+		to_chat(cast_on, span_warning(LANG("datum.9fdea796343035a3", null)))
 		return
 
 	var/list/exclusions = list()
@@ -50,31 +50,31 @@
 			robot_parts += possible_part
 
 	if (!length(robot_parts))
-		to_chat(cast_on, LANG("datum.38f8fb75", null))
+		to_chat(cast_on, LANG("datum.38f8fb75d9dbc757", null))
 		return
 
-	var/obj/item/bodypart/limb_to_detach = tgui_input_list(cast_on, LANG("datum.373bb2de", null), LANG("datum.3f13cdd9", null), sort_names(robot_parts))
+	var/obj/item/bodypart/limb_to_detach = tgui_input_list(cast_on, LANG("datum.373bb2ded3f04f5c", null), LANG("datum.3f13cdd90a6cd9af", null), sort_names(robot_parts))
 	if (QDELETED(src) || QDELETED(cast_on) || QDELETED(limb_to_detach))
 		return
 
 	if (length(limb_to_detach.wounds) >= 1)
-		cast_on.balloon_alert(cast_on, LANG("datum.fc194804", null))
+		cast_on.balloon_alert(cast_on, LANG("datum.fc1948048f443134", null))
 		playsound(cast_on, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		return
 
-	cast_on.balloon_alert(cast_on, LANG("datum.521792ea", null))
+	cast_on.balloon_alert(cast_on, LANG("datum.521792ea324c53f0", null))
 	playsound(cast_on, 'sound/items/tools/rped.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	cast_on.visible_message(span_notice(LANG("datum.3ca6e695", list(cast_on, cast_on.p_their(), limb_to_detach.name, cast_on.p_they(), cast_on.p_s()))))
+	cast_on.visible_message(span_notice(LANG("datum.3ca6e695bc0ac319", list(cast_on, cast_on.p_their(), limb_to_detach.name, cast_on.p_they(), cast_on.p_s()))))
 
 	if(do_after(cast_on, 5 SECONDS))
-		cast_on.visible_message(span_notice(LANG("datum.f31f90bf", list(cast_on, cast_on.p_their(), limb_to_detach.name))))
+		cast_on.visible_message(span_notice(LANG("datum.f31f90bf02eff0f7", list(cast_on, cast_on.p_their(), limb_to_detach.name))))
 		limb_to_detach.drop_limb()
 		cast_on.put_in_hands(limb_to_detach)
-		cast_on.balloon_alert(cast_on, LANG("datum.9d4f9650", null))
+		cast_on.balloon_alert(cast_on, LANG("datum.9d4f96508e7e486d", null))
 		if(prob(5))
 			playsound(cast_on, 'sound/items/champagne_pop.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		else
 			playsound(cast_on, 'sound/items/deconstruct.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	else
-		cast_on.balloon_alert(cast_on, LANG("datum.c67b5d27", null))
+		cast_on.balloon_alert(cast_on, LANG("datum.c67b5d274d6e724b", null))
 		playsound(cast_on, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)

@@ -29,7 +29,7 @@
 		if(satellite.id != toggled_id)
 			continue
 		if(satellite.obj_flags & EMAGGED)
-			to_chat(usr, span_warning(LANG("obj.22480747", null)))
+			to_chat(usr, span_warning(LANG("obj.224807475b3d661f", null)))
 			return
 		if(is_valid_z_level(get_turf(satellite), current_turf))
 			satellite.toggle()

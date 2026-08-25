@@ -26,6 +26,6 @@
 		var/mob/living/carbon/human/H = i
 		H.set_species(new_species)
 		H.dna.unique_enzymes = H.dna.generate_unique_enzymes()
-		to_chat(H, span_notice(LANG("datum.d632b804", null)))
+		to_chat(H, span_notice(LANG("datum.d632b80476a4a75d", null)))
 		if(!all_the_same)
 			new_species = pick(all_species)

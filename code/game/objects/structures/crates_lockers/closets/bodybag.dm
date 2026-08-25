@@ -86,11 +86,11 @@
 	if(!istype(the_folder))
 		return
 	if(opened)
-		to_chat(the_folder, span_warning(LANG("obj.3f96414f", list(src))))
+		to_chat(the_folder, span_warning(LANG("obj.3f96414fa78f9b87", list(src))))
 		return
 	for(var/content_thing in contents)
 		if(istype(content_thing, /mob) || isobj(content_thing))
-			to_chat(the_folder, span_warning(LANG("obj.53cb9145", list(src))))
+			to_chat(the_folder, span_warning(LANG("obj.53cb91457d415501", list(src))))
 			return
 	// toto we made it!
 	return TRUE
@@ -102,7 +102,7 @@
  * * the_folder - aka user
  */
 /obj/structure/closet/body_bag/proc/perform_fold(mob/living/carbon/human/the_folder)
-	visible_message(span_notice(LANG("obj.eebcbc07", list(the_folder, src))))
+	visible_message(span_notice(LANG("obj.eebcbc07e6a98203", list(the_folder, src))))
 	the_folder.put_in_hands(undeploy_bodybag(the_folder.loc))
 
 /// Makes the bag into an item, returns that item
@@ -135,31 +135,31 @@
 	if(!istype(the_folder))
 		return
 	if(opened)
-		to_chat(the_folder, span_warning(LANG("obj.3f96414f", list(src))))
+		to_chat(the_folder, span_warning(LANG("obj.3f96414fa78f9b87", list(src))))
 		return
 	//end copypaste zone
 	if(contents.len >= mob_storage_capacity / 2)
-		to_chat(the_folder, span_warning(LANG("obj.53cb9145", list(src))))
+		to_chat(the_folder, span_warning(LANG("obj.53cb91457d415501", list(src))))
 		return
 
 	if(the_folder.in_contents_of(src))
-		to_chat(the_folder, span_warning(LANG("obj.7e2fdac9", list(src))))
+		to_chat(the_folder, span_warning(LANG("obj.7e2fdac9a152102e", list(src))))
 		return
 
 	for(var/obj/item/bodybag/bluespace/B in src)
-		to_chat(the_folder, span_warning(LANG("obj.2a6bf06e", null)) )
+		to_chat(the_folder, span_warning(LANG("obj.2a6bf06ef1d9f5a9", null)) )
 		return
 	return TRUE
 
 /obj/structure/closet/body_bag/bluespace/perform_fold(mob/living/carbon/human/the_folder)
-	visible_message(span_notice(LANG("obj.eebcbc07", list(the_folder, src))))
+	visible_message(span_notice(LANG("obj.eebcbc07e6a98203", list(the_folder, src))))
 	var/obj/item/bodybag/folding_bodybag = undeploy_bodybag(the_folder.loc)
 	var/max_weight_of_contents = initial(folding_bodybag.w_class)
 	for(var/am in contents)
 		var/atom/movable/content = am
 		content.forceMove(folding_bodybag)
 		if(isliving(content))
-			to_chat(content, span_userdanger(LANG("obj.e4c3012e", null)))
+			to_chat(content, span_userdanger(LANG("obj.e4c3012ee510bd03", null)))
 		if(HAS_TRAIT(content, TRAIT_DWARF))
 			max_weight_of_contents = max(WEIGHT_CLASS_NORMAL, max_weight_of_contents)
 			continue
@@ -202,18 +202,18 @@
 /obj/structure/closet/body_bag/examine(mob/user)
 	. = ..()
 	if(tag_name)
-		. += span_info(LANG("obj.b4395e8e", list(tag_name)))
+		. += span_info(LANG("obj.b4395e8ece3d3747", list(tag_name)))
 	if(pinned)
 		if(get_dist(user, src) <= 2 && user.client)
 			pinned.ui_interact(user)
 		else
-			. += span_smallnoticeital(LANG("obj.4c9b0413", null))
+			. += span_smallnoticeital(LANG("obj.4c9b041364d7cab1", null))
 	if(can_scan_through)
-		. += span_notice(LANG("obj.c8850817", null))
+		. += span_notice(LANG("obj.c88508178f065d2b", null))
 
 /obj/structure/closet/body_bag/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tag_name && tool.tool_behaviour == TOOL_WIRECUTTER || tool.get_sharpness())
-		to_chat(user, span_notice(LANG("obj.ac55fc59", list(src))))
+		to_chat(user, span_notice(LANG("obj.ac55fc59a0dc3c29", list(src))))
 		playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 		tag_name = null
 		update_appearance()
@@ -237,7 +237,7 @@
 		if(force || !user || user.loc == src)
 			pinned.forceMove(drop_location())
 			return TRUE // force open, no user, or we can't take the note out from inside
-		balloon_alert(user, LANG("obj.4a5d7aa5", null))
+		balloon_alert(user, LANG("obj.4a5d7aa571eaeee1", null))
 		if(!user.put_in_inactive_hand(pinned) && pinned.loc == src)
 			pinned.forceMove(drop_location())
 		return FALSE // blocked the open action
@@ -288,7 +288,7 @@
 /obj/structure/closet/body_bag/environmental/togglelock(mob/living/user, silent)
 	. = ..()
 	for(var/mob/living/target in contents)
-		to_chat(target, span_warning(LANG("obj.6592accd", null)))
+		to_chat(target, span_warning(LANG("obj.6592accd7b61ab1c", null)))
 
 /obj/structure/closet/body_bag/environmental/proc/refresh_air()
 	air_contents = null
@@ -327,7 +327,7 @@
 
 /obj/structure/closet/body_bag/environmental/prisoner/attempt_fold(mob/living/carbon/human/the_folder)
 	if(cinched)
-		to_chat(the_folder, span_warning(LANG("obj.8be0acaa", list(src))))
+		to_chat(the_folder, span_warning(LANG("obj.8be0acaa7fb20809", list(src))))
 		return FALSE
 	return ..()
 
@@ -337,7 +337,7 @@
 		return FALSE
 
 	if(cinched && !force)
-		to_chat(user, span_danger(LANG("obj.61c24294", list(src))))
+		to_chat(user, span_danger(LANG("obj.61c24294edd1023e", list(src))))
 		return FALSE
 
 	cinched = FALSE //in case it was forced open uncinch it
@@ -357,21 +357,21 @@
 
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_warning(LANG("obj.f7341b20", list(src))), \
-		span_notice(LANG("obj.ca864905", list(src, DisplayTimeText(breakout_time)))), \
-		span_hear(LANG("obj.e8a08630", list(src))))
+	user.visible_message(span_warning(LANG("obj.f7341b20daff8d11", list(src))), \
+		span_notice(LANG("obj.ca864905e3c0f43e", list(src, DisplayTimeText(breakout_time)))), \
+		span_hear(LANG("obj.e8a086303529f0d5", list(src))))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || opened || !cinched )
 			return
 		//we check after a while whether there is a point of resisting anymore and whether the user is capable of resisting
-		user.visible_message(span_danger(LANG("obj.37696909", list(user, src))),
-							span_notice(LANG("obj.81c31f6b", list(src))))
+		user.visible_message(span_danger(LANG("obj.37696909131e91b5", list(user, src))),
+							span_notice(LANG("obj.81c31f6b9b00625a", list(src))))
 		if(istype(loc, /obj/machinery/disposal))
 			return ..()
 		bust_open()
 	else
 		if(user.loc == src) //so we don't get the message if we resisted multiple times and succeeded.
-			to_chat(user, span_warning(LANG("obj.384d6997", list(src))))
+			to_chat(user, span_warning(LANG("obj.384d6997dc51d568", list(src))))
 
 
 /obj/structure/closet/body_bag/environmental/prisoner/bust_open()
@@ -387,25 +387,25 @@
 
 /obj/structure/closet/body_bag/environmental/prisoner/togglelock(mob/living/user, silent)
 	if(opened)
-		to_chat(user, span_warning(LANG("obj.cd56deca", list(src))))
+		to_chat(user, span_warning(LANG("obj.cd56deca56973759", list(src))))
 		return
 	if(user in contents)
-		to_chat(user, span_warning(LANG("obj.de614024", null)))
+		to_chat(user, span_warning(LANG("obj.de614024fe5d2388", null)))
 		return
 	if(iscarbon(user))
 		add_fingerprint(user)
 	if(!cinched)
 		for(var/mob/living/target in contents)
-			to_chat(target, span_userdanger(LANG("obj.bcaefec8", list(src))))
-		user.visible_message(span_notice(LANG("obj.f71d7235", list(user, src))))
+			to_chat(target, span_userdanger(LANG("obj.bcaefec889967940", list(src))))
+		user.visible_message(span_notice(LANG("obj.f71d72350420286e", list(user, src))))
 		if(!(do_after(user,(cinch_time),target = src)))
 			return
 	cinched = !cinched
 	if(cinched)
 		playsound(loc, cinch_sound, 15, TRUE, -2)
-	user.visible_message(span_notice(LANG("obj.722ff684", list(user, cinched ? null : "un", src))),
-							span_notice(LANG("obj.6a51583c", list(cinched ? null : "un", src))),
-							span_hear(LANG("obj.63bd5c2d", list(src))))
+	user.visible_message(span_notice(LANG("obj.722ff6840269c567", list(user, cinched ? null : "un", src))),
+							span_notice(LANG("obj.6a51583c778a0667", list(cinched ? null : "un", src))),
+							span_hear(LANG("obj.63bd5c2d7d205830", list(src))))
 	user.log_message("[cinched ? "cinched":"uncinched"] secure environmental bag [src]", LOG_GAME)
 	update_appearance()
 
@@ -587,7 +587,7 @@
 /obj/structure/closet/body_bag/environmental/stasis/proc/apply_stasis(mob/living/target)
 	target.apply_status_effect(/datum/status_effect/grouped/stasis, REF(src))
 	if(!INCAPACITATED_IGNORING(target, INCAPABLE_STASIS))
-		to_chat(target, span_notice(LANG("obj.60a72abe", null)))
+		to_chat(target, span_notice(LANG("obj.60a72abe365e7aa9", null)))
 	RegisterSignal(target, COMSIG_LIVING_EARLY_UNARMED_ATTACK, PROC_REF(skip_to_attack_hand))
 
 /obj/structure/closet/body_bag/environmental/stasis/after_close(mob/living/user)
@@ -599,7 +599,7 @@
 /obj/structure/closet/body_bag/environmental/stasis/proc/remove_stasis(mob/living/target)
 	target.remove_status_effect(/datum/status_effect/grouped/stasis, REF(src))
 	if(!INCAPACITATED_IGNORING(target, INCAPABLE_STASIS))
-		to_chat(target, span_notice(LANG("obj.b0c1b4ff", null)))
+		to_chat(target, span_notice(LANG("obj.b0c1b4ffdc6bccc4", null)))
 	UnregisterSignal(target, COMSIG_LIVING_EARLY_UNARMED_ATTACK)
 
 /obj/structure/closet/body_bag/environmental/stasis/undeploy_bodybag(atom/fold_loc)
@@ -626,14 +626,14 @@
 	user.changeNext_move(6 SECONDS)
 	user.last_special = world.time + 6 SECONDS
 	user.visible_message(
-		span_warning(LANG("obj.96af6461", list(src))),
-		span_notice(LANG("obj.147319cc", list(src, DisplayTimeText(breakout_time)))),
-		span_hear(LANG("obj.e8a08630", list(src))),
+		span_warning(LANG("obj.96af64613ccf64f6", list(src))),
+		span_notice(LANG("obj.147319cc2107a465", list(src, DisplayTimeText(breakout_time)))),
+		span_hear(LANG("obj.e8a086303529f0d5", list(src))),
 	)
 	if(do_after(user, breakout_time, src, timed_action_flags = IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(breakout_checks), user)))
 		user.visible_message(
-			span_danger(LANG("obj.dc5ea840", list(user, src))),
-			span_notice(LANG("obj.303818af", list(src))),
+			span_danger(LANG("obj.dc5ea840c345fada", list(user, src))),
+			span_notice(LANG("obj.303818af0eeb83f1", list(src))),
 		)
 		open(user, force = TRUE, special_effects = FALSE)
 
@@ -649,7 +649,7 @@
 	if(!(obj_flags & NO_DEBRIS_AFTER_DECONSTRUCTION))
 		new /obj/effect/decal/cleanable/shreds(loc, name)
 		new /obj/item/stack/sheet/cloth(loc, 4)
-	loc.visible_message(span_warning(LANG("obj.f5ccae42", list(src))), vision_distance = COMBAT_MESSAGE_RANGE)
+	loc.visible_message(span_warning(LANG("obj.f5ccae4261e4ba7e", list(src))), vision_distance = COMBAT_MESSAGE_RANGE)
 	playsound(loc, 'sound/items/duct_tape/duct_tape_rip.ogg', 50, TRUE, frequency = 0.5)
 	for(var/mob/living/left_behind in src)
 		left_behind.Knockdown(3 SECONDS)

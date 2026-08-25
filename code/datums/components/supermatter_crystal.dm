@@ -60,12 +60,12 @@
 	playsound(get_turf(atom_source), 'sound/effects/supermatter.ogg', 50, TRUE)
 	consume_returns(damage_increase = blob.get_integrity() * 0.05)
 	if(blob.get_integrity() > 100)
-		blob.visible_message(span_danger(LANG("datum.4fa8f161", list(blob, atom_source))),
-			span_hear(LANG("datum.e2bdcbdd", null)))
+		blob.visible_message(span_danger(LANG("datum.4fa8f161214de465", list(blob, atom_source))),
+			span_hear(LANG("datum.e2bdcbdd647d1301", null)))
 		blob.take_damage(100, BURN)
 	else
-		blob.visible_message(span_danger(LANG("datum.c46ee9f8", list(blob, atom_source))),
-			span_hear(LANG("datum.e2bdcbdd", null)))
+		blob.visible_message(span_danger(LANG("datum.c46ee9f8d52ad42a", list(blob, atom_source))),
+			span_hear(LANG("datum.e2bdcbdd647d1301", null)))
 		consume(atom_source, blob)
 
 /datum/component/supermatter_crystal/proc/paw_hit(datum/source, mob/user, list/modifiers)
@@ -168,29 +168,29 @@
 		if(clumsy)
 			var/obj/item/bodypart/dust_arm = user.get_active_hand()
 			dust_arm.dismember()
-			user.visible_message(span_danger(LANG("datum.93d7f477", list(item, atom_source))),\
-				span_danger(LANG("datum.63d59b7f", list(item, atom_source))))
+			user.visible_message(span_danger(LANG("datum.93d7f4776fcaca6a", list(item, atom_source))),\
+				span_danger(LANG("datum.63d59b7fbea0ef95", list(item, atom_source))))
 			playsound(atom_source, 'sound/effects/supermatter.ogg', 150, TRUE)
 			consume(atom_source, dust_arm)
 			qdel(item)
 			return
 		if(user.combat_mode || !cig.attempt_light(user, item, ""))
-			user.visible_message(span_danger(LANG("datum.2857f974", list(item, atom_source))))
+			user.visible_message(span_danger(LANG("datum.2857f97493310798", list(item, atom_source))))
 			playsound(atom_source, 'sound/effects/supermatter.ogg', 150, TRUE)
 			consume(atom_source, item)
 			radiation_pulse(atom_source, max_range = 3, threshold = 0.1, chance = 50)
 			return
 		else
-			user.visible_message(span_danger(LANG("datum.10f6b2ad", list(user, item, atom_source))),\
-				span_danger(LANG("datum.a908c36f", list(atom_source, item, item, atom_source))))
+			user.visible_message(span_danger(LANG("datum.10f6b2ad455a12a6", list(user, item, atom_source))),\
+				span_danger(LANG("datum.a908c36f2aab3e3c", list(atom_source, item, item, atom_source))))
 			playsound(atom_source, 'sound/effects/supermatter.ogg', 50, TRUE)
 			radiation_pulse(atom_source, max_range = 1, threshold = 0, chance = 100)
 			return
 
 	if(user.dropItemToGround(item))
-		user.visible_message(span_danger(LANG("datum.d21eeb85", list(user, atom_source, item))),\
-			span_userdanger(LANG("datum.4add7d01", list(atom_source, item, item, atom_source))),\
-			span_hear(LANG("datum.458bfed2", null)))
+		user.visible_message(span_danger(LANG("datum.d21eeb85a6c7ee11", list(user, atom_source, item))),\
+			span_userdanger(LANG("datum.4add7d01c418d4c4", list(atom_source, item, item, atom_source))),\
+			span_hear(LANG("datum.458bfed29e23eaa7", null)))
 		user.investigate_log("has been attacked ([item]) by [key_name(user)]", INVESTIGATE_ENGINE)
 		consume(atom_source, item)
 		playsound(get_turf(atom_source), 'sound/effects/supermatter.ogg', 50, TRUE)
@@ -225,10 +225,10 @@
 	if(isliving(hit_object))
 		hit_object.visible_message(!CONFIG_GET(flag/disable_sm_dusting) ? span_danger("\The [hit_object] slams into \the [atom_source] inducing a resonance... [hit_object.p_their()] body starts to glow and burst into flames before flashing into dust!") : span_danger("\The [hit_object] slams into \the [atom_source] inducing a resonance... [hit_object.p_their()] body starts to glow white-hot before the blast hurls [hit_object.p_them()] away!"), // NOVA EDIT CHANGE - ORIGINAL: hit_object.visible_message(span_danger("\The [hit_object] slams into \the [atom_source] inducing a resonance... [hit_object.p_their()] body starts to glow and burst into flames before flashing into dust!"),
 			span_userdanger("You slam into \the [atom_source] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\""),
-			span_hear(LANG("datum.eaf42640", null)))
+			span_hear(LANG("datum.eaf4264051bb67d2", null)))
 	else if(isobj(hit_object) && !iseffect(hit_object))
-		hit_object.visible_message(span_danger(LANG("datum.7a5867f0", list(hit_object, atom_source))), null,
-			span_hear(LANG("datum.e2bdcbdd", null)))
+		hit_object.visible_message(span_danger(LANG("datum.7a5867f073970fa9", list(hit_object, atom_source))), null,
+			span_hear(LANG("datum.e2bdcbdd647d1301", null)))
 	else
 		return
 
@@ -254,7 +254,7 @@
 		playsound(get_turf(atom_source), 'sound/effects/supermatter.ogg', 50, TRUE)
 		poor_target.visible_message(!CONFIG_GET(flag/disable_sm_dusting) ? span_danger("\The [atom_source] slams into \the [poor_target] out of nowhere inducing a resonance... [poor_target.p_their()] body starts to glow and burst into flames before flashing into dust!") : span_danger("\The [atom_source] slams into \the [poor_target] out of nowhere inducing a resonance... [poor_target.p_their()] body starts to glow white-hot before the blast hurls [poor_target.p_them()] away!"), // NOVA EDIT CHANGE - ORIGINAL: poor_target.visible_message(span_danger("\The [atom_source] slams into \the [poor_target] out of nowhere inducing a resonance... [poor_target.p_their()] body starts to glow and burst into flames before flashing into dust!"),
 			span_userdanger("\The [atom_source] slams into you out of nowhere as your ears are filled with unearthly ringing. Your last thought is \"The fuck.\""),
-			span_hear(LANG("datum.eaf42640", null)))
+			span_hear(LANG("datum.eaf4264051bb67d2", null)))
 
 	for(var/atom/movable/hit_object as anything in impacted_turf)
 		if(parent == hit_object)
@@ -265,8 +265,8 @@
 
 		consume(atom_source, hit_object)
 		playsound(get_turf(atom_source), 'sound/effects/supermatter.ogg', 50, TRUE)
-		atom_source.visible_message(span_danger(LANG("datum.8a4c2ed7", list(atom_source))), null,
-			span_hear(LANG("datum.e2bdcbdd", null)))
+		atom_source.visible_message(span_danger(LANG("datum.8a4c2ed73088d09c", list(atom_source))), null,
+			span_hear(LANG("datum.e2bdcbdd647d1301", null)))
 
 /datum/component/supermatter_crystal/proc/dust_mob(datum/source, mob/living/nom, vis_msg, mob_msg, cause)
 	if(nom.incorporeal_move || HAS_TRAIT(nom, TRAIT_GODMODE)) //try to keep supermatter sliver's + hemostat's dust conditions in sync with this too
@@ -278,7 +278,7 @@
 		mob_msg = !CONFIG_GET(flag/disable_sm_dusting) ? span_userdanger("You reach out and touch [atom_source]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\"") : span_userdanger("You reach out and touch [atom_source]. Everything starts burning and all you can hear is ringing before the blast hurls you away.") // NOVA EDIT CHANGE - ORIGINAL: mob_msg = span_userdanger("You reach out and touch [atom_source]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\"")
 	if(!cause)
 		cause = "contact"
-	nom.visible_message(vis_msg, mob_msg, span_hear(LANG("datum.eaf42640", null)))
+	nom.visible_message(vis_msg, mob_msg, span_hear(LANG("datum.eaf4264051bb67d2", null)))
 	atom_source.investigate_log("has been attacked ([cause]) by [key_name(nom)]", INVESTIGATE_ENGINE)
 	add_memory_in_range(atom_source, 7, /datum/memory/witness_supermatter_dusting, protagonist = nom, antagonist = atom_source)
 	playsound(get_turf(atom_source), 'sound/effects/supermatter.ogg', 50, TRUE)
@@ -309,7 +309,7 @@
 		if(istype(consumed_mob, /mob/living/basic/parrot/poly)) // Dusting Poly creates a power surge
 			force_event(/datum/round_event_control/supermatter_surge/poly, "Poly's revenge")
 			notify_ghosts(
-				LANG("datum.460691ed", list(consumed_mob.real_name, atom_source)),
+				LANG("datum.460691eda16d5079", list(consumed_mob.real_name, atom_source)),
 				source = atom_source,
 				header = "Polytechnical Difficulties",
 			)

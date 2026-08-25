@@ -119,7 +119,7 @@
 /mob/eye/camera/ai/examine(mob/user) //Displays a silicon's laws to ghosts
 	. = ..()
 	if(istype(ai) && ai.laws && isobserver(user))
-		. += LANG("mob.b79bbe52", list(ai))
+		. += LANG("mob.b79bbe525a0de56d", list(ai))
 		for(var/law in ai.laws.get_law_list(include_zeroth = TRUE))
 			. += law
 
@@ -186,7 +186,7 @@
 		ai_tracking_tool.reset_tracking()
 
 	if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
-		to_chat(src, LANG("mob.d3aa6a66", null))
+		to_chat(src, LANG("mob.d3aa6a66024b4a61", null))
 		stack_trace("AI eye object wasn't found! Location: [loc] / Eyeobj: [eyeobj] / QDELETED: [QDELETED(eyeobj)] / Eye loc: [eyeobj?.loc]")
 		QDEL_NULL(eyeobj)
 		create_eye()
@@ -217,7 +217,7 @@ GAME_VERB(/mob/living/silicon/ai, toggle_acceleration, "切换摄像头加速", 
 	if(incapacitated)
 		return
 	acceleration = !acceleration
-	to_chat(usr, LANG("mob.69f73d44", list(acceleration ? "on" : "off")))
+	to_chat(usr, LANG("mob.69f73d44905a13d1", list(acceleration ? "on" : "off")))
 
 /mob/eye/camera/ai/Hear(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
 	. = ..()

@@ -19,11 +19,11 @@
 
 	if(reagents.total_volume > 0)
 		if(target.reagents.holder_full())
-			to_chat(user, span_notice(LANG("obj.8e2d390c", list(target))))
+			to_chat(user, span_notice(LANG("obj.8e2d390ca03cb226", list(target))))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!target.is_injectable(user))
-			to_chat(user, span_warning(LANG("obj.fce1b5b9", list(target))))
+			to_chat(user, span_warning(LANG("obj.fce1b5b976fcb5b2", list(target))))
 			return ITEM_INTERACT_BLOCKING
 
 		var/trans = 0
@@ -41,20 +41,20 @@
 
 					trans = round(reagents.trans_to(safe_thing, amount_per_transfer_from_this, transferred_by = user, methods = TOUCH), CHEMICAL_VOLUME_ROUNDING)
 
-					target.visible_message(span_danger(LANG("obj.7bb2a84a", list(user, target))), \
-											span_userdanger(LANG("obj.d146cf82", list(user))))
+					target.visible_message(span_danger(LANG("obj.7bb2a84a5cff4753", list(user, target))), \
+											span_userdanger(LANG("obj.d146cf829c198590", list(user))))
 					if(trans)
-						to_chat(user, span_notice(LANG("obj.20fce5c7", list(trans))))
+						to_chat(user, span_notice(LANG("obj.20fce5c7d71aff2f", list(trans))))
 					update_appearance()
 					return ITEM_INTERACT_BLOCKING
 
 			else if(isalien(target)) //hiss-hiss has no eyes!
-				to_chat(target, span_danger(LANG("obj.da40cb59", list(target))))
+				to_chat(target, span_danger(LANG("obj.da40cb59976bb93d", list(target))))
 				return ITEM_INTERACT_BLOCKING
 
 			target.visible_message(
-				span_danger(LANG("obj.d7ee09b3", list(user, target))),
-				span_userdanger(LANG("obj.9e3da4bc", list(user))),
+				span_danger(LANG("obj.d7ee09b37f8d4c9f", list(user, target))),
+				span_userdanger(LANG("obj.9e3da4bcda6a27df", list(user))),
 			)
 			SEND_SIGNAL(target, COMSIG_MOB_REAGENTS_DROPPED_INTO_EYES, user, src, reagents, fraction)
 			reagents.expose(target, TOUCH, fraction)
@@ -63,22 +63,23 @@
 
 		trans = round(reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user), CHEMICAL_VOLUME_ROUNDING)
 		if(trans)
-			to_chat(user, span_notice(LANG("obj.20fce5c7", list(trans))))
+			to_chat(user, span_notice(LANG("obj.20fce5c7d71aff2f", list(trans))))
+		playsound(src, 'sound/effects/droplet.ogg', 70, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		update_appearance()
 		target.update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
 	if(!target.is_drawable(user, FALSE)) //No drawing from mobs here
-		to_chat(user, span_warning(LANG("obj.09f81901", list(target))))
+		to_chat(user, span_warning(LANG("obj.09f8190132db8a6a", list(target))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!target.reagents.total_volume)
-		to_chat(user, span_warning(LANG("obj.02d482cc", list(target))))
+		to_chat(user, span_warning(LANG("obj.02d482cc1aef0cef", list(target))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/trans = round(target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user), CHEMICAL_VOLUME_ROUNDING)
 	if(trans)
-		to_chat(user, span_notice(LANG("obj.3bc5939a", list(src, trans))))
+		to_chat(user, span_notice(LANG("obj.3bc5939a3ae631e0", list(src, trans))))
 
 	update_appearance()
 	target.update_appearance()

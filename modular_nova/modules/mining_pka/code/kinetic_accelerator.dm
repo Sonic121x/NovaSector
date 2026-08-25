@@ -12,19 +12,19 @@
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/borg/upgrade/modkit/chassis_mod))
-		to_chat(user, span_notice(LANG("obj.b46cd165", null)))
+		to_chat(user, span_notice(LANG("obj.b46cd1654a491901", null)))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/nomod/crowbar_act(mob/living/user, obj/item/I)
-	to_chat(user, span_notice(LANG("obj.20cb4580", null)))
+	to_chat(user, span_notice(LANG("obj.20cb4580bef6ec42", null)))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/nomod/
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant/nomod/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/borg/upgrade/modkit))
-		to_chat(user, span_notice(LANG("obj.ca399589", null)))
+		to_chat(user, span_notice(LANG("obj.ca3995895f2d0e40", null)))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 

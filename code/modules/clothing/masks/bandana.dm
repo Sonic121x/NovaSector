@@ -27,20 +27,20 @@
 /obj/item/clothing/mask/bandana/examine(mob/user)
 	. = ..()
 	if(up)
-		. += LANG("obj.e6aed8fe", null)
+		. += LANG("obj.e6aed8fe22d863cf", null)
 		return
 	if(slot_flags & ITEM_SLOT_NECK)
-		. += LANG("obj.a2c77b37", null)
+		. += LANG("obj.a2c77b379c610a70", null)
 	else
-		. += LANG("obj.4c797f6d", null)
-		. += LANG("obj.cc9dd2b8", null)
+		. += LANG("obj.4c797f6d1403235e", null)
+		. += LANG("obj.cc9dd2b8486b3722", null)
 
 /obj/item/clothing/mask/bandana/attack_self(mob/user)
 	adjust_visor(user)
 
 /obj/item/clothing/mask/bandana/adjust_visor(mob/living/user)
 	if(slot_flags & ITEM_SLOT_NECK)
-		to_chat(user, span_warning(LANG("obj.1b2f4ba1", list(src))))
+		to_chat(user, span_warning(LANG("obj.1b2f4ba135ec7937", list(src))))
 		return FALSE
 	//NOVA EDIT ADDITION START: BANDANA HATS FOR MUTANTS
 	if(slot_flags & ITEM_SLOT_HEAD)
@@ -64,13 +64,13 @@
 	var/mob/living/carbon/char = user
 	var/matrix/widen = matrix()
 	if((char.get_item_by_slot(ITEM_SLOT_NECK) == src) || (char.get_item_by_slot(ITEM_SLOT_MASK) == src) || (char.get_item_by_slot(ITEM_SLOT_HEAD) == src))
-		to_chat(user, span_warning(LANG("obj.6e0a2619", list(src))))
+		to_chat(user, span_warning(LANG("obj.6e0a2619c1a023ae", list(src))))
 		return CLICK_ACTION_BLOCKING
 	else if(slot_flags & ITEM_SLOT_HEAD)
-		to_chat(user, span_warning(LANG("obj.2fde84cb", list(src))))
+		to_chat(user, span_warning(LANG("obj.2fde84cb608e0373", list(src))))
 		return CLICK_ACTION_BLOCKING
 	else if(!user.is_holding(src))
-		to_chat(user, span_warning(LANG("obj.a6c980e9", list(src))))
+		to_chat(user, span_warning(LANG("obj.a6c980e940398734", list(src))))
 		return CLICK_ACTION_BLOCKING
 
 	if(slot_flags & ITEM_SLOT_MASK)
@@ -79,18 +79,20 @@
 		worn_y_offset = -3
 		widen.Scale(1.25, 1)
 		transform = widen
-		user.visible_message(span_notice(LANG("obj.484fb830", list(user, src))), span_notice(LANG("obj.53176fbf", list(src))))
+		user.visible_message(span_notice(LANG("obj.484fb830a09e6f89", list(user, src))), span_notice(LANG("obj.53176fbf769da8cc", list(src))))
 		flags_inv = NONE
 		flags_cover = NONE
+		supports_variations_flags = NONE //NOVA EDIT ADDITION - Needed so that it doesn't use the snout sprite for the neckerchief.
 		return CLICK_ACTION_SUCCESS
 
 	undyeable = initial(undyeable)
 	slot_flags = initial(slot_flags)
 	worn_y_offset = initial(worn_y_offset)
 	transform = initial(transform)
-	user.visible_message(span_notice(LANG("obj.e844c920", list(user))), span_notice(LANG("obj.a62eca21", null)))
+	user.visible_message(span_notice(LANG("obj.e844c920a37c42e7", list(user))), span_notice(LANG("obj.a62eca21a47026a9", null)))
 	flags_inv = initial(flags_inv)
 	flags_cover = initial(flags_cover)
+	supports_variations_flags = initial(supports_variations_flags) //NOVA EDIT ADDITION - See above.
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/mask/bandana/red
@@ -271,4 +273,4 @@
 
 /obj/item/clothing/mask/facescarf/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.10c89ab8", list(src)))
+	. += span_notice(LANG("obj.10c89ab80b545b48", list(src)))

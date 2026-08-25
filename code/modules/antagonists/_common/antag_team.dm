@@ -53,7 +53,7 @@ GLOBAL_LIST_EMPTY(antagonist_teams)
 	var/list/report = list()
 
 	report += span_header("\The [name]:")
-	report += LANG("datum.f3efa5d0", list(member_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: report += "The [member_name]s were:"
+	report += LANG("datum.f3efa5d0d94b8c26", list(member_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: report += "The [member_name]s were:"
 	report += printplayerlist(members)
 
 	if(objectives.len)

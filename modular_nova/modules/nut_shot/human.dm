@@ -31,8 +31,8 @@
 
 	if(HAS_TRAIT(src, TRAIT_ANALGESIA))
 		visible_message(
-			span_info(LANG("mob.011ee54a", list(attacker, is_kick ? "kicks" : "punches", src))),
-			span_danger(LANG("mob.e19cacc6", list(is_kick ? "kick" : "punch", src)))
+			span_info(LANG("mob.011ee54af247eda5", list(attacker, is_kick ? "kicks" : "punches", src))),
+			span_danger(LANG("mob.e19cacc6260bb21c", list(is_kick ? "kick" : "punch", src)))
 			)
 		return FALSE
 
@@ -43,9 +43,9 @@
 		vomit(VOMIT_CATEGORY_DEFAULT)
 
 	visible_message(
-		span_danger(LANG("mob.3cc98a81", list(attacker, is_kick ? "kicks" : "punches", src, nauseating ? "throw up" : "double over", balls_of_steel ? "Who the fuck programmed them to do that?!" : "Fuck!"))\
+		span_danger(LANG("mob.3cc98a8168f3986b", list(attacker, is_kick ? "kicks" : "punches", src, nauseating ? "throw up" : "double over", balls_of_steel ? "Who the fuck programmed them to do that?!" : "Fuck!"))\
 			),
-		span_danger(LANG("mob.c342d71c", list(is_kick ? "kick" : "punch", src, nauseating ? "throw up" : "double over", balls_of_steel ? "... But holy shit it hurts your [is_kick ? "leg" : "hand"]" : "! Fuck"))\
+		span_danger(LANG("mob.c342d71c8338d18b", list(is_kick ? "kick" : "punch", src, nauseating ? "throw up" : "double over", balls_of_steel ? "... But holy shit it hurts your [is_kick ? "leg" : "hand"]" : "! Fuck"))\
 			),
 		)
 

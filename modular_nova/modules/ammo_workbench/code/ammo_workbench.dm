@@ -71,7 +71,7 @@
 /obj/machinery/ammo_workbench/examine(mob/user)
 	. += ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.87822767", list(materials.max_amount, creation_efficiency*100)))
+		. += span_notice(LANG("obj.87822767615bf037", list(materials.max_amount, creation_efficiency*100)))
 
 /obj/machinery/ammo_workbench/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -391,7 +391,6 @@
 /datum/design/board/ammo_workbench
 	name = "Ammunition Workbench"
 	desc = "A machine made specifically for manufacturing ammunition."
-	id = "ammo_workbench"
 	build_path = /obj/item/circuitboard/machine/ammo_workbench
 	category = list(RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_FAB)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
@@ -491,7 +490,7 @@
 				deltimer(timer_id)
 				timer_id = null
 		loaded_magazine = inserted
-		to_chat(user, span_notice(LANG("obj.7f36837a", list(inserted, src))))
+		to_chat(user, span_notice(LANG("obj.7f36837a3d06e19b", list(inserted, src))))
 		flick("h_lathe_load", src)
 		update_appearance()
 		update_ammotypes()
@@ -512,7 +511,7 @@
 				timer_id = null
 		loaded_module = inserted
 		ammo_categories = loaded_module.ammo_categories
-		to_chat(user, span_notice(LANG("obj.304a4629", list(inserted, src))))
+		to_chat(user, span_notice(LANG("obj.304a46298ab1c41c", list(inserted, src))))
 		flick("h_lathe_load", src)
 		update_appearance()
 		update_ammotypes()
@@ -522,13 +521,13 @@
 
 /obj/machinery/ammo_workbench/proc/is_insertion_ready(mob/user, obj/item/inserted)
 	if(panel_open)
-		to_chat(user, span_warning(LANG("obj.eb073bc6", list(src))))
+		to_chat(user, span_warning(LANG("obj.eb073bc6e97436c6", list(src))))
 		return FALSE
 	if(machine_stat & BROKEN)
-		to_chat(user, span_warning(LANG("obj.6aff4a89", list(src))))
+		to_chat(user, span_warning(LANG("obj.6aff4a8969cfa7a4", list(src))))
 		return FALSE
 	if(machine_stat & NOPOWER)
-		to_chat(user, span_warning(LANG("obj.7617f8a9", list(src))))
+		to_chat(user, span_warning(LANG("obj.7617f8a939cbb162", list(src))))
 		return FALSE
 	return TRUE
 

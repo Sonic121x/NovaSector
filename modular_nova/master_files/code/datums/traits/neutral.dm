@@ -58,7 +58,7 @@
 
 /// Adds the DNR HUD element if src has TRAIT_DNR. Removes it otherwise.
 /mob/living/proc/update_dnr_hud()
-	set_hud_image_state(DNR_HUD, "hud_dnr")
+	set_hud_image_state(DNR_HUD, hud_state = "hud_dnr")
 	if(HAS_TRAIT(src, TRAIT_DNR))
 		set_hud_image_active(DNR_HUD)
 	else
@@ -69,7 +69,7 @@
 	. = list()
 
 	if(stat != DEAD && HAS_TRAIT(src, TRAIT_DNR) && (HAS_TRAIT(user, TRAIT_SECURITY_HUD) || HAS_TRAIT(user, TRAIT_MEDICAL_HUD)))
-		. += LANG("mob.65aac1b5", list(span_boldwarning("This individual is unable to be revived, and may be permanently dead if allowed to die!")))
+		. += LANG("mob.65aac1b5abce675a", list(span_boldwarning("This individual is unable to be revived, and may be permanently dead if allowed to die!")))
 
 /datum/atom_hud/data/human/dnr
 	hud_icons = list(DNR_HUD)
@@ -207,7 +207,7 @@
 	flipped = !flipped
 	update_static_data()
 
-	balloon_alert(user, LANG("obj.72443357", null))
+	balloon_alert(user, LANG("obj.724433573c61d4b8", null))
 	return CLICK_ACTION_SUCCESS
 
 /datum/quirk/feline_aspect
@@ -327,20 +327,20 @@ GLOBAL_LIST_INIT(possible_snout_sensitivities, list(
 		human_holder.force_say()
 	switch(severity)
 		if(SEVERITY_STUN)
-			to_chat(quirk_holder, span_warning(LANG("datum.b7a7b8e0", list(attacker))))
+			to_chat(quirk_holder, span_warning(LANG("datum.b7a7b8e0e5640589", list(attacker))))
 			quirk_holder.Stun(1 SECONDS)
 		if(SEVERITY_SNEEZE)
 			quirk_holder.Stun(1 SECONDS)
 			if(can_emote)
-				to_chat(quirk_holder, span_warning(LANG("datum.f5b758cc", list(attacker))))
+				to_chat(quirk_holder, span_warning(LANG("datum.f5b758cc55157a9f", list(attacker))))
 				quirk_holder.emote("sneeze")
 		if(SEVERITY_KNOCKDOWN)
-			to_chat(quirk_holder, span_warning(LANG("datum.60186f5e", list(attacker))))
+			to_chat(quirk_holder, span_warning(LANG("datum.60186f5e74846b67", list(attacker))))
 			quirk_holder.Knockdown(1 SECONDS)
 			quirk_holder.apply_damage(30, STAMINA)
 		if(SEVERITY_BLEP)
 			if(can_emote)
-				to_chat(quirk_holder, span_warning(LANG("datum.bfd26cec", list(attacker))))
+				to_chat(quirk_holder, span_warning(LANG("datum.bfd26cec230d517f", list(attacker))))
 				quirk_holder.emote("blep")
 
 #undef SEVERITY_STUN

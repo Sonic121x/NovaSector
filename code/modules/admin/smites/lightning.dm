@@ -6,7 +6,7 @@
 /datum/smite/lightning/effect(client/user, mob/living/target)
 	. = ..()
 	lightningbolt(target)
-	to_chat(target, span_userdanger(LANG("datum.ff2c8df0", null)), confidential = TRUE)
+	to_chat(target, span_userdanger(LANG("datum.ff2c8df0cc6e3daf", null)), confidential = TRUE)
 
 ///this is the actual bolt effect and damage, made into its own proc because it is used elsewhere
 /proc/lightningbolt(mob/living/user)

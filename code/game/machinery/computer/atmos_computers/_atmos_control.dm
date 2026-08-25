@@ -83,7 +83,7 @@
 		available_devices[GLOB.station_gas_chambers[chamber_identifier]] = chamber_identifier
 
 	// As long as we dont put any funny chars in the strings it should match.
-	var/new_name = tgui_input_list(user, LANG("obj.833e770c", null), LANG("obj.3efd9519", null), available_devices)
+	var/new_name = tgui_input_list(user, LANG("obj.833e770c4145370e", null), LANG("obj.3efd95196dd6b8b9", null), available_devices)
 	if(isnull(new_name))
 		return FALSE
 	var/new_id = available_devices[new_name]

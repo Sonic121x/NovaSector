@@ -68,10 +68,10 @@
 /obj/item/clothing/mask/kitsune/examine(mob/user)
 	. = ..()
 	if(up)
-		. += LANG("obj.bb823c82", null)
+		. += LANG("obj.bb823c826ec11991", null)
 		return
 	else
-		. += LANG("obj.d2f901c8", null)
+		. += LANG("obj.d2f901c8c66edc42", null)
 
 /obj/item/clothing/mask/kitsune/attack_self(mob/user)
 	adjust_visor(user)

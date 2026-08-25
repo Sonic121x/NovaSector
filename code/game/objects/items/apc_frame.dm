@@ -10,14 +10,14 @@
 	var/turf/T = get_turf(on_wall) //the user is not where it needs to be.
 	var/area/A = get_area(user)
 	if(A.apc)
-		to_chat(user, span_warning(LANG("obj.4cc02e8a", null)))
+		to_chat(user, span_warning(LANG("obj.4cc02e8ab8e3d388", null)))
 		return FALSE //only one APC per area
 	if(!A.requires_power || A.always_unpowered)
-		to_chat(user, span_warning(LANG("obj.020656f6", list(src))))
+		to_chat(user, span_warning(LANG("obj.020656f68c6d9619", list(src))))
 		return FALSE //can't place apcs in areas with no power requirement
 	for(var/obj/machinery/power/terminal/E in T)
 		if(E.master)
-			to_chat(user, span_warning(LANG("obj.3ca3c075", null)))
+			to_chat(user, span_warning(LANG("obj.3ca3c0751fe3d10a", null)))
 			return FALSE
 	return ..()
 

@@ -90,9 +90,9 @@
 		addtimer(CALLBACK(true_parent, TYPE_PROC_REF(/atom/movable, throw_at), thrown_by, boomerang_throw_range, throwingdatum.speed, thrown_by, TRUE), 0.1 SECONDS)
 		COOLDOWN_START(src, last_boomerang_throw, BOOMERANG_REBOUND_INTERVAL)
 	true_parent.visible_message(
-		span_danger(LANG("datum.b10cd60b", list(true_parent, thrown_by))),
-		span_danger(LANG("datum.d891218a", list(true_parent))),
-		span_hear(LANG("datum.43b941a1", null)),
+		span_danger(LANG("datum.b10cd60b03263140", list(true_parent, thrown_by))),
+		span_danger(LANG("datum.d891218a77dc1c68", list(true_parent))),
+		span_hear(LANG("datum.43b941a120010eac", null)),
 	)
 
 #undef BOOMERANG_REBOUND_INTERVAL

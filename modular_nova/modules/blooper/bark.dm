@@ -38,7 +38,7 @@ ADMIN_VERB(toggleblooper, R_ADMIN, "切换发声音效", "Toggle the annoying vo
 			return
 	else
 		GLOB.blooper_allowed = !GLOB.blooper_allowed
-	to_chat(world, span_oocplain(LANG("_root.1339902d", list(GLOB.blooper_allowed ? "enabled" : "disabled"))))
+	to_chat(world, span_oocplain(LANG("_root.1339902de944ba2f", list(GLOB.blooper_allowed ? "enabled" : "disabled"))))
 
 /// It's was stoolen from Splurt build >:3 and from fluffySTG!! nyeehehehheee!~
 /datum/blooper

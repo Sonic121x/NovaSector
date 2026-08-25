@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 /obj/machinery/monkey_recycler/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.4064aaf6", list(cube_production)))
+		. += span_notice(LANG("obj.4064aaf6554108f2", list(cube_production)))
 
 /obj/machinery/monkey_recycler/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -64,13 +64,13 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 	if(!istype(target))
 		return
 	if(!IS_UNCONSCIOUS_OR_CRIT(target))
-		to_chat(user, span_warning(LANG("obj.c6df7627", null)))
+		to_chat(user, span_warning(LANG("obj.c6df76274ba253e1", null)))
 		return
 	if(target.buckled || target.has_buckled_mobs())
-		to_chat(user, span_warning(LANG("obj.16188804", null)))
+		to_chat(user, span_warning(LANG("obj.16188804e4b622b0", null)))
 		return
 	qdel(target)
-	to_chat(user, span_notice(LANG("obj.ea5bd3b8", null)))
+	to_chat(user, span_notice(LANG("obj.ea5bd3b8ebb6f4ba", null)))
 	playsound(src.loc, 'sound/machines/juicer.ogg', 50, TRUE)
 	var/offset = prob(50) ? -2 : 2
 	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = 200) //start shaking
@@ -81,18 +81,18 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 
 /obj/machinery/monkey_recycler/interact(mob/user)
 	if(stored_matter >= 1)
-		to_chat(user, span_notice(LANG("obj.a4338b3c", null)))
+		to_chat(user, span_notice(LANG("obj.a4338b3cc1d9e365", null)))
 		playsound(src.loc, 'sound/machines/hiss.ogg', 50, TRUE)
 		for(var/i in 1 to floor(stored_matter))
 			new /obj/item/food/monkeycube(src.loc)
 			stored_matter--
-		to_chat(user, span_notice(LANG("obj.dfe2ad41", list(stored_matter))))
+		to_chat(user, span_notice(LANG("obj.dfe2ad418177eed6", list(stored_matter))))
 	else
-		to_chat(user, span_danger(LANG("obj.ccb51ad4", list(stored_matter))))
+		to_chat(user, span_danger(LANG("obj.ccb51ad41c7f24d0", list(stored_matter))))
 
 /obj/machinery/monkey_recycler/multitool_act(mob/living/user, obj/item/multitool/I)
 	. = ..()
 	if(istype(I))
 		I.set_buffer(src)
-		balloon_alert(user, LANG("obj.84afb909", null))
+		balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
 		return TRUE

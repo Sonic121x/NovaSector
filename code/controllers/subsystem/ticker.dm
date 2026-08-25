@@ -128,7 +128,7 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_STARTUP)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
-			to_chat(world, span_notice(LANG("datum.0e8b50d9", list(station_name()))))
+			to_chat(world, span_notice(LANG("datum.0e8b50d90473490b", list(station_name()))))
 			// NOVA EDIT ADDITION START - I18N - Localized Discord round-start alert
 			if(!discord_alerted)
 				discord_alerted = TRUE // DISCORD SPAM PREVENTION
@@ -232,7 +232,7 @@ SUBSYSTEM_DEF(ticker)
 	return player_states
 
 /datum/controller/subsystem/ticker/proc/setup()
-	to_chat(world, span_boldannounce(LANG("datum.35befc6c", null)))
+	to_chat(world, span_boldannounce(LANG("datum.35befc6c866cf049", null)))
 	var/init_start = world.timeofday
 
 	var/list/players_and_readiness = get_player_ready_states()
@@ -250,7 +250,7 @@ SUBSYSTEM_DEF(ticker)
 	if(!GLOB.debugging_enabled)
 		if(!can_continue)
 			log_game("Game failed pre_setup")
-			to_chat(world, LANG("datum.0a5b1c3b", null))
+			to_chat(world, LANG("datum.0a5b1c3ba1e8bef1", null))
 			SSjob.reset_occupations()
 			return FALSE
 	else
@@ -291,14 +291,22 @@ SUBSYSTEM_DEF(ticker)
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore,SetRoundStart))
 
-	to_chat(world, span_notice(span_bold(LANG("datum.33aeac18", list(station_name())))))
-	alert_sound_to_playing(sound(SSstation.announcer.get_rand_welcome_sound())) // NOVA EDIT CHANGE - ORIGINAL: SEND_SOUND(world, sound(SSstation.announcer.get_rand_welcome_sound()))
+	// NOVA EDIT REMOVAL - ADMIN - ORIGINAL: to_chat(world, span_notice(span_bold(LANG("datum.33aeac181bbd8bfb", list(station_name())))))
+	// NOVA EDIT REMOVAL - ADMIN - ORIGINAL: alert_sound_to_playing(sound(SSstation.announcer.get_rand_welcome_sound()))
+	// NOVA EDIT ADDITION START - ADMIN - Localized round-start TTS with a nonverbal cue.
+	var/welcome_message = LANG("datum.33aeac181bbd8bfb", list(station_name()))
+	to_chat(world, span_notice(span_bold(welcome_message)))
+	if(tts_queue_global_announcement(welcome_message))
+		alert_sound_to_playing(sound('sound/machines/chime.ogg'))
+	else
+		alert_sound_to_playing(sound(SSstation.announcer.get_rand_welcome_sound()))
+	// NOVA EDIT ADDITION END
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	if(length(GLOB.holidays))
-		to_chat(world, span_notice(LANG("datum.c3722f81", null)))
+		to_chat(world, span_notice(LANG("datum.c3722f811f81d0f3", null)))
 		for(var/holidayname in GLOB.holidays)
 			var/datum/holiday/holiday = GLOB.holidays[holidayname]
 			to_chat(world, span_info(holiday.greet()))
@@ -375,9 +383,9 @@ SUBSYSTEM_DEF(ticker)
 		if(!iter_human.hardcore_survival_score)
 			continue
 		if(iter_human.is_antag())
-			to_chat(iter_human, span_notice(LANG("datum.ddb9a558", list(round(iter_human.hardcore_survival_score) * 2))))
+			to_chat(iter_human, span_notice(LANG("datum.ddb9a5586bcdb081", list(round(iter_human.hardcore_survival_score) * 2))))
 		else
-			to_chat(iter_human, span_notice(LANG("datum.70180b80", list(round(iter_human.hardcore_survival_score)))))
+			to_chat(iter_human, span_notice(LANG("datum.70180b8065b71644", list(round(iter_human.hardcore_survival_score)))))
 
 /datum/controller/subsystem/ticker/proc/display_roundstart_logout_report()
 	var/list/msg = list("[span_boldnotice("Roundstart logout report")]\n\n")
@@ -585,7 +593,7 @@ SUBSYSTEM_DEF(ticker)
 		for(var/mob/dead/new_player/new_player_mob as anything in GLOB.new_player_list)
 			var/mob/living/carbon/human/new_player_human = new_player_mob.new_character
 			if(new_player_human)
-				to_chat(new_player_mob, span_notice(LANG("datum.35fc92bd", null)))
+				to_chat(new_player_mob, span_notice(LANG("datum.35fc92bdefaefa0a", null)))
 			CHECK_TICK
 
 
@@ -642,7 +650,7 @@ SUBSYSTEM_DEF(ticker)
 	if(!hard_popcap)
 		list_clear_nulls(queued_players)
 		for (var/mob/dead/new_player/new_player in queued_players)
-			to_chat(new_player, span_userdanger(LANG("datum.b3767d45", list(REF(new_player), html_encode(">>Join Game<<")))))
+			to_chat(new_player, span_userdanger(LANG("datum.b3767d453cf7c17d", list(REF(new_player), html_encode(">>Join Game<<")))))
 			SEND_SOUND(new_player, sound('sound/announcer/notice/notice1.ogg'))
 			GLOB.latejoin_menu.ui_interact(new_player)
 		queued_players.len = 0
@@ -657,14 +665,14 @@ SUBSYSTEM_DEF(ticker)
 			list_clear_nulls(queued_players)
 			if(living_player_count() < hard_popcap)
 				if(next_in_line?.client)
-					to_chat(next_in_line, span_userdanger(LANG("datum.eb593fa7", list(REF(next_in_line)))))
+					to_chat(next_in_line, span_userdanger(LANG("datum.eb593fa75a2144bd", list(REF(next_in_line)))))
 					SEND_SOUND(next_in_line, sound('sound/announcer/notice/notice1.ogg'))
 					next_in_line.ui_interact(next_in_line)
 					return
 				queued_players -= next_in_line //Client disconnected, remove he
 			queue_delay = 0 //No vacancy: restart timer
 		if(25 to INFINITY)  //No response from the next in line when a vacancy exists, remove he
-			to_chat(next_in_line, span_danger(LANG("datum.21b59971", null)))
+			to_chat(next_in_line, span_danger(LANG("datum.21b59971e7e13f9d", null)))
 			queued_players -= next_in_line
 			queue_delay = 0
 
@@ -854,17 +862,17 @@ SUBSYSTEM_DEF(ticker)
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)
-		to_chat(world, span_boldannounce(LANG("datum.853b8f59", null)))
+		to_chat(world, span_boldannounce(LANG("datum.853b8f59a283b987", null)))
 		return
 
-	to_chat(world, span_boldannounce(LANG("datum.aa041d62", list(DisplayTimeText(delay), reason))))
+	to_chat(world, span_boldannounce(LANG("datum.aa041d62744a3187", list(DisplayTimeText(delay), reason))))
 
 	var/statspage = CONFIG_GET(string/roundstatsurl)
 	var/gamelogloc = CONFIG_GET(string/gamelogurl)
 	if(statspage)
-		to_chat(world, span_info(LANG("datum.c045da45", list(statspage, GLOB.round_id))))
+		to_chat(world, span_info(LANG("datum.c045da45b64031f7", list(statspage, GLOB.round_id))))
 	else if(gamelogloc)
-		to_chat(world, span_info(LANG("datum.132e0fe2", list(gamelogloc))))
+		to_chat(world, span_info(LANG("datum.132e0fe20dcf6796", list(gamelogloc))))
 
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2)) //don't wait forever
@@ -889,9 +897,9 @@ SUBSYSTEM_DEF(ticker)
  */
 /datum/controller/subsystem/ticker/proc/cancel_reboot(mob/user)
 	if(!reboot_timer)
-		to_chat(user, span_warning(LANG("datum.0e296cf7", null)))
+		to_chat(user, span_warning(LANG("datum.0e296cf780db5ff6", null)))
 		return FALSE
-	to_chat(world, span_boldannounce(LANG("datum.853b8f59", null)))
+	to_chat(world, span_boldannounce(LANG("datum.853b8f59a283b987", null)))
 	deltimer(reboot_timer)
 	reboot_timer = null
 	return TRUE

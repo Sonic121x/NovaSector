@@ -90,7 +90,7 @@
 		return
 
 	if(drawing_a_rune)
-		to_chat(user, span_warning(LANG("datum.ed2aeac4", null)))
+		to_chat(user, span_warning(LANG("datum.ed2aeac44098a791", null)))
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(start_scribe_rune), source, user)
@@ -157,7 +157,7 @@
  */
 /datum/component/cult_ritual_item/proc/do_purge_holywater(mob/living/target, mob/living/cultist)
 	// Allows cultists to be rescued from the clutches of ordained religion
-	to_chat(cultist, span_cult(LANG("datum.762d7211", list(target, parent))))
+	to_chat(cultist, span_cult(LANG("datum.762d7211b3986909", list(target, parent))))
 	var/holy_to_unholy = target.reagents.get_reagent_amount(/datum/reagent/water/holywater)
 	target.reagents.del_reagent(/datum/reagent/water/holywater)
 	// For carbonss we also want to clear out the stomach of any holywater
@@ -179,8 +179,8 @@
 /datum/component/cult_ritual_item/proc/do_destroy_girder(obj/structure/girder/cult/cult_girder, mob/living/cultist)
 	playsound(cult_girder, 'sound/items/weapons/resonator_blast.ogg', 40, TRUE, ignore_walls = FALSE)
 	cultist.visible_message(
-		span_warning(LANG("datum.2acc8ee3", list(cultist, cult_girder, parent))),
-		span_notice(LANG("datum.f8d2422d", list(cult_girder)))
+		span_warning(LANG("datum.2acc8ee385edbc14", list(cultist, cult_girder, parent))),
+		span_notice(LANG("datum.f8d2422dcedce062", list(cult_girder)))
 		)
 	new /obj/item/stack/sheet/runed_metal(cult_girder.drop_location())
 	qdel(cult_girder)
@@ -194,7 +194,7 @@
 /datum/component/cult_ritual_item/proc/do_unanchor_structure(obj/structure/cult_structure, mob/living/cultist)
 	playsound(cult_structure, 'sound/items/deconstruct.ogg', 30, TRUE, ignore_walls = FALSE)
 	cult_structure.set_anchored(!cult_structure.anchored)
-	to_chat(cultist, span_notice(LANG("datum.56831bbd", list(cult_structure.anchored ? "":"un", cult_structure, cult_structure.anchored ? "to":"from"))))
+	to_chat(cultist, span_notice(LANG("datum.56831bbdda53f530", list(cult_structure.anchored ? "":"un", cult_structure, cult_structure.anchored ? "to":"from"))))
 
 /*
  * Removes the targeted rune. If the rune is important, asks for confirmation and logs it.
@@ -204,7 +204,7 @@
  */
 /datum/component/cult_ritual_item/proc/do_scrape_rune(obj/effect/rune/rune, mob/living/cultist)
 	if(rune.log_when_erased)
-		var/confirm = tgui_alert(cultist, LANG("datum.eebcd33a", list(rune.cultist_name)), LANG("datum.ef2f5224", list(rune.cultist_name)), list("Proceed", "Abort"))
+		var/confirm = tgui_alert(cultist, LANG("datum.eebcd33ae9e14c28", list(rune.cultist_name)), LANG("datum.ef2f5224994263f4", list(rune.cultist_name)), list("Proceed", "Abort"))
 		if(confirm != "Proceed")
 			return
 
@@ -223,7 +223,7 @@
 		cultist.log_message("erased a [rune.cultist_name] rune with [parent].", LOG_GAME)
 		message_admins("[ADMIN_LOOKUPFLW(cultist)] erased a [rune.cultist_name] rune with [parent].")
 
-	to_chat(cultist, span_notice(LANG("datum.2d4f5369", list(LOWER_TEXT(rune.cultist_name)))))
+	to_chat(cultist, span_notice(LANG("datum.2d4f53694abfcae6", list(LOWER_TEXT(rune.cultist_name)))))
 	qdel(rune)
 
 /*
@@ -257,11 +257,11 @@
 		return FALSE
 
 	if(!LAZYLEN(GLOB.rune_types))
-		to_chat(cultist, span_cult(LANG("datum.1d881f20", null)))
+		to_chat(cultist, span_cult(LANG("datum.1d881f20b4e80a94", null)))
 		stack_trace("[type] - [cultist] attempted to scribe a rune, but the global rune list is empty!")
 		return FALSE
 
-	entered_rune_name = tgui_input_list(cultist, LANG("datum.c98ec040", null), LANG("datum.7e07427a", null), GLOB.rune_types)
+	entered_rune_name = tgui_input_list(cultist, LANG("datum.c98ec0400153f6a8", null), LANG("datum.7e07427ae1c1f298", null), GLOB.rune_types)
 	if(isnull(entered_rune_name))
 		return FALSE
 	if(!can_scribe_rune(tool, cultist))
@@ -273,7 +273,7 @@
 		return FALSE
 
 	if(initial(rune_to_scribe.req_keyword))
-		chosen_keyword = tgui_input_text(cultist, LANG("datum.faea84a1", null), LANG("datum.bf4a41cd", null), max_length = MAX_NAME_LEN)
+		chosen_keyword = tgui_input_text(cultist, LANG("datum.faea84a16429dd45", null), LANG("datum.bf4a41cdcda96daa", null), max_length = MAX_NAME_LEN)
 		if(!chosen_keyword)
 			drawing_a_rune = FALSE
 			start_scribe_rune(tool, cultist)
@@ -285,13 +285,13 @@
 		return FALSE
 
 	if(ispath(rune_to_scribe, /obj/effect/rune/summon) && (!is_station_level(our_turf.z) || istype(get_area(cultist), /area/space)))
-		to_chat(cultist, span_cult_italic(LANG("datum.12fa5225", null)))
+		to_chat(cultist, span_cult_italic(LANG("datum.12fa5225ddc846e0", null)))
 		return
 
 	if(ispath(rune_to_scribe, /obj/effect/rune/apocalypse))
 		if((world.time - SSticker.round_start_time) <= 6000)
 			var/wait = 6000 - (world.time - SSticker.round_start_time)
-			to_chat(cultist, span_cult_italic(LANG("datum.baf74094", list(DisplayTimeText(wait)))))
+			to_chat(cultist, span_cult_italic(LANG("datum.baf7409400f4b895", list(DisplayTimeText(wait)))))
 			return
 		if(!check_if_in_ritual_site(cultist, user_team, TRUE))
 			return
@@ -305,7 +305,7 @@
 
 	cultist.visible_message(
 		span_warning("[cultist] [can_have_blood ? "cuts open [cultist.p_their()] arm and begins writing in [cultist.p_their()] own blood":"begins sketching out a strange design"]!"),
-		span_cult(LANG("datum.62346037", list(can_have_blood ? "slice open your arm and ":"")))
+		span_cult(LANG("datum.623460378eba29df", list(can_have_blood ? "slice open your arm and ":"")))
 		)
 
 	if(can_have_blood)
@@ -335,15 +335,15 @@
 		return FALSE
 
 	cultist.visible_message(
-		span_warning(LANG("datum.7d95df5f", list(cultist, can_have_blood ? " in [cultist.p_their()] own blood":""))),
-		span_cult(LANG("datum.242fd3d3", null))
+		span_warning(LANG("datum.7d95df5f97829d79", list(cultist, can_have_blood ? " in [cultist.p_their()] own blood":""))),
+		span_cult(LANG("datum.242fd3d3485b2738", null))
 		)
 
 	cleanup_shields()
 	var/obj/effect/rune/made_rune = new rune_to_scribe(our_turf, chosen_keyword)
 	made_rune.add_mob_blood(cultist)
 
-	to_chat(cultist, span_cult(LANG("datum.964bf51e", list(LOWER_TEXT(made_rune.cultist_name), made_rune.cultist_desc))))
+	to_chat(cultist, span_cult(LANG("datum.964bf51ea60289fc", list(LOWER_TEXT(made_rune.cultist_name), made_rune.cultist_desc))))
 	cultist.log_message("scribed \a [LOWER_TEXT(made_rune.cultist_name)] rune using [parent] ([parent.type])", LOG_GAME)
 	SSblackbox.record_feedback("tally", "cult_runes_scribed", 1, made_rune.cultist_name)
 
@@ -361,21 +361,21 @@
 	if(!check_if_in_ritual_site(cultist, cult_team))
 		return FALSE
 	if(sac_objective && !sac_objective.check_completion())
-		to_chat(cultist, span_warning(LANG("datum.62a29c69", null)))
+		to_chat(cultist, span_warning(LANG("datum.62a29c69bd6306cd", null)))
 		return FALSE
 	if(summon_objective.check_completion())
-		to_chat(cultist, span_cult_large(LANG("datum.eadbfcf8", null)))
+		to_chat(cultist, span_cult_large(LANG("datum.eadbfcf8c3631fef", null)))
 		return FALSE
-	var/confirm_final = tgui_alert(cultist, LANG("datum.a1364cbf", null), LANG("datum.31a81d64", null), list("My life for Nar'Sie!", "No"))
+	var/confirm_final = tgui_alert(cultist, LANG("datum.a1364cbf4af983bb", null), LANG("datum.31a81d6482544b32", null), list("My life for Nar'Sie!", "No"))
 	if(confirm_final == "No")
-		to_chat(cultist, span_cult(LANG("datum.0f232fbd", null)))
+		to_chat(cultist, span_cult(LANG("datum.0f232fbd4c137a14", null)))
 		return
 	if(!check_if_in_ritual_site(cultist, cult_team))
 		return FALSE
 	var/area/summon_location = get_area(cultist)
 	var/static/cult_music_played = FALSE
 	priority_announce(
-		text = LANG("datum.683a137c", list(cultist.real_name, summon_location.get_original_area_name())),
+		text = LANG("datum.683a137cb1d09eb5", list(cultist.real_name, summon_location.get_original_area_name())),
 		sound = cult_music_played ? 'sound/announcer/notice/notice3.ogg' : 'sound/music/antag/bloodcult/bloodcult_scribe.ogg',
 		sender_override = "[command_name()] Higher Dimensional Affairs",
 		has_important_message = TRUE,
@@ -385,7 +385,7 @@
 		LAZYADD(shields, new /obj/structure/emergency_shield/cult/narsie(shielded_turf))
 
 	notify_ghosts(
-		LANG("datum.4e5acbb7", list(cultist.real_name)),
+		LANG("datum.4e5acbb7e82b38d8", list(cultist.real_name)),
 		source = cultist,
 		header = "Maranax Infirmux!",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -427,14 +427,14 @@
  */
 /datum/component/cult_ritual_item/proc/can_scribe_rune(obj/item/tool, mob/living/cultist)
 	if(!IS_CULTIST(cultist))
-		to_chat(cultist, span_warning(LANG("datum.89345f39", list(tool))))
+		to_chat(cultist, span_warning(LANG("datum.89345f393758bba6", list(tool))))
 		return FALSE
 
 	if(QDELETED(tool) || !cultist.is_holding(tool))
 		return FALSE
 
 	if(cultist.incapacitated || cultist.stat == DEAD)
-		to_chat(cultist, span_warning(LANG("datum.d1849996", null)))
+		to_chat(cultist, span_warning(LANG("datum.d184999678f6cbc8", null)))
 		return FALSE
 
 	if(!check_rune_turf(get_turf(cultist), cultist))
@@ -450,16 +450,16 @@
  */
 /datum/component/cult_ritual_item/proc/check_rune_turf(turf/target, mob/living/cultist)
 	if(isspaceturf(target))
-		to_chat(cultist, span_warning(LANG("datum.c9d99de1", null)))
+		to_chat(cultist, span_warning(LANG("datum.c9d99de1f0feaddf", null)))
 		return FALSE
 
 	if(locate(/obj/effect/rune) in target)
-		to_chat(cultist, span_cult(LANG("datum.99666d98", null)))
+		to_chat(cultist, span_cult(LANG("datum.99666d98038522f5", null)))
 		return FALSE
 
 	var/area/our_area = get_area(target)
 	if((!is_station_level(target.z) && !is_mining_level(target.z)) || (our_area && !(our_area.area_flags & CULT_PERMITTED)))
-		to_chat(cultist, span_warning(LANG("datum.44b6eb55", null)))
+		to_chat(cultist, span_warning(LANG("datum.44b6eb55a6cd519e", null)))
 		return FALSE
 
 	return TRUE
@@ -475,15 +475,15 @@
 	var/datum/objective/eldergod/summon_objective = locate() in cult_team.objectives
 	var/area/our_area = get_area(cultist)
 	if(!summon_objective)
-		to_chat(cultist, span_warning(LANG("datum.519ddbbc", null)))
+		to_chat(cultist, span_warning(LANG("datum.519ddbbc6d40e3e0", null)))
 		return FALSE
 
 	if(!(our_area in summon_objective.summon_spots))
-		to_chat(cultist, span_warning(LANG("datum.a30db543", list(english_list(summon_objective.summon_spots)))))
+		to_chat(cultist, span_warning(LANG("datum.a30db5434d720aac", list(lang_english_list(summon_objective.summon_spots)))))
 		return FALSE
 
 	if(fail_if_last_site && length(summon_objective.summon_spots) <= 1)
-		to_chat(cultist, span_warning(LANG("datum.3683b960", null)))
+		to_chat(cultist, span_warning(LANG("datum.3683b960b3f9d784", null)))
 		return FALSE
 
 	return TRUE

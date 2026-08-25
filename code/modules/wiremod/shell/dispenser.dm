@@ -29,7 +29,7 @@
 
 
 /obj/structure/dispenser_bot/proc/add_item(mob/user, obj/item/to_add)
-	balloon_alert(user, LANG("obj.c93a6a61", null))
+	balloon_alert(user, LANG("obj.c93a6a61bd53bddd", null))
 	stored_items += to_add
 	to_add.forceMove(src)
 	RegisterSignal(to_add, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stored_item_moved))
@@ -66,11 +66,11 @@
 		return NONE
 
 	if (tool.w_class > max_weight && !istype(tool, /obj/item/storage/bag))
-		balloon_alert(user, LANG("obj.6ca0f584", null))
+		balloon_alert(user, LANG("obj.6ca0f584efb7e836", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(length(stored_items) >= capacity)
-		balloon_alert(user, LANG("obj.dba6c06e", null))
+		balloon_alert(user, LANG("obj.dba6c06eaa6d9715", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!istype(tool, /obj/item/storage/bag))
@@ -161,7 +161,7 @@
 	switch(action)
 		if("add_vend_component")
 			if(length(vendor_components) >= max_vendor_components)
-				balloon_alert(user, LANG("obj.04d51444", null))
+				balloon_alert(user, LANG("obj.04d514445bc1834b", null))
 				return
 			var/obj/item/circuit_component/vendor_component/vendor_component = new(parent)
 			parent.add_component(vendor_component, user)

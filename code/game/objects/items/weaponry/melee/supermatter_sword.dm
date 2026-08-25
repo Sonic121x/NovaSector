@@ -24,7 +24,7 @@
 	qdel(shard.countdown)
 	shard.countdown = null
 	START_PROCESSING(SSobj, src)
-	visible_message(span_warning(LANG("obj.f121d87f", list(src))))
+	visible_message(span_warning(LANG("obj.f121d87f7674dce8", list(src))))
 	RegisterSignal(src, COMSIG_ATOM_PRE_BULLET_ACT, PROC_REF(eat_bullets))
 
 /obj/item/melee/supermatter_sword/process()
@@ -67,15 +67,15 @@
 
 /obj/item/melee/supermatter_sword/ex_act(severity, target)
 	visible_message(
-		span_danger(LANG("obj.cc3a4033", list(src))),
-		span_hear(LANG("obj.e2bdcbdd", null))
+		span_danger(LANG("obj.cc3a4033a4c2ebb7", list(src))),
+		span_hear(LANG("obj.e2bdcbdd647d1301", null))
 	)
 	consume_everything()
 	return TRUE
 
 /obj/item/melee/supermatter_sword/acid_act()
-	visible_message(span_danger(LANG("obj.e7626475", list(src))),\
-	span_hear(LANG("obj.e2bdcbdd", null)))
+	visible_message(span_danger(LANG("obj.e7626475a5b84fc8", list(src))),\
+	span_hear(LANG("obj.e2bdcbdd647d1301", null)))
 	consume_everything()
 	return TRUE
 
@@ -83,15 +83,15 @@
 	SIGNAL_HANDLER
 
 	visible_message(
-		span_danger(LANG("obj.784fc69f", list(hitting_projectile, source))),
+		span_danger(LANG("obj.784fc69f4f85e223", list(hitting_projectile, source))),
 		null,
-		span_hear(LANG("obj.e2bdcbdd", null)),
+		span_hear(LANG("obj.e2bdcbdd647d1301", null)),
 	)
 	consume_everything(hitting_projectile)
 	return COMPONENT_BULLET_BLOCKED
 
 /obj/item/melee/supermatter_sword/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.dca60f36", list(user, src, user.p_theyre(), user.p_them()))))
+	user.visible_message(span_suicide(LANG("obj.dca60f36349da7a4", list(user, src, user.p_theyre(), user.p_them()))))
 	user.dropItemToGround(src, TRUE)
 	shard.Bumped(user)
 
@@ -110,7 +110,7 @@
 		return
 	playsound(turf, 'sound/effects/supermatter.ogg', 50, TRUE)
 	turf.visible_message(
-		span_danger(LANG("obj.784fc69f", list(turf, src))),
-		span_hear(LANG("obj.e2bdcbdd", null)),
+		span_danger(LANG("obj.784fc69f4f85e223", list(turf, src))),
+		span_hear(LANG("obj.e2bdcbdd647d1301", null)),
 	)
 	shard.Bump(turf)

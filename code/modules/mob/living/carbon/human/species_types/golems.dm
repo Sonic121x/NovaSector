@@ -114,7 +114,7 @@
 	if(!IS_DEAD_OR_FAKING(source))
 		return
 
-	examine_text += span_warning(LANG("datum.b0dffa55", null))
+	examine_text += span_warning(LANG("datum.b0dffa55c5b23ee0", null))
 
 /datum/species/golem/proc/rebuild_check(mob/living/carbon/human/source, mob/living/user, obj/item/tool, ...)
 	SIGNAL_HANDLER
@@ -136,8 +136,8 @@
 
 	while(check_rebuild(source, user, mats))
 		user.visible_message(
-			span_notice(LANG("datum.2a5811ff", list(user, mats, source))),
-			span_notice(LANG("datum.fec0a402", list(mats, source))),
+			span_notice(LANG("datum.2a5811ffe898242f", list(user, mats, source))),
+			span_notice(LANG("datum.fec0a4020e441c9f", list(mats, source))),
 		)
 
 		var/do_after_time = 2 SECONDS
@@ -179,8 +179,8 @@
 
 		if(source.revive(excess_healing = 10)) // give a bit of organ/tox/oxy healing for free
 			source.visible_message(
-				span_notice(LANG("datum.488d5444", list(source))),
-				span_boldnotice(LANG("datum.faa33782", null)),
+				span_notice(LANG("datum.488d54441d3d3f8d", list(source))),
+				span_boldnotice(LANG("datum.faa33782ca79b5f4", null)),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 			source.set_resting(FALSE, silent = TRUE, instant = TRUE)
@@ -220,8 +220,8 @@
 	if(source.nutrition < NUTRITION_LEVEL_STARVING)
 		if(!early_warning && COOLDOWN_FINISHED(src, warning_cd) && !IS_UNCONSCIOUS(source))
 			source.visible_message(
-				span_warning(LANG("datum.1ce1bcc7", list(source))),
-				span_bolddanger(LANG("datum.43d45a66", null)),
+				span_warning(LANG("datum.1ce1bcc7dc5ac8ee", list(source))),
+				span_bolddanger(LANG("datum.43d45a669f6dc2ce", null)),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 			early_warning = TRUE
@@ -233,8 +233,8 @@
 	if(source.nutrition < 50)
 		if(!final_warning && COOLDOWN_FINISHED(src, warning_cd) && !IS_UNCONSCIOUS(source))
 			source.visible_message(
-				span_warning(LANG("datum.8e7fdfa4", list(source))),
-				span_userdanger(LANG("datum.471b8267", null)),
+				span_warning(LANG("datum.8e7fdfa41d5ccddf", list(source))),
+				span_userdanger(LANG("datum.471b8267d344da9d", null)),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 			final_warning = TRUE
@@ -245,8 +245,8 @@
 
 	if(source.nutrition < 2 && source.stat != DEAD)
 		source.visible_message(
-			span_warning(LANG("datum.825c12ec", list(source))),
-			span_userdanger(LANG("datum.91b11341", null)),
+			span_warning(LANG("datum.825c12ecc0744853", list(source))),
+			span_userdanger(LANG("datum.91b1134184a1ccd8", null)),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 		source.investigate_log("starved to death as a golem", INVESTIGATE_DEATHS)
@@ -272,29 +272,29 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "user-shield",
-		SPECIES_PERK_NAME = LANG("datum.39f6bbbd", null),
-		SPECIES_PERK_DESC = LANG("datum.58ea2eb2", null),
+		SPECIES_PERK_NAME = LANG("datum.39f6bbbdc17e184c", null),
+		SPECIES_PERK_DESC = LANG("datum.58ea2eb25635ebfc", null),
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "gem",
-		SPECIES_PERK_NAME = LANG("datum.a01e575c", null),
-		SPECIES_PERK_DESC = LANG("datum.28e6fa6a", null),
+		SPECIES_PERK_NAME = LANG("datum.a01e575cc0926db9", null),
+		SPECIES_PERK_DESC = LANG("datum.28e6fa6aa948179d", null),
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "tools",
-		SPECIES_PERK_NAME = LANG("datum.bb4be199", null),
-		SPECIES_PERK_DESC = LANG("datum.c8228c6a", null),
+		SPECIES_PERK_NAME = LANG("datum.bb4be19979497f02", null),
+		SPECIES_PERK_DESC = LANG("datum.c8228c6afd8e95fa", null),
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "bolt",
-		SPECIES_PERK_NAME = LANG("datum.ce6c815d", null),
-		SPECIES_PERK_DESC = LANG("datum.75555c87", null),
+		SPECIES_PERK_NAME = LANG("datum.ce6c815d8aa3a7d9", null),
+		SPECIES_PERK_DESC = LANG("datum.75555c87fe3ac857", null),
 	))
 
 	return to_add

@@ -125,7 +125,7 @@
 		)
 		var/datum/disease/fake_virus = pick(virus_candidates)
 		illness_type = initial(fake_virus.name)
-	priority_announce(LANG("datum.4256af4d", list(station_name())), LANG("datum.120d4f04", list(illness_type)), ANNOUNCER_OUTBREAK7)
+	priority_announce(LANG("datum.4256af4d62ed5fc8", list(station_name())), LANG("datum.120d4f044f451e32", list(illness_type)), ANNOUNCER_OUTBREAK7)
 
 	// Set status displays to biohazard alert
 	send_status_display_biohazard_alert()
@@ -240,7 +240,7 @@
 	min_value = 1
 
 /datum/event_admin_setup/input_number/disease_outbreak_advanced/prompt_admins()
-	var/customize_number_of_symptoms = tgui_alert(usr, LANG("datum.62573377", null), event_control.name, list("Default", "Custom"))
+	var/customize_number_of_symptoms = tgui_alert(usr, LANG("datum.62573377df17ecb0", null), event_control.name, list("Default", "Custom"))
 	switch(customize_number_of_symptoms)
 		if("Custom")
 			return ..()

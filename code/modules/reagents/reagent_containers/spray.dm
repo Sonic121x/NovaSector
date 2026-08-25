@@ -53,19 +53,19 @@
 	var/adjacent = user.Adjacent(target)
 	if((target.is_drainable() && !target.is_refillable()) && adjacent && can_fill_from_container)
 		if(!target.reagents.total_volume)
-			to_chat(user, span_warning(LANG("obj.ab993876", list(target))))
+			to_chat(user, span_warning(LANG("obj.ab993876c3c54624", list(target))))
 			return FALSE
 
 		if(reagents.holder_full())
-			to_chat(user, span_warning(LANG("obj.8e2d390c", list(src))))
+			to_chat(user, span_warning(LANG("obj.8e2d390ca03cb226", list(src))))
 			return FALSE
 
 		var/trans = target.reagents.trans_to(src, 50, transferred_by = user) //transfer 50u , using the spray's transfer amount would take too long to refill
-		to_chat(user, span_notice(LANG("obj.b5122b58", list(src, trans, target))))
+		to_chat(user, span_notice(LANG("obj.b5122b58b416ff61", list(src, trans, target))))
 		return FALSE
 
 	if(reagents.total_volume < amount_per_transfer_from_this)
-		to_chat(user, span_warning(LANG("obj.9666e9a7", null)))
+		to_chat(user, span_warning(LANG("obj.9666e9a726836dcd", null)))
 		return FALSE
 
 	if(adjacent && (target.density || ismob(target)))
@@ -137,16 +137,16 @@
 		current_range = stream_range
 	else
 		current_range = spray_range
-	to_chat(user, span_notice(LANG("obj.60df330b", list(stream_mode ? "\"stream\"":"\"spray\""))))
+	to_chat(user, span_notice(LANG("obj.60df330b481b08c8", list(stream_mode ? "\"stream\"":"\"spray\""))))
 
 GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "清空喷雾瓶", null)
 
 	if(usr.incapacitated)
 		return
-	if (tgui_alert(usr, LANG("obj.744e72e8", null), LANG("obj.e85534f6", null), list("Yes", "No")) != "Yes")
+	if (tgui_alert(usr, LANG("obj.744e72e8d3bfd092", null), LANG("obj.e85534f66dc5084c", null), list("Yes", "No")) != "Yes")
 		return
 	if(isturf(usr.loc) && src.loc == usr)
-		to_chat(usr, span_notice(LANG("obj.e08b5097", list(src))))
+		to_chat(usr, span_notice(LANG("obj.e08b509755fce9aa", list(src))))
 		reagents.expose(usr.loc)
 		log_combat(usr, usr.loc, "emptied onto", src, addition="which had [reagents.get_reagent_log_string()]")
 		src.reagents.clear_reagents()
@@ -155,7 +155,7 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "清空喷雾瓶",
 	SIGNAL_HANDLER
 	if(reagents.total_volume < amount_per_transfer_from_this)
 		return
-	to_chat(user, span_danger(LANG("obj.d38ee1f0", list(letter))))
+	to_chat(user, span_danger(LANG("obj.d38ee1f0eb98cb93", list(letter))))
 	spray(user, user)
 	playsound(user, spray_sound, 50, TRUE, -6)
 	forceMove(user.loc)
@@ -192,17 +192,17 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "清空喷雾瓶",
 	possible_transfer_amounts = list(2,5)
 
 /obj/item/reagent_containers/spray/cleaner/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.7ad276d9", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.7ad276d9b8074714", list(user, src, user.p_their(), user.p_theyre()))))
 	if(do_after(user, 3 SECONDS, user))
 		if(reagents.total_volume >= amount_per_transfer_from_this)//if not empty
-			user.visible_message(span_suicide(LANG("obj.3153b1be", list(user))))
+			user.visible_message(span_suicide(LANG("obj.3153b1beaa68ff85", list(user))))
 			spray(user, user)
 			return BRUTELOSS
 		else
-			user.visible_message(span_suicide(LANG("obj.37fbc2b0", list(user, src))))
+			user.visible_message(span_suicide(LANG("obj.37fbc2b0e2bf6c86", list(user, src))))
 			return SHAME
 	else
-		user.visible_message(span_suicide(LANG("obj.5796a762", list(user))))
+		user.visible_message(span_suicide(LANG("obj.5796a762278d1f72", list(user))))
 		return MANUAL_SUICIDE_NONLETHAL
 
 //spray tan
@@ -234,7 +234,7 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "清空喷雾瓶",
 	list_reagents = null
 
 /obj/item/reagent_containers/spray/pepper/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.2bbecf09", list(user, src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.2bbecf092d9de468", list(user, src, user.p_theyre()))))
 	return OXYLOSS
 
 //water flower
@@ -300,7 +300,7 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "清空喷雾瓶",
 	generate_reagents()
 
 /obj/item/reagent_containers/spray/waterflower/cyborg/empty()
-	to_chat(usr, span_warning(LANG("obj.abef114d", null)))
+	to_chat(usr, span_warning(LANG("obj.abef114d37726adb", null)))
 	return
 
 /obj/item/reagent_containers/spray/waterflower/cyborg/proc/generate_reagents()

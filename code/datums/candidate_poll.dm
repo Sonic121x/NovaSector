@@ -74,7 +74,7 @@
 		return FALSE
 	if(time_left() <= 0)
 		if(!silent)
-			to_chat(candidate, span_danger(LANG("datum.e15458a6", null)))
+			to_chat(candidate, span_danger(LANG("datum.e15458a6a42fa5b7", null)))
 			SEND_SOUND(candidate, 'sound/machines/buzz/buzz-sigh.ogg')
 		return FALSE
 
@@ -132,12 +132,12 @@
 	if(!ignore_list)
 		GLOB.poll_ignore[ignoring_category] = list()
 	GLOB.poll_ignore[ignoring_category] += candidate.ckey
-	to_chat(candidate, span_danger(LANG("datum.4f534602", null)))
+	to_chat(candidate, span_danger(LANG("datum.4f534602a7ca98c9", null)))
 	remove_candidate(candidate, silent = TRUE)
 
 /datum/candidate_poll/proc/undo_never_for_this_round(mob/candidate)
 	GLOB.poll_ignore[ignoring_category] -= candidate.ckey
-	to_chat(candidate, span_notice(LANG("datum.eee5e8b2", null)))
+	to_chat(candidate, span_notice(LANG("datum.eee5e8b2dc942240", null)))
 
 /datum/candidate_poll/proc/trim_candidates()
 	list_clear_nulls(signed_up)
@@ -156,4 +156,4 @@
 	for(var/mob/chosen in chosen_candidates)
 		var/client/chosen_client = chosen.client
 		for(var/mob/poll_recipient as anything in poll_recipients)
-			to_chat(poll_recipient, span_ooc(LANG("datum.d3929fed", list(isobserver(poll_recipient) ? FOLLOW_LINK(poll_recipient, chosen_client.mob) : null, span_warning(" [full_capitalize(role)] Poll: "), key_name(chosen_client, include_name = FALSE)))))
+			to_chat(poll_recipient, span_ooc(LANG("datum.d3929fed44ef1656", list(isobserver(poll_recipient) ? FOLLOW_LINK(poll_recipient, chosen_client.mob) : null, span_warning(" [full_capitalize(role)] Poll: "), key_name(chosen_client, include_name = FALSE)))))

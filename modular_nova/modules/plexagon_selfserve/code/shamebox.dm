@@ -28,12 +28,12 @@
 /obj/item/storage/lockbox/timeclock/examine(mob/user)
 	. = ..()
 	if(!isnull(locked_contents))
-		. += span_notice(LANG("obj.4974a5ae", list(locked_contents)))
+		. += span_notice(LANG("obj.4974a5ae90a2b2d8", list(locked_contents)))
 
 /obj/item/storage/lockbox/timeclock/can_unlock(mob/living/user, obj/item/card/id/id_card)
 	. = ..()
 	if(!.)
-		to_chat(user, span_warning(LANG("obj.35d05b62", list(src))))
+		to_chat(user, span_warning(LANG("obj.35d05b62df617371", list(src))))
 
 /// Timeclock boxes can only be opened while the crew member is on duty, or by a command member with the proper access.
 /obj/item/storage/lockbox/timeclock/check_access(obj/item/crew_id)
@@ -74,7 +74,7 @@
 /// Timeclock boxes are one time use. When unlocked, release the contents and go away.
 /obj/item/storage/lockbox/timeclock/proc/release_contents()
 	emptyStorage()
-	usr.visible_message(span_notice(LANG("obj.55e7b72e", list(usr))))
+	usr.visible_message(span_notice(LANG("obj.55e7b72e28764607", list(usr))))
 	associated_card = null
 	qdel(src)
 

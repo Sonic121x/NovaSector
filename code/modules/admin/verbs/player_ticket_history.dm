@@ -58,7 +58,7 @@ ADMIN_VERB(player_ticket_history, R_ADMIN, "玩家工单历史", "Allows you to 
 	)
 	if(!ticket_lookup.Execute())
 		qdel(ticket_lookup)
-		to_chat(usr, LANG("datum.9848148a", list(ckey)))
+		to_chat(usr, LANG("datum.9848148a0f6974df", list(ckey)))
 		return
 
 	var/list/lookup_targets = list()
@@ -109,11 +109,11 @@ ADMIN_VERB(player_ticket_history, R_ADMIN, "玩家工单历史", "Allows you to 
 	UNTIL(lookup_targets.len == 0)
 
 	if(!length(history_cache))
-		to_chat(usr, span_adminnotice(LANG("datum.61bcd411", list(ckey))))
+		to_chat(usr, span_adminnotice(LANG("datum.61bcd411c0f089dd", list(ckey))))
 		ticket_histories -= ckey
 		return
 
-	to_chat(usr, span_adminnotice(LANG("datum.0a424180", list(ckey))))
+	to_chat(usr, span_adminnotice(LANG("datum.0a424180b0d059a4", list(ckey))))
 
 /datum/ticket_history_holder/ui_state(mob/user)
 	return ADMIN_STATE(R_ADMIN)

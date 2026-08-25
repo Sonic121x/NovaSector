@@ -29,7 +29,7 @@
 		return
 
 	if(target != user)
-		target.visible_message(span_warning(LANG("obj.3d57abfb", list(user, target))))
+		target.visible_message(span_warning(LANG("obj.3d57abfb81d3cc30", list(user, target))))
 		if(!do_after(user, 5 SECONDS, target))
 			return
 
@@ -38,13 +38,13 @@
 
 	if(imp.implant(target, user))
 		if (target == user)
-			to_chat(user, span_notice(LANG("obj.4fb833c4", null)))
+			to_chat(user, span_notice(LANG("obj.4fb833c45fdd5f86", null)))
 		else
-			target.visible_message(span_notice(LANG("obj.218aaa2d", list(user, target))), span_notice(LANG("obj.75824e46", list(user))))
+			target.visible_message(span_notice(LANG("obj.218aaa2d085d7791", list(user, target))), span_notice(LANG("obj.75824e461caf0bcc", list(user))))
 		imp = null
 		update_appearance()
 	else
-		to_chat(user, span_warning(LANG("obj.e7a2d980", list(src, target))))
+		to_chat(user, span_warning(LANG("obj.e7a2d980f0f21830", list(src, target))))
 
 /obj/item/implanter/Initialize(mapload)
 	. = ..()

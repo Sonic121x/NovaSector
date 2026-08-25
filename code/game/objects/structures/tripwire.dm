@@ -57,18 +57,18 @@
 	if(!opposing_post)
 		return NONE
 
-	visible_message(span_notice(LANG("obj.c7bb042c", list(user, src))), \
-					span_notice(LANG("obj.f0b937b7", list(src))), \
-					span_hear(LANG("obj.45e81054", null)))
+	visible_message(span_notice(LANG("obj.c7bb042c26ce11cd", list(user, src))), \
+					span_notice(LANG("obj.f0b937b719076f4a", list(src))), \
+					span_hear(LANG("obj.45e8105455aebf29", null)))
 	if(!tool.use_tool(src, user, 5 SECONDS))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!opposing_post)
 		return ITEM_INTERACT_BLOCKING
 
-	visible_message(span_notice(LANG("obj.354c4a00", list(user, src))), \
-					span_notice(LANG("obj.6ec78981", list(src))), \
-					span_hear(LANG("obj.28e5d186", null)))
+	visible_message(span_notice(LANG("obj.354c4a00d337d3ea", list(user, src))), \
+					span_notice(LANG("obj.6ec78981a63e0829", list(src))), \
+					span_hear(LANG("obj.28e5d186b30bf239", null)))
 	new /obj/item/stack/cable_coil(drop_location(), 20)
 	clear_wire()
 	return ITEM_INTERACT_SUCCESS
@@ -93,7 +93,7 @@
 		are_we_tying = TRUE
 
 	if(are_we_tying)// if it's on a different z level, or further than would be reasonable, refuse to acknowledge the distance and mulligan.
-		to_chat(user, span_notice(LANG("obj.8d68a299", list(irrelevant_cable, src))))
+		to_chat(user, span_notice(LANG("obj.8d68a299f1152cc9", list(irrelevant_cable, src))))
 		irrelevant_cable.connecting_post = WEAKREF(src)
 		return ITEM_INTERACT_SUCCESS
 
@@ -104,15 +104,15 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(distance_between > 4)
-		to_chat(user, span_notice(LANG("obj.b21d24d0", null)))
+		to_chat(user, span_notice(LANG("obj.b21d24d0dc2a39b8", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(distance_between == 0)
-		to_chat(user, span_notice(LANG("obj.0fabeab1", null)))
+		to_chat(user, span_notice(LANG("obj.0fabeab1229014c2", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(connecting_post.x != x && connecting_post.y != y)
-		to_chat(user, span_notice(LANG("obj.477d89cb", null)))
+		to_chat(user, span_notice(LANG("obj.477d89cb6db33cd7", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	var/turf/end_point_turf = get_turf(connecting_post)
@@ -130,13 +130,13 @@
 		if(iterating_turf == end_point_turf)
 			connect_to_post(connecting_post, direction_to_extend)
 			connecting_post.connect_to_post(src, REVERSE_DIR(direction_to_extend))
-			to_chat(user, span_notice(LANG("obj.42bb1494", null)))
+			to_chat(user, span_notice(LANG("obj.42bb149436f48e8f", null)))
 			qdel(irrelevant_cable)
 			return ITEM_INTERACT_SUCCESS
 
 		if(iterating_turf.is_blocked_turf(TRUE))
 			clear_wire()
-			to_chat(user, span_notice(LANG("obj.0da364af", null)))
+			to_chat(user, span_notice(LANG("obj.0da364af556b8b05", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/structure/tripwire/cable/new_wire = new(iterating_turf)
@@ -161,13 +161,13 @@
 
 /obj/structure/tripwire/post/wrench_act(mob/living/user, obj/item/tool)
 	if(opposing_post)
-		balloon_alert(user, LANG("obj.c652a052", null))
+		balloon_alert(user, LANG("obj.c652a052990fa965", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.use_tool(src, user, 0))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.ec9196c7", list(anchored ? "un" : "")))
+	balloon_alert(user, LANG("obj.ec9196c7343f779d", list(anchored ? "un" : "")))
 	set_anchored(!anchored)
 	return ITEM_INTERACT_SUCCESS
 
@@ -202,16 +202,16 @@
 	return ..()
 
 /obj/structure/tripwire/cable/wirecutter_act(mob/living/user, obj/item/tool)
-	visible_message(span_notice(LANG("obj.7bc2fa00", list(user, src))), \
-					span_notice(LANG("obj.44107c10", list(src))), \
-					span_hear(LANG("obj.45e81054", null)))
+	visible_message(span_notice(LANG("obj.7bc2fa0009061503", list(user, src))), \
+					span_notice(LANG("obj.44107c10f65e52d7", list(src))), \
+					span_hear(LANG("obj.45e8105455aebf29", null)))
 
 	if(!tool.use_tool(src, user, 5 SECONDS))
 		return ITEM_INTERACT_BLOCKING
 
-	visible_message(span_notice(LANG("obj.75d869c8", list(user, src))), \
-					span_notice(LANG("obj.b261fc30", list(src))), \
-					span_hear(LANG("obj.28e5d186", null)))
+	visible_message(span_notice(LANG("obj.75d869c8a259fa2b", list(user, src))), \
+					span_notice(LANG("obj.b261fc3097122c1a", list(src))), \
+					span_hear(LANG("obj.28e5d186b30bf239", null)))
 	new /obj/item/stack/cable_coil(drop_location(), 20)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -294,8 +294,8 @@
 
 	var/drivers = falling_down.return_drivers()
 
-	visible_message(span_danger(LANG("obj.dbded334", list(falling_down, src))), \
-		blind_message = span_danger(LANG("obj.114824d9", null)), \
+	visible_message(span_danger(LANG("obj.dbded3346f272248", list(falling_down, src))), \
+		blind_message = span_danger(LANG("obj.114824d9be9e6421", null)), \
 		ignored_mobs = drivers)
 
 	for(var/mob/living/driver as anything in drivers) // can any mechs have two drivers? No. Could they? yes.
@@ -327,11 +327,11 @@
 /obj/item/tripwire_cable/attack_self(mob/user, modifiers)
 	if(!connecting_post.resolve())
 		return
-	to_chat(user, span_notice(LANG("obj.2eb05962", null)))
+	to_chat(user, span_notice(LANG("obj.2eb0596227013dd3", null)))
 	connecting_post = null
 
 /obj/item/tripwire_cable/wirecutter_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice(LANG("obj.d40e766c", null)))
+	to_chat(user, span_notice(LANG("obj.d40e766c9b4f75e4", null)))
 	new /obj/item/stack/cable_coil(drop_location(), 15)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

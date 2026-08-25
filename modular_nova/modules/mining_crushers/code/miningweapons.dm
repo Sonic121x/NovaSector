@@ -1,6 +1,6 @@
 /// Base handler for variant switch feedback
 /obj/item/kinetic_crusher/proc/on_variant_switch(mob/living/user)
-	to_chat(user, LANG("obj.fa612e6a", list(initial(name))))
+	to_chat(user, LANG("obj.fa612e6ae02600dc", list(initial(name))))
 	playsound(get_turf(user), 'sound/items/tools/rped.ogg', 50)
 
 /obj/item/kinetic_crusher

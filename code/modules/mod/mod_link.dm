@@ -83,27 +83,27 @@
 	if(istype(tool.buffer, /datum/mod_link))
 		var/datum/mod_link/buffer_link = tool.buffer
 		tool_frequency = buffer_link.frequency
-		balloon_alert(user, LANG("obj.83368858", null))
+		balloon_alert(user, LANG("obj.833688588b34bdc8", null))
 		. = ITEM_INTERACT_SUCCESS
 	if(!tool_frequency && mod_link.frequency)
 		tool.set_buffer(mod_link)
-		balloon_alert(user, LANG("obj.06579ce3", null))
+		balloon_alert(user, LANG("obj.06579ce3d82030b5", null))
 		. = ITEM_INTERACT_SUCCESS
 	else if(tool_frequency && !mod_link.frequency)
 		mod_link.frequency = tool_frequency
 		. = ITEM_INTERACT_SUCCESS
 	else if(tool_frequency && mod_link.frequency)
-		var/response = tgui_alert(user, LANG("obj.b3cc9f4c", null), LANG("obj.df842ebb", null), list("Copy", "Imprint"))
+		var/response = tgui_alert(user, LANG("obj.b3cc9f4c2b114d1b", null), LANG("obj.df842ebbcf3f9040", null), list("Copy", "Imprint"))
 		if(!user.is_holding(tool))
 			return ITEM_INTERACT_BLOCKING
 		switch(response)
 			if("Copy")
 				tool.set_buffer(mod_link)
-				balloon_alert(user, LANG("obj.06579ce3", null))
+				balloon_alert(user, LANG("obj.06579ce3d82030b5", null))
 				. = ITEM_INTERACT_SUCCESS
 			if("Imprint")
 				mod_link.frequency = tool_frequency
-				balloon_alert(user, LANG("obj.83368858", null))
+				balloon_alert(user, LANG("obj.833688588b34bdc8", null))
 				. = ITEM_INTERACT_SUCCESS
 
 /obj/item/mod/control/proc/can_call()
@@ -180,11 +180,11 @@
 		return
 	// NOVA EDIT NIFSOFT SCRYERS - END
 	if(cell)
-		. += span_notice(LANG("obj.8e2fbf86", list(cell.percent())))
+		. += span_notice(LANG("obj.8e2fbf865d24d480", list(cell.percent())))
 	else
-		. += span_notice(LANG("obj.0230913a", null))
-	. += span_notice(LANG("obj.dcfa328e", list(mod_link.id, mod_link.frequency || "unset")))
-	. += span_notice(LANG("obj.659f3245", null))
+		. += span_notice(LANG("obj.0230913ad0af9c15", null))
+	. += span_notice(LANG("obj.dcfa328e9350afbc", list(mod_link.id, mod_link.frequency || "unset")))
+	. += span_notice(LANG("obj.659f32454eb75c63", null))
 
 /obj/item/clothing/neck/link_scryer/equipped(mob/living/user, slot)
 	. = ..()
@@ -196,14 +196,14 @@
 	mod_link?.end_call()
 
 /obj/item/clothing/neck/link_scryer/attack_self(mob/user, modifiers)
-	var/new_label = reject_bad_text(tgui_input_text(user, LANG("obj.ef858bfd", null), LANG("obj.043408e2", null), label, MAX_NAME_LEN))
+	var/new_label = reject_bad_text(tgui_input_text(user, LANG("obj.ef858bfd31749053", null), LANG("obj.043408e2d9bad7f0", null), label, MAX_NAME_LEN))
 	if(!user.is_holding(src))
 		return
 	if(!new_label)
-		balloon_alert(user, LANG("obj.b3c641ad", null))
+		balloon_alert(user, LANG("obj.b3c641ad6521a873", null))
 		return
 	label = new_label
-	balloon_alert(user, LANG("obj.37935628", null))
+	balloon_alert(user, LANG("obj.37935628f25b6ddf", null))
 	update_name()
 
 /obj/item/clothing/neck/link_scryer/process(seconds_per_tick)
@@ -219,7 +219,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	cell = tool
-	balloon_alert(user, LANG("obj.0e9b65ee", null))
+	balloon_alert(user, LANG("obj.0e9b65ee8bac5441", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/neck/link_scryer/update_name(updates)
@@ -234,7 +234,7 @@
 /obj/item/clothing/neck/link_scryer/attack_hand_secondary(mob/user, list/modifiers)
 	if(!cell)
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
-	balloon_alert(user, LANG("obj.0dfdca6e", null))
+	balloon_alert(user, LANG("obj.0dfdca6e675f39e2", null))
 	user.put_in_hands(cell)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -245,27 +245,27 @@
 	if(istype(tool.buffer, /datum/mod_link))
 		var/datum/mod_link/buffer_link = tool.buffer
 		tool_frequency = buffer_link.frequency
-		balloon_alert(user, LANG("obj.83368858", null))
+		balloon_alert(user, LANG("obj.833688588b34bdc8", null))
 		. = ITEM_INTERACT_SUCCESS
 	if(!tool_frequency && mod_link.frequency)
 		tool.set_buffer(mod_link)
-		balloon_alert(user, LANG("obj.06579ce3", null))
+		balloon_alert(user, LANG("obj.06579ce3d82030b5", null))
 		. = ITEM_INTERACT_SUCCESS
 	else if(tool_frequency && !mod_link.frequency)
 		mod_link.frequency = tool_frequency
 		. = ITEM_INTERACT_SUCCESS
 	else if(tool_frequency && mod_link.frequency)
-		var/response = tgui_alert(user, LANG("obj.b3cc9f4c", null), LANG("obj.df842ebb", null), list("Copy", "Imprint"))
+		var/response = tgui_alert(user, LANG("obj.b3cc9f4c2b114d1b", null), LANG("obj.df842ebbcf3f9040", null), list("Copy", "Imprint"))
 		if(!user.is_holding(tool))
 			return ITEM_INTERACT_BLOCKING
 		switch(response)
 			if("Copy")
 				tool.set_buffer(mod_link)
-				balloon_alert(user, LANG("obj.06579ce3", null))
+				balloon_alert(user, LANG("obj.06579ce3d82030b5", null))
 				. = ITEM_INTERACT_SUCCESS
 			if("Imprint")
 				mod_link.frequency = tool_frequency
-				balloon_alert(user, LANG("obj.83368858", null))
+				balloon_alert(user, LANG("obj.833688588b34bdc8", null))
 				. = ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/neck/link_scryer/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
@@ -277,9 +277,9 @@
 	if(mod_link.link_call)
 		mod_link.end_call()
 	else if(QDELETED(cell))
-		user.balloon_alert(user, LANG("obj.48299e41", null))
+		user.balloon_alert(user, LANG("obj.48299e411d7e5893", null))
 	else if(!cell.charge)
-		user.balloon_alert(user, LANG("obj.c0d39a14", null))
+		user.balloon_alert(user, LANG("obj.c0d39a143f2b1626", null))
 	else
 		call_link(user, mod_link)
 
@@ -415,23 +415,23 @@
 	if(!frequency)
 		return
 	if(!istype(called))
-		holder.balloon_alert(user, LANG("datum.5c77b90d", null))
+		holder.balloon_alert(user, LANG("datum.5c77b90dc874f777", null))
 		return
 	var/mob/living/link_user = get_user_callback.Invoke()
 	if(!link_user)
 		return
 	if(HAS_TRAIT(link_user, TRAIT_IN_CALL))
-		holder.balloon_alert(user, LANG("datum.e6b1f483", null))
+		holder.balloon_alert(user, LANG("datum.e6b1f483314596e7", null))
 		return
 	var/mob/living/link_target = called.get_user_callback.Invoke()
 	if(!link_target)
-		holder.balloon_alert(user, LANG("datum.5c77b90d", null))
+		holder.balloon_alert(user, LANG("datum.5c77b90dc874f777", null))
 		return
 	if(HAS_TRAIT(link_target, TRAIT_IN_CALL))
-		holder.balloon_alert(user, LANG("datum.2d5a23eb", null))
+		holder.balloon_alert(user, LANG("datum.2d5a23eba8659af2", null))
 		return
 	if(!can_call_callback.Invoke() || !called.can_call_callback.Invoke())
-		holder.balloon_alert(user, LANG("datum.a929923b", null))
+		holder.balloon_alert(user, LANG("datum.a929923ba42ea46a", null))
 		return
 	link_target.playsound_local(get_turf(called.holder), 'sound/items/weapons/ring.ogg', 15, vary = TRUE)
 	var/atom/movable/screen/alert/modlink_call/alert = link_target.throw_alert("[REF(src)]_modlink", /atom/movable/screen/alert/modlink_call)
@@ -509,9 +509,9 @@
 			continue
 		callers["[link.holder] ([id])"] = id
 	if(!length(callers))
-		calling_link.holder.balloon_alert(user, LANG("_root.84e5a500", list(calling_link.frequency)))
+		calling_link.holder.balloon_alert(user, LANG("_root.84e5a50071dbabda", list(calling_link.frequency)))
 		return
-	var/chosen_link = tgui_input_list(user, LANG("_root.9e56910d", list(calling_link.frequency)), LANG("_root.0e8e3aef", null), callers)
+	var/chosen_link = tgui_input_list(user, LANG("_root.9e56910d12899941", list(calling_link.frequency)), LANG("_root.0e8e3aef74198fb2", null), callers)
 	if(!chosen_link)
 		return
 	calling_link.call_link(GLOB.mod_link_ids[callers[chosen_link]], user)

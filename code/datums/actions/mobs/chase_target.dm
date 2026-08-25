@@ -20,7 +20,7 @@
 	var/mob/living/living_mob = target
 	if(istype(living_mob) && living_mob.stat == DEAD)
 		return
-	owner.visible_message(span_boldwarning(LANG("datum.e58c621b", list(owner))))
+	owner.visible_message(span_boldwarning(LANG("datum.e58c621b27a27255", list(owner))))
 	owner.SpinAnimation(speed = 20, loops = 3, parallel = FALSE)
 	if(ishostile(owner))
 		var/mob/living/simple_animal/hostile/hostile_mob = owner

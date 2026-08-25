@@ -21,5 +21,5 @@
 
 /obj/item/gun/magic/wand/babel/do_suicide(mob/living/user)
 	. = ..()
-	user.say(LANG("obj.7d8048b9", null), forced = "failed babel wand suicide")
+	user.say(LANG("obj.7d8048b9f884daee", null), forced = "failed babel wand suicide")
 	return SHAME

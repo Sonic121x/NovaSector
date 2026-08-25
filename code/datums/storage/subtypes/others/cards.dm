@@ -25,8 +25,8 @@
 		return .
 	if(!was_already_seeing)
 		to_show.visible_message(
-			span_notice(LANG("datum.b5f0f232", list(to_show, parent))),
-			span_notice(LANG("datum.17b2f525", list(parent))),
+			span_notice(LANG("datum.b5f0f232cc5f20b8", list(to_show, parent))),
+			span_notice(LANG("datum.17b2f5251281b8c7", list(parent))),
 		)
 	return .
 
@@ -39,6 +39,6 @@
 	if(QDELING(src))
 		return .
 	if(was_actually_seeing)
-		real_location.visible_message(span_notice(LANG("datum.bf797acc", list(parent))))
+		real_location.visible_message(span_notice(LANG("datum.bf797acc33f95f30", list(parent))))
 		real_location.contents = shuffle(real_location.contents)
 	return .

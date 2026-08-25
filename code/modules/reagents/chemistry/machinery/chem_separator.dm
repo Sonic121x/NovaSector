@@ -103,38 +103,38 @@
 	. = ..()
 
 	if(reagents.total_volume)
-		. += span_notice(LANG("obj.d81f57f4", list(reagents.total_volume, reagents.maximum_volume)))
+		. += span_notice(LANG("obj.d81f57f4a1722fe8", list(reagents.total_volume, reagents.maximum_volume)))
 	if(!QDELETED(distilled_container))
-		. += span_notice(LANG("obj.f5e64af6", list(distilled_container.reagents.total_volume, distilled_container.reagents.maximum_volume)))
-		. += span_notice(LANG("obj.484022b9", list(EXAMINE_HINT("LMB"))))
+		. += span_notice(LANG("obj.f5e64af692d09042", list(distilled_container.reagents.total_volume, distilled_container.reagents.maximum_volume)))
+		. += span_notice(LANG("obj.484022b964659512", list(EXAMINE_HINT("LMB"))))
 	else
-		. += span_warning(LANG("obj.657f461c", list(EXAMINE_HINT("LMB"))))
+		. += span_warning(LANG("obj.657f461c70a2d5e4", list(EXAMINE_HINT("LMB"))))
 	if(!QDELETED(fuel_container))
-		. += span_notice(LANG("obj.897ba950", list(fuel_container.reagents.total_volume, fuel_container.reagents.maximum_volume)))
-		. += span_notice(LANG("obj.240bf5f8", list(EXAMINE_HINT("RMB"))))
+		. += span_notice(LANG("obj.897ba950324523ec", list(fuel_container.reagents.total_volume, fuel_container.reagents.maximum_volume)))
+		. += span_notice(LANG("obj.240bf5f8fd411442", list(EXAMINE_HINT("RMB"))))
 	else
-		. += span_warning(LANG("obj.f433c52d", list(EXAMINE_HINT("RMB"))))
+		. += span_warning(LANG("obj.f433c52d5d47c72f", list(EXAMINE_HINT("RMB"))))
 	if(burner_on)
-		. += span_notice(LANG("obj.3495d341", list(EXAMINE_HINT("ALT LMB"))))
+		. += span_notice(LANG("obj.3495d34175367815", list(EXAMINE_HINT("ALT LMB"))))
 	else
-		. += span_notice(LANG("obj.a82d9118", null))
+		. += span_notice(LANG("obj.a82d91180dd9e438", null))
 
 	if(condenser_installed)
-		. += span_notice(LANG("obj.40b95e5f", null))
+		. += span_notice(LANG("obj.40b95e5fcc95d135", null))
 	else
-		. += span_notice(LANG("obj.f8654b5e", list(EXAMINE_HINT("condenser"))))
+		. += span_notice(LANG("obj.f8654b5e44ecf12e", list(EXAMINE_HINT("condenser"))))
 
-	. += span_notice(LANG("obj.417312ee", list(EXAMINE_HINT("examine more"))))
-	. += span_notice(LANG("obj.322a7e32", list(EXAMINE_HINT("pried"))))
+	. += span_notice(LANG("obj.417312ee83354bf0", list(EXAMINE_HINT("examine more"))))
+	. += span_notice(LANG("obj.322a7e32059dcb58", list(EXAMINE_HINT("pried"))))
 
 /obj/structure/chem_separator/examine_more(mob/user)
 	. = ..()
 
-	. += span_notice(LANG("obj.2476d457", null))
+	. += span_notice(LANG("obj.2476d457d8c5c2a1", null))
 
-	. += span_notice(LANG("obj.c0ca331e", null))
+	. += span_notice(LANG("obj.c0ca331e21419ae0", null))
 	for(var/datum/reagent/reg as anything in reagents.reagent_list)
-		. += span_notice(LANG("obj.c3d9c523", list(reg.name, get_boiling_point(reg))))
+		. += span_notice(LANG("obj.c3d9c523d61c3969", list(reg.name, get_boiling_point(reg))))
 
 /obj/structure/chem_separator/update_overlays()
 	. = ..()
@@ -270,24 +270,24 @@
 
 		//add new container
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning(LANG("obj.5dda4c2f", list(tool))))
+			to_chat(user, span_warning(LANG("obj.5dda4c2f1ed03e0b", list(tool))))
 			return ITEM_INTERACT_BLOCKING
 		distilled_container = tool
 
 		START_PROCESSING(SSobj, src)
-		balloon_alert(user, LANG("obj.58592943", null))
+		balloon_alert(user, LANG("obj.58592943ca9e991e", null))
 
 		ui_interact(user)
 		update_appearance(UPDATE_OVERLAYS)
 		return ITEM_INTERACT_SUCCESS
 	else if(istype(tool, /obj/item/assembly/igniter/condenser))
 		if(!user.temporarilyRemoveItemFromInventory(tool))
-			to_chat(user, span_warning(LANG("obj.5dda4c2f", list(tool))))
+			to_chat(user, span_warning(LANG("obj.5dda4c2f1ed03e0b", list(tool))))
 			return ITEM_INTERACT_BLOCKING
 		condenser_installed = TRUE
 		update_static_data_for_all_viewers()
 		qdel(tool)
-		balloon_alert(user, LANG("obj.7bcd6205", null))
+		balloon_alert(user, LANG("obj.7bcd620503f28845", null))
 		return ITEM_INTERACT_SUCCESS
 
 	///Try & ignite the bunset burner with this item
@@ -309,7 +309,7 @@
 			return TRUE
 
 		if(user.put_in_hands(distilled_container))
-			to_chat(user, span_notice(LANG("obj.77798b17", null)))
+			to_chat(user, span_notice(LANG("obj.77798b175a991a36", null)))
 			update_appearance(UPDATE_OVERLAYS)
 		return TRUE
 
@@ -327,10 +327,10 @@
 
 		//add new container
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning(LANG("obj.5dda4c2f", list(tool))))
+			to_chat(user, span_warning(LANG("obj.5dda4c2f1ed03e0b", list(tool))))
 			return ITEM_INTERACT_BLOCKING
 		fuel_container = tool
-		balloon_alert(user, LANG("obj.263dc0b7", null))
+		balloon_alert(user, LANG("obj.263dc0b770cfbb3a", null))
 
 		ui_interact(user)
 		return ITEM_INTERACT_SUCCESS
@@ -342,7 +342,7 @@
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 		if(user.put_in_hands(fuel_container))
-			to_chat(user, span_notice(LANG("obj.7f28075d", null)))
+			to_chat(user, span_notice(LANG("obj.7f28075d0db3d4b7", null)))
 			toggle_burner(FALSE)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 

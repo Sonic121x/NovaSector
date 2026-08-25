@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(floor_diseases, list(
 /datum/component/germ_sensitive/proc/examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(infective)
-		examine_list += span_warning(LANG("datum.ba5697a7", list(parent)))
+		examine_list += span_warning(LANG("datum.ba5697a7dd492e6d", list(parent)))
 
 /datum/component/germ_sensitive/proc/expose_to_germs()
 	// Admin spawned items are never exposed

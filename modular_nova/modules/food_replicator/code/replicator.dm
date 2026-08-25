@@ -14,9 +14,9 @@
 /obj/machinery/biogenerator/food_replicator/examine_more(mob/user)
 	. = ..()
 
-	. += LANG("obj.4cdeddea", null)
+	. += LANG("obj.4cdeddea55e3b2cb", null)
 
-	. += LANG("obj.4aba111b", null)
+	. += LANG("obj.4aba111b42cbeaf2", null)
 
 	return .
 

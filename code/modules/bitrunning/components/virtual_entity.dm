@@ -16,10 +16,10 @@
 
 /// Self-destructs the component, allowing free-roam by all entities with this restriction.
 /datum/component/virtual_entity/proc/jailbreak_mobs()
-	to_chat(parent, span_bolddanger(LANG("datum.8f7a5a72", null)))
-	to_chat(parent, span_notice(LANG("datum.e4456812", null)))
-	to_chat(parent, span_danger(LANG("datum.5b264c41", null)))
-	to_chat(parent, span_notice(LANG("datum.334db1fa", null)))
+	to_chat(parent, span_bolddanger(LANG("datum.8f7a5a725ef5004f", null)))
+	to_chat(parent, span_notice(LANG("datum.e4456812fd470079", null)))
+	to_chat(parent, span_danger(LANG("datum.5b264c4136516a0c", null)))
+	to_chat(parent, span_notice(LANG("datum.334db1fa71f07042", null)))
 
 
 /// Remove any restrictions AFTER the mob has spawned
@@ -40,7 +40,7 @@
 		return
 
 	if(location_area.area_flags_mapping & VIRTUAL_SAFE_AREA)
-		source.balloon_alert(source, LANG("datum.934b1143", null))
+		source.balloon_alert(source, LANG("datum.934b11432cc2c5a3", null))
 		COOLDOWN_START(src, OOB_cooldown, 2 SECONDS)
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 

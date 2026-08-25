@@ -39,7 +39,7 @@
 		return
 
 	if(time_until_stoppage > ATTACK_CURE_THRESHOLD)
-		owner.visible_message(span_nicegreen(LANG("datum.cfc70d15", list(owner, owner.p_their(), owner.p_their()))), span_nicegreen(LANG("datum.3edd5f64", null)))
+		owner.visible_message(span_nicegreen(LANG("datum.cfc70d1539a44904", list(owner, owner.p_their(), owner.p_their()))), span_nicegreen(LANG("datum.3edd5f64f4e5fafa", null)))
 		qdel(src)
 		return
 
@@ -62,13 +62,13 @@
 			owner.med_hud_set_status()
 			visible = TRUE //We do not reset this status until it's fully cured. Once it's been made apparent, there's no reason to hide it again until it is resolved. It will only confuse players.
 		if(SPT_PROB(15, seconds_between_ticks))
-			to_chat(owner, span_danger(LANG("datum.921f2cca", null)))
+			to_chat(owner, span_danger(LANG("datum.921f2cca1e2fb511", null)))
 			if(SPT_PROB(15, seconds_between_ticks))
 				human_owner.vomit(VOMIT_CATEGORY_DEFAULT, lost_nutrition = 95)
 			owner.emote("cough")
 			oxyloss_sum += 1
 		if(SPT_PROB(8, seconds_between_ticks))
-			to_chat(owner, span_danger(LANG("datum.1eaa3329", null)))
+			to_chat(owner, span_danger(LANG("datum.1eaa3329c9457af0", null)))
 			owner.adjust_confusion_up_to(6 SECONDS, 10 SECONDS)
 			owner.adjust_stamina_loss(20)
 			owner.emote("cough")
@@ -77,7 +77,7 @@
 	if(time_until_stoppage <= ATTACK_STAGE_FOUR) //And now we compound it with even worse effects.
 
 		if(SPT_PROB(5, seconds_between_ticks))
-			to_chat(owner, span_userdanger(LANG("datum.242bc234", null)))
+			to_chat(owner, span_userdanger(LANG("datum.242bc234b62ba8ce", null)))
 			owner.adjust_dizzy_up_to(4 SECONDS, 10 SECONDS)
 			owner.adjust_eye_blur_up_to(4 SECONDS, 20 SECONDS)
 			owner.adjust_stamina_loss(20)
@@ -85,10 +85,10 @@
 		if(SPT_PROB(5, seconds_between_ticks))
 			owner.emote("cough")
 			if(SPT_PROB(5, seconds_between_ticks))
-				to_chat(owner, span_userdanger(LANG("datum.db570d16", null)))
+				to_chat(owner, span_userdanger(LANG("datum.db570d1665c81a0a", null)))
 				owner.adjust_temp_blindness(10 SECONDS) //Are you panicking yet? You should be panicking by now.
 			else
-				to_chat(owner, span_userdanger(LANG("datum.065b65ef", null)))
+				to_chat(owner, span_userdanger(LANG("datum.065b65ef5e915a52", null)))
 				owner.adjust_temp_blindness(2 SECONDS)
 				owner.adjust_eye_blur_up_to(4 SECONDS, 20 SECONDS)
 			oxyloss_sum += 8
@@ -100,7 +100,7 @@
 
 	if(time_until_stoppage <= 0)
 		if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-			to_chat(owner, span_userdanger(LANG("datum.ba4fe027", null)))
+			to_chat(owner, span_userdanger(LANG("datum.ba4fe0273f839766", null)))
 		owner.adjust_eye_blur(20 SECONDS)
 		human_owner.set_heartattack(TRUE)
 		owner.apply_status_effect(/datum/status_effect/heart_desperation) // To give the victim a final chance to shock their heart before losing consciousness
@@ -122,7 +122,7 @@
 
 	time_until_stoppage--
 
-/datum/status_effect/heart_attack/get_examine_text()
+/datum/status_effect/heart_attack/get_examine_text(mob/examiner)
 	if(!time_until_stoppage <= ATTACK_STAGE_THREE)
 		return
 	var/mob/living/carbon/human/human_owner = owner
@@ -145,20 +145,20 @@
 	SIGNAL_HANDLER
 	time_until_stoppage += 18 //Good for keeping yourself up. Won't be easy to get over the cure threshold by yourself. You're going to need security beating the crap out of you with stunbatons, but it'll work.
 	if(prob(50)) //Also good for crafty solos who want to stunbaton themselves back to health. Timing will be key.
-		to_chat(owner, span_nicegreen(LANG("datum.53df4a90", null)))
+		to_chat(owner, span_nicegreen(LANG("datum.53df4a904f6fbd8e", null)))
 
 ///Makes major progress towards curing the attack.
 /datum/status_effect/heart_attack/proc/defib_shock(obj/item/shockpaddles/source)
 	SIGNAL_HANDLER
 	time_until_stoppage += 50 //Three shocks should save pretty much anyone.
-	owner.visible_message(span_nicegreen(LANG("datum.cbbc4259", list(owner, source))), span_nicegreen(LANG("datum.8015fbea", list(source))))
+	owner.visible_message(span_nicegreen(LANG("datum.cbbc4259beadf5b0", list(owner, source))), span_nicegreen(LANG("datum.8015fbea8a69cf38", list(source))))
 
 ///Slightly reduces your timer, just like the minor shock signal. Slightly more relief because these use cases are generally more dangerous.
 /datum/status_effect/heart_attack/proc/electrocuted(datum/source, shock_damage)
 	SIGNAL_HANDLER
 	time_until_stoppage += (20 + shock_damage * 1.15)
 	if(prob(50))
-		to_chat(owner, span_nicegreen(LANG("datum.ce98a5ae", null)))
+		to_chat(owner, span_nicegreen(LANG("datum.ce98a5ae33c95053", null)))
 
 ///Alternative to penthrite that keeps you up for a few seconds after having a heart attack. Gives a bit of time to call for help regardless of when/where you've collapsed.
 /datum/status_effect/heart_desperation

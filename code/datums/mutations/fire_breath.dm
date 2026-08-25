@@ -57,7 +57,7 @@
 
 	our_lizard.adjust_fire_stacks(cone_levels)
 	our_lizard.ignite_mob()
-	to_chat(our_lizard, span_warning(LANG("datum.d8083dc6", null)))
+	to_chat(our_lizard, span_warning(LANG("datum.d8083dc6b6e6610f", null)))
 
 /datum/action/cooldown/spell/cone/staggered/fire_breath/after_cast(atom/cast_on)
 	. = ..()

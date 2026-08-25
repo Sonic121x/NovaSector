@@ -50,14 +50,14 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_WIND,
-		SPECIES_PERK_NAME = LANG("datum.24c42856", null),
-		SPECIES_PERK_DESC = LANG("datum.aa1a9072", null),
+		SPECIES_PERK_NAME = LANG("datum.24c4285627132486", null),
+		SPECIES_PERK_DESC = LANG("datum.aa1a907241308326", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHIELD,
-		SPECIES_PERK_NAME = LANG("datum.1953a9bf", null),
-		SPECIES_PERK_DESC = LANG("datum.81731725", null),
+		SPECIES_PERK_NAME = LANG("datum.1953a9bfb9e4a252", null),
+		SPECIES_PERK_DESC = LANG("datum.817317258bd59f98", null),
 	))
 	return perks
 
@@ -66,25 +66,25 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SYRINGE,
-		SPECIES_PERK_NAME = LANG("datum.7ecf78de", null),
-		SPECIES_PERK_DESC = LANG("datum.89c7d694", null),
+		SPECIES_PERK_NAME = LANG("datum.7ecf78de9d9369b3", null),
+		SPECIES_PERK_DESC = LANG("datum.89c7d694d76c5775", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK, // It may be a stretch to call nohunger a neutral perk but the Abductor's tongue describes it as much, so.
 		SPECIES_PERK_ICON = FA_ICON_UTENSILS,
-		SPECIES_PERK_NAME = LANG("datum.d3fc8b6e", null),
-		SPECIES_PERK_DESC = LANG("datum.05c4d82c", null),
+		SPECIES_PERK_NAME = LANG("datum.d3fc8b6ee69c11df", null),
+		SPECIES_PERK_DESC = LANG("datum.05c4d82ceecc2a4e", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_VOLUME_XMARK,
-		SPECIES_PERK_NAME = LANG("datum.f5c46b2b", null),
-		SPECIES_PERK_DESC = LANG("datum.27c90331", null),
+		SPECIES_PERK_NAME = LANG("datum.f5c46b2b320529fa", null),
+		SPECIES_PERK_DESC = LANG("datum.27c90331b9e3082d", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_HANDSHAKE_SLASH,
-		SPECIES_PERK_NAME = LANG("datum.ff4e849e", null),
-		SPECIES_PERK_DESC = LANG("datum.b83b8b34", null),
+		SPECIES_PERK_NAME = LANG("datum.ff4e849e403e71fc", null),
+		SPECIES_PERK_DESC = LANG("datum.b83b8b34772588a6", null),
 	))
 	return perks

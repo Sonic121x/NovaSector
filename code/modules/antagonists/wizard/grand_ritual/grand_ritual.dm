@@ -90,7 +90,7 @@
 
 	if(!isturf(owner.loc))
 		if (feedback)
-			owner.balloon_alert(owner, LANG("datum.677762a1", null))
+			owner.balloon_alert(owner, LANG("datum.677762a11dd3c2f6", null))
 		return FALSE
 	return TRUE
 
@@ -132,28 +132,28 @@
 
 	target_area = pick(possible_areas)
 	if (validate_area()) // Well this is risky but probably not every area on the station is going to get deleted, right?
-		to_chat(owner, span_alert(LANG("datum.a386fd93", list(initial(target_area.name)))))
+		to_chat(owner, span_alert(LANG("datum.a386fd93e6446ce8", list(initial(target_area.name)))))
 
 /// Checks if you're actually able to draw a rune here
 /datum/action/cooldown/grand_ritual/proc/start_drawing_rune()
 	var/atom/existing_rune = rune?.resolve()
 	if (existing_rune)
-		owner.balloon_alert(owner, LANG("datum.55e0def6", null))
+		owner.balloon_alert(owner, LANG("datum.55e0def6854ea647", null))
 		return
 
 	var/turf/target_turf = get_turf(owner)
 	for (var/turf/nearby_turf as anything in RANGE_TURFS(1, target_turf))
 		if (!is_type_in_typecache(nearby_turf, blacklisted_rune_turfs))
 			continue
-		owner.balloon_alert(owner, LANG("datum.52636c12", null))
+		owner.balloon_alert(owner, LANG("datum.52636c12e72582e4", null))
 		return
 
 	if (locate(/obj/effect/grand_rune) in range(3, target_turf))
-		owner.balloon_alert(owner, LANG("datum.1f6cf152", null))
+		owner.balloon_alert(owner, LANG("datum.1f6cf15236b0143c", null))
 		return
 
 	if (drawing_rune)
-		owner.balloon_alert(owner, LANG("datum.2d5a873e", null))
+		owner.balloon_alert(owner, LANG("datum.2d5a873edb8d7439", null))
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(draw_rune), target_turf)
@@ -162,13 +162,13 @@
 /datum/action/cooldown/grand_ritual/proc/draw_rune(turf/target_turf)
 	drawing_rune = TRUE
 	var/next_rune_typepath = get_appropriate_rune_typepath()
-	target_turf.balloon_alert(owner, LANG("datum.3601ef04", null))
+	target_turf.balloon_alert(owner, LANG("datum.3601ef044386e39b", null))
 	var/draw_effect_typepath = /obj/effect/temp_visual/wizard_rune/drawing
 	if(next_rune_typepath == /obj/effect/grand_rune/finale/cheesy)
 		draw_effect_typepath = /obj/effect/temp_visual/wizard_rune/drawing/cheese
 	var/obj/effect/temp_visual/wizard_rune/drawing/draw_effect = new draw_effect_typepath(target_turf)
 	if(!do_after(owner, 4 SECONDS, target_turf))
-		target_turf.balloon_alert(owner, LANG("datum.c67b5d27", null))
+		target_turf.balloon_alert(owner, LANG("datum.c67b5d274d6e724b", null))
 		drawing_rune = FALSE
 		qdel(draw_effect)
 		var/fail_effect_typepath = /obj/effect/temp_visual/wizard_rune/failed
@@ -193,7 +193,7 @@
 	if (evaporated_obstacles)
 		playsound(target_turf, 'sound/effects/magic/blind.ogg', 100, TRUE)
 
-	target_turf.balloon_alert(owner, LANG("datum.676d721a", null))
+	target_turf.balloon_alert(owner, LANG("datum.676d721a5e8339bc", null))
 	var/obj/effect/grand_rune/new_rune = new next_rune_typepath(target_turf, times_completed)
 	if(istype(new_rune, /obj/effect/grand_rune/finale))
 		drew_finale = TRUE
@@ -220,17 +220,17 @@
 	if(total_cheese_sacrificed >= CHEESE_SACRIFICE_GOAL)
 		if(!total_cheese_goal_met)
 			total_cheese_goal_met = TRUE
-			to_chat(owner, span_revenbignotice(LANG("datum.0c6ed1ca", null)))
+			to_chat(owner, span_revenbignotice(LANG("datum.0c6ed1ca8b47feb4", null)))
 		else
-			to_chat(owner, span_revennotice(LANG("datum.0f392b72", null)))
+			to_chat(owner, span_revennotice(LANG("datum.0f392b72adc2ffde", null)))
 	else if (total_cheese_sacrificed)
-		to_chat(owner, span_revendanger(LANG("datum.e179a5c2", list(CHEESE_SACRIFICE_GOAL - total_cheese_sacrificed))))
+		to_chat(owner, span_revendanger(LANG("datum.e179a5c2ca8c01b8", list(CHEESE_SACRIFICE_GOAL - total_cheese_sacrificed))))
 	rune = null
 	times_completed++
 	set_new_area()
 	switch (times_completed)
 		if (GRAND_RITUAL_RUNES_WARNING_POTENCY)
-			to_chat(owner, span_warning(LANG("datum.b231d727", null)))
+			to_chat(owner, span_warning(LANG("datum.b231d727280a0606", null)))
 		if (GRAND_RITUAL_IMMINENT_FINALE_POTENCY)
 			var/message = "You are overflowing with power! \
 				Your next Grand Ritual will allow you to choose a powerful effect, and grant you victory."

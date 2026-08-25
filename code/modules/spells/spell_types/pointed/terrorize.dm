@@ -17,7 +17,7 @@
 /datum/action/cooldown/spell/pointed/terrorize/is_valid_target(atom/cast_on)
 	. = ..()
 	if(!ishuman(cast_on))
-		cast_on.balloon_alert(owner, LANG("datum.20561697", null))
+		cast_on.balloon_alert(owner, LANG("datum.205616974e286584", null))
 		return FALSE
 
 	var/lit_tiles = 0
@@ -30,7 +30,7 @@
 			unlit_tiles++
 
 	if(lit_tiles > unlit_tiles)
-		cast_on.balloon_alert(owner, LANG("datum.0c150f4d", null))
+		cast_on.balloon_alert(owner, LANG("datum.0c150f4dbffad692", null))
 		return FALSE //Having a light on you will usually block this, meaning you'll probably need to get an initial hit on the victim with the light eater
 
 /datum/action/cooldown/spell/pointed/terrorize/cast(mob/living/carbon/human/cast_on)

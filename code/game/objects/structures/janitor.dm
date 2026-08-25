@@ -32,15 +32,15 @@
 /obj/structure/mop_bucket/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/mop))
 		if(tool.reagents.total_volume >= tool.reagents.maximum_volume)
-			balloon_alert(user, LANG("obj.71c16304", null))
+			balloon_alert(user, LANG("obj.71c16304611d79de", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!CART_HAS_MINIMUM_REAGENT_VOLUME)
-			balloon_alert(user, LANG("obj.6ef93b07", null))
+			balloon_alert(user, LANG("obj.6ef93b07027da376", null))
 			return ITEM_INTERACT_BLOCKING
 
 		reagents.trans_to(tool, tool.reagents.maximum_volume, transferred_by = user)
-		balloon_alert(user, LANG("obj.70f002da", null))
+		balloon_alert(user, LANG("obj.70f002dadabbdb30", null))
 		playsound(src, 'sound/effects/slosh.ogg', 25, vary = TRUE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -115,25 +115,25 @@
 /obj/structure/mop_bucket/janitorialcart/examine(mob/user)
 	. = ..()
 	if(contents.len)
-		. += span_bold(span_info(LANG("obj.5b771b04", null)))
+		. += span_bold(span_info(LANG("obj.5b771b045eac41ed", null)))
 		for(var/thing in sort_names(contents))
 			if(thing in held_signs)
 				continue //we'll do this after.
-			. += LANG("obj.6dcfac0e", list(icon2html(thing, user), thing))
+			. += LANG("obj.6dcfac0e64a4f0d7", list(icon2html(thing, user), thing))
 		if(held_signs.len)
 			var/obj/item/clothing/suit/caution/sign_obj = held_signs[1]
 			if(held_signs.len > 1)
-				. += LANG("obj.a6311896", list(icon2html(sign_obj, user), convert_integer_to_words(length(held_signs)), sign_obj.name))
+				. += LANG("obj.a63118960e5a9731", list(icon2html(sign_obj, user), convert_integer_to_words(length(held_signs)), sign_obj.name))
 			else
-				. += LANG("obj.6dcfac0e", list(icon2html(sign_obj, user), sign_obj))
-		. += span_notice(LANG("obj.0c5f484d", list(contents.len > 1 ? "search [src]" : "remove [contents[1]]")))
+				. += LANG("obj.6dcfac0e64a4f0d7", list(icon2html(sign_obj, user), sign_obj))
+		. += span_notice(LANG("obj.0c5f484d095e358e", list(contents.len > 1 ? "search [src]" : "remove [contents[1]]")))
 		if(mybag)
-			. += span_notice(LANG("obj.cae1c298", list(weight_class_to_text(mybag.atom_storage.max_specific_storage), mybag)))
+			. += span_notice(LANG("obj.cae1c29878689240", list(weight_class_to_text(mybag.atom_storage.max_specific_storage), mybag)))
 		if(mymop)
-			. += span_notice(LANG("obj.f316d653", list(mymop)))
+			. += span_notice(LANG("obj.f316d653be2efd58", list(mymop)))
 	if(CART_HAS_MINIMUM_REAGENT_VOLUME)
-		. += span_notice(LANG("obj.ebc4965e", null))
-		. += span_info(LANG("obj.ef1146fe", list(get_turf(src))))
+		. += span_notice(LANG("obj.ebc4965eb43d50c8", null))
+		. += span_info(LANG("obj.ef1146fe028d530f", list(get_turf(src))))
 
 /obj/structure/mop_bucket/janitorialcart/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
@@ -178,86 +178,86 @@
 /obj/structure/mop_bucket/janitorialcart/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/mop))
 		if(mymop)
-			balloon_alert(user, LANG("obj.8af97977", list(mymop)))
+			balloon_alert(user, LANG("obj.8af97977277f7a5f", list(mymop)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.56f6de96", list(tool)))
+		balloon_alert(user, LANG("obj.56f6de960acf761c", list(tool)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/pushbroom))
 		if(mybroom)
-			balloon_alert(user, LANG("obj.8af97977", list(mybroom)))
+			balloon_alert(user, LANG("obj.8af97977277f7a5f", list(mybroom)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.56f6de96", list(tool)))
+		balloon_alert(user, LANG("obj.56f6de960acf761c", list(tool)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/storage/bag/trash))
 		if(mybag)
-			balloon_alert(user, LANG("obj.8af97977", list(mybag)))
+			balloon_alert(user, LANG("obj.8af97977277f7a5f", list(mybag)))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/storage/bag/trash/insert = tool
 		if(!insert.insertable)
-			balloon_alert(user, LANG("obj.aaf11e7f", null))
+			balloon_alert(user, LANG("obj.aaf11e7fbd0860a9", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.07b7e630", list(tool)))
+		balloon_alert(user, LANG("obj.07b7e630c2be57ee", list(tool)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/reagent_containers/spray/cleaner))
 		if(myspray)
-			balloon_alert(user, LANG("obj.8af97977", list(myspray)))
+			balloon_alert(user, LANG("obj.8af97977277f7a5f", list(myspray)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.56f6de96", list(tool)))
+		balloon_alert(user, LANG("obj.56f6de960acf761c", list(tool)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/lightreplacer))
 		if(myreplacer)
-			balloon_alert(user, LANG("obj.8af97977", list(myreplacer)))
+			balloon_alert(user, LANG("obj.8af97977277f7a5f", list(myreplacer)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.56f6de96", list(tool)))
+		balloon_alert(user, LANG("obj.56f6de960acf761c", list(tool)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/clothing/suit/caution))
 		if(held_signs.len >= max_signs)
-			balloon_alert(user, LANG("obj.ed6f6e28", null))
+			balloon_alert(user, LANG("obj.ed6f6e287a993b69", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.56f6de96", list(tool)))
+		balloon_alert(user, LANG("obj.56f6de960acf761c", list(tool)))
 		return ITEM_INTERACT_SUCCESS
 
 	return ..()
 
 /obj/structure/mop_bucket/janitorialcart/crowbar_act(mob/living/user, obj/item/tool)
 	if(!CART_HAS_MINIMUM_REAGENT_VOLUME)
-		balloon_alert(user, LANG("obj.e7ae6c26", null))
+		balloon_alert(user, LANG("obj.e7ae6c261e44e053", null))
 		return ITEM_INTERACT_SUCCESS
-	user.balloon_alert_to_viewers(LANG("obj.e797d485", list(src)), LANG("obj.07dad763", list(src)))
-	user.visible_message(span_notice(LANG("obj.be83cc5e", list(user, src))), span_notice(LANG("obj.f7d8c6f7", list(src))))
+	user.balloon_alert_to_viewers(LANG("obj.e797d485d523bfec", list(src)), LANG("obj.07dad763011f2d97", list(src)))
+	user.visible_message(span_notice(LANG("obj.be83cc5ef3f9c35d", list(user, src))), span_notice(LANG("obj.f7d8c6f7ab9b1ea8", list(src))))
 	if(tool.use_tool(src, user, 5 SECONDS, volume = 50))
-		balloon_alert(user, LANG("obj.19759518", list(src)))
-		to_chat(user, span_notice(LANG("obj.f92781e2", list(src))))
+		balloon_alert(user, LANG("obj.19759518546615ad", list(src)))
+		to_chat(user, span_notice(LANG("obj.f92781e2af255505", list(src))))
 		reagents.expose(loc)
 		reagents.clear_reagents()
 		update_appearance(UPDATE_OVERLAYS)
@@ -307,36 +307,36 @@
 		if("Trash bag")
 			if(!mybag)
 				return
-			balloon_alert(user, LANG("obj.cf015430", list(mybag)))
+			balloon_alert(user, LANG("obj.cf015430d468dcda", list(mybag)))
 			user.put_in_hands(mybag)
 		if("Mop")
 			if(!mymop)
 				return
-			balloon_alert(user, LANG("obj.c6b4aa68", list(mymop)))
+			balloon_alert(user, LANG("obj.c6b4aa687c2eb2c1", list(mymop)))
 			user.put_in_hands(mymop)
 		if("Broom")
 			if(!mybroom)
 				return
-			balloon_alert(user, LANG("obj.c6b4aa68", list(mybroom)))
+			balloon_alert(user, LANG("obj.c6b4aa687c2eb2c1", list(mybroom)))
 			user.put_in_hands(mybroom)
 		if("Spray bottle")
 			if(!myspray)
 				return
-			balloon_alert(user, LANG("obj.c6b4aa68", list(myspray)))
+			balloon_alert(user, LANG("obj.c6b4aa687c2eb2c1", list(myspray)))
 			user.put_in_hands(myspray)
 		if("Light replacer")
 			if(!myreplacer)
 				return
-			balloon_alert(user, LANG("obj.c6b4aa68", list(myreplacer)))
+			balloon_alert(user, LANG("obj.c6b4aa687c2eb2c1", list(myreplacer)))
 			user.put_in_hands(myreplacer)
 		if("Sign")
 			if(!held_signs.len)
 				return
 			var/obj/item/clothing/suit/caution/removed_sign = held_signs[1]
 			if(length(held_signs) > 1)
-				balloon_alert(user, LANG("obj.6980add6", list(removed_sign)))
+				balloon_alert(user, LANG("obj.6980add699d2101a", list(removed_sign)))
 			else
-				balloon_alert(user, LANG("obj.c6b4aa68", list(removed_sign)))
+				balloon_alert(user, LANG("obj.c6b4aa687c2eb2c1", list(removed_sign)))
 			user.put_in_hands(removed_sign)
 		else
 			return
@@ -344,7 +344,7 @@
 /obj/structure/mop_bucket/janitorialcart/attack_hand_secondary(mob/user, list/modifiers)
 	if(!mymop)
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
-	balloon_alert(user, LANG("obj.c6b4aa68", list(mymop)))
+	balloon_alert(user, LANG("obj.c6b4aa687c2eb2c1", list(mymop)))
 	user.put_in_hands(mymop)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 

@@ -20,7 +20,7 @@
 
 /turf/open/floor/engine/examine(mob/user)
 	. += ..()
-	. += span_notice(LANG("turf.37831dee", null))
+	. += span_notice(LANG("turf.37831dee15561284", null))
 
 /turf/open/floor/engine/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -44,7 +44,7 @@
 
 /turf/open/floor/engine/wrench_act(mob/living/user, obj/item/I)
 	..()
-	to_chat(user, span_notice(LANG("turf.8306c2af", null)))
+	to_chat(user, span_notice(LANG("turf.8306c2afc4385bba", null)))
 	if(I.use_tool(src, user, 30, volume=80))
 		if(!istype(src, /turf/open/floor/engine))
 			return TRUE

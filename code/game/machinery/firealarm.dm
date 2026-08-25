@@ -14,7 +14,7 @@
 /obj/item/wallframe/firealarm/try_build(atom/support, mob/user)
 	var/area/A = get_area(user)
 	if(A.always_unpowered)
-		balloon_alert(user, LANG("obj.503cb4c5", null))
+		balloon_alert(user, LANG("obj.503cb4c57dfefe6a", null))
 		return FALSE
 	return ..()
 
@@ -63,7 +63,7 @@
 	if(!mapload)
 		buildstage = FIRE_ALARM_BUILD_NO_CIRCUIT
 		set_panel_open(TRUE)
-	if(name == initial(name) || lang_unreverse_text(name) == initial(name)) // NOVA EDIT - i18n: name is reverse-localized at Initialize, so also accept the un-reversed form (else the "[area]" prefix is dropped)
+	if(name == initial(name))
 		update_name()
 	my_area = get_area(src)
 	LAZYADD(my_area.firealarms, src)
@@ -220,9 +220,9 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	update_appearance()
-	visible_message(span_warning(LANG("obj.b7523a48", list(src))))
+	visible_message(span_warning(LANG("obj.b7523a488c133b30", list(src))))
 	if(user)
-		balloon_alert(user, LANG("obj.ae8d6631", null))
+		balloon_alert(user, LANG("obj.ae8d6631bc37ef97", null))
 		user.log_message("emagged [src].", LOG_ATTACK)
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	set_status()
@@ -256,7 +256,7 @@
 		firelock.activate(FIRELOCK_ALARM_TYPE_GENERIC)
 	if(user)
 		if(!silent)
-			balloon_alert(user, LANG("obj.3b397ade", null))
+			balloon_alert(user, LANG("obj.3b397ade10f2f01b", null))
 		user.log_message("triggered a fire alarm.", LOG_GAME)
 	my_area.fault_status = AREA_FAULT_MANUAL
 	my_area.fault_location = name
@@ -280,7 +280,7 @@
 		firelock.crack_open()
 	if(user)
 		if(!silent)
-			balloon_alert(user, LANG("obj.6ab5a6c0", null))
+			balloon_alert(user, LANG("obj.6ab5a6c048c9e421", null))
 		user.log_message("reset a fire alarm.", LOG_GAME)
 	soundloop.stop()
 	SEND_SIGNAL(src, COMSIG_FIREALARM_ON_RESET)
@@ -365,7 +365,7 @@
 		return NONE
 	toggle_panel_open()
 	tool.play_tool_sound(src)
-	balloon_alert_to_viewers(LANG("obj.ac8966cf", list(panel_open ? "exposed" : "unexposed")))
+	balloon_alert_to_viewers(LANG("obj.ac8966cf0cdb5091", list(panel_open ? "exposed" : "unexposed")))
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -376,27 +376,27 @@
 	if(!panel_open)
 		return NONE
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, LANG("obj.43379d5f", null))
+		balloon_alert(user, LANG("obj.43379d5f8d288697", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!tool.tool_start_check(user, amount = 1))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert_to_viewers(LANG("obj.b52342a8", null))
+	balloon_alert_to_viewers(LANG("obj.b52342a8e93a2ba2", null))
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 1, volume = 50, extra_checks = CALLBACK(src, PROC_REF(state_callback), null, TRUE)))
 		return ITEM_INTERACT_BLOCKING
 	repair_damage(INFINITY)
-	balloon_alert_to_viewers(LANG("obj.65ced1e8", null))
+	balloon_alert_to_viewers(LANG("obj.65ced1e8b5b56733", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/firealarm/wirecutter_act_secondary(mob/living/user, obj/item/tool)
 	if(!panel_open)
 		return NONE
 	if(buildstage != FIRE_ALARM_BUILD_SECURED)
-		balloon_alert(user, LANG("obj.7b3a589a", null))
+		balloon_alert(user, LANG("obj.7b3a589a3676288f", null))
 		return ITEM_INTERACT_BLOCKING
 
 	tool.play_tool_sound(src)
 	new /obj/item/stack/cable_coil(user.loc, 5)
-	balloon_alert_to_viewers(LANG("obj.5191243c", null))
+	balloon_alert_to_viewers(LANG("obj.5191243ca52ca7ce", null))
 	buildstage = FIRE_ALARM_BUILD_NO_WIRES
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -407,14 +407,14 @@
 	if(buildstage != FIRE_ALARM_BUILD_NO_WIRES)
 		return NONE
 
-	loc.balloon_alert_to_viewers(LANG("obj.c213b154", null))
+	loc.balloon_alert_to_viewers(LANG("obj.c213b154ab7d685c", null))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 50, extra_checks = CALLBACK(src, PROC_REF(state_callback), FIRE_ALARM_BUILD_NO_WIRES, TRUE)))
 		return ITEM_INTERACT_BLOCKING
 	if(machine_stat & BROKEN)
-		balloon_alert_to_viewers(LANG("obj.abf8870d", null))
+		balloon_alert_to_viewers(LANG("obj.abf8870dc1ed7921", null))
 		set_machine_stat(machine_stat & ~BROKEN)
 	else
-		balloon_alert_to_viewers(LANG("obj.6bf68b48", null))
+		balloon_alert_to_viewers(LANG("obj.6bf68b4883ef1d50", null))
 		new /obj/item/electronics/firealarm(user.drop_location())
 	buildstage = FIRE_ALARM_BUILD_NO_CIRCUIT
 	update_appearance()
@@ -427,10 +427,10 @@
 	if(!panel_open)
 		return NONE
 	if(buildstage != FIRE_ALARM_BUILD_NO_CIRCUIT)
-		balloon_alert(user, LANG("obj.34f3b9b2", list(buildstage == FIRE_ALARM_BUILD_SECURED ? "wires" : "circuit")))
+		balloon_alert(user, LANG("obj.34f3b9b29db3bc82", list(buildstage == FIRE_ALARM_BUILD_SECURED ? "wires" : "circuit")))
 		return ITEM_INTERACT_BLOCKING
 
-	loc.balloon_alert_to_viewers(LANG("obj.2a4235b4", list(/obj/item/wallframe/firealarm::name)))
+	loc.balloon_alert_to_viewers(LANG("obj.2a4235b4837591d1", list(/obj/item/wallframe/firealarm::name)))
 	new /obj/item/wallframe/firealarm(user.drop_location())
 	tool.play_tool_sound(loc)
 	qdel(src)
@@ -446,7 +446,7 @@
 	if(!is_wire_tool(tool))
 		return NONE
 	if(!panel_open)
-		balloon_alert(user, LANG("obj.21a6eee5", null))
+		balloon_alert(user, LANG("obj.21a6eee52d5b807e", null))
 		return ITEM_INTERACT_BLOCKING
 	wires.interact(user)
 	return ITEM_INTERACT_SUCCESS
@@ -455,10 +455,10 @@
 	if(buildstage != FIRE_ALARM_BUILD_NO_WIRES)
 		return NONE
 	if(!coil.use(5))
-		balloon_alert(user, LANG("obj.bb6f7f63", null))
+		balloon_alert(user, LANG("obj.bb6f7f63453c3a85", null))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert_to_viewers(LANG("obj.7eb1b623", null))
+	balloon_alert_to_viewers(LANG("obj.7eb1b62313424bf0", null))
 	buildstage = FIRE_ALARM_BUILD_SECURED
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -467,10 +467,10 @@
 	if(buildstage != FIRE_ALARM_BUILD_NO_CIRCUIT)
 		return NONE
 	if(!user.transferItemToLoc(circuit, src))
-		balloon_alert(user, LANG("obj.ea00f01a", null))
+		balloon_alert(user, LANG("obj.ea00f01a26d25898", null))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert_to_viewers(LANG("obj.3bf49b8d", null))
+	balloon_alert_to_viewers(LANG("obj.3bf49b8db1d12d4f", null))
 	qdel(circuit)
 	buildstage = FIRE_ALARM_BUILD_NO_WIRES
 	update_appearance()
@@ -482,7 +482,7 @@
 	if(!pseudocircuit.adapt_circuit(user, circuit_cost = 0.015 * STANDARD_CELL_CHARGE))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert_to_viewers(LANG("obj.3bf49b8d", null))
+	balloon_alert_to_viewers(LANG("obj.3bf49b8db1d12d4f", null))
 	buildstage = FIRE_ALARM_BUILD_NO_WIRES
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -514,7 +514,7 @@
 /obj/machinery/firealarm/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
 	switch(rcd_data[RCD_DESIGN_MODE])
 		if(RCD_WALLFRAME)
-			balloon_alert_to_viewers(LANG("obj.3bf49b8d", null))
+			balloon_alert_to_viewers(LANG("obj.3bf49b8db1d12d4f", null))
 			buildstage = FIRE_ALARM_BUILD_NO_WIRES
 			update_appearance()
 			return TRUE
@@ -560,17 +560,17 @@
 /obj/machinery/firealarm/examine(mob/user)
 	. = ..()
 	if((my_area?.fire || LAZYLEN(my_area?.active_firelocks)))
-		. += LANG("obj.3ad9a286", null)
-		. += LANG("obj.d05e0bfe", list(my_area.fault_location, my_area.fault_status == AREA_FAULT_AUTOMATIC ? "Automatic Detection" : "Manual Trigger"))
+		. += LANG("obj.3ad9a286d4fb6cb4", null)
+		. += LANG("obj.d05e0bfee4bc3ca8", list(my_area.fault_location, my_area.fault_status == AREA_FAULT_AUTOMATIC ? "Automatic Detection" : "Manual Trigger"))
 		if(is_station_level(z))
-			. += LANG("obj.e5a011c7", list(SSsecurity_level.get_current_level_as_text()))
-		. += LANG("obj.85916893", null)
-		. += LANG("obj.9d65a459", null)
+			. += LANG("obj.e5a011c7128a2bf4", list(SSsecurity_level.get_current_level_as_text()))
+		. += LANG("obj.8591689390fa3a74", null)
+		. += LANG("obj.9d65a459a5be173d", null)
 	else
 		if(is_station_level(z))
-			. += LANG("obj.e5a011c7", list(SSsecurity_level.get_current_level_as_text()))
-		. += LANG("obj.70b85ec4", list(my_area.fire_detect ? "lit" : "unlit"))
-		. += LANG("obj.85916893", null)
+			. += LANG("obj.e5a011c7128a2bf4", list(SSsecurity_level.get_current_level_as_text()))
+		. += LANG("obj.70b85ec41b315cea", list(my_area.fire_detect ? "lit" : "unlit"))
+		. += LANG("obj.8591689390fa3a74", null)
 
 // Allows Silicons to disable thermal sensor
 /obj/machinery/firealarm/BorgCtrlClick(mob/living/silicon/robot/user)
@@ -581,7 +581,7 @@
 
 /obj/machinery/firealarm/AICtrlClick(mob/living/silicon/robot/user)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.42f4edf6", null))
+		balloon_alert(user, LANG("obj.42f4edf6bcdc22c6", null))
 		return
 	toggle_fire_detect(user)
 
@@ -589,14 +589,14 @@
 /obj/machinery/firealarm/proc/toggle_fire_detect(mob/user, silent = FALSE)
 	if(!can_toggle_detection)
 		if(user && !silent)
-			balloon_alert(user, LANG("obj.5d62aaa0", null))
+			balloon_alert(user, LANG("obj.5d62aaa04dc423e8", null))
 		return
 	if(my_area.fire_detect)
 		disable_fire_detect(user)
 	else
 		enable_fire_detect(user)
 	if (user && !silent)
-		balloon_alert(user, LANG("obj.4680a2cd", list(my_area.fire_detect ? "enabled" : "disabled")))
+		balloon_alert(user, LANG("obj.4680a2cd5ffb503d", list(my_area.fire_detect ? "enabled" : "disabled")))
 
 /// Stops the area from automatically activating firelocks
 /obj/machinery/firealarm/proc/disable_fire_detect(mob/user)

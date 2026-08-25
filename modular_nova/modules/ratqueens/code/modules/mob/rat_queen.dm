@@ -62,7 +62,7 @@
 /datum/action/cooldown/rat_fashion/Activate(atom/target)
 	var/mob/living/basic/regal_rat/rat_owner = owner
 	if (!istype(rat_owner))
-		owner.balloon_alert(owner, LANG("datum.0eed83dd", null))
+		owner.balloon_alert(owner, LANG("datum.0eed83ddeb019ebe", null))
 		qdel(src)
 		return
 
@@ -79,10 +79,10 @@
 		return
 
 	var/turf/origin = get_turf(owner)
-	owner.balloon_alert_to_viewers(LANG("datum.8559ce79", null))
+	owner.balloon_alert_to_viewers(LANG("datum.8559ce79aebc8f31", null))
 
 	if (!do_after(owner, 3 SECONDS, target = origin))
-		owner.balloon_alert(owner, LANG("datum.c67b5d27", null))
+		owner.balloon_alert(owner, LANG("datum.c67b5d274d6e724b", null))
 		return
 
 	if (QDELETED(rat_owner)) // died/deleted somehow

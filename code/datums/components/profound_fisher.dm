@@ -39,8 +39,8 @@
 
 /datum/component/profound_fisher/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_info(LANG("datum.598ac73a", list(EXAMINE_HINT("held"), EXAMINE_HINT("equipped"), EXAMINE_HINT("right-click"))))
-	examine_list += span_tinynoticeital(LANG("datum.98b042ee", null))
+	examine_list += span_info(LANG("datum.598ac73a94c6c3ba", list(EXAMINE_HINT("held"), EXAMINE_HINT("equipped"), EXAMINE_HINT("right-click"))))
+	examine_list += span_tinynoticeital(LANG("datum.98b042ee072821ef", null))
 
 ///Handles replacing the fishing rod if somehow removed from the parent movable if delete_rod_when_deleted is TRUE, otherwise delete the component.
 /datum/component/profound_fisher/proc/on_rod_moved(datum/source)

@@ -6,8 +6,8 @@
 	circuit = /obj/item/circuitboard/machine/manulathe
 	/// power cost for lathing
 	var/power_cost = 5 KILO WATTS
-	/// design id we print
-	var/design_id
+	/// The typepath of the design we print
+	var/chosen_design_path
 	///The container to hold materials
 	var/datum/material_container/materials
 	//looping sound for printing items
@@ -29,8 +29,7 @@
 	)
 	register_context()
 	. = ..()
-	if(!GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe])
-		GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe] = new /datum/techweb/autounlocking/autolathe
+	GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe] ||= new /datum/techweb/autounlocking/autolathe()
 	stored_research = GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe]
 
 /obj/machinery/power/manufacturing/lathe/Destroy()
@@ -44,7 +43,7 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/power/manufacturing/lathe/click_ctrl_shift(mob/living/user)
-	balloon_alert_to_viewers(LANG("obj.1c4fca6a", null))
+	balloon_alert_to_viewers(LANG("obj.1c4fca6a03d52655", null))
 	materials.retrieve_all()
 
 /obj/machinery/power/manufacturing/lathe/RefreshParts()
@@ -52,20 +51,17 @@
 	var/datum/stock_part/matter_bin/bin = locate() in component_parts
 	materials.max_amount = bin.tier * (SHEET_MATERIAL_AMOUNT * MAX_STACK_SIZE)
 
-
 /obj/machinery/power/manufacturing/lathe/examine(mob/user)
 	. = ..()
-	var/datum/design/design
-	if(!isnull(design_id))
-		design = SSresearch.techweb_design_by_id(design_id)
-	. += span_notice(LANG("obj.4568ae45", list(!isnull(design) ? design.name : "nothing, set with a multitool")))
+	var/datum/design/design = SSresearch.techweb_designs[chosen_design_path]
+	. += span_notice(LANG("obj.4568ae45838af79f", list(!isnull(design) ? design.name : "nothing, set with a multitool")))
 	if(isnull(design))
 		return
-	. += span_notice(LANG("obj.2a2a5155", null))
+	. += span_notice(LANG("obj.2a2a51555bce7b17", null))
 	for(var/valid_type, amount in design.materials)
 		var/atom/ingredient = valid_type
 
-		. += LANG("obj.4e0d6e3e", list(amount / SHEET_MATERIAL_AMOUNT, initial(ingredient.name)))
+		. += LANG("obj.4e0d6e3ec67bc977", list(amount / SHEET_MATERIAL_AMOUNT, initial(ingredient.name)))
 
 /obj/machinery/power/manufacturing/lathe/update_overlays()
 	. = ..()
@@ -92,20 +88,20 @@
 /obj/machinery/power/manufacturing/lathe/multitool_act(mob/living/user, obj/item/tool)
 	. = ..()
 	var/list/name_to_id = list()
-	for(var/id in stored_research.researched_designs)
-		var/datum/design/design = SSresearch.techweb_design_by_id(id)
-		name_to_id[design.name] = id
-	var/result = tgui_input_list(user, LANG("obj.57e1c126", null), LANG("obj.57e1c126", null), sort_list(name_to_id))
+	for(var/design_path in stored_research.researched_designs)
+		var/datum/design/design = SSresearch.techweb_designs[design_path]
+		name_to_id[design.name] = design_path
+	var/result = tgui_input_list(user, LANG("obj.57e1c12648db34cb", null), LANG("obj.57e1c12648db34cb", null), sort_list(name_to_id))
 	if(isnull(result))
 		return ITEM_INTERACT_FAILURE
-	design_id = name_to_id[result]
+	chosen_design_path = name_to_id[result]
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/manufacturing/lathe/process()
 	if(!isnull(withheld) && !send_resource(withheld, dir))
 		return
 
-	var/datum/design/design = SSresearch.techweb_design_by_id(design_id)
+	var/datum/design/design = SSresearch.techweb_designs[chosen_design_path]
 	if(isnull(design) || !(design.build_type & AUTOLATHE))
 		return
 	if(surplus() < power_cost)

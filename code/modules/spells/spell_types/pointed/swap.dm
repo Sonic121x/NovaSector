@@ -32,7 +32,7 @@
 	if(!.)
 		return FALSE
 	if(!isliving(cast_on))
-		to_chat(owner, span_warning(LANG("datum.5e952fb6", null)))
+		to_chat(owner, span_warning(LANG("datum.5e952fb64d8aabfe", null)))
 		return FALSE
 	return TRUE
 
@@ -48,33 +48,33 @@
 		// Find any living being in the list. We aren't picky, it's aim assist after all
 		target = locate(/mob/living) in target
 		if(!target)
-			to_chat(owner, span_warning(LANG("datum.326b711c", null)))
+			to_chat(owner, span_warning(LANG("datum.326b711c5c7deb59", null)))
 			return FALSE
 	if(target == owner)
 		if(!isnull(second_target))
-			to_chat(owner, span_notice(LANG("datum.288da901", null)))
+			to_chat(owner, span_notice(LANG("datum.288da901187de221", null)))
 			second_target = null
 		else
-			to_chat(owner, span_warning(LANG("datum.3ba115af", null)))
+			to_chat(owner, span_warning(LANG("datum.3ba115af77ee1139", null)))
 		return FALSE
 	second_target = target
-	to_chat(owner, span_notice(LANG("datum.5c2c1d64", list(target.name))))
+	to_chat(owner, span_notice(LANG("datum.5c2c1d6444636d37", list(target.name))))
 	return FALSE
 
 /datum/action/cooldown/spell/pointed/swap/cast(mob/living/carbon/cast_on)
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
-		to_chat(owner, span_warning(LANG("datum.2ce7047e", null)))
-		to_chat(cast_on, span_warning(LANG("datum.a65c3a88", null)))
+		to_chat(owner, span_warning(LANG("datum.2ce7047e239a5e7e", null)))
+		to_chat(cast_on, span_warning(LANG("datum.a65c3a88bdd57a4f", null)))
 		return FALSE
 
-	to_chat(cast_on, span_userdanger(LANG("datum.6ee16896", null)))
+	to_chat(cast_on, span_userdanger(LANG("datum.6ee16896a35ceade", null)))
 	if(ispath(smoke_type, /datum/effect_system/fluid_spread/smoke))
 		do_smoke(smoke_amt, owner, get_turf(owner), smoke_type = smoke_type)
 
 	var/turf/target_location = get_turf(cast_on)
 	if(!isnull(second_target) && get_dist(owner, second_target) <= cast_range && !(cast_on == second_target))
-		to_chat(second_target, span_userdanger(LANG("datum.6ee16896", null)))
+		to_chat(second_target, span_userdanger(LANG("datum.6ee16896a35ceade", null)))
 		if(ispath(smoke_type, /datum/effect_system/fluid_spread/smoke))
 			do_smoke(smoke_amt, owner, get_turf(second_target))
 		var/turf/second_location = get_turf(second_target)

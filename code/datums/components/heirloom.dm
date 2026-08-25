@@ -30,12 +30,12 @@
 	var/datum/mind/examiner_mind = user.mind
 
 	if(examiner_mind == owner)
-		examine_list += span_notice(LANG("datum.4b0a5416", list(family_name)))
+		examine_list += span_notice(LANG("datum.4b0a5416a1d50c7f", list(family_name)))
 		return
 
 	var/datum/antagonist/obsessed/our_creeper = examiner_mind?.has_antag_datum(/datum/antagonist/obsessed)
 	if(our_creeper?.trauma.obsession == owner)
-		examine_list += span_nicegreen(LANG("datum.0f41debb", list(owner)))
+		examine_list += span_nicegreen(LANG("datum.0f41debb74a9f4a1", list(owner)))
 		return
 
-	examine_list += span_notice(LANG("datum.536b6eac", list(family_name, owner)))
+	examine_list += span_notice(LANG("datum.536b6eacee81ab04", list(family_name, owner)))

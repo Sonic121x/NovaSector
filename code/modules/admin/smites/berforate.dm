@@ -8,12 +8,12 @@
 
 /datum/smite/berforate/configure(client/user)
 	var/static/list/how_fucked_is_this_dude = list("A little", "A lot", "So fucking much", "FUCK THIS DUDE")
-	hatred = input(user, LANG("datum.b1ff2c2e", null)) in how_fucked_is_this_dude
+	hatred = input(user, LANG("datum.b1ff2c2e7825ed7b", null)) in how_fucked_is_this_dude
 
 /datum/smite/berforate/effect(client/user, mob/living/target)
 	. = ..()
 	if (!iscarbon(target))
-		to_chat(user, span_warning(LANG("datum.0c41c4cf", null)), confidential = TRUE)
+		to_chat(user, span_warning(LANG("datum.0c41c4cfc5eec94d", null)), confidential = TRUE)
 		return
 
 	var/repetitions

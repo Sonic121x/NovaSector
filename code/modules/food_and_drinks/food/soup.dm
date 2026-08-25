@@ -23,7 +23,7 @@
 /obj/item/food/bowled/wish/Initialize(mapload)
 	. = ..()
 	if(prob(25))
-		desc = LANG("obj.8cad5370", null)
+		desc = LANG("obj.8cad53704c1916e8", null)
 		reagents.add_reagent(/datum/reagent/consumable/nutriment, 9)
 		reagents.add_reagent(/datum/reagent/consumable/nutriment/vitamin, 1)
 

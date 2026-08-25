@@ -192,9 +192,9 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 
 /obj/item/stack/sheet/iron/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.50a3e0b8", null))
-	. += span_notice(LANG("obj.f50f220e", null))
-	. += span_notice(LANG("obj.6dff62a1", null))
+	. += span_notice(LANG("obj.50a3e0b831d81153", null))
+	. += span_notice(LANG("obj.f50f220e555ddccb", null))
+	. += span_notice(LANG("obj.6dff62a1315c9414", null))
 
 /obj/item/stack/sheet/iron/fifty
 	amount = 50
@@ -213,15 +213,15 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	. += GLOB.metal_recipes
 
 /obj/item/stack/sheet/iron/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.9e682343", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.9e6823438424ae77", list(user, user.p_them(), src, user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/stack/sheet/iron/welder_act(mob/living/user, obj/item/tool)
 	if(tool.use_tool(src, user, delay = 0, volume = 40))
 		var/obj/item/stack/rods/two/new_item = new(user.loc)
 		user.visible_message(
-			span_notice(LANG("obj.2183d9df", list(user.name, src, tool))),
-			blind_message = span_hear(LANG("obj.1aa82fa3", null)),
+			span_notice(LANG("obj.2183d9df843e0945", list(user.name, src, tool))),
+			blind_message = span_hear(LANG("obj.1aa82fa3545466eb", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)
@@ -233,8 +233,8 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	if(tool.use_tool(src, user, delay = 0, volume = 40))
 		var/obj/item/stack/tile/iron/four/new_item = new(user.loc)
 		user.visible_message(
-			span_notice(LANG("obj.f0b0e648", list(user.name, src, tool))),
-			blind_message = span_hear(LANG("obj.1aa82fa3", null)),
+			span_notice(LANG("obj.f0b0e6486670cdb7", list(user.name, src, tool))),
+			blind_message = span_hear(LANG("obj.1aa82fa3545466eb", null)),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)
@@ -249,10 +249,10 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	if(!user.Adjacent(build_on))
 		return ITEM_INTERACT_BLOCKING
 	if(isgroundlessturf(build_on))
-		user.balloon_alert(user, LANG("obj.b850b346", null))
+		user.balloon_alert(user, LANG("obj.b850b3469d6cf8de", null))
 		return ITEM_INTERACT_BLOCKING
 	if(build_on.is_blocked_turf())
-		user.balloon_alert(user, LANG("obj.7cd9573d", null))
+		user.balloon_alert(user, LANG("obj.7cd9573d009c30f3", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/frame_path = null
@@ -270,25 +270,25 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 				cost = recipe.req_amount
 				break
 	if(get_amount() < cost)
-		user.balloon_alert(user, LANG("obj.bf021e7a", list(cost)))
+		user.balloon_alert(user, LANG("obj.bf021e7a671509e2", list(cost)))
 		return ITEM_INTERACT_BLOCKING
 	var/experience = floor(time * CONSTRUCTION_XP_MULTIPLIER) // NOVA EDIT ADDITION: Construction Skill
 	time *= user.mind?.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER) // NOVA EDIT ADDITION: Construction Skill
 	if(!do_after(user, time, build_on))
 		return ITEM_INTERACT_BLOCKING
 	if(build_on.is_blocked_turf())
-		user.balloon_alert(user, LANG("obj.7cd9573d", null))
+		user.balloon_alert(user, LANG("obj.7cd9573d009c30f3", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!use(cost))
-		user.balloon_alert(user, LANG("obj.d86d54ad", null))
+		user.balloon_alert(user, LANG("obj.d86d54adbc6bb4d3", null))
 		return ITEM_INTERACT_BLOCKING
 	if(frame_path)
 		var/obj/structure/frame/constructed_frame = new frame_path(build_on)
 		constructed_frame.setDir(REVERSE_DIR(user.dir)) //to align computer frame with player direction
-		user.balloon_alert(user, LANG("obj.194ba0c8", null))
+		user.balloon_alert(user, LANG("obj.194ba0c82795523e", null))
 	else
 		new/obj/structure/girder/displaced(build_on)
-		user.balloon_alert(user, LANG("obj.ea3f7b38", null))
+		user.balloon_alert(user, LANG("obj.ea3f7b38d9872fa9", null))
 	// NOVA EDIT ADDITION START: Construction Skill
 	if(experience)
 		user.mind?.adjust_experience(/datum/skill/construction, experience)
@@ -299,6 +299,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
  * Plasteel
  */
 GLOBAL_LIST_INIT(plasteel_recipes, list ( \
+	new/datum/stack_recipe("plasteel tile", /obj/item/stack/tile/plasteel, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
 	new/datum/stack_recipe("AI core", /obj/structure/ai_core, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF, category = CAT_ROBOT),
 	new/datum/stack_recipe("bomb assembly", /obj/machinery/syndicatebomb/empty, 10, time = 5 SECONDS, crafting_flags = NONE, category = CAT_CHEMISTRY),
 	new/datum/stack_recipe("Large Gas Tank", /obj/structure/tank_frame, 4, time=1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF, category = CAT_ATMOSPHERIC),
@@ -448,7 +449,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	var/obj/item/bodypart/affecting = target.get_bodypart(check_zone(user.zone_selected))
 	if(affecting && IS_PEG_LIMB(affecting))
 		if(user == target)
-			user.visible_message(span_notice(LANG("obj.f33313cd", list(user, affecting.name))), span_notice(LANG("obj.d0ce07cf", list(target == user ? "your" : "[target]'s", affecting.name))))
+			user.visible_message(span_notice(LANG("obj.f33313cdacaa5b6b", list(user, affecting.name))), span_notice(LANG("obj.d0ce07cfb2820d3c", list(target == user ? "your" : "[target]'s", affecting.name))))
 			if(!do_after(user, 5 SECONDS, target))
 				return ITEM_INTERACT_FAILURE
 		if(target.item_heal(user, brute_heal = 15, burn_heal = 15, heal_message_brute = "splintering", heal_message_burn = "charring", required_bodytype = BODYTYPE_PEG))
@@ -762,7 +763,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		if(!use(1))
 			return ITEM_INTERACT_BLOCKING
 		playsound(tool, 'sound/items/bikehorn.ogg', 50, TRUE, -1)
-		to_chat(user, span_notice(LANG("obj.b2a87ef9", null)))
+		to_chat(user, span_notice(LANG("obj.b2a87ef902bc33a3", null)))
 		new /obj/item/storage/box/clown(droploc) //bugfix
 		return ITEM_INTERACT_SUCCESS
 
@@ -770,7 +771,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		var/atom/droploc = drop_location()
 		if(!use(1))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice(LANG("obj.f590cbb3", null)))
+		to_chat(user, span_notice(LANG("obj.f590cbb3f5176008", null)))
 		new /obj/item/storage/box/syndie_kit(droploc)
 		return ITEM_INTERACT_SUCCESS
 
@@ -892,6 +893,14 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
 
+GLOBAL_LIST_INIT(bone_recipes, list(
+	new /datum/stack_recipe("bone tile", /obj/item/stack/tile/bone, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
+))
+
+/obj/item/stack/sheet/bone/get_main_recipes()
+	. = ..()
+	. += GLOB.bone_recipes
+
 GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("plastic floor tile", /obj/item/stack/tile/plastic, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
 	new /datum/stack_recipe("light tram tile", /obj/item/stack/thermoplastic/light, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
@@ -983,6 +992,15 @@ GLOBAL_LIST_INIT(paperframe_recipes, list(
 /obj/item/stack/sheet/meat/five
 	amount = 5
 
+GLOBAL_LIST_INIT(meat_recipes, list(
+	new /datum/stack_recipe("meat tile", /obj/item/stack/tile/meat, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
+))
+
+/obj/item/stack/sheet/meat/get_main_recipes()
+	. = ..()
+	. += GLOB.meat_recipes
+
+
 GLOBAL_LIST_INIT(pizza_sheet_recipes, list(
 	new/datum/stack_recipe("huge pizza", /obj/structure/platform/pizza, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
 ))
@@ -1027,3 +1045,11 @@ GLOBAL_LIST_INIT(pizza_sheet_recipes, list(
 	amount = 20
 /obj/item/stack/sheet/hauntium/five
 	amount = 5
+
+GLOBAL_LIST_INIT(hauntium_recipes, list(
+	new /datum/stack_recipe("hauntium tile", /obj/item/stack/tile/hauntium, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
+))
+
+/obj/item/stack/sheet/hauntium/get_main_recipes()
+	. = ..()
+	. += GLOB.hauntium_recipes

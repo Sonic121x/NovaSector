@@ -93,12 +93,12 @@
 			if(length(named_cameras) == 1)
 				chosen_camera = named_cameras[1]
 			else
-				chosen_camera = tgui_input_list(ai, LANG("datum.0154133c", null), LANG("datum.b61403d2", null), named_cameras)
+				chosen_camera = tgui_input_list(ai, LANG("datum.0154133ce8ab6a98", null), LANG("datum.b61403d24165a838", null), named_cameras)
 				if(isnull(chosen_camera))
 					return
 			var/obj/machinery/camera/selected_camera = named_cameras[chosen_camera]
 			if(!selected_camera.can_use())
-				to_chat(ai, span_warning(LANG("datum.783dddda", null)))
+				to_chat(ai, span_warning(LANG("datum.783ddddadb3471ed", null)))
 				return
 			ai.switchCamera(selected_camera)
 			return TRUE

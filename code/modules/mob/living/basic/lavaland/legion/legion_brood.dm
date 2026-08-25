@@ -73,7 +73,7 @@
 		created_by = null
 
 	if (isliving(target) && faction_check_atom(target) && !istype(target, mob_creator?.type))
-		visible_message(span_warning(LANG("mob.3790545e", list(src, target))))
+		visible_message(span_warning(LANG("mob.3790545e134357b2", list(src, target))))
 		target.apply_status_effect(/datum/status_effect/regenerative_core)
 		new /obj/effect/temp_visual/heal(get_turf(target), COLOR_HEALING_CYAN)
 		death()
@@ -82,7 +82,7 @@
 
 /// Turn the targeted mob into one of us
 /mob/living/basic/mining/legion_brood/proc/infest(mob/living/carbon/human/target)
-	visible_message(span_warning(LANG("mob.c3edd4e6", list(name, target))))
+	visible_message(span_warning(LANG("mob.c3edd4e6f6988653", list(name, target))))
 	var/spawn_type = get_legion_type(target)
 	var/mob/living/basic/mining/legion/new_legion = new spawn_type(loc)
 	new_legion.consume(target)

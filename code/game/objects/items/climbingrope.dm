@@ -22,8 +22,8 @@
 /obj/item/climbing_hook/examine(mob/user)
 	. = ..()
 	var/list/look_binds = user.client.prefs.key_bindings["look up"]
-	. += span_notice(LANG("obj.2edd1f26", list(english_list(look_binds, nothing_text = "(nothing bound)", and_text = " or ", comma_text = ", or "))))
-	. += span_notice(LANG("obj.f7fcbb9f", null))
+	. += span_notice(LANG("obj.2edd1f2672d087e4", list(lang_english_list(look_binds, nothing_text = "(nothing bound)", and_text = " or ", comma_text = ", or "))))
+	. += span_notice(LANG("obj.f7fcbb9f06626ca8", null))
 
 /obj/item/climbing_hook/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(HAS_TRAIT(interacting_with, TRAIT_COMBAT_MODE_SKIP_INTERACTION))
@@ -40,14 +40,14 @@
 	var/turf/user_turf = get_turf(user)
 	var/turf/trans_vertical = interacting_with.z > user.z ? GET_TURF_ABOVE(user_turf) : GET_TURF_ABOVE(interacting_with)
 	if(target_blocked(interacting_with, trans_vertical))
-		balloon_alert(user, LANG("obj.9d50956b", null))
+		balloon_alert(user, LANG("obj.9d50956bb1695d87", null))
 		return ITEM_INTERACT_BLOCKING
 	if(get_dist(interacting_with, trans_vertical) > reach - 1) //is our rope long enough?
-		balloon_alert(user, LANG("obj.f5e75781", null))
+		balloon_alert(user, LANG("obj.f5e75781e8f1dc46", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/away_dir = get_dir(trans_vertical, interacting_with)
-	user.visible_message(span_notice(LANG("obj.961257ac", list(user, interacting_with.z > user.z ? "up" : "down", src))), span_notice(LANG("obj.270af441", list(src, interacting_with.z > user.z ? "up" : "down"))))
+	user.visible_message(span_notice(LANG("obj.961257ac588a99d7", list(user, interacting_with.z > user.z ? "up" : "down", src))), span_notice(LANG("obj.270af4410e98d059", list(src, interacting_with.z > user.z ? "up" : "down"))))
 	playsound(interacting_with, 'sound/effects/pickaxe/picaxe1.ogg', 50) //plays twice so people above and below can hear
 	playsound(user_turf, 'sound/effects/pickaxe/picaxe1.ogg', 50)
 	var/list/effects = list(new /obj/effect/temp_visual/climbing_hook(interacting_with, away_dir), new /obj/effect/temp_visual/climbing_hook(user_turf, away_dir))

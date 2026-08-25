@@ -34,7 +34,7 @@
 		affected_carbon.emote(pick("laugh", "drool"))
 
 	if(SPT_PROB(1, seconds_per_tick) && !HAS_TRAIT(affected_carbon, TRAIT_FLOORED))
-		affected_carbon.visible_message(span_danger(LANG("datum.924afe53", list(affected_carbon))))
+		affected_carbon.visible_message(span_danger(LANG("datum.924afe53d2d69fd0", list(affected_carbon))))
 		affected_carbon.Knockdown(90, TRUE)
 		affected_carbon.drop_all_held_items()
 

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/ai_controller/basic_controller/bot/mulebot
 	behavior_tree_json = "code/modules/mob/living/basic/bots/mulebot/mulebot.bt.json"
 	blackboard = list(
@@ -56,7 +57,7 @@
 		if(bot_pawn.mulebot_delivery_flags & MULEBOT_REPORT_DELIVERY_MODE)
 			bot_pawn.radio_channel = RADIO_CHANNEL_SUPPLY //Supply channel
 			bot_pawn.buzz(MULEBOT_MOOD_CHIME)
-			bot_pawn.speak("Destination [RUNECHAT_BOLD("[beacon.location]")] reached. Unloading [bot_pawn.load].", bot_pawn.radio_channel)
+			bot_pawn.speak(LANG("datum.7524f431276161c3", list(RUNECHAT_BOLD("[beacon.location]"), bot_pawn.load)), bot_pawn.radio_channel)
 			bot_pawn.unload(load_direction)
 
 	else
@@ -72,7 +73,7 @@
 			if(atom_to_pick_up?.Adjacent(bot_pawn))
 				bot_pawn.load(atom_to_pick_up)
 				if(bot_pawn.mulebot_delivery_flags & MULEBOT_REPORT_DELIVERY_MODE)
-					bot_pawn.speak("Now loading [bot_pawn.load] at [RUNECHAT_BOLD("[get_area_name(bot_pawn)]")].", bot_pawn.radio_channel)
+					bot_pawn.speak(LANG("datum.aac11bcecd4b4b5b", list(bot_pawn.load, RUNECHAT_BOLD("[get_area_name(bot_pawn)]"))), bot_pawn.radio_channel)
 
 	if((bot_pawn.mulebot_delivery_flags & MULEBOT_RETURN_MODE) && controller.blackboard[BB_MULEBOT_HOME_BEACON] && controller.blackboard[BB_MULEBOT_HOME_BEACON] != beacon.location)
 		bot_pawn.update_bot_mode(new_mode = BOT_GO_HOME)

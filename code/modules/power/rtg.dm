@@ -51,7 +51,7 @@
 /obj/machinery/power/rtg/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.06ff8805", list(display_power(power_gen, convert = FALSE))))
+		. += span_notice(LANG("obj.06ff8805c8464187", list(display_power(power_gen, convert = FALSE))))
 
 /obj/machinery/power/rtg/update_icon_state()
 	. = ..()
@@ -94,8 +94,8 @@
 		return
 	going_kaboom = TRUE
 	visible_message(
-		message = span_danger(LANG("obj.26a18f4a", list(src))),
-		blind_message = span_hear(LANG("obj.92ec041a", null)),
+		message = span_danger(LANG("obj.26a18f4a3ed277fa", list(src))),
+		blind_message = span_hear(LANG("obj.92ec041a982ebe9d", null)),
 	)
 	playsound(src, 'sound/effects/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
 	tesla_zap(source = src, zap_range = 5, power = power_gen * 20)
@@ -161,14 +161,14 @@
 /obj/machinery/power/rtg/old_station/default_deconstruction_screwdriver(mob/user, obj/item/screwdriver)
 	. = ..()
 	if(. & ITEM_INTERACT_SUCCESS)
-		to_chat(user, span_warning(LANG("obj.0210dec6", list(src))))
+		to_chat(user, span_warning(LANG("obj.0210dec6f057a00e", list(src))))
 
 /obj/machinery/power/rtg/old_station/default_deconstruction_crowbar(mob/living/user, obj/item/crowbar, ignore_panel, custom_deconstruct)
-	to_chat(user, span_warning(LANG("obj.866611a9", list(src))))
+	to_chat(user, span_warning(LANG("obj.866611a93562e88c", list(src))))
 	if(!crowbar.use_tool(src, user, 3 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_warning(LANG("obj.ecc760d5", null)))
+	to_chat(user, span_warning(LANG("obj.ecc760d527640780", null)))
 	new /obj/effect/decal/cleanable/ash/large(drop_location())
 	deconstruct(FALSE)
 	return ITEM_INTERACT_SUCCESS

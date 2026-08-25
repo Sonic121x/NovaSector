@@ -18,8 +18,7 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/caretaker/Remove(mob/living/remove_from)
-	if(remove_from.has_status_effect(/datum/status_effect/caretaker_refuge))
-		remove_from.remove_status_effect(/datum/status_effect/caretaker_refuge)
+	remove_from.remove_status_effect(/datum/status_effect/caretaker_refuge)
 	return ..()
 
 /datum/action/cooldown/spell/caretaker/is_valid_target(atom/cast_on)
@@ -32,7 +31,7 @@
 
 	for(var/mob/living/alive in orange(5, owner))
 		if(alive.stat != DEAD && alive.client && (owner in view(alive)))
-			owner.balloon_alert(owner, LANG("datum.6a0684a7", null))
+			owner.balloon_alert(owner, LANG("datum.6a0684a7415b8698", null))
 			return . | SPELL_CANCEL_CAST
 
 	if(!cast_on.has_status_effect(/datum/status_effect/caretaker_refuge))

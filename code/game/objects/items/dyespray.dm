@@ -89,7 +89,7 @@
 			choices += choice_name
 	if(!length(choices))
 		return
-	var/what_to_dye = tgui_alert(user, LANG("obj.104fcb0c", null), LANG("obj.78f80c29", null), choices)
+	var/what_to_dye = tgui_alert(user, LANG("obj.104fcb0c9eff7027", null), LANG("obj.78f80c295b6adf9f", null), choices)
 	if(!what_to_dye || !user.can_perform_action(src, NEED_DEXTERITY))
 		return
 
@@ -99,7 +99,7 @@
 
 	var/datum/bodypart_overlay/mutant/overlay = selected.bodypart_overlay
 	if(overlay.dye_color)
-		var/remove_dye = tgui_alert(user, LANG("obj.7627c90d", list(selected)), LANG("obj.78f80c29", null), list("Yes", "No"))
+		var/remove_dye = tgui_alert(user, LANG("obj.7627c90d34d87bd7", list(selected)), LANG("obj.78f80c295b6adf9f", null), list("Yes", "No"))
 		if(isnull(remove_dye) || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 		if(QDELETED(selected) || !(selected in target.organs))

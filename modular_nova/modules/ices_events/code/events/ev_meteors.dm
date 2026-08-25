@@ -54,7 +54,7 @@
 	end_when = start_when + METEOR_WAVE_DURATION
 
 /datum/round_event/meteor_wave/announce(fake)
-	priority_announce(LANG("datum.e261218e", list(start_when * 2)), "Meteor Alert", ANNOUNCER_METEORS)
+	priority_announce(LANG("datum.e261218e8164f17b", list(start_when * 2)), "Meteor Alert", ANNOUNCER_METEORS)
 	if(wave_name == "threatening" || wave_name == "spooky")
 		INVOKE_ASYNC(SSsecurity_level, TYPE_PROC_REF(/datum/controller/subsystem/security_level/, minimum_security_level), SEC_LEVEL_ORANGE, TRUE, FALSE)
 

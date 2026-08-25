@@ -85,10 +85,10 @@
 /obj/item/device/custom_kit/deluxe_hypo2/pre_convert_check(obj/target_obj, mob/user)
 	var/obj/item/hypospray/mkii/our_hypo = target_obj
 	if(our_hypo.type in subtypesof(/obj/item/hypospray/mkii/))
-		balloon_alert(user, LANG("obj.fbac7411", null))
+		balloon_alert(user, LANG("obj.fbac7411d7d119d1", null))
 		return FALSE
 	if(our_hypo.vial != null)
-		balloon_alert(user, LANG("obj.6a688e67", null))
+		balloon_alert(user, LANG("obj.6a688e675493ee68", null))
 		return FALSE
 	return TRUE
 
@@ -175,14 +175,14 @@
 /obj/item/hypospray/mkii/examine(mob/user)
 	. = ..()
 	if(vial)
-		. += LANG("obj.9a358873", list(vial, vial.reagents.total_volume))
+		. += LANG("obj.9a35887345fb5d75", list(vial, vial.reagents.total_volume))
 	else
-		. += LANG("obj.d3cd4f54", null)
-	. += span_notice(LANG("obj.f361af00", null))
-	. += span_notice(LANG("obj.d40fc237", list(amount_per_transfer)))
+		. += LANG("obj.d3cd4f5490e51d0b", null)
+	. += span_notice(LANG("obj.f361af00678e42b3", null))
+	. += span_notice(LANG("obj.d40fc237a91f53cb", list(amount_per_transfer)))
 
 /obj/item/hypospray/mkii/click_ctrl_shift(mob/user)
-	var/choice = tgui_input_list(user, LANG("obj.87717fa7", null), LANG("obj.2767631d", null), list("GAGS", "Nope"))
+	var/choice = tgui_input_list(user, LANG("obj.87717fa72730ba0f", null), LANG("obj.2767631db7d98ca4", null), list("GAGS", "Nope"))
 	if(choice == "GAGS")
 		icon_state = gags_bodystate
 		//choices go here
@@ -205,17 +205,17 @@
 		var/obj/item/reagent_containers/cup/vial/container = hypo
 		container.forceMove(user.loc)
 		user.put_in_hands(container)
-		to_chat(user, span_notice(LANG("obj.cbed3266", list(vial, src))))
+		to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(vial, src))))
 		vial = null
 		update_icon()
 		playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
 	else
-		to_chat(user, span_notice(LANG("obj.8aa8b107", null)))
+		to_chat(user, span_notice(LANG("obj.8aa8b107f5cfdffa", null)))
 		return
 
 /obj/item/hypospray/mkii/proc/insert_vial(obj/item/new_vial, mob/living/user)
 	if(!is_type_in_list(new_vial, allowed_containers))
-		to_chat(user, span_notice(LANG("obj.61106af5", list(src))))
+		to_chat(user, span_notice(LANG("obj.61106af5c06a8539", list(src))))
 		return FALSE
 	var/atom/quickswap_loc = new_vial.loc
 	if(!user.transferItemToLoc(new_vial, src))
@@ -226,7 +226,7 @@
 		else
 			vial.forceMove(quickswap_loc)
 	vial = new_vial
-	user.visible_message(span_notice(LANG("obj.39f29924", list(user, src))), span_notice(LANG("obj.cca0f3fd", list(vial, src))))
+	user.visible_message(span_notice(LANG("obj.39f29924a47d0632", list(user, src))), span_notice(LANG("obj.cca0f3fd45fd3903", list(vial, src))))
 	playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 	update_appearance()
 
@@ -236,7 +236,7 @@
 	if(isnull(vial) || quickload)
 		insert_vial(tool, user)
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_warning(LANG("obj.9476963a", list(src))))
+	to_chat(user, span_warning(LANG("obj.9476963a231d5d29", list(src))))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/hypospray/mkii/attack_self(mob/user)
@@ -262,12 +262,12 @@
 		else
 			CRASH("change_transfer_amount() called with invalid direction value")
 	amount_per_transfer = possible_transfer_amounts[index]
-	balloon_alert(user, LANG("obj.c9e1c7c3", list(amount_per_transfer)))
+	balloon_alert(user, LANG("obj.c9e1c7c3607ef31f", list(amount_per_transfer)))
 
 /obj/item/hypospray/mkii/emag_act(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		to_chat(user, LANG("obj.3eff8dec", list(src)))
+		to_chat(user, LANG("obj.3eff8dec94f9e783", list(src)))
 		return FALSE
 	if(inject_wait == DELUXE_WAIT_INJECT)
 		inject_wait = COMBAT_WAIT_INJECT
@@ -279,7 +279,7 @@
 		spray_wait = DELUXE_WAIT_SPRAY
 		spray_self = DELUXE_SELF_INJECT
 		inject_self = DELUXE_SELF_SPRAY
-	to_chat(user, LANG("obj.3309dd5e", list(src)))
+	to_chat(user, LANG("obj.3309dd5e5dcd88a4", list(src)))
 	obj_flags |= EMAGGED
 	return TRUE
 
@@ -302,24 +302,24 @@
 	if(iscarbon(injectee))
 		var/obj/item/bodypart/affecting = injectee.get_bodypart(check_zone(user.zone_selected))
 		if(!affecting)
-			to_chat(user, span_warning(LANG("obj.fc2e5421", null)))
+			to_chat(user, span_warning(LANG("obj.fc2e5421ecac7cb8", null)))
 			return ITEM_INTERACT_BLOCKING
 	//Always log attemped injections for admins
 	var/contained = vial.reagents.get_reagent_log_string()
 	log_combat(user, injectee, "attemped to inject", src, addition="which had [contained]")
 
 	if(!vial)
-		to_chat(user, span_notice(LANG("obj.2584595b", list(src))))
+		to_chat(user, span_notice(LANG("obj.2584595bd65d2efe", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	if(!vial.reagents.total_volume)
-		to_chat(user, span_notice(LANG("obj.7c0822bf", list(src))))
+		to_chat(user, span_notice(LANG("obj.7c0822bf7a02f09c", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/fp_verb = mode == HYPO_SPRAY ? "spray" : "inject"
 
 	if(injectee != user)
-		injectee.visible_message(span_danger(LANG("obj.21830231", list(user, fp_verb, injectee, src))), \
-						span_userdanger(LANG("obj.32ec203b", list(user, fp_verb, src))))
+		injectee.visible_message(span_danger(LANG("obj.21830231cd238438", list(user, fp_verb, injectee, src))), \
+						span_userdanger(LANG("obj.32ec203bf309fdf3", list(user, fp_verb, src))))
 
 	var/selected_wait_time
 	if(injectee == user)
@@ -333,8 +333,8 @@
 		return ITEM_INTERACT_BLOCKING
 	log_attack("<font color='red'>[user.name] ([user.ckey]) applied [src] to [injectee.name] ([injectee.ckey]), which had [contained] (COMBAT MODE: [uppertext(user.combat_mode)]) (MODE: [mode])</font>")
 	if(injectee != user)
-		injectee.visible_message(span_danger(LANG("obj.8a9ddbdc", list(user, src, injectee))), \
-						span_userdanger(LANG("obj.2e71c97b", list(user, src))))
+		injectee.visible_message(span_danger(LANG("obj.8a9ddbdccca2b9ba", list(user, src, injectee))), \
+						span_userdanger(LANG("obj.2e71c97bce7e420c", list(user, src))))
 	else
 		injectee.log_message("<font color='orange'>applied [src] to themselves ([contained]).</font>", LOG_ATTACK)
 
@@ -346,7 +346,7 @@
 
 	var/long_sound = amount_per_transfer >= 15
 	playsound(loc, long_sound ? 'modular_nova/modules/hyposprays/sound/hypospray_long.ogg' : pick('modular_nova/modules/hyposprays/sound/hypospray.ogg','modular_nova/modules/hyposprays/sound/hypospray2.ogg'), 50, 1, -1)
-	to_chat(user, span_notice(LANG("obj.7481ff5d", list(fp_verb, amount_per_transfer, vial.reagents.total_volume))))
+	to_chat(user, span_notice(LANG("obj.7481ff5dd7beae78", list(fp_verb, amount_per_transfer, vial.reagents.total_volume))))
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -364,7 +364,7 @@
 
 /obj/item/hypospray/mkii/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.522be277", null))
+	. += span_notice(LANG("obj.522be2779106f0ed", null))
 
 #undef HYPO_INJECT
 #undef HYPO_SPRAY

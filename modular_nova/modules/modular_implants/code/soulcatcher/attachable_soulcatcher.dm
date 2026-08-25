@@ -24,7 +24,7 @@
 /// Adds text to the examine text of the parent item, explaining that the item can be used to enable the use of NIFSoft HUDs
 /datum/component/soulcatcher/attachable_soulcatcher/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
-	examine_text += span_cyan_nova(LANG("datum.5750b5f6", list(source)))
+	examine_text += span_cyan_nova(LANG("datum.5750b5f638fd4c47", list(source)))
 
 /datum/component/soulcatcher/attachable_soulcatcher/proc/bring_up_ui(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -85,11 +85,11 @@
 
 /obj/item/attachable_soulcatcher/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isitem(interacting_with) || is_type_in_list(interacting_with, blacklisted_items))
-		balloon_alert(user, LANG("obj.fbc9e3cd", null))
+		balloon_alert(user, LANG("obj.fbc9e3cdde5b4ae2", null))
 		return NONE
 
 	if(interacting_with.GetComponent(/datum/component/soulcatcher))
-		balloon_alert(user, LANG("obj.c0bc11f3", null))
+		balloon_alert(user, LANG("obj.c0bc11f391990ff7", null))
 		return ITEM_INTERACT_BLOCKING
 
 

@@ -79,7 +79,7 @@
 
 	tgui_prefs_migration = save_data["tgui_prefs_migration"]
 	if(!tgui_prefs_migration && save_data.len) // If save_data is empty, this is definitely a new character
-		to_chat(parent, boxed_message(span_redtext(LANG("datum.b1e4d042", null))))
+		to_chat(parent, boxed_message(span_redtext(LANG("datum.b1e4d042da51046b", null))))
 		migrate_nova(save_data)
 		addtimer(CALLBACK(src, PROC_REF(check_migration)), 10 SECONDS)
 
@@ -318,7 +318,7 @@
 
 /datum/preferences/proc/check_migration()
 	if(!tgui_prefs_migration)
-		to_chat(parent, boxed_message(span_redtext(LANG("datum.0969f267", null))))
+		to_chat(parent, boxed_message(span_redtext(LANG("datum.0969f267f63638b8", null))))
 		message_admins("PREFERENCE MIGRATION: [ADMIN_LOOKUPFLW(parent)] has failed the process for migrating PREFERENCES. Check runtimes.")
 
 /// Saves the modular customizations of a character on the savefile

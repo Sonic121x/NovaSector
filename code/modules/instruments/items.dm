@@ -36,7 +36,7 @@
 	return TRUE
 
 /obj/item/instrument/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.c83392d7", list(user, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.c83392d7dbd708c4", list(user, user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/instrument/ui_interact(mob/user, datum/tgui/ui)
@@ -224,7 +224,7 @@
 		return
 	if(!ismob(loc))
 		CRASH("[src] was still registered to listen in on [source] but was not found to be on their mob.")
-	to_chat(loc, span_warning(LANG("obj.6b069758", null)))
+	to_chat(loc, span_warning(LANG("obj.6b06975879217ce6", null)))
 	song.playing = FALSE
 
 /datum/action/item_action/instrument

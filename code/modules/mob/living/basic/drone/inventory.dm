@@ -71,7 +71,7 @@
 			internal_storage = equipping
 			update_inv_internal_storage()
 		else
-			to_chat(src, span_danger(LANG("mob.d90ac502", null)))
+			to_chat(src, span_danger(LANG("mob.d90ac5022802ce1d", null)))
 			return
 
 	//Call back for item being equipped to drone

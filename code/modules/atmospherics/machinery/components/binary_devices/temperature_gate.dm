@@ -31,7 +31,7 @@
 /obj/machinery/atmospherics/components/binary/temperature_gate/click_ctrl(mob/user)
 	if(is_operational)
 		set_on(!on)
-		balloon_alert(user, LANG("obj.8fcfde3c", list(on ? "on" : "off")))
+		balloon_alert(user, LANG("obj.8fcfde3cd8c5cffd", list(on ? "on" : "off")))
 		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
@@ -42,18 +42,18 @@
 
 	target_temperature = max_temperature
 	investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
-	balloon_alert(user, LANG("obj.6177b8e3", list(target_temperature)))
+	balloon_alert(user, LANG("obj.6177b8e30ac6f2d5", list(target_temperature)))
 	update_appearance(UPDATE_ICON)
 	return CLICK_ACTION_SUCCESS
 
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/examine(mob/user)
 	. = ..()
-	. += LANG("obj.b15db99f", list(inverted ? "higher" : "lower"))
+	. += LANG("obj.b15db99f55a8c79e", list(inverted ? "higher" : "lower"))
 	if(inverted)
-		. += LANG("obj.c982b509", null)
+		. += LANG("obj.c982b509d417e81e", null)
 	else
-		. += LANG("obj.66558180", null)
+		. += LANG("obj.66558180c956cb7f", null)
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/update_icon_nopipes()
 	if(on && is_operational && is_gas_flowing)
@@ -132,7 +132,7 @@
 /obj/machinery/atmospherics/components/binary/temperature_gate/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, span_warning(LANG("obj.a6e44f07", list(src))))
+		to_chat(user, span_warning(LANG("obj.a6e44f07b2cb8ca0", list(src))))
 		return FALSE
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/multitool_act(mob/living/user, obj/item/multitool/I)
@@ -140,9 +140,9 @@
 	if (istype(I))
 		inverted = !inverted
 		if(inverted)
-			to_chat(user, span_notice(LANG("obj.c02b1715", list(src))))
+			to_chat(user, span_notice(LANG("obj.c02b1715e0d55eb7", list(src))))
 		else
-			to_chat(user, span_notice(LANG("obj.1a6025a0", list(src))))
+			to_chat(user, span_notice(LANG("obj.1a6025a05e45b5a8", list(src))))
 	return TRUE
 
 //mapping

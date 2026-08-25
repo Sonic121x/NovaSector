@@ -20,8 +20,8 @@
 /datum/antagonist/blood_worm/greet()
 	. = ..()
 
-	to_chat(owner, span_bold(LANG("datum.e03a574f", null)))
-	to_chat(owner, span_bolddanger(LANG("datum.f553dad6", null)))
+	to_chat(owner, span_bold(LANG("datum.e03a574f7cc2cca1", null)))
+	to_chat(owner, span_bolddanger(LANG("datum.f553dad6617a9348", null)))
 
 	owner.announce_objectives()
 

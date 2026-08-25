@@ -44,8 +44,8 @@
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "robot",
-			SPECIES_PERK_NAME = LANG("datum.ecb34190", null),
-			SPECIES_PERK_DESC = LANG("datum.56e41556", null),
+			SPECIES_PERK_NAME = LANG("datum.ecb34190291aeac3", null),
+			SPECIES_PERK_DESC = LANG("datum.56e415569c19a28e", null),
 		))
 
 	var/human_authority_setting = CONFIG_GET(string/human_authority)
@@ -54,8 +54,8 @@
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "bullhorn",
-			SPECIES_PERK_NAME = LANG("datum.8612e64d", null),
-			SPECIES_PERK_DESC = LANG("datum.c02ff94b", null),
+			SPECIES_PERK_NAME = LANG("datum.8612e64d43ba8c43", null),
+			SPECIES_PERK_DESC = LANG("datum.c02ff94b24d8e3a0", null),
 		))
 
 	return to_add

@@ -379,7 +379,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-	to_chat(user, span_warning(LANG("obj.4b818895", list(src))))
+	to_chat(user, span_warning(LANG("obj.4b8188954e81f6b1", list(src))))
 	playsound(src.loc, 'sound/items/weapons/tap.ogg', 100, TRUE)
 
 /// A metal foam variant which produces slightly sturdier walls.
@@ -463,7 +463,7 @@
 		if(!comp.welded)
 			comp.welded = TRUE
 			comp.update_appearance()
-			comp.visible_message(span_danger(LANG("obj.9c6a5f79", list(comp))))
+			comp.visible_message(span_danger(LANG("obj.9c6a5f79a62c99d9", list(comp))))
 
 	for(var/mob/living/potential_tinder in location)
 		potential_tinder.extinguish_mob()

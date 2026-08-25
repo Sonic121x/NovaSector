@@ -177,7 +177,7 @@
 			return FALSE
 
 	if(HAS_TRAIT(src, TRAIT_SOUND_DEBUGGED))
-		to_chat(src, span_admin(LANG("mob.5aff3bac", list(max_distance, distance, round(sound_to_use.volume, 0.01), sound_to_use.file))))
+		to_chat(src, span_admin(LANG("mob.5aff3bacb3f0f9ba", list(max_distance, distance, round(sound_to_use.volume, 0.01), sound_to_use.file))))
 
 	SEND_SOUND(src, sound_to_use)
 	return TRUE

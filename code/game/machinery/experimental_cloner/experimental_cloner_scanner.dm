@@ -108,26 +108,26 @@
 
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice(LANG("obj.485787b2", list(user, src))), \
-		span_notice(LANG("obj.f67b421f", list(src))), \
-		span_hear(LANG("obj.a1d9c573", list(src))))
+	user.visible_message(span_notice(LANG("obj.485787b2b8d67ec7", list(user, src))), \
+		span_notice(LANG("obj.f67b421f20b6711e", list(src))), \
+		span_hear(LANG("obj.a1d9c5733c600b1c", list(src))))
 
-	balloon_alert(user, LANG("obj.cf59c234", null))
+	balloon_alert(user, LANG("obj.cf59c234d71f31d1", null))
 	if (!do_after(user,(breakout_time), target = src))
 		return
 	if (!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || state_open || !locked)
 		return
 
 	locked = FALSE
-	user.visible_message(span_warning(LANG("obj.37696909", list(user, src))), \
-		span_notice(LANG("obj.81c31f6b", list(src))))
+	user.visible_message(span_warning(LANG("obj.37696909131e91b5", list(user, src))), \
+		span_notice(LANG("obj.81c31f6b9b00625a", list(src))))
 	open_machine()
 
 /obj/machinery/experimental_cloner_scanner/relaymove(mob/living/user, direction)
 	if (IS_UNCONSCIOUS_OR_CRIT(user) || locked)
 		if (COOLDOWN_FINISHED(src, message_cooldown))
 			COOLDOWN_START(src, message_cooldown, breakout_time)
-			balloon_alert(user, LANG("obj.dd73cf4c", null))
+			balloon_alert(user, LANG("obj.dd73cf4c666e170e", null))
 			container_resist_act(user)
 		return
 	open_machine()
@@ -147,7 +147,7 @@
 		return
 
 	if (locked)
-		balloon_alert(user, LANG("obj.2ffcba26", null))
+		balloon_alert(user, LANG("obj.2ffcba260e4b2ba0", null))
 		return
 
 	open_machine()
@@ -158,14 +158,14 @@
 
 	if (!tool.tool_start_check(user, amount = 5))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.789a7181", list(src))))
+	to_chat(user, span_notice(LANG("obj.789a7181a99ade4d", list(src))))
 	if(!tool.use_tool(src, user, 6 SECONDS, amount = 5, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 	deconstruct(disassembled = TRUE)
-	to_chat(user, span_notice(LANG("obj.54e5a2bb", list(src))))
+	to_chat(user, span_notice(LANG("obj.54e5a2bb7dba2176", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/experimental_cloner_scanner/multitool_act(mob/living/user, obj/item/multitool/tool)
 	tool.set_buffer(src)
-	balloon_alert(user, LANG("obj.af011f57", null))
+	balloon_alert(user, LANG("obj.af011f57f5e4d16b", null))
 	return ITEM_INTERACT_SUCCESS

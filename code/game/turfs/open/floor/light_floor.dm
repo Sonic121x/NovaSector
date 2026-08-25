@@ -31,11 +31,11 @@
 
 /turf/open/floor/light/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("turf.ff9d66d1", null))
-	. += span_notice(LANG("turf.320ce4fe", null))
-	. += span_notice(LANG("turf.b04ce71e", null))
+	. += span_notice(LANG("turf.ff9d66d17aebc7c4", null))
+	. += span_notice(LANG("turf.320ce4fe026b8fb1", null))
+	. += span_notice(LANG("turf.b04ce71e72d70ad1", null))
 	if(state) ///check if broken
-		. += span_danger(LANG("turf.cacf0934", null))
+		. += span_danger(LANG("turf.cacf0934ebbd20d4", null))
 
 ///create radial menu
 /turf/open/floor/light/proc/populate_lighttile_designs()
@@ -139,11 +139,11 @@
 		return .
 
 	if(astype(tool, /obj/item/light/bulb).status)/// check if broken
-		to_chat(user, span_danger(LANG("turf.e8716b7e", null)))
+		to_chat(user, span_danger(LANG("turf.e8716b7ec8768edf", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!state)
-		to_chat(user, span_notice(LANG("turf.5cea176f", null)))
+		to_chat(user, span_notice(LANG("turf.5cea176f57bc3fea", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.temporarilyRemoveItemFromInventory(tool))
@@ -152,7 +152,7 @@
 	qdel(tool)
 	state = LIGHTFLOOR_FINE //fixing it by bashing it with a light bulb, fun eh?
 	update_appearance()
-	to_chat(user, span_notice(LANG("turf.03f007a9", null)))
+	to_chat(user, span_notice(LANG("turf.03f007a915063aa0", null)))
 	return ITEM_INTERACT_SUCCESS
 
 

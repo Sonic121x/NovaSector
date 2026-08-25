@@ -44,13 +44,13 @@
 		return
 
 	if(loc == user)
-		. += span_warning(LANG("obj.eb9843bd", null))
+		. += span_warning(LANG("obj.eb9843bd3e102417", null))
 	else if(isturf(loc))
 		var/turf/location = loc
 		if(!isopenturf(location))
-			. += span_warning(LANG("obj.23df1d7b", null))
+			. += span_warning(LANG("obj.23df1d7b8dbfdc3e", null))
 		else if(location.is_blocked_turf(source_atom = src))
-			. += span_warning(LANG("obj.5296e4f7", null))
+			. += span_warning(LANG("obj.5296e4f7cc50672d", null))
 
 /obj/item/flatpack/multitool_act(mob/living/user, obj/item/tool)
 	. = NONE
@@ -58,16 +58,16 @@
 	if(isnull(board))
 		return ITEM_INTERACT_BLOCKING
 	if(!isturf(loc))
-		balloon_alert(user, LANG("obj.4033ccdc", null))
+		balloon_alert(user, LANG("obj.4033ccdccebcc6c3", null))
 		return ITEM_INTERACT_BLOCKING
 	var/turf/location = loc
 	if(!isopenturf(location))
-		balloon_alert(user, LANG("obj.8523d735", null))
+		balloon_alert(user, LANG("obj.8523d735d36241ac", null))
 		return ITEM_INTERACT_BLOCKING
 	else if(location.is_blocked_turf(source_atom = src))
-		balloon_alert(user, LANG("obj.46ff061e", null))
+		balloon_alert(user, LANG("obj.46ff061e362de687", null))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert_to_viewers(LANG("obj.9b6b3a3b", null))
+	balloon_alert_to_viewers(LANG("obj.9b6b3a3be88164b8", null))
 	if(!do_after(user, 1 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
@@ -89,7 +89,7 @@
 	board = null
 	var/obj/machinery/new_machine = new leaving_circuit.build_path(loc, board = leaving_circuit)
 	new_machine.on_construction(user)
-	loc.visible_message(span_warning(LANG("obj.38927dda", list(src))))
+	loc.visible_message(span_warning(LANG("obj.38927dda67b99160", list(src))))
 	playsound(src, 'sound/machines/terminal/terminal_eject.ogg', 70, TRUE)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -131,7 +131,7 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += LANG("obj.60bee37d", null)
+	. += LANG("obj.60bee37d56b5946e", null)
 	for(var/obj/item/flatpack as anything in contents)
 		. += flatpack.name
 
@@ -157,7 +157,7 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if (length(contents) >= MAX_FLAT_PACKS)
-		balloon_alert(user, LANG("obj.8abfbb3d", null))
+		balloon_alert(user, LANG("obj.8abfbb3d836014f5", null))
 		return ITEM_INTERACT_BLOCKING
 	if (!user.transferItemToLoc(attacking_item, src))
 		return ITEM_INTERACT_BLOCKING

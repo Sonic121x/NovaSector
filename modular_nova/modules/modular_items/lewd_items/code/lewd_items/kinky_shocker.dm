@@ -51,25 +51,25 @@
 /obj/item/kinky_shocker/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += span_notice(LANG("obj.f103c613", list(src, round(cell.percent()))))
+		. += span_notice(LANG("obj.f103c61308828e8d", list(src, round(cell.percent()))))
 	else
-		. += span_warning(LANG("obj.a88e2f32", list(src)))
+		. += span_warning(LANG("obj.a88e2f3257272994", list(src)))
 
 /obj/item/kinky_shocker/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	var/obj/item/stock_parts/power_store/cell/powercell = tool
 	if(!istype(powercell))
 		return ..()
 	if(cell)
-		to_chat(user, span_warning(LANG("obj.6ce8d100", list(src))))
+		to_chat(user, span_warning(LANG("obj.6ce8d1004a112c57", list(src))))
 		return ITEM_INTERACT_BLOCKING
 	else
 		if(powercell.maxcharge < cell_hit_cost)
-			to_chat(user, span_notice(LANG("obj.82ea442c", list(src))))
+			to_chat(user, span_notice(LANG("obj.82ea442cce47f39a", list(src))))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(powercell, src))
 			return ITEM_INTERACT_BLOCKING
 		cell = powercell
-		to_chat(user, span_notice(LANG("obj.9bc9caa9", list(src))))
+		to_chat(user, span_notice(LANG("obj.9bc9caa999424042", list(src))))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -83,7 +83,7 @@
 	cell.update_appearance()
 	cell.forceMove(get_turf(src))
 	cell = null
-	to_chat(user, span_notice(LANG("obj.5fdb5c9e", list(src))))
+	to_chat(user, span_notice(LANG("obj.5fdb5c9e5937160a", list(src))))
 	shocker_on = FALSE
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
@@ -94,14 +94,14 @@
 /obj/item/kinky_shocker/proc/toggle_shocker(mob/user)
 	if(cell && cell.charge >= cell_hit_cost)
 		shocker_on = !shocker_on
-		to_chat(user, span_notice(LANG("obj.89a48fe6", list(shocker_on? "on. Buzz!" : "off."))))
+		to_chat(user, span_notice(LANG("obj.89a48fe6ce6354a6", list(shocker_on? "on. Buzz!" : "off."))))
 		playsound_if_pref(user, shocker_on ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 	else
 		shocker_on = FALSE
 		if(!cell)
-			to_chat(user, span_warning(LANG("obj.a4409c9a", list(src))))
+			to_chat(user, span_warning(LANG("obj.a4409c9a809c8775", list(src))))
 		else
-			to_chat(user, span_warning(LANG("obj.dc821be8", list(src))))
+			to_chat(user, span_warning(LANG("obj.dc821be82982f526", list(src))))
 	update_appearance()
 	add_fingerprint(user)
 
@@ -116,12 +116,12 @@
 		return
 
 	if(!shocker_on)
-		to_chat(user, span_danger(LANG("obj.a7060135", list(src))))
+		to_chat(user, span_danger(LANG("obj.a7060135677f81d8", list(src))))
 		return
 	var/message = ""
 	var/targetedsomewhere = FALSE
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger(LANG("obj.8d0a0182", list(target))))
+		to_chat(user, span_danger(LANG("obj.8d0a01828f0e2a19", list(target))))
 		return
 	deductcharge(cell_hit_cost)
 	playsound_if_pref(loc, 'sound/items/weapons/taserhit.ogg', 70, 1, -1)
@@ -153,7 +153,7 @@
 												"shocks [target]'s pussy with [src]",
 												"leans [src] against [target]'s vagina, turning it on")
 				else
-					to_chat(user, span_danger(LANG("obj.c5b0317d", list(target))))
+					to_chat(user, span_danger(LANG("obj.c5b0317d58c50f81", list(target))))
 					return
 
 			else if(penis)
@@ -163,7 +163,7 @@
 												"shocks [target]'s penis with [src]",
 												"leans [src] against [target]'s penis, turning shocker on")
 				else
-					to_chat(user, span_danger(LANG("obj.c5b0317d", list(target))))
+					to_chat(user, span_danger(LANG("obj.c5b0317d58c50f81", list(target))))
 					return
 
 			else if(vagina)
@@ -173,7 +173,7 @@
 												"shocks [target]'s pussy with [src]",
 												"leans [src] against [target]'s vagina, turning it on")
 				else
-					to_chat(user, span_danger(LANG("obj.c5b0317d", list(target))))
+					to_chat(user, span_danger(LANG("obj.c5b0317d58c50f81", list(target))))
 					return
 
 			else
@@ -183,7 +183,7 @@
 												"shocks [target]'s tummy with [src]",
 												"leans [src] against [target]'s belly, turning it on")
 				else
-					to_chat(user, span_danger(LANG("obj.c5b0317d", list(target))))
+					to_chat(user, span_danger(LANG("obj.c5b0317d58c50f81", list(target))))
 					return
 
 		if(BODY_ZONE_CHEST)
@@ -196,7 +196,7 @@
 												"shocks [target]'s nipples with [src]",
 												"leans [src] against [target]'s tits, turning it on")
 				else
-					to_chat(user, span_danger(LANG("obj.b0aede84", list(target))))
+					to_chat(user, span_danger(LANG("obj.b0aede841acb5a5f", list(target))))
 					return
 
 			else
@@ -206,7 +206,7 @@
 												"shocks [target]'s nipples with [src]",
 												"leans [src] against [target]'s chest, turning it on")
 				else
-					to_chat(user, span_danger(LANG("obj.b0aede84", list(target))))
+					to_chat(user, span_danger(LANG("obj.b0aede841acb5a5f", list(target))))
 					return
 
 		if(BODY_ZONE_R_ARM)
@@ -218,10 +218,10 @@
 												"shocks [target]'s right arm with [src]",
 												"leans [src] against [target]'s right arm, turning it on")
 				else
-					to_chat(user, span_danger(LANG("obj.be453223", list(target))))
+					to_chat(user, span_danger(LANG("obj.be453223727086b4", list(target))))
 					return
 			else
-				to_chat(user, span_danger(LANG("obj.a8f1e4ff", list(target))))
+				to_chat(user, span_danger(LANG("obj.a8f1e4ff4c83c48d", list(target))))
 				return
 
 		if(BODY_ZONE_L_ARM)
@@ -233,10 +233,10 @@
 												"shocks [target]'s left arm with [src]",
 												"leans [src] against [target]'s left arm, turning it on")
 				else
-					to_chat(user, span_danger(LANG("obj.be453223", list(target))))
+					to_chat(user, span_danger(LANG("obj.be453223727086b4", list(target))))
 					return
 			else
-				to_chat(user, span_danger(LANG("obj.a8f1e4ff", list(target))))
+				to_chat(user, span_danger(LANG("obj.a8f1e4ff4c83c48d", list(target))))
 				return
 
 		if(BODY_ZONE_HEAD)
@@ -247,7 +247,7 @@
 											"shocks [target]'s neck with [src]",
 											"leans [src] against [target]'s neck, turning it on")
 			else
-				to_chat(user, span_danger(LANG("obj.7eb6b85e", list(target))))
+				to_chat(user, span_danger(LANG("obj.7eb6b85efdd1bc0d", list(target))))
 				return
 
 		if(BODY_ZONE_L_LEG)
@@ -259,10 +259,10 @@
 												"shocks [target]'s left foot with [src]",
 												"leans [src] against [target]'s left leg, turning it on")
 				else
-					to_chat(user, span_danger(LANG("obj.d1d633f8", list(target))))
+					to_chat(user, span_danger(LANG("obj.d1d633f81c796206", list(target))))
 					return
 			else
-				to_chat(user, span_danger(LANG("obj.0137a1dc", list(target))))
+				to_chat(user, span_danger(LANG("obj.0137a1dc379adf13", list(target))))
 				return
 
 		if(BODY_ZONE_R_LEG)
@@ -275,10 +275,10 @@
 												"leans [src] against [target]'s right leg, turning it on")
 
 				else
-					to_chat(user, span_danger(LANG("obj.d1d633f8", list(target))))
+					to_chat(user, span_danger(LANG("obj.d1d633f81c796206", list(target))))
 					return
 			else
-				to_chat(user, span_danger(LANG("obj.0137a1dc", list(target))))
+				to_chat(user, span_danger(LANG("obj.0137a1dc379adf13", list(target))))
 				return
 	if(!targetedsomewhere)
 		return

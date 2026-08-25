@@ -8,7 +8,7 @@
 
 /datum/storage/pod/open_storage(mob/to_show)
 	if(locked && isliving(to_show)) //Observers get to see anyway
-		to_chat(to_show, span_warning(LANG("datum.eeadf3c3", null)))
+		to_chat(to_show, span_warning(LANG("datum.eeadf3c316e3d64b", null)))
 		return FALSE
 	return ..()
 

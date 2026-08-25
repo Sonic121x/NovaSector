@@ -117,7 +117,7 @@
 			anomaly_core.forceMove(drop_location())
 			anomaly_core = null
 		else // You exceeded the cap sorry
-			visible_message(span_warning(LANG("obj.dc6d431a", list(anomaly_core))))
+			visible_message(span_warning(LANG("obj.dc6d431aa94456a9", list(anomaly_core))))
 			new /obj/item/inert_anomaly(drop_location())
 
 	// else, anomaly core gets deleted by qdel(src).
@@ -126,9 +126,9 @@
 
 /obj/effect/anomaly/analyzer_act(mob/living/user, obj/item/analyzer/tool)
 	if(!isnull(anomaly_core))
-		to_chat(user, span_notice(LANG("obj.cb5485bc", list(src, format_frequency(anomaly_core.frequency), anomaly_core.code))))
+		to_chat(user, span_notice(LANG("obj.cb5485bc340b4fd7", list(src, format_frequency(anomaly_core.frequency), anomaly_core.code))))
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_notice(LANG("obj.c2f96d17", list(src))))
+	to_chat(user, span_notice(LANG("obj.c2f96d177e50bc46", list(src))))
 	return ITEM_INTERACT_BLOCKING
 
 ///Stabilize an anomaly, letting it stay around forever or untill destabilizes by a player. An anomaly without a core can't be signalled, but can be destabilized

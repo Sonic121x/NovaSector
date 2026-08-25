@@ -38,7 +38,7 @@
 		var/mob/living/silicon/robot/robot_user = user
 
 		if(robot_user.cell?.charge < STANDARD_CELL_CHARGE * 0.2)
-			to_chat(robot_user , span_warning(LANG("datum.db37b934", null)))
+			to_chat(robot_user , span_warning(LANG("datum.db37b9343126e9ce", null)))
 			return FALSE
 		robot_user.cell.use(STANDARD_CELL_CHARGE * 0.2)
 	return ..()

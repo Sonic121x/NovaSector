@@ -102,7 +102,7 @@
 
 /datum/action/cooldown/alien/make_structure/lay_egg/Activate(atom/target)
 	. = ..()
-	owner.visible_message(span_alertalien(LANG("datum.e0a767fe", list(owner))))
+	owner.visible_message(span_alertalien(LANG("datum.e0a767fee8b79dc2", list(owner))))
 
 //Button to let queen choose her praetorian.
 /datum/action/cooldown/alien/promote
@@ -136,21 +136,21 @@
 /datum/action/cooldown/alien/promote/Activate(atom/target)
 	var/obj/item/queen_promotion/existing_promotion = locate() in owner.held_items
 	if(existing_promotion)
-		to_chat(owner, span_noticealien(LANG("datum.edeef4af", list(existing_promotion))))
+		to_chat(owner, span_noticealien(LANG("datum.edeef4afc3219c31", list(existing_promotion))))
 		owner.temporarilyRemoveItemFromInventory(existing_promotion)
 		qdel(existing_promotion)
 		return TRUE
 
 	if(!owner.get_empty_held_indexes())
-		to_chat(owner, span_warning(LANG("datum.59f45e63", null)))
+		to_chat(owner, span_warning(LANG("datum.59f45e63a9233ff7", null)))
 		return FALSE
 
 	var/obj/item/queen_promotion/new_promotion = new(owner.loc)
 	if(!owner.put_in_hands(new_promotion, del_on_fail = TRUE))
-		to_chat(owner, span_noticealien(LANG("datum.29307d58", null)))
+		to_chat(owner, span_noticealien(LANG("datum.29307d58b76fa836", null)))
 		return FALSE
 
-	to_chat(owner, span_noticealien(LANG("datum.4b1ef811", list(new_promotion))))
+	to_chat(owner, span_noticealien(LANG("datum.4b1ef8112e7f7e71", list(new_promotion))))
 	return TRUE
 
 /obj/item/queen_promotion
@@ -170,11 +170,11 @@
 		CRASH("[type] was created and handled by a mob ([queen]) that didn't have a promotion action associated.")
 
 	if(!isalienadult(to_promote) || isalienroyal(to_promote))
-		to_chat(queen, span_noticealien(LANG("obj.6b021694", null)))
+		to_chat(queen, span_noticealien(LANG("obj.6b0216944e5e4250", null)))
 		return
 
 	if(!promotion.IsAvailable())
-		to_chat(queen, span_noticealien(LANG("obj.0d8eb434", null)))
+		to_chat(queen, span_noticealien(LANG("obj.0d8eb4343a69e552", null)))
 		return
 
 	if(IS_UNCONSCIOUS_OR_CRIT(to_promote) || !to_promote.mind || !to_promote.key)
@@ -182,10 +182,10 @@
 
 	queen.adjustPlasma(-promotion.promotion_plasma_cost)
 
-	to_chat(queen, span_noticealien(LANG("obj.d1b01c6f", list(to_promote))))
+	to_chat(queen, span_noticealien(LANG("obj.d1b01c6fc12392d3", list(to_promote))))
 	to_promote.visible_message(
-		span_alertalien(LANG("obj.c11d82d2", list(to_promote))),
-		span_noticealien(LANG("obj.31cae26d", null)),
+		span_alertalien(LANG("obj.c11d82d2d6fbc448", list(to_promote))),
+		span_noticealien(LANG("obj.31cae26d4681031e", null)),
 	)
 
 	var/mob/living/carbon/alien/lucky_winner = to_promote
@@ -195,10 +195,10 @@
 	return TRUE
 
 /obj/item/queen_promotion/attack_self(mob/user)
-	to_chat(user, span_noticealien(LANG("obj.edeef4af", list(src))))
+	to_chat(user, span_noticealien(LANG("obj.edeef4afc3219c31", list(src))))
 	qdel(src)
 
 /obj/item/queen_promotion/dropped(mob/user, silent)
 	if(!silent)
-		to_chat(user, span_noticealien(LANG("obj.edeef4af", list(src))))
+		to_chat(user, span_noticealien(LANG("obj.edeef4afc3219c31", list(src))))
 	return ..()

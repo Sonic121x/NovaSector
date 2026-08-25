@@ -47,7 +47,7 @@
 	AddElement(/datum/element/mob_grabber)
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW)
 	AddElement(/datum/element/basic_eating, food_types = target_foods)
-	AddComponent(/datum/component/speechmod, replacements = strings("crustacean_replacement.json", "crustacean"))
+	AddComponent(/datum/component/speechmod, replacements = lang_speech_replacements("crustacean_replacement.json", "crustacean"))
 	AddComponent(\
 		/datum/component/amputating_limbs,\
 		surgery_time = snip_speed, \
@@ -235,7 +235,7 @@
 	// NOVA EDIT CHANGE - i18n: name is reverse-localized at Initialize so it never == the english initial(name), which
 	// made a default-named juvenile "look custom-named" and keep the juvenile name after growing. Also accept the
 	// un-reversed form, and reverse-localize the grown caste name. no-op on en. - ORIGINAL: name == initial(name) ? grow_type::name : name
-	var/name_to_use = (name == initial(name) || lang_unreverse_text(name) == initial(name)) ? lang_reverse_text(grow_type::name) : name
+	var/name_to_use = (name == initial(name)) ? lang_reverse_text(grow_type::name) : name
 	var/mob/living/basic/mining/lobstrosity/grown = change_mob_type(grow_type, get_turf(src), name_to_use)
 	if(HAS_TRAIT(src, TRAIT_TAMED))
 		grown.tamed()
@@ -280,7 +280,7 @@
 		return FALSE
 	var/datum/targeting_strategy/targeter = GET_TARGETING_STRATEGY(parent.ai_controller.blackboard[targeting_strategy_key])
 	if(!targeter?.is_valid_target(parent, target))
-		parent.balloon_alert_to_viewers(LANG("datum.04da7f9f", null))
+		parent.balloon_alert_to_viewers(LANG("datum.04da7f9f0fd1f7c9", null))
 		return FALSE
 	return ..()
 

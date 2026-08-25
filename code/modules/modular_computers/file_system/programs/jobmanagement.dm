@@ -103,7 +103,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 				if(length(SSjob.prioritized_jobs) < 5)
 					SSjob.prioritized_jobs += j
 				else
-					computer.say(LANG("datum.9a113b58", null))
+					computer.say(LANG("datum.9a113b587314d416", null))
 			playsound(computer, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
 

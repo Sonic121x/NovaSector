@@ -98,7 +98,7 @@
 		return TRUE
 	if(silent || !isitem(eat_target)) //Don't bother reporting it for everything
 		return FALSE
-	to_chat(src, span_warning(LANG("mob.4a1fed07", list(eat_target))))
+	to_chat(src, span_warning(LANG("mob.4a1fed0761bdc78c", list(eat_target))))
 	return FALSE
 
 ///* Gelatinious Ooze code below *\\\\
@@ -177,7 +177,7 @@
 	ooze.add_movespeed_modifier(/datum/movespeed_modifier/metabolicboost)
 	var/timerid = addtimer(CALLBACK(src, PROC_REF(HeatUp)), 1 SECONDS, TIMER_STOPPABLE | TIMER_LOOP) //Heat up every second
 	addtimer(CALLBACK(src, PROC_REF(FinishSpeedup), timerid), 6 SECONDS)
-	to_chat(ooze, span_notice(LANG("datum.c86f6bda", null)))
+	to_chat(ooze, span_notice(LANG("datum.c86f6bda8bc436de", null)))
 	active = TRUE
 	ooze.adjust_ooze_nutrition(-10)
 
@@ -190,7 +190,7 @@
 /datum/action/cooldown/metabolicboost/proc/FinishSpeedup(timerid)
 	var/mob/living/simple_animal/hostile/ooze/ooze = owner
 	ooze.remove_movespeed_modifier(/datum/movespeed_modifier/metabolicboost)
-	to_chat(ooze, span_notice(LANG("datum.aaad39b5", null)))
+	to_chat(ooze, span_notice(LANG("datum.aaad39b5a29fd7f6", null)))
 	deltimer(timerid)
 	active = FALSE
 	StartCooldown()
@@ -227,15 +227,15 @@
 		stop_consuming()
 		return FALSE
 	if(!isliving(ooze.pulling))
-		to_chat(src, span_warning(LANG("datum.fbf7fbeb", null)))
+		to_chat(src, span_warning(LANG("datum.fbf7fbeb27868932", null)))
 		return FALSE
 	var/mob/living/eat_target = ooze.pulling
-	owner.visible_message(span_warning(LANG("datum.55a41841", list(ooze, devour_verb, eat_target))), span_notice(LANG("datum.bf113076", list(devour_verb, eat_target))))
+	owner.visible_message(span_warning(LANG("datum.55a4184195a5e9ee", list(ooze, devour_verb, eat_target))), span_notice(LANG("datum.bf11307626c820b9", list(devour_verb, eat_target))))
 	if(!do_after(ooze, devour_time, eat_target))
 		return FALSE
 
 	if(!(eat_target.mob_biotypes & MOB_ORGANIC) || eat_target.stat == DEAD)
-		to_chat(src, span_warning(LANG("datum.edcddd2e", null)))
+		to_chat(src, span_warning(LANG("datum.edcddd2e068b5242", null)))
 		return FALSE
 	start_consuming(eat_target)
 
@@ -245,7 +245,7 @@
 	vored_mob.forceMove(owner) ///AAAAAAAAAAAAAAAAAAAAAAHHH!!!
 	RegisterSignal(vored_mob, COMSIG_QDELETING, PROC_REF(stop_consuming))
 	playsound(owner,'sound/items/eatfood.ogg', rand(30,50), TRUE)
-	owner.visible_message(span_warning(LANG("datum.73829518", list(owner, devour_verb, target))), span_notice(LANG("datum.d6171b71", list(devour_verb, target))))
+	owner.visible_message(span_warning(LANG("datum.73829518320af0f7", list(owner, devour_verb, target))), span_notice(LANG("datum.d6171b714b8cf981", list(devour_verb, target))))
 	START_PROCESSING(SSprocessing, src)
 	build_all_button_icons(UPDATE_BUTTON_NAME|UPDATE_BUTTON_ICON)
 
@@ -257,7 +257,7 @@
 		return
 	vored_mob.forceMove(get_turf(owner))
 	playsound(get_turf(owner), 'sound/effects/splat.ogg', 50, TRUE)
-	owner.visible_message(span_warning(LANG("datum.554bf4a8", list(owner, vored_mob))), span_notice(LANG("datum.392778de", list(vored_mob))))
+	owner.visible_message(span_warning(LANG("datum.554bf4a855a8d3e4", list(owner, vored_mob))), span_notice(LANG("datum.392778debe068b7b", list(vored_mob))))
 	UnregisterSignal(vored_mob, COMSIG_QDELETING)
 	vored_mob = null
 	build_all_button_icons(UPDATE_BUTTON_NAME|UPDATE_BUTTON_ICON)
@@ -281,10 +281,10 @@
 /datum/action/consume/update_button_name(atom/movable/screen/movable/action_button/button, force)
 	if(vored_mob)
 		name = "Eject Mob"
-		desc = LANG("datum.31ae7483", null)
+		desc = LANG("datum.31ae74834a6e7c37", null)
 	else
 		name = "Consume"
-		desc = LANG("datum.47e4d323", null)
+		desc = LANG("datum.47e4d323b0035cbd", null)
 	return ..()
 
 /datum/action/consume/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force)
@@ -337,14 +337,14 @@
 	var/mob/living/simple_animal/hostile/ooze/oozy_owner = owner
 	if(istype(oozy_owner))
 		if(oozy_owner.ooze_nutrition < 5)
-			to_chat(oozy_owner, span_warning(LANG("datum.3de6887c", null)))
+			to_chat(oozy_owner, span_warning(LANG("datum.3de6887c9a3274fe", null)))
 			return
 	. = ..()
 	if(!.)
 		return
 
 	oozy_owner.adjust_ooze_nutrition(-5)
-	to_chat(on_who, span_notice(LANG("datum.d02e73c8", null)))
+	to_chat(on_who, span_notice(LANG("datum.d02e73c8968977d1", null)))
 
 /datum/action/cooldown/globules/unset_click_ability(mob/on_who, refund_cooldown = TRUE)
 	. = ..()
@@ -354,7 +354,7 @@
 	if(refund_cooldown)
 		var/mob/living/simple_animal/hostile/ooze/oozy_owner = owner
 		oozy_owner.adjust_ooze_nutrition(5)
-		to_chat(on_who, span_notice(LANG("datum.39f31c9e", null)))
+		to_chat(on_who, span_notice(LANG("datum.39f31c9eed32a382", null)))
 
 /datum/action/cooldown/globules/InterceptClickOn(mob/living/clicker, params, atom/target)
 	. = ..()
@@ -366,8 +366,8 @@
 	// for passing into aim_projectile, so we'll handle it here instead.
 	// We just need to make sure Pre-activate and Activate return TRUE so we make it this far
 	clicker.visible_message(
-		span_nicegreen(LANG("datum.13fdd54d", list(clicker))),
-		span_notice(LANG("datum.1c56fb0d", null)),
+		span_nicegreen(LANG("datum.13fdd54dc0b095b3", list(clicker))),
+		span_notice(LANG("datum.1c56fb0d04975f47", null)),
 	)
 
 	var/mob/living/simple_animal/hostile/ooze/oozy = clicker
@@ -427,7 +427,7 @@
 	. = ..()
 	for(var/obj/item/mending_globule/existing in target_limb.embedded_objects)
 		if ((existing != parent))
-			target.visible_message(span_warning(LANG("datum.8f7756d0", list(parent, target, target_limb.plaintext_zone))))
+			target.visible_message(span_warning(LANG("datum.8f7756d0fbfed644", list(parent, target, target_limb.plaintext_zone))))
 			qdel(parent)
 			return FALSE
 		else
@@ -463,9 +463,9 @@
 /datum/action/cooldown/gel_cocoon/proc/gel_cocoon()
 	var/mob/living/simple_animal/hostile/ooze/grapes/ooze = owner
 	if(!iscarbon(ooze.pulling))
-		to_chat(src, span_warning(LANG("datum.aecef809", null)))
+		to_chat(src, span_warning(LANG("datum.aecef8094eb9d074", null)))
 		return FALSE
-	owner.visible_message(span_nicegreen(LANG("datum.14119cee", list(ooze, target))), span_notice(LANG("datum.9dd6be84", list(target))))
+	owner.visible_message(span_nicegreen(LANG("datum.14119cee0e220bea", list(ooze, target))), span_notice(LANG("datum.9dd6be8446d8b869", list(target))))
 	if(!do_after(ooze, 1.5 SECONDS, target = ooze.pulling))
 		return FALSE
 
@@ -484,7 +484,7 @@
 /datum/action/cooldown/gel_cocoon/proc/put_in_cocoon(mob/living/carbon/target)
 	var/obj/structure/gel_cocoon/cocoon = new /obj/structure/gel_cocoon(get_turf(target))
 	cocoon.insert_target(target)
-	owner.visible_message(span_nicegreen(LANG("datum.64ccf422", list(owner, target))), span_notice(LANG("datum.a71cc89e", list(target))))
+	owner.visible_message(span_nicegreen(LANG("datum.64ccf42269324808", list(owner, target))), span_notice(LANG("datum.a71cc89e1e6b909d", list(target))))
 
 /obj/structure/gel_cocoon
 	name = "gel cocoon"
@@ -501,8 +501,8 @@
 
 /obj/structure/gel_cocoon/container_resist_act(mob/living/user)
 	. = ..()
-	user.visible_message(span_notice(LANG("obj.ee041f55", list(user, src))), \
-		span_notice(LANG("obj.08763a7e", null)))
+	user.visible_message(span_notice(LANG("obj.ee041f55dee987d5", list(user, src))), \
+		span_notice(LANG("obj.08763a7ee8c10a29", null)))
 	if(!do_after(user, 1.5 SECONDS, target = src))
 		return FALSE
 	dump_inhabitant()
@@ -518,7 +518,7 @@
 	inhabitant.forceMove(get_turf(src))
 	playsound(get_turf(inhabitant), 'sound/effects/splat.ogg', 50, TRUE)
 	inhabitant.Paralyze(10)
-	inhabitant.visible_message(span_warning(LANG("obj.64fbe43f", list(inhabitant, src))), span_notice(LANG("obj.730014fe", list(src))))
+	inhabitant.visible_message(span_warning(LANG("obj.64fbe43f3fb1a8f8", list(inhabitant, src))), span_notice(LANG("obj.730014febb2b89a1", list(src))))
 	if(destroy_after)
 		qdel(src)
 

@@ -41,7 +41,7 @@
 	obj_flags |= EMAGGED
 	screen_icon = "emagged_general"
 	update_appearance()
-	balloon_alert(user, LANG("obj.f8b9607c", null))
+	balloon_alert(user, LANG("obj.f8b9607c65b94406", null))
 	return TRUE
 
 /obj/machinery/gulag_item_reclaimer/ui_interact(mob/user, datum/tgui/ui)
@@ -70,7 +70,7 @@
 	for(var/i in stored_items)
 		var/mob/thismob = i
 		if(QDELETED(thismob))
-			say(LANG("obj.c49cc120", null))
+			say(LANG("obj.c49cc120560fd861", null))
 			drop_items(thismob)
 			continue
 		var/list/mob_info = list()
@@ -92,7 +92,7 @@
 		if("release_items")
 			var/mob/living/carbon/human/H = locate(params["mobref"]) in stored_items
 			if(H != usr && !allowed(usr))
-				to_chat(usr, span_warning(LANG("obj.077f9b52", null)))
+				to_chat(usr, span_warning(LANG("obj.077f9b52c530e7f8", null)))
 				return
 			drop_items(H)
 			. = TRUE
@@ -101,7 +101,7 @@
 	if(!stored_items[user])
 		return
 	if(!use_energy(active_power_usage, force = FALSE))
-		balloon_alert(user, LANG("obj.204cf586", null))
+		balloon_alert(user, LANG("obj.204cf586a1a03b27", null))
 		return
 	var/drop_location = drop_location()
 	for(var/i in stored_items[user])

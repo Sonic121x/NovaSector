@@ -33,7 +33,7 @@
 			if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.emote("cough")
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger(LANG("datum.a337cfc0", null)))
+				to_chat(affected_mob, span_danger(LANG("datum.a337cfc07d00e683", null)))
 				affected_mob.take_bodypart_damage(0, 5, updating_health = FALSE)
 
 		if(3)
@@ -43,5 +43,5 @@
 			if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.emote("cough")
 			if(SPT_PROB(2.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger(LANG("datum.a337cfc0", null)))
+				to_chat(affected_mob, span_danger(LANG("datum.a337cfc07d00e683", null)))
 				affected_mob.take_bodypart_damage(0, 5, updating_health = FALSE)

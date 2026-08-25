@@ -24,7 +24,7 @@
 		return FALSE
 	var/obj/item/circuitboard/computer/syndicate_shuttle/board = circuit
 	if(board?.challenge_start_time && world.time < board.challenge_start_time + SYNDICATE_CHALLENGE_TIMER)
-		to_chat(user, span_warning(LANG("obj.d16fdd75", list(DisplayTimeText(board.challenge_start_time + SYNDICATE_CHALLENGE_TIMER - world.time)))))
+		to_chat(user, span_warning(LANG("obj.d16fdd7513fba1de", list(DisplayTimeText(board.challenge_start_time + SYNDICATE_CHALLENGE_TIMER - world.time)))))
 		return FALSE
 	board.moved = TRUE
 	return TRUE
@@ -51,7 +51,7 @@
 	if(!.)
 		return FALSE
 	if(!is_reserved_level(z))
-		to_chat(user, span_warning(LANG("obj.44173d0b", null)))
+		to_chat(user, span_warning(LANG("obj.44173d0be738231b", null)))
 		return FALSE
 	return TRUE
 

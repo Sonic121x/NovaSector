@@ -70,17 +70,17 @@
 	var/obj/item/bodypart/applying_to = target.get_bodypart(deprecise_zone(user.zone_selected))
 
 	if(isnull(applying_to))
-		target.balloon_alert(user, LANG("datum.241157a2", null))
+		target.balloon_alert(user, LANG("datum.241157a2287516a9", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!(applying_to.body_zone in valid_zones))
-		target.balloon_alert(user, LANG("datum.ebe45f79", null))
+		target.balloon_alert(user, LANG("datum.ebe45f797ee37de3", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!override_existing)
 		var/obj/item/existing = LAZYACCESS(applying_to.applied_items, apply_category)
 		if(!isnull(existing))
-			target.balloon_alert(user, LANG("datum.aafa400e", null))
+			target.balloon_alert(user, LANG("datum.aafa400eb85d74a4", null))
 			return ITEM_INTERACT_BLOCKING
 
 	if(can_apply)
@@ -100,7 +100,7 @@
 		applying = stack_parent.split_stack(1)
 
 	else if(!user.temporarilyRemoveItemFromInventory(applying))
-		target.balloon_alert(user, LANG("datum.a0fb92ef", list(applying.name)))
+		target.balloon_alert(user, LANG("datum.a0fb92ef59ac6e35", list(applying.name)))
 		return
 
 	applying_to.apply_item(applying, apply_category, override_existing)

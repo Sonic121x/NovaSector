@@ -65,9 +65,9 @@
 /obj/structure/displaycase/examine(mob/user)
 	. = ..()
 	if(alert)
-		. += span_notice(LANG("obj.d417b555", null))
+		. += span_notice(LANG("obj.d417b55505b1b693", null))
 	if(showpiece)
-		. += span_notice(LANG("obj.0b037123", list(showpiece)))
+		. += span_notice(LANG("obj.0b037123bab9d5af", list(showpiece)))
 
 ///Removes the showpiece from the displaycase
 /obj/structure/displaycase/proc/dump()
@@ -129,10 +129,10 @@
 /obj/structure/displaycase/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.GetID() && !broken)
 		if(!allowed(user))
-			to_chat(user, span_alert(LANG("obj.077f9b52", null)))
+			to_chat(user, span_alert(LANG("obj.077f9b52c530e7f8", null)))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.d6171b71", list(open ? "close":"open", src))))
+		to_chat(user, span_notice(LANG("obj.d6171b714b8cf981", list(open ? "close":"open", src))))
 		toggle_lock(user)
 		return ITEM_INTERACT_SUCCESS
 
@@ -144,10 +144,10 @@
 	if(glass_fix && broken && istype(tool, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/glass_sheet = tool
 		if(glass_sheet.get_amount() < 2)
-			to_chat(user, span_warning(LANG("obj.1dafa749", null)))
+			to_chat(user, span_warning(LANG("obj.1dafa749539e896e", null)))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.84eb98c3", list(src))))
+		to_chat(user, span_notice(LANG("obj.84eb98c3b2fd520d", list(src))))
 		if(!do_after(user, 2 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 
@@ -164,19 +164,19 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(atom_integrity == max_integrity)
-		to_chat(user, span_warning(LANG("obj.7f6370b2", list(src))))
+		to_chat(user, span_warning(LANG("obj.7f6370b2939fd6c1", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_start_check(user, amount=1))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.93449ef4", list(src))))
+	to_chat(user, span_notice(LANG("obj.93449ef42b686baf", list(src))))
 	if(!tool.use_tool(src, user, 40, volume=50))
 		return ITEM_INTERACT_BLOCKING
 
 	atom_integrity = max_integrity
 	update_appearance()
-	to_chat(user, span_notice(LANG("obj.e94d13eb", list(src))))
+	to_chat(user, span_notice(LANG("obj.e94d13ebf50e7df1", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/displaycase/crowbar_act(mob/living/user, obj/item/tool)
@@ -185,18 +185,18 @@
 
 	if(broken)
 		if(showpiece)
-			to_chat(user, span_warning(LANG("obj.ea7ab49f", null)))
+			to_chat(user, span_warning(LANG("obj.ea7ab49f676c377f", null)))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice(LANG("obj.9392e509", null)))
+		to_chat(user, span_notice(LANG("obj.9392e509cc853bb5", null)))
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_notice(LANG("obj.9712cf58", list(open ? "close":"open", src))))
+	to_chat(user, span_notice(LANG("obj.9712cf5817898377", list(open ? "close":"open", src))))
 	if(!tool.use_tool(src, user, 20))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.d6171b71", list(open ? "close":"open", src))))
+	to_chat(user, span_notice(LANG("obj.d6171b714b8cf981", list(open ? "close":"open", src))))
 	toggle_lock(user)
 	return ITEM_INTERACT_SUCCESS
 
@@ -204,11 +204,11 @@
 ///Handles placing an item into the display case. Returns TRUE if the item failed to be placed inside the container, useful for descendants
 /obj/structure/displaycase/proc/insert_showpiece(obj/item/new_showpiece, mob/user)
 	if(showpiece_type && !istype(new_showpiece, showpiece_type))
-		to_chat(user, span_notice(LANG("obj.69abcb9c", null)))
+		to_chat(user, span_notice(LANG("obj.69abcb9c2dc788a2", null)))
 		return TRUE
 	if(user.transferItemToLoc(new_showpiece, src))
 		showpiece = new_showpiece
-		to_chat(user, span_notice(LANG("obj.aedaabdd", list(new_showpiece))))
+		to_chat(user, span_notice(LANG("obj.aedaabddae881a46", list(new_showpiece))))
 		update_appearance()
 
 ///Opens and closes the display case
@@ -226,7 +226,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	if (showpiece && (broken || open))
-		to_chat(user, span_notice(LANG("obj.fd267b65", null)))
+		to_chat(user, span_notice(LANG("obj.fd267b65000108b4", null)))
 		log_combat(user, src, "deactivates the hover field of")
 		dump()
 		add_fingerprint(user)
@@ -241,7 +241,7 @@
 			if(!user.is_blind())
 				user.examinate(src)
 			return
-		user.visible_message(span_danger(LANG("obj.64eb3940", list(user))), null, null, COMBAT_MESSAGE_RANGE)
+		user.visible_message(span_danger(LANG("obj.64eb394059ba73b3", list(user))), null, null, COMBAT_MESSAGE_RANGE)
 		log_combat(user, src, "kicks")
 		user.do_attack_animation(src, ATTACK_EFFECT_KICK)
 		take_damage(2)
@@ -284,12 +284,12 @@
 /obj/structure/displaycase_chassis/examine(mob/user)
 	. = ..()
 	if(!electronics)
-		. += span_notice(LANG("obj.ce9175a1", list(EXAMINE_HINT("airlock electronics"))))
-	. += span_notice(LANG("obj.e31269f5", list(src, EXAMINE_HINT("10 glass sheets"), EXAMINE_HINT("card reader"))))
+		. += span_notice(LANG("obj.ce9175a1c2474b02", list(EXAMINE_HINT("airlock electronics"))))
+	. += span_notice(LANG("obj.e31269f5c38be134", list(src, EXAMINE_HINT("10 glass sheets"), EXAMINE_HINT("card reader"))))
 
 /obj/structure/displaycase_chassis/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, LANG("obj.b5ba9871", null))
+	balloon_alert(user, LANG("obj.b5ba987161d1a2e3", null))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 3 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
@@ -302,16 +302,16 @@
 
 /obj/structure/displaycase_chassis/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/electronics/airlock))
-		balloon_alert(user, LANG("obj.3ddbe0ad", null))
+		balloon_alert(user, LANG("obj.3ddbe0ade75b4f02", null))
 		if(!do_after(user, 3 SECONDS, target = src) || !user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
 		electronics = tool
-		balloon_alert(user, LANG("obj.4513d6bd", null))
+		balloon_alert(user, LANG("obj.4513d6bd3013f61e", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/stock_parts/card_reader))
-		balloon_alert(user, LANG("obj.863a5bba", list(tool)))
+		balloon_alert(user, LANG("obj.863a5bbab9096b80", list(tool)))
 		if(!do_after(user, 2 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 
@@ -322,10 +322,10 @@
 	if(istype(tool, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/glass_sheets = tool
 		if(glass_sheets.get_amount() < 10)
-			balloon_alert(user, LANG("obj.c2fe6896", null))
+			balloon_alert(user, LANG("obj.c2fe68969a7aa57e", null))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.87806593", null))
+		balloon_alert(user, LANG("obj.87806593ba68bc0d", null))
 		if(!do_after(user, 2 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 
@@ -403,7 +403,7 @@
 /obj/structure/displaycase/trophy/dump()
 	if (showpiece)
 		if(holographic_showpiece)
-			visible_message(span_danger(LANG("obj.55caec2b", list(showpiece))))
+			visible_message(span_danger(LANG("obj.55caec2b3da9d3df", list(showpiece))))
 			do_sparks(number = 1, cardinal_only = FALSE, source = src)
 			QDEL_NULL(showpiece)
 			holographic_showpiece = FALSE
@@ -421,7 +421,7 @@
 ///Toggles the mode that shows the historian panel on the UI, enabling saving the looks and the trophy message of the current trophy
 /obj/structure/displaycase/trophy/proc/toggle_historian_mode(mob/user)
 	historian_mode = !historian_mode
-	balloon_alert(user, LANG("obj.40e20999", list(historian_mode ? "enabled" : "disabled")))
+	balloon_alert(user, LANG("obj.40e20999d62a7407", list(historian_mode ? "enabled" : "disabled")))
 	playsound(src, 'sound/machines/beep/twobeep.ogg', 10, vary = 50)
 	SStgui.update_uis(src)
 
@@ -461,7 +461,7 @@
 			return
 		if("change_message")
 			if(showpiece && !holographic_showpiece)
-				var/new_trophy_message = tgui_input_text(usr, LANG("obj.4eb968d1", null), LANG("obj.2c36c536", null), trophy_message, max_length = MAX_PLAQUE_LEN)
+				var/new_trophy_message = tgui_input_text(usr, LANG("obj.4eb968d18494e009", null), LANG("obj.2c36c536bbf44629", null), trophy_message, max_length = MAX_PLAQUE_LEN)
 				if(!new_trophy_message)
 					return
 				trophy_message = new_trophy_message
@@ -572,32 +572,32 @@
 	switch(action)
 		if("Buy")
 			if(!showpiece)
-				to_chat(usr, span_notice(LANG("obj.85410e60", null)))
+				to_chat(usr, span_notice(LANG("obj.85410e603aac4922", null)))
 				return TRUE
 			if(broken)
-				to_chat(usr, span_notice(LANG("obj.9b2d5e64", list(src))))
+				to_chat(usr, span_notice(LANG("obj.9b2d5e648e70880f", list(src))))
 				return TRUE
 			if(!payments_acc)
-				to_chat(usr, span_notice(LANG("obj.12494732", list(src))))
+				to_chat(usr, span_notice(LANG("obj.12494732b2a7075d", list(src))))
 				return TRUE
 			if(!usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 				return TRUE
 			if(!potential_acc)
-				to_chat(usr, span_notice(LANG("obj.9caa768c", null)))
+				to_chat(usr, span_notice(LANG("obj.9caa768c0177ac98", null)))
 				return
 			var/datum/bank_account/account = potential_acc.registered_account
 			if(!account)
-				to_chat(usr, span_notice(LANG("obj.f7f686dd", list(potential_acc))))
+				to_chat(usr, span_notice(LANG("obj.f7f686dd05824978", list(potential_acc))))
 				return
 			if(!account.has_money(sale_price))
-				to_chat(usr, span_notice(LANG("obj.20e02771", null)))
+				to_chat(usr, span_notice(LANG("obj.20e02771c9a5f672", null)))
 				return TRUE
 			else
 				account.adjust_money(-sale_price, "Display Case: [capitalize(showpiece.name)]")
 				if(payments_acc)
 					payments_acc.adjust_money(sale_price, "Display Case: [capitalize(showpiece.name)]")
 				usr.put_in_hands(showpiece)
-				to_chat(usr, span_notice(LANG("obj.1af3cc8a", list(showpiece, sale_price, MONEY_NAME))))
+				to_chat(usr, span_notice(LANG("obj.1af3cc8a13868dab", list(showpiece, sale_price, MONEY_NAME))))
 				playsound(src, 'sound/effects/cashregister.ogg', 40, TRUE)
 				flick("[initial(icon_state)]_vend", src)
 				showpiece = null
@@ -606,7 +606,7 @@
 				return TRUE
 		if("Open")
 			if(!payments_acc)
-				to_chat(usr, span_notice(LANG("obj.12494732", list(src))))
+				to_chat(usr, span_notice(LANG("obj.12494732b2a7075d", list(src))))
 				return TRUE
 			if(!potential_acc || !potential_acc.registered_account)
 				return
@@ -629,17 +629,17 @@
 				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 				return
 
-			var/new_price_input = tgui_input_number(usr, LANG("obj.5fa906cc", null), LANG("obj.78cf09d8", null), 10, 1000)
+			var/new_price_input = tgui_input_number(usr, LANG("obj.5fa906cce5b4c45f", null), LANG("obj.78cf09d837bf88d1", null), 10, 1000)
 			if(!new_price_input || QDELETED(usr) || QDELETED(src))
 				return
 			if(payments_acc != potential_acc.registered_account)
-				to_chat(usr, span_warning(LANG("obj.93939c6b", list(src))))
+				to_chat(usr, span_warning(LANG("obj.93939c6b5a10af71", list(src))))
 				return
 			if(!usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
-				to_chat(usr, span_warning(LANG("obj.797948f3", null)))
+				to_chat(usr, span_warning(LANG("obj.797948f35d0a61ef", null)))
 				return
 			sale_price = new_price_input
-			to_chat(usr, span_notice(LANG("obj.fdb4bef1", list(sale_price))))
+			to_chat(usr, span_notice(LANG("obj.fdb4bef11d5ad912", list(sale_price))))
 			SStgui.update_uis(src)
 			return TRUE
 	. = TRUE
@@ -649,7 +649,7 @@
 		//Card Registration
 		var/obj/item/card/id/potential_acc = tool
 		if(!potential_acc.registered_account)
-			to_chat(user, span_warning(LANG("obj.51d0d893", null)))
+			to_chat(user, span_warning(LANG("obj.51d0d893aa8f5b8c", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		if(payments_acc != potential_acc.registered_account)
@@ -667,7 +667,7 @@
 /obj/structure/displaycase/forsale/multitool_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(atom_integrity <= (integrity_failure * max_integrity))
-		to_chat(user, span_notice(LANG("obj.af8a4fb4", list(src))))
+		to_chat(user, span_notice(LANG("obj.af8a4fb43bed24dd", list(src))))
 		if(do_after(user, 2 SECONDS, target = src))
 			broken = FALSE
 			atom_integrity = max_integrity
@@ -678,36 +678,36 @@
 	. = ..()
 	if(open && !user.combat_mode)
 		if(anchored)
-			to_chat(user, span_notice(LANG("obj.08ee3372", list(src))))
+			to_chat(user, span_notice(LANG("obj.08ee33726ba03b76", list(src))))
 		else
-			to_chat(user, span_notice(LANG("obj.5332d34f", list(src))))
+			to_chat(user, span_notice(LANG("obj.5332d34f6490d718", list(src))))
 		if(I.use_tool(src, user, 16, volume=50))
 			if(QDELETED(I))
 				return
 			if(anchored)
-				to_chat(user, span_notice(LANG("obj.eea293d1", list(src))))
+				to_chat(user, span_notice(LANG("obj.eea293d1cf569422", list(src))))
 			else
-				to_chat(user, span_notice(LANG("obj.5f077768", list(src))))
+				to_chat(user, span_notice(LANG("obj.5f077768b597d300", list(src))))
 			set_anchored(!anchored)
 			return TRUE
 	else if(!open && !user.combat_mode)
-		to_chat(user, span_notice(LANG("obj.05e93503", list(src))))
+		to_chat(user, span_notice(LANG("obj.05e9350331b928e0", list(src))))
 		return
 
 /obj/structure/displaycase/forsale/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	payments_acc = null
 	req_access = list()
-	balloon_alert(user, LANG("obj.aa406d19", null))
-	to_chat(user, span_warning(LANG("obj.69410c91", list(src))))
+	balloon_alert(user, LANG("obj.aa406d191159d880", null))
+	to_chat(user, span_warning(LANG("obj.69410c918d2db933", list(src))))
 	return TRUE
 
 /obj/structure/displaycase/forsale/examine(mob/user)
 	. = ..()
 	if(showpiece && !open)
-		. += span_notice(LANG("obj.64631028", list(showpiece, sale_price, MONEY_NAME)))
+		. += span_notice(LANG("obj.6463102870da3feb", list(showpiece, sale_price, MONEY_NAME)))
 	if(broken)
-		. += span_notice(LANG("obj.7da37457", list(src)))
+		. += span_notice(LANG("obj.7da374577087a467", list(src)))
 
 /obj/structure/displaycase/forsale/atom_break(damage_flag)
 	. = ..()

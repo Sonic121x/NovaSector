@@ -98,7 +98,7 @@
 	playsound(src, light_on ? sound_off : sound_on, 40, TRUE)
 	if(!COOLDOWN_FINISHED(src, disabled_time))
 		if(user)
-			balloon_alert(user, LANG("obj.492a03fe", null))
+			balloon_alert(user, LANG("obj.492a03fe8030d17e", null))
 		set_light_on(FALSE)
 		update_brightness()
 		update_item_action_buttons()
@@ -118,15 +118,15 @@
 
 /obj/item/flashlight/suicide_act(mob/living/user)
 	if (user.is_blind())
-		user.visible_message(span_suicide(LANG("obj.060d50ab", list(user, src, user.p_their(), user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.060d50ab235e1a35", list(user, src, user.p_their(), user.p_theyre()))))
 		return SHAME
-	user.visible_message(span_suicide(LANG("obj.1db474c3", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.1db474c3cb967701", list(user, src, user.p_their(), user.p_theyre()))))
 	return FIRELOSS
 
 /obj/item/flashlight/proc/eye_examine(mob/living/carbon/human/patient, mob/living/user)
 	. = list()
 	if((patient.head && patient.head.flags_cover & HEADCOVERSEYES) || (patient.wear_mask && patient.wear_mask.flags_cover & MASKCOVERSEYES) || (patient.glasses && patient.glasses.flags_cover & GLASSESCOVERSEYES))
-		to_chat(user, span_warning(LANG("obj.6c5ea00e", list((patient.head && patient.head.flags_cover & HEADCOVERSEYES) ? "helmet" : (patient.wear_mask && patient.wear_mask.flags_cover & MASKCOVERSEYES) ? "mask": "glasses"))))
+		to_chat(user, span_warning(LANG("obj.6c5ea00eda1bbaeb", list((patient.head && patient.head.flags_cover & HEADCOVERSEYES) ? "helmet" : (patient.wear_mask && patient.wear_mask.flags_cover & MASKCOVERSEYES) ? "mask": "glasses"))))
 		return
 
 	var/obj/item/organ/eyes/eyes = patient.get_organ_slot(ORGAN_SLOT_EYES)
@@ -134,14 +134,14 @@
 	var/obj/item/organ/zombie_infection/tumor = patient.get_organ_slot(ORGAN_SLOT_ZOMBIE) //this slot only ever holds zombie tumors, so we can just check if this exists
 	var/braaaainz = tumor?.causes_damage //prevents steath tumors (admin bullshittery or romerol) from showing up to preserve stealthiness
 	if(!eyes)
-		to_chat(user, span_warning(LANG("obj.27e0f22a", list(patient))))
+		to_chat(user, span_warning(LANG("obj.27e0f22aa8bcc6d3", list(patient))))
 		return
 
 	patient.flash_act(visual = TRUE, length = (user.combat_mode) ? 2.5 SECONDS : 1 SECONDS) // Apply a 1 second flash effect to the target. The duration increases to 2.5 Seconds if you have combat mode on.
 
 	if(patient == user) //they're using it on themselves
-		user.visible_message(span_warning(LANG("obj.cc92ee6a", list(user, src, patient.p_their()))), ignored_mobs = user)
-		. += span_info(LANG("obj.2ab80fa7", list(src)))
+		user.visible_message(span_warning(LANG("obj.cc92ee6ab61de69f", list(user, src, patient.p_their()))), ignored_mobs = user)
+		. += span_info(LANG("obj.2ab80fa7d0ab65d6", list(src)))
 
 		if(patient.is_blind())
 			. += span_notice_ml("You're not entirely certain what you were expecting...\n")
@@ -149,8 +149,8 @@
 			. += span_notice_ml("Trippy!\n")
 
 	else
-		user.visible_message(span_warning(LANG("obj.9847866b", list(user, src, patient))), ignored_mobs = user)
-		. += span_info(LANG("obj.e7c5df86", list(src, patient)))
+		user.visible_message(span_warning(LANG("obj.9847866ba9234c64", list(user, src, patient))), ignored_mobs = user)
+		. += span_info(LANG("obj.e7c5df862561af0d", list(src, patient)))
 
 		if(patient.stat == DEAD || patient.is_blind() || patient.get_eye_protection() >= FLASH_PROTECTION_WELDER) //this used to be just > but literally nothing accessable in the game gave greater than welder without also covering eyes
 			. += span_danger_ml("[patient.p_Their()] [eyes.pupils_name] don't react to the light!\n")//mob is dead
@@ -174,7 +174,7 @@
 /obj/item/flashlight/proc/mouth_examine(mob/living/carbon/human/patient, mob/living/user)
 	. = list()
 	if(patient.is_mouth_covered())
-		to_chat(user, span_warning(LANG("obj.6c5ea00e", list((patient.head && patient.head.flags_cover & HEADCOVERSMOUTH) ? "helmet" : "mask"))))
+		to_chat(user, span_warning(LANG("obj.6c5ea00eda1bbaeb", list((patient.head && patient.head.flags_cover & HEADCOVERSMOUTH) ? "helmet" : "mask"))))
 		return
 
 	var/list/mouth_organs = list()
@@ -212,10 +212,10 @@
 					if(WEST)
 						can_use_mirror = mirror.pixel_x < 0
 
-		patient.visible_message(span_notice(LANG("obj.e7befe19", list(patient, src, patient.p_their()))), ignored_mobs = user)
+		patient.visible_message(span_notice(LANG("obj.e7befe19230ec8f2", list(patient, src, patient.p_their()))), ignored_mobs = user)
 		. += span_info_ml("You point [src] into your mouth:\n")
 		if(!can_use_mirror)
-			to_chat(user, span_notice(LANG("obj.9acb2bc7", null)))
+			to_chat(user, span_notice(LANG("obj.9acb2bc7ff47d04a", null)))
 			return
 		if(organ_count)
 			. += span_notice_ml("Inside your mouth [organ_count > 1 ? "are" : "is"] [organ_list].\n")
@@ -225,7 +225,7 @@
 			. += span_notice_ml("You have [pill_count] implanted pill[pill_count > 1 ? "s" : ""].\n")
 
 	else //if we're looking in someone elses mouth
-		user.visible_message(span_notice(LANG("obj.49f1ff45", list(user, src, patient))), ignored_mobs = user)
+		user.visible_message(span_notice(LANG("obj.49f1ff45f71171ce", list(user, src, patient))), ignored_mobs = user)
 		. += span_info_ml("You point [src] into [patient]'s mouth:\n")
 		if(organ_count)
 			. += span_notice_ml("Inside [patient.p_their()] mouth [organ_count > 1 ? "are" : "is"] [organ_list].\n")
@@ -277,14 +277,14 @@
 
 	. = ITEM_INTERACT_BLOCKING
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning(LANG("obj.e8ba50af", null)))
+		to_chat(user, span_warning(LANG("obj.e8ba50af79992c6d", null)))
 		return
 	var/mob/living/scanning = interacting_with
 	if(!scanning.get_bodypart(BODY_ZONE_HEAD))
-		to_chat(user, span_warning(LANG("obj.618bead4", list(scanning))))
+		to_chat(user, span_warning(LANG("obj.618bead4579c1526", list(scanning))))
 		return
 	if(light_power < 0.5)
-		to_chat(user, span_warning(LANG("obj.183071a8", list(src))))
+		to_chat(user, span_warning(LANG("obj.183071a889c0a63f", list(src))))
 		return
 
 	var/list/render_list = list()
@@ -348,7 +348,7 @@
 
 /obj/item/flashlight/pen/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!COOLDOWN_FINISHED(src, holosign_cooldown))
-		balloon_alert(user, LANG("obj.1125a29f", null))
+		balloon_alert(user, LANG("obj.1125a29f654ba3e2", null))
 		return ITEM_INTERACT_BLOCKING
 
 	var/turf/target_turf = get_turf(interacting_with)
@@ -357,7 +357,7 @@
 	if(!living_target || (living_target == user))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(living_target, span_boldnotice(LANG("obj.c82f42ad", list(user))))
+	to_chat(living_target, span_boldnotice(LANG("obj.c82f42ad8cb3b0eb", list(user))))
 	new /obj/effect/temp_visual/medical_holosign(target_turf, user) //produce a holographic glow
 	COOLDOWN_START(src, holosign_cooldown, 10 SECONDS)
 	return ITEM_INTERACT_SUCCESS
@@ -386,7 +386,7 @@
 	. = ..()
 	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE) //make some noise!
 	if(creator)
-		visible_message(span_danger(LANG("obj.7ec06f64", list(creator))))
+		visible_message(span_danger(LANG("obj.7ec06f64e0d85f99", list(creator))))
 
 /obj/item/flashlight/seclite
 	name = "seclite"
@@ -560,11 +560,11 @@
 /obj/item/flashlight/flare/proc/ignition(mob/user)
 	if(!fuel)
 		if(user)
-			balloon_alert(user, LANG("obj.ab3fa3bc", null))
+			balloon_alert(user, LANG("obj.ab3fa3bc61788fad", null))
 		return NO_FUEL
 	if(light_on)
 		if(user)
-			balloon_alert(user, LANG("obj.dcd2a9ba", null))
+			balloon_alert(user, LANG("obj.dcd2a9ba098c4ed7", null))
 		return ALREADY_LIT
 	if(!toggle_light())
 		return FAILURE
@@ -580,7 +580,7 @@
 
 /obj/item/flashlight/flare/attack_self(mob/user)
 	if(ignition(user) == SUCCESS)
-		user.visible_message(span_notice(LANG("obj.d1c57672", list(user, src))), span_notice(LANG("obj.81410411", list(initial(src.name)))))
+		user.visible_message(span_notice(LANG("obj.d1c57672ecf60c22", list(user, src))), span_notice(LANG("obj.81410411b5bb7355", list(initial(src.name)))))
 
 /obj/item/flashlight/flare/get_temperature()
 	return light_on * heat
@@ -665,10 +665,10 @@
 			user.visible_message(success_msg)
 			return SUCCESS
 		if(ALREADY_LIT)
-			balloon_alert(user, LANG("obj.dcd2a9ba", null))
+			balloon_alert(user, LANG("obj.dcd2a9ba098c4ed7", null))
 			return ALREADY_LIT
 		if(NO_FUEL)
-			balloon_alert(user, LANG("obj.ab3fa3bc", null))
+			balloon_alert(user, LANG("obj.ab3fa3bc61788fad", null))
 			return NO_FUEL
 
 /obj/item/flashlight/flare/candle/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -679,14 +679,14 @@
 				return NONE
 			if(cig.loc == user)
 				user.visible_message(
-					span_rose(LANG("obj.9d27d19c", list(user, user.p_their(), cig.name, src))),
-					span_rose(LANG("obj.cd87cb9a", list(cig.name, src))),
+					span_rose(LANG("obj.9d27d19c518b094d", list(user, user.p_their(), cig.name, src))),
+					span_rose(LANG("obj.cd87cb9af8310b12", list(cig.name, src))),
 					visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				)
 			else
 				user.visible_message(
-					span_rose(LANG("obj.45115f00", list(user, cig, src))),
-					span_rose(LANG("obj.09f8b6de", list(cig, src))),
+					span_rose(LANG("obj.45115f00c2b8f572", list(user, cig, src))),
+					span_rose(LANG("obj.09f8b6de3c92b006", list(cig, src))),
 					visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				)
 			return ITEM_INTERACT_SUCCESS
@@ -712,7 +712,7 @@
 /obj/item/flashlight/flare/candle/attack_self(mob/user)
 	if(light_on && (fuel != INFINITY || !can_be_extinguished)) // can't extinguish eternal candles
 		turn_off()
-		user.visible_message(span_notice(LANG("obj.cacf9c16", list(user, src))))
+		user.visible_message(span_notice(LANG("obj.cacf9c166393520c", list(user, src))))
 
 /obj/item/flashlight/flare/candle/process(seconds_per_tick)
 	. = ..()
@@ -851,14 +851,14 @@
 		if(ismob(interacting_with))
 			var/mob/empd = interacting_with
 			log_combat(user, empd, "attacked", "EMP-light")
-			empd.visible_message(span_danger(LANG("obj.27e1d85b", list(user, src, empd))), \
-								span_userdanger(LANG("obj.369bb19b", list(user, src))))
+			empd.visible_message(span_danger(LANG("obj.27e1d85b0d67f168", list(user, src, empd))), \
+								span_userdanger(LANG("obj.369bb19b2bf6a08e", list(user, src))))
 		else
-			interacting_with.visible_message(span_danger(LANG("obj.27e1d85b", list(user, src, interacting_with))))
-		to_chat(user, span_notice(LANG("obj.a885d352", list(src, emp_cur_charges))))
+			interacting_with.visible_message(span_danger(LANG("obj.27e1d85b0d67f168", list(user, src, interacting_with))))
+		to_chat(user, span_notice(LANG("obj.a885d35221dfdc05", list(src, emp_cur_charges))))
 		interacting_with.emp_act(EMP_HEAVY)
 	else
-		to_chat(user, span_warning(LANG("obj.67db3ac3", list(src))))
+		to_chat(user, span_warning(LANG("obj.67db3ac3ac61a31c", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/flashlight/emp/debug //for testing emp_act()
@@ -1004,26 +1004,26 @@
 
 /obj/item/flashlight/glowstick/attack_self(mob/user)
 	if(get_fuel() <= 0)
-		balloon_alert(user, LANG("obj.e02bf716", null))
+		balloon_alert(user, LANG("obj.e02bf716152c5cf5", null))
 		return
 	if(light_on)
-		balloon_alert(user, LANG("obj.dcd2a9ba", null))
+		balloon_alert(user, LANG("obj.dcd2a9ba098c4ed7", null))
 		return
 
 	. = ..()
 	if(.)
-		user.visible_message(span_notice(LANG("obj.494ae1d4", list(user, src))), span_notice(LANG("obj.e020fb1e", list(src))))
+		user.visible_message(span_notice(LANG("obj.494ae1d4cab5f3d0", list(user, src))), span_notice(LANG("obj.e020fb1e930de8fc", list(src))))
 		turn_on()
 
 /obj/item/flashlight/glowstick/suicide_act(mob/living/user)
 	if(!get_fuel())
-		user.visible_message(span_suicide(LANG("obj.bab026cd", list(user, src, user.p_their()))))
+		user.visible_message(span_suicide(LANG("obj.bab026cdb4ec96f5", list(user, src, user.p_their()))))
 		return SHAME
 	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(!eyes)
-		user.visible_message(span_suicide(LANG("obj.e41e349a", list(user, src, user.p_their(), user.p_they(), user.p_do()))))
+		user.visible_message(span_suicide(LANG("obj.e41e349ab7a5278f", list(user, src, user.p_their(), user.p_they(), user.p_do()))))
 		return SHAME
-	user.visible_message(span_suicide(LANG("obj.8102d3e7", list(user, src, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.8102d3e751f75cdd", list(user, src, user.p_their(), user.p_theyre()))))
 	burn_loop(get_fuel())
 	return FIRELOSS
 
@@ -1197,7 +1197,7 @@
 		return ITEM_INTERACT_SUCCESS
 	if(!istype(tool, /obj/item/assembly/signaler/anomaly/pyro) || installed_pyro_core)
 		return NONE
-	user.balloon_alert(user, LANG("obj.de575d7b", null))
+	user.balloon_alert(user, LANG("obj.de575d7bc9109c27", null))
 	qdel(tool)
 	installed_pyro_core = TRUE
 	playsound(src, 'sound/machines/crate/crate_open.ogg', 50, FALSE)
@@ -1206,12 +1206,12 @@
 
 /obj/item/flashlight/lamp/space_bubble/toggle_light(mob/user)
 	if(!installed_pyro_core)
-		user.balloon_alert(user, LANG("obj.f1a54271", null))
+		user.balloon_alert(user, LANG("obj.f1a542713573327e", null))
 		return FALSE
 	var/datum/gas_mixture/environment = loc?.return_air()
 	var/affected_pressure = environment.return_pressure()
 	if(!light_on && (affected_pressure < ONE_ATMOSPHERE - 1))
-		user.balloon_alert(user, LANG("obj.d4bfc8ce", list(affected_pressure < HAZARD_LOW_PRESSURE? "no" : "low")))
+		user.balloon_alert(user, LANG("obj.d4bfc8ce182bb172", list(affected_pressure < HAZARD_LOW_PRESSURE? "no" : "low")))
 		return FALSE
 	. = ..()
 	if(light_on)

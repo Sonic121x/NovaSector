@@ -104,4 +104,4 @@ GLOBAL_LIST_INIT(integrated_circuit_global_signal_ids, generate_global_circuit_s
 		extra_info = " as a global signal"
 	else
 		GLOB.integrated_circuit_signal_ids[signal_id] = sanitized_data
-	balloon_alert(usr, LANG("obj.997bbcc7", list(signal_id, extra_info)))
+	balloon_alert(usr, LANG("obj.997bbcc7e02f8b90", list(signal_id, extra_info)))

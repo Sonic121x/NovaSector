@@ -96,11 +96,11 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 /obj/item/book/bible/proc/on_intercepted_bullet(mob/living/victim, obj/projectile/bullet)
 	victim.add_mood_event("blessing", /datum/mood_event/blessing)
 	playsound(victim, 'sound/effects/magic/magic_block_holy.ogg', 50, TRUE)
-	victim.visible_message(span_warning(LANG("obj.4718bbda", list(src, bullet, victim))))
+	victim.visible_message(span_warning(LANG("obj.4718bbda2bd4e3de", list(src, bullet, victim))))
 	var/obj/structure/fluff/paper/stack/pages = new(get_turf(src))
 	pages.setDir(pick(GLOB.alldirs))
 	name = "punctured bible"
-	desc = LANG("obj.45ac214f", null)
+	desc = LANG("obj.45ac214f4cff275c", null)
 	icon_state = "shot"
 	if (!GLOB.bible_icon_state)
 		GLOB.bible_icon_state = "shot" // New symbol of your religion if you hadn't picked one
@@ -110,12 +110,12 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 /obj/item/book/bible/examine(mob/user)
 	. = ..()
 	if(deity_name)
-		. += span_notice(LANG("obj.a6172045", list(deity_name)))
+		. += span_notice(LANG("obj.a6172045a075ee2c", list(deity_name)))
 	if(user.mind?.holy_role)
 		if(GLOB.chaplain_altars.len)
-			. += span_notice(LANG("obj.6ee0fe0b", list(src)))
+			. += span_notice(LANG("obj.6ee0fe0bb10f03be", list(src)))
 		else
-			. += span_notice(LANG("obj.16fc0dcb", list(src)))
+			. += span_notice(LANG("obj.16fc0dcb2b92b0c3", list(src)))
 
 /obj/item/book/bible/get_attack_self_context(mob/living/user)
 	if(can_set_bible_skin(user))
@@ -130,16 +130,16 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	var/datum/component/omen/existing_omen = user.GetComponent(/datum/component/omen)
 	//DOUBLE CURSED?! Just straight up gib the guy.
 	if(existing_omen)
-		to_chat(user, span_userdanger(LANG("obj.c60b0797", list(deity_name))))
+		to_chat(user, span_userdanger(LANG("obj.c60b0797e56449bc", list(deity_name))))
 		add_memory_in_range(user, 7, /datum/memory/witnessed_gods_wrath, protagonist = user, deuteragonist = src, antagonist = deity_name)
 		user.client?.give_award(/datum/award/achievement/misc/gods_wrath, user)
 		user.gib(DROP_ALL_REMAINS)
 	else
-		to_chat(user, span_userdanger(LANG("obj.8af94742", list(deity_name))))
+		to_chat(user, span_userdanger(LANG("obj.8af947428f11aa8e", list(deity_name))))
 		user.AddComponent(/datum/component/omen/bible)
 
 /obj/item/book/bible/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.6db2c6d9", list(user, user.p_them(), deity_name, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.6db2c6d9a574e9a2", list(user, user.p_them(), deity_name, user.p_theyre()))))
 	return BRUTELOSS
 
 /obj/item/book/bible/proc/can_set_bible_skin(mob/living/user)
@@ -202,7 +202,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 /obj/item/book/bible/proc/make_new_altar(atom/bible_smacked, mob/user)
 	var/new_altar_area = get_turf(bible_smacked)
 
-	balloon_alert(user, LANG("obj.2cad0c88", null))
+	balloon_alert(user, LANG("obj.2cad0c88e80b2c69", null))
 	if(!do_after(user, 15 SECONDS, new_altar_area))
 		return
 	new /obj/structure/altar/of_gods(new_altar_area)
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	var/mob/living/carbon/human/built_in_his_image = blessed
 	for(var/obj/item/bodypart/bodypart as anything in built_in_his_image.get_bodyparts())
 		if(!IS_ORGANIC_LIMB(bodypart))
-			balloon_alert(user, LANG("obj.27719f62", null))
+			balloon_alert(user, LANG("obj.27719f62b69c7bc7", null))
 			return BLESSING_IGNORED
 
 	var/heal_amt = 10
@@ -230,25 +230,25 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 		if(affecting.heal_damage(heal_amt, heal_amt, required_bodytype = BODYTYPE_ORGANIC))
 			built_in_his_image.update_damage_overlays()
 
-	built_in_his_image.visible_message(span_notice(LANG("obj.45608eb3", list(user, built_in_his_image, deity_name))))
-	to_chat(built_in_his_image, span_boldnotice(LANG("obj.087b1ddd", list(deity_name))))
+	built_in_his_image.visible_message(span_notice(LANG("obj.45608eb371a71271", list(user, built_in_his_image, deity_name))))
+	to_chat(built_in_his_image, span_boldnotice(LANG("obj.087b1ddd9796b5a4", list(deity_name))))
 	playsound(built_in_his_image, SFX_PUNCH, 25, TRUE, -1)
 	built_in_his_image.add_mood_event("blessing", /datum/mood_event/blessing)
 	return BLESSING_SUCCESS
 
 /obj/item/book/bible/attack(mob/living/target_mob, mob/living/carbon/human/user, list/modifiers, list/attack_modifiers, heal_mode = TRUE)
 	if(!ISADVANCEDTOOLUSER(user))
-		balloon_alert(user, LANG("obj.49629a3d", null))
+		balloon_alert(user, LANG("obj.49629a3d8488ff4f", null))
 		return
 
 	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
-		to_chat(user, span_danger(LANG("obj.3bdf2863", list(src))))
+		to_chat(user, span_danger(LANG("obj.3bdf286330432254", list(src))))
 		user.take_bodypart_damage(10)
 		user.Unconscious(40 SECONDS)
 		return
 
 	if(!user.mind?.holy_role)
-		to_chat(user, span_danger(LANG("obj.80f10e06", null)))
+		to_chat(user, span_danger(LANG("obj.80f10e06d6e369a6", null)))
 		user.take_bodypart_damage(burn = 10)
 		return
 
@@ -257,12 +257,12 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 
 	if(target_mob.stat == DEAD)
 		if(GLOB.religious_sect?.sect_dead_bless(target_mob, user) == BLESSING_FAILED)
-			target_mob.visible_message(span_danger(LANG("obj.d96b11d6", list(user, target_mob, src))))
+			target_mob.visible_message(span_danger(LANG("obj.d96b11d66b5980f5", list(user, target_mob, src))))
 			playsound(target_mob, SFX_PUNCH, 25, TRUE, -1)
 		return
 
 	if(user == target_mob)
-		balloon_alert(user, LANG("obj.45f64cdb", null))
+		balloon_alert(user, LANG("obj.45f64cdb77f353ac", null))
 		return
 
 	var/smack_chance = DEFAULT_SMACK_CHANCE
@@ -279,9 +279,9 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 		var/mob/living/carbon/human/human_target = target_mob
 		if(!istype(human_target.head, /obj/item/clothing/head/helmet))
 			human_target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 5, 60)
-			human_target.balloon_alert(human_target, LANG("obj.95af1747", null))
-	target_mob.visible_message(span_danger(LANG("obj.908ad4aa", list(user, target_mob, src))), \
-			span_userdanger(LANG("obj.908ad4aa", list(user, target_mob, src))))
+			human_target.balloon_alert(human_target, LANG("obj.95af1747b68a754f", null))
+	target_mob.visible_message(span_danger(LANG("obj.908ad4aa37bb4e1e", list(user, target_mob, src))), \
+			span_userdanger(LANG("obj.908ad4aa37bb4e1e", list(user, target_mob, src))))
 	playsound(target_mob, SFX_PUNCH, 25, TRUE, -1)
 	log_combat(user, target_mob, "attacked", src)
 
@@ -297,23 +297,23 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 			return ITEM_INTERACT_SUCCESS
 		for(var/obj/effect/rune/nearby_runes in range(2, user))
 			nearby_runes.SetInvisibility(INVISIBILITY_NONE, id=type, priority=INVISIBILITY_PRIORITY_BASIC_ANTI_INVISIBILITY)
-		bible_smacked.balloon_alert(user, LANG("obj.0ff509b6", null))
+		bible_smacked.balloon_alert(user, LANG("obj.0ff509b6d04e37d4", null))
 		return ITEM_INTERACT_SUCCESS
 
 	if(bible_smacked.reagents?.has_reagent(/datum/reagent/water)) // blesses all the water in the holder
-		bible_smacked.balloon_alert(user, LANG("obj.444448e5", null))
+		bible_smacked.balloon_alert(user, LANG("obj.444448e513cc27c0", null))
 		var/water2holy = bible_smacked.reagents.get_reagent_amount(/datum/reagent/water)
 		bible_smacked.reagents.del_reagent(/datum/reagent/water)
 		bible_smacked.reagents.add_reagent(/datum/reagent/water/holywater,water2holy)
 		return ITEM_INTERACT_SUCCESS
 	if(bible_smacked.reagents?.has_reagent(/datum/reagent/fuel/unholywater)) // yeah yeah, copy pasted code - sue me
-		bible_smacked.balloon_alert(user, LANG("obj.39729838", null))
+		bible_smacked.balloon_alert(user, LANG("obj.39729838f6ec4a14", null))
 		var/unholy2holy = bible_smacked.reagents.get_reagent_amount(/datum/reagent/fuel/unholywater)
 		bible_smacked.reagents.del_reagent(/datum/reagent/fuel/unholywater)
 		bible_smacked.reagents.add_reagent(/datum/reagent/water/holywater,unholy2holy)
 		return ITEM_INTERACT_SUCCESS
 	if(istype(bible_smacked, /obj/item/book/bible) && !istype(bible_smacked, /obj/item/book/bible/syndicate))
-		bible_smacked.balloon_alert(user, LANG("obj.72ad5488", null))
+		bible_smacked.balloon_alert(user, LANG("obj.72ad54889665fdbe", null))
 		var/obj/item/book/bible/other_bible = bible_smacked
 		other_bible.name = name
 		other_bible.icon_state = icon_state
@@ -324,15 +324,15 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	if(istype(bible_smacked, /obj/item/melee/cultblade/haunted) && !IS_CULTIST(user))
 		var/obj/item/melee/cultblade/haunted/sword_smacked = bible_smacked
 		if(!sword_smacked.bound)
-			sword_smacked.balloon_alert(user, LANG("obj.9a835f30", null))
+			sword_smacked.balloon_alert(user, LANG("obj.9a835f30c01c6cbe", null))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/melee/cultblade/haunted/sword = bible_smacked
-		sword.balloon_alert(user, LANG("obj.833ce5de", null))
+		sword.balloon_alert(user, LANG("obj.833ce5de64242087", null))
 		playsound(src,'sound/effects/hallucinations/veryfar_noise.ogg',40,TRUE)
 		if(do_after(user, 12 SECONDS, target = sword))
 			playsound(src,'sound/effects/pray_chaplain.ogg',60,TRUE)
 			new /obj/item/nullrod/nullblade(get_turf(sword))
-			user.visible_message(span_notice(LANG("obj.c1631d36", list(user, sword))))
+			user.visible_message(span_notice(LANG("obj.c1631d36691823d5", list(user, sword))))
 			qdel(sword)
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
@@ -379,16 +379,16 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 		return
 	user.mind.set_holy_role(HOLY_ROLE_PRIEST)
 	uses -= 1
-	to_chat(user, span_userdanger(LANG("obj.03595f61", null)))
+	to_chat(user, span_userdanger(LANG("obj.03595f618f2be6c4", null)))
 	playsound(src.loc, 'sound/effects/snap.ogg', 50, TRUE)
 	user.apply_damage(5, BRUTE, user.get_active_hand(), attacking_item = src)
-	to_chat(user, span_notice(LANG("obj.3febe4f7", null)))
+	to_chat(user, span_notice(LANG("obj.3febe4f7cf00e04e", null)))
 	owner_name = user.real_name
 
 /obj/item/book/bible/syndicate/examine(mob/user)
 	. = ..()
 	if(owner_name)
-		. += span_warning(LANG("obj.eb9c8cd4", list(owner_name)))
+		. += span_warning(LANG("obj.eb9c8cd4e66677ff", list(owner_name)))
 
 /obj/item/book/bible/syndicate/get_attack_self_context(mob/living/user)
 	if(uses)

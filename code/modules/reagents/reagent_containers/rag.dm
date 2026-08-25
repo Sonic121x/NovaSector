@@ -24,21 +24,21 @@
 
 /obj/item/rag/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.46126de1", list(/datum/reagent/water::name, /datum/reagent/space_cleaner::name)))
+	. += span_notice(LANG("obj.46126de1bc5e8570", list(/datum/reagent/water::name, /datum/reagent/space_cleaner::name)))
 	switch(blood_level)
 		if(1 to 4)
-			. += span_info(LANG("obj.df42394f", list(name)))
+			. += span_info(LANG("obj.df42394f34fd8d65", list(name)))
 		if(5 to 9)
-			. += span_warning(LANG("obj.e2ec48ee", list(name)))
+			. += span_warning(LANG("obj.e2ec48eee24882a3", list(name)))
 		if(10 to INFINITY)
-			. += span_warning(LANG("obj.497bc174", list(name)))
+			. += span_warning(LANG("obj.497bc17439743c23", list(name)))
 
 /obj/item/rag/interact(mob/user)
 	. = ..()
 	if(loc != user || blood_level <= 4)
 		return
 
-	balloon_alert(user, LANG("obj.16a2b57a", null))
+	balloon_alert(user, LANG("obj.16a2b57a7e507fb9", null))
 	if(!do_after(user, (wrings + 2) * 1 SECONDS, src))
 		return
 
@@ -53,15 +53,15 @@
 /obj/item/rag/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/reagent_containers/spray))
 		if(tool.reagents.total_volume <= 0)
-			balloon_alert(user, LANG("obj.dfbe2913", null))
+			balloon_alert(user, LANG("obj.dfbe29138fcf6383", null))
 			return ITEM_INTERACT_BLOCKING
 
 		if(reagents.holder_full())
-			balloon_alert(user, LANG("obj.21d5a38a", list(name)))
+			balloon_alert(user, LANG("obj.21d5a38ae9e8687a", list(name)))
 			return ITEM_INTERACT_BLOCKING
 
 		tool.reagents.trans_to(reagents, tool.reagents.total_volume, transferred_by = user)
-		balloon_alert(user, LANG("obj.3e46140b", list(name)))
+		balloon_alert(user, LANG("obj.3e46140b9aff2c89", list(name)))
 		var/obj/item/reagent_containers/spray/spray = tool
 		playsound(src, spray.spray_sound, 33, TRUE, -6)
 		return ITEM_INTERACT_SUCCESS
@@ -76,7 +76,7 @@
 		holder.add_blood_DNA(GET_ATOM_BLOOD_DNA(src))
 
 /obj/item/rag/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.6910a3fb", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.6910a3fb8ca8aaed", list(user, user.p_them(), src, user.p_theyre()))))
 	return OXYLOSS
 
 /obj/item/rag/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -88,12 +88,12 @@
 	var/log_object = "containing [reagentlist]"
 	if(!carbon_target.is_mouth_covered())
 		reagents.trans_to(carbon_target, reagents.total_volume, transferred_by = user, methods = INGEST)
-		carbon_target.visible_message(span_danger(LANG("obj.08810758", list(user, carbon_target, src))), span_userdanger(LANG("obj.5c47cf82", list(user, src))), span_hear(LANG("obj.6f48c9d6", null)))
+		carbon_target.visible_message(span_danger(LANG("obj.0881075834b0f761", list(user, carbon_target, src))), span_userdanger(LANG("obj.5c47cf821f990d20", list(user, src))), span_hear(LANG("obj.6f48c9d694501ee6", null)))
 		log_combat(user, carbon_target, "smothered", src, log_object)
 	else
 		reagents.expose(carbon_target, TOUCH)
 		reagents.clear_reagents()
-		carbon_target.visible_message(span_notice(LANG("obj.47cfe6ef", list(user, carbon_target, src))))
+		carbon_target.visible_message(span_notice(LANG("obj.47cfe6efc0d768e3", list(user, carbon_target, src))))
 		log_combat(user, carbon_target, "touched", src, log_object)
 	return ITEM_INTERACT_SUCCESS
 
@@ -115,7 +115,7 @@
 		// snowflakeeeee check to make it a bit more intuitive when cleaning the rag.
 		if(istype(atom_to_clean, /obj/structure/sink))
 			return CLEAN_BLOCKED|CLEAN_DONT_BLOCK_INTERACTION
-		atom_to_clean.balloon_alert(cleaner, LANG("obj.7adea5a2", list(name)))
+		atom_to_clean.balloon_alert(cleaner, LANG("obj.7adea5a2ac461eda", list(name)))
 		return CLEAN_BLOCKED
 	if(loc == cleaner)
 		return CLEAN_ALLOWED
@@ -151,7 +151,7 @@
 		add_blood_DNA(all_blood_dna)
 	update_appearance()
 	if(blood_level >= 10)
-		to_chat(cleaner, span_warning(LANG("obj.1037fba7", list(src))))
+		to_chat(cleaner, span_warning(LANG("obj.1037fba7d1539601", list(src))))
 	if(prob(10 * blood_level))
 		bloody_holder(cleaner)
 

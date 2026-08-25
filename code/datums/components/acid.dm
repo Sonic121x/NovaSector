@@ -189,19 +189,19 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 
 	parent_integrity -= seconds_per_tick
 	if(parent_integrity <= 0)
-		target_turf.visible_message(span_warning(LANG("datum.b79f8e77", list(target_turf))))
+		target_turf.visible_message(span_warning(LANG("datum.b79f8e7774b0b5a9", list(target_turf))))
 		target_turf.acid_melt()
 	else if(parent_integrity <= 4 && stage <= 3)
-		target_turf.visible_message(span_warning(LANG("datum.79981454", list(target_turf))))
+		target_turf.visible_message(span_warning(LANG("datum.799814541714310f", list(target_turf))))
 		stage = 4
 	else if(parent_integrity <= 8 && stage <= 2)
-		target_turf.visible_message(span_warning(LANG("datum.02419d6e", list(target_turf))))
+		target_turf.visible_message(span_warning(LANG("datum.02419d6ed0dcf2bc", list(target_turf))))
 		stage = 3
 	else if(parent_integrity <= 16 && stage <= 1)
-		target_turf.visible_message(span_warning(LANG("datum.5c8223b0", list(target_turf))))
+		target_turf.visible_message(span_warning(LANG("datum.5c8223b0ab69950a", list(target_turf))))
 		stage = 2
 	else if(parent_integrity <= 24 && stage == 0)
-		target_turf.visible_message(span_warning(LANG("datum.323a6a79", list(target_turf))))
+		target_turf.visible_message(span_warning(LANG("datum.323a6a7981504d47", list(target_turf))))
 		stage = 1
 
 /// Used to maintain the acid overlay on the parent [/atom].
@@ -215,7 +215,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 /datum/component/acid/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_danger(LANG("datum.08a5ee4e", list(source.p_Theyre())))
+	examine_list += span_danger(LANG("datum.08a5ee4e2ab6605f", list(source.p_Theyre())))
 
 /// Makes it possible to clean acid off of objects.
 /datum/component/acid/proc/on_clean(atom/source, clean_types)
@@ -245,7 +245,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 		return NONE
 
 	user.apply_damage(5, BURN, user.get_active_hand())
-	to_chat(user, span_userdanger(LANG("datum.36919fc5", list(source))))
+	to_chat(user, span_userdanger(LANG("datum.36919fc549fef39a", list(source))))
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(source, SFX_SEAR, 50, TRUE)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -270,5 +270,5 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 	if(!crosser.acid_act(acid_power, acid_used, FEET))
 		return
 	playsound(crosser, SFX_SEAR, 50, TRUE)
-	to_chat(crosser, span_userdanger(LANG("datum.5e2a49d3", list(parent))))
+	to_chat(crosser, span_userdanger(LANG("datum.5e2a49d38d7ca42e", list(parent))))
 	set_volume(max(acid_volume - acid_used, 10))

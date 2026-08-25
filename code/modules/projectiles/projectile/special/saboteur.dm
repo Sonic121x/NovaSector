@@ -30,7 +30,7 @@
 			success = TRUE
 
 	if(success && ismob(firer))
-		target.balloon_alert(firer, LANG("obj.81916d25", null))
+		target.balloon_alert(firer, LANG("obj.81916d25f51c72c1", null))
 
 /obj/projectile/energy/fisher/melee
 	range = 1

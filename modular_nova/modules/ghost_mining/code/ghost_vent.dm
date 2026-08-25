@@ -46,13 +46,13 @@
 	if(!boulder_infinite)
 		switch(tapped)
 			if(TRUE)
-				. += span_notice(LANG("obj.e5f01231", list(boulder_bounty)))
+				. += span_notice(LANG("obj.e5f01231c40278b9", list(boulder_bounty)))
 			if(FALSE)
-				. += span_notice(LANG("obj.ee3ab12d", list(boulder_bounty)))
+				. += span_notice(LANG("obj.ee3ab12d43500380", list(boulder_bounty)))
 	if(manual_reset)
-		. += span_notice(LANG("obj.07f04671", list(reset_timer)))
+		. += span_notice(LANG("obj.07f0467149ec38d7", list(reset_timer)))
 	if(clear_tally >= 1)
-		. += span_notice(LANG("obj.9bead09b", list(clear_tally)))
+		. += span_notice(LANG("obj.9bead09b8a2f6f91", list(clear_tally)))
 
 /obj/structure/ore_vent/ghost_mining/produce_boulder(apply_cooldown)
 	RETURN_TYPE(/obj/item/boulder)
@@ -124,12 +124,12 @@
 	. = ..()
 	if(manual_reset)
 		if(reset_timer <= 0)
-			if(tgui_alert(user, reset_message, LANG("obj.b703ddac", null), list("Yes", "No")) != "Yes")
+			if(tgui_alert(user, reset_message, LANG("obj.b703ddac096ce0d4", null), list("Yes", "No")) != "Yes")
 				return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 			reset_vent(TRUE)
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 		else
-			balloon_alert_to_viewers(LANG("obj.5690d9c2", null))
+			balloon_alert_to_viewers(LANG("obj.5690d9c2d242bb55", null))
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/ore_vent/ghost_mining/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
@@ -153,6 +153,16 @@
 	COOLDOWN_START(src, wave_cooldown, wave_timer)
 	addtimer(CALLBACK(src, PROC_REF(handle_wave_conclusion)), wave_timer)
 	update_appearance(UPDATE_ICON_STATE)
+
+/*
+ * Upstream #96887 inverted COMSIG_VENT_WAVE_CONCLUDED: the spawner component used to listen for it
+ * and retire itself, but now it is the one that sends the signal when its own waves run out.
+ * Our waves still end on a timer rather than on the spawner's wave count, so nothing retires the
+ * spawner anymore and it would keep respawning defenders forever after the vent is tapped.
+ */
+/obj/structure/ore_vent/ghost_mining/handle_wave_conclusion(datum/source)
+	qdel(GetComponent(/datum/component/spawner))
+	return ..()
 
 /obj/structure/ore_vent/ghost_mining/proc/reset_vent(cleared = FALSE) // We want to re-cycle the vent to an untapped state.
 	var/gps_name = "fresh oxide chunk" // Default backup incase we dont recycle ore
@@ -435,7 +445,7 @@
 			boss_string = "clear, a bonfire of bones burning beneath"
 		if(/mob/living/simple_animal/hostile/asteroid/elite/pandora) //Elite vent end
 			boss_string = "rippling calmly in odd geometric patterns"
-	. += span_notice(LANG("obj.5a66df44", list(boss_string)))
+	. += span_notice(LANG("obj.5a66df4422ce59f8", list(boss_string)))
 
 /obj/structure/ore_vent/ghost_mining/boss/reset_vent()
 	. = ..()

@@ -52,9 +52,9 @@
 /obj/item/clothing/suit/hooded/ablative/on_hood_up(obj/item/clothing/head/hooded/hood)
 	. = ..()
 	var/mob/living/carbon/user = loc
-	balloon_alert(user, LANG("obj.435a2369", null))
+	balloon_alert(user, LANG("obj.435a2369c33cffae", null))
 
 /obj/item/clothing/suit/hooded/ablative/on_hood_down(obj/item/clothing/head/hooded/hood)
 	var/mob/living/carbon/user = loc
-	balloon_alert(user, LANG("obj.8f3da789", null))
+	balloon_alert(user, LANG("obj.8f3da78925e2f1b3", null))
 	return ..()

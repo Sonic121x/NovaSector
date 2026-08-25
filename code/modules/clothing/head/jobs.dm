@@ -89,11 +89,11 @@
 	return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
 /obj/item/clothing/head/utility/chefhat/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.2c8686e5", list(user, src, user.p_theyre()))))
-	user.say(LANG("obj.901f91a4", null), forced = "chef hat suicide")
+	user.visible_message(span_suicide(LANG("obj.2c8686e5aa0b7eed", list(user, src, user.p_theyre()))))
+	user.say(LANG("obj.901f91a43ecba343", null), forced = "chef hat suicide")
 	sleep(2 SECONDS)
-	user.visible_message(span_suicide(LANG("obj.36e784ac", list(user))))
-	user.say(LANG("obj.db6c7f0e", null), forced = "chef hat suicide")
+	user.visible_message(span_suicide(LANG("obj.36e784ac197737c3", list(user))))
+	user.say(LANG("obj.db6c7f0e7478354d", null), forced = "chef hat suicide")
 	playsound(user, 'sound/machines/ding.ogg', 50, TRUE)
 	return FIRELOSS
 
@@ -216,7 +216,7 @@
 
 /obj/item/clothing/head/fedora/det_hat/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.8b135d8e", null))
+	. += span_notice(LANG("obj.8b135d8ee83c0ed1", null))
 
 
 /obj/item/clothing/head/fedora/det_hat/add_context(atom/source, list/context, obj/item/held_item, mob/user)
@@ -230,12 +230,12 @@
 /// Now to solve where all these keep coming from
 /obj/item/clothing/head/fedora/det_hat/click_alt(mob/user)
 	if(!COOLDOWN_FINISHED(src, candy_cooldown))
-		to_chat(user, span_warning(LANG("obj.ab3176d0", null)))
+		to_chat(user, span_warning(LANG("obj.ab3176d0b4929e6b", null)))
 		return CLICK_ACTION_BLOCKING
 
 	var/obj/item/food/candy_corn/sweets = new /obj/item/food/candy_corn(src)
 	user.put_in_hands(sweets)
-	to_chat(user, span_notice(LANG("obj.2d1eb4d8", list(src))))
+	to_chat(user, span_notice(LANG("obj.2d1eb4d8b0674beb", list(src))))
 	COOLDOWN_START(src, candy_cooldown, CANDY_CD_TIME)
 
 	return CLICK_ACTION_SUCCESS
@@ -301,12 +301,12 @@
 
 /obj/item/clothing/head/fedora/inspector_hat/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.b9efedb2", null))
-	. += span_notice(LANG("obj.7f15ac65", list(prefix)))
+	. += span_notice(LANG("obj.b9efedb2e214ba06", null))
+	. += span_notice(LANG("obj.7f15ac65752d2c1c", list(prefix)))
 	for(var/found_regex in phrases_by_regex)
 		var/found_phrase = phrases_by_regex[found_regex]
 		var/obj/item/found_item = items_by_regex[found_regex]
-		. += span_notice(LANG("obj.9644e18e", list(icon2html(found_item, user), found_item, prefix, found_phrase)))
+		. += span_notice(LANG("obj.9644e18e44f966a3", list(icon2html(found_item, user), found_item, prefix, found_phrase)))
 
 /obj/item/clothing/head/fedora/inspector_hat/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
 	. = ..()
@@ -321,10 +321,10 @@
 			continue
 		var/obj/item/found_item = items_by_regex[found_regex]
 		if(wearer.put_in_hands(found_item))
-			wearer.visible_message(span_warning(LANG("obj.3ee51243", list(src, found_item, wearer))))
+			wearer.visible_message(span_warning(LANG("obj.3ee51243e89d09e3", list(src, found_item, wearer))))
 			. = HEAR_HEARD | HEAR_UNDERSTOOD
 		else
-			balloon_alert(wearer, LANG("obj.5e23cba6", null))
+			balloon_alert(wearer, LANG("obj.5e23cba62cb8523d", null))
 			break
 
 	return .
@@ -335,21 +335,21 @@
 		return .
 
 	if(LAZYLEN(contents) >= max_items)
-		balloon_alert(user, LANG("obj.8abfbb3d", null))
+		balloon_alert(user, LANG("obj.8abfbb3d836014f5", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(tool.w_class > max_weight)
-		balloon_alert(user, LANG("obj.a5e64cbb", null))
+		balloon_alert(user, LANG("obj.a5e64cbb628dd24c", null))
 		return ITEM_INTERACT_BLOCKING
 
-	var/desired_phrase = tgui_input_text(user, LANG("obj.411d96e2", null), LANG("obj.40c2df28", null), "gadget", max_length = 26)
+	var/desired_phrase = tgui_input_text(user, LANG("obj.411d96e28ffe702f", null), LANG("obj.40c2df289bfe7336", null), "gadget", max_length = 26)
 	if(!desired_phrase || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return ITEM_INTERACT_BLOCKING
 
 	if(tool.loc != user || !user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice(LANG("obj.19130491", list(tool, thtotext(contents.len), src))))
+	to_chat(user, span_notice(LANG("obj.1913049185596bb1", list(tool, thtotext(contents.len), src))))
 	playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 	set_phrase(desired_phrase, tool)
 
@@ -362,13 +362,13 @@
 	var/list/found_items = list()
 	for(var/found_regex in items_by_regex)
 		found_items += items_by_regex[found_regex]
-	var/obj/found_item = tgui_input_list(user, LANG("obj.27c63961", null), LANG("obj.5d644c43", null), found_items)
+	var/obj/found_item = tgui_input_list(user, LANG("obj.27c63961b6703751", null), LANG("obj.5d644c43e48c977c", null), found_items)
 	if(!found_item || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return CLICK_ACTION_BLOCKING
 	user.put_in_inactive_hand(found_item)
 
 /obj/item/clothing/head/fedora/inspector_hat/click_alt(mob/user)
-	var/new_prefix = tgui_input_text(user, LANG("obj.3654701a", null), LANG("obj.63cc3135", null), prefix, max_length = 24)
+	var/new_prefix = tgui_input_text(user, LANG("obj.3654701ad93ce48a", null), LANG("obj.63cc3135e073f294", null), prefix, max_length = 24)
 	if(!new_prefix || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return CLICK_ACTION_BLOCKING
 	set_prefix(new_prefix)
@@ -524,22 +524,22 @@
 		return TRUE
 	switch(mode)
 		if(DRILL_DEFAULT)
-			to_chat(user, span_notice(LANG("obj.53a9183e", null)))
+			to_chat(user, span_notice(LANG("obj.53a9183ed4a5fa54", null)))
 			mode = DRILL_SHOUTING
 		if(DRILL_SHOUTING)
-			to_chat(user, span_notice(LANG("obj.15ddb2d8", null)))
+			to_chat(user, span_notice(LANG("obj.15ddb2d8fa43b158", null)))
 			mode = DRILL_YELLING
 		if(DRILL_YELLING)
-			to_chat(user, span_notice(LANG("obj.a1725d07", null)))
+			to_chat(user, span_notice(LANG("obj.a1725d07e6b50434", null)))
 			mode = DRILL_DEFAULT
 		if(DRILL_CANADIAN)
-			to_chat(user, span_danger(LANG("obj.b43081fa", null)))
+			to_chat(user, span_danger(LANG("obj.b43081fa7278d3c8", null)))
 	return TRUE
 
 /obj/item/clothing/head/hats/warden/drill/wirecutter_act(mob/living/user, obj/item/I)
 	..()
 	if(mode != DRILL_CANADIAN)
-		to_chat(user, span_danger(LANG("obj.06558b7b", null)))
+		to_chat(user, span_danger(LANG("obj.06558b7b22006e12", null)))
 		mode = DRILL_CANADIAN
 	return TRUE
 
@@ -565,13 +565,19 @@
 				message += "!!"
 			if(DRILL_CANADIAN)
 				message = "[message]"
-				var/list/canadian_words = strings("canadian_replacement.json", "canadian")
+				var/list/canadian_words = lang_speech_replacements("canadian_replacement.json", "canadian") // NOVA EDIT CHANGE - I18N - 按 locale 取表。ORIGINAL: strings("canadian_replacement.json", "canadian")
 
 				for(var/key in canadian_words)
 					var/value = canadian_words[key]
 					if(islist(value))
 						value = pick(value)
 
+					// NOVA EDIT ADDITION START - I18N - 上面三行靠**前导空格**定位词首，中文词之间没有空格
+					// → 中文键一条都匹配不上。中文键走无前缀的整串替换（大小写变体对中文无意义）。
+					if(lang_contains_cjk(key))
+						message = replacetextEx(message, key, value)
+						continue
+					// NOVA EDIT ADDITION END
 					message = replacetextEx(message, " [uppertext(key)]", " [uppertext(value)]")
 					message = replacetextEx(message, " [capitalize(key)]", " [capitalize(value)]")
 					message = replacetextEx(message, " [key]", " [value]")
@@ -669,16 +675,16 @@
 	. = ..()
 	if(.)
 		return
-	balloon_alert(user, LANG("obj.c90dae9a", list(flags_inv & HIDEHAIR ? "loosening" : "tightening")))
+	balloon_alert(user, LANG("obj.c90dae9aa89fe710", list(flags_inv & HIDEHAIR ? "loosening" : "tightening")))
 	if(!do_after(user, 3 SECONDS, src))
 		return
 	flags_inv ^= HIDEHAIR
-	balloon_alert(user, LANG("obj.e45cf7d0", list(flags_inv & HIDEHAIR ? "tightened" : "loosened ")))
+	balloon_alert(user, LANG("obj.e45cf7d0f45b0cc0", list(flags_inv & HIDEHAIR ? "tightened" : "loosened ")))
 	return TRUE
 
 /obj/item/clothing/head/utility/surgerycap/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.f19616b4", list(flags_inv & HIDEHAIR ? "loosen" : "tighten")))
+	. += span_notice(LANG("obj.f19616b4000c57c0", list(flags_inv & HIDEHAIR ? "loosen" : "tighten")))
 
 /obj/item/clothing/head/utility/surgerycap/purple
 	name = "burgundy surgery cap"
@@ -716,7 +722,7 @@
 
 /obj/item/clothing/head/utility/head_mirror/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.247ef9a0", null))
+	. += span_notice(LANG("obj.247ef9a0fafde001", null))
 
 /obj/item/clothing/head/utility/head_mirror/equipped(mob/living/user, slot)
 	. = ..()
@@ -737,10 +743,10 @@
 	if(!human_examined.get_bodypart(BODY_ZONE_HEAD))
 		return
 	if(!examiner.has_light_nearby())
-		examine_list += span_warning(LANG("obj.e911115c", list(name, examining)))
+		examine_list += span_warning(LANG("obj.e911115c78595e60", list(name, examining)))
 		return
 	if(examiner.dir == examining.dir) // disallow examine from behind - every other dir is OK
-		examine_list += span_warning(LANG("obj.ece6965d", list(name, examining, examining.p_theyre())))
+		examine_list += span_warning(LANG("obj.ece6965dbc81c53a", list(name, examining, examining.p_theyre())))
 		return
 
 	var/list/final_message = list("You examine [examining]'s head closer with your [name], you notice [examining.p_they()] [examining.p_have()]...")

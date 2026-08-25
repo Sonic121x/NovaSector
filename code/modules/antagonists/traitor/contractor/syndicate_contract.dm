@@ -146,14 +146,14 @@
 		return
 	var/obj/item/card/id/contractor_id = contract.owner.current?.get_idcard(TRUE)
 	if(!contractor_id?.registered_account.account_id) // NOVA EDIT CHANGE - ORIGINAL: if(!contractor_id || !contractor_id.registered_account)
-		to_chat(contract.owner.current, span_notice(LANG("datum.61f3df39", null))) // NOVA EDIT ADDITION
+		to_chat(contract.owner.current, span_notice(LANG("datum.61f3df391dd75f3b", null))) // NOVA EDIT ADDITION
 		var/obj/item/storage/briefcase/secure/case = new(get_turf(contract.owner.current)) // NOVA EDIT ADDITION
 		for(var/i in 1 to (round((ransom * CONTRACTOR_RANSOM_CUT) / 1000))) // NOVA EDIT ADDITION - Gets slightly less/more but whatever
 			new /obj/item/stack/spacecash/c1000(case) // NOVA EDIT ADDITION
 	// NOVA EDIT CHANGE - END
 		return
 	contractor_id.registered_account.adjust_money(ransom * 0.35)
-	contractor_id.registered_account.bank_card_talk(LANG("datum.f0b5bcaa", list(contractor_id.registered_account.account_balance, MONEY_SYMBOL)), TRUE)
+	contractor_id.registered_account.bank_card_talk(LANG("datum.f0b5bcaadddeef5d", list(contractor_id.registered_account.account_balance, MONEY_SYMBOL)), TRUE)
 
 #define VICTIM_EXPERIENCE_START 0
 #define VICTIM_EXPERIENCE_FIRST_HIT 1
@@ -187,25 +187,25 @@
 			victim.flash_act()
 			victim.adjust_confusion(1 SECONDS)
 			victim.adjust_eye_blur(5 SECONDS)
-			to_chat(victim, span_warning(LANG("datum.3b633447", null)))
+			to_chat(victim, span_warning(LANG("datum.3b633447ee414575", null)))
 			time_until_next = 6 SECONDS
 		if(VICTIM_EXPERIENCE_FIRST_HIT)
-			to_chat(victim, span_warning(LANG("datum.6b099046", null)))
+			to_chat(victim, span_warning(LANG("datum.6b099046f0cc0817", null)))
 			victim.adjust_dizzy(3.5 SECONDS)
 			time_until_next = 6.5 SECONDS
 		if(VICTIM_EXPERIENCE_SECOND_HIT)
-			to_chat(victim, span_warning(LANG("datum.ffba7237", null)))
+			to_chat(victim, span_warning(LANG("datum.ffba7237d392146d", null)))
 			victim.flash_act()
 			victim.adjust_confusion(2 SECONDS)
 			victim.adjust_eye_blur(3 SECONDS)
 			time_until_next = 3 SECONDS
 		if(VICTIM_EXPERIENCE_THIRD_HIT)
-			to_chat(victim, span_warning(LANG("datum.8020c435", null)))
+			to_chat(victim, span_warning(LANG("datum.8020c435cdf61aa9", null)))
 			time_until_next = 10 SECONDS
 		if(VICTIM_EXPERIENCE_LAST_HIT)
 			victim.flash_act()
 			victim.Unconscious(200)
-			to_chat(victim, span_hypnophrase(LANG("datum.3b202013", null)))
+			to_chat(victim, span_hypnophrase(LANG("datum.3b2020136bd0549a", null)))
 			victim.adjust_eye_blur(10 SECONDS)
 			victim.adjust_dizzy(1.5 SECONDS)
 			victim.adjust_confusion(2 SECONDS)

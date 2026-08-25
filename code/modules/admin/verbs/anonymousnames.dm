@@ -11,7 +11,7 @@ GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
 GAME_VERB_PROC(/client, anon_names, "设置匿名名称", "Admin.Events")
 
 	if(GLOB.current_anonymous_theme)
-		var/response = tgui_alert(usr, LANG("client.17d87780", null), LANG("client.d4252aef", null), list("Disable Anon Names", "Keep it Enabled"))
+		var/response = tgui_alert(usr, LANG("client.17d877802ca46c92", null), LANG("client.d4252aefbe755934", null), list("Disable Anon Names", "Keep it Enabled"))
 		if(response != "Disable Anon Names")
 			return
 		message_admins(span_adminnotice("[key_name_admin(usr)] has disabled anonymous names."))
@@ -21,7 +21,7 @@ GAME_VERB_PROC(/client, anon_names, "设置匿名名称", "Admin.Events")
 	for(var/_theme in typesof(/datum/anonymous_theme))
 		var/datum/anonymous_theme/theme = _theme
 		input_list[initial(theme.name)] = theme
-	var/result = input(usr, LANG("client.5e9ec89b", null),LANG("client.afd2e858", null)) as null|anything in input_list
+	var/result = input(usr, LANG("client.5e9ec89b31d3ec2e", null),LANG("client.afd2e858a580e4b5", null)) as null|anything in input_list
 	if(!usr || !result || result == "Cancel")
 		return
 	var/datum/anonymous_theme/chosen_theme = input_list[result]
@@ -29,8 +29,8 @@ GAME_VERB_PROC(/client, anon_names, "设置匿名名称", "Admin.Events")
 	var/alert_players = "No"
 	if(SSticker.current_state > GAME_STATE_PREGAME) //before anonnames is done, for asking a sleep
 		if(initial(chosen_theme.extras_enabled))
-			extras_enabled = tgui_alert(usr, extras_enabled, LANG("client.e433b7ef", null), list("Yes", "No"))
-		alert_players = tgui_alert(usr, LANG("client.773cce17", null), LANG("client.1c3eb6ba", null), list("Yes", "No"))
+			extras_enabled = tgui_alert(usr, extras_enabled, LANG("client.e433b7ef7f34b8d7", null), list("Yes", "No"))
+		alert_players = tgui_alert(usr, LANG("client.773cce1773a27b06", null), LANG("client.1c3eb6ba8cc58e93", null), list("Yes", "No"))
 	//turns "Yes" and "No" into TRUE and FALSE
 	extras_enabled = extras_enabled == "Yes"
 	alert_players = alert_players == "Yes"
@@ -219,7 +219,7 @@ GAME_VERB_PROC(/client, anon_names, "设置匿名名称", "Admin.Events")
 	set_station_name("[pick(GLOB.first_names)] [pick(GLOB.last_names)]")
 
 /datum/anonymous_theme/station/announce_to_all_players()
-	priority_announce(LANG("datum.e1c11f85", list(station_name())), "Central Command Higher Dimensional Affairs", 'sound/announcer/notice/notice1.ogg')
+	priority_announce(LANG("datum.e1c11f855de84ce6", list(station_name())), "Central Command Higher Dimensional Affairs", 'sound/announcer/notice/notice1.ogg')
 
 /datum/anonymous_theme/station/anonymous_name(mob/target)
 	return new_station_name()

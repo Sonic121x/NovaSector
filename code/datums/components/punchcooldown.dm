@@ -28,7 +28,7 @@
 	INVOKE_ASYNC(src, PROC_REF(do_changewarcry), user)
 
 /datum/component/wearertargeting/punchcooldown/proc/do_changewarcry(mob/user)
-	var/input = tgui_input_text(user, LANG("datum.545047b8", null), LANG("datum.ede1244d", null), max_length = 6)
+	var/input = tgui_input_text(user, LANG("datum.545047b85ef49744", null), LANG("datum.ede1244dd2bb0fa8", null), max_length = 6)
 	if(!QDELETED(src) && !QDELETED(user) && !user.Adjacent(parent))
 		return
 	if(input)

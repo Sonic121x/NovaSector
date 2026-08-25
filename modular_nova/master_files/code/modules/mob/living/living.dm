@@ -24,7 +24,7 @@
 		SetStun(0, ignore_canstun = TRUE)
 
 	if(client && admin)
-		to_chat(src, span_userdanger(LANG("mob.83a8fdc1", list(!admin_frozen ? "un" : ""))))
+		to_chat(src, span_userdanger(LANG("mob.83a8fdc1647745c2", list(!admin_frozen ? "un" : ""))))
 		log_admin("[key_name(admin)] toggled admin-freeze on [key_name(src)].")
 		message_admins("[key_name_admin(admin)] toggled admin-freeze on [key_name_admin(src)].")
 
@@ -38,7 +38,7 @@
 		SetSleeping(0)
 
 	if(client && admin)
-		to_chat(src, span_userdanger(LANG("mob.18c5821d", list(!admin_sleeping ? "un": ""))))
+		to_chat(src, span_userdanger(LANG("mob.18c5821daf5ed26f", list(!admin_sleeping ? "un": ""))))
 		log_admin("[key_name(admin)] toggled admin-sleep on [key_name(src)].")
 		message_admins("[key_name_admin(admin)] toggled admin-sleep on [key_name_admin(src)].")
 

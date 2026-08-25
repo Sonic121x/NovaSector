@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 	. = ..()
 	if (!HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FITNESS))
 		return
-	. += span_notice(LANG("mob.7df22c35", null))
+	. += span_notice(LANG("mob.7df22c35109357ac", null))
 
 /mob/living/basic/gorilla/update_overlays()
 	. = ..()
@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 	ooga_ooga()
 	if (prob(paralyze_chance))
 		target.Knockdown(1 SECONDS) // NOVA EDIT CHANGE - ORIGINAL:  target.Paralyze(2 SECONDS)
-		visible_message(span_danger(LANG("mob.b28257ff", list(src, target))))
+		visible_message(span_danger(LANG("mob.b28257ff017a2b6e", list(src, target))))
 	else
 		target.throw_at(get_edge_target_turf(target, dir), range = rand(1, 2), speed = 7, thrower = src)
 
@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 	return ..()
 
 /mob/living/basic/gorilla/can_use_guns(obj/item/gun)
-	to_chat(src, span_warning(LANG("mob.f7045ed3", null)))
+	to_chat(src, span_warning(LANG("mob.f7045ed3b2d1dd02", null)))
 	return FALSE
 
 /// Assert your dominance with audio cues

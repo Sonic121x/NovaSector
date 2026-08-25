@@ -26,7 +26,7 @@
 	if(key != "taunt" || !intentional)
 		return
 	if((source.maxHealth - (source.get_stamina_loss() + TAUNT_STAMINA_COST)) <= source.crit_threshold)
-		source.balloon_alert(source, LANG("obj.6ba63ace", null))
+		source.balloon_alert(source, LANG("obj.6ba63ace20a73a48", null))
 		return COMPONENT_CANT_EMOTE
 
 /obj/item/skillchip/matrix_taunt/proc/on_taunt(mob/living/source)

@@ -308,9 +308,9 @@
 	if (!target_tank)
 		return
 	if(internal || (is_external && external))
-		to_chat(src, span_notice(LANG("mob.f466c5bf", list(target_tank))))
+		to_chat(src, span_notice(LANG("mob.f466c5bf89e80b4b", list(target_tank))))
 	else
-		to_chat(src, span_notice(LANG("mob.3064e1a9", list(target_tank))))
+		to_chat(src, span_notice(LANG("mob.3064e1a943943494", list(target_tank))))
 	return open_internals(target_tank, is_external)
 
 /**
@@ -324,14 +324,14 @@
 /mob/living/carbon/proc/toggle_close_internals(is_external = FALSE)
 	if (!internal && !external)
 		return
-	to_chat(src, span_notice(LANG("mob.a754a57e", list(is_external ? external : internal))))
+	to_chat(src, span_notice(LANG("mob.a754a57e81966e11", list(is_external ? external : internal))))
 	return close_internals(is_external)
 
 /// Prepares emergency disconnect from open air tanks and notifies in chat. Usually called after mob suddenly unequips breathing apparatus.
 /mob/living/carbon/proc/cutoff_internals()
 	if (!external && !internal)
 		return
-	to_chat(src, span_notice(LANG("mob.4af06c7c", list(external || internal))))
+	to_chat(src, span_notice(LANG("mob.4af06c7c0093cd11", list(external || internal))))
 	close_all_airtanks()
 
 /**

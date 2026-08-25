@@ -79,14 +79,14 @@
 
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice(LANG("obj.b8becc1b", list(buckler, src))),
-			span_notice(LANG("obj.c0f9142e", list(src))),
+			span_notice(LANG("obj.b8becc1b4c53f350", list(buckler, src))),
+			span_notice(LANG("obj.c0f9142ec78aaf5b", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_buckled.visible_message(
-			span_notice(LANG("obj.61013276", list(buckler, being_buckled, src))),
-			span_notice(LANG("obj.66f8b7fd", list(buckler, src))),
+			span_notice(LANG("obj.61013276ee9350c8", list(buckler, being_buckled, src))),
+			span_notice(LANG("obj.66f8b7fd77dafe9f", list(buckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -96,14 +96,14 @@
 
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice(LANG("obj.08b0e968", list(unbuckler, src))),
-			span_notice(LANG("obj.e8acb4b6", list(src))),
+			span_notice(LANG("obj.08b0e968dd9892d6", list(unbuckler, src))),
+			span_notice(LANG("obj.e8acb4b6f485da87", list(src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_notice(LANG("obj.7c44b748", list(unbuckler, being_unbuckled, src))),
-			span_notice(LANG("obj.dc9bfda3", list(unbuckler, src))),
+			span_notice(LANG("obj.7c44b748fad44ce5", list(unbuckler, being_unbuckled, src))),
+			span_notice(LANG("obj.dc9bfda37cb24939", list(unbuckler, src))),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -123,10 +123,10 @@
 
 /obj/structure/weightmachine/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	if(anchored)
-		balloon_alert(user, LANG("obj.3670b291", null))
+		balloon_alert(user, LANG("obj.3670b291a581ff60", null))
 		return FALSE
 	tool.play_tool_sound(src)
-	balloon_alert(user, LANG("obj.44f0e678", null))
+	balloon_alert(user, LANG("obj.44f0e678d88c8044", null))
 	if (!do_after(user, 10 SECONDS, target = src))
 		return FALSE
 	new /obj/item/stack/sheet/iron(get_turf(src), 5)
@@ -137,7 +137,7 @@
 
 /obj/structure/weightmachine/proc/perform_workout(mob/living/user)
 	if(user.nutrition <= NUTRITION_LEVEL_STARVING)
-		user.balloon_alert(user, LANG("obj.d614cfe3", null))
+		user.balloon_alert(user, LANG("obj.d614cfe32b0c197f", null))
 		return
 
 	user.balloon_alert_to_viewers("[pick(more_weight)]")
@@ -148,7 +148,7 @@
 		var/clumsy_chance = 30 - (user.mind.get_skill_level(/datum/skill/athletics) * 5)
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(clumsy_chance))
 			playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
-			to_chat(user, span_warning(LANG("obj.b23fc372", list(src))))
+			to_chat(user, span_warning(LANG("obj.b23fc3726d821770", list(src))))
 			user.take_bodypart_damage(rand(2, 5))
 			end_workout()
 			return

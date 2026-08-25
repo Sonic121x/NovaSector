@@ -44,7 +44,7 @@
 /obj/item/stack/sheet/examine(mob/user)
 	. = ..()
 	if (manufactured && gulag_value)
-		. += span_notice(LANG("obj.dcb373c1", null))
+		. += span_notice(LANG("obj.dcb373c11f908b5e", null))
 
 	var/datum/material/material = get_master_material()
 	if (!HAS_TRAIT(user, TRAIT_RESEARCH_SCANNER) || !material)
@@ -62,7 +62,7 @@
 			material_string += span_tooltip("[lang_localize_arg("[property]")]: [lang_localize_arg(tooltip_hint)]", lang_localize_arg(descriptor)) // NOVA EDIT - I18N: 描述符/提示逐项翻（get_descriptor 的 return 字面量已进目录）
 
 	if (length(material_string))
-		. += span_info(LANG("obj.120458d2", list(capitalize(material.name), lang_english_list(material_string)))) // NOVA EDIT - I18N
+		. += span_info(LANG("obj.120458d2dd2fe467", list(capitalize(material.name), lang_english_list(material_string)))) // NOVA EDIT - I18N
 
 /obj/item/stack/sheet/add(_amount)
 	. = ..()
@@ -108,7 +108,7 @@
 		var/obj/item/new_shard = new shard_to_create(target)
 		new_shard.add_fingerprint(user)
 		shards_created += "[new_shard.name]"
-	user.visible_message(span_notice(LANG("obj.87bfd4aa", list(user, name, target, english_list(shards_created)))), \
-		span_notice(LANG("obj.fdeba7b4", list(name, target, english_list(shards_created)))))
+	user.visible_message(span_notice(LANG("obj.87bfd4aaa0d460a3", list(user, name, target, lang_english_list(shards_created)))), \
+		span_notice(LANG("obj.fdeba7b45c21852b", list(name, target, lang_english_list(shards_created)))))
 	return TRUE
 

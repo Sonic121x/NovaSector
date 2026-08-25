@@ -20,9 +20,9 @@
 		return
 	if(!istype(tool, /obj/item/restraints/handcuffs) || !initial(breakouttime))
 		return
-	to_chat(user, span_notice(LANG("obj.ed25d3f3", list(src, tool))))
+	to_chat(user, span_notice(LANG("obj.ed25d3f332246c53", list(src, tool))))
 	name = "reinforced [initial(name)]"
-	clothing_flags = DANGEROUS_OBJECT
+	ADD_TRAIT(src, TRAIT_DANGEROUS_EQUIP, INNATE_TRAIT)
 	breakouttime = 100 SECONDS
 	qdel(tool)
 	return ITEM_INTERACT_SUCCESS
@@ -30,7 +30,7 @@
 /obj/item/clothing/gloves/ball_mittens/examine(mob/user)
 	. = ..()
 	if(breakouttime == initial(breakouttime))
-		. += span_notice(LANG("obj.bfabbba2", list(span_bold("handcuffs"))))
+		. += span_notice(LANG("obj.bfabbba2b504fd9b", list(span_bold("handcuffs"))))
 
 /// Paw mittens; which vary only in looks from ball mittens
 /obj/item/clothing/gloves/ball_mittens/paw_mittens

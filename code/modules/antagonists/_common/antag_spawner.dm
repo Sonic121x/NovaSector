@@ -27,7 +27,7 @@
 	if(!.)
 		return FALSE
 	if(polling)
-		balloon_alert(user, LANG("obj.1fa4acdd", null))
+		balloon_alert(user, LANG("obj.1fa4acdd4048f0f1", null))
 		return FALSE
 
 /obj/item/antag_spawner/contract/ui_interact(mob/user, datum/tgui/ui)
@@ -62,12 +62,12 @@
 			SStgui.close_uis(src)
 
 /obj/item/antag_spawner/contract/proc/poll_for_student(mob/living/carbon/human/teacher, apprentice_school)
-	balloon_alert(teacher, LANG("obj.5ba716f9", null))
+	balloon_alert(teacher, LANG("obj.5ba716f9cd72e291", null))
 	polling = TRUE
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("Do you want to play as [span_danger("[teacher]'s")] [span_notice("[apprentice_school] apprentice")]?", check_jobban = ROLE_WIZARD_MIDROUND, role = ROLE_WIZARD_MIDROUND, poll_time = 15 SECONDS, checked_target = src, alert_pic = /obj/item/clothing/head/wizard/red, jump_target = src, role_name_text = "wizard apprentice", chat_text_border_icon = /obj/item/clothing/head/wizard/red)
 	polling = FALSE
 	if(isnull(chosen_one))
-		to_chat(teacher, span_warning(LANG("obj.0196ebbd", null)))
+		to_chat(teacher, span_warning(LANG("obj.0196ebbd075b2e0d", null)))
 		return
 	if(QDELETED(src) || used)
 		return
@@ -121,10 +121,10 @@
 
 /obj/item/antag_spawner/nuke_ops/proc/check_usability(mob/user)
 	if(used)
-		to_chat(user, span_warning(LANG("obj.62e56ead", list(src))))
+		to_chat(user, span_warning(LANG("obj.62e56eada4c68cce", list(src))))
 		return FALSE
 	if(!user.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE))
-		to_chat(user, span_danger(LANG("obj.07350c42", null)))
+		to_chat(user, span_danger(LANG("obj.07350c42bbc975e9", null)))
 		return FALSE
 	return TRUE
 
@@ -139,7 +139,7 @@
 	if(!(check_usability(user)))
 		return
 
-	to_chat(user, span_notice(LANG("obj.74fad6c7", list(src))))
+	to_chat(user, span_notice(LANG("obj.74fad6c7e04fc96b", list(src))))
 	var/mob/chosen_one = SSpolling.poll_ghost_candidates("Do you want to play as a reinforcement [special_role_name]?", check_jobban = ROLE_OPERATIVE_MIDROUND, role = ROLE_OPERATIVE_MIDROUND, poll_time = 15 SECONDS, ignore_category = POLL_IGNORE_SYNDICATE, alert_pic = src, role_name_text = special_role_name, amount_to_pick = 1)
 	if(chosen_one)
 		if(QDELETED(src) || !check_usability(user))
@@ -149,7 +149,7 @@
 		do_sparks(4, TRUE, src)
 		qdel(src)
 	else
-		to_chat(user, span_warning(LANG("obj.c89f6855", null)))
+		to_chat(user, span_warning(LANG("obj.c89f6855e87d07aa", null)))
 
 /obj/item/antag_spawner/nuke_ops/spawn_antag(client/our_client, turf/T, kind, datum/mind/user)
 	var/mob/living/carbon/human/nukie = new()
@@ -269,7 +269,7 @@
 
 /obj/item/antag_spawner/slaughter_demon/attack_self(mob/user)
 	if(!is_station_level(user.z))
-		to_chat(user, span_warning(LANG("obj.f4f9b094", null)))
+		to_chat(user, span_warning(LANG("obj.f4f9b0947cbcc0b1", null)))
 		return
 	if(used)
 		return
@@ -285,7 +285,7 @@
 		playsound(user.loc, 'sound/effects/glass/glassbr1.ogg', 100, TRUE)
 		qdel(src)
 	else
-		to_chat(user, span_warning(LANG("obj.e18e293c", null)))
+		to_chat(user, span_warning(LANG("obj.e18e293c3bc1553a", null)))
 
 /obj/item/antag_spawner/slaughter_demon/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	var/mob/living/basic/demon/spawned = new demon_type(T)
@@ -333,7 +333,7 @@
 
 /obj/item/antag_spawner/loadout/proc/check_usability(mob/user)
 	if(used)
-		to_chat(user, span_warning(LANG("obj.62e56ead", list(src))))
+		to_chat(user, span_warning(LANG("obj.62e56eada4c68cce", list(src))))
 		return FALSE
 	return TRUE
 
@@ -348,7 +348,7 @@
 	if(!(check_usability(user)))
 		return
 
-	to_chat(user, span_notice(LANG("obj.74fad6c7", list(src))))
+	to_chat(user, span_notice(LANG("obj.74fad6c7e04fc96b", list(src))))
 	var/mob/chosen_one = SSpolling.poll_ghost_candidates(
 		check_jobban = role_to_play,
 		poll_time = 10 SECONDS,
@@ -411,7 +411,7 @@
 	role_to_play = ROLE_CONTRACTOR_SUPPORT
 
 /obj/item/antag_spawner/loadout/contractor/do_special_things(mob/living/carbon/human/contractor_support, mob/user)
-	to_chat(contractor_support, LANG("obj.65aac1b5", list(span_alertwarning("[user.real_name] is your superior. Follow any, and all orders given by them. You're here to support their mission only."))))
+	to_chat(contractor_support, LANG("obj.65aac1b5abce675a", list(span_alertwarning("[user.real_name] is your superior. Follow any, and all orders given by them. You're here to support their mission only."))))
 	to_chat(contractor_support, "[span_alertwarning("Should they perish, or be otherwise unavailable, you're to assist other active agents in this mission area to the best of your ability.")]")
 
 /obj/item/antag_spawner/loadout/monkey_man
@@ -448,7 +448,7 @@
 	if(is_simian(second_lifer))
 		return
 	// timer is long to let them panic and consider their folly, and because allergies take a while
-	second_lifer.visible_message(span_bolddanger(LANG("obj.326810c5", list(second_lifer, folly_species))), span_userdanger(LANG("obj.30e06d8a", null)))
+	second_lifer.visible_message(span_bolddanger(LANG("obj.326810c51a8c071b", list(second_lifer, folly_species))), span_userdanger(LANG("obj.30e06d8ad6ac65e9", null)))
 	// no brain or items. organs are funny though
 	second_lifer.inflate_gib(drop_bitflags = DROP_ORGANS|DROP_BODYPARTS, gib_time = 25 SECONDS, anim_time = 40 SECONDS)
 

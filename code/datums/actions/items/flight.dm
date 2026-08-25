@@ -36,13 +36,13 @@
 	)
 
 /datum/action/item_action/toggle_flight/Remove(mob/remove_from)
-	. = ..()
 	if(HAS_TRAIT_FROM(remove_from, TRAIT_MOVE_FLOATING, SHOES_TRAIT))
 		switch_flight()
+	return ..()
 
 /datum/action/item_action/toggle_flight/do_effect(trigger_flags)
 	if(!ishuman(owner))
-		to_chat(owner, span_warning(LANG("datum.6dae7671", null)))
+		to_chat(owner, span_warning(LANG("datum.6dae76710602bd5d", null)))
 		return FALSE
 	if(!target)
 		return FALSE
@@ -62,7 +62,7 @@
 		human_owner.AddElement(/datum/element/forced_gravity, 0)
 		SEND_SIGNAL(human_owner, COMSIG_JETBOOTS_ACTIVE, human_owner)
 		ADD_TRAIT(human_owner, TRAIT_PASSTABLE, SHOES_TRAIT)
-		to_chat(human_owner, span_notice(LANG("datum.f9fe38ea", null)))
+		to_chat(human_owner, span_notice(LANG("datum.f9fe38eae7eac9c9", null)))
 		human_owner.set_resting(FALSE, TRUE)
 		human_owner.refresh_gravity()
 		RegisterSignals(human_owner, list(COMSIG_LIVING_STATUS_STUN, COMSIG_LIVING_STATUS_KNOCKDOWN, COMSIG_LIVING_STATUS_PARALYZE), PROC_REF(switch_flight))
@@ -81,7 +81,7 @@
 	human_owner.RemoveElement(/datum/element/forced_gravity, 0)
 	SEND_SIGNAL(human_owner, COMSIG_JETBOOTS_INACTIVE, human_owner)
 	REMOVE_TRAIT(human_owner, TRAIT_PASSTABLE, SHOES_TRAIT)
-	to_chat(human_owner, span_notice(LANG("datum.a8257d6e", null)))
+	to_chat(human_owner, span_notice(LANG("datum.a8257d6ef6630cc7", null)))
 	human_owner.refresh_gravity()
 	UnregisterSignal(human_owner, list(COMSIG_LIVING_STATUS_STUN, COMSIG_LIVING_STATUS_KNOCKDOWN, COMSIG_LIVING_STATUS_PARALYZE))
 	//visuals
@@ -101,11 +101,11 @@
 	if(!location)
 		return FALSE
 	if(human.get_item_by_slot(ITEM_SLOT_LEGCUFFED))
-		to_chat(human, span_warning(LANG("datum.253ff1df", null)))
+		to_chat(human, span_warning(LANG("datum.253ff1df4f863f92", null)))
 		return FALSE
 
 	var/datum/gas_mixture/environment = location.return_air()
 	if(environment?.return_pressure() < HAZARD_LOW_PRESSURE + 10)
-		to_chat(human, span_warning(LANG("datum.89ea74df", null)))
+		to_chat(human, span_warning(LANG("datum.89ea74df1740c935", null)))
 		return FALSE
 	return TRUE

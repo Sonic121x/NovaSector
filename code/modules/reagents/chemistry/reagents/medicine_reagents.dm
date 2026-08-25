@@ -66,7 +66,7 @@
 			mytray.mutatepest()
 		else
 			if(prob(20))
-				mytray.visible_message(span_warning(LANG("datum.cc1b57a1", null)))
+				mytray.visible_message(span_warning(LANG("datum.cc1b57a1bfbd09a9", null)))
 
 /datum/reagent/medicine/adminordrazine/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -137,7 +137,7 @@
 		. = UPDATE_MOB_HEALTH
 
 	if(SPT_PROB(10, seconds_per_tick))
-		to_chat(affected_mob, LANG("datum.826c8945", null))
+		to_chat(affected_mob, LANG("datum.826c89458c575a02", null))
 		if(prob(30))
 			SEND_SOUND(affected_mob, sound('sound/items/weapons/flash_ring.ogg'))
 
@@ -260,7 +260,7 @@
 	var/mob/living/carbon/patient = exposed_mob
 	if(functional_react_volume >= 5 && HAS_TRAIT_FROM(patient, TRAIT_HUSK, BURN) && patient.get_fire_loss() < UNHUSK_DAMAGE_THRESHOLD) //One carp yields 12u rezadone.
 		patient.cure_husk(BURN)
-		patient.visible_message(span_nicegreen(LANG("datum.925ff681", list(patient))))
+		patient.visible_message(span_nicegreen(LANG("datum.925ff6818287dad6", list(patient))))
 
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
@@ -318,14 +318,18 @@
 	/// Add about half this much extra blood regen per second.
 	var/extra_regen = 0.25
 
-	/// Add many extra units of blood per unit of saline.
-	var/dilution_per_unit = 5
-
-	/// Doesn't dilute blood beyond this point.
-	var/dilution_cap = BLOOD_VOLUME_NORMAL
-
 	/// Only supplements blood types that use this restoration chem.
 	var/required_restoration_chem = /datum/reagent/iron
+
+/datum/reagent/medicine/salglu_solution/on_mob_add(mob/living/affected_mob, amount)
+	. = ..()
+	if(affected_mob.get_bloodtype()?.restoration_chem != required_restoration_chem)
+		return
+
+	if(affected_mob.has_status_effect(/datum/status_effect/stacking/saline_glucose_dilution))
+		return
+
+	affected_mob.apply_status_effect(/datum/status_effect/stacking/saline_glucose_dilution)
 
 /datum/reagent/medicine/salglu_solution/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -348,12 +352,12 @@
 	var/need_mob_update
 	if(SPT_PROB(1.5, seconds_per_tick))
 		if(holder)
-			to_chat(affected_mob, span_warning(LANG("datum.0c0012cd", null)))
+			to_chat(affected_mob, span_warning(LANG("datum.0c0012cdecca8a3e", null)))
 			holder.add_reagent(/datum/reagent/consumable/salt, 1)
 			holder.remove_reagent(/datum/reagent/medicine/salglu_solution, 0.5)
 	else if(SPT_PROB(1.5, seconds_per_tick))
 		if(holder)
-			to_chat(affected_mob, span_warning(LANG("datum.297e5ba5", null)))
+			to_chat(affected_mob, span_warning(LANG("datum.297e5ba5b01b91a1", null)))
 			holder.add_reagent(/datum/reagent/consumable/sugar, 1)
 			holder.remove_reagent(/datum/reagent/medicine/salglu_solution, 0.5)
 	if(SPT_PROB(18, seconds_per_tick))
@@ -390,12 +394,12 @@
 		if(miner_cramps)
 			exposed_mob.adjust_nutrition(-miner_cramps)
 			if(show_message)
-				to_chat(exposed_mob, span_warning(LANG("datum.0e903e43", null)))
+				to_chat(exposed_mob, span_warning(LANG("datum.0e903e43ac661d69", null)))
 
 	if(methods & (PATCH|TOUCH))
 		exposed_mob.add_surgery_speed_mod(type, 0.9, min(reac_volume * 1 MINUTES, 5 MINUTES))
 		if(show_message)
-			to_chat(exposed_mob, span_danger(LANG("datum.a142d0fd", null)) )
+			to_chat(exposed_mob, span_danger(LANG("datum.a142d0fd286f44e7", null)) )
 
 /datum/reagent/medicine/mine_salve/on_mob_metabolize(mob/living/affected_mob)
 	. = ..()
@@ -650,10 +654,10 @@
 	if (SPT_PROB(35, seconds_per_tick))
 		if (prob(60))
 			carbon_mob.losebreath += 1
-			to_chat(affected_mob, span_danger(LANG("datum.e683f305", null)))
+			to_chat(affected_mob, span_danger(LANG("datum.e683f3057d15e842", null)))
 		else
 			carbon_mob.breathe(seconds_per_tick)
-			to_chat(affected_mob, span_danger(LANG("datum.f265f902", null)))
+			to_chat(affected_mob, span_danger(LANG("datum.f265f9024554f59c", null)))
 
 	if (current_cycle > secondary_overdose_effect_cycle_threshold)
 		if (SPT_PROB(30, seconds_per_tick))
@@ -705,7 +709,7 @@
 	var/obj/item/active_held_item = affected_mob.get_active_held_item()
 	if(SPT_PROB(10 * (1.5-creation_purity), seconds_per_tick) && iscarbon(affected_mob) && active_held_item?.w_class > WEIGHT_CLASS_SMALL)
 		if(active_held_item && affected_mob.dropItemToGround(active_held_item))
-			to_chat(affected_mob, span_notice(LANG("datum.47791b5b", null)))
+			to_chat(affected_mob, span_notice(LANG("datum.47791b5b3866d8ed", null)))
 			affected_mob.set_jitter_if_lower(20 SECONDS)
 
 	affected_mob.AdjustAllImmobility(-20 * metabolization_ratio * seconds_per_tick * normalise_creation_purity())
@@ -717,7 +721,7 @@
 	. = ..()
 	if(SPT_PROB(1 * (1 + (1-normalise_creation_purity())), seconds_per_tick) && iscarbon(affected_mob))
 		affected_mob.apply_status_effect(/datum/status_effect/heart_attack)
-		to_chat(affected_mob, span_userdanger(LANG("datum.1b0d43d4", null)))
+		to_chat(affected_mob, span_userdanger(LANG("datum.1b0d43d475d2d0e6", null)))
 		affected_mob.playsound_local(affected_mob, 'sound/effects/singlebeat.ogg', 100, 0)
 
 	if(SPT_PROB(3.5 * (1 + (1-normalise_creation_purity())), seconds_per_tick))
@@ -774,7 +778,7 @@
 
 	switch(current_cycle)
 		if(16) //~3u
-			to_chat(affected_mob, span_warning(LANG("datum.1cc84b02", null)))
+			to_chat(affected_mob, span_warning(LANG("datum.1cc84b0227303b7c", null)))
 			affected_mob.adjust_eye_blur(2 SECONDS * metabolization_ratio * seconds_per_tick)
 			if(SPT_PROB(66, seconds_per_tick))
 				affected_mob.emote("yawn")
@@ -863,10 +867,10 @@
 		if(eyes.damage >= eyes.low_threshold && IS_ORGANIC_ORGAN(eyes) && SPT_PROB(16 - min(normalized_purity * 6, 12), seconds_per_tick))
 			// While healing, gives some eye blur
 			if(affected_mob.is_blind_from(EYE_DAMAGE))
-				to_chat(affected_mob, span_warning(LANG("datum.075ce441", null)))
+				to_chat(affected_mob, span_warning(LANG("datum.075ce441371afaf3", null)))
 				affected_mob.adjust_eye_blur(20 SECONDS)
 			else if(affected_mob.is_nearsighted_from(EYE_DAMAGE))
-				to_chat(affected_mob, span_warning(LANG("datum.99242784", null)))
+				to_chat(affected_mob, span_warning(LANG("datum.9924278487fbdd07", null)))
 				affected_mob.adjust_eye_blur(5 SECONDS)
 
 /datum/reagent/medicine/oculine/on_mob_delete(mob/living/affected_mob)
@@ -931,12 +935,12 @@
 	new_eyes = new new_eyes(affected_mob)
 	new_eyes.Insert(affected_mob)
 	playsound(affected_mob, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 50, TRUE)
-	affected_mob.visible_message(span_danger(LANG("datum.e73980e4", list(affected_mob, eyes ? eyes : "eye holes", new_eyes))))
+	affected_mob.visible_message(span_danger(LANG("datum.e73980e40acffcea", list(affected_mob, eyes ? eyes : "eye holes", new_eyes))))
 	ASYNC
 		affected_mob.emote("scream")
 		sleep(5 SECONDS)
 		if(!QDELETED(eyes))
-			eyes.visible_message(span_danger(LANG("datum.29def987", list(eyes))))
+			eyes.visible_message(span_danger(LANG("datum.29def9872059467a", list(eyes))))
 			eyes.dust()
 
 /datum/reagent/medicine/inacusiate
@@ -955,7 +959,7 @@
 	if(creation_purity >= 1)
 		ADD_TRAIT(affected_mob, TRAIT_GOOD_HEARING, type)
 		if(!HAS_TRAIT(affected_mob, TRAIT_DEAF))
-			to_chat(affected_mob, span_nicegreen(LANG("datum.06b8cae5", null)))
+			to_chat(affected_mob, span_nicegreen(LANG("datum.06b8cae588a0f7cd", null)))
 
 /datum/reagent/medicine/inacusiate/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -971,7 +975,7 @@
 	. = ..()
 	REMOVE_TRAIT(affected_mob, TRAIT_GOOD_HEARING, type)
 	if(!HAS_TRAIT(affected_mob, TRAIT_DEAF))
-		to_chat(affected_mob, span_notice(LANG("datum.388b53db", null)))
+		to_chat(affected_mob, span_notice(LANG("datum.388b53db19c6e7e7", null)))
 
 /datum/reagent/medicine/atropine
 	name = "Atropine"
@@ -1092,6 +1096,22 @@
 	if(instant)
 		description += " It appears to be pulsing with a warm pink light."
 
+// NOVA EDIT ADDITION START - i18n
+/// **先反查模板、再替换 %VAR%**：目录键里留着 `%MAXHEALTHRATIO%`（抽取器照抄源码字面量），
+/// 而替换之后的整串再也不等于任何键 —— 这条描述的译文一直躺在目录里、化学界面却恒为英文。
+/// 与 announcement_system.dm 的 %PERSON/%RANK 同一条道理。
+///
+/// **不能写在 `New()` 里**：试剂单例由 `GLOBAL_LIST_INIT(chemical_reagents_list, ...)` 在 GLOB
+/// 阶段建好，那时 `ConfigLoaded` 还没读 locale，`lang_reverse_text` 会静默返回英文（早调用哨兵
+/// 在 runtime.log 里当场抓到了这一条）。所以改成由 ConfigLoaded 之后的
+/// `lang_relocalize_early_string_lists()` 回来重建，源串取 `initial(description)`（带占位符的
+/// canonical 英文，正是目录键的形态）。
+/datum/reagent/medicine/strange_reagent/lang_relocalize_description()
+	description = replacetext(lang_reverse_text(initial(description)), "%MAXHEALTHRATIO%", "[max_revive_damage_ratio * 100]%")
+	if(instant)
+		description += lang_reverse_text(" It appears to be pulsing with a warm pink light.")
+// NOVA EDIT ADDITION END
+
 // FEED ME SEYMOUR
 /datum/reagent/medicine/strange_reagent/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
 	mytray.spawnplant()
@@ -1120,32 +1140,32 @@
 		return ..()
 
 	if(HAS_TRAIT(exposed_mob, TRAIT_SUICIDED)) //they are never coming back
-		exposed_mob.visible_message(span_warning(LANG("datum.6e608fa0", list(exposed_mob))))
+		exposed_mob.visible_message(span_warning(LANG("datum.6e608fa003d42ef8", list(exposed_mob))))
 		return
 
 	if(iscarbon(exposed_mob) && !(methods & (INGEST|INHALE))) //simplemobs can still be splashed
 		return ..()
 
 	if(HAS_TRAIT(exposed_mob, TRAIT_HUSK))
-		exposed_mob.visible_message(span_warning(LANG("datum.f4f6b107", list(exposed_mob))))
+		exposed_mob.visible_message(span_warning(LANG("datum.f4f6b10729f4c42d", list(exposed_mob))))
 		return
 
 	if((exposed_mob.get_brute_loss() + exposed_mob.get_fire_loss()) > (exposed_mob.getMaxHealth() * max_revive_damage_ratio))
-		exposed_mob.visible_message(span_warning(LANG("datum.b3977776", list(exposed_mob))))
+		exposed_mob.visible_message(span_warning(LANG("datum.b3977776396f2c27", list(exposed_mob))))
 		return
 
 	var/needed_to_revive = calculate_amount_needed_to_revive(exposed_mob)
 	if(reac_volume < needed_to_revive)
-		exposed_mob.visible_message(span_warning(LANG("datum.00d0875a", list(exposed_mob))))
+		exposed_mob.visible_message(span_warning(LANG("datum.00d0875a49dd1ea6", list(exposed_mob))))
 		exposed_mob.do_jitter_animation(10)
 		return
 
 	if(!pre_rez_check(exposed_mob))
-		exposed_mob.visible_message(span_warning(LANG("datum.bd36fe23", list(exposed_mob))))
+		exposed_mob.visible_message(span_warning(LANG("datum.bd36fe2343ab9c26", list(exposed_mob))))
 		exposed_mob.do_jitter_animation(1)
 		return
 
-	exposed_mob.visible_message(span_warning(LANG("datum.adb7797e", list(exposed_mob))))
+	exposed_mob.visible_message(span_warning(LANG("datum.adb7797ef7befa56", list(exposed_mob))))
 	exposed_mob.notify_revival("Your body is being revived with Strange Reagent!")
 	exposed_mob.do_jitter_animation(10)
 
@@ -1217,7 +1237,7 @@
 
 /datum/reagent/medicine/mannitol/overdose_start(mob/living/affected_mob, metabolization_ratio)
 	. = ..()
-	to_chat(affected_mob, span_notice(LANG("datum.7b894238", null)))
+	to_chat(affected_mob, span_notice(LANG("datum.7b894238b3fce413", null)))
 
 /datum/reagent/medicine/mannitol/overdose_process(mob/living/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -1423,6 +1443,7 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	affected_biotype = MOB_ORGANIC | MOB_MINERAL | MOB_PLANT // no healing ghosts
+	var/healing = 0.75
 
 /datum/reagent/medicine/regen_jelly/expose_mob(mob/living/exposed_mob, reac_volume)
 	. = ..()
@@ -1435,7 +1456,7 @@
 
 /datum/reagent/medicine/regen_jelly/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
-	var/heal = -0.75 * metabolization_ratio * seconds_per_tick
+	var/heal = -healing * metabolization_ratio * seconds_per_tick
 	var/need_mob_update
 	need_mob_update = affected_mob.adjust_brute_loss(heal, updating_health = FALSE, required_bodytype = affected_bodytype)
 	need_mob_update += affected_mob.adjust_fire_loss(heal, updating_health = FALSE, required_bodytype = affected_bodytype)
@@ -1443,6 +1464,13 @@
 	need_mob_update += affected_mob.adjust_tox_loss(heal, updating_health = FALSE, forced = TRUE, required_biotype = affected_biotype) //heals TOXINLOVERs
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
+
+// purple
+/datum/reagent/medicine/regen_jelly/diluted
+	name = "Diluted Regenerative Jelly"
+	description = "Regenerative slime jelly thas has been diluted, resulting in it regenerating tissues slower, but lasting longer with the same volume."
+	metabolization_rate = 0.125 * REAGENTS_METABOLISM
+	healing = 0.45 // less than omnizine, actually
 
 /datum/reagent/medicine/syndicate_nanites //Used exclusively by Syndicate medical cyborgs
 	name = "Restorative Nanites"
@@ -1597,7 +1625,7 @@
 /datum/reagent/medicine/changelingadrenaline/proc/on_stamcrit(mob/living/affected_mob)
 	SIGNAL_HANDLER
 	affected_mob?.set_stamina_loss(90, updating_stamina = TRUE)
-	to_chat(affected_mob, span_changeling(LANG("datum.c0c80595", null)))
+	to_chat(affected_mob, span_changeling(LANG("datum.c0c805953dd68ff9", null)))
 	volume -= (min(volume, 1))
 	return STAMCRIT_CANCELLED
 
@@ -1694,7 +1722,7 @@
 
 /datum/reagent/medicine/modafinil/overdose_start(mob/living/affected_mob, metabolization_ratio)
 	. = ..()
-	to_chat(affected_mob, span_userdanger(LANG("datum.de06652c", null)))
+	to_chat(affected_mob, span_userdanger(LANG("datum.de06652c29983f6f", null)))
 	metabolization_rate = 0.025 * REAGENTS_METABOLISM // sets metabolism to 0.005 per second on overdose
 
 /datum/reagent/medicine/modafinil/overdose_process(mob/living/affected_mob, seconds_per_tick, metabolization_ratio)
@@ -1719,11 +1747,11 @@
 				affected_mob.losebreath++
 				need_mob_update = TRUE
 			if(SPT_PROB(10, seconds_per_tick))
-				to_chat(affected_mob, span_userdanger(LANG("datum.1ee2c590", null)))
+				to_chat(affected_mob, span_userdanger(LANG("datum.1ee2c590e0f8c7a8", null)))
 				affected_mob.emote("moan")
 				affected_mob.Paralyze(20) // you should be in a bad spot at this point unless epipen has been used
 		if(81)
-			to_chat(affected_mob, span_userdanger(LANG("datum.cb58ff58", null))) // at this point you will eventually die unless you get charcoal
+			to_chat(affected_mob, span_userdanger(LANG("datum.cb58ff586d2dfee7", null))) // at this point you will eventually die unless you get charcoal
 			need_mob_update = affected_mob.adjust_oxy_loss(2 * metabolization_ratio * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype)
 			need_mob_update += affected_mob.adjust_stamina_loss(2 * metabolization_ratio * seconds_per_tick, updating_stamina = FALSE, required_biotype = affected_biotype)
 		if(82 to INFINITY)
@@ -1876,7 +1904,7 @@
 /datum/reagent/medicine/coagulant/on_mob_end_metabolize(mob/living/affected_mob)
 	. = ..()
 	if(was_working)
-		to_chat(affected_mob, span_warning(LANG("datum.6cca1cb3", null)))
+		to_chat(affected_mob, span_warning(LANG("datum.6cca1cb38cd5925a", null)))
 	if(ishuman(affected_mob))
 		var/mob/living/carbon/human/blood_boy = affected_mob
 		blood_boy.physiology?.bleed_mod /= passive_bleed_modifier
@@ -1885,7 +1913,7 @@
 	. = ..()
 	if(affected_mob.coagulant_effect(METABOLIZE_FREE_CONSTANT(0.5) * clot_rate * metabolization_ratio * seconds_per_tick))
 		if(!was_working)
-			to_chat(affected_mob, span_green(LANG("datum.7c15d0c0", null)))
+			to_chat(affected_mob, span_green(LANG("datum.7c15d0c01b82c27d", null)))
 			was_working = TRUE
 
 	else if(was_working)
@@ -1908,9 +1936,9 @@
 		affected_mob.losebreath += rand(2, 4)
 		affected_mob.adjust_oxy_loss(METABOLIZE_FREE_CONSTANT(1) * rand(1, 3) * metabolization_ratio, updating_health = FALSE, required_biotype = affected_biotype)
 		if(prob(30))
-			to_chat(affected_mob, span_danger(LANG("datum.d2e12517", null)))
+			to_chat(affected_mob, span_danger(LANG("datum.d2e1251723ba8dc0", null)))
 		else if(prob(10))
-			to_chat(affected_mob, span_userdanger(LANG("datum.929c3002", null)))
+			to_chat(affected_mob, span_userdanger(LANG("datum.929c3002dd4a9d88", null)))
 			affected_mob.adjust_oxy_loss(METABOLIZE_FREE_CONSTANT(0.5) * rand(3, 4) * metabolization_ratio, updating_health = FALSE, required_biotype = affected_biotype)
 
 		if(prob(50))

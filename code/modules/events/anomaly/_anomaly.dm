@@ -29,7 +29,7 @@
 /datum/round_event/anomaly/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce(LANG("datum.39a7b5b7", list(ANOMALY_ANNOUNCE_DANGEROUS_TEXT, impact_area.name)), "Anomaly Alert", ANNOUNCER_ANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Energetic flux wave detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce(LANG("datum.39a7b5b73c3e3688", list(ANOMALY_ANNOUNCE_DANGEROUS_TEXT, impact_area.name)), "Anomaly Alert", ANNOUNCER_ANOMALIES) //NOVA EDIT CHANGE - ORIGINAL: priority_announce("Energetic flux wave detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name].", "Anomaly Alert")
 
 /datum/round_event/anomaly/start()
 	var/turf/anomaly_turf

@@ -48,7 +48,7 @@
 	if(starting_song.lines.len * starting_song.tempo > FESTIVAL_SONG_LONG_ENOUGH)
 		viable_for_final_effect = TRUE
 	else
-		to_chat(parent, span_warning(LANG("datum.1f3d9824", null)))
+		to_chat(parent, span_warning(LANG("datum.1f3d9824018811d2", null)))
 
 	START_PROCESSING(SSobj, src) //even though WE aren't an object, our parent is!
 	if(linked_songtuner_rite.song_start_message)
@@ -77,7 +77,7 @@
 /datum/component/smooth_tunes/proc/tempo_change(datum/source, datum/song/modified_song)
 	SIGNAL_HANDLER
 	if(modified_song.playing && viable_for_final_effect)
-		to_chat(parent, span_warning(LANG("datum.2cf6e308", null)))
+		to_chat(parent, span_warning(LANG("datum.2cf6e308d0cf6ba3", null)))
 		viable_for_final_effect = FALSE
 
 ///Ends the effect when the song is no longer playing.
@@ -92,7 +92,7 @@
 
 				linked_songtuner_rite.finish_effect(listener, parent)
 		else
-			to_chat(parent, span_warning(LANG("datum.b9984a0f", null)))
+			to_chat(parent, span_warning(LANG("datum.b9984a0f7079c5a1", null)))
 
 	linked_song.parent?.remove_filter("smooth_tunes_outline")
 	UnregisterSignal(linked_song.parent, list(

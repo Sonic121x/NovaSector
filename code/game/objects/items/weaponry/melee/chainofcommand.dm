@@ -33,7 +33,7 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/melee/chainofcommand/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.2a557471", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.2a557471bd55eaf0", list(user, user.p_them(), src, user.p_theyre()))))
 	return OXYLOSS
 
 /obj/item/melee/chainofcommand/attack_secondary(mob/living/victim, mob/living/user, list/modifiers, list/attack_modifiers)
@@ -43,7 +43,7 @@
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(victim == user)
-		to_chat(user, span_warning(LANG("obj.e2bd58bf", null)))
+		to_chat(user, span_warning(LANG("obj.e2bd58bfb143ca72", null)))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	user.do_attack_animation(victim)

@@ -44,7 +44,7 @@
 /obj/structure/bonfire/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stack/rods) && !can_buckle && !grill)
 		var/obj/item/stack/rods/rods = tool
-		var/choice = tgui_alert(user, LANG("obj.c942d6ab", null), LANG("obj.e4d12e40", null), list("Stake","Grill"))
+		var/choice = tgui_alert(user, LANG("obj.c942d6ab579bb43d", null), LANG("obj.e4d12e402093bcd0", null), list("Stake","Grill"))
 		if(isnull(choice))
 			return ITEM_INTERACT_BLOCKING
 		rods.use(1)
@@ -52,7 +52,7 @@
 			if("Stake")
 				can_buckle = TRUE
 				buckle_requires_restraints = TRUE
-				to_chat(user, span_notice(LANG("obj.e0efcfd2", list(src))))
+				to_chat(user, span_notice(LANG("obj.e0efcfd271689dd2", list(src))))
 				var/mutable_appearance/rod_underlay = mutable_appearance('icons/obj/service/hydroponics/equipment.dmi', "bonfire_rod")
 				rod_underlay.pixel_z = 16
 				underlays += rod_underlay
@@ -60,7 +60,7 @@
 
 			if("Grill")
 				grill = TRUE
-				to_chat(user, span_notice(LANG("obj.cbd79414", list(src))))
+				to_chat(user, span_notice(LANG("obj.cbd794141220d061", list(src))))
 				add_overlay("bonfire_grill")
 				return ITEM_INTERACT_SUCCESS
 
@@ -92,7 +92,7 @@
 	if(.)
 		return
 	if(burning)
-		to_chat(user, span_warning(LANG("obj.903f3e66", list(src))))
+		to_chat(user, span_warning(LANG("obj.903f3e66721d74d3", list(src))))
 		return
 	if(!has_buckled_mobs() && do_after(user, 5 SECONDS, target = src))
 		for(var/obj/item/grown/log/bonfire_log in contents)
@@ -138,11 +138,11 @@
 		var/mob/living/burning_body = entered
 		if(burning_body.on_fire)
 			start_burning()
-			visible_message(span_notice(LANG("obj.d08d519d", list(entered, src))))
+			visible_message(span_notice(LANG("obj.d08d519dc9c10a4c", list(entered, src))))
 
 	else if(entered.resistance_flags & ON_FIRE)
 		start_burning()
-		visible_message(span_notice(LANG("obj.09637521", list(entered, src))))
+		visible_message(span_notice(LANG("obj.09637521a65af225", list(entered, src))))
 
 /obj/structure/bonfire/proc/bonfire_burn(seconds_per_tick = 2)
 	var/turf/current_location = get_turf(src)

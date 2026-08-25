@@ -186,9 +186,9 @@
 			ADD_TRAIT(contained, TRAIT_CONTRABAND, INNATE_TRAIT)
 	var/mob/living/carbon/human/human_user = user
 	if(istype(human_user) && isitem(spawned_item) && human_user.put_in_hands(spawned_item))
-		to_chat(human_user, span_boldnotice(LANG("datum.75ba6893", list(spawned_item))))
+		to_chat(human_user, span_boldnotice(LANG("datum.75ba6893d3b7f517", list(spawned_item))))
 	else
-		to_chat(user, span_boldnotice(LANG("datum.3feae979", list(spawned_item))))
+		to_chat(user, span_boldnotice(LANG("datum.3feae979c134b400", list(spawned_item))))
 	SEND_SIGNAL(uplink_handler, COMSIG_ON_UPLINK_PURCHASE, spawned_item, user)
 	return spawned_item
 

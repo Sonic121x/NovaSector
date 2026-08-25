@@ -47,7 +47,7 @@
 /obj/item/book/examine(mob/user)
 	. = ..()
 	if(carved)
-		. += span_notice(LANG("obj.0ae8f20c", list(src)))
+		. += span_notice(LANG("obj.0ae8f20c38efd4d3", list(src)))
 
 /obj/item/book/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(isnull(held_item))
@@ -95,18 +95,18 @@
 /// Proc that checks if the user is capable of reading the book, for UI interactions and otherwise. Returns TRUE if they can, FALSE if they can't.
 /obj/item/book/proc/can_read_book(mob/living/user)
 	if(user.is_blind())
-		to_chat(user, span_warning(LANG("obj.2977ae45", null)))
+		to_chat(user, span_warning(LANG("obj.2977ae45da0096b8", null)))
 		return FALSE
 
 	if(!user.can_read(src))
 		return FALSE
 
 	if(carved)
-		balloon_alert(user, LANG("obj.79dfd6e2", null))
+		balloon_alert(user, LANG("obj.79dfd6e28efd96d1", null))
 		return FALSE
 
 	if(!length(book_data.get_content()))
-		balloon_alert(user, LANG("obj.836188c7", null))
+		balloon_alert(user, LANG("obj.836188c7d386321e", null))
 		return FALSE
 
 	return TRUE
@@ -129,7 +129,7 @@
 		return
 
 	playsound(user, 'sound/items/handling/paper_pickup.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	user.visible_message(span_notice(LANG("obj.2b946d12", list(user, book_data.title))))
+	user.visible_message(span_notice(LANG("obj.2b946d12f87fcfa0", list(user, book_data.title))))
 	credit_book_to_reader(user)
 	display_content(user)
 
@@ -147,13 +147,13 @@
 	if(!user.can_perform_action(src) || !user.can_write(tool, TRUE))
 		return FALSE
 	if(user.is_blind())
-		to_chat(user, span_warning(LANG("obj.c3dd3b4e", null)))
+		to_chat(user, span_warning(LANG("obj.c3dd3b4e49290442", null)))
 		return FALSE
 	if(unique)
-		to_chat(user, span_warning(LANG("obj.4a457f29", null)))
+		to_chat(user, span_warning(LANG("obj.4a457f290cd16c42", null)))
 		return FALSE
 	if(carved)
-		to_chat(user, span_warning(LANG("obj.b1239b36", null)))
+		to_chat(user, span_warning(LANG("obj.b1239b36b95f3732", null)))
 		return FALSE
 	return TRUE
 
@@ -181,7 +181,7 @@
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
 
-	var/choice = tgui_input_list(usr, LANG("obj.50eb78d2", null), LANG("obj.ced429a6", null), list("Title", "Contents", "Author", "Cancel"))
+	var/choice = tgui_input_list(usr, LANG("obj.50eb78d2ad508ae4", null), LANG("obj.ced429a6b5819703", null), list("Title", "Contents", "Author", "Cancel"))
 	if(isnull(choice))
 		return ITEM_INTERACT_BLOCKING
 	if(!can_vandalize(user, tool))
@@ -198,12 +198,12 @@
 	return NONE
 
 /obj/item/book/proc/vandalize_title(mob/living/user, obj/item/tool)
-	var/newtitle = reject_bad_text(tgui_input_text(user, LANG("obj.14cba6fc", null), LANG("obj.7e7c2662", null), max_length = 30))
+	var/newtitle = reject_bad_text(tgui_input_text(user, LANG("obj.14cba6fcaeb052bc", null), LANG("obj.7e7c2662d791ec16", null), max_length = 30))
 	if(!newtitle)
-		balloon_alert(user, LANG("obj.4b1a454f", null))
+		balloon_alert(user, LANG("obj.4b1a454f1fd06b8f", null))
 		return ITEM_INTERACT_BLOCKING
 	if(length_char(newtitle) > 30)
-		balloon_alert(user, LANG("obj.4087dcfc", null))
+		balloon_alert(user, LANG("obj.4087dcfca331fb8e", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
@@ -214,9 +214,9 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/book/proc/vandalize_contents(mob/living/user, obj/item/tool)
-	var/content = tgui_input_text(user, LANG("obj.8d3c150b", null), LANG("obj.2512f076", null), max_length = MAX_PAPER_LENGTH, multiline = TRUE)
+	var/content = tgui_input_text(user, LANG("obj.8d3c150b34e09f62", null), LANG("obj.2512f07667db93c1", null), max_length = MAX_PAPER_LENGTH, multiline = TRUE)
 	if(!content)
-		balloon_alert(user, LANG("obj.4b1a454f", null))
+		balloon_alert(user, LANG("obj.4b1a454f1fd06b8f", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
@@ -226,9 +226,9 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/book/proc/vandalize_author(mob/living/user, obj/item/tool)
-	var/author = tgui_input_text(user, LANG("obj.6007aef5", null), LANG("obj.6ab6907e", null), max_length = MAX_NAME_LEN)
+	var/author = tgui_input_text(user, LANG("obj.6007aef58a834369", null), LANG("obj.6ab6907ed601f514", null), max_length = MAX_NAME_LEN)
 	if(!author)
-		balloon_alert(user, LANG("obj.4b1a454f", null))
+		balloon_alert(user, LANG("obj.4b1a454f1fd06b8f", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
@@ -240,15 +240,15 @@
 /// Called when user clicks on the book with a carving utensil. Attempts to carve the book.
 /obj/item/book/proc/carving_act(mob/living/user, obj/item/tool)
 	if(carved)
-		balloon_alert(user, LANG("obj.1b3e3695", null))
+		balloon_alert(user, LANG("obj.1b3e369514fa538a", null))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.ccb5d51d", null))
+	balloon_alert(user, LANG("obj.ccb5d51de0001924", null))
 	if(!do_after(user, 3 SECONDS, target = src))
-		balloon_alert(user, LANG("obj.c67b5d27", null))
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, LANG("obj.abd0ce9c", null))
+	balloon_alert(user, LANG("obj.abd0ce9c81dddbad", null))
 	playsound(src, 'sound/effects/cloth_rip.ogg', vol = 75, vary = TRUE)
 	carve_out()
 	return ITEM_INTERACT_SUCCESS
@@ -362,8 +362,14 @@
 		for(var/phobia_type, phobia_name in GLOB.phobia_types)
 			var/list/trauma_data = list()
 			trauma_data["full_name"] = phobia_name
-			trauma_data["scan_name"] = "[/datum/brain_trauma/mild/phobia::scan_desc] of [phobia_type]"
-			trauma_data["desc"] = "Patient is irrationally afraid of [phobia_type]."
+			// NOVA EDIT CHANGE START - i18n: 类别词经域内表换成显示标签（它本身是标识符，不能进
+			// 全局反查表），两条句子各走自己的模板。id 一栏仍用原始 phobia_type，回传不受影响。
+			// ORIGINAL: trauma_data["scan_name"] = "[/datum/brain_trauma/mild/phobia::scan_desc] of [phobia_type]"
+			// ORIGINAL: trauma_data["desc"] = "Patient is irrationally afraid of [phobia_type]."
+			var/phobia_label = lang_phobia_label(phobia_type)
+			trauma_data["scan_name"] = LANG("datum.3ea1416777413765", list(phobia_label))
+			trauma_data["desc"] = LANG("obj.5f9046387ea0521e", list(phobia_label))
+			// NOVA EDIT CHANGE END
 			trauma_data["symptoms"] = /datum/brain_trauma/mild/phobia::symptoms
 			trauma_data["id"] = "[/datum/brain_trauma/mild/phobia]/[phobia_type]"
 			trauma_info += list(trauma_data)

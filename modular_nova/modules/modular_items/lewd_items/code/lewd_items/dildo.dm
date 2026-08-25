@@ -96,7 +96,7 @@
 
 	var/message = ""
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger(LANG("obj.8d0a0182", list(target))))
+		to_chat(user, span_danger(LANG("obj.8d0a01828f0e2a19", list(target))))
 		return
 
 	var/arousal_adjustment = 4
@@ -107,11 +107,11 @@
 		if(BODY_ZONE_PRECISE_GROIN)
 			var/obj/item/organ/genital/vagina = target.get_organ_slot(ORGAN_SLOT_VAGINA)
 			if(!vagina)
-				to_chat(user, span_danger(LANG("obj.f296b715", list(target))))
+				to_chat(user, span_danger(LANG("obj.f296b715da9ca9b6", list(target))))
 				return FALSE
 
 			if(!(target.is_bottomless() || vagina.visibility_preference == GENITAL_ALWAYS_SHOW))
-				to_chat(user, span_danger(LANG("obj.27926522", list(target))))
+				to_chat(user, span_danger(LANG("obj.27926522fd6429b1", list(target))))
 				return FALSE
 
 			message = (user == target) ? pick("rubs [target.p_their()] vagina with [src]", "gently jams [target.p_their()] pussy with [src]", "fucks [target.p_their()] vagina with a [src]") : pick("delicately rubs [target]'s vagina with [src]", "uses [src] to fuck [target]'s vagina", "jams [target]'s pussy with [src]", "teasing [target]'s pussy with [src]")
@@ -135,7 +135,7 @@
 
 		if(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_PRECISE_EYES) //Mouth only. Sorry, perverts. No eye/ear penetration for you today.
 			if(target.is_mouth_covered())
-				to_chat(user, span_danger(LANG("obj.135b3b1c", list(target))))
+				to_chat(user, span_danger(LANG("obj.135b3b1c1449c35e", list(target))))
 				return FALSE
 
 			message = (user == target) ? pick("licks [src] erotically", "sucks on [src], slowly inserting it into [target.p_their()] throat") : pick("fucks [target]'s mouth with [src]", "inserts [src] into [target]'s throat, choking [target.p_them()]", "forces [target] to suck [src]", "inserts [src] into [target]'s throat")
@@ -146,7 +146,7 @@
 
 		else
 			if(!target.is_bottomless())
-				to_chat(user, span_danger(LANG("obj.577ff0ee", list(target))))
+				to_chat(user, span_danger(LANG("obj.577ff0eecbce7a03", list(target))))
 				return FALSE
 
 			message = (user == target) ? pick("puts [src] into [target.p_their()] anus", "slowly inserts [src] into [target.p_their()] ass") : pick("fucks [target]'s ass with [src]", "uses [src] to fuck [target]'s anus", "jams [target]'s ass with [src]", "roughly fucks [target]'s ass with [src], making [target.p_their()] eyes roll back")
@@ -234,13 +234,13 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	if(!src || !user || user.incapacitated || !in_range(user, src))
 		return FALSE
 
-	var/color_choice = tgui_input_list(user, LANG("obj.c73d5af2", null), LANG("obj.42633708", null), GLOB.dildo_colors)
+	var/color_choice = tgui_input_list(user, LANG("obj.c73d5af2c5ab6b8b", null), LANG("obj.42633708a7ec5ab9", null), GLOB.dildo_colors)
 	if(color_choice)
 		sanitize_inlist(color_choice, GLOB.dildo_colors, "Red")
 		color = GLOB.dildo_colors[color_choice]
 
 	update_icon_state()
-	var/transparency_choice = tgui_input_number(user, LANG("obj.67a1442e", null), LANG("obj.55445ab9", null), 255, 255, 192)
+	var/transparency_choice = tgui_input_number(user, LANG("obj.67a1442e64bacd58", null), LANG("obj.55445ab9f4f13933", null), 255, 255, 192)
 	if(transparency_choice)
 		sanitize_integer(transparency_choice, 191, 255, 192)
 		alpha = transparency_choice
@@ -250,7 +250,7 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 
 /obj/item/clothing/sextoy/dildo/custom_dildo/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.c22047eb", list(src.name)))
+	. += span_notice(LANG("obj.c22047eb26c0a4d1", list(src.name)))
 
 /obj/item/clothing/sextoy/dildo/custom_dildo/update_icon_state()
 	. = ..()
@@ -321,9 +321,9 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	if(src == user.vagina)
 		toggle(user)
 	else if(src == user.anus)
-		to_chat(user, span_warning(LANG("obj.5cec582b", list(src))))
+		to_chat(user, span_warning(LANG("obj.5cec582bc11c4def", list(src))))
 	else
-		to_chat(user, span_warning(LANG("obj.cfd3a8e3", list(src))))
+		to_chat(user, span_warning(LANG("obj.cfd3a8e38354f444", list(src))))
 
 //dumb way to fix organs overlapping with toys, but WHY NOT. Find a better way if you're not lazy as me.
 /obj/item/clothing/sextoy/dildo/double_dildo/lewd_equipped(mob/living/carbon/human/user, slot)
@@ -399,7 +399,7 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	if(end_piece)
 		end_piece.moveToNullspace()
 		QDEL_NULL(other_end)
-		user.visible_message(span_notice(LANG("obj.a44d3925", list(user, src))))
+		user.visible_message(span_notice(LANG("obj.a44d39255f80b15d", list(user, src))))
 		end_in_hand = FALSE
 		return
 
@@ -408,11 +408,11 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	other_end = new /obj/item/clothing/sextoy/dildo/double_dildo_end
 
 	if(!user.put_in_hands(other_end))
-		user.visible_message(span_notice(LANG("obj.310e4eef", list(user, src, user.p_their(), user.p_their()))))
+		user.visible_message(span_notice(LANG("obj.310e4eefb4bb3493", list(user, src, user.p_their(), user.p_their()))))
 		return FALSE
 
 	other_end.parent_end = WEAKREF(src)
-	user.visible_message(span_notice(LANG("obj.5c4c9361", list(user, src, user.p_their()))))
+	user.visible_message(span_notice(LANG("obj.5c4c936154d31988", list(user, src, user.p_their()))))
 	end_in_hand = TRUE
 	return TRUE
 

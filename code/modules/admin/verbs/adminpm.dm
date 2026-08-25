@@ -44,7 +44,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "管理员私信", "Show a list of client
 			nametag = "[real_mob_name](as [mob_name])"
 		targets["[nametag] - [client]"] = client
 
-	var/target = input(src,LANG("datum.ff86bcc5", null), LANG("datum.93d9e7d8", null), null) as null|anything in sort_list(targets)
+	var/target = input(src,LANG("datum.ff86bcc5bc9a8419", null), LANG("datum.93d9e7d89c4d7b4b", null), null) as null|anything in sort_list(targets)
 	if (isnull(target))
 		return
 	user.cmd_admin_pm(targets[target], null)
@@ -200,7 +200,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "管理员私信", "Show a list of client
 		if(existing_message)
 			msg = existing_message
 		else
-			msg = input(src,LANG("client.008d3052", null), LANG("client.7faa066c", null)) as message|null
+			msg = input(src,LANG("client.008d305248b8414e", null), LANG("client.7faa066c7bec41d1", null)) as message|null
 
 		if(!msg)
 			to_chat(src,
@@ -249,7 +249,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "管理员私信", "Show a list of client
 		else
 			request = "[request] [recipient_print_key]."
 		//get message text, limit its length.and clean/escape html
-		msg = input(src,LANG("client.008d3052", null), request) as message|null
+		msg = input(src,LANG("client.008d305248b8414e", null), request) as message|null
 		msg = trim(msg)
 
 	if(!msg)

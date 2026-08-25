@@ -55,7 +55,7 @@
 	..()
 
 /obj/machinery/computer/launchpad/attack_paw(mob/user, list/modifiers)
-	to_chat(user, span_warning(LANG("obj.2b231181", null)))
+	to_chat(user, span_warning(LANG("obj.2b231181988917d0", null)))
 	return
 
 /obj/machinery/computer/launchpad/multitool_act(mob/living/user, obj/item/multitool/tool)
@@ -66,7 +66,7 @@
 	if(LAZYLEN(launchpads) < maximum_pads)
 		launchpads |= tool.buffer
 		tool.set_buffer(null)
-		to_chat(user, span_notice(LANG("obj.f0e56642", list(tool))))
+		to_chat(user, span_notice(LANG("obj.f0e5664207cbb025", list(tool))))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/launchpad/proc/pad_exists(number)
@@ -151,7 +151,7 @@
 				return
 			current_pad.display_name = new_name
 		if("remove")
-			if(usr && tgui_alert(usr, LANG("obj.77344162", null), LANG("obj.04b76580", null), list("I'm Sure", "Abort")) == "I'm Sure")
+			if(usr && tgui_alert(usr, LANG("obj.773441628de640b4", null), LANG("obj.04b765801f46e0ac", null), list("I'm Sure", "Abort")) == "I'm Sure")
 				launchpads -= current_pad
 				selected_id = null
 			. = TRUE

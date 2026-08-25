@@ -31,7 +31,7 @@
 	// We call this here so we can get feedback if they try to cast it when they shouldn't.
 	if(!is_valid_target(owner))
 		if(feedback)
-			to_chat(owner, span_warning(LANG("datum.f518e4cf", null)))
+			to_chat(owner, span_warning(LANG("datum.f518e4cf714a98ad", null)))
 		return FALSE
 
 	return TRUE
@@ -49,17 +49,17 @@
 
 	// If the tap took all of our life, we die and lose our soul!
 	if(cast_on.maxHealth <= 0)
-		to_chat(cast_on, span_userdanger(LANG("datum.86e5f959", null)))
+		to_chat(cast_on, span_userdanger(LANG("datum.86e5f95977eecac0", null)))
 		ADD_TRAIT(cast_on, TRAIT_NO_SOUL, MAGIC_TRAIT)
 
-		cast_on.visible_message(span_danger(LANG("datum.f503c5aa", list(cast_on))), ignored_mobs = cast_on)
+		cast_on.visible_message(span_danger(LANG("datum.f503c5aaaa8f5bd7", list(cast_on))), ignored_mobs = cast_on)
 		cast_on.investigate_log("has been killed by soul tap.", INVESTIGATE_DEATHS)
 		cast_on.death()
 
 	// If the next tap will kill us, give us a heads-up
 	else if(cast_on.maxHealth - tap_health_taken <= 0)
-		to_chat(cast_on, span_bolddanger(LANG("datum.d490d952", null)))
+		to_chat(cast_on, span_bolddanger(LANG("datum.d490d952c19f749b", null)))
 
 	// Otherwise just give them some feedback
 	else
-		to_chat(cast_on, span_danger(LANG("datum.933d5cb6", null)))
+		to_chat(cast_on, span_danger(LANG("datum.933d5cb6209ba436", null)))

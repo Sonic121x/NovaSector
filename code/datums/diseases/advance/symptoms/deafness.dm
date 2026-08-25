@@ -26,6 +26,7 @@
 		"Stealth 4" = "The symptom remains hidden until active.",
 	)
 	var/causes_permanent_deafness = FALSE
+	var/suppress_warning = FALSE
 
 /datum/symptom/deafness/Start(datum/disease/advance/A)
 	. = ..()
@@ -54,13 +55,13 @@
 		if(5)
 			if(causes_permanent_deafness)
 				if(!HAS_TRAIT_FROM(infected_mob, TRAIT_DEAF, DISEASE_TRAIT))
-					to_chat(infected_mob, span_userdanger(LANG("datum.f58597f7", null)))
+					to_chat(infected_mob, span_userdanger(LANG("datum.f58597f7495d660c", null)))
 					// Just absolutely murder me man
 					infected_mob.adjust_organ_loss(ORGAN_SLOT_EARS, INFINITY)
 					infected_mob.emote("scream")
 					ADD_TRAIT(infected_mob, TRAIT_DEAF, DISEASE_TRAIT)
 			else
-				to_chat(infected_mob, span_userdanger(LANG("datum.a2495aea", null)))
+				to_chat(infected_mob, span_userdanger(LANG("datum.a2495aea3fcd728c", null)))
 				var/obj/item/organ/ears/ears = infected_mob.get_organ_slot(ORGAN_SLOT_EARS)
 				var/deafness_to_add = min(40 SECONDS - ears.temporary_deafness, 30 SECONDS)
 				if(deafness_to_add > 0)

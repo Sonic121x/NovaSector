@@ -274,7 +274,7 @@
 			offset_old = pixel_x
 			pixel_x = -APC_PIXEL_OFFSET
 
-	var/image/hud_image = image(icon = 'icons/mob/huds/hud.dmi', icon_state = "apc_hacked")
+	var/image/hud_image = image(icon = DEFAULT_HUDS_DMI, icon_state = "apc_hacked")
 	hud_image.pixel_w = pixel_x
 	hud_image.pixel_z = pixel_y
 	hud_list = list(
@@ -343,23 +343,23 @@
 	. = ..()
 	if(machine_stat & BROKEN)
 		if(opened != APC_COVER_REMOVED)
-			. += LANG("obj.f9928a22", null)
+			. += LANG("obj.f9928a22d2d2ad9f", null)
 			return
 		if(terminal && has_electronics)
-			. += LANG("obj.22bb51d4", null)
+			. += LANG("obj.22bb51d46bb4ea1b", null)
 		return
 	if(opened)
 		if(has_electronics && terminal)
-			. += LANG("obj.5666b50b", list(opened == APC_COVER_REMOVED?"removed":"open", cell ? "installed" : "missing"))
+			. += LANG("obj.5666b50bf263265c", list(opened == APC_COVER_REMOVED?"removed":"open", cell ? "installed" : "missing"))
 		else
-			. += LANG("obj.18a1f292", list(!terminal ? "not" : "", !has_electronics?"n't":""))
+			. += LANG("obj.18a1f29239c5eacb", list(!terminal ? "not" : "", !has_electronics?"n't":""))
 	else
 		if(machine_stat & MAINT)
-			. += LANG("obj.20a9b831", null)
+			. += LANG("obj.20a9b831eb6ed3e2", null)
 		else if(malfhack)
-			. += LANG("obj.25a01cf9", null)
+			. += LANG("obj.25a01cf9dc1e30da", null)
 		else
-			. += LANG("obj.7e4d1cfa", null)
+			. += LANG("obj.7e4d1cfa71ed89d2", null)
 
 /obj/machinery/power/apc/atom_break(damage_flag)
 	. = ..()
@@ -372,7 +372,7 @@
 	if(opened != APC_COVER_REMOVED)
 		opened = APC_COVER_REMOVED
 		coverlocked = FALSE
-		visible_message(span_warning(LANG("obj.000e4863", null)))
+		visible_message(span_warning(LANG("obj.000e48637417d0e8", null)))
 		update_appearance()
 
 /obj/machinery/power/apc/ui_interact(mob/user, datum/tgui/ui)
@@ -441,8 +441,8 @@
 	remote_control_user = remote_user
 	ui_interact(remote_user)
 	remote_user.log_message("remotely accessed [src].", LOG_GAME)
-	say(LANG("obj.4d694571", list(locked ? " Interface unlocked." : "")))
-	to_chat(remote_control_user, span_danger(LANG("obj.11a2175b", list(icon2html(src, remote_control_user), src))))
+	say(LANG("obj.4d694571043ac85b", list(locked ? " Interface unlocked." : "")))
+	to_chat(remote_control_user, span_danger(LANG("obj.11a2175b06bf69de", list(icon2html(src, remote_control_user), src))))
 	if(locked)
 		playsound(src, 'sound/machines/terminal/terminal_on.ogg', 25, FALSE)
 		locked = FALSE
@@ -459,9 +459,9 @@
 	if(isnull(remote_control_user))
 		return
 	locked = TRUE
-	to_chat(remote_control_user, span_danger(LANG("obj.a3fbf980", list(icon2html(src, remote_control_user), src))))
+	to_chat(remote_control_user, span_danger(LANG("obj.a3fbf980437d7081", list(icon2html(src, remote_control_user), src))))
 	if(!mute)
-		say(LANG("obj.ac779406", null))
+		say(LANG("obj.ac779406ff97a665", null))
 		playsound(src, 'sound/machines/terminal/terminal_off.ogg', 25, FALSE)
 		playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 50, FALSE)
 	update_appearance()
@@ -482,7 +482,7 @@
 		if("lock")
 			if(HAS_SILICON_ACCESS(user))
 				if((obj_flags & EMAGGED) || (machine_stat & (BROKEN|MAINT)) || remote_control_user)
-					to_chat(user, span_warning(LANG("obj.42a87168", null)))
+					to_chat(user, span_warning(LANG("obj.42a871683e54c4df", null)))
 				else
 					locked = !locked
 					update_appearance()

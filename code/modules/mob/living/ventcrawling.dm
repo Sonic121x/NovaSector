@@ -5,7 +5,7 @@
 	var/ventcrawler = HAS_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS) || HAS_TRAIT(src, TRAIT_VENTCRAWLER_NUDE)
 	if(!ventcrawler)
 		return
-	to_chat(src, span_notice(LANG("mob.87c6f8a0", null)))
+	to_chat(src, span_notice(LANG("mob.87c6f8a062b540e5", null)))
 
 /mob/living/carbon/human/notify_ventcrawler_on_login()
 	if(!ismonkey(src))
@@ -28,40 +28,40 @@
 		return
 	if(IS_UNCONSCIOUS_OR_CRIT(src))
 		if(provide_feedback)
-			to_chat(src, span_warning(LANG("mob.ca01b830", null)))
+			to_chat(src, span_warning(LANG("mob.ca01b8306b75cee2", null)))
 		return
 	if(HAS_TRAIT(src, TRAIT_IMMOBILIZED))
 		if(provide_feedback)
-			to_chat(src, span_warning(LANG("mob.25117c9f", null)))
+			to_chat(src, span_warning(LANG("mob.25117c9f62a762a3", null)))
 		return
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		if(provide_feedback)
-			to_chat(src, span_warning(LANG("mob.de958561", null)))
+			to_chat(src, span_warning(LANG("mob.de958561db4a9a75", null)))
 		return
 	if(has_buckled_mobs())
 		if(provide_feedback)
-			to_chat(src, span_warning(LANG("mob.bdd08cd2", null)))
+			to_chat(src, span_warning(LANG("mob.bdd08cd2f4560f3e", null)))
 		return
 	if(buckled)
 		if(provide_feedback)
-			to_chat(src, span_warning(LANG("mob.aae96c56", null)))
+			to_chat(src, span_warning(LANG("mob.aae96c568c89efed", null)))
 		return
 	if(iscarbon(src) && required_nudity)
 		if(length(get_equipped_items(INCLUDE_POCKETS|INCLUDE_HELD)))
 			if(provide_feedback)
-				to_chat(src, span_warning(LANG("mob.1448da7b", null)))
+				to_chat(src, span_warning(LANG("mob.1448da7b8e226fee", null)))
 			return
 	if(ventcrawl_target.welded)
 		if(provide_feedback)
 			// Add cooldown to prevent welded vent message spam during movement
 			if(COOLDOWN_FINISHED(src, welded_vent_message_cd))
-				to_chat(src, span_warning(LANG("mob.54b27703", null)))
+				to_chat(src, span_warning(LANG("mob.54b277032bfea10d", null)))
 				COOLDOWN_START(src, welded_vent_message_cd, 2 SECONDS)
 		return
 
 	if(!(vent_movement & VENTCRAWL_ENTRANCE_ALLOWED))
 		if(provide_feedback)
-			to_chat(src, span_warning(LANG("mob.7e4f0f20", null)))
+			to_chat(src, span_warning(LANG("mob.7e4f0f201e8933b2", null)))
 		return
 
 	return TRUE
@@ -75,15 +75,15 @@
 
 	//Handle the exit here
 	if(HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING) && istype(loc, /obj/machinery/atmospherics) && movement_type & VENTCRAWLING)
-		to_chat(src, span_notice(LANG("mob.a95a2409", null)))
+		to_chat(src, span_notice(LANG("mob.a95a24097bfa6d3e", null)))
 		if(has_client && isnull(client))
 			return
 		if(!do_after(src, 1 SECONDS, target = ventcrawl_target))
 			return
 		if(ventcrawl_target.welded) // in case it got welded during our sleep
-			to_chat(src, span_warning(LANG("mob.54b27703", null)))
+			to_chat(src, span_warning(LANG("mob.54b277032bfea10d", null)))
 			return
-		visible_message(span_notice(LANG("mob.621d41a9", list(src))), span_notice(LANG("mob.e27f2acf", null)))
+		visible_message(span_notice(LANG("mob.621d41a9486feb68", list(src))), span_notice(LANG("mob.e27f2acf7dfd3944", null)))
 		forceMove(ventcrawl_target.loc)
 		REMOVE_TRAIT(src, TRAIT_MOVE_VENTCRAWLING, VENTCRAWLING_TRAIT)
 		update_pipe_vision()
@@ -93,24 +93,24 @@
 		var/datum/pipeline/vent_parent = ventcrawl_target.parents[1]
 		if(vent_parent && (vent_parent.members.len || vent_parent.other_atmos_machines))
 			ventcrawl_target.flick_overlay_static(image('icons/effects/vent_indicator.dmi', "arrow", ABOVE_MOB_LAYER, dir = get_dir(src.loc, ventcrawl_target.loc)), 2 SECONDS)
-			visible_message(span_notice(LANG("mob.e94e3d01", list(src))) ,span_notice(LANG("mob.0628261f", null)))
+			visible_message(span_notice(LANG("mob.e94e3d0184153449", list(src))) ,span_notice(LANG("mob.0628261f409fac61", null)))
 			if(!do_after(src, 2.5 SECONDS, target = ventcrawl_target, extra_checks = CALLBACK(src, PROC_REF(can_enter_vent), ventcrawl_target)))
 				return
 			if(has_client && isnull(client))
 				return
 			if(ventcrawl_target.welded) // in case it got welded during our sleep
-				to_chat(src, span_warning(LANG("mob.54b27703", null)))
+				to_chat(src, span_warning(LANG("mob.54b277032bfea10d", null)))
 				return
 			ventcrawl_target.flick_overlay_static(image('icons/effects/vent_indicator.dmi', "insert", ABOVE_MOB_LAYER), 1 SECONDS)
-			visible_message(span_notice(LANG("mob.77cf54fb", list(src))), span_notice(LANG("mob.d9bded7a", null)))
+			visible_message(span_notice(LANG("mob.77cf54fbe0719f12", list(src))), span_notice(LANG("mob.d9bded7a3834d275", null)))
 			move_into_vent(ventcrawl_target)
 		else
-			to_chat(src, span_warning(LANG("mob.0e2c3d35", null)))
+			to_chat(src, span_warning(LANG("mob.0e2c3d356fd22691", null)))
 
 /mob/living/basic/slime/can_enter_vent(obj/machinery/atmospherics/components/ventcrawl_target, provide_feedback = TRUE)
 	if(buckled)
 		if(provide_feedback)
-			to_chat(src, span_warning(LANG("mob.8a7eb26e", null)))
+			to_chat(src, span_warning(LANG("mob.8a7eb26e384719dd", null)))
 		return
 	return ..()
 

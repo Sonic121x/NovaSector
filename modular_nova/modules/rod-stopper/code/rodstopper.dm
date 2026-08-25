@@ -19,7 +19,7 @@
 
 /obj/machinery/rodstopper/examine(mob/user)
 	. = ..()
-	. += span_warning(LANG("obj.c3cd73d1", null))
+	. += span_warning(LANG("obj.c3cd73d1bfe53bcf", null))
 
 /obj/machinery/rodstopper/Initialize(mapload)
 	. = ..()
@@ -27,5 +27,5 @@
 
 /obj/machinery/rodstopper/proc/warn_area()
 	playsound(src, 'sound/announcer/alarm/bloblarm.ogg', 100)
-	say(LANG("obj.eb8ed864", null))
+	say(LANG("obj.eb8ed86449a84175", null))
 	addtimer(CALLBACK(src, PROC_REF(warn_area)), 15 SECONDS, TIMER_OVERRIDE|TIMER_UNIQUE) // the sound is 7 seconds, however.

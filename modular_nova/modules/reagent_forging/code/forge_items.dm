@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 /obj/item/forging/incomplete/tong_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(length(tool.contents) > 0)
-		user.balloon_alert(user, LANG("obj.8103c9e1", null))
+		user.balloon_alert(user, LANG("obj.8103c9e1aab75939", null))
 		return
 	forceMove(tool)
 	tool.icon_state = "tong_full"
@@ -200,7 +200,7 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 /obj/item/forging/complete/examine(mob/user)
 	. = ..()
 	if(spawning_item)
-		. += span_notice(LANG("obj.8c51e9a0", null))
+		. += span_notice(LANG("obj.8c51e9a06db8074b", null))
 
 /obj/item/forging/complete/chain
 	name = "chain"
@@ -323,13 +323,13 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 /obj/item/stack/tong_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(!(material_type in GLOB.allowed_forging_materials))
-		user.balloon_alert(user, LANG("obj.618f499c", null))
+		user.balloon_alert(user, LANG("obj.618f499cfbe22068", null))
 		return
 	if(length(tool.contents) > 0)
-		user.balloon_alert(user, LANG("obj.8103c9e1", null))
+		user.balloon_alert(user, LANG("obj.8103c9e1aab75939", null))
 		return FALSE
 	if(!material_type && !custom_materials)
-		user.balloon_alert(user, LANG("obj.c8041e78", null))
+		user.balloon_alert(user, LANG("obj.c8041e7893c6c129", null))
 		return
 	forceMove(tool)
 	tool.icon_state = "tong_full"
@@ -337,7 +337,7 @@ GLOBAL_LIST_INIT(allowed_forging_materials, list(
 /obj/tong_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(length(tool.contents))
-		user.balloon_alert(user, LANG("obj.8103c9e1", null))
+		user.balloon_alert(user, LANG("obj.8103c9e1aab75939", null))
 		return FALSE
 	if(obj_flags_nova & ANVIL_REPAIR)
 		forceMove(tool)

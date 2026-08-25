@@ -18,7 +18,7 @@
 	if (!. || !istype(owner, /mob/living/basic/mining/basilisk) || IS_UNCONSCIOUS_OR_CRIT(owner))
 		return FALSE
 	var/mob/living/basic/mining/basilisk/hot_stuff = owner
-	hot_stuff.visible_message(span_warning(LANG("datum.7a65233e", list(hot_stuff))))
+	hot_stuff.visible_message(span_warning(LANG("datum.7a65233e83abc87a", list(hot_stuff))))
 	hot_stuff.fully_heal()
 	hot_stuff.icon_living = "basilisk_alert"
 	hot_stuff.icon_state = "basilisk_alert"
@@ -43,7 +43,7 @@
 
 	if (IS_UNCONSCIOUS_OR_CRIT(hot_stuff))
 		return
-	hot_stuff.visible_message(span_notice(LANG("datum.7ea6e1ca", list(hot_stuff))))
+	hot_stuff.visible_message(span_notice(LANG("datum.7ea6e1caee0b844f", list(hot_stuff))))
 	var/obj/effect/particle_effect/fluid/smoke/poof = new(get_turf(hot_stuff))
 	poof.lifetime = 2 SECONDS
 

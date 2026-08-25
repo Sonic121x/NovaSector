@@ -40,7 +40,7 @@
 
 /datum/antagonist/santa/greet()
 	. = ..()
-	to_chat(owner, span_bolddanger(LANG("datum.27b4149c", null)))
+	to_chat(owner, span_bolddanger(LANG("datum.27b4149c1f7c47a1", null)))
 
 /datum/antagonist/santa/proc/give_equipment()
 	var/mob/living/carbon/human/H = owner.current

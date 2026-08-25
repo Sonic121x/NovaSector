@@ -110,13 +110,13 @@
 
 /obj/vehicle/sealed/mecha/proc/toggle_strafe()
 	if(!(mecha_flags & CAN_STRAFE))
-		to_chat(occupants, LANG("obj.dff68635", null))
+		to_chat(occupants, LANG("obj.dff686357b6c4917", null))
 		return
 
 	strafe = !strafe
 
 	for(var/mob/occupant in occupants)
-		balloon_alert(occupant, LANG("obj.8f3934f3", list(strafe?"on":"off")))
+		balloon_alert(occupant, LANG("obj.8f3934f39e47fb82", list(strafe?"on":"off")))
 		occupant.playsound_local(src, 'sound/machines/terminal/terminal_eject.ogg', 50, TRUE)
 	log_message("Toggled strafing mode [strafe?"on":"off"].", LOG_MECHA)
 
@@ -137,23 +137,23 @@
 		return
 
 	if(chassis.occupants.len == chassis.max_occupants)
-		chassis.balloon_alert(owner, LANG("datum.2e990fde", null))
+		chassis.balloon_alert(owner, LANG("datum.2e990fdecc7ded43", null))
 		return
 	var/list/drivers = chassis.return_drivers()
-	chassis.balloon_alert(owner, LANG("datum.86195e63", null))
+	chassis.balloon_alert(owner, LANG("datum.86195e63910aa357", null))
 	chassis.is_currently_ejecting = TRUE
 	if(!do_after(owner, chassis.has_gravity() ? chassis.exit_delay : 0 , target = chassis))
-		chassis.balloon_alert(owner, LANG("datum.c67b5d27", null))
+		chassis.balloon_alert(owner, LANG("datum.c67b5d274d6e724b", null))
 		chassis.is_currently_ejecting = FALSE
 		return
 	chassis.is_currently_ejecting = FALSE
 	if(owner in drivers)
-		chassis.balloon_alert(owner, LANG("datum.f4baf086", null))
+		chassis.balloon_alert(owner, LANG("datum.f4baf0867f2b894d", null))
 		chassis.remove_control_flags(owner, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
 		chassis.add_control_flags(owner, VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT)
 		chassis.remove_all_equipment_actions(owner)
 	else
-		chassis.balloon_alert(owner, LANG("datum.45630ce1", null))
+		chassis.balloon_alert(owner, LANG("datum.45630ce1a22d683b", null))
 		chassis.remove_control_flags(owner, VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT)
 		chassis.add_control_flags(owner, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
 		chassis.generate_equipment_actions(owner)
@@ -238,7 +238,7 @@
 			cargo_radial[cargo_item] = cargo_item.appearance
 
 		if(!length(cargo_radial))
-			chassis.balloon_alert(owner, LANG("datum.d93d26a4", null))
+			chassis.balloon_alert(owner, LANG("datum.d93d26a4e2fc498d", null))
 			return
 
 		var/atom/movable/picked_item = show_radial_menu(owner, chassis, cargo_radial, require_near = TRUE)
@@ -263,7 +263,7 @@
 		playsound(chassis, 'sound/items/weapons/tap.ogg', 50, TRUE)
 		cargo_hold.log_message("Unloaded [first_item]. Cargo compartment capacity: [cargo_hold.cargo_capacity - cargo_hold.contents.len]", LOG_MECHA)
 	else
-		chassis.balloon_alert(owner, LANG("datum.d93d26a4", null))
+		chassis.balloon_alert(owner, LANG("datum.d93d26a4e2fc498d", null))
 
 /datum/action/vehicle/sealed/mecha/equipment/extinguisher_action
 	name = "Extinguisher"
@@ -288,7 +288,7 @@
 
 	// Left click - spray
 	if(extinguisher.reagents.total_volume < extinguisher.required_amount)
-		chassis.balloon_alert(owner, LANG("datum.fbe12ace", null))
+		chassis.balloon_alert(owner, LANG("datum.fbe12ace6e83cd5f", null))
 		return
 
 	extinguisher.spray_extinguisher(owner)

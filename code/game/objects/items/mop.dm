@@ -25,6 +25,7 @@
 	var/static/list/clean_blacklist = typecacheof(list(
 		/obj/item/reagent_containers/cup/bucket,
 		/obj/structure/mop_bucket,
+		/obj/structure/sink,
 	))
 
 /obj/item/mop/apply_fantasy_bonuses(bonus)
@@ -51,7 +52,7 @@
 	if(clean_blacklist[atom_to_clean.type])
 		return CLEAN_BLOCKED|CLEAN_DONT_BLOCK_INTERACTION
 	if(reagents.total_volume < 0.1)
-		cleaner.balloon_alert(cleaner, LANG("obj.ffdef3de", null))
+		cleaner.balloon_alert(cleaner, LANG("obj.ffdef3de55bc4796", null))
 		return CLEAN_BLOCKED
 	if(reagents.has_reagent(amount = 1, chemical_flags = REAGENT_CLEANS))
 		return CLEAN_ALLOWED
@@ -102,7 +103,7 @@
 		START_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSobj,src)
-	user.balloon_alert(user, LANG("obj.caa63fd6", list(refill_enabled ? "on" : "off")))
+	user.balloon_alert(user, LANG("obj.caa63fd63598484a", list(refill_enabled ? "on" : "off")))
 	playsound(user, 'sound/machines/click.ogg', 30, TRUE)
 
 /obj/item/mop/advanced/process(seconds_per_tick)
@@ -112,7 +113,7 @@
 
 /obj/item/mop/advanced/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.cf2ba064", list(refill_enabled ? "ON" : "OFF")))
+	. += span_notice(LANG("obj.cf2ba064f062a794", list(refill_enabled ? "ON" : "OFF")))
 
 /obj/item/mop/advanced/Destroy()
 	STOP_PROCESSING(SSobj, src)

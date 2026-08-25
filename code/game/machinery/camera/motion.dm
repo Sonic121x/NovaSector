@@ -52,7 +52,7 @@
 		return FALSE
 	if(camera_enabled)
 		if(alarm_manager.send_alarm(ALARM_MOTION, src, src))
-			visible_message(span_warning(LANG("obj.a067370e", list(src))))
+			visible_message(span_warning(LANG("obj.a067370e4679be10", list(src))))
 	detectTime = -1
 	return TRUE
 

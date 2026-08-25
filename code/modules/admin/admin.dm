@@ -143,7 +143,7 @@ ADMIN_VERB(create_or_modify_area, R_DEBUG, "创建或修改区域", "Create of m
 		question = "This mob already has a user ([tomob.key]) in control of it! "
 	question += "Are you sure you want to place [frommob.name]([frommob.key]) in control of [tomob.name]?"
 
-	var/ask = tgui_alert(usr, question, LANG("datum.83b45c15", null), list("Yes", "No"))
+	var/ask = tgui_alert(usr, question, LANG("datum.83b45c15e68da421", null), list("Yes", "No"))
 	if (ask != "Yes")
 		return TRUE
 

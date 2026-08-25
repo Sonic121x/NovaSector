@@ -65,8 +65,8 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_WIND,
-		SPECIES_PERK_NAME = LANG("datum.24c42856", null),
-		SPECIES_PERK_DESC = LANG("datum.984719c4", null),
+		SPECIES_PERK_NAME = LANG("datum.24c4285627132486", null),
+		SPECIES_PERK_DESC = LANG("datum.984719c4a49d0f90", null),
 	))
 	return perks
 
@@ -75,20 +75,20 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK, // It may be a stretch to call nohunger a neutral perk but the Abductor's tongue describes it as much, so.
 		SPECIES_PERK_ICON = FA_ICON_UTENSILS,
-		SPECIES_PERK_NAME = LANG("datum.d3fc8b6e", null),
-		SPECIES_PERK_DESC = LANG("datum.7d4de5b7", null),
+		SPECIES_PERK_NAME = LANG("datum.d3fc8b6ee69c11df", null),
+		SPECIES_PERK_DESC = LANG("datum.7d4de5b7eabb3b59", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_VOLUME_XMARK,
-		SPECIES_PERK_NAME = LANG("datum.f5c46b2b", null),
-		SPECIES_PERK_DESC = LANG("datum.a4795aec", null),
+		SPECIES_PERK_NAME = LANG("datum.f5c46b2b320529fa", null),
+		SPECIES_PERK_DESC = LANG("datum.a4795aec10ae1ab1", null),
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_HANDSHAKE_SLASH,
-		SPECIES_PERK_NAME = LANG("datum.ff4e849e", null),
-		SPECIES_PERK_DESC = LANG("datum.c882e42f", null),
+		SPECIES_PERK_NAME = LANG("datum.ff4e849e403e71fc", null),
+		SPECIES_PERK_DESC = LANG("datum.c882e42fac863093", null),
 	))
 	return perks
 

@@ -22,7 +22,7 @@
 
 	if(brain_owner.dna.species.id != SPECIES_NIGHTMARE)
 		brain_owner.set_species(/datum/species/shadow/nightmare, replace_missing = FALSE)
-		visible_message(span_warning(LANG("obj.97d3c43d", list(brain_owner, src, brain_owner.p_their()))))
+		visible_message(span_warning(LANG("obj.97d3c43dfef8f3ac", list(brain_owner, src, brain_owner.p_their()))))
 
 	our_jaunt = new(brain_owner)
 	our_jaunt.Grant(brain_owner)
@@ -63,8 +63,8 @@
 /datum/status_effect/shadow/nightmare/proc/dodge_bullets(mob/living/carbon/human/source, obj/projectile/hitting_projectile, def_zone)
 	SIGNAL_HANDLER
 	source.visible_message(
-		span_danger(LANG("datum.252328cf", list(source, hitting_projectile))),
-		span_danger(LANG("datum.1dff209f", list(hitting_projectile))),
+		span_danger(LANG("datum.252328cfc1ff08b9", list(source, hitting_projectile))),
+		span_danger(LANG("datum.1dff209f7af92100", list(hitting_projectile))),
 	)
 	playsound(source, SFX_BULLET_MISS, 75, TRUE)
 	return COMPONENT_BULLET_PIERCED
@@ -101,14 +101,14 @@
 	if(M != user)
 		return ..()
 	user.visible_message(
-		span_warning(LANG("obj.664a40e4", list(user, src, user.p_their(), user.p_their()))),
-		span_danger(LANG("obj.0a12f56e", list(src, src)))
+		span_warning(LANG("obj.664a40e4bc1d155b", list(user, src, user.p_their(), user.p_their()))),
+		span_danger(LANG("obj.0a12f56e2e738130", list(src, src)))
 	)
 	playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 
 	user.visible_message(
-		span_warning(LANG("obj.c7994642", list(user))),
-		span_userdanger(LANG("obj.3d40f575", null))
+		span_warning(LANG("obj.c7994642953f5470", list(user))),
+		span_userdanger(LANG("obj.3d40f5759baa85a5", null))
 	)
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	Insert(user)
@@ -125,7 +125,7 @@
 	. = ..()
 	respawn_progress = 0
 	if(blade && special != HEART_SPECIAL_SHADOWIFY)
-		heart_owner.visible_message(span_warning(LANG("obj.5695beae", list(blade))))
+		heart_owner.visible_message(span_warning(LANG("obj.5695beae3f6830f1", list(blade))))
 		QDEL_NULL(blade)
 
 /obj/item/organ/heart/nightmare/Stop()
@@ -155,9 +155,9 @@
 		Remove(owner, HEART_SPECIAL_SHADOWIFY)
 		old_owner.set_species(/datum/species/shadow)
 		Insert(old_owner, HEART_SPECIAL_SHADOWIFY)
-		to_chat(owner, span_userdanger(LANG("obj.2da456aa", null)))
+		to_chat(owner, span_userdanger(LANG("obj.2da456aa2186e94c", null)))
 		SEND_SOUND(owner, sound('sound/effects/ghost.ogg'))
-	owner.visible_message(span_warning(LANG("obj.cb9f6128", list(owner, owner.p_their()))))
+	owner.visible_message(span_warning(LANG("obj.cb9f61287eb37753", list(owner, owner.p_their()))))
 	playsound(owner, 'sound/effects/hallucinations/far_noise.ogg', 50, TRUE)
 	respawn_progress = 0
 

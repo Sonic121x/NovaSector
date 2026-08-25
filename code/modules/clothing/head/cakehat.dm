@@ -81,10 +81,10 @@
 
 /obj/item/clothing/head/utility/hardhat/cakehat/energycake/turn_on(mob/living/user)
 	playsound(src, 'sound/items/weapons/saberon.ogg', 5, TRUE)
-	to_chat(user, span_warning(LANG("obj.756bfe56", list(src))))
+	to_chat(user, span_warning(LANG("obj.756bfe56e94355cb", list(src))))
 	return ..()
 
 /obj/item/clothing/head/utility/hardhat/cakehat/energycake/turn_off(mob/living/user)
 	playsound(src, 'sound/items/weapons/saberoff.ogg', 5, TRUE)
-	to_chat(user, span_warning(LANG("obj.67caf9d4", list(src))))
+	to_chat(user, span_warning(LANG("obj.67caf9d4c6eb6ddb", list(src))))
 	return ..()

@@ -195,10 +195,10 @@ Can accept both a type path, and an instance of a datum. Type path has priority.
 	product_info = products[item_to_buy]
 
 	if(!product_info[TRADER_PRODUCT_INFO_QUANTITY])
-		trader.say(LANG("datum.2ec4b2ed", list(initial(item_to_buy.name))))
+		trader.say(LANG("datum.2ec4b2ed888a90f1", list(initial(item_to_buy.name))))
 		return
 
-	trader.say(LANG("datum.5afdb657", list(product_info[TRADER_PRODUCT_INFO_PRICE], trader_data.currency_name, initial(item_to_buy.name))))
+	trader.say(LANG("datum.5afdb657e0ba56a5", list(product_info[TRADER_PRODUCT_INFO_PRICE], trader_data.currency_name, initial(item_to_buy.name))))
 	var/list/npc_options = list(
 		TRADER_OPTION_YES = radial_icons_cache[TRADER_RADIAL_YES],
 		TRADER_OPTION_NO = radial_icons_cache[TRADER_RADIAL_NO],
@@ -292,7 +292,7 @@ Can accept both a type path, and an instance of a datum. Type path has priority.
 		return FALSE
 
 	trader.say(trader_data.return_trader_phrase(INTERESTED_PHRASE))
-	trader.say(LANG("datum.47c58a30", list(cost, trader_data.currency_name, selling)))
+	trader.say(LANG("datum.47c58a309a35805b", list(cost, trader_data.currency_name, selling)))
 	var/list/npc_options = list(
 		TRADER_OPTION_YES = radial_icons_cache[TRADER_RADIAL_YES],
 		TRADER_OPTION_NO = radial_icons_cache[TRADER_RADIAL_NO],
@@ -428,10 +428,10 @@ Can accept both a type path, and an instance of a datum. Type path has priority.
 /datum/component/trader/proc/can_trade(mob/customer)
 	var/mob/living/trader = parent
 	if(trader.combat_mode)
-		trader.balloon_alert(customer, LANG("datum.7a8aba0c", null))
+		trader.balloon_alert(customer, LANG("datum.7a8aba0c869d7ef1", null))
 		return FALSE
 	if(trader.incapacitated)
-		trader.balloon_alert(customer, LANG("datum.3cf2692c", null))
+		trader.balloon_alert(customer, LANG("datum.3cf2692c31bcd02c", null))
 		return FALSE
 	return TRUE
 

@@ -44,7 +44,7 @@
 	SIGNAL_HANDLER
 	var/datum/venue/attending_venue = blackboard[BB_CUSTOMER_ATTENDING_VENUE]
 	if(attending_venue.is_correct_order(I, blackboard[BB_CUSTOMER_CURRENT_ORDER]))
-		to_chat(user, span_notice(LANG("datum.9692f0ea", list(I, pawn))))
+		to_chat(user, span_notice(LANG("datum.9692f0ead66413ae", list(I, pawn))))
 		eat_order(I, attending_venue)
 		return COMPONENT_NO_AFTERATTACK
 	else if(!I.force)

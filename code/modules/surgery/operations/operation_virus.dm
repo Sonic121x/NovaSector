@@ -26,9 +26,9 @@
 
 /datum/surgery_operation/basic/viral_bonding/all_required_strings()
 	. = ..()
-	. += LANG("datum.ed18c39b", null)
+	. += LANG("datum.ed18c39bebf638f7", null)
 	for(var/datum/reagent/chem as anything in required_chems)
-		. += LANG("datum.21c3cfb7", list(chem::name))
+		. += LANG("datum.21c3cfb7b1a48853", list(chem::name))
 
 /datum/surgery_operation/basic/viral_bonding/get_default_radial_image()
 	return image(/obj/item/clothing/mask/surgical)

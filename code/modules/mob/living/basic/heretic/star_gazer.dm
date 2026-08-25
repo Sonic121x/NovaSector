@@ -136,7 +136,7 @@
 			continue
 		nearby_mob.apply_status_effect(/datum/status_effect/star_mark)
 		nearby_mob.apply_damage(10)
-		to_chat(nearby_mob, span_userdanger(LANG("mob.40d62be1", list(src, attack_verb_continuous))))
+		to_chat(nearby_mob, span_userdanger(LANG("mob.40d62be137ea2d02", list(src, attack_verb_continuous))))
 		do_attack_animation(nearby_mob, ATTACK_EFFECT_SLASH)
 		log_combat(src, nearby_mob, "slashed")
 
@@ -368,8 +368,8 @@
 				if(living_victim.stat != STABLE)
 					playsound(living_victim, 'sound/effects/supermatter.ogg', 80, TRUE)
 					living_victim.visible_message(
-						span_danger(LANG("datum.6c97cdb8", list(living_victim))),
-						span_boldbig(span_hypnophrase(LANG("datum.a7d5b1ab", null)))
+						span_danger(LANG("datum.6c97cdb86aa7170d", list(living_victim))),
+						span_boldbig(span_hypnophrase(LANG("datum.a7d5b1ab1cbc942f", null)))
 						)
 					living_victim.dust()
 				living_victim.emote("scream")

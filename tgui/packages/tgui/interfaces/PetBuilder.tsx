@@ -381,7 +381,18 @@ const TrickSequence = ({
     <Box ml={2}>
       <LabeledList>
         {sequences.map((sequence: string, index: number) => (
-          <LabeledList.Item key={index} label={`Move ${index + 1}`}>
+          <LabeledList.Item
+            key={index}
+            // NOVA EDIT CHANGE - i18n: ORIGINAL: label={`Move ${index + 1}`}
+            // 模板字面量整串是运行期产物、永远不是目录键（字面段 "Move " 也短于 propTemplate
+            // 的锚门槛）。拆成 children 模板：序号包进元素当占位符，整条抽成 `Move {0}:`。
+            // LabeledList.Item 只对 string 型 label 自动补冒号，故这里显式带上。
+            label={
+              <>
+                Move <span>{index + 1}</span>:
+              </>
+            }
+          >
             <Dropdown
               width="80%"
               selected={sequences[index]}

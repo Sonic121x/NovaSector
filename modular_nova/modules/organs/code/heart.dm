@@ -56,7 +56,7 @@
 		return
 
 	if(COOLDOWN_FINISHED(src, shell_effect_cd))
-		source.visible_message(span_warning(LANG("obj.1223277b", list(source))))
+		source.visible_message(span_warning(LANG("obj.1223277b2cc0bf9d", list(source))))
 		playsound(source, 'sound/items/weapons/parry.ogg', 50, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 
 	COOLDOWN_START(src, shell_effect_cd, 5 SECONDS) // Cooldown resets EVERY time we get hit

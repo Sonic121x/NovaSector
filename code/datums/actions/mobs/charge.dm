@@ -175,7 +175,7 @@
 
 /// Actually hit someone
 /datum/action/cooldown/mob_cooldown/charge/proc/hit_target(atom/movable/source, mob/living/target, damage_dealt)
-	target.visible_message(span_danger(LANG("datum.83e05307", list(source, target))), span_userdanger(LANG("datum.803afdd1", list(source))))
+	target.visible_message(span_danger(LANG("datum.83e05307efab19c9", list(source, target))), span_userdanger(LANG("datum.803afdd17f6f7da7", list(source))))
 	target.apply_damage(damage_dealt, BRUTE, wound_bonus = CANT_WOUND)
 	playsound(get_turf(target), 'sound/effects/meteorimpact.ogg', 100, TRUE)
 	shake_camera(target, 4, 3)
@@ -212,7 +212,7 @@
 		living_source = source
 
 	if(!isliving(target))
-		source.visible_message(span_danger(LANG("datum.1eb45639", list(source, target))))
+		source.visible_message(span_danger(LANG("datum.1eb456391fd2d397", list(source, target))))
 		if (recoil_duration >= 0) // Because 0 stun/knockdown is still a valid value
 			living_source?.Stun(recoil_duration, ignore_canstun = TRUE)
 		return
@@ -225,7 +225,7 @@
 				living_source.Stun(recoil_duration, ignore_canstun = TRUE)
 			return
 
-	living_target.visible_message(span_danger(LANG("datum.d1c8f79e", list(source, living_target))), span_userdanger(LANG("datum.2038b591", list(source))))
+	living_target.visible_message(span_danger(LANG("datum.d1c8f79e5d3548ed", list(source, living_target))), span_userdanger(LANG("datum.2038b59144ebb3bc", list(source))))
 	if (knockdown_duration >= 0)
 		living_target.Knockdown(knockdown_duration)
 

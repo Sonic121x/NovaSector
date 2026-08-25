@@ -119,10 +119,10 @@
 
 /obj/item/kinetic_crusher/examine(mob/living/user)
 	. = ..()
-	. += span_notice(LANG("obj.1cb50b13", list(force_wielded + detonation_damage)))
-	. += span_notice(LANG("obj.11e00515", list(force_wielded + detonation_damage + backstab_bonus, force_wielded + detonation_damage)))
+	. += span_notice(LANG("obj.1cb50b13ef183abe", list(force_wielded + detonation_damage)))
+	. += span_notice(LANG("obj.11e005157a49abb4", list(force_wielded + detonation_damage + backstab_bonus, force_wielded + detonation_damage)))
 	for(var/obj/item/crusher_trophy/crusher_trophy as anything in trophies)
-		. += span_notice(LANG("obj.52fd13ba", list(crusher_trophy, crusher_trophy.effect_desc())))
+		. += span_notice(LANG("obj.52fd13ba2570b10a", list(crusher_trophy, crusher_trophy.effect_desc())))
 
 /obj/item/kinetic_crusher/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/crusher_trophy))
@@ -133,9 +133,9 @@
 /obj/item/kinetic_crusher/crowbar_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(!LAZYLEN(trophies))
-		user.balloon_alert(user, LANG("obj.02c1f65a", null))
+		user.balloon_alert(user, LANG("obj.02c1f65a70d443ac", null))
 		return ITEM_INTERACT_BLOCKING
-	user.balloon_alert(user, LANG("obj.8bb119a2", null))
+	user.balloon_alert(user, LANG("obj.8bb119a2913936ee", null))
 	tool.play_tool_sound(src)
 	for(var/obj/item/crusher_trophy/crusher_trophy as anything in trophies)
 		crusher_trophy.remove_from(src, user)
@@ -186,7 +186,7 @@
 	if(.)
 		return TRUE
 	if(!HAS_TRAIT(src, TRAIT_WIELDED) && !acts_as_if_wielded) // NOVA EDIT CHANGE - Original: if(!HAS_TRAIT(src, TRAIT_WIELDED))
-		user.balloon_alert(user, LANG("obj.d5881829", null))
+		user.balloon_alert(user, LANG("obj.d58818298b5c2088", null))
 		return TRUE
 	return .
 
@@ -216,10 +216,10 @@
 
 /obj/item/kinetic_crusher/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED) && !acts_as_if_wielded) // NOVA EDIT CHANGE - Original: if(!HAS_TRAIT(src, TRAIT_WIELDED))
-		balloon_alert(user, LANG("obj.a2400a32", null))
+		balloon_alert(user, LANG("obj.a2400a32698ab487", null))
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_with == user)
-		balloon_alert(user, LANG("obj.224c61eb", null))
+		balloon_alert(user, LANG("obj.224c61eb79a11f6c", null))
 		return ITEM_INTERACT_BLOCKING
 	fire_kinetic_blast(interacting_with, user, modifiers)
 	user.changeNext_move(CLICK_CD_MELEE)

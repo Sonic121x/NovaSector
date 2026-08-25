@@ -39,11 +39,11 @@
 
 /obj/machinery/porta_turret_cover/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
 	if(parent_turret.locked)
-		user.balloon_alert(user, LANG("obj.3b78a635", null))
+		user.balloon_alert(user, LANG("obj.3b78a63592ce4770", null))
 		return ITEM_INTERACT_BLOCKING
 
 	multi_tool.set_buffer(parent_turret)
-	balloon_alert(user, LANG("obj.84afb909", null))
+	balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/porta_turret_cover/wrench_act(mob/living/user, obj/item/tool)
@@ -52,14 +52,14 @@
 
 	if(parent_turret.anchored)
 		parent_turret.set_anchored(FALSE)
-		to_chat(user, span_notice(LANG("obj.db33b69a", null)))
+		to_chat(user, span_notice(LANG("obj.db33b69aa84f74a1", null)))
 		parent_turret.SetInvisibility(INVISIBILITY_NONE, id=parent_turret.type, priority=INVISIBILITY_PRIORITY_TURRET_COVER)
 		parent_turret.update_appearance()
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
 
 	parent_turret.set_anchored(TRUE)
-	to_chat(user, span_notice(LANG("obj.de10bdae", null)))
+	to_chat(user, span_notice(LANG("obj.de10bdae47c809be", null)))
 	parent_turret.SetInvisibility(INVISIBILITY_MAXIMUM, id=parent_turret.type, priority=INVISIBILITY_PRIORITY_TURRET_COVER)
 	parent_turret.update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -68,10 +68,10 @@
 	if(!tool.GetID())
 		return NONE
 	if(!parent_turret.allowed(user))
-		to_chat(user, span_notice(LANG("obj.077f9b52", null)))
+		to_chat(user, span_notice(LANG("obj.077f9b52c530e7f8", null)))
 		return ITEM_INTERACT_BLOCKING
 	parent_turret.locked = !parent_turret.locked
-	to_chat(user, span_notice(LANG("obj.69241576", list(parent_turret.locked ? "locked" : "unlocked"))))
+	to_chat(user, span_notice(LANG("obj.69241576ed09f510", list(parent_turret.locked ? "locked" : "unlocked"))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/porta_turret_cover/attacked_by(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
@@ -91,8 +91,8 @@
 	if((parent_turret.obj_flags & EMAGGED))
 		return FALSE
 
-	balloon_alert(user, LANG("obj.97c921be", null))
-	audible_message(span_hear(LANG("obj.679ad949", list(parent_turret))))
+	balloon_alert(user, LANG("obj.97c921be267658d0", null))
+	audible_message(span_hear(LANG("obj.679ad94952979d04", list(parent_turret))))
 	parent_turret.obj_flags |= EMAGGED
 	parent_turret.on = FALSE
 	addtimer(VARSET_CALLBACK(parent_turret, on, TRUE), 4 SECONDS)

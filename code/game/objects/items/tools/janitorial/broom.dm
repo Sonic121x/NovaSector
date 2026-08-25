@@ -45,7 +45,7 @@
  * * user - The user which is wielding the broom
  */
 /obj/item/pushbroom/proc/on_wield(obj/item/source, mob/user)
-	to_chat(user, span_notice(LANG("obj.2c92c296", list(src))))
+	to_chat(user, span_notice(LANG("obj.2c92c296718a0b24", list(src))))
 	RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(sweep))
 
 /**

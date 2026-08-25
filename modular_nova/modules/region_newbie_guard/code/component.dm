@@ -94,7 +94,7 @@
 	if(survived == round(required / 2))
 		to_chat(
 			owner,
-			span_greenannounce("【新人软管制】再存活 [required - survived] 分钟，限制就会自动解除。<br>[required - survived] more minutes alive and the limits lift."),
+			span_greenannounce(LANG("datum.8e945017b1286386", list(required - survived, required - survived))),
 			type = MESSAGE_TYPE_ADMINPM,
 			skip_i18n_fallback = TRUE,
 		)
@@ -187,7 +187,7 @@
 	var/appeal_link = "<a href='byond://?src=[REF(GLOB.newbie_guard)];newbie_guard_appeal=1'>提交申诉 / appeal</a>"
 	to_chat(
 		source,
-		span_warning("【新人软管制 / New Player Safeguard】[reason]<br>存活满 [CONFIG_GET(number/newbie_guard_survival)] 分钟后限制自动解除，或 [appeal_link]。<br>Limits lift after [CONFIG_GET(number/newbie_guard_survival)] minutes alive, or [appeal_link]."),
+		span_warning(LANG("datum.2b22349ca5d431d9", list(reason, CONFIG_GET(number/newbie_guard_survival), appeal_link, CONFIG_GET(number/newbie_guard_survival), appeal_link))),
 		type = MESSAGE_TYPE_ADMINPM,
 		skip_i18n_fallback = TRUE,
 	)

@@ -42,7 +42,7 @@
 
 /obj/item/bodybag/suicide_act(mob/living/user)
 	if(isopenturf(user.loc))
-		user.visible_message(span_suicide(LANG("obj.829d7767", list(user, src, user.p_theyre()))))
+		user.visible_message(span_suicide(LANG("obj.829d776749691983", list(user, src, user.p_theyre()))))
 		var/obj/structure/closet/body_bag/R = new unfoldedbag_path(user.loc)
 		R.add_fingerprint(user)
 		qdel(src)
@@ -66,13 +66,13 @@
 	. = ..()
 	if(contents.len)
 		var/s = contents.len == 1 ? "" : "s"
-		. += span_notice(LANG("obj.9086899a", list(s, contents.len, s)))
+		. += span_notice(LANG("obj.9086899a0d6668e6", list(s, contents.len, s)))
 
 /obj/item/bodybag/bluespace/Destroy()
 	for(var/atom/movable/A in contents)
 		A.forceMove(get_turf(src))
 		if(isliving(A))
-			to_chat(A, span_notice(LANG("obj.afd2a211", null)))
+			to_chat(A, span_notice(LANG("obj.afd2a21181c51f30", null)))
 	return ..()
 
 /obj/item/bodybag/bluespace/deploy_bodybag(mob/user, atom/location)
@@ -80,7 +80,7 @@
 	for(var/atom/movable/inside in contents)
 		inside.forceMove(item_bag)
 		if(isliving(inside))
-			to_chat(inside, span_notice(LANG("obj.8b9d4784", null)))
+			to_chat(inside, span_notice(LANG("obj.8b9d478409ceaf5d", null)))
 	item_bag.open(user)
 	item_bag.add_fingerprint(user)
 	item_bag.foldedbag_instance = src
@@ -89,20 +89,20 @@
 
 /obj/item/bodybag/bluespace/container_resist_act(mob/living/user)
 	if(user.incapacitated)
-		to_chat(user, span_warning(LANG("obj.074bdd5b", null)))
+		to_chat(user, span_warning(LANG("obj.074bdd5bbfbaff78", null)))
 		return
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	to_chat(user, span_notice(LANG("obj.bc439309", list(src))))
-	to_chat(loc, span_warning(LANG("obj.c3a12e6a", list(src))))
+	to_chat(user, span_notice(LANG("obj.bc4393096463756e", list(src))))
+	to_chat(loc, span_warning(LANG("obj.c3a12e6a53c9f983", list(src))))
 	if(!do_after(user, 12 SECONDS, src, timed_action_flags = (IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM)))
 		return
 	// you are still in the bag? time to go unless you KO'd, honey!
 	// if they escape during this time and you rebag them the timer is still clocking down and does NOT reset so they can very easily get out.
 	if(user.incapacitated)
-		to_chat(loc, span_warning(LANG("obj.6c8499ad", null)))
+		to_chat(loc, span_warning(LANG("obj.6c8499ad779b14b2", null)))
 		return
-	loc.visible_message(span_warning(LANG("obj.5c9f73f8", list(user, loc))), span_userdanger(LANG("obj.23a7afd1", list(user, src))))
+	loc.visible_message(span_warning(LANG("obj.5c9f73f82da06586", list(user, loc))), span_userdanger(LANG("obj.23a7afd191a6bdcf", list(user, src))))
 	qdel(src)
 
 /obj/item/bodybag/environmental

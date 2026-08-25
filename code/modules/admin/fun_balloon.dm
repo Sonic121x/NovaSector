@@ -29,7 +29,7 @@
 	return
 
 /obj/effect/fun_balloon/proc/pop()
-	visible_message(span_notice(LANG("obj.955f4e4a", list(src))))
+	visible_message(span_notice(LANG("obj.955f4e4adf1b90c5", list(src))))
 	playsound(get_turf(src), pop_sound_effect, 50, TRUE, -1)
 	qdel(src)
 
@@ -79,7 +79,7 @@
 
 		if("select_antag")
 			var/list/paths = subtypesof(/datum/antagonist)
-			antag_type = input(usr,LANG("obj.fe8eda00", null), LANG("obj.5763302b", null)) as null|anything in sort_list(paths)
+			antag_type = input(usr,LANG("obj.fe8eda0062c0cba5", null), LANG("obj.5763302b01971976", null)) as null|anything in sort_list(paths)
 			make_antag = TRUE
 
 		if("pop")
@@ -140,7 +140,7 @@
 		var/turf/drop_off = find_safe_turf(z)
 		new /obj/effect/temp_visual/gravpush(get_turf(dispersed_mob))
 		dispersed_mob.forceMove(drop_off)
-		dispersed_mob.balloon_alert(dispersed_mob, LANG("obj.01729c70", null))
+		dispersed_mob.balloon_alert(dispersed_mob, LANG("obj.01729c70d37c8999", null))
 
 // ----------- Station Crash
 // Can't think of anywhere better to put it right now

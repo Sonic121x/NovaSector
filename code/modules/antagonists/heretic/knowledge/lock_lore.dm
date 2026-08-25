@@ -104,7 +104,7 @@
 	else if(istype(target, /obj/machinery/computer))
 		var/obj/machinery/computer/computer = target
 		computer.authenticated = TRUE
-		computer.balloon_alert(source, LANG("datum.6a4e03ca", null))
+		computer.balloon_alert(source, LANG("datum.6a4e03ca38b93195", null))
 
 	var/turf/target_turf = get_turf(target)
 	SEND_SIGNAL(target_turf, COMSIG_ATOM_MAGICALLY_UNLOCKED, src, source)
@@ -226,6 +226,12 @@
 	holywater_drain_amount = 0.33
 	notice = "&bull; Cannot be used near living sentient beings.<br>&bull; Cancelled if you are hit with an anti-magic item."
 
+/datum/heretic_knowledge/spell/caretaker_refuge/has_charges(mob/living/user)
+	return user.has_status_effect(/datum/status_effect/caretaker_refuge) || ..()
+
+/datum/heretic_knowledge/spell/caretaker_refuge/should_deduct_charge(mob/living/user)
+	return !user.has_status_effect(/datum/status_effect/caretaker_refuge)
+
 /datum/heretic_knowledge/ultimate/lock_final
 	name = "Unlock the Labyrinth"
 	desc = "The ascension ritual of the Path of Knock. \
@@ -253,13 +259,13 @@
 		if(body.stat != DEAD)
 			continue
 		if(LAZYLEN(body.get_organs_for_zone(BODY_ZONE_CHEST)))
-			to_chat(user, span_hierophant_warning(LANG("datum.934379f5", list(body))))
+			to_chat(user, span_hierophant_warning(LANG("datum.934379f58b3ff650", list(body))))
 			continue
 
 		selected_atoms += body
 
 	if(!LAZYLEN(selected_atoms))
-		loc.balloon_alert(user, LANG("datum.5731a881", null))
+		loc.balloon_alert(user, LANG("datum.5731a881b5ecc4ca", null))
 		return FALSE
 	return TRUE
 

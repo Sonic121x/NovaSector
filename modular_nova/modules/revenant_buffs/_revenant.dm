@@ -59,9 +59,9 @@
 	// Deaсtivates if active.
 	if(cast_on.has_status_effect(/datum/status_effect/revenant/revealed/manifest))
 		cast_on.remove_status_effect(/datum/status_effect/revenant/revealed/manifest)
-		cast_on.balloon_alert(cast_on, LANG("datum.64100180", null))
+		cast_on.balloon_alert(cast_on, LANG("datum.6410018060cddb34", null))
 		return
 
 	// If not active: applies an unique status effect responsible for the manifesting.
 	cast_on.apply_status_effect(/datum/status_effect/revenant/revealed/manifest, STATUS_EFFECT_PERMANENT)
-	cast_on.balloon_alert(cast_on, LANG("datum.fb7a8acf", null))
+	cast_on.balloon_alert(cast_on, LANG("datum.fb7a8acfc6354fcd", null))

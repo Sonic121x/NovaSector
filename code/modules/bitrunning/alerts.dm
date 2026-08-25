@@ -19,6 +19,6 @@
 	if(!isliving(living_owner))
 		return
 
-	if(tgui_alert(living_owner, LANG("atom.302b9eb9", null), LANG("atom.968e21bf", null), list("Exit", "Remain"), 10 SECONDS) == "Exit")
+	if(tgui_alert(living_owner, LANG("atom.302b9eb97f90ed84", null), LANG("atom.968e21bfe86f12b8", null), list("Exit", "Remain"), 10 SECONDS) == "Exit")
 		SEND_SIGNAL(living_owner, COMSIG_BITRUNNER_ALERT_SEVER)
 

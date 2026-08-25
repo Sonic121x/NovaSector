@@ -50,8 +50,7 @@
 
 /obj/machinery/biogenerator/Initialize(mapload)
 	. = ..()
-	if(!GLOB.autounlock_techwebs[/datum/techweb/autounlocking/biogenerator])
-		GLOB.autounlock_techwebs[/datum/techweb/autounlocking/biogenerator] = new /datum/techweb/autounlocking/biogenerator
+	GLOB.autounlock_techwebs[/datum/techweb/autounlocking/biogenerator] ||= new /datum/techweb/autounlocking/biogenerator()
 	stored_research = GLOB.autounlock_techwebs[/datum/techweb/autounlocking/biogenerator]
 	soundloop = new(src, processing)
 	if(mapload)
@@ -59,7 +58,7 @@
 
 /obj/machinery/biogenerator/can_be_unfasten_wrench(mob/user, silent)
 	if(welded_down)
-		to_chat(user, span_warning(LANG("obj.9092e2c6", list(src))))
+		to_chat(user, span_warning(LANG("obj.9092e2c6bd6db4b5", list(src))))
 		return FAILED_UNFASTEN
 	return ..()
 
@@ -74,30 +73,30 @@
 		if(!tool.tool_start_check(user, amount=2))
 			return TRUE
 		user.visible_message(
-			span_notice(LANG("obj.62651aed", list(user.name, src))),
-			span_notice(LANG("obj.41ed57fe", list(src))),
-			span_hear(LANG("obj.1aa82fa3", null)),
+			span_notice(LANG("obj.62651aed81728dfd", list(user.name, src))),
+			span_notice(LANG("obj.41ed57fe66669269", list(src))),
+			span_hear(LANG("obj.1aa82fa3545466eb", null)),
 		)
 		if(!tool.use_tool(src, user, 10 SECONDS, volume=100))
 			return FALSE
 		welded_down = FALSE
-		to_chat(user, span_notice(LANG("obj.6a908a91", list(src))))
+		to_chat(user, span_notice(LANG("obj.6a908a91e8707af7", list(src))))
 		return TRUE
 	if(!anchored)
-		to_chat(user, span_warning(LANG("obj.acb3909a", list(src))))
+		to_chat(user, span_warning(LANG("obj.acb3909a82cc6dff", list(src))))
 		return TRUE
 	if(!tool.tool_start_check(user, amount=2))
 		return TRUE
 	user.visible_message(
-		span_notice(LANG("obj.9449da47", list(user.name, src))),
-		span_notice(LANG("obj.7765e0fa", list(src))),
-		span_hear(LANG("obj.1aa82fa3", null)),
+		span_notice(LANG("obj.9449da477015e3e3", list(user.name, src))),
+		span_notice(LANG("obj.7765e0fab90f0928", list(src))),
+		span_hear(LANG("obj.1aa82fa3545466eb", null)),
 	)
 	if(!tool.use_tool(src, user, 10 SECONDS, volume=100))
-		balloon_alert(user, LANG("obj.bcb4be71", null))
+		balloon_alert(user, LANG("obj.bcb4be71fd475a4f", null))
 		return FALSE
 	welded_down = TRUE
-	to_chat(user, span_notice(LANG("obj.46f0194b", list(src))))
+	to_chat(user, span_notice(LANG("obj.46f0194bbe668d3b", list(src))))
 	return TRUE
 
 /obj/machinery/biogenerator/Destroy()
@@ -152,14 +151,14 @@
 	. = ..()
 
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice(LANG("obj.e69769dd", null))
-		. += span_notice(LANG("obj.237b12aa", list(productivity * 100)))
-		. += span_notice(LANG("obj.94074b37", list(processed_items_per_cycle)))
-		. += span_notice(LANG("obj.15a65139", list(1 / efficiency * 100)))
-		. += span_notice(LANG("obj.560b9e0d", list(max_items, get_content_count())))
+		. += span_notice(LANG("obj.e69769dde0bfcc79", null))
+		. += span_notice(LANG("obj.237b12aa33670638", list(productivity * 100)))
+		. += span_notice(LANG("obj.94074b376e8f7af0", list(processed_items_per_cycle)))
+		. += span_notice(LANG("obj.15a651395919212f", list(1 / efficiency * 100)))
+		. += span_notice(LANG("obj.560b9e0d35b84ea0", list(max_items, get_content_count())))
 
 	if(welded_down)
-		. += span_info(LANG("obj.a29ae2b3", null))
+		. += span_info(LANG("obj.a29ae2b37230283b", null))
 
 /obj/machinery/biogenerator/update_appearance()
 	. = ..()
@@ -220,7 +219,7 @@
 		return
 	var/turf/drop_location = drop_location()
 	if(biomass > 0)
-		drop_location.visible_message(span_warning(LANG("obj.7d7dbe0b", list(src))))
+		drop_location.visible_message(span_warning(LANG("obj.7d7dbe0b6b036c25", list(src))))
 		playsound(drop_location, 'sound/effects/slosh.ogg', 25, vary = TRUE)
 		new /obj/effect/decal/cleanable/greenglow(drop_location)
 
@@ -230,7 +229,7 @@
 
 	if(istype(tool, /obj/item/reagent_containers/cup))
 		if(panel_open)
-			to_chat(user, span_warning(LANG("obj.b13bf2a8", null)))
+			to_chat(user, span_warning(LANG("obj.b13bf2a8bc6430a1", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		insert_beaker(user, tool)
@@ -239,7 +238,7 @@
 	var/content_count = get_content_count()
 	if(istype(tool, /obj/item/storage/bag))
 		if(content_count >= max_items)
-			to_chat(user, span_warning(LANG("obj.60ad134d", list(src))))
+			to_chat(user, span_warning(LANG("obj.60ad134d9c6adcd5", list(src))))
 			return ITEM_INTERACT_FAILURE
 
 		var/obj/item/storage/bag/bag = tool
@@ -250,24 +249,24 @@
 
 		content_count = get_content_count() // Refresh the cache for UI
 		if(bag.contents.len == 0)
-			to_chat(user, span_info(LANG("obj.04f0231a", list(bag, src))))
+			to_chat(user, span_info(LANG("obj.04f0231a077feeb5", list(bag, src))))
 		else if (content_count >= max_items)
-			to_chat(user, span_info(LANG("obj.49ef40ea", list(src, bag))))
+			to_chat(user, span_info(LANG("obj.49ef40eaa101f6e6", list(src, bag))))
 		else
-			to_chat(user, span_info(LANG("obj.b8142e41", list(src, bag))))
+			to_chat(user, span_info(LANG("obj.b8142e41f5ceccfe", list(src, bag))))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/food))
 		if(content_count >= max_items)
-			to_chat(user, span_warning(LANG("obj.60ad134d", list(src))))
+			to_chat(user, span_warning(LANG("obj.60ad134d9c6adcd5", list(src))))
 			return ITEM_INTERACT_FAILURE
 
 		if(user.transferItemToLoc(tool, src))
-			to_chat(user, span_info(LANG("obj.3e717802", list(tool, src))))
+			to_chat(user, span_info(LANG("obj.3e7178020a57bf4b", list(tool, src))))
 			get_content_count() // Refresh the cache for UI
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_warning(LANG("obj.33b055bb", list(tool, src))))
+	to_chat(user, span_warning(LANG("obj.33b055bba334fa5c", list(tool, src))))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/biogenerator/click_alt(mob/living/user)
@@ -280,11 +279,11 @@
 		return
 
 	if(processing)
-		say(LANG("obj.e8db372d", null))
+		say(LANG("obj.e8db372dd15918d4", null))
 		return
 
 	if(!(locate(/obj/item/food) in contents))
-		say(LANG("obj.62148145", null))
+		say(LANG("obj.62148145688118bc", null))
 		return
 
 	begin_processing()
@@ -378,7 +377,7 @@
 			return FALSE
 
 		if(beaker.reagents.maximum_volume - beaker.reagents.total_volume < amount)
-			say(LANG("obj.b460e63f", null))
+			say(LANG("obj.b460e63facbbdb96", null))
 			return FALSE
 
 		if(!use_biomass(design.materials, amount))
@@ -414,11 +413,11 @@
 		return
 
 	if(beaker)
-		to_chat(user, span_notice(LANG("obj.f693579b", list(beaker, src, inserted_beaker))))
+		to_chat(user, span_notice(LANG("obj.f693579bc3bb62f1", list(beaker, src, inserted_beaker))))
 		eject_beaker(user, silent = TRUE)
 
 	else
-		to_chat(user, span_notice(LANG("obj.0c27fe26", list(inserted_beaker, src))))
+		to_chat(user, span_notice(LANG("obj.0c27fe262b2ac3b6", list(inserted_beaker, src))))
 
 	beaker = inserted_beaker
 	update_appearance(UPDATE_ICON)
@@ -441,11 +440,11 @@
 
 	if(user.put_in_hands(beaker))
 		if(!silent)
-			to_chat(user, span_notice(LANG("obj.daa0023e", list(ejected_beaker, src))))
+			to_chat(user, span_notice(LANG("obj.daa0023e3c36c4e8", list(ejected_beaker, src))))
 
 	else
 		if(!silent)
-			to_chat(user, span_notice(LANG("obj.cb3a2d71", list(ejected_beaker, src))))
+			to_chat(user, span_notice(LANG("obj.cb3a2d713ecd060f", list(ejected_beaker, src))))
 
 		ejected_beaker.forceMove(drop_location())
 
@@ -495,27 +494,27 @@
 	data["categories"] = list()
 	data["max_visual_biomass"] = max_visual_biomass
 
-	var/categories = show_categories.Copy()
+	var/list/categories = show_categories.Copy()
 	for(var/category in categories)
 		categories[category] = list()
 
-	for(var/design_id in stored_research.researched_designs)
-		var/datum/design/design = SSresearch.techweb_design_by_id(design_id)
+	for(var/design_path in stored_research.researched_designs)
+		var/datum/design/design = SSresearch.techweb_designs[design_path]
 		for(var/category in categories)
 			if(category in design.category)
 				categories[category] += design
 
-	for(var/category in categories)
+	for(var/category, category_designs in categories)
 		var/list/cat = list(
 			"name" = category,
 			"items" = (category == selected_cat ? list() : null))
 
-		for(var/item in categories[category])
-			var/datum/design/design = item
+		for(var/datum/design/design as anything in category_designs)
 			cat["items"] += list(list(
-				"id" = design.id,
-				"name" = lang_reverse_text(design.name), // NOVA EDIT - I18N: ui_static_data (constant data, bypasses P1); product name in datum.json but front-end auto-localizes vs tgui.json → reverse here (act uses id, safe). ORIGINAL: "name" = design.name,
-				"is_reagent" = design.make_reagent != null,
+				"path" = design.type,
+				"name" = lang_reverse_text(design.name), // NOVA EDIT - I18N: ui_static_data (constant data, bypasses P1); product name in datum.json but front-end auto-localizes vs tgui.json → reverse here (act uses path, safe). ORIGINAL: "name" = design.name,
+				"icon" = design.asset_id,
+				"is_reagent" = !isnull(design.make_reagent),
 				"cost" = design.materials[SSmaterials.get_material(/datum/material/biomass)] / efficiency,
 			))
 		data["categories"] += list(cat)
@@ -538,24 +537,23 @@
 			return TRUE
 
 		if("create")
+			var/design_path = text2path(params["design_path"])
+			if(!design_path)
+				return
+
+			if(!stored_research.researched_designs[design_path])
+				return
+
+			var/datum/design/design = SSresearch.techweb_designs[design_path]
+			if(!istype(design))
+				stack_trace("Invalid design ID passed into biogenerator ui_act()")
+				return
+
 			var/amount = text2num(params["amount"])
 			if(!amount)
 				return
-
-			var/id = params["id"]
-			if(!stored_research.researched_designs.Find(id))
-				stack_trace("ID did not map to a researched datum [id]")
-				return
-
-			var/datum/design/design = SSresearch.techweb_design_by_id(id)
 			amount = clamp(amount, 1, (design.make_reagent && beaker ? beaker.reagents.maximum_volume - beaker.reagents.total_volume : max_output))
-
-			if(design && !istype(design, /datum/design/error_design))
-				create_product(design, amount)
-
-			else
-				stack_trace("ID could not be turned into a valid techweb design datum [id]")
-				return
+			create_product(design, amount)
 
 			return TRUE
 

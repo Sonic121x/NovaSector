@@ -35,9 +35,9 @@
 
 	switch(hole_size)
 		if(MEDIUM_HOLE)
-			. += LANG("obj.97b257b4", list(src))
+			. += LANG("obj.97b257b4c4b83627", list(src))
 		if(LARGE_HOLE)
-			. += LANG("obj.fe9982e8", list(src))
+			. += LANG("obj.fe9982e8618a6ee8", list(src))
 
 /obj/structure/fence/end
 	icon_state = "end"
@@ -61,20 +61,20 @@
 
 /obj/structure/fence/wirecutter_act(mob/living/user, obj/item/tool)
 	if(!cuttable)
-		to_chat(user, span_warning(LANG("obj.abc38e5c", null)))
+		to_chat(user, span_warning(LANG("obj.abc38e5ceeffacfd", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(invulnerable)
-		to_chat(user, span_warning(LANG("obj.7a620b1c", null)))
+		to_chat(user, span_warning(LANG("obj.7a620b1ce3c3f032", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	var/current_stage = hole_size
 	if(current_stage >= MAX_HOLE_SIZE)
-		to_chat(user, span_warning(LANG("obj.d2086221", null)))
+		to_chat(user, span_warning(LANG("obj.d20862213f3d0a77", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_danger(LANG("obj.f1ee30ed", list(user, src, tool))),\
-						span_danger(LANG("obj.cedca70c", list(src, tool))))
+	user.visible_message(span_danger(LANG("obj.f1ee30edd4893a83", list(user, src, tool))),\
+						span_danger(LANG("obj.cedca70c5328ab17", list(src, tool))))
 
 	if(!tool.use_tool(src, user, CUT_TIME))
 		return ITEM_INTERACT_BLOCKING
@@ -82,12 +82,12 @@
 		return ITEM_INTERACT_BLOCKING
 	switch(++hole_size)
 		if(MEDIUM_HOLE)
-			visible_message(span_notice(LANG("obj.49794e1c", list(user, src))))
-			to_chat(user, span_info(LANG("obj.3421d97f", null)))
+			visible_message(span_notice(LANG("obj.49794e1c594ed685", list(user, src))))
+			to_chat(user, span_info(LANG("obj.3421d97f8f7bb1fe", null)))
 			AddElement(/datum/element/climbable)
 		if(LARGE_HOLE)
-			visible_message(span_notice(LANG("obj.e0d9f291", list(user, src))))
-			to_chat(user, span_info(LANG("obj.22decf31", list(src))))
+			visible_message(span_notice(LANG("obj.e0d9f291d73dfa19", list(user, src))))
+			to_chat(user, span_info(LANG("obj.22decf317c6128cc", list(src))))
 			RemoveElement(/datum/element/climbable)
 	update_cut_status()
 	return ITEM_INTERACT_SUCCESS
@@ -130,7 +130,7 @@
 	return TRUE
 
 /obj/structure/fence/door/proc/toggle(mob/user)
-	visible_message(span_notice(LANG("obj.e42e36cb", list(user, density ? "opens" : "closes", src))))
+	visible_message(span_notice(LANG("obj.e42e36cbfc120154", list(user, density ? "opens" : "closes", src))))
 	set_density(!density)
 	update_icon_state()
 	playsound(src, 'sound/machines/click.ogg', 100, TRUE)

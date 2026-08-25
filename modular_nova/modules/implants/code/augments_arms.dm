@@ -89,7 +89,7 @@
 /obj/item/organ/cyberimp/arm/toolkit/armblade/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(usr, span_notice(LANG("obj.c57c6dab", list(src))))
+	to_chat(usr, span_notice(LANG("obj.c57c6dab67db3aa4", list(src))))
 	items_list += WEAKREF(new /obj/item/melee/implantarmblade/energy(src))
 	obj_flags |= EMAGGED
 	return TRUE
@@ -120,7 +120,7 @@
 	playsound(get_turf(user), toggle_sound, 50, TRUE)
 	if(tool_behaviour != TOOL_WIRECUTTER)
 		tool_behaviour = TOOL_WIRECUTTER
-		to_chat(user, span_notice(LANG("obj.0181c2e1", list(src))))
+		to_chat(user, span_notice(LANG("obj.0181c2e17995bb37", list(src))))
 		icon_state = "precision_[src::icon_state]"
 		inhand_icon_state = "precision_[src::inhand_icon_state]"
 		force = cutter_force
@@ -133,7 +133,7 @@
 		attack_verb_simple = CUTTER_ATTACK_VERB_SIMPLE
 	else
 		tool_behaviour = TOOL_KNIFE
-		to_chat(user, span_notice(LANG("obj.4b13aa2c", list(src))))
+		to_chat(user, span_notice(LANG("obj.4b13aa2c3217dc8e", list(src))))
 		icon_state = src::icon_state
 		inhand_icon_state = src::inhand_icon_state
 		force = knife_force
@@ -160,7 +160,7 @@
 
 	name = "enhanced razor claws"
 	desc += span_warning("\n\nThese have undergone a special honing process; they'll kill people even faster than they used to.")
-	user.visible_message(span_warning(LANG("obj.d6b60633", list(user, src, tool))), span_warning(LANG("obj.e31199e5", list(src, tool))))
+	user.visible_message(span_warning(LANG("obj.d6b60633eaffdd73", list(user, src, tool))), span_warning(LANG("obj.e31199e51969e5e8", list(src, tool))))
 	playsound(src, 'sound/items/unsheath.ogg', 25, TRUE)
 	qdel(tool)
 	return ..()
@@ -188,8 +188,8 @@
 			effect_chance = 35
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger(LANG("obj.8beba6a5", list(owner))),
-			span_warning(LANG("obj.6da8e535", null))
+			span_danger(LANG("obj.8beba6a546c09079", list(owner))),
+			span_warning(LANG("obj.6da8e535a5ae2c14", null))
 		)
 		if(active_item)
 			Retract()
@@ -237,8 +237,8 @@
 			effect_chance = 40
 	if(prob(effect_chance) && owner)
 		owner.visible_message(
-			span_danger(LANG("obj.be0a22c5", list(owner))),
-			span_warning(LANG("obj.ce1b96e5", null))
+			span_danger(LANG("obj.be0a22c5372281d8", list(owner))),
+			span_warning(LANG("obj.ce1b96e541edddb9", null))
 		)
 		if(active_item)
 			Retract()
@@ -288,7 +288,7 @@ GAME_VERB_DESC(/obj/item/pickaxe/drill/implant, spin, "旋转钻头", "Click to 
 	recent_spin = world.time + spin_delay
 
 	playsound(user, 'modular_nova/master_files/sound/effects/robot_smoke.ogg', 50, FALSE)
-	user.visible_message(span_warning(LANG("obj.841b7e02", list(user, src))), span_notice(LANG("obj.a3f2d6f6", list(src))))
+	user.visible_message(span_warning(LANG("obj.841b7e0248daae53", list(user, src))), span_notice(LANG("obj.a3f2d6f65a4d80a1", list(src))))
 
 /obj/item/organ/cyberimp/arm/toolkit/mining_drill/diamond
 	name = "\improper Dalba Masterworks 'Tunneler' Diamond Integrated Drill"
@@ -346,7 +346,7 @@ GAME_VERB_DESC(/obj/item/pickaxe/drill/implant, spin, "旋转钻头", "Click to 
 /obj/item/organ/cyberimp/arm/toolkit/botany/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(usr, span_notice(LANG("obj.463118d0", list(src))))
+	to_chat(usr, span_notice(LANG("obj.463118d0d005e3c4", list(src))))
 	items_list += WEAKREF(new /obj/item/implant_mounted_chainsaw(src)) //time to landscape the station
 	obj_flags |= EMAGGED
 	return TRUE
@@ -367,7 +367,7 @@ GAME_VERB_DESC(/obj/item/pickaxe/drill/implant, spin, "旋转钻头", "Click to 
 /obj/item/organ/cyberimp/arm/toolkit/janitor/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(usr, span_notice(LANG("obj.1667a03f", list(src))))
+	to_chat(usr, span_notice(LANG("obj.1667a03fc221ebde", list(src))))
 	items_list += WEAKREF(new /obj/item/soap/syndie(src)) //We add not replace.
 	items_list += WEAKREF(new /obj/item/reagent_containers/spray/cyborg_lube(src))
 	obj_flags |= EMAGGED
@@ -383,7 +383,7 @@ GAME_VERB_DESC(/obj/item/pickaxe/drill/implant, spin, "旋转钻头", "Click to 
 /obj/item/organ/cyberimp/arm/toolkit/lighter/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(usr, span_notice(LANG("obj.924324ef", list(src))))
+	to_chat(usr, span_notice(LANG("obj.924324ef4b9a13a7", list(src))))
 	items_list += WEAKREF(new /obj/item/lighter(src)) //Now you can choose between bad and worse!
 	obj_flags |= EMAGGED
 	return TRUE

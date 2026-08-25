@@ -63,28 +63,28 @@
 /datum/computer_file/program/nt_pay/proc/_pay(token, money_to_send, mob/user)
 	var/area/user_area = get_area(user)
 	if(user_area && is_area_virtual(user_area))
-		to_chat(user, span_notice(LANG("datum.f84d0a29", null)))
+		to_chat(user, span_notice(LANG("datum.f84d0a29b16d94a2", null)))
 		return NT_PAY_STATUS_NO_ACCOUNT
 
 	money_to_send = round(money_to_send)
 
 	if(IS_DEPARTMENTAL_ACCOUNT(current_user))
 		if(user)
-			to_chat(user, span_notice(LANG("datum.3c408e2a", null)))
+			to_chat(user, span_notice(LANG("datum.3c408e2a73624bc0", null)))
 		return NT_PAY_STATUS_DEPT_ACCOUNT
 
 	var/datum/bank_account/recipient
 	if(!token)
 		if(user)
-			to_chat(user, span_notice(LANG("datum.c9f2efbd", null)))
+			to_chat(user, span_notice(LANG("datum.c9f2efbd4a66b58e", null)))
 		return NT_PAY_STATUS_INVALID_TOKEN
 	if(money_to_send <= 0)
 		if(user)
-			to_chat(user, span_notice(LANG("datum.5068fd97", null)))
+			to_chat(user, span_notice(LANG("datum.5068fd97a44e22ff", null)))
 		return NT_PAY_STATUS_INVALID_MONEY
 	if(token == current_user.pay_token)
 		if(user)
-			to_chat(user, span_notice(LANG("datum.fdd7d54e", list(MONEY_NAME))))
+			to_chat(user, span_notice(LANG("datum.fdd7d54e8b592c46", list(MONEY_NAME))))
 		return NT_PAY_SATUS_SENDER_IS_RECEIVER
 
 	for(var/account in SSeconomy.bank_accounts_by_id)
@@ -95,18 +95,18 @@
 
 	if(!recipient)
 		if(user)
-			to_chat(user, span_notice(LANG("datum.52c38823", null)))
+			to_chat(user, span_notice(LANG("datum.52c3882372872da1", null)))
 		return NT_PAY_STATUS_INVALID_TOKEN
 	if(!current_user.has_money(money_to_send) || money_to_send < 1)
-		current_user.bank_card_talk(LANG("datum.eae56365", null))
+		current_user.bank_card_talk(LANG("datum.eae56365c0345cd2", null))
 		return NT_PAY_STATUS_INVALID_MONEY
 
-	recipient.bank_card_talk(LANG("datum.f6d88a7c", list(money_to_send, MONEY_NAME, current_user.account_holder)))
+	recipient.bank_card_talk(LANG("datum.f6d88a7ca2c053eb", list(money_to_send, MONEY_NAME, current_user.account_holder)))
 	recipient.transfer_money(current_user, money_to_send)
 	for(var/obj/item/card/id/id_card as anything in recipient.bank_cards)
 		SEND_SIGNAL(id_card, COMSIG_ID_CARD_NTPAY_MONEY_RECEIVED, computer, money_to_send)
 
-	current_user.bank_card_talk(LANG("datum.a98943d0", list(money_to_send, MONEY_NAME, recipient.account_holder, current_user.account_balance, MONEY_NAME)))
+	current_user.bank_card_talk(LANG("datum.a98943d0ffaac339", list(money_to_send, MONEY_NAME, recipient.account_holder, current_user.account_balance, MONEY_NAME)))
 
 	return NT_PAY_STATUS_SUCCESS
 

@@ -45,7 +45,7 @@
 	if(!distance)
 		living_mob.Paralyze(1 SECONDS)
 		living_mob.Knockdown(10 SECONDS)
-		to_chat(living_mob, span_hypnophrase(LANG("obj.be3fd5b7", null)))
+		to_chat(living_mob, span_hypnophrase(LANG("obj.be3fd5b792de10d8", null)))
 		living_mob.adjust_hallucinations(150 SECONDS)
 
 	else
@@ -53,7 +53,7 @@
 			living_mob.Paralyze(0.5 SECONDS)
 			living_mob.Knockdown(3 SECONDS)
 		if(hypno_sound)
-			to_chat(living_mob, span_hypnophrase(LANG("obj.be3fd5b7", null)))
+			to_chat(living_mob, span_hypnophrase(LANG("obj.be3fd5b792de10d8", null)))
 			living_mob.adjust_hallucinations(150 SECONDS)
 
 	//Flash
@@ -64,7 +64,7 @@
 	if(living_mob.hypnosis_vulnerable()) //The sound causes the necessary conditions unless the target has mindshield or hearing protection
 		living_mob.apply_status_effect(/datum/status_effect/trance, 10 SECONDS, TRUE)
 		return
-	to_chat(living_mob, span_hypnophrase(LANG("obj.88f4df8a", null)))
+	to_chat(living_mob, span_hypnophrase(LANG("obj.88f4df8aa9d7a968", null)))
 	living_mob.adjust_drowsiness_up_to(20 SECONDS, 40 SECONDS)
 	living_mob.adjust_confusion_up_to(10 SECONDS, 20 SECONDS)
 	living_mob.adjust_dizzy_up_to(20 SECONDS, 40 SECONDS)

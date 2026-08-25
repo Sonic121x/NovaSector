@@ -32,7 +32,7 @@
 	var/mob/living/split_personality/non_controller = usr
 	var/client/non_controller_client = non_controller.client
 
-	var/to_send = tgui_input_text(non_controller, LANG("datum.803ef7b1", null), LANG("datum.28ccfab6", null), max_length = MAX_MESSAGE_LEN)
+	var/to_send = tgui_input_text(non_controller, LANG("datum.803ef7b191846768", null), LANG("datum.28ccfab685eac773", null), max_length = MAX_MESSAGE_LEN)
 	if(QDELETED(src) || QDELETED(trauma) || !to_send)
 		return FALSE
 
@@ -45,13 +45,13 @@
 
 	to_chat(non_controller, "[user_message] [user_message_body]")
 
-	personality_body.balloon_alert(personality_body, LANG("datum.d955e950", null))
+	personality_body.balloon_alert(personality_body, LANG("datum.d955e9509c93251b", null))
 	to_chat(personality_body, "[fluff_text] [user_message_body]")
 
 	log_directed_talk(non_controller, personality_body, to_send, LOG_SAY, "[name]")
 	for(var/dead_mob in GLOB.dead_mob_list)
 		if(!isobserver(dead_mob))
 			continue
-		to_chat(dead_mob, "[FOLLOW_LINK(dead_mob, non_controller)] [span_boldnotice("[non_controller] [name]:")] [span_notice("\"[to_send]\" to")] [span_name("[trauma]")]")
+		to_chat(dead_mob, LANG("datum.7b8d967f7ad56e5a", list(FOLLOW_LINK(dead_mob, non_controller), span_boldnotice("[non_controller] [name]:"), span_notice("\"[to_send]\" to"), span_name("[trauma]"))))
 
 	return TRUE

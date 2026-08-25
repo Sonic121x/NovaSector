@@ -69,8 +69,8 @@
 /datum/action/cooldown/spell/shadow_cloak/proc/cloak_mob(mob/living/cast_on)
 	playsound(cast_on, 'sound/effects/chemistry/ahaha.ogg', 50, TRUE, -1, extrarange = SILENCED_SOUND_EXTRARANGE, frequency = 0.5)
 	cast_on.visible_message(
-		span_warning(LANG("datum.563549b0", list(cast_on))),
-		span_notice(LANG("datum.440f154d", null)),
+		span_warning(LANG("datum.563549b014cffd29", list(cast_on))),
+		span_notice(LANG("datum.440f154ddf000c3e", null)),
 	)
 
 	active_cloak = cast_on.apply_status_effect(/datum/status_effect/shadow_cloak)
@@ -85,8 +85,8 @@
 	playsound(cast_on, 'sound/effects/curse/curseattack.ogg', 50)
 	if(show_message)
 		cast_on.visible_message(
-			span_warning(LANG("datum.a7445197", list(cast_on))),
-			span_notice(LANG("datum.c485d7c0", null)),
+			span_warning(LANG("datum.a744519743098b9a", list(cast_on))),
+			span_notice(LANG("datum.c485d7c0eee4e71f", null)),
 		)
 
 	// Clear up the timer
@@ -100,8 +100,8 @@
 	var/mob/living/removed = source.owner
 	uncloak_mob(removed, show_message = FALSE)
 	removed.visible_message(
-		span_warning(LANG("datum.c6906ed3", list(removed))),
-		span_userdanger(LANG("datum.5b04c41a", null)),
+		span_warning(LANG("datum.c6906ed32987654a", list(removed))),
+		span_userdanger(LANG("datum.5b04c41a8d456fd6", null)),
 	)
 
 	removed.Knockdown(0.5 SECONDS)

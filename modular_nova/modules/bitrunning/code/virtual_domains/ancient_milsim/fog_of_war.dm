@@ -25,7 +25,7 @@
 	. = ..()
 	if(.)
 		return
-	radio.talk_into(src, "Fog is down, prepare for contact.", RADIO_CHANNEL_CYBERSUN)
+	radio.talk_into(src, LANG("obj.d8f2cbb2deee4b1a", null), RADIO_CHANNEL_CYBERSUN)
 	qdel(src)
 
 /obj/machinery/door/poddoor/ancient_milsim

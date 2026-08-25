@@ -164,7 +164,7 @@
 	if(!uplink)
 		return
 	if(!uplink.unlock_note) //no note means it can't be locked (typically due to being an implant.)
-		to_chat(user, span_warning(LANG("datum.27864f70", null)))
+		to_chat(user, span_warning(LANG("datum.27864f7088788dc7", null)))
 		return
 
 	uplink.failsafe_code = uplink.generate_code()
@@ -173,7 +173,7 @@
 	if(traitor_datum)
 		traitor_datum.antag_memory += "<b>Uplink Failsafe Code:</b> [code]" + "<br>"
 		traitor_datum.update_static_data_for_all_viewers()
-	to_chat(user, span_warning(LANG("datum.226f206a", list(code, traitor_datum ? " You may check your antagonist info to recall this." : null))))
+	to_chat(user, span_warning(LANG("datum.226f206aaa287d22", list(code, traitor_datum ? " You may check your antagonist info to recall this." : null))))
 	return source //For log icon
 
 /datum/uplink_item/device_tools/toolbox

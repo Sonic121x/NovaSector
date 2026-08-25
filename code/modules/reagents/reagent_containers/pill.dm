@@ -23,9 +23,9 @@
 /obj/item/reagent_containers/applicator/pill/proc/reagent_special_examine(datum/source, mob/user, list/examine_list, can_see_insides = FALSE)
 	SIGNAL_HANDLER
 	if (layers_remaining)
-		examine_list += span_notice(LANG("obj.1ff85a32", list(layers_remaining)))
+		examine_list += span_notice(LANG("obj.1ff85a3230941abb", list(layers_remaining)))
 	else
-		examine_list += span_warning(LANG("obj.3e00a07d", null))
+		examine_list += span_warning(LANG("obj.3e00a07d012ab0b9", null))
 
 ///Runs the consumption code, can be overriden for special effects
 /obj/item/reagent_containers/applicator/pill/on_consumption(mob/living/consumer, mob/giver, list/modifiers)
@@ -59,14 +59,14 @@
 		return NONE
 
 	if(target.is_drainable() && !target.reagents.total_volume)
-		to_chat(user, span_warning(LANG("obj.b6f48f31", list(target, src))))
+		to_chat(user, span_warning(LANG("obj.b6f48f319f35a5d6", list(target, src))))
 		return ITEM_INTERACT_BLOCKING
 
 	if(target.reagents.holder_full())
-		to_chat(user, span_warning(LANG("obj.8e2d390c", list(target))))
+		to_chat(user, span_warning(LANG("obj.8e2d390ca03cb226", list(target))))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_warning(LANG("obj.17fceef6", list(user, target))), span_notice(LANG("obj.a6017650", list(src, target))), null, 2)
+	user.visible_message(span_warning(LANG("obj.17fceef69cdd6a82", list(user, target))), span_notice(LANG("obj.a601765007d9b7b6", list(src, target))), null, 2)
 	reagents.trans_to(target, reagents.total_volume, transferred_by = user)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -84,7 +84,7 @@
 	else if (istype(tool, /obj/item/reagent_containers/cup))
 		container = tool
 		if (!container.is_drainable())
-			to_chat(user, span_warning(LANG("obj.1155be1f", list(container, src))))
+			to_chat(user, span_warning(LANG("obj.1155be1f740a0b6f", list(container, src))))
 			return ITEM_INTERACT_BLOCKING
 		use_verb = "pour"
 
@@ -94,12 +94,12 @@
 	var/datum/reagent/consumable/sugar/sugar = container.reagents.has_reagent(/datum/reagent/consumable/sugar)
 	if (sugar)
 		if (layers_remaining >= PILL_MAX_LAYERS) // Full minute
-			to_chat(user, span_warning(LANG("obj.2c8a3b1d", list(src))))
+			to_chat(user, span_warning(LANG("obj.2c8a3b1d8497eb1f", list(src))))
 			return ITEM_INTERACT_BLOCKING
 		var/to_apply = floor(min(container.amount_per_transfer_from_this, sugar.volume, PILL_MAX_LAYERS - layers_remaining))
 		container.reagents.remove_reagent(/datum/reagent/consumable/sugar, to_apply)
 		layers_remaining += to_apply
-		to_chat(user, span_notice(LANG("obj.662e5d19", list(use_verb, container, src))))
+		to_chat(user, span_notice(LANG("obj.662e5d1989a169be", list(use_verb, container, src))))
 		return ITEM_INTERACT_SUCCESS
 
 	var/datum/reagent/water/water = container.reagents.has_reagent(/datum/reagent/water)
@@ -107,13 +107,13 @@
 		return ..()
 
 	if (!layers_remaining) // No coating
-		to_chat(user, span_warning(LANG("obj.a46304fc", list(src))))
+		to_chat(user, span_warning(LANG("obj.a46304fcf773d015", list(src))))
 		return ITEM_INTERACT_BLOCKING
 
 	var/to_apply = floor(min(container.amount_per_transfer_from_this, water.volume, layers_remaining))
 	container.reagents.remove_reagent(/datum/reagent/water, to_apply)
 	layers_remaining -= to_apply
-	to_chat(user, span_notice(LANG("obj.87fc0ede", list(use_verb, container, src))))
+	to_chat(user, span_notice(LANG("obj.87fc0edea332cc03", list(use_verb, container, src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/applicator/pill/proc/on_digestion(datum/source, obj/item/organ/stomach/stomach, mob/living/carbon/owner, seconds_per_tick)
@@ -155,7 +155,7 @@
  */
 /obj/item/reagent_containers/applicator/pill/on_accidental_consumption(mob/living/carbon/victim, mob/living/carbon/user, obj/item/source_item, discover_after = FALSE)
 	if(victim.get_food_taste_reaction(source_item) != FOOD_LIKED) // If you don't like the food then you notice the pill you just swallowed
-		to_chat(victim, span_warning(LANG("obj.be9569ae", list(source_item ? "Was that in [source_item]?" : ""))))
+		to_chat(victim, span_warning(LANG("obj.be9569ae5284be14", list(source_item ? "Was that in [source_item]?" : ""))))
 	on_consumption(victim, user)
 	return FALSE
 

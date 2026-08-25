@@ -80,15 +80,15 @@
 /obj/machinery/satellite/meteor_shield/examine(mob/user)
 	. = ..()
 	if(active)
-		. += span_notice(LANG("obj.ec926d96", null))
+		. += span_notice(LANG("obj.ec926d966fad4dda", null))
 		if(obj_flags & EMAGGED)
-			. += span_warning(LANG("obj.dcc51c76", null))
+			. += span_warning(LANG("obj.dcc51c7610597536", null))
 		else
-			. += span_notice(LANG("obj.cafef0d6", null))
+			. += span_notice(LANG("obj.cafef0d6b25a7ca3", null))
 	else
-		. += span_notice(LANG("obj.6c010540", null))
+		. += span_notice(LANG("obj.6c0105400b5f9673", null))
 		if(obj_flags & EMAGGED)
-			. += span_warning(LANG("obj.cbd64c27", null))
+			. += span_warning(LANG("obj.cbd64c27a7759d80", null))
 
 /obj/machinery/satellite/meteor_shield/proc/space_los(meteor)
 	for(var/turf/T in get_line(src,meteor))
@@ -113,7 +113,7 @@
 
 /obj/machinery/satellite/meteor_shield/toggle(user)
 	if(user)
-		balloon_alert(user, LANG("obj.371b2e5f", list(active ? "off" : "on")))
+		balloon_alert(user, LANG("obj.371b2e5f5ed40561", list(active ? "off" : "on")))
 	if(user && !do_after(user, 2 SECONDS, src, IGNORE_HELD_ITEM))
 		return FALSE
 	if(!..(user))
@@ -139,18 +139,18 @@
 
 /obj/machinery/satellite/meteor_shield/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, LANG("obj.9bab397b", null))
+		balloon_alert(user, LANG("obj.9bab397b17f019dd", null))
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, shared_emag_cooldown))
-		balloon_alert(user, LANG("obj.d4ae5d4d", null))
-		to_chat(user, span_warning(LANG("obj.81d725ea", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, shared_emag_cooldown))))))
+		balloon_alert(user, LANG("obj.d4ae5d4dded19efe", null))
+		to_chat(user, span_warning(LANG("obj.81d725ea96eb3097", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, shared_emag_cooldown))))))
 		return FALSE
 	var/cooldown_applied = METEOR_SHIELD_EMAG_COOLDOWN
 	COOLDOWN_START(src, shared_emag_cooldown, cooldown_applied)
 	obj_flags |= EMAGGED
-	to_chat(user, span_notice(LANG("obj.342bb80d", null)))
+	to_chat(user, span_notice(LANG("obj.342bb80d18e955cb", null)))
 	AddComponent(/datum/component/gps, "Corrupted Meteor Shield Attraction Signal")
-	say(LANG("obj.5609c3a2", list(DisplayTimeText(cooldown_applied))))
+	say(LANG("obj.5609c3a2f427e525", list(DisplayTimeText(cooldown_applied))))
 	if(active) //if we allowed inactive updates a sat could be worth -1 active meteor shields on first emag
 		update_emagged_meteor_sat(user)
 	return TRUE
@@ -160,12 +160,12 @@
 		change_meteor_chance(0.5)
 		emagged_active_meteor_shields--
 		if(user)
-			balloon_alert(user, LANG("obj.f59256a6", null))
+			balloon_alert(user, LANG("obj.f59256a62993efc0", null))
 		return
 	change_meteor_chance(2)
 	emagged_active_meteor_shields++
 	if(user)
-		balloon_alert(user, LANG("obj.68dc5b63", null))
+		balloon_alert(user, LANG("obj.68dc5b63f3824085", null))
 	if(emagged_active_meteor_shields > highest_emagged_threshold_reached)
 		highest_emagged_threshold_reached = emagged_active_meteor_shields
 		handle_new_emagged_shield_threshold()
@@ -173,14 +173,14 @@
 /obj/machinery/satellite/meteor_shield/proc/handle_new_emagged_shield_threshold()
 	switch(highest_emagged_threshold_reached)
 		if(EMAGGED_METEOR_SHIELD_THRESHOLD_ONE)
-			say(LANG("obj.fd6dd9de", null))
+			say(LANG("obj.fd6dd9dec045ca4c", null))
 		if(EMAGGED_METEOR_SHIELD_THRESHOLD_TWO)
-			say(LANG("obj.80bc2068", null))
+			say(LANG("obj.80bc2068accd2790", null))
 		if(EMAGGED_METEOR_SHIELD_THRESHOLD_THREE)
-			say(LANG("obj.1b68c7b9", null))
+			say(LANG("obj.1b68c7b90eaa8178", null))
 			priority_announce("Warning. Tampering of meteor satellites puts the station at risk of exotic, deadly meteor collisions. Please intervene by checking your GPS devices for strange signals, and dismantling the tampered meteor shields.", "Strange Meteor Signal Warning")
 		if(EMAGGED_METEOR_SHIELD_THRESHOLD_FOUR)
-			say(LANG("obj.9c18e999", null))
+			say(LANG("obj.9c18e999dfdce842", null))
 			force_event_async(/datum/round_event_control/dark_matteor, "an array of tampered meteor satellites")
 
 /obj/machinery/satellite/meteor_shield/proc/change_meteor_chance(mod)

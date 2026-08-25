@@ -36,12 +36,12 @@
 		return
 	/// Check their ERP prefs; if they don't allow sextoys: BTFO
 	if(!to_be_leashed.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger(LANG("obj.8d0a0182", list(to_be_leashed))))
+		to_chat(user, span_danger(LANG("obj.8d0a01828f0e2a19", list(to_be_leashed))))
 		return
 	/// Actually start the leashing part here
-	to_be_leashed.visible_message(span_warning(LANG("obj.5d701de9", list(user, src, to_be_leashed))),\
-				span_userdanger(LANG("obj.4407d34f", list(user, src))),\
-				span_hear(LANG("obj.8f9d9ca9", null)))
+	to_be_leashed.visible_message(span_warning(LANG("obj.5d701de907728e46", list(user, src, to_be_leashed))),\
+				span_userdanger(LANG("obj.4407d34feaecfc93", list(user, src))),\
+				span_hear(LANG("obj.8f9d9ca9f163f537", null)))
 	if(!do_after(user, 2 SECONDS, to_be_leashed))
 		return
 	create_leash(user, to_be_leashed)
@@ -53,13 +53,13 @@
 
 	ouppy.AddComponent(/datum/component/leash/erp, src, 2)
 	if(our_leash_component.resolve()) // The component will immediately delete itself if there's an existing one; this sanity checks for feedback on if it failed.
-		ouppy.balloon_alert(user, LANG("obj.39eed485", null))
+		ouppy.balloon_alert(user, LANG("obj.39eed4859fba2806", null))
 		return
-	else to_chat(user, span_danger(LANG("obj.264e86d2", list(ouppy))))
+	else to_chat(user, span_danger(LANG("obj.264e86d2f58bcffe", list(ouppy))))
 
 /// Leash removal
 /obj/item/clothing/erp_leash/proc/remove_leash(mob/free_bird)
-	free_bird?.balloon_alert_to_viewers(LANG("obj.78b1b041", null))
+	free_bird?.balloon_alert_to_viewers(LANG("obj.78b1b0415f7b8fb9", null))
 	qdel(our_leash_component.resolve())
 
 /*
@@ -106,9 +106,9 @@
 			var/mob/living/yoinked = parent
 			yoinked.Move(get_step_towards(yoinked,user))
 			yoinked.adjust_stamina_loss(10)
-			yoinked.visible_message(span_warning(LANG("datum.adc2a27b", list(yoinked, user, source))),\
-					span_userdanger(LANG("datum.23918ada", list(user, source))),\
-					span_userdanger(LANG("datum.edf79728", null)))
+			yoinked.visible_message(span_warning(LANG("datum.adc2a27b55a4a24c", list(yoinked, user, source))),\
+					span_userdanger(LANG("datum.23918ada7d84743e", list(user, source))),\
+					span_userdanger(LANG("datum.edf79728f384539c", null)))
 			COOLDOWN_START(leash_hookin, tug_cd, 1 SECONDS)
 
 /datum/component/leash/erp/proc/on_item_dropped(datum/source, mob/user)
@@ -116,7 +116,7 @@
 
 	if(istype(parent, /mob))
 		var/mob/our_parent = parent
-		our_parent.balloon_alert_to_viewers(LANG("datum.78b1b041", null))
+		our_parent.balloon_alert_to_viewers(LANG("datum.78b1b0415f7b8fb9", null))
 	qdel(src)
 
 /datum/component/leash/erp/proc/on_parent_resist(datum/source, mob/user)
@@ -127,10 +127,10 @@
 	if(istype(parent, /mob) && istype(owner,/obj/item))
 		var/mob/our_parent = parent
 		var/obj/item/our_owner = owner
-		our_parent.visible_message(span_warning(LANG("datum.3b0ace6f", list(our_parent, our_parent.p_them()))), \
-			span_userdanger(LANG("datum.f501b9fe", null)), \
-			span_userdanger(LANG("datum.4c6015eb", null)))
+		our_parent.visible_message(span_warning(LANG("datum.3b0ace6fe48d0caa", list(our_parent, our_parent.p_them()))), \
+			span_userdanger(LANG("datum.f501b9fee7c4424a", null)), \
+			span_userdanger(LANG("datum.4c6015eb79c8cb42", null)))
 		if(do_after(our_parent, our_owner.breakouttime, target = our_parent))
-			to_chat(our_parent, span_notice(LANG("datum.7f964868", null)))
+			to_chat(our_parent, span_notice(LANG("datum.7f9648689a641a9a", null)))
 			qdel(src)
 	else qdel(src) // If they're not an item; something is very wrong - qdel anyways without the breakout time.

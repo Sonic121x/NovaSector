@@ -48,8 +48,8 @@
 
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "spin")
 	owner.visible_message(
-		span_warning(LANG("datum.1e5d89c2", list(owner, the_attack, hit_by))),
-		span_warning(LANG("datum.0067a46b", list(the_attack, hit_by))),
+		span_warning(LANG("datum.1e5d89c29ccd76b8", list(owner, the_attack, hit_by))),
+		span_warning(LANG("datum.0067a46b872566a3", list(the_attack, hit_by))),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 	)
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/stoat_dodge)

@@ -99,7 +99,7 @@
 								R.ai_lockdown = FALSE
 								lock_unlock_borg(R)
 							else
-								to_chat(usr, span_danger(LANG("obj.20fd1ac0", null)))
+								to_chat(usr, span_danger(LANG("obj.20fd1ac01a0c40a5", null)))
 						else
 							R.ai_lockdown = TRUE
 							lock_unlock_borg(R)
@@ -115,11 +115,11 @@
 							R.ai_lockdown = FALSE
 							lock_unlock_borg(R)
 						else if(R.lockcharge&&locked_down_borg!=R)
-							to_chat(usr, span_danger(LANG("obj.3cb837d3", null)))
+							to_chat(usr, span_danger(LANG("obj.3cb837d3a70a8ac3", null)))
 						else
-							to_chat(usr, span_danger(LANG("obj.4cde61d6", null)))
+							to_chat(usr, span_danger(LANG("obj.4cde61d6ec3da693", null)))
 			else
-				to_chat(usr, span_danger(LANG("obj.6b89cc02", null)))
+				to_chat(usr, span_danger(LANG("obj.6b89cc026682e9bf", null)))
 			if(!isnull(locked_down_borg))
 				use_power = ACTIVE_POWER_USE
 			else
@@ -152,13 +152,13 @@
 			if(allowed(usr))
 				var/mob/living/basic/drone/drone = locate(params["ref"]) in GLOB.mob_list
 				if(drone.hacked)
-					to_chat(usr, span_danger(LANG("obj.067d27a3", list(drone))))
+					to_chat(usr, span_danger(LANG("obj.067d27a384b74cd1", list(drone))))
 				else
 					var/turf/T = get_turf(drone)
 					message_admins("[ADMIN_LOOKUPFLW(usr)] detonated [key_name_admin(drone)] at [ADMIN_VERBOSEJMP(T)]!")
 					log_silicon("[key_name(usr)] detonated [key_name(drone)]!")
 					do_sparks(3, TRUE< drone)
-					drone.visible_message(span_danger(LANG("obj.fe77c43f", list(drone))))
+					drone.visible_message(span_danger(LANG("obj.fe77c43f04e1aa1a", list(drone))))
 					drone.investigate_log("has been gibbed by a robotics console.", INVESTIGATE_DEATHS)
 					drone.gib()
 
@@ -174,9 +174,9 @@
 	R.SetLockdown(!R.lockcharge)
 	to_chat(R, !R.lockcharge ? span_notice("Your lockdown has been lifted!") : span_alert("You have been locked down!"))
 	if(!isnull(console_location))
-		to_chat(R, span_alert(LANG("obj.a222efb7", list(console_location))))
+		to_chat(R, span_alert(LANG("obj.a222efb79ceb9d0c", list(console_location))))
 	if(R.connected_ai)
-		to_chat(R.connected_ai, "[!R.lockcharge ? span_notice("NOTICE - Cyborg lockdown lifted") : span_alert("ALERT - Cyborg lockdown detected")]: <a href='byond://?src=[REF(R.connected_ai)];track=[html_encode(R.name)]'>[R.name]</a><br>")
+		to_chat(R.connected_ai, LANG("obj.d4d6f10a4cab7455", list(!R.lockcharge ? span_notice("NOTICE - Cyborg lockdown lifted") : span_alert("ALERT - Cyborg lockdown detected"), REF(R.connected_ai), html_encode(R.name), R.name)))
 
 /obj/machinery/computer/robotics/proc/borg_destroyed()
 	SIGNAL_HANDLER

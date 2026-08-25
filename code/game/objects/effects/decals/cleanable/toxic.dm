@@ -36,7 +36,7 @@
  */
 /obj/effect/decal/cleanable/greenglow/waste/proc/pre_dissolve(display_message = TRUE, dissolve_clock = DISSOLVE_DURATION)
 	if(display_message)
-		visible_message(span_warning(LANG("obj.b3afca60", list(src, get_turf(src)))))
+		visible_message(span_warning(LANG("obj.b3afca6019bfaa0d", list(src, get_turf(src)))))
 	color = "#ffffffff"
 
 	playsound(src, 'sound/items/tools/welder.ogg', 50, TRUE)
@@ -54,7 +54,7 @@
 		return
 	var/turf/open/splash_floor = splashed_turf
 	splash_floor.ScrapeAway(flags = CHANGETURF_IGNORE_AIR) //Eat away the floor
-	visible_message(span_warning(LANG("obj.5ba3b23b", list(get_turf(src)))))
+	visible_message(span_warning(LANG("obj.5ba3b23bc6ee5aaa", list(get_turf(src)))))
 	animate(src, time = 0.5 SECONDS, color = "#bebebe8e")
 	bubbling_audio?.stop()
 	QDEL_NULL(particles)

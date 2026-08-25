@@ -58,21 +58,21 @@
 				new_message += pick("uh,","erm,","um,")
 				if(prob(min(5, moodmod))) //Max 1 in 20 chance of cutoff after a successful filler roll, for 50% odds in a 15 word sentence
 					quirk_holder.set_silence_if_lower(6 SECONDS)
-					to_chat(quirk_holder, span_danger(LANG("datum.5dfc3a01", null)))
+					to_chat(quirk_holder, span_danger(LANG("datum.5dfc3a01c351fa78", null)))
 					break
 			new_message += word
 		message = jointext(new_message, " ")
 
 	if(prob(min(50, (0.50 * moodmod)))) //Max 50% chance of not talking
 		if(dumb_thing)
-			to_chat(quirk_holder, span_userdanger(LANG("datum.d5db3179", null)))
+			to_chat(quirk_holder, span_userdanger(LANG("datum.d5db317985a220ad", null)))
 			dumb_thing = FALSE //only once per life
 			if(prob(1))
 				new/obj/item/food/spaghetti/pastatomato(get_turf(quirk_holder)) //now that's what I call spaghetti code
 		else
-			to_chat(quirk_holder, span_warning(LANG("datum.15ad4bd2", null)))
+			to_chat(quirk_holder, span_warning(LANG("datum.15ad4bd21511326d", null)))
 			if(prob(min(25, (0.25 * moodmod)))) //Max 25% chance of silence stacks after successful not talking roll
-				to_chat(quirk_holder, span_danger(LANG("datum.2b7ef026", null)))
+				to_chat(quirk_holder, span_danger(LANG("datum.2b7ef0267204f4d0", null)))
 				quirk_holder.set_silence_if_lower(10 SECONDS)
 
 		speech_args[SPEECH_MESSAGE] = pick("Uh.","Erm.","Um.")

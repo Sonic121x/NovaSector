@@ -78,7 +78,7 @@
 		if(is_type_in_typecache(perks, no_coexistence_typecache))
 			return FALSE
 	if(is_type_in_list(src, wizard_datum.perks))
-		to_chat(user, span_warning(LANG("datum.5acb4f3a", null)))
+		to_chat(user, span_warning(LANG("datum.5acb4f3a32ada373", null)))
 		return FALSE
 	return TRUE
 
@@ -96,10 +96,10 @@
 	if(existing)
 		var/before_name = existing.name
 		if(!existing.level_spell())
-			to_chat(user, span_warning(LANG("datum.32c02072", null)))
+			to_chat(user, span_warning(LANG("datum.32c020729cfdb18b", null)))
 			return FALSE
 
-		to_chat(user, span_notice(LANG("datum.0e360f8c", list(before_name, existing.name))))
+		to_chat(user, span_notice(LANG("datum.0e360f8caa3f74ca", list(before_name, existing.name))))
 		name = existing.name
 
 		//we'll need to update the cooldowns for the spellbook
@@ -114,7 +114,7 @@
 	//No same spell found - just learn it
 	var/datum/action/cooldown/spell/new_spell = new spell_type(user.mind || user)
 	new_spell.Grant(user)
-	to_chat(user, span_notice(LANG("datum.2ba93c55", list(new_spell.name))))
+	to_chat(user, span_notice(LANG("datum.2ba93c551a4e2db4", list(new_spell.name))))
 
 	if(log_buy)
 		log_spellbook("[key_name(user)] learned [new_spell] for [cost] points")
@@ -148,7 +148,7 @@
  */
 /datum/spellbook_entry/proc/can_refund(mob/living/carbon/human/user, obj/item/spellbook/book)
 	if(HAS_TRAIT(user, TRAIT_SPELLS_LOTTERY))
-		to_chat(user, span_notice(LANG("datum.367ec2a3", null)))
+		to_chat(user, span_notice(LANG("datum.367ec2a371646e35", null)))
 		return FALSE
 	if(!refundable)
 		return FALSE
@@ -173,7 +173,7 @@
 /datum/spellbook_entry/proc/refund_spell(mob/living/carbon/human/user, obj/item/spellbook/book)
 	var/area/centcom/wizard_station/wizard_home = GLOB.areas_by_type[/area/centcom/wizard_station]
 	if(get_area(user) != wizard_home)
-		to_chat(user, span_warning(LANG("datum.d8fab2da", null)))
+		to_chat(user, span_warning(LANG("datum.d8fab2da3aee5112", null)))
 		return -1
 
 	for(var/datum/action/cooldown/spell/to_refund in user.actions)
@@ -227,11 +227,11 @@
 /// Attempts to give the item to the buyer on purchase.
 /datum/spellbook_entry/item/proc/try_equip_item(mob/living/carbon/human/user, obj/item/to_equip)
 	var/was_put_in_hands = user.put_in_hands(to_equip)
-	to_chat(user, span_notice(LANG("datum.60fa0327", list(to_equip.name, was_put_in_hands ? "in your hands" : "at your feet"))))
+	to_chat(user, span_notice(LANG("datum.60fa032742c3d5f8", list(to_equip.name, was_put_in_hands ? "in your hands" : "at your feet"))))
 
 /datum/spellbook_entry/item/can_refund(mob/living/carbon/human/user, obj/item/spellbook/book, obj/item/refunding_item)
 	if(HAS_TRAIT(user, TRAIT_SPELLS_LOTTERY))
-		to_chat(user, span_notice(LANG("datum.367ec2a3", null)))
+		to_chat(user, span_notice(LANG("datum.367ec2a371646e35", null)))
 		return FALSE
 	if(!book.refunds_allowed) // We're not doing a check for refundable here because they're not refundable in-book.
 		return FALSE

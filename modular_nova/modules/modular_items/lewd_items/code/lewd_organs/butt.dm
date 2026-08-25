@@ -39,7 +39,7 @@
 /obj/item/organ/genital/butt/get_sprite_size_string()
 	. = "[genital_type]_[floor(genital_size)]"
 	if(uses_skintones)
-		. += LANG("obj.1b7c729d", null)
+		. += LANG("obj.1b7c729d6f75ef28", null)
 
 /obj/item/organ/genital/butt/build_from_dna(datum/dna/DNA, associated_key) // Corrected DNA feature keys
 	uses_skin_color = DNA.features["butt_uses_skincolor"]

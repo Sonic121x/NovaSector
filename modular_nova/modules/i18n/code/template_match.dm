@@ -142,15 +142,20 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 	else
 		anchors[anchor] = list(id)
 
-/// 惰性构建某 locale 的逆模板库与锚自动机；返回是否可用。
+/// Builds one locale's reverse-template index. Bootstrap calls return without recording state.
 /proc/lang_tpl_setup(locale)
+	if(locale == DEFAULT_UI_LOCALE)
+		return FALSE
 	var/state = GLOB.i18n_tpl_state[locale]
 	if(state)
 		return state == "ready"
-	var/list/english = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
-	var/list/localized = GLOB.i18n_cache[locale]
+	if(!lang_runtime_can_build_indexes() || !lang_catalog_locale_is_loaded(locale))
+		return FALSE
+	var/list/forward_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET]
+	var/list/english = forward_by_locale[DEFAULT_UI_LOCALE]
+	var/list/localized = forward_by_locale[locale]
 	if(!islist(english) || !islist(localized) || !length(english))
-		return FALSE // cache 未就绪：不缓存状态，防极早期调用毒化（同 lang_build_reverse 加固）
+		return FALSE
 	var/list/records = list()
 	var/list/anchors = list() // 锚文本 -> 候选 id 列表
 	for(var/key in english)
@@ -272,6 +277,7 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 			if(!m)
 				break
 			text = copytext(text, 1, m[1]) + m[3] + copytext(text, m[2])
+			lang_count_layer_hit(I18N_LAYER_TEMPLATE)
 			if(++replaced >= I18N_TPL_MAX_REPLACE)
 				return text
 	return text
@@ -387,7 +393,13 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 	if(zh != capture)
 		return zh
 	if(findtext(capture, " ") && lang_fallback_setup(locale))
-		return rustg_acreplace("i18n_[locale]", capture)
+		var/ac = rustg_acreplace("i18n_[locale]", capture)
+		if(ac != capture)
+			lang_count_layer_hit(I18N_LAYER_AC)
+			return ac
+	// 漏翻采集：模板命中了、捕获值却没翻 —— 表现为「中文句式里嵌着英文词」，和 LANG 实参漏出
+	// 同形，但成因在另一条链上（模板逆匹配捕获 vs 调用点实参），所以要分开记。
+	lang_log_miss_value(capture, "capture")
 	return capture
 
 #undef I18N_TPL_MIN_ANCHOR

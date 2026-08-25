@@ -14,7 +14,7 @@
 
 /obj/item/stock_parts/power_store/cell/crank/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.e00729cd", null))
+	. += span_notice(LANG("obj.e00729cdc2d4c866", null))
 
 /obj/item/stock_parts/power_store/cell/crank/Initialize(mapload, override_maxcharge)
 	. = ..()

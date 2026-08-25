@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 // Apple
 /obj/item/seeds/apple
 	name = "apple seed pack"
@@ -16,6 +17,20 @@
 	mutatelist = list(/obj/item/seeds/apple/gold)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
+/obj/item/seeds/apple/harvest(mob/user)
+	var/list/result = ..()
+	var/obj/machinery/hydroponics/tray = loc
+	var/worm_chance = tray.pestlevel
+	if(tray.tray_flags & WORM_HABITAT)
+		worm_chance = 80 // Wormy soil isn't good for apples probably
+	for(var/obj/item/food/grown/apple/applum in result)
+		if(prob(worm_chance))
+			applum.appleworm = new(applum) // There is a worm in this apple!
+			applum.tastes = list("apple" = 1, "worms" = 2)
+			applum.ediblecomponent = IS_EDIBLE(applum)
+			if(applum.ediblecomponent)
+				applum.ediblecomponent.foodtypes |= (GROSS | MEAT | BUGS)
+
 /obj/item/food/grown/apple
 	seed = /obj/item/seeds/apple
 	name = "apple"
@@ -24,6 +39,39 @@
 	foodtypes = FRUIT
 	tastes = list("apple" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/hcider
+	/// Do we know about the worm?
+	var/found_worm = FALSE
+	/// The worm in question
+	var/obj/item/food/bait/worm/appleworm
+	/// Our edible component
+	var/datum/component/edible/ediblecomponent
+
+/obj/item/food/grown/apple/examine(mob/user)
+	. = ..()
+	if(!found_worm && !isobserver(user) && appleworm)
+		balloon_alert(user, LANG("obj.6a5ccb9f1afeb508", list(src.name)))
+		found_worm = TRUE
+		desc = LANG("obj.069fd2b4d78c1a8e", null)
+
+/obj/item/food/grown/apple/attack_self(mob/user)
+	if(!appleworm)
+		return
+	balloon_alert(user, LANG("obj.13a877bb53f350c2", list(appleworm.name)))
+	if(!do_after(user, 5 SECONDS, target = src))
+		return
+	appleworm.forceMove(drop_location())
+	appleworm = null
+	tastes = list("apple" = 1)
+	var/datum/component/edible/ediblecomponent = IS_EDIBLE(src)
+	desc = LANG("obj.9a539b047dd48cd0", list(pick("serpent", "worm", "extra protein", "friendly neighbor")))
+	if(!ediblecomponent)
+		return
+	ediblecomponent.foodtypes &= ~(GROSS | MEAT | BUGS)
+
+/obj/item/food/grown/apple/proc/on_consume(mob/living/eater)
+	if(!ishuman(eater) && !appleworm)
+		return
+	to_chat(eater, span_alert(LANG("obj.550e2b534fdbac3f", null)))
 
 /obj/item/food/grown/apple/juice_typepath()
 	return /datum/reagent/consumable/applejuice

@@ -20,10 +20,10 @@
 /obj/structure/reagent_water_basin/examine(mob/user)
 	. = ..()
 	if(!fishable)
-		. += span_notice(LANG("obj.1ddb0241", list(src)))
+		. += span_notice(LANG("obj.1ddb02415ab61879", list(src)))
 
 	else
-		. += span_notice(LANG("obj.80806872", list(src)))
+		. += span_notice(LANG("obj.80806872583965ea", list(src)))
 
 /obj/structure/reagent_water_basin/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -31,7 +31,7 @@
 	if(smithing_skill < SKILL_LEVEL_JOURNEYMAN || fishable)
 		return
 
-	balloon_alert(user, LANG("obj.2a3714e6", null))
+	balloon_alert(user, LANG("obj.2a3714e6c7420ec7", null))
 	fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
 
 /obj/structure/reagent_water_basin/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -52,14 +52,14 @@
 		if(!bs_crystal.use(1))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, LANG("obj.2a3714e6", null))
+		balloon_alert(user, LANG("obj.2a3714e6c7420ec7", null))
 		fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
 		return ITEM_INTERACT_SUCCESS
 
 	return ..()
 
 /obj/structure/reagent_water_basin/wrench_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers(LANG("obj.b5ba9871", null))
+	user.balloon_alert_to_viewers(LANG("obj.b5ba987161d1a2e3", null))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 
@@ -77,12 +77,12 @@
 	playsound(src, 'modular_nova/modules/reagent_forging/sound/hot_hiss.ogg', 50, TRUE)
 
 	if(search_incomplete?.times_hit < search_incomplete.average_hits)
-		to_chat(user, span_warning(LANG("obj.c15b6122", list(search_incomplete))))
+		to_chat(user, span_warning(LANG("obj.c15b61228b6b38e6", list(search_incomplete))))
 		COOLDOWN_RESET(search_incomplete, heating_remainder)
 		return ITEM_INTERACT_SUCCESS
 
 	if(search_incomplete?.times_hit >= search_incomplete.average_hits)
-		to_chat(user, span_notice(LANG("obj.28a458bf", list(search_incomplete))))
+		to_chat(user, span_notice(LANG("obj.28a458bf88e49f4e", list(search_incomplete))))
 		user.mind.adjust_experience(/datum/skill/smithing, 10) //using the water basin on a ready item gives decent experience.
 
 		var/obj/spawned_obj = new search_incomplete.spawn_item(get_turf(src))

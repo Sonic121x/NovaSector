@@ -38,7 +38,7 @@
 
 /obj/item/plantbag_of_holding_inert/examine_more(mob/user)
 	. = ..()
-	. += span_smallnoticeital(LANG("obj.2d0a3695", null))
+	. += span_smallnoticeital(LANG("obj.2d0a3695df39080e", null))
 
 //So while we CAN use a real refined bluespace core, we can also use a goofy botany-only "bluespace core" as well
 /datum/crafting_recipe/botany_bluespace_core
@@ -77,7 +77,6 @@
 
 /datum/design/plantbag_of_holding
 	name = "Plant Bag of Holding"
-	id = "plantbag_holding"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*5, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/plantbag_of_holding_inert

@@ -25,6 +25,7 @@
 	for(var/spawner in GLOB.mob_spawners)
 		var/list/this = list()
 		this["name"] = spawner
+		this["id"] = spawner // NOVA EDIT ADDITION - I18N - canonical English key for ui_act; "name" may be localized in the payload
 		this["you_are_text"] = ""
 		this["flavor_text"] = ""
 		this["important_warning"] = ""
@@ -48,6 +49,7 @@
 	for(var/mob_type in GLOB.joinable_mobs)
 		var/list/this = list()
 		this["name"] = mob_type
+		this["id"] = mob_type // NOVA EDIT ADDITION - I18N - canonical English key for ui_act; "name" may be localized in the payload
 		this["amount_left"] = 0
 		for(var/mob/joinable_mob as anything in GLOB.joinable_mobs[mob_type])
 			SEND_SIGNAL(joinable_mob, COMSIG_LIVING_GHOSTROLE_INFO, this)
@@ -63,7 +65,7 @@
 	if(.)
 		return
 
-	var/group_name = params["name"]
+	var/group_name = params["id"] // NOVA EDIT CHANGE - I18N - ORIGINAL: var/group_name = params["name"]
 	if(!group_name)
 		return
 

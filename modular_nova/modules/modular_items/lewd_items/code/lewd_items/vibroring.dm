@@ -20,7 +20,7 @@
 
 /obj/item/clothing/sextoy/vibroring/attack_self(mob/user)
 	toy_on = !toy_on
-	to_chat(user, span_notice(LANG("obj.3fd788e4", list(toy_on ? "on. Brrrr..." : "off."))))
+	to_chat(user, span_notice(LANG("obj.3fd788e4c3b76fe1", list(toy_on ? "on. Brrrr..." : "off."))))
 	playsound_if_pref(user, toy_on ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 	update_icon_state()
 	update_icon()

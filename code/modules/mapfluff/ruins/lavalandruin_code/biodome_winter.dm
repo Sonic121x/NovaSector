@@ -17,7 +17,7 @@
 
 /obj/item/freeze_cube/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.951e8427", null))
+	. += span_notice(LANG("obj.951e8427ee442ac3", null))
 
 /obj/item/freeze_cube/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, gentle, quickstart = TRUE, throw_type_path = /datum/thrownthing)
 	. = ..()
@@ -42,7 +42,7 @@
 		var/obj/hit_object = hit_atom
 		var/success = hit_object.freeze()
 		if(!success && hit_object.resistance_flags & FREEZE_PROOF)
-			hit_object.visible_message(span_warning(LANG("obj.67339001", list(hit_object))))
+			hit_object.visible_message(span_warning(LANG("obj.67339001d06cf58b", list(hit_object))))
 
 	else if(isliving(hit_atom))
 		var/mob/living/hit_mob = hit_atom

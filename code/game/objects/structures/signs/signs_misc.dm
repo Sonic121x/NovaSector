@@ -70,7 +70,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/xenobio_guide, 32)
 		return
 
 	tram_serial = tram.tram_registration.serial_number
-	desc = LANG("obj.864c6d0a", list(tram_serial))
+	desc = LANG("obj.864c6d0adc0d28c2", list(tram_serial))
 
 /obj/structure/sign/tram_plate/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

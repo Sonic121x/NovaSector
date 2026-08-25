@@ -34,4 +34,4 @@
 		if(cleaned_human.body_position == LYING_DOWN)
 			cleaned_human.wash(CLEAN_SCRUB)
 			cleaned_human.regenerate_icons()
-			to_chat(cleaned_human, span_danger(LANG("datum.361423bf", list(atom_movable))))
+			to_chat(cleaned_human, span_danger(LANG("datum.361423bf601245b2", list(atom_movable))))

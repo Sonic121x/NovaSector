@@ -30,13 +30,13 @@
 /// Stop being a monkey
 /datum/action/changeling/lesserform/proc/unmonkey(mob/living/carbon/human/user)
 	if(user.movement_type & VENTCRAWLING)
-		user.balloon_alert(user, LANG("datum.ae935305", null))
+		user.balloon_alert(user, LANG("datum.ae93530528cc70bd", null))
 		return FALSE
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	var/datum/changeling_profile/chosen_form = changeling?.current_profile // NOVA EDIT CHANGE - ORIGINAL: var/datum/changeling_profile/chosen_form = select_form(changeling, user)
 	if(!chosen_form)
 		return FALSE
-	to_chat(user, span_notice(LANG("datum.9408a619", null)))
+	to_chat(user, span_notice(LANG("datum.9408a6190fefbb9f", null)))
 	var/datum/dna/chosen_dna = chosen_form.dna
 	var/datum/species/chosen_species = chosen_dna.species
 	user.humanize(species = chosen_species, instant = transform_instantly)
@@ -54,7 +54,7 @@
 
 /// Become a monkey
 /datum/action/changeling/lesserform/proc/become_monkey(mob/living/carbon/human/user)
-	to_chat(user, span_warning(LANG("datum.2912e919", null)))
+	to_chat(user, span_warning(LANG("datum.2912e9197472c7f0", null)))
 	// NOVA EDIT ADDITION START - Clean up organs from previous transformation so they don't persist into monkey form
 	for(var/obj/item/organ/old_organ as anything in user.organs)
 		if(old_organ.bodypart_overlay)
@@ -74,7 +74,7 @@
 /datum/action/changeling/lesserform/update_button_name(atom/movable/screen/movable/action_button/button, force)
 	if (ismonkey(owner))
 		name = "Human Form"
-		desc = LANG("datum.77ec45d2", null)
+		desc = LANG("datum.77ec45d2038b2e08", null)
 	else
 		name = initial(name)
 		desc = initial(desc)

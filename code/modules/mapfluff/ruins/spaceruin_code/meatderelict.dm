@@ -85,7 +85,7 @@
 /obj/machinery/puzzle/button/meatderelict/on_puzzle_complete()
 	. = ..()
 	playsound(src, 'sound/effects/alert.ogg', 100, TRUE)
-	visible_message(span_warning(LANG("obj.ae5aa886", list(src))))
+	visible_message(span_warning(LANG("obj.ae5aa8861365bdc5", list(src))))
 
 /obj/structure/puzzle_blockade/meat
 	name = "mass of meat and teeth"

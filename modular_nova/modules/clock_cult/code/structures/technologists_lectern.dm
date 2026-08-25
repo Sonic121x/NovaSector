@@ -65,7 +65,7 @@
 		primary_researcher = FALSE
 		log_game("A research ritual of [selected_research] was cancelled by deconstruction of [src].")
 		send_clock_message(null, "A research ritual has been disrupted in [get_area(src)]! All research data has been lost.", msg_ghosts = FALSE)
-		notify_ghosts(LANG("obj.fbf7c0f0", list(get_area(src))),
+		notify_ghosts(LANG("obj.fbf7c0f0e6a25c17", list(get_area(src))),
 			source = get_turf(src),
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
 			header = "Research ritual cancelled",
@@ -77,7 +77,7 @@
 /obj/structure/destructible/clockwork/gear_base/technologists_lectern/examine(mob/user)
 	. = ..()
 	if(researching && IS_CLOCK(user))
-		. += span_brass(LANG("obj.2add19a6", list(selected_research.name, DisplayTimeText(timeleft(research_timer_id)))))
+		. += span_brass(LANG("obj.2add19a68f85f766", list(selected_research.name, DisplayTimeText(timeleft(research_timer_id)))))
 
 
 /obj/structure/destructible/clockwork/gear_base/technologists_lectern/process(seconds_per_tick)
@@ -109,7 +109,7 @@
 		return
 
 	if(!anchored)
-		balloon_alert(user, LANG("obj.7c2f76c2", null))
+		balloon_alert(user, LANG("obj.7c2f76c2bd88e3dc", null))
 		return
 
 	ui_interact(user)
@@ -275,11 +275,11 @@
 		if(istype(nearby_turf, /turf/open/floor))
 			continue
 
-		owner.balloon_alert(owner, LANG("obj.0289e33d", null))
+		owner.balloon_alert(owner, LANG("obj.0289e33dac4a2405", null))
 		return
 
 	if(researching)
-		owner.balloon_alert(owner, LANG("obj.9da8b6db", null))
+		owner.balloon_alert(owner, LANG("obj.9da8b6dbe9068812", null))
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(begin_research), owner, target_turf)
@@ -298,7 +298,7 @@
 	playsound(target_turf, 'sound/machines/clockcult/ark_deathrattle.ogg', 80, FALSE, pressure_affected = FALSE)
 	research_sigil = new(target_turf)
 	send_clock_message(null, "A research ritual has begun in [get_area(src)], ensure nobody stops it until it is completed in [DisplayTimeText(selected_research.time_to_research)]!", msg_ghosts = FALSE)
-	notify_ghosts(LANG("obj.17a69d30", list(owner.real_name, get_area(src))),
+	notify_ghosts(LANG("obj.17a69d3089e70106", list(owner.real_name, get_area(src))),
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "Research ritual"
@@ -344,7 +344,7 @@
 		return
 
 	send_clock_message(null, "The research ritual in [get_area(src)] has completed, rejoice!", msg_ghosts = FALSE)
-	notify_ghosts(LANG("obj.b9014433", list(get_area(src))),
+	notify_ghosts(LANG("obj.b901443307e749b2", list(get_area(src))),
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "Research ritual completed",
@@ -368,7 +368,7 @@
 
 	research_sigil.finish_research()
 
-	priority_announce(LANG("obj.ebe59e50", list(get_area(src))))
+	priority_announce(LANG("obj.ebe59e504e508a45", list(get_area(src))))
 
 	addtimer(CALLBACK(src, PROC_REF(side_effect)), 10 SECONDS)
 
@@ -412,7 +412,7 @@
 					qdel(nearby_atom)
 
 		if(11 to 20) // Spawn 4 ai-controlled marauders to fuck shit up
-			visible_message(span_warning(LANG("obj.fcdc92fa", null)))
+			visible_message(span_warning(LANG("obj.fcdc92fa8224b423", null)))
 
 			for(var/direction in list(NORTH, SOUTH, EAST, WEST))
 				var/turf/tile = get_step(src, direction)
@@ -445,13 +445,13 @@
 					continue
 
 				if(IS_CLOCK(living_mob))
-					to_chat(living_mob, span_brass(LANG("obj.b24d7c0a", null)))
+					to_chat(living_mob, span_brass(LANG("obj.b24d7c0a5f265c1e", null)))
 				else
-					to_chat(living_mob, span_brass(LANG("obj.92ffe424", null)))
+					to_chat(living_mob, span_brass(LANG("obj.92ffe424c8411b8a", null)))
 
 
 		if(31 to 40) // Fuck up the power, but in the other way instead
-			priority_announce(LANG("obj.9b9780ef", list(rand(3, 8)))) // Not always accurate, are we?
+			priority_announce(LANG("obj.9b9780ef7e084974", list(rand(3, 8)))) // Not always accurate, are we?
 
 			force_apc_arcing(TRUE)
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(force_apc_arcing), FALSE), 4 MINUTES)

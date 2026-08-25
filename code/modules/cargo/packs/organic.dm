@@ -266,7 +266,7 @@
 
 /// tells crew that an infinite pizza box exists, half of the time, based on a roll in the anamolous box proc
 /datum/supply_pack/organic/pizza/proc/anomalous_pizza_report()
-	print_command_report(LANG("datum.b313fdcf", list(station_name())))
+	print_command_report(LANG("datum.b313fdcf42d4e007", list(station_name())))
 
 /datum/supply_pack/organic/potted_plants
 	name = "Potted Plants Crate"

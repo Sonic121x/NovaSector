@@ -4,8 +4,8 @@
 /** Simple price check */
 /mob/eye/blob/proc/can_buy(cost = 15)
 	if(blob_points < cost)
-		to_chat(src, span_warning(LANG("mob.dfafae82", list(cost))))
-		balloon_alert(src, LANG("mob.dad9b4fa", list(cost-blob_points)))
+		to_chat(src, span_warning(LANG("mob.dfafae822681fdee", list(cost))))
+		balloon_alert(src, LANG("mob.dad9b4fa8d7ffa1a", list(cost-blob_points)))
 		return FALSE
 	add_points(-cost)
 	return TRUE
@@ -20,15 +20,15 @@
 			return
 		var/turf/placement = get_turf(src)
 		if(placement.density)
-			to_chat(src, span_warning(LANG("mob.239cde2e", null)))
+			to_chat(src, span_warning(LANG("mob.239cde2e67270370", null)))
 			return
 		if(!is_valid_turf(placement))
-			to_chat(src, span_warning(LANG("mob.303c76bb", null)))
+			to_chat(src, span_warning(LANG("mob.303c76bb76dae0b5", null)))
 			return
 		if(!check_objects_tile(placement))
 			return
 		if(!pop_override && world.time <= manualplace_min_time && world.time <= autoplace_max_time)
-			to_chat(src, span_warning(LANG("mob.add38589", null)))
+			to_chat(src, span_warning(LANG("mob.add38589c3862ecf", null)))
 			return
 	else
 		if(placement_override == BLOB_RANDOM_PLACEMENT)
@@ -54,14 +54,14 @@
 		if(player.has_faction(ROLE_BLOB))
 			continue
 		if(player.client)
-			to_chat(src, span_warning(LANG("mob.78d3fe1f", null)))
+			to_chat(src, span_warning(LANG("mob.78d3fe1f1666a893", null)))
 			return FALSE
 
 	for(var/mob/living/player in view(13, src))
 		if(player.has_faction(ROLE_BLOB))
 			continue
 		if(player.client)
-			to_chat(src, span_warning(LANG("mob.8c4f2071", null)))
+			to_chat(src, span_warning(LANG("mob.8c4f2071bc88bf77", null)))
 			return FALSE
 
 	return TRUE
@@ -74,11 +74,11 @@
 			if(istype(object, /obj/structure/blob/normal))
 				qdel(object)
 			else
-				to_chat(src, span_warning(LANG("mob.1dbcd5f0", null)))
+				to_chat(src, span_warning(LANG("mob.1dbcd5f094564ac9", null)))
 				return FALSE
 		else
 			if(object.density)
-				to_chat(src, span_warning(LANG("mob.239cde2e", null)))
+				to_chat(src, span_warning(LANG("mob.239cde2e67270370", null)))
 				return FALSE
 
 	return TRUE
@@ -98,7 +98,7 @@
 		var/obj/structure/blob/special/node/blob = GLOB.blob_nodes[index]
 		nodes["Blob Node #[index] ([get_area_name(blob)])"] = blob
 
-	var/node_name = tgui_input_list(src, LANG("mob.b1ad3dd0", null), LANG("mob.acb4759c", null), nodes)
+	var/node_name = tgui_input_list(src, LANG("mob.b1ad3dd07378c8a2", null), LANG("mob.acb4759c0f61f775", null), nodes)
 	if(isnull(node_name) || isnull(nodes[node_name]))
 		return
 
@@ -112,28 +112,28 @@
 		tile = get_turf(src)
 	var/obj/structure/blob/blob = (locate(/obj/structure/blob) in tile)
 	if(!blob)
-		to_chat(src, span_warning(LANG("mob.62076d43", null)))
-		balloon_alert(src, LANG("mob.71215feb", null))
+		to_chat(src, span_warning(LANG("mob.62076d434389c1fa", null)))
+		balloon_alert(src, LANG("mob.71215feb1fa5c4ae", null))
 		return
 	if(!istype(blob, /obj/structure/blob/normal))
-		to_chat(src, span_warning(LANG("mob.0196f5dc", null)))
-		balloon_alert(src, LANG("mob.0a349d2c", null))
+		to_chat(src, span_warning(LANG("mob.0196f5dc9e936a6c", null)))
+		balloon_alert(src, LANG("mob.0a349d2c1ce8df47", null))
 		return
 	if(needs_node)
 		var/area/area = get_area(src)
 		if(!(area.area_flags & BLOBS_ALLOWED)) //factory and resource blobs must be legit
-			to_chat(src, span_warning(LANG("mob.21304fd8", null)))
-			balloon_alert(src, LANG("mob.643b825e", null))
+			to_chat(src, span_warning(LANG("mob.21304fd8a7e45f2d", null)))
+			balloon_alert(src, LANG("mob.643b825e03498d73", null))
 			return
 		if(nodes_required && !(locate(/obj/structure/blob/special/node) in orange(BLOB_NODE_PULSE_RANGE, tile)) && !(locate(/obj/structure/blob/special/core) in orange(BLOB_CORE_PULSE_RANGE, tile)))
-			to_chat(src, span_warning(LANG("mob.06b9c7e9", null)))
-			balloon_alert(src, LANG("mob.8539c9fd", null))
+			to_chat(src, span_warning(LANG("mob.06b9c7e971dcb008", null)))
+			balloon_alert(src, LANG("mob.8539c9fda94467c1", null))
 			return
 	if(min_separation)
 		for(var/obj/structure/blob/other_blob in orange(min_separation, tile))
 			if(other_blob.type == blobstrain)
-				to_chat(src, span_warning(LANG("mob.ff338f44", list(min_separation))))
-				other_blob.balloon_alert(src, LANG("mob.079a7d8b", null))
+				to_chat(src, span_warning(LANG("mob.ff338f440ac023a9", list(min_separation))))
+				other_blob.balloon_alert(src, LANG("mob.079a7d8b98f17deb", null))
 				return
 	if(!can_buy(price))
 		return
@@ -144,51 +144,51 @@
 /mob/eye/blob/proc/toggle_node_req()
 	nodes_required = !nodes_required
 	if(nodes_required)
-		to_chat(src, span_warning(LANG("mob.307b0a0e", null)))
+		to_chat(src, span_warning(LANG("mob.307b0a0e53f1cc3d", null)))
 	else
-		to_chat(src, span_warning(LANG("mob.2ee01370", null)))
+		to_chat(src, span_warning(LANG("mob.2ee01370677c6436", null)))
 
 /** Creates a shield to reflect projectiles */
 /mob/eye/blob/proc/create_shield(turf/tile)
 	var/obj/structure/blob/shield/shield = locate(/obj/structure/blob/shield) in tile
 	if(!shield)
 		shield = create_special(BLOB_UPGRADE_STRONG_COST, /obj/structure/blob/shield, 0, FALSE, tile)
-		shield?.balloon_alert(src, LANG("mob.8908bb9e", list(shield.name)))
+		shield?.balloon_alert(src, LANG("mob.8908bb9e4fcace58", list(shield.name)))
 		return
 
 	if(istype(shield, /obj/structure/blob/shield/reflective))
-		to_chat(src, span_warning(LANG("mob.06884fff", null)))
+		to_chat(src, span_warning(LANG("mob.06884fff6efb422e", null)))
 		return
 
 	if(shield.get_integrity() < shield.max_integrity * 0.5)
-		to_chat(src, span_warning(LANG("mob.96782705", null)))
+		to_chat(src, span_warning(LANG("mob.96782705430438e7", null)))
 		return
 
 	if(!can_buy(BLOB_UPGRADE_REFLECTOR_COST))
 		return
 
-	to_chat(src, span_warning(LANG("mob.27b5a840", null)))
+	to_chat(src, span_warning(LANG("mob.27b5a840431adcd9", null)))
 	shield = shield.change_to(/obj/structure/blob/shield/reflective, src)
-	shield.balloon_alert(src, LANG("mob.8908bb9e", list(shield.name)))
+	shield.balloon_alert(src, LANG("mob.8908bb9e4fcace58", list(shield.name)))
 
 /** Preliminary check before polling ghosts. */
 /mob/eye/blob/proc/create_blobbernaut()
 	var/turf/current_turf = get_turf(src)
 	var/obj/structure/blob/special/factory/factory = locate(/obj/structure/blob/special/factory) in current_turf
 	if(!factory)
-		to_chat(src, span_warning(LANG("mob.4941fa3c", null)))
+		to_chat(src, span_warning(LANG("mob.4941fa3c7ae5442c", null)))
 		return
 	if(factory.blobbernaut || factory.is_creating_blobbernaut) //if it already made or making a blobbernaut, it can't do it again
-		to_chat(src, span_warning(LANG("mob.018fe9ce", null)))
+		to_chat(src, span_warning(LANG("mob.018fe9ce1be117a2", null)))
 		return
 	if(factory.get_integrity() < factory.max_integrity * 0.5)
-		to_chat(src, span_warning(LANG("mob.b1f97b7f", null)))
+		to_chat(src, span_warning(LANG("mob.b1f97b7fc8f158e8", null)))
 		return
 	if(!can_buy(BLOBMOB_BLOBBERNAUT_RESOURCE_COST))
 		return
 
 	factory.is_creating_blobbernaut = TRUE
-	to_chat(src, span_notice(LANG("mob.b5f05cfb", null)))
+	to_chat(src, span_notice(LANG("mob.b5f05cfb5de965ad", null)))
 	pick_blobbernaut_candidate(factory)
 
 /// Polls ghosts to get a blobbernaut candidate.
@@ -213,7 +213,7 @@
 /// Called when the ghost poll concludes
 /mob/eye/blob/proc/on_poll_concluded(obj/structure/blob/special/factory/factory, mob/dead/observer/ghost)
 	if(isnull(ghost))
-		to_chat(src, span_warning(LANG("mob.82a72438", null)))
+		to_chat(src, span_warning(LANG("mob.82a724384659ddb1", null)))
 		add_points(BLOBMOB_BLOBBERNAUT_RESOURCE_COST)
 		factory.assign_blobbernaut(null)
 		return
@@ -230,16 +230,16 @@
 	var/obj/structure/blob/special/node/blob = locate(/obj/structure/blob/special/node) in tile
 
 	if(!blob)
-		to_chat(src, span_warning(LANG("mob.f37685ae", null)))
+		to_chat(src, span_warning(LANG("mob.f37685ae6a8d1a81", null)))
 		return
 
 	if(!blob_core)
-		to_chat(src, span_userdanger(LANG("mob.7becf0e3", null)))
+		to_chat(src, span_userdanger(LANG("mob.7becf0e33e15ddd3", null)))
 		return
 
 	var/area/area = get_area(tile)
 	if(isspaceturf(tile) || area && !(area.area_flags & BLOBS_ALLOWED))
-		to_chat(src, span_warning(LANG("mob.f109fc5a", null)))
+		to_chat(src, span_warning(LANG("mob.f109fc5aee63a979", null)))
 		return
 
 	if(!can_buy(BLOB_POWER_RELOCATE_COST))
@@ -257,21 +257,21 @@
 	var/obj/structure/blob/blob = locate() in tile
 
 	if(!blob)
-		to_chat(src, span_warning(LANG("mob.4fd2f19a", null)))
+		to_chat(src, span_warning(LANG("mob.4fd2f19a9feb40d4", null)))
 		return
 
 	if(blob.point_return < 0)
-		to_chat(src, span_warning(LANG("mob.df51d1cf", null)))
+		to_chat(src, span_warning(LANG("mob.df51d1cf026ba4bd", null)))
 		return
 
 	if(max_blob_points < blob.point_return + blob_points)
-		to_chat(src, span_warning(LANG("mob.9daea0aa", null)))
+		to_chat(src, span_warning(LANG("mob.9daea0aa89f73bd1", null)))
 		return
 
 	if(blob.point_return)
 		add_points(blob.point_return)
-		to_chat(src, span_notice(LANG("mob.d6ab76c5", list(blob.point_return, blob))))
-		blob.balloon_alert(src, LANG("mob.e2ae8afb", list(blob.point_return)))
+		to_chat(src, span_notice(LANG("mob.d6ab76c5036ae649", list(blob.point_return, blob))))
+		blob.balloon_alert(src, LANG("mob.e2ae8afb35af3ec4", list(blob.point_return)))
 
 	qdel(blob)
 
@@ -285,7 +285,7 @@
 		possible_blobs += blob
 
 	if(!length(possible_blobs))
-		to_chat(src, span_warning(LANG("mob.1c43cfe9", null)))
+		to_chat(src, span_warning(LANG("mob.1c43cfe9fb49533e", null)))
 		return
 
 	if(!can_buy(BLOB_EXPAND_COST))
@@ -308,7 +308,7 @@
 			blob.blob_attack_animation(tile, src)
 			add_points(BLOB_ATTACK_REFUND)
 		else
-			to_chat(src, span_warning(LANG("mob.3b40c49d", null)))
+			to_chat(src, span_warning(LANG("mob.3b40c49de9ca4f28", null)))
 			add_points(BLOB_EXPAND_COST) //otherwise, refund all of the cost
 	else
 		directional_attack(tile, possible_blobs, attack_success)
@@ -347,7 +347,7 @@
 
 /** Rally spores to a location */
 /mob/eye/blob/proc/rally_spores(turf/tile)
-	to_chat(src, LANG("mob.e22e86d6", null))
+	to_chat(src, LANG("mob.e22e86d6529bb602", null))
 	var/list/surrounding_turfs = TURF_NEIGHBORS(tile)
 	if(!length(surrounding_turfs))
 		return
@@ -360,7 +360,7 @@
 /** Opens the reroll menu to change strains */
 /mob/eye/blob/proc/strain_reroll()
 	if (!free_strain_rerolls && blob_points < BLOB_POWER_REROLL_COST)
-		to_chat(src, span_warning(LANG("mob.8b74629f", list(BLOB_POWER_REROLL_COST))))
+		to_chat(src, span_warning(LANG("mob.8b74629f25baea9b", list(BLOB_POWER_REROLL_COST))))
 		return
 
 	open_reroll_menu()

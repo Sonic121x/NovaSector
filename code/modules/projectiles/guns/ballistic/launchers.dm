@@ -134,8 +134,8 @@
 		. += "rocketlauncher_loaded"
 
 /obj/item/gun/ballistic/rocketlauncher/suicide_act(mob/living/user)
-	user.visible_message(span_warning(LANG("obj.29be0133", list(user, src, user.p_theyre()))), \
-		span_userdanger(LANG("obj.dc71a408", list(src))))
+	user.visible_message(span_warning(LANG("obj.29be0133d0655895", list(user, src, user.p_theyre()))), \
+		span_userdanger(LANG("obj.dc71a40808cb064e", list(src))))
 	if(can_shoot())
 		ADD_TRAIT(user, TRAIT_NO_TRANSFORM, REF(src))
 		playsound(src, 'sound/vehicles/rocketlaunch.ogg', 80, TRUE, 5)
@@ -152,8 +152,8 @@
 		sleep(0.5 SECONDS)
 		shoot_with_empty_chamber(user)
 		sleep(2 SECONDS)
-		user.visible_message(span_warning(LANG("obj.1b567e60", list(user, user.p_theyre(), user.p_They(), src, user.p_them()))), \
-			span_userdanger(LANG("obj.4c89a71a", list(src))))
+		user.visible_message(span_warning(LANG("obj.1b567e6052f3fbc8", list(user, user.p_theyre(), user.p_They(), src, user.p_them()))), \
+			span_userdanger(LANG("obj.4c89a71a7def1288", list(src))))
 		sleep(2 SECONDS)
 		return OXYLOSS
 

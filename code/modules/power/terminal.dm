@@ -27,9 +27,9 @@
 /obj/machinery/power/terminal/examine(mob/user)
 	. = ..()
 	if(!QDELETED(powernet))
-		. += span_notice(LANG("obj.cb2b8542", list(LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"]))))
+		. += span_notice(LANG("obj.cb2b8542d36e115c", list(LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"]))))
 	else
-		. += span_warning(LANG("obj.90491e4d", list(LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"]))))
+		. += span_warning(LANG("obj.90491e4d4428331b", list(LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"]))))
 
 /obj/machinery/power/terminal/should_have_node()
 	return TRUE
@@ -51,14 +51,14 @@
 	if(isturf(loc))
 		var/turf/T = loc
 		if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
-			balloon_alert(user, LANG("obj.f56c1e1b", null))
+			balloon_alert(user, LANG("obj.f56c1e1b8ad8cbb5", null))
 			return
 
 	if(master && !master.can_terminal_dismantle())
 		return
 
-	user.visible_message(span_notice(LANG("obj.3de03659", list(user.name, master))))
-	balloon_alert(user, LANG("obj.3b4a022d", null))
+	user.visible_message(span_notice(LANG("obj.3de03659b545c9ba", list(user.name, master))))
+	balloon_alert(user, LANG("obj.3b4a022dac3a242a", null))
 
 	playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 	if(I.use_tool(src, user, 50))
@@ -71,7 +71,7 @@
 
 		var/obj/item/stack/cable_coil/cable = new (drop_location(), 10)
 		qdel(src)
-		cable.balloon_alert(user, LANG("obj.9bb4a12a", null))
+		cable.balloon_alert(user, LANG("obj.9bb4a12a41b4bf31", null))
 
 /obj/machinery/power/terminal/wirecutter_act(mob/living/user, obj/item/I)
 	..()

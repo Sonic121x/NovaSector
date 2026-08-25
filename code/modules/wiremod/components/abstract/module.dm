@@ -50,7 +50,7 @@
 
 /obj/item/integrated_circuit/module/add_component(obj/item/circuit_component/to_add, mob/living/user)
 	if(to_add.circuit_flags & CIRCUIT_FLAG_REFUSE_MODULE)
-		balloon_alert(user, LANG("obj.a393dd16", null))
+		balloon_alert(user, LANG("obj.a393dd166b9dc47b", null))
 		return
 	. = ..()
 	if(attached_module)

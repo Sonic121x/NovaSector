@@ -52,10 +52,10 @@
 	var/datum/status_effect/surgery_prepped/prep = target_mob.has_status_effect(__IMPLIED_TYPE__)
 	if(isnull(prep) || !(body_zone in prep.zones))
 		target_mob.apply_status_effect(/datum/status_effect/surgery_prepped, body_zone, aid_name)
-		target_mob.balloon_alert(surgeon, LANG("datum.4c13084a", list(parse_zone(body_zone))))
+		target_mob.balloon_alert(surgeon, LANG("datum.4c13084a04264c5a", list(parse_zone(body_zone))))
 		return
 	prep.untrack_surgery(body_zone)
-	target_mob.balloon_alert(surgeon, LANG("datum.0e520abb", null))
+	target_mob.balloon_alert(surgeon, LANG("datum.0e520abb27b5ef91", null))
 
 /// Tracks which body zones have been prepped for surgery
 /datum/status_effect/surgery_prepped
@@ -94,7 +94,7 @@
 	REMOVE_TRAIT(owner, TRAIT_READY_TO_OPERATE, TRAIT_STATUS_EFFECT(id))
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_POST_ATTACH_LIMB, COMSIG_CARBON_POST_REMOVE_LIMB))
 
-/datum/status_effect/surgery_prepped/get_examine_text()
+/datum/status_effect/surgery_prepped/get_examine_text(mob/examiner)
 	var/list/zones_readable = list()
 	// give the body zones a consistent order, the same order as GLOB.all_body_zones
 	for(var/zone in GLOB.all_body_zones & zones)
@@ -112,7 +112,7 @@
 		var/list/zh_zones = list()
 		for(var/zone in GLOB.all_body_zones & zones)
 			zh_zones += lang_reverse_text(parse_zone(zone))
-		return LANG("datum.6fb48e00", list(owner.p_They(), owner.p_have(), english_list(zh_aids, and_text = "、", comma_text = "、"), owner.p_their(), english_list(zh_zones, and_text = "、", comma_text = "、")))
+		return LANG("datum.6fb48e00e253695c", list(owner.p_They(), owner.p_have(), english_list(zh_aids, and_text = "、", comma_text = "、"), owner.p_their(), english_list(zh_zones, and_text = "、", comma_text = "、")))
 	// NOVA EDIT ADDITION END
 
 	// "They have surgial drapes and a bedsheet adorning their chest, arms, and legs."
@@ -126,7 +126,7 @@
 	if(movement_counter < 4)
 		return
 	// "The surgical drapes and bedsheets adorning John fall off!"
-	owner.visible_message(span_warning(LANG("datum.74f68f41", list(english_list(surgical_aids), owner))))
+	owner.visible_message(span_warning(LANG("datum.74f68f4131e1e223", list(lang_english_list(surgical_aids), owner))))
 	qdel(src)
 
 /datum/status_effect/surgery_prepped/proc/on_attach_limb(datum/source, obj/item/bodypart/limb)

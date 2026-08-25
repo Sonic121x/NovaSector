@@ -36,8 +36,9 @@
  * * players - a list of all players to send the message to. defaults to all players (not including new players)
  * * encode_title - if TRUE, the title will be HTML encoded
  * * encode_text - if TRUE, the text will be HTML encoded
+ * * tts_speaker - optional voice identifier for player-authored announcements; invalid values fall back to the system voice
  */
-/proc/priority_announce(text, title = "", sound, type, sender_override, has_important_message = FALSE, list/mob/players = GLOB.player_list, encode_title = TRUE, encode_text = TRUE, color_override)
+/proc/priority_announce(text, title = "", sound, type, sender_override, has_important_message = FALSE, list/mob/players = GLOB.player_list, encode_title = TRUE, encode_text = TRUE, color_override, tts_speaker) // NOVA EDIT CHANGE - ADMIN - Added optional player-authored TTS voice.
 	if(!text)
 		return
 
@@ -50,6 +51,10 @@
 		if(istext(text))
 			var/translated_text = lang_reverse_text(text)
 			text = (translated_text != text) ? translated_text : lang_fallback_apply(text)
+	// NOVA EDIT ADDITION END
+
+	// NOVA EDIT ADDITION START - ADMIN - Replace prerecorded English announcement speech with localized TTS.
+	var/tts_queued = tts_queue_global_announcement(text, title, players, tts_speaker)
 	// NOVA EDIT ADDITION END
 
 	if(encode_title && title && length(title) > 0)
@@ -66,6 +71,10 @@
 		sound = SSstation.announcer.get_rand_alert_sound()
 	else if(SSstation.announcer.event_sounds[sound])
 		sound = SSstation.announcer.event_sounds[sound]
+	// NOVA EDIT ADDITION START - ADMIN - Keep only a nonverbal cue when TTS carries the announcement.
+	if(tts_queued)
+		sound = 'sound/machines/chime.ogg'
+	// NOVA EDIT ADDITION END
 
 	var/header
 	switch(type)
@@ -157,8 +166,9 @@
  * sound_override - optional, use the passed sound file instead of the default notice sounds.
  * should_play_sound - Whether the notice sound should be played or not. This can also be a callback, if you only want mobs to hear the sound based off of specific criteria.
  * color_override - optional, use the passed color instead of the default notice color.
+ * tts_speaker - optional voice identifier for player-authored announcements; invalid values fall back to the system voice
  */
-/proc/minor_announce(message, title = "Attention:", alert = FALSE, html_encode = TRUE, list/players, sound_override, should_play_sound = TRUE, color_override)
+/proc/minor_announce(message, title = "Attention:", alert = FALSE, html_encode = TRUE, list/players, sound_override, should_play_sound = TRUE, color_override, tts_speaker) // NOVA EDIT CHANGE - ADMIN - Added optional player-authored TTS voice.
 	if(!message)
 		return
 
@@ -170,6 +180,10 @@
 		if(istext(message))
 			var/translated_message = lang_reverse_text(message)
 			message = (translated_message != message) ? translated_message : lang_fallback_apply(message)
+	// NOVA EDIT ADDITION END
+
+	// NOVA EDIT ADDITION START - ADMIN - Preserve deliberately silent/callback announcements.
+	var/tts_queued = (should_play_sound == TRUE) && tts_queue_global_announcement(message, title, isnull(players) ? GLOB.player_list : players, tts_speaker)
 	// NOVA EDIT ADDITION END
 
 	if (html_encode)
@@ -187,7 +201,7 @@
 	else
 		finalized_announcement = CHAT_ALERT_DEFAULT_SPAN(jointext(minor_announcement_strings, ""))
 
-	var/custom_sound = sound_override || (alert ? 'modular_nova/modules/alerts/sound/alerts/alert1.ogg' : 'sound/announcer/notice/notice2.ogg') // NOVA EDIT CHANGE - CUSTOM ANNOUNCEMENTS - Original: var/custom_sound = sound_override || (alert ? 'sound/announcer/notice/notice1.ogg' : 'sound/announcer/notice/notice2.ogg')
+	var/custom_sound = tts_queued ? 'sound/machines/chime.ogg' : sound_override || (alert ? 'modular_nova/modules/alerts/sound/alerts/alert1.ogg' : 'sound/announcer/notice/notice2.ogg') // NOVA EDIT CHANGE - ADMIN - TTS replaces prerecorded speech. CUSTOM ANNOUNCEMENTS ORIGINAL: var/custom_sound = sound_override || (alert ? 'sound/announcer/notice/notice1.ogg' : 'sound/announcer/notice/notice2.ogg')
 	dispatch_announcement_to_players(finalized_announcement, players, custom_sound, should_play_sound)
 
 /// Sends an announcement about the level changing to players. Uses the passed in datum and the subsystem's previous security level to generate the message.
@@ -201,11 +215,16 @@
 	var/message
 
 	if(current_level_number > previous_level_number)
-		title = LANG("datum.b8925663", list(current_level_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level elevated to [current_level_name]:"
+		title = LANG("datum.b89256636145aa75", list(current_level_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level elevated to [current_level_name]:"
 		message = selected_level.elevating_to_announcement
 	else
-		title = LANG("datum.9aa16b5d", list(current_level_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level lowered to [current_level_name]:"
+		title = LANG("datum.9aa16b5dfe73dfdd", list(current_level_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level lowered to [current_level_name]:"
 		message = selected_level.lowering_to_announcement
+
+	// NOVA EDIT ADDITION START - ADMIN - Security-level messages use localized TTS.
+	if(tts_queue_global_announcement(message, title, GLOB.player_list))
+		current_level_sound = 'sound/machines/chime.ogg'
+	// NOVA EDIT ADDITION END
 
 	var/list/level_announcement_strings = list()
 	level_announcement_strings += ANNOUNCEMENT_HEADER(MINOR_ANNOUNCEMENT_TITLE(title))
@@ -259,13 +278,22 @@
 		sound_override = sound(sound_override)
 
 	var/sound_to_play = !isnull(sound_override) ? sound_override : 'sound/announcer/notice/notice2.ogg'
-	alert_sound_to_playing(sound_to_play, players = players)
-
+	// NOVA EDIT ADDITION START - ADMIN - Restore per-player sound gating removed by the custom dispatcher.
+	var/datum/callback/should_play_sound_callback = astype(should_play_sound)
+	var/list/sound_players = list()
 	for(var/mob/target in players)
 		if(isnewplayer(target) || HAS_TRAIT(target, TRAIT_DEAF))
 			continue
 
 		to_chat(target, announcement)
+		if(!should_play_sound || (should_play_sound_callback && !should_play_sound_callback.Invoke(target)))
+			continue
+		if(target.client?.prefs.read_preference(/datum/preference/toggle/sound_announcements))
+			sound_players += target
+
+	if(length(sound_players))
+		alert_sound_to_playing(sound_to_play, players = sound_players)
+	// NOVA EDIT ADDITION END
 	// NOVA EDIT CHANGE END - CUSTOM ANNOUNCEMENTS
 
 #undef MAJOR_ANNOUNCEMENT_TITLE

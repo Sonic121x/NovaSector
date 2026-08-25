@@ -66,10 +66,10 @@
 /obj/item/clothing/head/helmet/space/akula_wetsuit/examine()
 	. = ..()
 	if(attached_hat)
-		. += span_notice(LANG("obj.d0548109", list(attached_hat)))
-		. += span_bold(LANG("obj.72f9d956", null))
+		. += span_notice(LANG("obj.d05481096a4e0bce", list(attached_hat)))
+		. += span_bold(LANG("obj.72f9d9563d51f7dd", null))
 	else
-		. += span_notice(LANG("obj.a6685124", null))
+		. += span_notice(LANG("obj.a66851248ba5e40a", null))
 
 /obj/item/clothing/head/helmet/space/akula_wetsuit/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = NONE
@@ -77,14 +77,14 @@
 		return
 	var/obj/item/clothing/hitting_hat = tool
 	if(hitting_hat.clothing_flags & STACKABLE_HELMET_EXEMPT)
-		balloon_alert(user, LANG("obj.7f1af016", null))
+		balloon_alert(user, LANG("obj.7f1af0164989b57e", null))
 		return ITEM_INTERACT_BLOCKING
 	if(attached_hat)
-		balloon_alert(user, LANG("obj.63c6598c", null))
+		balloon_alert(user, LANG("obj.63c6598c909d3022", null))
 		return ITEM_INTERACT_BLOCKING
 
 	attached_hat = hitting_hat
-	balloon_alert(user, LANG("obj.c52b20a5", list(hitting_hat)))
+	balloon_alert(user, LANG("obj.c52b20a5f1fb31f1", list(hitting_hat)))
 	hitting_hat.forceMove(src)
 	icon_state = "empty"
 	update_appearance()
@@ -104,7 +104,7 @@
 		return NONE
 
 	user.put_in_active_hand(attached_hat)
-	balloon_alert(user, LANG("obj.2a4235b4", list(attached_hat)))
+	balloon_alert(user, LANG("obj.2a4235b4837591d1", list(attached_hat)))
 	attached_hat = null
 	icon_state = "helmet"
 	update_appearance()

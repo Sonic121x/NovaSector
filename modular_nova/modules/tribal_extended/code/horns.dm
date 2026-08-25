@@ -31,7 +31,7 @@
 
 /obj/item/blowing_horn/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.6593b9da", list(EXAMINE_HINT("Shift+Ctrl+Click"))))
+	. += span_notice(LANG("obj.6593b9daad045249", list(EXAMINE_HINT("Shift+Ctrl+Click"))))
 
 /// Switch horn tune on ctrl+shift click
 /obj/item/blowing_horn/click_ctrl_shift(mob/user)
@@ -40,25 +40,25 @@
 /// Blows the horn if the user has enough stamina
 /obj/item/blowing_horn/attack_self(mob/living/user)
 	if (user.get_stamina_loss() > BHORN_STAMINA_MINIMUM)
-		balloon_alert(user, LANG("obj.6ba63ace", null))
+		balloon_alert(user, LANG("obj.6ba63ace20a73a48", null))
 		return
 	var/bhorn_origin = get_turf(user)
 	if (user.is_mouth_covered())
-		balloon_alert(user, LANG("obj.ae97e927", null))
+		balloon_alert(user, LANG("obj.ae97e927b85b5520", null))
 		return
 	else if (isspaceturf(bhorn_origin))
 		user.visible_message(
-			span_emote(LANG("obj.3ac3ded9", list(user))),
-			span_notice(LANG("obj.9d57fb38", null))
+			span_emote(LANG("obj.3ac3ded92ebd433f", list(user))),
+			span_notice(LANG("obj.9d57fb387209aa59", null))
 		)
 		return
 	if(!COOLDOWN_FINISHED(src, bhorn_cooldown))
-		balloon_alert(user, LANG("obj.a1066372", list(COOLDOWN_TIMELEFT(src, bhorn_cooldown) / 10)))
+		balloon_alert(user, LANG("obj.a1066372b55378d6", list(COOLDOWN_TIMELEFT(src, bhorn_cooldown) / 10)))
 		return
 	else
 		user.visible_message(
-			span_emote(LANG("obj.058315ab", list(user))),
-			span_notice(LANG("obj.55bcbced", null))
+			span_emote(LANG("obj.058315ab8fe02be5", list(user))),
+			span_notice(LANG("obj.55bcbced8ea2b32f", null))
 		)
 		for (var/mob/hearing_player as anything in SSmobs.clients_by_zlevel[user.z])
 			if (get_dist(hearing_player, user) >= 170)
@@ -74,19 +74,19 @@
 
 /// Switches the current tune of the horn to the next in the list
 /obj/item/blowing_horn/proc/switch_tune(mob/user)
-	var/selected_tune = tgui_input_list(user, LANG("obj.a0460f47", null), LANG("obj.b2882ac2", null), tune_patterns)
+	var/selected_tune = tgui_input_list(user, LANG("obj.a0460f477f202c20", null), LANG("obj.b2882ac22b0c8d56", null), tune_patterns)
 	if(isnull(selected_tune))
 		return
 	current_tune = selected_tune
-	to_chat(user, span_notice(LANG("obj.1ad1ca6b", list(current_tune))))
+	to_chat(user, span_notice(LANG("obj.1ad1ca6b02979dcc", list(current_tune))))
 
 /// Adds additional info to horn examination
 /obj/item/blowing_horn/examine(mob/user)
 	. = ..()
 	if (!in_range(user, src))
 		return
-	. += span_notice(LANG("obj.e20e7d7f", list(current_tune)))
-	. += span_notice(LANG("obj.6593b9da", list(EXAMINE_HINT("Shift+Ctrl+Click"))))
+	. += span_notice(LANG("obj.e20e7d7ffc7f8d9a", list(current_tune)))
+	. += span_notice(LANG("obj.6593b9daad045249", list(EXAMINE_HINT("Shift+Ctrl+Click"))))
 
 /// War horn structure variant (stationary object)
 /obj/structure/war_horn
@@ -118,8 +118,8 @@
 	. = ..()
 	if (!in_range(user, src))
 		return
-	. += span_notice(LANG("obj.6593b9da", list(EXAMINE_HINT("Alt+Click"))))
-	. += span_notice(LANG("obj.e20e7d7f", list(current_tune)))
+	. += span_notice(LANG("obj.6593b9daad045249", list(EXAMINE_HINT("Alt+Click"))))
+	. += span_notice(LANG("obj.e20e7d7ffc7f8d9a", list(current_tune)))
 
 /// Switch war horn tune on alt-click
 /obj/structure/war_horn/click_alt(mob/living/user)
@@ -129,23 +129,23 @@
 /// Plays war horn sound globally to all valid players
 /obj/structure/war_horn/attack_hand(mob/living/user)
 	if (!ishuman(user))
-		balloon_alert(user, LANG("obj.6ac5a489", null))
+		balloon_alert(user, LANG("obj.6ac5a4891ea234bc", null))
 		return
 	if (user.get_stamina_loss() > WHORN_STAMINA_MINIMUM)
-		balloon_alert(user, LANG("obj.6ba63ace", null))
+		balloon_alert(user, LANG("obj.6ba63ace20a73a48", null))
 		return
 	if (user.is_mouth_covered())
-		balloon_alert(user, LANG("obj.ae97e927", null))
+		balloon_alert(user, LANG("obj.ae97e927b85b5520", null))
 		return
 	if(!COOLDOWN_FINISHED(src, whorn_cooldown))
-		balloon_alert(user, LANG("obj.a1066372", list(COOLDOWN_TIMELEFT(src, whorn_cooldown) / 10)))
+		balloon_alert(user, LANG("obj.a1066372b55378d6", list(COOLDOWN_TIMELEFT(src, whorn_cooldown) / 10)))
 		return
 	///This shouldn't happen as the war horn spawns in the natives camps and isn't movable.
 	var/location = get_turf(user)
 	if (!is_mining_level(user.z))
 		user.visible_message(
-			span_emote(LANG("obj.d44f84f7", list(user))),
-			span_warning(LANG("obj.c65d19dc", null))
+			span_emote(LANG("obj.d44f84f7aa2b7e60", list(user))),
+			span_warning(LANG("obj.c65d19dc2fd85ccf", null))
 		)
 		playsound(location, 'modular_nova/modules/admin/sound/duckhonk.ogg', 100, TRUE)
 		return
@@ -153,8 +153,8 @@
 	if (SSmapping.level_trait(user.z, ZTRAIT_ICE_RUINS_UNDERGROUND))
 		loc_text = "the depths of Freyja's caves"
 	user.visible_message(
-		span_emote(LANG("obj.66d8ab1e", list(user))),
-		span_warning(LANG("obj.c78dea58", null))
+		span_emote(LANG("obj.66d8ab1e0d4a3a83", list(user))),
+		span_warning(LANG("obj.c78dea58ad548659", null))
 	)
 	for (var/mob/hearing_player in GLOB.player_list)
 		if (!is_mining_level(hearing_player.z) || HAS_TRAIT(hearing_player, TRAIT_DEAF))
@@ -167,11 +167,11 @@
 
 /// Switches the current tune of the horn to the next in the list
 /obj/structure/war_horn/proc/switch_tune(mob/user)
-	var/selected_tune = tgui_input_list(user, LANG("obj.a0460f47", null), LANG("obj.b2882ac2", null), tune_patterns)
+	var/selected_tune = tgui_input_list(user, LANG("obj.a0460f477f202c20", null), LANG("obj.b2882ac22b0c8d56", null), tune_patterns)
 	if(isnull(selected_tune))
 		return
 	current_tune = selected_tune
-	to_chat(user, span_notice(LANG("obj.1ad1ca6b", list(current_tune))))
+	to_chat(user, span_notice(LANG("obj.1ad1ca6b02979dcc", list(current_tune))))
 
 /// Cleanup macros
 #undef BHORN_STAMINA_MINIMUM

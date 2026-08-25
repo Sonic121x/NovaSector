@@ -138,12 +138,12 @@
 	if(!isliving(user))
 		return
 
-	to_chat(user, span_boldannounce(LANG("obj.c0a7b56e", list(src))))
+	to_chat(user, span_boldannounce(LANG("obj.c0a7b56ea5f75c1f", list(src))))
 
 	user.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_phrase_regex, "blue", src)
 	user.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_response_regex, "red", src)
-	to_chat(user, LANG("obj.d8933fa2", list(jointext(SStraitor.syndicate_code_phrase, ", "))))
-	to_chat(user, LANG("obj.10c18cc9", list(span_red("[jointext(SStraitor.syndicate_code_response, ", ")]"))))
+	to_chat(user, LANG("obj.d8933fa2f2016f1b", list(jointext(SStraitor.syndicate_code_phrase, ", "))))
+	to_chat(user, LANG("obj.10c18cc97f149662", list(span_red("[jointext(SStraitor.syndicate_code_response, ", ")]"))))
 
 	use_charge(user)
 
@@ -159,14 +159,14 @@
 	playsound(loc, SFX_PUNCH, 25, TRUE, -1)
 
 	if(attacked_mob.stat == DEAD)
-		attacked_mob.visible_message(span_danger(LANG("obj.d96b11d6", list(user, attacked_mob, src))), span_userdanger(LANG("obj.25819aec", list(user, src))), span_hear(LANG("obj.e821c025", null)))
+		attacked_mob.visible_message(span_danger(LANG("obj.d96b11d66b5980f5", list(user, attacked_mob, src))), span_userdanger(LANG("obj.25819aec3d525113", list(user, src))), span_hear(LANG("obj.e821c025d0846fa2", null)))
 	else
-		attacked_mob.visible_message(span_notice(LANG("obj.4936305e", list(user, attacked_mob, attacked_mob.p_them(), src))), span_boldnotice(LANG("obj.30de5ab8", list(user, src, span_red("specific words")))), span_hear(LANG("obj.e821c025", null)))
+		attacked_mob.visible_message(span_notice(LANG("obj.4936305eee6e0467", list(user, attacked_mob, attacked_mob.p_them(), src))), span_boldnotice(LANG("obj.30de5ab80340db8b", list(user, src, span_red("specific words")))), span_hear(LANG("obj.e821c025d0846fa2", null)))
 		attacked_mob.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_phrase_regex, "blue", src)
 		attacked_mob.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_response_regex, "red", src)
-		to_chat(attacked_mob, span_boldnotice(LANG("obj.fc5f6006", null)))
-		to_chat(attacked_mob, LANG("obj.d8933fa2", list(span_blue("[jointext(SStraitor.syndicate_code_phrase, ", ")]"))))
-		to_chat(attacked_mob, LANG("obj.10c18cc9", list(span_red("[jointext(SStraitor.syndicate_code_response, ", ")]"))))
+		to_chat(attacked_mob, span_boldnotice(LANG("obj.fc5f6006068a5250", null)))
+		to_chat(attacked_mob, LANG("obj.d8933fa2f2016f1b", list(span_blue("[jointext(SStraitor.syndicate_code_phrase, ", ")]"))))
+		to_chat(attacked_mob, LANG("obj.10c18cc97f149662", list(span_red("[jointext(SStraitor.syndicate_code_response, ", ")]"))))
 		use_charge(user)
 
 
@@ -175,7 +175,7 @@
 
 	if(!charges)
 		var/turf/src_turf = get_turf(src)
-		src_turf.visible_message(span_warning(LANG("obj.4d96de82", list(src))))
+		src_turf.visible_message(span_warning(LANG("obj.4d96de82274039bd", list(src))))
 		new /obj/item/book/manual/random(src_turf)
 		qdel(src)
 

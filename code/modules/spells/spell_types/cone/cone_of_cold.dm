@@ -56,7 +56,7 @@
 	if(on_freeze_brute_damage || on_freeze_burn_damage)
 		target_mob.take_overall_damage(on_freeze_brute_damage, on_freeze_burn_damage)
 
-	to_chat(target_mob, span_userdanger(LANG("datum.428253b5", null)))
+	to_chat(target_mob, span_userdanger(LANG("datum.428253b591bc3a57", null)))
 
 /datum/action/cooldown/spell/cone/staggered/cone_of_cold/do_obj_cone_effect(obj/target_obj, atom/caster, level)
 	if(unfreeze_object_duration <= 0 SECONDS) // 0 duration = don't apply a freeze

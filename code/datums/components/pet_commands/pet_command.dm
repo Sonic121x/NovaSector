@@ -227,5 +227,5 @@
 	parent.ai_controller.cancel_current_plan()
 	if(!look_for_target(friend, potential_target) || !set_command_target(parent, potential_target))
 		return FALSE
-	parent.visible_message(span_warning(LANG("datum.0e6a6d8a", list(parent, friend, potential_target, pointed_reaction))))
+	parent.visible_message(span_warning(LANG("datum.0e6a6d8aa31a53f4", list(parent, friend, potential_target, pointed_reaction))))
 	return TRUE

@@ -94,7 +94,7 @@
 
 	qdel(tool)
 	upgrade_to_bluespace(user)
-	to_chat(user, span_notice(LANG("obj.cc80616a", list(tool))))
+	to_chat(user, span_notice(LANG("obj.cc80616ad6ceebeb", list(tool))))
 	return ITEM_INTERACT_SUCCESS
 
 /// Upgrades the storage capacity of the snail shell and gives it a glowy blue outline
@@ -127,50 +127,50 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "home",
-			SPECIES_PERK_NAME = LANG("datum.31ac3010", null),
-			SPECIES_PERK_DESC = LANG("datum.49c4052f", null),
+			SPECIES_PERK_NAME = LANG("datum.31ac3010b10176d6", null),
+			SPECIES_PERK_DESC = LANG("datum.49c4052fe77d4bca", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "wine-glass",
-			SPECIES_PERK_NAME = LANG("datum.58a08b84", null),
-			SPECIES_PERK_DESC = LANG("datum.43585714", null),
+			SPECIES_PERK_NAME = LANG("datum.58a08b84edc33091", null),
+			SPECIES_PERK_DESC = LANG("datum.43585714fded221a", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "heart",
-			SPECIES_PERK_NAME = LANG("datum.fd76a328", null),
-			SPECIES_PERK_DESC = LANG("datum.572cd888", null),
+			SPECIES_PERK_NAME = LANG("datum.fd76a328d03aa24c", null),
+			SPECIES_PERK_DESC = LANG("datum.572cd88892dbf455", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "water",
-			SPECIES_PERK_NAME = LANG("datum.9bbbe585", null),
-			SPECIES_PERK_DESC = LANG("datum.4e76a8d6", null),
+			SPECIES_PERK_NAME = LANG("datum.9bbbe5853d04147a", null),
+			SPECIES_PERK_DESC = LANG("datum.4e76a8d65a3b4c63", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "bone",
-			SPECIES_PERK_NAME = LANG("datum.a143e0d9", null),
-			SPECIES_PERK_DESC = LANG("datum.4944b848", null),
+			SPECIES_PERK_NAME = LANG("datum.a143e0d94daaca4d", null),
+			SPECIES_PERK_DESC = LANG("datum.4944b8489951375c", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "crutch",
-			SPECIES_PERK_NAME = LANG("datum.8f51cd72", null),
-			SPECIES_PERK_DESC = LANG("datum.303c0639", null),
+			SPECIES_PERK_NAME = LANG("datum.8f51cd7246b49ee5", null),
+			SPECIES_PERK_DESC = LANG("datum.303c0639ed839c3a", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "frown",
-			SPECIES_PERK_NAME = LANG("datum.7f7dd4db", null),
-			SPECIES_PERK_DESC = LANG("datum.54497d72", null),
+			SPECIES_PERK_NAME = LANG("datum.7f7dd4dbeee8f8f7", null),
+			SPECIES_PERK_DESC = LANG("datum.54497d7259f11a07", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "skull",
-			SPECIES_PERK_NAME = LANG("datum.c10b2ef0", null),
-			SPECIES_PERK_DESC = LANG("datum.41b43876", null),
+			SPECIES_PERK_NAME = LANG("datum.c10b2ef09727cde8", null),
+			SPECIES_PERK_DESC = LANG("datum.41b43876fdaf7adb", null),
 		),
 	)
 

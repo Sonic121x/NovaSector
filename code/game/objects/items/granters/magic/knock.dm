@@ -16,5 +16,5 @@
 
 /obj/item/book/granter/action/spell/knock/recoil(mob/living/user)
 	. = ..()
-	to_chat(user, span_warning(LANG("obj.dc89d29f", null)))
+	to_chat(user, span_warning(LANG("obj.dc89d29ffc123821", null)))
 	user.Paralyze(4 SECONDS)

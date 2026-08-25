@@ -14,7 +14,7 @@
 	var/mob/living/buckled_mob = locate() in buckled_mobs
 	if(!buckled_mob)
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice(LANG("obj.1107a4c0", list(buckled_mob))))
+	to_chat(user, span_notice(LANG("obj.1107a4c040ba479e", list(buckled_mob))))
 	buckled_mob.investigate_log("has been sacrificially gibbed on an altar.", INVESTIGATE_DEATHS)
 	buckled_mob.gib(DROP_ALL_REMAINS)
 	message_admins("[ADMIN_LOOKUPFLW(user)] has sacrificed [key_name_admin(buckled_mob)] on the sacrificial altar at [AREACOORD(src)].")
@@ -35,10 +35,10 @@
 	if(.)
 		return
 	if(last_process + time_between_uses > world.time)
-		to_chat(user, span_notice(LANG("obj.cf04f6ff", null)))
+		to_chat(user, span_notice(LANG("obj.cf04f6ff5606ccd9", null)))
 		return
 	last_process = world.time
-	to_chat(user, span_notice(LANG("obj.54a339e6", null)))
+	to_chat(user, span_notice(LANG("obj.54a339e6a0c2a8a2", null)))
 	user.reagents.add_reagent(/datum/reagent/medicine/omnizine/godblood,20)
 	update_appearance()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_appearance)), time_between_uses)

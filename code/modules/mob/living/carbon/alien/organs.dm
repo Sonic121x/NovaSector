@@ -131,13 +131,13 @@
 	if(!owner || owner.stat == DEAD)
 		return
 	if(isalien(owner)) //Different effects for aliens than humans
-		to_chat(owner, span_userdanger(LANG("obj.bcfbda50", null)))
-		to_chat(owner, span_danger(LANG("obj.3c84ad28", null)))
+		to_chat(owner, span_userdanger(LANG("obj.bcfbda50f62b63ed", null)))
+		to_chat(owner, span_danger(LANG("obj.3c84ad28a1ed9fe5", null)))
 		owner.emote("roar")
 		owner.Stun(200) //Actually just slows them down a bit.
 
 	else if(ishuman(owner)) //Humans, being more fragile, are more overwhelmed by the mental backlash.
-		to_chat(owner, span_danger(LANG("obj.317c2672", null)))
+		to_chat(owner, span_danger(LANG("obj.317c267263c6e977", null)))
 		owner.emote("scream")
 		owner.Paralyze(100)
 
@@ -156,7 +156,7 @@
 	recent_queen_death = FALSE
 	if(!owner) //In case the xeno is butchered or subjected to surgery after death.
 		return
-	to_chat(owner, span_noticealien(LANG("obj.3853026a", null)))
+	to_chat(owner, span_noticealien(LANG("obj.3853026a01d74880", null)))
 	owner.clear_alert(ALERT_XENO_NOQUEEN)
 
 #undef QUEEN_DEATH_DEBUFF_DURATION
@@ -241,9 +241,9 @@
 	var/atom/play_from = owner || src
 	var/stomach_text = owner ? "\the [owner]'s stomach" : "\the [src]"
 	if(prob(25))
-		play_from.audible_message(span_warning(LANG("obj.681b4f5b", list(stomach_text))), \
-			span_warning(LANG("obj.2305b96c", null)), 4,\
-			self_message = span_userdanger(LANG("obj.182a31c5", null)))
+		play_from.audible_message(span_warning(LANG("obj.681b4f5b0dc0cbd8", list(stomach_text))), \
+			span_warning(LANG("obj.2305b96cfbee76ed", null)), 4,\
+			self_message = span_userdanger(LANG("obj.182a31c51c6c5e4f", null)))
 
 	if(user.client)
 		user.client.move_delay = world.time + 1.5 SECONDS
@@ -274,8 +274,8 @@
 		if(damage_ratio < part_dam_ratio)
 			damage_ratio = part_dam_ratio
 
-	play_from.visible_message(span_danger(LANG("obj.4c024c02", list(user, attack_verb, stomach_text, attack_name))), \
-			span_userdanger(LANG("obj.45cecbbe", list(user, attack_verb, attack_name))))
+	play_from.visible_message(span_danger(LANG("obj.4c024c02ac079a29", list(user, attack_verb, stomach_text, attack_name))), \
+			span_userdanger(LANG("obj.45cecbbedfd9c547", list(user, attack_verb, attack_name))))
 
 	// At 100% damage, the stomach burts
 	// Otherwise, we give them a -50% -> 50% chance scaling with damage dealt
@@ -302,11 +302,11 @@
 		return
 	// Failure condition
 	if(isalienadult(user))
-		play_from.visible_message(span_danger(LANG("obj.2d6fea1b", list(user, stomach_text))), \
-			span_userdanger(LANG("obj.2ac456f0", null)))
+		play_from.visible_message(span_danger(LANG("obj.2d6fea1bf907eab3", list(user, stomach_text))), \
+			span_userdanger(LANG("obj.2ac456f09999cf42", null)))
 	else // Just to be safe ya know?
-		play_from.visible_message(span_danger(LANG("obj.2d6fea1b", list(user, stomach_text))), \
-			span_userdanger(LANG("obj.e643766f", list(user, stomach_text))))
+		play_from.visible_message(span_danger(LANG("obj.2d6fea1bf907eab3", list(user, stomach_text))), \
+			span_userdanger(LANG("obj.e643766fcc7d9b7b", list(user, stomach_text))))
 
 	playsound(get_turf(play_from), 'sound/mobs/non-humanoids/alien/alien_explode.ogg', 100, extrarange = 4)
 	eject_stomach(border_diamond_range_turfs(play_from, 6), 5, 1.5, 1, 8)

@@ -18,15 +18,15 @@ GLOBAL_LIST_EMPTY(ash_rituals)
 /obj/effect/ash_rune/examine(mob/user)
 	. = ..()
 	if(!current_ritual)
-		. += span_notice(LANG("obj.030794a3", null))
+		. += span_notice(LANG("obj.030794a33140ed91", null))
 		return
-	. += span_notice(LANG("obj.a4d778f9", list(current_ritual.name)))
+	. += span_notice(LANG("obj.a4d778f99122b5b9", list(current_ritual.name)))
 	. += span_notice(current_ritual.desc)
-	. += span_warning(LANG("obj.b589ae73", null))
+	. += span_warning(LANG("obj.b589ae7313dda83d", null))
 	for(var/direction in current_ritual.required_components)
 		var/atom/component_type = current_ritual.required_components[direction]
 		var/component_name = ispath(component_type, /mob/living/carbon/human) ? "a humanoid corpse" : component_type::name
-		. += span_warning(LANG("obj.52ddc6aa", list(direction, component_name)))
+		. += span_warning(LANG("obj.52ddc6aac5b573a8", list(direction, component_name)))
 
 /obj/effect/ash_rune/Initialize(mapload)
 	. = ..()
@@ -55,11 +55,11 @@ GLOBAL_LIST_EMPTY(ash_rituals)
 	if(current_ritual && is_species(user, /datum/species/lizard/ashwalker))
 		current_ritual.ritual_start(src)
 		return
-	current_ritual = tgui_input_list(user, LANG("obj.1775c84e", null), LANG("obj.1606d62c", null), GLOB.ash_rituals)
+	current_ritual = tgui_input_list(user, LANG("obj.1775c84eabfd66f7", null), LANG("obj.1606d62cffac5a4f", null), GLOB.ash_rituals)
 	if(!current_ritual)
 		return
 	current_ritual = GLOB.ash_rituals[current_ritual]
-	balloon_alert_to_viewers(LANG("obj.f00ebe1b", null))
+	balloon_alert_to_viewers(LANG("obj.f00ebe1b1935fdc5", null))
 
 // this is solely for aesthetics... though the central rune will check the directions, of which this is on
 /obj/effect/side_rune

@@ -56,7 +56,7 @@
 		qdel(src)
 		return
 
-	to_chat(hallucinator, span_notice(LANG("datum.e94e3d01", list(fake_xeno.name))))
+	to_chat(hallucinator, span_notice(LANG("datum.e94e3d0184153449", list(fake_xeno.name))))
 	addtimer(CALLBACK(src, PROC_REF(disappear), fake_xeno), 3 SECONDS)
 
 /// Disappears into the vent, ending the hallucination.
@@ -64,7 +64,7 @@
 	if(QDELETED(src))
 		return
 	if(!QDELETED(fake_xeno))
-		to_chat(hallucinator, span_notice(LANG("datum.77cf54fb", list(fake_xeno.name))))
+		to_chat(hallucinator, span_notice(LANG("datum.77cf54fbe0719f12", list(fake_xeno.name))))
 
 	qdel(src)
 
@@ -87,8 +87,8 @@
 		return
 	hit_living.Paralyze(10 SECONDS)
 	hit_living.visible_message(
-		span_warning(LANG("obj.587b582c", list(hit_living))),
-		span_userdanger(LANG("obj.c6188217", list(name))),
+		span_warning(LANG("obj.587b582c14df44ca", list(hit_living))),
+		span_userdanger(LANG("obj.c61882174d21b7ee", list(name))),
 	)
 
 /// Sets our icon to look like we're leaping.

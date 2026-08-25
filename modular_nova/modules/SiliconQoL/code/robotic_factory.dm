@@ -43,15 +43,15 @@
 /obj/machinery/transformer_rp/examine(mob/user)
 	. = ..()
 	if(issilicon(user) || isobserver(user))
-		. += LANG("obj.95da987e", list(stored_cyborgs))
+		. += LANG("obj.95da987e7cc59e09", list(stored_cyborgs))
 		if(!is_operational)
-			. += span_warning(LANG("obj.6408baad", null))
+			. += span_warning(LANG("obj.6408baad3c3218db", null))
 			return
 		if(cooldown && cooldown_timer)
-			. += LANG("obj.69106e85", list(DisplayTimeText(max(0, cooldown_timer))))
+			. += LANG("obj.69106e857fb04b7e", list(DisplayTimeText(max(0, cooldown_timer))))
 		if(stored_cyborgs >= max_stored_cyborgs)
 			return
-		. += LANG("obj.8d4a5eb3", list(DisplayTimeText(max(0, stored_timer))))
+		. += LANG("obj.8d4a5eb3699da2a0", list(DisplayTimeText(max(0, stored_timer))))
 
 /obj/machinery/transformer_rp/Destroy()
 	QDEL_NULL(countdown)
@@ -83,7 +83,7 @@
 		return
 
 	stored_cyborgs++
-	notify_ghosts(LANG("obj.2447c0e8", list(src)),
+	notify_ghosts(LANG("obj.2447c0e82064231f", list(src)),
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "New malfunctioning cyborg created!",
@@ -97,7 +97,7 @@
 	if(cooldown)
 		return
 
-	var/cyborg_ask = tgui_alert(target_ghost, LANG("obj.67280640", null), LANG("obj.1a69af28", null), list("Yes", "No"))
+	var/cyborg_ask = tgui_alert(target_ghost, LANG("obj.67280640ec8f4033", null), LANG("obj.1a69af28faff1818", null), list("Yes", "No"))
 	if(cyborg_ask == "No" || !src || QDELETED(src))
 		return FALSE
 

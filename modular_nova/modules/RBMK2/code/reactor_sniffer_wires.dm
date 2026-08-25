@@ -25,13 +25,13 @@
 /datum/wires/rbmk2_sniffer/get_status()
 	var/obj/machinery/rbmk2_sniffer/sniffer = holder
 	. = list()
-	. += LANG("datum.7509b9e6", list(sniffer.radio_enabled ? "blinking red" : "off"))
+	. += LANG("datum.7509b9e6e308a5fb", list(sniffer.radio_enabled ? "blinking red" : "off"))
 	if(sniffer.link_confirm)
-		. += LANG("datum.057332b5", null)
+		. += LANG("datum.057332b542979412", null)
 	else if(sniffer.unlink_confirm)
-		. += LANG("datum.0c471563", null)
+		. += LANG("datum.0c471563ffbecfbd", null)
 	else
-		. += LANG("datum.688707d4", null)
+		. += LANG("datum.688707d465f438d6", null)
 
 /datum/wires/rbmk2_sniffer/on_pulse(wire, user)
 	var/obj/machinery/rbmk2_sniffer/sniffer = holder

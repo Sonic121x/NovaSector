@@ -51,8 +51,7 @@
 
 /obj/machinery/mineral/ore_redemption/Initialize(mapload)
 	. = ..()
-	if(!GLOB.autounlock_techwebs[/datum/techweb/autounlocking/smelter])
-		GLOB.autounlock_techwebs[/datum/techweb/autounlocking/smelter] = new /datum/techweb/autounlocking/smelter
+	GLOB.autounlock_techwebs[/datum/techweb/autounlocking/smelter] ||= new /datum/techweb/autounlocking/smelter()
 	stored_research = GLOB.autounlock_techwebs[/datum/techweb/autounlocking/smelter]
 
 	//mat_container_signals is for reedeming points from local storage if silo is not required
@@ -78,7 +77,7 @@
 /obj/machinery/mineral/ore_redemption/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += span_notice(LANG("obj.d531c5c9", null))
+		. += span_notice(LANG("obj.d531c5c963902945", null))
 
 
 /obj/machinery/mineral/ore_redemption/proc/silo_redeem_points(obj/machinery/mineral/ore_redemption/machine, container, obj/item/stack/ore/gathered_ore)
@@ -106,7 +105,7 @@
 		if(!amount || !redemption_mat_amount)
 			return FALSE
 
-		var/smeltable_sheets = FLOOR(redemption_mat_amount / amount, 1)
+		var/smeltable_sheets = floor(redemption_mat_amount / amount)
 
 		if(!smeltable_sheets)
 			return FALSE
@@ -233,7 +232,7 @@
 		return CLICK_ACTION_BLOCKING
 	input_dir = turn(input_dir, -90)
 	output_dir = turn(output_dir, -90)
-	to_chat(user, span_notice(LANG("obj.ac6ad34e", list(src, dir2text(input_dir), dir2text(output_dir)))))
+	to_chat(user, span_notice(LANG("obj.ac6ad34ec20d8383", list(src, dir2text(input_dir), dir2text(output_dir)))))
 	unregister_input_turf() // someone just rotated the input and output directions, unregister the old turf
 	register_input_turf() // register the new one
 	update_appearance(UPDATE_OVERLAYS)
@@ -265,12 +264,12 @@
 				"icon_state" = sheet_type::icon_state,
 			))
 
-		for(var/research in stored_research.researched_designs)
-			var/datum/design/alloy = SSresearch.techweb_design_by_id(research)
+		for(var/design_path in stored_research.researched_designs)
+			var/datum/design/alloy = SSresearch.techweb_designs[design_path]
 			var/obj/alloy_type = alloy.build_path
 			data["materials"] += list(list(
-				"name" = lang_localize_display_name(alloy.name), // NOVA EDIT - I18N: 合金名纯显示（act 走同条负载的 id）。ORIGINAL: "name" = alloy.name,
-				"id" = alloy.id,
+				"name" = lang_localize_display_name(alloy.name), // NOVA EDIT - I18N: 合金名纯显示（act 走同条负载的 path）。ORIGINAL: "name" = alloy.name,
+				"id" = design_path,
 				"category" = "alloy",
 				"amount" = can_smelt_alloy(alloy),
 				"icon" = alloy_type::icon,
@@ -322,7 +321,7 @@
 				var/mob/living/user = usr
 				user_id_card = user.get_idcard(TRUE)
 			if(isnull(user_id_card))
-				say(LANG("obj.73f9bb56", null))
+				say(LANG("obj.73f9bb560352d1ad", null))
 				return FALSE
 
 			//we have points
@@ -338,29 +337,33 @@
 			if(!materials.can_use_resource(user_data = ID_DATA(usr)))
 				return
 			else if(!allowed(usr)) //Check the ID inside, otherwise check the user
-				to_chat(usr, span_warning(LANG("obj.b4807c07", null)))
-			else
-				var/datum/material/mat = locate(params["id"])
+				to_chat(usr, span_warning(LANG("obj.b4807c07f1e107fb", null)))
+				return
 
-				var/amount = mat_container.materials[mat]
-				if(!amount)
-					return
+			var/datum/material/mat = locate(params["material_ref"])
 
-				var/stored_amount = CEILING(amount / SHEET_MATERIAL_AMOUNT, 0.1)
-				if(!stored_amount)
-					return
+			var/amount = mat_container.materials[mat]
+			if(!amount)
+				return
 
-				var/desired = text2num(params["sheets"])
-				var/sheets_to_remove = round(min(desired, 50, stored_amount))
-				materials.eject_sheets(mat, sheets_to_remove, get_step(src, output_dir), user_data = ID_DATA(usr))
+			var/stored_amount = CEILING(amount / SHEET_MATERIAL_AMOUNT, 0.1)
+			if(!stored_amount)
+				return
+
+			var/desired = text2num(params["sheets"])
+			var/sheets_to_remove = round(min(desired, 50, stored_amount))
+			materials.eject_sheets(mat, sheets_to_remove, get_step(src, output_dir), user_data = ID_DATA(usr))
 			return TRUE
 		if("Smelt")
 			if(!mat_container)
 				return
 			if(!materials.can_use_resource(user_data = ID_DATA(usr)))
 				return
-			var/alloy_id = params["id"]
-			var/datum/design/alloy = stored_research.isDesignResearchedID(alloy_id)
+			var/alloy_path = text2path(params["path"])
+			if(!stored_research.researched_designs[alloy_path])
+				return
+			var/datum/design/alloy = SSresearch.techweb_designs[alloy_path]
+
 			var/obj/item/card/id/user_id_card
 			if(isliving(usr))
 				var/mob/living/user = usr
@@ -377,7 +380,7 @@
 					output = alloy.create_result(src)
 				unload_mineral(output)
 			else
-				to_chat(usr, span_warning(LANG("obj.b4807c07", null)))
+				to_chat(usr, span_warning(LANG("obj.b4807c07f1e107fb", null)))
 			return TRUE
 
 /obj/machinery/mineral/ore_redemption/ex_act(severity, target)

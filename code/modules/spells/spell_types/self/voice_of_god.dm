@@ -26,7 +26,7 @@
 	if(. & SPELL_CANCEL_CAST)
 		return
 
-	command = tgui_input_text(cast_on, LANG("datum.9a10733a", null), LANG("datum.a4e844da", null), max_length = MAX_MESSAGE_LEN)
+	command = tgui_input_text(cast_on, LANG("datum.9a10733aff5f8a01", null), LANG("datum.a4e844da7c4e52d5", null), max_length = MAX_MESSAGE_LEN)
 	if(QDELETED(src) || QDELETED(cast_on) || !can_cast_spell())
 		return . | SPELL_CANCEL_CAST
 	if(!command)

@@ -34,7 +34,7 @@
 	for(var/obj/item/held in held_items)
 		var/obj/item/gun/held_gun = held
 		if(HAS_TRAIT(held, TRAIT_WIELDED) || (istype(held_gun) && held_gun.weapon_weight >= WEAPON_HEAVY))
-			to_chat(src, span_warning(LANG("mob.48416f2d", list(held))))
+			to_chat(src, span_warning(LANG("mob.48416f2da1768f4c", list(held))))
 			return FALSE
 	var/turf/our_turf = get_turf(src)
 	if(!our_turf || target.z != our_turf.z)
@@ -47,8 +47,8 @@
 	var/offset_y = clamp(target.y - our_turf.y, -PEER_MAX_OFFSET, PEER_MAX_OFFSET)
 	AddElement(/datum/element/peering, offset_x, offset_y)
 	visible_message(
-		span_notice(LANG("mob.854ae0a5", list(src))),
-		span_notice(LANG("mob.60aa8f0b", null)),
+		span_notice(LANG("mob.854ae0a5d84e0e76", list(src))),
+		span_notice(LANG("mob.60aa8f0b33775477", null)),
 	)
 	return TRUE
 

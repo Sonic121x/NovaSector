@@ -33,8 +33,8 @@
 			user.add_mood_event("artbad", /datum/mood_event/artbad)
 			msg = "Wow, [source.p_they()] suck[source.p_s()]."
 
-	user.visible_message(span_notice(LANG("datum.73935422", list(user, source))), \
-		span_notice(LANG("datum.1183c7b0", list(source, msg))))
+	user.visible_message(span_notice(LANG("datum.73935422446989eb", list(user, source))), \
+		span_notice(LANG("datum.1183c7b0e5b30caf", list(source, msg))))
 
 /datum/element/art/proc/on_examine(atom/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
@@ -44,7 +44,7 @@
 		INVOKE_ASYNC(src, PROC_REF(appraise), source, user) //Do not sleep the proc.
 
 /datum/element/art/proc/appraise(atom/source, mob/user)
-	to_chat(user, span_notice(LANG("datum.b4636bdf", list(source))))
+	to_chat(user, span_notice(LANG("datum.b4636bdf0c0a01e0", list(source))))
 	if(!do_after(user, 2 SECONDS, target = source))
 		return
 	var/mult = 1
@@ -63,8 +63,8 @@
 		user.add_mood_event("artbad", /datum/mood_event/artbad)
 		msg = "Wow, [source.p_they()] suck[source.p_s()]."
 
-	user.visible_message(span_notice(LANG("datum.31cf3ad1", list(user, source))), \
-		span_notice(LANG("datum.eaeec52b", list(source, msg))))
+	user.visible_message(span_notice(LANG("datum.31cf3ad174176e19", list(user, source))), \
+		span_notice(LANG("datum.eaeec52b303dbcda", list(source, msg))))
 
 /datum/element/art/commoner
 
@@ -87,5 +87,5 @@
 		user.add_mood_event("artbad", /datum/mood_event/artbad)
 		msg = "Wow, [source.p_they()] suck[source.p_s()]."
 
-	user.visible_message(span_notice(LANG("datum.31cf3ad1", list(user, source))), \
-		span_notice(LANG("datum.eaeec52b", list(source, msg))))
+	user.visible_message(span_notice(LANG("datum.31cf3ad174176e19", list(user, source))), \
+		span_notice(LANG("datum.eaeec52b303dbcda", list(source, msg))))

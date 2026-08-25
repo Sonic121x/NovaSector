@@ -16,5 +16,5 @@
 
 /obj/item/book/granter/action/spell/summonitem/recoil(mob/living/user)
 	. = ..()
-	to_chat(user,span_warning(LANG("obj.04d9e36c", list(src))))
+	to_chat(user,span_warning(LANG("obj.04d9e36cc032366d", list(src))))
 	qdel(src)

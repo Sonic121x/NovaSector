@@ -13,12 +13,11 @@
 
 /datum/unit_test/i18n_suffixed/Run()
 	var/saved_locale = GLOB.i18n_server_locale
-	var/list/saved_reverse = GLOB.i18n_reverse[I18N_SUFFIX_TEST_LOCALE]
 
-	var/list/en_cache = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
+	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]
 	if(!islist(en_cache))
 		en_cache = list()
-		GLOB.i18n_cache[DEFAULT_UI_LOCALE] = en_cache
+		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE] = en_cache
 
 	var/base_text = "The lab technicians fried our last one. Mind building one for us?"
 	var/bounty_suffix = "</br>This bounty is marked as <b>high priority</b>, and will reward <b>1.5x</b> the normal payout!"
@@ -31,14 +30,15 @@
 	test_cache["unittest.suffix_bounty"] = "</br>此悬赏被标记为高优先级。"
 	en_cache["unittest.suffix_organ"] = organ_suffix
 	test_cache["unittest.suffix_organ"] = "此手术每个器官只能做一次。"
-	GLOB.i18n_cache[I18N_SUFFIX_TEST_LOCALE] = test_cache
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][I18N_SUFFIX_TEST_LOCALE] = test_cache
+	GLOB.i18n_runtime_domains.Remove(I18N_SUFFIX_TEST_LOCALE)
 
 	// --- locale==en：no-op（默认态零行为变化）。 ---
 	GLOB.i18n_server_locale = DEFAULT_UI_LOCALE
 	TEST_ASSERT_EQUAL(lang_reverse_suffixed("[base_text][bounty_suffix]"), "[base_text][bounty_suffix]", "locale==en 时 lang_reverse_suffixed 应原样返回")
 
 	GLOB.i18n_server_locale = I18N_SUFFIX_TEST_LOCALE
-	GLOB.i18n_reverse[I18N_SUFFIX_TEST_LOCALE] = null // 强制按新注入的 cache 重建反查表
+	GLOB.i18n_reverse -= I18N_SUFFIX_TEST_LOCALE // 强制按新注入的 cache 重建反查表
 
 	// ① 无后缀的整串：退化成 lang_reverse_text。
 	TEST_ASSERT_EQUAL(lang_reverse_suffixed(base_text), "实验室技师把上一台烧了。介意帮我们造一台吗？", "无后缀时应整串精确反查")
@@ -56,8 +56,8 @@
 	TEST_ASSERT_EQUAL(lang_reverse_suffixed("[base_text] And something entirely unregistered."), "[base_text] And something entirely unregistered.", "未登记后缀应原样返回")
 
 	GLOB.i18n_server_locale = saved_locale
-	GLOB.i18n_cache -= I18N_SUFFIX_TEST_LOCALE
-	GLOB.i18n_reverse[I18N_SUFFIX_TEST_LOCALE] = saved_reverse
+	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET] -= I18N_SUFFIX_TEST_LOCALE
+	GLOB.i18n_runtime_domains.Remove(I18N_SUFFIX_TEST_LOCALE)
 	en_cache -= "unittest.suffix_base"
 	en_cache -= "unittest.suffix_bounty"
 	en_cache -= "unittest.suffix_organ"

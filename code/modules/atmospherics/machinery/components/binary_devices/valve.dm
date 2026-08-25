@@ -44,11 +44,11 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 		var/datum/pipeline/parent1 = parents[1]
 		parent1.reconcile_air()
 		investigate_log("was opened by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_ATMOS)
-		balloon_alert_to_viewers(LANG("obj.23cdfa65", null))
+		balloon_alert_to_viewers(LANG("obj.23cdfa65a3995d1b", null))
 		vent_movement |= VENTCRAWL_ALLOWED
 	else
 		investigate_log("was closed by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_ATMOS)
-		balloon_alert_to_viewers(LANG("obj.786f3089", null))
+		balloon_alert_to_viewers(LANG("obj.786f30899e73d629", null))
 		vent_movement &= ~VENTCRAWL_ALLOWED
 
 

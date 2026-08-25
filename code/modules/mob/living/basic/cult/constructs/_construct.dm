@@ -127,9 +127,9 @@
 	. = list()
 	if(health < maxHealth)
 		if(health >= maxHealth/2)
-			. += span_warning(LANG("mob.c487477b", list(p_They(), p_s())))
+			. += span_warning(LANG("mob.c487477b1d7f722c", list(p_They(), p_s())))
 		else
-			. += span_warning(span_bold(LANG("mob.a3853f19", list(p_They(), p_s()))))
+			. += span_warning(span_bold(LANG("mob.a3853f194e0d5c16", list(p_They(), p_s()))))
 
 	return .
 

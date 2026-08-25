@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 	// NOVA EDIT CHANGE - i18n: name is reverse-localized at Initialize so it won't == the english initial(name) → the
 	// "[area]" prefix was dropped and every air alarm showed the bare translated type name. Accept the un-reversed form,
 	// and reverse-localize the type name (no-op on en). - ORIGINAL: if(name == initial(name)) / name = "[get_area_name(src)] Air Alarm"
-	if(name == initial(name) || lang_unreverse_text(name) == initial(name))
+	if(name == initial(name))
 		name = "[get_area_name(src)] [lang_reverse_text("Air Alarm")]"
 
 	tlv_collection = list()
@@ -200,15 +200,15 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 	. = ..()
 	switch(buildstage)
 		if(AIR_ALARM_BUILD_NO_CIRCUIT)
-			. += span_notice(LANG("obj.85e81bb4", null))
+			. += span_notice(LANG("obj.85e81bb4381e93f0", null))
 		if(AIR_ALARM_BUILD_NO_WIRES)
-			. += span_notice(LANG("obj.4086d36c", null))
+			. += span_notice(LANG("obj.4086d36c39a1e616", null))
 		if(AIR_ALARM_BUILD_COMPLETE)
-			. += span_notice(LANG("obj.5875c928", list(locked ? "unlock" : "lock")))
+			. += span_notice(LANG("obj.5875c928352e272d", list(locked ? "unlock" : "lock")))
 
 /obj/machinery/airalarm/ui_status(mob/user, datum/ui_state/state)
 	if(HAS_SILICON_ACCESS(user) && aidisabled)
-		to_chat(user, LANG("obj.895fdf0d", null))
+		to_chat(user, LANG("obj.895fdf0dc4d41a3f", null))
 	else if(!shorted)
 		return ..()
 	return UI_CLOSE
@@ -223,14 +223,14 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		var/obj/machinery/air_sensor/sensor = multi_tool.buffer
 
 		if(!allow_link_change)
-			balloon_alert(user, LANG("obj.e40893cf", null))
+			balloon_alert(user, LANG("obj.e40893cfe1a8f047", null))
 			return ITEM_INTERACT_BLOCKING
 		if(connected_sensor || sensor.connected_airalarm)
-			balloon_alert(user, LANG("obj.1e065369", null))
+			balloon_alert(user, LANG("obj.1e06536979728c86", null))
 			return ITEM_INTERACT_BLOCKING
 
 		connect_sensor(sensor)
-		balloon_alert(user, LANG("obj.9987a73a", null))
+		balloon_alert(user, LANG("obj.9987a73aa88184d1", null))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/airalarm/ui_interact(mob/user, datum/tgui/ui)
@@ -694,7 +694,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/airalarm, 27)
 ///Used for all_access air alarm helper, which set air alarm's required access to null.
 /obj/machinery/airalarm/proc/give_all_access()
 	name = "all-access air alarm"
-	desc = LANG("obj.9b382b22", null)
+	desc = LANG("obj.9b382b2270e27b4d", null)
 	locked = FALSE
 	req_access = null
 	req_one_access = null

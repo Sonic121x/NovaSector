@@ -29,7 +29,7 @@
 
 /obj/structure/railing/wooden_fencing/crowbar_act(mob/living/user, obj/item/tool)
 	. = ..()
-	to_chat(user, span_warning(LANG("obj.ffe7ee6d", null)))
+	to_chat(user, span_warning(LANG("obj.ffe7ee6d931bc04c", null)))
 	tool.play_tool_sound(src, 100)
 	deconstruct()
 	return TRUE
@@ -54,7 +54,7 @@
 /// Proc that checks if the gate is open or not, then closes/opens the gate repsectively
 /obj/structure/railing/wooden_fencing/gate/proc/open_or_close(mob/user)
 	if(!user.can_interact_with(src))
-		balloon_alert(user, LANG("obj.586fde8f", null))
+		balloon_alert(user, LANG("obj.586fde8f976a45e0", null))
 		return
 	opened = !opened
 	set_density(!opened)

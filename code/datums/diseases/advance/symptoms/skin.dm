@@ -33,4 +33,4 @@
 				M.reagents.add_reagent(color, 5)
 		else
 			if (prob(50)) // spam
-				M.visible_message(span_warning(LANG("datum.0128ec25", list(M))), span_notice(LANG("datum.d0ddca87", null)))
+				M.visible_message(span_warning(LANG("datum.0128ec25d18aa8e6", list(M))), span_notice(LANG("datum.d0ddca8746f3b8b1", null)))

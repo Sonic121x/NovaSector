@@ -50,12 +50,12 @@
 	if(!process_scan) //since it's not scanning on process, it scans here.
 		scan_for_target()
 	toggle_on()
-	user.visible_message(span_notice(LANG("obj.61f41892", list(user, active ? "" : "de", user.p_their()))), span_notice(LANG("obj.2130e177", list(active ? "" : "de"))))
+	user.visible_message(span_notice(LANG("obj.61f418922633a996", list(user, active ? "" : "de", user.p_their()))), span_notice(LANG("obj.2130e177c3191d0f", list(active ? "" : "de"))))
 
 /obj/item/pinpointer/examine(mob/user)
 	. = ..()
 	if(target)
-		. += LANG("obj.e56e24ae", list(target))
+		. += LANG("obj.e56e24ae79c325a9", list(target))
 
 /obj/item/pinpointer/proc/toggle_on()
 	active = !active
@@ -135,14 +135,14 @@
 /obj/item/pinpointer/crew/attack_self(mob/living/user)
 	if(active)
 		toggle_on()
-		user.visible_message(span_notice(LANG("obj.e071a189", list(user, user.p_their()))), span_notice(LANG("obj.a32108c2", null)))
+		user.visible_message(span_notice(LANG("obj.e071a18911742ecd", list(user, user.p_their()))), span_notice(LANG("obj.a32108c2eb71bbf2", null)))
 		return
 
 	if (!pinpointer_owner)
 		pinpointer_owner = user
 
 	if (pinpointer_owner && pinpointer_owner != user)
-		to_chat(user, span_notice(LANG("obj.f535b0b8", null)))
+		to_chat(user, span_notice(LANG("obj.f535b0b892aa0fd3", null)))
 		return
 
 	var/list/name_counts = list()
@@ -166,9 +166,9 @@
 		name_counts[crewmember_name] = 1
 
 	if(!length(names))
-		user.visible_message(span_notice(LANG("obj.c9da7801", list(user))), span_notice(LANG("obj.0231797f", null)))
+		user.visible_message(span_notice(LANG("obj.c9da780148522e0e", list(user))), span_notice(LANG("obj.0231797fbf72b3cd", null)))
 		return
-	var/pinpoint_target = tgui_input_list(user, LANG("obj.6a2d6f87", null), LANG("obj.fd79c8ae", null), sort_list(names))
+	var/pinpoint_target = tgui_input_list(user, LANG("obj.6a2d6f8772d4bf71", null), LANG("obj.fd79c8aec9c83cbc", null), sort_list(names))
 	if(isnull(pinpoint_target))
 		return
 	if(isnull(names[pinpoint_target]))
@@ -177,7 +177,7 @@
 		return
 	target = names[pinpoint_target]
 	toggle_on()
-	user.visible_message(span_notice(LANG("obj.89f64c47", list(user, user.p_their()))), span_notice(LANG("obj.bf506523", null)))
+	user.visible_message(span_notice(LANG("obj.89f64c47c408d5a4", list(user, user.p_their()))), span_notice(LANG("obj.bf506523725f5605", null)))
 
 /obj/item/pinpointer/crew/scan_for_target()
 	if(target)
@@ -207,7 +207,7 @@
 		return
 	var/mob/mob_holder = get(target, /mob)
 	if(istype(mob_holder))
-		. += LANG("obj.fda45894", list(mob_holder))
+		. += LANG("obj.fda4589402d690ed", list(mob_holder))
 		return
 
 /obj/item/pinpointer/shuttle
@@ -265,5 +265,5 @@ GLOBAL_LIST_EMPTY(sniffable_sheets)
 	if(!new_sheet_target)
 		target = null
 		return
-	say(LANG("obj.0c4f8dab", list(new_sheet_target.amount, new_sheet_target.singular_name)))
+	say(LANG("obj.0c4f8dabcb535567", list(new_sheet_target.amount, new_sheet_target.singular_name)))
 	target = new_sheet_target

@@ -59,7 +59,7 @@
 
 /datum/embedding/chrystarfish/jostle_effects()
 	do_teleport(owner, get_turf(owner), 3, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
-	owner.visible_message(span_danger(LANG("datum.96dd4912", list(owner, parent, owner.p_them()))))
+	owner.visible_message(span_danger(LANG("datum.96dd49129c4389ee", list(owner, parent, owner.p_them()))))
 
 /obj/item/fish/starfish/chrystarfish/set_status(new_status, silent)
 	. = ..()
@@ -80,14 +80,14 @@
 /obj/item/fish/starfish/chrystarfish/flinch_on_eat(mob/living/eater, mob/living/feeder)
 	if(status != FISH_ALIVE)
 		return
-	to_chat(feeder, span_warning(LANG("obj.1589b174", list(src))))
+	to_chat(feeder, span_warning(LANG("obj.1589b17466faae5a", list(src))))
 
 	var/tp_range = 6 * clamp(weight/average_weight, 3, 9) // usually 6, plus or minus fish weight
 	// teleports itself if on a turf otherwise its container - whatever it is
 	do_teleport(isturf(loc) ? src : loc, get_turf(feeder), tp_range, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/item/fish/starfish/chrystarfish/suicide_act(mob/living/user)
-	visible_message(span_suicide(LANG("obj.9929165c", list(user, src))))
+	visible_message(span_suicide(LANG("obj.9929165cb4c1c4f0", list(user, src))))
 	forceMove(user)
 	// *everything*
 	for(var/obj/thing in user.get_contents())
@@ -227,7 +227,7 @@
 	switch(patience)
 		if(0)
 			// No check, we always want sharky to bite jerky on 0
-			moc.visible_message(span_bolddanger(LANG("obj.56751455", list(src, moc, moc.p_their()))), span_userdanger(LANG("obj.e569a0bb", list(src))))
+			moc.visible_message(span_bolddanger(LANG("obj.567514550635c3fd", list(src, moc, moc.p_their()))), span_userdanger(LANG("obj.e569a0bb35231425", list(src))))
 			moc.apply_damage(force, BRUTE, moc.get_active_hand(), wound_bonus = wound_bonus, exposed_wound_bonus = exposed_wound_bonus, sharpness = sharpness, attacking_item = src)
 			forceMove(moc.drop_location())
 			moc.painful_scream()
@@ -235,18 +235,18 @@
 			playsound(src, hitsound, 45)
 		if(1 to 10)
 			// No check, final warning as they struggle, also funny.
-			visible_message(span_bolddanger(LANG("obj.9aaa72b8", list(src, moc))))
+			visible_message(span_bolddanger(LANG("obj.9aaa72b85d0508b9", list(src, moc))))
 			moc.shake_up_animation()
 		if(10 to 15)
 			if(last_effect == PATIENCE_FLINCH)
 				return
-			visible_message(span_danger(LANG("obj.662fe836", list(src, moc))))
+			visible_message(span_danger(LANG("obj.662fe836c02a5968", list(src, moc))))
 			moc.shake_up_animation()
 			last_effect = PATIENCE_FLINCH
 		if(15 to 20)
 			if(last_effect == PATIENCE_UNCOMFY)
 				return
-			visible_message(span_notice(LANG("obj.13cf0172", list(src, moc))))
+			visible_message(span_notice(LANG("obj.13cf0172af237d14", list(src, moc))))
 			last_effect = PATIENCE_UNCOMFY
 
 	return
@@ -256,8 +256,8 @@
 
 /obj/item/fish/dolphish/pet_fish(mob/living/user, in_aquarium)
 	user.visible_message(
-		span_warning(LANG("obj.282b76f0", list(user, src, user.p_their()))),
-		span_warning(LANG("obj.c555261e", list(src))),
+		span_warning(LANG("obj.282b76f0d0f70fe4", list(user, src, user.p_their()))),
+		span_warning(LANG("obj.c555261ea8188e11", list(src))),
 		vision_distance = DEFAULT_MESSAGE_RANGE - 3,
 		)
 	user.apply_damage(force, BRUTE, user.get_active_hand(), wound_bonus = wound_bonus, exposed_wound_bonus = exposed_wound_bonus, sharpness = sharpness, attacking_item = src)
@@ -306,7 +306,7 @@
 	beauty = FISH_BEAUTY_UGLY
 
 /obj/item/fish/flumpulus/suicide_act(mob/living/user)
-	visible_message(span_suicide(LANG("obj.9929165c", list(user, src))))
+	visible_message(span_suicide(LANG("obj.9929165cb4c1c4f0", list(user, src))))
 	forceMove(user)
 	. = MANUAL_SUICIDE
 	for(var/i in 1 to rand(5, 15))
@@ -319,13 +319,13 @@
 	new_eyes = new new_eyes(user)
 	new_eyes.Insert(user)
 	playsound(user, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 50, TRUE)
-	user.visible_message(LANG("obj.e73980e4", list(user, eyes ? eyes : "eye holes", new_eyes)))
+	user.visible_message(LANG("obj.e73980e40acffcea", list(user, eyes ? eyes : "eye holes", new_eyes)))
 	ASYNC
 		user.emote("scream")
 		eyes.throw_at(get_edge_target_turf(user, pick(GLOB.alldirs)), rand(1, 10), rand(1, 10))
 		sleep(5 SECONDS)
 		if(!QDELETED(eyes))
-			eyes.visible_message(span_danger(LANG("obj.29def987", list(eyes))))
+			eyes.visible_message(span_danger(LANG("obj.29def9872059467a", list(eyes))))
 			eyes.dust()
 
 /obj/item/fish/flumpulus/get_base_edible_reagents_to_add()
@@ -340,7 +340,7 @@
 		return .
 
 	for(var/mob/living/fallen_mob in falling_movables)
-		visible_message(span_danger(LANG("obj.79d27056", list(src, fallen_mob))))
+		visible_message(span_danger(LANG("obj.79d2705688951ef3", list(src, fallen_mob))))
 		damage_fish(max_integrity * integrity_failure * 0.9) // very "durable"
 		AddElement(/datum/element/squish, 15 SECONDS)
 		fallen_mob.Paralyze(0.5 SECONDS)
@@ -394,17 +394,17 @@
 	max_pressure = WARNING_HIGH_PRESSURE
 
 /obj/item/fish/gullion/suicide_act(mob/living/user)
-	visible_message(span_suicide(LANG("obj.9929165c", list(user, src))))
+	visible_message(span_suicide(LANG("obj.9929165cb4c1c4f0", list(user, src))))
 	forceMove(user)
 	var/datum/gas_mixture/environment = user.loc.return_air()
 	var/oxygen_in_air = locate(/datum/gas/oxygen) in environment.moles
 	if(!oxygen_in_air || (status == FISH_DEAD))
-		visible_message(span_suicide(LANG("obj.c048796b", list(user))))
+		visible_message(span_suicide(LANG("obj.c048796b6690ead1", list(user))))
 		return OXYLOSS
 
 	user.petrify(statue_timer = INFINITY)
 	user.death()
-	visible_message(span_suicide(LANG("obj.dd161a69", list(user))))
+	visible_message(span_suicide(LANG("obj.dd161a695a04d97e", list(user))))
 	qdel(src)
 	return MANUAL_SUICIDE
 
@@ -470,12 +470,12 @@
 		AddElement(/datum/element/haunted, COLOR_GREEN)
 
 /obj/item/fish/mossglob/suicide_act(mob/living/user)
-	visible_message(span_suicide(LANG("obj.a22a91ae", list(user, user.p_their(), src))))
+	visible_message(span_suicide(LANG("obj.a22a91ae73a99eef", list(user, user.p_their(), src))))
 	user.drop_everything()
 	set_status(FISH_ALIVE)
 	transform = transform.Scale(1.15, 1.15)
 	update_size_and_weight(new_size = size * 1.15, new_weight = weight * 1.15)
-	visible_message(span_suicide(LANG("obj.af6e4763", list(user, src))))
+	visible_message(span_suicide(LANG("obj.af6e47635c7c24e9", list(user, src))))
 	objectify(user, src)
 	return MANUAL_SUICIDE_NONLETHAL
 
@@ -569,9 +569,9 @@
 /obj/item/fish/babbelfish/suicide_act(mob/living/user)
 	if(status == FISH_DEAD)
 		if(moron_inside)
-			visible_message(span_suicide(LANG("obj.c1ceab4f", list(user, src, src))))
+			visible_message(span_suicide(LANG("obj.c1ceab4f0bd9a747", list(user, src, src))))
 			return SHAME
-		visible_message(span_suicide(LANG("obj.97b7ba4e", list(user, src, src, user.p_them()))))
+		visible_message(span_suicide(LANG("obj.97b7ba4e764f4c53", list(user, src, src, user.p_them()))))
 		user.drop_everything()
 		objectify(user, src)
 		user.fully_replace_character_name(null, name) // fish's name
@@ -581,11 +581,11 @@
 		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(check_loc))
 		return MANUAL_SUICIDE_NONLETHAL // in case they somehow break out
 
-	visible_message(span_suicide(LANG("obj.2cc81b64", list(user, src))))
-	var/psychic_speech = tgui_input_text(user, message = "Say something!", title = "What are your last words?", timeout = 15 SECONDS)
+	visible_message(span_suicide(LANG("obj.2cc81b648f41629b", list(user, src))))
+	var/psychic_speech = tgui_input_text(user, message = LANG("obj.d2d964a87ba81037", null), title = LANG("obj.880a1c722294e2ff", null), timeout = 15 SECONDS)
 	if(!psychic_speech || !locate(src) in user.get_contents())
-		user.say(LANG("obj.2d013962", null), forced = "blustering like a moron due to babbelfish suicide")
-		visible_message(span_suicide(LANG("obj.b597bc0a", list(user))))
+		user.say(LANG("obj.2d013962b01e1494", null), forced = "blustering like a moron due to babbelfish suicide")
+		visible_message(span_suicide(LANG("obj.b597bc0a8b7662d2", list(user))))
 		return OXYLOSS
 
 	voice_of_god(psychic_speech, user, list("big", "alertalien"), base_multiplier = 5, include_speaker = TRUE, forced = TRUE, ignore_spam = TRUE)
@@ -629,12 +629,12 @@
  * This is punishment for neglecting your catches.
  */
 /obj/item/fish/babbelfish/proc/psy_wail()
-	manual_emote(LANG("obj.243f29f1", null))
+	manual_emote(LANG("obj.243f29f1fb3bce46", null))
 	playsound(src, 'sound/mobs/non-humanoids/fish/fish_psyblast.ogg', 100)
 	var/list/mob/living/mobs_in_range = get_hearers_in_range(7, src)
 	for(var/mob/living/screeched in mobs_in_range)
 		if(screeched.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 1))
-			to_chat(screeched, span_notice(LANG("obj.00a6ad84", null)))
+			to_chat(screeched, span_notice(LANG("obj.00a6ad84e2b3cf0d", null)))
 			continue
 		var/power = 1
 		if(HAS_TRAIT(screeched, TRAIT_DEAF)) // bit weaker if deaf. but its still psychic
@@ -665,7 +665,7 @@
 		fishie.set_status(FISH_DEAD)
 		affected++
 	if(affected)
-		visible_message(span_bolddanger(LANG("obj.ba19230c", list(src, affected)))) // m-m-m-m-m-MONSTER KILL
+		visible_message(span_bolddanger(LANG("obj.ba19230cb81debcc", list(src, affected)))) // m-m-m-m-m-MONSTER KILL
 
 /obj/item/fish/babbelfish/attack_hand(mob/living/user, list/modifiers)
 
@@ -673,10 +673,10 @@
 		return ..()
 
 	if((user.usable_hands < 2) && !HAS_TRAIT(user, TRAIT_STRENGTH))
-		to_chat(user, span_notice(LANG("obj.18aeef6d", list(src))))
+		to_chat(user, span_notice(LANG("obj.18aeef6d60efb570", list(src))))
 		return
 
-	to_chat(user, span_danger(LANG("obj.2d7800f5", list(src))))
+	to_chat(user, span_danger(LANG("obj.2d7800f554df93ce", list(src))))
 	if(!do_after(user, 5 SECONDS, src))
 		return
 
@@ -752,15 +752,15 @@
 	. = ..()
 	var/obj/item/organ/ears/ears = target_mob.get_organ_slot(ORGAN_SLOT_EARS)
 	if(!ears)
-		to_chat(user, span_notice(LANG("obj.8cf1802a", list(target_mob == user ? "You don't have" : target_mob + "has no", src))))
+		to_chat(user, span_notice(LANG("obj.8cf1802aa654df2b", list(target_mob == user ? "You don't have" : target_mob + "has no", src))))
 		return
 
-	to_chat(user, span_danger(LANG("obj.64989322", list(src, target_mob == user ? "your" : target_mob + "'s"))))
+	to_chat(user, span_danger(LANG("obj.64989322ad9fcc8a", list(src, target_mob == user ? "your" : target_mob + "'s"))))
 	if(!do_after(user, 2.5 SECONDS * (target_mob == user ? 1 : 3), src))
 		return
 
 	user.apply_damage(25, BRUTE, user.get_bodypart(ears.zone), attacking_item = src)
-	to_chat(user, span_notice(LANG("obj.f5145fcc", list(src, target_mob == user ? "your" : target_mob + "'s", target_mob == user ? "your" : target_mob.p_their(), ears.zone))))
+	to_chat(user, span_notice(LANG("obj.f5145fcca0a3aab9", list(src, target_mob == user ? "your" : target_mob + "'s", target_mob == user ? "your" : target_mob.p_their(), ears.zone))))
 	playsound(user, 'sound/effects/magic/demon_consume.ogg', vol = 100, falloff_exponent = 2, vary = TRUE)
 	// bad moodlet
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
@@ -778,7 +778,7 @@
 	)
 
 	if(HAS_MIND_TRAIT(organ_owner, TRAIT_TOWER_OF_BABEL))
-		to_chat(organ_owner, span_noticealien(LANG("obj.0f7c6714", list(src))))
+		to_chat(organ_owner, span_noticealien(LANG("obj.0f7c6714e64ad681", list(src))))
 		return
 
 	if(!removal_holder)
@@ -791,18 +791,18 @@
 			organ_owner.remove_all_languages(source = LANGUAGE_ALL)
 			//but speak everything
 			organ_owner.grant_all_languages(language_flags = SPOKEN_LANGUAGE, grant_omnitongue = FALSE, source = LANGUAGE_BABEL)
-			to_chat(organ_owner, span_noticealien(LANG("obj.741cfcb8", null)))
+			to_chat(organ_owner, span_noticealien(LANG("obj.741cfcb8cbb19fac", null)))
 		if(46 to 90)
 			// Can speak nothing
 			organ_owner.remove_all_languages(source = LANGUAGE_ALL)
 			// but understand everything
 			organ_owner.grant_all_languages(language_flags = UNDERSTOOD_LANGUAGE, grant_omnitongue = FALSE, source = LANGUAGE_BABEL)
-			to_chat(organ_owner, span_noticealien(LANG("obj.3941e6d0", null)))
+			to_chat(organ_owner, span_noticealien(LANG("obj.3941e6d035428301", null)))
 		if(91 to 100)
 			// jackpot!
 			organ_owner.grant_all_languages(language_flags = ALL, grant_omnitongue = TRUE, source = LANGUAGE_BABEL)
-			to_chat(organ_owner, span_noticealien(LANG("obj.c85aad15", null)))
-			to_chat(organ_owner, span_boldnicegreen(LANG("obj.b559b9f5", null)))
+			to_chat(organ_owner, span_noticealien(LANG("obj.c85aad154730fb53", null)))
+			to_chat(organ_owner, span_boldnicegreen(LANG("obj.b559b9f5c636639e", null)))
 
 	if(organ_owner.mind)
 		ADD_TRAIT(organ_owner.mind, TRAIT_TOWER_OF_BABEL, MAGIC_TRAIT) // only one roll per mind
@@ -813,14 +813,14 @@
 	// Reset
 	organ_owner.remove_all_languages(source = LANGUAGE_ALL)
 	organ_owner.copy_languages(removal_holder)
-	to_chat(organ_owner, span_notice(LANG("obj.2ef87727", null)))
+	to_chat(organ_owner, span_notice(LANG("obj.2ef87727b0e9a4eb", null)))
 	QDEL_NULL(removal_holder)
 	QDEL_NULL(bound_component)
 
 /obj/item/organ/ears/babbelfish/proc/on_drain_magic(mob/user)
-	to_chat(user, span_noticealien(LANG("obj.250f5d05", list(src))))
+	to_chat(user, span_noticealien(LANG("obj.250f5d05cf86f611", list(src))))
 	adjust_temporary_deafness(40 SECONDS)
 
 /obj/item/organ/ears/babbelfish/proc/on_expire(mob/user)
-	to_chat(user, span_noticealien(LANG("obj.ebece85d", list(src))))
+	to_chat(user, span_noticealien(LANG("obj.ebece85db4cbfc28", list(src))))
 	apply_organ_damage(maxHealth, maxHealth)

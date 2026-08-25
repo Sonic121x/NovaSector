@@ -36,8 +36,8 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "thermometer-half",
-		SPECIES_PERK_NAME = LANG("datum.1b9c1f74", null),
-		SPECIES_PERK_DESC = LANG("datum.9f895369", null),
+		SPECIES_PERK_NAME = LANG("datum.1b9c1f74633f215f", null),
+		SPECIES_PERK_DESC = LANG("datum.9f89536939933b71", null),
 	))
 
 	return to_add

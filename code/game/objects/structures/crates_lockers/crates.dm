@@ -154,7 +154,7 @@
 		manifest = null
 		return FALSE
 	if(user)
-		to_chat(user, span_notice(LANG("obj.0af197bf", list(src))))
+		to_chat(user, span_notice(LANG("obj.0af197bf0b8b1b82", list(src))))
 	playsound(src, 'sound/items/poster/poster_ripped.ogg', 75, TRUE)
 
 	our_manifest.forceMove(drop_location(src))
@@ -421,7 +421,7 @@
 	base_icon_state = "robo"
 
 /obj/structure/closet/crate/mod
-	name = "MOD crate"
+	name = "\improper MOD crate"
 	icon_state = "robo"
 	base_icon_state = "robo"
 
@@ -517,7 +517,7 @@
 
 /obj/structure/closet/crate/market/after_open(mob/living/user, force)
 	. = ..()
-	visible_message(span_notice(LANG("obj.9edf2c12", list(src, user))))
+	visible_message(span_notice(LANG("obj.9edf2c1246738aeb", list(src, user))))
 	pop_crate()
 
 /obj/structure/closet/crate/market/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

@@ -128,7 +128,7 @@
 
 	if (unreceived.len)
 		if (unreceived.len >= ASSET_CACHE_TELL_CLIENT_AMOUNT)
-			to_chat(client, span_infoplain(LANG("datum.64de97c1", null)))
+			to_chat(client, span_infoplain(LANG("datum.64de97c13e1c3e3e", null)))
 
 		for (var/asset_name in unreceived)
 			var/new_asset_name = asset_name

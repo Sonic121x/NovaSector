@@ -388,21 +388,21 @@
 /obj/machinery/door/window/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning(LANG("obj.2cd3f83a", null))
+		. += span_warning(LANG("obj.2cd3f83a2a2e26da", null))
 	if(!density)
 		if(panel_open)
-			. += span_notice(LANG("obj.62bfef5c", list(span_boldnotice("airlock electronics"), span_boldnotice("levered"))))
+			. += span_notice(LANG("obj.62bfef5cc1fe8f8a", list(span_boldnotice("airlock electronics"), span_boldnotice("levered"))))
 
 
 /obj/machinery/door/window/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(density || operating)
-		to_chat(user, span_warning(LANG("obj.3cf17ea3", null)))
+		to_chat(user, span_warning(LANG("obj.3cf17ea34fa1135d", null)))
 		return ITEM_INTERACT_BLOCKING
 	add_fingerprint(user)
 	tool.play_tool_sound(src)
 	toggle_panel_open()
-	to_chat(user, span_notice(LANG("obj.aec23cf2", list(panel_open ? "open" : "close"))))
+	to_chat(user, span_notice(LANG("obj.aec23cf2277f6da2", list(panel_open ? "open" : "close"))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/door/window/crowbar_act(mob/living/user, obj/item/tool)
@@ -410,8 +410,8 @@
 	if(!panel_open || density || operating)
 		return ITEM_INTERACT_BLOCKING
 	add_fingerprint(user)
-	user.visible_message(span_notice(LANG("obj.63925670", list(user, src))), \
-	span_notice(LANG("obj.a9e34175", list(src))))
+	user.visible_message(span_notice(LANG("obj.63925670efd1fcda", list(user, src))), \
+	span_notice(LANG("obj.a9e341759b41fd47", list(src))))
 	if(!tool.use_tool(src, user, 40, volume=50))
 		return ITEM_INTERACT_BLOCKING
 	if(!panel_open || density || operating || !loc)
@@ -434,10 +434,10 @@
 	windoor_assembly.update_appearance()
 	windoor_assembly.created_name = name
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning(LANG("obj.54fac71b", null)))
+		to_chat(user, span_warning(LANG("obj.54fac71bef29521c", null)))
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_notice(LANG("obj.a5dac4b8", null)))
+	to_chat(user, span_notice(LANG("obj.a5dac4b826ccd223", null)))
 	var/obj/item/electronics/airlock/dropped_electronics
 	if(!electronics)
 		dropped_electronics = new/obj/item/electronics/airlock(drop_location())
@@ -471,7 +471,7 @@
 		var/obj/item/crowbar/power/power_tool = I
 		if(power_tool.limit_jaws_access && forced)
 			playsound(src.loc, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-			user.balloon_alert(user, LANG("obj.3de46b79", null))
+			user.balloon_alert(user, LANG("obj.3de46b791b5b5d83", null))
 			return
 
 	if(!hasPower() || forced)
@@ -480,7 +480,7 @@
 		else
 			close(BYPASS_DOOR_CHECKS)
 	else
-		to_chat(user, span_warning(LANG("obj.f07aeba2", null)))
+		to_chat(user, span_warning(LANG("obj.f07aeba2d14573c3", null)))
 
 /obj/machinery/door/window/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)

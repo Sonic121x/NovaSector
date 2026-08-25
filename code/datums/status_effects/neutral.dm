@@ -135,7 +135,7 @@
 		rewarded = caster
 
 /datum/status_effect/bounty/on_apply()
-	to_chat(owner, span_boldnotice(LANG("datum.dbfb7106", list(rewarded))))
+	to_chat(owner, span_boldnotice(LANG("datum.dbfb7106ff1c42fd", list(rewarded))))
 	playsound(owner, 'sound/items/weapons/gun/shotgun/rack.ogg', 75, FALSE)
 	return ..()
 
@@ -146,9 +146,9 @@
 
 /datum/status_effect/bounty/proc/rewards()
 	if(rewarded && rewarded.mind && rewarded.stat != DEAD)
-		to_chat(owner, span_boldnotice(LANG("datum.fe78ab2e", null)))
+		to_chat(owner, span_boldnotice(LANG("datum.fe78ab2e55f9e1bf", null)))
 		playsound(owner, 'sound/items/weapons/gun/shotgun/shot.ogg', 75, FALSE)
-		to_chat(rewarded, span_greentext(LANG("datum.17daa044", null)))
+		to_chat(rewarded, span_greentext(LANG("datum.17daa044e61515d5", null)))
 		for(var/datum/action/cooldown/spell/spell in rewarded.actions)
 			spell.reset_spell_cooldown()
 
@@ -274,7 +274,7 @@
 	if(taker.IsReachableBy(owner) || ((owner.pulling == taker) || (taker.pulling == owner)) && !taker.incapacitated)
 		return
 
-	to_chat(taker, span_warning(LANG("datum.b0c4970b", list(owner))))
+	to_chat(taker, span_warning(LANG("datum.b0c4970b408e99d0", list(owner))))
 	remove_candidate(taker)
 
 /// The offerer moved, see if anyone is out of range now
@@ -473,12 +473,12 @@
 
 	if(!QDELETED(alt_clone)) //catch any stragglers
 		do_sparks(5, FALSE, alt_clone)
-		owner.visible_message(LANG("datum.49433464", list(owner)))
+		owner.visible_message(LANG("datum.49433464dc6a01f5", list(owner)))
 		QDEL_NULL(alt_clone)
 
 	if(block_effects)
 		if(!stable_message)
-			owner.visible_message(LANG("datum.8eb3cfaa", null))
+			owner.visible_message(LANG("datum.8eb3cfaab550887d", null))
 			stable_message = TRUE
 		return
 	stable_message = FALSE
@@ -490,7 +490,7 @@
 	//These run on specific cycles
 	switch(current_cycle)
 		if(0)
-			to_chat(owner, span_userdanger(LANG("datum.3cae511f", null)))
+			to_chat(owner, span_userdanger(LANG("datum.3cae511f0899ad33", null)))
 
 		//phase 1
 		if(1 to EIGENSTASIUM_PHASE_1_END)
@@ -500,7 +500,7 @@
 		//phase 2
 		if(EIGENSTASIUM_PHASE_1_END to EIGENSTASIUM_PHASE_2_END)
 			if(current_cycle == 51)
-				to_chat(owner, span_userdanger(LANG("datum.62944451", null)))
+				to_chat(owner, span_userdanger(LANG("datum.62944451099dbc82", null)))
 				owner.set_jitter_if_lower(400 SECONDS)
 				owner.Knockdown(10)
 
@@ -530,14 +530,14 @@
 			switch(phase_3_cycle) //Loops 0 -> 1 -> 2 -> 1 -> 2 -> 1 ...ect.
 				if(0)
 					owner.set_jitter_if_lower(200 SECONDS)
-					to_chat(owner, span_userdanger(LANG("datum.227b7685", null)))
+					to_chat(owner, span_userdanger(LANG("datum.227b768550ca5dd1", null)))
 				if(1)
 					var/typepath = owner.type
 					alt_clone = new typepath(owner.loc)
 					alt_clone.appearance = owner.appearance
 					alt_clone.real_name = owner.real_name
 					RegisterSignal(alt_clone, COMSIG_QDELETING, PROC_REF(remove_clone_from_var))
-					owner.visible_message(LANG("datum.8723bbd1", list(owner)))
+					owner.visible_message(LANG("datum.8723bbd1b8f3052e", list(owner)))
 					do_teleport(alt_clone, get_turf(alt_clone), 2, no_effects=TRUE) //teleports clone so it's hard to find the real one!
 					do_sparks(5,FALSE,alt_clone)
 					alt_clone.emote("spin")
@@ -559,7 +559,7 @@
 			do_sparks(5, FALSE, owner)
 			owner.Sleeping(100)
 			owner.set_jitter_if_lower(100 SECONDS)
-			to_chat(owner, span_userdanger(LANG("datum.06c61ccc", null)))
+			to_chat(owner, span_userdanger(LANG("datum.06c61ccc1263036f", null)))
 			owner.emote("me",1,"flashes into reality suddenly, gasping as they gaze around in a bewildered and highly confused fashion!",TRUE)
 			owner.log_message("has become an alternative universe version of themselves via EIGENSTASIUM.", LOG_GAME)
 			//new you new stuff
@@ -587,7 +587,7 @@
 /datum/status_effect/eigenstasium/on_remove()
 	if(!QDELETED(alt_clone))//catch any stragilers
 		do_sparks(5, FALSE, alt_clone)
-		owner.visible_message(LANG("datum.a57d9736", list(owner)))
+		owner.visible_message(LANG("datum.a57d97365469f51b", list(owner)))
 		QDEL_NULL(alt_clone)
 	return ..()
 
@@ -920,3 +920,35 @@
 	SIGNAL_HANDLER
 
 	real_invis_see = see_invis
+
+// Applies a little arrow above the mobs head to let the players know that it's subject to holding up the waves being spawned.
+/datum/status_effect/heads_up
+	id = "heads_up_arrow"
+	processing_speed = STATUS_EFFECT_NORMAL_PROCESS
+	alert_type = null
+	on_remove_on_mob_delete = TRUE
+	var/obj/effect/overlay/wave_headsup/arrow_overlay
+
+/datum/status_effect/heads_up/on_apply()
+	. = ..()
+	var/turf/owner_turf = get_turf(owner)
+	arrow_overlay = new /obj/effect/overlay/wave_headsup
+	arrow_overlay.pixel_x = -(owner.base_pixel_x)
+	SET_PLANE(arrow_overlay, PLANE_TO_TRUE(arrow_overlay.plane), owner_turf)
+	owner.vis_contents += arrow_overlay
+	RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
+	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+
+/datum/status_effect/heads_up/on_remove()
+	owner.vis_contents -= arrow_overlay
+	QDEL_NULL(arrow_overlay)
+	UnregisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED)
+
+/datum/status_effect/heads_up/proc/on_z_change(mob/living/source, turf/old_turf, turf/new_turf, same_z_layer)
+	SIGNAL_HANDLER
+	SET_PLANE(arrow_overlay, PLANE_TO_TRUE(arrow_overlay.plane), new_turf)
+
+/// We delete the status effect and visual on mob death.
+/datum/status_effect/heads_up/proc/on_death(mob/living/source)
+	SIGNAL_HANDLER
+	qdel(src)

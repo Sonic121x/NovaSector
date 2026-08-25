@@ -1,19 +1,19 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 GAME_VERB(/mob, request_internet_sound, "请求互联网音效", "OOC")
 	if(!CONFIG_GET(flag/request_internet_sound))
-		to_chat(usr, span_danger(LANG("mob.34d73204", null)), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("mob.34d7320444f9253b", null)), confidential = TRUE)
 		return
 
-	var/request_url = tgui_input_text(usr, LANG("mob.bd1a1916", list(replacetext(replacetext(CONFIG_GET(string/request_internet_allowed), "\\", ""), ",", ", "))), LANG("mob.513492bc", null))
+	var/request_url = tgui_input_text(usr, LANG("mob.bd1a19169bf9802f", list(replacetext(replacetext(CONFIG_GET(string/request_internet_allowed), "\\", ""), ",", ", "))), LANG("mob.513492bc544784ae", null))
 	if(!request_url)
 		return
 
 	var/regex/allowed_regex = regex(replacetext(CONFIG_GET(string/request_internet_allowed), ",", "|"), "i")
 	if(!allowed_regex.Find(request_url))
-		to_chat(usr, span_danger(LANG("mob.c3fdf371", list(replacetext(CONFIG_GET(string/request_internet_allowed), "\\", " ")))), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("mob.c3fdf371d426228d", list(replacetext(CONFIG_GET(string/request_internet_allowed), "\\", " ")))), confidential = TRUE)
 		return
 
-	var/credit = tgui_alert(usr, LANG("mob.7ab8bf08", list(usr.ckey)), LANG("mob.eda2ecd3", null), list("No", "Yes", "Cancel"))
+	var/credit = tgui_alert(usr, LANG("mob.7ab8bf081a19b74f", list(usr.ckey)), LANG("mob.eda2ecd34450c2ab", null), list("No", "Yes", "Cancel"))
 
 	if(credit == "Cancel" || isnull(credit))
 		return
@@ -26,13 +26,13 @@ GAME_VERB(/mob, request_internet_sound, "请求互联网音效", "OOC")
 	log_internet_request("[src.key]/([src.name]): [request_url]")
 	if(usr.client)
 		if(usr.client.prefs.muted & MUTE_INTERNET_REQUEST)
-			to_chat(usr, span_danger(LANG("mob.5567cd98", null)), confidential = TRUE)
+			to_chat(usr, span_danger(LANG("mob.5567cd9824df7fab", null)), confidential = TRUE)
 			return
 		if(src.client.handle_spam_prevention(request_url,MUTE_INTERNET_REQUEST))
 			return
 
 	GLOB.requests.music_request(usr.client, request_url, credit)
-	to_chat(usr, span_info(LANG("mob.04a6d62d", list(span_linkify(request_url)))), confidential = TRUE)
+	to_chat(usr, span_info(LANG("mob.04a6d62d97deab6c", list(span_linkify(request_url)))), confidential = TRUE)
 
 	var/list/admin_message = list()
 	admin_message += ("[ADMIN_FULLMONTY(src)] [ADMIN_SC(src)] has requested the following to be played:<br>")

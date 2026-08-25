@@ -675,7 +675,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  */
 
 /area/proc/get_original_area_name()
-	if(name == initial(name) || lang_unreverse_text(name) == initial(name)) // NOVA EDIT - i18n: name may be reverse-localized at Initialize
+	if(name == initial(name))
 		return name
 	return "[name] ([initial(name)])"
 

@@ -92,7 +92,7 @@
 /obj/energy_ball/examine(mob/user)
 	. = ..()
 	if(orbiting_balls.len)
-		. += LANG("obj.8f45e687", list(orbiting_balls.len))
+		. += LANG("obj.8f45e687ae2ac3d4", list(orbiting_balls.len))
 
 /obj/energy_ball/proc/move(move_amount)
 	var/list/dirs = GLOB.alldirs.Copy()
@@ -163,7 +163,7 @@
 	if(!iscarbon(user))
 		return
 	var/mob/living/carbon/jedi = user
-	to_chat(jedi, span_userdanger(LANG("obj.374a15b9", null)))
+	to_chat(jedi, span_userdanger(LANG("obj.374a15b9d2df7960", null)))
 	var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in jedi.organs
 	jedi.ghostize(jedi)
 	if(rip_u)

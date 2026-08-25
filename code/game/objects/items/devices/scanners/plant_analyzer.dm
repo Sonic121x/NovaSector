@@ -113,8 +113,8 @@
  */
 /obj/item/plant_analyzer/proc/plant_biotype_health_scan(mob/living/scanned_mob, mob/living/carbon/human/user)
 	user.visible_message(
-		span_notice(LANG("obj.e9abb56d", list(user, scanned_mob))),
-		span_notice(LANG("obj.cf14fd9f", list(scanned_mob)))
+		span_notice(LANG("obj.e9abb56d7bbcc95b", list(user, scanned_mob))),
+		span_notice(LANG("obj.cf14fd9f80d89e09", list(scanned_mob)))
 		)
 
 	healthscan(user, scanned_mob, scanpower = SCANPOWER_ADVANCED)
@@ -128,8 +128,8 @@
  */
 /obj/item/plant_analyzer/proc/plant_biotype_chem_scan(mob/living/scanned_mob, mob/living/carbon/human/user)
 	user.visible_message(
-		span_notice(LANG("obj.ac0eec86", list(user, scanned_mob))),
-		span_notice(LANG("obj.a0e19a6d", list(scanned_mob)))
+		span_notice(LANG("obj.ac0eec86f606be47", list(user, scanned_mob))),
+		span_notice(LANG("obj.a0e19a6df32f9c3f", list(scanned_mob)))
 		)
 	chemscan(user, scanned_mob)
 	add_fingerprint(user)

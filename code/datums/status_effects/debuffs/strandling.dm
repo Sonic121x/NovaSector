@@ -19,7 +19,7 @@
 /datum/status_effect/strandling/on_remove()
 	UnregisterSignal(owner, list(COMSIG_CARBON_PRE_BREATHE, COMSIG_ATOM_TOOL_ACT(TOOL_WIRECUTTER), COMSIG_CARBON_PRE_MISC_HELP))
 
-/datum/status_effect/strandling/get_examine_text()
+/datum/status_effect/strandling/get_examine_text(mob/examiner)
 	return span_warning("[owner.p_They()] seem[owner.p_s()] to be being choked by some durathread strands. You may be able to <b>cut</b> them off.")
 
 /// Signal proc for [COMSIG_CARBON_PRE_BREATHE], causes losebreath whenever we're trying to breathe
@@ -62,8 +62,8 @@
 		return
 
 	user.visible_message(
-		span_notice(LANG("datum.ffe92e65", list(user, tool ? "cut":"remove", owner == user ? "[owner.p_their()]":"[owner]'s"))),
-		span_notice(LANG("datum.0646f326", list(tool ? "cut":"remove", owner == user ? "your":"[owner]'s"))),
+		span_notice(LANG("datum.ffe92e65f35fd7e9", list(user, tool ? "cut":"remove", owner == user ? "[owner.p_their()]":"[owner]'s"))),
+		span_notice(LANG("datum.0646f3261c5eb443", list(tool ? "cut":"remove", owner == user ? "your":"[owner]'s"))),
 	)
 
 	// Play a sound if we have a tool
@@ -71,15 +71,15 @@
 
 	// Now try to remove the effect with a doafter. If we have a tool, we'll even remove it 60% faster.
 	if(!do_after(user, time_to_remove * (tool ? STRANGLING_TOOL_MULTIPLIER : 1), owner, interaction_key = REF(src)))
-		to_chat(user, span_warning(LANG("datum.07227edd", list(tool ? "cut":"remove", owner == user ? "your":"[owner]'s"))))
+		to_chat(user, span_warning(LANG("datum.07227edd27cf39a8", list(tool ? "cut":"remove", owner == user ? "your":"[owner]'s"))))
 		return FALSE
 
 	// Play another sound after we're done
 	tool?.play_tool_sound(owner)
 
 	user.visible_message(
-		span_notice(LANG("datum.81f5f7ea", list(user, tool ? "cut":"remove", owner == user ? "[owner.p_their()]":"[owner]'s"))),
-		span_notice(LANG("datum.425337c1", list(tool ? "cut":"remove", owner == user ? "your":"[owner]'s"))),
+		span_notice(LANG("datum.81f5f7ea6c4c0861", list(user, tool ? "cut":"remove", owner == user ? "[owner.p_their()]":"[owner]'s"))),
+		span_notice(LANG("datum.425337c1c5fbc79f", list(tool ? "cut":"remove", owner == user ? "your":"[owner]'s"))),
 	)
 	qdel(src)
 	return TRUE

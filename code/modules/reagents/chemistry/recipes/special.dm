@@ -258,7 +258,7 @@
 
 	var/datum/chemical_reaction/recipe = GLOB.chemical_reactions_list[pick(possible_recipes)]
 	if(!recipe)
-		add_raw_text(LANG("obj.4a51d9cf", null))
+		add_raw_text(LANG("obj.4a51d9cfdee783ab", null))
 		update_appearance()
 		return
 	var/list/dat = list("<ul>")

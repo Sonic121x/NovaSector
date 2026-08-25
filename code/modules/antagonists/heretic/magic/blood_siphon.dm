@@ -28,16 +28,16 @@
 	. = ..()
 	playsound(owner, 'sound/effects/magic/demon_attack1.ogg', 75, TRUE)
 	if(cast_on.can_block_magic())
-		owner.balloon_alert(owner, LANG("datum.589cf3eb", null))
+		owner.balloon_alert(owner, LANG("datum.589cf3ebf29cb320", null))
 		cast_on.visible_message(
-			span_danger(LANG("datum.44d911f3", list(cast_on))),
-			span_danger(LANG("datum.f092e989", null)),
+			span_danger(LANG("datum.44d911f352202ac7", list(cast_on))),
+			span_danger(LANG("datum.f092e989ec79f08e", null)),
 		)
 		return FALSE
 
 	cast_on.visible_message(
-		span_danger(LANG("datum.883ecb1d", list(cast_on, cast_on.p_them()))),
-		span_danger(LANG("datum.89b8fe70", null)),
+		span_danger(LANG("datum.883ecb1def37191b", list(cast_on, cast_on.p_them()))),
+		span_danger(LANG("datum.89b8fe706d799420", null)),
 	)
 
 	var/mob/living/living_owner = owner

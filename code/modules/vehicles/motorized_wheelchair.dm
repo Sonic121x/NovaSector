@@ -81,12 +81,12 @@
 
 /obj/vehicle/ridden/wheelchair/motorized/relaymove(mob/living/user, direction)
 	if(!power_cell)
-		to_chat(user, span_warning(LANG("obj.bb1d0ce6", list(src))))
+		to_chat(user, span_warning(LANG("obj.bb1d0ce6c16a213f", list(src))))
 		canmove = FALSE
 		addtimer(VARSET_CALLBACK(src, canmove, TRUE), 2 SECONDS)
 		return FALSE
 	if(power_cell.charge < energy_usage / max(power_efficiency, 1))
-		to_chat(user, span_warning(LANG("obj.082736e9", list(src))))
+		to_chat(user, span_warning(LANG("obj.082736e94de20a11", list(src))))
 		canmove = FALSE
 		addtimer(VARSET_CALLBACK(src, canmove, TRUE), 2 SECONDS)
 		return FALSE
@@ -95,7 +95,7 @@
 /obj/vehicle/ridden/wheelchair/motorized/attack_hand(mob/living/user, list/modifiers)
 	if(!power_cell || !panel_open)
 		return ..()
-	to_chat(user, span_notice(LANG("obj.cbed3266", list(power_cell, src))))
+	to_chat(user, span_notice(LANG("obj.cbed32661d4c054a", list(power_cell, src))))
 	user.put_in_hands(power_cell)
 	power_cell = null
 
@@ -109,12 +109,12 @@
 
 	if(istype(tool, /obj/item/stock_parts/power_store/cell))
 		if(power_cell)
-			to_chat(user, span_warning(LANG("obj.3b01fcf5", null)))
+			to_chat(user, span_warning(LANG("obj.3b01fcf505976a8e", null)))
 			return ITEM_INTERACT_BLOCKING
 
 		tool.forceMove(src)
 		power_cell = tool
-		to_chat(user, span_notice(LANG("obj.f2af2311", list(tool))))
+		to_chat(user, span_notice(LANG("obj.f2af2311d64352b9", list(tool))))
 		refresh_parts()
 		return ITEM_INTERACT_SUCCESS
 
@@ -144,7 +144,7 @@
 		user.put_in_hands(part)
 		component_parts -= oldstockpart
 		// user message
-		user.visible_message(span_notice(LANG("obj.b21249b7", list(user, oldstockpart.name(), newstockpart.name(), src))), span_notice(LANG("obj.be3a0261", list(oldstockpart.name(), newstockpart.name()))))
+		user.visible_message(span_notice(LANG("obj.b21249b7fb1808d3", list(user, oldstockpart.name(), newstockpart.name(), src))), span_notice(LANG("obj.be3a026194b2a49b", list(oldstockpart.name(), newstockpart.name()))))
 		replacement_occured = TRUE
 		break
 
@@ -168,19 +168,19 @@
 /obj/vehicle/ridden/wheelchair/motorized/screwdriver_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 	panel_open = !panel_open
-	user.visible_message(span_notice(LANG("obj.33b322cf", list(user, panel_open ? "opens" : "closes", src))), span_notice(LANG("obj.aec23cf2", list(panel_open ? "open" : "close"))))
+	user.visible_message(span_notice(LANG("obj.33b322cfb406873e", list(user, panel_open ? "opens" : "closes", src))), span_notice(LANG("obj.aec23cf2277f6da2", list(panel_open ? "open" : "close"))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/vehicle/ridden/wheelchair/motorized/examine(mob/user)
 	. = ..()
 	if((obj_flags & EMAGGED) && panel_open)
-		. += LANG("obj.20f17428", null)
-	. += LANG("obj.96370217", list((in_range(user, src) || isobserver(user)) ? "[power_cell ? "it reads:" : "but it is dark."]" : "but you can't see it from here."))
+		. += LANG("obj.20f1742803fbdf28", null)
+	. += LANG("obj.963702173d98dbd9", list((in_range(user, src) || isobserver(user)) ? "[power_cell ? "it reads:" : "but it is dark."]" : "but you can't see it from here."))
 	if(!power_cell || (!in_range(user, src) && !isobserver(user)))
 		return
-	. += LANG("obj.6ed256aa", list(speed))
-	. += LANG("obj.38dedf79", list(power_efficiency))
-	. += LANG("obj.10e76530", list(display_energy(power_cell.charge), display_energy(power_cell.maxcharge)))
+	. += LANG("obj.6ed256aaf00d94f5", list(speed))
+	. += LANG("obj.38dedf7947faac2e", list(power_efficiency))
+	. += LANG("obj.10e765306db8d85b", list(display_energy(power_cell.charge), display_energy(power_cell.maxcharge)))
 
 /obj/vehicle/ridden/wheelchair/motorized/Move(newloc, direct)
 	. = ..()
@@ -195,7 +195,7 @@
 /// Detonate an armed explosive on this wheelchair
 /obj/vehicle/ridden/wheelchair/motorized/detonate_bomb()
 	if (obj_flags & EMAGGED)
-		visible_message(span_boldwarning(LANG("obj.73d3c345", list(src))))
+		visible_message(span_boldwarning(LANG("obj.73d3c345498718ca", list(src))))
 		explosion(src, devastation_range = -1, heavy_impact_range = 1, light_impact_range = 3, flash_range = 2, adminlog = FALSE)
 	return ..()
 
@@ -219,9 +219,9 @@
 			ramtarget.throw_at(throw_target, 2, 3)
 			ramtarget.Knockdown(8 SECONDS)
 			ramtarget.adjust_stamina_loss(35)
-			visible_message(span_danger(LANG("obj.590ec4fc", list(src, ramtarget, disabled, ramtarget))))
+			visible_message(span_danger(LANG("obj.590ec4fcdc7789c1", list(src, ramtarget, disabled, ramtarget))))
 		else
-			visible_message(span_danger(LANG("obj.599ad85b", list(src, bumped_atom, disabled))))
+			visible_message(span_danger(LANG("obj.599ad85b6a1a5f9f", list(src, bumped_atom, disabled))))
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 
 /obj/vehicle/ridden/wheelchair/motorized/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -229,13 +229,13 @@
 		return FALSE
 
 	if (!panel_open)
-		balloon_alert(user, LANG("obj.c6eae104", null))
+		balloon_alert(user, LANG("obj.c6eae10428718fb1", null))
 		return FALSE
 
 	if (!bomb_attached)
 		RegisterSignal(src, COMSIG_WHEELCHAIR_BELL_RANG, PROC_REF(on_bell_rang))
-	balloon_alert(user, LANG("obj.c8ac1224", null))
-	visible_message(span_warning(LANG("obj.62fa4bd1", list(src))))
+	balloon_alert(user, LANG("obj.c8ac12245fa09d46", null))
+	visible_message(span_warning(LANG("obj.62fa4bd1b1a48652", list(src))))
 	obj_flags |= EMAGGED
 	return TRUE
 

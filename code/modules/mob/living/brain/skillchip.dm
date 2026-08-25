@@ -152,7 +152,7 @@
 			chip_tally++
 
 	if(chip_tally)
-		to_chat(owner, span_warning(LANG("obj.0ad975da", list(chip_tally, chip_tally == 1 ? " has" : "s have"))))
+		to_chat(owner, span_warning(LANG("obj.0ad975daf5f4db62", list(chip_tally, chip_tally == 1 ? " has" : "s have"))))
 
 /// Disables or re-enables any extra skillchips after skillchip limit changes.
 /obj/item/organ/brain/proc/update_skillchips()

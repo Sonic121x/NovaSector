@@ -285,7 +285,7 @@ SUBSYSTEM_DEF(player_ranks)
 
 	if(!admin_holder.check_for_rights(R_PERMISSIONS))
 		if(is_admin_client)
-			to_chat(admin, span_warning(LANG("datum.8063b60d", null)))
+			to_chat(admin, span_warning(LANG("datum.8063b60db1e4e222", null)))
 
 		return FALSE
 
@@ -304,7 +304,7 @@ SUBSYSTEM_DEF(player_ranks)
 
 	if(already_in_config[ckey])
 		if(is_admin_client)
-			to_chat(admin, span_warning(LANG("datum.d962eb81", list(ckey, rank_title))))
+			to_chat(admin, span_warning(LANG("datum.d962eb8172b791c0", list(ckey, rank_title))))
 
 		return FALSE
 
@@ -376,7 +376,7 @@ SUBSYSTEM_DEF(player_ranks)
 
 	if(!admin_holder.check_for_rights(R_PERMISSIONS))
 		if(is_admin_client)
-			to_chat(admin, span_warning(LANG("datum.8063b60d", null)))
+			to_chat(admin, span_warning(LANG("datum.8063b60db1e4e222", null)))
 
 		return FALSE
 
@@ -440,7 +440,7 @@ SUBSYSTEM_DEF(player_ranks)
 		return
 
 	if(!check_rights_for(admin, R_PERMISSIONS | R_DEBUG | R_SERVER))
-		to_chat(admin, span_warning(LANG("datum.8063b60d", null)))
+		to_chat(admin, span_warning(LANG("datum.8063b60db1e4e222", null)))
 		return
 
 	var/datum/player_rank_controller/controller = get_controller_for_group(rank_title)

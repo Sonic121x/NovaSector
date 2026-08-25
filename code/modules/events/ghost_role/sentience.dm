@@ -62,7 +62,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 
 	sentience_report += "Based on [data], we believe that [one_local] of the station's [pets] has developed [strength] level intelligence, and the ability to communicate."
 
-	priority_announce(sentience_report,LANG("datum.fe8d8b47", list(command_name())))
+	priority_announce(sentience_report,LANG("datum.fe8d8b47948e6395", list(command_name())))
 
 /datum/round_event/ghost_role/sentience/spawn_role()
 	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates(check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, alert_pic = /obj/item/slimepotion/sentience, role_name_text = role_name)
@@ -117,8 +117,8 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 		selected.health = selected.maxHealth
 		spawned_mobs += selected
 
-		to_chat(selected, span_userdanger(LANG("datum.793c10bc", null)))
-		to_chat(selected, span_warning(LANG("datum.41dd5958", null)))
+		to_chat(selected, span_userdanger(LANG("datum.793c10bc0b28c378", null)))
+		to_chat(selected, span_warning(LANG("datum.41dd5958e2032c95", null)))
 
 	return SUCCESSFUL_SPAWN
 

@@ -213,9 +213,9 @@
 /obj/item/toy/plush/nova/fushi/attack_self_secondary(mob/user)
 	plushhat = !plushhat
 	if(plushhat)
-		say(LANG("obj.a6f2f65e", null))
+		say(LANG("obj.a6f2f65e327db615", null))
 	else
-		say(LANG("obj.a6ecfbf0", null))
+		say(LANG("obj.a6ecfbf06fde968e", null))
 	update_appearance(UPDATE_ICON_STATE)
 
 /obj/item/toy/plush/nova/fushi/update_icon_state()

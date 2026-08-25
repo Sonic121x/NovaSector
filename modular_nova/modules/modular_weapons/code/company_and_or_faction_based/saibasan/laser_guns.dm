@@ -94,7 +94,7 @@
 
 /obj/item/gun/energy/modular_laser_rifle/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.3cc4ac88", null))
+	. += span_notice(LANG("obj.3cc4ac88f3bf3421", null))
 
 /obj/item/gun/energy/modular_laser_rifle/Destroy()
 	QDEL_NULL(tracked_soulcatcher)

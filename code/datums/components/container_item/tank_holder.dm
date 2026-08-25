@@ -18,12 +18,12 @@
 	var/obj/item/I = parent
 	if(container.contents.len)
 		if(user)
-			to_chat(user, span_warning(LANG("datum.b97c4533", list(container))))
+			to_chat(user, span_warning(LANG("datum.b97c45332c564646", list(container))))
 		return TRUE
 	if(user)
 		if(!user.transferItemToLoc(I, container))
 			return TRUE
-		to_chat(user, span_notice(LANG("datum.6635fb59", list(I, container))))
+		to_chat(user, span_notice(LANG("datum.6635fb59f38784e0", list(I, container))))
 	else
 		I.forceMove(container)
 	container.tank = I

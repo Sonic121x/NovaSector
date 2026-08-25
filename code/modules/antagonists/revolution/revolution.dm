@@ -25,7 +25,7 @@
 	new_owner.add_antag_datum(src)
 	message_admins("[key_name_admin(admin)] has rev'ed [key_name_admin(new_owner)].")
 	log_admin("[key_name(admin)] has rev'ed [key_name(new_owner)].")
-	to_chat(new_owner.current, span_userdanger(LANG("datum.8c08031b", null)))
+	to_chat(new_owner.current, span_userdanger(LANG("datum.8c08031b03a8ca2d", null)))
 
 /datum/antagonist/rev/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
@@ -71,7 +71,7 @@
 	new_revhead.silent = TRUE
 	old_owner.add_antag_datum(new_revhead,old_team)
 	new_revhead.silent = FALSE
-	to_chat(old_owner, span_userdanger(LANG("datum.ea8903e9", null)))
+	to_chat(old_owner, span_userdanger(LANG("datum.ea8903e9718dc456", null)))
 
 /datum/antagonist/rev/get_admin_commands()
 	. = ..()
@@ -103,7 +103,7 @@
 	new_owner.add_antag_datum(src)
 	message_admins("[key_name_admin(admin)] has head-rev'ed [key_name_admin(new_owner)].")
 	log_admin("[key_name(admin)] has head-rev'ed [key_name(new_owner)].")
-	to_chat(new_owner.current, span_userdanger(LANG("datum.534783d8", null)))
+	to_chat(new_owner.current, span_userdanger(LANG("datum.534783d8bd43eb90", null)))
 
 /datum/antagonist/rev/head/get_admin_commands()
 	. = ..()
@@ -117,7 +117,7 @@
 	var/list/L = owner.current.get_contents()
 	var/obj/item/assembly/flash/handheld/flash = locate() in L
 	if (!flash)
-		to_chat(admin, span_danger(LANG("datum.dc0e6009", null)))
+		to_chat(admin, span_danger(LANG("datum.dc0e6009f3378224", null)))
 		return
 	qdel(flash)
 
@@ -138,7 +138,7 @@
 	var/list/L = owner.current.get_contents()
 	var/obj/item/assembly/flash/handheld/flash = locate() in L
 	if (!flash)
-		to_chat(admin, span_danger(LANG("datum.9c0c2e27", null)))
+		to_chat(admin, span_danger(LANG("datum.9c0c2e27dbec495b", null)))
 	else
 		flash.burnt_out = FALSE
 		flash.update_appearance()
@@ -201,11 +201,11 @@
 	if(flashed.stat == DEAD || issilicon(flashed) || isdrone(flashed))
 		return
 	if(IS_UNCONSCIOUS_OR_CRIT(flashed))
-		to_chat(source, span_warning(LANG("datum.aae6947b", list(flashed.p_They(), flashed.p_them()))))
+		to_chat(source, span_warning(LANG("datum.aae6947b40ee1d65", list(flashed.p_They(), flashed.p_them()))))
 		return
 
 	if(isnull(flashed.mind) || !GET_CLIENT(flashed))
-		to_chat(source, span_warning(LANG("datum.f365d2b1", list(flashed))))
+		to_chat(source, span_warning(LANG("datum.f365d2b18420f641", list(flashed))))
 		return
 
 	var/holiday_meme_chance = check_holidays(APRIL_FOOLS) && prob(10)
@@ -214,14 +214,14 @@
 			INVOKE_ASYNC(src, PROC_REF(_async_holiday_meme_say), flashed)
 		flash.times_used-- // Flashes are less likely to burn out for headrevs, when used for conversion
 	else
-		to_chat(source, span_warning(LANG("datum.aaa802d1", list(flashed, flash))))
+		to_chat(source, span_warning(LANG("datum.aaa802d177e1f276", list(flashed, flash))))
 
 /// Used / called async from [proc/on_flash] to deliver a funny meme line
 /datum/antagonist/rev/head/proc/_async_holiday_meme_say(mob/living/carbon/flashed)
 	if(ishuman(flashed))
 		var/mob/living/carbon/human/human_flashed = flashed
 		human_flashed.force_say()
-	flashed.say(LANG("datum.111ff1ea", null), forced = "That son of a bitch! They're in. (April Fools)")
+	flashed.say(LANG("datum.111ff1ea340ccefe", null), forced = "That son of a bitch! They're in. (April Fools)")
 
 /datum/antagonist/rev/head/antag_listing_name()
 	return ..() + "(Leader)"
@@ -296,32 +296,32 @@
 	new_rev.silent = TRUE
 	old_owner.add_antag_datum(new_rev,old_team)
 	new_rev.silent = FALSE
-	to_chat(old_owner, span_userdanger(LANG("datum.b4cf7e8d", null)))
+	to_chat(old_owner, span_userdanger(LANG("datum.b4cf7e8d88e4f3bb", null)))
 
 /datum/antagonist/rev/farewell()
 	if(!owner.current)
 		return
-	owner.current.balloon_alert_to_viewers(LANG("datum.fad85a2a", null))
+	owner.current.balloon_alert_to_viewers(LANG("datum.fad85a2aa59b1520", null))
 	if(ishuman(owner.current))
-		owner.current.visible_message(span_deconversion_message(LANG("datum.5cad8cb4", list(owner.current, owner.current.p_theyve(), owner.current.p_their()))), null, null, null, owner.current)
-		to_chat(owner, LANG("datum.ab565df1", null))
+		owner.current.visible_message(span_deconversion_message(LANG("datum.5cad8cb4811dcc7c", list(owner.current, owner.current.p_theyve(), owner.current.p_their()))), null, null, null, owner.current)
+		to_chat(owner, LANG("datum.ab565df163e82757", null))
 	else if(issilicon(owner.current))
-		owner.current.visible_message(span_deconversion_message(LANG("datum.15d8aa06", null)), null, null, null, owner.current)
-		to_chat(owner, span_userdanger(LANG("datum.3233eafd", null)))
+		owner.current.visible_message(span_deconversion_message(LANG("datum.15d8aa0646eff65d", null)), null, null, null, owner.current)
+		to_chat(owner, span_userdanger(LANG("datum.3233eafd718d499a", null)))
 
 /datum/antagonist/rev/head/farewell()
 	if (deconversion_source == DECONVERTER_STATION_WIN || !owner.current)
 		return
-	owner.current.balloon_alert_to_viewers(LANG("datum.fad85a2a", null))
+	owner.current.balloon_alert_to_viewers(LANG("datum.fad85a2aa59b1520", null))
 	if((ishuman(owner.current)))
 		if(owner.current.stat != DEAD)
-			owner.current.visible_message(span_deconversion_message(LANG("datum.5cad8cb4", list(owner.current, owner.current.p_theyve(), owner.current.p_their()))), null, null, null, owner.current)
-			to_chat(owner, LANG("datum.5af83c96", null))
+			owner.current.visible_message(span_deconversion_message(LANG("datum.5cad8cb4811dcc7c", list(owner.current, owner.current.p_theyve(), owner.current.p_their()))), null, null, null, owner.current)
+			to_chat(owner, LANG("datum.5af83c961110f4d7", null))
 		else
-			to_chat(owner, LANG("datum.8b9d212c", null))
+			to_chat(owner, LANG("datum.8b9d212c6da18951", null))
 	else if(issilicon(owner.current))
-		owner.current.visible_message(span_deconversion_message(LANG("datum.bb1040be", null)), null, null, null, owner.current)
-		to_chat(owner, span_userdanger(LANG("datum.f57ca622", null)))
+		owner.current.visible_message(span_deconversion_message(LANG("datum.bb1040beed763d4f", null)), null, null, null, owner.current)
+		to_chat(owner, span_userdanger(LANG("datum.f57ca6221ea2469e", null)))
 
 /// Handles rev removal via IC methods such as borging, mindshielding, blunt force trauma to the head or revs losing.
 /datum/antagonist/rev/proc/remove_revolutionary(deconverter)
@@ -352,17 +352,17 @@
 	if(give_flash)
 		var/where = carbon_owner.equip_conspicuous_item(new /obj/item/assembly/flash/handheld)
 		if (where)
-			to_chat(carbon_owner, LANG("datum.9e20bd50", list(where)))
+			to_chat(carbon_owner, LANG("datum.9e20bd50ba756efa", list(where)))
 		else
-			to_chat(carbon_owner, LANG("datum.f812bc20", null))
+			to_chat(carbon_owner, LANG("datum.f812bc2054eba1f8", null))
 
 	if(give_hud)
 		var/obj/item/organ/cyberimp/eyes/hud/security/syndicate/hud = new()
 		hud.Insert(carbon_owner)
 		if(carbon_owner.get_quirk(/datum/quirk/body_purist))
-			to_chat(carbon_owner, LANG("datum.672269d9", null))
+			to_chat(carbon_owner, LANG("datum.672269d98aca99f7", null))
 		else
-			to_chat(carbon_owner, LANG("datum.d904a66c", null))
+			to_chat(carbon_owner, LANG("datum.d904a66cda07e54f", null))
 
 /datum/team/revolution
 	name = "\improper Revolution"

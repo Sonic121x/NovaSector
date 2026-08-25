@@ -28,18 +28,18 @@
 
 		var/datum/component/respawner/mind_component = user.mind.GetComponent(target_component)
 		if(!mind_component)
-			to_chat(user, span_warning(LANG("obj.8eb26d39", list(src))))
+			to_chat(user, span_warning(LANG("obj.8eb26d390f532c3d", list(src))))
 			return FALSE
 
 		if(mind_component.time_before_respawn && !COOLDOWN_FINISHED(mind_component, respawn_timer))
-			to_chat(user, span_warning(LANG("obj.c24e63a4", list(COOLDOWN_TIMELEFT(mind_component, respawn_timer) / 10, src))))
+			to_chat(user, span_warning(LANG("obj.c24e63a47012f8b9", list(COOLDOWN_TIMELEFT(mind_component, respawn_timer) / 10, src))))
 			return FALSE
 
 	if(!COOLDOWN_FINISHED(src, respawn_cooldown))
-		to_chat(user, span_warning(LANG("obj.68c86737", list(src, COOLDOWN_TIMELEFT(src, respawn_cooldown) / 10))))
+		to_chat(user, span_warning(LANG("obj.68c86737671402fc", list(src, COOLDOWN_TIMELEFT(src, respawn_cooldown) / 10))))
 		return FALSE
 
-	var/choice = tgui_alert(user, LANG("obj.435f556f", null), name, list("Yes", "No"))
+	var/choice = tgui_alert(user, LANG("obj.435f556f8d7240f7", null), name, list("Yes", "No"))
 	if(choice != "Yes")
 		return FALSE
 
@@ -68,10 +68,10 @@
 	. = ..()
 	if(cooldown_time)
 		if(!COOLDOWN_FINISHED(src, respawn_cooldown))
-			. += span_warning(LANG("obj.c704cc67", list(src, COOLDOWN_TIMELEFT(src, respawn_cooldown) / 10)))
+			. += span_warning(LANG("obj.c704cc675c5536a4", list(src, COOLDOWN_TIMELEFT(src, respawn_cooldown) / 10)))
 
 		else
-			. += span_abductor(LANG("obj.7b819db9", list(src, cooldown_time / 10)))
+			. += span_abductor(LANG("obj.7b819db987713e37", list(src, cooldown_time / 10)))
 
 /obj/machinery/automatic_respawner/test
 	cooldown_time = 1.5 MINUTES

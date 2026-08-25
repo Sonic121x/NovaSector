@@ -77,23 +77,23 @@
 /obj/machinery/coffeemaker/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
-		. += span_warning(LANG("obj.7f267c32", list(src)))
+		. += span_warning(LANG("obj.7f267c3242b59931", list(src)))
 		return
 
 	if(brewing)
-		. += span_warning(LANG("obj.8195b09c", list(src)))
+		. += span_warning(LANG("obj.8195b09cbf1fff21", list(src)))
 		return
 
 	if(panel_open)
-		. += span_notice(LANG("obj.83607a9b", list(src)))
+		. += span_notice(LANG("obj.83607a9b007a48ee", list(src)))
 		return
 
 	if(coffeepot || cartridge)
-		. += span_notice(LANG("obj.43cd9c42", list(src)))
+		. += span_notice(LANG("obj.43cd9c42848e6bce", list(src)))
 		if(coffeepot)
-			. += span_notice(LANG("obj.5dadbcf7", list(coffeepot)))
+			. += span_notice(LANG("obj.5dadbcf73d34bac4", list(coffeepot)))
 		if(cartridge)
-			. += span_notice(LANG("obj.5dadbcf7", list(cartridge)))
+			. += span_notice(LANG("obj.5dadbcf73d34bac4", list(cartridge)))
 		return
 
 	if(!(machine_stat & (NOPOWER|BROKEN)))
@@ -101,32 +101,32 @@
 		span_notice("- Brewing coffee at <b>[speed*100]%</b>.")
 		if(coffeepot)
 			for(var/datum/reagent/consumable/cawfee as anything in coffeepot.reagents.reagent_list)
-				. += span_notice(LANG("obj.0da63f34", list(cawfee.volume)))
+				. += span_notice(LANG("obj.0da63f3499659cc1", list(cawfee.volume)))
 		if(cartridge)
 			if(cartridge.charges < 1)
-				. += span_notice(LANG("obj.2dcb5650", null))
+				. += span_notice(LANG("obj.2dcb56508c8fc078", null))
 			else
-				. += span_notice(LANG("obj.cb4979e0", list(cartridge.charges)))
+				. += span_notice(LANG("obj.cb4979e08878267e", list(cartridge.charges)))
 
 	if (coffee_cups >= 1)
-		. += span_notice(LANG("obj.8774bc3a", list(coffee_cups == 1 ? "is" : "are", coffee_cups, coffee_cups != 1 && "s")))
+		. += span_notice(LANG("obj.8774bc3aa07b3bb9", list(coffee_cups == 1 ? "is" : "are", coffee_cups, coffee_cups != 1 && "s")))
 	else
-		. += span_notice(LANG("obj.d631c355", null))
+		. += span_notice(LANG("obj.d631c3555295f51c", null))
 
 	if (sugar_packs >= 1)
-		. += span_notice(LANG("obj.2701bf71", list(sugar_packs == 1 ? "is" : "are", sugar_packs, sugar_packs != 1 && "s")))
+		. += span_notice(LANG("obj.2701bf7120f3ff27", list(sugar_packs == 1 ? "is" : "are", sugar_packs, sugar_packs != 1 && "s")))
 	else
-		. += span_notice(LANG("obj.6f4b1854", null))
+		. += span_notice(LANG("obj.6f4b185438f6fd81", null))
 
 	if (sweetener_packs >= 1)
-		. += span_notice(LANG("obj.bb063c30", list(sweetener_packs == 1 ? "is" : "are", sweetener_packs, sweetener_packs != 1 && "s")))
+		. += span_notice(LANG("obj.bb063c3077271ccf", list(sweetener_packs == 1 ? "is" : "are", sweetener_packs, sweetener_packs != 1 && "s")))
 	else
-		. += span_notice(LANG("obj.94e6b84f", null))
+		. += span_notice(LANG("obj.94e6b84fd3c77c75", null))
 
 	if (creamer_packs > 1)
-		. += span_notice(LANG("obj.394b5ed0", list(creamer_packs == 1 ? "is" : "are", creamer_packs, creamer_packs != 1 && "s")))
+		. += span_notice(LANG("obj.394b5ed0a4cc22ac", list(creamer_packs == 1 ? "is" : "are", creamer_packs, creamer_packs != 1 && "s")))
 	else
-		. += span_notice(LANG("obj.31cfc739", null))
+		. += span_notice(LANG("obj.31cfc7399c6c39df", null))
 
 /obj/machinery/coffeemaker/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -167,17 +167,17 @@
 	// If we're trying to eject/remove the current pot
 	if(!new_coffeepot)
 		if(!coffeepot)
-			balloon_alert(user, LANG("obj.6449e18c", null))
+			balloon_alert(user, LANG("obj.6449e18ca75aa971", null))
 			return FALSE
 		try_put_in_hand(coffeepot, user)
-		balloon_alert(user, LANG("obj.5fd2325a", null))
+		balloon_alert(user, LANG("obj.5fd2325af3005cb9", null))
 		coffeepot = null
 	else
 		// If we're replacing with a new pot
 		if(coffeepot)
 			try_put_in_hand(coffeepot, user)
 		coffeepot = new_coffeepot
-		balloon_alert(user, LANG("obj.21b4a069", null))
+		balloon_alert(user, LANG("obj.21b4a0691caefa87", null))
 
 	update_appearance(UPDATE_OVERLAYS)
 	return TRUE
@@ -219,10 +219,10 @@
 	if (istype(tool, cup_type) && !(tool.item_flags & ABSTRACT) && tool.is_open_container())
 		var/obj/item/reagent_containers/cup/glass/coffee_cup/new_cup = tool
 		if(new_cup.reagents.total_volume > 0)
-			balloon_alert(user, LANG("obj.603dd869", null))
+			balloon_alert(user, LANG("obj.603dd8691ffb8361", null))
 			return ITEM_INTERACT_BLOCKING
 		if(coffee_cups >= max_coffee_cups)
-			balloon_alert(user, LANG("obj.d4080cd4", null))
+			balloon_alert(user, LANG("obj.d4080cd427635c2d", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
@@ -233,10 +233,10 @@
 	if (istype(tool, /obj/item/reagent_containers/condiment/pack/sugar))
 		var/obj/item/reagent_containers/condiment/pack/sugar/new_pack = tool
 		if(new_pack.reagents.total_volume < new_pack.reagents.maximum_volume)
-			balloon_alert(user, LANG("obj.9cc2a8d2", null))
+			balloon_alert(user, LANG("obj.9cc2a8d2dec40738", null))
 			return ITEM_INTERACT_BLOCKING
 		if(sugar_packs >= max_sugar_packs)
-			balloon_alert(user, LANG("obj.1db7b70e", null))
+			balloon_alert(user, LANG("obj.1db7b70e5c965c1a", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
@@ -247,10 +247,10 @@
 	if (istype(tool, /obj/item/reagent_containers/condiment/creamer))
 		var/obj/item/reagent_containers/condiment/creamer/new_pack = tool
 		if(new_pack.reagents.total_volume < new_pack.reagents.maximum_volume)
-			balloon_alert(user, LANG("obj.9cc2a8d2", null))
+			balloon_alert(user, LANG("obj.9cc2a8d2dec40738", null))
 			return ITEM_INTERACT_BLOCKING
 		if(creamer_packs >= max_creamer_packs)
-			balloon_alert(user, LANG("obj.12f28013", null))
+			balloon_alert(user, LANG("obj.12f2801390e7af54", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
@@ -261,10 +261,10 @@
 	if (istype(tool, /obj/item/reagent_containers/condiment/pack/astrotame))
 		var/obj/item/reagent_containers/condiment/pack/astrotame/new_pack = tool
 		if(new_pack.reagents.total_volume < new_pack.reagents.maximum_volume)
-			balloon_alert(user, LANG("obj.9cc2a8d2", null))
+			balloon_alert(user, LANG("obj.9cc2a8d2dec40738", null))
 			return ITEM_INTERACT_BLOCKING
 		else if(sweetener_packs >= max_sweetener_packs)
-			balloon_alert(user, LANG("obj.86514499", null))
+			balloon_alert(user, LANG("obj.86514499bc51921e", null))
 			return ITEM_INTERACT_BLOCKING
 		else if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
@@ -277,7 +277,7 @@
 		if(!user.transferItemToLoc(new_cartridge, src))
 			return ITEM_INTERACT_BLOCKING
 		replace_cartridge(user, new_cartridge)
-		balloon_alert(user, LANG("obj.b81e92b2", null))
+		balloon_alert(user, LANG("obj.b81e92b22df31b0e", null))
 		update_appearance(UPDATE_OVERLAYS)
 		return ITEM_INTERACT_SUCCESS //no afterattack
 
@@ -285,19 +285,19 @@
 
 /obj/machinery/coffeemaker/proc/try_brew()
 	if(!cartridge)
-		balloon_alert(usr, LANG("obj.b7501fe2", null))
+		balloon_alert(usr, LANG("obj.b7501fe28172f6dd", null))
 		return FALSE
 	if(cartridge.charges < 1)
-		balloon_alert(usr, LANG("obj.73aa6ab2", null))
+		balloon_alert(usr, LANG("obj.73aa6ab2ba2cf02f", null))
 		return FALSE
 	if(!coffeepot)
-		balloon_alert(usr, LANG("obj.f04241c8", null))
+		balloon_alert(usr, LANG("obj.f04241c89a2f747c", null))
 		return FALSE
 	if(machine_stat & (NOPOWER|BROKEN))
-		balloon_alert(usr, LANG("obj.888dbfdc", null))
+		balloon_alert(usr, LANG("obj.888dbfdc32105fc9", null))
 		return FALSE
 	if(coffeepot.reagents.total_volume >= coffeepot.reagents.maximum_volume)
-		balloon_alert(usr, LANG("obj.a42c1686", null))
+		balloon_alert(usr, LANG("obj.a42c16863c16f930", null))
 		return FALSE
 	return TRUE
 
@@ -375,7 +375,7 @@
 
 /obj/machinery/coffeemaker/proc/take_cup(mob/user)
 	if(!coffee_cups) //shouldn't happen, but we all know how stuff manages to break
-		balloon_alert(user, LANG("obj.581dd0c5", null))
+		balloon_alert(user, LANG("obj.581dd0c5d9da5b9b", null))
 		return
 	var/obj/item/reagent_containers/cup/glass/coffee_cup/new_cup = new(get_turf(src))
 	user.put_in_hands(new_cup)
@@ -384,7 +384,7 @@
 
 /obj/machinery/coffeemaker/proc/take_sugar(mob/user)
 	if(!sugar_packs)
-		balloon_alert(user, LANG("obj.983eda7b", null))
+		balloon_alert(user, LANG("obj.983eda7b6fc1fe61", null))
 		return
 	var/obj/item/reagent_containers/condiment/pack/sugar/new_pack = new(get_turf(src))
 	user.put_in_hands(new_pack)
@@ -393,7 +393,7 @@
 
 /obj/machinery/coffeemaker/proc/take_sweetener(mob/user)
 	if(!sweetener_packs)
-		balloon_alert(user, LANG("obj.cb284d2f", null))
+		balloon_alert(user, LANG("obj.cb284d2f2235ea89", null))
 		return
 	var/obj/item/reagent_containers/condiment/pack/astrotame/new_pack = new(get_turf(src))
 	user.put_in_hands(new_pack)
@@ -402,7 +402,7 @@
 
 /obj/machinery/coffeemaker/proc/take_creamer(mob/user)
 	if(!creamer_packs)
-		balloon_alert(user, LANG("obj.2e41e189", null))
+		balloon_alert(user, LANG("obj.2e41e189d90f7513", null))
 		return
 	var/obj/item/reagent_containers/condiment/creamer/new_pack = new(drop_location())
 	user.put_in_hands(new_pack)
@@ -452,9 +452,9 @@
 /obj/item/coffee_cartridge/examine(mob/user)
 	. = ..()
 	if(charges)
-		. += span_warning(LANG("obj.dd6f6312", list(charges)))
+		. += span_warning(LANG("obj.dd6f63128b60a5bb", list(charges)))
 	else
-		. += span_warning(LANG("obj.f453d8fa", null))
+		. += span_warning(LANG("obj.f453d8faef002fb5", null))
 
 /obj/item/coffee_cartridge/fancy
 	name = "coffeemaker cartridge - Caffè Fantasioso"
@@ -546,7 +546,7 @@
 /obj/machinery/coffeemaker/impressa/examine(mob/user)
 	. = ..()
 	if(coffee)
-		. += span_notice(LANG("obj.4dcd8398", list(length(coffee))))
+		. += span_notice(LANG("obj.4dcd83988148beba", list(length(coffee))))
 
 /obj/machinery/coffeemaker/impressa/update_overlays()
 	. = ..()
@@ -588,16 +588,16 @@
 
 /obj/machinery/coffeemaker/impressa/try_brew()
 	if(coffee_amount <= 0)
-		balloon_alert_to_viewers(LANG("obj.02281c52", null))
+		balloon_alert_to_viewers(LANG("obj.02281c52c98e3671", null))
 		return FALSE
 	if(!coffeepot)
-		balloon_alert_to_viewers(LANG("obj.f04241c8", null))
+		balloon_alert_to_viewers(LANG("obj.f04241c89a2f747c", null))
 		return FALSE
 	if(machine_stat & (NOPOWER|BROKEN) )
-		balloon_alert_to_viewers(LANG("obj.888dbfdc", null))
+		balloon_alert_to_viewers(LANG("obj.888dbfdc32105fc9", null))
 		return FALSE
 	if(coffeepot.reagents.total_volume >= coffeepot.reagents.maximum_volume)
-		balloon_alert_to_viewers(LANG("obj.a42c1686", null))
+		balloon_alert_to_viewers(LANG("obj.a42c16863c16f930", null))
 		return FALSE
 	return TRUE
 
@@ -607,23 +607,23 @@
 
 	if (istype(tool, /obj/item/food/grown/coffee) && !(tool.item_flags & ABSTRACT))
 		if(coffee_amount >= BEAN_CAPACITY)
-			balloon_alert(user, LANG("obj.68f90390", null))
+			balloon_alert(user, LANG("obj.68f903902f363439", null))
 			return ITEM_INTERACT_BLOCKING
 		if(!HAS_TRAIT(tool, TRAIT_DRIED))
-			balloon_alert(user, LANG("obj.6f687430", null))
+			balloon_alert(user, LANG("obj.6f68743098b0025e", null))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/food/grown/coffee/new_coffee = tool
 		if(!user.transferItemToLoc(new_coffee, src))
 			return ITEM_INTERACT_BLOCKING
 		coffee += new_coffee
 		coffee_amount++
-		balloon_alert(user, LANG("obj.bcf22474", null))
+		balloon_alert(user, LANG("obj.bcf2247483396113", null))
 		update_appearance(UPDATE_OVERLAYS)
 		return ITEM_INTERACT_SUCCESS //no afterattack
 
 	if (istype(tool, /obj/item/storage/box/coffeepack) && !(tool.item_flags & ABSTRACT))
 		if(coffee_amount >= BEAN_CAPACITY)
-			balloon_alert(user, LANG("obj.68f90390", null))
+			balloon_alert(user, LANG("obj.68f903902f363439", null))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/storage/box/coffeepack/new_coffee_pack = tool
 		var/added_any = FALSE
@@ -642,21 +642,21 @@
 			added_any = TRUE
 
 		if(added_any)
-			balloon_alert(user, LANG("obj.bcf22474", null))
+			balloon_alert(user, LANG("obj.bcf2247483396113", null))
 			update_appearance(UPDATE_OVERLAYS)
 		else if(had_nondried)
-			balloon_alert(user, LANG("obj.276f63ce", null))
+			balloon_alert(user, LANG("obj.276f63ce0f45d04d", null))
 		else
-			balloon_alert(user, LANG("obj.717e5880", null))
+			balloon_alert(user, LANG("obj.717e58805dde6efd", null))
 		return ITEM_INTERACT_SUCCESS //no afterattack
 
 	return ..()
 
 /obj/machinery/coffeemaker/impressa/take_cup(mob/user)
 	if(!coffee_cups) //shouldn't happen, but we all know how stuff manages to break
-		balloon_alert(user, LANG("obj.581dd0c5", null))
+		balloon_alert(user, LANG("obj.581dd0c5d9da5b9b", null))
 		return
-	balloon_alert_to_viewers(LANG("obj.ffe9b5bd", null))
+	balloon_alert_to_viewers(LANG("obj.ffe9b5bdcc40823e", null))
 	var/obj/item/reagent_containers/cup/glass/coffee/no_lid/new_cup = new(get_turf(src))
 	user.put_in_hands(new_cup)
 	coffee_cups--

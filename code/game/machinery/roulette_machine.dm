@@ -132,33 +132,33 @@
 		playsound(src, 'sound/machines/terminal/terminal_success.ogg', 50, TRUE)
 
 	if(machine_stat & MAINT || !on || locked)
-		to_chat(user, span_notice(LANG("obj.c1862d18", null)))
+		to_chat(user, span_notice(LANG("obj.c1862d18cc6b5536", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!player_card.registered_account)
-		say(LANG("obj.82fb1f15", null))
+		say(LANG("obj.82fb1f15fe7dae43", null))
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 		return ITEM_INTERACT_BLOCKING
 
 	if(!my_card)
-		var/msg = tgui_input_text(user, LANG("obj.f0477a15", null), LANG("obj.70a81bf2", null), "Roulette Machine", max_length = MAX_NAME_LEN)
+		var/msg = tgui_input_text(user, LANG("obj.f0477a1571c4db7f", null), LANG("obj.70a81bf22e48e78d", null), "Roulette Machine", max_length = MAX_NAME_LEN)
 		if(!msg)
 			return ITEM_INTERACT_BLOCKING
 		name = msg
-		desc = LANG("obj.0f7b350a", list(player_card.registered_account.account_holder, user.p_their()))
+		desc = LANG("obj.0f7b350a430b1596", list(player_card.registered_account.account_holder, user.p_their()))
 		my_card = player_card
 		RegisterSignal(my_card, COMSIG_QDELETING, PROC_REF(on_my_card_deleted))
-		to_chat(user, span_notice(LANG("obj.b54268ef", null)))
+		to_chat(user, span_notice(LANG("obj.b54268ef359deae6", null)))
 		power_change()
 		return ITEM_INTERACT_SUCCESS
 
 	if(IS_DEPARTMENTAL_CARD(player_card)) // Are they using a department ID
-		say(LANG("obj.a25ac002", null))
+		say(LANG("obj.a25ac002b35635e4", null))
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 		return ITEM_INTERACT_BLOCKING
 
 	if(player_card.registered_account.account_balance < chosen_bet_amount) //Does the player have enough funds
-		say(LANG("obj.f1a22753", null))
+		say(LANG("obj.f1a22753bbc964e2", null))
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 		return ITEM_INTERACT_BLOCKING
 
@@ -248,14 +248,14 @@
 	var/color = numbers["[rolled_number]"] //Weird syntax, but dict uses strings.
 	var/result = "[rolled_number] [color]" //e.g. 31 black
 
-	say(LANG("obj.a87dc9fe", list(result)))
+	say(LANG("obj.a87dc9fe17fad63b", list(result)))
 
 	playing = FALSE
 	update_icon(ALL, potential_payout, color, rolled_number, is_winner)
 	handle_color_light(color)
 
 	if(!is_winner)
-		say(LANG("obj.f242fb4c", null))
+		say(LANG("obj.f242fb4c034e75db", null))
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 50)
 		if(isliving(user) && (user in viewers(src)))
 			var/mob/living/living_user = user
@@ -266,7 +266,7 @@
 	var/account_balance = my_card?.registered_account?.account_balance
 	potential_payout = (account_balance >= potential_payout) ? potential_payout : account_balance
 
-	say(LANG("obj.0e6b975e", list(potential_payout, MONEY_NAME)))
+	say(LANG("obj.0e6b975ea6c1096e", list(potential_payout, MONEY_NAME)))
 	playsound(src, 'sound/machines/synth/synth_yes.ogg', 50)
 	if(isliving(user) && (user in viewers(src)))
 		var/mob/living/living_user = user
@@ -380,7 +380,7 @@
 /obj/machinery/roulette/proc/check_owner_funds(payout)
 	if(my_card.registered_account.account_balance >= payout)
 		return TRUE //We got the betting amount
-	say(LANG("obj.dd2b67ba", list(my_card.registered_account.account_holder)))
+	say(LANG("obj.dd2b67ba63b9418a", list(my_card.registered_account.account_holder)))
 	playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 	return FALSE
 
@@ -432,15 +432,15 @@
 /obj/machinery/roulette/welder_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(machine_stat & MAINT)
-		to_chat(user, span_notice(LANG("obj.d8423c8b", list(src))))
+		to_chat(user, span_notice(LANG("obj.d8423c8bfa719c8b", list(src))))
 		if(I.use_tool(src, user, 30, volume=50))
-			to_chat(user, span_notice(LANG("obj.a68a7a94", list(src))))
+			to_chat(user, span_notice(LANG("obj.a68a7a94715f671c", list(src))))
 			set_machine_stat(machine_stat & ~MAINT)
 			icon_state = "idle"
 	else
-		to_chat(user, span_notice(LANG("obj.0d227c3d", list(src))))
+		to_chat(user, span_notice(LANG("obj.0d227c3d75e499c6", list(src))))
 		if(I.use_tool(src, user, 30, volume=50))
-			to_chat(user, span_notice(LANG("obj.a2dc594e", list(src))))
+			to_chat(user, span_notice(LANG("obj.a2dc594e5e2981c3", list(src))))
 			set_machine_stat(machine_stat | MAINT)
 			icon_state = "open"
 
@@ -459,7 +459,7 @@
 /obj/item/roulette_wheel_beacon/attack_self()
 	if(used)
 		return
-	loc.visible_message(span_warning(LANG("obj.41be4252", list(src))))
+	loc.visible_message(span_warning(LANG("obj.41be4252fed1b7ee", list(src))))
 	used = TRUE
 	addtimer(CALLBACK(src, PROC_REF(launch_payload)), 4 SECONDS)
 

@@ -33,9 +33,9 @@
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	if(anchored)
-		. += span_notice(LANG("obj.2e0de192", list(EXAMINE_HINT("screws"), EXAMINE_HINT("cut"))))
+		. += span_notice(LANG("obj.2e0de192188ff4ec", list(EXAMINE_HINT("screws"), EXAMINE_HINT("cut"))))
 	else
-		. += span_notice(LANG("obj.3119bad7", list(EXAMINE_HINT("unscrewed"), EXAMINE_HINT("cut"))))
+		. += span_notice(LANG("obj.3119bad7b2baafa1", list(EXAMINE_HINT("unscrewed"), EXAMINE_HINT("cut"))))
 
 /obj/structure/wall_support/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -60,8 +60,8 @@
 	if(!tool.use_tool(src, user, 0, volume=100))
 		return FALSE
 	set_anchored(!anchored)
-	user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] [src]."), \
-		span_notice(LANG("obj.1175c81a", list(anchored ? "fasten [src] to" : "unfasten [src] from"))))
+	user.visible_message(span_notice(LANG("obj.6afbb5c3aa5fc504", list(user, anchored ? "fastens" : "unfastens", src))), \
+		span_notice(LANG("obj.1175c81a0e157390", list(anchored ? "fasten [src] to" : "unfasten [src] from"))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/wall_support/play_attack_sound(...)

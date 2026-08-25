@@ -33,8 +33,8 @@
 		return
 
 	cling.visible_message(
-		span_warning(LANG("datum.8fa83b9e", list(cling))),
-		span_notice(LANG("datum.57ba7274", null)),
+		span_warning(LANG("datum.8fa83b9e97d146d9", list(cling))),
+		span_notice(LANG("datum.57ba7274bf7e394f", null)),
 	)
 	var/datum/antagonist/changeling/changeling_data = cling.mind?.has_antag_datum(/datum/antagonist/changeling)
 	changeling_data?.chem_recharge_slowdown -= recharge_slowdown //Slows down chem regeneration
@@ -44,8 +44,8 @@
 		return
 
 	cling.visible_message(
-		span_warning(LANG("datum.d3c18a96", list(cling))),
-		span_notice(LANG("datum.fd3d229e", null)),
+		span_warning(LANG("datum.d3c18a96e87e355c", list(cling))),
+		span_notice(LANG("datum.fd3d229ec869e1e5", null)),
 	)
 	var/datum/antagonist/changeling/changeling_data = cling.mind?.has_antag_datum(/datum/antagonist/changeling)
 	changeling_data?.chem_recharge_slowdown += recharge_slowdown
@@ -89,7 +89,7 @@
 	SIGNAL_HANDLER
 
 	if(last_alpha > dark_color_threshold)
-		examine_list += span_warning(LANG("datum.8f62491d", list(owner.p_Their())))
+		examine_list += span_warning(LANG("datum.8f62491dcbed4485", list(owner.p_Their())))
 
 /datum/status_effect/darkness_adapted/proc/get_darkness()
 	var/turf/owner_turf = get_turf(owner)

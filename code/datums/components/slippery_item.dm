@@ -116,8 +116,8 @@
 			if(empty_hand == user.active_hand_index)
 				continue
 			if(user.putItemFromInventoryInHandIfPossible(source, empty_hand))
-				to_chat(user, span_notice(LANG("datum.62fb5240", list(source))))
+				to_chat(user, span_notice(LANG("datum.62fb524006db1773", list(source))))
 			return TRUE
 
-	to_chat(user, span_warning(LANG("datum.5ceefb68", list(source))))
+	to_chat(user, span_warning(LANG("datum.5ceefb68176e21ff", list(source))))
 	return TRUE

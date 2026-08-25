@@ -62,9 +62,9 @@
 		return
 
 	food.visible_message(
-		span_danger(LANG("datum.b1697d42", list(eater, food, food.p_their()))),
-		span_userdanger(LANG("datum.4f97db36", list(eater, eater.p_theyve()))),
-		span_danger(LANG("datum.33d7bfd5", null))
+		span_danger(LANG("datum.b1697d423b3c54c3", list(eater, food, food.p_their()))),
+		span_userdanger(LANG("datum.4f97db3640b9e9d6", list(eater, eater.p_theyve()))),
+		span_danger(LANG("datum.33d7bfd51c4c8cd4", null))
 	)
 
 /**

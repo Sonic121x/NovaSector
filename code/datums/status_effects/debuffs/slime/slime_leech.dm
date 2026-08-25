@@ -51,7 +51,7 @@
 
 	if(owner.stat == DEAD) // our victim died
 		if(our_slime.client)
-			to_chat(our_slime, span_info(LANG("datum.480ab74c", null)))
+			to_chat(our_slime, span_info(LANG("datum.480ab74c99961e43", null)))
 
 		SEND_SIGNAL(owner, COMSIG_SLIME_DRAINED, our_slime)
 
@@ -77,7 +77,7 @@
 			owner.updatehealth()
 
 	if(totaldamage >= 0) // adjust_brute_loss() returns a negative value on successful damage adjustment
-		our_slime.balloon_alert(our_slime, LANG("datum.fb932b9b", null))
+		our_slime.balloon_alert(our_slime, LANG("datum.fb932b9ba655617d", null))
 		our_slime.stop_feeding()
 		return
 

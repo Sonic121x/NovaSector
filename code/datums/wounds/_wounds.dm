@@ -230,7 +230,7 @@
 			msg = "<b>[msg]</b>"
 			vis_dist = DEFAULT_MESSAGE_RANGE
 
-		victim.visible_message(msg, span_userdanger(LANG("datum.492c4436", list(limb.plaintext_zone, occur_text))), vision_distance = vis_dist)
+		victim.visible_message(msg, span_userdanger(LANG("datum.492c44368cd7cbd0", list(limb.plaintext_zone, occur_text))), vision_distance = vis_dist)
 		if(sound_effect)
 			playsound(limb.owner, sound_effect, sound_volume + (20 * severity), TRUE, falloff_exponent = SOUND_FALLOFF_EXPONENT + 2,  ignore_walls = FALSE, falloff_distance = 0)
 
@@ -522,7 +522,7 @@
 	// now that we've determined we have a valid attempt at treating,
 	// we can stomp on their dreams if we're already interacting with the patient or if their part is obscured
 	if(DOING_INTERACTION_WITH_TARGET(user, victim))
-		to_chat(user, span_warning(LANG("datum.87048759", list(victim))))
+		to_chat(user, span_warning(LANG("datum.870487595e26e68b", list(victim))))
 		return ITEM_INTERACT_BLOCKING
 
 	// next we check if the bodypart in actually accessible (not under thick clothing). We skip the species trait check since skellies
@@ -643,7 +643,7 @@
 /datum/wound/proc/get_examine_description(mob/user)
 	. = get_wound_description(user)
 	if(HAS_TRAIT(src, TRAIT_WOUND_SCANNED))
-		. += span_notice(LANG("datum.2fccebab", null))
+		. += span_notice(LANG("datum.2fccebab45a5a80d", null))
 
 	return .
 
@@ -653,9 +653,9 @@
 	var/obj/item/stack/medical/wrap/current_gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 	if ((wound_flags & ACCEPTS_GAUZE) && current_gauze)
 		var/sling_condition = get_gauze_condition()
-		desc = LANG("datum.81f1bbc0", list(victim.p_Their(), lang_zone(limb.plaintext_zone), sling_condition, current_gauze.name))
+		desc = LANG("datum.81f1bbc0a5554507", list(victim.p_Their(), lang_zone(limb.plaintext_zone), sling_condition, current_gauze.name))
 	else
-		desc = LANG("datum.e4bf1a90", list(victim.p_Their(), lang_zone(limb.plaintext_zone), examine_desc))
+		desc = LANG("datum.e4bf1a906e486ccb", list(victim.p_Their(), lang_zone(limb.plaintext_zone), examine_desc))
 
 	desc = modify_desc_before_span(desc, user)
 

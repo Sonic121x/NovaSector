@@ -28,24 +28,24 @@
 		if(Adjacent(user))
 			user.put_in_hands(stored)
 		stored = null
-		to_chat(user, span_notice(LANG("obj.1642d706", list(src))))
+		to_chat(user, span_notice(LANG("obj.1642d706e41a9da1", list(src))))
 		update_appearance()
 		return
 	else
-		to_chat(user, span_warning(LANG("obj.c1fc1225", null)))
+		to_chat(user, span_warning(LANG("obj.c1fc122590fbacbb", null)))
 		return
 
 /obj/machinery/blackbox_recorder/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/blackbox))
 		return NONE
 	if(stored)
-		to_chat(user, span_warning(LANG("obj.05de69e5", list(src)))) //something's gone wrong to get here, but you know, it could happen
+		to_chat(user, span_warning(LANG("obj.05de69e5e3adcd3a", list(src)))) //something's gone wrong to get here, but you know, it could happen
 		return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(tool, TRAIT_NODROP) || !user.transferItemToLoc(tool, src))
-		to_chat(user, span_warning(LANG("obj.1dbf8014", list(tool))))
+		to_chat(user, span_warning(LANG("obj.1dbf8014c030d016", list(tool))))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.f418bf1c", list(user, tool, src))), \
-	span_notice(LANG("obj.359c76df", list(src))))
+	user.visible_message(span_notice(LANG("obj.f418bf1c95c561c3", list(user, tool, src))), \
+	span_notice(LANG("obj.359c76dfdebc9254", list(src))))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	stored = tool
 	update_appearance()
@@ -122,7 +122,7 @@
 /obj/machinery/telecomms/message_server/examine(mob/user)
 	. = ..()
 	if(calibrating)
-		. += span_warning(LANG("obj.5466ddde", null))
+		. += span_warning(LANG("obj.5466ddde1f5469a0", null))
 
 /obj/machinery/telecomms/message_server/process()
 	. = ..()

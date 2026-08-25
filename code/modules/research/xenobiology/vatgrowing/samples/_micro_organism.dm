@@ -89,7 +89,7 @@
 	for(var/x in 1 to resulting_atom_count)
 		var/atom/thing = new resulting_atom(get_turf(vat))
 		ADD_TRAIT(thing, TRAIT_VATGROWN, "vatgrowing")
-		vat.visible_message(span_nicegreen(LANG("datum.9eb80626", list(thing, vat))))
+		vat.visible_message(span_nicegreen(LANG("datum.9eb806267ea6cf55", list(thing, vat))))
 		//We maybe add some color. the chance is static for now, but idewally we would be able to manipulate it in the future.
 		if(prob(CYTO_SHINY_CHANCE))
 			var/mob/living/basic/vat_creature = thing

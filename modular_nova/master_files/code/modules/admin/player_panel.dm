@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 	if(. || !check_rights_for(adminClient, R_ADMIN))
 		message_admins(span_adminhelp("WARNING: NON-ADMIN [ADMIN_LOOKUPFLW(adminMob)] ATTEMPTED TO ACCESS ADMIN PANEL. NOTIFY Casper3044."))
-		to_chat(adminClient, LANG("datum.27e7aa03", null))
+		to_chat(adminClient, LANG("datum.27e7aa03e9a82e27", null))
 		return
 
 	switch(action)
@@ -130,13 +130,13 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			var/mob/latestMob = get_mob_by_ckey(ckey)
 
 			if(!latestMob)
-				to_chat(adminClient, span_warning(LANG("datum.8c9dadd8", null)))
+				to_chat(adminClient, span_warning(LANG("datum.8c9dadd87e465d95", null)))
 				return
 
 			if(targetMob == latestMob)
 				return
 
-			to_chat(adminClient, span_notice(LANG("datum.cb4b21bb", list(targetMob.ckey, latestMob))))
+			to_chat(adminClient, span_notice(LANG("datum.cb4b21bb81cafacc", list(targetMob.ckey, latestMob))))
 			SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/show_player_panel, latestMob)
 
 		/// Edits player Rank
@@ -171,28 +171,28 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		/// Subtly messages selected mob (requires target to have a headset)
 		if ("subtle_message")
 			var/list/subtle_message_options = list("Voice in head", RADIO_CHANNEL_CENTCOM, RADIO_CHANNEL_SYNDICATE)
-			var/sender = tgui_input_list(adminClient, LANG("datum.93bde4ea", null), LANG("datum.41a5cc12", null), subtle_message_options)
+			var/sender = tgui_input_list(adminClient, LANG("datum.93bde4ea291da4c4", null), LANG("datum.41a5cc120473a201", null), subtle_message_options)
 			if (!sender)
 				return
 
-			var/msg = input(LANG("datum.233aeb20", null), text("Subtle PM to [targetMob.key]")) as text
+			var/msg = input(LANG("datum.233aeb2033a21ba4", null), text("Subtle PM to [targetMob.key]")) as text
 			if (!msg)
 				return
 
 			if (sender == "Voice in head")
-				to_chat(targetMob, LANG("datum.5ea2cf68", list(msg)))
+				to_chat(targetMob, LANG("datum.5ea2cf68ed4e7f4b", list(msg)))
 			else
 				var/mob/living/carbon/human/selected_mob = targetMob
 
 				if(!istype(selected_mob))
-					to_chat(adminClient, LANG("datum.9d4305f1", list(msg)))
+					to_chat(adminClient, LANG("datum.9d4305f12cd04df4", list(msg)))
 					return
 
 				if(!istype(selected_mob.ears, /obj/item/radio/headset))
-					to_chat(adminClient, LANG("datum.964130bc", list(msg)))
+					to_chat(adminClient, LANG("datum.964130bc939f2f79", list(msg)))
 					return
 
-				to_chat(selected_mob, LANG("datum.5b33f044", list(sender == RADIO_CHANNEL_SYNDICATE ? "your benefactor" : "Central Command", sender == RADIO_CHANNEL_SYNDICATE ? ", agent." : ":", msg)))
+				to_chat(selected_mob, LANG("datum.5b33f0442a1a8b86", list(sender == RADIO_CHANNEL_SYNDICATE ? "your benefactor" : "Central Command", sender == RADIO_CHANNEL_SYNDICATE ? ", agent." : ":", msg)))
 
 
 			log_admin("SubtlePM ([sender]): [key_name(adminClient)] -> [key_name(targetMob)] : [msg]")
@@ -213,7 +213,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			if(targetMob.client)
 				log_admin("[key_name(adminClient)] ejected [key_name(targetMob)] from their body.")
 				message_admins("[key_name_admin(adminClient)] ejected [key_name_admin(targetMob)] from their body.")
-				to_chat(targetMob, span_danger(LANG("datum.4d829d44", null)))
+				to_chat(targetMob, span_danger(LANG("datum.4d829d444cd202b3", null)))
 				targetMob.ghostize(FALSE)
 
 		/// offers control to ghosts for selected mob/body
@@ -271,11 +271,11 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		/// Yeets target client to the lobby (only works on ghosts)
 		if ("lobby")
 			if(!isobserver(targetMob))
-				to_chat(adminClient, span_notice(LANG("datum.0120740c", null)))
+				to_chat(adminClient, span_notice(LANG("datum.0120740cadc89d95", null)))
 				return
 
 			if(!targetMob.client)
-				to_chat(adminClient, span_warning(LANG("datum.b00938b9", list(targetMob))))
+				to_chat(adminClient, span_warning(LANG("datum.b00938b9ee8ce088", list(targetMob))))
 				return
 
 			log_admin("[key_name(adminClient)] has sent [key_name(targetMob)] back to the Lobby.")
@@ -310,11 +310,11 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		/// Sends the offender to SUPERJAIL known as SPACE PRISON (admin prison)
 		if ("prison")
 			if(isAI(targetMob))
-				to_chat(adminClient, LANG("datum.f61bfd33", null))
+				to_chat(adminClient, LANG("datum.f61bfd3351545dca", null))
 				return
 
 			targetMob.forceMove(pick(GLOB.prisonwarp))
-			to_chat(targetMob, span_userdanger(LANG("datum.9675fbbc", null)))
+			to_chat(targetMob, span_userdanger(LANG("datum.9675fbbcd8dc687c", null)))
 
 			log_admin("[key_name(adminClient)] has sent [key_name(targetMob)] to Prison!")
 			message_admins("[key_name_admin(adminClient)] has sent [key_name_admin(targetMob)] to Prison!")
@@ -322,17 +322,17 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		/// Boots the offending client from the server
 		if ("kick")
 			if(!check_if_greater_rights_than(targetClient))
-				to_chat(adminClient, span_danger(LANG("datum.3b765e14", null)), confidential = TRUE)
+				to_chat(adminClient, span_danger(LANG("datum.3b765e1483bbd776", null)), confidential = TRUE)
 				return
-			if(tgui_alert(adminMob, LANG("datum.2495f3bd", list(key_name(targetMob))), LANG("datum.3c1da715", null), list("Yes", "No")) != "Yes")
+			if(tgui_alert(adminMob, LANG("datum.2495f3bdbc245f22", list(key_name(targetMob))), LANG("datum.3c1da715a16e1d9e", null), list("Yes", "No")) != "Yes")
 				return
 			if(!targetMob)
-				to_chat(adminClient, span_danger(LANG("datum.bd46e6a6", list(targetMob))), confidential = TRUE)
+				to_chat(adminClient, span_danger(LANG("datum.bd46e6a6650253fd", list(targetMob))), confidential = TRUE)
 				return
 			if(!targetClient)
-				to_chat(adminClient, span_danger(LANG("datum.605d44e3", list(targetMob))), confidential = TRUE)
+				to_chat(adminClient, span_danger(LANG("datum.605d44e3e83aafdf", list(targetMob))), confidential = TRUE)
 				return
-			to_chat(targetMob, span_danger(LANG("datum.c7289045", list(adminClient.holder.fakekey ? "an Administrator" : "[adminClient.key]"))), confidential = TRUE)
+			to_chat(targetMob, span_danger(LANG("datum.c7289045c2063e76", list(adminClient.holder.fakekey ? "an Administrator" : "[adminClient.key]"))), confidential = TRUE)
 			log_admin("[key_name(adminClient)] kicked [key_name(targetMob)].")
 			message_admins(span_adminnotice("[key_name_admin(adminClient)] kicked [key_name_admin(targetMob)]."))
 			qdel(targetClient)
@@ -408,7 +408,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		if ("transform")
 			var/choice = params["newType"]
 			if (choice == "/mob/living")
-				choice = tgui_input_list(adminClient, LANG("datum.b5711cc5", null), LANG("datum.a70f2f38", null), subtypesof(choice))
+				choice = tgui_input_list(adminClient, LANG("datum.b5711cc59b118438", null), LANG("datum.a70f2f38f597a26a", null), subtypesof(choice))
 				if (!choice)
 					return
 
@@ -510,10 +510,10 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		/// Forces a commendation to selected client/player
 		if ("commend")
 			if(!targetMob.ckey)
-				to_chat(adminClient, span_warning(LANG("datum.091cead0", null)))
+				to_chat(adminClient, span_warning(LANG("datum.091cead0d56adcb7", null)))
 				return
 
-			switch(tgui_alert(adminMob, LANG("datum.b8eae451", null), "<3?", list("Apply now", "Apply at round end", "Cancel")))
+			switch(tgui_alert(adminMob, LANG("datum.b8eae45104778fc1", null), "<3?", list("Apply now", "Apply at round end", "Cancel")))
 				if("Apply now")
 					targetMob.receive_heart(adminMob, instant = TRUE)
 				if("Apply at round end")
@@ -521,7 +521,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 		/// Plays a selected sound to target client
 		if ("play_sound_to")
-			var/soundFile = input("", LANG("datum.9ffc2daa", null),) as null|sound
+			var/soundFile = input("", LANG("datum.9ffc2daa838ad951", null),) as null|sound
 
 			if(soundFile && targetMob)
 				SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/play_direct_mob_sound, soundFile, targetMob)
@@ -530,10 +530,10 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		if ("apply_client_quirks")
 			var/mob/living/carbon/human/specified_humanoid = targetMob
 			if(!istype(specified_humanoid))
-				to_chat(adminClient, LANG("datum.54430006", null), confidential = TRUE)
+				to_chat(adminClient, LANG("datum.544300069ea9f258", null), confidential = TRUE)
 				return
 			if(!specified_humanoid.client)
-				to_chat(adminClient, LANG("datum.a07249cc", list(specified_humanoid)), confidential = TRUE)
+				to_chat(adminClient, LANG("datum.a07249cca6963076", list(specified_humanoid)), confidential = TRUE)
 				return
 			SSquirks.AssignQuirks(specified_humanoid, specified_humanoid.client)
 			log_admin("[key_name(adminClient)] applied client quirks to [key_name(specified_humanoid)].")

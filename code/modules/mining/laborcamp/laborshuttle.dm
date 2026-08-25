@@ -20,11 +20,11 @@
 		return FALSE
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle("laborcamp")
 	if(!M)
-		to_chat(user, span_warning(LANG("obj.0578f885", null)))
+		to_chat(user, span_warning(LANG("obj.0578f885e7c60042", null)))
 		return FALSE
 	var/obj/docking_port/stationary/S = M.get_docked()
 	if(S?.name == "laborcamp_away")
-		to_chat(user, span_warning(LANG("obj.93f0437c", null)))
+		to_chat(user, span_warning(LANG("obj.93f0437ca9475889", null)))
 		return FALSE
 	return TRUE
 

@@ -58,15 +58,15 @@
 	switch(rand(mintegrity, get_integrity())) // 1 to 100 but gets worse every time
 		// CRIT FAIL
 		if(1)
-			bozo.visible_message(span_userdanger(LANG("obj.7a0381eb", list(bozo))))
+			bozo.visible_message(span_userdanger(LANG("obj.7a0381eb5668b2cf", list(bozo))))
 
 			explosion(bozo, light_impact_range = 2, adminlog = TRUE, explosion_cause = src)
 			// WITNESS THE GORE
 			for(var/mob/living/splashed in view(2, bozo))
 				if(bozo.has_status_effect(/datum/status_effect/grouped/blindness))
-					to_chat(splashed, span_userdanger(LANG("obj.2e42840d", null)))
+					to_chat(splashed, span_userdanger(LANG("obj.2e42840d2ed550e5", null)))
 				else
-					to_chat(splashed, span_userdanger(LANG("obj.5ea32e6c", null)))
+					to_chat(splashed, span_userdanger(LANG("obj.5ea32e6ca8398c3c", null)))
 				splashed.Stun(1 SECONDS)
 				splashed.Knockdown(2 SECONDS)
 				splashed.set_eye_blur_if_lower(15 SECONDS)
@@ -93,8 +93,8 @@
 		// last chance to stop
 		if(7 to 9)
 			bozo.visible_message(
-				span_danger(LANG("obj.b2d69510", list(bozo))),
-				span_userdanger(LANG("obj.1c756058", null)),
+				span_danger(LANG("obj.b2d6951091ac2e85", list(bozo))),
+				span_userdanger(LANG("obj.1c756058963590fc", null)),
 			)
 			// if they're susceptible to electrocution, confuse them
 			if(bozo.electrocute_act(15, bozo, 1, SHOCK_NOGLOVES|SHOCK_NOSTUN))
@@ -113,8 +113,8 @@
 				bozo.adjust_fire_stacks(11 - get_integrity())
 				bozo.ignite_mob()
 				bozo.visible_message(
-					span_danger(LANG("obj.f0fde2f8", list(bozo))),
-					span_userdanger(LANG("obj.dbd401cd", null)),
+					span_danger(LANG("obj.f0fde2f8fb109401", list(bozo))),
+					span_userdanger(LANG("obj.dbd401cdecbf5204", null)),
 				)
 				ASYNC
 					bozo.emote("scream")
@@ -123,8 +123,8 @@
 				particle_path = /particles/smoke/steam/bad
 			else
 				bozo.visible_message(
-					span_danger(LANG("obj.71f3e5d8", list(bozo))),
-					span_userdanger(LANG("obj.a0d626a6", null)),
+					span_danger(LANG("obj.71f3e5d8fc5c43ae", list(bozo))),
+					span_userdanger(LANG("obj.a0d626a6826f8177", null)),
 				)
 
 				// increase smokiness if already smoking
@@ -148,7 +148,7 @@
 		// hey, something isn't right...
 		if(16 to 50)
 			bozo.visible_message(
-				span_warning(LANG("obj.6062c366", list(bozo))),
+				span_warning(LANG("obj.6062c366564794c9", list(bozo))),
 			)
 
 			sparks.amount = rand(1, 2)

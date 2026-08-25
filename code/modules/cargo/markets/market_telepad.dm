@@ -93,10 +93,10 @@
 /obj/machinery/ltsrbt/examine(mob/user)
 	. = ..()
 	if(!(machine_stat & NOPOWER))
-		. += span_info(LANG("obj.1edbfca2", null))
-		. += span_tinynoticeital(LANG("obj.3d776537", list(EXAMINE_HINT("[restock_cost] [MONEY_SYMBOL]"))))
-		. += span_tinynoticeital(LANG("obj.50ed78cb", list(EXAMINE_HINT("[PLACE_ON_MARKET_COST] [MONEY_SYMBOL]"))))
-		. += span_tinynoticeital(LANG("obj.0bbbbe38", list(EXAMINE_HINT("[MARKET_WITHHOLDING_TAX * 100]%"))))
+		. += span_info(LANG("obj.1edbfca2f934ade8", null))
+		. += span_tinynoticeital(LANG("obj.3d776537189404b6", list(EXAMINE_HINT("[restock_cost] [MONEY_SYMBOL]"))))
+		. += span_tinynoticeital(LANG("obj.50ed78cb6205035f", list(EXAMINE_HINT("[PLACE_ON_MARKET_COST] [MONEY_SYMBOL]"))))
+		. += span_tinynoticeital(LANG("obj.0bbbbe3840dbf598", list(EXAMINE_HINT("[MARKET_WITHHOLDING_TAX * 100]%"))))
 
 /obj/machinery/ltsrbt/update_icon_state()
 	. = ..()
@@ -154,16 +154,16 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
 	if(state_open)
-		balloon_alert(user, LANG("obj.1bd34d98", null))
+		balloon_alert(user, LANG("obj.1bd34d987bac1db7", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!occupant)
-		balloon_alert(user, LANG("obj.9d45bb65", null))
+		balloon_alert(user, LANG("obj.9d45bb65225207fe", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(machine_stat & NOPOWER)
-		balloon_alert(user, LANG("obj.888dbfdc", null))
+		balloon_alert(user, LANG("obj.888dbfdc32105fc9", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!COOLDOWN_FINISHED(src, recharge_cooldown))
-		balloon_alert(user, LANG("obj.d4ae5d4d", null))
+		balloon_alert(user, LANG("obj.d4ae5d4dded19efe", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	ui_interact(user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -176,24 +176,24 @@
 
 	if(state_open)
 		if(locate(/mob/living) in tool.get_all_contents())
-			say(LANG("obj.2456c829", null))
+			say(LANG("obj.2456c829422ce66b", null))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, LANG("obj.2410a229", null))
+			balloon_alert(user, LANG("obj.2410a22944cfb073", null))
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, LANG("obj.242e1647", null))
+		balloon_alert(user, LANG("obj.242e1647cb4e09c7", null))
 		close_machine(tool)
 		return ITEM_INTERACT_SUCCESS
 	else if(!creds_value)
-		balloon_alert(user, LANG("obj.09335835", null))
+		balloon_alert(user, LANG("obj.09335835d74f2f1a", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(machine_stat & NOPOWER)
 		return
 
 	if(creds_value < restock_cost)
-		say(LANG("obj.23139ab6", list(MONEY_NAME)))
+		say(LANG("obj.23139ab60975d58b", list(MONEY_NAME)))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 		return ITEM_INTERACT_BLOCKING
 
@@ -271,7 +271,7 @@
 	if(QDELETED(occupant))
 		return
 	if(locate(/mob/living) in occupant.get_all_contents())
-		say(LANG("obj.2456c829", null))
+		say(LANG("obj.2456c829422ce66b", null))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 		return
 	var/datum/bank_account/account
@@ -280,17 +280,17 @@
 		if(!isliving(user))
 			return
 		if(length(our_market.available_items[/datum/market_item/local_good::category]) >= LTSRBT_MAX_MARKET_ITEMS)
-			say(LANG("obj.9a2848e7", null))
+			say(LANG("obj.9a2848e7de328e42", null))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 			return
 		var/mob/living/living_user = user
 		var/obj/item/card/id/card = living_user.get_idcard(TRUE)
 		if(!(card?.registered_account))
-			say(LANG("obj.b1a21273", null))
+			say(LANG("obj.b1a21273c80a8391", null))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 			return
 		if(!card.registered_account.adjust_money(-PLACE_ON_MARKET_COST, "Market: Placement Fee"))
-			say(LANG("obj.23139ab6", list(MONEY_NAME)))
+			say(LANG("obj.23139ab60975d58b", list(MONEY_NAME)))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 			return
 		account = card.registered_account
@@ -304,7 +304,7 @@
 	item.moveToNullspace()
 	//Something happened and the item was deleted or relocated as soon as it was moved to nullspace.
 	if(QDELETED(item) || item.loc != null)
-		say(LANG("obj.bb08b2c9", null)) //metajoke
+		say(LANG("obj.bb08b2c9d9d1531b", null)) //metajoke
 		return
 	var/datum/market_item/local_good/new_item = new(item, account)
 	new_item.name = name_to_use
@@ -313,7 +313,7 @@
 
 	our_market.add_item(new_item)
 
-	say(LANG("obj.458555e7", null))
+	say(LANG("obj.458555e74b197159", null))
 	playsound(src, 'sound/effects/cashregister.ogg', 40, FALSE)
 	COOLDOWN_START(src, recharge_cooldown, recharge_time * 3)
 

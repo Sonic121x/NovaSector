@@ -36,7 +36,7 @@
 	AddElement(/datum/element/falling_hazard, damage = force, wound_bonus = wound_bonus, hardhat_safety = TRUE, crushes = FALSE, impact_sound = hitsound)
 
 /obj/item/wrench/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.7fa5d3e5", list(user, user.p_them(), src, user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.7fa5d3e579f2aa61", list(user, user.p_them(), src, user.p_theyre()))))
 	playsound(loc, 'sound/items/weapons/genhit.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
@@ -66,10 +66,10 @@
 /obj/item/wrench/medical/examine(mob/user)
 	. = ..()
 	if(suicider)
-		. += span_notice(LANG("obj.db938738", list(suicider)))
+		. += span_notice(LANG("obj.db938738304b1487", list(suicider)))
 
 /obj/item/wrench/medical/suicide_act(mob/living/user)
-	user.visible_message(span_suicide(LANG("obj.848c3085", list(user, user.p_their(), user.p_theyre()))))
+	user.visible_message(span_suicide(LANG("obj.848c30856da22c32", list(user, user.p_their(), user.p_theyre()))))
 	user.Stun(100, ignore_canstun = TRUE)// Stun stops them from wandering off
 	user.set_light_color(COLOR_VERY_SOFT_YELLOW)
 	user.set_light(2)

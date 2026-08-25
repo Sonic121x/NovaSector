@@ -15,14 +15,14 @@
 	if(!(slot_flags & slot) || isdrone(user))
 		return
 	user.grant_language(/datum/language/piratespeak, source = LANGUAGE_HAT)
-	to_chat(user, span_boldnotice(LANG("obj.b2022b83", null)))
+	to_chat(user, span_boldnotice(LANG("obj.b2022b832fc8bbc9", null)))
 
 /obj/item/clothing/head/costume/pirate/dropped(mob/user)
 	. = ..()
 	if(QDELETED(src)) //This can be called as a part of destroy
 		return
 	user.remove_language(/datum/language/piratespeak, source = LANGUAGE_HAT)
-	to_chat(user, span_boldnotice(LANG("obj.dc548805", null)))
+	to_chat(user, span_boldnotice(LANG("obj.dc548805f9a84105", null)))
 
 /obj/item/clothing/head/costume/pirate/armored
 	armor_type = /datum/armor/pirate_armored

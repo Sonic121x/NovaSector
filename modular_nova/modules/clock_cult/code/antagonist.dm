@@ -56,7 +56,7 @@
 
 	recall.unmark_item()
 	recall.mark_item(slab)
-	to_chat(owner.current, span_brass(LANG("datum.e3a76c4f", null)))
+	to_chat(owner.current, span_brass(LANG("datum.e3a76c4fb5b8652d", null)))
 
 
 /datum/outfit/clock/preview

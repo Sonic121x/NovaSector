@@ -33,12 +33,12 @@
 	icon_state = "adamantine_cords"
 
 /datum/action/item_action/organ_action/use/adamantine_vocal_cords/do_effect(trigger_flags)
-	var/message = tgui_input_text(owner, LANG("datum.35f4bb68", null), LANG("datum.11e7eabd", null), max_length = MAX_MESSAGE_LEN)
+	var/message = tgui_input_text(owner, LANG("datum.35f4bb684d1d811b", null), LANG("datum.11e7eabd7f2c9c3b", null), max_length = MAX_MESSAGE_LEN)
 	if(!message)
 		return FALSE
 	if(QDELETED(src) || QDELETED(owner))
 		return FALSE
-	owner.say(LANG("datum.4744c02d", list(message)))
+	owner.say(LANG("datum.4744c02d0184bdbc", list(message)))
 	return TRUE
 
 /obj/item/organ/vocal_cords/adamantine/handle_speech(message)

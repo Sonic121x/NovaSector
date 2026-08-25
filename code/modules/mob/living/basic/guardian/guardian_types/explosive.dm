@@ -64,7 +64,7 @@
 		explosive_checks = CALLBACK(src, PROC_REF(validate_target)), \
 		triggering_signals = boom_signals, \
 	)
-	target.balloon_alert(owner, LANG("datum.d241cecb", null))
+	target.balloon_alert(owner, LANG("datum.d241cecbdb13eddf", null))
 	StartCooldown()
 	return TRUE
 

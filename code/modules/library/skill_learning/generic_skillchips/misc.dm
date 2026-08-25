@@ -95,10 +95,10 @@
 
 /obj/item/skillchip/brainwashing/examine(mob/user)
 	. = ..()
-	. += span_warning(LANG("obj.75c94c67", null))
+	. += span_warning(LANG("obj.75c94c673778ccad", null))
 
 /obj/item/skillchip/brainwashing/on_activate(mob/living/carbon/user, silent = FALSE)
-	to_chat(user, span_danger(LANG("obj.5d01e197", null)))
+	to_chat(user, span_danger(LANG("obj.5d01e197fb7a6566", null)))
 	user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 20)
 	. = ..()
 

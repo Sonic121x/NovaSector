@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(allergy_reagent_blacklist, typecacheof(list(
 
 /datum/quirk/item_quirk/allergic/post_add()
 	quirk_holder.add_mob_memory(/datum/memory/key/quirk_allergy, allergy_string = allergy_string)
-	to_chat(quirk_holder, span_boldnotice(LANG("datum.3cbc5dab", list(allergy_string))))
+	to_chat(quirk_holder, span_boldnotice(LANG("datum.3cbc5dab79a9b4b6", list(allergy_string))))
 
 /datum/quirk/item_quirk/allergic/proc/block_metab(mob/living/carbon/source, datum/reagent/chem, seconds_per_tick, metabolization_ratio)
 	SIGNAL_HANDLER

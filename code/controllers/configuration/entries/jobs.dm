@@ -56,19 +56,19 @@
 	config_documentation = initial(config_documentation) // Reset to default juuuuust in case.
 
 	if(fexists(file(toml_path)))
-		to_chat(user, span_notice(LANG("datum.fdd64b3a", null)))
+		to_chat(user, span_notice(LANG("datum.fdd64b3a88d26a25", null)))
 		if(!regenerate_job_config(user))
 			return FALSE
 		return TRUE
 
 	if(fexists(file(jobstext))) // Generate the new TOML format, migrating from the text format.
-		to_chat(user, span_notice(LANG("datum.3e40747d", null)))
+		to_chat(user, span_notice(LANG("datum.3e40747dee80a557", null)))
 		if(!import_config_from_txt(user))
 			return FALSE
 		return TRUE
 
 	// Generate the new TOML format, using codebase defaults.
-	to_chat(user, span_notice(LANG("datum.52af164f", null)))
+	to_chat(user, span_notice(LANG("datum.52af164ff222ba5d", null)))
 	var/list/file_data = list()
 	for(var/datum/job/occupation as anything in joinable_occupations)
 		file_data[occupation.config_tag] = generate_blank_job_config(occupation)
@@ -114,7 +114,7 @@
 	var/list/file_data = list()
 
 	if(!fexists(file(toml_path))) // You need an existing (valid) TOML for this to work. Sanity check if someone calls this directly instead of through 'Generate Job Configuration' verb.
-		to_chat(user, span_notice(LANG("datum.0dfc2f69", null)))
+		to_chat(user, span_notice(LANG("datum.0dfc2f692c9659e9", null)))
 		return FALSE
 
 	var/list/job_config = rustg_read_toml_file(toml_path)
@@ -127,7 +127,7 @@
 
 		// When we regenerate, we want to make sure commented stuff stays commented, but we also want to migrate information that remains uncommented. So, let's make sure we keep that pattern.
 		if(!job_config[job_key])
-			to_chat(user, span_notice(LANG("datum.0d2d8a47", list(occupation.title, job_key))))
+			to_chat(user, span_notice(LANG("datum.0d2d8a47c466bbff", list(occupation.title, job_key))))
 			file_data[job_key] = generate_blank_job_config(occupation)
 			continue
 

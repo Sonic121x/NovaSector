@@ -1,50 +1,47 @@
 // NovaSector 全量汉化 (i18n) —— 运行时查表与格式化。
 //
-// 目录文件：strings/i18n/<locale>/<namespace>.json，扁平的 {"key": "模板"}。
-// 模板用位置占位符 {0}/{1}…，允许按中文语序重排参数。
-//
-// 设计要点：目录在「启动时一次性加载」(GLOBAL_LIST_INIT)，之后 LANG 读取路径**只读**，
-// 是纯函数——可安全用于标了 SpacemanDMM_should_be_pure 的 proc（如各类 examine 辅助）。
+// locale 目录只放玩家可见目录；文件属于哪个运行时域由顶层 catalog-domains.json 显式声明。
+// 启动期只解码 English bootstrap，ConfigLoaded 再加载 active locale 并一次性预热全部索引。
 
-/// 全服默认 locale。中文服在 config 写 I18N_SERVER_LOCALE zh-Hans（见 config_entries.dm）。
+/// 全服 locale。ConfigLoaded 的唯一入口 lang_initialize_runtime() 从 config 解析并固定它。
 GLOBAL_VAR_INIT(i18n_server_locale, DEFAULT_UI_LOCALE)
 
-/// config 是否已加载完（即 i18n_server_locale 是否已是最终值）。由 world.ConfigLoaded() 置位。
-///
-/// 存在的理由：BYOND 启动顺序是 `Master => GLOB => make_datum_reference_lists()`，**然后**才
-/// `world.New() => config.Load()`（见 code/game/world.dm 顶部）。所以在全局初始化期（GLOBAL_LIST_INIT、
-/// make_datum_reference_lists 里的各 init_*()、datum 母版表构建）读到的 locale 恒是 en，
-/// 此时调 lang_reverse_text 必然原样返回英文——**而且是完全静默的**，代码看着完备、实际从没生效。
-/// emote 就这么躺了很久（/datum/emote/New() 里的整段反查是死代码，靠 run_emote 边界兜底才勉强能用）。
-/// 有了这个标志，早调用会打一次 stack_trace，下一个同类死钩子在日志里自己现形。
-GLOBAL_VAR_INIT(i18n_locale_resolved, FALSE)
-/// 早调用告警计数。上限见 I18N_MAX_EARLY_WARNINGS：一次启动最多报这么多条，
-/// 既能一轮把存量调用点全列出来（每轮只报一条要跑很多轮），又不至于刷屏。
+/// 单一生命周期：BOOTSTRAP（只有英文）→ INITIALIZING（active locale + indexes）→ READY。
+/// 所有惰性构建器都以它为门；BOOTSTRAP 期的早调用只返回英文，绝不登记空 cache/state。
+GLOBAL_VAR_INIT(i18n_runtime_state, I18N_RUNTIME_BOOTSTRAP)
+
+/// 早调用告警计数。一次启动最多 I18N_MAX_EARLY_WARNINGS 条。
 GLOBAL_VAR_INIT(i18n_early_reverse_warnings, 0)
-#define I18N_MAX_EARLY_WARNINGS 10
+
+/// 每一层实际命中次数。miss 只在完整 exact→normalized→template→AC 链全部未命中时计数。
+GLOBAL_LIST_INIT(i18n_layer_hits, list(
+	I18N_LAYER_EXACT = 0,
+	I18N_LAYER_NORMALIZED = 0,
+	I18N_LAYER_TEMPLATE = 0,
+	I18N_LAYER_AC = 0,
+	I18N_LAYER_MISS = 0,
+))
 
 /// `strings/` 下的**匹配表**：靠字面比对驱动功能，翻译=替换=破坏匹配，一律不反查。
 /// （展示型 flavor 表不在此列；口音替换表虽也保英文，但那是内容取舍、不是功能损坏，不登记在这。）
 GLOBAL_LIST_INIT(i18n_match_table_files, list("phobia.json"))
 
-/// 恐惧症中文触发词表（类别 -> 词表），来自 strings/i18n/phobia_words.json。
-/// 与英文 strings/phobia.json **并存**：英文走原正则（带 \b 词边界），中文走无边界正则。
-/// 详见该 JSON 的 _comment（为什么不能并进同一条正则、为什么不能直接翻译英文表）。
-GLOBAL_LIST_EMPTY(i18n_phobia_words)
-GLOBAL_VAR_INIT(i18n_phobia_words_loaded, FALSE)
+/// 恐惧症中文触发词表（类别 -> 词表）是显式 scoped:phobia_words 域。
 /proc/lang_phobia_words(category)
-	if(!GLOB.i18n_phobia_words_loaded)
-		GLOB.i18n_phobia_words_loaded = TRUE
-		var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
-		if(locale != DEFAULT_UI_LOCALE)
-			var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/phobia_words.json"
-			if(fexists(path))
-				var/list/decoded = json_decode(file2text(path))
-				var/list/for_locale = islist(decoded) ? decoded[locale] : null
-				if(islist(for_locale))
-					for(var/phobia_category in for_locale)
-						GLOB.i18n_phobia_words[phobia_category] = for_locale[phobia_category]
-	return GLOB.i18n_phobia_words[category]
+	var/list/table = lang_scoped_table("phobia_words.json")
+	return table[category]
+
+/// 恐惧症类别的**显示标签**（类别 -> 一个词），显式 scoped:phobia_labels 域。
+///
+/// 类别名本身是标识符（GLOB.phobia_types 的键、phobia_regexes 的下标、phobia.json 的匹配键），
+/// 所以绝不能进 strings/i18n/<locale>/ 目录 —— 那里的每个 .json 都会被 build_i18n_cache 合并进
+/// **全局反查表**，clowns / robots / lizards 这种常见单词一旦进去就是线缆颜色那类事故。
+/// 未登记（含 locale==en）时原样返回，调用点无需分支。
+/proc/lang_phobia_label(category)
+	if(!istext(category))
+		return category
+	var/list/table = lang_scoped_table("phobia_labels.json")
+	return table[category] || category
 
 /// 为某恐惧症类别构建「本地化触发词」正则；无登记词则返回 null。
 ///
@@ -94,6 +91,15 @@ GLOBAL_VAR_INIT(i18n_phobia_words_loaded, FALSE)
 		if(islist(GLOB.string_cache[filepath]))
 			lang_reverse_tree(GLOB.string_cache[filepath])
 
+	// 试剂单例同属「GLOB 阶段就建好」的一类：`GLOBAL_LIST_INIT(chemical_reagents_list, ...)` 里
+	// 每个 `New()` 都跑在 config 之前。绝大多数试剂描述由 TGUI 负载 overlay 翻，不需要就地反查；
+	// 只有**在 New() 里把 `%VAR%` 替换掉**的那几个例外 —— 替换之后整串不再等于任何目录键，
+	// overlay 与反查双双 miss。它们各自实现 lang_relocalize_description()，这里统一回调。
+	// `chemical_reagents_list` 是 assoc（类型路径 → 单例），直接 `in` 迭代拿到的是**键**。
+	for(var/reagent_type in GLOB.chemical_reagents_list)
+		var/datum/reagent/reagent = GLOB.chemical_reagents_list[reagent_type]
+		reagent.lang_relocalize_description()
+
 /// 是否启用聊天层 AC 子串兜底（默认关）。config I18N_CHAT_FALLBACK 控制（见 config_entries.dm + fallback.dm）。
 GLOBAL_VAR_INIT(i18n_chat_fallback, FALSE)
 
@@ -118,36 +124,336 @@ GLOBAL_LIST_INIT(i18n_player_chat_types, list(
 	MESSAGE_TYPE_DEBUG = TRUE,
 ))
 
-/// locale -> (key -> 模板)。启动时加载，运行期只读。
-GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
+/// Manifest root: locale files plus explicit top-level scoped files. Loaded before the English catalog.
+GLOBAL_LIST_INIT(i18n_catalog_manifest, lang_load_catalog_manifest())
 
-/// 扫描 strings/i18n/ 下各 locale 目录，加载全部 .json。仅启动时调用（GLOBAL_LIST_INIT）。
-/proc/build_i18n_cache()
-	var/list/cache = list()
-	var/base = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/"
-	if(!fexists(base))
-		return cache
-	for(var/locale_entry in flist(base))
-		if(!findtext(locale_entry, "/", -1)) // 只要目录（flist 给目录名带尾部 "/"）
+/// Runtime catalog storage. Only English is decoded here; ConfigLoaded adds exactly the active locale.
+/// TGUI files are validated against the manifest but never decoded by DM.
+GLOBAL_LIST_INIT(i18n_catalogs, lang_bootstrap_catalogs())
+
+/// locale -> runtime domain -> source text -> translated text. Built only after config is resolved.
+GLOBAL_LIST_EMPTY(i18n_runtime_domains)
+
+/// locale -> ambiguous English source -> conflicting forward origins. Ambiguous fallback text is
+/// deliberately omitted from global reverse lookup; keyed LANG calls remain context-correct.
+GLOBAL_LIST_EMPTY(i18n_reverse_ambiguities)
+/// locale -> normalized English source -> conflicting origins. Ambiguous normalized aliases are
+/// omitted, while exact source lookup remains available.
+GLOBAL_LIST_EMPTY(i18n_reverse_norm_ambiguities)
+
+/proc/lang_runtime_is_ready()
+	return GLOB.i18n_runtime_state == I18N_RUNTIME_READY
+
+/proc/lang_runtime_can_build_indexes()
+	return GLOB.i18n_runtime_state >= I18N_RUNTIME_INITIALIZING
+
+/proc/lang_count_layer_hit(layer)
+	if(layer in GLOB.i18n_layer_hits)
+		GLOB.i18n_layer_hits[layer]++
+
+/proc/lang_layer_hit_count(layer)
+	return GLOB.i18n_layer_hits[layer] || 0
+
+/// Loads and validates the explicit catalog-domain manifest.
+/proc/lang_load_catalog_manifest()
+	var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/[I18N_CATALOG_DOMAIN_MANIFEST]"
+	if(!fexists(path))
+		CRASH("i18n: required catalog domain manifest is missing: [path]")
+	var/list/root = json_decode(file2text(path))
+	if(!islist(root) || root["version"] != 2 || !islist(root["files"]) || !islist(root["scoped_files"]))
+		CRASH("i18n: [path] must be a version 2 object with files and scoped_files objects")
+	var/list/files = root["files"]
+	for(var/file_name in files)
+		if(!istext(file_name) || copytext(file_name, -5) != ".json" || findtext(file_name, "/") || findtext(file_name, "\\"))
+			CRASH("i18n: invalid locale catalog filename in [path]: [file_name]")
+		var/list/config = files[file_name]
+		if(!islist(config))
+			CRASH("i18n: manifest entry [file_name] must be an object")
+		var/domain = config["domain"]
+		var/is_scoped = istext(domain) && findtext(domain, I18N_DOMAIN_SCOPED_PREFIX) == 1 && length(domain) > length(I18N_DOMAIN_SCOPED_PREFIX)
+		if(domain != I18N_DOMAIN_FORWARD && domain != I18N_DOMAIN_MANUAL_FORWARD && domain != I18N_DOMAIN_GLOBAL_REVERSE && domain != I18N_DOMAIN_TGUI && !is_scoped)
+			CRASH("i18n: manifest entry [file_name] has invalid domain '[domain]'")
+		var/owner = config["owner"]
+		if(owner != "extract" && owner != "manual" && owner != "tgui")
+			CRASH("i18n: manifest entry [file_name] has invalid owner '[owner]'")
+		if(config["locale_only"] && !is_scoped)
+			CRASH("i18n: locale_only is valid only for scoped domains ([file_name])")
+	var/list/scoped_domains = list()
+	var/list/scoped_files = root["scoped_files"]
+	for(var/file_name in scoped_files)
+		if(!istext(file_name) || copytext(file_name, -5) != ".json" || findtext(file_name, "/") || findtext(file_name, "\\"))
+			CRASH("i18n: invalid top-level scoped filename in [path]: [file_name]")
+		var/list/config = scoped_files[file_name]
+		var/domain = config?["domain"]
+		if(!istext(domain) || findtext(domain, I18N_DOMAIN_SCOPED_PREFIX) != 1 || length(domain) <= length(I18N_DOMAIN_SCOPED_PREFIX))
+			CRASH("i18n: top-level file [file_name] must declare a named scoped domain")
+		if(domain in scoped_domains)
+			CRASH("i18n: duplicate top-level scoped domain '[domain]' in [path]")
+		scoped_domains[domain] = file_name
+		if(config["owner"] != "manual")
+			CRASH("i18n: top-level scoped file [file_name] must be manual-owned")
+	return root
+
+/proc/lang_forward_key_is_valid(key)
+	if(!istext(key))
+		return FALSE
+	var/dot = findtext(key, ".")
+	if(dot < 2 || length(key) - dot != 16 || findtext(key, ".", dot + 1))
+		return FALSE
+	if(spantext(key, "abcdefghijklmnopqrstuvwxyz_", 1) < 1)
+		return FALSE
+	if(spantext(key, "abcdefghijklmnopqrstuvwxyz0123456789_", 1) != dot - 1)
+		return FALSE
+	return spantext(key, "0123456789abcdef", dot + 1) == 16
+
+/// Bootstrap is deliberately narrow: load English and no other locale directory.
+/proc/lang_bootstrap_catalogs()
+	var/list/catalogs = list(
+		I18N_CATALOG_FORWARD_BUCKET = list(),
+		I18N_CATALOG_MANUAL_BUCKET = list(),
+		I18N_CATALOG_PAIRED_BUCKET = list(),
+		I18N_CATALOG_DIRECT_BUCKET = list(),
+	)
+	lang_load_catalog_locale(DEFAULT_UI_LOCALE, catalogs)
+	return catalogs
+
+/proc/lang_catalog_locale_is_loaded(locale)
+	var/list/forward_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET]
+	return islist(forward_by_locale?[locale])
+
+/// Decodes one locale according to the manifest. Unknown or missing required files are fatal:
+/// silently dropping a file would silently drop translations and recreate filename-based domains.
+/proc/lang_load_catalog_locale(locale, list/catalogs)
+	var/list/forward_by_locale = catalogs[I18N_CATALOG_FORWARD_BUCKET]
+	if(islist(forward_by_locale?[locale]))
+		return
+	var/dir = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/[locale]/"
+	if(!fexists(dir))
+		CRASH("i18n: configured locale directory does not exist: [dir]")
+	var/list/actual_files = list()
+	var/list/manifest_files = GLOB.i18n_catalog_manifest["files"]
+	for(var/file_name in flist(dir))
+		if(copytext(file_name, -1) == "/")
 			continue
-		var/locale = copytext(locale_entry, 1, -1) // 去掉尾部 "/"
-		var/list/merged = list()
-		var/dir = "[base][locale_entry]"
-		for(var/filename in flist(dir))
-			if(!findtext(filename, ".json", -length(".json")))
-				continue
-			var/list/decoded = json_decode(file2text("[dir][filename]"))
-			if(!islist(decoded))
-				continue
-			for(var/key in decoded)
-				merged[key] = decoded[key]
-		cache[locale] = merged
-	return cache
+		if(copytext(file_name, -5) != ".json")
+			continue
+		if(!manifest_files[file_name])
+			CRASH("i18n: locale [locale] contains unknown catalog file [file_name]; classify it in [I18N_CATALOG_DOMAIN_MANIFEST]")
+		actual_files[file_name] = TRUE
+	for(var/file_name in manifest_files)
+		var/list/config = manifest_files[file_name]
+		if(!config["optional"] && !actual_files[file_name])
+			CRASH("i18n: locale [locale] is missing required catalog file [file_name]")
 
-/// 纯读：取某 locale 下某 key 的模板；缺失返回 null。
+	var/list/forward = list()
+	var/list/manual_forward = list()
+	var/list/paired = list()
+	var/list/direct = list()
+	for(var/file_name in actual_files)
+		var/list/config = manifest_files[file_name]
+		var/domain = config["domain"]
+		if(domain == I18N_DOMAIN_TGUI)
+			continue
+		var/list/decoded = json_decode(file2text("[dir][file_name]"))
+		if(!islist(decoded))
+			CRASH("i18n: [locale]/[file_name] must contain a JSON object")
+		var/list/target
+		if(domain == I18N_DOMAIN_FORWARD)
+			target = forward
+		else if(domain == I18N_DOMAIN_MANUAL_FORWARD)
+			target = manual_forward
+		else
+			var/list/bucket = config["locale_only"] ? direct : paired
+			target = bucket[domain]
+			if(!islist(target))
+				target = list()
+				bucket[domain] = target
+		for(var/key in decoded)
+			var/value = decoded[key]
+			if(!istext(key) || !istext(value))
+				CRASH("i18n: [locale]/[file_name] contains a non-text key or value")
+			if(domain == I18N_DOMAIN_FORWARD && !lang_forward_key_is_valid(key))
+				CRASH("i18n: forward key '[key]' in [locale]/[file_name] is not <namespace>.<16 lowercase hex>")
+			if(domain == I18N_DOMAIN_MANUAL_FORWARD && lang_forward_key_is_valid(key))
+				CRASH("i18n: hashed key '[key]' belongs in the automatic forward domain, not [locale]/[file_name]")
+			if(key in target)
+				var/existing = target[key]
+				if(existing != value)
+					CRASH("i18n: conflicting key '[key]' in runtime domain '[domain]' while loading [locale]/[file_name]")
+				continue
+			target[key] = value
+	forward_by_locale[locale] = forward
+	var/list/manual_by_locale = catalogs[I18N_CATALOG_MANUAL_BUCKET]
+	manual_by_locale[locale] = manual_forward
+	var/list/paired_by_locale = catalogs[I18N_CATALOG_PAIRED_BUCKET]
+	var/list/direct_by_locale = catalogs[I18N_CATALOG_DIRECT_BUCKET]
+	paired_by_locale[locale] = paired
+	direct_by_locale[locale] = direct
+
+/// Adds a source mapping while detecting the exact failure that used to be last-write-wins.
+/proc/lang_add_domain_value(list/seen, list/origins, list/output, source, translated, domain, origin, include_templates = TRUE)
+	if(source in seen)
+		if(seen[source] != translated)
+			CRASH("i18n: conflicting translations for '[source]' inside runtime domain '[domain]': [origins[source]] vs [origin]")
+		return
+	seen[source] = translated
+	origins[source] = origin
+	if(translated != source && (include_templates || !findtext(source, "{")))
+		output[source] = translated
+
+/// Automatic forward catalogs are context-keyed. If the same English source has different keyed
+/// translations, there is no correct context-free reverse answer: omit it instead of choosing by
+/// file order. Explicit global_reverse supplements may still provide a deliberate canonical value.
+/proc/lang_add_forward_reverse_value(list/seen, list/origins, list/ambiguous, list/output, source, translated, origin)
+	if(translated == source)
+		return
+	if(source in ambiguous)
+		ambiguous[source] += origin
+		return
+	if(source in seen)
+		if(seen[source] == translated)
+			return
+		ambiguous[source] = list(origins[source], origin)
+		output -= source
+		return
+	seen[source] = translated
+	origins[source] = origin
+	if(translated != source && !findtext(source, "{"))
+		output[source] = translated
+
+/proc/lang_validate_localized_keys(list/english, list/localized, locale, domain)
+	if(!islist(localized))
+		return
+	for(var/key in localized)
+		if(!(key in english))
+			CRASH("i18n: locale [locale] domain '[domain]' contains key '[key]' with no English source")
+
+/proc/lang_validate_manual_forward(locale)
+	var/list/manual_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_MANUAL_BUCKET]
+	var/list/english = manual_by_locale[DEFAULT_UI_LOCALE]
+	var/list/localized = manual_by_locale[locale]
+	lang_validate_localized_keys(english, localized, locale, I18N_DOMAIN_MANUAL_FORWARD)
+
+/// Builds one named domain. global_reverse is the union of automatic forward sources and explicit
+/// supplements; a supplement deterministically overrides the automatic fallback for that source.
+/proc/lang_build_runtime_domain(domain, locale)
+	var/list/by_locale = GLOB.i18n_runtime_domains[locale]
+	if(islist(by_locale) && islist(by_locale[domain]))
+		return by_locale[domain]
+	if(!lang_runtime_can_build_indexes() || !lang_catalog_locale_is_loaded(locale))
+		return null
+	if(!islist(by_locale))
+		by_locale = list()
+		GLOB.i18n_runtime_domains[locale] = by_locale
+	var/list/output = list()
+	var/list/seen = list()
+	var/list/origins = list()
+	var/list/ambiguous = list()
+	var/list/forward_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET]
+	var/list/paired_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_PAIRED_BUCKET]
+	var/list/direct_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_DIRECT_BUCKET]
+	if(domain == I18N_DOMAIN_GLOBAL_REVERSE)
+		var/list/english_forward = forward_by_locale[DEFAULT_UI_LOCALE]
+		var/list/localized_forward = forward_by_locale[locale]
+		lang_validate_localized_keys(english_forward, localized_forward, locale, domain)
+		for(var/key in english_forward)
+			var/source = english_forward[key]
+			var/translated = localized_forward[key]
+			if(isnull(translated))
+				translated = source
+			lang_add_forward_reverse_value(seen, origins, ambiguous, output, source, translated, "forward key [key]")
+		if(length(ambiguous))
+			GLOB.i18n_reverse_ambiguities[locale] = ambiguous
+			for(var/source in ambiguous)
+				seen -= source
+				origins -= source
+	// Explicit global_reverse files are the canonical context-free decision layer. Reset conflict
+	// tracking so they may override automatic forward candidates, while conflicts between two
+	// supplements still fail instead of depending on file iteration order.
+	if(domain == I18N_DOMAIN_GLOBAL_REVERSE)
+		seen = list()
+		origins = list()
+	var/list/english_domains = paired_by_locale[DEFAULT_UI_LOCALE]
+	var/list/localized_domains = paired_by_locale[locale]
+	var/list/english = english_domains?[domain]
+	var/list/localized = localized_domains?[domain]
+	if(islist(english))
+		lang_validate_localized_keys(english, localized, locale, domain)
+		for(var/key in english)
+			var/source = english[key]
+			var/translated = localized?[key]
+			if(isnull(translated))
+				translated = source
+			lang_add_domain_value(seen, origins, output, source, translated, domain, "catalog key [key]", include_templates = domain != I18N_DOMAIN_GLOBAL_REVERSE)
+	var/list/direct_domains = direct_by_locale[locale]
+	var/list/direct = direct_domains?[domain]
+	if(islist(direct))
+		for(var/source in direct)
+			lang_add_domain_value(seen, origins, output, source, direct[source], domain, "locale-only key [source]")
+	by_locale[domain] = output
+	return output
+
+/proc/lang_runtime_domain(name, locale)
+	if(isnull(locale))
+		locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
+	var/domain = findtext(name, I18N_DOMAIN_SCOPED_PREFIX) == 1 ? name : "[I18N_DOMAIN_SCOPED_PREFIX][name]"
+	var/list/table = lang_build_runtime_domain(domain, locale)
+	if(islist(table))
+		return table
+	var/static/list/empty = list()
+	return empty
+
+/proc/lang_runtime_domain_text(domain, text, locale)
+	if(!istext(text))
+		return text
+	var/mapped = lang_runtime_domain(domain, locale)[text]
+	return isnull(mapped) ? text : mapped
+
+/proc/lang_prewarm_runtime_domains(locale)
+	var/list/done = list()
+	var/list/manifest_files = GLOB.i18n_catalog_manifest["files"]
+	for(var/file_name in manifest_files)
+		var/list/config = manifest_files[file_name]
+		var/domain = config["domain"]
+		if(domain == I18N_DOMAIN_FORWARD || domain == I18N_DOMAIN_MANUAL_FORWARD || domain == I18N_DOMAIN_TGUI || done[domain])
+			continue
+		lang_build_runtime_domain(domain, locale)
+		done[domain] = TRUE
+	// The automatic forward catalog feeds this domain even when there are no supplement files.
+	if(!done[I18N_DOMAIN_GLOBAL_REVERSE])
+		lang_build_runtime_domain(I18N_DOMAIN_GLOBAL_REVERSE, locale)
+
+/// ConfigLoaded's only i18n entrypoint. When it returns, zh-Hans has no player-visible lazy setup left.
+/proc/lang_initialize_runtime(configured_locale, configured_chat_fallback)
+	if(GLOB.i18n_runtime_state != I18N_RUNTIME_BOOTSTRAP)
+		CRASH("i18n: lang_initialize_runtime() may be called exactly once")
+	if(!istext(configured_locale) || !length(configured_locale) || findtext(configured_locale, "/") || findtext(configured_locale, "\\") || findtext(configured_locale, ".."))
+		CRASH("i18n: invalid configured locale '[configured_locale]'")
+	GLOB.i18n_runtime_state = I18N_RUNTIME_INITIALIZING
+	GLOB.i18n_server_locale = configured_locale
+	GLOB.i18n_chat_fallback = !!configured_chat_fallback
+	if(!lang_catalog_locale_is_loaded(configured_locale))
+		lang_load_catalog_locale(configured_locale, GLOB.i18n_catalogs)
+	lang_validate_manual_forward(configured_locale)
+	lang_prewarm_runtime_domains(configured_locale)
+	lang_prewarm_scoped_tables()
+	if(configured_locale != DEFAULT_UI_LOCALE)
+		lang_build_reverse(configured_locale)
+		lang_type_name_keys() // loads name and desc type indexes together
+		lang_tpl_setup(configured_locale)
+		lang_fallback_setup(configured_locale)
+		lang_relocalize_early_string_lists()
+	GLOB.i18n_runtime_state = I18N_RUNTIME_READY
+
+/// Pure exact lookup: automatic v2 forward wins, then manual named LANG keys. Manual entries never
+/// feed reverse/template/AC indexes.
 /proc/lang_template(key, locale)
-	var/list/catalog = GLOB.i18n_cache[locale]
-	return catalog?[key]
+	var/list/forward_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET]
+	var/template = forward_by_locale?[locale]?[key]
+	if(!isnull(template))
+		return template
+	var/list/manual_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_MANUAL_BUCKET]
+	return manual_by_locale?[locale]?[key]
 
 /// 把模板里的 {0}/{1}… 用 args 依次替换（args 为 /list，元素按位置对应）。
 /// 文本实参经 lang_localize_arg 本地化链（仅全服 locale≠en；en 零额外开销）。
@@ -157,7 +463,17 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 /// 起的物品名、任何玩家可控串都做得到），它就会被后一个实参的值顶掉，输出一句错乱的话。
 /// 单趟扫描时实参写进输出后不再参与匹配，这类自吞死掉；顺带还省掉了「模板里根本没有该占位符时
 /// 仍然白跑一遍 lang_localize_arg + 全串 replacetext」的开销（LANG 是全仓三万余处调用的热点）。
-/proc/lang_interpolate(template, list/args)
+/// 「扫过这段字面文本之后，光标是不是落在某个 HTML 标签内部」。见 lang_interpolate 里
+/// 「占位符落在标签内部 = 实参是标识符」那条：状态要跨字面段累积，所以单独抽出来。
+/// 段内没有 `<`/`>` 时状态不变；有则以**最后出现**的那个为准。
+/proc/lang_tag_state_after(text, in_tag)
+	var/last_open = findlasttext(text, "<")
+	var/last_close = findlasttext(text, ">")
+	if(!last_open && !last_close)
+		return in_tag
+	return last_open > last_close
+
+/proc/lang_interpolate(template, list/args, origin)
 	var/arg_count = length(args)
 	if(!arg_count || !findtext(template, "{"))
 		return template
@@ -165,6 +481,14 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 	var/list/output = list()
 	var/template_length = length(template)
 	var/cursor = 1
+	// **占位符落在标签内部时，实参是标识符而不是文案**：幻觉心灵感应那条模板长这样
+	// `<span class='{0}'>…</span><span class='{1}'> {2}</span>`，{0}/{1} 收的是 span 的 CSS 类名
+	// （`boldnotice`/`alien`）。把它们送进 lang_localize_arg 轻则在漏翻日志里刷噪音，重则某天目录里
+	// 恰好有个同形条目 —— 中文就被写进 class 属性，聊天配色当场全丢。调用点无从分辨（同一条模板里
+	// {2} 才是真文案），但**形态**分得清：只有 `<` 与 `>` 之间的占位符是属性值。
+	// has_tags 预判一次，无标签的模板（绝大多数）零额外开销。
+	var/has_tags = findtext(template, "<")
+	var/in_tag = FALSE
 	while(cursor <= template_length)
 		var/brace = findtext(template, "{", cursor)
 		if(!brace)
@@ -180,10 +504,23 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 			output += copytext(template, cursor, close + 1)
 			cursor = close + 1
 			continue
-		output += copytext(template, cursor, brace)
+		var/lead = copytext(template, cursor, brace)
+		output += lead
+		if(has_tags)
+			in_tag = lang_tag_state_after(lead, in_tag)
 		var/arg = args[index]
-		if(localize && istext(arg))
-			arg = lang_localize_arg(arg)
+		if(localize && !in_tag)
+			if(istext(arg))
+				arg = lang_localize_arg(arg, origin)
+			else if(isatom(arg))
+				// **非文本实参从前完全没被本地化**：rewrite 把 `[src]` 抬成 LANG 实参时给的是 atom
+				// 本身（`list(src)` 一种形状全仓 3000+ 处），而这里只对 istext 分支调 lang_localize_arg
+				// → `"[arg]"` 插进去的是**英文名**，只能指望聊天层的字面 AC 去捞（那条有多词门槛，
+				// 单词名永远捞不着，于是「你仔细查看The floor」）。
+				// 顺带解决冠词：`"[atom]"` 会让 BYOND 自己补 "The "（模板里的 `\the` 是另一回事，
+				// 由 lang_process_text_escapes 剥），中文不需要冠词，走显示边界拿到的就是干净的名字。
+				var/atom/atom_arg = arg
+				arg = atom_arg.lang_localize_name_for_display(atom_arg.name)
 		output += "[arg]"
 		cursor = close + 1
 	output += copytext(template, cursor)
@@ -197,7 +534,97 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 ///   ④ 带英文冠词的名字（"\the [src]"/"\a [x]" 渲染出的 "The wall"/"a Monkey"——剥冠词反查
 ///      余下部分（再试小写），命中则丢冠词：中文无冠词）。
 /// 全部是精确匹配，查不到原样保留（玩家名/数字/已中文串零误伤）。
-/proc/lang_localize_arg(arg)
+/// 当前全服 locale 是否是**中文**。
+///
+/// 判据不能写成「locale != en」：伪 locale（qps-ploc）与将来任何其它语言都会命中那条，于是
+/// 中文专用的拟声替换表会被套到英文文本上 —— 上游的 speech_modifiers 单测当场抓到过一次
+/// （蜥蜴人的 `s→sss` 断言在伪 locale 下拿到了未变形的英文）。
+/// 文本里是否含中日韩统一表意文字。用于「按字切」这类**形态判据**（比 locale 判据稳：
+/// 中英混排、伪 locale 都不会误伤）。
+/proc/lang_contains_cjk(text)
+	var/static/regex/cjk_regex = regex(@"[一-鿿]")
+	return istext(text) && cjk_regex.Find(text)
+
+/// 语音替换词表的**按 locale 取表**入口（`speechmod` 组件的 `replacements`）。
+///
+/// 这批表（chav/elvis/ork/crustacean…）的**键是英文单词**，靠 `replacetextEx` 在消息里做子串替换。
+/// 中文句子里那些键永不出现 → 整类突变在中文服上是空转（而它们的 `end_string` 后缀却照常追加，
+/// 于是表现为「中文句子后挂一条英文尾巴」）。中文表放在 `strings/zh-Hans/` 下同名文件，
+/// 有就用、没有就退回英文表 —— 这样新增一门语言只是加文件，不用改任何调用点。
+///
+/// 中文表的键必须是**多字词**：`replacetextEx` 是无词边界的子串替换，拿单字当键（「下」「是」）
+/// 会在词内开火，把「下面」「不是」也一起改掉 —— 与字面 AC 那些事故同一个形态。
+/// 词池（`world.file2list` 读的纯文本表）按 locale 取表：`<名>.<locale>.txt` 与英文表同目录，
+/// 有就用、没有就退回英文表 —— 新增语言只加文件、不改调用点。与 lang_speech_replacements 同一
+/// 条路子（那是 strings/ 的 JSON 版），但**不能走 GLOB.string_cache**：这些表是 file2list 直接
+/// 读的，不经 load_strings_file。
+///
+/// 为什么不把词入目录：这些池子是**极常见的英文单词**（`hot`/`in`/`real`/`kind`/`solid`…），
+/// 进全局反查表就是凭空扩大整个 DM 侧的误翻面（线缆颜色那次事故的形态）。而它们的用途是纯
+/// flavor 拼句，按 locale 换整张表既覆盖完全、又零全局风险。
+///
+/// **必须惰性**：GLOBAL_LIST_INIT 跑在 locale 读入之前（见 memory「i18n 初始化时序死钩子」），
+/// 在 GLOB 初始化期按 locale 选表只会静默拿到英文表。
+GLOBAL_LIST_EMPTY(i18n_word_pools)
+
+/proc/lang_word_pool(filepath, list/fallback)
+	if(GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
+		return fallback
+	var/cache_key = "[filepath]|[GLOB.i18n_server_locale]"
+	var/list/cached = GLOB.i18n_word_pools[cache_key]
+	if(cached)
+		return cached
+	var/list/pool = fallback
+	var/localized_path = "[copytext(filepath, 1, findtextEx(filepath, ".txt"))].[GLOB.i18n_server_locale].txt"
+	if(fexists(localized_path))
+		var/list/localized = world.file2list(localized_path)
+		// file2list 会把末尾换行读成一个空元素，pick() 抽到就是一句空文本。
+		// **循环着删**：DM 的 `Remove()` 每个实参只摘一个实例（`list -= null` 那条同源），
+		// 文件里有两处空行就会漏掉一个。
+		while(("" in localized))
+			localized -= ""
+		if(length(localized))
+			pool = localized
+	GLOB.i18n_word_pools[cache_key] = pool
+	return pool
+
+/proc/lang_speech_replacements(filepath, key)
+	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
+		// **同目录、locale 后缀命名**（`chav_replacement.zh-Hans.json`），不能放 `strings/<locale>/` 下：
+		// `GLOB.string_cache` 只按**文件名**索引、不含目录，同名文件会互相覆盖 —— 谁先加载谁赢，
+		// 另一边静默拿到错表。
+		var/localized_path = "[copytext(filepath, 1, findtextEx(filepath, ".json"))].[GLOB.i18n_server_locale].json"
+		if(fexists("[STRING_DIRECTORY]/[localized_path]"))
+			var/list/localized = strings(localized_path, key)
+			if(length(localized))
+				// **叠加而非替换**：英文键只在拉丁文本上匹配、中文键只在中文文本上匹配，两套规则
+				// 互不干扰。整张换掉会让中文服上的英文发言（玩家打英文、机器播报）丢掉整个效果
+				// —— 与蜥蜴/苍蝇拟声表那条同一个道理，见 lang_merge_speech_replacements。
+				return lang_merge_speech_replacements(strings(filepath, key), localized)
+	return strings(filepath, key)
+
+/// 中文拟声表**叠加**在英文表之上，而不是替换它。
+///
+/// 这两张表是**字母级**与**汉字级**两套互不相干的规则：`s→sss` 只在拉丁字母上开火，`。→嘶。`
+/// 只在中文标点上开火。原来写成「中文服就整张换掉英文表」，代价有两个，第二个是硬伤：
+///   · 中文服上的英文发言（玩家打英文、机器播报）丢掉了效果；
+///   · **上游的 speech_modifiers 单测直接红**——它断言蜥蜴人把 "She is so sassy" 念成
+///     "SSShe isss ssso sssasssy"，而那条断言在中文 locale 下拿到的是未变形的原句。
+/// 叠加之后两套规则各管各的文本形态，互不干扰（半角标点那三条已按前置汉字锚定，见各自的表）。
+///
+/// 不能用 `base + extra`：DM 的 list `+` 对关联列表只并键、**不带值**，合出来的表每条规则都映到 null。
+/proc/lang_merge_speech_replacements(list/base, list/extra)
+	. = base.Copy()
+	for(var/key in extra)
+		.[key] = extra[key]
+
+/proc/lang_locale_is_chinese()
+	return findtext(GLOB.i18n_server_locale, "zh") == 1
+
+/// 见 lang_localize_arg 末尾的 HTML 兜底：那条路会经模板引擎绕回自身，用它挡住失控下探。
+GLOBAL_VAR_INIT(i18n_arg_html_depth, 0)
+
+/proc/lang_localize_arg(arg, origin)
 	if(!length(arg))
 		return arg
 	// span_*() 包裹的实参：改写后的调用形如
@@ -210,7 +637,7 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 		var/static/regex/wrapped_arg = regex(@"^((?:<[^>]+>)+)(.*?)((?:</[^>]+>)+)$")
 		if(wrapped_arg.Find(arg))
 			var/inner = wrapped_arg.group[2]
-			var/inner_translated = lang_localize_arg(inner)
+			var/inner_translated = lang_localize_arg(inner, origin)
 			if(inner_translated != inner)
 				return wrapped_arg.group[1] + inner_translated + wrapped_arg.group[3]
 	var/list/state_words = lang_state_words()
@@ -240,6 +667,38 @@ GLOBAL_LIST_INIT(i18n_cache, build_i18n_cache())
 		translated = lang_reverse_text(capped)
 		if(translated != capped)
 			return translated
+	// 「裸文本 + span 包裹」的混合实参（`" and [EXAMINE_HINT("secured with metal cables")]"`）：
+	// 上面那条剥外壳的分支要求整串**首尾**都是标签，多一个前导 " and " 就整条 miss，于是连里面
+	// 那句本来译得好好的也一起留成英文。这类形状交给聊天路径同款的切块器：按标签切开、每块各自
+	// 精确反查（" and " 这种连接碎片在目录里有独立条目，整串反查够得着；AC 的词内开火风险由
+	// lang_fallback_apply 自己的多词闸门挡）。仅在含标签时才跑，普通实参零额外开销。
+	// 英文复数形式：中文没有复数，去掉词尾再精确查一次。运行期拼出来的复数（物种的
+	// `plural_form = "[name]\s"` → `Voxs`/`Akulae`、各种 `"[x]s"`）整串永远不是目录键，而单数
+	// 早就在目录里 —— 采集里 `Golems`/`Ethereals`/`Skrells` 一整排都是这一类。
+	// 安全线是「**单数必须整串精确命中目录**」：碰不上就原样返回，不做任何形态猜测。
+	var/length_of_arg = length(arg)
+	if(length_of_arg > 2 && text2ascii(arg, length_of_arg) == 115) // 以 s 结尾
+		var/singular = copytext(arg, 1, length_of_arg)
+		translated = lang_reverse_text(singular)
+		if(translated != singular)
+			return translated
+		if(copytext(arg, -2) == "es")
+			singular = copytext(arg, 1, length_of_arg - 1)
+			translated = lang_reverse_text(singular)
+			if(translated != singular)
+				return translated
+	// 深度守卫：这条路存在一个**环**（arg → 切块器 → 模板逆匹配 → 捕获值又回到 lang_localize_arg）。
+	// 每一跳处理的都是严格更短的子串，理论上必然收敛；但它跑在聊天热路径上，栈爆的代价太大，
+	// 所以显式钉一个上限，超了就不再下探（退化成原样返回，行为与从前一致）。
+	if(findtext(arg, "<") && GLOB.i18n_arg_html_depth < I18N_ARG_HTML_MAX_DEPTH)
+		GLOB.i18n_arg_html_depth++
+		translated = lang_fallback_apply_html(arg, GLOB.i18n_server_locale)
+		GLOB.i18n_arg_html_depth--
+		if(translated != arg)
+			return translated
+	// 漏翻采集：整条链都没命中的 LANG 实参。**模板译好了、实参漏出来**是「中文句子里嵌英文词」
+	// 的头号成因，而实参多半是单词（状态词、单词名），旧的 run 采集器按多词门槛结构性看不见。
+	lang_log_miss_value(arg, "arg", origin)
 	return arg
 
 /// **逆向**反查：把显示边界产生的译名还原成英文原文。用于 act 回传/按英文建键的查表场景——
@@ -289,46 +748,14 @@ GLOBAL_LIST_EMPTY(i18n_unreverse)
 			return copytext(text, alen + 1)
 	return null
 
-/// 惰性加载「状态词 → 译文」表（全服 locale≠en 时读 strings/i18n/<locale>/_state_words.json；en 为空）。
-/// 惰性而非 GLOBAL_LIST_INIT：避免在 i18n_server_locale 设置前被钉死成空表。
-GLOBAL_LIST_EMPTY(i18n_state_words)
-GLOBAL_VAR_INIT(i18n_state_words_loaded, FALSE)
+/// `_state_words.json` is a named scoped domain. It is preloaded with the active locale but never
+/// contributes to global reverse lookup.
 /proc/lang_state_words()
-	if(GLOB.i18n_state_words_loaded)
-		return GLOB.i18n_state_words
-	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
-	if(locale != DEFAULT_UI_LOCALE)
-		var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/[locale]/_state_words.json"
-		if(fexists(path))
-			var/list/decoded = json_decode(file2text(path))
-			if(islist(decoded))
-				for(var/word in decoded)
-					GLOB.i18n_state_words[word] = decoded[word]
-	GLOB.i18n_state_words_loaded = TRUE
-	return GLOB.i18n_state_words
+	return lang_runtime_domain("state_words")
 
-/// 惰性加载「神之声触发正则 → 追加了本地化别名的正则」表（locale≠en 时读 strings/i18n/voice_of_god.json）。
-/// 与 _state_words 同样惰性：避免在 i18n_server_locale 设置前被钉死成空表。
-///
-/// 这张表**刻意不放在 strings/i18n/<locale>/ 目录**——那里的文件会被 build_i18n_cache 全量并进反查表，
-/// 而 key 里有 "run"/"sit"/"stand"/"jump" 这类裸单词，进反查表就成了标识符碰撞（任何整串等于它们的
-/// 显示文本会被替换成正则）。详见该 JSON 的 _comment。
-GLOBAL_LIST_EMPTY(i18n_vog_triggers)
-GLOBAL_VAR_INIT(i18n_vog_triggers_loaded, FALSE)
+/// 神之声触发正则是显式 scoped:voice_of_god 域。
 /proc/lang_vog_triggers()
-	if(GLOB.i18n_vog_triggers_loaded)
-		return GLOB.i18n_vog_triggers
-	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
-	if(locale != DEFAULT_UI_LOCALE)
-		var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/voice_of_god.json"
-		if(fexists(path))
-			var/list/decoded = json_decode(file2text(path))
-			var/list/for_locale = islist(decoded) ? decoded[locale] : null
-			if(islist(for_locale))
-				for(var/pattern in for_locale)
-					GLOB.i18n_vog_triggers[pattern] = for_locale[pattern]
-	GLOB.i18n_vog_triggers_loaded = TRUE
-	return GLOB.i18n_vog_triggers
+	return lang_scoped_table("voice_of_god.json")
 
 /// 把神之声命令的英文触发正则换成「英文 + 本地化别名」版本。未登记的 pattern 原样返回；locale==en 时 no-op。
 /// 玩家在中文服里自然会用中文下命令（输入框标题/提示都是中文），只匹配英文等于整个法术失效。
@@ -338,70 +765,100 @@ GLOBAL_VAR_INIT(i18n_vog_triggers_loaded, FALSE)
 	var/list/table = lang_vog_triggers()
 	return table[pattern] || pattern
 
-/// 护甲防护等级 examine（list_armor 输出）的显示译名（英文名 -> 译名）。
-/// 顶层 armor_classes.json，**不进全局反查表**：伤害类型名（ACID/BIOHAZARD/FIRE…）是单词类、且
-/// 与 DISEASE_SEVERITY_BIOHAZARD 等 switch 标识符碰撞，进反查表会误伤。这里按 locale 单独读，
-/// 只在 clothing/mecha 的 armor readout 落地点用。同 lang_vog_triggers。
-GLOBAL_LIST_EMPTY(i18n_armor_classes)
-GLOBAL_VAR_INIT(i18n_armor_classes_loaded, FALSE)
+/// 护甲防护等级 examine（list_armor 输出）只从 scoped:armor_classes 域取显示译名。
 /proc/lang_armor_class(name)
 	if(!istext(name))
 		return name
-	if(!GLOB.i18n_armor_classes_loaded)
-		GLOB.i18n_armor_classes_loaded = TRUE
-		var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
-		if(locale != DEFAULT_UI_LOCALE)
-			var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/armor_classes.json"
-			if(fexists(path))
-				var/list/decoded = json_decode(file2text(path))
-				var/list/for_locale = islist(decoded) ? decoded[locale] : null
-				if(islist(for_locale))
-					for(var/class_name in for_locale)
-						GLOB.i18n_armor_classes[class_name] = for_locale[class_name]
-	return GLOB.i18n_armor_classes[name] || name
+	var/list/table = lang_scoped_table("armor_classes.json")
+	return table[name] || name
 
-/// 「域内显示表」的通用加载器。
-///
-/// 顶层 `strings/i18n/<file>.json`（形如 `{"zh-Hans": {"英文": "译名"}}`）**不被 build_i18n_cache
-/// 合并进全局反查表**——表里的值往往同时是 icon_state / assoc 键 / switch 标识符，而且多是
-/// blue、Fire、Power 这类通用单词，进反查表必然误伤（见 `nova-i18n lint` 的单词类碰撞）。
-/// 按域分表而不是合成一张大表：同一个词在不同域可以译得不一样，也不会互相污染。
-///
-/// 新增一个域：放一个 json + 写一个三行的 `lang_xxx()` 包装即可。
-/// （armor_classes / voice_of_god / phobia / statpanel 几张老表各有自己的加载逻辑，暂未并过来。）
+/// Explicit top-level scoped catalog loader. Bootstrap calls return an uncached empty table; all
+/// declared files are decoded and cached during INITIALIZING.
 GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 /proc/lang_scoped_table(file_name)
-	var/list/cached = GLOB.i18n_scoped_tables[file_name]
+	if(!lang_runtime_can_build_indexes())
+		var/static/list/empty = list()
+		return empty
+	var/list/scoped_files = GLOB.i18n_catalog_manifest["scoped_files"]
+	if(!scoped_files[file_name])
+		CRASH("i18n: unknown top-level scoped catalog '[file_name]'; classify it in [I18N_CATALOG_DOMAIN_MANIFEST]")
+	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
+	var/list/by_locale = GLOB.i18n_scoped_tables[file_name]
+	if(!islist(by_locale))
+		by_locale = list()
+		GLOB.i18n_scoped_tables[file_name] = by_locale
+	var/list/cached = by_locale[locale]
 	if(islist(cached))
 		return cached
+	var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/[file_name]"
+	if(!fexists(path))
+		CRASH("i18n: declared top-level scoped catalog is missing: [path]")
+	var/list/decoded = json_decode(file2text(path))
+	if(!islist(decoded))
+		CRASH("i18n: top-level scoped catalog must contain a locale object: [path]")
 	var/list/table = list()
-	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
-	if(locale != DEFAULT_UI_LOCALE)
-		var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/[file_name]"
-		if(fexists(path))
-			var/list/decoded = json_decode(file2text(path))
-			var/list/for_locale = islist(decoded) ? decoded[locale] : null
-			if(islist(for_locale))
-				for(var/entry in for_locale)
-					table[entry] = for_locale[entry]
-	GLOB.i18n_scoped_tables[file_name] = table
+	var/list/for_locale = decoded[locale]
+	if(islist(for_locale))
+		for(var/entry in for_locale)
+			table[entry] = for_locale[entry]
+	by_locale[locale] = table
 	return table
 
-/// `english_list()` 的本地化版：**逐项**过 lang_localize_arg（状态词表 → 反查 → 冠词剥离），
-/// 再用中文顿号连接。
+/proc/lang_prewarm_scoped_tables()
+	var/list/scoped_files = GLOB.i18n_catalog_manifest["scoped_files"]
+	for(var/file_name in scoped_files)
+		lang_scoped_table(file_name)
+
+/// 「数量 + 部件名」的显示片段（`"[2] [beaker]\s"` → 「2 烧杯」）。
 ///
-/// 这类「形容词/状态词列表拼成一句」的写法（鱼的健康警告、材料属性详检、伤情列表…）整句永远
-/// 不是目录键，而 `english_list` 拼出来的成品里每个词都还是英文——只能逐项翻。连接词也要换：
-/// 英文的 " and " 直接留在中文句子里很难看，中文用「、」。locale==en 时原样调 english_list，零变化。
-/proc/lang_english_list(list/items, nothing_text = "nothing")
+/// 部件名来自 `initial(x.name)`，是 canonical English —— 显示边界化之后本该如此，翻译只在显示处做。
+/// 这类清单（机器框架、电路板、弹药工作台…）过去只剩字面 AC 一条落地路径，而 AC 有多词门槛，
+/// 于是同一行里 `玻璃板` 是中文、`micro-servo`/`beakers` 是英文 —— 「一份清单里按名字词数分成
+/// 两半」这个反差就是判据。
+///
+/// 译出中文时**丢掉 `\s`**：中文名词没有复数，留着 BYOND 会照数量渲染出多余的 "s"（「2 烧杯s」）。
+/// 没翻动的项保持原样，英文复数照常工作。
+/proc/lang_component_tally(amount, component_name)
+	if(!istext(component_name))
+		return "[amount] [component_name]\s"
+	var/localized = lang_localize_display_name(component_name)
+	if(localized == component_name)
+		return "[amount] [component_name]\s"
+	return "[amount] [localized]"
+
+/// `english_list()` 的 locale-neutral 本地化版：逐项过显示边界，再按显式域表连接。
+///
+/// `list_formatting.json` 提供 separator、default_conjunction 与 canonical 英文连接词映射；
+/// 缺少当前 locale 的格式表时，仍本地化各项，但保留 `english_list()` 的 canonical 连接行为。
+/// 这样新增 locale 只需添加域数据，不需要在 DM 控制流里增加 locale 分支。
+/// `final_comma_text` 是英文的牛津逗号（"a, b, and c" 里 and 前那个逗号），本地化分支不使用它：
+/// 中文用顿号连接、也没有这个成分，与「译文不引用英文复数 `\s` 占位符」同一条道理。
+/// 但形参必须与 `english_list()` 逐一对应 —— rewrite 是就地把调用换成本 proc 的，
+/// 上游任何一个具名实参我们缺一个，那个调用点当场编译不过。
+/proc/lang_english_list(list/items, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "")
 	if(GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
-		return english_list(items, nothing_text)
+		return english_list(items, nothing_text, and_text, comma_text, final_comma_text)
 	if(!length(items))
 		return lang_localize_arg(nothing_text)
 	var/list/localized = list()
 	for(var/item in items)
 		localized += lang_localize_arg("[item]")
-	return jointext(localized, "、")
+	if(length(localized) < 2)
+		return localized.Join()
+	var/list/formatting = lang_scoped_table("list_formatting.json")
+	var/separator = formatting["separator"]
+	var/list/conjunctions = formatting["conjunctions"]
+	if(!istext(separator) || !islist(conjunctions))
+		return english_list(localized, nothing_text, and_text, comma_text, final_comma_text)
+	var/conjunction_key = trim(replacetext(and_text, ",", ""))
+	var/joiner = conjunctions[conjunction_key]
+	if(isnull(joiner))
+		joiner = formatting["default_conjunction"]
+	if(!istext(joiner))
+		joiner = and_text
+	var/tail = localized[length(localized)]
+	localized.Cut(length(localized))
+	return "[jointext(localized, separator)][joiner][tail]"
 
 /// 史莱姆颜色（SLIME_TYPE_* 的值）的显示译名。颜色同时是 icon_state 与突变表键，不能进反查表。
 /proc/lang_slime_colour(colour)
@@ -410,11 +867,22 @@ GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 	var/list/table = lang_scoped_table("slime_colours.json")
 	return table[colour] || colour
 
+/// 化学反应在「没有产物试剂」时的兜底显示名（`ui_data.dm` 从类型路径末段现切出来的那个）。
+///
+/// 走**域内表**而不是主目录：这些值按定义是类型路径末段、标识符形态，全仓 117 条里混着
+/// `heat` / `holy` / `life` / `soup` / `foam` 这类通用单词，塞进全局反查表当场把
+/// `nova-i18n lint` 的碰撞告警顶上去（实测 54 → 61）。顶层表只由这一个显示点查。
+/// 表由 `node tools/i18n/reaction-names.mjs` 生成骨架，未填译文的保持英文。
+/proc/lang_reaction_name(reaction_name)
+	if(!istext(reaction_name))
+		return reaction_name
+	var/list/table = lang_scoped_table("reaction_names.json")
+	return table[reaction_name] || reaction_name
+
 /// 线缆颜色的显示译名。颜色值同时是 act 回传标识符（`wire.color`）与 CSS 颜色名
 /// （前端 `labelColor={shownColor.replace(' ','')}`），所以值本身必须留英文；
 /// ui_data 里另发一个 shownColorLabel 供前端当 label 用。
-/// **不能**图省事塞进 tgui.json：那份也被 build_i18n_cache 读进全局反查表，
-/// blue/purple/gold 进去就毒化整个 DM 侧（i18n_real_catalog 抓到过一次）。
+/// `tgui.json` is now an explicit TGUI-only domain and is never decoded by DM.
 /proc/lang_wire_colour(colour)
 	if(!istext(colour))
 		return colour
@@ -447,33 +915,24 @@ GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 		index++
 	return candidate
 
-/// 状态栏页签名/分组标题的显示译名表（英文标识符 -> 译名），发给 statbrowser.js 只用于渲染文字。
-/// 同 lang_vog_triggers 放顶层 JSON：键是 Admin/Game/Object 这类裸单词，进全局反查表会造成标识符碰撞。
-/// **页签名本身绝不本地化**——它是 button.id、SendTabToByond 回传值、statpanel.dm `stat_tab ==` 比较的
-/// 三重标识符，且 split_admin_tabs 靠 JS 里硬编码的 `splitName[0] === 'Admin'` 拆子页签。详见该 JSON 的 _comment。
-GLOBAL_LIST_EMPTY(i18n_statpanel_tab_labels)
-GLOBAL_VAR_INIT(i18n_statpanel_tab_labels_loaded, FALSE)
+/// 状态栏页签名/分组标题只从 scoped:statpanel_tabs 取显示译名。页签名本身仍是
+/// button.id / SendTabToByond 回传值 / stat_tab 比较标识符，绝不原地本地化。
 /proc/lang_statpanel_tab_labels()
-	if(GLOB.i18n_statpanel_tab_labels_loaded)
-		return GLOB.i18n_statpanel_tab_labels
-	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
-	if(locale != DEFAULT_UI_LOCALE)
-		var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/statpanel_tabs.json"
-		if(fexists(path))
-			var/list/decoded = json_decode(file2text(path))
-			var/list/for_locale = islist(decoded) ? decoded[locale] : null
-			if(islist(for_locale))
-				for(var/tab_name in for_locale)
-					GLOB.i18n_statpanel_tab_labels[tab_name] = for_locale[tab_name]
-	GLOB.i18n_statpanel_tab_labels_loaded = TRUE
-	return GLOB.i18n_statpanel_tab_labels
+	return lang_scoped_table("statpanel_tabs.json")
 
 /// BYOND 文法宏（\the \a \improper 等，无参、由引擎按名词上下文在**编译期/输出期**处理）。模板从 JSON
 /// 加载后引擎不再处理 → 会字面显示。中文无冠词/复数、且上下文已丢失，直接剥掉。`\b` 防 \theory 等误伤；
 /// 已转义的反斜杠（\\）开头不会被这里的单反斜杠模式吃掉。只列已知文法宏，不碰 \n \t \" 等真转义。
 // 末尾的 es|s 是 BYOND 复数后缀宏 \s/\es（"[n] apple\s" → 引擎按数量补 "s"）：runtime 构建的 LANG
 // 串不被引擎处理 → 字面 \s 漏出（如「30 cable piece\s」）。中文无复数，直接剥除（与冠词/代词宏同处理）。
-GLOBAL_VAR_INIT(i18n_text_macro_regex, regex(@"\\(improper|proper|themselves|theirs|himself|herself|itself|their|them|they|roman|Roman|the|The|hers|she|She|her|his|him|its|it|It|he|He|an|An|a|A|es|s)\b", "g"))
+GLOBAL_VAR_INIT(i18n_text_macro_regex, regex(@"\\(themselves|theirs|himself|herself|itself|their|them|they|roman|Roman|hers|she|She|her|his|him|its|it|It|he|He|es|s)\b", "g"))
+
+/// 冠词/专名前缀宏单独一条，因为要**连同后面那个空格一起吃掉**：`\improper 兹克夫单元` 剥完
+/// 若只去宏就剩「 兹克夫单元」（玩家实测里的「那是  地板.」「你拉了拉  某物」双空格即此）。
+/// 中文不需要冠词，宏与其分隔空格一起消失才是正确形态。
+/// **不能**把这条规则套到上面那张表：`\s`（复数）紧贴单词、后面那个空格是句子本身的
+/// （`"[n] wire\s are"` → 吃掉就成了「wireare」）。
+GLOBAL_VAR_INIT(i18n_article_macro_regex, regex(@"\\(improper|proper|the|The|an|An|a|A)\b ?", "g"))
 
 /// 处理从 JSON 模板带出的 BYOND 转义/文法宏（rewrite 把编译期字面量改成 LANG 后，这些转义不再被引擎
 /// 处理）：① 剥文法宏；② 还原转义引号 \" → "；③ 还原 \n → 换行、\t → 制表符。
@@ -495,6 +954,8 @@ GLOBAL_VAR_INIT(i18n_text_macro_regex, regex(@"\\(improper|proper|themselves|the
 /proc/lang_process_text_escapes(text)
 	if(!istext(text))
 		return text
+	var/regex/article_re = GLOB.i18n_article_macro_regex
+	text = article_re.Replace(text, "")
 	var/regex/macro_re = GLOB.i18n_text_macro_regex
 	text = macro_re.Replace(text, "")
 	text = replacetext(text, "\\\"", "\"") // \" → "
@@ -518,7 +979,7 @@ GLOBAL_VAR_INIT(i18n_text_macro_regex, regex(@"\\(improper|proper|themselves|the
 	if(isnull(template))
 		return key // 兜底：返回 key，避免崩溃
 
-	. = lang_interpolate(template, args)
+	. = lang_interpolate(template, args, key)
 	if(findtext(., "\\")) // 仅含反斜杠（文法宏/转义）时才处理，绝大多数消息直接返回
 		. = lang_process_text_escapes(.)
 
@@ -561,69 +1022,81 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 	text = replacetext(text, "\\proper", "")
 	return trim(text)
 
-/// 惰性构建某 locale 的反查表（从已加载的 GLOB.i18n_cache 读取）。
-/proc/lang_build_reverse(locale)
-	if(GLOB.i18n_reverse[locale])
-		return GLOB.i18n_reverse[locale]
+/// Reverse indexes are built from the explicit global_reverse runtime domain: forward catalog source
+/// values plus only the supplements named global_reverse in catalog-domains.json.
+/// 反查表的**归一化形态**表：`normalize(英文) → 可直接显示的译文`。
+GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 
-	var/list/english = GLOB.i18n_cache[DEFAULT_UI_LOCALE]
-	var/list/localized = GLOB.i18n_cache[locale]
-	// i18n_cache 尚未就绪（极早期 GLOBAL_LIST_INIT 期间被调用）：返回空表但**不缓存**，
-	// 否则会把空反查表钉死到 GLOB.i18n_reverse[locale]，毒化之后所有反查。
-	if(!islist(english) || !islist(localized))
+/// 反查用的归一化：把「同一句话的各种运行期形态」压到同一个键上。
+///
+/// 每一条都对应一类**实测踩过的**形态差异（详见各自注释）：
+///   · 文法宏：目录存字面 `\improper`，运行期是控制字节；
+///   · 源码转义：目录存字面 `\n`/`\t`/`\"`/`\[`，运行期已是真换行/裸引号/字面括号；
+///   · 空白：DM 的 `\` 续行会把前导制表符并进串里，抽取器归一成单空格；
+///   · 首尾空白与成对单引号：strings/ 数据文件的值常带这些，目录里存的是 trim/去引号形态；
+///   · 首字母大小写：DM 惯例「小写存、显示时 `capitalize()`」。**只对多词生效**——单词键几乎全是
+///     标识符形态（move/clear/ready），给它们做大小写归一会把 `switch("Clear")` 这类比较拖进反查面。
+///     这条安全线与 P1、AC 字典、`lint.rs` 的碰撞集合是同一条，改动要一起改。
+/proc/lang_normalize_lookup(text)
+	if(!istext(text) || !length(text))
+		return text
+	if(findtext(text, "\improper") || findtext(text, "\proper") || findtext(text, "\\improper") || findtext(text, "\\proper"))
+		text = lang_strip_grammar_macros(text)
+	if(findtext(text, "\\"))
+		text = lang_unescape_source(text)
+	if(findtext(text, "\t") || findtext(text, "  "))
+		text = lang_collapse_ws(text)
+	text = trim(text)
+	var/length_of_text = length(text)
+	if(length_of_text > 2 && text2ascii(text, 1) == 39 && text2ascii(text, length_of_text) == 39)
+		text = copytext(text, 2, length_of_text)
+	var/first_char = copytext(text, 1, 2)
+	if(findtext(text, " ") && findtextEx("ABCDEFGHIJKLMNOPQRSTUVWXYZ", first_char))
+		text = LOWER_TEXT(first_char) + copytext(text, 2)
+	return text
+
+/proc/lang_add_normalized_reverse(list/reverse_norm, list/origins, list/ambiguous, normalized, translated, origin)
+	if(normalized in ambiguous)
+		ambiguous[normalized] += origin
+		return
+	if(normalized in reverse_norm)
+		if(reverse_norm[normalized] == translated)
+			return
+		ambiguous[normalized] = list(origins[normalized], origin)
+		reverse_norm -= normalized
+		origins -= normalized
+		return
+	reverse_norm[normalized] = translated
+	origins[normalized] = origin
+
+/proc/lang_build_reverse(locale)
+	if(locale in GLOB.i18n_reverse)
+		return GLOB.i18n_reverse[locale]
+	if(!lang_runtime_can_build_indexes() || !lang_catalog_locale_is_loaded(locale))
+		return list()
+	var/list/domain = lang_build_runtime_domain(I18N_DOMAIN_GLOBAL_REVERSE, locale)
+	if(!islist(domain))
 		return list()
 	var/list/reverse = list()
-	for(var/key in english)
-		var/en_text = english[key]
-		if(findtext(en_text, "{")) // 带占位符的走 LANG 调用，不走反查
-			continue
-		var/translated = localized[key]
-		if(translated && translated != en_text)
-			reverse[en_text] = translated
-			// 文法宏对齐：额外登记「剥宏」形态键，让运行时带标记字节的 name（如
-			// "\improper Space Cigarettes packet"）也能命中（值同样剥宏，去掉中文里多余的 \improper）。
-			if(findtext(en_text, "\\improper") || findtext(en_text, "\\proper"))
-				var/stripped_key = lang_strip_grammar_macros(en_text)
-				if(stripped_key && !reverse[stripped_key])
-					reverse[stripped_key] = lang_strip_grammar_macros(translated)
-			// 源码转义对齐：dreammaker 解析器把 `\"`/`\n`/`\t`/`\[`/`\]` 原样保留在目录里（字面反斜杠序列），
-			// 但 BYOND 运行时字符串里这些已被解析成裸引号/换行/制表符/字面方括号。反查输入=运行时串 → 查带字面
-			// 转义的 key 永不命中 → 额外登记「去转义」形态键（译文同样去转义）。影响所有含这些转义的 name/desc/
-			// lore，尤其**多行 desc 的 \n**（如采矿订购台物品描述：目录已译却因换行不匹配而显英文）。
-			if(findtext(en_text, "\\"))
-				var/unescaped_key = lang_unescape_source(en_text)
-				if(unescaped_key != en_text && !reverse[unescaped_key])
-					reverse[unescaped_key] = lang_unescape_source(translated)
-			// 首字母大小写对齐：DM 里「小写存、显示时 capitalize()」是通用写法（手术名
-			// `capitalize(operation.name)`、伤口/器官/试剂名、`"[capitalize(x.name)]"` 拼句…）。
-			// 目录键保留源码原样的小写形态，运行期送来的却是首字母大写的串 → 精确反查与 AC 字典
-			// 双双 miss，整类「目录里明明有译文却显英文」（外科处理机列出的 Tend wounds/Lobotomize
-			// 即此）。这里额外登记首字母大写的变体键，指向同一译文；已有精确键优先，不覆盖。
-			// 中文无大小写，值不用变。
-			// **只做多词键**：单词键几乎全是标识符形态（"move"/"add"/"clear"/"ready"…），
-			// 给它们登记大写变体会把 `switch("Add")`、`if(pick == "Clear")` 这类比较拖进反查面
-			// —— 与 P1 的多词门槛、AC 字典的多词过滤是同一条安全线，此处保持一致。
-			// HTML 标签对齐：聊天/浏览器落地走 lang_fallback_apply_html，它**按标签切块**、只把
-			// 标签之间的纯文本送进反查与 AC。而目录键是照抄源码字面量的，标签就嵌在键里
-			// （`"<b>But none of its eggs hatched!</b>"`、`"There is a sticker displaying the <b>…</b>"`、
-			// `"<span class='notice ml-1'>Subject contains no neuroware in their brain.</span>"`）。
-			// 于是运行期送来的是**裸句**、目录里躺着**带标签的键**，两边永远对不上：整句回退英文，
-			// 更糟的是接着被字面 AC 从中间咬开（「But n其中一只 its eggs hatched!」）。
-			// 这里登记「剥标签」变体键，值同样剥标签——切块后的裸文本就能命中，外层标签由切块器
-			// 自己原样保留，格式不丢。
-			// 与上面几条变体同一条安全线：**只做多词**（单词剥完多是标识符形态），且不覆盖已有精确键。
-			if(findtext(en_text, "<") && findtext(en_text, ">"))
-				var/stripped_tags_key = lang_strip_html_tags(en_text)
-				if(stripped_tags_key != en_text && findtext(stripped_tags_key, " ") && !reverse[stripped_tags_key])
-					reverse[stripped_tags_key] = lang_strip_html_tags(translated)
-
-			var/first_char = copytext(en_text, 1, 2)
-			if(findtext(en_text, " ") && findtextEx("abcdefghijklmnopqrstuvwxyz", first_char))
-				var/capitalized_key = uppertext(first_char) + copytext(en_text, 2)
-				if(!reverse[capitalized_key])
-					reverse[capitalized_key] = translated
-
+	var/list/reverse_norm = list()
+	var/list/norm_origins = list()
+	var/list/norm_ambiguous = list()
+	for(var/en_text in domain)
+		var/translated = domain[en_text]
+		reverse[en_text] = translated
+		var/norm_key = lang_normalize_lookup(en_text)
+		if(norm_key != en_text)
+			lang_add_normalized_reverse(reverse_norm, norm_origins, norm_ambiguous, norm_key, lang_display_value(translated), "source '[en_text]'")
+		// Chat/browser output is split around formatting tags. Register the visible multi-word form,
+		// but never strip functional links.
+		if(findtext(en_text, "<") && findtext(en_text, ">"))
+			var/bare_key = lang_normalize_lookup(lang_strip_html_tags(en_text))
+			if(length(bare_key) && findtext(bare_key, " ") && !(bare_key in reverse))
+				lang_add_normalized_reverse(reverse_norm, norm_origins, norm_ambiguous, bare_key, lang_strip_html_tags(lang_display_value(translated)), "tagged source '[en_text]'")
+	if(length(norm_ambiguous))
+		GLOB.i18n_reverse_norm_ambiguities[locale] = norm_ambiguous
 	GLOB.i18n_reverse[locale] = reverse
+	GLOB.i18n_reverse_norm[locale] = reverse_norm
 	return reverse
 
 /// 把一段英文整串反查为全服 locale 的译文；查不到/缺省 locale 时原样返回。
@@ -640,84 +1113,322 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 /proc/lang_reverse_text(text)
 	if(!text)
 		return text
-	// config 尚未加载 → locale 还不是最终值 → 下面必然 early-return 英文。静默失效很难查，
-	// 这里打一次 stack_trace 把调用点指出来（见 i18n_locale_resolved 的注释）。
-	if(!GLOB.i18n_locale_resolved && GLOB.i18n_early_reverse_warnings < I18N_MAX_EARLY_WARNINGS)
+	// Bootstrap calls must stay English and must not poison any index. Keep a bounded diagnostic.
+	if(!lang_runtime_can_build_indexes() && GLOB.i18n_early_reverse_warnings < I18N_MAX_EARLY_WARNINGS)
 		GLOB.i18n_early_reverse_warnings++
-		stack_trace("i18n: lang_reverse_text() 在 config 加载前被调用——此刻 locale 恒为 en，本次及此前所有反查都原样返回了英文。若这是 datum 母版表的初始化钩子，它是死代码，应改到显示边界或 SS Initialize 里做。")
-	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
-	if(locale == DEFAULT_UI_LOCALE)
+		stack_trace("i18n: lang_reverse_text() was called before ConfigLoaded initialized the active locale; returning English without caching")
+	return lang_reverse_text_in(text, GLOB.i18n_server_locale || DEFAULT_UI_LOCALE)
+
+/// 整串精确反查的 **locale 参数化**核心。聊天链带着自己的 locale 参数（单测注入合成 locale 靠它），
+/// 从前它手写了一份「只查 exact 表」的查表，于是归一表那批键在聊天路径上永远查不到 —— 三条落地链
+/// 各写一遍同一件事的典型代价。
+/proc/lang_reverse_text_in(text, locale)
+	if(!text || locale == DEFAULT_UI_LOCALE)
 		return text
-	var/list/reverse = GLOB.i18n_reverse[locale] || lang_build_reverse(locale) // PERF: read the cached table directly; only call the builder before it's ready — saves a proc call per atom name/desc reverse at init (~550k calls)
+	var/list/reverse = GLOB.i18n_reverse[locale]
+	if(!islist(reverse))
+		reverse = lang_build_reverse(locale)
+	if(!islist(reverse))
+		return text
 	. = reverse[text]
 	if(!isnull(.))
-		return .
-	// 未直接命中：若含文法宏标记字节，剥宏后再查一次（对齐目录里的剥宏形态键）。
-	if(findtext(text, "\improper") || findtext(text, "\proper"))
-		. = reverse[lang_strip_grammar_macros(text)]
-		if(!isnull(.))
-			return .
-	// 仍未命中：DM 把 "\" 续行的前导制表符/空格并入字符串、抽取器却归一成单空格 → 折叠后再查一次
-	// （不止 \t：多空格续行也会漏）。PERF：collapse_ws 正则只在含 \t 或连续 2+ 空格时才改动文本，
-	// 而它是每次反查 miss 都跑的热点（启动期每个 atom name/desc 都过这里）——先用廉价 findtext 守卫，
-	// 简单单行名（绝大多数 atom）直接跳过正则。行为等价：守卫覆盖了 collapse_ws 会改动的全部情形。
-	if(findtext(text, "\t") || findtext(text, "  "))
-		var/collapsed = lang_collapse_ws(text)
-		if(collapsed != text)
-			. = reverse[collapsed]
-			if(!isnull(.))
-				return .
-	// 仍未命中：strings/ 数据文件的值偶带首尾空白（如 ion_laws.json 的 "BILLION … SHAB-AB-DOOD-ILLION "），
-	// 抽取器入目录时按 trim 形态存 → 运行时原样值精确反查失手（strings 加载处反查/模板实参反查都路过这里）。
-	// trim 后再查一次，命中则把原首尾空白拼回（离子法则等下游拼接依赖这些空格）。
-	// 廉价守卫：首/尾字节是空白才走（513+ 文本 proc 按字节偏移，空白必为 ASCII，UTF-8 续字节 >127 不误伤）。
-	var/textlen = length(text)
-	if(text2ascii(text, 1) <= 32 || text2ascii(text, textlen) <= 32)
-		var/start = 1
-		while(start <= textlen && text2ascii(text, start) <= 32)
-			start++
-		var/end = textlen
-		while(end >= start && text2ascii(text, end) <= 32)
-			end--
-		if(end >= start)
-			. = reverse[copytext(text, start, end + 1)]
-			if(!isnull(.))
-				return copytext(text, 1, start) + . + copytext(text, end + 1)
-	// 仍未命中：strings/ 数据值偶带**成对单引号**（ion_laws.json 词池 "'PRETZELS'"），抽取器
-	// 入目录存去引号形 → 原样精确失手（暗号生成、离子法则实参都路过）。剥引号再查，命中直接
-	// 返回译文（zh 不需要英文式引号强调；与 'Clown'→小丑 的既有目录行为一致）。
-	if(textlen > 2 && text2ascii(text, 1) == 39 && text2ascii(text, textlen) == 39)
-		. = reverse[copytext(text, 2, textlen)]
-		if(!isnull(.))
-			return .
+		lang_count_layer_hit(I18N_LAYER_EXACT)
+		return lang_display_value(.)
+	// 精确 miss → 归一化后再查一次。归一表把「同一句话的各种运行期形态」（文法宏 / 源码转义 /
+	// 续行空白 / 首尾空白 / 成对单引号 / capitalize 过的首字母）压到同一个键上；从前这里是五段
+	// 各自为政的重试、建表侧还有四条变体登记，且**变体之间不能组合**。
+	// 注意**不能**加「归一化后与原串相同就跳过」的短路：归一表里还有一类键本身就是归一化产物
+	// （剥标签形态），查询侧是裸句、归一化对它是恒等变换 —— 跳过就等于那类永远查不到。
+	var/normalized = lang_normalize_lookup(text)
+	var/list/reverse_norm = GLOB.i18n_reverse_norm[locale]
+	if(islist(reverse_norm))
+		var/hit = reverse_norm[normalized]
+		if(!isnull(hit))
+			lang_count_layer_hit(I18N_LAYER_NORMALIZED)
+			// 归一化会吃掉首尾空白：命中后按原串的首尾空白拼回（离子法则等下游拼接依赖那些空格）。
+			var/text_length = length(text)
+			if(text2ascii(text, 1) <= 32 || text2ascii(text, text_length) <= 32)
+				var/start_index = 1
+				while(start_index <= text_length && text2ascii(text, start_index) <= 32)
+					start_index++
+				var/end_index = text_length
+				while(end_index >= start_index && text2ascii(text, end_index) <= 32)
+					end_index--
+				return copytext(text, 1, start_index) + hit + copytext(text, end_index + 1)
+			return hit
 	// 仍未命中：`desc = span_alert("…")` 类编译期包裹 → 运行时值带 <span> 外壳，目录存的是内层
-	// （抽取器解 span_* 宏）。剥单层 span 反查内层，命中回包（保留原样式）。廉价守卫：< 开头才走正则。
+	// （抽取器解 span_* 宏）。剥单层 span 反查内层，命中**回包**（保留原样式）——所以它不能并进
+	// 归一化那条路：那条会把标签直接吃掉、配色就丢了。
 	if(text2ascii(text, 1) == 60)
 		var/static/regex/reverse_span_re = regex("^(<span class='\[^']*'>)(.*)(</span>)$")
 		if(reverse_span_re.Find(text))
 			var/inner = reverse_span_re.group[2]
 			var/inner_hit = reverse[inner]
 			if(!isnull(inner_hit))
-				return reverse_span_re.group[1] + inner_hit + reverse_span_re.group[3]
+				lang_count_layer_hit(I18N_LAYER_EXACT)
+			else
+				inner_hit = GLOB.i18n_reverse_norm[locale]?[lang_normalize_lookup(inner)]
+				if(!isnull(inner_hit))
+					lang_count_layer_hit(I18N_LAYER_NORMALIZED)
+			if(!isnull(inner_hit))
+				return reverse_span_re.group[1] + lang_display_value(inner_hit) + reverse_span_re.group[3]
 	return text
 
 /// 显示用「物件名」本地化：先整串精确反查（命中堆叠/单词名/已译名幂等），miss 再走 AC 子串兜
 /// 复合名（如 "Robotics Lab APC" → 区域名子串 "Robotics Lab" 被换）。与 screentip（_atom.dm）同款
 /// 两步，抽成共用 proc 供「绕过 examine/AC 路径、只发 atom.name 的 UI」复用（如 LootPanel）。
 /// 仅用于**纯显示**的名字（act/回传用 ref/path、不用 name 处），翻名不破标识符。locale==en no-op。
-/proc/lang_localize_display_name(text)
+/proc/lang_localize_display_name(text, origin)
 	if(!istext(text) || GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
 		return text
-	. = lang_reverse_text(text)
-	if(. == text) // 精确 miss → 复合名走 AC 子串
-		. = lang_fallback_apply(text)
+	// 显示边界**不过字面 AC**：名字要么整串命中、要么是「区域名 + 类型名」那种可拆的合成名
+	// （lang_localize_area_prefixed_name 分段精确翻）。AC 是无词边界的子串替换，在这么短的串上
+	// 只会带来误伤（「You can」咬进「You can't」那一类的名字版）。
+	. = lang_localize_chain(text, GLOB.i18n_server_locale || DEFAULT_UI_LOCALE, allow_template = TRUE, ac_mode = I18N_AC_NONE)
+	// 漏翻采集：显示边界（examine 名/描述、悬停 screentip、径向菜单、tgui_input_list 选项）整条
+	// miss。这一面的缺口几乎全是**单词名**，run 采集器看不到；而它又最容易行动 —— 拿 origin 里的
+	// 类型路径直接对着 labels.rs TYPE_VAR_RULES / type_vars.json 补一条即可。
+	if(GLOB.i18n_log_misses && . == text)
+		lang_log_miss_value(text, "display", origin)
+
+/// 类型显示名/描述表：`strings/i18n/type_vars.json`（`nova-i18n extract` 产出，DM 继承已在 build 期展开）。
+/// `type` → 目录 key。显示边界拿到的 name/desc 若仍是类型标签，就**按类型直接取键**走正向目录，
+/// 而不是拿运行期字符串倒查反查表。三点收益：
+///   · 没有多词门槛 —— 单词名（`limb`/`beaker`/`Water`）第一次能落地，反查侧那条闸门永远够不到它们；
+///   · 没有同形异义碰撞 —— 键由类型决定，`smell`（名词/动词）、`Clear`/`Move` 这类不再需要定点表钉词性；
+///   · O(1)，不经模板引擎与字面 AC。
+///
+/// **实例数据永不改写**：类型变量声明不在 rewrite 的遍历范围内（rewrite 只走 `ty.procs`），
+/// `X.name` 在任何比较/查表处都还是 canonical English。这张表只在显示边界产出**新字符串**。
+/// 该不变量由 `nova-i18n lint` 的「类型变量声明不得含 LANG」规则守。
+///
+/// Loaded exactly once during INITIALIZING for non-English servers; bootstrap calls return without
+/// setting the loaded flag, so an early display hook cannot pin an empty type index.
+GLOBAL_LIST_EMPTY(i18n_type_name_keys)
+GLOBAL_LIST_EMPTY(i18n_type_desc_keys)
+GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
+
+/proc/lang_load_type_var_tables()
+	if(GLOB.i18n_type_var_tables_loaded)
+		return
+	if(!lang_runtime_can_build_indexes())
+		return
+	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
+	if(locale == DEFAULT_UI_LOCALE)
+		return
+	var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/type_vars.json"
+	if(!fexists(path))
+		CRASH("i18n: required type index metadata is missing: [path]")
+	var/list/decoded = json_decode(file2text(path))
+	if(!islist(decoded))
+		CRASH("i18n: type index metadata must be a JSON object: [path]")
+	lang_fill_type_var_table(decoded["name"], GLOB.i18n_type_name_keys)
+	lang_fill_type_var_table(decoded["desc"], GLOB.i18n_type_desc_keys)
+	GLOB.i18n_type_var_tables_loaded = TRUE
+
+/// JSON 里的键是类型**文本**，运行期查表用的是 `A.type`（路径）。一次性转成路径键，省掉每次
+/// 查表的 `"[type]"` 插值分配（hover screentip 是每次 MouseEntered 都走的路径）。
+/// 解析不出路径的条目（上游删过的类型等）直接丢，绝不留文本键——那会静默永不命中。
+/proc/lang_fill_type_var_table(list/entries, list/target)
+	if(!islist(entries) || !islist(target))
+		return
+	for(var/type_text in entries)
+		var/type_path = text2path(type_text)
+		if(isnull(type_path))
+			continue
+		target[type_path] = entries[type_text]
+
+/proc/lang_type_name_keys()
+	lang_load_type_var_tables()
+	return GLOB.i18n_type_name_keys
+
+/proc/lang_type_desc_keys()
+	lang_load_type_var_tables()
+	return GLOB.i18n_type_desc_keys
+
+/// 按类型取译文。无表项 / 该 key 在当前 locale 没有译文 → 返回 null，调用方回落既有反查链
+/// （形态不在表里的：地图实例覆盖、运行期拼接、子类型自己声明了非字面量…）。
+/proc/lang_type_display_text(atom/target, list/table)
+	if(GLOB.i18n_server_locale == DEFAULT_UI_LOCALE || !length(table))
+		return null
+	var/key = table[target.type]
+	if(!key)
+		return null
+	return lang_display_value(lang_template(key, GLOB.i18n_server_locale))
+
+/// 把「直接取自目录的值」变成可以显示的串：目录里存的是**源码字面形态**，含 `\improper`、`\n`、
+/// `\[` 这类 BYOND 转义/文法宏。它们只在编译期字面量里被引擎处理；运行期从 JSON 取回后是**字面
+/// 字符**，直接显示就是「\improper 太阳系精品热饮」。LANG 路径早有这道处理（lang_resolve 末尾），
+/// 按类型取键这条新路当时漏了。仅在含反斜杠时才跑。
+/proc/lang_display_value(text)
+	if(istext(text) && findtext(text, "\\"))
+		return lang_process_text_escapes(text)
+	return text
 
 /// Localize an atom name only when it is still a static type label. Runtime/player-assigned identity names
 /// must remain byte-for-byte unchanged even when they collide with a catalog phrase.
 /atom/proc/lang_localize_name_for_display(display_name)
 	if(HAS_TRAIT(src, TRAIT_WAS_RENAMED))
 		return display_name
-	return lang_localize_display_name(display_name)
+	// 仍等于类型初值 = 类型标签 → 按类型取键（精确、含单词名）。其余形态（地图实例覆盖 desc/name、
+	// 运行期拼接名）表里没有，回落既有反查链，行为与从前一致。
+	if(display_name == initial(name))
+		var/typed_name = lang_type_display_text(src, lang_type_name_keys())
+		if(typed_name)
+			return typed_name
+	else
+		// 运行期把**区域名**拼进 name 的那批（APC 的 `"\improper [区域名] APC"`、空气警报的
+		// `"[区域名] Air Alarm"`、火警器与防火门的 `"[区域名] [类型名] [id]"`）：整串既不是目录键、
+		// 又常以单词结尾，精确反查与字面 AC 双双够不着 → 实测里的「Courtroom APC」「Brig 空气警报」。
+		// 按区域名拆开分别翻，拼回原样。
+		var/split_name = lang_localize_area_prefixed_name(src, display_name)
+		if(split_name)
+			return split_name
+		var/affixed_name = lang_localize_type_affixed_name(display_name)
+		if(affixed_name)
+			return affixed_name
+		var/material_name = lang_localize_material_prefixed_name(display_name)
+		if(material_name)
+			return material_name
+	return lang_localize_display_name(display_name, "[type]")
+
+/// 血迹类污渍的运行期拼名（见 master_files 的 /obj/effect/decal/cleanable/blood 覆写）。
+///
+/// 只在 display_name 与「按英文构件拼出来的形态」逐字节相同时才动手 —— 那证明这一串确实是
+/// update_name() 拼的，而不是地图实例覆盖或别处改的名。任一构件翻不动就返回 null，由调用方
+/// 回落默认链；中文各构件之间不加空格。
+/proc/lang_localize_blood_decal_name(obj/effect/decal/cleanable/blood/decal, display_name)
+	if(!istext(display_name) || GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
+		return null
+	var/list/table = lang_scoped_table("blood_decal_names.json")
+	if(!length(table))
+		return null
+	var/blood_string = decal.get_blood_string()
+	if(!istext(blood_string) || !length(blood_string))
+		return null
+
+	// 先按英文重拼一遍，确认这串就是 update_name() 的产物。
+	var/rebuilt = initial(decal.name)
+	if(decal.base_name)
+		rebuilt = "[decal.base_name] [blood_string]"
+	if(decal.base_suffix)
+		rebuilt = "[decal.base_name ? rebuilt : blood_string] [decal.base_suffix]"
+	if(decal.dried && decal.dry_prefix)
+		rebuilt = "[decal.dry_prefix] [rebuilt]"
+	if(rebuilt != display_name)
+		return null
+
+	var/localized_blood = lang_reverse_text(blood_string)
+	if(localized_blood == blood_string)
+		return null
+	. = localized_blood
+	if(decal.base_name)
+		var/list/bases = table["base_name"]
+		var/base = bases?[decal.base_name]
+		if(!base)
+			return null
+		. = "[base][.]"
+	if(decal.base_suffix)
+		var/list/suffixes = table["base_suffix"]
+		var/suffix = suffixes?[decal.base_suffix]
+		if(!suffix)
+			return null
+		. = "[.][suffix]"
+	if(decal.dried && decal.dry_prefix)
+		var/list/prefixes = table["dry_prefix"]
+		var/prefix = prefixes?[decal.dry_prefix]
+		if(!prefix)
+			return null
+		. = "[prefix][.]"
+
+/// 运行期在**类型名两侧加缀**的实例名：AI 法则架的 `"\proper core module rack 'alpha'"`、
+/// 贴标机改过的 `"beaker (盐)"`、各种 `"[name] #3"`。整串不是目录键，类型表按 `initial(name)`
+/// 判定也对不上 → 精确反查与类型表双双 miss，只剩聊天层的字面 AC（多词才走、无词边界）。
+///
+/// 判据只有一条：**去掉文法宏之后，initial(name) 逐字节地是它的前缀**。前缀走类型表（单词名也能翻），
+/// 其余原样保留。mob 侧另有一条更严的同类规则（只放行 `" (…)"` 后缀）——那里 name 是身份，
+/// 不能放宽；obj/turf 的 name 从来只是类型标签，按前缀拆是安全的。
+/atom/proc/lang_localize_type_affixed_name(display_name)
+	var/base = initial(name)
+	var/base_length = length(base)
+	if(!base_length)
+		return null
+	// `"\proper [name] '…'"` 运行时是**标记字节 + 空格 + 名字**；不剥掉就永远匹配不上前缀，
+	// 而且那个空格会一路漏到玩家眼前（examine 的「那是  核心模块架」）。
+	var/stripped = lang_strip_grammar_macros(display_name)
+	if(length(stripped) <= base_length || findtext(stripped, base) != 1)
+		return null
+	var/tail = copytext(stripped, base_length + 1)
+	var/localized_base = lang_type_display_text(src, lang_type_name_keys()) || lang_localize_display_name(base, "[type]")
+	return "[localized_base][tail]"
+
+/// 运行期把**材料名**拼在类型名**前面**的那批（`/obj/item/coin/gold` 的 `"gold coin"`、
+/// 各种材料造物）。与 lang_localize_type_affixed_name 同源但方向相反：那条认 `initial(name)`
+/// 是前缀，这条认它是**后缀**。两条都必要——材料在前、编号/标签在后。
+///
+/// 闸门是「前缀必须是**已登记的材料名**」（`lang_material` 认得）。不设这条就等于放行任意
+/// 运行期前缀，而材料域正是为 `gold`/`glass`/`iron` 这些歧义单词准备的：它们只在材料语境翻，
+/// 不进全局反查表。中文不需要那个分隔空格，直接拼。
+/atom/proc/lang_localize_material_prefixed_name(display_name)
+	var/base = initial(name)
+	var/base_length = length(base)
+	if(!base_length)
+		return null
+	var/stripped = lang_strip_grammar_macros(display_name)
+	var/stripped_length = length(stripped)
+	if(stripped_length <= base_length)
+		return null
+	if(copytext(stripped, stripped_length - base_length + 1) != base)
+		return null
+	var/prefix = trim(copytext(stripped, 1, stripped_length - base_length + 1))
+	if(!length(prefix))
+		return null
+	var/localized_prefix = lang_material(prefix)
+	if(localized_prefix == prefix) // 不是登记过的材料 —— 这个形状不归本条管
+		return null
+	var/localized_base = lang_type_display_text(src, lang_type_name_keys()) || lang_localize_display_name(base, "[type]")
+	return "[localized_prefix][localized_base]"
+
+/// 拆「区域名 + 其余」型实例名并分别本地化；不是这个形状时返回 null（调用方回落原链）。
+///
+/// 三段各有各的译法，混在一起整串查是查不到的：
+///   · 区域名 —— 区域也是 atom，走它自己的显示边界（类型表 / `_map_names` 手工表都在那条路上）；
+///   · 类型名 —— 优先按**本类型**取键（`APC` 这种单词只有类型表够得着），miss 再整串反查；
+///   · 尾巴（`id_tag` 之类）—— 原样保留，它本来就不是文案。
+/atom/proc/lang_localize_area_prefixed_name(atom/source, display_name)
+	var/area/source_area = get_area(source)
+	if(isnull(source_area))
+		return null
+	var/area_name = source_area.name
+	if(!length(area_name))
+		return null
+	var/at = findtext(display_name, area_name)
+	if(at != 1) // 只认前缀形态；出现在中间的多半是巧合
+		return null
+	var/rest = copytext(display_name, length(area_name) + 1)
+	if(!length(rest))
+		return null
+	var/localized_area = source_area.lang_localize_name_for_display(area_name)
+	// 其余部分：先看是不是「类型名 + 尾巴」（火警器 `[区域] [类型名] [id]`）。
+	var/base = initial(name)
+	var/trimmed_rest = trim(rest)
+	if(length(base) && findtext(trimmed_rest, base) == 1)
+		var/tail = copytext(trimmed_rest, length(base) + 1)
+		var/localized_base = lang_type_display_text(source, lang_type_name_keys()) || lang_localize_display_name(base, "[source.type]")
+		return "[localized_area] [localized_base][tail]"
+	var/localized_rest = lang_localize_display_name(trimmed_rest, "[source.type]")
+	return "[localized_area] [localized_rest]"
+
+/// examine 的 desc 显示边界。与 name 同构：仍等于类型初值 → 按类型取键；其余（地图实例覆盖的
+/// desc、运行期 `desc = …` / `desc +=`）回落既有反查链，行为与从前一致。
+/atom/proc/lang_localize_desc_for_display(display_desc)
+	if(display_desc == initial(desc))
+		var/typed_desc = lang_type_display_text(src, lang_type_desc_keys())
+		if(typed_desc)
+			return typed_desc
+	. = lang_reverse_text(display_desc)
+	if(GLOB.i18n_log_misses && . == display_desc)
+		lang_log_miss_value(display_desc, "desc", "[type]")
 
 /// mob 的 `name` 是**身份**（角色名、宠物挂牌名、赛博编号、ERT 头衔…），一律不翻——哪怕它恰好
 /// 撞上目录短语。判据只用「是否仍等于类型声明的初值」：任何运行期赋值（`fully_replace_character_name`
@@ -740,10 +1451,11 @@ GLOBAL_LIST_EMPTY(i18n_reverse)
 	var/suffix = copytext(display_name, base_length + 1)
 	if(copytext(suffix, 1, 3) != " (" || copytext(suffix, -1) != ")")
 		return display_name
-	return lang_localize_display_name(base) + suffix
+	// 递归回本边界：base 此刻等于 initial(name)，走类型表那条快路（前缀单词名也能翻）。
+	return lang_localize_name_for_display(base) + suffix
 
 /// 已知会被运行期 `desc +=` 追加的固定后缀（trim 形态）。base + 后缀都是各自独立的目录键，但拼接后
-/// 整串非目录键 → exact 反查 miss。这些追加发生在 New()/早期（i18n_cache 未就绪、原地反查会空转），
+/// 整串非目录键 → exact 反查 miss。这些追加发生在 bootstrap/New() 早期，原地反查只会返回英文，
 /// 故在**使用点**（如手术计算机）用 lang_reverse_suffixed 拆开 base + 后缀分别精确反查（避免 AC 蚕食）。
 GLOBAL_LIST_INIT(i18n_appended_suffixes, list(
 	"This procedure can only be performed once per organ.",
@@ -806,134 +1518,9 @@ GLOBAL_LIST_INIT(i18n_appended_suffixes, list(
 			return span_re.group[1] + inner_hit + span_re.group[3]
 	return line
 
-/// 健康分析仪/医疗终端的扫描报告是运行期把大量硬编码英文 HTML 片段 jointext 成一坨、再经
-/// to_chat 输出的「绕过 sink/P1」结构：这些结构性 label 无句末标点→抽取器没收，且列头/状态词是
-/// 单词→to_chat 的 AC 兜底天然跳过（防碰撞）。故在落地点（jointext 之后）对这份**稳定小集合**
-/// 的 label 做带 HTML 锚点的精确替换。用 replacetextEx（大小写敏感）避免误伤 "Burn"↔"burn"、
-/// "type:"↔"Type:"。病名/伤名/husk 整句等（有句末标点、已进目录）仍交给 to_chat 的 AC。locale==en no-op。
-GLOBAL_LIST_INIT(i18n_health_scan_labels, list(
-	// 段落/区段标题（长串在前）
-	// 无残疾时 get_quirk_string 返回裸词 "None"（无句末标点→to_chat 的 AC 跳过），故整行锚点须排在下面
-	// 的通用 label 之前：lang_apply_label_map 顺序 replacetextEx，通用 label 一旦替换掉前缀，整行就匹配不到了。
-	"Subject Major Disabilities: None." = "对象重大残疾: 无。",
-	"Subject Minor Disabilities: None." = "对象次要残疾: 无。",
-	"Subject Major Disabilities: " = "对象重大残疾: ",
-	"Subject Minor Disabilities: " = "对象次要残疾: ",
-	"Detected cybernetic modifications:" = "检测到的义体改造:",
-	"Analyzing results for " = "正在分析 ",
-	"Overall status: " = "总体状态: ",
-	"Genetic Stability: " = "基因稳定性: ",
-	"Core temperature: " = "核心体温: ",
-	"Body temperature: " = "体温: ",
-	"Body status:" = "身体状态:",
-	"Organ status:" = "器官状态:",
-	"Time of Death: " = "死亡时间: ",
-	"Fatigue level: " = "疲劳程度: ",
-	"Blood level:" = "血液水平:",
-	" alcohol content:" = " 酒精含量:",
-	"Species: " = "物种: ",
-	// 表格列头
-	"<b>Damage:</b>" = "<b>损伤:</b>",
-	"<b>Suffocation</b>" = "<b>窒息</b>",
-	"<b>Overall:</b>" = "<b>总计:</b>",
-	"<b>Organ:</b>" = "<b>器官:</b>",
-	"<b>Status</b>" = "<b>状态</b>",
-	"<b>Brute</b>" = "<b>钝击</b>",
-	"<b>Burn</b>" = "<b>灼烧</b>",
-	"<b>Toxin</b>" = "<b>毒素</b>",
-	"<b>Dmg</b>" = "<b>损伤</b>",
-	// 部位单元格（>名:</font> 锚点，颜色在 > 之前不受影响）
-	">Head:</font>" = ">头部:</font>",
-	">Chest:</font>" = ">胸部:</font>",
-	">Left arm:</font>" = ">左臂:</font>",
-	">Right arm:</font>" = ">右臂:</font>",
-	">Left leg:</font>" = ">左腿:</font>",
-	">Right leg:</font>" = ">右腿:</font>",
-	// 器官/整体状态词（带标签锚点）
-	">Missing</font>" = ">缺失</font>",
-	">OK</font>" = ">正常</font>",
-	// 器官状态文本（_organ.dm get_status_text：<font color=…>词</font>，tochat 时外层再套 tooltip span；
-	// 颜色在 > 之前不受影响 → 锚 >词</font>）。无句末标点→AC 跳过，且未进目录，故在此精确锚点替换。
-	">Non-Functional</font>" = ">无功能</font>",
-	">Severely Damaged</font>" = ">严重损伤</font>",
-	">Mildly Damaged</font>" = ">轻微损伤</font>",
-	">Harmful Foreign Body</font>" = ">有害异物</font>",
-	">EMP-Derived Failure</font>" = ">EMP 导致的故障</font>",
-	// 肢体明细行（healthscan dmgreport）：外伤/异物前缀 + 断肢。conditional_tooltip 的可见文本仍是子串。
-	"Physical trauma: " = "外伤: ",
-	"Foreign object(s): " = "异物: ",
-	"Dismembered" = "已断肢",
-	"<b>Deceased</b>" = "<b>已死亡</b>",
-	"% healthy</b>" = "% 健康</b>",
-	">type: " = ">类型: ",
-))
-
-/// 验尸报告（autopsy_scanner）另起一份**自建**报告：格式不同（`<b>标签:</b>`、无颜色）、且印在
-/// 纸上（不经 to_chat 的 AC）→ 需独立锚点表。部位单元格用 `<b>名:</b>`（limb.name/parse_zone）。
-GLOBAL_LIST_INIT(i18n_autopsy_labels, list(
-	// 标题/元信息
-	"Autopsy report</br>" = "验尸报告</br>",
-	"Time of Autopsy: " = "验尸时间: ",
-	"Autopsy Coroner - " = "验尸法医 - ",
-	"Analyzing results for " = "正在分析 ",
-	"Time of Death - " = "死亡时间 - ",
-	"Subject has been dead for " = "对象死亡已持续 ",
-	// 身体数据表
-	"<u><b>Body Data:</b></u>" = "<u><b>身体数据:</b></u>",
-	"<b>Damage:</b>" = "<b>损伤:</b>",
-	"<b>Overall:</b>" = "<b>总计:</b>",
-	// 列头 / 合计行（合计行带前导空格，独立不冲突）
-	"<b>Suffocation</b>" = "<b>窒息</b>",
-	"<b>Brute</b>" = "<b>钝击</b>",
-	"<b>Burn</b>" = "<b>灼烧</b>",
-	"<b>Toxin</b>" = "<b>毒素</b>",
-	" Suffocation</b>" = " 窒息</b>",
-	" Brute</b>" = " 钝击</b>",
-	" Burn</b>" = " 灼烧</b>",
-	" Toxin</b>" = " 毒素</b>",
-	// 部位单元格
-	"<b>Head:</b>" = "<b>头部:</b>",
-	"<b>Chest:</b>" = "<b>胸部:</b>",
-	"<b>Left arm:</b>" = "<b>左臂:</b>",
-	"<b>Right arm:</b>" = "<b>右臂:</b>",
-	"<b>Left leg:</b>" = "<b>左腿:</b>",
-	"<b>Right leg:</b>" = "<b>右腿:</b>",
-	"Physical trauma: " = "外伤: ",
-	"<u>Dismembered</u>" = "<u>已断肢</u>",
-	"Foreign object(s): " = "异物: ",
-	" - Caused by <u>" = " - 造成者 <u>",
-	// 器官数据表
-	"<u><b>Organ Data:</b></u>" = "<u><b>器官数据:</b></u>",
-	"<b>Organ:</b>" = "<b>器官:</b>",
-	"<b>Dmg</b>" = "<b>损伤</b>",
-	"<b>Status</b>" = "<b>状态</b>",
-	"<u>Missing</u>" = "<u>缺失</u>",
-	"<td>OK</td>" = "<td>正常</td>",
-	"Detected cybernetic modifications:" = "检测到的义体改造:",
-	// 基因/物种/体温
-	"Genetic Stability:" = "基因稳定性:",
-	"<b>Species:</b>" = "<b>物种:</b>",
-	"Core temperature:" = "核心体温:",
-	"Body temperature:" = "体温:",
-	// 枯尸原因
-	"Subject is husked by: " = "对象被枯尸化，原因: ",
-	"Desiccation, commonly caused by Changelings." = "干尸化，常由拟态怪引起。",
-	"Stripped flesh." = "皮肉剥离。",
-	"Unknown causes." = "未知原因。",
-	"Severe burns." = "严重烧伤。",
-	// 血液
-	"Blood level:" = "血液水平:",
-	", type: " = ", 类型: ",
-	" alcohol content:" = " 酒精含量:",
-	// 化学/疾病数据
-	"<u>Chemical Data:</u>" = "<u>化学数据:</u>",
-	" in bloodstream." = " 存在于血液中。",
-	"<u>Disease Data:</u>" = "<u>疾病数据:</u>",
-	"<b>Disease Name:</b> " = "<b>疾病名称:</b> ",
-	"<b>Transmission Type:</b> " = "<b>传播类型:</b> ",
-	"<b>Symptoms:</b>" = "<b>症状:</b>",
-	"<b>Coroner's Notes:</b>" = "<b>法医备注:</b>",
-))
+/// 健康扫描与验尸报告由运行期拼接结构性 HTML label；这些短词与部位词不能进入全局反查。
+/// 各报告的大小写敏感锚点表分别由顶层 health_scan_labels.json / autopsy_labels.json 提供，
+/// 并保留 JSON 键顺序，使更长、更具体的锚先于通用前缀应用。
 
 /// 对整份拼好的报告按 label_map 做带 HTML 锚点、大小写敏感的整体替换。locale==en no-op。
 /proc/lang_apply_label_map(text, list/label_map)
@@ -943,13 +1530,13 @@ GLOBAL_LIST_INIT(i18n_autopsy_labels, list(
 		text = replacetextEx(text, needle, label_map[needle])
 	return text
 
-/// 见 i18n_health_scan_labels：报告整体拼好后一次性本地化结构性 label。healthscan() 落地点调用。
+/// 健康报告整体拼好后，一次性应用显式域中的结构性 label。
 /proc/lang_localize_health_scan(text)
-	return lang_apply_label_map(text, GLOB.i18n_health_scan_labels)
+	return lang_apply_label_map(text, lang_scoped_table("health_scan_labels.json"))
 
-/// 见 i18n_autopsy_labels：验尸报告拼好后本地化。autopsy_scanner 的 jointext 落地点调用。
+/// 验尸报告整体拼好后，一次性应用独立显式域中的结构性 label。
 /proc/lang_localize_autopsy(text)
-	return lang_apply_label_map(text, GLOB.i18n_autopsy_labels)
+	return lang_apply_label_map(text, lang_scoped_table("autopsy_labels.json"))
 
 /// 消息是否以「双感叹」结尾（大喊）。全角 ！ 与半角 ! 等价（含混排 !！/！!）——
 /// 中文输入法默认全角标点，原判定只认半角导致中文玩家喊不出来。say_mod/say_quote/runechat 共用。
@@ -964,28 +1551,12 @@ GLOBAL_LIST_INIT(i18n_autopsy_labels, list(
 		return text
 	return lang_reverse_text(text)
 
-/// TGUI 前端目录（en/tgui.json）里的英文串集合。这些串由 TS 端 auto-localize **只翻显示**，
-/// 故 P1（lang_reverse_tree）必须跳过它们——很多是 act() 标识符（职业名/怪癖名/配件名…），
-/// 改了 ui_data 值会破坏操作；交给 TS 端翻显示、数据保持英文最安全。同时这也覆盖了**单词类**
-/// 标识符名（P1 的多词门槛本就漏掉、但 TS 端无门槛能翻）。启动加载、运行只读。
-GLOBAL_LIST_INIT(i18n_tgui_strings, build_tgui_string_set())
 
 #define I18N_TGUI_PHRASE_CACHE_MAX 4096
 /// P1 里允许过字面 AC 的最短长度。短值一律不走 AC —— 那是标识符浓度最高的区间。
 #define I18N_TGUI_PROSE_MIN_LENGTH 80
 /// 跨 payload 复用精确/模板反查结果；有界且满后不淘汰，避免动态值造成持续分配。
 GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
-
-/proc/build_tgui_string_set()
-	var/list/result = list()
-	var/path = "[STRING_DIRECTORY]/[I18N_SUBDIRECTORY]/[DEFAULT_UI_LOCALE]/tgui.json"
-	if(!fexists(path))
-		return result
-	var/list/decoded = json_decode(file2text(path))
-	if(islist(decoded))
-		for(var/key in decoded)
-			result[key] = TRUE
-	return result
 
 /// 该 TGUI 负载值是否「长散文」——够长、含句末标点。只有这类才允许过字面 AC（子串替换）：
 /// act() 回传标识符、图标名、黑板键之类永远不是这个形状，从而把误伤面压到零。
@@ -995,44 +1566,33 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 	return findtext(text, ". ") || findtext(text, "! ") || findtext(text, "? ") \
 		|| findtext(text, ".", -1) || findtext(text, "!", -1) || findtext(text, "?", -1)
 
-/// TGUI 负载专用反查：若该串属于 TGUI 前端目录（TS 端会翻显示），P1 跳过不动数据（保住标识符）；
-/// 否则走多词反查（datum 描述等不在前端目录的长文本）。
+/// TGUI 负载专用本地化：返回该串的译文（**调用方决定**是就地改写还是记进 overlay，见 lang_reverse_tree）。
+///
+/// 从前这里有两道闸门，都是为了「不把标识符改坏」——负载改成不动数据之后，两道都失去了理由：
+///   · **多词门槛**（`findtext(text, " ")`）：单词值一律不查。它挡的是「把 `Water`/`Move` 这类
+///     标识符改成中文导致回传对不上」，而现在回传的永远是英文原值。放开之后，「TGUI 里单词名
+///     恒为英文」那一整类（线缆颜色、突变名、试剂/材料/设计名…）第一次有解。
+///   · **「值本身是 tgui 目录键就原样返回」**：那是把显示权交给 TS、以保住数据；现在数据本来就
+///     不动，跳过只会让这批值进不了 overlay、白白多绕一圈静态目录。
+///
+/// 单词值只走**整串精确反查**：模板逆匹配与字面 AC 都是给句子用的，单词过去只会徒增误伤。
 /proc/lang_reverse_phrase_tgui(text)
-	if(!istext(text) || !findtext(text, " "))
+	if(!istext(text) || length(text) < 2)
 		return text
+	var/multiword = findtext(text, " ")
 	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
 	var/list/phrase_cache = GLOB.i18n_tgui_phrase_cache
-	var/cache_ready = !GLOB.i18n_log_misses && islist(phrase_cache) && islist(GLOB.i18n_tgui_strings) && islist(GLOB.i18n_cache[locale])
+	var/cache_ready = !GLOB.i18n_log_misses && islist(phrase_cache) && lang_runtime_is_ready() && lang_catalog_locale_is_loaded(locale)
 	if(cache_ready && (text in phrase_cache))
 		return phrase_cache[text]
-	// islist 守卫：i18n_tgui_strings 是 GLOBAL_LIST_INIT，极早期（如 construct_phobia_regex 等全局变量
-	// 初始化期）调用 load_strings_file→lang_reverse_tree 时它可能尚未就绪，直接索引会 bad index 崩溃，
-	// 进而把加载的串写成 null、破坏 phobia 等早期数据。未就绪时跳过跳过集判断，走多词反查
-	// （lang_build_reverse 已加固：cache 未就绪返回空表、原样返回，不崩不污染）。
-	if(islist(GLOB.i18n_tgui_strings) && GLOB.i18n_tgui_strings[text])
-		. = text
-	else
-		// lang_reverse_suffixed 而非裸 lang_reverse_text：TGUI 负载里同样有「基础句 + 运行期追加
-		// 后缀」的值（赏金 description 加高优先级说明、手术 desc 加「每器官一次」），整串不是目录键，
-		// 精确反查会连基础句一起 miss。无后缀时它就是 lang_reverse_text，零行为变化。
-		. = lang_reverse_suffixed(text)
-	// 整串精确反查未命中的多词串：很多是**运行期拼接/插值后才成形**的句子（Orion 事件 text、研究要求
-	// "Scan unique individuals with [desc]." 等经 ui_data 下发的动态串）——exact 反查够不着。补一道边界
-	// 模板逆匹配引擎：目录里已译的 {0} 模板按字面段在原串上命中、捕获实参反查后按 zh 模板填充。这样
-	// TGUI 负载里的拼接句与聊天/browse 共享同一引擎。en locale / 无锚命中时引擎走快路径原样返回（零开销）。
+	// lang_reverse_suffixed 而非裸 lang_reverse_text：TGUI 负载里同样有「基础句 + 运行期追加
+	// 后缀」的值（赏金 description 加高优先级说明、手术 desc 加「每器官一次」），整串不是目录键，
+	// 精确反查会连基础句一起 miss。无后缀时它就是 lang_reverse_text，零行为变化。
+	. = lang_reverse_suffixed(text)
 	if(. == text)
-		. = lang_template_apply(text, locale)
-	if(. == text)
-		// 最后一道：**长散文**才过字面 AC。
-		// 「基础句 + 运行期追加的后缀」在 TGUI 负载里不止 lang_reverse_suffixed 那种可枚举形态：
-		// 幽灵生成器的 flavour_text 是 `基础句` + `switch(rand(1,4))` 四选一的身世段（其中一段还带
-		// `pick(...)` 内插），后缀根本没法手工登记。但**两半各自都是目录键、也都译好了**，字面 AC
-		// 的子串替换正好能把它们分别换掉，接缝原样保留 —— 聊天路径一直是这么做的，P1 少了这一步，
-		// 于是「名字是中文、正文整段英文」（生成器菜单的「指令」栏即此）。
-		// 闸门必须严：AC 是子串替换，绝不能碰标识符型负载值。长度 ≥ 80 且含句末标点的串是散文，
-		// 不可能是 act 回传标识符；短值一律不走这条。
-		if(lang_tgui_prose_candidate(text) && lang_fallback_setup(locale))
-			. = rustg_acreplace("i18n_[locale]", text)
+		// 精确（含后缀拆分）miss → 交给共用链跑模板与 AC。单词值只走精确：模板逆匹配与字面 AC
+		// 都是给句子用的，单词过去只会徒增误伤。
+		. = lang_localize_chain(text, locale, allow_template = multiword, ac_mode = multiword ? I18N_AC_PROSE : I18N_AC_NONE)
 	// 漏翻采集：反查 + 模板引擎 + AC 都没命中的多词 TGUI 负载值（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
 	if(GLOB.i18n_log_misses && . == text && locale != DEFAULT_UI_LOCALE)
 		lang_log_miss_scan(text, "tgui")
@@ -1048,6 +1608,10 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 /// （`{button}` 文本节点过前端目录），值不动。新增同类回传列表键：改 strings/i18n/policy.json 的
 /// `payload_skip_keys`（三端策略单一来源），不要改这里。
 GLOBAL_LIST_INIT(i18n_payload_skip_keys, build_i18n_policy_set("payload_skip_keys"))
+
+/// P1 允许**就地改写**的键（其余值不动数据、只进 overlay 交给 TS 渲染期翻）。
+/// 见 strings/i18n/policy.json 的 `_payload_prose_keys`：只有「证明不可能是标识符」的长散文才配留在这里。
+GLOBAL_LIST_INIT(i18n_payload_prose_keys, build_i18n_policy_set("payload_prose_keys"))
 
 /// 从策略单一来源 strings/i18n/policy.json 读一个字符串数组字段，转关联 set（值=TRUE）。
 /// 三端（DM/TS/Rust）共读同一份 policy —— 新增登记只改 policy.json（见其 _comment）。
@@ -1065,9 +1629,32 @@ GLOBAL_LIST_INIT(i18n_payload_skip_keys, build_i18n_policy_set("payload_skip_key
 			result[value] = TRUE
 	return result
 
+/// 把一个负载字符串的译文「落地」：散文键（或无 overlay 的旧调用）就地改写；其余只登记进 overlay。
+/// `index` 对关联项是键、对 flat 元素是下标 —— 两者都能直接给 `data[index] = …` 用。
+/proc/lang_payload_localize(list/data, index, text, list/overlay, in_place)
+	var/localized = lang_reverse_phrase_tgui(text)
+	if(localized == text)
+		return
+	if(in_place || isnull(overlay))
+		data[index] = localized
+		return
+	overlay[text] = localized
+
 /// 递归把一个 list（含嵌套 list / 关联 list）里的字符串「值」按多词门槛反查为全服 locale 译文。
 /// 用于 TGUI 的 ui_data/ui_static_data 负载：把非 atom datum 的 name/desc/说明等动态内容本地化。
-/// key 不动（程序用的标识）；就地改写并返回。幂等（已译的中文不会再匹配英文 key）。
+/// key 不动（程序用的标识）。幂等（已译的中文不会再匹配英文 key）。
+///
+/// **两种落地方式，由 `overlay` 决定**：
+///   · `overlay` 为 null（早期 string_cache 那类调用）→ 一律就地改写，行为与从前完全一致。
+///   · 传了 `overlay`（TGUI 负载）→ 只有 `i18n_payload_prose_keys` 里的散文键就地改写，其余把
+///     「英文 → 译文」记进 overlay、**值原样不动**，由 TS 在渲染期查表显示。
+///
+/// 为什么要分这一刀：就地改写是**破坏性**的——负载里那些「既是显示又是回传标识符」的值（`name`、
+/// 扁平串列表…）一旦变成中文，客户端回传的就是中文，而服务端仍拿英文比较/查表 → `ui_act` 静默
+/// 失败、连报错都没有（出生管理器、DNA 染色体、大气警报清除都栽在这上面）。启发式再准也挡不住这类，
+/// 因为猜错的代价被放大成了功能故障；不动数据则代价退回「某处没翻」。散文键是唯一的例外：它们
+/// 常被渲染在 auto-localize 够不到的位置（模板串、dangerouslySetInnerHTML），而散文不可能被
+/// `act()` 拿去比较，就地翻是安全的。
 ///
 /// 循环引用防护（visited）：TGUI 负载是任意游戏状态 list，BYOND 的 list 可以自引用/互引用成**环**
 /// （tgstation 亦承认此事，见 /proc/deep_copy_without_cycles、/proc/prepare_lua_editor_list）。原来
@@ -1077,7 +1664,7 @@ GLOBAL_LIST_INIT(i18n_payload_skip_keys, build_i18n_policy_set("payload_skip_key
 /// 跳过。比深度上限更准：不截断任何合法有限嵌套，只在真正成环处停手。
 /// 注意：本 proc 只是**不再自己崩**；环仍留在 data 里，后续 json_encode 依旧会碰到（tgui 管线对环
 /// 不安全，故 tgstation 送 tgui 前会 deep_copy_without_cycles 剥环）。根治须打断产生环的源头。
-/proc/lang_reverse_tree(list/data, list/visited)
+/proc/lang_reverse_tree(list/data, list/visited, list/overlay)
 	if(!islist(data))
 		return data
 	if(isnull(visited))
@@ -1095,50 +1682,20 @@ GLOBAL_LIST_INIT(i18n_payload_skip_keys, build_i18n_policy_set("payload_skip_key
 				continue
 			// 关联项：key -> value，只本地化 value
 			if(islist(value))
-				lang_reverse_tree(value, visited)
+				lang_reverse_tree(value, visited, overlay)
 			else if(istext(value))
-				data[key] = lang_reverse_phrase_tgui(value)
+				lang_payload_localize(data, key, value, overlay, istext(key) && GLOB.i18n_payload_prose_keys?[key])
 		else
 			// flat 元素（无关联值）
 			if(islist(key))
-				lang_reverse_tree(key, visited)
+				lang_reverse_tree(key, visited, overlay)
 			else if(istext(key))
-				data[i] = lang_reverse_phrase_tgui(key)
+				// flat 元素没有键语境 → 一律按「可能是标识符」处理（大气警报的区域名列表即此）。
+				lang_payload_localize(data, i, key, overlay, FALSE)
 	return data
 
 #undef I18N_TGUI_PHRASE_CACHE_MAX
 #undef I18N_TGUI_PROSE_MIN_LENGTH
-
-/// 偏好菜单「常量数据 asset」(/datum/asset/json/preferences) 是服务器启动生成一次的静态资源，
-/// **不经 get_payload**，故 lang_reverse_tree 永远碰不到它。此 pass 专供该 asset：只反查
-/// **纯显示字段**（各种 description）——这些绝非 act() 标识符，可安全整串替换（用 lang_reverse_text
-/// 全量匹配，无多词门槛，短描述也能命中）；name/title/choices/department 等是标识符，一律不动。
-/// 递归走嵌套 list。全服 locale==en 时 lang_reverse_text 直接原样返回（零行为变化）。
-/// 新增纯显示字段：改 strings/i18n/policy.json 的 `pref_desc_keys`（三端策略单一来源）。
-GLOBAL_LIST_INIT(i18n_pref_desc_keys, build_i18n_policy_set("pref_desc_keys"))
-
-/proc/lang_reverse_pref_descriptions(list/data)
-	if(!islist(data))
-		return data
-	for(var/i in 1 to length(data))
-		var/key = data[i]
-		var/value = (istext(key) || ispath(key)) ? data[key] : null
-		if(isnull(value))
-			if(islist(key))
-				lang_reverse_pref_descriptions(key)
-			continue
-		if(islist(value))
-			lang_reverse_pref_descriptions(value)
-		else if(istext(value) && GLOB.i18n_pref_desc_keys[key])
-			// 先折叠续行制表符对齐目录键（job 描述常用 "\" 续行，运行期带制表符 → 否则连基础句都不命中）。
-			var/collapsed = lang_collapse_ws(value)
-			var/translated = lang_reverse_text(collapsed)
-			// 整串无精确匹配时退到 AC 子串层：command/sec 职业描述在运行期是「基础句 + antag 后缀」拼接
-			//（" Targetable by contractors." 等），整串不是目录键，但基础句与各后缀短语都在目录里 → 逐段子串命中。
-			if(translated == collapsed)
-				translated = lang_fallback_apply(collapsed)
-			data[key] = translated
-	return data
 
 /// 职业描述本地化（偏好菜单职业 tab 的 tooltip）。antag_opt_in 模块把「opt-in 后缀句」拼到
 /// description 末尾（`description = initial(description) + suffix`，见 antag_opt_in/code/job.dm），
@@ -1161,125 +1718,82 @@ GLOBAL_LIST_INIT(i18n_pref_desc_keys, build_i18n_policy_set("pref_desc_keys"))
 	var/suffix = copytext(desc, length(base) + 1)
 	return base_zh + lang_fallback_apply(lang_collapse_ws(suffix))
 
-/// 中文时长格式（无英文复数 / 无 " and " 连接词）。core 的 DisplayTimeText 在全服中文时改调此处。
-/// 当前为 zh-Hans 用词（天/小时/分钟/秒）——这是唯一非英文 locale；未来加 locale 时在此分支即可。
-/// 与 core DisplayTimeText 的分段逻辑一一对应，只换用词与拼接（中文直接连写）。
+/// 按 duration_formatting.json 的显式 locale 域格式化时长。
+/// 缺少当前 locale 或 schema 不完整时返回 null，让 core DisplayTimeText 保留 canonical English 路径。
 /proc/lang_display_time_text(time_value, round_seconds_to = 0.1)
+	var/list/formatting = lang_scoped_table("duration_formatting.json")
+	var/list/units = formatting["units"]
+	var/now = formatting["now"]
+	var/separator = formatting["separator"]
+	var/last_separator = formatting["last_separator"]
+	if(!islist(units) || !istext(now) || !istext(separator) || !istext(last_separator))
+		return null
+	if(!istext(units["day"]) || !istext(units["hour"]) || !istext(units["minute"]) || !istext(units["second"]))
+		return null
 	var/second = FLOOR(time_value * 0.1, round_seconds_to)
 	if(!second)
-		return "就在此刻"
+		return now
 	if(second < 60)
-		return "[second]秒"
+		return lang_format_duration_unit(units["second"], second)
 	var/minute = FLOOR(second / 60, 1)
 	second = FLOOR(MODULUS(second, 60), round_seconds_to)
-	var/secondT = second ? "[second]秒" : ""
 	if(minute < 60)
-		return "[minute]分钟[secondT]"
+		var/list/minute_parts = list(lang_format_duration_unit(units["minute"], minute))
+		if(second)
+			minute_parts += lang_format_duration_unit(units["second"], second)
+		return lang_join_duration_parts(minute_parts, separator, last_separator)
 	var/hour = FLOOR(minute / 60, 1)
 	minute = MODULUS(minute, 60)
-	var/minuteT = minute ? "[minute]分钟" : ""
 	if(hour < 24)
-		return "[hour]小时[minuteT][secondT]"
+		var/list/hour_parts = list(lang_format_duration_unit(units["hour"], hour))
+		if(minute)
+			hour_parts += lang_format_duration_unit(units["minute"], minute)
+		if(second)
+			hour_parts += lang_format_duration_unit(units["second"], second)
+		return lang_join_duration_parts(hour_parts, separator, last_separator)
 	var/day = FLOOR(hour / 24, 1)
 	hour = MODULUS(hour, 24)
-	var/hourT = hour ? "[hour]小时" : ""
-	return "[day]天[hourT][minuteT][secondT]"
+	var/list/day_parts = list(lang_format_duration_unit(units["day"], day))
+	if(hour)
+		day_parts += lang_format_duration_unit(units["hour"], hour)
+	if(minute)
+		day_parts += lang_format_duration_unit(units["minute"], minute)
+	if(second)
+		day_parts += lang_format_duration_unit(units["second"], second)
+	return lang_join_duration_parts(day_parts, separator, last_separator)
 
-/// 身体部位名的**专用**反查（避开「chest=胸部 vs 储物箱」这类单词全局碰撞——只在部位语境调用）。
-/// 当前 zh-Hans 用词；core 的 parse_zone（部位 define→显示名）与 plaintext_zone（部位文本）显示处调用。
-/// locale==en 或非部位串 → 原样返回。键含多词部位（与全局目录值一致，无冲突）+ 单词部位（全局不收）。
+/proc/lang_format_duration_unit(template, value)
+	return replacetextEx(template, "{0}", "[value]")
+
+/proc/lang_join_duration_parts(list/parts, separator, last_separator)
+	if(length(parts) < 2)
+		return parts.Join()
+	var/tail = parts[length(parts)]
+	parts.Cut(length(parts))
+	return "[jointext(parts, separator)][last_separator][tail]"
+
+/// 身体部位显示名的显式域查询。chest/head 等歧义单词只在部位语境翻译。
 /proc/lang_zone(zone_text)
 	if(!istext(zone_text) || GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
 		return zone_text
-	var/static/list/zmap = list(
-		"chest" = "胸部",
-		"head" = "头部",
-		"groin" = "腹股沟",
-		"left arm" = "左臂",
-		"right arm" = "右臂",
-		"left leg" = "左腿",
-		"right leg" = "右腿",
-		"left hand" = "左手",
-		"right hand" = "右手",
-		"left foot" = "左脚",
-		"right foot" = "右脚",
-		"mouth" = "嘴",
-		"eyes" = "眼睛",
-	)
-	return zmap[zone_text] || zone_text
+	var/list/table = lang_scoped_table("zones.json")
+	return table[zone_text] || zone_text
 
-/// 材料名的**专用**反查（gold/glass/iron… → 中文）。不走全局反查——单词类材料名与日常词碰撞
-/// （gold=黄金/金色、glass=玻璃/杯，MT 全局已按错义译），专用映射只在「确知是材料」的显示处调用
-/// （examine 的「由…制成」），零碰撞、按材料义翻。未来加 locale 时在此分支扩展。
+/// 材料显示名的显式域查询。gold/glass/iron 等歧义单词只在材料语境翻译。
 /proc/lang_material(material_name)
 	if(!istext(material_name) || GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
 		return material_name
-	var/static/list/mmap = list(
-		"adamantine" = "精金",
-		"alien alloy" = "异星合金",
-		"alloy" = "合金",
-		"bamboo" = "竹",
-		"bananium" = "香蕉合金",
-		"biomass" = "生物质",
-		"bluespace crystal" = "蓝空间晶体",
-		"bone" = "骨",
-		"bronze" = "青铜",
-		"cardboard" = "瓦楞纸板",
-		"diamond" = "钻石",
-		"glass" = "玻璃",
-		"gold" = "黄金",
-		"hauntium" = "怨灵金属",
-		"hot ice" = "热冰",
-		"iron" = "铁",
-		"meat" = "肉",
-		"Metal Hydrogen" = "金属氢",
-		"mythril" = "秘银",
-		"paper" = "纸",
-		"pizza" = "披萨",
-		"plasma" = "等离子体",
-		"plasmaglass" = "等离子玻璃",
-		"plasteel" = "等离子铁",
-		"plastic" = "塑料",
-		"plastitanium" = "等离子钛",
-		"plastitanium glass" = "等离子钛玻璃",
-		"rock" = "岩石",
-		"runed metal" = "符文金属",
-		"runite" = "符文矿",
-		"sand" = "沙子",
-		"sandstone" = "砂岩",
-		"silver" = "白银",
-		"snow" = "雪",
-		"telecrystal" = "电讯水晶",
-		"titanium" = "钛",
-		"titanium glass" = "钛玻璃",
-		"uranium" = "铀",
-		"wood" = "木材",
-		"zaukerite" = "扎克石",
-	)
-	return mmap[material_name] || material_name
+	var/list/table = lang_scoped_table("materials.json")
+	return table[material_name] || material_name
 
-/// 代词的**专用**反查（he/she/it/is/his/him… → 中文）。不走全局反查——it/is/his 等是极常见短词，
-/// 全局整串反查会误伤正好等于这些词的动态数据；专用映射只在代词 proc / 模板代词实参处调用，零碰撞。
-/// 只覆盖可干净映射的代词与系动词（is/are→是、has/have→有）；语法后缀（does/do/s/es）保持英文。
-/// 大小写无关（中文无大小写）：按小写查，命中返回中文、否则原样（含 capitalize 后的英文回退）。
+/// 代词、系动词与语法一致性 token 的显式域查询。
+/// 小写查找保持原有大小写无关行为；空译文是有效结果，用 isnull 区分未登记项。
 /proc/lang_pronoun(word)
 	if(!istext(word) || GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
 		return word
-	var/static/list/pmap = list(
-		"he" = "他", "she" = "她", "it" = "它", "they" = "他们",
-		"him" = "他", "her" = "她", "them" = "他们",
-		"his" = "他的", "hers" = "她的", "its" = "它的", "their" = "他们的", "theirs" = "他们的",
-		"himself" = "他自己", "herself" = "她自己", "itself" = "它自己", "themselves" = "他们自己",
-		"is" = "是", "are" = "是", "has" = "有", "have" = "有", "was" = "是", "were" = "是",
-		// 代词缩写（p_theyre()/p_theyve()/p_theyll() 等输出 "it's"/"they're"/"he's"/"they've"…）：
-		// 中文模板已含系动词/无需，统一映到**裸代词**（"It's 45cm long" → "它长45厘米"）。
-		"it's" = "它", "he's" = "他", "she's" = "她", "they're" = "他们",
-		"i'm" = "我", "we're" = "我们", "you're" = "你",
-		"they've" = "他们", "i've" = "我", "we've" = "我们", "you've" = "你",
-		"it'll" = "它", "they'll" = "他们", "he'll" = "他", "she'll" = "她",
-		"it'd" = "它", "they'd" = "他们", "he'd" = "他", "she'd" = "她",
-	)
-	return pmap[LOWER_TEXT(word)] || word
+	var/list/table = lang_scoped_table("grammar_tokens.json")
+	var/mapped = table[LOWER_TEXT(word)]
+	return isnull(mapped) ? word : mapped
 
 /// 物种「描述」可能是字符串（多数物种 `return placeholder_description` / 单段裸串）或字符串列表
 /// （shadekin 等多段 `return list("段1","段2")`）——按类型分派反查。get_species_description 两种返回
@@ -1335,4 +1849,3 @@ GLOBAL_LIST_INIT(i18n_pref_desc_keys, build_i18n_policy_set("pref_desc_keys"))
 		text = word_re.Replace(text, name_subs[word_re])
 	return text
 
-#undef I18N_MAX_EARLY_WARNINGS

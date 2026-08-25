@@ -58,9 +58,9 @@
 		return
 	var/mob/living/moffin_observer = user
 	if(moffin_observer.get_liked_foodtypes() & CLOTH)
-		. += span_nicegreen(LANG("obj.63ed6739", null))
+		. += span_nicegreen(LANG("obj.63ed67392b8a7c65", null))
 	else
-		. += span_warning(LANG("obj.c05117f1", null))
+		. += span_warning(LANG("obj.c05117f1d4fd2b3f", null))
 
 ////////////////////////////////////////////WAFFLES////////////////////////////////////////////
 
@@ -196,7 +196,7 @@
 	. = ..()
 	if(seasonal_changes && check_holidays(FESTIVE_SEASON))
 		var/shape = pick("tree", "bear", "santa", "stocking", "present", "cane")
-		desc = LANG("obj.6f8387a4", list(shape))
+		desc = LANG("obj.6f8387a48aff8340", list(shape))
 		icon_state = "sugarcookie_[shape]"
 
 /obj/item/food/chococornet
@@ -268,7 +268,7 @@
 	var/fey = prob(10)
 	if(fey)
 		name = "exceptional plump helmet biscuit"
-		desc = LANG("obj.7c36b87e", null)
+		desc = LANG("obj.7c36b87e857dc429", null)
 		food_reagents = list(
 			/datum/reagent/medicine/omnizine = 5,
 			/datum/reagent/consumable/nutriment = 1,

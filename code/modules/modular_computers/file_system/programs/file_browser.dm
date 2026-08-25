@@ -30,10 +30,10 @@ GLOBAL_LIST_INIT(print_types, init_print_types())
 
 /proc/check_can_print_canvas(_typepath, _image_file, obj/item/modular_computer/computer, mob/user)
 	if(!(computer.hardware_flag & PROGRAM_CONSOLE))
-		to_chat(user, span_notice(LANG("_root.434e5d8f", null)))
+		to_chat(user, span_notice(LANG("_root.434e5d8f1c5c4d30", null)))
 		return FALSE
 	if(computer.stored_paper < CANVAS_PAPER_COST)
-		to_chat(user, span_notice(LANG("_root.ca37f652", list(CANVAS_PAPER_COST))))
+		to_chat(user, span_notice(LANG("_root.ca37f65269591523", list(CANVAS_PAPER_COST))))
 		return FALSE
 	return TRUE
 
@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(print_types, init_print_types())
 
 /proc/check_can_print_photo(_typepath, _image_file, obj/item/modular_computer/computer, mob/user)
 	if(computer.stored_paper < PHOTO_PAPER_COST)
-		to_chat(user, span_notice(LANG("_root.fc1dac70", list(PHOTO_PAPER_COST))))
+		to_chat(user, span_notice(LANG("_root.fc1dac704310dc64", list(PHOTO_PAPER_COST))))
 		return FALSE
 	return TRUE
 
@@ -80,7 +80,7 @@ GLOBAL_LIST_INIT(print_types, init_print_types())
 	transformer.blend_color("#ffffff", ICON_OVERLAY)
 	transformer.blend_icon(uni_icon(temp_file, ""), ICON_OVERLAY, x+1, y+1)
 	var/datum/universal_icon/blank = uni_icon('icons/blanks/32x32.dmi', "nothing", transform = transformer)
-	var/datum/picture/new_photo = new(image_file.filename, desc = LANG("_root.468d312d", null), image = blank.to_icon(), size_x = width, size_y = height, autogenerate_icon = TRUE, author_ckey_ = image_file.author_ckey)
+	var/datum/picture/new_photo = new(image_file.filename, desc = LANG("_root.468d312d91d21907", null), image = blank.to_icon(), size_x = width, size_y = height, autogenerate_icon = TRUE, author_ckey_ = image_file.author_ckey)
 	fdel(temp_file)
 	image_file.source_photo_or_painting = new_photo
 	photo.set_picture(new_photo, TRUE, TRUE)

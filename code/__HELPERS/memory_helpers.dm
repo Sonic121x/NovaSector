@@ -101,7 +101,7 @@
 			continue
 		choice_list[memory_iter.name] = memory_iter
 
-	var/choice = tgui_input_list(usr, LANG("datum.f8b43b55", list(verbage)), LANG("datum.740049d7", null), choice_list)
+	var/choice = tgui_input_list(usr, LANG("datum.f8b43b55a26ad9fc", list(verbage)), LANG("datum.740049d70355a867", null), choice_list)
 	if(isnull(choice))
 		return FALSE
 	if(isnull(choice_list[choice]))

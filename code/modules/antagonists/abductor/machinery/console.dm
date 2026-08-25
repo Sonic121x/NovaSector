@@ -68,7 +68,7 @@
 	if(.)
 		return
 	if(!HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_TRAINING))
-		to_chat(user, span_warning(LANG("obj.78dbc753", null)))
+		to_chat(user, span_warning(LANG("obj.78dbc7538df0e199", null)))
 		if(do_after(user,100, target = src))
 			TeleporterSend()
 
@@ -147,9 +147,7 @@
 				buyable_items += possible_gear[category]
 			for(var/key in buyable_items)
 				var/datum/abductor_gear/AG = buyable_items[key]
-				// NOVA EDIT CHANGE - I18N: 前端回传的是英文 id，但对译名再兜一层（老客户端/残留 P1 翻译）
-				// ORIGINAL: if(AG.name == item_name)
-				if(AG.name == item_name || AG.name == lang_unreverse_text(item_name))
+				if(AG.name == item_name)
 					Dispense(AG.build_path, AG.cost)
 					return TRUE
 		if("teleporter_send")
@@ -209,12 +207,12 @@
 
 /obj/machinery/abductor/console/proc/SetDroppoint(turf/open/location,user)
 	if(!istype(location))
-		to_chat(user, span_warning(LANG("obj.a98b920a", null)))
+		to_chat(user, span_warning(LANG("obj.a98b920a0c2e4046", null)))
 		return
 
 	if(pad)
 		pad.teleport_target = location
-		to_chat(user, span_notice(LANG("obj.b4d86696", null)))
+		to_chat(user, span_notice(LANG("obj.b4d866960c2712ae", null)))
 
 /obj/machinery/abductor/console/post_machine_initialize()
 	. = ..()
@@ -239,7 +237,7 @@
 
 /obj/machinery/abductor/console/proc/AddSnapshot(mob/living/carbon/human/target)
 	if(target.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
-		say(LANG("obj.abaff1e4", list(target)))
+		say(LANG("obj.abaff1e42136b575", list(target)))
 		return
 	var/datum/icon_snapshot/entry = new
 	entry.name = target.name
@@ -277,11 +275,11 @@
 
 /obj/machinery/abductor/console/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/abductor/gizmo) && AddGizmo(tool))
-		to_chat(user, span_notice(LANG("obj.dbad3c59", null)))
+		to_chat(user, span_notice(LANG("obj.dbad3c59d3089c43", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/clothing/suit/armor/abductor/vest) && AddVest(tool))
-		to_chat(user, span_notice(LANG("obj.2d16967c", null)))
+		to_chat(user, span_notice(LANG("obj.2d16967c71521ff1", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -289,7 +287,7 @@
 /obj/machinery/abductor/console/proc/Dispense(items_list, cost=1)
 	if(experiment && experiment.credits >= cost)
 		experiment.credits -=cost
-		say(LANG("obj.5a0ab961", null))
+		say(LANG("obj.5a0ab96129b45099", null))
 		var/drop_location = loc
 		if(pad)
 			flick("alien-pad", pad)
@@ -298,4 +296,4 @@
 			for(var/i in 1 to items_list[each_item])
 				new each_item(drop_location)
 	else
-		say(LANG("obj.b153bfe8", null))
+		say(LANG("obj.b153bfe8daa6dfca", null))

@@ -10,12 +10,12 @@
 
 /obj/item/anointing_oil/attack(mob/living/target_mob, mob/living/user, params)
 	if (!is_species(user, /datum/species/human/felinid/primitive))
-		to_chat(user, span_warning(LANG("obj.68687b7c", null)))
+		to_chat(user, span_warning(LANG("obj.68687b7ce7519dd4", null)))
 		return
 	if(being_used || !ismob(target_mob)) //originally this was going to check if the mob was friendly, but if an icecat wants to name some terror mob while it's tearing chunks out of them, why not?
 		return
 	if(target_mob.ckey)
-		to_chat(user, span_warning(LANG("obj.c330f375", null)))
+		to_chat(user, span_warning(LANG("obj.c330f375e1d91197", null)))
 		return
 
 	if(try_anoint(target_mob, user))
@@ -26,14 +26,14 @@
 /obj/item/anointing_oil/proc/try_anoint(mob/living/target_mob, mob/living/user)
 	being_used = TRUE
 
-	var/new_name = sanitize_name(tgui_input_text(user, LANG("obj.e46a9975", null), LANG("obj.e767d1fc", null), target_mob.name, max_length = MAX_NAME_LEN))
+	var/new_name = sanitize_name(tgui_input_text(user, LANG("obj.e46a997556e4b5a2", null), LANG("obj.e767d1fc1c80c9b7", null), target_mob.name, max_length = MAX_NAME_LEN))
 
 	if(!new_name || QDELETED(src) || QDELETED(target_mob) || new_name == target_mob.name || !target_mob.Adjacent(user))
 		being_used = FALSE
 		return FALSE
 
-	target_mob.visible_message(span_notice(LANG("obj.92619f8a", list(user, target_mob))))
-	user.say(LANG("obj.36cf7670", list(new_name)))
+	target_mob.visible_message(span_notice(LANG("obj.92619f8a56e923a3", list(user, target_mob))))
+	user.say(LANG("obj.36cf76701ce8290e", list(new_name)))
 
 	user.log_message("used [src] on [target_mob], renaming it to [new_name].", LOG_GAME)
 
@@ -49,7 +49,7 @@
 /obj/item/anointing_oil/examine(mob/user)
 	. = ..()
 	if(is_species(user, /datum/species/human/felinid/primitive))
-		. += span_info(LANG("obj.5fc4a959", null))
+		. += span_info(LANG("obj.5fc4a959ce821d24", null))
 
 /datum/crafting_recipe/anointing_oil
 	name = "Anointing Bloodresin"
@@ -153,18 +153,18 @@
 
 /obj/item/frozen_breath/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if (!is_species(user, /datum/species/human/felinid/primitive))
-		to_chat(user, span_warning(LANG("obj.21f1cf34", null)))
+		to_chat(user, span_warning(LANG("obj.21f1cf34d3db9649", null)))
 		return
 
 	if(istype(interacting_with, /obj/item/organ/lungs))
 		var/obj/item/organ/lungs/target_lungs = interacting_with
 		if(IS_ROBOTIC_ORGAN(target_lungs))
-			user.balloon_alert(user, LANG("obj.9a92ba7e", null))
+			user.balloon_alert(user, LANG("obj.9a92ba7e2540171c", null))
 			return
 		var/location = get_turf(target_lungs)
 		playsound(location, 'sound/effects/slosh.ogg', 25, TRUE)
-		user.visible_message(span_notice(LANG("obj.3455b305", list(user))),
-			span_notice(LANG("obj.e9a719fd", null)))
+		user.visible_message(span_notice(LANG("obj.3455b30576dd64ac", list(user))),
+			span_notice(LANG("obj.e9a719fd2aed73ba", null)))
 		var/obj/item/organ/lungs/icebox_adapted/new_lungs = new(location)
 		new_lungs.damage = target_lungs.damage
 		qdel(target_lungs)
@@ -173,7 +173,7 @@
 /obj/item/frozen_breath/examine(mob/user)
 	. = ..()
 	if(is_species(user, /datum/species/human/felinid/primitive))
-		. += span_info(LANG("obj.4fd90160", null))
+		. += span_info(LANG("obj.4fd90160663876a1", null))
 
 /datum/crafting_recipe/frozen_breath
 	name = "Frozen Breath"

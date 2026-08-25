@@ -39,7 +39,7 @@
 /obj/machinery/atmospherics/components/binary/volume_pump/click_ctrl(mob/user)
 	if(can_interact(user))
 		set_on(!on)
-		balloon_alert(user, LANG("obj.8fcfde3c", list(on ? "on" : "off")))
+		balloon_alert(user, LANG("obj.8fcfde3cd8c5cffd", list(on ? "on" : "off")))
 		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
@@ -50,7 +50,7 @@
 
 	transfer_rate = MAX_TRANSFER_RATE
 	investigate_log("was set to [transfer_rate] L/s by [key_name(user)]", INVESTIGATE_ATMOS)
-	balloon_alert(user, LANG("obj.d0decc22", list(transfer_rate)))
+	balloon_alert(user, LANG("obj.d0decc224c00c1d3", list(transfer_rate)))
 	update_appearance(UPDATE_ICON)
 	return CLICK_ACTION_SUCCESS
 
@@ -109,9 +109,9 @@
 
 /obj/machinery/atmospherics/components/binary/volume_pump/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.abd6b18a", list(overclocked ? "en" : "dis")))
+	. += span_notice(LANG("obj.abd6b18aa668e717", list(overclocked ? "en" : "dis")))
 	if(overclocked)
-		. += LANG("obj.204177b8", list(on ? " and it's spewing gas!" : "."))
+		. += LANG("obj.204177b8cb020939", list(on ? " and it's spewing gas!" : "."))
 
 /obj/machinery/atmospherics/components/binary/volume_pump/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -159,16 +159,16 @@
 /obj/machinery/atmospherics/components/binary/volume_pump/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, span_warning(LANG("obj.a6e44f07", list(src))))
+		to_chat(user, span_warning(LANG("obj.a6e44f07b2cb8ca0", list(src))))
 		return FALSE
 
 /obj/machinery/atmospherics/components/binary/volume_pump/multitool_act(mob/living/user, obj/item/I)
 	if(!overclocked)
 		overclocked = TRUE
-		to_chat(user, LANG("obj.99fc9b1b", null))
+		to_chat(user, LANG("obj.99fc9b1bc9696fd2", null))
 	else
 		overclocked = FALSE
-		to_chat(user, LANG("obj.ecf6f757", null))
+		to_chat(user, LANG("obj.ecf6f7576b2720dd", null))
 	update_appearance(UPDATE_ICON)
 	return TRUE
 

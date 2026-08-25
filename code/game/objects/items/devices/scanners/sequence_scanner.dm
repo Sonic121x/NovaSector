@@ -30,18 +30,18 @@
 
 /obj/item/sequence_scanner/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.1d555183", null))
+	. += span_notice(LANG("obj.1d555183d0cb7f63", null))
 	if(LAZYLEN(genetic_makeup_buffer) > 0)
-		. += span_notice(LANG("obj.c2e66c2e", list(genetic_makeup_buffer["name"])))
+		. += span_notice(LANG("obj.c2e66c2ed516cab6", list(genetic_makeup_buffer["name"])))
 
 /obj/item/sequence_scanner/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(istype(interacting_with, /obj/machinery/computer/dna_console))
 		var/obj/machinery/computer/dna_console/console = interacting_with
 		if(console.stored_research)
-			to_chat(user, span_notice(LANG("obj.ed9ebf67", list(name))))
+			to_chat(user, span_notice(LANG("obj.ed9ebf67a45e63f1", list(name))))
 			discovered = console.stored_research.discovered_mutations
 		else
-			to_chat(user,span_warning(LANG("obj.f8027cc1", null)))
+			to_chat(user,span_warning(LANG("obj.f8027cc197389e19", null)))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!isliving(interacting_with))
@@ -51,19 +51,19 @@
 
 	//no scanning if its a husk or DNA-less Species
 	if (!HAS_TRAIT(interacting_with, TRAIT_GENELESS) && !HAS_TRAIT(interacting_with, TRAIT_BADDNA))
-		user.visible_message(span_notice(LANG("obj.6529f0ce", list(user, interacting_with))))
-		balloon_alert(user, LANG("obj.6cece6aa", null))
+		user.visible_message(span_notice(LANG("obj.6529f0ceddee2dab", list(user, interacting_with))))
+		balloon_alert(user, LANG("obj.6cece6aa59bfe08a", null))
 		playsound(user, 'sound/items/healthanalyzer.ogg', 50) // close enough
 		gene_scan(interacting_with, user)
 		return ITEM_INTERACT_SUCCESS
 
-	user.visible_message(span_notice(LANG("obj.484b8766", list(user, interacting_with))), span_warning(LANG("obj.1b5e0706", list(interacting_with))))
+	user.visible_message(span_notice(LANG("obj.484b876609cd746c", list(user, interacting_with))), span_warning(LANG("obj.1b5e07068c009f33", list(interacting_with))))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/sequence_scanner/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(istype(interacting_with, /obj/machinery/computer/dna_console))
 		var/obj/machinery/computer/dna_console/console = interacting_with
-		var/buffer_index = tgui_input_number(user, LANG("obj.2df829ee", null), LANG("obj.a60f6161", null), 1, LAZYLEN(console.genetic_makeup_buffer), 1)
+		var/buffer_index = tgui_input_number(user, LANG("obj.2df829eea7f8ec83", null), LANG("obj.a60f61619bbee648", null), 1, LAZYLEN(console.genetic_makeup_buffer), 1)
 		console.genetic_makeup_buffer[buffer_index] = genetic_makeup_buffer
 		return ITEM_INTERACT_SUCCESS
 
@@ -74,16 +74,16 @@
 
 	//no scanning if its a husk, DNA-less Species or DNA that isn't able to be copied by a changeling/disease
 	if (!HAS_TRAIT(interacting_with, TRAIT_GENELESS) && !HAS_TRAIT(interacting_with, TRAIT_BADDNA) && !HAS_TRAIT(interacting_with, TRAIT_NO_DNA_COPY))
-		user.visible_message(span_warning(LANG("obj.9e20c061", list(user, interacting_with))))
+		user.visible_message(span_warning(LANG("obj.9e20c061a3550b9b", list(user, interacting_with))))
 		if(!do_after(user, 3 SECONDS, interacting_with))
-			balloon_alert(user, LANG("obj.afa319fc", null))
-			user.visible_message(span_warning(LANG("obj.7e55a88c", list(user, interacting_with))))
+			balloon_alert(user, LANG("obj.afa319fc83ec4b2f", null))
+			user.visible_message(span_warning(LANG("obj.7e55a88ca7a08a37", list(user, interacting_with))))
 			return ITEM_INTERACT_BLOCKING
 		makeup_scan(interacting_with, user)
-		balloon_alert(user, LANG("obj.2c8f5042", null))
+		balloon_alert(user, LANG("obj.2c8f5042c2f67dc8", null))
 		return ITEM_INTERACT_SUCCESS
 
-	user.visible_message(span_notice(LANG("obj.a321b282", list(user, interacting_with))), span_warning(LANG("obj.9be3dc87", list(interacting_with))))
+	user.visible_message(span_notice(LANG("obj.a321b282ec9a6e46", list(user, interacting_with))), span_warning(LANG("obj.9be3dc873d193cd3", list(interacting_with))))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/sequence_scanner/attack_self(mob/user)
@@ -105,14 +105,14 @@
 		LAZYSET(buffer, mutation.type, GET_SEQUENCE(mutation.type))
 		active_mutations.Add(mutation.type)
 
-	to_chat(user, span_notice(LANG("obj.b89de626", list(target.name))))
+	to_chat(user, span_notice(LANG("obj.b89de6264c137aa2", list(target.name))))
 	for(var/mutation in buffer)
 		//highlight activated mutations
 		if(LAZYFIND(active_mutations, mutation))
 			to_chat(user, span_boldnotice("[get_display_name(mutation)]"))
 		else
 			to_chat(user, span_notice("[get_display_name(mutation)]"))
-	to_chat(user, span_notice(LANG("obj.1e9bd33c", list(target.dna.stability)))) // NOVA EDIT ADDITION - Adds stability indication.
+	to_chat(user, span_notice(LANG("obj.1e9bd33cb05f48b2", list(target.dna.stability)))) // NOVA EDIT ADDITION - Adds stability indication.
 
 ///proc for scanning someone's genetic makeup
 /obj/item/sequence_scanner/proc/makeup_scan(mob/living/carbon/target, mob/living/user)
@@ -134,7 +134,7 @@
 	for(var/mutation in buffer)
 		options += get_display_name(mutation)
 
-	var/answer = tgui_input_list(user, LANG("obj.245ba491", null), LANG("obj.5722bb55", null), sort_list(options))
+	var/answer = tgui_input_list(user, LANG("obj.245ba4919e394823", null), LANG("obj.5722bb55ee92e7d3", null), sort_list(options))
 	if(isnull(answer))
 		return
 	if(!ready || !user.can_perform_action(src, NEED_LITERACY|NEED_LIGHT|FORBID_TELEKINESIS_REACH))
@@ -168,6 +168,11 @@
 	if(!mutation_instance)
 		return "ERROR"
 	if(mutation in discovered)
-		return  "[mutation_instance.name] ([mutation_instance.alias])"
+		// NOVA EDIT CHANGE - i18n: 整串是运行期拼的、永远不是目录键，落地只剩字面 AC，而 AC 有多词
+		// 门槛 —— 于是「舌钉 (Mutation 32)」是中文、「Spastic (Mutation 67)」是英文，同一份列表里
+		// 按名字词数分成两半。突变名本身早在目录里，在显示处逐个反查即可（alias 是
+		// GLOB.alias_mutations 的查表键，保持英文）。
+		// ORIGINAL: return  "[mutation_instance.name] ([mutation_instance.alias])"
+		return  "[lang_localize_display_name(mutation_instance.name)] ([mutation_instance.alias])"
 	else
 		return mutation_instance.alias

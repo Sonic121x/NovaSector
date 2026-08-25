@@ -390,7 +390,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		log_admin("[key_name(usr)] attempted to edit admin permissions without sufficient rights.")
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("datum.6651f679", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.6651f679034b9b55", null)), confidential = TRUE)
 		return
 	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/namespaced/common)
 	permissions_assets.send(usr.client)
@@ -410,22 +410,22 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		skip = TRUE
 	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_admins) && task == "rank")
 		if(admin_ckey in GLOB.protected_admins)
-			to_chat(usr, span_adminprefix(LANG("datum.18dc5107", null)), confidential = TRUE)
+			to_chat(usr, span_adminprefix(LANG("datum.18dc51076845c6cb", null)), confidential = TRUE)
 			return
 	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_ranks) && task == "permissions")
 		if((target_admin_datum.ranks & GLOB.protected_ranks).len > 0)
-			to_chat(usr, span_adminprefix(LANG("datum.2885d5b9", null)), confidential = TRUE)
+			to_chat(usr, span_adminprefix(LANG("datum.2885d5b91c5cab5e", null)), confidential = TRUE)
 			return
 	if(CONFIG_GET(flag/load_legacy_ranks_only) && (task == "add" || task == "rank" || task == "permissions"))
-		to_chat(usr, span_adminprefix(LANG("datum.543091c3", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.543091c3de87f20a", null)), confidential = TRUE)
 		legacy_only = TRUE
 
 	if(check_rights(R_DBRANKS, FALSE) && !skip)
 		if(!SSdbcore.Connect())
-			to_chat(usr, span_danger(LANG("datum.dc493429", null)), confidential = TRUE)
+			to_chat(usr, span_danger(LANG("datum.dc493429f4a99ddd", null)), confidential = TRUE)
 			use_db = FALSE
 		else
-			use_db = tgui_alert(usr,LANG("datum.a3b76d99", null), LANG("datum.30a52229", null), list("Permanent", "Temporary", "Cancel"))
+			use_db = tgui_alert(usr,LANG("datum.a3b76d99e9b9429d", null), LANG("datum.30a522294a0e54b0", null), list("Permanent", "Temporary", "Cancel"))
 			if(isnull(use_db) || use_db == "Cancel")
 				return
 			if(use_db == "Permanent")
@@ -474,17 +474,17 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	if(!check_rights(R_PERMISSIONS) || (use_db && !check_rights(R_DBRANKS)))
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("datum.a4498f67", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.a4498f6730a9659a", null)), confidential = TRUE)
 		return
 	if(admin_ckey)
 		. = admin_ckey
 	else
-		admin_key = input(LANG("datum.1bc7d09f", null),LANG("datum.0f7e1049", null)) as text|null
+		admin_key = input(LANG("datum.1bc7d09fdd0a5875", null),LANG("datum.0f7e1049fd9d73dc", null)) as text|null
 		. = ckey(admin_key)
 	if(!.)
 		return FALSE
 	if(!admin_ckey && (. in (GLOB.admin_datums+GLOB.deadmins)))
-		to_chat(usr, span_danger(LANG("datum.e857f21f", list(admin_key))), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("datum.e857f21f933f7681", list(admin_key))), confidential = TRUE)
 		return FALSE
 	if(!use_db)
 		return
@@ -498,7 +498,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		return FALSE
 	if(query_admin_in_db.NextRow())
 		qdel(query_admin_in_db)
-		to_chat(usr, span_danger(LANG("datum.72437ed0", list(admin_key))), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("datum.72437ed0caf37532", list(admin_key))), confidential = TRUE)
 		return FALSE
 	QDEL_NULL(query_admin_in_db)
 	var/datum/db_query/query_add_admin = SSdbcore.NewQuery(
@@ -522,9 +522,9 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	if(!check_rights(R_PERMISSIONS) || (use_db && !check_rights(R_DBRANKS)))
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("datum.c8a18517", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.c8a1851726a2028f", null)), confidential = TRUE)
 		return
-	if(tgui_alert(usr,LANG("datum.097dd57a", list(admin_ckey)), LANG("datum.ce9910aa", null), list("Do it", "Cancel")) != "Do it")
+	if(tgui_alert(usr,LANG("datum.097dd57ad14eac96", list(admin_ckey)), LANG("datum.ce9910aaa8397a73", null), list("Do it", "Cancel")) != "Do it")
 		return
 	GLOB.admin_datums -= admin_ckey
 	GLOB.deadmins -= admin_ckey
@@ -577,7 +577,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	if(owner.prefs.read_preference(/datum/preference/toggle/bypass_deadmin_in_centcom) && is_centcom_level(owner.mob.z) && !istype(owner.mob, /mob/dead/new_player))
 		return FALSE
 
-	to_chat(owner, span_interface(LANG("datum.2989f127", null)), confidential = TRUE)
+	to_chat(owner, span_interface(LANG("datum.2989f127a1a91fa5", null)), confidential = TRUE)
 	var/old_owner = owner
 	deactivate()
 	message_admins("[old_owner] deadmined via auto-deadmin config.")
@@ -590,7 +590,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	if(!check_rights(R_PERMISSIONS) || (use_db && !check_rights(R_DBRANKS)))
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("datum.51762576", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.51762576edea1b3b", null)), confidential = TRUE)
 		return
 
 	var/rank_type = RANK_SOURCE_TEMPORARY
@@ -624,7 +624,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			if (!(rank_name in display_rank_names))
 				display_rank_names += rank_name
 
-		var/next_rank = input(LANG("datum.36aa1492", list(RANK_DONE))) as null|anything in display_rank_names
+		var/next_rank = input(LANG("datum.36aa149262b98a9a", list(RANK_DONE))) as null|anything in display_rank_names
 
 		if (isnull(next_rank))
 			return
@@ -641,7 +641,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			continue
 
 		if (next_rank == "*New Rank*")
-			var/new_rank_name = input(LANG("datum.47b1768d", null), LANG("datum.947fe91a", null)) as text|null
+			var/new_rank_name = input(LANG("datum.47b1768dc4fd26fa", null), LANG("datum.947fe91a96a9913a", null)) as text|null
 			if (!new_rank_name)
 				return
 
@@ -759,7 +759,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	if(!check_rights(R_PERMISSIONS))
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("datum.51762576", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.51762576edea1b3b", null)), confidential = TRUE)
 		return
 	var/new_flags = input_bitfield(
 		usr,
@@ -806,22 +806,22 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 /// Polls usr for a new rank to add to either JUST this round, or the DB
 /datum/admins/proc/add_rank()
 	if(!check_rights(R_PERMISSIONS))
-		to_chat(usr, span_adminprefix(LANG("datum.c74d3a14", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.c74d3a146f773938", null)), confidential = TRUE)
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("datum.218240b0", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.218240b0755838b3", null)), confidential = TRUE)
 		return
 	if(usr.client.holder.can_edit_rights_flags() == NONE)
-		to_chat(usr, span_adminprefix(LANG("datum.ce8d3635", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.ce8d3635c9cbabcf", null)), confidential = TRUE)
 		return
 
-	var/new_rank_name = input(LANG("datum.47b1768d", null), LANG("datum.947fe91a", null)) as text|null
+	var/new_rank_name = input(LANG("datum.47b1768dc4fd26fa", null), LANG("datum.947fe91a96a9913a", null)) as text|null
 	if (!new_rank_name)
 		return
 
 	var/list/datum/admin_rank/existing_ranks = ranks_from_rank_name(new_rank_name)
 	if (length(existing_ranks))
-		to_chat(usr, span_adminprefix(LANG("datum.e9bd10a2", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.e9bd10a20e7bc397", null)), confidential = TRUE)
 		return
 
 	var/rights = input_bitfield(
@@ -855,10 +855,10 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	var/use_db = FALSE
 	if(check_rights(R_DBRANKS, FALSE))
 		if(!SSdbcore.Connect())
-			to_chat(usr, span_danger(LANG("datum.dc493429", null)), confidential = TRUE)
+			to_chat(usr, span_danger(LANG("datum.dc493429f4a99ddd", null)), confidential = TRUE)
 			use_db = FALSE
 		else
-			var/use_db_response = tgui_alert(usr,LANG("datum.a3b76d99", null), LANG("datum.30a52229", null), list("Permanent", "Temporary", "Cancel"))
+			var/use_db_response = tgui_alert(usr,LANG("datum.a3b76d99e9b9429d", null), LANG("datum.30a522294a0e54b0", null), list("Permanent", "Temporary", "Cancel"))
 			if(isnull(use_db_response) || use_db_response == "Cancel")
 				return
 			if(use_db_response == "Permanent")
@@ -874,7 +874,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	else
 		custom_rank = new(new_rank_name, RANK_SOURCE_TEMPORARY, rights, excluded_rights, edit_rights)
 	if(QDELETED(custom_rank))
-		to_chat(usr, span_danger(LANG("datum.7773701a", null)), confidential = TRUE)
+		to_chat(usr, span_danger(LANG("datum.7773701a2bc16f78", null)), confidential = TRUE)
 		return
 
 	GLOB.admin_ranks += custom_rank
@@ -928,11 +928,11 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		log_admin("[key_name(usr)] attempted to remove a rank without sufficient rights.")
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("datum.d77d6407", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.d77d6407a7c187f6", null)), confidential = TRUE)
 		return
 	for(var/datum/admin_rank/R in GLOB.admin_ranks)
 		if(R.name == admin_rank && ((R.rights & usr.client.holder.can_edit_rights_flags()) != R.rights))
-			to_chat(usr, span_adminprefix(LANG("datum.d6ddacf0", null)), confidential = TRUE)
+			to_chat(usr, span_adminprefix(LANG("datum.d6ddacf0e9b31507", null)), confidential = TRUE)
 			return
 
 	var/list/datum/admin_rank/target_ranks = ranks_from_rank_name(admin_rank)
@@ -943,14 +943,14 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	var/local_only_deletion
 	switch(target_rank.source)
 		if(RANK_SOURCE_LOCAL)
-			to_chat(usr, span_adminprefix(LANG("datum.83182db4", null)), confidential = TRUE)
+			to_chat(usr, span_adminprefix(LANG("datum.83182db4acf01c49", null)), confidential = TRUE)
 			return
 		// This handles protected ranks on its own
 		if(RANK_SOURCE_TXT)
-			to_chat(usr, span_adminprefix(LANG("datum.20ac44a2", null)), confidential = TRUE)
+			to_chat(usr, span_adminprefix(LANG("datum.20ac44a2839f3284", null)), confidential = TRUE)
 			return
 		if(RANK_SOURCE_BACKUP)
-			to_chat(usr, span_adminprefix(LANG("datum.83599c1a", null)), confidential = TRUE)
+			to_chat(usr, span_adminprefix(LANG("datum.83599c1a98e7990f", null)), confidential = TRUE)
 			return
 		if(RANK_SOURCE_TEMPORARY)
 			local_only_deletion = TRUE
@@ -958,7 +958,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			local_only_deletion = FALSE
 
 	if(!local_only_deletion && CONFIG_GET(flag/load_legacy_ranks_only))
-		to_chat(usr, span_adminprefix(LANG("datum.54580546", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.545805463913d738", null)), confidential = TRUE)
 		local_only_deletion = TRUE
 
 	if(!local_only_deletion)
@@ -971,17 +971,17 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			return
 		if(query_admins_with_rank.NextRow())
 			qdel(query_admins_with_rank)
-			to_chat(usr, span_danger(LANG("datum.3a3296c0", null)), confidential = TRUE)
+			to_chat(usr, span_danger(LANG("datum.3a3296c050c5a46c", null)), confidential = TRUE)
 			return
 		QDEL_NULL(query_admins_with_rank)
 
 	for(var/admin_name in GLOB.admin_datums)
 		var/datum/admins/existing_min = GLOB.admin_datums[admin_name]
 		if(target_rank in existing_min.ranks)
-			to_chat(usr, span_danger(LANG("datum.7ee93fff", null)), confidential = TRUE)
+			to_chat(usr, span_danger(LANG("datum.7ee93fff4ce7fdb9", null)), confidential = TRUE)
 			return
 
-	if(tgui_alert(usr,LANG("datum.097dd57a", list(admin_rank)), LANG("datum.ce9910aa", null), list("Do it","Cancel")) != "Do it")
+	if(tgui_alert(usr,LANG("datum.097dd57ad14eac96", list(admin_rank)), LANG("datum.ce9910aaa8397a73", null), list("Do it","Cancel")) != "Do it")
 		return
 
 	var/m1 = "[key_name_admin(usr)] removed rank [admin_rank] [local_only_deletion ? "temporarially" : "permanently"]"
@@ -1021,7 +1021,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		log_admin("[key_name(usr)] attempted to edit rank permissions without sufficient rights.")
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix(LANG("datum.cce62be5", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.cce62be5ad9451fc", null)), confidential = TRUE)
 		return
 	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/namespaced/common)
 	permissions_assets.send(usr.client)
@@ -1031,23 +1031,23 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		return
 	var/datum/admin_rank/target_rank = target_ranks[1]
 	if(target_rank.name != admin_rank) // Somehow
-		to_chat(usr, span_adminprefix(LANG("datum.be62b3a2", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.be62b3a2d4b9a053", null)), confidential = TRUE)
 		return
 	if((target_rank.rights & usr.client.holder.can_edit_rights_flags()) != target_rank.rights)
-		to_chat(usr, span_adminprefix(LANG("datum.ce5e669d", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.ce5e669d5c6945d8", null)), confidential = TRUE)
 		return
 
 	var/attempt_db = FALSE
 	switch(target_rank.source)
 		if(RANK_SOURCE_LOCAL)
-			to_chat(usr, span_adminprefix(LANG("datum.77bbe6e5", null)), confidential = TRUE)
+			to_chat(usr, span_adminprefix(LANG("datum.77bbe6e5ba5b811e", null)), confidential = TRUE)
 			return
 		// This handles protected ranks on its own
 		if(RANK_SOURCE_TXT)
-			to_chat(usr, span_adminprefix(LANG("datum.bb8eb939", null)), confidential = TRUE)
+			to_chat(usr, span_adminprefix(LANG("datum.bb8eb93901f6c56c", null)), confidential = TRUE)
 			return
 		if(RANK_SOURCE_BACKUP)
-			to_chat(usr, span_adminprefix(LANG("datum.54d62ab7", null)), confidential = TRUE)
+			to_chat(usr, span_adminprefix(LANG("datum.54d62ab76d798e6a", null)), confidential = TRUE)
 			return
 		// For completeness
 		if(RANK_SOURCE_TEMPORARY)
@@ -1063,13 +1063,13 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	// This means an admin could in theory bypass protections if they modified a linked rank (such as game admin) which is not also protected
 	// It might be wise to make the permissions afforded by protected ranks inviolable. I'm unsure.
 	if(CONFIG_GET(flag/load_legacy_ranks_only))
-		to_chat(usr, span_adminprefix(LANG("datum.b9847051", null)), confidential = TRUE)
+		to_chat(usr, span_adminprefix(LANG("datum.b98470513f5db6e3", null)), confidential = TRUE)
 		attempt_db = FALSE
 
 	var/use_db = FALSE
 	if(attempt_db)
 		if(!SSdbcore.Connect())
-			to_chat(usr, span_danger(LANG("datum.131855b8", null)), confidential = TRUE)
+			to_chat(usr, span_danger(LANG("datum.131855b87b5f3ad1", null)), confidential = TRUE)
 			return
 		use_db = TRUE
 
@@ -1092,7 +1092,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			working_exclude_rights = query_db_rank_info.item[2]
 			working_can_edit_rights = query_db_rank_info.item[3]
 		else // Couldn't find anything, no db memes then
-			to_chat(usr, span_adminprefix(LANG("datum.74f1b6c6", null)), confidential = TRUE)
+			to_chat(usr, span_adminprefix(LANG("datum.74f1b6c64a95a2af", null)), confidential = TRUE)
 			qdel(query_db_rank_info)
 			return
 		QDEL_NULL(query_db_rank_info)
@@ -1102,7 +1102,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		working_can_edit_rights = target_rank.can_edit_rights
 
 	while(TRUE)
-		var/what_to_edit = tgui_input_list(usr, LANG("datum.a8a7dc4d", null), LANG("datum.3398cc65", null), list("Rights", "Excluded Rights", "Edit Rights", "Finished"))
+		var/what_to_edit = tgui_input_list(usr, LANG("datum.a8a7dc4d3189d0c8", null), LANG("datum.3398cc653646b597", null), list("Rights", "Excluded Rights", "Edit Rights", "Finished"))
 		var/existing_flags = NONE
 		var/pretty_name
 		switch(what_to_edit)
@@ -1127,7 +1127,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			allowed_edit_field = usr.client.holder.can_edit_rights_flags(),
 		)
 		if(isnull(new_flags))
-			to_chat(usr, span_adminprefix(LANG("datum.8ca3b825", null)), confidential = TRUE)
+			to_chat(usr, span_adminprefix(LANG("datum.8ca3b825e5a2ecf4", null)), confidential = TRUE)
 			return
 
 		// Gotta turn it off and on again
@@ -1211,6 +1211,6 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		qdel(query_sync_lastadminrank)
 		return
 	QDEL_NULL(query_sync_lastadminrank)
-	to_chat(usr, span_admin(LANG("datum.916f8200", list(admin_key))), confidential = TRUE)
+	to_chat(usr, span_admin(LANG("datum.916f82006f826696", list(admin_key))), confidential = TRUE)
 
 #undef PERMISSIONS_LOGS_PER_PAGE

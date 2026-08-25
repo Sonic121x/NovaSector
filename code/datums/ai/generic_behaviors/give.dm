@@ -31,8 +31,8 @@
 	if(!can_give_item(living_target, held_item))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	living_target.visible_message(
-		span_info(LANG("datum.41a1e794", list(pawn, held_item, living_target))),
-		span_warning(LANG("datum.8d1d6d8b", list(pawn, held_item)))
+		span_info(LANG("datum.41a1e79430dc8a29", list(pawn, held_item, living_target))),
+		span_warning(LANG("datum.8d1d6d8bce8413a7", list(pawn, held_item)))
 	)
 	give_target = living_target
 	give_held_item = held_item

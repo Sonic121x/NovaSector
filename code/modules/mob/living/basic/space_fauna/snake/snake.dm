@@ -71,7 +71,7 @@
 	. = ..()
 	if(!.)
 		return
-	visible_message(LANG("mob.bbc9e4e9", list(src, new_friend)))
+	visible_message(LANG("mob.bbc9e4e9e68a581f", list(src, new_friend)))
 
 /// Snakes are primarily concerned with getting those tasty, tasty mice, but aren't afraid to strike back at those who attack them
 /datum/ai_controller/basic_controller/snake

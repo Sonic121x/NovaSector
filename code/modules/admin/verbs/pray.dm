@@ -1,7 +1,7 @@
 GAME_VERB(/mob, pray, VERB_PRAY, null)
 	VERB_ARG(message, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(src, span_danger(LANG("mob.b79ad8a3", null)), confidential = TRUE)
+		to_chat(src, span_danger(LANG("mob.b79ad8a388d1b3a4", null)), confidential = TRUE)
 		return
 
 	message = copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN)
@@ -10,7 +10,7 @@ GAME_VERB(/mob, pray, VERB_PRAY, null)
 	log_prayer("[src.key]/([src.name]): [message]")
 	if(src.client)
 		if(src.client.prefs.muted & MUTE_PRAY)
-			to_chat(src, span_danger(LANG("mob.356830a3", null)), confidential = TRUE)
+			to_chat(src, span_danger(LANG("mob.356830a3232c9b97", null)), confidential = TRUE)
 			return
 		if(src.client.handle_spam_prevention(message, MUTE_PRAY))
 			return
@@ -45,7 +45,7 @@ GAME_VERB(/mob, pray, VERB_PRAY, null)
 	for(var/client/C in GLOB.admins)
 		if(get_chat_toggles(C) & CHAT_PRAYER)
 			to_chat(C, message, type = MESSAGE_TYPE_PRAYER, confidential = TRUE)
-	to_chat(src, span_info(LANG("mob.d514f1cf", list(msg_tmp))), confidential = TRUE)
+	to_chat(src, span_info(LANG("mob.d514f1cf62965089", list(msg_tmp))), confidential = TRUE)
 
 	BLACKBOX_LOG_ADMIN_VERB("Prayer")
 

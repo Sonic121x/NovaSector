@@ -114,16 +114,16 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 /obj/item/clothing/mask/gas/sechailer/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(aggressiveness == AGGR_BROKEN)
-		to_chat(user, span_danger(LANG("obj.56e8aa61", null)))
+		to_chat(user, span_danger(LANG("obj.56e8aa611c62ab0a", null)))
 		return
 	var/position = aggressiveness == AGGR_GOOD_COP ? "middle" : aggressiveness == AGGR_BAD_COP ? "last" : "first"
-	to_chat(user, span_notice(LANG("obj.6cdfbb32", list(position))))
+	to_chat(user, span_notice(LANG("obj.6cdfbb32045554b0", list(position))))
 	aggressiveness = aggressiveness % 3 + 1 // loop AGGR_GOOD_COP -> AGGR_SHIT_COP
 
 /obj/item/clothing/mask/gas/sechailer/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(aggressiveness != AGGR_BROKEN)
-		to_chat(user, span_danger(LANG("obj.ad9e5983", null)))
+		to_chat(user, span_danger(LANG("obj.ad9e59830f090832", null)))
 		aggressiveness = AGGR_BROKEN
 		return
 
@@ -133,16 +133,16 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 /obj/item/clothing/mask/gas/sechailer/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(safety)
 		safety = FALSE
-		balloon_alert(user, LANG("obj.17ec6d67", null))
+		balloon_alert(user, LANG("obj.17ec6d67c0d317f0", null))
 		return TRUE
 	return FALSE
 
-GAME_VERB_SRC(/obj/item/clothing/mask/gas/sechailer, halt, usr, "HALT", null)
+GAME_VERB_SRC(/obj/item/clothing/mask/gas/sechailer, halt, usr, "站住", null)
 
 	if(!isliving(usr) || !can_use(usr) || !COOLDOWN_FINISHED(src, hailer_cooldown))
 		return
 	if(broken_hailer)
-		to_chat(usr, span_warning(LANG("obj.83677c1f", list(src))))
+		to_chat(usr, span_warning(LANG("obj.83677c1fc85023f9", list(src))))
 		return
 
 	// handle recent uses for overuse
@@ -154,12 +154,12 @@ GAME_VERB_SRC(/obj/item/clothing/mask/gas/sechailer, halt, usr, "HALT", null)
 
 	switch(recent_uses)
 		if(3)
-			to_chat(usr, span_warning(LANG("obj.47ad7c1d", list(src))))
+			to_chat(usr, span_warning(LANG("obj.47ad7c1d858a9e8c", list(src))))
 		if(4)
-			to_chat(usr, span_userdanger(LANG("obj.2ed45f48", list(src))))
+			to_chat(usr, span_userdanger(LANG("obj.2ed45f48d3f74018", list(src))))
 		if(5) // overload
 			broken_hailer = TRUE
-			to_chat(usr, span_userdanger(LANG("obj.d1e0dd64", list(src))))
+			to_chat(usr, span_userdanger(LANG("obj.d1e0dd646de9cdc7", list(src))))
 			return
 
 	// select phrase to play
@@ -183,7 +183,7 @@ GAME_VERB_SRC(/obj/item/clothing/mask/gas/sechailer, halt, usr, "HALT", null)
 	if(!COOLDOWN_FINISHED(src, hailer_cooldown))
 		return
 	COOLDOWN_START(src, hailer_cooldown, PHRASE_COOLDOWN)
-	user.audible_message(LANG("obj.7ca42ddc", list(user, initial(phrase.phrase_text))))
+	user.audible_message(LANG("obj.7ca42ddcca990584", list(user, initial(phrase.phrase_text))))
 	playsound(src, "sound/runtime/complionator/[initial(phrase.phrase_sound)].ogg", 100, FALSE, 4)
 	return TRUE
 
@@ -206,7 +206,7 @@ GAME_VERB_SRC(/obj/item/clothing/mask/gas/sechailer, halt, usr, "HALT", null)
 	if(!COOLDOWN_FINISHED(src, whistle_cooldown))
 		return
 	COOLDOWN_START(src, whistle_cooldown, 10 SECONDS)
-	user.audible_message(LANG("obj.af171f6f", null))
+	user.audible_message(LANG("obj.af171f6f362663bc", null))
 	playsound(src, 'sound/items/whistle/whistle.ogg', 50, FALSE, 4)
 
 /datum/action/item_action/halt

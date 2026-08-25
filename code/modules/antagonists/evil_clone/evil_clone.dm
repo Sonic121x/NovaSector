@@ -22,9 +22,9 @@
 	play_stinger()
 	var/mob/living/current_mob = owner.current
 	if (current_mob)
-		to_chat(current_mob, span_big(LANG("datum.5c503534", list(current_mob.real_name))))
-		to_chat(current_mob, span_hypnophrase(LANG("datum.9ab8f7ef", list(current_mob.real_name))))
-		to_chat(current_mob, span_boldwarning(LANG("datum.49febdf2", list(current_mob.real_name))))
+		to_chat(current_mob, span_big(LANG("datum.5c5035349c035ccb", list(current_mob.real_name))))
+		to_chat(current_mob, span_hypnophrase(LANG("datum.9ab8f7ef1296e7b0", list(current_mob.real_name))))
+		to_chat(current_mob, span_boldwarning(LANG("datum.49febdf26e5ec5eb", list(current_mob.real_name))))
 	owner.announce_objectives()
 
 /datum/antagonist/evil_clone/forge_objectives()

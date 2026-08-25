@@ -284,7 +284,7 @@ DEFINE_BITFIELD(turret_flags, list(
 				toggle_on(!on)
 				return TRUE
 			else
-				to_chat(usr, span_warning(LANG("obj.15ff9438", null)))
+				to_chat(usr, span_warning(LANG("obj.15ff943821f0ead2", null)))
 		if("authweapon")
 			turret_flags ^= TURRET_FLAG_AUTH_WEAPONS
 			return TRUE
@@ -332,7 +332,7 @@ DEFINE_BITFIELD(turret_flags, list(
 		return
 
 	tool.set_buffer(src)
-	balloon_alert(user, LANG("obj.84afb909", null))
+	balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/porta_turret/crowbar_act(mob/living/user, obj/item/tool)
@@ -341,20 +341,20 @@ DEFINE_BITFIELD(turret_flags, list(
 
 	//If the turret is destroyed, you can remove it with a crowbar to
 	//try and salvage its components
-	to_chat(user, span_notice(LANG("obj.4f98dffb", null)))
+	to_chat(user, span_notice(LANG("obj.4f98dffb9c238add", null)))
 	if(!tool.use_tool(src, user, 20))
 		return ITEM_INTERACT_BLOCKING
 	if(prob(70))
 		if(stored_gun)
 			stored_gun.forceMove(loc)
 			stored_gun = null
-		to_chat(user, span_notice(LANG("obj.8b03cccc", null)))
+		to_chat(user, span_notice(LANG("obj.8b03cccc9dec174a", null)))
 		if(prob(50))
 			new /obj/item/stack/sheet/iron(loc, rand(1,4))
 		if(prob(50))
 			new /obj/item/assembly/prox_sensor(loc)
 	else
-		to_chat(user, span_notice(LANG("obj.2b26416c", null)))
+		to_chat(user, span_notice(LANG("obj.2b26416ca733a2fc", null)))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -367,13 +367,13 @@ DEFINE_BITFIELD(turret_flags, list(
 		set_anchored(TRUE)
 		RemoveInvisibility(id=type)
 		update_appearance()
-		to_chat(user, span_notice(LANG("obj.de10bdae", null)))
+		to_chat(user, span_notice(LANG("obj.de10bdae47c809be", null)))
 		if(has_cover)
 			cover = new /obj/machinery/porta_turret_cover(loc) //create a new turret. While this is handled in process(), this is to workaround a bug where the turret becomes invisible for a split second
 			cover.parent_turret = src //make the cover's parent src
 	else if(anchored)
 		set_anchored(FALSE)
-		to_chat(user, span_notice(LANG("obj.db33b69a", null)))
+		to_chat(user, span_notice(LANG("obj.db33b69aa84f74a1", null)))
 		power_change()
 		SetInvisibility(INVISIBILITY_NONE, id=type)
 		qdel(cover) //deletes the cover, and the turret instance itself becomes its own cover.
@@ -385,17 +385,17 @@ DEFINE_BITFIELD(turret_flags, list(
 
 	//Behavior lock/unlock mangement
 	if(!allowed(user))
-		to_chat(user, span_alert(LANG("obj.077f9b52", null)))
+		to_chat(user, span_alert(LANG("obj.077f9b52c530e7f8", null)))
 		return ITEM_INTERACT_BLOCKING
 	locked = !locked
-	to_chat(user, span_notice(LANG("obj.69241576", list(locked ? "locked" : "unlocked"))))
+	to_chat(user, span_notice(LANG("obj.69241576ed09f510", list(locked ? "locked" : "unlocked"))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/porta_turret/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, LANG("obj.97c921be", null))
-	audible_message(span_hear(LANG("obj.679ad949", list(src))))
+	balloon_alert(user, LANG("obj.97c921be267658d0", null))
+	audible_message(span_hear(LANG("obj.679ad94952979d04", list(src))))
 	obj_flags |= EMAGGED
 	controllock = TRUE
 	set_disabled(6 SECONDS)
@@ -557,7 +557,9 @@ DEFINE_BITFIELD(turret_flags, list(
 	raising = 1
 	if(cover)
 		flick("popup", cover)
-	sleep(POPUP_ANIM_TIME)
+	addtimer(CALLBACK(src, PROC_REF(finish_popup)), POPUP_ANIM_TIME, TIMER_STOPPABLE | TIMER_DELETE_ME)
+
+/obj/machinery/porta_turret/proc/finish_popup()
 	raising = 0
 	if(cover)
 		cover.icon_state = "openTurretCover"
@@ -573,7 +575,9 @@ DEFINE_BITFIELD(turret_flags, list(
 	raising = 1
 	if(cover)
 		flick("popdown", cover)
-	sleep(POPDOWN_ANIM_TIME)
+	addtimer(CALLBACK(src, PROC_REF(finish_popdown)), POPDOWN_ANIM_TIME, TIMER_STOPPABLE | TIMER_DELETE_ME)
+
+/obj/machinery/porta_turret/proc/finish_popdown()
 	raising = 0
 	if(cover)
 		cover.icon_state = "turretCover"
@@ -740,7 +744,7 @@ DEFINE_BITFIELD(turret_flags, list(
 		return FALSE
 	if(remote_controller)
 		if(warning_message)
-			to_chat(remote_controller, span_warning(LANG("obj.3ac3164d", list(src))))
+			to_chat(remote_controller, span_warning(LANG("obj.3ac3164df9bc7311", list(src))))
 		quit_action.Remove(remote_controller)
 		toggle_action.Remove(remote_controller)
 		remote_controller.click_intercept = null

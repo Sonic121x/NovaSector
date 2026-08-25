@@ -14,14 +14,14 @@
 
 /datum/status_effect/determined/on_apply()
 	. = ..()
-	owner.visible_message(span_danger(LANG("datum.2cf23127", list(owner, owner.p_their()))), span_notice(LANG("datum.c4e19c99", null)), \
+	owner.visible_message(span_danger(LANG("datum.2cf23127ee76f599", list(owner, owner.p_their()))), span_notice(LANG("datum.c4e19c99e21c2002", null)), \
 		vision_distance=COMBAT_MESSAGE_RANGE)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.physiology.bleed_mod *= WOUND_DETERMINATION_BLEED_MOD
 
 /datum/status_effect/determined/on_remove()
-	owner.visible_message(span_danger(LANG("datum.8f22b0dd", list(owner))), span_warning(LANG("datum.8a452e1d", null)), vision_distance=COMBAT_MESSAGE_RANGE)
+	owner.visible_message(span_danger(LANG("datum.8f22b0dd37948623", list(owner))), span_warning(LANG("datum.8a452e1d945dc5f5", null)), vision_distance=COMBAT_MESSAGE_RANGE)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.physiology.bleed_mod /= WOUND_DETERMINATION_BLEED_MOD

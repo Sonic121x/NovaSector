@@ -47,7 +47,7 @@
 	. = ..()
 	if(.)
 		return
-	var/message_text = tgui_input_text(user, LANG("datum.4408a64f", null), LANG("datum.0f042af7", null), max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+	var/message_text = tgui_input_text(user, LANG("datum.4408a64fa2802be5", null), LANG("datum.0f042af73039e1b3", null), max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 	if (!message_text)
 		return
 

@@ -24,7 +24,7 @@
 	if(policy)
 		to_chat(owner, policy)
 	else
-		to_chat(owner, span_ghostalert(LANG("datum.f8bd3527", null)))
+		to_chat(owner, span_ghostalert(LANG("datum.f8bd3527e18c3f6c", null)))
 	owner.current.log_message("was sacrificed to Nar'sie as a Heretic, and sealed inside a longsword.", LOG_GAME)
 	var/datum/objective/epic_fail = new /datum/objective/heretic_trapped()
 	epic_fail.completed = FALSE

@@ -76,7 +76,7 @@
 		owner.adjust_blood_volume(round(-bloodloss_rate * seconds_per_tick, CHEMICAL_VOLUME_ROUNDING))
 
 	if(owner.get_blood_volume() <= BLOOD_VOLUME_SURVIVE)
-		to_chat(owner, span_danger(LANG("obj.f729390e", null)))
+		to_chat(owner, span_danger(LANG("obj.f729390ec2a338c2", null)))
 		owner.investigate_log("starved to death from lack of blood caused by [src].", INVESTIGATE_DEATHS)
 		owner.death() // Owch! Ran out of blood.
 

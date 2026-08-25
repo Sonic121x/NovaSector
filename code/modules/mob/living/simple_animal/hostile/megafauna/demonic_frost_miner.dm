@@ -160,7 +160,7 @@ Difficulty: Extremely Hard
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/ex_act(severity, target)
 	adjust_brute_loss(-30 * severity)
-	visible_message(span_danger(LANG("mob.5bb8d3b5", list(src))), span_userdanger(LANG("mob.de870c0f", null)))
+	visible_message(span_danger(LANG("mob.5bb8d3b5933f858a", list(src))), span_userdanger(LANG("mob.de870c0f5c6458b2", null)))
 	return TRUE
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/Goto(target, delay, minimum_distance)
@@ -254,7 +254,7 @@ Difficulty: Extremely Hard
 /datum/status_effect/ice_block_talisman/on_apply()
 	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(owner_moved))
 	if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-		to_chat(owner, span_userdanger(LANG("datum.f018dcbb", null)))
+		to_chat(owner, span_userdanger(LANG("datum.f018dcbb206acaff", null)))
 	cube = icon('icons/effects/freeze.dmi', "ice_cube")
 	var/list/icon_dimensions = get_icon_dimensions(owner.icon)
 	cube.Scale(icon_dimensions["width"], icon_dimensions["height"])
@@ -273,7 +273,7 @@ Difficulty: Extremely Hard
 
 /datum/status_effect/ice_block_talisman/on_remove()
 	if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-		to_chat(owner, span_notice(LANG("datum.94b17e7a", null)))
+		to_chat(owner, span_notice(LANG("datum.94b17e7af3314776", null)))
 	owner.cut_overlay(cube)
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 

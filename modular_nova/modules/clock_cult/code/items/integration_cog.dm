@@ -17,37 +17,37 @@
 
 	var/obj/machinery/power/apc/cogger_apc = attacked_atom
 	if(cogger_apc.integration_cog)
-		balloon_alert(user, LANG("obj.3954bfbd", null))
+		balloon_alert(user, LANG("obj.3954bfbdfdf0c8ca", null))
 		return
 
 	if(!cogger_apc.panel_open)
 		//Cut open the panel
-		balloon_alert(user, LANG("obj.b67c6de3", null))
+		balloon_alert(user, LANG("obj.b67c6de3a848c448", null))
 		if(!do_after(user, 5 SECONDS, target = cogger_apc))
 			return
 
-		balloon_alert(user, LANG("obj.12217a7c", null))
+		balloon_alert(user, LANG("obj.12217a7ca391f426", null))
 		cogger_apc.panel_open = TRUE
 		cogger_apc.update_appearance()
 		return
 
 	//Insert the cog
-	balloon_alert(user, LANG("obj.3b69f686", list(src)))
+	balloon_alert(user, LANG("obj.3b69f686bbad2ffe", list(src)))
 	if(!do_after(user, 4 SECONDS, target = cogger_apc))
-		balloon_alert(user, LANG("obj.cc949f95", list(src)))
+		balloon_alert(user, LANG("obj.cc949f95aa77763f", list(src)))
 		return
 
 	cogger_apc.integration_cog = src
 	forceMove(cogger_apc)
 	cogger_apc.panel_open = FALSE
 	cogger_apc.update_appearance()
-	balloon_alert(user, LANG("obj.048c1f34", list(src)))
+	balloon_alert(user, LANG("obj.048c1f348d556f2c", list(src)))
 	playsound(get_turf(user), 'sound/machines/clockcult/integration_cog_install.ogg', 20)
 	if(!cogger_apc.clock_cog_rewarded)
 		addtimer(CALLBACK(src, PROC_REF(finish_setup), cogger_apc), SET_UP_TIME)
 
 		send_clock_message(null, span_brass(span_bold("[user] has installed an integration cog into [cogger_apc].")), msg_ghosts = FALSE)
-		notify_ghosts(LANG("obj.62637e0e", list(user.real_name, cogger_apc)),
+		notify_ghosts(LANG("obj.62637e0ec723b6f7", list(user.real_name, cogger_apc)),
 			source = user,
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
 			header = "Integration cog",
@@ -88,22 +88,22 @@
 	if(isliving(user))
 		var/mob/living/living_user = user
 		if(integration_cog || (living_user.has_status_effect(/datum/status_effect/hallucination) && prob(HALLUCINATION_COG_CHANCE)))
-			. += span_brass(LANG("obj.3a779be7", null))
+			. += span_brass(LANG("obj.3a779be782f8b2e1", null))
 
 		if(integration_cog && IS_CLOCK(user))
-			. += span_brass(LANG("obj.5869642c", list(integration_cog.set_up ? "fully initialized" : "still initializing")))
+			. += span_brass(LANG("obj.5869642c19980699", list(integration_cog.set_up ? "fully initialized" : "still initializing")))
 
 
 /obj/machinery/power/apc/crowbar_act(mob/user, obj/item/crowbar)
 	if(!opened || !integration_cog)
 		return ..()
 
-	balloon_alert(user, LANG("obj.1f073831", list(src)))
+	balloon_alert(user, LANG("obj.1f073831789b7631", list(src)))
 	crowbar.play_tool_sound(src)
 	if(!crowbar.use_tool(src, user, 5 SECONDS))
 		return
 
-	balloon_alert(user, LANG("obj.59df4ea8", null))
+	balloon_alert(user, LANG("obj.59df4ea8afb991b6", null))
 	QDEL_NULL(integration_cog)
 
 #undef MAX_POWER_PER_COG

@@ -48,7 +48,7 @@
 /obj/item/clothing/suit/hooded/wintercoat/examine(mob/user)
 	. = ..()
 	if(can_altclick_zip)
-		. += span_notice(LANG("obj.80b71d2c", list(zipped ? "un" : "")))
+		. += span_notice(LANG("obj.80b71d2c23c5d386", list(zipped ? "un" : "")))
 
 
 /obj/item/clothing/suit/hooded/wintercoat/click_alt(mob/user)
@@ -57,7 +57,7 @@
 	zipped = !zipped
 	playsound(src, 'sound/items/zip/zip_up.ogg', 30, TRUE, -3)
 	worn_icon_state = "[initial(post_init_icon_state) || initial(icon_state)][zipped ? "_t" : ""]"
-	balloon_alert(user, LANG("obj.59160d36", list(zipped ? "" : "un")))
+	balloon_alert(user, LANG("obj.59160d363be53b04", list(zipped ? "" : "un")))
 
 	if(ishuman(loc))
 		var/mob/living/carbon/human/wearer = loc

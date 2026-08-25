@@ -43,10 +43,10 @@
 
 /obj/machinery/power/stirling_generator/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.39a3ff4b", null))
-	. += span_notice(LANG("obj.0b312fea", null))
-	. += span_notice(LANG("obj.eb56e19a", list(display_power(current_power_generation, convert = FALSE))))
-	. += span_notice(LANG("obj.d5a39961", list(display_power(max_power_output, convert = FALSE), max_efficient_heat_difference)))
+	. += span_notice(LANG("obj.39a3ff4b85ba6035", null))
+	. += span_notice(LANG("obj.0b312feac86ad375", null))
+	. += span_notice(LANG("obj.eb56e19a2001fd4c", list(display_power(current_power_generation, convert = FALSE))))
+	. += span_notice(LANG("obj.d5a3996142187ca4", list(display_power(max_power_output, convert = FALSE), max_efficient_heat_difference)))
 
 
 /obj/machinery/power/stirling_generator/Destroy()
@@ -103,7 +103,7 @@
 
 	wrench.play_tool_sound(src, 50)
 	setDir(turn(dir,-90))
-	to_chat(user, span_notice(LANG("obj.21b2b6d1", list(src))))
+	to_chat(user, span_notice(LANG("obj.21b2b6d1ba9e2434", list(src))))
 	SEND_SIGNAL(src, COMSIG_MACHINERY_DEFAULT_ROTATE_WRENCH, user, wrench)
 	return TRUE
 

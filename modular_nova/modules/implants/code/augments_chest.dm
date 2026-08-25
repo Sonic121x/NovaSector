@@ -23,7 +23,7 @@
 		return
 	var/obj/item/organ/cyberimp/chest/scanner/our_scanner = target
 	if(our_scanner.organ_flags & ORGAN_FAILING)
-		to_chat(owner, span_warning(LANG("datum.147e8449", null)))
+		to_chat(owner, span_warning(LANG("datum.147e84496e95c32f", null)))
 		return
 	if(our_scanner.has_chem_scan && (trigger_flags & TRIGGER_SECONDARY_ACTION))
 		chemscan(owner, owner)
@@ -74,7 +74,7 @@
 		return
 	if(organ_flags & ORGAN_FAILING)
 		if(!silent)
-			to_chat(owner, span_warning(LANG("obj.71482410", null)))
+			to_chat(owner, span_warning(LANG("obj.714824100e3202d6", null)))
 		return
 	if(bumpoff)
 		RegisterSignal(owner, COMSIG_LIVING_MOB_BUMP, PROC_REF(unstealth))
@@ -95,7 +95,7 @@
 	animate(owner, alpha = stealth_alpha, time = 15 SECONDS)
 	on = TRUE
 	if(!silent)
-		to_chat(owner, span_notice(LANG("obj.d421d2c9", null)))
+		to_chat(owner, span_notice(LANG("obj.d421d2c938abc089", null)))
 
 /obj/item/organ/cyberimp/chest/opticalcamo/proc/deactivate(silent = FALSE)
 	if(!on)
@@ -117,13 +117,13 @@
 	animate(owner, alpha = 255, time = 1.5 SECONDS)
 	on = FALSE
 	if(!silent)
-		to_chat(owner, span_notice(LANG("obj.e5c0d173", null)))
+		to_chat(owner, span_notice(LANG("obj.e5c0d1738c137dc2", null)))
 
 /// Handles removing their stealth when bump-off is triggered
 /obj/item/organ/cyberimp/chest/opticalcamo/proc/unstealth(datum/source)
 	SIGNAL_HANDLER
 
-	to_chat(owner, span_warning(LANG("obj.af764fe4", list(src))))
+	to_chat(owner, span_warning(LANG("obj.af764fe44d9000ba", list(src))))
 	do_sparks(2, TRUE, src)
 	deactivate()
 
@@ -147,6 +147,6 @@
 		return
 	owner.reagents.add_reagent(/datum/reagent/drug/saturnx, poison_amount / severity)
 	owner.adjust_confusion(rand(8 SECONDS, 11 SECONDS))
-	to_chat(owner, span_warning(LANG("obj.b59608f3", null)))
+	to_chat(owner, span_warning(LANG("obj.b59608f3ec5950b9", null)))
 	unstealth()
 

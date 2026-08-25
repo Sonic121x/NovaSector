@@ -38,9 +38,9 @@
 	. = ..()
 	if(!(resistance_flags & INDESTRUCTIBLE))
 		if(resistance_flags & ON_FIRE)
-			. += span_warning(LANG("obj.3e122e7a", null))
+			. += span_warning(LANG("obj.3e122e7a5111dea6", null))
 		if(broken)
-			. += span_notice(LANG("obj.11410718", null))
+			. += span_notice(LANG("obj.11410718d87a46af", null))
 		var/examine_status = examine_status(user)
 		if(examine_status)
 			. += examine_status
@@ -74,7 +74,7 @@
 
 /// For when a mob comes flying through the window, smash it and damage the mob
 /obj/structure/proc/smash_and_injure(mob/living/flying_mob, atom/oldloc, direction)
-	flying_mob.balloon_alert_to_viewers(LANG("obj.747a7f01", null))
+	flying_mob.balloon_alert_to_viewers(LANG("obj.747a7f0151a349de", null))
 	flying_mob.apply_damage(damage = rand(5, 15), damagetype = BRUTE, wound_bonus = 15, exposed_wound_bonus = 25, sharpness = SHARP_EDGED, attack_direction = get_dir(src, oldloc))
 	new /obj/effect/decal/cleanable/glass(get_step(flying_mob, flying_mob.dir))
 	deconstruct(disassembled = FALSE)

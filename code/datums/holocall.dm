@@ -50,16 +50,16 @@
 			dialed_holopads += connected_holopad
 			if(head_call)
 				if(connected_holopad.secure)
-					calling_pad.say(LANG("datum.45dd80c4", null))
-					connected_holopad.say(LANG("datum.70eed6e9", null))
+					calling_pad.say(LANG("datum.45dd80c45d02fa98", null))
+					connected_holopad.say(LANG("datum.70eed6e90c4856d5", null))
 				else
-					connected_holopad.say(LANG("datum.762c9061", null))
+					connected_holopad.say(LANG("datum.762c9061331ae12d", null))
 			else
-				connected_holopad.say(LANG("datum.70eed6e9", null))
+				connected_holopad.say(LANG("datum.70eed6e90c4856d5", null))
 			connected_holopad.set_holocall(src)
 
 	if(!dialed_holopads.len)
-		calling_pad.say(LANG("datum.28e0851e", null))
+		calling_pad.say(LANG("datum.28e0851e84be0679", null))
 		qdel(src)
 		return
 
@@ -103,9 +103,9 @@
 	testing("Holocall disconnect")
 	if(H == connected_holopad)
 		var/area/A = get_area(connected_holopad)
-		calling_holopad.say(LANG("datum.e117d5a8", list(A)))
+		calling_holopad.say(LANG("datum.e117d5a893827daa", list(A)))
 	else if(H == calling_holopad && connected_holopad)
-		connected_holopad.say(LANG("datum.d413f00d", list(user)))
+		connected_holopad.say(LANG("datum.d413f00d729a4de5", list(user)))
 
 	ConnectionFailure(H, TRUE)
 
@@ -114,7 +114,7 @@
 	testing("Holocall connection failure: graceful [graceful]")
 	if(disconnected_holopad == connected_holopad || disconnected_holopad == calling_holopad)
 		if(!graceful && disconnected_holopad != calling_holopad)
-			calling_holopad.say(LANG("datum.28e0851e", null))
+			calling_holopad.say(LANG("datum.28e0851e84be0679", null))
 		qdel(src)
 		return
 
@@ -123,7 +123,7 @@
 	dialed_holopads -= disconnected_holopad
 	if(!dialed_holopads.len)
 		if(graceful)
-			calling_holopad.say(LANG("datum.8914269d", null))
+			calling_holopad.say(LANG("datum.8914269da64094ca", null))
 		testing("No recipients, terminating")
 		qdel(src)
 
@@ -163,7 +163,7 @@
 	hangup = new(eye, src)
 	hangup.Grant(user)
 	playsound(answering_holopad, 'sound/machines/ping.ogg', 100)
-	answering_holopad.say(LANG("datum.a7ac031a", null))
+	answering_holopad.say(LANG("datum.a7ac031acbeab53e", null))
 
 //Checks the validity of a holocall and qdels itself if it's not. Returns TRUE if valid, FALSE otherwise
 /datum/holocall/proc/Check()
@@ -180,7 +180,7 @@
 		if(!connected_holopad)
 			. = world.time < (call_start_time + HOLOPAD_MAX_DIAL_TIME)
 			if(!.)
-				calling_holopad.say(LANG("datum.4b504e05", null))
+				calling_holopad.say(LANG("datum.4b504e0567c35dc7", null))
 
 	if(!.)
 		testing("Holocall Check fail")
@@ -235,12 +235,12 @@
 
 /obj/item/disk/holodisk/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/disk/holodisk))
-		return NONE
+		return ..()
 
 	var/obj/item/disk/holodisk/holodisk_original = tool
 
 	if (!holodisk_original.record)
-		to_chat(user, span_warning(LANG("obj.2a9511f3", list(holodisk_original))))
+		to_chat(user, span_warning(LANG("obj.2a9511f3bd982c0a", list(holodisk_original))))
 		return ITEM_INTERACT_BLOCKING
 
 	if (!record)
@@ -250,7 +250,7 @@
 	record.caller_image = holodisk_original.record.caller_image
 	record.entries = holodisk_original.record.entries.Copy()
 	record.language = holodisk_original.record.language
-	to_chat(user, span_notice(LANG("obj.3154be97", list(holodisk_original, src))))
+	to_chat(user, span_notice(LANG("obj.3154be971c8ceb5b", list(holodisk_original, src))))
 	name = holodisk_original.name
 
 	return ITEM_INTERACT_SUCCESS

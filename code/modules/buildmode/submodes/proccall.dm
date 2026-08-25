@@ -8,14 +8,14 @@
 
 /datum/buildmode_mode/proccall/show_help(client/builder)
 	to_chat(builder, span_purple(boxed_message(
-		LANG("datum.adb29bd1", list(span_bold("Choose procedure and arguments"), span_bold("Apply procedure on object")))))
+		LANG("datum.adb29bd14e63698f", list(span_bold("Choose procedure and arguments"), span_bold("Apply procedure on object")))))
 	)
 
 /datum/buildmode_mode/proccall/change_settings(client/target_client)
 	if(!check_rights_for(target_client, R_DEBUG))
 		return
 
-	proc_name = input(LANG("datum.5a6a7f47", null), LANG("datum.a03a6d4f", null), null) as text|null
+	proc_name = input(LANG("datum.5a6a7f470a534828", null), LANG("datum.a03a6d4f8aa05257", null), null) as text|null
 	if(!proc_name)
 		return
 
@@ -25,15 +25,15 @@
 
 /datum/buildmode_mode/proccall/handle_click(client/target_client, params, datum/object as null|area|mob|obj|turf)
 	if(!proc_name || !proc_args)
-		tgui_alert(target_client, LANG("datum.94c65453", null))
+		tgui_alert(target_client, LANG("datum.94c65453c6abcac5", null))
 		return
 
 	if(!hascall(object, proc_name))
-		to_chat(target_client, span_warning(LANG("datum.3ecfa481", list(object.type, proc_name))), confidential = TRUE)
+		to_chat(target_client, span_warning(LANG("datum.3ecfa481ca145694", list(object.type, proc_name))), confidential = TRUE)
 		return
 
 	if(!is_valid_src(object))
-		to_chat(target_client, span_warning(LANG("datum.2ff7dadf", null)), confidential = TRUE)
+		to_chat(target_client, span_warning(LANG("datum.2ff7dadf2433abdb", null)), confidential = TRUE)
 		return
 
 

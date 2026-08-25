@@ -38,8 +38,8 @@
 		return
 
 	user.do_attack_animation(target)
-	target.visible_message(span_warning(LANG("datum.a9b2ecce", list(user, target, item))), \
-		span_userdanger(LANG("datum.9acbe40d", list(user, item))))
+	target.visible_message(span_warning(LANG("datum.a9b2eccec04b0069", list(user, target, item))), \
+		span_userdanger(LANG("datum.9acbe40df87cab83", list(user, item))))
 
 	if(target.stat == DEAD) //dead men have no reflexes!
 		return
@@ -51,17 +51,17 @@
 
 	if(target_brain_damage < BRAIN_DAMAGE_MILD) //a healthy brain produces a normal reaction
 		playsound(target, 'sound/items/weapons/punchmiss.ogg', 25, TRUE, -1)
-		target.visible_message(span_danger(LANG("datum.8c8d6499", list(target))), \
-			span_danger(LANG("datum.239ebc7e", null)))
+		target.visible_message(span_danger(LANG("datum.8c8d6499e72c5b77", list(target))), \
+			span_danger(LANG("datum.239ebc7ef0aecb62", null)))
 
 	else if(target_brain_damage < BRAIN_DAMAGE_SEVERE) //a mildly damaged brain produces a delayed reaction
 		playsound(target, 'sound/items/weapons/punchmiss.ogg', 15, TRUE, -1)
-		target.visible_message(span_danger(LANG("datum.b4c589e1", list(target))), \
-			span_danger(LANG("datum.50753496", null)))
+		target.visible_message(span_danger(LANG("datum.b4c589e1afc7f9f7", list(target))), \
+			span_danger(LANG("datum.507534963bc50e0e", null)))
 
 	else if(target_brain_damage < BRAIN_DAMAGE_DEATH) //a severely damaged brain produces a delayed + weaker reaction
 		playsound(target, 'sound/items/weapons/punchmiss.ogg', 5, TRUE, -1)
-		target.visible_message(span_danger(LANG("datum.244a9edc", list(target))), \
-			span_danger(LANG("datum.443cf2b2", null)))
+		target.visible_message(span_danger(LANG("datum.244a9edc3089ebf7", list(target))), \
+			span_danger(LANG("datum.443cf2b2d1d527ff", null)))
 
 	return

@@ -26,11 +26,11 @@
 	. = ..()
 	if(health < maxHealth)
 		if(health > maxHealth/3)
-			. += LANG("mob.784637f2", list(src))
+			. += LANG("mob.784637f29f950164", list(src))
 		else
-			. += LANG("mob.b53e8b04", list(src))
+			. += LANG("mob.b53e8b0486e7563c", list(src))
 	else
-		. += LANG("mob.20cc3650", list(src))
+		. += LANG("mob.20cc3650703f164f", list(src))
 
 /mob/living/circuit_drone/updatehealth()
 	. = ..()
@@ -40,7 +40,7 @@
 /mob/living/circuit_drone/welder_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(health == maxHealth)
-		balloon_alert(user, LANG("mob.e7aad96b", null))
+		balloon_alert(user, LANG("mob.e7aad96b54c6a785", null))
 		return TRUE
 	if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
 		heal_overall_damage(50, 50)

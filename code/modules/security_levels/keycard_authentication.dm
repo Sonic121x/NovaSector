@@ -63,7 +63,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	if(!isanimal_or_basicmob(user))
 		return ..()
 	if(!HAS_TRAIT(user, TRAIT_CAN_HOLD_ITEMS))
-		balloon_alert(user, LANG("obj.621b2167", null))
+		balloon_alert(user, LANG("obj.621b21675a9e2eb4", null))
 		return UI_CLOSE
 	return ..()
 
@@ -106,7 +106,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 			if(!living_user || !istype(living_user))
 				return TRUE
 			if(!COOLDOWN_FINISHED(src, access_grant_cooldown))
-				balloon_alert(usr, LANG("obj.d4ae5d4d", null))
+				balloon_alert(usr, LANG("obj.d4ae5d4dded19efe", null))
 				return TRUE
 			var/obj/item/card/id/advanced/card = living_user.get_idcard(hand_first = TRUE)
 			if(!card)
@@ -117,7 +117,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 					continue
 				COOLDOWN_START(src, access_grant_cooldown, ACCESS_GRANTING_COOLDOWN)
 				SEND_GLOBAL_SIGNAL(COMSIG_ON_DEPARTMENT_ACCESS, info["regions"])
-				balloon_alert(usr, LANG("obj.bcfb9147", null))
+				balloon_alert(usr, LANG("obj.bcfb9147eb32c8fb", null))
 				return
 
 /obj/machinery/keycard_auth/update_appearance(updates)
@@ -212,7 +212,7 @@ GLOBAL_VAR_INIT(emergency_access, FALSE)
 
 /proc/toggle_bluespace_artillery()
 	GLOB.bsa_unlock = !GLOB.bsa_unlock
-	minor_announce(LANG("_root.01026de0", list(GLOB.bsa_unlock? "unlocked" : "locked")), "Weapons Systems Update:")
+	minor_announce(LANG("_root.01026de0fd73ae28", list(GLOB.bsa_unlock? "unlocked" : "locked")), "Weapons Systems Update:")
 	SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("bluespace artillery", GLOB.bsa_unlock? "unlocked" : "locked"))
 
 #undef ACCESS_GRANTING_COOLDOWN

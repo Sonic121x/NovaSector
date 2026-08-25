@@ -140,23 +140,23 @@
 
 /obj/item/mecha_parts/mecha_equipment/wardenupgrade/can_attach(obj/vehicle/sealed/mecha/warden/mecha, attach_right = FALSE, mob/user)
 	if(!istype(mecha, /obj/vehicle/sealed/mecha/warden))
-		to_chat(user, span_warning(LANG("obj.d2ed2504", null)))
+		to_chat(user, span_warning(LANG("obj.d2ed25040e69e9b9", null)))
 		return FALSE
 	if(istype(mecha, /obj/vehicle/sealed/mecha/warden/wunk))
-		to_chat(user, span_warning(LANG("obj.bafdeb3a", list(mecha))))
+		to_chat(user, span_warning(LANG("obj.bafdeb3a81ccbc61", list(mecha))))
 		return FALSE
 	if(!(mecha.mecha_flags & PANEL_OPEN))
-		to_chat(user, span_warning(LANG("obj.cb9de330", list(mecha))))
+		to_chat(user, span_warning(LANG("obj.cb9de3306c55dd98", list(mecha))))
 		return FALSE
 	if(LAZYLEN(mecha.occupants))
-		to_chat(user, span_warning(LANG("obj.4faa6e07", list(mecha))))
+		to_chat(user, span_warning(LANG("obj.4faa6e0774c9e46d", list(mecha))))
 		return FALSE
 	if(!mecha.cell)
-		to_chat(user, span_warning(LANG("obj.08c02b9c", null)))
+		to_chat(user, span_warning(LANG("obj.08c02b9ccd9f7522", null)))
 		return FALSE
 	// Check if the mech has any equipment that conflicts with WUNK mounting points
 	if(mecha.equip_by_category[MECHA_ARMOR] && LAZYLEN(mecha.equip_by_category[MECHA_ARMOR]) > 1)
-		to_chat(user, span_warning(LANG("obj.6aeb0280", list(mecha))))
+		to_chat(user, span_warning(LANG("obj.6aeb02805059693d", list(mecha))))
 		return FALSE
 	return TRUE
 

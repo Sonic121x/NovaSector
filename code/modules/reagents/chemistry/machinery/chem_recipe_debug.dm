@@ -105,9 +105,9 @@
 /obj/machinery/chem_recipe_debug/examine(mob/user)
 	. = ..()
 	if(!QDELETED(container))
-		. += span_notice(LANG("obj.0fcf6a97", list(container.reagents.maximum_volume)))
+		. += span_notice(LANG("obj.0fcf6a970c0d5bb0", list(container.reagents.maximum_volume)))
 	else
-		. += span_notice(LANG("obj.6ae316d7", null))
+		. += span_notice(LANG("obj.6ae316d7df36e4c4", null))
 
 /obj/machinery/chem_recipe_debug/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -450,7 +450,7 @@
 			return TRUE
 
 		if("pick_reaction")
-			var/mode = tgui_alert(usr, LANG("obj.668d4f56", null),LANG("obj.97786cdb", null), list("All", "Specific"))
+			var/mode = tgui_alert(usr, LANG("obj.668d4f56ca456cbb", null),LANG("obj.97786cdb5c21ddfd", null), list("All", "Specific"))
 			if(mode == "All")
 				reactions_to_test.Cut()
 				for(var/reaction in all_reaction_list)
@@ -458,7 +458,7 @@
 				current_reaction_index = 0
 				return TRUE
 
-			var/selected_reaction = tgui_input_list(ui.user, LANG("obj.97786cdb", null), LANG("obj.e870de92", null), all_reaction_list)
+			var/selected_reaction = tgui_input_list(ui.user, LANG("obj.97786cdb5c21ddfd", null), LANG("obj.e870de926d78d16c", null), all_reaction_list)
 			if(!selected_reaction)
 				return
 
@@ -505,7 +505,7 @@
 						if(!reaction_names.len)
 							return
 
-						var/selected_reaction = tgui_input_list(ui.user, LANG("obj.97786cdb", null), LANG("obj.e870de92", null), reaction_names)
+						var/selected_reaction = tgui_input_list(ui.user, LANG("obj.97786cdb5c21ddfd", null), LANG("obj.e870de926d78d16c", null), reaction_names)
 						if(!selected_reaction)
 							return
 						for(var/i = 1; i <= reaction_names.len; i++)
@@ -572,7 +572,7 @@
 			return TRUE
 
 		if("edit_reaction")
-			var/selected_reaction = tgui_input_list(ui.user, LANG("obj.97786cdb", null), LANG("obj.e870de92", null), all_reaction_list)
+			var/selected_reaction = tgui_input_list(ui.user, LANG("obj.97786cdb5c21ddfd", null), LANG("obj.e870de926d78d16c", null), all_reaction_list)
 			if(!selected_reaction)
 				return
 
@@ -662,7 +662,7 @@
 
 			var/dest = "[GLOB.log_directory]/chem_parse.txt"
 			text2file(export, dest)
-			tgui_alert(ui.user, LANG("obj.f38a9f88", list(dest)))
+			tgui_alert(ui.user, LANG("obj.f38a9f88b91da4b0", list(dest)))
 
 		if("eject")
 			//initialize a new container for us

@@ -2,6 +2,7 @@
 /// Parent type for all unique revenant status effects
 /datum/status_effect/revenant
 	id = STATUS_EFFECT_ID_ABSTRACT
+	processing_speed = STATUS_EFFECT_PRIORITY
 	alert_type = null
 
 /datum/status_effect/revenant/on_creation(mob/living/new_owner, duration)
@@ -45,13 +46,13 @@
 	ADD_TRAIT(owner, TRAIT_REVENANT_INHIBITED, TRAIT_STATUS_EFFECT(id))
 	owner.update_appearance(UPDATE_ICON)
 
-	owner.balloon_alert(owner, LANG("datum.427546a3", null))
+	owner.balloon_alert(owner, LANG("datum.427546a3bd2d8dcb", null))
 
 /datum/status_effect/revenant/inhibited/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_REVENANT_INHIBITED, TRAIT_STATUS_EFFECT(id))
 	owner.update_appearance(UPDATE_ICON)
 
-	owner.balloon_alert(owner, LANG("datum.976d8a02", null))
+	owner.balloon_alert(owner, LANG("datum.976d8a029a8b11d8", null))
 	return ..()
 
 /datum/status_effect/incapacitating/paralyzed/revenant
@@ -64,13 +65,13 @@
 	owner.orbiting?.end_orbit(src)
 
 	ADD_TRAIT(owner, TRAIT_NO_TRANSFORM, TRAIT_STATUS_EFFECT(id))
-	owner.balloon_alert(owner, LANG("datum.b5c8ce04", null))
+	owner.balloon_alert(owner, LANG("datum.b5c8ce04aa8e539a", null))
 	owner.update_mob_action_buttons()
 	owner.update_appearance(UPDATE_ICON)
 
 /datum/status_effect/incapacitating/paralyzed/revenant/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_NO_TRANSFORM, TRAIT_STATUS_EFFECT(id))
 	owner.update_mob_action_buttons()
-	owner.balloon_alert(owner, LANG("datum.5c6dddd7", null))
+	owner.balloon_alert(owner, LANG("datum.5c6dddd7f0d0e932", null))
 
 	return ..()

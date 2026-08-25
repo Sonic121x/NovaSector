@@ -185,15 +185,15 @@
 
 	//if not drowsy, don't fall asleep but make them drowsy
 	if(!drowsy)
-		to_chat(owner, span_warning(LANG("datum.240066c6", null)))
+		to_chat(owner, span_warning(LANG("datum.240066c6c8e08bb6", null)))
 		owner.adjust_drowsiness(rand(drowsy_time_minimum, drowsy_time_maximum))
 		if(prob(50))
 			owner.emote("yawn")
 		else if(prob(33)) //rarest message is a custom emote
-			owner.visible_message(LANG("datum.49062e98", list(owner.p_their())), visible_message_flags = EMOTE_MESSAGE)
+			owner.visible_message(LANG("datum.49062e984bccd1b6", list(owner.p_their())), visible_message_flags = EMOTE_MESSAGE)
 	//drowsy, so fall asleep. you've had your chance to remedy it
 	else
-		to_chat(owner, span_warning(LANG("datum.09d9036b", null)))
+		to_chat(owner, span_warning(LANG("datum.09d9036bcc71737c", null)))
 		owner.Sleeping(rand(sleep_time_minimum, sleep_time_maximum))
 		if(prob(50) && owner.IsSleeping())
 			owner.emote("snore")
@@ -305,7 +305,7 @@
 		hearing_args[HEARING_RAW_MESSAGE] = reg.Replace(hearing_args[HEARING_RAW_MESSAGE], span_hypnophrase("*********"))
 
 /datum/brain_trauma/severe/hypnotic_trigger/proc/hypnotrigger()
-	to_chat(owner, span_warning(LANG("datum.4814c078", null)))
+	to_chat(owner, span_warning(LANG("datum.4814c078f005e0e7", null)))
 	owner.apply_status_effect(/datum/status_effect/trance, rand(100,300), FALSE)
 
 /datum/brain_trauma/severe/dyslexia

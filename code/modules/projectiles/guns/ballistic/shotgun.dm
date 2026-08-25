@@ -150,7 +150,7 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.ceda57fd", null))
+	. += span_notice(LANG("obj.ceda57fdc121c48d", null))
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/Initialize(mapload)
 	. = ..()
@@ -174,9 +174,9 @@
 	alternate_magazine = current_mag
 	toggled = !toggled
 	if(toggled)
-		balloon_alert(user, LANG("obj.f72fd4ef", null))
+		balloon_alert(user, LANG("obj.f72fd4ef81ecb968", null))
 	else
-		balloon_alert(user, LANG("obj.a3de1e19", null))
+		balloon_alert(user, LANG("obj.a3de1e19f97aee2a", null))
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/click_alt(mob/living/user)
 	rack()
@@ -234,13 +234,13 @@
 	. = ..()
 	if(secondary_magazine)
 		var/secondary_ammo_count = secondary_magazine.ammo_count()
-		. += LANG("obj.98679eef", null)
-		. += LANG("obj.3fff7c5e", list(secondary_ammo_count))
-		. += LANG("obj.53592766", null)
-		. += LANG("obj.a241bf66", list(src))
-	. += LANG("obj.9d844144", list(src))
-	. += LANG("obj.9a19f019", list(src))
-	. += LANG("obj.116b7913", null)
+		. += LANG("obj.98679eef14ae1f46", null)
+		. += LANG("obj.3fff7c5e73f3dd49", list(secondary_ammo_count))
+		. += LANG("obj.535927665dda5dd8", null)
+		. += LANG("obj.a241bf66b5e7f9c0", list(src))
+	. += LANG("obj.9d8441442c27ba12", list(src))
+	. += LANG("obj.9a19f019f378f6d9", list(src))
+	. += LANG("obj.116b7913a420473c", null)
 
 /obj/item/gun/ballistic/shotgun/bulldog/update_overlays()
 	. = ..()
@@ -279,7 +279,7 @@
 	secondary_magazine = tool
 	if(old_mag)
 		user.put_in_hands(old_mag)
-	balloon_alert(user, LANG("obj.f30e04bc", list(magazine_wording)))
+	balloon_alert(user, LANG("obj.f30e04bc00e9bb5c", list(magazine_wording)))
 	playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -407,7 +407,7 @@
 
 /obj/item/gun/ballistic/shotgun/hook/examine(mob/user)
 	. = ..()
-	. += span_notice(LANG("obj.dde32ef8", null))
+	. += span_notice(LANG("obj.dde32ef843cebc5e", null))
 
 /obj/item/gun/ballistic/shotgun/hook/try_fire_gun(atom/target, mob/living/user, params)
 	if(LAZYACCESS(params2list(params), RIGHT_CLICK))

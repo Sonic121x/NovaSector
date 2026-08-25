@@ -197,6 +197,9 @@
 /area/shuttle/escape/tombstone
 	ambience_index = AMBIENCE_SPOOKY
 
+/area/shuttle/escape/xenobio
+	name = "Escape Shuttle Xenobiology"
+
 /area/shuttle/transport
 	name = "Transport Shuttle"
 
@@ -279,18 +282,18 @@
 
 	var/mob/living/L = AM
 	if(L.pulling && istype(L.pulling, /obj/item/bodypart/head))
-		to_chat(L, span_notice(LANG("obj.4fc28c20", null)), confidential = TRUE)
+		to_chat(L, span_notice(LANG("obj.4fc28c206f96f0df", null)), confidential = TRUE)
 		qdel(L.pulling)
 		var/turf/LA = get_turf(pick(warp_points))
 		L.forceMove(LA)
 		L.remove_status_effect(/datum/status_effect/hallucination)
-		to_chat(L, LANG("obj.f0f97437", null), confidential = TRUE)
+		to_chat(L, LANG("obj.f0f974375e6756a7", null), confidential = TRUE)
 		for(var/obj/item/chainsaw/doomslayer/chainsaw in L)
 			qdel(chainsaw)
 		var/obj/item/skeleton_key/key = new(L)
 		L.put_in_hands(key)
 	else
-		to_chat(L, span_warning(LANG("obj.d40de33f", null)), confidential = TRUE)
+		to_chat(L, span_warning(LANG("obj.d40de33f63b5299e", null)), confidential = TRUE)
 
 /obj/effect/landmark/shuttle_arena_safe
 	name = "hall of champions"
@@ -316,5 +319,5 @@
 	var/obj/effect/landmark/LA = pick(warp_points)
 	var/mob/living/M = AM
 	M.forceMove(get_turf(LA))
-	to_chat(M, LANG("obj.23087e52", null), confidential = TRUE)
+	to_chat(M, LANG("obj.23087e52a0c8655a", null), confidential = TRUE)
 	M.apply_status_effect(/datum/status_effect/mayhem)
