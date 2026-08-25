@@ -291,8 +291,16 @@ SUBSYSTEM_DEF(ticker)
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore,SetRoundStart))
 
-	to_chat(world, span_notice(span_bold(LANG("datum.33aeac181bbd8bfb", list(station_name())))))
-	alert_sound_to_playing(sound(SSstation.announcer.get_rand_welcome_sound())) // NOVA EDIT CHANGE - ORIGINAL: SEND_SOUND(world, sound(SSstation.announcer.get_rand_welcome_sound()))
+	// NOVA EDIT REMOVAL - ADMIN - ORIGINAL: to_chat(world, span_notice(span_bold(LANG("datum.33aeac181bbd8bfb", list(station_name())))))
+	// NOVA EDIT REMOVAL - ADMIN - ORIGINAL: alert_sound_to_playing(sound(SSstation.announcer.get_rand_welcome_sound()))
+	// NOVA EDIT ADDITION START - ADMIN - Localized round-start TTS with a nonverbal cue.
+	var/welcome_message = LANG("datum.33aeac181bbd8bfb", list(station_name()))
+	to_chat(world, span_notice(span_bold(welcome_message)))
+	if(tts_queue_global_announcement(welcome_message))
+		alert_sound_to_playing(sound('sound/machines/chime.ogg'))
+	else
+		alert_sound_to_playing(sound(SSstation.announcer.get_rand_welcome_sound()))
+	// NOVA EDIT ADDITION END
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)

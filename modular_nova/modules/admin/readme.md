@@ -6,7 +6,7 @@ MODULE ID: ADMIN
 
 ### Description:
 
-Adds multiple admin features, including loud ASAY, rich text controls, and a runtime TTS switch.
+Adds multiple admin features, including loud ASAY, rich text controls, explicit runtime TTS controls, and localized station announcement speech.
 
 ### TG Proc Changes:
 
@@ -18,7 +18,11 @@ Adds multiple admin features, including loud ASAY, rich text controls, and a run
 - code\modules\mob\living\emote.dm > /datum/emote/living/custom/run_emote
 - code\__HELPERS\tts.dm > /proc/tts_speech_filter
 - code\modules\admin\verbs\debug.dm
-- code\controllers\subsystem\tts.dm > /datum/controller/subsystem/tts/proc/queue_tts_message
+- code\controllers\subsystem\tts.dm > /datum/controller/subsystem/tts
+- code\__HELPERS\priority_announce.dm > /proc/priority_announce, /proc/minor_announce, /proc/level_announce, /proc/dispatch_announcement_to_players
+- code\controllers\subsystem\ticker.dm > /datum/controller/subsystem/ticker/proc/setup
+- code\game\machinery\announcement_system.dm > /obj/machinery/announcement_system/Initialize
+- code\datums\communications.dm > /datum/communciations_controller/proc/make_announcement
 
 ### Defines:
 

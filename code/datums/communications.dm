@@ -44,14 +44,14 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 	if(!can_announce(user, is_silicon))
 		return FALSE
 	if(is_silicon)
-		minor_announce(html_decode(input),LANG("datum.c7600a37352acb03", list(user.name)), players = players)
+		minor_announce(html_decode(input), LANG("datum.c7600a37352acb03", list(user.name)), players = players, tts_speaker = user.voice) // NOVA EDIT CHANGE - ADMIN - Player-authored announcement voice.
 		COOLDOWN_START(src, silicon_message_cooldown, COMMUNICATION_COOLDOWN_AI)
 	else
 		var/list/message_data = user.treat_message(input)
 		if(syndicate)
-			priority_announce(html_decode(message_data["message"]), null, 'sound/announcer/announcement/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, players = players, color_override = "red")
+			priority_announce(html_decode(message_data["message"]), null, 'sound/announcer/announcement/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, players = players, color_override = "red", tts_speaker = user.voice) // NOVA EDIT CHANGE - ADMIN - Forged broadcast uses its speaker's selected voice.
 		else
-			priority_announce(html_decode(message_data["message"]), null, ANNOUNCER_CAPTAIN, ANNOUNCEMENT_TYPE_CAPTAIN, has_important_message = TRUE, players = players) // NOVA EDIT CHANGE - ORIGINAL: priority_announce(html_decode(message_data["message"]), null, 'sound/announcer/announcement/announce.ogg', ANNOUNCEMENT_TYPE_CAPTAIN, has_important_message = TRUE, players = players)
+			priority_announce(html_decode(message_data["message"]), null, ANNOUNCER_CAPTAIN, ANNOUNCEMENT_TYPE_CAPTAIN, has_important_message = TRUE, players = players, tts_speaker = user.voice) // NOVA EDIT CHANGE - ADMIN - Captain broadcast uses its speaker's selected voice. ORIGINAL: priority_announce(html_decode(message_data["message"]), null, 'sound/announcer/announcement/announce.ogg', ANNOUNCEMENT_TYPE_CAPTAIN, has_important_message = TRUE, players = players)
 		COOLDOWN_START(src, nonsilicon_message_cooldown, COMMUNICATION_COOLDOWN)
 	user.log_talk(input, LOG_SAY, tag="priority announcement")
 	message_admins("[ADMIN_LOOKUPFLW(user)] has made a priority announcement.")

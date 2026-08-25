@@ -33,6 +33,12 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	config_entries = init_subtypes(/datum/aas_config_entry, list())
 	. = ..()
 	radio = new radio_type(src)
+	// NOVA EDIT ADDITION START - ADMIN - Let automated station broadcasts use the configured TTS voice.
+	if(SStts.tts_enabled)
+		voice = SStts.computer_voice
+		if(!(voice in SStts.available_speakers))
+			voice = SStts.random_tts_voice()
+	// NOVA EDIT ADDITION END
 	GLOB.announcement_systems += src
 	update_appearance()
 
