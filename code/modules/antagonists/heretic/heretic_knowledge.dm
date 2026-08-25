@@ -311,7 +311,7 @@
 
 	if(the_spell != created_action_ref || isnull(the_spell.owner))
 		return NONE
-	if(charges > 0)
+	if(has_charges(the_spell.owner))
 		return NONE
 	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(the_spell.owner)
 	if(our_heretic?.ascended)
@@ -326,7 +326,7 @@
 
 	if(the_spell != created_action_ref)
 		return NONE
-	if(charges > 0)
+	if(has_charges(source))
 		return NONE
 	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(source)
 	if(our_heretic?.ascended)
@@ -335,16 +335,26 @@
 	to_chat(source, span_mansus(LANG("datum.80d260ae8290360a", list(transmute_text))))
 	return SPELL_CANCEL_CAST
 
+/// Checks if we have enough charges to cast the spell
+/datum/heretic_knowledge/spell/proc/has_charges(mob/living/user)
+	return charges > 0
+
 /datum/heretic_knowledge/spell/proc/deduct_charge(mob/living/source, datum/action/cooldown/the_spell)
 	SIGNAL_HANDLER
 
 	if(the_spell != created_action_ref)
+		return
+	if(!should_deduct_charge(source))
 		return
 	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(source)
 	if(our_heretic?.ascended)
 		return
 
 	remove_charges(1)
+
+/// Checks if casting the spell should deduct a charge
+/datum/heretic_knowledge/spell/proc/should_deduct_charge(mob/living/user)
+	return TRUE
 
 /// Add a number of charges, optionally bypassing the cap
 /datum/heretic_knowledge/spell/proc/add_charges(num, uncapped = FALSE)

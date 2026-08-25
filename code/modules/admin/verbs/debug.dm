@@ -787,8 +787,8 @@ ADMIN_VERB(toggle_tts_runtime, R_ADMIN, "TTS 全局开关", "Enable or disable t
 	var/currently_enabled = SStts.is_runtime_enabled()
 	var/action = tgui_alert(
 		user,
-		"TTS 当前为[currently_enabled ? "开启" : "关闭"]状态。请选择明确操作。",
-		"TTS 全局开关",
+		LANG("datum.ca2e901e4e7c37cb", list(currently_enabled ? "开启" : "关闭")),
+		LANG("datum.00491f07a5a9bb18", null),
 		list("开启", "关闭", "取消"),
 	)
 	if(!action || action == "取消")
@@ -798,16 +798,16 @@ ADMIN_VERB(toggle_tts_runtime, R_ADMIN, "TTS 全局开关", "Enable or disable t
 
 	var/enable = action == "开启"
 	if(enable == currently_enabled)
-		to_chat(user, span_notice("TTS 已经处于[enable ? "开启" : "关闭"]状态。"))
+		to_chat(user, span_notice(LANG("datum.b37838bd6d251551", list(enable ? "开启" : "关闭"))))
 		return
 	if(!SStts.set_admin_enabled(enable))
-		to_chat(user, span_warning("无法开启 TTS，请检查适配器连接和配置。"))
+		to_chat(user, span_warning(LANG("datum.350130bd55bd510d", null)))
 		message_admins(span_adminnotice("[key_name_admin(user)] failed to enable TTS."))
 		log_admin("[key_name(user)] failed to enable TTS.")
 		return
 
 	var/status = SStts.is_runtime_enabled() ? "enabled" : "disabled"
-	to_chat(user, span_notice("TTS 已[status == "enabled" ? "开启" : "关闭"]。"))
+	to_chat(user, span_notice(LANG("datum.2a03cbc6a501af40", list(status == "enabled" ? "开启" : "关闭"))))
 	message_admins(span_adminnotice("[key_name_admin(user)] [status] TTS."))
 	log_admin("[key_name(user)] [status] TTS.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle TTS", capitalize(status)))
@@ -815,16 +815,16 @@ ADMIN_VERB(toggle_tts_runtime, R_ADMIN, "TTS 全局开关", "Enable or disable t
 /// Plays a real adapter-backed TTS sample directly to the invoking administrator.
 ADMIN_VERB(test_tts_runtime, R_ADMIN, "测试 TTS", "Play a Chinese TTS sample to yourself.", ADMIN_CATEGORY_MAIN)
 	if(!SStts.is_runtime_enabled())
-		to_chat(user, span_warning("TTS is disabled or disconnected."))
+		to_chat(user, span_warning(LANG("datum.057c961255ff1e39", null)))
 		return
 	if(!length(SStts.available_speakers))
-		to_chat(user, span_warning("The TTS adapter returned no voices."))
+		to_chat(user, span_warning(LANG("datum.75c0ce6ecc073f68", null)))
 		return
 
 	var/speaker = SStts.available_speakers[1]
 	var/identifier = "[sha1("admin-tts-test-[world.time]-[user.ckey]")].[world.time]"
 	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user, "你好，空间站。管理员文字转语音测试成功。", null, speaker, "", list(), local = TRUE, identifier = identifier)
-	to_chat(user, span_notice("正在使用 [speaker] 播放 TTS 测试。"))
+	to_chat(user, span_notice(LANG("datum.84d0f1919bb9ad92", list(speaker))))
 	log_admin("[key_name(user)] tested TTS with voice [speaker].")
 // NOVA EDIT ADDITION END
 

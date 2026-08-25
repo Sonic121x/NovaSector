@@ -65,12 +65,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 		context[SCREENTIP_CONTEXT_LMB] = "Wash hands"
 		return CONTEXTUAL_SCREENTIP_SET
 
-	if(is_reagent_container(held_item) && held_item.is_refillable() && !held_item.reagents.holder_full())
-		context[SCREENTIP_CONTEXT_LMB] = "Fill container"
+	if(is_reagent_container(held_item))
+		if(held_item.is_refillable() && !held_item.reagents.holder_full())
+			context[SCREENTIP_CONTEXT_LMB] = "Fill container"
+		if(held_item.reagents.total_volume > 0)
+			context[SCREENTIP_CONTEXT_RMB] = "Drain container"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/mop) || astype(held_item, /obj/item/rag)?.blood_level == 0)
 		context[SCREENTIP_CONTEXT_LMB] = "Wet mop"
+		context[SCREENTIP_CONTEXT_RMB] = "Wash out mop"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/stock_parts/water_recycler) && !has_water_reclaimer)
@@ -90,6 +94,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 	if(has_water_reclaimer)
 		. += span_notice(LANG("obj.6a25c0f25c1d92e4", null))
 	. += span_notice(LANG("obj.31941555602f62b7", list(reagents.total_volume, reagents.maximum_volume)))
+	. += span_notice(LANG("obj.fb34d46bda64385b", list(EXAMINE_HINT("right-click"))))
 
 /obj/structure/sink/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -219,6 +224,27 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 		user.visible_message(span_notice(LANG("obj.39b6ee6aeac2b202", list(user, tool, src))), \
 							span_notice(LANG("obj.94ce754d4fdc0a00", list(tool, src))))
 		return ITEM_INTERACT_SUCCESS
+
+/obj/structure/sink/item_interaction_secondary(mob/living/user, obj/item/held_item, list/modifiers)
+	if(!is_reagent_container(held_item) && !istype(held_item, /obj/item/mop))
+		return ..()
+
+	if(busy)
+		to_chat(user, span_warning(LANG("obj.d5ba1f8cb2273d77", null)))
+		return ITEM_INTERACT_BLOCKING
+
+	if(held_item.reagents.total_volume <= 0)
+		balloon_alert(user, LANG("obj.0cdc41dcfec8a1db", null))
+		return ITEM_INTERACT_BLOCKING
+
+	held_item.reagents.clear_reagents()
+	playsound(src, 'sound/effects/slosh.ogg', 25, TRUE)
+
+	user.visible_message(
+		span_notice(LANG("obj.7f9a59456fc4d2b1", list(user, held_item, src))),
+		span_notice(LANG("obj.19299be638b3e8f5", list(held_item, src))),
+	)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/sink/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)

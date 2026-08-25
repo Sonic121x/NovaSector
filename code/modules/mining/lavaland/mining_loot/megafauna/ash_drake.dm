@@ -44,6 +44,7 @@
 
 /obj/item/clothing/suit/hooded/cloak/drake/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, /datum/bodypart_texture/mesh/drake)
 	allowed = GLOB.mining_suit_allowed
 
 /obj/item/clothing/head/hooded/cloakhood/drake
@@ -59,6 +60,10 @@
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/clothing/head/hooded/cloakhood/drake/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_HEAD, /datum/bodypart_texture/mesh/drake)
 
 // Spectral blade
 
@@ -189,7 +194,7 @@
 			consumer.set_eye_color("#FEE5A3")
 			consumer.set_species(/datum/species/lizard)
 			consumer.dna.add_mutation(/datum/mutation/firebreath, MUTATION_SOURCE_MUTATOR)
-			var/obj/item/organ/wings/functional/dragon/wings = new()
+			var/obj/item/organ/wings/dragon/wings = new()
 			wings.Insert(consumer)
 
 		if(2)

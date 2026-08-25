@@ -169,7 +169,7 @@
 			oxy_loss += 200 - (oxy_loss + tox_loss + fire_loss + brute_loss)
 			oxy_loss = clamp(oxy_loss, 0, 200)
 
-	render_list += "[span_info("Analyzing results for <b>[target]</b> ([round_timestamp()]):")]<br><span class='info ml-1'>Overall status: [mob_status]</span><br>"
+	render_list += LANG("_root.6c29e48e5c6d78bf", list(span_info("Analyzing results for <b>[target]</b> ([round_timestamp()]):"), mob_status))
 
 	if(!scanpower == SCANPOWER_BASIC && target.has_reagent(/datum/reagent/inverse/technetium))
 		scanpower = SCANPOWER_ADVANCED
@@ -182,23 +182,23 @@
 			if(HAS_TRAIT_FROM(target, TRAIT_HUSK, CHANGELING_DRAIN))
 				render_list += "<span class='alert ml-1'>Subject has been husked by [conditional_tooltip("desiccation", "Perform blood transfusion and apply a de-husking agent such as [/datum/reagent/medicine/c2/synthflesh::name]. Full restoration will require more than usual.", tochat)].</span><br>" // NOVA EDIT CHANGE - ORIGINAL: render_list += "<span class='alert ml-1'>Subject has been husked by [conditional_tooltip("desiccation", "Irreparable. Under normal circumstances, revival can only proceed via brain transplant.", tochat)].</span><br>"
 			else if(HAS_TRAIT_FROM(target, TRAIT_HUSK, SKELETON_TRAIT))
-				render_list += "<span class='alert ml-1'>Subject has been husked due to severe flesh loss.</span><br>"
+				render_list += LANG("_root.3b0d10c9ff7935c5", null)
 			else if(HAS_TRAIT_FROM(target, TRAIT_HUSK, /datum/status_effect/zombie::id))
-				render_list += "<span class='alert ml-1'>Subject has been husked by [conditional_tooltip("zombification", \
-					"Surgically remove the source of the infection, typically located in the head. If no source is found, it is otherwise irreparable.", tochat)].</span><br>"
+				render_list += LANG("_root.1b3d0810e63fae52", list(conditional_tooltip("zombification", \
+					"Surgically remove the source of the infection, typically located in the head. If no source is found, it is otherwise irreparable.", tochat)))
 			else if(!HAS_TRAIT_FROM(target, TRAIT_HUSK, BURN)) // prioritize showing unknown causes over burns
-				render_list += "<span class='alert ml-1'>Subject has been husked by mysterious causes.</span><br>"
+				render_list += LANG("_root.a2853cd25755308e", null)
 			else
-				render_list += "<span class='alert ml-1'>Subject has been husked by [conditional_tooltip("severe burns", "Tend burns and apply a de-husking agent, such as [/datum/reagent/medicine/c2/synthflesh::name].", tochat)].</span><br>"
+				render_list += LANG("_root.1b3d0810e63fae52", list(conditional_tooltip("severe burns", "Tend burns and apply a de-husking agent, such as [/datum/reagent/medicine/c2/synthflesh::name].", tochat)))
 
 		else
-			render_list += "<span class='alert ml-1'>Subject has been husked.</span><br>"
+			render_list += LANG("_root.5d597fa073e965ab", null)
 
 	if(target.get_stamina_loss())
 		if(scanpower >= SCANPOWER_ADVANCED)
-			render_list += "<span class='alert ml-1'>Fatigue level: [target.get_stamina_loss()]%.</span><br>"
+			render_list += LANG("_root.67df8050445f846c", list(target.get_stamina_loss()))
 		else
-			render_list += "<span class='alert ml-1'>Subject appears to be suffering from fatigue.</span><br>"
+			render_list += LANG("_root.8270cfd6231faea2", null)
 
 	// Check for brain - both organic (carbon) and synthetic (cyborg MMI)
 	var/has_brain = FALSE
@@ -210,14 +210,14 @@
 			has_brain = TRUE
 
 	if(!has_brain) // kept exclusively for soul purposes
-		render_list += "<span class='alert ml-1'>Subject lacks a brain.</span><br>"
+		render_list += LANG("_root.252964ecae5d10ab", null)
 
 	if(iscarbon(target))
 		var/mob/living/carbon/carbontarget = target
 		if(LAZYLEN(carbontarget.quirks))
-			render_list += "<span class='info ml-1'>Subject Major Disabilities: [carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MAJOR_DISABILITY, from_scan = TRUE)].</span><br>"
+			render_list += LANG("_root.f3b9c31a01a52bdf", list(carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MAJOR_DISABILITY, from_scan = TRUE)))
 			if(scanpower >= SCANPOWER_ADVANCED)
-				render_list += "<span class='info ml-1'>Subject Minor Disabilities: [carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MINOR_DISABILITY, TRUE)].</span><br>"
+				render_list += LANG("_root.44c1cb74dfec86af", list(carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MINOR_DISABILITY, TRUE)))
 
 	// NOVA EDIT ADDITION START -- Show increased/decreased brute/burn mods, to "leave a paper trail" for the fragility quirk
 	if(ishuman(target))
@@ -225,9 +225,9 @@
 
 		var/datum/physiology/physiology = humantarget.physiology
 		if (physiology.brute_mod != 1)
-			render_list += "<span class='danger ml-1'>[LANG("obj.d01c84c04fe00692", list((physiology.brute_mod) * 100))]</span>\n" // NOVA EDIT - I18N
+			render_list += LANG("_root.65e021025b32164a", list(LANG("obj.d01c84c04fe00692", list((physiology.brute_mod) * 100)))) // NOVA EDIT - I18N
 		if (physiology.burn_mod != 1)
-			render_list += "<span class='danger ml-1'>[LANG("obj.6b92d55788b9c654", list((physiology.burn_mod) * 100))]</span>\n" // NOVA EDIT - I18N
+			render_list += LANG("_root.65e021025b32164a", list(LANG("obj.6b92d55788b9c654", list((physiology.burn_mod) * 100)))) // NOVA EDIT - I18N
 	// NOVA EDIT ADDITION END
 	// Body part damage report
 	if(iscarbon(target))
@@ -266,7 +266,7 @@
 						dmgreport += "<td><font color='#cc3333'>-</font></td>"
 						dmgreport += "<td><font color='#ff9933'>-</font></td>"
 						dmgreport += "</tr>"
-						dmgreport += "<tr><td colspan=6><span class='alert ml-2'>&rdsh; Physical trauma: [conditional_tooltip("Dismembered", "Reattach or replace surgically.", tochat)]</span></td></tr>"
+						dmgreport += LANG("_root.f7c2daead083eef5", list(conditional_tooltip("Dismembered", "Reattach or replace surgically.", tochat)))
 						continue
 					var/has_any_embeds = LAZYLEN(limb.embedded_objects) >= 1
 					var/has_any_wounds = length(limb.wounds) >= 1
@@ -290,11 +290,11 @@
 							var/embedded_amt = embedded_names[embedded_name]
 							if(embedded_amt > 1)
 								displayed = "[embedded_amt]x [embedded_name]"
-							dmgreport += "<tr><td colspan=6><span class='alert ml-2'>&rdsh; Foreign object(s): [conditional_tooltip(displayed, "Use a hemostat to remove.", tochat)]</span></td></tr>"
+							dmgreport += LANG("_root.d8311121e0377dde", list(conditional_tooltip(displayed, "Use a hemostat to remove.", tochat)))
 					if(has_any_wounds)
 						for(var/datum/wound/wound as anything in limb.wounds)
 							// NOVA EDIT CHANGE - i18n: reverse-localize the treat-text tooltip (whole-string; bypasses sink/AC) - ORIGINAL: wound.treat_text_short
-							dmgreport += "<tr><td colspan=6><span class='alert ml-2'>&rdsh; Physical trauma: [conditional_tooltip("[wound.name] ([wound.severity_text()])", lang_reverse_text(wound.treat_text_short), tochat)]</span></td></tr>"
+							dmgreport += LANG("_root.f7c2daead083eef5", list(conditional_tooltip("[wound.name] ([wound.severity_text()])", lang_reverse_text(wound.treat_text_short), tochat)))
 
 			dmgreport += "</table></font>"
 			render_list += dmgreport // tables do not need extra linebreak
@@ -321,9 +321,7 @@
 				if(missing_organs[sorted_slot])
 					render = TRUE
 					// NOVA EDIT CHANGE - i18n: reverse-localize the missing-organ name - ORIGINAL: [missing_organs[sorted_slot]]
-					toReport += "<tr><td><font color='#cc3333'>[lang_reverse_text(missing_organs[sorted_slot])]:</font></td>\
-						[scanpower >= SCANPOWER_ADVANCED ? "<td><font color='#ff3333'>-</font></td>" : ""]\
-						<td><font color='#cc3333'>Missing</font></td></tr>"
+					toReport += LANG("_root.29ae2426ae7122ec", list(lang_reverse_text(missing_organs[sorted_slot]), scanpower >= SCANPOWER_ADVANCED ? "<td><font color='#ff3333'>-</font></td>" : ""))
 				continue
 			if(mode != SCANNER_VERBOSE && !organ.show_on_condensed_scans())
 				continue
@@ -340,7 +338,7 @@
 					<td>[status]</td>\
 					</tr>"
 				if(appendix)
-					toReport += "<tr><td colspan=4><span class='alert ml-2'>&rdsh; [appendix]</span></td></tr>"
+					toReport += LANG("_root.f46ffddbf6563299", list(appendix))
 
 		if(render)
 			render_list += "<hr>"
@@ -357,14 +355,14 @@
 		if(LAZYLEN(cyberimps))
 			if(!render)
 				render_list += "<hr>"
-			render_list += "<span class='notice ml-1'>Detected cybernetic modifications:</span><br>"
+			render_list += LANG("_root.20628086e5dfef74", null)
 			render_list += "<span class='notice ml-2'>[english_list(cyberimps, and_text = ", and ")]</span><br>"
 
 		render_list += "<hr>"
 
 		//Genetic stability
 		if(scanpower >= SCANPOWER_ADVANCED && humantarget.has_dna() && humantarget.dna.stability != initial(humantarget.dna.stability))
-			render_list += "<span class='info ml-1'>Genetic Stability: [humantarget.dna.stability]%.</span><br>"
+			render_list += LANG("_root.1e9bd33cb05f48b2", list(humantarget.dna.stability))
 
 		//body temperature
 		var/datum/species/targetspecies = humantarget.dna.species
@@ -403,13 +401,13 @@
 			level_format = "<b>CRITICAL [blood_percent]%</b>, [cached_blood_volume] cl"
 			var/recommendation = list()
 			if (blood_type.restoration_chem)
-				recommendation += "[blood_type.restoration_chem::name] supplement"
+				recommendation += LANG("_root.05da585062b36da0", list(blood_type.restoration_chem::name))
 			if (blood_type.restoration_chem == /datum/reagent/iron)
 				recommendation += "[/datum/reagent/medicine/salglu_solution::name]"
 			if (length(recommendation))
-				recommendation += "[blood_type.get_blood_name()] transfusion"
+				recommendation += LANG("_root.f56971abbc6ecbba", list(blood_type.get_blood_name()))
 			else
-				recommendation += "immediate [blood_type.get_blood_name()] transfusion"
+				recommendation += LANG("_root.25495c523617585e", list(blood_type.get_blood_name()))
 			level_format = conditional_tooltip(level_format, "Recommendation: [english_list(recommendation, and_text = " or ")].", tochat)
 		else
 			level_format = "[blood_percent]%, [cached_blood_volume] cl"
@@ -422,15 +420,15 @@
 					compatible_types_readable |= initial(comp_blood_type.name)
 				blood_type_format = span_tooltip("Can receive from types [english_list(compatible_types_readable)].", blood_type_format)
 
-		render_list += "<span class='[cached_blood_volume < BLOOD_VOLUME_SAFE ? "alert" : "info"] ml-1'>[blood_type.get_blood_name()] level: [level_format]</span> <span class='info'>[blood_type_format]</span><br>"
+		render_list += LANG("_root.5fb7490182fcd8b8", list(cached_blood_volume < BLOOD_VOLUME_SAFE ? "alert" : "info", blood_type.get_blood_name(), level_format, blood_type_format))
 
 	var/blood_alcohol_content = target.get_blood_alcohol_content()
 	if(blood_alcohol_content > 0)
 		if(blood_alcohol_content >= 0.24)
 			// "Oil alcohol content" is kinda funny if you think about it from a technical standpoint
-			render_list += "<span class='alert ml-1'>[blood_type?.get_blood_name() || "Blood"] alcohol content: <b>CRITICAL [blood_alcohol_content]%</b></span><br>"
+			render_list += LANG("_root.c5581b9598f90cbe", list(blood_type?.get_blood_name() || "Blood", blood_alcohol_content))
 		else
-			render_list += "<span class='info ml-1'>[blood_type?.get_blood_name() || "Blood"] alcohol content: [blood_alcohol_content]%</span><br>"
+			render_list += LANG("_root.5ca363db8a600703", list(blood_type?.get_blood_name() || "Blood", blood_alcohol_content))
 
 	// Ethereal Charge
 	if(istype(target.get_organ_slot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/ethereal))
@@ -443,15 +441,15 @@
 			var/recommendation = "Recommendation: "
 			switch(charge)
 				if(-INFINITY to ETHEREAL_CHARGE_LOWPOWER)
-					recommendation += "charging by LE-fortified food"
+					recommendation += LANG("_root.fb5af5c8f9ff8fb3", null)
 				if(ETHEREAL_CHARGE_FULL to ETHEREAL_CHARGE_OVERLOAD)
-					recommendation += "discharge into nearest undercapacity APC"
+					recommendation += LANG("_root.fa287e01bc0d32f7", null)
 				if(ETHEREAL_CHARGE_OVERLOAD to ETHEREAL_CHARGE_DANGEROUS)
-					recommendation += "preparation for violent electrocardiac discharge event"
+					recommendation += LANG("_root.9451da0223e5b6eb", null)
 					recommendation = uppertext(recommendation)
 			charge_format = span_tooltip("[recommendation] followed with toxins treatment.", charge_format)
 
-		render_list += "<span class='[charge_dangerous ? "alert" : "info"] ml-1'>Electrical charge: [charge_format]</span><br>"
+		render_list += LANG("_root.8f7bfa5491be2c7f", list(charge_dangerous ? "alert" : "info", charge_format))
 
 	//Diseases
 	var/disease_hr = FALSE
@@ -484,7 +482,7 @@
 	// NOVA EDIT ADDITION - Mutant stuff + death consequences quirk
 	if(iscarbon(target))
 		if(target.GetComponent(/datum/component/mutant_infection))
-			render_list += span_userdanger("UNKNOWN PROTO-VIRAL INFECTION DETECTED. ISOLATE IMMEDIATELY.")
+			render_list += span_userdanger(LANG("_root.8848965dfc83301d", null))
 
 		var/mob/living/carbon/carbon_target = target
 		for(var/datum/brain_trauma/trauma in carbon_target.get_traumas())
@@ -496,8 +494,8 @@
 	// Time of death
 	if(target.station_timestamp_timeofdeath && IS_DEAD_OR_FAKING(target))
 		render_list += "<hr>"
-		render_list += "<span class='info ml-1'>Time of Death: [target.station_timestamp_timeofdeath]</span><br>"
-		render_list += "<span class='alert ml-1'><b>Subject died [DisplayTimeText(round(world.time - target.timeofdeath))] ago.</b></span><br>"
+		render_list += LANG("_root.b68ee8e3dde816d6", list(target.station_timestamp_timeofdeath))
+		render_list += LANG("_root.c1cc23e52102bb26", list(DisplayTimeText(round(world.time - target.timeofdeath))))
 
 	. = lang_localize_health_scan(jointext(render_list, "")) // NOVA EDIT CHANGE - i18n: localize composed scan-report structural labels (bypasses sink/P1) - ORIGINAL: . = jointext(render_list, "")
 	if(tochat)
@@ -580,27 +578,27 @@
 				var/datum/reagent/reagent = r
 				// NOVA EDIT ADDITION BEGIN - Neuroware
 				if(reagent.chemical_flags & REAGENT_NEUROWARE)
-					neuroware_list += "<span class='notice ml-2'>[reagent.name] - [round(reagent.volume, 0.001)]GQ[reagent.overdosed ? "</span> - [span_bolddanger("OVERLOADING")]" : ".</span>"]<br>"
+					neuroware_list += LANG("_root.016db5537f9e312c", list(reagent.name, round(reagent.volume, 0.001), reagent.overdosed ? "</span> - [span_bolddanger("OVERLOADING")]" : ".</span>"))
 				// NOVA EDIT ADDITION END
 				if(reagent.chemical_flags & REAGENT_INVISIBLE) //Don't show hidden chems on scanners
 					continue
 				if(reagent_types_to_check)
 					if(!istype(reagent, reagent_types_to_check))
 						continue
-				render_block += "<span class='notice ml-2'>[round(reagent.volume, 0.001)] units of [reagent.name][reagent.overdosed ? "</span> - [span_bolddanger("OVERDOSING")]" : ".</span>"]<br>"
+				render_block += LANG("_root.43838dc2f1da996c", list(round(reagent.volume, 0.001), reagent.name, reagent.overdosed ? "</span> - [span_bolddanger("OVERDOSING")]" : ".</span>"))
 
 		// NOVA EDIT ADDITION BEGIN - Neuroware
 		if(target.is_neuroware_compatible())
 			if(length(neuroware_list))
-				render_list += "<span class='notice ml-1'>Subject contains the following neuroware in their brain:</span><br>"
+				render_list += LANG("_root.ca74910e81f51783", null)
 				render_list += jointext(neuroware_list + "<br>", "")
 			else
-				render_list += "<span class='notice ml-1'>Subject contains no neuroware in their brain.</span><br>"
+				render_list += LANG("_root.613b5f653c74cd19", null)
 		// NOVA EDIT ADDITION END
 		if(!length(render_block)) //If no VISIBLY DISPLAYED reagents are present, we report as if there is nothing.
-			render_list += "<span class='notice ml-1'>Subject contains no reagents in their [LOWER_TEXT(target.get_bloodtype()?.get_blood_name()) || "blood"]stream.</span><br>"
+			render_list += LANG("_root.eed489e0024590f0", list(LOWER_TEXT(target.get_bloodtype()?.get_blood_name()) || "blood"))
 		else
-			render_list += "<span class='notice ml-1'>Subject contains the following reagents in their [LOWER_TEXT(target.get_bloodtype()?.get_blood_name()) || "blood"]stream:</span><br>"
+			render_list += LANG("_root.53ae9b87e8df66de", list(LOWER_TEXT(target.get_bloodtype()?.get_blood_name()) || "blood"))
 			render_list += render_block //Otherwise, we add the header, reagent readouts, and clear the readout block for use on the stomach.
 			render_block.Cut()
 
@@ -616,27 +614,27 @@
 						if(!istype(bit, reagent_types_to_check))
 							continue
 					if(!belly.food_reagents[bit.type])
-						render_block += "<span class='notice ml-2'>[round(bit.volume, 0.001)] units of [bit.name][bit.overdosed ? "</span> - [span_bolddanger("OVERDOSING")]" : ".</span>"]<br>"
+						render_block += LANG("_root.43838dc2f1da996c", list(round(bit.volume, 0.001), bit.name, bit.overdosed ? "</span> - [span_bolddanger("OVERDOSING")]" : ".</span>"))
 					else
 						var/bit_vol = bit.volume - belly.food_reagents[bit.type]
 						if(bit_vol > 0)
-							render_block += "<span class='notice ml-2'>[round(bit_vol, 0.001)] units of [bit.name][bit.overdosed ? "</span> - [span_bolddanger("OVERDOSING")]" : ".</span>"]<br>"
+							render_block += LANG("_root.43838dc2f1da996c", list(round(bit_vol, 0.001), bit.name, bit.overdosed ? "</span> - [span_bolddanger("OVERDOSING")]" : ".</span>"))
 
 			if(!length(render_block))
-				render_list += "<span class='notice ml-1'>Subject contains no reagents in their stomach.</span><br>"
+				render_list += LANG("_root.5007d456792b3dff", null)
 			else
-				render_list += "<span class='notice ml-1'>Subject contains the following reagents in their stomach:</span><br>"
+				render_list += LANG("_root.11fd00daf9078a4d", null)
 				render_list += render_block
 
 		// Addictions
 		if(LAZYLEN(target.mind?.active_addictions))
-			render_list += "<span class='boldannounce ml-1'>Subject is addicted to the following types of drug:</span><br>"
+			render_list += LANG("_root.06dfb47a7e09e24d", null)
 			for(var/datum/addiction/addiction_type as anything in target.mind.active_addictions)
 				render_list += "<span class='alert ml-2'>[initial(addiction_type.name)]</span><br>"
 
 		// Special eigenstasium addiction
 		if(target.has_status_effect(/datum/status_effect/eigenstasium))
-			render_list += "<span class='notice ml-1'>Subject is temporally unstable. Stabilising agent is recommended to reduce disturbances.</span><br>"
+			render_list += LANG("_root.a8bfa0b5414aa908", null)
 
 		// Allergies
 		for(var/datum/quirk/quirky as anything in target.quirks)
@@ -688,7 +686,7 @@
 	var/advised = FALSE
 	for(var/limb in patient.get_wounded_bodyparts())
 		var/obj/item/bodypart/wounded_part = limb
-		render_list += "<span class='alert ml-1'><b>Warning: Physical trauma[LAZYLEN(wounded_part.wounds) > 1? "s" : ""] detected in [wounded_part.name]</b>"
+		render_list += LANG("_root.e5c30b2c62eb9546", list(LAZYLEN(wounded_part.wounds) > 1? "s" : "", wounded_part.name))
 		for(var/limb_wound in wounded_part.wounds)
 			var/datum/wound/current_wound = limb_wound
 			render_list += "<div class='ml-2'>[simple_scan ? current_wound.get_simple_scanner_description() : current_wound.get_scanner_description()]</div><br>"

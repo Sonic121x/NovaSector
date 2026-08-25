@@ -154,9 +154,6 @@
 	if (pushed_mob.loc != table.loc) //Something prevented the tabling
 		return
 
-	pushed_mob.Knockdown(3 SECONDS)
-	pushed_mob.apply_damage(10, BRUTE)
-	pushed_mob.apply_damage(40, STAMINA)
 	playsound(pushed_mob, 'sound/effects/tableslam.ogg', 90, TRUE)
 	pushed_mob.visible_message(span_danger(LANG("datum.88e2eb84d2fdb0a3", list(user, pushed_mob, table))), \
 		span_userdanger(LANG("datum.55d7ad7b31d7168e", list(user, table))))
@@ -166,15 +163,13 @@
 	if(after_smash_proccall)
 		call(table, after_smash_proccall)(pushed_mob)
 
+	pushed_mob.Knockdown(3 SECONDS)
+	pushed_mob.apply_damage(40, STAMINA)
+	pushed_mob.apply_damage(10, BRUTE)
+
 /// Even more aggressively smash a single part of a mob onto the table
 /datum/element/table_smash/proc/tablelimbsmash(mob/living/user, mob/living/pushed_mob, obj/structure/table/table)
-	pushed_mob.Knockdown(3 SECONDS)
 	var/obj/item/bodypart/banged_limb = pushed_mob.get_bodypart(user.zone_selected) || pushed_mob.get_bodypart(BODY_ZONE_HEAD)
-	var/extra_wound = 0
-	if (HAS_TRAIT(user, TRAIT_HULK))
-		extra_wound = 20
-	pushed_mob.apply_damage(30, BRUTE, banged_limb, wound_bonus = extra_wound)
-	pushed_mob.apply_damage(60, STAMINA)
 	playsound(pushed_mob, 'sound/effects/bang.ogg', 90, TRUE)
 	pushed_mob.visible_message(span_danger(LANG("datum.6979a6dc9090a616", list(user, pushed_mob, banged_limb.plaintext_zone, table))),
 		span_userdanger(LANG("datum.6c6e7d58b77f15ff", list(user, banged_limb.plaintext_zone, table))))
@@ -184,6 +179,10 @@
 	SEND_SIGNAL(user, COMSIG_LIVING_TABLE_LIMB_SLAMMING, pushed_mob, table)
 	if(after_smash_proccall)
 		call(table, after_smash_proccall)(pushed_mob)
+
+	pushed_mob.Knockdown(3 SECONDS)
+	pushed_mob.apply_damage(60, STAMINA)
+	pushed_mob.apply_damage(30, BRUTE, banged_limb, wound_bonus = HAS_TRAIT(user, TRAIT_HULK) ? 20 : 0)
 
 /// Called when someone is shoved into our tile
 /obj/structure/proc/on_disarm_shoved_into(datum/source, mob/living/shover, mob/living/target, shove_flags, obj/item/weapon)

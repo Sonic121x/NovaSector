@@ -10,7 +10,7 @@
 	var/obj/act_module = get_active_held_item()
 	if(act_module)
 		. += LANG("mob.49de57985408e2cb", list(p_Theyre(), icon2html(act_module, user), act_module))
-	. += get_status_effect_examinations()
+	. += get_status_effect_examinations(user)
 	if (get_brute_loss())
 		if (get_brute_loss() < maxHealth*0.5)
 			. += span_warning(LANG("mob.c487477b1d7f722c", list(p_They(), p_s())))

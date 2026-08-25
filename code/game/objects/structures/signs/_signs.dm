@@ -182,11 +182,13 @@
 	if(!Adjacent(user)) //Make sure user is adjacent still.
 		to_chat(user, span_warning(LANG("obj.04b699fe82a676e3", null)))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice(LANG("obj.82e7edbe10401782", list(src))))
+	user.visible_message(span_notice(LANG("obj.b93bbfc139d77d64", list(user, src))), \
+						span_notice(LANG("obj.82e7edbe10401782", list(src))))
 	if(!do_after(user, 4 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	set_sign_type(GLOB.editable_sign_types[choice])
-	user.visible_message(span_notice(LANG("obj.22d094cfba6dfb79", null)))
+	user.visible_message(span_notice(LANG("obj.8e3751a99355a107", list(user))), \
+						span_notice(LANG("obj.22d094cfba6dfb79", null)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/sign/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)

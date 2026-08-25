@@ -5,7 +5,7 @@
 	inhand_icon_state = "rack_parts"
 
 /obj/item/mod/construction/helmet
-	name = "MOD helmet"
+	name = "\improper MOD helmet"
 	icon_state = "helmet"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 
@@ -14,7 +14,7 @@
 	. += span_notice(LANG("obj.2167c56cea9f1a06", null))
 
 /obj/item/mod/construction/chestplate
-	name = "MOD chestplate"
+	name = "\improper MOD chestplate"
 	icon_state = "chestplate"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 
@@ -23,7 +23,7 @@
 	. += span_notice(LANG("obj.2167c56cea9f1a06", null))
 
 /obj/item/mod/construction/gauntlets
-	name = "MOD gauntlets"
+	name = "\improper MOD gauntlets"
 	icon_state = "gauntlets"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 
@@ -32,7 +32,7 @@
 	. += span_notice(LANG("obj.9db100df3cddd49d", null))
 
 /obj/item/mod/construction/boots
-	name = "MOD boots"
+	name = "\improper MOD boots"
 	icon_state = "boots"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 
@@ -89,7 +89,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/mod/construction/plating
-	name = "MOD external plating"
+	name = "\improper MOD external plating"
 	desc = "External plating used to finish a MOD control unit."
 	icon_state = "standard-plating"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SMALL_MATERIAL_AMOUNT * 5)
@@ -98,8 +98,8 @@
 /obj/item/mod/construction/plating/Initialize(mapload)
 	. = ..()
 	var/datum/mod_theme/used_theme = GLOB.mod_themes[theme]
-	name = "MOD [lang_reverse_text(used_theme.name)] external plating" // NOVA EDIT CHANGE - I18N - ORIGINAL: name = "MOD [used_theme.name] external plating"
-	desc = "[desc] [lang_reverse_text(used_theme.desc)]" // NOVA EDIT CHANGE - I18N - ORIGINAL: desc = "[desc] [used_theme.desc]"
+	name = "\improper MOD [used_theme.name] external plating"
+	desc = "[desc] [used_theme.desc]"
 	icon_state = "[used_theme.default_skin]-plating"
 
 /obj/item/mod/construction/plating/civilian
@@ -140,7 +140,7 @@
 #define SCREWED_ASSEMBLY_STEP "screwed_assembly"
 
 /obj/item/mod/construction/shell
-	name = "MOD shell"
+	name = "\improper MOD shell"
 	icon_state = "mod-construction_start"
 	desc = "A MOD shell."
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 2.5)

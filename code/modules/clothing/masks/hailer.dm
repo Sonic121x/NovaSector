@@ -137,7 +137,7 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 		return TRUE
 	return FALSE
 
-GAME_VERB_SRC(/obj/item/clothing/mask/gas/sechailer, halt, usr, "HALT", null)
+GAME_VERB_SRC(/obj/item/clothing/mask/gas/sechailer, halt, usr, "站住", null)
 
 	if(!isliving(usr) || !can_use(usr) || !COOLDOWN_FINISHED(src, hailer_cooldown))
 		return

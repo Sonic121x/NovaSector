@@ -151,6 +151,18 @@
 
 	return to_add
 
+/datum/species/jelly/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = FA_ICON_PERSON_RUNNING,
+		SPECIES_PERK_NAME = LANG("datum.1018265307e81c70", null),
+		SPECIES_PERK_DESC = LANG("datum.7d5ecddcd459c120", list(plural_form)),
+	))
+
+	return to_add
+
 /datum/action/innate/regenerate_limbs
 	name = "Regenerate Limbs"
 	check_flags = AB_CHECK_CONSCIOUS

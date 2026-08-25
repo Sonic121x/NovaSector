@@ -265,10 +265,10 @@
 
 	var/obj/item/disk/top = stacked_disks[length(stacked_disks)]
 	user.put_in_hands(top)
-	balloon_alert(user, LANG("obj.559b08a3d2065aca", null))
 
 	if(length(stacked_disks) > 1)
 		update_appearance(UPDATE_OVERLAYS)
+		balloon_alert(user, LANG("obj.559b08a3d2065aca", null))
 		return TRUE
 
 	var/obj/item/disk/last_disk = stacked_disks[1]
@@ -282,6 +282,7 @@
 		last_disk.pixel_x = pixel_x
 		last_disk.pixel_y = pixel_y
 
+	last_disk.balloon_alert(user, LANG("obj.559b08a3d2065aca", null))
 	qdel(src)
 	return TRUE
 

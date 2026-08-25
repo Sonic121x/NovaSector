@@ -1359,6 +1359,7 @@
     "tgui:AirlockElectronics",
     "tgui:ChemMaster",
     "tgui:CircuitAccessChecker",
+    "tgui:CondoSelect",
     "tgui:LogViewer",
     "tgui:MilkingMachine",
     "tgui:Search"
@@ -1603,6 +1604,10 @@
   ],
   "Ambassador's Dress": [
     "dm:labels"
+  ],
+  "Ambience": [
+    "tgui:CondoManage",
+    "tgui:CondoSelect"
   ],
   "Ambience refers to the more noticeable ambient sounds that play on occasion.": [
     "tgui:sounds"
@@ -4394,6 +4399,10 @@
   "Bright Cosmos cigar": [
     "dm:labels"
   ],
+  "Brightness": [
+    "tgui:CondoManage",
+    "tgui:CondoSelect"
+  ],
   "Brimdust": [
     "dm:labels"
   ],
@@ -5187,6 +5196,9 @@
   ],
   "Cabin Pressure": [
     "tgui:ModulesPane"
+  ],
+  "Cabins": [
+    "tgui:CondoSelect"
   ],
   "Cable": [
     "dm:labels"
@@ -5997,6 +6009,7 @@
     "tgui:species_features"
   ],
   "Character Height": [
+    "tgui:height",
     "tgui:spacer_born"
   ],
   "Character Laugh": [
@@ -6023,6 +6036,9 @@
   ],
   "Character Voice": [
     "tgui:vocals"
+  ],
+  "Character name to invite": [
+    "tgui:CondoManage"
   ],
   "Charcoal Fingerless Gloves": [
     "dm:labels"
@@ -6190,6 +6206,9 @@
   "Chemistry Machines": [
     "dm:labels"
   ],
+  "Chemnaga": [
+    "dm:labels"
+  ],
   "Chemtaur": [
     "dm:labels"
   ],
@@ -6319,6 +6338,9 @@
   ],
   "Choose Option": [
     "tgui:MessageMonitor"
+  ],
+  "Choose an interior": [
+    "tgui:CondoSelect"
   ],
   "Choose between a variety of powerful spells in order to cause chaos among Space Station 13.": [
     "dm:antagonists"
@@ -6542,6 +6564,9 @@
   ],
   "Clear out any lightly radioactive debris and/or hot ice (The cargo department will probably love to dispose it for you.)": [
     "tgui:DelamProcedure"
+  ],
+  "Clear password": [
+    "tgui:CondoManage"
   ],
   "Clear recipes": [
     "tgui:ChemDispenser"
@@ -7793,6 +7818,9 @@
   "Create Lobby": [
     "tgui:DeathmatchPanel"
   ],
+  "Create New": [
+    "tgui:CondoSelect"
+  ],
   "Create Your Pet!": [
     "tgui:PetBuilder"
   ],
@@ -7820,8 +7848,14 @@
   "Create paper": [
     "tgui:AdminFax"
   ],
+  "Create room": [
+    "tgui:CondoSelect"
+  ],
   "Create sparks; May cause fires if there is plasma in the air": [
     "tgui:constants"
+  ],
+  "Create the first one": [
+    "tgui:CondoSelect"
   ],
   "Created On": [
     "tgui:EngravedMessage"
@@ -8768,6 +8802,9 @@
     "dm:labels"
   ],
   "Death Degradation Disorder": [
+    "dm:labels"
+  ],
+  "Death Mimicry": [
     "dm:labels"
   ],
   "Deathhead": [
@@ -9813,6 +9850,9 @@
   "Doors": [
     "dm:labels"
   ],
+  "Dorms": [
+    "tgui:CondoSelect"
+  ],
   "Dorsal Down": [
     "dm:labels"
   ],
@@ -10202,7 +10242,6 @@
     "tgui:erp_preferences"
   ],
   "ERROR": [
-    "dm:labels",
     "tgui:AppearanceInfo",
     "tgui:EmergencyShuttleConsole"
   ],
@@ -11078,6 +11117,9 @@
   ],
   "Enter the pay token of the account you want to transfer credits to.": [
     "tgui:NtosPay"
+  ],
+  "Enter this room": [
+    "tgui:CondoSelect"
   ],
   "Entertainer": [
     "dm:labels"
@@ -13711,6 +13753,9 @@
   "Gravitum": [
     "dm:labels"
   ],
+  "Gravity": [
+    "tgui:CondoSelect"
+  ],
   "Gravity Charge": [
     "tgui:GravityGenerator"
   ],
@@ -14839,6 +14884,9 @@
     "tgui:NtosRoboControl",
     "tgui:detail"
   ],
+  "Homes": [
+    "tgui:CondoSelect"
+  ],
   "Honey": [
     "dm:labels"
   ],
@@ -15321,6 +15369,7 @@
     "tgui:Telecomms"
   ],
   "Identity": [
+    "tgui:CondoSelect",
     "tgui:DnaConsoleEnzymes"
   ],
   "Idle": [
@@ -16116,6 +16165,12 @@
   "Invisible": [
     "tgui:InfraredEmitter"
   ],
+  "Invite": [
+    "tgui:CondoManage"
+  ],
+  "Invites": [
+    "tgui:CondoManage"
+  ],
   "Invoke": [
     "tgui:ReligiousTool"
   ],
@@ -16901,6 +16956,10 @@
   "Lamp Power": [
     "tgui:NtosRobotact"
   ],
+  "Lamp color": [
+    "tgui:CondoManage",
+    "tgui:CondoSelect"
+  ],
   "Land": [
     "tgui:constants"
   ],
@@ -17214,9 +17273,6 @@
   "Left click pins operation to the top.": [
     "tgui:PatientStateView"
   ],
-  "Left click to pin this recipe.": [
-    "tgui:ChemDispenser"
-  ],
   "Left click unpins operation from the top.": [
     "tgui:PatientStateView"
   ],
@@ -17269,6 +17325,9 @@
     "dm:labels"
   ],
   "Leopard (alt)": [
+    "dm:labels"
+  ],
+  "Leopard Seal": [
     "dm:labels"
   ],
   "Leporazine": [
@@ -17425,7 +17484,9 @@
     "dm:labels"
   ],
   "Lighting": [
-    "dm:labels"
+    "dm:labels",
+    "tgui:CondoManage",
+    "tgui:CondoSelect"
   ],
   "Lighting power": [
     "tgui:PowerMonitor"
@@ -17768,6 +17829,7 @@
   "Locked": [
     "tgui:AbductorConsole",
     "tgui:Achievements",
+    "tgui:BuyingShuttle",
     "tgui:CyborgBootDebug",
     "tgui:DnaScanner",
     "tgui:Experimentor",
@@ -18696,6 +18758,9 @@
   ],
   "Matrix Size": [
     "tgui:Filterrific"
+  ],
+  "Matrixed Teleportation Unit": [
+    "tgui:CondoSelect"
   ],
   "Matron Cloak (Colorable)": [
     "dm:labels"
@@ -20116,6 +20181,7 @@
     "tgui:ChemAutomaticBuffer",
     "tgui:ChemMaster",
     "tgui:CivCargoHoldTerminal",
+    "tgui:LanguageMenu",
     "tgui:LawRack",
     "tgui:Newscaster",
     "tgui:NtosCivCargoHoldTerminal",
@@ -20404,7 +20470,8 @@
     "dm:labels"
   ],
   "Nature": [
-    "dm:labels"
+    "dm:labels",
+    "tgui:CondoSelect"
   ],
   "Nature of emergency": [
     "tgui:Main"
@@ -21140,6 +21207,12 @@
   "No input signal": [
     "tgui:CameraConsole"
   ],
+  "No interiors available.": [
+    "tgui:CondoSelect"
+  ],
+  "No interiors match your filter.": [
+    "tgui:CondoSelect"
+  ],
   "No item loaded! {0}Put any item inside to see what it's capable of!": [
     "tgui:DestructiveAnalyzer"
   ],
@@ -21281,6 +21354,9 @@
   "No priority alerts": [
     "tgui:AtmosAlertConsole"
   ],
+  "No private rooms are open right now.": [
+    "tgui:CondoSelect"
+  ],
   "No properly configured scanner arrays detected.": [
     "tgui:ExoscannerConsole"
   ],
@@ -21352,6 +21428,9 @@
   ],
   "No robots detected": [
     "tgui:RemoteRobotControl"
+  ],
+  "No rooms match “{0}”.": [
+    "tgui:CondoSelect"
   ],
   "No rulesets active.": [
     "tgui:DynamicAdmin"
@@ -21491,6 +21570,9 @@
   ],
   "Nobody Wants to Learn Matrix Math": [
     "tgui:MatrixMathTester"
+  ],
+  "Nobody invited yet — only you can enter a private room.": [
+    "tgui:CondoManage"
   ],
   "Node": [
     "tgui:detail"
@@ -22083,6 +22165,9 @@
   "Odd Yoga lizzy Plushie": [
     "dm:labels"
   ],
+  "Oddities": [
+    "tgui:CondoSelect"
+  ],
   "Odds": [
     "tgui:DynamicTester"
   ],
@@ -22417,6 +22502,9 @@
   ],
   "Open Interior Airlock": [
     "tgui:AirlockController"
+  ],
+  "Open Rooms": [
+    "tgui:CondoSelect"
   ],
   "Open Valve": [
     "tgui:AnomalyRefinery"
@@ -23303,6 +23391,12 @@
   "Password": [
     "tgui:MessageMonitor"
   ],
+  "Password (optional)": [
+    "tgui:CondoSelect"
+  ],
+  "Password set": [
+    "tgui:CondoManage"
+  ],
   "Past Evolutions": [
     "tgui:BorerEvolution"
   ],
@@ -23656,7 +23750,8 @@
     "tgui:Tray"
   ],
   "Pet": [
-    "tgui:Aquarium"
+    "tgui:Aquarium",
+    "tgui:CondoSelect"
   ],
   "Pet Color": [
     "tgui:NtosVirtualPet"
@@ -23697,6 +23792,9 @@
   ],
   "Pet Updates": [
     "tgui:NtosVirtualPet"
+  ],
+  "Pet name": [
+    "tgui:CondoSelect"
   ],
   "Petri Dish Sample": [
     "tgui:Microscope"
@@ -24779,6 +24877,7 @@
   ],
   "Preview": [
     "tgui:AdminFax",
+    "tgui:CondoSelect",
     "tgui:CreateObject",
     "tgui:MODpaint",
     "tgui:PaintingAdminPanel",
@@ -24973,6 +25072,8 @@
     "tgui:prisoner_crime"
   ],
   "Private": [
+    "tgui:CondoManage",
+    "tgui:CondoSelect",
     "tgui:Newscaster"
   ],
   "Private Investigator": [
@@ -25244,6 +25345,8 @@
     "dm:labels"
   ],
   "Public": [
+    "tgui:CondoManage",
+    "tgui:CondoSelect",
     "tgui:Newscaster"
   ],
   "Public Defender": [
@@ -26373,6 +26476,7 @@
   ],
   "Remove": [
     "tgui:BorgPanel",
+    "tgui:CondoManage",
     "tgui:Fax",
     "tgui:GlassBlowing",
     "tgui:Inventory",
@@ -26436,6 +26540,7 @@
   "Rename": [
     "tgui:Aquarium",
     "tgui:BorgPanel",
+    "tgui:CondoManage",
     "tgui:Filterrific",
     "tgui:MineBot",
     "tgui:Mule",
@@ -27074,9 +27179,6 @@
   "Right click opens operation info.": [
     "tgui:PatientStateView"
   ],
-  "Right click to search for this recipe.": [
-    "tgui:ChemDispenser"
-  ],
   "Right leg": [
     "dm:labels"
   ],
@@ -27246,11 +27348,20 @@
   "Ronin": [
     "dm:labels"
   ],
+  "Room": [
+    "tgui:CondoManage"
+  ],
+  "Room Management": [
+    "tgui:CondoManage"
+  ],
   "Room Temperature": [
     "tgui:ThermoMachine"
   ],
   "Room joinable": [
     "tgui:Soulcatcher"
+  ],
+  "Room name (blank = a default)": [
+    "tgui:CondoSelect"
   ],
   "Room unjoinable": [
     "tgui:Soulcatcher"
@@ -27286,6 +27397,9 @@
   ],
   "Rotate Counter-Clockwise": [
     "tgui:LimbsPage"
+  ],
+  "Rotate preview": [
+    "tgui:CondoSelect"
   ],
   "Rotation Angle": [
     "tgui:AdminFax"
@@ -27908,6 +28022,9 @@
   "Schechi": [
     "dm:labels"
   ],
+  "Sci-Fi": [
+    "tgui:CondoSelect"
+  ],
   "Science": [
     "dm:labels"
   ],
@@ -28141,6 +28258,9 @@
   "Search mobs": [
     "tgui:constants"
   ],
+  "Search name or owner…": [
+    "tgui:CondoSelect"
+  ],
   "Search name...": [
     "tgui:NovaCharacterDirectory"
   ],
@@ -28209,6 +28329,9 @@
   ],
   "Searching...": [
     "tgui:constants"
+  ],
+  "Search…": [
+    "tgui:CondoSelect"
   ],
   "Sec got you? You can break any restraints on your host, including lockers and such, by right-clicking with Spit Blood active. You can also leave your host and ventcrawl out or break through the door.": [
     "tgui:AntagInfoBloodWorm"
@@ -28531,6 +28654,12 @@
   "Self Destruct": [
     "tgui:NtosRobotact"
   ],
+  "Self-Actualization Device": [
+    "dm:labels"
+  ],
+  "Self-Actualization Device Board": [
+    "dm:labels"
+  ],
   "Self-Aware": [
     "dm:labels"
   ],
@@ -28799,7 +28928,8 @@
     "tgui:CyborgBootDebug"
   ],
   "Set": [
-    "tgui:BorgPanel"
+    "tgui:BorgPanel",
+    "tgui:CondoManage"
   ],
   "Set Central Command name": [
     "tgui:CommandReport"
@@ -28857,6 +28987,9 @@
   ],
   "Set a frequency with a multitool!": [
     "tgui:MODsuit"
+  ],
+  "Set a password": [
+    "tgui:CondoManage"
   ],
   "Set announcement color": [
     "tgui:CommandReport"
@@ -33626,6 +33759,9 @@
   "This shows/hides the animated overlays displayed on emotes for yourself.": [
     "tgui:emote_overlay"
   ],
+  "This shuttle can only be purchased if {0} Department has biggest number of employees!": [
+    "tgui:BuyingShuttle"
+  ],
   "This silicon has a null law datum. This isn't supposed to ever happen! Issue report and then click this this give them one.": [
     "tgui:Lawpanel"
   ],
@@ -35676,6 +35812,9 @@
   "Vials": [
     "tgui:ChemPress"
   ],
+  "Vibe & Companion": [
+    "tgui:CondoSelect"
+  ],
   "Vibrating Egg": [
     "dm:labels"
   ],
@@ -36946,6 +37085,9 @@
   "Wine": [
     "dm:labels"
   ],
+  "Winged Insect": [
+    "dm:labels"
+  ],
   "Wingless Dragon Plushie": [
     "dm:labels"
   ],
@@ -37744,9 +37886,6 @@
   "You need to use shears.": [
     "tgui:GlassBlowing"
   ],
-  "You need {0} more {1}.": [
-    "tgui:BuyingShuttle"
-  ],
   "You ruined my cool font effect.": [
     "tgui:AntagInfoBrainwashed"
   ],
@@ -37964,6 +38103,9 @@
   ],
   "Zero": [
     "tgui:MatMarket"
+  ],
+  "Zero-G": [
+    "tgui:CondoSelect"
   ],
   "Zeus™ Controller Version 0.19": [
     "tgui:ApcControl"
@@ -39571,6 +39713,9 @@
     "tgui:NtosNewsArchive",
     "tgui:StoryManager"
   ],
+  "{0} · by {1}": [
+    "tgui:CondoSelect"
+  ],
   "{0}% ({1} failed attempts)": [
     "tgui:DynamicAdmin"
   ],
@@ -39626,6 +39771,8 @@
     "tgui:ComponentPrinter"
   ],
   "{0}Custom": [
+    "tgui:CondoManage",
+    "tgui:CondoSelect",
     "tgui:DecalPainter"
   ],
   "{0}Dead": [
@@ -39723,6 +39870,9 @@
   ],
   "{0}You need vitality to create {1}, which is gotten from sacrificing living beings to a {2}.{3}{4}Watch your power upkeep! You're dependent on your cogged APCs to stay powered, and a lot of structures can drain it quickly.{5}{6}Make sure to have a defensible base of operations! You're significantly stronger while on brass tiles, so make your home indefensible.{7}{8}The Replica Fabricator is one of the strongest tools available to you, via the {9}. It allows the conversion of all materials into power, which can be used to create floors, walls, and airlocks. The airlocks will shock all non-cultists.{10}{11}Nar'sian cultists are your greatest foe! Some of your spells are less effective on them, and vice-versa. What remains of Ratvar may reward a vitality sacrifice of such heresy.{12}{13}": [
     "tgui:ClockworkSlab"
+  ],
+  "{0}Yours": [
+    "tgui:CondoSelect"
   ],
   "{0}cr {1}": [
     "tgui:CrimeWatcher"

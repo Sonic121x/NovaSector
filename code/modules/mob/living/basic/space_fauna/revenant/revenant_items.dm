@@ -19,13 +19,6 @@
 /obj/item/ectoplasm/revenant/Destroy()
 	return ..()
 
-/obj/item/ectoplasm/revenant/proc/check_for_mirrors(turf/location, radius)
-	PRIVATE_PROC(TRUE)
-	for(var/obj/structure/mirror/mirror in view(radius, location))
-		if(mirror.cursable && !mirror.GetComponent(/datum/component/revenant_prison))
-			return mirror
-	return null
-
 /obj/item/ectoplasm/revenant/attack_self(mob/user)
 	if(inert)
 		return ..()
@@ -33,29 +26,17 @@
 		span_notice(LANG("obj.e9f6fbdf45aeb349", list(user, src))),
 		span_notice(LANG("obj.1da11af3f8a12741", list(src))),
 	)
-	var/obj/structure/mirror/nearby_mirror = check_for_mirrors(drop_location(), 5)
-	if(nearby_mirror)
-		transfer_to_mirror(nearby_mirror)
 	user.dropItemToGround(src)
+	SEND_SIGNAL(src, COMSIG_RESIDUE_DISPERSE)
 	qdel(src)
 
 /obj/item/ectoplasm/revenant/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(inert)
 		return
-	var/obj/structure/mirror/nearby_mirror = check_for_mirrors(get_turf(hit_atom), 3)
-	if(!nearby_mirror)
-		visible_message(span_notice(LANG("obj.7b8abbca912ff196", list(src))))
-	else
-		transfer_to_mirror(nearby_mirror)
+	visible_message(span_notice(LANG("obj.7b8abbca912ff196", list(src))))
+	SEND_SIGNAL(src, COMSIG_RESIDUE_DISPERSE)
 	qdel(src)
-
-/obj/item/ectoplasm/revenant/proc/transfer_to_mirror(obj/structure/mirror/nearby_mirror)
-	PRIVATE_PROC(TRUE)
-	nearby_mirror.TakeComponent(GetComponent(/datum/component/revenant_prison))
-	nearby_mirror.visible_message(span_revenwarning(LANG("obj.ff5c4cbb388dec83", list(src, nearby_mirror))))
-	log_game("A revenant was trapped inside [nearby_mirror]")
-	message_admins("A revenant was trapped inside [nearby_mirror] [ADMIN_JMP(nearby_mirror)]")
 
 /obj/item/ectoplasm/revenant/examine(mob/user)
 	. = ..()
@@ -73,9 +54,9 @@
 /obj/item/ectoplasm/revenant/proc/reform()
 	if(QDELETED(src) || inert)
 		return
-	if(!GetComponent(/datum/component/revenant_prison))
+	if(!(SEND_SIGNAL(src, COMSIG_RESIDUE_REFORM) & COMPONENT_RESIDUE_REFORM_SUCCESS))
+		inert = TRUE
 		return
 	message_admins("Revenant ectoplasm was left undestroyed for 1 minute and is reforming into a new revenant.")
-	SEND_SIGNAL(src, COMSIG_REVENANT_RELEASE, cause = "ectoplasm reforming")
 	visible_message(span_revenboldnotice(LANG("obj.b6ecdf19bb4847d8", list(src))))
 	qdel(src)
