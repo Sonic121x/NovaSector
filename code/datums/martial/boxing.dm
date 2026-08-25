@@ -231,7 +231,7 @@
 	playsound(defender, attack_sound, 25, TRUE, -1)
 
 	defender.visible_message(
-		span_danger("[attacker] [current_atk_verb] [defender]!"),
+		span_danger(LANG("datum.dd02d8c90a5dee7a", list(attacker, current_atk_verb, defender))),
 		span_userdanger(LANG("datum.c61afe56230b45a4", list(current_atk_verbed, attacker))),
 		span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 		COMBAT_MESSAGE_RANGE,

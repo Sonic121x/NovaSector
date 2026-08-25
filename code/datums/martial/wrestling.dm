@@ -311,7 +311,7 @@ If you make a derivative work from this code, you must include this notification
 			if (3)
 				fluff = "atomic [fluff]"
 
-		defender.visible_message(span_danger("[attacker] [fluff] [defender]!"), \
+		defender.visible_message(span_danger(LANG("datum.dd02d8c90a5dee7a", list(attacker, fluff, defender))), \
 						span_userdanger(LANG("datum.074fb9e3a20824d3", list(fluff, attacker))), span_hear(LANG("datum.6c7f8149b8c68cd4", null)), COMBAT_MESSAGE_RANGE, attacker)
 		to_chat(attacker, span_danger(LANG("datum.22d557f300d422c9", list(fluff, defender))))
 		playsound(attacker.loc, SFX_SWING_HIT, 50, TRUE)

@@ -380,7 +380,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 			addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), 10 SECONDS)
 	if(displaymessage)
 		if(user)
-			visible_message(span_danger("[user] [change_msg] [src]!"))
+			visible_message(span_danger(LANG("obj.dd02d8c90a5dee7a", list(user, change_msg, src))))
 			add_hiddenprint(user)
 		else
 			visible_message(span_danger(LANG("obj.b0e4d953a47f96c7", list(src, change_msg))))

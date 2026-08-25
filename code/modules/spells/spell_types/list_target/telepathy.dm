@@ -63,4 +63,4 @@
 		var/to_link = FOLLOW_LINK(ghost, cast_on)
 		var/to_mob_name = span_name("[cast_on]")
 
-		to_chat(ghost, "[from_link] [from_mob_name] [formatted_message] [to_link] [to_mob_name]")
+		to_chat(ghost, LANG("datum.bc44c414faed55ab", list(from_link, from_mob_name, formatted_message, to_link, to_mob_name)))

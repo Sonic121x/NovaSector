@@ -1196,7 +1196,7 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "打开/关闭", 
 	locked = !locked
 	play_closet_lock_sound()
 	user.visible_message(
-		span_notice("[user] [locked ? "locks" : "unlocks"] [src]."),
+		span_notice(LANG("obj.6afbb5c3aa5fc504", list(user, locked ? "locks" : "unlocks", src))),
 		span_notice(LANG("obj.d6171b714b8cf981", list(locked ? "locked" : "unlocked", src))),
 	)
 	update_appearance()

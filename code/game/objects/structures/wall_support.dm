@@ -60,7 +60,7 @@
 	if(!tool.use_tool(src, user, 0, volume=100))
 		return FALSE
 	set_anchored(!anchored)
-	user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] [src]."), \
+	user.visible_message(span_notice(LANG("obj.6afbb5c3aa5fc504", list(user, anchored ? "fastens" : "unfastens", src))), \
 		span_notice(LANG("obj.1175c81a0e157390", list(anchored ? "fasten [src] to" : "unfasten [src] from"))))
 	return ITEM_INTERACT_SUCCESS
 

@@ -23,6 +23,31 @@ pub(crate) fn build_template(expr: &Expression) -> Option<String> {
     }
 }
 
+/// sink 消息实参专用：允许**纯占位符框架**（`"[施动者] [动词] [受动者]!"`）也成为模板。
+///
+/// `build_template` 的「去标签后须含字母」那道闸把两件事混在了一起：
+///   ① 这个框架本身没有可翻的字面文本 —— 对 `{0} {1}{2} {3}{4}` 确实成立；
+///   ② **这个调用不需要本地化** —— 不成立。实参仍然要过 `lang_localize_arg`，而且中文往往
+///      需要**丢掉**某个槽（英文复数 `\s`、`[verb][suffix]` 的后缀）或调换语序，这两件事只有
+///      在「这条调用是 LANG」的前提下才做得到（AGENTS 里「让 zh 模板不引用该实参」那条）。
+/// 于是这 21 处第三人称战斗/交互消息里的动词只剩字面 AC 一条落地路径，而 AC 卡多词门槛 ——
+/// 单词动词（`punches`/`chucks`）永远是英文。
+///
+/// 闸门：**≥3 个占位符**。这既是实测到的那一类的形状，也把 `"[msg]"`、`"[a] [b]"` 这类
+/// 纯转发包装挡在外面（它们没有语序可调，LANG 化只是噪音）。激进 pass 仍走原来的
+/// `build_template`，`VV_DROPDOWN_OPTION` 那类标识符夹在 HTML 里的写法照旧被挡。
+pub(crate) fn build_sink_template(expr: &Expression) -> Option<String> {
+    if let Some(template) = build_template(expr) {
+        return Some(template);
+    }
+    let mut out = String::new();
+    let mut idx = 0usize;
+    if !render(expr, &mut out, &mut idx) {
+        return None;
+    }
+    (placeholder_count(&out) >= 3).then_some(out)
+}
+
 /// 模板里的占位符个数（{0}/{1}… 顺序生成，这里数 `{` 紧跟数字的出现次数）。
 pub(crate) fn placeholder_count(template: &str) -> usize {
     let b = template.as_bytes();
@@ -322,5 +347,43 @@ mod tests {
             build_tag_chunk_templates(&expr),
             Some(vec!["Alpha.".to_owned(), "Beta.".to_owned()])
         );
+    }
+}
+
+#[cfg(test)]
+mod sink_template_tests {
+    use super::*;
+
+    fn parse(source: &str) -> Expression {
+        let context = dm::Context::default();
+        let lexer = dm::lexer::Lexer::new(&context, Default::default(), source.as_bytes());
+        dm::parser::parse_expression(&context, Default::default(), lexer).expect("parses")
+    }
+
+    /// `span_notice("[a] [b] [c].")` 展开后的形态：整条框架没有字面文本，但三个槽仍要过
+    /// `lang_localize_arg`，而且中文可能要丢掉某个槽（英文复数）。
+    #[test]
+    fn placeholder_only_sink_frames_become_templates() {
+        let expr = parse("(\"<span class='notice'>\" + \"[user] [verb] [target].\" + \"</span>\")");
+        assert_eq!(build_template(&expr), None);
+        assert_eq!(
+            build_sink_template(&expr).as_deref(),
+            Some("{0} {1} {2}.")
+        );
+    }
+
+    /// 抽取路径会先试 build_tag_chunk_templates —— 它必须对这个形状**放手**，否则
+    /// build_sink_template 根本轮不到。
+    #[test]
+    fn chunk_splitter_lets_the_wrapped_frame_through() {
+        let expr = parse("(\"<span class='notice'>\" + \"[user] [verb] [target].\" + \"</span>\")");
+        assert_eq!(build_tag_chunk_templates(&expr), None);
+    }
+
+    /// 纯转发包装（`"[msg]"`）没有语序可调，LANG 化只是噪音。
+    #[test]
+    fn pass_through_wrappers_stay_out() {
+        assert_eq!(build_sink_template(&parse("\"[message]\"")), None);
+        assert_eq!(build_sink_template(&parse("\"[a] [b]\"")), None);
     }
 }

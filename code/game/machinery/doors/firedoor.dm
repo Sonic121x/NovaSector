@@ -543,7 +543,7 @@
 	user.visible_message(span_notice(LANG("obj.35540b7a2dbb244b", list(user, welded ? "unwelding" : "welding", src))), span_notice(LANG("obj.2cd4ac793c9a9f13", list(src))))
 	if(W.use_tool(src, user, DEFAULT_STEP_TIME, volume=50))
 		welded = !welded
-		user.visible_message(span_danger("[user] [welded?"welds":"unwelds"] [src]."), span_notice(LANG("obj.d6171b714b8cf981", list(welded ? "weld" : "unweld", src))))
+		user.visible_message(span_danger(LANG("obj.6afbb5c3aa5fc504", list(user, welded?"welds":"unwelds", src))), span_notice(LANG("obj.d6171b714b8cf981", list(welded ? "weld" : "unweld", src))))
 		user.log_message("[welded ? "welded":"unwelded"] firedoor [src] with [W].", LOG_GAME)
 		update_appearance()
 		correct_state()

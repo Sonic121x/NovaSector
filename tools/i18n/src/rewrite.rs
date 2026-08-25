@@ -32,7 +32,7 @@ use crate::semantics::{
     block_is_pure, is_announce_sink, is_rewrite_sink, is_wordy_sink, native_dialog_no_usr,
     resolve_sink_arg, sink_message_args,
 };
-use crate::template::{build_template, placeholder_count, strip_tags};
+use crate::template::{build_sink_template, build_template, placeholder_count, strip_tags};
 
 /// 核心文件（非 modular_nova）被 codemod 改写时插入的文件级 NOVA EDIT 标记。
 const CORE_MARKER: &str =
@@ -639,7 +639,7 @@ impl<'a> Rewriter<'a> {
                 continue;
             }
             // key 用与抽取**同一**函数计算，保证目录命中。
-            let Some(template) = build_template(arg) else {
+            let Some(template) = build_sink_template(arg) else {
                 continue;
             };
             // 对话框按钮（Yes/No/Cancel…）绝不改写——它们是 `if(alert(...)=="Yes")` 的比较值，
@@ -1089,7 +1089,11 @@ fn node_template(term: &Term) -> Option<(String, usize)> {
                 }
                 out.push_str(lit);
             }
-            if !strip_tags(&out).chars().any(|c| c.is_alphabetic()) {
+            // 纯占位符框架（`"[施动者] [动词] [受动者]!"`）也要认，判据与
+            // `template::build_sink_template` 一致（≥3 个槽）：框架本身没有可翻的字面文本，
+            // 但只有把这条调用改成 LANG，实参才走得到 `lang_localize_arg`，中文也才有办法
+            // 丢掉英文复数槽 / 调换语序。两处闸门必须同口径，否则 key 对不上。
+            if count < 3 && !strip_tags(&out).chars().any(|c| c.is_alphabetic()) {
                 return None;
             }
             Some((out, count))

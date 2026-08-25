@@ -85,7 +85,7 @@
 	var/list/fake_ascension = pick(ascension_bodies)
 	var/announcement_text = replacetext(fake_ascension["text"], "%FAKENAME%", totally_real_heretic.real_name)
 	priority_announce(
-		text = "[generate_heretic_text()] [announcement_text] [generate_heretic_text()]",
+		text = LANG("datum.e4bf1a906e486ccb", list(generate_heretic_text(), announcement_text, generate_heretic_text())),
 		title = "[generate_heretic_text()]",
 		sound = fake_ascension["sound"],
 		players = list(hallucinator),

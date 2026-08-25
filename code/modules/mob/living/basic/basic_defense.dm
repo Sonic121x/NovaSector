@@ -11,7 +11,7 @@
 	if(!user.combat_mode)
 		if (stat != DEAD)
 			visible_message(
-				span_notice("[user] [response_help_continuous] [src]."),
+				span_notice(LANG("mob.6afbb5c3aa5fc504", list(user, response_help_continuous, src))),
 				span_notice(LANG("mob.e83dca4be0100ca0", list(user, response_help_continuous))),
 				ignored_mobs = user,
 			)
@@ -28,7 +28,7 @@
 		return
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	visible_message(
-		span_danger("[user] [response_harm_continuous] [src]!"),
+		span_danger(LANG("mob.dd02d8c90a5dee7a", list(user, response_harm_continuous, src))),
 		span_userdanger(LANG("mob.9ab70b397edc0103", list(user, response_harm_continuous))),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 		ignored_mobs = user,
@@ -45,7 +45,7 @@
 		return ..()
 	var/moved = !(shove_flags & SHOVE_BLOCKED)
 	shover.visible_message(
-		span_danger("[shover.name] [response_disarm_continuous] [src][moved ? ", pushing [p_them()]" : ""]!"),
+		span_danger(LANG("mob.8c599991c83e459a", list(shover.name, response_disarm_continuous, src, moved ? ", pushing [p_them()]" : ""))),
 		span_danger(LANG("mob.ddf7e598608c8312", list(response_disarm_simple, src, moved ? ", pushing [p_them()]" : ""))),
 		span_hear(LANG("mob.7314bbd171d7d8b7", null)),
 		COMBAT_MESSAGE_RANGE,
@@ -70,7 +70,7 @@
 
 	if (!user.combat_mode)
 		if (health > 0)
-			visible_message(span_notice("[user.name] [response_help_continuous] [src]."), \
+			visible_message(span_notice(LANG("mob.6afbb5c3aa5fc504", list(user.name, response_help_continuous, src))), \
 							span_notice(LANG("mob.e83dca4be0100ca0", list(user.name, response_help_continuous))), null, COMBAT_MESSAGE_RANGE, user)
 			to_chat(user, span_notice(LANG("mob.d6171b714b8cf981", list(response_help_simple, src))))
 			playsound(loc, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
@@ -82,7 +82,7 @@
 		return
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		playsound(loc, 'sound/items/weapons/pierce.ogg', 25, TRUE, -1)
-		visible_message(span_danger("[user] [response_disarm_continuous] [name]!"), \
+		visible_message(span_danger(LANG("mob.dd02d8c90a5dee7a", list(user, response_disarm_continuous, name))), \
 			span_userdanger(LANG("mob.9ab70b397edc0103", list(user, response_disarm_continuous))), null, COMBAT_MESSAGE_RANGE, user)
 		to_chat(user, span_danger(LANG("mob.22d557f300d422c9", list(response_disarm_simple, name))))
 		log_combat(user, src, "disarmed")

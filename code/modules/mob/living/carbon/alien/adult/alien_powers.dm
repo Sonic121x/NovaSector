@@ -148,7 +148,7 @@ Doesn't work on other aliens/AI.*/
 			continue
 		var/follow_link_user = FOLLOW_LINK(dead_mob, owner)
 		var/follow_link_whispee = FOLLOW_LINK(dead_mob, chosen_recipient)
-		to_chat(dead_mob, "[follow_link_user] [span_name("[owner]")] [span_alertalien("Alien Whisper --> ")] [follow_link_whispee] [span_name("[chosen_recipient]")] [span_noticealien("[to_whisper]")]")
+		to_chat(dead_mob, LANG("datum.68be7e1750e53f24", list(follow_link_user, span_name("[owner]"), span_alertalien("Alien Whisper --> "), follow_link_whispee, span_name("[chosen_recipient]"), span_noticealien("[to_whisper]"))))
 
 	return TRUE
 

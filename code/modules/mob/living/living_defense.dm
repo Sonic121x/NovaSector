@@ -439,7 +439,7 @@
 	if(user.melee_damage_upper == 0)
 		if(user != src)
 			visible_message(
-				span_notice("[user] [user.friendly_verb_continuous] [src]!"),
+				span_notice(LANG("mob.dd02d8c90a5dee7a", list(user, user.friendly_verb_continuous, src))),
 				span_notice(LANG("mob.9ab70b397edc0103", list(user, user.friendly_verb_continuous))),
 				vision_distance = COMBAT_MESSAGE_RANGE,
 				ignored_mobs = user,
@@ -459,7 +459,7 @@
 		playsound(src, user.attack_sound, 50, TRUE, TRUE)
 
 	user.do_attack_animation(src)
-	visible_message(span_danger("[user] [lang_localize_arg(user.attack_verb_continuous)] [src]!"), // NOVA EDIT - I18N - 第三人称攻击消息是纯占位模板（无可译文本、codemod 不抽），动词须就地反查；名字已由 Initialize 反查
+	visible_message(span_danger(LANG("mob.dd02d8c90a5dee7a", list(user, lang_localize_arg(user.attack_verb_continuous), src))), // NOVA EDIT - I18N - 第三人称攻击消息是纯占位模板（无可译文本、codemod 不抽），动词须就地反查；名字已由 Initialize 反查
 		span_userdanger(LANG("mob.9ab70b397edc0103", list(user, user.attack_verb_continuous))),
 		null,
 		COMBAT_MESSAGE_RANGE,

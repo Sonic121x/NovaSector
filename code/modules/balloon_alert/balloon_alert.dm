@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define BALLOON_TEXT_WIDTH 200
 #define BALLOON_TEXT_SPAWN_TIME (0.2 SECONDS)
 #define BALLOON_TEXT_FADE_TIME (0.1 SECONDS)
@@ -59,7 +60,7 @@
 		return
 
 	if(!runechat_prefs_check(viewer, EMOTE_MESSAGE))
-		to_chat(viewer, span_emote("[icon2html(src, viewer)] [src.name]: [text]"))
+		to_chat(viewer, span_emote(LANG("atom.6eecb7e20b0abfbf", list(icon2html(src, viewer), src.name, text))))
 		return
 
 	// NOVA EDIT ADDITION START - i18n: balloon 是**唯一一个不经任何落地层**的常规显示面

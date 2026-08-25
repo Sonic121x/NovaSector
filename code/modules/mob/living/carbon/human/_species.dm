@@ -895,7 +895,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		atk_verb = attacking_bodypart.grappled_attack_verb
 		atk_verb_continuous = attacking_bodypart.grappled_attack_verb_continuous
 
-	target.visible_message(span_danger("[user] [atk_verb_continuous] [target]!"), \
+	target.visible_message(span_danger(LANG("datum.dd02d8c90a5dee7a", list(user, atk_verb_continuous, target))), \
 					span_userdanger(LANG("datum.9ab70b397edc0103", list(user, atk_verb_continuous))), span_hear(LANG("datum.6c7f8149b8c68cd4", null)), COMBAT_MESSAGE_RANGE, user)
 	to_chat(user, span_danger(LANG("datum.22d557f300d422c9", list(atk_verb, target))))
 

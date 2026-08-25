@@ -109,20 +109,20 @@
 
 	for (var/law in lawcache_hacked)
 		if (force_all_laws || (law in to_state_cached))
-			owner.say("[owner.radiomod] [ion_num()]. [law]", forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "states"))
+			owner.say(LANG("datum.205929e8e46c414b", list(owner.radiomod, ion_num(), law)), forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "states"))
 			sleep(1 SECONDS)
 
 	var/number = 1
 	for (var/law_text, is_ioned in lawcache_inherent)
 		if (force_all_laws || (law_text in to_state_cached))
-			owner.say("[owner.radiomod] [is_ioned ? ion_num() : number]. [law_text]", forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "states"))
+			owner.say(LANG("datum.205929e8e46c414b", list(owner.radiomod, is_ioned ? ion_num() : number, law_text)), forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "states"))
 			if(!is_ioned)
 				number++
 			sleep(1 SECONDS)
 
 	for (var/law_text, is_ioned in lawcache_supplied)
 		if (force_all_laws || (law_text in to_state_cached))
-			owner.say("[owner.radiomod] [is_ioned ? ion_num() : number]. [law_text]", forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "states"))
+			owner.say(LANG("datum.205929e8e46c414b", list(owner.radiomod, is_ioned ? ion_num() : number, law_text)), forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "states"))
 			if(!is_ioned)
 				number++
 			sleep(1 SECONDS)

@@ -116,20 +116,20 @@ GAME_VERB(/client, ooc, VERB_OOC, null)
 			if(!holder.fakekey || receiver.holder)
 				if(check_rights_for(src, R_ADMIN))
 					var/ooc_color = ooc_colour ? ooc_colour : prefs.read_preference(/datum/preference/color/ooc_color)
-					to_chat(receiver, span_adminooc("[CONFIG_GET(flag/allow_admin_ooccolor) && ooc_color ? "<font color=[ooc_color]>" :"" ][span_prefix("OOC:")] <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span>"), avoid_highlighting = avoid_highlight)
+					to_chat(receiver, span_adminooc(LANG("client.71cc21bfa8dbf7ae", list(CONFIG_GET(flag/allow_admin_ooccolor) && ooc_color ? "<font color=[ooc_color]>" :"", span_prefix("OOC:"), keyname, holder.fakekey ? "/([holder.fakekey])" : "", msg))), avoid_highlighting = avoid_highlight)
 				else
 					to_chat(receiver, span_adminobserverooc(span_prefix(LANG("client.e7be096b79828369", list(keyname, holder.fakekey ? "/([holder.fakekey])" : "", msg)))), avoid_highlighting = avoid_highlight)
 			else
 				if(GLOB.OOC_COLOR)
-					to_chat(receiver, "<span class='oocplain'><font color='[GLOB.OOC_COLOR]'><b>[span_prefix("OOC:")] <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font></span>", avoid_highlighting = avoid_highlight)
+					to_chat(receiver, LANG("client.c4796ab371493006", list(GLOB.OOC_COLOR, span_prefix("OOC:"), holder.fakekey ? holder.fakekey : key, msg)), avoid_highlighting = avoid_highlight)
 				else
 					to_chat(receiver, span_ooc(span_prefix(LANG("client.e41c9dd40499751b", list(holder.fakekey ? holder.fakekey : key, msg)))), avoid_highlighting = avoid_highlight)
 
 		else if(!(key in receiver.prefs.ignoring))
 			if(ooc_colour)
-				to_chat(receiver, "<span class='oocplain'><font color='[ooc_colour]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font></span>", avoid_highlighting = avoid_highlight)
+				to_chat(receiver, LANG("client.c4796ab371493006", list(ooc_colour, span_prefix("OOC:"), keyname, msg)), avoid_highlighting = avoid_highlight)
 			else if(GLOB.OOC_COLOR)
-				to_chat(receiver, "<span class='oocplain'><font color='[GLOB.OOC_COLOR]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font></span>", avoid_highlighting = avoid_highlight)
+				to_chat(receiver, LANG("client.c4796ab371493006", list(GLOB.OOC_COLOR, span_prefix("OOC:"), keyname, msg)), avoid_highlighting = avoid_highlight)
 			else
 				to_chat(receiver, span_ooc(span_prefix(LANG("client.e41c9dd40499751b", list(keyname, msg)))), avoid_highlighting = avoid_highlight)
 

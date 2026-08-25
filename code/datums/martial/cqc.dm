@@ -73,7 +73,7 @@
 		attacker.Stun(4 SECONDS)
 	else
 		cqc_user.visible_message(
-			span_danger("[cqc_user] [blocking_text_s] [attack_text]!"),
+			span_danger(LANG("datum.dd02d8c90a5dee7a", list(cqc_user, blocking_text_s, attack_text))),
 			span_userdanger(LANG("datum.22d557f300d422c9", list(blocking_text, attack_text))),
 		)
 	return SUCCESSFUL_BLOCK

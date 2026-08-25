@@ -772,7 +772,7 @@
 			continue
 		var/follow_link_user = FOLLOW_LINK(dead, telepath)
 		var/follow_link_target = FOLLOW_LINK(dead, recipient)
-		to_chat(dead, "[follow_link_user] [span_name("[telepath]")] [span_alertalien("Slime Telepathy --> ")] [follow_link_target] [span_name("[recipient]")] [span_noticealien("[msg]")]")
+		to_chat(dead, LANG("datum.68be7e1750e53f24", list(follow_link_user, span_name("[telepath]"), span_alertalien("Slime Telepathy --> "), follow_link_target, span_name("[recipient]"), span_noticealien("[msg]"))))
 
 /datum/action/innate/link_minds
 	name = "Link Minds"

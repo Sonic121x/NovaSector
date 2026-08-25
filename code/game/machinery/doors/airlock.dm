@@ -1269,7 +1269,7 @@
 	if(!tool.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(weld_checks), tool, user)))
 		return
 	welded = !welded
-	user.visible_message(span_notice("[user] [welded? "welds shut":"unwelds"] [src]."), \
+	user.visible_message(span_notice(LANG("obj.6afbb5c3aa5fc504", list(user, welded? "welds shut":"unwelds", src))), \
 		span_notice(LANG("obj.9390931e31ef1711", list(welded ? "weld the airlock shut":"unweld the airlock"))))
 	user.log_message("[welded ? "welded":"unwelded"] airlock [src] with [tool].", LOG_GAME)
 	update_appearance()

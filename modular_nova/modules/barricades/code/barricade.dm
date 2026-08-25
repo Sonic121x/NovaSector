@@ -713,7 +713,7 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "顺时�
 	closed = !closed
 	density = !density
 
-	user?.visible_message(span_notice("[user] [closed ? "lowers" : "raises"] [src] ."),
+	user?.visible_message(span_notice(LANG("obj.ce980fc2bc8b47eb", list(user, closed ? "lowers" : "raises", src))),
 		span_notice(LANG("obj.d6171b714b8cf981", list(closed ? "lower" : "raise", src))))
 
 	if(!linked)

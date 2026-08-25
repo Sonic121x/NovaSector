@@ -176,7 +176,7 @@
 	if(!isnull(console_location))
 		to_chat(R, span_alert(LANG("obj.a222efb79ceb9d0c", list(console_location))))
 	if(R.connected_ai)
-		to_chat(R.connected_ai, "[!R.lockcharge ? span_notice("NOTICE - Cyborg lockdown lifted") : span_alert("ALERT - Cyborg lockdown detected")]: <a href='byond://?src=[REF(R.connected_ai)];track=[html_encode(R.name)]'>[R.name]</a><br>")
+		to_chat(R.connected_ai, LANG("obj.d4d6f10a4cab7455", list(!R.lockcharge ? span_notice("NOTICE - Cyborg lockdown lifted") : span_alert("ALERT - Cyborg lockdown detected"), REF(R.connected_ai), html_encode(R.name), R.name)))
 
 /obj/machinery/computer/robotics/proc/borg_destroyed()
 	SIGNAL_HANDLER

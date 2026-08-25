@@ -333,7 +333,7 @@
 		var/view_link = " <a href='byond://?src=[REF(ghost)];view=[REF(source)]'>[LANG("_root.bd8f8d4bb83c635d", null)]</a>"
 		// NOVA EDIT CHANGE END
 
-		to_chat(ghost, span_ghostalert("[message][custom_link][interact_link][view_link]"))
+		to_chat(ghost, span_ghostalert(LANG("_root.92d294b5e6fdb362", list(message, custom_link, interact_link, view_link))))
 
 		var/atom/movable/screen/alert/notify_action/toast = ghost.throw_alert(
 			category = "[REF(source)]_notify_action",

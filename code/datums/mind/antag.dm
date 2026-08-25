@@ -219,7 +219,7 @@
 	var/obj_count = 1
 	to_chat(current, span_notice(LANG("datum.6e4b81695fbb1b39", null)))
 	for(var/datum/objective/objective as anything in get_all_objectives())
-		to_chat(current, "<B>[objective.objective_name] #[obj_count]</B>: [lang_reverse_text(objective.explanation_text)]") // NOVA EDIT - I18N - reverse non-interpolated full-sentence objectives
+		to_chat(current, LANG("datum.e812693d61626c3a", list(objective.objective_name, obj_count, lang_reverse_text(objective.explanation_text)))) // NOVA EDIT - I18N - reverse non-interpolated full-sentence objectives
 		obj_count++
 	// Objectives are often stored in the static data of antag uis, so we should update those as well
 	for(var/datum/antagonist/antag as anything in antag_datums)

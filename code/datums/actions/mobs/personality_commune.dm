@@ -52,6 +52,6 @@
 	for(var/dead_mob in GLOB.dead_mob_list)
 		if(!isobserver(dead_mob))
 			continue
-		to_chat(dead_mob, "[FOLLOW_LINK(dead_mob, non_controller)] [span_boldnotice("[non_controller] [name]:")] [span_notice("\"[to_send]\" to")] [span_name("[trauma]")]")
+		to_chat(dead_mob, LANG("datum.7b8d967f7ad56e5a", list(FOLLOW_LINK(dead_mob, non_controller), span_boldnotice("[non_controller] [name]:"), span_notice("\"[to_send]\" to"), span_name("[trauma]"))))
 
 	return TRUE

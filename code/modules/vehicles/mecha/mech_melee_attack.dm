@@ -156,7 +156,7 @@
 			soften_text = span_warning("Your armor has softened a hit to your [zone_readable]!")
 		))
 
-	visible_message(span_danger("[mecha_attacker.name] [mecha_attacker.attack_verbs[1]] [src]!"), \
+	visible_message(span_danger(LANG("mob.dd02d8c90a5dee7a", list(mecha_attacker.name, mecha_attacker.attack_verbs[1], src))), \
 		span_userdanger(LANG("mob.9ab70b397edc0103", list(mecha_attacker.name, mecha_attacker.attack_verbs[2]))), span_hear(LANG("mob.1b6c62e7dcbc3538", list(mecha_attacker.attack_verbs[3]))), COMBAT_MESSAGE_RANGE, list(mecha_attacker))
 	to_chat(mecha_attacker, span_danger(LANG("mob.22d557f300d422c9", list(mecha_attacker.attack_verbs[1], src))))
 	..()

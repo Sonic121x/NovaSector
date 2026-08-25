@@ -490,7 +490,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_check_contents, R_ADMIN, "检查内容物", /mo
 	VERB_ARG_TYPED(mob, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living)
 	var/list/mob_contents = mob.get_contents()
 	for(var/content in mob_contents)
-		to_chat(user, "[content] [ADMIN_VV(content)] [ADMIN_TAG(content)]", confidential = TRUE)
+		to_chat(user, LANG("datum.e4bf1a906e486ccb", list(content, ADMIN_VV(content), ADMIN_TAG(content))), confidential = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Check Contents")
 
 ADMIN_VERB(modify_goals, R_ADMIN, "修改目标", "Modify the station goals for the shift.", ADMIN_CATEGORY_DEBUG)

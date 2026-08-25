@@ -19,7 +19,7 @@ use dm::ast::{AssignOp, Expression, Follow, Statement, Term};
 use crate::catalog::Catalog;
 use crate::keys::{is_v2_key, make_key, namespace_for};
 use crate::semantics::{block_is_pure, native_dialog_no_usr, resolve_sink_arg, sink_message_args};
-use crate::template::{build_tag_chunk_templates, build_template, placeholder_count};
+use crate::template::{build_sink_template, build_tag_chunk_templates, build_template, placeholder_count};
 
 /// 视为玩家可见的变量名。
 /// message_* 系列是 /datum/emote 的各形态表情模板（人形/默剧/外星/AI/机器人等），玩家在聊天
@@ -317,6 +317,9 @@ pub fn is_display_descriptor_proc(proc_name: &str) -> bool {
             // 照片检查文本：`"You can also see [src] on the photo[受伤 ? ", looking a bit hurt" : ""]…"`
             // 是各 mob 覆盖的 proc 返回值，既不是 sink 实参也不是类型变量，整类够不着。
             | "get_photo_description"
+            // 伤口的检查描述（`/datum/wound/…/get_wound_description()`）：整句由各伤口类型覆盖
+            // 返回，玩家每次检查伤者都会看到。同为 proc 返回值，抽取器够不着。
+            | "get_wound_description"
     )
 }
 
@@ -1447,6 +1450,16 @@ fn collect_lang_arg_idents_block(
                 }
             }
         }
+        // **`var/x = <含 LANG 的表达式>` 的初值也要看**：`for_each_statement_expr` 不覆盖
+        // Statement::Var 的初始化式（`collect_local_assign_groups` 之所以要单独处理 Var，就是
+        // 这个原因）。漏掉它的后果很隐蔽：`var/t = cond ? LANG(key, list(magnitude)) : ""`
+        // 里的 `magnitude` 收不进种子 → 它那几个 switch 分支的形容词一条都不进目录，
+        // 而模板早已译好 —— 又是「模板中文、实参英文」。
+        if let Statement::Var(var_stmt) = &stmt.elem {
+            if let Some(value) = &var_stmt.value {
+                collect_lang_arg_idents_expr(value, out);
+            }
+        }
         for_each_statement_expr(&stmt.elem, &mut |e| collect_lang_arg_idents_expr(e, out));
         for_each_statement_block(&stmt.elem, &mut |b| collect_lang_arg_idents_block(b, out));
     }
@@ -2546,6 +2559,25 @@ fn is_lang_arg_text(s: &str) -> bool {
     false
 }
 
+/// sink 消息框架专用的 emit：**跳过 `emit` 的「必须含字母」闸门**。
+///
+/// 那道闸门与 `build_template` 里那道是同一个判断，理由也一样（纯标签/纯占位符不是文案）；
+/// 但对 `build_sink_template` 放行的那一类（`"{0} {1}{2} {3}{4}"`）它是**第二次**否决，
+/// 而这一类恰恰需要成为模板 —— 中文要靠它丢掉英文复数槽、调换语序，实参也要靠这条调用
+/// 变成 LANG 之后才走得到 `lang_localize_arg`。准入面由 build_sink_template 的 ≥3 占位符
+/// 闸门界定，这里只是不再重复否决。
+fn emit_sink_frame(catalog: &mut Catalog, type_path: &str, template: &str) {
+    if template.chars().any(|c| c.is_alphabetic()) {
+        emit(catalog, type_path, template);
+        return;
+    }
+    if template.trim().chars().count() < 2 {
+        return;
+    }
+    let key = make_key(&namespace_for(type_path), template);
+    let _ = catalog.insert(type_path, &key, template);
+}
+
 pub(crate) fn emit(catalog: &mut Catalog, type_path: &str, template: &str) {
     if !template.chars().any(|c| c.is_alphabetic()) {
         return;
@@ -2992,8 +3024,8 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                                 for chunk in chunks {
                                     emit(catalog, ns, &chunk);
                                 }
-                            } else if let Some(template) = build_template(arg) {
-                                emit(catalog, ns, &template);
+                            } else if let Some(template) = build_sink_template(arg) {
+                                emit_sink_frame(catalog, ns, &template);
                             }
                         }
                     }
@@ -3295,8 +3327,8 @@ fn recurse_follow(follow: &Follow, ns: &str, catalog: &mut Catalog, suppress: bo
                         continue;
                     }
                     if let Some((_, arg)) = resolve_sink_arg(name.as_str(), i, args) {
-                        if let Some(template) = build_template(arg) {
-                            emit(catalog, ns, &template);
+                        if let Some(template) = build_sink_template(arg) {
+                            emit_sink_frame(catalog, ns, &template);
                         }
                     }
                 }

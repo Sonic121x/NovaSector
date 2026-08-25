@@ -88,7 +88,7 @@
 	if(!do_after(user, harvest_time * tool.toolspeed, src))
 		return ITEM_INTERACT_BLOCKING
 
-	visible_message(span_notice("[user] [harvest_verb][harvest_verb_suffix] [src]."),
+	visible_message(span_notice(LANG("obj.5f7ab58442a7a604", list(user, harvest_verb, harvest_verb_suffix, src))),
 					span_notice(LANG("obj.d6171b714b8cf981", list(harvest_verb, src))))
 	play_attack_sound(tool.force)
 	if(harvest(user))
@@ -107,7 +107,7 @@
 	play_attack_sound()
 	if(!do_after(user, harvest_time, src))
 		return
-	visible_message(span_notice("[user] [harvest_verb][harvest_verb_suffix] [src]."),
+	visible_message(span_notice(LANG("obj.5f7ab58442a7a604", list(user, harvest_verb, harvest_verb_suffix, src))),
 		ignored_mobs = list(user))
 	play_attack_sound()
 

@@ -1005,7 +1005,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 				to_chat(usr, "[spaces][whitespace])", confidential = TRUE)
 
 			else
-				to_chat(usr, "[spaces][whitespace][query_tree[item]]", confidential = TRUE)
+				to_chat(usr, LANG("_root.b0fa8d1ff2111e4e", list(spaces, whitespace, query_tree[item])), confidential = TRUE)
 
 //Staying as a world proc as this is called too often for changes to offset the potential IsAdminAdvancedProcCall checking overhead.
 /world/proc/SDQL_var(object, list/expression, start = 1, source, superuser, datum/sdql2_query/query)

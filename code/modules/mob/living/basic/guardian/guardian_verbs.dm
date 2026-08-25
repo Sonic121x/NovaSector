@@ -95,7 +95,7 @@
 	var/mob/living/living_owner = owner
 	var/list/guardians = living_owner.get_all_linked_holoparasites()
 	for(var/mob/living/basic/guardian/guardian as anything in guardians)
-		to_chat(guardian, "<font color=\"[guardian.guardian_colour]\">[span_bolditalic(owner.real_name)]:</font> [preliminary_message]" )
+		to_chat(guardian, LANG("datum.28d767c9e07217e7", list(guardian.guardian_colour, span_bolditalic(owner.real_name), preliminary_message)) )
 	for(var/dead_mob in GLOB.dead_mob_list)
 		var/link = FOLLOW_LINK(dead_mob, owner)
 		to_chat(dead_mob, "[link] [my_message]")

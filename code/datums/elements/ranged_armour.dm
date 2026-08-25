@@ -58,5 +58,5 @@
 		return
 	if (hit_atom.throwforce >= minimum_thrown_force)
 		return
-	parent.visible_message(span_danger("[hit_atom] [throw_blocked_message] [parent]!"))
+	parent.visible_message(span_danger(LANG("datum.dd02d8c90a5dee7a", list(hit_atom, throw_blocked_message, parent))))
 	return COMSIG_HIT_PREVENTED
