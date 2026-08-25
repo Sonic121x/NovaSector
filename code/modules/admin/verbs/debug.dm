@@ -781,6 +781,23 @@ ADMIN_VERB(reestablish_tts_connection, R_DEBUG, "重新连接 TTS", "Re-establis
 		return
 	message_admins("[key_name_admin(user)] successfully re-established the connection to the TTS HTTP server.")
 	log_admin("[key_name(user)] successfully re-established the connection to the TTS HTTP server.")
+// NOVA EDIT ADDITION START - ADMIN - Runtime TTS control.
+/// Globally enables or disables new TTS requests without dropping the backend connection.
+ADMIN_VERB(toggle_tts_runtime, R_ADMIN, "切换 TTS", "Enable or disable text-to-speech during the round.", ADMIN_CATEGORY_SERVER)
+	var/enable = !SStts.admin_enabled || !SStts.tts_enabled
+	if(!SStts.set_admin_enabled(enable))
+		to_chat(user, span_warning(LANG("datum.e4e2a8583271c2b6", null))) // NOVA EDIT CHANGE - I18N - ORIGINAL: to_chat(user, span_warning("Unable to enable TTS. Check TTS_HTTP_URL, TTS_HTTP_TOKEN, and the adapter service."))
+		message_admins(span_adminnotice("[key_name_admin(user)] failed to enable TTS."))
+		log_admin("[key_name(user)] failed to enable TTS.")
+		return
+
+	var/status = SStts.is_runtime_enabled() ? "enabled" : "disabled"
+	to_chat(user, span_notice(LANG("datum.0604c7b67e169ba1", list(status)))) // NOVA EDIT CHANGE - I18N - ORIGINAL: to_chat(user, span_notice("TTS is now [status]."))
+	message_admins(span_adminnotice("[key_name_admin(user)] [status] TTS."))
+	log_admin("[key_name(user)] [status] TTS.")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle TTS", capitalize(status)))
+// NOVA EDIT ADDITION END
+
 
 ADMIN_VERB(allow_browser_inspect, R_DEBUG, "允许浏览器检查", "Allow browser debugging via inspect", ADMIN_CATEGORY_DEBUG)
 	if(user.byond_version < 516)

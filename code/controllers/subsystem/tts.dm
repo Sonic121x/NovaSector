@@ -38,6 +38,10 @@ SUBSYSTEM_DEF(tts)
 	var/tts_enabled = FALSE
 	/// Whether the TTS engine supports pitch adjustment or not.
 	var/pitch_enabled = FALSE
+	// NOVA EDIT ADDITION START - ADMIN - Runtime TTS control.
+	/// Admin-controlled gate for new TTS requests. Backend connectivity remains in tts_enabled.
+	var/admin_enabled = TRUE
+	// NOVA EDIT ADDITION END
 
 	/// TTS messages won't play if requests took longer than this duration of time.
 	var/message_timeout = 7 SECONDS
@@ -63,6 +67,28 @@ SUBSYSTEM_DEF(tts)
 /datum/controller/subsystem/tts/stat_entry(msg)
 	msg = "\n  Active:[length(in_process_http_messages)]|Standby:[length(queued_http_messages?.L)]|Avg:[average_tts_messages_time]"
 	return ..()
+// NOVA EDIT ADDITION START - ADMIN - Runtime TTS control.
+/// Returns whether new TTS audio requests are currently accepted.
+/datum/controller/subsystem/tts/proc/is_runtime_enabled()
+	return tts_enabled && admin_enabled
+
+/// Changes the runtime TTS gate, reconnecting the configured backend when needed.
+/datum/controller/subsystem/tts/proc/set_admin_enabled(enabled)
+	if(!enabled)
+		admin_enabled = FALSE
+		return TRUE
+
+	if(!tts_enabled)
+		if(!CONFIG_GET(string/tts_http_url))
+			admin_enabled = FALSE
+			return FALSE
+		if(!establish_connection_to_tts())
+			admin_enabled = FALSE
+			return FALSE
+
+	admin_enabled = TRUE
+	return TRUE
+// NOVA EDIT ADDITION END
 
 /proc/cmp_word_length_asc(datum/tts_request/a, datum/tts_request/b)
 	return length(b.message) - length(a.message)
@@ -444,6 +470,10 @@ SUBSYSTEM_DEF(tts)
 #undef TTS_ARBRITRARY_DELAY
 
 /datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "", blip_base = "male", blip_number = "1", force_blips = FALSE, identifier = "invalid")
+	// NOVA EDIT ADDITION START - ADMIN - Runtime TTS control.
+	if(!admin_enabled)
+		return
+	// NOVA EDIT ADDITION END
 	if(!tts_enabled)
 		return
 
@@ -451,10 +481,10 @@ SUBSYSTEM_DEF(tts)
 	if(!fexists("tmp/tts/init.txt"))
 		rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")
 
-	var/static/regex/contains_alphanumeric = regex("\[a-zA-Z0-9]")
+	// NOVA EDIT REMOVAL - ADMIN - ORIGINAL: var/static/regex/contains_alphanumeric = regex("\[a-zA-Z0-9]")
 	// If there is no alphanumeric char, the output will usually be static, so
 	// don't bother sending
-	if(contains_alphanumeric.Find(message) == 0)
+	if(!tts_has_speech_content(message)) // NOVA EDIT CHANGE - ADMIN - ORIGINAL: if(contains_alphanumeric.Find(message) == 0)
 		return
 
 	var/shell_scrubbed_input = tts_speech_filter(message)

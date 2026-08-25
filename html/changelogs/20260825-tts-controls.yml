@@ -1,0 +1,5 @@
+author: "sernseek"
+delete-after: True
+changes:
+  - bugfix: "Text-to-speech now preserves Chinese text instead of stripping it before synthesis."
+  - admin: "Administrators can enable or disable new TTS requests during a round."

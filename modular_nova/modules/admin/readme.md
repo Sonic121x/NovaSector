@@ -6,7 +6,7 @@ MODULE ID: ADMIN
 
 ### Description:
 
-Adds multuple admin features, loud asay. As well as bold/itallics/underline.
+Adds multiple admin features, including loud ASAY, rich text controls, and a runtime TTS switch.
 
 ### TG Proc Changes:
 
@@ -16,6 +16,9 @@ Adds multuple admin features, loud asay. As well as bold/itallics/underline.
 - code\modules\admin\verbs\adminpm.dm
 - code\modules\admin\admin_verbs.dm
 - code\modules\mob\living\emote.dm > /datum/emote/living/custom/run_emote
+- code\__HELPERS\tts.dm > /proc/tts_speech_filter
+- code\modules\admin\verbs\debug.dm
+- code\controllers\subsystem\tts.dm > /datum/controller/subsystem/tts/proc/queue_tts_message
 
 ### Defines:
 
@@ -27,7 +30,7 @@ Adds multuple admin features, loud asay. As well as bold/itallics/underline.
 
 ### Included files that are not contained in this module:
 
-- N/A
+- code\modules\unit_tests\~nova\tts_controls.dm
 
 ### Credits:
 
