@@ -1,0 +1,29 @@
+{
+	"_comment": [
+		"血迹类污渍**运行期拼名**的构件词（按 locale → 英文构件 → 中文构件）。",
+		"",
+		"`/obj/effect/decal/cleanable/blood/update_name()` 每次都重算 name：",
+		"    name = \"[base_name] [get_blood_string()]\"      → \"pool of oil\"",
+		"    name = \"[…] [base_suffix]\"                     → \"blood trail\"",
+		"    name = \"[dry_prefix] [name]\"                   → \"dried pool of blood\"",
+		"整串永远不是目录键，而类型表按 initial(name) 取键也对不上（oil 的 initial 是 \"motor oil\"）。",
+		"默认血之所以看着正常，只是因为拼出来的 \"pool of blood\" 恰好等于它自己的 initial(name)。",
+		"",
+		"构件词（pool of / trail of / dried / trail）是**类型变量**，不在任何 SINK_VARS 里，而且短到",
+		"进不了任何句子闸门；它们又都是常见词，放进 strings/i18n/<locale>/ 会被 build_i18n_cache 并进",
+		"全局反查表。所以走顶层域内表，只在 lang_localize_blood_decal_name() 这一个显示点生效。",
+		"血液本身的名字（oil / blood / acid …）走正常的整串精确反查，不在这里登记。"
+	],
+	"zh-Hans": {
+		"base_name": {
+			"pool of": "一滩",
+			"trail of": "一道"
+		},
+		"base_suffix": {
+			"trail": "痕"
+		},
+		"dry_prefix": {
+			"dried": "干涸的"
+		}
+	}
+}

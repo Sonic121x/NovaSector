@@ -252,9 +252,18 @@
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	var/mob/living/basic/bot/bot_pawn = controller.pawn
 	var/obj/item/our_hat = (locate(/obj/item/clothing/head) in bot_pawn)
+	// NOVA EDIT CHANGE START - i18n: 整条走模板。原写法把短语与目标名**运行期拼**成
+	// "performs an elaborate salute for Officer Beepsky!" —— 整串永远不是目录键，落地层只能
+	// 按标签切块，这一块整条查不到，于是名字翻了、短语留英文（玩家实测即此）。
+	// 中文语序还要求目标名在**短语之前**（「向哔斯基警官行了个郑重的军礼！」），只有模板排得开。
+	// 池里的短语是黑板词池、各自是目录键，交给 lang_localize_arg 逐条精确反查（无多词门槛）；
+	// 帽子那条是运行期拼的，先自己走一遍 LANG 再进池，反查查不到时原样返回，不会被二次改写。
+	// ORIGINAL: if(our_hat) salute_list += "tips [our_hat] at "
+	// ORIGINAL: bot_pawn.manual_emote(pick(salute_list) + " [controller.blackboard[target_key]]!")
 	if(our_hat)
-		salute_list += "tips [our_hat] at "
-	bot_pawn.manual_emote(pick(salute_list) + " [controller.blackboard[target_key]]!")
+		salute_list += LANG("datum.7f65eaa47c2fc226", list(our_hat))
+	bot_pawn.manual_emote(LANG("datum.5b73aab73d9ede67", list(pick(salute_list), controller.blackboard[target_key])))
+	// NOVA EDIT CHANGE END
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/bt_node/ai_behavior/salute_authority/finish_action(datum/ai_controller/controller, succeeded)

@@ -1288,6 +1288,55 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 			return material_name
 	return lang_localize_display_name(display_name, "[type]")
 
+/// 血迹类污渍的运行期拼名（见 master_files 的 /obj/effect/decal/cleanable/blood 覆写）。
+///
+/// 只在 display_name 与「按英文构件拼出来的形态」逐字节相同时才动手 —— 那证明这一串确实是
+/// update_name() 拼的，而不是地图实例覆盖或别处改的名。任一构件翻不动就返回 null，由调用方
+/// 回落默认链；中文各构件之间不加空格。
+/proc/lang_localize_blood_decal_name(obj/effect/decal/cleanable/blood/decal, display_name)
+	if(!istext(display_name) || GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
+		return null
+	var/list/table = lang_scoped_table("blood_decal_names.json")
+	if(!length(table))
+		return null
+	var/blood_string = decal.get_blood_string()
+	if(!istext(blood_string) || !length(blood_string))
+		return null
+
+	// 先按英文重拼一遍，确认这串就是 update_name() 的产物。
+	var/rebuilt = initial(decal.name)
+	if(decal.base_name)
+		rebuilt = "[decal.base_name] [blood_string]"
+	if(decal.base_suffix)
+		rebuilt = "[decal.base_name ? rebuilt : blood_string] [decal.base_suffix]"
+	if(decal.dried && decal.dry_prefix)
+		rebuilt = "[decal.dry_prefix] [rebuilt]"
+	if(rebuilt != display_name)
+		return null
+
+	var/localized_blood = lang_reverse_text(blood_string)
+	if(localized_blood == blood_string)
+		return null
+	. = localized_blood
+	if(decal.base_name)
+		var/list/bases = table["base_name"]
+		var/base = bases?[decal.base_name]
+		if(!base)
+			return null
+		. = "[base][.]"
+	if(decal.base_suffix)
+		var/list/suffixes = table["base_suffix"]
+		var/suffix = suffixes?[decal.base_suffix]
+		if(!suffix)
+			return null
+		. = "[.][suffix]"
+	if(decal.dried && decal.dry_prefix)
+		var/list/prefixes = table["dry_prefix"]
+		var/prefix = prefixes?[decal.dry_prefix]
+		if(!prefix)
+			return null
+		. = "[prefix][.]"
+
 /// 运行期在**类型名两侧加缀**的实例名：AI 法则架的 `"\proper core module rack 'alpha'"`、
 /// 贴标机改过的 `"beaker (盐)"`、各种 `"[name] #3"`。整串不是目录键，类型表按 `initial(name)`
 /// 判定也对不上 → 精确反查与类型表双双 miss，只剩聊天层的字面 AC（多词才走、无词边界）。

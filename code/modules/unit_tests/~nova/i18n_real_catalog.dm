@@ -133,6 +133,28 @@
 	TEST_ASSERT_EQUAL(lang_reverse_text("clowns"), "clowns", "恐惧症类别词**不应**进全局反查表（是匹配表的键）")
 	TEST_ASSERT_EQUAL(lang_phobia_label("not_a_phobia"), "not_a_phobia", "未登记类别应原样返回")
 
+	// ④b emote 整行：`manual_emote()` 经 visible_message 拼成 `<span class='emote'><b>名字</b> 动作</span>`。
+	// 玩家实测报「蟑螂 chitters.」—— 名字翻了、动作没翻，**同一行两块不同待遇**就是判据。
+	// 分层断言，红了能一眼看出断在哪一层：目录 → 反查表 → 切块器整行。
+	TEST_ASSERT_NOTEQUAL(lang_reverse_text("chitters."), "chitters.", "emote 动作词应在目录且进了反查表")
+	TEST_ASSERT_NOTEQUAL(lang_reverse_text("cockroach"), "cockroach", "emote 名字应在目录且进了反查表")
+	var/emote_line = "<span class='emote'><b>cockroach</b> chitters.</span>"
+	var/emote_out = lang_fallback_apply_html(emote_line, LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(emote_out, "chitters"), "emote 动作词应被整块反查翻掉：[emote_out]")
+	TEST_ASSERT(!findtext(emote_out, "cockroach"), "emote 名字应被整块反查翻掉：[emote_out]")
+	TEST_ASSERT(findtext(emote_out, "<span class='emote'>"), "外层 span 必须原样保留：[emote_out]")
+	// 头顶气泡拿的是**标签包装之前**的那份 raw_msg，所以聊天框翻好了不代表气泡也翻了
+	// （chatmessage.dm 里那段 emote 专用的落地层调用守的就是这条）。
+	TEST_ASSERT_NOTEQUAL(lang_fallback_apply("chitters.", LANGUAGE_LOCALE_ZH_HANS), "chitters.", \
+		"emote 的裸文本（气泡形态）也必须翻得动")
+
+	// ④c 血迹类污渍的运行期拼名：`"[base_name] [血液名]"` 整串不是目录键，类型表按
+	// initial(name) 也对不上（oil 的 initial 是 "motor oil"）。默认血看着正常纯属巧合。
+	var/obj/effect/decal/cleanable/blood/oil/oil_decal = allocate(/obj/effect/decal/cleanable/blood/oil)
+	var/oil_name = oil_decal.lang_localize_name_for_display(oil_decal.name)
+	TEST_ASSERT(!findtext(oil_name, "pool of"), "血迹拼名的前缀应经域内表翻掉：[oil_name]")
+	TEST_ASSERT(!findtext(oil_name, "oil"), "血迹拼名的血液词应经整串反查翻掉：[oil_name]")
+
 	// ⑤ 回合总结的反派目标行：explanation_text 是**裸插值**赋值（objective.dm 没走 LANG），
 	// 只能靠边界模板逆匹配救。锚遮蔽修好之前它是半翻译（内层换成中文、外层留英文）。
 	var/objective_line = "Prevent Kabu Weien, the Cargo Technician, from escaping alive."

@@ -191,8 +191,17 @@
 	else if(as_carbon.is_mouth_covered(ITEM_SLOT_MASK))
 		covered = "mask"
 	if(covered)
+		// NOVA EDIT CHANGE START - i18n: 拆成两条整句模板。原写法把 "headgear"/"mask" 当 LANG 实参，
+		// 而它们是**单 token 局部量** —— LANG 实参的多词闸门按设计不收（单 token 实参里 act/黑板键
+		// 浓度极高），于是模板译好了、槽里漏出英文（玩家看到「你必须先取下你的headgear！」）。
+		// 整条走模板既绕开那道闸门，也让中文语序自己排。所有格代词经 lang_pronoun 走语法表。
+		// ORIGINAL: to_chat(user, span_warning(LANG("obj.87a227577f22b424", list(who, covered))))
 		var/who = (isnull(user) || eater == user) ? "your" : "[eater.p_their()]"
-		to_chat(user, span_warning(LANG("obj.87a227577f22b424", list(who, covered))))
+		if(covered == "headgear")
+			to_chat(user, span_warning(LANG("obj.892b7338f1a82533", list(lang_pronoun(who)))))
+		else
+			to_chat(user, span_warning(LANG("obj.725be70e424818d6", list(lang_pronoun(who)))))
+		// NOVA EDIT CHANGE END
 		return FALSE
 	return TRUE
 

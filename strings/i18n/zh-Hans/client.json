@@ -506,6 +506,7 @@
 	"client.d4631ce706b4d851": "显示 del 记录的所有经过它的内容。",
 	"client.d49241b731897dca": "更改穿梭机上的事件。",
 	"client.d4fe13c4040d7fbd": "召唤一支应急响应小队。",
+	"client.d53ff876e99fc02e": "在回合期间启用或禁用文字转语音。",
 	"client.d56c8a0099ee89b9": "错误：Admin-PM-回复：您无法使用管理员私信（已禁言）。",
 	"client.d5f28dbd77ad8c63": "状态面板加载失败，点击<a href='byond://?src={0};reload_statbrowser=1'>这里</a>重新加载面板 ",
 	"client.d5f970f6b6f7b812": "你需要口袋里的物品吗？",

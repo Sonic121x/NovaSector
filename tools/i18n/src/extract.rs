@@ -1242,8 +1242,23 @@ fn walk_lang_arg_locals(
     // 互换，所以整池同性质；而一个在分支里被反复赋值的局部变量，常常一支放句子、另一支放
     // 模式键。实测放开后涌进 `imported_abilities` / `OOC` / `PRAYER` / `Warrant` / `cold` /
     // `hot` / `low` / `high` 这些，lint 当场 1 错误 + 8 条新碰撞。
+    // 例外与 pick 词池同源：变量被喂进 `plural_s()` 就证明它装的是**显示动词**（那个 proc 只对
+    // 要跟主语数配合的英文动词有意义，查表键不会经过它），于是它那些单 token 值也放行。
+    // 投掷消息里 `verb_text` 先 `pick(…)` 再 `if(prob(0.5)) verb_text = "yeet"` —— 池收进来了，
+    // 这条直接赋值的没有，玩家看到「你yeet廉价打火机。」。
+    let mut pluralized = std::collections::HashSet::new();
+    collect_pluralized_idents(block, &mut pluralized);
+    let mut grouped = std::collections::BTreeMap::new();
+    collect_local_assign_groups(block, &names, &mut grouped);
+    for (var_name, group) in grouped {
+        let verb_slot = pluralized.contains(&var_name);
+        for literal in group {
+            if is_lang_arg_text(&literal) || (verb_slot && !literal.trim().is_empty()) {
+                emit(catalog, ns, literal.trim());
+            }
+        }
+    }
     let mut literals = Vec::new();
-    collect_local_assign_literals(block, &names, &mut literals);
     collect_local_list_literal_values(block, &names, &mut literals);
     for literal in literals {
         if is_lang_arg_text(&literal) {
@@ -1270,12 +1285,75 @@ fn walk_lang_arg_locals(
         if compared.contains(&var_name) {
             continue;
         }
-        if !pool.iter().any(|literal| is_lang_arg_text(literal)) {
+        // 准入证据有两条，满足其一即可：
+        //  ① 同池里有多词显示文本 —— 池成员按构造可以互换，一个位置既能填 `squeaking things`
+        //     又能填 `mice`，那它就是显示槽。
+        //  ② 这个变量被喂进了**英文动词一致性助手**（`plural_s`/`p_s`/`p_es`）。那类 proc 只对
+        //     「要跟主语数配合的动词」才有意义，程序查表的键不会经过它 —— 于是它就是「这是显示
+        //     动词」的结构性证明，全池皆单词也放行。投掷动词池
+        //     `pick("throw","toss","hurl","chuck","fling")` 即此：模板早就 LANG 化也译好了，
+        //     填进去的动词却一直是英文（玩家看到「你chuck廉价打火机。」）。
+        if !pool.iter().any(|literal| is_lang_arg_text(literal)) && !pluralized.contains(&var_name)
+        {
             continue;
         }
         for literal in pool {
             emit(catalog, ns, literal.trim());
         }
+    }
+}
+
+/// 在本 proc 里被喂进**英文动词一致性助手**的裸标识符（`plural_s(x)` / `p_s(x)` / `p_es(x)`）。
+///
+/// 这几个 proc 的职责是给英文动词补主语一致的词尾，只有「显示动词」才会经过它们 —— 程序查表
+/// 用的键、act 回传值、黑板键都不会。所以它是一条比「同池有没有多词兄弟」更强的准入证据，
+/// 足以让**全池皆单词**的动词池也进目录。
+fn collect_pluralized_idents(
+    block: &[dm::ast::Spanned<Statement>],
+    out: &mut std::collections::HashSet<String>,
+) {
+    fn scan(expr: &Expression, out: &mut std::collections::HashSet<String>) {
+        match expr {
+            Expression::BinaryOp { lhs, rhs, .. } => {
+                scan(lhs, out);
+                scan(rhs, out);
+            }
+            Expression::AssignOp { rhs, .. } => scan(rhs, out),
+            Expression::TernaryOp { cond, if_, else_ } => {
+                scan(cond, out);
+                scan(if_, out);
+                scan(else_, out);
+            }
+            Expression::Base { term, .. } => match &term.elem {
+                Term::Call(name, args) => {
+                    if matches!(name.as_str(), "plural_s" | "p_s" | "p_es") {
+                        for arg in args.iter() {
+                            if let Expression::Base { term, follow } = arg {
+                                if follow.is_empty() {
+                                    if let Term::Ident(ident) = &term.elem {
+                                        out.insert(ident.clone());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    for arg in args.iter() {
+                        scan(arg, out);
+                    }
+                }
+                Term::Expr(inner) => scan(inner, out),
+                Term::List(args) => {
+                    for arg in args.iter() {
+                        scan(arg, out);
+                    }
+                }
+                _ => {}
+            },
+        }
+    }
+    for stmt in block.iter() {
+        for_each_statement_expr(&stmt.elem, &mut |expr| scan(expr, out));
+        for_each_statement_block(&stmt.elem, &mut |b| collect_pluralized_idents(b, out));
     }
 }
 
@@ -2596,7 +2674,11 @@ fn is_lang_arg_text(s: &str) -> bool {
     // ——`nova-i18n lint` 一次就报出 12 条高置信 + 98 条单词类碰撞。而单词类实参本来就有专门的精确
     // 表兜底（`lang_localize_arg` 第一步查 `_state_words.json`：open/closed/lit…），不靠这条路径。
     // 与 P1 多词门槛、AC 字典多词过滤、首字母大写变体是同一条安全线。
-    if !t.chars().any(char::is_whitespace) {
+    // 例外：**以句末标点收尾**的单 token 是句子残句（`" flimsily."`、`" really hard!"` 的兄弟），
+    // 不可能是 act/topic/黑板键 —— 那些永远不带句号叹号。投掷消息的力度后缀即此：同一个变量的
+    // 三个分支里多词那条进了目录、单词那条没有，玩家看到「你抛货运部数据磁盘 flimsily.」。
+    let ends_sentence = t.ends_with('.') || t.ends_with('!') || t.ends_with('?') || t.ends_with('…');
+    if !t.chars().any(char::is_whitespace) && !ends_sentence {
         return false;
     }
     // 只有标记、没有文案的串（`span_*` 宏在 AST 里展开成的 `"<span class='notice'>"` 这类半截
@@ -2805,7 +2887,13 @@ fn visit_stmt(stmt: &Statement, ns: &str, catalog: &mut Catalog, suppress: bool,
 /// 而它正是宠物/简单生物叫声的主要来源（生产日志里 92 条没进目录的拟声词几乎全出自这里）。
 /// 词池元素是单词感叹词，过不了激进 pass 的整句闸门，所以必须专门收。
 fn is_speech_blackboard_key(key: &str) -> bool {
-    matches!(key, "emote_say" | "emote_hear" | "emote_see")
+    // `salute_messages`：机器人向权限人员致意的短语池（`BB_SALUTE_MESSAGES`）。与 emote 池同性质
+    // ——`bot_subtrees.dm` 把 pick 出来的那条拼进 manual_emote，玩家实测看到「医疗机器人
+    // performs an elaborate salute for 哔斯基警官!」（名字翻了、短语没翻）。
+    matches!(
+        key,
+        "emote_say" | "emote_hear" | "emote_see" | "salute_messages"
+    )
 }
 
 /// `"显示名" = /类型/路径` 里的 rhs 是不是**光秃秃的类型路径**（无构造实参、无后续下标）。

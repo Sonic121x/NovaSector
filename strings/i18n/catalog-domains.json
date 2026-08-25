@@ -62,6 +62,7 @@
 		"alarm_types.json": { "domain": "scoped:alarm_types", "owner": "manual" },
 		"armor_classes.json": { "domain": "scoped:armor_classes", "owner": "manual" },
 		"autopsy_labels.json": { "domain": "scoped:autopsy_labels", "owner": "manual" },
+		"blood_decal_names.json": { "domain": "scoped:blood_decal_names", "owner": "manual" },
 		"duration_formatting.json": { "domain": "scoped:duration_formatting", "owner": "manual" },
 		"grammar_tokens.json": { "domain": "scoped:grammar_tokens", "owner": "manual" },
 		"health_scan_labels.json": { "domain": "scoped:health_scan_labels", "owner": "manual" },

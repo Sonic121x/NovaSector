@@ -516,6 +516,7 @@
 	"client.d4631ce706b4d851": "Display del's log of everything that's passed through it.",
 	"client.d49241b731897dca": "Change the events on a shuttle.",
 	"client.d4fe13c4040d7fbd": "Summons an emergency response team.",
+	"client.d53ff876e99fc02e": "Enable or disable text-to-speech during the round.",
 	"client.d56c8a0099ee89b9": "Error: Admin-PM-Reply: You are unable to use admin PM-s (muted).",
 	"client.d5f28dbd77ad8c63": "Statpanel failed to load, click <a href='byond://?src={0};reload_statbrowser=1'>here</a> to reload the panel ",
 	"client.d5f970f6b6f7b812": "Do you need the items in your pockets?",
