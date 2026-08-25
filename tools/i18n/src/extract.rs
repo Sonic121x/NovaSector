@@ -135,6 +135,17 @@ const SINK_VARS: &[&str] = &[
     // 反派面板 / 幽灵环绕菜单的分组标题（`antagpanel_category = "Icemoon Dwellers"`，19 个值）。
     // 纯分组标签，玩家在环绕菜单里逐条看到。
     "antagpanel_category",
+    // 基础生物的交互动词（`response_help_continuous = "brushes"` / `response_harm_simple = "kick"`…
+    // 六个字段）。它们是**纯显示动词**，经 `[user] [动词] [target]` 这类第三人称消息与自身消息
+    // 显示，从不参与比较。全仓 150 个值里此前只有 45 个**恰好**因为同名 attack_verb 入过目录，
+    // 其余整齐地留在英文；而已入目录的那批里 `brush` 撞上了考古刷子的名字（译成「刷子」）——
+    // 把整族收进来之后 `brush` 变成跨命名空间歧义，反查表按设计整条略过，回落英文，比错译好。
+    "response_help_continuous",
+    "response_help_simple",
+    "response_harm_continuous",
+    "response_harm_simple",
+    "response_disarm_continuous",
+    "response_disarm_simple",
     "job_lore",
     "area_lore",
     "cause_of_death",
@@ -290,6 +301,13 @@ pub struct ProcCtx {
 pub fn is_examine_proc(proc_name: &str) -> bool {
     matches!(proc_name, "examine" | "examine_more" | "examine_tags")
         || proc_name.starts_with("on_examine")
+        // 医疗扫描仪的渲染 proc：整个 proc 体就是往 `render_list` 里拼玩家可见的报告行，
+        // 与 examine 累加器同性质（只是累加器叫 render_list 而不是 `.`）。收进来是为了让下面
+        // 那道「冒号收尾」的闸门在这里允许占位符 —— 日志/管理面板不会长在这类 proc 里。
+        || matches!(
+            proc_name,
+            "healthscan" | "chemscan" | "woundscan" | "diseasescan"
+        )
 }
 
 /// 「显示描述符」proc：材料属性等把玩家可见短语从 switch 里 `return` 出来（"very rigid"、
@@ -600,7 +618,7 @@ fn has_translatable_words(template: &str) -> bool {
     false
 }
 
-fn is_loose_sentence(template: &str) -> bool {
+fn is_loose_sentence(template: &str, in_examine: bool) -> bool {
     let lit_raw = strip_placeholders(template);
     let lit_stripped = crate::template::strip_tags(&lit_raw);
     let lit = lit_stripped.trim();
@@ -641,7 +659,12 @@ fn is_loose_sentence(template: &str) -> bool {
         // （`{0} Invalid timer state: …`、`{0}:{1}:Assertion failed: {2}{3}`、watchlist 通报）——
         // 它们走的是 message_admins/CRASH 这些 is_non_player_sink 够不着的汇聚点，而「冒号 +
         // 插值」正是日志行的典型形状。纯静态的冒号标签行没有这个问题。
-        if !end.ends_with(':') || template.contains('{') {
+        // 例外：examine/扫描仪渲染 proc 内允许「冒号 + 占位符」。上面那条闸门挡的是日志行，
+        // 而日志不会写在 examine 家族的 proc 里。实测反差就在同一个 proc 的相邻两行：
+        //   `Subject contains no reagents in their {0}stream.`        → 句号，在目录
+        //   `Subject contains the following reagents in their {0}stream:` → 冒号 + 占位符，不在
+        // 全局放开这一条会涌进 366 条管理面板/调试行（TGS 版本、admin 表单、PM 日志），实测过。
+        if !end.ends_with(':') || (template.contains('{') && !in_examine) {
             return false;
         }
     }
@@ -2765,6 +2788,16 @@ const CATALOG_VALUE_BLOCKLIST: &[&str] = &[
     "APC",
     // `antagpanel_category` 的分组名，同时是 `ROLE_MALF` 这个 define 的值（`antag_flag ==` 比较）。
     "Malf AI",
+    // `response_*` 交互动词里与 DM 标识符同形的三个（`stamp` 是纸张印章类型与 icon_state、
+    // `stomp` 是 AI 行为/技能 id、`strike` 是雷击与工会事件 id）。与 ATTACK_VERB_IDENT_BLOCKLIST
+    // 同一条安全线：宁可少译一个动词，也不要往全局反查表里塞这种词对。
+    "stamp",
+    "stomp",
+    "strike",
+    // `robust` 在这个仓库里是三种东西：工具箱的攻击/交互动词（SS13 黑话「暴揍」）、
+    // `icon_state = "robust"`、以及**物品检查里的力度描述词** `force_string = "robust"`（那里是
+    // 「结实」的本义）。后两者与动词义互斥，任何一条译文都会在另一处出错 —— 同形异义，不收。
+    "robust",
 ];
 
 /// 「这个串是选项表里的**显示标签**」：多词 + **首字母大写**。
@@ -2938,7 +2971,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                 && matches!(&term.elem, Term::String(_) | Term::InterpString(..))
             {
                 if let Some(template) = build_template(expr) {
-                    if is_loose_sentence(&template) {
+                    if is_loose_sentence(&template, ctx.examine) {
                         emit(catalog, ns, &template);
                     }
                 }
@@ -3061,7 +3094,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
             let mut child_suppress = suppress;
             if !suppress && matches!(op, dm::ast::BinaryOp::Add) {
                 if let Some(template) = build_template(expr) {
-                    if is_loose_sentence(&template) {
+                    if is_loose_sentence(&template, ctx.examine) {
                         emit(catalog, ns, &template);
                         child_suppress = true;
                     }

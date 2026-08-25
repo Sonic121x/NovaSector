@@ -51,6 +51,11 @@ const NAME_LANG_ASSIGN_ALLOWLIST: &[&str] = &[
     // （与 mail.dm 的「给某某的信」同形），编号来自运行期计数器，不存在 canonical 英文原名
     // 可供显示边界反查。纸张名不参与任何比较。
     "code/modules/detectivework/scanner.dm",
+    // MOD 组件的钉选动作名 `"Activate [模块名]"`：上游本来就在 `New()` 里按链接的模块拼出来，
+    // 不存在 canonical 英文原名可供显示边界反查。唯一读它的比较是 `action.dm` 的 `SetId`，
+    // 那里比的是**同一个 mob 上两个动作名之间**（给同名按钮分配不同 id），两边同时被译仍然
+    // 相等，所以译名不破坏它。
+    "code/modules/mod/mod_actions.dm",
 ];
 
 /// 表达式的**值**是否就是 LANG 的产物（译文串）。

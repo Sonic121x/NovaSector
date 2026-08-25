@@ -79,6 +79,15 @@ GLOBAL_LIST_INIT(i18n_match_table_files, list("phobia.json"))
 		if(islist(GLOB.string_cache[filepath]))
 			lang_reverse_tree(GLOB.string_cache[filepath])
 
+	// 试剂单例同属「GLOB 阶段就建好」的一类：`GLOBAL_LIST_INIT(chemical_reagents_list, ...)` 里
+	// 每个 `New()` 都跑在 config 之前。绝大多数试剂描述由 TGUI 负载 overlay 翻，不需要就地反查；
+	// 只有**在 New() 里把 `%VAR%` 替换掉**的那几个例外 —— 替换之后整串不再等于任何目录键，
+	// overlay 与反查双双 miss。它们各自实现 lang_relocalize_description()，这里统一回调。
+	// `chemical_reagents_list` 是 assoc（类型路径 → 单例），直接 `in` 迭代拿到的是**键**。
+	for(var/reagent_type in GLOB.chemical_reagents_list)
+		var/datum/reagent/reagent = GLOB.chemical_reagents_list[reagent_type]
+		reagent.lang_relocalize_description()
+
 /// 是否启用聊天层 AC 子串兜底（默认关）。config I18N_CHAT_FALLBACK 控制（见 config_entries.dm + fallback.dm）。
 GLOBAL_VAR_INIT(i18n_chat_fallback, FALSE)
 

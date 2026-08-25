@@ -1088,17 +1088,25 @@
 
 /datum/reagent/medicine/strange_reagent/New()
 	. = ..()
-	// NOVA EDIT CHANGE START - i18n: **先反查模板、再替换 %VAR%**。目录键里留着 `%MAXHEALTHRATIO%`
-	// （抽取器照抄源码字面量），而替换之后的整串再也不等于任何键 —— 于是这条描述译文一直躺在
-	// 目录里、化学界面却恒为英文。译文同样保留该占位符，替换在其后进行。
-	// 与 announcement_system.dm 的 %PERSON/%RANK 同一条道理（那里也是先反查整条模板）。
-	// ORIGINAL: description = replacetext(description, "%MAXHEALTHRATIO%", "[max_revive_damage_ratio * 100]%")
-	description = replacetext(lang_reverse_text(description), "%MAXHEALTHRATIO%", "[max_revive_damage_ratio * 100]%")
-	// NOVA EDIT CHANGE END
+	description = replacetext(description, "%MAXHEALTHRATIO%", "[max_revive_damage_ratio * 100]%")
 	if(instant)
-		// NOVA EDIT CHANGE - i18n: 基础句上面已经反查过了，后缀再拼英文就是「中文句 + 英文尾巴」。
-		// ORIGINAL: description += " It appears to be pulsing with a warm pink light."
+		description += " It appears to be pulsing with a warm pink light."
+
+// NOVA EDIT ADDITION START - i18n
+/// **先反查模板、再替换 %VAR%**：目录键里留着 `%MAXHEALTHRATIO%`（抽取器照抄源码字面量），
+/// 而替换之后的整串再也不等于任何键 —— 这条描述的译文一直躺在目录里、化学界面却恒为英文。
+/// 与 announcement_system.dm 的 %PERSON/%RANK 同一条道理。
+///
+/// **不能写在 `New()` 里**：试剂单例由 `GLOBAL_LIST_INIT(chemical_reagents_list, ...)` 在 GLOB
+/// 阶段建好，那时 `ConfigLoaded` 还没读 locale，`lang_reverse_text` 会静默返回英文（早调用哨兵
+/// 在 runtime.log 里当场抓到了这一条）。所以改成由 ConfigLoaded 之后的
+/// `lang_relocalize_early_string_lists()` 回来重建，源串取 `initial(description)`（带占位符的
+/// canonical 英文，正是目录键的形态）。
+/datum/reagent/medicine/strange_reagent/lang_relocalize_description()
+	description = replacetext(lang_reverse_text(initial(description)), "%MAXHEALTHRATIO%", "[max_revive_damage_ratio * 100]%")
+	if(instant)
 		description += lang_reverse_text(" It appears to be pulsing with a warm pink light.")
+// NOVA EDIT ADDITION END
 
 // FEED ME SEYMOUR
 /datum/reagent/medicine/strange_reagent/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)

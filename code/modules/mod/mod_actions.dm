@@ -157,7 +157,7 @@
 	if(linked_module.allow_flags & MODULE_ALLOW_INCAPACITATED)
 		// clears check hands and check conscious
 		check_flags = NONE
-	name = "Activate [capitalize(linked_module.name)]"
+	name = LANG("datum.cc60b34c8bec228a", list(linked_module)) // NOVA EDIT CHANGE - I18N - ORIGINAL: name = "Activate [capitalize(linked_module.name)]"
 	desc = LANG("datum.577f2905a3351bec", list(linked_module))
 	RegisterSignals(linked_module, list(
 		COMSIG_MODULE_ACTIVATED,
