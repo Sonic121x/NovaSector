@@ -56,7 +56,7 @@
 	var/cache_key = "[speaker]-[speech_message]"
 	var/identifier = "[sha1(cache_key)].[world.time]"
 	var/datum/language/common_language = GLOB.language_datum_instances[/datum/language/common]
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), SSstation, speech_message, common_language, speaker, "", listeners, global = TRUE, identifier = identifier)
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), SSstation, speech_message, common_language, speaker, "", listeners, station_wide = TRUE, identifier = identifier)
 	return TRUE
 // NOVA EDIT ADDITION END
 

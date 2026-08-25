@@ -11,7 +11,7 @@
 	TEST_ASSERT(!tts_has_speech_content("！？..."), "Punctuation-only text should not be synthesized.")
 	TEST_ASSERT_EQUAL(tts_prepare_announcement_message("<b>通知正文</b>", "空间站警报"), "空间站警报. 通知正文", "Announcement TTS should strip HTML and retain the title.")
 	var/datum/tts_request/global_request = allocate(/datum/tts_request, "global-test", null, null, null, null, null, "通知正文", null, FALSE, null, 7, 0, list(), 0, FALSE, TRUE)
-	TEST_ASSERT(global_request.global, "Global announcement requests should retain non-positional playback state.")
+	TEST_ASSERT(global_request.station_wide, "Global announcement requests should retain non-positional playback state.")
 	TEST_ASSERT_NOTNULL(SStts, "The TTS subsystem should exist.")
 	TEST_ASSERT_NOTNULL(SSadmin_verbs, "The admin verb subsystem should exist.")
 	var/datum/admin_verb/toggle_verb = SSadmin_verbs.admin_verbs_by_type[/datum/admin_verb/toggle_tts_runtime]

@@ -393,7 +393,7 @@ SUBSYSTEM_DEF(tts)
 				audio_file = new(current_target.audio_file)
 				audio_file_blips = new(current_target.audio_file_blips)
 				play_tts(
-					target = current_target.global ? null : tts_target, // NOVA EDIT CHANGE - ADMIN - Global station announcement playback.
+					target = current_target.station_wide ? null : tts_target, // NOVA EDIT CHANGE - ADMIN - Global station announcement playback.
 					listeners = current_target.listeners,
 					audio = audio_file,
 					audio_blips = audio_file_blips,
@@ -469,7 +469,7 @@ SUBSYSTEM_DEF(tts)
 
 #undef TTS_ARBRITRARY_DELAY
 
-/datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "", blip_base = "male", blip_number = "1", force_blips = FALSE, identifier = "invalid", global = FALSE) // NOVA EDIT CHANGE - ADMIN - Added global.
+/datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "", blip_base = "male", blip_number = "1", force_blips = FALSE, identifier = "invalid", station_wide = FALSE) // NOVA EDIT CHANGE - ADMIN - Added station_wide.
 	// NOVA EDIT ADDITION START - ADMIN - Runtime TTS control.
 	if(!admin_enabled)
 		return
@@ -511,7 +511,7 @@ SUBSYSTEM_DEF(tts)
 	request_radio.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name_radio, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	request_blips_radio.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch, blips = TRUE)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]&blip_base=[blip_base]&blip_number=[blip_number]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name_blips_radio, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	request_radio_gibberish.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("raw_text" = shell_scrubbed_input, "gibberish_text" = shell_scrubbed_input)), headers, file_name_radio_gibberish, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
-	var/datum/tts_request/current_request = new /datum/tts_request(identifier, request, request_blips, request_radio, request_blips_radio, request_radio_gibberish, shell_scrubbed_input, target, local, language, message_range, volume_offset, listener_weakrefs, pitch, force_blips, global) // NOVA EDIT CHANGE - ADMIN - Forward global.
+	var/datum/tts_request/current_request = new /datum/tts_request(identifier, request, request_blips, request_radio, request_blips_radio, request_radio_gibberish, shell_scrubbed_input, target, local, language, message_range, volume_offset, listener_weakrefs, pitch, force_blips, station_wide) // NOVA EDIT CHANGE - ADMIN - Forward station_wide.
 	var/list/player_queued_tts_messages = queued_tts_messages[WEAKREF(target)]
 	if(!player_queued_tts_messages)
 		player_queued_tts_messages = list()
@@ -576,7 +576,7 @@ SUBSYSTEM_DEF(tts)
 	var/local = FALSE
 	// NOVA EDIT ADDITION START - ADMIN - Global station announcement playback.
 	/// Whether this TTS message should play non-positionally to every listener.
-	var/global = FALSE
+	var/station_wide = FALSE
 	// NOVA EDIT ADDITION END
 	/// The message range to play this TTS message
 	var/message_range = 7
@@ -611,7 +611,7 @@ SUBSYSTEM_DEF(tts)
 	var/force_blips = FALSE
 
 
-/datum/tts_request/New(identifier, datum/http_request/request, datum/http_request/request_blips, datum/http_request/request_radio, datum/http_request/request_blips_radio, datum/http_request/request_radio_gibberish, message, target, local, datum/language/language, message_range, volume_offset, list/listeners, pitch, force_blips = FALSE, global = FALSE) // NOVA EDIT CHANGE - ADMIN - Added global.
+/datum/tts_request/New(identifier, datum/http_request/request, datum/http_request/request_blips, datum/http_request/request_radio, datum/http_request/request_blips_radio, datum/http_request/request_radio_gibberish, message, target, local, datum/language/language, message_range, volume_offset, list/listeners, pitch, force_blips = FALSE, station_wide = FALSE) // NOVA EDIT CHANGE - ADMIN - Added station_wide.
 	. = ..()
 	src.identifier = identifier
 	src.request = request
@@ -628,7 +628,7 @@ SUBSYSTEM_DEF(tts)
 	src.listeners = listeners
 	src.pitch = pitch
 	src.force_blips = force_blips
-	src.global = global // NOVA EDIT ADDITION - ADMIN - Global station announcement playback.
+	src.station_wide = station_wide // NOVA EDIT ADDITION - ADMIN - Global station announcement playback.
 	start_time = world.time
 
 /datum/tts_request/proc/start_requests()

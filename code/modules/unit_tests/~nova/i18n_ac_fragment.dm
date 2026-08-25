@@ -80,7 +80,8 @@
 	GLOB.i18n_fallback_state.Remove(I18N_FRAG_TEST_LOCALE)
 	GLOB.i18n_fallback_single_state.Remove(I18N_FRAG_TEST_LOCALE)
 	GLOB.i18n_fallback_cache.Remove(I18N_FRAG_TEST_LOCALE)
-	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET].Remove(I18N_FRAG_TEST_LOCALE)
+	var/list/forward_bucket = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET]
+	forward_bucket.Remove(I18N_FRAG_TEST_LOCALE)
 	GLOB.i18n_runtime_domains.Remove(I18N_FRAG_TEST_LOCALE)
 	en_cache.Remove("frag_oneof")
 	en_cache.Remove("frag_col")
