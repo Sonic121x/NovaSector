@@ -5,3 +5,6 @@ changes:
   - admin: "Administrators can explicitly enable, disable, and test TTS during a round."
   - rscadd: "Station-wide, security-level, round-start, and automated radio announcements now use localized TTS instead of prerecorded English speech when TTS is available."
   - qol: "Captain, AI, and forged Syndicate announcements use the announcing character's selected TTS voice, while automated systems use a stable newsreader voice for cache reuse."
+  - bugfix: "Station-wide TTS announcements are spoken again instead of playing as blips; ghosts and mobs spawned mid-round hear them too."
+  - bugfix: "TTS announcements no longer collapse every announcer sound into one chime; alerts, priority announcements, hostile broadcasts and minor notices each keep a distinct nonverbal cue."
+  - qol: "Station-wide TTS announcements are heard by everyone, including ghosts and creatures that do not speak Common, matching the announcement text that already reaches all players."
