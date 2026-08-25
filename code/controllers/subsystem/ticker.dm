@@ -297,7 +297,7 @@ SUBSYSTEM_DEF(ticker)
 	var/welcome_message = LANG("datum.33aeac181bbd8bfb", list(station_name()))
 	to_chat(world, span_notice(span_bold(welcome_message)))
 	if(tts_queue_global_announcement(welcome_message))
-		alert_sound_to_playing(sound('sound/machines/chime.ogg'))
+		alert_sound_to_playing(sound(tts_priority_announcement_cue()))
 	else
 		alert_sound_to_playing(sound(SSstation.announcer.get_rand_welcome_sound()))
 	// NOVA EDIT ADDITION END

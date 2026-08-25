@@ -1,3 +1,11 @@
+// NOVA EDIT ADDITION START - ADMIN - Keep the 3D sound alive past the clip's own length.
+// /datum/threed_sound force-stops the channel via stop_sound_channel() when its timer expires, and
+// that timer starts when the server *sends* the sound, not when the client starts playing it. The
+// resource transfer plus client-side start latency therefore always eats the end of the clip, and
+// the provider leaves only ~30ms of trailing silence, so the final syllable is what gets cut.
+#define TTS_PLAYBACK_TAIL_GRACE (1 SECONDS)
+// NOVA EDIT ADDITION END
+
 #define TTS_REQUEST_REF "ref"
 #define TTS_REQUEST_EXPIRE "expiry_time"
 
@@ -149,7 +157,7 @@ SUBSYSTEM_DEF(tts)
 		return SS_INIT_FAILURE
 	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/tts/proc/play_tts(datum/weakref/target, list/listeners, sound/audio, sound/audio_blips, datum/language/language, range = 7, volume_offset = 0, ignore_observers = FALSE, source_speaker = null, audio_length = 10 SECONDS, audio_length_blips = 10 SECONDS, volume_preference = /datum/preference/numeric/volume/sound_tts_volume, volume_signal = COMSIG_MOB_TTS_VOLUME_PREFERENCE_APPLIED)
+/datum/controller/subsystem/tts/proc/play_tts(datum/weakref/target, list/listeners, sound/audio, sound/audio_blips, datum/language/language, range = 7, volume_offset = 0, ignore_observers = FALSE, source_speaker = null, audio_length = 10 SECONDS, audio_length_blips = 10 SECONDS, volume_preference = /datum/preference/numeric/volume/sound_tts_volume, volume_signal = COMSIG_MOB_TTS_VOLUME_PREFERENCE_APPLIED, ignore_language = FALSE) // NOVA EDIT CHANGE - ADMIN - Added ignore_language.
 	var/atom/actual_target = target?.resolve()
 	var/turf/turf_source
 	if(actual_target)
@@ -191,7 +199,7 @@ SUBSYSTEM_DEF(tts)
 		sound_volume = sound_volume*volume_modifier
 		var/datum/language_holder/holder = listening_mob.get_language_holder()
 		var/sound/audio_to_use = (tts_pref == TTS_SOUND_BLIPS) ? audio_blips : audio
-		if(!holder.has_language(language))
+		if(!ignore_language && !holder.has_language(language)) // NOVA EDIT CHANGE - ADMIN - ORIGINAL: if(!holder.has_language(language))
 			if (tts_pref == TTS_SOUND_OFF)
 				continue
 			else
@@ -234,7 +242,7 @@ SUBSYSTEM_DEF(tts)
 			can_add_new_listeners = FALSE,
 			volume = 85 + volume_offset,
 			sound_range = SOUND_RANGE,
-			sound_length = audio_length,
+			sound_length = audio_length + TTS_PLAYBACK_TAIL_GRACE, // NOVA EDIT CHANGE - ADMIN - ORIGINAL: sound_length = audio_length,
 			channel = channel,
 			preference_volume = volume_preference,
 			preference_signal = volume_signal
@@ -246,7 +254,7 @@ SUBSYSTEM_DEF(tts)
 			can_add_new_listeners = FALSE,
 			volume = 85 + volume_offset,
 			sound_range = SOUND_RANGE,
-			sound_length = audio_length_blips,
+			sound_length = audio_length_blips + TTS_PLAYBACK_TAIL_GRACE, // NOVA EDIT CHANGE - ADMIN - ORIGINAL: sound_length = audio_length_blips,
 			channel = channel,
 			preference_volume = volume_preference,
 			preference_signal = volume_signal
@@ -403,7 +411,12 @@ SUBSYSTEM_DEF(tts)
 					ignore_observers = FALSE,
 					source_speaker = null,
 					audio_length = current_target.audio_length,
-					audio_length_blips = current_target.audio_length_blips
+					audio_length_blips = current_target.audio_length_blips,
+					// NOVA EDIT ADDITION START - ADMIN - Station-wide announcements reach everyone.
+					// The announcement's chat text goes to every player regardless of what they speak,
+					// so gating only its audio behind Common would be inconsistent.
+					ignore_language = current_target.station_wide,
+					// NOVA EDIT ADDITION END
 				)
 				completed_tts_messages[current_target.identifier] = list(
 					TTS_REQUEST_REF = current_target,
@@ -722,3 +735,4 @@ SUBSYSTEM_DEF(tts)
 	return TRUE
 
 #undef SHIFT_DATA_ARRAY
+#undef TTS_PLAYBACK_TAIL_GRACE // NOVA EDIT ADDITION - ADMIN - Playback tail grace.

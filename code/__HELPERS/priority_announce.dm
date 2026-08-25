@@ -67,13 +67,21 @@
 
 	var/list/announcement_strings = list()
 
+	// NOVA EDIT ADDITION START - ADMIN - Both of these have to be read before the key is resolved
+	// into a file: event_alert is the only signal for how urgent this announcement is, and an
+	// explicitly picked sound (admin command report, a module's own effect) must survive untouched.
+	var/event_alert = !isnull(sound) && !isnull(SSstation.announcer.event_sounds[sound])
+	var/announcer_speech = tts_sound_is_announcer_speech(sound)
+	// NOVA EDIT ADDITION END
 	if(!sound)
 		sound = SSstation.announcer.get_rand_alert_sound()
 	else if(SSstation.announcer.event_sounds[sound])
 		sound = SSstation.announcer.event_sounds[sound]
 	// NOVA EDIT ADDITION START - ADMIN - Keep only a nonverbal cue when TTS carries the announcement.
-	if(tts_queued)
-		sound = 'sound/machines/chime.ogg'
+	// The announcer sounds are all spoken English lines, so they cannot play under the synthesized
+	// speech - but they are not interchangeable either, so pick a cue that keeps the distinction.
+	if(tts_queued && announcer_speech)
+		sound = tts_priority_announcement_cue(urgent = event_alert, hostile = (type == ANNOUNCEMENT_TYPE_SYNDICATE))
 	// NOVA EDIT ADDITION END
 
 	var/header
@@ -201,7 +209,7 @@
 	else
 		finalized_announcement = CHAT_ALERT_DEFAULT_SPAN(jointext(minor_announcement_strings, ""))
 
-	var/custom_sound = tts_queued ? 'sound/machines/chime.ogg' : sound_override || (alert ? 'modular_nova/modules/alerts/sound/alerts/alert1.ogg' : 'sound/announcer/notice/notice2.ogg') // NOVA EDIT CHANGE - ADMIN - TTS replaces prerecorded speech. CUSTOM ANNOUNCEMENTS ORIGINAL: var/custom_sound = sound_override || (alert ? 'sound/announcer/notice/notice1.ogg' : 'sound/announcer/notice/notice2.ogg')
+	var/custom_sound = sound_override || (tts_queued ? tts_minor_announcement_cue(alert) : null) || (alert ? 'modular_nova/modules/alerts/sound/alerts/alert1.ogg' : 'sound/announcer/notice/notice2.ogg') // NOVA EDIT CHANGE - ADMIN - TTS replaces prerecorded speech. CUSTOM ANNOUNCEMENTS ORIGINAL: var/custom_sound = sound_override || (alert ? 'sound/announcer/notice/notice1.ogg' : 'sound/announcer/notice/notice2.ogg')
 	dispatch_announcement_to_players(finalized_announcement, players, custom_sound, should_play_sound)
 
 /// Sends an announcement about the level changing to players. Uses the passed in datum and the subsystem's previous security level to generate the message.
@@ -221,9 +229,10 @@
 		title = LANG("datum.9aa16b5dfe73dfdd", list(current_level_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level lowered to [current_level_name]:"
 		message = selected_level.lowering_to_announcement
 
-	// NOVA EDIT ADDITION START - ADMIN - Security-level messages use localized TTS.
-	if(tts_queue_global_announcement(message, title, GLOB.player_list))
-		current_level_sound = 'sound/machines/chime.ogg'
+	// NOVA EDIT ADDITION START - ADMIN - Security-level messages use localized TTS. The level's own
+	// sound is a plain alarm tone ("Friendly beep" / "Angry alarm" / air raid), not a spoken line,
+	// so it plays under the speech and is deliberately left alone.
+	tts_queue_global_announcement(message, title, GLOB.player_list)
 	// NOVA EDIT ADDITION END
 
 	var/list/level_announcement_strings = list()
