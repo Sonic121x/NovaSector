@@ -127,6 +127,11 @@
 	// heat/holy/life/soup 这类通用单词，进全局反查表会把 lint 的碰撞告警顶上去。
 	TEST_ASSERT_NOTEQUAL(lang_reaction_name("omegasoapification"), "omegasoapification", "反应兜底名应经域内表翻译")
 	TEST_ASSERT_EQUAL(lang_reverse_text("holy"), "holy", "反应兜底名**不应**进全局反查表（末段按定义是标识符形态）")
+	// 恐惧症类别词：同一个串既是 phobia_regexes 的下标 / phobia.json 的匹配键（标识符），
+	// 又要填进「你开始觉得{0}非常令人不安……」「{0}恐惧症」这些已译模板里（显示）。
+	TEST_ASSERT_NOTEQUAL(lang_phobia_label("clowns"), "clowns", "恐惧症类别词应经域内表翻译")
+	TEST_ASSERT_EQUAL(lang_reverse_text("clowns"), "clowns", "恐惧症类别词**不应**进全局反查表（是匹配表的键）")
+	TEST_ASSERT_EQUAL(lang_phobia_label("not_a_phobia"), "not_a_phobia", "未登记类别应原样返回")
 
 	// ⑤ 回合总结的反派目标行：explanation_text 是**裸插值**赋值（objective.dm 没走 LANG），
 	// 只能靠边界模板逆匹配救。锚遮蔽修好之前它是半翻译（内层换成中文、外层留英文）。

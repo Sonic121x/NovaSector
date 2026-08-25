@@ -1,0 +1,42 @@
+{
+	"_comment": [
+		"恐惧症**类别标识符 → 显示标签**（按 locale → 类别）。与同目录的 phobia_words.json 互补：",
+		"那张表是「中文玩家会打出来的触发词」（匹配用，一个类别多个词），这张表是「这个类别在句子里",
+		"怎么念」（显示用，一个类别一个词）。",
+		"",
+		"为什么必须是**顶层域内表**、不能进 strings/i18n/<locale>/ 的目录：这些键就是 GLOB.phobia_types",
+		"的**键**，同时被 phobia_regexes 索引、被 phobia.json 匹配表按名查找 —— 它们是标识符。而",
+		"strings/i18n/<locale>/ 目录下的每个 .json 都会被 build_i18n_cache 合并进**全局反查表**，把",
+		"clowns / robots / lizards / guns / snakes 这种极常见单词塞进去，就是线缆颜色那次事故的形态。",
+		"顶层文件由 lang_scoped_table 单独读，只在 lang_phobia_label() 这一个显示点生效。",
+		"",
+		"消费点：phobia.dm 的 gain_text / lose_text / scan_desc，以及 library/book.dm 里 SDSM-35 手册",
+		"那一列的 desc 与 scan_name。它们的**模板**早就在目录里也译好了，缺的一直只是填进去的那个词",
+		"（同一页上 brain_trauma 的名字全是中文、恐惧症那批整齐地留英文，就是判据）。"
+	],
+	"zh-Hans": {
+		"aliens": "外星人",
+		"anime": "动漫",
+		"authority": "权威",
+		"birds": "鸟类",
+		"blood": "血液",
+		"clowns": "小丑",
+		"conspiracies": "阴谋论",
+		"doctors": "医生",
+		"falling": "坠落",
+		"fish": "鱼类",
+		"greytide": "灰潮",
+		"guns": "枪械",
+		"insects": "昆虫",
+		"lizards": "蜥蜴人",
+		"ocky icky": "奥奇恶心",
+		"robots": "机器人",
+		"security": "安保",
+		"skeletons": "骷髅",
+		"snakes": "蛇",
+		"space": "太空",
+		"spiders": "蜘蛛",
+		"strangers": "陌生人",
+		"the supernatural": "超自然"
+	}
+}

@@ -31,6 +31,18 @@ GLOBAL_LIST_INIT(i18n_match_table_files, list("phobia.json"))
 	var/list/table = lang_scoped_table("phobia_words.json")
 	return table[category]
 
+/// 恐惧症类别的**显示标签**（类别 -> 一个词），显式 scoped:phobia_labels 域。
+///
+/// 类别名本身是标识符（GLOB.phobia_types 的键、phobia_regexes 的下标、phobia.json 的匹配键），
+/// 所以绝不能进 strings/i18n/<locale>/ 目录 —— 那里的每个 .json 都会被 build_i18n_cache 合并进
+/// **全局反查表**，clowns / robots / lizards 这种常见单词一旦进去就是线缆颜色那类事故。
+/// 未登记（含 locale==en）时原样返回，调用点无需分支。
+/proc/lang_phobia_label(category)
+	if(!istext(category))
+		return category
+	var/list/table = lang_scoped_table("phobia_labels.json")
+	return table[category] || category
+
 /// 为某恐惧症类别构建「本地化触发词」正则；无登记词则返回 null。
 ///
 /// 分组布局刻意与 construct_phobia_regex 保持一致——消费方用 `group[2]` 取命中词、用 `$2`/`$3`

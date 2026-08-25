@@ -135,6 +135,13 @@ const SINK_VARS: &[&str] = &[
     // 反派面板 / 幽灵环绕菜单的分组标题（`antagpanel_category = "Icemoon Dwellers"`，19 个值）。
     // 纯分组标签，玩家在环绕菜单里逐条看到。
     "antagpanel_category",
+    // DNA 注入书的说明字段（`/datum/infuser_entry`，源码注释直接写着 "Vars for DNA Infusion Book"）。
+    // `threshold_desc` 是突破阈值后的整句、`infuse_mob_name` 是「注入 X 的 DNA」里的那个 X、
+    // `infusion_desc` 是被注入时的感受词。三个都是纯显示、从不参与比较；`qualities`（特性列表）
+    // 是 list，走下面的 is_display_pool 分支逐元素抽。
+    "threshold_desc",
+    "infuse_mob_name",
+    "infusion_desc",
     // 基础生物的交互动词（`response_help_continuous = "brushes"` / `response_harm_simple = "kick"`…
     // 六个字段）。它们是**纯显示动词**，经 `[user] [动词] [target]` 这类第三人称消息与自身消息
     // 显示，从不参与比较。全仓 150 个值里此前只有 45 个**恰好**因为同名 attack_verb 入过目录，
@@ -640,7 +647,23 @@ fn is_loose_sentence(template: &str, in_examine: bool) -> bool {
             return false;
         }
     }
-    let end = lit.trim_end_matches(['"', '\'', ')', ']', '*']);
+    // 尾部的 DM 转义要先剥掉：AST 里 `"…sentenced to:<BR>\n<BR>\n"` 的 `\n` 是**反斜杠加字母 n
+    // 两个字符**，去标签之后整串以字母 `n` 收尾，句末标点闸门当场判否 —— 而运行期玩家看到的
+    // 是「…判处：」加两个换行。同文件的 is_examine_sentence 一直在剥一个 `\n`，这条漏了。
+    // 实测 default_raw_text（预制纸张正文）154 条里有 109 条靠这条闸门进目录，剩下的一批
+    // 就卡在这里 —— 法庭「审判」纸的整句判决即此。
+    let mut end = lit.trim_end();
+    loop {
+        let trimmed = end
+            .strip_suffix("\\n")
+            .or_else(|| end.strip_suffix("\\t"))
+            .map(str::trim_end);
+        match trimmed {
+            Some(next) => end = next,
+            None => break,
+        }
+    }
+    let end = end.trim_end_matches(['"', '\'', ')', ']', '*']);
     // 冒号收尾的**标签行**同样是玩家可见文本，而这道闸门原本只认句号/叹号/问号 ——
     // 于是「扫描仪/记录/回合结算」那一整类整齐地漏在外面。同文件的 is_examine_sentence 一直认
     // 冒号，两条闸门对同一种形状给出相反判定，判据就是这么分叉的。实测同 proc 内的对比：
@@ -1969,6 +1992,11 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<Catalog> {
             // 字段直发显示、P1 反查）。无句末标点居多 → 逐元素抽。
             let is_steps_list =
                 var_name == "steps" && ty.path.starts_with("/datum/crafting_recipe");
+            // DNA 注入书的「特性」列表（`qualities = list("cheesy lines", "frail but quick", …)`）。
+            // 与 attack_verb 池同形：list 初值 build_template 返回 None，元素又是无句末标点的
+            // 小写短语，两道闸门都过不了 → 整类留英文（书里那几行「特性：」下面全是英文）。
+            let is_display_pool =
+                var_name == "qualities" && ty.path.starts_with("/datum/infuser_entry");
             // 激进 pass：任何类型变量初值里的「句子型」字面量（含 list 元素与插值模板）。
             // 自定义 examine 文本变量（dry_desc 类）、pick 表、未列入 SINK_VARS 的长尾自动入目录
             // （句末标点闸门挡住标识符/枚举名）；显示靠反查表/字面 AC/模板逆匹配引擎。
@@ -1988,6 +2016,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<Catalog> {
                 && !is_speech_pool
                 && !is_steps_list
                 && !is_attack_verb_pool
+                && !is_display_pool
             {
                 continue;
             }
@@ -1996,7 +2025,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<Catalog> {
                     emit_message_list(expr, &var_scope, &mut catalog);
                     continue;
                 }
-                if is_steps_list {
+                if is_steps_list || is_display_pool {
                     emit_list_strings(expr, &var_scope, &mut catalog);
                     continue;
                 }
@@ -2155,7 +2184,14 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<Catalog> {
                         // 体内 `antag_opt_in_strings = list("2"="Yes - Kill",…)`，值是 #define 展开的显示短语）：
                         // spawn 介绍「强制最低 opt-in 设置为 [值]」行的插值值，模板已译、边界引擎捕获该值为 {N}
                         // 后经 lang_reverse_text 翻译 → 抽其 assoc 值入目录（键 "0".."3" 无字母、emit 自动过滤）。
-                        "InitGlobalantag_opt_in_strings" => {
+                        // 恐惧症显示名（GLOBAL_LIST_INIT(phobia_types) → `"space" = "Astrophobia"`）:
+                        // **键是触发词标识符**（`pick(GLOB.phobia_types)` 取的是键，`phobia_regexes`
+                        // 按它索引，phobia.json 那张匹配表也按它匹配），**值是纯显示名** —— SDSM-35
+                        // 手册与偏好菜单里那一列就是它。值是单个造词（Astrophobia/Coulrophobia），
+                        // 无空格无标点，激进 pass 的整句闸门一条都收不到 → 整类留英文，而同一页上
+                        // 由 SINK_VARS 覆盖的 brain_trauma 名字（幽闭恐惧症/失语症）全是中文，
+                        // 「同一列表里一半中文一半英文」就是判据。
+                        "InitGlobalphobia_types" | "InitGlobalantag_opt_in_strings" => {
                             for stmt in block.iter() {
                                 if let Statement::Expr(Expression::AssignOp { rhs, .. }) =
                                     &stmt.elem
@@ -2798,6 +2834,8 @@ const CATALOG_VALUE_BLOCKLIST: &[&str] = &[
     // `icon_state = "robust"`、以及**物品检查里的力度描述词** `force_string = "robust"`（那里是
     // 「结实」的本义）。后两者与动词义互斥，任何一条译文都会在另一处出错 —— 同形异义，不收。
     "robust",
+    // 老鼠注入的 `infusion_desc`，同时是 `TRAIT_SKITTISH` 这个 define 的值（特质表的键）。
+    "skittish",
 ];
 
 /// 「这个串是选项表里的**显示标签**」：多词 + **首字母大写**。

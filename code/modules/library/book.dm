@@ -362,8 +362,14 @@
 		for(var/phobia_type, phobia_name in GLOB.phobia_types)
 			var/list/trauma_data = list()
 			trauma_data["full_name"] = phobia_name
-			trauma_data["scan_name"] = "[/datum/brain_trauma/mild/phobia::scan_desc] of [phobia_type]"
-			trauma_data["desc"] = "Patient is irrationally afraid of [phobia_type]."
+			// NOVA EDIT CHANGE START - i18n: 类别词经域内表换成显示标签（它本身是标识符，不能进
+			// 全局反查表），两条句子各走自己的模板。id 一栏仍用原始 phobia_type，回传不受影响。
+			// ORIGINAL: trauma_data["scan_name"] = "[/datum/brain_trauma/mild/phobia::scan_desc] of [phobia_type]"
+			// ORIGINAL: trauma_data["desc"] = "Patient is irrationally afraid of [phobia_type]."
+			var/phobia_label = lang_phobia_label(phobia_type)
+			trauma_data["scan_name"] = LANG("datum.3ea1416777413765", list(phobia_label))
+			trauma_data["desc"] = LANG("obj.5f9046387ea0521e", list(phobia_label))
+			// NOVA EDIT CHANGE END
 			trauma_data["symptoms"] = /datum/brain_trauma/mild/phobia::symptoms
 			trauma_data["id"] = "[/datum/brain_trauma/mild/phobia]/[phobia_type]"
 			trauma_info += list(trauma_data)
