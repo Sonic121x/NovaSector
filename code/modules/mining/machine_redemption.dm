@@ -268,7 +268,7 @@
 			var/datum/design/alloy = SSresearch.techweb_designs[design_path]
 			var/obj/alloy_type = alloy.build_path
 			data["materials"] += list(list(
-				"name" = alloy.name,
+				"name" = lang_localize_display_name(alloy.name), // NOVA EDIT - I18N: 合金名纯显示（act 走同条负载的 path）。ORIGINAL: "name" = alloy.name,
 				"id" = design_path,
 				"category" = "alloy",
 				"amount" = can_smelt_alloy(alloy),

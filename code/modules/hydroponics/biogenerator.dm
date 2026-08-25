@@ -512,7 +512,7 @@
 		for(var/datum/design/design as anything in category_designs)
 			cat["items"] += list(list(
 				"path" = design.type,
-				"name" = design.name,
+				"name" = lang_reverse_text(design.name), // NOVA EDIT - I18N: ui_static_data (constant data, bypasses P1); product name in datum.json but front-end auto-localizes vs tgui.json → reverse here (act uses path, safe). ORIGINAL: "name" = design.name,
 				"icon" = design.asset_id,
 				"is_reagent" = !isnull(design.make_reagent),
 				"cost" = design.materials[SSmaterials.get_material(/datum/material/biomass)] / efficiency,

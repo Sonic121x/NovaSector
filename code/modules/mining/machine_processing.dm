@@ -211,7 +211,7 @@
 	for(var/design_path in stored_research.researched_designs)
 		var/datum/design/design = SSresearch.techweb_designs[design_path]
 		data["alloys"] += list(list(
-			"name" = design.name,
+			"name" = lang_localize_display_name(design.name), // NOVA EDIT - I18N: 设计名纯显示（act 走 path）。ORIGINAL: "name" = design.name,
 			"path" = design_path,
 		))
 	data["selectedAlloy"] = selected_alloy
