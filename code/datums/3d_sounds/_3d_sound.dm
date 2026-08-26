@@ -55,6 +55,10 @@
 			continue
 		register_listener(listener)
 
+	// NOVA EDIT ADDITION START - RUNTIME_STABILITY - The source may also hear itself; replace its listener callbacks without duplicate-registration runtimes.
+	if(parent in listeners)
+		UnregisterSignal(parent, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
+	// NOVA EDIT ADDITION END
 	RegisterSignal(parent, COMSIG_ENTER_AREA, PROC_REF(on_enter_area))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	RegisterSignal(parent, COMSIG_QDELETING, PROC_REF(parent_delete))

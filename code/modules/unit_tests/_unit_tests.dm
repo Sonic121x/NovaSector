@@ -403,6 +403,7 @@
 #include "~nova\newbie_guard_geoip.dm"
 #include "~nova\newbie_guard_refusal.dm"
 #include "~nova\opposing_force.dm"
+#include "~nova\runtime_stability.dm"
 #include "~nova\shuttle.dm"
 #include "~nova\tts_controls.dm"
 // NOVA EDIT END
