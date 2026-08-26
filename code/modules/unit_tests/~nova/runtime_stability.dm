@@ -29,22 +29,33 @@
 		"A parent which is also a listener should retain the source deletion callback.",
 	)
 
-/datum/unit_test/dynamic_lighting_stale_source
-	var/datum/spatial_grid_cell/test_cell
-	var/list/original_light_sources
+/obj/effect/runtime_stability_light_test
+	abstract_type = /obj/effect/runtime_stability_light_test
+	light_system = OVERLAY_LIGHT
+	light_range = 6
+	light_power = 1
+	light_on = TRUE
 
-/datum/unit_test/dynamic_lighting_stale_source/Run()
-	test_cell = SSspatial_grid.get_cell_of(run_loc_floor_bottom_left)
-	TEST_ASSERT_NOTNULL(test_cell, "The unit test turf should belong to a spatial grid cell.")
+/datum/unit_test/dynamic_lighting_range_reduction/Run()
+	var/turf/source_turf = locate(23, 23, run_loc_floor_bottom_left.z)
+	TEST_ASSERT_NOTNULL(source_turf, "The unit test z-level should contain the selected spatial-grid boundary turf.")
+	var/obj/effect/runtime_stability_light_test/test_light = allocate(/obj/effect/runtime_stability_light_test, source_turf)
+	var/datum/component/overlay_lighting/light_component = test_light.GetComponent(/datum/component/overlay_lighting)
+	TEST_ASSERT_NOTNULL(light_component, "The test light should initialize an overlay-lighting component.")
 
-	original_light_sources = test_cell.dynamic_light_sources
-	test_cell.dynamic_light_sources = original_light_sources.Copy()
-	test_cell.dynamic_light_sources[null] = 0.5
-	run_loc_floor_bottom_left.collect_dynamic_lightsources()
+	var/list/old_cells = SSspatial_grid.get_cells_in_range(source_turf, 6)
+	var/list/new_cells = SSspatial_grid.get_cells_in_range(source_turf, 1)
+	var/found_outer_cell = FALSE
+	for(var/datum/spatial_grid_cell/grid_cell as anything in old_cells)
+		if(grid_cell in new_cells)
+			continue
+		found_outer_cell = TRUE
+		TEST_ASSERT(light_component in grid_cell.dynamic_light_sources, "The initial range-six light should be registered in every outer grid cell.")
 
-	TEST_ASSERT(!list_clear_nulls(test_cell.dynamic_light_sources), "collect_dynamic_lightsources() should remove stale null light keys.")
+	TEST_ASSERT(found_outer_cell, "The chosen turf should span more spatial-grid cells at range six than at range one.")
+	test_light.set_light_range(1)
 
-/datum/unit_test/dynamic_lighting_stale_source/Destroy()
-	if(test_cell && original_light_sources)
-		test_cell.dynamic_light_sources = original_light_sources
-	return ..()
+	for(var/datum/spatial_grid_cell/grid_cell as anything in old_cells)
+		if(grid_cell in new_cells)
+			continue
+		TEST_ASSERT(!(light_component in grid_cell.dynamic_light_sources), "Reducing a light's range must remove it from cells covered only by the old range.")
