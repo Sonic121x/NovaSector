@@ -168,11 +168,11 @@
 	return ..()
 
 /// Clears ourselves from spatial grid's dynlights lists
-/datum/component/overlay_lighting/proc/clean_old_cells(atom/holder_loc)
+/datum/component/overlay_lighting/proc/clean_old_cells(atom/holder_loc, clear_range = lumcount_range) // NOVA EDIT CHANGE - RUNTIME_STABILITY - ORIGINAL: /datum/component/overlay_lighting/proc/clean_old_cells(atom/holder_loc)
 	var/turf/holder_turf = get_turf(holder_loc)
 	if (isnull(holder_turf))
 		return
-	for (var/datum/spatial_grid_cell/grid_cell as anything in SSspatial_grid.get_cells_in_range(holder_turf, lumcount_range))
+	for (var/datum/spatial_grid_cell/grid_cell as anything in SSspatial_grid.get_cells_in_range(holder_turf, clear_range)) // NOVA EDIT CHANGE - RUNTIME_STABILITY - ORIGINAL: lumcount_range
 		GRID_CELL_REMOVE(grid_cell.dynamic_light_sources, src)
 
 /// Populates the affected_turfs lazylist, adding to its contents the effects of being near the light.
@@ -394,6 +394,7 @@
 	var/new_range = source.light_range
 	if(range == new_range)
 		return
+	var/old_lumcount_range = lumcount_range // NOVA EDIT ADDITION - RUNTIME_STABILITY - Preserve the registered radius before changing it.
 	if(new_range == 0)
 		turn_off()
 	range = clamp(CEILING(new_range, 0.5), 1, 6)
@@ -417,7 +418,10 @@
 		else
 			cast_range = clamp(round(new_range * 0.5), 1, 3)
 	if(overlay_lighting_flags & LIGHTING_ON)
-		make_luminosity_update(current_holder)
+		// NOVA EDIT ADDITION START - RUNTIME_STABILITY - Unregister using the old radius before registering the new one.
+		clean_old_cells(current_holder, old_lumcount_range)
+		make_luminosity_update()
+		// NOVA EDIT ADDITION END
 
 /// Changes the intensity/brightness of the light by altering the visual object's alpha.
 /datum/component/overlay_lighting/proc/set_power(atom/source, old_power)

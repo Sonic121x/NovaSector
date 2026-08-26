@@ -91,17 +91,9 @@
 	. = list()
 
 	var/datum/spatial_grid_cell/grid_cell = SSspatial_grid.get_cell_of(src)
-	// NOVA EDIT ADDITION START - RUNTIME_STABILITY - Deleted assoc keys become null and must not be dereferenced.
-	if(list_clear_nulls(grid_cell.dynamic_light_sources) && !length(grid_cell.dynamic_light_sources))
-		grid_cell.dynamic_light_sources = SSspatial_grid.dummy_list
-	// NOVA EDIT ADDITION END
 	var/list/light_sources = list()
 	var/furthest_range = 0
 	for (var/datum/component/overlay_lighting/light as anything in grid_cell.dynamic_light_sources)
-		// NOVA EDIT ADDITION START - RUNTIME_STABILITY - A light can enter qdel after the null cleanup above.
-		if(QDELETED(light))
-			continue
-		// NOVA EDIT ADDITION END
 		furthest_range = max(furthest_range, light.lumcount_range)
 		if (isnull(light_sources[light.current_holder]))
 			light_sources[light.current_holder] = light
