@@ -1472,6 +1472,10 @@ GLOBAL_LIST_INIT(i18n_appended_suffixes, list(
 	. = lang_reverse_text(text)
 	if(. != text)
 		return . // 整串精确命中
+	// Every registered suffix is a sentence containing spaces. A single token cannot possibly match one;
+	// avoid allocating a collapsed copy and walking the suffix table on the TGUI single-word hot path.
+	if(!findtext(text, " "))
+		return .
 	// 追加点的分隔各式各样：手术 desc 是一个空格，赏金是 `"</br>\<换行><制表符>…"`（DM 续行把制表符
 	// 并进串里）。先把空白折叠成单空格再比（目录键本身就是折叠形态），分隔空格按原样还回拼接处。
 	var/collapsed = lang_collapse_ws(text)
@@ -1581,6 +1585,15 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 		return text
 	var/multiword = findtext(text, " ")
 	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
+	// Single-token payload values are overwhelmingly refs, enum values, icon states and other identifiers.
+	// The contract above says they only get an exact lookup, but the old implementation called
+	// lang_reverse_suffixed() and then lang_localize_chain(), causing two exact/normalized lookups plus suffix/
+	// article work for every miss. It also cached those effectively unbounded identifiers until they crowded
+	// useful multi-word results out of the fixed 4096-entry cache. Keep one exact/normalized lookup so existing
+	// catalog forms with quotes, grammar macros or source escapes retain their translations, but skip the
+	// suffix/template/AC chain and miss cache.
+	if(!multiword)
+		return lang_reverse_text_in(text, locale)
 	var/list/phrase_cache = GLOB.i18n_tgui_phrase_cache
 	var/cache_ready = !GLOB.i18n_log_misses && islist(phrase_cache) && lang_runtime_is_ready() && lang_catalog_locale_is_loaded(locale)
 	if(cache_ready && (text in phrase_cache))
@@ -1590,9 +1603,9 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 	// 精确反查会连基础句一起 miss。无后缀时它就是 lang_reverse_text，零行为变化。
 	. = lang_reverse_suffixed(text)
 	if(. == text)
-		// 精确（含后缀拆分）miss → 交给共用链跑模板与 AC。单词值只走精确：模板逆匹配与字面 AC
-		// 都是给句子用的，单词过去只会徒增误伤。
-		. = lang_localize_chain(text, locale, allow_template = multiword, ac_mode = multiword ? I18N_AC_PROSE : I18N_AC_NONE)
+		// 精确（含归一化/后缀拆分）已查过且 miss，直接从冠词/模板/AC 阶段继续。过去这里又从
+		// exact 开头完整跑一遍，是 profiler 中 lang_reverse_text_in/lang_collapse_ws 重复翻倍的来源。
+		. = lang_localize_chain(text, locale, allow_template = TRUE, ac_mode = I18N_AC_PROSE, exact_already_checked = TRUE)
 	// 漏翻采集：反查 + 模板引擎 + AC 都没命中的多词 TGUI 负载值（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
 	if(GLOB.i18n_log_misses && . == text && locale != DEFAULT_UI_LOCALE)
 		lang_log_miss_scan(text, "tgui")
@@ -1848,4 +1861,3 @@ GLOBAL_LIST_INIT(i18n_payload_prose_keys, build_i18n_policy_set("payload_prose_k
 	for(var/regex/word_re in name_subs)
 		text = word_re.Replace(text, name_subs[word_re])
 	return text
-
