@@ -189,10 +189,15 @@ GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
 ///   · `I18N_AC_PROSE` —— 只有长散文（≥80 字符且有句末标点）才过 AC。TGUI 负载用这个：
 ///     act() 回传标识符、图标名、黑板键永远不是这个形状。
 ///   · `I18N_AC_FULL`  —— 聊天/浏览器用这个：整行文本本来就是散文。
-/proc/lang_localize_chain(text, locale, allow_template, ac_mode)
-	. = lang_reverse_text_in(text, locale)
-	if(. != text)
-		return
+/proc/lang_localize_chain(text, locale, allow_template, ac_mode, exact_already_checked = FALSE)
+	// Some hot callers have already run the stronger exact/normalized/suffixed lookup. Repeating it here
+	// doubled the normalization and regex work for every TGUI payload miss (millions of calls per round).
+	if(!exact_already_checked)
+		. = lang_reverse_text_in(text, locale)
+		if(. != text)
+			return
+	else
+		. = text
 	// 整串 miss 之后、模板之前：**剥掉英文冠词再精确查一次**。
 	//
 	// BYOND 对非专有名词自动补 "The"/"a"（`"[atom]"` 的渲染），于是名字到达落地层时是
