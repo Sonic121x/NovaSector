@@ -55,10 +55,10 @@ describe('contextual messages', () => {
   });
 
   test('argument text cannot be consumed as a later placeholder', () => {
-    const status = defineMessage('machine.interpolation', '{0} / {1} / {2}');
+    const status = defineMessage('machine.interpolation', '{0} then {1}');
     expect(
-      String(translateMessageFromCatalog({}, status, ['Zxqv{1}', 'Zxqv-tail'])),
-    ).toBe('Zxqv{1} / Zxqv-tail / {2}');
+      String(translateMessageFromCatalog({}, status, ['Zxqvx{1}x', 'ZxqvEND'])),
+    ).toBe('Zxqvx{1}x then ZxqvEND');
   });
 
   test('payload overlay cannot shadow an explicit contextual message', () => {

@@ -954,6 +954,13 @@ impl<'a> Rewriter<'a> {
     fn recurse_term(&mut self, term: &Term, ns: &str) {
         match term {
             Term::Expr(e) => self.visit_expr(e, ns),
+            // pick() 是独立 AST 节点（权重语法 `pick(50;"a", 50;"b")`），不是 Term::Call。
+            // extract 早已下探这一支；rewrite 漏了就会出现「目录有译文、源码仍裸字面量」。
+            // 只保证 visit 到权重/值表达式。能否改写仍由「恰好一个文本节点」等既有 sink 规则决定；
+            // Pick 本身不是文本节点（见 collect_text_nodes）。
+            Term::Pick(args) => {
+                visit_pick_payload(args, |e| self.visit_expr(e, ns));
+            }
             Term::InterpString(_, parts) => {
                 for (opt, _) in parts.iter() {
                     if let Some(e) = opt {
@@ -1033,6 +1040,19 @@ impl<'a> Rewriter<'a> {
     }
 }
 
+/// 遍历 `Term::Pick` 的每个权重表达式与值表达式。与 extract::recurse_term 的 Pick 支同构。
+fn visit_pick_payload(
+    args: &[(Option<Expression>, Expression)],
+    mut visit: impl FnMut(&Expression),
+) {
+    for (weight, value) in args.iter() {
+        if let Some(w) = weight {
+            visit(w);
+        }
+        visit(value);
+    }
+}
+
 /// 收集消息参数里的「可翻译文本节点」（String / InterpString，过滤纯标签），降序穿过 `+` 拼接。
 /// 无歧义的对话框按钮/比较值字面量——绝不改写为 LANG（否则破坏 `if(alert(...)=="Yes")` 之类比较，
 /// 且无 usr 的 alert `alert(msg,title,"Yes")` 的 [2] 按钮易被当标题改写）。仅取**几乎只做按钮**的词；
@@ -1099,5 +1119,55 @@ fn node_template(term: &Term) -> Option<(String, usize)> {
             Some((out, count))
         }
         _ => None,
+    }
+}
+
+#[cfg(test)]
+mod pick_walk {
+    use super::*;
+
+    fn text(value: &str) -> Expression {
+        Expression::from(Term::String(value.to_string()))
+    }
+
+    #[test]
+    fn pick_payload_visits_weights_and_values() {
+        let args: Box<[(Option<Expression>, Expression)]> = vec![
+            (
+                Some(Expression::from(Term::Int(50))),
+                text("You feel pumped!"),
+            ),
+            (None, text("You feel tired.")),
+        ]
+        .into_boxed_slice();
+        let mut n = 0;
+        visit_pick_payload(&args, |_| n += 1);
+        assert_eq!(n, 3, "two values + one weight");
+
+        let mut texts = Vec::new();
+        visit_pick_payload(&args, |e| {
+            if let Some(t) = build_template(e) {
+                texts.push(t);
+            }
+        });
+        assert_eq!(texts, vec!["You feel pumped!", "You feel tired."]);
+    }
+
+    /// Pick 本身不是「恰好一个文本节点」：sink 改写门槛不因这次下探而放宽。
+    #[test]
+    fn pick_is_not_a_single_text_node() {
+        let pick = Expression::from(Term::Pick(
+            vec![
+                (None, text("You feel pumped!")),
+                (None, text("You feel tired.")),
+            ]
+            .into_boxed_slice(),
+        ));
+        let mut nodes = Vec::new();
+        collect_text_nodes(&pick, &mut nodes);
+        assert!(
+            nodes.is_empty(),
+            "rewrite must still require a single String/InterpString node"
+        );
     }
 }

@@ -1,7 +1,7 @@
 // THIS IS A NOVA SECTOR UI FILE
 // Legacy/upstream JSX compatibility adapter. New code uses explicit contextual messages.
 
-import { Dropdown } from 'tgui-core/components';
+import { Button, Dropdown } from 'tgui-core/components';
 
 import {
   getCatalogRevision,
@@ -9,8 +9,8 @@ import {
   substituteOverlay,
   translateCurrent,
 } from './catalog';
-import { recordMiss } from './missLog';
 import { isLocalizedOption } from './messages';
+import { recordMiss } from './missLog';
 import policy from './policy.json';
 import propTemplateKeys from './prop-templates.json';
 
@@ -501,12 +501,55 @@ function localizeDropdownProps(
   return next;
 }
 
+/**
+ * tgui-core 预编译包走 `react/jsx-runtime`，默认文案（Button.Confirm 的 confirmContent、
+ * Dropdown 的 placeholder）从不经过本仓库的 jsxImportSource。调用方没传这些 prop 时，在进入
+ * 现有 localizeProps 循环**之前**补上 canonical English 源串，让 TRANSLATABLE_PROPS 按目录翻。
+ *
+ * 只认导入的函数身份（与 Dropdown 裸字符串升级同一条）：不能按「有 confirmContent」猜。
+ * Dialog 的 Close tooltip、Dropdown 空列表的 "No options" 写在 core 内部 JSX 里，不是调用方
+ * prop，这条路够不着——两者都已在 tgui.json，不新造单词键、不 vendor。
+ */
+/**
+ * tgui-core 自己的默认值，抄写一份。**改动前先看 coreDefaults.test.tsx** —— 那条测试渲染
+ * 真组件、读它渲染出来的文本，保证这两个常量与上游一致；上游一改这里立刻红。
+ * 抄错的后果不是「没翻译」而是「用一个过期英文覆盖掉 core 的默认文案」，界面上看不出来。
+ */
+export const CORE_DEFAULT_CONFIRM_CONTENT = 'Confirm?';
+export const CORE_DEFAULT_DROPDOWN_PLACEHOLDER = 'Select...';
+
+function withCoreDefaultProps(
+  type: unknown,
+  props: Record<string, unknown>,
+): Record<string, unknown> {
+  if (type === Button.Confirm && props.confirmContent === undefined) {
+    return { ...props, confirmContent: CORE_DEFAULT_CONFIRM_CONTENT };
+  }
+  if (type === Dropdown && props.placeholder === undefined) {
+    return { ...props, placeholder: CORE_DEFAULT_DROPDOWN_PLACEHOLDER };
+  }
+  return props;
+}
+
+/**
+ * 给 dangerouslySetInnerHTML 用的 overlay 子串替换。自动层看不到 innerHTML。
+ *
+ * 只走 `substituteOverlay`（多词键 + 词边界 + 最长优先），**不对静态目录跑无边界 AC**。
+ * 纸张/新闻/终端/玩家正文不要接；只接已确认是服务器目录散文的负载。
+ */
+export function localizeHtml(html: string | undefined | null): string {
+  if (typeof html !== 'string' || !html) {
+    return html ?? '';
+  }
+  return substituteOverlay(html) ?? html;
+}
+
 export function localizeProps(props: unknown, type?: unknown): unknown {
   if (!props || typeof props !== 'object' || Array.isArray(props)) {
     return props;
   }
 
-  let nextProps = props as Record<string, unknown>;
+  let nextProps = withCoreDefaultProps(type, props as Record<string, unknown>);
   for (const [propName, propValue] of Object.entries(nextProps)) {
     let localized: unknown = propValue;
     if (propName === 'children') {

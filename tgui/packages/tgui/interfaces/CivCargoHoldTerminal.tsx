@@ -15,6 +15,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { useState } from 'react';
 import { useBackend } from '../backend';
+import { localizeHtml } from '../i18n'; // NOVA EDIT - I18N
 import { Window } from '../layouts';
 
 
@@ -234,7 +235,8 @@ const BountyPickButton = (props) => {
         lineHeight="1.2em"
         p={1}
       >
-        <Box dangerouslySetInnerHTML={{ __html: props.bounty_info }} />
+        {/* NOVA EDIT CHANGE - I18N overlay HTML. ORIGINAL: dangerouslySetInnerHTML={{ __html: props.bounty_info }} */}
+        <Box dangerouslySetInnerHTML={{ __html: localizeHtml(props.bounty_info) }} />
       </Box>
       <Box>Payout: {props.bounty_value} cr</Box>
     </Button>
@@ -347,7 +349,8 @@ const GlobalBountyBlock = (props) => {
           {localBounty.shipped} / {localBounty.maximum} shipped.
           </ProgressBar>
               <Box
-                dangerouslySetInnerHTML={{__html:localBounty.description }}
+                // NOVA EDIT CHANGE - I18N overlay HTML. ORIGINAL: dangerouslySetInnerHTML={{__html:localBounty.description }}
+                dangerouslySetInnerHTML={{ __html: localizeHtml(localBounty.description) }}
                 p={1}
               />
               <br />

@@ -1,11 +1,17 @@
 // THIS IS A NOVA SECTOR UI FILE
 import { beforeAll, describe, expect, test } from 'bun:test';
-import { Dropdown } from 'tgui-core/components';
+import { Button, Dropdown } from 'tgui-core/components';
 
 import { configAtom, store } from '../events/store';
 import type { Config } from '../events/types';
-import { mergeCatalogOverlay, resetCatalogOverlay } from './catalog';
-import { localizeProps } from './localize';
+import {
+  fillArgs,
+  mergeCatalogOverlay,
+  resetCatalogOverlay,
+  translate,
+  translateStatic,
+} from './catalog';
+import { localizeHtml, localizeProps } from './localize';
 import propTemplates from './prop-templates.json';
 import zhHans from './zh-Hans.json';
 
@@ -308,5 +314,77 @@ describe('负载 overlay', () => {
     const props = localizeProps({ content: SAMPLE }) as Record<string, string>;
     expect(props.content).toBe(SAMPLE_ZH);
     resetCatalogOverlay();
+  });
+});
+
+describe('fillArgs 单趟扫描', () => {
+  // 对标 DM lang_interpolate：实参里的 `{1}` 不得被下一轮占位符吃掉。
+  // 生造词（Zxqv）——真实英文词会进目录，断言就变成测目录内容。
+  test('实参里的占位符形态不会被后续实参替换', () => {
+    const template = '{0} then {1}';
+    const args = ['Zxqvx{1}x', 'ZxqvEND'] as const;
+    const expected = 'Zxqvx{1}x then ZxqvEND';
+    expect(fillArgs(template, args)).toBe(expected);
+    expect(translate('en', template, args)).toBe(expected);
+    expect(translateStatic('en', template, args)).toBe(expected);
+    expect(expected).toContain('Zxqvx{1}x');
+    expect(expected).not.toContain('ZxqvxZxqvENDx');
+  });
+});
+
+describe('tgui-core 默认文案', () => {
+  test('Button.Confirm 未传 confirmContent 时补目录译文', () => {
+    const confirmZh = (zhHans as Record<string, string>)['Confirm?'];
+    expect(confirmZh).toBeTruthy();
+    const props = localizeProps(
+      { content: 'Delete' },
+      Button.Confirm,
+    ) as Record<string, string>;
+    expect(props.confirmContent).toBe(confirmZh);
+  });
+
+  test('调用方已给 confirmContent 时不覆盖', () => {
+    const props = localizeProps(
+      { confirmContent: 'Zzqv custom confirm' },
+      Button.Confirm,
+    ) as Record<string, string>;
+    expect(props.confirmContent).toBe('Zzqv custom confirm');
+  });
+
+  test('Dropdown 未传 placeholder 时补目录译文', () => {
+    const placeholderZh = (zhHans as Record<string, string>)['Select...'];
+    expect(placeholderZh).toBeTruthy();
+    const props = localizeProps(
+      { options: [], selected: null, onSelected: () => {} },
+      Dropdown,
+    ) as Record<string, unknown>;
+    expect(props.placeholder).toBe(placeholderZh);
+  });
+});
+
+describe('localizeHtml', () => {
+  test('只对 overlay 多词键做子串替换', () => {
+    mergeCatalogOverlay({ 'Zxqv Thranok Unit': '兹克夫单元' });
+    expect(localizeHtml('<p>Deliver Zxqv Thranok Unit to cargo.</p>')).toBe(
+      '<p>Deliver 兹克夫单元 to cargo.</p>',
+    );
+    resetCatalogOverlay();
+  });
+
+  test('沿用 overlay 词边界：不得咬进另一个词中间', () => {
+    mergeCatalogOverlay({ 'Zxqv Thranok': '兹克夫' });
+    expect(localizeHtml('Zxqv Thranoks')).toBe('Zxqv Thranoks');
+    resetCatalogOverlay();
+  });
+
+  test('单词 overlay 键不参与 HTML 子串替换', () => {
+    mergeCatalogOverlay({ Zxqv: '兹克夫' });
+    expect(localizeHtml('Zxqv Thranok reactor')).toBe('Zxqv Thranok reactor');
+    resetCatalogOverlay();
+  });
+
+  test('不对静态目录跑无边界 AC', () => {
+    expect(SAMPLE_ZH).toBeTruthy();
+    expect(localizeHtml(`Press ${SAMPLE} now.`)).toBe(`Press ${SAMPLE} now.`);
   });
 });

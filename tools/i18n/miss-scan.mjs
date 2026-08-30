@@ -14,6 +14,11 @@
 //   cat *.log | node tools/i18n/miss-scan.mjs          # 也可从 stdin 读
 //   node tools/i18n/miss-scan.mjs --min 3 <logs>       # 只看总次数 ≥3 的
 //   node tools/i18n/miss-scan.mjs --json <logs>        # 机器可读输出
+//   node tools/i18n/miss-scan.mjs --baseline tools/i18n/miss-baseline.txt <logs>
+//       只对新增 (src, 归一化 text) 非零退出。行不 trim 行首空格（规则 D 同款）。
+//       基线不存在或含 # UNINITIALIZED：首次对比会写入当前 miss，不会当成 0 条。
+//   node tools/i18n/miss-scan.mjs --baseline tools/i18n/miss-baseline.txt --update-baseline <logs>
+//       只重写 miss 基线，不碰 identifier-baseline.txt / bare-english-baseline.txt。
 //   node tools/i18n/miss-scan.mjs --emit-pending <logs>
 //       把「在目录未译」桶导出成 MT 优先清单（tools/i18n/mt/.pending/miss-priority.json，
 //       {"obj.json": [key...]}），再用 I18N_ONLY_KEYS 只翻玩家实际看到的那批：
@@ -25,17 +30,39 @@ import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
+const DEFAULT_MISS_BASELINE = path.join(repoRoot, 'tools', 'i18n', 'miss-baseline.txt');
+
 const args = process.argv.slice(2);
 let minCount = 1;
 let asJson = false;
 let emitPending = false;
+let baselinePath = null;
+let updateBaseline = false;
 const files = [];
 for (let i = 0; i < args.length; i++) {
-  if (args[i] === '--min') minCount = Number(args[++i]) || 1;
-  else if (args[i] === '--json') asJson = true;
-  else if (args[i] === '--emit-pending') emitPending = true;
-  else files.push(args[i]);
+  const a = args[i];
+  if (a === '--min') minCount = Number(args[++i]) || 1;
+  else if (a === '--json') asJson = true;
+  else if (a === '--emit-pending') emitPending = true;
+  else if (a === '--update-baseline') updateBaseline = true;
+  else if (a === '--baseline') {
+    const v = args[++i];
+    if (!v || v.startsWith('--')) {
+      console.error('--baseline 需要路径（例如 tools/i18n/miss-baseline.txt）');
+      process.exit(2);
+    }
+    baselinePath = v;
+  } else if (a === '-h' || a === '--help') {
+    console.log(`用法：node tools/i18n/miss-scan.mjs [选项] [i18n_misses.log ...]
+  --min N              只看总次数 ≥N
+  --json               机器可读
+  --baseline PATH      只对新增 (src, text) 非零退出
+  --update-baseline    只重写 miss 基线（默认同 --baseline 缺省路径）
+  --emit-pending       导出「在目录未译」给 MT`);
+    process.exit(0);
+  } else files.push(a);
 }
+if (updateBaseline && !baselinePath) baselinePath = DEFAULT_MISS_BASELINE;
 
 // ---- 读日志，跨文件聚合 ----
 // src 允许连字符：`tgui-ui` 用 `\w+` 匹配不到，整类会被静默丢掉（不是报 0 条，是**一行都不解析**）。
@@ -56,19 +83,25 @@ function ingest(content) {
     const sep = rest.indexOf(' || ');
     const text = sep < 0 ? rest : rest.slice(0, sep);
     const hint = sep < 0 ? '' : rest.slice(sep + 4);
-    const prev = perFile.get(text);
     const count = Number(n);
-    if (!prev || count > prev.count) perFile.set(text, { count, src, hint });
-    else {
-      prev.src = prev.src || src;
-      prev.hint = prev.hint || hint;
+    const prev = perFile.get(text);
+    if (!prev) {
+      perFile.set(text, {
+        count,
+        sources: new Set([src]),
+        hints: new Set(hint ? [hint] : []),
+      });
+    } else {
+      if (count > prev.count) prev.count = count;
+      prev.sources.add(src);
+      if (hint) prev.hints.add(hint);
     }
   }
-  for (const [text, { count, src, hint }] of perFile) {
+  for (const [text, { count, sources, hints }] of perFile) {
     const entry = misses.get(text) ?? { count: 0, sources: new Set(), hints: new Set() };
     entry.count += count;
-    entry.sources.add(src);
-    if (hint) entry.hints.add(hint);
+    for (const s of sources) entry.sources.add(s);
+    for (const h of hints) entry.hints.add(h);
     misses.set(text, entry);
   }
 }
@@ -81,6 +114,91 @@ if (files.length) {
 if (!misses.size) {
   console.error('没有解析到任何 miss 行（确认输入是 i18n_misses.log）');
   process.exit(1);
+}
+
+function normalizeMissText(text) {
+  return text.replaceAll('\n', '\\n');
+}
+
+function missKey(src, text) {
+  return `${src}\t${normalizeMissText(text)}`;
+}
+
+function currentMissKeys() {
+  const keys = [];
+  for (const [text, { count, sources }] of misses) {
+    if (count < minCount) continue;
+    for (const src of sources) keys.push(missKey(src, text));
+  }
+  keys.sort();
+  return keys;
+}
+
+function loadMissBaseline(filePath) {
+  if (!fs.existsSync(filePath)) return { state: 'missing', keys: new Set() };
+  const keys = new Set();
+  let sawUninit = false;
+  for (const line of fs.readFileSync(filePath, 'utf8').split('\n')) {
+    const l = line.endsWith('\r') ? line.slice(0, -1) : line;
+    if (!l.trim()) continue;
+    if (l.trimStart().startsWith('#')) {
+      if (l.trimStart().startsWith('# UNINITIALIZED')) sawUninit = true;
+      continue;
+    }
+    keys.add(l);
+  }
+  if (keys.size === 0 && sawUninit) return { state: 'uninitialized', keys };
+  return { state: 'ready', keys };
+}
+
+function writeMissBaseline(filePath, keys) {
+  const header =
+    '# nova-i18n 漏翻增量基线（`node tools/i18n/miss-scan.mjs --update-baseline` 生成）。\n' +
+    '# 每行一条 `src<TAB>text`。text 已切掉 ` || 整行/来源` 上下文，**不 trim 行首空格**。\n' +
+    '# 只对不在此表的新增 (src, text) 失败。本命令只写本文件，不改 identifier-baseline.txt / bare-english-baseline.txt。\n';
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, header + (keys.length ? `${keys.join('\n')}\n` : ''));
+}
+
+function applyBaselineGate() {
+  if (!baselinePath) return 0;
+  const dest = path.resolve(repoRoot, baselinePath);
+  const loaded = loadMissBaseline(dest);
+  const current = currentMissKeys();
+  if (updateBaseline || loaded.state === 'missing' || loaded.state === 'uninitialized') {
+    if (!updateBaseline) {
+      const why = loaded.state === 'missing' ? '不存在' : '未初始化';
+      console.error(
+        `漏翻基线${why}：不会当成 0 条。正在写入 ${current.length} 条 → ${path.relative(repoRoot, dest)}`,
+      );
+      console.error(
+        '此后只对新增 (src, text) 非零退出。刷新：--update-baseline（只改 miss-baseline.txt）',
+      );
+    }
+    writeMissBaseline(dest, current);
+    console.error(
+      `已写入漏翻基线：${path.relative(repoRoot, dest)}（${current.length} 条）。未改 identifier-baseline.txt / bare-english-baseline.txt。`,
+    );
+    return 0;
+  }
+  const news = current.filter((k) => !loaded.keys.has(k));
+  if (news.length) {
+    console.error(`\n=== 新增漏翻（不在基线，${news.length} 条）===`);
+    for (const k of news) {
+      const tab = k.indexOf('\t');
+      const src = tab < 0 ? '?' : k.slice(0, tab);
+      const text = tab < 0 ? k : k.slice(tab + 1);
+      console.error(`  (${src})  ${text}`);
+    }
+    console.error(
+      '修法：新缺口则修抽取/落地层；已知噪音则\n' +
+        '  node tools/i18n/miss-scan.mjs --baseline tools/i18n/miss-baseline.txt --update-baseline <logs>\n' +
+        '（只更新 miss-baseline.txt）',
+    );
+    return 1;
+  }
+  console.error(`漏翻基线：${current.length} 条命中，新增 0 条`);
+  return 0;
 }
 
 // ---- 加载目录 ----
@@ -217,7 +335,7 @@ if (emitPending) {
 }
 if (asJson) {
   console.log(JSON.stringify(buckets, null, 2));
-  process.exit(0);
+  process.exit(applyBaselineGate());
 }
 const HINTS = {
   前端已覆盖: 'DM 侧查不到但前端 bundle 有译文 → 渲染期由 TS 本地化，不是缺口，无需处理',
@@ -307,3 +425,4 @@ for (const [name, rows] of Object.entries(buckets)) {
 }
 const total = Object.values(buckets).reduce((sum, rows) => sum + rows.length, 0);
 console.log(`\n共 ${total} 条唯一漏翻（阈值 ≥${minCount} 次）`);
+process.exit(applyBaselineGate());

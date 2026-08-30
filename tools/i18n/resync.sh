@@ -3,6 +3,8 @@
 #
 # 合并上游之后 / 定期运行：刷新英文主目录，并把「新出现的」玩家可见字符串改写为 LANG()。
 # rewrite 是幂等的——已改写的调用点不会被再次改写，所以可反复安全运行。
+# 门禁：extract 之后跑 map-descs / reaction-names；rewrite 之后 catalog-audit 硬失败。
+# lint 当前树非零（parser coverage），打印警告但不阻断。不跑伪 locale 全量单测，不跑 harvest。
 #
 # 分工（重要）：本脚本只负责「让新串变得可翻译」——extract 抽英文进目录、rewrite 用**内容哈希
 # key** 把新 sink 包成 LANG()。这两步是确定性的、无法用「让 AI 直接改」替代（AI 扫不全整库、
@@ -44,16 +46,31 @@ node tools/i18n/tgui-catalog.mjs extract
 echo "==> 抑制纯重排噪音（还原语义无变化、仅顺序不同的目录文件；手维护 _*.json 不再刷屏）"
 node tools/i18n/suppress-reorder.mjs
 
+echo "==> 地图 desc 覆盖 → strings/i18n/en/_map_descs.json（幂等，只合并不裁剪）"
+node tools/i18n/map-descs.mjs
+
+echo "==> 反应兜底显示名 → strings/i18n/reaction_names.json（幂等，只合并不裁剪；域内表）"
+node tools/i18n/reaction-names.mjs
+
 echo "==> 改写新出现的纯字符串消息为 LANG()（幂等；核心文件自动加 NOVA EDIT 标记）"
 "$TOOL" rewrite --dme tgstation.dme
 
-echo "==> i18n lint（建议性）：目录卫生 + 标识符碰撞静态分析。"
-echo "    上游新代码可能引入新的「标识符 ↔ 可翻译值」碰撞（StripMenu 蓝屏 / 出生点错位类）。"
-echo "    新增高置信碰撞会以非零码报告——请逐条判断后，确认安全的用 --update-baseline 收进基线。"
-"$TOOL" lint --dme tgstation.dme --catalog strings/i18n --locale zh-Hans \
-	--baseline tools/i18n/identifier-baseline.txt || echo "    （lint 有发现，见上；不阻断 resync。）"
+echo "==> catalog-audit（只读：stale 自动项 / sidecar / 反查歧义 / 坏 %VAR 占位符）。失败即阻断。"
+"$TOOL" catalog-audit --dme tgstation.dme --catalog strings/i18n
 
-echo "==> 翻译覆盖率（extract 之后还差哪些 zh 译文）"
+echo "==> i18n lint（目录卫生 + 标识符碰撞静态分析）。"
+echo "    上游新代码可能引入新的「标识符 ↔ 可翻译值」碰撞（StripMenu 蓝屏 / 出生点错位类）。"
+echo "    当前仓库 lint 已非零（实测 exit 1：DM parser coverage），故不阻断 resync——"
+echo "    否则每次上游刷新都会永久失败。硬失败交给上一步 catalog-audit。"
+echo "    不跑伪 locale 全量单测，不跑 harvest。"
+if ! "$TOOL" lint --dme tgstation.dme --catalog strings/i18n --locale zh-Hans \
+	--baseline tools/i18n/identifier-baseline.txt; then
+	echo "!! nova-i18n lint 非零退出，不阻断 resync。" >&2
+	echo "   请阅读上面的错误（高置信碰撞 / 裸英文增量 / 悬空 key / parser coverage）。" >&2
+	echo "   确认安全的碰撞用 lint --update-baseline 收进基线；目录 liveness 已由 catalog-audit 把关。" >&2
+fi
+
+echo "==> 翻译覆盖率（分栏：真缺失 / 未译散文 / keep-english / 启发式跳过 / 源已是中文）"
 node tools/i18n/coverage.mjs
 
 echo "==> 完成。review 上面的 git diff 后提交；随后翻译新增英文条目："

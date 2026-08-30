@@ -98,6 +98,7 @@ echo "     namespan  聊天里 span_name() 包着的说话者/emote 名字整块
 echo "     tgui      TGUI **负载值**（服务端 P1）miss"
 echo "     tgui-ui   TGUI **前端**查表 miss —— 只有真人开界面才会产生，单测跑不出来"
 echo
-echo "==> 明细见 $MISS_LOG；离线归类：node tools/i18n/miss-scan.mjs $MISS_LOG"
+echo "==> 明细见 $MISS_LOG；miss-scan 增量基线（只对新增 src+text 失败）"
+node tools/i18n/miss-scan.mjs --baseline tools/i18n/miss-baseline.txt "$MISS_LOG"
 echo "    只翻玩家真的看到的那批：node tools/i18n/miss-scan.mjs --emit-pending $MISS_LOG \\"
 echo "      && I18N_ONLY_KEYS=tools/i18n/mt/.pending/miss-priority.json bun tools/i18n/mt/i18n-mt.ts"

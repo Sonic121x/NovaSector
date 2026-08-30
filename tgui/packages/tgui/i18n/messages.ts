@@ -1,7 +1,7 @@
 // THIS IS A NOVA SECTOR UI FILE
 // Typed, context-aware display messages. Canonical values never pass through translation.
 
-import { translateStatic, translateStaticCurrent } from './catalog';
+import { fillArgs, translateStatic, translateStaticCurrent } from './catalog';
 
 const CONTEXT_SEPARATOR = '\u0004';
 const CONTEXT_PATTERN = /^[a-z][a-z0-9]*(?:[._/-][a-z0-9]+)*$/;
@@ -100,13 +100,7 @@ function fillMessage(
   template: string,
   args?: ReadonlyArray<MessageArgument>,
 ): LocalizedText {
-  if (!args) {
-    return template as LocalizedText;
-  }
-  return template.replace(/\{(\d+)\}/g, (placeholder, rawIndex) => {
-    const index = Number(rawIndex);
-    return index < args.length ? String(args[index]) : placeholder;
-  }) as LocalizedText;
+  return fillArgs(template, args) as LocalizedText;
 }
 
 /** Pure resolver used when a caller owns a catalog (and by focused tests). */

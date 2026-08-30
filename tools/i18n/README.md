@@ -84,7 +84,9 @@ cargo run --release --manifest-path tools/i18n/Cargo.toml -- \
   rewrite --dme tgstation.dme
 
 # 推荐：合并上游后的一键重同步
-# 会构建 nova-i18n、刷新游戏英文目录、刷新 TGUI tgui.json、再做 rewrite
+# extract → labels → tgui → suppress-reorder → map-descs / reaction-names → rewrite →
+# catalog-audit（硬失败）→ lint（当前树非零、不阻断）→ coverage
+# 不跑伪 locale 全量单测，不跑 harvest。不是 git hook，也没有 GitHub CI job。
 bash tools/i18n/resync.sh
 ```
 
@@ -155,7 +157,7 @@ bun tools/i18n/mt/i18n-mt.ts pending obj.json
 # 看译文里哪些条目没有按术语表统一用词（不调用 Codex）
 bun tools/i18n/mt/i18n-mt.ts terms obj.json
 
-# 翻译全部游戏/TGUI 命名空间（默认单并发串行跑完整个待译队列）
+# 翻译全部游戏/TGUI 命名空间（默认单并发串行跑完整个待译队列；成功后自动跑一次 `terms` 报告）
 bun tools/i18n/mt/i18n-mt.ts
 
 # 翻译某个游戏命名空间
@@ -443,6 +445,13 @@ miss 分支记录「经过所有翻译层后仍是英文」的多词串（≥3 �
 node tools/i18n/miss-scan.mjs 'data/logs/<round>/i18n_misses.log' [更多日志...]
 node tools/i18n/miss-scan.mjs --min 3 <logs>   # 只看总次数 ≥3（滤一次性噪音）
 node tools/i18n/miss-scan.mjs --json <logs>    # 机器可读
+
+# 增量基线（规则 D 同款）：只对新增 (src, 归一化 text) 非零退出。行不 trim 行首空格。
+# 基线不存在或含 # UNINITIALIZED 时首次对比会写入当前 miss，不会当成 0 条然后下次全是新增。
+node tools/i18n/miss-scan.mjs --baseline tools/i18n/miss-baseline.txt <logs>
+# 刷新 miss 基线（只写 miss-baseline.txt，不碰 identifier-baseline.txt / bare-english-baseline.txt）
+node tools/i18n/miss-scan.mjs --baseline tools/i18n/miss-baseline.txt --update-baseline <logs>
+# miss-harvest.sh 结束时若有日志会自动带 --baseline 跑本命令。
 ```
 
 六个分类桶直接对应 `AGENTS.md` 排查规律的处理动作：
@@ -461,6 +470,19 @@ JMP/FLW 链接括号、build mode、GC 硬删除告警、爆炸尺寸行等，�
 ——按规范不译；2026-07 起运行时已按 MESSAGE_TYPE_ADMINLOG/ATTACKLOG/DEBUG 跳过聊天 AC，
 新日志里这类会大幅减少）；服务器**本地魔改文本**（与仓库源码不一致的串永远反查不中——实测 Windows 服
 把 Shadekin 词条改成了 Shadowkin，目录里的译文自然接不上；先 `git diff` 服务器部署树）。
+
+### 可选本地测试（`test.sh`）—— 不是 git hook
+
+小改动不必跑。默认只打覆盖率分栏；真目录单测和漏翻采集要显式选。
+
+```sh
+bash tools/i18n/test.sh              # 快：覆盖率分栏
+bash tools/i18n/test.sh catalog      # 长：真 zh-Hans 全量单测（i18n_real_catalog 会真正执行）
+bash tools/i18n/test.sh harvest      # 更长：漏翻采集（结束时带基线跑 miss-scan）
+bash tools/i18n/test.sh miss-scan    # 有 data/logs/ci/i18n_misses.log 才扫；没有则跳过、0 退出
+```
+
+`coverage.mjs` 把「真缺失 / 未译散文 / keep-english / 标识符单位缩写 / 源已是中文」拆开，不要把后两栏送进 MT。
 
 ### 伪 locale 单测门禁（`pseudo-test.sh`）—— 一键跑全量单测抓变异回归
 

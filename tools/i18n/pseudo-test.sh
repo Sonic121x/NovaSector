@@ -14,7 +14,8 @@
 #
 # 用法（NixOS 在 nix develop 里跑，或 nix develop -c bash tools/i18n/pseudo-test.sh）：
 #   bash tools/i18n/pseudo-test.sh              # qps-ploc 门禁
-#   bash tools/i18n/pseudo-test.sh zh-Hans      # 可选：指定 locale 跑基线（区分本机既有失败）
+#   bash tools/i18n/pseudo-test.sh zh-Hans      # 真中文目录门禁（i18n_real_catalog 等会真正执行）
+#   bash tools/i18n/test.sh catalog             # 同上，入口更短
 #
 # 退出码 0 = 单测在伪 locale 下全绿；非 0 = 有变异回归（看 data/logs/ci/tests.log）。
 # 结束后（含中断）自动还原 config 与 _compile_options.dm；qps-ploc 目录不入库（已 gitignore）。
@@ -33,6 +34,15 @@ fi
 
 if pgrep -x DreamDaemon > /dev/null; then
 	echo "!! 已有 DreamDaemon 在跑（会争抢 .rsc/日志），先停掉再跑门禁" >&2
+	exit 1
+fi
+
+# librust_g.so 缺失的表现极具误导性：编译照常绿，DreamDaemon 在 world/New() 的 SetupLogs()
+# 里段错误 core dump，日志尾部只剩一串 `log runtime` 调用栈，看不出真因（在 git worktree 里
+# 尤其容易踩 —— nix devShell 只给主仓库建软链，worktree 没有）。宁可在这里一句话说清。
+if [[ ! -e librust_g.so ]]; then
+	echo "!! 缺少 librust_g.so —— DreamDaemon 会在启动时段错误，而编译阶段完全看不出来。" >&2
+	echo "   主仓库由 nix devShell 自动软链；worktree 里需手工：ln -s \$RUST_G_LIB librust_g.so" >&2
 	exit 1
 fi
 
@@ -59,7 +69,13 @@ echo "==> config 已切 $GATE_LOCALE；USE_RUSTG_ICONFORGE_GAGS 已临时禁用"
 
 echo "==> 编译（-DCBT -DCIBUILDING = UNIT_TESTS）"
 cp tgstation.dme tgstation.test.dme
-DreamMaker -DCBT -DCIBUILDING tgstation.test.dme
+# `set -e` 会在编译失败时直接中止，但 EXIT trap 随后打印的「已还原 …」看着像正常收尾。
+# 显式报一句，否则「UNIT_TESTS 编不过」与「跑完了」在日志尾部长得一模一样
+# （实测踩过：test.sh 接进管道时拿到的是管道尾端的退出码，编译错误被整个吞掉）。
+if ! DreamMaker -DCBT -DCIBUILDING tgstation.test.dme; then
+	echo "==> 编译失败：UNIT_TESTS 构建有错误，单测一条都没跑。上面的 DreamMaker 输出即为原因。" >&2
+	exit 1
+fi
 
 echo "==> 运行全量单测"
 rm -rf data/logs/ci

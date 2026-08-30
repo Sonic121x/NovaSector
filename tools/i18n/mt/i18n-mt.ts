@@ -1039,22 +1039,25 @@ function writeSorted(file: string, catalog: Catalog): void {
   );
 }
 
-/// 跨命名空间「英文原文 -> 已有合格译文」全局表（仅取已译、非中英混杂的条目）。
-/// 用于翻译前复用：同一英文别处已译过就直接套用，不再调模型。与运行时全局反查假设一致。
-function buildGlobalReverse(): Map<string, string> {
-  const reverse = new Map<string, string>();
+/// 精确翻译记忆：英文原文 → 已有真译文（zh≠en 且不再被判待译）。
+///
+/// 这是 `migrate.rs` 的「精确继承」在 MT pending 侧的对应：填缺失 / zh==en 占位之前，
+/// 若**其它命名空间**（或同文件其它 key）已有同一英文值的真译文，直接套用、不送模型。
+/// **只做值全等**。Dice 模糊匹配不得接到 MT 自动写盘（0.95 都还接错过）。
+function buildExactTranslationMemory(): Map<string, string> {
+  const memory = new Map<string, string>();
   for (const file of namespaceFiles([])) {
     const en = readCatalog(path.join(EN_DIR, file));
     const zh = readCatalog(path.join(DST_DIR, file));
     for (const key of Object.keys(en)) {
       const e = en[key];
       const z = zh[key];
-      if (z != null && z !== e && !needsTranslation(e, z) && !reverse.has(e)) {
-        reverse.set(e, z);
+      if (z != null && z !== e && !needsTranslation(e, z) && !memory.has(e)) {
+        memory.set(e, z);
       }
     }
   }
-  return reverse;
+  return memory;
 }
 
 function termMismatches(
@@ -1269,7 +1272,7 @@ function batchGlossaryEntries(batch: Catalog): [string, string, string?][] {
       if (!entry.sourcePattern.test(value)) continue;
       const sense = pickSense(entry, key);
       if (!sense) continue;
-      selected.set(`${entry.term} ${sense.expected}`, [
+      selected.set(`${entry.term}::${sense.expected}`, [
         entry.term,
         sense.expected,
         senseNote(sense),
@@ -1310,8 +1313,7 @@ const CONCURRENCY = Math.max(
   1,
   envInt('I18N_CONCURRENCY', BACKEND === 'openai' ? 4 : 1),
 );
-// 跨命名空间复用：同一英文已在别处译过就直接复用、不再调模型（省调用 + 译名一致）。默认开，
-// 与运行时「EN→译文」全局反查的假设一致。I18N_NO_REUSE=1 关闭。
+// 精确翻译记忆（英文值全等才继承；无 Dice）。默认开。I18N_NO_REUSE=1 关闭。
 const REUSE = !envFlag('I18N_NO_REUSE');
 
 function progressLine(
@@ -2047,9 +2049,11 @@ async function cmdTranslate(
   if (!checkBackendReady()) return false;
   fs.mkdirSync(PENDING_DIR, { recursive: true });
   fs.mkdirSync(DST_DIR, { recursive: true });
-  // 优化①：跨命名空间复用表（仅 pending 模式；terms 模式要重译修术语，不复用）。
-  const globalReverse =
-    mode === 'pending' && REUSE ? buildGlobalReverse() : new Map<string, string>();
+  // 精确继承表（仅 pending 模式；terms 要重译修术语，不套旧译）。
+  const translationMemory =
+    mode === 'pending' && REUSE
+      ? buildExactTranslationMemory()
+      : new Map<string, string>();
   let codexCallsStarted = 0;
   let stopped = false; // 达到上限或失败：停止开新调用
   let hardFail = false; // 失败且不续跑：返回 false
@@ -2071,13 +2075,13 @@ async function cmdTranslate(
     ) {
       return false;
     }
-    // 优化①：先用全局表把「别处已译过的英文」直接填上，不再调模型。
-    if (mode === 'pending' && REUSE && globalReverse.size) {
+    // 填缺失/zh==en 之前：其它命名空间已有同一英文值的真译文 → 精确继承，不送模型。
+    if (mode === 'pending' && REUSE && translationMemory.size) {
       const merged = readCatalog(dstFile);
       let prefilled = 0;
       const remaining: string[] = [];
       for (const key of keys) {
-        const reused = globalReverse.get(pending[key]);
+        const reused = translationMemory.get(pending[key]);
         if (reused !== undefined) {
           merged[key] = reused;
           prefilled++;
@@ -2087,7 +2091,9 @@ async function cmdTranslate(
       }
       if (prefilled) {
         writeSorted(dstFile, merged);
-        console.log(`${file}: 复用已有译文 ${prefilled} 条（不调用模型）`);
+        console.log(
+          `${file}: 精确继承 ${prefilled} 条（同英文已有真译文，不调用模型）`,
+        );
       }
       keys = remaining;
     }
@@ -2176,7 +2182,7 @@ async function cmdTranslate(
             }
             merged[key] = translatedBatch.catalog[key];
             applied++;
-            if (REUSE) globalReverse.set(item.batch[key], translatedBatch.catalog[key]);
+            if (REUSE) translationMemory.set(item.batch[key], translatedBatch.catalog[key]);
             // 模型选择保持英文（返回值==英文原文）→ 登记白名单，下轮不再重送（专名/cult/程序名…）。
             if (translatedBatch.catalog[key] === item.batch[key])
               markKeepEnglish(key, item.batch[key]);
@@ -2345,4 +2351,6 @@ else if (cmd === 'translate-terms' || cmd === 'repair-terms') {
   if (!(await cmdTranslate(rest, 'terms'))) process.exit(1);
 } else {
   if (!(await cmdTranslate(rest))) process.exit(1);
+  console.log('\n==> 翻译后术语一致性（只报告，不改目录）');
+  cmdTerms(rest);
 }

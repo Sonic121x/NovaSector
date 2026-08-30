@@ -20,8 +20,12 @@
 		GLOB.i18n_server_locale = saved_locale
 	return ..()
 
-/// 真目录测试的准入。TEST_FAIL 走 GLOB.current_test，可从本 proc 调用。
-/proc/i18n_zh_catalog_ready()
+/// 真目录测试的准入。
+///
+/// **必须挂在 `/datum/unit_test` 上，不能是全局 proc**：`TEST_FAIL` 展开成裸 `Fail(...)`，
+/// 而 `Fail` 是 `/datum/unit_test/proc/Fail` —— 写成全局 proc 时编译期直接 `undefined proc`，
+/// 整个 UNIT_TESTS 构建编不过（而生产构建照常绿，所以只有跑 test.sh catalog 才看得见）。
+/datum/unit_test/proc/i18n_zh_catalog_ready()
 	if(lang_catalog_locale_is_loaded(LANGUAGE_LOCALE_ZH_HANS))
 		return TRUE
 	if(GLOB.i18n_server_locale == LANGUAGE_LOCALE_ZH_HANS)

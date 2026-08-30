@@ -120,16 +120,22 @@ export function getCurrentLocale(): string {
   return store.get(configAtom)?.locale ?? DEFAULT_LOCALE;
 }
 
-function fillArgs(
+/**
+ * 单趟填充 `{0}`/`{1}`/… 占位符。按序 `split('{i}').join(args[i])` 会把**已经写进串里的实参**
+ * 当成下一轮模板再扫一遍：`"{0} then {1}"` + `["x{1}x", "END"]` 会变成 `xENDx then END`。
+ * 对标 DM `lang_interpolate`；catalog 的 translate/translateStatic 与 messages 共用。
+ */
+export function fillArgs(
   template: string,
   args?: ReadonlyArray<string | number>,
 ): string {
-  if (args) {
-    for (let i = 0; i < args.length; i++) {
-      template = template.split(`{${i}}`).join(String(args[i]));
-    }
+  if (!args?.length) {
+    return template;
   }
-  return template;
+  return template.replace(/\{(\d+)\}/g, (placeholder, rawIndex) => {
+    const index = Number(rawIndex);
+    return index < args.length ? String(args[index]) : placeholder;
+  });
 }
 
 function staticTemplate(locale: string, key: string): string {

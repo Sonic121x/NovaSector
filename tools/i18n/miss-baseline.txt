@@ -1,0 +1,7 @@
+# nova-i18n 漏翻增量基线（`node tools/i18n/miss-scan.mjs --update-baseline` 生成）。
+# UNINITIALIZED
+# 每行一条 `src<TAB>text`。text 已切掉 ` || 整行/来源` 上下文，**不 trim 行首空格**
+# （与规则 D 的 bare-english 基线相同：行首空格是内容的一部分）。
+# harvest / `test.sh miss-scan` 只对不在此表的新增 (src, text) 非零退出。
+# `--update-baseline` 只重写本文件，不会碰 identifier-baseline.txt / bare-english-baseline.txt。
+# 尚无真实 harvest 日志，故只有说明、没有 miss 行。首次对比会建立数据行（不会把缺失基线当成 0 条）。
