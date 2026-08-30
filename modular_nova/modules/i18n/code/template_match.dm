@@ -1,6 +1,6 @@
 // NovaSector 全量汉化 (i18n) —— 边界层「模板逆匹配」引擎。
 //
-// 问题：反查表只收无占位符纯串、字面 AC 字典只收多词字面短语——目录里上万条**已译插值模板**
+// 问题：反查表只收无占位符纯串——目录里上万条**已译插值模板**
 // （"{0} is already filled to capacity." 等）对边界层完全不可见：运行期实参填进占位符后，
 // 整串既不是反查键、含占位符的模板又被 AC 守卫排除 → 凡「拼进变量再输出」「改写器够不着的
 // 调用形状」一律漏翻，只能逐点打补丁（AGENTS.md 排查规律节的大半条目即此类）。
@@ -11,10 +11,10 @@
 //   2. apply：输出文本先过锚检测（一次 acreplace 把锚换成 sentinel；无锚命中即近零成本返回，
 //      绝大多数行走此快路径）。
 //   3. 命中后按字面段序列在**原文**上验证完整模板（findtext 逐段；段间文本=捕获的实参）。
-//   4. 捕获实参递归本地化：整串反查 → 状态词表 → 多词字面 AC（名字/状态词/短语都能翻）。
+//   4. 捕获实参递归本地化：整串反查 → 状态词表（名字/状态词都能翻）。
 //   5. 按 zh 模板填充（{N} 可按中文语序重排）并替换原文里的命中区间。
 //
-// 挂接：lang_fallback_apply（fallback.dm）内、字面 AC 之前——聊天/browse/状态栏/公告/maptext/
+// 挂接：lang_fallback_apply（fallback.dm）内、整串精确反查之后——聊天/browse/状态栏/公告/maptext/
 // 职业描述等全部边界一次获得插值句翻译能力。locale==en 零开销；已译中文不再匹配英文锚，天然幂等。
 //
 // 安全性：要求模板全部字面段按序命中 + 锚为多词长段（≥10 字符含空格）+ 捕获不跨行，误匹配
@@ -161,7 +161,7 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 	for(var/key in english)
 		var/en_t = english[key]
 		if(!findtext(en_t, "{"))
-			continue // 纯串走反查/字面 AC
+			continue // 纯串走整串精确反查
 		var/zh_t = localized[key]
 		if(!zh_t || zh_t == en_t)
 			continue
@@ -212,7 +212,7 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 	// 通用锚（" begins to "…）会把两条都遮住。被遮住的锚**不进候选**，于是唯一能匹配的那条模板
 	// 根本不会被尝试，整句原样留英文——手术台上每一步的可见消息就是这么全程没翻（i18n_real_catalog
 	// 守这条）。原注释说「只是少收一个候选、不影响正确性」，不成立：少收的正是对的那个。
-	// 与 fallback.dm 的字面 AC 同款选项。
+	// 这条对模板锚同样是硬约束：目录里大量锚互为前缀，最短匹配会让「对的那个」被遮住。
 	var/static/list/tpl_ac_options = list("match_kind" = "LeftmostLongest")
 	rustg_setup_acreplace_with_options("i18n_tpl_[locale]", tpl_ac_options, patterns, replacements)
 	GLOB.i18n_tpl_state[locale] = "ready"
@@ -384,19 +384,15 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 		break
 	return len - i
 
-/// 捕获实参本地化：统一链（状态词→代词→整串反查→冠词剥离，见 runtime.dm 的 lang_localize_arg）
-/// → 多词捕获再退字面 AC。查不到原样保留（数字/已中文/玩家名）。
+/// 捕获实参本地化：统一链（状态词→代词→整串反查→冠词剥离，见 runtime.dm 的 lang_localize_arg）。
+/// 查不到原样保留（数字/已中文/玩家名）。这里曾经还有一层「多词捕获退字面 AC」，随 AC 整层删除
+/// —— 子串替换在一个捕获值上只会产出「中文碎片嵌在英文里」，而那正是漏翻采集要记下来的形态。
 /proc/lang_tpl_localize_arg(capture, locale)
 	if(!istext(capture) || !length(capture))
 		return capture
 	var/zh = lang_localize_arg(capture)
 	if(zh != capture)
 		return zh
-	if(findtext(capture, " ") && lang_fallback_setup(locale))
-		var/ac = rustg_acreplace("i18n_[locale]", capture)
-		if(ac != capture)
-			lang_count_layer_hit(I18N_LAYER_AC)
-			return ac
 	// 漏翻采集：模板命中了、捕获值却没翻 —— 表现为「中文句式里嵌着英文词」，和 LANG 实参漏出
 	// 同形，但成因在另一条链上（模板逆匹配捕获 vs 调用点实参），所以要分开记。
 	lang_log_miss_value(capture, "capture")

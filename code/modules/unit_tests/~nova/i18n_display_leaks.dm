@@ -78,7 +78,6 @@
 	GLOB.i18n_server_locale = I18N_LEAK_LOCALE
 	GLOB.i18n_runtime_state = I18N_RUNTIME_READY
 	GLOB.i18n_reverse -= I18N_LEAK_LOCALE
-	GLOB.i18n_fallback_state -= I18N_LEAK_LOCALE
 	GLOB.i18n_fallback_cache -= I18N_LEAK_LOCALE
 
 	var/obj/item/i18n_display_leak_test/subject = allocate(/obj/item/i18n_display_leak_test)
@@ -148,7 +147,6 @@
 	GLOB.i18n_reverse -= I18N_LEAK_LOCALE
 	GLOB.i18n_runtime_domains -= I18N_LEAK_LOCALE
 	GLOB.i18n_reverse_norm -= I18N_LEAK_LOCALE
-	GLOB.i18n_fallback_state -= I18N_LEAK_LOCALE
 	GLOB.i18n_fallback_cache -= I18N_LEAK_LOCALE
 	var/mixed_arg = lang_localize_arg(" and <span class='notice'>[I18N_LEAK_NAME]</span>")
 	TEST_ASSERT(findtext(mixed_arg, " 和 "), "混合实参的裸文本段没有被翻译：[mixed_arg]")
@@ -163,13 +161,13 @@
 	// ⑪ 带冠词的名字整块（`The mi-go`）：BYOND 对非专名自动补 "The"，整串不是目录键。
 	// 落地链在整串 miss 之后要剥冠词再精确查一次 —— 这条从前只在 LANG 实参和聊天 name-span
 	// 两处各写了一遍，于是名字包在 `<b>` 之类别的标签里时整块落不了地。
-	var/articled = lang_localize_chain("The [I18N_LEAK_NAME]", I18N_LEAK_LOCALE, allow_template = FALSE, ac_mode = I18N_AC_NONE)
+	var/articled = lang_localize_chain("The [I18N_LEAK_NAME]", I18N_LEAK_LOCALE, allow_template = FALSE)
 	TEST_ASSERT_EQUAL(articled, "兹克夫单元", "带冠词的名字整块没有落地：[articled]")
 
-	// ③ 没有句末标点的两词碎片不得进字面 AC 字典（否则在句子中间开火）。
-	TEST_ASSERT(!lang_fallback_pattern_safe(I18N_LEAK_FRAGMENT), "两词碎片仍被放进 AC 字典，会从单词内部开火")
+	// ③ 目录里的两词碎片（`I18N_LEAK_FRAGMENT`）不得在句子中间开火。
+	//    字面 AC 整层删除后这条恒真，留着当回归门禁：谁再引入子串替换层，这里立刻变红。
 	var/sentence = lang_fallback_apply("Zxqv can't stop me, Owl!", I18N_LEAK_LOCALE)
-	TEST_ASSERT_EQUAL(sentence, "Zxqv can't stop me, Owl!", "AC 从单词内部开火了：[sentence]")
+	TEST_ASSERT_EQUAL(sentence, "Zxqv can't stop me, Owl!", "落地层从单词内部开火了：[sentence]")
 
 #undef I18N_LEAK_LOCALE
 #undef I18N_LEAK_NAME

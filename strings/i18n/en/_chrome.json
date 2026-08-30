@@ -1,0 +1,23 @@
+{
+	"chrome_lobby_starting_in": "Starting in",
+	"chrome_lobby_players_ready": "players ready",
+	"chrome_lobby_players_online": "players online",
+	"chrome_lobby_player_online": "player online",
+	"chrome_lobby_admins_ready": "admins ready",
+	"chrome_lobby_game_ended": "Game ended",
+	"chrome_lobby_restart_soon": "restart soon",
+	"chrome_lobby_loading": "Loading...",
+	"chrome_lobby_another_day": "Another day on...",
+	"chrome_stat_map": "Map:",
+	"chrome_stat_round_id": "Round ID",
+	"chrome_stat_round_timer": "Round Timer",
+	"chrome_stat_time_dilation": "Time Dilation",
+	"chrome_stat_server_time": "Server Time",
+	"chrome_stat_feedback": "(Feedback)",
+	"chrome_law_programmed_laws": "Programmed Laws:",
+	"chrome_law_programmed_law": "Programmed Law:",
+	"chrome_law_obey_these": "Obey these laws:",
+	"chrome_examine_combat_info": "See combat information.",
+	"chrome_job_antag_optin_kill": "Forces a minimum of Yes - Kill antag opt-in.",
+	"chrome_captainship_not_forced": "Captainship not forced on anyone."
+}

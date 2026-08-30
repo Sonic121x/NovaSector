@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(statpanels)
 		// NOVA EDIT ADDITION START
 		var/real_round_time = world.timeofday - SSticker.real_round_start_time
 		global_data = list(
-			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
+			"[lang_reverse_text("Time Dilation")]: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
 		)
 		// i18n: 地图名显示译名，格式「译名-英文」（保留英文供 wiki 查询/辨识）。只在**显示处**——
 		// map_name 本身绝不能改，config/maps.txt 的 feedbacklink / webmap_url 按 map_name 比对生效
@@ -56,27 +56,27 @@ SUBSYSTEM_DEF(statpanels)
 		if(isnull(SSmapping.current_map))
 			global_data += "Loading"
 		else if(SSmapping.current_map.feedback_link)
-			global_data += list(list("Map: [localized_map_name]", " (Feedback)", "action=openLink&link=[SSmapping.current_map.feedback_link]"))
+			global_data += list(list("[lang_reverse_text("Map:")] [localized_map_name]", " [lang_reverse_text("(Feedback)")]", "action=openLink&link=[SSmapping.current_map.feedback_link]"))
 		else
-			global_data += "Map: [localized_map_name]"
+			global_data += "[lang_reverse_text("Map:")] [localized_map_name]"
 
 		if(SSmapping.current_map?.mapping_url)
 			global_data += list(list("same_line", " | [lang_reverse_text("(View in Browser)")]", "action=openWebMap"))
 
-		// i18n: 这几条标签在源头整串反查，不靠下面 i18n_localize_stat_list 的 AC 子串兜底。
-		// AC 只吃多词、且是**最短匹配**："Enabled"/"Disabled" 是单词永远匹配不到；
-		// "Actual Round Timer" 会被更短的针 "Round Timer" 吃掉中段、剩个裸 "Actual"。
-		// 整串反查在 AC 之前跑完，标签已是中文，后面 AC 再扫就是 no-op。en 下全部 no-op。
+		// i18n: 状态栏标签一律在**源头**整串精确反查（译名见 strings/i18n/*/_chrome.json）。
+		// 这里曾经依赖字面 AC 的子串兜底，那条路已经删掉——它按最短匹配、又没有词边界概念：
+		// "Enabled"/"Disabled" 是单词，多词门槛下永远匹配不到；而 "Actual Round Timer" 会被更短的
+		// 针 "Round Timer" 吃掉中段、剩个裸 "Actual"。整串反查没有这两类问题，en 下全部 no-op。
 		global_data += list(
 			cached ? "[lang_reverse_text("Next Map")]: [lang_map_display_name(cached.map_name)]" : null,
-			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
+			"[lang_reverse_text("Round ID")]: [GLOB.round_id ? GLOB.round_id : "NULL"]",
 			"[lang_reverse_text("Connected Players")]: [GLOB.clients.len]",
 			" ",
 			"OOC: [GLOB.ooc_allowed ? lang_reverse_text("Enabled") : lang_reverse_text("Disabled")]",
 			" ",
-			"Server Time: [server_timestamp(format = "YYYY-MM-DD hh:mm:ss")]",
+			"[lang_reverse_text("Server Time")]: [server_timestamp(format = "YYYY-MM-DD hh:mm:ss")]",
 			"Station Time: [server_timestamp(ic_time = TRUE)]",
-			"Round Timer: [round_timestamp()]",
+			"[lang_reverse_text("Round Timer")]: [round_timestamp()]",
 			"[lang_reverse_text("Actual Round Timer")]: [time2text(real_round_time, "hh:mm:ss", 0)]"
 		)
 		// NOVA EDIT ADDITION END

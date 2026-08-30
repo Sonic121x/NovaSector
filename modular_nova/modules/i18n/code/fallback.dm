@@ -1,13 +1,10 @@
-// NovaSector 全量汉化 (i18n) —— 运行时英→中兜底层（Aho-Corasick）。
+// NovaSector 全量汉化 (i18n) —— 运行时输出落地层。
 //
-// 对「尚未被 LANG/LANGU 改写」或「无法静态抽取」的残留英文，在输出边界做一次多模式
-// 子串替换。字典两来源：
-//   1. 主字典——内存反查表 lang_build_reverse(locale)（即已翻译的 name/desc/message/title 等
-//      无占位符整串），**仅取含空格的多词短语**：单词做子串替换会误伤（"Door"→"Doorknob"），
-//      单词类名靠 examine/hover/TGUI 等显示边界调用 lang_reverse_text 精确反查覆盖（见 runtime.dm）。
-//   2. Explicit scoped:fallback domain from catalog-domains.json (不受多词过滤限制，人工显式覆盖).
-// 注意：纯子串替换，不保证语序正确，仅用于过渡期与长尾「不漏英文」。已被 LANG 处理过的
-// 文本不应再过此层（中文不匹配英文 pattern，天然 no-op，但仍尽量避免二次过）。
+// 一层：整串精确反查 + 模板逆匹配。聊天由 I18N_CHAT_FALLBACK 门控；browse / 状态栏 /
+// 大厅 maptext / 气泡在 locale≠en 时一直走。
+// 已被 LANG 处理过的中文在入口按「无拉丁字母」短路，不付切块税。
+//
+// 这里曾有第二层「字面 Aho-Corasick 子串替换」，已整层删除，理由见 lang_localize_chain。
 
 #define I18N_FALLBACK_CACHE_MAX 2048
 #define I18N_FALLBACK_CACHE_MAX_LENGTH 512
@@ -16,152 +13,10 @@
 /// `span_tooltip()` 拼出来的提示属性前缀。切块器唯一会去翻的属性（见 lang_localize_tooltip_attrs）。
 #define I18N_TOOLTIP_ATTR "data-content=\""
 
-/// locale -> "ready" | "none"，避免重复读盘/重复 setup。
-GLOBAL_LIST_EMPTY(i18n_fallback_state)
-/// locale -> "ready" | "none"；人工 _fallback 中无空白 pattern 的独立 AC 字典。
-GLOBAL_LIST_EMPTY(i18n_fallback_single_state)
 /// locale -> (input -> translated)；有界、不淘汰，避免动态串在长局反复挤压缓存。
 GLOBAL_LIST_EMPTY(i18n_fallback_cache)
 /// 全中文输出不需要进模板引擎或 rust-g AC。
 GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
-
-/// 拼句碎片作为 **AC 子串 pattern** 的黑名单虚词。整句可以用它们开头（"The door is locked."），
-/// 但一条不带句末标点的短短语若以虚词起/收，几乎必然是 `. += "…" + " and " + "…"` 这类拼句
-/// 碎片，而不是一个完整的显示串。
-GLOBAL_LIST_INIT(i18n_fallback_stopwords, list(
-	"a", "an", "the", "and", "or", "of", "in", "on", "at", "to", "is", "are",
-	"was", "were", "be", "by", "for", "with", "from", "as", "it", "its",
-	"one", "no", "not", "but", "that", "this", "their", "his", "her",
-	// 代词 + 情态/助动词。少了这批，`"You can"→"你可以"` 这种**没有句末标点的两词碎片**会进 AC 字典，
-	// 然后在任意句子中间开火：`You can|'t stop me, Owl!` → 「你可以't stop me, Owl!」。
-	// 判据同上：碎片留在目录里供各自调用点精确查表，只是不再获得在任意文本上开火的权力。
-	"you", "your", "yours", "i", "we", "our", "they", "them", "he", "she", "him",
-	"can", "cant", "will", "wont", "would", "could", "should", "shall", "may",
-	"might", "must", "do", "does", "did", "done", "have", "has", "had", "am",
-	"been", "being", "get", "gets", "got", "let", "lets", "make", "makes",
-	"if", "when", "while", "then", "there", "here", "what", "which", "who",
-	"how", "why", "all", "any", "some", "more", "most", "very", "just", "also",
-	"too", "so", "such", "about", "into", "onto", "out", "up", "down", "off", "over",
-))
-
-/// 某条已译目录项能否进**字面 AC 子串字典**。
-///
-/// 反查表喂给两条完全不同的路：`lang_reverse_text` 的**整串精确**反查（碎片在那里无害——只有
-/// 整个字符串等于它才命中），和这里的**子串替换**（碎片会在任意句子中间开火）。两条路共用一张
-/// 表，是「玩家看到半句乱码」的结构性来源，且比不翻译严重得多：
-///   · `"one of"→"其中一只"`（目录里一条**没有调用点**的悬空项）把 `But n|one of| its eggs
-///     hatched!` 从单词中间切开 → 「But n其中一只 its eggs hatched!」；
-///   · `" and "→" 和 "`（carbon_examine 的伤情拼句碎片）让整段 NPC 检查文本变成
-///     「…on the console 和 he is constantly twitching…」。
-/// rustg 的 AC 没有词边界概念，LeftmostLongest 只解决「同起点取最长」，管不了「起点落在单词
-/// 内部」。所以闸门必须设在**建字典这一步**：碎片继续留在目录里供各自调用点精确查表，只是
-/// 不再获得在任意文本上开火的权力。
-/proc/lang_fallback_pattern_safe(english)
-	// 去掉首尾空白后仍须是多词短语。`" and "` / `"and "` 这种「靠 padding 才含空格」的单词
-	// 碎片，正是 findtext(english, " ") 这条旧闸门唯一漏掉的形状。
-	var/trimmed = trim(english)
-	if(!findtext(trimmed, " "))
-		return FALSE
-	// 续接标点打头 = 拼句碎片，无论多长都不该获得「在任意文本中间开火」的权力。
-	if(lang_fallback_pattern_fragment(trimmed))
-		return FALSE
-	// 整句（有句末标点）一律放行：它们不会成为更长单词的一部分。
-	var/last_character = copytext(trimmed, length(trimmed))
-	if(findtext(".!?:;\"')", last_character))
-		return TRUE
-	var/list/words = splittext(trimmed, " ")
-	if(length(words) > 3)
-		return TRUE
-	var/list/stopwords = GLOB.i18n_fallback_stopwords
-	if((LOWER_TEXT(words[1]) in stopwords) || (LOWER_TEXT(words[length(words)]) in stopwords))
-		return FALSE
-	return TRUE
-
-/// 「整串以续接标点起头」——拼句碎片的可靠签名。
-///
-/// 这类串（`", Col"`、`"- Make yourself a"`、`"...at ["`）本身是句子的后半截，进了 AC 的
-/// 子串字典就会从单词内部开火：`Smith, Colonel` 被咬成 `Smith, 列onel`。它们仍留在目录里
-/// 供各自调用点**精确**查表，只是不再参与子串替换。
-///
-/// 判据必须比「首字符是标点」更窄，否则会误杀一批正当显示串（实测）：
-///   · `.357 Speedloader` / `.50 BMG …` —— 句点后面跟**数字**，是弹药口径不是句子续接；
-///   · `(WALL PIERCE)` / `&bull; …` / `*static*…` —— 括号星号打头的是完整标签/正文；
-///   · `'Time Of Valor 2' Medbay` —— 引号打头的是区域专名，全仓 700+ 条。
-/// 故只认「逗号/分号/冒号」，以及「句点或连字符**后面跟空白或另一个句点**」。
-/// 只按 ASCII 判：UTF-8 下小于 128 的字节必是完整字符，多字节破折号极少见，不值得冒险。
-/proc/lang_fallback_pattern_fragment(trimmed)
-	var/first = text2ascii(trimmed, 1)
-	if(first == 44 || first == 59 || first == 58) // , ; :
-		return TRUE
-	var/second = text2ascii(trimmed, 2)
-	if(first == 46) // .
-		return second == 46 || second == 32 || second == 9
-	if(first == 45) // -
-		return second == 32 || second == 9
-	return FALSE
-
-/// AC 字典的早调用告警计数（与 lang_reverse_text 那个哨兵同源，上限同一个 define）。
-GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
-
-/// Builds one locale's AC engines. The common runtime lifecycle is the only readiness gate:
-/// bootstrap calls return without recording state or an empty cache.
-/proc/lang_fallback_setup(locale)
-	if(locale == DEFAULT_UI_LOCALE)
-		return FALSE
-	var/state = GLOB.i18n_fallback_state[locale]
-	if(state)
-		return state == "ready"
-	if(!lang_runtime_can_build_indexes() || !lang_catalog_locale_is_loaded(locale))
-		if(GLOB.i18n_fallback_early_warnings < I18N_MAX_EARLY_WARNINGS)
-			GLOB.i18n_fallback_early_warnings++
-			stack_trace("i18n: lang_fallback_setup([locale]) was called before the active catalog lifecycle reached INITIALIZING; returning without caching")
-		return FALSE
-	GLOB.i18n_fallback_cache[locale] = list()
-
-	// 主字典：global reverse domain 里「含空格的多词短语」（单词排除，避免子串误伤）。
-	var/list/dict = list()
-	var/list/reverse = lang_build_reverse(locale)
-	for(var/english in reverse)
-		if(!lang_fallback_pattern_safe(english))
-			continue
-		dict[english] = reverse[english]
-
-	// Explicit scoped supplement. Cross-domain differences are legal; this layer intentionally wins.
-	var/list/single_patterns = list()
-	var/list/single_replacements = list()
-	var/list/manual = lang_runtime_domain("fallback", locale)
-	for(var/english in manual)
-		dict[english] = manual[english]
-		if(!findtext(english, " ") && !findtext(english, "\t") && !findtext(english, "\n"))
-			single_patterns += english
-			single_replacements += manual[english]
-
-	// **匹配模式必须是 LeftmostLongest**（默认 Standard = 一命中就替换，即最短匹配）。
-	// 目录里大量存在「一个词是另一个词前缀」的情况，最短匹配会把长词切坏：
-	//   "Security Officer"（安保官）里先命中 "Security Office"（安保办公室，区域名）
-	//   → 输出「安保办公室r」，末尾那个 r 就是被切剩的。
-	// LeftmostLongest 在同一起点取最长匹配，长词优先，这类前缀冲突全部消失。
-	var/static/list/ac_options = list("match_kind" = "LeftmostLongest")
-
-	if(length(single_patterns))
-		rustg_setup_acreplace_with_options("i18n_single_[locale]", ac_options, single_patterns, single_replacements)
-		GLOB.i18n_fallback_single_state[locale] = "ready"
-	else
-		GLOB.i18n_fallback_single_state[locale] = "none"
-
-	if(!length(dict))
-		GLOB.i18n_fallback_state[locale] = "none"
-		return FALSE
-
-	var/list/patterns = list()
-	var/list/replacements = list()
-	for(var/english in dict)
-		patterns += english
-		replacements += dict[english]
-
-	rustg_setup_acreplace_with_options("i18n_[locale]", ac_options, patterns, replacements)
-	GLOB.i18n_fallback_state[locale] = "ready"
-	return TRUE
 
 /// 只缓存有界的完整输入；miss 采集开启时不缓存，保留准确的频次计数。
 /proc/lang_fallback_cache_store(locale, source_text, translated_text)
@@ -175,21 +30,30 @@ GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
 		cache[source_text] = translated_text
 	return translated_text
 
-/// 对一段文本应用兜底替换。locale 为 null 时用全服 locale；缺省 locale（英文）直接返回。
-/// 三条落地链共用的核心：**整串精确 → 模板逆匹配 → 字面 AC**，按 scope 决定放行到哪一层。
+/// 对一段文本应用落地替换。locale 为 null 时用全服 locale；缺省 locale（英文）直接返回。
+/// 三条落地链共用的核心：**整串精确 →（剥冠词再精确）→ 模板逆匹配**。
 ///
 /// 从前聊天、TGUI 负载（P1）、显示边界各写了一遍这个顺序，于是：
 ///   · 顺序只在一处修对过（「整串精确必须排在模板之前」那条，其余两处曾各自被泛化骨架模板劫持）；
-///   · 聊天链手写的精确查表只看 exact 表，归一表那批键在聊天路径上永远查不到（本次实测抓到）。
-/// 现在顺序只有这一处，三个调用点只是传不同的 scope。
+///   · 聊天链手写的精确查表只看 exact 表，归一表那批键在聊天路径上永远查不到（实测抓到过）。
+/// 现在顺序只有这一处。
 ///
-/// `ac_mode`：
-///   · `I18N_AC_NONE`  —— 不过字面 AC。显示边界用这个：名字要么整串命中、要么是「区域名 + 类型名」
-///     那种可拆的合成名（各自精确翻），子串替换在这里只会带来误伤（AC 无词边界概念）。
-///   · `I18N_AC_PROSE` —— 只有长散文（≥80 字符且有句末标点）才过 AC。TGUI 负载用这个：
-///     act() 回传标识符、图标名、黑板键永远不是这个形状。
-///   · `I18N_AC_FULL`  —— 聊天/浏览器用这个：整行文本本来就是散文。
-/proc/lang_localize_chain(text, locale, allow_template, ac_mode)
+/// **曾经还有第四层：字面 Aho-Corasick 子串替换，已整层删除。** 两条理由：
+///   · 覆盖收益是负的。生产语料实测（40 局 GAME-SAY/EMOTE，496 条英文）：整串精确+模板拿下
+///     298 条（60%），只有 AC 能翻的 22 条（4.4%），而那 22 条的产物是「中文碎片嵌在英文句里」
+///     （`Arresting level 5 scumbag +Yan+ in the 前部中央主通道.`）—— 比全英文更难看。
+///   · 代价是结构性的。字典由反查表自动生成（93,039 条多词模式），每局 `world.Reboot()` 清 GLOB
+///     后重建一次：三份列表 + `json_encode` 出两个约 5 MB 的**连续**字符串交给 rust。32 位
+///     DreamDaemon 的 brk 堆跑久了满是空洞，这种大块连续分配正是最先失败的那类
+///     （生产实测 7 天 18 次 SIGABRT，栈全部落在 librust_g.so，且总在回合切换的瞬间）。
+///   另外 AC 没有词边界概念、取最短匹配，历史上反复从单词内部开火（`", Col"` 把
+///   `Smith, Colonel` 咬成 `Smith, 列onel`），`lang_fallback_pattern_safe` 那一整套闸门就是
+///   为它写的，一并删掉。
+///
+/// 原先靠 AC 落地的那 21 条大厅/状态栏/法则标签改为**在渲染点整串精确反查**
+///（`strings/i18n/*/_chrome.json`，译文逐字未变）。模板引擎自己的锚自动机（`i18n_tpl_*`，
+/// 约 1.6 万条锚）不在此列，它是精确的第二层证据、量级也小 30 倍，保留。
+/proc/lang_localize_chain(text, locale, allow_template)
 	. = lang_reverse_text_in(text, locale)
 	if(. != text)
 		return
@@ -208,37 +72,25 @@ GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
 		if(. != stripped)
 			return
 		. = text
-	// 模板命中**不再提前返回**（只在 AC 不跑的两个 scope 下直接返回）。
-	//
-	// 一整行里可以既有「带占位符的模板」又有「纯串」：职业描述的 antag opt-in 段就是三段后缀
-	// 拼在一起——第一段 `" Forces a minimum of {0} antag opt-in."` 是模板、后两段
-	// `" Targetable by contractors."` / `" Targetable by heretics."` 是纯串。模板命中就返回，
-	// 后两段永远轮不到 AC，玩家看到「第一段中文、后两段英文」。
-	// 已翻好的中文部分不含拉丁字母，AC 不会再碰它；剩下的英文正是该它管的。
 	var/templated = FALSE
 	if(allow_template)
 		var/after_template = lang_template_apply(text, locale)
 		if(after_template != text)
 			text = after_template
 			templated = TRUE
-	if(ac_mode == I18N_AC_NONE)
-		if(!templated)
-			lang_count_layer_hit(I18N_LAYER_MISS)
-		return text
-	if(ac_mode == I18N_AC_PROSE && !lang_tgui_prose_candidate(text))
-		if(!templated)
-			lang_count_layer_hit(I18N_LAYER_MISS)
-		return text
-	if(!lang_fallback_setup(locale))
-		if(!templated)
-			lang_count_layer_hit(I18N_LAYER_MISS)
-		return text
-	. = rustg_acreplace("i18n_[locale]", text)
-	if(. != text)
-		lang_count_layer_hit(I18N_LAYER_AC)
-	else if(!templated)
+	if(!templated)
 		lang_count_layer_hit(I18N_LAYER_MISS)
-	return .
+	return text
+
+/// 可见文本（剥掉 HTML 标签之后）是否含拉丁字母。标签里的 `span`/`class` 不算——
+/// 否则带样式的已译中文行永远付切块税。
+/proc/lang_html_visible_has_latin(html)
+	var/regex/ascii_letter_regex = GLOB.i18n_ascii_letter_regex
+	if(!ascii_letter_regex.Find(html, 1))
+		return FALSE
+	if(!findtext(html, "<"))
+		return TRUE
+	return ascii_letter_regex.Find(lang_strip_html_tags(html), 1)
 
 /proc/lang_fallback_apply(text, locale)
 	if(!istext(text) || !length(text))
@@ -247,15 +99,12 @@ GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
 		locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
 	if(locale == DEFAULT_UI_LOCALE)
 		return text
-	if(!lang_fallback_setup(locale))
-		lang_count_layer_hit(I18N_LAYER_MISS)
-		return text
 	var/source_text = text
 	var/list/cache = GLOB.i18n_fallback_cache[locale]
 	if(!GLOB.i18n_log_misses && length(text) <= I18N_FALLBACK_CACHE_MAX_LENGTH && islist(cache) && (text in cache))
 		return cache[text]
-	// 剥掉 BYOND 文本宏 \improper / \proper（0xFF 起头的控制字节）：rustg_acreplace 按 UTF-8
-	// 处理字符串，这些非 UTF-8 字节会被替换成 U+FFFD（显示为 ��，如「那是 ��space」）。中文无
+	// 剥掉 BYOND 文本宏 \improper / \proper（0xFF 起头的控制字节）：模板引擎的锚匹配走 rustg，
+	// 按 UTF-8 处理字符串，这些非 UTF-8 字节会被替换成 U+FFFD（显示为 ��，如「那是 ��space」）。中文无
 	// 大小写，这两个宏（控制后随单词首字母大小写）本就无意义 → 直接剥除。findtext 门控让无宏的
 	// 热路径（绝大多数聊天行）零额外开销。
 	if(findtext(text, "\improper") || findtext(text, "\proper"))
@@ -263,30 +112,57 @@ GLOBAL_VAR_INIT(i18n_fallback_early_warnings, 0)
 		text = replacetext(text, "\proper ", "")
 		text = replacetext(text, "\improper", "")
 		text = replacetext(text, "\proper", "")
-	// 无拉丁字母的已译输出直接返回，避免跨 FFI 创建新字符串。
+	// 无拉丁字母：精确与模板都不可能命中，直接短路。
 	var/regex/ascii_letter_regex = GLOB.i18n_ascii_letter_regex
-	if(!ascii_letter_regex.Find(text))
+	if(!ascii_letter_regex.Find(text, 1))
 		return lang_fallback_cache_store(locale, source_text, text)
+	// 单词/无空白串：整串精确反查仍然要跑（emote 的 `chitters.` 是目录键），但不进模板引擎
+	// —— 锚长门槛下它一条也匹配不上，白跑。
 	var/has_word_separator = findtext(text, " ") || findtext(text, "\t") || findtext(text, "\n")
-	// Template anchors and the main dictionary are multi-word; single tokens only use scoped:fallback.
 	if(!has_word_separator)
-		var/before_ac = text
-		if(GLOB.i18n_fallback_single_state[locale] == "ready")
-			text = rustg_acreplace("i18n_single_[locale]", text)
-		if(text != before_ac)
-			lang_count_layer_hit(I18N_LAYER_AC)
-		else
-			lang_count_layer_hit(I18N_LAYER_MISS)
+		text = lang_localize_chain(text, locale, allow_template = FALSE)
+		if(GLOB.i18n_log_misses)
+			lang_log_miss_scan(text, "fallback")
 		return lang_fallback_cache_store(locale, source_text, text)
-	// 整串精确 → 模板逆匹配 → 字面 AC，顺序由 lang_localize_chain 统一定义。
+	// 整串精确 → 模板逆匹配，顺序由 lang_localize_chain 统一定义。
 	// **整串精确必须排在模板之前**：目录里若正好有这一整句，它是最具体的证据。否则先跑的模板
 	// 引擎会被泛化骨架劫持——`It appears to {0}`、`{0} produces a {1}.` 这类三两个词的模板会
 	// 吞掉任意同形句子，把捕获到的英文原样塞回中文脚手架（「它看起来像be completely inactive.」）。
-	text = lang_localize_chain(text, locale, allow_template = TRUE, ac_mode = I18N_AC_FULL)
+	text = lang_localize_chain(text, locale, allow_template = TRUE)
 	// 漏翻采集：所有层过完仍残留的多词英文 run（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
 	if(GLOB.i18n_log_misses)
 		lang_log_miss_scan(text, "fallback")
 	return lang_fallback_cache_store(locale, source_text, text)
+
+/// 把「基础句 + 若干整句后缀」里的后缀**逐句**落地。
+///
+/// 每个后缀（`" Targetable by contractors."`）各自是目录键，拼起来的整串不是。从前这里靠字面 AC
+/// 的子串替换蒙混过去 —— 那一层已整层删除（见 lang_localize_chain），改为按句切开、逐句走整串
+/// 精确反查：更准（没有词边界风险、不会从单词内部开火），而且天然支持「其中一句没译」——
+/// 那一句保持英文，其余照译，不会像 AC 那样把半句中文塞进英文里。
+///
+/// 切点是 `". "`：句号连同它属于前一句，后面那个空格归下一句（中文译文自带标点，接缝不丢）。
+/proc/lang_localize_sentence_suffixes(text, locale)
+	if(!istext(text) || !length(text))
+		return text
+	var/text_length = length(text)
+	if(text_length < 2)
+		return lang_fallback_apply(text, locale)
+	var/list/pieces = list()
+	var/start = 1
+	var/cursor = 1
+	while(cursor <= text_length)
+		var/dot = findtext(text, ". ", cursor)
+		if(!dot)
+			pieces += copytext(text, start)
+			break
+		pieces += copytext(text, start, dot + 1)
+		start = dot + 1
+		cursor = dot + 2
+	var/list/localized = list()
+	for(var/piece in pieces)
+		localized += lang_fallback_apply(piece, locale)
+	return jointext(localized, "")
 
 /// `<span class='name'>` 里那一整块的本地化。只做**整串精确**反查（外加剥冠词后再试一次），
 /// 不过模板引擎、不过字面 AC：这里的内容要么是类型标签（该翻），要么是玩家角色名（绝不能碰），
@@ -534,6 +410,13 @@ GLOBAL_LIST_INIT(i18n_inline_tags, list(
 		return html
 	if(isnull(locale))
 		locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
+	if(locale == DEFAULT_UI_LOCALE)
+		return html
+	// 可见文本无拉丁字母 → 零切块。必须在 inline-run / 整行模板 / 切块循环之前。
+	// 标签里的 class 名不算（否则带 span 的已译中文行永远走切块器）。
+	// 有 tooltip 属性时不能短路：data-content 在标签内部，strip 会把它丢掉，里面可能是英文。
+	if(!findtext(html, I18N_TOOLTIP_ATTR) && !lang_html_visible_has_latin(html))
+		return html
 	// 「整句被内联标签切开」的前置 pass。只对聊天行大小的片段做，且**跳过含原文本元素的文档**
 	// （script/style/textarea 的内容绝不能碰）——浏览器整页走原来的切块路径。
 	if(locale != DEFAULT_UI_LOCALE && length(html) <= I18N_INLINE_RUN_MAX_LENGTH \

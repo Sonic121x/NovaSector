@@ -12,12 +12,20 @@
 /// 两条落地通道各修一处，这里分别钉住：
 ///   ① 边缘标签（整句被 `<b>`/`<span>` 包住）→ lang_build_reverse 的「剥标签变体键」；
 ///   ② 句中内联标签 → lang_fallback_apply_html 的「跨内联标签整段查表」前置 pass。
+/// locale 不是 zh-Hans 时允许跳过；locale 已是 zh-Hans 却没加载目录 = 假绿，必须失败。
+/// 跑 `bash tools/i18n/test.sh catalog`。
 /datum/unit_test/i18n_html_tag_keys
+	var/saved_locale
+
+/datum/unit_test/i18n_html_tag_keys/Destroy()
+	if(!isnull(saved_locale))
+		GLOB.i18n_server_locale = saved_locale
+	return ..()
 
 /datum/unit_test/i18n_html_tag_keys/Run()
-	var/saved_locale = GLOB.i18n_server_locale
-	if(!islist(GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][LANGUAGE_LOCALE_ZH_HANS]))
-		return // 该 locale 目录不存在（精简签出）：跳过而不是误报。
+	saved_locale = GLOB.i18n_server_locale
+	if(!i18n_zh_catalog_ready())
+		return
 	GLOB.i18n_server_locale = LANGUAGE_LOCALE_ZH_HANS
 
 	var/list/en_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][DEFAULT_UI_LOCALE]

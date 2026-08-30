@@ -37,7 +37,6 @@
 #define I18N_LAYER_EXACT "exact"
 #define I18N_LAYER_NORMALIZED "normalized"
 #define I18N_LAYER_TEMPLATE "template"
-#define I18N_LAYER_AC "ac"
 #define I18N_LAYER_MISS "miss"
 
 /// 全服 locale 下的本地化 + 格式化。用于广播类文本（visible_message 等，
@@ -47,16 +46,6 @@
 
 /// 兼容旧调用的定向文本入口；当前服务器强制使用全服 locale。
 #define LANGU(user, key, args) (lang_format_for(user, key, args))
-
-/// `lang_localize_chain` 的字面 AC 放行档位。
-/// 放共享 defines 而不是 fallback.dm：三条落地链分布在 runtime.dm / fallback.dm / 单测里，
-/// 定义在模块文件里只是**碰巧**靠 .dme 的 include 顺序成立（单测在 8867 行之前就用不到）。
-/// I18N_AC_NONE  —— 不过 AC（显示边界：名字要么整串命中、要么可分段翻，子串替换只会误伤）。
-/// I18N_AC_PROSE —— 只有长散文过 AC（TGUI 负载：act 回传标识符永远不是这个形状）。
-/// I18N_AC_FULL  —— 聊天/浏览器：整行本来就是散文。
-#define I18N_AC_NONE 0
-#define I18N_AC_PROSE 1
-#define I18N_AC_FULL 2
 
 /// 早调用告警上限：一次启动最多报这么多条。runtime.dm 的反查哨兵与 fallback.dm 的
 /// AC 建表哨兵**共用**这一个上限，所以它住在共享 defines 里（单文件 define 会被

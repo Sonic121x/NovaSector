@@ -15,7 +15,8 @@ Module ID: I18N
 2. **运行时（DM + rust_g）** 本模块 `code/`：
    - `runtime.dm` —— 查表与占位符填充（`lang_format`/`lang_format_for`）、name/desc **反查表**
      （`lang_build_reverse`）、TGUI 负载本地化（P1，`lang_reverse_tree`/`lang_reverse_phrase_tgui`）。
-   - `fallback.dm` —— 输出边界的兜底层：整串精确反查 → 模板逆匹配 → 字面 AC 子串替换。
+   - `fallback.dm` —— 输出边界的落地层：整串精确反查 → 剥冠词再精确 → 模板逆匹配。
+     （曾有第四层「字面 AC 子串替换」，已整层删除，理由见 `lang_localize_chain` 的注释。）
    - `template_match.dm` —— **模板逆匹配引擎**：目录里已译的插值模板在输出边界整句命中
      （锚检测 → 逐字面段验证 → 捕获实参递归本地化 → 按 zh 模板重排填充）。
    - `miss_log.dm` —— 运行期漏翻采集（config `I18N_LOG_MISSES`，默认关）。
@@ -108,7 +109,7 @@ LANG 化的散文，不适合短标签与标识符。
 
 **译文与策略**
 - `strings/i18n/<locale>/*.json` —— 译文目录。DM 运行时从 `STRING_DIRECTORY/i18n/` 加载。
-  `_` 前缀的是**手维护**表（`_state_words` 状态词、`_fallback` 人工 AC 补充、`_map_names` 地图名、
+  `_` 前缀的是**手维护**表（`_state_words` 状态词、`_chrome` 大厅/状态栏/法则标签、`_map_names` 地图名、
   `_map_descs` 地图 desc、`_wires` 电线名…）。
 - `strings/i18n/catalog-domains.json` —— **运行时域与文件所有权清单**。`forward`、`global_reverse`、
   `tgui` 与 named scoped domain 的边界以它为准；新增目录文件必须先登记。
@@ -138,6 +139,7 @@ LANG 化的散文，不适合短标签与标识符。
 - `map-descs.mjs` —— 收集 `.dmm` 里的 `desc` 实例变量覆盖（解析器看不到这类，须单独扫）。
 - `resync.sh` —— 合并上游后一键重同步。`mt/` —— 机翻 + 术语表 + keep-english 白名单。
 - `pseudo-test.sh` —— **伪 locale 门禁**（跑全量单测，抓「标识符被反查变异 → 功能破坏」）。
+- `test.sh` —— **可选**本地测试入口（默认覆盖率分栏；`catalog` = 真 zh-Hans 单测）。不是 git hook。
 
 ### 核心（非模块化）改动面:
 
@@ -169,14 +171,16 @@ LANG 化的散文，不适合短标签与标识符。
 
 **切全服中文**：`config/game_options.txt` 写 `I18N_SERVER_LOCALE zh-Hans`。配置启动时读，**无需重编译**。
 
-**聊天层 AC 兜底（可选，默认关）**
-- **AC = Aho-Corasick 子串替换**（`fallback.dm`，基于 `rustg_acreplace`）。用于「不是 `LANG()` 调用、
-  整串反查也搞不定」的残留英文——主要是英文先拼进变量再 `to_chat`。
-- **字典不是独立文件**：运行时由 `lang_build_reverse` 从已加载的译文目录现算，**只收多词短语**
-  （单词会从词内开火、且污染 `name ==` 比较）。所以**你翻 `strings/i18n/zh-Hans/*.json`，字典自动更新**。
-  可选人工补充 `_fallback.json`（扁平 `{"english":"中文"}`）。
-- **开关**：`I18N_CHAT_FALLBACK 1`。**只管聊天**；browse / 状态栏 / 大厅 maptext 的兜底「locale≠en 就一直开」。
-- **代价**：聊天是热路径，每行多一次扫描；默认关，翻好后开启实测。
+**聊天落地层（两个开关）**
+- **`I18N_CHAT_FALLBACK`**（本仓库 `1`）：聊天是否走 HTML 切块 + 整串精确反查 + 模板逆匹配。
+  browse / 状态栏 / 大厅 maptext / 气泡在 locale≠en 时一直走这一层。
+> **字面 AC 已整层删除**（原 `I18N_CHAT_AC` 开关、`lang_fallback_setup`、`lang_fallback_pattern_safe`
+> 与 `_fallback.json` 一并移除）。两条理由：生产语料实测它只贡献 4.4% 覆盖且产物是「中文碎片嵌在
+> 英文句里」，比全英文更难看；字典由反查表现算 93,039 条多词模式，每局 `world.Reboot()` 后重建一次，
+> `json_encode` 出两个约 5 MB 的连续字符串，是 32 位 DreamDaemon 地址空间耗尽（SIGABRT in
+> librust_g.so）的主要推手。原先靠它落地的 21 条大厅/状态栏/法则标签改为在渲染点整串精确反查
+> （`_chrome.json`，译文逐字未变）；职业描述那类「基础句 + 整句后缀」改走
+> `lang_localize_sentence_suffixes` 按句切分。模板引擎自己的锚自动机（`i18n_tpl_*`）不在此列。
 
 **字体**：核心 maptext 字体只含拉丁字形，汉字会回退到系统字体微缩 → 模糊。`fonts.dm` 注册
 Fusion Pixel 8px（OFL-1.1），`interface/skin.dmf` 把它**追加为回退字体**——拉丁字仍走原像素字体、

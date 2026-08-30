@@ -18,7 +18,7 @@
 #define I18N_TYPE_LABEL_LOCALE "i18n-typelabel-unittest"
 #define I18N_TYPE_LABEL_NAME_KEY "unittest.0000000000000001"
 #define I18N_TYPE_LABEL_DESC_KEY "unittest.0000000000000002"
-/// 单词名：反查侧的多词闸门（lang_reverse_phrase_tgui / lang_fallback_pattern_safe）永远够不到它。
+/// 单词名：反查侧的多词闸门（lang_reverse_phrase_tgui）永远够不到它。
 #define I18N_TYPE_LABEL_NAME "Cryostylane"
 #define I18N_TYPE_LABEL_DESC "Bluespace"
 
