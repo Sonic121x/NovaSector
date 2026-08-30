@@ -18,16 +18,14 @@
 		list(source_and_listener),
 	)
 
-	TEST_ASSERT_EQUAL(
-		sound_manager._signal_procs[source_and_listener][COMSIG_MOVABLE_MOVED],
-		TYPE_PROC_REF(/datum/threed_sound, on_moved),
-		"A parent which is also a listener should retain the source movement callback.",
-	)
-	TEST_ASSERT_EQUAL(
-		sound_manager._signal_procs[source_and_listener][COMSIG_QDELETING],
-		TYPE_PROC_REF(/datum/threed_sound, parent_delete),
-		"A parent which is also a listener should retain the source deletion callback.",
-	)
+	// TEST_ASSERT_EQUAL 展开成 `do { … } while(FALSE)`，**调用不能跨行写**：
+	// 跨行时 SpacemanDMM 在展开后的第一个 `;` 上就报 parse error（DreamMaker 也一样），
+	// 而这个文件只在 UNIT_TESTS 下编译，生产构建照常通过 —— 于是整个测试套件编不过、
+	// pseudo-test.sh / miss-harvest.sh 跟着一起停摆，却没有任何一条 CI 之外的信号。
+	var/moved_callback = sound_manager._signal_procs[source_and_listener][COMSIG_MOVABLE_MOVED]
+	TEST_ASSERT_EQUAL(moved_callback, TYPE_PROC_REF(/datum/threed_sound, on_moved), "A parent which is also a listener should retain the source movement callback.")
+	var/delete_callback = sound_manager._signal_procs[source_and_listener][COMSIG_QDELETING]
+	TEST_ASSERT_EQUAL(delete_callback, TYPE_PROC_REF(/datum/threed_sound, parent_delete), "A parent which is also a listener should retain the source deletion callback.")
 
 /obj/effect/runtime_stability_light_test
 	abstract_type = /obj/effect/runtime_stability_light_test
