@@ -246,6 +246,7 @@
 		if(istype(tool, underbarrel.magazine.ammo_type))
 			underbarrel.item_interaction(user, tool, modifiers)
 		return ITEM_INTERACT_BLOCKING
+	if(istype(tool, /obj/item/ammo_box/magazine/ammo_stack))
 		var/obj/item/ammo_box/magazine/ammo_stack/stack = tool
 		var/obj/item/ammo_casing/stack_casing = stack.get_round()
 		if(stack_casing && istype(stack_casing, underbarrel.magazine.ammo_type))
@@ -292,7 +293,7 @@
 	name = "\improper 'sztylet'左轮弹巢"
 	ammo_type = /obj/item/ammo_casing/shotgun
 	caliber = CALIBER_SHOTGUN
-	max_ammo = 4
+	max_ammo = 3
 	ammo_box_multiload = AMMO_BOX_MULTILOAD_NONE
 
 // //	EVO-13
