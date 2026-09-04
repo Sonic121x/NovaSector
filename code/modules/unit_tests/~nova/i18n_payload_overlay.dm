@@ -21,6 +21,9 @@
 #define I18N_OVERLAY_LOCALE "i18n-overlay-unittest"
 // 生造词：真实英文词会在真目录/伪 locale 下被译掉，断言就从「测落地逻辑」变成「测目录内容」。
 #define I18N_OVERLAY_NAME "Zxqv Thranok Unit"
+#define I18N_OVERLAY_SINGLE "Zxqv"
+#define I18N_OVERLAY_SINGLE_QUOTED "'Qzvx'"
+#define I18N_OVERLAY_SINGLE_NORMALIZED "Qzvx"
 #define I18N_OVERLAY_PROSE "Zxqv thranok drifts through the quiet dark."
 #define I18N_OVERLAY_FLAT "Zxqv Thranok Sector"
 
@@ -48,6 +51,8 @@
 
 	var/list/test_pairs = list(
 		"unittest.overlay_name" = list(I18N_OVERLAY_NAME, "兹克夫单元"),
+		"unittest.overlay_single" = list(I18N_OVERLAY_SINGLE, "兹克夫"),
+		"unittest.overlay_single_normalized" = list(I18N_OVERLAY_SINGLE_QUOTED, "归一化兹克夫"),
 		"unittest.overlay_prose" = list(I18N_OVERLAY_PROSE, "兹克夫漂过寂静的黑暗。"),
 		"unittest.overlay_flat" = list(I18N_OVERLAY_FLAT, "兹克夫星区"),
 	)
@@ -70,6 +75,8 @@
 
 	var/list/payload = list(
 		"name" = I18N_OVERLAY_NAME,
+		"label" = I18N_OVERLAY_SINGLE,
+		"normalized_label" = I18N_OVERLAY_SINGLE_NORMALIZED,
 		"desc" = I18N_OVERLAY_PROSE,
 		"zones" = list(I18N_OVERLAY_FLAT),
 		"id" = I18N_OVERLAY_NAME, // payload_skip_keys 成员
@@ -80,6 +87,12 @@
 	// ① 普通键：值不动，译文进 overlay。
 	TEST_ASSERT_EQUAL(payload["name"], I18N_OVERLAY_NAME, "负载值被就地改写了：回传的标识符会变成中文，ui_act 会静默失败")
 	TEST_ASSERT_EQUAL(overlay[I18N_OVERLAY_NAME], "兹克夫单元", "译文没有进 overlay：前端拿不到，界面会退回英文")
+	TEST_ASSERT_EQUAL(payload["label"], I18N_OVERLAY_SINGLE, "单词负载值被就地改写了")
+	TEST_ASSERT_EQUAL(overlay[I18N_OVERLAY_SINGLE], "兹克夫", "单词精确译文没有进 overlay")
+	TEST_ASSERT_EQUAL(payload["normalized_label"], I18N_OVERLAY_SINGLE_NORMALIZED, "归一化单词负载值被就地改写了")
+	TEST_ASSERT_EQUAL(overlay[I18N_OVERLAY_SINGLE_NORMALIZED], "归一化兹克夫", "单词归一化译文丢失")
+	TEST_ASSERT(!(I18N_OVERLAY_SINGLE in GLOB.i18n_tgui_phrase_cache), "单词值污染了有界短语缓存")
+	TEST_ASSERT(!(I18N_OVERLAY_SINGLE_NORMALIZED in GLOB.i18n_tgui_phrase_cache), "归一化单词值污染了有界短语缓存")
 
 	// ② 扁平串列表元素。
 	var/list/zones = payload["zones"]
@@ -100,5 +113,8 @@
 
 #undef I18N_OVERLAY_LOCALE
 #undef I18N_OVERLAY_NAME
+#undef I18N_OVERLAY_SINGLE
+#undef I18N_OVERLAY_SINGLE_QUOTED
+#undef I18N_OVERLAY_SINGLE_NORMALIZED
 #undef I18N_OVERLAY_PROSE
 #undef I18N_OVERLAY_FLAT

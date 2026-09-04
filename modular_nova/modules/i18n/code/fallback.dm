@@ -53,10 +53,16 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 /// 原先靠 AC 落地的那 21 条大厅/状态栏/法则标签改为**在渲染点整串精确反查**
 ///（`strings/i18n/*/_chrome.json`，译文逐字未变）。模板引擎自己的锚自动机（`i18n_tpl_*`，
 /// 约 1.6 万条锚）不在此列，它是精确的第二层证据、量级也小 30 倍，保留。
-/proc/lang_localize_chain(text, locale, allow_template)
-	. = lang_reverse_text_in(text, locale)
-	if(. != text)
-		return
+/proc/lang_localize_chain(text, locale, allow_template, exact_already_checked = FALSE)
+	// 热路径调用方（TGUI 负载）已经跑过更强的精确/归一化/后缀反查；这里再跑一遍会让每次 miss
+	// 的归一化与正则工作翻倍（一局数百万次调用，profiler 里 lang_reverse_text_in/lang_collapse_ws
+	// 重复计数即此）。
+	if(!exact_already_checked)
+		. = lang_reverse_text_in(text, locale)
+		if(. != text)
+			return
+	else
+		. = text
 	// 整串 miss 之后、模板之前：**剥掉英文冠词再精确查一次**。
 	//
 	// BYOND 对非专有名词自动补 "The"/"a"（`"[atom]"` 的渲染），于是名字到达落地层时是
