@@ -8,11 +8,10 @@
 	to_chat(src, span_notice(LANG("mob.87c6f8a062b540e5", null)))
 
 /mob/living/carbon/human/notify_ventcrawler_on_login()
-	if(!ismonkey(src))
+	if(!HAS_TRAIT(src, TRAIT_LESSER_HUMANOID))
 		return ..()
 	if(!istype(head, /obj/item/clothing/head/helmet/monkey_sentience)) //don't notify them about ventcrawling if they're wearing the sentience helmet, because they can't ventcrawl with it on, and if they take it off they'll no longer be in control of the mob.
 		return ..()
-
 
 
 /// Checks if the mob is able to enter the vent, and provides feedback if they are unable to.

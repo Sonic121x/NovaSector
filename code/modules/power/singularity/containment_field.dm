@@ -75,7 +75,7 @@
 	if(ismegafauna(user))
 		user.visible_message(span_warning(LANG("obj.262802d4504d12c5", list(user))))
 		field_gen_1.calc_power(INFINITY) //rip that 'containment' field
-		user.adjustHealth(-user.obj_damage)
+		user.adjust_brute_loss(-user.obj_damage)
 	else
 		return ..()
 

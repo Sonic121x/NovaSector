@@ -121,7 +121,7 @@ SUBSYSTEM_DEF(lag_switch)
 				to_chat(world, span_boldannounce(LANG("datum.a556f6702213d78f", null)))
 
 			for (var/mob/mob as anything in GLOB.mob_list)
-				mob.hud_used?.update_parallax_pref()
+				mob.client?.update_parallax_prefs()
 		if (DISABLE_FOOTSTEPS)
 			if (state)
 				to_chat(world, span_boldannounce(LANG("datum.9e1fe7b388cca937", null)))

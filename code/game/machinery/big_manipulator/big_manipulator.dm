@@ -340,10 +340,10 @@
 	if(monkey_worker?.resolve())
 		return
 
-	if(!ismonkey(monkey))
+	if(!HAS_TRAIT(monkey, TRAIT_LESSER_HUMANOID))
 		return
 
-	var/mob/living/carbon/human/species/monkey/poor_monkey = monkey
+	var/mob/living/carbon/human/poor_monkey = monkey
 	if(poor_monkey.mind)
 		balloon_alert(user, LANG("obj.0578d4f6b58f3e44", null))
 		return

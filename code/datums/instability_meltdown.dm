@@ -44,8 +44,8 @@
 /datum/instability_meltdown/not_alright
 
 /datum/instability_meltdown/not_alright/meltdown(mob/living/carbon/human/victim)
-	to_chat(victim, span_notice(LANG("datum.6a8cf261d6811e9a", null)))
-	victim.physiology.damage_resistance -= 20000 //you thought
+	to_chat(victim, span_notice("Oh, I actually feel quite alright!"))
+	victim.damage_resistance -= 20000
 	victim.log_message("has received x200 damage multiplier from [type] genetic meltdown")
 
 /// Turns you into a slime

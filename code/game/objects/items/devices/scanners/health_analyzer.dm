@@ -223,11 +223,12 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/humantarget = target
 
-		var/datum/physiology/physiology = humantarget.physiology
-		if (physiology.brute_mod != 1)
-			render_list += LANG("_root.65e021025b32164a", list(LANG("obj.d01c84c04fe00692", list((physiology.brute_mod) * 100)))) // NOVA EDIT - I18N
-		if (physiology.burn_mod != 1)
-			render_list += LANG("_root.65e021025b32164a", list(LANG("obj.6b92d55788b9c654", list((physiology.burn_mod) * 100)))) // NOVA EDIT - I18N
+		var/brute_mod = GET_PHYSIOLOGY(humantarget, BRUTE)
+		var/burn_mod = GET_PHYSIOLOGY(humantarget, BURN)
+		if (brute_mod != 1)
+			render_list += "<span class='danger ml-1'>Subject takes [brute_mod * 100]% brute damage.</span>\n"
+		if (burn_mod != 1)
+			render_list += "<span class='danger ml-1'>Subject takes [burn_mod * 100]% burn damage.</span>\n"
 	// NOVA EDIT ADDITION END
 	// Body part damage report
 	if(iscarbon(target))

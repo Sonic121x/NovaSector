@@ -41,9 +41,7 @@
 		to_chat(user, span_alert(LANG("obj.3a580da93561549b", null)))
 		return ITEM_INTERACT_BLOCKING
 
-	pai.radio.attackby(tool, user, modifiers)
-	to_chat(user, span_notice(LANG("obj.c0c2c8e9a302e81d", list(tool, src))))
-	return ITEM_INTERACT_SUCCESS
+	return pai.radio.install_key(user, tool)
 
 /obj/item/pai_card/attack_self(mob/user)
 	if(!in_range(src, user))

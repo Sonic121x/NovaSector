@@ -669,7 +669,7 @@
 	var/mob/living/carbon/maybe_monkey = holder.my_atom
 	var/location = maybe_monkey.drop_location()
 	if(iscarbon(maybe_monkey))
-		if(ismonkey(maybe_monkey))
+		if(HAS_TRAIT(maybe_monkey, TRAIT_LESSER_HUMANOID))
 			maybe_monkey.gib(DROP_ALL_REMAINS)
 			to_chat(maybe_monkey, span_danger(LANG("datum.c49f5c95e9c85aa7", null)))
 		else
@@ -690,7 +690,7 @@
 	var/mob/living/carbon/maybe_monkey = holder.my_atom
 	var/location = maybe_monkey.drop_location()
 	if(iscarbon(maybe_monkey))
-		if(ismonkey(maybe_monkey))
+		if(HAS_TRAIT(maybe_monkey, TRAIT_LESSER_HUMANOID))
 			maybe_monkey.gib(DROP_ALL_REMAINS)
 			to_chat(maybe_monkey, span_danger(LANG("datum.d786bafc2b9ce312", null)))
 		else

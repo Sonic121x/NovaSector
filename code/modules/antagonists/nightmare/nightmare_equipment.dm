@@ -60,8 +60,8 @@
 		user.visible_message(span_boldwarning(LANG("obj.82941853a58f81df", list(user, target, src))), span_userdanger(LANG("obj.4e1ace0100c152b0", list(target, src))))
 		target.Paralyze(issilicon(target) ? 2 SECONDS : 1 SECONDS)
 	else
-		user.visible_message(span_boldwarning(LANG("obj.8f8f604976da21bc", list(user, target, src))), span_userdanger(LANG("obj.fff05900a034a291", list(target, src))))
-		target.apply_damage(damage = force, forced = TRUE)
+		user.visible_message(span_boldwarning("[user] gores [target] with [src], ripping into them!"), span_userdanger("You gore [target] with [src], ripping into them!"))
+		target.apply_damage(damage = force)
 	remove_crit()
 
 /obj/item/light_eater/proc/prepare_crit_timer()

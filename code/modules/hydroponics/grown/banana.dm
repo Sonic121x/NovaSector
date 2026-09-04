@@ -197,14 +197,14 @@
 
 /obj/item/food/grown/banana/bunch/monkeybomb/examine(mob/user)
 	. = ..()
-	if(!is_simian(user))
-		. += span_notice(LANG("obj.adde103db250c057", null))
+	if(!HAS_TRAIT(user, TRAIT_SIMIAN))
+		. += span_notice("There's a banana label on one of the 'nanas you can't quite make out the details of.")
 		return
 	. += span_notice(LANG("obj.88963e529ae4f875", null))
 
 /obj/item/food/grown/banana/bunch/monkeybomb/attack_self(mob/user, modifiers)
-	if(!is_simian(user))
-		return to_chat(user, span_notice(LANG("obj.4613b0b1c6d858d3", null)))
+	if(!HAS_TRAIT(user, TRAIT_SIMIAN))
+		return to_chat(user, span_notice("You don't really know what to do with this."))
 	else start_ripening()
 
 /// Used for april fools mail

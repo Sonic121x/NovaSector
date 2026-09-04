@@ -32,7 +32,7 @@ GAME_VERB(/client, sooc, "安保 OOC", "OOC")
 	if(QDELETED(src))
 		return
 
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(html_decode(msg)), 1, MAX_MESSAGE_LEN)
 	var/raw_msg = msg
 
 	if(!msg)
