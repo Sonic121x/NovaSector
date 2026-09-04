@@ -54,7 +54,7 @@
 
 	if(GET_PHYSIOLOGY(meal, BRUTE) <= 0 && GET_PHYSIOLOGY(meal, TOX) <= 0) //The creature wouldn't take any damage, it must be too weird even for us.
 		if(!silent)
-			balloon_alert(src, "not food!")
+			balloon_alert(src, LANG("mob.fb932b9ba655617d", null))
 		return FALSE
 
 	return TRUE

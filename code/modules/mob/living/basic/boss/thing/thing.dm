@@ -171,8 +171,8 @@
 /mob/living/basic/boss/thing/proc/phase_too_slow()
 	phase_invulnerability_timer = null
 	remove_traits(list(TRAIT_GODMODE, TRAIT_IMMOBILIZED), MEGAFAUNA_TRAIT)
-	balloon_alert_to_viewers("recovers!")
-	visible_message(span_danger("[src] recovers from the damage! Too slow!"))
+	balloon_alert_to_viewers(LANG("mob.ec6aa788a1c7849f", null))
+	visible_message(span_danger(LANG("mob.9efb24cd5d3aeffc", list(src))))
 	adjust_brute_loss(-(maxHealth/3) * 0.5) //half of a phase (which is a third of maxhealth)
 	var/filter = get_filter(PHASEREGEN_FILTER)
 	if(!isnull(filter))

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/stack/candela_beacon
 	name = "mining navigation beacon"
 	singular_name = "mining navigation beacon"
@@ -42,12 +43,12 @@
 /obj/item/stack/candela_beacon/proc/place_beacon(mob/user, atom/loc_override = null, datum/candela_item_handler/handler_override = null, silent = FALSE)
 	if (!isturf(user.loc))
 		if (!silent)
-			to_chat(user, span_warning("You need more space to place a [singular_name] here."))
+			to_chat(user, span_warning(LANG("obj.d86190c0018876b6", list(singular_name))))
 		return FALSE
 
 	if (locate(/obj/structure/candela_beacon) in (loc_override || user.loc))
 		if (!silent)
-			to_chat(user, span_warning("There is already a [singular_name] here."))
+			to_chat(user, span_warning(LANG("obj.e51e3fee1bbb5553", list(singular_name))))
 		return FALSE
 
 	var/datum/candela_item_handler/used_handler = handler_override || handler
@@ -57,7 +58,7 @@
 		return FALSE
 
 	if (!silent)
-		to_chat(user, span_notice("You activate and anchor [amount ? "a":"the"] [singular_name] in place."))
+		to_chat(user, span_notice(LANG("obj.14caf882aac9fcfc", list(amount ? "a":"the", singular_name))))
 
 	playsound(user, 'sound/machines/click.ogg', 50, TRUE)
 	var/obj/structure/candela_beacon/beacon = new(loc_override || user.loc, our_network, used_handler)
@@ -76,7 +77,7 @@
 	if (.)
 		return
 	handler.set_network(null)
-	balloon_alert(user, "network connection severed")
+	balloon_alert(user, LANG("obj.fbcafd25f1bc9350", null))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/stack/candela_beacon/update_overlays()
@@ -85,9 +86,9 @@
 
 /obj/item/stack/candela_beacon/examine(mob/user)
 	. = ..()
-	. += "Use in-hand to plant a beacon, [EXAMINE_HINT("right-click")] in-hand to sever network link."
-	. += "Click on a placed beacon to form a network connection, or [EXAMINE_HINT("right-click")] to pick it up."
-	. += "Automatically deployed upon reaching maximum distance or breaking line-of-sight to the network when placed in pocket or belt slots, or in storage in pocket or belt slots."
+	. += LANG("obj.7c614fa8511be386", list(EXAMINE_HINT("right-click")))
+	. += LANG("obj.f0fcacb70dc3e9e0", list(EXAMINE_HINT("right-click")))
+	. += LANG("obj.4565ca34a54b54c1", null)
 
 /obj/item/stack/candela_beacon/ten
 	amount = 10
@@ -152,7 +153,7 @@
 	. = ..()
 	if (.)
 		return
-	balloon_alert(user, "picking up the beacon...")
+	balloon_alert(user, LANG("obj.e1b507baa2b06b75", null))
 	if (!do_after(user, 2 SECONDS, src))
 		return
 
@@ -168,9 +169,9 @@
 
 	var/obj/item/stack/candela_beacon/collection = tool
 	if(collection.amount >= collection.max_amount)
-		balloon_alert(user, "stack full!")
+		balloon_alert(user, LANG("obj.c9dadc90c064973b", null))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You start picking [src] up..."))
+	to_chat(user, span_notice(LANG("obj.71262792366bd608", list(src))))
 	if(!do_after(user, 2 SECONDS, src) || collection.amount >= collection.max_amount)
 		return ITEM_INTERACT_BLOCKING
 

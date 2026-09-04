@@ -98,7 +98,7 @@
 			. += span_notice(LANG("obj.e02e3584245996eb", null))
 		if(WINDOW_OUT_OF_FRAME)
 			if (anchored)
-				. += span_notice("The window is <b>screwed</b> to the floor. It can be <b>pried</b> into a more secure position.")
+				. += span_notice(LANG("obj.8ef2e576d9544647", null))
 			else
 				. += span_notice(LANG("obj.7134205aa4071996", null))
 

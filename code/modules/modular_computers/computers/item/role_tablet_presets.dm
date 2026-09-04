@@ -419,7 +419,7 @@
 			playsound(src,'sound/machines/ping.ogg',30,TRUE)
 
 /obj/item/modular_computer/pda/crew/clown/proc/after_sitcom_laugh(mob/victim)
-	victim.visible_message("[src] lets out a burst of laughter!")
+	victim.visible_message(LANG("obj.47ce06074d7c2c87", list(src)))
 
 /obj/item/modular_computer/pda/crew/mime
 	name = "mime PDA"

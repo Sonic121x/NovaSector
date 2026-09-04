@@ -71,11 +71,11 @@
 	if(cell)
 		. += LANG("obj.00f8f6f702faa55b", list(cell ? round(cell.percent(), 1) : 0))
 	else
-		. += "There is no power cell installed."
+		. += LANG("obj.b21d2f5d4c232681", null)
 	if(in_range(user, src) && !isobserver(user))
-		. += span_notice("<b>Alt-click</b> to toggle [on ? "off" : "on"].")
-		. += span_notice("<b>Anchor</b> it to drain power from the area's APC instead its internal power cell.")
-	. += span_notice("It will drain power from the [anchored ? "area's APC" : "internal power cell"].")
+		. += span_notice(LANG("obj.033fe9f52021b284", list(on ? "off" : "on")))
+		. += span_notice(LANG("obj.ac4311b06541aeeb", null))
+	. += span_notice(LANG("obj.f5cfd6d4995a7e02", list(anchored ? "area's APC" : "internal power cell")))
 
 
 /obj/machinery/electrolyzer/update_icon_state()

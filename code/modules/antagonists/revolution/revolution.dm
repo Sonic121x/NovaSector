@@ -108,10 +108,10 @@
 
 			var/new_objective = trim(sanitize(params["conversion_objective"]), MAX_CHARTER_LEN)
 			if(!new_objective)
-				tgui_alert(usr, "Your objective is invalid. Please try again.")
+				tgui_alert(usr, LANG("datum.44cee8bbf87d231a", null))
 				return
 			if(is_ic_filtered(new_objective))
-				tgui_alert(usr, "Your objective contains IC filtered words. Please remove them and try again.")
+				tgui_alert(usr, LANG("datum.8af56bd00e02b23c", null))
 				return
 
 			conversion_objective = new_objective

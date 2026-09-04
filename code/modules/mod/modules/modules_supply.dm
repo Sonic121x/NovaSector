@@ -857,7 +857,7 @@
 /obj/item/mod/module/candela_spool/proc/attempt_deploy(mob/activator, atom/location, silent = FALSE)
 	var/obj/item/stack/candela_beacon/beacons = locate() in mod.atom_storage.real_location
 	if (isnull(beacons))
-		balloon_alert(activator, "no beacons!")
+		balloon_alert(activator, LANG("obj.abe1da50b9228fd7", null))
 		return FALSE
 
 	if (!beacons.place_beacon(activator, loc_override = location, handler_override = handler, silent = silent))

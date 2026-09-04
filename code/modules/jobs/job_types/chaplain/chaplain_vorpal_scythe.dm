@@ -127,7 +127,7 @@ If the scythe isn't empowered when you sheath it, you take a heap of damage and 
 
 	if(!potential_reaping.mind) //We put this here juuuust in case there is something funky with ling checks
 		if(HAS_TRAIT(potential_reaping, TRAIT_LESSER_HUMANOID))
-			to_chat(user, span_warning("A pointless existence. You'll get no benefit from this death knell beyond the satisfaction of beheading this foul thing."))
+			to_chat(user, span_warning(LANG("obj.3a6a363a8e350482", null)))
 			potential_empowerment = SCYTHE_WEAK
 		else
 			to_chat(user, span_warning(LANG("obj.a2c5f7d447836e70", list(src))))

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Datum which handles interactions of items with the Candela network
 /// Not a component as item interactions can be much more involved and bi-directional
 /// which makes isolated nature of components a bad fit
@@ -152,7 +153,7 @@
 
 	set_network(null)
 	if (owner && !silent)
-		parent.balloon_alert(owner, "connection lost!")
+		parent.balloon_alert(owner, LANG("datum.4a639f2f65b2d3cc", null))
 
 /// Locates the closest node within any network to ourselves, and links to it and its network
 /datum/candela_item_handler/proc/locate_closest_network()
@@ -181,7 +182,7 @@
 
 	set_network(null)
 	if (owner)
-		parent.balloon_alert(owner, "connection lost!")
+		parent.balloon_alert(owner, LANG("datum.4a639f2f65b2d3cc", null))
 
 /datum/candela_item_handler/proc/set_closest_node(datum/component/candela_node/new_node)
 	if (new_node == closest_node)

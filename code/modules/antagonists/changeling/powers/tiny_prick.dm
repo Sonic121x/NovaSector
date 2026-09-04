@@ -129,7 +129,7 @@
 		|| HAS_TRAIT(target, TRAIT_HUSK) \
 		|| HAS_TRAIT(target, TRAIT_BADDNA) \
 		|| (HAS_TRAIT(target, TRAIT_NO_DNA_COPY) && !HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))) // sure, go ahead, make a monk-clone
-		user.balloon_alert(user, "incompatible DNA!")
+		user.balloon_alert(user, LANG("datum.74adc456fe5862e2", null))
 		return FALSE
 	if(target.has_status_effect(/datum/status_effect/temporary_transformation/trans_sting))
 		user.balloon_alert(user, LANG("datum.817662bc03568885", null))
@@ -183,7 +183,7 @@
 	..()
 	log_combat(user, target, "stung", object = "false armblade sting")
 	if(HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))
-		to_chat(user, span_notice("Our genes cry out as we sting [target.name]!"))
+		to_chat(user, span_notice(LANG("datum.162dd1d98ef09b3b", list(target.name))))
 
 	var/obj/item/melee/arm_blade/false/blade = new(target,1)
 	target.put_in_hands(blade)

@@ -435,7 +435,7 @@
 			do_smoke(0, src, drop_location())
 		if(19)
 			//Instrinct Resistance
-			selected_turf.visible_message(span_userdanger("[user] looks very robust!"))
+			selected_turf.visible_message(span_userdanger(LANG("obj.f21dd13f82fc0326", list(user))))
 			MODIFY_PHYSIOLOGY(user, BRUTE, 0.5)
 			MODIFY_PHYSIOLOGY(user, BURN, 0.5)
 

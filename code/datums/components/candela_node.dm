@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Component that handles stationary node behavior for the Candela mining navigation network
 /datum/component/candela_node
 	/// Network we're connected to
@@ -40,13 +41,13 @@
 /datum/component/candela_node/proc/on_examine(atom/movable/source, mob/viewer, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice("[source.p_Theyre()] a \"Candela\" mining navigation node, capable of syncronizing various prospecting machinery and equipment, and repelling hostile fauna.")
+	examine_list += span_notice(LANG("datum.0f7c52524d2acf22", list(source.p_Theyre())))
 	if (power_flags & CANDELA_NETWORK_BOOSTED)
-		examine_list += span_notice("[source.p_They()] additionally act[source.p_s()] as an energy booster for the network, [power_flags & CANDELA_NETWORK_POWERED ? "keeping all connected beacons and equipment active and " : ""]increasing ore vent outputs.")
+		examine_list += span_notice(LANG("datum.5f27861e581cebb3", list(source.p_They(), source.p_s(), power_flags & CANDELA_NETWORK_POWERED ? "keeping all connected beacons and equipment active and " : "")))
 	else if (power_flags & CANDELA_NETWORK_POWERED)
-		examine_list += span_notice("[source.p_They()] additionally act[source.p_s()] as a power source for the network, keeping all connected beacons and equipment active.")
+		examine_list += span_notice(LANG("datum.c461f9f34dad4556", list(source.p_They(), source.p_s())))
 	else
-		examine_list += span_notice("The network is currently [(network.powered & CANDELA_NETWORK_POWERED) ? "fully operational[(network.powered & CANDELA_NETWORK_BOOSTED) ? " and overclocked" : ""]" : "missing a power source"].")
+		examine_list += span_notice(LANG("datum.a51adff57abb7e28", list((network.powered & CANDELA_NETWORK_POWERED) ? "fully operational[(network.powered & CANDELA_NETWORK_BOOSTED) ? " and overclocked" : ""]" : "missing a power source")))
 
 /datum/component/candela_node/proc/on_item_interaction(atom/movable/source, mob/living/user, obj/item/tool, list/modifiers)
 	SIGNAL_HANDLER
@@ -56,7 +57,7 @@
 
 	var/obj/item/stack/candela_beacon/beacon = tool
 	beacon.handler.set_network(network, src)
-	beacon.balloon_alert(user, "network linked!")
+	beacon.balloon_alert(user, LANG("datum.17c801d002e2fdc5", null))
 	return ITEM_INTERACT_SUCCESS
 
 /datum/component/candela_node/proc/on_module_used(atom/movable/source, obj/item/mod/module/module)
@@ -70,7 +71,7 @@
 		return NONE
 
 	spool.handler.set_network(network, src)
-	spool.mod.wearer.balloon_alert(spool.mod.wearer, "network linked!")
+	spool.mod.wearer.balloon_alert(spool.mod.wearer, LANG("datum.17c801d002e2fdc5", null))
 	return COMPONENT_INTERRUPT_MODULE_USE
 
 /datum/component/candela_node/proc/set_network(datum/mining_beacon_network/new_network, merging = FALSE, update = TRUE, separating = FALSE)
@@ -458,4 +459,4 @@ GLOBAL_LIST_EMPTY(mining_beacon_networks)
 
 	for (var/datum/candela_item_handler/handler as anything in all_handlers)
 		handler.set_network(null)
-	source.balloon_alert(source, "connection lost!")
+	source.balloon_alert(source, LANG("datum.4a639f2f65b2d3cc", null))

@@ -60,11 +60,11 @@
 		essence_drained += rand(20, 30)
 
 	if(target.stat != DEAD && !HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))
-		to_chat(src, span_revennotice("[target_Their] soul blazes with life!"))
+		to_chat(src, span_revennotice(LANG("mob.3c3d4b349b063f0e", list(target_Their))))
 		essence_drained += rand(40, 50)
 
 	if(!target_has_client && HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))
-		to_chat(src, span_revennotice("[target_Their] soul is weak and underdeveloped. They won't be worth very much."))
+		to_chat(src, span_revennotice(LANG("mob.b1c5d34c7be41845", list(target_Their))))
 		essence_drained = 5
 
 	to_chat(src, span_revennotice(LANG("mob.e6f4c2f2912bf340", list(target_Their))))

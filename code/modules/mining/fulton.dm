@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 /obj/item/extraction_pack/proc/get_beacon(mob/living/user)
 	var/obj/structure/extraction_point/beacon = beacon_ref?.resolve()
 	if (isnull(beacon))
-		balloon_alert(user, "not linked!")
+		balloon_alert(user, LANG("obj.59204d3b7513ec6b", null))
 		beacon_ref = null
 	return beacon
 
@@ -230,20 +230,20 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			possible_beacons |= fulton_points
 
 	if(!length(possible_beacons))
-		balloon_alert(user, "no beacons")
+		balloon_alert(user, LANG("obj.29e70654dcd978f6", null))
 		return
 
-	var/chosen_beacon = tgui_input_list(user, "Beacon to connect to", "Balloon Extraction Pack", sort_names(possible_beacons))
+	var/chosen_beacon = tgui_input_list(user, LANG("obj.533cc7a194ce2c4c", null), LANG("obj.761ae691f97ec53d", null), sort_names(possible_beacons))
 	if(isnull(chosen_beacon))
 		return
 
 	beacon_ref = WEAKREF(chosen_beacon)
-	balloon_alert(user, "linked!")
+	balloon_alert(user, LANG("obj.f6c856f74a0a1b4e", null))
 
 /obj/item/extraction_pack/networked/get_beacon(mob/living/user)
 	var/obj/structure/extraction_point/beacon = beacon_ref?.resolve()
 	if (isnull(beacon))
-		balloon_alert(user, "not linked!")
+		balloon_alert(user, LANG("obj.59204d3b7513ec6b", null))
 		beacon_ref = null
 		return null
 
@@ -266,7 +266,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			if (get_dist(node.parent, user) <= MINING_BEACON_MAX_REACH && (user in viewers(MINING_BEACON_MAX_REACH, node.parent)))
 				return beacon
 
-	balloon_alert(user, "our of network reach!")
+	balloon_alert(user, LANG("obj.be8930489d129060", null))
 	return null
 
 /obj/item/fulton_core
@@ -320,7 +320,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/structure/extraction_point/proc/poll_name(mob/creator)
-	var/name_input = tgui_input_text(creator, "What would you like to name the beacon?", "Fulton Beacon", default = name, max_length = MAX_LABEL_LEN)
+	var/name_input = tgui_input_text(creator, LANG("obj.b16ae789984bff59", null), LANG("obj.2e2b8d498a392ba0", null), default = name, max_length = MAX_LABEL_LEN)
 	if (name_input && !QDELETED(src) && !QDELETED(creator) && creator.Adjacent(src))
 		name = name_input
 

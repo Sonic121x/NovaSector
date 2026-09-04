@@ -836,7 +836,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		return
 	if(sawn_off)
 		return
-	user.visible_message(span_notice("[user] shortens [src]!"), span_notice("You shorten [src]."))
+	user.visible_message(span_notice(LANG("obj.18cf6eb4c09cfa13", list(user, src))), span_notice(LANG("obj.efa85dab0d14bd1a", list(src))))
 	. = do_sawoff()
 	update_appearance()
 

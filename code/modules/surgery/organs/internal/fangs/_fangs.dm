@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/organ/fangs
 	name = "fangs"
 	desc = "Big pointy fangs. Used for biting."
@@ -112,5 +113,5 @@
 		return
 	var/obj/item/organ/tongue/tongue_to_bite = owner
 	if(tongue_to_bite)
-		to_chat(owner, span_danger("You bite down on your own tongue!"))
+		to_chat(owner, span_danger(LANG("obj.33ba42b164685c91", null)))
 		tongue_to_bite.apply_organ_damage(bite_high)

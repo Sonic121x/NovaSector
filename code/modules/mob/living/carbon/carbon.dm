@@ -217,14 +217,14 @@
 	if((cuff_break != INSTANT_CUFFBREAK) && (SEND_SIGNAL(src, COMSIG_MOB_REMOVING_CUFFS, cuffs) & COMSIG_MOB_BLOCK_CUFF_REMOVAL))
 		return //The blocking object should sent a fluff-appropriate to_chat about cuff removal being blocked
 	if(DOING_INTERACTION(src, REF(cuffs) ))
-		to_chat(src, span_warning("You're already attempting to remove [cuffs]!"))
+		to_chat(src, span_warning(LANG("mob.2ef54d7335c01104", list(cuffs))))
 		return
 
 	if (isnull(breakouttime))
 		breakouttime = cuffs.breakouttime
 	if(!cuff_break)
-		visible_message(span_warning("[src] attempts to remove [cuffs]!"))
-		to_chat(src, span_notice("You attempt to remove [cuffs]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)"))
+		visible_message(span_warning(LANG("mob.1c66998e85d25897", list(src, cuffs))))
+		to_chat(src, span_notice(LANG("mob.ace3833fdc7ebf48", list(cuffs, DisplayTimeText(breakouttime)))))
 		if(do_after(src, breakouttime, target = src, timed_action_flags = IGNORE_HELD_ITEM, cog_icon = null, interaction_key = REF(cuffs) ))
 			. = clear_cuffs(cuffs, cuff_break)
 		else

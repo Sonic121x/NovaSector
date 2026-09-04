@@ -44,15 +44,15 @@
 /datum/status_effect/slimeskin/on_apply()
 	owner.add_atom_colour(color_transition_filter("#3070CC", SATURATION_OVERRIDE), TEMPORARY_COLOUR_PRIORITY)
 	owner.damage_resistance += 10
-	owner.visible_message(span_warning("[owner] is suddenly covered in a strange, blue-ish gel!"),
-		span_notice("You are covered in a thick, rubbery gel."))
+	owner.visible_message(span_warning(LANG("datum.c2e8b44682c7e075", list(owner))),
+		span_notice(LANG("datum.db53eb5f5dc0650a", null)))
 	return ..()
 
 /datum/status_effect/slimeskin/on_remove()
 	owner.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 	owner.damage_resistance -= 10
-	owner.visible_message(span_warning("[owner]'s gel coating liquefies and dissolves away."),
-		span_notice("Your gel second-skin dissolves!"))
+	owner.visible_message(span_warning(LANG("datum.3cb0c3a5559c528d", list(owner))),
+		span_notice(LANG("datum.ddf607029f01ab9d", null)))
 
 /datum/status_effect/slimerecall
 	id = "slime_recall"

@@ -855,6 +855,9 @@
   "Active Power Cost (Watts)": [
     "tgui:MODsuit"
   ],
+  "Active Reactions": [
+    "tgui:GasmixParser"
+  ],
   "Active Rulesets": [
     "tgui:DynamicAdmin"
   ],
@@ -1759,6 +1762,9 @@
   ],
   "Announcements": [
     "tgui:BotAnnouncement"
+  ],
+  "Annoy the heads of staff as much as possible without harming them.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Anomalist": [
     "dm:labels"
@@ -3760,6 +3766,9 @@
   "Blow": [
     "tgui:GlassBlowing"
   ],
+  "Blow up the Research Director with a bomb.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Blue": [
     "dm:labels"
   ],
@@ -4353,6 +4362,9 @@
   "Breathless": [
     "dm:labels",
     "tgui:AntagInfoBloodWorm"
+  ],
+  "Bribe the Quartermaster to self-exile.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Bridge Assistant": [
     "dm:labels"
@@ -5550,6 +5562,9 @@
   "Caption:": [
     "tgui:NtosCamera"
   ],
+  "Capture anyone with a mindshield and have it surgically removed.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Caramel": [
     "dm:labels"
   ],
@@ -5832,6 +5847,12 @@
     "dm:labels"
   ],
   "CentCom Commander": [
+    "dm:labels"
+  ],
+  "CentCom Head Intern": [
+    "dm:labels"
+  ],
+  "CentCom Intern": [
     "dm:labels"
   ],
   "CentCom Message": [
@@ -7254,6 +7275,9 @@
   "Configure how your genitals render - hover a button for details": [
     "tgui:GenitalLayeringTab"
   ],
+  "Configure how your underwear renders.": [
+    "tgui:UnderwearTab"
+  ],
   "Configure pAI": [
     "tgui:NtosMain"
   ],
@@ -7833,6 +7857,9 @@
   "Create a new shuttle using a shuttle frame.": [
     "tgui:ShuttleBlueprints"
   ],
+  "Create an army of mechs to march on the bridge.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Create case": [
     "tgui:index"
   ],
@@ -8315,6 +8342,9 @@
   ],
   "Cut Hair": [
     "dm:labels"
+  ],
+  "Cut off the air supply to the brig.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Cyanide": [
     "dm:labels"
@@ -9628,6 +9658,9 @@
   ],
   "Disguise": [
     "tgui:AbductorConsole"
+  ],
+  "Disguise as the heads of staff and confuse the crew.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Dishes": [
     "tgui:index"
@@ -11201,6 +11234,9 @@
   "Equip newbie pin": [
     "tgui:playtime_restricted"
   ],
+  "Equip your leaders with the best gear you can find.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Equipment": [
     "dm:labels",
     "tgui:ExodroneConsole",
@@ -11533,6 +11569,9 @@
   ],
   "Export To Disk": [
     "tgui:DnaConsoleEnzymes"
+  ],
+  "Export Value:": [
+    "tgui:AtmosHandbook"
   ],
   "Export an application as a .json file.": [
     "tgui:OpposingForcePanel"
@@ -12100,6 +12139,9 @@
   "Find hidden influences and sacrifice crew members to gain magical powers and ascend as one of several paths.": [
     "dm:antagonists"
   ],
+  "Find the remaining heads of staff and eliminate them.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Fine": [
     "tgui:CrimeWatcher",
     "tgui:WarrantConsole"
@@ -12588,6 +12630,9 @@
   ],
   "Follow the directives at any cost!": [
     "tgui:AntagInfoBrainwashed"
+  ],
+  "Follow your leaders as closely as possible.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Font": [
     "tgui:PlayerPanel"
@@ -13168,9 +13213,6 @@
   "Gas Pump": [
     "dm:labels"
   ],
-  "Gas Reactions": [
-    "tgui:GasmixParser"
-  ],
   "Gas Synthesis Technician": [
     "dm:labels"
   ],
@@ -13181,6 +13223,7 @@
     "dm:labels"
   ],
   "Gases": [
+    "tgui:AtmosHandbook",
     "tgui:Crystallizer",
     "tgui:Supermatter",
     "tgui:TankCompressor"
@@ -13190,6 +13233,9 @@
   ],
   "Gateway Unpowered": [
     "tgui:Gateway"
+  ],
+  "Gather weapons and armor.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Gay": [
     "dm:labels"
@@ -13584,6 +13630,9 @@
   ],
   "Go in for the kill!": [
     "tgui:NtosArcade"
+  ],
+  "Go out in a blaze of glory.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Go to Destination.": [
     "tgui:NtosRoboControl"
@@ -14008,6 +14057,9 @@
   ],
   "Hack Door": [
     "tgui:Installed"
+  ],
+  "Hacked APCs:": [
+    "tgui:MalfunctionModulePicker"
   ],
   "Hacker alias": [
     "dm:labels"
@@ -14704,8 +14756,14 @@
   "Hide Mechanic": [
     "tgui:SurgeryProceduresView"
   ],
+  "Hide all": [
+    "tgui:UnderwearTab"
+  ],
   "Hide belly with uniform?": [
     "tgui:NovaTumsPrefs"
+  ],
+  "Hide every underwear slot.": [
+    "tgui:UnderwearTab"
   ],
   "Hide offline/paused": [
     "tgui:index"
@@ -14715,6 +14773,9 @@
   ],
   "Hide with Uniform": [
     "tgui:NovaTumsPrefs"
+  ],
+  "Hide your {0}.": [
+    "tgui:UnderwearTab"
   ],
   "Hide/Show mutant parts": [
     "dm:labels"
@@ -15645,6 +15706,9 @@
   "In chemistry, pH is a scale used to specify the acidity or basicity of an aqueous solution. Acidic solutions are measured to have lower pH values than basic or alkaline solutions. The pH scale is logarithmic and inversely indicates the concentration of hydrogen ions in the solution.": [
     "tgui:ChemReactionChamber"
   ],
+  "In simpler terms: The lower the specific heat of the gas, the harder it will be to heat it up.": [
+    "tgui:AtmosHandbook"
+  ],
   "In the 2200's, the Orion trail was established as a dangerous yet opportunistic trail through space for those willing to risk it. Many pioneers seeking new lives on the galactic frontier would find exactly what they were seeking... or lose their lives on the way.": [
     "tgui:OrionGame"
   ],
@@ -16288,6 +16352,9 @@
   ],
   "Ivy": [
     "dm:labels"
+  ],
+  "J/(mol * K)": [
+    "tgui:AtmosHandbook"
   ],
   "JACKPOT SOON!": [
     "tgui:SlotMachine"
@@ -17401,6 +17468,9 @@
   "Lidopaine": [
     "dm:labels"
   ],
+  "Lie low until we have enough numbers to strike.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Lieutenant": [
     "dm:labels"
   ],
@@ -18415,6 +18485,9 @@
   "Make group into antagonists?": [
     "tgui:SentienceFunBalloon"
   ],
+  "Make revolutionary artwork and vandalize the station with it.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Makes TGUI buttons less traditional, more functional.": [
     "tgui:tgui"
   ],
@@ -18707,6 +18780,9 @@
   ],
   "Mass Spectroscopy": [
     "tgui:MassSpec"
+  ],
+  "Mass produce picket signs and wave them around the station.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Master": [
     "tgui:PaiCard",
@@ -20858,6 +20934,9 @@
   "No Gas Present": [
     "tgui:AnomalyRefinery"
   ],
+  "No Gas Selected": [
+    "tgui:AtmosHandbook"
+  ],
   "No Generators Connected": [
     "tgui:ModularShieldConsole"
   ],
@@ -21366,11 +21445,11 @@
   "No radio channel": [
     "tgui:BotAnnouncement"
   ],
+  "No reaction selected": [
+    "tgui:AtmosHandbook"
+  ],
   "No reaction selected!": [
     "tgui:RecipeLookup"
-  ],
-  "No reactions detected": [
-    "tgui:GasmixParser"
   ],
   "No reactions found.": [
     "tgui:ChemDispenser"
@@ -21862,7 +21941,8 @@
     "tgui:RecordView"
   ],
   "Nothing to configure": [
-    "tgui:GenitalLayeringTab"
+    "tgui:GenitalLayeringTab",
+    "tgui:UnderwearTab"
   ],
   "Nothing to configure.": [
     "tgui:GenitalLayering"
@@ -22146,6 +22226,9 @@
   ],
   "Occupations": [
     "tgui:index"
+  ],
+  "Occupy the bridge and hold it until the heads of staff surrender.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Oculater": [
     "dm:labels"
@@ -25241,6 +25324,9 @@
   "Protean": [
     "dm:labels"
   ],
+  "Protect your leaders at all costs, even if it means sacrifice.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Protection from cures and natural recovery.": [
     "tgui:Symptom",
     "tgui:Virus"
@@ -25250,6 +25336,9 @@
   ],
   "Protein": [
     "dm:labels"
+  ],
+  "Protest in front of the bridge.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Proto Nitrate": [
     "tgui:constants"
@@ -25986,10 +26075,8 @@
   "Reaction search": [
     "tgui:BorgShaker"
   ],
-  "Reaction: {0}": [
-    "tgui:AtmosHandbook"
-  ],
   "Reactions": [
+    "tgui:AtmosHandbook",
     "tgui:ChemDispenser",
     "tgui:ChemHeater",
     "tgui:ChemRecipeDebug"
@@ -26414,10 +26501,7 @@
   "Release Paused": [
     "tgui:ModulesPane"
   ],
-  "Relevant Factors:": [
-    "tgui:AtmosHandbook"
-  ],
-  "Relevant Reactions:": [
+  "Relevant Reactions": [
     "tgui:AtmosHandbook"
   ],
   "Religion name": [
@@ -26749,6 +26833,9 @@
   "Rescue": [
     "dm:labels"
   ],
+  "Rescue other revolutionaries from the brig.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Research": [
     "dm:labels",
     "tgui:AntagInfoHeretic",
@@ -26901,6 +26988,9 @@
   ],
   "Reset cooldown": [
     "tgui:VotePanel"
+  ],
+  "Reset forced plane": [
+    "tgui:index"
   ],
   "Reset sorting": [
     "tgui:SeedTable"
@@ -27494,6 +27584,9 @@
   "Runtime at {0}:{1}: {2}{3}": [
     "tgui:Log"
   ],
+  "Rush the Captain and take his hat.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "S": [
     "tgui:AntagInfoDemon",
     "tgui:ColorPicker"
@@ -27589,6 +27682,9 @@
   ],
   "Sabitsuki": [
     "dm:labels"
+  ],
+  "Sabotage the station's power grid.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Sabresune": [
     "dm:labels"
@@ -28949,6 +29045,9 @@
   "Set Exp": [
     "tgui:SkillPanel"
   ],
+  "Set Forced Plane": [
+    "tgui:index"
+  ],
   "Set Group": [
     "tgui:ImplantPad"
   ],
@@ -28981,6 +29080,9 @@
   ],
   "Set Wanted Issue": [
     "tgui:Newscaster"
+  ],
+  "Set a conversion guideline: This text is shown only to newly converted revolutionaries.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Set a forced fee rather than pay what you want.": [
     "tgui:HoloPay"
@@ -29706,8 +29808,14 @@
   "Show Variables Menu": [
     "tgui:index"
   ],
+  "Show all": [
+    "tgui:UnderwearTab"
+  ],
   "Show background": [
     "tgui:RecordManifest"
+  ],
+  "Show every underwear slot.": [
+    "tgui:UnderwearTab"
   ],
   "Show exploitables": [
     "tgui:RecordManifest"
@@ -29717,6 +29825,9 @@
   ],
   "Show in Directory": [
     "tgui:show_in_directory"
+  ],
+  "Show your {0}.": [
+    "tgui:UnderwearTab"
   ],
   "Show/Hide Belly Preferences": [
     "tgui:belly_preferences"
@@ -30719,6 +30830,9 @@
   "Species: {0}": [
     "tgui:index"
   ],
+  "Specific Heat:": [
+    "tgui:AtmosHandbook"
+  ],
   "Specific Target": [
     "tgui:constants"
   ],
@@ -31053,6 +31167,9 @@
   "Start a chaos vote for the next event.": [
     "tgui:EventPanel"
   ],
+  "Start a cult worshipping the proletariat.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Start a vote for the next event.": [
     "tgui:EventPanel"
   ],
@@ -31184,6 +31301,9 @@
   ],
   "Status:{0}": [
     "tgui:InstrumentEditor"
+  ],
+  "Steal the Head of Personnel's pet dog.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Stealth": [
     "tgui:AbductorConsole",
@@ -31597,6 +31717,9 @@
   ],
   "Subtle Message": [
     "tgui:PlayerPanel"
+  ],
+  "Subvert the AI to betray the heads of staff.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Success Ping": [
     "dm:labels"
@@ -32426,6 +32549,9 @@
   "Take Dish": [
     "tgui:Microscope"
   ],
+  "Take the Chief Medical Officer hostage.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Taking this item will lock you from further purchasing from the marketplace. Additionally, if you have already purchased an item, you will not be able to purchase this.": [
     "tgui:index"
   ],
@@ -33092,6 +33218,12 @@
   ],
   "The age at which the plant starts withering. Improves quality of resulting food & drinks.": [
     "tgui:Seed"
+  ],
+  "The amount of energy required to raise the temperature of one mole of gas by one Kelvin.": [
+    "tgui:AtmosHandbook"
+  ],
+  "The amount of {0} gained per mol of gas exported.": [
+    "tgui:AtmosHandbook"
   ],
   "The app will update its gas mixture reading automatically.": [
     "tgui:NtosGasAnalyzer"
@@ -33847,6 +33979,9 @@
   ],
   "Throw Range": [
     "tgui:index"
+  ],
+  "Throw the Chief Engineer into the Supermatter.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Throwing Arm": [
     "dm:labels"
@@ -34811,6 +34946,9 @@
   "Tribal Salamander Plushie": [
     "dm:labels"
   ],
+  "Trick the heads of staff into exiling themselves.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Tricks": [
     "tgui:NtosVirtualPet"
   ],
@@ -34922,6 +35060,9 @@
   ],
   "Turfs": [
     "tgui:AtmosControlPanel"
+  ],
+  "Turn the Head of Security's team against them.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Turn your back on the Mansus to accomplish a task of your choosing. Selecting this option will prevent you from ascending!": [
     "tgui:AntagInfoHeretic"
@@ -35161,7 +35302,8 @@
     "dm:labels"
   ],
   "Underwear": [
-    "dm:labels"
+    "dm:labels",
+    "tgui:MainContent"
   ],
   "Underwear color": [
     "tgui:species_features"
@@ -35962,7 +36104,8 @@
     "tgui:GenitalLayering",
     "tgui:GenitalLayeringTab",
     "tgui:InfraredEmitter",
-    "tgui:NovaCharacterDirectory"
+    "tgui:NovaCharacterDirectory",
+    "tgui:UnderwearTab"
   ],
   "Visible": [
     "tgui:EmotePanel",
@@ -36477,6 +36620,9 @@
   "Wait for dropoff slot or pick up immediately": [
     "tgui:index"
   ],
+  "Wait for the emergency shuttle, then strike in the chaos.": [
+    "tgui:AntagInfoRevolution"
+  ],
   "Wait!": [
     "tgui:DeleteCharacterPopup"
   ],
@@ -36568,6 +36714,9 @@
   ],
   "Waste Multiplier": [
     "tgui:Supermatter"
+  ],
+  "Waste the station's funds and resources.": [
+    "tgui:AntagInfoRevolution"
   ],
   "Watching: {0}": [
     "tgui:index"
@@ -37662,6 +37811,9 @@
   "You are {0}.": [
     "tgui:PersonalityPage"
   ],
+  "You aren't wearing any {0}.": [
+    "tgui:UnderwearTab"
+  ],
   "You can edit your answers until you press the submit button.": [
     "tgui:Interview"
   ],
@@ -38277,6 +38429,9 @@
   "azulean brain": [
     "dm:labels"
   ],
+  "azulean fangs": [
+    "dm:labels"
+  ],
   "azulean heart": [
     "dm:labels"
   ],
@@ -38883,6 +39038,9 @@
   "photosensitive eyespots": [
     "dm:labels"
   ],
+  "pillow weapons": [
+    "dm:labels"
+  ],
   "pixel_location = position + (velocity * ticks_elapsed) +(0.5 * (average_drift_during_ticks + gravity - (velocity * friction{0})) * ticks_elapsed{1})": [
     "tgui:Tutorial"
   ],
@@ -39112,6 +39270,9 @@
   "tags": [
     "tgui:PaintingAdminPanel"
   ],
+  "tajaran fangs": [
+    "dm:labels"
+  ],
   "tcommsat": [
     "tgui:Telecomms"
   ],
@@ -39175,6 +39336,9 @@
   "tongue": [
     "dm:labels"
   ],
+  "toys": [
+    "dm:labels"
+  ],
   "transform": [
     "tgui:AppearanceInfo"
   ],
@@ -39227,10 +39391,10 @@
   "v": [
     "tgui:Sort"
   ],
-  "vampire heart": [
+  "vampire fangs": [
     "dm:labels"
   ],
-  "vampire teeth": [
+  "vampire heart": [
     "dm:labels"
   ],
   "vector": [

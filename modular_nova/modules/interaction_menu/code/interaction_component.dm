@@ -249,7 +249,7 @@
 		if(actor != self)
 			return
 		if(IS_UNCONSCIOUS_OR_CRIT(actor))
-			to_chat(actor, span_warning("You can't toggle underwear visibility right now..."))
+			to_chat(actor, span_warning(LANG("datum.f9be4f776be7059d", null)))
 			return
 		var/hidden = !!params["hidden"]
 		if(action == "set_all_underwear_visibility")

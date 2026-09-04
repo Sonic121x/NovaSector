@@ -242,7 +242,7 @@
 /obj/item/food/pizzaslice/meat/pizzeria/proc/on_consumed(datum/source, mob/living/eater, mob/feeder)
 	SIGNAL_HANDLER
 
-	to_chat(eater, span_notice("You finally finish eating that piece of trash, and your stomach pains reflect that. Surely there was a better use for this slice of pizza..."))
+	to_chat(eater, span_notice(LANG("obj.10bad65526281d82", null)))
 
 	return NONE
 

@@ -122,12 +122,8 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "tint",
-		SPECIES_PERK_NAME = "The Thirst",
-		SPECIES_PERK_DESC = "In place of eating, Vampires suffer from The Thirst. \
-			Thirst of what? Blood! Their fangs allows them to grab people and drink \
-			their blood, and they will die if they run out. As a note, it doesn't \
-			matter whose blood you drink, it will all be converted into your blood \
-			type when consumed.",
+		SPECIES_PERK_NAME = LANG("datum.046e1fdfb0274006", null),
+		SPECIES_PERK_DESC = LANG("datum.83bda28c507968b1", null),
 	))
 
 	return to_add
@@ -211,7 +207,7 @@
 	var/mob/living/carbon/user = owner
 	var/obj/item/organ/fangs/vampire/fang_drinker = target
 	if(!COOLDOWN_FINISHED(fang_drinker, drain_cooldown))
-		to_chat(user, span_warning("You just drained blood, wait a few seconds!"))
+		to_chat(user, span_warning(LANG("datum.5dcd793ce96c6e87", null)))
 		return FALSE
 
 	if(!iscarbon(user.pulling))

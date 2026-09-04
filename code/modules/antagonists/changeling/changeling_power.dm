@@ -117,6 +117,6 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 	if(!ishuman(user))
 		return FALSE
 	if(req_human && HAS_TRAIT(user, TRAIT_LESSER_HUMANOID))
-		user.balloon_alert(user, "become human!")
+		user.balloon_alert(user, LANG("datum.aa92d828a31fd759", null))
 		return FALSE
 	return TRUE

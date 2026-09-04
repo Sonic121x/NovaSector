@@ -226,9 +226,9 @@
 		var/brute_mod = GET_PHYSIOLOGY(humantarget, BRUTE)
 		var/burn_mod = GET_PHYSIOLOGY(humantarget, BURN)
 		if (brute_mod != 1)
-			render_list += "<span class='danger ml-1'>Subject takes [brute_mod * 100]% brute damage.</span>\n"
+			render_list += LANG("_root.e1bc60a540f2a238", list(brute_mod * 100))
 		if (burn_mod != 1)
-			render_list += "<span class='danger ml-1'>Subject takes [burn_mod * 100]% burn damage.</span>\n"
+			render_list += LANG("_root.59c9d296074008e9", list(burn_mod * 100))
 	// NOVA EDIT ADDITION END
 	// Body part damage report
 	if(iscarbon(target))

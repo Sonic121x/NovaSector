@@ -24,8 +24,8 @@
 		if(iscarbon(living))
 			var/mob/living/carbon/carbon = living
 			carbon.unequip_everything()
-			carbon.visible_message(span_warning("[carbon]'s belongings fall off of [carbon.p_them()] as [carbon.p_they()] shrink down!"),
-			span_userdanger("Your belongings fall away as everything grows bigger!"))
+			carbon.visible_message(span_warning(LANG("datum.7af3614128602547", list(carbon, carbon.p_them(), carbon.p_they()))),
+			span_userdanger(LANG("datum.efd9255f6a1f1de2", null)))
 		if(!living.GetComponent(/datum/component/squashable))
 			newsquash = living.AddComponent( \
 				/datum/component/squashable, \

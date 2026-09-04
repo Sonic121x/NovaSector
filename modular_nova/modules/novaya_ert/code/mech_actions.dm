@@ -10,12 +10,12 @@
 	var/obj/vehicle/sealed/mecha/warden/smoker = chassis
 	if(!TIMER_COOLDOWN_FINISHED(smoker, COOLDOWN_MECHA_SMOKE))
 		if (feedback)
-			owner.balloon_alert(owner, "smoke charges on cooldown!")
+			owner.balloon_alert(owner, LANG("datum.7467263f10ec05b3", null))
 		return FALSE
 
 	if (!smoker.smoke_charges)
 		if (feedback)
-			owner.balloon_alert(owner, "out of smoke charges!")
+			owner.balloon_alert(owner, LANG("datum.850022b8787ec192", null))
 		return FALSE
 
 /datum/action/vehicle/sealed/mecha/warden_smoke/Trigger(mob/clicker, trigger_flags)
@@ -44,7 +44,7 @@
 	scoper.zoom_mode = !scoper.zoom_mode
 	button_icon_state = "mech_zoom_[scoper.zoom_mode ? "on" : "off"]"
 	scoper.log_message("Toggled zoom mode.", LOG_MECHA)
-	to_chat(owner, "[icon2html(scoper, owner)]<font color='[scoper.zoom_mode ? "blue" : "red"]'>Zoom mode [scoper.zoom_mode ? "en" : "dis"]abled.</font>")
+	to_chat(owner, LANG("datum.1f8518f6392b45ad", list(icon2html(scoper, owner), scoper.zoom_mode ? "blue" : "red", scoper.zoom_mode ? "en" : "dis")))
 	if(scoper.zoom_mode)
 		owner.client.view_size.setTo(4.5)
 		SEND_SOUND(owner, sound('sound/vehicles/mecha/imag_enh.ogg', volume=50))

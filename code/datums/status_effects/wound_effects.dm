@@ -19,7 +19,7 @@
 	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_BLEED, WOUND_DETERMINATION_BLEED_MOD)
 
 /datum/status_effect/determined/on_remove()
-	owner.visible_message(span_danger("[owner]'s body slackens noticeably!"), span_warning("<b>Your adrenaline rush dies off, and the pain from your wounds come aching back in...</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
+	owner.visible_message(span_danger(LANG("datum.8f22b0dd37948623", list(owner))), span_warning(LANG("datum.8a452e1d945dc5f5", null)), vision_distance=COMBAT_MESSAGE_RANGE)
 	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_BLEED, 1/WOUND_DETERMINATION_BLEED_MOD)
 	return ..()
 

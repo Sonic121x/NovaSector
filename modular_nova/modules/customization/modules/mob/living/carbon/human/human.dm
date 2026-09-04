@@ -140,7 +140,7 @@ GLOBAL_LIST_INIT(underwear_visibility_slots, list(
 		))
 	return entries
 
-GAME_VERB_DESC(/mob/living/carbon/human, toggle_undies, "Toggle underwear visibility", "Allows you to toggle which underwear should show or be hidden. Underwear will obscure genitals.", "IC")
+GAME_VERB_DESC(/mob/living/carbon/human, toggle_undies, "切换内衣可见性", "Allows you to toggle which underwear should show or be hidden. Underwear will obscure genitals.", "IC")
 
 	if(IS_UNCONSCIOUS_OR_CRIT(src))
 		to_chat(usr, span_warning(LANG("mob.f9be4f776be7059d", null)))

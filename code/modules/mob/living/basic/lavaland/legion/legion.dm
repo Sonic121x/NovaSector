@@ -109,7 +109,7 @@
 	ai_controller?.set_blackboard_key(BB_LEGION_CORPSE, consumed)
 	ai_controller?.set_blackboard_key(BB_LEGION_RECENT_LINES, consumed.copy_recent_speech(line_chance = 80))
 	stored_mob = consumed
-	visible_message(span_warning("[src] staggers to [p_their()] feet!"))
+	visible_message(span_warning(LANG("mob.cb9f61287eb37753", list(src, p_their()))))
 	update_appearance(UPDATE_NAME|UPDATE_DESC)
 	if (prob(75))
 		return

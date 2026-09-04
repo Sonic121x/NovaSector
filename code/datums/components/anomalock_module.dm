@@ -75,7 +75,7 @@
 		return ITEM_INTERACT_FAILURE
 	core = new_core
 	if(user)
-		source.balloon_alert(user, "core inserted")
+		source.balloon_alert(user, LANG("datum.de575d7bc9109c27", null))
 		playsound(source, 'sound/machines/click.ogg', 30, TRUE)
 	source.update_appearance(UPDATE_ICON_STATE)
 	if(core_insert_callback)

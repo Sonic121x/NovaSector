@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define FORTIFY_FILTER "ANGRY_GLOW"
 
 //Pillow and pillow related items
@@ -304,7 +305,7 @@
 		if(current_tile_charge >= min_tile_charge)
 			if(!charging)
 				user.add_movespeed_modifier(/datum/movespeed_modifier/lance_charge)
-				user.balloon_alert(user, "charging!")
+				user.balloon_alert(user, LANG("obj.944c88c7a2ebfa2d", null))
 				charging = TRUE
 			user.adjust_stamina_loss(stamina_per_tile)
 		current_tile_charge++
@@ -314,7 +315,7 @@
 	SIGNAL_HANDLER
 
 	if(current_tile_charge < min_tile_charge)
-		user.balloon_alert(user, "too slow!")
+		user.balloon_alert(user, LANG("obj.fcb5923bdb45175a", null))
 		return
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/atom, attackby), src, user)
 	target.adjust_stamina_loss(damage_boost_per_tile * current_tile_charge)
@@ -366,7 +367,7 @@
 	block_chance += 20
 	ADD_TRAIT(user, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, HELD_ITEM_TRAIT)
 	user.add_movespeed_modifier(/datum/movespeed_modifier/pillow_fortify)
-	user.visible_message(span_alert("[user.name] hunkers down into a defensive stance!"))
+	user.visible_message(span_alert(LANG("obj.9219216ff44642e0", list(user.name))))
 	user.add_filter(FORTIFY_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 0, "size" = 1))
 	var/filter = user.get_filter(FORTIFY_FILTER)
 	animate(filter, alpha = 200, time = 0.5 SECONDS, loop = -1)
@@ -381,6 +382,6 @@
 	var/filter = user.get_filter(FORTIFY_FILTER)
 	animate(filter)
 	user.remove_filter(FORTIFY_FILTER)
-	user.visible_message(span_alert("[user] loosens up and relaxes a bit."))
+	user.visible_message(span_alert(LANG("obj.07d52eb35fe05833", list(user))))
 
 #undef FORTIFY_FILTER

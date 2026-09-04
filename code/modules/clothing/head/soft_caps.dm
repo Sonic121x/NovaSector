@@ -215,8 +215,7 @@ GAME_VERB(/obj/item/clothing/head/soft, flipcap, "翻转盖子", null)
 
 /obj/item/clothing/head/soft/propeller_hat/suicide_act(mob/living/user)
 	if(!isturf(user.loc))
-		user.visible_message(span_suicide("[user] starts spinning [src] as fast as possible! \
-			It looks like [user.p_theyre()] trying to fly off into the sunset... yet the sky is out of reach for [user.p_them()]..."))
+		user.visible_message(span_suicide(LANG("obj.6ec4ca40b07921bf", list(user, src, user.p_theyre(), user.p_them()))))
 		return SHAME
 
 	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_GENERIC)
@@ -224,8 +223,7 @@ GAME_VERB(/obj/item/clothing/head/soft, flipcap, "翻转盖子", null)
 	user.move_resist = INFINITY
 	user.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	user.set_suicide(TRUE)
-	user.visible_message(span_suicide("[user] starts spinning [src] as fast as possible! \
-		It looks like [user.p_theyre()] trying to fly off into the sunset!"))
+	user.visible_message(span_suicide(LANG("obj.fd494313753be48d", list(user, src, user.p_theyre()))))
 	playsound(src, 'sound/effects/whirthunk.ogg', 75)
 	animate(user, PROPHAT_SUICIDE_TIME, pixel_z = 256, alpha = 0)
 	QDEL_IN(user, PROPHAT_SUICIDE_TIME)

@@ -249,6 +249,7 @@ A custom soup recipe, allowing you to throw whatever you want in the pot.
 A dark temptation has passed from this world!
 A deadly illness has been contracted! {0} was killed by the disease.
 A delicious {0} filled with scoops of {1} ice cream. That's as many as {2} scoops!
+A directive echoes through your mind...
 A display that provides the number of tram related safety incidents this shift.
 A divine bow and 10 quivered holy arrows.
 A drowning sense of dread washes over you.
@@ -494,11 +495,11 @@ Assist and exacerbate existing threats at critical moments.
 Assist your master.
 Asthma attack!
 At first, life was incredibly difficult for the would-be colonists. Generations were very short, and most of the personnel able to even fix the vessel had died either on impact, or later on. While their genetic modifications and pre-existing comfort in frozen climates somewhat helped them, the Ancestors were said to have made one last desperate move to put all their resources together to fully modify and adapt themselves to the climes of Niflheim; forever.
-At least 0.01 moles of BZ needs to be present. BZ is consumed at 0.1 moles per mole of freon formed.
-At least 0.03 moles of CO2 needs to be present. CO2 is consumed at 0.3 moles per mole of freon formed.
-At least 0.06 moles of plasma needs to be present. Plasma is consumed at 0.6 moles per mole of freon formed.
+At least 0.01 moles of {0} needs to be present. {1} is consumed at 0.1 moles per mole of {2} formed.
+At least 0.03 moles of {0} needs to be present. {1} is consumed at 0.3 moles per mole of {2} formed.
+At least 0.06 moles of {0} needs to be present. {1} is consumed at 0.6 moles per mole of {2} formed.
 At least a key, IP or CID must be provided.
-At least {0} moles of Nitrogen needs to be present for this reaction to occur. Nitrogen is produced at 0.7 moles per mole of Zauker decomposed.
+At least {0} moles of {1} needs to be present for this reaction to occur. {2} is produced at 0.7 moles per mole of {3} decomposed.
 At least {0} of us must escape alive on the emergency shuttle to conquer what is on the other side.
 At least {0} of us must reproduce to pave the way for our overwhelming numbers.
 Atmos reaction recorder component initialized without a list.
@@ -543,9 +544,6 @@ BLUESPACE ARTILLERY FIRE SUCCESSFUL! DIRECT HIT!
 BLUESPACE ARTILLERY MALFUNCTION!
 BROKEN ARROW/DENIAL OF ASSETS. The patrol vessel is irrecoverably compromised, with capture or destruction imminent. The primary mission has failed. The new objective is to ensure that no Coalition personnel, technology, intelligence, or the vessel itself can be exploited by the enemy. All classified data, mission logs, and personnel records are to be purged from all systems. The crew is expected to fight until the vessel is destroyed or all hands are lost.
 BYOND build {0} ({1}.{2}) has been blacklisted for the following reason: {3}.
-BZ gets decomposed into plasma and nitrous oxide. The nitrous oxide then decomposes into nitrogen and oxygen, with the oxygen then decaying into helium.
-BZ is consumed at 1/12th of a mole per mole of healium formed.
-BZ is not consumed in the reaction but will lower the amount of energy released. It also reduces amount of tritium consumed by a ratio between tritium and bz, greater bz than tritium will reduce more.
 Background radiation levels detected.
 Bagpipes begin to blare. You feel Scottish pride coming over you.
 Barhah hra zar'garis!
@@ -620,14 +618,15 @@ CRYSTAL DELAMINATION IMMINENT. The supermatter has reached critical integrity fa
 Cabin breach has been sealed.
 Called is_banned without a mob. This shouldn't happen.
 Called is_banned_from without specifying a ckey.
-Can only happen on turfs.
-Can only occur above {0} Kelvin.
-Can only occur above {0} kelvin. Higher temperature increases halon consumption rate.
-Can only occur below {0}. Higher temperature increases the nitrium decomposition rate.
-Can only occur between {0} - {1} kelvin.
-Can only occur between {0} - {1} kelvin. Higher temperature increases proto-nitrate formation rate.
-Can only occur between {0} - {1} kelvin. Zauker formation rate is proportional to the temperature.
-Can only occur between {0} - {1}. Higher temperature increases healium formation rate.
+Can only happen on tiles with an active Electrolyzer.
+Can only happen on tiles.
+Can only occur above {0}K.
+Can only occur above {0}K. Higher temperature increases {1} consumption rate.
+Can only occur below {0}. Higher temperature increases the {1} decomposition rate.
+Can only occur between {0} - {1}. Higher temperature increases {2} formation rate.
+Can only occur between {0} - {1}K.
+Can only occur between {0} - {1}K. Higher temperature increases {2} formation rate.
+Can only occur between {0} - {1}K. {2} formation rate is proportional to the temperature.
 Can receive from types {0}.
 Can't go there!
 Cannon integrity failure!
@@ -640,9 +639,6 @@ Captain's Spare ID safe code combination: {0}<br><br>The spare ID can be found i
 Captain's Spare ID safe code combination: {0}<br><br>The spare ID can be found in its dedicated safe on the bridge.<br><br>If your job would not ordinarily have Head of Staff access, your ID card has been specially modified to possess it.
 Capture the fugitives in the station and put them into the bluespace capture machine on your ship.
 Capture {0} lifeform\s with an energy net. Live, rare specimens are worth more.
-Carbon Dioxide is formed at 0.75 moles per mole of plasma consumed if tritium isn't being formed.
-Carbon Dioxide is formed at 1 mole per mole of freon consumed.
-Carbon dioxide is produced at 5 moles per mole of halon consumed.
 Cargo order #{0} has shipped.
 Cargo personnel was requested in %LOCATION %CALLER %RETA.
 Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.
@@ -653,6 +649,7 @@ CentCom is offering a reward for talented mixologists. Ship a container of {0} t
 CentCom is paying premium for the chemical {0}. Ship a container of it to be rewarded.
 CentCom is thirsty! Send a shipment of {0} to CentCom to quench the company's thirst.
 CentCom once more twists knowledge beyond its authority.
+CentCom personnel. Do not attack.
 CentCom requires {0} of {1} containing at least {2} each. Ship a container of it to be rewarded.
 CentCom's profligacy frays another thread.
 Centcom is displeased. Come on service, surely you can do better than that.
@@ -699,7 +696,7 @@ Company officials would like to clarify that {0} was scheduled to be decommissio
 Complete the Grand Ritual at least seven times.
 Complete your ship's mission.
 Completed download of file {0}.
-Condensation will consume {0} moles, freezing will not consume any. Both needs a minimum of {1} moles to occur.
+Condensation will consume {0} moles. Freezing will not consume any. Both requires a minimum of {1} moles to occur.
 Conduct a general station safety survey. Gather feedback from staff and identify potential safety concerns.
 Conduct a routine performance review of {0} and its Captain.
 Conduct a safety survey over {0} department. Gather feedback from staff and identify potential safety concerns.
@@ -872,10 +869,10 @@ ERROR: You are muted.
 ERROR: You do not have permission to do that.
 ERT shuttle loaded but found no spawn points, placing the ERT at wherever inside the shuttle instead.
 EVERY TIME YOU DREAM OF CIRCULAR CUISINE!
-Each mole Nitrous oxide decomposed makes 0.5 moles Oxygen. Lower ratio of Nitrous oxide to Plasma means a higher ratio of decomposition to BZ production.
-Each mole Nitrous oxide decomposed makes 1 mol Nitrogen. Lower ratio of Nitrous oxide to Plasma means a higher ratio of decomposition to BZ production.
-Each mole of BZ made consumes 0.8 moles of plasma. If there is more plasma than nitrous oxide, bz formation rate gets slowed down.
-Each mole of bz made consumes 0.4 moles of Nitrous oxide. If there is less nitrous oxide than plasma the reaction rate is slowed down. At three times the amount of plasma to Nitrous oxide it will start breaking down into Nitrogen and Oxygen, the lower the ratio the more Nitrous oxide decomposes.
+Each mole of {0} made consumes 0.4 moles of {1}. If there is less {2} than {3} the reaction rate is slowed down. At three times the amount of {4} to {5}, it will start breaking down into {6} and {7} - the lower the ratio, the more {8} decomposes.
+Each mole of {0} made consumes 0.8 moles of {1}. If there is more {2} than {3}, {4} formation rate gets slowed down.
+Each mole {0} decomposed makes 0.5 moles {1}. Lower ratio of {2} to {3} means a higher ratio of decomposition to {4} production.
+Each mole {0} decomposed makes 1 mol {1}. Lower ratio of {2} to {3} means a higher ratio of decomposition to {4} production.
 Eat the ice cream.
 Either both you or your target aren't at the dropoff location, or the pod hasn't got a valid place to land. Clear space, or make sure you're both inside.
 Elevator door {0} ({1},{2},{3}) has no linked elevator ID!
@@ -886,7 +883,7 @@ Emergency shuttle trajectory overriden, rerouting course back to {0}.
 Emergency shuttle uplink services are now back online.
 Encountered {0} willing to customise any ID card you bring them.
 End of active turf list.
-Energy released by the reaction, may or may not result in linear temperature change depending on a slew of other factors.
+Energy released by the reaction. May or may not result in linear temperature change depending on a slew of other factors.
 Engine, V vaibxr gb-gur`r gb-pbzzhar gb-nyy.
 Engineering staff will have expanded access to areas of the station during the emergency.
 Enjoy your discount!
@@ -1035,10 +1032,7 @@ Found undeleted query, check the sql.log for the undeleted query and add a delet
 Found unsupported Interop API version: {0}. If this is a valid version please report this, backporting is done on demand.
 Free objective.
 Freeze, scumbag!
-Freezes a turf at {0} Kelvins or below, wets it at {1} Kelvins or below.
-Freon is consumed at 11/12th of a mole per mole of healium formed.
-Freon is consumed at a rate that scales with the distance of the temperature from {0}K. Its relationship with oxygen also determines consumption rate.
-Freon is produced at a rate that scales with the sum of a quadratic exponential and sigmoidal function, with the quadratic exponential peaking at 800 Kelvin, but the sigmoidal function takes dominance at over 5,500K being up to 3 times more efficient.
+Freezes a tile at {0}K or below, wets it at {1}K or below.
 Frequent crashing.
 From the shadows, all shall perish.
 Fucking stupid machine.
@@ -1085,7 +1079,6 @@ HEY, LISTEN!!! Merge Conflict Marker detected at {0}! Please manually address al
 HOSTILE INTENT CONFIRMED. Direct, unambiguous evidence of hostile intent has been identified. This includes weapon discharge towards patrol personnel, attempted boarding of the patrol vessel, active targeting by a Bluespace Artillery Cannon, or a declared threat against the patrol. Weapons free. All defensive systems are at full power. The ship is to maneuver to a tactical advantage. All personnel to battle stations. Preemptive self-defense protocols are authorized.
 Hailing from a planet that was lost long ago, the moths travel the galaxy as a nomadic people aboard a colossal fleet of ships, seeking a new homeland.
 Hailing from the arid world of Tizira, lizards were travelling the stars back when mankind was first discovering how neat trains could be. However, much like the space-fable of the space-tortoise and space-hare, lizards have rejected their kin's motto of \"slow and steady\" in favor of resting on their laurels and getting completely surpassed by 'bald apes', due in no small part to their lack of access to plasma.
-Halon is consumed at a rate that scales with temperature.
 Handling admin pinged.
 Happy Mother's Day in most of the Americas, Asia, and Oceania!
 Happy National Hot Dog Day!
@@ -1109,16 +1102,16 @@ Heal a patient's superficial bruises, cuts, and burns.
 Heal a patient's superficial burns.
 Heal a patient's superficial charring and warping damage.
 Heal a patient's superficial dents, scuffs, and warped heat damage.
-Healium is formed at a rate that scales with the temperature.
 Heavy duty drill useful for mining.
 Heed and obey the requests of the dead, provided that carrying them out wouldn't be too inconvenient or self-destructive.
-Helium is produced at 1.6 moles per mole of BZ decomposed.
 Hello there.
 Hello, I am {0}, it's nice to meet you!
 Helping {0} up felt good!
+Her voice sounds feminine.
 Hey! The build of byond you are running ({0}) has one or more potential issues that may cause major gameplay disruptions.\n\nYou may continue to play, but be aware you may encounter the following issue while playing:\n\"{1}\"\n\nIf possible, we recommend updating your BYOND version.\nIf you are on the latest version, download an earlier release instead from www.byond.com/download/build.
 High levels of radiation detected near the station. Maintenance is best shielded from radiation.
-Higher temperature increases the speed of miasma sterilization.
+Higher temperature increases the speed of {0} sterilization.
+His voice sounds masculine.
 Hmm... yes, this ID was issued from Central Command!
 Holochip created with 0 or less {0} in {1}!
 Holosynths are a subtype of machines; they're made of soft-light, only semi-solid and dependant on a projection device.
@@ -1132,13 +1125,6 @@ Hug {0} {1} times while they're alive.
 Humanity never managed to find the kind of peace to fully unite under one banner like other species. The pencil and paper pushing of the UN bureaucrat lives on in the mosaic that is TerraGov; a composite of the nation-states that still live on in human society.
 Humans are the dominant species in the known galaxy. Their kind extend from old Earth to the edges of known space.
 Hunters are the most agile caste, tasked with hunting for hosts. They are faster than a human and can even pounce, but are not much tougher than a drone.
-Hydrogen is consumed at 10/11th of a mole per mole of proto-nitrate formed.
-Hydrogen is consumed rapidly fast as long as there's enough oxygen to allow combustion.
-Hydrogen is formed from the tritium losing their neutrons.
-Hydrogen is produced at 1 mole per mole of nitrium decomposed.
-Hydrogen remains after the neutrons escape.
-Hyper-Noblium is consumed at 0.02 moles per mole of zauker formed.
-Hyper-Noblium production scales based on the sum of the nitrogen and tritium moles.
 I AM +NOT+ A CYBORG YOU TROGLODYTE.
 I DIDN'T DESERVE ITTTTTTTTTT!!
 I LOVE working at Clown Research Station {0}!!
@@ -1479,11 +1465,13 @@ Item of type {0} qdel'd from {1} skillchip list.
 Its circuitry is smoking slightly. They must not have been able to handle the stress of it all.
 Its current temperature is {0}, and needs to cool to {1}, but will worsen if heated to {2}.
 Its tracking indicator is blank.
+Its voice sounds gender neutral.
 Jellypeople are a strange and alien species with three eyes, made entirely out of gel.
 Jellypeople are actively being experimented on my Nanotrasen scientists, who are trying to unlock the secrets of their unique biology.
 Join in, help out!
 Just an option.
 Just looking at it makes you want to buy an SKS, go into the woods, and -operate-.
+KILL KILL KILL KILL KILL KILL!!!
 Keep away from fire or flames.
 Keep candles near curtains for cozy night lights!
 Keep full buckets of water near outlets in case of an electric fire!
@@ -1586,13 +1574,12 @@ Mechanical exosuit -- Age scan reveals data incompatibility. Object seems to be 
 Medical emergency! {0} is in critical condition at {1}!
 Mental trauma: {0}.
 Meteors have been detected on collision course with the station.
-Miasma is sterilized at a rate that scales with the difference between the temperature and {0}K.
 Middle value description was selected but not provided.
 Mild brain damage detected.
 Mine cart moving on 0 momentum!
 Miners were requested in %LOCATION %CALLER %RETA.
-Minimum temperature of {0} Kelvin to occur, with production peak at 800 K. However at temperatures above 5500 K higher rates are possible maxing out at three times the low temperature rate at over 8500 K.
-Minimum temperature of {0} kelvin to occur. Higher temperature up to {1}K increases the oxygen efficiency and also the plasma consumption rate.
+Minimum temperature of {0}K to occur. Higher temperature up to {1}K increases the {2} efficiency and also the {3} consumption rate.
+Minimum temperature of {0}K to occur. Production speed peaks at 800K - However, at temperatures above 5500K, production speed can exceed the low temperature peak (reaching up to three times fast at 8500K).
 Minimum value description was selected but not provided.
 Minimum value out of range.
 Minor genetic damage detected.
@@ -1661,7 +1648,7 @@ Nar'Sie hears your call...
 Navigation protocol set to {0}. Reorienting bluespace vessel to exit vector. ETA 15 seconds.
 Nearby electronics seem just a little more charged wherever {0} go{1}.
 Network Alert: Hacking attempt detected{0}.
-Neutrons get released as ionising radiation.
+Neutrons are released as ionising radiation.
 New connections are not being allowed at this time.
 New malfunctioning cyborg created!
 New manipulator task created with no valid turf reference passed.
@@ -1669,14 +1656,6 @@ New to the galactic stage, plasmamen are a blank slate. Their appearance, genera
 News from the SpaceBet PDA App! Download now and make your own bets!
 Newton's Approximation for pressure failed after {0} iterations. A: {1}. B: {2}. C:{3}. Current value: {4}. Expected lower limit: {5}. Expected upper limit: {6}.
 Next map reverted. Voting re-enabled.
-Nitrium is consumed at 1 mole per mole of zauker formed.
-Nitrium is consumed at a rate that scales with the temperature.
-Nitrium is produced at a rate that scales with the temperature.
-Nitrogen is formed at 1 mole per mole of nitrous oxide decomposed.
-Nitrogen is produced at 0.4 moles per mole of BZ decomposed.
-Nitrogen is produced at 1 mole per mole of nitrium decomposed.
-Nitrous Oxide is decomposed at a rate that scales negatively with the distance between the temperature and average of the minimum and maximum temperature of the reaction. Minimum of {0} to occur.
-Nitrous oxide gets produced rapidly.
 No AI located...
 No BSA parts detected nearby.
 No Card Inserted.
@@ -1819,7 +1798,7 @@ On this day, Lizardkind celebrates their language with literature and other cult
 On this day, the Lizards traditionally celebrate the Festival of Atrakor's Might, where they honour the moon god with lavishly adorned clothing, large portions of food, and a massive celebration into the night.
 Once fully integrated into the host, the now-Hemophagic individual finds themselves a changed entity; their thoughts, base instincts, and reactions altered - albeit usually subtly - to more accommodate the symbiont through its need for blood.
 Once you select a goal, it will be assigned to the station.
-One mole of oxygen is released per mole of miasma consumed.
+One mole of {0} is released per mole of {1} consumed.
 One of the Culling Arms of the Tiger Cooperative, a collection of relic weapons said to have come to Martinson in a frenzied vision from God to enact holy retribution upon the enemies of the faith. Almost all examples of these guns are replicas of the original pattern. This one is no different. However, it carries some of the gravitus of the original firearm. And, some say, the holy might that it wielded against the enemies of the cult.<br><br>The fact that you are looking at this relic weapon means one of two things.<br><br>A) A Tiger Cooperative evangelist has died during or before they could commit a bloody massacre in the name of God. Or <br><br>B) You are that evangelist, and will soon be adding another chapter to this gun's dark history.
 One of your crew was captured by a rival organisation - we've needed to pay their ransom to bring them back. As is policy we've taken a portion of the station's funds to offset the overall cost.
 One of your outstanding warrants has been completely paid.
@@ -1852,13 +1831,6 @@ Out of range!
 Out of uses!
 Overcharging machine...
 Oww! That brushing on my {0} was too rough!
-Oxygen consumption is determined by the temperature, ranging from {0} moles per mole of freon consumed at {1} Kelvins to {2} moles per mole of freon consumed at {3} Kelvins. Higher oxygen concentration up to {4} times the freon increases freon consumption rate.
-Oxygen consumption is determined by the temperature, ranging from {0} moles per mole of plasma consumed at {1} Kelvins to {2} moles per mole of plasma consumed at {3} Kelvins. Higher oxygen concentration up to {4} times the plasma increases the speed of plasma consumption.
-Oxygen is consumed at 0.5 moles per mole of hydrogen consumed. Higher oxygen concentration up to {0} times the hydrogen increases the hydrogen consumption rate.
-Oxygen is consumed at 0.5 moles per mole of pluoxium formed.
-Oxygen is consumed at 0.5 moles per mole of tritium consumed. Higher oxygen concentration up to {0} times the tritium increases the tritium consumption rate.
-Oxygen is formed at 0.5 moles per mole of nitrous oxide decomposed.
-Oxygen is produced at 0.3 moles per mole of zauker decomposed.
 P-lease note - t4mperi,ng w-ith this un1ts electroni-cs, your -- expectancy has been voided.
 PC LOAD LETTER!
 PL'YR DOT PL'CTM' {0} G!
@@ -1895,8 +1867,6 @@ Pick something up!
 Pirate Spawn Here!
 Plain, dead, simple!
 Planetary monitoring systems indicate a devastating seismic event in the near future.
-Plasma is consumed at a rate that scales with the difference between the temperature and {0}K, with maximum scaling at {1}K.
-Plasma is produced at 0.8 moles per mole of BZ decomposed.
 Plasmamen literally breathe and live plasma. They spontaneously combust on contact with oxygen, and besides all the quirks that go with that, they're very vulnerable to all kinds of physical damage due to their brittle structure.
 Plating is welded, and 10 <b>rods</b> can be used to install the cockpit.
 Please accept a new civilian bounty first.
@@ -1912,8 +1882,6 @@ Please report any suspicious individuals or behaviour to your local security tea
 Please screwdrive pad closed to send. 
 Please select the new player OOC color.
 Please transfer an AI unit.
-Pluoxium is consumed at 1/11th of a mole per mole of proto-nitrate formed.
-Pluoxium is produced at a constant rate in any given mixture.
 Podpeople are in many ways the inverse of shadows, healing in light and starving with the dark. Their bodies are like tinder and easy to char.
 Podpeople are largely peaceful plant based lifeforms, resembling a humanoid figure made of leaves, flowers, and vines.
 Poly the parrot screaming \"{0}!\" over and over again.
@@ -1954,8 +1922,6 @@ Protects from most injections and sprays.
 Protects the wearer from extremely low or high pressure, such as vacuum of space.
 Protects the wearer from the effects of pepperspray.
 Protects the wearer from {0} temperatures.
-Proto nitrate is consumed at 0.005 moles per mole of neutrons released.
-Proto-Nitrate is produced at a rate that scales with the temperature.
 Protocol CRAB-17 has been activated. A space-coin market has been launched at the station!
 Provides \a {0} usable to increase the damage of swords and daggers. One use only.
 Provides \a {0} which can be used to create a portal, releasing minor constructs into the station.
@@ -1977,7 +1943,7 @@ RO: Occupations reset.
 ROCKED AND SOCKED.
 ROUND READY. LOADING {0}!
 ROUTINE PATROL/STANDARD INSPECTION. The patrol is approaching or has begun initial interactions with a non-Coalition facility under Standard Inspection Protocols. The facility is presumed compliant but not yet trusted. All personal weapons are to be holstered but authorized for immediate draw. Weapon safeties may be disengaged at the individual officer's discretion based on perceived threat. Ship defensive systems are active and scanning.
-Radiation gets released during this decomposition process.
+Radiation is released during this decomposition process.
 Raiders have come aboard your ship! 
 Randomly increases the severity of inflicted wounds and quantity of chems synthesized.
 Reach the {0} before time runs out.
@@ -2278,7 +2244,6 @@ THERE ARE {0} {1}{2}{3} ON THE STATION...
 THIS PLACE IS SCARY I WANNA LEEEEEAAAAAVVVEEEEEE!!
 TO DUST WITH YE!! AWAY!!
 TOMATO SAUCE, CHEESE, WE'VE BOTH BOTH OF THESE!
-TTS tried to play a sound to a deleted mob.
 TTV gas merging failed.
 Take a photo of {0} while they're alive, and keep it in your bag.
 Take control?
@@ -2328,6 +2293,9 @@ The Festival of Holy Lights is the final day of the Ethereal calendar. It is typ
 The Hearth itself is an area that the kindred hold incredibly sacred, primarily hating Outsiders for more practical reasons. They think themselves as having been there first, many of them knowing they were 'promised' Niflheim by the Ancestors. Unlike the Ashwalkers of Muspelheim, the Hearthkin are a more technologically advanced society; having use for not only metal, but gold and silver for accessory. They are known to employ artifacts thought to be of either the planet their moon orbits, or leftovers from their Ancestors; however, for a variety of reasons from Kin to Kin, they tend to shy away from using modern human technology.
 The Hearthkin are a culture of disparate Scandinavian groups all sharing a common origin as descendents from demihuman genemodders aboard the good ship Stjarndrakkr, or Star Dragon; an enormous colony ship almost 40km tall. This ship first reached the orbit of its last resting place three hundred years ago, before the advent of bluespace travel; coming from a world known to the Hearthkin as 'Asgard.' When it reached the atmosphere of the ice moon, or 'Niflheim' as they consider it, the vessel detonated in low orbit for unknown reasons. Large sections of the Star Dragon broke up and sealed themselves, coming to a rest all over the moon itself.
 The Liberator pattern, according to digital historians, was first posted to a fringe imageboard on the NTNet. The post included a now dead link to a defuncting hosting service through which board members were encouraged to download and 'admire' the design. The thread's author began their post by describing their extreme vitriolic hatred of so-called 'moon men' amongst the Nanotrasen 'elites'. And that, through 'the sauce', they had been shown a means to 'end the oppression of Luna's Tormentors'. They called it the 'Liberator' as a result.<br><br>Response to this thread began as skeptism amongst posters regarding the 3D pattern. Many highlighted the dubious functionality, let alone safe operation of a gun created using cheap plastic and minimal machined parts firing a high pressure round through an unrifled barrel. But the thread suddenly began to gain traction immediately following a particular news article published by the Spinward Dove, a respected editorial in the Spinward Sector. The author of this article recounts that, during a particularly brisk day in New Moscow, they observed three off-duty Nanotrasen assistants attempting to use what the author described as a 'bizarre plastic doohickey' to shoot a mouse at point blank. The horrific aftermath, and images of the rattled but otherwise unscathed mouse, lead many to try and find from where these now crippled assistants had come across such an absurd device. Word spread of the post, and its author's continuously nonsensical rants regarding their hated foe in other areas of the imageboard.<br><br>The author of the thread returned immediately following the news, claiming that those who frequented the imageboard had 'stolen' their 'dreams of freedom', and that clearly the moon men were attempting to discredit their invention through this publicity stunt. A slur-laiden rant from the thread author followed this declaration, leading to the the moderators of the imageboard to step in and close the thread for good.
+The M/TACS-1-EX \"Theseus\" is the product of compromise between the Heliostatic Coalition's desire to arm rim-world colonies and its absolute refusal to export proprietary technology. The end result is, evidently, an exosuit built from open-source or public-domain parts and manufacturing standards that looks, moves, and fights like a proper \"Warden\" despite its status as something rebuilt piece by piece into a complete replacement.<br><br>True to its name, the Theseus replaces many proprietary and advanced components for ease of manufacture, repair, and replacement: the armor is made of layered composite ceramics, polymers, and alloys instead of proprietary KMIF nanocomposite matrices, the mobility is provided through reliable, repairable hydropneumatic actuators instead of advanced myomer systems, and the sensor suite uses basic but reliable optical and infrared sensors instead of multi-spectral scanning arrays and proprietary datalink integration.<br><br>While its more \"advanced\" capabilities may be lacking compared to its smarter, more technical cousin, the nature of its durable armor, serviceable electronics, and reliable mobility mean that it requires much less external support while remaining extremely capable as an exosuit.<br><br>The ease of its manufacture and the degree of its performance makes the \"Theseus\" relatively popular during barter and trade between rim-world colonies and external entities such as corporations, paramilitaries, and other actors who would have a vested interest in trading goods and services for such a performant exosuit (or, in particularly large exchanges, exosuits).
+The M/TACS-1-LF \"Warden\" is a frontier-optimized combat exosuit, the product of a rare collaboration between Kemppainen-Morozov Industrial Fabrication and Szot Dynamica.<br><br>KMIF's unshakable chassis provides Durand-level resilience, while SŻD's responsive myomer systems grant it Gygax-like agility. Typically stripped of complex jump jets and grapples for ease of maintenance, it excels as a mobile firing platform and boarding-assault anchor.<br><br>The Warden's typical armament of a M/FC-8-LF \"Forge\" fabrication cannon, with its ability to select appropriate ammunition for scanned targets, paired with a M/HP-22 \"Strele\" coaxial plasma pulse machinegun, gives it excellent tactical flexibility.
+The M/TACS-1A-LF \"Arbiter\" is an up-armed and up-armored variant of the M/TACS-1-LF \"Warden\" frontier-optimized combat exosuit, the product of a rare collaboration between Kemppainen-Morozov Industrial Fabrication and Szot Dynamica.<br><br>KMIF's unshakable chassis, further reinforced by the additional armor pauldrons, groin plate, and rear skirt from the Warden Urban Necessity Kit (WUNK) upgrade suite, provide a remarkable level of resilience, while SŻD's responsive myomer systems, though strained by the additional load, still grant it remarkable agility after recalibration to compensate.<br><br>Although typically stripped of complex jump jets and grapples for ease of maintenance, much like its predecessor, the WUNK's Argus-U distributed aperture sensor suite with wall-penetrating radar, and distributed frontal camera system grant the Arbiter provides 360° awareness.<br><br>Though it's heavier and slower than its predecessor, it's essentially unmatched in shipboard assaults and built-up environments, especially if paired with its standard M/AC-41 \"Seklys\" autocannon and M/RP-66 \"Smilgas\" anti-tank guided rocket pod.
 The Mansus has spurned you (denied ascension).
 The Mansus hears your call...
 The NIF is still calibrating, please wait!
@@ -2355,6 +2323,7 @@ The Tizirans, an ancient lizard-like species, originated on the desert world of 
 The UV bulb is {0}.
 The Vey-Medical CWM-479 line of mediguns is widely considered the foothold that brought the medical titan into the niche where it is today, opening many lucrative doors for the continued development of luxury medical equipment.<br><br>Although hard to imagine, Vey-Med's entrance into the corporate scene would be a shaky one, immediately facing pressure from larger, more established groups like Zeng-Hu who boasted similar products for less. Things looked bleak financially until the first sightings of handheld medical beamguns in the grips of Syndicate-backed mercenaries would shake the industry dramatically. It's here that Nanotrasen themselves would enter the picture, poising themselves as angel investors to the fledgling company as long as they could reproduce the technology for their own use, something that was accepted with open arms and bank accounts. <br><br>In the following time, Vey-Med would enjoy otherwise smooth progress in trying to reverse-engineer captured devices, but would be interrupted by a major roadblock. The energy throughput of anything less than some sort of mechanized suit prevented miniaturization of the nanite stream for their research team. Frustrated, they decided on a radical rethinking of the concept: what if they harnessed the body's natural energy to heal? <br><br>By using a lower amount of energy and many proprietary principles, a CWM medigun can stimulate a patient's natural healing factor by a factor of at least 7 times in an instant, far outpacing the gradual healing that they initially set out to achieve. Unfortunately, the overloading of natural processes means that the device is prone to inducing superficial sickness when used carelessly on those with less-than-ideal lifestyles. Despite this, many, from insane Solarian field doctors to remote colonial hospitals, would eagerly pay the exorbitant price for the CWM-479, and Vey-Med is more than happy to provide it.
 The Vox seem to be nomadic, bio-engineered alien creatures that operate in and around human space at the behest of crazed and dreaming gods. In reality, we know them to be originally designed by the Vox Auralis, a wholly-reclusive variety of powerful psychics, and present a cold shoulder to all other known cultures, and generally their only visible role on the galactic stage is to act as auxiliary workforce of which they are functionally suited for. The massive moon-sized arkships that serve as their homes travel meandering and convoluted migratory trails through the Milky Way, and the appearance of their looted and repurposed ships is almost always a cause for alarm.
+The WUNK (Warden Urban Necessity Kit) conversion suite for M/TACS-1-LF \"Warden\" exosuits adds supplemental armor pauldrons, a groin plate, and rear skirt protection, along with the Argus-U distributed aperture sensor suite with wall-penetrating radar, and a distributed frontal camera system. The end result of such a comprehensive overhaul is a remarkably durable exosuit capable of detecting and tracking motion signatures for operators to handle as needed. Though installation of the modernization package is somewhat less than convenient, the peace of mind granted to pilots through the sensor suite and increased armor plating is quite well-received, even at the cost of some mobility.
 The account balance system appears to be {0}.
 The aching pain in your {0} is overwhelming!
 The air around {0} seems to ripple for a moment.
@@ -2409,7 +2378,7 @@ The curve on this one looks particularly acute.
 The daily message server key is {0}. Keep it a secret from the clown.
 The darkness in your heart won't be filled by simple platitudes.
 The death of {0}.
-The decomposition rate scales with the product of the distances between temperature and minimum and maximum temperature. Can only happen between {0} - {1} kelvin.
+The decomposition rate scales with the product of the distances between temperature and minimum and maximum temperature. Can only happen between {0} - {1}K.
 The dog of Nar'sie, {0} has had their vitality drained, rejoice!
 The dogtag is all scratched up.
 The domain is rebooting. Find an exit.
@@ -2469,7 +2438,7 @@ The light is off, indicating it is not currently functional.
 The lights begin to flicker and dim. You're in danger.
 The lockdown indicator is {0}.
 The loss of {0}'s {1}.
-The lower the pressure and larger the volume the more bz gets made. Less nitrous oxide than plasma will slow down the reaction.
+The lower the pressure and larger the volume the more {0} gets made. Less {1} than {2} will slow down the reaction.
 The machine didn't burn you this time, it must be some arcane work of the brand recognizing a source...
 The machine has no attached tank!
 The machine is already in use!
@@ -2726,6 +2695,7 @@ This fish exhibits no special behavior.
 This food is okay, I guess.
 This invader of dreams has no place here...
 This is <em>{0}'s ID card</em>.
+This is a guideline instilled upon you from your (new) leader - while you are expected to follow it where possible, it is not a strict order. Further orders from your (new) leader(s) may supersede this.
 This is a permanent ban.
 This is a photo of an area of {0} meters by {1} meters.
 This is a precious family heirloom, passed down from generation to generation. Keep it safe!
@@ -2763,10 +2733,11 @@ This pod has already had its seeds harvested!
 This poll type requires at least one option.
 This procedure can only be performed once per organ.
 This reaction can cause various carbon based lifeforms in the vicinity to hallucinate.
-This reaction emits dangerous radiation! Take precautions.
 This reaction emits extremely high energy nuclear particles, up to {0} per second per unique gas mixture.
+This reaction emits hazardous radiation - take precautions.
 This reaction emits radiation proportional to the amount of energy released.
 This reaction has special behaviour when occurring in specific locations.
+This reaction produces \"hot ice\" when occurring between {0}-{1}K.
 This server is using deprecated configuration settings. Please check the logs and update accordingly.
 This structure is connected to <b>{0}</b> transmission sigil{1}.
 This stuff has layers.
@@ -2833,10 +2804,6 @@ Tried to spawn meteors in a map which isn't in space.
 Tried to store an antagonist datum that already has no owner.
 Tried to track a qdeleted datum ({0}) in ai datum blackboard (key: {1})! Please ensure that we are not doing this by adding handling where necessary.
 Trim \[{0}\] missing from trim singleton list. Reinitialising this trim.
-Tritium is consumed at rapidly fast as long as there's enough oxygen to allow combustion.
-Tritium is converted into hydrogen at 0.01 moles per mole of pluoxium formed.
-Tritium is formed at 1 mole per mole of plasma consumed if there are at least 97 times more oxygen than plasma.
-Tritium radiates its neutrons at a rate that scales with the temperature and proto-nitrate mole count.
 Try to get a promotion to a higher devilish rank.
 Trying to move a qdeleted casing of type {0}!
 UPDATE REQUEST: {0} has requested an update on their OPFOR application!
@@ -2929,9 +2896,6 @@ Warning: Wet floor component gc'd right after initialization! What a waste of ti
 Warning: Wet floor component wasn't on a turf when being destroyed! This is really bad!
 Warning: something tried to forceMove() a qdeleted {0}({1}) to non-null destination {2}({3})!
 Warning: {0}({1}) initialized multiple times!
-Water vapor is formed at 0.25 moles per mole of plasma consumed if tritium isn't being formed.
-Water vapor is produced at 1 mole per mole of hydrogen combusted.
-Water vapor is produced at 1 mole per mole of tritium combusted.
 Wave name of {0} not recognised or disallowed by config.
 We demand your cooperation in bringing this criminal to justice.
 We have a prototype shielding system you must deploy to reduce collision-related accidents.
@@ -3754,8 +3718,6 @@ Your {0} throbs with pain, you can't feel your {1} anymore!
 Your {0} was interrupted!
 Z-Level trait {0} has {1} active turf(s).
 Z-Level {0} has {1} active turf(s).
-Zauker is consumed at {0} moles per second in any unique gas mixture.
-Zauker is produced at a rate that scales with the temperature.
 Zdraviya zhelaju, {0} crew. We are coming to your station.
 Zombies are undead, and thus completely immune to any environmental hazard, or any physical threat besides blunt force trauma and burns. Their limbs are easy to pop off their joints, but they can somehow just slot them back in.
 Zombies have long lasting beef with Botanists. Their last incident involving a lawn with defensive plants has left them very unhinged.
@@ -4004,6 +3966,8 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} completes the surgery, but is that {1} supposed to be squirting out of {2}'s chest like that?
 {0} component was added to something without a pay_to_account list!
 {0} component was created with an empty pay_to_account list!
+{0} consumption is determined by the temperature, ranging from {1} moles per mole of {2} consumed at {3}K to {4} moles per mole of {5} consumed at {6}K. Higher {7} concentration up to {8} times the {9} increases the speed of {10} consumption.
+{0} consumption is determined by the temperature, ranging from {1} moles per mole of {2} consumed at {3}K to {4} moles per mole of {5} consumed at {6}K. Higher {7} concentration up to {8} times the {9} increases {10} consumption rate.
 {0} contained a non-number!
 {0} contains an item of type {1} and this is not a skillchip.
 {0} created with no atom to drop.
@@ -4106,6 +4070,8 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} gave me a kiss, ahh!!
 {0} gave my {1} a flawless brushing, I feel fantastic!
 {0} gentlemanly helping up {1}.
+{0} gets decomposed into {1} and {2}. The {3} then decomposes into {4} and {5}, with the {6} then decaying into {7}.
+{0} gets produced rapidly.
 {0} glowing a soft white.
 {0} glows an unholy red and begins to transform...
 {0} goes off in {1}'s hand{2}!
@@ -4189,15 +4155,41 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} is absent from the nullrod_variants global list. Please include it.
 {0} is adorable!
 {0} is brought into {1}'s life of crime and espionage.
+{0} is consumed at 0.005 moles per mole of neutrons released.
+{0} is consumed at 0.02 moles per mole of {1} formed.
+{0} is consumed at 0.5 moles per mole of {1} consumed. Higher {2} concentration up to {3} times the {4} increases the {5} consumption rate.
+{0} is consumed at 0.5 moles per mole of {1} formed.
+{0} is consumed at 1 mole per mole of {1} formed.
+{0} is consumed at 1/11th of a mole per mole of {1} formed.
+{0} is consumed at 1/12th of a mole per mole of {1} formed.
+{0} is consumed at 10/11th of a mole per mole of {1} formed.
+{0} is consumed at 11/12th of a mole per mole of {1} formed.
+{0} is consumed at a rate that scales with temperature.
+{0} is consumed at a rate that scales with the difference between the temperature and {1}K, with maximum scaling at {2}K.
+{0} is consumed at a rate that scales with the distance of the temperature from {1}K. Its relationship with {2} also determines consumption rate.
+{0} is consumed at a rate that scales with the temperature.
+{0} is consumed at rapidly fast as long as there's enough {1} to allow combustion.
+{0} is consumed at {1} moles per second in any unique gas mixture.
+{0} is consumed rapidly fast as long as there's enough {1} to allow combustion.
+{0} is converted into {1} at 0.01 moles per mole of {2} formed.
 {0} is critically damaged!
 {0} is currently undergoing decontamination procedures after the destruction of a biological hazard. As a reminder, any crew members experiencing cramps or bloating should report immediately to security for incineration.
 {0} is currently undergoing decontanimation after a controlled burst of radiation was used to remove a biological ooze. All employees were safely evacuated prior, and are enjoying a relaxing vacation.
 {0} is cursed with the curse of hunger!
 {0} is cursed with the curse of polymorph!
 {0} is dead! Long live the revolution!
+{0} is decomposed at a rate that scales negatively with the distance between the temperature and average of the minimum and maximum temperature of the reaction. Minimum of {1} to occur.
 {0} is destroyed!
 {0} is draining your blood!
 {0} is firmly secured!
+{0} is formed at 0.25 moles per mole of {1} consumed if {2} isn't being formed.
+{0} is formed at 0.5 moles per mole of {1} decomposed.
+{0} is formed at 0.75 moles per mole of {1} consumed if {2} isn't being formed.
+{0} is formed at 1 mole per mole of {1} consumed if there are at least 97 times more {2} than {3}.
+{0} is formed at 1 mole per mole of {1} consumed.
+{0} is formed at 1 mole per mole of {1} decomposed.
+{0} is formed at a rate that scales with the temperature.
+{0} is formed from the {1} losing their neutrons.
 {0} is gambling their life as they spin the revolver.
 {0} is going to press the button! It's now or never!
 {0} is great to be around, but I wish they'd stop touching me.
@@ -4210,6 +4202,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} is not a valid ammo casing.
 {0} is not a valid gun.
 {0} is not a valid projectile.
+{0} is not consumed in the reaction but will lower the amount of energy released. It also reduces amount of {1} consumed by a ratio between {2} and {3}, greater {4} than {5} will reduce more.
 {0} is not text!
 {0} is now LIVE!
 {0} is now known as {1}.
@@ -4218,6 +4211,16 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} is pleased with this offering!
 {0} is powering down. It looks like {1} trying to commit suicide.
 {0} is preventing {1} from being installed.
+{0} is produced at 0.3 moles per mole of {1} decomposed.
+{0} is produced at 0.4 moles per mole of {1} decomposed.
+{0} is produced at 0.8 moles per mole of {1} decomposed.
+{0} is produced at 1 mole per mole of {1} combusted.
+{0} is produced at 1 mole per mole of {1} decomposed.
+{0} is produced at 1.6 moles per mole of {1} decomposed.
+{0} is produced at 5 moles per mole of {1} consumed.
+{0} is produced at a constant rate in any given mixture.
+{0} is produced at a rate that scales with temperature. See temperature factor for more information.
+{0} is produced at a rate that scales with the temperature.
 {0} is recharging!
 {0} is restricted due to your selected body augments.
 {0} is running on a null computer!
@@ -4225,6 +4228,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} is set to generate a masked digitigrade icon, but generate_digitigrade_icons was not implemented (or error'd).
 {0} is shocked by your {1} in {2} efforts to tear it open!
 {0} is shocked by {1} {2}, {3} crowbar slipping as {4} briefly convulse!
+{0} is sterilized at a rate that scales with the difference between the temperature and {1}K.
 {0} is still has remaining heat.
 {0} is the reagent created by that type of blob.
 {0} is thrashing wildly! It looks like {1} trying to commit suicide.
@@ -4239,25 +4243,16 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} jerks apart some of the blood vessels in {1} with {2}!
 {0} jerks apart some of the blood vessels in {1}.
 {0} joined as a Prisoner without having a prisoner crime set.
-{0} joules of energy is absorbed per mole of freon consumed.
-{0} joules of energy is absorbed per mole of halon consumed.
-{0} joules of energy is absorbed per mole of nitrium formed.
-{0} joules of energy is absorbed per mole of proto-nitrate formed.
-{0} joules of energy is absorbed per mole of zauker formed.
-{0} joules of energy is released per mol of hydrogen consumed.
-{0} joules of energy is released per mol of tritium consumed.
-{0} joules of energy is released per mole of BZ decomposed.
-{0} joules of energy is released per mole of healium formed.
-{0} joules of energy is released per mole of hypernoblium produced.
-{0} joules of energy is released per mole of miasma sterilized.
+{0} joules of energy is absorbed per mole of {1} consumed.
+{0} joules of energy is absorbed per mole of {1} formed.
+{0} joules of energy is released per mol of {1} consumed.
+{0} joules of energy is released per mol of {1} made. {2} decomposition releases {3} per mol decomposed.
 {0} joules of energy is released per mole of neutron released.
-{0} joules of energy is released per mole of nitrium decomposed.
-{0} joules of energy is released per mole of nitrous oxide decomposed.
-{0} joules of energy is released per mole of nitrous oxide formed.
-{0} joules of energy is released per mole of plasma consumed.
-{0} joules of energy is released per mole of pluoxium formed.
-{0} joules of energy is released per mole of proto-nitrate formed.
-{0} joules of energy is released per mole of zauker decomposed.
+{0} joules of energy is released per mole of {1} consumed.
+{0} joules of energy is released per mole of {1} decomposed.
+{0} joules of energy is released per mole of {1} formed.
+{0} joules of energy is released per mole of {1} produced.
+{0} joules of energy is released per mole of {1} sterilized.
 {0} knocks you down with {1}!
 {0} knocks {1} down with {2}!
 {0} lacks a discernible form.
@@ -4291,11 +4286,11 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} masterfully brushes your {1}!
 {0} may be delivered handcuffed, for safety of course.
 {0} missing from the 'transfered_materials' list of the design. Edit the 'transfered_materials' var of {1}, or give it the ABSTRACT item flag if appropriate.
-{0} moles of antinoblium is needed to replicate itself. Requires other gases to be converted to antinoblium.
-{0} moles of hydrogen needs to be present for the reaction to occur. Hydrogen is consumed at 2 moles per mole of proto-nitrate formed.
-{0} moles of oxygen need to be present for the reaction to occur. Not consumed.
-{0} moles of proto-nitrate needs to be present for the reaction to occur. Proto nitrate is produced a rate that scales with its mole count, up to a max of {1} moles per second.
-{0} moles of proto-nitrate needs to be present for the reaction to occur. Proto-nitrate accelerates the BZ decomposition.
+{0} moles of {1} is needed to replicate itself. Requires other gases to be converted to {2}.
+{0} moles of {1} need to be present for the reaction to occur. Not consumed.
+{0} moles of {1} needs to be present for the reaction to occur. {2} accelerates the {3} decomposition.
+{0} moles of {1} needs to be present for the reaction to occur. {2} is consumed at 2 moles per mole of {3} formed.
+{0} moles of {1} needs to be present for the reaction to occur. {2} is produced a rate that scales with its mole count, up to a max of {3} moles per second.
 {0} neck is cut and is bleeding profusely!
 {0} nibble{1} happily.
 {0} no longer detected. Life support functions diabled.
@@ -4314,6 +4309,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} prepares to give {1}'s brain the spark of life with {2}.
 {0} prepares to give {1}'s brain the spark of life.
 {0} produced {1} borers.
+{0} production scales based on the sum of the {1} and {2} moles.
 {0} protects {1} contents from electromagnetic pulses.
 {0} protects {1} wiring and contents from electromagnetic pulses.
 {0} protects {1} wiring from electromagnetic pulses.
@@ -4328,6 +4324,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} puts {1} to {2} lips, fingers on the canister...
 {0} puts {1} {2}to {3}.
 {0} quickly put down a misguided attempt at mutiny. Remember, unionizing is illegal!
+{0} radiates its neutrons at a rate that scales with the temperature and {1} mole count.
 {0} reached on_finished_recipe without a human in selected_atoms to make a ghoul out of.
 {0} reached on_finished_recipe without a minded / cliented human in selected_atoms to make a ghoul out of.
 {0} reaches out and touches {1} with {2}, inducing a resonance... {3} starts to glow briefly before the light continues up to {4}'s body. {5} burst{6} into flames and {7} hurled away!
@@ -4339,6 +4336,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} rejects the advances of {1}!
 {0} rejects the advances of {1}, maybe next time?
 {0} remain before total integrity failure.
+{0} remains after the neutrons escape.
 {0} repairs some of {1}'s wounds.
 {0} requested this track.
 {0} requires you to have medical records text for your character.

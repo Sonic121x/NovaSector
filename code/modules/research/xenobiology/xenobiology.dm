@@ -526,7 +526,7 @@ GLOBAL_LIST_INIT(slime_extract_auto_activate_reactions, init_slime_auto_activate
 				to_chat(user, span_warning(LANG("obj.297c3374ec9e4e1a", null)))
 				return
 			ADD_TRAIT(user, TRAIT_ADAMANTINE_EXTRACT_ARMOR, ADAMANTINE_EXTRACT_TRAIT)
-			to_chat(user, span_notice("You feel your skin harden and become more resistant."))
+			to_chat(user, span_notice(LANG("obj.02924b70baef8c96", null)))
 			user.damage_resistance += 25
 			addtimer(CALLBACK(src, PROC_REF(reset_armor), user), 120 SECONDS)
 			return 450

@@ -1902,7 +1902,7 @@
 /datum/reagent/medicine/coagulant/on_mob_end_metabolize(mob/living/affected_mob)
 	. = ..()
 	if(was_working)
-		to_chat(affected_mob, span_warning("The medicine thickening your blood loses its effect!"))
+		to_chat(affected_mob, span_warning(LANG("datum.6cca1cb38cd5925a", null)))
 	MODIFY_PHYSIOLOGY(affected_mob, PHYS_COEFF_BLEED, 1 / passive_bleed_modifier)
 
 /datum/reagent/medicine/coagulant/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)

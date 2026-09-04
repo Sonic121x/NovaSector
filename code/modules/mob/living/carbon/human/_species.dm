@@ -794,7 +794,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					atk_verb_continuous = attacking_bodypart.unarmed_attack_verbs_continuous[atk_verb_index]
 				atk_effect = attacking_bodypart.unarmed_attack_effect
 			else  //Nothing? Okay. Fail.
-				user.balloon_alert(user, "can't attack!")
+				user.balloon_alert(user, LANG("datum.d96d836c3bba47d6", null))
 				return FALSE
 
 	user.do_attack_animation(target, atk_effect)
