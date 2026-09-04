@@ -690,8 +690,7 @@
 		return
 
 	if(SSticker.IsPostgame())
-		// NOVA EDIT REMOVAL - i18n - ORIGINAL: maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>Game ended, <br /> \
-		// NOVA EDIT REMOVAL - i18n - ORIGINAL: \trestart soon</span>")
+		// NOVA EDIT REMOVAL - i18n - ORIGINAL: maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>Game ended, <br /> \ \trestart soon</span>")
 		// NOVA EDIT ADDITION START - i18n - 大厅 maptext 不经任何 sink，标签在落地点整串精确反查（见 _chrome.json）
 		maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>[lang_reverse_text("Game ended")], <br /> \
 			[lang_reverse_text("restart soon")]</span>")

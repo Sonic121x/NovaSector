@@ -1697,7 +1697,6 @@ GLOBAL_LIST_INIT(i18n_payload_prose_keys, build_i18n_policy_set("payload_prose_k
 	return data
 
 #undef I18N_TGUI_PHRASE_CACHE_MAX
-#undef I18N_TGUI_PROSE_MIN_LENGTH
 
 /// 职业描述本地化（偏好菜单职业 tab 的 tooltip）。antag_opt_in 模块把「opt-in 后缀句」拼到
 /// description 末尾（`description = initial(description) + suffix`，见 antag_opt_in/code/job.dm），
