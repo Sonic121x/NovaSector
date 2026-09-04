@@ -134,6 +134,31 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 		lang_log_miss_scan(text, "fallback")
 	return lang_fallback_cache_store(locale, source_text, text)
 
+/// 下一句的起点：**句末标点之后**那个空格的下标（找不到返回 0）。
+///
+/// **必须认全角标点。** 这个 proc 的输入是「已译中文基础句 + 若干英文后缀」拼成的一整行，
+/// 基础句结尾是 `。` 而不是 `.`；只认 ASCII 句号的话第一刀会切在 `contractors.` 之后，
+/// 于是第一段变成「中文 + 第一条英文后缀」的混合串——它不是任何目录键，整段落不了地，
+/// 而第二条后缀恰好独立成段、翻得好好的。表现就是**只有第一条后缀是英文**，
+/// 很容易被误读成「那一条漏译」（实测 i18n_real_catalog ⑥c 就是这么红的）。
+///
+/// **返回的是标点之后的下标，不是标点自身的下标。** `findtext`/`copytext` 按**字节**计
+/// （`length("。") == 3`，`length_char` 才是 1），调用侧拿「标点下标 + 1」去切会把全角标点
+/// 劈成两半：前一段以半个字符收尾、后一段以两个续行字节开头，两侧都再也匹配不上目录 ——
+/// 症状与「压根没切」一模一样（后缀照旧整段英文），排查时极易误判成切点没找到。
+/proc/lang_next_sentence_break(text, cursor)
+	var/static/list/enders = list(". ", "。 ", "! ", "！ ", "? ", "？ ")
+	var/earliest = 0
+	. = 0
+	for(var/ender in enders)
+		var/found = findtext(text, ender, cursor)
+		if(!found)
+			continue
+		if(earliest && found >= earliest)
+			continue
+		earliest = found
+		. = found + length(ender) - 1
+
 /// 把「基础句 + 若干整句后缀」里的后缀**逐句**落地。
 ///
 /// 每个后缀（`" Targetable by contractors."`）各自是目录键，拼起来的整串不是。从前这里靠字面 AC
@@ -141,7 +166,8 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 /// 精确反查：更准（没有词边界风险、不会从单词内部开火），而且天然支持「其中一句没译」——
 /// 那一句保持英文，其余照译，不会像 AC 那样把半句中文塞进英文里。
 ///
-/// 切点是 `". "`：句号连同它属于前一句，后面那个空格归下一句（中文译文自带标点，接缝不丢）。
+/// 切点由 `lang_next_sentence_break` 给出（半角与全角句末标点都认）：标点连同它属于前一句，
+/// 后面那个空格归下一句（中文译文自带标点，接缝不丢）。
 /proc/lang_localize_sentence_suffixes(text, locale)
 	if(!istext(text) || !length(text))
 		return text
@@ -152,13 +178,13 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 	var/start = 1
 	var/cursor = 1
 	while(cursor <= text_length)
-		var/dot = findtext(text, ". ", cursor)
-		if(!dot)
+		var/split = lang_next_sentence_break(text, cursor)
+		if(!split)
 			pieces += copytext(text, start)
 			break
-		pieces += copytext(text, start, dot + 1)
-		start = dot + 1
-		cursor = dot + 2
+		pieces += copytext(text, start, split)
+		start = split
+		cursor = split + 1
 	var/list/localized = list()
 	for(var/piece in pieces)
 		localized += lang_fallback_apply(piece, locale)

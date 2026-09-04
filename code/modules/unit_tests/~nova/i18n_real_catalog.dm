@@ -159,6 +159,12 @@
 	// 分层断言，红了能一眼看出断在哪一层：目录 → 反查表 → 切块器整行。
 	TEST_ASSERT_NOTEQUAL(lang_reverse_text("chitters."), "chitters.", "emote 动作词应在目录且进了反查表")
 	TEST_ASSERT_NOTEQUAL(lang_reverse_text("cockroach"), "cockroach", "emote 名字应在目录且进了反查表")
+	// 切块器切出来的那一块是 `" chitters."`（`</b>` 到 `</span>` 之间，**带前导空格**）。
+	// 分两步探：归一化查表能不能吃掉前导空格，以及块级入口能不能落地。
+	var/spaced_lookup = lang_reverse_text_in(" chitters.", LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT_NOTEQUAL(spaced_lookup, " chitters.", "带前导空格的整块应经归一表命中，实得 [spaced_lookup]")
+	var/spaced_apply = lang_fallback_apply(" chitters.", LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT_NOTEQUAL(spaced_apply, " chitters.", "块级入口应落地，实得 [spaced_apply]")
 	var/emote_line = "<span class='emote'><b>cockroach</b> chitters.</span>"
 	var/emote_out = lang_fallback_apply_html(emote_line, LANGUAGE_LOCALE_ZH_HANS)
 	TEST_ASSERT(!findtext(emote_out, "chitters"), "emote 动作词应被整块反查翻掉：[emote_out]")

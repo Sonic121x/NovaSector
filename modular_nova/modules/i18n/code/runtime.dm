@@ -1138,22 +1138,37 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 	// 注意**不能**加「归一化后与原串相同就跳过」的短路：归一表里还有一类键本身就是归一化产物
 	// （剥标签形态），查询侧是裸句、归一化对它是恒等变换 —— 跳过就等于那类永远查不到。
 	var/normalized = lang_normalize_lookup(text)
-	var/list/reverse_norm = GLOB.i18n_reverse_norm[locale]
-	if(islist(reverse_norm))
-		var/hit = reverse_norm[normalized]
+	var/hit
+	// **先拿归一化结果查一次精确表。** 建表侧对「归一化后与源串相同」的条目**不登记**归一表
+	// （见 lang_build_reverse 里那个 `if(norm_key != en_text)`），它们只活在精确表里。少了这一步，
+	// 任何只差首尾空白/文法宏的运行期串都落不了地 —— 而切块器切出来的块极常带前导空格
+	// （`</b>` 到 `</span>` 之间那段），实测 emote 整行的动作词就是这么漏的：
+	// `<span class='emote'><b>蟑螂</b> chitters.</span>`，名字翻了、动作没翻。
+	// 放在归一表之前：精确表是更具体的证据，且这一步 O(1)、不占额外内存。
+	if(normalized != text)
+		hit = reverse[normalized]
+		// 精确表存的是**源码字面形态**（`\improper` / `\n`），显示化在读侧做（见上面那条 exact 命中）；
+		// 归一表存的已经是显示化过的值（建表时就过了 lang_display_value）。走精确表这条就得自己补，
+		// 否则玩家看到「\improper 太阳系精品热饮」。
 		if(!isnull(hit))
-			lang_count_layer_hit(I18N_LAYER_NORMALIZED)
-			// 归一化会吃掉首尾空白：命中后按原串的首尾空白拼回（离子法则等下游拼接依赖那些空格）。
-			var/text_length = length(text)
-			if(text2ascii(text, 1) <= 32 || text2ascii(text, text_length) <= 32)
-				var/start_index = 1
-				while(start_index <= text_length && text2ascii(text, start_index) <= 32)
-					start_index++
-				var/end_index = text_length
-				while(end_index >= start_index && text2ascii(text, end_index) <= 32)
-					end_index--
-				return copytext(text, 1, start_index) + hit + copytext(text, end_index + 1)
-			return hit
+			hit = lang_display_value(hit)
+	if(isnull(hit))
+		var/list/reverse_norm = GLOB.i18n_reverse_norm[locale]
+		if(islist(reverse_norm))
+			hit = reverse_norm[normalized]
+	if(!isnull(hit))
+		lang_count_layer_hit(I18N_LAYER_NORMALIZED)
+		// 归一化会吃掉首尾空白：命中后按原串的首尾空白拼回（离子法则等下游拼接依赖那些空格）。
+		var/text_length = length(text)
+		if(text2ascii(text, 1) <= 32 || text2ascii(text, text_length) <= 32)
+			var/start_index = 1
+			while(start_index <= text_length && text2ascii(text, start_index) <= 32)
+				start_index++
+			var/end_index = text_length
+			while(end_index >= start_index && text2ascii(text, end_index) <= 32)
+				end_index--
+			return copytext(text, 1, start_index) + hit + copytext(text, end_index + 1)
+		return hit
 	// 仍未命中：`desc = span_alert("…")` 类编译期包裹 → 运行时值带 <span> 外壳，目录存的是内层
 	// （抽取器解 span_* 宏）。剥单层 span 反查内层，命中**回包**（保留原样式）——所以它不能并进
 	// 归一化那条路：那条会把标签直接吃掉、配色就丢了。
