@@ -4,7 +4,7 @@ ADMIN_VERB(policy_panel, R_ADMIN, "政策面板", "View all policy the server ha
 		tgui_alert(usr, LANG("datum.68d417479b926623", null), LANG("datum.d0a5b4c1bdee7f06", null), list("OK"))
 		return
 
-	var/datum/policy_panel/tgui = new
+	var/datum/policy_panel/tgui = new()
 	tgui.ui_interact(user.mob)
 	BLACKBOX_LOG_ADMIN_VERB("Policy Panel")
 

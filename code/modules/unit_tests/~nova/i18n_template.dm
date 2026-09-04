@@ -47,8 +47,10 @@
 	// 人工 fallback 是 locale 专属维护数据，伪 locale 只生成自动 forward 目录；只有 active zh-Hans
 	// 才能断言这两条中文补充。运行时不会为测试额外加载第二个 locale。
 	if(GLOB.i18n_server_locale == LANGUAGE_LOCALE_ZH_HANS)
-		TEST_ASSERT_EQUAL(lang_fallback_apply("Loading...", LANGUAGE_LOCALE_ZH_HANS), "加载中……", "无空白 fallback 应由 active locale 的 JSON 自动注册")
-		TEST_ASSERT_EQUAL(lang_fallback_apply("Map:Delta", LANGUAGE_LOCALE_ZH_HANS), "地图:Delta", "无空白 fallback 应支持嵌入子串")
+		// 大厅/状态栏那批标签现在住在 _chrome.json（global_reverse），靠**整串精确反查**落地，
+		// 不再靠字面 AC 的子串替换 —— 所以断言的是整串命中，而不是「嵌在更长串里也能翻」。
+		TEST_ASSERT_EQUAL(lang_fallback_apply("Loading...", LANGUAGE_LOCALE_ZH_HANS), "加载中……", "_chrome.json 的整串应能精确反查")
+		TEST_ASSERT_EQUAL(lang_reverse_text("Map:"), "地图:", "状态栏标签应能整串反查（渲染点自己拼接，见 statpanel.dm）")
 
 	// 清理注入状态（测试 locale 的引擎缓存与字面 AC 状态一并清掉）。
 	for(var/key in test_pairs)
@@ -58,8 +60,6 @@
 	GLOB.i18n_tpl_state -= I18N_TEST_LOCALE
 	GLOB.i18n_tpl_records -= I18N_TEST_LOCALE
 	GLOB.i18n_tpl_anchor_ids -= I18N_TEST_LOCALE
-	GLOB.i18n_fallback_state -= I18N_TEST_LOCALE
-	GLOB.i18n_fallback_single_state -= I18N_TEST_LOCALE
 	GLOB.i18n_fallback_cache -= I18N_TEST_LOCALE
 	GLOB.i18n_reverse -= I18N_TEST_LOCALE
 

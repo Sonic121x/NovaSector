@@ -27,7 +27,7 @@
 	unsuitable_cold_damage = 0
 	unsuitable_heat_damage = 0
 	unsuitable_atmos_damage = 0
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0.5, OXY = 1)
+	physiology = list(STAMINA = 0.5)
 	combat_mode = TRUE
 	speed = 0
 	attack_verb_continuous = "chomps"
@@ -220,7 +220,7 @@
 			health_recovered *= 1.75 // plus 7.5 points when eating advanced space carps (from the rift)
 		else
 			health_recovered *= 0.75 // minus 7.5 points when eating a human for example.
-	adjust_health(round(-health_recovered, 1))
+	adjust_brute_loss(round(-health_recovered, 1))
 	if (QDELETED(food) || food.loc == src)
 		return FALSE
 	playsound(src, 'sound/effects/magic/demon_attack1.ogg', 60, TRUE)
@@ -239,7 +239,7 @@
 		if(fish_left <= 0)
 			addtimer(CALLBACK(src, PROC_REF(begin_sharkify)), 2 SECONDS)
 			fish_left = initial(fish_left) //prevent begin_sharkify from being called again by eating another fish.
-	adjust_health(round(-health_recovered, 1))
+	adjust_brute_loss(round(-health_recovered, 1))
 	playsound(src, 'sound/effects/magic/demon_attack1.ogg', 40, TRUE)
 	visible_message(span_boldwarning(LANG("mob.f34c2d31553ec34d", list(src, fish))))
 	if(HAS_TRAIT(fish, TRAIT_YUCKY_FISH))

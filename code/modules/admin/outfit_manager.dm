@@ -1,7 +1,7 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ADMIN_VERB(outfit_manager, R_DEBUG|R_ADMIN, "装束管理器", "View and edit outfits.", ADMIN_CATEGORY_DEBUG)
-	var/static/datum/outfit_manager/ui = new
-	ui.ui_interact(user.mob)
+	var/datum/outfit_manager/tgui = new()
+	tgui.ui_interact(user.mob)
 
 /datum/outfit_manager
 

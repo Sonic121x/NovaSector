@@ -187,7 +187,7 @@
 			to_chat(ghostie, span_userdanger(LANG("datum.36e3d79dfea1a4a4", list(deity))))
 			ghostie.apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 			ghostie.apply_status_effect(/datum/status_effect/revenant/revealed, 10 SECONDS)
-			ghostie.adjust_health(50)
+			ghostie.adjust_brute_loss(50)
 		for(var/mob/living/carbon/evil_motherfucker in get_hearers_in_view(effective_size,T))
 			if(IS_CULTIST(evil_motherfucker) || HAS_TRAIT(evil_motherfucker, TRAIT_EVIL))
 				to_chat(evil_motherfucker, span_userdanger(LANG("datum.d9f59c91beb39ffe", null)))

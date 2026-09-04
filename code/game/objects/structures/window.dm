@@ -98,7 +98,7 @@
 			. += span_notice(LANG("obj.e02e3584245996eb", null))
 		if(WINDOW_OUT_OF_FRAME)
 			if (anchored)
-				. += span_notice(LANG("obj.ebe146b01df506cd", null))
+				. += span_notice(LANG("obj.8ef2e576d9544647", null))
 			else
 				. += span_notice(LANG("obj.7134205aa4071996", null))
 
@@ -943,6 +943,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/titanium/spawner, 0
 
 /obj/structure/window/reinforced/survival_pod/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/survival_pod/spawner, 0)
 

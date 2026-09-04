@@ -20,8 +20,6 @@
 	var/health_per_second
 	/// Outline colour of the regeneration
 	var/outline_colour
-	/// Our damage_coeffs when we are sinked
-	var/damage_res_sinked
 	/// If we sinked into the ground right now
 	var/sinked = FALSE
 	/// If we sinking into the ground right now
@@ -30,6 +28,7 @@
 	var/sink_count = 0
 	/// When this timer completes we start sinking
 	var/ground_sinking_start_timer
+	var/datum/callback/sink_callback
 
 /datum/component/ground_sinking/Initialize(target_icon_state,
 			ground_sinking_delay = 8 SECONDS,
@@ -37,7 +36,8 @@
 			heal_when_sinked = TRUE,
 			health_per_second = 1,
 			outline_colour = COLOR_PALE_GREEN,
-			damage_res_sinked = string_assoc_list(list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)))
+			datum/callback/sink_callback,
+)
 
 	if (!isbasicmob(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -48,7 +48,7 @@
 	src.heal_when_sinked = heal_when_sinked
 	src.health_per_second = health_per_second
 	src.outline_colour = outline_colour
-	src.damage_res_sinked = damage_res_sinked
+	src.sink_callback = sink_callback
 
 /datum/component/ground_sinking/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
@@ -101,9 +101,9 @@
 	sinked = TRUE
 	is_sinking = FALSE
 	living_target.set_density(FALSE)
-	living_target.damage_coeff = damage_res_sinked
 	if(heal_when_sinked)
 		start_regenerating()
+	sink_callback?.Invoke(sinked)
 
 /// The mob pops out of the ground
 /datum/component/ground_sinking/proc/unsink()
@@ -113,9 +113,9 @@
 	if(sinked && heal_when_sinked)
 		stop_regenerating()
 	living_target.icon_state = target_icon_state
-	living_target.damage_coeff = string_assoc_list(list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1))
 	living_target.set_density(TRUE)
 	sinked = FALSE
+	sink_callback?.Invoke(sinked)
 
 /// The mop starts regaining health
 /datum/component/ground_sinking/proc/start_regenerating()

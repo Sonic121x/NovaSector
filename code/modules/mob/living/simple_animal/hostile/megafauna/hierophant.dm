@@ -428,7 +428,7 @@ Difficulty: Hard
 	sitting_at_center = TRUE
 	visible_message(span_hierophant_warning(LANG("mob.3633537bc961a31e", null)))
 	blink(beacon)
-	adjustHealth(min((health - maxHealth) * 0.5, -250)) //heal for 50% of our missing health, minimum 10% of maximum health
+	adjust_brute_loss(min((health - maxHealth) * 0.5, -250)) //heal for 50% of our missing health, minimum 10% of maximum health
 	wander = FALSE
 	if(health > maxHealth * 0.9)
 		visible_message(span_hierophant(LANG("mob.646da8f5a6b705b9", null)))
@@ -465,11 +465,11 @@ Difficulty: Hard
 		if(beacon && loc == beacon.loc && sitting_at_center)
 			arena_trap(src)
 
-/mob/living/simple_animal/hostile/megafauna/hierophant/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	. = ..()
-	if(src && . && !blinking)
+/mob/living/simple_animal/hostile/megafauna/hierophant/on_damage_loss_changed(amount, updating_health, forced)
+	if(amount > 0 && !blinking)
 		wander = TRUE
 		sitting_at_center = FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/AttackingTarget(atom/attacked_target)
 	if(!blinking)

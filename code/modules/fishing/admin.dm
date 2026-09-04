@@ -1,7 +1,7 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 ADMIN_VERB(fishing_calculator, R_DEBUG, "钓鱼计算器", "A calculator... for fishes?", ADMIN_CATEGORY_DEBUG)
-	var/datum/fishing_calculator/ui = new
-	ui.ui_interact(user.mob)
+	var/datum/fishing_calculator/tgui = new()
+	tgui.ui_interact(user.mob)
 
 /datum/fishing_calculator
 	var/list/current_table

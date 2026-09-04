@@ -36,15 +36,15 @@
 	name = pick(ability_name)
 
 /datum/action/item_action/organ_action/go_feral/do_effect(trigger_flags)
-	var/obj/item/organ/tongue/cat/cat_tongue = target
-	cat_tongue.toggle_feral()
-	if(!cat_tongue.feral_mode)
+	var/obj/item/organ/fangs/cat/cat_fangs = target
+	cat_fangs.toggle_feral()
+	if(!cat_fangs.feral_mode)
 		background_icon_state = "bg_default"
 		button_icon_state = "feral_mode_off"
-		to_chat(cat_tongue.owner, span_notice(LANG("datum.d8ec2d0dd3423012", null)))
+		to_chat(cat_fangs.owner, span_notice(LANG("datum.d8ec2d0dd3423012", null)))
 	else
 		background_icon_state = "bg_default_on"
 		button_icon_state = "feral_mode_on"
-		to_chat(cat_tongue.owner, span_notice(LANG("datum.600b107e6f1a513a", null)))
+		to_chat(cat_fangs.owner, span_notice(LANG("datum.600b107e6f1a513a", null)))
 	build_all_button_icons()
 	return TRUE

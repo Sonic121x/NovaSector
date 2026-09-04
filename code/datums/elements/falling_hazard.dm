@@ -60,9 +60,9 @@
 
 	// This does more damage the more levels the falling object has fallen
 	if(!crushes_people && target_head)
-		poor_target.apply_damage(fall_damage * levels, def_zone = BODY_ZONE_HEAD, forced = TRUE, wound_bonus = fall_wound_bonus)
+		poor_target.apply_damage(fall_damage * levels, def_zone = BODY_ZONE_HEAD, wound_bonus = fall_wound_bonus)
 	else
-		poor_target.apply_damage(fall_damage * levels, forced = TRUE, spread_damage = TRUE, wound_bonus = fall_wound_bonus)
+		poor_target.apply_damage(fall_damage * levels, spread_damage = TRUE, wound_bonus = fall_wound_bonus)
 
 	poor_target.visible_message(
 		span_userdanger(LANG("datum.800d12d6cd38a017", list(source, poor_target, crushes_people ? "crushing [poor_target.p_them()]" : "hitting [poor_target.p_them()]", target_head ? "on the head!" : "!"))),

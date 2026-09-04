@@ -61,7 +61,7 @@
 		target.Paralyze(issilicon(target) ? 2 SECONDS : 1 SECONDS)
 	else
 		user.visible_message(span_boldwarning(LANG("obj.8f8f604976da21bc", list(user, target, src))), span_userdanger(LANG("obj.fff05900a034a291", list(target, src))))
-		target.apply_damage(damage = force, forced = TRUE)
+		target.apply_damage(damage = force)
 	remove_crit()
 
 /obj/item/light_eater/proc/prepare_crit_timer()

@@ -203,7 +203,7 @@
 	else
 		to_chat(exposed_human, span_userdanger(LANG("datum.728322125bc93f5c", null)))
 	playsound(exposed_human.loc, 'sound/items/poster/poster_ripped.ogg', 50, TRUE, -1)
-	exposed_human.apply_damage(20, def_zone = BODY_ZONE_CHEST, forced = TRUE, wound_bonus = CANT_WOUND)
+	exposed_human.apply_damage(20, def_zone = BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	exposed_human.emote("scream")
 
 /datum/reagent/flightpotion/proc/get_wing_choice(mob/living/carbon/human/needs_wings, obj/item/bodypart/chest/chest)

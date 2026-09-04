@@ -757,6 +757,13 @@ ADMIN_VERB(reload_configuration, R_DEBUG, "重新加载配置", "Reloads the con
 		return
 	config.admin_reload()
 
+// NOVA EDIT ADDITION BEGIN - Reload photocopier blanks without a full server restart
+ADMIN_VERB(reload_paper_blanks, R_DEBUG, "重新加载空白纸", "Reloads photocopier paper blank templates (config/blanks.json and config/nova/blanks.json) from disk without restarting the server.", ADMIN_CATEGORY_DEBUG)
+	GLOB.paper_blanks = init_paper_blanks_nova()
+	message_admins("[key_name_admin(user)] reloaded the photocopier paper blank templates.")
+	log_admin("[key_name(user)] reloaded the photocopier paper blank templates.")
+// NOVA EDIT ADDITION END
+
 ADMIN_VERB(check_timer_sources, R_DEBUG, "检查计时器来源", "Checks the sources of running timers.", ADMIN_CATEGORY_DEBUG)
 	var/bucket_list_output = generate_timer_source_output(SStimer.bucket_list)
 	var/second_queue = generate_timer_source_output(SStimer.second_queue)

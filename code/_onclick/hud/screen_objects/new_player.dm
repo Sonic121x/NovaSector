@@ -685,34 +685,36 @@
 
 	var/round_started = SSticker.HasRoundStarted()
 	if(!MC_RUNNING())
-		maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>[(round_started ? null : "Starting in [time_remaining_str()]<br />")]Loading...</span>")
+		// NOVA EDIT CHANGE - i18n - ORIGINAL: maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>[(round_started ? null : "Starting in [time_remaining_str()]<br />")]Loading...</span>")
+		maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>[(round_started ? null : "[lang_reverse_text("Starting in")] [time_remaining_str()]<br />")][lang_reverse_text("Loading...")]</span>")
 		return
 
 	if(SSticker.IsPostgame())
-		maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>Game ended, <br /> \
-			restart soon</span>")
+		// NOVA EDIT REMOVAL - i18n - ORIGINAL: maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>Game ended, <br /> \ \trestart soon</span>")
+		// NOVA EDIT ADDITION START - i18n - 大厅 maptext 不经任何 sink，标签在落地点整串精确反查（见 _chrome.json）
+		maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>[lang_reverse_text("Game ended")], <br /> \
+			[lang_reverse_text("restart soon")]</span>")
+		// NOVA EDIT ADDITION END
 		return
 
 	var/new_maptext
 	if(round_started)
+		// NOVA EDIT CHANGE - i18n - 第二行原为: [LAZYLEN(GLOB.clients)] player\s online<br />
+		// 三元式展开 \s 是为了让反查拿到完整短语；en 下两支的输出与 \s 逐字相同。
 		new_maptext = "<span style='text-align: center; vertical-align: middle'>[SSmapping.current_map.map_name]<br /> \
-			[LAZYLEN(GLOB.clients)] player\s online<br /> \
+			[LAZYLEN(GLOB.clients)] [lang_reverse_text(LAZYLEN(GLOB.clients) == 1 ? "player online" : "players online")]<br /> \
 			[round_timestamp()] in<br />"
 		new_maptext += "</span>"
 	else
 		if(hud.mymob.client?.holder)
-			new_maptext = "<span style='text-align: center; vertical-align: middle'>Starting in [time_remaining_str()]<br /> \
+			new_maptext = "<span style='text-align: center; vertical-align: middle'>[lang_reverse_text("Starting in")] [time_remaining_str()]<br /> \
 				[LAZYLEN(GLOB.clients)] player\s<br /> \
-				[SSticker.totalPlayersReady] players ready<br /> \
-				[SSticker.total_admins_ready] / [length(GLOB.admins)] admins ready</span>"
+				[SSticker.totalPlayersReady] [lang_reverse_text("players ready")]<br /> \
+				[SSticker.total_admins_ready] / [length(GLOB.admins)] [lang_reverse_text("admins ready")]</span>"
 		else
 			new_maptext = "<span style='text-align: center; vertical-align: middle; font-size: 18px'>[time_remaining_str()]</span><br /> \
 				<span style='text-align: center; vertical-align: middle'>[LAZYLEN(GLOB.clients)] player\s</span>"
 
-	// NOVA EDIT ADDITION START - i18n - 大厅信息 maptext 经 AC 子串兜底（仅全服中文时；maptext 不被抽取，phrases 需进 _fallback.json）
-	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
-		new_maptext = lang_fallback_apply(new_maptext)
-	// NOVA EDIT ADDITION END
 	maptext = MAPTEXT(new_maptext)
 
 /atom/movable/screen/lobby/new_player_info/proc/time_remaining_str()

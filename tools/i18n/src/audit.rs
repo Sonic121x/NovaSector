@@ -244,6 +244,76 @@ fn stray_placeholders(source: &str, translated: &str) -> Vec<String> {
     stray
 }
 
+/// 译文是纯 ASCII、是原文的字符子集、且更短。
+///
+/// MT 会吃掉纯 ASCII 译文里的字符：`H.A.R.S.` → `H..R.S.`、血型 `A+` → `+`。
+/// 去冠词 / 去复数（`the`/`a`/`an`/`s`/`es`）与占位符骨架里丢掉空格、复数槽是有意的，不当错误。
+fn is_article_token(word: &str) -> bool {
+    let w = word.trim_start_matches('\\').to_ascii_lowercase();
+    matches!(w.as_str(), "the" | "a" | "an")
+}
+
+fn normalize_articles_plurals(s: &str) -> String {
+    let mut buf = String::new();
+    for word in s.split_whitespace() {
+        if is_article_token(word) {
+            continue;
+        }
+        buf.push_str(&word.to_ascii_lowercase());
+    }
+    if buf.ends_with("es") && buf.len() > 2 {
+        buf.truncate(buf.len() - 2);
+    } else if buf.ends_with('s') && buf.len() > 1 {
+        buf.pop();
+    }
+    buf
+}
+
+fn is_placeholder_skeleton(s: &str) -> bool {
+    let chars: Vec<char> = s.chars().collect();
+    let mut i = 0;
+    let mut rest = String::new();
+    while i < chars.len() {
+        if chars[i] == '{' {
+            let mut j = i + 1;
+            while j < chars.len() && chars[j].is_ascii_digit() {
+                j += 1;
+            }
+            if j < chars.len() && chars[j] == '}' && j > i + 1 {
+                i = j + 1;
+                continue;
+            }
+        }
+        rest.push(chars[i]);
+        i += 1;
+    }
+    rest.chars()
+        .all(|c| c.is_ascii_whitespace() || c.is_ascii_punctuation())
+}
+
+fn ascii_subset_damage(source: &str, translated: &str) -> bool {
+    if translated == source {
+        return false;
+    }
+    if !translated.is_ascii() {
+        return false;
+    }
+    if translated.chars().count() >= source.chars().count() {
+        return false;
+    }
+    let src_chars: BTreeSet<char> = source.chars().collect();
+    if !translated.chars().all(|c| src_chars.contains(&c)) {
+        return false;
+    }
+    if normalize_articles_plurals(source) == normalize_articles_plurals(translated) {
+        return false;
+    }
+    if is_placeholder_skeleton(source) && is_placeholder_skeleton(translated) {
+        return false;
+    }
+    true
+}
+
 /// 返回「forward 内部冲突且没有 global_reverse 覆盖」的英文源串及其相互冲突的译文。
 fn forward_only_ambiguities(
     catalog_root: &Path,
@@ -345,12 +415,14 @@ pub fn run(dme: &Path, catalog_root: &Path, apply: bool) -> Result<()> {
     }
 
     // 译文里凭空出现的 `%VAR` 占位符 = MT 把它切坏了，玩家会直接看到那串东西。
+    // 纯 ASCII 真子集且更短 = MT 吃掉了缩写/型号里的字符（H.A.R.S.→H..R.S.）。
     let mut broken_total = 0usize;
+    let mut ascii_shrunk_total = 0usize;
     for locale_dir in locale_dirs(catalog_root)? {
         let Some(locale) = locale_dir.file_name().and_then(|name| name.to_str()) else {
             continue;
         };
-        if locale == "en" {
+        if locale == "en" || locale == "qps-ploc" {
             continue;
         }
         for entry in std::fs::read_dir(&locale_dir)? {
@@ -371,15 +443,22 @@ pub fn run(dme: &Path, catalog_root: &Path, apply: bool) -> Result<()> {
                     continue;
                 };
                 let stray = stray_placeholders(source, &translated);
-                if stray.is_empty() {
-                    continue;
+                if !stray.is_empty() {
+                    broken_total += 1;
+                    if broken_total <= 10 {
+                        eprintln!(
+                            "placeholder [{locale}] {file_name} {key}: 译文里多出 {} —— 原文是 {source:?}",
+                            stray.join(" ")
+                        );
+                    }
                 }
-                broken_total += 1;
-                if broken_total <= 10 {
-                    eprintln!(
-                        "placeholder [{locale}] {file_name} {key}: 译文里多出 {} —— 原文是 {source:?}",
-                        stray.join(" ")
-                    );
+                if ascii_subset_damage(source, &translated) {
+                    ascii_shrunk_total += 1;
+                    if ascii_shrunk_total <= 10 {
+                        eprintln!(
+                            "ascii-subset [{locale}] {file_name} {key}: {translated:?} ⊂ {source:?} 且更短（不像去冠词/去复数）"
+                        );
+                    }
                 }
             }
         }
@@ -388,6 +467,48 @@ pub fn run(dme: &Path, catalog_root: &Path, apply: bool) -> Result<()> {
         anyhow::bail!(
             "{broken_total} 条译文含原文里没有的 %VAR 占位符（多半是 MT 把 %PRONOUN_/%VAR% 切坏了）；\
              这类占位符在**反查之后**才被运行期替换，切坏了玩家就会直接看到它"
+        );
+    }
+    if ascii_shrunk_total > 0 {
+        anyhow::bail!(
+            "{ascii_shrunk_total} 条译文是纯 ASCII、原文的字符子集、且更短（MT 吃字符：H.A.R.S.→H..R.S.）。\
+             去冠词/去复数与占位符骨架不报"
+        );
+    }
+
+    // **英文主目录里不该有汉字。**
+    //
+    // 来源是 verb 注入：中文构建（`build-verbs-zh.sh`）把译名写进 verb 的显示名，若在那种树上跑
+    // extract，中文就被当成「英文原文」写进 en 目录（实测积了 317 条：`"> 打响指"`、`"适应视口"`）。
+    // 后果不止是脏数据 —— coverage 会把它们算成「已译」，而反查表拿中文当英文键，永远查不到。
+    //
+    // `emit` 的 `contains_cjk` 闸只挡**新抽**；目录只合并不裁剪，已经写进去的旧键要手工摘
+    // （`tools/i18n/prune-cjk-en.mjs`）。那是一次性脚本、要人记得跑，所以这里补一道**常驻**门禁：
+    // 复发时 catalog-audit 当场报错，而不是等下一次有人偶然发现。
+    let cjk_in_english: Vec<String> = entries
+        .iter()
+        .filter(|entry| entry.ownership != CatalogOwner::Tgui)
+        // **只看没人引用的 key。** 目录里有一类源串**故意**是中英对照（新人软管制那批模块写成
+        // `【中文 / English】…<br>…`），它们是活的 LANG key、正确状态就是「译文 == 源串」，
+        // 绝不能当污染摘掉。verb 注入进来的那批则从不经 LANG，必然无人引用 —— 这条判据把两者分开。
+        .filter(|entry| !live_keys.contains(&entry.key))
+        .filter(|entry| {
+            entry
+                .value
+                .chars()
+                .any(|c| matches!(c as u32, 0x3400..=0x9FFF | 0xF900..=0xFAFF))
+        })
+        .map(|entry| format!("{} {} = {:?}", entry.file_name, entry.key, entry.value))
+        .collect();
+    if !cjk_in_english.is_empty() {
+        for line in cjk_in_english.iter().take(20) {
+            eprintln!("cjk-in-english: {line}");
+        }
+        anyhow::bail!(
+            "{} 条英文主目录条目的值含汉字（verb 注入污染）。\
+             且无人引用 —— verb 注入的特征。摘除：`node tools/i18n/prune-cjk-en.mjs`；\
+             防复发：不要在中文 verb 构建的树上跑 extract",
+            cjk_in_english.len()
         );
     }
 
@@ -539,6 +660,19 @@ mod tests {
             stray_placeholders("under -%MAXHEALTHRATIO% health", "低于 -%MAXHEALTH% 的目标"),
             vec!["%MAXHEALTH%".to_owned()]
         );
+    }
+
+    /// 纯 ASCII 真子集且更短：去冠词/去复数/占位符骨架不报，吃掉缩写里的字母才报。
+    #[test]
+    fn ascii_subset_shorter_skips_articles_plurals_and_catches_eaten_letters() {
+        assert!(!ascii_subset_damage("The Outer Spess", "Outer Spess"));
+        assert!(!ascii_subset_damage("the Codex Gigas", "Codex Gigas"));
+        assert!(!ascii_subset_damage("RCDS", "RCD"));
+        assert!(!ascii_subset_damage("PDAS", "PDA"));
+        assert!(!ascii_subset_damage("{0} {1}. {2}", "{0}{1}. {2}"));
+        assert!(!ascii_subset_damage("{0} {1}{2} {3}{4}", "{0}{1}{3}{4}"));
+        assert!(ascii_subset_damage("H.A.R.S.", "H..R.S."));
+        assert!(ascii_subset_damage("A+", "+"));
     }
 
     #[test]

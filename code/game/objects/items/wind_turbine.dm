@@ -106,16 +106,43 @@
 	if(slot & slot_flags)
 		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 		RegisterSignal(user, COMSIG_ATOM_POST_DIR_CHANGE, PROC_REF(on_dir_change))
+		RegisterSignal(user, COMSIG_LIVING_SUICIDE_ACT, PROC_REF(on_suicide_act))
 	else
 		setDir(SOUTH)
-		UnregisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-		UnregisterSignal(user, COMSIG_ATOM_POST_DIR_CHANGE, PROC_REF(on_dir_change))
+		UnregisterSignal(user, list(
+			COMSIG_MOVABLE_MOVED,
+			COMSIG_ATOM_POST_DIR_CHANGE,
+			COMSIG_LIVING_SUICIDE_ACT
+		))
 
 ///Called when the thing HOLDING the turbine changes direction
 /obj/item/portable_wind_turbine/proc/on_dir_change(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
 
 	update_appearance()
+
+/obj/item/portable_wind_turbine/proc/on_suicide_act(mob/living/source)
+	SIGNAL_HANDLER
+	if(source.get_active_held_item())
+		return NONE
+
+	return suicide_act(source)
+
+/obj/item/portable_wind_turbine/suicide_act(mob/living/user)
+	var/obj/item/bodypart/head = user.get_bodypart(BODY_ZONE_HEAD)
+	if(isnull(head))
+		return NONE
+
+	playsound(user,'sound/items/weapons/bladeslice.ogg', 50)
+	user.visible_message(span_suicide(LANG("obj.1eb10d5987a198e9", list(user, user.p_their(), src, user.p_theyre()))))
+	user.set_suicide(TRUE)
+	user.apply_damage(75, BRUTE, BODY_ZONE_HEAD, wound_bonus = 100, forced = TRUE, sharpness = SHARP_EDGED, attacking_item = src)
+	if(head.dismember())
+		user.death() // anti-ling check
+		return MANUAL_SUICIDE
+
+	user.visible_message(span_suicide(LANG("obj.8f4a35c3db2985a0", list(user.p_their(), user.p_their()))))
+	return SHAME
 
 ///Updates the worn back icon for the current loc
 /obj/item/portable_wind_turbine/proc/update_back()

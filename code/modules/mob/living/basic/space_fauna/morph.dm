@@ -194,7 +194,7 @@
 	visible_message(span_warning(LANG("mob.f34c2d31553ec34d", list(src, eatable))))
 	eatable.forceMove(src)
 	if(update_health != 0)
-		adjust_health(update_health)
+		adjust_brute_loss(update_health)
 
 	return TRUE
 

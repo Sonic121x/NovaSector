@@ -7,12 +7,10 @@
 	default = LANGUAGE_LOCALE_EN
 
 
-// i18n: 是否启用「聊天层 AC 子串兜底」（默认关）。开启后全服中文时会对每条聊天里的残留英文做
-// 子串替换，覆盖「英文拼进变量再 to_chat」等长尾；代价是热路径每行开销 + 多词短语可能误翻。
+// i18n: 是否启用聊天落地层（HTML 切块 + 精确反查 + 模板逆匹配）。默认关。
 // 在 config 文件里写一行：I18N_CHAT_FALLBACK TRUE
 /datum/config_entry/flag/i18n_chat_fallback
 	default = FALSE
-
 
 // i18n: 是否启用「运行期漏翻采集」（默认关）。全服 locale≠en 时把经过所有翻译层后仍是英文的
 // 多词串去重记入 [log_directory]/i18n_misses.log，离线聚合归类见 tools/i18n/miss-scan.mjs。

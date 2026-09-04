@@ -1,16 +1,13 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
-ADMIN_VERB(painting_manager, R_ADMIN, "绘画管理器", "View and redact paintings.", ADMIN_CATEGORY_MAIN)
-	var/static/datum/paintings_manager/ui = new
-	ui.ui_interact(user.mob)
+ADMIN_VERB(painting_manager, R_ADMIN, "画作管理器", "View and redact paintings.", ADMIN_CATEGORY_MAIN)
+	var/datum/paintings_manager/tgui = new()
+	tgui.ui_interact(user.mob)
 
 /// Painting Admin Management Panel
 /datum/paintings_manager
 
 /datum/paintings_manager/ui_state(mob/user)
 	return ADMIN_STATE(R_ADMIN)
-
-/datum/paintings_manager/ui_close(mob/user)
-	qdel(src)
 
 /datum/paintings_manager/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

@@ -123,7 +123,7 @@
 // Basic canister per gas below here
 
 /obj/machinery/portable_atmospherics/canister/air
-	name = "Air canister"
+	name = "\improper Air canister"
 	desc = "Pre-mixed air."
 	icon_state = "/obj/machinery/portable_atmospherics/canister/air"
 	post_init_icon_state = ""
@@ -131,7 +131,7 @@
 	greyscale_colors = "#c6c0b5"
 
 /obj/machinery/portable_atmospherics/canister/antinoblium
-	name = "Antinoblium canister"
+	name = "\improper Anti-Noblium canister"
 	gas_type = /datum/gas/antinoblium
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/antinoblium"
@@ -148,7 +148,7 @@
 	greyscale_colors = "#9b5d7f#d0d2a0"
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
-	name = "Carbon dioxide canister"
+	name = "\improper Carbon dioxide canister"
 	gas_type = /datum/gas/carbon_dioxide
 	icon_state = "/obj/machinery/portable_atmospherics/canister/carbon_dioxide"
 	post_init_icon_state = ""
@@ -156,7 +156,7 @@
 	greyscale_colors = "#4e4c48#eaeaea"
 
 /obj/machinery/portable_atmospherics/canister/freon
-	name = "Freon canister"
+	name = "\improper Freon canister"
 	gas_type = /datum/gas/freon
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/freon"
@@ -165,7 +165,7 @@
 	greyscale_colors = "#6696ee#fefb30"
 
 /obj/machinery/portable_atmospherics/canister/halon
-	name = "Halon canister"
+	name = "\improper Halon canister"
 	gas_type = /datum/gas/halon
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/halon"
@@ -174,7 +174,7 @@
 	greyscale_colors = "#9b5d7f#368bff"
 
 /obj/machinery/portable_atmospherics/canister/healium
-	name = "Healium canister"
+	name = "\improper Healium canister"
 	gas_type = /datum/gas/healium
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/healium"
@@ -183,7 +183,7 @@
 	greyscale_colors = "#009823#ff0e00"
 
 /obj/machinery/portable_atmospherics/canister/helium
-	name = "Helium canister"
+	name = "\improper Helium canister"
 	gas_type = /datum/gas/helium
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/helium"
@@ -192,7 +192,7 @@
 	greyscale_colors = "#9b5d7f#368bff"
 
 /obj/machinery/portable_atmospherics/canister/hydrogen
-	name = "Hydrogen canister"
+	name = "\improper Hydrogen canister"
 	gas_type = /datum/gas/hydrogen
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/hydrogen"
@@ -201,7 +201,7 @@
 	greyscale_colors = "#eaeaea#be3455"
 
 /obj/machinery/portable_atmospherics/canister/miasma
-	name = "Miasma canister"
+	name = "\improper Miasma canister"
 	gas_type = /datum/gas/miasma
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/miasma"
@@ -210,7 +210,7 @@
 	greyscale_colors = "#009823#f7d5d3"
 
 /obj/machinery/portable_atmospherics/canister/nitrogen
-	name = "Nitrogen canister"
+	name = "\improper Nitrogen canister"
 	gas_type = /datum/gas/nitrogen
 	icon_state = "/obj/machinery/portable_atmospherics/canister/nitrogen"
 	post_init_icon_state = ""
@@ -218,7 +218,7 @@
 	greyscale_colors = "#e9ff5c#f4fce8"
 
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide
-	name = "Nitrous oxide canister"
+	name = "\improper Nitrous Oxide canister"
 	gas_type = /datum/gas/nitrous_oxide
 	icon_state = "/obj/machinery/portable_atmospherics/canister/nitrous_oxide"
 	post_init_icon_state = ""
@@ -226,7 +226,7 @@
 	greyscale_colors = "#c63e3b#f7d5d3"
 
 /obj/machinery/portable_atmospherics/canister/nitrium
-	name = "Nitrium canister"
+	name = "\improper Nitrium canister"
 	gas_type = /datum/gas/nitrium
 	icon_state = "/obj/machinery/portable_atmospherics/canister/nitrium"
 	post_init_icon_state = ""
@@ -234,7 +234,7 @@
 	greyscale_colors = "#7b4732"
 
 /obj/machinery/portable_atmospherics/canister/nob
-	name = "Hyper-noblium canister"
+	name = "\improper Hyper-Noblium canister"
 	gas_type = /datum/gas/hypernoblium
 	icon_state = "/obj/machinery/portable_atmospherics/canister/nob"
 	post_init_icon_state = ""
@@ -242,7 +242,7 @@
 	greyscale_colors = "#6399fc#b2b2b2"
 
 /obj/machinery/portable_atmospherics/canister/oxygen
-	name = "Oxygen canister"
+	name = "\improper Oxygen canister"
 	gas_type = /datum/gas/oxygen
 	icon_state = "/obj/machinery/portable_atmospherics/canister/oxygen"
 	post_init_icon_state = ""
@@ -250,7 +250,7 @@
 	greyscale_colors = "#2786e5#e8fefe"
 
 /obj/machinery/portable_atmospherics/canister/pluoxium
-	name = "Pluoxium canister"
+	name = "\improper Pluoxium canister"
 	gas_type = /datum/gas/pluoxium
 	icon_state = "/obj/machinery/portable_atmospherics/canister/pluoxium"
 	post_init_icon_state = ""
@@ -258,7 +258,7 @@
 	greyscale_colors = "#2786e5"
 
 /obj/machinery/portable_atmospherics/canister/proto_nitrate
-	name = "Proto Nitrate canister"
+	name = "\improper Proto-Nitrate canister"
 	gas_type = /datum/gas/proto_nitrate
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/proto_nitrate"
@@ -267,7 +267,7 @@
 	greyscale_colors = "#008200#33cc33"
 
 /obj/machinery/portable_atmospherics/canister/plasma
-	name = "Plasma canister"
+	name = "\improper Plasma canister"
 	gas_type = /datum/gas/plasma
 	icon_state = "/obj/machinery/portable_atmospherics/canister/plasma"
 	post_init_icon_state = ""
@@ -275,7 +275,7 @@
 	greyscale_colors = "#f62800#000000"
 
 /obj/machinery/portable_atmospherics/canister/tritium
-	name = "Tritium canister"
+	name = "\improper Tritium canister"
 	gas_type = /datum/gas/tritium
 	icon_state = "/obj/machinery/portable_atmospherics/canister/tritium"
 	post_init_icon_state = ""
@@ -283,7 +283,7 @@
 	greyscale_colors = "#3fcd40#000000"
 
 /obj/machinery/portable_atmospherics/canister/water_vapor
-	name = "Water vapor canister"
+	name = "\improper Water Vapor canister"
 	gas_type = /datum/gas/water_vapor
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/water_vapor"
@@ -292,7 +292,7 @@
 	greyscale_colors = "#4c4e4d#f7d5d3"
 
 /obj/machinery/portable_atmospherics/canister/zauker
-	name = "Zauker canister"
+	name = "\improper Zauker canister"
 	gas_type = /datum/gas/zauker
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/zauker"

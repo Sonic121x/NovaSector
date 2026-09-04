@@ -1,0 +1,433 @@
+# nova-i18n 漏翻增量基线（`node tools/i18n/miss-scan.mjs --update-baseline` 生成）。
+# 每行一条 `src<TAB>text`。text 已切掉 ` || 整行/来源` 上下文，**不 trim 行首空格**。
+# 只对不在此表的新增 (src, text) 失败。本命令只写本文件，不改 identifier-baseline.txt / bare-english-baseline.txt。
+arg	 on the synthesized banana peel
+arg	 point blank at the Mauler!
+arg	"chicken"
+arg	, knocking him down
+arg	1 minute
+arg	1 unit of the sheet
+arg	A map designed specifically for Unit Testing to ensure the game runs properly.
+arg	Aaqz
+arg	Alcohol
+arg	Bbqz
+arg	Blorp
+arg	Blorp {1} Blorp
+arg	Blud
+arg	Bonsai North-Star
+arg	Bruh
+arg	Cargo Budget
+arg	Cindi Kate's
+arg	Civil Budget
+arg	Crashout
+arg	Credits
+arg	Dank
+arg	Default Cyborg-973
+arg	Defense Budget
+arg	Efficient Ethereal Jaunt
+arg	Engineering Budget
+arg	Fri, Sep 04
+arg	Hip
+arg	Interdyne Pharmaceuticals Budget
+arg	Is-A-Changeling
+arg	Isshiki Iroha
+arg	It
+arg	John Doe
+arg	Kabu Weien
+arg	Lit
+arg	Mafia
+arg	Mafia Unit Test
+arg	Mansus Link
+arg	Medical Budget
+arg	Mewing
+arg	Nanotrasen [REDACTED] [NOTHING TO SEE HERE]
+arg	Orange's chest
+arg	Orange's head
+arg	Personality requested: [Interdyne Cyborg]
+arg	Pressure
+arg	Protean
+arg	Proteans
+arg	Qwrp
+arg	Restrain
+arg	Scientific Budget
+arg	Service Budget
+arg	Siik'Tajr
+arg	Slam
+arg	Slime Link
+arg	Summon Nar'Sie by invoking the rune 'Summon Nar'Sie'. The summoning can only be accomplished in nothing - where the veil is weak enough for the ritual to begin.
+arg	Syndicate Budget
+arg	Ten Forward
+arg	Test Dummy
+arg	The faint echo
+arg	Transfer vote
+arg	Vunk
+arg	YC Bond's chest
+arg	Your grasp of the finer points of Draconic idioms
+arg	Zxqv
+arg	Zxqvurbs
+arg	[REDACTED] and Tealer
+arg	a fog was lifted from your mind
+arg	a high-five
+arg	a weight was lifted from your mind
+arg	anymore.
+arg	apply
+arg	around like a barbarian
+arg	as fishy
+arg	as the markings below him glow a bloody red
+arg	automatic transfer
+arg	beef flavour
+arg	compelled to hug others
+arg	compelled to not harm
+arg	connected to your surroundings
+arg	creamer
+arg	created
+arg	credit
+arg	emerges from
+arg	eyes on your back
+arg	faint buzz in your head
+arg	faint laughter
+arg	faraway things normally again
+arg	feeling
+arg	hilarious
+arg	in
+arg	is
+arg	item
+arg	like drinking would ease your pain
+arg	like your stomach is bottomless
+arg	lizard
+arg	locks
+arg	lump
+arg	many eyes on your back
+arg	n2
+arg	normal-sized
+arg	passively
+arg	perfectly healthy
+arg	petals
+arg	piece
+arg	pulverise
+arg	pulverises
+arg	remove
+arg	seeing
+arg	standing up for yourself
+arg	the ridges and imperfections on the ground
+arg	the urge to bite
+arg	the urge to take things
+arg	tromping
+arg	ultimate observer, uncaring of the environment around you
+arg	unlocks
+arg	you can examine things from a distance
+arg	you could be safe on your own
+arg	you lost your sense of duty
+arg	you need to go faster
+arg	you're going to have a good day
+arg	you're speaking louder
+arg	your IQ went up to at least average
+arg	your old self
+arg	your suit fits again
+capture	Default Cyborg-973
+capture	John Doe
+capture	faint buzz in your head
+capture	you could be safe on your own
+capture	your old self
+display	Alice's head
+display	MOD internal GPS module (MOD0)
+display	Someone's Cryostylane
+display	movable
+display	raw meat cutlet
+fallback	(Standby: 0; Active: 0; All:
+fallback	Base vault parts are available for shipping via cargo.
+fallback	Clearing DB Queries. (Standby: 0; Active: 0; All:
+fallback	Done clearing DB queries in
+fallback	MOD control
+fallback	MOD control unit
+fallback	Our long term prediction systems indicate a 99% chance of system-wide cataclysm in the near future. We need you to construct a DNA Vault aboard your station.
+fallback	Please deploy the Zzqv Unique Gadget immediately!
+fallback	TCD Fri, Sep
+fallback	The DNA Vault needs to contain samples of:
+fallback	The abstract spider
+fallback	The alien hunter
+fallback	The alien sentinel
+fallback	The ambush spider
+fallback	The badnana spider
+fallback	The black baby raptor
+fallback	The black raptor
+fallback	The black raptor youngling
+fallback	The blobbernaut
+fallback	The blue baby raptor
+fallback	The blue raptor
+fallback	The blue raptor youngling
+fallback	The breacher spider
+fallback	The broodmother spider
+fallback	The bunny
+fallback	The carrier dread spider
+fallback	The duct spider
+fallback	The feral regal rat
+fallback	The flesh spider
+fallback	The frigid magicarp
+fallback	The giant ice spider
+fallback	The giant spider
+fallback	The green baby raptor
+fallback	The green raptor
+fallback	The green raptor youngling
+fallback	The guard spider
+fallback	The hunter spider
+fallback	The lesser Gorilla
+fallback	The lusty xenomorph maid
+fallback	The nurse spider
+fallback	The ogre dread spider
+fallback	The pit dread spider
+fallback	The purple baby raptor
+fallback	The purple raptor
+fallback	The purple raptor youngling
+fallback	The red baby raptor
+fallback	The red raptor
+fallback	The red raptor youngling
+fallback	The scout spider
+fallback	The scrawny nurse spider
+fallback	The scrawny spider
+fallback	The scrawny tarantula
+fallback	The tangle spider
+fallback	The tank spider
+fallback	The tarantula
+fallback	The viper spider
+fallback	The voltaic dread spider
+fallback	The warping magicarp
+fallback	The water spider
+fallback	The webslinger dread spider
+fallback	The white baby raptor
+fallback	The white raptor
+fallback	The white raptor youngling
+fallback	The yellow baby raptor
+fallback	The yellow raptor
+fallback	The yellow raptor youngling
+fallback	The young ambush spider
+fallback	The young breacher spider
+fallback	The young broodmother spider
+fallback	The young guard spider
+fallback	The young hunter spider
+fallback	The young nurse spider
+fallback	The young scout spider
+fallback	The young spider
+fallback	The young tangle spider
+fallback	The young tank spider
+fallback	The young tarantula spider
+fallback	The young viper spider
+fallback	This item can fit into backpacks.
+fallback	We have entered our true form!
+fallback	You are a Free Drone.
+fallback	Your arm itches.
+fallback	Your head itches.
+fallback	Zxqv can't stop me, Owl!
+fallback	displaying the identification card
+fallback	goliath DNA is deeply infused with you! You can now endure walking on lava!
+fallback	high-five John
+fallback	on the synthesized banana
+fallback	stops wagging his tail.
+fallback	unique animal data
+fallback	unique non-standard plant data
+fallback	unique sapient humanoid DNA data
+fallback	unit of the
+fallback	wags his tail.
+tgui	1ceres, irrigoimport, zeskorion, wizardlywoz, duckymomo, samarai1000, funkyfetusstrikesback, m97screwsyourparents, lynxqueen, kaynite, mahalia, sapphoqueer, emmakisst, ceasethebridge, valorthix
+tgui	AI name
+tgui	Above Most Genitals
+tgui	Advanced Cyberdeck Interface
+tgui	Attorney At Law
+tgui	Backup human name
+tgui	Barbed, Knotted (Alt)
+tgui	Bible name
+tgui	Big Bill Hells's used mechs
+tgui	Blaze it
+tgui	Check OOC Notes
+tgui	Chest pack
+tgui	Chief Science Officer
+tgui	Chief of Security
+tgui	Civil Protection Officer
+tgui	Cloaks and Shrouds
+tgui	Clown name
+tgui	Cold adapted lungs
+tgui	Condensed Crystal Interface
+tgui	Cornerstore at the End of the Universe
+tgui	Corporate Protection Specialist
+tgui	Crazy Redd's Crazy Deals
+tgui	Cyborg name
+tgui	Damage Control Technician
+tgui	Dark blue
+tgui	Dark brown
+tgui	Dark cyan
+tgui	Dark green
+tgui	Dark pink
+tgui	Dark red
+tgui	Dark yellow
+tgui	Data Retrieval Specialist
+tgui	Deck Defense Officer
+tgui	Default sprites
+tgui	Deity name
+tgui	Delete job items
+tgui	Department Duffel Bag
+tgui	Department Messenger Bag
+tgui	Departmental Radio Only
+tgui	Director of Science
+tgui	Emergency Fire Technician
+tgui	Emergency Medical Responder
+tgui	Ethereal color
+tgui	Executive Protection Agent
+tgui	Expedition Protection Agent
+tgui	Facial hair
+tgui	Funky purple
+tgui	Fusion Reactor Operator
+tgui	Gas Synthesis Technician
+tgui	Green Walkie Talkie
+tgui	Grey Duffel Bag
+tgui	Grey Messenger Bag
+tgui	Hacker alias
+tgui	Hazardous Experiment Overwatch
+tgui	Head of Engineering
+tgui	Head of Medical
+tgui	Head of Supply
+tgui	Heat adapted lungs
+tgui	Human Resources Agent
+tgui	Human Resources Officer
+tgui	I ain't
+tgui	I iz
+tgui	Internal Affairs Agent
+tgui	Jims Space Emporium
+tgui	Knotted Hemi (Alt)
+tgui	Life Support Technician
+tgui	Light beige
+tgui	Light brown
+tgui	Light peach
+tgui	Low-oxygen adapted lungs
+tgui	Mariinsky Ballet Company
+tgui	Maximum Security Prisoner
+tgui	Mech Fabrication Specialist
+tgui	Mechanical and Roleplay
+tgui	Mechanical only
+tgui	Medium brown
+tgui	Mime name
+tgui	Minimum Security Prisoner
+tgui	Mouth implant
+tgui	Nanotrasen Regulatory Advisor
+tgui	NtOS Dark Mode
+tgui	NtOS Light Mode
+tgui	Nuclear Reactor Operator
+tgui	Only directional sprites
+tgui	Only with tips
+tgui	Ore Excavation Specialist
+tgui	Pest Control Technician
+tgui	Pillow Princesss - Dom
+tgui	Pillow Princesss - Sub
+tgui	Pillow Princesss - Switch
+tgui	Place all in case
+tgui	Power Plant Guard
+tgui	Protective Custody Prisoner
+tgui	Psychiatric Hold Prisoner
+tgui	Red Analogue Phone
+tgui	Red Walkie Talkie
+tgui	Religion name
+tgui	Riva Family Cookbook
+tgui	Roleplay only
+tgui	Search and Rescue Technician
+tgui	Sheathed Pair (Alt)
+tgui	Small Paper Bin
+tgui	SuperMax Security Prisoner
+tgui	Syndicate Suspicious Phone
+tgui	Syndicate Tablet (Silicon)
+tgui	The Galactic Market
+tgui	Toxic adapted lungs
+tgui	Toxin Resistant Liver
+tgui	Trauma Team Responder
+tgui	Union Requisitions Officer
+tgui	Use character gender
+tgui	Use gender
+tgui	Vampire status
+tgui	White ghosts
+tgui	Xenobiological Recontainment Officer
+tgui	Xion Manufacturing Group
+tgui	aint it
+tgui	alvcyktor, snakebittenn
+tgui	angry rock
+tgui	au revoir
+tgui	baby doll
+tgui	bearagon, mrsanderp
+tgui	beyond measurement
+tgui	big mek
+tgui	bigger dakka
+tgui	boisterousbeebz, aether217
+tgui	bomb throwa
+tgui	bon voyage
+tgui	brain boy
+tgui	bugger all
+tgui	carbon dioxide
+tgui	colonel hall
+tgui	conch fu
+tgui	coq au vin
+tgui	crabby patty
+tgui	deadmonwonderland, pyritechimera, darkinite, wivernshy
+tgui	desminus, junglerat, deadmonwonderland
+tgui	drpmstr, pyritechimera
+tgui	dum bass
+tgui	dust up
+tgui	fire skellyton
+tgui	fire skellytons
+tgui	for-a what reason
+tgui	gawpin' at
+tgui	grand bombe
+tgui	green feed
+tgui	green feeda
+tgui	grunnyyy, joeduhan
+tgui	harder choppa
+tgui	hisakaki, darkinite, rilomatic
+tgui	hollandaisesauce, latinfishy, tf4
+tgui	kanna boy
+tgui	kanna maka
+tgui	killa kan
+tgui	koruu, foxyandiknowit, candlejax, shyelf, opportunerover22, regaleira
+tgui	la baguette ultime
+tgui	latinfishy, hollandaisesauce, orbisa
+tgui	les banlieues
+tgui	les gitans
+tgui	les keufs
+tgui	let minnow
+tgui	little sausage roll
+tgui	loan shark
+tgui	long choppa
+tgui	mad dok
+tgui	marine biologist
+tgui	molto bene
+tgui	molto male
+tgui	mr basil
+tgui	mr terry
+tgui	mrs sybil
+tgui	my kicks
+tgui	no hope...
+tgui	petit baguette
+tgui	pyritechimera, darkinite, deadmonwonderland, nonplayer775, rilomatic
+tgui	pyritechimera, gabenyfox, draegonlore
+tgui	pyritechimera, sirbillyblacksmith, darkinite
+tgui	quel est
+tgui	qui est
+tgui	rock krushing
+tgui	samman166, cainedclxvi
+tgui	sea world
+tgui	sheadow lings
+tgui	short boomstick
+tgui	silly english dog
+tgui	smarty thinking
+tgui	snailomi, thedragmeme, daydream21, sketchyaxoltol, tesla825
+tgui	snakebittenn, chillylobster, candlejax, theooz, alvcyktor
+tgui	space hole
+tgui	spiciest-a meatball
+tgui	srq, superlagg
+tgui	talking kitty
+tgui	talky box
+tgui	thank you, thank you very much
+tgui	the supernatural
+tgui	thedragmeme, snailomi
+tgui	thedragmeme, somenetwork
+tgui	trouter space
+tgui	vent hell
+tgui	well 'ard
+tgui	winged trukk
+tgui	zap rope
+tgui	zappy boy

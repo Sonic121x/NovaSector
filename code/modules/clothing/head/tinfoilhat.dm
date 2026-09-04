@@ -6,7 +6,6 @@
 	inhand_icon_state = null
 	armor_type = /datum/armor/costume_foilhat
 	equip_delay_other = 14 SECONDS
-	clothing_flags = ANTI_TINFOIL_MANEUVER
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 	clothing_traits = list(TRAIT_DONT_HEAR_PRAYERS) //stops you from hearing prayers as well, yes
 	var/datum/brain_trauma/mild/phobia/conspiracies/paranoia
@@ -68,7 +67,6 @@
 	name = "scorched tinfoil hat"
 	desc = LANG("obj.57315a13c92a8f1e", null)
 	warped = TRUE
-	clothing_flags &= ~ANTI_TINFOIL_MANEUVER
 	if(!isliving(loc) || !paranoia)
 		return
 	var/mob/living/target = loc
@@ -78,6 +76,9 @@
 	QDEL_NULL(paranoia)
 	if(!IS_UNCONSCIOUS(target))
 		to_chat(target, span_warning(LANG("obj.9c2e15afc3e3090e", null)))
+
+/obj/item/clothing/head/costume/foilhat/can_throw_equip(atom/hit_atom)
+	return warped
 
 /obj/item/clothing/head/costume/foilhat/attack_hand(mob/user, list/modifiers)
 	if(!warped && user.get_item_by_slot(ITEM_SLOT_HEAD) == src)

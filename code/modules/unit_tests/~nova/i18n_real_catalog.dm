@@ -9,12 +9,33 @@
 ///   ② 纯串经整串反查（LANG 实参碎片）；
 ///   ③ 域内表（史莱姆颜色、警报类别，故意不在全局反查表里）。
 /// 目录条目被删或被改成半翻译时这里会红——比等玩家截图快。
+///
+/// locale 不是 zh-Hans 时（en / qps-ploc / 精简签出）允许跳过；locale **已经是** zh-Hans
+/// 却没加载目录 = 假绿，必须失败。跑 `bash tools/i18n/test.sh catalog`。
 /datum/unit_test/i18n_real_catalog
+	var/saved_locale
+
+/datum/unit_test/i18n_real_catalog/Destroy()
+	if(!isnull(saved_locale))
+		GLOB.i18n_server_locale = saved_locale
+	return ..()
+
+/// 真目录测试的准入。
+///
+/// **必须挂在 `/datum/unit_test` 上，不能是全局 proc**：`TEST_FAIL` 展开成裸 `Fail(...)`，
+/// 而 `Fail` 是 `/datum/unit_test/proc/Fail` —— 写成全局 proc 时编译期直接 `undefined proc`，
+/// 整个 UNIT_TESTS 构建编不过（而生产构建照常绿，所以只有跑 test.sh catalog 才看得见）。
+/datum/unit_test/proc/i18n_zh_catalog_ready()
+	if(lang_catalog_locale_is_loaded(LANGUAGE_LOCALE_ZH_HANS))
+		return TRUE
+	if(GLOB.i18n_server_locale == LANGUAGE_LOCALE_ZH_HANS)
+		TEST_FAIL("I18N_SERVER_LOCALE 是 zh-Hans，但 zh-Hans forward 目录未加载。完整仓库应能加载 strings/i18n/zh-Hans/；请用 bash tools/i18n/test.sh catalog。")
+	return FALSE
 
 /datum/unit_test/i18n_real_catalog/Run()
-	var/saved_locale = GLOB.i18n_server_locale
-	if(!islist(GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][LANGUAGE_LOCALE_ZH_HANS]))
-		return // 该 locale 目录不存在（精简签出）：跳过而不是误报。
+	saved_locale = GLOB.i18n_server_locale
+	if(!i18n_zh_catalog_ready())
+		return
 	GLOB.i18n_server_locale = LANGUAGE_LOCALE_ZH_HANS
 
 	// ① 插值句：手术台上每一步都长这样（display_results → visible_message → to_chat 的 AC/模板层）。
@@ -51,11 +72,11 @@
 		var/out = lang_template_apply(line, LANGUAGE_LOCALE_ZH_HANS)
 		TEST_ASSERT_NOTEQUAL(out, line, "手术可见消息应被模板逆匹配翻译，实得原文：[line]")
 
-	// ②a 碎片**绝不能**在单词内部开火（见 i18n_ac_fragment 的闸门）。这里用真目录再守一道：
-	// 线上表现是「But n其中一只 its eggs hatched!」「searches for植入了in Orange」。
+	// ②a 目录碎片绝不能在单词内部开火。字面 AC 整层删除后落地层已无子串替换能力，这条恒真，
+	// 留着当回归门禁 —— 线上曾经的表现是「But n其中一只 its eggs hatched!」。
 	var/eggs = "But none of its eggs hatched!"
 	TEST_ASSERT(!findtext(lang_fallback_apply(eggs), "n其中一只"), \
-		"碎片 pattern 在单词内部开火：[lang_fallback_apply(eggs)]")
+		"落地层在单词内部开火了：[lang_fallback_apply(eggs)]")
 
 	// ①c 整串精确反查必须**赢过**泛化模板。目录里同时存在整句键和「三两个词 + 占位符」的骨架
 	// 模板时，若模板先跑就会劫持整句、把捕获到的英文塞回中文脚手架：
@@ -138,6 +159,12 @@
 	// 分层断言，红了能一眼看出断在哪一层：目录 → 反查表 → 切块器整行。
 	TEST_ASSERT_NOTEQUAL(lang_reverse_text("chitters."), "chitters.", "emote 动作词应在目录且进了反查表")
 	TEST_ASSERT_NOTEQUAL(lang_reverse_text("cockroach"), "cockroach", "emote 名字应在目录且进了反查表")
+	// 切块器切出来的那一块是 `" chitters."`（`</b>` 到 `</span>` 之间，**带前导空格**）。
+	// 分两步探：归一化查表能不能吃掉前导空格，以及块级入口能不能落地。
+	var/spaced_lookup = lang_reverse_text_in(" chitters.", LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT_NOTEQUAL(spaced_lookup, " chitters.", "带前导空格的整块应经归一表命中，实得 [spaced_lookup]")
+	var/spaced_apply = lang_fallback_apply(" chitters.", LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT_NOTEQUAL(spaced_apply, " chitters.", "块级入口应落地，实得 [spaced_apply]")
 	var/emote_line = "<span class='emote'><b>cockroach</b> chitters.</span>"
 	var/emote_out = lang_fallback_apply_html(emote_line, LANGUAGE_LOCALE_ZH_HANS)
 	TEST_ASSERT(!findtext(emote_out, "chitters"), "emote 动作词应被整块反查翻掉：[emote_out]")
@@ -162,50 +189,32 @@
 	TEST_ASSERT_NOTEQUAL(objective_out, objective_line, "反派目标行应被模板逆匹配整条翻译")
 	TEST_ASSERT(!findtext(objective_out, "from escaping alive"), "不应只翻一半、留下英文残句：[objective_out]")
 
-	// ⑥ 两段**运行期追加后缀**被 jointext 拼在一起（职业描述的 antag opt-in 段）。两段各自都是
-	// 目录键、也都译好了，拼起来的整串不是键 → 只能靠字面 AC 分别做子串替换。分层断言：
-	// 先确认闸门放行（能进 AC 字典），再确认整条真的被替换。
+	// ⑥ 两段**运行期追加后缀**被拼在一起（职业描述的 antag opt-in 段）。两段各自都是目录键、
+	// 也都译好了，拼起来的整串不是键。从前靠字面 AC 的子串替换蒙混过去；AC 删掉之后改为
+	// lang_localize_sentence_suffixes 按句切开、逐句整串精确反查。
 	// 漏翻采集里它长期以「基础句已是中文、后缀整段英文」的形态出现。
-	TEST_ASSERT(lang_fallback_pattern_safe(" Targetable by contractors."), "该后缀应能进 AC 字典（多词 + 句末标点）")
 	var/joined_suffix = " Targetable by contractors. Targetable by heretics."
-	var/joined_out = lang_fallback_apply(joined_suffix, LANGUAGE_LOCALE_ZH_HANS)
-	TEST_ASSERT(!findtext(joined_out, "Targetable by"), "拼接后的两段后缀应各自被 AC 替换：[joined_out]")
+	var/joined_out = lang_localize_sentence_suffixes(joined_suffix, LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(joined_out, "Targetable by"), "拼接后的两段后缀应各自被逐句反查：[joined_out]")
 	// ⑥b 真实形态是「基础句 + 两段后缀」拼成一整行。基础句是**带占位符的模板**，模板引擎会命中它；
-	// 而链在模板命中后**提前返回**、不再跑 AC → 同一串里剩下的英文永远落不了地。
+	// 逐句切开之后每一句各自落地，基础句走模板、后缀走整串精确，互不抢占。
 	// 症状：基础句已是中文、后缀整段英文（漏翻采集里长期就是这个形态）。
 	var/opt_in_line = "Forces a minimum of Yes - Kill antag opt-in. Targetable by contractors. Targetable by heretics."
-	var/opt_in_out = lang_fallback_apply(opt_in_line, LANGUAGE_LOCALE_ZH_HANS)
-	TEST_ASSERT(!findtext(opt_in_out, "Targetable by"), "模板命中之后，同一串里剩下的英文仍应过 AC：[opt_in_out]")
+	var/opt_in_out = lang_localize_sentence_suffixes(opt_in_line, LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(opt_in_out, "Targetable by"), "逐句落地后不应残留英文后缀：[opt_in_out]")
 	// ⑥b2 **带前导空格**的同一串。目录模板是 `" Forces a minimum of {0} antag opt-in."`（前导空格是
 	// 字面段的一部分），少一个空格锚就匹配不上、于是上面那条走了 AC 全都翻掉、看着是通过的。
 	// 真实调用（lang_localize_job_description 把三段后缀一起喂进来）带着那个空格 → 模板命中
 	// → 链**提前返回**、AC 不再跑 → 后两段纯串后缀永远英文。
 	// 一个空格的差别就能让测试走另一条路 —— 照抄真实形态，别手写等价物。
 	var/opt_in_spaced = " Forces a minimum of Yes - Kill antag opt-in. Targetable by contractors. Targetable by heretics."
-	var/opt_in_spaced_out = lang_fallback_apply(opt_in_spaced, LANGUAGE_LOCALE_ZH_HANS)
-	TEST_ASSERT(!findtext(opt_in_spaced_out, "Targetable by"), "模板命中之后，同一串里剩下的英文仍应过 AC：[opt_in_spaced_out]")
+	var/opt_in_spaced_out = lang_localize_sentence_suffixes(opt_in_spaced, LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(opt_in_spaced_out, "Targetable by"), "带前导空格的同一行也不应残留英文后缀：[opt_in_spaced_out]")
 	// ⑥c 漏翻日志里**逐字节**的那一行：基础句已经由 LANG 路径翻成中文，后缀还是英文。
 	// 前两条都过而线上仍漏，说明差别就在「输入里已经混着中文」这一点上——照抄真实形态才测得出。
 	var/mixed_line = "强制至少是 - 杀死名玩家选择反派身份。 Targetable by contractors. Targetable by heretics."
-	var/mixed_out = lang_fallback_apply(mixed_line, LANGUAGE_LOCALE_ZH_HANS)
-	TEST_ASSERT(!findtext(mixed_out, "Targetable by"), "中英混排行里的英文后缀仍应被 AC 替换：[mixed_out]")
-
-	// ⑥d AC 字典的**建表时序**：i18n_cache 还没就绪时 lang_build_reverse 会「返回空表但不缓存」，
-	// 而 lang_fallback_setup 从前拿到空表就把 state 钉成 "none" —— 那是**永久**的，整局字面 AC
-	// 无声关闭。这里模拟那一刻：清掉 state 与 cache 再 setup，必须**不写 state**（留待下次重试）。
-	var/list/saved_cache = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][LANGUAGE_LOCALE_ZH_HANS]
-	// 这一格**故意**制造「目录未就绪」，会撞响 lang_fallback_setup 的早调用哨兵；
-	// 而 stack_trace 在单测里算 runtime = 直接判失败。先把告警配额打满，测完复原。
-	var/saved_warnings = GLOB.i18n_fallback_early_warnings
-	GLOB.i18n_fallback_early_warnings = I18N_MAX_EARLY_WARNINGS
-	GLOB.i18n_fallback_state -= LANGUAGE_LOCALE_ZH_HANS
-	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET] -= LANGUAGE_LOCALE_ZH_HANS
-	TEST_ASSERT(!lang_fallback_setup(LANGUAGE_LOCALE_ZH_HANS), "目录未就绪时 setup 应返回 FALSE")
-	TEST_ASSERT(isnull(GLOB.i18n_fallback_state[LANGUAGE_LOCALE_ZH_HANS]), "目录未就绪时**不得**把 state 钉成 none —— 那会让整局 AC 永久关闭")
-	GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET][LANGUAGE_LOCALE_ZH_HANS] = saved_cache
-	GLOB.i18n_fallback_state -= LANGUAGE_LOCALE_ZH_HANS
-	TEST_ASSERT(lang_fallback_setup(LANGUAGE_LOCALE_ZH_HANS), "目录就绪后 setup 应能重新建起字典")
-	GLOB.i18n_fallback_early_warnings = saved_warnings
+	var/mixed_out = lang_localize_sentence_suffixes(mixed_line, LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(mixed_out, "Targetable by"), "中英混排行里的英文后缀仍应被逐句反查：[mixed_out]")
 
 	GLOB.i18n_server_locale = saved_locale
 

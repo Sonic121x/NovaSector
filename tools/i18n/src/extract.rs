@@ -11,6 +11,7 @@
 //! 本阶段只做抽取（产出英文主目录）；改写调用点为 LANG/LANGU 是后续阶段。
 
 use anyhow::{Context as _, Result};
+use std::cell::{Cell, RefCell};
 use std::collections::HashSet;
 use std::path::Path;
 
@@ -1218,6 +1219,7 @@ fn walk_lang_arg_locals(
     if in_unit_tests {
         return;
     }
+    let _origin = OriginGuard::enter("local_hop");
     let mut names = std::collections::HashSet::new();
     collect_lang_arg_idents_block(block, &mut names);
     collect_examine_accumulator_idents(block, &mut names);
@@ -1722,20 +1724,8 @@ fn collect_bare_idents(expr: &Expression, out: &mut std::collections::HashSet<St
     }
 }
 
-/// `name = "…"` / `name += "…"`（含 `var/name = "…"` 声明初值）里赋给目标标识符的字面量。
-fn collect_local_assign_literals(
-    block: &[dm::ast::Spanned<Statement>],
-    names: &std::collections::HashSet<String>,
-    out: &mut Vec<String>,
-) {
-    let mut by_variable = std::collections::BTreeMap::new();
-    collect_local_assign_groups(block, names, &mut by_variable);
-    for literals in by_variable.into_values() {
-        out.extend(literals);
-    }
-}
-
-/// 同上，但**按变量分组**——单词值的准入要看同一个槽里的兄弟值（见 walk_lang_arg_locals）。
+/// `name = "…"` / `name += "…"`（含 `var/name = "…"` 声明初值）里赋给目标标识符的字面量，
+/// **按变量分组**——单词值的准入要看同一个槽里的兄弟值（见 walk_lang_arg_locals）。
 fn collect_local_assign_groups(
     block: &[dm::ast::Spanned<Statement>],
     names: &std::collections::HashSet<String>,
@@ -1937,6 +1927,7 @@ fn walk_examine_tags(
 }
 
 pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<Catalog> {
+    reset_extract_stats();
     let mut context = dm::Context::default();
     context.set_print_severity(Some(dm::Severity::Error));
 
@@ -1992,6 +1983,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<Catalog> {
 
         // 1) 变量初始化（name/desc 等）。
         for (var_name, type_var) in ty.vars.iter() {
+            let _origin = OriginGuard::enter("typevar");
             // 语境再细一层：**变量名**。`#name` 是物品名（短名词短语），`#desc` 是描述
             // （整句），`#message` 是发给玩家的话。模型光看类型路径分不出这个，于是
             // 常把物品名翻成一句话。`#` 不影响命名空间推导（namespace_for 按 `/` 取首段），
@@ -2347,6 +2339,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<Catalog> {
     //    使其与 sink/SINK_VARS 走同一翻译界面（运行时在 load 处反查落地，见 _string_lists.dm /
     //    type2type.dm）。strings 根目录由 out（.../strings/i18n/en）回推两级得到。
     if let Some(strings_root) = out.parent().and_then(|p| p.parent()) {
+        let _origin = OriginGuard::enter("flavor");
         crate::flavor::extract_flavor(strings_root, &mut catalog);
         // 复印机表单（config/blanks.json + config/nova/blanks.json）：repo 根 = strings_root 的父级。
         if let Some(repo_root) = strings_root.parent() {
@@ -2362,6 +2355,7 @@ pub fn run(dme: &Path, out: &Path, dry_run: bool) -> Result<Catalog> {
         catalog.entry_count(),
         catalog.namespace_count()
     );
+    eprintln!("{}", format_origin_summary());
     if !dry_run {
         // load_dir 之前定格 live key 集合：合并进来的历史条目此后与本次抽取无从区分，
         // 而 sidecar 的裁剪需要「本次抽出的 ∪ 源码里仍被 LANG 引用的」这一集合（与
@@ -2700,6 +2694,224 @@ fn is_lang_arg_text(s: &str) -> bool {
     false
 }
 
+fn contains_cjk(s: &str) -> bool {
+    s.chars()
+        .any(|c| matches!(c as u32, 0x3400..=0x9FFF | 0xF900..=0xFAFF))
+}
+
+/// 宏展开漏出来的 **HTML 标签碎片**。
+///
+/// `span_tooltip` 是 `+` 拼接的 define：
+/// `"<span … data-content=\"" + tip + "\" class=\"tooltip\">" + main_text + "</span>"`。
+/// 展开后中间那两段在 AST 里就是普通字符串字面量，于是 `tip` 和那截属性语法会被当成
+/// 一条显示串抽进目录（`Use medication such as {0}.\" class=\"tooltip\">Subject is …`）。
+/// 这种 key 永远匹配不上运行期的**渲染结果**，纯属污染反查表。
+///
+/// 判据取两条**同时**成立，缺一都会误伤真条目：
+///   · `>` 出现在任何 `<` 之前 —— 它在关闭一个别处打开的标签，独立显示串不可能这样；
+///   · 含 HTML 属性赋值（`=\"` / `='`）—— 单靠上一条会毙掉 buildmode 帮助里的 `{0} -> 左键`、
+///     `>=1u {0}`、`Slime Telepathy -->` 这类正当条目（实测 60 条里 40 条是它们）。
+/// 两条一起在现有目录上只命中 20 条，逐条过目全是同一个宏漏出来的碎片。
+fn is_html_tag_fragment(s: &str) -> bool {
+    let close = s.find('>');
+    let Some(close) = close else {
+        return false;
+    };
+    if let Some(open) = s.find('<') {
+        if open < close {
+            return false;
+        }
+    }
+    s.contains("=\\\"") || s.contains("='")
+}
+
+/// emit 来源计数（dry-run / 正常 extract 结束时打到 stderr）。
+/// 线程局部：visitor 回调不能把 stats 塞进每个签名，且 cargo test 按线程隔离。
+#[derive(Default)]
+struct ExtractStats {
+    sink: usize,
+    typevar: usize,
+    aggressive: usize,
+    flavor: usize,
+    local_hop: usize,
+    pick: usize,
+    element: usize,
+    unknown: usize,
+    rejected_cjk: usize,
+    rejected_tag_fragment: usize,
+    rejected_short: usize,
+    rejected_no_alpha: usize,
+}
+
+impl ExtractStats {
+    fn bump_origin(&mut self, origin: &'static str) {
+        match origin {
+            "sink" => self.sink += 1,
+            "typevar" => self.typevar += 1,
+            "aggressive" => self.aggressive += 1,
+            "flavor" => self.flavor += 1,
+            "local_hop" => self.local_hop += 1,
+            "pick" => self.pick += 1,
+            "element" => self.element += 1,
+            _ => self.unknown += 1,
+        }
+    }
+}
+
+thread_local! {
+    static ORIGIN: Cell<&'static str> = Cell::new("unknown");
+    static STATS: RefCell<ExtractStats> = RefCell::new(ExtractStats::default());
+}
+
+struct OriginGuard {
+    prev: &'static str,
+}
+
+impl OriginGuard {
+    fn enter(origin: &'static str) -> Self {
+        let prev = ORIGIN.with(|c| c.replace(origin));
+        Self { prev }
+    }
+
+    /// 已有更具体 origin（pick / sink / typevar…）时不盖掉。激进 pass 用这个。
+    fn enter_if_unknown(origin: &'static str) -> Self {
+        let prev = ORIGIN.with(|c| {
+            let prev = c.get();
+            if prev == "unknown" {
+                c.set(origin);
+            }
+            prev
+        });
+        Self { prev }
+    }
+}
+
+impl Drop for OriginGuard {
+    fn drop(&mut self) {
+        ORIGIN.with(|c| c.set(self.prev));
+    }
+}
+
+fn current_origin() -> &'static str {
+    ORIGIN.with(|c| c.get())
+}
+
+fn reset_extract_stats() {
+    ORIGIN.with(|c| c.set("unknown"));
+    STATS.with(|s| *s.borrow_mut() = ExtractStats::default());
+}
+
+fn bump_origin(origin: &'static str) {
+    STATS.with(|s| s.borrow_mut().bump_origin(origin));
+}
+
+fn format_origin_summary() -> String {
+    STATS.with(|s| {
+        let s = s.borrow();
+        format!(
+            "origin sink={} typevar={} aggressive={} flavor={} local_hop={} pick={} element={} unknown={}  rejected cjk={} short={} no_alpha={} tag_fragment={}",
+            s.sink,
+            s.typevar,
+            s.aggressive,
+            s.flavor,
+            s.local_hop,
+            s.pick,
+            s.element,
+            s.unknown,
+            s.rejected_cjk,
+            s.rejected_short,
+            s.rejected_no_alpha,
+            s.rejected_tag_fragment
+        )
+    })
+}
+
+#[cfg(test)]
+mod cjk_gate {
+    use super::contains_cjk;
+
+    #[test]
+    fn rejects_han_and_keeps_english() {
+        assert!(contains_cjk("切换喷雾器"));
+        assert!(contains_cjk("TTS 全局开关"));
+        assert!(!contains_cjk("Spray bottle"));
+        assert!(!contains_cjk("{0} begins to make an incision in {1}."));
+    }
+}
+
+#[cfg(test)]
+mod tag_fragment_gate {
+    use super::is_html_tag_fragment;
+
+    /// `span_tooltip` 是 `+` 拼接的 define，展开后中间那截属性语法会被当成显示串抽走。
+    /// 实测目录里躺着 20 条这种（`Use medication such as {0}.\" class=\"tooltip\">Subject is …`）。
+    #[test]
+    fn rejects_macro_leaked_tag_fragments() {
+        assert!(is_html_tag_fragment(r#"\" class=\"tooltip\">"#));
+        assert!(is_html_tag_fragment(
+            r#"Use medication such as {0}.\" class=\"tooltip\">Subject is genetically deaf."#
+        ));
+    }
+
+    /// **两条判据缺一都会误伤。** 只看「`>` 在 `<` 之前」会毙掉 buildmode 帮助与剂量说明
+    /// （现存目录里 60 条命中中的 40 条），所以必须同时要求属性赋值语法。
+    #[test]
+    fn keeps_prose_with_angle_brackets_and_real_html() {
+        assert!(!is_html_tag_fragment("{0} -> Left Mouse Button on obj/turf/mob"));
+        assert!(!is_html_tag_fragment("the patient must be dosed with >=1u {0}"));
+        assert!(!is_html_tag_fragment("Slime Telepathy -->"));
+        assert!(!is_html_tag_fragment(">my face"));
+        // 完整标签：`<` 在 `>` 之前，属性再多也照收。
+        assert!(!is_html_tag_fragment(
+            r#"<span class=\"notice\">Subject contains no reagents.</span>"#
+        ));
+    }
+}
+
+#[cfg(test)]
+mod origin_stats {
+    use super::*;
+
+    #[test]
+    fn emit_counts_origin_and_rejects() {
+        reset_extract_stats();
+        let mut catalog = Catalog::new();
+        let _g = OriginGuard::enter("sink");
+        emit(&mut catalog, "/obj/item", "Hello there");
+        emit(&mut catalog, "/obj/item", "切换喷雾器");
+        emit(&mut catalog, "/obj/item", "X");
+        emit(&mut catalog, "/obj/item", "!!!");
+        drop(_g);
+        emit(&mut catalog, "/obj/item", "Another phrase");
+        let summary = format_origin_summary();
+        assert!(summary.contains("sink=1"), "accepted sink emit: {summary}");
+        assert!(
+            summary.contains("unknown=1"),
+            "emit without origin: {summary}"
+        );
+        assert!(summary.contains("rejected cjk=1"), "cjk reject: {summary}");
+        assert!(summary.contains("short=1"), "short reject: {summary}");
+        assert!(summary.contains("no_alpha=1"), "no_alpha reject: {summary}");
+    }
+
+    #[test]
+    fn pick_origin_outranks_aggressive() {
+        reset_extract_stats();
+        let mut catalog = Catalog::new();
+        let _pick = OriginGuard::enter("pick");
+        {
+            let _agg = OriginGuard::enter_if_unknown("aggressive");
+            emit(&mut catalog, "/mob", "You feel pumped!");
+        }
+        let summary = format_origin_summary();
+        assert!(summary.contains("pick=1"), "pick should win: {summary}");
+        assert!(
+            summary.contains("aggressive=0"),
+            "aggressive must not override pick: {summary}"
+        );
+    }
+}
+
 /// sink 消息框架专用的 emit：**跳过 `emit` 的「必须含字母」闸门**。
 ///
 /// 那道闸门与 `build_template` 里那道是同一个判断，理由也一样（纯标签/纯占位符不是文案）；
@@ -2708,19 +2920,27 @@ fn is_lang_arg_text(s: &str) -> bool {
 /// 变成 LANG 之后才走得到 `lang_localize_arg`。准入面由 build_sink_template 的 ≥3 占位符
 /// 闸门界定，这里只是不再重复否决。
 fn emit_sink_frame(catalog: &mut Catalog, type_path: &str, template: &str) {
+    let _origin = OriginGuard::enter("sink");
     if template.chars().any(|c| c.is_alphabetic()) {
         emit(catalog, type_path, template);
         return;
     }
     if template.trim().chars().count() < 2 {
+        STATS.with(|s| s.borrow_mut().rejected_short += 1);
         return;
     }
+    bump_origin(current_origin());
     let key = make_key(&namespace_for(type_path), template);
     let _ = catalog.insert(type_path, &key, template);
 }
 
 pub(crate) fn emit(catalog: &mut Catalog, type_path: &str, template: &str) {
+    emit_origin(catalog, type_path, template, current_origin());
+}
+
+fn emit_origin(catalog: &mut Catalog, type_path: &str, template: &str, origin: &'static str) {
     if !template.chars().any(|c| c.is_alphabetic()) {
+        STATS.with(|s| s.borrow_mut().rejected_no_alpha += 1);
         return;
     }
     // 单字符串（`preview_name = "X"` 这种）永远不是值得翻译的文案，却是**标识符碰撞的高发区**：
@@ -2728,11 +2948,23 @@ pub(crate) fn emit(catalog: &mut Catalog, type_path: &str, template: &str) {
     // （lint 的碰撞规则当场抓到 admin/topic.dm）。按字符数（不是字节）判，中文单字同样挡掉——
     // 单个汉字的显示串也只可能是标识符或图标标签。
     if template.trim().chars().count() < 2 {
+        STATS.with(|s| s.borrow_mut().rejected_short += 1);
+        return;
+    }
+    // 中文已经在源码里的串不是英文原文。verb 注入 / Nova 模块把译文写进 name 后再抽，
+    // 会污染 en 目录（coverage 把它们算成「缺失」）。中文显示名不需要进英文主目录。
+    if contains_cjk(template) {
+        STATS.with(|s| s.borrow_mut().rejected_cjk += 1);
+        return;
+    }
+    if is_html_tag_fragment(template) {
+        STATS.with(|s| s.borrow_mut().rejected_tag_fragment += 1);
         return;
     }
     if CATALOG_VALUE_BLOCKLIST.contains(&template.trim()) {
         return;
     }
+    bump_origin(origin);
     // key 必须仍按**命名空间**算（`<ns>.<hash>`），否则全目录 key 变更 = 丢光全部译文。
     let key = make_key(&namespace_for(type_path), template);
     // Visitor callbacks deliberately stay infallible; Catalog retains the source-attributed
@@ -3098,6 +3330,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
             {
                 if let Some(template) = build_template(expr) {
                     if is_loose_sentence(&template, ctx.examine) {
+                        let _origin = OriginGuard::enter_if_unknown("aggressive");
                         emit(catalog, ns, &template);
                     }
                 }
@@ -3127,6 +3360,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                         if let Some(indices) = inner.first().and_then(element_display_args) {
                             for &idx in indices {
                                 if let Some(template) = inner.get(idx).and_then(build_template) {
+                                    let _origin = OriginGuard::enter("element");
                                     emit(catalog, ns, &template);
                                 }
                             }
@@ -3180,6 +3414,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                         if let Some((_, arg)) = resolve_sink_arg(name.as_str(), i, args) {
                             // 拼接链先按标签单元拆（见 build_tag_chunk_templates）；拆不动才折成整条。
                             if let Some(chunks) = build_tag_chunk_templates(arg) {
+                                let _origin = OriginGuard::enter("sink");
                                 for chunk in chunks {
                                     emit(catalog, ns, &chunk);
                                 }
@@ -3200,6 +3435,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                         }
                         if let Some((_, arg)) = resolve_sink_arg("input", i, args) {
                             if let Some(template) = build_template(arg) {
+                                let _origin = OriginGuard::enter("sink");
                                 emit(catalog, ns, &template);
                             }
                         }
@@ -3221,6 +3457,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
             if !suppress && matches!(op, dm::ast::BinaryOp::Add) {
                 if let Some(template) = build_template(expr) {
                     if is_loose_sentence(&template, ctx.examine) {
+                        let _origin = OriginGuard::enter_if_unknown("aggressive");
                         emit(catalog, ns, &template);
                         child_suppress = true;
                     }
@@ -3376,6 +3613,7 @@ fn recurse_term(term: &Term, ns: &str, catalog: &mut Catalog, suppress: bool, ct
         // 实测一个文件里 146/147 条普通句子都在目录，pick 里的 8 条一条都不在 —— 这个反差就是判据。
         // （普通句子靠 sink 路径的 build_template 抽到，与激进 pass 无关，所以缺口只在 pick 上显形。）
         Term::Pick(args) => {
+            let _origin = OriginGuard::enter("pick");
             for (weight, value) in args.iter() {
                 if let Some(w) = weight {
                     visit_expr(w, ns, catalog, suppress, ctx);

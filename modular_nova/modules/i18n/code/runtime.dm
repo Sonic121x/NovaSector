@@ -18,7 +18,6 @@ GLOBAL_LIST_INIT(i18n_layer_hits, list(
 	I18N_LAYER_EXACT = 0,
 	I18N_LAYER_NORMALIZED = 0,
 	I18N_LAYER_TEMPLATE = 0,
-	I18N_LAYER_AC = 0,
 	I18N_LAYER_MISS = 0,
 ))
 
@@ -100,10 +99,10 @@ GLOBAL_LIST_INIT(i18n_match_table_files, list("phobia.json"))
 		var/datum/reagent/reagent = GLOB.chemical_reagents_list[reagent_type]
 		reagent.lang_relocalize_description()
 
-/// 是否启用聊天层 AC 子串兜底（默认关）。config I18N_CHAT_FALLBACK 控制（见 config_entries.dm + fallback.dm）。
+/// 是否启用聊天落地层（HTML 切块 + 精确反查 + 模板）。config I18N_CHAT_FALLBACK。
 GLOBAL_VAR_INIT(i18n_chat_fallback, FALSE)
 
-/// 聊天 AC 兜底必须跳过的消息类型。两类：
+/// 聊天落地层必须跳过的消息类型。两类：
 /// 1. 玩家/管理员**自己输入**的聊天——用户原话，误翻会把玩家说的英文短语换掉（如 "the bridge" →「舰桥」）。
 ///    本地 say/电台是 null 类型、不走这里，由 to_chat 的 skip_i18n_fallback 参数（经 show_message 从
 ///    /mob/living/Hear 传入）豁免。
@@ -441,7 +440,6 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm_ambiguities)
 		lang_build_reverse(configured_locale)
 		lang_type_name_keys() // loads name and desc type indexes together
 		lang_tpl_setup(configured_locale)
-		lang_fallback_setup(configured_locale)
 		lang_relocalize_early_string_lists()
 	GLOB.i18n_runtime_state = I18N_RUNTIME_READY
 
@@ -1140,22 +1138,37 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 	// 注意**不能**加「归一化后与原串相同就跳过」的短路：归一表里还有一类键本身就是归一化产物
 	// （剥标签形态），查询侧是裸句、归一化对它是恒等变换 —— 跳过就等于那类永远查不到。
 	var/normalized = lang_normalize_lookup(text)
-	var/list/reverse_norm = GLOB.i18n_reverse_norm[locale]
-	if(islist(reverse_norm))
-		var/hit = reverse_norm[normalized]
+	var/hit
+	// **先拿归一化结果查一次精确表。** 建表侧对「归一化后与源串相同」的条目**不登记**归一表
+	// （见 lang_build_reverse 里那个 `if(norm_key != en_text)`），它们只活在精确表里。少了这一步，
+	// 任何只差首尾空白/文法宏的运行期串都落不了地 —— 而切块器切出来的块极常带前导空格
+	// （`</b>` 到 `</span>` 之间那段），实测 emote 整行的动作词就是这么漏的：
+	// `<span class='emote'><b>蟑螂</b> chitters.</span>`，名字翻了、动作没翻。
+	// 放在归一表之前：精确表是更具体的证据，且这一步 O(1)、不占额外内存。
+	if(normalized != text)
+		hit = reverse[normalized]
+		// 精确表存的是**源码字面形态**（`\improper` / `\n`），显示化在读侧做（见上面那条 exact 命中）；
+		// 归一表存的已经是显示化过的值（建表时就过了 lang_display_value）。走精确表这条就得自己补，
+		// 否则玩家看到「\improper 太阳系精品热饮」。
 		if(!isnull(hit))
-			lang_count_layer_hit(I18N_LAYER_NORMALIZED)
-			// 归一化会吃掉首尾空白：命中后按原串的首尾空白拼回（离子法则等下游拼接依赖那些空格）。
-			var/text_length = length(text)
-			if(text2ascii(text, 1) <= 32 || text2ascii(text, text_length) <= 32)
-				var/start_index = 1
-				while(start_index <= text_length && text2ascii(text, start_index) <= 32)
-					start_index++
-				var/end_index = text_length
-				while(end_index >= start_index && text2ascii(text, end_index) <= 32)
-					end_index--
-				return copytext(text, 1, start_index) + hit + copytext(text, end_index + 1)
-			return hit
+			hit = lang_display_value(hit)
+	if(isnull(hit))
+		var/list/reverse_norm = GLOB.i18n_reverse_norm[locale]
+		if(islist(reverse_norm))
+			hit = reverse_norm[normalized]
+	if(!isnull(hit))
+		lang_count_layer_hit(I18N_LAYER_NORMALIZED)
+		// 归一化会吃掉首尾空白：命中后按原串的首尾空白拼回（离子法则等下游拼接依赖那些空格）。
+		var/text_length = length(text)
+		if(text2ascii(text, 1) <= 32 || text2ascii(text, text_length) <= 32)
+			var/start_index = 1
+			while(start_index <= text_length && text2ascii(text, start_index) <= 32)
+				start_index++
+			var/end_index = text_length
+			while(end_index >= start_index && text2ascii(text, end_index) <= 32)
+				end_index--
+			return copytext(text, 1, start_index) + hit + copytext(text, end_index + 1)
+		return hit
 	// 仍未命中：`desc = span_alert("…")` 类编译期包裹 → 运行时值带 <span> 外壳，目录存的是内层
 	// （抽取器解 span_* 宏）。剥单层 span 反查内层，命中**回包**（保留原样式）——所以它不能并进
 	// 归一化那条路：那条会把标签直接吃掉、配色就丢了。
@@ -1184,7 +1197,7 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 	// 显示边界**不过字面 AC**：名字要么整串命中、要么是「区域名 + 类型名」那种可拆的合成名
 	// （lang_localize_area_prefixed_name 分段精确翻）。AC 是无词边界的子串替换，在这么短的串上
 	// 只会带来误伤（「You can」咬进「You can't」那一类的名字版）。
-	. = lang_localize_chain(text, GLOB.i18n_server_locale || DEFAULT_UI_LOCALE, allow_template = TRUE, ac_mode = I18N_AC_NONE)
+	. = lang_localize_chain(text, GLOB.i18n_server_locale || DEFAULT_UI_LOCALE, allow_template = TRUE)
 	// 漏翻采集：显示边界（examine 名/描述、悬停 screentip、径向菜单、tgui_input_list 选项）整条
 	// miss。这一面的缺口几乎全是**单词名**，run 采集器看不到；而它又最容易行动 —— 拿 origin 里的
 	// 类型路径直接对着 labels.rs TYPE_VAR_RULES / type_vars.json 补一条即可。
@@ -1472,6 +1485,10 @@ GLOBAL_LIST_INIT(i18n_appended_suffixes, list(
 	. = lang_reverse_text(text)
 	if(. != text)
 		return . // 整串精确命中
+	// Every registered suffix is a sentence containing spaces. A single token cannot possibly match one;
+	// avoid allocating a collapsed copy and walking the suffix table on the TGUI single-word hot path.
+	if(!findtext(text, " "))
+		return .
 	// 追加点的分隔各式各样：手术 desc 是一个空格，赏金是 `"</br>\<换行><制表符>…"`（DM 续行把制表符
 	// 并进串里）。先把空白折叠成单空格再比（目录键本身就是折叠形态），分隔空格按原样还回拼接处。
 	var/collapsed = lang_collapse_ws(text)
@@ -1553,18 +1570,8 @@ GLOBAL_LIST_INIT(i18n_appended_suffixes, list(
 
 
 #define I18N_TGUI_PHRASE_CACHE_MAX 4096
-/// P1 里允许过字面 AC 的最短长度。短值一律不走 AC —— 那是标识符浓度最高的区间。
-#define I18N_TGUI_PROSE_MIN_LENGTH 80
 /// 跨 payload 复用精确/模板反查结果；有界且满后不淘汰，避免动态值造成持续分配。
 GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
-
-/// 该 TGUI 负载值是否「长散文」——够长、含句末标点。只有这类才允许过字面 AC（子串替换）：
-/// act() 回传标识符、图标名、黑板键之类永远不是这个形状，从而把误伤面压到零。
-/proc/lang_tgui_prose_candidate(text)
-	if(length(text) < I18N_TGUI_PROSE_MIN_LENGTH)
-		return FALSE
-	return findtext(text, ". ") || findtext(text, "! ") || findtext(text, "? ") \
-		|| findtext(text, ".", -1) || findtext(text, "!", -1) || findtext(text, "?", -1)
 
 /// TGUI 负载专用本地化：返回该串的译文（**调用方决定**是就地改写还是记进 overlay，见 lang_reverse_tree）。
 ///
@@ -1575,12 +1582,21 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 ///   · **「值本身是 tgui 目录键就原样返回」**：那是把显示权交给 TS、以保住数据；现在数据本来就
 ///     不动，跳过只会让这批值进不了 overlay、白白多绕一圈静态目录。
 ///
-/// 单词值只走**整串精确反查**：模板逆匹配与字面 AC 都是给句子用的，单词过去只会徒增误伤。
+/// 单词值只走**整串精确反查**：模板逆匹配是给句子用的，单词过去只会徒增误伤。
 /proc/lang_reverse_phrase_tgui(text)
 	if(!istext(text) || length(text) < 2)
 		return text
 	var/multiword = findtext(text, " ")
 	var/locale = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE
+	// Single-token payload values are overwhelmingly refs, enum values, icon states and other identifiers.
+	// The contract above says they only get an exact lookup, but the old implementation called
+	// lang_reverse_suffixed() and then lang_localize_chain(), causing two exact/normalized lookups plus suffix/
+	// article work for every miss. It also cached those effectively unbounded identifiers until they crowded
+	// useful multi-word results out of the fixed 4096-entry cache. Keep one exact/normalized lookup so existing
+	// catalog forms with quotes, grammar macros or source escapes retain their translations, but skip the
+	// suffix/template/AC chain and miss cache.
+	if(!multiword)
+		return lang_reverse_text_in(text, locale)
 	var/list/phrase_cache = GLOB.i18n_tgui_phrase_cache
 	var/cache_ready = !GLOB.i18n_log_misses && islist(phrase_cache) && lang_runtime_is_ready() && lang_catalog_locale_is_loaded(locale)
 	if(cache_ready && (text in phrase_cache))
@@ -1590,10 +1606,11 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 	// 精确反查会连基础句一起 miss。无后缀时它就是 lang_reverse_text，零行为变化。
 	. = lang_reverse_suffixed(text)
 	if(. == text)
-		// 精确（含后缀拆分）miss → 交给共用链跑模板与 AC。单词值只走精确：模板逆匹配与字面 AC
-		// 都是给句子用的，单词过去只会徒增误伤。
-		. = lang_localize_chain(text, locale, allow_template = multiword, ac_mode = multiword ? I18N_AC_PROSE : I18N_AC_NONE)
-	// 漏翻采集：反查 + 模板引擎 + AC 都没命中的多词 TGUI 负载值（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
+		// 精确（含归一化/后缀拆分）已查过且 miss，直接从冠词/模板阶段继续。过去这里又从 exact
+		// 开头完整跑一遍，是 profiler 里 lang_reverse_text_in/lang_collapse_ws 重复翻倍的来源。
+		// 单词值在上面就 return 了，走到这里必定是多词，所以模板照常开。
+		. = lang_localize_chain(text, locale, allow_template = TRUE, exact_already_checked = TRUE)
+	// 漏翻采集：反查与模板引擎都没命中的 TGUI 负载值（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
 	if(GLOB.i18n_log_misses && . == text && locale != DEFAULT_UI_LOCALE)
 		lang_log_miss_scan(text, "tgui")
 	if(cache_ready && length(phrase_cache) < I18N_TGUI_PHRASE_CACHE_MAX)
@@ -1695,7 +1712,6 @@ GLOBAL_LIST_INIT(i18n_payload_prose_keys, build_i18n_policy_set("payload_prose_k
 	return data
 
 #undef I18N_TGUI_PHRASE_CACHE_MAX
-#undef I18N_TGUI_PROSE_MIN_LENGTH
 
 /// 职业描述本地化（偏好菜单职业 tab 的 tooltip）。antag_opt_in 模块把「opt-in 后缀句」拼到
 /// description 末尾（`description = initial(description) + suffix`，见 antag_opt_in/code/job.dm），
@@ -1710,13 +1726,14 @@ GLOBAL_LIST_INIT(i18n_payload_prose_keys, build_i18n_policy_set("payload_prose_k
 	var/base = initial(job.description)
 	var/base_collapsed = lang_collapse_ws(base)
 	var/base_zh = lang_reverse_text(base_collapsed)
-	if(base_zh == base_collapsed) // 精确未命中 → 退 AC 子串
+	if(base_zh == base_collapsed) // 精确未命中 → 退模板逆匹配
 		base_zh = lang_fallback_apply(base_collapsed)
 	if(desc == base) // 无 opt-in 后缀
 		return base_zh
-	// desc = base + suffix：后缀短语（" Targetable by contractors." 等）各自在目录 → AC。
+	// desc = base + suffix：后缀短语（" Targetable by contractors." 等）**各自**是目录键，
+	// 拼起来的整串不是 → 按句切开逐句精确反查（从前靠字面 AC 的子串替换，那一层已删）。
 	var/suffix = copytext(desc, length(base) + 1)
-	return base_zh + lang_fallback_apply(lang_collapse_ws(suffix))
+	return base_zh + lang_localize_sentence_suffixes(lang_collapse_ws(suffix))
 
 /// 按 duration_formatting.json 的显式 locale 域格式化时长。
 /// 缺少当前 locale 或 schema 不完整时返回 null，让 core DisplayTimeText 保留 canonical English 路径。
@@ -1848,4 +1865,3 @@ GLOBAL_LIST_INIT(i18n_payload_prose_keys, build_i18n_policy_set("payload_prose_k
 	for(var/regex/word_re in name_subs)
 		text = word_re.Replace(text, name_subs[word_re])
 	return text
-

@@ -787,11 +787,11 @@
 		construct_thing.balloon_alert(user, LANG("obj.663d6bcb874ca3b1", null))
 		return FALSE
 	if(uses > missing_health)
-		construct_thing.adjust_health(-missing_health)
+		construct_thing.adjust_brute_loss(-missing_health)
 		construct_thing.visible_message(span_warning(LANG("obj.a1f9b906d9271998", list(construct_thing, user))))
 		uses -= missing_health
 	else
-		construct_thing.adjust_health(-uses)
+		construct_thing.adjust_brute_loss(-uses)
 		construct_thing.visible_message(span_warning(LANG("obj.4ac9ca81a5f4010d", list(construct_thing, user))))
 		uses = 0
 	playsound(get_turf(construct_thing), 'sound/effects/magic/staff_healing.ogg', 25)

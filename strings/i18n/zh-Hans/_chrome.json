@@ -1,0 +1,23 @@
+{
+	"chrome_lobby_starting_in": "距开始还有",
+	"chrome_lobby_players_ready": "名玩家已就绪",
+	"chrome_lobby_players_online": "名玩家在线",
+	"chrome_lobby_player_online": "名玩家在线",
+	"chrome_lobby_admins_ready": "名管理已就绪",
+	"chrome_lobby_game_ended": "回合已结束",
+	"chrome_lobby_restart_soon": "即将重启",
+	"chrome_lobby_loading": "加载中……",
+	"chrome_lobby_another_day": "又是平凡的一天……",
+	"chrome_stat_map": "地图:",
+	"chrome_stat_round_id": "回合 ID",
+	"chrome_stat_round_timer": "回合计时",
+	"chrome_stat_time_dilation": "时间膨胀",
+	"chrome_stat_server_time": "服务器时间",
+	"chrome_stat_feedback": "(反馈)",
+	"chrome_law_programmed_laws": "已编程法则:",
+	"chrome_law_programmed_law": "已编程法则:",
+	"chrome_law_obey_these": "遵守以下法则:",
+	"chrome_examine_combat_info": "查看战斗信息。",
+	"chrome_job_antag_optin_kill": "强制反派自愿加入的最低等级为 Yes - Kill。",
+	"chrome_captainship_not_forced": "本轮未强制指派舰长。"
+}

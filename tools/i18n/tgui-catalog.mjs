@@ -20,6 +20,7 @@ const TGUI_NAMESPACE = 'tgui';
 const CONTEXT_SEPARATOR = '\u0004';
 const CONTEXT_PATTERN = /^[a-z][a-z0-9]*(?:[._/-][a-z0-9]+)*$/;
 const CHECK_MODE = process.argv.slice(3).includes('--check');
+const REPORT_UNSCOPED = process.argv.includes('--report-unscoped');
 const staleGeneratedFiles = [];
 
 // 可翻 prop 名的**单一来源**是 strings/i18n/policy.json：抽取器与运行时 localize.ts 各存一份
@@ -1885,10 +1886,11 @@ function extract() {
   writeJson(stringsCatalogPath('en'), enCatalog);
   writeJson(stringsCatalogPath('zh-Hans'), zhCatalog);
   warnHtmlEntities(enCatalog, zhCatalog);
-  writeTguiScopes(enCatalog);
+  const scopes = writeTguiScopes(enCatalog);
   writeTguiContexts();
   const propTemplatesContent = writePropTemplates();
   sync({ en: enCatalog, 'zh-Hans': zhCatalog }, propTemplatesContent);
+  reportUnscopedKeys(enCatalog, scopes, REPORT_UNSCOPED ? 20 : 0);
 }
 
 // 目录里出现 HTML 实体 = 两类真 bug，且都**静默**：
@@ -1913,6 +1915,43 @@ function warnHtmlEntities(enCatalog, zhCatalog) {
   for (const [key, value] of badValues.slice(0, 10)) {
     console.warn(`   val ${JSON.stringify(key)} -> ${JSON.stringify(value)}`);
   }
+}
+
+/**
+ * tgui.json 只合并不裁剪，历史键会一直留着。tgui-scopes.json 只记**本次还能抽到**的 key。
+ * 两者之差就是运行时可能仍靠反查活着、但抽取面已经看不见的「死键」。
+ * **只报告、绝不删除**——TGUI 运行期有多条 fallback 会拿渲染串回目录查，按死键 GC 会整片回退英文。
+ */
+function unscopedTguiKeys(enCatalog, scopes) {
+  return Object.keys(enCatalog)
+    .filter((key) => !scopes?.[key])
+    .sort();
+}
+
+function reportUnscopedKeys(enCatalog, scopes, sampleCount = 0) {
+  const unscoped = unscopedTguiKeys(enCatalog, scopes);
+  console.log(
+    `tgui 死键（en/tgui.json 无 tgui-scopes.json scope）：${unscoped.length} 条（只报告不删除）`,
+  );
+  if (!sampleCount || !unscoped.length) {
+    return unscoped;
+  }
+  for (const key of unscoped.slice(0, sampleCount)) {
+    const preview = key.length > 96 ? `${key.slice(0, 93)}...` : key;
+    console.log(`   ${JSON.stringify(preview)}`);
+  }
+  if (unscoped.length > sampleCount) {
+    console.log(`   … 另有 ${unscoped.length - sampleCount} 条`);
+  }
+  return unscoped;
+}
+
+function reportUnscopedFromDisk(sampleCount = 20) {
+  const enPath = stringsCatalogPath('en');
+  const scopesPath = path.join(STRINGS_I18N_DIR, 'tgui-scopes.json');
+  const enCatalog = fs.existsSync(enPath) ? readJson(enPath) : {};
+  const scopes = fs.existsSync(scopesPath) ? readJson(scopesPath) : {};
+  return reportUnscopedKeys(enCatalog, scopes, sampleCount);
 }
 
 /**
@@ -1943,6 +1982,7 @@ function writeTguiScopes(enCatalog) {
   if (process.env.I18N_SCOPE_REPORT) {
     for (const [key, sc] of shared) console.log(`   ${JSON.stringify(key)} ${sc.join(', ')}`);
   }
+  return out;
 }
 
 /** Pure deterministic representation used by extract and freshness checks. */
@@ -2036,26 +2076,30 @@ function sync(sourceCatalogs = {}, propTemplatesContent = null) {
   }
 }
 
+const USAGE =
+  'Usage: node tools/i18n/tgui-catalog.mjs [extract|sync|report-unscoped] [--check] [--report-unscoped]';
+
 const command = process.argv[2] ?? 'sync';
 const flags = process.argv.slice(3);
-if (flags.some((flag) => flag !== '--check')) {
-  console.error(
-    `Unknown flags: ${flags.filter((flag) => flag !== '--check').join(' ')}`,
-  );
-  console.error(
-    'Usage: node tools/i18n/tgui-catalog.mjs [extract|sync] [--check]',
-  );
+const allowedFlags = new Set(['--check', '--report-unscoped']);
+const unknownFlags = flags.filter((flag) => !allowedFlags.has(flag));
+if (unknownFlags.length) {
+  console.error(`Unknown flags: ${unknownFlags.join(' ')}`);
+  console.error(USAGE);
   process.exit(1);
 }
 if (command === 'extract') {
   extract();
 } else if (command === 'sync') {
   sync();
+  if (REPORT_UNSCOPED) {
+    reportUnscopedFromDisk(20);
+  }
+} else if (command === 'report-unscoped') {
+  reportUnscopedFromDisk(20);
 } else {
   console.error(`Unknown command: ${command}`);
-  console.error(
-    'Usage: node tools/i18n/tgui-catalog.mjs [extract|sync] [--check]',
-  );
+  console.error(USAGE);
   process.exit(1);
 }
 

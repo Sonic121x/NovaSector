@@ -59,11 +59,11 @@
 		to_chat(src, span_revennotice(LANG("mob.8bff636feeefb8c6", list(target_Their))))
 		essence_drained += rand(20, 30)
 
-	if(target.stat != DEAD && !HAS_TRAIT(target, TRAIT_WEAK_SOUL))
+	if(target.stat != DEAD && !HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))
 		to_chat(src, span_revennotice(LANG("mob.3c3d4b349b063f0e", list(target_Their))))
 		essence_drained += rand(40, 50)
 
-	if(!target_has_client && HAS_TRAIT(target, TRAIT_WEAK_SOUL))
+	if(!target_has_client && HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))
 		to_chat(src, span_revennotice(LANG("mob.b1c5d34c7be41845", list(target_Their))))
 		essence_drained = 5
 
@@ -124,7 +124,7 @@
 
 	change_essence_amount(essence_drained, FALSE, target)
 
-	if(essence_drained <= 90 && target.stat != DEAD && !HAS_TRAIT(target, TRAIT_WEAK_SOUL))
+	if(essence_drained <= 90 && target.stat != DEAD && !HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))
 		max_essence += 5
 		to_chat(src, span_revenboldnotice(LANG("mob.1dd900c54506a53c", list(target, max_essence))))
 

@@ -7,20 +7,29 @@
 import { createElement as reactCreateElement } from 'react';
 import { useBackend } from '../backend';
 import { translate } from './catalog';
+import { localizeNode, localizeProps } from './localize';
 import {
-  localizedDropdownOption,
-  localizedOption,
-  translateMessage,
   type CanonicalOptionValue,
   type LocalizedDropdownOption,
   type LocalizedMessage,
   type LocalizedOption,
   type LocalizedText,
+  localizedDropdownOption,
+  localizedOption,
   type MessageArgument,
+  translateMessage,
 } from './messages';
-import { localizeNode, localizeProps } from './localize';
 
 export { translate, translateCurrent } from './catalog';
+export { localizeHtml } from './localize';
+export type {
+  CanonicalOptionValue,
+  LocalizedDropdownOption,
+  LocalizedMessage,
+  LocalizedOption,
+  LocalizedText,
+  MessageArgument,
+} from './messages';
 export {
   defineMessage,
   localizedDropdownOption,
@@ -30,14 +39,6 @@ export {
   translateMessageCurrent,
   translateOption,
   translateOptionCurrent,
-} from './messages';
-export type {
-  CanonicalOptionValue,
-  LocalizedDropdownOption,
-  LocalizedMessage,
-  LocalizedOption,
-  LocalizedText,
-  MessageArgument,
 } from './messages';
 
 /** Low-level hook for existing stable catalog keys; never pass payload identifiers here. */
@@ -73,10 +74,7 @@ export function useTranslator(): MessageTranslator {
     option: (value, message, args) =>
       localizedOption(value, translateMessage(locale, message, args)),
     dropdownOption: (value, message, args) =>
-      localizedDropdownOption(
-        value,
-        translateMessage(locale, message, args),
-      ),
+      localizedDropdownOption(value, translateMessage(locale, message, args)),
   };
 }
 

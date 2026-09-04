@@ -52,18 +52,10 @@
 			balloon_alert(src, LANG("mob.c6a761432abf0a91", null))
 		return FALSE
 
-	if(isanimal(meal))
-		var/mob/living/simple_animal/simple_meal = meal
-		if(simple_meal.damage_coeff[TOX] <= 0 && simple_meal.damage_coeff[BRUTE] <= 0) //The creature wouldn't take any damage, it must be too weird even for us.
-			if(!silent)
-				balloon_alert(src, LANG("mob.fb932b9ba655617d", null))
-			return FALSE
-	else if(isbasicmob(meal))
-		var/mob/living/basic/basic_meal = meal
-		if(basic_meal.damage_coeff[TOX] <= 0 && basic_meal.damage_coeff[BRUTE] <= 0)
-			if (!silent)
-				balloon_alert(src, LANG("mob.fb932b9ba655617d", null))
-			return FALSE
+	if(GET_PHYSIOLOGY(meal, BRUTE) <= 0 && GET_PHYSIOLOGY(meal, TOX) <= 0) //The creature wouldn't take any damage, it must be too weird even for us.
+		if(!silent)
+			balloon_alert(src, LANG("mob.fb932b9ba655617d", null))
+		return FALSE
 
 	return TRUE
 

@@ -207,7 +207,6 @@
 			last_special = world.time + CLICK_CD_RANGE
 		cuff_resist(I)
 
-
 /**
  * Helper to break the cuffs from hands
  * @param {obj/item} cuffs - The cuffs to break
@@ -217,16 +216,16 @@
 /mob/living/carbon/proc/cuff_resist(obj/item/cuffs, breakouttime = null, cuff_break = 0)
 	if((cuff_break != INSTANT_CUFFBREAK) && (SEND_SIGNAL(src, COMSIG_MOB_REMOVING_CUFFS, cuffs) & COMSIG_MOB_BLOCK_CUFF_REMOVAL))
 		return //The blocking object should sent a fluff-appropriate to_chat about cuff removal being blocked
-	if(cuffs.item_flags & BEING_REMOVED)
+	if(DOING_INTERACTION(src, REF(cuffs) ))
 		to_chat(src, span_warning(LANG("mob.2ef54d7335c01104", list(cuffs))))
 		return
-	cuffs.item_flags |= BEING_REMOVED
+
 	if (isnull(breakouttime))
 		breakouttime = cuffs.breakouttime
 	if(!cuff_break)
 		visible_message(span_warning(LANG("mob.1c66998e85d25897", list(src, cuffs))))
 		to_chat(src, span_notice(LANG("mob.ace3833fdc7ebf48", list(cuffs, DisplayTimeText(breakouttime)))))
-		if(do_after(src, breakouttime, target = src, timed_action_flags = IGNORE_HELD_ITEM, cog_icon = null))
+		if(do_after(src, breakouttime, target = src, timed_action_flags = IGNORE_HELD_ITEM, cog_icon = null, interaction_key = REF(cuffs) ))
 			. = clear_cuffs(cuffs, cuff_break)
 		else
 			to_chat(src, span_warning(LANG("mob.adacd83cbcde80fe", list(cuffs))))
@@ -242,7 +241,6 @@
 
 	else if(cuff_break == INSTANT_CUFFBREAK)
 		. = clear_cuffs(cuffs, cuff_break)
-	cuffs.item_flags &= ~BEING_REMOVED
 
 /mob/living/carbon/proc/uncuff()
 	if (handcuffed)
