@@ -1,0 +1,245 @@
+# 译名一致性基线（node tools/i18n/consistency.mjs --update-baseline 生成）。
+# 每行一个「去文法宏后的英文」。只对不在此表的新增分叉失败。
+# 表里既有真问题也有同形异义（bolt 螺栓/插销），逐条清理时从这里删行。
+{0} a bandage with {1}.
+{0} power grows.
+<b>Everything suddenly goes black.</b>
+A pizza box with a bomb cunningly attached to the lid. The timer needs to be set by opening the box; afterwards, opening the box again will trigger the detonation after the timer has elapsed. Comes with free pizza, for you or your target!
+Administrators have been informed.
+Ancient R&D Server
+And still, {0} power grows.
+Antagonist
+Ash Walker
+Blob
+Charges by the second, though all costs are waived on red alert.
+Each kill with this grows your {0} explosion size.
+Has an attached \"sample\"...
+Here is your change.
+Insectoid
+It emanates a divine aura that defies souls tainted by darker forces.
+It has an emblazoned Nanotrasen logo on it.
+It is beginning to wear off.
+Kiara's cloak
+Lifeform Stasis Unit
+Malfunctioning AI
+MEAT
+Morph
+Note, the player count is under the required limit.
+NT Sanctioned Psykers proudly confirm reports that nobody died this shift!
+On the bottle is a picture of a kitsune with nine touchable tails.
+Or at least, that's what it should be. <i>Somebody</i> must have set a variable incorrectly.
+P.S. External organs such as tails, snouts, etc still work fine.
+Pioneer-Class Matter Resequencer
+RB-MK2 reactor
+Recall signal traced. Results can be viewed on any communications console.
+Recovered Crew
+Red Alert state confirmed: Dispatching priority shuttle.
+Repackaged with a wound stabilization-focused loadout.
+Repackaged with improved medical supplies.
+Repackaged with station-standard medical supplies.
+Soar Industries Express Delivery Console
+Take it off first.
+The 'Wetworks'-pattern Shoredress is a long-standing template upon which most Azulean 'wetsuits' are made. This atmospheric exploration suit is a single form-fitting garment, designed to keep wearers comfortable in the harsh environment of dry land; even sometimes worn underneath orbital suits such as MODs. \n\nShoredresses apply active thermal channels and motion-powered micropumps to allow for water of the wearer's temperature choice to circulate; ensuring ample flow over not only the gills, but the rest of the wearer's skin, at the cost of occasional movement being needed when the wearer is still. \nThese suits are known to come with luminescent panels that take on a bright glow when underwater, meant for signalling as well as higher visibility in deep waters. The system is meant to only be able to process water, fresh or otherwise; but unofficially, a great many chemicals or even drinks have been loaded in by adventurous or careless explorers of the New Principalities-- at fantastic personal risk to their gills.
+The energy sword is an edged weapon with a blade of pure energy. The sword is small enough to be pocketed when inactive. Activating it produces a loud, distinctive noise.
+The shuttle will be delayed by three minutes.
+The surface of the shard shines with glimpses of things which never were, yet have always been.
+This is hard to get right in these conditions...
+This is practically impossible in these conditions...
+This model is highly advanced and capable of compressing items, making mail's storage space comparable to standard backpack.
+This model is the most advanced and capable of performing crazy bluespace compressions, making mail's storage space comparable to bluespace backpack.
+This one has blue, yellow, green, and white flowers.
+This one has red, blue, purple, and pink flowers.
+This one has red, yellow, and white flowers.
+This one has yellow, green, and white flowers.
+This one is in a bright red color.
+This one is in a bright yellow color.
+This one is in a citrus orange color.
+This one is in a grassy green color.
+This one is in a midnight black color.
+This one is in a pure white color.
+This one is in a soothing blue color.
+This one is in a vibrant purple color.
+This one is noticeably smooth, and would lack any non-hissing lisps if used.
+This one is painted in blue and white.
+This one is spent.
+This one looks a bit sus...
+This one sports a nifty science paintjob, but is otherwise normal.
+Use {0} in your hands to attempt to awaken it.
+Venus Human Trap
+Viruses getting you down? Then upgrade to sterilized clothing today!
+Yet another foray by the Wizard Federation into the dangerous field of soul magic.
+You almost had it, though.
+You can faintly make out the word 'Hemopagopril' was once scribbled on it.
+You can feel unholy energies trying to tear something away from you.
+You may check your antagonist info to recall this.
+You're not sure if making this out of a carton was the brightest idea.
+{0} is hit by \a {1}{2}!
+activated
+Aesir salad
+Aft Central Primary Hallway
+Aft Primary Hallway
+Aft Solar Array
+AI Chamber
+AI Satellite
+AI Upload Access
+AI Upload Chamber
+alcohol
+Any item
+Arrivals Security Checkpoint
+Atmospherics Gas Storage
+Atmospherics HFR Room
+Auxiliary Tool Storage
+Barber
+BBQ fish flatbread
+bear fur carpet
+Begin surgery by applying surgical drapes to the patient or by buckling the patient to the surgical table.
+Berry-pocket
+Black Checker King
+Black Checker Man
+blessed
+bolt
+bonesetter
+Brig
+Brig Entrance
+brush
+Captainship not forced on anyone.
+Cargo Break Room
+Cargo Lobby
+Cargo Office
+Central
+Chapel
+Chapel Office
+Chapel Storage
+Chemical Storage
+Circuit Workshop
+climbable
+Command
+Command Armor Vest
+Corporate Private Dock
+Corporate Showroom
+crafting component
+Custodial Closet
+cut
+Cyborg Storage A
+Cyborg Storage B
+Dalba Masterworks 'Burrower' Integrated Drill
+Dank-pocket
+dead
+Delay
+Departure Lounge
+Detective's Office
+Diner
+donk-pockets honk box
+Dormitories
+egg
+Eigamudo curry
+Engineering Foyer
+Escape Pod Bay
+Experimentation Lab
+F.R.A.M.E. disk
+Firebot
+Fitness Room
+FNX-99 \"Hades\" Carbine
+Fore Central Primary Hallway
+Fore Primary Hallway
+Gyárhajó 1023: Ginger Beer
+Gyárhajó 1023: Lemonade
+Gyárhajó 1023: Soda Water
+Gyárhajó 1506: Navy Rum
+hand
+handcuffed
+Holding Cell
+Honkbot
+HoNkER BlAsT 5000
+Hot Shots
+Hotel Staff Room
+Hotel Staff Storage
+Hydroponics
+Interdyne Premium Trauma Kit
+Interdyne Trauma Kit
+Italic flatbread
+IV drip
+JOISuit Modification Core
+Kansai bowl
+King Katsu sandwich
+Labor Shuttle Dock
+LBX AC 10 \"Scattershot\"
+Library Lounge
+Lionhunter's Rifle
+Little Shiro sandwich
+Lizard
+meat
+Mech Bay
+Medbay Lobby
+Medbay Treatment Center
+Medical
+MercTac armored hoodie
+Mix all ingredients together
+MOD anti slip module
+MOD control unit
+Monophobia
+newscaster frame
+Note
+Obey these laws:
+Official Cat Stamp
+Open
+oranges
+Ordnance Freezer Chamber
+Panic Siphon
+Peking duck crepes a l'orange
+Pizza-pocket
+Plasma Dog Supreme
+plunger
+Port Emergency Storage
+Power
+Primary Tool Storage
+Prison Wing
+Psychology Office
+Public Mining Storage
+RB-MK2 Reactor Chamber
+RB-MK2 Reactor Room
+Reinforce the arrowhead with bronze.
+Research Division
+Research Division Server Room
+Restrooms
+Robotics
+Robotics Lab
+Ruskie DJ Station
+Sakhno SKS semi-automatic rifle
+Sauna
+Science
+Science Division
+Securitron
+Security EVA
+Security Medical
+Security Report
+Semki Sunflower Seeds
+Service Hallway
+Shork.INC Body Pillow
+Someone forgot to fill out the article!
+Soylent Green
+Space Twinkie
+Spicy-pocket
+Starboard Emergency Storage
+Sticko Classic
+Sticko Mystery
+stone
+Strength
+Technical Storage
+Telecomms Control Room
+Telecomms Server Room
+Teriyaki-pocket
+The crayon or spray can you use must have at least 10 uses remaining.
+The Sister and He Who Wept
+Theater
+Use any dried leaf-like plant on a towercap log! (Ambrosia, cannabis, tobacco, etc!)
+Vacant Commissary
+Vault
+Vim
+Viper Suit
+Voskhod-P depowered combat armor
+White Checker Man
+wirecutters
+You can't stand the freezing cold with every breath you take!
+You can't stand the searing heat with every breath you take!
+Zmorgast flatbread

@@ -454,6 +454,31 @@ node tools/i18n/miss-scan.mjs --baseline tools/i18n/miss-baseline.txt --update-b
 # miss-harvest.sh 结束时若有日志会自动带 --baseline 跑本命令。
 ```
 
+### 译名一致性（`consistency.mjs`）
+
+同一句英文在目录里对应了**不同的中文**。成因不是漏译，是**同一个东西被抽成了两把 key**：
+
+- 源串的**附带空白**进了 key —— 一条描述结尾多一个空格、或 DM 续行留下 `\t`，
+  就是两把 key、两次送 MT，于是同一段两百字的描述有两份措辞不同的译文（实测能量剑、岸装）；
+- `\improper` 与否 —— 两条都是合法源串（是不是专名由类型自己决定），但会分两批翻，
+  实测 `Blob` 得到「团块」/「泡泡」两个名字。
+
+玩家按渲染路径看到不同译名，而目录侧一切正常，**任何现有门禁都不报**。
+
+```sh
+node tools/i18n/consistency.mjs                                       # 全量报告（同命名空间内的分叉排最前）
+node tools/i18n/consistency.mjs --baseline tools/i18n/consistency-baseline.txt
+node tools/i18n/consistency.mjs --baseline tools/i18n/consistency-baseline.txt --update-baseline
+```
+
+**这是报告不是硬门禁。** 242 组里既有真问题，也有同形异义（`bolt` 螺栓/插销、
+`Science` 科学/科学部，与 `audit.rs` 的 `AMBIGUITY_ALLOWLIST` 同一类），所以用基线冻结现状、
+只对新增失败；逐条清理时从基线里删行。
+
+> 想根治「附带空白造成两把 key」，得让 `build_template` 在算 hash 前折叠空白——那会让
+> **一大批 key 整体变更**，等于丢掉对应译文。真要做请走 `migrate.rs` 的迁移路径，
+> 并且先用本工具量清楚受影响范围。
+
 六个分类桶直接对应 `AGENTS.md` 排查规律的处理动作：
 **已译未接通**（在目录且 zh 已译 → 显示路径绕过翻译层，落地点补反查/接 sink）、
 **在目录未译**（zh==en → 跑 MT 或确认 keep-english 白名单）、
