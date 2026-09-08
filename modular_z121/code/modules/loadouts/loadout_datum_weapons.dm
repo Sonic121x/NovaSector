@@ -80,3 +80,4 @@
 /datum/loadout_item/weapons/sec_weapons/pepperball
 	name = /obj/item/gun/ballistic/automatic/pistol/pepperball::name
 	item_path = /obj/item/storage/toolbox/guncase/nova/orange/pistol/pepperball
+
