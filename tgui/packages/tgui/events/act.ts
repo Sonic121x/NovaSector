@@ -8,6 +8,7 @@ import { createQueue } from './handlers/chunking';
 export function sendAct(
   action: string,
   payload: Record<string, unknown> = {},
+  uiId?: number, // NOVA EDIT ADDITION - TGUI_STALE_ACT
 ): void {
   // Validate that payload is an object
   const isObject =
@@ -23,6 +24,7 @@ export function sendAct(
     payload: stringifiedPayload,
     tgui: 1,
     windowId: Byond.windowId,
+    uiId: uiId ?? '', // NOVA EDIT ADDITION - TGUI_STALE_ACT - 顶层参数同样占 URL 长度
   }).reduce(
     (url, [key, value], i) =>
       url +
@@ -42,7 +44,14 @@ export function sendAct(
     return;
   }
 
-  Byond.sendMessage(`act/${action}`, payload);
+  // NOVA EDIT CHANGE START - TGUI_STALE_ACT - ORIGINAL: Byond.sendMessage(`act/${action}`, payload);
+  // 多出来的键会成为顶层 href 参数，服务端 /datum/tgui/on_message 按它丢弃发给旧 UI 实例的消息。
+  if (uiId === undefined) {
+    Byond.sendMessage(`act/${action}`, payload);
+  } else {
+    Byond.sendMessage({ type: `act/${action}`, payload, uiId });
+  }
+  // NOVA EDIT CHANGE END
 }
 
 function encodedLengthBinarySearch(haystack: string[], length: number): number {
