@@ -141,7 +141,7 @@
 		if (node_dist >= cur_dist)
 			continue
 
-		if (!can_see(our_turf, node_turf, MINING_BEACON_MAX_REACH) || !can_see(node_turf, our_turf, MINING_BEACON_MAX_REACH))
+		if (!can_see(our_turf, node_turf, MINING_BEACON_MAX_REACH) && !can_see(node_turf, our_turf, MINING_BEACON_MAX_REACH))
 			continue
 
 		cur_node = node
@@ -167,7 +167,7 @@
 			if (node_dist >= cur_dist)
 				continue
 
-			if (!can_see(our_turf, node_turf, MINING_BEACON_MAX_REACH) || !can_see(node_turf, our_turf, MINING_BEACON_MAX_REACH))
+			if (!can_see(our_turf, node_turf, MINING_BEACON_MAX_REACH) && !can_see(node_turf, our_turf, MINING_BEACON_MAX_REACH))
 				continue
 
 			cur_node = node

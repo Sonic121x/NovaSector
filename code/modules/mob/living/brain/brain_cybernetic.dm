@@ -22,8 +22,8 @@
 
 /obj/item/organ/brain/cybernetic/check_for_repair(obj/item/item, mob/user)
 	if (item.tool_behaviour == TOOL_MULTITOOL) //attempt to repair the brain
-		if (brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
-			to_chat(user, span_warning(LANG("obj.57f2d422a8170aff", list(src))))
+		if (brainmob?.health <= brainmob?.dead_threshold) //if the brain is fucked anyway, do nothing
+			to_chat(user, span_warning("[src] is far too damaged, there's nothing else we can do for it!"))
 			return TRUE
 
 		if (DOING_INTERACTION(user, src))

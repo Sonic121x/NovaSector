@@ -1087,8 +1087,7 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "打开/关闭", 
 	if(opened)
 		return
 	if(ismovable(loc))
-		user.changeNext_move(CLICK_CD_BREAKOUT)
-		user.last_special = world.time + CLICK_CD_BREAKOUT
+		user.change_next_special_move(CLICK_CD_BREAKOUT)
 		var/atom/movable/movable_parent = loc
 		movable_parent.relay_container_resist_act(user, src)
 		return
@@ -1099,11 +1098,10 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "打开/关闭", 
 	if(DOING_INTERACTION_WITH_TARGET(user, src))
 		return
 	//okay, so the closet is either welded or locked... resist!!!
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_warning(LANG("obj.912b79b5194314b7", list(src))), \
-		span_notice(LANG("obj.43ad33b141e25411", list(src, DisplayTimeText(breakout_time)))), \
-		span_hear(LANG("obj.8df1b48f0c159385", list(src))))
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
+	user.visible_message(span_warning("[src] begins to shake violently!"), \
+		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
+		span_hear("You hear banging from [src]."))
 
 	addtimer(CALLBACK(src, PROC_REF(check_if_shake)), 1 SECONDS)
 

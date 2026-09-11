@@ -355,11 +355,10 @@
 	if(opened || ismovable(loc) || !cinched)
 		return ..()
 
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_warning(LANG("obj.f7341b20daff8d11", list(src))), \
-		span_notice(LANG("obj.ca864905e3c0f43e", list(src, DisplayTimeText(breakout_time)))), \
-		span_hear(LANG("obj.e8a086303529f0d5", list(src))))
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
+	user.visible_message(span_warning("Someone in [src] begins to wriggle!"), \
+		span_notice("You start wriggling, attempting to loosen [src]'s buckles... (this will take about [DisplayTimeText(breakout_time)].)"), \
+		span_hear("You hear straining cloth from [src]."))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || opened || !cinched )
 			return
@@ -623,8 +622,7 @@
 		open(user)
 		return
 
-	user.changeNext_move(6 SECONDS)
-	user.last_special = world.time + 6 SECONDS
+	user.change_next_special_move(6 SECONDS)
 	user.visible_message(
 		span_warning(LANG("obj.96af64613ccf64f6", list(src))),
 		span_notice(LANG("obj.147319cc2107a465", list(src, DisplayTimeText(breakout_time)))),

@@ -447,10 +447,10 @@
 			H.Paralyze(8 SECONDS)
 		if(H.staminaloss && !H.IsSleeping())
 			var/total_health = (H.health - H.staminaloss)
-			if(total_health <= HEALTH_THRESHOLD_CRIT && !IS_UNCONSCIOUS_OR_CRIT(H))
-				H.visible_message(span_warning(LANG("obj.5b2d66f3433de5d4", list(user, H, H.p_them()))), \
-								span_userdanger(LANG("obj.1ace6279c0000c05", list(user))), span_hear(LANG("obj.6c7f8149b8c68cd4", null)), null, user)
-				to_chat(user, span_danger(LANG("obj.8afcd6a2295027ae", list(H, H.p_them()))))
+			if(total_health <= H.crit_threshold && !IS_UNCONSCIOUS_OR_CRIT(H))
+				H.visible_message(span_warning("[user] delivers a heavy hit to [H]'s head, knocking [H.p_them()] out cold!"), \
+								span_userdanger("You're knocked unconscious by [user]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), null, user)
+				to_chat(user, span_danger("You deliver a heavy hit to [H]'s head, knocking [H.p_them()] out cold!"))
 				H.SetSleeping(60 SECONDS)
 				H.adjust_organ_loss(ORGAN_SLOT_BRAIN, 15, 150)
 	else

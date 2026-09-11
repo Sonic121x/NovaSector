@@ -128,8 +128,8 @@
 	else if(brain.suicided || (brain.brainmob && HAS_TRAIT(brain.brainmob, TRAIT_SUICIDED)))
 		. += span_info(LANG("obj.cc4b9630ad6f6017", list(shown_name)))
 	else if(brain.brainmob)
-		if(brain.brainmob?.health <= HEALTH_THRESHOLD_DEAD)
-			. += span_info(LANG("obj.eabd7fc29cbfa57d", null))
+		if(brain.brainmob?.health <= brain.brainmob?.dead_threshold)
+			. += span_info("It's leaking some kind of... clear fluid? The brain inside must be in pretty bad shape.")
 		if(brain.brainmob.key || brain.brainmob.get_ghost(FALSE, TRUE))
 			. += span_info(LANG("obj.974119155a67b887", null))
 		else

@@ -217,8 +217,8 @@
 
 /obj/item/organ/brain/proc/check_for_repair(obj/item/item, mob/user)
 	if(damage && item.is_drainable() && item.reagents.has_reagent(/datum/reagent/medicine/mannitol) && (organ_flags & ORGAN_ORGANIC)) //attempt to heal the brain
-		if(brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
-			to_chat(user, span_warning(LANG("obj.57f2d422a8170aff", list(src))))
+		if(brainmob?.health <= brainmob?.dead_threshold) //if the brain is fucked anyway, do nothing
+			to_chat(user, span_warning("[src] is far too damaged, there's nothing else we can do for it!"))
 			return TRUE
 
 		user.visible_message(span_notice(LANG("obj.36b950010de56066", list(user, item, src))), span_notice(LANG("obj.09d70374d6ac85e0", list(item, src))))

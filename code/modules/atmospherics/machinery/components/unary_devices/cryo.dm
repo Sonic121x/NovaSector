@@ -517,11 +517,10 @@
 			set_on(TRUE)
 
 /obj/machinery/cryo_cell/container_resist_act(mob/living/user)
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice(LANG("obj.591d53545b6cf604", list(user, src))), \
-		span_notice(LANG("obj.907d1a299974ae72", list(src, DisplayTimeText(CRYO_BREAKOUT_TIME)))), \
-		span_hear(LANG("obj.a2fe6effec64bfb6", list(src))))
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
+	user.visible_message(span_notice("You see [user] kicking against the glass of [src]!"), \
+		span_notice("You struggle inside [src], kicking the release with your foot... (this will take about [DisplayTimeText(CRYO_BREAKOUT_TIME)].)"), \
+		span_hear("You hear a thump from [src]."))
 	if(do_after(user, CRYO_BREAKOUT_TIME, target = src, cog_icon = null))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src )
 			return

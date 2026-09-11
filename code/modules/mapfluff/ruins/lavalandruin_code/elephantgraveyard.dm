@@ -293,8 +293,7 @@
 	if(opened)
 		return
 	// The player is trying to dig themselves out of an early grave
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	user.visible_message(
 		span_warning(LANG("obj.b000f5e9a1311afa", list(src))),
 		span_notice(LANG("obj.66170acaa3e4914d", list(DisplayTimeText(breakout_time)))),

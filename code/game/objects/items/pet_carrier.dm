@@ -141,8 +141,7 @@
 		container_resist_act(user)
 
 /obj/item/pet_carrier/container_resist_act(mob/living/user)
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	if(user.mob_size <= MOB_SIZE_SMALL)
 		to_chat(user, span_notice(LANG("obj.58a79025217e7035", list(src))))
 		to_chat(loc, span_warning(LANG("obj.8c3cd2c566e8b34c", list(user))))

@@ -19,7 +19,7 @@
 	aoe_radius = 3
 
 /datum/action/cooldown/spell/aoe/wave_of_desperation/is_valid_target(mob/living/carbon/cast_on)
-	return ..() && istype(cast_on) && (cast_on.handcuffed || cast_on.legcuffed)
+	return ..() && istype(cast_on) && length(cast_on.get_all_attached_restraints())
 
 // Before the cast, we do some small AOE damage around the caster
 /datum/action/cooldown/spell/aoe/wave_of_desperation/before_cast(mob/living/carbon/cast_on)
@@ -27,12 +27,9 @@
 	if(. & SPELL_CANCEL_CAST)
 		return
 
-	if(cast_on.handcuffed)
-		cast_on.visible_message(span_danger(LANG("datum.2eaa1a833db06e62", list(cast_on.handcuffed, cast_on))))
-		QDEL_NULL(cast_on.handcuffed)
-	if(cast_on.legcuffed)
-		cast_on.visible_message(span_danger(LANG("datum.732cd5fffd82cb6a", list(cast_on.legcuffed, cast_on))))
-		QDEL_NULL(cast_on.legcuffed)
+	for(var/obj/item/restraint in cast_on.get_all_attached_restraints())
+		cast_on.visible_message(span_danger("[restraint] on [cast_on] shatter!"))
+		qdel(restraint)
 
 	cast_on.apply_status_effect(/datum/status_effect/heretic_lastresort)
 	new /obj/effect/temp_visual/knockblast(get_turf(cast_on))
