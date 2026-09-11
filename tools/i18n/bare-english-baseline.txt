@@ -1726,7 +1726,6 @@ No/Invalid ticket id specified.
 Nobody has touched this yet!
 Nomadic life produces a tight-knit culture, with moths valuing their friends, family, and vessels highly. Moths are gregarious by nature and do best in communal spaces. This has served them well on the galactic stage, maintaining a friendly and personable reputation even in the face of hostile encounters. It seems that the galaxy has come to accept these former pirates.
 Non biological sample being swabbed, no bueno.
-Non-atom in the contents of {0}!
 Non-silverscale tongue initialized a turn to statue action.
 Normalization detected! Abort the solution package!
 Normally, Snailpeople are a result of a genetic experiment gone wrong, but they have since become recognized species in their own right, similar to the Felinid.
@@ -2624,6 +2623,7 @@ Their drive for constant expansion and 'the next great thing' has made the Kingd
 Their homeworld lost to the ages, the moths live aboard the Grand Nomad Fleet. Made up of what could be found, bartered, repaired, or stolen the armada is a colossal patchwork built on a history of politely flagging travelers down and taking their things. Occasionally a moth will decide to leave the fleet, usually to strike out for fortunes to send back home.
 Their names are two-part; a birth name, and a title. Their birth names still hold resemblance to 'Asgardian' culture, typically a Nordic name such as 'Solveig Helgasdottir,' or 'Bjorn Lukasson.' However, their last name is then exchanged for a 'Title' when the Hearthkin is no longer 'Unproven.' These are a two-parter, based on either great deeds, embarrassing moments, or aspects of the person's personality. Some examples would be 'Soul-Drowner' after the night of a Hearthkin drinking herself half-dead, or one might be known as 'Glacier-Shaped' for being abnormally large. These titles are always given by ones' kin.
 Their neck has already been already cut, you can't make the bleeding any worse!
+Their voice sounds gender neutral.
 Then you'll be able to keep listening to this without getting bored!
 Theoretical: Epicenter radius: {0}. Outer radius: {1}. Shockwave radius: {2}.
 There is a criminal aboard. We will arrest them and return them to the gulag. That's good, yes?

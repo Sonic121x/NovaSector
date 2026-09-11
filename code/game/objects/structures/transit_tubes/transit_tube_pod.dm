@@ -74,8 +74,7 @@
 		empty_pod()
 		return
 	if(!moving)
-		user.changeNext_move(CLICK_CD_BREAKOUT)
-		user.last_special = world.time + CLICK_CD_BREAKOUT
+		user.change_next_special_move(CLICK_CD_BREAKOUT)
 		to_chat(user, span_notice(LANG("obj.1bf9509255f53a20", null)))
 		if(do_after(user, 1 MINUTES, target = src))
 			to_chat(user, span_notice(LANG("obj.132b27b025f2c279", null)))

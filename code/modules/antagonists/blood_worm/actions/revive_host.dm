@@ -95,7 +95,7 @@
 		if (feedback)
 			host.balloon_alert(owner, LANG("datum.45c3c09bc4bdd702", null))
 		return FALSE
-	if (host.health <= HEALTH_THRESHOLD_DEAD)
+	if (host.health <= host.dead_threshold)
 		if (feedback)
 			host.balloon_alert(owner, LANG("datum.0f64334c2dd10e02", null))
 		return FALSE

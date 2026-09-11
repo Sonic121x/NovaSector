@@ -127,8 +127,7 @@
 	update_appearance()
 
 /obj/machinery/implantchair/container_resist_act(mob/living/user)
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	user.visible_message(span_notice(LANG("obj.485787b2b8d67ec7", list(user, src))), \
 		span_notice(LANG("obj.43ad33b141e25411", list(src, DisplayTimeText(breakout_time)))), \
 		span_hear(LANG("obj.a1d9c5733c600b1c", list(src))))

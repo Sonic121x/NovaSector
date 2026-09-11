@@ -580,8 +580,7 @@
 		open_machine()
 		dump_inventory_contents()
 		return
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	user.visible_message(span_notice(LANG("obj.014be919d6c59d4f", list(user, src))), \
 		span_notice(LANG("obj.b62a303de810b0b7", list(DisplayTimeText(breakout_time)))), \
 		span_hear(LANG("obj.a2fe6effec64bfb6", list(src))))

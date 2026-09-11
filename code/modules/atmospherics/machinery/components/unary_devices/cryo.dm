@@ -517,8 +517,7 @@
 			set_on(TRUE)
 
 /obj/machinery/cryo_cell/container_resist_act(mob/living/user)
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	user.visible_message(span_notice(LANG("obj.591d53545b6cf604", list(user, src))), \
 		span_notice(LANG("obj.907d1a299974ae72", list(src, DisplayTimeText(CRYO_BREAKOUT_TIME)))), \
 		span_hear(LANG("obj.a2fe6effec64bfb6", list(src))))

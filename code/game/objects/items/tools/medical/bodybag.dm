@@ -91,8 +91,7 @@
 	if(user.incapacitated)
 		to_chat(user, span_warning(LANG("obj.074bdd5bbfbaff78", null)))
 		return
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	to_chat(user, span_notice(LANG("obj.bc4393096463756e", list(src))))
 	to_chat(loc, span_warning(LANG("obj.c3a12e6a53c9f983", list(src))))
 	if(!do_after(user, 12 SECONDS, src, timed_action_flags = (IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM)))

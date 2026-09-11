@@ -840,6 +840,10 @@
 			if(!mutation)
 				return
 
+			if(length(mutation.sources) && get_mutation_class(mutation) == SCANNER_MUTATION_CLASS_OTHER)
+				say(LANG("obj.3fdb482a2d58f722", null))
+				return
+
 			// Create a new DNA Injector and add the appropriate mutations to it
 			var/obj/item/dnainjector/activator/injector = new /obj/item/dnainjector/activator(loc)
 			LAZYADD(injector.add_mutations, mutation.make_copy())
@@ -966,6 +970,10 @@
 
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!original)
+				return
+
+			if(length(original.sources) && get_mutation_class(original) == SCANNER_MUTATION_CLASS_OTHER)
+				say(LANG("obj.0c0011c7811037d2", null))
 				return
 
 			diskette.mutations += original.make_copy()
@@ -2167,6 +2175,7 @@
 		return SCANNER_MUTATION_CLASS_ACTIVATOR
 	if(MUTATION_SOURCE_MUTATOR in mutation.sources)
 		return SCANNER_MUTATION_CLASS_MUTATOR
+	return null
 
 /**
  * Checks whether a mutation alias has been discovered
