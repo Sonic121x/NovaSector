@@ -22563,6 +22563,7 @@
     "tgui:ProbingConsole",
     "tgui:Safe",
     "tgui:Sleeper",
+    "tgui:StripMenu",
     "tgui:TransferValve",
     "tgui:Vendatray",
     "tgui:constants",
@@ -25215,6 +25216,9 @@
   ],
   "Produced gases": [
     "tgui:Recipes"
+  ],
+  "Producepad": [
+    "dm:labels"
   ],
   "Produces advanced gases. Massively increases radiation, and accelerates the rate of temperature change. Make sure you have enough cooling.": [
     "tgui:Gases"

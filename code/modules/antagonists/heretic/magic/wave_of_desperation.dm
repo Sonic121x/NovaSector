@@ -28,7 +28,7 @@
 		return
 
 	for(var/obj/item/restraint in cast_on.get_all_attached_restraints())
-		cast_on.visible_message(span_danger("[restraint] on [cast_on] shatter!"))
+		cast_on.visible_message(span_danger(LANG("datum.2eaa1a833db06e62", list(restraint, cast_on))))
 		qdel(restraint)
 
 	cast_on.apply_status_effect(/datum/status_effect/heretic_lastresort)

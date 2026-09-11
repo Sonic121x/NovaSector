@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Apply to an atom to allow it people to access its storage through the strip menu directly
 /datum/element/strip_accessible_storage
 
@@ -46,14 +47,14 @@
 
 /datum/element/strip_accessible_storage/proc/attempt_access(obj/item/source, atom/owner, mob/living/user)
 	owner.visible_message(
-		span_warning("[user] tries to open [owner]'s [source]..."),
-		span_userdanger("[user] is trying to open your [source]!"),
-		blind_message = span_hear("You hear rustling."),
+		span_warning(LANG("datum.bd148025e2437ee4", list(user, owner, source))),
+		span_userdanger(LANG("datum.fc4c39367ac8ea51", list(user, source))),
+		blind_message = span_hear(LANG("datum.845a0660f70b200e", null)),
 		ignored_mobs = user,
 	)
-	to_chat(user, span_notice("You try to open [owner]'s [source]..."))
+	to_chat(user, span_notice(LANG("datum.52532d123821eccb", list(owner, source))))
 	if(astype(owner, /mob)?.is_blind())
-		to_chat(owner, span_userdanger("Someone is trying to open your [source]!"))
+		to_chat(owner, span_userdanger(LANG("datum.9d02f73c06132e18", list(source))))
 
 	if(!do_after(user, source.strip_delay + 1 SECONDS, owner, extra_checks = CALLBACK(src, PROC_REF(can_access_storage), source, owner, user) ))
 		return

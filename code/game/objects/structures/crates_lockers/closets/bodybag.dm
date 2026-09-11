@@ -356,9 +356,9 @@
 		return ..()
 
 	user.change_next_special_move(CLICK_CD_BREAKOUT)
-	user.visible_message(span_warning("Someone in [src] begins to wriggle!"), \
-		span_notice("You start wriggling, attempting to loosen [src]'s buckles... (this will take about [DisplayTimeText(breakout_time)].)"), \
-		span_hear("You hear straining cloth from [src]."))
+	user.visible_message(span_warning(LANG("obj.f7341b20daff8d11", list(src))), \
+		span_notice(LANG("obj.ca864905e3c0f43e", list(src, DisplayTimeText(breakout_time)))), \
+		span_hear(LANG("obj.e8a086303529f0d5", list(src))))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || opened || !cinched )
 			return

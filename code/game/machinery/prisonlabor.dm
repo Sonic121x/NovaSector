@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 // License plate printing
 /obj/machinery/plate_press
 	name = "license plate press"
@@ -56,7 +57,7 @@
 
 	pressing = TRUE
 	update_appearance()
-	to_chat(user, span_notice("You start pressing a new license plate!"))
+	to_chat(user, span_notice(LANG("obj.26c3d242bfef2955", null)))
 	playsound(src, 'sound/machines/kerchunk.ogg', 80)
 
 	if(!do_after(user, 4 SECONDS, target = src))
@@ -81,7 +82,7 @@
 		return // No bonus effects if we're not a prisoner or there's no ID.
 	var/obj/item/card/id/advanced/prisoner/prison_id = user.get_idcard(TRUE)
 	prison_id.points += PRISON_LABOR_PLATE
-	to_chat(user, span_notice("[PRISON_LABOR_PLATE] points added!"))
+	to_chat(user, span_notice(LANG("obj.ed15ebadccb40de9", list(PRISON_LABOR_PLATE))))
 
 
 
@@ -120,36 +121,36 @@
 /obj/machinery/produceporter/examine(mob/user)
 	. = ..()
 	if(current_produce >= max_produce)
-		. += span_notice("\The [src]'s bin is full, and can be sent back to the station for labor points.")
+		. += span_notice(LANG("obj.7b3a789dd160d77e", list(src)))
 	else
-		. += span_notice("\The [src] has room for more produce to be inserted.")
+		. += span_notice(LANG("obj.0ec197bd5403a58c", list(src)))
 	if(!length(GLOB.produce_locations))
-		. += span_notice("A dirty screen shows a warning, saying there are no [span_boldnotice("produce pads")] to teleport crops to.")
+		. += span_notice(LANG("obj.4f07e15fff398f83", list(span_boldnotice("produce pads"))))
 	else
-		. += span_notice("The lever can be pulled with [span_boldnotice("Right Click")] to send produce back to the station.")
+		. += span_notice(LANG("obj.9a355fd017f93788", list(span_boldnotice("Right Click"))))
 
 /obj/machinery/produceporter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/food/grown))
 		return NONE
 	if(current_produce >= max_produce)
-		balloon_alert(user, "bin's full!")
+		balloon_alert(user, LANG("obj.90a5a035c89c7be5", null))
 		return ITEM_INTERACT_FAILURE
 	tool.forceMove(src)
 	playsound(src, 'sound/items/handling/component_drop.ogg', 30)
 	update_produce()
-	balloon_alert(user, "holding [current_produce] / [max_produce]")
+	balloon_alert(user, LANG("obj.c8f458b739b077c0", list(current_produce, max_produce)))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/produceporter/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(!is_operational)
-		balloon_alert(user, "nothing happens")
+		balloon_alert(user, LANG("obj.756c153c1fbe91d8", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!current_produce)
-		balloon_alert(user, "bin's empty!")
+		balloon_alert(user, LANG("obj.71cea10d578fedde", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!length(GLOB.produce_locations))
-		balloon_alert(user, "no dropoffs!")
+		balloon_alert(user, LANG("obj.986c7f2c3e692ba9", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	flick("produceporter_active", src)
 	use_energy(active_power_usage)
@@ -161,7 +162,7 @@
 		do_teleport(produce, dropoff.drop_location(), 0, asoundout = 'sound/machines/woosh.ogg')
 		points += (produce.seed?.potency > 50 ? (PRISON_LABOR_CROPS * 2) : PRISON_LABOR_CROPS)
 		produce_count ++
-	balloon_alert_to_viewers("kachunk!")
+	balloon_alert_to_viewers(LANG("obj.6d42a611a38b5f53", null))
 	post_delivery(user, points, produce_count)
 	update_produce()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -170,7 +171,7 @@
 	. = ..()
 	for(var/obj/item/food/grown/crops in contents)
 		crops.forceMove(drop_location())
-	visible_message("\The [src]'s bin empties out onto the floor.")
+	visible_message(LANG("obj.567b925ccadcba18", list(src)))
 
 /obj/machinery/produceporter/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -202,7 +203,7 @@
 		return // No bonus effects if we're not a prisoner or there's no ID.
 	var/obj/item/card/id/advanced/prisoner/prison_id = id_card
 	prison_id.points += labor_points
-	to_chat(user, span_notice("[labor_points] labor points added!"))
+	to_chat(user, span_notice(LANG("obj.5544b5e43f2b7cdb", list(labor_points))))
 
 	aas_config_announce(/datum/aas_config_entry/gulag_produce, list(
 		"LOCATION" = get_area_name(src),

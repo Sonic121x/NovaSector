@@ -581,9 +581,9 @@
 		dump_inventory_contents()
 		return
 	user.change_next_special_move(CLICK_CD_BREAKOUT)
-	user.visible_message(span_notice("You see [user] kicking against the doors of [src]!"), \
-		span_notice("You start kicking against the doors... (this will take about [DisplayTimeText(breakout_time)].)"), \
-		span_hear("You hear a thump from [src]."))
+	user.visible_message(span_notice(LANG("obj.014be919d6c59d4f", list(user, src))), \
+		span_notice(LANG("obj.b62a303de810b0b7", list(DisplayTimeText(breakout_time)))), \
+		span_hear(LANG("obj.a2fe6effec64bfb6", list(src))))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src )
 			return

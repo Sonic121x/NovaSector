@@ -217,7 +217,7 @@
 	if((cuff_break != INSTANT_CUFFBREAK) && (SEND_SIGNAL(src, COMSIG_MOB_REMOVING_CUFFS, cuffs) & COMSIG_MOB_BLOCK_CUFF_REMOVAL))
 		return //The blocking object should sent a fluff-appropriate to_chat about cuff removal being blocked
 	if(DOING_INTERACTION(src, REF(cuffs)))
-		to_chat(src, span_warning("You're already attempting to remove [cuffs]!"))
+		to_chat(src, span_warning(LANG("mob.2ef54d7335c01104", list(cuffs))))
 		return
 
 	if (isnull(breakouttime))
