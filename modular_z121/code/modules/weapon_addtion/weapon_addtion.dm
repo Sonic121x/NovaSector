@@ -210,7 +210,7 @@
 	suppressed_sound = 'modular_nova/modules/modular_weapons/sounds/suppressed_heavy.ogg'
 	can_suppress = FALSE
 
-	projectile_damage_multiplier = 0.7
+	projectile_damage_multiplier = 0.6
 	burst_size = 1
 	actions_types = list()
 
@@ -263,6 +263,7 @@
 	spawn_blacklisted = TRUE
 	pin = null
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/ubrev
+	fire_delay = 0.8 SECONDS // 我不希望它能成为主战武器
 	pb_knockback = 2	//退！退！退！
 
 /obj/item/gun/ballistic/revolver/single/click_alt(mob/user)
@@ -477,6 +478,8 @@
 	//  开膛待击
 	bolt_type = BOLT_TYPE_OPEN
 
+	pb_knockback = 0 // 不能击退
+
 /obj/item/gun/ballistic/shotgun/aa12/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, fire_delay)
@@ -645,7 +648,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
 
-	projectile_speed_multiplier = 2
+	projectile_speed_multiplier = 1.6
 	recoil = 3
 
 /obj/item/gun/ballistic/rifle/solstice/Initialize(mapload)
