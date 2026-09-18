@@ -3,6 +3,11 @@
  * SPDX-License-Identifier: MIT
  */
 
+// NOVA EDIT ADDITION START - TGUI_STALE_ACT
+/// 每个 /datum/tgui 实例的单调递增序号，见 `nova_ui_id`。
+GLOBAL_VAR_INIT(nova_tgui_serial, 0)
+// NOVA EDIT ADDITION END
+
 /**
  * tgui datum (represents a UI).
  */
@@ -40,6 +45,17 @@
 
 	/// The id of any ByondUi elements that we have opened
 	var/list/open_byondui_elements
+	// NOVA EDIT ADDITION START - TGUI_STALE_ACT
+	/// 本实例的身份序号，随 config 下发，前端在**渲染时**把它绑进 act()。
+	///
+	/// 客户端的 act 消息原本只带 windowId，而窗口是池化复用的：一个 UI 关掉、下一个立刻在同一窗口打开时，
+	/// 客户端还在显示上一个的内容，落在这段空档里的点击会被 tgui_window.on_message 交给**新的** locked_by。
+	/// 连续弹出的 tgui_alert 就是这么把上一个弹窗的按钮值送进下一个的（`entered a non-existent button choice`，
+	/// 弹窗随之卡住）；换成两个按钮值碰巧相同的弹窗，则是静默地执行了玩家没点过的选项。
+	///
+	/// **不能用 REF(src)**：BYOND 回收引用号，旧 UI 被 qdel 后新 UI 极可能拿到同一个 ref —— 恰好在最该区分的场景撞车。
+	var/nova_ui_id
+	// NOVA EDIT ADDITION END
 
 /**
  * public
@@ -62,6 +78,7 @@
 	src.user = user
 	src.src_object = src_object
 	src.window_key = "[REF(src_object)]-main"
+	nova_ui_id = ++GLOB.nova_tgui_serial // NOVA EDIT ADDITION - TGUI_STALE_ACT
 	src.interface = interface
 	if(title)
 		src.title = title
@@ -270,6 +287,7 @@
 			"layout" = user.client.prefs.read_preference(src_object.layout_prefs_used),
 		),
 		"refreshing" = refreshing,
+		"uiId" = nova_ui_id, // NOVA EDIT ADDITION - TGUI_STALE_ACT
 		"window" = list(
 			"key" = window_key,
 			"size" = window_size,
@@ -370,6 +388,16 @@
 	// Pass act type messages to ui_act
 	if(type && copytext(type, 1, 5) == "act/")
 		var/act_type = copytext(type, 5)
+		// NOVA EDIT ADDITION START - TGUI_STALE_ACT
+		// 消息是冲着别的 UI 实例发的（窗口已被复用）→ 丢弃。不带序号的一律放行：直接 import sendAct 的少数界面、
+		// 超长载荷的分块通道、以及尚未刷新到新 bundle 的客户端都走这条，行为与从前完全一致。
+		var/sent_ui_id = href_list?["uiId"]
+		if(sent_ui_id && sent_ui_id != "[nova_ui_id]")
+			log_tgui(user, "Dropped stale action: [act_type] (sent for ui [sent_ui_id], window now bound to ui [nova_ui_id])",
+				window = window,
+				src_object = src_object)
+			return FALSE
+		// NOVA EDIT ADDITION END
 		log_tgui(user, "Action: [act_type] [href_list["payload"]]",
 			window = window,
 			src_object = src_object)

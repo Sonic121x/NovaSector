@@ -2,6 +2,34 @@ import { sendAct } from './events/act';
 import { backendStateAtom, sharedAtom, store } from './events/store';
 import type { BackendState } from './events/types';
 
+// NOVA EDIT ADDITION START - TGUI_STALE_ACT
+/**
+ * 按服务端 UI 实例序号绑定的 act。
+ *
+ * 窗口是池化复用的：一个 UI 关掉、下一个立刻在同一窗口打开时，页面上还挂着上一个的内容。
+ * 序号必须在**渲染时**绑定——按钮的 onClick 闭包拿到的是渲染它那一刻的 act，于是旧内容上的
+ * 点击带着旧序号、被服务端丢弃。若在发送时再去读 store，store 可能已经换成新 UI 的 config，
+ * 旧按钮就会带着新序号发出去，等于没防。
+ *
+ * 同一序号复用同一个函数：act 保持引用稳定，放进 hook 依赖也不会每次渲染都变。
+ */
+const boundActs = new Map<number, BackendState<any>['act']>();
+
+function getBoundAct(uiId: number | undefined): BackendState<any>['act'] {
+  if (uiId === undefined) {
+    return sendAct;
+  }
+  let act = boundActs.get(uiId);
+  if (!act) {
+    // 一个窗口的生命期里序号只会前进，旧的留着只占内存。
+    boundActs.clear();
+    act = (action, payload) => sendAct(action, payload, uiId);
+    boundActs.set(uiId, act);
+  }
+  return act;
+}
+// NOVA EDIT ADDITION END
+
 /**
  * Reactive backend state hook. Please use a type to define what the data is
  * intended to be, e.g.:
@@ -22,7 +50,7 @@ export function useBackend<
   const state = store.get(backendStateAtom);
 
   return {
-    act: sendAct,
+    act: getBoundAct(state.config?.uiId), // NOVA EDIT CHANGE - TGUI_STALE_ACT - ORIGINAL: act: sendAct,
     ...state,
     data: state.data as TData,
   };

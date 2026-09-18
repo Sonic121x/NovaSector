@@ -38,6 +38,7 @@ export type Config = {
   window: TguiWindow;
   locale: string; // NOVA EDIT ADDITION - i18n - 全服界面语言 (en / zh-Hans)，由 tgui.dm get_payload 注入
   i18nLogMisses?: boolean; // NOVA EDIT ADDITION - i18n - 前端漏翻采集开关（见 i18n/missLog.ts）
+  uiId?: number; // NOVA EDIT ADDITION - TGUI_STALE_ACT - 服务端 UI 实例序号，见 backend.ts useBackend
 };
 
 export type DebugState = {
