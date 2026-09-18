@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/boombox
 	name = "\proper Nanomusic boombox"
 	desc = "Never quit making all that racket with this booming box."
@@ -40,15 +41,15 @@
 
 /obj/item/boombox/examine(mob/user)
 	. = ..()
-	. += span_notice("The boombox can be worn in hand or on your shoulder. Alt-Right-click to toggle.")
+	. += span_notice(LANG("obj.8f2a2a34a157cf04", null))
 	if(tapedeck)
-		. += "It has [span_bold("[tapedeck]")] inside."
+		. += LANG("obj.d4be8cd2a33ceba0", list(span_bold("[tapedeck]")))
 	else
-		. += "It has no tapedeck inside."
+		. += LANG("obj.2eba15050e13a813", null)
 
 /obj/item/boombox/click_alt_secondary(mob/user)
 	swag_mode = !swag_mode
-	balloon_alert(user, "wearing [swag_mode ? "on shoulder" : "in hand"]")
+	balloon_alert(user, LANG("obj.8b60cf99265b8a4f", list(swag_mode ? "on shoulder" : "in hand")))
 	if(loc == user)
 		playsound(user, pickup_sound, 30)
 	update_appearance()
@@ -58,16 +59,16 @@
 /obj/item/boombox/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/music_tape))
 		if(tapedeck)
-			balloon_alert(user, "eject first!")
+			balloon_alert(user, LANG("obj.cb2e5a723b0ab886", null))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/music_tape/tunes = tool
 		user.transferItemToLoc(tunes, src)
 		tapedeck = tunes
-		balloon_alert(user, "tape inserted")
+		balloon_alert(user, LANG("obj.5319d46d73592061", null))
 		playsound(src, 'sound/items/taperecorder/taperecorder_close.ogg', 50, FALSE)
 		return ITEM_INTERACT_SUCCESS
 	if(istype(tool, /obj/item/tape))
-		balloon_alert(user, "won't fit!")
+		balloon_alert(user, LANG("obj.5dd6691b7fba20d5", null))
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -112,7 +113,7 @@
 	switch(choice)
 		if("Play")
 			if(!tapedeck)
-				balloon_alert(user, "no tape!")
+				balloon_alert(user, LANG("obj.d4c59c85c56aa6e9", null))
 				return
 			boombox_audio = tapedeck.song_inside
 			music_particles = new (src, /particles/musical_notes, PARTICLE_ATTACH_MOB)
@@ -123,7 +124,7 @@
 
 		if("Stop")
 			if(!boombox_audio)
-				balloon_alert(user, "nothing playing!")
+				balloon_alert(user, LANG("obj.cd95ba556c2d2037", null))
 				return
 			stop_music(user)
 			active = FALSE

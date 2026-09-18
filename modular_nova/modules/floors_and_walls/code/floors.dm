@@ -929,8 +929,8 @@
 	dir = turn(dir, 45)
 
 	user.visible_message(
-		span_notice("[user] rakes the [name]."),
-		span_notice("You rake the [name]."),
+		span_notice(LANG("turf.4d9275d5abb9f4bf", list(user, name))),
+		span_notice(LANG("turf.85c8b5ec041bc18d", list(name))),
 	)
 
 	playsound(src, 'sound/effects/shovel_dig.ogg', 50, TRUE)

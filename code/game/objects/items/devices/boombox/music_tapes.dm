@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 // Tapes containing music.
 /obj/item/music_tape
 	name = "tapedeck"
@@ -20,10 +21,9 @@
 
 /obj/item/music_tape/examine(mob/user)
 	. = ..()
-	. += span_notice("You could probably play this in a Nanotrasen Brand [span_smallnoticeital("tm")] \
-		Nanomusic [span_smallnoticeital("tm")] boombox, at least until they trademark the concept of a boombox, too.")
+	. += span_notice(LANG("obj.03f9bff65f7060b3", list(span_smallnoticeital("tm"), span_smallnoticeital("tm"))))
 	if(song_name && song_inside)
-		. += span_notice("The track is labled [span_boldnotice(song_name)].")
+		. += span_notice(LANG("obj.b0e2fc233fd939f7", list(span_boldnotice(song_name))))
 
 /obj/item/music_tape/Initialize(mapload)
 	. = ..()
