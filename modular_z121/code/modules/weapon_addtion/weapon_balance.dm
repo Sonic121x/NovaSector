@@ -28,7 +28,7 @@
 	max_ammo = 12 // 20 → 12
 
 /obj/item/gun/ballistic/automatic/napad // 不加强，无人问津……
-	fire_delay = 0.4 SECONDS // 0.55 → 0.4
+	fire_delay = 0.45 SECONDS // 0.55 → 0.45
 
 /obj/item/ammo_box/magazine/napad // 这弹匣太大了！还只能装40发
 	w_class = WEIGHT_CLASS_SMALL
@@ -62,6 +62,9 @@
 
 /obj/projectile/bullet/c40sol/fragmentation // .40sol 的橡胶弹数值有点低，如果有护甲弱效，泛用性会大打折扣
 	stamina = 30 // 26 → 30
+	weak_against_armour = FALSE // TRUE → FALSE
+
+/obj/projectile/bullet/c35sol/incapacitator
 	weak_against_armour = FALSE // TRUE → FALSE
 
 /obj/projectile/bullet/c35sol/ripper // .35sol 撕裂弹几乎没用，打人形目标，但护甲弱效，人形目标大部分有甲。打简单生物，伤害不够
