@@ -65,7 +65,6 @@
 	weak_against_armour = FALSE // TRUE → FALSE
 
 /obj/projectile/bullet/c35sol/ripper // .35sol 撕裂弹几乎没用，打人形目标，但护甲弱效，人形目标大部分有甲。打简单生物，伤害不够
-	wound_bonus = 30 // 20 → 30 是的，我希望它更容易重伤流血
 	weak_against_armour = FALSE // TRUE → FALSE
 
 /obj/projectile/bullet/c585trappiste // 我认为，585 的伤害应该再高一点点
