@@ -1,0 +1,4 @@
+author: "Secai524"
+delete-after: True
+changes:
+  - balance: "开局翅膀不能在重力环境飞行"
