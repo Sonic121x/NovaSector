@@ -903,12 +903,14 @@ GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 /// no-op，label 恒等于原标题，行为与从前完全一致。
 /proc/lang_unique_display_key(list/target, text)
 	var/label = lang_reverse_text("[text]")
-	if(!(label in target))
+	// 用 assoc 取值判重而不是 `in`：`in` 是线性扫描，菜单有 N 条时整张表构建是 O(N²)。
+	// 调用方的值恒为非空（子菜单 list / build_recipe 的 data），所以取值为 null 就等价于键不存在。
+	if(isnull(target[label]))
 		return label
 	// 译名已被占用：加英文原名区分。极端情况下（同一英文标题在同一层出现两次）再补序号。
 	var/candidate = "[label]（[text]）"
 	var/index = 2
-	while(candidate in target)
+	while(!isnull(target[candidate]))
 		candidate = "[label]（[text] [index]）"
 		index++
 	return candidate

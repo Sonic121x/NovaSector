@@ -13,7 +13,9 @@
 		if(sublist.title != recipe_list_title)
 			continue
 
-		sublist.recipes += append_recipes
+		// |= rather than +=: the sublist is a shared global datum and get_main_recipes() runs on every stack Initialize,
+		// so += appended another copy per stack spawned and the menu grew unbounded over a round.
+		sublist.recipes |= append_recipes
 		return
 
 	CRASH("Could not find recipe sublist [recipe_list_title] to add more recipes!")
