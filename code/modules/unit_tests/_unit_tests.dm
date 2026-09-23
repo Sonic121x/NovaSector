@@ -397,6 +397,7 @@
 #include "~nova\i18n_unreverse.dm"
 #include "~nova\digi_underclothes.dm"
 #include "~nova\liver_nova.dm"
+#include "~nova\localization_changelog.dm"
 #include "~nova\m64_conversion.dm"
 #include "~nova\neuroware_chips.dm"
 #include "~nova\newbie_guard_geoip.dm"

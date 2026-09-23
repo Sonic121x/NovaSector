@@ -8886,6 +8886,7 @@
 #include "modular_nova\modules\indicators\code\ssd_indicator.dm"
 #include "modular_nova\modules\inflatables\code\inflatable.dm"
 #include "modular_nova\modules\interaction_menu\code\interaction_component.dm"
+#include "modular_nova\modules\i18n\code\changelog.dm"
 #include "modular_nova\modules\i18n\code\fallback.dm"
 #include "modular_nova\modules\i18n\code\fonts.dm"
 #include "modular_nova\modules\i18n\code\miss_log.dm"
