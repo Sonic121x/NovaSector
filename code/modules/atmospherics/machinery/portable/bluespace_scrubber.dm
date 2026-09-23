@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 //BLUESPACE SCRUBBER
 /obj/machinery/portable_atmospherics/scrubber/bluespace
 	name = "portable bluespace scrubber"
@@ -13,12 +14,12 @@
 //Links scrubber with a bluespace gas receiver with multitool
 /obj/machinery/portable_atmospherics/scrubber/bluespace/multitool_act(mob/living/user, obj/item/multitool/M)
 	if(!istype(M.buffer, /obj/machinery/portable_atmospherics/gas_receiver))
-		to_chat(user, span_warning("Invalid buffer."))
+		to_chat(user, span_warning(LANG("obj.a79082e5266f9884", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	set_teleport_target(M.buffer)
 
-	to_chat(user, span_green("You successfully link [src] to the [M.buffer]."))
+	to_chat(user, span_green(LANG("obj.3e693269605ba8cf", list(src, M.buffer))))
 	return ITEM_INTERACT_SUCCESS
 
 //Set a receiving gas object, cleaning up any previous link first.
@@ -108,7 +109,7 @@
 
 /obj/machinery/portable_atmospherics/gas_receiver/multitool_act(mob/living/user, obj/item/multitool/M)
 	M.set_buffer(src)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, LANG("obj.84afb909aab2db8b", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/portable_atmospherics/gas_receiver/click_alt(mob/user)
@@ -119,7 +120,7 @@
 	on = !on
 	update_icon_state()
 
-	balloon_alert(user, "turned [on ? "on" : "off"]")
+	balloon_alert(user, LANG("obj.8fcfde3cd8c5cffd", list(on ? "on" : "off")))
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 	return CLICK_ACTION_SUCCESS
 
@@ -156,5 +157,5 @@
 // wirecutter makes it lose all its senders
 /obj/machinery/portable_atmospherics/gas_receiver/wirecutter_act(mob/living/user, obj/item/I)
 	lose_senders()
-	to_chat(user, span_warning("All scrubbers has been disconnected from receiver."))
+	to_chat(user, span_warning(LANG("obj.d9e55985aeb75a3b", null)))
 	return ITEM_INTERACT_SUCCESS

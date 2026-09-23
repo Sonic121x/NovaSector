@@ -59,7 +59,7 @@
 
 /// Extinguish our suit
 /obj/item/clothing/under/plasmaman/proc/activate_fire_safety(mob/living/owner)
-	owner.visible_message(span_warning("[owner]'s suit automatically extinguishes [owner.p_them()]!"), span_warning("Your suit automatically extinguishes you."))
+	owner.visible_message(span_warning(LANG("obj.1259449b99485d98", list(owner, owner.p_them()))), span_warning(LANG("obj.7fd1fcffbd245f6e", null)))
 	owner.extinguish_mob()
 	new /obj/effect/particle_effect/water(get_turf(owner))
 
@@ -165,6 +165,6 @@
 
 /// Sprays lube instead of water
 /obj/item/clothing/under/plasmaman/clown/activate_fire_safety(mob/living/owner)
-	owner.visible_message(span_warning("[owner]'s suit spews space lube everywhere!"), span_warning("Your suit spews space lube everywhere!"))
+	owner.visible_message(span_warning(LANG("obj.49863cca75d8b95a", list(owner))), span_warning(LANG("obj.668f25fa12ac4d04", null)))
 	owner.extinguish_mob()
 	do_foam(4, src, get_turf(owner), /datum/reagent/lube, 15)

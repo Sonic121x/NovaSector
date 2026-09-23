@@ -130,7 +130,7 @@
 
 /// Oh boy - transports the antag station side
 /obj/machinery/quantum_server/proc/station_spawn(mob/living/antag, obj/machinery/byteforge/chosen_forge, turf/goal_turf)
-	antag.balloon_alert(antag, "scanning...")
+	antag.balloon_alert(antag, LANG("obj.9ef11a33f0292426", null))
 	chosen_forge.setup_particles(angry = TRUE)
 	var/obj/machinery/announcement_system/aas = get_announcement_system(null, src, list(RADIO_CHANNEL_SUPPLY))
 	if (aas)

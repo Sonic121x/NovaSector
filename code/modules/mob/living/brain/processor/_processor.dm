@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/brain_processor
 	abstract_type = /obj/item/brain_processor // It is functionally complete though (sans sprites)
 
@@ -57,16 +58,16 @@
 
 	SEND_SIGNAL(src, COMSIG_MMI_SET_BRAINMOB, old_brainmob)
 
-GAME_VERB_SRC_DESC(/obj/item/brain_processor, Toggle_Listening, usr.loc, "Toggle Listening", "Toggle listening channel on or off.", "MMI")
+GAME_VERB_SRC_DESC(/obj/item/brain_processor, Toggle_Listening, usr.loc, "切换监听", "Toggle listening channel on or off.", "MMI")
 	if(IS_UNCONSCIOUS_OR_CRIT(brainmob))
-		to_chat(brainmob, span_warning("Can't do that while incapacitated or dead!"))
+		to_chat(brainmob, span_warning(LANG("obj.d9c9989b605ed9d8", null)))
 		return
 	if(!radio.is_on())
-		to_chat(brainmob, span_warning("Your radio is disabled!"))
+		to_chat(brainmob, span_warning(LANG("obj.f8885d6e22400e97", null)))
 		return
 
 	radio.set_listening(!radio.get_listening())
-	to_chat(brainmob, span_notice("Radio is [radio.get_listening() ? "now" : "no longer"] receiving broadcast."))
+	to_chat(brainmob, span_notice(LANG("obj.a68b15276add5314", list(radio.get_listening() ? "now" : "no longer"))))
 
 /// Transfers the user into the brain processor, preserving its information (such as name and DNA if applicable)
 /// Does not transfer mind or ckey, this must be handled by the user of this proc.
@@ -104,23 +105,23 @@ GAME_VERB_SRC_DESC(/obj/item/brain_processor, Toggle_Listening, usr.loc, "Toggle
 
 	if(!brainmob)
 		if(user)
-			to_chat(user, span_warning("\The [src] indicates that there is no mind present!"))
+			to_chat(user, span_warning(LANG("obj.e3dc450cf436408f", list(src))))
 		return FALSE
 	if(!brainmob.key || !brainmob.mind)
 		if(user)
-			to_chat(user, span_warning("\The [src] indicates that their mind is completely unresponsive!"))
+			to_chat(user, span_warning(LANG("obj.762ac644050d8842", list(src))))
 		return FALSE
 	if(!brainmob.client)
 		if(user)
-			to_chat(user, span_warning("\The [src] indicates that their mind is currently inactive."))
+			to_chat(user, span_warning(LANG("obj.6b5776b1969a203c", list(src))))
 		return FALSE
 	if(suicided())
 		if(user)
-			to_chat(user, span_warning("\The [src] indicates that their mind has no will to live!"))
+			to_chat(user, span_warning(LANG("obj.3471de9cd978830b", list(src))))
 		return FALSE
 	if(brainmob.stat >= DEAD)
 		if(user)
-			to_chat(user, span_warning("\The [src] indicates that the brain is dead!"))
+			to_chat(user, span_warning(LANG("obj.82c24640a7bc7959", list(src))))
 		return FALSE
 	return TRUE
 

@@ -1835,6 +1835,6 @@
 /datum/reagent/toxin/berserker/proc/on_stamcrit(mob/living/affected_mob)
 	SIGNAL_HANDLER
 	affected_mob.set_stamina_loss(90, updating_stamina = TRUE)
-	to_chat(affected_mob, span_message("This can't end like this... Blood rushes away from your head..."))
+	to_chat(affected_mob, span_message(LANG("datum.4ec5c06bb486574c", null)))
 	volume -= volume
 	return STAMCRIT_CANCELLED

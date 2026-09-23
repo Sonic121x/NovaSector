@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/knife/butcher/heretic
 	name = "\improper Crimson Cleaver"
 	desc = "A cleaver with an intricately designed red handle and slightly curved back. A tool of war, rather than cooking, no doubt."
@@ -65,24 +66,24 @@
 		start_lifesteal_cd(6 SECONDS)
 		if(coefficient < 1)
 			if(IS_HERETIC_OR_MONSTER(user))
-				to_chat(user, span_warning("You fail to unleash the energies within [src] - something is suppressing it!"))
+				to_chat(user, span_warning(LANG("obj.e8905f0a3984a623", list(src))))
 			else
-				to_chat(user, span_warning("Some evil energy attempts to escape from [src], but you suppress it!"))
+				to_chat(user, span_warning(LANG("obj.1a225f20e193a7b3", list(src))))
 		return
 
 	if(target.can_block_magic(MAGIC_RESISTANCE, charge_cost = 1))
 		start_lifesteal_cd(8 SECONDS)
 		if(IS_HERETIC_OR_MONSTER(user))
-			to_chat(user, span_warning("Your attempt to siphon the life force of [target] is resisted!"))
+			to_chat(user, span_warning(LANG("obj.4ecdcc803f0adb4d", list(target))))
 		else
-			to_chat(user, span_warning("Some evil energy attempts to flow into [target], but they resist it!"))
+			to_chat(user, span_warning(LANG("obj.0acb09990e64faa1", list(target))))
 		return
 
 	user.adjust_brute_loss(-0.5 * coefficient * amount)
 	user.adjust_nutrition(0.75 * coefficient * amount)
 	target.transfer_blood_to(user, coefficient * amount, ignore_low_blood = TRUE, ignore_incompatibility = TRUE, transfer_viruses = FALSE)
 	target.adjust_nutrition(-0.75 * coefficient * amount)
-	to_chat(target, span_warning("You feel your life force drain away..."))
+	to_chat(target, span_warning(LANG("obj.9789db9d8fce9d3c", null)))
 	new /obj/effect/temp_visual/cleave(get_turf(target))
 
 	for(var/datum/wound/active_wound as anything in astype(user, /mob/living/carbon)?.all_wounds)
@@ -210,15 +211,15 @@
 
 	switch(curse_level)
 		if(2)
-			to_chat(owner, span_mansus("You feel pleased that the cleaver has returned to your hand."))
+			to_chat(owner, span_mansus(LANG("datum.6c866dc901a7842d", null)))
 			owner.add_mood_event("[id]_lost", /datum/mood_event/crimson_curse/reunited/low)
 
 		if(3)
-			to_chat(owner, span_hypnophrase("The cleaver is back! Time to get to work!"))
+			to_chat(owner, span_hypnophrase(LANG("datum.20c6bd1d41a47a42", null)))
 			owner.add_mood_event("[id]_lost", /datum/mood_event/crimson_curse/reunited/medium)
 
 		if(4)
-			to_chat(owner, span_hypnophrase("YES! THERE IS STILL BLOOD TO BE SPILT!"))
+			to_chat(owner, span_hypnophrase(LANG("datum.0e0083f5f5c4a641", null)))
 			owner.add_mood_event("[id]_lost", /datum/mood_event/crimson_curse/reunited/severe)
 
 /datum/status_effect/crimson_cleaver_curse/proc/on_unequipped_item(datum/source, obj/item/unequipped, ...)
@@ -233,15 +234,15 @@
 
 	switch(curse_level)
 		if(2)
-			to_chat(owner, span_mansus("You feel reluctant to part with the cleaver."))
+			to_chat(owner, span_mansus(LANG("datum.8e1f903c22ceb355", null)))
 			owner.add_mood_event("[id]_lost", /datum/mood_event/crimson_curse/separated/low)
 
 		if(3)
-			to_chat(owner, span_hypnophrase("No! The cleaver! How will I satiate myself now?!"))
+			to_chat(owner, span_hypnophrase(LANG("datum.f9c7f205caf9324e", null)))
 			owner.add_mood_event("[id]_lost", /datum/mood_event/crimson_curse/separated/medium)
 
 		if(4)
-			to_chat(owner, span_hypnophrase("MY TOOL! MY WEAPON! IT HAS BEEN WRESTED FROM ME! I MUST HAVE IT BACK!"))
+			to_chat(owner, span_hypnophrase(LANG("datum.3257dbb6f8136ce3", null)))
 			owner.add_mood_event("[id]_lost", /datum/mood_event/crimson_curse/separated/severe)
 
 /datum/status_effect/crimson_cleaver_curse/tick(seconds_between_ticks)
@@ -249,7 +250,7 @@
 	for(var/obj/item/knife/butcher/heretic/cleaver in owner)
 		// it's clearly mind based, and it's clearly magical, and it's clearly unholy. so everything fits
 		if(owner.can_block_magic(ALL_MAGIC_RESISTANCE, charge_cost = SPT_PROB(50, seconds_between_ticks) ? 1 : 0))
-			to_chat(owner, span_notice("The cleaver thrums ominously."))
+			to_chat(owner, span_notice(LANG("datum.f28e38b918c48a5f", null)))
 		else
 			curse_timer += seconds_between_ticks
 			curse_ticking = TRUE
@@ -263,33 +264,33 @@
 	if(curse_timer > 10)
 		if(curse_level < 1)
 			curse_level = 1
-			to_chat(owner, span_mansus("The cleaver sits firmly in your hand. It feels unnaturally well balanced - it would be a joy to swing."))
+			to_chat(owner, span_mansus(LANG("datum.ee1e80dd914254ee", null)))
 			owner.add_mood_event(id, /datum/mood_event/crimson_curse/low)
 			return
 	else
 		if(curse_level == 1)
 			curse_level = 0
-			to_chat(owner, span_mansus("Your mind clears. The cleaver still sits in your hand. It unsettles you."))
+			to_chat(owner, span_mansus(LANG("datum.8a62200c5657940f", null)))
 			owner.clear_mood_event(id)
 			return
 
 	if(curse_timer > 30)
 		if(curse_level < 2)
 			curse_level = 2
-			to_chat(owner, span_mansus("The cleaver starts to feel heavy in your hand. You feel like bringing it down. Hard."))
+			to_chat(owner, span_mansus(LANG("datum.2f73673fa001e0b0", null)))
 			owner.add_mood_event(id, /datum/mood_event/crimson_curse/medium)
 			return
 	else
 		if(curse_level == 2)
 			curse_level = 1
-			to_chat(owner, span_mansus("The cleaver starts to slip from your hand. Your grip is no longer as sure as it was."))
+			to_chat(owner, span_mansus(LANG("datum.db644ac71bb4e54a", null)))
 			owner.clear_mood_event(id)
 			return
 
 	if(curse_timer > 60)
 		if(curse_level < 3)
 			curse_level = 3
-			to_chat(owner, span_mansus("The cleaver was made to spill blood and cleave flesh. You grip it with all your life, compelled to fulfill its purpose."))
+			to_chat(owner, span_mansus(LANG("datum.d19e056060455b1b", null)))
 			owner.add_mood_event(id, /datum/mood_event/crimson_curse/severe)
 			for(var/obj/item/knife/butcher/heretic/cleaver in owner)
 				ADD_TRAIT(src, TRAIT_NODROP, TRAIT_STATUS_EFFECT(id))
@@ -329,7 +330,7 @@
 	else
 		if(curse_level == 3)
 			curse_level = 2
-			to_chat(owner, span_mansus("The cleaver's compulsions fade. Your fingers unclench from the hilt."))
+			to_chat(owner, span_mansus(LANG("datum.c07fe797a7ac7c02", null)))
 			owner.clear_mood_event(id)
 			for(var/obj/item/knife/butcher/heretic/cleaver in owner)
 				REMOVE_TRAIT(src, TRAIT_NODROP, TRAIT_STATUS_EFFECT(id))
@@ -351,8 +352,8 @@
 	if(curse_timer > 120)
 		if(curse_level < 4)
 			curse_level = 4
-			to_chat(owner, span_mansus("The cleaver is an extension of you. It is a tool to rend flesh from bone. You are a tool to rend flesh from bone."))
-			to_chat(owner, span_hypnophrase("Swing it. Swing it now."))
+			to_chat(owner, span_mansus(LANG("datum.8eed3d3fd26c6ccf", null)))
+			to_chat(owner, span_hypnophrase(LANG("datum.a38018bc8f81d523", null)))
 			owner.add_mood_event(id, /datum/mood_event/crimson_curse/extreme)
 			owner.apply_status_effect(/datum/status_effect/forced_combat, INFINITY)
 			curse_timer += 20 // medium buffer
@@ -361,7 +362,7 @@
 	else
 		if(curse_level == 4)
 			curse_level = 3
-			to_chat(owner, span_mansus("You return to your senses. Or have you truly? The cleaver is still in your hands."))
+			to_chat(owner, span_mansus(LANG("datum.bd76e6589da54cfe", null)))
 			owner.clear_mood_event(id)
 			owner.remove_status_effect(/datum/status_effect/forced_combat)
 			return

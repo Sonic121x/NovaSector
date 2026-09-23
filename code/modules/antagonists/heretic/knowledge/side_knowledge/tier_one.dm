@@ -332,7 +332,7 @@
 		selected_atoms += whatever
 
 	if(!length(selected_atoms))
-		loc.balloon_alert(user, "no items to imbue!")
+		loc.balloon_alert(user, LANG("datum.7541a96726805d72", null))
 		return FALSE
 	return TRUE
 
@@ -362,7 +362,7 @@
 	for(var/obj/item/new_trackable as anything in valuable_pool | equipment_pool | weapon_pool | item_pool | leftover_pool)
 		var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
 		LAZYADD(heretic_datum.tracked_items, new_trackable)
-		to_chat(user, span_mansus("You feel the new lodestone in [new_trackable] start to beat in rhythm with your heart."))
+		to_chat(user, span_mansus(LANG("datum.564ddbf82728e68f", list(new_trackable))))
 		lodestones_created += 1
 		if(lodestones_created >= 3)
 			break

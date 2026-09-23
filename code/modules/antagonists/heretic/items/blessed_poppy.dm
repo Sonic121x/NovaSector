@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/food/grown/flower/poppy/blessed
 	name = "blessed poppy"
 	desc = "A strange poppy flower, one that has never seen the light of day."
@@ -57,18 +58,18 @@
 	if(wearer.stat == STABLE)
 		save_count += 1
 		if(prob(25 * save_count))
-			to_chat(wearer, span_mansus("[src] withers away."))
+			to_chat(wearer, span_mansus(LANG("obj.36ce6c6e5097b24e", list(src))))
 			burn()
 
 	else if(SPT_PROB(33, seconds_per_tick))
 		new /obj/effect/temp_visual/heal(get_turf(src), pick(COLOR_PINK, COLOR_YELLOW))
 		if(prob(20))
-			wearer.visible_message(span_mansus("The petals of [wearer]'s [name] glow faintly."))
+			wearer.visible_message(span_mansus(LANG("obj.11080b75cca4bf5c", list(wearer, name))))
 
 /obj/item/food/grown/flower/poppy/blessed/proc/heal_limb(seconds_per_tick)
 	var/obj/item/bodypart/limb = loc
 	if(!length(limb.wounds))
-		to_chat(limb.owner, span_mansus("[src] withers away."))
+		to_chat(limb.owner, span_mansus(LANG("obj.36ce6c6e5097b24e", list(src))))
 		burn()
 		return
 
@@ -94,7 +95,7 @@
 	if(healed && SPT_PROB(33, seconds_per_tick))
 		new /obj/effect/temp_visual/heal(get_turf(src), pick(COLOR_PINK, COLOR_YELLOW))
 		if(prob(20))
-			limb.owner.visible_message(span_mansus("The petals of [src] on [limb.owner]'s [limb.plaintext_zone] glow faintly."))
+			limb.owner.visible_message(span_mansus(LANG("obj.036011ed13fc8e42", list(src, limb.owner, limb.plaintext_zone))))
 
 #define LIMB_CATEGORY_POPPY "poppy"
 
@@ -105,20 +106,20 @@
 	var/mob/living/carbon/carbon_target = interacting_with
 	var/obj/item/bodypart/target_limb = carbon_target.get_bodypart(user.zone_selected)
 	if(isnull(target_limb))
-		carbon_target.balloon_alert(user, "no limb there!")
+		carbon_target.balloon_alert(user, LANG("obj.90540814e3f0734e", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!length(target_limb.wounds))
-		carbon_target.balloon_alert(user, "no wounds to heal!")
+		carbon_target.balloon_alert(user, LANG("obj.4118634444e53270", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(LAZYACCESS(target_limb.applied_items, LIMB_CATEGORY_POPPY))
-		carbon_target.balloon_alert(user, "already healing!")
+		carbon_target.balloon_alert(user, LANG("obj.de41285fbbb317ec", null))
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user] lays [src] over [carbon_target == user ? "[user.p_their()] own" : "[carbon_target]'s"] [target_limb.plaintext_zone]."),
-		span_notice("You lay [src] over [carbon_target == user ? "your" : "[carbon_target]'s"] [target_limb.plaintext_zone]."),
+		span_notice(LANG("obj.5e7a09a8308050dc", list(user, src, carbon_target == user ? "[user.p_their()] own" : "[carbon_target]'s", target_limb.plaintext_zone))),
+		span_notice(LANG("obj.da1e2c7efe3b327c", list(src, carbon_target == user ? "your" : "[carbon_target]'s", target_limb.plaintext_zone))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		vision_distance = 5,
 	)
@@ -126,8 +127,8 @@
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_mansus("[user] lays [src] over [carbon_target == user ? "[user.p_their()] own" : "[carbon_target]'s"] [target_limb.plaintext_zone]. The petals begin to glow, as vines begin to wrap the limb."),
-		span_mansus("You lay [src] over [carbon_target == user ? "your" : "[carbon_target]'s"] [target_limb.plaintext_zone]. The petals begin to glow, as vines begin to wrap the limb."),
+		span_mansus(LANG("obj.7866bc315dd6fa96", list(user, src, carbon_target == user ? "[user.p_their()] own" : "[carbon_target]'s", target_limb.plaintext_zone))),
+		span_mansus(LANG("obj.c44ee2303d9a88cc", list(src, carbon_target == user ? "your" : "[carbon_target]'s", target_limb.plaintext_zone))),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		vision_distance = 5,
 	)

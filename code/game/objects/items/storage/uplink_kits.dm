@@ -842,7 +842,7 @@
 			return FALSE
 
 	if(is_valid_inductee(target)) // GTFO. Technically not foolproof but making a heartbreaker or a paradox clone a nuke op sounds hilarious
-		to_chat(human_target, span_notice("Huh? Nothing happened? But you're starting to feel a little ill..."))
+		to_chat(human_target, span_notice(LANG("obj.c1f4076e3febfc2f", null)))
 		human_target.reagents.add_reagent(/datum/reagent/toxin, 15)
 		return FALSE
 

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/brain_processor/organic
 	name = "\improper Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations."
@@ -39,11 +40,11 @@
 
 	var/obj/item/organ/brain/newbrain = tool
 	if(brain)
-		balloon_alert(user, "[p_Theyre()] already full!")
+		balloon_alert(user, LANG("obj.3b091bfeaccec58c", list(p_Theyre())))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!newbrain.brainmob)
-		var/install = tgui_alert(user, "[newbrain] is inactive, slot it in anyway?", "Installing Brain", list("Yes", "No"))
+		var/install = tgui_alert(user, LANG("obj.f1f04b31e8aaea3f", list(newbrain)), LANG("obj.a84be5c191efcbb5", null), list("Yes", "No"))
 		if(install != "Yes")
 			return ITEM_INTERACT_BLOCKING
 
@@ -52,20 +53,20 @@
 
 	insert_brain(newbrain)
 	user.visible_message(
-		span_notice("[user] sticks \a [newbrain] into [src]..."),
-		span_notice("You stick [newbrain] into [src]..."),
-		span_hear("You hear a wet squelch..."),
+		span_notice(LANG("obj.339ac7a0850c7f2b", list(user, newbrain, src))),
+		span_notice(LANG("obj.7ff8f97bc797d91a", list(newbrain, src))),
+		span_hear(LANG("obj.bbb0728d58e2af06", null)),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE
 		)
 
 	if(suicided())
-		to_chat(user, span_warning("[src]'s indicator light turns red and its brainwave activity alarm beeps harshly."))
+		to_chat(user, span_warning(LANG("obj.0829d9ffb4e455be", list(src))))
 		playsound(src, 'sound/machines/beep/triple_beep.ogg', 5, TRUE)
 	else if(newbrain.organ_flags & ORGAN_FAILING) // the brain is damaged, but not from a suicider
-		to_chat(user, span_warning("[src]'s indicator light turns yellow and its brain integrity alarm beeps softly."))
+		to_chat(user, span_warning(LANG("obj.5b4d0ebe58821059", list(src))))
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 5, TRUE)
 	else
-		to_chat(user, span_notice("[src]'s indicator light turns green!"))
+		to_chat(user, span_notice(LANG("obj.1a87c49be979602d", list(src))))
 		playsound(src, 'sound/machines/beep/beep.ogg', 5, TRUE)
 
 	SSblackbox.record_feedback("amount", "mmis_filled", 1)
@@ -85,8 +86,8 @@
 		if(radio)
 			radio.set_on(!radio.is_on())
 			var/new_state = radio.is_on() ? "on" : "off"
-			to_chat(user, span_notice("You switch [src]'s radio system [span_bold(new_state)]."))
-			balloon_alert(user, "radio turned [new_state]")
+			to_chat(user, span_notice(LANG("obj.74bfd679b7a75430", list(src, span_bold(new_state)))))
+			balloon_alert(user, LANG("obj.678441f21814a79f", list(new_state)))
 		return
 
 	var/obj/item/organ/brain/dumped_brain = remove_brain()
@@ -95,11 +96,11 @@
 		? "[span_italics("gently")] scooping [dumped_brain] into your hand" \
 		: "spilling [dumped_brain] onto the floor"
 
-	to_chat(user, span_notice("You unlock and upend [src], [fate_of_brain]."))
+	to_chat(user, span_notice(LANG("obj.4280d888bdde13d4", list(src, fate_of_brain))))
 	if(caught_brain)
-		balloon_alert(user, "scooped up brain")
+		balloon_alert(user, LANG("obj.b1aee0cbddc443db", null))
 	else
-		user.balloon_alert_to_viewers("dropped a brain!", "dropped the brain!")
+		user.balloon_alert_to_viewers(LANG("obj.ade2e2834a8d42a2", null), LANG("obj.542c3f704d08809d", null))
 
 	if(dumped_brain.brainmob)
 		user.log_message("has ejected the brain of [key_name(brainmob)] from \a [src]", LOG_GAME)
@@ -172,17 +173,17 @@
 	. = ..()
 	if(!brain)
 		if(radio)
-			. += span_notice("There is a switch to toggle the radio system [radio.is_on() ? "off" : "on"].")
+			. += span_notice(LANG("obj.54fcc45677a9efa7", list(radio.is_on() ? "off" : "on")))
 		return
 
 	if((!brainmob || !brainmob.mind) && !brain.decoy_override) // covers suicide and ghosting
-		. += span_danger("[src]'s indicator light glows a grim red.")
+		. += span_danger(LANG("obj.be076419fccf98b3", list(src)))
 	else if((brain.organ_flags & ORGAN_FAILING) || brainmob?.stat >= DEAD)
-		. += span_warning("[src]'s indicator light glows yellow.")
+		. += span_warning(LANG("obj.d56956d868b9f9fd", list(src)))
 	else if(!brainmob.client && !brain.decoy_override)
-		. += span_notice("[src]'s indicator light slowly pulses green...")
+		. += span_notice(LANG("obj.39f1a348cf5c6ceb", list(src)))
 	else
-		. += span_nicegreen("[src]'s indicator light glows green!")
+		. += span_nicegreen(LANG("obj.370d2f7fc5849b87", list(src)))
 
 /obj/item/brain_processor/organic/brain_check(mob/user)
 	. = ..()
@@ -190,11 +191,11 @@
 		return FALSE
 	if(brain?.decoy_override)
 		if(user)
-			to_chat(user, span_warning("This [name] does not seem to fit!"))
+			to_chat(user, span_warning(LANG("obj.d8b1bd520ff4a43c", list(name))))
 		return FALSE
 	if(brain?.organ_flags & ORGAN_FAILING)
 		if(user)
-			to_chat(user, span_warning("\The [src] indicates that the brain is damaged!"))
+			to_chat(user, span_warning(LANG("obj.02667ee3bf3b9411", list(src))))
 		return FALSE
 	return TRUE
 
@@ -221,7 +222,5 @@
 
 /obj/item/brain_processor/organic/syndie/examine(mob/user)
 	. = ..()
-	. += span_notice("If used to create a cyborg, it will be unlinked from the station's AI. \
-		The lawset cannot be modified until it is synced to a module rack or an AI.")
-	. += span_notice("If used to create an AI, it will not automatically sync to a module rack. \
-		The lawset cannot be modified until it is synced to a module rack.")
+	. += span_notice(LANG("obj.13a9ccb009f34e2c", null))
+	. += span_notice(LANG("obj.0bf881abded155ba", null))

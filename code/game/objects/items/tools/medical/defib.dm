@@ -193,7 +193,7 @@
 
 	var/enabled_or_disabled = (safety ? "enabled" : "disabled")
 	if(user)
-		balloon_alert(user, "safety protocols [enabled_or_disabled]")
+		balloon_alert(user, LANG("obj.aba346129be6109e", list(enabled_or_disabled)))
 
 	if(obj_flags & EMAGGED)
 		return

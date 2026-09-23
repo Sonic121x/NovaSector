@@ -96,7 +96,7 @@
 /obj/item/melee/energy/sword/bananium/suicide_act(mob/living/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		attack_self(user)
-	user.visible_message(span_suicide("[user] is [pick("slitting [user.p_their()] stomach open with", "falling on")] [src]! It looks like [user.p_theyre()] trying to commit seppuku, but the blade slips off of [user.p_them()] harmlessly!"))
+	user.visible_message(span_suicide(LANG("obj.8f0522c6110bf93c", list(user, pick("slitting [user.p_their()] stomach open with", "falling on"), src, user.p_theyre(), user.p_them()))))
 	user.attackby(src, user)
 	return SHAME
 

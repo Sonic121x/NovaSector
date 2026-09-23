@@ -106,7 +106,7 @@
 
 /obj/item/assembly/relic/activate(mob/activator)
 	if(!COOLDOWN_FINISHED(src, next_activate))
-		to_chat(activator, span_warning("[src] does not react!"))
+		to_chat(activator, span_warning(LANG("obj.73d3248baf8768d0", list(src))))
 		return FALSE
 	if(!hidden_power)
 		return FALSE
@@ -132,7 +132,7 @@
 		sad_corgi.throw_at(pick(oview(10,user)), 10, rand(3,8), callback = CALLBACK(src, PROC_REF(throw_smoke), sad_corgi))
 		warn_admins(user, "Corgi Cannon", FALSE)
 	else
-		to_chat(user, span_notice("[src] vibrates a bit, but nothing happens."))
+		to_chat(user, span_notice(LANG("obj.3afa705d3ec6b4f0", list(src))))
 
 /// Spawns cleaning foam
 /obj/item/assembly/relic/proc/cleaning_foam(mob/user)
@@ -230,7 +230,7 @@
 
 /// Spawns a bunch of mimics of the relic which also can spawn relics, but despawn shortly
 /obj/item/assembly/relic/proc/rapid_self_dupe(mob/user)
-	audible_message("[src] emits a loud pop!")
+	audible_message(LANG("obj.b7da9869c52a3539", list(src)))
 	var/list/dummy_artifacts = list()
 	for(var/counter in 1 to rand(5,10))
 		var/obj/item/assembly/relic/duped = new type(get_turf(src))
@@ -246,20 +246,20 @@
 
 /// Explodes after a few seconds
 /obj/item/assembly/relic/proc/heat_and_explode(mob/user)
-	to_chat(user, span_danger("[src] begins to heat up!"))
+	to_chat(user, span_danger(LANG("obj.42ea24ca97c00b72", list(src))))
 	addtimer(CALLBACK(src, PROC_REF(blow_up), user), rand(3.5 SECONDS, 10 SECONDS))
 
 /obj/item/assembly/relic/proc/blow_up(mob/user)
 	if(user && (get(src, /mob/living) != user))
 		return
-	visible_message(span_notice("\The [src]'s top opens, releasing a powerful blast!"))
+	visible_message(span_notice(LANG("obj.17017a91aef28007", list(src))))
 	explosion(src, heavy_impact_range = rand(1,5), light_impact_range = rand(1,5), flame_range = 2, flash_range = rand(1,5), adminlog = TRUE)
 	warn_admins(user, "Explosion")
 	deconstruct(FALSE) //Comment this line to produce a light grenade (the bomb that keeps on exploding when used)!!
 
 /// Teleports the relic, and anyone holding it, to a random location nearby
 /obj/item/assembly/relic/proc/uncontrolled_teleport(mob/user)
-	to_chat(user, span_notice("[src] begins to vibrate!"))
+	to_chat(user, span_notice(LANG("obj.1e90a6bbbf894fba", list(src))))
 
 	var/teleport_time = rand(1 SECONDS, 3 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(do_the_teleport), user), teleport_time)
@@ -268,7 +268,7 @@
 /obj/item/assembly/relic/proc/do_the_teleport(mob/user)
 	var/turf/userturf = get_turf(src)
 	var/atom/movable/to_teleport = get_loose_container(src, container_flags = ALL)
-	to_teleport.visible_message(span_notice("[to_teleport] twists and bends, relocating itself!"))
+	to_teleport.visible_message(span_notice(LANG("obj.f879541e460d19c2", list(to_teleport))))
 	throw_smoke(get_turf(to_teleport))
 	do_teleport(to_teleport, userturf, 8, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 	throw_smoke(get_turf(to_teleport))
@@ -276,14 +276,14 @@
 
 /// Version of uncontrolled_teleport with cult theming, and that affects all nearby movables rather than just the relic
 /obj/item/assembly/relic/proc/uncontrolled_aoe_teleport(mob/user)
-	to_chat(user, span_notice("[src] begins to vibrate intensely!"))
+	to_chat(user, span_notice(LANG("obj.3b1c376e4525b718", list(src))))
 
 	var/teleport_time = rand(1 SECONDS, 3 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(do_the_aoe_teleport), user), teleport_time)
 	Shake(2, 2, teleport_time, 0.03 SECONDS)
 
 /obj/item/assembly/relic/proc/do_the_aoe_teleport(mob/user)
-	visible_message(span_notice("[src] twists and bends, relocating anything nearby!"))
+	visible_message(span_notice(LANG("obj.36c137bb15b93af3", list(src))))
 	var/turf/teleturf = get_turf(src)
 	for(var/atom/movable/nearby in view(2, teleturf))
 		if(nearby.anchored || nearby.invisibility || HAS_TRAIT(nearby, TRAIT_UNDERFLOOR))
@@ -350,7 +350,7 @@
 	var/mob/living/mob_to_charge = get(src, /mob/living)
 	if(!mob_to_charge)
 		return
-	to_chat(mob_to_charge, span_danger("You're recharged!"))
+	to_chat(mob_to_charge, span_danger(LANG("obj.09a46f26131cbafb", null)))
 	var/stunner = 1.25 SECONDS
 	if(iscarbon(mob_to_charge))
 		var/mob/living/carbon/carboner = mob_to_charge
@@ -363,7 +363,7 @@
 	lightning_fx(mob_to_charge, stunner)
 	var/recharges = rand(1, 2)
 	if(!length(chargeable_items))
-		to_chat(mob_to_charge, span_notice("You have a strange feeling for a moment, but then it passes."))
+		to_chat(mob_to_charge, span_notice(LANG("obj.ee899aba2f11076e", null)))
 		return
 	while(length(chargeable_items) && recharges)
 		recharges--
@@ -372,7 +372,7 @@
 		chargeable_items.Remove(to_charge_base)
 		to_charge.charge = to_charge.maxcharge
 		to_charge_base.update_appearance(UPDATE_ICON|UPDATE_OVERLAYS)
-		to_chat(mob_to_charge, span_notice("[to_charge_base] feels energized!"))
+		to_chat(mob_to_charge, span_notice(LANG("obj.0c47b3a00becec3e", list(to_charge_base))))
 		lightning_fx(to_charge_base, 0.8 SECONDS)
 
 /obj/item/assembly/relic/proc/lightning_fx(atom/shocker, time)
@@ -391,7 +391,7 @@
 		victim.help_shake_act(hugger, force_friendly = TRUE)
 		new /obj/effect/temp_visual/heart(victim.loc)
 	if(length(huggeds))
-		to_chat(hugger, span_nicegreen("You feel friendly!"))
+		to_chat(hugger, span_nicegreen(LANG("obj.f6f0fc1b66d95896", null)))
 	else
 		to_chat(hugger, pick(span_notice("You hug yourself, for some reason."), span_notice("You have a strange feeling for a moment, but then it passes.")))
 
@@ -409,7 +409,7 @@
 /obj/item/assembly/relic/proc/disguiser(mob/user)
 	var/mob/living/to_disguise = get(src, /mob/living)
 	if(!iscarbon(to_disguise))
-		to_chat(to_disguise, span_notice("You have a strange feeling for a moment, but then it passes."))
+		to_chat(to_disguise, span_notice(LANG("obj.ee899aba2f11076e", null)))
 		return
 
 	if(prob(80)) // >:)
@@ -420,7 +420,7 @@
 	throw_smoke(to_disguise)
 
 	if(!ishuman(to_disguise))
-		to_chat(to_disguise, span_notice("You have a peculiar feeling for a moment, but then it passes."))
+		to_chat(to_disguise, span_notice(LANG("obj.b48f750f31e5ffa3", null)))
 		return
 
 	var/mob/living/carbon/human/humerus = to_disguise
@@ -534,9 +534,9 @@
 /obj/item/assembly/relic/proc/shield_hit(obj/item/comp_parent, mob/living/owner, attack_text, current_charges)
 	playsound(comp_parent, 'sound/items/weapons/marauder.ogg', 20, TRUE, frequency = 1.25)
 	if(owner.is_holding(comp_parent))
-		owner.visible_message(span_danger("[owner] holds [comp_parent] up, blocking [attack_text] with a projected shield!"))
+		owner.visible_message(span_danger(LANG("obj.0f21c8c8d3d429a9", list(owner, comp_parent, attack_text))))
 	else
-		owner.visible_message(span_danger("[owner]'s [comp_parent.name] blocks [attack_text] with a projected shield!"))
+		owner.visible_message(span_danger(LANG("obj.f773dc2d8d93d70b", list(owner, comp_parent.name, attack_text))))
 	if(current_charges <= 0)
 		comp_parent.set_light_on(FALSE)
 		relic_message(span_notice("[comp_parent] stops glowing."))

@@ -109,16 +109,16 @@
 	if(interaction != AI_TRANS_TO_CARD) //AIs can only be transferred in one direction, from the wreck to the card.
 		return
 	if(!ai_pilot) //No AI in the wreck
-		to_chat(user, span_warning("No AI backups found."))
+		to_chat(user, span_warning(LANG("obj.da4175a46fbf7ba6", null)))
 		return
 	cut_overlays() //Remove the recovery beacon overlay
 	ai_pilot.forceMove(card) //Move the dead AI to the card.
 	card.AI = ai_pilot
 	if(ai_pilot.client) //AI player is still in the dead AI and is connected
-		to_chat(ai_pilot, span_notice("The remains of your file system have been recovered on a mobile storage device."))
+		to_chat(ai_pilot, span_notice(LANG("obj.720b30ebc55655db", null)))
 	else //Give the AI a heads-up that it is probably going to get fixed.
 		ai_pilot.notify_revival("You have been recovered from the wreckage!", source = card)
-	to_chat(user, "[span_boldnotice("Backup files recovered")]: [ai_pilot.name] ([rand(1000,9999)].exe) salvaged from [name] and stored within local memory.")
+	to_chat(user, LANG("obj.b4406c8c2978f932", list(span_boldnotice("Backup files recovered"), ai_pilot.name, rand(1000,9999), name)))
 	ai_pilot = null
 
 /obj/structure/mecha_wreckage/gygax

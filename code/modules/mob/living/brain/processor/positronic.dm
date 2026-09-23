@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 #define POSIBRAIN_NAG_COOLDOWN 60 SECONDS
 
 /obj/item/brain_processor/positronic
@@ -53,31 +54,31 @@
 	. = ..()
 	if(brainmob.key)
 		if(brainmob.stat >= DEAD)
-			. += span_deadsay("It appears to be completely inactive.")
+			. += span_deadsay(LANG("obj.6e66cf42e58e10ea", null))
 		else if(!brainmob.client)
-			. += "It appears to be in stand-by mode." //afk
+			. += LANG("obj.f6906ec494462db0", null) //afk
 		return
 
 	if(is_searching())
-		. += span_info("It's emitting light in a steady pulse.")
+		. += span_info(LANG("obj.1310e3e5b9db3e1c", null))
 	else
-		. += span_deadsay("It appears to be completely inactive. The reset light is blinking.")
+		. += span_deadsay(LANG("obj.d05ebdc2c745924f", null))
 
 	if(requested_personality && (isobserver(user) || user.is_holding(src)))
-		. += span_notice("Current consciousness seed: \"[requested_personality]\"")
-	. += span_boldnotice("Alt-click to set a consciousness seed, specifying what [src] will be used for. This can help generate a personality interested in that role.")
+		. += span_notice(LANG("obj.669ecac1952ebcda", list(requested_personality)))
+	. += span_boldnotice(LANG("obj.a619747673e708a3", list(src)))
 
 /obj/item/brain_processor/positronic/click_alt(mob/living/user)
-	var/input_seed = tgui_input_text(user, "Enter a personality seed:", "Enter seed", html_decode(requested_personality), max_length = MAX_NAME_LEN)
+	var/input_seed = tgui_input_text(user, LANG("obj.d0824d69b0eb75f0", null), LANG("obj.43e772701dc8f455", null), html_decode(requested_personality), max_length = MAX_NAME_LEN)
 
 	if(!user.can_perform_action(src) || isnull(input_seed))
 		return CLICK_ACTION_BLOCKING
 
 	if(!input_seed)
-		to_chat(user, span_notice("You clear the personality seed."))
+		to_chat(user, span_notice(LANG("obj.a6a9612bec4e85b8", null)))
 		requested_personality = null
 	else
-		to_chat(user, span_notice("You set the personality seed to \"[input_seed]\"."))
+		to_chat(user, span_notice(LANG("obj.6af35397907b27be", list(input_seed))))
 		requested_personality = input_seed
 
 	return CLICK_ACTION_SUCCESS
@@ -89,13 +90,13 @@
 	. = TRUE
 
 	if(is_occupied())
-		balloon_alert(user, "already active!")
+		balloon_alert(user, LANG("obj.8c159a0fddbea9ab", null))
 		return
 	if(is_searching())
-		balloon_alert(user, "already searching!")
+		balloon_alert(user, LANG("obj.56cdd4ed35294b72", null))
 		return
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SILICONS))
-		to_chat(user, span_warning("Central Command has outlawed posibrain sentience in this sector."))
+		to_chat(user, span_warning(LANG("obj.9460259484b8330a", null)))
 		return
 
 	to_chat(user, begin_activation_message || span_notice("You press the manual activation button and start [src]'s boot process.")) // NOVA EDIT CHANGE - ORIGINAL: to_chat(user, span_notice("You press the manual activation button and start [src]'s boot process."))
@@ -105,16 +106,16 @@
 	if(is_occupied())
 		return
 	if(LAZYACCESS(ckeys_entered, user.ckey))
-		to_chat(user, span_warning("You cannot re-enter [src] a second time!"))
+		to_chat(user, span_warning(LANG("obj.95bb1e5ff6957ca4", list(src))))
 		return
 
 	if(is_banned_from(user.ckey, ROLE_POSIBRAIN))
-		to_chat(user, span_warning("You are currently [span_bold("BANNED")] from playing as [ROLE_POSIBRAIN]!"))
+		to_chat(user, span_warning(LANG("obj.79a519f19b64f6d3", list(span_bold("BANNED"), ROLE_POSIBRAIN))))
 		return
 	if(QDELETED(src) || QDELETED(user)) // is_banned_from is a sleeping proc
 		return
 
-	var/posi_ask = tgui_alert(user, "Become \a [initial(name)]?\nYou will longer be revivable and all past lives will be forgotten!", "Confirm", list("Yes","No"))
+	var/posi_ask = tgui_alert(user, LANG("obj.1643bba5e9b5223a", list(initial(name))), LANG("obj.3c1da715a16e1d9e", null), list("Yes","No"))
 	if(posi_ask != "Yes" || QDELETED(src) || QDELETED(user))
 		return
 	if(is_occupied()) // check one more time...
@@ -128,7 +129,7 @@
 		to_chat(brainmob, policy)
 
 	stop_requesting_ghost()
-	visible_message(success_message || span_notice("[src] pings as [p_their()] lights start flashing!"), null, span_hear("You hear something make a \"ping\" sound.")) // NOVA EDIT CHANGE - ORIGINAL: visible_message(span_notice("[src] pings as [p_their()] lights start flashing!"), null, span_hear("You hear something make a \"ping\" sound."))
+	visible_message(success_message || span_notice("[src] pings as [p_their()] lights start flashing!"), null, span_hear(LANG("obj.245ce5ecf0d1530c", null))) // NOVA EDIT CHANGE - ORIGINAL: visible_message(span_notice("[src] pings as [p_their()] lights start flashing!"), null, span_hear("You hear something make a \"ping\" sound."))
 	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
 
 /// Notify ghosts that the posibrain is up for grabs.
@@ -139,7 +140,7 @@
 	var/should_nag = !forced && COOLDOWN_FINISHED(src, ghost_nag_cooldown)
 
 	notify_ghosts(
-		"[name] [msg] in [get_area(src)]! [requested_personality ? "Personality requested: \[[requested_personality]\]" : ""]",
+		LANG("obj.c80b0da1b4fde256", list(name, msg, get_area(src), requested_personality ? "Personality requested: \[[requested_personality]\]" : "")),
 		source = src,
 		header = "Ghost in the Machine",
 		click_interact = TRUE,
@@ -261,9 +262,9 @@
 		return .
 
 	visible_message(\
-		span_danger("[user] punts [src] hard, sending [p_them()] flying!"), \
-		span_userdanger("[user] punts you like a football!"), \
-		span_danger("You hear something get hit!"))
+		span_danger(LANG("obj.b1ff6315d58e6966", list(user, src, p_them()))), \
+		span_userdanger(LANG("obj.4a385f38480d5ffd", list(user))), \
+		span_danger(LANG("obj.f9fb70be9d9e82ab", null)))
 	user.do_attack_animation(src)
 	playsound(src, SFX_PUNCH, 40, TRUE)
 
