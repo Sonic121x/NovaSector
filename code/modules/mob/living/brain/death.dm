@@ -5,9 +5,9 @@
 	set_stat(DEAD)
 
 	if(!gibbed && container)//If not gibbed but in a container.
-		var/obj/item/mmi = container
-		mmi.visible_message(span_warning(LANG("mob.234ce8afaaaffb86", list(src))), \
-					span_hear(LANG("mob.642a3a82e9c54493", null)))
+		var/obj/item/brain_processor/mmi = container
+		mmi.visible_message(span_warning("[src]'s MMI flatlines!"), \
+					span_hear("You hear something flatline."))
 		mmi.update_appearance()
 
 	return ..()

@@ -1,6 +1,6 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/machinery/computer/rdservercontrol
-	name = "R&D Server Controller"
+	name = "\improper R&D server control console"
 	desc = "Manages access to research databases and consoles."
 	icon_screen = "rdcomp"
 	icon_keyboard = "rd_key"

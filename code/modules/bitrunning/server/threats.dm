@@ -129,8 +129,8 @@
 
 
 /// Oh boy - transports the antag station side
-/obj/machinery/quantum_server/proc/station_spawn(mob/living/antag, obj/machinery/byteforge/chosen_forge)
-	antag.balloon_alert(antag, LANG("obj.9ef11a33f0292426", null))
+/obj/machinery/quantum_server/proc/station_spawn(mob/living/antag, obj/machinery/byteforge/chosen_forge, turf/goal_turf)
+	antag.balloon_alert(antag, "scanning...")
 	chosen_forge.setup_particles(angry = TRUE)
 	var/obj/machinery/announcement_system/aas = get_announcement_system(null, src, list(RADIO_CHANNEL_SUPPLY))
 	if (aas)
@@ -159,6 +159,10 @@
 	if(bitrunners_alive)
 		to_chat(antag, span_warning(LANG("obj.d276702a388b3b1c", list(bitrunners_alive))))
 
+	timeout -= 0.5 SECONDS
+
+	if(!do_after(antag, 0.5 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE) || QDELETED(antag) || antag.loc != goal_turf || QDELETED(chosen_forge) || QDELETED(src))
+		return
 	if(!do_after(antag, timeout) || QDELETED(chosen_forge) || QDELETED(antag) || QDELETED(src) || !is_ready || !is_operational)
 		chosen_forge.setup_particles()
 		return
