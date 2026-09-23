@@ -17848,6 +17848,9 @@
   "Local Status": [
     "tgui:AlarmStatus"
   ],
+  "Localization changes": [
+    "tgui:Changelog"
+  ],
   "Locate the ever-elusive red emergency stop button. It's probably hiding in plain sight, so take your time, have a laugh, and enjoy the anticipation. Remember, it's like a treasure hunt, only with the added bonus of preventing a nuclear disaster.": [
     "tgui:DelamProcedure"
   ],

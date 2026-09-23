@@ -59,7 +59,7 @@ TGUI remains under `tgui/packages/tgui/interfaces/`; there is no modular Nova TG
 ## Conventions
 
 - `.dm`, `.json`, and `.md` use tabs; JS/TS and other files use spaces. Follow `.editorconfig` and `biome.json`.
-- Player-facing changes add `html/changelogs/*.yml`; copy `example.yml` and use two-space YAML indentation.
+- Any change a player can notice (new translation coverage, fixed mistranslations, UI that now works in Chinese, gameplay/performance fixes made here) gets a changelog entry in `html/changelogs/localization/*.yml`, written in Chinese for players. It shows in the in-game changelog's 「汉化版更新」 tab. Same format as `html/changelogs/example.yml` (two-space YAML indentation, `author`, `delete-after: True`, prefixed `changes`); an optional `date: YYYY-MM-DD` back-dates it. Compile with `python3 tools/i18n/compile-localization-changelog.py` (needs PyYAML: `nix-shell -p 'python3.withPackages (ps: [ps.pyyaml])'`) and commit the resulting `archive/` month file. Do **not** put this repo's entries in `html/changelogs/` itself: that directory is compiled by upstream's CI into upstream's archive, so entries there never reach the game here, and compiling them locally would conflict with upstream's archive on every merge. Internal tooling changes (extractor, MT pipeline, lint) don't need an entry.
 - Treat player input as hostile. Revalidate context after prompts, parameterize SQL with `format_table_name()`, scope `locate(ref)` to an allowlist, and validate Topic href actions.
 - New player-facing interfaces must use TGUI.
 - Detailed style/security/map rules live in `.github/guides/`.
