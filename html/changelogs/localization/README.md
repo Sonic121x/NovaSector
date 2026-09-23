@@ -25,3 +25,9 @@
    ```
 
 3. 连同 `archive/` 的改动一起提交。
+
+## 上游更新日志的翻译
+
+「更新日志」页签里 Nova Sector 上游的条目在中文服下显示机翻译文，译文在 `upstream/<locale>/YYYY-MM.json`（英文原文 → 译文，每月一张）。
+同步上游时运行 `bun tools/i18n/changelog-mt.ts` 翻译新增条目（只处理 2026-09 及以后的月份，已翻过的不重复翻），产物随同步一起提交。
+上游的 `html/changelogs/archive/` 保持原样，前端按原文查表替换，查不到的条目显示英文；译文不进 `strings/i18n` 目录。
