@@ -813,8 +813,6 @@ ADMIN_VERB(secrets, R_NONE, "秘密", "Abuse harder than you ever have before wi
 			if(ROLE_TRAITOR)
 				var/datum/antagonist/traitor/antag_datum = new(give_objectives = keep_generic_objecives)
 				assign_admin_objective_and_antag(player, antag_datum)
-				var/datum/uplink_handler/uplink = antag_datum.uplink_handler
-				uplink.has_progression = FALSE
 			if(ROLE_CHANGELING)
 				var/datum/antagonist/changeling/antag_datum = new
 				antag_datum.give_objectives = keep_generic_objecives

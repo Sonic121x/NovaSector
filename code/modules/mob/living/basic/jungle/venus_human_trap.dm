@@ -24,16 +24,14 @@
 	/// The amount of time it takes to create a venus human trap.
 	var/growth_time = 120 SECONDS
 	var/growth_icon = 0
-
 	/// Used by countdown to check time, this is when the timer will complete and the venus trap will spawn.
 	var/finish_time
 	/// The countdown ghosts see to when the plant will hatch
 	var/obj/effect/countdown/flower_bud/countdown
-
-	var/trait_flags = 0
-
+	/// List of mutations for a specific flower vine
+	var/list/mutations = list()
+	/// List of anchored vines that are attatched to the flower for the bloom/beam effect
 	var/list/vines = list()
-
 	/// The spawner that actually handles spawning the ghost role in
 	var/obj/effect/mob_spawn/ghost_role/venus_human_trap/spawner
 
@@ -56,8 +54,10 @@
 	countdown.start()
 
 /obj/structure/alien/resin/flower_bud/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
-	if((trait_flags & SPACEVINE_HEAT_RESISTANT) && damage_type == BURN)
+	var/datum/spacevine_mutation/fire_proof/fire_proof = locate() in mutations
+	if(fire_proof && damage_type == BURN)
 		damage_amount = 0
+
 	. = ..()
 
 /obj/structure/alien/resin/flower_bud/attacked_by(obj/item/item, mob/living/user, list/modifiers, list/attack_modifiers)
@@ -135,8 +135,8 @@
 	health_doll_icon = "venus_human_trap"
 	mob_biotypes = MOB_ORGANIC | MOB_PLANT
 	layer = SPACEVINE_MOB_LAYER
-	health = 100
-	maxHealth = 100
+	health = 50
+	maxHealth = 50
 	obj_damage = 60
 	melee_damage_lower = 10
 	melee_damage_upper = 20
@@ -157,7 +157,7 @@
 	lighting_cutoff_red = 10
 	lighting_cutoff_green = 35
 	lighting_cutoff_blue = 20
-	faction = list(FACTION_HOSTILE,FACTION_VINES,FACTION_PLANTS)
+	faction = list(FACTION_HOSTILE, FACTION_VINES, FACTION_PLANTS)
 	initial_language_holder = /datum/language_holder/venus
 	unique_name = TRUE
 	speed = 1.2
@@ -166,9 +166,13 @@
 	///how much damage we take out of weeds
 	var/no_weed_damage = 12.5
 	///how much do we heal in weeds
-	var/weed_heal = 10
+	var/weed_heal = 5
 	///if the balloon alert was shown atleast once, reset after healing in weeds
 	var/alert_shown = FALSE
+	///the distance it can move away from kudzu before taking damage
+	var/kudzu_off_distance_range = 0
+	/// Internal dummy used to glow (very cool)
+	var/obj/effect/dummy/lighting_obj/moblight/glow
 
 /mob/living/basic/venus_human_trap/Initialize(mapload)
 	. = ..()
@@ -177,6 +181,10 @@
 		/datum/action/cooldown/mob_cooldown/projectile_attack/vine_tangle = BB_TARGETED_ACTION,
 	)
 	grant_actions_by_list(innate_actions)
+
+/mob/living/basic/venus_human_trap/Destroy(force)
+	QDEL_NULL(glow)
+	return ..()
 
 /mob/living/basic/venus_human_trap/RangedAttack(atom/victim)
 	if(!combat_mode)
@@ -191,7 +199,7 @@
 	if(!.)
 		return FALSE
 
-	var/vines_in_range = locate(/obj/structure/spacevine) in range(2, src)
+	var/vines_in_range = locate(/obj/structure/spacevine) in range(kudzu_off_distance_range, src)
 	if(!vines_in_range && !alert_shown)
 		alert_shown = TRUE
 		balloon_alert(src, LANG("mob.ea9ababd429f7733", null))

@@ -24,3 +24,40 @@
 	// A requested date comes from the client and ends up in a file path; anything we did not list must be refused.
 	for(var/bad_date in list("../../config/admins", "2026-13", "", null, 5))
 		TEST_ASSERT_NULL(changelog.get_localization_changelog_item(bad_date), "Served a changelog asset for unlisted date [bad_date]")
+
+/// Upstream's changelog is served with its machine translation for months we translated, and only those.
+/datum/unit_test/upstream_changelog_translation
+	/// Server locale before the test switched it, restored in Destroy() so a failed assertion cannot leak it
+	var/original_locale
+
+/datum/unit_test/upstream_changelog_translation/Run()
+	original_locale = GLOB.i18n_server_locale
+	var/datum/changelog/changelog = allocate(/datum/changelog)
+
+	GLOB.i18n_server_locale = "zh-Hans"
+	var/list/dates = changelog.translated_changelog_dates()
+	TEST_ASSERT(length(dates), "No translated months found in html/changelogs/localization/upstream/zh-Hans/")
+	var/list/static_data = changelog.ui_static_data()
+	var/list/upstream_dates = static_data["dates"]
+	TEST_ASSERT_EQUAL(length(static_data["translated_dates"]), length(dates), "Static data should carry the translated months")
+	for(var/date in dates)
+		TEST_ASSERT(findtext(date, regex(@"^\d{4}-\d{2}$")), "Unexpected translated changelog month name: [date]")
+		TEST_ASSERT(date in upstream_dates, "Translation for [date] has no upstream changelog month to apply to")
+	var/list/sorted = sort_list(dates.Copy())
+	TEST_ASSERT_EQUAL(dates[1], sorted[length(sorted)], "Translated months should be listed newest first")
+
+	var/datum/asset/changelog_item/translation/item = changelog.get_changelog_translation_item(dates[1])
+	TEST_ASSERT_NOTNULL(item, "A translated month ([dates[1]]) was refused")
+	TEST_ASSERT_EQUAL(item.item_filename, "changelog-translation-[dates[1]].json", "Translation assets must be namespaced away from upstream's month assets")
+	TEST_ASSERT_EQUAL(changelog.get_changelog_translation_item(dates[1]), item, "The same month should reuse its registered asset")
+
+	// Client-supplied and ends up in a file path: only months we translated, never an upstream-only month or a path.
+	for(var/bad_date in list("2009-01", "../../config/admins", "2026-13", "", null, 5))
+		TEST_ASSERT_NULL(changelog.get_changelog_translation_item(bad_date), "Served a changelog translation for unlisted date [bad_date]")
+
+	GLOB.i18n_server_locale = "en"
+	TEST_ASSERT_EQUAL(length(changelog.translated_changelog_dates()), 0, "An English server should not list any changelog translations")
+
+/datum/unit_test/upstream_changelog_translation/Destroy()
+	GLOB.i18n_server_locale = original_locale
+	return ..()

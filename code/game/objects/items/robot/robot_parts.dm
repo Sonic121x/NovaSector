@@ -266,8 +266,8 @@
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
-	if(istype(tool, /obj/item/mmi))
-		var/obj/item/mmi/potential_brain = tool
+	if(istype(tool, /obj/item/brain_processor))
+		var/obj/item/brain_processor/potential_brain = tool
 		if(!check_completion())
 			to_chat(user, span_warning(LANG("obj.0290266e45cf8419", null)))
 			return ITEM_INTERACT_BLOCKING

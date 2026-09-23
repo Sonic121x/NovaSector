@@ -59,6 +59,7 @@ type ChangelogState = {
 type ChangelogData = {
   dates: string[];
   localization_dates?: string[]; // NOVA EDIT ADDITION - I18N
+  translated_dates?: string[]; // NOVA EDIT ADDITION - I18N
 };
 
 // NOVA EDIT ADDITION START - I18N: the localization build's own changelog, shown as a separate tab.
@@ -69,6 +70,53 @@ const isLocalization = (source?: ChangelogSource) => source === 'localization';
 
 const sourceDates = (data: ChangelogData, source?: ChangelogSource) =>
   (isLocalization(source) ? data.localization_dates : data.dates) || [];
+
+// Upstream's entries are machine-translated at upstream sync into one "original text -> translation"
+// table per month. Looked up by the original text, so upstream editing a month never misaligns
+// anything; an entry without a translation, or a table that fails to load, stays in English.
+type ChangelogTranslations = Record<string, string>;
+
+const fetchTranslations = async (
+  date: string,
+  attemptNumber = 1,
+): Promise<ChangelogTranslations | undefined> => {
+  const response = await fetch(
+    resolveAsset(`changelog-translation-${date}.json`),
+  ).catch(() => undefined);
+  if (response?.ok) {
+    return response.json();
+  }
+  if (attemptNumber >= 6) {
+    return undefined;
+  }
+  await new Promise((resolve) => setTimeout(resolve, 50 + attemptNumber * 50));
+  return fetchTranslations(date, attemptNumber + 1);
+};
+
+const translateChangelog = (
+  changelog: ChangelogYaml,
+  translations: ChangelogTranslations,
+): ChangelogYaml => {
+  const translate = (text: string) =>
+    Object.hasOwn(translations, String(text))
+      ? translations[String(text)]
+      : text;
+  const result: ChangelogYaml = {};
+  for (const [date, authors] of Object.entries(changelog || {})) {
+    result[date] = {};
+    for (const [author, changes] of Object.entries(authors || {})) {
+      result[date][author] = (changes || []).map((change) =>
+        Object.fromEntries(
+          Object.entries(change || {}).map(([type, text]) => [
+            type,
+            translate(text),
+          ]),
+        ),
+      );
+    }
+  }
+  return result;
+};
 // NOVA EDIT ADDITION END
 
 export class ChangelogContent extends Component<any, ChangelogState> {
@@ -126,9 +174,19 @@ export class ChangelogContent extends Component<any, ChangelogState> {
       }
 
       const result = await changelogData.text();
-      this.setData(
-        yaml.load(result, { schema: yaml.CORE_SCHEMA }) as ChangelogYaml,
-      );
+      // NOVA EDIT CHANGE START - I18N - ORIGINAL: this.setData(yaml.load(result, { schema: yaml.CORE_SCHEMA }) as ChangelogYaml);
+      let changelog = yaml.load(result, {
+        schema: yaml.CORE_SCHEMA,
+      }) as ChangelogYaml;
+      const { data } = useBackend<ChangelogData>();
+      if (!localization && data.translated_dates?.includes(date)) {
+        const translations = await fetchTranslations(date);
+        if (translations) {
+          changelog = translateChangelog(changelog, translations);
+        }
+      }
+      this.setData(changelog);
+      // NOVA EDIT CHANGE END
     });
   };
 

@@ -4375,9 +4375,6 @@
   "Bridge Officer": [
     "dm:labels"
   ],
-  "Bridge Pipe": [
-    "dm:labels"
-  ],
   "Brief outfit": [
     "tgui:admin"
   ],
@@ -9471,9 +9468,6 @@
   "Digital Magnification Optics (x3)": [
     "dm:labels"
   ],
-  "Digital Valve": [
-    "dm:labels"
-  ],
   "Digitigrade": [
     "dm:labels"
   ],
@@ -11640,9 +11634,6 @@
   "Extrashield Green": [
     "dm:labels"
   ],
-  "Extreme": [
-    "tgui:calculateDangerLevel"
-  ],
   "Extreme Cold": [
     "tgui:AntagInfoBloodWorm"
   ],
@@ -13210,9 +13201,6 @@
   "Gas Monitoring": [
     "tgui:Temperatures"
   ],
-  "Gas Pump": [
-    "dm:labels"
-  ],
   "Gas Synthesis Technician": [
     "dm:labels"
   ],
@@ -14540,9 +14528,6 @@
   "Heat Exchange": [
     "dm:labels"
   ],
-  "Heat Exchanger": [
-    "dm:labels"
-  ],
   "Heat Glasses": [
     "dm:labels"
   ],
@@ -14788,8 +14773,7 @@
   ],
   "High": [
     "dm:labels",
-    "tgui:JobsPage",
-    "tgui:calculateDangerLevel"
+    "tgui:JobsPage"
   ],
   "High Heat": [
     "tgui:AntagInfoBloodWorm"
@@ -16021,9 +16005,6 @@
   ],
   "Insignia of Steele": [
     "dm:labels"
-  ],
-  "Insignificant": [
-    "tgui:calculateDangerLevel"
   ],
   "Inspect and edit this plane": [
     "tgui:PlaneMaster"
@@ -18150,8 +18131,7 @@
   ],
   "Low": [
     "dm:labels",
-    "tgui:JobsPage",
-    "tgui:calculateDangerLevel"
+    "tgui:JobsPage"
   ],
   "Low Wings (Top)": [
     "dm:labels"
@@ -18682,9 +18662,6 @@
   "Manual Control": [
     "tgui:PortableTurret"
   ],
-  "Manual Valve": [
-    "dm:labels"
-  ],
   "Manual control - unlocks the layering options.": [
     "tgui:GenitalLayeringTab"
   ],
@@ -18856,6 +18833,7 @@
     "tgui:AtmosPump",
     "tgui:AtmosTempGate",
     "tgui:AtmosTempPump",
+    "tgui:ModulesPane",
     "tgui:NumberInputModal"
   ],
   "Max ({0})": [
@@ -19305,9 +19283,6 @@
   "Metallic-Hydrogen Robes": [
     "dm:labels"
   ],
-  "Meter": [
-    "dm:labels"
-  ],
   "Methamphetamine": [
     "dm:labels"
   ],
@@ -19418,6 +19393,7 @@
     "tgui:MinigamesMenu"
   ],
   "Minimize": [
+    "tgui:ModulesPane",
     "tgui:NtosWindow"
   ],
   "Minimum Security Prisoner": [
@@ -19455,9 +19431,6 @@
   ],
   "Minions": [
     "tgui:AntagInfoBlob"
-  ],
-  "Miniscule": [
-    "tgui:calculateDangerLevel"
   ],
   "Minor Disabilities": [
     "tgui:RecordView"
@@ -19576,9 +19549,6 @@
     "tgui:NtosRoboControl",
     "tgui:NtosRobotact",
     "tgui:RoboticsControlConsole"
-  ],
-  "Moderate": [
-    "tgui:calculateDangerLevel"
   ],
   "Moderator": [
     "tgui:Temperatures"
@@ -19750,9 +19720,6 @@
   ],
   "Monstrous strike:": [
     "tgui:AntagInfoDemon"
-  ],
-  "Mood is disabled on this server. You can still select personalities, but they will have no effect.": [
-    "tgui:PersonalityPage"
   ],
   "Moogle Pom (Large, Back)": [
     "dm:labels"
@@ -20084,6 +20051,9 @@
   "Mouth implant": [
     "dm:labels"
   ],
+  "Mouthwash": [
+    "dm:labels"
+  ],
   "Move Down": [
     "tgui:LayerManager",
     "tgui:ListMapper"
@@ -20130,9 +20100,6 @@
   ],
   "Multi": [
     "tgui:RapidPipeDispenser"
-  ],
-  "Multi-Deck Adapter": [
-    "dm:labels"
   ],
   "Multi-Z Depth": [
     "tgui:multiz_performance"
@@ -21723,7 +21690,6 @@
     "tgui:SpaceHeater",
     "tgui:SpawnersMenu",
     "tgui:Symptom",
-    "tgui:calculateDangerLevel",
     "tgui:constants"
   ],
   "None available": [
@@ -22992,8 +22958,10 @@
     "dm:labels"
   ],
   "Overclock": [
-    "tgui:AlertPane",
     "tgui:RBMK2"
+  ],
+  "Overclock ({0}%)": [
+    "tgui:AlertPane"
   ],
   "Overclocking ({0}%)": [
     "tgui:AlertPane"
@@ -23463,12 +23431,6 @@
   "Parts not connected, close all mantainence panels/use a multitool on the rotor before trying again": [
     "tgui:TurbineComputer"
   ],
-  "Passive Gate": [
-    "dm:labels"
-  ],
-  "Passive Vent": [
-    "dm:labels"
-  ],
   "Passive: {0}": [
     "tgui:AntagInfoHeretic"
   ],
@@ -23924,7 +23886,6 @@
     "tgui:ChatScreen"
   ],
   "Photocopier": [
-    "dm:labels",
     "tgui:Photocopier"
   ],
   "Photographer": [
@@ -24086,9 +24047,6 @@
   ],
   "Pink Clown Wig": [
     "dm:labels"
-  ],
-  "Pinnacle": [
-    "tgui:calculateDangerLevel"
   ],
   "Pipe": [
     "dm:labels"
@@ -24937,9 +24895,6 @@
   "Pressure Regulator": [
     "tgui:AtmosControls",
     "tgui:Tank"
-  ],
-  "Pressure Valve": [
-    "dm:labels"
   ],
   "Pressures above 4500 kPa begin to increasingly slow down the reaction, with the slowest speed by 18,000 kPa. Safety systems will trigger at pressures exceeding 9000 kPa.": [
     "tgui:RBMK2"
@@ -29966,9 +29921,6 @@
   "Signer": [
     "dm:labels"
   ],
-  "Significant": [
-    "tgui:calculateDangerLevel"
-  ],
   "Signs you up for the next game. If there is an ongoing one, you will be signed up for the next.": [
     "tgui:BasketballPanel",
     "tgui:MafiaPanel"
@@ -31100,8 +31052,7 @@
     "tgui:MessageMonitor"
   ],
   "Standard": [
-    "dm:labels",
-    "tgui:calculateDangerLevel"
+    "dm:labels"
   ],
   "Standard Blue": [
     "dm:labels"
@@ -32893,17 +32844,11 @@
     "tgui:Supermatter",
     "tgui:ThermoMachine"
   ],
-  "Temperature Gate": [
-    "dm:labels"
-  ],
   "Temperature Inlet: {0} K / Outlet: {1} K": [
     "tgui:ThermoElectricGenerator"
   ],
   "Temperature Limit": [
     "tgui:Supermatter"
-  ],
-  "Temperature Pump": [
-    "dm:labels"
   ],
   "Template Sizes": [
     "tgui:NanopaintNewDialog"
@@ -33961,9 +33906,6 @@
   ],
   "Threat Parameters": [
     "tgui:TacVisorEyesMenu"
-  ],
-  "Threat passively increases by {0} every minute": [
-    "tgui:index"
   ],
   "Three Eyes": [
     "dm:labels"
@@ -35217,9 +35159,6 @@
   "Unanchored Objects": [
     "tgui:constants"
   ],
-  "Unary Vent": [
-    "dm:labels"
-  ],
   "Unassigned Crewmember": [
     "dm:labels"
   ],
@@ -36279,9 +36218,6 @@
   ],
   "Volume Mulx": [
     "tgui:ChemRecipeDebug"
-  ],
-  "Volume Pump": [
-    "dm:labels"
   ],
   "Volume of admin musics.": [
     "tgui:sounds"
@@ -38142,9 +38078,6 @@
   "Your character will enjoy anything that's liked.": [
     "tgui:FoodPreferences"
   ],
-  "Your current level of threat.": [
-    "tgui:index"
-  ],
   "Your current objectives": [
     "tgui:Objectives"
   ],
@@ -39639,9 +39572,6 @@
     "tgui:DynamicAdmin"
   ],
   "{0} TILES": [
-    "tgui:index"
-  ],
-  "{0} Threat determines what items you can purchase. {1}{2}": [
     "tgui:index"
   ],
   "{0} Units": [

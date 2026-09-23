@@ -1,7 +1,7 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 
 /obj/machinery/computer/pandemic
-	name = "PanD.E.M.I.C 2200"
+	name = "\improper PanD.E.M.I.C 2200"
 	desc = "Used to work with viruses."
 	density = TRUE
 	icon = 'icons/obj/medical/chemical.dmi'

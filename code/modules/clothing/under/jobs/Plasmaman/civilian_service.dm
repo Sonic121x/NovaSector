@@ -55,6 +55,10 @@
 	COOLDOWN_START(src, extinguish_timer, extinguish_cooldown)
 	// Check if our (possibly other) wearer is on fire once the cooldown ends
 	addtimer(CALLBACK(src, PROC_REF(check_fire_state)), extinguish_cooldown)
+	activate_fire_safety(owner)
+
+/// Extinguish our suit
+/obj/item/clothing/under/plasmaman/proc/activate_fire_safety(mob/living/owner)
 	owner.visible_message(span_warning(LANG("obj.1259449b99485d98", list(owner, owner.p_them()))), span_warning(LANG("obj.7fd1fcffbd245f6e", null)))
 	owner.extinguish_mob()
 	new /obj/effect/particle_effect/water(get_turf(owner))
@@ -159,23 +163,8 @@
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 
-/obj/item/clothing/under/plasmaman/clown/check_fire_state(datum/source, datum/status_effect/fire_handler/status_effect)
-	if (!ishuman(loc))
-		return
-
-	// This is weird but basically we're calling this proc once the cooldown ends in case our wearer gets set on fire again during said cooldown
-	// This is why we're ignoring source and instead checking by loc
-	var/mob/living/carbon/human/owner = loc
-	if (!owner.on_fire || !owner.is_atmos_sealed(additional_flags = PLASMAMAN_PREVENT_IGNITION, check_hands = TRUE))
-		return
-
-	if (!extinguishes_left || !COOLDOWN_FINISHED(src, extinguish_timer))
-		return
-
-	extinguishes_left -= 1
-	COOLDOWN_START(src, extinguish_timer, extinguish_cooldown)
-	// Check if our (possibly other) wearer is on fire once the cooldown ends
-	addtimer(CALLBACK(src, PROC_REF(check_fire_state)), extinguish_cooldown)
+/// Sprays lube instead of water
+/obj/item/clothing/under/plasmaman/clown/activate_fire_safety(mob/living/owner)
 	owner.visible_message(span_warning(LANG("obj.49863cca75d8b95a", list(owner))), span_warning(LANG("obj.668f25fa12ac4d04", null)))
 	owner.extinguish_mob()
 	do_foam(4, src, get_turf(owner), /datum/reagent/lube, 15)
