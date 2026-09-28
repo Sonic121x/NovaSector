@@ -65,6 +65,115 @@
 	TEST_ASSERT(SStts.set_admin_enabled(TRUE), "Re-enabling a connected TTS backend should succeed.")
 	TEST_ASSERT(SStts.is_runtime_enabled(), "The admin gate should resume new TTS requests.")
 
+/// Expressive TTS: emotion tags, voice instructions and voice metadata from the TTS server.
+/datum/unit_test/tts_expression
+	var/list/original_voice_info
+	var/state_saved = FALSE
+
+/datum/unit_test/tts_expression/Run()
+	// The TTS server rejects tags outside its allowlist, so a typo would silence every matching line.
+	var/list/server_styles = list("sad", "amazed", "deep and loud shouting", "trembling", "angry", "excited", "sarcastic", "curious", "like dracula", "bored", "tired", "scornful", "shouting", "asmr", "panicked", "mischievously", "empathetic", "whispers", "reluctantly", "crying", "serious", "very slowly", "very fast")
+	var/list/server_sounds = list("gasp", "sighing", "clears throat", "giggles", "laughing", "cough", "snorts")
+	for(var/style in GLOB.tts_style_keywords)
+		TEST_ASSERT(style in server_styles, "[style] is not a TTS control tag.")
+	for(var/sound in GLOB.tts_sound_keywords)
+		TEST_ASSERT(sound in server_sounds, "[sound] is not a TTS nonverbal tag.")
+
+	// Every verb the chat box offers must change how the line is voiced, or picking it does nothing.
+	for(var/verb in GLOB.tts_mood_verbs)
+		var/list/mood = tts_detect_expression("你好", list(MODE_CUSTOM_SAY_EMOTE = verb))
+		var/verb_instruction = tts_compose_instruction(null, list(MODE_CUSTOM_SAY_EMOTE = verb))
+		if(mood[1] || mood[2])
+			TEST_ASSERT_EQUAL(verb_instruction, "", "Mood verb [verb] is already a tag and should not also become an instruction.")
+		else
+			TEST_ASSERT_EQUAL(verb_instruction, "[TTS_VERB_INSTRUCTION][verb]", "Mood verb [verb] matches no tag and should become an instruction.")
+	var/long_instruction = tts_compose_instruction(repeat_string(40, "低"), list(MODE_SING = TRUE, MODE_CUSTOM_SAY_EMOTE = repeat_string(20, "醉")))
+	TEST_ASSERT(length_char(long_instruction) <= TTS_INSTRUCTION_TOTAL_MAX_LENGTH, "Composed instructions must fit the TTS server's limit.")
+	for(var/emote_key in GLOB.tts_emote_voices)
+		TEST_ASSERT(length(GLOB.emote_list[emote_key]), "Voiced emote [emote_key] does not exist.")
+		var/list/voicing = GLOB.tts_emote_voices[emote_key]
+		TEST_ASSERT(isnull(voicing[1]) || (voicing[1] in server_styles), "Voiced emote [emote_key] uses an unknown style.")
+		TEST_ASSERT(isnull(voicing[2]) || (voicing[2] in server_sounds), "Voiced emote [emote_key] uses an unknown sound.")
+		TEST_ASSERT(voicing[2] || length(voicing[3]), "Voiced emote [emote_key] would be silent.")
+	TEST_ASSERT_EQUAL(tts_sanitize_custom_voice_text(" 舰长<b>\[x\] ", 24), "舰长 b  x", "Custom voice text must lose markup and tags.")
+
+	// Machines and NPCs speak translated lines; what players typed is never rewritten.
+	var/obj/machinery/vending/cola/vendor = allocate(/obj/machinery/vending/cola)
+	TEST_ASSERT(lang_speaker_is_scripted(vendor), "Vending machines speak scripted lines.")
+	var/mob/living/carbon/human/npc = allocate(/mob/living/carbon/human/consistent)
+	TEST_ASSERT(lang_speaker_is_scripted(npc), "Mindless NPCs speak scripted lines.")
+	npc.mind_initialize()
+	TEST_ASSERT(!lang_speaker_is_scripted(npc), "A mob with a player's mind says what the player typed.")
+	var/atom/movable/virtualspeaker/relay = allocate(/atom/movable/virtualspeaker, null, npc)
+	TEST_ASSERT(!lang_speaker_is_scripted(relay), "Radio relays of a player's speech must not be rewritten.")
+
+	var/list/expression = tts_detect_expression("快跑！！", list())
+	TEST_ASSERT_EQUAL(expression[1], "shouting", "Yelling should be spoken as shouting.")
+	expression = tts_detect_expression("你好。", list())
+	TEST_ASSERT_NULL(expression[1], "Plain speech should carry no tag.")
+	expression = tts_detect_expression("嘘", list(WHISPER_MODE = MODE_WHISPER))
+	TEST_ASSERT_EQUAL(expression[1], "whispers", "Whispers should be whispered.")
+	expression = tts_detect_expression("救我", list(WHISPER_MODE = MODE_WHISPER_CRIT))
+	TEST_ASSERT_EQUAL(expression[1], "trembling", "Last words in crit should tremble.")
+	expression = tts_detect_expression("我没事", list(MODE_CUSTOM_SAY_EMOTE = "sobs"))
+	TEST_ASSERT_EQUAL(expression[1], "crying", "Custom say verbs should pick an emotion.")
+	expression = tts_detect_expression("来吧！！", list(MODE_CUSTOM_SAY_EMOTE = "低声"))
+	TEST_ASSERT_EQUAL(expression[1], "whispers", "A custom say verb outranks the yell ending.")
+	expression = tts_detect_expression("太好笑了", list(MODE_CUSTOM_SAY_EMOTE = "laughs"))
+	TEST_ASSERT_EQUAL(expression[2], "laughing", "Laughing verbs should add a laugh.")
+	var/list/amazed = tts_detect_expression("真漂亮", list(MODE_CUSTOM_SAY_EMOTE = "惊叹道"))
+	TEST_ASSERT_EQUAL(amazed[1], "amazed", "惊叹 should be amazed.")
+	TEST_ASSERT_NULL(amazed[2], "惊叹 must not also sigh.")
+	var/list/smiling = tts_detect_expression("你好", list(MODE_CUSTOM_SAY_EMOTE = "微笑着说"))
+	TEST_ASSERT_NULL(smiling[1], "Smiling is not an emotion tag.")
+	TEST_ASSERT_NULL(smiling[2], "Smiling must not laugh out loud.")
+
+	TEST_ASSERT_EQUAL(tts_sanitize_instruction("\[laughing\]沙哑<b>"), "laughing 沙哑 b", "Instructions must not carry tags or markup.")
+	TEST_ASSERT_EQUAL(length_char(tts_sanitize_instruction(repeat_string(40, "低"))), TTS_INSTRUCTION_MAX_LENGTH, "Instructions should be cut to the character limit.")
+	TEST_ASSERT_EQUAL(tts_compose_instruction("沙哑", list(MODE_SING = TRUE)), "沙哑；[TTS_SING_INSTRUCTION]", "Singing should extend the voice instruction.")
+	TEST_ASSERT_EQUAL(tts_compose_instruction(null, list()), "", "No description means no instruction.")
+
+	original_voice_info = list(SStts.voice_labels, SStts.random_voices, SStts.voice_aliases, SStts.supported_styles, SStts.supported_sounds, SStts.instruction_enabled, SStts.rate_enabled, SStts.voice_info_loaded)
+	state_saved = TRUE
+	TEST_ASSERT(SStts.apply_voice_info(list(
+		"voices" = list(
+			list("id" = "Yu Xiaoyun Woman", "label" = "于小云", "gender" = "female", "description" = "元气、亲切", "random" = TRUE),
+			list("id" = "Lidou Boy", "label" = "龙杰力豆", "gender" = "male", "description" = "", "random" = FALSE),
+		),
+		"aliases" = list("Cherry Woman" = "Yu Xiaoyun Woman"),
+		"styles" = list("shouting"),
+		"sounds" = list("laughing"),
+		"instruction" = TRUE,
+		"rate" = TRUE,
+	)), "Well-formed voice info should apply.")
+	TEST_ASSERT_EQUAL(SStts.resolve_voice("Cherry Woman"), "Yu Xiaoyun Woman", "Retired voices should map to their replacement.")
+	TEST_ASSERT_EQUAL(SStts.resolve_voice("Lidou Boy"), "Lidou Boy", "Current voices should resolve to themselves.")
+	TEST_ASSERT_EQUAL(SStts.voice_labels["Yu Xiaoyun Woman"], "于小云（女·元气、亲切）", "Voice labels should show gender and traits.")
+	TEST_ASSERT_EQUAL(SStts.voice_labels["Lidou Boy"], "龙杰力豆（男）", "Voices without traits should still get a label.")
+	TEST_ASSERT_EQUAL(jointext(SStts.random_voices, ","), "Yu Xiaoyun Woman", "Only random-eligible voices should be handed out at random.")
+	var/list/body = tts_expression_body("shouting", "gasp", "沙哑", 1.5)
+	TEST_ASSERT_EQUAL(body["style"], "shouting", "Supported styles should be sent.")
+	TEST_ASSERT_NULL(body["sound"], "Sounds the server does not list must not be sent.")
+	TEST_ASSERT_EQUAL(body["instruction"], "沙哑", "Instructions should be sent when supported.")
+	TEST_ASSERT_EQUAL(body["rate"], 1.5, "Rate should be sent when supported.")
+	body = tts_expression_body(null, null, "", 1)
+	TEST_ASSERT_EQUAL(length(body), 0, "Defaults should add nothing to the request.")
+	TEST_ASSERT(!SStts.apply_voice_info("garbage"), "Malformed voice info should be rejected.")
+	TEST_ASSERT(!SStts.instruction_enabled, "Rejected voice info should switch the extras off.")
+	TEST_ASSERT_EQUAL(length(tts_expression_body("shouting", "laughing", "沙哑", 1.5)), 0, "Without voice info, requests should stay plain.")
+
+/datum/unit_test/tts_expression/Destroy()
+	if(state_saved && SStts)
+		SStts.voice_labels = original_voice_info[1]
+		SStts.random_voices = original_voice_info[2]
+		SStts.voice_aliases = original_voice_info[3]
+		SStts.supported_styles = original_voice_info[4]
+		SStts.supported_sounds = original_voice_info[5]
+		SStts.instruction_enabled = original_voice_info[6]
+		SStts.rate_enabled = original_voice_info[7]
+		SStts.voice_info_loaded = original_voice_info[8]
+	return ..()
+
 /datum/unit_test/tts_controls/Destroy()
 	if(state_saved && SStts)
 		SStts.admin_enabled = original_admin_enabled

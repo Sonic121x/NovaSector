@@ -8,6 +8,7 @@ import {
   type FeatureChoicedServerData,
   FeatureNumberInput,
   type FeatureNumeric,
+  FeatureShortTextInput,
   FeatureSliderInput,
   type FeatureToggle,
   type FeatureValueProps,
@@ -43,6 +44,26 @@ export const voice_type: FeatureChoiced = {
   description:
     'What kind of sound plays when your character says something in chat.',
   component: FeatureDropdownInput,
+};
+
+export const tts_voice_instruction: Feature<string> = {
+  name: 'Voice Description',
+  description:
+    'Describe how your TTS voice sounds: age, timbre, mood, accent or dialect. For example: a hoarse old man with a Sichuan accent. Leave empty for the plain voice.',
+  component: FeatureShortTextInput,
+};
+
+export const tts_voice_rate: FeatureNumeric = {
+  name: 'Voice Speed',
+  description: 'How fast your TTS voice speaks, as a percentage of normal.',
+  component: FeatureSliderInput,
+};
+
+export const tts_voiced_emotes: FeatureToggle = {
+  name: 'Voiced Emotes',
+  description:
+    'Laughing, sighing, coughing, crying and other vocal emotes use your TTS voice instead of stock sound effects.',
+  component: CheckboxInput,
 };
 
 export const fallback_to_blooper: FeatureToggle = {

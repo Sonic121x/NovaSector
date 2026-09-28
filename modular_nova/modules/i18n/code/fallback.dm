@@ -140,6 +140,27 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 		lang_log_miss_scan(text, "fallback")
 	return lang_fallback_cache_store(locale, source_text, text)
 
+/// 说话者是否只说**代码写好的台词**（售货机、机器、NPC），因而可以整句走目录落地。
+/// 聊天框在输出层整行落地，而头顶气泡和 TTS 拿的是落地前的原文，于是出现「聊天框中文、
+/// 气泡和语音英文」。玩家操控的 mob（含经无线电转播的 virtualspeaker）说的是玩家自己打的字，
+/// 不能进反查链改写 —— 见 chatmessage.dm 里只对 emote 开放气泡落地的那段说明。
+/proc/lang_speaker_is_scripted(atom/movable/speaker)
+	if(istype(speaker, /atom/movable/virtualspeaker))
+		var/atom/movable/virtualspeaker/relay = speaker
+		speaker = relay.source
+	if(!ismovable(speaker))
+		return FALSE
+	if(ismob(speaker))
+		var/mob/mob_speaker = speaker
+		return !mob_speaker.ckey && !mob_speaker.mind
+	return TRUE
+
+/// 落地代码台词；玩家的话原样返回。
+/proc/lang_localize_scripted_speech(atom/movable/speaker, text)
+	if(!lang_speaker_is_scripted(speaker))
+		return text
+	return lang_fallback_apply(text, GLOB.i18n_server_locale)
+
 /// 下一句的起点：**句末标点之后**那个空格的下标（找不到返回 0）。
 ///
 /// **必须认全角标点。** 这个 proc 的输入是「已译中文基础句 + 若干英文后缀」拼成的一整行，

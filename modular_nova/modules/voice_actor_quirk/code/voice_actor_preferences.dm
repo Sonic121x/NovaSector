@@ -24,6 +24,15 @@
 		return TRUE
 	return FALSE
 
+/datum/preference/choiced/voice_actor/deserialize(input, datum/preferences/preferences)
+	return ..(SStts.resolve_voice(input), preferences)
+
+/datum/preference/choiced/voice_actor/compile_constant_data()
+	. = ..()
+	var/list/display_names = SStts.voice_display_names(.["choices"])
+	if(display_names)
+		.[CHOICED_PREFERENCE_DISPLAY_NAMES] = display_names
+
 /datum/preference/choiced/voice_actor/init_possible_values()
 	// Create a cache of available TTS voices to use later
 	if(!length(GLOB.tts_voice_list))

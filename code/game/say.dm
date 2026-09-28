@@ -129,7 +129,9 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(length(tts_filter) > 0)
 		filter += tts_filter.Join(",")
 	var/list/special_filter = list()
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(message), language, get_tts_voice(filter, special_filter), filter.Join(","), hearers, message_range = 7, pitch = pitch, special_filters = special_filter.Join("|"), blip_base = blip_base, blip_number = blip_number, identifier = message_mods[MODE_TTS_IDENTIFIER])
+	message = lang_localize_scripted_speech(src, message) // NOVA EDIT ADDITION - I18N - Machines and NPCs speak the translated line, as the chat box shows it.
+	var/list/expression = tts_detect_expression(message, message_mods) // NOVA EDIT ADDITION - TTS_EXPRESSION
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(message), language, get_tts_voice(filter, special_filter), filter.Join(","), hearers, message_range = 7, pitch = pitch, special_filters = special_filter.Join("|"), blip_base = blip_base, blip_number = blip_number, identifier = message_mods[MODE_TTS_IDENTIFIER], style = expression[1], sound = expression[2], instruction = tts_compose_instruction(tts_instruction, message_mods), rate = tts_rate) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: ..., identifier = message_mods[MODE_TTS_IDENTIFIER])
 
 /atom/movable/proc/get_tts_voice(list/filter, list/special_filter)
 	. = voice

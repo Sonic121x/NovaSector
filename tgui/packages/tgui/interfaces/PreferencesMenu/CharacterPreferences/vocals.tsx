@@ -1,4 +1,5 @@
 import { filter } from 'es-toolkit/compat';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -26,6 +27,9 @@ const vocalFeatures: VocalFeature[] = [
   { id: 'voice_type', label: 'Voice Type', type: 'string' },
   { id: 'tts_voice', label: 'Voice', type: 'string' },
   { id: 'tts_voice_pitch', label: 'Voice Pitch Adjustments', type: 'number' },
+  { id: 'tts_voice_rate', label: 'Voice Speed', type: 'number' },
+  { id: 'tts_voice_instruction', label: 'Voice Description', type: 'string' },
+  { id: 'tts_voiced_emotes', label: 'Voiced Emotes', type: 'boolean' },
   { id: 'fallback_to_blooper', label: 'Fallback to Blooper', type: 'boolean' },
   { id: 'blooper_speech', label: 'Blooper Speech', type: 'string' },
   { id: 'blooper_speech_speed', label: 'Blooper Speed', type: 'number' },
@@ -71,6 +75,7 @@ function FeatureValueInput({ feature, value }: FeatureValueInputProps) {
 
 export function VocalsInput(props: VocalsProps) {
   const { vocals, handleClose } = props;
+  const { act } = useBackend();
 
   return (
     <Modal>
@@ -82,9 +87,20 @@ export function VocalsInput(props: VocalsProps) {
         <Section
           title="Character Voice"
           buttons={
-            <Button color="red" onClick={handleClose}>
-              Close
-            </Button>
+            <>
+              {vocals.tts_voice !== undefined && (
+                <Button
+                  icon="wand-magic-sparkles"
+                  tooltip="Design or clone a voice of your own (donors)."
+                  onClick={() => act('open_voice_studio')}
+                >
+                  Custom Voices
+                </Button>
+              )}
+              <Button color="red" onClick={handleClose}>
+                Close
+              </Button>
+            </>
           }
         >
           <Stack vertical>

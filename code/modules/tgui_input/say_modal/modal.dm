@@ -75,6 +75,7 @@
 		"lightMode" = client.prefs?.read_preference(/datum/preference/toggle/tgui_say_light_mode),
 		"scale" = client.prefs?.read_preference(/datum/preference/toggle/ui_scale),
 		"maxLength" = max_length,
+		"moodVerbs" = GLOB.tts_mood_verbs, // NOVA EDIT ADDITION - TTS_EXPRESSION - Mood picker.
 	))
 
 	stop_thinking()
