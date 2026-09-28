@@ -146,6 +146,7 @@ SUBSYSTEM_DEF(tts)
 		pitch_enabled = FALSE
 	rustg_file_write(json_encode(available_speakers), "data/cached_tts_voices.json")
 	rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")
+	refresh_voice_preferences() // NOVA EDIT ADDITION - TTS_EXPRESSION - Preferences read before this used last round's voice list.
 	return TRUE
 
 /datum/controller/subsystem/tts/Initialize()

@@ -133,7 +133,7 @@
 	TEST_ASSERT_EQUAL(tts_compose_instruction("沙哑", list(MODE_SING = TRUE)), "沙哑；[TTS_SING_INSTRUCTION]", "Singing should extend the voice instruction.")
 	TEST_ASSERT_EQUAL(tts_compose_instruction(null, list()), "", "No description means no instruction.")
 
-	original_voice_info = list(SStts.voice_labels, SStts.random_voices, SStts.voice_aliases, SStts.supported_styles, SStts.supported_sounds, SStts.instruction_enabled, SStts.rate_enabled, SStts.voice_info_loaded)
+	original_voice_info = list(SStts.voice_labels, SStts.random_voices, SStts.voice_aliases, SStts.supported_styles, SStts.supported_sounds, SStts.instruction_enabled, SStts.rate_enabled, SStts.voice_info_loaded, SStts.tts_enabled, SStts.available_speakers)
 	state_saved = TRUE
 	TEST_ASSERT(SStts.apply_voice_info(list(
 		"voices" = list(
@@ -147,6 +147,19 @@
 		"rate" = TRUE,
 	)), "Well-formed voice info should apply.")
 	TEST_ASSERT_EQUAL(SStts.resolve_voice("Cherry Woman"), "Yu Xiaoyun Woman", "Retired voices should map to their replacement.")
+
+	// Preferences are often read before the TTS server answers, from last round's cached list.
+	// After a voice list change that list rejects every saved voice, which must not randomize it.
+	var/datum/preference/choiced/voice/voice_preference = GLOB.preference_entries[/datum/preference/choiced/voice]
+	SStts.tts_enabled = FALSE
+	voice_preference.cached_values = list("None", "Cherry Woman")
+	TEST_ASSERT_EQUAL(voice_preference.deserialize("Cherry Woman"), "Yu Xiaoyun Woman", "Before the TTS server answers, a saved voice must survive a stale voice list.")
+	SStts.tts_enabled = TRUE
+	SStts.available_speakers = list("Yu Xiaoyun Woman", "Lidou Boy")
+	SStts.refresh_voice_preferences()
+	TEST_ASSERT_EQUAL(voice_preference.deserialize("Cherry Woman"), "Yu Xiaoyun Woman", "Once the TTS server answers, the live voice list should accept migrated voices.")
+	TEST_ASSERT_EQUAL(voice_preference.deserialize("Lidou Boy"), "Lidou Boy", "Current voices should be kept.")
+	TEST_ASSERT(GLOB.tts_voice_list.Find("Lidou Boy"), "The voice actor list should follow the live voice list.")
 	TEST_ASSERT_EQUAL(SStts.resolve_voice("Lidou Boy"), "Lidou Boy", "Current voices should resolve to themselves.")
 	TEST_ASSERT_EQUAL(SStts.voice_labels["Yu Xiaoyun Woman"], "于小云（女·元气、亲切）", "Voice labels should show gender and traits.")
 	TEST_ASSERT_EQUAL(SStts.voice_labels["Lidou Boy"], "龙杰力豆（男）", "Voices without traits should still get a label.")
@@ -172,6 +185,12 @@
 		SStts.instruction_enabled = original_voice_info[6]
 		SStts.rate_enabled = original_voice_info[7]
 		SStts.voice_info_loaded = original_voice_info[8]
+		SStts.tts_enabled = original_voice_info[9]
+		SStts.available_speakers = original_voice_info[10]
+		for(var/preference_type in list(/datum/preference/choiced/voice, /datum/preference/choiced/voice_actor))
+			var/datum/preference/choiced/preference = GLOB.preference_entries[preference_type]
+			preference.cached_values = null
+		GLOB.tts_voice_list.Cut()
 	return ..()
 
 /datum/unit_test/tts_controls/Destroy()

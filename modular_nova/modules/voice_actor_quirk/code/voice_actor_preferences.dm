@@ -25,7 +25,11 @@
 	return FALSE
 
 /datum/preference/choiced/voice_actor/deserialize(input, datum/preferences/preferences)
-	return ..(SStts.resolve_voice(input), preferences)
+	input = SStts.resolve_voice(input)
+	// Until the TTS server answers, keep the saved voice instead of judging it by a stale list.
+	if(!SStts.voice_list_is_live() && istext(input) && length(input))
+		return input
+	return ..(input, preferences)
 
 /datum/preference/choiced/voice_actor/compile_constant_data()
 	. = ..()
