@@ -84,6 +84,32 @@
 	custom_voices_enabled = !!info["custom_voices"]
 	return TRUE
 
+/// Rebuilds everything derived from the voice list once the TTS server has answered.
+/// Preferences read earlier, while the world was still starting, only had the previous
+/// round's cached list; after a voice list change that list rejects every saved voice.
+/datum/controller/subsystem/tts/proc/refresh_voice_preferences()
+	var/static/list/voice_preference_types = list(/datum/preference/choiced/voice, /datum/preference/choiced/voice_actor)
+	for(var/preference_type in voice_preference_types)
+		var/datum/preference/choiced/preference = GLOB.preference_entries[preference_type]
+		preference?.cached_values = null
+	GLOB.tts_voice_list.Cut()
+	GLOB.tts_voice_list += available_speakers
+	for(var/client/player as anything in GLOB.clients)
+		var/datum/preferences/prefs = player?.prefs
+		if(!prefs)
+			continue
+		// Unsaved edits stay; everything else is read again against the live list.
+		for(var/preference_type in voice_preference_types)
+			if(!(preference_type in prefs.recently_updated_keys))
+				prefs.value_cache -= preference_type
+	var/datum/asset/preferences_asset = GLOB.asset_datums[/datum/asset/json/preferences]
+	preferences_asset?.regenerate()
+
+/// Whether a saved voice can be checked against the voice list yet. Before the TTS server
+/// answers, the list is the previous round's cache and may predate a voice list change.
+/datum/controller/subsystem/tts/proc/voice_list_is_live()
+	return tts_enabled
+
 /// Maps a voice ID saved before a voice list change onto the voice that replaced it.
 /datum/controller/subsystem/tts/proc/resolve_voice(voice)
 	if(!istext(voice))
