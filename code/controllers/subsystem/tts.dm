@@ -116,6 +116,7 @@ SUBSYSTEM_DEF(tts)
 		return FALSE
 	available_speakers = json_decode(response.body)
 	tts_enabled = TRUE
+	load_voice_info() // NOVA EDIT ADDITION - TTS_EXPRESSION - Voice labels, retired voice aliases and expressive features.
 	if(CONFIG_GET(str_list/tts_voice_blacklist))
 		var/list/blacklisted_voices = CONFIG_GET(str_list/tts_voice_blacklist)
 		log_config("Processing the TTS voice blacklist.")
@@ -124,11 +125,11 @@ SUBSYSTEM_DEF(tts)
 				log_config("Removed speaker [voice] from the TTS voice pool per config.")
 				available_speakers.Remove(voice)
 	if(CONFIG_GET(string/tts_tram_announcer_override))
-		tram_voice = CONFIG_GET(string/tts_tram_announcer_override)
+		tram_voice = resolve_voice(CONFIG_GET(string/tts_tram_announcer_override)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: tram_voice = CONFIG_GET(string/tts_tram_announcer_override)
 	else
 		tram_voice = pick(available_speakers)
 	if(CONFIG_GET(string/tts_computer_voice_override))
-		computer_voice = CONFIG_GET(string/tts_computer_voice_override)
+		computer_voice = resolve_voice(CONFIG_GET(string/tts_computer_voice_override)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: computer_voice = CONFIG_GET(string/tts_computer_voice_override)
 	else
 		computer_voice = pick(available_speakers)
 	var/datum/http_request/request_pitch = new()
@@ -414,7 +415,7 @@ SUBSYSTEM_DEF(tts)
 					// NOVA EDIT ADDITION START - ADMIN - Station-wide announcements reach everyone.
 					// The announcement's chat text goes to every player regardless of what they speak,
 					// so gating only its audio behind Common would be inconsistent.
-					ignore_language = current_target.station_wide,
+					ignore_language = current_target.station_wide || current_target.ignore_language, // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: ignore_language = current_target.station_wide,
 					// NOVA EDIT ADDITION END
 				)
 				completed_tts_messages[current_target.identifier] = list(
@@ -481,7 +482,7 @@ SUBSYSTEM_DEF(tts)
 
 #undef TTS_ARBRITRARY_DELAY
 
-/datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "", blip_base = "male", blip_number = "1", force_blips = FALSE, identifier = "invalid", station_wide = FALSE) // NOVA EDIT CHANGE - ADMIN - Added station_wide.
+/datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "", blip_base = "male", blip_number = "1", force_blips = FALSE, identifier = "invalid", station_wide = FALSE, style, sound, instruction, rate = 1, ignore_language = FALSE) // NOVA EDIT CHANGE - ADMIN, TTS_EXPRESSION - Added station_wide, style, sound, instruction, rate and ignore_language.
 	// NOVA EDIT ADDITION START - ADMIN - Runtime TTS control.
 	if(!admin_enabled)
 		return
@@ -496,11 +497,11 @@ SUBSYSTEM_DEF(tts)
 	// NOVA EDIT REMOVAL - ADMIN - ORIGINAL: var/static/regex/contains_alphanumeric = regex("\[a-zA-Z0-9]")
 	// If there is no alphanumeric char, the output will usually be static, so
 	// don't bother sending
-	if(!tts_has_speech_content(message)) // NOVA EDIT CHANGE - ADMIN - ORIGINAL: if(contains_alphanumeric.Find(message) == 0)
+	if(!tts_has_speech_content(message) && !sound) // NOVA EDIT CHANGE - ADMIN, TTS_EXPRESSION - Nonverbal sounds need no words. ORIGINAL: if(contains_alphanumeric.Find(message) == 0)
 		return
 
 	var/shell_scrubbed_input = tts_speech_filter(message)
-	if(!(speaker in available_speakers))
+	if(!(speaker in available_speakers) && !is_custom_voice(speaker)) // NOVA EDIT CHANGE - TTS_EXPRESSION - Player-made voices. ORIGINAL: if(!(speaker in available_speakers))
 		return
 	var/list/listener_weakrefs = list()
 	for(var/listener in listeners)
@@ -508,6 +509,11 @@ SUBSYSTEM_DEF(tts)
 	var/list/headers = list()
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
+	// NOVA EDIT ADDITION START - TTS_EXPRESSION - Emotion tags, voice instruction and speaking rate.
+	var/list/expression = tts_expression_body(style, sound, instruction, rate)
+	var/text_body = json_encode(list("text" = shell_scrubbed_input) + expression)
+	var/gibberish_body = json_encode(list("raw_text" = shell_scrubbed_input, "gibberish_text" = shell_scrubbed_input) + expression)
+	// NOVA EDIT ADDITION END
 	var/datum/http_request/request = new()
 	var/datum/http_request/request_blips = new()
 	var/datum/http_request/request_radio = new()
@@ -518,12 +524,13 @@ SUBSYSTEM_DEF(tts)
 	var/file_name_radio = "tmp/tts/[identifier]_radio.ogg"
 	var/file_name_blips_radio = "tmp/tts/[identifier]_blips_radio.ogg"
 	var/file_name_radio_gibberish = "tmp/tts/[identifier]_radio_gibberish.ogg"
-	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
-	request_blips.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch, blips = TRUE)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]&blip_base=[blip_base]&blip_number=[blip_number]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name_blips, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
-	request_radio.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name_radio, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
-	request_blips_radio.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch, blips = TRUE)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]&blip_base=[blip_base]&blip_number=[blip_number]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name_blips_radio, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
-	request_radio_gibberish.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("raw_text" = shell_scrubbed_input, "gibberish_text" = shell_scrubbed_input)), headers, file_name_radio_gibberish, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", text_body, headers, file_name, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
+	request_blips.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch, blips = TRUE)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]&blip_base=[blip_base]&blip_number=[blip_number]", text_body, headers, file_name_blips, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
+	request_radio.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", text_body, headers, file_name_radio, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
+	request_blips_radio.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch, blips = TRUE)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]&blip_base=[blip_base]&blip_number=[blip_number]", text_body, headers, file_name_blips_radio, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
+	request_radio_gibberish.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", gibberish_body, headers, file_name_radio_gibberish, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("raw_text" = shell_scrubbed_input, "gibberish_text" = shell_scrubbed_input))
 	var/datum/tts_request/current_request = new /datum/tts_request(identifier, request, request_blips, request_radio, request_blips_radio, request_radio_gibberish, shell_scrubbed_input, target, local, language, message_range, volume_offset, listener_weakrefs, pitch, force_blips, station_wide) // NOVA EDIT CHANGE - ADMIN - Forward station_wide.
+	current_request.ignore_language = ignore_language // NOVA EDIT ADDITION - TTS_EXPRESSION
 	var/list/player_queued_tts_messages = queued_tts_messages[WEAKREF(target)]
 	if(!player_queued_tts_messages)
 		player_queued_tts_messages = list()
@@ -548,7 +555,7 @@ SUBSYSTEM_DEF(tts)
 
 	var/sanity = 0
 	while(sanity < 10)
-		var/voice = pick(available_speakers)
+		var/voice = pick(length(random_voices) ? random_voices : available_speakers) // NOVA EDIT CHANGE - TTS_EXPRESSION - Skip child and foreign-language voices. ORIGINAL: var/voice = pick(available_speakers)
 		if(gender != MALE && gender != FEMALE)
 			return voice
 		if(gender == MALE && findtext(voice, "Man"))
@@ -589,6 +596,10 @@ SUBSYSTEM_DEF(tts)
 	// NOVA EDIT ADDITION START - ADMIN - Global station announcement playback.
 	/// Whether this TTS message should play non-positionally to every listener.
 	var/station_wide = FALSE
+	// NOVA EDIT ADDITION END
+	// NOVA EDIT ADDITION START - TTS_EXPRESSION
+	/// Whether every listener hears the voice regardless of the languages they know, e.g. a laugh.
+	var/ignore_language = FALSE
 	// NOVA EDIT ADDITION END
 	/// The message range to play this TTS message
 	var/message_range = 7

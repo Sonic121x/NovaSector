@@ -112,7 +112,7 @@
 
 	var/cache_key = "[speaker]-[speech_message]"
 	var/identifier = "[sha1(cache_key)].[world.time]"
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), SSstation, speech_message, tts_announcement_language(), speaker, "", listeners, station_wide = TRUE, identifier = identifier)
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), SSstation, speech_message, tts_announcement_language(), speaker, "", listeners, station_wide = TRUE, identifier = identifier, instruction = TTS_ANNOUNCER_INSTRUCTION)
 	return TRUE
 // NOVA EDIT ADDITION END
 

@@ -140,7 +140,8 @@
 	// NOVA EDIT ADDITION END
 
 	var/tmp_sound = get_sound(user)
-	if(tmp_sound && should_play_sound(user, intentional))
+	var/list/tts_voicing = tts_emote_voice(user, key) // NOVA EDIT ADDITION - TTS_EXPRESSION - Humanoids perform vocal emotes in their own TTS voice.
+	if((tmp_sound || tts_voicing) && should_play_sound(user, intentional)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: if(tmp_sound && should_play_sound(user, intentional))
 		if(intentional)
 			if(!TIMER_COOLDOWN_FINISHED(user, MANUAL_GENERAL_EMOTE_AUDIO_COOLDOWN) || !TIMER_COOLDOWN_FINISHED(user, MANUAL_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type)) || !TIMER_COOLDOWN_FINISHED(user, FORCED_GENERAL_EMOTE_AUDIO_COOLDOWN) || !TIMER_COOLDOWN_FINISHED(user, FORCED_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type)))
 				return FALSE
@@ -164,7 +165,9 @@
 			playsound(source = user,soundin = tmp_sound,vol = 50, vary = FALSE, ignore_walls = sound_wall_ignore, frequency = frequency)
 		*/ // NOVA EDIT REMOVAL END
 		// NOVA EDIT ADDITION START - Lewd emote prefs
-		if(running_emote_type & EMOTE_LEWD)
+		if(tts_voicing) // NOVA EDIT ADDITION - TTS_EXPRESSION
+			tts_play_emote(user, tts_voicing, tmp_sound, sound_volume, frequency) // NOVA EDIT ADDITION - TTS_EXPRESSION
+		else if(running_emote_type & EMOTE_LEWD) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: if(running_emote_type & EMOTE_LEWD)
 			playsound_if_pref(source = user, soundin = tmp_sound, vol = sound_volume, vary = FALSE, frequency = frequency, pref_to_check = /datum/preference/toggle/erp/sounds)
 		else if(use_sound_tokens && sound_wall_ignore)
 			playsoundtoken(source = user, soundin = tmp_sound, range = SOUND_RANGE, volume = sound_volume)

@@ -1394,6 +1394,9 @@
   "All The Fuzz": [
     "dm:labels"
   ],
+  "All Voices": [
+    "tgui:TtsVoiceReview"
+  ],
   "All abilities require using {0}, you can see how much you have with the HUD on the left side of the screen. You may also hover your cursor over it to see the maximum amount of chemicals you can hold. This number can increase by{1} other Changelings.": [
     "tgui:AntagInfoChangeling"
   ],
@@ -1981,7 +1984,8 @@
   ],
   "Approve": [
     "tgui:Interview",
-    "tgui:OpposingForcePanel"
+    "tgui:OpposingForcePanel",
+    "tgui:TtsVoiceReview"
   ],
   "Approve All": [
     "tgui:OpposingForcePanel"
@@ -1997,6 +2001,9 @@
   ],
   "Approve the application, and any approved objectives.": [
     "tgui:OpposingForcePanel"
+  ],
+  "Approved": [
+    "tgui:TtsVoiceStudio"
   ],
   "Apron": [
     "dm:labels"
@@ -2632,6 +2639,9 @@
   "Awaiting Central Command approval...": [
     "tgui:Newscaster"
   ],
+  "Awaiting Review ({0})": [
+    "tgui:TtsVoiceReview"
+  ],
   "Awaiting authorization via keycard reader from at minimum two station heads.": [
     "tgui:BluespaceArtillery",
     "tgui:BluespaceArtilleryNova"
@@ -2645,6 +2655,9 @@
   "Awaiting response...": [
     "tgui:SyndContractor",
     "tgui:SyndicateContractor"
+  ],
+  "Awaiting review": [
+    "tgui:TtsVoiceStudio"
   ],
   "Away": [
     "tgui:OrbitTooltip"
@@ -6357,6 +6370,9 @@
   "Choose Option": [
     "tgui:MessageMonitor"
   ],
+  "Choose Recording...": [
+    "tgui:TtsVoiceStudio"
+  ],
   "Choose an interior": [
     "tgui:CondoSelect"
   ],
@@ -6697,6 +6713,12 @@
   ],
   "Clone": [
     "tgui:constants"
+  ],
+  "Clone a Voice": [
+    "tgui:TtsVoiceStudio"
+  ],
+  "Cloned": [
+    "tgui:TtsVoiceStudio"
   ],
   "Cloning Pod": [
     "tgui:ExperimentalCloner"
@@ -7375,6 +7397,9 @@
     "tgui:HypnoChair",
     "tgui:ImplantChair",
     "tgui:ProbingConsole"
+  ],
+  "Consent": [
+    "tgui:TtsVoiceReview"
   ],
   "Conservator": [
     "dm:labels"
@@ -8301,11 +8326,18 @@
   "Custom Tongue": [
     "dm:labels"
   ],
+  "Custom Voices": [
+    "tgui:TtsVoiceStudio",
+    "tgui:vocals"
+  ],
   "Custom amount": [
     "tgui:ChemMaster"
   ],
   "Custom color": [
     "tgui:Crayon"
+  ],
+  "Custom voices are a donor perk. You can still listen to and delete voices you made before.": [
+    "tgui:TtsVoiceStudio"
   ],
   "Customizable Jacket (Colorable)": [
     "dm:labels"
@@ -9008,7 +9040,8 @@
     "tgui:RecordView",
     "tgui:Search",
     "tgui:Soulcatcher",
-    "tgui:StationTraitsPanel"
+    "tgui:StationTraitsPanel",
+    "tgui:TtsVoiceStudio"
   ],
   "Delete All Logs": [
     "tgui:index"
@@ -9158,6 +9191,12 @@
   "Descending": [
     "tgui:index"
   ],
+  "Describe how your TTS voice sounds: age, timbre, mood, accent or dialect. For example: a hoarse old man with a Sichuan accent. Leave empty for the plain voice.": [
+    "tgui:character_voice"
+  ],
+  "Describe the voice you want: gender, age, pitch, pace, mood and character. For example: a man in his forties with a low, hoarse, slightly smoky voice who speaks slowly. Real people cannot be imitated.": [
+    "tgui:TtsVoiceStudio"
+  ],
   "Description": [
     "tgui:ChemMaster",
     "tgui:CivCargoHoldTerminal",
@@ -9178,6 +9217,8 @@
     "tgui:SkillStation",
     "tgui:SpawnersMenu",
     "tgui:SpeciesPage",
+    "tgui:TtsVoiceReview",
+    "tgui:TtsVoiceStudio",
     "tgui:Tutorial",
     "tgui:Virus"
   ],
@@ -9198,6 +9239,12 @@
   "Design Type": [
     "tgui:GreyscaleModifyMenu"
   ],
+  "Design a Voice": [
+    "tgui:TtsVoiceStudio"
+  ],
+  "Design or clone a voice of your own (donors).": [
+    "tgui:vocals"
+  ],
   "Designate New Area": [
     "tgui:ShuttleBlueprints"
   ],
@@ -9206,6 +9253,9 @@
   ],
   "Designation": [
     "tgui:CyborgBootDebug"
+  ],
+  "Designed": [
+    "tgui:TtsVoiceStudio"
   ],
   "Designs": [
     "tgui:GreyscaleModifyMenu",
@@ -13297,7 +13347,8 @@
   ],
   "Generate": [
     "tgui:Biogenerator",
-    "tgui:NtosVirtualPet"
+    "tgui:NtosVirtualPet",
+    "tgui:TtsVoiceStudio"
   ],
   "Generated Power": [
     "tgui:TurbineComputer"
@@ -15075,6 +15126,9 @@
   "Hover Effect Color": [
     "tgui:floating_hands"
   ],
+  "How fast your TTS voice speaks, as a percentage of normal.": [
+    "tgui:character_voice"
+  ],
   "How long a particle spends fading in in when it is spawned in ticks. When this ends, starts ticking down lifespan. Can use a generator.": [
     "tgui:Tutorial"
   ],
@@ -15303,6 +15357,9 @@
   ],
   "I am an elite operative executing a co-ordinated strike for the benefit of{0}{1}!": [
     "tgui:AntagInfoNinja"
+  ],
+  "I confirm the statement above": [
+    "tgui:TtsVoiceStudio"
   ],
   "I'm sold! How do I do it?": [
     "tgui:InfuserBook"
@@ -15698,6 +15755,9 @@
   ],
   "In the Name of {0}": [
     "tgui:Print"
+  ],
+  "In use": [
+    "tgui:TtsVoiceStudio"
   ],
   "Inactive": [
     "tgui:constants",
@@ -17121,6 +17181,9 @@
   "Latex Straight Jacket": [
     "dm:labels"
   ],
+  "Laughing, sighing, coughing, crying and other vocal emotes use your TTS voice instead of stock sound effects.": [
+    "tgui:character_voice"
+  ],
   "Laughter": [
     "dm:labels"
   ],
@@ -17663,6 +17726,13 @@
   ],
   "List laws": [
     "tgui:Secrets"
+  ],
+  "Listen": [
+    "tgui:TtsVoiceReview",
+    "tgui:TtsVoiceStudio"
+  ],
+  "Listen to both: approve only a clear recording of one speaker, and only if nothing suggests it imitates someone who did not agree.": [
+    "tgui:TtsVoiceReview"
   ],
   "Listen to prayers": [
     "tgui:legacy_chat_toggles"
@@ -20398,6 +20468,7 @@
     "tgui:RecordView",
     "tgui:ServerMonitor",
     "tgui:StylePage",
+    "tgui:TtsVoiceStudio",
     "tgui:VariableMenu",
     "tgui:Virus",
     "tgui:index"
@@ -21916,6 +21987,9 @@
   "Nothing to configure.": [
     "tgui:GenitalLayering"
   ],
+  "Nothing to review.": [
+    "tgui:TtsVoiceReview"
+  ],
   "Nothing to show": [
     "tgui:Modes",
     "tgui:Scrubbers",
@@ -22789,6 +22863,9 @@
   ],
   "Origin": [
     "tgui:SpawnersMenu"
+  ],
+  "Original Recording": [
+    "tgui:TtsVoiceReview"
   ],
   "Orion": [
     "tgui:OrionGame"
@@ -26141,7 +26218,9 @@
     "tgui:CargoRequests",
     "tgui:Modify",
     "tgui:NtosPay",
-    "tgui:OpposingForcePanel"
+    "tgui:OpposingForcePanel",
+    "tgui:TtsVoiceReview",
+    "tgui:TtsVoiceStudio"
   ],
   "Reason for item": [
     "tgui:OpposingForcePanel"
@@ -26349,6 +26428,8 @@
     "tgui:OrbitSearchBar",
     "tgui:QuantumConsole",
     "tgui:Search",
+    "tgui:TtsVoiceReview",
+    "tgui:TtsVoiceStudio",
     "tgui:WarrantConsole"
   ],
   "Refresh Appearance": [
@@ -26425,8 +26506,14 @@
   "Reinforced Floor": [
     "dm:labels"
   ],
+  "Reject": [
+    "tgui:TtsVoiceReview"
+  ],
   "Reject incoming call(s)": [
     "tgui:Holopad"
+  ],
+  "Rejected": [
+    "tgui:TtsVoiceStudio"
   ],
   "Rejuvenate": [
     "tgui:PlayerPanel"
@@ -27123,6 +27210,12 @@
   ],
   "Revert": [
     "tgui:StationTraitsPanel"
+  ],
+  "Review Custom Voices": [
+    "tgui:TtsVoiceReview"
+  ],
+  "Reviewed by": [
+    "tgui:TtsVoiceReview"
   ],
   "Reviving Stasis": [
     "tgui:AntagInfoChangeling"
@@ -29771,6 +29864,7 @@
     "tgui:index"
   ],
   "Show all": [
+    "tgui:TtsVoiceReview",
     "tgui:UnderwearTab"
   ],
   "Show background": [
@@ -30756,6 +30850,9 @@
   "Speak inside of the room.": [
     "tgui:Soulcatcher"
   ],
+  "Speak with this voice as {0}.": [
+    "tgui:TtsVoiceStudio"
+  ],
   "Speaker": [
     "tgui:ModulesPane",
     "tgui:index"
@@ -31245,6 +31342,8 @@
     "tgui:SlimeBodySwapper",
     "tgui:SolarControl",
     "tgui:ThermoMachine",
+    "tgui:TtsVoiceReview",
+    "tgui:TtsVoiceStudio",
     "tgui:TurbineComputer"
   ],
   "Status Display": [
@@ -31659,7 +31758,8 @@
     "tgui:OpposingForcePanel"
   ],
   "Submitted": [
-    "tgui:Interview"
+    "tgui:Interview",
+    "tgui:TtsVoiceReview"
   ],
   "Subspace Radio": [
     "tgui:Intellicard"
@@ -33153,6 +33253,10 @@
   "The TGS DMAPI API is licensed as a subproject under the MIT license. See the footer of {0} and {1} for the MIT license.": [
     "tgui:Changelog"
   ],
+  "The TTS server does not support custom voices right now.": [
+    "tgui:TtsVoiceReview",
+    "tgui:TtsVoiceStudio"
+  ],
   "The Wizard Federation accepts that sometimes, choosing is hard. You can choose from some approved wizard loadouts here.": [
     "tgui:constants"
   ],
@@ -33383,6 +33487,9 @@
   ],
   "The type of sound you will make when you walk around barefoot.": [
     "tgui:footstep_sounds"
+  ],
+  "The uploaded recording the voice was cloned from.": [
+    "tgui:TtsVoiceReview"
   ],
   "The virtual domain is a dangerous place for bitrunners. Make it so.": [
     "dm:antagonists"
@@ -35076,6 +35183,8 @@
     "tgui:MassSpec",
     "tgui:NtosFileManager",
     "tgui:NtosRobotact",
+    "tgui:TtsVoiceReview",
+    "tgui:TtsVoiceStudio",
     "tgui:Tutorial",
     "tgui:index"
   ],
@@ -35503,6 +35612,9 @@
     "tgui:NtosFileManager",
     "tgui:PopoutMenu"
   ],
+  "Upload 10 to 20 seconds of one person speaking clearly in a quiet room, with no music or other voices (WAV, MP3, M4A, OGG or FLAC, up to {0} MB). The voice is cloned right away so you can listen to it, but it only works in game once an admin approves it. The recording is deleted after review.": [
+    "tgui:TtsVoiceStudio"
+  ],
   "Upload To DB": [
     "tgui:Upload"
   ],
@@ -35534,6 +35646,7 @@
     "dm:labels"
   ],
   "Use": [
+    "tgui:TtsVoiceStudio",
     "tgui:constants"
   ],
   "Use Custom Food Preferences": [
@@ -36162,6 +36275,10 @@
   "Voice Blip Variant": [
     "tgui:tts_voice"
   ],
+  "Voice Description": [
+    "tgui:character_voice",
+    "tgui:vocals"
+  ],
   "Voice Pitch Adjustment": [
     "tgui:tts_voice"
   ],
@@ -36171,12 +36288,20 @@
   "Voice Settings": [
     "tgui:vocals"
   ],
+  "Voice Speed": [
+    "tgui:character_voice",
+    "tgui:vocals"
+  ],
   "Voice Type": [
     "tgui:character_voice",
     "tgui:vocals"
   ],
   "Voice changer settings": [
     "tgui:AiVoiceChanger"
+  ],
+  "Voiced Emotes": [
+    "tgui:character_voice",
+    "tgui:vocals"
   ],
   "Void": [
     "tgui:CrimeWatcher"
@@ -37906,6 +38031,9 @@
   "You have not been supplied with codewords. You will have to use alternative methods to find potential allies. Proceed with caution, however, as everyone is a potential foe.": [
     "tgui:AntagInfoTraitor"
   ],
+  "You have not made any voices yet.": [
+    "tgui:TtsVoiceStudio"
+  ],
   "You have the supernatural ability to turn into blood upon command. This allows you to enter a corpse, taking it as your host.": [
     "tgui:AntagInfoBloodWorm"
   ],
@@ -38038,6 +38166,9 @@
   ],
   "Your Soul": [
     "tgui:constants"
+  ],
+  "Your Voices": [
+    "tgui:TtsVoiceStudio"
   ],
   "Your admin button here, coder!": [
     "tgui:Secrets"
