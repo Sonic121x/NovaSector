@@ -63,7 +63,7 @@
 	projectile_type = /obj/projectile/bullet/c20nuoli/smart
 
 	ammo_categories = AMMO_CLASS_PLUS
-	ammo_categories = AMMO_MATS_AP
+	custom_materials = AMMO_MATS_AP
 
 /obj/projectile/bullet/c20nuoli/smart
 	name = ".20 Nuoli智能弹"
@@ -105,7 +105,7 @@
 	projectile_type = /obj/projectile/bullet/c20nuoli/breacher
 
 	ammo_categories = AMMO_CLASS_PLUS
-	ammo_categories = AMMO_MATS_EMP
+	custom_materials = AMMO_MATS_EMP
 
 /obj/projectile/bullet/c20nuoli/breacher
 	name = ".20 Nuoli反器材弹"
