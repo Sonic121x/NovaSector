@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	SHOULD_BE_PURE(TRUE)
 	return !HAS_TRAIT(src, TRAIT_MUTE)
 
-/atom/movable/proc/do_tts_message(message, language, message_mods, list/tts_filter, list/hearers)
+/atom/movable/proc/do_tts_message(message, language, message_mods, list/tts_filter, list/hearers, list/eavesdroppers) // NOVA EDIT CHANGE - TTS_EXPRESSION - Added eavesdroppers.
 	set waitfor = FALSE
 
 	if(!SStts.tts_enabled || !voice || HAS_TRAIT(src, TRAIT_SIGN_LANG) || HAS_TRAIT(src, TRAIT_UNKNOWN_VOICE) || message_mods[MODE_CUSTOM_SAY_ERASE_INPUT])
@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/list/special_filter = list()
 	message = lang_localize_scripted_speech(src, message) // NOVA EDIT ADDITION - I18N - Machines and NPCs speak the translated line, as the chat box shows it.
 	var/list/expression = tts_detect_expression(message, message_mods) // NOVA EDIT ADDITION - TTS_EXPRESSION
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(message), language, get_tts_voice(filter, special_filter), filter.Join(","), hearers, message_range = 7, pitch = pitch, special_filters = special_filter.Join("|"), blip_base = blip_base, blip_number = blip_number, identifier = message_mods[MODE_TTS_IDENTIFIER], style = expression[1], sound = expression[2], instruction = tts_compose_instruction(tts_instruction, message_mods), rate = tts_rate) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: ..., identifier = message_mods[MODE_TTS_IDENTIFIER])
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(message), language, get_tts_voice(filter, special_filter), filter.Join(","), hearers, message_range = 7, pitch = pitch, special_filters = special_filter.Join("|"), blip_base = blip_base, blip_number = blip_number, identifier = message_mods[MODE_TTS_IDENTIFIER], style = expression[1], sound = expression[2], instruction = tts_compose_instruction(tts_instruction, message_mods), rate = tts_rate, eavesdroppers = eavesdroppers) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: ..., identifier = message_mods[MODE_TTS_IDENTIFIER])
 
 /atom/movable/proc/get_tts_voice(list/filter, list/special_filter)
 	. = voice

@@ -159,7 +159,7 @@ SUBSYSTEM_DEF(tts)
 		return SS_INIT_FAILURE
 	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/tts/proc/play_tts(datum/weakref/target, list/listeners, sound/audio, sound/audio_blips, datum/language/language, range = 7, volume_offset = 0, ignore_observers = FALSE, source_speaker = null, audio_length = 10 SECONDS, audio_length_blips = 10 SECONDS, volume_preference = /datum/preference/numeric/volume/sound_tts_volume, volume_signal = COMSIG_MOB_TTS_VOLUME_PREFERENCE_APPLIED, ignore_language = FALSE) // NOVA EDIT CHANGE - ADMIN - Added ignore_language.
+/datum/controller/subsystem/tts/proc/play_tts(datum/weakref/target, list/listeners, sound/audio, sound/audio_blips, datum/language/language, range = 7, volume_offset = 0, ignore_observers = FALSE, source_speaker = null, audio_length = 10 SECONDS, audio_length_blips = 10 SECONDS, volume_preference = /datum/preference/numeric/volume/sound_tts_volume, volume_signal = COMSIG_MOB_TTS_VOLUME_PREFERENCE_APPLIED, ignore_language = FALSE, list/eavesdroppers) // NOVA EDIT CHANGE - ADMIN, TTS_EXPRESSION - Added ignore_language and eavesdroppers.
 	var/atom/actual_target = target?.resolve()
 	var/turf/turf_source
 	if(actual_target)
@@ -205,8 +205,13 @@ SUBSYSTEM_DEF(tts)
 				continue
 			else
 				audio_to_use = audio_blips
+		// NOVA EDIT ADDITION START - TTS_EXPRESSION - Overheard speech is blips, as its chat text is starred.
+		var/eavesdropping = length(eavesdroppers) && (WEAKREF(hearer_atom) in eavesdroppers)
+		if(eavesdropping)
+			audio_to_use = audio_blips
+		// NOVA EDIT ADDITION END
 		if(actual_target && get_dist(listening_mob, turf_source) <= range)
-			if(tts_pref == TTS_SOUND_BLIPS || !holder.has_language(language))
+			if(tts_pref == TTS_SOUND_BLIPS || !holder.has_language(language) || eavesdropping) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: if(tts_pref == TTS_SOUND_BLIPS || !holder.has_language(language))
 				blips_hearers += listening_mob
 			else
 				voice_hearers += listening_mob
@@ -418,6 +423,7 @@ SUBSYSTEM_DEF(tts)
 					// so gating only its audio behind Common would be inconsistent.
 					ignore_language = current_target.station_wide || current_target.ignore_language, // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: ignore_language = current_target.station_wide,
 					// NOVA EDIT ADDITION END
+					eavesdroppers = current_target.eavesdroppers, // NOVA EDIT ADDITION - TTS_EXPRESSION
 				)
 				completed_tts_messages[current_target.identifier] = list(
 					TTS_REQUEST_REF = current_target,
@@ -483,7 +489,7 @@ SUBSYSTEM_DEF(tts)
 
 #undef TTS_ARBRITRARY_DELAY
 
-/datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "", blip_base = "male", blip_number = "1", force_blips = FALSE, identifier = "invalid", station_wide = FALSE, style, sound, instruction, rate = 1, ignore_language = FALSE) // NOVA EDIT CHANGE - ADMIN, TTS_EXPRESSION - Added station_wide, style, sound, instruction, rate and ignore_language.
+/datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "", blip_base = "male", blip_number = "1", force_blips = FALSE, identifier = "invalid", station_wide = FALSE, style, sound, instruction, rate = 1, ignore_language = FALSE, list/eavesdroppers) // NOVA EDIT CHANGE - ADMIN, TTS_EXPRESSION - Added station_wide, style, sound, instruction, rate, ignore_language and eavesdroppers.
 	// NOVA EDIT ADDITION START - ADMIN - Runtime TTS control.
 	if(!admin_enabled)
 		return
@@ -531,7 +537,11 @@ SUBSYSTEM_DEF(tts)
 	request_blips_radio.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch, blips = TRUE)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]&blip_base=[blip_base]&blip_number=[blip_number]", text_body, headers, file_name_blips_radio, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
 	request_radio_gibberish.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", gibberish_body, headers, file_name_radio_gibberish, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("raw_text" = shell_scrubbed_input, "gibberish_text" = shell_scrubbed_input))
 	var/datum/tts_request/current_request = new /datum/tts_request(identifier, request, request_blips, request_radio, request_blips_radio, request_radio_gibberish, shell_scrubbed_input, target, local, language, message_range, volume_offset, listener_weakrefs, pitch, force_blips, station_wide) // NOVA EDIT CHANGE - ADMIN - Forward station_wide.
-	current_request.ignore_language = ignore_language // NOVA EDIT ADDITION - TTS_EXPRESSION
+	// NOVA EDIT ADDITION START - TTS_EXPRESSION
+	current_request.ignore_language = ignore_language
+	for(var/eavesdropper in eavesdroppers)
+		current_request.eavesdroppers += WEAKREF(eavesdropper)
+	// NOVA EDIT ADDITION END
 	var/list/player_queued_tts_messages = queued_tts_messages[WEAKREF(target)]
 	if(!player_queued_tts_messages)
 		player_queued_tts_messages = list()
@@ -601,6 +611,8 @@ SUBSYSTEM_DEF(tts)
 	// NOVA EDIT ADDITION START - TTS_EXPRESSION
 	/// Whether every listener hears the voice regardless of the languages they know, e.g. a laugh.
 	var/ignore_language = FALSE
+	/// Weakrefs to listeners who only overheard this message, and hear it as blips.
+	var/list/eavesdroppers = list()
 	// NOVA EDIT ADDITION END
 	/// The message range to play this TTS message
 	var/message_range = 7

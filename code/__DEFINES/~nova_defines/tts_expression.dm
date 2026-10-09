@@ -28,3 +28,5 @@
 #define TTS_VOICE_CONSENT "我确认上传的录音是我本人的声音，或已获得声音本人的明确授权；同意将录音提交给语音服务商（阿里云百炼）生成音色，并用于本服务器的角色语音。"
 /// Message mod: the speaker only went quiet because they spoke into a radio, so TTS keeps the normal voice.
 #define MODE_TTS_RADIO_HUSH "tts_radio_hush"
+/// Hear() flag: the listener only overheard a whisper from just outside its range, and sees the text starred.
+#define HEAR_EAVESDROPPED (1<<2)
