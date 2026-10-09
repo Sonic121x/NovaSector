@@ -60,8 +60,7 @@
 		if(saved_colors && (!istext(saved_colors) || !findtext(saved_colors, GLOB.is_greyscale_colors)))
 			data -= INFO_GREYSCALE
 			if(optional_loadout_owner)
-				to_chat(optional_loadout_owner, span_boldnotice("The saved colors for [loadout_item.name] \
-					in your character loadout were invalid and have been reset."))
+				to_chat(optional_loadout_owner, span_boldnotice(LANG("datum.4ec8e7ba14c7ba85", list(loadout_item.name))))
 		LAZYSET(sanitized_list, real_path, data)
 
 	return sanitized_list

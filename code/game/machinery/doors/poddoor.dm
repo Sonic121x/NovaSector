@@ -271,7 +271,7 @@
 
 		if(do_after(user, time_to_open, src))
 			if(density && !open(TRUE, user)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
-				to_chat(user, span_warning("Despite your efforts, [src] managed to resist your attempts to open it!"))
+				to_chat(user, span_warning(LANG("obj.4becfd1b380d8fa2", list(src))))
 
 	else
 		return ..()

@@ -338,8 +338,8 @@
 	if(current_gauze.absorption_capacity > 0)
 		return
 	owner.visible_message(
-		span_danger("[current_gauze] on [owner]'s [name] falls away in rags."),
-		span_warning("[current_gauze] on your [name] falls away in rags."),
+		span_danger(LANG("obj.dac83d2bf7ec840e", list(current_gauze, owner, name))),
+		span_warning(LANG("obj.a93b08f2503d4bfd", list(current_gauze, name))),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 	)
 	current_gauze.forceMove(drop_location())
@@ -358,13 +358,13 @@
 	ASSERT(!isnull(current_gauze))
 
 	helper.visible_message(
-		span_notice("[helper] starts carefully removing [current_gauze] from [helper == owner ? helper.p_their() : "[owner]'s"] [plaintext_zone]."),
-		span_notice("You start carefully removing [current_gauze] from [helper == owner ? "your" : "[owner]'s"] [plaintext_zone]..."),
+		span_notice(LANG("obj.15f7fe546caebd86", list(helper, current_gauze, helper == owner ? helper.p_their() : "[owner]'s", plaintext_zone))),
+		span_notice(LANG("obj.2cbb48a2a7183e19", list(current_gauze, helper == owner ? "your" : "[owner]'s", plaintext_zone))),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 	)
-	helper.balloon_alert(helper, "removing gauze...")
+	helper.balloon_alert(helper, LANG("obj.3f1c9df509dbfad6", null))
 	if(helper != owner)
-		helper.balloon_alert(owner, "removing your gauze...")
+		helper.balloon_alert(owner, LANG("obj.9b1bbd5b15d40b7a", null))
 
 	if(!do_after(helper, 3 SECONDS, owner))
 		return
@@ -372,13 +372,13 @@
 		return
 
 	helper.visible_message(
-		span_notice("[helper] finishes removing [current_gauze] from [helper == owner ? helper.p_their() : "[owner]'s"] [plaintext_zone]."),
-		span_notice("You finish removing [current_gauze] from [helper == owner ? "your" : "[owner]'s"] [plaintext_zone]."),
+		span_notice(LANG("obj.4d3c3d881decf333", list(helper, current_gauze, helper == owner ? helper.p_their() : "[owner]'s", plaintext_zone))),
+		span_notice(LANG("obj.c2bea4b9728f8d95", list(current_gauze, helper == owner ? "your" : "[owner]'s", plaintext_zone))),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 	)
 
-	helper.balloon_alert(helper, "gauze removed")
+	helper.balloon_alert(helper, LANG("obj.b4224f700e3863da", null))
 	if(helper != owner)
-		helper.balloon_alert(owner, "gauze removed")
+		helper.balloon_alert(owner, LANG("obj.b4224f700e3863da", null))
 
 	helper.put_in_hands(current_gauze)

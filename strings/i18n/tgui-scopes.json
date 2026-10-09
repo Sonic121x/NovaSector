@@ -9608,6 +9608,9 @@
   "Disable ID Requirement": [
     "tgui:OreSilo"
   ],
+  "Disable Lobby-menu Transparency": [
+    "tgui:lobby_menu"
+  ],
   "Disable all circuit sound emitters": [
     "tgui:CircuitAdminPanel"
   ],
@@ -12894,7 +12897,8 @@
     "dm:labels"
   ],
   "Free": [
-    "tgui:CyborgBootDebug"
+    "tgui:CyborgBootDebug",
+    "tgui:ProduceConsole"
   ],
   "Free Golem": [
     "dm:labels"
@@ -15545,6 +15549,9 @@
   ],
   "If true, you will be permanently killed on permaghost as well.": [
     "tgui:death_degradation"
+  ],
+  "If unchecked, this event cannot randomly trigger.": [
+    "tgui:ForceEvent"
   ],
   "If unchecked, you'll only be able to understand the language, but not speak it.": [
     "tgui:language"
@@ -22786,7 +22793,7 @@
   "Order": [
     "tgui:NtosDeptOrder"
   ],
-  "Order atleast 1 item": [
+  "Order at least 1 item": [
     "tgui:ProduceConsole"
   ],
   "Order sent! Machine on cooldown...": [
@@ -23047,6 +23054,9 @@
     "tgui:AtmosControls"
   ],
   "Overcoat (Colorable)": [
+    "dm:labels"
+  ],
+  "Overconfident": [
     "dm:labels"
   ],
   "Overdose": [
@@ -24984,6 +24994,9 @@
   ],
   "Pressurizing Cabin": [
     "tgui:ModulesPane"
+  ],
+  "Prevent admins from making the lobby screen transparent.": [
+    "tgui:lobby_menu"
   ],
   "Prevent being summoned as a cult ghost": [
     "tgui:legacy_toggles"
@@ -40150,6 +40163,9 @@
   ],
   "{0}{1}{2}{3}Total Experience: [{4} XP]{5}XP To Next Level:{6}{7}Overall Skill Progress: [{8} / {9}]{10}{11}{12}{13}{14}{15}{16}": [
     "tgui:SkillPanel"
+  ],
+  "~ Free Products: {0} / {1}": [
+    "tgui:ProduceConsole"
   ],
   "© NT Corporation. All rights reserved.": [
     "tgui:NtosNotepad"

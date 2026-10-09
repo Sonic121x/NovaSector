@@ -463,28 +463,28 @@
 			treatment_delay *= 0.5
 			if(user == patient)
 				user.visible_message(
-					span_warning("[user] begins expertly wrapping the wounds on [user.p_their()]'s [limb.plaintext_zone] with [src]..."),
-					span_warning("You begin quickly wrapping the wounds on your [limb.plaintext_zone] with [src], keeping the holo-image indications in mind..."),
+					span_warning(LANG("obj.53365dac4e9d7080", list(user, user.p_their(), limb.plaintext_zone, src))),
+					span_warning(LANG("obj.1c2dbb184fd759e2", list(limb.plaintext_zone, src))),
 					visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				)
 			else
 				user.visible_message(
-					span_warning("[user] begins expertly wrapping the wounds on [patient]'s [limb.plaintext_zone] with [src]..."),
-					span_warning("You begin quickly wrapping the wounds on [patient]'s [limb.plaintext_zone] with [src], keeping the holo-image indications in mind..."),
+					span_warning(LANG("obj.53365dac4e9d7080", list(user, patient, limb.plaintext_zone, src))),
+					span_warning(LANG("obj.c947fdff97195454", list(patient, limb.plaintext_zone, src))),
 					visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				)
 
 		else
 			if(user == patient)
 				user.visible_message(
-					span_warning("[user] begins wrapping the wounds on [user.p_their()] [limb.plaintext_zone] with [src]..."),
-					span_warning("You begin wrapping the wounds on your [limb.plaintext_zone] with [src]..."),
+					span_warning(LANG("obj.e389e0aa94ed1b4c", list(user, user.p_their(), limb.plaintext_zone, src))),
+					span_warning(LANG("obj.29c6048921fa9533", list(limb.plaintext_zone, src))),
 					visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				)
 			else
 				user.visible_message(
-					span_warning("[user] begins wrapping the wounds on [patient]'s [limb.plaintext_zone] with [src]..."),
-					span_warning("You begin wrapping the wounds on [patient]'s [limb.plaintext_zone] with [src]..."),
+					span_warning(LANG("obj.5d71c12a11d574d4", list(user, patient, limb.plaintext_zone, src))),
+					span_warning(LANG("obj.1766a511b00866b7", list(patient, limb.plaintext_zone, src))),
 					visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 				)
 
@@ -492,14 +492,14 @@
 		treatment_delay *= 1.25
 		if(user == patient)
 			user.visible_message(
-				span_notice("[user] begins to wrap [patient]'s [limb.plaintext_zone] with [src]..."),
-				span_notice("You begin to wrap your [limb.plaintext_zone] with [src]..."),
+				span_notice(LANG("obj.c3831f0e31df7d46", list(user, patient, limb.plaintext_zone, src))),
+				span_notice(LANG("obj.9a4f69cc8314c1e3", list(limb.plaintext_zone, src))),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		else
 			user.visible_message(
-				span_notice("[user] begins to wrap [patient]'s [limb.plaintext_zone] with [src]..."),
-				span_notice("You begin to wrap [patient]'s [limb.plaintext_zone] with [src]..."),
+				span_notice(LANG("obj.c3831f0e31df7d46", list(user, patient, limb.plaintext_zone, src))),
+				span_notice(LANG("obj.bfc021bb6ac09627", list(patient, limb.plaintext_zone, src))),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 
@@ -524,32 +524,32 @@
 			any_wound = TRUE
 			break
 
-	patient.balloon_alert(user, "wrapped [limb.plaintext_zone]")
+	patient.balloon_alert(user, LANG("obj.64d7e2d4de4e1318", list(limb.plaintext_zone)))
 	if(any_wound)
 		if(user == patient)
 			user.visible_message(
-				span_green("[user] applies [src] to [user.p_their()]'s [limb.plaintext_zone]."),
-				span_green("You bandage the wounds on your [limb.plaintext_zone]."),
+				span_green(LANG("obj.7032cacb7207084e", list(user, src, user.p_their(), limb.plaintext_zone))),
+				span_green(LANG("obj.31a3948530686cc9", list(limb.plaintext_zone))),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		else
 			user.visible_message(
-				span_green("[user] applies [src] to [patient]'s [limb.plaintext_zone]."),
-				span_green("You bandage the wounds on [patient]'s [limb.plaintext_zone]."),
+				span_green(LANG("obj.7032cacb7207084e", list(user, src, patient, limb.plaintext_zone))),
+				span_green(LANG("obj.b0464475481cf006", list(patient, limb.plaintext_zone))),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 
 	else
 		if(user == patient)
 			user.visible_message(
-				span_notice("[user] applies [src] to [user.p_their()]'s [limb.plaintext_zone]."),
-				span_notice("You wrap your [limb.plaintext_zone] with [src]."),
+				span_notice(LANG("obj.7032cacb7207084e", list(user, src, user.p_their(), limb.plaintext_zone))),
+				span_notice(LANG("obj.cbad41ad24617c54", list(limb.plaintext_zone, src))),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		else
 			user.visible_message(
-				span_notice("[user] applies [src] to [patient]'s [limb.plaintext_zone]."),
-				span_notice("You wrap [patient]'s [limb.plaintext_zone] with [src]."),
+				span_notice(LANG("obj.7032cacb7207084e", list(user, src, patient, limb.plaintext_zone))),
+				span_notice(LANG("obj.bb608b7e1db3ee9a", list(patient, limb.plaintext_zone, src))),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 
@@ -652,8 +652,8 @@
 				span_notice(LANG("obj.c6b8591ebf377965", list(src, tool))), \
 				span_hear(LANG("obj.cbfa7730eca28115", null)))
 		else //telekinesis
-			visible_message(span_notice("[tool] cuts [src] into pieces of cloth."), \
-				blind_message = span_hear("You hear cutting."))
+			visible_message(span_notice(LANG("obj.18743a6aa4fb44b4", list(tool, src))), \
+				blind_message = span_hear(LANG("obj.cbfa7730eca28115", null)))
 		use(absorption_capacity <= initial(absorption_capacity) * 0.5 ? 1 : 2)
 		return ITEM_INTERACT_SUCCESS
 

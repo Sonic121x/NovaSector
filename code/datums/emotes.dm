@@ -621,7 +621,7 @@
 		if(istype(active_eye, /mob/eye/camera/ai))
 			var/mob/eye/camera/ai/ai_eye = active_eye
 			if(ai_eye.ai == AI && ai_eye_turf_in_view(ai_eye, user_turf))
-				to_chat(AI, span_emote("You see how <b>[user]</b>[separation][msg]")) // NOVA EDIT CHANGE - ORIGINAL: to_chat(AI, span_emote("You see how <b>[user]</b> [msg]"))
+				to_chat(AI, span_emote(LANG("_root.e7defa65fa10dc47", list(user, separation, msg)))) // NOVA EDIT CHANGE - ORIGINAL: to_chat(AI, span_emote("You see how <b>[user]</b> [msg]"))
 
 				if(user.runechat_prefs_check(AI, EMOTE_MESSAGE))
 					AI.create_chat_message(speaker = user, raw_message = msg, runechat_flags = EMOTE_MESSAGE)
@@ -630,7 +630,7 @@
 		if(!relayed && AI.multicam_on) // Multicam
 			for(var/mob/eye/camera/ai/ai_eye as anything in AI.all_eyes)
 				if(ai_eye_turf_in_view(ai_eye, user_turf))
-					to_chat(AI, span_emote("You see how <b>[user]</b>[separation][msg]")) // NOVA EDIT CHANGE - ORIGINAL: to_chat(AI, span_emote("You see how <b>[user]</b> [msg]"))
+					to_chat(AI, span_emote(LANG("_root.e7defa65fa10dc47", list(user, separation, msg)))) // NOVA EDIT CHANGE - ORIGINAL: to_chat(AI, span_emote("You see how <b>[user]</b> [msg]"))
 
 					if(user.runechat_prefs_check(AI, EMOTE_MESSAGE))
 						AI.create_chat_message(speaker = user, raw_message = msg, runechat_flags = EMOTE_MESSAGE)

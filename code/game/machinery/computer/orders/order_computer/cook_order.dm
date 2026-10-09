@@ -20,7 +20,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(src, 'sound/machines/card_slide.ogg', 33, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, "redeemed voucher")
+	balloon_alert(user, LANG("obj.cb4313179a080af6", null))
 	free_uses += 10
 	qdel(tool)
 	return ITEM_INTERACT_SUCCESS

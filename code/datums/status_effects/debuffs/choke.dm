@@ -211,8 +211,8 @@
 	aggressor.stop_pulling()
 
 	var/atom/movable/choking_on = choking_on_ref?.resolve()
-	owner.visible_message(span_green("[victim] vomits up \the [choking_on]. [victim.p_Theyre()] gonna make it!"), \
-			span_green("You vomit up that accursed blockage. YOU CAN BREATHE! The broken chest is a hell of a price to pay."))
+	owner.visible_message(span_green(LANG("datum.ecb5d2e2056e9de7", list(victim, choking_on, victim.p_Theyre()))), \
+			span_green(LANG("datum.c312c67145cddc44", null)))
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
 		var/obj/item/bodypart/chest = carbon_victim.get_bodypart(BODY_ZONE_CHEST)

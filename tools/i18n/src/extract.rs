@@ -2694,7 +2694,7 @@ fn is_lang_arg_text(s: &str) -> bool {
     false
 }
 
-fn contains_cjk(s: &str) -> bool {
+pub(crate) fn contains_cjk(s: &str) -> bool {
     s.chars()
         .any(|c| matches!(c as u32, 0x3400..=0x9FFF | 0xF900..=0xFAFF))
 }

@@ -225,7 +225,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
 /obj/machinery/computer/order_console/proc/purchase_items(obj/item/card/id/card, express = FALSE)
 	var/final_cost = round(get_total_cost() * (express ? express_cost_multiplier : cargo_cost_multiplier))
 	if(final_cost > 0 && !subtract_points(final_cost, card))
-		say("Sorry, but you do not have enough [credit_type].")
+		say(LANG("obj.eac2f740e586a659", list(credit_type)))
 		return FALSE
 	if(isnum(free_uses)) // Factored in cost already
 		free_uses = max(0, free_uses - values_sum(grocery_list))

@@ -450,7 +450,7 @@
 		if(!HAS_TRAIT(stunned_mob, TRAIT_MESON_VISION))
 			apply_stun(stunned_mob)
 		else
-			to_chat(stunned_mob, span_notice("You look directly into \the [src], good thing your vision is protected!"))
+			to_chat(stunned_mob, span_notice(LANG("obj.813818431dc7a8ca", list(src))))
 
 /obj/singularity/proc/apply_stun(mob/living/carbon/stunned_mob)
 	stunned_mob.apply_effect(60, EFFECT_STUN)

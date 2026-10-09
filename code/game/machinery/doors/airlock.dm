@@ -1395,7 +1395,7 @@
 	open(BYPASS_DOOR_CHECKS, user)
 	take_damage(AIRLOCK_PRY_DAMAGE, BRUTE, 0, 0) // Enough to sometimes spark
 	if(density && !open(BYPASS_DOOR_CHECKS, user))
-		to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
+		to_chat(user, span_warning(LANG("obj.2237746661b09615", list(src))))
 
 /obj/machinery/door/airlock/open(forced = DEFAULT_DOOR_CHECKS, mob/living/opener)
 	if(cycle_pump && !operating && !welded && !seal && locked && density)

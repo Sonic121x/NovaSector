@@ -39,7 +39,7 @@
 
 	find_index = findtext(value, link_regex)
 	if(find_index != 9)
-		to_chat(usr, span_warning("The image must be hosted on one of the following sites: 'Gyazo (i.gyazo.com), Byond (files.byondhome.com), Imgbox (images2.imgbox.com, thumbs2.imgbox.com), Lensdump (x.l3n.co), CatBox (files.catbox.moe), ImgBB (i.ibb.co)'"))
+		to_chat(usr, span_warning(LANG("datum.6c9f84877815b6b8", null)))
 		return
 
 	if(stored_links[usr.ckey] && stored_links[usr.ckey][type] != value && cooldown_timer <= world.time)

@@ -228,7 +228,7 @@
 		sucker.adjust_money(-amount, "?VIVA¿: !LA CRABBE¡")
 		sucker.money_crabbed += amount
 		total_siphoned += amount
-		sucker.bank_card_talk("You have lost [percentage_lost * 100]% of your funds! A spacecoin credit deposit machine is located at: [get_area(src)].")
+		sucker.bank_card_talk(LANG("obj.099773db44341ff6", list(percentage_lost * 100, get_area(src))))
 
 	var/list/notes_to_print = credits_to_spacecash(total_siphoned)
 	if (length(notes_to_print))

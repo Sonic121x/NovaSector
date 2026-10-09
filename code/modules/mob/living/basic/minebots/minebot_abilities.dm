@@ -49,7 +49,7 @@
 		UnregisterSignal(owner, COMSIG_LIVING_RESTORE_INITIAL_SIGHT)
 		REMOVE_TRAIT(owner, TRAIT_MESON_VISION, ACTION_TRAIT)
 
-	to_chat(owner, span_notice("You toggle your meson vision [had_trait ? "off" : "on"]."))
+	to_chat(owner, span_notice(LANG("datum.c6cd77878cc0422f", list(had_trait ? "off" : "on"))))
 
 ///Add meson green shading to darker areas
 /datum/action/cooldown/mob_cooldown/minedrone/proc/on_initial_sight(mob/living/source)

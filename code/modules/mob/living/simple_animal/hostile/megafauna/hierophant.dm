@@ -441,8 +441,8 @@ Difficulty: Hard
 
 	set_stat(DEAD)
 	blinking = TRUE //we do a fancy animation, release a huge burst(), and leave our staff.
-	visible_message(span_hierophant("\"Mrmxmexmrk wipj-hiwxvygx wiuyirgi...\""))
-	visible_message(span_hierophant_warning("[src] shrinks, releasing a massive burst of energy!"))
+	visible_message(span_hierophant(LANG("mob.0de96414ab153278", null)))
+	visible_message(span_hierophant_warning(LANG("mob.9c1aed9df0f9414b", list(src))))
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(hierophant_burst), null, get_turf(src), 10)
 	set_stat(STABLE) // deathgasp won't run if dead, stupid
 	..()

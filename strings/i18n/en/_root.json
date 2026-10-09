@@ -462,6 +462,7 @@
 	"_root.e6cd6d25aa652b09": "CTF has been {0} in {1}!",
 	"_root.e711367202055c3c": "THE {0} REQUIRE {1} {2}{3}{4}",
 	"_root.e775d097f109e6be": "CTF cannot be unloaded if it was not loaded in the first place",
+	"_root.e7defa65fa10dc47": "You see how <b>{0}</b>{1}{2}",
 	"_root.e83e886ece865fad": "New area name",
 	"_root.e87776750c731420": "a screwdriver",
 	"_root.e93bf332c0100d04": "a blood filter",
