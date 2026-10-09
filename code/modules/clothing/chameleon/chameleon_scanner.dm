@@ -45,28 +45,24 @@
 	. += span_red(LANG("obj.5aad88bd17b757eb", list(scan_range)))
 	. += span_red(LANG("obj.1d3dafe60eb711ee", null))
 
-/obj/item/chameleon_scanner/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
-	return scan_target(interacting_with, user) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
+/obj/item/chameleon_scanner/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	return scan_target(interacting_with, user) ? ITEM_INTERACT_SUCCESS : NONE
 
 /obj/item/chameleon_scanner/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
-	if(SHOULD_SKIP_INTERACTION(interacting_with, src, user))
-		return NONE
 	return ranged_interact_with_atom(interacting_with, user, modifiers)
 
 /obj/item/chameleon_scanner/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
-	if(!isliving(interacting_with) && !isturf(interacting_with))
-		return NONE
 	var/list/scanned_outfit = scan_target(interacting_with, user)
-	if(length(scanned_outfit))
-		var/datum/outfit/empty_outfit = new()
-		var/datum/action/chameleon_outfit/outfit_action = locate() in user.actions
-		outfit_action?.apply_outfit(empty_outfit, scanned_outfit.Copy())
-		qdel(empty_outfit)
-		return ITEM_INTERACT_SUCCESS
-	return ITEM_INTERACT_BLOCKING
+	if(!length(scanned_outfit))
+		return NONE
+	var/datum/outfit/empty_outfit = new()
+	var/datum/action/chameleon_outfit/outfit_action = locate() in user.actions
+	outfit_action?.apply_outfit(empty_outfit, scanned_outfit.Copy())
+	qdel(empty_outfit)
+	return ITEM_INTERACT_SUCCESS
 
-/obj/item/chameleon_scanner/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
-	return interact_with_atom_secondary(interacting_with, user, modifiers)
+/obj/item/chameleon_scanner/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	return ranged_interact_with_atom_secondary(interacting_with, user, modifiers)
 
 /**
  * Attempts to scan a human's outfit

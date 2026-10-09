@@ -447,18 +447,10 @@
 		if(stunned_mob.stat == DEAD || stunned_mob.is_blind())
 			continue
 
-		if(!ishuman(stunned_mob))
+		if(!HAS_TRAIT(stunned_mob, TRAIT_MESON_VISION))
 			apply_stun(stunned_mob)
-			continue
-
-		var/mob/living/carbon/human/stunned_human = stunned_mob
-		if(istype(stunned_human.glasses, /obj/item/clothing/glasses/meson))
-			var/obj/item/clothing/glasses/meson/check_meson = stunned_human.glasses
-			if(check_meson.vision_flags & SEE_TURFS)
-				to_chat(stunned_human, span_notice(LANG("obj.5337ad63ae84a6e7", list(src))))
-				continue
-
-		apply_stun(stunned_mob)
+		else
+			to_chat(stunned_mob, span_notice(LANG("obj.813818431dc7a8ca", list(src))))
 
 /obj/singularity/proc/apply_stun(mob/living/carbon/stunned_mob)
 	stunned_mob.apply_effect(60, EFFECT_STUN)

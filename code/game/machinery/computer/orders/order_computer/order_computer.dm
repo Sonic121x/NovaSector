@@ -3,7 +3,7 @@
 GLOBAL_LIST_EMPTY(order_console_products)
 
 /obj/machinery/computer/order_console
-	name = "Orders Console"
+	name = "orders console"
 	desc = "An interface for ordering specific ingredients from Cargo, with an express option at the cost of more money."
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/order_console")
 	icon_screen = "request"
@@ -40,6 +40,10 @@ GLOBAL_LIST_EMPTY(order_console_products)
 	///For blackbox logging, what kind of order is this? set nothing to not tally, like golem orders
 	var/blackbox_key
 
+	/// Number of free items purchaseable from the console
+	/// `null` is interpreted as a separate value in the UI to hide the hud element for free uses
+	var/free_uses = null
+
 /obj/machinery/computer/order_console/Initialize(mapload)
 	. = ..()
 
@@ -52,8 +56,15 @@ GLOBAL_LIST_EMPTY(order_console_products)
 
 /obj/machinery/computer/order_console/proc/get_total_cost()
 	var/cost = 0
+	var/free_uses_remaining = free_uses || 0
 	for(var/datum/orderable_item/item as anything in grocery_list)
-		cost += grocery_list[item] * item.cost_per_order
+		if(free_uses_remaining >= grocery_list[item])
+			free_uses_remaining -= grocery_list[item]
+		else if(free_uses_remaining >= 1)
+			cost += (grocery_list[item] - free_uses_remaining) * item.cost_per_order
+			free_uses_remaining = 0
+		else
+			cost += grocery_list[item] * item.cost_per_order
 	return cost
 
 /obj/machinery/computer/order_console/ui_interact(mob/user, datum/tgui/ui)
@@ -74,6 +85,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
 /obj/machinery/computer/order_console/ui_data(mob/user)
 	var/list/data = list()
 	data["total_cost"] = get_total_cost()
+	data["free_uses"] = free_uses
 	data["off_cooldown"] = COOLDOWN_FINISHED(src, order_cooldown)
 
 	for(var/datum/orderable_item/item as anything in GLOB.order_console_products)
@@ -114,6 +126,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
 			"cost" = round(item.cost_per_order * cargo_cost_multiplier),
 			"icon" = item.purchase_path::icon,
 			"icon_state" = item.purchase_path::icon_state,
+			"max" = item.max_per_order,
 		))
 	return data
 
@@ -127,7 +140,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
 	switch(action)
 		if("add_one")
 			var/datum/orderable_item/wanted_item = locate(params["target"]) in GLOB.order_console_products
-			if(grocery_list[wanted_item] >= 20)
+			if(grocery_list[wanted_item] >= wanted_item.max_per_order)
 				return
 			else
 				grocery_list[wanted_item] += 1
@@ -145,7 +158,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
 		if("cart_set")
 			//this is null if the action doesn't need it (purchase, quickpurchase)
 			var/datum/orderable_item/wanted_item = locate(params["target"]) in GLOB.order_console_products
-			grocery_list[wanted_item] = clamp(params["amt"], 0, 20)
+			grocery_list[wanted_item] = clamp(params["amt"], 0, wanted_item.max_per_order)
 			if(!grocery_list[wanted_item])
 				grocery_list -= wanted_item
 		if("purchase")
@@ -211,10 +224,12 @@ GLOBAL_LIST_EMPTY(order_console_products)
  */
 /obj/machinery/computer/order_console/proc/purchase_items(obj/item/card/id/card, express = FALSE)
 	var/final_cost = round(get_total_cost() * (express ? express_cost_multiplier : cargo_cost_multiplier))
-	if(subtract_points(final_cost, card))
-		return TRUE
-	say(LANG("obj.eac2f740e586a659", list(credit_type)))
-	return FALSE
+	if(final_cost > 0 && !subtract_points(final_cost, card))
+		say(LANG("obj.eac2f740e586a659", list(credit_type)))
+		return FALSE
+	if(isnum(free_uses)) // Factored in cost already
+		free_uses = max(0, free_uses - values_sum(grocery_list))
+	return TRUE
 
 /**
  * whatever type of points was retrieved in retrieve_points() subtract those type of points from the card upon confirming order
@@ -251,4 +266,3 @@ GLOBAL_LIST_EMPTY(order_console_products)
 	if (!announcement_lines_map.len)
 		announcement_lines_map["Error"] = "Unknown Error happened, while we tried to procceed an order, please report this to Nanotrasen."
 	. = ..()
-

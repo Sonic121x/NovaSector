@@ -1091,6 +1091,20 @@ fn collect_text_nodes<'b>(expr: &'b Expression, out: &mut Vec<&'b Spanned<Term>>
 /// 单个文本节点的模板（{0}/{1}…）与占位符个数；纯标签/无字母返回 None。
 /// 与 extract.rs 的 build_template 对单节点结果一致（保证 key 匹配）。
 fn node_template(term: &Term) -> Option<(String, usize)> {
+    // 源码里已是中文的串不是英文原文：extract 的 `emit` 按 `contains_cjk` 拒收，这里不同口径
+    // 就会把它改写成 `LANG(key)` 而目录里永远没有这条 → 悬空 key，玩家看到 `datum.xxxx` 乱码
+    // （Nova 自有模块直接写中文提示即此形状）。所有改写点都经 `collect_text_nodes` 走到这里。
+    let raw = match term {
+        Term::String(s) => s.as_str(),
+        Term::InterpString(lead, _) => lead.as_str(),
+        _ => "",
+    };
+    if crate::extract::contains_cjk(raw)
+        || matches!(term, Term::InterpString(_, parts)
+            if parts.iter().any(|(_, lit)| crate::extract::contains_cjk(lit)))
+    {
+        return None;
+    }
     match term {
         Term::String(s) => {
             if !strip_tags(s).chars().any(|c| c.is_alphabetic()) {
@@ -1119,6 +1133,17 @@ fn node_template(term: &Term) -> Option<(String, usize)> {
             Some((out, count))
         }
         _ => None,
+    }
+}
+
+#[cfg(test)]
+mod cjk_gate {
+    use super::*;
+
+    #[test]
+    fn chinese_literals_are_not_rewritten() {
+        assert!(node_template(&Term::String("请先填写音色名称。".to_string())).is_none());
+        assert!(node_template(&Term::String("Upload a recording".to_string())).is_some());
     }
 }
 

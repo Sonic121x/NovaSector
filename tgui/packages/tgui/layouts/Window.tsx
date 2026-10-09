@@ -59,6 +59,16 @@ export function Window(props: Props) {
   const { config, suspended, debug } = useBackend();
 
   const [isReadyToRender, setIsReadyToRender] = useState(false);
+  // NOVA EDIT ADDITION START - Window resume fix: re-show on every resume, see events/handlers/update.ts
+  const [resumeCount, setResumeCount] = useState(0);
+  useEffect(() => {
+    const onResume = () => setResumeCount((count) => count + 1);
+    globalEvents.on('tgui-resumed', onResume);
+    return () => {
+      globalEvents.off('tgui-resumed', onResume);
+    };
+  }, []);
+  // NOVA EDIT ADDITION END
 
   // We need to set the window to be invisible before we can set its geometry
   // Otherwise, we get a flicker effect when the window is first rendered
@@ -110,7 +120,7 @@ export function Window(props: Props) {
       cancelled = true;
       logger.log('unmounting');
     };
-  }, [isReadyToRender, suspended, width, height, scale]);
+  }, [isReadyToRender, suspended, width, height, scale, resumeCount]); // NOVA EDIT CHANGE - Window resume fix - ORIGINAL: }, [isReadyToRender, suspended, width, height, scale]);
 
   // Determine when to show dimmer
   const showDimmer =

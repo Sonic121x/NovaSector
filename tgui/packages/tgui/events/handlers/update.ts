@@ -1,4 +1,5 @@
 import { perf } from 'common/perf';
+import { globalEvents } from 'tgui-core/events'; // NOVA EDIT ADDITION - Window resume fix
 import { setupDrag } from '../../drag';
 // NOVA EDIT ADDITION - I18N
 import { mergeCatalogOverlay } from '../../i18n/catalog';
@@ -38,6 +39,13 @@ function resume(payload: UpdatePayload): void {
   logger.log('Resuming:', payload);
   // Signal renderer that we have resumed
   resumeRenderer();
+  // NOVA EDIT ADDITION START - Window resume fix
+  // Window shows itself when it sees `suspended` flip back to false. A suspend
+  // followed at once by the next UI's update (chained tgui_alerts reusing one
+  // window) flips it false -> true -> false before React re-renders, so the
+  // window stayed hidden. Tell Window about every resume explicitly.
+  globalEvents.emit('tgui-resumed');
+  // NOVA EDIT ADDITION END
   // Setup drag
   setupDrag();
   // We schedule this for the next tick here because resizing and unhiding

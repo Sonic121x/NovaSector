@@ -1,6 +1,6 @@
 // NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/machinery/computer/order_console/cook
-	name = "Produce Orders Console"
+	name = "produce orders console"
 	desc = "An interface for ordering fresh produce and other. A far more expensive option than the botanists, but oh well."
 	circuit = /obj/item/circuitboard/computer/order_console
 	order_categories = list(
@@ -13,6 +13,18 @@
 	// Discount for items in the chefs category like mining/bitrunning consoles
 	cargo_cost_multiplier =  0.65
 
+/obj/machinery/computer/order_console/cook/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(!istype(tool, /obj/item/cooking_voucher))
+		return ..()
+	if(!user.temporarilyRemoveItemFromInventory(tool))
+		return ITEM_INTERACT_BLOCKING
+
+	playsound(src, 'sound/machines/card_slide.ogg', 33, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	balloon_alert(user, LANG("obj.cb4313179a080af6", null))
+	free_uses += 10
+	qdel(tool)
+	return ITEM_INTERACT_SUCCESS
+
 /obj/machinery/computer/order_console/cook/order_groceries(mob/living/purchaser, obj/item/card/id/card, list/groceries)
 	say(LANG("obj.7e5306e0ef9ee55e", null))
 	aas_config_announce(/datum/aas_config_entry/order_console, list(), src, list(radio_channel), capitalize(blackbox_key))
@@ -24,3 +36,11 @@
 			SSshuttle.chef_groceries[ordered_item] += groceries[ordered_item]
 		else
 			SSshuttle.chef_groceries[ordered_item] = groceries[ordered_item]
+
+/obj/item/cooking_voucher
+	name = "cooking voucher"
+	desc = "A token to redeem cooking ingredients. \
+		Insert into your local produce order console to redeem ten free ingredients of your choice."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "mining_voucher"
+	w_class = WEIGHT_CLASS_TINY

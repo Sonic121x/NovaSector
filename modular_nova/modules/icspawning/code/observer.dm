@@ -64,7 +64,6 @@
 			player_as_human.dna.update_dna_identity()
 		else if(dresscode != "Naked")
 			spawned_player.equipOutfit(dresscode)
-		QDEL_IN(user, 1)
 
 		if (teleport_option == "Bluespace")
 			playsound(spawned_player, 'sound/effects/magic/Disable_Tech.ogg', 100, 1)
@@ -94,6 +93,10 @@
 				spawned_player.forceMove(empty_pod)
 
 				new /obj/effect/pod_landingzone(current_turf, empty_pod)
+
+		// The new body spawns inside the ghost, so the ghost may only go once the body is out.
+		// Deleting it earlier raced the key transfer: under lag the body was deleted with the ghost.
+		QDEL_IN(user, 1)
 
 /client/proc/robust_dress_shop_skyrat()
 	var/list/baseoutfits = list("Naked","Custom","As Job...", "As Plasmaman...")
