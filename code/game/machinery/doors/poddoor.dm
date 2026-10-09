@@ -155,7 +155,7 @@
 
 /obj/machinery/door/poddoor/crowbar_act(mob/living/user, obj/item/tool)
 	if(machine_stat & NOPOWER)
-		open(TRUE)
+		open(TRUE, user)
 		return ITEM_INTERACT_SUCCESS
 	if (density)
 		balloon_alert(user, LANG("obj.f6a9c3c826cfdcbe", null))
@@ -270,8 +270,8 @@
 			time_to_open = 15 SECONDS
 
 		if(do_after(user, time_to_open, src))
-			if(density && !open(TRUE)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
-				to_chat(user, span_warning(LANG("obj.4becfd1b380d8fa2", list(src))))
+			if(density && !open(TRUE, user)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
+				to_chat(user, span_warning("Despite your efforts, [src] managed to resist your attempts to open it!"))
 
 	else
 		return ..()

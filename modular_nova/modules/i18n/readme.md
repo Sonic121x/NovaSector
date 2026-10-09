@@ -127,7 +127,7 @@ LANG 化的散文，不适合短标签与标识符。
 - `code/__DEFINES/~nova_defines/i18n.dm` —— `LANG`/`LANGU` 宏与 locale 常量。
 - `tgui/packages/tgui/i18n/` —— 前端运行时：`catalog.ts`/`localize.ts`/`jsx-runtime.ts` + 打包子集
   `<locale>.json`。靠 `tgui/i18n` 别名 + SWC `importSource` 解析，**必须在 tgui 包内**。
-- `modular_nova/modules/i18n/icons/lobby/*.dmi` —— 大厅按钮中文重绘（由 `tools/i18n/lobby-buttons/` 生成）。
+- `modular_nova/modules/i18n/icons/lobby/*.dmi` —— 大厅按钮中文重绘（由 `tools/i18n/lobby-buttons/` 生成）。上游 2026-09 把大厅改成客户端 HTML 菜单（`code/modules/lobby_menu/`，按钮图为 `icons/hud/lobby/png/*.png`），原 `SlowInit` 换图覆盖已随之删除；这批中文重绘待移植到 PNG 资源。
 - `config/game_options.txt` —— `I18N_SERVER_LOCALE` / `I18N_CHAT_FALLBACK` / `I18N_LOG_MISSES`。
   **无 CI workflow**：lint 与重同步均本地手动跑。
 

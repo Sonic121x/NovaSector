@@ -450,6 +450,8 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "移至顶部", null)
 		.["insulated"] = "It is made from a robust electrical insulator and will block any electricity passing through it!"
 	else if (siemens_coefficient <= 0.5)
 		.["partially insulated"] = "It is made from a poor insulator that will dampen (but not fully block) electric shocks passing through it."
+	if(item_flags & CAN_BE_OVERSLOT)
+		.["form-fitting"] = "It does not block MODsuits from deploying when worn."
 
 /obj/item/examine_descriptor(mob/user)
 	return "item"
@@ -869,10 +871,11 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 
 /obj/item/singularity_pull(atom/singularity, current_size)
 	..()
+	if(QDELETED(src))
+		return
+
 	if(current_size >= STAGE_FOUR)
 		throw_at(singularity, 14, 3, spin=0)
-	else
-		return
 
 /obj/item/on_exit_storage(datum/storage/master_storage)
 	. = ..()

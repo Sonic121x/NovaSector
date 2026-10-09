@@ -6,7 +6,7 @@
 	invisibility = INVISIBILITY_ABSTRACT
 	density = FALSE
 	stat = DEAD
-	//hud_type = /datum/hud/new_player // NOVA EDIT REMOVAL
+	hud_type = /datum/hud
 
 	/// String Values tied to Defines that state whether the new_player is ready to play or not.
 	/// Do try your best to compare this value directly against the defines for certainty but helper procs do exist in bulkier situations.
@@ -19,8 +19,6 @@
 	var/ineligible_for_roles = FALSE
 	/// Used to track if the player's jobs menu sent a message saying it successfully mounted.
 	var/jobs_menu_mounted = FALSE
-	///Cooldown for the Reset Lobby Menu HUD verb
-	COOLDOWN_DECLARE(reset_hud_cooldown)
 
 /mob/dead/new_player/Initialize(mapload)
 	if(client && SSticker.state == GAME_STATE_STARTUP)
@@ -35,7 +33,6 @@
 	. = ..()
 
 	GLOB.new_player_list += src
-	ASSIGN_GAME_VERB(src, /mob/dead/new_player, reset_menu_hud)
 
 /mob/dead/new_player/Destroy()
 	GLOB.new_player_list -= src
@@ -419,20 +416,6 @@
 	// Add verb for re-opening the interview panel, fixing chat and re-init the verbs for the stat panel
 	ASSIGN_GAME_VERB(src, /mob/dead/new_player, open_interview)
 	add_verb(client, /client/verb/fix_tgui_panel)
-
-///Resets the Lobby Menu HUD, recreating and reassigning it to the new player
-GAME_VERB_PROC(/mob/dead/new_player, reset_menu_hud, "重置大厅菜单 HUD", "OOC")
-	var/mob/dead/new_player/new_player = usr
-	if(!COOLDOWN_FINISHED(new_player, reset_hud_cooldown))
-		to_chat(new_player, span_warning(LANG("mob.2751ef75cb67de2e", list(DisplayTimeText(COOLDOWN_TIMELEFT(new_player, reset_hud_cooldown))))))
-		return
-	if(!new_player?.client)
-		return
-	COOLDOWN_START(new_player, reset_hud_cooldown, RESET_HUD_INTERVAL)
-	qdel(new_player.hud_used)
-	create_mob_hud()
-	to_chat(new_player, span_info(LANG("mob.d7313b833309d296", list(DisplayTimeText(RESET_HUD_INTERVAL)))))
-	hud_used.show_hud(hud_used.hud_version)
 
 ///Auto deadmins an admin when they click to toggle the ready button or join game button in the menu
 /mob/dead/new_player/proc/auto_deadmin_on_ready_or_latejoin()

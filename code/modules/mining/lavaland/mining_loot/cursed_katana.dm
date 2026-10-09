@@ -162,9 +162,10 @@
 /obj/item/cursed_katana/proc/cloak(mob/living/target, mob/user)
 	user.alpha = 150
 	user.SetInvisibility(INVISIBILITY_OBSERVER, id=type) // so hostile mobs cant see us or target us
-	user.add_sight(SEE_SELF) // so we can see us
-	user.visible_message(span_warning(LANG("obj.35dd700f594b8fb1", list(user))),
-		span_notice(LANG("obj.6013dbff9327ff3f", null)))
+	RegisterSignal(user, COMSIG_MOB_UPDATE_SIGHT, PROC_REF(on_update_sight))
+	user.update_sight()
+	user.visible_message(span_warning("[user] vanishes into thin air!"),
+		span_notice("You enter the dark cloak."))
 	new /obj/effect/temp_visual/mook_dust(get_turf(src))
 	playsound(src, 'sound/effects/magic/smoke.ogg', 50, TRUE)
 	if(ishostile(target))
@@ -173,12 +174,17 @@
 			hostile_target.LoseTarget()
 	addtimer(CALLBACK(src, PROC_REF(uncloak), user), 5 SECONDS, TIMER_UNIQUE)
 
+/obj/item/cursed_katana/proc/on_update_sight(mob/source)
+	SIGNAL_HANDLER
+	source.add_sight(SEE_SELF)
+
 /obj/item/cursed_katana/proc/uncloak(mob/user)
 	user.alpha = 255
 	user.RemoveInvisibility(type)
-	user.clear_sight(SEE_SELF)
-	user.visible_message(span_warning(LANG("obj.d78442567cc8ab7b", list(user))),
-		span_notice(LANG("obj.86488090a09aeec5", null)))
+	UnregisterSignal(user, COMSIG_MOB_UPDATE_SIGHT)
+	user.update_sight()
+	user.visible_message(span_warning("[user] appears from thin air!"),
+		span_notice("You exit the dark cloak."))
 	playsound(src, 'sound/effects/magic/summonitems_generic.ogg', 50, TRUE)
 	new /obj/effect/temp_visual/mook_dust(get_turf(src))
 

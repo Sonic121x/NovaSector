@@ -52,11 +52,11 @@
 	if (!airlock_target.hasPower())
 		attacker.visible_message(span_warning(LANG("datum.ee7f1b164b7a474f", list(attacker, airlock_target))))
 		attacker.log_message("Pried open [src], located at [loc_name(src)].", LOG_GAME)
-		airlock_target.open(FORCING_DOOR_CHECKS)
+		airlock_target.open(FORCING_DOOR_CHECKS, attacker)
 		return
 
 	if (airlock_target.allowed(attacker))
-		airlock_target.open(DEFAULT_DOOR_CHECKS)
+		airlock_target.open(DEFAULT_DOOR_CHECKS, attacker)
 		return
 
 	attacker.visible_message(\
@@ -76,5 +76,5 @@
 		return
 	attacker.visible_message(span_warning(LANG("datum.ee7f1b164b7a474f", list(attacker, airlock_target))))
 	attacker.log_message("Successfully pried open [src], located at [loc_name(src)].", LOG_GAME)
-	airlock_target.open(BYPASS_DOOR_CHECKS)
+	airlock_target.open(BYPASS_DOOR_CHECKS, attacker)
 	airlock_target.take_damage(AIRLOCK_PRY_DAMAGE, BRUTE, sound_effect = FALSE)
