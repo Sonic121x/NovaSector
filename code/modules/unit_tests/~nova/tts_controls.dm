@@ -113,6 +113,8 @@
 	TEST_ASSERT_NULL(expression[1], "Plain speech should carry no tag.")
 	expression = tts_detect_expression("嘘", list(WHISPER_MODE = MODE_WHISPER))
 	TEST_ASSERT_EQUAL(expression[1], "whispers", "Whispers should be whispered.")
+	expression = tts_detect_expression("收到", list(WHISPER_MODE = MODE_WHISPER, MODE_TTS_RADIO_HUSH = TRUE))
+	TEST_ASSERT_NULL(expression[1], "Speaking into a radio should not be whispered on the air.")
 	expression = tts_detect_expression("救我", list(WHISPER_MODE = MODE_WHISPER_CRIT))
 	TEST_ASSERT_EQUAL(expression[1], "trembling", "Last words in crit should tremble.")
 	expression = tts_detect_expression("我没事", list(MODE_CUSTOM_SAY_EMOTE = "sobs"))

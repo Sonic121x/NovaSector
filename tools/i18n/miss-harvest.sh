@@ -66,7 +66,7 @@ rm -f data/unit_tests.json  # 不清就会拿上一轮的结果当本轮的（ps
 # 不在 is_unit_test_map 的地图上会被整批跳过 —— 那样采集到的交互面只剩十几个基建测试，
 # 看着"没几条漏翻"其实是根本没跑（与 pseudo-test.sh 里那条假绿注释同一个坑）。
 mkdir -p data
-cp _maps/runtimestation_minimal.json data/next_map.json
+cp _maps/map_jsons/runtimestation_minimal.json data/next_map.json
 # **硬超时**：开了 I18N_LOG_MISSES 之后 P1 短语缓存被关掉、每条串还要多跑一遍 miss 扫描，整轮
 # 比 pseudo-test 慢得多；万一套件卡住（实测遇到过一次，测试停在 screenshot 之后、游戏却还在 tick），
 # 没有超时就会无声无息地挂上几十分钟。超时后打印最后进展，方便直接定位卡在哪。
