@@ -21,6 +21,7 @@ The extras need the [ss13-tts](https://github.com/sernseek/ss13-tts) server. Eve
 - code\controllers\subsystem\tts.dm > /datum/controller/subsystem/tts/proc/establish_connection_to_tts, /datum/controller/subsystem/tts/proc/queue_tts_message, /datum/controller/subsystem/tts/proc/random_tts_voice, /datum/controller/subsystem/tts/fire, /datum/tts_request
 - code\datums\emotes.dm > /datum/emote/proc/run_emote
 - code\game\say.dm > /atom/movable/proc/do_tts_message
+- code\modules\mob\living\living_say.dm > /mob/living/proc/say
 - code\modules\tgui_input\say_modal\modal.dm > /datum/tgui_say/proc/load
 - code\modules\client\preferences\middleware\tts.dm > /datum/preference_middleware/tts/proc/play_voice, /datum/preference_middleware/tts/proc/play_voice_robot
 - code\__HELPERS\tts.dm > /proc/tts_queue_global_announcement

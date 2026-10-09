@@ -85,7 +85,7 @@ rm -rf data/logs/ci
 # 全部 i18n 单测（i18n_unreverse / i18n_template / i18n_phobia …）一个都不会执行——而门禁仍报
 # 「单测失败 0 个」，是**假绿**。
 mkdir -p data
-cp _maps/runtimestation_minimal.json data/next_map.json
+cp _maps/map_jsons/runtimestation_minimal.json data/next_map.json
 # 清掉上一轮的单测结果。**不清就是假红/假绿**：下面的门禁直接读 data/unit_tests.json，而这个文件
 # 只在单测跑完时才被覆盖 —— 本轮若因任何原因没写出它，门禁就会**拿上一轮的结果当本轮的**。
 # 2026-07-31 实测：本轮 i18n_ac_longest / i18n_template_match 在日志里都是 PASS，门禁却报这两条

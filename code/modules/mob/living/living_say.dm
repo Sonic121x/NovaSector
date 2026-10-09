@@ -263,6 +263,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		if(!message_mods[WHISPER_MODE])
 			message_mods[WHISPER_MODE] = MODE_WHISPER
 			message_mods[SAY_MOD_VERB] = say_mod(message, message_mods)
+			message_mods[MODE_TTS_RADIO_HUSH] = TRUE // NOVA EDIT ADDITION - TTS_EXPRESSION - Speaking into a radio is not a whisper on the air.
 
 	//No screams in space, unless you're next to someone.
 	var/turf/T = get_turf(src)

@@ -26,3 +26,5 @@
 #define TTS_UPLOAD_DIR "data/tts_voice_uploads/"
 /// What an uploader confirms before a recording may be cloned. Stored with the voice for admins.
 #define TTS_VOICE_CONSENT "我确认上传的录音是我本人的声音，或已获得声音本人的明确授权；同意将录音提交给语音服务商（阿里云百炼）生成音色，并用于本服务器的角色语音。"
+/// Message mod: the speaker only went quiet because they spoke into a radio, so TTS keeps the normal voice.
+#define MODE_TTS_RADIO_HUSH "tts_radio_hush"

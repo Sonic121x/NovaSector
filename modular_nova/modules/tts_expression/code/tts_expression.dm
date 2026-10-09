@@ -212,7 +212,8 @@ GLOBAL_LIST_INIT(tts_sound_keywords, list(
 		var/whisper_mode = message_mods?[WHISPER_MODE]
 		if(whisper_mode == MODE_WHISPER_CRIT)
 			style = "trembling"
-		else if(whisper_mode)
+		// Speaking into a radio lowers the voice for the room, but the line is heard on the air in full.
+		else if(whisper_mode && !message_mods[MODE_TTS_RADIO_HUSH])
 			style = "whispers"
 		else if(istext(message) && lang_yell_ending(message))
 			style = "shouting"
