@@ -176,7 +176,7 @@
 				total_ph = rs.ph
 			if(is_hallucinating && prob(5))
 				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			.["chemicals"] += list(list("title" = chemname, "id" = temp.name, "volume" = total_volume, "pH" = total_ph))
+			.["chemicals"] += list(list("title" = chemname, "id" = initial(temp.name), "volume" = total_volume, "pH" = total_ph)) // NOVA EDIT CHANGE - I18N: 母版试剂的 name 在 SSreagents.Init 被就地译成中文，id 回传给 GLOB.name2reagent（英文键）必须取英文原名 - ORIGINAL: .["chemicals"] += list(list("title" = chemname, "id" = temp.name, "volume" = total_volume, "pH" = total_ph))
 
 	var/list/beaker_data = null
 	if(!QDELETED(beaker))

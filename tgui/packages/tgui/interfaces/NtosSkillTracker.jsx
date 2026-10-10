@@ -74,9 +74,8 @@ export const NtosSkillTracker = (props) => {
                         <Button
                           icon="trophy"
                           style={{ margin: '8px' }}
-                          onClick={() =>
-                            act('PRG_reward', { skill: skill.name })
-                          }
+                          // NOVA EDIT CHANGE - I18N: name 是译文，回传用英文 id - ORIGINAL: act('PRG_reward', { skill: skill.name })
+                          onClick={() => act('PRG_reward', { skill: skill.id })}
                         >
                           Contact the Professional {skill.title} Association
                         </Button>
