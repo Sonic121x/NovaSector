@@ -29,6 +29,7 @@
 
 			var/list/skilldata = list(
 				"name" = lang_localize_display_name(skill.name), // NOVA EDIT - I18N: 技能名纯显示。ORIGINAL: "name" = skill.name,
+				"id" = skill.name, // NOVA EDIT ADDITION - I18N: name 是译文、只做显示；回传 PRG_reward 用英文原名（find_skilltype 按 skill.name 比较）
 				"desc" = skill.desc,
 				"title" = skill.title,
 				"lvl_name" = lvl_name
