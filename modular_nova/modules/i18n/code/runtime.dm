@@ -139,6 +139,9 @@ GLOBAL_LIST_EMPTY(i18n_reverse_ambiguities)
 /// locale -> normalized English source -> conflicting origins. Ambiguous normalized aliases are
 /// omitted, while exact source lookup remains available.
 GLOBAL_LIST_EMPTY(i18n_reverse_norm_ambiguities)
+/// 每个 locale 下来自**显式 global_reverse 补充表**（`_map_names`/`ui`/`_crafting`…）的英文源串。
+/// 精确表里它们本来就能覆盖自动候选；归一化表也要知道谁是补充表，才能按同一优先级处理。
+GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 
 /proc/lang_runtime_is_ready()
 	return GLOB.i18n_runtime_state == I18N_RUNTIME_READY
@@ -372,6 +375,7 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm_ambiguities)
 	if(domain == I18N_DOMAIN_GLOBAL_REVERSE)
 		seen = list()
 		origins = list()
+	var/list/supplement_sources = list()
 	var/list/english_domains = paired_by_locale[DEFAULT_UI_LOCALE]
 	var/list/localized_domains = paired_by_locale[locale]
 	var/list/english = english_domains?[domain]
@@ -384,11 +388,17 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm_ambiguities)
 			if(isnull(translated))
 				translated = source
 			lang_add_domain_value(seen, origins, output, source, translated, domain, "catalog key [key]", include_templates = domain != I18N_DOMAIN_GLOBAL_REVERSE)
+			if(domain == I18N_DOMAIN_GLOBAL_REVERSE)
+				supplement_sources[source] = TRUE
 	var/list/direct_domains = direct_by_locale[locale]
 	var/list/direct = direct_domains?[domain]
 	if(islist(direct))
 		for(var/source in direct)
 			lang_add_domain_value(seen, origins, output, source, direct[source], domain, "locale-only key [source]")
+			if(domain == I18N_DOMAIN_GLOBAL_REVERSE)
+				supplement_sources[source] = TRUE
+	if(domain == I18N_DOMAIN_GLOBAL_REVERSE)
+		GLOB.i18n_reverse_supplements[locale] = supplement_sources
 	by_locale[domain] = output
 	return output
 
@@ -658,6 +668,11 @@ GLOBAL_VAR_INIT(i18n_arg_html_depth, 0)
 			translated = lang_reverse_text(lowered)
 			if(translated != lowered)
 				return translated
+	// 「类型名 + 编号」的字符串形态（见 lang_localize_chain 同名一段）：名字先被拼成字符串再进实参时，
+	// 类型信息已经丢了，只能按形状拆。
+	translated = lang_reverse_serial_suffixed(stripped || arg, GLOB.i18n_server_locale)
+	if(translated)
+		return translated
 	// 小写形实参（"The [special_role_text] has failed!" 的 LOWER_TEXT 角色名等）：目录按原始
 	// 大写形收录（"Traitor"）→ 首字母大写后再试一次。
 	var/capped = capitalize(arg)
@@ -1081,18 +1096,34 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 	var/list/reverse_norm = list()
 	var/list/norm_origins = list()
 	var/list/norm_ambiguous = list()
-	for(var/en_text in domain)
-		var/translated = domain[en_text]
-		reverse[en_text] = translated
-		var/norm_key = lang_normalize_lookup(en_text)
-		if(norm_key != en_text)
-			lang_add_normalized_reverse(reverse_norm, norm_origins, norm_ambiguous, norm_key, lang_display_value(translated), "source '[en_text]'")
-		// Chat/browser output is split around formatting tags. Register the visible multi-word form,
-		// but never strip functional links.
-		if(findtext(en_text, "<") && findtext(en_text, ">"))
-			var/bare_key = lang_normalize_lookup(lang_strip_html_tags(en_text))
-			if(length(bare_key) && findtext(bare_key, " ") && !(bare_key in reverse))
-				lang_add_normalized_reverse(reverse_norm, norm_origins, norm_ambiguous, bare_key, lang_strip_html_tags(lang_display_value(translated)), "tagged source '[en_text]'")
+	// 归一化表要与精确表同一套优先级：**显式补充表覆盖自动候选**。从前这一层不分来源，于是
+	// `area.json` 的 `\improper Departure Lounge`（→离港休息厅）与 `_map_names` 的 `Departure Lounge`
+	// （→离港休息室）归一化后撞键、被判歧义整条删掉 —— 运行期的区域名带着 `\improper` 标记字节，
+	// 精确表又对不上，于是「阻塞据信位于Departure Lounge区域」。实测这样掉出去的有 101 条（区域名 74 条）。
+	// 两遍：先登记自动候选，再让补充表逐键覆盖；补充表彼此冲突时照旧判歧义，不靠文件顺序。
+	var/list/supplements = GLOB.i18n_reverse_supplements[locale] || list()
+	var/list/norm_from_supplement = list()
+	for(var/pass in 1 to 2)
+		for(var/en_text in domain)
+			var/is_supplement = !!supplements[en_text]
+			if(is_supplement != (pass == 2))
+				continue
+			var/translated = domain[en_text]
+			reverse[en_text] = translated
+			var/norm_key = lang_normalize_lookup(en_text)
+			if(is_supplement && !norm_from_supplement[norm_key])
+				norm_ambiguous -= norm_key
+				reverse_norm[norm_key] = lang_display_value(translated)
+				norm_origins[norm_key] = "supplement '[en_text]'"
+				norm_from_supplement[norm_key] = TRUE
+			else if(norm_key != en_text || is_supplement)
+				lang_add_normalized_reverse(reverse_norm, norm_origins, norm_ambiguous, norm_key, lang_display_value(translated), "source '[en_text]'")
+			// Chat/browser output is split around formatting tags. Register the visible multi-word form,
+			// but never strip functional links.
+			if(findtext(en_text, "<") && findtext(en_text, ">"))
+				var/bare_key = lang_normalize_lookup(lang_strip_html_tags(en_text))
+				if(length(bare_key) && findtext(bare_key, " ") && !(bare_key in reverse))
+					lang_add_normalized_reverse(reverse_norm, norm_origins, norm_ambiguous, bare_key, lang_strip_html_tags(lang_display_value(translated)), "tagged source '[en_text]'")
 	if(length(norm_ambiguous))
 		GLOB.i18n_reverse_norm_ambiguities[locale] = norm_ambiguous
 	GLOB.i18n_reverse[locale] = reverse
@@ -1205,6 +1236,32 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 	// 类型路径直接对着 labels.rs TYPE_VAR_RULES / type_vars.json 补一条即可。
 	if(GLOB.i18n_log_misses && . == text)
 		lang_log_miss_value(text, "display", origin)
+
+/// 调用点要把 atom 的名字先包进 span 再交给 LANG（`span_bold("\the [parent]")`）时用。名字一旦拼成
+/// 字符串，类型信息就丢了：LANG 的文本实参只能整串反查，「区域名 + 类型名 + id」（火警器、防火门、APC）
+/// 和「类型名 + 编号」这类运行期合成名永远查不到。直接把 atom 本身放进 LANG 实参是首选（lang_interpolate
+/// 会走显示边界）；只有需要额外包一层标签时才用这里。英文服原样返回调用方给的英文形态（保留 `\the`）。
+/proc/lang_atom_text(atom/target, english)
+	if(GLOB.i18n_server_locale == DEFAULT_UI_LOCALE || !isatom(target))
+		return english
+	return target.lang_localize_name_for_display(target.name)
+
+/// TGUI 窗口标题的显示形态。`ui = new(user, src, "AirAlarm", name)` 这种把 atom 名字当标题传的写法
+/// 遍地都是，而标题到前端只能整串查表：「区域名 + 类型名」（空气警报、APC、火警器）、「类型名 + 编号」
+/// 这类运行期合成名永远不是目录键 → 窗口标题整条英文。标题是纯显示（不回传、不作窗口键），所以在
+/// 下发 config 时直接走一次显示边界；`title` 本身不动。按标题缓存：get_payload 每次刷新都会调用。
+/datum/tgui/proc/nova_display_title()
+	if(!istext(title) || GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
+		return title
+	if(title == nova_title_source)
+		return nova_title_display
+	nova_title_source = title
+	var/atom/owner = src_object
+	if(isatom(owner) && title == owner.name)
+		nova_title_display = owner.lang_localize_name_for_display(title)
+	else
+		nova_title_display = lang_localize_display_name(title, "[src_object?.type]")
+	return nova_title_display
 
 /// 类型显示名/描述表：`strings/i18n/type_vars.json`（`nova-i18n extract` 产出，DM 继承已在 build 期展开）。
 /// `type` → 目录 key。显示边界拿到的 name/desc 若仍是类型标签，就**按类型直接取键**走正向目录，
@@ -1412,14 +1469,15 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 ///   · 尾巴（`id_tag` 之类）—— 原样保留，它本来就不是文案。
 /atom/proc/lang_localize_area_prefixed_name(atom/source, display_name)
 	var/area/source_area = get_area(source)
-	if(isnull(source_area))
-		return null
-	var/area_name = source_area.name
-	if(!length(area_name))
-		return null
-	var/at = findtext(display_name, area_name)
-	if(at != 1) // 只认前缀形态；出现在中间的多半是巧合
-		return null
+	var/area_name = source_area?.name
+	// 只认前缀形态；出现在中间的多半是巧合。
+	if(!length(area_name) || findtext(display_name, area_name) != 1)
+		// 名字里拼的区域不一定是 get_area(src)：空气警报用的是 my_area（可以是连接的传感器所在区域），
+		// 墙挂设备也可能坐在墙那一格、而名字拼的是房间那一侧。按名字前缀在全站区域里找最长匹配。
+		source_area = lang_area_by_name_prefix(display_name)
+		if(isnull(source_area))
+			return null
+		area_name = source_area.name
 	var/rest = copytext(display_name, length(area_name) + 1)
 	if(!length(rest))
 		return null
@@ -1433,6 +1491,32 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 		return "[localized_area] [localized_base][tail]"
 	var/localized_rest = lang_localize_display_name(trimmed_rest, "[source.type]")
 	return "[localized_area] [localized_rest]"
+
+/// 名字以某个区域名开头（后面跟空格）时返回那个区域，取最长匹配；没有则 null。
+/// 结果按名字缓存（含「没有」），悬停提示每次 MouseEntered 都会走到这里。
+/proc/lang_area_by_name_prefix(display_name)
+	var/static/list/cache = list()
+	if(!istext(display_name))
+		return null
+	var/cached = cache[display_name]
+	if(!isnull(cached))
+		return cached || null
+	var/area/best
+	var/best_length = 0
+	var/display_length = length(display_name)
+	for(var/area/candidate as anything in GLOB.areas)
+		var/candidate_name = candidate.name
+		var/candidate_length = length(candidate_name)
+		if(candidate_length <= best_length || candidate_length >= display_length)
+			continue
+		if(text2ascii(display_name, candidate_length + 1) != 32) // 区域名之后必须是空格
+			continue
+		if(findtextEx(display_name, candidate_name, 1, candidate_length + 1))
+			best = candidate
+			best_length = candidate_length
+	if(length(cache) < 4096)
+		cache[display_name] = best || FALSE
+	return best
 
 /// examine 的 desc 显示边界。与 name 同构：仍等于类型初值 → 按类型取键；其余（地图实例覆盖的
 /// desc、运行期 `desc = …` / `desc +=`）回落既有反查链，行为与从前一致。

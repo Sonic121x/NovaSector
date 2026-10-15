@@ -190,5 +190,14 @@
 	"Arresting": "逮捕",
 	"Detaining": "拘留",
 	"prying": "撬",
-	"cutting": "切割"
+	"cutting": "切割",
+	"Add": "添加",
+	"Remove": "移除",
+	"Install": "安装",
+	"Replace": "更换",
+	"Insert": "插入",
+	"Swap": "交换",
+	"charge": "充电",
+	"cook": "烹饪",
+	"inject": "注射"
 }

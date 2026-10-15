@@ -56,7 +56,7 @@
 
 /datum/component/limb_applicable/proc/add_context(obj/item/source, list/context, atom/target, mob/living/user)
 	if(isliving(target))
-		context[SCREENTIP_CONTEXT_LMB] = "Apply [source.name]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("datum.6af32429cf54cd60", list(source.name))
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 

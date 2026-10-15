@@ -174,7 +174,7 @@
 /obj/item/holosign_creator/atmos/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(LAZYLEN(signs))
-		context[SCREENTIP_CONTEXT_RMB] = "[clearview ? "Turn off" : "Temporarily activate"] clearview"
+		context[SCREENTIP_CONTEXT_RMB] = LANG("obj.e2e874f4cf42131f", list(clearview ? "Turn off" : "Temporarily activate"))
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/holosign_creator/atmos/create_holosign(atom/target, mob/user)

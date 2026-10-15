@@ -20,7 +20,7 @@
 	. = ..()
 
 	if(istype(held_item, /obj/item/mop))
-		context[SCREENTIP_CONTEXT_RMB] = "Wet [held_item]"
+		context[SCREENTIP_CONTEXT_RMB] = LANG("obj.cb875d0b73c71db5", list(held_item))
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/reagent_containers))
@@ -140,37 +140,37 @@
 
 	if(isnull(held_item) && contents.len)
 		if(mymop)
-			context[SCREENTIP_CONTEXT_RMB] = "Remove [mymop]"
+			context[SCREENTIP_CONTEXT_RMB] = LANG("obj.6d1d16bae7d1747f", list(mymop))
 			. = CONTEXTUAL_SCREENTIP_SET
 		if(contents.len == 1)
-			context[SCREENTIP_CONTEXT_LMB] = "Remove [contents[1]]"
+			context[SCREENTIP_CONTEXT_LMB] = LANG("obj.6d1d16bae7d1747f", list(contents[1]))
 			. = CONTEXTUAL_SCREENTIP_SET
 		context[SCREENTIP_CONTEXT_LMB] = "Search cart"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/mop) && !mymop)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.32ab02cc4233a975", list(held_item))
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/pushbroom) && !mybroom)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.32ab02cc4233a975", list(held_item))
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/storage/bag/trash) && !mybag)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.32ab02cc4233a975", list(held_item))
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/reagent_containers/spray/cleaner) && !myspray)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.32ab02cc4233a975", list(held_item))
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/clothing/suit/caution) && held_signs.len < max_signs)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.32ab02cc4233a975", list(held_item))
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/lightreplacer) && !myreplacer)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.32ab02cc4233a975", list(held_item))
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item) && held_item.tool_behaviour == TOOL_CROWBAR && CART_HAS_MINIMUM_REAGENT_VOLUME)
-		context[SCREENTIP_CONTEXT_LMB] = "Dump [src]'s mop bucket on [get_turf(src)]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.5d1aad09c755e0a2", list(src, get_turf(src)))
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(!isnull(held_item) && mybag?.atom_storage?.max_specific_storage >= held_item.w_class)
-		context[SCREENTIP_CONTEXT_RMB] = "Insert [held_item] into [mybag]"
+		context[SCREENTIP_CONTEXT_RMB] = LANG("obj.b20df33e618fcc31", list(held_item, mybag))
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	return . || NONE

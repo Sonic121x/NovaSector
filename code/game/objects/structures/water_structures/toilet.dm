@@ -73,7 +73,7 @@
 		else
 			context[SCREENTIP_CONTEXT_LMB] = "Insert Item"
 	context[SCREENTIP_CONTEXT_RMB] = "Flush"
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[cover_open ? "Close" : "Open"] Lid"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = LANG("obj.a370f5ade2867b5b", list(cover_open ? "Close" : "Open"))
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/toilet/examine(mob/user)

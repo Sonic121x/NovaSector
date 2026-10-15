@@ -22,7 +22,7 @@ export const InterfaceLockNoticeBox = (props) => {
     siliconUser = data.siliconUser,
     locked = data.locked,
     onLockStatusChange = () => act('lock'),
-    accessText = 'an ID card',
+    accessText, // NOVA EDIT CHANGE - I18N: 默认值挪进 JSX，解构默认值抽取器看不到 - ORIGINAL: accessText = 'an ID card',
     preventLocking = data.preventLocking,
   } = props;
   // For silicon users
@@ -51,9 +51,11 @@ export const InterfaceLockNoticeBox = (props) => {
     );
   }
   // For everyone else
+  // NOVA EDIT CHANGE - I18N - ORIGINAL: Swipe {accessText} to {locked ? 'unlock' : 'lock'} this interface.
   return (
     <NoticeBox>
-      Swipe {accessText} to {locked ? 'unlock' : 'lock'} this interface.
+      Swipe {accessText ?? 'an ID card'} to {locked ? 'unlock' : 'lock'} this
+      interface.
     </NoticeBox>
   );
 };

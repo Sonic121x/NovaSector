@@ -112,6 +112,6 @@
 	if (held_item.tool_behaviour != tool_behaviour)
 		return NONE
 
-	context[SCREENTIP_CONTEXT_LMB] = "[screentip_verb] into [initial(result_atom_type.name)]"
+	context[SCREENTIP_CONTEXT_LMB] = LANG("datum.3cab818460921ef2", list(screentip_verb, initial(result_atom_type.name)))
 
 	return CONTEXTUAL_SCREENTIP_SET

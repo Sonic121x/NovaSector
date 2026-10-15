@@ -89,10 +89,10 @@
 
 	if(is_reagent_container(held_item) && held_item.is_open_container())
 		if(QDELETED(distilled_container))
-			context[SCREENTIP_CONTEXT_LMB] = "[QDELETED(distilled_container) ? "Insert" : "Replace"] beaker"
+			context[SCREENTIP_CONTEXT_LMB] = LANG("obj.27295a9ad0c50570", list(QDELETED(distilled_container) ? "Insert" : "Replace"))
 			return CONTEXTUAL_SCREENTIP_SET
 		if(QDELETED(fuel_container))
-			context[SCREENTIP_CONTEXT_RMB] = "[QDELETED(fuel_container) ? "Insert" : "Replace"] fuel"
+			context[SCREENTIP_CONTEXT_RMB] = LANG("obj.6c68642844396b57", list(QDELETED(fuel_container) ? "Insert" : "Replace"))
 			return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_CROWBAR)

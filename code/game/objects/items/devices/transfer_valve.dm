@@ -52,10 +52,10 @@
 	. = ..()
 
 	if(tank_one || tank_two)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Remove [tank_one || tank_two]"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = LANG("obj.6d1d16bae7d1747f", list(tank_one || tank_two))
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item) && is_type_in_list(held_item, list(/obj/item/tank, /obj/item/assembly)))
-		context[SCREENTIP_CONTEXT_LMB] = "Attach [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.0d07f6ab2d072823", list(held_item))
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	return . || NONE

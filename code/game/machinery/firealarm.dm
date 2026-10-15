@@ -326,7 +326,7 @@
 	switch(held_item.tool_behaviour)
 		if(TOOL_SCREWDRIVER)
 			if(buildstage == FIRE_ALARM_BUILD_SECURED)
-				context[SCREENTIP_CONTEXT_RMB] = "[panel_open ? "Unexpose" : "Expose"] wires"
+				context[SCREENTIP_CONTEXT_RMB] = LANG("obj.b9c78d8af334f0ab", list(panel_open ? "Unexpose" : "Expose"))
 				. = CONTEXTUAL_SCREENTIP_SET
 		if(TOOL_WELDER)
 			if(panel_open)

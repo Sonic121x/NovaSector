@@ -71,7 +71,7 @@
 	if(machine_stat & (BROKEN|NOPOWER) || !isnull(held_item))
 		return NONE
 
-	context[SCREENTIP_CONTEXT_LMB] = "[state_open ? "Close" : "Open"] Machine"
+	context[SCREENTIP_CONTEXT_LMB] = LANG("obj.6f342929b301da5a", list(state_open ? "Close" : "Open"))
 	if(occupant)
 		context[SCREENTIP_CONTEXT_RMB] = "Take Pictures"
 

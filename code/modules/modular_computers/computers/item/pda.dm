@@ -139,10 +139,10 @@
 	. = ..()
 
 	if(inserted_item)
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Remove [inserted_item]"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = LANG("obj.6d1d16bae7d1747f", list(inserted_item))
 		. = CONTEXTUAL_SCREENTIP_SET
 	else if(istype(held_item) && is_type_in_list(held_item, contained_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.32ab02cc4233a975", list(held_item))
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	return . || NONE

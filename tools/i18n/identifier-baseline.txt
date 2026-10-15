@@ -8,6 +8,7 @@ AI Connection
 AI Law Synchronization
 Activate
 Active
+Add
 Admin
 Adminhelps are also sent through TGS to services like IRC and Discord. If no admins are available in game, sending an adminhelp might still be noticed and responded to.
 Age Limit
@@ -251,6 +252,7 @@ Random
 Reagent
 Receive
 Release
+Remove
 Rename
 Repair Electronics
 Replay mode
@@ -430,6 +432,7 @@ capacitor
 card
 cat
 cautery
+charge
 chemicals
 chest
 claw
@@ -445,6 +448,7 @@ conductive
 config
 connectable
 contractor
+cook
 core
 crab
 crafting component
@@ -539,6 +543,7 @@ id
 implant
 indestructible
 info
+inject
 insulated
 intelliCard
 interact

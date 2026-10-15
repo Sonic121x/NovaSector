@@ -599,7 +599,7 @@
 	if(isnull(registered_account) || registered_account.replaceable) //Same check we use when we check if we can assign an account
 		context[SCREENTIP_CONTEXT_ALT_RMB] = "Assign account"
 	else if(registered_account.account_balance > 0)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Withdraw [MONEY_NAME]"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = LANG("obj.4e9aef165dd93b05", list(MONEY_NAME))
 	if(trim && length(trim.honorifics))
 		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Toggle honorific"
 	return CONTEXTUAL_SCREENTIP_SET

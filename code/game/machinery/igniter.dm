@@ -28,7 +28,7 @@
 		return NONE
 
 	if(held_item.tool_behaviour == TOOL_MULTITOOL)
-		context[SCREENTIP_CONTEXT_LMB] = "Connect [src]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.5dab577463c2a94f", list(src))
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_WELDER)
@@ -176,7 +176,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/sparker, 26)
 		return NONE
 
 	if(held_item.tool_behaviour == TOOL_MULTITOOL)
-		context[SCREENTIP_CONTEXT_LMB] = "Connect [src]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.5dab577463c2a94f", list(src))
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_WELDER)

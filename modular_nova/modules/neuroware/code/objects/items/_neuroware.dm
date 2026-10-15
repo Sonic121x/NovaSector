@@ -108,7 +108,7 @@
 /obj/item/disk/neuroware/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
 	if(can_hack && (uses > 0) && istype(held_item, /obj/item/screwdriver))
-		context[SCREENTIP_CONTEXT_LMB] = "[can_overdose ? "Enable" : "Disable"] overload safety"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.1a0f3fb4f8aa9e35", list(can_overdose ? "Enable" : "Disable"))
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/disk/neuroware/attack_self(mob/user, modifiers)

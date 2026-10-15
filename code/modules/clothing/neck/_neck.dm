@@ -137,7 +137,7 @@
 
 /obj/item/clothing/neck/tie/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_RMB] = "Wear [alternate_worn_layer == initial(alternate_worn_layer) ? "above" : "below"] suit"
+	context[SCREENTIP_CONTEXT_ALT_RMB] = LANG("obj.09f38cdb54aff7e0", list(alternate_worn_layer == initial(alternate_worn_layer) ? "above" : "below"))
 	if(clip_on)
 		return CONTEXTUAL_SCREENTIP_SET
 	if(is_tied)

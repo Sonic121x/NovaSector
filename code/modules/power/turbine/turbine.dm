@@ -63,11 +63,11 @@
 		return NONE
 
 	if(panel_open && istype(held_item, part_path))
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = "[installed_part ? "Replace" : "Install"] part"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = LANG("obj.a6279dfea438995a", list(installed_part ? "Replace" : "Install"))
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = "[panel_open ? "Close" : "Open"] panel"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = LANG("obj.45725a89b7fc8d2e", list(panel_open ? "Close" : "Open"))
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_WRENCH && panel_open)

@@ -110,7 +110,7 @@
 		context[SCREENTIP_CONTEXT_LMB] = "Insert cell"
 	switch(held_item.tool_behaviour)
 		if(TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] hatch"
+			context[SCREENTIP_CONTEXT_LMB] = LANG("obj.c7b92747a20bcc58", list(panel_open ? "Close" : "Open"))
 		if(TOOL_CROWBAR)
 			if(panel_open && internal_cell)
 				context[SCREENTIP_CONTEXT_LMB] = "Remove cell"

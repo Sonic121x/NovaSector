@@ -78,6 +78,14 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 		if(. != stripped)
 			return
 		. = text
+	// 名字 + 编号尾巴（`radio navigation gigabeacon 9-222`、`… #3`、`… (12)`）：运行期把序号拼在
+	// 类型名后面。atom 本身走显示边界时有 lang_localize_type_affixed_name 按类型拆，但名字一旦先变成
+	// **字符串**（无线电说话人名、模板捕获值、LANG 的文本实参），类型信息就丢了，整串又不是目录键
+	// → 「The radio navigation gigabeacon 9-222 哔哔响」。这里只认最窄的形状：尾巴是**单个不含字母、
+	// 含数字**的 token，前半段**整串精确命中**目录。两条都满足才动，所以不会把普通句子劈开。
+	var/serial = lang_reverse_serial_suffixed(stripped || text, locale)
+	if(serial)
+		return serial
 	var/templated = FALSE
 	if(allow_template)
 		var/after_template = lang_template_apply(text, locale)
@@ -87,6 +95,17 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 	if(!templated)
 		lang_count_layer_hit(I18N_LAYER_MISS)
 	return text
+
+/// 见 lang_localize_chain 的「名字 + 编号尾巴」一段。不是这个形状、或前半段查不到时返回 null。
+/proc/lang_reverse_serial_suffixed(text, locale)
+	var/static/regex/serial_tail = regex(@"^(.*[A-Za-z].*?) +([^A-Za-z\s]*[0-9][^A-Za-z\s]*)$")
+	if(!istext(text) || !serial_tail.Find(text))
+		return null
+	var/base = serial_tail.group[1]
+	var/localized = lang_reverse_text_in(base, locale)
+	if(localized == base)
+		return null
+	return "[localized] [serial_tail.group[2]]"
 
 /// 可见文本（剥掉 HTML 标签之后）是否含拉丁字母。标签里的 `span`/`class` 不算——
 /// 否则带样式的已译中文行永远付切块税。
@@ -233,6 +252,11 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 		return text
 	. = lang_reverse_text_in(stripped, locale)
 	if(. != stripped)
+		return
+	// 「类型名 + 编号」（无线电导航信标 `radio navigation gigabeacon 9-222` 说话时）。只在剥掉冠词之后
+	// 才试 —— 冠词已经证明它不是玩家角色名。
+	. = lang_reverse_serial_suffixed(stripped, locale)
+	if(.)
 		return
 	// 漏翻采集：聊天里的说话者/emote 名字整块没翻。单词名（wolf/animal）在这里最常见，
 	// 而 run 采集器的多词门槛正好把它们全挡了 —— 这一类只有在这里才看得见。

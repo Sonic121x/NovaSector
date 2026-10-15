@@ -100,7 +100,7 @@
 			. = CONTEXTUAL_SCREENTIP_SET
 
 		if(HAS_TRAIT(mob_victim, TRAIT_HERETIC_SUMMON))
-			context[SCREENTIP_CONTEXT_RMB] = "Heal [ishuman(mob_victim) ? "minion" : "summon"]"
+			context[SCREENTIP_CONTEXT_RMB] = LANG("datum.259092e3bc51e5db", list(ishuman(mob_victim) ? "minion" : "summon"))
 			. = CONTEXTUAL_SCREENTIP_SET
 
 	else if(isorgan(victim))

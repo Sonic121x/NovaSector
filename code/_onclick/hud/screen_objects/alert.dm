@@ -1005,7 +1005,7 @@
 			left_click_text = "Leave"
 		else
 			left_click_text = "Enter"
-		context[SCREENTIP_CONTEXT_LMB] = "[left_click_text] Poll"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("atom.46b63c0ae97aed67", list(left_click_text))
 		if(poll.ignoring_category)
 			var/selected_never = FALSE
 			if(owner.ckey in GLOB.poll_ignore[poll.ignoring_category])

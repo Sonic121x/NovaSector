@@ -49,5 +49,14 @@
 	"protected": "protected",
 	"unprotected": "unprotected",
 	"prying": "prying",
-	"cutting": "cutting"
+	"cutting": "cutting",
+	"Add": "Add",
+	"Remove": "Remove",
+	"Install": "Install",
+	"Replace": "Replace",
+	"Insert": "Insert",
+	"Swap": "Swap",
+	"charge": "charge",
+	"cook": "cook",
+	"inject": "inject"
 }

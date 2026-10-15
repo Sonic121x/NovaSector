@@ -75,7 +75,7 @@
 /datum/component/toggle_icon/proc/on_adding_context(atom/source, list/context, obj/item/held_item, mob/user)
 	SIGNAL_HANDLER
 
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Toggle [toggle_noun]"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = LANG("datum.fd7e830fbe13ac8c", list(toggle_noun))
 	return CONTEXTUAL_SCREENTIP_SET
 
 /*
