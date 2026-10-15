@@ -77,7 +77,7 @@
 		return
 	var/mob/living/carbon/carbon_occupant = occupant
 	if(!allow_clothing)
-		for(var/obj/item/abiotic_item in carbon_occupant.held_items + carbon_occupant.get_equipped_items())
+		for(var/obj/item/abiotic_item as anything in carbon_occupant.get_all_gear())
 			if(!(HAS_TRAIT(abiotic_item, TRAIT_NODROP)))
 				say(LANG("obj.be9643502ec04ad9", null))
 				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)

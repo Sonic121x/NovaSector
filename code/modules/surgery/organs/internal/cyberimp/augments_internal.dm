@@ -118,16 +118,15 @@
 /obj/item/organ/cyberimp/brain/anti_drop/ui_action_click()
 	active = !active
 	if(active)
-		var/list/hold_list = owner.get_empty_held_indexes()
-		if(LAZYLEN(hold_list) == owner.held_items.len)
+		var/list/held_list = owner.get_active_held_indexes()
+		if(!length(held_list))
 			to_chat(owner, span_notice(LANG("obj.0c93632124c6af33", null)))
 			active = FALSE
 			return
-		for(var/obj/item/held_item as anything in owner.held_items)
-			if(!held_item)
-				continue
+		for(var/held_index in held_list)
+			var/obj/item/held_item = owner.get_item_for_held_index(held_index)
 			stored_items += held_item
-			to_chat(owner, span_notice(LANG("obj.7ce37900e5fb3d86", list(owner.get_held_index_name(owner.get_held_index_of_item(held_item))))))
+			to_chat(owner, span_notice(LANG("obj.7ce37900e5fb3d86", list(owner.get_held_index_name(held_index)))))
 			ADD_TRAIT(held_item, TRAIT_NODROP, IMPLANT_TRAIT)
 			RegisterSignal(held_item, COMSIG_ITEM_DROPPED, PROC_REF(on_held_item_dropped))
 	else

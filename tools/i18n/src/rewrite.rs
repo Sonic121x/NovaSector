@@ -29,10 +29,13 @@ use crate::dm_string::{
 };
 use crate::keys::{make_key, namespace_for};
 use crate::semantics::{
-    block_is_pure, is_announce_sink, is_rewrite_sink, is_wordy_sink, native_dialog_no_usr,
-    resolve_sink_arg, sink_message_args,
+    block_is_pure, dynamic_call_sink, is_announce_sink, is_rewrite_sink, is_wordy_sink,
+    native_dialog_no_usr, resolve_sink_arg, sink_message_args,
 };
 use crate::template::{build_sink_template, build_template, placeholder_count, strip_tags};
+
+/// `INVOKE_ASYNC(owner, proc_ref, 实参…)`：源码里汇聚点实参之前多出的槽数。
+const INVOKE_ASYNC_SLOT_OFFSET: usize = 2;
 
 /// 核心文件（非 modular_nova）被 codemod 改写时插入的文件级 NOVA EDIT 标记。
 const CORE_MARKER: &str =
@@ -517,7 +520,28 @@ impl<'a> Rewriter<'a> {
                             is_announce_sink(name.as_str()),
                             is_wordy_sink(name.as_str()),
                             name.as_str(),
+                            0,
                         );
+                    }
+                }
+            }
+            // 回调形态 INVOKE_ASYNC(owner, PROC_REF(say), "…")：AST 里是 call(owner, proc)(实参…)，
+            // 而源码里实参前还有 owner 与 proc 引用两个槽 → 源码槽位偏移 2（见 dynamic_call_sink）。
+            if let Term::DynamicCall(lhs, args) = &term.elem {
+                if let Some(name) = dynamic_call_sink(lhs) {
+                    if is_rewrite_sink(name) {
+                        if let Some(indices) = sink_message_args(name) {
+                            self.try_rewrite_call(
+                                term.location,
+                                args,
+                                indices,
+                                ns,
+                                is_announce_sink(name),
+                                is_wordy_sink(name),
+                                name,
+                                INVOKE_ASYNC_SLOT_OFFSET,
+                            );
+                        }
                     }
                 }
             }
@@ -525,7 +549,7 @@ impl<'a> Rewriter<'a> {
             // 复用同一套实参定位（term.location 指向 input 关键字，find_open_paren 找其 `(`）。
             if let Term::Input { args, .. } = &term.elem {
                 if let Some(indices) = sink_message_args("input") {
-                    self.try_rewrite_call(term.location, args, indices, ns, false, false, "input");
+                    self.try_rewrite_call(term.location, args, indices, ns, false, false, "input", 0);
                 }
             }
             self.recurse_term(&term.elem, ns);
@@ -543,6 +567,7 @@ impl<'a> Rewriter<'a> {
                                 is_announce_sink(name.as_str()),
                                 is_wordy_sink(name.as_str()),
                                 name.as_str(),
+                                0,
                             );
                         }
                     }
@@ -618,6 +643,7 @@ impl<'a> Rewriter<'a> {
         interp_only: bool,
         wordy_only: bool,
         sink: &str,
+        slot_offset: usize,
     ) {
         // 原生 alert/input 的 [2]：有 usr 时是标题（该译），无 usr 时是按钮/默认值（绝不能译）。
         let no_usr_form = native_dialog_no_usr(sink, args);
@@ -683,6 +709,11 @@ impl<'a> Rewriter<'a> {
         let Some(name_start) = line_col_to_byte(src, call_loc.line, call_loc.column) else {
             return;
         };
+        // 回调形态：Location 必须落在 INVOKE_ASYNC 宏名上，偏移量才对得上源码实参；
+        // 落在别处（宏体内、其它包装宏）一律不动，宁可不译也不改坏。
+        if slot_offset > 0 && !src.as_bytes()[name_start..].starts_with(b"INVOKE_ASYNC") {
+            return;
+        }
         let Some(lparen) = find_open_paren(src, name_start) else {
             return;
         };
@@ -709,7 +740,7 @@ impl<'a> Rewriter<'a> {
         // 3) 对每个目标实参，找到其中唯一的字符串字面量并替换。
         let mut new_edits: Vec<Edit> = Vec::new();
         for (i, key, placeholders) in targets {
-            let Some(&(astart, aend)) = arg_ranges.get(i) else {
+            let Some(&(astart, aend)) = arg_ranges.get(i + slot_offset) else {
                 continue;
             };
             let Some(qpos) = find_first_quote(src, astart, aend) else {

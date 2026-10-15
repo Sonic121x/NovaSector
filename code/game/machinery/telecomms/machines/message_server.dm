@@ -108,7 +108,7 @@
 	. = ..()
 	if (calibrating)
 		calibrating += world.time
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "Calibrating... Estimated wait time: [rand(3, 9)] minutes.")
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), LANG("obj.e1d55988e0fe10dc", list(rand(3, 9))))
 		pda_msgs += new /datum/data_tablet_msg("System Administrator", "system", "This is an automated message. System calibration started at [server_timestamp(ic_time = TRUE)] (PT: [round_timestamp()]).")
 	else
 		pda_msgs += new /datum/data_tablet_msg("System Administrator", "system", MESSAGE_SERVER_FUNCTIONING_MESSAGE)

@@ -429,6 +429,8 @@
 		internal_cell.emp_act(severity)
 		handle_power(1 SECONDS)
 
+	on_saboteur(src, (1 MINUTES / severity))
+
 /obj/item/modular_computer/emag_act(mob/user, obj/item/card/emag/emag_card, forced)
 	if(!enabled && !forced)
 		balloon_alert(user, LANG("obj.5aaff2c1add88cd4", null))
@@ -838,8 +840,7 @@
 	if(!has_light || !internal_cell?.charge)
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, disabled_time))
-		if(user)
-			balloon_alert(user, LANG("obj.492a03fe8030d17e", null))
+		user?.balloon_alert(user, LANG("obj.492a03fe8030d17e", null))
 		return FALSE
 	set_light_on(!light_on)
 	update_appearance()

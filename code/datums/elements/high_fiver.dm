@@ -35,22 +35,16 @@
 /datum/element/high_fiver/proc/on_offer_taken(obj/item/source, mob/living/offerer, mob/living/taker)
 	SIGNAL_HANDLER
 
-	var/open_hands_taker = 0
 	var/slappers_giver = 0
-	// see how many hands the taker has open for high'ing
-	for(var/hand in taker.held_items)
-		if(isnull(hand))
-			open_hands_taker++
-
-	// see how many hands the offerer is using for high'ing
-	for(var/obj/item/slap_check in offerer.held_items)
+	for(var/obj/item/slap_check as anything in offerer.get_held_items())
+		// see how many hands the offerer is using for high'ing
 		if(slap_check.item_flags & HAND_ITEM)
 			slappers_giver++
 
 	var/high_ten = (slappers_giver >= 2)
-	var/descriptor = "high-[high_ten ? "ten" : "five"]"
+	var/descriptor = "high-[convert_integer_to_words(slappers_giver * 5)]"
 
-	if(open_hands_taker <= 0)
+	if(length(taker.get_empty_held_indexes()) <= 0)
 		to_chat(taker, span_warning(LANG("datum.5a944a6789647027", list(descriptor, offerer))))
 		taker.add_mood_event(descriptor, /datum/mood_event/high_five_full_hand) // not so successful now!
 		return COMPONENT_OFFER_INTERRUPT
@@ -60,18 +54,18 @@
 	taker.add_mob_memory(/datum/memory/high_five, deuteragonist = offerer, high_five_type = descriptor, high_ten = high_ten)
 
 	if(high_ten)
-		to_chat(taker, span_nicegreen(LANG("datum.5884409f501c6bec", list(offerer))))
+		to_chat(taker, span_nicegreen(LANG("datum.7b6ad1f137958e1d", list(descriptor, offerer))))
 		offerer.visible_message(
-			span_notice(LANG("datum.4168185587f284df", list(taker, offerer))),
-			span_nicegreen(LANG("datum.d0fce5f31c9c95ca", list(taker))),
+			span_notice(LANG("datum.59bf573a96b0e567", list(taker, descriptor, offerer))),
+			span_nicegreen(LANG("datum.23760819ff5aa67b", list(descriptor, taker))),
 			span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 			ignored_mobs = taker,
 		)
 
-		offerer.add_mood_event(descriptor, /datum/mood_event/high_ten)
-		taker.add_mood_event(descriptor, /datum/mood_event/high_ten)
+		offerer.add_mood_event(descriptor, /datum/mood_event/high_ten, descriptor)
+		taker.add_mood_event(descriptor, /datum/mood_event/high_ten, descriptor)
 	else
-		to_chat(taker, span_nicegreen(LANG("datum.ab9cb2926156c147", list(offerer))))
+		to_chat(taker, span_nicegreen(LANG("datum.22d557f300d422c9", list(descriptor, offerer))))
 		offerer.visible_message(
 			span_notice(LANG("datum.61c9a2658dcb66d7", list(taker, offerer))),
 			span_nicegreen(LANG("datum.7b8be00dbbb50d91", list(taker))),

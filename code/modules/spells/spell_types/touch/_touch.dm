@@ -150,7 +150,7 @@
 		StartCooldown()
 		return
 
-	if(!QDELETED(attached_hand) && (attached_hand in cast_on.held_items))
+	if(!QDELETED(attached_hand) && cast_on.is_holding(attached_hand))
 		remove_hand(cast_on, reset_cooldown_after = TRUE)
 		return
 

@@ -19,7 +19,9 @@ use dm::ast::{AssignOp, Expression, Follow, Statement, Term};
 
 use crate::catalog::Catalog;
 use crate::keys::{is_v2_key, make_key, namespace_for};
-use crate::semantics::{block_is_pure, native_dialog_no_usr, resolve_sink_arg, sink_message_args};
+use crate::semantics::{
+    block_is_pure, dynamic_call_sink, native_dialog_no_usr, resolve_sink_arg, sink_message_args,
+};
 use crate::template::{build_sink_template, build_tag_chunk_templates, build_template, placeholder_count};
 
 /// 视为玩家可见的变量名。
@@ -3413,6 +3415,24 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                         }
                         if let Some((_, arg)) = resolve_sink_arg(name.as_str(), i, args) {
                             // 拼接链先按标签单元拆（见 build_tag_chunk_templates）；拆不动才折成整条。
+                            if let Some(chunks) = build_tag_chunk_templates(arg) {
+                                let _origin = OriginGuard::enter("sink");
+                                for chunk in chunks {
+                                    emit(catalog, ns, &chunk);
+                                }
+                            } else if let Some(template) = build_sink_template(arg) {
+                                emit_sink_frame(catalog, ns, &template);
+                            }
+                        }
+                    }
+                }
+            }
+            // 回调形态的汇聚点（INVOKE_ASYNC(x, PROC_REF(say), "…")），见 dynamic_call_sink。
+            if let Term::DynamicCall(lhs, args) = &term.elem {
+                if let Some(name) = dynamic_call_sink(lhs) {
+                    let indices = sink_message_args(name).unwrap_or(&[]);
+                    for &i in indices {
+                        if let Some((_, arg)) = resolve_sink_arg(name, i, args) {
                             if let Some(chunks) = build_tag_chunk_templates(arg) {
                                 let _origin = OriginGuard::enter("sink");
                                 for chunk in chunks {

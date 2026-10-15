@@ -26,7 +26,7 @@
 	deadchat_broadcast(rendered, "<b>[brainwash_victim]</b>", follow_target = brainwash_victim, turf_target = get_turf(brainwash_victim), message_type=DEADCHAT_ANNOUNCEMENT)
 	if(check_holidays(APRIL_FOOLS))
 		// Note: most of the time you're getting brainwashed you're unconscious
-		brainwash_victim.say(LANG("_root.111ff1ea340ccefe", null), forced = "That son of a bitch! They're in. (April Fools)")
+		INVOKE_ASYNC(brainwash_victim, TYPE_PROC_REF(/atom/movable, say), LANG("_root.111ff1ea340ccefe", null), forced = "That son of a bitch! They're in. (April Fools)")
 
 /datum/antagonist/brainwashed
 	name = "\improper Brainwashed Victim"

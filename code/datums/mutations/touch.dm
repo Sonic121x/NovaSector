@@ -402,9 +402,9 @@
 		if(ishuman(human_smiter))
 			human_smiter.force_say()
 			if(evil_smite)
-				human_smiter.say(LANG("datum.f0cdeb38296b896f", list(possible_deity)), forced = "compelled by the power of their deity")
+				INVOKE_ASYNC(human_smiter, TYPE_PROC_REF(/atom/movable, say), LANG("datum.f0cdeb38296b896f", list(possible_deity)), forced = "compelled by the power of their deity")
 			else
-				human_smiter.say(LANG("datum.fc6f08c1d6233bdd", list(possible_deity)), forced = "compelled by the power of their deity")
+				INVOKE_ASYNC(human_smiter, TYPE_PROC_REF(/atom/movable, say), LANG("datum.fc6f08c1d6233bdd", list(possible_deity)), forced = "compelled by the power of their deity")
 		our_smite_multiplier *= divine_champion ? 5 : 1 //good luck surviving this if they're a chap
 
 	if(evil_smite)

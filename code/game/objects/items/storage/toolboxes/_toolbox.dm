@@ -157,7 +157,7 @@
 	repair.update_appearance()
 	repair.balloon_alert(user, LANG("obj.2a581104ae356065", null))
 	qdel(tool)
-	var/held_index = user.is_holding(src)
+	var/held_index = user.get_held_index_of_item(src)
 	qdel(src)
 	if (held_index)
 		user.put_in_hand(repair, held_index)

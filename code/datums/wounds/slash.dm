@@ -204,8 +204,7 @@
 			to_chat(user, span_warning(LANG("datum.161a5271f9329ce5", null))) // f in chat
 			return
 
-	lick_wounds(user)
-	return TRUE
+	return lick_wounds(user)
 
 /// if a felinid is licking this cut to reduce bleeding
 /datum/wound/slash/flesh/proc/lick_wounds(mob/living/carbon/human/user)
@@ -215,10 +214,13 @@
 			continue
 		user.ForceContractDisease(iter_disease)
 
+	if(user.combat_mode)
+		return FALSE
+
 	user.visible_message(span_notice(LANG("datum.2faf5101b8d60979", list(user, victim, limb.plaintext_zone))), span_notice(LANG("datum.be9ed8108ebd686e", list(victim, limb.plaintext_zone))), ignored_mobs=victim)
 	to_chat(victim, span_notice(LANG("datum.0f1ece88d9007fdc", list(user, limb.plaintext_zone))))
 	if(!do_after(user, base_treat_time, target = victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
-		return
+		return FALSE
 
 	user.visible_message(span_notice(LANG("datum.743818dc8a45d06e", list(user, victim, limb.plaintext_zone))), span_notice(LANG("datum.7328c4be04bb8bb0", list(victim, limb.plaintext_zone))), ignored_mobs=victim)
 	to_chat(victim, span_green(LANG("datum.155b810bbffddb9b", list(user, limb.plaintext_zone))))
@@ -229,6 +231,8 @@
 		try_handling(user)
 	else if(demotes_to)
 		to_chat(user, span_green(LANG("datum.857046b821631670", list(user == victim_stored ? "your" : "[victim_stored]'s"))))
+
+	return TRUE
 
 /datum/wound/slash/flesh/adjust_blood_flow(adjust_by, minimum)
 	. = ..()

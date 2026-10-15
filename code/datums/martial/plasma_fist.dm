@@ -41,7 +41,7 @@
 	return FALSE
 
 /datum/martial_art/plasma_fist/proc/Tornado(mob/living/attacker, mob/living/defender)
-	attacker.say(LANG("datum.0aaa572135ac49dc", null), forced="plasma fist")
+	INVOKE_ASYNC(attacker, TYPE_PROC_REF(/atom/movable, say), LANG("datum.0aaa572135ac49dc", null), forced = "plasma fist")
 	dance_rotate(attacker, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), attacker, 'sound/items/weapons/punch1.ogg', 15, TRUE, -1))
 	tornado_spell.cast(attacker)
 	log_combat(attacker, defender, "tornado sweeped (Plasma Fist)")
@@ -59,7 +59,7 @@
 	playsound(defender, 'sound/items/weapons/punch1.ogg', 50, TRUE, -1)
 	var/atom/throw_target = get_edge_target_turf(defender, get_dir(defender, get_step_away(defender, attacker)))
 	defender.throw_at(throw_target, 200, 4,attacker)
-	attacker.say(LANG("datum.2f5253bc6d3ae196", null), forced="plasma fist")
+	INVOKE_ASYNC(attacker, TYPE_PROC_REF(/atom/movable, say), LANG("datum.2f5253bc6d3ae196", null), forced = "plasma fist")
 	log_combat(attacker, defender, "threw back (Plasma Fist)")
 	return TRUE
 
@@ -68,7 +68,7 @@
 
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
 	playsound(defender, 'sound/items/weapons/punch1.ogg', 50, TRUE, -1)
-	attacker.say(LANG("datum.b5ef43e2ba5762ab", null), forced="plasma fist")
+	INVOKE_ASYNC(attacker, TYPE_PROC_REF(/atom/movable, say), LANG("datum.b5ef43e2ba5762ab", null), forced = "plasma fist")
 	defender.visible_message(
 		span_danger(LANG("datum.dfeead672d1319ea", list(attacker, defender))),
 		span_userdanger(LANG("datum.a1b7ac8406068932", list(attacker))),
@@ -104,7 +104,7 @@
 	return TRUE
 
 /datum/martial_art/plasma_fist/proc/Apotheosis(mob/living/user, mob/living/target)
-	user.say(LANG("datum.6b008f49b5120195", null), forced="plasma fist")
+	INVOKE_ASYNC(user, TYPE_PROC_REF(/atom/movable, say), LANG("datum.6b008f49b5120195", null), forced = "plasma fist")
 	if (ishuman(user))
 		var/mob/living/carbon/human/human_attacker = user
 		human_attacker.set_species(/datum/species/plasmaman)

@@ -60,7 +60,7 @@
 	qdel(GetComponent(/datum/component/butchering))
 
 	var/datum/component/overlay_lighting/lighting_object = src.GetComponent(/datum/component/overlay_lighting)
-	var/image/cone = lighting_object.cone
+	var/image/cone = lighting_object.light.cone
 	cone.transform = cone.transform.Translate(0, -16) // adjust the little headlamp
 
 /mob/living/basic/pet/poppy/death()
@@ -126,7 +126,7 @@
 
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "sweatdrop")
 	do_jitter_animation(60)
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, manual_emote), "'s fur stands up, [src.p_their()] body trembling...")
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, manual_emote), LANG("mob.de7cb93c48668416", list(src.p_their())))
 
 	notify_ghosts(LANG("mob.74ac00afc1d01c29", list(src)),
 		source = src,

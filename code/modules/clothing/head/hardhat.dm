@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/item/clothing/head/utility
 	icon = 'icons/obj/clothing/head/utility.dmi'
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
@@ -16,20 +17,20 @@
 	hair_mask = /datum/hair_mask/standard_hat_middle
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	clothing_flags = SNUG_FIT | STACKABLE_HELMET_EXEMPT
+	clothing_traits = list(TRAIT_HEAD_INJURY_BLOCKED)
 	resistance_flags = FIRE_PROOF
-
 	light_system = OVERLAY_LIGHT_DIRECTIONAL
 	light_range = 4
 	light_power = 0.8
 	light_color = "#ffcc99"
 	light_on = FALSE
 	dog_fashion = /datum/dog_fashion/head
-
 	///Determines used sprites: `hardhat[on]_[hat_type]` and `hardhat[on]_[hat_type]2` (lying down sprite)
 	var/hat_type = "yellow"
 	///Whether the headlamp is on or off.
 	var/on = FALSE
-	clothing_traits = list(TRAIT_HEAD_INJURY_BLOCKED)
+	/// If we've been forcibly disabled for a temporary amount of time.
+	COOLDOWN_DECLARE(disabled_time)
 
 /datum/armor/utility_hardhat
 	melee = 15
@@ -64,13 +65,26 @@
 /obj/item/clothing/head/utility/hardhat/proc/turn_off(mob/user)
 	set_light_on(FALSE)
 
+/obj/item/clothing/head/utility/hardhat/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+
+	on_saboteur(src, (1 MINUTES / severity))
+
 /obj/item/clothing/head/utility/hardhat/on_saboteur(datum/source, disrupt_duration)
 	. = ..()
-	if(on)
-		toggle_helmet_light()
-		return TRUE
+	on = FALSE
+	set_light_on(FALSE)
+	COOLDOWN_START(src, disabled_time, disrupt_duration)
+	update_appearance()
+	return TRUE
 
 /obj/item/clothing/head/utility/hardhat/attack_self(mob/living/user)
+	if(!COOLDOWN_FINISHED(src, disabled_time))
+		user?.balloon_alert(user, LANG("obj.492a03fe8030d17e", null))
+		return
+
 	toggle_helmet_light(user)
 
 /obj/item/clothing/head/utility/hardhat/orange

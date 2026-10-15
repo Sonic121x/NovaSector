@@ -293,6 +293,10 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 		if(locate(/obj/item/pillow) in owner.loc)
 			sleep_quality += 0.1
 
+		// A nice drink before sleep is always nice
+		if(HAS_TRAIT(owner, TRAIT_HAD_SLEEPY_DRINK))
+			sleep_quality += 0.1
+
 		var/need_mob_update = FALSE
 		if(sleep_quality > 0)
 			if(iscarbon(owner))
@@ -408,7 +412,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	alerttooltipstyle = "hisgrace"
 
 /datum/status_effect/his_wrath/tick(seconds_between_ticks)
-	for(var/obj/item/his_grace/HG in owner.held_items)
+	if(owner.is_holding_item_of_type(/obj/item/his_grace))
 		qdel(src)
 		return
 	var/need_mob_update
@@ -994,7 +998,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 			if(prob(99))
 				to_chat(victim, span_userdanger(LANG("datum.13ea6e8fff768691", null)))
 			else
-				INVOKE_ASYNC(victim, TYPE_PROC_REF(/atom/movable, say), "AAHH! THIS SITUATION HAS ONLY BEEN MADE WORSE WITH THE ADDITION OF YET MORE ANTS!!", forced = /datum/status_effect/ants)
+				INVOKE_ASYNC(victim, TYPE_PROC_REF(/atom/movable, say), LANG("datum.9eac6c8f0c026423", null), forced = /datum/status_effect/ants)
 		ants_remaining += amount_left
 	. = ..()
 
@@ -1271,6 +1275,31 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	QDEL_NULL(mob_flare)
 	owner.remove_filter("designated_target")
 	REMOVE_TRAIT(owner, TRAIT_DESIGNATED_TARGET, id)
+
+/datum/status_effect/shadowspeak
+	id = "forced_shadowspeak"
+	alert_type = null
+	remove_on_fullheal = FALSE //Ideally, the fullheal will remove whatever's causing the status effect in the first place.
+	var/shadowspeak_chance
+
+/datum/status_effect/shadowspeak/on_creation(mob/living/new_owner, shadowspeak_chance)
+	src.shadowspeak_chance = shadowspeak_chance
+	return ..()
+
+/datum/status_effect/shadowspeak/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_spoken))
+
+/datum/status_effect/shadowspeak/on_remove()
+	. = ..()
+	UnregisterSignal(owner, COMSIG_MOB_SAY)
+
+/// When the mob speaks, sometimes put it in a different language
+/datum/status_effect/shadowspeak/proc/on_spoken(mob/living/new_owner, list/speech_args)
+	SIGNAL_HANDLER
+	if (new_owner.has_reagent(/datum/reagent/water/holywater) || prob(shadowspeak_chance))
+		return
+	speech_args[SPEECH_LANGUAGE] = /datum/language/shadowtongue
 
 #undef HEALING_SLEEP_DEFAULT
 #undef HEALING_SLEEP_ORGAN_MULTIPLIER

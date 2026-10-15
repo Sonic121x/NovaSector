@@ -5889,6 +5889,12 @@
   "Certain features require an ID card login.": [
     "tgui:NtosCyborgRemoteMonitor"
   ],
+  "Cerulean": [
+    "dm:labels"
+  ],
+  "Cerulean Skeleton": [
+    "dm:labels"
+  ],
   "Chainmail": [
     "dm:labels"
   ],
@@ -12258,8 +12264,17 @@
   "Fish Pendant": [
     "dm:labels"
   ],
+  "Fish frills": [
+    "tgui:species_features"
+  ],
   "Fish has no traits!": [
     "tgui:FishAnalyzer"
+  ],
+  "Fish snout": [
+    "tgui:species_features"
+  ],
+  "Fish tail color": [
+    "tgui:species_features"
   ],
   "Fishing": [
     "dm:labels"
@@ -18253,6 +18268,9 @@
     "dm:labels"
   ],
   "Luna": [
+    "dm:labels"
+  ],
+  "Lunacy": [
     "dm:labels"
   ],
   "Lunasune": [
@@ -39075,6 +39093,9 @@
   "opium": [
     "dm:labels"
   ],
+  "oversized fish tail": [
+    "dm:labels"
+  ],
   "pAI": [
     "dm:labels",
     "tgui:NtosMain"
@@ -39254,6 +39275,9 @@
   "silver": [
     "dm:labels"
   ],
+  "skeletal oversized fish tail": [
+    "dm:labels"
+  ],
   "skrell liver": [
     "dm:labels"
   ],
@@ -39427,6 +39451,9 @@
     "tgui:AppearanceInfo"
   ],
   "transit_tube_recipes": [
+    "dm:labels"
+  ],
+  "translucent oversized fish tail": [
     "dm:labels"
   ],
   "transmutation rune": [

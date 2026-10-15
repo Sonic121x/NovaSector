@@ -68,7 +68,7 @@
 	if(!sheriffized || !COOLDOWN_FINISHED(src, shoot_cry))
 		return
 	COOLDOWN_START(src, shoot_cry, 30 SECONDS)
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "YIPPIE-KI-YAY!")
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), LANG("mob.c5ed2013fa3f62b5", null))
 
 /mob/living/basic/bot/secbot/ed209/Exited(atom/movable/gone, direction)
 	. = ..()

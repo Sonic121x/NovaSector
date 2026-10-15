@@ -126,7 +126,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 
 	if(ismob(usr))
 		var/mob/M = usr
-		M.swap_hand()
+		M.cycle_hand()
 	return 1
 
 /atom/movable/screen/navigate

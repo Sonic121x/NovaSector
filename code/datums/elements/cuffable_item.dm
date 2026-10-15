@@ -19,7 +19,7 @@
 /datum/element/cuffable_item/proc/on_examine_more(obj/item/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	if(length(user.held_items) < 0 || iscyborg(user) || source.anchored)
+	if(!user.can_hold_items() || iscyborg(user) || source.anchored)
 		return
 	examine_list += span_smallnotice(LANG("datum.aa33c12466cc1e41", list(source.p_them())))
 

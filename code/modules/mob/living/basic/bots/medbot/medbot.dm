@@ -403,7 +403,7 @@
 		return
 
 	heal_multiplier += design.additive_multiplier
-	INVOKE_ASYNC(src, PROC_REF(speak), "New knowledge found! Surgical efficacy improved to [round(heal_multiplier * 100)]%!")
+	INVOKE_ASYNC(src, PROC_REF(speak), LANG("mob.552d324d5ceb5068", list(round(heal_multiplier * 100))))
 
 /mob/living/basic/bot/medbot/proc/on_techweb_unresearch(datum/source, datum/design/medibot_upgrade/design)
 	SIGNAL_HANDLER
@@ -412,7 +412,7 @@
 		return
 
 	heal_multiplier -= design.additive_multiplier
-	INVOKE_ASYNC(src, PROC_REF(speak), "Error! Surgical efficacy decreased to [round(heal_multiplier * 100)]%!")
+	INVOKE_ASYNC(src, PROC_REF(speak), LANG("mob.f921b1a50fe93586", list(round(heal_multiplier * 100))))
 
 /datum/id_trim/medibot
 	assignment = JOB_MEDIBOT

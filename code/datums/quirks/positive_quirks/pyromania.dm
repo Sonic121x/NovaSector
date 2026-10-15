@@ -44,7 +44,7 @@
 	last_fire_size = fire_size
 
 	if(COOLDOWN_FINISHED(src, start_fire_cd) && SPT_PROB((SANITY_NEUTRAL - quirk_holder.mob_mood?.sanity) / 5, seconds_per_tick))
-		for(var/obj/item/lighter/lighter in quirk_holder.held_items)
+		for(var/obj/item/lighter/lighter as anything in quirk_holder.get_held_items_of_type(/obj/item/lighter))
 			if(lighter.lit)
 				continue
 			to_chat(quirk_holder, span_warning(LANG("datum.d8bf37160f7615c4", list(lighter))))

@@ -66,7 +66,7 @@
 
 /// Smelt an item held in one hand and put the result in the other
 /datum/action/cooldown/internal_smelting/proc/smelt_held(mob/target)
-	var/obj/item/stack/ore/held_ore = locate(/obj/item/stack/ore) in target.held_items
+	var/obj/item/stack/ore/held_ore = target.is_holding_item_of_type(__IMPLIED_TYPE__)
 	if (!held_ore?.refined_type)
 		target.balloon_alert(target, LANG("datum.3496c05deee70461", null))
 		return

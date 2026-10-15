@@ -30,6 +30,7 @@
 			applum.ediblecomponent = IS_EDIBLE(applum)
 			if(applum.ediblecomponent)
 				applum.ediblecomponent.foodtypes |= (GROSS | MEAT | BUGS)
+	return result
 
 /obj/item/food/grown/apple
 	seed = /obj/item/seeds/apple

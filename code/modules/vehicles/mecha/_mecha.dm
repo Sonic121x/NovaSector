@@ -488,10 +488,7 @@
 			for(var/occupante in occupants)
 				. += span_notice(LANG("obj.0b83b9b4c5626981", list(occupante)))
 			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				for(var/held_item in H.held_items)
-					if(!isgun(held_item))
-						continue
+				for(var/obj/item/gun/held_item as anything in user.get_held_items_of_type(/obj/item/gun))
 					. += span_warning(LANG("obj.0fb6832d6fa91407", null))
 					break //in case user is holding two guns
 	. += span_notice(LANG("obj.12c144f9bf29ba63", list(REF(src))))
