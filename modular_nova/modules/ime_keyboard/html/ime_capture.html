@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<style>
+html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
+#capture { width: 100%; height: 100%; outline: none; }
+</style>
+</head>
+<body>
+<!--
+	输入法安全键盘的按键捕获器。焦点停在这个**不可编辑**的元素上时，Chromium 会对自己的窗口
+	关闭输入法，于是开着中文输入法也能收到干净的按键；再按 BYOND 原生宏的格式转发给服务器。
+	用 KeyboardEvent.code（物理键位）而不是 key：输入法即使介入，key 会变成 "Process"，code 不受影响。
+-->
+<div id="capture" tabindex="0"></div>
+<script>
+(function () {
+	var CODE_TO_BYOND = {
+		ArrowUp: 'North', ArrowDown: 'South', ArrowLeft: 'West', ArrowRight: 'East',
+		Home: 'Northwest', End: 'Southwest', PageUp: 'Northeast', PageDown: 'Southeast',
+		Insert: 'Insert', Delete: 'Delete', Space: 'Space', Escape: 'Escape', Tab: 'Tab',
+		Enter: 'Return', NumpadEnter: 'Return', Backspace: 'Back',
+		ShiftLeft: 'Shift', ShiftRight: 'Shift', ControlLeft: 'Ctrl', ControlRight: 'Ctrl',
+		AltLeft: 'Alt', AltRight: 'Alt',
+		Backquote: '`', Minus: '-', Equal: '=', BracketLeft: '[', BracketRight: ']',
+		Backslash: '\\', Semicolon: ';', Quote: "'", Comma: ',', Period: '.', Slash: '/',
+		NumpadAdd: 'Add', NumpadSubtract: 'Subtract', NumpadMultiply: 'Multiply',
+		NumpadDivide: 'Divide', NumpadDecimal: 'Decimal'
+	};
+	// code 缺失时（没有扫描码的合成按键、个别输入设备）按 keyCode 换算成同名的 code 再查。
+	// 焦点在捕获器上时输入法已被关闭，keyCode 是真实的虚拟键码，不会是组字时的 229。
+	var KEYCODE_TO_CODE = {
+		37: 'ArrowLeft', 38: 'ArrowUp', 39: 'ArrowRight', 40: 'ArrowDown',
+		36: 'Home', 35: 'End', 33: 'PageUp', 34: 'PageDown', 45: 'Insert', 46: 'Delete',
+		32: 'Space', 27: 'Escape', 9: 'Tab', 13: 'Enter', 8: 'Backspace',
+		16: 'ShiftLeft', 17: 'ControlLeft', 18: 'AltLeft',
+		192: 'Backquote', 189: 'Minus', 187: 'Equal', 219: 'BracketLeft', 221: 'BracketRight',
+		220: 'Backslash', 186: 'Semicolon', 222: 'Quote', 188: 'Comma', 190: 'Period', 191: 'Slash',
+		107: 'NumpadAdd', 109: 'NumpadSubtract', 106: 'NumpadMultiply', 111: 'NumpadDivide', 110: 'NumpadDecimal'
+	};
+	function eventCode(e) {
+		if (e.code) return e.code;
+		var k = e.keyCode;
+		if (k >= 65 && k <= 90) return 'Key' + String.fromCharCode(k);
+		if (k >= 48 && k <= 57) return 'Digit' + (k - 48);
+		if (k >= 96 && k <= 105) return 'Numpad' + (k - 96);
+		if (k >= 112 && k <= 123) return 'F' + (k - 111);
+		return KEYCODE_TO_CODE[k] || '';
+	}
+	function toByondKey(code) {
+		if (CODE_TO_BYOND[code]) return CODE_TO_BYOND[code];
+		var m = /^Key([A-Z])$/.exec(code); if (m) return m[1];
+		m = /^Digit([0-9])$/.exec(code); if (m) return m[1];
+		m = /^Numpad([0-9])$/.exec(code); if (m) return 'Numpad' + m[1];
+		m = /^F([0-9]{1,2})$/.exec(code); if (m) return code;
+		return null;
+	}
+	function call(path, params) {
+		var url = 'byond://' + path + '?';
+		var first = true;
+		for (var key in params) {
+			url += (first ? '' : '&') + encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+			first = false;
+		}
+		if (window.cef_to_byond) { window.cef_to_byond(url); return; }
+		location.href = url;
+	}
+	function send(command) { call('winset', { command: command }); }
+
+	// 焦点回收全在客户端本地做（winget/winset 不经服务器）：点地图、聊天框关闭后被设回地图、
+	// 弹窗关闭…… 这些都会让原生地图控件拿到焦点，输入法随之接管。只认「焦点在地图控件上或为空」
+	// 这一种情形，聊天输入、TGUI 文本框、弹窗一律不抢 —— 那些地方本来就该让输入法工作。
+	var callbackSerial = 0;
+	function winget(id, property, done) {
+		var name = '__imeCaptureCallback' + (callbackSerial++);
+		window[name] = function (props) { delete window[name]; done(props || {}); };
+		call('winget', { id: id, property: property, callback: name });
+	}
+	function wantsCapture(focus) {
+		return !focus || focus === 'map' || /(^|\.)map$/.test(focus) || focus === 'mapwindow';
+	}
+	var checking = false;
+	function reclaimFocus() {
+		if (checking || document.hasFocus()) return;
+		checking = true;
+		winget('', 'focus', function (props) {
+			checking = false;
+			if (wantsCapture(props.focus)) call('winset', { id: 'ime_capture', focus: 'true' });
+		});
+	}
+	setInterval(reclaimFocus, 150);
+	window.addEventListener('blur', function () { setTimeout(reclaimFocus, 10); });
+	// 服务端注入：原生宏在客户端执行的那部分（Esc/Tab/退格、管理员 asay 键），键 → 原始命令。
+	var MACRO_COMMANDS = /*IME_MACRO_COMMANDS*/{};
+	var held = {};
+	function onKey(e) {
+		var key = toByondKey(eventCode(e));
+		if (!key) return;
+		e.preventDefault();
+		if (e.type === 'keydown') {
+			if (held[key]) return; // 按住不放时浏览器会自动连发，服务端自己有 keyLoop，不需要
+			held[key] = true;
+			if (MACRO_COMMANDS[key]) send(MACRO_COMMANDS[key]);
+			send('KeyDown "' + key + '" [[map.mouse-pos]] [[map.size]]');
+		} else {
+			if (!held[key]) return;
+			delete held[key];
+			send('KeyUp "' + key + '" [[map.mouse-pos]] [[map.size]]');
+		}
+	}
+	window.addEventListener('keydown', onKey, true);
+	window.addEventListener('keyup', onKey, true);
+	// 失焦时把按住的键全部松开，否则切走焦点会留下「卡住」的移动键。
+	window.addEventListener('blur', function () {
+		for (var key in held) send('KeyUp "' + key + '" 0 0 0 0');
+		held = {};
+	});
+	var capture = document.getElementById('capture');
+	capture.focus();
+	window.addEventListener('focus', function () { capture.focus(); });
+})();
+</script>
+</body>
+</html>

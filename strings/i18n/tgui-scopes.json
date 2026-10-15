@@ -15947,6 +15947,9 @@
   "Input justification for the objective here, make sure you have a good reason for the objective (1000 char limit).": [
     "tgui:OpposingForcePanel"
   ],
+  "Input method friendly controls": [
+    "tgui:ime_keyboard"
+  ],
   "Input objective description here, be descriptive about what you want to do, such as 'Destroy the Death Star' or 'Destroy the Death Star and the Death Star Base' (1000 char limit).": [
     "tgui:OpposingForcePanel"
   ],
@@ -16760,6 +16763,9 @@
   ],
   "Keep in mind: Orbit does not update automatically. You will need to click the \"Refresh\" button to see the latest data.": [
     "tgui:OrbitBlade"
+  ],
+  "Keeps game hotkeys working while a Chinese, Japanese or Korean input method is on. Text boxes such as the chat bar still use the input method as usual. Turn this off if your keys behave strangely.": [
+    "tgui:ime_keyboard"
   ],
   "Ketchup": [
     "dm:labels"
