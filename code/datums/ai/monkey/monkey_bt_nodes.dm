@@ -71,9 +71,9 @@
 
 	if(do_after(living_pawn, MONKEY_ITEM_SNATCH_DELAY, victim) && !QDELETED(target) && victim.IsReachableBy(living_pawn) && victim.is_holding(target))
 		if(!victim.temporarilyRemoveItemFromInventory(target))
-			victim.visible_message(span_danger("[living_pawn] tried to snatch [target] from [victim], but failed!"), span_userdanger("[living_pawn] tried to grab your [target.name]!"))
+			victim.visible_message(span_danger(LANG("datum.99c53414744b8aab", list(living_pawn, target, victim))), span_userdanger(LANG("datum.3ad731cf5398178e", list(living_pawn, target.name))))
 		else
-			victim.visible_message(span_danger("[living_pawn] snatches [target] from [victim]."), span_userdanger("[living_pawn] snatched [target]!"))
+			victim.visible_message(span_danger(LANG("datum.61694db59c35a1bd", list(living_pawn, target, victim))), span_userdanger(LANG("datum.ef984e8ac8211261", list(living_pawn, target))))
 			success = TRUE
 			// NOVA EDIT CHANGE START - 抢夺中途猴子被打死会把武器留在 nullspace（永久消失）
 			// temporarilyRemoveItemFromInventory 先把物品挪进 nullspace；猴子这时被打死/删除，drop_location() 是 null、

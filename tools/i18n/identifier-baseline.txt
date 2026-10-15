@@ -701,6 +701,7 @@ success
 suicide
 suit
 surgical
+swap_hands_row
 syndicate
 t-ray
 tactile

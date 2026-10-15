@@ -276,7 +276,7 @@
 				for(var/obj/item/item as anything in our_guy.get_held_items())
 					have_anything = TRUE
 					our_guy.accident(item)
-				to_chat(our_guy, span_danger("You trip on your [fastening_type] a bit[have_anything ? ", flinging what you were holding" : ""]!"))
+				to_chat(our_guy, span_danger(LANG("obj.542523809b30bf97", list(fastening_type, have_anything ? ", flinging what you were holding" : ""))))
 
 			if(14 to 25) // 1.3ish% chance to stumble and be a bit off balance (like being disarmed)
 				to_chat(our_guy, span_danger(LANG("obj.2a31d4797c50730f", list(untied_adjective(), fastening_type))))

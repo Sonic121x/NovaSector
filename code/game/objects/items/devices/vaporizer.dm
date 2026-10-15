@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /*
  *	Device to let water breathers breathe. TRAIT_WET_FOR_LONGER is required for it to actually function
  *	Because this is a Cerulean device, after all, intended to be used on fish scales
@@ -36,9 +37,9 @@
 	if(isnull(cell))
 		return
 	if(!in_range(src, user) && !isobserver(user))
-		. += span_notice("If you want any more information you'll need to get closer.")
+		. += span_notice(LANG("obj.b96d97a085ef72ee", null))
 		return
-	. += span_notice("The LED display reads its [cell.percent()]% charged.")
+	. += span_notice(LANG("obj.cc44993bcc7cf16e", list(cell.percent())))
 
 /obj/item/vaporizer/Initialize(mapload)
 	. = ..()
@@ -72,7 +73,7 @@
 		return FALSE
 	tool.play_tool_sound(src)
 	QDEL_NULL(charge_bar)
-	balloon_alert(user, "removed [cell]")
+	balloon_alert(user, LANG("obj.c6b4aa687c2eb2c1", list(cell)))
 	cell.forceMove(get_turf(src))
 	cell = null
 	return TRUE
@@ -82,12 +83,12 @@
 	if(!istype(new_cell))
 		return NONE
 	if(!isnull(cell))
-		balloon_alert(user, "slot occupied!")
+		balloon_alert(user, LANG("obj.1f80dacd4fa085a6", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(new_cell, src))
 		return NONE
 	cell = new_cell
-	balloon_alert(user, "installed [new_cell]")
+	balloon_alert(user, LANG("obj.2cdb03bbd8b9d65f", list(new_cell)))
 	create_charge_bar(user)
 	return ITEM_INTERACT_SUCCESS
 
@@ -108,7 +109,7 @@
 	var/turf/tile = get_turf(src)
 	if(isclosedturf(tile))
 		return
-	to_chat(src, span_warning("[src] overloads, spewing out a cloud of hot steam!"))
+	to_chat(src, span_warning(LANG("obj.20f23741e1889268", list(src))))
 	playsound(src, 'sound/effects/spray.ogg', rand(50, 80), TRUE)
 	tile.atmos_spawn_air("[GAS_WATER_VAPOR]=[clamp(cell.maxcharge * 0.1, 1, 100)];[TURF_TEMPERATURE(1000)]")
 	for(var/mob/living/nearby_mob in range(4, tile))

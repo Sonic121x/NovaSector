@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /datum/species/human/cerulean
 	name = "\improper Cerulean"
 	id = SPECIES_CERULEAN
@@ -62,32 +63,32 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "fish-fins",
-			SPECIES_PERK_NAME = "Flip-Flap",
-			SPECIES_PERK_DESC = "Ceruleans are hard to keep ahold of, becoming slippery and tough to grab if soaked in water.",
+			SPECIES_PERK_NAME = LANG("datum.e7f4f24dc6d9b6b1", null),
+			SPECIES_PERK_DESC = LANG("datum.206cc00f6be6f634", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "shield",
-			SPECIES_PERK_NAME = "Scaled Up",
-			SPECIES_PERK_DESC = "Ceruleans have slightly higher damage and pressure resistance.",
+			SPECIES_PERK_NAME = LANG("datum.a78e89605cb9d276", null),
+			SPECIES_PERK_DESC = LANG("datum.8e16d921a4abf6c9", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "dragon",
-			SPECIES_PERK_NAME = "Little Space Dragon",
-			SPECIES_PERK_DESC = "Ceruleans and their dexterity are tied to gravity, turning lethally agile if its taken out the question.",
+			SPECIES_PERK_NAME = LANG("datum.0ed30c3e57e038a4", null),
+			SPECIES_PERK_DESC = LANG("datum.4caa9bdbd6e67121", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "wheelchair-move",
-			SPECIES_PERK_NAME = "No Leg to Stand On",
-			SPECIES_PERK_DESC = "Ceruleans do not have legs, requiring a brutal surgery to opt for a pair.",
+			SPECIES_PERK_NAME = LANG("datum.2d4cd062fd408988", null),
+			SPECIES_PERK_DESC = LANG("datum.add5bae629fdadd8", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "shrimp",
-			SPECIES_PERK_NAME = "Fried Shrimp",
-			SPECIES_PERK_DESC = "Ceruleans gain more damage from burn damage and heat sources.",
+			SPECIES_PERK_NAME = LANG("datum.70cf4138caf13f1f", null),
+			SPECIES_PERK_DESC = LANG("datum.47e1582fa1268eb0", null),
 		),
 	)
 
@@ -181,14 +182,14 @@
 		owner.emote("scream") //owowowowowow
 		owner.set_jitter_if_lower(1 SECONDS)
 		shake_camera(owner, 1 SECONDS, 2)
-		to_chat(owner, span_userdanger("You wince and scream as your [tail_name] is grotesquely torn from your [limb_name]!"))
+		to_chat(owner, span_userdanger(LANG("obj.c238f3f0e3d6985b", list(tail_name, limb_name))))
 	if(!splatter_check(owner))
 		// if you have no blood or are missing half of it, its a clean cut
 		return
 	owner.blood_volume -= (owner.blood_volume / 3)
 	owner.add_splatter_floor(get_turf(src))
 	owner.spray_blood(REVERSE_DIR(owner.dir), 2)
-	owner.visible_message(span_danger("[src] detaches from [owner]'s [limb_name], spilling out liters of [LOWER_TEXT(owner.get_bloodtype()?.get_blood_name())]!"))
+	owner.visible_message(span_danger(LANG("obj.89d3e72e977ed64e", list(src, owner, limb_name, LOWER_TEXT(owner.get_bloodtype()?.get_blood_name())))))
 	REMOVE_TRAIT(src, TRAIT_NODROP, ORGAN_INSIDE_BODY_TRAIT) //do this early so we can fling it
 	throw_at(get_edge_target_turf(owner, REVERSE_DIR(owner.dir))) //ok so it doesnt actually fling it it just spins but idk hwo to fling
 	playsound(src, 'sound/effects/cartoon_sfx/cartoon_splat.ogg', rand(50, 75), TRUE)

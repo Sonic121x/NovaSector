@@ -38,7 +38,7 @@
 				if(bodypart)
 					playsound(organ_owner, SFX_DESECRATION, 50, vary = TRUE) //You just want to socialize
 					organ_owner.visible_message(span_warning(LANG("obj.97413545451c0d02", list(organ_owner))), span_danger(LANG("obj.bc9299a108532c7a", null)))
-					INVOKE_ASYNC(organ_owner, TYPE_PROC_REF(/atom/movable, say), "OOF!!", forced = chem.type)
+					INVOKE_ASYNC(organ_owner, TYPE_PROC_REF(/atom/movable, say), LANG("obj.deeba4c2c280c023", null), forced = chem.type)
 					organ_owner.apply_damage(200, BRUTE, bodypart)
 				else
 					to_chat(organ_owner, span_warning(LANG("obj.35e758b5681fd734", list(parse_zone(selected_part)))))

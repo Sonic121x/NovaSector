@@ -140,13 +140,13 @@
 		spiral_shots.enraged = COLOSSUS_ENRAGED
 		telegraph()
 		icon_state = "eva_attack"
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "Judgement.", null, list("colossus", "yell"))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), LANG("mob.c7e034e436dccf69", null), null, list("colossus", "yell"))
 	else if(activated == random_shots)
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "Wrath.", null, list("colossus", "yell"))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), LANG("mob.cd28bfaacdec0463", null), null, list("colossus", "yell"))
 	else if(activated == shotgun_blast)
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "Retribution.", null, list("colossus", "yell"))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), LANG("mob.b727e222a29495d6", null), null, list("colossus", "yell"))
 	else if(activated == dir_shots)
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "Lament.", null, list("colossus", "yell"))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), LANG("mob.cee3e813d35e4488", null), null, list("colossus", "yell"))
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/finished_attack(mob/living/owner, datum/action/cooldown/finished)
 	SIGNAL_HANDLER

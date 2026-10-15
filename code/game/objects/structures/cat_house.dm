@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /obj/structure/cat_house
 	name = "cat house"
 	desc = "Cozy home for cats."
@@ -22,7 +23,7 @@
 /obj/structure/cat_house/examine(mob/user)
 	. = ..()
 	if(resident_cat)
-		. += span_notice("[resident_cat] is currently residing inside of it.")
+		. += span_notice(LANG("obj.c13d0675e56d0fe8", list(resident_cat)))
 
 /obj/structure/cat_house/Entered(atom/movable/mover)
 	. = ..()

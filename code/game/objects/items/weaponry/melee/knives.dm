@@ -54,9 +54,9 @@
 /obj/item/knife/examine(mob/user)
 	. = ..()
 
-	. += span_info("This should do more harm if you hold the target in place.")
+	. += span_info(LANG("obj.53c66b4caabc6265", null))
 	if(embed_type)
-		. += span_info("You are fairly sure that you can impale someone using [EXAMINE_HINT("right-click")]. But you will need to hold them aggressively first.")
+		. += span_info(LANG("obj.5a8cda4cf7ab8269", list(EXAMINE_HINT("right-click"))))
 
 /obj/item/knife/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!isliving(target))

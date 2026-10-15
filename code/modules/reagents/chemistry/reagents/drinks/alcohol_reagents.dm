@@ -3643,7 +3643,7 @@
 	. = ..()
 	if(prob(50))
 		drinker.emote(pick("scream","moan"))
-	to_chat(drinker, span_userdanger("A searing flame scours your mind, leaving it raw and sensitive to new experiences!"))
+	to_chat(drinker, span_userdanger(LANG("datum.c897b1feab7f84d3", null)))
 	drinker.playsound_local(drinker, 'sound/effects/wounds/sizzle2.ogg', 70, FALSE)
 	drinker.flash_act(INFINITY, override_blindness_check = TRUE, visual = TRUE) //Cover your eyes, if you like. It will serve no purpose.
 
@@ -3675,7 +3675,7 @@
 		return
 
 	ADD_TRAIT(drinker, TRAIT_HAD_FOOTSOLDIERS_RAZOR, type)
-	to_chat(drinker, span_warning("You cut your lip on something sharp!"))
+	to_chat(drinker, span_warning(LANG("datum.8db20e80e890a5d5", null)))
 	drinker.playsound_local(drinker, 'sound/items/weapons/slice.ogg', 50, TRUE)
 	drinker.bleed(5)
 	drinker.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
@@ -3738,7 +3738,7 @@
 	if(!istype(tool, /obj/item/reagent_containers/cup/glass/drinkingglass))
 		return ..()
 	if(tool.reagents.get_reagent_amount(/datum/reagent/consumable/ethanol/farstar_amrita) < 5) //a good host serves their guests with proper glassware. need at least 5u for a proper sippy.
-		to_chat(drinker, span_notice("You feel like something's missing..."))
+		to_chat(drinker, span_notice(LANG("obj.ee8c9e9e611b360d", null)))
 		return ITEM_INTERACT_BLOCKING
 
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(drinker) //gives heretics a knowledge point upon doing this correctly
@@ -3747,7 +3747,7 @@
 		to_chat(drinker, "[span_hear("You hear a whisper...")] [span_mansus("A TOKEN OF APPRECIATION.")]")
 
 	playsound(src,'sound/items/drink.ogg', rand(10,50), TRUE)
-	to_chat(drinker, span_notice("You blink. There's nothing there, and there never was. And yet, you feel like you've established some kind of connection, and your glass feels a bit lighter."))
+	to_chat(drinker, span_notice(LANG("obj.e0c85e9d6cef650f", null)))
 	drinker.add_mood_event("farstar_shared", /datum/mood_event/farstar_shared)
 	ADD_TRAIT(drinker, TRAIT_FARSTAR_SHARED, type)
 	tool.reagents.remove_reagent(/datum/reagent/consumable/ethanol/farstar_amrita, 5)
@@ -3791,7 +3791,7 @@
 	if(drinker.mob_mood?.has_mood_of_category("rubywise_satisfied")) //satisfaction can last between exposures
 		return
 	ADD_TRAIT(drinker, TRAIT_GLUTTON, type)
-	to_chat(drinker, span_warning("An urge, almost like a whisper, bestows you with a desire for flesh! It's so hard to say no..."))
+	to_chat(drinker, span_warning(LANG("datum.c737a63eceb8f4a1", null)))
 
 /datum/reagent/consumable/ethanol/rubywise_ruin/proc/on_eat(mob/living/drinker, atom/food, foodtypes)
 	SIGNAL_HANDLER
@@ -3801,7 +3801,7 @@
 		drinker.add_mood_event("rubywise_satisfied", /datum/mood_event/rubywise_satisfied) //grants mood buff, also used to prevent hunger debuff effects. Lasts for 3 min.
 		drinker.clear_mood_event("rubywise_unsatisfied")
 		REMOVE_TRAIT(drinker, TRAIT_GLUTTON, type)
-		to_chat(drinker, span_warning("An delightful sense of satisfaction fills you as your uncanny hunger abates... But a little more wouldn't hurt, surely?"))
+		to_chat(drinker, span_warning(LANG("datum.8d86aebd54dc4099", null)))
 
 /datum/reagent/consumable/ethanol/rubywise_ruin/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -3892,7 +3892,7 @@
 	astype(drinker.loc, /turf)?.rust_heretic_act()
 
 /datum/reagent/consumable/ethanol/entropic_brew/overdose_start(mob/living/drinker, metabolization_ratio)
-	to_chat(drinker, span_boldwarning("You feel something inside you break as the feeling of illness recedes. In the face of the inevitability of decay, your troubles seem quaint."))
+	to_chat(drinker, span_boldwarning(LANG("datum.9f7969242530f5fa", null)))
 	drinker.add_traits(list(TRAIT_STRONG_STOMACH, TRAIT_APATHETIC), type)
 
 /datum/reagent/consumable/ethanol/entropic_brew/on_mob_end_metabolize(mob/living/carbon/drinker, metabolization_ratio)
@@ -3934,7 +3934,7 @@
 		if(prob(20)) //very low chance to apply void chill
 			drinker.playsound_local(drinker, 'sound/music/antag/heretic/VoidsEmbrace_short.ogg', 50) //technically this can overlap, but the chances of that happening are extremely low (and it doesn't even sound that bad)
 			drinker.apply_status_effect(/datum/status_effect/void_chill, 1)
-			to_chat(drinker, span_warning("You hear a distant song..."))
+			to_chat(drinker, span_warning(LANG("datum.d3740a3118a4fd45", null)))
 
 /datum/reagent/consumable/ethanol/emptiest_glass/on_mob_end_metabolize(mob/living/carbon/drinker)
 	. = ..()

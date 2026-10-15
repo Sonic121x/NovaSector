@@ -566,7 +566,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/conveyor_switch/multitool_act(mob/living/user, obj/item/I)
-	var/input_speed = tgui_input_number(user, "Set the speed of the conveyor belts in seconds", "Speed", conveyor_speed, 20, 0.2, round_value = FALSE)
+	var/input_speed = tgui_input_number(user, LANG("obj.5151cbeacfa0f4ae", null), LANG("obj.3e88e97bb910577e", null), conveyor_speed, 20, 0.2, round_value = FALSE)
 	if(!input_speed || !IS_FINITE(input_speed) || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	conveyor_speed = input_speed

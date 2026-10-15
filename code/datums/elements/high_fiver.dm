@@ -45,7 +45,7 @@
 	var/descriptor = "high-[convert_integer_to_words(slappers_giver * 5)]"
 
 	if(length(taker.get_empty_held_indexes()) <= 0)
-		to_chat(taker, span_warning("You can't [descriptor] [offerer] with no open hands!"))
+		to_chat(taker, span_warning(LANG("datum.5a944a6789647027", list(descriptor, offerer))))
 		taker.add_mood_event(descriptor, /datum/mood_event/high_five_full_hand) // not so successful now!
 		return COMPONENT_OFFER_INTERRUPT
 
@@ -54,18 +54,18 @@
 	taker.add_mob_memory(/datum/memory/high_five, deuteragonist = offerer, high_five_type = descriptor, high_ten = high_ten)
 
 	if(high_ten)
-		to_chat(taker, span_nicegreen("You give [descriptor]ing [offerer] your all!"))
+		to_chat(taker, span_nicegreen(LANG("datum.7b6ad1f137958e1d", list(descriptor, offerer))))
 		offerer.visible_message(
-			span_notice("[taker] enthusiastically [descriptor]s [offerer]!"),
-			span_nicegreen("Wow! You [descriptor] [taker]!"),
-			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			span_notice(LANG("datum.59bf573a96b0e567", list(taker, descriptor, offerer))),
+			span_nicegreen(LANG("datum.23760819ff5aa67b", list(descriptor, taker))),
+			span_hear(LANG("datum.6c7f8149b8c68cd4", null)),
 			ignored_mobs = taker,
 		)
 
 		offerer.add_mood_event(descriptor, /datum/mood_event/high_ten, descriptor)
 		taker.add_mood_event(descriptor, /datum/mood_event/high_ten, descriptor)
 	else
-		to_chat(taker, span_nicegreen("You [descriptor] [offerer]!"))
+		to_chat(taker, span_nicegreen(LANG("datum.22d557f300d422c9", list(descriptor, offerer))))
 		offerer.visible_message(
 			span_notice(LANG("datum.61c9a2658dcb66d7", list(taker, offerer))),
 			span_nicegreen(LANG("datum.7b8be00dbbb50d91", list(taker))),

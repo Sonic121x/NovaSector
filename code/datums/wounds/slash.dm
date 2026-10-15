@@ -217,8 +217,8 @@
 	if(user.combat_mode)
 		return FALSE
 
-	user.visible_message(span_notice("[user] begins licking the wounds on [victim]'s [limb.plaintext_zone]."), span_notice("You begin licking the wounds on [victim]'s [limb.plaintext_zone]..."), ignored_mobs=victim)
-	to_chat(victim, span_notice("[user] begins to lick the wounds on your [limb.plaintext_zone]."))
+	user.visible_message(span_notice(LANG("datum.2faf5101b8d60979", list(user, victim, limb.plaintext_zone))), span_notice(LANG("datum.be9ed8108ebd686e", list(victim, limb.plaintext_zone))), ignored_mobs=victim)
+	to_chat(victim, span_notice(LANG("datum.0f1ece88d9007fdc", list(user, limb.plaintext_zone))))
 	if(!do_after(user, base_treat_time, target = victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return FALSE
 

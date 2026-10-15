@@ -112,7 +112,7 @@
 		if(!ignore_clothing)
 			for(var/obj/item/item as anything in C.get_equipped_items(INCLUDE_HELD))
 				if(!HAS_TRAIT(item, TRAIT_NODROP))
-					to_chat(user, span_warning("Subject may not have abiotic items on!"))
+					to_chat(user, span_warning(LANG("obj.68f77223ae882548", null)))
 					return
 
 		user.visible_message(span_danger(LANG("obj.fa9f1c7425d95c9a", list(user, C, src))))

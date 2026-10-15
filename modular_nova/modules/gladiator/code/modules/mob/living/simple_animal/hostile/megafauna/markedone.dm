@@ -285,7 +285,7 @@
 			GiveTarget(target)
 	else
 		//simplemobs beware
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "It's berserkin' time!")
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), LANG("mob.5c66ba3f9d3fb664", null))
 	next_intro_scan = world.time + 10 SECONDS
 
 /// Checks against the Marked One's current health and updates his phase accordingly. Uses variable shitcode to make sure his phase updates only ever happen *once*

@@ -998,7 +998,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 			if(prob(99))
 				to_chat(victim, span_userdanger(LANG("datum.13ea6e8fff768691", null)))
 			else
-				INVOKE_ASYNC(victim, TYPE_PROC_REF(/atom/movable, say), "AAHH! THIS SITUATION HAS ONLY BEEN MADE WORSE WITH THE ADDITION OF YET MORE ANTS!!", forced = /datum/status_effect/ants)
+				INVOKE_ASYNC(victim, TYPE_PROC_REF(/atom/movable, say), LANG("datum.9eac6c8f0c026423", null), forced = /datum/status_effect/ants)
 		ants_remaining += amount_left
 	. = ..()
 

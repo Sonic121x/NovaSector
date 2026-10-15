@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /**
  * Dextrous just refers to anything that uses hands,
  * which is generally carbons but can also be silicons and some basics.
@@ -113,7 +114,7 @@
 	var/mob/user_mob = user.mob
 	var/obj/item/item_dropped = user_mob.get_active_held_item()
 	if(!item_dropped)
-		to_chat(user, span_warning("You have nothing to drop in your hand!"))
+		to_chat(user, span_warning(LANG("datum.cda11ce76305889a", null)))
 		return TRUE
 	user.mob.dropItemToGround(item_dropped)
 	return TRUE
@@ -134,7 +135,7 @@
 	var/mob/user_mob = user.mob
 	var/obj/item/item_dropped = user_mob.get_active_held_item()
 	if(!item_dropped)
-		to_chat(user, span_warning("You have nothing to drop in your hand!"))
+		to_chat(user, span_warning(LANG("datum.cda11ce76305889a", null)))
 		return TRUE
 	if(!user_mob.Adjacent(target) || target.is_blocked_turf(source_atom = item_dropped))
 		return TRUE

@@ -288,7 +288,7 @@
 		return FALSE
 
 	if(!owner.IsReachableBy(user))
-		owner.balloon_alert(user, "can't reach [owner]!")
+		owner.balloon_alert(user, LANG("datum.29a0a4260f1ae697", list(owner)))
 		return FALSE
 
 	if(user == owner)

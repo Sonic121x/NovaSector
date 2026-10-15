@@ -126,7 +126,7 @@
 
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "sweatdrop")
 	do_jitter_animation(60)
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, manual_emote), "'s fur stands up, [src.p_their()] body trembling...")
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, manual_emote), LANG("mob.de7cb93c48668416", list(src.p_their())))
 
 	notify_ghosts(LANG("mob.74ac00afc1d01c29", list(src)),
 		source = src,

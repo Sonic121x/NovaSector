@@ -73,5 +73,4 @@
 		var/obj/item/held_item = examined.get_item_for_held_index(held_index)
 		if((held_item.item_flags & (ABSTRACT|HAND_ITEM)) || HAS_TRAIT(held_item, TRAIT_EXAMINE_SKIP))
 			continue
-		examine_list += span_info("[examined.p_They()] [examined.p_have()] [held_item.examine_title(user)] in [examined.p_their()] \
-			[examined.get_held_index_name(held_index)].")
+		examine_list += span_info(LANG("datum.8df029aa2ec67cf8", list(examined.p_They(), examined.p_have(), held_item.examine_title(user), examined.p_their(), examined.get_held_index_name(held_index))))

@@ -1,3 +1,4 @@
+// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
 /// Apply to an item to make it so you can click on anything with that item to stick it as a sticker
 /datum/element/stickerable
 	element_flags = ELEMENT_BESPOKE
@@ -38,7 +39,7 @@
 	SIGNAL_HANDLER
 
 	if(prob(50) && attempt_attach(source, bumped_atom))
-		bumped_atom.balloon_alert_to_viewers("sticker landed on sticky side!")
+		bumped_atom.balloon_alert_to_viewers(LANG("datum.1ccd8363db29ab8e", null))
 		return COMPONENT_INTERCEPT_BUMPED
 	return NONE
 
@@ -49,7 +50,7 @@
  */
 /datum/element/stickerable/proc/attempt_attach(obj/item/source, atom/target, mob/user, px, py)
 	if(COUNT_TRAIT_SOURCES(target, TRAIT_STICKERED) >= max)
-		source.balloon_alert_to_viewers("sticker won't stick!")
+		source.balloon_alert_to_viewers(LANG("datum.9d5e0a0d9c4ae6ca", null))
 		return FALSE
 
 	if(isnull(px) || isnull(py))
@@ -63,7 +64,7 @@
 
 	if(!isnull(user))
 		user.do_attack_animation(target, used_item = source)
-		target.balloon_alert(user, "sticker sticked")
+		target.balloon_alert(user, LANG("datum.544a7c90a2a766ed", null))
 		var/mob/living/victim = target
 		if(istype(victim) && !isnull(victim.client))
 			user.log_message("stuck [source] to [key_name(victim)]", LOG_ATTACK)

@@ -191,10 +191,10 @@
 	// Check that they're picking someone new for new character respawning
 	if(CONFIG_GET(flag/allow_respawn) == RESPAWN_FLAG_NEW_CHARACTER)
 		if(client?.is_localhost())
-			to_chat(client.mob, span_notice("This character already played in this round, however this is bypassed as localhost."))
+			to_chat(client.mob, span_notice(LANG("mob.65b12908ee523093", null)))
 			log_admin("[key_name_and_tag(client)] is bypassing rejoining the round as the same character.")
 		else if("[client.prefs.default_slot]" in persistent_client.joined_as_slots)
-			tgui_alert(usr, "You already have played this character in this round!")
+			tgui_alert(usr, LANG("mob.4e81f5837f197990", null))
 			return FALSE
 
 	var/error = IsJobUnavailable(rank)

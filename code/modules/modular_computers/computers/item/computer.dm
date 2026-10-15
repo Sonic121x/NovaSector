@@ -840,7 +840,7 @@
 	if(!has_light || !internal_cell?.charge)
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, disabled_time))
-		user?.balloon_alert(user, "disrupted!")
+		user?.balloon_alert(user, LANG("obj.492a03fe8030d17e", null))
 		return FALSE
 	set_light_on(!light_on)
 	update_appearance()

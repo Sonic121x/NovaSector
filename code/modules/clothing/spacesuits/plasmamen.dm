@@ -203,10 +203,10 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/attack_self(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, disabled_time))
-		user?.balloon_alert(user, "disrupted!")
+		user?.balloon_alert(user, LANG("obj.492a03fe8030d17e", null))
 		return
 	if(!helmet_on && !up)
-		to_chat(user, span_notice("Your helmet's torch can't pass through your welding visor!"))
+		to_chat(user, span_notice(LANG("obj.11767310f4a9cd90", null)))
 		return
 
 	helmet_on = !helmet_on

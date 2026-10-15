@@ -97,7 +97,7 @@
 /obj/item/flashlight/proc/toggle_light(mob/living/user)
 	playsound(src, light_on ? sound_off : sound_on, 40, TRUE)
 	if(!COOLDOWN_FINISHED(src, disabled_time))
-		user?.balloon_alert(user, "disrupted!")
+		user?.balloon_alert(user, LANG("obj.492a03fe8030d17e", null))
 		return FALSE
 	var/old_light_on = light_on
 	set_light_on(!light_on)

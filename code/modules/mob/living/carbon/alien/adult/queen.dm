@@ -142,7 +142,7 @@
 		return TRUE
 
 	if(!length(owner.get_empty_held_indexes()))
-		to_chat(owner, span_warning("You must have an empty hand before preparing the parasite."))
+		to_chat(owner, span_warning(LANG("datum.59f45e63a9233ff7", null)))
 		return FALSE
 
 	var/obj/item/queen_promotion/new_promotion = new(owner.loc)

@@ -206,7 +206,7 @@
 		to_chat(src, span_warning(LANG("mob.6ca67056f8049285", list(offerer))))
 		return
 	if(!length(get_empty_held_indexes()))
-		to_chat(src, span_warning("You have no empty hands!"))
+		to_chat(src, span_warning(LANG("mob.fc35c47c3d639d83", null)))
 		return
 
 	if(offered_item.on_offer_taken(offerer, src)) // see if the item has special behavior for being accepted

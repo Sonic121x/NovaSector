@@ -348,7 +348,7 @@
 		if(isstack(target_item) && precise_insertion)
 			var/atom/current_parent = parent
 			item_stack = target_item
-			var/requested_amount = tgui_input_number(user, "How much do you want to insert?", "Inserting [item_stack.singular_name]s", item_stack.amount, item_stack.amount)
+			var/requested_amount = tgui_input_number(user, LANG("datum.f4a4771f22c4abe7", null), LANG("datum.0622685d1d4405c5", list(item_stack.singular_name)), item_stack.amount, item_stack.amount)
 			if(!requested_amount || isnan(requested_amount) || QDELETED(target_item) || QDELETED(user) || QDELETED(src))
 				continue
 			if(parent != current_parent || user.get_active_held_item() != active_held)

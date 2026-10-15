@@ -2222,7 +2222,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 			to_chat(user, span_warning(LANG("mob.7b111a84cb42461e", list(src))))
 			return
 	if(!length(user.get_empty_held_indexes()))
-		to_chat(user, span_warning("Your hands are full!"))
+		to_chat(user, span_warning(LANG("mob.86b9ca924a677805", null)))
 		return FALSE
 	if(buckled)
 		to_chat(user, span_warning(LANG("mob.65a86c2bb81ec41e", list(src))))

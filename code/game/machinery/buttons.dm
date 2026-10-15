@@ -308,7 +308,7 @@
 		return FALSE
 
 	if(require_id_check && !allowed(user))
-		balloon_alert(user, "access denied")
+		balloon_alert(user, LANG("obj.1d2a5ed1ed67a4a4", null))
 		flick_overlay_view("[base_icon_state]-overlay-error", 1 SECONDS)
 		return FALSE
 
