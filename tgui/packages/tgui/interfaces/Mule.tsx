@@ -174,7 +174,8 @@ export const Mule = (props) => {
                 <Button
                   icon={powerStatus ? 'power-off' : 'times'}
                   selected={powerStatus}
-                  onClick={() => act('on')}
+                  // NOVA EDIT CHANGE - basic mulebot 重构后 DM 只认父类的 "power"（"on" 无人处理，没电关机后再也开不回来） - ORIGINAL: onClick={() => act('on')}
+                  onClick={() => act('power')}
                 >
                   {powerStatus ? 'On' : 'Off'}
                 </Button>
