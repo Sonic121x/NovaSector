@@ -419,6 +419,7 @@
 	inhand_icon_state = "speardragon0"
 	icon_prefix = "speardragon"
 	base_icon_state = "speardragon"
+	worn_icon_state = "speardragon0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	demolition_mod = 0.5
@@ -455,6 +456,7 @@
 	inhand_icon_state = "speardragonraw0"
 	icon_prefix = "speardragonraw"
 	base_icon_state = "speardragonraw"
+	worn_icon_state = "speardragonraw0"
 	material_flags = MATERIAL_EFFECTS
 	demolition_mod = 0.5
 	wound_bonus = 0

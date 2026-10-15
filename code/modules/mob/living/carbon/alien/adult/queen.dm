@@ -134,15 +134,15 @@
 	return TRUE
 
 /datum/action/cooldown/alien/promote/Activate(atom/target)
-	var/obj/item/queen_promotion/existing_promotion = locate() in owner.held_items
+	var/obj/item/queen_promotion/existing_promotion = owner.is_holding_item_of_type(__IMPLIED_TYPE__)
 	if(existing_promotion)
 		to_chat(owner, span_noticealien(LANG("datum.edeef4afc3219c31", list(existing_promotion))))
 		owner.temporarilyRemoveItemFromInventory(existing_promotion)
 		qdel(existing_promotion)
 		return TRUE
 
-	if(!owner.get_empty_held_indexes())
-		to_chat(owner, span_warning(LANG("datum.59f45e63a9233ff7", null)))
+	if(!length(owner.get_empty_held_indexes()))
+		to_chat(owner, span_warning("You must have an empty hand before preparing the parasite."))
 		return FALSE
 
 	var/obj/item/queen_promotion/new_promotion = new(owner.loc)

@@ -227,12 +227,8 @@
 #define JOB_DISPLAY_ORDER_BARBER 22 //NOVA EDIT ADDITION
 // Silicon
 #define JOB_DISPLAY_ORDER_AI 1
-#define JOB_DISPLAY_ORDER_CYBORG 2
-/// NOVA EDIT ADDITION - /datum/job/human_ai 原本复用 JOB_DISPLAY_ORDER_AI，与 /datum/job/ai 撞号 →
-/// display_order_with_department() 相同 → job_display_order 单测失败（上游该测试的注释里也提到
-/// human_ai/ai 同 index、疑为 flaky 来源，并为此改用 joinable_occupations 规避；但「人类 AI」站点特质
-/// 生效那局两者都在 joinable_occupations 里，仍会撞）。给它单列一个序号，排在赛博格之后。
-#define JOB_DISPLAY_ORDER_HUMAN_AI 3 //NOVA EDIT ADDITION
+#define JOB_DISPLAY_ORDER_HUMAN_AI 2
+#define JOB_DISPLAY_ORDER_CYBORG 3
 
 // No department
 #define JOB_DISPLAY_ORDER_ASSISTANT 1
@@ -329,7 +325,7 @@ DEFINE_BITFIELD(job_flags, list(
 /// Combination flag for jobs which are considered heads of staff.
 #define HEAD_OF_STAFF_JOB_FLAGS (JOB_BOLD_SELECT_TEXT|JOB_CANNOT_OPEN_SLOTS|JOB_HEAD_OF_STAFF|JOB_ANTAG_PROTECTED) // NOVA EDIT CHANGE - Heads are antag protected - Original: #define HEAD_OF_STAFF_JOB_FLAGS (JOB_BOLD_SELECT_TEXT|JOB_CANNOT_OPEN_SLOTS|JOB_HEAD_OF_STAFF)
 /// Combination flag for jobs which are enabled by station traits.
-#define STATION_TRAIT_JOB_FLAGS (JOB_CANNOT_OPEN_SLOTS|JOB_HIDE_WHEN_EMPTY|JOB_LATEJOIN_ONLY&~JOB_REOPEN_ON_ROUNDSTART_LOSS)
+#define STATION_TRAIT_JOB_FLAGS (JOB_CANNOT_OPEN_SLOTS|JOB_HIDE_WHEN_EMPTY|JOB_LATEJOIN_ONLY)
 
 #define FACTION_NONE "None"
 #define FACTION_STATION "Station"

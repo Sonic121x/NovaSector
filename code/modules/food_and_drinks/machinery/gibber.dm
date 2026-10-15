@@ -110,9 +110,9 @@
 			return
 
 		if(!ignore_clothing)
-			for(var/obj/item/I in C.held_items + C.get_equipped_items())
-				if(!HAS_TRAIT(I, TRAIT_NODROP))
-					to_chat(user, span_warning(LANG("obj.68f77223ae882548", null)))
+			for(var/obj/item/item as anything in C.get_equipped_items(INCLUDE_HELD))
+				if(!HAS_TRAIT(item, TRAIT_NODROP))
+					to_chat(user, span_warning("Subject may not have abiotic items on!"))
 					return
 
 		user.visible_message(span_danger(LANG("obj.fa9f1c7425d95c9a", list(user, C, src))))

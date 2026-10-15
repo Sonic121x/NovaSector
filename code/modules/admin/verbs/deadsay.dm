@@ -9,7 +9,7 @@ ADMIN_VERB(dsay, R_NONE, "死者发言", "Speak to the dead.", ADMIN_CATEGORY_GA
 	if (user.handle_spam_prevention(message,MUTE_DEADCHAT))
 		return
 
-	message = copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN)
+	message = copytext_char(message, 1, MAX_MESSAGE_LEN)
 	user.mob.log_talk(message, LOG_DSAY)
 
 	if (!message)

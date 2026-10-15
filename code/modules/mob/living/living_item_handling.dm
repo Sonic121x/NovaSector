@@ -205,8 +205,8 @@
 	if(!offered_item || offerer.get_active_held_item() != offered_item && !bypass)
 		to_chat(src, span_warning(LANG("mob.6ca67056f8049285", list(offerer))))
 		return
-	if(!get_empty_held_indexes())
-		to_chat(src, span_warning(LANG("mob.fc35c47c3d639d83", null)))
+	if(!length(get_empty_held_indexes()))
+		to_chat(src, span_warning("You have no empty hands!"))
 		return
 
 	if(offered_item.on_offer_taken(offerer, src)) // see if the item has special behavior for being accepted

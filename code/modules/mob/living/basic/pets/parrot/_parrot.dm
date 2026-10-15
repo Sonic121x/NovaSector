@@ -306,7 +306,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 		balloon_alert(src, LANG("mob.0931a2ccdc7f5cab", null))
 		return FALSE
 
-	for(var/obj/item/stealable in victim.held_items)
+	for(var/obj/item/stealable as anything in victim.get_held_items())
 		if(stealable.w_class > WEIGHT_CLASS_SMALL)
 			continue
 

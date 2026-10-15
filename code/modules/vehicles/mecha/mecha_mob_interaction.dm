@@ -35,7 +35,7 @@
 		log_message("Permission denied (Attached mobs).", LOG_MECHA)
 		return FALSE
 
-	for(var/obj/item/thing in M.held_items)
+	for(var/obj/item/thing as anything in M.get_held_items())
 		if(!(thing.item_flags & (ABSTRACT|HAND_ITEM)))
 			to_chat(M, span_warning(LANG("obj.e9d1f0f319087218", null)))
 			return FALSE

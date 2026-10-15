@@ -918,7 +918,6 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 /obj/item/proc/after_throw(datum/callback/callback)
 	if (callback) //call the original callback
 		. = callback.Invoke()
-	item_flags &= ~IN_INVENTORY
 	if(!pixel_y && !pixel_x && !(item_flags & NO_PIXEL_RANDOM_DROP))
 		pixel_x = rand(-8,8)
 		pixel_y = rand(-8,8)
