@@ -30,6 +30,35 @@ pub fn sink_message_args(name: &str) -> Option<&'static [usize]> {
     }
 }
 
+/// `INVOKE_ASYNC(owner, TYPE_PROC_REF(/atom/movable, say), "…")` 预处理后是
+/// `call(0 || owner, (nameof(/atom/movable.proc/say)))("…")`（`Term::DynamicCall`）。上游正把大批
+/// `x.say("…")` 改写成这种回调形态（2026-10 同步一次就是几十处），而按名字匹配的汇聚点表认不出它 →
+/// 整句从目录里掉出去、已有译文随之失效。认出第二个 lhs 实参里的 proc 名，让回调与直调同等对待。
+///
+/// 只认双实参的 `call(owner, proc)` 形态：宏的 GLOBAL_PROC 分支（单实参 `call(proc_path)`）是同一行
+/// 的重复展开，再认一次就是重复抽取/重复改写。
+pub fn dynamic_call_sink(lhs: &[Expression]) -> Option<&str> {
+    if lhs.len() != 2 {
+        return None;
+    }
+    let name = proc_ref_name(&lhs[1])?;
+    sink_message_args(name).is_some().then_some(name)
+}
+
+fn proc_ref_name(expr: &Expression) -> Option<&str> {
+    let Expression::Base { term, follow } = expr else {
+        return None;
+    };
+    if !follow.is_empty() {
+        return None;
+    }
+    match &term.elem {
+        Term::Expr(inner) => proc_ref_name(inner),
+        Term::Call(name, args) if name == "nameof" && args.len() == 1 => args[0].nameof(),
+        _ => None,
+    }
+}
+
 /// Whether a shared sink is safe for source rewriting rather than extraction only.
 pub fn is_rewrite_sink(name: &str) -> bool {
     sink_message_args(name).is_some() && !matches!(name, "display_results" | "display_pain")
