@@ -730,7 +730,7 @@
 			context[SCREENTIP_CONTEXT_LMB] = open_panel ? "Adjust settings" : "Admire"
 		if(isitem)
 			context[SCREENTIP_CONTEXT_RMB] = "Admire"
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "[!open_panel ? "Open" : "Close"] settings panel"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = LANG("datum.25db1c37fb3f5291", list(!open_panel ? "Open" : "Close"))
 		return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/plunger))
 		context[SCREENTIP_CONTEXT_LMB] = "Empty feed storage"

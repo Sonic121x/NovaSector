@@ -29,7 +29,7 @@
 /obj/item/vaporizer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER && !isnull(cell))
-		context[SCREENTIP_CONTEXT_LMB] = "Remove [cell.name]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.6d1d16bae7d1747f", list(cell.name))
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/vaporizer/examine(mob/user)

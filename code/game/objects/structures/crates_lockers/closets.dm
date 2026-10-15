@@ -462,7 +462,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 				context[SCREENTIP_CONTEXT_LMB] = "Change Access"
 				screentip_change = TRUE
 			if(istype(held_item) && istype(held_item) && held_item.tool_behaviour == TOOL_MULTITOOL)
-				context[SCREENTIP_CONTEXT_LMB] = "[access_locked ? "Unlock" : "Lock"] Access Panel"
+				context[SCREENTIP_CONTEXT_LMB] = LANG("obj.8d72d11fc9256f2d", list(access_locked ? "Unlock" : "Lock"))
 				screentip_change = TRUE
 
 	return screentip_change ? CONTEXTUAL_SCREENTIP_SET : NONE

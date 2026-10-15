@@ -165,8 +165,8 @@
 		beaker = null
 
 /obj/machinery/cryo_cell/add_context(atom/source, list/context, obj/item/held_item, mob/user)
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Turn [on ? "off" : "on"]"
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[state_open ? "Close" : "Open"] door"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = LANG("obj.fed2f8dfb3af5666", list(on ? "off" : "on"))
+	context[SCREENTIP_CONTEXT_ALT_LMB] = LANG("obj.d3ad1ed0d1a55d40", list(state_open ? "Close" : "Open"))
 	if(isnull(held_item))
 		return CONTEXTUAL_SCREENTIP_SET
 
@@ -176,7 +176,7 @@
 
 	switch(held_item.tool_behaviour)
 		if(TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = LANG("obj.45725a89b7fc8d2e", list(panel_open ? "Close" : "Open"))
 		if(TOOL_CROWBAR)
 			if(!state_open && !panel_open && !is_operational)
 				context[SCREENTIP_CONTEXT_LMB] = "Pry Open"

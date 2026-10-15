@@ -141,7 +141,7 @@
 
 /obj/item/reagent_containers/cup/glass/coffee/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[lid_open ? "Add" : "Remove"] Lid"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = LANG("obj.a370f5ade2867b5b", list(lid_open ? "Add" : "Remove"))
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/reagent_containers/cup/glass/coffee/click_alt(mob/user)
@@ -441,7 +441,7 @@
 
 /obj/item/reagent_containers/cup/glass/shaker/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[using_custom_drinks ? "Disable" : "Enable"] custom drinks"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = LANG("obj.4c011856b85ba410", list(using_custom_drinks ? "Disable" : "Enable"))
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/reagent_containers/cup/glass/shaker/examine(mob/user)

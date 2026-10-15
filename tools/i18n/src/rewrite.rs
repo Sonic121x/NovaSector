@@ -34,6 +34,31 @@ use crate::semantics::{
 };
 use crate::template::{build_sink_template, build_template, placeholder_count, strip_tags};
 
+/// 模板里是否有占位符**紧贴字母**（`{0}chor`、`Un{0}`）：那是拿运行期碎片拼单词的写法，
+/// 拆出来的模板没有可翻的语义，宁可不改写。
+fn placeholder_touches_letter(template: &str) -> bool {
+    let chars: Vec<char> = template.chars().collect();
+    let mut i = 0;
+    while i < chars.len() {
+        if chars[i] == '{' {
+            if let Some(len) = chars[i + 1..].iter().position(|&c| c == '}') {
+                let digits = &chars[i + 1..i + 1 + len];
+                if !digits.is_empty() && digits.iter().all(|c| c.is_ascii_digit()) {
+                    let before = i.checked_sub(1).and_then(|j| chars.get(j));
+                    let after = chars.get(i + len + 2);
+                    if before.is_some_and(|c| c.is_alphabetic()) || after.is_some_and(|c| c.is_alphabetic()) {
+                        return true;
+                    }
+                    i += len + 2;
+                    continue;
+                }
+            }
+        }
+        i += 1;
+    }
+    false
+}
+
 /// `INVOKE_ASYNC(owner, proc_ref, 实参…)`：源码里汇聚点实参之前多出的槽数。
 const INVOKE_ASYNC_SLOT_OFFSET: usize = 2;
 
@@ -606,6 +631,23 @@ impl<'a> Rewriter<'a> {
                             if let Term::Ident(id) = &term.elem {
                                 if id == "desc" {
                                     self.try_rewrite_examine(term.location, id, rhs, ns);
+                                }
+                            }
+                        }
+                        // 屏幕提示 `context[SCREENTIP_CONTEXT_*] = "Change to [x]"`：抽取侧早就按同一形状
+                        // 收了模板，但显示点 build_context 只做整串反查 —— 插值串永远不是目录键，于是
+                        // 「Alt-左键 Change to charge」这类整类留英文（全仓约 150 处）。纯字符串仍留给
+                        // 运行期反查（零改动），只改插值的；拼字母的写法（`"[a ? "Unan" : "An"]chor"`）
+                        // 成不了有意义的模板，按「占位符紧贴字母」排除。
+                        else if follow.len() == 1
+                            && matches!(&follow[0].elem, Follow::Index(..))
+                            && matches!(&term.elem, Term::Ident(id) if id == "context")
+                        {
+                            if let Some(template) = build_template(rhs) {
+                                if placeholder_count(&template) > 0
+                                    && !placeholder_touches_letter(&template)
+                                {
+                                    self.try_rewrite_examine(term.location, "context", rhs, ns);
                                 }
                             }
                         }

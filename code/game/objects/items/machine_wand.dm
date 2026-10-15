@@ -51,7 +51,7 @@
 
 /obj/item/machine_remote/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(controlling_machine_or_bot)
-		context[SCREENTIP_CONTEXT_LMB] = "Use [controlling_machine_or_bot]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.7b78dd124361cb2f", list(controlling_machine_or_bot))
 		context[SCREENTIP_CONTEXT_ALT_LMB] = "Flush Control"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE

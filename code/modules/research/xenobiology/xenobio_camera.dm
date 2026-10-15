@@ -81,7 +81,7 @@
 	. = ..()
 
 	if(istype(held_item, /obj/item/slimepotion/slime))
-		context[SCREENTIP_CONTEXT_LMB] = "[current_potion ? "Swap" : "Insert"] potion"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.e71c469b216f4a1d", list(current_potion ? "Swap" : "Insert"))
 		return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/food/monkeycube))
 		context[SCREENTIP_CONTEXT_LMB] = "Insert monkey cubes"

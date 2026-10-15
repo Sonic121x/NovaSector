@@ -28,7 +28,7 @@
 
 /obj/machinery/atmospherics/components/trinary/mixer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Turn [on ? "off" : "on"]"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = LANG("obj.fed2f8dfb3af5666", list(on ? "off" : "on"))
 	context[SCREENTIP_CONTEXT_ALT_LMB] = "Maximize target pressure"
 	return CONTEXTUAL_SCREENTIP_SET
 

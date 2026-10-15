@@ -76,7 +76,7 @@
 
 	if(held_item.get_sharpness())
 		// May be a little long, but I think "cut into planks" for steel caps may be confusing.
-		context[SCREENTIP_CONTEXT_LMB] = "Cut into [plank_name]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.b6f4d591cad1d9d0", list(plank_name))
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(CheckAccepted(held_item))

@@ -163,7 +163,7 @@
 			tool_tip_set = TRUE
 
 	else if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "close" : "open"] panel"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.45725a89b7fc8d2e", list(panel_open ? "close" : "open"))
 		tool_tip_set = TRUE
 
 	else if(held_item.tool_behaviour == TOOL_CROWBAR)

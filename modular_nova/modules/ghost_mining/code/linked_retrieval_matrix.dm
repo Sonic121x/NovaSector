@@ -43,7 +43,7 @@
 
 	if(isnull(held_item))
 		context[SCREENTIP_CONTEXT_LMB] = "Teleport single boulder"
-		context[SCREENTIP_CONTEXT_RMB] = "Toggle [toggled_on ? "Off" : "On"] automatic boulder retrieval"
+		context[SCREENTIP_CONTEXT_RMB] = LANG("obj.9327cfbbc0f42c31", list(toggled_on ? "Off" : "On"))
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(!isnull(held_item))
@@ -51,7 +51,7 @@
 			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Un" : ""]Anchor"
 			return CONTEXTUAL_SCREENTIP_SET
 		if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = LANG("obj.45725a89b7fc8d2e", list(panel_open ? "Close" : "Open"))
 			return CONTEXTUAL_SCREENTIP_SET
 		if(held_item.tool_behaviour == TOOL_MULTITOOL)
 			context[SCREENTIP_CONTEXT_LMB] = "Link From Buffer"

@@ -106,7 +106,7 @@
 
 /obj/machinery/self_actualization_device/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(!processing)
-		context[SCREENTIP_CONTEXT_LMB] = "[state_open ? "Close" : "Open"] machine"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.e929428c8aef275f", list(state_open ? "Close" : "Open"))
 	if(!isnull(occupant) && !state_open && !processing)
 		context[SCREENTIP_CONTEXT_ALT_LMB] = "Start machine"
 

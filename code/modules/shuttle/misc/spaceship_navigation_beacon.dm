@@ -86,9 +86,12 @@
 
 /obj/machinery/spaceship_navigation_beacon/process(seconds_per_tick)
 	if(COOLDOWN_FINISHED(src, next_automatic_message_time) && radio)
-		var/automatic_nav_message = "[src], Sector [z], [locked ? "Beacon Locked" : "Beacon Operational"], Grid Coordinates, [x] East, [y] North."
-
-		radio.talk_into(src, "[automatic_nav_message]")
+		// NOVA EDIT CHANGE START - I18N: 整句直接交给汇聚点，rewrite 才能把它连同三元分支一起 LANG 化
+		// （经局部变量转一手时，模板译了、「Beacon Operational」与带编号的信标名都留在英文）。
+		// ORIGINAL: var/automatic_nav_message = "[src], Sector [z], [locked ? "Beacon Locked" : "Beacon Operational"], Grid Coordinates, [x] East, [y] North."
+		// ORIGINAL: radio.talk_into(src, "[automatic_nav_message]")
+		radio.talk_into(src, LANG("obj.5f46264b52bda70a", list(src, z, locked ? "Beacon Locked" : "Beacon Operational", x, y)))
+		// NOVA EDIT CHANGE END
 
 		COOLDOWN_START(src, next_automatic_message_time, automatic_message_cooldown)
 

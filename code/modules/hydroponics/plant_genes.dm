@@ -602,7 +602,7 @@
 	if(cabling.amount < cables_needed_per_battery)
 		return NONE
 
-	context[SCREENTIP_CONTEXT_LMB] = "Make [source.name] battery"
+	context[SCREENTIP_CONTEXT_LMB] = LANG("datum.2188f863ca912338", list(source.name))
 	return CONTEXTUAL_SCREENTIP_SET
 
 /*

@@ -179,7 +179,7 @@
 		context[SCREENTIP_CONTEXT_RMB] = "Fold up"
 		. = CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.tool_behaviour == TOOL_WIRECUTTER || held_item.get_sharpness())
-		context[SCREENTIP_CONTEXT_LMB] = "Remove [pinned ? "Paper" : "Tag"]"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.6d1d16bae7d1747f", list(pinned ? "Paper" : "Tag"))
 		. = CONTEXTUAL_SCREENTIP_SET
 	else if(!pinned && istype(held_item, /obj/item/paper) && !opened)
 		context[SCREENTIP_CONTEXT_LMB] = "Pin Paper"

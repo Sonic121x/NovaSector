@@ -16,7 +16,7 @@
 
 /obj/item/holosign_creator/privacy/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_RMB] = "[erp_mode ? "Turn off" : "Turn on"] Lewd Advisory Mode"
+	context[SCREENTIP_CONTEXT_RMB] = LANG("obj.33867af98fb7ac3a", list(erp_mode ? "Turn off" : "Turn on"))
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/holosign_creator/privacy/attack_self_secondary(mob/user, modifiers)

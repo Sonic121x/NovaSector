@@ -108,10 +108,10 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/modular_computer/pda))
-		context[SCREENTIP_CONTEXT_LMB] = "[stored_pda ? "Swap" : "Insert"] PDA"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.d24b575a7bcd41c6", list(stored_pda ? "Swap" : "Insert"))
 		return CONTEXTUAL_SCREENTIP_SET
 	if(isidcard(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "[stored_id_card ? "Swap" : "Insert"] ID"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.3b665d8f44a7fa78", list(stored_id_card ? "Swap" : "Insert"))
 		return CONTEXTUAL_SCREENTIP_SET
 
 	switch(held_item.tool_behaviour)

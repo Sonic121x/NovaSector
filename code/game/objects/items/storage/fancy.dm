@@ -258,7 +258,7 @@
 	. = ..()
 	if(locate(/obj/item/lighter) in contents)
 		context[SCREENTIP_CONTEXT_ALT_LMB] = "Remove lighter"
-	context[SCREENTIP_CONTEXT_RMB] = "Remove [contents_tag]"
+	context[SCREENTIP_CONTEXT_RMB] = LANG("obj.6d1d16bae7d1747f", list(contents_tag))
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/storage/fancy/cigarettes/examine(mob/user)

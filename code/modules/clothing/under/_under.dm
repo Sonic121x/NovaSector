@@ -103,7 +103,7 @@
 		changed = TRUE
 
 	if(can_adjust && adjusted != DIGITIGRADE_STYLE)
-		context[SCREENTIP_CONTEXT_ALT_LMB] =  "Wear [adjusted == ALT_STYLE ? "normally" : "casually"]"
+		context[SCREENTIP_CONTEXT_ALT_LMB] =  LANG("obj.43c142721229147f", list(adjusted == ALT_STYLE ? "normally" : "casually"))
 		changed = TRUE
 
 	return changed ? CONTEXTUAL_SCREENTIP_SET : .

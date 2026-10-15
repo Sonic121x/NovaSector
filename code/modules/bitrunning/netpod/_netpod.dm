@@ -60,18 +60,18 @@
 		context[SCREENTIP_CONTEXT_LMB] = "Select Outfit"
 	else
 		if(held_item.tool_behaviour == TOOL_SCREWDRIVER && !occupant && !state_open)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] Panel"
+			context[SCREENTIP_CONTEXT_LMB] = LANG("obj.3a1f9b9bcb4eed7a", list(panel_open ? "Close" : "Open"))
 
 		if(held_item.tool_behaviour == TOOL_CROWBAR)
 			if(isnull(occupant))
 				if(panel_open)
 					context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
 				else
-					context[SCREENTIP_CONTEXT_LMB] = "[state_open ? "Close" : "Open"] Cover"
+					context[SCREENTIP_CONTEXT_LMB] = LANG("obj.04b8e092b6a72419", list(state_open ? "Close" : "Open"))
 			else
 				context[SCREENTIP_CONTEXT_LMB] = "Break out"
 
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[copy_body ? "Disable" : "Enable"] Scan"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = LANG("obj.9934ed5fc322ee22", list(copy_body ? "Disable" : "Enable"))
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/netpod/examine(mob/user)

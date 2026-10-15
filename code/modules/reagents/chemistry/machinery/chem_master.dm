@@ -72,7 +72,7 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.45725a89b7fc8d2e", list(panel_open ? "Close" : "Open"))
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.tool_behaviour == TOOL_WRENCH)
 		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"

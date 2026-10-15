@@ -147,10 +147,10 @@
 	context[SCREENTIP_CONTEXT_LMB] = "Show menu"
 
 	if(vampire_charging_capable)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Change to [vampire_charging_enabled ? "cook" : "charge"]"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = LANG("obj.b345730db62168b1", list(vampire_charging_enabled ? "cook" : "charge"))
 
 	if(length(ingredients) != 0)
-		context[SCREENTIP_CONTEXT_RMB] = "Start [vampire_charging_enabled ? "charging" : "cooking"]"
+		context[SCREENTIP_CONTEXT_RMB] = LANG("obj.66b32c80a5235d7b", list(vampire_charging_enabled ? "charging" : "cooking"))
 
 	return CONTEXTUAL_SCREENTIP_SET
 

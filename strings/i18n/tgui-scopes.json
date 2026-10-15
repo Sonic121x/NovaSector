@@ -38476,6 +38476,9 @@
   "amphibian eyes": [
     "dm:labels"
   ],
+  "an ID card": [
+    "tgui:InterfaceLockNoticeBox"
+  ],
   "an unknown language": [
     "dm:labels"
   ],

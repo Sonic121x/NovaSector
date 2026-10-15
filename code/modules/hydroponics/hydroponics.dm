@@ -158,7 +158,7 @@
 	// And if a reagent container has water or plant fertilizer in it, we can use it on the plant.
 	if(is_reagent_container(held_item) && length(held_item.reagents.reagent_list))
 		var/datum/reagent/most_common_reagent = held_item.reagents.get_master_reagent()
-		context[SCREENTIP_CONTEXT_LMB] = "[istype(most_common_reagent, /datum/reagent/water) ? "Water" : "Feed"] plant"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.5b87c97bd535bc1d", list(istype(most_common_reagent, /datum/reagent/water) ? "Water" : "Feed"))
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE

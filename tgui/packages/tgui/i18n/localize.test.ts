@@ -147,6 +147,35 @@ describe('localizeProps', () => {
     expect(props.children).toBe(children);
   });
 
+  // children 全是字符串（插值本身是字符串）：照抄 InterfaceLockNoticeBox 的编译产物。
+  // 从前逐个元素各自查表，拼出「刷卡 an ID card 到 解锁 此界面。」。
+  test('全字符串 children 按 JSX 交替形态整条查模板', () => {
+    const zh = zhHans as Record<string, string>;
+    const template = 'Swipe {0} to {1} this interface.';
+    expect(zh[template]).toBeTruthy();
+    const children = [
+      'Swipe ',
+      'an ID card',
+      ' to ',
+      'unlock',
+      ' this interface.',
+    ];
+    const props = localizeProps({ children }) as Record<string, unknown>;
+    const expected = zh[template]
+      .replace('{0}', zh['an ID card'])
+      .replace('{1}', zh.unlock);
+    expect(props.children).toEqual([expected]);
+  });
+
+  // 反面：全字符串、模板也查不到时，拼句碎片不许逐段翻（哪怕每段碰巧都是目录键）。
+  test('全字符串 children 的拼句碎片保持英文', () => {
+    const zh = zhHans as Record<string, string>;
+    expect(zh.unlock).toBeTruthy();
+    const children = ['Zzqv ', 'unlock', ' zzqv fragment.'];
+    const props = localizeProps({ children }) as Record<string, unknown>;
+    expect(props.children).toBe(children);
+  });
+
   // prop 里 JS 拼出来的整串（`` title={`Reading: ${x}`} ``）永远不是目录键 → 精确查表必 miss。
   // 抽取器按 `Reading: {0}` 收进目录 + sidecar，这里按字面段逆匹配还原、填回捕获值。
   test('prop 模板逆匹配：框架词翻译、捕获值原样保留', () => {

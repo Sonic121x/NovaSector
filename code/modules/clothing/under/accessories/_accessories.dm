@@ -219,5 +219,5 @@
 	if(held_item != source)
 		return .
 
-	context[SCREENTIP_CONTEXT_RMB] = "Wear [above_suit ? "below" : "above"] suit"
+	context[SCREENTIP_CONTEXT_RMB] = LANG("obj.09f38cdb54aff7e0", list(above_suit ? "below" : "above"))
 	return CONTEXTUAL_SCREENTIP_SET

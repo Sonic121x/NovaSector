@@ -43,7 +43,7 @@
 		if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
 			if(isnull(stored_blade))
 				return NONE
-			context[SCREENTIP_CONTEXT_LMB] = "[(blade_secured ? "Unsecure" : "Secure")] blade"
+			context[SCREENTIP_CONTEXT_LMB] = LANG("obj.8e3c6c5576399d05", list((blade_secured ? "Unsecure" : "Secure")))
 		if(istype(held_item, /obj/item/paper))
 			if(!isnull(stored_paper))
 				return NONE

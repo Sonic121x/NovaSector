@@ -37,6 +37,12 @@
 			for(var/key in injected_en_keys)
 				en_cache -= key
 		GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET] -= I18N_LEAK_LOCALE
+		var/list/paired_en = GLOB.i18n_catalogs[I18N_CATALOG_PAIRED_BUCKET]?[DEFAULT_UI_LOCALE]?[I18N_DOMAIN_GLOBAL_REVERSE]
+		if(islist(paired_en))
+			paired_en -= "unittest.leak_supplement"
+		GLOB.i18n_catalogs[I18N_CATALOG_PAIRED_BUCKET] -= I18N_LEAK_LOCALE
+		GLOB.i18n_reverse_norm -= I18N_LEAK_LOCALE
+		GLOB.i18n_reverse_supplements -= I18N_LEAK_LOCALE
 		GLOB.i18n_runtime_domains -= I18N_LEAK_LOCALE
 		GLOB.i18n_reverse -= I18N_LEAK_LOCALE
 		GLOB.i18n_unreverse -= I18N_LEAK_LOCALE
@@ -108,6 +114,19 @@
 		area_table[test_area.type] = "unittest.leak_area"
 		subject.name = "Zxqv Sector Zxqv Thranok Unit tag9"
 		TEST_ASSERT_EQUAL(subject.lang_localize_name_for_display(subject.name), "兹克夫星区 兹克夫单元 tag9", "「区域名 + 类型名 + id」合成名没有被分段本地化")
+		// ④b 名字里拼的区域不是 get_area(src)（空气警报用 my_area；墙挂设备坐在墙格上、名字拼房间那侧）。
+		var/area/other_area
+		for(var/area/candidate as anything in GLOB.areas)
+			if(candidate != test_area && candidate.type != test_area.type)
+				other_area = candidate
+				break
+		if(!isnull(other_area))
+			var/saved_other_name = other_area.name
+			test_area.name = "Zxqv Unrelated"
+			other_area.name = "Zxqv Sector"
+			subject.name = "Zxqv Sector Zxqv Thranok Unit"
+			TEST_ASSERT_EQUAL(subject.lang_localize_name_for_display(subject.name), "兹克夫星区 兹克夫单元", "名字里的区域不是所在区域时，合成名没有按区域名前缀拆开")
+			other_area.name = saved_other_name
 		subject.name = I18N_LEAK_NAME
 		test_area.name = saved_area_name
 
@@ -163,6 +182,39 @@
 	// 两处各写了一遍，于是名字包在 `<b>` 之类别的标签里时整块落不了地。
 	var/articled = lang_localize_chain("The [I18N_LEAK_NAME]", I18N_LEAK_LOCALE, allow_template = FALSE)
 	TEST_ASSERT_EQUAL(articled, "兹克夫单元", "带冠词的名字整块没有落地：[articled]")
+
+	// ⑫ 「类型名 + 编号」的字符串形态（无线电导航信标 `radio navigation gigabeacon 9-222` 说话时、
+	// 模板捕获值、LANG 的文本实参）：类型信息已丢，只能按形状拆。尾巴必须是单个不含字母的 token。
+	TEST_ASSERT_EQUAL(lang_localize_arg("The [I18N_LEAK_NAME] 9-222"), "兹克夫单元 9-222", "「类型名 + 编号」实参没有拆开本地化")
+	TEST_ASSERT_EQUAL(lang_localize_name_chunk("The [I18N_LEAK_NAME] 9-222", I18N_LEAK_LOCALE), "兹克夫单元 9-222", "说话者名字的「类型名 + 编号」没有拆开本地化")
+	// 反面：尾巴含字母（id_tag、玩家起的名字）不归这条管。
+	TEST_ASSERT_EQUAL(lang_localize_arg("[I18N_LEAK_NAME] tag9"), "[I18N_LEAK_NAME] tag9", "含字母的尾巴不应被当成编号拆开")
+
+	// ⑬ 显式补充表（`_map_names` 这类 global_reverse 文件）在**归一化层**也要覆盖自动候选。
+	// 运行期的区域名带着 `\improper` 标记字节，精确表对不上，只能落到归一化层；从前那一层不分来源，
+	// `area.json` 与 `_map_names` 的两种译法撞键就被判歧义整条删掉 →「阻塞据信位于Departure Lounge区域」。
+	en_cache["unittest.leak_lounge"] = "\\improper Zxqv Lounge"
+	locale_cache["unittest.leak_lounge"] = "\\improper 兹克夫休息厅"
+	injected_en_keys["unittest.leak_lounge"] = TRUE
+	var/list/paired = GLOB.i18n_catalogs[I18N_CATALOG_PAIRED_BUCKET]
+	var/list/paired_en_locale = paired[DEFAULT_UI_LOCALE]
+	if(!islist(paired_en_locale))
+		paired_en_locale = list()
+		paired[DEFAULT_UI_LOCALE] = paired_en_locale
+	var/list/paired_en_domain = paired_en_locale[I18N_DOMAIN_GLOBAL_REVERSE]
+	if(!islist(paired_en_domain))
+		paired_en_domain = list()
+		paired_en_locale[I18N_DOMAIN_GLOBAL_REVERSE] = paired_en_domain
+	paired_en_domain["unittest.leak_supplement"] = "Zxqv Lounge"
+	paired[I18N_LEAK_LOCALE] = list(I18N_DOMAIN_GLOBAL_REVERSE = list("unittest.leak_supplement" = "兹克夫休息室"))
+	GLOB.i18n_reverse -= I18N_LEAK_LOCALE
+	GLOB.i18n_runtime_domains -= I18N_LEAK_LOCALE
+	GLOB.i18n_reverse_norm -= I18N_LEAK_LOCALE
+	GLOB.i18n_fallback_cache -= I18N_LEAK_LOCALE
+	TEST_ASSERT_EQUAL(lang_localize_arg("\improper Zxqv Lounge"), "兹克夫休息室", "补充表没有在归一化层覆盖自动候选（区域名带标记字节时整条掉出反查表）")
+
+	// ⑭ 先包进 span 的 atom 名字：调用点拼成字符串之前就走显示边界。
+	TEST_ASSERT_EQUAL(lang_atom_text(subject, "\the [subject]"), "兹克夫单元", "lang_atom_text 没有走显示边界")
 
 	// ③ 目录里的两词碎片（`I18N_LEAK_FRAGMENT`）不得在句子中间开火。
 	//    字面 AC 整层删除后这条恒真，留着当回归门禁：谁再引入子串替换层，这里立刻变红。

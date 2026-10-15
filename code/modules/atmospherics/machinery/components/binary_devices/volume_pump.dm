@@ -116,7 +116,7 @@
 
 /obj/machinery/atmospherics/components/binary/volume_pump/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Turn [on ? "off" : "on"]"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = LANG("obj.fed2f8dfb3af5666", list(on ? "off" : "on"))
 	context[SCREENTIP_CONTEXT_ALT_LMB] = "Maximize transfer rate"
 	if(held_item && held_item.tool_behaviour == TOOL_MULTITOOL)
 		context[SCREENTIP_CONTEXT_LMB] = "[overclocked ? "En" : "Dis"]able pressure limits"

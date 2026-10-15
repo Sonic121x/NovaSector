@@ -56,6 +56,10 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 	/// **不能用 REF(src)**：BYOND 回收引用号，旧 UI 被 qdel 后新 UI 极可能拿到同一个 ref —— 恰好在最该区分的场景撞车。
 	var/nova_ui_id
 	// NOVA EDIT ADDITION END
+	// NOVA EDIT ADDITION START - I18N: 窗口标题的显示形态缓存（标题不变就不重算，get_payload 每次刷新都会调用）
+	var/nova_title_source
+	var/nova_title_display
+	// NOVA EDIT ADDITION END
 
 /**
  * public
@@ -280,7 +284,7 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 /datum/tgui/proc/get_payload(custom_data, with_data, with_static_data)
 	var/list/json_data = list()
 	json_data["config"] = list(
-		"title" = title,
+		"title" = nova_display_title(), // NOVA EDIT CHANGE - I18N - ORIGINAL: "title" = title,
 		"status" = status,
 		"interface" = list(
 			"name" = interface,

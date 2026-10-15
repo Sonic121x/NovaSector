@@ -122,7 +122,7 @@
 		update_context = TRUE
 
 	if(held_item?.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "[cell_cover_open ? "close" : "open"] battery panel"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.81be23161540f0bc", list(cell_cover_open ? "close" : "open"))
 		update_context = TRUE
 
 	if(update_context)

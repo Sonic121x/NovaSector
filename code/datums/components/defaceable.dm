@@ -43,7 +43,7 @@
 			context[SCREENTIP_CONTEXT_LMB] = "Clean"
 	else
 		if (istype(held_item, /obj/item/pen) || istype(held_item, /obj/item/toy/crayon))
-			context[SCREENTIP_CONTEXT_LMB] = "Draw [drawing_of ? drawing_of : "on"]"
+			context[SCREENTIP_CONTEXT_LMB] = LANG("datum.690a9c3ae6c2dc94", list(drawing_of ? drawing_of : "on"))
 	return CONTEXTUAL_SCREENTIP_SET
 
 /// See if someone can draw on us

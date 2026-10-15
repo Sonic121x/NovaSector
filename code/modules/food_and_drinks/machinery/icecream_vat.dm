@@ -97,7 +97,7 @@
 			context[SCREENTIP_CONTEXT_LMB] = "Insert beaker"
 			context[SCREENTIP_CONTEXT_RMB] = "Transfer beaker reagents"
 		else if(istype(held_item, /obj/item/food/icecream))
-			context[SCREENTIP_CONTEXT_LMB] = "Take scoop of [selected_flavour] ice cream"
+			context[SCREENTIP_CONTEXT_LMB] = LANG("obj.f5547a66a2fe06cb", list(selected_flavour))
 		else if(istype(held_item, /obj/item/kitchen/spoon) || istype(held_item, /obj/item/kitchen/spoon/soup_ladle))
 			context[SCREENTIP_CONTEXT_RMB] = "Spill reagent"
 		return CONTEXTUAL_SCREENTIP_SET

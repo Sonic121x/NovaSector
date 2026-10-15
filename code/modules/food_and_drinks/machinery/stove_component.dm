@@ -186,7 +186,7 @@
 	SIGNAL_HANDLER
 
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_RMB] = "Turn [on ? "off":"on"] burner"
+		context[SCREENTIP_CONTEXT_RMB] = LANG("datum.950f45c52bd849db", list(on ? "off":"on"))
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.is_open_container())

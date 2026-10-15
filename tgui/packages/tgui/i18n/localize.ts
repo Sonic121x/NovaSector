@@ -327,6 +327,77 @@ function isSelfContainedText(text: string): boolean {
   return !/^[\p{Ll}\p{P}\p{S}]/u.test(body);
 }
 
+// children 全是字符串时，React 运行期把它们当一整段文本渲染，但它们在数组里仍是分开的元素：
+//   `Swipe {accessText} to {locked ? 'unlock' : 'lock'} this interface.`
+//   → ["Swipe ", "an ID card", " to ", "unlock", " this interface."]
+// 从前这里逐个元素各自查表，碎片按英文语序拼回去：「刷卡 an ID card 到 解锁 此界面。」——正是
+// 「混排 children 必须整条抽成模板」要挡的形态。抽取器对这种写法收的是 `Swipe {0} to {1} this
+// interface.`（插值是槽），而整段合并后永远对不上它。顺序：
+//   ① 整段合并精确查表（`{' '}` 那类字符串字面量插值，抽取器按文本合并收键）；
+//   ② JSX 交替形态：编译产物里文本与 `{表达式}` 交替出现，按「奇数位是槽」再查一次模板；
+//   ③ 每个非空白片段都是完整独立文本（isSelfContainedText）时才逐段翻；
+//   都不满足 → 保持英文。
+function localizeStringChildren(children: unknown[]): unknown[] | null {
+  const strings = children as string[];
+  const merged = strings.join('');
+  const whole = translateText(merged);
+  if (whole !== merged) {
+    return [whole];
+  }
+  const alternating = localizeAlternatingStrings(strings);
+  if (alternating) {
+    return alternating;
+  }
+  if (strings.every(isSelfContainedText)) {
+    const localized = localizeNode(strings);
+    return localized === strings ? null : (localized as unknown[]);
+  }
+  return null;
+}
+
+function localizeAlternatingStrings(strings: string[]): unknown[] | null {
+  if (strings.length < 3 || strings.length % 2 === 0) {
+    return null;
+  }
+  const slotValues: string[] = [];
+  let template = '';
+  strings.forEach((piece, index) => {
+    if (index % 2 === 1) {
+      template += `{${slotValues.length}}`;
+      slotValues.push(piece);
+    } else {
+      template += piece;
+    }
+  });
+  const lookup = template.replace(/\s+/g, ' ').trim();
+  if (NO_AUTO_TRANSLATE.has(lookup)) {
+    return null;
+  }
+  const translated = translateCurrent(lookup);
+  if (translated === lookup) {
+    return null;
+  }
+  const pieces = translated.split(/\{(\d+)\}/);
+  const seen = new Set<number>();
+  let rebuilt = '';
+  for (let i = 0; i < pieces.length; i++) {
+    if (i % 2 === 0) {
+      rebuilt += pieces[i];
+      continue;
+    }
+    const index = Number.parseInt(pieces[i], 10);
+    if (!Number.isInteger(index) || index < 0 || index >= slotValues.length) {
+      return null;
+    }
+    seen.add(index);
+    rebuilt += translateText(slotValues[index]);
+  }
+  if (seen.size !== slotValues.length) {
+    return null;
+  }
+  return [rebuilt];
+}
+
 function localizeChildrenSegments(children: unknown[]): unknown[] | null {
   // 两遍，因为两件事的安全性不同：
   //   ① overlay 替换：只把本次负载里那几十条已确认的显示值就地换成译文，不动语序，永远安全；
@@ -567,8 +638,7 @@ export function localizeProps(props: unknown, type?: unknown): unknown {
           const segments = localizeChildrenSegments(rendered);
           localized = segments ?? propValue;
         } else {
-          const localizedText = localizeNode(rendered);
-          localized = localizedText === rendered ? propValue : localizedText;
+          localized = localizeStringChildren(rendered) ?? propValue;
         }
       } else {
         localized = localizeNode(propValue);

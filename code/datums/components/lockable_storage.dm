@@ -93,7 +93,7 @@
 	if(can_hack_open)
 		switch(held_item.tool_behaviour)
 			if(TOOL_SCREWDRIVER)
-				context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+				context[SCREENTIP_CONTEXT_LMB] = LANG("datum.45725a89b7fc8d2e", list(panel_open ? "Close" : "Open"))
 				return CONTEXTUAL_SCREENTIP_SET
 			if(TOOL_MULTITOOL)
 				context[SCREENTIP_CONTEXT_LMB] = "Hack panel open"

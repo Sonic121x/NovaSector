@@ -58,7 +58,7 @@
 			return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[opened ? "Close" : "Open"] Panel"
+		context[SCREENTIP_CONTEXT_LMB] = LANG("obj.3a1f9b9bcb4eed7a", list(opened ? "Close" : "Open"))
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/inducer/examine(mob/living/user)

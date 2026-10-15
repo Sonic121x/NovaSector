@@ -43,12 +43,12 @@
 
 /obj/machinery/electrolyzer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Turn [on ? "off" : "on"]"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = LANG("obj.fed2f8dfb3af5666", list(on ? "off" : "on"))
 	if(!held_item)
 		return CONTEXTUAL_SCREENTIP_SET
 	switch(held_item.tool_behaviour)
 		if(TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = LANG("obj.45725a89b7fc8d2e", list(panel_open ? "Close" : "Open"))
 		if(TOOL_WRENCH)
 			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"
 	return CONTEXTUAL_SCREENTIP_SET
