@@ -25,6 +25,7 @@ On NixOS, enter `nix develop` first. TGUI uses Bun. Windows uses `BUILD.bat` or 
 - DM unit tests live in `code/modules/unit_tests/` and are registered in `_unit_tests.dm`.
 - `TEST_FOCUS(/datum/unit_test/...)` isolates a test locally; never commit a focus marker.
 - The full local suite (`tools/i18n/pseudo-test.sh [locale]`) runs as `TEST_SHARDS` parallel servers (default 6, `1` = single process; `TEST_SKIP_LAVALAND=1` skips the lavaland z-level for ~14s less init per server, at the cost of not catching lavaland mapload runtimes) via `tools/i18n/test-shards.sh`; results merge back into `data/unit_tests.json` and `data/logs/ci/`. Each shard gets its own working directory seeded from a reflink copy of `data/`. Shards are balanced from `data/unit_test_durations.json`, refreshed every run. A shard-only failure that names a test is usually a background runtime charged to whichever test was running — check the call stack before blaming the test.
+- Bugs that need a real client on the other end (asset delivery, chat, TGUI, browse(), connecting while the MC is busy) are reproduced with `tools/zh/sim-players.sh`: it starts the server with the autopilot on (`modular_zh/modules/sim_players`), connects real DreamSeeker clients from the Windows VM, plays for `--minutes` and writes `sim_report.txt` (runtimes lined up with the autopilot's last action) into the round's log directory.
 - CI also runs DreamChecker/OpenDream and repository-specific checks. SpacemanDMM forbids relative type/proc definitions and `:` type overrides.
 
 ## Modularization

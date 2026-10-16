@@ -10109,6 +10109,7 @@
 #include "modular_zh\modules\region_newbie_guard\code\controller.dm"
 #include "modular_zh\modules\region_newbie_guard\code\geoip.dm"
 #include "modular_zh\modules\region_newbie_guard\code\verbs.dm"
+#include "modular_zh\modules\sim_players\code\sim_players.dm"
 #include "modular_zh\modules\tts_expression\code\custom_voices.dm"
 #include "modular_zh\modules\tts_expression\code\emotes.dm"
 #include "modular_zh\modules\tts_expression\code\preferences.dm"
