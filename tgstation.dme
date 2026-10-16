@@ -8915,6 +8915,7 @@
 #include "modular_nova\modules\i18n\code\miss_log.dm"
 #include "modular_nova\modules\i18n\code\runtime.dm"
 #include "modular_nova\modules\i18n\code\template_match.dm"
+#include "modular_nova\modules\ime_keyboard\code\ime_keyboard.dm"
 #include "modular_nova\modules\interaction_menu\code\interaction_datum.dm"
 #include "modular_nova\modules\item_visuals\code\item_visuals.dm"
 #include "modular_nova\modules\jaeger_mod\code\jaeger_mod.dm"
