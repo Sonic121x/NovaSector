@@ -27,22 +27,34 @@
 /client
 	/// 按键捕获器是否已安装并接管键盘。
 	var/ime_capture_active = FALSE
+	/// 页面里注入的那份宏命令（JSON），用来判断键位变了要不要重载页面。
+	var/ime_capture_commands
 
-/client/proc/ime_capture_install()
+/client/proc/ime_capture_install(take_focus = TRUE)
 	winset(src, IME_CAPTURE_ID, "parent=mapwindow;type=browser;pos=0,0;size=1x1;anchor1=0,0;is-visible=true")
+	ime_capture_commands = json_encode(ime_capture_macro_commands())
 	var/page = file2text('modular_zh/modules/ime_keyboard/html/ime_capture.html')
-	page = replacetext(page, "/*IME_MACRO_COMMANDS*/{}", json_encode(ime_capture_macro_commands()))
+	page = replacetext(page, "/*IME_MACRO_COMMANDS*/{}", ime_capture_commands)
 	src << browse(page, "window=[IME_CAPTURE_ID]")
 	ime_capture_active = TRUE
-	winset(src, IME_CAPTURE_ID, "focus=true")
+	if(take_focus)
+		winset(src, IME_CAPTURE_ID, "focus=true")
 
 /client/proc/ime_capture_remove()
 	if(!ime_capture_active)
 		return
 	ime_capture_active = FALSE
+	ime_capture_commands = null
 	// 运行期创建的控件把 parent 清空即销毁；焦点还给地图，回到原生宏。
 	winset(src, IME_CAPTURE_ID, "parent=")
 	winset(src, "map", "focus=true")
+
+/// 键位、管理员身份变了（登录时管理员身份晚于偏好设置建立、改键、上下管理员）都会走这里：
+/// 页面里注入的宏命令要跟着换，否则管理员的 asay 键在捕获器里没有命令可执行。
+/client/update_special_keybinds(datum/preferences/direct_prefs)
+	. = ..()
+	if(ime_capture_active && json_encode(ime_capture_macro_commands()) != ime_capture_commands)
+		ime_capture_install(take_focus = FALSE)
 
 /// 捕获器拿着焦点时 BYOND 的宏一个都不触发，所以除了 `Any`（由页面转发成 KeyDown/KeyUp）之外，
 /// 原生宏在客户端执行的那部分（Esc 开关菜单、Tab 切到聊天栏、退格清空输入、管理员的 asay 键）

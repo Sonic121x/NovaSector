@@ -70,53 +70,81 @@ html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
 	function send(command) { call('winset', { command: command }); }
 
 	// 焦点回收全在客户端本地做（winget/winset 不经服务器）：点地图、聊天框关闭后被设回地图、
-	// 弹窗关闭…… 这些都会让原生地图控件拿到焦点，输入法随之接管。只认「焦点在地图控件上或为空」
-	// 这一种情形，聊天输入、TGUI 文本框、弹窗一律不抢 —— 那些地方本来就该让输入法工作。
+	// 弹窗关闭…… 这些都会让原生地图控件拿到焦点，输入法随之接管。只认「焦点在地图上」这一种情形：
+	// 聊天输入、TGUI 文本框、弹窗一律不抢 —— 那些地方本来就该让输入法工作；焦点为空（切到了别的
+	// 程序）也不抢，否则 Alt-Tab 出去会被拉回游戏。
 	var callbackSerial = 0;
 	function winget(id, property, done) {
 		var name = '__imeCaptureCallback' + (callbackSerial++);
 		window[name] = function (props) { delete window[name]; done(props || {}); };
 		call('winget', { id: id, property: property, callback: name });
 	}
-	function wantsCapture(focus) {
-		return !focus || focus === 'map' || /(^|\.)map$/.test(focus) || focus === 'mapwindow';
+	function isMapFocus(focus) {
+		return !!focus && (focus === 'map' || /(^|\.)map$/.test(focus) || focus === 'mapwindow');
 	}
 	var checking = false;
-	function reclaimFocus() {
+	// 失焦后还没弄清焦点去向：去了地图就收回、按着的键保留；去了别处就全部松开。
+	var releaseIfElsewhere = false;
+	// 焦点为空 = DreamSeeker 不在前台，查慢一点；回到前台时 Windows 会把焦点还给切走前那个控件。
+	var pollDelay = 150;
+	function poll() {
+		checkFocus();
+		setTimeout(poll, pollDelay);
+	}
+	function checkFocus() {
 		if (checking || document.hasFocus()) return;
 		checking = true;
 		winget('', 'focus', function (props) {
 			checking = false;
-			if (wantsCapture(props.focus)) call('winset', { id: 'ime_capture', focus: 'true' });
+			pollDelay = props.focus ? 150 : 500;
+			if (document.hasFocus()) return;
+			var release = releaseIfElsewhere;
+			releaseIfElsewhere = false;
+			if (isMapFocus(props.focus)) call('winset', { id: 'ime_capture', focus: 'true' });
+			else if (release) releaseAll();
 		});
 	}
-	setInterval(reclaimFocus, 150);
-	window.addEventListener('blur', function () { setTimeout(reclaimFocus, 10); });
+	poll();
 	// 服务端注入：原生宏在客户端执行的那部分（Esc/Tab/退格、管理员 asay 键），键 → 原始命令。
 	var MACRO_COMMANDS = /*IME_MACRO_COMMANDS*/{};
+	// 服务端眼里「按着」的键。浏览器的自动连发不转发，服务端自己有 keyLoop。
 	var held = {};
+	function keyUpCommand(key) { return 'KeyUp "' + key + '" [[map.mouse-pos]] [[map.size]]'; }
+	function releaseAll() {
+		for (var key in held) send(keyUpCommand(key));
+		held = {};
+	}
 	function onKey(e) {
 		var key = toByondKey(eventCode(e));
 		if (!key) return;
 		e.preventDefault();
 		if (e.type === 'keydown') {
-			if (held[key]) return; // 按住不放时浏览器会自动连发，服务端自己有 keyLoop，不需要
+			if (e.repeat) {
+				// 在地图拿着焦点时按下、焦点收回后还按着：原生宏已经发过 KeyDown，接过来让松开从这里发。
+				held[key] = true;
+				return;
+			}
+			// 上一次按下的松开发生在地图上（原生宏已发 KeyUp）：先补齐，再当一次新的按下。
+			if (held[key]) send(keyUpCommand(key));
 			held[key] = true;
 			if (MACRO_COMMANDS[key]) send(MACRO_COMMANDS[key]);
 			send('KeyDown "' + key + '" [[map.mouse-pos]] [[map.size]]');
 		} else {
 			if (!held[key]) return;
 			delete held[key];
-			send('KeyUp "' + key + '" [[map.mouse-pos]] [[map.size]]');
+			send(keyUpCommand(key));
 		}
 	}
 	window.addEventListener('keydown', onKey, true);
 	window.addEventListener('keyup', onKey, true);
-	// 失焦时把按住的键全部松开，否则切走焦点会留下「卡住」的移动键。
+	// 失焦时先看焦点去了哪：去了地图（点地图扔东西、边走边点）就立刻收回，按着的键**不松开** ——
+	// 它们在物理上还按着，松开要么回到这里发，要么焦点在地图那一刻由原生宏发。去了别处（聊天栏、
+	// 别的程序）才全部松开，否则会留下「卡住」的移动键、Alt-Tab 留下按着的 Alt。
 	window.addEventListener('blur', function () {
-		for (var key in held) send('KeyUp "' + key + '" 0 0 0 0');
-		held = {};
+		releaseIfElsewhere = true;
+		setTimeout(checkFocus, 0);
 	});
+	window.addEventListener('pagehide', releaseAll);
 	var capture = document.getElementById('capture');
 	capture.focus();
 	window.addEventListener('focus', function () { capture.focus(); });
