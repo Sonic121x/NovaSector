@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/structure/frame/machine
 	name = "machine frame"
 	desc = "The standard frame for most station appliances. Its appearance and function is controlled by the inserted board."
@@ -101,7 +101,7 @@
 	for(var/component in req_components)
 		if(!req_components[component])
 			continue
-		// NOVA EDIT CHANGE - i18n: 部件名保持 canonical English，只在这个显示点翻（中文丢 \s）。
+		// ZH EDIT CHANGE - i18n: 部件名保持 canonical English，只在这个显示点翻（中文丢 \s）。
 		// ORIGINAL: nice_list += list("[req_components[component]] [req_component_names[component]]\s")
 		nice_list += list(lang_component_tally(req_components[component], req_component_names[component]))
 	. += span_info(LANG("obj.e8c2a536c6afeae9", list(lang_english_list(nice_list, "no more components"))))

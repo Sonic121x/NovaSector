@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Actual volume is REAGENTS_BASE_VOLUME plus REAGENTS_BASE_VOLUME * rating for each matterbin
 #define REAGENTS_BASE_VOLUME 100
 
@@ -175,7 +175,7 @@
 	tank_data["currentVolume"] = reagents.total_volume
 	var/list/tankContents = list()
 	for(var/datum/reagent/reagent in reagents.reagent_list)
-		tankContents += list(list("name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name
+		tankContents += list(list("name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // ZH EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name
 	tank_data["contents"] = tankContents
 	.["tank"] = tank_data
 

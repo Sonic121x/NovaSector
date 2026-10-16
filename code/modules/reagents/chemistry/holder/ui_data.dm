@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/reagents/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -138,7 +138,7 @@
 			to_chat(user, LANG("datum.b70f4a0cb7a86e1f", null))
 			ui_reagent_id = null
 		else
-			data["reagent_mode_reagent"] = list("name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 名字纯显示，同条负载的 id 才是标识符。ORIGINAL: "name" = reagent.name
+			data["reagent_mode_reagent"] = list("name" = lang_localize_display_name(reagent.name), // ZH EDIT - I18N: 名字纯显示，同条负载的 id 才是标识符。ORIGINAL: "name" = reagent.name
 				 "id" = reagent.type, "desc" = reagent.description, "reagentCol" = reagent.color, "pH" = reagent.ph, "pHCol" = convert_ph_to_readable_color(reagent.ph), "metaRate" = reagent.metabolization_rate, "OD" = reagent.overdose_threshold)
 			data["reagent_mode_reagent"]["addictions"] = list()
 			data["reagent_mode_reagent"]["addictions"] = parse_addictions(reagent)
@@ -172,7 +172,7 @@
 		if(!length(reaction.results))
 			has_product = FALSE
 			var/list/names = splittext("[reaction.type]", "/")
-			// NOVA EDIT CHANGE - i18n: 这个显示名是从类型路径末段现切的，源码里没有任何字面量可抽
+			// ZH EDIT CHANGE - i18n: 这个显示名是从类型路径末段现切的，源码里没有任何字面量可抽
 			// （同条负载里的 id 才是标识符）。走域内表 reaction_names.json，不进全局反查表。
 			// ORIGINAL: var/product_name = names[names.len]
 			var/product_name = lang_reaction_name(names[names.len])
@@ -198,7 +198,7 @@
 					ui_reaction_index = i //update our index
 					break
 				i += 1
-			data["reagent_mode_recipe"] = list("name" = lang_localize_display_name(primary_reagent.name), // NOVA EDIT - I18N: 名字纯显示，同条负载的 id 才是标识符。ORIGINAL: "name" = primary_reagent.name
+			data["reagent_mode_recipe"] = list("name" = lang_localize_display_name(primary_reagent.name), // ZH EDIT - I18N: 名字纯显示，同条负载的 id 才是标识符。ORIGINAL: "name" = primary_reagent.name
 				 "id" = reaction.type, "hasProduct" = has_product, "reagentCol" = primary_reagent.color, "thermodynamics" = generate_thermodynamic_profile(reaction), "explosive" = generate_explosive_profile(reaction), "lowerpH" = reaction.optimal_ph_min, "upperpH" = reaction.optimal_ph_max, "thermics" = determine_reaction_thermics(reaction), "thermoUpper" = reaction.rate_up_lim, "minPurity" = reaction.purity_min, "inversePurity" = primary_reagent.inverse_chem_val, "tempMin" = reaction.required_temp, "explodeTemp" = reaction.overheat_temp, "reqContainer" = container_name, "subReactLen" = sub_reaction_length, "subReactIndex" = ui_reaction_index)
 
 		//Results sweep
@@ -294,7 +294,7 @@
 			ui_reaction_id = text2path(params["id"])
 			return TRUE
 		if("search_reagents")
-			// NOVA EDIT ADDITION START - I18N - show localized reagent names in the picker; the chosen display name maps straight back to its type
+			// ZH EDIT ADDITION START - I18N - show localized reagent names in the picker; the chosen display name maps straight back to its type
 			var/list/reagent_choices = GLOB.name2reagent
 			if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 				reagent_choices = list()
@@ -305,7 +305,7 @@
 				return FALSE
 			var/input_type = reagent_choices[input_reagent] || get_reagent_type_from_product_string(input_reagent) //from string to type
 			var/datum/reagent/reagent = GLOB.chemical_reagents_list[input_type]
-			// NOVA EDIT ADDITION END
+			// ZH EDIT ADDITION END
 			if(!reagent)
 				to_chat(usr, LANG("datum.b70f4a0cb7a86e1f", null))
 				return FALSE

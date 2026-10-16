@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/mecha_parts/mecha_equipment/kinetic_dampener
 	name = "Projectile Dampener Module"
 	desc = "An advanced electromagnetic field generator adapted from peaceborg technology. It weakens incoming projectiles within a short radius, reducing their kinetic impact."

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 GAME_VERB(/mob/living/carbon/human, climax_verb, "高潮", "IC")
 	if(!has_status_effect(/datum/status_effect/climax_cooldown))
 		if(tgui_alert(usr, LANG("mob.b5f29a08ed50f940", null), LANG("mob.39f677eb73c61f5a", null), list("Yes", "No")) == "Yes")

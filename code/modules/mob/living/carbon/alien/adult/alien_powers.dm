@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*NOTES:
 These are general powers. Specific powers are stored under the appropriate alien creature type.
 */
@@ -21,7 +21,7 @@ Doesn't work on other aliens/AI.*/
 	. = ..()
 	//not free
 	if(plasma_cost != 0)
-		// NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
+		// ZH EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
 		name = "[lang_reverse_text(initial(name))] ([plasma_cost]P)"
 
 /datum/action/cooldown/alien/IsAvailable(feedback = FALSE)

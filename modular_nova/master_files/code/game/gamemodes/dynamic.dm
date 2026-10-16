@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // A lite version of the intercept, which only sends a paper with goals and a trait report (or a lack thereof)
 /datum/communciations_controller/proc/send_trait_report(greenshift)
 	. = "<b><i>Central Command Status Summary</i></b><hr>"

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/docking_port/mobile
 	name = "shuttle"
 	icon_state = "mobile"
@@ -637,9 +637,9 @@
 				dst = previous
 			else
 				dst = destination
-			. = "[lang_reverse_text("transit towards")] [dst?.name || "unknown location"] ([getTimerStr()])" // NOVA EDIT - I18N: 反查状态前缀（en locale no-op；dst.name 已由 atom 名反查）
+			. = "[lang_reverse_text("transit towards")] [dst?.name || "unknown location"] ([getTimerStr()])" // ZH EDIT - I18N: 反查状态前缀（en locale no-op；dst.name 已由 atom 名反查）
 	else if(mode == SHUTTLE_RECHARGING)
-		return "[docked_at], [lang_reverse_text("recharging")] [getTimerStr()]" // NOVA EDIT - I18N
+		return "[docked_at], [lang_reverse_text("recharging")] [getTimerStr()]" // ZH EDIT - I18N
 	else
 		return docked_at
 

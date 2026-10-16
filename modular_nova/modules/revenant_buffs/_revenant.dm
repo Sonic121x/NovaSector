@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Add a large variety of buffs and extra capabilities to the Revenant meant to make them more roleplay engaging and not just a vehicle for mechanics.
 
 /mob/living/basic/revenant

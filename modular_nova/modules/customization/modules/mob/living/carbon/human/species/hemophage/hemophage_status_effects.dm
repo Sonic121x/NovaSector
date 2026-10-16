@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// How much brute damage their body regenerates per second while using blood regeneration.
 #define BLOOD_REGEN_BRUTE_AMOUNT 2
 /// How much burn damage their body regenerates per second while using blood regeneration.

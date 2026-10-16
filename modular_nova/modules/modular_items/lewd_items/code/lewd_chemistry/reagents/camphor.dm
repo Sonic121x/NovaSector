@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Camphor. Used to reduce libido.
 /// Able to reset one's genital size back to normal upon OD, or alternatively, if the user sets the size and then disables the organ, that size.
 /datum/reagent/drug/aphrodisiac/camphor

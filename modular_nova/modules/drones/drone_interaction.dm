@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Handles general click interactions, including pocket access and drone restrictions.
 /mob/living/basic/drone/proc/handle_click(datum/source, atom/clicked_atom, location, control, params)
 	SIGNAL_HANDLER

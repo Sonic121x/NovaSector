@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define ROUND_START_MUSIC_LIST "strings/round_start_sounds.txt"
 #define SS_TICKER_TRAIT "SS_Ticker"
 
@@ -129,7 +129,7 @@ SUBSYSTEM_DEF(ticker)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
 			to_chat(world, span_notice(LANG("datum.0e8b50d90473490b", list(station_name()))))
-			// NOVA EDIT ADDITION START - I18N - Localized Discord round-start alert
+			// ZH EDIT ADDITION START - I18N - Localized Discord round-start alert
 			if(!discord_alerted)
 				discord_alerted = TRUE // DISCORD SPAM PREVENTION
 				var/alert_role_id = CONFIG_GET(string/game_alert_role_id)
@@ -173,6 +173,12 @@ SUBSYSTEM_DEF(ticker)
 				send_tip_of_the_round(world, selected_tip)
 				tipped = TRUE
 
+			// ZH EDIT ADDITION START - DEFERRED_OFFSTATION - lavaland, ruins and away missions finish loading in the lobby
+			if(timeLeft <= 0 && !SSmapping.offstation_ready())
+				timeLeft = 0
+				SSmapping.announce_offstation_wait()
+				return
+			// ZH EDIT ADDITION END
 			if(timeLeft <= 0)
 				SEND_SIGNAL(src, COMSIG_TICKER_ENTER_SETTING_UP)
 				current_state = GAME_STATE_SETTING_UP
@@ -291,16 +297,16 @@ SUBSYSTEM_DEF(ticker)
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore,SetRoundStart))
 
-	// NOVA EDIT REMOVAL - ADMIN - ORIGINAL: to_chat(world, span_notice(span_bold(LANG("datum.33aeac181bbd8bfb", list(station_name())))))
-	// NOVA EDIT REMOVAL - ADMIN - ORIGINAL: alert_sound_to_playing(sound(SSstation.announcer.get_rand_welcome_sound()))
-	// NOVA EDIT ADDITION START - ADMIN - Localized round-start TTS with a nonverbal cue.
+	// ZH EDIT REMOVAL - ADMIN - ORIGINAL: to_chat(world, span_notice(span_bold(LANG("datum.33aeac181bbd8bfb", list(station_name())))))
+	// ZH EDIT REMOVAL - ADMIN - ORIGINAL: alert_sound_to_playing(sound(SSstation.announcer.get_rand_welcome_sound()))
+	// ZH EDIT ADDITION START - ADMIN - Localized round-start TTS with a nonverbal cue.
 	var/welcome_message = LANG("datum.33aeac181bbd8bfb", list(station_name()))
 	to_chat(world, span_notice(span_bold(welcome_message)))
 	if(tts_queue_global_announcement(welcome_message))
 		alert_sound_to_playing(sound(tts_priority_announcement_cue()))
 	else
 		alert_sound_to_playing(sound(SSstation.announcer.get_rand_welcome_sound()))
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Maximum an Hemophage will drain, they will drain less if they hit their cap.
 #define HEMOPHAGE_DRAIN_AMOUNT 50
 /// The multiplier for blood received by Hemophages out of humans with ckeys.

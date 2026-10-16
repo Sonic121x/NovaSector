@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Element used to specify that a lattice is part of an incomplete shuttle frame
 /datum/element/shuttle_construction_lattice
 	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY

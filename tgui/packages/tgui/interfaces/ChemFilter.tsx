@@ -12,7 +12,7 @@ type Data = {
 
 type Props = {
   title: string;
-  // NOVA EDIT ADDITION - i18n: english act() identifier, decoupled from the auto-localized `title`
+  // ZH EDIT ADDITION - i18n: english act() identifier, decoupled from the auto-localized `title`
   side: string;
   list: string[];
   buttonColor: CssColor;
@@ -21,7 +21,7 @@ type Props = {
 export const ChemFilterPane = (props: Props) => {
   const { act } = useBackend();
   const { title, side, list, buttonColor } = props;
-  // NOVA EDIT CHANGE - i18n - ORIGINAL: const titleKey = title.toLowerCase();
+  // ZH EDIT CHANGE - i18n - ORIGINAL: const titleKey = title.toLowerCase();
   // `title` is auto-localized (e.g. "Right"->"右"), which made `which` non-english and
   // broke the DM `switch(params["which"])` on "left"/"right"; use the english `side` instead.
   const titleKey = side;

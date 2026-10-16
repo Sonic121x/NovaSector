@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define CAN_HEAR_MASTERS (1<<0)
 #define CAN_HEAR_ACTIVE_HOLOCALLS (1<<1)
 #define CAN_HEAR_RECORD_MODE (1<<2)

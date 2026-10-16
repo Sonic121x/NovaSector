@@ -178,7 +178,7 @@ GLOBAL_LIST_EMPTY(startup_messages)
 
 	dat += "</body></html>"
 
-	// NOVA EDIT - i18n: 标题界面经 raw browse()（绕过 browser.dm 的 AC 钩子），在此专项本地化菜单文案
+	// ZH EDIT - i18n: 标题界面经 raw browse()（绕过 browser.dm 的 AC 钩子），在此专项本地化菜单文案
 	// （JOIN GAME/CREW MANIFEST/… 含 JS 切换数组里的 BE ANTAGONIST）。用带 HTML 边界的整词替换、不走全局 AC，
 	// 避免单词(OBSERVE/READY)被 AC 子串误嵌进 OBSERVER/ALREADY。
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)

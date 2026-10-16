@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/doppler_array
 	name = "tachyon-doppler array"
 	desc = "A highly precise directional sensor array which measures the release of quants from decaying tachyons. The doppler shifting of the mirror-image formed by these quants can reveal the size, location and temporal affects of energetic disturbances within a large radius ahead of the array.\n"
@@ -259,7 +259,7 @@
 	data["storage"] = "[inserted_disk?.used_capacity] / [inserted_disk?.max_capacity] GQ"
 	for(var/datum/data/tachyon_record/singular_record in records)
 		var/list/record_data = list(
-			"name" = lang_localize_display_name(singular_record.name), // NOVA EDIT - I18N: 记录名纯显示（选中态只在前端本地比较，同一份列表内一致）。ORIGINAL: "name" = singular_record.name,
+			"name" = lang_localize_display_name(singular_record.name), // ZH EDIT - I18N: 记录名纯显示（选中态只在前端本地比较，同一份列表内一致）。ORIGINAL: "name" = singular_record.name,
 			"timestamp" = singular_record.timestamp,
 			"coordinates" = singular_record.coordinates,
 			"displacement" = singular_record.displacement,

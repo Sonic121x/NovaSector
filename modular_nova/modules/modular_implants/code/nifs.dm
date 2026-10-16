@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define NIF_CALIBRATION_STAGE_1 0
 #define NIF_CALIBRATION_STAGE_1_END  0.1
 #define NIF_CALIBRATION_STAGE_2 0.2

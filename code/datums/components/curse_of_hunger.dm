@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///the point where you can notice the item is hungry on examine.
 #define HUNGER_THRESHOLD_WARNING 25
 ///the point where the item has a chance to eat something on every tick. possibly you!

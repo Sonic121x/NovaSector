@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define HAMMER_FLING_DISTANCE 2
 #define HAMMER_THROW_FLING_DISTANCE 3
 #define BRASS_RIFLE_REDUCED_DELAY 0.25 SECONDS

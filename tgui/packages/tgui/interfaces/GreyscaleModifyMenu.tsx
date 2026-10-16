@@ -227,7 +227,7 @@ const PreviewDisplay = (props) => {
           )}
         </Table.Row>
       </Table>
-      {/* NOVA EDIT CHANGE - I18N: 数值包成占位符，整条按 children 模板
+      {/* ZH EDIT CHANGE - I18N: 数值包成占位符，整条按 children 模板
           `Time Spent: {0}ms` 进目录
           ORIGINAL: {!!data.unlocked && `Time Spent: ${data.sprites.time_spent}ms`} */}
       {!!data.unlocked && (

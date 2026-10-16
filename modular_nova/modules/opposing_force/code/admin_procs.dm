@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(request_more_opfor, R_FUN, "征集 OPFOR 申请", "Request players sign up for opfor if they have antag on.", ADMIN_CATEGORY_FUN)
 	var/asked = 0
 	for(var/mob/living/carbon/human/human in GLOB.alive_player_list)

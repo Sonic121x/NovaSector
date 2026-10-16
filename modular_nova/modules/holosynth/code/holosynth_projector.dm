@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// How far a holosynth can stray from their projector pen
 #define HOLOSYNTH_RANGE 9
 /// Tiles around the pen within which its aura heals.

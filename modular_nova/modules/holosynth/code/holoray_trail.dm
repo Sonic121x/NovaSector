@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Holoray variant that replaces the base class's render-step glow with a
 /// plain emissive appearance. The base glow uses RESET_TRANSFORM + pixel_x/y = 32,
 /// which leaves a phantom un-transformed copy of the ray one tile NE of the

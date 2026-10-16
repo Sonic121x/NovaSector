@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define IMPORTANT_ACTION_COOLDOWN (60 SECONDS)
 #define EMERGENCY_ACCESS_COOLDOWN (30 SECONDS)
 
@@ -702,7 +702,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 										break
 
 					shuttles += list(list(
-						"name" = lang_localize_display_name(shuttle_template.name), // NOVA EDIT - I18N: 纯显示（act 走 shuttle id）。ORIGINAL: "name" = shuttle_template.name,
+						"name" = lang_localize_display_name(shuttle_template.name), // ZH EDIT - I18N: 纯显示（act 走 shuttle id）。ORIGINAL: "name" = shuttle_template.name,
 						"description" = shuttle_template.description,
 						"occupancy_limit" = shuttle_template.occupancy_limit,
 						"creditCost" = shuttle_template.credit_cost,

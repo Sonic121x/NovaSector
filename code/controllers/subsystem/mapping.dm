@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
 	dependencies = list(
@@ -128,6 +128,7 @@ SUBSYSTEM_DEF(mapping)
 	critical_planes = list()
 	create_plane_offsets(0, 0)
 	initialize_biomes()
+	offstation_deferred = nova_should_defer_offstation() // ZH EDIT ADDITION - DEFERRED_OFFSTATION
 	loadWorld()
 	determine_fake_sale()
 	require_area_resort()
@@ -154,13 +155,13 @@ SUBSYSTEM_DEF(mapping)
 			CRASH("Ice wilds failed to load!")
 
 	// Pick a random away mission.
-	if(CONFIG_GET(flag/roundstart_away))
+	if(CONFIG_GET(flag/roundstart_away) && !offstation_deferred) // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: if(CONFIG_GET(flag/roundstart_away))
 		createRandomZlevel(prob(CONFIG_GET(number/config_gateway_chance)))
 
-	else if (SSmapping.current_map.load_all_away_missions) // we're likely in a local testing environment, so punch it.
+	else if (SSmapping.current_map.load_all_away_missions && !offstation_deferred) // we're likely in a local testing environment, so punch it. // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: else if (SSmapping.current_map.load_all_away_missions) // we're likely in a local testing environment, so punch it.
 		load_all_away_missions()
 
-	setup_ruins()
+	setup_ruins(include_lava = !offstation_deferred, include_space = !offstation_deferred) // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: setup_ruins()
 #endif
 
 	// Run map generation after ruin space is reserved, since this space is used for the cave gen.
@@ -258,24 +259,24 @@ SUBSYSTEM_DEF(mapping)
  *
  * Sets up all of the ruins to be spawned
  */
-/datum/controller/subsystem/mapping/proc/setup_ruins()
+/datum/controller/subsystem/mapping/proc/setup_ruins(include_station = TRUE, include_lava = TRUE, include_space = TRUE) // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: /datum/controller/subsystem/mapping/proc/setup_ruins()
 	// Generate mining ruins
 	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
-	if (lava_ruins.len)
+	if (lava_ruins.len && include_lava) // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: if (lava_ruins.len)
 		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), list(/area/lavaland/surface/outdoors/unexplored), themed_ruins[ZTRAIT_LAVA_RUINS], clear_below = TRUE, mineral_budget = 15, mineral_budget_update = OREGEN_PRESET_LAVALAND, ruins_type = ZTRAIT_LAVA_RUINS)
 
 	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
-	if (ice_ruins.len)
+	if (ice_ruins.len && include_station) // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: if (ice_ruins.len)
 		// needs to be whitelisted for underground too so place_below ruins work
 		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/surface/outdoors/unexplored, /area/icemoon/underground/unexplored), themed_ruins[ZTRAIT_ICE_RUINS], clear_below = TRUE, mineral_budget = 4, mineral_budget_update = OREGEN_PRESET_TRIPLE_Z, ruins_type = ZTRAIT_ICE_RUINS)
 
 	var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
-	if (ice_ruins_underground.len)
+	if (ice_ruins_underground.len && include_station) // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: if (ice_ruins_underground.len)
 		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/underground/unexplored), themed_ruins[ZTRAIT_ICE_RUINS_UNDERGROUND], clear_below = TRUE, mineral_budget = 21, ruins_type = ZTRAIT_ICE_RUINS_UNDERGROUND)
 
 	// Generate deep space ruins
 	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
-	if (space_ruins.len)
+	if (space_ruins.len && include_space) // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: if (space_ruins.len)
 		// Create a proportional budget by multiplying the amount of space ruin levels in the current map over the default amount
 		var/proportional_budget = round(CONFIG_GET(number/space_budget) * (space_ruins.len / DEFAULT_SPACE_RUIN_LEVELS))
 		seedRuins(space_ruins, proportional_budget, list(/area/space), themed_ruins[ZTRAIT_SPACE_RUINS], mineral_budget = 0, ruins_type = ZTRAIT_SPACE_RUINS)
@@ -302,17 +303,17 @@ SUBSYSTEM_DEF(mapping)
 
 /// Sets up rivers, and things that behave like rivers. So lava/plasma rivers, and chasms
 /// It is important that this happens AFTER generating mineral walls and such, since we rely on them for river logic
-/datum/controller/subsystem/mapping/proc/setup_rivers()
+/datum/controller/subsystem/mapping/proc/setup_rivers(include_station = TRUE, include_lava = TRUE) // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: /datum/controller/subsystem/mapping/proc/setup_rivers()
 	// Generate mining ruins
-	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
+	var/list/lava_ruins = include_lava ? levels_by_trait(ZTRAIT_LAVA_RUINS) : list() // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
 	for (var/lava_z in lava_ruins)
 		spawn_rivers(lava_z, 3, /turf/open/lava/smooth/lava_land_surface, /area/lavaland/surface/outdoors/unexplored) // +1 from the mapped in waypoint
 
-	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
+	var/list/ice_ruins = include_station ? levels_by_trait(ZTRAIT_ICE_RUINS) : list() // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
 	for (var/ice_z in ice_ruins)
 		spawn_rivers(ice_z, 6, /turf/open/lava/plasma/ice_moon, /area/icemoon/surface/outdoors/unexplored/rivers)
 
-	var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
+	var/list/ice_ruins_underground = include_station ? levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND) : list() // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
 	for (var/ice_z in ice_ruins_underground)
 		spawn_rivers(ice_z, 4, level_trait(ice_z, ZTRAIT_BASETURF), /area/icemoon/underground/unexplored/rivers)
 
@@ -489,9 +490,9 @@ Used by the AI doomsday and the self-destruct nuke.
 
 #ifndef SKIP_LAVALAND
 
-	if(current_map.minetype == MINETYPE_LAVALAND)
+	if(current_map.minetype == MINETYPE_LAVALAND && !offstation_deferred) // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: if(current_map.minetype == MINETYPE_LAVALAND)
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
-	else if (!isnull(current_map.minetype) && current_map.minetype != MINETYPE_NONE && current_map.minetype != MINETYPE_ICE)
+	else if (!isnull(current_map.minetype) && current_map.minetype != MINETYPE_NONE && current_map.minetype != MINETYPE_ICE && current_map.minetype != MINETYPE_LAVALAND) // ZH EDIT CHANGE - DEFERRED_OFFSTATION - ORIGINAL: else if (!isnull(current_map.minetype) && current_map.minetype != MINETYPE_NONE && current_map.minetype != MINETYPE_ICE)
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[current_map.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif
 

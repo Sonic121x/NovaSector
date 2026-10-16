@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/power/manufacturing/lathe // this is a heavily gutted autolathe
 	name = "manufacturing lathe"
 	desc = "Lathes the set recipe until it runs out of resources. Only accepts sheets or other kinds of material stacks."

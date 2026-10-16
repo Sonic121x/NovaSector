@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Because plushes have a second desc var that needs to be updated
 /obj/item/toy/plush/on_loadout_custom_described()
 	normal_desc = desc

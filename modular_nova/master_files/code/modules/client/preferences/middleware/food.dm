@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // To make this system not a massive meta-pick for gamers, while still allowing plenty of room for unique combinations.
 #define MINIMUM_REQUIRED_TOXICS 1
 #define MINIMUM_REQUIRED_DISLIKES 2

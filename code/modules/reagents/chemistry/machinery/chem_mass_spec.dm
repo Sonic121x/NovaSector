@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/chem_mass_spec
 	name = "high-performance liquid chromatography machine"
 	desc = "Allows you to purify reagents & separate out inverse reagents"
@@ -318,7 +318,7 @@
 					log = "Cannot purify above [round(initial_purity * 100)]%"
 
 			beakerContents += list(list(
-				"name" = lang_localize_display_name(target.name), // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = target.name,
+				"name" = lang_localize_display_name(target.name), // ZH EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = target.name,
 				"volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING),
 				"mass" = target.mass,
 				"purity" = round(purity * 100),
@@ -342,7 +342,7 @@
 		var/list/beakerContents = list()
 		for(var/datum/reagent/reagent as anything in beaker_2_reagents.reagent_list)
 			beakerContents += list(list(
-				"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
+				"name" = lang_localize_display_name(reagent.name), // ZH EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
 				"volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING),
 				"mass" = reagent.mass,
 				"purity" = round(reagent.purity * 100),

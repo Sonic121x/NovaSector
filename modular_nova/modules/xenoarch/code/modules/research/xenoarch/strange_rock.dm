@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define DIG_UNDEFINED 	(1<<0) //when the strange rock is dug by an item with no dig depth.
 #define DIG_DELETE 		(1<<1) //when the strange rock is dug too deep and gets destroyed in the process.
 #define DIG_ROCK		(1<<2) //when the strange rock is just dug, with no additional effects.

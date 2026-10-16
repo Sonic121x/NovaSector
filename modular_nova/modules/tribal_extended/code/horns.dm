@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Constants for stamina usage and thresholds for both horn types
 #define BHORN_STAMINA_MINIMUM 11
 #define WHORN_STAMINA_MINIMUM 1

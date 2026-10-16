@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// number of emagged meteor shields to get the first warning, a simple say message
 #define EMAGGED_METEOR_SHIELD_THRESHOLD_ONE 3
 /// number of emagged meteor shields to get the second warning, telling the user an announcement is coming

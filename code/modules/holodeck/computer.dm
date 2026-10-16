@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*
 Map Template Holodeck
 
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	if(my_area)
 		linked.energy_usage = my_area.energy_usage
 	else
-		linked.energy_usage = new /list(AREA_USAGE_LEN) // NOVA EDIT CHANGE - ORIGINAL: linked.energy_usage = list(AREA_USAGE_LEN) - list(7) 造的是「含一个元素 7」的列表而非 7 个槽，之后按电力通道 4-6 索引必然越界（生产每局约 67 条 runtime）
+		linked.energy_usage = new /list(AREA_USAGE_LEN) // ZH EDIT CHANGE - ORIGINAL: linked.energy_usage = list(AREA_USAGE_LEN) - list(7) 造的是「含一个元素 7」的列表而非 7 个槽，之后按电力通道 4-6 索引必然越界（生产每局约 67 条 runtime）
 
 	COOLDOWN_START(src, holodeck_cooldown, HOLODECK_CD)
 	generate_program_list()
@@ -469,7 +469,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	reset_to_default()
 	if(linked)
 		linked.linked = null
-		linked.energy_usage = new /list(AREA_USAGE_LEN) // NOVA EDIT CHANGE - ORIGINAL: linked.energy_usage = list(AREA_USAGE_LEN) - list(7) 造的是「含一个元素 7」的列表而非 7 个槽，之后按电力通道 4-6 索引必然越界（生产每局约 67 条 runtime）
+		linked.energy_usage = new /list(AREA_USAGE_LEN) // ZH EDIT CHANGE - ORIGINAL: linked.energy_usage = list(AREA_USAGE_LEN) - list(7) 造的是「含一个元素 7」的列表而非 7 个槽，之后按电力通道 4-6 索引必然越界（生产每局约 67 条 runtime）
 	return ..()
 
 /obj/machinery/computer/holodeck/blob_act(obj/structure/blob/B)

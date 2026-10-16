@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// "What the fuck was that?!"
 /obj/effect/immovablerod
 	name = "immovable rod"
@@ -210,7 +210,7 @@
 				num_sentient_people_hit++
 			if(dnd_style_level_up)
 				transform = transform.Scale(1.005, 1.005)
-				// NOVA EDIT CHANGE - i18n: initial(name) 会覆盖已反查的中文名；英文字面后缀进 _name_suffixes.json 一并反查
+				// ZH EDIT CHANGE - i18n: initial(name) 会覆盖已反查的中文名；英文字面后缀进 _name_suffixes.json 一并反查
 				name = "[lang_reverse_text(initial(name))] [lang_reverse_text("of sentient slaying +")][num_sentient_mobs_hit]"
 
 	smeared_mob.apply_damage(100, BRUTE, spread_damage = TRUE)

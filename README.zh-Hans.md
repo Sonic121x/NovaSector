@@ -37,14 +37,14 @@ I18N_SERVER_LOCALE zh-Hans
 
 - **机器标识符恒为英文。** act 回传值、`icon_state`、查表键、职位名、ref 一律不翻，只翻显示文本。TGUI 负载值**不做就地改写**，译文经独立 overlay 下发，因此界面回传给服务端的值逐字节不变。
 - **目录 key 是内容哈希**，上游改词只会让受影响的那几条失效，而不会悄悄沿用过期译文。
-- **核心文件改动极少且有标记。** 绝大部分实现在 `modular_nova/modules/i18n/` 与生成的目录里；`code/` 内的改动是 codemod 产出的机械 `LANG()` 调用点。
+- **核心文件改动极少且有标记。** 绝大部分实现在 `modular_zh/modules/i18n/` 与生成的目录里；`code/` 内的改动是 codemod 产出的机械 `LANG()` 调用点。
 
 ## 仓库结构
 
 | 路径 | 内容 |
 | --- | --- |
 | [`strings/i18n/<locale>/`](./strings/i18n) | 译文目录，扁平 JSON，可直接导入 Crowdin / Weblate / Lokalise |
-| [`modular_nova/modules/i18n/`](./modular_nova/modules/i18n/readme.md) | 运行时：`LANG()`、反查、显示边界、落地兜底层 |
+| [`modular_zh/modules/i18n/`](./modular_zh/modules/i18n/readme.md) | 运行时：`LANG()`、反查、显示边界、落地兜底层 |
 | [`tools/i18n/`](./tools/i18n/README.md) | Rust + Node 工具链：抽取、改写、重同步、lint、机器翻译 |
 | [`tgui/packages/tgui/i18n/`](./tgui/packages/tgui) | 前端自动本地化与随包目录 |
 | [`AGENTS.md`](./AGENTS.md) | 架构说明，以及持续记录的本地化陷阱清单 |

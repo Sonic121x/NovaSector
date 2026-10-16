@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///divide the power in the cable net under parent by this to determine the shock damage
 #define ELECTRIC_BUCKLE_SHOCK_STRENGTH_DIVISOR 5000
 ///it will not shock the mob buckled to parent if its required to use a cable to shock and the cable has less than this power availaible

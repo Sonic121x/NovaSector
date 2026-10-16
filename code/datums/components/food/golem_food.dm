@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Component which allows something to be eaten by a golem
 /datum/component/golem_food
 	/// Whether to destroy our item when we eat it
@@ -59,7 +59,7 @@
 /datum/component/golem_food/proc/create_golem_snack(atom/source)
 	golem_snack = new(null)
 	golem_snack.setup(
-		name = source.lang_localize_name_for_display(source.name), // NOVA EDIT - I18N: 纯显示；atom 版守玩家改名。ORIGINAL: name = source.name,
+		name = source.lang_localize_name_for_display(source.name), // ZH EDIT - I18N: 纯显示；atom 版守玩家改名。ORIGINAL: name = source.name,
 		consume_food = consume_on_eat,
 		food_buff = snack_type,
 		owner = parent,

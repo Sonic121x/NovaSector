@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/holosign_creator/privacy
 	name = "personal holosign projector"
 	desc = "A holographic projector which creates privacy barriers to inform people that you are looking for privacy. Right-click to switch between pink (lewd advisory) and grey (privacy)."

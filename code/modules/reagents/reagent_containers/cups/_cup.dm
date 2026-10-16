@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/reagent_containers/cup
 	name = "open container"
 	abstract_type = /obj/item/reagent_containers/cup
@@ -74,7 +74,7 @@
 	. = ..()
 	if(drink_type)
 		var/list/types = bitfield_to_list(drink_type, FOOD_FLAGS)
-		// NOVA EDIT START - I18N: reverse each food type + 顿号 connector (same as edible.dm; types are raw
+		// ZH EDIT START - I18N: reverse each food type + 顿号 connector (same as edible.dm; types are raw
 		// bitflag names lowercased -> reverse via tgui.json food-type entries). ORIGINAL below in else.
 		if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 			var/list/translated_types = list()
@@ -83,7 +83,7 @@
 			. += span_notice(LANG("obj.5d48423d0f93c783", list(english_list(translated_types, and_text = "、", comma_text = "、"))))
 		else
 			. += span_notice(LANG("obj.5d48423d0f93c783", list(LOWER_TEXT(lang_english_list(types)))))
-		// NOVA EDIT END
+		// ZH EDIT END
 	if(can_lid)
 		if(has_lid)
 			. += span_notice(LANG("obj.073663730b652c54", list(!isnull(lid_assembly) ? "with an assembly attached ontop of it" : "")))

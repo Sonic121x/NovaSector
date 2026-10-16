@@ -21,7 +21,7 @@ enum Screen {
 
 type Machine = {
   id: string;
-  /* NOVA EDIT ADDITION - I18N: id 是 act('view') 的回传键、必须保持英文，label 是它的本地化显示副本 */
+  /* ZH EDIT ADDITION - I18N: id 是 act('view') 的回传键、必须保持英文，label 是它的本地化显示副本 */
   label?: string;
   name: string;
   icon: string;
@@ -123,7 +123,7 @@ const MachineScreen = (props: any) => {
         >
           <LabeledList>
             <LabeledList.Item label="Network">{network}</LabeledList.Item>
-            {/* NOVA EDIT CHANGE - I18N - ORIGINAL: <LabeledList.Item label="Network ID">{id}</LabeledList.Item> */}
+            {/* ZH EDIT CHANGE - I18N - ORIGINAL: <LabeledList.Item label="Network ID">{id}</LabeledList.Item> */}
             <LabeledList.Item label="Network ID">
               {label ?? id}
             </LabeledList.Item>
@@ -160,7 +160,7 @@ const MachineList = (props: MachineListProps) => {
   const sortedMachines = useMemo(
     () =>
       machines.filter((machine) =>
-        // NOVA EDIT CHANGE - I18N - 中英文都能搜到 - ORIGINAL: machine.id.toLowerCase().includes(search.toLowerCase()),
+        // ZH EDIT CHANGE - I18N - 中英文都能搜到 - ORIGINAL: machine.id.toLowerCase().includes(search.toLowerCase()),
         `${machine.id} ${machine.label ?? ''}`
           .toLowerCase()
           .includes(search.toLowerCase()),
@@ -204,7 +204,7 @@ const MachineList = (props: MachineListProps) => {
                           className={classes(['tcomms32x32', machine.icon])}
                         />
                       </Stack.Item>
-                      {/* NOVA EDIT CHANGE - I18N - ORIGINAL: <Stack.Item grow>{machine.id}</Stack.Item> */}
+                      {/* ZH EDIT CHANGE - I18N - ORIGINAL: <Stack.Item grow>{machine.id}</Stack.Item> */}
                       <Stack.Item grow>{machine.label ?? machine.id}</Stack.Item>
                     </Stack>
                   </Button>

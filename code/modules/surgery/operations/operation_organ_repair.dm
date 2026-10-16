@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Repairing specific organs
 /datum/surgery_operation/organ/repair
 	abstract_type = /datum/surgery_operation/organ/repair
@@ -20,7 +20,7 @@
 	if(operation_flags & OPERATION_LOOPING)
 		repeatable = TRUE // if it's looping it would necessitate being repeatable
 	if(!repeatable)
-		desc += " This procedure can only be performed once per organ." // NOVA EDIT NOTE - I18N: this suffix breaks exact reverse; localized at the operating_computer 落地点 via lang_reverse_suffixed (New() runs before i18n_cache, can't reverse here).
+		desc += " This procedure can only be performed once per organ." // ZH EDIT NOTE - I18N: this suffix breaks exact reverse; localized at the operating_computer 落地点 via lang_reverse_suffixed (New() runs before i18n_cache, can't reverse here).
 
 /datum/surgery_operation/organ/repair/state_check(obj/item/organ/organ)
 	if(organ.damage < (organ.maxHealth * heal_to_percent) || (!repeatable && HAS_TRAIT(organ, TRAIT_ORGAN_OPERATED_ON)))

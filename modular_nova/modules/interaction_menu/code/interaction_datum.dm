@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		message_admins("Deprecated message handling for '[html_encode(name)]'. Correct format is a list with one entry. This message will only show once.")
 		message = list(message)
 	var/msg = pick(message)
-	msg = lang_reverse_text(msg) // NOVA EDIT - I18N: reverse the raw message template (with %USER%/%TARGET% tokens) before substitution; templates extracted to `interactions` namespace. locale==en no-op.
+	msg = lang_reverse_text(msg) // ZH EDIT - I18N: reverse the raw message template (with %USER%/%TARGET% tokens) before substitution; templates extracted to `interactions` namespace. locale==en no-op.
 	// We replace %USER% with nothing because manual_emote already prepends it.
 	msg = trim(replacetext(replacetext(msg, "%TARGET%", "[target]"), "%USER%", ""), INTERACTION_MAX_CHAR)
 	msg = replacetext(replacetext(msg, "%TARGET_PRONOUN_THEIR%", target.p_their()), "%TARGET_PRONOUN_THEIRS%", target.p_theirs())
@@ -122,7 +122,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 
 	if(user_messages.len)
 		var/user_msg = pick(user_messages)
-		user_msg = lang_reverse_text(user_msg) // NOVA EDIT - I18N: reverse template before substitution (see above)
+		user_msg = lang_reverse_text(user_msg) // ZH EDIT - I18N: reverse template before substitution (see above)
 		user_msg = replacetext(replacetext(user_msg, "%TARGET%", "[target]"), "%USER%", "[user]")
 		user_msg = replacetext(replacetext(user_msg, "%TARGET_PRONOUN_THEIR%", target.p_their()), "%TARGET_PRONOUN_THEIRS%", target.p_theirs())
 		user_msg = replacetext(replacetext(user_msg, "%USER_PRONOUN_THEIR%", user.p_their()), "%USER_PRONOUN_THEIRS%", user.p_theirs())
@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 
 	if(target_messages.len)
 		var/target_msg = pick(target_messages)
-		target_msg = lang_reverse_text(target_msg) // NOVA EDIT - I18N: reverse template before substitution (see above)
+		target_msg = lang_reverse_text(target_msg) // ZH EDIT - I18N: reverse template before substitution (see above)
 		target_msg = replacetext(replacetext(target_msg, "%TARGET%", "[target]"), "%USER%", "[user]")
 		target_msg = replacetext(replacetext(target_msg, "%TARGET_PRONOUN_THEIR%", target.p_their()), "%TARGET_PRONOUN_THEIRS%", target.p_theirs())
 		target_msg = replacetext(replacetext(target_msg, "%USER_PRONOUN_THEIR%", user.p_their()), "%USER_PRONOUN_THEIRS%", user.p_theirs())

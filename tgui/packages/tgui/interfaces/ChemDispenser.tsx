@@ -17,7 +17,7 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 import { createSearch, toTitleCase } from 'tgui-core/string';
 import { useBackend, useSharedState } from '../backend';
-import { translateCurrent } from '../i18n/catalog'; // NOVA EDIT - I18N
+import { translateCurrent } from '../i18n/catalog'; // ZH EDIT - I18N
 import { Window } from '../layouts';
 import { type Beaker, BeakerDisplay } from './common/BeakerDisplay';
 import { bitflagInfo } from './Reagents/types';
@@ -30,7 +30,7 @@ enum DropdownState {
 
 type DispensableReagent = {
   title: string;
-  display_title?: string; // NOVA EDIT - I18N: translated display; `title` stays english for matching
+  display_title?: string; // ZH EDIT - I18N: translated display; `title` stays english for matching
   id: string;
   pH: number;
   color: string;
@@ -46,7 +46,7 @@ type ReagentTypepath = string;
 
 type ReactionComponent = {
   name: string;
-  display_name?: string; // NOVA EDIT - I18N: translated display name; `name` stays english for matching
+  display_name?: string; // ZH EDIT - I18N: translated display name; `name` stays english for matching
   amount: number;
   id: ReagentTypepath;
 };
@@ -61,7 +61,7 @@ type Reaction = {
   required_reagents: ReactionComponent[];
   required_catalysts: ReactionComponent[];
   description: string;
-  display_name?: string; // NOVA EDIT - I18N: translated display name; the reaction_list key stays english for pin/search/match
+  display_name?: string; // ZH EDIT - I18N: translated display name; the reaction_list key stays english for pin/search/match
   color: string; // hex
 };
 
@@ -509,7 +509,7 @@ const ReagentDispenseButton = (props: ReagentDispenseButtonProps) => {
         }}
       >
         {prefix}
-        {/* NOVA EDIT - I18N: show translated title, keep chemical.title for matching */}
+        {/* ZH EDIT - I18N: show translated title, keep chemical.title for matching */}
         {chemical.display_title || chemical.title}
       </span>
     </Button>
@@ -646,7 +646,7 @@ const ReactionDisplay = (props: ReactionDisplayProps) => {
                     overflow: 'hidden',
                   }}
                 >
-                  {/* NOVA EDIT - I18N: display translated name, keep reaction.name for pin/search/match */}
+                  {/* ZH EDIT - I18N: display translated name, keep reaction.name for pin/search/match */}
                   {reaction.reaction.display_name || reaction.name}
                 </Stack.Item>
                 <Stack.Item
@@ -680,7 +680,7 @@ const ReactionDisplay = (props: ReactionDisplayProps) => {
 // if lower and upper are <300, return "cool to between X and Y degrees"
 // if lower is <300 and upper is >300, return "keep between X and Y degrees"
 function getTemperatureMessage(lower: number, upper: number): string {
-  // NOVA EDIT - I18N: localize the static phrase (numbers stay); phrases added to tgui.json
+  // ZH EDIT - I18N: localize the static phrase (numbers stay); phrases added to tgui.json
   if (lower === upper) {
     return `${translateCurrent('Forms at')} ${lower}°K`;
   } else if (lower > 300 && upper > 300) {
@@ -695,7 +695,7 @@ function getTemperatureMessage(lower: number, upper: number): string {
 // if lower and upper are the same, return "keep at pH X"
 // else return "keep between pH X and Y"
 function getPHMessage(lower: number, upper: number): string {
-  // NOVA EDIT - I18N
+  // ZH EDIT - I18N
   if (lower === upper) {
     return `${translateCurrent('Keep at pH')} ${lower}`;
   } else {
@@ -754,7 +754,7 @@ const ReactionComponentDisplay = (props: ReactionComponentDisplayProps) => {
   if (!foundRecipe)
     return (
       <Button fluid ellipsis disabled icon="question">
-        {/* NOVA EDIT - I18N: display translated name, keep `name` for matching */}
+        {/* ZH EDIT - I18N: display translated name, keep `name` for matching */}
         {formatReagentName(
           reagentComponent.amount,
           reagentComponent.display_name || reagentComponent.name,
@@ -822,7 +822,7 @@ const ReactionComponentDisplay = (props: ReactionComponentDisplayProps) => {
       }
     >
       <Button icon="book" fluid ellipsis backgroundColor="default">
-        {/* NOVA EDIT - I18N: display translated name, keep `name` for matching */}
+        {/* ZH EDIT - I18N: display translated name, keep `name` for matching */}
         {formatReagentName(
           reagentComponent.amount,
           reagentComponent.display_name || reagentComponent.name,
@@ -833,7 +833,7 @@ const ReactionComponentDisplay = (props: ReactionComponentDisplayProps) => {
 };
 
 function formatReagentName(amount: number, name?: string) {
-  // NOVA EDIT - I18N: localize the "part"/"parts" unit word (added to tgui.json)
+  // ZH EDIT - I18N: localize the "part"/"parts" unit word (added to tgui.json)
   const partWord = translateCurrent(amount === 1 ? 'part' : 'parts');
   if (!name) return `${amount} ${partWord} `;
 

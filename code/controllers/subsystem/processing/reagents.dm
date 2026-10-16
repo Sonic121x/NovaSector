@@ -27,7 +27,7 @@ PROCESSING_SUBSYSTEM_DEF(reagents)
 				if(reaction_list)
 					reaction_list -= reaction_datum
 	// NOVA EDIT ADDITION END
-	// NOVA EDIT ADDITION START - i18n - 母版试剂表（GLOB.chemical_reagents_list）是 GLOBAL_LIST_INIT，
+	// ZH EDIT ADDITION START - i18n - 母版试剂表（GLOB.chemical_reagents_list）是 GLOBAL_LIST_INIT，
 	// 早于 i18n_cache（modular 文件在 .dme 靠后）→ /datum/reagent/New() 的反查在母版实例上空转（名字
 	// 留英文），而游戏中期创建的实例是中文 → 分配器按钮单词名英文/烧杯内容中文的割裂。SS Init 期补一遍
 	//（与气体 SSair 反查 meta_gas_info 同款；lang_reverse_text 幂等，已译过的原样跳过）。
@@ -39,7 +39,7 @@ PROCESSING_SUBSYSTEM_DEF(reagents)
 			master_reagent.name = lang_reverse_text(master_reagent.name)
 			master_reagent.description = lang_reverse_text(master_reagent.description)
 			master_reagent.taste_description = lang_reverse_text(master_reagent.taste_description)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/processing/reagents/fire(resumed = FALSE)

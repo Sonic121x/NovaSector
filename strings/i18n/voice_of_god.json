@@ -2,7 +2,7 @@
 	"_comment": [
 		"神之声（/datum/voice_of_god_command）本地化触发词。key = DM 源里 trigger 的**初值原文**（正则片段，",
 		"JSON 里反斜杠需转义为 \\\\），value = 追加了本地化别名的完整正则。运行时由 lang_vog_trigger()",
-		"（modular_nova/modules/i18n/code/runtime.dm）在 New() 里替换，locale==en 时整体 no-op。",
+		"（modular_zh/modules/i18n/code/runtime.dm）在 New() 里替换，locale==en 时整体 no-op。",
 		"",
 		"**刻意不放在 strings/i18n/<locale>/ 下**：那个目录会被 build_i18n_cache 全量并入反查表，而这里的",
 		"key 有 'run'/'sit'/'stand'/'jump' 这类裸单词，进反查表会把任何整串等于它们的显示文本替换成正则，",

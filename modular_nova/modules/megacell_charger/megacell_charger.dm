@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // STANDARD_BATTERY_RATE (STANDARD_BATTERY_VALUE WATTS) // 1 MW
 // code\__DEFINES\power.dm
 // Adds a cell charger specifically for handling megacells. We have an aesthetic overwrite for normal cells on the original code, leaving the original sprites up for grabs from the rsc.

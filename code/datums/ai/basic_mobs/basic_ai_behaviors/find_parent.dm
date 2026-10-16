@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Looks around for a nearby adult of one of BB_FIND_MOM_TYPES (skipping BB_IGNORE_MOM_TYPES) and stores it.
 /datum/bt_node/ai_behavior/find_mom
 	time_between_perform = 2 SECONDS

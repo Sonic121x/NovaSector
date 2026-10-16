@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*
  *	Device to let water breathers breathe. TRAIT_WET_FOR_LONGER is required for it to actually function
  *	Because this is a Cerulean device, after all, intended to be used on fish scales

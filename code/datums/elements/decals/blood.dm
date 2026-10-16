@@ -62,7 +62,7 @@
 	if(istype(blood_type))
 		blood_descriptor = LOWER_TEXT(blood_type.get_blood_name())
 
-	override[EXAMINE_POSITION_BEFORE] = lang_reverse_text("[blood_descriptor]-stained") // NOVA EDIT CHANGE - I18N - 前缀经 _state_words 反查（"blood-stained"→染血的）；en no-op。ORIGINAL: override[EXAMINE_POSITION_BEFORE] = "[blood_descriptor]-stained"
+	override[EXAMINE_POSITION_BEFORE] = lang_reverse_text("[blood_descriptor]-stained") // ZH EDIT CHANGE - I18N - 前缀经 _state_words 反查（"blood-stained"→染血的）；en no-op。ORIGINAL: override[EXAMINE_POSITION_BEFORE] = "[blood_descriptor]-stained"
 
 /datum/element/decal/blood/proc/on_color_update(obj/item/source, color_updated)
 	SIGNAL_HANDLER

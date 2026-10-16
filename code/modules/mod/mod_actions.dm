@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/action/item_action/mod
 	background_icon_state = "bg_mod"
 	overlay_icon_state = "bg_mod_border"
@@ -157,7 +157,7 @@
 	if(linked_module.allow_flags & MODULE_ALLOW_INCAPACITATED)
 		// clears check hands and check conscious
 		check_flags = NONE
-	name = LANG("datum.cc60b34c8bec228a", list(linked_module)) // NOVA EDIT CHANGE - I18N - ORIGINAL: name = "Activate [capitalize(linked_module.name)]"
+	name = LANG("datum.cc60b34c8bec228a", list(linked_module)) // ZH EDIT CHANGE - I18N - ORIGINAL: name = "Activate [capitalize(linked_module.name)]"
 	desc = LANG("datum.577f2905a3351bec", list(linked_module))
 	RegisterSignals(linked_module, list(
 		COMSIG_MODULE_ACTIVATED,

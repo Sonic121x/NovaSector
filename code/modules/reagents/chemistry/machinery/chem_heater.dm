@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/chem_heater
 	name = "reaction chamber" //Maybe this name is more accurate?
 	density = TRUE
@@ -222,7 +222,7 @@
 		var/list/beakerContents = list()
 		if(length(beaker.reagents.reagent_list))
 			for(var/datum/reagent/reagent in beaker.reagents.reagent_list)
-				beakerContents += list(list("name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // list in a list because Byond merges the first list... // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name
+				beakerContents += list(list("name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // list in a list because Byond merges the first list... // ZH EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name
 		beaker_data["contents"] = beakerContents
 		chem_temp = beaker.reagents.chem_temp
 	.["beaker"] = beaker_data
@@ -259,7 +259,7 @@
 
 		//create ui data
 		active_reactions += list(list(
-			"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
+			"name" = lang_localize_display_name(reagent.name), // ZH EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
 			"danger" = danger,
 			"overheat" = overheat,
 			"purityAlert" = purity_alert,

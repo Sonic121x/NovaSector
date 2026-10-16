@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///The selected target is not trackable
 #define RADAR_NOT_TRACKABLE 0
 ///The selected target is trackable
@@ -359,7 +359,7 @@
 	for(var/obj/machinery/nuclearbomb/nuke as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb))
 		var/list/nuke_info = list(
 			ref = REF(nuke),
-			name = nuke.lang_localize_name_for_display(nuke.name), // NOVA EDIT - I18N: 纯显示；atom 版守玩家改名。ORIGINAL: name = nuke.name,
+			name = nuke.lang_localize_name_for_display(nuke.name), // ZH EDIT - I18N: 纯显示；atom 版守玩家改名。ORIGINAL: name = nuke.name,
 			)
 		objects += list(nuke_info)
 

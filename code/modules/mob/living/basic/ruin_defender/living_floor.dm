@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/ai_controller/basic_controller/living_floor
 	max_target_distance = 2
 	behavior_tree_json = "code/modules/mob/living/basic/ruin_defender/living_floor.bt.json"

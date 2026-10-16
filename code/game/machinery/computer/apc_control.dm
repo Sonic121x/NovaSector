@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/computer/apc_control
 	name = "power flow control console"
 	desc = "Used to remotely control the flow of power to different parts of the station."
@@ -130,7 +130,7 @@
 		if(check_apc(apc))
 			var/has_cell = (apc.cell) ? TRUE : FALSE
 			data["apcs"] += list(list(
-					"name" = lang_localize_display_name(apc.area.name), // NOVA EDIT - I18N: 区域名纯显示（act 走 ref）。ORIGINAL: "name" = apc.area.name,
+					"name" = lang_localize_display_name(apc.area.name), // ZH EDIT - I18N: 区域名纯显示（act 走 ref）。ORIGINAL: "name" = apc.area.name,
 					"operating" = apc.operating,
 					"charge" = (has_cell) ? apc.cell.percent() : "NOCELL",
 					"load" = display_power(apc.lastused_total),

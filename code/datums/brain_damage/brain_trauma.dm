@@ -50,7 +50,7 @@
 /datum/brain_trauma/proc/on_gain()
 	SHOULD_CALL_PARENT(TRUE)
 	if(gain_text)
-		to_chat(owner, lang_localize_chat_sentence(gain_text)) // NOVA EDIT - I18N - integral reverse the whole gain message instead of letting chat AC fragment it - ORIGINAL: to_chat(owner, gain_text)
+		to_chat(owner, lang_localize_chat_sentence(gain_text)) // ZH EDIT - I18N - integral reverse the whole gain message instead of letting chat AC fragment it - ORIGINAL: to_chat(owner, gain_text)
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 	return TRUE

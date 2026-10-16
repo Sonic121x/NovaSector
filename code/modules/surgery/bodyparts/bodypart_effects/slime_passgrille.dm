@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Gives PASSGRILLE so long as all of the bodyparts are slime (and some other conditions)
 /datum/status_effect/grouped/bodypart_effect/slime_passgrille
 	id = "slime_passgrille"

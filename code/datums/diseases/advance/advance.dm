@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*
 
 	Advance Disease is a system for medical to Engineer their own disease with symptoms that have effects and properties
@@ -262,7 +262,7 @@
 		if(DISEASE_SPREAD_AIRBORNE)
 			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_AIRBORNE)
 			spread_text = "Respiration"
-	// NOVA EDIT ADDITION - I18N: 这些赋值发生在 New() 的反查之后（set_spread 由 Refresh 调用），
+	// ZH EDIT ADDITION - I18N: 这些赋值发生在 New() 的反查之后（set_spread 由 Refresh 调用），
 	// 所以要在收尾处再反查一次；lang_reverse_text 对已是中文的值是 no-op，重复调用安全。
 	spread_text = lang_reverse_text(spread_text)
 

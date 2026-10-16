@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MAX_TRANSIT_REQUEST_RETRIES 10
 /// How many turfs to allow before we stop blocking transit requests
 #define MAX_TRANSIT_TILE_COUNT (150 ** 2)
@@ -176,7 +176,7 @@ SUBSYSTEM_DEF(shuttle)
 			continue
 
 		//Adds access requirements to the end of each description.
-		// NOVA EDIT START - I18N: this mutates pack.desc by appending the access suffix → runtime desc =
+		// ZH EDIT START - I18N: this mutates pack.desc by appending the access suffix → runtime desc =
 		// "base catalog key + suffix", so a UI 落地点 exact-reverse misses (货物名翻了、描述不翻即此).
 		// i18n_cache 是 GLOBAL_LIST_INIT、早于 SS Initialize 已就绪 → 在此反查 base desc + 用「模板按值
 		// 反查再填充」本地化后缀（access 区域名也反查）。locale==en 时 lang_reverse_text 原样返回 = 零行为变化。
@@ -195,7 +195,7 @@ SUBSYSTEM_DEF(shuttle)
 		else if(pack.access_view)
 			// ORIGINAL: pack.desc += " Requires [SSid_access.get_access_desc(pack.access_view)] access to purchase."
 			pack.desc += replacetext(lang_reverse_text(" Requires {0} access to purchase."), "{0}", lang_reverse_text(SSid_access.get_access_desc(pack.access_view)))
-		// NOVA EDIT END
+		// ZH EDIT END
 
 		supply_packs[pack.id] = pack
 

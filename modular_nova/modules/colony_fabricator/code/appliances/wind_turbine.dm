@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/power/colony_wind_turbine
 	name = "miniature wind turbine"
 	desc = "A post with two special-designed vertical turbine blades attached to its sides. \

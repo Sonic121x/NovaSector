@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/vehicle/sealed/mecha/solfed/hermes
 	desc = "A lightweight recon unit optimized for stealth and sabotage. Outfitted with advanced sensors and cloaking tech, it excels in infiltration and electronic disruption."
 	name = "\improper MLR-2498G \"Hermes\""

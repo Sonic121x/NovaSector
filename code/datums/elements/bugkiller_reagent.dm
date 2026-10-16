@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Simple element to be applied to reagents
 /// When those reagents are exposed to mobs with the bug biotype, causes toxins damage
 /// If this delivers the killing blow on a non-humanoid mob, it applies a special status effect that does a funny animation

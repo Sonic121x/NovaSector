@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //Antag modules for MODsuits
 
 ///Energy Shield - Gives you a rechargeable energy shield that nullifies attacks.
@@ -350,8 +350,8 @@
 	RegisterSignal(mod, COMSIG_MOD_ACTIVATE, PROC_REF(return_look))
 
 /obj/item/mod/module/chameleon/proc/return_look()
-	mod.name = "[lang_reverse_text(mod.theme.name)] [initial(mod.name)]" // NOVA EDIT CHANGE - I18N - ORIGINAL: mod.name = "[mod.theme.name] [initial(mod.name)]"
-	mod.desc = "[initial(mod.desc)] [lang_reverse_text(mod.theme.desc)]" // NOVA EDIT CHANGE - I18N - ORIGINAL: mod.desc = "[initial(mod.desc)] [mod.theme.desc]"
+	mod.name = "[lang_reverse_text(mod.theme.name)] [initial(mod.name)]" // ZH EDIT CHANGE - I18N - ORIGINAL: mod.name = "[mod.theme.name] [initial(mod.name)]"
+	mod.desc = "[initial(mod.desc)] [lang_reverse_text(mod.theme.desc)]" // ZH EDIT CHANGE - I18N - ORIGINAL: mod.desc = "[initial(mod.desc)] [mod.theme.desc]"
 	mod.icon_state = "[mod.skin]-[initial(mod.icon_state)]"
 	var/list/mod_skin = mod.theme.variants[mod.skin]
 	mod.icon = mod_skin[MOD_ICON_OVERRIDE] || 'icons/obj/clothing/modsuit/mod_clothing.dmi'

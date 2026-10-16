@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Lets an admin activate the delam suppression system
 ADMIN_VERB(try_stop_delam, R_ADMIN, "解离紧急停止", "Activate the delam suppression system.", ADMIN_CATEGORY_EVENTS)
 	var/obj/machinery/atmospherics/components/unary/delam_scram/suppression_system = null

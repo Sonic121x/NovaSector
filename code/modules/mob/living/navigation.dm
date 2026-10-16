@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MAX_NAVIGATE_RANGE 125
 
 /mob/living
@@ -32,19 +32,19 @@ GAME_VERB_HIDDEN(/mob/living, navigate, "导航")
 	for(var/atom/destination as anything in GLOB.navigate_destinations)
 		if(get_dist(destination, src) > MAX_NAVIGATE_RANGE)
 			continue
-		// NOVA EDIT CHANGE - I18N - full reverse here: P1 (lang_reverse_phrase_tgui) skips any name in the tgui-catalog set, which wrongly leaves common area names (Bar/Kitchen/Chapel...) english even though they ARE in _map_names. Key the list by the localized name so the tgui_input_list display/return round-trips. - ORIGINAL: var/destination_name = GLOB.navigate_destinations[destination]
+		// ZH EDIT CHANGE - I18N - full reverse here: P1 (lang_reverse_phrase_tgui) skips any name in the tgui-catalog set, which wrongly leaves common area names (Bar/Kitchen/Chapel...) english even though they ARE in _map_names. Key the list by the localized name so the tgui_input_list display/return round-trips. - ORIGINAL: var/destination_name = GLOB.navigate_destinations[destination]
 		var/destination_name = lang_reverse_text(GLOB.navigate_destinations[destination])
 		if(destination.z != z && is_multi_z_level(z)) // up or down is just a good indicator "we're on the station", we don't need to check specifics
-			destination_name += " " + lang_reverse_text((get_dir_multiz(src, destination) & UP) ? "(Above)" : "(Below)") // NOVA EDIT CHANGE - I18N: localize the z-level suffix (was hardcoded English, appended after the name reverse) - ORIGINAL: destination_name += ((get_dir_multiz(src, destination) & UP) ? " (Above)" : " (Below)")
+			destination_name += " " + lang_reverse_text((get_dir_multiz(src, destination) & UP) ? "(Above)" : "(Below)") // ZH EDIT CHANGE - I18N: localize the z-level suffix (was hardcoded English, appended after the name reverse) - ORIGINAL: destination_name += ((get_dir_multiz(src, destination) & UP) ? " (Above)" : " (Below)")
 
 		destination_list[destination_name] = destination
 
 	var/can_go_down = SSmapping.level_trait(z, ZTRAIT_DOWN)
 	var/can_go_up = SSmapping.level_trait(z, ZTRAIT_UP)
 	if(can_go_down)
-		destination_list[lang_reverse_text("Nearest Way Down")] = DOWN // NOVA EDIT - I18N
+		destination_list[lang_reverse_text("Nearest Way Down")] = DOWN // ZH EDIT - I18N
 	if(can_go_up)
-		destination_list[lang_reverse_text("Nearest Way Up")] = UP // NOVA EDIT - I18N
+		destination_list[lang_reverse_text("Nearest Way Up")] = UP // ZH EDIT - I18N
 
 	if(!length(destination_list))
 		balloon_alert(src, LANG("mob.f7ee8e03680eeb5b", null))

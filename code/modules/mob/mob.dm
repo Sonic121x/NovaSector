@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * Delete a mob
  *
@@ -225,7 +225,7 @@ GAME_VERB_PROC(/mob, Cell, "电池", "Admin")
 /**
  * Show a message to this mob (visual or audible)
  */
-/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlighting = FALSE, skip_i18n_fallback = FALSE)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2). NOVA EDIT: skip_i18n_fallback opts player speech out of the chat AC fallback.
+/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlighting = FALSE, skip_i18n_fallback = FALSE)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2). ZH EDIT: skip_i18n_fallback opts player speech out of the chat AC fallback.
 	if(!client)
 		return FALSE
 
@@ -256,7 +256,7 @@ GAME_VERB_PROC(/mob, Cell, "电池", "Admin")
 		if(type & MSG_AUDIBLE) //audio
 			to_chat(src, LANG("mob.2919bfef93eef36a", null))
 		return FALSE
-	to_chat(src, msg, avoid_highlighting = avoid_highlighting, skip_i18n_fallback = (skip_i18n_fallback && .)) // NOVA EDIT - i18n - only skip the AC for the original (player-speech) msg, not the deaf/blind alt fallback (. is FALSE when we swapped to alt_msg)
+	to_chat(src, msg, avoid_highlighting = avoid_highlighting, skip_i18n_fallback = (skip_i18n_fallback && .)) // ZH EDIT - i18n - only skip the AC for the original (player-speech) msg, not the deaf/blind alt fallback (. is FALSE when we swapped to alt_msg)
 	return .
 
 /**
@@ -593,7 +593,7 @@ GAME_VERB_CONTEXT(/mob, examinate, "检查", "", null, /atom)
 		if(force_examinate_more || (examine_time && (world.time - examine_time < EXAMINE_MORE_WINDOW) && !removes_double_click))
 			var/list/result = examinify.examine_more(src)
 			if(!length(result))
-				result += span_notice(LANG("mob.exm_nothing", list(examinify))) // NOVA EDIT - i18n - ORIGINAL: result += span_notice("<i>You examine [examinify] closer, but find nothing of interest...</i>")
+				result += span_notice(LANG("mob.exm_nothing", list(examinify))) // ZH EDIT - i18n - ORIGINAL: result += span_notice("<i>You examine [examinify] closer, but find nothing of interest...</i>")
 			result_combined = boxed_message(jointext(result, "<br>"))
 			result_combined = replacetext(result_combined, "<hr><br>", "<hr>") // NOVA EDIT ADDITION - bit of a hack here to make sure we don't get linebreaks coming after headers
 
@@ -611,7 +611,7 @@ GAME_VERB_CONTEXT(/mob, examinate, "检查", "", null, /atom)
 		if (length(overrides))
 			result = overrides[max(overrides)]
 		if(removes_double_click)
-			result += span_notice(LANG("mob.exm_closer", list(REF(src), REF(examinify), examinify))) // NOVA EDIT - i18n - ORIGINAL: result += span_notice("<i>You can <a href=byond://?src=[REF(src)];run_examinate=[REF(examinify)]>examine</a> [examinify] closer...</i>")
+			result += span_notice(LANG("mob.exm_closer", list(REF(src), REF(examinify), examinify))) // ZH EDIT - i18n - ORIGINAL: result += span_notice("<i>You can <a href=byond://?src=[REF(src)];run_examinate=[REF(examinify)]>examine</a> [examinify] closer...</i>")
 		result_combined = (atom_title ? fieldset_block("[atom_title][ismob(examinify) ? "!" :"."]", jointext(result, "<br>"), "boxed_message") : boxed_message(jointext(result, "<br>"))) // NOVA EDIT CHANGE - ORIGINAL: result_combined = (atom_title ? fieldset_block("[atom_title].", jointext(result, "<br>"), "boxed_message") : boxed_message(jointext(result, "<br>")))
 		result_combined = replacetext(result_combined, "<hr><br>", "<hr>") // NOVA EDIT ADDITION - bit of a hack here to make sure we don't get linebreaks coming after headers
 
@@ -1689,7 +1689,7 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	for(var/memory_key in user?.mind.memories)
 		var/datum/memory/memory = user.mind.memories[memory_key]
-		memories += list(list("name" = lang_localize_display_name(memory.name), "quality" = memory.story_value)) // NOVA EDIT - I18N: 记忆名纯显示。ORIGINAL: "name" = memory.name
+		memories += list(list("name" = lang_localize_display_name(memory.name), "quality" = memory.story_value)) // ZH EDIT - I18N: 记忆名纯显示。ORIGINAL: "name" = memory.name
 
 	data["memories"] = memories
 	return data

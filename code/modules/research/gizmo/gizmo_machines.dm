@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Science object that behaves similairly to to strange objects/relics, but is activated by cracking wire sequences and other functions
 /obj/machinery/gizmo
 	name = "gizmo"
@@ -27,7 +27,7 @@
 /obj/machinery/gizmo/Initialize(mapload)
 	. = ..()
 
-	name = lang_reverse_text(pick(possible_names)) // NOVA EDIT CHANGE - i18n - name 在 ..() 之后赋值（atom Initialize 反查钩子已跑过）→ 显式反查随机名（en locale no-op；词表见 strings/i18n/*/_gizmo_names.json）- ORIGINAL: name = pick(possible_names)
+	name = lang_reverse_text(pick(possible_names)) // ZH EDIT CHANGE - i18n - name 在 ..() 之后赋值（atom Initialize 反查钩子已跑过）→ 显式反查随机名（en locale no-op；词表见 strings/i18n/*/_gizmo_names.json）- ORIGINAL: name = pick(possible_names)
 
 	if(icon_states)
 		base_icon_state = pick(icon_states)

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #ifndef DISABLE_DREAMLUAU
 /datum/lua_editor
 	var/datum/lua_state/current_state
@@ -288,5 +288,5 @@ ADMIN_VERB(lua_editor, R_DEBUG, "打开 Lua 编辑器", "Its codin' time.", ADMI
 	var/datum/lua_editor/editor = new
 	editor.ui_interact(user.mob)
 #else
-	to_chat(user, span_warning(LANG("datum.lua_disabled", null)), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE) // NOVA EDIT CHANGE - i18n: stable manual key survives builds where this branch is preprocessed out. ORIGINAL: to_chat(user, span_warning(LANG("datum.dbad1e8826e3e08e", null)), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE)
+	to_chat(user, span_warning(LANG("datum.lua_disabled", null)), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE) // ZH EDIT CHANGE - i18n: stable manual key survives builds where this branch is preprocessed out. ORIGINAL: to_chat(user, span_warning(LANG("datum.dbad1e8826e3e08e", null)), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE)
 #endif

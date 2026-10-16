@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Gag-Related Text
 #define DEPHELMET_GAGGED_TEXT span_purple("Something is gagging your mouth! You can barely make a sound...")
 #define DEPHELMET_UNGAGGED_TEXT span_purple("Your mouth is free. You breathe out with relief.")

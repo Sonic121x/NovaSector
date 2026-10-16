@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Multipilier to the fishing weights of anything that's not a fish nor a dud
 /// for the magnet hook.
 #define MAGNET_HOOK_BONUS_MULTIPLIER 5

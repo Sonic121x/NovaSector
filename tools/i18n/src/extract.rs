@@ -3370,7 +3370,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                     }
                 }
                 // 注意匹配的是**宏展开后**的名字：LANG/LANGU 是 `#define`
-                // （code/__DEFINES/~nova_defines/i18n.dm），SpacemanDMM 的预处理器在建 AST
+                // （code/__DEFINES/~zh_defines/i18n.dm），SpacemanDMM 的预处理器在建 AST
                 // 之前就把它们展开成 lang_format/lang_format_for 了，AST 里根本没有 "LANG"。
                 let key_arg = lang_format_key_index(name.as_str());
                 if let Some(idx) = key_arg {

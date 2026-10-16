@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * This file contain the eight parts surrounding the main core, those are: fuel input, moderator input, waste output, interface and the corners
  * The file also contain the guicode of the machine
@@ -195,7 +195,7 @@
 		var/datum/hfr_fuel/recipe = GLOB.hfr_fuels_list[path]
 
 		data["selectable_fuel"] += list(list(
-			"name" = lang_localize_display_name(recipe.name), // NOVA EDIT - I18N: 配方名纯显示（act 走 id/path）。ORIGINAL: "name" = recipe.name,
+			"name" = lang_localize_display_name(recipe.name), // ZH EDIT - I18N: 配方名纯显示（act 走 id/path）。ORIGINAL: "name" = recipe.name,
 			"id" = recipe.id,
 			"requirements" = gas_list_to_gasid_list(recipe.requirements),
 			"fusion_byproducts" = gas_list_to_gasid_list(recipe.primary_products),

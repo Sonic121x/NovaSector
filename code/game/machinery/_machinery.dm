@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * Machines in the world, such as computers, pipes, and airlocks.
  *
@@ -1217,7 +1217,7 @@
 				part_count[component] = board.req_components[component]
 
 
-	var/text = span_notice(LANG("_machine.contains_parts", null)) // NOVA EDIT - I18N: header (colon-ended, not caught by extraction)
+	var/text = span_notice(LANG("_machine.contains_parts", null)) // ZH EDIT - I18N: header (colon-ended, not caught by extraction)
 	for(var/component_part in part_count)
 		var/part_name
 		var/icon/html_icon
@@ -1234,13 +1234,13 @@
 			html_icon = part.icon
 			icon_state = part.icon_state
 		//merge icon & name into text
-		// NOVA EDIT START - I18N: reverse part name; drop \s plural suffix once localized (中文无复数; avoids "物质箱s")
+		// ZH EDIT START - I18N: reverse part name; drop \s plural suffix once localized (中文无复数; avoids "物质箱s")
 		var/disp_name = lang_reverse_text(part_name)
 		if(disp_name == part_name)
 			text += span_notice("[icon2html(html_icon, user, icon_state)] [part_count[component_part]] [part_name]\s.")
 		else
 			text += span_notice("[icon2html(html_icon, user, icon_state)] [part_count[component_part]] [disp_name].")
-		// NOVA EDIT END
+		// ZH EDIT END
 
 	return text
 

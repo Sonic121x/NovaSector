@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///How many enemies needs to be defeated until the 'Boss' of the stage appears.
 #define WORLD_ENEMY_BOSS 2
 ///The default amount of EXP you gain from killing an enemy, modifiers stacked on top of this.
@@ -173,11 +173,11 @@
 		boss_adjective ||= pick_list(ARCADE_FILE, "rpg_adjective")
 		boss_name ||= pick_list(ARCADE_FILE, "rpg_enemy")
 
-	// NOVA EDIT ADDITION START - I18N - 全服中文时按目录反查碎片（lang_reverse_text 无词数门槛，
+	// ZH EDIT ADDITION START - I18N - 全服中文时按目录反查碎片（lang_reverse_text 无词数门槛，
 	// 兜住 load 反查漏掉的单词形容词），中文名省 The 冠词直拼
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		return "[lang_reverse_text(boss_adjective)][lang_reverse_text(boss_name)]"
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	return "The [boss_adjective] [boss_name]"
 
 ///Sets up a new opponent depending on what stage they are at.
@@ -463,14 +463,14 @@
 					player_current_mp = PLAYER_MAX_MP
 					return TRUE
 				if("buy_item")
-					// NOVA EDIT CHANGE START - I18N: 键兼显示文本。老客户端（或任何把译名回传回来的路径）
+					// ZH EDIT CHANGE START - I18N: 键兼显示文本。老客户端（或任何把译名回传回来的路径）
 					// 会送中文进来，此处必须先兜一次逆向反查、再拒绝未知键——原来直接 `gear.world_available`
 					// 在查不到时是 null 解引用 runtime。ORIGINAL: var/datum/battle_arcade_gear/gear = battle_arcade_gear_list[params["purchasing_item"]]
 					var/purchasing_item = params["purchasing_item"]
 					var/datum/battle_arcade_gear/gear = battle_arcade_gear_list[purchasing_item]
 					if(isnull(gear))
 						return TRUE
-					// NOVA EDIT CHANGE END
+					// ZH EDIT CHANGE END
 					if(latest_unlocked_world != gear.world_available || equipped_gear[gear.slot] == gear)
 						say(LANG("obj.bbce64d1440622f0", null))
 						return TRUE

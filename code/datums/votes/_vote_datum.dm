@@ -171,7 +171,7 @@
  *
  * Return a formatted string of text to be displayed to everyone.
  */
-/// NOVA EDIT ADDITION - i18n: 选项的**显示名**。基类原样返回键值——投票选项的键同时是 act 回传值
+/// ZH EDIT ADDITION - i18n: 选项的**显示名**。基类原样返回键值——投票选项的键同时是 act 回传值
 /// （VotePanel 用 voteOption: choice.name），所以键必须保持原样，只有显示走这个。地图投票覆盖它，
 /// 把 map_name 显示成「译名-英文」而键仍是英文 map_name。见 /datum/vote/map_vote。
 /datum/vote/proc/get_choice_display_name(choice)

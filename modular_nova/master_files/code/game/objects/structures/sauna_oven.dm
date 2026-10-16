@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define SAUNA_H2O_TEMP (T20C + 20)
 #define SAUNA_LOG_FUEL 150
 #define SAUNA_PAPER_FUEL 5

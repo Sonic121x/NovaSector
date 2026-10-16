@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //base one is setup to IFF on NT & centcom trims for future proofing.
 /obj/item/mecha_parts/mecha_equipment/swarm_rocket_pod
 	name = "Swarm Rocket Pod"

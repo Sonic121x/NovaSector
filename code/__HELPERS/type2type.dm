@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*
  * Holds procs designed to change one type of value, into another.
  * Contains:
@@ -18,7 +18,7 @@
 		result = splittext(trim(file2text(filename)),seperator)
 	else
 		result = splittext(file2text(filename),seperator)
-	// NOVA EDIT ADDITION START - i18n - strings/ flavor .txt 已并入主目录（strings 命名空间）：全服非英文
+	// ZH EDIT ADDITION START - i18n - strings/ flavor .txt 已并入主目录（strings 命名空间）：全服非英文
 	// 时逐行整串反查（多词门槛）。只命中目录内 flavor（tips/junkmail…）；names/词频表是单词或不在目录 →
 	// 天然 no-op。早期 GLOBAL_LIST_INIT（names 等）此时 locale 仍为默认 en，直接跳过。
 	//

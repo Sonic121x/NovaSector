@@ -150,17 +150,17 @@
 ///Changes the range which the light reaches. 0 means no light, 6 is the maximum value.
 /datum/component/overlay_lighting/proc/set_range(atom/source, old_range)
 	SIGNAL_HANDLER
-	// NOVA EDIT ADDITION START - RUNTIME_STABILITY - Unregister using the old radius before the range changes.
+	// ZH EDIT ADDITION START - RUNTIME_STABILITY - Unregister using the old radius before the range changes.
 	if(luminosity_turf)
 		clean_old_cells()
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	light.set_range(source.light_range)
 	lumcount_range = ceil(light.range)
-	// NOVA EDIT CHANGE START - RUNTIME_STABILITY - update_luminosity_cells() returns early when the holder has not moved, so the new radius would never be registered.
+	// ZH EDIT CHANGE START - RUNTIME_STABILITY - update_luminosity_cells() returns early when the holder has not moved, so the new radius would never be registered.
 	// ORIGINAL: update_luminosity_cells()
 	luminosity_turf = null
 	register_new_cells()
-	// NOVA EDIT CHANGE END
+	// ZH EDIT CHANGE END
 
 /// Changes the intensity/brightness of the light by altering the visual object's alpha.
 /datum/component/overlay_lighting/proc/set_power(atom/source, old_power)

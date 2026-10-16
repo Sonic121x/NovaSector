@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /***************** WELCOME TO MECHA.DM, ENJOY YOUR STAY *****************/
 
 /**
@@ -506,9 +506,9 @@
 			if(!rating)
 				continue
 			if(!added_damage_header)
-				readout += "<b><u>[lang_armor_class("ARMOR (I-X)")]</u></b>" // NOVA EDIT - i18n
+				readout += "<b><u>[lang_armor_class("ARMOR (I-X)")]</u></b>" // ZH EDIT - i18n
 				added_damage_header = TRUE
-			readout += "[lang_armor_class(armor_to_protection_name(damage_key))] [armor_to_protection_class(rating)]" // NOVA EDIT - i18n
+			readout += "[lang_armor_class(armor_to_protection_name(damage_key))] [armor_to_protection_class(rating)]" // ZH EDIT - i18n
 
 		var/added_durability_header = FALSE
 		for(var/durability_key in ARMOR_LIST_DURABILITY)
@@ -516,15 +516,15 @@
 			if(!rating)
 				continue
 			if(!added_durability_header)
-				readout += "<b><u>[lang_armor_class("DURABILITY (I-X)")]</u></b>" // NOVA EDIT - i18n
+				readout += "<b><u>[lang_armor_class("DURABILITY (I-X)")]</u></b>" // ZH EDIT - i18n
 				added_durability_header = TRUE
-			readout += "[lang_armor_class(armor_to_protection_name(durability_key))] [armor_to_protection_class(rating)]" // NOVA EDIT - i18n
+			readout += "[lang_armor_class(armor_to_protection_name(durability_key))] [armor_to_protection_class(rating)]" // ZH EDIT - i18n
 
 		readout += LANG("obj.9b3244c77f092eba", list(max_temperature))
 		if(mecha_flags & IS_ENCLOSED)
 			readout += LANG("obj.10ef5a67bd4cab94", null)
 
-		var/formatted_readout = span_notice("<b>[lang_armor_class("PROTECTION CLASSES")]</b><hr>[jointext(readout, "\n")]") // NOVA EDIT - i18n
+		var/formatted_readout = span_notice("<b>[lang_armor_class("PROTECTION CLASSES")]</b><hr>[jointext(readout, "\n")]") // ZH EDIT - i18n
 		to_chat(usr, boxed_message(formatted_readout))
 
 /obj/vehicle/sealed/mecha/generate_integrity_message()

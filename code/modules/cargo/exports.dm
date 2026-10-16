@@ -242,14 +242,14 @@ Then the player gets the profit from selling his own wasted time.
 	var/total_value = ex.total_value[src]
 	var/total_amount = ex.total_amount[src]
 
-	var/msg = "[total_value] [lang_reverse_text(MONEY_NAME)]: [lang_reverse_text("Received")] [total_amount] " // NOVA EDIT CHANGE - i18n: 反查 credits/Received（en locale no-op）- ORIGINAL: "[total_value] [MONEY_NAME]: Received [total_amount] "
+	var/msg = "[total_value] [lang_reverse_text(MONEY_NAME)]: [lang_reverse_text("Received")] [total_amount] " // ZH EDIT CHANGE - i18n: 反查 credits/Received（en locale no-op）- ORIGINAL: "[total_value] [MONEY_NAME]: Received [total_amount] "
 	if(total_value > 0)
 		msg = "+" + msg
 
 	if(unit_name)
-		var/localized_unit = lang_reverse_text(unit_name) // NOVA EDIT - I18N: 反查单位名（多数命中主目录物品名；vending refill canister/cardboard box 等靠 _cargo.json）
+		var/localized_unit = lang_reverse_text(unit_name) // ZH EDIT - I18N: 反查单位名（多数命中主目录物品名；vending refill canister/cardboard box 等靠 _cargo.json）
 		msg += localized_unit
-		if(total_amount > 1 && localized_unit == unit_name) // NOVA EDIT CHANGE - i18n: 仅英文（未反查到译名）才加复数 s，中文无复数 - ORIGINAL: if(total_amount > 1)
+		if(total_amount > 1 && localized_unit == unit_name) // ZH EDIT CHANGE - i18n: 仅英文（未反查到译名）才加复数 s，中文无复数 - ORIGINAL: if(total_amount > 1)
 			msg += plural_s(unit_name)
 		if(message)
 			msg += " "

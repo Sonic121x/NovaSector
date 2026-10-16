@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/quirk/robot_limb_detach
 	name = "Cybernetic Limb Mounts"
 	desc = "You are able to detach and reattach any installed robotic limbs with very little effort, as long as they're in good condition."

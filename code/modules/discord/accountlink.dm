@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // IF you have linked your account, this will trigger a verify of the user
 GAME_VERB_DESC(/client, verify_in_discord, "验证 Discord 账号", "Verify your discord account with your BYOND account", "OOC")
 

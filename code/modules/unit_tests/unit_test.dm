@@ -262,7 +262,7 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 		log_world("::error::[TEST_OUTPUT_RED("FAIL")] [test_output_desc]")
 
 	var/final_status = skip_test ? UNIT_TEST_SKIPPED : (test.succeeded ? UNIT_TEST_PASSED : UNIT_TEST_FAILED)
-	test_results[test_path] = list("status" = final_status, "message" = message, "name" = test_path)
+	test_results[test_path] = list("status" = final_status, "message" = message, "name" = test_path, "duration" = skip_test ? 0 : duration) // ZH EDIT CHANGE - Parallel unit test shards: record every duration for shard balancing - ORIGINAL: test_results[test_path] = list("status" = final_status, "message" = message, "name" = test_path)
 
 	qdel(test)
 
@@ -432,6 +432,7 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	primary_unit_test_map = null // I'm paranoid
 
 	sortTim(tests_to_run, GLOBAL_PROC_REF(cmp_unit_test_priority))
+	tests_to_run = nova_unit_test_shard(tests_to_run) // ZH EDIT ADDITION - Parallel unit test shards
 
 	var/list/test_results = list()
 
@@ -450,7 +451,7 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 		log_world("[type] took [duration/10]s")
 	log_world("::endgroup::")
 
-	var/file_name = "data/unit_tests.json"
+	var/file_name = nova_unit_test_results_path() // ZH EDIT CHANGE - Parallel unit test shards - ORIGINAL: var/file_name = "data/unit_tests.json"
 	fdel(file_name)
 	file(file_name) << json_encode(test_results)
 

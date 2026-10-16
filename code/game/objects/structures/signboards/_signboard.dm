@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define INVESTIGATE_SIGNBOARD "signboard"
 #define SIGNBOARD_WIDTH (ICON_SIZE_X * 3.5)
 #define SIGNBOARD_HEIGHT (ICON_SIZE_Y * 2.5)

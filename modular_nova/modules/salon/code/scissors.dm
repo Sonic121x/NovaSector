@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/scissors
 	name = "barber's scissors"
 	desc = "Some say a barbers best tool is his electric razor, that is not the case. These are used to cut hair in a professional way!"

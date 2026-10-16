@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Enchants an item to deal either double damage, or +20 damage, whichever is less, and lifesteals for that amount + steals some blood.
 /// multiplication can get a little instakill-y, so capping it at + 20 damage.
 /// 10 force weapon doesn't get the cap and gains 10 damage, 20 total

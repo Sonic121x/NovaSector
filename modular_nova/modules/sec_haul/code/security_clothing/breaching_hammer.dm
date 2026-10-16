@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/melee/breaching_hammer
 	name = "D-4 tactical hammer"
 	desc = "A metallic-plastic composite breaching hammer, looks like a whack with this would severly harm or tire someone."

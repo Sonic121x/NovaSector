@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Component that allows a user to control any object as if it were a mob. Does give the user incorporeal movement.
 /datum/component/object_possession
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(station_traits_panel, R_FUN, "修改空间站特质", "Modify the station traits for the next round.", ADMIN_CATEGORY_EVENTS)
 	var/static/datum/station_traits_panel/station_traits_panel = new
 	station_traits_panel.ui_interact(user.mob)

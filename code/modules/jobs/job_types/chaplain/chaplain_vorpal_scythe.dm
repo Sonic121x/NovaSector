@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*Vorpal Scythe, or the implant null rod that isn't as strong as other null rods up until you use it to behead someone with the special death knell attack.
 If the scythe isn't empowered when you sheath it, you take a heap of damage and probably a wound!*/
 

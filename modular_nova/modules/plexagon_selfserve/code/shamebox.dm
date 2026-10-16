@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/storage/lockbox/timeclock
 	name = "crew equipment lockbox"
 	desc = "Holds a crew's restricted equipment while they are temporarily assigned off-duty. Nanotrasen contracts stipulate that company issued batons, masks, restraints, and other equipment are not to be used for recreational purposes. The lockbox may be unlocked to retrieve restricted items after punch in."

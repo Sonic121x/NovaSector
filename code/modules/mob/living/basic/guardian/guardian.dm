@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * A mob which acts as a guardian angel to another mob, sharing health but protecting them using special powers.
  * Usually either obtained in magical form by a wizard, or technological form by a traitor. Sometimes found by miners.

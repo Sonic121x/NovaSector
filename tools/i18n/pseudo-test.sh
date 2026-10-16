@@ -6,10 +6,10 @@
 # 比较/查表的路径，变异后必 miss → 单测直接挂。上游合并后（resync.sh 之后）手动跑一次。
 #
 # 实现说明（为什么不走 `build.sh dm-test`）：
-#   1. 本机 32 位 rust_g 的 `iconforge_load_gags_config_async` 在 UNIT_TESTS 构建
-#      （REFERENCE_TRACKING + DO_NOT_DEFER_ASSETS 内存压力）下必崩（SIGABRT，
-#      与 locale 无关；生产构建无此问题）→ 编译期临时禁用 USE_RUSTG_ICONFORGE_GAGS，
-#      灰度回退 DM 端生成（慢但稳，门禁不关心图标产物）。
+#   1. 旧版本机 rust_g（4.2）的 `iconforge_load_gags_config_async` 在 UNIT_TESTS 构建下必崩
+#      （SIGABRT），当时只能编译期禁用 USE_RUSTG_ICONFORGE_GAGS、改走 DM 回退。rust_g 6.2 起
+#      不再崩（2026-10-16 实测），默认直接用 rustg：每个分片初始化快约 17 秒，「地图预览图标
+#      像素不一致」那批噪音 runtime 也随之消失。哪天又崩了，设 TEST_GAGS_FALLBACK=1 退回旧做法。
 #   2. 直接调 DreamMaker/DreamDaemon（DM 516 支持 -D 定义），不经 juke。
 #
 # 用法（NixOS 在 nix develop 里跑，或 nix develop -c bash tools/i18n/pseudo-test.sh）：
@@ -57,15 +57,20 @@ restore() {
 	sed -i "s@^// PSEUDO-TEST-DISABLED $GAGS_DEFINE@$GAGS_DEFINE@" "$COMPILE_OPTS"
 	rm -f tgstation.test.dme tgstation.test.dmb tgstation.test.rsc
 	rm -f data/next_map.json # 单测地图指定（见下），别留给正常起服用
-	# 测试运行会用 DM 回退生成的地图预览图标覆盖已提交 .dmi（与 rustg 生成版像素有差，勿保留）
+	rm -rf data/test-shards # 分片工作目录（全是软链 + 各自的 data/）
+	rm -f data/unit_test_map.no-lavaland.json
+	# TEST_GAGS_FALLBACK=1 时测试会用 DM 回退生成的地图预览图标覆盖已提交 .dmi（像素有差，勿保留）
 	git checkout --quiet -- icons/map_icons/ 2>/dev/null || true
 	echo "==> 已还原 $CONFIG（I18N_SERVER_LOCALE ${ORIG_LOCALE:-en}）、$COMPILE_OPTS 与 icons/map_icons/"
 }
 trap restore EXIT
 
 sed -i "s/^I18N_SERVER_LOCALE .*/I18N_SERVER_LOCALE $GATE_LOCALE/" "$CONFIG"
-sed -i "s@^$GAGS_DEFINE@// PSEUDO-TEST-DISABLED $GAGS_DEFINE@" "$COMPILE_OPTS"
-echo "==> config 已切 $GATE_LOCALE；USE_RUSTG_ICONFORGE_GAGS 已临时禁用"
+echo "==> config 已切 $GATE_LOCALE"
+if [[ ${TEST_GAGS_FALLBACK:-0} == 1 ]]; then
+	sed -i "s@^$GAGS_DEFINE@// PSEUDO-TEST-DISABLED $GAGS_DEFINE@" "$COMPILE_OPTS"
+	echo "==> USE_RUSTG_ICONFORGE_GAGS 已临时禁用（TEST_GAGS_FALLBACK=1）"
+fi
 
 echo "==> 编译（-DCBT -DCIBUILDING = UNIT_TESTS）"
 cp tgstation.dme tgstation.test.dme
@@ -85,13 +90,30 @@ rm -rf data/logs/ci
 # 全部 i18n 单测（i18n_unreverse / i18n_template / i18n_phobia …）一个都不会执行——而门禁仍报
 # 「单测失败 0 个」，是**假绿**。
 mkdir -p data
-cp _maps/map_jsons/runtimestation_minimal.json data/next_map.json
+TEST_MAP_JSON=_maps/map_jsons/runtimestation_minimal.json
+# TEST_SKIP_LAVALAND=1：不加载熔岩地层，每个服务器初始化快约 14 秒，单测结果不变（2026-10-16 实测）。
+# 代价是熔岩地废墟/尸体/刷物器在初始化期报的 runtime 不再被抓到，所以默认关。
+if [[ ${TEST_SKIP_LAVALAND:-0} == 1 ]]; then
+	python3 -c 'import json, sys; d = json.load(open(sys.argv[1])); d["minetype"] = "none"; json.dump(d, open(sys.argv[2], "w"), indent="\t")' \
+		"$TEST_MAP_JSON" data/unit_test_map.no-lavaland.json
+	TEST_MAP_JSON=data/unit_test_map.no-lavaland.json
+	echo "==> 跳过熔岩地层（TEST_SKIP_LAVALAND=1）"
+fi
+export TEST_MAP_JSON
+cp "$TEST_MAP_JSON" data/next_map.json
 # 清掉上一轮的单测结果。**不清就是假红/假绿**：下面的门禁直接读 data/unit_tests.json，而这个文件
 # 只在单测跑完时才被覆盖 —— 本轮若因任何原因没写出它，门禁就会**拿上一轮的结果当本轮的**。
 # 2026-07-31 实测：本轮 i18n_ac_longest / i18n_template_match 在日志里都是 PASS，门禁却报这两条
 # 失败，因为读到的是 10 分钟前那次失败运行留下的 json。
 rm -f data/unit_tests.json
-DreamDaemon tgstation.test.dmb -close -trusted -verbose -params "log-directory=ci"
+# 默认按 6 个分片并行跑（每片一个独立 DreamDaemon，见 tools/i18n/test-shards.sh）；
+# TEST_SHARDS=1 退回单进程。
+TEST_SHARDS=${TEST_SHARDS:-6}
+if ((TEST_SHARDS > 1)); then
+	bash tools/i18n/test-shards.sh tgstation.test.dmb "$TEST_SHARDS"
+else
+	DreamDaemon tgstation.test.dmb -close -trusted -verbose -params "log-directory=ci"
+fi
 
 if [[ -f data/logs/ci/clean_run.lk ]]; then
 	cat data/logs/ci/clean_run.lk

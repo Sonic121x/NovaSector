@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MAX_IMBUE_STORAGE 250
 #define REAGENT_CLOTHING_INJECT_AMOUNT 0.5
 #define REAGENT_WEAPON_INJECT_AMOUNT 1

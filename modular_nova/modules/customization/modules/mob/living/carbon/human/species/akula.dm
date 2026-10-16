@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// How long the akula will stay wet for, AKA how long until they get a mood debuff
 #define DRY_UP_TIME 10 MINUTES
 /// How many wetstacks an Akula will get upon creation

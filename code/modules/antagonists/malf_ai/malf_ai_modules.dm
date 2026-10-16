@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define DEFAULT_DOOMSDAY_TIMER 4500
 #define DOOMSDAY_ANNOUNCE_INTERVAL 600
 
@@ -1071,7 +1071,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module/malf))
 			for(var/option in voice_options)
 				if(option == selection)
 					found = TRUE
-					selection = option // NOVA EDIT - I18N - use canonical english value
+					selection = option // ZH EDIT - I18N - use canonical english value
 					break
 			if(!found)
 				stack_trace("User attempted to select an unavailable voice option")

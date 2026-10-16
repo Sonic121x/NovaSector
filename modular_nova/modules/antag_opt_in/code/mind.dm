@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// If a player has any of these enabled, they are forced to use a minimum of ANTAG_OPT_IN_ANTAG_ENABLED_LEVEL antag optin. Dynamic - checked on the fly, not cached.
 GLOBAL_LIST_INIT(antag_optin_forcing_midround_antag_categories, list(
 	ROLE_CHANGELING_MIDROUND,

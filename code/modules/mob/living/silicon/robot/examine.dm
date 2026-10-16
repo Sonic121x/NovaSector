@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /mob/living/silicon/robot/examine(mob/user)
 	. = list()
 	if(desc)
@@ -32,7 +32,7 @@
 	if(opened)
 		. += span_warning(LANG("mob.2d2c85ca4c9d081e", list(p_Their(), cell ? "installed" : "missing")))
 	else
-		var/cover_message = LANG("mob.5b9a280a662d88cf", list(p_Their())) // NOVA EDIT CHANGE - I18N - ORIGINAL: var/cover_message = "[p_Their()] cover is closed"
+		var/cover_message = LANG("mob.5b9a280a662d88cf", list(p_Their())) // ZH EDIT CHANGE - I18N - ORIGINAL: var/cover_message = "[p_Their()] cover is closed"
 		if(locked)
 			if(user == src)
 				cover_message += LANG("mob.4b3e867884ce0e28", list(REF(src)))

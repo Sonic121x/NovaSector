@@ -80,7 +80,7 @@
 	// If we didn't have a preset one, let's make one up.
 	if(!chosen)
 		if(is_radio)
-			// NOVA EDIT CHANGE START - I18N - 无线电幻觉句式整条走 LANG。碎片池（people/accusations/
+			// ZH EDIT CHANGE START - I18N - 无线电幻觉句式整条走 LANG。碎片池（people/accusations/
 			// contraband/threat/location）本身已进目录，但**框架是裸字面量、按英文语序拼**，只译碎片
 			// 会产出「舰长 is 叛徒!」，比全英文更糟。中文语序在译文侧调（威胁那条是 `{1}有{0}`）。
 			// `[pick("C","Ai, c","Someone c","Rec")]all the shuttle!` 是**拼字母**的写法
@@ -96,7 +96,7 @@
 				pick(LANG("datum.a582d547ddb79b06", null), LANG("datum.13e86212667a9a96", null)),
 				LANG("datum.dc655fa0519aed54", null),
 			))
-			// NOVA EDIT CHANGE END
+			// ZH EDIT CHANGE END
 		else
 			chosen = pick(list("[pick_list_replacements(HALLUCINATION_FILE, "suspicion")]",
 				"[pick_list_replacements(HALLUCINATION_FILE, "conversation")]",

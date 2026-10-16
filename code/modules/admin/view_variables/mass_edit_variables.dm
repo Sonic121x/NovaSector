@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /client/proc/cmd_mass_modify_object_variables(datum/target, var_name)
 	if(tgui_alert(src, LANG("client.06906caab9c685c2", list(var_name)), LANG("client.0b1b237ab8187726", null), list("Yes", "No"), 60 SECONDS) != "Yes")
 		return

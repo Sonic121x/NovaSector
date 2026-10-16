@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Used to generate an asset key for a temporary image unique to this user.
 #define TEMP_IMAGE_PATH(ref) ("ntos_messenger[ref]_temp_image.png")
 /// Purpose is evident by the name, hopefully.

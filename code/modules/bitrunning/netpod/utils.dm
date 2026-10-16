@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Puts the occupant in netpod stasis, basically short-circuiting environmental conditions
 /obj/machinery/netpod/proc/add_healing(mob/living/target)
 	if(target != occupant)

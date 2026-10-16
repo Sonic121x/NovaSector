@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define CHEMICALS_PER_UNIT 2
 #define CHEMICAL_SECOND_DIVISOR (5 SECONDS)
 #define OUT_OF_HOST_EGG_COST 50

@@ -22,7 +22,7 @@ import { basename, dirname } from 'node:path';
 
 // The repo-tracked table, so a fresh checkout ships a working feature. `data/` is
 // gitignored, so a table written there would never reach a deployed server.
-const DEFAULT_OUTPUT = 'modular_nova/modules/region_newbie_guard/data/allowed_regions.json';
+const DEFAULT_OUTPUT = 'modular_zh/modules/region_newbie_guard/data/allowed_regions.json';
 
 function parseArgs(argv) {
   const args = { country: 'CN', output: DEFAULT_OUTPUT };

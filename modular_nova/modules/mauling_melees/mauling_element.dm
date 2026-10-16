@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * The mauling element, adapted nearly wholesale from kneecapping, replaces the item's secondary attack with an aimed attack at limbs under certain circumstances.
  *

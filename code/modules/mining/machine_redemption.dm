@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**********************Ore Redemption Unit (ORM)**************************/
 //Turns all the various mining machines into a single unit to speed up mining and establish a point system
 
@@ -255,7 +255,7 @@
 			var/sheet_amount = amount / SHEET_MATERIAL_AMOUNT
 			var/obj/sheet_type = material.sheet_type
 			data["materials"] += list(list(
-				"name" = lang_localize_display_name(material.name), // NOVA EDIT - I18N: 材料名纯显示（act 走同条负载的 id）。ORIGINAL: "name" = material.name,
+				"name" = lang_localize_display_name(material.name), // ZH EDIT - I18N: 材料名纯显示（act 走同条负载的 id）。ORIGINAL: "name" = material.name,
 				"id" = REF(material),
 				"amount" = sheet_amount,
 				"category" = "material",
@@ -268,7 +268,7 @@
 			var/datum/design/alloy = SSresearch.techweb_designs[design_path]
 			var/obj/alloy_type = alloy.build_path
 			data["materials"] += list(list(
-				"name" = lang_localize_display_name(alloy.name), // NOVA EDIT - I18N: 合金名纯显示（act 走同条负载的 path）。ORIGINAL: "name" = alloy.name,
+				"name" = lang_localize_display_name(alloy.name), // ZH EDIT - I18N: 合金名纯显示（act 走同条负载的 path）。ORIGINAL: "name" = alloy.name,
 				"id" = design_path,
 				"category" = "alloy",
 				"amount" = can_smelt_alloy(alloy),

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/rnd/experimentor
 	name = "\improper E.X.P.E.R.I-MENTOR"
 	desc = "Experimental Xeon Particle Entropy Reaction Infuser or something like that. Nanotrasen's new reaction infuser, with a slight less tendency to catastrophically fail than the previous model... or so they say."
@@ -186,7 +186,7 @@
 				is_available = !is_discover
 			available_experiments += list(list(
 				"id" = scantype,
-				"name" = lang_localize_display_name(handler.name || capitalize(scantype)), // NOVA EDIT - I18N: 纯显示。ORIGINAL: "name" = handler.name || capitalize(scantype),
+				"name" = lang_localize_display_name(handler.name || capitalize(scantype)), // ZH EDIT - I18N: 纯显示。ORIGINAL: "name" = handler.name || capitalize(scantype),
 				"fa_icon" = handler.fa_icon || "question",
 				"isAvailable" = is_available,
 				"isDiscover" = is_discover

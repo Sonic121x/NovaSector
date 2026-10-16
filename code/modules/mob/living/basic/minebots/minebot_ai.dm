@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/ai_controller/basic_controller/minebot
 	behavior_tree_json = "code/modules/mob/living/basic/minebots/minebot.bt.json"
 	blackboard = list(
@@ -108,7 +108,7 @@
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	if(target.health >= target.maxHealth * repair_threshold)
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/atom/movable, say), LANG("datum.967cf90783ea03c7", list(target))) // NOVA EDIT - I18N: 字符串是回调实参、不是 sink 直调，codemod 够不着
+	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/atom/movable, say), LANG("datum.967cf90783ea03c7", list(target))) // ZH EDIT - I18N: 字符串是回调实参、不是 sink 直调，codemod 够不着
 	INVOKE_ASYNC(controller, TYPE_PROC_REF(/datum/ai_controller, ai_interact), target)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 

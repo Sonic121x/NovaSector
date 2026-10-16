@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// How long can you hold onto gibtonite before you need to let it go?
 #define GIBTONITE_GOLEM_HOLD_TIME 2 MINUTES
 /// ID for a filter we apply so we can remove it again

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Halves the basic mob's melee attack cooldown while its health is at or below a threshold, and restores it once recovered.
 /datum/bt_node/ai_behavior/enrage
 	/// Fraction of max health at or below which the mob becomes enraged.

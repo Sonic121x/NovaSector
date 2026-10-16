@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define AIRALARM_WARNING_COOLDOWN (10 SECONDS)
 
 /obj/machinery/airalarm
@@ -351,7 +351,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			if(!(obj_flags & EMAGGED) && mode.emag)
 				continue
 			data["modes"] += list(list(
-				"name" = lang_localize_display_name(mode.name), // NOVA EDIT - I18N: 模式名纯显示（act 走 mode.path）。ORIGINAL: "name" = mode.name,
+				"name" = lang_localize_display_name(mode.name), // ZH EDIT - I18N: 模式名纯显示（act 走 mode.path）。ORIGINAL: "name" = mode.name,
 				"desc" = mode.desc,
 				"danger" = mode.danger,
 				"path" = mode.type

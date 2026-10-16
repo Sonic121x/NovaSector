@@ -1330,7 +1330,7 @@ fn is_catalog_key(s: &str) -> bool {
 /// 收口会重新制造盲区，而多扫几个文件对本规则只有成本、没有假阳性。读不到 .dme 时退回历史清单。
 fn included_source_roots(dme: &Path) -> BTreeSet<String> {
     let Ok(text) = std::fs::read_to_string(dme) else {
-        return ["code".to_owned(), "modular_nova".to_owned()].into();
+        return ["code".to_owned(), "modular_nova".to_owned(), "modular_zh".to_owned()].into();
     };
     let mut roots = BTreeSet::new();
     for line in text.lines() {
@@ -1357,6 +1357,7 @@ fn included_source_roots(dme: &Path) -> BTreeSet<String> {
     if roots.is_empty() {
         roots.insert("code".to_owned());
         roots.insert("modular_nova".to_owned());
+        roots.insert("modular_zh".to_owned());
     }
     roots
 }
@@ -1439,7 +1440,8 @@ mod tests {
         std::fs::write(
             &dme,
             "#include \"code\\game\\world.dm\"\n\
-             #include \"modular_nova\\modules\\i18n\\code\\runtime.dm\"\n\
+             #include \"modular_nova\\modules\\alerts\\code\\alerts.dm\"\n\
+             #include \"modular_zh\\modules\\i18n\\code\\runtime.dm\"\n\
              #include \"interface\\interface.dm\"\n\
              #include \"interface\\skin.dmf\"\n",
         )
@@ -1450,12 +1452,13 @@ mod tests {
         assert!(roots.contains("interface"));
         assert!(roots.contains("code"));
         assert!(roots.contains("modular_nova"));
+        assert!(roots.contains("modular_zh"));
         // .dmf is not a source file, and each root appears once.
-        assert_eq!(roots.len(), 3);
+        assert_eq!(roots.len(), 4);
 
         // An unreadable .dme must not silently scan nothing.
         let missing = included_source_roots(&dir.join("absent.dme"));
-        assert!(missing.contains("code") && missing.contains("modular_nova"));
+        assert!(missing.contains("code") && missing.contains("modular_nova") && missing.contains("modular_zh"));
         std::fs::remove_dir_all(&dir).ok();
     }
 

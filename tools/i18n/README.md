@@ -1,7 +1,7 @@
 # nova-i18n —— NovaSector 全量汉化工具链
 
 DM 字符串抽取/改写工具（Rust，基于 SpacemanDMM 的 `dreammaker` 解析器）+ 机翻流水线。
-配套运行时见 `modular_nova/modules/i18n/`（其 readme 有**全部 i18n 文件地图**）。人工校对走自选的**在线**本地化平台（导入导出 `strings/i18n/<locale>/*.json`）。
+配套运行时见 `modular_zh/modules/i18n/`（其 readme 有**全部 i18n 文件地图**）。人工校对走自选的**在线**本地化平台（导入导出 `strings/i18n/<locale>/*.json`）。
 
 ## 端到端流程
 
@@ -17,7 +17,7 @@ DM 字符串抽取/改写工具（Rust，基于 SpacemanDMM 的 `dreammaker` 解
   strings/i18n/zh-Hans/<ns>.json  ◀───────────────────────────────┘
         │
         ▼
-  运行时 modular_nova/modules/i18n/code/runtime.dm 按 locale 查表 + {0}/{1} 填充
+  运行时 modular_zh/modules/i18n/code/runtime.dm 按 locale 查表 + {0}/{1} 填充
 ```
 
 ## 命令速查
@@ -347,7 +347,7 @@ bash tools/i18n/sync-upstream.sh        # SYNC_BUILD=0 可跳过末尾编译
 它依次做：`git fetch` → 把 `origin/master` 合进当前 i18n 分支 → `resync.sh`（重抽取英文目录 +
 幂等改写新字符串）→ `tools/build/build.sh` 编译验证。
 
-**用 merge 不用 rebase**：本分支提交多、改了大量 NOVA EDIT 核心文件，rebase 会强推 + 把每个上游冲突
+**用 merge 不用 rebase**：本分支提交多、改了大量 ZH EDIT 核心文件，rebase 会强推 + 把每个上游冲突
 在所有提交上反复重放；merge 每次只解一次，且 `resync.sh` 的重收敛策略就是为 merge 设计的。
 
 **冲突分辨**（脚本撞冲突会停下并列出冲突文件，按这条手动解）：
@@ -355,7 +355,7 @@ bash tools/i18n/sync-upstream.sh        # SYNC_BUILD=0 可跳过末尾编译
 | 冲突 hunk 里是什么 | 怎么办 |
 | --- | --- |
 | codemod 行 `LANG("ns.hash", …)`，或你没改过的上游逻辑 | **取上游**：`git checkout --theirs <文件> && git add <文件>`。LANG 行交给 resync 重新加回，上游逻辑本就该采纳。 |
-| 你手写的 i18n 逻辑（`lang_reverse_*()` 包裹、手加的 NOVA EDIT） | **留自己的**（或两边都留）。这些 resync **不会**重新生成，盲取 theirs 会永久丢掉。常见于 `code/` 下 `book.dm` / `say.dm` / `chat.dm` / `atom_examine.dm` / `_bodyparts.dm` / `preferences/species.dm`。 |
+| 你手写的 i18n 逻辑（`lang_reverse_*()` 包裹、手加的 ZH EDIT） | **留自己的**（或两边都留）。这些 resync **不会**重新生成，盲取 theirs 会永久丢掉。常见于 `code/` 下 `book.dm` / `say.dm` / `chat.dm` / `atom_examine.dm` / `_bodyparts.dm` / `preferences/species.dm`。 |
 
 解决后 `git commit`，再次运行 `bash tools/i18n/sync-upstream.sh`（检测到已无未合提交，直接续跑 resync + 编译）。
 
@@ -488,7 +488,7 @@ node tools/i18n/consistency.mjs --baseline tools/i18n/consistency-baseline.txt -
 翻译会破坏替换机制，按方针保英文；每局必刷 miss，自动归此桶降噪，无需处理）、
 **噪音**（CSS 声明——用户自定义 MOTD 内联样式经 fallback 层被逐行记录；管理员日志印记——
 JMP/FLW 链接括号、build mode、GC 硬删除告警、爆炸尺寸行等，保英文；无需处理）。
-实现：`modular_nova/modules/i18n/code/miss_log.dm`；run 提取门槛单测
+实现：`modular_zh/modules/i18n/code/miss_log.dm`；run 提取门槛单测
 `TEST_FOCUS(/datum/unit_test/i18n_miss_log)`。
 
 已知永久噪音（无需处理）：管理员/系统消息（`message_admins` 的 Autotransfer/jobconfig 警告
@@ -567,4 +567,4 @@ some_command_that_dumps_ui | node tools/i18n/pseudo-scan.mjs --min 5
 - `dreammaker` 为 GPL-3.0，作为独立构建工具链接可接受（本项目已 GPLv3）。
 - **服务端进大厅就崩（核心转储、停在按钮界面不刷日志）**：是 32 位 rust_g 的 iconforge 生成精灵图集
   时 OOM，**非 i18n**。`nix/byond.nix` 的 DreamDaemon 包装器已默认 `RAYON_NUM_THREADS=2` 压低峰值
-  内存修复（详见 `modular_nova/modules/i18n/readme.md` 的「运行服务器 / 已知问题」）。
+  内存修复（详见 `modular_zh/modules/i18n/readme.md` 的「运行服务器 / 已知问题」）。

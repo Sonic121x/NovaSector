@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/structure/window/fulltile/colony_fabricator
 	name = "prefabricated window"
 	desc = "A conservatively built metal frame with a thick sheet of space-grade glass slotted into it."

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/element/clockwork_structure_info
 	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 

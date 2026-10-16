@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/mecha_part_fabricator
 	icon = 'icons/obj/machines/robotics.dmi'
 	icon_state = "fab-idle"
@@ -370,7 +370,7 @@
 
 		var/icon_size = spritesheet.icon_size_id(design.asset_id)
 		designs[design.type] = list(
-			"name" = lang_reverse_text(design.name), // NOVA EDIT CHANGE - I18N - ORIGINAL: "name" = design.name, （设计名仅显示、构建走 path=安全；全量反查含单词类如 Bonesetter/Cautery）
+			"name" = lang_reverse_text(design.name), // ZH EDIT CHANGE - I18N - ORIGINAL: "name" = design.name, （设计名仅显示、构建走 path=安全；全量反查含单词类如 Bonesetter/Cautery）
 			"desc" = design.get_description(),
 			"cost" = cost,
 			"path" = design.type,

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define DNA_PROBE_SCAN_PLANTS (1<<0)
 #define DNA_PROBE_SCAN_ANIMALS (1<<1)
 #define DNA_PROBE_SCAN_HUMANS (1<<2)

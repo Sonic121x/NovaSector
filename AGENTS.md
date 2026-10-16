@@ -24,6 +24,8 @@ On NixOS, enter `nix develop` first. TGUI uses Bun. Windows uses `BUILD.bat` or 
 
 - DM unit tests live in `code/modules/unit_tests/` and are registered in `_unit_tests.dm`.
 - `TEST_FOCUS(/datum/unit_test/...)` isolates a test locally; never commit a focus marker.
+- The full local suite (`tools/i18n/pseudo-test.sh [locale]`) runs as `TEST_SHARDS` parallel servers (default 6, `1` = single process; `TEST_SKIP_LAVALAND=1` skips the lavaland z-level for ~14s less init per server, at the cost of not catching lavaland mapload runtimes) via `tools/i18n/test-shards.sh`; results merge back into `data/unit_tests.json` and `data/logs/ci/`. Each shard gets its own working directory seeded from a reflink copy of `data/`. Shards are balanced from `data/unit_test_durations.json`, refreshed every run. A shard-only failure that names a test is usually a background runtime charged to whichever test was running — check the call stack before blaming the test.
+- Bugs that need a real client on the other end (asset delivery, chat, TGUI, browse(), connecting while the MC is busy) are reproduced with `tools/zh/sim-players.sh`: it starts the server with the autopilot on (`modular_zh/modules/sim_players`), connects real DreamSeeker clients from the Windows VM, plays for `--minutes` and writes `sim_report.txt` (runtimes lined up with the autopilot's last action) into the round's log directory.
 - CI also runs DreamChecker/OpenDream and repository-specific checks. SpacemanDMM forbids relative type/proc definitions and `:` type overrides.
 
 ## Modularization
@@ -37,24 +39,34 @@ Almost all Nova changes belong under `modular_nova/`; see `modular_nova/readme.m
 - Binary assets: never modify upstream binaries. Put Nova assets in the appropriate modular/master files location.
 - Non-trivial modules need a `readme.md` based on `modular_nova/module_template.md`.
 
+### This repository's own content: `modular_zh/`
+
+This repository is the Chinese localization fork of NovaSector. Its own work is kept apart from Nova's, so a change can always be traced to tg, Nova or this fork, and upstream syncs stay mechanical.
+
+- Fork modules: `modular_zh/modules/<module_id>/`; fork overrides of tg or Nova code: `modular_zh/master_files/`, same mirroring rule as Nova's.
+- Fork defines: `code/__DEFINES/~zh_defines/`. Fork unit tests: `code/modules/unit_tests/~zh/`, in their own `ZH EDIT` block of `_unit_tests.dm`.
+- Edits the fork makes inside tg or Nova files use `ZH EDIT` markers, with the same grammar as `NOVA EDIT` below (`// ZH EDIT ADDITION START - MODULE_ID`, `// ZH EDIT CHANGE - ORIGINAL: …`). Never rewrite a `NOVA EDIT` marker into a `ZH EDIT` one: a line that already carries Nova's marker keeps it.
+- Every tg or Nova file that `nova-i18n rewrite` touched starts with the generated header `// ZH EDIT - I18N CODEMOD - …`. The tool adds it; do not edit it by hand.
+- Work meant for Nova itself still follows Nova's rules (`modular_nova/`, `NOVA EDIT`).
+
 ### Unavoidable core edits
 
 Mark core changes precisely and document them in the owning module readme:
 
 ```dm
-// NOVA EDIT ADDITION START - MODULE_ID
-// NOVA EDIT ADDITION END
-value = 2 // NOVA EDIT CHANGE - ORIGINAL: value = 1
+// ZH EDIT ADDITION START - MODULE_ID
+// ZH EDIT ADDITION END
+value = 2 // ZH EDIT CHANGE - ORIGINAL: value = 1
 ```
 
-Use REMOVAL/ADDITION blocks for multiline replacements. DM indentation is syntax: inside a proc, record a removed line with an indented single-line `NOVA EDIT REMOVAL` comment; never place a column-zero block-comment terminator inside a proc. Confirm core DM edits with a real DM compile.
+Use REMOVAL/ADDITION blocks for multiline replacements. DM indentation is syntax: inside a proc, record a removed line with an indented single-line `ZH EDIT REMOVAL` comment; never place a column-zero block-comment terminator inside a proc. Confirm core DM edits with a real DM compile.
 
 ### TGUI
 
 TGUI remains under `tgui/packages/tgui/interfaces/`; there is no modular Nova TGUI tree.
 
 - A new Nova UI file starts with `// THIS IS A NOVA SECTOR UI FILE`.
-- Edits to upstream JSX/TSX use precise `NOVA EDIT` markers.
+- Edits to upstream JSX/TSX use precise `ZH EDIT` markers.
 
 ## Conventions
 
@@ -74,6 +86,7 @@ TGUI remains under `tgui/packages/tgui/interfaces/`; there is no modular Nova TG
 
 - `code/`: upstream/core DM.
 - `modular_nova/`: Nova modules, overrides, and tools.
+- `modular_zh/`: this localization fork's own modules and overrides.
 - `tgui/packages/`: frontend packages.
 - `_maps/`: map definitions and configs.
 - `config/`: server configuration.
@@ -81,7 +94,7 @@ TGUI remains under `tgui/packages/tgui/interfaces/`; there is no modular Nova TG
 
 ## Internationalization
 
-Full documentation: `modular_nova/modules/i18n/readme.md`; command reference: `tools/i18n/README.md`.
+Full documentation: `modular_zh/modules/i18n/readme.md`; command reference: `tools/i18n/README.md`.
 
 - `I18N_SERVER_LOCALE` selects the server locale; `en` is the no-op default.
 - Runtime text uses `LANG("key", args)`. Catalog keys are content hashes: never edit them by hand. After changing player-visible English, run `nova-i18n extract`.
@@ -303,8 +316,8 @@ Known trap classes:
 - **`lang_fallback_setup` 把「目录还没就绪」缓存成了 `"none"` —— 整局字面 AC 永久无声关闭** — `lang_build_reverse` 在 `i18n_cache` 未就绪时特意「返回空表但**不缓存**」（免得把空反查表钉死），可 `lang_fallback_setup` 拿到那张空表会一路走到底、把 `GLOB.i18n_fallback_state[locale]` 钉成 `"none"`，此后一律返回 FALSE。同一个「别把未就绪状态缓存起来」的道理，上一层做了、这一层漏了。现在未就绪时**直接返回 FALSE 且不写 state**，留待下次重试（`i18n_real_catalog` ⑥d 模拟那一刻守着）。
   这条是**排除法**找出来的，值得记住那个过程：漏翻日志里「基础句已是中文、后缀整段英文」的那一行，我按三种形态各写了一条真目录断言（后缀单独喂、英文基础句 + 后缀、日志里逐字节的中英混排行）——**三条全过**。落地层在任何可构造的形态下都对，那问题就只能在「什么时候建的表」而不是「表里有什么」。**先用断言把「不是什么」钉死，剩下的那一格就是答案**；三条断言本身也就永久留在门禁里了。
 - **`propTemplate` 只认「属性值本身就是模板字面量」，三元/`||`/`&&` 包一层就整条不抽** — `tooltip={min ? \`Min (${min})\` : 'Min'}` 里 `templateParts` 对 ConditionalExpression 直接返回一个纯占位符（没有 text 段）→ `propTemplate` 返回 null，sidecar 里根本没有 `Min ({0})`。三元的每一支在运行期都是独立的成品串，`propTemplateBranches` 把它们拆开各自当模板收；每支仍要各自过原有那三道安全线，准入面不放宽。全仓 39 条。**审计**（拿目录里所有非模板 key 逐条过逆匹配）：4 条命中，全部良性 —— 被吃的四句本身就是目录键，而整串精确查表永远排在逆匹配之前。
-- **第三人称战斗消息（全场可见）漏了 LANG，而 victim/attacker 两条早就改了** — `item_attack.dm` 的 `attack_message_spectator` 是**局部变量赋插值串**，codemod 够不着；同一个 proc 里紧挨着的另两条都有 NOVA EDIT。症状很有辨识度：`You beat John Doe的胸部 with the stunprod!` —— 英文框架里嵌着一个中文部位名（`get_hit_area_message` 早就本地化了）。**「同一处消息的三个视角里只有一个是英文」是这类的判据**。手工接 LANG 时注意顺序陷阱：改写之后字面量就没了，`extract` 再也看不到它，英文源串必须自己按 `nova-i18n key` 校验过的哈希写进目录。
-- **上游对同一组消息有「基类 + carbon 覆盖」两份，只改了基类那份 = 高频路径整类没翻** — `item_attack.dm` 的 attacker/victim 早有 NOVA EDIT，`carbon_defense.dm` 里 carbon **覆盖**的同一组六条（spectator/victim/attacker × 有无 `extra_wound_details`）却一条没接 —— 而人被打走的正是 carbon 那份，于是这一整类是实际最高频的漏翻。判据是漏翻串**逐字节匹配英文模板**：`You attack John Doe的胸部 with the stunprod!` 与 `You {0} {1}{2} with {3}{4}!` 严丝合缝，说明用的就是英文模板而不是「翻了一半」。查同类：拿基类里已 LANG 化的那条消息去 grep 它的**原始英文形态**，看有没有别的文件还留着裸串。
+- **第三人称战斗消息（全场可见）漏了 LANG，而 victim/attacker 两条早就改了** — `item_attack.dm` 的 `attack_message_spectator` 是**局部变量赋插值串**，codemod 够不着；同一个 proc 里紧挨着的另两条都有 ZH EDIT。症状很有辨识度：`You beat John Doe的胸部 with the stunprod!` —— 英文框架里嵌着一个中文部位名（`get_hit_area_message` 早就本地化了）。**「同一处消息的三个视角里只有一个是英文」是这类的判据**。手工接 LANG 时注意顺序陷阱：改写之后字面量就没了，`extract` 再也看不到它，英文源串必须自己按 `nova-i18n key` 校验过的哈希写进目录。
+- **上游对同一组消息有「基类 + carbon 覆盖」两份，只改了基类那份 = 高频路径整类没翻** — `item_attack.dm` 的 attacker/victim 早有 ZH EDIT，`carbon_defense.dm` 里 carbon **覆盖**的同一组六条（spectator/victim/attacker × 有无 `extra_wound_details`）却一条没接 —— 而人被打走的正是 carbon 那份，于是这一整类是实际最高频的漏翻。判据是漏翻串**逐字节匹配英文模板**：`You attack John Doe的胸部 with the stunprod!` 与 `You {0} {1}{2} with {3}{4}!` 严丝合缝，说明用的就是英文模板而不是「翻了一半」。查同类：拿基类里已 LANG 化的那条消息去 grep 它的**原始英文形态**，看有没有别的文件还留着裸串。
   连带收获：这六条接上 LANG 之后，`extra_wound_details` 这个局部变量第一次进入「局部变量一跳」规则的视野，它的字面量（`", threatening to sever it entirely"`）自动被抽了进来 —— **接一处 sink 会顺带解锁喂给它的那些局部变量**。
 - **一整行里可以既有模板又有纯串；模板命中就提前返回 = 后面的英文永远轮不到 AC** — 职业描述的 antag opt-in 段是**三段后缀拼在一起**：第一段 `" Forces a minimum of {0} antag opt-in."` 是带占位符的模板、后两段 `" Targetable by contractors."` / `" Targetable by heretics."` 是纯串。`lang_localize_chain` 在模板命中后 `return`，后两段永远落不了地 —— 症状是「第一段中文、后两段英文」。改成模板命中后**继续走 AC**（已翻好的中文不含拉丁字母，AC 不会再碰它）。注意这与「整串精确必须排在模板之前」不冲突：那条说的是**谁先跑**，这条说的是**跑完要不要接着跑**。
   **这条我错判了两轮，教训在测试串上**：⑥b 我手写的是 `"Forces a minimum of …"`，而目录模板的第一个字面段带**前导空格**（`" Forces a minimum of "`）。少一个空格锚就匹配不上 → 模板不命中 → 走 AC → 全都翻掉 → **测试通过**，于是我判定「模板早返回」这个假设不成立，转头去查时序、查第二调用点。**照抄真实形态，别手写等价物**——这条 AGENTS 里为 `i18n_suffixed` 写过一次（DM 续行的制表符），同一个坑换了个形态又踩一次。定位手法：漏翻日志的邻近行（那几条是 species 参数与 CKEY 白名单）指出这是**偏好资源构建**期，据此才找到 `lang_localize_job_description` 这个调用点。
@@ -440,7 +453,7 @@ Known trap classes:
 - **改了只在真 locale 下执行的落地层，必须跑 `miss-harvest.sh` 而不是 `pseudo-test.sh`** — `i18n_real_catalog` / `i18n_html_tag_keys` 开头就有「zh-Hans 目录没加载就 return」，伪 locale 下整个测试体一行不执行、照样报 PASS。这条 AGENTS 里写过，但每次改落地层都值得再确认一遍：`data/unit_tests.json` 里 `status: 1` 才是失败、`2` 是地图门控跳过。
 - **同步前置检查要同时量 ahead 与 behind** — `git rev-list --count origin/master..HEAD` 只答「领先几个」，落后是 0 还是 1 它一个字都不说。本轮 sernseek 与 Sonic 各落后一个提交而不自知，两次都在 `git push` 被拒时才发现（`non-fast-forward`），而那时同步分支已经建好、门禁已经跑完，只能回头做正向合并再重跑一遍门禁。用 `git rev-list --left-right --count origin/master...HEAD` 一次拿两个数。
   · 落后的那个提交若与本地新架构撞车，冲突是**语义级**的：本轮远端（8-27）在「仍有字面 AC」的版本上给 `lang_localize_chain` 加了 `exact_already_checked` 优化，本地（8-30）已整层删除 AC 并改了签名。判据是**看日期取新架构、把正交的优化搬过去**，不是二选一——两边各自都对。
-- **`upstream-sync-gate.sh` 的丢失报告每轮重算，TSV 必须跟着重建** — 它是 `BASE..HEAD` 的差集，所以**你为修复丢失项而做的改动本身会产生新的丢失行**（本轮把两行 NOVA EDIT 注释合并成一行，报告就从 15 涨到 17）。别指望一次写好，按「跑门禁 → 读报告 → 重建 TSV」迭代。
+- **`upstream-sync-gate.sh` 的丢失报告每轮重算，TSV 必须跟着重建** — 它是 `BASE..HEAD` 的差集，所以**你为修复丢失项而做的改动本身会产生新的丢失行**（本轮把两行 ZH EDIT 注释合并成一行，报告就从 15 涨到 17）。别指望一次写好，按「跑门禁 → 读报告 → 重建 TSV」迭代。
   · **重建时按最后一个制表符切分**：报告行形如 `<文件>: <源码行>`，而源码行自带缩进制表符，按第一个 `\t` 切会把 key 截断，round-trip 全部对不上。
 - **补充表的优先级只做在精确表里，归一化表没跟上 → 101 条整条掉出反查** — `lang_build_runtime_domain` 让显式 `global_reverse` 文件（`_map_names`/`ui`/`_crafting`…）覆盖自动候选，但 `lang_build_reverse` 建归一化表时不分来源：`area.json` 的 `\improper Departure Lounge`（→离港休息厅）与 `_map_names` 的 `Departure Lounge`（→离港休息室）归一化后撞键、判歧义、**两条一起删**。而运行期区域名带 `\improper` 标记字节，精确表本来就对不上，只能落到归一化层 →「阻塞据信位于Departure Lounge区域」。实测 101 条（区域名 74 条），`catalog-audit` 的歧义门禁只看 forward 内部，看不见这一层。已改为两遍：先登记自动候选，再让补充表逐键覆盖（补充表彼此冲突仍判歧义）。**判据：同一条英文在 forward 与补充表里译法不同，且运行期形态与目录键差一个文法宏/大小写。**
 - **名字一旦先拼成字符串，类型信息就丢了** — 显示边界（`lang_localize_name_for_display`）认得「区域名 + 类型名 + id」「类型名 + 编号」「initial(name) 加缀」这些合成名，因为它拿得到 atom；而 `span_bold("\the [parent]")`、`ui = new(..., name)` 的窗口标题、无线电说话人名、模板捕获值都只剩字符串。三处补法：调用点要包标签就用 `lang_atom_text(atom, 英文)`（英文服原样、其它 locale 走显示边界）；TGUI 标题在 `get_payload` 下发 config 时走 `nova_display_title()`（`title` 本身不动，按标题缓存）；字符串链（`lang_localize_chain`、`lang_localize_arg`、名字块）补一条最窄的形状规则「前半段整串精确命中 + 尾巴是单个不含字母、含数字的 token」（信标 `radio navigation gigabeacon 9-222`）。名字块只在剥掉冠词之后才用——冠词证明它不是玩家角色名。
@@ -449,3 +462,9 @@ Known trap classes:
 - **屏幕提示的插值文案（约 150 处）只做了抽取、没做改写** — 抽取器早就按 `context[SCREENTIP_CONTEXT_*] = "…"` 收了 `Change to {0}` 这类模板，但显示点 `build_context` 只做整串反查，插值串永远不是目录键。rewrite 现在把插值形态改成 `LANG()`（纯字符串仍留给运行期反查，零改动）；拼字母的写法（`"[anchored ? "Unan" : "An"]chor"`）按「占位符紧贴字母」排除。三元分支里的单词动作词（Add/Remove/charge/cook…）进 `_state_words.json`——它是 `scoped:state_words` 域内表，只在 LANG 实参生效、不进全局反查，所以 lint 报的同名标识符碰撞是安全的、收进基线。`Water`/`Feed`/`above`/`casually` 这类别处有其它词义、或填进模板也不成句的不收。
 - **`INVOKE_ASYNC(x, TYPE_PROC_REF(/atom/movable, say), "…")` 是汇聚点的回调形态，按名字匹配的汇聚点表认不出它** — 宏展开后是 `call(0 || x, (nameof(/atom/movable.proc/say)))("…")`（`Term::DynamicCall`），AST 里根本没有名为 `say` 的调用。上游正批量把 `x.say("…")` 改成这种形态（2026-10 同步一次就把等离子拳的喊招、神罚突变的台词改掉）：解冲突取上游之后，原来的 `LANG()` 没了、extract 又抽不到，**症状是 catalog-audit 把一批明明还在源码里的句子报成 stale**。判据：stale 列表里的英文 `grep` 得到，且那一行是 `INVOKE_ASYNC(…)`。已在 `semantics::dynamic_call_sink` 收口（只认双实参 `call(owner, proc)`——GLOBAL_PROC 分支是同一行的重复展开），extract 与 rewrite 共用；rewrite 的源码槽位要偏移 2（owner 与 proc 引用两个槽），且要求 Location 落在 `INVOKE_ASYNC` 宏名上才动手。全仓一次改写 23 处，key 与旧的直调形态相同、译文原样复用。别的回调宏（`CALLBACK(…)`、`addtimer(CALLBACK(x, PROC_REF(say), …))`）仍是盲区。
 - **试剂与材料的单例 `name` 仍会被就地翻译，「实例 name 永远是英文」这条对它们不成立** — `SSreagents.Init` 会改写 `GLOB.chemical_reagents_list` 里的母版试剂，`SSmaterials` 会改写材料单例。所以凡是拿 `temp.name`/`material.name` 当 `id` 回传的地方（再交给 `GLOB.name2reagent[...]` 或前端 `MATERIAL_ICONS`），一律拿到中文、静默对不上：便携式化学混合器点了不出货、制造机材料栏没有图标。`id` 要取 `initial(x.name)`（`plumbing/synthesizer.dm` 早就是这么写的）。烧杯里**新建**的试剂实例不受影响（名字就是 initial 值）。排查：`grep -rnE '"(id|ref|value)" = [a-z_]*\.name\b' --include=*.dm code modular_nova`。同类还有 ExperTrak：`name` 在 ui_data 里本地化后又被拿去回传给 `find_skilltype`，按「另发英文 `id`」那条修。
+- **启动期建表：BYOND 的大列表有三个 O(n) 陷阱，十万条规模就是几十秒开服** — i18n 运行期初始化（`lang_initialize_runtime`，跑在 `ConfigLoaded` 里、玩家此时连不上服）曾单独吃掉 65 秒，GLOB 阶段的英文目录再 10 秒；修完是 5.6 秒 + 4.3 秒。三个坑都是实测量出来的，读代码看不出：
+  · **`x in L` 是线性扫描**，对关联列表也一样（只查键、但逐个比）。`L[x]` 才走索引，未命中也是 O(1)（2 万次 miss 5 ms）。值非空时一律写成 `!isnull(L[x])`；值本身是列表（歧义表）就直接取出来判真。
+  · **往普通 `list()` 插入新键是 O(当前长度)**：5 万条时每次 3.6 µs、还在线性增长，建一张十万条的表就是秒级。BYOND 516 的 **`alist()`** 插入快约 20 倍，`islist()` 照样为真、按键查表照常；代价是**遍历顺序不可控、不能按数字下标取**。只能用在「只查表、不遍历或遍历顺序无关」的表上 —— 正向目录**不能**换：模板引擎 `lang_tpl_setup` 按它的遍历顺序登记同一锚下的候选，换了会改变平局时谁胜出。顺带要把依赖遍历顺序的判断改掉（剥标签变体原来查「建到一半的精确表」，改成查整个 domain）。
+  · **十万个带长公共前缀的临时字符串极贵**：`origins[source] = "forward key [key]"` 这一行单独 11 秒（同样的表存 `key` 本身只要零头）。诊断用的 origin 一律存原始 key，报错时再拼消息。
+  另有一条没修的：`json_decode` 遇到**按键排序**的文件会退化（`obj.json` 原样 1.34 秒、打乱行序 0.07 秒），而我们所有目录都按键排序写盘。拆行重排要 `splittext`（0.9 秒）抵消掉收益；真要修得让写盘端换一种确定性但非单调的顺序。
+  **测法**：本地 `config.txt` 默认不开 `AUTO_PROFILE`，而 `SSprofiler.OnConfigLoad` 会在 `config.Load` 时**停掉** Genesis 里开的 profile —— 于是 `ConfigLoaded` 里的开销在默认 profile 里**完全不可见**，只能从 runtime.log 的「World loaded at」与日志首行的时间差看出来。复制一份 config 目录打开 `AUTO_PROFILE`，用 `-params "config-directory=<dir>&no-init=1"` 起服（`no-init` 让 world/New 在 ConfigLoaded 之后直接返回），十几秒一轮。等价性用「改前改后各导出一次 `GLOB.i18n_reverse`/`i18n_reverse_norm`，离线逐条比」来证，比跑单测直接。

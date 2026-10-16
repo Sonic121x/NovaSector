@@ -84,7 +84,7 @@
 			var/chemname = reagent.name
 			if(is_hallucinating && prob(5))
 				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			chemicals += list(list("title" = chemname, "id" = initial(reagent.name))) // NOVA EDIT CHANGE - i18n - ORIGINAL: chemicals += list(list("title" = chemname, "id" = reagent.name))
+			chemicals += list(list("title" = chemname, "id" = initial(reagent.name))) // ZH EDIT CHANGE - i18n - ORIGINAL: chemicals += list(list("title" = chemname, "id" = reagent.name))
 	.["chemicals"] = chemicals
 
 	.["current_reagent"] = initial(reagent_id.name)

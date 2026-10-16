@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Wooden shelves that force items placed on them to be visually placed them
 
 /obj/structure/rack/wooden

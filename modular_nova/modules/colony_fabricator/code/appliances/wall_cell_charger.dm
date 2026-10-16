@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/cell_charger_multi/wall_mounted
 	name = "mounted multi-cell charging rack"
 	desc = "The innovative technology of a cell charging rack, but mounted neatly on a wall out of the way!"

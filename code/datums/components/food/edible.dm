@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*!
 
 This component makes it possible to make things edible. What this means is that you can take a bite or force someone to take a bite (in the case of items).
@@ -245,7 +245,7 @@ Behavior that's still missing from this component that original food items had t
 		return
 	if(foodtypes)
 		var/list/types = bitfield_to_list(foodtypes, FOOD_FLAGS)
-		// NOVA EDIT CHANGE - i18n: 食物类别名逐个反查 + 中文用顿号连接。ORIGINAL: examine_list += span_notice(LANG("datum.62eee539c1582dc1", list(LOWER_TEXT(english_list(types)))))
+		// ZH EDIT CHANGE - i18n: 食物类别名逐个反查 + 中文用顿号连接。ORIGINAL: examine_list += span_notice(LANG("datum.62eee539c1582dc1", list(LOWER_TEXT(english_list(types)))))
 		if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 			var/list/translated_types = list()
 			for(var/food_type in types)
@@ -339,7 +339,7 @@ Behavior that's still missing from this component that original food items had t
 	original_atom.reagents.trans_to(this_food, original_atom.reagents.total_volume / chosen_processing_option[TOOL_PROCESSING_AMOUNT], copy_only = TRUE)
 
 	if(!HAS_TRAIT(this_food, TRAIT_FOOD_DONT_INHERIT_NAME_FROM_PROCESSED) && original_atom.name != initial(original_atom.name))
-		this_food.name = LANG("datum.cfae57ede34d2b76", list(original_atom.name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: this_food.name = "slice of [original_atom.name]"
+		this_food.name = LANG("datum.cfae57ede34d2b76", list(original_atom.name)) // ZH EDIT CHANGE - I18N - ORIGINAL: this_food.name = "slice of [original_atom.name]"
 		//It inherits the name of the original, which may already have a prefix
 		//So we need to make sure we don't double up on prefixes
 		//This is called before set_custom_materials() anyway

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// The controller for the ui in charge of all runtime greyscale configuration/debug.
 /// If `Unlock()` is not called the menu is safe for players to use.
 /datum/greyscale_modify_menu

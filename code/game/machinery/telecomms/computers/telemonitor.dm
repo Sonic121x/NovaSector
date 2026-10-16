@@ -57,8 +57,8 @@
 
 				data["machines"] += list(list(
 					"id" = machine.id,
-					"label" = lang_reverse_text(machine.id), // NOVA EDIT ADDITION - I18N - id 是 act('view') 的回传键，必须保持英文；显示另发一份
-					"name" = machine.lang_localize_name_for_display(machine.name), // NOVA EDIT - I18N: 机器名纯显示（act 走 ref/id）；atom 版守玩家改名。ORIGINAL: "name" = machine.name,
+					"label" = lang_reverse_text(machine.id), // ZH EDIT ADDITION - I18N - id 是 act('view') 的回传键，必须保持英文；显示另发一份
+					"name" = machine.lang_localize_name_for_display(machine.name), // ZH EDIT - I18N: 机器名纯显示（act 走 ref/id）；atom 版守玩家改名。ORIGINAL: "name" = machine.name,
 					"icon" = initial(machine.icon_state),
 				))
 
@@ -69,15 +69,15 @@
 				for(var/obj/machinery/telecomms/machine as anything in selected.links)
 					linked_machines += list(list(
 						"id" = machine.id,
-						"label" = lang_reverse_text(machine.id), // NOVA EDIT ADDITION - I18N
-						"name" = machine.lang_localize_name_for_display(machine.name), // NOVA EDIT - I18N: 同上。ORIGINAL: "name" = machine.name,
+						"label" = lang_reverse_text(machine.id), // ZH EDIT ADDITION - I18N
+						"name" = machine.lang_localize_name_for_display(machine.name), // ZH EDIT - I18N: 同上。ORIGINAL: "name" = machine.name,
 						"icon" = initial(machine.icon_state),
 					))
 
 				data["machine"] = list(
 					"id" = selected.id,
-					"label" = lang_reverse_text(selected.id), // NOVA EDIT ADDITION - I18N
-					"name" = selected.lang_localize_name_for_display(selected.name), // NOVA EDIT - I18N: 同上。ORIGINAL: "name" = selected.name,
+					"label" = lang_reverse_text(selected.id), // ZH EDIT ADDITION - I18N
+					"name" = selected.lang_localize_name_for_display(selected.name), // ZH EDIT - I18N: 同上。ORIGINAL: "name" = selected.name,
 					"network" = selected.network,
 					"linkedMachines" = linked_machines,
 				)

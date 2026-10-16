@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Filter name for the energy shield outline glow
 #define ENERGY_SHIELD_FILTER "energy_shield_tint"
 /// Filter name for the energy shield texture pattern

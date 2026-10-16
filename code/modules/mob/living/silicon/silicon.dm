@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /mob/living/silicon
 	gender = NEUTER
 	abstract_type = /mob/living/silicon
@@ -161,7 +161,7 @@
 
 		var/msg = "--- "
 		for(var/alarm_type in alarm_types_show)
-			msg += LANG("mob.fef5e58fee729cf1", list(uppertext(lang_alarm_type(alarm_type)), alarm_types_show[alarm_type])) // NOVA EDIT - I18N: 类别名走域内表（ALARM_* 同时是 assoc 键，不能进反查表）
+			msg += LANG("mob.fef5e58fee729cf1", list(uppertext(lang_alarm_type(alarm_type)), alarm_types_show[alarm_type])) // ZH EDIT - I18N: 类别名走域内表（ALARM_* 同时是 assoc 键，不能进反查表）
 
 		msg += "<A href=byond://?src=[REF(src)];showalerts=1'>\[Show Alerts\]</a>"
 		to_chat(src, msg)
@@ -174,7 +174,7 @@
 		var/msg = "--- "
 
 		for(var/alarm_type in alarm_types_clear)
-			msg += LANG("mob.eb212485af84a065", list(uppertext(lang_alarm_type(alarm_type)), alarm_types_clear[alarm_type])) // NOVA EDIT - I18N: 同上
+			msg += LANG("mob.eb212485af84a065", list(uppertext(lang_alarm_type(alarm_type)), alarm_types_clear[alarm_type])) // ZH EDIT - I18N: 同上
 
 		msg += "<A href=byond://?src=[REF(src)];showalerts=1'>\[Show Alerts\]</a>"
 		to_chat(src, msg)

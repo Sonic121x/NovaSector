@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/computer/exodrone_control_console
 	name = "exploration drone control console"
 	desc = "Control exploration drones from interstellar distances. Communication lag not included."
@@ -91,7 +91,7 @@
 	else
 		var/list/exodrones = list()
 		for(var/obj/item/exodrone/drone in GLOB.exodrones)
-			exodrones += list(list("name"=drone.lang_localize_name_for_display(drone.name),"controlled"=drone.controlled,"description"=drone.ui_description(),"ref"=ref(drone))) // NOVA EDIT - I18N: 无人机名纯显示（act 走 ref）；atom 版守玩家改名
+			exodrones += list(list("name"=drone.lang_localize_name_for_display(drone.name),"controlled"=drone.controlled,"description"=drone.ui_description(),"ref"=ref(drone))) // ZH EDIT - I18N: 无人机名纯显示（act 走 ref）；atom 版守玩家改名
 		.["all_drones"] = exodrones
 
 /obj/machinery/computer/exodrone_control_console/update_overlays()

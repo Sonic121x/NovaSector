@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/structure/microscope
 	name = "Microscope"
 	desc = "A simple microscope, allowing you to examine micro-organisms."
@@ -51,7 +51,7 @@
 			var/atom/resulting_atom = cell_line.resulting_atom
 			var/list/organism_data = list(
 				type = "cell line",
-				name = lang_localize_display_name(cell_line.name), // NOVA EDIT - I18N: 细胞系名纯显示。ORIGINAL: name = cell_line.name,
+				name = lang_localize_display_name(cell_line.name), // ZH EDIT - I18N: 细胞系名纯显示。ORIGINAL: name = cell_line.name,
 				desc = cell_line.desc,
 				icon = resulting_atom ? initial(resulting_atom.icon) : "",
 				icon_state = resulting_atom ? initial(resulting_atom.icon_state) : "",
@@ -68,7 +68,7 @@
 			var/datum/micro_organism/virus/virus = organism
 			var/list/virus_data = list(
 				type = "virus",
-				name = lang_localize_display_name(virus.name), // NOVA EDIT - I18N: 病毒名纯显示。ORIGINAL: name = virus.name,
+				name = lang_localize_display_name(virus.name), // ZH EDIT - I18N: 病毒名纯显示。ORIGINAL: name = virus.name,
 				desc = virus.desc
 			)
 			data["cell_lines"] += list(virus_data)
@@ -79,7 +79,7 @@
 	var/list/reagent_list = list()
 	for(var/i in reagents) //Convert from assoc to normal. Yeah very shit.
 		var/datum/reagent/reagent = i
-		// NOVA EDIT CHANGE - I18N - ORIGINAL: reagent_list["[initial(reagent.name)]"] = reagents[i] * SSMACHINES_DT
+		// ZH EDIT CHANGE - I18N - ORIGINAL: reagent_list["[initial(reagent.name)]"] = reagents[i] * SSMACHINES_DT
 		// 试剂名在这里是**关联键**，而 P1 的 lang_reverse_tree 只本地化「值」——键一律当标识符放过，
 		// 所以显微镜里的试剂名永远是英文，哪怕目录里早有译文。这份表纯粹是给前端显示的
 		// （Microscope.tsx 只 Object.keys 出来渲染，act 只有 eject_petridish，键从不回传服务端），

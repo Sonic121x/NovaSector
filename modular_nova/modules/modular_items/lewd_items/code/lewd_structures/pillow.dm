@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //WARNING - Lot's of shitcode here. I'm not the best coder but this stuff works and I'm happy. Improve it if you want, but don't break anything.
 
 /*

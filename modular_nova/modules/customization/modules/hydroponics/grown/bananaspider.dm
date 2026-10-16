@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/seeds/banana/spider_banana
 	name = "leggy banana seed pack"
 	desc = "They're seeds that grow into banana trees. However, those bananas might be alive."

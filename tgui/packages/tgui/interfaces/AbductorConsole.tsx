@@ -26,7 +26,7 @@ type AbductorConsoleData = {
 };
 
 type ConsoleItem = {
-  // NOVA EDIT ADDITION - I18N: English identifier for act('buy'); `name` is the localized
+  // ZH EDIT ADDITION - I18N: English identifier for act('buy'); `name` is the localized
   // display text. Falls back to `name` if the server didn't send an id.
   id?: string;
   name: string;
@@ -88,10 +88,10 @@ const Abductsoft = (props) => {
     for (let itemIndex = 0; itemIndex < category.items.length; itemIndex++) {
       const item = category.items[itemIndex];
       items.push({
-        id: item.id ?? item.name, // NOVA EDIT CHANGE - I18N - ORIGINAL: id: item.name,
+        id: item.id ?? item.name, // ZH EDIT CHANGE - I18N - ORIGINAL: id: item.name,
         name: item.name,
         category: category.name,
-        // NOVA EDIT CHANGE - I18N: 整串是运行期产物、永远不是目录键；包成元素后
+        // ZH EDIT CHANGE - I18N: 整串是运行期产物、永远不是目录键；包成元素后
         // 按 children 模板 `{0} Credits` 进目录 - ORIGINAL: cost: `${item.cost} Credits`,
         cost: (
           <>
@@ -118,7 +118,7 @@ const Abductsoft = (props) => {
         </LabeledList>
       </Section>
       <GenericUplink
-        // NOVA EDIT CHANGE - I18N - ORIGINAL: currency={`${credits} Credits`}
+        // ZH EDIT CHANGE - I18N - ORIGINAL: currency={`${credits} Credits`}
         currency={
           <>
             <span>{credits}</span> Credits
@@ -126,7 +126,7 @@ const Abductsoft = (props) => {
         }
         categories={categoriesList}
         items={items}
-        // NOVA EDIT CHANGE - I18N: 回传英文 id（item.name 现在是译名）- ORIGINAL: { name: item.name }
+        // ZH EDIT CHANGE - I18N: 回传英文 id（item.name 现在是译名）- ORIGINAL: { name: item.name }
         handleBuy={(item) => act('buy', { name: item.id })}
       />
     </>

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Causes the owner to glow based on their bodypart/mutant color, turns them into a disco ball when emagged
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow
 	id = "ethereal_glow"

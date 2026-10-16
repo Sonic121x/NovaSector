@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/vehicle/sealed/mecha/solfed/prometheus
 	desc = "A bipedal assault mech built for breach operations and urban warfare. Its heavy armament and reinforced chassis make it ideal for retaking compromised sectors."
 	name = "\improper MAI-2548A2 \"Prometheus\""

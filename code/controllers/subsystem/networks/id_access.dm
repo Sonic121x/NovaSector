@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(id_access)
 				continue
 
 			parsed_accesses += list(list(
-				"desc" = lang_reverse_text(replacetext(access_desc, "&nbsp", " ")), // NOVA EDIT CHANGE - I18N - 权限名纯显示（act 走 "ref"），静态表构建时整串反查（含单词条目；locale==en no-op） - ORIGINAL: "desc" = replacetext(access_desc, "&nbsp", " "),
+				"desc" = lang_reverse_text(replacetext(access_desc, "&nbsp", " ")), // ZH EDIT CHANGE - I18N - 权限名纯显示（act 走 "ref"），静态表构建时整串反查（含单词条目；locale==en no-op） - ORIGINAL: "desc" = replacetext(access_desc, "&nbsp", " "),
 				"ref" = access,
 			))
 

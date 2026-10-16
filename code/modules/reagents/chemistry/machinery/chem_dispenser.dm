@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/chem_dispenser
 	name = "chem dispenser"
 	desc = "Creates and dispenses chemicals."
@@ -285,7 +285,7 @@
 	for(var/re in dispensable_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
-			// NOVA EDIT START - I18N: temp.name is the RUNTIME name (translated to Chinese by SSreagents.Init).
+			// ZH EDIT START - I18N: temp.name is the RUNTIME name (translated to Chinese by SSreagents.Init).
 			// title/id MUST be the english name: title is matched against reagentComponent.name (english) for
 			// recipe base-reagent linking, and id is sent to the "dispense" act → GLOB.name2reagent[id] (english
 			// keys). Using the Chinese runtime name broke recipe matching + dispensing (cola/orange "点了不出货").
@@ -298,7 +298,7 @@
 				display_name = english_name
 				chemcolor = random_colour()
 			chemicals += list(list("title" = english_name, "display_title" = display_name, "id" = english_name, "pH" = temp.ph, "color" = chemcolor, "pHCol" = convert_ph_to_readable_color(temp.ph)))
-			// NOVA EDIT END
+			// ZH EDIT END
 	.["chemicals"] = chemicals
 	.["recipes"] = saved_recipes
 
@@ -319,7 +319,7 @@
 		var/list/beakerContents = list()
 		if(length(beaker.reagents.reagent_list))
 			for(var/datum/reagent/reagent as anything in beaker.reagents.reagent_list)
-				beakerContents += list(list("name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // list in a list because Byond merges the first list... // NOVA EDIT - I18N: 烧杯内容物名纯显示。ORIGINAL: "name" = reagent.name
+				beakerContents += list(list("name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // list in a list because Byond merges the first list... // ZH EDIT - I18N: 烧杯内容物名纯显示。ORIGINAL: "name" = reagent.name
 		beaker_data["contents"] = beakerContents
 	.["beaker"] = beaker_data
 
@@ -633,9 +633,9 @@
 
 			var/index = result_datum.name
 			var/list/new_info = get_reaction_info(reaction)
-			new_info["description"] = lang_reverse_text(result_datum.description) // NOVA EDIT - I18N
+			new_info["description"] = lang_reverse_text(result_datum.description) // ZH EDIT - I18N
 			new_info["color"] = result_datum.color
-			new_info["display_name"] = lang_reverse_text(result_datum.name) // NOVA EDIT - I18N: translated display; the record key (index) stays english for pin/search/dispense-match
+			new_info["display_name"] = lang_reverse_text(result_datum.name) // ZH EDIT - I18N: translated display; the record key (index) stays english for pin/search/dispense-match
 
 			var/num_alts = 0
 			while(new_reaction_list[index])
@@ -664,7 +664,7 @@
 	for(var/datum/reagent/reagent_typepath as anything in reagent_list)
 		info += list(list(
 			"name" = reagent_typepath::name,
-			"display_name" = lang_reverse_text(reagent_typepath::name), // NOVA EDIT - I18N: translated display; "name" stays english for dispense/recipe matching
+			"display_name" = lang_reverse_text(reagent_typepath::name), // ZH EDIT - I18N: translated display; "name" stays english for dispense/recipe matching
 			"amount" = reagent_list[reagent_typepath],
 			"typepath" = reagent_typepath,
 		))

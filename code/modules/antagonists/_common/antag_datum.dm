@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Max length of custom objective text
 #define CUSTOM_OBJECTIVE_MAX_LENGTH 300
 
@@ -428,7 +428,7 @@ GLOBAL_LIST_EMPTY(antagonists)
  * Appears at start of roundend_catagory section.
  */
 /datum/antagonist/proc/roundend_report_header()
-	return span_header("[LANG("datum.6935f01ca7db57db", list(roundend_category))]<br>") // NOVA EDIT - I18N - LANG 模板（原整串反查只救目录里恰好有的组合，"The Aliens were:" 等组合命不中）
+	return span_header("[LANG("datum.6935f01ca7db57db", list(roundend_category))]<br>") // ZH EDIT - I18N - LANG 模板（原整串反查只救目录里恰好有的组合，"The Aliens were:" 等组合命不中）
 
 /**
  * Proc that sends string data for the round-end report.

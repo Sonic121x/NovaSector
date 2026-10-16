@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 
 //lava hermit
 
@@ -260,7 +260,7 @@
 	src.forceMove(eggshell)
 	if(spawner_area)
 		notify_ghosts(
-			LANG("obj.5c7e8a8b9d504c7c", list(spawner_area.name)), // NOVA EDIT - i18n: 多行 notify_ghosts 改写器漏改,手接既有 key
+			LANG("obj.5c7e8a8b9d504c7c", list(spawner_area.name)), // ZH EDIT - i18n: 多行 notify_ghosts 改写器漏改,手接既有 key
 			source = src,
 			header = "Ash Walker Egg",
 			click_interact = TRUE,

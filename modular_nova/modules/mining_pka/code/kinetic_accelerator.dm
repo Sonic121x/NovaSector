@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //Proto-Kinetic Accelerators
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/variant //Parent Variant so we can apply general changes

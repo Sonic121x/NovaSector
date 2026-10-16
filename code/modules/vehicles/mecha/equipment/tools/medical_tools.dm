@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Sleeper, Medical Beam, and Syringe gun
 
 /obj/item/mecha_parts/mecha_equipment/medical
@@ -20,10 +20,10 @@
 	var/list/contained_reagents = list()
 	if(length(reagent_list))
 		for(var/datum/reagent/reagent as anything in reagent_list)
-			// NOVA EDIT CHANGE - I18N - ORIGINAL: contained_reagents += list(list("name" = reagent.name, "volume" = round(reagent.volume, 0.01)))
+			// ZH EDIT CHANGE - I18N - ORIGINAL: contained_reagents += list(list("name" = reagent.name, "volume" = round(reagent.volume, 0.01)))
 			// "id" 是 policy.json payload_skip_keys 成员，P1 不反查 → 保持英文标识符供 gear_action 回传；
 			// "name" 照旧本地化，只做显示。
-			contained_reagents += list(list("id" = reagent.name, "name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, 0.01))) // list in a list because Byond merges the first list... // NOVA EDIT - I18N: id 保英文供 gear_action 拼串，name 只做显示
+			contained_reagents += list(list("id" = reagent.name, "name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, 0.01))) // list in a list because Byond merges the first list... // ZH EDIT - I18N: id 保英文供 gear_action 拼串，name 只做显示
 	return contained_reagents
 
 //---- Mecha sleeper, medical subtype has the chemical functionality
@@ -251,7 +251,7 @@
 		var/enabled = FALSE
 		if(known_reagents[i] in processed_reagents)
 			enabled = TRUE
-		// NOVA EDIT CHANGE - I18N - ORIGINAL: analyzed_reagents += list((list("name" = known_reagents[i].name, "enabled" = enabled)))
+		// ZH EDIT CHANGE - I18N - ORIGINAL: analyzed_reagents += list((list("name" = known_reagents[i].name, "enabled" = enabled)))
 		analyzed_reagents += list((list("id" = known_reagents[i].name, "name" = known_reagents[i].name, "enabled" = enabled)))
 	var/list/data = list(
 		"snowflake_id" = MECHA_SNOWFLAKE_ID_SYRINGE,

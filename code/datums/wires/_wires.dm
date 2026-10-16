@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MAXIMUM_EMP_WIRES 3
 
 /**
@@ -363,9 +363,9 @@
 		payload.Add(list(list(
 			"color" = color,
 			"shownColor" = colorblind ? default_possible_colors[color] : color,
-			// NOVA EDIT ADDITION - I18N: shownColor 同时是 CSS 颜色名，必须留英文；另发一个显示字段。
+			// ZH EDIT ADDITION - I18N: shownColor 同时是 CSS 颜色名，必须留英文；另发一个显示字段。
 			"shownColorLabel" = lang_wire_colour(colorblind ? default_possible_colors[color] : color),
-			"wire" = (((reveal_wires || always_reveal_wire(color)) && !is_dud_color(color)) ? lang_runtime_domain_text("wires", get_wire(color)) : null), // NOVA EDIT CHANGE - I18N - 电线名走显式 scoped:wires 域，永不进入全局反查。 ORIGINAL: "wire" = (((reveal_wires || always_reveal_wire(color)) && !is_dud_color(color)) ? get_wire(color) : null),
+			"wire" = (((reveal_wires || always_reveal_wire(color)) && !is_dud_color(color)) ? lang_runtime_domain_text("wires", get_wire(color)) : null), // ZH EDIT CHANGE - I18N - 电线名走显式 scoped:wires 域，永不进入全局反查。 ORIGINAL: "wire" = (((reveal_wires || always_reveal_wire(color)) && !is_dud_color(color)) ? get_wire(color) : null),
 			"cut" = is_color_cut(color),
 			"attached" = is_attached(color)
 		)))

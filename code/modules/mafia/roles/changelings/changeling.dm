@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/mafia_role/mafia
 	name = "Changeling"
 	desc = "You're a member of the changeling hive. Talk during the Night period to coordinate with your allies, and kill all non-Changelings."

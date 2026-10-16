@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	/mob/living/basic/bat,
 	/mob/living/basic/butterfly,
@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	var/strength = pick("human", "moderate", "lizard", "security", "command", "clown", "low", "very low", "\[REDACTED\]")
 
 	var/one_local = one
-	// NOVA EDIT ADDITION START - I18N - localize the picked flavor args via local maps; the announcement template is reverse-matched but these args are common words (command/security/human/low) we must keep out of the global reverse/state tables to avoid collisions elsewhere
+	// ZH EDIT ADDITION START - I18N - localize the picked flavor args via local maps; the announcement template is reverse-matched but these args are common words (command/security/human/low) we must keep out of the global reverse/state tables to avoid collisions elsewhere
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		var/static/list/zh_data = list("scans from our long-range sensors" = "来自我们远程传感器的扫描", "our sophisticated probabilistic models" = "我们精密的概率模型", "our omnipotence" = "我们的全知全能", "the communications traffic on your station" = "你们空间站上的通讯流量", "energy emissions we detected" = "我们探测到的能量辐射", "\[REDACTED\]" = "\[已删除\]")
 		var/static/list/zh_pets = list("animals/bots" = "动物/机器人", "bots/animals" = "机器人/动物", "pets" = "宠物", "simple animals" = "简单动物", "lesser lifeforms" = "低等生命体", "\[REDACTED\]" = "\[已删除\]")
@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 		pets = zh_pets[pets] || pets
 		strength = zh_strength[strength] || strength
 		one_local = zh_one[one] || one
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	sentience_report += "Based on [data], we believe that [one_local] of the station's [pets] has developed [strength] level intelligence, and the ability to communicate."
 

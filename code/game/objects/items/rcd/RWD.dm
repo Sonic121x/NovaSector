@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //This represents the amount of materials (both iron and glass that the max_amount of cable would amount to
 #define RWD_MAX_CABLES_MATS (SMALL_MATERIAL_AMOUNT * 0.1 * RWD_MAX_CABLES)
 #define RWD_MAX_CABLES 210

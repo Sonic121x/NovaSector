@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // TODO: Work into reworked uplinks.
 /// Selects a set number of unique items from the uplink, and deducts a percentage discount from them
 /proc/create_uplink_sales(num, datum/uplink_category/category, limited_stock, list/sale_items)
@@ -46,7 +46,7 @@
 		uplink_item.stock_key = WEAKREF(uplink_item)
 		uplink_item.category = category
 		uplink_item.cost = max(round(uplink_item.cost * (1 - discount)),1)
-		// NOVA EDIT CHANGE - i18n: reverse the base name/desc before appending the runtime-composed discount suffix +
+		// ZH EDIT CHANGE - i18n: reverse the base name/desc before appending the runtime-composed discount suffix +
 		// sale text (which otherwise break the whole-string P1 reverse, leaving the base english). The sale text
 		// " Normally costs {0} TC. All sales final. {1}" is a boundary-template-engine template (translated downstream
 		// via P1); the short " (N% off!)" suffix is below the template min-anchor so it's localized directly here.

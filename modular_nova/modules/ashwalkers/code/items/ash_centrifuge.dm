@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/reagent_containers/cup/primitive_centrifuge
 	name = "primitive centrifuge"
 	desc = "A small cup that allows a person to slowly spin out liquids they do not desire."

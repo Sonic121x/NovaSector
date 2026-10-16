@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*
  * LAVA
  * PLASMA LAVA
@@ -84,6 +84,11 @@
 
 /turf/open/lava/initialize_occupant(atom/movable/occupant)
 	. = ..()
+	// ZH EDIT ADDITION START - DEFERRED_OFFSTATION - an occupant not initialized yet is handled by on_atom_inited() once it is;
+	// burning it now ignores the TRAIT_LAVA_STOPPED its catwalk/railing would apply, and damages an atom with no integrity yet
+	if(!(occupant.flags_1 & INITIALIZED_1))
+		return
+	// ZH EDIT ADDITION END
 	apply_lava_effects(occupant)
 
 /// Entering lava and having the floor turn into lava apply the same effects.

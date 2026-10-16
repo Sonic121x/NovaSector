@@ -110,14 +110,14 @@ Notes:
 /proc/openToolTip(mob/user = null, atom/movable/tip_src = null, params = null, title = "", content = "", theme = "")
 	if(!istype(user) || !user.client?.tooltips)
 		return
-	// NOVA EDIT ADDITION START - i18n: 悬浮提示是独立落地点，既不过 sink 也不过 P1（tooltip.dm 的
+	// ZH EDIT ADDITION START - i18n: 悬浮提示是独立落地点，既不过 sink 也不过 P1（tooltip.dm 的
 	// show() 直接把 title/content 拼进 HTML 发 output）。atom.name 在 Initialize 已反查所以标题是
 	// 中文，desc 却常留英文 —— examine 是靠显示点自己再反查一次才显中文的，这里从来没接上。
 	// 全部 8 个调用点（alert / action_button ×3 / radial / blob / new_player / items）都是裸传
 	// name/desc，故在此收口。整串反查：命中即译，未命中原样返回；en locale 下 no-op。
 	title = lang_reverse_text(title)
 	content = lang_reverse_text(content)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	var/ui_style = user.client?.prefs?.read_preference(/datum/preference/choiced/ui_style)
 	if(!theme && ui_style)
 		theme = LOWER_TEXT(ui_style)

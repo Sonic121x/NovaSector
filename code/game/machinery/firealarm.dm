@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/electronics/firealarm
 	name = "fire alarm electronics"
 	desc = "A fire alarm circuit. Can handle heat levels up to 40 degrees celsius."
@@ -120,7 +120,7 @@
 
 /obj/machinery/firealarm/update_name(updates)
 	. = ..()
-	name = "[get_area_name(my_area)] [initial(name)] [id_tag]" // NOVA EDIT - I18N: 实例名保持 canonical English（区域前缀要能按英文解析），显示由 examine/hover 边界翻译
+	name = "[get_area_name(my_area)] [initial(name)] [id_tag]" // ZH EDIT - I18N: 实例名保持 canonical English（区域前缀要能按英文解析），显示由 examine/hover 边界翻译
 
 /obj/machinery/firealarm/on_exit_area(datum/source, area/area_to_unregister)
 	//we cannot unregister from an area we never registered to in the first place

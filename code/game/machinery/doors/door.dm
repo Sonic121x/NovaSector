@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///Default wait until doors autoclose
 // #define DOOR_CLOSE_WAIT 60 // NOVA EDIT REMOVAL - Default wait until doors autoclose - moved to code/__DEFINES/~nova_defines/airlock.dm
 /// Trait for checking if a mob is currently activating an unrestricted airlock open and thus has pressure pushes blocked

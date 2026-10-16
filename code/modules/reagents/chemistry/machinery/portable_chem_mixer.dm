@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/storage/portable_chem_mixer
 	name = "portable chemical mixer"
 	desc = "A portable device that dispenses and mixes chemicals using the beakers inserted inside."
@@ -176,7 +176,7 @@
 				total_ph = rs.ph
 			if(is_hallucinating && prob(5))
 				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			.["chemicals"] += list(list("title" = chemname, "id" = initial(temp.name), "volume" = total_volume, "pH" = total_ph)) // NOVA EDIT CHANGE - I18N: 母版试剂的 name 在 SSreagents.Init 被就地译成中文，id 回传给 GLOB.name2reagent（英文键）必须取英文原名 - ORIGINAL: .["chemicals"] += list(list("title" = chemname, "id" = temp.name, "volume" = total_volume, "pH" = total_ph))
+			.["chemicals"] += list(list("title" = chemname, "id" = initial(temp.name), "volume" = total_volume, "pH" = total_ph)) // ZH EDIT CHANGE - I18N: 母版试剂的 name 在 SSreagents.Init 被就地译成中文，id 回传给 GLOB.name2reagent（英文键）必须取英文原名 - ORIGINAL: .["chemicals"] += list(list("title" = chemname, "id" = temp.name, "volume" = total_volume, "pH" = total_ph))
 
 	var/list/beaker_data = null
 	if(!QDELETED(beaker))
@@ -188,7 +188,7 @@
 		var/list/beakerContents = list()
 		if(length(beaker.reagents.reagent_list))
 			for(var/datum/reagent/reagent in beaker.reagents.reagent_list)
-				beakerContents += list(list("name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // list in a list because Byond merges the first list... // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name
+				beakerContents += list(list("name" = lang_localize_display_name(reagent.name), "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // list in a list because Byond merges the first list... // ZH EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name
 		beaker_data["contents"] = beakerContents
 	.["beaker"] = beaker_data
 

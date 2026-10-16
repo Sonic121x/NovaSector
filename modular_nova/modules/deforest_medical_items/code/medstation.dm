@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/biogenerator/medstation
 	name = "wall med-station"
 	desc = "An advanced machine seen in frontier outposts and colonies capable of turning organic plant matter into \

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Add to a projectile to allow it to be parried by mobs with a certain trait (TRAIT_MINING_PARRYING by default)
 /datum/component/parriable_projectile
 	/// List of all turfs the projectile passed on its last loop and we assigned comsigs to

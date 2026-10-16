@@ -26,7 +26,7 @@ type Data = {
   autoPickup: BooleanLike;
   reportDelivery: BooleanLike;
   destination: string | null;
-  // NOVA EDIT CHANGE - I18N - 中文 locale 下后端发对象选项 {value:英文 tag, displayText:译名}；onSelected 回传 value（英文）保证寻路匹配。ORIGINAL: destinationsList: string[];
+  // ZH EDIT CHANGE - I18N - 中文 locale 下后端发对象选项 {value:英文 tag, displayText:译名}；onSelected 回传 value（英文）保证寻路匹配。ORIGINAL: destinationsList: string[];
   destinationsList: (string | { value: string; displayText: string })[];
   homeDestination: string | null;
   botId: string;
@@ -174,7 +174,7 @@ export const Mule = (props) => {
                 <Button
                   icon={powerStatus ? 'power-off' : 'times'}
                   selected={powerStatus}
-                  // NOVA EDIT CHANGE - basic mulebot 重构后 DM 只认父类的 "power"（"on" 无人处理，没电关机后再也开不回来） - ORIGINAL: onClick={() => act('on')}
+                  // ZH EDIT CHANGE - basic mulebot 重构后 DM 只认父类的 "power"（"on" 无人处理，没电关机后再也开不回来） - ORIGINAL: onClick={() => act('on')}
                   onClick={() => act('power')}
                 >
                   {powerStatus ? 'On' : 'Off'}

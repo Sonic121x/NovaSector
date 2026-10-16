@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 
 #define DENY_SOUND_COOLDOWN (2 SECONDS)
 
@@ -51,11 +51,11 @@
 
 	var/obj/item/card/id/id_card = user.get_idcard(TRUE) // the ID card the user is holding/wearing, used to check their linked bank account
 	if(isnull(id_card))
-		deny(source, user, LANG("datum.f1378ade3d9e9ab5", null)) // NOVA EDIT CHANGE - I18N - ORIGINAL: deny(source, user, "No ID detected!")
+		deny(source, user, LANG("datum.f1378ade3d9e9ab5", null)) // ZH EDIT CHANGE - I18N - ORIGINAL: deny(source, user, "No ID detected!")
 		return BLOCK_OPEN
 
 	if(!id_card.registered_account)
-		deny(source, user, LANG("datum.4a3a3d6db7d274ca", null)) // NOVA EDIT CHANGE - I18N - ORIGINAL: deny(source, user, "No linked bank account detected!")
+		deny(source, user, LANG("datum.4a3a3d6db7d274ca", null)) // ZH EDIT CHANGE - I18N - ORIGINAL: deny(source, user, "No linked bank account detected!")
 		return BLOCK_OPEN
 
 	var/is_department = istype(buyer_account, /datum/bank_account/department) // department orders check the user's paycheck department instead of a personal account match.  TRUE if this user is allowed to open the crate
@@ -65,7 +65,7 @@
 		: (id_card.registered_account == buyer_account)
 
 	if(!account_matches)
-		deny(source, user, LANG("datum.1a0bc4267714af28", null)) // NOVA EDIT CHANGE - I18N - ORIGINAL: deny(source, user, "Bank account does not match with buyer!")
+		deny(source, user, LANG("datum.1a0bc4267714af28", null)) // ZH EDIT CHANGE - I18N - ORIGINAL: deny(source, user, "Bank account does not match with buyer!")
 		return BLOCK_OPEN
 
 	if(iscarbon(user))

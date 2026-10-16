@@ -66,7 +66,7 @@ export const CheckboxInput = (props) => {
             <NoticeBox info textAlign="center">
               {decodeHtmlEntities(message)}{' '}
               {/*
-                NOVA EDIT CHANGE - i18n: ORIGINAL: {min_checked > 0 && ` (Min: ${min_checked})`}
+                ZH EDIT CHANGE - i18n: ORIGINAL: {min_checked > 0 && ` (Min: ${min_checked})`}
                 {max_checked < 50 && ` (Max: ${max_checked})`}
                 拼出来的整串永远不是目录键。拆成 children 模板（数值包进元素当占位符），
                 词间空格留在外层 `{' '}`：模板查表按 trim 后的键，空白不会随译文回来。

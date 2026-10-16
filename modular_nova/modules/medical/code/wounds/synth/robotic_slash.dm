@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// How much damage and progress is reduced when on stasis.
 #define ELECTRICAL_DAMAGE_ON_STASIS_MULT 0.15
 /// How much damage and progress is reduced when limb is grasped.

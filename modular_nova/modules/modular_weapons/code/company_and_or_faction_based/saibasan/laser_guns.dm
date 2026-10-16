@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// File location for the long gun's speech
 #define LONG_MOD_LASER_SPEECH "nova/long_modular_laser.json"
 /// File location for the short gun's speech

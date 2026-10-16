@@ -71,6 +71,15 @@
 
 /// This proc checks for forbidden traits cause it'd be pretty bad to have 5 insuls available to assistants roundstart at the vendor!
 /obj/machinery/vending/proc/allow_increase(obj/item/clothing/clothing_path)
+	// The answer depends only on the type, and the earmuff check below has to instantiate the item.
+	// Every vendor asks about the same few hundred types, thousands of times per map load.
+	var/static/list/allowed_by_type = list()
+	. = allowed_by_type[clothing_path]
+	if(isnull(.))
+		. = check_allow_increase(clothing_path)
+		allowed_by_type[clothing_path] = .
+
+/obj/machinery/vending/proc/check_allow_increase(obj/item/clothing/clothing_path)
 	// Don't touch bodyarmour!
 	if(ispath(clothing_path, /obj/item/clothing/suit/armor))
 		return FALSE
@@ -85,9 +94,7 @@
 		return FALSE
 	// Ignore earmuffs!
 	var/obj/item/clothing/clothing = new clothing_path() // need to instantiate one to check for this, no initial() on lists
-	if(TRAIT_DEAF in clothing.clothing_traits)
-		return FALSE
+	. = !(TRAIT_DEAF in clothing.clothing_traits)
 	qdel(clothing)
-	return TRUE
 
 #undef MINIMUM_CLOTHING_STOCK

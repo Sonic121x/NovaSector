@@ -49,7 +49,7 @@ write_lost_report() {
   git diff "$base" --unified=0 -- code/ html/ interface/ tgui/packages/ |
     awk '
       /^\+\+\+ b\// { file = substr($0, 7) }
-      /^-/ && !/^---/ && ($0 ~ /lang_[a-z_]+\(|LANG\(|NOVA EDIT[^\n]*[Ii]18[Nn]|I18N/) {
+      /^-/ && !/^---/ && ($0 ~ /lang_[a-z_]+\(|LANG\(|ZH EDIT[^\n]*[Ii]18[Nn]|I18N/) {
         print file ": " substr($0, 2)
       }
     ' > "$lost_file"

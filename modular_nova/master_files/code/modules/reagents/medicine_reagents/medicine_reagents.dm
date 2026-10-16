@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Numbing effects
 /datum/reagent/consumable/ethanol/drunken_espatier/New(list/data)
 	metabolized_traits += list(TRAIT_ANALGESIA) // adding it this way so that should upstream ever add their own metabolized_traits, we don't override them

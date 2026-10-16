@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/computer_file/program/budgetorders
 	filename = "orderapp"
 	filedesc = "NT Shopping Network"
@@ -95,7 +95,7 @@
 			continue
 		if(!data["supplies"][P.group])
 			data["supplies"][P.group] = list(
-				"name" = lang_reverse_text(P.group), // NOVA EDIT CHANGE - I18N - ORIGINAL: "name" = P.group, （分类名仅显示/前端状态键，整串译=安全；含单词类如 Armory）
+				"name" = lang_reverse_text(P.group), // ZH EDIT CHANGE - I18N - ORIGINAL: "name" = P.group, （分类名仅显示/前端状态键，整串译=安全；含单词类如 Armory）
 				"packs" = list()
 			)
 		if(((P.order_flags & ORDER_EMAG_ONLY) && ((P.order_flags & ORDER_CONTRABAND) && !contraband) || ((P.order_flags & ORDER_SPECIAL) && !(P.order_flags & ORDER_SPECIAL_ENABLED)) || (P.order_flags & ORDER_POD_ONLY)))
@@ -107,7 +107,7 @@
 		// NOVA EDIT ADDITION END
 		var/obj/item/first_item = length(P.contains) > 0 ? P.contains[1] : null
 		data["supplies"][P.group]["packs"] += list(list(
-			"name" = lang_reverse_text(P.name), // NOVA EDIT CHANGE - I18N - ORIGINAL: "name" = P.name, （目录显示用译名；add/remove 走 id=安全）
+			"name" = lang_reverse_text(P.name), // ZH EDIT CHANGE - I18N - ORIGINAL: "name" = P.name, （目录显示用译名；add/remove 走 id=安全）
 			"cost" = P.get_cost(),
 			"id" = pack,
 			"desc" = P.desc || P.name, // If there is a description, use it. Otherwise use the pack's name.
@@ -146,7 +146,7 @@
 
 		cart_list[order.pack.name] = list(list(
 			"cost_type" = order.cost_type,
-			"object" = lang_reverse_text(order.pack.name), // NOVA EDIT CHANGE - I18N - ORIGINAL: "object" = order.pack.name, （购物车显示用译名；remove 走 id=安全）
+			"object" = lang_reverse_text(order.pack.name), // ZH EDIT CHANGE - I18N - ORIGINAL: "object" = order.pack.name, （购物车显示用译名；remove 走 id=安全）
 			"cost" = order.get_final_cost(),
 			"id" = order.id,
 			"amount" = 1,

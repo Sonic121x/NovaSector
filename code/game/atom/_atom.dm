@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * The base type for nearly all physical objects in SS13
 
@@ -968,10 +968,10 @@
 				if(extra_lines)
 					extra_context = "<br><span class='subcontext'>[lmb_rmb_line][ctrl_lmb_ctrl_rmb_line][alt_lmb_alt_rmb_line][shift_lmb_ctrl_shift_lmb_line]</span>"
 
-	// NOVA EDIT ADDITION START - I18N: atom.name 保持 canonical English，不在 Initialize 时改写 appearance。
+	// ZH EDIT ADDITION START - I18N: atom.name 保持 canonical English，不在 Initialize 时改写 appearance。
 	// maptext 不经过聊天兜底，因此在 hover 显示边界翻译静态类型名；运行时身份名和玩家改名保留原文。
 	used_name = lang_localize_name_for_display(used_name)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	var/new_maptext
 	if (screentips_enabled == SCREENTIP_PREFERENCE_CONTEXT_ONLY && extra_context == "")
 		new_maptext = ""

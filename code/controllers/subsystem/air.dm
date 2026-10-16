@@ -96,7 +96,7 @@ SUBSYSTEM_DEF(air)
 	gas_reactions = init_gas_reactions()
 	hotspot_reactions = init_hotspot_reactions()
 
-	// NOVA EDIT ADDITION START - i18n - gas 名/描述运行时整串反查（meta_gas_info 是 GLOBAL_LIST_INIT，
+	// ZH EDIT ADDITION START - i18n - gas 名/描述运行时整串反查（meta_gas_info 是 GLOBAL_LIST_INIT，
 	// 早于 i18n_cache 不能在 meta_gas_list 内反查；放 SS Init 时 i18n_cache 已就绪。覆盖单词类 gas 名）
 	// 布局注意：meta_gas_info 是 [META_GAS_* 常量][gas_path] 的数字索引外层（见 meta_gas_list()），
 	// 不是 [gas_path][META_GAS_*]——按 gas_path 遍历外层会拿到内层 list 并 runtime。
@@ -108,7 +108,7 @@ SUBSYSTEM_DEF(air)
 		for(var/gas_path in gas_descs)
 			if(gas_descs[gas_path])
 				gas_descs[gas_path] = lang_reverse_text(gas_descs[gas_path])
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	setup_allturfs()
 	setup_atmos_machinery()

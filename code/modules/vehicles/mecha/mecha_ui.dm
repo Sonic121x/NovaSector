@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/vehicle/sealed/mecha/ui_close(mob/user)
 	. = ..()
 	ui_view.hide_from(user)
@@ -132,7 +132,7 @@
 					data += list(list(
 						"slot" = category,
 						"icon" = module.icon_state,
-						"name" = lang_localize_display_name(module.name), // NOVA EDIT - I18N: 模块名纯显示（act 走 ref/gear_action 用 id）。ORIGINAL: "name" = module.name,
+						"name" = lang_localize_display_name(module.name), // ZH EDIT - I18N: 模块名纯显示（act 走 ref/gear_action 用 id）。ORIGINAL: "name" = module.name,
 						"desc" = module.desc,
 						"detachable" = module.detachable,
 						"integrity" = (module.get_integrity()/module.max_integrity),

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define BALLOON_TEXT_WIDTH 200
 #define BALLOON_TEXT_SPAWN_TIME (0.2 SECONDS)
 #define BALLOON_TEXT_FADE_TIME (0.1 SECONDS)
@@ -63,18 +63,18 @@
 		to_chat(viewer, span_emote(LANG("atom.6eecb7e20b0abfbf", list(icon2html(src, viewer), src.name, text))))
 		return
 
-	// NOVA EDIT ADDITION START - i18n: balloon 是**唯一一个不经任何落地层**的常规显示面
+	// ZH EDIT ADDITION START - i18n: balloon 是**唯一一个不经任何落地层**的常规显示面
 	// （maptext 直接送客户端，to_chat/browse/statpanel 都各自接了 lang_fallback_apply）。
 	// 绝大多数调用点已被 rewrite 改成 LANG，但任何漏网的都会无声地显英文，而且漏翻采集器
 	// 也看不到它 —— 接上这条既补了兜底，也让这一面第一次进得了采集。
 	// 必须在 MeasureText 之前做：气泡宽高按这里的串量。
 	text = lang_fallback_apply(text)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	var/image/balloon_alert = image(loc = isturf(src) ? src : get_atom_on_turf(src), layer = ABOVE_MOB_LAYER)
 	SET_PLANE_EXPLICIT(balloon_alert, BALLOON_CHAT_PLANE, src)
 	balloon_alert.alpha = 0
 	balloon_alert.appearance_flags = RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM
-	balloon_alert.maptext = MAPTEXT("<span style='text-align: center; font-family: \"Fusion Pixel 12px Mono zh_hans\"; font-size: 9pt; line-height: 1.0; -dm-text-outline: 1px #0005'>[text]</span>") // NOVA EDIT CHANGE - i18n: balloon uses crisp 12px@9pt (bigger than default .maptext 8px) - ORIGINAL: balloon_alert.maptext = MAPTEXT("<span style='text-align: center; -dm-text-outline: 1px #0005'>[text]</span>")
+	balloon_alert.maptext = MAPTEXT("<span style='text-align: center; font-family: \"Fusion Pixel 12px Mono zh_hans\"; font-size: 9pt; line-height: 1.0; -dm-text-outline: 1px #0005'>[text]</span>") // ZH EDIT CHANGE - i18n: balloon uses crisp 12px@9pt (bigger than default .maptext 8px) - ORIGINAL: balloon_alert.maptext = MAPTEXT("<span style='text-align: center; -dm-text-outline: 1px #0005'>[text]</span>")
 	balloon_alert.maptext_x = (BALLOON_TEXT_WIDTH - ICON_SIZE_X) * -0.5 - base_pixel_x
 	WXH_TO_HEIGHT(viewer_client?.MeasureText(text, null, BALLOON_TEXT_WIDTH), balloon_alert.maptext_height)
 	balloon_alert.maptext_width = BALLOON_TEXT_WIDTH

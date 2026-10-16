@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/status_effect/speech
 	id = STATUS_EFFECT_ID_ABSTRACT
 	alert_type = null
@@ -8,7 +8,7 @@
 	var/make_tts_message_original = FALSE
 	/// If set, this will be appended to the TTS filter of the message
 	var/tts_filter = ""
-	/// NOVA EDIT ADDITION - I18N - 中文按**字**切之后，效果自带的每词概率对单字太密（口吃 75% ⇒
+	/// ZH EDIT ADDITION - I18N - 中文按**字**切之后，效果自带的每词概率对单字太密（口吃 75% ⇒
 	/// 几乎每个字都结巴）。这一档决定有多大比例的字参与，独立于效果自身的概率。
 	/// 设成变量而不是写死：单测要确定性（拉到 100），调风格时也只改一处。
 	var/cjk_char_chance = 25
@@ -38,7 +38,7 @@
 		return
 
 	var/final_phrase = ""
-	// NOVA EDIT ADDITION START - I18N - 中文没有词间空格，整句会被当成**一个词**，于是口吃/脑损
+	// ZH EDIT ADDITION START - I18N - 中文没有词间空格，整句会被当成**一个词**，于是口吃/脑损
 	// 这类逐词生效的语音效果在中文服上一句话只触发一次（「我-我-我们今天…」之后再无变化）。
 	// 中文按**字**切、以空串重新拼接；apply_speech 的每词概率对单字来说太高，故只把一部分字送进去。
 	var/separator = " "
@@ -52,16 +52,16 @@
 			words += copytext_char(phrase, i, i + 1)
 	else
 		words = splittext(phrase, " ")
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	var/list/new_words = list()
 	for(var/i in 1 to length(words))
-		// NOVA EDIT ADDITION - I18N - 按字切之后，效果自带的「每词概率」对单字而言太密（75% 的字
+		// ZH EDIT ADDITION - I18N - 按字切之后，效果自带的「每词概率」对单字而言太密（75% 的字
 		// 都口吃就没法读了）。这里先抽掉四分之三的字，让密度回到接近逐词的观感。
 		if(separator == "" && !prob(cjk_char_chance))
 			new_words += words[i]
 			continue
 		new_words += apply_speech(words[i], i)
-	final_phrase = jointext(new_words, separator) // NOVA EDIT CHANGE - I18N - 中文按字切时不能用空格拼回。ORIGINAL: final_phrase = jointext(new_words, " ")
+	final_phrase = jointext(new_words, separator) // ZH EDIT CHANGE - I18N - 中文按字切时不能用空格拼回。ORIGINAL: final_phrase = jointext(new_words, " ")
 
 	if(final_phrase == phrase)
 		return // No change was done, whatever
@@ -110,13 +110,13 @@
 	if(!prob(stutter_prob))
 		return original_word
 
-	// NOVA EDIT ADDITION START - I18N - 中文口吃是**重复整字**（「我-我-我们」），而上面那条正则靠
+	// ZH EDIT ADDITION START - I18N - 中文口吃是**重复整字**（「我-我-我们」），而上面那条正则靠
 	// `\b` 和拉丁字母定位首字母，对单个汉字匹配不上、会原样返回 = 效果完全不触发。
 	// 判据用「不含 ASCII 字母」，避免误伤中英混排里的英文词。
 	var/regex/ascii_letters = GLOB.i18n_ascii_letter_regex
 	if(!ascii_letters.Find(original_word))
 		return stutter_char(original_word)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	if(stutter_regex.Find(original_word))
 		return "[stutter_regex.group[1]][stutter_char(stutter_regex.group[2])][stutter_regex.group[3]]"
 

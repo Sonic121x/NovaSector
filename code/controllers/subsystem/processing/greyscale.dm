@@ -26,10 +26,10 @@ PROCESSING_SUBSYSTEM_DEF(greyscale)
 
 #ifdef USE_RUSTG_ICONFORGE_GAGS
 	var/list/job_ids = list()
-	// NOVA EDIT ADDITION START - I18N - bound rust_g async thread fan-out in 32-bit DreamDaemon
+	// ZH EDIT ADDITION START - I18N - bound rust_g async thread fan-out in 32-bit DreamDaemon
 	// Caps concurrent rust_g thread-spawns; unbounded fan-out can exhaust a 32-bit DreamDaemon's address space and abort it.
 #define GAGS_ASYNC_JOB_BATCH_SIZE 16
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 #endif
 
 	// This final verification step is for things that need other greyscale configurations to be finished loading
@@ -39,17 +39,17 @@ PROCESSING_SUBSYSTEM_DEF(greyscale)
 		config.CrossVerify()
 #ifdef USE_RUSTG_ICONFORGE_GAGS
 		job_ids += rustg_iconforge_load_gags_config_async(greyscale_type, config.raw_json_string, config.string_icon_file)
-		// NOVA EDIT ADDITION START - I18N - wait for each bounded batch before dispatching more jobs
+		// ZH EDIT ADDITION START - I18N - wait for each bounded batch before dispatching more jobs
 		if(length(job_ids) >= GAGS_ASYNC_JOB_BATCH_SIZE)
 			UNTIL(jobs_completed(job_ids))
-		// NOVA EDIT ADDITION END
+		// ZH EDIT ADDITION END
 #endif
 
 #ifdef USE_RUSTG_ICONFORGE_GAGS
 	UNTIL(jobs_completed(job_ids))
-	// NOVA EDIT ADDITION START - I18N - keep the batch-size define local to this implementation
+	// ZH EDIT ADDITION START - I18N - keep the batch-size define local to this implementation
 #undef GAGS_ASYNC_JOB_BATCH_SIZE
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 #endif
 
 	return SS_INIT_SUCCESS

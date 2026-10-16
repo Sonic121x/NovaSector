@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define SLIME_EXTRA_SHOCK_COST 3
 #define SLIME_EXTRA_SHOCK_THRESHOLD 8
 #define SLIME_BASE_SHOCK_PERCENTAGE 10
@@ -6,11 +6,11 @@
 
 /mob/living/basic/slime
 	name = "grey baby slime (123)"
-	// NOVA EDIT ADDITION START - i18n: 上一次由 update_name() 自动生成的名字。用它判断「这是自动名
+	// ZH EDIT ADDITION START - i18n: 上一次由 update_name() 自动生成的名字。用它判断「这是自动名
 	// 还是玩家改的名」，取代原来「正则解析显示名」的做法——理由见 update_name() 的注释。
 	/// The last name update_name() generated for us. Empty means "never auto-named yet".
 	VAR_PRIVATE/last_auto_name
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	icon = 'icons/mob/simple/slimes.dmi'
 	icon_state = "grey-baby"
 	pass_flags = PASSTABLE | PASSGRILLE
@@ -193,7 +193,7 @@
 	return round((nutrition / SLIME_MAX_NUTRITION) * NUTRITION_LEVEL_FAT)
 
 /mob/living/basic/slime/update_name()
-	// NOVA EDIT CHANGE START - i18n: 原实现靠**正则解析显示名**来判断「这是自动名，可以按新颜色/阶段重建」
+	// ZH EDIT CHANGE START - i18n: 原实现靠**正则解析显示名**来判断「这是自动名，可以按新颜色/阶段重建」
 	// 还是「玩家改过的名，必须保留」。显示名是本地化过的，任何译文差异都会让解析失效——已经踩过两次：
 	//   ① 译文把 "(123)" 写成全角「（123）」→ 后缀剥不掉 → 条件短路 → 全站史莱姆停在类型默认名
 	//      （线上表现「全是灰色幼年史莱姆」）；
@@ -207,7 +207,7 @@
 	name = "[lang_reverse_text("[slime_type.colour] [life_stage] slime")] ([slime_id])"
 	real_name = name
 	last_auto_name = name
-	// NOVA EDIT CHANGE END
+	// ZH EDIT CHANGE END
 	return ..()
 
 /mob/living/basic/slime/regenerate_icons()

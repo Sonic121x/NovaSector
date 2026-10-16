@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Flooring removed by tgstation #97723 (https://github.com/tgstation/tgstation/pull/97723), re-added modularly from
 // #97241, plus "(alt)" variants that restore the #97241 artwork for floors #97723 resprited rather than removed.
 //

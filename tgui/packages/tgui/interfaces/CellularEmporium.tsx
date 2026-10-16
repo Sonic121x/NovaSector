@@ -230,7 +230,7 @@ const ItemList = (props: ItemListProps) => {
             ability.absorbs_required <= absorb_count &&
             ability.dna_required <= dna_count;
 
-          // NOVA EDIT CHANGE START - I18N: 数值包成占位符，整条按 children 模板进目录。
+          // ZH EDIT CHANGE START - I18N: 数值包成占位符，整条按 children 模板进目录。
           // 原来在 TS 里拼出来的整串（`Cost: 3 DNA`、`3 DNA, 1 absorptions`）是运行期
           // 产物、永远不是目录键 —— 框架词恒为英文。
           // ORIGINAL:
@@ -260,7 +260,7 @@ const ItemList = (props: ItemListProps) => {
                 Cost: <span>{ability.genetic_point_required}</span> DNA
               </>
             );
-          // NOVA EDIT CHANGE END
+          // ZH EDIT CHANGE END
 
           return (
             <Stack.Item key={ability.path} mt={compactMode ? 0.5 : 1}>

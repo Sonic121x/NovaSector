@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // This code handles the strip menu minutae for re-enabling someone's deactivated entombed suit.
 
 /datum/strippable_item/mob_item_slot/back/get_alternate_actions(atom/source, mob/user)

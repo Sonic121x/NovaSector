@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/structure/sink/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(busy)
 		to_chat(user, span_warning(LANG("obj.d5ba1f8cb2273d77", null)))

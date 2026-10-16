@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/vote/map_vote
 	name = "Map"
 	default_message = "Vote for next round's map!"
@@ -56,7 +56,7 @@
 /datum/vote/map_vote/get_result_text(list/all_winners, real_winner, list/non_voters)
 	return null
 
-/// NOVA EDIT ADDITION - i18n: 投票里地图名显示成「译名-英文」，键仍是英文 map_name（act 回传/匹配用）。
+/// ZH EDIT ADDITION - i18n: 投票里地图名显示成「译名-英文」，键仍是英文 map_name（act 回传/匹配用）。
 /datum/vote/map_vote/get_choice_display_name(choice)
 	return lang_map_display_name(choice)
 

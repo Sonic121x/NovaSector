@@ -79,7 +79,7 @@ const RetrieveButton = (props) => {
         }
       }}
     >
-      {/* NOVA EDIT CHANGE START - I18N: 原来在 TS 里拼出来的整串（`Open interior door`）
+      {/* ZH EDIT CHANGE START - I18N: 原来在 TS 里拼出来的整串（`Open interior door`）
           是运行期产物、永远不是目录键 —— 动词与门名两侧都落不了地。改成 children 模板
           （`Close {0}` / `Cycle to {0}` / `Open {0}`），门名的三元留在 JSX 表达式里，
           两个字面量各自成为独立目录条目。三元不能提成变量：抽取器只走 JSX 里的表达式。
@@ -106,7 +106,7 @@ const RetrieveButton = (props) => {
           </span>
         </>
       )}
-      {/* NOVA EDIT CHANGE END */}
+      {/* ZH EDIT CHANGE END */}
     </Button>
   );
 };

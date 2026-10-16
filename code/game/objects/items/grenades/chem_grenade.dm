@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/grenade/chem_grenade
 	name = "chemical grenade"
 	desc = "A custom made grenade."
@@ -76,7 +76,7 @@
 /obj/item/grenade/chem_grenade/update_name(updates)
 	switch (stage)
 		if (GRENADE_EMPTY)
-			// NOVA EDIT CHANGE - i18n: initial(name) 会覆盖已反查的中文名；英文字面后缀进 _name_suffixes.json 一并反查
+			// ZH EDIT CHANGE - i18n: initial(name) 会覆盖已反查的中文名；英文字面后缀进 _name_suffixes.json 一并反查
 			name = "[lang_reverse_text(initial(name))] [lang_reverse_text("casing")]"
 		if (GRENADE_WIRED)
 			name = "unsecured [initial(name)]"

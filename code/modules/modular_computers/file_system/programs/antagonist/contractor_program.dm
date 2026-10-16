@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/computer_file/program/contract_uplink
 	filename = "contractor uplink"
 	filedesc = "Syndicate Contractor Uplink"
@@ -145,7 +145,7 @@
 			if (uplink_computer.opfor_data.mind_reference.current == user)
 				var/item = params["item"]
 				for (var/datum/contractor_item/hub_item in uplink_computer.opfor_data.contractor_hub.hub_items)
-					// NOVA EDIT CHANGE - I18N - UI 回传的 hub 物品名可能已被 P1 反查成中文（contractor_hub_items 的 name 未进 payload_skip），
+					// ZH EDIT CHANGE - I18N - UI 回传的 hub 物品名可能已被 P1 反查成中文（contractor_hub_items 的 name 未进 payload_skip），
 					if (hub_item.name == item)
 						hub_item.handle_purchase(uplink_computer.opfor_data.contractor_hub, user)
 			else

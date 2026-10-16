@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/xenoarch
 	name = "measuring tape"
 	desc = "A measuring tape specifically produced to measure the depth that has been dug into strange rocks."

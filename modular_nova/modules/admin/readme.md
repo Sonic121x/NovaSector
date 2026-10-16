@@ -34,7 +34,7 @@ Adds multiple admin features, including loud ASAY, rich text controls, explicit 
 
 ### Included files that are not contained in this module:
 
-- code\modules\unit_tests\~nova\tts_controls.dm
+- code\modules\unit_tests\~zh\tts_controls.dm
 
 ### Credits:
 

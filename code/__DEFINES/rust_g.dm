@@ -74,7 +74,7 @@
  * * patterns - A non-associative list of strings to search for
  * * replacements - Default replacements for this automaton, used with rustg_acreplace
  */
-// NOVA EDIT CHANGE - 上游 bug：rust_g 把带选项的变体导出为**独立符号** `setup_acreplace_with_options`
+// ZH EDIT CHANGE - 上游 bug：rust_g 把带选项的变体导出为**独立符号** `setup_acreplace_with_options`
 // （`nm -D librust_g.so` 可见 setup_acreplace 与 setup_acreplace_with_options 两个 T 符号），
 // 而这里却调 "setup_acreplace" 并多传一个参数 → 参数个数不匹配、调用失败 → 自动机从未注册，
 // 之后 rustg_acreplace 查不到 key 返回**空串**（不是报错，静默把文本吃掉）。

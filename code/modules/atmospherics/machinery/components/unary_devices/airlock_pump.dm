@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * The pump looks up for the airlocks automatically based on airlock_pump_distance_limit and airlock_group_distance_limit values.
  * When placed, the dir value (direction where the pipes are coming from) is considered as a direction towards the station (internal). The opposite direction is external.

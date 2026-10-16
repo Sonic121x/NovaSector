@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Fallback time if none of the config entries are set for USE_LOW_LIVING_HOUR_INTERN
 #define INTERN_THRESHOLD_FALLBACK_HOURS 15
 
@@ -891,7 +891,7 @@
 		. += LANG("obj.64d2036319b47616", list(registered_account.account_holder, registered_account.account_balance, MONEY_SYMBOL))
 		if(ACCESS_COMMAND in access)
 			var/datum/bank_account/linked_dept = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
-			. += LANG("obj.736a52f8d0ee4cf1", list(lang_reverse_text(linked_dept.account_holder), linked_dept.account_balance, MONEY_SYMBOL)) // NOVA EDIT - i18n: 反查部门预算账户名(Command Budget 等)
+			. += LANG("obj.736a52f8d0ee4cf1", list(lang_reverse_text(linked_dept.account_holder), linked_dept.account_balance, MONEY_SYMBOL)) // ZH EDIT - i18n: 反查部门预算账户名(Command Budget 等)
 	else
 		. += span_notice(LANG("obj.ff0f15976458ebea", null))
 
@@ -937,7 +937,7 @@
 		if(registered_account.account_job)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
 			if(D)
-				. += LANG("obj.d59824b69d8f8535", list(lang_reverse_text(D.account_holder), D.account_balance, MONEY_SYMBOL)) // NOVA EDIT - i18n: 反查部门预算账户名
+				. += LANG("obj.d59824b69d8f8535", list(lang_reverse_text(D.account_holder), D.account_balance, MONEY_SYMBOL)) // ZH EDIT - i18n: 反查部门预算账户名
 		. += span_info(LANG("obj.268a971c4bb6866f", null))
 		. += span_info(LANG("obj.581073e958783d66", list(MONEY_NAME)))
 		if(registered_account.replaceable)
@@ -1001,12 +1001,12 @@
 	else
 		assignment_string = assignment
 
-	// NOVA EDIT ADDITION START - I18N - reverse the assignment to its full catalog translation (avoid AC substring mangling of the composed name)
+	// ZH EDIT ADDITION START - I18N - reverse the assignment to its full catalog translation (avoid AC substring mangling of the composed name)
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		name = "[name_string] ([lang_reverse_text(assignment_string)])"
 	else
 		name = "[name_string] ([assignment_string])"
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	if(ishuman(loc))
 		var/mob/living/carbon/human/human = loc

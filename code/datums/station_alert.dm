@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/station_alert
 	/// Holder of the datum
 	var/holder
@@ -28,7 +28,7 @@
 /datum/station_alert/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "StationAlertConsole", lang_reverse_text(title)) // NOVA EDIT - i18n: 窗口标题反查
+		ui = new(user, src, "StationAlertConsole", lang_reverse_text(title)) // ZH EDIT - i18n: 窗口标题反查
 		ui.open()
 
 /datum/station_alert/ui_data(mob/user)

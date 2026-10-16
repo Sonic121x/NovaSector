@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /mob/living/basic/blood_worm
 	icon = 'icons/mob/nonhuman-player/blood_worm_32x32.dmi'
 
@@ -201,7 +201,7 @@
 
 /mob/living/basic/blood_worm/update_name(updates)
 	. = ..()
-	name = "[lang_reverse_text(initial(name))] ([id_number])"  // NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)] ([id_number])"
+	name = "[lang_reverse_text(initial(name))] ([id_number])"  // ZH EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)] ([id_number])"
 	real_name = name
 
 // Prevents damage from adjust_x_loss while in a host, because that damage would be nullified by the next [proc/sync_health] call. Adjust host blood volume instead.

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Describes the three modes of scanning available for health analyzers
 #define SCANMODE_HEALTH 0
 #define SCANMODE_WOUND 1
@@ -294,7 +294,7 @@
 							dmgreport += LANG("_root.d8311121e0377dde", list(conditional_tooltip(displayed, "Use a hemostat to remove.", tochat)))
 					if(has_any_wounds)
 						for(var/datum/wound/wound as anything in limb.wounds)
-							// NOVA EDIT CHANGE - i18n: reverse-localize the treat-text tooltip (whole-string; bypasses sink/AC) - ORIGINAL: wound.treat_text_short
+							// ZH EDIT CHANGE - i18n: reverse-localize the treat-text tooltip (whole-string; bypasses sink/AC) - ORIGINAL: wound.treat_text_short
 							dmgreport += LANG("_root.f7c2daead083eef5", list(conditional_tooltip("[wound.name] ([wound.severity_text()])", lang_reverse_text(wound.treat_text_short), tochat)))
 
 			dmgreport += "</table></font>"
@@ -321,7 +321,7 @@
 			if(isnull(organ))
 				if(missing_organs[sorted_slot])
 					render = TRUE
-					// NOVA EDIT CHANGE - i18n: reverse-localize the missing-organ name - ORIGINAL: [missing_organs[sorted_slot]]
+					// ZH EDIT CHANGE - i18n: reverse-localize the missing-organ name - ORIGINAL: [missing_organs[sorted_slot]]
 					toReport += LANG("_root.29ae2426ae7122ec", list(lang_reverse_text(missing_organs[sorted_slot]), scanpower >= SCANPOWER_ADVANCED ? "<td><font color='#ff3333'>-</font></td>" : ""))
 				continue
 			if(mode != SCANNER_VERBOSE && !organ.show_on_condensed_scans())
@@ -331,7 +331,7 @@
 			if(status || appendix)
 				status ||= "<font color='#ffcc33'>OK</font>" // otherwise flawless organs have no status reported by default
 				render = TRUE
-				// NOVA EDIT CHANGE - i18n: reverse-localize organ name at the display point — some organ names miss the
+				// ZH EDIT CHANGE - i18n: reverse-localize organ name at the display point — some organ names miss the
 				// Initialize name-reverse (post-Initialize renames) - ORIGINAL: <td>…[capitalize(organ.name)]:</font></td>
 				toReport += "<tr>\
 					<td><font color='#cc3333'>[capitalize(lang_reverse_text(organ.name))]:</font></td>\
@@ -370,7 +370,7 @@
 		var/disguised = !ishumanbasic(humantarget) && HAS_TRAIT(humantarget, TRAIT_HUMAN_DISGUISE)
 		var/species_name = "[disguised ? "\"[/datum/species/human::name]\"" : targetspecies.name][mutant ? "-derived mutant" : ""]"
 
-		render_list += "<span class='info ml-1'>Species: [lang_reverse_text(species_name)]</span><br>" // NOVA EDIT CHANGE - i18n: reverse-localize species name (exact; label handled by lang_localize_health_scan) - ORIGINAL: render_list += "<span class='info ml-1'>Species: [species_name]</span><br>"
+		render_list += "<span class='info ml-1'>Species: [lang_reverse_text(species_name)]</span><br>" // ZH EDIT CHANGE - i18n: reverse-localize species name (exact; label handled by lang_localize_health_scan) - ORIGINAL: render_list += "<span class='info ml-1'>Species: [species_name]</span><br>"
 		var/core_temperature_message = "Core temperature: [round(humantarget.coretemperature-T0C, 0.1)] &deg;C ([round(humantarget.coretemperature*1.8-459.67,0.1)] &deg;F)"
 		if(humantarget.coretemperature >= humantarget.get_body_temp_heat_damage_limit())
 			render_list += "<span class='alert ml-1'>☼ [core_temperature_message] ☼</span><br>"
@@ -472,14 +472,14 @@
 			cure_text = advanced_disease.generate_cure_text(cure_count)
 		else
 			cure_text = disease.cure_text
-		// NOVA EDIT CHANGE START - I18N: 整块改 LANG。原为逐行拼插值，整串非目录键、AC 只会在半句
+		// ZH EDIT CHANGE START - I18N: 整块改 LANG。原为逐行拼插值，整串非目录键、AC 只会在半句
 		// 处替换。ORIGINAL: 见 git 历史（"<b>Warning: [disease.form] detected</b>" 起的续行块）。
 		render_list += "<span class='alert ml-1'>\
 			[conditional_tooltip("<b>[LANG("obj.91316a71286b9e71", list(disease.form))]</b>", LANG("obj.42f2953affea6965", list(/datum/reagent/medicine/spaceacillin::name)), tochat)]<br>\
 			<div class='ml-2'>\
 			[LANG("obj.f9ef6cb2c0edc742", list(disease.name, disease.spread_text, disease.stage, disease.max_stages, cure_text))]</div>\
 			</span>"
-		// NOVA EDIT CHANGE END
+		// ZH EDIT CHANGE END
 	// NOVA EDIT ADDITION - Mutant stuff + death consequences quirk
 	if(iscarbon(target))
 		if(target.GetComponent(/datum/component/mutant_infection))
@@ -498,7 +498,7 @@
 		render_list += LANG("_root.b68ee8e3dde816d6", list(target.station_timestamp_timeofdeath))
 		render_list += LANG("_root.c1cc23e52102bb26", list(DisplayTimeText(round(world.time - target.timeofdeath))))
 
-	. = lang_localize_health_scan(jointext(render_list, "")) // NOVA EDIT CHANGE - i18n: localize composed scan-report structural labels (bypasses sink/P1) - ORIGINAL: . = jointext(render_list, "")
+	. = lang_localize_health_scan(jointext(render_list, "")) // ZH EDIT CHANGE - i18n: localize composed scan-report structural labels (bypasses sink/P1) - ORIGINAL: . = jointext(render_list, "")
 	if(tochat)
 		to_chat(user, custom_boxed_message("blue_box", .), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 	return .
@@ -642,7 +642,7 @@
 			if(istype(quirky, /datum/quirk/item_quirk/allergic))
 				var/datum/quirk/item_quirk/allergic/allergies_quirk = quirky
 				var/allergies = allergies_quirk.allergy_string
-				render_list += "<span class='alert ml-1'>[LANG("obj.3baac8acac2e44a5", null)]</span><br>" // NOVA EDIT - I18N
+				render_list += "<span class='alert ml-1'>[LANG("obj.3baac8acac2e44a5", null)]</span><br>" // ZH EDIT - I18N
 				render_list += "<span class='alert ml-2'>[allergies]</span><br>"
 
 		// we handled the last <br> so we don't need handholding
@@ -859,11 +859,11 @@
 			if(istype(disease, /datum/disease/advance))
 				var/datum/disease/advance/advanced_disease = disease
 				disease_cure = advanced_disease.generate_cure_text(1)
-			// NOVA EDIT CHANGE START - I18N: 同上，与 healthscan 共用同一批模板。
+			// ZH EDIT CHANGE START - I18N: 同上，与 healthscan 共用同一批模板。
 			render += "<span class='alert ml-1'><b>[LANG("obj.91316a71286b9e71", list(disease.form))]</b><br>\
 			<div class='ml-2'>[LANG("obj.f9ef6cb2c0edc742", list(disease.name, disease.spread_text, disease.stage, disease.max_stages, disease_cure))]</div>\
 			</span>"
-			// NOVA EDIT CHANGE END
+			// ZH EDIT CHANGE END
 
 	if(!length(render))
 		playsound(scanner, 'sound/machines/ping.ogg', 50, FALSE)

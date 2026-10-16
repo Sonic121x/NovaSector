@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///defined truthy result for `handle_unique_ai()`, which makes initialize return INITIALIZE_HINT_QDEL
 #define SHOULD_QDEL_MODULE 1
 
@@ -183,11 +183,11 @@
 /// Returns a text display of the laws for the module.
 /obj/item/ai_module/law/proc/display_laws()
 	var/assembled_laws = ""
-	var/translate = (GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) // NOVA EDIT - i18n
+	var/translate = (GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) // ZH EDIT - i18n
 
-	// NOVA EDIT - i18n: 表头 "Programmed Laws:" 进 _fallback（examine→to_chat 经 AC 翻）；各法则文本反查（lawset 法则已抽进目录）。
+	// ZH EDIT - i18n: 表头 "Programmed Laws:" 进 _fallback（examine→to_chat 经 AC 翻）；各法则文本反查（lawset 法则已抽进目录）。
 	for(var/law in laws)
-		var/show_law = translate ? lang_reverse_text(law) : law // NOVA EDIT - i18n: ORIGINAL used [law]
+		var/show_law = translate ? lang_reverse_text(law) : law // ZH EDIT - i18n: ORIGINAL used [law]
 		assembled_laws += "\"[show_law]\"<br>"
 
 	if(assembled_laws)

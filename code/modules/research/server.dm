@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Default master server machine state. Use a special screwdriver to get to the next state.
 #define HDD_PANEL_CLOSED 0
 /// Front master server HDD panel has been removed. Use a special crowbar to get to the next state.

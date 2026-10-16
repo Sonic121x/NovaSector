@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// How quicker is it for someone else to rip out an item?
 #define RIPPING_OUT_HELP_TIME_MULTIPLIER 0.75
 /// How much safer is it for someone else to rip out an item?

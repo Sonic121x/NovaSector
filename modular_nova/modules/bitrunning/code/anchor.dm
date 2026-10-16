@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/domain_anchor
 	name = "domain connection anchor"
 	desc = "A disposable tablet with a set of programs and utilities meant to stabilize the local square meter of domain infospace for new connections to be hopefully-safe. <br>\

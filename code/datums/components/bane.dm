@@ -82,7 +82,7 @@
 	if(damage_multiplier == 1 && added_damage == 0 && !label_text)
 		return
 
-	// NOVA EDIT CHANGE START - i18n: 手工 LANG 化。原本是往 `label_line` 上逐段 `+=` 拼句，
+	// ZH EDIT CHANGE START - i18n: 手工 LANG 化。原本是往 `label_line` 上逐段 `+=` 拼句，
 	// 拼出来的整句永远不是目录键；而拆出来的碎片（", dealing …"）以逗号打头，字面 AC 按设计
 	// 拒收（那正是防「从单词内部开火」的闸门），所以两条落地路径都够不着。
 	// 改成每种情形一条完整模板，伤害倍率那半句作为可选后缀实参传入，英文输出逐字节不变。
@@ -129,7 +129,7 @@
 		label_line = LANG("datum.3b69155a029c34c8", list(target_text, magnitude_text))
 	else
 		label_line = LANG("datum.9cc388648a99dc20", list(target_text, magnitude_text))
-	// NOVA EDIT CHANGE END
+	// ZH EDIT CHANGE END
 	readout += label_line
 
 // Item attack handling

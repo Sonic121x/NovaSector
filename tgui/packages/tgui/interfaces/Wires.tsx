@@ -19,7 +19,7 @@ type Data = {
 
 type Wire = {
   color: string;
-  shownColorLabel?: string; // NOVA EDIT - I18N
+  shownColorLabel?: string; // ZH EDIT - I18N
   shownColor: string;
   cut: BooleanLike;
   attached: BooleanLike;
@@ -73,7 +73,7 @@ const WireMap = (props) => {
         <LabeledList.Item
           key={wire.color}
           className="candystripe"
-          // NOVA EDIT - I18N: shownColor 同时是 CSS 颜色名与 act 标识符，必须留英文；显示走单独字段
+          // ZH EDIT - I18N: shownColor 同时是 CSS 颜色名与 act 标识符，必须留英文；显示走单独字段
           label={wire.shownColorLabel || wire.shownColor}
           labelColor={wire.shownColor.replace(' ', '')}
           color={wire.shownColor.replace(' ', '')}

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Dynamically calculate nightshift brightness. How TG does it is painful to modify.
 #define NIGHTSHIFT_LIGHT_MODIFIER 0.15
 #define NIGHTSHIFT_COLOR_MODIFIER 0.15

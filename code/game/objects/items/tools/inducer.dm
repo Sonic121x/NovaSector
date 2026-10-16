@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/inducer
 	name = "inducer"
 	desc = "A tool for inductively charging internal power cells and batteries."
@@ -74,7 +74,7 @@
  */
 /obj/item/inducer/proc/examine_hints(mob/living/user)
 	PROTECTED_PROC(TRUE)
-	// NOVA EDIT REMOVAL - i18n - ORIGINAL: SHOULD_BE_PURE(TRUE) - EXAMINE_HINT() 现在调不纯的 lang_reverse_text()（中文反查），此 proc 不再纯
+	// ZH EDIT REMOVAL - i18n - ORIGINAL: SHOULD_BE_PURE(TRUE) - EXAMINE_HINT() 现在调不纯的 lang_reverse_text()（中文反查），此 proc 不再纯
 
 	. = list()
 

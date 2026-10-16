@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/gun/magic/hook/contractor
 	name = "SCORPION hook"
 	desc = "A hardlight hook used to non-lethally pull targets much closer to the user."

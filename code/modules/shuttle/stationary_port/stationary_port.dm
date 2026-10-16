@@ -39,6 +39,10 @@
 		return INITIALIZE_HINT_LATELOAD
 
 /obj/docking_port/stationary/LateInitialize()
+	// ZH EDIT ADDITION START - DEFERRED_OFFSTATION - roundstart shuttles of deferred content load after the whole batch, as during init
+	if(SSmapping.queue_offstation_shuttle(src))
+		return
+	// ZH EDIT ADDITION END
 	INVOKE_ASYNC(SSshuttle, TYPE_PROC_REF(/datum/controller/subsystem/shuttle, setup_shuttles), list(src))
 
 #ifdef TESTING

@@ -20,7 +20,7 @@ export const ChemSplitter = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            {/* NOVA EDIT CHANGE - ORIGINAL: label="Straight" - i18n: bare "Straight" collides with the sexuality catalog key (异性恋); use a distinct label so it localizes as 直通 */}
+            {/* ZH EDIT CHANGE - ORIGINAL: label="Straight" - i18n: bare "Straight" collides with the sexuality catalog key (异性恋); use a distinct label so it localizes as 直通 */}
             <LabeledList.Item label="Straight-through">
               <NumberInput
                 value={straight}

@@ -184,14 +184,14 @@ SUBSYSTEM_DEF(economy)
  * Updates the the inflation_value, effecting newscaster alerts and the mail system.
  **/
 /datum/controller/subsystem/economy/proc/price_update()
-	// NOVA EDIT START - I18N: newscaster economy report is interpolated → LANG templates (_root.economy_*).
+	// ZH EDIT START - I18N: newscaster economy report is interpolated → LANG templates (_root.economy_*).
 	var/fluff_string = ""
 	if(!HAS_TRAIT(SSeconomy, TRAIT_MARKET_CRASHING))
 		fluff_string = LANG("_root.economy_fluff_ok", null)
 	else
 		fluff_string = LANG("_root.economy_fluff_crash", null)
 	earning_report = LANG("_root.economy_main", list(SSeconomy.inflation_value()*100, fluff_string, station_total, lang_reverse_text(MONEY_NAME_CAPITALIZED), station_target, lang_reverse_text(MONEY_NAME_CAPITALIZED), SSstock_market.news_string))
-	// NOVA EDIT END
+	// ZH EDIT END
 	var/update_alerts = FALSE
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_ECONOMY_ALERTS) && (living_player_count() > 1))
 		var/datum/bank_account/moneybags
@@ -203,11 +203,11 @@ SUBSYSTEM_DEF(economy)
 			if(!moneybags || moneybags.account_balance < current_acc.account_balance)
 				moneybags = current_acc
 		if (moneybags)
-			earning_report += LANG("_root.economy_moneybags", list(moneybags.account_holder, moneybags.account_balance, lang_reverse_text(MONEY_NAME))) // NOVA EDIT - I18N
+			earning_report += LANG("_root.economy_moneybags", list(moneybags.account_holder, moneybags.account_balance, lang_reverse_text(MONEY_NAME))) // ZH EDIT - I18N
 			update_alerts = TRUE
 			inflict_moneybags(moneybags)
-	earning_report += LANG("_root.economy_closing", null) // NOVA EDIT - I18N
-	GLOB.news_network.submit_article(earning_report, LANG("_root.economy_title", null), NEWSCASTER_STATION_ANNOUNCEMENTS, null, update_alert = update_alerts) // NOVA EDIT - I18N: localized title
+	earning_report += LANG("_root.economy_closing", null) // ZH EDIT - I18N
+	GLOB.news_network.submit_article(earning_report, LANG("_root.economy_title", null), NEWSCASTER_STATION_ANNOUNCEMENTS, null, update_alert = update_alerts) // ZH EDIT - I18N: localized title
 	return TRUE
 
 /**

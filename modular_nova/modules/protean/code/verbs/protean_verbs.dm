@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 GAME_VERB_PROC_DESC(/mob/living/carbon, protean_ui, "打开套装界面", "Opens your suit UI", "Protean")
 	var/obj/item/mod/control/pre_equipped/protean/suit = get_protean_modsuit(src)
 	if(isnull(suit))

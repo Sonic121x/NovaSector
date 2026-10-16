@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // If an item has the dunkable element, it's able to be dunked into reagent containers like beakers and glasses.
 // Dunking the item into a container will transfer reagents from the container to the item.
 /datum/element/dunkable

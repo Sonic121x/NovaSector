@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /mob/living/carbon/alien
 	abstract_type = /mob/living/carbon/alien
 	name = "alien"
@@ -174,7 +174,7 @@ Des: Removes all infected images from the alien.
 
 /// Changes the name of the xeno we are evolving into in order to keep the same numerical identifier the old xeno had.
 /mob/living/carbon/alien/proc/change_name(old_name, old_real_name, old_identifier)
-	// NOVA EDIT CHANGE - i18n: old_name is reverse-localized at atom/Initialize, so the english regex failed → this
+	// ZH EDIT CHANGE - i18n: old_name is reverse-localized at atom/Initialize, so the english regex failed → this
 	// treated every evolved xeno as "admin-renamed" and kept the OLD caste name (all xenos stuck as alien larva).
 	// Strip the trailing "(id)" and un-reverse the base to english (the regex's id group is optional). no-op on en.
 	// ORIGINAL: if(!alien_name_regex.Find(old_name))

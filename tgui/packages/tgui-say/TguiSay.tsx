@@ -10,7 +10,7 @@ import { ChatHistory } from './ChatHistory';
 import { LineLength, RADIO_PREFIXES, WindowSize } from './constants';
 import { getPrefix, windowClose, windowOpen, windowSet } from './helpers';
 import { byondMessages } from './timers';
-// NOVA EDIT ADDITION START - TTS_EXPRESSION - Mood picker.
+// ZH EDIT ADDITION START - TTS_EXPRESSION - Mood picker.
 import {
   applyMood,
   currentMood,
@@ -20,7 +20,7 @@ import {
 
 /** Channels whose messages accept a custom say verb. */
 const MOOD_CHANNELS = ['Say', 'Radio', 'Whis'];
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 type ByondOpen = {
   channel: Channel;
@@ -30,7 +30,7 @@ type ByondProps = {
   maxLength: number;
   lightMode: BooleanLike;
   scale: BooleanLike;
-  moodVerbs?: string[]; // NOVA EDIT ADDITION - TTS_EXPRESSION
+  moodVerbs?: string[]; // ZH EDIT ADDITION - TTS_EXPRESSION
 };
 
 export function TguiSay() {
@@ -48,11 +48,11 @@ export function TguiSay() {
   const [maxLength, setMaxLength] = useState(1024);
   const [size, setSize] = useState(WindowSize.Small);
   const [value, setValue] = useState('');
-  // NOVA EDIT ADDITION START - TTS_EXPRESSION
+  // ZH EDIT ADDITION START - TTS_EXPRESSION
   const [moodVerbs, setMoodVerbs] = useState<string[]>([]);
   const [moodOpen, setMoodOpen] = useState(false);
   const moodExtra = moodOpen ? moodPickerHeight(moodVerbs) : 0;
-  // NOVA EDIT ADDITION END
+  // ZH EDIT ADDITION END
 
   const position = useRef([window.screenX, window.screenY]);
   const isDragging = useRef(false);
@@ -134,7 +134,7 @@ export function TguiSay() {
   }
 
   function handleClose(): void {
-    setMoodOpen(false); // NOVA EDIT ADDITION - TTS_EXPRESSION
+    setMoodOpen(false); // ZH EDIT ADDITION - TTS_EXPRESSION
     innerRef.current?.blur();
     windowClose(scale.current);
 
@@ -267,16 +267,16 @@ export function TguiSay() {
     setMaxLength(data.maxLength);
     setLightMode(!!data.lightMode);
     scale.current = !!data.scale;
-    setMoodVerbs(data.moodVerbs || []); // NOVA EDIT ADDITION - TTS_EXPRESSION
+    setMoodVerbs(data.moodVerbs || []); // ZH EDIT ADDITION - TTS_EXPRESSION
   }
 
-  // NOVA EDIT ADDITION START - TTS_EXPRESSION
+  // ZH EDIT ADDITION START - TTS_EXPRESSION
   function handleMoodPick(verb: string): void {
     setValue(applyMood(value, verb, moodVerbs));
     setMoodOpen(false);
     innerRef.current?.focus();
   }
-  // NOVA EDIT ADDITION END
+  // ZH EDIT ADDITION END
 
   function unloadChat(): void {
     setCurrentPrefix(null);
@@ -307,34 +307,34 @@ export function TguiSay() {
     }
 
     if (size !== newSize) {
-      windowSet(newSize + moodExtra, scale.current); // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: windowSet(newSize, scale.current);
+      windowSet(newSize + moodExtra, scale.current); // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: windowSet(newSize, scale.current);
       setSize(newSize);
     }
   }, [value]);
 
-  // NOVA EDIT ADDITION START - TTS_EXPRESSION - Make room for the mood picker.
+  // ZH EDIT ADDITION START - TTS_EXPRESSION - Make room for the mood picker.
   useEffect(() => {
     windowSet(size + moodExtra, scale.current);
   }, [moodOpen]);
-  // NOVA EDIT ADDITION END
+  // ZH EDIT ADDITION END
 
   const theme =
     (lightMode && 'lightMode') ||
     (currentPrefix.current && RADIO_PREFIXES[currentPrefix.current]) ||
     channelIterator.current.current();
 
-  // NOVA EDIT ADDITION START - TTS_EXPRESSION
+  // ZH EDIT ADDITION START - TTS_EXPRESSION
   const showMood =
     moodVerbs.length > 0 &&
     MOOD_CHANNELS.includes(channelIterator.current.current());
-  // NOVA EDIT ADDITION END
+  // ZH EDIT ADDITION END
 
   return (
     <>
       <div
         className={`window window-${theme} window-${size}`}
         onMouseDown={dragStartHandler}
-        style={moodOpen ? { height: `${size + moodExtra}px` } : undefined} // NOVA EDIT ADDITION - TTS_EXPRESSION
+        style={moodOpen ? { height: `${size + moodExtra}px` } : undefined} // ZH EDIT ADDITION - TTS_EXPRESSION
       >
         {!lightMode && <div className={`shine shine-${theme}`} />}
       </div>
@@ -342,13 +342,13 @@ export function TguiSay() {
         className={classes([
           'content',
           lightMode && 'content-lightMode',
-          showMood && 'content-mood', // NOVA EDIT ADDITION - TTS_EXPRESSION
+          showMood && 'content-mood', // ZH EDIT ADDITION - TTS_EXPRESSION
         ])}
         style={{
           zoom: scale.current ? '' : `${100 / window.devicePixelRatio}%`,
-          // NOVA EDIT ADDITION START - TTS_EXPRESSION
+          // ZH EDIT ADDITION START - TTS_EXPRESSION
           ...(moodOpen && { bottom: 'auto', height: `${size - 4}px` }),
-          // NOVA EDIT ADDITION END
+          // ZH EDIT ADDITION END
         }}
       >
         <button
@@ -373,7 +373,7 @@ export function TguiSay() {
           spellCheck={false}
           value={value}
         />
-        {/* NOVA EDIT ADDITION START - TTS_EXPRESSION */}
+        {/* ZH EDIT ADDITION START - TTS_EXPRESSION */}
         {showMood && (
           <button
             className={classes([
@@ -389,9 +389,9 @@ export function TguiSay() {
             情
           </button>
         )}
-        {/* NOVA EDIT ADDITION END */}
+        {/* ZH EDIT ADDITION END */}
       </div>
-      {/* NOVA EDIT ADDITION START - TTS_EXPRESSION */}
+      {/* ZH EDIT ADDITION START - TTS_EXPRESSION */}
       {moodOpen && showMood && (
         <MoodPicker
           verbs={moodVerbs}
@@ -402,7 +402,7 @@ export function TguiSay() {
           onPick={handleMoodPick}
         />
       )}
-      {/* NOVA EDIT ADDITION END */}
+      {/* ZH EDIT ADDITION END */}
     </>
   );
 }

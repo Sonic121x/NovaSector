@@ -46,10 +46,10 @@ GLOBAL_VAR(string_filename_current_key)
 
 	GLOB.string_cache[filepath] = json_load("[directory]/[filepath]")
 
-	// NOVA EDIT ADDITION START - i18n - strings/ flavor 数据已并入主目录（strings 命名空间）：全服非英文
+	// ZH EDIT ADDITION START - i18n - strings/ flavor 数据已并入主目录（strings 命名空间）：全服非英文
 	// 时递归反查字符串叶子（译文在 strings/i18n/<locale>/strings.json）。多词门槛 + 「只有 flavor 被抽进
 	// 目录」→ names/口音表/词频表等天然 no-op，无需运行时白名单。(取代旧的平行副本方案。)
 	// READY 门保证 GLOB 阶段只缓存 canonical English；ConfigLoaded 的单一初始化入口随后补翻 flavor 表。
 	if(lang_runtime_is_ready() && GLOB.i18n_server_locale != DEFAULT_UI_LOCALE && islist(GLOB.string_cache[filepath]))
 		lang_reverse_tree(GLOB.string_cache[filepath])
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END

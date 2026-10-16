@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define BOOKCASE_UNANCHORED 0
 #define BOOKCASE_ANCHORED 1
 #define BOOKCASE_FINISHED 2
@@ -92,6 +92,10 @@
 	var/list/books_in_area = SSlibrary.books_by_area[area_type]
 	for(var/obj/item/book/book in contents)
 		var/datum/book_info/info = book.book_data
+		// ZH EDIT ADDITION START - DEFERRED_OFFSTATION - a mapped book shelved by a bookcase that loaded mid-round may not have initialized yet
+		if(isnull(info))
+			continue
+		// ZH EDIT ADDITION END
 		books_in_area += info.return_copy()
 
 /obj/structure/bookcase/examine(mob/user)

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/forensics_spoofer
 	name = /obj/item/detective_scanner::name
 	desc = "Used to adjacently scan objects and biomass for fibers and fingerprints. Can replicate the findings."

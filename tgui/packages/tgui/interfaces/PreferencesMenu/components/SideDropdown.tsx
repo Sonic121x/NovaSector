@@ -227,7 +227,7 @@ export function SideDropdown(props: Props) {
           {!iconOnly && (
             <>
               <span className="Dropdown__selected-text">
-                {/* NOVA EDIT CHANGE - I18N: 默认值从解构挪到这里 —— 解构里的默认值不在任何显示
+                {/* ZH EDIT CHANGE - I18N: 默认值从解构挪到这里 —— 解构里的默认值不在任何显示
                     位置上，抽取器看不见；而 `||` 链的字面量操作数在 children 位置上照常被收。
                     ORIGINAL: 解构处写 `placeholder = 'Select...'` */}
                 {displayText ||

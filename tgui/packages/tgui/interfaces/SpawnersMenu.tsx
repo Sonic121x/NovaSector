@@ -10,7 +10,7 @@ type Data = {
 
 type Spawner = {
   name: string;
-  // NOVA EDIT ADDITION - I18N - canonical English key; "name" is localized for display
+  // ZH EDIT ADDITION - I18N - canonical English key; "name" is localized for display
   id: string;
   amount_left: number;
   infinite: BooleanLike;
@@ -43,7 +43,7 @@ export const SpawnersMenu = (props) => {
                       </Stack.Item>
                     ) : (
                       <Stack.Item fontSize="14px" color="green">
-                        {/* NOVA EDIT - I18N - was "left"; means remaining count, not direction (avoids 左 mistranslation) */}
+                        {/* ZH EDIT - I18N - was "left"; means remaining count, not direction (avoids 左 mistranslation) */}
                         {spawner.amount_left} remaining
                       </Stack.Item>
                     )}
@@ -52,7 +52,7 @@ export const SpawnersMenu = (props) => {
                         content="Jump"
                         onClick={() =>
                           act('jump', {
-                            // NOVA EDIT CHANGE - I18N - ORIGINAL: name: spawner.name,
+                            // ZH EDIT CHANGE - I18N - ORIGINAL: name: spawner.name,
                             id: spawner.id,
                           })
                         }
@@ -61,7 +61,7 @@ export const SpawnersMenu = (props) => {
                         content="Spawn"
                         onClick={() =>
                           act('spawn', {
-                            // NOVA EDIT CHANGE - I18N - ORIGINAL: name: spawner.name,
+                            // ZH EDIT CHANGE - I18N - ORIGINAL: name: spawner.name,
                             id: spawner.id,
                           })
                         }

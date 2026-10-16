@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //Few global vars to track the blob
 GLOBAL_LIST_EMPTY(blobs) //complete list of all blobs made.
 GLOBAL_LIST_EMPTY(blob_cores)
@@ -72,7 +72,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	manualplace_min_time += world.time
 	autoplace_max_time += world.time
 	GLOB.overminds += src
-	// NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
+	// ZH EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
 	var/new_name = "[lang_reverse_text(initial(name))] ([rand(1, 999)])"
 	name = new_name
 	real_name = new_name

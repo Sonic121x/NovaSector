@@ -77,12 +77,12 @@ SUBSYSTEM_DEF(materials)
 		return null
 
 	mat_id = mat_ref.id
-	// NOVA EDIT ADDITION START - i18n - 材料名/描述仅在 active locale 的全部索引 ready 后反查。
+	// ZH EDIT ADDITION START - i18n - 材料名/描述仅在 active locale 的全部索引 ready 后反查。
 	// 极早期按需构建保持 canonical English；initialize_materials() 随后整表重建。
 	if(lang_runtime_is_ready() && GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		mat_ref.name = lang_reverse_text(mat_ref.name)
 		mat_ref.desc = lang_reverse_text(mat_ref.desc)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	materials[mat_id] = mat_ref
 	flat_materials += mat_ref
 	materials_by_type[mat_type] += list(mat_ref)

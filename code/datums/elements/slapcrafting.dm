@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Slapcrafting component!
 /datum/element/slapcrafting
 	element_flags = ELEMENT_BESPOKE
@@ -123,7 +123,7 @@
 		already_used_names += initial(result.name)
 		string_results += list("\a [initial(result.name)]")
 
-	examine_list["crafting component"] = LANG("datum.4b719a3d757ab4a0", list(source, lang_english_list(string_results))) // NOVA EDIT - i18n - ORIGINAL: examine_list["crafting component"] = "You think [source] could be used to make [lang_english_list(string_results)]! Examine again to look at the details..."
+	examine_list["crafting component"] = LANG("datum.4b719a3d757ab4a0", list(source, lang_english_list(string_results))) // ZH EDIT - i18n - ORIGINAL: examine_list["crafting component"] = "You think [source] could be used to make [lang_english_list(string_results)]! Examine again to look at the details..."
 
 /// Alerts any examiners to the details of the recipe.
 /datum/element/slapcrafting/proc/get_examine_more_info(atom/source, mob/user, list/examine_list)

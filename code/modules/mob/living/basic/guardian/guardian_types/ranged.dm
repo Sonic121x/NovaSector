@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// A ranged guardian can fling shards of glass at people very very quickly. It can also enter a long-range scouting mode.
 /mob/living/basic/guardian/ranged
 	guardian_type = GUARDIAN_RANGED

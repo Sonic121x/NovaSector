@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/slime_scanner
 	name = "slime scanner"
 	desc = "A device that analyzes a slime's internal composition and measures its stats."
@@ -28,7 +28,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /proc/slime_scan(mob/living/basic/slime/scanned_slime, mob/living/user)
-	// NOVA EDIT CHANGE START - I18N: 整块报告逐行 LANG 化。原来是具名累加器 `to_render +=` 拼插值，
+	// ZH EDIT CHANGE START - I18N: 整块报告逐行 LANG 化。原来是具名累加器 `to_render +=` 拼插值，
 	// 既非裸 `.` 也不在 examine proc 里 → 抽取器的整句闸把它整块挡在目录外；而它是玩家盯得最久的
 	// 面板之一。突变颜色走 lang_slime_colour（顶层表，不进全局反查表——颜色同时是 icon_state/突变表键）。
 	// ORIGINAL: 见 git 历史，形态为 "<b>Slime scan results:</b>\n…" 一路 += 拼接。
@@ -61,6 +61,6 @@
 	if(scanned_slime.crossbreed_modification)
 		to_render += "\n[span_notice(LANG("_root.8056f8a5ea9841c6", list(scanned_slime.crossbreed_modification)))]\
 					  \n[span_notice(LANG("_root.d9219f70a14c0341", list(scanned_slime.applied_crossbreed_amount, SLIME_EXTRACT_CROSSING_REQUIRED)))]"
-	// NOVA EDIT CHANGE END
+	// ZH EDIT CHANGE END
 
 	to_chat(user, boxed_message(jointext(to_render,"")))

@@ -2,7 +2,7 @@ import { sendAct } from './events/act';
 import { backendStateAtom, sharedAtom, store } from './events/store';
 import type { BackendState } from './events/types';
 
-// NOVA EDIT ADDITION START - TGUI_STALE_ACT
+// ZH EDIT ADDITION START - TGUI_STALE_ACT
 /**
  * 按服务端 UI 实例序号绑定的 act。
  *
@@ -28,7 +28,7 @@ function getBoundAct(uiId: number | undefined): BackendState<any>['act'] {
   }
   return act;
 }
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 /**
  * Reactive backend state hook. Please use a type to define what the data is
@@ -50,7 +50,7 @@ export function useBackend<
   const state = store.get(backendStateAtom);
 
   return {
-    act: getBoundAct(state.config?.uiId), // NOVA EDIT CHANGE - TGUI_STALE_ACT - ORIGINAL: act: sendAct,
+    act: getBoundAct(state.config?.uiId), // ZH EDIT CHANGE - TGUI_STALE_ACT - ORIGINAL: act: sendAct,
     ...state,
     data: state.data as TData,
   };

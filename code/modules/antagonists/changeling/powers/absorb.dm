@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/action/changeling/absorb_dna
 	name = "Absorb DNA"
 	desc = "Absorb the DNA of our victim. Requires us to strangle them."
@@ -103,7 +103,7 @@
 		for(var/datum/objective/objective as anything in all_objectives)
 			if(!objective) //nulls? in my objective list? it's more likely than you think.
 				continue
-			changeling.antag_memory += " [lang_reverse_text("Objective")] #[obj_count++]: [lang_reverse_text(objective.explanation_text)]." // NOVA EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
+			changeling.antag_memory += " [lang_reverse_text("Objective")] #[obj_count++]: [lang_reverse_text(objective.explanation_text)]." // ZH EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
 			var/list/datum/mind/other_owners = objective.get_owners() - suckedbrain
 			if(!other_owners.len)
 				continue

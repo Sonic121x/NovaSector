@@ -22,7 +22,7 @@
 	if(!phobia_type)
 		phobia_type = pick(GLOB.phobia_types)
 
-	// NOVA EDIT CHANGE START - i18n: 三条句子的**模板**早就在目录里也译好了，缺的一直是填进去的
+	// ZH EDIT CHANGE START - i18n: 三条句子的**模板**早就在目录里也译好了，缺的一直是填进去的
 	// 那个类别词 —— 它是标识符（phobia_regexes 的下标、phobia.json 的匹配键），不能进全局反查表，
 	// 所以在这里经域内表 lang_phobia_label() 换成显示标签再交给 LANG。
 	// ORIGINAL: gain_text = span_warning("You start finding [phobia_type] very unnerving...")
@@ -30,13 +30,13 @@
 	var/phobia_label = lang_phobia_label(phobia_type)
 	gain_text = span_warning(LANG("datum.dfd79bb138a5ec74", list(phobia_label)))
 	lose_text = span_notice(LANG("datum.200091e90b512273", list(phobia_label)))
-	// NOVA EDIT CHANGE START - i18n: 整条重建而不是追加后缀。原写法拼出来的 "phobia of space"
+	// ZH EDIT CHANGE START - i18n: 整条重建而不是追加后缀。原写法拼出来的 "phobia of space"
 	// 是运行期产物、永远不是目录键，医疗扫描与 SDSM 手册那一列因此恒为英文；而中文语序是
 	// 「太空恐惧症」，后缀式拼接排不出来，必须整条走模板。本类型及其全部子类都没有覆写
 	// scan_desc（子类只设 phobia_type），所以把前缀写进模板是等价的。
 	// ORIGINAL: scan_desc += " of [phobia_type]"
 	scan_desc = LANG("datum.3ea1416777413765", list(phobia_label))
-	// NOVA EDIT CHANGE END
+	// ZH EDIT CHANGE END
 	return ..()
 
 /datum/brain_trauma/mild/phobia/on_gain()
@@ -44,7 +44,7 @@
 	var/datum/component/fearful/fear = owner.AddComponentFrom(REF(src), /datum/component/fearful, list(/datum/terror_handler/startle))
 	var/datum/terror_handler/phobia_source/phobia = fear.add_handler(terror_handler, REF(src))
 	phobia.trigger_regex = GLOB.phobia_regexes[phobia_type]
-	phobia.trigger_regex_localized = construct_phobia_regex_localized(phobia_type) // NOVA EDIT ADDITION - i18n: 中文触发词（无词边界，另建正则）
+	phobia.trigger_regex_localized = construct_phobia_regex_localized(phobia_type) // ZH EDIT ADDITION - i18n: 中文触发词（无词边界，另建正则）
 	phobia.trigger_mobs = GLOB.phobia_mobs[phobia_type]
 	phobia.trigger_objs = GLOB.phobia_objs[phobia_type]
 	phobia.trigger_turfs = GLOB.phobia_turfs[phobia_type]

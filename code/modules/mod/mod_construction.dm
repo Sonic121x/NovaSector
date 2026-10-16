@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/mod/construction
 	desc = "A part used in MOD construction."
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
@@ -98,8 +98,8 @@
 /obj/item/mod/construction/plating/Initialize(mapload)
 	. = ..()
 	var/datum/mod_theme/used_theme = GLOB.mod_themes[theme]
-	name = "\improper MOD [lang_reverse_text(used_theme.name)] external plating" // NOVA EDIT CHANGE - I18N - ORIGINAL: name = "\improper MOD [used_theme.name] external plating"
-	desc = "[desc] [lang_reverse_text(used_theme.desc)]" // NOVA EDIT CHANGE - I18N - ORIGINAL: desc = "[desc] [used_theme.desc]"
+	name = "\improper MOD [lang_reverse_text(used_theme.name)] external plating" // ZH EDIT CHANGE - I18N - ORIGINAL: name = "\improper MOD [used_theme.name] external plating"
+	desc = "[desc] [lang_reverse_text(used_theme.desc)]" // ZH EDIT CHANGE - I18N - ORIGINAL: desc = "[desc] [used_theme.desc]"
 	icon_state = "[used_theme.default_skin]-plating"
 
 /obj/item/mod/construction/plating/civilian

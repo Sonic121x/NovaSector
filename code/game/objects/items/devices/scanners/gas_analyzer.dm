@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "gas analyzer"
@@ -221,14 +221,14 @@
 	if(!silent && isliving(user))
 		playsound(user, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
 		user.visible_message(span_notice(LANG("_root.442d7504006d8d6c", list(user, icon2html(icon, viewers(user)), target))), span_notice(LANG("_root.3da82a2f5cf28ea4", list(icon2html(icon, user), target))))
-	message += span_boldnotice(LANG("_root.f540f85f37c4b0ff", list(icon2html(icon, user), target))) // NOVA EDIT - I18N
+	message += span_boldnotice(LANG("_root.f540f85f37c4b0ff", list(icon2html(icon, user), target))) // ZH EDIT - I18N
 
 	var/list/airs = islist(mixture) ? mixture : list(mixture)
 	for(var/datum/gas_mixture/air as anything in airs)
 		var/mix_name = capitalize(LOWER_TEXT(target.name))
 		if(airs.len > 1) //not a unary gas mixture
 			var/mix_number = airs.Find(air)
-			message += span_boldnotice(LANG("_root.ad89cabf5f308c26", list(mix_number))) // NOVA EDIT - I18N
+			message += span_boldnotice(LANG("_root.ad89cabf5f308c26", list(mix_number))) // ZH EDIT - I18N
 			mix_name += " - Node [mix_number]"
 
 		var/total_moles = air.total_moles()
@@ -239,22 +239,22 @@
 		var/thermal_energy = air.thermal_energy()
 
 		if(total_moles > 0)
-			message += span_notice(LANG("_root.ebc0cba414f2f0d2", list(round(total_moles, 0.01)))) // NOVA EDIT - I18N
+			message += span_notice(LANG("_root.ebc0cba414f2f0d2", list(round(total_moles, 0.01)))) // ZH EDIT - I18N
 
 			var/list/cached_gas_name = GAS_META[META_GAS_NAME]
 			for(var/id, amount in air.moles)
 				var/gas_concentration = amount / total_moles
-				message += span_notice(LANG("_root.fd761232cbb906a8", list(cached_gas_name[id], round(amount, 0.01), round(gas_concentration*100, 0.01)))) // NOVA EDIT - I18N
-			// NOVA EDIT CHANGE START - I18N: 具名累加器 + 非 examine proc → 抽取器整句闸挡在目录外。
+				message += span_notice(LANG("_root.fd761232cbb906a8", list(cached_gas_name[id], round(amount, 0.01), round(gas_concentration*100, 0.01)))) // ZH EDIT - I18N
+			// ZH EDIT CHANGE START - I18N: 具名累加器 + 非 examine proc → 抽取器整句闸挡在目录外。
 			message += span_notice(LANG("_root.65277b5468ac66be", list(round(temperature - T0C,0.01), round(temperature, 0.01))))
 			message += span_notice(LANG("_root.d3cc48cf0a5ef13e", list(volume)))
 			message += span_notice(LANG("_root.1e0faec1b85c5156", list(round(pressure, 0.01))))
 			message += span_notice(LANG("_root.71e36c17dbd74763", list(display_energy(heat_capacity))))
 			message += span_notice(LANG("_root.a32465bd906b3973", list(display_energy(thermal_energy))))
-			// NOVA EDIT CHANGE END
+			// ZH EDIT CHANGE END
 		else
-			message += airs.len > 1 ? span_notice(LANG("_root.fa2f9f11cc67019c", null)) : span_notice(LANG("_root.02d482cc1aef0cef", list(target))) // NOVA EDIT - I18N
-			message += span_notice(LANG("_root.d3cc48cf0a5ef13e", list(volume))) // NOVA EDIT - I18N. don't want to change the order volume appears in, suck it
+			message += airs.len > 1 ? span_notice(LANG("_root.fa2f9f11cc67019c", null)) : span_notice(LANG("_root.02d482cc1aef0cef", list(target))) // ZH EDIT - I18N
+			message += span_notice(LANG("_root.d3cc48cf0a5ef13e", list(volume))) // ZH EDIT - I18N. don't want to change the order volume appears in, suck it
 
 	// we let the join apply newlines so we do need handholding
 	to_chat(user, boxed_message(jointext(message, "\n")), type = MESSAGE_TYPE_INFO)

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/syndie
 	name = "delayed secure connection"
 	desc = "Constant 'handshake no response' errors are flickering across the static-covered figure."

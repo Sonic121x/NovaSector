@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/organ/wings
 	name = "wings"
 	desc = "A pair of wings. Those may or may not allow you to fly... or at the very least flap."

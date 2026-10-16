@@ -80,7 +80,7 @@ export function NifProgram(props: { src: NifProgramData }) {
               color="yellow"
               mr="5px"
             />
-            {/* NOVA EDIT CHANGE - I18N: 百分比包成占位符，整条按 children 模板
+            {/* ZH EDIT CHANGE - I18N: 百分比包成占位符，整条按 children 模板
                 `{0}% per activation` 进目录 —— 原来的模板字面量拼出的整串是运行期
                 产物、永远不是目录键，框架词恒为英文。
                 ORIGINAL: `${+(activation_cost / max_power) * 100}% per activation` */}
@@ -99,7 +99,7 @@ export function NifProgram(props: { src: NifProgramData }) {
               color="orange"
               mr="5px"
             />
-            {/* NOVA EDIT CHANGE - I18N - ORIGINAL: `${(active_cost / max_power) * 100}% consumed while active` */}
+            {/* ZH EDIT CHANGE - I18N - ORIGINAL: `${(active_cost / max_power) * 100}% consumed while active` */}
             {!active_cost ? (
               'No active drain'
             ) : (

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MENU_OPERATION 1
 #define MENU_SURGERIES 2
 
@@ -228,14 +228,14 @@
 			any_recommended = TRUE
 
 		data["surgeries"] += list(list(
-			// NOVA EDIT START - I18N: ui_static_data bypasses P1; reverse display name/desc/tool (rnd_name/
+			// ZH EDIT START - I18N: ui_static_data bypasses P1; reverse display name/desc/tool (rnd_name/
 			// rnd_desc now in SINK_VARS). Search/pin use the same display name, no english-constant compare = safe.
 			// ORIGINAL: "name" = operation.rnd_name || operation.name, "desc" = operation.rnd_desc || operation.desc, "tool_rec" = operation.get_recommended_tool() || "error",
 			"name" = lang_localize_display_name(operation.rnd_name || operation.name),
-			"desc" = lang_reverse_suffixed(operation.rnd_desc || operation.desc), // NOVA EDIT - I18N: organ-repair desc has " This procedure...once per organ." appended at New() (breaks exact); split base+suffix here.
+			"desc" = lang_reverse_suffixed(operation.rnd_desc || operation.desc), // ZH EDIT - I18N: organ-repair desc has " This procedure...once per organ." appended at New() (breaks exact); split base+suffix here.
 
 			"tool_rec" = lang_reverse_text(operation.get_recommended_tool() || "error"),
-			// NOVA EDIT END
+			// ZH EDIT END
 			"requirements" = operation.get_requirements(),
 			"show_as_next" = recommend,
 			"show_in_list" = TRUE,
@@ -245,9 +245,9 @@
 
 	if(!any_recommended && table?.patient && !HAS_TRAIT(table.patient, TRAIT_READY_TO_OPERATE))
 		data["surgeries"] += list(list(
-			"name" = lang_reverse_text("Prepare for surgery"), // NOVA EDIT - I18N
-			"desc" = lang_reverse_text("Begin surgery by applying surgical drapes to the patient or by buckling the patient to the surgical table."), // NOVA EDIT - I18N
-			"tool_rec" = lang_reverse_text(/obj/item/surgical_drapes::name), // NOVA EDIT - I18N
+			"name" = lang_reverse_text("Prepare for surgery"), // ZH EDIT - I18N
+			"desc" = lang_reverse_text("Begin surgery by applying surgical drapes to the patient or by buckling the patient to the surgical table."), // ZH EDIT - I18N
+			"tool_rec" = lang_reverse_text(/obj/item/surgical_drapes::name), // ZH EDIT - I18N
 			"show_as_next" = TRUE,
 			"show_in_list" = FALSE,
 		))

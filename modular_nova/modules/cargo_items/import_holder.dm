@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //lets broadcast to the common channel if a lockbox is destroyed
 /obj/item/storage/lockbox/order/Destroy()
 	var/announcement_line = atom_storage.locked == STORAGE_NOT_LOCKED ? "Delivered" : "Locked"

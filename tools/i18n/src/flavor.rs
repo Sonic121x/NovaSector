@@ -30,7 +30,7 @@ const FLAVOR_FILES: &[&str] = &[
     "memories.json",
     // 巫师随机 loadout 展示名（"O1: Spell Cards" 等完整字面标签，Spellbook TGUI 直显）。
     "wizoff.json",
-    // 街机敌人名池（形容词+敌名，中文语序同序可拼；组装点 make_boss_name 有 locale 门控 NOVA EDIT）。
+    // 街机敌人名池（形容词+敌名，中文语序同序可拼；组装点 make_boss_name 有 locale 门控 ZH EDIT）。
     "arcade.json",
     // 离子法则碎片池（ALLCAPS 名词/动词短语）。模板句由 extract 的 generate_ion_law 专项抽；
     // 碎片在 strings 加载处反查成中文、显示端模板逆匹配引擎整句收口。

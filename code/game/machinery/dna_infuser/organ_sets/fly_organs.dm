@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define FLY_INFUSED_ORGAN_DESC "You have no idea what the hell this is, or how it manages to keep something alive in any capacity."
 #define FLY_INFUSED_ORGAN_ICON pick("brain-x-d", "liver-x", "kidneys-x", "spinner-x", "lungs-x", "random_fly_1", "random_fly_2", "random_fly_3", "random_fly_4", "random_fly_5")
 
@@ -65,7 +65,7 @@
 		"s" = "z",
 		"S" = "Z",
 	)
-	// NOVA EDIT ADDITION START - I18N - 中文版拟声。上面那张表是**字母级**替换（s→sss / s→z），
+	// ZH EDIT ADDITION START - I18N - 中文版拟声。上面那张表是**字母级**替换（s→sss / s→z），
 	// 中文文本里一个拉丁字母都没有 → 整个效果在中文服上是空转，苍蝇人说话和常人无异。
 	// 中文没有可替换的对应音字母，硬换字会毁掉词义，所以改成**标点锚定**：句末补一声，
 	// 本来就有的拟声字拉长。全角半角标点都认（中文输入法默认全角）。
@@ -81,7 +81,7 @@
 		new /regex("(\[一-鿿\])!", "g") = "$1嗞!",
 		new /regex("(\[一-鿿\])\\?", "g") = "$1嗞?",
 	)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	// NOVA EDIT ADDITION START - Russian version - yes copy pasted from above because static lists are great.
 	var/static/list/russian_speech_replacements = list(
 		new /regex("z+", "g") = "zzz",
@@ -98,15 +98,15 @@
 
 /obj/item/organ/tongue/fly/Initialize(mapload)
 	. = ..()
-	// NOVA EDIT CHANGE START - I18N - 中文拟声表**叠加**在英文表之上（不是替换）。
+	// ZH EDIT CHANGE START - I18N - 中文拟声表**叠加**在英文表之上（不是替换）。
 	// 两套规则管的是两种文本形态：`s→sss` 只在拉丁字母上开火、`。→嗞。` 只在中文标点上开火，
 	// 合在一张表里互不干扰。整张替换掉的写法会让中文服上的英文发言丢掉效果，
 	// 也会让上游的 speech_modifiers 单测直接红（它断言的正是英文输入的变形结果）。
 	var/static/list/chinese_merged
 	if(lang_locale_is_chinese() && isnull(chinese_merged))
 		chinese_merged = lang_merge_speech_replacements(speech_replacements, chinese_speech_replacements)
-	AddComponent(/datum/component/speechmod, replacements = chinese_merged || (CONFIG_GET(flag/russian_text_formation) ? russian_speech_replacements : speech_replacements), should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech))) // NOVA EDIT CHANGE - ORIGINAL: AddComponent(/datum/component/speechmod, replacements = speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech)))
-	// NOVA EDIT CHANGE END
+	AddComponent(/datum/component/speechmod, replacements = chinese_merged || (CONFIG_GET(flag/russian_text_formation) ? russian_speech_replacements : speech_replacements), should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech))) // ZH EDIT CHANGE - ORIGINAL: AddComponent(/datum/component/speechmod, replacements = speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech)))
+	// ZH EDIT CHANGE END
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/fly)
 
 /obj/item/organ/tongue/fly/get_possible_languages()

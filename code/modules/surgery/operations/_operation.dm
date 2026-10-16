@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * Attempts to perform a surgery with whatever tool is passed
  *
@@ -607,10 +607,10 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 		. = tool::name
 	else
 		return null
-	// NOVA EDIT ADDITION - I18N - 推荐工具名（手术径向菜单/面板显示，display-only）反查；工具名在 obj 目录，"Any item" 在 _surgery.json
+	// ZH EDIT ADDITION - I18N - 推荐工具名（手术径向菜单/面板显示，display-only）反查；工具名在 obj 目录，"Any item" 在 _surgery.json
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE && istext(.))
 		. = lang_reverse_text(.)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 /**
  * For surgery operations that can be performed with any item, this explains what kind of item is needed
@@ -629,14 +629,14 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 		any_optional_strings(),
 		all_blocked_strings(),
 	)
-	// NOVA EDIT ADDITION START - I18N: SURGERY_STATE_GUIDES strings come from bitfield_to_list as raw
+	// ZH EDIT ADDITION START - I18N: SURGERY_STATE_GUIDES strings come from bitfield_to_list as raw
 	// English ("the skin must be open"…), not LANG'd → reverse here so the surgery panel shows them in
 	// the server locale. Already-LANG'd elements are Chinese = reverse no-op. locale==en no-op.
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		for(var/list/group in .)
 			for(var/idx in 1 to length(group))
 				group[idx] = lang_reverse_text(group[idx])
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 /// Returns a list of strings indicating requirements for this operation
 /// "All requirements" are formatted as "All of the following must be true:"

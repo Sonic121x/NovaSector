@@ -29,7 +29,7 @@ type Vote = {
 };
 
 type Option = {
-  // NOVA EDIT ADDITION - i18n: `id` 是英文原键，**act 回传/选中比较一律用它**（"id" 在
+  // ZH EDIT ADDITION - i18n: `id` 是英文原键，**act 回传/选中比较一律用它**（"id" 在
   // payload_skip_keys 里，P1 绝不会译它）。`name` 现在是显示名（地图投票为「三角洲站-Delta
   // Station」）。老服务端没有 id 时回落 name，行为与从前一致。
   id?: string;
@@ -242,7 +242,7 @@ const ChoicesPanel = (props) => {
                       user.isGhost
                     }
                     onClick={() => {
-                      // NOVA EDIT CHANGE - i18n: 回传英文键 - ORIGINAL: { voteOption: choice.name }
+                      // ZH EDIT CHANGE - i18n: 回传英文键 - ORIGINAL: { voteOption: choice.name }
                       act('voteSingle', { voteOption: choice.id ?? choice.name });
                     }}
                   >
@@ -254,7 +254,7 @@ const ChoicesPanel = (props) => {
                   (choice.id ?? choice.name) === user.singleSelection && (
                     <Icon align="right" mr={2} color="green" name="vote-yea" />
                   )}
-                {/* NOVA EDIT CHANGE - i18n: ORIGINAL: {(currentVote.displayStatistics || user.isLowerAdmin) ? `${choice.votes} Votes` : null}
+                {/* ZH EDIT CHANGE - i18n: ORIGINAL: {(currentVote.displayStatistics || user.isLowerAdmin) ? `${choice.votes} Votes` : null}
                     拼出来的整串永远不是目录键 → 拆成 children 模板 `{0} Votes`。 */}
                 {currentVote.displayStatistics || user.isLowerAdmin ? (
                   <>
@@ -286,7 +286,7 @@ const ChoicesPanel = (props) => {
                     }
                     disabled={user.isGhost}
                     onClick={() => {
-                      // NOVA EDIT CHANGE - i18n: 回传英文键 - ORIGINAL: { voteOption: choice.name }
+                      // ZH EDIT CHANGE - i18n: 回传英文键 - ORIGINAL: { voteOption: choice.name }
                       act('voteMulti', { voteOption: choice.id ?? choice.name });
                     }}
                   >
@@ -301,7 +301,7 @@ const ChoicesPanel = (props) => {
                   <Icon align="right" mr={2} color="blue" name="vote-yea" />
                 ) : null}
                 {/* // NOVA EDIT REMOVAL choice.votes} Votes */ }
-                {/* NOVA EDIT ADDITION - i18n: children 模板 `{0} Votes`（整串拼接不是目录键） */}
+                {/* ZH EDIT ADDITION - i18n: children 模板 `{0} Votes`（整串拼接不是目录键） */}
                 {user.isLowerAdmin ? (
                   <>
                     <span>{choice.votes}</span> Votes
@@ -328,7 +328,7 @@ const TimePanel = (props) => {
     <Stack.Item>
       <Stack justify="space-between">
         <Box fontSize={1.5}>
-          {/* NOVA EDIT CHANGE - i18n: ORIGINAL: {currentVote ? `Time remaining: ${currentVote.timeRemaining}s` : 'No current vote'}
+          {/* ZH EDIT CHANGE - i18n: ORIGINAL: {currentVote ? `Time remaining: ${currentVote.timeRemaining}s` : 'No current vote'}
               拼出来的整串永远不是目录键 → 拆成 children 模板 `Time remaining: {0}s`。 */}
           {currentVote ? (
             <>

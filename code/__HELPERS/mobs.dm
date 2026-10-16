@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //check_target_facings() return defines
 /// Two mobs are facing the same direction
 #define FACING_SAME_DIR 1
@@ -306,9 +306,9 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 				var/turf_link = TURF_LINK(M, turf_target)
 				rendered_message = "[turf_link] [message]"
 
-			to_chat(M, rendered_message, avoid_highlighting = speaker_key == M.key, skip_i18n_fallback = (message_type == DEADCHAT_REGULAR)) // NOVA EDIT - i18n: player dead-say is player-authored, don't auto-translate (game rattles/announcements still do)
+			to_chat(M, rendered_message, avoid_highlighting = speaker_key == M.key, skip_i18n_fallback = (message_type == DEADCHAT_REGULAR)) // ZH EDIT - i18n: player dead-say is player-authored, don't auto-translate (game rattles/announcements still do)
 		else
-			to_chat(M, message, avoid_highlighting = speaker_key == M.key, skip_i18n_fallback = (message_type == DEADCHAT_REGULAR)) // NOVA EDIT - i18n: player dead-say is player-authored, don't auto-translate
+			to_chat(M, message, avoid_highlighting = speaker_key == M.key, skip_i18n_fallback = (message_type == DEADCHAT_REGULAR)) // ZH EDIT - i18n: player dead-say is player-authored, don't auto-translate
 
 		// Ghost runechat
 		if(original_message && ((override & SEE_DEADCHAT_NORMAL) || M.see_invisible >= follow_target.invisibility) && (!SSlag_switch.measures[DISABLE_DEAD_RUNECHAT] || HAS_TRAIT(M, TRAIT_BYPASS_MEASURES)) && M.runechat_prefs_check(M))
@@ -495,7 +495,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 
 ///Return a string for the specified body zone. Should be used for parsing non-instantiated bodyparts, otherwise use [/obj/item/bodypart/var/plaintext_zone]
 /proc/parse_zone(zone)
-	// NOVA EDIT - i18n: 改用 `. =` 暂存再统一过 lang_zone（部位名专用反查，chest=胸部 不碰储物箱单词）。ORIGINAL 各分支为 `return "…"`。
+	// ZH EDIT - i18n: 改用 `. =` 暂存再统一过 lang_zone（部位名专用反查，chest=胸部 不碰储物箱单词）。ORIGINAL 各分支为 `return "…"`。
 	switch(zone)
 		if(BODY_ZONE_CHEST)
 			. = "chest"
@@ -521,7 +521,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 			. = "groin"
 		else
 			. = zone
-	return lang_zone(.) // NOVA EDIT - i18n: 全服中文时反查部位名
+	return lang_zone(.) // ZH EDIT - i18n: 全服中文时反查部位名
 
 ///Takes a zone and returns its "parent" zone, if it has one.
 /proc/deprecise_zone(precise_zone)

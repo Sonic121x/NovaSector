@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/sequence_scanner
 	name = "genetic sequence scanner"
 	icon = 'icons/obj/devices/scanner.dmi'
@@ -168,7 +168,7 @@
 	if(!mutation_instance)
 		return "ERROR"
 	if(mutation in discovered)
-		// NOVA EDIT CHANGE - i18n: 整串是运行期拼的、永远不是目录键，落地只剩字面 AC，而 AC 有多词
+		// ZH EDIT CHANGE - i18n: 整串是运行期拼的、永远不是目录键，落地只剩字面 AC，而 AC 有多词
 		// 门槛 —— 于是「舌钉 (Mutation 32)」是中文、「Spastic (Mutation 67)」是英文，同一份列表里
 		// 按名字词数分成两半。突变名本身早在目录里，在显示处逐个反查即可（alias 是
 		// GLOB.alias_mutations 的查表键，保持英文）。

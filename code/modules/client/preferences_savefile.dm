@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Placeholder to check against the SAVE_DATA_EMPTY and SAVE_DATA_OBSOLETE values.
 /// _Any_ generated save data version will be zero or a positive integer, so it's only necessary to check against this value for anything negative (error states).
 #define SAVE_DATA_NO_ERROR 0

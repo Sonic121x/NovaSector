@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
 /// Load byond-tracy. If USE_BYOND_TRACY is defined, then this is ignored and byond-tracy is always loaded.
 #define USE_TRACY_PARAMETER "tracy"
@@ -154,12 +154,12 @@ GLOBAL_VAR(restart_counter)
 	// If you need to add to it, ask yourself hard if what your adding is in the right spot
 	// (i.e. basically nothing should be added before load_admins() in here)
 
-	// NOVA EDIT ADDITION START - i18n: resolve config, load only English + active locale, and prewarm every runtime index.
+	// ZH EDIT ADDITION START - i18n: resolve config, load only English + active locale, and prewarm every runtime index.
 	lang_initialize_runtime(
 		CONFIG_GET(string/i18n_server_locale),
 		CONFIG_GET(flag/i18n_chat_fallback),
 	)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	// Try to set round ID
 	SSdbcore.InitializeRound()

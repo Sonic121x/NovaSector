@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //Rather than assigning a security officer to each department, Nova departments get their own allied Guards!
 //Most related code is in this file; uniform icons are in the relevant department's .dmi
 

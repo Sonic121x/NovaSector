@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// The base clockwork structure. Can have an alternate desc and will show up in the list of clockwork objects.
 /obj/structure/destructible/clockwork
 	name = "meme structure"

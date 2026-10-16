@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //Mild traumas are the most common; they are generally minor annoyances.
 //They can be cured with mannitol and patience, although brain surgery still works.
 //Most of the old brain damage effects have been transferred to the dumbness trauma.
