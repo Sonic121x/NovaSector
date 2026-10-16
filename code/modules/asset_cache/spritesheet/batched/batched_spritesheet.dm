@@ -95,10 +95,21 @@
 	var/data_out
 
 	if(yield || !isnull(cache_job_id))
+		var/started_cache_job = FALSE // ZH EDIT ADDITION - DEFERRED_OFFSTATION
 		if(isnull(cache_job_id))
 			cache_job_id = rustg_iconforge_cache_valid_async(cache_input_hash, cache_dmi_hashes_json, entries_json)
+			// ZH EDIT ADDITION START - DEFERRED_OFFSTATION - count the cache check like a generation job: SSasset_loading runs
+			// rustg_iconforge_cleanup() once its queue is empty and nothing is generating, which drops this job mid-wait
+			// ("cache check UNKNOWN ERROR: NO SUCH JOB", then a regenerated sheet colliding with the registered one)
+			started_cache_job = TRUE
+			SSasset_loading.assets_generating++
+			// ZH EDIT ADDITION END
 		. = CACHE_WAIT // if we return during this, WAIT!!
 		UNTIL((data_out = rustg_iconforge_check(cache_job_id)) != RUSTG_JOB_NO_RESULTS_YET)
+		// ZH EDIT ADDITION START - DEFERRED_OFFSTATION
+		if(started_cache_job)
+			SSasset_loading.assets_generating--
+		// ZH EDIT ADDITION END
 		cache_job_id = null
 		. = CACHE_INVALID // reset back to normal, invalid on CRASH
 	else

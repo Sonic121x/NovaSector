@@ -9,6 +9,8 @@
 #define OFFSTATION_LOADER_SOURCE "deferred offstation content"
 /// Turfs processed between yields in the post-init passes (lighting, atmos).
 #define OFFSTATION_TURFS_PER_BATCH 2000
+/// Longest the load waits for lazily generated assets before starting anyway.
+#define OFFSTATION_ASSET_WAIT (60 SECONDS)
 
 /// When enabled, off-station content loads in the lobby after Master init. See modules/deferred_offstation.
 /datum/config_entry/flag/defer_offstation_load
@@ -55,8 +57,13 @@
 	to_chat(world, span_notice(LANG("datum.e1bc4a85331e093b", null)))
 
 /datum/controller/subsystem/mapping/proc/load_deferred_offstation()
-	// Let the MC finish its post-init bookkeeping before we block.
-	sleep(1 SECONDS)
+	// Let the lazily generated assets (spritesheets queued during init) finish first: they normally
+	// generate in the seconds after init, and this load would otherwise hold the MC for half a minute
+	// right then, pushing them into the window where the first players connect and request them.
+	var/asset_deadline = world.time + OFFSTATION_ASSET_WAIT
+	do
+		sleep(1 SECONDS)
+	while((length(SSasset_loading.generate_queue) || SSasset_loading.assets_generating) && world.time < asset_deadline)
 	var/start_time = REALTIMEOFDAY
 	var/first_new_z = world.maxz + 1
 	var/list/areas_before = alist()
@@ -230,10 +237,11 @@
 	var/list/obj/docking_port/stationary/queued_shuttles = offstation_queued_shuttles
 	offstation_queued_shuttles = null
 	// SSicon_smooth's own Initialize() skips queued atoms that sit in nullspace or inside another
-	// atom (a table packed in a food cart); its fire() doesn't, and they runtime there.
-	for(var/obj/queued_obj as anything in objs)
-		if(!queued_obj.z && (queued_obj.smoothing_flags & SMOOTH_QUEUED))
-			queued_obj.smoothing_flags &= ~SMOOTH_QUEUED
+	// atom (a table a food cart creates and packs during its Initialize); its fire() doesn't, and they
+	// runtime there. Check the queues rather than our lists: such atoms are created mid-batch.
+	for(var/atom/queued as anything in SSicon_smooth.smooth_queue + SSicon_smooth.deferred + (SSicon_smooth.held_pools || list()))
+		if(!queued.z)
+			queued.smoothing_flags &= ~SMOOTH_QUEUED
 
 	step_start = REALTIMEOFDAY
 	for(var/batch_start in 1 to length(turfs) step OFFSTATION_TURFS_PER_BATCH)
@@ -304,3 +312,4 @@
 #undef OFFSTATION_LOAD_DONE
 #undef OFFSTATION_LOADER_SOURCE
 #undef OFFSTATION_TURFS_PER_BATCH
+#undef OFFSTATION_ASSET_WAIT

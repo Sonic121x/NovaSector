@@ -24,6 +24,9 @@ over half of init (98.6s → 34.2s without them). With `DEFER_OFFSTATION_LOAD` s
    after the batch (during init SSshuttle also loads them only after every atom exists); the round
    does not wait for them.
 
+The load starts once the assets queued during init have generated (at most 60s later): holding the
+MC right after init pushed their generation into the moment the first players connect.
+
 The round start waits for the load if the lobby countdown ends first. The MC's
 `sleep_offline_after_initializations` is held back until the load finishes, otherwise an empty
 server would freeze it until the first player connects.
@@ -39,6 +42,7 @@ whole suite runs on the deferred world.
 - `code/modules/library/bookcase.dm`: `proc/load_shelf()` skips books that have not initialized yet
 - `code/game/turfs/open/lava.dm`: `initialize_occupant()` leaves occupants that are not initialized yet to `on_atom_inited()`
 - `code/modules/shuttle/stationary_port/stationary_port.dm`: `LateInitialize()` queues the roundstart shuttle during the deferred batch
+- `code/modules/asset_cache/spritesheet/batched/batched_spritesheet.dm`: `should_refresh()` counts its async cache check in `SSasset_loading.assets_generating`, so the queue-drained `rustg_iconforge_cleanup()` cannot drop it mid-wait ("cache check UNKNOWN ERROR: NO SUCH JOB")
 - `code/__HELPERS/_planes.dm`: `check_topdown_validity()` judges a FLOAT_PLANE visual by the plane of the atom showing it (the deferred world surfaced this false positive in `plane_layer_sanity`)
 
 ### Modular Overrides:
