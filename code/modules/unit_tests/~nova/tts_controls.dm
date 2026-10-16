@@ -201,6 +201,10 @@
 		SStts.tts_enabled = original_tts_enabled
 	return ..()
 
+/// stars() keeps each letter with 75% chance, so a short phrase sometimes comes through unstarred
+/// (0.75^9 = 7.5% for "Zxqv plorb"); this one has 38 letters.
+#define TTS_EAVESDROP_PHRASE "Zxqv plorb glimmax trundle vosk quarp zindel"
+
 /// Whispers overheard from just outside their range are flagged, so TTS voices them as blips like the starred text.
 /// HEAR_HEARD is not asserted: show_message() needs a real client, which a mock client is not.
 /datum/unit_test/tts_eavesdrop
@@ -220,19 +224,21 @@
 	for(var/distance in 1 to 3)
 		listener.forceMove(locate(run_loc_floor_bottom_left.x + distance, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
 		heard_raw_message = null
-		var/hearflags = listener.Hear(speaker, language, "Zxqv plorb", spans = list(), message_mods = whisper_mods.Copy(), message_range = WHISPER_RANGE)
+		var/hearflags = listener.Hear(speaker, language, TTS_EAVESDROP_PHRASE, spans = list(), message_mods = whisper_mods.Copy(), message_range = WHISPER_RANGE)
 		heard_at["[distance]"] = list(hearflags, heard_raw_message)
 
-	TEST_ASSERT_EQUAL(heard_at["1"][2], "Zxqv plorb", "A listener in whisper range should hear the whisper in full.")
+	TEST_ASSERT_EQUAL(heard_at["1"][2], TTS_EAVESDROP_PHRASE, "A listener in whisper range should hear the whisper in full.")
 	TEST_ASSERT(!(heard_at["1"][1] & HEAR_EAVESDROPPED), "A listener in whisper range should hear the voice, not blips.")
-	TEST_ASSERT(heard_at["2"][2] && heard_at["2"][2] != "Zxqv plorb", "A listener just outside whisper range should overhear starred text.")
+	TEST_ASSERT(heard_at["2"][2] && heard_at["2"][2] != TTS_EAVESDROP_PHRASE, "A listener just outside whisper range should overhear starred text.")
 	TEST_ASSERT(heard_at["2"][1] & HEAR_EAVESDROPPED, "A listener just outside whisper range should be flagged as eavesdropping.")
 	TEST_ASSERT_NULL(heard_at["3"][2], "A listener out of eavesdrop range should not hear the whisper at all.")
 	TEST_ASSERT(!(heard_at["3"][1] & HEAR_EAVESDROPPED), "A listener out of eavesdrop range should not be flagged.")
 
-	var/hearflags = listener.Hear(speaker, language, "Zxqv plorb", spans = list(), message_mods = list(), message_range = MESSAGE_RANGE)
+	var/hearflags = listener.Hear(speaker, language, TTS_EAVESDROP_PHRASE, spans = list(), message_mods = list(), message_range = MESSAGE_RANGE)
 	TEST_ASSERT(!(hearflags & HEAR_EAVESDROPPED), "Normal speech in range should not be flagged as eavesdropping.")
 
 /datum/unit_test/tts_eavesdrop/proc/on_hear(datum/source, list/hearing_args)
 	SIGNAL_HANDLER
 	heard_raw_message = hearing_args[HEARING_RAW_MESSAGE]
+
+#undef TTS_EAVESDROP_PHRASE

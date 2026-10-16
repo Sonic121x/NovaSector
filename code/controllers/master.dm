@@ -460,6 +460,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "控制器概览", "View th
 	to_chat(world, span_boldannounce("[msg]"), MESSAGE_TYPE_DEBUG)
 	log_world(msg)
 	SSticker.timeLeft = SSticker.start_at
+	SSmapping.start_deferred_offstation_load() // NOVA EDIT ADDITION - DEFERRED_OFFSTATION
 
 
 	if(world.system_type == MS_WINDOWS && CONFIG_GET(flag/toast_notification_on_init) && !length(GLOB.clients))

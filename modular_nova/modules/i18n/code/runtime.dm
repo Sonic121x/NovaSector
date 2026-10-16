@@ -133,10 +133,10 @@ GLOBAL_LIST_INIT(i18n_catalogs, lang_bootstrap_catalogs())
 /// locale -> runtime domain -> source text -> translated text. Built only after config is resolved.
 GLOBAL_LIST_EMPTY(i18n_runtime_domains)
 
-/// locale -> ambiguous English source -> conflicting forward origins. Ambiguous fallback text is
+/// locale -> ambiguous English source -> the conflicting forward catalog keys. Ambiguous fallback text is
 /// deliberately omitted from global reverse lookup; keyed LANG calls remain context-correct.
 GLOBAL_LIST_EMPTY(i18n_reverse_ambiguities)
-/// locale -> normalized English source -> conflicting origins. Ambiguous normalized aliases are
+/// locale -> normalized English source -> the conflicting English source strings. Ambiguous normalized aliases are
 /// omitted, while exact source lookup remains available.
 GLOBAL_LIST_EMPTY(i18n_reverse_norm_ambiguities)
 /// 每个 locale 下来自**显式 global_reverse 补充表**（`_map_names`/`ui`/`_crafting`…）的英文源串。
@@ -278,8 +278,10 @@ GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 				CRASH("i18n: forward key '[key]' in [locale]/[file_name] is not <namespace>.<16 lowercase hex>")
 			if(domain == I18N_DOMAIN_MANUAL_FORWARD && lang_forward_key_is_valid(key))
 				CRASH("i18n: hashed key '[key]' belongs in the automatic forward domain, not [locale]/[file_name]")
-			if(key in target)
-				var/existing = target[key]
+			// Index, never `key in target`: `in` is a linear scan, and this loop runs once per catalog
+			// entry (~115k per locale) — the scan alone cost ~8s of boot per locale. Values are text.
+			var/existing = target[key]
+			if(!isnull(existing))
 				if(existing != value)
 					CRASH("i18n: conflicting key '[key]' in runtime domain '[domain]' while loading [locale]/[file_name]")
 				continue
@@ -294,9 +296,9 @@ GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 
 /// Adds a source mapping while detecting the exact failure that used to be last-write-wins.
 /proc/lang_add_domain_value(list/seen, list/origins, list/output, source, translated, domain, origin, include_templates = TRUE)
-	if(source in seen)
+	if(!isnull(seen[source]))
 		if(seen[source] != translated)
-			CRASH("i18n: conflicting translations for '[source]' inside runtime domain '[domain]': [origins[source]] vs [origin]")
+			CRASH("i18n: conflicting translations for '[source]' inside runtime domain '[domain]': catalog key '[origins[source]]' vs '[origin]'")
 		return
 	seen[source] = translated
 	origins[source] = origin
@@ -309,10 +311,11 @@ GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 /proc/lang_add_forward_reverse_value(list/seen, list/origins, list/ambiguous, list/output, source, translated, origin)
 	if(translated == source)
 		return
-	if(source in ambiguous)
-		ambiguous[source] += origin
+	var/list/ambiguous_origins = ambiguous[source]
+	if(ambiguous_origins)
+		ambiguous_origins += origin
 		return
-	if(source in seen)
+	if(!isnull(seen[source]))
 		if(seen[source] == translated)
 			return
 		ambiguous[source] = list(origins[source], origin)
@@ -327,7 +330,7 @@ GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 	if(!islist(localized))
 		return
 	for(var/key in localized)
-		if(!(key in english))
+		if(isnull(english?[key]))
 			CRASH("i18n: locale [locale] domain '[domain]' contains key '[key]' with no English source")
 
 /proc/lang_validate_manual_forward(locale)
@@ -347,9 +350,12 @@ GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 	if(!islist(by_locale))
 		by_locale = list()
 		GLOB.i18n_runtime_domains[locale] = by_locale
-	var/list/output = list()
-	var/list/seen = list()
-	var/list/origins = list()
+	// alist, not list: inserting a new key into a plain associative list costs O(current length),
+	// so building the ~100k-entry global_reverse domain was quadratic (tens of seconds of boot).
+	// Every table here is lookup-only; nothing depends on iteration order or numeric indexes.
+	var/list/output = alist()
+	var/list/seen = alist()
+	var/list/origins = alist()
 	var/list/ambiguous = list()
 	var/list/forward_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET]
 	var/list/paired_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_PAIRED_BUCKET]
@@ -363,7 +369,7 @@ GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 			var/translated = localized_forward[key]
 			if(isnull(translated))
 				translated = source
-			lang_add_forward_reverse_value(seen, origins, ambiguous, output, source, translated, "forward key [key]")
+			lang_add_forward_reverse_value(seen, origins, ambiguous, output, source, translated, key)
 		if(length(ambiguous))
 			GLOB.i18n_reverse_ambiguities[locale] = ambiguous
 			for(var/source in ambiguous)
@@ -373,9 +379,9 @@ GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 	// tracking so they may override automatic forward candidates, while conflicts between two
 	// supplements still fail instead of depending on file iteration order.
 	if(domain == I18N_DOMAIN_GLOBAL_REVERSE)
-		seen = list()
-		origins = list()
-	var/list/supplement_sources = list()
+		seen = alist()
+		origins = alist()
+	var/list/supplement_sources = alist()
 	var/list/english_domains = paired_by_locale[DEFAULT_UI_LOCALE]
 	var/list/localized_domains = paired_by_locale[locale]
 	var/list/english = english_domains?[domain]
@@ -387,14 +393,14 @@ GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 			var/translated = localized?[key]
 			if(isnull(translated))
 				translated = source
-			lang_add_domain_value(seen, origins, output, source, translated, domain, "catalog key [key]", include_templates = domain != I18N_DOMAIN_GLOBAL_REVERSE)
+			lang_add_domain_value(seen, origins, output, source, translated, domain, key, include_templates = domain != I18N_DOMAIN_GLOBAL_REVERSE)
 			if(domain == I18N_DOMAIN_GLOBAL_REVERSE)
 				supplement_sources[source] = TRUE
 	var/list/direct_domains = direct_by_locale[locale]
 	var/list/direct = direct_domains?[domain]
 	if(islist(direct))
 		for(var/source in direct)
-			lang_add_domain_value(seen, origins, output, source, direct[source], domain, "locale-only key [source]")
+			lang_add_domain_value(seen, origins, output, source, direct[source], domain, source)
 			if(domain == I18N_DOMAIN_GLOBAL_REVERSE)
 				supplement_sources[source] = TRUE
 	if(domain == I18N_DOMAIN_GLOBAL_REVERSE)
@@ -1071,11 +1077,13 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 	return text
 
 /proc/lang_add_normalized_reverse(list/reverse_norm, list/origins, list/ambiguous, normalized, translated, origin)
-	if(normalized in ambiguous)
-		ambiguous[normalized] += origin
+	var/list/ambiguous_origins = ambiguous[normalized]
+	if(ambiguous_origins)
+		ambiguous_origins += origin
 		return
-	if(normalized in reverse_norm)
-		if(reverse_norm[normalized] == translated)
+	var/existing = reverse_norm[normalized]
+	if(!isnull(existing))
+		if(existing == translated)
 			return
 		ambiguous[normalized] = list(origins[normalized], origin)
 		reverse_norm -= normalized
@@ -1092,9 +1100,10 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 	var/list/domain = lang_build_runtime_domain(I18N_DOMAIN_GLOBAL_REVERSE, locale)
 	if(!islist(domain))
 		return list()
-	var/list/reverse = list()
-	var/list/reverse_norm = list()
-	var/list/norm_origins = list()
+	// alist for the same reason as lang_build_runtime_domain: these grow to ~100k keys.
+	var/list/reverse = alist()
+	var/list/reverse_norm = alist()
+	var/list/norm_origins = alist()
 	var/list/norm_ambiguous = list()
 	// 归一化表要与精确表同一套优先级：**显式补充表覆盖自动候选**。从前这一层不分来源，于是
 	// `area.json` 的 `\improper Departure Lounge`（→离港休息厅）与 `_map_names` 的 `Departure Lounge`
@@ -1102,7 +1111,7 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 	// 精确表又对不上，于是「阻塞据信位于Departure Lounge区域」。实测这样掉出去的有 101 条（区域名 74 条）。
 	// 两遍：先登记自动候选，再让补充表逐键覆盖；补充表彼此冲突时照旧判歧义，不靠文件顺序。
 	var/list/supplements = GLOB.i18n_reverse_supplements[locale] || list()
-	var/list/norm_from_supplement = list()
+	var/list/norm_from_supplement = alist()
 	for(var/pass in 1 to 2)
 		for(var/en_text in domain)
 			var/is_supplement = !!supplements[en_text]
@@ -1114,16 +1123,18 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 			if(is_supplement && !norm_from_supplement[norm_key])
 				norm_ambiguous -= norm_key
 				reverse_norm[norm_key] = lang_display_value(translated)
-				norm_origins[norm_key] = "supplement '[en_text]'"
+				norm_origins[norm_key] = en_text
 				norm_from_supplement[norm_key] = TRUE
 			else if(norm_key != en_text || is_supplement)
-				lang_add_normalized_reverse(reverse_norm, norm_origins, norm_ambiguous, norm_key, lang_display_value(translated), "source '[en_text]'")
+				lang_add_normalized_reverse(reverse_norm, norm_origins, norm_ambiguous, norm_key, lang_display_value(translated), en_text)
 			// Chat/browser output is split around formatting tags. Register the visible multi-word form,
 			// but never strip functional links.
 			if(findtext(en_text, "<") && findtext(en_text, ">"))
 				var/bare_key = lang_normalize_lookup(lang_strip_html_tags(en_text))
-				if(length(bare_key) && findtext(bare_key, " ") && !(bare_key in reverse))
-					lang_add_normalized_reverse(reverse_norm, norm_origins, norm_ambiguous, bare_key, lang_strip_html_tags(lang_display_value(translated)), "tagged source '[en_text]'")
+				// Check the whole domain, not the partially built exact table: the answer must not depend
+				// on iteration order (alist order is unspecified).
+				if(length(bare_key) && findtext(bare_key, " ") && isnull(domain[bare_key]))
+					lang_add_normalized_reverse(reverse_norm, norm_origins, norm_ambiguous, bare_key, lang_strip_html_tags(lang_display_value(translated)), en_text)
 	if(length(norm_ambiguous))
 		GLOB.i18n_reverse_norm_ambiguities[locale] = norm_ambiguous
 	GLOB.i18n_reverse[locale] = reverse
@@ -1685,8 +1696,10 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 		return lang_reverse_text_in(text, locale)
 	var/list/phrase_cache = GLOB.i18n_tgui_phrase_cache
 	var/cache_ready = !GLOB.i18n_log_misses && islist(phrase_cache) && lang_runtime_is_ready() && lang_catalog_locale_is_loaded(locale)
-	if(cache_ready && (text in phrase_cache))
-		return phrase_cache[text]
+	if(cache_ready)
+		var/cached = phrase_cache[text]
+		if(!isnull(cached))
+			return cached
 	// lang_reverse_suffixed 而非裸 lang_reverse_text：TGUI 负载里同样有「基础句 + 运行期追加
 	// 后缀」的值（赏金 description 加高优先级说明、手术 desc 加「每器官一次」），整串不是目录键，
 	// 精确反查会连基础句一起 miss。无后缀时它就是 lang_reverse_text，零行为变化。

@@ -382,6 +382,7 @@
 #include "~nova\accessory_layers.dm"
 #include "~nova\augment_items.dm"
 #include "~nova\automapper.dm"
+#include "~nova\deferred_offstation.dm"
 #include "~nova\i18n_chat_layers.dm"
 #include "~nova\i18n_display_boundary.dm"
 #include "~nova\i18n_display_leaks.dm"
@@ -407,6 +408,7 @@
 #include "~nova\opposing_force.dm"
 #include "~nova\runtime_stability.dm"
 #include "~nova\shuttle.dm"
+#include "~nova\test_sharding.dm"
 #include "~nova\tts_controls.dm"
 // NOVA EDIT END
 // END_INCLUDE

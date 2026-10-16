@@ -84,6 +84,11 @@
 
 /turf/open/lava/initialize_occupant(atom/movable/occupant)
 	. = ..()
+	// NOVA EDIT ADDITION START - DEFERRED_OFFSTATION - an occupant not initialized yet is handled by on_atom_inited() once it is;
+	// burning it now ignores the TRAIT_LAVA_STOPPED its catwalk/railing would apply, and damages an atom with no integrity yet
+	if(!(occupant.flags_1 & INITIALIZED_1))
+		return
+	// NOVA EDIT ADDITION END
 	apply_lava_effects(occupant)
 
 /// Entering lava and having the floor turn into lava apply the same effects.

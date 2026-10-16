@@ -41299,6 +41299,7 @@
   "datum.e1b738cd8e078e62": ["/datum/action/cooldown/spell/touch/flesh_surgery#insert_organ_into_mob()"],
   "datum.e1b80536cc4959d4": ["/datum/surgery_operation#get_mob_surgery_speed_mod()"],
   "datum.e1b9926abbb65505": ["/datum/augment_item/organ/liver/cybernetic#name"],
+  "datum.e1bc4a85331e093b": ["/datum/controller/subsystem/mapping#announce_offstation_wait()"],
   "datum.e1bdd886849fa83c": ["/datum/bounty/interdyne_reagent/simple_drink#New()"],
   "datum.e1be0675e64eee8c": ["/datum/action/cooldown/spell"],
   "datum.e1c00738c7c2b1cc": ["/datum/sprite_accessory/facial_hair/handlebar2#name"],

@@ -173,6 +173,12 @@ SUBSYSTEM_DEF(ticker)
 				send_tip_of_the_round(world, selected_tip)
 				tipped = TRUE
 
+			// NOVA EDIT ADDITION START - DEFERRED_OFFSTATION - lavaland, ruins and away missions finish loading in the lobby
+			if(timeLeft <= 0 && !SSmapping.offstation_ready())
+				timeLeft = 0
+				SSmapping.announce_offstation_wait()
+				return
+			// NOVA EDIT ADDITION END
 			if(timeLeft <= 0)
 				SEND_SIGNAL(src, COMSIG_TICKER_ENTER_SETTING_UP)
 				current_state = GAME_STATE_SETTING_UP

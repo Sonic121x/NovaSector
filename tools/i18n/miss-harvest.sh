@@ -39,8 +39,8 @@ restore() {
 	sed -i "s@^// MISS-HARVEST-DISABLED $GAGS_DEFINE@$GAGS_DEFINE@" "$COMPILE_OPTS"
 	rm -f tgstation.test.dme tgstation.test.dmb tgstation.test.rsc
 	rm -f data/next_map.json # 单测地图指定，别留给正常起服用
-	# 禁掉 rustg iconforge 之后地图预览图标改由 DM 回退生成，像素与已提交 .dmi 有差 —— 不还原
-	# 就会把它们当成本次改动一起提交（pseudo-test.sh 早就在还原，这里漏了）。
+	# TEST_GAGS_FALLBACK=1 时地图预览图标改由 DM 回退生成，像素与已提交 .dmi 有差 —— 不还原
+	# 就会把它们当成本次改动一起提交。
 	git checkout --quiet -- icons/map_icons/ 2>/dev/null || true
 	echo "==> 已还原 $CONFIG、$COMPILE_OPTS 与 icons/map_icons/"
 }
@@ -52,8 +52,10 @@ if grep -q '^I18N_LOG_MISSES ' "$CONFIG"; then
 else
 	printf 'I18N_LOG_MISSES 1\n' >> "$CONFIG"
 fi
-# 本机 32 位 rust_g 的 iconforge GAGS 在 UNIT_TESTS 构建下必崩，与 pseudo-test.sh 同样处理。
-sed -i "s@^$GAGS_DEFINE@// MISS-HARVEST-DISABLED $GAGS_DEFINE@" "$COMPILE_OPTS"
+# rust_g 6.2 起 UNIT_TESTS 构建下的 iconforge GAGS 不再崩，默认直接用；见 pseudo-test.sh 头注。
+if [[ ${TEST_GAGS_FALLBACK:-0} == 1 ]]; then
+	sed -i "s@^$GAGS_DEFINE@// MISS-HARVEST-DISABLED $GAGS_DEFINE@" "$COMPILE_OPTS"
+fi
 
 echo "==> 编译（-DCBT -DCIBUILDING = UNIT_TESTS）"
 cp tgstation.dme tgstation.test.dme

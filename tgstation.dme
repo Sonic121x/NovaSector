@@ -8704,6 +8704,7 @@
 #include "modular_nova\modules\decay_subsystem\code\decaySS.dm"
 #include "modular_nova\modules\decay_subsystem\code\nests.dm"
 #include "modular_nova\modules\decay_subsystem\code\spawn_nest.dm"
+#include "modular_nova\modules\deferred_offstation\code\deferred_offstation.dm"
 #include "modular_nova\modules\deforest_medical_items\code\cargo_packs.dm"
 #include "modular_nova\modules\deforest_medical_items\code\healing_stack_items.dm"
 #include "modular_nova\modules\deforest_medical_items\code\illegal_injectors.dm"
