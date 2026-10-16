@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/deathmatch_controller
 	/// Assoc list of all lobbies (ckey = lobby)
 	var/list/datum/deathmatch_lobby/lobbies = list()
@@ -25,7 +25,7 @@
 
 /datum/deathmatch_controller/proc/create_new_lobby(mob/host)
 	lobbies[host.ckey] = new /datum/deathmatch_lobby(host)
-	deadchat_broadcast(LANG("datum.a5cecc89a6ed7fd6", list(REF(lobbies[host.ckey]))), "<B>[host]</B>") // NOVA EDIT CHANGE - I18N - ORIGINAL: deadchat_broadcast(" has opened a new deathmatch lobby. <a href=byond://?src=[REF(lobbies[host.ckey])];join=1>(Join)</a>", "<B>[host]</B>")
+	deadchat_broadcast(LANG("datum.a5cecc89a6ed7fd6", list(REF(lobbies[host.ckey]))), "<B>[host]</B>") // ZH EDIT CHANGE - I18N - ORIGINAL: deadchat_broadcast(" has opened a new deathmatch lobby. <a href=byond://?src=[REF(lobbies[host.ckey])];join=1>(Join)</a>", "<B>[host]</B>")
 
 /datum/deathmatch_controller/proc/remove_lobby(ckey)
 	var/lobby = lobbies[ckey]

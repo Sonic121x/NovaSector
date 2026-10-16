@@ -72,7 +72,7 @@ export function NumberInputModal(props) {
                     disabled={value === min_value}
                     icon="angle-double-left"
                     onClick={() => setValue(min_value ?? 0)}
-                    // NOVA EDIT CHANGE - i18n: ORIGINAL: tooltip={min_value ? `Min (${min_value})` : 'Min'}
+                    // ZH EDIT CHANGE - i18n: ORIGINAL: tooltip={min_value ? `Min (${min_value})` : 'Min'}
                     // 模板字面量整串是运行期产物、永远不是目录键，而 propTemplate 只认
                     // **属性值本身**是模板字面量的形状，三元包一层就整条抽不到。改成
                     // children 模板：数值包进元素当占位符，整条抽成 `Min ({0})`。
@@ -123,7 +123,7 @@ export function NumberInputModal(props) {
                     disabled={value === max_value}
                     icon="angle-double-right"
                     onClick={() => setValue(max_value ?? 10000)}
-                    // NOVA EDIT CHANGE - i18n: ORIGINAL: tooltip={max_value ? `Max (${max_value})` : 'Max'}
+                    // ZH EDIT CHANGE - i18n: ORIGINAL: tooltip={max_value ? `Max (${max_value})` : 'Max'}
                     // 模板字面量整串是运行期产物、永远不是目录键，而 propTemplate 只认
                     // **属性值本身**是模板字面量的形状，三元包一层就整条抽不到。改成
                     // children 模板：数值包进元素当占位符，整条抽成 `Max ({0})`。
@@ -143,7 +143,7 @@ export function NumberInputModal(props) {
                     disabled={value === init_value}
                     icon="redo"
                     onClick={() => setValue(init_value ?? 0)}
-                    // NOVA EDIT CHANGE - i18n: ORIGINAL: tooltip={init_value ? `Reset (${init_value})` : 'Reset'}
+                    // ZH EDIT CHANGE - i18n: ORIGINAL: tooltip={init_value ? `Reset (${init_value})` : 'Reset'}
                     // 模板字面量整串是运行期产物、永远不是目录键，而 propTemplate 只认
                     // **属性值本身**是模板字面量的形状，三元包一层就整条抽不到。改成
                     // children 模板：数值包进元素当占位符，整条抽成 `Reset ({0})`。

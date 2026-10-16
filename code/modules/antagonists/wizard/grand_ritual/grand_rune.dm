@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Number of times you need to cast on the rune to complete it
 #define GRAND_RUNE_INVOKES_TO_COMPLETE 3
 /// Base time to take to invoke one stage of the rune. This is done three times to complete the rune.

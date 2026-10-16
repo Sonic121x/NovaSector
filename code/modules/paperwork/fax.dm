@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 GLOBAL_VAR_INIT(nt_fax_department, pick("NT HR Department", "NT Legal Department", "NT Complaint Department", "NT Customer Relations", "Nanotrasen Tech Support", "NT Internal Affairs Dept"))
 GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 
@@ -299,7 +299,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 		if(FAX.fax_id == fax_id) //skip yourself
 			continue
 		var/list/fax_data = list()
-		fax_data["fax_name"] = lang_localize_display_name(FAX.fax_name) // NOVA EDIT - I18N - 显示名反查（act 用 fax_id，译名安全）
+		fax_data["fax_name"] = lang_localize_display_name(FAX.fax_name) // ZH EDIT - I18N - 显示名反查（act 用 fax_id，译名安全）
 		fax_data["fax_id"] = FAX.fax_id
 		fax_data["visible"] = FAX.visible_to_network
 		fax_data["has_paper"] = !!FAX.loaded_item_ref?.resolve()
@@ -309,7 +309,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 
 	// Own data
 	data["fax_id"] = fax_id
-	data["fax_name"] = lang_localize_display_name(fax_name) // NOVA EDIT - I18N - 显示名反查
+	data["fax_name"] = lang_localize_display_name(fax_name) // ZH EDIT - I18N - 显示名反查
 	data["visible"] = visible_to_network
 	// In this case, we don't care if the fax is hacked or in the syndicate's network. The main thing is to check the visibility of other faxes.
 	data["syndicate_network"] = (syndicate_network || (obj_flags & EMAGGED))
@@ -319,13 +319,13 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 	for(var/key in special_networks)
 		if(special_networks[key]["fax_id"] == fax_id)
 			continue
-		// NOVA EDIT START - I18N - Copy + 显示名反查（payload 与持久 special_networks 共享引用，
+		// ZH EDIT START - I18N - Copy + 显示名反查（payload 与持久 special_networks 共享引用，
 		// 直接改会被 P1 连带污染原表；故复制内层 dict 再反查 fax_name 显示名，act 用 fax_id 不受影响）
 		var/list/network_entry = special_networks[key] // 显式 /list 变量，避免在无类型下标上直接 .Copy()（DreamChecker static type 警告）
 		var/list/net = network_entry.Copy()
 		net["fax_name"] = lang_localize_display_name(net["fax_name"])
 		special_networks_data += list(net)
-		// NOVA EDIT END
+		// ZH EDIT END
 	data["special_faxes"] = special_networks_data
 	return data
 

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Yes. This is a lot of code frankensteining. I am not proud of my work but damned am i proud it works... Atleast if you're seeing this it works.
 
 /obj/item/gun/energy/recharge/resonant_system

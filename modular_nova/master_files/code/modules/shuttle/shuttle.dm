@@ -1,4 +1,4 @@
-// NOVA EDIT ADDITION START - HYPERSPACE_AREA_LEAK
+// ZH EDIT ADDITION START - HYPERSPACE_AREA_LEAK
 // generate_transit_dock() creates a fresh /area/shuttle/transit ("Hyperspace") for every trip, but
 // /obj/docking_port/stationary/transit/Destroy() only frees reserved_area (the turf reservation) and never
 // deletes assigned_area, so each trip leaves one more area in GLOB.areas and the teleport list fills with them.
@@ -36,7 +36,7 @@
 		assigned_area = null
 	. = ..()
 	stale_area?.queue_cleanup()
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 /obj/docking_port/mobile
 	/// Does this shuttle play sounds upon landing and takeoff?
@@ -112,7 +112,7 @@
 			var/vol = clamp(40 - ((dist - 3) * 5) * volume_pref_modifier, 0, 40) // Every tile decreases sound volume by 5
 			hearing_mob.playsound_local(distant_source, takeoff ? takeoff_sound : landing_sound, vol)
 
-// NOVA EDIT ADDITION START - HYPERSPACE_AREA_LEAK
+// ZH EDIT ADDITION START - HYPERSPACE_AREA_LEAK
 #undef TRANSIT_AREA_CLEANUP_INTERVAL
 #undef TRANSIT_AREA_CLEANUP_MAX_TRIES
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END

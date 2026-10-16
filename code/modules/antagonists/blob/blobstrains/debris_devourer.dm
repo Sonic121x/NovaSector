@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define DEBRIS_DENSITY (length(overmind.blob_core.contents) / (length(overmind.blobs_legit) * 0.25)) // items per blob
 #define SPORE_TRASH_COUNT 3
 #define FREE_MINION_DEBRIS_CHANCE 80

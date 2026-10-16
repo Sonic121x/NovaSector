@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define PAPER_PER_SHEET 10
 
 /obj/item/universal_scanner
@@ -181,7 +181,7 @@
 	for(var/exported_datum in report.total_amount)
 		price += report.total_value[exported_datum]
 
-	// NOVA EDIT CHANGE START - i18n: 手工 LANG 化。原本是往局部 `message` 上逐段 `+=` 拼句，
+	// ZH EDIT CHANGE START - i18n: 手工 LANG 化。原本是往局部 `message` 上逐段 `+=` 拼句，
 	// 每一段单独看都是碎片（", no export value."），既进不了目录、进了也只会被字面 AC 在半句
 	// 处替换。改成每个分支一条**完整模板**，「无法确定价值」那半句作为可选后缀实参传入，
 	// 英文输出逐字节不变，中文语序由译文自己安排。
@@ -204,7 +204,7 @@
 		else
 			message = LANG("obj.b805c824dda85d5b", list(target))
 			warning = TRUE
-	// NOVA EDIT CHANGE END
+	// ZH EDIT CHANGE END
 	if(warning)
 		to_chat(user, span_warning(message))
 	else

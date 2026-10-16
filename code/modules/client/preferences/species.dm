@@ -50,15 +50,15 @@
 
 		data[species_id] = list()
 		data[species_id]["name"] = species.name
-		// NOVA EDIT START - i18n - 物种描述/背景反查（常量 asset 绕过 P1，在此整串/逐段反查；译文进目录即生效）
+		// ZH EDIT START - i18n - 物种描述/背景反查（常量 asset 绕过 P1，在此整串/逐段反查；译文进目录即生效）
 		data[species_id]["desc"] = lang_reverse_text_or_list(species.get_species_description()) // ORIGINAL: data[species_id]["desc"] = species.get_species_description()
 		data[species_id]["lore"] = lang_reverse_string_list(species.get_species_lore()) // ORIGINAL: data[species_id]["lore"] = species.get_species_lore()
-		// NOVA EDIT END
+		// ZH EDIT END
 		data[species_id]["icon"] = sanitize_css_class_name(species.name)
 		data[species_id]["use_skintones"] = (TRAIT_USES_SKINTONES in species.inherent_traits)
 		data[species_id]["sexes"] = species.sexes
 		data[species_id]["enabled_features"] = species.get_features()
-		data[species_id]["perks"] = lang_reverse_perks(species.get_species_perks(), species) // NOVA EDIT - i18n: 反查特征 name/description + 物种名整词替换。ORIGINAL: data[species_id]["perks"] = species.get_species_perks()
+		data[species_id]["perks"] = lang_reverse_perks(species.get_species_perks(), species) // ZH EDIT - i18n: 反查特征 name/description + 物种名整词替换。ORIGINAL: data[species_id]["perks"] = species.get_species_perks()
 		data[species_id]["diet"] =  species.get_species_diet()
 		data[species_id]["nova_stars_only"] = species.nova_stars_only // NOVA EDIT ADDITION - Veteran races
 

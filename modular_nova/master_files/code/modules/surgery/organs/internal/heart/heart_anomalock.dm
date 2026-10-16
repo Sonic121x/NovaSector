@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/organ/heart/cybernetic/anomalock
 	desc = "A cutting-edge cyberheart. Voltaic technology allows the heart to keep the body upright in dire circumstances, \
 		along with fully shielding the user from shocks and electro-magnetic pulses, when in an \"overdrive\" state. \

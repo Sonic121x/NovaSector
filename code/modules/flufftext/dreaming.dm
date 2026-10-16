@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define DREAMING_SOURCE "dreaming_source"
 
 /**
@@ -59,7 +59,7 @@
 		var/datum/callback/something_happens = next_message
 		next_message = something_happens.InvokeAsync(src)
 
-	if(istext(next_message)) // NOVA EDIT - I18N - reverse the dream fragment (single-word adjective/verb/noun words skip the file2list multi-word threshold and AC; exact reverse catches the catalog entries)
+	if(istext(next_message)) // ZH EDIT - I18N - reverse the dream fragment (single-word adjective/verb/noun words skip the file2list multi-word threshold and AC; exact reverse catches the catalog entries)
 		next_message = lang_localize_display_name(next_message)
 	to_chat(src, span_notice("<i>... [next_message] ...</i>"))
 
@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(dreams, populate_dream_list())
 /datum/dream/random
 	weight = 1000
 
-// NOVA EDIT CHANGE START - I18N - 梦境整句由五张词池拼出，整串永远不是目录键；按 locale 换整张表
+// ZH EDIT CHANGE START - I18N - 梦境整句由五张词池拼出，整串永远不是目录键；按 locale 换整张表
 // （见 lang_word_pool）。**五张必须一起换**：只译形容词会产出「a 迷人的 admiral」，比全英文更难看。
 /datum/dream/random/GenerateDream(mob/living/carbon/dreamer)
 	var/list/custom_dream_nouns = get_dream_nouns(dreamer) || list()
@@ -167,7 +167,7 @@ GLOBAL_LIST_INIT(dreams, populate_dream_list())
 	if(findtext(fragment, "%A% "))
 		fragment = "\a [replacetext(fragment, "%A% ", "")]"
 	return fragment
-// NOVA EDIT CHANGE END
+// ZH EDIT CHANGE END
 
 /datum/dream/random/proc/get_dream_nouns(mob/living/carbon/dreamer)
 	var/list/custom_dream_nouns = list()

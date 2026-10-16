@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(admin_explosion, R_ADMIN|R_FUN, "爆炸", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
 	VERB_ARG_TYPED(orignator, VERB_ARG_TYPE_OBJ | VERB_ARG_TYPE_TURF | VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /atom)
 	var/devastation = input(user, LANG("datum.539bbd8951b8c339", null), LANG("datum.8c7e56a24e9ebe25", null))  as num|null

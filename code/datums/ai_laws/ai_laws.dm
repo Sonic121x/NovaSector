@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define AI_LAWS_ASIMOV "asimov"
 
 /// See [/proc/get_round_default_lawset], do not get directily.
@@ -273,32 +273,32 @@ GLOBAL_VAR(round_default_lawset)
  */
 /datum/ai_laws/proc/get_law_list(include_zeroth = FALSE, show_numbers = TRUE, render_html = TRUE)
 	var/list/data = list()
-	// NOVA EDIT ADDITION START - i18n: 仅显示时反查法则文本（存储法则保持英文，游戏逻辑按串比较不受影响）。
+	// ZH EDIT ADDITION START - i18n: 仅显示时反查法则文本（存储法则保持英文，游戏逻辑按串比较不受影响）。
 	// lawset 静态法则(inherent)已抽进目录；ion 法则来自 ion_laws.json(已抽)；玩家填写的自由法则不在目录→反查 no-op。
 	var/translate_laws = (GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	if (include_zeroth && zeroth)
-		var/show_zeroth = translate_laws ? lang_reverse_text(zeroth) : zeroth // NOVA EDIT - i18n
-		data += "[show_numbers ? "0:" : ""] [render_html ? "<font color='#ff0000'><b>[show_zeroth]</b></font>" : show_zeroth]" // NOVA EDIT - i18n: ORIGINAL used [zeroth]
+		var/show_zeroth = translate_laws ? lang_reverse_text(zeroth) : zeroth // ZH EDIT - i18n
+		data += "[show_numbers ? "0:" : ""] [render_html ? "<font color='#ff0000'><b>[show_zeroth]</b></font>" : show_zeroth]" // ZH EDIT - i18n: ORIGINAL used [zeroth]
 
 	for(var/law in hacked)
 		if (length(law) > 0)
-			var/show_law = translate_laws ? lang_reverse_text(law) : law // NOVA EDIT - i18n
-			data += "[show_numbers ? "[ion_num()]:" : ""] [render_html ? "<font color='#c00000'>[show_law]</font>" : show_law]" // NOVA EDIT - i18n: ORIGINAL used [law]
+			var/show_law = translate_laws ? lang_reverse_text(law) : law // ZH EDIT - i18n
+			data += "[show_numbers ? "[ion_num()]:" : ""] [render_html ? "<font color='#c00000'>[show_law]</font>" : show_law]" // ZH EDIT - i18n: ORIGINAL used [law]
 
 	var/number = 1
 	for(var/law, is_ioned in inherent)
 		if (length(law) > 0)
-			var/show_law = translate_laws ? lang_reverse_text(law) : law // NOVA EDIT - i18n
-			data += "[show_numbers ? "[is_ioned ? ion_num() : number]:" : ""] [show_law]" // NOVA EDIT - i18n: ORIGINAL used [law]
+			var/show_law = translate_laws ? lang_reverse_text(law) : law // ZH EDIT - i18n
+			data += "[show_numbers ? "[is_ioned ? ion_num() : number]:" : ""] [show_law]" // ZH EDIT - i18n: ORIGINAL used [law]
 			if(!is_ioned)
 				number++
 
 	for(var/law, is_ioned in supplied)
 		if (length(law) > 0)
-			var/show_law = translate_laws ? lang_reverse_text(law) : law // NOVA EDIT - i18n
-			data += "[show_numbers ? "[is_ioned ? ion_num() : number]:" : ""] [render_html ? "<font color='#990099'>[show_law]</font>" : show_law]" // NOVA EDIT - i18n: ORIGINAL used [law]
+			var/show_law = translate_laws ? lang_reverse_text(law) : law // ZH EDIT - i18n
+			data += "[show_numbers ? "[is_ioned ? ion_num() : number]:" : ""] [render_html ? "<font color='#990099'>[show_law]</font>" : show_law]" // ZH EDIT - i18n: ORIGINAL used [law]
 			if(!is_ioned)
 				number++
 

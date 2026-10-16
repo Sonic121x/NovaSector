@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Set up the types of items that can be placed in the mask
 /datum/storage/pockets/small/bdsm_mask
 	max_slots = 1

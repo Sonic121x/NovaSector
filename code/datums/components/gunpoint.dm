@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// How long it takes from the gunpoint is initiated to reach stage 2
 #define GUNPOINT_DELAY_STAGE_2 (2.5 SECONDS)
 /// How long it takes from stage 2 starting to move up to stage 3

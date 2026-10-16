@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define TAB_POD 0 //Used to check if the UIs built in camera is looking at the pod
 #define TAB_BAY 1 //Used to check if the UIs built in camera is looking at the launch bay area
 

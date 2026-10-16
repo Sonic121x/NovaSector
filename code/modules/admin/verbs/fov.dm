@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(toggle_fov, R_ADMIN|R_DEBUG, "启用/禁用视野", "Toggle FOV globally.", ADMIN_CATEGORY_DEBUG)
 	var/on_off = CONFIG_GET(flag/native_fov)
 

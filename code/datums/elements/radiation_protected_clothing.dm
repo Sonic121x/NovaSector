@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Marks the item as being radiation protected.
 /// Adds the TRAIT_RADIATION_PROTECTED_CLOTHING trait, as well as adding an
 /// extra bit to the examine descrpition.

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Base time (deciseconds) to phase through a directional/half-tile window.
 #define HOLOSYNTH_GLASS_PASS_TIME (3 SECONDS)
 /// Multiplier applied to the pass time for fulltile windows (they take this many times longer).

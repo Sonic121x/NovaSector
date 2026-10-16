@@ -58,7 +58,7 @@ export const AlertPane = (props) => {
                     : 'good')
               }
             >
-              {/* NOVA EDIT CHANGE START - i18n: 拼出来的整串永远不是目录键 → 拆成 children 模板 `Overclocking ({0}%)` / `Overclock ({0}%)`。
+              {/* ZH EDIT CHANGE START - i18n: 拼出来的整串永远不是目录键 → 拆成 children 模板 `Overclocking ({0}%)` / `Overclock ({0}%)`。
                   ORIGINAL: {overclock_mode ? "Overclocking " : "Overclock "}
                   ORIGINAL: ({Math.round(Math.max(overclock_temp_percentage * 100, 0))}%) */}
               {overclock_mode ? (
@@ -78,7 +78,7 @@ export const AlertPane = (props) => {
                   %)
                 </>
               )}
-              {/* NOVA EDIT CHANGE END */}
+              {/* ZH EDIT CHANGE END */}
             </Button>
             {!!overclock_safety_available && (
               <Button

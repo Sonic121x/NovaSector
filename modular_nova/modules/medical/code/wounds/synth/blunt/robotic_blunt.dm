@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// The multiplier put against our movement effects if our victim has the determined reagent
 #define ROBOTIC_WOUND_DETERMINATION_MOVEMENT_EFFECT_MOD 0.7
 /// The multiplier of stagger intensity on hit if our victim has the determined reagent

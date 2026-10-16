@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Assoc list of mutation names to list of restricted species typepaths
 /// Add more entries here to restrict additional mutations from specific species
 GLOBAL_LIST_INIT(genetic_mutation_species_restrictions, list(

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Moves the item at target_key onto the pawn and records it in storage_key. Does not use hands  storage_key is the virtual carry slot. Clears target_key on finish.
 /datum/bt_node/ai_behavior/pick_up_item_virtual
 	/// Blackboard key holding the item to pick up.

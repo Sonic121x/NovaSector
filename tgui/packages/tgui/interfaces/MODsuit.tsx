@@ -703,7 +703,7 @@ const ModuleSection = (props) => {
       title="Modules"
       fill
       buttons={
-        // NOVA EDIT - I18N: template literal with numbers can't auto-localize; split so the static
+        // ZH EDIT - I18N: template literal with numbers can't auto-localize; split so the static
         // text node is translatable. ORIGINAL: buttons={`${complexity} of ${complexity_max} complexity used`}
         <>
           {complexity} / {complexity_max} complexity used

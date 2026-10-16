@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //Xenobio control console
 /mob/eye/camera/remote/xenobio
 	visible_to_user = TRUE
@@ -478,7 +478,7 @@
 		return
 
 	var/render_list = list()
-	// NOVA EDIT CHANGE START - I18N: 逐行 LANG 化。具名累加器 + 非 examine proc → 抽取器整句闸挡在
+	// ZH EDIT CHANGE START - I18N: 逐行 LANG 化。具名累加器 + 非 examine proc → 抽取器整句闸挡在
 	// 目录外，只有 Alt-click 那行被聊天 AC 层从**半句**处替换掉（「Alt-点击黏击以feed it a potion。」），
 	// 正是碎片入目录会造成的语序错乱。整行成条才治得住。
 	// ORIGINAL: render_list += "<b>Click shortcuts:</b>" 起五行英文字面量。
@@ -487,7 +487,7 @@
 	render_list += LANG("datum.eace4378cf4a41af", null)
 	render_list += LANG("datum.bdeabe477eb7058d", null)
 	render_list += LANG("datum.9d6aa669cfdff548", null)
-	// NOVA EDIT CHANGE END
+	// ZH EDIT CHANGE END
 
 	to_chat(owner, boxed_message(jointext(render_list, "\n")))
 

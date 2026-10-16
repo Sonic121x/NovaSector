@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/storage/hypospraykit
 	name = "hypospray kit"
 	desc = "A hypospray kit with foam insets for hypovials and a mounting point on the bottom."

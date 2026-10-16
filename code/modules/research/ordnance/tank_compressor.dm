@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define TANK_COMPRESSOR_PRESSURE_LIMIT 5000
 #define TANK_COMPRESSOR_MAX_TRANSFER_RATE 20
 #define SIGNIFICANT_AMOUNT_OF_MOLES 10
@@ -327,7 +327,7 @@
 	for (var/datum/data/compressor_record/record in compressor_record)
 		var/list/single_record_data = list(
 			"ref" = REF(record),
-			"name" = lang_localize_display_name(record.name), // NOVA EDIT - I18N: 记录名纯显示。ORIGINAL: "name" = record.name,
+			"name" = lang_localize_display_name(record.name), // ZH EDIT - I18N: 记录名纯显示。ORIGINAL: "name" = record.name,
 			"source" = record.experiment_source,
 			"timestamp" = record.timestamp,
 			"gases" = list()

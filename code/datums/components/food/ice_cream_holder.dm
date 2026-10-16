@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define SWEETENER_PER_SCOOP 10
 #define EXTRA_MAX_VOLUME_PER_SCOOP 20
 
@@ -87,16 +87,16 @@
 	else
 		var/name_to_use = filled_name || initial(source.name)
 		var/list/unique_list = unique_list(scoops)
-		// NOVA EDIT ADDITION START - I18N - 口味词/基名各自整串反查（单词条目；miss 原样返回），中文语序与英文相同（口味在前）
+		// ZH EDIT ADDITION START - I18N - 口味词/基名各自整串反查（单词条目；miss 原样返回），中文语序与英文相同（口味在前）
 		if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 			name_to_use = lang_reverse_text(name_to_use)
 			var/list/localized_flavours = list()
 			for(var/flavour in unique_list)
 				localized_flavours += lang_reverse_text(flavour)
 			unique_list = localized_flavours
-		// NOVA EDIT ADDITION END
+		// ZH EDIT ADDITION END
 		if(scoops_len > 1 && length(unique_list) == 1) // multiple flavours, and all of the same type
-			source.name = "[lang_reverse_text(make_tuple(scoops_len))] [unique_list[1]] [name_to_use]" // "double vanilla" sounds cooler than just "vanilla" // NOVA EDIT CHANGE - I18N - ORIGINAL: source.name = "[make_tuple(scoops_len)] [scoops[1]] [name_to_use]"
+			source.name = "[lang_reverse_text(make_tuple(scoops_len))] [unique_list[1]] [name_to_use]" // "double vanilla" sounds cooler than just "vanilla" // ZH EDIT CHANGE - I18N - ORIGINAL: source.name = "[make_tuple(scoops_len)] [scoops[1]] [name_to_use]"
 		else
 			source.name = "[english_list(unique_list)] [name_to_use]"
 
@@ -115,7 +115,7 @@
 		else
 			source.desc = replacetext(replacetext("[flavour.desc_prefix] [flavour.desc]", "$CONE_NAME", initial(source.name)), "$CUSTOM_NAME", key)
 	else /// Many flavours.
-		// NOVA EDIT CHANGE START - I18N - ORIGINAL: source.desc = "A delicious [initial(source.name)] filled with scoops of [english_list(scoops)] ice cream. That's as many as [scoops_len] scoops!"
+		// ZH EDIT CHANGE START - I18N - ORIGINAL: source.desc = "A delicious [initial(source.name)] filled with scoops of [english_list(scoops)] ice cream. That's as many as [scoops_len] scoops!"
 		if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 			var/list/localized_scoops = list()
 			for(var/flavour in scoops)
@@ -123,7 +123,7 @@
 			source.desc = LANG("datum.a9fd8b904e2796c4", list(initial(source.name), jointext(localized_scoops, "、"), scoops_len))
 		else
 			source.desc = "A delicious [initial(source.name)] filled with scoops of [english_list(scoops)] ice cream. That's as many as [scoops_len] scoops!"
-		// NOVA EDIT CHANGE END
+		// ZH EDIT CHANGE END
 
 /datum/component/ice_cream_holder/proc/on_examine(atom/source, mob/mob, list/examine_list)
 	SIGNAL_HANDLER

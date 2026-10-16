@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///The default pressure for releasing air into an holding tank or the turf
 #define CAN_DEFAULT_RELEASE_PRESSURE (ONE_ATMOSPHERE)
 ///The temperature resistance of this canister
@@ -617,7 +617,7 @@
 	if (holding)
 		var/datum/gas_mixture/holding_mix = holding.return_air()
 		.["holdingTank"] = list(
-			"name" = holding.lang_localize_name_for_display(holding.name), // NOVA EDIT - I18N: 内置罐名纯显示；atom 版守玩家改名。ORIGINAL: "name" = holding.name,
+			"name" = holding.lang_localize_name_for_display(holding.name), // ZH EDIT - I18N: 内置罐名纯显示；atom 版守玩家改名。ORIGINAL: "name" = holding.name,
 			"tankPressure" = round(holding_mix.return_pressure())
 		)
 	else

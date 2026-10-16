@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define PERSONAL_SPACE_DAMAGE 2
 #define ASS_SLAP_EXTRA_RANGE -1
 

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(change_shuttle_events, R_ADMIN|R_FUN, "更改穿梭机事件", "Change the events on a shuttle.", ADMIN_CATEGORY_SHUTTLE)
 	//At least for now, just letting admins modify the emergency shuttle is fine
 	var/obj/docking_port/mobile/port = SSshuttle.emergency

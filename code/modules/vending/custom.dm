@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///This unique key decides how items are stacked on the UI. We separate them based on name, price & type
 #define ITEM_HASH(item)(sanitize_css_class_name("[item.name][item.custom_price][item.type]"))
 
@@ -237,7 +237,7 @@
 
 		. += list(list(
 			path = stocked_hash,
-			name = target.lang_localize_name_for_display(target.name), // NOVA EDIT - I18N: 售货名纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: name = target.name,
+			name = target.lang_localize_name_for_display(target.name), // ZH EDIT - I18N: 售货名纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: name = target.name,
 			price = target.custom_price,
 			category = "Products",
 			ref = stocked_hash,

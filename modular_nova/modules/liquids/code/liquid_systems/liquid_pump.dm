@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //Right now it's a structure that works off of magic, as it'd require an internal power source for what its supposed to do
 /obj/structure/liquid_pump
 	name = "portable liquid pump"

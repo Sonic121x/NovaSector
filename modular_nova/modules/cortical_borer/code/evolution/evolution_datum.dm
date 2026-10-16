@@ -20,7 +20,7 @@
 /datum/borer_evolution/proc/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
 	SHOULD_CALL_PARENT(TRUE)
 	if(gain_text)
-		to_chat(cortical_owner, span_notice(span_italics(lang_localize_chat_sentence(gain_text)))) // NOVA EDIT - I18N - integral reverse the whole gain message before wrapping - ORIGINAL: span_notice(span_italics(gain_text))
+		to_chat(cortical_owner, span_notice(span_italics(lang_localize_chat_sentence(gain_text)))) // ZH EDIT - I18N - integral reverse the whole gain message before wrapping - ORIGINAL: span_notice(span_italics(gain_text))
 	if(mutually_exclusive)
 		cortical_owner.genome_locked = TRUE
 

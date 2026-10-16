@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/stack/sheet
 	name = "sheet"
 	lefthand_file = 'icons/mob/inhands/items/sheets_lefthand.dmi'
@@ -59,10 +59,10 @@
 		var/descriptor = property?.get_descriptor(prop_value)
 		var/tooltip_hint = property?.get_tooltip(prop_value)
 		if (descriptor) // Overriden derivative property?
-			material_string += span_tooltip("[lang_localize_arg("[property]")]: [lang_localize_arg(tooltip_hint)]", lang_localize_arg(descriptor)) // NOVA EDIT - I18N: 描述符/提示逐项翻（get_descriptor 的 return 字面量已进目录）
+			material_string += span_tooltip("[lang_localize_arg("[property]")]: [lang_localize_arg(tooltip_hint)]", lang_localize_arg(descriptor)) // ZH EDIT - I18N: 描述符/提示逐项翻（get_descriptor 的 return 字面量已进目录）
 
 	if (length(material_string))
-		. += span_info(LANG("obj.120458d2dd2fe467", list(capitalize(material.name), lang_english_list(material_string)))) // NOVA EDIT - I18N
+		. += span_info(LANG("obj.120458d2dd2fe467", list(capitalize(material.name), lang_english_list(material_string)))) // ZH EDIT - I18N
 
 /obj/item/stack/sheet/add(_amount)
 	. = ..()

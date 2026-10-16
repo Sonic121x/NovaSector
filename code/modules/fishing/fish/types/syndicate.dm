@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///Contains fish that can be found in the syndicate fishing portal setting as well as the ominous fish case.
 /obj/item/fish/emulsijack
 	name = "toxic emulsijack"

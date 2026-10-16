@@ -1,10 +1,10 @@
-// NOVA EDIT ADDITION START - ADMIN - Keep the 3D sound alive past the clip's own length.
+// ZH EDIT ADDITION START - ADMIN - Keep the 3D sound alive past the clip's own length.
 // /datum/threed_sound force-stops the channel via stop_sound_channel() when its timer expires, and
 // that timer starts when the server *sends* the sound, not when the client starts playing it. The
 // resource transfer plus client-side start latency therefore always eats the end of the clip, and
 // the provider leaves only ~30ms of trailing silence, so the final syllable is what gets cut.
 #define TTS_PLAYBACK_TAIL_GRACE (1 SECONDS)
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 #define TTS_REQUEST_REF "ref"
 #define TTS_REQUEST_EXPIRE "expiry_time"
@@ -46,10 +46,10 @@ SUBSYSTEM_DEF(tts)
 	var/tts_enabled = FALSE
 	/// Whether the TTS engine supports pitch adjustment or not.
 	var/pitch_enabled = FALSE
-	// NOVA EDIT ADDITION START - ADMIN - Runtime TTS control.
+	// ZH EDIT ADDITION START - ADMIN - Runtime TTS control.
 	/// Admin-controlled gate for new TTS requests. Backend connectivity remains in tts_enabled.
 	var/admin_enabled = TRUE
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	/// TTS messages won't play if requests took longer than this duration of time.
 	var/message_timeout = 7 SECONDS
@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(tts)
 /datum/controller/subsystem/tts/stat_entry(msg)
 	msg = "\n  Active:[length(in_process_http_messages)]|Standby:[length(queued_http_messages?.L)]|Avg:[average_tts_messages_time]"
 	return ..()
-// NOVA EDIT ADDITION START - ADMIN - Runtime TTS control.
+// ZH EDIT ADDITION START - ADMIN - Runtime TTS control.
 /// Returns whether new TTS audio requests are currently accepted.
 /datum/controller/subsystem/tts/proc/is_runtime_enabled()
 	return tts_enabled && admin_enabled
@@ -96,7 +96,7 @@ SUBSYSTEM_DEF(tts)
 
 	admin_enabled = TRUE
 	return TRUE
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 /proc/cmp_word_length_asc(datum/tts_request/a, datum/tts_request/b)
 	return length(b.message) - length(a.message)
@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(tts)
 		return FALSE
 	available_speakers = json_decode(response.body)
 	tts_enabled = TRUE
-	load_voice_info() // NOVA EDIT ADDITION - TTS_EXPRESSION - Voice labels, retired voice aliases and expressive features.
+	load_voice_info() // ZH EDIT ADDITION - TTS_EXPRESSION - Voice labels, retired voice aliases and expressive features.
 	if(CONFIG_GET(str_list/tts_voice_blacklist))
 		var/list/blacklisted_voices = CONFIG_GET(str_list/tts_voice_blacklist)
 		log_config("Processing the TTS voice blacklist.")
@@ -125,11 +125,11 @@ SUBSYSTEM_DEF(tts)
 				log_config("Removed speaker [voice] from the TTS voice pool per config.")
 				available_speakers.Remove(voice)
 	if(CONFIG_GET(string/tts_tram_announcer_override))
-		tram_voice = resolve_voice(CONFIG_GET(string/tts_tram_announcer_override)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: tram_voice = CONFIG_GET(string/tts_tram_announcer_override)
+		tram_voice = resolve_voice(CONFIG_GET(string/tts_tram_announcer_override)) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: tram_voice = CONFIG_GET(string/tts_tram_announcer_override)
 	else
 		tram_voice = pick(available_speakers)
 	if(CONFIG_GET(string/tts_computer_voice_override))
-		computer_voice = resolve_voice(CONFIG_GET(string/tts_computer_voice_override)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: computer_voice = CONFIG_GET(string/tts_computer_voice_override)
+		computer_voice = resolve_voice(CONFIG_GET(string/tts_computer_voice_override)) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: computer_voice = CONFIG_GET(string/tts_computer_voice_override)
 	else
 		computer_voice = pick(available_speakers)
 	var/datum/http_request/request_pitch = new()
@@ -141,12 +141,12 @@ SUBSYSTEM_DEF(tts)
 	pitch_enabled = TRUE
 	var/datum/http_response/response_pitch = request_pitch.into_response()
 	if(response_pitch.errored || response_pitch.status_code != 200)
-		// NOVA EDIT REMOVAL - ADMIN - Unsupported pitch is an optional capability, not a runtime. ORIGINAL: if(response_pitch.errored)
-		// NOVA EDIT REMOVAL - ADMIN - ORIGINAL: stack_trace(response.error)
+		// ZH EDIT REMOVAL - ADMIN - Unsupported pitch is an optional capability, not a runtime. ORIGINAL: if(response_pitch.errored)
+		// ZH EDIT REMOVAL - ADMIN - ORIGINAL: stack_trace(response.error)
 		pitch_enabled = FALSE
 	rustg_file_write(json_encode(available_speakers), "data/cached_tts_voices.json")
 	rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")
-	refresh_voice_preferences() // NOVA EDIT ADDITION - TTS_EXPRESSION - Preferences read before this used last round's voice list.
+	refresh_voice_preferences() // ZH EDIT ADDITION - TTS_EXPRESSION - Preferences read before this used last round's voice list.
 	return TRUE
 
 /datum/controller/subsystem/tts/Initialize()
@@ -159,7 +159,7 @@ SUBSYSTEM_DEF(tts)
 		return SS_INIT_FAILURE
 	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/tts/proc/play_tts(datum/weakref/target, list/listeners, sound/audio, sound/audio_blips, datum/language/language, range = 7, volume_offset = 0, ignore_observers = FALSE, source_speaker = null, audio_length = 10 SECONDS, audio_length_blips = 10 SECONDS, volume_preference = /datum/preference/numeric/volume/sound_tts_volume, volume_signal = COMSIG_MOB_TTS_VOLUME_PREFERENCE_APPLIED, ignore_language = FALSE, list/eavesdroppers) // NOVA EDIT CHANGE - ADMIN, TTS_EXPRESSION - Added ignore_language and eavesdroppers.
+/datum/controller/subsystem/tts/proc/play_tts(datum/weakref/target, list/listeners, sound/audio, sound/audio_blips, datum/language/language, range = 7, volume_offset = 0, ignore_observers = FALSE, source_speaker = null, audio_length = 10 SECONDS, audio_length_blips = 10 SECONDS, volume_preference = /datum/preference/numeric/volume/sound_tts_volume, volume_signal = COMSIG_MOB_TTS_VOLUME_PREFERENCE_APPLIED, ignore_language = FALSE, list/eavesdroppers) // ZH EDIT CHANGE - ADMIN, TTS_EXPRESSION - Added ignore_language and eavesdroppers.
 	var/atom/actual_target = target?.resolve()
 	var/turf/turf_source
 	if(actual_target)
@@ -200,18 +200,18 @@ SUBSYSTEM_DEF(tts)
 		sound_volume = sound_volume*volume_modifier
 		var/datum/language_holder/holder = listening_mob.get_language_holder()
 		var/sound/audio_to_use = (tts_pref == TTS_SOUND_BLIPS) ? audio_blips : audio
-		if(!ignore_language && !holder.has_language(language)) // NOVA EDIT CHANGE - ADMIN - ORIGINAL: if(!holder.has_language(language))
+		if(!ignore_language && !holder.has_language(language)) // ZH EDIT CHANGE - ADMIN - ORIGINAL: if(!holder.has_language(language))
 			if (tts_pref == TTS_SOUND_OFF)
 				continue
 			else
 				audio_to_use = audio_blips
-		// NOVA EDIT ADDITION START - TTS_EXPRESSION - Overheard speech is blips, as its chat text is starred.
+		// ZH EDIT ADDITION START - TTS_EXPRESSION - Overheard speech is blips, as its chat text is starred.
 		var/eavesdropping = length(eavesdroppers) && (WEAKREF(hearer_atom) in eavesdroppers)
 		if(eavesdropping)
 			audio_to_use = audio_blips
-		// NOVA EDIT ADDITION END
+		// ZH EDIT ADDITION END
 		if(actual_target && get_dist(listening_mob, turf_source) <= range)
-			if(tts_pref == TTS_SOUND_BLIPS || !holder.has_language(language) || eavesdropping) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: if(tts_pref == TTS_SOUND_BLIPS || !holder.has_language(language))
+			if(tts_pref == TTS_SOUND_BLIPS || !holder.has_language(language) || eavesdropping) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: if(tts_pref == TTS_SOUND_BLIPS || !holder.has_language(language))
 				blips_hearers += listening_mob
 			else
 				voice_hearers += listening_mob
@@ -248,7 +248,7 @@ SUBSYSTEM_DEF(tts)
 			can_add_new_listeners = FALSE,
 			volume = 85 + volume_offset,
 			sound_range = SOUND_RANGE,
-			sound_length = audio_length + TTS_PLAYBACK_TAIL_GRACE, // NOVA EDIT CHANGE - ADMIN - ORIGINAL: sound_length = audio_length,
+			sound_length = audio_length + TTS_PLAYBACK_TAIL_GRACE, // ZH EDIT CHANGE - ADMIN - ORIGINAL: sound_length = audio_length,
 			channel = channel,
 			preference_volume = volume_preference,
 			preference_signal = volume_signal
@@ -260,7 +260,7 @@ SUBSYSTEM_DEF(tts)
 			can_add_new_listeners = FALSE,
 			volume = 85 + volume_offset,
 			sound_range = SOUND_RANGE,
-			sound_length = audio_length_blips + TTS_PLAYBACK_TAIL_GRACE, // NOVA EDIT CHANGE - ADMIN - ORIGINAL: sound_length = audio_length_blips,
+			sound_length = audio_length_blips + TTS_PLAYBACK_TAIL_GRACE, // ZH EDIT CHANGE - ADMIN - ORIGINAL: sound_length = audio_length_blips,
 			channel = channel,
 			preference_volume = volume_preference,
 			preference_signal = volume_signal
@@ -407,7 +407,7 @@ SUBSYSTEM_DEF(tts)
 				audio_file = new(current_target.audio_file)
 				audio_file_blips = new(current_target.audio_file_blips)
 				play_tts(
-					target = current_target.station_wide ? null : tts_target, // NOVA EDIT CHANGE - ADMIN - Global station announcement playback.
+					target = current_target.station_wide ? null : tts_target, // ZH EDIT CHANGE - ADMIN - Global station announcement playback.
 					listeners = current_target.listeners,
 					audio = audio_file,
 					audio_blips = audio_file_blips,
@@ -418,12 +418,12 @@ SUBSYSTEM_DEF(tts)
 					source_speaker = null,
 					audio_length = current_target.audio_length,
 					audio_length_blips = current_target.audio_length_blips,
-					// NOVA EDIT ADDITION START - ADMIN - Station-wide announcements reach everyone.
+					// ZH EDIT ADDITION START - ADMIN - Station-wide announcements reach everyone.
 					// The announcement's chat text goes to every player regardless of what they speak,
 					// so gating only its audio behind Common would be inconsistent.
-					ignore_language = current_target.station_wide || current_target.ignore_language, // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: ignore_language = current_target.station_wide,
-					// NOVA EDIT ADDITION END
-					eavesdroppers = current_target.eavesdroppers, // NOVA EDIT ADDITION - TTS_EXPRESSION
+					ignore_language = current_target.station_wide || current_target.ignore_language, // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: ignore_language = current_target.station_wide,
+					// ZH EDIT ADDITION END
+					eavesdroppers = current_target.eavesdroppers, // ZH EDIT ADDITION - TTS_EXPRESSION
 				)
 				completed_tts_messages[current_target.identifier] = list(
 					TTS_REQUEST_REF = current_target,
@@ -489,11 +489,11 @@ SUBSYSTEM_DEF(tts)
 
 #undef TTS_ARBRITRARY_DELAY
 
-/datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "", blip_base = "male", blip_number = "1", force_blips = FALSE, identifier = "invalid", station_wide = FALSE, style, sound, instruction, rate = 1, ignore_language = FALSE, list/eavesdroppers) // NOVA EDIT CHANGE - ADMIN, TTS_EXPRESSION - Added station_wide, style, sound, instruction, rate, ignore_language and eavesdroppers.
-	// NOVA EDIT ADDITION START - ADMIN - Runtime TTS control.
+/datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "", blip_base = "male", blip_number = "1", force_blips = FALSE, identifier = "invalid", station_wide = FALSE, style, sound, instruction, rate = 1, ignore_language = FALSE, list/eavesdroppers) // ZH EDIT CHANGE - ADMIN, TTS_EXPRESSION - Added station_wide, style, sound, instruction, rate, ignore_language and eavesdroppers.
+	// ZH EDIT ADDITION START - ADMIN - Runtime TTS control.
 	if(!admin_enabled)
 		return
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	if(!tts_enabled)
 		return
 
@@ -501,14 +501,14 @@ SUBSYSTEM_DEF(tts)
 	if(!fexists("tmp/tts/init.txt"))
 		rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")
 
-	// NOVA EDIT REMOVAL - ADMIN - ORIGINAL: var/static/regex/contains_alphanumeric = regex("\[a-zA-Z0-9]")
+	// ZH EDIT REMOVAL - ADMIN - ORIGINAL: var/static/regex/contains_alphanumeric = regex("\[a-zA-Z0-9]")
 	// If there is no alphanumeric char, the output will usually be static, so
 	// don't bother sending
-	if(!tts_has_speech_content(message) && !sound) // NOVA EDIT CHANGE - ADMIN, TTS_EXPRESSION - Nonverbal sounds need no words. ORIGINAL: if(contains_alphanumeric.Find(message) == 0)
+	if(!tts_has_speech_content(message) && !sound) // ZH EDIT CHANGE - ADMIN, TTS_EXPRESSION - Nonverbal sounds need no words. ORIGINAL: if(contains_alphanumeric.Find(message) == 0)
 		return
 
 	var/shell_scrubbed_input = tts_speech_filter(message)
-	if(!(speaker in available_speakers) && !is_custom_voice(speaker)) // NOVA EDIT CHANGE - TTS_EXPRESSION - Player-made voices. ORIGINAL: if(!(speaker in available_speakers))
+	if(!(speaker in available_speakers) && !is_custom_voice(speaker)) // ZH EDIT CHANGE - TTS_EXPRESSION - Player-made voices. ORIGINAL: if(!(speaker in available_speakers))
 		return
 	var/list/listener_weakrefs = list()
 	for(var/listener in listeners)
@@ -516,11 +516,11 @@ SUBSYSTEM_DEF(tts)
 	var/list/headers = list()
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
-	// NOVA EDIT ADDITION START - TTS_EXPRESSION - Emotion tags, voice instruction and speaking rate.
+	// ZH EDIT ADDITION START - TTS_EXPRESSION - Emotion tags, voice instruction and speaking rate.
 	var/list/expression = tts_expression_body(style, sound, instruction, rate)
 	var/text_body = json_encode(list("text" = shell_scrubbed_input) + expression)
 	var/gibberish_body = json_encode(list("raw_text" = shell_scrubbed_input, "gibberish_text" = shell_scrubbed_input) + expression)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	var/datum/http_request/request = new()
 	var/datum/http_request/request_blips = new()
 	var/datum/http_request/request_radio = new()
@@ -531,17 +531,17 @@ SUBSYSTEM_DEF(tts)
 	var/file_name_radio = "tmp/tts/[identifier]_radio.ogg"
 	var/file_name_blips_radio = "tmp/tts/[identifier]_blips_radio.ogg"
 	var/file_name_radio_gibberish = "tmp/tts/[identifier]_radio_gibberish.ogg"
-	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", text_body, headers, file_name, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
-	request_blips.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch, blips = TRUE)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]&blip_base=[blip_base]&blip_number=[blip_number]", text_body, headers, file_name_blips, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
-	request_radio.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", text_body, headers, file_name_radio, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
-	request_blips_radio.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch, blips = TRUE)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]&blip_base=[blip_base]&blip_number=[blip_number]", text_body, headers, file_name_blips_radio, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
-	request_radio_gibberish.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", gibberish_body, headers, file_name_radio_gibberish, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("raw_text" = shell_scrubbed_input, "gibberish_text" = shell_scrubbed_input))
-	var/datum/tts_request/current_request = new /datum/tts_request(identifier, request, request_blips, request_radio, request_blips_radio, request_radio_gibberish, shell_scrubbed_input, target, local, language, message_range, volume_offset, listener_weakrefs, pitch, force_blips, station_wide) // NOVA EDIT CHANGE - ADMIN - Forward station_wide.
-	// NOVA EDIT ADDITION START - TTS_EXPRESSION
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", text_body, headers, file_name, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
+	request_blips.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch, blips = TRUE)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]&blip_base=[blip_base]&blip_number=[blip_number]", text_body, headers, file_name_blips, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
+	request_radio.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", text_body, headers, file_name_radio, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
+	request_blips_radio.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch, blips = TRUE)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]&blip_base=[blip_base]&blip_number=[blip_number]", text_body, headers, file_name_blips_radio, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("text" = shell_scrubbed_input))
+	request_radio_gibberish.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-radio?voice=[speaker]&identifier=[identifier]&filter=[tts_filter_encode(filter, speaker, pitch)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", gibberish_body, headers, file_name_radio_gibberish, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds)) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: json_encode(list("raw_text" = shell_scrubbed_input, "gibberish_text" = shell_scrubbed_input))
+	var/datum/tts_request/current_request = new /datum/tts_request(identifier, request, request_blips, request_radio, request_blips_radio, request_radio_gibberish, shell_scrubbed_input, target, local, language, message_range, volume_offset, listener_weakrefs, pitch, force_blips, station_wide) // ZH EDIT CHANGE - ADMIN - Forward station_wide.
+	// ZH EDIT ADDITION START - TTS_EXPRESSION
 	current_request.ignore_language = ignore_language
 	for(var/eavesdropper in eavesdroppers)
 		current_request.eavesdroppers += WEAKREF(eavesdropper)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	var/list/player_queued_tts_messages = queued_tts_messages[WEAKREF(target)]
 	if(!player_queued_tts_messages)
 		player_queued_tts_messages = list()
@@ -566,7 +566,7 @@ SUBSYSTEM_DEF(tts)
 
 	var/sanity = 0
 	while(sanity < 10)
-		var/voice = pick(length(random_voices) ? random_voices : available_speakers) // NOVA EDIT CHANGE - TTS_EXPRESSION - Skip child and foreign-language voices. ORIGINAL: var/voice = pick(available_speakers)
+		var/voice = pick(length(random_voices) ? random_voices : available_speakers) // ZH EDIT CHANGE - TTS_EXPRESSION - Skip child and foreign-language voices. ORIGINAL: var/voice = pick(available_speakers)
 		if(gender != MALE && gender != FEMALE)
 			return voice
 		if(gender == MALE && findtext(voice, "Man"))
@@ -604,16 +604,16 @@ SUBSYSTEM_DEF(tts)
 	var/volume_offset = 0
 	/// Whether this TTS message should be sent to the target only or not.
 	var/local = FALSE
-	// NOVA EDIT ADDITION START - ADMIN - Global station announcement playback.
+	// ZH EDIT ADDITION START - ADMIN - Global station announcement playback.
 	/// Whether this TTS message should play non-positionally to every listener.
 	var/station_wide = FALSE
-	// NOVA EDIT ADDITION END
-	// NOVA EDIT ADDITION START - TTS_EXPRESSION
+	// ZH EDIT ADDITION END
+	// ZH EDIT ADDITION START - TTS_EXPRESSION
 	/// Whether every listener hears the voice regardless of the languages they know, e.g. a laugh.
 	var/ignore_language = FALSE
 	/// Weakrefs to listeners who only overheard this message, and hear it as blips.
 	var/list/eavesdroppers = list()
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	/// The message range to play this TTS message
 	var/message_range = 7
 	/// The time at which this request was started
@@ -647,7 +647,7 @@ SUBSYSTEM_DEF(tts)
 	var/force_blips = FALSE
 
 
-/datum/tts_request/New(identifier, datum/http_request/request, datum/http_request/request_blips, datum/http_request/request_radio, datum/http_request/request_blips_radio, datum/http_request/request_radio_gibberish, message, target, local, datum/language/language, message_range, volume_offset, list/listeners, pitch, force_blips = FALSE, station_wide = FALSE) // NOVA EDIT CHANGE - ADMIN - Added station_wide.
+/datum/tts_request/New(identifier, datum/http_request/request, datum/http_request/request_blips, datum/http_request/request_radio, datum/http_request/request_blips_radio, datum/http_request/request_radio_gibberish, message, target, local, datum/language/language, message_range, volume_offset, list/listeners, pitch, force_blips = FALSE, station_wide = FALSE) // ZH EDIT CHANGE - ADMIN - Added station_wide.
 	. = ..()
 	src.identifier = identifier
 	src.request = request
@@ -664,7 +664,7 @@ SUBSYSTEM_DEF(tts)
 	src.listeners = listeners
 	src.pitch = pitch
 	src.force_blips = force_blips
-	src.station_wide = station_wide // NOVA EDIT ADDITION - ADMIN - Global station announcement playback.
+	src.station_wide = station_wide // ZH EDIT ADDITION - ADMIN - Global station announcement playback.
 	start_time = world.time
 
 /datum/tts_request/proc/start_requests()
@@ -758,4 +758,4 @@ SUBSYSTEM_DEF(tts)
 	return TRUE
 
 #undef SHIFT_DATA_ARRAY
-#undef TTS_PLAYBACK_TAIL_GRACE // NOVA EDIT ADDITION - ADMIN - Playback tail grace.
+#undef TTS_PLAYBACK_TAIL_GRACE // ZH EDIT ADDITION - ADMIN - Playback tail grace.

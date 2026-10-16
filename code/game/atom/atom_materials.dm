@@ -328,11 +328,11 @@
 /atom/proc/get_material_english_list(list/materials)
 	var/list/mat_names = list()
 	for(var/datum/material/material as anything in materials)
-		mat_names += lang_reverse_text(material.name) // NOVA EDIT - i18n: 反查材料名(铁/玻璃…在 datum.json；已中文则 no-op)
-	// NOVA EDIT ADDITION START - i18n: 中文用顿号连接材料名，不用英文 " and "/", "
+		mat_names += lang_reverse_text(material.name) // ZH EDIT - i18n: 反查材料名(铁/玻璃…在 datum.json；已中文则 no-op)
+	// ZH EDIT ADDITION START - i18n: 中文用顿号连接材料名，不用英文 " and "/", "
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		return english_list(mat_names, and_text = "、", comma_text = "、")
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	return english_list(mat_names)
 
 ///Searches for a subtype of config_type that is to be used in its place for specific materials (like shimmering gold for cleric maces)

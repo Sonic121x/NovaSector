@@ -1,4 +1,4 @@
-// NOVA EDIT ADDITION - I18N - PDA 名字里的职务本地化。
+// ZH EDIT ADDITION - I18N - PDA 名字里的职务本地化。
 //
 // 上游 `UpdateDisplay()` 把名字拼成 `"[saved_identification] ([saved_job])"`，职务原样嵌进去。
 // 这个整串是**运行期拼的**，永远不是目录键 → 精确反查必 miss；而职务多为单词（Virologist /

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/clothing/accessory/medal
 	name = "bronze medal"
 	desc = "A bronze medal."
@@ -36,7 +36,7 @@
 	add_memory_in_range(distinguished, 7, /datum/memory/received_medal, protagonist = distinguished, deuteragonist = attacher, medal_type = src, medal_text = commendation_message)
 	distinguished.log_message("was given the following commendation by <b>[key_name(attacher)]</b>: [commendation_message]", LOG_GAME, color = "green")
 	message_admins("<b>[key_name_admin(distinguished)]</b> was given the following commendation by <b>[key_name_admin(attacher)]</b>: [commendation_message]")
-	// NOVA EDIT CHANGE - I18N - gate the english "awarded ... the ..." structure for zh and reverse the medal name (awarder/awardee are player names; message is translated via to_chat) - ORIGINAL: GLOB.commendations += "[awarder] awarded <b>[awarded_to]</b> the <span class='medaltext'>[name]</span>! \n- [commendation_message]"
+	// ZH EDIT CHANGE - I18N - gate the english "awarded ... the ..." structure for zh and reverse the medal name (awarder/awardee are player names; message is translated via to_chat) - ORIGINAL: GLOB.commendations += "[awarder] awarded <b>[awarded_to]</b> the <span class='medaltext'>[name]</span>! \n- [commendation_message]"
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		GLOB.commendations += "[awarder] 授予 <b>[awarded_to]</b> <span class='medaltext'>[lang_reverse_text(name)]</span>！\n- [commendation_message]"
 	else

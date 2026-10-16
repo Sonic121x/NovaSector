@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(map_template_load, R_DEBUG, "地图模板 - 放置", "Place a map template at your current location.", ADMIN_CATEGORY_DEBUG)
 	var/datum/map_template/template
 	var/map = tgui_input_list(user, LANG("datum.df722bd148ed9cb4", null),LANG("datum.de09f2bc91e549f6", null), sort_list(SSmapping.map_templates))

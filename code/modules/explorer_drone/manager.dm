@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Admin adventure manager
 /datum/adventure_browser
 	var/datum/adventure/temp_adventure
@@ -56,7 +56,7 @@
 		adventure_data += list(list(
 			"ref" = ref(db_entry),
 			"filename" = db_entry.filename,
-			"name" = lang_localize_display_name(db_entry.name), // NOVA EDIT - I18N: 冒险条目名纯显示（act 走 ref）。ORIGINAL: "name" = db_entry.name,
+			"name" = lang_localize_display_name(db_entry.name), // ZH EDIT - I18N: 冒险条目名纯显示（act 走 ref）。ORIGINAL: "name" = db_entry.name,
 			"version" = db_entry.version,
 			"uploader" = db_entry.uploader,
 			"approved" = db_entry.approved,

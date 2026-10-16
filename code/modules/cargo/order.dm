@@ -105,19 +105,19 @@
 /datum/supply_order/proc/generateRequisition(turf/T)
 	var/obj/item/paper/requisition/requisition_paper = new(T)
 
-	var/pack_name = lang_reverse_text(pack.name) // NOVA EDIT ADDITION - i18n - pack 是 /datum/supply_pack（非 atom，name 不过落地反查）→ 单据显英文、与已译箱名对不上；显式反查（en locale no-op）
-	requisition_paper.name = "requisition form - #[id] ([pack_name])" // NOVA EDIT CHANGE - i18n - ORIGINAL: ... ([pack.name])
-	var/requisition_text = "<h2>[station_name()] [lang_reverse_text("Supply Requisition")]</h2>" // NOVA EDIT - I18N - 单据标签反查（en locale no-op）
+	var/pack_name = lang_reverse_text(pack.name) // ZH EDIT ADDITION - i18n - pack 是 /datum/supply_pack（非 atom，name 不过落地反查）→ 单据显英文、与已译箱名对不上；显式反查（en locale no-op）
+	requisition_paper.name = "requisition form - #[id] ([pack_name])" // ZH EDIT CHANGE - i18n - ORIGINAL: ... ([pack.name])
+	var/requisition_text = "<h2>[station_name()] [lang_reverse_text("Supply Requisition")]</h2>" // ZH EDIT - I18N - 单据标签反查（en locale no-op）
 	requisition_text += "<hr/>"
-	requisition_text += "[lang_reverse_text("Order")] #[id]<br/>" // NOVA EDIT - I18N
-	requisition_text += "[lang_reverse_text("Time of Order")]: [UNDERLINED_HTML_TEXT("[server_timestamp(ic_time = TRUE)]", "Shift Time: [round_timestamp()]")]<br/>" // NOVA EDIT - I18N
-	requisition_text += "[lang_reverse_text("Item")]: [pack_name]<br/>" // NOVA EDIT CHANGE - i18n（标签反查 + pack_name 反查）- ORIGINAL: "Item: [pack.name]"
-	requisition_text += "[lang_reverse_text("Access Restrictions")]: [SSid_access.get_access_desc(pack.access)]<br/>" // NOVA EDIT - I18N
-	requisition_text += "[lang_reverse_text("Requested by")]: [orderer]<br/>" // NOVA EDIT - I18N
+	requisition_text += "[lang_reverse_text("Order")] #[id]<br/>" // ZH EDIT - I18N
+	requisition_text += "[lang_reverse_text("Time of Order")]: [UNDERLINED_HTML_TEXT("[server_timestamp(ic_time = TRUE)]", "Shift Time: [round_timestamp()]")]<br/>" // ZH EDIT - I18N
+	requisition_text += "[lang_reverse_text("Item")]: [pack_name]<br/>" // ZH EDIT CHANGE - i18n（标签反查 + pack_name 反查）- ORIGINAL: "Item: [pack.name]"
+	requisition_text += "[lang_reverse_text("Access Restrictions")]: [SSid_access.get_access_desc(pack.access)]<br/>" // ZH EDIT - I18N
+	requisition_text += "[lang_reverse_text("Requested by")]: [orderer]<br/>" // ZH EDIT - I18N
 	if(paying_account)
-		requisition_text += "[lang_reverse_text("Paid by")]: [paying_account.account_holder]<br/>" // NOVA EDIT - I18N
-	requisition_text += "[lang_reverse_text("Rank")]: [orderer_rank]<br/>" // NOVA EDIT - I18N
-	requisition_text += "[lang_reverse_text("Comment")]: [reason]<br/>" // NOVA EDIT - I18N
+		requisition_text += "[lang_reverse_text("Paid by")]: [paying_account.account_holder]<br/>" // ZH EDIT - I18N
+	requisition_text += "[lang_reverse_text("Rank")]: [orderer_rank]<br/>" // ZH EDIT - I18N
+	requisition_text += "[lang_reverse_text("Comment")]: [reason]<br/>" // ZH EDIT - I18N
 
 	requisition_paper.add_raw_text(requisition_text, advanced_html = TRUE)
 	requisition_paper.update_appearance()
@@ -128,29 +128,29 @@
 
 	var/station_name = (manifest_paper.errors & MANIFEST_ERROR_NAME) ? new_station_name() : station_name()
 
-	// NOVA EDIT ADDITION START - i18n - pack/packname 反查成已译箱名，让单据与实际箱子名对得上（否则单据英文、找不到对应箱子）
+	// ZH EDIT ADDITION START - i18n - pack/packname 反查成已译箱名，让单据与实际箱子名对得上（否则单据英文、找不到对应箱子）
 	var/pack_name = lang_reverse_text(pack.name)
 	if(packname)
 		packname = lang_reverse_text(packname)
-	// NOVA EDIT ADDITION END
-	manifest_paper.name = "shipping manifest - [packname?"#[id] ([pack_name])":"(Grouped Item Crate)"]" // NOVA EDIT CHANGE - i18n - ORIGINAL: ([pack.name])
+	// ZH EDIT ADDITION END
+	manifest_paper.name = "shipping manifest - [packname?"#[id] ([pack_name])":"(Grouped Item Crate)"]" // ZH EDIT CHANGE - i18n - ORIGINAL: ([pack.name])
 
-	var/manifest_text = "<h2>[command_name()] [lang_reverse_text("Shipping Manifest")]</h2>" // NOVA EDIT - I18N - 单据标签反查（en locale no-op）
+	var/manifest_text = "<h2>[command_name()] [lang_reverse_text("Shipping Manifest")]</h2>" // ZH EDIT - I18N - 单据标签反查（en locale no-op）
 	manifest_text += "<hr/>"
 	if(owner && !(owner == "Cargo"))
-		manifest_text += "[lang_reverse_text("Direct purchase from")] [owner]<br/>" // NOVA EDIT - I18N
+		manifest_text += "[lang_reverse_text("Direct purchase from")] [owner]<br/>" // ZH EDIT - I18N
 		manifest_paper.name += " - Purchased by [owner]"
-	manifest_text += "[lang_reverse_text(packname ? "Order" : "Orders")]: [id]<br/>" // NOVA EDIT CHANGE - i18n - ORIGINAL: "Order[packname?"":"s"]: [id]"
-	manifest_text += "[lang_reverse_text("Destination")]: [station_name]<br/>" // NOVA EDIT - I18N
+	manifest_text += "[lang_reverse_text(packname ? "Order" : "Orders")]: [id]<br/>" // ZH EDIT CHANGE - i18n - ORIGINAL: "Order[packname?"":"s"]: [id]"
+	manifest_text += "[lang_reverse_text("Destination")]: [station_name]<br/>" // ZH EDIT - I18N
 	if(packname)
-		manifest_text += "[lang_reverse_text("Item")]: [packname]<br/>" // NOVA EDIT - I18N
-	manifest_text += "[lang_reverse_text("Contents")]: <br/>" // NOVA EDIT - I18N
+		manifest_text += "[lang_reverse_text("Item")]: [packname]<br/>" // ZH EDIT - I18N
+	manifest_text += "[lang_reverse_text("Contents")]: <br/>" // ZH EDIT - I18N
 	manifest_text += "<ul>"
 	var/container_contents = list() // Associative list with the format (item_name = nº of occurrences, ...)
 	for(var/atom/movable/stuff as anything in container.contents - manifest_paper)
 		if(isstack(stuff))
 			var/obj/item/stack/thing = stuff
-			container_contents[lang_reverse_text(thing.singular_name)] += thing.amount // NOVA EDIT CHANGE - i18n - stack 单数名反查（非 atom.name，落地钩子抓不到）- ORIGINAL: container_contents[thing.singular_name]
+			container_contents[lang_reverse_text(thing.singular_name)] += thing.amount // ZH EDIT CHANGE - i18n - stack 单数名反查（非 atom.name，落地钩子抓不到）- ORIGINAL: container_contents[thing.singular_name]
 			continue
 		container_contents[stuff.name]++
 	if((manifest_paper.errors & MANIFEST_ERROR_CONTENTS) && container_contents)
@@ -164,9 +164,9 @@
 					container_contents -= missing_item
 
 	for(var/item in container_contents)
-		manifest_text += "<li> [container_contents[item]] [item][(container_contents[item] == 1 || GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) ? "" : plural_s(item)]</li>" // NOVA EDIT CHANGE - i18n: 全服 locale≠en 时不加英文复数 s（内容名已反查成中文，中文无复数）- ORIGINAL: [container_contents[item] == 1 ? "" : plural_s(item)]
+		manifest_text += "<li> [container_contents[item]] [item][(container_contents[item] == 1 || GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) ? "" : plural_s(item)]</li>" // ZH EDIT CHANGE - i18n: 全服 locale≠en 时不加英文复数 s（内容名已反查成中文，中文无复数）- ORIGINAL: [container_contents[item] == 1 ? "" : plural_s(item)]
 	manifest_text += "</ul>"
-	manifest_text += "<h4>[lang_reverse_text("Stamp below to confirm receipt of goods:")]</h4>" // NOVA EDIT - I18N
+	manifest_text += "<h4>[lang_reverse_text("Stamp below to confirm receipt of goods:")]</h4>" // ZH EDIT - I18N
 
 	manifest_paper.add_raw_text(manifest_text)
 

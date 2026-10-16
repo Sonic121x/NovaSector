@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(statpanels)
 	ss_flags = SS_NO_INIT
 	var/list/currentrun = list()
 	var/list/global_data
-	var/list/localized_global_data // NOVA EDIT ADDITION - i18n - one shared localization per subsystem fire
+	var/list/localized_global_data // ZH EDIT ADDITION - i18n - one shared localization per subsystem fire
 	var/list/mc_data
 
 	///how many subsystem fires between most tab updates
@@ -85,10 +85,10 @@ SUBSYSTEM_DEF(statpanels)
 			var/ETA = SSshuttle.emergency.getModeStr()
 			if(ETA)
 				global_data += "[ETA] [SSshuttle.emergency.getTimerStr()]"
-		// NOVA EDIT ADDITION START - i18n - global_data is identical for every client; localize it once per status refresh
+		// ZH EDIT ADDITION START - i18n - global_data is identical for every client; localize it once per status refresh
 		if(num_fires % status_wait == 0)
 			localized_global_data = i18n_localize_stat_list(global_data)
-		// NOVA EDIT ADDITION END
+		// ZH EDIT ADDITION END
 
 		src.currentrun = GLOB.clients.Copy()
 		mc_data = null
@@ -140,14 +140,14 @@ SUBSYSTEM_DEF(statpanels)
 	if(!global_data)//statbrowser hasnt fired yet and we were called from immediate_send_stat_data()
 		return
 	var/list/status_items = target.mob?.get_status_tab_items()
-	// NOVA EDIT - i18n - 状态栏 AC 子串兜底：顶部 global_data + 角色 other_str 各过本地化副本
+	// ZH EDIT - i18n - 状态栏 AC 子串兜底：顶部 global_data + 角色 other_str 各过本地化副本
 	// （仅全服中文时；不改共享 global_data；只翻文本不动点击链接）。ORIGINAL: 直接传 global_data / status_items
 	target.stat_panel.send_message("update_stat", list(
-		"global_data" = localized_global_data || i18n_localize_stat_list(global_data), // NOVA EDIT CHANGE - i18n - reuse the per-fire shared result
+		"global_data" = localized_global_data || i18n_localize_stat_list(global_data), // ZH EDIT CHANGE - i18n - reuse the per-fire shared result
 		"other_str" = i18n_localize_stat_list(status_items),
 	))
 
-// NOVA EDIT ADDITION START - i18n - 返回状态栏列表的本地化副本（locale==en 或空时原样返回，零开销）
+// ZH EDIT ADDITION START - i18n - 返回状态栏列表的本地化副本（locale==en 或空时原样返回，零开销）
 /datum/controller/subsystem/statpanels/proc/i18n_localize_stat_list(list/items)
 	if(!items || GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
 		return items
@@ -166,7 +166,7 @@ SUBSYSTEM_DEF(statpanels)
 		else
 			out += entry
 	return out
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 /datum/controller/subsystem/statpanels/proc/set_MC_tab(client/target)
 	var/turf/eye_turf = get_turf(target.eye)

@@ -1,10 +1,10 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MAX_ADMINBANS_PER_ADMIN 1
 #define MAX_ADMINBANS_PER_HEADMIN 3
 
 #define MAX_REASON_LENGTH 600
 
-// NOVA EDIT ADDITION START - I18N - Keep localized labels separate from canonical role-ban identifiers.
+// ZH EDIT ADDITION START - I18N - Keep localized labels separate from canonical role-ban identifiers.
 #define ROLEBAN_FIELD_PREFIX "ban_role_"
 #define ROLEBAN_GROUP_PREFIX "ban_group_"
 
@@ -94,12 +94,12 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 	for(var/group in GLOB.roleban_long_job_lists)
 		if(role in GLOB.roleban_long_job_lists[group])
 			return role
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
-// NOVA EDIT ADDITION START - I18N - Test hook for recognizing forged role fields without decoding them.
+// ZH EDIT ADDITION START - I18N - Test hook for recognizing forged role fields without decoding them.
 /proc/is_roleban_field_name(field_name)
 	return istext(field_name) && copytext(field_name, 1, length(ROLEBAN_FIELD_PREFIX) + 1) == ROLEBAN_FIELD_PREFIX
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 
 
@@ -419,7 +419,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 		var/break_counter = 0
 		output += "<div class='row'>"
 
-		// NOVA EDIT ADDITION START - I18N - Machine identifiers are encoded separately from localized labels.
+		// ZH EDIT ADDITION START - I18N - Machine identifiers are encoded separately from localized labels.
 		for(var/datum/job_department/department as anything in SSjob.joinable_departments)
 			var/label_class = department.get_label_class()
 			var/department_name = department.department_name
@@ -449,9 +449,9 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 							"}
 			output += "</div></div>"
 			break_counter = 0
-		// NOVA EDIT ADDITION END
+		// ZH EDIT ADDITION END
 
-		// NOVA EDIT ADDITION START - I18N - Reuse the same canonical option lists for rendering and validation.
+		// ZH EDIT ADDITION START - I18N - Reuse the same canonical option lists for rendering and validation.
 		for(var/department in GLOB.roleban_other_job_lists)
 			var/other_group_field = roleban_group_field_name(department)
 			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[other_group_field]' class='hidden' onClick='header_click_all_checkboxes(this)'>[department]</label><div class='content'>"
@@ -481,7 +481,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 				break_counter++
 			output += "</div></div>"
 		output += "</div>"
-		// NOVA EDIT ADDITION END
+		// ZH EDIT ADDITION END
 	output += "</form>"
 	panel.set_content(output.Join())
 	panel.open()
@@ -580,7 +580,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 			changes += list("Reason" = "[href_list["oldreason"]]<br>to<br>[reason]")
 		if(!changes.len)
 			error_state += "No changes were detected."
-		var/edit_role = roleban_role_from_field(href_list["role"], allow_server = TRUE) // NOVA EDIT CHANGE - I18N - decode and validate canonical role
+		var/edit_role = roleban_role_from_field(href_list["role"], allow_server = TRUE) // ZH EDIT CHANGE - I18N - decode and validate canonical role
 		if(edit_role)
 			roles_to_ban += edit_role
 		else
@@ -593,7 +593,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 			if("server")
 				roles_to_ban += "Server"
 			if("role")
-				// NOVA EDIT ADDITION START - I18N - Ignore group controls; decode and validate only stable role fields.
+				// ZH EDIT ADDITION START - I18N - Ignore group controls; decode and validate only stable role fields.
 				var/delimiter_pos = href_list.Find("roleban_delimiter")
 				if(delimiter_pos == 0)
 					error_state += "roleban_delimiter not found in href. Report this to coders."
@@ -609,7 +609,7 @@ GLOBAL_LIST_INIT(roleban_long_job_lists, list(
 						roles_to_ban |= canonical_role
 					if(!roles_to_ban.len)
 						error_state += "Role ban was selected but no roles to ban were selected."
-				// NOVA EDIT ADDITION END
+				// ZH EDIT ADDITION END
 			else
 				error_state += "No ban type was selected."
 	if(error_state.len)

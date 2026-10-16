@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/quirk/system_shock
 	name = "System Shock"
 	desc = "You and electricity have a volatile relationship. One spark's liable to forcefully reboot your systems. Note: This quirk only works on synths."

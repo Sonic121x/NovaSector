@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/rsd_interface
 	name = "RSD Phylactery"
 	desc = "A small device inserted, typically, into inert brains. As Resonance cannot persist in what's referred to as a 'vacuum', RSDs--much like the brains and CPUs they emulate--employ cerebral white noise as a foundation for Resonance to persist in otherwise dead-quiet containers.."

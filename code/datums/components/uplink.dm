@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define PEN_ROTATIONS 2
 
 /**
@@ -189,7 +189,7 @@
 		var/atom/actual_item = item.item
 		extra_purchasable += list(list(
 			"id" = item.type,
-			"name" = lang_localize_display_name(item.name), // NOVA EDIT - I18N: 纯显示（act('buy') 走 item.id/ref）。ORIGINAL: "name" = item.name,
+			"name" = lang_localize_display_name(item.name), // ZH EDIT - I18N: 纯显示（act('buy') 走 item.id/ref）。ORIGINAL: "name" = item.name,
 			"icon" = actual_item.icon,
 			"icon_state" = actual_item.icon_state,
 			"cost" = item.cost,

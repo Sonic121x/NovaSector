@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 GLOBAL_DATUM(character_directory, /datum/character_directory)
 GLOBAL_LIST_EMPTY(name_to_appearance)
 #define READ_PREFS(target, pref) (target.client?.prefs?.read_preference(/datum/preference/pref))

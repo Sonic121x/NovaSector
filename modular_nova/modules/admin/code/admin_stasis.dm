@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB_AND_CONTEXT_MENU(admin_stasis, R_ADMIN|R_FUN, "切换管理员停滞", "Toggle admin stasis for a living mob.", ADMIN_CATEGORY_FUN, /mob/living)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living)
 	var/has_effect = !isnull(target.has_status_effect_from_source(/datum/status_effect/grouped/stasis, STASIS_ADMIN))

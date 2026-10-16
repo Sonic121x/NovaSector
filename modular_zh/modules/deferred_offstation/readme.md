@@ -51,7 +51,7 @@ whole suite runs on the deferred world.
 
 ### Included files that are not contained in this module:
 
-- `code/modules/unit_tests/~nova/deferred_offstation.dm`
+- `code/modules/unit_tests/~zh/deferred_offstation.dm`
 
 ### Credits:
 

@@ -3,7 +3,7 @@
 //
 // 这些表不在 i18n 目录里，也**不该**进目录：它们是极常见的英文单词（`hot`/`in`/`real`/`kind`…），
 // 进全局反查表就是凭空扩大整个 DM 侧的误翻面。按 locale 换整张表既覆盖完全、又零全局风险。
-// 运行期由 `lang_word_pool()` 选表（见 modular_nova/modules/i18n/code/runtime.dm）。
+// 运行期由 `lang_word_pool()` 选表（见 modular_zh/modules/i18n/code/runtime.dm）。
 //
 // 用法：bun tools/i18n/word-pool-mt.ts strings/names/adjectives.txt [更多...]
 // 复用 tools/i18n/mt/.env 的 OpenAI 兼容后端配置。

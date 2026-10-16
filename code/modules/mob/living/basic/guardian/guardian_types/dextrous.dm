@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Dextrous guardians have some of the most powerful abilities of all: hands and pockets
 /mob/living/basic/guardian/dextrous
 	guardian_type = GUARDIAN_DEXTROUS

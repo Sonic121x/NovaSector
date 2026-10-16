@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 
 ///Max amount of characters you can have in an active bet's title
@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 	data["active_bets"] = list()
 	for(var/datum/active_bet/bets as anything in GLOB.active_bets)
 		data["active_bets"] += list(list(
-			"name" = lang_localize_display_name(bets.name), // NOVA EDIT - I18N: 纯显示。ORIGINAL: "name" = bets.name,
+			"name" = lang_localize_display_name(bets.name), // ZH EDIT - I18N: 纯显示。ORIGINAL: "name" = bets.name,
 			"description" = bets.description,
 			"owner" = bets == created_bet,
 			"creator" = bets.bet_owner,

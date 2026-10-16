@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/ammo_box/pulse_cargo_box
 	name = "ammo canister (pulse energy cell)"
 	desc = "A stabilizing canister of plasma pulse energy cells, holds eight cells."

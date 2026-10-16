@@ -197,7 +197,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		var/turf/T = get_turf(user)
 		z = T.z
 	var/list/sensors = update_data(z)
-	// NOVA EDIT ADDITION START - i18n: 船员监控里的职位（assignment）在 `(${assignment})` 模板串里显示，
+	// ZH EDIT ADDITION START - i18n: 船员监控里的职位（assignment）在 `(${assignment})` 模板串里显示，
 	// 自动本地化不碰动态串；且单词职位名（Captain/Clown）过不了 P1 多词门槛 → 全英文。在显示点反查。
 	// **不改 update_data 的缓存**：那份被 /obj/item/circuit_component/medical_console_data 电路组件
 	// 按 job 端口读取，电路里可能按英文比较，所以逐条 Copy 后只翻显示副本的 assignment。
@@ -209,7 +209,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				record_copy["assignment"] = lang_reverse_text(record_copy["assignment"])
 			localized_sensors += list(record_copy)
 		sensors = localized_sensors
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	. = list(
 		"sensors" = sensors,
 		"link_allowed" = HAS_AI_ACCESS(user),

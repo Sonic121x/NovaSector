@@ -55,7 +55,7 @@
 		if (!isnull(data))
 			preference_data[preference_entry.savefile_key] = data
 
-	// NOVA EDIT ADDITION START - i18n - 此 asset 是单独 fetch 的静态资源（前端 resolveAsset
+	// ZH EDIT ADDITION START - i18n - 此 asset 是单独 fetch 的静态资源（前端 resolveAsset
 	// ('preferences.json')），不经 get_payload，所以 TGUI 负载那条路够不着它。
 	// 走**同一套 overlay 机制**：值一律不动（name/choices/department 这些既是显示又是标识符），
 	// 只把「英文 → 译文」收进 data["i18n"]，由前端在渲染期查表。
@@ -66,6 +66,6 @@
 		lang_reverse_tree(preference_data, null, i18n_overlay)
 		if(length(i18n_overlay))
 			preference_data["i18n"] = i18n_overlay
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	return preference_data

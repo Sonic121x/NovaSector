@@ -52,7 +52,7 @@ node tools/i18n/map-descs.mjs
 echo "==> 反应兜底显示名 → strings/i18n/reaction_names.json（幂等，只合并不裁剪；域内表）"
 node tools/i18n/reaction-names.mjs
 
-echo "==> 改写新出现的纯字符串消息为 LANG()（幂等；核心文件自动加 NOVA EDIT 标记）"
+echo "==> 改写新出现的纯字符串消息为 LANG()（幂等；核心文件自动加 ZH EDIT 标记）"
 "$TOOL" rewrite --dme tgstation.dme
 
 echo "==> catalog-audit（只读：stale 自动项 / sidecar / 反查歧义 / 坏 %VAR 占位符）。失败即阻断。"

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// The minimum ratio of reagents that need to have the `REAGENT_BLOOD_REGENERATING` chemical_flags for the Hemophage not to violently vomit upon consumption.
 #define MINIMUM_BLOOD_REGENING_REAGENT_RATIO 0.75
 

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define FISH_SAD 0
 #define FISH_VERY_HAPPY 4
 
@@ -557,7 +557,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 
 	if(HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISH) || HAS_TRAIT(loc, TRAIT_EXAMINE_FISH))
 		. += span_notice(LANG("obj.c3aed59ed80a74eb", list(p_Theyre(), size)))
-		. += span_notice(LANG("obj.c066a1a10a3c3506", list(p_They(), p_s(), weight, span_tooltip(lang_reverse_text("the standard unit of measurement for space age fish"), lang_reverse_text("kiloclam"))))) // NOVA EDIT - I18N: span 包裹的单位词反查（"kiloclam"→千蛤币 在目录，但 span 壳让整 arg 反查 miss，故在此显式反查内层）
+		. += span_notice(LANG("obj.c066a1a10a3c3506", list(p_They(), p_s(), weight, span_tooltip(lang_reverse_text("the standard unit of measurement for space age fish"), lang_reverse_text("kiloclam"))))) // ZH EDIT - I18N: span 包裹的单位词反查（"kiloclam"→千蛤币 在目录，但 span 壳让整 arg 反查 miss，故在此显式反查内层）
 
 		if(HAS_TRAIT(src, TRAIT_FISH_GENEGUNNED))
 			. += span_warning(LANG("obj.326136be3e7a7e28", list(p_Theyve(), p_They())))
@@ -594,7 +594,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 			warnings += "mostly healthy"
 
 	if(length(warnings))
-		. += span_warning("[p_Theyre()] [lang_english_list(warnings)].") // NOVA EDIT - I18N: 逐项翻状态词（整句拼完不是目录键）
+		. += span_warning("[p_Theyre()] [lang_english_list(warnings)].") // ZH EDIT - I18N: 逐项翻状态词（整句拼完不是目录键）
 
 	return .
 

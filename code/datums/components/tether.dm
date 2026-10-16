@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Creates a tether between two objects that limits movement range. Tether requires LOS and can be adjusted by left/right clicking its
 /datum/component/tether
 	dupe_mode = COMPONENT_DUPE_ALLOWED

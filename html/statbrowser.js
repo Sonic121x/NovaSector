@@ -40,7 +40,7 @@ var split_admin_tabs = false;
 //The 'default' tab that everyone should have, that we swap to if the tab you're on is deleted or anything similar.
 var defaultTab = 'Status';
 
-// NOVA EDIT ADDITION START - i18n: 页签名/分组标题的显示译名
+// ZH EDIT ADDITION START - i18n: 页签名/分组标题的显示译名
 // 页签名是标识符（button.id、SendTabToByond 回传值、DM 侧 stat_tab == "Status" 比较、
 // split_admin_tabs 的 splitName[0] === 'Admin' 判断），一律保持英文；只在写入 textContent
 // 时过 tabLabel() 换成译名。表由 DM 的 init_verbs 负载送来，locale==en 时为空 → 全部回落原名。
@@ -55,7 +55,7 @@ function relabelTabs() {
     if (button.id) button.textContent = tabLabel(button.id);
   }
 }
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 // Any BYOND commands that could result in the client's focus changing go through this
 // to ensure that when we relinquish our focus, we don't do it after the result of
@@ -83,7 +83,7 @@ function createStatusTab(name) {
     statcontentdiv.focus();
   };
   button.id = name;
-  button.textContent = tabLabel(name); // NOVA EDIT CHANGE - i18n - ORIGINAL: button.textContent = name;
+  button.textContent = tabLabel(name); // ZH EDIT CHANGE - i18n - ORIGINAL: button.textContent = name;
   button.className = 'button';
   //ORDERING ALPHABETICALLY
   button.style.order = { Status: 1, MC: 2 }[name] || name.charCodeAt(0);
@@ -713,7 +713,7 @@ function draw_verbs(cat) {
     if (Object.hasOwn(additions, cat)) {
       // do addition here
       var header = document.createElement('h3');
-      header.textContent = tabLabel(cat); // NOVA EDIT CHANGE - i18n - ORIGINAL: header.textContent = cat;
+      header.textContent = tabLabel(cat); // ZH EDIT CHANGE - i18n - ORIGINAL: header.textContent = cat;
       content.appendChild(header);
       content.appendChild(additions[cat]);
     }
@@ -821,12 +821,12 @@ Byond.subscribeTo('remove_verb_list', (v) => {
 Byond.subscribeTo('init_verbs', (payload) => {
   wipe_verbs(); // remove all verb categories so we can replace them
   checkStatusTab(); // remove all status tabs
-  // NOVA EDIT ADDITION START - i18n: 先吃下译名表，下面 createStatusTab 才能带译名建按钮
+  // ZH EDIT ADDITION START - i18n: 先吃下译名表，下面 createStatusTab 才能带译名建按钮
   if (payload.tab_labels) {
     tab_labels = payload.tab_labels;
     relabelTabs(); // 常驻页签（Status/MC/Tickets）可能已先建好，补刷文字
   }
-  // NOVA EDIT ADDITION END
+  // ZH EDIT ADDITION END
   verb_tabs = payload.panel_tabs;
   verb_tabs.sort(); // sort it
   var do_update = false;

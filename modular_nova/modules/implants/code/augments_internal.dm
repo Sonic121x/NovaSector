@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/organ/cyberimp/brain/anti_sleep
 	name = "CNS jumpstarter"
 	desc = "This implant will automatically attempt to jolt you awake when it detects you have fallen unconscious outside of REM sleeping cycles. Has a short cooldown. Conflicts with the CNS Rebooter, making them incompatible with eachother."

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define OCULAR_WARDEN_PLACE_RANGE 3
 
 /datum/scripture/create_structure/ocular_warden

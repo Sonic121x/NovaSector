@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// When a mob is constricted, its pixel_x will be modified by this. Reverted on unconstriction. Modified by sprite scaling.
 #define CONSTRICT_BASE_PIXEL_SHIFT 12
 /// The base chance a mob has to escape from a constriction.

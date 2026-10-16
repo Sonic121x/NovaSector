@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // This element should be applied to wall-mounted machines/structures, so that if the support structure it's "hanging" from is broken or deconstructed, the wall-hung structure will deconstruct.
 /datum/component/atom_mounted
 	/// The closed turf our object is currently linked to.
@@ -41,7 +41,7 @@
 	SIGNAL_HANDLER
 
 	if(parent in view(user.client?.view || world.view, user))
-		examine_list += span_notice(LANG("datum.334bd33d5a9550c8", list(hanging_support_atom, span_bold(lang_atom_text(parent, "\the [parent]")), span_bold(lang_reverse_text("fall to the ground"))))) // NOVA EDIT - i18n: 反查「fall to the ground」短语；被支撑物的名字走显示边界（拼成字符串后「区域名 + 类型名 + id」查不到）
+		examine_list += span_notice(LANG("datum.334bd33d5a9550c8", list(hanging_support_atom, span_bold(lang_atom_text(parent, "\the [parent]")), span_bold(lang_reverse_text("fall to the ground"))))) // ZH EDIT - i18n: 反查「fall to the ground」短语；被支撑物的名字走显示边界（拼成字符串后「区域名 + 类型名 + id」查不到）
 
 /// When the type of turf changes, if it is changing into a floor we should drop our contents
 /datum/component/atom_mounted/proc/on_turf_changing(turf/source, path, new_baseturfs, flags, post_change_callbacks)

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// The name of the table on the database containing the player ranks.
 /// See `nova_schema.sql` for the schema of the table.
 #define PLAYER_RANK_TABLE_NAME "player_rank"

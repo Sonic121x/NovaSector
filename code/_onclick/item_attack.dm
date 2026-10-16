@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * THIS IS THE ROOT OF ALL EVIL (I mean the root of all item-on-atom interactions)
  *
@@ -509,14 +509,14 @@
 	if (picked_index && length(weapon.attack_verb_simple) >= picked_index)
 		message_verb_simple = weapon.attack_verb_simple[picked_index]
 
-	var/attack_message_spectator = LANG("mob.24dcf97e485df05a", list(src, message_verb_continuous, message_hit_area, weapon)) // NOVA EDIT CHANGE - I18N - 第三人称（全场可见）那条被漏掉了：victim/attacker 早就改了，唯独它还是裸插值串。局部变量赋值，codemod 够不着。ORIGINAL: var/attack_message_spectator = "[src] [message_verb_continuous][message_hit_area] with [weapon]!"
-	var/attack_message_victim = LANG("mob.960cd478319cdae7", list(message_verb_continuous, message_hit_area, weapon)) // NOVA EDIT CHANGE - I18N - built as a local (codemod can't reach it), no boundary anchor - ORIGINAL: var/attack_message_victim = "Something [message_verb_continuous] you[message_hit_area] with [weapon]!"
-	var/attack_message_attacker = LANG("mob.b3c305c961f2e34b", list(message_verb_simple, src, message_hit_area, weapon)) // NOVA EDIT CHANGE - I18N - ORIGINAL: var/attack_message_attacker = "You [message_verb_simple] [src][message_hit_area] with [weapon]!"
+	var/attack_message_spectator = LANG("mob.24dcf97e485df05a", list(src, message_verb_continuous, message_hit_area, weapon)) // ZH EDIT CHANGE - I18N - 第三人称（全场可见）那条被漏掉了：victim/attacker 早就改了，唯独它还是裸插值串。局部变量赋值，codemod 够不着。ORIGINAL: var/attack_message_spectator = "[src] [message_verb_continuous][message_hit_area] with [weapon]!"
+	var/attack_message_victim = LANG("mob.960cd478319cdae7", list(message_verb_continuous, message_hit_area, weapon)) // ZH EDIT CHANGE - I18N - built as a local (codemod can't reach it), no boundary anchor - ORIGINAL: var/attack_message_victim = "Something [message_verb_continuous] you[message_hit_area] with [weapon]!"
+	var/attack_message_attacker = LANG("mob.b3c305c961f2e34b", list(message_verb_simple, src, message_hit_area, weapon)) // ZH EDIT CHANGE - I18N - ORIGINAL: var/attack_message_attacker = "You [message_verb_simple] [src][message_hit_area] with [weapon]!"
 	if(user in viewers(src, null))
-		attack_message_spectator = LANG("mob.fe16e6c92aa985f0", list(user, message_verb_continuous, src, message_hit_area, weapon)) // NOVA EDIT CHANGE - I18N - ORIGINAL: attack_message_spectator = "[user] [message_verb_continuous] [src][message_hit_area] with [weapon]!"
-		attack_message_victim = LANG("mob.fa99147febec88ef", list(user, message_verb_continuous, message_hit_area, weapon)) // NOVA EDIT CHANGE - I18N - ORIGINAL: attack_message_victim = "[user] [message_verb_continuous] you[message_hit_area] with [weapon]!"
+		attack_message_spectator = LANG("mob.fe16e6c92aa985f0", list(user, message_verb_continuous, src, message_hit_area, weapon)) // ZH EDIT CHANGE - I18N - ORIGINAL: attack_message_spectator = "[user] [message_verb_continuous] [src][message_hit_area] with [weapon]!"
+		attack_message_victim = LANG("mob.fa99147febec88ef", list(user, message_verb_continuous, message_hit_area, weapon)) // ZH EDIT CHANGE - I18N - ORIGINAL: attack_message_victim = "[user] [message_verb_continuous] you[message_hit_area] with [weapon]!"
 	if(user == src)
-		attack_message_victim = LANG("mob.143cf833ebe601c5", list(message_verb_simple, message_hit_area, weapon)) // NOVA EDIT CHANGE - I18N - ORIGINAL: attack_message_victim = "You [message_verb_simple] yourself[message_hit_area] with [weapon]."
+		attack_message_victim = LANG("mob.143cf833ebe601c5", list(message_verb_simple, message_hit_area, weapon)) // ZH EDIT CHANGE - I18N - ORIGINAL: attack_message_victim = "You [message_verb_simple] yourself[message_hit_area] with [weapon]."
 	visible_message(span_danger("[attack_message_spectator]"),\
 		span_userdanger("[attack_message_victim]"), null, COMBAT_MESSAGE_RANGE, user)
 	if(is_blind())
@@ -527,7 +527,7 @@
 /// Overridable proc so subtypes can have unique targetted strike zone messages, return a string.
 /mob/living/proc/get_hit_area_message(input_area)
 	if(input_area)
-		if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) // NOVA EDIT - I18N - localize the connector + zone so the {hit_area} slot in the attack templates reads naturally
+		if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) // ZH EDIT - I18N - localize the connector + zone so the {hit_area} slot in the attack templates reads naturally
 			return "的[lang_reverse_text(input_area)]"
 		return " in the [input_area]"
 

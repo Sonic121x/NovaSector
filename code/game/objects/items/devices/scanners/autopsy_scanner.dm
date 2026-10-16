@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/autopsy_scanner
 	name = "autopsy scanner"
 	desc = "Used in surgery to extract information from a cadaver. Can also scan the health of cadavers like an advanced health analyzer!"
@@ -179,7 +179,7 @@
 		var/datum/species/targetspecies = humantarget.dna.species
 		var/disguised = !ishumanbasic(humantarget) && HAS_TRAIT(humantarget, TRAIT_HUMAN_DISGUISE)
 		var/species_name = "[disguised ? "\"[/datum/species/human::name]\"" : targetspecies.name][mutant ? "-derived mutant" : ""]"
-		autopsy_information += "<b>Species:</b> [lang_reverse_text(species_name)]</br>" // NOVA EDIT CHANGE - i18n: reverse-localize species name (label handled by lang_localize_autopsy) - ORIGINAL: autopsy_information += "<b>Species:</b> [species_name]</br>"
+		autopsy_information += "<b>Species:</b> [lang_reverse_text(species_name)]</br>" // ZH EDIT CHANGE - i18n: reverse-localize species name (label handled by lang_localize_autopsy) - ORIGINAL: autopsy_information += "<b>Species:</b> [species_name]</br>"
 		autopsy_information += "<b>Core temperature:</b> [round(humantarget.coretemperature-T0C, 0.1)] &deg;C ([round(humantarget.coretemperature*1.8-459.67,0.1)] &deg;F)</br>"
 	// (End of humanoid-only information)
 	autopsy_information += "<b>Body temperature:</b> [round(scanned.bodytemperature-T0C, 0.1)] &deg;C ([round(scanned.bodytemperature*1.8-459.67,0.1)] &deg;F)</br>"
@@ -240,7 +240,7 @@
 
 	autopsy_information += "<b>Coroner's Notes:</b>" //Bottom of the page, anything past here is player-written
 
-	final_report_text += lang_localize_autopsy(jointext(autopsy_information, "")) // NOVA EDIT CHANGE - i18n: localize composed report structural labels (bypasses sink/P1; same as health_analyzer) - ORIGINAL: final_report_text += jointext(autopsy_information, "")
+	final_report_text += lang_localize_autopsy(jointext(autopsy_information, "")) // ZH EDIT CHANGE - i18n: localize composed report structural labels (bypasses sink/P1; same as health_analyzer) - ORIGINAL: final_report_text += jointext(autopsy_information, "")
 	autopsy_report.add_raw_text(final_report_text, advanced_html = TRUE)
 	autopsy_report.update_appearance()
 	user.put_in_hands(autopsy_report)

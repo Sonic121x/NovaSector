@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Use this file to add STANDARD ITEMS to borgs, the upgrade items will go in the modular robot_upgrade.dm
 
 /*

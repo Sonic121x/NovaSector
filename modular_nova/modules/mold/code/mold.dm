@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MAX_MOLD_FOAM_RANGE_BULB 7
 #define MAX_MOLD_FOAM_RANGE_CORE 4
 

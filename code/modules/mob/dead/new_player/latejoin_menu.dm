@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define JOB_CHOICE_YES "Yes"
 #define JOB_CHOICE_REROLL "Reroll"
 #define JOB_CHOICE_CANCEL "Cancel"
@@ -117,7 +117,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 
 			var/list/job_data = list(
 				"command" = !!(job_datum.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND),
-				"description" = lang_localize_job_description(job_datum), // NOVA EDIT - i18n: 拆基础句+opt-in 后缀分别反查（ORIGINAL: "description" = job_datum.description,）
+				"description" = lang_localize_job_description(job_datum), // ZH EDIT - i18n: 拆基础句+opt-in 后缀分别反查（ORIGINAL: "description" = job_datum.description,）
 			)
 
 			department_jobs[job_datum.title] = job_data

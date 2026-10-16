@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/deathmatch_lobby
 	/// Ckey of the host
 	var/host
@@ -116,12 +116,12 @@
 	playing = DEATHMATCH_PLAYING
 	addtimer(CALLBACK(src, PROC_REF(game_took_too_long)), initial(map.automatic_gameend_time))
 	log_game("Deathmatch game [host] started.")
-	announce(span_reallybig(LANG("datum.d3cf14ad79df2a64", null))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("GO!"))
+	announce(span_reallybig(LANG("datum.d3cf14ad79df2a64", null))) // ZH EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("GO!"))
 	if(length(modifiers))
 		var/list/modifier_names = list()
 		for(var/datum/deathmatch_modifier/modifier_path as anything in modifiers)
-			modifier_names += uppertext(lang_reverse_text(initial(modifier_path.name))) // NOVA EDIT CHANGE - I18N - ORIGINAL: modifier_names += uppertext(initial(modifier_path.name))
-		announce(span_boldnicegreen(LANG("datum.2505d0dfe1cff24a", list(lang_english_list(modifier_names, and_text = " ,"))))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_boldnicegreen("THIS MATCH MODIFIERS: [lang_english_list(modifier_names, and_text = " ,")]."))
+			modifier_names += uppertext(lang_reverse_text(initial(modifier_path.name))) // ZH EDIT CHANGE - I18N - ORIGINAL: modifier_names += uppertext(initial(modifier_path.name))
+		announce(span_boldnicegreen(LANG("datum.2505d0dfe1cff24a", list(lang_english_list(modifier_names, and_text = " ,"))))) // ZH EDIT CHANGE - I18N - ORIGINAL: announce(span_boldnicegreen("THIS MATCH MODIFIERS: [lang_english_list(modifier_names, and_text = " ,")]."))
 	return TRUE
 
 /datum/deathmatch_lobby/proc/spawn_observer_as_player(ckey, loc)
@@ -172,13 +172,13 @@
 /datum/deathmatch_lobby/proc/game_took_too_long()
 	if (!location || QDELING(src))
 		return
-	announce(span_reallybig(LANG("datum.e3f92c5fa6083ec4", null))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("The players have took too long! Game ending!"))
+	announce(span_reallybig(LANG("datum.e3f92c5fa6083ec4", null))) // ZH EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("The players have took too long! Game ending!"))
 	end_game()
 
 /datum/deathmatch_lobby/proc/lobby_afk_probably()
 	if (QDELING(src) || playing)
 		return
-	announce(span_warning(LANG("datum.cac9d56440e3c160", list(host)))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_warning("Lobby ([host]) was closed due to not starting after 5 minutes, being potentially AFK. Please be faster next time."))
+	announce(span_warning(LANG("datum.cac9d56440e3c160", list(host)))) // ZH EDIT CHANGE - I18N - ORIGINAL: announce(span_warning("Lobby ([host]) was closed due to not starting after 5 minutes, being potentially AFK. Please be faster next time."))
 	GLOB.deathmatch_game.remove_lobby(host)
 
 /datum/deathmatch_lobby/proc/end_game()
@@ -190,7 +190,7 @@
 		if(!isnull(winner_info["mob"]))
 			winner = winner_info["mob"] //only one should remain anyway but incase of a draw
 
-	announce(span_reallybig(LANG("datum.af05b767e6926107", list(winner ? winner.real_name : LANG("datum.87aacbe78498a2a7", null))))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("THE GAME HAS ENDED.<BR>THE WINNER IS: [winner ? winner.real_name : "no one"]."))
+	announce(span_reallybig(LANG("datum.af05b767e6926107", list(winner ? winner.real_name : LANG("datum.87aacbe78498a2a7", null))))) // ZH EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("THE GAME HAS ENDED.<BR>THE WINNER IS: [winner ? winner.real_name : "no one"]."))
 
 	for(var/ckey in players)
 		var/mob/loser = players[ckey]["mob"]
@@ -234,7 +234,7 @@
 	if(!isnull(ghost))
 		add_observer(ghost, (host == ckey))
 
-	announce(span_reallybig(LANG("datum.d064d32c93645893", list(player.real_name, players.len)))) // NOVA EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("[player.real_name] HAS DIED.<br>[players.len] REMAIN."))
+	announce(span_reallybig(LANG("datum.d064d32c93645893", list(player.real_name, players.len)))) // ZH EDIT CHANGE - I18N - ORIGINAL: announce(span_reallybig("[player.real_name] HAS DIED.<br>[players.len] REMAIN."))
 
 	if(!gibbed && !QDELING(player) && !isdead(player))
 		if(!HAS_TRAIT(src, TRAIT_DEATHMATCH_EXPLOSIVE_IMPLANTS))
@@ -375,7 +375,7 @@
 	var/is_admin = check_rights_for(user.client, R_ADMIN)
 	var/has_auth = is_host || is_admin
 
-	data["active_mods"] = LANG("datum.f2e41ddf18967c52", null) // NOVA EDIT CHANGE - I18N - ORIGINAL: data["active_mods"] = "No modifiers selected"
+	data["active_mods"] = LANG("datum.f2e41ddf18967c52", null) // ZH EDIT CHANGE - I18N - ORIGINAL: data["active_mods"] = "No modifiers selected"
 	data["admin"] = is_admin
 	data["host"] = is_host
 	data["loadouts"] = list("Randomize")
@@ -398,13 +398,13 @@
 	data["self"] = user.ckey
 
 	if(length(modifiers))
-		// NOVA EDIT CHANGE START - I18N - 修正条件名反查、中文用顿号连接 - ORIGINAL: mod_names += modpath::name / data["active_mods"] = "Selected modifiers: [english_list(mod_names)]"
+		// ZH EDIT CHANGE START - I18N - 修正条件名反查、中文用顿号连接 - ORIGINAL: mod_names += modpath::name / data["active_mods"] = "Selected modifiers: [english_list(mod_names)]"
 		var/localize_mods = GLOB.i18n_server_locale != DEFAULT_UI_LOCALE
 		var/list/mod_names = list()
 		for(var/datum/deathmatch_modifier/modifier_path as anything in modifiers)
 			mod_names += localize_mods ? lang_reverse_text(modifier_path::name) : modifier_path::name
 		data["active_mods"] = LANG("datum.056a34d391111560", list(localize_mods ? jointext(mod_names, "、") : lang_english_list(mod_names)))
-		// NOVA EDIT CHANGE END
+		// ZH EDIT CHANGE END
 
 	if(is_player && !isnull(players[user.ckey]["loadout"]))
 		var/datum/outfit/deathmatch_loadout/loadout = players[user.ckey]["loadout"]
@@ -568,7 +568,7 @@
 		var/datum/deathmatch_modifier/mod = GLOB.deathmatch_game.modifiers[modifier_path]
 
 		UNTYPED_LIST_ADD(modifier_list, list(
-			"name" = lang_localize_display_name(mod.name), // NOVA EDIT - I18N: 修正器名纯显示。ORIGINAL: "name" = mod.name,
+			"name" = lang_localize_display_name(mod.name), // ZH EDIT - I18N: 修正器名纯显示。ORIGINAL: "name" = mod.name,
 			"desc" = mod.description,
 			"modpath" = "[modifier_path]",
 			"selected" = (modifier_path in modifiers),

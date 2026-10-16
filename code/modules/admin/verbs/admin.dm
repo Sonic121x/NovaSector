@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(show_tip, R_ADMIN, "显示提示", "Sends a tip to all players.", ADMIN_CATEGORY_MAIN)
 	var/input = input(user, LANG("datum.766cc2721c834d9f", null), LANG("datum.562121067679ac55", null), "") as message|null
 	if(!input)

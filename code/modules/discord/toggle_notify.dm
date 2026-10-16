@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Verb to toggle restart notifications
 GAME_VERB_DESC(/client, notify_restart, "通知重启", "Notifies you on Discord when the server restarts.", "OOC")
 

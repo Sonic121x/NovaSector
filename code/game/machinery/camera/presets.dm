@@ -213,7 +213,7 @@
 		return
 
 	if(name == initial(name))
-		name = lang_reverse_text("motion-sensitive security camera") // NOVA EDIT - i18n: reverse-localize the new name (no-op on en)
+		name = lang_reverse_text("motion-sensitive security camera") // ZH EDIT - i18n: reverse-localize the new name (no-op on en)
 	if(!proximity_monitor)
 		proximity_monitor = new(src)
 	camera_upgrade_bitflags |= CAMERA_UPGRADE_MOTION
@@ -222,7 +222,7 @@
 
 /obj/machinery/camera/proc/removeMotion()
 	if(name == "motion-sensitive security camera")
-		name = lang_reverse_text("security camera") // NOVA EDIT - i18n: reverse-localize (no-op on en)
+		name = lang_reverse_text("security camera") // ZH EDIT - i18n: reverse-localize (no-op on en)
 	camera_upgrade_bitflags &= ~CAMERA_UPGRADE_MOTION
 	if(!area_motion)
 		QDEL_NULL(proximity_monitor)

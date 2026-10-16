@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MOB_LAYER_SHIFT_INCREMENT 1
 /// The amount by which layers are multiplied before being modified.
 /// Helps avoiding floating point errors.

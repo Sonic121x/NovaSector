@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*
 	Wounds are specific medical complications that can arise and be applied to (currently) carbons, with a focus on humans. All of the code for and related to this is heavily WIP,
 	and the documentation will be slanted towards explaining what each part/piece is leading up to, until such a time as I finish the core implementations. The original design doc
@@ -743,7 +743,7 @@
  * Returns what text describes this wound
  */
 /datum/wound/proc/severity_text()
-	// NOVA EDIT - I18N - reverse-localize the severity word (display-only; strings/i18n/*/_wound_severity.json).
+	// ZH EDIT - I18N - reverse-localize the severity word (display-only; strings/i18n/*/_wound_severity.json).
 	// lang_reverse_text is locale-gated (no-op on en) so english output is unchanged. - ORIGINAL: switch returned the bare english strings
 	var/text
 	switch(severity)

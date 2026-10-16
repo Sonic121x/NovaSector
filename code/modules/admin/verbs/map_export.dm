@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(map_export, R_DEBUG, "地图导出", "Select a part of the map by coordinates and download it.", ADMIN_CATEGORY_DEBUG)
 	var/user_x = user.mob.x
 	var/user_y = user.mob.y

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define EXME_MAX_LOC_RECURSION 10 //no infinite loops
 
 GAME_VERB(/mob/living, container_emote, "使用载具/容器做表情", "IC")

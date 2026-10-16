@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/blood_worm_tester
 	name = "hemoparasite testing tool"
 	desc = "A proprietary device patented by the DeForest Medical Corporation that is tailor-made for detecting hemoparasites, such as the infamous space-faring blood worm. The testing process is allegedly very painful."
@@ -25,7 +25,7 @@
 	return ..()
 
 /obj/item/blood_worm_tester/update_desc(updates)
-	desc = "[lang_reverse_text(initial(desc))] [spent ? lang_reverse_text("This one is spent.") : lang_reverse_text("It's loaded for a single use.")]" // NOVA EDIT CHANGE - i18n: 同上，initial(desc) 会覆盖掉反查好的中文 - ORIGINAL: desc = "[initial(desc)] [spent ? "This one is spent." : "It's loaded for a single use."]"
+	desc = "[lang_reverse_text(initial(desc))] [spent ? lang_reverse_text("This one is spent.") : lang_reverse_text("It's loaded for a single use.")]" // ZH EDIT CHANGE - i18n: 同上，initial(desc) 会覆盖掉反查好的中文 - ORIGINAL: desc = "[initial(desc)] [spent ? "This one is spent." : "It's loaded for a single use."]"
 	return ..()
 
 /obj/item/blood_worm_tester/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)

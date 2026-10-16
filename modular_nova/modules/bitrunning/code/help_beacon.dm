@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //Request reinforcements from ghost pop; sacrifice one of your respawns. Good for solo runs to make them not solo.
 /obj/item/antag_spawner/bitrunning_help
 	name = "subcontracted assistance request beacon"

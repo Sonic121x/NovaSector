@@ -47,11 +47,11 @@
 	. = ..()
 	for(var/trait in no_process_traits)
 		LAZYADD(process_update_signals, list(SIGNAL_ADDTRAIT(trait), SIGNAL_REMOVETRAIT(trait)))
-	// NOVA EDIT ADDITION START - i18n - 全服中文时反查特质 name/desc
+	// ZH EDIT ADDITION START - i18n - 全服中文时反查特质 name/desc
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		name = lang_reverse_text(name)
 		desc = lang_reverse_text(desc)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 /datum/quirk/Destroy()
 	if(quirk_holder)
@@ -105,7 +105,7 @@
 
 	if(!quirk_transfer)
 		if(gain_text && announce)
-			to_chat(quirk_holder, lang_localize_chat_sentence(gain_text)) // NOVA EDIT - I18N - integral reverse the whole gain message (catalog has it) instead of letting chat AC fragment it - ORIGINAL: to_chat(quirk_holder, gain_text)
+			to_chat(quirk_holder, lang_localize_chat_sentence(gain_text)) // ZH EDIT - I18N - integral reverse the whole gain message (catalog has it) instead of letting chat AC fragment it - ORIGINAL: to_chat(quirk_holder, gain_text)
 		if (unique)
 			add_unique(client_source)
 

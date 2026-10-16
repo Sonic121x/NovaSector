@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/clothing/suit/straight_jacket/shackles
 	name = "shackles"
 	desc = "A set of shackles designed for intimate encounters. There's a release switch just under the wrist."

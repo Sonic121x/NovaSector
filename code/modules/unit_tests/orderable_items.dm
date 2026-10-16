@@ -20,5 +20,5 @@
 			TEST_FAIL("[orderable_item] is purchasable under two different orderable_item types,")
 		all_paths += purchase_path
 
-		if (item_instance.desc != initial_desc && item_instance.desc != lang_reverse_text(initial_desc)) // NOVA EDIT CHANGE - I18N - 全服 locale≠en 时 Initialize 会把 desc 反查成译文（非动态描述）：ORIGINAL: if (item_instance.desc != initial_desc)
+		if (item_instance.desc != initial_desc && item_instance.desc != lang_reverse_text(initial_desc)) // ZH EDIT CHANGE - I18N - 全服 locale≠en 时 Initialize 会把 desc 反查成译文（非动态描述）：ORIGINAL: if (item_instance.desc != initial_desc)
 			TEST_FAIL("[orderable_item] has a product ([purchase_path]) that has a dynamic description. [item_instance.desc] (dynamic description) != [initial_desc] (initial description)")

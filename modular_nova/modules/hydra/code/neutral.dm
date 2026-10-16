@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/quirk/hydra
 	name = "Hydra Heads"
 	desc = "You are a tri-headed creature. To use, format name like (Rucks-Sucks-Ducks)"

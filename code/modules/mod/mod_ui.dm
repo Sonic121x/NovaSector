@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/mod/control/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -9,7 +9,7 @@
 	var/data = list()
 	// Suit information
 	var/suit_status = list(
-		"core_name" = lang_localize_display_name(core?.name), // NOVA EDIT - I18N: composed atom name ("MOD Infinite Core") — exact reverse + AC for substrings. display-only (act uses ref).
+		"core_name" = lang_localize_display_name(core?.name), // ZH EDIT - I18N: composed atom name ("MOD Infinite Core") — exact reverse + AC for substrings. display-only (act uses ref).
 		"charge_current" = get_charge(),
 		"charge_max" = get_max_charge(),
 		"chargebar_color" = get_chargebar_color(),
@@ -34,7 +34,7 @@
 	// User information
 	var/user_status = list(
 		"user_name" = wearer ? (wearer.get_authentification_name("Unknown") || "Unknown") : "",
-		"user_assignment" = wearer ? lang_reverse_text(wearer.get_assignment("Unknown", "Unknown", FALSE)) : "", // NOVA EDIT - I18N: ID assignment/job title (display-only)
+		"user_assignment" = wearer ? lang_reverse_text(wearer.get_assignment("Unknown", "Unknown", FALSE)) : "", // ZH EDIT - I18N: ID assignment/job title (display-only)
 	)
 	data["user_status"] = user_status
 	// Module information
@@ -43,7 +43,7 @@
 	for(var/obj/item/mod/module/module as anything in modules)
 		module_custom_status += module.add_ui_data()
 		module_info += list(list(
-			"module_name" = lang_localize_display_name(module.name), // NOVA EDIT - I18N: 模块名纯显示（act 走 module_ref）。ORIGINAL: "module_name" = module.name,
+			"module_name" = lang_localize_display_name(module.name), // ZH EDIT - I18N: 模块名纯显示（act 走 module_ref）。ORIGINAL: "module_name" = module.name,
 			"description" = module.desc,
 			"module_type" = module.module_type,
 			"module_active" = module.active,
@@ -65,7 +65,7 @@
 	for(var/obj/item/part as anything in get_parts())
 		part_info += list(list(
 			"slot" = english_list(parse_slot_flags(part.slot_flags)),
-			"name" = lang_localize_display_name(part.name), // NOVA EDIT - I18N: composed part name ("Administrative MOD helmet") — exact reverse + AC. display-only (act uses ref).
+			"name" = lang_localize_display_name(part.name), // ZH EDIT - I18N: composed part name ("Administrative MOD helmet") — exact reverse + AC. display-only (act uses ref).
 			"deployed" = part.loc != src,
 			"ref" = REF(part),
 		))

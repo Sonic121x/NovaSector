@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // If an item has the processable item, it can be processed into another item with a specific tool. This adds generic behaviour for those actions to make it easier to set-up generically.
 /datum/element/processable
 	element_flags = ELEMENT_BESPOKE

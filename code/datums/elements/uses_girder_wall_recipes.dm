@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// An element for girders, wall barricades, etc. that makes them use wall construction recipes.
 /// Only really meant for recipes where you click on the girder with a stack of materials to make a wall.
 /datum/element/uses_girder_wall_recipes

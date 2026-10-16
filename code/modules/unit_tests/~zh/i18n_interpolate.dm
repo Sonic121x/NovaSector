@@ -1,4 +1,4 @@
-/// `lang_interpolate`（LANG 的占位符填充，modular_nova/modules/i18n/code/runtime.dm）的行为测试。
+/// `lang_interpolate`（LANG 的占位符填充，modular_zh/modules/i18n/code/runtime.dm）的行为测试。
 ///
 /// 守的核心是**实参自吞**：旧实现按序 `replacetext("{0}")`、`replacetext("{1}")`…，于是**上一个
 /// 实参写进串里的内容会被下一轮当成模板再扫一遍**。只要某个实参的值里恰好含 `{1}` —— 纸张文本、

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 GLOBAL_DATUM_INIT(temporary_flavor_text_vis, /obj/effect/overlay/indicator/temporary_flavor_text, new)
 
 /obj/effect/overlay/indicator/temporary_flavor_text

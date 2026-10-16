@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Ethereals:
 /// How long it takes an ethereal to drain or charge APCs. Also used as a spam limiter.
 #define ETHEREAL_APC_DRAIN_TIME (3 SECONDS)

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/ammo_workbench
 	name = "ammunition workbench"
 	desc = "A machine specifically made for manufacturing ammunition. Fits anything ammo-related, from magazines and stripper clips to boxes."

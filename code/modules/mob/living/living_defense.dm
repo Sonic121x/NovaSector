@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 
 /mob/living/proc/run_armor_check(def_zone = null, attack_flag = MELEE, absorb_text = null, soften_text = null, armour_penetration, penetrated_text, silent=FALSE, weak_against_armour = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOB_RUN_ARMOR) //NOVA EDIT ADDITION
@@ -166,11 +166,11 @@
 	var/hit_limb_zone = check_hit_limb_zone_name(def_zone)
 	var/organ_hit_text = ""
 	if (hit_limb_zone)
-		// NOVA EDIT CHANGE - I18N - 受伤部位短语整条走 LANG：拼好的 " in the chest" 整串永远不是
+		// ZH EDIT CHANGE - I18N - 受伤部位短语整条走 LANG：拼好的 " in the chest" 整串永远不是
 		// 目录键，只有部位名本身在目录里 → 中文句子里嵌着 " in the chest"。
 		// ORIGINAL: organ_hit_text = " in \the [parse_zone_with_bodypart(hit_limb_zone)]"
 		organ_hit_text = LANG("mob.0605e73f00e4c83f", list(parse_zone_with_bodypart(hit_limb_zone)))
-		// NOVA EDIT END
+		// ZH EDIT END
 
 	switch (proj.suppressed)
 		if (SUPPRESSED_QUIET)
@@ -496,7 +496,7 @@
 		playsound(src, user.attack_sound, 50, TRUE, TRUE)
 
 	user.do_attack_animation(src)
-	visible_message(span_danger(LANG("mob.dd02d8c90a5dee7a", list(user, lang_localize_arg(user.attack_verb_continuous), src))), // NOVA EDIT - I18N - 第三人称攻击消息是纯占位模板（无可译文本、codemod 不抽），动词须就地反查；名字已由 Initialize 反查
+	visible_message(span_danger(LANG("mob.dd02d8c90a5dee7a", list(user, lang_localize_arg(user.attack_verb_continuous), src))), // ZH EDIT - I18N - 第三人称攻击消息是纯占位模板（无可译文本、codemod 不抽），动词须就地反查；名字已由 Initialize 反查
 		span_userdanger(LANG("mob.9ab70b397edc0103", list(user, user.attack_verb_continuous))),
 		null,
 		COMBAT_MESSAGE_RANGE,

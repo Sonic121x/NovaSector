@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*
 	Burn wounds
 */
@@ -194,7 +194,7 @@
 
 /datum/wound/burn/flesh/severity_text(simple = FALSE)
 	. = ..()
-	// NOVA EDIT CHANGE - i18n: compose the " Burn / <level> Infection" suffix as one whole per-level phrase
+	// ZH EDIT CHANGE - i18n: compose the " Burn / <level> Infection" suffix as one whole per-level phrase
 	// (reverse-looked-up via strings/i18n/*/_wound_burn.json) so the zh reads naturally ("无感染"/"完全感染")
 	// instead of the word-by-word fragments the shared LANG keys produced ("否 感染"/"总计 感染"). lang_reverse_text
 	// no-ops on en, so english output is byte-identical.

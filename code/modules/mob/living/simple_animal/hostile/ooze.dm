@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///Oozes are slime-esque creatures, they are highly gluttonous creatures primarily intended for player controll.
 /mob/living/simple_animal/hostile/ooze
 	name = "Ooze"

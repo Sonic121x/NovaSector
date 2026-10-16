@@ -129,11 +129,11 @@
 		parts += mod_part
 
 	for(var/obj/item/part as anything in parts)
-		// NOVA EDIT - I18N: reverse the theme adjective ("administrative"→行政) so the composed part name
+		// ZH EDIT - I18N: reverse the theme adjective ("administrative"→行政) so the composed part name
 		// ("administrative MOD helmet") isn't half-english; base part.name reversed at atom Initialize.
 		// ORIGINAL: part.name = "[name] [part.name]"
 		part.name = "[lang_reverse_text(name)] [part.name]"
-		part.desc = "[part.desc] [lang_reverse_text(desc)]" // NOVA EDIT CHANGE - I18N - ORIGINAL: part.desc = "[part.desc] [desc]"
+		part.desc = "[part.desc] [lang_reverse_text(desc)]" // ZH EDIT CHANGE - I18N - ORIGINAL: part.desc = "[part.desc] [desc]"
 		part.set_armor(armor_type)
 		part.resistance_flags = resistance_flags
 		part.flags_1 |= atom_flags //flags like initialization or admin spawning are here, so we cant set, have to add

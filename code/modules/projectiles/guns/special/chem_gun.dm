@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //his isn't a subtype of the syringe gun because the syringegun subtype is made to hold syringes
 //this is meant to hold reagents/obj/item/gun/syringe
 /obj/item/gun/chem

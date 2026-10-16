@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Helper to format the text that gets thrown onto the chem hud element.
 #define FORMAT_CHEM_MAX_TEXT(charges) MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd2828'>[round(charges)]</font></div>")
 /// Helper to format the text that gets thrown onto the chem hud element.
@@ -1082,9 +1082,9 @@
 			/*
 			if(!objective.check_completion())
 				changeling_win = FALSE
-			parts += "<b>[lang_reverse_text("Objective")] #[count]</b>: [lang_reverse_text(objective.explanation_text)] [objective.get_roundend_success_suffix()]" // NOVA EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
+			parts += "<b>[lang_reverse_text("Objective")] #[count]</b>: [lang_reverse_text(objective.explanation_text)] [objective.get_roundend_success_suffix()]" // ZH EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
 			*/
-			parts += "<b>[lang_reverse_text("Objective")] #[count]</b>: [lang_reverse_text(objective.explanation_text)]" // NOVA EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
+			parts += "<b>[lang_reverse_text("Objective")] #[count]</b>: [lang_reverse_text(objective.explanation_text)]" // ZH EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
 			// NOVA EDIT END - No greentext
 			count++
 

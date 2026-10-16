@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /mob/living/basic/snake/banded
 	name = "banded snake"
 	desc = "A colourful stripy snake. It's either a harmless asteroid kingsnake or a highly venomous and aggressive nebula viper. There's a mnemonic to tell them apart, you just need to look at the colours and examine them closely..."

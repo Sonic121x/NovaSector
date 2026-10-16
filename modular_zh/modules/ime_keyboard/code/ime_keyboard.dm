@@ -30,7 +30,7 @@
 
 /client/proc/ime_capture_install()
 	winset(src, IME_CAPTURE_ID, "parent=mapwindow;type=browser;pos=0,0;size=1x1;anchor1=0,0;is-visible=true")
-	var/page = file2text('modular_nova/modules/ime_keyboard/html/ime_capture.html')
+	var/page = file2text('modular_zh/modules/ime_keyboard/html/ime_capture.html')
 	page = replacetext(page, "/*IME_MACRO_COMMANDS*/{}", json_encode(ime_capture_macro_commands()))
 	src << browse(page, "window=[IME_CAPTURE_ID]")
 	ime_capture_active = TRUE

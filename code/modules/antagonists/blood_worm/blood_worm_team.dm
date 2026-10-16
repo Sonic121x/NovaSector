@@ -77,7 +77,7 @@
 	. = list()
 	for (var/i in 1 to length(objectives))
 		var/datum/objective/objective = objectives[i]
-		. += "<B>[lang_reverse_text("Objective")] #[i]</B>: [lang_reverse_text(objective.explanation_text)] [objective.get_roundend_success_suffix()]" // NOVA EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
+		. += "<B>[lang_reverse_text("Objective")] #[i]</B>: [lang_reverse_text(objective.explanation_text)] [objective.get_roundend_success_suffix()]" // ZH EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
 
 /datum/team/blood_worm/proc/did_we_win()
 	for (var/datum/objective/objective as anything in objectives)

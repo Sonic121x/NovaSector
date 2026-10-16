@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/power/manufacturing/router // Basically a splitter
 	name = "manufacturing router"
 	desc = "Distributes input to 3 output directions equally. Stacks are split, and you may toggle outputs with a multitool. May not receive from other routers."

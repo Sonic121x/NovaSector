@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //defines the drill hat's yelling setting
 #define DRILL_DEFAULT "default"
 #define DRILL_SHOUTING "shouting"
@@ -569,19 +569,19 @@
 				message += "!!"
 			if(DRILL_CANADIAN)
 				message = "[message]"
-				var/list/canadian_words = lang_speech_replacements("canadian_replacement.json", "canadian") // NOVA EDIT CHANGE - I18N - 按 locale 取表。ORIGINAL: strings("canadian_replacement.json", "canadian")
+				var/list/canadian_words = lang_speech_replacements("canadian_replacement.json", "canadian") // ZH EDIT CHANGE - I18N - 按 locale 取表。ORIGINAL: strings("canadian_replacement.json", "canadian")
 
 				for(var/key in canadian_words)
 					var/value = canadian_words[key]
 					if(islist(value))
 						value = pick(value)
 
-					// NOVA EDIT ADDITION START - I18N - 上面三行靠**前导空格**定位词首，中文词之间没有空格
+					// ZH EDIT ADDITION START - I18N - 上面三行靠**前导空格**定位词首，中文词之间没有空格
 					// → 中文键一条都匹配不上。中文键走无前缀的整串替换（大小写变体对中文无意义）。
 					if(lang_contains_cjk(key))
 						message = replacetextEx(message, key, value)
 						continue
-					// NOVA EDIT ADDITION END
+					// ZH EDIT ADDITION END
 					message = replacetextEx(message, " [uppertext(key)]", " [uppertext(value)]")
 					message = replacetextEx(message, " [capitalize(key)]", " [capitalize(value)]")
 					message = replacetextEx(message, " [key]", " [value]")

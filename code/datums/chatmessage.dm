@@ -142,7 +142,7 @@
 	if (!ismob(target))
 		extra_classes |= "small"
 
-	// NOVA EDIT ADDITION START - i18n: 头顶气泡（runechat）是**第二个不经任何落地层的显示面**
+	// ZH EDIT ADDITION START - i18n: 头顶气泡（runechat）是**第二个不经任何落地层的显示面**
 	// —— 它拿的是 visible_message 里那份 raw_msg（标签包装之前），所以聊天框里翻好的整行到这里
 	// 又变回英文。玩家实测报的「蟑螂 chitters.」即此：同一条 emote，聊天框正常、气泡英文。
 	//
@@ -152,10 +152,10 @@
 	// 例外：售货机、NPC 这类只说代码台词的说话者（lang_speaker_is_scripted），其 say 气泡同样可以落地。
 	if(extra_classes.Find("emote") || lang_speaker_is_scripted(target))
 		text = lang_fallback_apply(text, GLOB.i18n_server_locale)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	// Why are you yelling?
-	if(lang_yell_ending(text)) // NOVA EDIT CHANGE - I18N - 全角！！等价。ORIGINAL: if(copytext_char(text, -2) == "!!")
+	if(lang_yell_ending(text)) // ZH EDIT CHANGE - I18N - 全角！！等价。ORIGINAL: if(copytext_char(text, -2) == "!!")
 		extra_classes |= SPAN_YELL
 
 	var/list/prefixes

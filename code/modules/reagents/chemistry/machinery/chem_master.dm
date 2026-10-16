@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MAX_CONTAINER_PRINT_AMOUNT 50
 
 /obj/machinery/chem_master
@@ -300,7 +300,7 @@
 			for(var/datum/reagent/reagent as anything in beaker.reagents.reagent_list)
 				beakerContents += list(list(
 					"ref" = "[reagent.type]",
-					"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示（act 走 reagentRef）。ORIGINAL: "name" = reagent.name,
+					"name" = lang_localize_display_name(reagent.name), // ZH EDIT - I18N: 试剂名纯显示（act 走 reagentRef）。ORIGINAL: "name" = reagent.name,
 					"volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING),
 					"pH" = reagent.ph,
 					"color" = reagent.color,
@@ -322,7 +322,7 @@
 		for(var/datum/reagent/reagent as anything in reagents.reagent_list)
 			beakerContents += list(list(
 				"ref" = "[reagent.type]",
-				"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示（act 走 reagentRef）。ORIGINAL: "name" = reagent.name,
+				"name" = lang_localize_display_name(reagent.name), // ZH EDIT - I18N: 试剂名纯显示（act 走 reagentRef）。ORIGINAL: "name" = reagent.name,
 				"volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING),
 				"pH" = reagent.ph,
 				"color" = reagent.color,

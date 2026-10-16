@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/transformer_rp
 	name = "\improper Automatic Robotic Factory 5000"
 	desc = "A large metallic machine with an entrance and an exit. A sign on \

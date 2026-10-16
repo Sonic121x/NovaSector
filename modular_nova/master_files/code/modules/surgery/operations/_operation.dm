@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/surgery_operation/on_preop(atom/movable/operating_on, mob/living/surgeon, tool, list/operation_args)
 	. = ..()
 	// warning for unanesthetized surgery

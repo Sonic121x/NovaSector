@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(law_panel, R_ADMIN, "法则面板", "View the AI laws.", ADMIN_CATEGORY_EVENTS)
 	if(!isobserver(user) && SSticker.HasRoundStarted())
 		message_admins("[key_name_admin(user)] checked AI laws via the Law Panel.")

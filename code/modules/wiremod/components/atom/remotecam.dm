@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define REMOTECAM_RANGE_FAR 7
 #define REMOTECAM_RANGE_NEAR 2
 #define REMOTECAM_ENERGY_USAGE_NEAR 0.003 * STANDARD_CELL_CHARGE //Normal components have 0.001 * STANDARD_CELL_CHARGE, this is expensive to livestream footage

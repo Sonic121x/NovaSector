@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 	////////////
 	//SECURITY//
 	////////////
@@ -482,7 +482,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 			return
 	else if (byond_version < warn_version || (byond_version == warn_version && byond_build < warn_build)) //We have words for this client.
 		if(CONFIG_GET(flag/client_warn_popup))
-			// NOVA EDIT - i18n: 旧 browse 弹窗 raw browse 不过 /datum/browser 的 AC 钩子，直接复用下方 else 分支同款 LANG key 拼装（精确、含占位符/链接）
+			// ZH EDIT - i18n: 旧 browse 弹窗 raw browse 不过 /datum/browser 的 AC 钩子，直接复用下方 else 分支同款 LANG key 拼装（精确、含占位符/链接）
 			var/msg = "[LANG("client.832182dbdabb60ea", null)]<br>"
 			msg += CONFIG_GET(string/client_warn_message) + "<br><br>"
 			msg += "[LANG("client.2becbdd0a8e46bab", list(byond_version, byond_build))]<br>"
@@ -740,14 +740,14 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey] && !(ckey in GLOB.bunker_passthrough))
 			log_access("Failed Login: [key] - [address] - New account attempting to connect during panic bunker")
 			message_admins(span_adminnotice("Failed Login: [key] - [address] - New account attempting to connect during panic bunker"))
-			// NOVA EDIT CHANGE START - 邀请链接改走 config（config.txt 的 DISCORD_LINK），下游各服在自己的
+			// ZH EDIT CHANGE START - 邀请链接改走 config（config.txt 的 DISCORD_LINK），下游各服在自己的
 			// config 里设即可，不必为了换链接去改核心文件。未设置时沿用上游原链接，行为不变。
 			var/discord_invite = CONFIG_GET(string/discord_link)
 			if(!discord_invite || discord_invite == /datum/config_entry/string/discord_link::config_entry_value)
 				discord_invite = "https://discord.gg/novasector"
 			to_chat_immediate(src, span_notice("Hi! We have temporarily enabled safety measures that prevents new players from joining currently. <br>Please try again later, or contact a staff on Discord if you have any questions. <br> <br> To join our community, check out our Discord! To gain full access to our Discord, read the rules and post a request in the #access-requests channel under the \"Landing Zone\" category in the Discord server linked here: <a href='[discord_invite]'>[discord_invite]</a>"))
 			// ORIGINAL: to_chat_immediate(src, span_notice("… <a href='https://discord.gg/novasector'>https://discord.gg/novasector</a>"))
-			// NOVA EDIT CHANGE END
+			// ZH EDIT CHANGE END
 			var/list/connectiontopic_a = params2list(connectiontopic)
 			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
 			if(panic_addr && !connectiontopic_a["redirect"])
@@ -827,10 +827,10 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	. = player_age
 
 /client/proc/findJoinDate()
-	// NOVA EDIT ADDITION START - BYOND_ACCOUNT_AGE_CHECK - allow operators to avoid external member page lookups
+	// ZH EDIT ADDITION START - BYOND_ACCOUNT_AGE_CHECK - allow operators to avoid external member page lookups
 	if(CONFIG_GET(flag/disable_byond_account_age_check))
 		return
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
 	if(!http)
 		log_world("Failed to connect to byond member page to age check [ckey]")
@@ -1186,7 +1186,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 			continue
 		panel_tabs |= verb_to_init.category
 		verblist[++verblist.len] = list(verb_to_init.category, verb_to_init.name)
-	// NOVA EDIT CHANGE - i18n: 附带页签显示译名表（locale==en 时为空 list，JS 侧回落原名）
+	// ZH EDIT CHANGE - i18n: 附带页签显示译名表（locale==en 时为空 list，JS 侧回落原名）
 	// - ORIGINAL: src.stat_panel.send_message("init_verbs", list(panel_tabs = panel_tabs, verblist = verblist))
 	src.stat_panel.send_message("init_verbs", list(panel_tabs = panel_tabs, verblist = verblist, tab_labels = lang_statpanel_tab_labels()))
 

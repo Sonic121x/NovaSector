@@ -91,7 +91,7 @@ export const CATEGORY_ICONS_COOKING = {
   Condiment: 'bottle-water',
 } as const;
 
-// NOVA EDIT ADDITION START - i18n: display labels for tool_behaviors. The raw value
+// ZH EDIT ADDITION START - i18n: display labels for tool_behaviors. The raw value
 // (e.g. "knife") is an icon-class key AND a comparison id, so it must stay English;
 // only the shown text is localized. Keep in sync with #define TOOL_* in code/__DEFINES/tools.dm.
 export const TOOL_LABELS: Record<string, string> = {
@@ -118,4 +118,4 @@ export const TOOL_LABELS: Record<string, string> = {
   billow: '风箱',
   tong: '夹钳',
 };
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END

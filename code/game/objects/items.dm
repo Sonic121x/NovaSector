@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Anything you can pick up and hold.
 /obj/item
 	name = "item"
@@ -490,7 +490,7 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "移至顶部", null)
 		research_msg += "None"
 
 	// Extractable materials. Only shows the names, not the amounts.
-	research_msg += ".<br><font color='purple'>[LANG("obj.19d9ab4c3c61fa67", null)]</font> " // NOVA EDIT - I18N
+	research_msg += ".<br><font color='purple'>[LANG("obj.19d9ab4c3c61fa67", null)]</font> " // ZH EDIT - I18N
 	if (length(custom_materials))
 		sep = ""
 		for(var/mat in custom_materials)
@@ -1172,14 +1172,14 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "拾取", null)
 /obj/item/proc/openTip(location, control, params, user)
 	if(last_force_string_check != force && !(item_flags & FORCE_STRING_OVERRIDE))
 		set_force_string()
-	// NOVA EDIT CHANGE - i18n: 反查 "Force" 标签与力量描述词(very low/robust… 进目录；locale==en 为 no-op）
+	// ZH EDIT CHANGE - i18n: 反查 "Force" 标签与力量描述词(very low/robust… 进目录；locale==en 为 no-op）
 	// desc 也在此单独反查：content 是拼接串，openToolTip 那道整串反查对它必然落空。
-	var/localized_desc = lang_reverse_text(desc) // NOVA EDIT ADDITION - i18n
+	var/localized_desc = lang_reverse_text(desc) // ZH EDIT ADDITION - i18n
 	if(!(item_flags & FORCE_STRING_OVERRIDE))
 		openToolTip(user,src,params,title = name,content = "[localized_desc]<br>[force ? "<b>[lang_reverse_text("Force")]:</b> [lang_reverse_text(force_string)]" : ""]",theme = "")
 	else
 		openToolTip(user,src,params,title = name,content = "[localized_desc]<br><b>[lang_reverse_text("Force")]:</b> [lang_reverse_text(force_string)]",theme = "")
-	// NOVA EDIT CHANGE END - ORIGINAL: content = "[desc]<br>[force ? "<b>Force:</b> [force_string]" : ""]" / content = "[desc]<br><b>Force:</b> [force_string]"
+	// ZH EDIT CHANGE END - ORIGINAL: content = "[desc]<br>[force ? "<b>Force:</b> [force_string]" : ""]" / content = "[desc]<br><b>Force:</b> [force_string]"
 
 /obj/item/MouseEntered(location, control, params)
 	. = ..()

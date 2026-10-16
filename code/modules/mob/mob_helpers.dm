@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // see _DEFINES/is_helpers.dm for mob type checks
 
 ///Find the mob at the bottom of a buckle chain
@@ -323,7 +323,7 @@
 			to_chat(ghost, span_ghostalert(message))
 			continue
 
-		// NOVA EDIT CHANGE START - i18n: 只翻**锚文本**，`href` 原样留在 DM 里拼 —— 把整条
+		// ZH EDIT CHANGE START - i18n: 只翻**锚文本**，`href` 原样留在 DM 里拼 —— 把整条
 		// `<a href=…>` 收进模板会让链接跟着译文走（AGENTS 里那 71 条含 <a> 的模板不登记剥标签
 		// 变体，就是这个道理）。这里锚文本单独 LANG，链接一个字节都不动。
 		// ORIGINAL: 见下方两行注释。
@@ -331,7 +331,7 @@
 		// ORIGINAL: var/view_link = " <a href='byond://?src=[REF(ghost)];view=[REF(source)]'>(View)</a>"
 		var/interact_link = click_interact ? " <a href='byond://?src=[REF(ghost)];play=[REF(source)]'>[LANG("_root.c83585ae0bccd5c5", null)]</a>" : ""
 		var/view_link = " <a href='byond://?src=[REF(ghost)];view=[REF(source)]'>[LANG("_root.bd8f8d4bb83c635d", null)]</a>"
-		// NOVA EDIT CHANGE END
+		// ZH EDIT CHANGE END
 
 		to_chat(ghost, span_ghostalert(LANG("_root.92d294b5e6fdb362", list(message, custom_link, interact_link, view_link))))
 
@@ -341,7 +341,7 @@
 		)
 		toast.add_overlay(alert_overlay)
 		toast.click_interact = click_interact
-		// NOVA EDIT CHANGE - i18n: 拆成两条完整句子；原本 "play"/"view" 是嵌在插值里的单词，
+		// ZH EDIT CHANGE - i18n: 拆成两条完整句子；原本 "play"/"view" 是嵌在插值里的单词，
 		// 既进不了目录（单 token）、也没法让中文换语序。
 		// ORIGINAL: toast.desc = "Click to [click_interact ? "play" : "view"]."
 		toast.desc = click_interact ? LANG("_root.1231541620e1e8db", null) : LANG("_root.63a351d8c1ac3d47", null)

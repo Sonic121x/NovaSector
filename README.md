@@ -44,7 +44,7 @@ These are the rules the layer is built around, and the reason it can be dropped 
   ride along in a separate overlay, so anything a UI sends back to the server round-trips byte-identically.
 - **Catalog keys are content hashes**, so upstream rewording invalidates exactly the affected strings rather
   than silently shipping a stale translation.
-- **Core file edits are minimized and marked.** Nearly all of this fork lives in `modular_nova/modules/i18n/`
+- **Core file edits are minimized and marked.** Nearly all of this fork lives in `modular_zh/modules/i18n/`
   and generated catalogs; edits inside `code/` are mechanical `LANG()` call sites produced by a codemod.
 
 ## Repository layout
@@ -52,7 +52,7 @@ These are the rules the layer is built around, and the reason it can be dropped 
 | Path | Contents |
 | --- | --- |
 | [`strings/i18n/<locale>/`](./strings/i18n) | Translation catalogs — flat JSON, importable into Crowdin / Weblate / Lokalise |
-| [`modular_nova/modules/i18n/`](./modular_nova/modules/i18n/readme.md) | Runtime: `LANG()`, reverse lookup, display boundaries, fallback layers |
+| [`modular_zh/modules/i18n/`](./modular_zh/modules/i18n/readme.md) | Runtime: `LANG()`, reverse lookup, display boundaries, fallback layers |
 | [`tools/i18n/`](./tools/i18n/README.md) | Rust + Node toolchain: extract, rewrite, resync, lint, machine translation |
 | [`tgui/packages/tgui/i18n/`](./tgui/packages/tgui) | Frontend auto-localization and its bundled catalog |
 | [`AGENTS.md`](./AGENTS.md) | Architecture notes and the running log of localization failure modes |

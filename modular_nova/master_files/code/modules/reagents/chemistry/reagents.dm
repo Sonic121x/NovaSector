@@ -12,7 +12,7 @@
 		var/obj/structure/spider/webs_or_something = exposed_obj
 		webs_or_something?.take_damage(rand(1, 3), BURN, 0) // slowly but surely damages web structures
 
-// NOVA EDIT ADDITION START - i18n
+// ZH EDIT ADDITION START - i18n
 /// i18n：ConfigLoaded 之后重建描述的钩子。默认什么都不做 —— 试剂描述由 TGUI 负载 overlay
 /// 翻译，实例数据保持 canonical English 是显示边界方案的地基。
 ///
@@ -21,4 +21,4 @@
 /// （带占位符的 canonical 形态），先反查再替换。
 /datum/reagent/proc/lang_relocalize_description()
 	return
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END

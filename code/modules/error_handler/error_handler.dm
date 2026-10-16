@@ -1,9 +1,9 @@
 GLOBAL_VAR_INIT(total_runtimes, GLOB.total_runtimes || 0)
 GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
-// NOVA EDIT ADDITION START - 原始异常探针（见下方 /world/Error 内的说明）。
+// ZH EDIT ADDITION START - 原始异常探针（见下方 /world/Error 内的说明）。
 /// 探针已输出条数（去重后的不同出错位置数）。**必须是整数全局量而不是列表**：出事的正是静态列表取值那一步。
 GLOBAL_VAR_INIT(nova_error_probe_logged, 0)
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 #ifdef USE_CUSTOM_ERROR_HANDLER
 #define ERROR_USEFUL_LEN 2
@@ -53,7 +53,7 @@ GLOBAL_VAR_INIT(nova_error_probe_logged, 0)
 		Reboot(reason = 1)
 		return
 
-	// NOVA EDIT ADDITION START - 原始异常探针
+	// ZH EDIT ADDITION START - 原始异常探针
 	// 2026-09-04 线上 round-829：本 proc 自己在下面 `error_last_seen[erroruid]` 那行炸了（bad list），
 	// 于是**原始异常的身份被吞掉**——7578 条日志记的全是处理器的二次错误，真正抛错的
 	// /datum/light_source/New() 抛的是什么至今不明。这里在**任何静态列表访问之前**先把 E 落盘。
@@ -104,7 +104,7 @@ GLOBAL_VAR_INIT(nova_error_probe_logged, 0)
 		catch
 			probe_src = "(unreadable)"
 		SEND_TEXT(world.log, "NOVA-ERROR-PROBE: name=[E.name] | file=[E.file] | line=[E.line] | src=[probe_src][probe_note]")
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	var/static/regex/stack_workaround
 	if(isnull(stack_workaround))

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///Percentage of a civilian bounty the civilian will make.
 #define CIV_BOUNTY_SPLIT 30
 #define HIGH_PRIORITY_BOUNTY_ODDS 20
@@ -259,7 +259,7 @@
 		if(data["listBounty"]["name"] == global_bounty.name)
 			continue
 		data["listBounty"] += list(list(
-			"name" = lang_localize_display_name(global_bounty.name), // NOVA EDIT - I18N: 赏金名纯显示。ORIGINAL: "name" = global_bounty.name,
+			"name" = lang_localize_display_name(global_bounty.name), // ZH EDIT - I18N: 赏金名纯显示。ORIGINAL: "name" = global_bounty.name,
 			"description" = global_bounty.description,
 			"reward" = global_bounty.get_bounty_reward(),
 			"claimed" = global_bounty.claimed,

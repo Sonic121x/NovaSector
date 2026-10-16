@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// the actual organ that exists when made by the reagent
 // The organ that spawns spiderlings between 30 seconds and 1
 /obj/item/organ/body_egg/spideregg_infection

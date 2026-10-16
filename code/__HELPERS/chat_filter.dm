@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // [2] is the group index of the blocked term when it is not using word bounds.
 // This is sanity checked by unit tests.
 #define GET_MATCHED_GROUP(regex) (LOWER_TEXT(regex.group[2] || regex.match))

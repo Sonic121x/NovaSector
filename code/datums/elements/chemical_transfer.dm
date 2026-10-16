@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //the default chemical transfer messages if they aren't set
 #define DEFAULT_ATTACKER_MESSAGE span_notice("You transfer your chemicals to %VICTIM.")
 #define DEFAULT_VICTIM_MESSAGE span_userdanger("Chemicals have been transferred into you from %ATTACKER!")

@@ -1,6 +1,6 @@
 //! 英文主目录的内存模型与落盘。
 //!
-//! 文件格式与运行时 (modular_nova/modules/i18n/code/runtime.dm) 读取的一致：
+//! 文件格式与运行时 (modular_zh/modules/i18n/code/runtime.dm) 读取的一致：
 //! 每个命名空间一个 JSON，内容为扁平的 {"key": "模板"}。BTreeMap 保证 key 有序，
 //! 便于 diff 与 Tolgee 同步。
 

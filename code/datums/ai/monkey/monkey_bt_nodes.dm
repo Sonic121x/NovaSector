@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 
 /// Monkey's battle screech variant  louder and on a 5 second cooldown
 /datum/bt_node/ai_behavior/battle_screech/monkey
@@ -75,7 +75,7 @@
 		else
 			victim.visible_message(span_danger(LANG("datum.61694db59c35a1bd", list(living_pawn, target, victim))), span_userdanger(LANG("datum.ef984e8ac8211261", list(living_pawn, target))))
 			success = TRUE
-			// NOVA EDIT CHANGE START - 抢夺中途猴子被打死会把武器留在 nullspace（永久消失）
+			// ZH EDIT CHANGE START - 抢夺中途猴子被打死会把武器留在 nullspace（永久消失）
 			// temporarilyRemoveItemFromInventory 先把物品挪进 nullspace；猴子这时被打死/删除，drop_location() 是 null、
 			// forceMove(null) 等于扔进虚空；而 equip_item 的「更好的武器」分支忽略 put_in_hands 的返回值、无条件返回 TRUE，
 			// 失手时连兜底 forceMove 都不会跑。守住不变量：物品离开背包后必须落到某个真实位置，落点依次退化到猴子 → 受害者 → 受害者所在 turf。
@@ -87,7 +87,7 @@
 				var/atom/fallback = (QDELETED(living_pawn) ? null : living_pawn.drop_location()) || victim.drop_location() || get_turf(victim)
 				if(fallback)
 					target.forceMove(fallback)
-			// NOVA EDIT CHANGE END
+			// ZH EDIT CHANGE END
 
 	finish_action(controller, success)
 

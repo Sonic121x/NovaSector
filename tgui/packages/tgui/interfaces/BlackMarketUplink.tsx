@@ -126,7 +126,7 @@ export const BlackMarketUplink = (props) => {
                     </Stack>
                   </Stack.Item>
                   <Stack.Item color="label">
-                    {/* NOVA EDIT CHANGE - I18N: 数值包成占位符，整条按 children 模板
+                    {/* ZH EDIT CHANGE - I18N: 数值包成占位符，整条按 children 模板
                         `{0} in stock` 进目录。
                         ORIGINAL: {item.amount ? `${item.amount} in stock` : 'Out of stock'} */}
                     {item.amount ? (
@@ -137,7 +137,7 @@ export const BlackMarketUplink = (props) => {
                       'Out of stock'
                     )}
                   </Stack.Item>
-                  {/* NOVA EDIT CHANGE - I18N - ORIGINAL: <Stack.Item>{`${formatMoney(item.cost)} cr`}</Stack.Item> */}
+                  {/* ZH EDIT CHANGE - I18N - ORIGINAL: <Stack.Item>{`${formatMoney(item.cost)} cr`}</Stack.Item> */}
                   <Stack.Item>
                     <span>{formatMoney(item.cost)}</span> cr
                   </Stack.Item>
@@ -187,7 +187,7 @@ const ShipmentSelector = (props) => {
             <Stack.Item key={method.name} mx={1} width="17.5rem">
               <Box fontSize="30px">{method.name}</Box>
               <Box mt={1}>{method.description}</Box>
-              {/* NOVA EDIT CHANGE - I18N: content 里的运行期拼接落不进 prop 模板逆匹配
+              {/* ZH EDIT CHANGE - I18N: content 里的运行期拼接落不进 prop 模板逆匹配
                   面（字面段 " cr" 太短、没有实词锚），改成 children 模板 `{0} cr`。
                   ORIGINAL: content={`${formatMoney(method.price)} cr`} */}
               <Button

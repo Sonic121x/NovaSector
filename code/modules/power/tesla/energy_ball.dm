@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define TESLA_DEFAULT_ENERGY (695.304 MEGA JOULES)
 #define TESLA_MINI_ENERGY (347.652 MEGA JOULES) // Has a weird scaling thing so this is a lie for now (doesn't generate power anyways).
 //Zap constants, speeds up targeting

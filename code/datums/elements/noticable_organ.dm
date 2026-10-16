@@ -52,7 +52,7 @@
 	if(!should_show_text(examined))
 		return
 
-	// NOVA EDIT CHANGE - i18n: **先反查、再替换 %PRONOUN_**。目录键里留着 `%PRONOUN_Their …`
+	// ZH EDIT CHANGE - i18n: **先反查、再替换 %PRONOUN_**。目录键里留着 `%PRONOUN_Their …`
 	// （抽取器照抄 AddElement 的实参），替换之后的整串再也不等于任何键 —— 译文躺在目录里、
 	// 检查文本恒为英文。与公告系统的 %PERSON/%RANK、奇异试剂的 %MAXHEALTHRATIO% 同一条道理。
 	// ORIGINAL: var/examine_text = REPLACE_PRONOUNS(infused_desc, examined)

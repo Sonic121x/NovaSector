@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Always announce this action
 #define ALWAYS_ANNOUNCE (ALL)
 // Announced when someone tries to ban someone without QM access
@@ -264,7 +264,7 @@
 		data["machines"] += list(
 			list(
 				"icon" = icon2base64(icon(initial(parent.icon), initial(parent.icon_state), frame = 1)),
-				"name" = parent.lang_localize_name_for_display(parent.name), // NOVA EDIT - I18N: 机器名纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: "name" = parent.name,
+				"name" = parent.lang_localize_name_for_display(parent.name), // ZH EDIT - I18N: 机器名纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: "name" = parent.name,
 				"on_hold" = !!holds[remote],
 				"location" = get_area_name(parent, TRUE),
 			)

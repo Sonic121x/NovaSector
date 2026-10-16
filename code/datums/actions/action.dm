@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * # Action system
  *
@@ -60,11 +60,11 @@
 
 /datum/action/New(Target)
 	link_to(Target)
-	// NOVA EDIT ADDITION START - i18n - 全服中文时反查技能/法术 name/desc
+	// ZH EDIT ADDITION START - i18n - 全服中文时反查技能/法术 name/desc
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		name = lang_reverse_text(name)
 		desc = lang_reverse_text(desc)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 /// Links the passed target to our action, registering any relevant signals
 /datum/action/proc/link_to(Target)

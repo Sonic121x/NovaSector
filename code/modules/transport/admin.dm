@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(reset_tram, R_DEBUG|R_ADMIN, "重置电车", "Reset a tram controller or its contents.", ADMIN_CATEGORY_DEBUG)
 	var/datum/transport_controller/linear/tram/broken_controller
 	var/selected_transport_id = tgui_input_list(user, LANG("datum.36d2dca94b835fe3", null), LANG("datum.818db524dee31846", null), SStransport.debug_tram_list)

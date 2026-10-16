@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/clothing/glasses/hypno
 	name = "hypnotic goggles"
 	desc = "An all-in-one mnemonic impression repeater and vision tinter, used to entrance the wearer with a programmed phrase. Foam inserts, to boot."

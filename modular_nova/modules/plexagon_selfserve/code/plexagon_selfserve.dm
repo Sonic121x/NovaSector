@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define PUNCH_ID_INVALID -1
 #define PUNCH_ID_OFF_COOLDOWN 0
 

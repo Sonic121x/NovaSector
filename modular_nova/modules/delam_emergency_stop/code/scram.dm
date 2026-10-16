@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define SM_PREVENT_EXPLOSION_THRESHOLD 100
 #define SM_COOLING_MIXTURE_MOLES 16000
 #define SM_COOLING_MIXTURE_TEMP 170
@@ -134,7 +135,7 @@
 	if(admin_disabled)
 		investigate_log("Delam SCRAM tried to activate but an admin disabled it", INVESTIGATE_ATMOS)
 		playsound(src, 'sound/machines/compiler/compiler-failure.ogg', 100, FALSE, MACHINE_SOUND_RANGE, ignore_walls = TRUE, use_reverb = TRUE, falloff_distance = MACHINE_SOUND_FALLOFF_DISTANCE)
-		radio.talk_into(src, LANG("_radio.delam_fault", null), warning_channel) // NOVA EDIT - I18N: talk_into is not a codemod sink
+		radio.talk_into(src, LANG("_radio.delam_fault", null), warning_channel) // ZH EDIT - I18N: talk_into is not a codemod sink
 		audible_message(span_danger(LANG("obj.bb645b94a7296743", list(src))))
 		return FALSE
 
@@ -175,7 +176,7 @@
 			notify_volume = 75,
 		)
 
-	radio.talk_into(src, LANG("_radio.delam_firing", null), emergency_channel) // NOVA EDIT - I18N: talk_into is not a codemod sink
+	radio.talk_into(src, LANG("_radio.delam_firing", null), emergency_channel) // ZH EDIT - I18N: talk_into is not a codemod sink
 
 	// fight power with power
 	addtimer(CALLBACK(src, PROC_REF(put_on_a_show)), EVAC_WARNING_TIMER)

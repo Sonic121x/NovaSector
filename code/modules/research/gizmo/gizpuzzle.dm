@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Holds the puzzle sequences, receives the pulses, decides if theyre correct, and gives feedback and calls the right callbacks when it does
 /datum/gizmo_puzzle
 	/// The wires we need to pulse for cracking the code

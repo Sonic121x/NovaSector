@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/xenoarch/wave_scanner_backpack
 	name = "Alden-Saraspova wave scanner backpack"
 	desc = "Old Nanotrasen wave scanner, designed to search and analyze exotic waves."

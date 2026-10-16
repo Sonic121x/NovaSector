@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // This contains all boxes with edible stuffs or stuff related to edible stuffs.
 
 /obj/item/storage/box/donkpockets
@@ -164,8 +164,8 @@
 /obj/item/storage/box/ingredients/Initialize(mapload)
 	. = ..()
 	if(theme_name)
-		var/disp_theme = (GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) ? lang_reverse_text(theme_name) : theme_name // NOVA EDIT - I18N - localize the cuisine theme in the box name
-		name = "[name] ([disp_theme])" // NOVA EDIT - I18N - ORIGINAL: name = "[name] ([theme_name])"
+		var/disp_theme = (GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) ? lang_reverse_text(theme_name) : theme_name // ZH EDIT - I18N - localize the cuisine theme in the box name
+		name = "[name] ([disp_theme])" // ZH EDIT - I18N - ORIGINAL: name = "[name] ([theme_name])"
 		desc = LANG("obj.9ac3110c0933ee2f", list(theme_name))
 		inhand_icon_state = "syringe_kit"
 

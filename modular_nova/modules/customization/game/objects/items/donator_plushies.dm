@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*
 * Donation reward plushies go in this file
 * Plushies in this file are not usable in maps, so if you WISH for your plushie to /maybe/ be used in maps

@@ -15,7 +15,7 @@
 
 /datum/uplink_item/implants/freedom/New()
 	. = ..()
-	// NOVA EDIT CHANGE - i18n: the desc is composed at runtime (base + charge sentence), so the uplink JSON asset's
+	// ZH EDIT CHANGE - i18n: the desc is composed at runtime (base + charge sentence), so the uplink JSON asset's
 	// whole-string reverse misses it and the base stayed english. Reverse the base and LANG the charge {0} template
 	// (datum.b01173f142facf65) so the composed desc is fully localized here. lang_reverse_text/LANG no-op on en / en locale.
 	// ORIGINAL: desc += " Implant has enough energy for [FREEDOM_IMPLANT_CHARGES] uses before it becomes inert and harmlessly self-destructs."

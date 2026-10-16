@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define METEOR_WAVE_MIN_NOTICE (180 EVENT_SECONDS)
 #define METEOR_WAVE_MAX_NOTICE (300 EVENT_SECONDS)
 #define METEOR_WAVE_DURATION (76 EVENT_SECONDS)

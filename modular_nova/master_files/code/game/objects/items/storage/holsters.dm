@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/storage/belt/holster/energy
 	desc = "A rather plain pair of shoulder holsters with insulated padding and an integrated wireless recharger. \
 		Designed to hold energy weaponry."

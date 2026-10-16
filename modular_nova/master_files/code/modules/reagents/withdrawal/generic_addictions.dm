@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/addiction/nicotine/proc/trigger_random_side_effect(mob/living/carbon/affected_carbon, seconds_per_tick, strength = 1)
 	switch(rand(1, 4))
 		if(1)

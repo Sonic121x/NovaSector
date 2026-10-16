@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define BUILDING_WALL_ABILITY "building wall ability"
 
 /datum/action/cooldown/mob_cooldown/bot/build_girder
@@ -75,7 +75,7 @@
 	for(var/obj/item/stack/managed_stack in user.contents)
 		data["stacks"] += list(list(
 			"stack_reference" = REF(managed_stack),
-			"stack_name" = managed_stack.lang_localize_name_for_display(managed_stack.name), // NOVA EDIT - I18N: 纯显示；atom 版守玩家改名。ORIGINAL: "stack_name" = managed_stack.name,
+			"stack_name" = managed_stack.lang_localize_name_for_display(managed_stack.name), // ZH EDIT - I18N: 纯显示；atom 版守玩家改名。ORIGINAL: "stack_name" = managed_stack.name,
 			"stack_amount" = managed_stack.amount,
 			"stack_maximum_amount" = managed_stack.max_amount,
 			"stack_icon" = managed_stack.icon,

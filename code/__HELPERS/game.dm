@@ -241,7 +241,7 @@
 		return
 	if (announce_to_ghosts)
 		var/area/player_area = get_area(character)
-		deadchat_broadcast(span_game(LANG("_root.1091c6c72cb694ce", list(span_name(player_area.name)))), span_game("[span_name(character.real_name)] ([rank])"), follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE) // NOVA EDIT - I18N: 幽灵到站播报（source + message 拼接，整句非目录键）
+		deadchat_broadcast(span_game(LANG("_root.1091c6c72cb694ce", list(span_name(player_area.name)))), span_game("[span_name(character.real_name)] ([rank])"), follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE) // ZH EDIT - I18N: 幽灵到站播报（source + message 拼接，整句非目录键）
 	if(character.mind && (character.mind.assigned_role.job_flags & JOB_ANNOUNCE_ARRIVAL))
 		aas_config_announce(/datum/aas_config_entry/arrival, list("PERSON" = character.real_name,"RANK" = rank))
 
@@ -343,4 +343,4 @@
 		message = html_encode(message)
 	else
 		message = copytext(message, 2)
-	to_chat(target, custom_boxed_message("purple_box", span_purple("<b>[lang_reverse_text(source)]: </b>[message]")), type = MESSAGE_TYPE_INFO) // NOVA EDIT - i18n: 反查提示前缀（"Tip of the round"→ui.json）
+	to_chat(target, custom_boxed_message("purple_box", span_purple("<b>[lang_reverse_text(source)]: </b>[message]")), type = MESSAGE_TYPE_INFO) // ZH EDIT - i18n: 反查提示前缀（"Tip of the round"→ui.json）

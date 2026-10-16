@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define ALERT_DELAY (50 SECONDS)
 
 /obj/machinery/newscaster
@@ -225,7 +225,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 	data["viewing_channel"] = current_channel?.channel_id
 	data["paper"] = paper_remaining
 	//Here we display all the information about the current channel.
-	data["channelName"] = lang_reverse_text(current_channel?.channel_name) // NOVA EDIT - I18N: display-only
+	data["channelName"] = lang_reverse_text(current_channel?.channel_name) // ZH EDIT - I18N: display-only
 	data["channelAuthor"] = current_channel?.author
 
 	if(!current_channel)
@@ -262,7 +262,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 	var/list/channel_list = list()
 	for(var/datum/feed_channel/channel as anything in GLOB.news_network.network_channels)
 		channel_list += list(list(
-			"name" = lang_reverse_text(channel.channel_name), // NOVA EDIT - I18N: channel display name (selection uses "ID", display-only safe; default channel names in _news_channels.json)
+			"name" = lang_reverse_text(channel.channel_name), // ZH EDIT - I18N: channel display name (selection uses "ID", display-only safe; default channel names in _news_channels.json)
 			"author" = channel.author,
 			"censored" = channel.censored,
 			"locked" = channel.locked,

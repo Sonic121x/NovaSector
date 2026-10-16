@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// A single reagent
 /datum/reagent
 	abstract_type = /datum/reagent
@@ -108,14 +108,14 @@
 		AddElement(/datum/element/venue_price, glass_price)
 	if(!mass)
 		mass = rand(10, 800)
-	// NOVA EDIT ADDITION START - i18n - 全服中文时反查试剂 name/description/taste（覆盖聊天 [试剂] 等单词类插值；P1 的 TGUI 多词门槛漏掉的单词名靠这里）
+	// ZH EDIT ADDITION START - i18n - 全服中文时反查试剂 name/description/taste（覆盖聊天 [试剂] 等单词类插值；P1 的 TGUI 多词门槛漏掉的单词名靠这里）
 	// READY 门让 GLOB 母版实例保持 canonical English；SSreagents.Initialize 会在 runtime ready 后重建，
 	// 此处只服务运行期新实例。
 	if(lang_runtime_is_ready() && GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		name = lang_reverse_text(name)
 		description = lang_reverse_text(description)
 		taste_description = lang_reverse_text(taste_description)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 /// This should only be called by the holder, so it's already handled clearing its references
 /datum/reagent/Destroy()

@@ -38,11 +38,11 @@
  * * encode_text - if TRUE, the text will be HTML encoded
  * * tts_speaker - optional voice identifier for player-authored announcements; invalid values fall back to the system voice
  */
-/proc/priority_announce(text, title = "", sound, type, sender_override, has_important_message = FALSE, list/mob/players = GLOB.player_list, encode_title = TRUE, encode_text = TRUE, color_override, tts_speaker) // NOVA EDIT CHANGE - ADMIN - Added optional player-authored TTS voice.
+/proc/priority_announce(text, title = "", sound, type, sender_override, has_important_message = FALSE, list/mob/players = GLOB.player_list, encode_title = TRUE, encode_text = TRUE, color_override, tts_speaker) // ZH EDIT CHANGE - ADMIN - Added optional player-authored TTS voice.
 	if(!text)
 		return
 
-	// NOVA EDIT ADDITION START - i18n: 公告非 sink，正文/标题靠运行时反查翻译。
+	// ZH EDIT ADDITION START - i18n: 公告非 sink，正文/标题靠运行时反查翻译。
 	// 在 html_encode 之前做（目录键是未转义英文）：整串命中→译文；否则 AC 子串尽力翻动态正文。
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		if(istext(title) && length(title) > 0)
@@ -51,11 +51,11 @@
 		if(istext(text))
 			var/translated_text = lang_reverse_text(text)
 			text = (translated_text != text) ? translated_text : lang_fallback_apply(text)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
-	// NOVA EDIT ADDITION START - ADMIN - Replace prerecorded English announcement speech with localized TTS.
+	// ZH EDIT ADDITION START - ADMIN - Replace prerecorded English announcement speech with localized TTS.
 	var/tts_queued = tts_queue_global_announcement(text, title, players, tts_speaker)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	if(encode_title && title && length(title) > 0)
 		title = html_encode(title)
@@ -67,34 +67,34 @@
 
 	var/list/announcement_strings = list()
 
-	// NOVA EDIT ADDITION START - ADMIN - Both of these have to be read before the key is resolved
+	// ZH EDIT ADDITION START - ADMIN - Both of these have to be read before the key is resolved
 	// into a file: event_alert is the only signal for how urgent this announcement is, and an
 	// explicitly picked sound (admin command report, a module's own effect) must survive untouched.
 	var/event_alert = !isnull(sound) && !isnull(SSstation.announcer.event_sounds[sound])
 	var/announcer_speech = tts_sound_is_announcer_speech(sound)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	if(!sound)
 		sound = SSstation.announcer.get_rand_alert_sound()
 	else if(SSstation.announcer.event_sounds[sound])
 		sound = SSstation.announcer.event_sounds[sound]
-	// NOVA EDIT ADDITION START - ADMIN - Keep only a nonverbal cue when TTS carries the announcement.
+	// ZH EDIT ADDITION START - ADMIN - Keep only a nonverbal cue when TTS carries the announcement.
 	// The announcer sounds are all spoken English lines, so they cannot play under the synthesized
 	// speech - but they are not interchangeable either, so pick a cue that keeps the distinction.
 	if(tts_queued && announcer_speech)
 		sound = tts_priority_announcement_cue(urgent = event_alert, hostile = (type == ANNOUNCEMENT_TYPE_SYNDICATE))
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	var/header
 	switch(type)
 		if(ANNOUNCEMENT_TYPE_PRIORITY)
-			header = MAJOR_ANNOUNCEMENT_TITLE(lang_reverse_text("Priority Announcement")) // NOVA EDIT - i18n: 反查公告标题（词进 ui.json）
+			header = MAJOR_ANNOUNCEMENT_TITLE(lang_reverse_text("Priority Announcement")) // ZH EDIT - i18n: 反查公告标题（词进 ui.json）
 			if(length(title) > 0)
 				header += SUBHEADER_ANNOUNCEMENT_TITLE(title)
 		if(ANNOUNCEMENT_TYPE_CAPTAIN)
-			header = MAJOR_ANNOUNCEMENT_TITLE(lang_reverse_text("Captain's Announcement")) // NOVA EDIT - i18n: 反查公告标题
+			header = MAJOR_ANNOUNCEMENT_TITLE(lang_reverse_text("Captain's Announcement")) // ZH EDIT - i18n: 反查公告标题
 			GLOB.news_network.submit_article(text, "Captain's Announcement", NEWSCASTER_STATION_ANNOUNCEMENTS, null)
 		if(ANNOUNCEMENT_TYPE_SYNDICATE)
-			header = MAJOR_ANNOUNCEMENT_TITLE(lang_reverse_text("Syndicate Captain's Announcement")) // NOVA EDIT - i18n: 反查公告标题
+			header = MAJOR_ANNOUNCEMENT_TITLE(lang_reverse_text("Syndicate Captain's Announcement")) // ZH EDIT - i18n: 反查公告标题
 		else
 			header += generate_unique_announcement_header(title, sender_override)
 
@@ -102,7 +102,7 @@
 
 	///If the announcer overrides alert messages, use that message.
 	if(SSstation.announcer.custom_alert_message && !has_important_message)
-		// NOVA EDIT CHANGE - I18N: 播音员的自定义提示语是**编译期 span_alert() 包裹**的类型变量，
+		// ZH EDIT CHANGE - I18N: 播音员的自定义提示语是**编译期 span_alert() 包裹**的类型变量，
 		// 目录里存的是里层裸串 → 整串直接发出去必然 miss 反查，只剩 AC 子串兜底把 "important" 单词
 		// 替换成「重要」，其余留英文（表现：「Please stand by for an 重要message from our new intern.」）。
 		// lang_reverse_text 本身会剥单层 span 再查内层，这里补上调用即可。ORIGINAL: MAJOR_ANNOUNCEMENT_TEXT(SSstation.announcer.custom_alert_message)
@@ -149,12 +149,12 @@
 			has_important_message = TRUE,
 		)
 
-	// NOVA EDIT ADDITION START - I18N - 指挥报告（生成纸张/发到通讯台）正文是多段运行期拼接（威胁等级公告、
+	// ZH EDIT ADDITION START - I18N - 指挥报告（生成纸张/发到通讯台）正文是多段运行期拼接（威胁等级公告、
 	// 特别订单 station_goal.get_report()、station_trait.get_report() 报告、各 LANG 段），整串 reverse 够不着。
 	// 过边界模板引擎（插值段 {0} 模板整句命中）+ 字面 AC（多词短语兜底）；威胁公告整块已在 communications.dm
 	// 拼接前整串反查为中文，此处不再被 AC 蚕食。locale==en 时 lang_fallback_apply 原样返回（零开销）。
 	text = lang_fallback_apply(text)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	var/datum/comm_message/message = new
 	message.title = title
 	message.content = text
@@ -176,11 +176,11 @@
  * color_override - optional, use the passed color instead of the default notice color.
  * tts_speaker - optional voice identifier for player-authored announcements; invalid values fall back to the system voice
  */
-/proc/minor_announce(message, title = "Attention:", alert = FALSE, html_encode = TRUE, list/players, sound_override, should_play_sound = TRUE, color_override, tts_speaker) // NOVA EDIT CHANGE - ADMIN - Added optional player-authored TTS voice.
+/proc/minor_announce(message, title = "Attention:", alert = FALSE, html_encode = TRUE, list/players, sound_override, should_play_sound = TRUE, color_override, tts_speaker) // ZH EDIT CHANGE - ADMIN - Added optional player-authored TTS voice.
 	if(!message)
 		return
 
-	// NOVA EDIT ADDITION START - i18n: 同 priority_announce，html_encode 前反查正文/标题。
+	// ZH EDIT ADDITION START - i18n: 同 priority_announce，html_encode 前反查正文/标题。
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		if(istext(title) && length(title) > 0)
 			var/translated_title = lang_reverse_text(title)
@@ -188,11 +188,11 @@
 		if(istext(message))
 			var/translated_message = lang_reverse_text(message)
 			message = (translated_message != message) ? translated_message : lang_fallback_apply(message)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
-	// NOVA EDIT ADDITION START - ADMIN - Preserve deliberately silent/callback announcements.
+	// ZH EDIT ADDITION START - ADMIN - Preserve deliberately silent/callback announcements.
 	var/tts_queued = (should_play_sound == TRUE) && tts_queue_global_announcement(message, title, isnull(players) ? GLOB.player_list : players, tts_speaker)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	if (html_encode)
 		title = html_encode(title)
@@ -209,7 +209,7 @@
 	else
 		finalized_announcement = CHAT_ALERT_DEFAULT_SPAN(jointext(minor_announcement_strings, ""))
 
-	var/custom_sound = sound_override || (tts_queued ? tts_minor_announcement_cue(alert) : null) || (alert ? 'modular_nova/modules/alerts/sound/alerts/alert1.ogg' : 'sound/announcer/notice/notice2.ogg') // NOVA EDIT CHANGE - ADMIN - TTS replaces prerecorded speech. CUSTOM ANNOUNCEMENTS ORIGINAL: var/custom_sound = sound_override || (alert ? 'sound/announcer/notice/notice1.ogg' : 'sound/announcer/notice/notice2.ogg')
+	var/custom_sound = sound_override || (tts_queued ? tts_minor_announcement_cue(alert) : null) || (alert ? 'modular_nova/modules/alerts/sound/alerts/alert1.ogg' : 'sound/announcer/notice/notice2.ogg') // ZH EDIT CHANGE - ADMIN - TTS replaces prerecorded speech. CUSTOM ANNOUNCEMENTS ORIGINAL: var/custom_sound = sound_override || (alert ? 'sound/announcer/notice/notice1.ogg' : 'sound/announcer/notice/notice2.ogg')
 	dispatch_announcement_to_players(finalized_announcement, players, custom_sound, should_play_sound)
 
 /// Sends an announcement about the level changing to players. Uses the passed in datum and the subsystem's previous security level to generate the message.
@@ -223,17 +223,17 @@
 	var/message
 
 	if(current_level_number > previous_level_number)
-		title = LANG("datum.b89256636145aa75", list(current_level_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level elevated to [current_level_name]:"
+		title = LANG("datum.b89256636145aa75", list(current_level_name)) // ZH EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level elevated to [current_level_name]:"
 		message = selected_level.elevating_to_announcement
 	else
-		title = LANG("datum.9aa16b5dfe73dfdd", list(current_level_name)) // NOVA EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level lowered to [current_level_name]:"
+		title = LANG("datum.9aa16b5dfe73dfdd", list(current_level_name)) // ZH EDIT CHANGE - I18N - ORIGINAL: title = "Attention! Security level lowered to [current_level_name]:"
 		message = selected_level.lowering_to_announcement
 
-	// NOVA EDIT ADDITION START - ADMIN - Security-level messages use localized TTS. The level's own
+	// ZH EDIT ADDITION START - ADMIN - Security-level messages use localized TTS. The level's own
 	// sound is a plain alarm tone ("Friendly beep" / "Angry alarm" / air raid), not a spoken line,
 	// so it plays under the speech and is deliberately left alone.
 	tts_queue_global_announcement(message, title, GLOB.player_list)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	var/list/level_announcement_strings = list()
 	level_announcement_strings += ANNOUNCEMENT_HEADER(MINOR_ANNOUNCEMENT_TITLE(title))
@@ -248,7 +248,7 @@
 /proc/generate_unique_announcement_header(title, sender_override)
 	var/list/returnable_strings = list()
 	if(isnull(sender_override))
-		returnable_strings += MAJOR_ANNOUNCEMENT_TITLE("[command_name()] [lang_reverse_text("Update")]") // NOVA EDIT - i18n: 反查 "Update" 后缀（command_name 经聊天 AC 反查）
+		returnable_strings += MAJOR_ANNOUNCEMENT_TITLE("[command_name()] [lang_reverse_text("Update")]") // ZH EDIT - i18n: 反查 "Update" 后缀（command_name 经聊天 AC 反查）
 	else
 		returnable_strings += MAJOR_ANNOUNCEMENT_TITLE(sender_override)
 
@@ -287,7 +287,7 @@
 		sound_override = sound(sound_override)
 
 	var/sound_to_play = !isnull(sound_override) ? sound_override : 'sound/announcer/notice/notice2.ogg'
-	// NOVA EDIT ADDITION START - ADMIN - Restore per-player sound gating removed by the custom dispatcher.
+	// ZH EDIT ADDITION START - ADMIN - Restore per-player sound gating removed by the custom dispatcher.
 	var/datum/callback/should_play_sound_callback = astype(should_play_sound)
 	var/list/sound_players = list()
 	for(var/mob/target in players)
@@ -302,7 +302,7 @@
 
 	if(length(sound_players))
 		alert_sound_to_playing(sound_to_play, players = sound_players)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	// NOVA EDIT CHANGE END - CUSTOM ANNOUNCEMENTS
 
 #undef MAJOR_ANNOUNCEMENT_TITLE

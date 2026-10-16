@@ -5,7 +5,7 @@
 #   bash tools/i18n/test-shards.sh <dmb> <shards> [extra world params]
 #
 # Each shard boots the full world, then runs only its slice of the suite (see
-# code/modules/unit_tests/~nova/test_sharding.dm). Shards are balanced by the durations recorded
+# code/modules/unit_tests/~zh/test_sharding.dm). Shards are balanced by the durations recorded
 # in data/unit_test_durations.json, which this script refreshes after every run.
 #
 # Every shard gets its own working directory under data/test-shards/<k>/: symlinks to the repo for

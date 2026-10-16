@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(cmd_player_panel, R_ADMIN, "玩家面板", "See all players and their Player Panel.", ADMIN_CATEGORY_GAME)
 	user.holder.player_panel_new()
 

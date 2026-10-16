@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/quirk/venomous_bite
 	name = "Venomous Bite"
 	desc = "You have a venom gland, and can bite people to inject them with a toxin of your choosing."
@@ -102,7 +103,7 @@
 
 		var/name = entry::name
 
-		// NOVA EDIT CHANGE - I18N - 整条标签是运行期拼的、永远不是目录键；试剂名走 LANG 实参反查。
+		// ZH EDIT CHANGE - I18N - 整条标签是运行期拼的、永远不是目录键；试剂名走 LANG 实参反查。
 		// ORIGINAL: titles["[entry]"] = "[name] ([inject]u, [cooldown / 10] second cooldown)"
 		titles["[entry]"] = LANG("datum.62b29086370fd5ed", list(name, inject, cooldown / 10))
 

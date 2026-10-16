@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Mail is tamper-evident and unresealable, postmarked by CentCom for an individual recepient.
 /obj/item/mail
 	name = "mail"
@@ -175,7 +175,7 @@
 
 /// Accepts a mind to initialize goodies for a piece of mail.
 /obj/item/mail/proc/initialize_for_recipient(datum/mind/recipient)
-	name = LANG("obj.f8df833da95927d9", list(initial(name), recipient.name, recipient.assigned_role.title)) // NOVA EDIT CHANGE - I18N - ORIGINAL: name = "[initial(name)] for [recipient.name] ([recipient.assigned_role.title])"
+	name = LANG("obj.f8df833da95927d9", list(initial(name), recipient.name, recipient.assigned_role.title)) // ZH EDIT CHANGE - I18N - ORIGINAL: name = "[initial(name)] for [recipient.name] ([recipient.assigned_role.title])"
 	recipient_ref = WEAKREF(recipient)
 
 	var/mob/living/body = recipient.current
@@ -231,7 +231,7 @@
 			/obj/effect/decal/cleanable/ash,
 		))
 
-	// NOVA EDIT CHANGE START - I18N - junk 邮件名与 important 前缀走 LANG 模板（动态拼接绕过所有翻译层）
+	// ZH EDIT CHANGE START - I18N - junk 邮件名与 important 前缀走 LANG 模板（动态拼接绕过所有翻译层）
 	// 形容词槽走 lang_word_pool：GLOB.adjectives 是 375 个极常见英文单词，进目录就是扩大全局
 	// 误翻面，所以按 locale 换整张表（strings/names/adjectives.zh-Hans.txt）。见 lang_word_pool。
 	var/list/adjective_pool = lang_word_pool("strings/names/adjectives.txt", GLOB.adjectives)
@@ -244,7 +244,7 @@
 
 	color = pick(department_colors) //eh, who gives a shit.
 	name = special_name ? junk_names[junk] : LANG("obj.29ffcf7e23a62abd", list(initial(name)))
-	// NOVA EDIT CHANGE END
+	// ZH EDIT CHANGE END
 
 	junk = new junk(src)
 	return TRUE

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/bodypart
 	name = "limb"
 	desc = "Why is it detached..."
@@ -399,7 +399,7 @@
 			status = "[shown_brute] brute damage and [shown_burn] burn damage"
 
 	else
-		// NOVA EDIT CHANGE START - I18N - 原逐段拼接成 brute+" and "+burn；整串非状态词键、lang_localize_arg miss（双重伤情残留英文）。
+		// ZH EDIT CHANGE START - I18N - 原逐段拼接成 brute+" and "+burn；整串非状态词键、lang_localize_arg miss（双重伤情残留英文）。
 		// 改为分别取 brute/burn 段，locale≠en 时各自经 _state_words 本地化再用中文「，」连接（en 路径与原逻辑等价）。
 		var/brute_part = ""
 		if(shown_brute > (max_damage * 0.8))
@@ -429,7 +429,7 @@
 			if(brute_part && burn_part)
 				status += " and "
 			status += burn_part
-		// NOVA EDIT CHANGE END - ORIGINAL: 见上方说明（status += heavy/medium/light brute_msg / " and " / burn_msg）
+		// ZH EDIT CHANGE END - ORIGINAL: 见上方说明（status += heavy/medium/light brute_msg / " and " / burn_msg）
 
 		if(status == "")
 			status = "OK"
@@ -446,7 +446,7 @@
 		else
 			is_disabled += " and"
 
-	check_list += LANG("obj.be1c3f59d72dc049", list(no_damage ? "notice" : "warning", lang_zone(plaintext_zone), is_disabled, self_aware ? " has " : " looks ", status)) // NOVA EDIT - i18n: 部位名专用反查（chest/head 等单词不碰储物箱）
+	check_list += LANG("obj.be1c3f59d72dc049", list(no_damage ? "notice" : "warning", lang_zone(plaintext_zone), is_disabled, self_aware ? " has " : " looks ", status)) // ZH EDIT - i18n: 部位名专用反查（chest/head 等单词不碰储物箱）
 
 	var/adept_organ_feeler = owner == examiner && HAS_TRAIT(examiner, TRAIT_SELF_AWARE)
 	for(var/obj/item/organ/organ in src)
@@ -470,7 +470,7 @@
 			continue
 		var/harmless = embedded_thing.get_embed().is_harmless()
 		var/stuck_wordage = harmless ? "stuck to" : "embedded in"
-		var/embed_text = "\t<a href='byond://?src=[REF(examiner)];embedded_object=[REF(embedded_thing)];embedded_limb=[REF(src)]'>There is [icon2html(embedded_thing, examiner)] \a [embedded_thing] [stuck_wordage] your [lang_zone(plaintext_zone)]!</a>" // NOVA EDIT - i18n: 部位名专用反查
+		var/embed_text = "\t<a href='byond://?src=[REF(examiner)];embedded_object=[REF(embedded_thing)];embedded_limb=[REF(src)]'>There is [icon2html(embedded_thing, examiner)] \a [embedded_thing] [stuck_wordage] your [lang_zone(plaintext_zone)]!</a>" // ZH EDIT - i18n: 部位名专用反查
 		if (harmless)
 			check_list += span_italics(span_notice(embed_text))
 		else

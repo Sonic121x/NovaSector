@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // This file contains the proc we use for revenant harvesting because it is a very long and bulky proc that takes up a lot of space elsewhere
 
 /// Container proc for `harvest()`, handles the pre-checks as well as potential early-exits for any reason.

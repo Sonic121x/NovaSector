@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 GLOBAL_LIST_INIT(department_radio_prefixes, list(":", "."))
 
 GLOBAL_LIST_INIT(department_radio_keys, list(
@@ -263,7 +263,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		if(!message_mods[WHISPER_MODE])
 			message_mods[WHISPER_MODE] = MODE_WHISPER
 			message_mods[SAY_MOD_VERB] = say_mod(message, message_mods)
-			message_mods[MODE_TTS_RADIO_HUSH] = TRUE // NOVA EDIT ADDITION - TTS_EXPRESSION - Speaking into a radio is not a whisper on the air.
+			message_mods[MODE_TTS_RADIO_HUSH] = TRUE // ZH EDIT ADDITION - TTS_EXPRESSION - Speaking into a radio is not a whisper on the air.
 
 	//No screams in space, unless you're next to someone.
 	var/turf/T = get_turf(src)
@@ -315,7 +315,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	var/message = ""
 	var/speaker_name = span_name("[message_mods[MODE_SPEAKER_NAME_OVERRIDE] || speaker]")
-	var/eavesdropping = FALSE // NOVA EDIT ADDITION - TTS_EXPRESSION
+	var/eavesdropping = FALSE // ZH EDIT ADDITION - TTS_EXPRESSION
 
 	// Infinite range implies something like telecomms, ie something that should never be distance modified
 	if(message_range != INFINITY && !HAS_TRAIT(src, TRAIT_GOOD_HEARING))
@@ -359,7 +359,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		// Out of message range but within eavesdrop range - alter displayed message
 		if(outside_dist > 0)
 			raw_message = stars(raw_message)
-			eavesdropping = TRUE // NOVA EDIT ADDITION - TTS_EXPRESSION - Overheard speech is voiced as blips, like the starred text.
+			eavesdropping = TRUE // ZH EDIT ADDITION - TTS_EXPRESSION - Overheard speech is voiced as blips, like the starred text.
 
 	// we need to send this signal before compose_message() is used since other signals need to modify
 	// the raw_message first. After the raw_message is passed through the various signals, it's ready to be formatted
@@ -417,10 +417,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		hearflags |= HEAR_HEARD
 	if(understood)
 		hearflags |= HEAR_UNDERSTOOD
-	// NOVA EDIT ADDITION START - TTS_EXPRESSION
+	// ZH EDIT ADDITION START - TTS_EXPRESSION
 	if(eavesdropping)
 		hearflags |= HEAR_EAVESDROPPED
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	return hearflags
 
 /mob/living/send_speech(message_raw, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language = null, list/message_mods = list(), forced = null, tts_message, list/tts_filter)
@@ -469,19 +469,19 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	// this signal ignores whispers or language translations (only used by beetlejuice component)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message_raw)
 	var/list/listened = list()
-	var/list/eavesdroppers = list() // NOVA EDIT ADDITION - TTS_EXPRESSION
+	var/list/eavesdroppers = list() // ZH EDIT ADDITION - TTS_EXPRESSION
 	for(var/atom/movable/listening_movable as anything in listening)
 		if(!listening_movable)
 			stack_trace("somehow theres a null returned from get_hearers_in_view() in send_speech!")
 			continue
 
-		// NOVA EDIT CHANGE START - TTS_EXPRESSION - Eavesdroppers hear the voice as blips. ORIGINAL: if(listening_movable.Hear(src, message_language, message_raw, null, null, null, spans, message_mods, message_range) & HEAR_HEARD)
+		// ZH EDIT CHANGE START - TTS_EXPRESSION - Eavesdroppers hear the voice as blips. ORIGINAL: if(listening_movable.Hear(src, message_language, message_raw, null, null, null, spans, message_mods, message_range) & HEAR_HEARD)
 		var/hearflags = listening_movable.Hear(src, message_language, message_raw, null, null, null, spans, message_mods, message_range)
 		if(hearflags & HEAR_HEARD)
 			listened += listening_movable
 		if(hearflags & HEAR_EAVESDROPPED)
 			eavesdroppers += listening_movable
-		// NOVA EDIT CHANGE END
+		// ZH EDIT CHANGE END
 
 	//speech bubble
 	var/list/speech_bubble_recipients = list()
@@ -490,7 +490,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		if(M.client)
 			if(!M.client.prefs.read_preference(/datum/preference/toggle/enable_runechat) || (SSlag_switch.measures[DISABLE_RUNECHAT] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES)))
 				speech_bubble_recipients.Add(M.client)
-	do_tts_message(tts_message_to_use, message_language, message_mods, tts_filter, listened, eavesdroppers) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: do_tts_message(tts_message_to_use, message_language, message_mods, tts_filter, listened)
+	do_tts_message(tts_message_to_use, message_language, message_mods, tts_filter, listened, eavesdroppers) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: do_tts_message(tts_message_to_use, message_language, message_mods, tts_filter, listened)
 	var/image/say_popup = image('icons/mob/effects/talk.dmi', src, "[bubble_type][talk_icon_state]", FLY_LAYER)
 	SET_PLANE_EXPLICIT(say_popup, ABOVE_GAME_PLANE, src)
 	say_popup.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA

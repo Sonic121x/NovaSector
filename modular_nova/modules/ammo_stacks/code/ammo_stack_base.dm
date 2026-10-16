@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Object for holding stacks of loose ammo as a handful of shells
 /obj/item/ammo_box/magazine/ammo_stack
 	name = "ammo stack"

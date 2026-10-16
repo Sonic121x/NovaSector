@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Global assoc list. [ckey] = [spellbook entry type]
 GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 
@@ -416,7 +416,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	for(var/datum/objective/objective in objectives)
 		if(!objective.check_completion())
 			wizardwin = FALSE
-		parts += "<B>[lang_reverse_text("Objective")] #[count]</B>: [lang_reverse_text(objective.explanation_text)] [objective.get_roundend_success_suffix()]" // NOVA EDIT - I18N - reverse non-interpolated full-sentence objectives
+		parts += "<B>[lang_reverse_text("Objective")] #[count]</B>: [lang_reverse_text(objective.explanation_text)] [objective.get_roundend_success_suffix()]" // ZH EDIT - I18N - reverse non-interpolated full-sentence objectives
 		count++
 
 	if(wizardwin)

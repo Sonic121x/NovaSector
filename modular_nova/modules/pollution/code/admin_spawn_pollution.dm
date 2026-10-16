@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(spawn_pollution, R_ADMIN, "生成污染", "Spawns an amount of chosen pollutant at your current location.", ADMIN_CATEGORY_FUN)
 	var/list/singleton_list = SSpollution.singletons
 	var/choice = tgui_input_list(user, LANG("datum.4231e79010cd62d3", null), LANG("datum.306e67cffa2fc4d1", null), singleton_list)

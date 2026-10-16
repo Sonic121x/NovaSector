@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/dnainjector
 	name = "\improper DNA injector"
 	desc = "A cheap single use autoinjector that injects the user with DNA."
@@ -52,7 +52,7 @@
 
 /obj/item/dnainjector/update_desc(updates)
 	. = ..()
-	desc = "[lang_reverse_text(initial(desc))][used ? lang_reverse_text("This one is used up.") : null]" // NOVA EDIT CHANGE - i18n: 同上，initial(desc) 会覆盖掉反查好的中文 - ORIGINAL: desc = "[initial(desc)][used ? "This one is used up." : null]"
+	desc = "[lang_reverse_text(initial(desc))][used ? lang_reverse_text("This one is used up.") : null]" // ZH EDIT CHANGE - i18n: 同上，initial(desc) 会覆盖掉反查好的中文 - ORIGINAL: desc = "[initial(desc)][used ? "This one is used up." : null]"
 
 /obj/item/dnainjector/attack_paw(mob/user, list/modifiers)
 	return attack_hand(user, modifiers)

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(spawn_liquid, R_ADMIN, "生成液体", "Spawns an amount of chosen liquid at your current location.", ADMIN_CATEGORY_FUN)
 	var/choice
 	var/valid_id

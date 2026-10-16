@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /atom
 	/// If non-null, overrides a/an/some in all cases
 	var/article
@@ -17,7 +17,7 @@
 	. = list()
 	. += get_name_chaser(user)
 	if(desc)
-		// NOVA EDIT CHANGE - i18n: desc 保持 canonical English，避免在每个 atom 初始化时改写 appearance；
+		// ZH EDIT CHANGE - i18n: desc 保持 canonical English，避免在每个 atom 初始化时改写 appearance；
 		// 只在 examine 显示边界翻。desc 仍等于类型初值时按**类型**取目录 key（精确、含单词描述），
 		// 否则（地图实例覆盖、运行期赋值/追加）回落整串反查。
 		// locale==en 或查不到时原样返回。ORIGINAL: . += "<i>[desc]</i>"
@@ -29,10 +29,10 @@
 	if (length(tags_list))
 		var/tag_string = list()
 		for (var/atom_tag in tags_list)
-			// NOVA EDIT CHANGE - ORIGINAL: ... ? atom_tag : span_tooltip(tags_list[atom_tag], atom_tag)) - i18n: 反查 tag 显示词(flammable/fire-proof…，词进 ui.json) 与 hover tooltip 文本(已抽进目录)
+			// ZH EDIT CHANGE - ORIGINAL: ... ? atom_tag : span_tooltip(tags_list[atom_tag], atom_tag)) - i18n: 反查 tag 显示词(flammable/fire-proof…，词进 ui.json) 与 hover tooltip 文本(已抽进目录)
 			tag_string += (isnull(tags_list[atom_tag]) ? lang_reverse_text(atom_tag) : span_tooltip(lang_reverse_text(tags_list[atom_tag]), lang_reverse_text(atom_tag)))
 		// some regex to ensure that we don't add another "and" if the final element's main text (not tooltip) has one
-		// NOVA EDIT CHANGE - ORIGINAL: tag_string = english_list(tag_string, and_text = (findtext(...)) ? " " : " and ") - i18n: 中文用顿号连接，不用英文 " and "/", "
+		// ZH EDIT CHANGE - ORIGINAL: tag_string = english_list(tag_string, and_text = (findtext(...)) ? " " : " and ") - i18n: 中文用顿号连接，不用英文 " and "/", "
 		var/tag_and = " and "
 		var/tag_comma = ", "
 		if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
@@ -41,9 +41,9 @@
 		else if(findtext(tag_string[length(tag_string)], regex(@">.*?and .*?<")))
 			tag_and = " "
 		tag_string = english_list(tag_string, and_text = tag_and, comma_text = tag_comma)
-		. += LANG("atom.0e340ddb80a1ff83", list(lang_pronoun(p_They()), lang_pronoun(p_are()), tag_string, lang_reverse_text(examine_descriptor(user)), post_desc_string)) // NOVA EDIT - i18n: 反查描述词(machine/structure/item…)+代词专用反查(He/is→他/是)，模板译文里占位符就位即成中文
+		. += LANG("atom.0e340ddb80a1ff83", list(lang_pronoun(p_They()), lang_pronoun(p_are()), tag_string, lang_reverse_text(examine_descriptor(user)), post_desc_string)) // ZH EDIT - i18n: 反查描述词(machine/structure/item…)+代词专用反查(He/is→他/是)，模板译文里占位符就位即成中文
 	else if(post_desc_string)
-		. += LANG("atom.82f39ea0c9f0e0a2", list(p_They(), p_are(), lang_reverse_text(examine_descriptor(user)), post_desc_string)) // NOVA EDIT - i18n: 反查描述词(machine/structure/item…)，词进 ui.json
+		. += LANG("atom.82f39ea0c9f0e0a2", list(p_They(), p_are(), lang_reverse_text(examine_descriptor(user)), post_desc_string)) // ZH EDIT - i18n: 反查描述词(machine/structure/item…)，词进 ui.json
 
 	if(reagents)
 		var/user_sees_reagents = user.can_see_reagents()
@@ -149,9 +149,9 @@
 	var/mats_list = list()
 	for(var/custom_material in custom_materials)
 		var/datum/material/current_material = SSmaterials.get_material(custom_material)
-		var/mat_name = lang_material(current_material.name) // NOVA EDIT - i18n: 材料名专用反查（零碰撞，按材料义翻；单词材料全局会按错义译）
-		mats_list += span_tooltip(LANG("atom.made_out_of_tooltip", list(mat_name)), mat_name) // NOVA EDIT - i18n: tooltip 文本本地化。ORIGINAL: span_tooltip("It is made out of [mat_name].", mat_name)
-	. += LANG("atom.1827593576cd6b63", list(lang_english_list(mats_list))) // NOVA EDIT CHANGE - i18n: scoped locale list formatting. ORIGINAL: . += LANG("atom.1827593576cd6b63", list(english_list(mats_list)))
+		var/mat_name = lang_material(current_material.name) // ZH EDIT - i18n: 材料名专用反查（零碰撞，按材料义翻；单词材料全局会按错义译）
+		mats_list += span_tooltip(LANG("atom.made_out_of_tooltip", list(mat_name)), mat_name) // ZH EDIT - i18n: tooltip 文本本地化。ORIGINAL: span_tooltip("It is made out of [mat_name].", mat_name)
+	. += LANG("atom.1827593576cd6b63", list(lang_english_list(mats_list))) // ZH EDIT CHANGE - i18n: scoped locale list formatting. ORIGINAL: . += LANG("atom.1827593576cd6b63", list(english_list(mats_list)))
 
 /**
  * Called when a mob examines (shift click or verb) this atom twice (or more) within EXAMINE_MORE_WINDOW (default 1 second)
@@ -182,10 +182,10 @@
 			var/descriptor = property?.get_descriptor(prop_value)
 			var/tooltip_hint = property?.get_tooltip(prop_value)
 			if (descriptor) // Overriden derivative property?
-				material_string += span_tooltip("[lang_localize_arg("[property]")]: [lang_localize_arg(tooltip_hint)]", lang_localize_arg(descriptor)) // NOVA EDIT - I18N: 描述符/提示逐项翻（get_descriptor 的 return 字面量已进目录）
+				material_string += span_tooltip("[lang_localize_arg("[property]")]: [lang_localize_arg(tooltip_hint)]", lang_localize_arg(descriptor)) // ZH EDIT - I18N: 描述符/提示逐项翻（get_descriptor 的 return 字面量已进目录）
 
 		if (length(material_string))
-			. += span_info(LANG("atom.120458d2dd2fe467", list(capitalize(material.name), lang_english_list(material_string)))) // NOVA EDIT - I18N
+			. += span_info(LANG("atom.120458d2dd2fe467", list(capitalize(material.name), lang_english_list(material_string)))) // ZH EDIT - I18N
 
 /**
  * Get the name of this object for examine
@@ -195,14 +195,14 @@
  */
 /atom/proc/get_examine_name(mob/user)
 	var/visible_name = get_visible_name()
-	// NOVA EDIT ADDITION START - i18n: name 保持 canonical English，避免全图 atom/turf 在初始化时各生成一份
+	// ZH EDIT ADDITION START - i18n: name 保持 canonical English，避免全图 atom/turf 在初始化时各生成一份
 	// locale 专属 appearance。显示边界只翻译仍来自类型声明的静态名；运行时身份名和玩家改名保留原文。
 	visible_name = lang_localize_name_for_display(visible_name)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	var/list/override = list(article, null, "<em>[visible_name]</em>")
 	SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override)
 
-	// NOVA EDIT ADDITION START - i18n: 中文无冠词。丢弃 article 槽与 \a 前缀，只留 before + 名字
+	// ZH EDIT ADDITION START - i18n: 中文无冠词。丢弃 article 槽与 \a 前缀，只留 before + 名字
 	// （examine 名里的「a/an/the」是 \a 宏由引擎渲染、非 LANG 模板，故在此源头去掉；名字本身另由反查翻译）。
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		// `list -= null` 只删**第一个** null（DM 的 Remove 语义），而这里有两个空槽（被清掉的 article
@@ -213,7 +213,7 @@
 			if(length(override[slot]))
 				parts += override[slot]
 		return jointext(parts, " ")
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	if(!isnull(override[EXAMINE_POSITION_ARTICLE]))
 		override -= null // IF there is no "before", don't try to join it
@@ -225,9 +225,9 @@
 
 /mob/living/get_examine_name(mob/user)
 	var/visible_name = get_visible_name()
-	// NOVA EDIT ADDITION START - i18n: living 覆盖了 /atom 版本，使用同一个静态名/身份名边界。
+	// ZH EDIT ADDITION START - i18n: living 覆盖了 /atom 版本，使用同一个静态名/身份名边界。
 	visible_name = lang_localize_name_for_display(visible_name)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	var/list/name_override = list(visible_name)
 	if(SEND_SIGNAL(user, COMSIG_LIVING_PERCEIVE_EXAMINE_NAME, src, visible_name, name_override) & COMPONENT_EXAMINE_NAME_OVERRIDEN)
 		return name_override[1]
@@ -245,7 +245,7 @@
  */
 /atom/proc/examine_title(mob/user, thats = FALSE)
 	var/examine_icon = get_examine_icon(user)
-	// NOVA EDIT CHANGE - ORIGINAL: [thats ? "[examine_thats] ":""] - i18n: 反查 "That's"/"This is" 前缀（仅这两个值，全服 locale≠en 时本地化；examine_thats 是 var 初始化、codemod 不改，故在用例处反查）
+	// ZH EDIT CHANGE - ORIGINAL: [thats ? "[examine_thats] ":""] - i18n: 反查 "That's"/"This is" 前缀（仅这两个值，全服 locale≠en 时本地化；examine_thats 是 var 初始化、codemod 不改，故在用例处反查）
 	return "[examine_icon ? "[examine_icon] " : ""][thats ? "[lang_reverse_text(examine_thats)] ":""]<em>[get_examine_name(user)]</em>"
 
 /**

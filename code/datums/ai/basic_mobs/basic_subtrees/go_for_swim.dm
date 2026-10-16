@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Wander between water and land, splashing about now and then.
 /datum/bt_node/subtree/go_for_swim
 	behavior_tree_json = "code/datums/ai/basic_mobs/basic_subtrees/go_for_swim.bt.json"

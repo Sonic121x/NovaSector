@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define COMP_SECURITY_ARREST_AMOUNT_TO_FLAG 10
 #define PRINTOUT_MISSING "Missing"
 #define PRINTOUT_RAPSHEET "Rapsheet"

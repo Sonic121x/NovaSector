@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/solfed_riotgun
 	name = "\improper S-12 \"Warder\" Kinetic Riotgun"
 	desc = "A Solfed riot-control weapon designed for suppression and area denial. Fires dense rubber slugs."

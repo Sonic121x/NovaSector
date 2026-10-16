@@ -62,9 +62,25 @@ fn placeholder_touches_letter(template: &str) -> bool {
 /// `INVOKE_ASYNC(owner, proc_ref, 实参…)`：源码里汇聚点实参之前多出的槽数。
 const INVOKE_ASYNC_SLOT_OFFSET: usize = 2;
 
-/// 核心文件（非 modular_nova）被 codemod 改写时插入的文件级 NOVA EDIT 标记。
+/// 汉化版以外的文件（核心与 Nova 的，非 modular_zh）被 codemod 改写时插入的文件级 ZH EDIT 标记。
 const CORE_MARKER: &str =
-    "// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md";
+    "// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md";
+/// 汉化版模块迁入 modular_zh 之前的写法；遇到就原地换成 [`CORE_MARKER`]，不叠加第二行。
+const LEGACY_CORE_MARKER: &str =
+    "// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md";
+
+/// 给汉化版以外的文件打上（或换新）文件级 codemod 标记。
+fn ensure_core_marker(path: &std::path::Path, src: &mut String) {
+    let own = path.to_string_lossy().replace('\\', "/").contains("modular_zh/");
+    if own || src.starts_with(CORE_MARKER) {
+        return;
+    }
+    if src.starts_with(LEGACY_CORE_MARKER) {
+        src.replace_range(..LEGACY_CORE_MARKER.len(), CORE_MARKER);
+    } else {
+        src.insert_str(0, &format!("{CORE_MARKER}\n"));
+    }
+}
 
 struct Edit {
     start: usize,
@@ -149,13 +165,7 @@ pub fn run(dme: &Path, filter: Option<&str>, dry_run: bool) -> Result<()> {
         for e in &edits {
             src.replace_range(e.start..e.end, &e.replacement);
         }
-        let is_core = !path
-            .to_string_lossy()
-            .replace('\\', "/")
-            .contains("modular_nova/");
-        if is_core && !src.starts_with(CORE_MARKER) {
-            src.insert_str(0, &format!("{CORE_MARKER}\n"));
-        }
+        ensure_core_marker(&path, &mut src);
         std::fs::write(&path, src).with_context(|| format!("写回失败: {}", path.display()))?;
     }
 
@@ -370,13 +380,7 @@ pub fn run_verbs(dme: &Path, locale: &str, revert: bool, dry_run: bool) -> Resul
         for e in &es {
             src.replace_range(e.start..e.end, &e.replacement);
         }
-        let is_core = !path
-            .to_string_lossy()
-            .replace('\\', "/")
-            .contains("modular_nova/");
-        if is_core && !src.starts_with(CORE_MARKER) {
-            src.insert_str(0, &format!("{CORE_MARKER}\n"));
-        }
+        ensure_core_marker(&path, &mut src);
         std::fs::write(&path, src).with_context(|| format!("写回失败: {}", path.display()))?;
     }
 

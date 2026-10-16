@@ -65,7 +65,7 @@ churn 会加剧 appearance ID 复用，而上面的三策略实验已把失配�
   别顺手挂到这条上。
 
 即便如此，把整图初始化期的外观写入去掉本身是划算的（另外还消掉了 `name == initial(name)` 那一类反查
-副作用），所以已经改成只在显示边界翻译，代价与缺口记在 `modular_nova/modules/i18n/readme.md`。
+副作用），所以已经改成只在显示边界翻译，代价与缺口记在 `modular_zh/modules/i18n/readme.md`。
 要证实或推翻这条假设，需要一次同图对照测量；在那之前它是假设，不是结论，本模块按钮照旧保留。
 
 ### TG Proc/File Changes:
@@ -78,7 +78,7 @@ churn 会加剧 appearance ID 复用，而上面的三策略实验已把失配�
 
 ### Defines:
 
-- `modular_nova/modules/lighting_desync_debug/code/lighting_desync_debug.dm`：`LIGHTING_RESYNC_DARK_STATE`、`LIGHTING_RESYNC_COOLDOWN`，均在文件底部 `#undef`
+- `modular_zh/modules/lighting_desync_debug/code/lighting_desync_debug.dm`：`LIGHTING_RESYNC_DARK_STATE`、`LIGHTING_RESYNC_COOLDOWN`，均在文件底部 `#undef`
 
 ### Included files that are not contained in this module:
 

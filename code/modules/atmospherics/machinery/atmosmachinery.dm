@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Quick overview:
 //
 // Pipes combine to form pipelines
@@ -556,12 +556,12 @@
 
 /obj/machinery/atmospherics/update_name()
 	if(!override_naming && !HAS_TRAIT(src, TRAIT_WAS_RENAMED))
-		// NOVA EDIT CHANGE START - I18N - 运行期拼接的名字（[颜色] [基础名]）绕过 /atom/Initialize 反查；按 locale 用译名拼接（颜色名在 _state_words.json，基础名在 obj.json）
+		// ZH EDIT CHANGE START - I18N - 运行期拼接的名字（[颜色] [基础名]）绕过 /atom/Initialize 反查；按 locale 用译名拼接（颜色名在 _state_words.json，基础名在 obj.json）
 		if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 			name = "[lang_localize_arg(GLOB.pipe_color_name[pipe_color])][lang_localize_arg(initial(name))]"
 		else
 			name = "[GLOB.pipe_color_name[pipe_color]] [initial(name)]"
-		// NOVA EDIT CHANGE END - ORIGINAL: name = "[GLOB.pipe_color_name[pipe_color]] [initial(name)]"
+		// ZH EDIT CHANGE END - ORIGINAL: name = "[GLOB.pipe_color_name[pipe_color]] [initial(name)]"
 	return ..()
 
 /obj/machinery/atmospherics/vv_edit_var(vname, vval)

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Access check results for entering a room - local, #undef'd at the bottom of this file.
 #define CONDO_ACCESS_OK "ok"
 #define CONDO_ACCESS_PASSWORD "password" // private, has a password you can try

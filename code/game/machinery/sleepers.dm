@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/sleeper
 	name = "sleeper"
 	desc = "An enclosed machine used to stabilize and heal patients."
@@ -174,7 +174,7 @@
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
 		data["chems"] += list(
 			list(
-				"name" = lang_localize_display_name(R.name), // NOVA EDIT - I18N: 试剂名纯显示（act('inject') 走 chem.id）。ORIGINAL: "name" = R.name,
+				"name" = lang_localize_display_name(R.name), // ZH EDIT - I18N: 试剂名纯显示（act('inject') 走 chem.id）。ORIGINAL: "name" = R.name,
 				"id" = R.type,
 				"allowed" = chem_allowed(chem),
 			),
@@ -226,7 +226,7 @@
 					continue
 				data["occupant"]["reagents"] += list(
 					list(
-						"name" = lang_localize_display_name(R.name), // NOVA EDIT - I18N: 试剂名纯显示（act 走 chem.id）。ORIGINAL: "name" = R.name,
+						"name" = lang_localize_display_name(R.name), // ZH EDIT - I18N: 试剂名纯显示（act 走 chem.id）。ORIGINAL: "name" = R.name,
 						"volume" = R.volume,
 					),
 				)

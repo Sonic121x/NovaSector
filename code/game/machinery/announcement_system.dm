@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 GLOBAL_LIST_EMPTY(announcement_systems)
 
 /obj/machinery/announcement_system
@@ -33,12 +33,12 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	config_entries = init_subtypes(/datum/aas_config_entry, list())
 	. = ..()
 	radio = new radio_type(src)
-	// NOVA EDIT ADDITION START - ADMIN - Let automated station broadcasts use the configured TTS voice.
+	// ZH EDIT ADDITION START - ADMIN - Let automated station broadcasts use the configured TTS voice.
 	if(SStts.tts_enabled)
 		voice = SStts.computer_voice
 		if(!(voice in SStts.available_speakers))
 			voice = SStts.random_tts_voice()
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	GLOB.announcement_systems += src
 	update_appearance()
 
@@ -114,7 +114,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	var/list/configs = list()
 	for(var/datum/aas_config_entry/config in config_entries)
 		configs += list(list(
-			name = lang_localize_display_name(config.name), // NOVA EDIT - I18N: 纯显示（act 走 entryRef/lineKey）。ORIGINAL: name = config.name,
+			name = lang_localize_display_name(config.name), // ZH EDIT - I18N: 纯显示（act 走 entryRef/lineKey）。ORIGINAL: name = config.name,
 			entryRef = REF(config),
 			enabled = config.enabled,
 			modifiable = config.modifiable,
@@ -265,13 +265,13 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	// Fallback - first line
 	if (!announcement_message)
 		announcement_message = announcement_lines_map[announcement_lines_map[1]]
-	// NOVA EDIT ADDITION - i18n - 全服中文时反查整条模板译文（在 %VAR 替换前；模板用 %PERSON 等占位符、
+	// ZH EDIT ADDITION - i18n - 全服中文时反查整条模板译文（在 %VAR 替换前；模板用 %PERSON 等占位符、
 	// 不被反查的 { 守卫跳过；译文须保留 %VAR 占位符）。译文进 strings/i18n/<locale>/ui.json。
 	announcement_message = lang_reverse_text(announcement_message)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	// Replace variables with their value
 	for(var/variable in vars_and_tooltips_map)
-		// NOVA EDIT CHANGE - i18n - 值也要本地化：模板早就译好了（上面那行反查），但 %RANK/%LOCATION
+		// ZH EDIT CHANGE - i18n - 值也要本地化：模板早就译好了（上面那行反查），但 %RANK/%LOCATION
 		// 这些**值**由调用方传入英文，于是玩家看到「Feng Xin Zi 已注册为 Detective」这种半中半英。
 		// 职位名多为单词，既进不了字面 AC 字典（安全线：单词会从词内开火、污染 name== 比较），
 		// 公告整串又是运行期拼的、不是目录键 —— 两条落地路径都够不着，只能在这里逐个值查。

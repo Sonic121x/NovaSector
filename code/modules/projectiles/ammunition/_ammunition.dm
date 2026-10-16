@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/ammo_casing
 	name = "bullet casing"
 	desc = "A bullet casing."
@@ -115,7 +115,7 @@
 	return ..()
 
 /obj/item/ammo_casing/update_desc()
-	desc = "[lang_reverse_text(initial(desc))][loaded_projectile ? null : lang_reverse_text(" This one is spent.")]" // NOVA EDIT CHANGE - i18n: initial(desc) 是编译期英文原值，会把 /atom/Initialize 反查好的中文 desc 覆盖回英文 - ORIGINAL: desc = "[initial(desc)][loaded_projectile ? null : " This one is spent."]"
+	desc = "[lang_reverse_text(initial(desc))][loaded_projectile ? null : lang_reverse_text(" This one is spent.")]" // ZH EDIT CHANGE - i18n: initial(desc) 是编译期英文原值，会把 /atom/Initialize 反查好的中文 desc 覆盖回英文 - ORIGINAL: desc = "[initial(desc)][loaded_projectile ? null : " This one is spent."]"
 	return ..()
 
 /*

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/shield/energy/returning
 	name = "returning energy shield"
 	active_throwforce = 27 // exactly 5 hits to kill.

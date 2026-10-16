@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// The greatest amount of colors that can be in a matrixed bodypart_overlay.
 #define MAX_MATRIXED_COLORS 3
 /// Default value for alpha, making it fully opaque.

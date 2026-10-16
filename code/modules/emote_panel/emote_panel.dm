@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/emote_panel
 	var/list/blacklisted_emotes = list("me", "help")
 
@@ -18,7 +18,7 @@
 				keys += emote.key
 				emotes += list(list(
 					"key" = emote.key,
-					"name" = lang_localize_display_name(emote.name), // NOVA EDIT - I18N: 纯显示，act 走同条负载的 emote_key。ORIGINAL: "name" = emote.name,
+					"name" = lang_localize_display_name(emote.name), // ZH EDIT - I18N: 纯显示，act 走同条负载的 emote_key。ORIGINAL: "name" = emote.name,
 					"hands" = emote.hands_use_check,
 					"visible" = emote.emote_type & EMOTE_VISIBLE,
 					"audible" = emote.emote_type & EMOTE_AUDIBLE,

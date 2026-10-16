@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/clothing/under
 	name = "under"
 	icon = 'icons/obj/clothing/under/default.dmi'
@@ -440,7 +440,7 @@
 			if(SENSOR_COORDS)
 				. += LANG("obj.7b9f0004396c5784", null)
 	else
-		. += span_tooltip(lang_reverse_text("You can always get new suit sensors to install from a lathe."), lang_reverse_text("It isn't equipped with medical sensors.")) // NOVA EDIT - I18N: span_tooltip args reversed (codemod mangles both args into one key)
+		. += span_tooltip(lang_reverse_text("You can always get new suit sensors to install from a lathe."), lang_reverse_text("It isn't equipped with medical sensors.")) // ZH EDIT - I18N: span_tooltip args reversed (codemod mangles both args into one key)
 
 	if(LAZYLEN(attached_accessories))
 		var/list/accessories = list_accessories_with_icon(user)

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MIN_ENERGY_COST (0.01 * STANDARD_CELL_CHARGE)
 #define MAX_ENERGY_COST (0.5 * STANDARD_CELL_CHARGE)
 
@@ -26,13 +26,13 @@
 /obj/item/electroadaptive_pseudocircuit/examine(mob/user)
 	. = ..()
 	if(iscyborg(user))
-		// NOVA EDIT CHANGE START - I18N: 原本是 `. += A + "\n" + B + "\n" + C` 拼接链——整条抽出来是
+		// ZH EDIT CHANGE START - I18N: 原本是 `. += A + "\n" + B + "\n" + C` 拼接链——整条抽出来是
 		// `{0}\n{1}\n…` 的废键，逐段拆分又被整句闸挡掉前两句，于是只有第三句进了目录。逐句 LANG。
 		// ORIGINAL: 三句 span_notice 用 + "\n" + 串起来，见 git 历史。
 		. += "[span_notice(LANG("obj.7cc773b19af56485", list(circuits, circuits == 1 ? "" : "s")))]\n"+\
 		"[span_notice(LANG("obj.35847d7e43c03f80", null))]\n"+\
 		span_notice(LANG("obj.340338b019a2afbe", null))
-		// NOVA EDIT CHANGE END
+		// ZH EDIT CHANGE END
 
 /obj/item/electroadaptive_pseudocircuit/proc/adapt_circuit(mob/living/silicon/robot/R, circuit_cost = 0)
 	if(QDELETED(R) || !istype(R))

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //His Grace is a very special weapon granted only to traitor chaplains.
 //When awakened, He thirsts for blood and begins ticking a "bloodthirst" counter.
 //The wielder of His Grace is immune to stuns and gradually heals.

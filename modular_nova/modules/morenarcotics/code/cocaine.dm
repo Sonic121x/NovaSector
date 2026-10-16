@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/chemical_reaction/powder_cocaine
 	is_cold_recipe = TRUE
 	required_reagents = list(/datum/reagent/drug/cocaine = 10)

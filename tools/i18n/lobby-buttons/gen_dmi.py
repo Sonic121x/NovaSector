@@ -2,7 +2,7 @@ from PIL import Image
 import zlib, struct
 from collections import Counter
 BDF="fusion-pixel-10px-proportional-zh_hans.bdf"
-OUT="modular_nova/modules/i18n/icons/lobby"
+OUT="modular_zh/modules/i18n/icons/lobby"
 
 def parse_bdf(p):
     g={};cur=None;it=iter(open(p,encoding='latin1'))

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/clothing/neck
 	name = "necklace"
 	icon = 'icons/obj/clothing/neck.dmi'
@@ -518,7 +518,7 @@
 		name = initial(name)
 		tagname = null
 		return
-	name = "[lang_reverse_text(initial(name))] - [tagname]"  // NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)] - [tagname]"
+	name = "[lang_reverse_text(initial(name))] - [tagname]"  // ZH EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)] - [tagname]"
 
 /obj/item/clothing/neck/petcollar/wearable/cyber
 	desc = "You wear the tie, or you wear this. Your choice."

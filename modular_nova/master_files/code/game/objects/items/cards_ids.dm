@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // GENERIC
 /obj/item/card/id/advanced/silver/generic
 	name = "generic silver identification card"
@@ -44,7 +45,7 @@
 	else
 		. += span_info(LANG("obj.9c17a127366ee5de", null))
 
-// NOVA EDIT ADDITION - I18N - 便衣 ID 卡的职务名本地化。
+// ZH EDIT ADDITION - I18N - 便衣 ID 卡的职务名本地化。
 //
 // 父类 update_label() 早就把 assignment 过了 lang_reverse_text（cards_ids.dm），但这个子类
 // **整个覆盖**了该 proc、用 `fake.assignment` 另拼一遍名字，于是漏掉了那一步 —— 同一个界面里

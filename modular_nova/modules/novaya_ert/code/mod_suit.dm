@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/mod_theme/rim_inspector
 	name = "rim-world inspector"
 	desc = "A Heliostatic Coalition Internal Affairs-Apadyne joint border patrol suit. Designed for maximum protection in frontier environments where medical support is scarce."

@@ -1,5 +1,5 @@
 // NovaSector 全量汉化 (i18n) 的跨文件定义。
-// 详见 modular_nova/modules/i18n/readme.md。
+// 详见 modular_zh/modules/i18n/readme.md。
 
 /// 受支持的界面语言（locale 代码，遵循 BCP-47）。
 #define LANGUAGE_LOCALE_EN "en"

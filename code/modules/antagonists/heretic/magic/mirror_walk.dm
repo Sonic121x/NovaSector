@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/action/cooldown/spell/jaunt/mirror_walk
 	name = "Mirror Walk"
 	desc = "Allows you to traverse invisibly and freely across the station within the realm of the mirror. \

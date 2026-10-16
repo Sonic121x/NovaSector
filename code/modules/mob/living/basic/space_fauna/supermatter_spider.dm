@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// A nasty little robotic bug that dusts people on attack. Jeepers. This should be a very, very, very rare spawn.
 /mob/living/basic/supermatter_spider
 	name = "supermatter spider"

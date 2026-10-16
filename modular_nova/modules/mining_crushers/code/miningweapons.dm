@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Base handler for variant switch feedback
 /obj/item/kinetic_crusher/proc/on_variant_switch(mob/living/user)
 	to_chat(user, LANG("obj.fa612e6ae02600dc", list(initial(name))))

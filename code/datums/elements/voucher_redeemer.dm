@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * Accepts a [voucher_type] and a [set_type] and allows the user to redeem the voucher for items from a set.
  */
@@ -61,7 +61,7 @@
 	for(var/set_name in set_instances)
 		var/datum/voucher_set/current_set = set_instances[set_name]
 		var/datum/radial_menu_choice/option = new
-		// NOVA EDIT ADDITION - i18n: show the reversed name/description in the radial menu. The radial choice_id
+		// ZH EDIT ADDITION - i18n: show the reversed name/description in the radial menu. The radial choice_id
 		// (cached_options key) stays the english set_name, so show_radial_menu's selection → set_instances[selection]
 		// lookup is unaffected; option.name is display-only (radial.dm uses it for the label + "Info:" tooltip title).
 		// lang_reverse_text no-ops on en / en locale.

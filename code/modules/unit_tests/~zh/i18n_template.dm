@@ -1,4 +1,4 @@
-/// 边界层「模板逆匹配」引擎（modular_nova/modules/i18n/code/template_match.dm）的行为测试。
+/// 边界层「模板逆匹配」引擎（modular_zh/modules/i18n/code/template_match.dm）的行为测试。
 /// 向 i18n 缓存注入合成 en/测试 locale 模板对，验证：中间占位符捕获、前导占位符的
 /// 标签/句界处理、占位符重排、不完整匹配不替换、幂等。结束后清理注入状态。
 /datum/unit_test/i18n_template_match

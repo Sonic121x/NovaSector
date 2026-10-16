@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// How much to scale the explosion ranges for blastcannon shots.
 #define BLASTCANNON_RANGE_EXP (1 / GLOB.DYN_EX_SCALE)
 /// How much to scale the explosion ranges for blastcannon shots.

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Define to mimic a span macro but for the purple font that vote specifically uses.
 #define vote_font(text) ("<font color='purple'>" + text + "</font>")
 
@@ -340,7 +340,7 @@ SUBSYSTEM_DEF(vote)
 			var/list/choices = list()
 			for(var/key in current_vote.choices)
 				choices += list(list(
-					// NOVA EDIT CHANGE START - I18N: 键必须原样回传（choices[key]++ 按它计数），但 "name" 不在
+					// ZH EDIT CHANGE START - I18N: 键必须原样回传（choices[key]++ 按它计数），但 "name" 不在
 					// payload_skip_keys 里 → P1 会把**多词**选项译成中文（地图名 "Delta Station"/"Ice Box Station"
 					// 进了 _map_names.json 之后就是这样），前端 act 回传中文 → choices[中文]++ 建出幽灵条目，
 					// 真键永远 0 票 → 投票无效、结束时换不了图。改用 "id" 承载键（"id" 已在 payload_skip_keys），
@@ -348,7 +348,7 @@ SUBSYSTEM_DEF(vote)
 					// ORIGINAL: "name" = key,
 					"id" = key,
 					"name" = current_vote.get_choice_display_name(key),
-					// NOVA EDIT CHANGE END
+					// ZH EDIT CHANGE END
 					"votes" = current_vote.choices[key],
 				))
 

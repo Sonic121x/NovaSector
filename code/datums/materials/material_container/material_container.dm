@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*!
 	This datum should be used for handling mineral contents of machines and whatever else is supposed to hold minerals and make use of them.
 
@@ -761,8 +761,8 @@
 		var/amount = materials[material]
 
 		data += list(list(
-			"name" = lang_localize_display_name(material.name), // NOVA EDIT - I18N: 显示名（单词材料名 P1 的多词门槛够不着）；标识符走下面那条英文 id。ORIGINAL: "name" = material.name,
-			// NOVA EDIT ADDITION - I18N: 前端 MATERIAL_ICONS/MATERIAL_RARITY 按**英文材料名**查表，所以另发一个
+			"name" = lang_localize_display_name(material.name), // ZH EDIT - I18N: 显示名（单词材料名 P1 的多词门槛够不着）；标识符走下面那条英文 id。ORIGINAL: "name" = material.name,
+			// ZH EDIT ADDITION - I18N: 前端 MATERIAL_ICONS/MATERIAL_RARITY 按**英文材料名**查表，所以另发一个
 			// 英文 id（"id" 在 i18n_payload_skip_keys 里、P1 永不翻），name 只做显示。material.name 会被
 			// SSmaterials 在建单例时就地译成中文，所以这里取 initial() 的英文原名。
 			"id" = initial(material.name),

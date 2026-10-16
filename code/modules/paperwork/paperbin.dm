@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define PAPERS_PER_OVERLAY 8
 #define PAPER_OVERLAY_PIXEL_SHIFT 2
 /obj/item/paper_bin
@@ -155,7 +155,7 @@
 /obj/item/paper_bin/examine(mob/user)
 	. = ..()
 	if(total_paper)
-		// NOVA EDIT - I18N: arg has a number prefix (not reversible whole) -> reverse just the paper noun
+		// ZH EDIT - I18N: arg has a number prefix (not reversible whole) -> reverse just the paper noun
 		. += LANG("obj.1a9d798883f44c06", list(total_paper > 1 ? "[total_paper] [lang_reverse_text("papers")]" : lang_reverse_text("one paper")))
 	else
 		. += LANG("obj.fbbb0e831fde3c1b", null)

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MIN_PROGRESS_AMOUNT 3
 #define MIN_DEVIATION_RATE 0.90
 #define MAX_DEVIATION_RATE 1.1
@@ -245,7 +245,7 @@
 		var/datum/gas_recipe/recipe = GLOB.gas_recipe_meta[path]
 		if(recipe.machine_type != "Crystallizer")
 			continue
-		data["selected_recipes"] += list(list("name" = lang_localize_display_name(recipe.name), "id" = recipe.id)) // NOVA EDIT - I18N: 名字纯显示，act 走同条负载里的 id。ORIGINAL: "name" = recipe.name
+		data["selected_recipes"] += list(list("name" = lang_localize_display_name(recipe.name), "id" = recipe.id)) // ZH EDIT - I18N: 名字纯显示，act 走同条负载里的 id。ORIGINAL: "name" = recipe.name
 	return data
 
 /obj/machinery/atmospherics/components/binary/crystallizer/ui_data()

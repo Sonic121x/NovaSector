@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * # Elevator control panel
  *
@@ -295,7 +295,7 @@
 	data["all_floor_data"] = list()
 	for(var/destination in linked_elevator_destination)
 		data["all_floor_data"] += list(list(
-			"name" = lang_localize_display_name(linked_elevator_destination[destination]), // NOVA EDIT - I18N - 楼层名是地图预设数据（preset_destination_names）；display-only（act 走 z_level），整串反查+AC（区域名/_decks.json）
+			"name" = lang_localize_display_name(linked_elevator_destination[destination]), // ZH EDIT - I18N - 楼层名是地图预设数据（preset_destination_names）；display-only（act 走 z_level），整串反查+AC（区域名/_decks.json）
 			"z_level" = text2num(destination),
 		))
 

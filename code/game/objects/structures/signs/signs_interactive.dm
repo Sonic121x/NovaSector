@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/structure/sign/clock
 	name = "wall clock"
 	desc = "It's your run-of-the-mill wall clock showing both the local Nanotrasen Standard Time and the galactic Treaty Coordinated Time. Perfect for staring at instead of working."

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/microwave/frontier_printed
 	desc = "A plastic-paneled microwave oven, capable of doing anything a standard microwave could do. \
 		This one is special designed to be tightly packed into a shape that can be easily re-assembled \

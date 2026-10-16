@@ -2,7 +2,7 @@
 
 大厅(加入界面)的几个按钮把文字**烤进了精灵图**(`icons/hud/lobby/*.dmi`)，运行时反查翻译够不着。
 本工具用**像素 CJK 字体**逐帧把英文字区替换成中文，生成中文版 `.dmi` 到
-`modular_nova/modules/i18n/icons/lobby/`，由 `master_files/.../new_player.dm` 的 `SlowInit` 覆盖在
+`modular_zh/modules/i18n/icons/lobby/`，由 `master_files/.../new_player.dm` 的 `SlowInit` 覆盖在
 **全服中文(I18N_SERVER_LOCALE≠en)时换图**——核心 `.dmi` 不动，上游合并友好。
 
 ## 覆盖的按钮（文字按钮）

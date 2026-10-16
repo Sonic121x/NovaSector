@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/config_entry/string/pc_mob_text
 	config_entry_value = "As a player controlled mob you are expected to play the role to the best of your ability. \
 	This means if you're an animal, act like one. You shouldn't display much intelligence if any. \

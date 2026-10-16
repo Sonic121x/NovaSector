@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Heirloom component. For use with the family heirloom quirk, tracks that an item is someone's family heirloom.
 /datum/component/heirloom
 	/// The mind that actually owns our heirloom.

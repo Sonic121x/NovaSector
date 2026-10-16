@@ -23,7 +23,7 @@ export function ComponentPrinter(props) {
   const availableMaterials: MaterialMap = {};
 
   for (const material of materials) {
-    // NOVA EDIT CHANGE - I18N - key by english id so multi-word mats match design.cost keys - ORIGINAL: availableMaterials[material.name] = material.amount;
+    // ZH EDIT CHANGE - I18N - key by english id so multi-word mats match design.cost keys - ORIGINAL: availableMaterials[material.name] = material.amount;
     availableMaterials[material.id ?? material.name] = material.amount;
   }
 

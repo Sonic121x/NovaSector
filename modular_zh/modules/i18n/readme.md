@@ -32,7 +32,7 @@ TGUI 的 `config.locale` 同源注入。
 **atom/turf name 与 desc 不原地翻译**：`name`、`desc` 都是 BYOND `appearance` 字段，在每个
 `/atom/Initialize` 与 `/turf/Initialize` 里改写它们，等于让地图加载期对每个实例各做两次外观变更
 （appearance 本身是内化 + 引用计数的，同型实例仍共享一份，所以代价是 **churn**，不是「每实例一份外观」）。
-详见 `modular_nova/modules/lighting_desync_debug/readme.md`。实例因此保留 canonical English，
+详见 `modular_zh/modules/lighting_desync_debug/readme.md`。实例因此保留 canonical English，
 显示边界才翻：
 
 - `/atom/get_examine_name`（examine 名）、`/atom/examine` 的 `desc`、`/atom/MouseEntered` 的 hover
@@ -124,10 +124,10 @@ LANG 化的散文，不适合短标签与标识符。
   **新增「值兼标识符」登记只改这一个文件。**
 
 **运行时（钉死路径）**
-- `code/__DEFINES/~nova_defines/i18n.dm` —— `LANG`/`LANGU` 宏与 locale 常量。
+- `code/__DEFINES/~zh_defines/i18n.dm` —— `LANG`/`LANGU` 宏与 locale 常量。
 - `tgui/packages/tgui/i18n/` —— 前端运行时：`catalog.ts`/`localize.ts`/`jsx-runtime.ts` + 打包子集
   `<locale>.json`。靠 `tgui/i18n` 别名 + SWC `importSource` 解析，**必须在 tgui 包内**。
-- `modular_nova/modules/i18n/icons/lobby/*.dmi` —— 大厅按钮中文重绘（由 `tools/i18n/lobby-buttons/` 生成）。上游 2026-09 删掉了 screen-object 大厅（`/atom/movable/screen/lobby`，改为客户端 HTML 菜单；Nova 侧该菜单整段 `NOVA EDIT REMOVAL`，大厅由 `title_screen` 模块提供），原 `SlowInit` 换图覆盖已随之删除，这批 .dmi 目前无引用。
+- `modular_zh/modules/i18n/icons/lobby/*.dmi` —— 大厅按钮中文重绘（由 `tools/i18n/lobby-buttons/` 生成）。上游 2026-09 删掉了 screen-object 大厅（`/atom/movable/screen/lobby`，改为客户端 HTML 菜单；Nova 侧该菜单整段 `ZH EDIT REMOVAL`，大厅由 `title_screen` 模块提供），原 `SlowInit` 换图覆盖已随之删除，这批 .dmi 目前无引用。
 - `config/game_options.txt` —— `I18N_SERVER_LOCALE` / `I18N_CHAT_FALLBACK` / `I18N_LOG_MISSES`。
   **无 CI workflow**：lint 与重同步均本地手动跑。
 
@@ -144,7 +144,7 @@ LANG 化的散文，不适合短标签与标识符。
 ### 核心（非模块化）改动面:
 
 绝大多数汉化逻辑在 `tools/i18n/`、本模块与 `modular_nova/master_files/`。核心 `code/` 的改动只有两类，
-都带 `NOVA EDIT` 标记：
+都带 `ZH EDIT` 标记：
 
 1. **落地钩子**——把输出边界接进兜底层：`game/atom/atom_examine.dm`（examine name/desc）、
    `game/atom/_atom.dm`（hover screentip）、`modules/tgchat/to_chat.dm`（聊天）、`datums/browser.dm`（browse）、
@@ -158,7 +158,7 @@ LANG 化的散文，不适合短标签与标识符。
 
 ### Defines:
 
-`code/__DEFINES/~nova_defines/i18n.dm`：`LANGUAGE_LOCALE_EN`、`LANGUAGE_LOCALE_ZH_HANS`、
+`code/__DEFINES/~zh_defines/i18n.dm`：`LANGUAGE_LOCALE_EN`、`LANGUAGE_LOCALE_ZH_HANS`、
 `DEFAULT_UI_LOCALE`、`I18N_SUBDIRECTORY`、`LANG(key, args)`、`LANGU(user, key, args)`。
 
 ### Included files that are not contained in this module:

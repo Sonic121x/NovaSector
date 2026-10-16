@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Stores an override value for the order cooldown to be used by the Dpt. Order Cooldown button in the secrets menu. When null, the override is not active.
 GLOBAL_VAR(department_cd_override)
 
@@ -89,16 +89,16 @@ GLOBAL_VAR(department_cd_override)
 			continue
 
 		UNTYPED_LIST_ADD(supply_data[pack.group], list(
-			"name" = lang_reverse_text(pack.name), // NOVA EDIT - I18N: NtOS dept-order app (separate from orderconsole.dm); reverse name/desc at this落地点 (act uses "id", display-only safe). ORIGINAL: "name" = pack.name,
+			"name" = lang_reverse_text(pack.name), // ZH EDIT - I18N: NtOS dept-order app (separate from orderconsole.dm); reverse name/desc at this落地点 (act uses "id", display-only safe). ORIGINAL: "name" = pack.name,
 			"cost" = pack.get_cost(),
 			"id" = pack.id,
-			"desc" = lang_reverse_text(pack.desc || pack.name), // NOVA EDIT - I18N: full desc (incl. baked "Requires X access") is an exact catalog key → exact reverse. ORIGINAL: "desc" = pack.desc || pack.name,
+			"desc" = lang_reverse_text(pack.desc || pack.name), // ZH EDIT - I18N: full desc (incl. baked "Requires X access") is an exact catalog key → exact reverse. ORIGINAL: "desc" = pack.desc || pack.name,
 		))
 
 	var/list/supply_data_flattened = list()
 	for(var/group in supply_data)
 		UNTYPED_LIST_ADD(supply_data_flattened, list(
-			"name" = lang_reverse_text(group), // NOVA EDIT - I18N: group/category display name (grouping uses english pack.group key; display-only). ORIGINAL: "name" = group,
+			"name" = lang_reverse_text(group), // ZH EDIT - I18N: group/category display name (grouping uses english pack.group key; display-only). ORIGINAL: "name" = group,
 			"packs" = supply_data[group],
 		))
 

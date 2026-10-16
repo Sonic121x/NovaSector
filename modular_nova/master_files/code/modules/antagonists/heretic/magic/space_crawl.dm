@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/action/cooldown/spell/jaunt/space_crawl
 	/// Have we successfully casted a jaunt? Used for triggering a cooldown when we exit Space Phase.
 	var/successful_jaunt = FALSE

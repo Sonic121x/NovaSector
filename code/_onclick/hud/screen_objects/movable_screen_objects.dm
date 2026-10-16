@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 
 //////////////////////////
 //Movable Screen Objects//
@@ -49,7 +49,7 @@ ADMIN_VERB(test_movable_UI, R_DEBUG, "生成可移动 UI 对象", "Spawn a movab
 	var/atom/movable/screen/movable/M = new
 	M.name = "Movable UI Object"
 	M.icon_state = "block"
-	M.maptext = MAPTEXT(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE ? "可移动" : "Movable") // NOVA EDIT - i18n: maptext 不过 AC，全服中文直给中文标签
+	M.maptext = MAPTEXT(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE ? "可移动" : "Movable") // ZH EDIT - i18n: maptext 不过 AC，全服中文直给中文标签
 	M.maptext_width = 64
 
 	var/screen_l = input(user, LANG("datum.a9622be67f9bfa5f", null),LANG("datum.df64e0c84244c1ab", null)) as text|null
@@ -63,7 +63,7 @@ ADMIN_VERB(test_snap_ui, R_DEBUG, "生成吸附 UI 对象", "Spawn a snap UI obj
 	var/atom/movable/screen/movable/snap/S = new
 	S.name = "Snap UI Object"
 	S.icon_state = "block"
-	S.maptext = MAPTEXT(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE ? "吸附" : "Snap") // NOVA EDIT - i18n: maptext 不过 AC，全服中文直给中文标签
+	S.maptext = MAPTEXT(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE ? "吸附" : "Snap") // ZH EDIT - i18n: maptext 不过 AC，全服中文直给中文标签
 	S.maptext_width = 64
 
 	var/screen_l = input(user,LANG("datum.a9622be67f9bfa5f", null),LANG("datum.1ad9c84d7629c227", null)) as text|null

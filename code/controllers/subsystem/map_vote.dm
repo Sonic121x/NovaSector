@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MAP_VOTE_CACHE_LOCATION "data/map_vote_cache.json"
 
 SUBSYSTEM_DEF(map_vote)
@@ -95,7 +95,7 @@ SUBSYSTEM_DEF(map_vote)
 
 	ASSERT(winner, "No winner found in map vote.")
 	set_next_map(config.maplist[winner])
-	var/list/messages = list("Map Selected - [span_bold(lang_map_display_name(next_map_config.map_name))]") // NOVA EDIT - i18n: 地图名显示译名
+	var/list/messages = list("Map Selected - [span_bold(lang_map_display_name(next_map_config.map_name))]") // ZH EDIT - i18n: 地图名显示译名
 	messages += "Tallies at the time of selection:"
 	messages += tally_printout
 
@@ -198,7 +198,7 @@ SUBSYSTEM_DEF(map_vote)
 	var/list/data = list()
 	for(var/map_id in map_vote_cache)
 		var/datum/map_config/map = config.maplist[map_id]
-		data += "[lang_map_display_name(map.map_name)] - [map_vote_cache[map_id]]" // NOVA EDIT - i18n: 地图名显示译名
+		data += "[lang_map_display_name(map.map_name)] - [map_vote_cache[map_id]]" // ZH EDIT - i18n: 地图名显示译名
 	var/tally_msg = span_tooltip("A map's tallies are reset after it wins a vote. \
 		Otherwise, they are carried over and added onto from the next vote on the next round, \
 		until it eventually wins and is reset.", "Current Tallies")

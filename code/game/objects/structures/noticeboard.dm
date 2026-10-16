@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MAX_NOTICES 8
 
 /obj/structure/noticeboard
@@ -76,7 +76,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, 32)
 	data["items"] = list()
 	for(var/obj/item/content in contents)
 		var/list/content_data = list(
-			name = content.lang_localize_name_for_display(content.name), // NOVA EDIT - I18N: 纸张名纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: name = content.name,
+			name = content.lang_localize_name_for_display(content.name), // ZH EDIT - I18N: 纸张名纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: name = content.name,
 			ref = REF(content)
 		)
 		data["items"] += list(content_data)

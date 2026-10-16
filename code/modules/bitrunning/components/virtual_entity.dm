@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Handles all special considerations for "virtual entities" such as bitrunning ghost roles or digital anomaly antagonists.
 /datum/component/virtual_entity
 	/// The cooldown for balloon alerts, so the player isn't spammed while trying to enter a restricted area.

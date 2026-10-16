@@ -1,6 +1,6 @@
 import dateformat from 'dateformat';
 import yaml from 'js-yaml';
-import { Component, Fragment, useState } from 'react'; // NOVA EDIT CHANGE - I18N - ORIGINAL: import { Component, Fragment } from 'react';
+import { Component, Fragment, useState } from 'react'; // ZH EDIT CHANGE - I18N - ORIGINAL: import { Component, Fragment } from 'react';
 import {
   Box,
   Button,
@@ -9,7 +9,7 @@ import {
   Section,
   Stack,
   Table,
-  Tabs, // NOVA EDIT ADDITION - I18N
+  Tabs, // ZH EDIT ADDITION - I18N
 } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
@@ -58,11 +58,11 @@ type ChangelogState = {
 
 type ChangelogData = {
   dates: string[];
-  localization_dates?: string[]; // NOVA EDIT ADDITION - I18N
-  translated_dates?: string[]; // NOVA EDIT ADDITION - I18N
+  localization_dates?: string[]; // ZH EDIT ADDITION - I18N
+  translated_dates?: string[]; // ZH EDIT ADDITION - I18N
 };
 
-// NOVA EDIT ADDITION START - I18N: the localization build's own changelog, shown as a separate tab.
+// ZH EDIT ADDITION START - I18N: the localization build's own changelog, shown as a separate tab.
 // It has its own archive (html/changelogs/localization) and asset names so upstream's never collide with it.
 type ChangelogSource = 'upstream' | 'localization';
 
@@ -117,7 +117,7 @@ const translateChangelog = (
   }
   return result;
 };
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 export class ChangelogContent extends Component<any, ChangelogState> {
   dateChoices: string[];
@@ -151,14 +151,14 @@ export class ChangelogContent extends Component<any, ChangelogState> {
       return this.setData(`Failed to load data after ${maxAttempts} attempts`);
     }
 
-    // NOVA EDIT CHANGE START - I18N - ORIGINAL: act('get_month', { date }); fetch(resolveAsset(`${date}.yml`))
+    // ZH EDIT CHANGE START - I18N - ORIGINAL: act('get_month', { date }); fetch(resolveAsset(`${date}.yml`))
     const localization = isLocalization(this.props.source);
     act(localization ? 'get_localization_month' : 'get_month', { date });
 
     fetch(
       resolveAsset(localization ? `localization-${date}.yml` : `${date}.yml`),
     ).then(async (changelogData) => {
-      // NOVA EDIT CHANGE END
+      // ZH EDIT CHANGE END
       if (!changelogData.ok) {
         if (attemptNumber >= maxAttempts) {
           this.setData(`Failed to load after ${maxAttempts} attempts`);
@@ -174,7 +174,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
       }
 
       const result = await changelogData.text();
-      // NOVA EDIT CHANGE START - I18N - ORIGINAL: this.setData(yaml.load(result, { schema: yaml.CORE_SCHEMA }) as ChangelogYaml);
+      // ZH EDIT CHANGE START - I18N - ORIGINAL: this.setData(yaml.load(result, { schema: yaml.CORE_SCHEMA }) as ChangelogYaml);
       let changelog = yaml.load(result, {
         schema: yaml.CORE_SCHEMA,
       }) as ChangelogYaml;
@@ -186,16 +186,16 @@ export class ChangelogContent extends Component<any, ChangelogState> {
         }
       }
       this.setData(changelog);
-      // NOVA EDIT CHANGE END
+      // ZH EDIT CHANGE END
     });
   };
 
   componentDidMount() {
     const { data } = useBackend<ChangelogData>();
-    const dates = sourceDates(data, this.props.source); // NOVA EDIT CHANGE - I18N - ORIGINAL: const { dates = [] } = data;
+    const dates = sourceDates(data, this.props.source); // ZH EDIT CHANGE - I18N - ORIGINAL: const { dates = [] } = data;
 
     if (dates.length) {
-      // NOVA EDIT CHANGE - I18N - ORIGINAL: if (dates) {
+      // ZH EDIT CHANGE - I18N - ORIGINAL: if (dates) {
       dates.forEach((date) => {
         this.dateChoices.push(dateformat(date, 'mmmm yyyy', true));
       });
@@ -206,7 +206,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
 
   render() {
     const { data } = useBackend<ChangelogData>();
-    const dates = sourceDates(data, this.props.source); // NOVA EDIT CHANGE - I18N - ORIGINAL: const { dates = [] } = data;
+    const dates = sourceDates(data, this.props.source); // ZH EDIT CHANGE - I18N - ORIGINAL: const { dates = [] } = data;
     const { loaded_text, selectedIndex, selectedDate } = this
       .state as ChangelogState;
     const { dateChoices } = this;
@@ -304,7 +304,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
       </Section>
     );
 
-    // NOVA EDIT ADDITION START - I18N
+    // ZH EDIT ADDITION START - I18N
     const localizationHeader = (
       <Section>
         <h1>Localization changes</h1>
@@ -314,7 +314,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
 
     // Upstream's footer carries the Goon credits and licence text, which belong to the upstream tab.
     const localizationFooter = <Section>{dateDropdown}</Section>;
-    // NOVA EDIT ADDITION END
+    // ZH EDIT ADDITION END
 
     const footer = (
       <Section>
@@ -456,22 +456,22 @@ export class ChangelogContent extends Component<any, ChangelogState> {
     return (
       <>
         {isLocalization(this.props.source) ? localizationHeader : header}
-        {/* NOVA EDIT CHANGE - I18N - ORIGINAL: {header} */}
+        {/* ZH EDIT CHANGE - I18N - ORIGINAL: {header} */}
         {changes}
         {typeof loaded_text === 'string' && <p>{loaded_text}</p>}
         {isLocalization(this.props.source) ? localizationFooter : footer}
-        {/* NOVA EDIT CHANGE - I18N - ORIGINAL: {footer} */}
+        {/* ZH EDIT CHANGE - I18N - ORIGINAL: {footer} */}
       </>
     );
   }
 }
 
 export const Changelog = () => {
-  const [source, setSource] = useState<ChangelogSource>('upstream'); // NOVA EDIT ADDITION - I18N
+  const [source, setSource] = useState<ChangelogSource>('upstream'); // ZH EDIT ADDITION - I18N
   return (
     <Window title="Changelog" width={675} height={650}>
       <Window.Content scrollable>
-        {/* NOVA EDIT ADDITION START - I18N */}
+        {/* ZH EDIT ADDITION START - I18N */}
         <Tabs>
           <Tabs.Tab
             selected={source === 'upstream'}
@@ -486,10 +486,10 @@ export const Changelog = () => {
             Localization changes
           </Tabs.Tab>
         </Tabs>
-        {/* NOVA EDIT ADDITION END */}
+        {/* ZH EDIT ADDITION END */}
         {/* key: remount on switch so the date list and loaded month reset */}
         <ChangelogContent key={source} source={source} />
-        {/* NOVA EDIT CHANGE - I18N - ORIGINAL: <ChangelogContent /> */}
+        {/* ZH EDIT CHANGE - I18N - ORIGINAL: <ChangelogContent /> */}
       </Window.Content>
     </Window>
   );

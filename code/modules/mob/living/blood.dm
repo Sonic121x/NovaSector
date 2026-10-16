@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define BLOOD_DRIP_RATE_MOD 90 //Greater number means creating blood drips more often while bleeding
 // Conversion between internal drunk power and common blood alcohol content
 #define DRUNK_POWER_TO_BLOOD_ALCOHOL 0.003
@@ -355,9 +355,9 @@
 				if(BLOOD_FLOW_DECREASING) // this only matters if none of the wounds fit the above two cases, included here for completeness
 					continue
 
-	// NOVA EDIT ADDITION - I18N - reverse each concatenated bleeding fragment (literals not caught by codemod/boundary; en: no-op) - see strings/i18n/*/_bodyfeel.json
+	// ZH EDIT ADDITION - I18N - reverse each concatenated bleeding fragment (literals not caught by codemod/boundary; en: no-op) - see strings/i18n/*/_bodyfeel.json
 	to_chat(src, span_warning("[lang_reverse_text(bleeding_severity)][lang_reverse_text(rate_of_change)]"))
-	// NOVA EDIT - I18N - ORIGINAL: to_chat(src, span_warning("[bleeding_severity][rate_of_change]"))
+	// ZH EDIT - I18N - ORIGINAL: to_chat(src, span_warning("[bleeding_severity][rate_of_change]"))
 	COOLDOWN_START(src, bleeding_message_cd, next_cooldown)
 
 /mob/living/proc/restore_blood()

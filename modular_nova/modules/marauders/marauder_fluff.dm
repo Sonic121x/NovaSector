@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //some drinks
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/martini
 	list_reagents = list(/datum/reagent/consumable/ethanol/martini = 50)

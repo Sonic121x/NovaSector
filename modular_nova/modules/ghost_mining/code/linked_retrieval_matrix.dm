@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///Time taken to spawn a boulder, also the cooldown applied before the next manual teleportation
 #define LRM_TELEPORTATION_TIME (1.5 SECONDS)
 ///Cooldown for automatic teleportation after processing boulders_processing_max number of boulders

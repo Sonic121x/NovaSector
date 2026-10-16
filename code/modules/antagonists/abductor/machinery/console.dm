@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /proc/get_abductor_console(team_number)
 	for(var/obj/machinery/abductor/console/C as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/abductor/console))
 		if(C.team_number == team_number)
@@ -103,7 +103,7 @@
 			gear_path = AG.build_path[1]
 
 			cat["items"] += list(list(
-				// NOVA EDIT CHANGE START - I18N: "items" 整个键在 payload_skip_keys 里（因为 name 是 act("buy")
+				// ZH EDIT CHANGE START - I18N: "items" 整个键在 payload_skip_keys 里（因为 name 是 act("buy")
 				// 的回传键），于是同一条目里**纯显示**的 desc 也被一起跳过 → 绑架者终端整片英文。
 				// 改为在落地点显式反查：id 保持英文供 act 回传，name/desc 只作显示。
 				// ORIGINAL: "name" = AG.name, "desc" = AG.description,
@@ -111,7 +111,7 @@
 				"name" = lang_reverse_text(AG.name),
 				"cost" = AG.cost,
 				"desc" = lang_reverse_text(AG.description),
-				// NOVA EDIT CHANGE END
+				// ZH EDIT CHANGE END
 				"icon" = gear_path::icon,
 				"icon_state" = gear_path::icon_state,
 			))

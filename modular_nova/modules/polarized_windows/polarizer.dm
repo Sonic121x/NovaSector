@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/assembly/control/polarizer
 	name = "window polarization remote controller"
 	desc = "A small electronic device able to control the polarization status of linked windows remotely."

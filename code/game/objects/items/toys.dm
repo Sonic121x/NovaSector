@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /* Toys!
  * Contains
  * Balloons
@@ -1463,7 +1463,7 @@
 		return
 	doll_name = new_name
 	to_chat(user, span_notice(LANG("obj.4056970a41533610", list(doll_name))))
-	name = "[lang_reverse_text(initial(name))] - [doll_name]"  // NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)] - [doll_name]"
+	name = "[lang_reverse_text(initial(name))] - [doll_name]"  // ZH EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)] - [doll_name]"
 
 /obj/item/toy/dummy/Initialize(mapload)
 	. = ..()

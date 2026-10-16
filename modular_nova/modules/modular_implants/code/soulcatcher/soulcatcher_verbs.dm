@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Prompts the parent mob to send a say message to the soulcatcher. Returns False if no soulcatcher or message could be found.
 GAME_VERB_PROC_DESC(/mob/living, soulcatcher_say, "灵魂发言", "Send a Say message to your currently targeted soulcatcher room.", "IC")
 	var/datum/component/soulcatcher/target_soulcatcher = find_soulcatcher()

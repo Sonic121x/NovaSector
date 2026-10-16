@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /*----- Template for ruins, prevents needing to re-type the filepath prefix -----*/
 /datum/map_template/ruin/icemoon/underground/nova/
 	prefix = "_maps/RandomRuins/IceRuins/nova/"

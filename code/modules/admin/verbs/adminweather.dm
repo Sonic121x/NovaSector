@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(run_weather, R_ADMIN|R_FUN, "运行天气", "Triggers specific weather on the z-level you choose.", ADMIN_CATEGORY_EVENTS)
 
 	var/list/weather_choices = list()

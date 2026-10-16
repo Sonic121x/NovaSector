@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/book
 	name = "book"
 	desc = "Crack it open, inhale the musk of its pages, and learn something new."
@@ -35,7 +35,7 @@
 
 /obj/item/book/Initialize(mapload)
 	. = ..()
-	// NOVA EDIT CHANGE - i18n - 全服中文时构建译文 book_info（标题/正文整串反查；author 是人名不译）。
+	// ZH EDIT CHANGE - i18n - 全服中文时构建译文 book_info（标题/正文整串反查；author 是人名不译）。
 	// 不动 starting_* 实例变量（read-tracking 仍用英文 starting_title 作键，跨 locale 一致）。
 	// lang_reverse_text 在 locale==en 时原样返回，零行为变化。
 	book_data = new(lang_reverse_text(starting_title), starting_author, lang_reverse_text(starting_content)) // ORIGINAL: book_data = new(starting_title, starting_author, starting_content)
@@ -362,14 +362,14 @@
 		for(var/phobia_type, phobia_name in GLOB.phobia_types)
 			var/list/trauma_data = list()
 			trauma_data["full_name"] = phobia_name
-			// NOVA EDIT CHANGE START - i18n: 类别词经域内表换成显示标签（它本身是标识符，不能进
+			// ZH EDIT CHANGE START - i18n: 类别词经域内表换成显示标签（它本身是标识符，不能进
 			// 全局反查表），两条句子各走自己的模板。id 一栏仍用原始 phobia_type，回传不受影响。
 			// ORIGINAL: trauma_data["scan_name"] = "[/datum/brain_trauma/mild/phobia::scan_desc] of [phobia_type]"
 			// ORIGINAL: trauma_data["desc"] = "Patient is irrationally afraid of [phobia_type]."
 			var/phobia_label = lang_phobia_label(phobia_type)
 			trauma_data["scan_name"] = LANG("datum.3ea1416777413765", list(phobia_label))
 			trauma_data["desc"] = LANG("obj.5f9046387ea0521e", list(phobia_label))
-			// NOVA EDIT CHANGE END
+			// ZH EDIT CHANGE END
 			trauma_data["symptoms"] = /datum/brain_trauma/mild/phobia::symptoms
 			trauma_data["id"] = "[/datum/brain_trauma/mild/phobia]/[phobia_type]"
 			trauma_info += list(trauma_data)

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define EMERGENCY_SUIT_MIN_TEMP_PROTECT 237
 #define EMERGENCY_SUIT_MAX_TEMP_PROTECT 100
 #define EMERGENCY_HELMET_MIN_TEMP_PROTECT 2.0

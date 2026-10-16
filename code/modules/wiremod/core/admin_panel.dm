@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 
 ADMIN_VERB(view_all_circuits, R_ADMIN, "查看所有电路", "List all circuits in the game.", ADMIN_CATEGORY_GAME)
 	var/static/datum/circuit_admin_panel/circuit_admin_panel = new

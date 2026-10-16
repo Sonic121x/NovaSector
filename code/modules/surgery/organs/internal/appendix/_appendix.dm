@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // A 10% chance that out of a group of 25 people, one person will get appendicitis in 1 hour.
 #define APPENDICITIS_PROB 100 * (0.1 * (1 / 25) / 3600)
 #define INFLAMATION_ADVANCEMENT_PROB 2

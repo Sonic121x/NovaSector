@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //This file is used to contain unique properties of every map, and how we wish to alter them on a per-map basis.
 //Use JSON files that match the datum layout and you should be set from there.
 //Right now, we default to MetaStation to ensure something does indeed load by default.

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define COMBAT_NOTICE_COOLDOWN (10 SECONDS)
 GLOBAL_DATUM_INIT(combat_indicator_vis, /obj/effect/overlay/indicator/combat, new)
 

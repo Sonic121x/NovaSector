@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //cleansed 9/15/2012 17:48
 
 /*
@@ -770,7 +770,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	choke_time_max = 40 SECONDS
 
 /obj/item/cigarette/rollie/Initialize(mapload)
-	// NOVA EDIT ADDITION START - I18N: rollie names are random slang. Many ("bun"/"bone"/"joint"/"bird"…)
+	// ZH EDIT ADDITION START - I18N: rollie names are random slang. Many ("bun"/"bone"/"joint"/"bird"…)
 	// collide with common food/item names, so we CANNOT route them through the global reverse table
 	// (it would mistranslate those real items). Instead pick from a localized list inline when the
 	// server is non-English; the /atom/Initialize reverse hook then no-ops on the already-localized name.
@@ -785,7 +785,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		pixel_x = rand(-5, 5)
 		pixel_y = rand(-5, 5)
 		return
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	name = pick(list(
 		"bifta",
 		"bifter",

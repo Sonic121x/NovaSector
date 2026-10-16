@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Flesh mending
 #define MUTATION_HEAL_AMOUNT_CROSS 1
 #define MUTATION_HEAL_AMOUNT_EAT 5

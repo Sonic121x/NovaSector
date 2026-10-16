@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/grenade/anchor
 	name = "fastball bluespace grounder"
 	desc = "A quantity of charged dimensional stability, siphoned from a dimensional core, barely contained within a shape vaguely reminiscent of a grenade. \

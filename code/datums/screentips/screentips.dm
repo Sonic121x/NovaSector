@@ -28,9 +28,9 @@ GLOBAL_LIST_INIT_TYPED(screentip_context_icons, /image, prepare_screentip_contex
 		// Compile into image, if allowed
 		button = "\icon[GLOB.screentip_context_icons[button]]"
 
-	// NOVA EDIT - i18n: 屏幕提示文本反查（context[...] 字符串已抽进目录；显示处整串反查，静态提示即译）
+	// ZH EDIT - i18n: 屏幕提示文本反查（context[...] 字符串已抽进目录；显示处整串反查，静态提示即译）
 	var/context_text = (GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) ? lang_reverse_text(context[key]) : context[key]
 	// Voilá, final result
-	return "[key_combo][button][allow_image ? "" : ":"] [context_text]" // NOVA EDIT - i18n: ORIGINAL used [context[key]]
+	return "[key_combo][button][allow_image ? "" : ":"] [context_text]" // ZH EDIT - i18n: ORIGINAL used [context[key]]
 
 #undef HINT_ICON_FILE

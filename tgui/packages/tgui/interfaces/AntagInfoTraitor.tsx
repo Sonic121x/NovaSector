@@ -163,7 +163,7 @@ const CodewordsSection = (props) => {
                 identify fellow agents. Use the codewords during regular
                 conversation to identify other agents. Proceed with caution,
                 however, as everyone is a potential foe.
-                {/* NOVA EDIT CHANGE - i18n: dropped the leading &ensp; entity; JSX decodes it to   at runtime
+                {/* ZH EDIT CHANGE - i18n: dropped the leading &ensp; entity; JSX decodes it to   at runtime
                     but the auto-localize catalog key kept the literal "&ensp;", so this line never matched/translated.
                     ORIGINAL: <span style={badstyle}>&ensp;You have memorized the codewords, allowing you to recognise them when heard.</span> */}
                 <span style={badstyle}>

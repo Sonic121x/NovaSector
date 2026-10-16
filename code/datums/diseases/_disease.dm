@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/disease
 	//Flags
 	var/visibility_flags = NONE
@@ -62,7 +62,7 @@
 
 /datum/disease/New()
 	. = ..()
-	// NOVA EDIT ADDITION START - i18n - 疾病名/描述/治疗/传播文本创建时整串反查（全服中文时；按感染实例化，gated 后开销小）
+	// ZH EDIT ADDITION START - i18n - 疾病名/描述/治疗/传播文本创建时整串反查（全服中文时；按感染实例化，gated 后开销小）
 	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		name = lang_reverse_text(name)
 		desc = lang_reverse_text(desc)
@@ -70,7 +70,7 @@
 		spread_text = lang_reverse_text(spread_text)
 		form = lang_reverse_text(form)
 		agent = lang_reverse_text(agent)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 /datum/disease/Destroy()
 	. = ..()

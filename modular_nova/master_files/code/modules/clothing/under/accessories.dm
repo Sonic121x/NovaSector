@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/clothing/accessory/can_attach_accessory(obj/item/clothing/clothing_item, mob/user)
 	if(!attachment_slot || (clothing_item?.attachment_slot_override & attachment_slot))
 		return TRUE

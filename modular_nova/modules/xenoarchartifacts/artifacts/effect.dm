@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define ARTIFACT_SMALL_POWER "small"
 #define ARTIFACT_MEDIUM_POWER "medium"
 #define ARTIFACT_LARGE_POWER "big"

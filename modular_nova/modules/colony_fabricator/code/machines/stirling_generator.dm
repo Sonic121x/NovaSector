@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Stirling generator, like a miniature TEG, pipe hot air in, and keep the air around it cold
 
 /obj/machinery/power/stirling_generator

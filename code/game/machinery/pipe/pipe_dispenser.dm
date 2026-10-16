@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define ATMOS_PIPEDISPENSER 0
 #define DISPOSAL_PIPEDISPENSER 1
 #define TRANSIT_PIPEDISPENSER 2
@@ -51,7 +51,7 @@
 		var/list/r = list()
 		for(var/i in 1 to cat.len)
 			var/datum/pipe_info/info = cat[i]
-			r += list(list("pipe_name" = lang_localize_display_name(info.name), "pipe_index" = i, "all_layers" = info.all_layers, "dir" = NORTH)) // NOVA EDIT - I18N: 管件名纯显示（act 走 pipe_index）。ORIGINAL: "pipe_name" = info.name
+			r += list(list("pipe_name" = lang_localize_display_name(info.name), "pipe_index" = i, "all_layers" = info.all_layers, "dir" = NORTH)) // ZH EDIT - I18N: 管件名纯显示（act 走 pipe_index）。ORIGINAL: "pipe_name" = info.name
 			// if this is bendable, add the bent version of the pipe (disposals)
 			if (info.dirtype == PIPE_BENDABLE)
 				r += list(list("pipe_name" = "Bent " + info.name, "pipe_index" = i, "all_layers" = info.all_layers, "dir" = NORTHEAST))

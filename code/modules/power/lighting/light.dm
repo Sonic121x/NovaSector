@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // the standard tube light fixture
 /obj/machinery/light
 	name = "light fixture"
@@ -251,7 +251,7 @@
 		var/color_set = bulb_colour
 		// atom 的 color 可以是颜色矩阵（冻结效果套的 freon_color_matrix 就是 4 元素列表），那不是灯光颜色：
 		// 原样传进 set_light 会让 rgb2num 报 bad color、光源构造失败，被冻住的灯直接不亮（生产 8-9 月 391 次）。
-		if(istext(color)) // NOVA EDIT CHANGE - ORIGINAL: if(color)
+		if(istext(color)) // ZH EDIT CHANGE - ORIGINAL: if(color)
 			color_set = color
 		if(reagents || !is_full_charge())
 			START_PROCESSING(SSmachines, src)

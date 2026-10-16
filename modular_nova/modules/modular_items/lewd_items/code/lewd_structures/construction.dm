@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///The item used as the basis for construction kits for organic interface
 /obj/item/construction_kit
 	name = "construction kit"

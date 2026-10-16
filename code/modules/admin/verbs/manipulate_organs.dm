@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB_VISIBILITY(manipulate_organs, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 
 ADMIN_VERB(manipulate_organs, R_DEBUG, "操作器官", "Manipulate the organs of a living carbon.", ADMIN_CATEGORY_DEBUG)

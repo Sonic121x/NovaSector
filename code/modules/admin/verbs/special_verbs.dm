@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Admin Verbs in this file are special and cannot use the AVD system for some reason or another.
 
 GAME_VERB_PROC(/client, show_verbs, "管理员命令 - 显示", ADMIN_CATEGORY_MAIN)

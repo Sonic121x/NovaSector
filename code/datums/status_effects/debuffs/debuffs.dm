@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// The damage healed per tick while sleeping without any modifiers
 #define HEALING_SLEEP_DEFAULT 0.2
 /// The sleep healing multiplier for organ passive healing (since organs heal slowly)

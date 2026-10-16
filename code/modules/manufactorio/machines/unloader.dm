@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/power/manufacturing/unloader
 	name = "manufacturing crate unloader"
 	desc = "Unloads crates (and ore boxes) passed into it, ejecting the empty crate to the side and its contents forwards. Use a multitool to flip the crate output."

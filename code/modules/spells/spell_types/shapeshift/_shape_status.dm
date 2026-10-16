@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // A status effect for having a mob temporarily (usually) change form into that of another mob.
 // When the status effect is removed, the mob is reverted back to their human form in most cases.
 // If you want a more permanent polymorph, see [/proc/wabbajack].

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * # Emote
  *
@@ -115,7 +115,7 @@
 		else
 			msg = params
 
-	// NOVA EDIT ADDITION - i18n: 留一份**代词替换前**的原串，反查要用它（见下方 lang_reverse_text）
+	// ZH EDIT ADDITION - i18n: 留一份**代词替换前**的原串，反查要用它（见下方 lang_reverse_text）
 	var/pre_pronoun_msg = msg
 	msg = replace_pronoun(user, msg)
 	if(!msg)
@@ -127,7 +127,7 @@
 	if(user.client)
 		user.log_message(msg, LOG_EMOTE)
 
-	// NOVA EDIT ADDITION START - I18N - emote 消息在下游拼成「[user] [msg]」整句动态、无法命中目录；
+	// ZH EDIT ADDITION START - I18N - emote 消息在下游拼成「[user] [msg]」整句动态、无法命中目录；
 	// 在日志之后（日志保英文）对 msg 整串反查（含单词条目；miss 原样返回，locale==en 时 no-op）。
 	//
 	// **必须用代词替换前的原串查**：目录键是源码里的 "their" 形态（"stretches their arms."），而
@@ -137,11 +137,11 @@
 	// 替换后的串查一次，兼容那些译文本身带代词占位的条目。
 	var/localized_msg = lang_reverse_text(pre_pronoun_msg)
 	msg = (localized_msg != pre_pronoun_msg) ? localized_msg : lang_reverse_text(msg)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	var/tmp_sound = get_sound(user)
-	var/list/tts_voicing = tts_emote_voice(user, key) // NOVA EDIT ADDITION - TTS_EXPRESSION - Humanoids perform vocal emotes in their own TTS voice.
-	if((tmp_sound || tts_voicing) && should_play_sound(user, intentional)) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: if(tmp_sound && should_play_sound(user, intentional))
+	var/list/tts_voicing = tts_emote_voice(user, key) // ZH EDIT ADDITION - TTS_EXPRESSION - Humanoids perform vocal emotes in their own TTS voice.
+	if((tmp_sound || tts_voicing) && should_play_sound(user, intentional)) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: if(tmp_sound && should_play_sound(user, intentional))
 		if(intentional)
 			if(!TIMER_COOLDOWN_FINISHED(user, MANUAL_GENERAL_EMOTE_AUDIO_COOLDOWN) || !TIMER_COOLDOWN_FINISHED(user, MANUAL_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type)) || !TIMER_COOLDOWN_FINISHED(user, FORCED_GENERAL_EMOTE_AUDIO_COOLDOWN) || !TIMER_COOLDOWN_FINISHED(user, FORCED_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type)))
 				return FALSE
@@ -165,9 +165,9 @@
 			playsound(source = user,soundin = tmp_sound,vol = 50, vary = FALSE, ignore_walls = sound_wall_ignore, frequency = frequency)
 		*/ // NOVA EDIT REMOVAL END
 		// NOVA EDIT ADDITION START - Lewd emote prefs
-		if(tts_voicing) // NOVA EDIT ADDITION - TTS_EXPRESSION
-			tts_play_emote(user, tts_voicing, tmp_sound, sound_volume, frequency) // NOVA EDIT ADDITION - TTS_EXPRESSION
-		else if(running_emote_type & EMOTE_LEWD) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: if(running_emote_type & EMOTE_LEWD)
+		if(tts_voicing) // ZH EDIT ADDITION - TTS_EXPRESSION
+			tts_play_emote(user, tts_voicing, tmp_sound, sound_volume, frequency) // ZH EDIT ADDITION - TTS_EXPRESSION
+		else if(running_emote_type & EMOTE_LEWD) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: if(running_emote_type & EMOTE_LEWD)
 			playsound_if_pref(source = user, soundin = tmp_sound, vol = sound_volume, vary = FALSE, frequency = frequency, pref_to_check = /datum/preference/toggle/erp/sounds)
 		else if(use_sound_tokens && sound_wall_ignore)
 			playsoundtoken(source = user, soundin = tmp_sound, range = SOUND_RANGE, volume = sound_volume)
@@ -180,7 +180,7 @@
 	var/is_visual = running_emote_type & EMOTE_VISIBLE
 	var/is_audible = running_emote_type & EMOTE_AUDIBLE
 	var/space = should_have_space_before_emote(html_decode(msg)[1]) ? " " : "" // NOVA EDIT ADDITION
-	// NOVA EDIT ADDITION START - I18N - 下面每处 `[user]` 都是 BYOND 渲染 atom：给的是**英文名**，
+	// ZH EDIT ADDITION START - I18N - 下面每处 `[user]` 都是 BYOND 渲染 atom：给的是**英文名**，
 	// 而且非专名还会自动补一个 "The "。emote 的**消息**上面刚翻过，名字却没有 → 玩家看到
 	// 「The wolf 发出最后一声咆哮后死去。」这类半截句（漏翻采集里 `The creature`/`The hatchling`
 	// 计数直接打满上限，是聊天面剩余漏翻的头号来源；死亡消息只是其中最显眼的一种，所有 emote 同病）。
@@ -191,7 +191,7 @@
 		var/localized_user_name = user.lang_localize_name_for_display(user.name)
 		if(localized_user_name != user.name)
 			user_display = localized_user_name
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	var/additional_message_flags = get_message_flags(intentional)
 
 	// Emote doesn't get printed to chat, runechat only
@@ -313,7 +313,7 @@
 		relay_visual_emote_to_ai_runechat(user, msg, space, pref_to_check) // NOVA EDIT CHANGE - ORIGINAL: relay_visual_emote_to_ai_runechat(user, msg)
 
 	if(!isnull(user.client))
-		var/dchatmsg = "<b>[user_display]</b>[space][msg]" // NOVA EDIT CHANGE - ORIGINAL: var/dchatmsg = "<b>[user_display]</b> [msg]"
+		var/dchatmsg = "<b>[user_display]</b>[space][msg]" // ZH EDIT CHANGE - ORIGINAL: var/dchatmsg = "<b>[user_display]</b> [msg]"
 		for(var/mob/ghost as anything in GLOB.dead_mob_list - viewers(get_turf(user)))
 			if(isnull(ghost.client) || isnewplayer(ghost))
 				continue

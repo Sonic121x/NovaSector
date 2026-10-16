@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Cowardly mob with a charging attack
 /mob/living/basic/mining/lobstrosity
 	name = "arctic lobstrosity"
@@ -232,7 +232,7 @@
 	return isturf(loc)
 
 /mob/living/basic/mining/lobstrosity/juvenile/proc/grow_up()
-	// NOVA EDIT CHANGE - i18n: name is reverse-localized at Initialize so it never == the english initial(name), which
+	// ZH EDIT CHANGE - i18n: name is reverse-localized at Initialize so it never == the english initial(name), which
 	// made a default-named juvenile "look custom-named" and keep the juvenile name after growing. Also accept the
 	// un-reversed form, and reverse-localize the grown caste name. no-op on en. - ORIGINAL: name == initial(name) ? grow_type::name : name
 	var/name_to_use = (name == initial(name)) ? lang_reverse_text(grow_type::name) : name

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 GLOBAL_VAR_INIT(dchat_allowed, TRUE)
 
 ADMIN_VERB(toggledchat, R_ADMIN, "切换死亡聊天", "Toggle dis bitch.", ADMIN_CATEGORY_SERVER)

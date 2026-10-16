@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	SHOULD_BE_PURE(TRUE)
 	return !HAS_TRAIT(src, TRAIT_MUTE)
 
-/atom/movable/proc/do_tts_message(message, language, message_mods, list/tts_filter, list/hearers, list/eavesdroppers) // NOVA EDIT CHANGE - TTS_EXPRESSION - Added eavesdroppers.
+/atom/movable/proc/do_tts_message(message, language, message_mods, list/tts_filter, list/hearers, list/eavesdroppers) // ZH EDIT CHANGE - TTS_EXPRESSION - Added eavesdroppers.
 	set waitfor = FALSE
 
 	if(!SStts.tts_enabled || !voice || HAS_TRAIT(src, TRAIT_SIGN_LANG) || HAS_TRAIT(src, TRAIT_UNKNOWN_VOICE) || message_mods[MODE_CUSTOM_SAY_ERASE_INPUT])
@@ -129,9 +129,9 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(length(tts_filter) > 0)
 		filter += tts_filter.Join(",")
 	var/list/special_filter = list()
-	message = lang_localize_scripted_speech(src, message) // NOVA EDIT ADDITION - I18N - Machines and NPCs speak the translated line, as the chat box shows it.
-	var/list/expression = tts_detect_expression(message, message_mods) // NOVA EDIT ADDITION - TTS_EXPRESSION
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(message), language, get_tts_voice(filter, special_filter), filter.Join(","), hearers, message_range = 7, pitch = pitch, special_filters = special_filter.Join("|"), blip_base = blip_base, blip_number = blip_number, identifier = message_mods[MODE_TTS_IDENTIFIER], style = expression[1], sound = expression[2], instruction = tts_compose_instruction(tts_instruction, message_mods), rate = tts_rate, eavesdroppers = eavesdroppers) // NOVA EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: ..., identifier = message_mods[MODE_TTS_IDENTIFIER])
+	message = lang_localize_scripted_speech(src, message) // ZH EDIT ADDITION - I18N - Machines and NPCs speak the translated line, as the chat box shows it.
+	var/list/expression = tts_detect_expression(message, message_mods) // ZH EDIT ADDITION - TTS_EXPRESSION
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(message), language, get_tts_voice(filter, special_filter), filter.Join(","), hearers, message_range = 7, pitch = pitch, special_filters = special_filter.Join("|"), blip_base = blip_base, blip_number = blip_number, identifier = message_mods[MODE_TTS_IDENTIFIER], style = expression[1], sound = expression[2], instruction = tts_compose_instruction(tts_instruction, message_mods), rate = tts_rate, eavesdroppers = eavesdroppers) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: ..., identifier = message_mods[MODE_TTS_IDENTIFIER])
 
 /atom/movable/proc/get_tts_voice(list/filter, list/special_filter)
 	. = voice
@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/freqpart = radio_freq ? "\[[get_radio_name(radio_freq, radio_freq_name)]\] " : ""
 	//Speaker name
 	var/namepart = message_mods[MODE_SPEAKER_NAME_OVERRIDE] || speaker.get_message_voice(visible_name)
-	// NOVA EDIT ADDITION START - I18N - 说话者名字走显示边界。它被包在 `<span class='name'>` 里、
+	// ZH EDIT ADDITION START - I18N - 说话者名字走显示边界。它被包在 `<span class='name'>` 里、
 	// 是**独立的一块**经过聊天落地层（切块器按标签切，名字自成一块），所以整句反查、模板引擎都够不着它，
 	// 只剩字面 AC —— 而 AC 有多词门槛，`wolf`/`mi-go` 这种单词名永远捞不着，玩家看到「The wolf 说，「……」」。
 	// 漏翻采集里这批名字片段是聊天面剩余漏翻的头号来源（emote 那条路修好之后升到榜首）。
@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 					var/article = LOWER_TEXT(copytext(namepart, 1, name_start))
 					if(article == "the " || article == "a " || article == "an ")
 						namepart = localized_name
-	// NOVA EDIT ADDITION START - I18N - 兜住 virtualspeaker：说话/电台会把说话者包进
+	// ZH EDIT ADDITION START - I18N - 兜住 virtualspeaker：说话/电台会把说话者包进
 	// `/atom/movable/virtualspeaker`，它的 `name` **本身就是** "The wolf"（已含冠词），于是上面按
 	// canonical name 取译名那条也够不着（边界看到 name != initial(name)，当身份名拒翻）。
 	// 这里的判据比"是不是 virtualspeaker"更普适也更安全：**BYOND 只给非专有名词补冠词**，
@@ -214,8 +214,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 			if(bare_localized != bare_name)
 				namepart = bare_localized // 中文不需要冠词
 			break
-	// NOVA EDIT ADDITION END
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 	//End name span.
 	var/endspanpart = "</span>"
@@ -252,15 +252,15 @@ GLOBAL_LIST_INIT(freqtospan, list(
  */
 /atom/movable/proc/say_mod(input, list/message_mods = list())
 	var/ending = copytext_char(input, -1)
-	if(lang_yell_ending(input)) // NOVA EDIT CHANGE - I18N - 全角！！等价（中文输入法默认全角）。ORIGINAL: if(copytext_char(input, -2) == "!!")
+	if(lang_yell_ending(input)) // ZH EDIT CHANGE - I18N - 全角！！等价（中文输入法默认全角）。ORIGINAL: if(copytext_char(input, -2) == "!!")
 		return verb_yell
 	else if(message_mods[MODE_SING])
 		. = verb_sing
 	else if(message_mods[WHISPER_MODE])
 		. = verb_whisper
-	else if(ending == "?" || ending == "？") // NOVA EDIT CHANGE - I18N - 全角？等价。ORIGINAL: else if(ending == "?")
+	else if(ending == "?" || ending == "？") // ZH EDIT CHANGE - I18N - 全角？等价。ORIGINAL: else if(ending == "?")
 		return verb_ask
-	else if(ending == "!" || ending == "！") // NOVA EDIT CHANGE - I18N - 全角！等价。ORIGINAL: else if(ending == "!")
+	else if(ending == "!" || ending == "！") // ZH EDIT CHANGE - I18N - 全角！等价。ORIGINAL: else if(ending == "!")
 		return verb_exclaim
 	else
 		return get_default_say_verb()
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_SAY_QUOTE, args)
 
-	if(lang_yell_ending(input)) // NOVA EDIT CHANGE - I18N - 全角！！等价。ORIGINAL: if(copytext_char(input, -2) == "!!")
+	if(lang_yell_ending(input)) // ZH EDIT CHANGE - I18N - 全角！！等价。ORIGINAL: if(copytext_char(input, -2) == "!!")
 		spans |= SPAN_YELL
 
 	/* all inputs should be fully figured out past this point */
@@ -303,10 +303,10 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/processed_input = apply_message_emphasis(input) //This MUST be done first so that we don't get clipped by spans
 	processed_input = attach_spans(processed_input, spans)
 
-	// NOVA EDIT ADDITION - i18n - 全服中文时整串反查说话动词（says/whispers/beeps…；词由 verb_* 经 SINK_VARS 抽取）。
+	// ZH EDIT ADDITION - i18n - 全服中文时整串反查说话动词（says/whispers/beeps…；词由 verb_* 经 SINK_VARS 抽取）。
 	// 自定义 say emote（MODE_CUSTOM_SAY_EMOTE 整条消息）不在目录里 → lang_reverse_text 安全原样返回。
 	say_mod = lang_reverse_text(say_mod)
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	var/processed_say_mod = apply_message_emphasis(say_mod)
 
 	return "[processed_say_mod], \"[processed_input]\""
@@ -423,9 +423,9 @@ GLOBAL_LIST_INIT(emphasis_types, list(
 
 /proc/say_test(text)
 	var/ending = copytext_char(text, -1)
-	if (ending == "?" || ending == "？") // NOVA EDIT CHANGE - I18N - 全角？等价。ORIGINAL: if (ending == "?")
+	if (ending == "?" || ending == "？") // ZH EDIT CHANGE - I18N - 全角？等价。ORIGINAL: if (ending == "?")
 		return "1"
-	else if (ending == "!" || ending == "！") // NOVA EDIT CHANGE - I18N - 全角！等价。ORIGINAL: else if (ending == "!")
+	else if (ending == "!" || ending == "！") // ZH EDIT CHANGE - I18N - 全角！等价。ORIGINAL: else if (ending == "!")
 		return "2"
 	return "0"
 

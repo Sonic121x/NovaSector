@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /mob/living/carbon/human/get_worn_armor_value(def_zone, damage_type)
 	var/armorval = 0
 	var/organnum = 0
@@ -559,7 +559,7 @@
 		return
 	var/list/combined_msg = list()
 
-	visible_message(span_notice(LANG("mob.ad166e55c9e7a247", list(src, lang_pronoun(p_them()))))) // NOVA EDIT - i18n: 代词专用反查(him→他)
+	visible_message(span_notice(LANG("mob.ad166e55c9e7a247", list(src, lang_pronoun(p_them()))))) // ZH EDIT - i18n: 代词专用反查(him→他)
 
 	combined_msg += span_notice(LANG("mob.0ef72352b940e8cc", null))
 

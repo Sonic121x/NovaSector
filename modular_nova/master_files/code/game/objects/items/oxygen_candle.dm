@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define OXY_CANDLE_RELEASE_TEMP (T20C + 10) // 30 celsius, it's hot. Will be even hotter with hotspot expose
 
 /obj/item/oxygen_candle

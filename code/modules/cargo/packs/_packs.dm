@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/supply_pack
 	/// The name of the supply pack, as listed on th cargo purchasing UI.
 	var/name = "Crate"
@@ -41,7 +41,7 @@
 	var/list/data = list()
 	for(var/obj/item/item as anything in contains)
 		var/list/item_data = list(
-			"name" = lang_localize_display_name(item.name), // NOVA EDIT - I18N: 货运包名纯显示（act 走 pack.id）。ORIGINAL: "name" = item.name,
+			"name" = lang_localize_display_name(item.name), // ZH EDIT - I18N: 货运包名纯显示（act 走 pack.id）。ORIGINAL: "name" = item.name,
 			"icon" = item.greyscale_config ? null : item.icon,
 			"icon_state" = item.greyscale_config ? null : item.icon_state,
 			"amount" = contains[item]

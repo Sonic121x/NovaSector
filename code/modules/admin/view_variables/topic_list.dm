@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //LISTS - CAN NOT DO VV_DO_TOPIC BECAUSE LISTS AREN'T DATUMS :(
 /client/proc/vv_do_list(list/target, href_list)
 	var/target_index = text2num(GET_VV_VAR_TARGET)

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/bloodcrawl_bottle
 	name = "bloodlust in a bottle"
 	desc = "Drinking this will give you unimaginable powers... and mildly disgust you because of its metallic taste."

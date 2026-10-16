@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Name-change proc to be used for midround antags that would like to change their name
 /datum/dynamic_ruleset/midround/from_ghosts/proc/prompt_namechange(mob/living/player, client/player_client)
 	if(!player_client)

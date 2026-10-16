@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /atom/movable/screen/blob
 	icon = 'icons/hud/blob.dmi'
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -128,11 +128,11 @@
 	if(hud?.mymob && isovermind(hud.mymob))
 		var/mob/eye/blob/B = hud.mymob
 		if(B.free_strain_rerolls)
-			// NOVA EDIT CHANGE - i18n: initial(name) 会覆盖已反查的中文名；英文字面后缀进 _name_suffixes.json 一并反查
+			// ZH EDIT CHANGE - i18n: initial(name) 会覆盖已反查的中文名；英文字面后缀进 _name_suffixes.json 一并反查
 			name = "[lang_reverse_text(initial(name))] [lang_reverse_text("(FREE)")]"
 			desc = LANG("atom.664b7ddae3269c99", null)
 		else
-			// NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
+			// ZH EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名
 			name = "[lang_reverse_text(initial(name))] ([BLOB_POWER_REROLL_COST])"
 			desc = LANG("atom.5a02817ab91444b3", list(BLOB_POWER_REROLL_CHOICES, BLOB_POWER_REROLL_COST))
 	return ..()

@@ -38,7 +38,7 @@ Module ID: REGION_NEWBIE_GUARD
 
 #### 使用
 
-**开箱即用**：地区数据表（默认中国大陆，5358 段）已生成并提交在 `modular_nova/modules/region_newbie_guard/data/allowed_regions.json`，随仓库部署，无需任何额外步骤。管理员用 verb「切换新人软管制」（Server 分类，需要 `R_SERVER`）开启即可，开启时会依次询问时长门槛与存活解除时长。
+**开箱即用**：地区数据表（默认中国大陆，5358 段）已生成并提交在 `modular_zh/modules/region_newbie_guard/data/allowed_regions.json`，随仓库部署，无需任何额外步骤。管理员用 verb「切换新人软管制」（Server 分类，需要 `R_SERVER`）开启即可，开启时会依次询问时长门槛与存活解除时长。
 
 「新人软管制名单」（Admin 分类）查看当前受管制玩家、存活进度与永久豁免名单，并可就地批准或撤销豁免。
 
@@ -66,13 +66,13 @@ node tools/geoip/mihomo-geoip.mjs --input geoip.dat --country CN
 
 ### Defines:
 
-- `code/__DEFINES/~nova_defines/region_newbie_guard.dm`: `NEWBIE_GUARD_TRAIT`、`NEWBIE_GUARD_GEOIP_PATH`、`NEWBIE_GUARD_BYPASS_PATH`、`NEWBIE_GUARD_TICK`、`NEWBIE_GUARD_APPEAL_COOLDOWN`、`NEWBIE_GUARD_REFUSAL_COOLDOWN`、`NEWBIE_GUARD_REFUSE_NONE/ITEM/TARGET/TOOL`
+- `code/__DEFINES/~zh_defines/region_newbie_guard.dm`: `NEWBIE_GUARD_TRAIT`、`NEWBIE_GUARD_GEOIP_PATH`、`NEWBIE_GUARD_BYPASS_PATH`、`NEWBIE_GUARD_TICK`、`NEWBIE_GUARD_APPEAL_COOLDOWN`、`NEWBIE_GUARD_REFUSAL_COOLDOWN`、`NEWBIE_GUARD_REFUSE_NONE/ITEM/TARGET/TOOL`
 
 ### Included files that are not contained in this module:
 
 - `tools/geoip/mihomo-geoip.mjs`：mihomo/v2ray geodata → 运行时查表的转换脚本。
-- `code/modules/unit_tests/~nova/newbie_guard_geoip.dm`：地区查表的不变量测试。
-- `code/modules/unit_tests/~nova/newbie_guard_refusal.dm`：点击判定表的正反面测试（含「撬棍刻意不拦」这类看着像遗漏的设计点）。
+- `code/modules/unit_tests/~zh/newbie_guard_geoip.dm`：地区查表的不变量测试。
+- `code/modules/unit_tests/~zh/newbie_guard_refusal.dm`：点击判定表的正反面测试（含「撬棍刻意不拦」这类看着像遗漏的设计点）。
 - `config/config.txt`：`NEWBIE_GUARD*` 配置项说明。
 
 ### Credits:

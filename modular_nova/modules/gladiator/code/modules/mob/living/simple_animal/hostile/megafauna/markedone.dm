@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MARKED_ONE_STUN_DURATION (1.5 SECONDS)
 #define MARKED_ONE_ANGER_DURATION (10 MINUTES)
 #define MARKED_ONE_FIRST_PHASE 1

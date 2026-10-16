@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define MAX_ICON_NOTICES 8
 #define MAX_CASES 8
 #define MAX_EVIDENCE_Y 3500
@@ -98,7 +98,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/detectiveboard, 32)
 		var/list/data_case = list("ref"=REF(case),"name" = case.name, "color" = case.color)
 		var/list/data_evidences = list()
 		for(var/datum/evidence/evidence in case.evidences)
-			var/list/data_evidence = list("ref" = REF(evidence), "name" = lang_localize_display_name(evidence.name), "type" = evidence.evidence_type, "description" = evidence.description, "x"=evidence.x, "y"=evidence.y) // NOVA EDIT - I18N: 证物名纯显示（act 走 ref）。/datum/evidence 不是 atom，用无 trait 版；案件名是玩家自己输入的，不翻
+			var/list/data_evidence = list("ref" = REF(evidence), "name" = lang_localize_display_name(evidence.name), "type" = evidence.evidence_type, "description" = evidence.description, "x"=evidence.x, "y"=evidence.y) // ZH EDIT - I18N: 证物名纯显示（act 走 ref）。/datum/evidence 不是 atom，用无 trait 版；案件名是玩家自己输入的，不翻
 			var/list/data_connections = list()
 			for(var/datum/evidence/connection in evidence.connections)
 				data_connections += REF(connection) // TODO: create array of strings

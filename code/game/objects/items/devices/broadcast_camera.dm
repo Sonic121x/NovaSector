@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Unique broadcast camera given to the first Curator
 // Only one should exist ideally, if other types are created they must have different camera_networks
 // Broadcasts its surroundings to entertainment monitors and its audio to entertainment radio channel

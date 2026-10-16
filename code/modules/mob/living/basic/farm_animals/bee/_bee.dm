@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define BEE_TRAY_RECENT_VISIT 20 SECONDS //! How long in deciseconds until a tray can be visited by a bee again
 #define BEE_DEFAULT_COLOUR "#e5e500" //! the colour we make the stripes of the bee if our reagent has no colour (or we have no reagent)
 #define BEE_POLLINATE_YIELD_CHANCE 33 //! chance to increase yield of plant
@@ -193,7 +193,7 @@
 	if(beegent) //clear the old since this one is going to have some new value
 		RemoveElement(/datum/element/venomous, beegent.type, injection_range, thrown_effect = TRUE)
 	beegent = toxin
-	name = "[lang_reverse_text(initial(name))] ([toxin.name])"  // NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)] ([toxin.name])"
+	name = "[lang_reverse_text(initial(name))] ([toxin.name])"  // ZH EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)] ([toxin.name])"
 	real_name = name
 	AddElement(/datum/element/venomous, beegent.type, injection_range, thrown_effect = TRUE)
 	generate_bee_visuals()

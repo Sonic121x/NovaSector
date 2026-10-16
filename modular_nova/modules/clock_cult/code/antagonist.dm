@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // This'll take a bit of explaining.
 // Clock cult, the (shitty) gamemode is not coming back, this antagonist datum is for the soon-to-come OPFOR bundle
 // However, the bundle gives `/datum/antagonist/clock_cultist/solo`, which is the same as `/datum/antagonist/clock_cultist`, but lacks conversion.

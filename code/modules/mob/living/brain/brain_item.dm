@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/organ/brain
 	name = "brain"
 	desc = "A piece of juicy meat found in a person's head."
@@ -265,7 +265,7 @@
 	var/list/trauma_text
 	for(var/datum/brain_trauma/trauma as anything in traumas)
 		var/trauma_desc = ""
-		// NOVA EDIT - I18N - reverse-localize the severity prefix + scan_desc (both listed in strings/i18n/*/_brain_traumas.json);
+		// ZH EDIT - I18N - reverse-localize the severity prefix + scan_desc (both listed in strings/i18n/*/_brain_traumas.json);
 		// lang_reverse_text is locale-gated (no-op on english / en locale) so english output is unchanged.
 		switch(trauma.resilience)
 			if(TRAUMA_RESILIENCE_BASIC)

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -1096,7 +1096,7 @@
 	if(instant)
 		description += " It appears to be pulsing with a warm pink light."
 
-// NOVA EDIT ADDITION START - i18n
+// ZH EDIT ADDITION START - i18n
 /// **先反查模板、再替换 %VAR%**：目录键里留着 `%MAXHEALTHRATIO%`（抽取器照抄源码字面量），
 /// 而替换之后的整串再也不等于任何键 —— 这条描述的译文一直躺在目录里、化学界面却恒为英文。
 /// 与 announcement_system.dm 的 %PERSON/%RANK 同一条道理。
@@ -1110,7 +1110,7 @@
 	description = replacetext(lang_reverse_text(initial(description)), "%MAXHEALTHRATIO%", "[max_revive_damage_ratio * 100]%")
 	if(instant)
 		description += lang_reverse_text(" It appears to be pulsing with a warm pink light.")
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 // FEED ME SEYMOUR
 /datum/reagent/medicine/strange_reagent/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 
 
 /*
@@ -787,9 +787,9 @@
 			/*
 			if(!objective.check_completion())
 				succeeded = FALSE
-			parts += "<b>[lang_reverse_text("Objective")] #[count]</b>: [lang_reverse_text(objective.explanation_text)] [objective.get_roundend_success_suffix()]" // NOVA EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
+			parts += "<b>[lang_reverse_text("Objective")] #[count]</b>: [lang_reverse_text(objective.explanation_text)] [objective.get_roundend_success_suffix()]" // ZH EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
 			*/
-			parts += "<b>[lang_reverse_text("Objective")] #[count]</b>: [lang_reverse_text(objective.explanation_text)]" // NOVA EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
+			parts += "<b>[lang_reverse_text("Objective")] #[count]</b>: [lang_reverse_text(objective.explanation_text)]" // ZH EDIT - I18N - reverse non-interpolated full-sentence objectives (interpolated ones miss and still hit the to_chat boundary engine)
 			// NOVA EDIT END - No greentext
 			count++
 	// NOVA EDIT START - No greentext

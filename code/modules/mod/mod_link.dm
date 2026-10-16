@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /proc/make_link_visual_generic(datum/mod_link/mod_link, proc_path)
 	var/mob/living/user = mod_link.get_user_callback.Invoke()
 	var/obj/effect/overlay/link_visual = new()
@@ -224,7 +224,7 @@
 
 /obj/item/clothing/neck/link_scryer/update_name(updates)
 	. = ..()
-	name = "[lang_reverse_text(initial(name))][label ? " - [label]" : ""]"  // NOVA EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)][label ? " - [label]" : ""]"
+	name = "[lang_reverse_text(initial(name))][label ? " - [label]" : ""]"  // ZH EDIT CHANGE - i18n: initial(name) 是编译期英文原值，会覆盖掉 /atom/Initialize 反查好的中文名 - ORIGINAL: name = "[initial(name)][label ? " - [label]" : ""]"
 
 /obj/item/clothing/neck/link_scryer/Exited(atom/movable/gone, direction)
 	. = ..()

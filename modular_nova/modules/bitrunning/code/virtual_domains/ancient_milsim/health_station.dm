@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/health_station
 	name = "\improper N-URSEI Automated Medical Suite"
 	desc = "The N-URSEI, better known as simply the 'Nurse,' is a well-known product of Medical technology in the CIN. The name is of disputed origin, \

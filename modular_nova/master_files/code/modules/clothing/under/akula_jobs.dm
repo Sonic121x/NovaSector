@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// The DMI containing the tail overlay sprites
 #define TAIL_OVERLAY_DMI 'modular_nova/master_files/icons/mob/clothing/under/akula.dmi'
 /// The proper layer to render the tail overlays onto

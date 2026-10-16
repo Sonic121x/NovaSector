@@ -42,7 +42,7 @@
 		SStraitor.uplink_items += item
 		SStraitor.uplink_items_by_type[item_path] = item
 
-	// NOVA EDIT ADDITION START - I18N: the uplink item catalog is a static JSON asset (generated once at
+	// ZH EDIT ADDITION START - I18N: the uplink item catalog is a static JSON asset (generated once at
 	// startup), so it bypasses get_payload/lang_reverse_tree — every name/desc/category stayed English.
 	// Reverse the player-visible display fields here. buy() keys off item.type/ref (not these), and the TS
 	// client filters by category on BOTH the item.category and the categories list (no server round-trip),
@@ -62,7 +62,7 @@
 		for(var/cat in categories)
 			localized_categories += istext(cat) ? lang_reverse_text(cat) : cat
 		categories = localized_categories
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	data["items"] = items
 	data["categories"] = categories
 	return data

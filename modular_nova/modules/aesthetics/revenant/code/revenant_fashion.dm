@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /mob/living/basic/revenant
 	/// Typepath to what kind of fashion are we rocking
 	var/datum/revenant_fashion/current_look

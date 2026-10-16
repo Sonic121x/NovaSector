@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/action/cooldown/spell/touch/mime_grayscale
 	name = "Monochrome Touch"
 	desc = "The mime's performance channels their hand to turn things monochromatic"

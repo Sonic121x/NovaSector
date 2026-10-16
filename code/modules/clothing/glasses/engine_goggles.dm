@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //Engineering Mesons
 
 #define MODE_NONE ""
@@ -48,7 +48,7 @@
 /obj/item/clothing/glasses/meson/engine/proc/toggle_mode(mob/user, voluntary)
 	mode_index = WRAP_UP(mode_index, modes.len)
 	mode = modes[mode_index]
-	// NOVA EDIT CHANGE START - i18n: 原本是运行期拼接的条件串，整句进不了目录。拆成 4 个完整句便于
+	// ZH EDIT CHANGE START - i18n: 原本是运行期拼接的条件串，整句进不了目录。拆成 4 个完整句便于
 	// LANG 化。mode 名在**显示处**反查（mode 变量本身是 switch(mode) 的比较标识符 + 定义值，保持英文），
 	// 译文见 _state_words.json。 - ORIGINAL 见 git 历史。
 	var/mode_display = lang_reverse_text(mode)
@@ -62,7 +62,7 @@
 			to_chat(user, span_warning(LANG("obj.c95f404e33f53550", list(mode_display))))
 		else
 			to_chat(user, span_warning(LANG("obj.1cbc382889bd0b4e", null)))
-	// NOVA EDIT CHANGE END
+	// ZH EDIT CHANGE END
 	if(connection_images.len)
 		connection_images.Cut()
 	switch(mode)

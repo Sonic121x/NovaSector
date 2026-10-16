@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(toggle_game_debug, R_DEBUG, "调试-游戏", "Toggles game debugging.", ADMIN_CATEGORY_DEBUG)
 	GLOB.debugging_enabled = !GLOB.debugging_enabled
 	var/message = "toggled debugging [(GLOB.debugging_enabled ? "ON" : "OFF")]"
@@ -788,7 +788,7 @@ ADMIN_VERB(reestablish_tts_connection, R_DEBUG, "重新连接 TTS", "Re-establis
 		return
 	message_admins("[key_name_admin(user)] successfully re-established the connection to the TTS HTTP server.")
 	log_admin("[key_name(user)] successfully re-established the connection to the TTS HTTP server.")
-// NOVA EDIT ADDITION START - ADMIN - Runtime TTS control.
+// ZH EDIT ADDITION START - ADMIN - Runtime TTS control.
 /// Globally enables or disables new TTS requests without dropping the backend connection.
 ADMIN_VERB(toggle_tts_runtime, R_ADMIN, "TTS 全局开关", "Enable or disable text-to-speech during the round.", ADMIN_CATEGORY_MAIN)
 	var/currently_enabled = SStts.is_runtime_enabled()
@@ -833,7 +833,7 @@ ADMIN_VERB(test_tts_runtime, R_ADMIN, "测试 TTS", "Play a Chinese TTS sample t
 	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user, "你好，空间站。管理员文字转语音测试成功。", null, speaker, "", list(), local = TRUE, identifier = identifier)
 	to_chat(user, span_notice(LANG("datum.84d0f1919bb9ad92", list(speaker))))
 	log_admin("[key_name(user)] tested TTS with voice [speaker].")
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 
 ADMIN_VERB(allow_browser_inspect, R_DEBUG, "允许浏览器检查", "Allow browser debugging via inspect", ADMIN_CATEGORY_DEBUG)

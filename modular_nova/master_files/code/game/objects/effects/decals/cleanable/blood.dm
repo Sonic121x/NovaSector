@@ -1,7 +1,7 @@
 /obj/effect/decal/cleanable/blood/gibs/NeverShouldHaveComeHere(turf/here_turf)
 	return !islava(here_turf) && ..()
 
-// NOVA EDIT ADDITION START - i18n
+// ZH EDIT ADDITION START - i18n
 /**
  * 血迹类污渍的显示名是**每次 update_name() 现拼的**：
  *     "[dry_prefix] [base_name] [血液名] [base_suffix]" → "pool of oil"、"dried pool of blood"、"blood trail"
@@ -16,4 +16,4 @@
 /obj/effect/decal/cleanable/blood/lang_localize_name_for_display(display_name)
 	var/localized = lang_localize_blood_decal_name(src, display_name)
 	return localized || ..()
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END

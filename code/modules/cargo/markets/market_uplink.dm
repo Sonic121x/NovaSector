@@ -77,10 +77,10 @@
 				var/datum/market_item/item = market_category[id]
 				data["items"] += list(list(
 					"id" = id,
-					"name" = lang_reverse_text(item.name), // NOVA EDIT - I18N - full reverse (covers single-word names P1's multi-word threshold skips, e.g. Binoculars); act uses "id" so name is display-only. locale==en / miss = no-op
+					"name" = lang_reverse_text(item.name), // ZH EDIT - I18N - full reverse (covers single-word names P1's multi-word threshold skips, e.g. Binoculars); act uses "id" so name is display-only. locale==en / miss = no-op
 					"cost" = item.price,
 					"amount" = item.stock,
-					"desc" = lang_reverse_text(item.desc || item.name), // NOVA EDIT - I18N - full reverse the flavor desc
+					"desc" = lang_reverse_text(item.desc || item.name), // ZH EDIT - I18N - full reverse the flavor desc
 					"html_icon" = item.html_icon,
 				))
 	return data
@@ -94,7 +94,7 @@
 		var/datum/market/BM = SSmarket.markets[M]
 		data["markets"] += list(list(
 			"id" = M,
-			"name" = lang_localize_display_name(BM.name) // NOVA EDIT - I18N: 黑市名纯显示（act 走同条负载的 id；配送方式名另一条负载，仍保英文）
+			"name" = lang_localize_display_name(BM.name) // ZH EDIT - I18N: 黑市名纯显示（act 走同条负载的 id；配送方式名另一条负载，仍保英文）
 		))
 	return data
 

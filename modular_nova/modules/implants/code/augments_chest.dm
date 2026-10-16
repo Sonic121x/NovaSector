@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // for readability's sake, define here to match the healthscan() proc's use of it
 // if someone updates that upstream, fix that here too, wouldja?
 

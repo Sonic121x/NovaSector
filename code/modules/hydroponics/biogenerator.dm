@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// How many more items does `max_items` get increased by per rating point.
 #define MAX_ITEMS_PER_RATING 10
 /// How many items are converted per cycle, per rating point of the manipulator used.
@@ -512,7 +512,7 @@
 		for(var/datum/design/design as anything in category_designs)
 			cat["items"] += list(list(
 				"path" = design.type,
-				"name" = lang_reverse_text(design.name), // NOVA EDIT - I18N: ui_static_data (constant data, bypasses P1); product name in datum.json but front-end auto-localizes vs tgui.json → reverse here (act uses path, safe). ORIGINAL: "name" = design.name,
+				"name" = lang_reverse_text(design.name), // ZH EDIT - I18N: ui_static_data (constant data, bypasses P1); product name in datum.json but front-end auto-localizes vs tgui.json → reverse here (act uses path, safe). ORIGINAL: "name" = design.name,
 				"icon" = design.asset_id,
 				"is_reagent" = !isnull(design.make_reagent),
 				"cost" = design.materials[SSmaterials.get_material(/datum/material/biomass)] / efficiency,

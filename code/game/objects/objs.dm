@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 
 /obj
 	abstract_type = /obj
@@ -224,7 +224,7 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 /obj/examine(mob/user)
 	. = ..()
 	if(desc_controls)
-		. += span_notice(lang_reverse_text(desc_controls)) // NOVA EDIT - i18n: 反查操作说明（desc_controls 已进 SINK_VARS）。ORIGINAL: . += span_notice(desc_controls)
+		. += span_notice(lang_reverse_text(desc_controls)) // ZH EDIT - i18n: 反查操作说明（desc_controls 已进 SINK_VARS）。ORIGINAL: . += span_notice(desc_controls)
 
 /obj/examine_tags(mob/user)
 	. = ..()

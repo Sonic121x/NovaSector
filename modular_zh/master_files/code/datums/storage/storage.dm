@@ -1,4 +1,4 @@
-// NOVA EDIT ADDITION - I18N - 「可以容纳:」列表里的物品名本地化。
+// ZH EDIT ADDITION - I18N - 「可以容纳:」列表里的物品名本地化。
 //
 // 上游 set_holdable() 把每一项拼成 `"\a [initial(valid_item.name)]"`。`initial()` 取的是**英文
 // 原名**（绕开了 Initialize 期的反查），而整条 `can_hold_description` 是运行期拼的、不是目录键。

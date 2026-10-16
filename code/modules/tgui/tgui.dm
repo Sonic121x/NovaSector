@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: MIT
  */
 
-// NOVA EDIT ADDITION START - TGUI_STALE_ACT
+// ZH EDIT ADDITION START - TGUI_STALE_ACT
 /// 每个 /datum/tgui 实例的单调递增序号，见 `nova_ui_id`。
 GLOBAL_VAR_INIT(nova_tgui_serial, 0)
-// NOVA EDIT ADDITION END
+// ZH EDIT ADDITION END
 
 /**
  * tgui datum (represents a UI).
@@ -45,7 +45,7 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 
 	/// The id of any ByondUi elements that we have opened
 	var/list/open_byondui_elements
-	// NOVA EDIT ADDITION START - TGUI_STALE_ACT
+	// ZH EDIT ADDITION START - TGUI_STALE_ACT
 	/// 本实例的身份序号，随 config 下发，前端在**渲染时**把它绑进 act()。
 	///
 	/// 客户端的 act 消息原本只带 windowId，而窗口是池化复用的：一个 UI 关掉、下一个立刻在同一窗口打开时，
@@ -55,11 +55,11 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 	///
 	/// **不能用 REF(src)**：BYOND 回收引用号，旧 UI 被 qdel 后新 UI 极可能拿到同一个 ref —— 恰好在最该区分的场景撞车。
 	var/nova_ui_id
-	// NOVA EDIT ADDITION END
-	// NOVA EDIT ADDITION START - I18N: 窗口标题的显示形态缓存（标题不变就不重算，get_payload 每次刷新都会调用）
+	// ZH EDIT ADDITION END
+	// ZH EDIT ADDITION START - I18N: 窗口标题的显示形态缓存（标题不变就不重算，get_payload 每次刷新都会调用）
 	var/nova_title_source
 	var/nova_title_display
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 /**
  * public
@@ -82,7 +82,7 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 	src.user = user
 	src.src_object = src_object
 	src.window_key = "[REF(src_object)]-main"
-	nova_ui_id = ++GLOB.nova_tgui_serial // NOVA EDIT ADDITION - TGUI_STALE_ACT
+	nova_ui_id = ++GLOB.nova_tgui_serial // ZH EDIT ADDITION - TGUI_STALE_ACT
 	src.interface = interface
 	if(title)
 		src.title = title
@@ -284,14 +284,14 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 /datum/tgui/proc/get_payload(custom_data, with_data, with_static_data)
 	var/list/json_data = list()
 	json_data["config"] = list(
-		"title" = nova_display_title(), // NOVA EDIT CHANGE - I18N - ORIGINAL: "title" = title,
+		"title" = nova_display_title(), // ZH EDIT CHANGE - I18N - ORIGINAL: "title" = title,
 		"status" = status,
 		"interface" = list(
 			"name" = interface,
 			"layout" = user.client.prefs.read_preference(src_object.layout_prefs_used),
 		),
 		"refreshing" = refreshing,
-		"uiId" = nova_ui_id, // NOVA EDIT ADDITION - TGUI_STALE_ACT
+		"uiId" = nova_ui_id, // ZH EDIT ADDITION - TGUI_STALE_ACT
 		"window" = list(
 			"key" = window_key,
 			"size" = window_size,
@@ -307,13 +307,13 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 			"name" = "[user]",
 			"observer" = isobserver(user),
 		),
-		// NOVA EDIT ADDITION START - i18n - 注入全服界面语言供 TGUI 本地化 (config.locale)
+		// ZH EDIT ADDITION START - i18n - 注入全服界面语言供 TGUI 本地化 (config.locale)
 		"locale" = GLOB.i18n_server_locale || DEFAULT_UI_LOCALE,
 		// 前端漏翻采集开关。**TGUI 是 DM 侧完全看不见的一面**：静态 JSX 文本、prop、children 模板
 		// 都在浏览器里查表，查不到就原样显示，服务端无从知晓。开关打开时 TS 把 miss 攒批经
 		// `i18n/miss` 消息回传（见 on_message），汇进同一份 i18n_misses.log。
 		"i18nLogMisses" = GLOB.i18n_log_misses,
-		// NOVA EDIT ADDITION END
+		// ZH EDIT ADDITION END
 	)
 	var/data = custom_data || with_data && src_object.ui_data(user)
 	SEND_SIGNAL(src_object, COMSIG_UI_DATA, user, data)
@@ -322,7 +322,7 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 	var/static_data = with_static_data && src_object.ui_static_data(user)
 	if(static_data)
 		json_data["static_data"] = static_data
-	// NOVA EDIT ADDITION START - i18n - 全服中文时本地化 ui_data/ui_static_data 里的多词字符串。
+	// ZH EDIT ADDITION START - i18n - 全服中文时本地化 ui_data/ui_static_data 里的多词字符串。
 	// **默认不动数据**：只把「英文 → 译文」记进 overlay 随负载下发，由 TS 在渲染期查表显示，于是
 	// 回传值与服务端持有的字符串逐字节相同 —— 「显示文本被当标识符回传」那一整类静默故障（点了
 	// 没反应、无报错）在结构上不可能发生。只有 policy.json 的 payload_prose_keys（证明不可能是
@@ -335,7 +335,7 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 			lang_reverse_tree(json_data["static_data"], null, i18n_overlay)
 		if(length(i18n_overlay))
 			json_data["i18n"] = i18n_overlay
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 	if(src_object.tgui_shared_states)
 		json_data["shared"] = src_object.tgui_shared_states
 	return json_data
@@ -392,7 +392,7 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 	// Pass act type messages to ui_act
 	if(type && copytext(type, 1, 5) == "act/")
 		var/act_type = copytext(type, 5)
-		// NOVA EDIT ADDITION START - TGUI_STALE_ACT
+		// ZH EDIT ADDITION START - TGUI_STALE_ACT
 		// 消息是冲着别的 UI 实例发的（窗口已被复用）→ 丢弃。不带序号的一律放行：直接 import sendAct 的少数界面、
 		// 超长载荷的分块通道、以及尚未刷新到新 bundle 的客户端都走这条，行为与从前完全一致。
 		var/sent_ui_id = href_list?["uiId"]
@@ -401,7 +401,7 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 				window = window,
 				src_object = src_object)
 			return FALSE
-		// NOVA EDIT ADDITION END
+		// ZH EDIT ADDITION END
 		log_tgui(user, "Action: [act_type] [href_list["payload"]]",
 			window = window,
 			src_object = src_object)
@@ -423,7 +423,7 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 		if("log")
 			if(href_list["fatal"])
 				close(can_be_suspended = FALSE)
-		// NOVA EDIT ADDITION START - i18n - 前端漏翻回传（config.i18nLogMisses 为真时 TS 才发）。
+		// ZH EDIT ADDITION START - i18n - 前端漏翻回传（config.i18nLogMisses 为真时 TS 才发）。
 		if("i18n/miss")
 			if(!GLOB.i18n_log_misses)
 				return
@@ -434,7 +434,7 @@ GLOBAL_VAR_INIT(nova_tgui_serial, 0)
 				if(istext(entry))
 					lang_log_miss_value(entry, "tgui-ui", "[src_object?.type]")
 			return
-		// NOVA EDIT ADDITION END
+		// ZH EDIT ADDITION END
 		if("setSharedState")
 			if(status != UI_INTERACTIVE)
 				return

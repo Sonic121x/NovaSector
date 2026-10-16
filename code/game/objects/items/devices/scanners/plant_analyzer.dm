@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define PLANT_ANALYZER_STAT_TAB 1
 #define PLANT_ANALYZER_CHEM_TAB 2
 
@@ -225,7 +225,7 @@
 			"plant_health" = tray.plant_health,
 			"plant_age" = tray.age,
 			"is_dead" = tray.plant_status == HYDROTRAY_PLANT_DEAD,
-			"name" = tray.lang_localize_name_for_display(tray.name), // NOVA EDIT - I18N: 纯显示（Section 标题）；atom 版守玩家改名。ORIGINAL: "name" = tray.name,
+			"name" = tray.lang_localize_name_for_display(tray.name), // ZH EDIT - I18N: 纯显示（Section 标题）；atom 版守玩家改名。ORIGINAL: "name" = tray.name,
 			"icon" = tray.icon,
 			"icon_state" = tray.icon_state,
 			"water" = tray.waterlevel,
@@ -246,7 +246,7 @@
 		)
 		for(var/datum/reagent/reagent as anything in tray.reagents.reagent_list)
 			last_scan_data["tray_data"]["reagents"] += list(list(
-				"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
+				"name" = lang_localize_display_name(reagent.name), // ZH EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
 				"volume" = round(reagent.volume, CHEMICAL_QUANTISATION_LEVEL),
 				"color" = reagent.color,
 			))
@@ -260,14 +260,14 @@
 		)
 		for(var/datum/reagent/reagent as anything in target.reagents.reagent_list)
 			last_scan_data["plant_data"]["reagents"] += list(list(
-				"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
+				"name" = lang_localize_display_name(reagent.name), // ZH EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
 				"volume" = round(reagent.volume, CHEMICAL_QUANTISATION_LEVEL),
 				"color" = reagent.color,
 			))
 
 	if(graft)
 		last_scan_data["graft_data"] = list(
-			"name" = lang_localize_display_name(graft.plant_dna.name), // NOVA EDIT - I18N: 嫁接体名纯显示。ORIGINAL: "name" = graft.plant_dna.name,
+			"name" = lang_localize_display_name(graft.plant_dna.name), // ZH EDIT - I18N: 嫁接体名纯显示。ORIGINAL: "name" = graft.plant_dna.name,
 			"icon" = graft.icon,
 			"icon_state" = graft.icon_state,
 			"yield" = graft.plant_dna.yield,
@@ -286,7 +286,7 @@
 
 /obj/item/plant_analyzer/proc/make_seed_data(obj/item/seeds/seed)
 	var/list/seed_data = list(
-		// NOVA EDIT - I18N: reverse plant name (single-word names like Sugarcane/Bamboo are skipped by P1's
+		// ZH EDIT - I18N: reverse plant name (single-word names like Sugarcane/Bamboo are skipped by P1's
 		// multi-word gate); display-only (analyzer keys off seed type, not name).
 		"name" = (GLOB.i18n_server_locale != DEFAULT_UI_LOCALE) ? lang_reverse_text(seed.plantname) : seed.plantname,
 		"icon" = seed.growing_icon,
@@ -318,7 +318,7 @@
 	seed_data["reagents"] = list()
 	for(var/datum/plant_gene/reagent/reagent in seed.genes)
 		seed_data["reagents"] += list(list(
-			"name" = lang_localize_display_name(reagent.name), // NOVA EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
+			"name" = lang_localize_display_name(reagent.name), // ZH EDIT - I18N: 试剂名纯显示。ORIGINAL: "name" = reagent.name,
 			"rate" = reagent.rate
 		))
 	var/datum/plant_gene/trait/maxchem/volume_trait = locate(/datum/plant_gene/trait/maxchem) in seed.genes

@@ -1,6 +1,6 @@
 import { Box } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
-import { TOOL_LABELS } from '../constants'; // NOVA EDIT ADDITION - i18n
+import { TOOL_LABELS } from '../constants'; // ZH EDIT ADDITION - i18n
 
 type Props = {
   tool: string;
@@ -19,7 +19,7 @@ export function ToolContent(props: Props) {
         className={classes(['crafting32x32', tool.replace(/ /g, '')])}
       />
       <Box inline verticalAlign="middle">
-        {TOOL_LABELS[tool] ?? tool /* NOVA EDIT - i18n: localize display, keep value for icon class */}
+        {TOOL_LABELS[tool] ?? tool /* ZH EDIT - i18n: localize display, keep value for icon class */}
       </Box>
     </Box>
   );

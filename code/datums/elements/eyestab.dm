@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// What's the probability a clumsy person stabs themselves in the eyes?
 #define CLUMSY_ATTACK_SELF_CHANCE 50
 /// The damage threshold (of the victim's eyes) after which they start taking more serious effects

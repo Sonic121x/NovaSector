@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/chemical_reaction/pcp
 	results = list(/datum/reagent/drug/pcp = 1)
 	required_reagents = list(/datum/reagent/pcc = 1, /datum/reagent/iron = 2) //iron is just a replacement for magnesium

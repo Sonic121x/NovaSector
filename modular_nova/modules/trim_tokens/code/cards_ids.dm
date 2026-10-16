@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Proc to use a trim token on an ID
 /obj/item/card/id/proc/apply_token(obj/item/trim_token/token, mob/user)
 	if(token.has_required_trim)

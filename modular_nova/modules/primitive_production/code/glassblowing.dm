@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define DEFAULT_TIMED (4 SECONDS)
 #define STEP_BLOW "blow"
 #define STEP_SPIN "spin"

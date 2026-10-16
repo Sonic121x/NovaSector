@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define BELLY_VOLUME(x) ((((x) ** 1.5) / (4/3) / PI) ** (1/3))
 
 /obj/item/belly_function

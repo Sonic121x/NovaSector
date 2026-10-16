@@ -59,7 +59,7 @@ export function Window(props: Props) {
   const { config, suspended, debug } = useBackend();
 
   const [isReadyToRender, setIsReadyToRender] = useState(false);
-  // NOVA EDIT ADDITION START - Window resume fix: re-show on every resume, see events/handlers/update.ts
+  // ZH EDIT ADDITION START - Window resume fix: re-show on every resume, see events/handlers/update.ts
   const [resumeCount, setResumeCount] = useState(0);
   useEffect(() => {
     const onResume = () => setResumeCount((count) => count + 1);
@@ -68,7 +68,7 @@ export function Window(props: Props) {
       globalEvents.off('tgui-resumed', onResume);
     };
   }, []);
-  // NOVA EDIT ADDITION END
+  // ZH EDIT ADDITION END
 
   // We need to set the window to be invisible before we can set its geometry
   // Otherwise, we get a flicker effect when the window is first rendered
@@ -120,7 +120,7 @@ export function Window(props: Props) {
       cancelled = true;
       logger.log('unmounting');
     };
-  }, [isReadyToRender, suspended, width, height, scale, resumeCount]); // NOVA EDIT CHANGE - Window resume fix - ORIGINAL: }, [isReadyToRender, suspended, width, height, scale]);
+  }, [isReadyToRender, suspended, width, height, scale, resumeCount]); // ZH EDIT CHANGE - Window resume fix - ORIGINAL: }, [isReadyToRender, suspended, width, height, scale]);
 
   // Determine when to show dimmer
   const showDimmer =
@@ -178,7 +178,7 @@ function WindowContent(props: ContentProps) {
   const { className, fitted, children, ...rest } = props;
   const [altDown, setAltDown] = useState(false);
 
-  // NOVA EDIT ADDITION START - alt+tab 卡住 altDown 导致弹窗文本无法选中
+  // ZH EDIT ADDITION START - alt+tab 卡住 altDown 导致弹窗文本无法选中
   // Alt+Tab 时 Alt 的 keydown 到得了窗口，keyup 却发生在焦点已经离开之后 —— KeyListener 收不到，
   // altDown 永久卡在 true。回到窗口后在内容区任意位置按下都会命中 dragStartIfAltHeld，整窗跟着鼠标走，
   // 且 dragMoveHandler 的 preventDefault 吃掉文本选取 → 玩家表现为「弹窗哪里都能拖、文本复制不了」。
@@ -194,10 +194,10 @@ function WindowContent(props: ContentProps) {
       document.removeEventListener('visibilitychange', clearModifiers);
     };
   }, []);
-  // NOVA EDIT ADDITION END
+  // ZH EDIT ADDITION END
 
   function dragStartIfAltHeld(event: React.MouseEvent<HTMLDivElement>): void {
-    // NOVA EDIT CHANGE - ORIGINAL: if (altDown) {
+    // ZH EDIT CHANGE - ORIGINAL: if (altDown) {
     // event.altKey 是本次按下时的真实修饰键状态，作为缓存态的兜底：即便 blur 没有送达（嵌入式浏览器
     // 差异），也不会拿一个过期的 altDown 触发拖动。
     if (altDown && event.altKey) {

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/smelling_salts
 	name = "smelling salts"
 	desc = "A small pile of a salt-like substance that smells absolutely repulsive. Rumor has it that the smell is so pungent that even the dead will come back to life to escape it."

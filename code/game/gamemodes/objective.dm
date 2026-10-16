@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 
@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(objectives) //NOVA EDIT ADDITION
 /datum/objective/proc/get_roundend_success_suffix()
 	if(no_failure)
 		return "" // Just print the objective with no success/fail evaluation, as it has no mechanical backing
-	return check_completion() ? span_greentext(lang_reverse_text("Success!")) : span_redtext(lang_reverse_text("Fail.")) // NOVA EDIT - I18N
+	return check_completion() ? span_greentext(lang_reverse_text("Success!")) : span_redtext(lang_reverse_text("Fail.")) // ZH EDIT - I18N
 
 /datum/objective/proc/is_unique_objective(possible_target, dupe_search_range)
 	if(!islist(dupe_search_range))

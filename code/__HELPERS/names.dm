@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * Generate a random name based off of one of the roundstart languages
  *
@@ -256,7 +256,7 @@ GLOBAL_VAR(command_name)
 					if(2)
 						var/datum/job/job = pick(SSjob.joinable_occupations)
 						if(job)
-							. += lang_reverse_text(job.title) //Returns a job. // NOVA EDIT CHANGE - I18N - 职业名反查（暗号显示/说出/高亮同源，全中文一致）。ORIGINAL: . += job.title
+							. += lang_reverse_text(job.title) //Returns a job. // ZH EDIT CHANGE - I18N - 职业名反查（暗号显示/说出/高亮同源，全中文一致）。ORIGINAL: . += job.title
 						else
 							stack_trace("Failed to pick(SSjob.joinable_occupations) on generate_code_phrase()")
 							. += "Bug"
@@ -264,19 +264,19 @@ GLOBAL_VAR(command_name)
 			if(2)
 				switch(rand(1,3))//Food, drinks, or places. Only selectable once.
 					if(1)
-						// NOVA EDIT CHANGE - I18N - 中文时反查饮品原名（同 locations/job：LOWER_TEXT 小写对不上目录大小写键；暗号显示/说出/聊天正则同源一份值，翻了不破功能）。ORIGINAL: . += LOWER_TEXT(pick(drinks))
+						// ZH EDIT CHANGE - I18N - 中文时反查饮品原名（同 locations/job：LOWER_TEXT 小写对不上目录大小写键；暗号显示/说出/聊天正则同源一份值，翻了不破功能）。ORIGINAL: . += LOWER_TEXT(pick(drinks))
 						var/drink_pick = pick(drinks)
 						. += GLOB.i18n_server_locale == DEFAULT_UI_LOCALE ? LOWER_TEXT(drink_pick) : lang_reverse_text(drink_pick)
 					if(2)
-						// NOVA EDIT CHANGE - I18N - 中文时反查食物原名。ORIGINAL: . += LOWER_TEXT(pick(foods))
+						// ZH EDIT CHANGE - I18N - 中文时反查食物原名。ORIGINAL: . += LOWER_TEXT(pick(foods))
 						var/food_pick = pick(foods)
 						. += GLOB.i18n_server_locale == DEFAULT_UI_LOCALE ? LOWER_TEXT(food_pick) : lang_reverse_text(food_pick)
 					if(3)
-						// NOVA EDIT CHANGE START - I18N - 中文时反查区域原名（LOWER_TEXT 小写形对不上目录大小写键；
+						// ZH EDIT CHANGE START - I18N - 中文时反查区域原名（LOWER_TEXT 小写形对不上目录大小写键；
 						// 暗号的显示/说出/聊天高亮正则同源一份值，翻了不破功能）。ORIGINAL: . += LOWER_TEXT(pick(locations))
 						var/location_pick = pick(locations)
 						. += GLOB.i18n_server_locale == DEFAULT_UI_LOCALE ? LOWER_TEXT(location_pick) : lang_reverse_text(location_pick)
-						// NOVA EDIT CHANGE END
+						// ZH EDIT CHANGE END
 				safety -= 2
 			if(3)
 				switch(rand(1,4))//Abstract nouns, objects, adjectives, threats. Can be selected more than once.
@@ -294,7 +294,7 @@ GLOBAL_VAR(command_name)
 			else
 				. += ", "
 
-	// NOVA EDIT ADDITION START - I18N - localize code words at generation so the displayed phrase, the codeword_hearing regex, and what players say stay consistent (regex is a plain (a|b) alternation with ig flags, no \b, so CJK matches). capitalize fallback covers the lowercased area/flavor words vs the capitalized catalog keys; crew names / untranslated words stay english.
+	// ZH EDIT ADDITION START - I18N - localize code words at generation so the displayed phrase, the codeword_hearing regex, and what players say stay consistent (regex is a plain (a|b) alternation with ig flags, no \b, so CJK matches). capitalize fallback covers the lowercased area/flavor words vs the capitalized catalog keys; crew names / untranslated words stay english.
 	if(return_list && GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 		var/list/localized = list()
 		for(var/word in .)
@@ -309,7 +309,7 @@ GLOBAL_VAR(command_name)
 						rev = upp_rev
 			localized += rev
 		. = localized
-	// NOVA EDIT ADDITION END
+	// ZH EDIT ADDITION END
 
 /proc/odd_organ_name()
 	return "[pick(GLOB.gross_adjectives)], [pick(GLOB.gross_adjectives)] organ"

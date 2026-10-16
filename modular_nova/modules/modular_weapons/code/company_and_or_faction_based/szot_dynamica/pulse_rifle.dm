@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/item/gun/ballistic/automatic/pulse_rifle
 	name = "\improper M/PR-15 'Žaibas' Plasma Pulse Projector"
 	desc = "An advanced energy weapon that uses high-capacity plasma pulse cells. Fires in 3-round bursts."

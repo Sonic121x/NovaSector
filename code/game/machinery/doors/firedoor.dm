@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define CONSTRUCTION_NO_CIRCUIT 1 //Empty frame, can safely weld apart or install circuit
 #define CONSTRUCTION_PANEL_OPEN 2 //Circuit panel exposed for removal or securing
 #define DEFAULT_STEP_TIME 20 /// default time for each step
@@ -184,7 +184,7 @@
 	. = ..()
 	if(!my_area || !id_tag)
 		return
-	name = "[get_area_name(my_area)] [initial(name)] [id_tag]" // NOVA EDIT - I18N: 同 firealarm，实例名保持英文，显示走边界
+	name = "[get_area_name(my_area)] [initial(name)] [id_tag]" // ZH EDIT - I18N: 同 firealarm，实例名保持英文，显示走边界
 
 /**
  * Calculates what areas we should worry about.

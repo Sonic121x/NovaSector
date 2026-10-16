@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/effect/mob_spawn/ghost_role/borer_egg
 	name = "borer egg"
 	desc = "An egg of a creature that is known to crawl inside of you, be careful."

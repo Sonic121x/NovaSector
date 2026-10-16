@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 //These are all minor mutations that affect your speech somehow.
 //Individual ones aren't commented since their functions should be evident at a glance
 // no they arent bro
@@ -268,7 +268,7 @@
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message)
 		message = " [message] "
-		// NOVA EDIT CHANGE - I18N - 按 locale 取表（中文表的键是中文词，英文键在中文句子里永不匹配）。
+		// ZH EDIT CHANGE - I18N - 按 locale 取表（中文表的键是中文词，英文键在中文句子里永不匹配）。
 		// ORIGINAL: var/list/medieval_words = strings("medieval_replacement.json", "medieval") / startings 同
 		var/list/medieval_words = lang_speech_replacements("medieval_replacement.json", "medieval")
 		var/list/startings = lang_speech_replacements("medieval_replacement.json", "startings")
@@ -280,7 +280,7 @@
 				value = uppertext(value)
 			if(capitalize(key) == key)
 				value = capitalize(value)
-			// NOVA EDIT CHANGE - I18N - `\b` 是拉丁词边界，中文词之间没有词边界 → 中文键永远匹配不上。
+			// ZH EDIT CHANGE - I18N - `\b` 是拉丁词边界，中文词之间没有词边界 → 中文键永远匹配不上。
 			// 中文键改走无边界的整串替换（表里已按「多字键排在单字键前」排序，避免「你们」被「你」吃掉半个词）。
 			// ORIGINAL: message = replacetextEx(message,regex("\b[REGEX_QUOTE(key)]\b","ig"), value)
 			if(lang_contains_cjk(key))

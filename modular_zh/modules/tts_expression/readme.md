@@ -29,7 +29,7 @@ The extras need the [ss13-tts](https://github.com/sernseek/ss13-tts) server. Eve
 
 ### Defines:
 
-- code\__DEFINES\~nova_defines\tts_expression.dm
+- code\__DEFINES\~zh_defines\tts_expression.dm
 
 ### Master file additions
 
@@ -38,7 +38,7 @@ The extras need the [ss13-tts](https://github.com/sernseek/ss13-tts) server. Eve
 
 ### Included files that are not contained in this module:
 
-- code\modules\unit_tests\~nova\tts_controls.dm > /datum/unit_test/tts_expression
+- code\modules\unit_tests\~zh\tts_controls.dm > /datum/unit_test/tts_expression
 - modular_nova\modules\voice_actor_quirk\code\voice_actor_preferences.dm > voice labels and retired voice migration
 - tgui\packages\tgui\interfaces\PreferencesMenu\preferences\features\character_preferences\nova\character_voice.tsx
 - tgui\packages\tgui\interfaces\PreferencesMenu\CharacterPreferences\vocals.tsx

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///An item that can be used to gather information on the fish, such as but not limited to: health, hunger and traits.
 /obj/item/fish_analyzer
 	name = "fish analyzer"
@@ -136,7 +136,7 @@
 		var/datum/fish_evolution/evolution = GLOB.fish_evolutions[evolution_type]
 		var/obj/item/evolution_fish = evolution.new_fish_type
 		fish_evolutions += list(list(
-			"evolution_name" = lang_localize_display_name(evolution.name), // NOVA EDIT - I18N: 纯显示。ORIGINAL: "evolution_name" = evolution.name,
+			"evolution_name" = lang_localize_display_name(evolution.name), // ZH EDIT - I18N: 纯显示。ORIGINAL: "evolution_name" = evolution.name,
 			"evolution_icon" = evolution_fish::icon,
 			"evolution_icon_state" = evolution_fish::icon_state,
 			"evolution_probability" = evolution.probability,
@@ -145,10 +145,10 @@
 
 	for(var/trait_type in fishie.fish_traits)
 		var/datum/fish_trait/trait = GLOB.fish_traits[trait_type]
-		fish_traits += list(list("trait_name" = lang_localize_display_name(trait.name), "trait_desc" = trait.catalog_description, "trait_inherit" = trait.inheritability)) // NOVA EDIT - I18N: 特性名纯显示。ORIGINAL: "trait_name" = trait.name
+		fish_traits += list(list("trait_name" = lang_localize_display_name(trait.name), "trait_desc" = trait.catalog_description, "trait_inherit" = trait.inheritability)) // ZH EDIT - I18N: 特性名纯显示。ORIGINAL: "trait_name" = trait.name
 
 	data["fish_list"] += list(list(
-		"fish_name" = fishie.lang_localize_name_for_display(fishie.name), // NOVA EDIT - I18N: 纯显示；atom 版守玩家给鱼起的名字。ORIGINAL: "fish_name" = fishie.name,
+		"fish_name" = fishie.lang_localize_name_for_display(fishie.name), // ZH EDIT - I18N: 纯显示；atom 版守玩家给鱼起的名字。ORIGINAL: "fish_name" = fishie.name,
 		"fish_icon" = fishie.icon,
 		"fish_icon_state" = fishie.base_icon_state,
 		"fish_food" = fishie.food.name,

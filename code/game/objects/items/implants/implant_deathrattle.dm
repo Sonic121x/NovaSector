@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// This deathrattle group does not care about the area someone dies in.
 #define DEATHRATTLE_AREA_NOLIST		0
 /// This deathrattle group uses its `area_list` as a blacklist: if someone dies in these areas, they DO NOT cause an alert.

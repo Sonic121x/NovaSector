@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 #define SURGE_DURATION_MIN 240 EVENT_SECONDS
 #define SURGE_DURATION_MAX 270 EVENT_SECONDS
 #define SURGE_SEVERITY_MIN 1

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// An element that makes guns throw their user back if they are just a little guy
 /datum/element/gun_launches_little_guys
 	element_flags = ELEMENT_BESPOKE

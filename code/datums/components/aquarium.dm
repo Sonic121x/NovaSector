@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ///Defines that clamp the beauty of the aquarium, to prevent it from making most areas great or horrid all by itself.
 #define MIN_AQUARIUM_BEAUTY -3500
 #define MAX_AQUARIUM_BEAUTY 6000
@@ -623,7 +623,7 @@
 			continue
 		.["propData"] += list(list(
 			"prop_ref" = REF(item),
-			"prop_name" = item.lang_localize_name_for_display(item.name), // NOVA EDIT - I18N: 纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: "prop_name" = item.name,
+			"prop_name" = item.lang_localize_name_for_display(item.name), // ZH EDIT - I18N: 纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: "prop_name" = item.name,
 			"prop_icon" = item::icon,
 			"prop_icon_state" = item::icon_state,
 		))

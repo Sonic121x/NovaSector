@@ -6,7 +6,7 @@
 // PRIMARY maptext font (interface/skin.dmf) so the CJK renders in it.
 //
 // Fusion Pixel 12px (OFL-1.1, https://github.com/TakWolf/fusion-pixel-font), zh_hans,
-// monospaced. Contains BOTH CJK and Latin glyphs. License: modular_nova/modules/i18n/fonts/OFL.txt
+// monospaced. Contains BOTH CJK and Latin glyphs. License: modular_zh/modules/i18n/fonts/OFL.txt
 //
 // SIZING (the crucial part — pixel fonts only render crisp at their native px or integer
 // multiples). BYOND maptext takes font-size in PT and renders em_px = pt * 4/3 (96dpi):
@@ -30,7 +30,7 @@
 // it has Latin glyphs too, all maptext (CJK + Latin) renders in it.
 /datum/font/fusion_pixel_12px
 	name = "Fusion Pixel 12px Mono zh_hans"
-	font_family = 'modular_nova/modules/i18n/fonts/fusion_pixel_12px_zh_hans.ttf'
+	font_family = 'modular_zh/modules/i18n/fonts/fusion_pixel_12px_zh_hans.ttf'
 
 // Smaller 8px variant (design 8px → crisp at 6pt = 8px em). Used for the "small" maptext
 // classes (.maptext runechat/balloon speech, .subcontext screentip action-hints, .small,
@@ -38,7 +38,7 @@
 // has fewer pixels (rougher) but reads as small secondary text. Crisp ONLY at 6pt/12pt/18pt.
 /datum/font/fusion_pixel_8px
 	name = "Fusion Pixel 8px Mono zh_hans"
-	font_family = 'modular_nova/modules/i18n/fonts/fusion_pixel_8px_zh_hans.ttf'
+	font_family = 'modular_zh/modules/i18n/fonts/fusion_pixel_8px_zh_hans.ttf'
 
 // 10px variant (design 10px → crisp at 7.5pt = 10px em, and at 15pt = 20px). Used for the
 // small maptext that was previously 8px@6pt (balloon alerts .maptext, screentip action-hints
@@ -46,4 +46,4 @@
 // than the 12px screentip name (.context @ 9pt). Crisp ONLY at 7.5pt / 15pt.
 /datum/font/fusion_pixel_10px
 	name = "Fusion Pixel 10px Mono zh_hans"
-	font_family = 'modular_nova/modules/i18n/fonts/fusion_pixel_10px_zh_hans.ttf'
+	font_family = 'modular_zh/modules/i18n/fonts/fusion_pixel_10px_zh_hans.ttf'

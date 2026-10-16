@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Archon Combat Systems shotguns are generally conversions of previously-existing shotguns with barrel chargers.
 // Barrel chargers improve damage and projectile speed, but cause the firerate to suffer.
 

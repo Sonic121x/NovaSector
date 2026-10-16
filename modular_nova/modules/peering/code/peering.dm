@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 // Alt + right-click a distant tile to lean and peer that way, sliding your view
 // in that direction for a wider sightline.
 //

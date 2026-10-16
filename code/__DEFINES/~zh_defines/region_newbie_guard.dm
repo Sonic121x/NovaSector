@@ -12,7 +12,7 @@
  *
  * Regenerate with `node tools/geoip/mihomo-geoip.mjs` and commit the result.
  */
-#define NEWBIE_GUARD_GEOIP_PATH "modular_nova/modules/region_newbie_guard/data/allowed_regions.json"
+#define NEWBIE_GUARD_GEOIP_PATH "modular_zh/modules/region_newbie_guard/data/allowed_regions.json"
 
 /// Admin-approved appeal bypasses, persisted across rounds.
 #define NEWBIE_GUARD_BYPASS_PATH "data/newbie_guard_bypass.json"

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB_VISIBILITY(atmos_debug, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(atmos_debug, R_DEBUG, "检查管道", "Verifies the integrity of the plumbing network.", ADMIN_CATEGORY_MAPPING)
 	BLACKBOX_LOG_ADMIN_VERB("Check Plumbing")

@@ -1,4 +1,4 @@
-// NOVA EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_nova/modules/i18n/readme.md
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/vehicle/sealed/mecha/ripley
 	desc = "Autonomous Power Loader Unit MK-I. Designed primarily around heavy lifting, the Ripley can be outfitted with utility equipment to fill a number of roles."
 	name = "\improper APLU MK-I \"Ripley\""
@@ -344,7 +344,7 @@ GLOBAL_DATUM(cargo_ripley, /obj/vehicle/sealed/mecha/ripley/cargo)
 		)
 	for(var/atom/entry in contents)
 		data["cargo"] += list(list(
-			"name" = entry.lang_localize_name_for_display(entry.name), // NOVA EDIT - I18N: 货箱内容名纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: "name" = entry.name,
+			"name" = entry.lang_localize_name_for_display(entry.name), // ZH EDIT - I18N: 货箱内容名纯显示（act 走 ref）；atom 版守玩家改名。ORIGINAL: "name" = entry.name,
 			"ref" = REF(entry),
 		))
 	return data

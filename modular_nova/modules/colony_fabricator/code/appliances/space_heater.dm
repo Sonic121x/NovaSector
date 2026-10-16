@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/machinery/space_heater/wall_mounted
 	name = "mounted heater"
 	desc = "A compact heating and cooling device for small scale applications, made to mount onto walls up and out of the way. \

@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 ADMIN_VERB(import_preferences, R_ADMIN, "导入偏好设置", "Upload a character preferences JSON file to the server.", ADMIN_CATEGORY_MAIN)
 	var/player_key = tgui_input_text(user, LANG("datum.0043cff07ac6ab77", null), LANG("datum.8cc1c53b7e2a0809", null))
 	if(!length(player_key))
