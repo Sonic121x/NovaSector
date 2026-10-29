@@ -211,7 +211,12 @@ SUBSYSTEM_DEF(tts)
 			audio_to_use = audio_blips
 		// ZH EDIT ADDITION END
 		if(actual_target && get_dist(listening_mob, turf_source) <= range)
-			if(tts_pref == TTS_SOUND_BLIPS || !holder.has_language(language) || eavesdropping) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: if(tts_pref == TTS_SOUND_BLIPS || !holder.has_language(language))
+			// ZH EDIT ADDITION START - TTS_EXPRESSION - Group listeners by the clip they were just sent.
+			// Voiced emotes have no language and skip the language check above, so has_language(null)
+			// put their listeners in the blips group while they played the voice. Both 3D sounds share
+			// this channel, so the blips clip (empty for a sigh) replaced the voice: every TTS emote was silent.
+			// ZH EDIT ADDITION END
+			if(audio_to_use == audio_blips) // ZH EDIT CHANGE - TTS_EXPRESSION - ORIGINAL: if(tts_pref == TTS_SOUND_BLIPS || !holder.has_language(language))
 				blips_hearers += listening_mob
 			else
 				voice_hearers += listening_mob
