@@ -187,6 +187,18 @@ function matchPropTemplate(text: string): string | null {
 }
 
 function translateText(text: string): string {
+  return resolveDisplayText(text, true);
+}
+
+/**
+ * 运行期串在界面上实际显示成什么（与渲染走同一条链），但**不记漏翻**。
+ * 给搜索用：过滤时要对大量未显示的值求译文，记进漏翻采集会把报告淹掉。
+ */
+export function displayTextOf(text: string): string {
+  return resolveDisplayText(text, false);
+}
+
+function resolveDisplayText(text: string, logMiss: boolean): string {
   const match = text.match(/^(\s*)([\s\S]*\S)(\s*)$/);
   if (!match) {
     return text;
@@ -226,7 +238,9 @@ function translateText(text: string): string {
   }
   // 漏翻采集：整条链（精确 → Alt 后缀 → prop 模板逆匹配 → overlay 子串）都没命中。
   // 这是 DM 侧看不到的那一面 —— 界面文本查表失败在浏览器里，服务端毫无痕迹。默认关闭。
-  recordMiss(body);
+  if (logMiss) {
+    recordMiss(body);
+  }
   // 未命中时保留原始 body（含原排版），不改动。
   return `${leading}${body}${trailing}`;
 }

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Icon, Input } from 'tgui-core/components';
 import { useBackend } from '../backend';
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../i18n/search';
 import { Window } from '../layouts';
 
 type Data = {
@@ -34,8 +36,9 @@ export const BluespaceLocator = (props) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentRotation, setCurrentRotation] = useState(0);
 
-  const filteredImplants = trackimplants.filter((implant) =>
-    implant.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  const filteredImplants = trackimplants.filter(
+    (implant) =>
+      searchableText(implant.name).includes(searchQuery.toLowerCase()), // ZH EDIT CHANGE - I18N: 也匹配显示译文
   );
 
   useEffect(() => {

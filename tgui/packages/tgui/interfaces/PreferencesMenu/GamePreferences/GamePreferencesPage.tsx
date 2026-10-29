@@ -4,6 +4,8 @@ import { type ReactNode, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Flex, Tooltip } from 'tgui-core/components';
 
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../../../i18n/search';
 import { features } from '../preferences/features';
 import { FeatureValueInput } from '../preferences/features/base';
 import type { PreferencesMenuData } from '../types';
@@ -109,7 +111,7 @@ export function GamePreferencesPage(props) {
           return (
             !searchText ||
             searchText.length < 2 ||
-            entry.name.toLowerCase().includes(searchText.toLowerCase())
+            searchableText(entry.name).includes(searchText.toLowerCase()) // ZH EDIT CHANGE - I18N: 也匹配显示译文
           );
         })
         .map((entry) => entry.children),

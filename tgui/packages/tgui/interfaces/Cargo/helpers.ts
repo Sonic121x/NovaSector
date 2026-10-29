@@ -2,6 +2,8 @@ import { filter } from 'es-toolkit/compat';
 import { useMemo } from 'react';
 import { flow } from 'tgui-core/fp';
 
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../../i18n/search';
 import { createCatalogueLoader } from '../common/catalogue';
 import type { Catalogue, CatalogueFile, Supply, SupplyCategory } from './types';
 
@@ -28,8 +30,10 @@ export function searchForSupplies(
       filter(
         flatMapped,
         (pack: Supply) =>
-          pack.name?.toLowerCase().includes(lowerSearch) ||
-          pack.desc?.toLowerCase().includes(lowerSearch),
+          // ZH EDIT CHANGE START - I18N: 也匹配显示译文 - ORIGINAL: pack.name?.toLowerCase() / pack.desc?.toLowerCase()
+          searchableText(pack.name).includes(lowerSearch) ||
+          searchableText(pack.desc).includes(lowerSearch),
+        // ZH EDIT CHANGE END
       ),
     // Just the first page
     (filtered: Supply[]) => filtered.slice(0, 25),

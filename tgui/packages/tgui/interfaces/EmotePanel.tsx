@@ -4,6 +4,8 @@ import type { BooleanLike } from 'tgui-core/react';
 import { capitalizeFirst } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../i18n/search';
 import { Window } from '../layouts';
 import { SearchBar } from './common/SearchBar';
 
@@ -51,7 +53,7 @@ export const EmotePanelContent = (props) => {
             emote.key &&
             (searchText.length > 0
               ? emote.key.toLowerCase().includes(searchText.toLowerCase()) ||
-                emote.name.toLowerCase().includes(searchText.toLowerCase())
+                searchableText(emote.name).includes(searchText.toLowerCase()) // ZH EDIT CHANGE - I18N: 也匹配显示译文
               : true) &&
             (filterVisible ? emote.visible : true) &&
             (filterAudible ? emote.audible : true) &&

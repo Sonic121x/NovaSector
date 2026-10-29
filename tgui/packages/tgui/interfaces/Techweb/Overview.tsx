@@ -2,6 +2,8 @@ import { sortBy } from 'es-toolkit';
 import { useState } from 'react';
 import { Flex, Input, Section, Tabs, VirtualList } from 'tgui-core/components';
 
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../../i18n/search';
 import { useRemappedBackend } from './helpers';
 import { TechNode } from './nodes/TechNode';
 
@@ -25,11 +27,13 @@ export function TechwebOverview(props) {
     displayedNodes = displayedNodes.filter((x) => {
       const n = node_cache[x.path];
       return (
-        n.name.toLowerCase().includes(searchText) ||
-        n.description.toLowerCase().includes(searchText) ||
+        // ZH EDIT CHANGE START - I18N: 也匹配显示译文 - ORIGINAL: x.toLowerCase().includes(searchText)
+        searchableText(n.name).includes(searchText) ||
+        searchableText(n.description).includes(searchText) ||
         n.unlocked_designs.some((e) =>
-          design_cache[e].name.toLowerCase().includes(searchText),
+          searchableText(design_cache[e].name).includes(searchText),
         )
+        // ZH EDIT CHANGE END
       );
     });
   } else {

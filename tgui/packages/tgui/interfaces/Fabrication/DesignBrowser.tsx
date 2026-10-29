@@ -10,6 +10,8 @@ import {
 import { classes } from 'tgui-core/react';
 
 import { useSharedState } from '../../backend';
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../../i18n/search';
 import { SearchBar } from '../common/SearchBar';
 import type { Design, MaterialMap } from './Types';
 
@@ -282,10 +284,11 @@ export const DesignBrowser = <T extends Design = Design>(
                     {sortBy(Object.values(root.descendants), [
                       (design: T) => design.name,
                     ])
+                      // ZH EDIT CHANGE - I18N: 也匹配显示译文 - ORIGINAL: design.name.toLowerCase().includes(…)
                       .filter((design) =>
-                        design.name
-                          .toLowerCase()
-                          .includes(searchText.toLowerCase()),
+                        searchableText(design.name).includes(
+                          searchText.toLowerCase(),
+                        ),
                       )
                       .map((design) =>
                         buildRecipeElement(

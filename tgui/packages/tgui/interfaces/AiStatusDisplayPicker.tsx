@@ -10,6 +10,8 @@ import {
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../i18n/search';
 import { Window } from '../layouts';
 
 type StatusDisplayOption = {
@@ -48,8 +50,8 @@ const AiStatusDisplayPickerContent = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Filter options based on search term
-  const filteredOptions = options.filter((option) =>
-    option.name.toLowerCase().includes(searchTerm.toLowerCase()),
+  const filteredOptions = options.filter(
+    (option) => searchableText(option.name).includes(searchTerm.toLowerCase()), // ZH EDIT CHANGE - I18N: 也匹配显示译文
   );
 
   // Separate original emotions and new AI core options

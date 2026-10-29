@@ -1,5 +1,7 @@
 import { useBackend, useLocalState } from 'tgui/backend';
 
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../../i18n/search';
 import {
   PRINTOUT,
   type SecurityRecord,
@@ -38,7 +40,7 @@ export const isRecordMatch = (record: GenericRecord, search: string) => {
 
   switch (true) {
     case name?.toLowerCase().includes(search?.toLowerCase()):
-    case rank?.toLowerCase().includes(search?.toLowerCase()):
+    case searchableText(rank).includes(search?.toLowerCase()): // ZH EDIT CHANGE - I18N: 也匹配显示译文
     case fingerprint?.toLowerCase().includes(search?.toLowerCase()):
     case dna?.toLowerCase().includes(search?.toLowerCase()):
       return true;

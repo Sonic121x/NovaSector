@@ -1,3 +1,5 @@
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../../i18n/search';
 import { DEPARTMENT2COLOR, HEALTH, THREAT, VIEWMODE } from './constants';
 import type { AntagGroup, Antagonist, Observable, ViewMode } from './types';
 
@@ -130,8 +132,10 @@ export function isJobCkeyOrNameMatch(
 
   return (
     full_name?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
-    name?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
-    job?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
+    // ZH EDIT CHANGE START - I18N: 也匹配显示译文 - ORIGINAL: name?.toLowerCase() / job?.toLowerCase()
+    searchableText(name).includes(searchQuery?.toLowerCase()) ||
+    searchableText(job).includes(searchQuery?.toLowerCase()) ||
+    // ZH EDIT CHANGE END
     ckey?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
     false
   );
