@@ -192,7 +192,7 @@
 	log_combat(user, target, "given a noogie to", addition = "([damage] brute before armor)")
 	target.apply_damage(damage, BRUTE, BODY_ZONE_HEAD)
 	user.adjust_stamina_loss(iteration + 5)
-	playsound(get_turf(user), SFX_RUSTLE, 50)
+	playsound(get_turf(user), /datum/sound_effect/rustle, 50)
 
 	if(prob(33))
 		user.visible_message(span_danger(LANG("obj.dcbb423cd920ce87", list(user, target))), span_warning(LANG("obj.f2ad65f12baacf52", list(target))), vision_distance=COMBAT_MESSAGE_RANGE, ignored_mobs=target)

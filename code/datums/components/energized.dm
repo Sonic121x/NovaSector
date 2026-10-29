@@ -77,8 +77,8 @@
 	if(prob(100 - toast_prob))
 		if(prob(25))
 			do_sparks(1, FALSE, source)
-			playsound(parent, SFX_SPARKS, 40, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-			source.audible_message(span_danger(LANG("datum.69e9b44ad649631d", list(parent))))
+			playsound(parent, /datum/sound_effect/sparks, 40, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+			source.audible_message(span_danger("[parent] makes an electric crackle..."))
 		return FALSE
 
 	// Everything will be based on position and travel direction
@@ -112,9 +112,9 @@
 
 	// Finally the interesting part where they ACTUALLY get hit!
 	do_sparks(4, FALSE, source)
-	playsound(parent, SFX_SPARKS, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	source.audible_message(span_danger(LANG("datum.00def01e812a2f1b", list(parent))))
-	to_chat(future_tram_victim, span_userdanger(LANG("datum.1b7e920fc0144d7e", null)))
+	playsound(parent, /datum/sound_effect/sparks, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	source.audible_message(span_danger("[parent] makes a loud electric crackle!"))
+	to_chat(future_tram_victim, span_userdanger("You hear a loud electric crackle!"))
 	future_tram_victim.electrocute_act(15, parent, 1)
 	return TRUE
 

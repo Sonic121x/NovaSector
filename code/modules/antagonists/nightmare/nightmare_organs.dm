@@ -66,7 +66,7 @@
 		span_danger(LANG("datum.252328cfc1ff08b9", list(source, hitting_projectile))),
 		span_danger(LANG("datum.1dff209f7af92100", list(hitting_projectile))),
 	)
-	playsound(source, SFX_BULLET_MISS, 75, TRUE)
+	playsound(source, /datum/sound_effect/bullet_miss, 75, TRUE)
 	return COMPONENT_BULLET_PIERCED
 
 /atom/movable/screen/alert/status_effect/shadow_regeneration/nightmare

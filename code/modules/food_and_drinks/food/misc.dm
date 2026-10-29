@@ -422,7 +422,7 @@
 	can_stick = FALSE
 
 /obj/item/food/butter/make_processable()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/butterslice, 3, 3 SECONDS, table_required = TRUE, screentip_verb = "Slice", sound_to_play = SFX_KNIFE_SLICE)
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/butterslice, 3, 3 SECONDS, table_required = TRUE, screentip_verb = "Slice", sound_to_play = /datum/sound_effect/knife_slice)
 
 /obj/item/food/butterslice
 	name = "butter slice"
@@ -872,5 +872,5 @@
 	if(can_splat_on)
 		victim.adjust_temp_blindness_up_to(2.5 SECONDS, 3 SECONDS)
 		victim.adjust_confusion_up_to(2.5 SECONDS, 3 SECONDS)
-	victim.visible_message(span_warning(LANG("obj.435f3e655ff5afa1", list(victim, src))), span_userdanger(LANG("obj.3659c69ff40a2f3c", list(src))))
-	playsound(victim, SFX_DESECRATION, 50, TRUE)
+	victim.visible_message(span_warning("[victim] is inked by [src]!"), span_userdanger("You've been inked by [src]!"))
+	playsound(victim, /datum/sound_effect/desecration, 50, TRUE)

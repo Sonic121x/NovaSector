@@ -190,8 +190,8 @@
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE, SILENCED_SOUND_EXTRARANGE)
 		return .
 
-	balloon_alert(user, LANG("obj.d0a046565f092a57", list(message)))
-	playsound(src, SFX_SPARKS, 75, TRUE, SILENCED_SOUND_EXTRARANGE)
+	balloon_alert(user, "[message] broken")
+	playsound(src, /datum/sound_effect/sparks, 75, TRUE, SILENCED_SOUND_EXTRARANGE)
 	if(freqlock == RADIO_FREQENCY_EMAGGABLE_LOCK)
 		freqlock = RADIO_FREQENCY_UNLOCKED
 	if(keylock == RADIO_KEYSLOT_EMAGGABLE_LOCK)

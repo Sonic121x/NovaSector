@@ -577,7 +577,7 @@
 	visible_message(span_warning(LANG("obj.c06254ea816ce949", list(src))),
 		span_danger(LANG("obj.2eecce6c12978f32", null)))
 
-	playsound(loc, SFX_SHATTER, 50, TRUE)
+	playsound(loc, /datum/sound_effect/shatter, 50, TRUE)
 
 	new frame(loc)
 
@@ -593,7 +593,7 @@
 		return
 	else
 		var/turf/T = get_turf(src)
-		playsound(T, SFX_SHATTER, 50, TRUE)
+		playsound(T, /datum/sound_effect/shatter, 50, TRUE)
 
 		new frame(loc)
 		new glass_shard_type(loc)

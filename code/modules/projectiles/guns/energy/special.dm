@@ -217,33 +217,16 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT, /datum/material/diamond = SHEET_MATERIAL_AMOUNT)
 	var/obj/effect/portal/p_blue
 	var/obj/effect/portal/p_orange
-	var/firing_core = FALSE
+	var/spawn_with_core = FALSE
 	gun_flags = NOT_A_REAL_GUN
+
+/obj/item/gun/energy/wormhole_projector/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/anomaly_locked_gun, list(/obj/item/assembly/signaler/anomaly/bluespace), init_core = spawn_with_core)
 
 /obj/item/gun/energy/wormhole_projector/examine(mob/user)
 	. = ..()
 	. += span_notice(LANG("obj.b0f738a0e22fb56f", null))
-
-/obj/item/gun/energy/wormhole_projector/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if(!istype(tool, /obj/item/assembly/signaler/anomaly/bluespace))
-		return NONE
-	if(firing_core)
-		user.balloon_alert(user, LANG("obj.641e7c0683b494f4", null))
-		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.2025b3a68739097c", list(tool))))
-	firing_core = TRUE
-	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-	qdel(tool)
-	return ITEM_INTERACT_SUCCESS
-
-/obj/item/gun/energy/wormhole_projector/can_shoot()
-	if(!firing_core)
-		return FALSE
-	return ..()
-
-/obj/item/gun/energy/wormhole_projector/shoot_with_empty_chamber(mob/living/user)
-	. = ..()
-	to_chat(user, span_danger(LANG("obj.146a1c5b4896ce8f", null)))
 
 /obj/item/gun/energy/wormhole_projector/update_icon_state()
 	. = ..()
@@ -310,10 +293,10 @@
 		qdel(p_blue)
 		p_blue = new_portal
 	crosslink()
-	playsound(new_portal, SFX_PORTAL_CREATED, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(new_portal, /datum/sound_effect/portal_created, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /obj/item/gun/energy/wormhole_projector/core_inserted
-	firing_core = TRUE
+	spawn_with_core = TRUE
 
 #undef AMMO_SELECT_BLUE
 #undef AMMO_SELECT_ORANGE
@@ -373,26 +356,12 @@
 		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 1.5,
 	)
-	var/power = 4
-	var/firing_core = FALSE
 	gun_flags = NOT_A_REAL_GUN
+	var/power = 4
 
-/obj/item/gun/energy/gravity_gun/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if(!istype(tool, /obj/item/assembly/signaler/anomaly/grav))
-		return NONE
-	if(firing_core)
-		user.balloon_alert(user, LANG("obj.641e7c0683b494f4", null))
-		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice(LANG("obj.7d0360082dfb41a0", list(tool))))
-	firing_core = TRUE
-	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-	qdel(tool)
-	return ITEM_INTERACT_SUCCESS
-
-/obj/item/gun/energy/gravity_gun/can_shoot()
-	if(!firing_core)
-		return FALSE
-	return ..()
+/obj/item/gun/energy/gravity_gun/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/anomaly_locked_gun, list(/obj/item/assembly/signaler/anomaly/grav))
 
 /**
 -----------------Tesla Cannon--------------------------------
@@ -421,13 +390,14 @@ it is often confused with the mech weapon of the same name, since it is a bit mo
 	display_empty =  FALSE
 	weapon_weight = WEAPON_HEAVY
 	w_class = WEIGHT_CLASS_BULKY
-	///if our stpck is extended and we are ready to fire.
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 5)
+	///if our stock is extended and we are ready to fire.
 	var/ready_to_fire = FALSE
 
 /obj/item/gun/energy/tesla_cannon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, autofire_shot_delay =  100 MILLISECONDS, firing_sound_loop = /datum/looping_sound/tesla_cannon)
+	AddComponent(/datum/component/anomaly_locked_gun, list(/obj/item/assembly/signaler/anomaly/flux))
 
 /obj/item/gun/energy/tesla_cannon/can_trigger_gun(mob/living/user, akimbo_usage)
 	if(ready_to_fire)
@@ -542,3 +512,4 @@ it is often confused with the mech weapon of the same name, since it is a bit mo
 /obj/item/gun/energy/photon/Initialize(mapload)
 	. = ..()
 	set_light_on(TRUE) // The gun quite literally shoots mini-suns.
+	AddComponent(/datum/component/anomaly_locked_gun, list(/obj/item/assembly/signaler/anomaly/flux))

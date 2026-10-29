@@ -179,7 +179,8 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 			insuls.name = "insuls"
 			insuls.desc = "A mere copy of the true insuls."
 			insuls.siemens_coefficient = 0.99999
-			user.equip_to_slot(insuls, ITEM_SLOT_GLOVES)
+			if(!user.equip_to_slot_if_possible(insuls, ITEM_SLOT_GLOVES) && !user.put_in_hands(insuls))
+				insuls.forceMove(user.drop_location())
 	GLOB.bible_icon_state = icon_state
 	GLOB.bible_inhand_icon_state = inhand_icon_state
 	SSblackbox.record_feedback("text", "religion_book", 1, "[choice]")
@@ -230,9 +231,9 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 		if(affecting.heal_damage(heal_amt, heal_amt, required_bodytype = BODYTYPE_ORGANIC))
 			built_in_his_image.update_damage_overlays()
 
-	built_in_his_image.visible_message(span_notice(LANG("obj.45608eb371a71271", list(user, built_in_his_image, deity_name))))
-	to_chat(built_in_his_image, span_boldnotice(LANG("obj.087b1ddd9796b5a4", list(deity_name))))
-	playsound(built_in_his_image, SFX_PUNCH, 25, TRUE, -1)
+	built_in_his_image.visible_message(span_notice("[user] heals [built_in_his_image] with the power of [deity_name]!"))
+	to_chat(built_in_his_image, span_boldnotice("May the power of [deity_name] compel you to be healed!"))
+	playsound(built_in_his_image, /datum/sound_effect/punch, 25, TRUE, -1)
 	built_in_his_image.add_mood_event("blessing", /datum/mood_event/blessing)
 	return BLESSING_SUCCESS
 
@@ -257,8 +258,8 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 
 	if(target_mob.stat == DEAD)
 		if(GLOB.religious_sect?.sect_dead_bless(target_mob, user) == BLESSING_FAILED)
-			target_mob.visible_message(span_danger(LANG("obj.d96b11d66b5980f5", list(user, target_mob, src))))
-			playsound(target_mob, SFX_PUNCH, 25, TRUE, -1)
+			target_mob.visible_message(span_danger("[user] smacks [target_mob]'s lifeless corpse with [src]."))
+			playsound(target_mob, /datum/sound_effect/punch, 25, TRUE, -1)
 		return
 
 	if(user == target_mob)
@@ -279,10 +280,10 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 		var/mob/living/carbon/human/human_target = target_mob
 		if(!istype(human_target.head, /obj/item/clothing/head/helmet))
 			human_target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 5, 60)
-			human_target.balloon_alert(human_target, LANG("obj.95af1747b68a754f", null))
-	target_mob.visible_message(span_danger(LANG("obj.908ad4aa37bb4e1e", list(user, target_mob, src))), \
-			span_userdanger(LANG("obj.908ad4aa37bb4e1e", list(user, target_mob, src))))
-	playsound(target_mob, SFX_PUNCH, 25, TRUE, -1)
+			human_target.balloon_alert(human_target, "you feel dumber!")
+	target_mob.visible_message(span_danger("[user] beats [target_mob] over the head with [src]!"), \
+			span_userdanger("[user] beats [target_mob] over the head with [src]!"))
+	playsound(target_mob, /datum/sound_effect/punch, 25, TRUE, -1)
 	log_combat(user, target_mob, "attacked", src)
 
 /obj/item/book/bible/interact_with_atom(atom/bible_smacked, mob/living/user, list/modifiers)

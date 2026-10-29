@@ -277,8 +277,8 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	locked = FALSE
-	playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, LANG("obj.72faa6022466ed59", null))
+	playsound(src, /datum/sound_effect/sparks, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	balloon_alert(user, "access controller shorted")
 	return TRUE
 
 /obj/machinery/shieldgen/update_icon_state()
@@ -352,7 +352,8 @@
 		return
 	. += "shieldgen_wires"
 
-/obj/machinery/power/shieldwallgen/Destroy()
+/obj/machinery/power/shieldwallgen/Destroy(force)
+	SSmachines.processing_early -= src
 	for(var/d in GLOB.cardinals)
 		cleanup_field(d)
 	return ..()
@@ -525,8 +526,8 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	locked = FALSE
-	playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, LANG("obj.72faa6022466ed59", null))
+	playsound(src, /datum/sound_effect/sparks, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	balloon_alert(user, "access controller shorted")
 	return TRUE
 
 /// Turn the machine on with side effects

@@ -10,10 +10,10 @@
 	if(mob_size < MOB_SIZE_LARGE)
 		safe_throw_at(get_edge_target_turf(src, get_dir(user, src)), 2, 1, user)
 		hitverb = "slam"
-	playsound(loc, SFX_PUNCH, 25, TRUE, -1)
-	visible_message(span_danger(LANG("mob.73829518320af0f7", list(user, hitverb, src))), \
-					span_userdanger(LANG("mob.b4682e6ab68d60df", list(user, hitverb))), span_hear(LANG("mob.6c7f8149b8c68cd4", null)), COMBAT_MESSAGE_RANGE, user)
-	to_chat(user, span_danger(LANG("mob.22d557f300d422c9", list(hitverb, src))))
+	playsound(loc, /datum/sound_effect/punch, 25, TRUE, -1)
+	visible_message(span_danger("[user] [hitverb]s [src]!"), \
+					span_userdanger("[user] [hitverb]s you!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, user)
+	to_chat(user, span_danger("You [hitverb] [src]!"))
 
 /mob/living/carbon/alien/adult/attack_hand(mob/living/carbon/human/user, list/modifiers)
 	. = ..()
@@ -21,10 +21,10 @@
 		return TRUE
 	var/damage = rand(1, 9)
 	if (prob(90))
-		playsound(loc, SFX_PUNCH, 25, TRUE, -1)
-		visible_message(span_danger(LANG("mob.b9f421c8ba627172", list(user, src))), \
-						span_userdanger(LANG("mob.f2fc802c498bf927", list(user))), span_hear(LANG("mob.6c7f8149b8c68cd4", null)), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_danger(LANG("mob.51733a6598f1ca7d", list(src))))
+		playsound(loc, /datum/sound_effect/punch, 25, TRUE, -1)
+		visible_message(span_danger("[user] punches [src]!"), \
+						span_userdanger("[user] punches you!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger("You punch [src]!"))
 		if ((stat != DEAD) && (damage > 9 || prob(5)))//Regular humans have a very small chance of knocking an alien down.
 			Unconscious(40)
 			visible_message(span_danger(LANG("mob.b28257ff017a2b6e", list(user, src))), \

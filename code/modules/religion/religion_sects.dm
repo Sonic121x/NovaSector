@@ -137,9 +137,9 @@
 		if(affecting.heal_damage(heal_amt, heal_amt, required_bodytype = BODYTYPE_ORGANIC))
 			blessed.update_damage_overlays()
 
-	blessed.visible_message(span_notice(LANG("datum.45608eb371a71271", list(chap, blessed, GLOB.deity))))
-	to_chat(blessed, span_boldnotice(LANG("datum.087b1ddd9796b5a4", list(GLOB.deity))))
-	playsound(chap, SFX_PUNCH, 25, TRUE, -1)
+	blessed.visible_message(span_notice("[chap] heals [blessed] with the power of [GLOB.deity]!"))
+	to_chat(blessed, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
+	playsound(chap, /datum/sound_effect/punch, 25, TRUE, -1)
 	blessed.add_mood_event("blessing", /datum/mood_event/blessing)
 	return BLESSING_SUCCESS
 
@@ -271,7 +271,7 @@
 	tgui_icon = FA_ICON_DOLLAR_SIGN
 	altar_icon_state = "convertaltar-yellow"
 	alignment = ALIGNMENT_EVIL //greed is not good wtf
-	rites_list = list(/datum/religion_rites/greed/vendatray, /datum/religion_rites/greed/custom_vending)
+	rites_list = list(/datum/religion_rites/greed/custom_vending)
 
 /datum/religion_sect/greed/tool_examine(mob/living/holy_creature) //display money policy
 	return "In the eyes of [GLOB.deity], your wealth is your favor."
@@ -407,9 +407,9 @@
 		to_chat(chaplain, span_warning(LANG("datum.45f1cf416fcec48b", null)))
 		return BLESSING_IGNORED
 
-	target.visible_message(span_notice(LANG("datum.7aeb184d1b28f4eb", list(chaplain, target))))
-	to_chat(target, span_boldnotice(LANG("datum.087b1ddd9796b5a4", list(GLOB.deity))))
-	playsound(chaplain, SFX_PUNCH, 25, vary = TRUE, extrarange = -1)
+	target.visible_message(span_notice("[chaplain] takes on [target]'s burden!"))
+	to_chat(target, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
+	playsound(chaplain, /datum/sound_effect/punch, 25, vary = TRUE, extrarange = -1)
 	target.add_mood_event("blessing", /datum/mood_event/blessing)
 	return BLESSING_SUCCESS
 
@@ -460,9 +460,9 @@
 		return BLESSING_IGNORED
 
 	blessed.reagents.add_reagent(/datum/reagent/drug/maint/sludge, 5)
-	blessed.visible_message(span_notice(LANG("datum.7cfe2a5b5755eb57", list(chap, blessed, GLOB.deity))))
-	to_chat(blessed, span_boldnotice(LANG("datum.20708b6b60f3650b", list(GLOB.deity))))
-	playsound(chap, SFX_PUNCH, 25, TRUE, -1)
+	blessed.visible_message(span_notice("[chap] empowers [blessed] with the power of [GLOB.deity]!"))
+	to_chat(blessed, span_boldnotice("The power of [GLOB.deity] has made you harder to wound for a while!"))
+	playsound(chap, /datum/sound_effect/punch, 25, TRUE, -1)
 	blessed.add_mood_event("blessing", /datum/mood_event/blessing)
 	return BLESSING_SUCCESS //trust me, you'll be feeling the pain from the maint drugs all well enough
 

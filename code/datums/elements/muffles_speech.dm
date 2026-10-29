@@ -1,5 +1,7 @@
 // ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /datum/element/muffles_speech
+	/// Item refs currently muffling each mob, keyed by the mob's ref.
+	var/static/list/affected_refs
 
 /datum/element/muffles_speech/Attach(datum/target)
 	. = ..()
@@ -9,20 +11,37 @@
 	RegisterSignal(target, COMSIG_ITEM_EQUIPPED, PROC_REF(equipped))
 	RegisterSignal(target, COMSIG_ITEM_DROPPED, PROC_REF(dropped))
 
-/datum/element/muffles_speech/Detach(datum/source)
+/datum/element/muffles_speech/Detach(obj/item/source)
 	. = ..()
 	UnregisterSignal(source, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
+	if(ismob(source.loc))
+		dropped(source, source.loc)
 
 /datum/element/muffles_speech/proc/equipped(obj/item/source, mob/user, slot)
 	SIGNAL_HANDLER
-	if(source.slot_flags & slot)
+	if(!(source.slot_flags & slot))
+		return
+	var/user_ref = REF(user)
+	if(!LAZYACCESS(affected_refs, user_ref))
 		RegisterSignal(user, COMSIG_MOB_SAY, PROC_REF(muzzle_talk))
 		RegisterSignal(user, COMSIG_MOB_PRE_EMOTED, PROC_REF(emote_override))
 		RegisterSignal(user, COMSIG_MOB_BEFORE_SPELL_CAST, PROC_REF(try_spellcast))
+		RegisterSignal(user, COMSIG_QDELETING, PROC_REF(on_mob_deleted))
+	LAZYORASSOCLIST(affected_refs, user_ref, REF(source))
 
 /datum/element/muffles_speech/proc/dropped(obj/item/source, mob/user)
 	SIGNAL_HANDLER
-	UnregisterSignal(user, list(COMSIG_MOB_PRE_EMOTED, COMSIG_MOB_SAY, COMSIG_MOB_BEFORE_SPELL_CAST))
+	var/user_ref = REF(user)
+	if(!LAZYACCESS(affected_refs, user_ref))
+		return
+	LAZYREMOVEASSOC(affected_refs, user_ref, REF(source))
+	if(LAZYACCESS(affected_refs, user_ref))
+		return
+	UnregisterSignal(user, list(COMSIG_MOB_PRE_EMOTED, COMSIG_MOB_SAY, COMSIG_MOB_BEFORE_SPELL_CAST, COMSIG_QDELETING))
+
+/datum/element/muffles_speech/proc/on_mob_deleted(mob/source)
+	SIGNAL_HANDLER
+	LAZYREMOVE(affected_refs, REF(source))
 
 /datum/element/muffles_speech/proc/emote_override(mob/living/source, key, params, type_override, intentional, datum/emote/emote)
 	SIGNAL_HANDLER
@@ -43,7 +62,8 @@
 	var/spoken_message = speech_args[SPEECH_MESSAGE]
 	if(spoken_message)
 		var/list/words = splittext(spoken_message, " ")
-		var/yell_suffix = copytext(spoken_message, findtext(spoken_message, "!"))
+		var/static/regex/yell_regex = regex(@"!+$")
+		var/yell_suffix = yell_regex.Find(spoken_message) ? yell_regex.match : ""
 		spoken_message = ""
 
 		for(var/ind = 1 to length(words))

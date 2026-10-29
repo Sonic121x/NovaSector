@@ -152,5 +152,5 @@
 		living_target_getting_hit.visible_message(span_warning(LANG("obj.ac06f900c85c1494", list(living_target_getting_hit))), span_userdanger(LANG("obj.5c9d1f2033ad3617", null)))
 		living_target_getting_hit.adjust_fire_stacks(2)
 		living_target_getting_hit.ignite_mob()
-		playsound(living_target_getting_hit, SFX_SEAR, 50, TRUE)
+		playsound(living_target_getting_hit, /datum/sound_effect/sear, 50, TRUE)
 	qdel(src)

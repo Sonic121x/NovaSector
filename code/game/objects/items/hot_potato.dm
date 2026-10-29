@@ -110,9 +110,11 @@
 	if(!istype(victim) || user != loc || victim == user)
 		return FALSE
 	if(!victim.client)
-		to_chat(user, span_boldwarning(LANG("obj.e6dfc6fc9f792183", list(src))))
+		to_chat(user, span_boldwarning("[src] refuses to attach to a non-sapient creature!"))
+		return FALSE
 	if(IS_UNCONSCIOUS_OR_CRIT(victim) || !victim.usable_legs)
-		to_chat(user, span_boldwarning(LANG("obj.2dd88d24806c2645", list(src))))
+		to_chat(user, span_boldwarning("[src] refuses to attach to someone incapable of using it!"))
+		return FALSE
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	. = FALSE
 	if(!victim.put_in_hands(src))

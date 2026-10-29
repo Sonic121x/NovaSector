@@ -118,8 +118,8 @@
 
 	if(swirlie)
 		user.changeNext_move(CLICK_CD_MELEE)
-		playsound(src.loc, SFX_SWING_HIT, 25, TRUE)
-		swirlie.visible_message(span_danger(LANG("obj.5b574b95f3281100", list(user, swirlie))), span_userdanger(LANG("obj.2b65919d6a76a673", list(user))), span_hear(LANG("obj.a187bef8beea4e79", null)))
+		playsound(src.loc, /datum/sound_effect/swing_hit, 25, TRUE)
+		swirlie.visible_message(span_danger("[user] slams the toilet seat onto [swirlie]'s head!"), span_userdanger("[user] slams the toilet seat onto your head!"), span_hear("You hear reverberating porcelain."))
 		log_combat(user, swirlie, "swirlied (brute)")
 		swirlie.adjust_brute_loss(5)
 		return

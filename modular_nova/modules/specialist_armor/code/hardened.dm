@@ -46,7 +46,7 @@
 		return
 
 	incoming_projectile.armour_penetration = 0
-	playsound(src, SFX_RICOCHET, BLOCK_SOUND_VOLUME, vary = TRUE)
+	playsound(src, /datum/sound_effect/ricochet, BLOCK_SOUND_VOLUME, vary = TRUE)
 	return NONE
 
 /obj/item/clothing/suit/armor/sf_hardened/examine_more(mob/user)
@@ -104,7 +104,7 @@
 		return
 
 	incoming_projectile.armour_penetration = 0
-	playsound(src, SFX_RICOCHET, BLOCK_SOUND_VOLUME, vary = TRUE)
+	playsound(src, /datum/sound_effect/ricochet, BLOCK_SOUND_VOLUME, vary = TRUE)
 	return NONE
 
 /obj/item/clothing/head/helmet/toggleable/sf_hardened/examine_more(mob/user)

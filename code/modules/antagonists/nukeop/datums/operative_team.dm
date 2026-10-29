@@ -212,7 +212,7 @@
 	// add some pizzazz
 	do_sparks(4, FALSE, spawn_loc)
 	new /obj/effect/temp_visual/teleport_abductor/syndi_teleporter(spawn_loc)
-	playsound(spawn_loc, SFX_SPARKS, 50, TRUE)
+	playsound(spawn_loc, /datum/sound_effect/sparks, 50, TRUE)
 	playsound(spawn_loc, 'sound/effects/phasein.ogg', 50, TRUE)
 
 	tgui_alert(admin, LANG("datum.8a36870e02de6025", list(infil_or_nukebase, tc_to_spawn)), LANG("datum.d9933d75437b9248", null), list("God speed"))

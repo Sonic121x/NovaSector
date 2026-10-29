@@ -17,7 +17,7 @@
 #define REMOVE_DELAY 15
 
 /obj/item/construction/rld
-	name = "Rapid Lighting Device"
+	name = "rapid lighting device (RLD)"
 	desc = "A device used to rapidly provide lighting sources to an area. Reload with iron, plasteel, glass or compressed matter cartridges."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rld"
@@ -219,7 +219,7 @@
 	return NONE
 
 /obj/item/construction/rld/mini
-	name = "mini-rapid-light-device"
+	name = "mini rapid lighting device (MRLD)"
 	desc = "A device used to rapidly provide lighting sources to an area. Reload with iron, plasteel, glass or compressed matter cartridges."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rld"

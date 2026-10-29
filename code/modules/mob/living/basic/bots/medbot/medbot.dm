@@ -280,7 +280,7 @@
 	balloon_alert(user, LANG("mob.61ba94f3a664a049", null))
 	audible_message(span_danger(LANG("mob.1798b7cd2aeb74d1", list(src))))
 	flick_overlay_view(mutable_appearance(icon, "[base_icon_state]_spark"), 1 SECONDS)
-	playsound(src, SFX_SPARKS, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, /datum/sound_effect/sparks, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 
 /mob/living/basic/bot/medbot/examine()

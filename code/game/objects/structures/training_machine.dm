@@ -121,8 +121,8 @@
 		return ITEM_INTERACT_BLOCKING
 
 	attach_item(tool)
-	to_chat(user, span_notice(LANG("obj.ea8e9a86daf4a751", list(attached_item))))
-	playsound(src, SFX_RUSTLE, 50, TRUE)
+	to_chat(user, span_notice("You attach \the [attached_item] to the training device."))
+	playsound(src, /datum/sound_effect/rustle, 50, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
 /**
@@ -191,7 +191,7 @@
 		return CLICK_ACTION_BLOCKING
 	to_chat(user, span_notice(LANG("obj.86489ccdf69cafcf", list(attached_item))))
 	remove_attached_item(user)
-	playsound(src, SFX_RUSTLE, 50, TRUE)
+	playsound(src, /datum/sound_effect/rustle, 50, TRUE)
 	return CLICK_ACTION_SUCCESS
 
 /**

@@ -234,8 +234,8 @@
 	obj_flags |= EMAGGED
 	var/datum/effect_system/basic/spark_spread/spark_system = new(src.loc, 4, 0)
 	spark_system.start()
-	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, LANG("obj.5ee30b3cab4ff3df", null))
+	playsound(src, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	balloon_alert(user, "machine rigged")
 	return TRUE
 
 /obj/machinery/computer/slot_machine/ui_assets(mob/user)

@@ -38,7 +38,7 @@
 
 	. = ..()
 
-	AddElement(/datum/element/can_shatter, shattering_sound = SFX_SHATTER, shatters_as_weapon = TRUE)
+	AddElement(/datum/element/can_shatter, shattering_sound = /datum/sound_effect/shatter, shatters_as_weapon = TRUE)
 	AddElement(/datum/element/beauty, 500)
 	if(!persistence_id)
 		if(initial_value)
@@ -108,7 +108,7 @@
 		return
 	var/percentile = round(calculate_dosh_amount()/maximum_value * 100, 1)
 	if(percentile >= 10)
-		playsound(src, SFX_RATTLE, percentile * 0.5, FALSE, FALSE)
+		playsound(src, /datum/sound_effect/rattle, percentile * 0.5, FALSE, FALSE)
 	switch(percentile)
 		if(0)
 			balloon_alert(user, LANG("obj.b98f11e171001c70", null))

@@ -19,8 +19,8 @@
 		var/obj/colored_item = new /obj/item/stack/ore/glass/zero_cost(get_turf(src))
 		colored_item.add_atom_colour(added_color, FIXED_COLOUR_PRIORITY)
 		new /obj/effect/decal/cleanable/glass(get_turf(src))
-		user.balloon_alert(user, LANG("obj.d0641e1553a22038", list(src)))
-		playsound(src, SFX_SHATTER, 30, TRUE)
+		user.balloon_alert(user, "[src] shatters!")
+		playsound(src, /datum/sound_effect/shatter, 30, TRUE)
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
 

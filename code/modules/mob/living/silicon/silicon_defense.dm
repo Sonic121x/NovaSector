@@ -53,10 +53,10 @@
 	if(!.)
 		return
 	adjust_brute_loss(rand(10, 15))
-	playsound(loc, SFX_PUNCH, 25, TRUE, -1)
-	visible_message(span_danger(LANG("mob.b9f421c8ba627172", list(user, src))), \
-					span_userdanger(LANG("mob.f2fc802c498bf927", list(user))), null, COMBAT_MESSAGE_RANGE, user)
-	to_chat(user, span_danger(LANG("mob.51733a6598f1ca7d", list(src))))
+	playsound(loc, /datum/sound_effect/punch, 25, TRUE, -1)
+	visible_message(span_danger("[user] punches [src]!"), \
+					span_userdanger("[user] punches you!"), null, COMBAT_MESSAGE_RANGE, user)
+	to_chat(user, span_danger("You punch [src]!"))
 
 /mob/living/silicon/attack_hand(mob/living/carbon/human/user, list/modifiers)
 	. = ..()

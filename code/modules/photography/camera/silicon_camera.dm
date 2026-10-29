@@ -84,8 +84,8 @@
 	var/number = length(stored)
 	picture.picture_name = "Image [number] (taken by [loc.name])"
 	stored[picture] = TRUE
-	balloon_alert(user, LANG("obj.3fb112834df9e975", null))
-	user.playsound_local(get_turf(user), SFX_POLAROID, 50, TRUE, -3)
+	balloon_alert(user, "image recorded")
+	user.playsound_local(get_turf(user), /datum/sound_effect/polaroid, 50, TRUE, -3)
 
 /obj/item/camera/siliconcam/robot_camera
 	name = "Cyborg photo camera"
@@ -106,8 +106,8 @@
 		var/number = stored.len
 		picture.picture_name = "Image [number] (taken by [loc.name])"
 		stored[picture] = TRUE
-		balloon_alert(user, LANG("obj.b86d818d4bf7b8e8", null))
-	playsound(src, SFX_POLAROID, 75, TRUE, -3)
+		balloon_alert(user, "image recorded and saved locally")
+	playsound(src, /datum/sound_effect/polaroid, 75, TRUE, -3)
 
 /obj/item/camera/siliconcam/robot_camera/selectpicture(mob/living/silicon/robot/user)
 	if(istype(user) && user.connected_ai)

@@ -291,7 +291,7 @@
 	new /obj/structure/void_conduit(affected_turf)
 	source.dropItemToGround(sword)
 	qdel(sword)
-	playsound(source, SFX_SHATTER, 50, FALSE)
+	playsound(source, /datum/sound_effect/shatter, 50, FALSE)
 
 /datum/heretic_knowledge/ultimate/void_final
 	name = "Waltz at the End of Time"
@@ -423,7 +423,7 @@
 		span_danger(LANG("datum.6a451a02d77eeb4e", list(ascended_heretic, hitting_projectile))),
 		span_userdanger(LANG("datum.48528162d18f1c48", list(hitting_projectile))),
 	)
-	playsound(ascended_heretic, SFX_VOID_DEFLECT, 75, TRUE)
+	playsound(ascended_heretic, /datum/sound_effect/void_deflect, 75, TRUE)
 	hitting_projectile.firer = ascended_heretic
 	if(prob(75))
 		hitting_projectile.set_angle(get_angle(hitting_projectile.firer, hitting_projectile.fired_from))

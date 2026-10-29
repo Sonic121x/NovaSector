@@ -7,8 +7,8 @@
 	var/number = length(stored)
 	picture.picture_name = "Image [number] (taken by [loc.name])"
 	stored[picture] = TRUE
-	playsound(src, SFX_POLAROID, 75, TRUE, -3)
-	balloon_alert(user, LANG("obj.3fb112834df9e975", null))
+	playsound(src, /datum/sound_effect/polaroid, 75, TRUE, -3)
+	balloon_alert(user, "image recorded")
 
 /**
  * Handles selecting and printing stored images.

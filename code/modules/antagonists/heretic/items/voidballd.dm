@@ -16,7 +16,7 @@
 	if(.)
 		return
 
-	playsound(src, SFX_SHATTER, 50, TRUE)
+	playsound(src, /datum/sound_effect/shatter, 50, TRUE)
 	playsound(src, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	if(IS_HERETIC_OR_MONSTER(user))
 		to_chat(user, span_mansus(LANG("obj.8f719e0aa4c5b146", list(src))))

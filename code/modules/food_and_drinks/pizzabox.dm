@@ -248,8 +248,8 @@
 		box.boxtag += tgui_input_text(user, LANG("obj.56f1e6681552b657", list(box)), box, max_length = 30)
 		if(!user.can_perform_action(src))
 			return ITEM_INTERACT_FAILURE
-		balloon_alert(user, LANG("obj.b180f54a6e96c4d1", null))
-		playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
+		balloon_alert(user, "writing box tag...")
+		playsound(src, /datum/sound_effect/writing_pen, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 		boxtag_set = TRUE
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS

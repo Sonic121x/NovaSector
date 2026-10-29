@@ -73,11 +73,9 @@
 	// since it was time, go up a stage and now we check what to add
 	current_stage++
 	human_target.apply_status_effect(/datum/status_effect/ash_age)
-	var/datum/species/species_target = human_target.dna.species
 	switch(current_stage)
 		if(1)
-			species_target.damage_modifier += 10
-			to_chat(human_target, span_notice(LANG("datum.75fb3742a050336f", null)))
+			to_chat(human_target, span_notice("Your body seems to be sturdier..."))
 
 		if(2)
 			var/obj/item/bodypart/arm/left/left_arm = human_target.get_bodypart(BODY_ZONE_L_ARM)
