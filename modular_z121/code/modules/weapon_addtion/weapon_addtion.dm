@@ -166,7 +166,7 @@
 /obj/item/ammo_box/magazine/internal/cylinder/bfr500
 	name = "bfr500 弹巢"
 	ammo_type = /obj/item/ammo_casing/c357
-	caliber = CALIBER_357
+	caliber = CALIBER_357_38 // upstream merged .357 and .38 (NovaSector #98156)
 	max_ammo = 5
 
 /obj/item/ammo_box/bfr500
