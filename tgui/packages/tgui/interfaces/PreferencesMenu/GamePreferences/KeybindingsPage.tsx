@@ -15,6 +15,8 @@ import { fetchRetry } from 'tgui-core/http';
 import { isEscape, KEY } from 'tgui-core/keys';
 import type { BooleanLike } from 'tgui-core/react';
 
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../../../i18n/search';
 import { LoadingScreen } from '../../common/LoadingScreen';
 import type { PreferencesMenuData } from '../types';
 import { TabbedMenu } from './TabbedMenu';
@@ -238,7 +240,7 @@ function getKeybindingNodes(
       if (
         searchText &&
         searchText.length >= 2 &&
-        !keybinding.name.toLowerCase().includes(searchText.toLowerCase())
+        !searchableText(keybinding.name).includes(searchText.toLowerCase()) // ZH EDIT CHANGE - I18N: 也匹配显示译文
       ) {
         return null;
       }

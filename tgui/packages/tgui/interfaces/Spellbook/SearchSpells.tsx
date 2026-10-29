@@ -1,6 +1,8 @@
 import { useAtom } from 'jotai';
 import { Box, NoticeBox, Stack } from 'tgui-core/components';
 import { useBackend } from '../../backend';
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../../i18n/search';
 import { spellSearchAtom } from '.';
 import { SpellTabDisplay } from './SpellTabDisplay';
 import type { SpellbookData, SpellEntry } from './types';
@@ -20,18 +22,14 @@ export function SearchSpells(props) {
   } else {
     filteredEntries = entries.filter(
       (entry) =>
-        entry.name.toLowerCase().includes(searchStatement) ||
+        searchableText(entry.name).includes(searchStatement) || // ZH EDIT CHANGE - I18N: 也匹配显示译文
         // Unsure about including description. Wizard spell descriptions
         // are painfully original and use the same verbiage often,
         // which may both be a benefit and a curse
-        entry.desc
-          .toLowerCase()
-          .includes(searchStatement) ||
+        searchableText(entry.desc).includes(searchStatement) || // ZH EDIT CHANGE - I18N: 也匹配显示译文
         // Also opting to include category
         // so you can search "rituals" to see them all at once
-        entry.cat
-          .toLowerCase()
-          .includes(searchStatement),
+        searchableText(entry.cat).includes(searchStatement), // ZH EDIT CHANGE - I18N: 也匹配显示译文
     );
   }
 

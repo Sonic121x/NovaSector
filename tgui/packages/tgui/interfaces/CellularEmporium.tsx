@@ -14,6 +14,8 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../i18n/search';
 import { Window } from '../layouts';
 
 // ==========
@@ -73,8 +75,8 @@ export const CellularEmporium = (props) => {
     searchText
       ? abilities.filter((item) =>
           [item.name, item.desc, item.helptext]
+            .map(searchableText) // ZH EDIT CHANGE - I18N: 也匹配显示译文 - ORIGINAL: .join(' ').toLowerCase()
             .join(' ')
-            .toLowerCase()
             .includes(searchText.toLowerCase()),
         )
       : abilities.filter((item) => item.category === selectedCategory)

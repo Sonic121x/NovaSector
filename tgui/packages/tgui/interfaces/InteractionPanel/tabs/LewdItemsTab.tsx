@@ -2,6 +2,8 @@
 import { Box, Button, Icon, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../../../backend';
+// ZH EDIT ADDITION - I18N
+import { searchableText } from '../../../i18n/search';
 
 type LewdSlot = {
   img: string;
@@ -24,8 +26,10 @@ export const LewdItemsTab = ({ searchText }: LewdItemsTabPropsData) => {
 
   const filteredSlots = lewd_slots.filter((slot) => {
     return (
-      slot.name.toLowerCase().includes(searchLower) ||
-      slot.item_name?.toLowerCase().includes(searchLower)
+      // ZH EDIT CHANGE START - I18N: 也匹配显示译文 - ORIGINAL: x?.toLowerCase().includes(searchLower)
+      searchableText(slot.name).includes(searchLower) ||
+      searchableText(slot.item_name).includes(searchLower)
+      // ZH EDIT CHANGE END
     );
   });
 
