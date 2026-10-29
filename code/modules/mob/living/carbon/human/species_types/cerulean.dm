@@ -64,7 +64,7 @@
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "fish-fins",
 			SPECIES_PERK_NAME = LANG("datum.e7f4f24dc6d9b6b1", null),
-			SPECIES_PERK_DESC = LANG("datum.206cc00f6be6f634", null),
+			SPECIES_PERK_DESC = LANG("datum.479789e5dde0fd0b", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
@@ -76,7 +76,7 @@
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "dragon",
 			SPECIES_PERK_NAME = LANG("datum.0ed30c3e57e038a4", null),
-			SPECIES_PERK_DESC = LANG("datum.4caa9bdbd6e67121", null),
+			SPECIES_PERK_DESC = LANG("datum.eed46d6cc8b40ca3", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
@@ -98,7 +98,6 @@
 	preview_human.set_haircolor("#C2DFED", update = FALSE)
 	preview_human.set_hairstyle(/datum/sprite_accessory/hair/highponytail::name, update = TRUE)
 	preview_human.dna.features[FEATURE_FRILLS] = /datum/sprite_accessory/frills/aquatic::name
-	preview_human.dna.features[FEATURE_SNOUT] = /datum/sprite_accessory/snouts/roundlight::name
 	preview_human.dna.species.mutant_organs[/obj/item/organ/frills] = /datum/sprite_accessory/frills/aquatic::name
 	preview_human.dna.species.mutant_organs[/obj/item/organ/snout] = /datum/sprite_accessory/snouts/roundlight::name
 	regenerate_organs(preview_human, excluded_zones = GLOB.leg_zones)
@@ -173,7 +172,7 @@
 /obj/item/organ/tail/fish/cerulean/on_mob_remove(mob/living/carbon/owner, special)
 	. = ..()
 	UnregisterSignal(owner, list(COMSIG_CARBON_GAIN_ORGAN, COMSIG_CARBON_LOSE_ORGAN))
-	if(special)
+	if(special || QDELING(src))
 		return
 	var/limb_name = "\improper [bodypart_owner.name]"
 	var/tail_name = "\improper [name]"
@@ -256,7 +255,7 @@
  */
 /obj/item/organ/tail/fish/cerulean/abyss
 	name = "translucent oversized fish tail"
-	desc = "A hugely sized and scaled fish tail, it is partially translucent and shows the skeleton inside."
+	desc = "A hugely sized and scaled fish tail. It's semi-translucent and shows the skeleton inside."
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/fish/cerulean/abyss
 
 /// apply an emissive for the skeleton

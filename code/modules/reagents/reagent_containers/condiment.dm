@@ -26,7 +26,7 @@
 
 /obj/item/reagent_containers/condiment/update_icon_state()
 	. = ..()
-	if(reagents.reagent_list.len)
+	if(length(reagents.reagent_list))
 		if(icon_preempty)
 			icon_state = icon_preempty
 			icon_preempty = null

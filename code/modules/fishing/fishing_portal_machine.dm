@@ -158,7 +158,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	balloon_alert(user, LANG("obj.31ff9a68e1b2e85f", null))
-	playsound(src, SFX_SPARKS, 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, /datum/sound_effect/sparks, 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 
 /obj/machinery/fishing_portal_generator/interact(mob/user)

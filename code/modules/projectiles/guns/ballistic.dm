@@ -117,31 +117,16 @@
 	/// Check if you are able to see if a weapon has a bullet loaded in or not.
 	var/hidden_chambered = FALSE
 
-	// Gun internal magazine modification and misfiring
-
-	///Can we modify our ammo type in this gun's internal magazine?
-	var/can_modify_ammo = FALSE
-	///our initial ammo type. Should match initial caliber, but a bit of redundency doesn't hurt.
-	var/initial_caliber
-	///our alternative ammo type.
-	var/alternative_caliber
-	///our initial fire sound. same reasons for initial caliber
-	var/initial_fire_sound
-	///our alternative fire sound, in case we want our gun to be louder or quieter or whatever
-	var/alternative_fire_sound
-	///If only our alternative ammuntion misfires and not our main ammunition, we set this to TRUE
-	var/alternative_ammo_misfires = FALSE
-
 	/// Misfire Variables ///
 
-	/// Whether our ammo misfires now or when it's set by the wrench_act. TRUE means it misfires.
-	var/can_misfire = FALSE
+	/// Pressure threshold of our gun. If the pressure of the ammo casing is higher than the threshold of the gun, it will start to daamage the gun.
+	var/pressure_threshold = AMMO_CASING_PRESSURE_MEDIUM
 	///How likely is our gun to misfire?
 	var/misfire_probability = 0
-	///How much does shooting the gun increment the misfire probability?
-	var/misfire_percentage_increment = 0
 	///What is the cap on our misfire probability? Do not set this to 100.
-	var/misfire_probability_cap = 25
+	var/misfire_probability_cap = 50
+	///Even if the above variables would indicate this gun should misfire, never misfire this gun
+	var/never_misfire = FALSE
 
 	/// Fire Selector Variables ///
 	/// Tracks the firemode of burst weapons. TRUE means it is in burst mode.
@@ -151,7 +136,7 @@
 	/// Suppressor attached to the gun, if any
 	var/obj/item/suppressor/suppressor = null
 	/// Sound played when the burst mode is changed
-	var/burst_select_sound = SFX_FIRE_MODE_SWITCH
+	var/burst_select_sound = /datum/sound_effect/fire_mode_switch
 
 /obj/item/gun/ballistic/Initialize(mapload)
 	. = ..()
@@ -183,6 +168,8 @@
 		if(gun.magazine?.item_flags & ABSTRACT) //we cannot insert an internal magazine into the new gun, so we insert the individual casings instead.
 			for(var/i in 1 to length(gun.magazine.stored_ammo))
 				var/obj/item/ammo_casing/round = gun.magazine.get_round()
+				if(isnull(round))
+					continue
 				if(!magazine.give_round(round))
 					round.forceMove(drop_location())
 		else if(gun.magazine && istype(gun.magazine, accepted_magazine_type)) //insert the new magazine into the gun
@@ -544,9 +531,8 @@
 	if (display_message)
 		balloon_alert(user, LANG("obj.faef9ffa75046798", list(magazine_wording)))
 
-
 /obj/item/gun/ballistic/can_shoot()
-	return chambered?.loaded_projectile
+	return ..() && chambered?.loaded_projectile
 
 /obj/item/gun/ballistic/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
@@ -623,9 +609,14 @@
 	return TRUE
 
 /obj/item/gun/ballistic/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	var/could_it_misfire = can_misfire || chambered.can_misfire
-	if(target != user && chambered.loaded_projectile && could_it_misfire && prob(misfire_probability) && blow_up(user))
-		to_chat(user, span_userdanger(LANG("obj.9963c7b32259bb09", list(src))))
+	// If our ammo is overpressurized, we misfire
+	var/overpressurized_ammo = chambered.casing_pressure > pressure_threshold
+	if(target != user && !never_misfire && chambered.loaded_projectile && prob(misfire_probability))
+		if(overpressurized_ammo && blow_up(user))
+			to_chat(user, span_userdanger(LANG("obj.9963c7b32259bb09", list(src))))
+		else
+			balloon_alert_to_hearers("*click*")
+			playsound(src, dry_fire_sound, dry_fire_sound_volume, TRUE)
 		return
 
 	if(sawn_off)
@@ -641,13 +632,19 @@
 /obj/item/gun/ballistic/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
 	if(isnull(chambered))
 		return ..()
-	if(can_misfire)
-		misfire_probability += misfire_percentage_increment
-		misfire_probability = clamp(misfire_probability, 0, misfire_probability_cap)
-	if(chambered.can_misfire)
-		misfire_probability += chambered.misfire_increment
-		misfire_probability = clamp(misfire_probability, 0, misfire_probability_cap)
+	if(chambered.casing_pressure > pressure_threshold)
+		handle_misfire_incrementation(user)
 	return ..()
+
+/obj/item/gun/ballistic/proc/handle_misfire_incrementation(mob/living/user)
+	if(isnull(chambered))
+		return
+
+	if(never_misfire)
+		return
+
+	misfire_probability += chambered.misfire_increment
+	misfire_probability = clamp(misfire_probability, 0, misfire_probability_cap)
 
 ///Installs a new suppressor, assumes that the suppressor is already in the contents of src
 /obj/item/gun/ballistic/proc/install_suppressor(obj/item/suppressor/new_suppressor)
@@ -754,12 +751,21 @@
 		. += LANG("obj.433966e9bc886c65", list(bolt_wording))
 	if (suppressor)
 		. += LANG("obj.9997e48d2de4118c", list(can_unsuppress ? "attached that can be removed with <b>alt+click</b>." : "that is integral or can't otherwise be removed."))
-	if(can_misfire)
-		. += span_danger(LANG("obj.f236f5ca2e691e6b", null))
-		if(misfire_probability > 0)
-			. += span_danger(LANG("obj.9f1d4fd429a70738", list(misfire_probability)))
-	else if(misfire_probability > 0)
-		. += span_warning(LANG("obj.7e2d60e93ac2d67b", null))
+
+	var/pressure_readout = "an indescribable"
+	switch(pressure_threshold)
+		if(-INFINITY to AMMO_CASING_PRESSURE_LOW)
+			pressure_readout = "a low"
+		if(AMMO_CASING_PRESSURE_MEDIUM)
+			pressure_readout = "a standard"
+		if(AMMO_CASING_PRESSURE_EXTREME to INFINITY)
+			pressure_readout = "an extreme"
+
+	. += LANG("obj.ff04f7f9c727b24f", list(pressure_readout))
+
+	if(chambered && !hidden_chambered && chambered.casing_pressure > pressure_threshold && !never_misfire)
+		. += span_danger(LANG("obj.59e53de3ffd7fb26", null))
+	if(misfire_probability > 0 && !never_misfire)
 		. += span_warning(LANG("obj.8dbf4dcf6e84810f", list(EXAMINE_HINT("[misfire_probability]%"))))
 
 ///Gets the number of bullets in the gun
@@ -858,40 +864,6 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	slot_flags &= ~ITEM_SLOT_BACK //you can't sling it on your back
 	slot_flags |= ITEM_SLOT_BELT //but you can wear it on your belt (poorly concealed under a trenchcoat, ideally)
 	return TRUE
-
-/obj/item/gun/ballistic/wrench_act(mob/living/user, obj/item/I)
-	if(!can_modify_ammo)
-		return
-
-	if(!user.is_holding(src))
-		balloon_alert(user, LANG("obj.0be2eeb589a65c31", null))
-		return TRUE
-
-	if(get_ammo())
-		balloon_alert(user, LANG("obj.1cc1685f3209ecd9", null))
-		return
-
-	if(!bolt_locked && bolt_type == BOLT_TYPE_LOCKING)
-		balloon_alert(user, LANG("obj.869bac60b270d755", null))
-		return
-
-	balloon_alert(user, LANG("obj.dc35a5f3258d850b", null))
-	I.play_tool_sound(src)
-	if(!I.use_tool(src, user, 3 SECONDS))
-		return TRUE
-
-	if(magazine.caliber == initial_caliber)
-		magazine.caliber = alternative_caliber
-		if(alternative_ammo_misfires)
-			can_misfire = TRUE
-		fire_sound = alternative_fire_sound
-		to_chat(user, span_notice(LANG("obj.116558cc16c370c8", list(src, alternative_caliber))))
-	else
-		magazine.caliber = initial_caliber
-		if(alternative_ammo_misfires)
-			can_misfire = FALSE
-		fire_sound = initial_fire_sound
-		to_chat(user, span_notice(LANG("obj.86bfab709f81cca1", list(src, initial_caliber))))
 
 ///used for sawing guns, causes the gun to fire without the input of the user
 /obj/item/gun/ballistic/proc/blow_up(mob/user)

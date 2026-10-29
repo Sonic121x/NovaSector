@@ -20,7 +20,7 @@
 		colored_item.add_atom_colour(added_color, FIXED_COLOUR_PRIORITY)
 		new /obj/effect/decal/cleanable/glass(get_turf(src))
 		user.balloon_alert(user, LANG("obj.d0641e1553a22038", list(src)))
-		playsound(src, SFX_SHATTER, 30, TRUE)
+		playsound(src, /datum/sound_effect/shatter, 30, TRUE)
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
 

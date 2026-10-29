@@ -64,7 +64,7 @@
 		user.balloon_alert(user, LANG("obj.49a104d16a627e2b", null))
 		if(escape_attempts > 2)
 			to_chat(user, span_hypnophrase(span_big(LANG("obj.d3652838925e563e", null))))
-			playsound(src, SFX_SHATTER, 70, TRUE)
+			playsound(src, /datum/sound_effect/shatter, 70, TRUE)
 			var/obj/item/bodypart/to_remove = user.get_active_hand()
 			to_remove.dismember()
 			deltimer(escape_timer)
@@ -92,7 +92,7 @@
 			to_chat(user, span_warning(LANG("obj.c616d778d2bcf78f", list(src))))
 	else
 		to_chat(user,span_warning(LANG("obj.67b21342793c7f23", list(src))))
-	playsound(src, SFX_SHATTER, 70, TRUE) //copied from the code for smashing a glass sheet onto the ground to turn it into a shard
+	playsound(src, /datum/sound_effect/shatter, 70, TRUE) //copied from the code for smashing a glass sheet onto the ground to turn it into a shard
 	qdel(src)
 
 /obj/item/melee/sickly_blade/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
@@ -277,7 +277,7 @@
 	if(prob(15))
 		to_chat(user, span_cult_large(pick("\"An untouched mind? Amusing.\"", "\" I suppose it isn't worth the effort to stop you.\"", "\"Go ahead. I don't care.\"", "\"You'll be mine soon enough.\"")))
 		user.apply_damage(5, BURN, user.get_active_hand())
-		playsound(src, SFX_SEAR, 25, TRUE)
+		playsound(src, /datum/sound_effect/sear, 25, TRUE)
 		to_chat(user, span_danger(LANG("obj.1b557bff9a4b222c", null))) // Nar nar might not care but their essence still doesn't like you
 	else if(prob(15))
 		to_chat(user, span_big(span_hypnophrase(LANG("obj.f8b8d55c89db9baa", null))))

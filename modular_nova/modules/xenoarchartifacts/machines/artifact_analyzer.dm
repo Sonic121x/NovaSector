@@ -131,12 +131,12 @@
 
 	// Close UI
 	if(href_list["close"])
-		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
+		playsound(src, /datum/sound_effect/terminal_type, 25, FALSE)
 		return FALSE
 
 	// Begin scan
 	if(href_list["begin_scan"])
-		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
+		playsound(src, /datum/sound_effect/terminal_type, 25, FALSE)
 
 		if(!owned_scanner)
 			reconnect_scanner()
@@ -177,7 +177,7 @@
 
 	// Halt scan
 	if(href_list["halt_scan"])
-		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
+		playsound(src, /datum/sound_effect/terminal_type, 25, FALSE)
 		scan_in_progress = FALSE
 		owned_scanner.icon_state = "xenoarch_scanner"
 		say(LANG("obj.6bc36b0e5957916e", null))

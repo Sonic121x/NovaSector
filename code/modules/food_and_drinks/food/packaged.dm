@@ -174,7 +174,7 @@
 		victim.adjust_temp_blindness_up_to(2.5 SECONDS, 3 SECONDS)
 		victim.adjust_confusion_up_to(2.5 SECONDS, 3 SECONDS)
 	victim.visible_message(span_warning(LANG("obj.435f3e655ff5afa1", list(victim, src))), span_userdanger(LANG("obj.3659c69ff40a2f3c", list(src))))
-	playsound(victim, SFX_DESECRATION, 50, TRUE)
+	playsound(victim, /datum/sound_effect/desecration, 50, TRUE)
 
 /obj/item/food/canned/chap
 	name = "can of CHAP"

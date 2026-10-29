@@ -163,7 +163,7 @@
 
 	source.visible_message(span_warning(LANG("datum.4ebe3de564d9fd88", list(source))), blind_message = span_hear(LANG("datum.e9bee9b372539a94", null)))
 	source.balloon_alert(user, LANG("datum.c20bce4a91712e62", null))
-	playsound(source, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(source, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	break_lock()
 	return ITEM_INTERACT_SUCCESS
 
@@ -229,7 +229,7 @@
 		return TRUE
 
 	var/atom/source = parent
-	playsound(source, SFX_TERMINAL_TYPE, 50, FALSE)
+	playsound(source, /datum/sound_effect/terminal_type, 50, FALSE)
 
 	var/digit = params["digit"]
 	switch(digit)

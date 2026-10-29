@@ -17,7 +17,7 @@
 
 /obj/item/food/pie/make_processable()
 	if (slice_type)
-		AddElement(/datum/element/processable, TOOL_KNIFE, slice_type, yield, table_required = TRUE, screentip_verb = "Slice", sound_to_play = SFX_KNIFE_SLICE)
+		AddElement(/datum/element/processable, TOOL_KNIFE, slice_type, yield, table_required = TRUE, screentip_verb = "Slice", sound_to_play = /datum/sound_effect/knife_slice)
 
 /obj/item/food/pieslice
 	name = "pie slice"
@@ -82,7 +82,7 @@
 	if(can_splat_on)
 		victim.adjust_eye_blur(2 SECONDS)
 	victim.visible_message(span_warning(LANG("obj.cd7d68abf4f13986", list(victim, src))), span_userdanger(LANG("obj.8e2fb86699a2937d", list(src))))
-	playsound(victim, SFX_DESECRATION, 50, TRUE)
+	playsound(victim, /datum/sound_effect/desecration, 50, TRUE)
 
 /obj/item/food/pie/cream/nostun
 	stunning = FALSE

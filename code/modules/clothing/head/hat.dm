@@ -137,7 +137,7 @@
 	victim.visible_message(span_warning(LANG("obj.daed300fcb2cf913", list(bullet, victim))))
 	victim.dropItemToGround(src, force = TRUE, silent = TRUE)
 	throw_at(get_edge_target_turf(loc, pick(GLOB.alldirs)), range = 3, speed = 3)
-	playsound(victim, SFX_RICOCHET, 100, TRUE)
+	playsound(victim, /datum/sound_effect/ricochet, 100, TRUE)
 
 /datum/armor/head_cowboy
 	melee = 5

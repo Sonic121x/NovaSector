@@ -118,7 +118,7 @@
 		if(!can_interact(user))
 			return ITEM_INTERACT_FAILURE
 
-		playsound(src, SFX_WRITING_PEN, 30)
+		playsound(src, /datum/sound_effect/writing_pen, 30)
 		to_chat(user, span_notice(LANG("obj.4895e6271be4ccd4", list(src))))
 
 		custom_description = newdescription

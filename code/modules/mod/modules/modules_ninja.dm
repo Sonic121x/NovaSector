@@ -14,7 +14,7 @@
 	use_energy_cost = DEFAULT_CHARGE_DRAIN * 10
 	incompatible_modules = list(/obj/item/mod/module/stealth)
 	cooldown_time = 5 SECONDS
-	required_slots = list(ITEM_SLOT_HEAD|ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING|ITEM_SLOT_ICLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET)
+	required_slots = list(ITEM_SLOT_HEAD|ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING|ITEM_SLOT_ICLOTHING, ITEM_SLOT_GLOVES|ITEM_SLOT_FEET)
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 5)
 	/// Whether or not the cloak turns off on bumping.
 	var/bumpoff = TRUE
@@ -280,7 +280,7 @@
 			maxcapacity = TRUE//Reached maximum battery capacity.
 		if (do_after(ninja, 1 SECONDS, target = src, cog_icon = null))
 			spark_system.start()
-			playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+			playsound(loc, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 			cell.use(drain)
 			hacking_module.mod.add_charge(drain)
 			drain_total += drain
@@ -288,7 +288,7 @@
 			break
 	if(!(obj_flags & EMAGGED))
 		flick("apc-spark", hacking_module)
-		playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+		playsound(loc, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		obj_flags |= EMAGGED
 		locked = FALSE
 		update_appearance()
@@ -315,7 +315,7 @@
 			maxcapacity = TRUE
 		if (do_after(ninja, 1 SECONDS, target = src, cog_icon = null))
 			spark_system.start()
-			playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+			playsound(loc, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 			charge -= drain
 			hacking_module.mod.add_charge(drain)
 			drain_total += drain
@@ -483,7 +483,7 @@
 				maxcapacity = TRUE
 			if (do_after(ninja, 1 SECONDS, target = src, cog_icon = null))
 				spark_system.start()
-				playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+				playsound(loc, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 				cell.use(drain)
 				hacking_module.mod.add_charge(drain)
 				drain_total += drain
@@ -504,7 +504,7 @@
 	if(!do_after(ninja, 6 SECONDS, target = src, cog_icon = null))
 		return
 	spark_system.start()
-	playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(loc, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	to_chat(src, span_danger(LANG("mob.118bccfba9abcb0c", null)))
 	faction = list(ROLE_NINJA)
 	bubble_icon = "syndibot"

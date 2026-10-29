@@ -877,7 +877,7 @@ GLOBAL_LIST_INIT(spontaneous_fish_traits, populate_spontaneous_fish_traits())
 			mood_event_type = /datum/mood_event/inked, \
 		)
 	target.visible_message(span_warning(LANG("datum.435f3e655ff5afa1", list(target, source))), span_userdanger(LANG("datum.3659c69ff40a2f3c", list(source))))
-	playsound(target, SFX_DESECRATION, 50, TRUE)
+	playsound(target, /datum/sound_effect/desecration, 50, TRUE)
 	ADD_TRAIT(source, TRAIT_FISH_INK_ON_COOLDOWN, FISH_TRAIT_DATUM)
 	addtimer(TRAIT_CALLBACK_REMOVE(source, TRAIT_FISH_INK_ON_COOLDOWN, FISH_TRAIT_DATUM), 9 SECONDS)
 

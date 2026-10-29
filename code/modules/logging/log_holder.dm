@@ -344,10 +344,9 @@ ADMIN_VERB(log_viewer_new, R_ADMIN, "查看回合日志", "View the rounds logs.
 				continue
 
 			data = recursive_jsonify(serialization_data, semvers)
-
-		if(islist(data) && !length(data))
-			stack_trace("recursive_jsonify got an empty list after serialization")
-			continue
+			if(!length(data))
+				stack_trace("recursive_jsonify got an empty list after serialization")
+				continue
 
 		jsonified_list[key] = data
 

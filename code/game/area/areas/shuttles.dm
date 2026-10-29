@@ -293,8 +293,6 @@
 		to_chat(L, LANG("obj.f0f974375e6756a7", null), confidential = TRUE)
 		for(var/obj/item/chainsaw/doomslayer/chainsaw in L)
 			qdel(chainsaw)
-		var/obj/item/skeleton_key/key = new(L)
-		L.put_in_hands(key)
 	else
 		to_chat(L, span_warning(LANG("obj.d40de33f63b5299e", null)), confidential = TRUE)
 

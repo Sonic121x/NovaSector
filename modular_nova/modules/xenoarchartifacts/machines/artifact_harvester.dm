@@ -143,7 +143,7 @@
 		return
 	// --- HARVEST ---
 	else if(href_list["harvest"])
-		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
+		playsound(src, /datum/sound_effect/terminal_type, 25, FALSE)
 
 		if(!inserted_battery)
 			say(LANG("obj.e293f6fc9d397fd9", null))
@@ -240,7 +240,7 @@
 
 	// --- STOP HARVEST ---
 	else if(href_list["stopharvest"])
-		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
+		playsound(src, /datum/sound_effect/terminal_type, 25, FALSE)
 
 		if(draining || !harvesting)
 			return

@@ -34,7 +34,7 @@
 		return
 	user.visible_message(LANG("obj.8c916550c4c2e898", list(user, src)), \
 	span_notice(LANG("obj.7e332b57633accbe", list(src))))
-	playsound(src, SFX_RUSTLE, 100, FALSE)
+	playsound(src, /datum/sound_effect/rustle, 100, FALSE)
 	if(warcry)
 		user.say("[warcry]", forced="banner")
 	var/old_transform = user.transform

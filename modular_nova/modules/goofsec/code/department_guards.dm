@@ -1028,7 +1028,7 @@
 					span_warning(LANG("obj.4d9fd2fd26f04dbc", list(user, src))))
 				turn_off()
 				balloon_alert(user, LANG("obj.9de834ddefd6f41f", null))
-				playsound(src, SFX_SPARKS, 75, TRUE, -1)
+				playsound(src, /datum/sound_effect/sparks, 75, TRUE, -1)
 				update_appearance()
 				return FALSE
 	return ..()
@@ -1050,7 +1050,7 @@
 							span_warning(LANG("obj.8a48054b45d3e545", list(src))),
 							span_hear(LANG("obj.e9bee9b372539a94", null)))
 		balloon_alert(user, LANG("obj.d11dba2fe2307aa0", null))
-		playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+		playsound(src, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		obj_flags |= EMAGGED
 		emagged = TRUE
 		return TRUE

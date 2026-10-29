@@ -57,7 +57,7 @@
 	. = ..()
 	if(!.)
 		return
-	playsound(loc, SFX_PUNCH, 25, TRUE, -1)
+	playsound(loc, /datum/sound_effect/punch, 25, TRUE, -1)
 	visible_message(span_danger(LANG("mob.b9f421c8ba627172", list(user, src))), \
 					span_userdanger(LANG("mob.863a5da21265b0c8", list(user))), null, COMBAT_MESSAGE_RANGE, user)
 	to_chat(user, span_danger(LANG("mob.51733a6598f1ca7d", list(src))))

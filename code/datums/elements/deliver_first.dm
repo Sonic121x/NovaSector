@@ -100,7 +100,7 @@
 	target.visible_message(span_notice(LANG("datum.ef519bb6e75d2d9f", list(target))))
 	var/datum/effect_system/basic/spark_spread/spark_system = new(target.loc, 4, 0)
 	spark_system.start()
-	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	target.RemoveElement(/datum/element/deliver_first, goal_area_type, payment)
 
 #undef DENY_SOUND_COOLDOWN

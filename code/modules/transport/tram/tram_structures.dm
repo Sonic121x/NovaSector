@@ -53,7 +53,7 @@
 	var/girder_type = /obj/structure/girder/tram
 	var/mutable_appearance/damage_overlay
 	/// Sound when it breaks
-	var/break_sound = SFX_SHATTER
+	var/break_sound = /datum/sound_effect/shatter
 	/// Sound when hit without combat mode
 	var/knock_sound = 'sound/effects/glass/glassknock.ogg'
 	/// Sound when hit with combat mode
@@ -557,7 +557,7 @@
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, span_warning(LANG("obj.dd76b4573d770629", list(src))), type = MESSAGE_TYPE_INFO)
-	playsound(src, SFX_SPARKS, 100, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, /datum/sound_effect/sparks, 100, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 	do_sparks(5, cardinal_only = FALSE, source = src)
 	obj_flags |= EMAGGED
 

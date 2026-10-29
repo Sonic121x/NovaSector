@@ -218,6 +218,7 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/get_job(rank)
+	RETURN_TYPE(/datum/job)
 	if(!length(all_occupations))
 		setup_occupations()
 	return name_occupations[rank]
@@ -725,7 +726,7 @@ SUBSYSTEM_DEF(job)
 	unassigned -= player
 	if(!run_divide_occupation_pure)
 		to_chat(player, span_infoplain(LANG("datum.77359c87045aa539", null)))
-		player.ready = PLAYER_NOT_READY
+		player.unready()
 		player.client << output((player.ready == PLAYER_READY_TO_PLAY) ? 1 : 0, "lobby_browser:imgsrc") // NOVA EDIT ADDITION
 
 

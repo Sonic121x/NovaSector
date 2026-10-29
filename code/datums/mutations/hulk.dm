@@ -243,7 +243,7 @@
 	yeeted_person.visible_message(span_danger(LANG("datum.dd353802e5a94b6f", list(the_hulk, yeeted_person))), \
 					span_userdanger(LANG("datum.c6e01d9ebd6cd291", list(the_hulk))), span_hear(LANG("datum.79118e974e62c959", null)), null, the_hulk)
 	to_chat(the_hulk, span_danger(LANG("datum.a94c3e800bf2af08", list(yeeted_person))))
-	playsound(the_hulk.loc, SFX_SWING_HIT, 50, TRUE)
+	playsound(the_hulk.loc, /datum/sound_effect/swing_hit, 50, TRUE)
 	var/turf/T = get_edge_target_turf(the_hulk, the_hulk.dir)
 	if(!isturf(T))
 		return

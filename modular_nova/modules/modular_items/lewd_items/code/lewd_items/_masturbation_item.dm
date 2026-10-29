@@ -52,18 +52,18 @@
 			user.visible_message(span_warning(LANG("obj.22415145f5c1bb58", list(user))), span_danger(LANG("obj.a241286c0b92cb31", null)))
 		else if(target == user)
 			user.visible_message(span_warning(LANG("obj.999b6fd27d1ea5c0", list(user, target.p_them()))), span_danger(LANG("obj.e523e15b16cd2d67", null)))
-			playsound_if_pref(target, SFX_DESECRATION, 50, TRUE)
+			playsound_if_pref(target, /datum/sound_effect/desecration, 50, TRUE)
 			affected_human.add_cum_splatter_floor(get_turf(target))
 		else if(target.is_refillable() && target.is_drainable())
 			var/cum_volume = mob_testicles.genital_size * CUM_VOLUME_MULTIPLIER
 			var/datum/reagents/applied_reagents = new/datum/reagents(50)
 			applied_reagents.add_reagent(/datum/reagent/consumable/cum, cum_volume) // probably should check what the target is actually cumming but we dont have custom cum settings enabled anyways...
 			user.visible_message(span_warning(LANG("obj.c591380b15d005da", list(user, target))), span_danger(LANG("obj.d7335afab3204150", list(target))))
-			playsound_if_pref(target, SFX_DESECRATION, 50, TRUE)
+			playsound_if_pref(target, /datum/sound_effect/desecration, 50, TRUE)
 			applied_reagents.trans_to(target, cum_volume)
 		else
 			user.visible_message(span_warning(LANG("obj.80de15e732bcea7b", list(user, target))), span_danger(LANG("obj.4255475f7a539e6a", list(target))))
-			playsound_if_pref(target, SFX_DESECRATION, 50, TRUE)
+			playsound_if_pref(target, /datum/sound_effect/desecration, 50, TRUE)
 			affected_human.add_cum_splatter_floor(get_turf(target))
 		log_combat(user, target, "came on")
 		if(prob(40))

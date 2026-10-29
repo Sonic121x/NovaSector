@@ -78,7 +78,7 @@
 		active = FALSE
 		return
 	visible_message(span_warning(LANG("obj.f00f5dfbc276b67b", list(src, brian))), span_hear(LANG("obj.adfdeca90884f2d8", null)))
-	playsound(src, SFX_EXPLOSION, 30, TRUE)
+	playsound(src, /datum/sound_effect/explosion, 30, TRUE)
 	brian.apply_damage(200, BRUTE, BODY_ZONE_HEAD)
 	var/obj/item/bodypart/head/myhead = brian.get_bodypart(BODY_ZONE_HEAD)
 	myhead?.dismember()

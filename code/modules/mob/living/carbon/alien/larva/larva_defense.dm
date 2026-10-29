@@ -7,7 +7,7 @@
 		return TRUE
 	var/damage = rand(1, 9)
 	if (prob(90))
-		playsound(loc, SFX_PUNCH, 25, TRUE, -1)
+		playsound(loc, /datum/sound_effect/punch, 25, TRUE, -1)
 		visible_message(span_danger(LANG("mob.83af7d2cabf2a33c", list(user, src))), \
 						span_userdanger(LANG("mob.cd11ce48e95a7874", list(user))), span_hear(LANG("mob.6c7f8149b8c68cd4", null)), COMBAT_MESSAGE_RANGE, user)
 		to_chat(user, span_danger(LANG("mob.23132e2f530d5b9f", list(src))))

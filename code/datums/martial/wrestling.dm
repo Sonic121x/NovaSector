@@ -8,6 +8,7 @@ If you make a derivative work from this code, you must include this notification
 
 /datum/martial_art/wrestling
 	name = "Wrestling"
+	help_verb = "SNAP INTO A THIN TIM"
 	id = MARTIALART_WRESTLING
 	VAR_PRIVATE/datum/action/slam/slam
 	VAR_PRIVATE/datum/action/throw_wrassle/throw_wrassle
@@ -212,7 +213,7 @@ If you make a derivative work from this code, you must include this notification
 		defender.visible_message(span_danger(LANG("datum.dd353802e5a94b6f", list(attacker, defender))), \
 						span_userdanger(LANG("datum.c6e01d9ebd6cd291", list(attacker))), span_hear(LANG("datum.79118e974e62c959", null)), null, attacker)
 		to_chat(attacker, span_danger(LANG("datum.a94c3e800bf2af08", list(defender))))
-		playsound(attacker.loc, SFX_SWING_HIT, 50, TRUE)
+		playsound(attacker.loc, /datum/sound_effect/swing_hit, 50, TRUE)
 		var/turf/T = get_edge_target_turf(attacker, attacker.dir)
 		if (T && isturf(T))
 			if (!IS_UNCONSCIOUS_OR_CRIT(defender))
@@ -314,7 +315,7 @@ If you make a derivative work from this code, you must include this notification
 		defender.visible_message(span_danger(LANG("datum.dd02d8c90a5dee7a", list(attacker, fluff, defender))), \
 						span_userdanger(LANG("datum.074fb9e3a20824d3", list(fluff, attacker))), span_hear(LANG("datum.6c7f8149b8c68cd4", null)), COMBAT_MESSAGE_RANGE, attacker)
 		to_chat(attacker, span_danger(LANG("datum.22d557f300d422c9", list(fluff, defender))))
-		playsound(attacker.loc, SFX_SWING_HIT, 50, TRUE)
+		playsound(attacker.loc, /datum/sound_effect/swing_hit, 50, TRUE)
 		if (!IS_UNCONSCIOUS_OR_CRIT(defender))
 			defender.emote("scream")
 			defender.Paralyze(4 SECONDS)
@@ -360,7 +361,7 @@ If you make a derivative work from this code, you must include this notification
 						span_userdanger(LANG("datum.db0ec0ecc539ce0a", list(attacker))), span_hear(LANG("datum.6c7f8149b8c68cd4", null)), COMBAT_MESSAGE_RANGE, attacker)
 		to_chat(attacker, span_danger(LANG("datum.b8d5c585cc286b6b", list(defender))))
 		defender.adjust_brute_loss(rand(10,20))
-		playsound(attacker.loc, SFX_SWING_HIT, 50, TRUE)
+		playsound(attacker.loc, /datum/sound_effect/swing_hit, 50, TRUE)
 		defender.Unconscious(2 SECONDS)
 	log_combat(attacker, defender, "headbutted")
 
@@ -374,7 +375,7 @@ If you make a derivative work from this code, you must include this notification
 	defender.visible_message(span_danger(LANG("datum.acc62650fb520789", list(attacker, defender))), \
 					span_userdanger(LANG("datum.7954301e36be88b8", list(attacker))), span_hear(LANG("datum.6c7f8149b8c68cd4", null)), COMBAT_MESSAGE_RANGE, attacker)
 	to_chat(attacker, span_danger(LANG("datum.0ddb6fa65229945a", list(defender))))
-	playsound(attacker.loc, SFX_SWING_HIT, 50, TRUE)
+	playsound(attacker.loc, /datum/sound_effect/swing_hit, 50, TRUE)
 	defender.adjust_brute_loss(rand(10,20))
 
 	var/turf/T = get_edge_target_turf(attacker, get_dir(attacker, get_step_away(defender, attacker)))
@@ -440,7 +441,7 @@ If you make a derivative work from this code, you must include this notification
 		defender.visible_message(span_danger(LANG("datum.6339ef831ccf71f6", list(attacker, defender))), \
 						span_userdanger(LANG("datum.a6dea149a8fb3e31", list(attacker))), span_hear(LANG("datum.6c7f8149b8c68cd4", null)), null, attacker)
 		to_chat(attacker, span_danger(LANG("datum.fc4f7111f0f6e735", list(defender))))
-		playsound(attacker.loc, SFX_SWING_HIT, 50, TRUE)
+		playsound(attacker.loc, /datum/sound_effect/swing_hit, 50, TRUE)
 		attacker.emote("scream")
 
 		if (falling == 1)

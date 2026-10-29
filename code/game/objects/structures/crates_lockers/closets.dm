@@ -1224,7 +1224,7 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "打开/关闭", 
 	if(secure && !broken)
 		visible_message(span_warning(LANG("obj.4ebe3de564d9fd88", list(src))), blind_message = span_hear(LANG("obj.e9bee9b372539a94", null)))
 		balloon_alert(user, LANG("obj.8808ba8804aec96a", null))
-		playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+		playsound(src, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		broken = TRUE
 		locked = FALSE
 		update_appearance()

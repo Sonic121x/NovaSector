@@ -69,14 +69,14 @@
 				particle_path = null
 			if(7 to 13)
 				user.visible_message(span_notice(LANG("obj.8ae73dbf793d5dc1", list(src))))
-				playsound(src, SFX_SPARKS, 30, TRUE)
+				playsound(src, /datum/sound_effect/sparks, 30, TRUE)
 				do_sparks(2, FALSE, src)
 				particle_path = /particles/smoke/steam/mild
 			if(14 to 21)
 				user.visible_message(span_notice(LANG("obj.ddf99cd147c8c552", list(src))))
 				do_sparks(4, FALSE, src)
-				playsound(src, SFX_SPARKS, 15, TRUE)
-				playsound(src, SFX_SHATTER, 30, TRUE)
+				playsound(src, /datum/sound_effect/sparks, 15, TRUE)
+				playsound(src, /datum/sound_effect/shatter, 30, TRUE)
 				particle_path = /particles/smoke/steam/bad
 			if(21 to INFINITY)
 				user.visible_message(span_notice(LANG("obj.5878fbf77420888f", list(src))))
@@ -118,7 +118,7 @@
 	//either used up correctly or taken off before polling finished (punish this by destroying the helmet)
 	UnregisterSignal(magnification, COMSIG_SPECIES_LOSS)
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
-	playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, /datum/sound_effect/sparks, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	visible_message(span_warning(LANG("obj.9a93367f00da6f32", list(src))))
 	magnification = null
 	new /obj/effect/decal/cleanable/ash(drop_location()) //just in case they're in a locker or other containers it needs to use crematorium ash, see the path itself for an explanation

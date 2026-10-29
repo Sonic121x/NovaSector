@@ -42,7 +42,7 @@
 /obj/item/watertank/proc/toggle_mister(mob/living/user)
 	if(!istype(user))
 		return
-	if(user.get_item_by_slot(user.getBackSlot()) != src)
+	if(user.get_item_by_slot(ITEM_SLOT_BACK) != src)
 		to_chat(user, span_warning(LANG("obj.000f49d369c91614", null)))
 		return
 	if(user.incapacitated)
@@ -85,7 +85,7 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "切换喷雾器", null)
 		noz.forceMove(src)
 
 /obj/item/watertank/attack_hand(mob/user, list/modifiers)
-	if (user.get_item_by_slot(user.getBackSlot()) == src)
+	if (user.get_item_by_slot(ITEM_SLOT_BACK) == src)
 		toggle_mister(user)
 	else
 		return ..()

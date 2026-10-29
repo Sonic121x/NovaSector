@@ -80,6 +80,14 @@
 			SPECIES_PERK_NAME = LANG("datum.19b1f8f64a17258c", null),
 			SPECIES_PERK_DESC = LANG("datum.2cb44ed4480a174a", null),
 		),
+		/* // NOVA EDIT REMOVAL START - Nova moths do not have chest-arms
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "hand-spock",
+			SPECIES_PERK_NAME = "Handy",
+			SPECIES_PERK_DESC = "Moths have extra hands on the front of their chests.",
+		),
+		*/ // NOVA EDIT REMOVAL END
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "fire",
@@ -92,6 +100,14 @@
 			SPECIES_PERK_NAME = LANG("datum.da9dee50ff8ae0e8", null),
 			SPECIES_PERK_DESC = LANG("datum.405d5fce2490a12c", null),
 		),
+		/* // NOVA EDIT REMOVAL START - Nova moths do not use the tg fragility modifiers
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "face-dizzy",
+			SPECIES_PERK_NAME = "Fragile",
+			SPECIES_PERK_DESC = "Moth anatomy is fragile at their size, it's easier to seriously hurt them."
+		)
+		*/ // NOVA EDIT REMOVAL END
 	)
 
 	return to_add

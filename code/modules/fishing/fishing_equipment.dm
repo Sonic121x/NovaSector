@@ -622,7 +622,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	balloon_alert(user, LANG("obj.42074643f1699068", null))
-	playsound(src, SFX_SPARKS, 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, /datum/sound_effect/sparks, 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 
 /obj/item/survivalcapsule/fishing/attack_self_secondary(mob/living/user)

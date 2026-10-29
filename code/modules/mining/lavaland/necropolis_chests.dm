@@ -12,33 +12,13 @@
 	can_weld_shut = FALSE
 
 /obj/structure/closet/crate/necropolis/tendril
-	desc = "It's watching you suspiciously. You need a skeleton key to open it."
+	desc = "It's watching you suspiciously."
 	integrity_failure = 0 //prevents bust_open from firing
-	/// var to check if it got opened by a key
-	var/spawned_loot = FALSE
 	/// What random loot spawner our chest uses
 	var/loot_to_spawn = /obj/effect/spawner/random/mining_loot
 
-/obj/structure/closet/crate/necropolis/tendril/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if(!istype(tool, /obj/item/skeleton_key) || spawned_loot)
-		return ..()
+/obj/structure/closet/crate/necropolis/tendril/PopulateContents()
 	new loot_to_spawn(src)
-
-	spawned_loot = TRUE
-	qdel(tool)
-	to_chat(user, span_notice(LANG("obj.18d771eb872302a8", null)))
-	return ITEM_INTERACT_SUCCESS
-
-/obj/structure/closet/crate/necropolis/tendril/before_open(mob/living/user, force)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	if(!broken && !force && !spawned_loot)
-		balloon_alert(user, LANG("obj.d43b69873ab22a2f", null))
-		return FALSE
-
-	return TRUE
 
 //Megafauna chests
 
@@ -129,11 +109,3 @@
 			new /obj/item/wisp_lantern(src)
 		if(3)
 			new /obj/item/prisoncube(src)
-
-/obj/item/skeleton_key
-	name = "skeleton key"
-	desc = "An artifact usually found in the hands of the natives of lavaland, which NT now holds a monopoly on."
-	icon = 'icons/obj/mining_zones/artefacts.dmi'
-	icon_state = "skeleton_key"
-	w_class = WEIGHT_CLASS_SMALL
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 5)

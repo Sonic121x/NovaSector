@@ -104,7 +104,8 @@
 		return NONE
 
 	parried = TRUE
-	if (source.firer != user)
+	var/boosting = source.firer == user
+	if (!boosting)
 		if (abs(source.angle - dir2angle(user.dir)) < 15)
 			source.set_angle((source.angle + 180) % 360 + rand(-3, 3))
 		else
@@ -113,8 +114,8 @@
 	else
 		user.visible_message(span_warning(LANG("datum.1a61a1289a5bf2a7", list(user, source, user.p_their()))), span_warning(LANG("datum.e78c713370337f8f", list(source))))
 	source.firer = user
-	source.speed *= (source.firer == user) ? boost_speed_mult : parry_speed_mult
-	source.damage *= (source.firer == user) ? boost_damage_mult : parry_damage_mult
+	source.speed *= boosting ? boost_speed_mult : parry_speed_mult
+	source.damage *= boosting ? boost_damage_mult : parry_damage_mult
 	source.add_atom_colour(COLOR_RED_LIGHT, TEMPORARY_COLOUR_PRIORITY)
 	if (!isnull(parry_callback))
 		parry_callback.Invoke(user)

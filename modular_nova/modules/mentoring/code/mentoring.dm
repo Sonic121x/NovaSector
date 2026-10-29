@@ -132,7 +132,7 @@
 /// when given a message and an amount of time, requires the user to stand still while receiving the message
 /obj/item/mentoring_book/proc/timed_sentence(user, sent_message, time_amount)
 	to_chat(user, span_notice(sent_message))
-	playsound(src, SFX_PAGE_TURN, 30, TRUE)
+	playsound(src, /datum/sound_effect/page_turn, 30, TRUE)
 	if(!do_after(user, time_amount, target = src))
 		to_chat(user, span_notice(LANG("obj.f8122217b180f3f9", null)))
 		return FALSE
@@ -263,7 +263,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			to_chat(user, span_warning(LANG("obj.915e55194844b4c6", null)))
-			playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
+			playsound(src, /datum/sound_effect/writing_pen, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 			taught_skill = null
 			author_level = null
 			taught_language = null
@@ -298,7 +298,7 @@
 					return ITEM_INTERACT_BLOCKING
 
 				to_chat(user, span_notice(LANG("obj.ab6055be22e95ddf", null)))
-				playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
+				playsound(src, /datum/sound_effect/writing_pen, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 				if(language_choice == "Galactic Standard Sign Language")
 					teach_sign = TRUE
 
@@ -334,7 +334,7 @@
 					return ITEM_INTERACT_BLOCKING
 
 				to_chat(user, span_notice(LANG("obj.900f31cfcf1898e6", null)))
-				playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
+				playsound(src, /datum/sound_effect/writing_pen, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 				taught_skill = our_skills[skill_choice]
 				author_level = skill_level - 1
 				return ITEM_INTERACT_SUCCESS
@@ -352,7 +352,7 @@
 
 		new /obj/item/book/random(get_turf(user))
 		give_experience(user)
-		playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
+		playsound(src, /datum/sound_effect/writing_pen, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 		to_chat(user, span_notice(LANG("obj.a78d0aabe7187d51", list(tool, src))))
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS

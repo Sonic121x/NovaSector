@@ -88,7 +88,7 @@
 			return SHAME
 		user.visible_message(span_suicide(LANG("obj.8276f4aaebc27c58", list(user, user.p_them(), src, user.p_theyre()))))
 		user_head.drop_limb()
-		playsound(loc, SFX_DESECRATION, 50, TRUE, -1)
+		playsound(loc, /datum/sound_effect/desecration, 50, TRUE, -1)
 		return BRUTELOSS
 	// If we have no blade, just beat ourselves up
 	user.visible_message(span_suicide(LANG("obj.fdba8754623f6492", list(user, src, user.p_them(), user.p_theyre()))))
@@ -122,7 +122,7 @@
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
-		playsound(loc, SFX_PAGE_TURN, 60, TRUE)
+		playsound(loc, /datum/sound_effect/page_turn, 60, TRUE)
 		balloon_alert(user, LANG("obj.93f23f942a05946e", null))
 		stored_paper = tool
 		update_appearance()

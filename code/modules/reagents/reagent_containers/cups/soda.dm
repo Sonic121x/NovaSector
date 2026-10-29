@@ -125,7 +125,7 @@
 
 	to_chat(user, LANG("obj.8f51cc794eb40d16", list(src))) //Ahhhhhhhh
 	add_container_flags(OPENCONTAINER)
-	playsound(src, SFX_CAN_OPEN, 50, TRUE)
+	playsound(src, /datum/sound_effect/can_open, 50, TRUE)
 	throwforce = 0
 
 /**

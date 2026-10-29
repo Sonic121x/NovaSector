@@ -136,7 +136,7 @@
 /obj/structure/signboard/holosign/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	playsound(src, SFX_SPARKS, vol = 100, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, /datum/sound_effect/sparks, vol = 100, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 	do_sparks(3, cardinal_only = FALSE, source = src)
 	balloon_alert(user, LANG("obj.8d2c7e01472b3089", null))
 	investigate_log("was emagged by [key_name(user)] (previous owner: [registered_owner || "(none)"])", INVESTIGATE_SIGNBOARD)

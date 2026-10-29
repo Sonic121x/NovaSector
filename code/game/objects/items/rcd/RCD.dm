@@ -5,7 +5,7 @@
 //RAPID CONSTRUCTION DEVICE
 
 /obj/item/construction/rcd
-	name = "rapid-construction-device (RCD)"
+	name = "rapid construction device (RCD)"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcd"
 	inhand_icon_state = "rcd"
@@ -130,7 +130,7 @@
 		// There isn't an easy programmatical way to check if rcd_act will place a floor or a wall, so just repeat using it for free
 		if(success && isopenturf(T))
 			T.rcd_act(user, src, list("[RCD_DESIGN_MODE]" = RCD_TURF, "[RCD_DESIGN_PATH]" = /turf/open/floor/plating/rcd))
-		playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
+		playsound(get_turf(user), /datum/sound_effect/tool_switch, 20, TRUE)
 		user.gib(DROP_ALL_REMAINS)
 		return MANUAL_SUICIDE
 
@@ -171,7 +171,7 @@
 
 			//check if we can build our window on the grill
 			if(target_turf.is_blocked_turf(exclude_mobs = !is_full_tile, source_atom = null, ignore_atoms = structures_to_ignore, type_list = TRUE))
-				playsound(user, SFX_TOOL_SWITCH, 20, TRUE)
+				playsound(user, /datum/sound_effect/tool_switch, 20, TRUE)
 				balloon_alert(user, LANG("obj.fa928166c3175fe1", null))
 				return FALSE
 
@@ -191,7 +191,7 @@
 				ignore_types += /obj/structure/girder
 
 			if(ignore_types && target_turf.is_blocked_turf(exclude_mobs = FALSE, source_atom = null, ignore_atoms = ignore_types, type_list = TRUE))
-				playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
+				playsound(get_turf(user), /datum/sound_effect/tool_switch, 20, TRUE)
 				balloon_alert(user, LANG("obj.c5d5633d0af518e0", null))
 				return FALSE
 
@@ -226,7 +226,7 @@
 
 			//check if the structure can fit on this turf
 			if(target_turf.is_blocked_turf(exclude_mobs = ignore_mobs, source_atom = null, ignore_atoms = ignored_types, type_list = TRUE))
-				playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
+				playsound(get_turf(user), /datum/sound_effect/tool_switch, 20, TRUE)
 				balloon_alert(user, LANG("obj.08a96e4b13589fee", null))
 				return FALSE
 
@@ -393,7 +393,7 @@
 	return data
 
 /obj/item/construction/rcd/handle_ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
-	playsound(src, SFX_TOOL_SWITCH, 20, TRUE)
+	playsound(src, /datum/sound_effect/tool_switch, 20, TRUE)
 
 	switch(action)
 		if("root_category")
@@ -555,7 +555,7 @@
 
 // Ranged RCD
 /obj/item/construction/rcd/arcd
-	name = "advanced rapid-construction-device (ARCD)"
+	name = "advanced rapid construction device (ARCD)"
 	desc = "A prototype RCD with ranged capability and infinite capacity."
 	max_matter = INFINITY
 	matter = INFINITY

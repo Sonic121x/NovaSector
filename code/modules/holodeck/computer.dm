@@ -443,7 +443,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	if(!LAZYLEN(emag_programs))
 		balloon_alert(user, LANG("obj.e2094240491abb1c", null))
 		return FALSE
-	playsound(src, SFX_SPARKS, 75, TRUE)
+	playsound(src, /datum/sound_effect/sparks, 75, TRUE)
 	obj_flags |= EMAGGED
 	if (user)
 		balloon_alert(user, LANG("obj.07b3e831b4cc0bc7", null)) // im gonna keep this once since this perfectly describes it

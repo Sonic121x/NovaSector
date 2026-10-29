@@ -32,7 +32,7 @@
 		attack_self(user)
 		return
 
-	playsound(loc, SFX_PUNCH, 25, TRUE, -1)
+	playsound(loc, /datum/sound_effect/punch, 25, TRUE, -1)
 
 	if(M.stat == DEAD)
 		M.visible_message(span_danger(LANG("obj.d96b11d66b5980f5", list(user, M, src))), span_userdanger(LANG("obj.25819aec3d525113", list(user, src))), span_hear(LANG("obj.e821c025d0846fa2", null)))

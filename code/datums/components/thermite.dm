@@ -185,7 +185,7 @@
 	user.apply_damage(5, BURN, user.get_active_hand())
 	to_chat(user, span_userdanger(LANG("datum.9c01f72882503f66", list(source))))
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, emote), "scream")
-	playsound(source, SFX_SEAR, 50, TRUE)
+	playsound(source, /datum/sound_effect/sear, 50, TRUE)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /**

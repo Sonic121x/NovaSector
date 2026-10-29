@@ -63,7 +63,7 @@
 	return TRUE
 
 /obj/item/multitool/fock/proc/hack_air_alarm(obj/machinery/airalarm/airalarm, mob/living/user)
-	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	balloon_alert(user, LANG("obj.e3f1440c9257513e", null))
 	do_sparks(2, TRUE, airalarm)
 	visible_message(span_warning(LANG("obj.b7523a488c133b30", list(airalarm))))
@@ -81,7 +81,7 @@
 	return TRUE
 
 /obj/item/multitool/fock/proc/hack_apc(obj/machinery/power/apc/apc, mob/living/user)
-	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	balloon_alert(user, LANG("obj.e3f1440c9257513e", null))
 	do_sparks(2, TRUE, apc)
 	visible_message(span_warning(LANG("obj.b7523a488c133b30", list(apc))))

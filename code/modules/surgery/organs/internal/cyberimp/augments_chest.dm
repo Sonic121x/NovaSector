@@ -145,7 +145,7 @@
 	defib_cooldown += 16 SECONDS // delay so it doesn't spam
 
 	owner.visible_message(span_warning(LANG("obj.4bf6b28606e09221", list(owner))))
-	playsound(owner, SFX_BODYFALL, 50, TRUE)
+	playsound(owner, /datum/sound_effect/bodyfall, 50, TRUE)
 	playsound(owner, 'sound/machines/defib/defib_zap.ogg', 75, TRUE, -1)
 	owner.set_heartattack(FALSE)
 	owner.revive()

@@ -131,7 +131,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/pizzaslice/make_processable()
-	AddElement(/datum/element/processable, TOOL_ROLLINGPIN, /obj/item/stack/sheet/pizza, 1, 1 SECONDS, table_required = TRUE, screentip_verb = "Flatten", sound_to_play = SFX_ROLLING_PIN_ROLLING)
+	AddElement(/datum/element/processable, TOOL_ROLLINGPIN, /obj/item/stack/sheet/pizza, 1, 1 SECONDS, table_required = TRUE, screentip_verb = "Flatten", sound_to_play = /datum/sound_effect/rolling_pin_rolling)
 
 /obj/item/food/pizza/custom
 	name = "pizza"
@@ -513,7 +513,7 @@
 		return
 	to_chat(user, span_userdanger(LANG("obj.051a811db3369d68", null))) //makes the reference more obvious
 	user.visible_message(span_warning(LANG("obj.cd35d899908c983a", list(src, user))), span_warning(LANG("obj.fd6197af8d387a1d", list(src))))
-	playsound(user, SFX_DESECRATION, 50, TRUE, -1)
+	playsound(user, /datum/sound_effect/desecration, 50, TRUE, -1)
 
 /obj/item/food/proc/i_kill_you(obj/item/item, mob/living/user)
 	if(istype(item, /obj/item/food/pineappleslice))

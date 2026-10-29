@@ -208,7 +208,7 @@ Charged extracts:
 /obj/item/slimecross/charged/gold/process()
 	visible_message(span_warning(LANG("obj.cd27c50266f0a5f6", list(src))))
 	new /obj/effect/particle_effect/sparks(get_turf(src))
-	playsound(get_turf(src), SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(get_turf(src), /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	create_random_mob(get_turf(src), HOSTILE_SPAWN)
 	spawned++
 	if(spawned >= max_spawn)

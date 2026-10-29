@@ -262,7 +262,7 @@
 		span_danger(LANG("datum.8b7e67e7267bb677", list(carp_user, hitting_projectile, carp_user.p_They(), carp_user.p_their()))),
 		span_userdanger(LANG("datum.975cc8681b2236b4", list(hitting_projectile))),
 	)
-	playsound(carp_user, SFX_BULLET_MISS, 75, TRUE)
+	playsound(carp_user, /datum/sound_effect/bullet_miss, 75, TRUE)
 	hitting_projectile.firer = carp_user
 	hitting_projectile.set_angle(rand(0, 360))//SHING
 	return COMPONENT_BULLET_PIERCED
@@ -404,11 +404,8 @@
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = 10, \
 		force_wielded = 24, \
+		update_icon_state = TRUE, \
 	)
-
-/obj/item/staff/bostaff/update_icon_state()
-	icon_state = inhand_icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
-	return ..()
 
 /obj/item/staff/bostaff/attack(mob/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	add_fingerprint(user)

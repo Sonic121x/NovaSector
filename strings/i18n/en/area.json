@@ -836,6 +836,7 @@
 	"area.9b89bc4312f600fb": "start area",
 	"area.9babe177b0b174cc": "\\improper Upper Warehouse",
 	"area.9c0b0b8fa27234f5": "\\improper Derelict Bridge Hallway",
+	"area.9c209687e373d1ad": "\\improper NT-Colony-28 Interior Area",
 	"area.9c67d50fd349e15c": "Nanotrasen Museum",
 	"area.9c6f97be484f60d9": "Bitrunning Den",
 	"area.9c73e2a356ec3720": "\\improper Babylon Chapel",
@@ -1348,5 +1349,6 @@
 	"area.ff169887fb1d43c5": "\\improper Communications Relay",
 	"area.ff9f99884fa8a1bf": "P-T Xenology Lab",
 	"area.ffb2d65476fa8fe9": "Small Freighter",
+	"area.ffd9a13d07a88254": "\\improper NT-Colony-28 Exterior Area",
 	"area.ffebd1c7aa2e5efa": "Starboard Bow Solar Maintenance"
 }

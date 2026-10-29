@@ -89,7 +89,7 @@
 	obj_flags |= EMAGGED
 	visible_message(span_warning(LANG("obj.b7523a488c133b30", list(src))))
 	balloon_alert(user, LANG("obj.fd65773343054de1", null))
-	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 
 /obj/machinery/airalarm/on_deconstruction(disassembled = TRUE)

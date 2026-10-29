@@ -325,7 +325,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	if(broken)
 		return
 	icon_state = "mirror_broke"
-	playsound(src, SFX_SHATTER, 70, TRUE)
+	playsound(src, /datum/sound_effect/shatter, 70, TRUE)
 	if(desc == initial(desc))
 		desc = LANG("obj.70489aa06ef38d50", null)
 	broken = TRUE

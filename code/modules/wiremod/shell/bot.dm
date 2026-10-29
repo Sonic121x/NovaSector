@@ -44,6 +44,6 @@
 /obj/item/circuit_component/bot/proc/on_attack_hand(atom/source, mob/user)
 	SIGNAL_HANDLER
 	source.balloon_alert(user, LANG("obj.8f2b581e5540af72", null))
-	playsound(source, SFX_TERMINAL_TYPE, 25, FALSE)
+	playsound(source, /datum/sound_effect/terminal_type, 25, FALSE)
 	entity.set_output(user)
 	signal.set_output(COMPONENT_SIGNAL)

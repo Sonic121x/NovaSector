@@ -247,7 +247,7 @@
 		if(prob(25))
 			var/obj/item/item = pick(loc.contents) // toss something out (which could be us!)
 			item.forceMove(loc.drop_location())
-			playsound(src, SFX_RUSTLE, 30, TRUE)
+			playsound(src, /datum/sound_effect/rustle, 30, TRUE)
 
 /obj/item/brain_processor/positronic/sphere/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
@@ -266,7 +266,7 @@
 		span_userdanger(LANG("obj.4a385f38480d5ffd", list(user))), \
 		span_danger(LANG("obj.f9fb70be9d9e82ab", null)))
 	user.do_attack_animation(src)
-	playsound(src, SFX_PUNCH, 40, TRUE)
+	playsound(src, /datum/sound_effect/punch, 40, TRUE)
 
 	throw_at(get_edge_target_turf(src, get_dir(user, src)), 7, 1, user, TRUE)
 	COOLDOWN_START(src, move_cooldown, move_delay) //pweeze stawp

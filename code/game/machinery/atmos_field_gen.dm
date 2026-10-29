@@ -51,6 +51,7 @@
 	process_early() // not risking processing falling behind and letting gas out
 
 /obj/machinery/atmos_shield_gen/Destroy(force)
+	SSmachines.processing_early -= src
 	QDEL_LIST(fields)
 	master?.turn_off()
 	master = null

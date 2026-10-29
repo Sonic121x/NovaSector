@@ -47,8 +47,8 @@ GLOBAL_LIST_EMPTY(weakpoints_spawned)
 /obj/effect/weakpoint/ex_act(severity, target)
 	. = ..()
 	if(severity < required_strength)
-		balloon_alert_to_hearers(LANG("obj.8149d1d95cb92b9f", null))
-		playsound(source = src, soundin = SFX_HULL_CREAKING, vol = 50, vary = TRUE, pressure_affected = FALSE, ignore_walls = TRUE)
+		balloon_alert_to_hearers("*crack*")
+		playsound(source = src, soundin = /datum/sound_effect/hull_creaking, vol = 50, vary = TRUE, pressure_affected = FALSE, ignore_walls = TRUE)
 		return //return ominous sounds when we're under the threshold.
 
 	var/list/chain_turfs = get_crack_chain(get_turf(src), crack_length, TRUE, skip_turfs) // Get a nice chain of turfs
@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(weakpoints_spawned)
 	var/crack_delay = 0
 	for(var/turf/crack_turf in chain_turfs)
 		addtimer(CALLBACK(crack_turf, TYPE_PROC_REF(/atom, ex_act), severity, crack_turf), CRACK_PROPAGATION_DELAY * crack_delay)
-		playsound(source = crack_turf, soundin = SFX_HULL_CREAKING, vol = 35, vary = TRUE, pressure_affected = FALSE, ignore_walls = TRUE)
+		playsound(source = crack_turf, soundin = /datum/sound_effect/hull_creaking, vol = 35, vary = TRUE, pressure_affected = FALSE, ignore_walls = TRUE)
 		if(prob(33))
 			crack_delay++
 

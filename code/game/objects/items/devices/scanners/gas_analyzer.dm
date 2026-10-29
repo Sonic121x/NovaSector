@@ -219,7 +219,7 @@
 	var/icon = target
 	var/message = list()
 	if(!silent && isliving(user))
-		playsound(user, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
+		playsound(user, /datum/sound_effect/industrial_scan, 20, TRUE, -2, TRUE, FALSE)
 		user.visible_message(span_notice(LANG("_root.442d7504006d8d6c", list(user, icon2html(icon, viewers(user)), target))), span_notice(LANG("_root.3da82a2f5cf28ea4", list(icon2html(icon, user), target))))
 	message += span_boldnotice(LANG("_root.f540f85f37c4b0ff", list(icon2html(icon, user), target))) // ZH EDIT - I18N
 

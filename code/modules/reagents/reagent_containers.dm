@@ -415,7 +415,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	var/trans = round(reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user), CHEMICAL_VOLUME_ROUNDING)
-	playsound(target.loc, SFX_LIQUID_POUR, 50, TRUE)
+	playsound(target.loc, /datum/sound_effect/liquid_pour, 50, TRUE)
 	if(trans)
 		to_chat(user, span_notice(LANG("obj.a73d822ccbbf7d67", list(trans, target))))
 	SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_TO, target)
@@ -432,7 +432,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	var/trans = round(target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user), CHEMICAL_VOLUME_ROUNDING)
-	playsound(target.loc, SFX_LIQUID_POUR, 50, TRUE)
+	playsound(target.loc, /datum/sound_effect/liquid_pour, 50, TRUE)
 	to_chat(user, span_notice(LANG("obj.c64f659090acb8eb", list(src, trans, target))))
 	SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_FROM, target)
 	target.update_appearance()

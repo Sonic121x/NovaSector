@@ -73,10 +73,8 @@
 	// since it was time, go up a stage and now we check what to add
 	current_stage++
 	human_target.apply_status_effect(/datum/status_effect/ash_age)
-	var/datum/species/species_target = human_target.dna.species
 	switch(current_stage)
 		if(1)
-			species_target.damage_modifier += 10
 			to_chat(human_target, span_notice(LANG("datum.75fb3742a050336f", null)))
 
 		if(2)
