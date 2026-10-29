@@ -126,11 +126,11 @@
 
 	if(cameraticks < CAMERA_TICK_LIMIT)
 		if(!cameraticks)
-			to_chat(tracker, span_warning("Target is not near any active cameras. Attempting to reacquire..."))
+			to_chat(tracker, span_warning(LANG("datum.772203cce1cf7ef5", null)))
 		cameraticks++
 		return
 
-	to_chat(tracker, span_warning("Unable to reacquire, cancelling track..."))
+	to_chat(tracker, span_warning(LANG("datum.ca1dee7533f02911", null)))
 	reset_tracking()
 
 /// Tries to track onto our target mob. Returns true if it succeeds, false otherwise
@@ -170,7 +170,7 @@
 	if(!tracker || tracker.stat == DEAD)
 		return
 
-	var/target_name = tgui_input_list(tracker, "Select a target", "Tracking", find_trackable_mobs(tracker))
+	var/target_name = tgui_input_list(tracker, LANG("datum.28009fc9bda2618d", null), LANG("datum.e0f914fff91b66c8", null), find_trackable_mobs(tracker))
 	if(!target_name || isnull(target_name))
 		return
 	var/datum/weakref/mob_ref = isnull(humans[target_name]) ? others[target_name] : humans[target_name]
@@ -196,7 +196,7 @@
 	if(isnull(mob_ref))
 		to_chat(tracker, span_notice(LANG("datum.cf66c0460910afcc", null)))
 		return
-	to_chat(tracker, span_notice("Now tracking [tracked_mob_name] on camera."))
+	to_chat(tracker, span_notice(LANG("datum.9d0448f5768d3319", list(tracked_mob_name))))
 	set_tracked_mob(mob_ref.resolve(), tracker)
 
 /**

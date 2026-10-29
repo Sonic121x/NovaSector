@@ -47,7 +47,7 @@
 /obj/item/highfrequencyblade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == PROJECTILE_ATTACK)
 		if(HAS_TRAIT(src, TRAIT_WIELDED) || prob(final_block_chance))
-			owner.visible_message(span_danger("[owner] deflects [attack_text] with [src]!"))
+			owner.visible_message(span_danger(LANG("obj.4cfa05189b75550c", list(owner, attack_text, src))))
 			playsound(src, /datum/sound_effect/bullet_miss, 75, TRUE)
 			return TRUE
 		return FALSE

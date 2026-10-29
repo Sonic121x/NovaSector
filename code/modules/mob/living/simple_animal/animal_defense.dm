@@ -48,9 +48,9 @@
 	if(!.)
 		return
 	playsound(loc, /datum/sound_effect/punch, 25, TRUE, -1)
-	visible_message(span_danger("[user] punches [src]!"), \
-					span_userdanger("You're punched by [user]!"), null, COMBAT_MESSAGE_RANGE, user)
-	to_chat(user, span_danger("You punch [src]!"))
+	visible_message(span_danger(LANG("mob.b9f421c8ba627172", list(user, src))), \
+					span_userdanger(LANG("mob.863a5da21265b0c8", list(user))), null, COMBAT_MESSAGE_RANGE, user)
+	to_chat(user, span_danger(LANG("mob.51733a6598f1ca7d", list(src))))
 	adjust_brute_loss(15)
 
 /mob/living/simple_animal/attack_paw(mob/living/carbon/human/user, list/modifiers)

@@ -262,7 +262,7 @@
 				to_chat(user, span_notice(LANG("obj.596906e5f5422a9c", null)))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_warning("You erased the knowledge!"))
+			to_chat(user, span_warning(LANG("obj.915e55194844b4c6", null)))
 			playsound(src, /datum/sound_effect/writing_pen, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 			taught_skill = null
 			author_level = null
@@ -297,7 +297,7 @@
 				if(!do_progress_loop(user, writing_progress, writing_sentences, 5, 60 SECONDS, "You resume writing from where you left off..."))
 					return ITEM_INTERACT_BLOCKING
 
-				to_chat(user, span_notice("You finish writing inside the book about your language."))
+				to_chat(user, span_notice(LANG("obj.ab6055be22e95ddf", null)))
 				playsound(src, /datum/sound_effect/writing_pen, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 				if(language_choice == "Galactic Standard Sign Language")
 					teach_sign = TRUE
@@ -333,7 +333,7 @@
 				if(!do_progress_loop(user, writing_progress, writing_sentences, 5, 60 SECONDS, "You resume writing from where you left off..."))
 					return ITEM_INTERACT_BLOCKING
 
-				to_chat(user, span_notice("You finish writing inside the book about your skill."))
+				to_chat(user, span_notice(LANG("obj.900f31cfcf1898e6", null)))
 				playsound(src, /datum/sound_effect/writing_pen, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 				taught_skill = our_skills[skill_choice]
 				author_level = skill_level - 1
@@ -353,7 +353,7 @@
 		new /obj/item/book/random(get_turf(user))
 		give_experience(user)
 		playsound(src, /datum/sound_effect/writing_pen, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
-		to_chat(user, span_notice("A quick, blue lightning escapes from [tool], wrapping around [src], causing it to flicker out of existence... another book has replaced it!"))
+		to_chat(user, span_notice(LANG("obj.a78d0aabe7187d51", list(tool, src))))
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
 

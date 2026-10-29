@@ -166,7 +166,7 @@
 		if(cultist.current.stat == DEAD || !cultist.current.client)
 			continue
 
-		to_chat(cultist.current, span_bold(span_cult_large("[marker] has marked [blood_target] in \the [target_area] as the cult's top priority, get there immediately!")))
+		to_chat(cultist.current, span_bold(span_cult_large(LANG("datum.a6055e116213c674", list(marker, blood_target, target_area)))))
 		SEND_SOUND(cultist.current, sound(/datum/sound_effect/hallucination_over_here, 0, 1, 75))
 		cultist.current.client.images += blood_target_image
 		if (cultist.current.hud_used)

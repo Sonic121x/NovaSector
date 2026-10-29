@@ -68,7 +68,7 @@
 				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 				particle_path = null
 			if(7 to 13)
-				user.visible_message(span_notice("[src] sparkles momentarily, then falls silent and drops on the floor. Maybe you should try again later?"))
+				user.visible_message(span_notice(LANG("obj.8ae73dbf793d5dc1", list(src))))
 				playsound(src, /datum/sound_effect/sparks, 30, TRUE)
 				do_sparks(2, FALSE, src)
 				particle_path = /particles/smoke/steam/mild
@@ -119,7 +119,7 @@
 	UnregisterSignal(magnification, COMSIG_SPECIES_LOSS)
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 	playsound(src, /datum/sound_effect/sparks, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	visible_message(span_warning("[src] fizzles and breaks apart!"))
+	visible_message(span_warning(LANG("obj.9a93367f00da6f32", list(src))))
 	magnification = null
 	new /obj/effect/decal/cleanable/ash(drop_location()) //just in case they're in a locker or other containers it needs to use crematorium ash, see the path itself for an explanation
 

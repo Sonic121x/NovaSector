@@ -119,7 +119,7 @@
 		elevator_door.obj_flags |= EMAGGED
 
 	playsound(src, /datum/sound_effect/sparks, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, "safeties overridden")
+	balloon_alert(user, LANG("obj.bd40a80f973c0a5b", null))
 	return TRUE
 
 /obj/machinery/elevator_control_panel/multitool_act(mob/living/user)

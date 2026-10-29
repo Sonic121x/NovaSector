@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(sounds)
 	find_all_available_sounds()
 
 	if(!RUST_G)
-		to_chat(world, span_boldnotice("Sounds subsystem: No rust_g detected."))
+		to_chat(world, span_boldnotice(LANG("datum.76b77fc37c3304be", null)))
 		return ..()
 
 	// Precache ambience sounds

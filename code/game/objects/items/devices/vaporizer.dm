@@ -37,9 +37,9 @@
 	if(isnull(cell))
 		return
 	if(!in_range(src, user) && !isobserver(user))
-		. += span_notice("If you want any more information, you'll need to get closer.")
+		. += span_notice(LANG("obj.fc8c4d52e9bd2935", null))
 		return
-	. += span_notice("The LED display reads it's [cell.percent()]% charged.")
+	. += span_notice(LANG("obj.d33182efa7e4607d", list(cell.percent())))
 
 /obj/item/vaporizer/Initialize(mapload)
 	. = ..()

@@ -43,7 +43,7 @@
 	if(!istype(user))
 		return
 	if(user.get_item_by_slot(ITEM_SLOT_BACK) != src)
-		to_chat(user, span_warning("The watertank must be worn properly to use!"))
+		to_chat(user, span_warning(LANG("obj.000f49d369c91614", null)))
 		return
 	if(user.incapacitated)
 		return

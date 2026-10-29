@@ -141,9 +141,9 @@
 	var/obj/item/interfering_item = owner.get_item_for_held_index(desired_hand_index)
 	if(interfering_item)
 		if(!owner.dropItemToGround(interfering_item))
-			to_chat(owner, span_warning("[interfering_item] prevents you from using [src]!"))
+			to_chat(owner, span_warning(LANG("obj.da5b8dff1b524aff", list(interfering_item, src))))
 			return
-		to_chat(owner, span_notice("You drop [interfering_item] to activate [src]."))
+		to_chat(owner, span_notice(LANG("obj.35c2ee79c2923f90", list(interfering_item, src))))
 
 	if(!owner.put_in_hand(augment, desired_hand_index, ignore_anim = TRUE))
 		return
@@ -153,9 +153,9 @@
 
 	playsound(get_turf(owner), extend_sound, 50, TRUE)
 	owner.visible_message(
-		span_notice("[owner] extends [active_item] from [owner.p_their()] [parse_zone(zone)]."),
-		span_notice("You extend [active_item] from your [parse_zone(zone)]."),
-		span_hear("You hear a short mechanical noise.")
+		span_notice(LANG("obj.c85432cbb9236b7d", list(owner, active_item, owner.p_their(), parse_zone(zone)))),
+		span_notice(LANG("obj.d3afb912b918e3aa", list(active_item, parse_zone(zone)))),
+		span_hear(LANG("obj.5f2c0be9496d203f", null))
 		)
 
 /obj/item/organ/cyberimp/arm/toolkit/proc/on_inhand_use(obj/item/source, mob/user)
@@ -169,7 +169,7 @@
 	var/item_count = items_list.len
 
 	if((organ_flags & ORGAN_FAILING) || !item_count)
-		to_chat(owner, span_warning("\The [src] doesn't respond. [p_they()] seem[p_s()] to be broken..."))
+		to_chat(owner, span_warning(LANG("obj.eeff3a8c8f841256", list(src, p_they(), p_s()))))
 		return
 
 	if(active_item)
@@ -249,7 +249,7 @@
 	var/obj/item/knife/combat/cyborg/new_knife = new(src)
 	prepare_init_item(new_knife)
 	items_list |= new_knife
-	balloon_alert(user, "integrated knife unlocked")
+	balloon_alert(user, LANG("obj.54ee1faee99c5a22", null))
 	return TRUE
 
 //The order of the item list for this implant is not alphabetized due to it actually affecting how it shows up playerside when opening the implant
@@ -280,7 +280,7 @@
 	var/obj/item/stamp/chameleon/new_stamp = new(src)
 	prepare_init_item(new_stamp)
 	items_list |= new_stamp
-	balloon_alert(user, "experimental stamp unlocked")
+	balloon_alert(user, LANG("obj.cab34edf50611752", null))
 	return TRUE
 
 /obj/item/organ/cyberimp/arm/toolkit/esword

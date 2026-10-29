@@ -119,7 +119,7 @@
 			return ITEM_INTERACT_FAILURE
 
 		playsound(src, /datum/sound_effect/writing_pen, 30)
-		to_chat(user, span_notice("You sign the [src]."))
+		to_chat(user, span_notice(LANG("obj.4895e6271be4ccd4", list(src))))
 
 		custom_description = newdescription
 		set_sticker_icon_state(pick("o_text1", "o_text2", "o_text3"))

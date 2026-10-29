@@ -613,7 +613,7 @@
 	var/overpressurized_ammo = chambered.casing_pressure > pressure_threshold
 	if(target != user && !never_misfire && chambered.loaded_projectile && prob(misfire_probability))
 		if(overpressurized_ammo && blow_up(user))
-			to_chat(user, span_userdanger("[src] misfires!"))
+			to_chat(user, span_userdanger(LANG("obj.9963c7b32259bb09", list(src))))
 		else
 			balloon_alert_to_hearers("*click*")
 			playsound(src, dry_fire_sound, dry_fire_sound_volume, TRUE)
@@ -750,7 +750,7 @@
 	if (bolt_locked)
 		. += LANG("obj.433966e9bc886c65", list(bolt_wording))
 	if (suppressor)
-		. += "It has a suppressor [can_unsuppress ? "attached that can be removed with <b>alt+click</b>." : "that is integral or can't otherwise be removed."]"
+		. += LANG("obj.9997e48d2de4118c", list(can_unsuppress ? "attached that can be removed with <b>alt+click</b>." : "that is integral or can't otherwise be removed."))
 
 	var/pressure_readout = "an indescribable"
 	switch(pressure_threshold)
@@ -761,12 +761,12 @@
 		if(AMMO_CASING_PRESSURE_EXTREME to INFINITY)
 			pressure_readout = "an extreme"
 
-	. += "It should be able to handle [pressure_readout] amount of chamber pressure."
+	. += LANG("obj.ff04f7f9c727b24f", list(pressure_readout))
 
 	if(chambered && !hidden_chambered && chambered.casing_pressure > pressure_threshold && !never_misfire)
-		. += span_danger("You get the feeling this might explode if you fire it with the currently loaded round...")
+		. += span_danger(LANG("obj.59e53de3ffd7fb26", null))
 	if(misfire_probability > 0 && !never_misfire)
-		. += span_warning("Given the state of the gun, there is a [EXAMINE_HINT("[misfire_probability]%")] chance it'll misfire.")
+		. += span_warning(LANG("obj.8dbf4dcf6e84810f", list(EXAMINE_HINT("[misfire_probability]%"))))
 
 ///Gets the number of bullets in the gun
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)

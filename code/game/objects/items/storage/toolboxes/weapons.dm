@@ -280,7 +280,7 @@
 		to_chat(user, span_notice(LANG("obj.cf9b90f234162899", list(src))))
 		playsound(src, 'sound/items/click.ogg', 25, TRUE)
 		return TRUE
-	to_chat(user, span_warning("You put your hand on the hand scanner, and it rejects it with an angry chimpanzee screech!"))
+	to_chat(user, span_warning(LANG("obj.cf3b22cdb9de610f", null)))
 	playsound(src, /datum/sound_effect/screech, 75, TRUE)
 	return FALSE
 

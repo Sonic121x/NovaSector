@@ -93,7 +93,7 @@
 
 	to_chat(user, span_warning(LANG("mob.872eb15462008dd2", null))) // heheehe. funny
 
-	audible_message(span_danger("[src] buzzes oddly!"))
+	audible_message(span_danger(LANG("mob.1798b7cd2aeb74d1", list(src))))
 	playsound(src, /datum/sound_effect/sparks, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 	internal_ext.chem = /datum/reagent/clf3 //Refill the internal extinguisher with liquid fire

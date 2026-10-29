@@ -110,6 +110,24 @@ export function resetCatalogOverlay(): void {
   overlayMatcherStale = true;
   overlayNormalized = {};
   catalogRevision++;
+  overlayGeneration++;
+}
+
+/// overlay 被清空的次数；`ensureCatalogOverlay` 拿它判断某份译文在本代 overlay 里是否已合并过。
+let overlayGeneration = 0;
+const overlayMergedAt = new WeakMap<Catalog, number>();
+
+/// 单独 fetch 的静态资源（货运/科研目录）随文件下发的译文：按「overlay 世代」幂等合并。
+///
+/// 这类文件由加载器跨窗口缓存复用，而 overlay 在窗口 suspend 时清空（见 suspense.ts）。只在 fetch
+/// 那一刻合并的话，第二次开窗拿到的是缓存的文件、overlay 却已经空了 → 整个目录退回英文。所以改成
+/// 每次取用文件时调用：同一代里只合并一次，清空之后再取用时重新合并。
+export function ensureCatalogOverlay(entries: Catalog | undefined): void {
+  if (!entries || overlayMergedAt.get(entries) === overlayGeneration) {
+    return;
+  }
+  mergeCatalogOverlay(entries);
+  overlayMergedAt.set(entries, overlayGeneration);
 }
 
 export function getCatalogRevision(): number {

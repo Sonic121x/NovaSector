@@ -413,7 +413,7 @@
 			if(SSshuttle.supply.getDockedId() == docking_home)
 				ui.user.investigate_log("sent the supply shuttle away.", INVESTIGATE_CARGO)
 				SSshuttle.moveShuttle(cargo_shuttle, docking_away, TRUE)
-				say("The supply shuttle is departing.")
+				say(LANG("obj.c8889dde4d5b29e6", null))
 			else
 				//create the paper from the SSshuttle.shopping_list
 				if(length(SSshuttle.shopping_list))

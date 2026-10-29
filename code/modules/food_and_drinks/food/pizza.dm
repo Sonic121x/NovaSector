@@ -511,8 +511,8 @@
 	var/did_the_thing = (left?.dismember() || right?.dismember()) //not all limbs can be removed, so important to check that we did. the. thing.
 	if(!did_the_thing)
 		return
-	to_chat(user, span_userdanger("Maybe I'll give you a pizza, maybe I'll break off your arm.")) //makes the reference more obvious
-	user.visible_message(span_warning("\The [src] breaks off [user]'s arm!"), span_warning("\The [src] breaks off your arm!"))
+	to_chat(user, span_userdanger(LANG("obj.051a811db3369d68", null))) //makes the reference more obvious
+	user.visible_message(span_warning(LANG("obj.cd35d899908c983a", list(src, user))), span_warning(LANG("obj.fd6197af8d387a1d", list(src))))
 	playsound(user, /datum/sound_effect/desecration, 50, TRUE, -1)
 
 /obj/item/food/proc/i_kill_you(obj/item/item, mob/living/user)

@@ -75,7 +75,7 @@
 	human_target.apply_status_effect(/datum/status_effect/ash_age)
 	switch(current_stage)
 		if(1)
-			to_chat(human_target, span_notice("Your body seems to be sturdier..."))
+			to_chat(human_target, span_notice(LANG("datum.75fb3742a050336f", null)))
 
 		if(2)
 			var/obj/item/bodypart/arm/left/left_arm = human_target.get_bodypart(BODY_ZONE_L_ARM)

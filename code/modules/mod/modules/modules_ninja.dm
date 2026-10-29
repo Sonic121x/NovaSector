@@ -505,7 +505,7 @@
 		return
 	spark_system.start()
 	playsound(loc, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	to_chat(src, span_danger("UPLOAD COMPLETE. NEW CYBORG MODEL DETECTED.  INSTALLING..."))
+	to_chat(src, span_danger(LANG("mob.118bccfba9abcb0c", null)))
 	faction = list(ROLE_NINJA)
 	bubble_icon = "syndibot"
 	UnlinkSelf()

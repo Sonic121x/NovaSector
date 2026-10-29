@@ -174,7 +174,7 @@
 		fuel_amt = volatiles.volume
 		reagents.del_reagent(/datum/reagent/fuel) // not actually used for the explosion
 	if(reagents.total_volume && !fuel_amt)
-		visible_message(span_danger("\The [src] ruptures!"))
+		visible_message(span_danger(LANG("obj.2f07dbc28aa39c78", list(src))))
 	// get deleted first so our spill can't hit or burn us again, moving out of the way instead knocks wall-mounted tanks off and booms them twice
 	var/atom/spill_location = loc
 	var/datum/reagents/spilled_reagents = reagents
@@ -187,7 +187,7 @@
 	qdel(spilled_reagents)
 
 	if(fuel_amt && spill_location) // with that done, actually explode
-		spill_location.visible_message(span_danger("\The [src] explodes!"))
+		spill_location.visible_message(span_danger(LANG("obj.07b96170145b4add", list(src))))
 		// old code for reference:
 		// standard fuel tank = 1000 units = heavy_impact_range = 1, light_impact_range = 5, flame_range = 5
 		// big fuel tank = 5000 units = devastation_range = 1, heavy_impact_range = 2, light_impact_range = 7, flame_range = 12
@@ -546,7 +546,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 	var/turf/spill_turf = get_turf(src)
 	var/atom/jug_drop = drop_location()
 	if(reagents.total_volume)
-		visible_message(span_danger("\The [src] flips on it's side and spills everywhere!"))
+		visible_message(span_danger(LANG("obj.ca6f252f43fd30a6", list(src))))
 	if(destroyed)
 		moveToNullspace()
 	if(reagents.total_volume)

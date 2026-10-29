@@ -161,8 +161,8 @@
 	if(source.obj_flags & EMAGGED)
 		return FALSE
 
-	source.visible_message(span_warning("Sparks fly from [source]!"), blind_message = span_hear("You hear a faint electrical spark."))
-	source.balloon_alert(user, "lock destroyed")
+	source.visible_message(span_warning(LANG("datum.4ebe3de564d9fd88", list(source))), blind_message = span_hear(LANG("datum.e9bee9b372539a94", null)))
+	source.balloon_alert(user, LANG("datum.c20bce4a91712e62", null))
 	playsound(source, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	break_lock()
 	return ITEM_INTERACT_SUCCESS

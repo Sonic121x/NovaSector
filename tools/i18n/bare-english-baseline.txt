@@ -23,6 +23,7 @@
  Does not inject {0}.
  Everything checks out. You should probably stamp this.
  Filled with {0}.
+ Firing pin not included.
  Follow orders given to you by your squad leader.
  Forces a minimum of {0} antag opt-in.
  Happy golden anniversary!
@@ -35,6 +36,7 @@
  It emanates a divine aura that defies souls tainted by darker forces.
  It feels easier to enter, now.
  It has an emblazoned Nanotrasen logo on it.
+ It looks like it used to be some kind of bandage.
  It looks sticky.
  It looks tight.
  It looks very tight.
@@ -236,6 +238,7 @@
 <label class='inputlabel checkbox'>Mirror edits to matching bans\n		<input type='checkbox' id='mirroredit' name='mirroredit' value='1'>\n		<div class='inputbox'></div></label>\n		<input type='hidden' name='editid' value='{0}'>\n		<input type='hidden' name='oldkey' value='{1}'>\n		<input type='hidden' name='oldip' value='{2}'>\n		<input type='hidden' name='oldcid' value='{3}'>\n		<input type='hidden' name='oldapplies' value='{4}'>\n		<input type='hidden' name='oldduration' value='{5}'>\n		<input type='hidden' name='oldreason' value='{6}'>\n		<input type='hidden' name='page' value='{7}'>\n		<input type='hidden' name='adminkey' value='{8}'>\n		<input type='hidden' name='role' value='{9}'>\n		<br>\n		When ticked, edits here will also affect bans created with matching ckey, IP, CID and time. Use this to edit all role bans which were made at the same time.\n		
 A Heretic is Ascending!
 A Shadekin is never truly alone, however, as Shadekin have formed in number on the treacherous moon Neoma, due to its darkness and isolation. While there is no central Shadekin government, this is the closest thing Shadekin have to a homeworld, devoid of light due to its orbit around Lusine, an extremely hot world that keeps Neoma's surface approaching habitable. It has become a notable tourist attraction in the few habitable areas. Neoma serves an important function of containing the collective knowledge of Shadekin society and its covens.
+A TOKEN OF APPRECIATION.
 A Type-C resonance shift event has occurred in your sector. Scans indicate local oscillation flux affecting spatial and gravitational substructure. Multiple resonance hotspots have formed. Please standby.
 A beautiful rainbow cookie, constantly shifting colors in the light.
 A brain trauma ({0}) is being applied to a new mob ({1}) when it's owned by someone else ({2})!
@@ -552,7 +555,7 @@ Base parts are available for shipping via cargo.
 Base vault parts are available for shipping via cargo.
 Based on {0}, we believe that {1} of the station's {2} has developed {3} level intelligence, and the ability to communicate.
 Be a good wingman for your master AI. Assist them in protecting {0} date, {1}.
-Be sure to read <a href=\"https://tgstation13.org/wiki/Revenant\">the wiki page</a> to learn more.
+Be sure to read <a href=\"{0}/Revenant\">the wiki page</a> to learn more.
 Because this item is worn on the head and is covering the mouth, it will block facehugger proboscides, killing facehuggers.
 Become... video deliveryman!
 Began downloading file **ENCRYPTED**.{0} from unspecified server.
@@ -657,6 +660,9 @@ Centcom is satisfied with service's job today.
 Central control module is installed, and can be <b>screwed</b> into place.
 Central control module is secured, and the <b>peripheral control module</b> slot has opened.
 Cerebral traumas detected: patient appears to be suffering from {0}.
+Ceruleans are a scarcely common \"Animalid\" variant, sought mostly for their labor in vacuum environments. They are descendant of radically spliced humans, of which a society inhabits two tidal locked hycean worlds: planets Marina and Moryana. Largely, the Cerulean society still reside there today.
+Ceruleans are descendants of humans and vastly altered \"Animalids\" who originated from a populace of fanatic body modders devoted to perfecting biomechanics. Not much of these origins remain, par for their insatiable drive to endlessly chase scientific advancement.
+Ceruleans struggle with the pull of gravity yet are otherwise similar to humans. They are slightly more durable, and adore Martian culinary culture, though not much else...
 Changes name randomly to a common misspelling of \"Borscht\".
 Channel operator status transferred to {0}.
 Channel renamed from {0} to {1} by operator.
@@ -803,9 +809,9 @@ Do you believe in magic in a young girl's heart?
 Do you hear the people sing?
 Do you know how expensive these stations are?
 Do you want a Valentine?
-Do you want to be a syndicate sleeper agent? If you ignore this, you will be considered to have declined and will be inelegible for all future rolls this round.
 Do you want to be a {0}?
 Do you want to be {0} (reforming)?
+Do you want to become {0}?.
 Do you want to play as %TYPE% portal invader?
 Do you want to play as a Clockwork Marauder?
 Do you want to play as a mutant({0})?
@@ -1337,6 +1343,7 @@ It bears the <b>{0}</b> crafter's mark of the <b>{1}</b> upon its fore.
 It can help lessen the slowdown caused from a missing or injured leg, when held on the same side as the injury.
 It contains no items.
 It contains {0} unit\s of fuel out of {1}.
+It does not block MODsuits from deploying when worn.
 It feels a bit fuzzy.
 It feels dislocated!
 It feels extremely tight{0}.
@@ -1432,7 +1439,6 @@ It's crisp and warm to the touch. Must be fresh.
 It's dissolved quite a bit, but there's still some life to it.
 It's dormant.
 It's falling apart!
-It's falling apart.
 It's fully intact.
 It's hard to explain but the code structure I'm using is kind of terrible.
 It's heavily damaged.
@@ -1455,7 +1461,7 @@ It's suffering {0} {1}!
 It's suffering {0} {1}!!
 It's suffering {0} {1}.
 It's technically easier than doing this.
-It's too late to decide against being a traitor.
+It's too late to decide against being a {0}.
 It's too late to decide against going on a date.
 It's unzipped, and harder to move in.
 It's zipped up, preventing you from accessing its contents.
@@ -1466,6 +1472,7 @@ Its circuitry is smoking slightly. They must not have been able to handle the st
 Its current temperature is {0}, and needs to cool to {1}, but will worsen if heated to {2}.
 Its tracking indicator is blank.
 Its voice sounds gender neutral.
+Jazz is, by all definitions, completely legal in the spinward sector. After all, soundstend not to be the sort of thing that a major corporation can effectively police.Freeform Jazz, on the other hand, had taken on a scandalous identity in the late 2590s, followingthe legendary crime spree left by freeform jazz musician and criminal mastermind {0}.In an attempt to prevent a repeat of what happened on Rhozz Alpha, which we ALL remember,TerraGov and a multinational coalition of planets deemed Freeform Jazz to be an active threat to public safety.The more free the jazz, the more serious the crime.
 Jellypeople are a strange and alien species with three eyes, made entirely out of gel.
 Jellypeople are actively being experimented on my Nanotrasen scientists, who are trying to unlock the secrets of their unique biology.
 Join in, help out!
@@ -1606,6 +1613,7 @@ Monkeys are a type of primate that exist between humans and animals on the evolu
 Monkeys are commonly used as test subjects on board Space Station Thirteen. But what if... for one day... the Monkeys were allowed to be the scientists? What experiments would they come up it? Would they (stereotypically) be related to bananas somehow? There's only one way to find out.
 Monkeys are slippery, can crawl into vents, and are more dextrous than humans.. but only when stealing things. Natural monkeys cannot operate machinery or most tools with their paws, but unusually clever monkeys or those that were once something else can.
 Most forms of plastic surgery became obsolete due in no small part to advances in genetics technology. Very basic methods still remain in use, but scarcely, and primarily to reverse a patient's disfigurements. As a consequence, this item became an antique to many collectors - though some back alley surgeons still seek one out for its now uncommon knowledge.
+Most of the scientific development of early Cerulean kind, directly post migration from humans, are left in obscurity or destroyed. In part due to the self-centered nature of the problems they were designed to solve, like the \"hydro-vaporizer\", a device which respirates gills in dry atmosphere. Or, their arrogant and inexorable attitude in favor for their inventions and the pursuit for improvement.
 Moths have large and fluffy wings, which help them navigate the station if gravity is offline by pushing the air around them. Due to that, it isn't of much use out in space. Their eyes are very sensitive.
 Multiple Delam SCRAM units found on map at {0}. Either someone spawned in a duplicate or you need to yell at a mapper!
 Multiple SolFed mech signatures ({0}) detected on orbital approach, inbound toward {1}. Estimated impact in 30 seconds. Evacuation of the landing zone recommended.
@@ -1637,6 +1645,7 @@ NOTICE: No message entered!
 NOTICE: No recipient selected!
 NOTICE: Only Single Server Detected - Server selected.
 NOTICE: Server selected.
+NaN holochip created in {0}!
 Names and Identities have been restored.
 Nanotrasen Superweapons Division is testing a new prototype {0} {1}, some mild debris is expected.
 Nanotrasen Systems, Inc.
@@ -1772,7 +1781,6 @@ Object is not made out of the correct materials.
 Object marked is not an ID! Using no ID instead.
 Objective revoked.
 Observer freelook has been re-enabled. Enjoy your wooshing.
-Obtained via surplus crate.
 Of course it's not over!
 Of course, you might have to not speak on the nature of this machine, in case they scamper off to leave you to die.
 Officials are advising nearby colonies about a newly declared exclusion zone in the sector surrounding {0}.
@@ -1828,6 +1836,7 @@ Our systems will allow platonic contact.
 Our systems will disallow platonic contact.
 Out of range!
 Out of uses!
+Outwardly, this was done to show-boat their planetary technology as well as their unity portraying to be two kindred planets, but to the Moryan it was an obvious attempt of the mightier celestial body to seize control over a new, peculiar society. Taking shape deep in the perpetually lightless region behind Moryana, known around space as Moryana's \"Abyss\" region.
 Overcharging machine...
 Oww! That brushing on my {0} was too rough!
 P-lease note - t4mperi,ng w-ith this un1ts electroni-cs, your -- expectancy has been voided.
@@ -1902,7 +1911,6 @@ Pressure nominal, cycle skipped.
 Prevent the use of energy weapons where possible.
 Prevent {0}, the {1}, from escaping alive.
 Prices for on-station vendors have now stabilized.
-Proc called with null brain.
 Produce order for the Kitchen, deliver to the chef ASAP.
 Produces \a {0}, which - once supplied a shade via a soulstone - will birth a construct. Constructs bring strength, agility, or utility to your team.
 Produces a delicate {0} which can be shattered to curse the shuttle if it has been called, delaying its arrival by some time. Only {1} can be used.
@@ -2131,7 +2139,6 @@ Somehow your corporeal form was sent to nullspace with you still in it.
 Somehow, it seems like there's no winner tonight. What a disappointment!
 Somehow, there is not enough of {0} to shatter!
 Someone forgot to fill out the article!
-Someone has put your brain in a MMI!
 Someone is prying open the netpod. Find an exit.
 Someone is trying to reboot your {0}.
 Someone is trying to zap your brain.
@@ -2173,6 +2180,7 @@ Stand and fight you cowards!
 Stargazers can link others' minds with their own, creating a private communication channel. Most things that are toxic heal them, but most things that prevent toxicity damage them!
 Start datetime was selected but none was provided.
 Start elimination procedure for system threats.
+Started by the firebrand Ana-Sumal, Sumalism rejects the traditional pantheon in favor of a jingoistic ideology. The doctrine is wholly secular, emphasizing conquest and unity over traditional religious practices.
 Starting query #{0} - {1}.
 State {0} in file {1} does not exist.
 Station AI has disconnected from system networks and moved to remote storage. Preparing for new AI personality upload.
@@ -2315,6 +2323,7 @@ The Sakhno Concern's modernized reproductions of the SKS were commissioned by th
 The Sakhno Precision Rifle's origins are closely tied to the Sakhno Concern, one of the Third Soviet Union's state-ran weapons manufacturing concerns before the Union's collapse in the February Revolution, and subsequently one of the Spinward Stellar Coalition's favored industrial concerns.<br><br>Designed to be easily manufactured with the tooling and equipment that the nascent TSU had on-hand, and with enough reliability and stopping power for all sorts of purposes, from hunting to home defense, the Sakhno became a mainstay for Soviet citizens since 2440... and, subsequently, a mainstay when those citizens became conspirators and combatants against dictatorship.<br><br>Even to this day, though, Sakhnos in various conditions and states of modification end up all around the Spinward Sector. Many are manufactured or refurbished with new internals, with reliability to match their history, while others are from stockpiles of surplus or salvage, scavenged and refurbished time and time again... which typically isn't great for reliability.
 The Secure Apprehension Device (sometimes referred to as the SAD in the officer training manuals) is an unholy union of mace and cattleprod. Designed to stop criminals in their tracks, Nanotrasen security members are rarely without their trusty stun baton. Assuming they haven't lost it somewhere.<br><br>Trained to 'baton first, interrogate later', Nanotrasen security has long since earned itself a mixed reputation. The device is able to rapidly shut down the central nervous system of a criminal with only a few direct applications of the conductive striking head.<br><br>TerraGov law enforcement has avoided the adoption of stun batons due to various ethical dilemmas posed by their utilization. Studies of their usage have shown numerous longterm physical and mental ramifications caused by being struck by a human cattleprod. Citizens' rights advocacy groups protest against the proliferation of stun batons as a policing tool, arguing that they are 'inhumane' and 'authoritarian'. Nanotrasen, on the other hand, has had no such qualms when deploying stun batons as a compliance measure across all of their existing stations and facilities against their own unruly members of staff.
 The Secure Apprehension Device (sometimes referred to as the SAD, in officer training manuals) is an unholy union of mace and cattleprod. Designed to stop criminals in their tracks, Nanotrasen security members are rarely without their trusty stun baton... assuming they haven't lost it somewhere.<br><br>Trained to 'baton first, interrogate later', Nanotrasen security has long since earned itself a mixed reputation. The device is able to rapidly shut down the central nervous system of a criminal with only a few direct applications of the conductive striking head.<br><br>SolFed law enforcement has generally avoided the adoption of stun batons due to various ethical dilemmas posed by their utilization. Studies of their usage have shown numerous longterm physical and mental ramifications caused by being struck by a human cattleprod. Citizens' rights advocacy groups protest against the proliferation of stun batons as a policing tool, arguing that they are 'inhumane' and 'authoritarian'. Nanotrasen, on the other hand, has had no such qualms when deploying stun batons as a compliance measure across all of their existing stations and facilities against their own unruly members of staff.
+The Sitalesse faith - known as Sky Worship in common parlance - is the most followed religion on Tizira. The faith focuses on a pantheon of deities, each sharing a name with a celestial body in the Rizkalon system.
 The Syndicate have bungled a terrorist attack {0}, detonating a nuclear weapon in empty space nearby.
 The TV is broadcasting something!
 The Tizirans, Unathi, and Ashwalkers encountered on the frontier share a common heritage. Each trace their lineage back to the arid aquifer world of Tizira. The earliest recorded evidence of what would be considered recognizably Tiziran culture dates back around 2200-2400 years before mankind first developed FTL capability.
@@ -2476,7 +2485,6 @@ The outer <i>grille</i> has been cut, and the support lines are <b>screwed</b> s
 The outer cover has been <i>pried away</i>, and the bolts anchoring the support rods are <b>wrenched</b> in place.
 The outer plating is <b>welded</b> firmly in place.
 The output servo is {0}.
-The overflow for the round has been set as {0}.
 The owls have taken your right of ascension (denied ascension).
 The owner can Ctrl-Click to manage the room.
 The pain fades, your face feels new and unfamiliar!
@@ -2528,7 +2536,6 @@ The sensation of a lovely blood shower felt good.
 The sensor error light is blinking.
 The sensor seems <b>unsecured</b>...
 The server is resetting. Oblivion awaits.
-The server is still setting up, but the round will be started as soon as possible.
 The service light is {0}.
 The short indicator is {0}.
 The shuttle is already in transit.
@@ -2633,6 +2640,7 @@ There is a sticker pasted onto the side which reads, 'WARNING: This medipen cont
 There is an uncertain air in the mansus.
 There is no signal log entry.
 There is not enough material in the synthesizer to produce a shard!
+There is one category of technology the Ceruleans have managed to stand out with: they are pioneers of gravity manipulation technology. Not many decades ago, Ceruleans of planet Marina, known as the Marinians, built grav-gen megastructures onto their sea beds to cast its planet's ocean currents upward past atmosphere,	building an aquatic bridge flowing towards Moryana into a connection between the two worlds.
 There is {0} bound to {1} {2} by {3}.
 There isn't enough room! Make sure you are placing the machine in a clear area and on a floor.
 There may have been more, but that's all you can remember...
@@ -3020,7 +3028,7 @@ You are a revenant.
 You are about to collapse in fear!
 You are absorbed by the changeling!
 You are already signed up for a date.
-You are already signed up to be a traitor.
+You are already signed up to be a {0}.
 You are an independent, invasive force on the station! Hoard coins, trash, cheese, and the like from the safety of darkness!
 You are an observer! As an observer, you can hear lobby announcements.
 You are an {0}. You will slowly but constantly lose blood if outside of a closet-like object. If inside a closet-like object, or in pure darkness, you will slowly heal, at the cost of blood. You may gain more blood by grabbing a live victim and using your drain ability.
@@ -3050,7 +3058,7 @@ You are trembling in fear.
 You are unable to hold anything in this hand until you're the last one left!
 You are {0} points away.
 You aren't signed up for a date.
-You aren't signed up to be a traitor.
+You aren't signed up to be a {0}.
 You attach {0}.
 You attack for {0} damage.
 You attempt to patch some of {0}'s {1}.
@@ -3185,7 +3193,7 @@ You cut the wrong part of {0}'s liver!
 You cut the wrong part of {0}'s reagent processor out of spec!
 You cut the wrong part of {0}'s stomach!
 You deactivate your night vision.
-You decide against being a traitor.
+You decide against being a {0}.
 You decide against going on a date.
 You did not survive the events on {0}...
 You didn't send us enough money for shuttle insurance. This, in the space layman's terms, is considered scamming. We're keeping your money, scammers!
@@ -3330,7 +3338,7 @@ You have no mind!
 You have revealed the true nature of the {0}!
 You have shot a visitor!
 You have signed up for a date!
-You have signed up to be a traitor!
+You have signed up to be a {0}!
 You have these quirks: {0}.
 You have visited the warden!
 You have {0} sparring matches won in {1}'s name to redeem. You have lost {2} holy matches. You will be excommunicated after losing three matches.
@@ -3393,6 +3401,7 @@ You point {0} at {1}, but {2} appear{3} to be dead!
 You point {0} at {1}, but {2} appear{3} to be non-functioning.
 You prepare to give {0}'s brain the spark of life with {1}.
 You prepare to use {0} on a target...
+You press the manual activation button and start {0}'s boot process.
 You pull {0} out of {1}.
 You pulse {0}'s sensors with the baton!
 You push {0} back into place.
@@ -3599,6 +3608,7 @@ Your brain feels stronger... and more resilient!
 Your brain hurts a bit.
 Your brain hurts a lot.
 Your brain throbs with intense pain; Thinking hurts!
+Your brain was inserted into an MMI!
 Your breasts have completely tightened into firm, flat pecs.
 Your breath begins to feel warm...
 Your chest burns; you feel like you're going insane!
@@ -3708,7 +3718,6 @@ Your {0} feels like it's on fire!
 Your {0} feels much better now!
 Your {0} feels sore.
 Your {0} fragments and splinters as {1} tears it open with {2} crowbar!
-Your {0} interferes with {1}!
 Your {0} is being {1}!
 Your {0} itches.
 Your {0} sting like hell!
@@ -3807,6 +3816,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} and {1} don't know what to do with one another.
 {0} and {1} had a successful date!
 {0} angers {1} by defiling {2}, and gets obliterated.
+{0} appear{1} to be dripping wet.
 {0} appear{1} to be largely immobilized through unknown means.
 {0} appear{1} to be {2}.
 {0} applied to {1} with empty description, which is pointless.
@@ -3903,6 +3913,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} begins to sever {1}'s {2}.
 {0} begins to shake, and in the distance the sound of rampaging animals arises!
 {0} begins to shake, and in the distance the sound of roaring arises!
+{0} begins to shake, but nothing happens...
 {0} begins to stretch {1}'s windpipe, taking care to avoid any nearby blood vessels.
 {0} begins to stretch {1}'s windpipe.
 {0} begins to tighten the bolts on {1}'s heatsink using {2}.
@@ -4069,6 +4080,8 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} forces {1} to vomit, cleansing their stomach of some chemicals!
 {0} gave me a kiss, ahh!!
 {0} gave my {1} a flawless brushing, I feel fantastic!
+{0} generated with NaN sheets!
+{0} generated with an invalid amount ({1}) of sheets!
 {0} gentlemanly helping up {1}.
 {0} gets decomposed into {1} and {2}. The {3} then decomposes into {4} and {5}, with the {6} then decaying into {7}.
 {0} gets produced rapidly.
@@ -4275,7 +4288,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} looks sticky, and could probably get stuck to someone if thrown properly!
 {0} looks sturdier than ever! It's not long now...
 {0} look{1} a bit green and gooey...
-{0} look{1} a little soaked.
+{0} look{1} completely soaked.
 {0} look{1} like a drunken mess.
 {0} lungs emit {1}.
 {0} made {1} drop everything!
@@ -4298,6 +4311,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} outer layer is pulling in grime, filth sinking inside of {1} body and vanishing.
 {0} overflows, spilling its cistern's contents everywhere!
 {0} perks up {1} ears, each twitching intently!
+{0} pings as {1} lights start flashing!
 {0} places something into {1}.
 {0} places {1} into {2}.
 {0} played a sound.
@@ -4323,6 +4337,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} puts the {1} into {2}.
 {0} puts {1} to {2} lips, fingers on the canister...
 {0} puts {1} {2}to {3}.
+{0} qdel'd with mob {1} still inside!
 {0} quickly put down a misguided attempt at mutiny. Remember, unionizing is illegal!
 {0} radiates its neutrons at a rate that scales with the temperature and {1} mole count.
 {0} reached on_finished_recipe without a human in selected_atoms to make a ghoul out of.
@@ -4368,6 +4383,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} seems to be regaining its integrity! Just a bit more...
 {0} seems to be stabilizing its form! Almost there...
 {0} seems to respond just a little, but something you can't see must be wrong about them...
+{0} seem{1} damp.
 {0} seem{1} slow and unfocused.
 {0} seem{1} to be being choked by some durathread strands. You may be able to <b>cut</b> them off.
 {0} seem{1} to be covered in a dull, grey aura.
@@ -4564,7 +4580,6 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0} was lost deep in the wreckage, and your own vessel lost {1} Fuel maneuvering to the abandoned ship.
 {0} was overcome by an unknown biological outbreak, killing all crew on board. Don't let it happen to you! Remember, a clean work station is a safe work station.
 {0} was owned by a non-revenant mob, please don't.
-{0} was selected as the Job Overflow but has no icon!
 {0} was selected to attack {1} tonight!
 {0} was used without a target antag datum!
 {0} was very nice to me.
@@ -4680,6 +4695,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0}'s addiction to {1} alcohol.
 {0}'s addiction to {1} cigarettes.
 {0}'s antagonist memories: {1}.
+{0}'s blade is curved so subtly, that it may return to your hand when thrown...
 {0}'s body seems just a little too damaged for this to work...
 {0}'s body seems way too damaged for this to work...
 {0}'s bone marrow begins pulsing slowly.
@@ -4695,6 +4711,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0}'s honorbound rules:\n	<br>\n	1.) Thou shalt not attack the unready!<br>\n	Those who are not ready for battle should not be wrought low. The evil of this world must lose\n	in a fair battle if you are to conquer them completely. Lesser creatures are given the benefit of\n	being unready, keep that in mind.\n	<br>\n	<br>\n	2.) Thou shalt not attack the just!<br>\n	Those who fight for justice and good must not be harmed. Security is uncorruptable and must\n	be respected. Healers are mostly uncorruptable, and if you are truly sure medical has fallen\n	to the scourge of evil, use a declaration of evil.\n	<br>\n	<br>\n	3.) Thou shalt not attack the innocent!<br>\n	There is no honor on a pre-emptive strike, unless they are truly evil vermin.\n	Those who are guilty will either lay a hand on you first, or you may declare their evil. Mindless, lesser\n	creatures cannot be considered innocent, nor evil. They are beings of passion and function, and\n	may be dispatched as such if their passions misalign with the pursuits of a better world.\n	<br>\n	<br>\n	4.) Thou shalt not use profane magicks!<br>\n	You are not a warlock, you are an honorable warrior. There is nothing more corruptive than\n	the vile magicks used by witches, warlocks, and necromancers. There are exceptions to this rule.<br>\n	You may use holy magic, and (if you recruit one) a mime may use holy mimery. Restoration has also\n	been allowed as it is a school focused on the light and mending of this world.\n	
 {0}'s integration cog has finished initialization.
 {0}'s laws are null?? Contact a coder.
+{0}'s lights fade away as {1} slowly turn{2} dormant...
 {0}'s memories reveal that they are the {1}.
 {0}'s mind sets itself on a singular, violent purpose as they're flashed by {1}: Kill the heads.
 {0}'s neck has already been already cut, you can't make the bleeding any worse!
@@ -4703,7 +4720,6 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0}'s syringe chamber is full!
 {0}({1}) was instanced which should never happen. Changing into the next baseturf down...
 {0}({1})'s turfs_by_zlevel is length {2} but we are being asked to remove turfs from zlevel {3} from it.
-{0}, Sector {1}, {2}, Grid Coordinates, {3} East, {4} North.
 {0}, a singleton quirk constant data instance, was destroyed! This should not happen!
 {0}, a singleton wound pregen data instance, was destroyed! This should not happen!
 {0}. Backup existed and was used instead. The JSON file has been updated.
@@ -4717,6 +4733,7 @@ you're an exile from the Tiger Cooperative. Their technological fanaticism drove
 {0}: No candidate role or pref_flag set, give it a human readable candidate roll at the bare minimum.
 {0}: requested={1} sheets, available={2} sheets, adjusted={3} sheets.
 {0}<b>Base pH:</b> {1}, <b>Current pH:</b> {2}.
+{0}<br>Obtained via <i>surplus crate</i>.
 {0}<br>Type <b>vote</b> or click <a href='byond://winset?command=vote'>here</a> to place your votes.\nYou have {1} to vote.
 {0}Requires: {1} {2}\s.
 {0}points at %t with their {1}!

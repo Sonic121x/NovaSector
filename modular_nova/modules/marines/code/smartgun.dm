@@ -65,7 +65,7 @@
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/shoot_with_empty_chamber(mob/living/user)
 	if(cover_open)
-		balloon_alert_to_viewers("cover open!")
+		balloon_alert_to_viewers(LANG("obj.b726018fdc5c7891", null))
 	return ..()
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)

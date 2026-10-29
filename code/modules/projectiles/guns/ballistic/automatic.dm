@@ -454,12 +454,12 @@
 	obj_flags |= EMAGGED
 	projectile_damage_multiplier = emagged_projectile_damage_multiplier
 	pressure_threshold = AMMO_CASING_PRESSURE_MEDIUM
-	balloon_alert(user, "heat distribution systems deactivated")
+	balloon_alert(user, LANG("obj.0bb0d6a530adecdf", null))
 	return TRUE
 
 /obj/item/gun/ballistic/automatic/battle_rifle/multitool_act(mob/living/user, obj/item/tool)
 	if(!tool.use_tool(src, user, 10 SECONDS * (clamp(degradation_stage, 1, degradation_stage_max)), volume = 50))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		return ITEM_INTERACT_BLOCKING
 
 	emp_malfunction = FALSE

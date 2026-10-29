@@ -301,7 +301,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/projectile_hit(obj/projectile/hitting_projectile, def_zone, piercing_hit, blocked)
 	if(BUBBLEGUM_IS_ENRAGED)
-		visible_message(span_danger("[src] deflects the [hitting_projectile]! [p_They()] can't be hit with ranged weapons while enraged!"), span_userdanger("You deflect the projectile!"))
+		visible_message(span_danger(LANG("mob.3eec35f197b2d072", list(src, hitting_projectile, p_They()))), span_userdanger(LANG("mob.a6070bffecbba822", null)))
 		playsound(src, /datum/sound_effect/bullet_miss, 300, TRUE)
 		return BULLET_ACT_BLOCK
 	return ..()

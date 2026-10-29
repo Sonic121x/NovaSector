@@ -177,7 +177,7 @@
 			s_store = equipping
 			update_suit_storage()
 		else
-			to_chat(src, span_danger("You are trying to equip this item to an unsupported inventory slot. Report this to a coder!"))
+			to_chat(src, span_danger(LANG("mob.d90ac5022802ce1d", null)))
 			return FALSE
 
 	return TRUE

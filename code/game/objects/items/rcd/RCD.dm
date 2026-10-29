@@ -172,7 +172,7 @@
 			//check if we can build our window on the grill
 			if(target_turf.is_blocked_turf(exclude_mobs = !is_full_tile, source_atom = null, ignore_atoms = structures_to_ignore, type_list = TRUE))
 				playsound(user, /datum/sound_effect/tool_switch, 20, TRUE)
-				balloon_alert(user, "tile is blocked!")
+				balloon_alert(user, LANG("obj.fa928166c3175fe1", null))
 				return FALSE
 
 		/**
@@ -192,7 +192,7 @@
 
 			if(ignore_types && target_turf.is_blocked_turf(exclude_mobs = FALSE, source_atom = null, ignore_atoms = ignore_types, type_list = TRUE))
 				playsound(get_turf(user), /datum/sound_effect/tool_switch, 20, TRUE)
-				balloon_alert(user, "something is on the girder!")
+				balloon_alert(user, LANG("obj.c5d5633d0af518e0", null))
 				return FALSE
 
 		//check if turf is blocked in for dense structures
@@ -227,7 +227,7 @@
 			//check if the structure can fit on this turf
 			if(target_turf.is_blocked_turf(exclude_mobs = ignore_mobs, source_atom = null, ignore_atoms = ignored_types, type_list = TRUE))
 				playsound(get_turf(user), /datum/sound_effect/tool_switch, 20, TRUE)
-				balloon_alert(user, "something is on the tile!")
+				balloon_alert(user, LANG("obj.08a96e4b13589fee", null))
 				return FALSE
 
 	return TRUE

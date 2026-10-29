@@ -406,8 +406,8 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks_nova()) // NOVA EDIT CHANGE - O
 	obj_flags |= EMAGGED
 
 	playsound(src, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	visible_message(span_warning("Sparks fly out of [src]!"))
-	balloon_alert(user, "payment system shorted")
+	visible_message(span_warning(LANG("obj.b7523a488c133b30", list(src))))
+	balloon_alert(user, LANG("obj.7c056592bf681a5b", null))
 	return TRUE
 
 /**

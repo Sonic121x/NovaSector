@@ -1027,7 +1027,7 @@
 				target.visible_message(span_warning(LANG("obj.c25d9d9bad3de2c0", list(user, target, src))), \
 					span_warning(LANG("obj.4d9fd2fd26f04dbc", list(user, src))))
 				turn_off()
-				balloon_alert(user, "wrong department")
+				balloon_alert(user, LANG("obj.9de834ddefd6f41f", null))
 				playsound(src, /datum/sound_effect/sparks, 75, TRUE, -1)
 				update_appearance()
 				return FALSE
@@ -1046,10 +1046,10 @@
 /obj/item/melee/baton/security/loaded/departmental/emag_act(mob/user)
 	if(!emagged)
 		if(user)
-			user.visible_message(span_warning("Sparks fly from [src]!"),
-							span_warning("You scramble [src]'s departmental lock, allowing it to be used freely!"),
-							span_hear("You hear a faint electrical spark."))
-		balloon_alert(user, "emagged")
+			user.visible_message(span_warning(LANG("obj.4ebe3de564d9fd88", list(src))),
+							span_warning(LANG("obj.8a48054b45d3e545", list(src))),
+							span_hear(LANG("obj.e9bee9b372539a94", null)))
+		balloon_alert(user, LANG("obj.d11dba2fe2307aa0", null))
 		playsound(src, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		obj_flags |= EMAGGED
 		emagged = TRUE

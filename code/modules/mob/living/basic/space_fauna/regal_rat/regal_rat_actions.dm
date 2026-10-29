@@ -174,7 +174,7 @@
 /datum/reagent/rat_spit/overdose_start(mob/living/affected_mob, metabolization_ratio)
 	. = ..()
 	if (!affected_mob.has_faction(FACTION_RAT))
-		to_chat(affected_mob, span_userdanger("With this last sip, you feel your body convulsing horribly from the contents you've ingested. As you contemplate your actions, you sense an awakened kinship with rat-kind and their newly risen leader!"))
+		to_chat(affected_mob, span_userdanger(LANG("datum.df0b9993a65acc48", null)))
 		astype(affected_mob, /mob/living/carbon)?.vomit(VOMIT_CATEGORY_DEFAULT)
 		affected_mob.add_faction(FACTION_RAT)
 	metabolization_rate = 10 * REAGENTS_METABOLISM
@@ -185,10 +185,10 @@
 		affected_mob.adjust_disgust(2.5)
 		affected_mob.adjust_jitter_up_to(2 SECONDS, 12 SECONDS)
 	if(affected_mob.disgust < DISGUST_LEVEL_GROSS && SPT_PROB(8, seconds_per_tick))
-		to_chat(affected_mob, span_warning("You feel queasy!"))
+		to_chat(affected_mob, span_warning(LANG("datum.8dcc4527de298d40", null)))
 		affected_mob.set_disgust(max(DISGUST_LEVEL_GROSS + 5, affected_mob.disgust))
 	if(affected_mob.disgust < DISGUST_LEVEL_VERYGROSS && SPT_PROB(4, seconds_per_tick))
-		to_chat(affected_mob, span_warning("That food does not sit up well!"))
+		to_chat(affected_mob, span_warning(LANG("datum.d9848bf93b0f5c1e", null)))
 		affected_mob.set_disgust(max(DISGUST_LEVEL_VERYGROSS + 10, affected_mob.disgust))
 
 /datum/pet_command/protect_owner/glockroach

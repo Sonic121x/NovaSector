@@ -26,7 +26,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	playsound(src, /datum/sound_effect/sparks, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, "console emagged")
+	balloon_alert(user, LANG("obj.3aea0dc2c655e464", null))
 	return TRUE
 
 /obj/machinery/computer/rdservercontrol/ui_interact(mob/user, datum/tgui/ui)

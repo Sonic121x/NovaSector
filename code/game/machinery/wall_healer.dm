@@ -192,8 +192,8 @@
 		return FALSE
 
 	playsound(src, /datum/sound_effect/sparks, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	visible_message(span_warning("Sparks fly out of [src]!"))
-	balloon_alert(user, "safeties disabled")
+	visible_message(span_warning(LANG("obj.b7523a488c133b30", list(src))))
+	balloon_alert(user, LANG("obj.42074643f1699068", null))
 	obj_flags |= EMAGGED
 	circuit?.obj_flags |= EMAGGED
 	return TRUE

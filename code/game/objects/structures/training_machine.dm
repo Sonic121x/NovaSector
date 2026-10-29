@@ -121,7 +121,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	attach_item(tool)
-	to_chat(user, span_notice("You attach \the [attached_item] to the training device."))
+	to_chat(user, span_notice(LANG("obj.ea8e9a86daf4a751", list(attached_item))))
 	playsound(src, /datum/sound_effect/rustle, 50, TRUE)
 	return ITEM_INTERACT_SUCCESS
 

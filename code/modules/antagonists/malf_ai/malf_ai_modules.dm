@@ -616,7 +616,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module/malf))
 			apc.overload_lighting()
 		else
 			apc.overload++
-	to_chat(owner, span_notice("Overcurrent applied to the powernet."))
+	to_chat(owner, span_notice(LANG("datum.f791de5405b9cc97", null)))
 	owner.playsound_local(owner, /datum/sound_effect/sparks, 50, 0)
 	adjust_uses(-1)
 	if(QDELETED(src) || uses) //Not sure if not having src here would cause a runtime, so it's here to be safe

@@ -82,7 +82,7 @@
 		safety_mode = FALSE
 		update_appearance()
 	playsound(src, /datum/sound_effect/sparks, 75, TRUE, SILENCED_SOUND_EXTRARANGE)
-	balloon_alert(user, "safeties disabled")
+	balloon_alert(user, LANG("obj.42074643f1699068", null))
 	return FALSE
 
 /obj/machinery/recycler/update_icon_state()

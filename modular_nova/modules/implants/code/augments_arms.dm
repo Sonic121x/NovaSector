@@ -101,7 +101,7 @@
 /obj/item/organ/cyberimp/arm/toolkit/armblade/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(usr, span_notice("You unlock [src]'s integrated energy arm blade! You madman!"))
+	to_chat(usr, span_notice(LANG("obj.c57c6dab67db3aa4", list(src))))
 	add_extra_item(/obj/item/melee/implantarmblade/energy)
 	obj_flags |= EMAGGED
 	return TRUE
@@ -368,7 +368,7 @@ GAME_VERB_DESC(/obj/item/pickaxe/drill/implant, spin, "旋转钻头", "Click to 
 /obj/item/organ/cyberimp/arm/toolkit/botany/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(usr, span_notice("You unlock [src]'s deluxe landscaping equipment!"))
+	to_chat(usr, span_notice(LANG("obj.463118d0d005e3c4", list(src))))
 	add_extra_item(/obj/item/implant_mounted_chainsaw) //time to landscape the station
 	obj_flags |= EMAGGED
 	return TRUE
@@ -391,7 +391,7 @@ GAME_VERB_DESC(/obj/item/pickaxe/drill/implant, spin, "旋转钻头", "Click to 
 /obj/item/organ/cyberimp/arm/toolkit/janitor/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(usr, span_notice("You unlock [src]'s integrated deluxe cleaning supplies!"))
+	to_chat(usr, span_notice(LANG("obj.1667a03fc221ebde", list(src))))
 	add_extra_item(/obj/item/soap/syndie) //We add not replace.
 	add_extra_item(/obj/item/reagent_containers/spray/cyborg_lube)
 	obj_flags |= EMAGGED
@@ -409,7 +409,7 @@ GAME_VERB_DESC(/obj/item/pickaxe/drill/implant, spin, "旋转钻头", "Click to 
 /obj/item/organ/cyberimp/arm/toolkit/lighter/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(usr, span_notice("You unlock [src]'s integrated Zippo lighter! Finally, classy smoking!"))
+	to_chat(usr, span_notice(LANG("obj.924324ef4b9a13a7", list(src))))
 	add_extra_item(/obj/item/lighter) //Now you can choose between bad and worse!
 	obj_flags |= EMAGGED
 	return TRUE
@@ -544,24 +544,24 @@ GAME_VERB_DESC(/obj/item/pickaxe/drill/implant, spin, "旋转钻头", "Click to 
 /// Wrenching swaps the internal magazine between shotgun shells and .980 Tydhouer grenades
 /obj/item/gun/ballistic/shotgun/shell_launcher/wrench_act(mob/living/user, obj/item/tool)
 	if(!user.is_holding(src))
-		balloon_alert(user, "hold to modify!")
+		balloon_alert(user, LANG("obj.0be2eeb589a65c31", null))
 		return ITEM_INTERACT_BLOCKING
 
 	if(get_ammo())
-		balloon_alert(user, "can't modify while loaded!")
+		balloon_alert(user, LANG("obj.1cc1685f3209ecd9", null))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "tinkering...")
+	balloon_alert(user, LANG("obj.dc35a5f3258d850b", null))
 	tool.play_tool_sound(src)
 	if(!tool.use_tool(src, user, 3 SECONDS))
 		return ITEM_INTERACT_BLOCKING
 
 	if(magazine.caliber == CALIBER_SHOTGUN)
 		magazine.caliber = CALIBER_980TYDHOUER
-		to_chat(user, span_notice("You modify [src]. Now it will fire [CALIBER_980TYDHOUER] rounds."))
+		to_chat(user, span_notice(LANG("obj.116558cc16c370c8", list(src, CALIBER_980TYDHOUER))))
 	else
 		magazine.caliber = CALIBER_SHOTGUN
-		to_chat(user, span_notice("You reset [src]. Now it will fire [CALIBER_SHOTGUN] rounds."))
+		to_chat(user, span_notice(LANG("obj.86bfab709f81cca1", list(src, CALIBER_SHOTGUN))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/ammo_box/magazine/internal/shot/shell_cannon

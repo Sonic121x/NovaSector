@@ -118,7 +118,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(get_mob, R_ADMIN, "抓取 Mob", "Teleport a mob to y
 	if(new_area != ambience_tracked_area)
 		update_ambience_area(new_area)
 
-ADMIN_VERB(get_key, R_ADMIN, "Get Key", "Teleport the player with the provided key to you.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(get_key, R_ADMIN, "获取密钥", "Teleport the player with the provided key to you.", ADMIN_CATEGORY_GAME)
 	var/list/keys = list()
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client

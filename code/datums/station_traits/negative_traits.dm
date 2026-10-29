@@ -666,10 +666,7 @@
 		if(COOLDOWN_FINISHED(src, send_care_package_at))
 			COOLDOWN_START(src, send_care_package_at, send_care_package_time)
 			priority_announce(
-				{"Is everything okay there? We're getting high radiation readings from inside the station. \
-				We're sending an emergency shielding unit for now, it will last [DisplayTimeText(/obj/machinery/nebula_shielding/radiation/emergency::detonate_in)]. \n\n\
-				Set up the nebula shielding. You can order construction kits at cargo if yours have been lost.
-				"}
+				LANG("datum.26853c6c4eced3fb", list(DisplayTimeText(/obj/machinery/nebula_shielding/radiation/emergency::detonate_in)))
 			)
 
 			addtimer(CALLBACK(src, PROC_REF(send_care_package)), 10 SECONDS)

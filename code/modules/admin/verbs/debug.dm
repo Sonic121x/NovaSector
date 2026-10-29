@@ -1120,11 +1120,10 @@ ADMIN_VERB(export_save_to_dev_preference, R_DEBUG, "将存档导出为开发者�
 	user_prefs.save_preferences()
 	user_prefs.savefile.copy_to_savefile(dev_save)
 	dev_save.save()
-	tgui_alert(user, "Exported preferences to [DEV_PREFS_PATH]. \
-		Next time you localhost as a guest it will use this savefile as-is.", "Export Complete", list("OK thanks"))
+	tgui_alert(user, LANG("datum.59d2fe22d6005185", list(DEV_PREFS_PATH)), LANG("datum.072ec1dc73b920ff", null), list("OK thanks"))
 
 // Important note: The generated CSV file will NOT include power usage from machinery which uses non-automatic power, such as through use_energy().
-ADMIN_VERB(generate_audit_file, R_DEBUG, "Generate Power Audit File", "Generate a large CSV-style text file, that details every piece of machinery with it's different electrical power settings.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(generate_audit_file, R_DEBUG, "生成电力审计文件", "Generate a large CSV-style text file, that details every piece of machinery with it's different electrical power settings.", ADMIN_CATEGORY_DEBUG)
 	var/list/final_list = list(/obj/machinery)
 	final_list[/obj/machinery] = "/obj/machinery/example,Use Power,Idle Power,Active Power Usage,Power Channel"
 	for(var/obj/machinery/machine_test as anything in valid_subtypesof(/obj/machinery))
@@ -1146,4 +1145,4 @@ ADMIN_VERB(generate_audit_file, R_DEBUG, "Generate Power Audit File", "Generate 
 	for(var/i in final_list)
 		final_string += "[final_list[i]]\n"
 	WRITE_FILE(csv_file, final_string)
-	to_chat(user, "Bzzzt, job's done!")
+	to_chat(user, LANG("datum.dd5510c214121e96", null))

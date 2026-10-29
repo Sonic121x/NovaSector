@@ -82,7 +82,7 @@
 
 /// Destroy the lighter when it's shot by a bullet
 /obj/item/lighter/proc/on_intercepted_bullet(mob/living/victim, obj/projectile/bullet)
-	victim.visible_message(span_warning("\The [bullet] shatters on [victim]'s lighter!"))
+	victim.visible_message(span_warning(LANG("obj.c449404a1b00ef40", list(bullet, victim))))
 	playsound(victim, /datum/sound_effect/ricochet, 100, TRUE)
 	new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
 	do_sparks(1, TRUE, src)

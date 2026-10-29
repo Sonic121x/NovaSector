@@ -370,27 +370,27 @@
 
 	if(!forced_state)
 		if(lamp_doom) // Doomsday borgs can't turn off their eyes
-			to_chat(src, span_warning("Eye lights are blocked by the administrator mode."))
+			to_chat(src, span_warning(LANG("mob.ceb3bf246747b736", null)))
 			return eye_lights_enabled
 
 		if(lamp_enabled)
 			if(!COOLDOWN_FINISHED(src, disabled_time))
-				to_chat(src, span_warning("Eye lights controls disrupted!"))
+				to_chat(src, span_warning(LANG("mob.f2dfd3c06778d6c4", null)))
 				return eye_lights_enabled
 
 			eye_lights_enabled = FALSE
 			toggle_headlamp(TRUE)
-			to_chat(src, span_notice("Eye lights disabled. Lighting disabled."))
+			to_chat(src, span_notice(LANG("mob.f4ac2bbaa19740fd", null)))
 			return eye_lights_enabled
 
 		eye_lights_enabled = FALSE
 		update_icons()
-		to_chat(src, span_notice("Eye lights disabled."))
+		to_chat(src, span_notice(LANG("mob.a7293ca64385ed92", null)))
 		return eye_lights_enabled
 
 	eye_lights_enabled = TRUE
 	update_icons()
-	to_chat(src, span_notice("Eye lights enabled."))
+	to_chat(src, span_notice(LANG("mob.f810ea266afe8c81", null)))
 	return eye_lights_enabled
 
 /mob/living/silicon/robot/proc/update_worn_icons()

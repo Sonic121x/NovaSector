@@ -55,7 +55,7 @@
 		return ..()
 
 	astype(tool, /obj/item/assembly/control).id = id
-	balloon_alert(user, "id changed")
+	balloon_alert(user, LANG("obj.3852daee6363f0cd", null))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/assembly/control/blast_door

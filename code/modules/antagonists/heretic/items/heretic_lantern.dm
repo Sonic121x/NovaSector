@@ -45,11 +45,11 @@
 	if(!IS_HERETIC(user) && !isobserver(user))
 		return
 	if(!COOLDOWN_FINISHED(src, unleash_cooldown))
-		. += span_notice("It will be able to unleash another flash in [span_bold(DisplayTimeText(COOLDOWN_TIMELEFT(src, unleash_cooldown)))].")
+		. += span_notice(LANG("obj.69cbf15ec91902c6", list(span_bold(DisplayTimeText(COOLDOWN_TIMELEFT(src, unleash_cooldown))))))
 	else if(stored_stacks >= LANTERN_MAX_STACKS)
-		. += span_notice("It has enough fire stored within to unleash a flash!")
+		. += span_notice(LANG("obj.525c5c0695c669ca", null))
 	else
-		. += span_notice("It has not stored enough fire to unlesh a flash yet.")
+		. += span_notice(LANG("obj.39e353b574e3220a", null))
 
 /obj/item/flashlight/lantern/heretic/init_slapcrafting()
 	return
@@ -123,7 +123,7 @@
 	update_appearance(UPDATE_ICON)
 	update_item_action_buttons()
 	if(new_stacks == LANTERN_MAX_STACKS && old_stacks < LANTERN_MAX_STACKS && ismob(loc))
-		balloon_alert(loc, "lantern fully charged!")
+		balloon_alert(loc, LANG("obj.46fd9e319629af8c", null))
 
 /obj/item/flashlight/lantern/heretic/process(seconds_per_tick)
 	if(!COOLDOWN_FINISHED(src, unleash_cooldown))
@@ -151,20 +151,20 @@
 	if(!isliving(user) || !IS_HERETIC(user) || !user.is_holding(src))
 		return
 	if(!COOLDOWN_FINISHED(src, unleash_cooldown))
-		balloon_alert(user, "still recovering, wait [DisplayTimeText(COOLDOWN_TIMELEFT(src, unleash_cooldown))]!")
+		balloon_alert(user, LANG("obj.597fe462bbb1a01a", list(DisplayTimeText(COOLDOWN_TIMELEFT(src, unleash_cooldown)))))
 		return
 	if(stored_stacks < LANTERN_MAX_STACKS)
-		balloon_alert(user, "not fully charged")
+		balloon_alert(user, LANG("obj.e530c7a39c00f7ca", null))
 		return
 
 	set_stacks(0)
 	COOLDOWN_START(src, unleash_cooldown, 2 MINUTES)
 	addtimer(CALLBACK(src, PROC_REF(update_item_action_buttons)), 2 MINUTES, TIMER_DELETE_ME)
-	balloon_alert(user, "2 minutes until next unleash!")
+	balloon_alert(user, LANG("obj.cb83de8cf579b58f", null))
 	playsound(user, 'sound/effects/magic/fireball.ogg', 100, TRUE)
 	user.visible_message(
-		span_danger("[user] thrusts [src] forward, and it erupts in a blinding wave of fire-lit light!"),
-		span_notice("You unleash the lantern's stored flame!"),
+		span_danger(LANG("obj.8e8e6cf1bff8e6f9", list(user, src))),
+		span_notice(LANG("obj.6bb9d5694ab9f96a", null)),
 	)
 
 	new /obj/effect/temp_visual/circle_wave/heretic_lantern(get_turf(src))
@@ -245,15 +245,15 @@
 	var/msg_source = (src == center) ? src : "[center]'s [src]"
 	switch(seer_eye_prot)
 		if(FLASH_PROTECTION_WELDER_SENSITIVE to INFINITY)
-			to_chat(seer, span_notice("[msg_source] emits a bright flash of light."))
+			to_chat(seer, span_notice(LANG("obj.6d04ba563b16e87c", list(msg_source))))
 			return
 
 		if(FLASH_PROTECTION_WELDER)
-			to_chat(seer, span_danger("[msg_source] emits a bright flash of light, causing you to flinch."))
+			to_chat(seer, span_danger(LANG("obj.dcf072126f94e404", list(msg_source))))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 3, maximum = 30)
 
 		if(FLASH_PROTECTION_FLASH)
-			to_chat(seer, span_danger("[msg_source] emits a bright flash of light, causing you to flinch."))
+			to_chat(seer, span_danger(LANG("obj.dcf072126f94e404", list(msg_source))))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 4, maximum = 40)
 			seer.adjust_eye_blur(2 SECONDS * stack_scale)
 			if(tick_count > 2 && (seer_stam < 60 || (tick_count > 8 && seer_stam < 100)))
@@ -262,7 +262,7 @@
 				seer.adjust_confusion(2 SECONDS * stack_scale)
 
 		if(FLASH_PROTECTION_NONE)
-			to_chat(seer, span_danger("A bright flash of light from [msg_source] blinds you for a moment!"))
+			to_chat(seer, span_danger(LANG("obj.c012712e89d4ab4f", list(msg_source))))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 5)
 			seer.adjust_temp_blindness(1 SECONDS * stack_scale)
 			seer.adjust_eye_blur(4 SECONDS * stack_scale)
@@ -272,7 +272,7 @@
 				seer.adjust_confusion(4 SECONDS * stack_scale)
 
 		if(FLASH_PROTECTION_SENSITIVE)
-			to_chat(seer, span_danger("A bright flash of light from [msg_source] blinds you!"))
+			to_chat(seer, span_danger(LANG("obj.fd20d57865e5337a", list(msg_source))))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 8)
 			seer.adjust_temp_blindness(2 SECONDS * stack_scale)
 			seer.adjust_eye_blur(8 SECONDS * stack_scale)
@@ -282,7 +282,7 @@
 				seer.adjust_confusion((tick_count > 3 ? 8 SECONDS : 4 SECONDS) * stack_scale)
 
 		if(-INFINITY to FLASH_PROTECTION_HYPER_SENSITIVE)
-			to_chat(seer, span_danger("A bright flash of light from [msg_source] blinds you!"))
+			to_chat(seer, span_danger(LANG("obj.fd20d57865e5337a", list(msg_source))))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 15)
 			seer.adjust_temp_blindness(4 SECONDS * stack_scale)
 			seer.adjust_eye_blur(12 SECONDS * stack_scale)
@@ -315,11 +315,11 @@
 		return FALSE
 	if(!COOLDOWN_FINISHED(lantern, unleash_cooldown))
 		if(feedback)
-			owner.balloon_alert(owner, "still recovering, wait [DisplayTimeText(COOLDOWN_TIMELEFT(lantern, unleash_cooldown))]!")
+			owner.balloon_alert(owner, LANG("datum.597fe462bbb1a01a", list(DisplayTimeText(COOLDOWN_TIMELEFT(lantern, unleash_cooldown)))))
 		return FALSE
 	if(lantern.stored_stacks < LANTERN_MAX_STACKS)
 		if(feedback)
-			owner.balloon_alert(owner, "not fully charged")
+			owner.balloon_alert(owner, LANG("datum.e530c7a39c00f7ca", null))
 		return FALSE
 	return TRUE
 

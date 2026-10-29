@@ -258,16 +258,16 @@
 	if(body_part == BODY_ZONE_CHEST)
 		if(DOING_INTERACTION_WITH_TARGET(user, carbon_patient))
 			return
-		user.visible_message(span_notice("[user] begins to place [src] against [carbon_patient]'s [body_part]."), span_notice("You begin to place [src] against [carbon_patient]'s [body_part]..."), ignored_mobs = carbon_patient)
+		user.visible_message(span_notice(LANG("obj.977a8c93b73c78b4", list(user, src, carbon_patient, body_part))), span_notice(LANG("obj.081ce1cf3b8df60c", list(src, carbon_patient, body_part))), ignored_mobs = carbon_patient)
 		if(carbon_patient != user)
-			to_chat(carbon_patient, span_notice("[user] begins to place [src] against your [body_part]."))
+			to_chat(carbon_patient, span_notice(LANG("obj.f9194922639a5fbe", list(user, src, body_part))))
 		if(!do_after(user, 2 SECONDS, carbon_patient))
 			return
-		user.visible_message(span_notice("[user] places [src] against [carbon_patient]'s [body_part] and listens attentively."), ignored_mobs = list(user, carbon_patient))
+		user.visible_message(span_notice(LANG("obj.e41447c52e137c0b", list(user, src, carbon_patient, body_part))), ignored_mobs = list(user, carbon_patient))
 		if(carbon_patient != user)
-			to_chat(carbon_patient, span_notice("You feel [src] pressed against your [body_part]."))
+			to_chat(carbon_patient, span_notice(LANG("obj.93a31391465f722d", list(src, body_part))))
 		if(HAS_TRAIT(user, TRAIT_DEAF))
-			to_chat(user, span_notice("You place [src] against [carbon_patient]'s [body_part]. Fat load of good it does you though, since you can't hear."))
+			to_chat(user, span_notice(LANG("obj.73dd56a4f6480818", list(src, carbon_patient, body_part))))
 			return
 
 	var/oxy_loss = carbon_patient.get_oxy_loss()

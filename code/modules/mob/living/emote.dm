@@ -857,7 +857,7 @@
 
 /datum/emote/living/stutter/run_emote(mob/living/user, params, type_override, intentional)
 	user.set_stutter_if_lower(clamp(text2num(params), 10, 240) * 1 SECONDS)
-	to_chat(user, span_tinynoticeital("Your next few instances of speech will be stuttered."))
+	to_chat(user, span_tinynoticeital(LANG("datum.c97c31d9683888d2", null)))
 
 /datum/emote/living/stutter/stammer
 	key = "stammer"
@@ -875,7 +875,7 @@
 
 /datum/emote/living/slur/run_emote(mob/living/user, params, type_override, intentional)
 	user.set_slurring_if_lower(clamp(text2num(params), 10, 120) * 1 SECONDS)
-	to_chat(user, span_tinynoticeital("Your next few instances of speech will be slurred."))
+	to_chat(user, span_tinynoticeital(LANG("datum.bcffebe116067d22", null)))
 
 /// Forces you to jitter, with no seen chat messages.
 /// Accepts a parameter to dictate duration (*jitter 10 for 10 seconds)
@@ -888,7 +888,7 @@
 
 /datum/emote/living/jitter/run_emote(mob/living/user, params, type_override, intentional)
 	if(!user.has_status_effect(/datum/status_effect/jitter))
-		to_chat(user, span_tinynoticeital("You start jittering."))
+		to_chat(user, span_tinynoticeital(LANG("datum.3c249cc671eed934", null)))
 	user.set_jitter_if_lower(clamp(text2num(params), 5, 30) * 1 SECONDS)
 
 ///Emotes only for le epic chimps

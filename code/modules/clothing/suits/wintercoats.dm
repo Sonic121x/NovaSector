@@ -58,7 +58,7 @@
 	zipped = !zipped
 	playsound(src, 'sound/items/zip/zip_up.ogg', 30, TRUE, -3)
 	worn_icon_state = "[INITIAL_ICON_STATE(src)][zipped ? "_t" : ""]"
-	balloon_alert(user, "[zipped ? "" : "un"]zipped")
+	balloon_alert(user, LANG("obj.59160d363be53b04", list(zipped ? "" : "un")))
 
 	if(ishuman(loc))
 		var/mob/living/carbon/human/wearer = loc

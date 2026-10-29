@@ -284,7 +284,7 @@
 	if(istype(tool, /obj/item/graft))
 		var/obj/item/graft/tool_graft = tool
 		playsound(src, /datum/sound_effect/crunchy_bush_whack, 50, vary = FALSE)
-		to_chat(user, span_notice("You begin to graft the [tool_graft.plant_dna.plantname] graft onto [src]."))
+		to_chat(user, span_notice(LANG("obj.96c8e9e819b543e4", list(tool_graft.plant_dna.plantname, src))))
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 10 SECONDS * skill_modifier, target = src))
 			to_chat(user, span_warning(LANG("obj.ef991da31d3d6524", null)))
@@ -332,7 +332,7 @@
 	// if not fruited, lets get the bee out if its there
 	if(tree_bee)
 		tree_bee.forceMove(get_turf(user))
-		to_chat(user, span_warning("You pull [tree_bee] from [src]!"))
+		to_chat(user, span_warning(LANG("obj.3c031c76c20f45ae", list(tree_bee, src))))
 		playsound(src, /datum/sound_effect/crunchy_bush_whack, 50, vary = FALSE)
 		tree_bee = null
 		update_appearance(UPDATE_OVERLAYS)

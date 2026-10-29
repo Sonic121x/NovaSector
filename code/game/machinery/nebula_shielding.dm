@@ -88,7 +88,7 @@
 
 /obj/machinery/nebula_shielding/radiation/examine(mob/user)
 	. = ..()
-	. += span_notice("Passively generates tritium. Provides [shielding_strength] levels of nebula shielding when active.")
+	. += span_notice(LANG("obj.f0073e9193ac8637", list(shielding_strength)))
 
 /obj/machinery/nebula_shielding/radiation/generate_reward(seconds_per_tick)
 	var/datum/gas_mixture/output_air = tritium_output.gas_connector.airs[1]
@@ -123,7 +123,7 @@
 
 	var/unsafe_release = FALSE
 	if(pressure_difference > 2 * ONE_ATMOSPHERE)
-		to_chat(user, span_warning("As you begin prying [src] apart, you hear the hiss of gas escaping... maybe you should reconsider?"))
+		to_chat(user, span_warning(LANG("obj.cd44991965a1e591", list(src))))
 		unsafe_release = TRUE
 
 	if(!tool.use_tool(src, user, (unsafe_release ? 4 SECONDS : 1 SECONDS), volume = 50))
@@ -163,7 +163,7 @@
 /obj/machinery/nebula_shielding/radiation/emergency/examine(mob/user)
 	. = ..()
 
-	. += span_notice("[p_They()] will last [DisplayTimeText(detonate_in)] before overloading.")
+	. += span_notice(LANG("obj.be883a3527e948fd", list(p_They(), DisplayTimeText(detonate_in))))
 
 ///We don't live for very long, so self-destruct
 /obj/machinery/nebula_shielding/radiation/emergency/proc/self_destruct()

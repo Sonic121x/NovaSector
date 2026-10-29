@@ -63,8 +63,8 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "fish-fins",
-			SPECIES_PERK_NAME = "Flip-Flap",
-			SPECIES_PERK_DESC = "Ceruleans are hard to keep a hold of, becoming slippery and tough to grab if soaked in water.",
+			SPECIES_PERK_NAME = LANG("datum.e7f4f24dc6d9b6b1", null),
+			SPECIES_PERK_DESC = LANG("datum.479789e5dde0fd0b", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
@@ -75,8 +75,8 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "dragon",
-			SPECIES_PERK_NAME = "Little Space Dragon",
-			SPECIES_PERK_DESC = "Ceruleans and their dexterity are tied to gravity, turning lethally agile if it's taken out of the question.",
+			SPECIES_PERK_NAME = LANG("datum.0ed30c3e57e038a4", null),
+			SPECIES_PERK_DESC = LANG("datum.eed46d6cc8b40ca3", null),
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,

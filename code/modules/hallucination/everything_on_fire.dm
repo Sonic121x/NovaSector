@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /// Everything in the hallucinator's view looks like it's burning, and fake burning copies of someone run around.
 /datum/hallucination/everything_on_fire
 	/// How long the vision lasts
@@ -72,7 +73,7 @@
 	hallucinator.client?.images += item_images
 	hallucinator.client?.images += assoc_to_values(mob_images)
 	RegisterSignal(hallucinator, COMSIG_MOB_LOGIN, PROC_REF(on_login))
-	to_chat(hallucinator, span_userdanger("The whole world bursts into flame around you!"))
+	to_chat(hallucinator, span_userdanger(LANG("datum.1a2c39ff739ee9f5", null)))
 	QDEL_IN(src, duration)
 	return TRUE
 

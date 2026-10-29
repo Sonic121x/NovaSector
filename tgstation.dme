@@ -10097,6 +10097,8 @@
 #include "modular_nova\modules\xenomorph\queen.dm"
 #include "modular_nova\modules\zubbers_taur\code\taur.dm"
 #include "modular_zh\master_files\code\datums\storage\storage.dm"
+#include "modular_zh\master_files\code\modules\asset_cache\assets\cargo_catalogue.dm"
+#include "modular_zh\master_files\code\modules\asset_cache\assets\techweb_catalogue.dm"
 #include "modular_zh\master_files\code\modules\modular_computers\computers\item\computer.dm"
 #include "modular_zh\modules\deferred_offstation\code\deferred_offstation.dm"
 #include "modular_zh\modules\i18n\code\changelog.dm"

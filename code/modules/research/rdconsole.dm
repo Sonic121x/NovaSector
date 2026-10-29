@@ -182,7 +182,7 @@ Nothing else in the console has ID requirements.
 	. = ..()
 	if (obj_flags & EMAGGED)
 		return
-	balloon_alert(user, "security protocols disabled")
+	balloon_alert(user, LANG("obj.2d8166d5176414a7", null))
 	playsound(src, /datum/sound_effect/sparks, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	obj_flags |= EMAGGED
 	var/obj/item/circuitboard/computer/rdconsole/board = circuit

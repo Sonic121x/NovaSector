@@ -95,12 +95,12 @@
 		vision_owner = being
 		RegisterSignal(being, COMSIG_QDELETING, PROC_REF(clear_vision))
 		RegisterSignal(being, COMSIG_MOB_UPDATE_SIGHT, PROC_REF(update_user_sight))
-	to_chat(being, span_notice("The wisp enhances your vision."))
+	to_chat(being, span_notice(LANG("obj.9911f3ccc96b5794", null)))
 	ADD_TRAIT(being, TRAIT_THERMAL_VISION, REF(src))
 
 /obj/effect/wisp/stop_orbit(datum/component/orbiter/orbits, refreshing = FALSE)
 	if(!refreshing && vision_owner)
-		to_chat(vision_owner, span_notice("Your vision returns to normal."))
+		to_chat(vision_owner, span_notice(LANG("obj.ddf9fc701d761d6e", null)))
 		clear_vision(vision_owner)
 	return ..()
 

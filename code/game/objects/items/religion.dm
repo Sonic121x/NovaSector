@@ -32,8 +32,8 @@
 	if(morale_time > world.time)
 		to_chat(user, span_warning(LANG("obj.e63257db07cf36b6", list(src))))
 		return
-	user.visible_message("<span class='big notice'>[user] flourishes [src]!</span>", \
-	span_notice("You raise [src] skywards, inspiring your allies!"))
+	user.visible_message(LANG("obj.8c916550c4c2e898", list(user, src)), \
+	span_notice(LANG("obj.7e332b57633accbe", list(src))))
 	playsound(src, /datum/sound_effect/rustle, 100, FALSE)
 	if(warcry)
 		user.say("[warcry]", forced="banner")

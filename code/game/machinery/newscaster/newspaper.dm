@@ -118,7 +118,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	add_fingerprint(user)
-	user.balloon_alert(user, "scribbling...")
+	user.balloon_alert(user, LANG("obj.49328fc5102ae5fe", null))
 	playsound(src, /datum/sound_effect/writing_pen, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 	if (!do_after(user, 2 SECONDS, src))
 		balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))

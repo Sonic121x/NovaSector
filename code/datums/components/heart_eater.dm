@@ -99,7 +99,7 @@
 	if(damage_resistance_mod <= 0.2)
 		return
 	damage_resistance_mod -= 0.1
-	to_chat(eater, span_warning("This heart is perfect. You feel a surge of vital energy."))
+	to_chat(eater, span_warning(LANG("datum.876f999dc10942f5", null)))
 
 ///Not Perfect heart give random mutation.
 /datum/component/heart_eater/proc/not_perfect_heart(mob/living/carbon/human/eater)

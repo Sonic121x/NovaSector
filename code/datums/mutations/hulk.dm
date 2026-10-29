@@ -240,9 +240,9 @@
 
 	the_hulk.setDir(original_dir)
 	yeeted_person.forceMove(the_hulk.loc) // Maybe this will help with the wallthrowing bug.
-	yeeted_person.visible_message(span_danger("[the_hulk] throws [yeeted_person]!"), \
-					span_userdanger("You're thrown by [the_hulk]!"), span_hear("You hear aggressive shuffling and a loud thud!"), null, the_hulk)
-	to_chat(the_hulk, span_danger("You throw [yeeted_person]!"))
+	yeeted_person.visible_message(span_danger(LANG("datum.dd353802e5a94b6f", list(the_hulk, yeeted_person))), \
+					span_userdanger(LANG("datum.c6e01d9ebd6cd291", list(the_hulk))), span_hear(LANG("datum.79118e974e62c959", null)), null, the_hulk)
+	to_chat(the_hulk, span_danger(LANG("datum.a94c3e800bf2af08", list(yeeted_person))))
 	playsound(the_hulk.loc, /datum/sound_effect/swing_hit, 50, TRUE)
 	var/turf/T = get_edge_target_turf(the_hulk, the_hulk.dir)
 	if(!isturf(T))

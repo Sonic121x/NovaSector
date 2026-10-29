@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /obj/structure/tipjar
 	name = "tip jar"
 	desc = "I can't believe tipping culture made its way to the stars."
@@ -72,10 +73,10 @@
 	if(is_type_in_typecache(tool, tippable_typecache))
 		// while we only visually show the first pos_map items, we can store some extra...
 		if(length(contents) >= length(pos_map) * 3)
-			balloon_alert(user, "it's full!")
+			balloon_alert(user, LANG("obj.2cb7d3546d66854d", null))
 			return ITEM_INTERACT_BLOCKING
 		if(user.transferItemToLoc(tool, src))
-			balloon_alert_to_viewers("deposited \a [tool]")
+			balloon_alert_to_viewers(LANG("obj.6eda6f63b3578c8b", list(tool)))
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
 
@@ -91,7 +92,7 @@
 	for(var/thing_name, thing_count in all_things)
 		all_things_text += thing_count > 1 ? "[thing_count] [thing_name][plural_s(thing_name)]" : "\a [thing_name]"
 
-	. += span_info("Inside, you can see: [english_list(all_things_text)].")
+	. += span_info(LANG("obj.cd445541e20cb9e5", list(english_list(all_things_text))))
 
 /obj/structure/tipjar/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -103,14 +104,14 @@
 	. = TRUE
 	if(!length(contents))
 		user.visible_message(
-			span_notice("[user] sticks [user.p_their()] hand in the empty [name], like a fool."),
-			span_warning("There's nothing to fish out of [src]!"),
+			span_notice(LANG("obj.a1b803aa850b9e8a", list(user, user.p_their(), name))),
+			span_warning(LANG("obj.7d280e239c2b09cd", list(src))),
 		)
 		return
 
 	user.visible_message(
-		span_notice("[user] starts fishing around in [src]..."),
-		span_notice("You start fishing around in [src]..."),
+		span_notice(LANG("obj.8f238ffefc0f5772", list(user, src))),
+		span_notice(LANG("obj.4967904062620c59", list(src))),
 	)
 	Shake(1, 1, 5 SECONDS, 0.5 SECONDS)
 	if(!do_after(user, 5 SECONDS, src) || !length(contents))
@@ -121,8 +122,8 @@
 
 	var/obj/item/fished_out = pick(contents)
 	user.visible_message(
-		span_notice("[user] pulls [fished_out] out of [src]!"),
-		span_notice("You pull [fished_out] out of [src]."),
+		span_notice(LANG("obj.a46beca274752046", list(user, fished_out, src))),
+		span_notice(LANG("obj.6668132f00d05fdd", list(fished_out, src))),
 	)
 	user.put_in_hands(fished_out)
 

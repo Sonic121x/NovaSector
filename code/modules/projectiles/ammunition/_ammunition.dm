@@ -108,7 +108,7 @@
 		// grab the damage multiplier.
 		proj_damage_mult = our_gun.projectile_damage_multiplier
 	var/list/readout = list()
-	readout += "This round exerts [pressure_readout] amount of chamber pressure when fired."
+	readout += LANG("obj.49a55d2fa081681c", list(pressure_readout))
 	if(proj_damage_mult <= 0 || (initial_damage <= 0 && initial_stamina <= 0))
 		return "Our legal team has determined the offensive nature of these [span_warning(caliber)] rounds to be esoteric."
 	// No dividing by 0

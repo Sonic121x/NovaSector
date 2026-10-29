@@ -270,5 +270,5 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 	if(!crosser.acid_act(acid_power, acid_used, FEET))
 		return
 	playsound(crosser, /datum/sound_effect/sear, 50, TRUE)
-	to_chat(crosser, span_userdanger("The acid on \the [parent] burns you!"))
+	to_chat(crosser, span_userdanger(LANG("datum.5e2a49d38d7ca42e", list(parent))))
 	set_volume(max(acid_volume - acid_used, 10))

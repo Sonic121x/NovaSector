@@ -1,3 +1,4 @@
+// ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
 /**
  * ## Anomaly Locked Gun
  *
@@ -40,14 +41,14 @@
 	if(!is_type_in_list(tool, accepted_anomalies))
 		return NONE
 	if(!isnull(core))
-		source.balloon_alert(user, "already has core!")
+		source.balloon_alert(user, LANG("datum.00b328e3912c1db9", null))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, source))
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(source, 'sound/machines/click.ogg', 30, TRUE)
 	core = tool
-	source.balloon_alert(user, "core inserted")
+	source.balloon_alert(user, LANG("datum.de575d7bc9109c27", null))
 	source.update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -62,10 +63,10 @@
 	return ITEM_INTERACT_SUCCESS
 
 /datum/component/anomaly_locked_gun/proc/try_remove_core(obj/item/source, mob/living/user, obj/item/tool)
-	source.balloon_alert(user, "removing core...")
+	source.balloon_alert(user, LANG("datum.4afc363abc5bbb3a", null))
 	if(!do_after(user, 3 SECONDS, source))
 		return
-	source.balloon_alert(user, "core removed")
+	source.balloon_alert(user, LANG("datum.8b10ca6a98faa6f4", null))
 	user.put_in_hands(core)
 
 /datum/component/anomaly_locked_gun/proc/on_exited(obj/item/source, atom/gone, ...)
@@ -80,13 +81,13 @@
 /datum/component/anomaly_locked_gun/proc/on_examine(obj/item/source, mob/examiner, list/examine_list)
 	SIGNAL_HANDLER
 	if(!isnull(core))
-		examine_list += span_notice("There is \a [core] installed in it. You could remove it with a <b>screwdriver</b>...")
+		examine_list += span_notice(LANG("datum.d8eb6ba40800fb3e", list(core)))
 		return
 
 	var/list/core_list = list()
 	for(var/atom/core_path as anything in accepted_anomalies)
 		core_list += initial(core_path.name)
-	examine_list += span_notice("You need to insert \a [english_list(core_list, and_text = " or ")] for this weapon to fire.")
+	examine_list += span_notice(LANG("datum.51497937bfd60ddc", list(english_list(core_list, and_text = " or "))))
 
 /datum/component/anomaly_locked_gun/proc/on_destruction(obj/item/source)
 	SIGNAL_HANDLER
@@ -104,6 +105,6 @@
 	SIGNAL_HANDLER
 	if(!isnull(core))
 		return NONE
-	source.balloon_alert(shooter, "cannot fire without a core!")
+	source.balloon_alert(shooter, LANG("datum.e1170194990842db", null))
 	source.shoot_with_empty_chamber(shooter)
 	return COMPONENT_CANCEL_GUN_FIRE

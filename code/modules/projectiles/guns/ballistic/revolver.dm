@@ -72,8 +72,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 
 	if(do_spin())
 		playsound(usr, /datum/sound_effect/revolver_spin, 30, FALSE)
-		visible_message(span_notice("[user] spins [src]'s chamber."), span_notice("You spin [src]'s chamber."))
-		balloon_alert(user, "chamber spun")
+		visible_message(span_notice(LANG("obj.2bcb73d689ee3b4b", list(user, src))), span_notice(LANG("obj.b2483544fa9b9bd2", list(src))))
+		balloon_alert(user, LANG("obj.400a3b3892f5f247", null))
 	else
 		verbs -= /obj/item/gun/ballistic/revolver/verb/spin
 

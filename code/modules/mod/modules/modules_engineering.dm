@@ -295,11 +295,11 @@
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(user, "already tethered!")
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if (parent_module && HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(parent_module)))
-		balloon_alert(user, "already tethered!")
+		balloon_alert(user, LANG("obj.5550f24a003f6456", null))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	balloon_alert(user, LANG("obj.8133fa0296376ad7", null))

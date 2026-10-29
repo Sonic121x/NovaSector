@@ -86,6 +86,9 @@
   "(This is a cost saving measure - do not print this part.)": [
     "tgui:RBMK2"
   ],
+  "(U) R": [
+    "tgui:StripMenu"
+  ],
   "(Use the Scanner Array Console to find new locations.)": [
     "tgui:ExodroneConsole"
   ],
@@ -6779,8 +6782,7 @@
     "tgui:ImplantChair",
     "tgui:Sleeper",
     "tgui:Soulcatcher",
-    "tgui:TransferValve",
-    "tgui:Vendatray"
+    "tgui:TransferValve"
   ],
   "Closed Interviews": [
     "tgui:InterviewManager"
@@ -9894,7 +9896,6 @@
     "tgui:NtosNotepad"
   ],
   "Done": [
-    "tgui:HoloPay",
     "tgui:ModifyPanel",
     "tgui:index"
   ],
@@ -10823,7 +10824,6 @@
     "tgui:Photocopier",
     "tgui:SimpleBot",
     "tgui:Temperatures",
-    "tgui:Vendatray",
     "tgui:disks"
   ],
   "Empty Card": [
@@ -11340,12 +11340,6 @@
   "Error occured while sending a message!": [
     "tgui:RequestsConsoleHeader"
   ],
-  "Error! No account detected.": [
-    "tgui:HoloPay"
-  ],
-  "Error! Swipe an ID first.": [
-    "tgui:HoloPay"
-  ],
   "Error: Unknown job availability.": [
     "dm:labels"
   ],
@@ -11719,6 +11713,9 @@
   ],
   "Eye Emissives": [
     "tgui:species_features"
+  ],
+  "Eye Lights": [
+    "tgui:NtosRobotact"
   ],
   "Eye color": [
     "tgui:species_features"
@@ -12760,9 +12757,6 @@
   ],
   "Force send the message?": [
     "tgui:AdminPDA"
-  ],
-  "Forced Fee": [
-    "tgui:HoloPay"
   ],
   "Forced Hidden": [
     "tgui:PlaneEditor"
@@ -14940,9 +14934,6 @@
     "tgui:Canister",
     "tgui:PortableAtmos"
   ],
-  "Holo Pay": [
-    "tgui:HoloPay"
-  ],
   "Holo Tuber": [
     "dm:labels"
   ],
@@ -16995,6 +16986,9 @@
     "dm:labels"
   ],
   "L": [
+    "tgui:StripMenu"
+  ],
+  "L (U)": [
     "tgui:StripMenu"
   ],
   "LAST SAVED RESULT{0}{1}": [
@@ -20335,8 +20329,7 @@
     "tgui:NtosRoboControl",
     "tgui:NtosShipping",
     "tgui:RecordView",
-    "tgui:SolarControl",
-    "tgui:Vendatray"
+    "tgui:SolarControl"
   ],
   "NANOTRASEN PERSONNEL RECORDS (CLASSIFIED)": [
     "tgui:NtosRecords"
@@ -20503,9 +20496,6 @@
     "tgui:VariableMenu",
     "tgui:Virus",
     "tgui:index"
-  ],
-  "Name (3 - 42 chars)": [
-    "tgui:HoloPay"
   ],
   "Name Enscription": [
     "tgui:TableOfContents"
@@ -22639,7 +22629,6 @@
     "tgui:Sleeper",
     "tgui:StripMenu",
     "tgui:TransferValve",
-    "tgui:Vendatray",
     "tgui:constants",
     "tgui:index"
   ],
@@ -23654,9 +23643,6 @@
   "Payout: {0} cr": [
     "tgui:CivCargoHoldTerminal",
     "tgui:NtosCivCargoHoldTerminal"
-  ],
-  "Pays to the account of {0}.": [
-    "tgui:Vendatray"
   ],
   "Peaceful": [
     "tgui:QuantumConsole"
@@ -25581,9 +25567,6 @@
     "tgui:NtosScipaper",
     "tgui:SyndContractor"
   ],
-  "Purchase Item": [
-    "tgui:Vendatray"
-  ],
   "Purchase Loadout": [
     "tgui:Loadouts"
   ],
@@ -26524,9 +26507,6 @@
   ],
   "Regime": [
     "tgui:Teleporter"
-  ],
-  "Register Tray": [
-    "tgui:Vendatray"
   ],
   "Registered Nurse": [
     "dm:labels"
@@ -28567,9 +28547,6 @@
   "Securicat Plushie": [
     "dm:labels"
   ],
-  "Securifox Plushie": [
-    "dm:labels"
-  ],
   "Security": [
     "dm:labels",
     "tgui:AvatarHelp",
@@ -29176,9 +29153,6 @@
   "Set a conversion guideline: This text is shown only to newly converted revolutionaries.": [
     "tgui:AntagInfoRevolution"
   ],
-  "Set a forced fee rather than pay what you want.": [
-    "tgui:HoloPay"
-  ],
   "Set a frequency with a multitool!": [
     "tgui:MODsuit"
   ],
@@ -29245,7 +29219,6 @@
     "tgui:ChemMixingChamber",
     "tgui:ChemReactionChamber",
     "tgui:HighLuminosityEyesMenu",
-    "tgui:HoloPay",
     "tgui:InstrumentEditor",
     "tgui:Intellicard",
     "tgui:ModularShieldGen",
@@ -29264,9 +29237,6 @@
   ],
   "Settler": [
     "dm:labels"
-  ],
-  "Setup": [
-    "tgui:HoloPay"
   ],
   "Severity": [
     "tgui:Virus",
@@ -29647,9 +29617,6 @@
   ],
   "Shoes (Laceup)": [
     "dm:labels"
-  ],
-  "Shop Logo": [
-    "tgui:HoloPay"
   ],
   "Shopping": [
     "tgui:ProduceConsole"
@@ -33053,7 +33020,6 @@
     "dm:labels"
   ],
   "Terminal": [
-    "tgui:HoloPay",
     "tgui:Terminal"
   ],
   "Terminate": [
@@ -34957,9 +34923,6 @@
   ],
   "Traveler": [
     "dm:labels"
-  ],
-  "Tray is unregistered.": [
-    "tgui:Vendatray"
   ],
   "Treasure Hunter": [
     "dm:labels"
@@ -39819,14 +39782,10 @@
     "tgui:BlackMarketUplink",
     "tgui:BuyingShuttle",
     "tgui:SlotMachine",
-    "tgui:UsersScreen",
-    "tgui:Vendatray"
+    "tgui:UsersScreen"
   ],
   "{0} cr on {1}": [
     "tgui:BetTable"
-  ],
-  "{0} cr {1}": [
-    "tgui:HoloPay"
   ],
   "{0} credits": [
     "tgui:CargoExpress",
@@ -40088,12 +40047,6 @@
   ],
   "{0}Move often. The station will be hunting you after you are discovered, so don't stay in one area for long.{1}{2}Pick unfair fights. You are incredibly strong in one versus one situations, use it. The more you fight, the harder it will be to keep it dark.{3}{4}Fully destroy APCs when possible. Instead of hunting lights that can be fixed, hunt the APCs which are harder to repair.": [
     "tgui:AntagInfoNightmare"
-  ],
-  "{0}Pay": [
-    "tgui:HoloPay"
-  ],
-  "{0}Pay {1}": [
-    "tgui:HoloPay"
   ],
   "{0}Pinned": [
     "tgui:PatientStateView"

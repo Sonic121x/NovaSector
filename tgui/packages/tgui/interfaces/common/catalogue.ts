@@ -1,5 +1,8 @@
 import { use, useDeferredValue, useEffect, useLayoutEffect } from 'react';
 
+// ZH EDIT ADDITION - I18N
+import { ensureCatalogOverlay } from '../../i18n/catalog';
+
 /** Where to find a catalogue file the server published, and which build it is */
 export type CatalogueRef = {
   url: string;
@@ -102,6 +105,10 @@ export function createCatalogueLoader<Contents extends { version: number }>() {
   function useCatalogueFile(catalogue: CatalogueRef): Contents | undefined {
     const build = partBuilds.get(catalogue);
     const file = build && use(build.file);
+    // ZH EDIT ADDITION START - I18N: 文件里的值保持 canonical English，译文随文件的 i18n 字段下发。
+    // 必须在子组件渲染之前合并，同一帧就要用到；按 overlay 世代幂等，见 ensureCatalogOverlay。
+    ensureCatalogOverlay((file as { i18n?: Record<string, string> } | undefined)?.i18n);
+    // ZH EDIT ADDITION END
     useLayoutEffect(() => {
       if (build) {
         shownBuild = build;

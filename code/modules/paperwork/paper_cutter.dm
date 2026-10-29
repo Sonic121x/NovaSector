@@ -123,7 +123,7 @@
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		playsound(loc, /datum/sound_effect/page_turn, 60, TRUE)
-		balloon_alert(user, "paper inserted")
+		balloon_alert(user, LANG("obj.93f23f942a05946e", null))
 		stored_paper = tool
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS

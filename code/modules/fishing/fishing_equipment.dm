@@ -621,7 +621,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "safeties disabled")
+	balloon_alert(user, LANG("obj.42074643f1699068", null))
 	playsound(src, /datum/sound_effect/sparks, 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 

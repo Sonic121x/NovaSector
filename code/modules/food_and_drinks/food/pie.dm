@@ -81,7 +81,7 @@
 		victim.Paralyze(2 SECONDS) //splat!
 	if(can_splat_on)
 		victim.adjust_eye_blur(2 SECONDS)
-	victim.visible_message(span_warning("[victim] is creamed by [src]!"), span_userdanger("You've been creamed by [src]!"))
+	victim.visible_message(span_warning(LANG("obj.cd7d68abf4f13986", list(victim, src))), span_userdanger(LANG("obj.8e2fb86699a2937d", list(src))))
 	playsound(victim, /datum/sound_effect/desecration, 50, TRUE)
 
 /obj/item/food/pie/cream/nostun

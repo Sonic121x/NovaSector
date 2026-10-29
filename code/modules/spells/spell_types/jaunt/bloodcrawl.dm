@@ -240,13 +240,13 @@
  * Called when a victim starts to be consumed.
  */
 /datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon/proc/on_victim_start_consume(mob/living/victim, mob/living/jaunter)
-	to_chat(jaunter, span_danger("You begin to feast on [victim]... You can not move while you are doing this."))
+	to_chat(jaunter, span_danger(LANG("datum.880b2942b480eae7", list(victim))))
 
 /**
  * Called when a victim is successfully consumed.
  */
 /datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon/proc/on_victim_consumed(mob/living/victim, mob/living/jaunter)
-	to_chat(jaunter, span_danger("You devour [victim]. Your health is fully restored."))
+	to_chat(jaunter, span_danger(LANG("datum.893ce393e606f272", list(victim))))
 	qdel(victim)
 
 /**

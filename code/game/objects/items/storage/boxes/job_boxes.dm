@@ -179,7 +179,7 @@
 	..()
 	user.changeNext_move(CLICK_CD_MELEE)
 	playsound(loc, /datum/sound_effect/rustle, 50, vary=TRUE, extrarange=-5)
-	user.visible_message(span_notice("[user] hugs [src]."),span_notice("You hug [src]."))
+	user.visible_message(span_notice(LANG("obj.40c08047c5f299dc", list(user, src))),span_notice(LANG("obj.1ce28c9403c58c4d", list(src))))
 
 /obj/item/storage/box/hug/black
 	icon_state = "hugbox_black"
@@ -257,7 +257,7 @@
 	..()
 	user.changeNext_move(CLICK_CD_MELEE)
 	playsound(loc, /datum/sound_effect/rustle, 50, vary=TRUE, extrarange=-5)
-	user.visible_message(span_notice("[user] hugs [src]."),span_notice("You hug [src]."))
+	user.visible_message(span_notice(LANG("obj.40c08047c5f299dc", list(user, src))),span_notice(LANG("obj.1ce28c9403c58c4d", list(src))))
 
 /obj/item/storage/box/hug/plushes
 	name = "tactical cuddle kit"
