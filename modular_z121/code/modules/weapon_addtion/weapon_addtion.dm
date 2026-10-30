@@ -25,31 +25,39 @@
 	)
 
 //	bp-38
-// /obj/item/gun/ballistic/automatic/pistol/m38
-// 	name = "NT M-38手枪"
-// 	desc = "Nanotrasen原本计划给安保列装的手枪"
+/obj/item/gun/ballistic/automatic/pistol/c38
+	name = "NT-38半自动手枪"
+	desc = "Nanotrasen公司最近推出的新款半自动手枪，尚未大规模普及，使用配套的12发.38特种弹弹匣。"
 
-// 	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns32x.dmi'
-// 	icon_state = "battle_pistol"
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns32x.dmi'
+	icon_state = "nt38"
 
-// 	fire_sound = 'modular_nova/modules/modular_weapons/sounds/pistol_light.ogg'
+	fire_sound = 'modular_nova/modules/modular_weapons/sounds/pistol_light.ogg'
 
-// 	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_NORMAL
 
-// 	accepted_magazine_type = /obj/item/ammo_box/magazine/m38_pistol
+	accepted_magazine_type = /obj/item/ammo_box/magazine/m38_pistol
 
-// 	suppressor_x_offset = 11
-// 	suppressor_y_offset = 0
+	suppressor_x_offset = 11
+	suppressor_y_offset = 0
 
-// /obj/item/gun/ballistic/automatic/pistol/m38/give_manufacturer_examine()
-// 	AddElement(/datum/element/manufacturer_examine, COMPANY_NANOTRASEN)
+	lore_blurb = "安保人员都在抱怨，为什么没有便宜，便捷，好用的.38发射器。 \
+	他们已经受够了柯尔特左轮那比自己命还短的弹容量，以及BR-38步枪那臃肿且丑陋的体型。 \
+	为了应对这样的状况，Nanotrasen军械库推出了NT-38这款新产品。 \
+	它拥有的12发弹容量，是柯尔特左轮的两倍，并且尺寸没有BR-38步枪那么大，是把不错的手枪。 \
+	然而，这款手枪的产量还没有到达WT550那么夸张的地步，并且Nanotrasen公司没有足够的资金给安保军火库统一配备这款新式手枪。 \
+	它在短时间内并没有普及开来，但这并不代表着它是把冷门的武器。 \
+	目前来看，还是有不少安保人员愿意自掏腰包购买这款手枪，用于取代其他.38发射器。"
 
-// /obj/item/gun/ballistic/automatic/pistol/m38/add_seclight_point()
-// 	AddComponent(/datum/component/seclite_attachable,
-// 		light_overlay_icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns32x.dmi',
-// 		light_overlay = "battle_pistol_flashlight",
-// 		overlay_x = 0,
-// 		overlay_y = 0)
+/obj/item/gun/ballistic/automatic/pistol/c38/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_NANOTRASEN)
+
+/obj/item/gun/ballistic/automatic/pistol/c38/add_seclight_point()
+	AddComponent(/datum/component/seclite_attachable, \
+		light_overlay_icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns32x.dmi', \
+		light_overlay = "nt38_flashlight", \
+		overlay_x = 0, \
+		overlay_y = 0)
 
 //	sofap
 /obj/item/gun/ballistic/automatic/pistol/sofap
