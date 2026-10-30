@@ -16,25 +16,25 @@
 /obj/item/ammo_box/magazine/tac9/starts_empty
 	start_empty = TRUE
 
-// /obj/item/ammo_box/magazine/m38_pistol
-// 	name = "M38手枪弹匣(.38)"
-// 	desc = "一支适用于M38手枪的.38弹匣。"
-// 	icon = 'modular_z121/icons/obj/guns/weapon_addtion/ammo.dmi'
-// 	icon_state = "38mag"
-// 	base_icon_state = "38mag"
-// 	ammo_type = /obj/item/ammo_casing/c38
-// 	caliber = CALIBER_38
-// 	max_ammo = 12
-// 	multiple_sprites = AMMO_BOX_FULL_EMPTY
-// 	ammo_band_icon = "+38mag_ammo_band"
-// 	ammo_band_color = null
+/obj/item/ammo_box/magazine/m38_pistol
+	name = "NT-38手枪弹匣"
+	desc = "标准的NT-38手枪弹匣，可容纳12发.38弹药。"
+	icon = 'modular_z121/icons/obj/guns/weapon_addtion/ammo.dmi'
+	icon_state = "38mag"
+	base_icon_state = "38mag"
+	ammo_type = /obj/item/ammo_casing/c38
+	caliber = CALIBER_38
+	max_ammo = 12
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+	ammo_band_icon = "+38mag_ammo_band"
+	ammo_band_color = null
 
-// /obj/item/ammo_box/magazine/m38_pistol/update_icon_state()
-// 	. = ..()
-// 	icon_state = "[base_icon_state]-[round(ammo_count(), 3)]"
+/obj/item/ammo_box/magazine/m38_pistol/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state]-[round(ammo_count(), 3)]"
 
-// /obj/item/ammo_box/magazine/m38_pistol/starts_empty
-// 	start_empty = TRUE
+/obj/item/ammo_box/magazine/m38_pistol/starts_empty
+	start_empty = TRUE
 
 /obj/item/ammo_box/speedloader/bfr500
 	name = "BFR-500 快速装弹器"
