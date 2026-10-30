@@ -10058,4 +10058,5 @@
 #include "modular_z121\code\modules\signal_gun\signal_gun_recipe.dm"
 #include "modular_z121\code\modules\waterbucket\waterbucket.dm"
 #include "modular_z121\code\modules\waterbucket\waterbucket_recipe.dm"
+#include "modular_z121\code\modules\plasma_vent\code\plasma_vent.dm"
 // END_INCLUDE
