@@ -12,6 +12,12 @@
 	access_view = FALSE
 	express_lock = FALSE
 
+/datum/supply_pack/companies/ballistics/intern_project/sidearm/nt38
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/c38)
+	access = FALSE
+	access_view = FALSE
+	express_lock = FALSE
+
 /datum/supply_pack/companies/ballistics/intern_project/sidearm/bfr500
 	contains = list(/obj/item/gun/ballistic/revolver/single)
 	cost = PAYCHECK_COMMAND * 6
@@ -73,6 +79,9 @@
 
 /datum/supply_pack/companies/mags_and_ammo/intern_project/tac9
 	contains = list(/obj/item/ammo_box/magazine/tac9/starts_empty)
+
+/datum/supply_pack/companies/mags_and_ammo/intern_project/nt38
+	contains = list(/obj/item/ammo_box/magazine/m38_pistol/starts_empty)
 
 /datum/supply_pack/companies/mags_and_ammo/intern_project/bfr500
 	contains = list(/obj/item/ammo_box/speedloader/bfr500)
