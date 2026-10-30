@@ -168,9 +168,7 @@ export function PlasmaVent() {
         {!handshaking && !linked && (
           <Section title="Deployment">
             <Box mb={1} color="label">
-              Finish the vent on a machine frame with its board and tier-3
-              parts. It comes out as a single-tile compressed crate; unfold it
-              from here.
+              Build the vent, then unfold the crate from here.
             </Box>
             {pack ? (
               <Button.Confirm
