@@ -24,10 +24,10 @@
 		is_light_removable = FALSE, \
 	)
 
-//	bp-38
+//	NT-38
 /obj/item/gun/ballistic/automatic/pistol/c38
 	name = "NT-38半自动手枪"
-	desc = "Nanotrasen公司最近推出的新款半自动手枪，尚未大规模普及，使用配套的12发.38特种弹弹匣。"
+	desc = "Nanotrasen公司最近推出的新款半自动手枪，尚未大规模普及，使用配套的12发.38手枪弹匣。"
 
 	icon = 'modular_z121/icons/obj/guns/weapon_addtion/guns32x.dmi'
 	icon_state = "nt38"
