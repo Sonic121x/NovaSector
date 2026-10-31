@@ -719,7 +719,7 @@
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/tryToShootAt(list/atom/movable/things_in_my_lawn) //better target prioritization, shoots at closest simple mob
 	var/turf/my_lawn = get_turf(src)
 	while(things_in_my_lawn.len > 0)
-		var/atom/movable/whipper_snapper = get_closest_atom(/mob/living, things_in_my_lawn, my_lawn)
+		var/atom/movable/whipper_snapper = get_closest_atom(/atom/movable, things_in_my_lawn, my_lawn) // ZH EDIT CHANGE - ORIGINAL: var/atom/movable/whipper_snapper = get_closest_atom(/mob/living, things_in_my_lawn, my_lawn)
 		things_in_my_lawn -= whipper_snapper
 		if(target(whipper_snapper))
 			return TRUE
