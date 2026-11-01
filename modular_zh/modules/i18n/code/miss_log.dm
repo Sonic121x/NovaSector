@@ -8,6 +8,10 @@
 // 产出 [log_directory]/i18n_misses.log，去重计数（首次 + 10/100/1000 次时各写一行）；收满上限后停止扫描。
 // 离线聚合与归类（在目录=路径没接通 / 不在目录=没进抽取）见 tools/i18n/miss-scan.mjs。
 //
+// **可以常开在生产服**：落地缓存照常工作，不为采集绕开。一句话第一次算出来带漏翻时，把它的漏翻
+// 片段记进 i18n_miss_runs（按缓存键）；之后缓存命中同一句时按表补记次数（命中点内联查 i18n_miss_runs），
+// 频次照样准确，命中路径只多一次关联表查找。只有带漏翻的句子进表，量级与 i18n_miss_counts 相同。
+//
 // 噪音控制：run 需 ≥3 个拉丁词（或 2 词且含小写开头词——放行 "toggle safety" 类短语、
 // 挡掉 "John Smith" 类人名）；单条 ≤240 字符；唯一串数量封顶防内存膨胀。玩家自己输入的
 // 聊天本就不过 fallback 层（skip_i18n_fallback / i18n_player_chat_types），不会被记录。
@@ -18,14 +22,23 @@ GLOBAL_VAR_INIT(i18n_log_misses, FALSE)
 /// 已记录串 -> 出现次数。运行期只增，round 结束随进程回收。
 GLOBAL_LIST_EMPTY(i18n_miss_counts)
 
-// 唯一串数量**不设上限**。这是采集工具、不是运行期功能（config I18N_LOG_MISSES 默认关，
-// 只在 miss-harvest / 专门开一局采数据时打开），截断带来的唯一后果是「条数不再增长」——
-// 而那与「真的采干净了」表现完全一样，是一种会让后续所有分析静默失真的假象。
-// 采一轮的量级是几百到几千条去重串，内存代价可以忽略。
+/// 来源 -> (句子键 -> 该句的漏翻 run 列表)。**只存有漏翻的句子**：缓存命中时一次查表就知道要不要补记，
+/// 没有漏翻的绝大多数命中查到 null 即返回。扫过且干净的句子记在 i18n_miss_clean。见 lang_log_miss_scan。
+GLOBAL_LIST_EMPTY(i18n_miss_runs)
+/// 来源 -> (句子键 -> TRUE)：扫过且没有漏翻的句子，只在扫描路径上查。
+GLOBAL_LIST_EMPTY(i18n_miss_clean)
+
+// 唯一串数量**不设上限**：截断带来的唯一后果是「条数不再增长」—— 而那与「真的采干净了」表现
+// 完全一样，是一种会让后续所有分析静默失真的假象。去重后的量级等于「场上出现过多少条不同的英文」，
+// 单测一轮几百到几千条，生产服一局同一量级（玩家自己打的字不经这些层）；随 world 重启回收。
 /// 单条记录最大长度：更长的多为玩家书写/超长拼接，截断意义不大，直接跳过。
 #define I18N_MISS_MAX_LENGTH 240
 /// 首次记录时附带的「整行上下文」最大长度。
 #define I18N_MISS_CONTEXT_LENGTH 200
+/// 每个来源最多记住多少个扫描过的句子（见 lang_log_miss_scan）。
+#define I18N_MISS_SCAN_MEMO_MAX 16384
+/// 超过这个长度的句子在备忘表里用 md5 作键。
+#define I18N_MISS_KEY_MAX_LENGTH 512
 // token 分类（lang_i18n_token_kind 返回值）
 #define I18N_TOKEN_WORD 1
 #define I18N_TOKEN_NEUTRAL 2
@@ -138,13 +151,22 @@ GLOBAL_VAR_INIT(i18n_miss_tag_regex, regex(@"<[^>]*>|&[#A-Za-z0-9]+;", "g"))
 /// 闸门只挡**形态上不可能是文案**的值：标识符（含 `_` 或 `/`、全大写常量）、无字母串、含 CJK
 /// （已经译了）、超长（玩家书写）。单词小写名一律放行 —— 那正是要看的那一类。
 /// `origin` 是调用点能提供的最强线索（显示边界给 `src.type`），直接决定该往哪张表补。
+///
+/// 调用很频繁（聊天里每个人名实参都会走到），所以判定结果要记住：记过的值只计数，判为「不是文案」
+/// 的值进一张有上限的表，下次直接跳过，不再逐字符检查。
 /proc/lang_log_miss_value(text, source, origin)
 	if(!GLOB.i18n_log_misses || !istext(text))
 		return
-	var/length_of_text = length(text)
-	if(length_of_text < 2 || length_of_text > I18N_MISS_MAX_LENGTH)
+	if(!isnull(GLOB.i18n_miss_counts[text]))
+		lang_log_miss(text, source)
 		return
-	if(!lang_miss_value_candidate(text))
+	var/static/list/rejected = list()
+	if(rejected[text])
+		return
+	var/length_of_text = length(text)
+	if(length_of_text < 2 || length_of_text > I18N_MISS_MAX_LENGTH || !lang_miss_value_candidate(text))
+		if(length(rejected) < I18N_MISS_SCAN_MEMO_MAX)
+			rejected[text] = TRUE
 		return
 	lang_log_miss(text, source, origin ? "来源: [origin]" : null)
 
@@ -178,21 +200,59 @@ GLOBAL_VAR_INIT(i18n_miss_tag_regex, regex(@"<[^>]*>|&[#A-Za-z0-9]+;", "g"))
 		return FALSE
 	return TRUE
 
-/// fallback 层出口扫描：对（已过模板引擎 + AC 的）文本提取残留英文 run 并记录。
-/proc/lang_log_miss_scan(text, source)
+/// 输出边界的漏翻采集：对（已过全部翻译层的）文本提取残留英文 run 并记录。
+///
+/// **每个不同的句子最多扫一次**：扫描结果（含「没有漏翻」）按 `key` 记进 i18n_miss_runs，同一句再出现
+/// 时只查表计数。落地缓存放不下的输入（超长页面、缓存已满后的新句子）每次都会
+/// 重算翻译，若每次也重扫，采集就成了热路径上的固定开销。超长 key 存 md5，不存原文。备忘表满了就不再
+/// 扫新句子：宁可少采，也不拖慢。
+/proc/lang_log_miss_scan(text, source, key)
 	// 有效 run 至少有两个词；无任何分隔符时避免 regex.Replace + splittext 分配。
 	if(!istext(text) || (!findtext(text, " ") && !findtext(text, "\t") && !findtext(text, "\n")))
+		return
+	var/list/by_key = lang_miss_table(GLOB.i18n_miss_runs, source)
+	var/list/clean = lang_miss_table(GLOB.i18n_miss_clean, source)
+	key = lang_miss_key(istext(key) ? key : text)
+	if(clean[key])
+		return
+	var/list/known_runs = by_key[key]
+	if(known_runs)
+		lang_log_miss_runs(known_runs, source)
+		return
+	if(length(by_key) + length(clean) >= I18N_MISS_SCAN_MEMO_MAX)
 		return
 	// 整行做上下文：剥掉标签与多余空白，截断到可读长度（日志一行装得下、又足够认出是哪句话）。
 	var/regex/tag_regex = GLOB.i18n_miss_tag_regex
 	var/context = trim(tag_regex.Replace(text, " "))
 	if(length(context) > I18N_MISS_CONTEXT_LENGTH)
 		context = copytext(context, 1, I18N_MISS_CONTEXT_LENGTH) + "…"
-	for(var/run in lang_i18n_extract_runs(text))
+	var/list/runs = lang_i18n_extract_runs(text)
+	for(var/run in runs)
 		lang_log_miss(run, source, "整行: [context]")
+	if(length(runs))
+		by_key[key] = runs
+	else
+		clean[key] = TRUE
+
+/proc/lang_log_miss_runs(list/runs, source)
+	for(var/run in runs)
+		lang_log_miss(run, source)
+
+/proc/lang_miss_table(list/root, source)
+	var/list/by_key = root[source]
+	if(!islist(by_key))
+		by_key = list()
+		root[source] = by_key
+	return by_key
+
+/// 备忘表的键：短句用原文（与落地缓存同键），长文本用 md5。
+/proc/lang_miss_key(text)
+	return length(text) > I18N_MISS_KEY_MAX_LENGTH ? md5(text) : text
 
 #undef I18N_TOKEN_WORD
 #undef I18N_TOKEN_NEUTRAL
 #undef I18N_TOKEN_BREAK
 #undef I18N_MISS_MAX_LENGTH
 #undef I18N_MISS_CONTEXT_LENGTH
+#undef I18N_MISS_SCAN_MEMO_MAX
+#undef I18N_MISS_KEY_MAX_LENGTH

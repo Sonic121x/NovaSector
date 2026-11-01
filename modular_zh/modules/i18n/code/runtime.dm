@@ -638,12 +638,52 @@ GLOBAL_LIST_EMPTY(i18n_word_pools)
 /// 见 lang_localize_arg 末尾的 HTML 兜底：那条路会经模板引擎绕回自身，用它挡住失控下探。
 GLOBAL_VAR_INIT(i18n_arg_html_depth, 0)
 
+/// locale -> list(反查表, 实参 -> 结果)。见 lang_localize_arg。
+GLOBAL_LIST_EMPTY(i18n_arg_cache)
+#define I18N_ARG_CACHE_MAX 8192
+
+/// LANG 实参的本地化。实际的查找链在 lang_localize_arg_uncached；这里是一层结果缓存。
+///
+/// 为什么要缓存：查不到的实参（人名、玩家起的名字）要把整条链跑完 —— 原样、剥冠词、转小写、首字母
+/// 大写、去复数，最多 7 次 lang_reverse_text，每次都带一遍归一化正则，实测单次约 39 µs，而聊天里每个
+/// 人名都会走一次。结果只取决于实参和目录，可以记住。
+///
+/// 安全线：
+///   · 缓存挂在**反查表这个对象**上：反查表重建（单测注入临时 locale/目录后会删掉它）缓存就作废；
+///     反查表还没建好时不缓存，免得把「目录未就绪时的英文」钉死。
+///   · 不含 ASCII 字母的实参（数字、已是中文）直接返回、不进缓存：目录的英文键一定含字母，而动态数字会把缓存塞满。
+///   · 含标签的实参不缓存：那条路经切块器、受递归深度守卫影响。
+///   · 有上限、不淘汰，与其它落地缓存一致。
 /proc/lang_localize_arg(arg, origin)
 	if(!length(arg))
 		return arg
 	// 玩家角色名作文本实参（`"[registered_name]的ID卡"`、聊天里的人名）同样不翻，见 identity_names.dm。
 	if(GLOB.i18n_identity_names?[arg])
 		return arg
+	if(!istext(arg))
+		return lang_localize_arg_uncached(arg, origin)
+	var/static/regex/ascii_letter = regex(@"[A-Za-z]")
+	if(!ascii_letter.Find(arg))
+		return arg
+	var/locale = GLOB.i18n_server_locale
+	var/list/reverse = GLOB.i18n_reverse[locale]
+	if(!islist(reverse) || findtext(arg, "<"))
+		return lang_localize_arg_uncached(arg, origin)
+	var/list/entry = GLOB.i18n_arg_cache[locale]
+	if(!islist(entry) || entry[1] != reverse)
+		entry = list(reverse, list())
+		GLOB.i18n_arg_cache[locale] = entry
+	var/list/cache = entry[2]
+	var/cached = cache[arg]
+	if(!isnull(cached))
+		if(cached == arg && GLOB.i18n_log_misses)
+			lang_log_miss_value(arg, "arg", origin)
+		return cached
+	. = lang_localize_arg_uncached(arg, origin)
+	if(length(cache) < I18N_ARG_CACHE_MAX)
+		cache[arg] = .
+
+/proc/lang_localize_arg_uncached(arg, origin)
 	// span_*() 包裹的实参：改写后的调用形如
 	// `LANG(key, list(span_bold("[read_only ? "protected" : "unprotected"]")))`，
 	// 运行期传进来的是 `<b>unprotected</b>` —— 整串既不是状态词也不是目录键，下面每一步精确
@@ -1701,10 +1741,14 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 	if(!multiword)
 		return lang_reverse_text_in(text, locale)
 	var/list/phrase_cache = GLOB.i18n_tgui_phrase_cache
-	var/cache_ready = !GLOB.i18n_log_misses && islist(phrase_cache) && lang_runtime_is_ready() && lang_catalog_locale_is_loaded(locale)
+	var/cache_ready = islist(phrase_cache) && lang_runtime_is_ready() && lang_catalog_locale_is_loaded(locale)
 	if(cache_ready)
 		var/cached = phrase_cache[text]
 		if(!isnull(cached))
+			if(GLOB.i18n_log_misses)
+				var/list/miss_runs = GLOB.i18n_miss_runs["tgui"] // 内联：缓存命中是热路径
+				if(miss_runs?[text])
+					lang_log_miss_runs(miss_runs[text], "tgui")
 			return cached
 	// lang_reverse_suffixed 而非裸 lang_reverse_text：TGUI 负载里同样有「基础句 + 运行期追加
 	// 后缀」的值（赏金 description 加高优先级说明、手术 desc 加「每器官一次」），整串不是目录键，
@@ -1717,7 +1761,7 @@ GLOBAL_LIST_EMPTY(i18n_tgui_phrase_cache)
 		. = lang_localize_chain(text, locale, allow_template = TRUE, exact_already_checked = TRUE)
 	// 漏翻采集：反查与模板引擎都没命中的 TGUI 负载值（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
 	if(GLOB.i18n_log_misses && . == text && locale != DEFAULT_UI_LOCALE)
-		lang_log_miss_scan(text, "tgui")
+		lang_log_miss_scan(text, "tgui", text)
 	if(cache_ready && length(phrase_cache) < I18N_TGUI_PHRASE_CACHE_MAX)
 		phrase_cache[text] = .
 
@@ -1824,6 +1868,7 @@ GLOBAL_LIST_INIT(i18n_payload_prose_keys, build_i18n_policy_set("payload_prose_k
 	return data
 
 #undef I18N_TGUI_PHRASE_CACHE_MAX
+#undef I18N_ARG_CACHE_MAX
 
 /// 职业描述本地化（偏好菜单职业 tab 的 tooltip）。antag_opt_in 模块把「opt-in 后缀句」拼到
 /// description 末尾（`description = initial(description) + suffix`，见 antag_opt_in/code/job.dm），
