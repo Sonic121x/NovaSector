@@ -38,6 +38,7 @@
 	assets = list(
 		"Pixellari.ttf" = file("interface/fonts/Pixellari.ttf"),
 		"Grand9K_Pixel.ttf" = file("interface/fonts/Grand9K_Pixel.ttf"),
+		"escape_menu_zh.woff2" = file("modular_zh/modules/i18n/fonts/escape_menu_zh.woff2"), // ZH EDIT ADDITION - I18N: pixel CJK glyphs for the translated labels (tools/i18n/escape-menu-font.py)
 	)
 	parents = list(
 		"fonts.css" = file("tgui/packages/tgui-escape-menu/styles/fonts.css"),

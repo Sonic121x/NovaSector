@@ -3,6 +3,8 @@ import './styles/main.scss';
 import { useEffect, useReducer, useRef } from 'react';
 
 import { playCloseSounds, playOpenSounds } from './audio';
+// ZH EDIT ADDITION - I18N
+import { setTranslations, t } from './i18n';
 import { AdminPage } from './pages/AdminPage';
 import { HomePage } from './pages/HomePage';
 import { LeaveBodyPage } from './pages/LeaveBodyPage';
@@ -42,6 +44,7 @@ export type ServerState = {
   players: PlayerInfo[];
   ignoredOffline: string[];
   suicideIcon: string | null;
+  i18n?: unknown; // ZH EDIT ADDITION - I18N
 };
 
 export type ResourceLink = {
@@ -124,6 +127,7 @@ export function EscapeMenu() {
 
   useEffect(() => {
     Byond.subscribeTo('init', (data: ServerState) => {
+      setTranslations(data.i18n); // ZH EDIT ADDITION - I18N
       dispatch({ type: 'serverUpdate', state: data });
     });
 
@@ -205,31 +209,41 @@ export function EscapeMenu() {
 function Details({ serverState }: { serverState: ServerState }) {
   return (
     <div className="escape-menu__details">
-      <div>Round ID: {serverState.roundId || 'Unset'}</div>
-      <div>Server Time: {serverState.serverTime}</div>
-      <div>Shift Time: {serverState.shiftTime}</div>
+      {/* ZH EDIT CHANGE START - I18N */}
       <div>
-        Map:{' '}
+        {t('Round ID:')} {t(serverState.roundId || 'Unset')}
+      </div>
+      <div>
+        {t('Server Time:')} {serverState.serverTime}
+      </div>
+      <div>
+        {t('Shift Time:')} {t(serverState.shiftTime)}
+      </div>
+      <div>
+        {t('Map:')}{' '}
         {serverState.mapFeedbackLink ? (
           <span
             className="escape-menu__details-link"
             onClick={() => Byond.command(`.url ${serverState.mapFeedbackLink}`)}
           >
-            {serverState.mapName || 'Loading...'}
+            {t(serverState.mapName || 'Loading...')}
           </span>
         ) : (
-          serverState.mapName || 'Loading...'
+          t(serverState.mapName || 'Loading...')
         )}
         {!!serverState.mapWebmap && (
           <span
             className="escape-menu__details-link"
             onClick={() => Byond.command(`.url ${serverState.mapWebmap}`)}
           >
-            {` (Open Map)`}
+            {` ${t('(Open Map)')}`}
           </span>
         )}
       </div>
-      <div>Time Dilation: {serverState.timeDilation}%</div>
+      <div>
+        {t('Time Dilation:')} {serverState.timeDilation}%
+      </div>
+      {/* ZH EDIT CHANGE END */}
     </div>
   );
 }

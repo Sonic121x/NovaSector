@@ -64,6 +64,7 @@
 		"autopsy_labels.json": { "domain": "scoped:autopsy_labels", "owner": "manual" },
 		"blood_decal_names.json": { "domain": "scoped:blood_decal_names", "owner": "manual" },
 		"duration_formatting.json": { "domain": "scoped:duration_formatting", "owner": "manual" },
+		"escape_menu_labels.json": { "domain": "scoped:escape_menu_labels", "owner": "manual" },
 		"grammar_tokens.json": { "domain": "scoped:grammar_tokens", "owner": "manual" },
 		"health_scan_labels.json": { "domain": "scoped:health_scan_labels", "owner": "manual" },
 		"list_formatting.json": { "domain": "scoped:list_formatting", "owner": "manual" },

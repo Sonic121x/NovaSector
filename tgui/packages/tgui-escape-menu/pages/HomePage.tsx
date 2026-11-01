@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Tooltip } from 'tgui-core/components';
 
 import type { ResourceLink } from '../EscapeMenu';
+// ZH EDIT ADDITION - I18N
+import { t } from '../i18n';
 
 type ServerState = {
   stationName: string;
@@ -53,20 +55,20 @@ export function HomePage({
     <>
       <div className="escape-menu__home-column">
         <div className="escape-menu__title">
-          <div className="escape-menu__subtitle">Another day on...</div>
+          <div className="escape-menu__subtitle">{t('Another day on...')}</div>
           <div className="escape-menu__station-name">
             {serverState.stationName}
           </div>
         </div>
         <div className="escape-menu__buttons">
-          <MenuButton onClick={onClose}>Resume</MenuButton>
+          <MenuButton onClick={onClose}>{t('Resume')}</MenuButton>
           <MenuButton
             onClick={() => {
               onAction('character');
               onClose();
             }}
           >
-            Character
+            {t('Character')}
           </MenuButton>
           <MenuButton
             onClick={() => {
@@ -74,19 +76,21 @@ export function HomePage({
               onClose();
             }}
           >
-            Settings
+            {t('Settings')}
           </MenuButton>
-          <MenuButton onClick={() => onNavigate('players')}>Players</MenuButton>
+          <MenuButton onClick={() => onNavigate('players')}>
+            {t('Players')}
+          </MenuButton>
           <MenuButton
             onClick={() => onNavigate('admin')}
             blinking={serverState.hasTicketNotification}
             tooltip={
               serverState.hasTicketNotification
-                ? 'An admin is trying to talk to you!'
+                ? t('An admin is trying to talk to you!')
                 : undefined
             }
           >
-            Admin Help
+            {t('Admin Help')}
           </MenuButton>
           {/* NOVA EDIT REMOVAL BEGIN - original: Leave Body button navigating to the generic leave-body page
           <MenuButton
@@ -104,7 +108,7 @@ export function HomePage({
             }}
             disabled={!serverState.canOpfor}
           >
-            OPFOR
+            {t('OPFOR')}
           </MenuButton>
           <MenuButton
             onClick={() => {
@@ -113,7 +117,7 @@ export function HomePage({
             }}
             disabled={!serverState.canOpfor}
           >
-            Ghost
+            {t('Ghost')}
           </MenuButton>
           <MenuButton
             onClick={() => {
@@ -122,10 +126,12 @@ export function HomePage({
             }}
             disabled={!serverState.canRespawn}
           >
-            Respawn
+            {t('Respawn')}
           </MenuButton>
           {/* NOVA EDIT ADDITION END */}
-          <MenuButton onClick={() => onNavigate('quit')}>Quit</MenuButton>
+          <MenuButton onClick={() => onNavigate('quit')}>
+            {t('Quit')}
+          </MenuButton>
         </div>
       </div>
       <div className="escape-menu__resources">
@@ -140,7 +146,7 @@ export function HomePage({
               <Tooltip
                 key={resource.id}
                 position="top"
-                content={resource.tooltip}
+                content={t(resource.tooltip)}
               >
                 <button
                   className="escape-menu__resource-button"
@@ -148,7 +154,7 @@ export function HomePage({
                 >
                   <IconButton iconClass={resource.id} />
                   <span className="escape-menu__resource-button-label">
-                    {resource.label}
+                    {t(resource.label)}
                   </span>
                 </button>
               </Tooltip>
@@ -160,7 +166,7 @@ export function HomePage({
           onClick={onToggleResources}
         >
           <IconButton iconClass="resources" />
-          <span className="escape-menu__resource-label">Resources</span>
+          <span className="escape-menu__resource-label">{t('Resources')}</span>
         </button>
       </div>
     </>

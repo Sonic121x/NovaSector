@@ -1,4 +1,6 @@
 import type { PlayerInfo, ServerState } from '../EscapeMenu';
+// ZH EDIT ADDITION - I18N
+import { t } from '../i18n';
 
 type Props = {
   serverState: ServerState;
@@ -12,7 +14,7 @@ export function PlayersPage({ serverState, onNavigate, onAction }: Props) {
       <BackButton onClick={() => onNavigate('home')} />
       <div className="escape-menu__player-list">
         {serverState.admins.length > 0 ? (
-          <PlayerSection title="Admins">
+          <PlayerSection title={t('Admins')}>
             {serverState.admins.map((admin) => (
               <PlayerEntry
                 key={admin.ckey}
@@ -25,10 +27,10 @@ export function PlayersPage({ serverState, onNavigate, onAction }: Props) {
           </PlayerSection>
         ) : (
           <div className="escape-menu__player-section-title">
-            No Admins Online!
+            {t('No Admins Online!')}
           </div>
         )}
-        <PlayerSection title="Players">
+        <PlayerSection title={t('Players')}>
           {serverState.players.map((player) => (
             <PlayerEntry
               key={player.ckey}
@@ -40,7 +42,7 @@ export function PlayersPage({ serverState, onNavigate, onAction }: Props) {
           ))}
         </PlayerSection>
         {serverState.ignoredOffline.length > 0 && (
-          <PlayerSection title="Ignored (Offline)">
+          <PlayerSection title={t('Ignored (Offline)')}>
             {serverState.ignoredOffline.map((ckey) => (
               <div
                 key={ckey}
@@ -68,7 +70,7 @@ function BackButton({ onClick }: { onClick: () => void }) {
         <span className="escape-menu-icons40x40 template" />
         <span className="escape-menu-icons40x40 back escape-menu__icon-overlay" />
       </div>
-      <span>Back</span>
+      <span>{t('Back')}</span>
     </button>
   );
 }

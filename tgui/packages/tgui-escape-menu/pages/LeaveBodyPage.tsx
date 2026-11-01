@@ -1,4 +1,6 @@
 import type { ServerState } from '../EscapeMenu';
+// ZH EDIT ADDITION - I18N
+import { t } from '../i18n';
 
 type Props = {
   serverState: ServerState;
@@ -34,7 +36,7 @@ export function LeaveBodyPage({
               />
             )}
           </div>
-          <div className="escape-menu__large-button-label">Suicide</div>
+          <div className="escape-menu__large-button-label">{t('Suicide')}</div>
         </button>
         <button
           className="escape-menu__large-button"
@@ -47,7 +49,7 @@ export function LeaveBodyPage({
             <span className="escape-menu-icons96x96 leave-template" />
             <span className="escape-menu-icons96x96 leave-ghost escape-menu__icon-overlay" />
           </div>
-          <div className="escape-menu__large-button-label">Ghost</div>
+          <div className="escape-menu__large-button-label">{t('Ghost')}</div>
         </button>
       </div>
     </>
@@ -61,7 +63,7 @@ function BackButton({ onClick }: { onClick: () => void }) {
         <span className="escape-menu-icons40x40 template" />
         <span className="escape-menu-icons40x40 back escape-menu__icon-overlay" />
       </div>
-      <span>Back</span>
+      <span>{t('Back')}</span>
     </button>
   );
 }

@@ -7,3 +7,12 @@
 	font-family: "Grand9K Pixel";
 	src: url("Grand9K_Pixel.ttf") format("truetype");
 }
+
+/* ZH EDIT ADDITION START - I18N: the pixel fonts above have no CJK glyphs. This one only holds
+   the characters of strings/i18n/escape_menu_labels.json (tools/i18n/escape-menu-font.py);
+   anything else falls back to the system font. */
+@font-face {
+	font-family: "Escape Menu ZH";
+	src: url("escape_menu_zh.woff2") format("woff2");
+}
+/* ZH EDIT ADDITION END */
