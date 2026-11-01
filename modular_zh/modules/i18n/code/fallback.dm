@@ -18,15 +18,16 @@ GLOBAL_LIST_EMPTY(i18n_fallback_cache)
 /// 全中文输出不需要进模板引擎或 rust-g AC。
 GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 
-/// 只缓存有界的完整输入；miss 采集开启时不缓存，保留准确的频次计数。
+/// 只缓存有界的完整输入。miss 采集开启时同样缓存：命中时按 i18n_miss_runs 补记次数。
 /proc/lang_fallback_cache_store(locale, source_text, translated_text)
-	if(GLOB.i18n_log_misses || length(source_text) > I18N_FALLBACK_CACHE_MAX_LENGTH)
+	if(length(source_text) > I18N_FALLBACK_CACHE_MAX_LENGTH)
 		return translated_text
 	var/list/cache = GLOB.i18n_fallback_cache[locale]
 	if(!islist(cache))
 		cache = list()
 		GLOB.i18n_fallback_cache[locale] = cache
-	if(length(cache) < I18N_FALLBACK_CACHE_MAX && !(source_text in cache))
+	// `cache[key]` 而不是 `key in cache`：后者对关联列表也是线性扫描。值一定是字符串。
+	if(length(cache) < I18N_FALLBACK_CACHE_MAX && isnull(cache[source_text]))
 		cache[source_text] = translated_text
 	return translated_text
 
@@ -126,8 +127,14 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 		return text
 	var/source_text = text
 	var/list/cache = GLOB.i18n_fallback_cache[locale]
-	if(!GLOB.i18n_log_misses && length(text) <= I18N_FALLBACK_CACHE_MAX_LENGTH && islist(cache) && (text in cache))
-		return cache[text]
+	if(length(text) <= I18N_FALLBACK_CACHE_MAX_LENGTH && islist(cache))
+		var/cached = cache[text]
+		if(!isnull(cached))
+			if(GLOB.i18n_log_misses)
+				var/list/miss_runs = GLOB.i18n_miss_runs["fallback"] // 内联：缓存命中是热路径
+				if(miss_runs?[text])
+					lang_log_miss_runs(miss_runs[text], "fallback")
+			return cached
 	// 剥掉 BYOND 文本宏 \improper / \proper（0xFF 起头的控制字节）：模板引擎的锚匹配走 rustg，
 	// 按 UTF-8 处理字符串，这些非 UTF-8 字节会被替换成 U+FFFD（显示为 ��，如「那是 ��space」）。中文无
 	// 大小写，这两个宏（控制后随单词首字母大小写）本就无意义 → 直接剥除。findtext 门控让无宏的
@@ -147,7 +154,7 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 	if(!has_word_separator)
 		text = lang_localize_chain(text, locale, allow_template = FALSE)
 		if(GLOB.i18n_log_misses)
-			lang_log_miss_scan(text, "fallback")
+			lang_log_miss_scan(text, "fallback", source_text)
 		return lang_fallback_cache_store(locale, source_text, text)
 	// 整串精确 → 模板逆匹配，顺序由 lang_localize_chain 统一定义。
 	// **整串精确必须排在模板之前**：目录里若正好有这一整句，它是最具体的证据。否则先跑的模板
@@ -156,7 +163,7 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 	text = lang_localize_chain(text, locale, allow_template = TRUE)
 	// 漏翻采集：所有层过完仍残留的多词英文 run（config I18N_LOG_MISSES 门控，见 miss_log.dm）。
 	if(GLOB.i18n_log_misses)
-		lang_log_miss_scan(text, "fallback")
+		lang_log_miss_scan(text, "fallback", source_text)
 	return lang_fallback_cache_store(locale, source_text, text)
 
 /// 说话者是否只说**代码写好的台词**（售货机、机器、NPC），因而可以整句走目录落地。

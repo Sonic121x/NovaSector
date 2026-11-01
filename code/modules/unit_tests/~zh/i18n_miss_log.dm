@@ -38,3 +38,43 @@
 	TEST_ASSERT_EQUAL(length(lang_i18n_extract_runs("引擎着火了！")), 0, "全中文应零产出")
 	TEST_ASSERT_EQUAL(length(lang_i18n_extract_runs("")), 0, "空串应零产出")
 	TEST_ASSERT_EQUAL(length(lang_i18n_extract_runs(null)), 0, "null 应零产出")
+
+/// 采集开着时落地缓存照常工作，缓存命中仍要计数（命中点按 i18n_miss_runs 补记）。从前采集一开就绕开缓存，
+/// 只能在单测里开；现在要能常开在生产服，两件事缺一不可：缓存真的被用上、次数不因命中而丢。
+/datum/unit_test/i18n_miss_log_cache
+	var/saved_log_misses
+	var/list/saved_cache
+	var/saved_locale
+
+#define I18N_MISS_CACHE_TEXT "Zxqv thranok quibbles zorbly onward"
+
+/datum/unit_test/i18n_miss_log_cache/Destroy()
+	if(!isnull(saved_locale))
+		GLOB.i18n_log_misses = saved_log_misses
+		GLOB.i18n_fallback_cache[saved_locale] = saved_cache
+		GLOB.i18n_miss_counts -= I18N_MISS_CACHE_TEXT
+		var/list/by_key = GLOB.i18n_miss_runs["fallback"]
+		if(islist(by_key))
+			by_key -= I18N_MISS_CACHE_TEXT
+		saved_locale = null
+	return ..()
+
+/datum/unit_test/i18n_miss_log_cache/Run()
+	var/locale = GLOB.i18n_server_locale
+	if(locale == DEFAULT_UI_LOCALE)
+		return // 英文服不经落地层
+	saved_locale = locale
+	saved_log_misses = GLOB.i18n_log_misses
+	saved_cache = GLOB.i18n_fallback_cache[locale]
+	// 空缓存：长跑的套件里缓存可能已满，那样第二次调用不会命中，测不到补记那条路。
+	GLOB.i18n_fallback_cache[locale] = list()
+	GLOB.i18n_miss_counts -= I18N_MISS_CACHE_TEXT
+	GLOB.i18n_log_misses = TRUE
+
+	lang_fallback_apply(I18N_MISS_CACHE_TEXT)
+	var/list/cache = GLOB.i18n_fallback_cache[locale]
+	TEST_ASSERT(!isnull(cache[I18N_MISS_CACHE_TEXT]), "采集开着时结果也应进落地缓存")
+	lang_fallback_apply(I18N_MISS_CACHE_TEXT)
+	TEST_ASSERT_EQUAL(GLOB.i18n_miss_counts[I18N_MISS_CACHE_TEXT], 2, "缓存命中的那次也应计数")
+
+#undef I18N_MISS_CACHE_TEXT
