@@ -309,7 +309,7 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 		var/skip = lang_tpl_leading_skip(lead)
 		match_start = cap_start + skip
 		var/capture = copytext(lead, skip + 1)
-		if(length(capture) > I18N_TPL_MAX_CAPTURE)
+		if(length(capture) > I18N_TPL_MAX_CAPTURE || lang_tpl_capture_splits_tag(capture))
 			return null
 		captures += capture
 	else
@@ -318,10 +318,14 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 	for(var/i in (first_lit_idx + 1) to (trailing_ph ? nsegs - 1 : nsegs))
 		var/seg = segs[i]
 		var/q = findtext(text, seg, cursor)
+		var/capture = q ? copytext(text, cursor, q) : null
+		// A separator found inside a tag (the space in `<span class=…>`) is not the one between the placeholders: try the next.
+		while(q && lang_tpl_capture_splits_tag(capture) && length(capture) <= I18N_TPL_MAX_CAPTURE)
+			q = findtext(text, seg, q + 1)
+			capture = q ? copytext(text, cursor, q) : null
 		if(!q)
 			return null
-		var/capture = copytext(text, cursor, q)
-		if(length(capture) > I18N_TPL_MAX_CAPTURE || findtext(capture, "\n"))
+		if(length(capture) > I18N_TPL_MAX_CAPTURE || findtext(capture, "\n") || lang_tpl_capture_splits_tag(capture))
 			return null
 		captures += capture
 		cursor = q + length(seg)
@@ -336,7 +340,7 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 		var/capture = copytext(text, cursor, cap_end)
 		var/trail_skip = lang_tpl_trailing_skip(capture)
 		capture = copytext(capture, 1, length(capture) - trail_skip + 1)
-		if(length(capture) > I18N_TPL_MAX_CAPTURE)
+		if(length(capture) > I18N_TPL_MAX_CAPTURE || lang_tpl_capture_splits_tag(capture))
 			return null
 		captures += capture
 		match_end = cursor + length(capture)
@@ -349,6 +353,20 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 	return list(match_start, match_end, result)
 
 /// 前导捕获里打头的「完整 HTML 标签 + 空白」长度（这部分不属于实参，留在替换区外）。
+/// A capture that starts or ends inside an HTML tag means the literal matched inside the markup
+/// (`Do you want to play as {0} {1}?` taking the space in `<span class=…>`). Filling the zh template
+/// with the two halves glues the tag back without its space (`<spanclass='notice'>`).
+/proc/lang_tpl_capture_splits_tag(capture)
+	var/last_open = findlasttext(capture, "<")
+	if(last_open && !findtext(capture, ">", last_open))
+		return TRUE
+	var/first_close = findtext(capture, ">")
+	if(first_close)
+		var/first_open = findtext(capture, "<")
+		if(!first_open || first_open > first_close)
+			return TRUE
+	return FALSE
+
 /proc/lang_tpl_leading_skip(text)
 	var/len = length(text)
 	var/i = 1
