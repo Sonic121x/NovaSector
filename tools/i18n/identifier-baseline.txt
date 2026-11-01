@@ -45,6 +45,7 @@ Bluespace Tech (MODsuit)
 Bolts
 Bonesetter
 Boom Wire
+Bounty Fugitive Hunters
 Bowl
 Bra
 Bunny
@@ -184,6 +185,7 @@ Link
 Load Check
 Lockdown
 Loop mode
+MI13 Fugitive Hunters
 Machines
 Main Power 1
 Main Power 2
@@ -245,6 +247,7 @@ Pray
 Print Transcript
 Prisoner
 Proceed
+Psyker Fugitive Hunters
 Queen Bee
 Radiation
 Radio
@@ -265,6 +268,7 @@ Restart
 Restore Hull
 Retractor
 Rotate
+Russian Fugitive Hunters
 SDQL2
 Safeties
 Safety
@@ -302,6 +306,7 @@ Space
 Space Ninja
 Space Ruins
 SpaceBet
+Spacepol Fugitive Hunters
 Speaker
 Special
 Species

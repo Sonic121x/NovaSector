@@ -408,6 +408,7 @@
 #include "~zh\i18n_unreverse.dm"
 #include "~zh\localization_changelog.dm"
 #include "~zh\m64_conversion.dm"
+#include "~zh\multiz_navigation.dm"
 #include "~zh\newbie_guard_geoip.dm"
 #include "~zh\newbie_guard_refusal.dm"
 #include "~zh\runtime_stability.dm"

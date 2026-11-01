@@ -69,6 +69,7 @@ SUBSYSTEM_DEF(polling)
 		"poll question" = question,
 		"poll duration" = DisplayTimeText(poll_time),
 	))
+	question = lang_fallback_apply_html(question) // ZH EDIT ADDITION - I18N: the question reaches the chat inside a boxed line with the sign-up links after it, where no template can match the whole line; localize it on its own (also covers the alert tooltip and the poll panel)
 
 	// Start firing
 	total_polls++
