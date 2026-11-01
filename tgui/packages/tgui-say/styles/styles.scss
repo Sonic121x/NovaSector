@@ -138,3 +138,16 @@
   outline: 1px solid currentColor;
 }
 // NOVA EDIT ADDITION END
+
+// ZH EDIT ADDITION START - SAY_CHANNEL_PICKER
+.content-mood-2 {
+  grid-template-columns: 4rem 1fr 1.6rem 1.6rem;
+}
+
+.picker-heading {
+  align-self: end;
+  color: #8a8a8a;
+  font-size: 10px;
+  grid-column: 1 / -1;
+}
+// ZH EDIT ADDITION END

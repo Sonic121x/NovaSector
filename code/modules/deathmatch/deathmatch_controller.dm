@@ -25,7 +25,8 @@
 
 /datum/deathmatch_controller/proc/create_new_lobby(mob/host)
 	lobbies[host.ckey] = new /datum/deathmatch_lobby(host)
-	deadchat_broadcast(LANG("datum.a5cecc89a6ed7fd6", list(REF(lobbies[host.ckey]))), "<B>[host]</B>") // ZH EDIT CHANGE - I18N - ORIGINAL: deadchat_broadcast(" has opened a new deathmatch lobby. <a href=byond://?src=[REF(lobbies[host.ckey])];join=1>(Join)</a>", "<B>[host]</B>")
+	// ZH EDIT CHANGE - I18N - 链接经控制器转发，大厅已关/已开打时给提示（见 modular_zh/master_files/.../deathmatch_controller.dm）；模板不变，{0} 落在 href 里
+	deadchat_broadcast(LANG("datum.a5cecc89a6ed7fd6", list("[REF(src)];lobby=[REF(lobbies[host.ckey])]")), "<B>[host]</B>") // ORIGINAL: deadchat_broadcast(" has opened a new deathmatch lobby. <a href=byond://?src=[REF(lobbies[host.ckey])];join=1>(Join)</a>", "<B>[host]</B>")
 
 /datum/deathmatch_controller/proc/remove_lobby(ckey)
 	var/lobby = lobbies[ckey]

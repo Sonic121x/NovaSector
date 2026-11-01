@@ -86,7 +86,11 @@
 		var/list/slot_strings = list()
 		for(var/slot in required_slots)
 			var/list/slot_list = parse_slot_flags(slot)
-			slot_strings += (length(slot_list) == 1 ? "" : "one of ") + english_list(slot_list, and_text = " or ")
+			// ZH EDIT CHANGE START - i18n - 插槽名逐个本地化；整串「one of back or belt」不是目录键
+			var/slots_text = lang_english_list(slot_list, and_text = " or ")
+			slot_strings += length(slot_list) == 1 ? slots_text : LANG("obj.a0560b1a2a3fe194", list(slots_text))
+			// ORIGINAL: slot_strings += (length(slot_list) == 1 ? "" : "one of ") + english_list(slot_list, and_text = " or ")
+			// ZH EDIT CHANGE END
 		. += span_notice(LANG("obj.e4f545814896c91d", list(lang_english_list(slot_strings))))
 	if(HAS_TRAIT(user, TRAIT_DIAGNOSTIC_HUD))
 		. += span_notice(LANG("obj.9d8f41bd7a7dd5c9", list(complexity)))
@@ -126,7 +130,11 @@
 		var/list/slot_strings = list()
 		for(var/slot in required_slots)
 			var/list/slot_list = parse_slot_flags(slot)
-			slot_strings += (length(slot_list) == 1 ? "" : "one of ") + english_list(slot_list, and_text = " or ")
+			// ZH EDIT CHANGE START - i18n - 插槽名逐个本地化；整串「one of back or belt」不是目录键
+			var/slots_text = lang_english_list(slot_list, and_text = " or ")
+			slot_strings += length(slot_list) == 1 ? slots_text : LANG("obj.a0560b1a2a3fe194", list(slots_text))
+			// ORIGINAL: slot_strings += (length(slot_list) == 1 ? "" : "one of ") + english_list(slot_list, and_text = " or ")
+			// ZH EDIT CHANGE END
 		to_chat(activator, span_warning(LANG("obj.00dff316e4903068", list(src, lang_english_list(slot_strings)))))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return

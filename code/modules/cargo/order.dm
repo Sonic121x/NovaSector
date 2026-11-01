@@ -106,7 +106,7 @@
 	var/obj/item/paper/requisition/requisition_paper = new(T)
 
 	var/pack_name = lang_reverse_text(pack.name) // ZH EDIT ADDITION - i18n - pack 是 /datum/supply_pack（非 atom，name 不过落地反查）→ 单据显英文、与已译箱名对不上；显式反查（en locale no-op）
-	requisition_paper.name = "requisition form - #[id] ([pack_name])" // ZH EDIT CHANGE - i18n - ORIGINAL: ... ([pack.name])
+	requisition_paper.name = "[lang_reverse_text("Requisition Form")] - #[id] ([pack_name])" // ZH EDIT CHANGE - i18n - ORIGINAL: requisition_paper.name = "requisition form - #[id] ([pack.name])"
 	var/requisition_text = "<h2>[station_name()] [lang_reverse_text("Supply Requisition")]</h2>" // ZH EDIT - I18N - 单据标签反查（en locale no-op）
 	requisition_text += "<hr/>"
 	requisition_text += "[lang_reverse_text("Order")] #[id]<br/>" // ZH EDIT - I18N
@@ -130,16 +130,16 @@
 
 	// ZH EDIT ADDITION START - i18n - pack/packname 反查成已译箱名，让单据与实际箱子名对得上（否则单据英文、找不到对应箱子）
 	var/pack_name = lang_reverse_text(pack.name)
-	if(packname)
-		packname = lang_reverse_text(packname)
+	if(packname) // packname 是 pack datum 本身（见调用处），反查原样返回、显示时拼出英文名 → 直接用已译箱名
+		packname = pack_name
 	// ZH EDIT ADDITION END
-	manifest_paper.name = "shipping manifest - [packname?"#[id] ([pack_name])":"(Grouped Item Crate)"]" // ZH EDIT CHANGE - i18n - ORIGINAL: ([pack.name])
+	manifest_paper.name = "[lang_reverse_text("Shipping Manifest")] - [packname?"#[id] ([pack_name])":"([lang_reverse_text("Grouped Item Crate")])"]" // ZH EDIT CHANGE - i18n - ORIGINAL: manifest_paper.name = "shipping manifest - [packname?"#[id] ([pack.name])":"(Grouped Item Crate)"]"
 
-	var/manifest_text = "<h2>[command_name()] [lang_reverse_text("Shipping Manifest")]</h2>" // ZH EDIT - I18N - 单据标签反查（en locale no-op）
+	var/manifest_text = "<h2>[lang_reverse_text(command_name())] [lang_reverse_text("Shipping Manifest")]</h2>" // ZH EDIT - I18N - 单据标签反查（en locale no-op）
 	manifest_text += "<hr/>"
 	if(owner && !(owner == "Cargo"))
 		manifest_text += "[lang_reverse_text("Direct purchase from")] [owner]<br/>" // ZH EDIT - I18N
-		manifest_paper.name += " - Purchased by [owner]"
+		manifest_paper.name += " - [lang_reverse_text("Purchased by")] [owner]" // ZH EDIT CHANGE - i18n - ORIGINAL: manifest_paper.name += " - Purchased by [owner]"
 	manifest_text += "[lang_reverse_text(packname ? "Order" : "Orders")]: [id]<br/>" // ZH EDIT CHANGE - i18n - ORIGINAL: "Order[packname?"":"s"]: [id]"
 	manifest_text += "[lang_reverse_text("Destination")]: [station_name]<br/>" // ZH EDIT - I18N
 	if(packname)
@@ -152,7 +152,7 @@
 			var/obj/item/stack/thing = stuff
 			container_contents[lang_reverse_text(thing.singular_name)] += thing.amount // ZH EDIT CHANGE - i18n - stack 单数名反查（非 atom.name，落地钩子抓不到）- ORIGINAL: container_contents[thing.singular_name]
 			continue
-		container_contents[stuff.name]++
+		container_contents[lang_atom_text(stuff, stuff.name)]++ // ZH EDIT CHANGE - i18n - 实例名保持英文，显示边界才翻 - ORIGINAL: container_contents[stuff.name]++
 	if((manifest_paper.errors & MANIFEST_ERROR_CONTENTS) && container_contents)
 		if(HAS_TRAIT(container, TRAIT_NO_MANIFEST_CONTENTS_ERROR))
 			manifest_paper.errors &= ~MANIFEST_ERROR_CONTENTS

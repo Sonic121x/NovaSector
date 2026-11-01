@@ -223,6 +223,30 @@
 					continue
 				last_char_group = SPACES_DETECTED
 
+			// ZH EDIT ADDITION START - CJK_NAMES - On a Chinese server, CJK ideographs are letters and the
+			// interpunct (约翰·史密斯) is name punctuation. Other non-ASCII stays as before, so look-alike
+			// letters from other scripts still cannot be used to impersonate someone.
+			if(13312 to 19903, 19968 to 40959) // CJK Extension A, CJK Unified Ideographs
+				if(lang_locale_is_chinese())
+					number_of_alphanumeric++
+					last_char_group = LETTERS_DETECTED
+				else if(ascii_only)
+					if(strict)
+						return
+					continue
+				else
+					last_char_group = SYMBOLS_DETECTED
+			if(183) // ·
+				if(!lang_locale_is_chinese() && ascii_only)
+					if(strict)
+						return
+					continue
+				if(last_char_group == NO_CHARS_DETECTED)
+					if(strict)
+						return
+					continue
+				last_char_group = SYMBOLS_DETECTED
+			// ZH EDIT ADDITION END
 			if(127 to INFINITY)
 				if(ascii_only)
 					if(strict)
