@@ -90,7 +90,8 @@ rm -rf data/logs/ci
 # 全部 i18n 单测（i18n_unreverse / i18n_template / i18n_phobia …）一个都不会执行——而门禁仍报
 # 「单测失败 0 个」，是**假绿**。
 mkdir -p data
-TEST_MAP_JSON=_maps/map_jsons/runtimestation_minimal.json
+# TEST_MAP_JSON=<json> 换图跑（如三层的 multiz_debug；非单测地图要在 json 里加 "is_unit_test_map": true，否则 UNIT_TEST_BASIC 的测试被跳过）。
+TEST_MAP_JSON=${TEST_MAP_JSON:-_maps/map_jsons/runtimestation_minimal.json}
 # TEST_SKIP_LAVALAND=1：不加载熔岩地层，每个服务器初始化快约 14 秒，单测结果不变（2026-10-16 实测）。
 # 代价是熔岩地废墟/尸体/刷物器在初始化期报的 runtime 不再被抓到，所以默认关。
 if [[ ${TEST_SKIP_LAVALAND:-0} == 1 ]]; then

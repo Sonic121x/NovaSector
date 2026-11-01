@@ -152,4 +152,11 @@
 	TEST_ASSERT(!findtext(bolts_out, "are also visible"), \
 		"跨两个内联标签的整句没能整段查表：[bolts_out]")
 
+	// ⑦ 幽灵征召的提问：上游直接把裸英文传给 poll_ghost_candidates，角色名包在 span 里落在 {0}。
+	// 聊天里它和报名链接拼在同一个框里，整行谁都匹配不上，所以在 SSpolling 里单独本地化提问本身。
+	var/hunter_question = "Do you wish to be considered for a group of [span_notice(HUNTER_PACK_COPS)]?"
+	var/hunter_out = lang_fallback_apply_html(hunter_question)
+	TEST_ASSERT_EQUAL(hunter_out, "你希望被视为[span_notice("太空警察逃犯猎人")]团体的一员吗？", \
+		"逃犯猎人征召提问没有整句翻译")
+
 	GLOB.i18n_server_locale = saved_locale
