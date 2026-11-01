@@ -159,4 +159,22 @@
 	TEST_ASSERT_EQUAL(hunter_out, "你希望被视为[span_notice("太空警察逃犯猎人")]团体的一员吗？", \
 		"逃犯猎人征召提问没有整句翻译")
 
+	// ⑧ 模板的捕获边界不许落在标签里面。`Do you want to play as {0} {1}?` 曾拿 `<span class=…>` 里的空格当
+	// 两个占位符之间的字面段，按中文模板拼回去就成了 `<spanclass='notice'>`（默认征召提问天天见）。
+	var/default_question = "Do you want to play as [span_notice("Zxqv")]?"
+	var/default_out = lang_fallback_apply_html(default_question)
+	TEST_ASSERT(findtext(default_out, "<span class='notice'>Zxqv</span>"), \
+		"捕获切进了 span 标签内部：[default_out]")
+	TEST_ASSERT(!findtext(default_out, "play as"), "默认征召提问没有翻译：[default_out]")
+
+	// 相邻两个 span 的 `{0} {1}`：第一个空格在标签里，要接着找下一个，而不是整条放弃。
+	var/necktie_question = "Do you want to play as the spirit of [span_danger("Zxqv's")] [span_notice("horrific necktie")]?"
+	var/necktie_out = lang_fallback_apply_html(necktie_question)
+	TEST_ASSERT(!findtext(necktie_out, "play as"), "两个相邻 span 的征召提问没有翻译：[necktie_out]")
+	TEST_ASSERT(findtext(necktie_out, "<span class='danger'>"), "span 标签被拆坏：[necktie_out]")
+
+	// ⑨ 动态中途反派共用的征召提问（所有 from_ghosts 规则集）。
+	var/midround_out = lang_fallback_apply_html(LANG("datum.17f7657ed40b6371", list(span_notice("Wizard"), span_danger("Wizard"))))
+	TEST_ASSERT(!findtext(midround_out, "Looking for"), "中途反派征召提问没有翻译：[midround_out]")
+
 	GLOB.i18n_server_locale = saved_locale

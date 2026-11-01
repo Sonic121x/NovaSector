@@ -346,7 +346,7 @@
 	cocoon.balloon_alert(owner, LANG("datum.e5fd6096b859d6d9", null))
 
 	candidates = SSpolling.poll_ghost_candidates(
-		question = "Would you like to become a newly hatched blood worm? (x[num_hatchlings])",
+		question = LANG("datum.6bcdaa9bc5a6084f", list(num_hatchlings)), // ZH EDIT CHANGE - I18N - ORIGINAL: question = "Would you like to become a newly hatched blood worm? (x[num_hatchlings])",
 		role = ROLE_BLOOD_WORM_INFESTATION,
 		check_jobban = ROLE_BLOOD_WORM,
 		poll_time = cocoon_time,
