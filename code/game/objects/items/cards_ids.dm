@@ -845,9 +845,9 @@
 	var/name_string
 	if(registered_name)
 		if(trim && (honorific_position & ~HONORIFIC_POSITION_NONE))
-			name_string = "[update_honorific()]'s ID Card"
+			name_string = LANG("obj.ad9060a5947cb211", list(update_honorific())) // ZH EDIT CHANGE - I18N - ORIGINAL: name_string = "[update_honorific()]'s ID Card"
 		else
-			name_string = "[registered_name]'s ID Card"
+			name_string = LANG("obj.ad9060a5947cb211", list(registered_name)) // ZH EDIT CHANGE - I18N - ORIGINAL: name_string = "[registered_name]'s ID Card"
 	else
 		name_string = initial(name)
 

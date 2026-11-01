@@ -54,6 +54,8 @@
 /obj/machinery/computer/exodrone_control_console/ui_static_data(mob/user)
 	. = ..()
 	.["all_tools"] = GLOB.exodrone_tool_metadata
+	// ZH EDIT ADDITION - I18N - 工具名是 all_tools 的键，负载翻译只收值；另发一份名字列表让它们进 overlay（前端不读这个字段）
+	.["tool_names"] = assoc_to_keys(GLOB.exodrone_tool_metadata)
 	.["all_bands"] = GLOB.exoscanner_bands
 
 /obj/machinery/computer/exodrone_control_console/ui_data(mob/user)

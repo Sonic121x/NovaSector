@@ -56,6 +56,10 @@ const NAME_LANG_ASSIGN_ALLOWLIST: &[&str] = &[
     // 那里比的是**同一个 mob 上两个动作名之间**（给同名按钮分配不同 id），两边同时被译仍然
     // 相等，所以译名不破坏它。
     "code/modules/mod/mod_actions.dm",
+    // 物品/器官的开关动作名 `"Toggle [物品名]"`：与上面的 MOD 组件动作同形同理（`New()` 里按目标拼出，
+    // 唯一的比较是 `SetId` 里同一个 mob 上的两个动作名之间）。
+    "code/datums/actions/items/toggles.dm",
+    "code/datums/actions/items/organ_action.dm",
 ];
 
 /// 表达式的**值**是否就是 LANG 的产物（译文串）。

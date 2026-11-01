@@ -941,6 +941,7 @@ Everyone still seems to be sleeping peacefully in the hole.
 Everyone suddenly looks so tasty.
 Everything just feels better after a drink or two.
 Ewww, {0} is so dirty! I don't want to touch it!
+Examine closely...
 Examining (shift-click), talking, moving, opening doors and using computers are all unaffected.
 Except the poly file is missing...
 Execute defense routine against non-conformity.

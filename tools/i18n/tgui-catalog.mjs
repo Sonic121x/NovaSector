@@ -34,7 +34,9 @@ const OPTION_TEXT_PROPS = new Set(POLICY.option_text_props);
 // 偏好「feature 定义」里的 name/description（如 height_scaling.tsx 的 `name: 'Body Height'`）。
 // 这些是对象字面量属性、非 JSX 文本，但 PreferencesMenu 渲染 feature.name 时经自动本地化 runtime
 // 查前端目录显示。仅在 feature 定义目录下抽取，避免把任意 .tsx 里的 name/description 当文案。
-const FEATURE_LABEL_PROPS = new Set(['name', 'description']);
+// `category` 是游戏选项页的分组页签与分节标题（ACCESSIBILITY/CHAT/…）：前端拿它当分组键，但渲染只走
+// `{category}` 文本节点与 Section title，auto-localize 只翻显示，分组键不变。
+const FEATURE_LABEL_PROPS = new Set(['name', 'description', 'category']);
 const FEATURE_DEF_DIR = `${path.sep}PreferencesMenu${path.sep}preferences${path.sep}features${path.sep}`;
 
 const COMMON_ZH = {
@@ -1151,6 +1153,13 @@ const CONSTANT_LABEL_TABLES = [
   // 管道分发器的模式复选框。`act('mode', { mode: tool.bitmask })` 回传的是**位掩码**，
   // `name` 纯显示；`bitmask` 是数字、不会被 props 白名单收进来。
   { file: 'interfaces/RapidPipeDispenser.tsx', table: 'TOOLS', props: ['name'] },
+  // APC 的外部电源/充电状态文字，按电源状态编号查表后作 children 渲染（`[ {text} ]`）。
+  // `color` 是样式名，不收。
+  {
+    file: 'interfaces/Apc.jsx',
+    table: 'powerStatusMap',
+    props: ['externalPowerText', 'chargingText'],
+  },
   ...[
     { file: 'interfaces/SparringContract.tsx', tables: ['weaponlist', 'stakelist', 'weaponblurb', 'stakesblurb'] },
     { file: 'interfaces/InfuserBook.tsx', tables: ['tabs'] },
@@ -1411,8 +1420,8 @@ function extractConstantTableLabels(catalog) {
       source,
       ts.ScriptTarget.Latest,
       true,
-      // 按扩展名选 ScriptKind：用 TS 解析 .tsx 会把 `<Foo>` 当成类型断言，整个文件的 AST 就错了。
-      filePath.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
+      // 按扩展名选 ScriptKind：用 TS 解析 .tsx/.jsx 会把 `<Foo>` 当成类型断言，整个文件的 AST 就错了。
+      /\.[jt]sx$/.test(filePath) ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
     );
     const wanted = new Set(props ?? []);
     const visit = (node) => {

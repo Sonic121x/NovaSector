@@ -641,6 +641,9 @@ GLOBAL_VAR_INIT(i18n_arg_html_depth, 0)
 /proc/lang_localize_arg(arg, origin)
 	if(!length(arg))
 		return arg
+	// 玩家角色名作文本实参（`"[registered_name]的ID卡"`、聊天里的人名）同样不翻，见 identity_names.dm。
+	if(GLOB.i18n_identity_names?[arg])
+		return arg
 	// span_*() 包裹的实参：改写后的调用形如
 	// `LANG(key, list(span_bold("[read_only ? "protected" : "unprotected"]")))`，
 	// 运行期传进来的是 `<b>unprotected</b>` —— 整串既不是状态词也不是目录键，下面每一步精确
@@ -1481,11 +1484,14 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 /atom/proc/lang_localize_area_prefixed_name(atom/source, display_name)
 	var/area/source_area = get_area(source)
 	var/area_name = source_area?.name
+	// 名字里拼的区域不一定是 get_area(src)：空气警报用的是 my_area（可以是连接的传感器所在区域），
+	// 墙挂设备也可能坐在墙那一格、而名字拼的是房间那一侧。按名字前缀在全站区域里找最长匹配 ——
+	// **自己所在区域的名字也是前缀时同样要比**：APC 挂在「Brig」的墙上、名字是「Brig Control APC」，
+	// 只认 get_area 就会切成「拘留区 Control APC」。
+	var/area/longest = lang_area_by_name_prefix(display_name)
 	// 只认前缀形态；出现在中间的多半是巧合。
-	if(!length(area_name) || findtext(display_name, area_name) != 1)
-		// 名字里拼的区域不一定是 get_area(src)：空气警报用的是 my_area（可以是连接的传感器所在区域），
-		// 墙挂设备也可能坐在墙那一格、而名字拼的是房间那一侧。按名字前缀在全站区域里找最长匹配。
-		source_area = lang_area_by_name_prefix(display_name)
+	if(!length(area_name) || findtext(display_name, area_name) != 1 || (longest && length(longest.name) > length(area_name)))
+		source_area = longest
 		if(isnull(source_area))
 			return null
 		area_name = source_area.name
