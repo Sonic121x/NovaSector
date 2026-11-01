@@ -1,5 +1,8 @@
 import { Tooltip } from 'tgui-core/components';
 
+// ZH EDIT ADDITION - I18N
+import { t } from '../i18n';
+
 type Props = {
   serverState: {
     canAdminHelp: boolean;
@@ -28,18 +31,18 @@ export function AdminPage({
           }}
           disabled={!serverState.canAdminHelp}
         >
-          Create Admin Ticket
+          {t('Create Admin Ticket')}
         </MenuButton>
         <MenuButton
           onClick={() => onAction('view_ticket')}
           blinking={serverState.hasTicketNotification}
           tooltip={
             serverState.hasTicketNotification
-              ? 'An admin is trying to talk to you!'
+              ? t('An admin is trying to talk to you!')
               : undefined
           }
         >
-          View Latest Ticket
+          {t('View Latest Ticket')}
         </MenuButton>
         <MenuButton
           onClick={() => {
@@ -47,7 +50,7 @@ export function AdminPage({
             onClose();
           }}
         >
-          See Admin Notices
+          {t('See Admin Notices')}
         </MenuButton>
         <MenuButton
           onClick={() => {
@@ -55,7 +58,7 @@ export function AdminPage({
             onClose();
           }}
         >
-          Pray
+          {t('Pray')}
         </MenuButton>
         {!!serverState.canSeeNotes && (
           <MenuButton
@@ -64,7 +67,7 @@ export function AdminPage({
               onClose();
             }}
           >
-            See Notes
+            {t('See Notes')}
           </MenuButton>
         )}
       </div>
@@ -79,7 +82,7 @@ function BackButton({ onClick }: { onClick: () => void }) {
         <span className="escape-menu-icons40x40 template" />
         <span className="escape-menu-icons40x40 back escape-menu__icon-overlay" />
       </div>
-      <span>Back</span>
+      <span>{t('Back')}</span>
     </button>
   );
 }

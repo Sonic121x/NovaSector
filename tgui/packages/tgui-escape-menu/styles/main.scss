@@ -25,7 +25,7 @@ body,
 }
 
 .Tooltip {
-  font-family: 'Pixellari', monospace;
+  font-family: 'Pixellari', 'Escape Menu ZH', monospace; // ZH EDIT CHANGE - I18N - ORIGINAL: font-family: 'Pixellari', monospace;
   transform: translateY(-1.5rem);
   z-index: 3;
 }
@@ -38,7 +38,7 @@ body,
   position: relative;
   width: 100%;
   height: 100%;
-  font-family: 'Pixellari', 'Grand9K Pixel', monospace;
+  font-family: 'Pixellari', 'Grand9K Pixel', 'Escape Menu ZH', monospace; // ZH EDIT CHANGE - I18N - ORIGINAL: font-family: 'Pixellari', 'Grand9K Pixel', monospace;
   color: white;
   -webkit-text-stroke: 0.2rem black;
   paint-order: stroke fill;
@@ -124,7 +124,7 @@ body,
     background: none;
     border: none;
     color: white;
-    font-family: 'Pixellari', monospace;
+    font-family: 'Pixellari', 'Escape Menu ZH', monospace; // ZH EDIT CHANGE - I18N - ORIGINAL: font-family: 'Pixellari', monospace;
     font-size: 4.5rem;
     font-weight: bold;
     text-align: left;
@@ -158,7 +158,7 @@ body,
     background: none;
     border: none;
     color: white;
-    font-family: 'Grand9K Pixel', monospace;
+    font-family: 'Grand9K Pixel', 'Escape Menu ZH', monospace; // ZH EDIT CHANGE - I18N - ORIGINAL: font-family: 'Grand9K Pixel', monospace;
     font-size: 1.4rem;
     cursor: pointer;
     padding: 0.8rem 1.5rem;
@@ -189,7 +189,7 @@ body,
     background: none;
     border: none;
     color: white;
-    font-family: 'Pixellari', monospace;
+    font-family: 'Pixellari', 'Escape Menu ZH', monospace; // ZH EDIT CHANGE - I18N - ORIGINAL: font-family: 'Pixellari', monospace;
     padding: 0;
     cursor: pointer;
     text-align: center;
@@ -263,7 +263,7 @@ body,
 
   &__resource-label,
   &__resource-button-label {
-    font-family: 'Grand9K Pixel', monospace;
+    font-family: 'Grand9K Pixel', 'Escape Menu ZH', monospace; // ZH EDIT CHANGE - I18N - ORIGINAL: font-family: 'Grand9K Pixel', monospace;
     font-size: 1.2rem;
     text-align: center;
   }
@@ -334,7 +334,7 @@ body,
 
   &__player-entry {
     color: white;
-    font-family: 'Pixellari', monospace;
+    font-family: 'Pixellari', 'Escape Menu ZH', monospace; // ZH EDIT CHANGE - I18N - ORIGINAL: font-family: 'Pixellari', monospace;
     padding: 0.4rem 0.8rem;
     display: flex;
     flex-direction: column;
@@ -357,13 +357,13 @@ body,
   &__player-ping {
     font-size: 1.4rem;
     color: #777;
-    font-family: 'Grand9K Pixel', monospace;
+    font-family: 'Grand9K Pixel', 'Escape Menu ZH', monospace; // ZH EDIT CHANGE - I18N - ORIGINAL: font-family: 'Grand9K Pixel', monospace;
   }
 
   &__player-rank {
     font-size: 1.4rem;
     color: #aaa;
-    font-family: 'Grand9K Pixel', monospace;
+    font-family: 'Grand9K Pixel', 'Escape Menu ZH', monospace; // ZH EDIT CHANGE - I18N - ORIGINAL: font-family: 'Grand9K Pixel', monospace;
 
     &--link {
       color: #5599ff;

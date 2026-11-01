@@ -155,6 +155,7 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "重置按住按键")
 		"ignoredOffline" = build_ignored_offline(),
 		"resources" = resources,
 		"suicideIcon" = GLOB.escape_menu_suicide_icon_base64,
+		"i18n" = lang_scoped_table("escape_menu_labels.json"), // ZH EDIT ADDITION - I18N: the escape menu is its own bundle without the TGUI catalog
 	))
 
 /datum/escape_menu/proc/build_admin_list()
