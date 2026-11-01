@@ -209,6 +209,13 @@ IPINTEL_REJECT_BAD
 ## Wiki address
 # WIKIURL https://wiki.novasector13.com/wiki
 
+## ZH EDIT ADDITION START - I18N
+## Wiki the in-game guides open (wiki books and a few page links). Their page names are /tg/ wiki titles,
+## so this can point at a wiki that has them while WIKIURL stays the server's own wiki. Unset = WIKIURL.
+## Give the wiki's index.php: pages open as index.php?title=Page, which needs no short URLs.
+# MANUAL_WIKIURL https://tgwiki.spacestation14cn.com/index.php
+## ZH EDIT ADDITION END
+
 ## Rules address
 # RULESURL https://wiki.novasector13.com/wiki/Policies
 
