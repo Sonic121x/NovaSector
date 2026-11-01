@@ -415,6 +415,7 @@
 #include "~zh\slime_naming.dm"
 #include "~zh\test_sharding.dm"
 #include "~zh\tts_controls.dm"
+#include "~zh\wiki_page_url.dm"
 // ZH EDIT END
 // END_INCLUDE
 #ifdef REFERENCE_TRACKING_DEBUG //Don't try and parse this file if ref tracking isn't turned on. IE: don't parse ref tracking please mr linter

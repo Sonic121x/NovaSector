@@ -4,7 +4,7 @@
 /// The size of the window that the wiki books open in.
 #define BOOK_WINDOW_BROWSE_SIZE "970x710"
 /// This macro will resolve to code that will open up the associated wiki page in the window.
-#define WIKI_PAGE_IFRAME(title, wikiurl, link_identifier) {"
+#define WIKI_PAGE_IFRAME(title, page_url) {" // ZH EDIT CHANGE - I18N - ORIGINAL: #define WIKI_PAGE_IFRAME(title, wikiurl, link_identifier) {"
 <html>
 	<head>
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
@@ -34,7 +34,7 @@
 	</head>
 	<body>
 		<p>You start skimming through the manual...</p>
-		<iframe src="[wikiurl]/[link_identifier]?useskin=vector" onload="document.body.classList.add('loaded')"></iframe>
+		<iframe src="[page_url]" onload="document.body.classList.add('loaded')"></iframe>
 	</body>
 </html>
 "}
@@ -48,7 +48,7 @@
 	var/page_link = ""
 
 /obj/item/book/manual/wiki/display_content(mob/living/user)
-	var/wiki_url = CONFIG_GET(string/wikiurl)
+	var/wiki_url = wiki_page_url(page_link) // ZH EDIT CHANGE - I18N - ORIGINAL: var/wiki_url = CONFIG_GET(string/wikiurl)
 	if(!wiki_url)
 		user.balloon_alert(user, LANG("obj.b5b6d6960b6f2eca", null))
 		return
@@ -56,9 +56,9 @@
 	if(user.client.byond_version < 516) //Remove this once 516 is stable
 		if(tgui_alert(user, LANG("obj.a29d550e320c8489", null), LANG("obj.f2d1a8c3556df9da", null), list("Yes", "No")) != "Yes")
 			return
-		DIRECT_OUTPUT(user, link("[wiki_url]/[page_link]"))
+		DIRECT_OUTPUT(user, link(wiki_url)) // ZH EDIT CHANGE - I18N - ORIGINAL: DIRECT_OUTPUT(user, link("[wiki_url]/[page_link]"))
 	else
-		DIRECT_OUTPUT(user, browse(WIKI_PAGE_IFRAME(name, wiki_url, page_link), "window=manual;size=[BOOK_WINDOW_BROWSE_SIZE]")) // if you change this GUARANTEE that it works.
+		DIRECT_OUTPUT(user, browse(WIKI_PAGE_IFRAME(name, wiki_page_url(page_link, "useskin=vector")), "window=manual;size=[BOOK_WINDOW_BROWSE_SIZE]")) // if you change this GUARANTEE that it works. // ZH EDIT CHANGE - I18N - ORIGINAL: DIRECT_OUTPUT(user, browse(WIKI_PAGE_IFRAME(name, wiki_url, page_link), "window=manual;size=[BOOK_WINDOW_BROWSE_SIZE]"))
 
 /obj/item/book/manual/wiki/chemistry
 	name = "Chemistry Textbook"
