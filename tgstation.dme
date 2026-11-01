@@ -10104,6 +10104,7 @@
 #include "modular_zh\modules\i18n\code\changelog.dm"
 #include "modular_zh\modules\i18n\code\fallback.dm"
 #include "modular_zh\modules\i18n\code\fonts.dm"
+#include "modular_zh\modules\i18n\code\identity_names.dm"
 #include "modular_zh\modules\i18n\code\miss_log.dm"
 #include "modular_zh\modules\i18n\code\runtime.dm"
 #include "modular_zh\modules\i18n\code\template_match.dm"

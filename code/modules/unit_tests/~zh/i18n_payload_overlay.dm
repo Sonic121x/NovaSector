@@ -12,7 +12,9 @@
 ///   ③ `payload_prose_keys` 里的散文键：仍就地改写（它们渲染在 auto-localize 够不到的位置，
 ///      且散文不可能被 act() 拿去比较），且**不**进 overlay；
 ///   ④ `payload_skip_keys` 子树：完全不碰；
-///   ⑤ 不传 overlay 的旧调用（早期 string_cache 那条路）：行为与从前一致，一律就地改写。
+///   ⑤ 不传 overlay 的旧调用（早期 string_cache 那条路）：行为与从前一致，一律就地改写；
+///   ⑥ 玩家角色名（`i18n_identity_names`）：即使目录里有同形词条也不翻，且在 overlay 里登记成原样
+///      （角色名 `Not` 撞上电路「非门」被显示成「不是」即此）。
 /datum/unit_test/i18n_payload_overlay
 	var/saved_locale
 	var/saved_locale_resolved
@@ -26,6 +28,7 @@
 #define I18N_OVERLAY_SINGLE_NORMALIZED "Qzvx"
 #define I18N_OVERLAY_PROSE "Zxqv thranok drifts through the quiet dark."
 #define I18N_OVERLAY_FLAT "Zxqv Thranok Sector"
+#define I18N_OVERLAY_IDENTITY "Qrvexil"
 
 /datum/unit_test/i18n_payload_overlay/Destroy()
 	if(!isnull(saved_locale))
@@ -40,6 +43,7 @@
 		GLOB.i18n_reverse -= I18N_OVERLAY_LOCALE
 		GLOB.i18n_unreverse -= I18N_OVERLAY_LOCALE
 		GLOB.i18n_tgui_phrase_cache.Cut()
+		GLOB.i18n_identity_names -= I18N_OVERLAY_IDENTITY
 		saved_locale = null
 	return ..()
 
@@ -55,6 +59,7 @@
 		"unittest.overlay_single_normalized" = list(I18N_OVERLAY_SINGLE_QUOTED, "归一化兹克夫"),
 		"unittest.overlay_prose" = list(I18N_OVERLAY_PROSE, "兹克夫漂过寂静的黑暗。"),
 		"unittest.overlay_flat" = list(I18N_OVERLAY_FLAT, "兹克夫星区"),
+		"unittest.overlay_identity" = list(I18N_OVERLAY_IDENTITY, "库维希尔"),
 	)
 	var/list/test_cache = list()
 	for(var/key in test_pairs)
@@ -111,6 +116,23 @@
 	lang_reverse_tree(legacy)
 	TEST_ASSERT_EQUAL(legacy["name"], "兹克夫单元", "不传 overlay 时应保持旧的就地改写行为")
 
+	// ⑥ 玩家角色名：先确认它本来翻得动（否则断言测不出任何东西），再登记成身份名。
+	var/list/control = list()
+	lang_reverse_tree(list("full_name" = I18N_OVERLAY_IDENTITY), null, control)
+	TEST_ASSERT_EQUAL(control[I18N_OVERLAY_IDENTITY], "库维希尔", "对照组：登记前这个名字应当翻得动")
+	var/mob/living/carbon/human/consistent/player = allocate(/mob/living/carbon/human/consistent)
+	player.mind_initialize()
+	player.fully_replace_character_name(player.real_name, I18N_OVERLAY_IDENTITY)
+	TEST_ASSERT(GLOB.i18n_identity_names[I18N_OVERLAY_IDENTITY], "有 mind 的 mob 改名后应登记为身份名")
+	var/list/identity_payload = list("full_name" = I18N_OVERLAY_IDENTITY, "names" = list(I18N_OVERLAY_IDENTITY))
+	var/list/identity_overlay = list()
+	lang_reverse_tree(identity_payload, null, identity_overlay)
+	TEST_ASSERT_EQUAL(identity_payload["full_name"], I18N_OVERLAY_IDENTITY, "玩家角色名被就地改写了")
+	TEST_ASSERT_EQUAL(identity_overlay[I18N_OVERLAY_IDENTITY], I18N_OVERLAY_IDENTITY, "玩家角色名应在 overlay 里登记成原样，挡住前端静态目录")
+	var/list/identity_legacy = list("name" = I18N_OVERLAY_IDENTITY)
+	lang_reverse_tree(identity_legacy)
+	TEST_ASSERT_EQUAL(identity_legacy["name"], I18N_OVERLAY_IDENTITY, "不传 overlay 时玩家角色名也不该被改写")
+
 #undef I18N_OVERLAY_LOCALE
 #undef I18N_OVERLAY_NAME
 #undef I18N_OVERLAY_SINGLE
@@ -118,3 +140,4 @@
 #undef I18N_OVERLAY_SINGLE_NORMALIZED
 #undef I18N_OVERLAY_PROSE
 #undef I18N_OVERLAY_FLAT
+#undef I18N_OVERLAY_IDENTITY

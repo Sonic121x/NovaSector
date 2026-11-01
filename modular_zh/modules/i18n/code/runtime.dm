@@ -1748,6 +1748,13 @@ GLOBAL_LIST_INIT(i18n_payload_prose_keys, build_i18n_policy_set("payload_prose_k
 /// 把一个负载字符串的译文「落地」：散文键（或无 overlay 的旧调用）就地改写；其余只登记进 overlay。
 /// `index` 对关联项是键、对 flat 元素是下标 —— 两者都能直接给 `data[index] = …` 用。
 /proc/lang_payload_localize(list/data, index, text, list/overlay, in_place)
+	// 玩家角色名不翻（见 identity_names.dm）。overlay 里登记成原样：前端 overlay 先于静态目录查表，
+	// 这样静态目录里的同形词条也翻不动它。
+	// `?[]`：早期 load_strings_file 走到这里时这张 GLOB 表可能还没建。
+	if(GLOB.i18n_identity_names?[text])
+		if(!isnull(overlay))
+			overlay[text] = text
+		return
 	var/localized = lang_reverse_phrase_tgui(text)
 	if(localized == text)
 		return
