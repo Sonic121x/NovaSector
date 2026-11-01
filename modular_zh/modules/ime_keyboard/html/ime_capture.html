@@ -100,7 +100,11 @@ html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
 			if (document.hasFocus()) return;
 			var release = releaseIfElsewhere;
 			releaseIfElsewhere = false;
-			if (isMapFocus(props.focus)) call('winset', { id: 'ime_capture', focus: 'true' });
+			if (isMapFocus(props.focus)) {
+				call('winset', { id: 'ime_capture', focus: 'true' });
+				// 计时从页面真正拿回焦点算起：客户端忙的时候，焦点要过几百毫秒才回来，这之前连发到不了页面。
+				verifyOnFocus = true;
+			}
 			else if (release) releaseAll();
 		});
 	}
@@ -110,9 +114,81 @@ html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
 	// 服务端眼里「按着」的键。浏览器的自动连发不转发，服务端自己有 keyLoop。
 	var held = {};
 	function keyUpCommand(key) { return 'KeyUp "' + key + '" [[map.mouse-pos]] [[map.size]]'; }
+	function keyDownCommand(key) { return 'KeyDown "' + key + '" [[map.mouse-pos]] [[map.size]]'; }
 	function releaseAll() {
 		for (var key in held) send(keyUpCommand(key));
 		held = {};
+		autoReleased = {};
+		stopVerify();
+		verifyOnFocus = false;
+	}
+	// 焦点在地图上的那一小段时间（点地图到收回，约 0.1 秒），开着中文输入法时字母键的按下和松开都被输入法
+	// 吃掉，原生宏一个也不发：在这段空档里松开的方向键，服务端永远收不到 KeyUp，人会一直往那个方向走
+	// （「按住方向边走边点，换方向时卡住」）。浏览器读不到按键的物理状态，能用的只有 Windows 的自动连发：
+	// 只有**最后按下**的那个键会连发。所以收回焦点后只核实它 —— 它本来在连发，过了几个连发间隔还没等到下一次，
+	// 就是在空档里松开了，补发 KeyUp；它还没开始连发，就等到「按下时刻 + 连发延迟」。连发延迟和间隔取自本机实测。
+	// 不是最后按下的键（斜着走时先按的那个）本来就不连发，没有证据，不动它。收回后又按了别的键，连发换到了
+	// 新键上，旧键的沉默不再说明什么，核实作罢。补发 KeyUp 后又等到它的连发（估计偏短），补回 KeyDown；
+	// 空档里按下（KeyDown 同样被吃掉）的键，等到它第一次连发时补发 KeyDown。
+	// 唯一分不清的：空档里按着旧方向又按下新方向（想斜着走），旧方向会被当成松开，要重按一下。
+	var repeatDelay = 500;
+	var repeatInterval = 33;
+	var lastPressed = null;
+	var pressedAt = {};
+	var lastRepeatAt = {};
+	var autoReleased = {};
+	var verifyKey = null;
+	var verifyTimer = null;
+	// 收回焦点后的这段时间里，第一次以连发出现、服务端又不知道的键，是在空档里按下的；这段时间的计时也不拿来估连发参数。
+	var gapUntil = 0;
+	var verifyOnFocus = false;
+	function stopVerify() {
+		if (verifyTimer) clearTimeout(verifyTimer);
+		verifyTimer = null;
+		verifyKey = null;
+	}
+	function verifyHeld() {
+		stopVerify();
+		var now = Date.now();
+		gapUntil = now + Math.max(repeatDelay * 2, 1200);
+		var key = lastPressed;
+		if (!key || !held[key]) return;
+		// 宁可多走一小段也别误判：边走边点地图是最常见的操作，误判会让人顿一下；客户端忙的时候连发也会晚到。
+		var deadline = now + Math.max(400, repeatInterval * 10 + 100);
+		if (!lastRepeatAt[key]) deadline = Math.max(deadline, pressedAt[key] + repeatDelay * 1.5 + 150);
+		verifyKey = key;
+		verifyTimer = setTimeout(function () {
+			verifyTimer = null;
+			if (verifyKey !== key) return;
+			verifyKey = null;
+			if (!held[key]) return;
+			delete held[key];
+			autoReleased[key] = true;
+			send(keyUpCommand(key));
+		}, deadline - now);
+	}
+	function onRepeat(key) {
+		var now = Date.now();
+		if (now > gapUntil) {
+			if (lastRepeatAt[key]) {
+				var interval = now - lastRepeatAt[key];
+				if (interval >= 10 && interval <= 150) repeatInterval = repeatInterval * 0.8 + interval * 0.2;
+			} else if (pressedAt[key] && key === lastPressed) {
+				var delay = now - pressedAt[key];
+				if (delay >= 150 && delay <= 1500) repeatDelay = repeatDelay * 0.5 + delay * 0.5;
+			}
+		}
+		lastRepeatAt[key] = now;
+		if (key === verifyKey) stopVerify();
+		if (autoReleased[key] || (!held[key] && now < gapUntil)) {
+			delete autoReleased[key];
+			held[key] = true;
+			lastPressed = key;
+			send(keyDownCommand(key));
+			return;
+		}
+		// 在地图拿着焦点时按下、焦点收回后还按着：原生宏已经发过 KeyDown，接过来让松开从这里发。
+		held[key] = true;
 	}
 	function onKey(e) {
 		var key = toByondKey(eventCode(e));
@@ -120,16 +196,23 @@ html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
 		e.preventDefault();
 		if (e.type === 'keydown') {
 			if (e.repeat) {
-				// 在地图拿着焦点时按下、焦点收回后还按着：原生宏已经发过 KeyDown，接过来让松开从这里发。
-				held[key] = true;
+				onRepeat(key);
 				return;
 			}
+			if (verifyKey) stopVerify();
+			delete autoReleased[key];
+			delete lastRepeatAt[key];
+			pressedAt[key] = Date.now();
+			lastPressed = key;
 			// 上一次按下的松开发生在地图上（原生宏已发 KeyUp）：先补齐，再当一次新的按下。
 			if (held[key]) send(keyUpCommand(key));
 			held[key] = true;
 			if (MACRO_COMMANDS[key]) send(MACRO_COMMANDS[key]);
-			send('KeyDown "' + key + '" [[map.mouse-pos]] [[map.size]]');
+			send(keyDownCommand(key));
 		} else {
+			if (key === verifyKey) stopVerify();
+			delete autoReleased[key];
+			delete lastRepeatAt[key];
 			if (!held[key]) return;
 			delete held[key];
 			send(keyUpCommand(key));
@@ -147,7 +230,13 @@ html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
 	window.addEventListener('pagehide', releaseAll);
 	var capture = document.getElementById('capture');
 	capture.focus();
-	window.addEventListener('focus', function () { capture.focus(); });
+	window.addEventListener('focus', function () {
+		if (verifyOnFocus) {
+			verifyOnFocus = false;
+			verifyHeld();
+		}
+		capture.focus();
+	});
 })();
 </script>
 </body>
