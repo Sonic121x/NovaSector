@@ -35,5 +35,8 @@
 	"Nitrous Oxide Canister": "一氧化二氮罐",
 	"Nitrous Oxide canister crate": "一氧化二氮罐板条箱",
 	"BZ Canister": "BZ罐",
-	"BZ canister crate": "BZ罐板条箱"
+	"BZ canister crate": "BZ罐板条箱",
+	"cargo_lbl_requisition_form": "申请单",
+	"cargo_lbl_grouped_item_crate": "合装物品箱",
+	"cargo_lbl_purchased_by": "购买人"
 }

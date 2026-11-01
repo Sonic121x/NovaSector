@@ -149,6 +149,32 @@ fn is_tag_wrapped(expr: &Expression) -> bool {
     is_pure_tag(first) && is_pure_tag(last)
 }
 
+/// 汇聚点实参是随机句池时（`say(pick("A", "B"))`、`to_chat(x, span_notice(pick(…)))`），返回池里的
+/// 每个元素。整条 `pick(...)` 交给 build_template 是 None（它不是字面量），于是这些句子只剩激进 pass
+/// 那条「整句」闸门：`"Supersize this!"` 过得去，`"Hot damn!"`、`"dances around."` 过不去 —— 同一个
+/// 句池里一半进目录一半不进。池里每一句在运行期都会**整句**到达汇聚点，与直接写字面量同性质。
+pub(crate) fn sink_pick_arms(expr: &Expression) -> Option<Vec<&Expression>> {
+    let Expression::Base { term, follow } = expr else {
+        return None;
+    };
+    if !follow.is_empty() {
+        return None;
+    }
+    match &term.elem {
+        Term::Pick(args) => Some(args.iter().map(|(_, value)| value).collect()),
+        // span_*() 宏展开成 ("<span …>" + X + "</span>")：只认「两端纯标签、中间正好一个操作数」。
+        Term::Expr(inner) if is_tag_wrapped(expr) => {
+            let mut leaves = Vec::new();
+            flatten_add(inner, &mut leaves);
+            match leaves.as_slice() {
+                [_, middle, _] => sink_pick_arms(middle),
+                _ => None,
+            }
+        }
+        _ => None,
+    }
+}
+
 /// 纯标签字面量：以 `<` 开头，且去掉标签后不含字母。
 fn is_pure_tag(expr: &Expression) -> bool {
     let Expression::Base { term, follow } = expr else {

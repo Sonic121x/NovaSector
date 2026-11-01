@@ -249,7 +249,7 @@ Behavior that's still missing from this component that original food items had t
 		if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
 			var/list/translated_types = list()
 			for(var/food_type in types)
-				translated_types += lang_reverse_text(LOWER_TEXT(food_type))
+				translated_types += lang_localize_arg(LOWER_TEXT(food_type)) // 单词类别名在 _state_words 里，全局反查够不着
 			examine_list += span_notice(LANG("datum.62eee539c1582dc1", list(english_list(translated_types, and_text = "、", comma_text = "、"))))
 		else
 			examine_list += span_notice(LANG("datum.62eee539c1582dc1", list(LOWER_TEXT(lang_english_list(types)))))

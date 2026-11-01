@@ -35,5 +35,8 @@
 	"Nitrous Oxide Canister": "Nitrous Oxide Canister",
 	"Nitrous Oxide canister crate": "Nitrous Oxide canister crate",
 	"BZ Canister": "BZ Canister",
-	"BZ canister crate": "BZ canister crate"
+	"BZ canister crate": "BZ canister crate",
+	"cargo_lbl_requisition_form": "Requisition Form",
+	"cargo_lbl_grouped_item_crate": "Grouped Item Crate",
+	"cargo_lbl_purchased_by": "Purchased by"
 }

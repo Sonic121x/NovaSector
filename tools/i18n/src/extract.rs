@@ -22,7 +22,9 @@ use crate::keys::{is_v2_key, make_key, namespace_for};
 use crate::semantics::{
     block_is_pure, dynamic_call_sink, native_dialog_no_usr, resolve_sink_arg, sink_message_args,
 };
-use crate::template::{build_sink_template, build_tag_chunk_templates, build_template, placeholder_count};
+use crate::template::{
+    build_sink_template, build_tag_chunk_templates, build_template, placeholder_count, sink_pick_arms,
+};
 
 /// 视为玩家可见的变量名。
 /// message_* 系列是 /datum/emote 的各形态表情模板（人形/默剧/外星/AI/机器人等），玩家在聊天
@@ -2921,6 +2923,15 @@ mod origin_stats {
 /// 而这一类恰恰需要成为模板 —— 中文要靠它丢掉英文复数槽、调换语序，实参也要靠这条调用
 /// 变成 LANG 之后才走得到 `lang_localize_arg`。准入面由 build_sink_template 的 ≥3 占位符
 /// 闸门界定，这里只是不再重复否决。
+fn emit_sink_pick_arms(catalog: &mut Catalog, type_path: &str, arms: &[&Expression]) {
+    let _origin = OriginGuard::enter("sink-pick");
+    for arm in arms {
+        if let Some(template) = build_sink_template(arm) {
+            emit_sink_frame(catalog, type_path, &template);
+        }
+    }
+}
+
 fn emit_sink_frame(catalog: &mut Catalog, type_path: &str, template: &str) {
     let _origin = OriginGuard::enter("sink");
     if template.chars().any(|c| c.is_alphabetic()) {
@@ -3414,8 +3425,11 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                             continue;
                         }
                         if let Some((_, arg)) = resolve_sink_arg(name.as_str(), i, args) {
+                            // 随机句池：逐句按汇聚点抽（见 sink_pick_arms）。
+                            if let Some(arms) = sink_pick_arms(arg) {
+                                emit_sink_pick_arms(catalog, ns, &arms);
                             // 拼接链先按标签单元拆（见 build_tag_chunk_templates）；拆不动才折成整条。
-                            if let Some(chunks) = build_tag_chunk_templates(arg) {
+                            } else if let Some(chunks) = build_tag_chunk_templates(arg) {
                                 let _origin = OriginGuard::enter("sink");
                                 for chunk in chunks {
                                     emit(catalog, ns, &chunk);
@@ -3433,7 +3447,9 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                     let indices = sink_message_args(name).unwrap_or(&[]);
                     for &i in indices {
                         if let Some((_, arg)) = resolve_sink_arg(name, i, args) {
-                            if let Some(chunks) = build_tag_chunk_templates(arg) {
+                            if let Some(arms) = sink_pick_arms(arg) {
+                                emit_sink_pick_arms(catalog, ns, &arms);
+                            } else if let Some(chunks) = build_tag_chunk_templates(arg) {
                                 let _origin = OriginGuard::enter("sink");
                                 for chunk in chunks {
                                     emit(catalog, ns, &chunk);
@@ -3744,7 +3760,9 @@ fn recurse_follow(follow: &Follow, ns: &str, catalog: &mut Catalog, suppress: bo
                         continue;
                     }
                     if let Some((_, arg)) = resolve_sink_arg(name.as_str(), i, args) {
-                        if let Some(template) = build_sink_template(arg) {
+                        if let Some(arms) = sink_pick_arms(arg) {
+                            emit_sink_pick_arms(catalog, ns, &arms);
+                        } else if let Some(template) = build_sink_template(arg) {
                             emit_sink_frame(catalog, ns, &template);
                         }
                     }

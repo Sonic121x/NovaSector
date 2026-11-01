@@ -44,6 +44,10 @@ TGUI 的 `config.locale` 同源注入。
 - TGUI 负载不再被就地改写：P1（`lang_reverse_phrase_tgui`）只把「英文 → 译文」收进 overlay
   （`json_data["i18n"]`），值保持 canonical English，由前端渲染期查表。只有 `payload_prose_keys`
   那批散文仍就地翻。
+- TGUI 负载里没有 atom、只有字符串，上面那条 `initial(name)` 判据用不上。玩家角色名改在**设名的那一刻**
+  登记进 `GLOB.i18n_identity_names`（`identity_names.dm`：`/mob/Login`、`fully_replace_character_name`，
+  同样只收偏离 `initial(name)` 的名字），P1 见到它们不翻，并在 overlay 里登记成原样，压住前端静态目录里
+  的同形词条（角色名 `Not` 撞上电路「非门」、在环绕菜单里显示成「不是」即此）。
 
 **聊天曾经有一处结构性缺口，2026-08-20 才修**（这里原来写着「聊天不受影响」，是错的，留作教训）：
 `[src]` 出现在句子里时 rewrite 会把它抬成 LANG 实参（`LANG("obj.…", list(src))`，仅 `list(src` 这一

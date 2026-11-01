@@ -384,7 +384,7 @@
 			else
 				listofitems[key] = list(
 					"path" = key,
-					"name" = full_capitalize(atom.name),
+					"name" = full_capitalize(lang_atom_text(atom, atom.name)), // ZH EDIT CHANGE - i18n - full_capitalize 后的「Bunch Of Grapes」对不上目录，先按显示边界翻（回传用 path） - ORIGINAL: "name" = full_capitalize(atom.name),
 					"icon" = atom.icon,
 					"icon_state" = atom.icon_state,
 					"amount" = 1
