@@ -238,5 +238,9 @@
 	"bloody": "带血的东西",
 	"baked": "烘烤",
 	"grilled": "烤制",
-	"microwaved": "微波加热"
+	"microwaved": "微波加热",
+	"Passive": "不参与",
+	"Involved": "参与",
+	"Vulnerable": "可被击杀",
+	"Expendable": "可被永久移除"
 }

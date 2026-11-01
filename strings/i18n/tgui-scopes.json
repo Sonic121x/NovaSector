@@ -405,6 +405,9 @@
   "A:": [
     "tgui:Generators"
   ],
+  "ACCESSIBILITY": [
+    "tgui:accessibility"
+  ],
   "ACTIVATE": [
     "tgui:NtosRevelation",
     "tgui:NtosRobotact"
@@ -412,6 +415,15 @@
   "ACTIVE": [
     "tgui:SyndContractor",
     "tgui:SyndicateContractor"
+  ],
+  "ADMIN": [
+    "tgui:admin",
+    "tgui:auto_dementor",
+    "tgui:delete_sparks",
+    "tgui:legacy_chat_toggles",
+    "tgui:legacy_toggles",
+    "tgui:looc",
+    "tgui:ticket_ping"
   ],
   "ADMIN CONTROLS": [
     "tgui:MafiaPanel"
@@ -2707,6 +2719,9 @@
   ],
   "BELIEVE IT!": [
     "tgui:SlotMachine"
+  ],
+  "BELLY": [
+    "tgui:belly_preferences"
   ],
   "BIG ONE SOON!": [
     "tgui:SlotMachine"
@@ -5154,6 +5169,14 @@
   "CC Ensign's uniform": [
     "dm:labels"
   ],
+  "CHAT": [
+    "tgui:donator_status",
+    "tgui:emote_overlay",
+    "tgui:emote_panel",
+    "tgui:legacy_chat_toggles",
+    "tgui:legacy_toggles",
+    "tgui:ooc"
+  ],
   "CIA": [
     "dm:labels"
   ],
@@ -6111,6 +6134,12 @@
   ],
   "Charging Cord Implant": [
     "dm:labels"
+  ],
+  "Charging:": [
+    "tgui:constants"
+  ],
+  "Charging: {0}": [
+    "tgui:Apc"
   ],
   "Chassis": [
     "dm:labels"
@@ -10299,7 +10328,10 @@
     "tgui:EmergencyShuttleConsole"
   ],
   "ERP": [
-    "tgui:NovaCharacterDirectory"
+    "tgui:NovaCharacterDirectory",
+    "tgui:belly_preferences",
+    "tgui:erp_preferences",
+    "tgui:show_in_directory"
   ],
   "ERP Genitalia Removal": [
     "tgui:erp_preferences"
@@ -11646,6 +11678,9 @@
   ],
   "External Emote": [
     "tgui:Soulcatcher"
+  ],
+  "External Power": [
+    "tgui:constants"
   ],
   "External Pump": [
     "tgui:ModulesPane"
@@ -13085,7 +13120,8 @@
   ],
   "Fully Charged": [
     "tgui:GravityGenerator",
-    "tgui:Smes"
+    "tgui:Smes",
+    "tgui:constants"
   ],
   "Fully Immerse Everyone": [
     "tgui:Secrets"
@@ -13183,6 +13219,34 @@
   ],
   "GAME OVER": [
     "tgui:OrionGame"
+  ],
+  "GAMEPLAY": [
+    "tgui:ambient_occlusion",
+    "tgui:be_antag",
+    "tgui:broadcast_login_logout",
+    "tgui:buttons_locked",
+    "tgui:emissive_bloom",
+    "tgui:face_cursor_combat_mode",
+    "tgui:fps",
+    "tgui:hotkeys",
+    "tgui:ime_keyboard",
+    "tgui:item_outlines",
+    "tgui:mod_select",
+    "tgui:multiz_parallax",
+    "tgui:multiz_performance",
+    "tgui:out_of_combat_fov_darkness",
+    "tgui:parallax",
+    "tgui:particle_weather",
+    "tgui:pda",
+    "tgui:preferred_map",
+    "tgui:ready_job",
+    "tgui:typing_indicator"
+  ],
+  "GHOST": [
+    "tgui:ghost",
+    "tgui:ghost_lighting",
+    "tgui:legacy_chat_toggles",
+    "tgui:legacy_toggles"
   ],
   "GNU AGPL v3": [
     "tgui:Changelog"
@@ -18225,6 +18289,9 @@
     "dm:labels",
     "tgui:JobsPage"
   ],
+  "Low External Power": [
+    "tgui:constants"
+  ],
   "Low Wings (Top)": [
     "dm:labels"
   ],
@@ -20990,6 +21057,9 @@
   "No Experiment Machine Detected": [
     "tgui:AbductorConsole"
   ],
+  "No External Power": [
+    "tgui:constants"
+  ],
   "No Gas Detected!": [
     "tgui:GasmixParser"
   ],
@@ -21873,7 +21943,8 @@
   ],
   "Not Charging": [
     "tgui:GravityGenerator",
-    "tgui:Smes"
+    "tgui:Smes",
+    "tgui:constants"
   ],
   "Not Connected": [
     "tgui:GulagTeleporterConsole",
@@ -25790,6 +25861,10 @@
   "RQST": [
     "tgui:TramController"
   ],
+  "RUNECHAT": [
+    "tgui:looc",
+    "tgui:runechat"
+  ],
   "Rabbi": [
     "dm:labels"
   ],
@@ -27714,6 +27789,11 @@
   ],
   "SMITE": [
     "tgui:RequestManager"
+  ],
+  "SOUND": [
+    "tgui:character_voice",
+    "tgui:erp_preferences",
+    "tgui:sounds"
   ],
   "SPAWN": [
     "tgui:CreateObjectSettings"
@@ -32467,6 +32547,9 @@
   "TOGGLE": [
     "tgui:RBMK2"
   ],
+  "TOOLTIPS": [
+    "tgui:tooltips"
+  ],
   "TP": [
     "tgui:RequestManager"
   ],
@@ -35220,6 +35303,19 @@
   ],
   "U.D.C": [
     "dm:labels"
+  ],
+  "UI": [
+    "tgui:auto_fit_viewport",
+    "tgui:lobby_menu",
+    "tgui:pixel_size",
+    "tgui:scaling_method",
+    "tgui:screen_size",
+    "tgui:screentips",
+    "tgui:show_headshot_on_examine",
+    "tgui:status_bar",
+    "tgui:tgui",
+    "tgui:ui_style",
+    "tgui:window_flashing"
   ],
   "UI Style": [
     "tgui:ui_style"

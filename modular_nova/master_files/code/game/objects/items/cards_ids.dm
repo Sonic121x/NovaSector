@@ -60,5 +60,5 @@
 	var/datum/id_trim/fake = SSid_access.trim_singletons_by_path[alt_trim]
 	if(isnull(fake))
 		return
-	var/name_string = registered_name ? "[registered_name]'s ID Card" : initial(name)
+	var/name_string = registered_name ? LANG("obj.ad9060a5947cb211", list(registered_name)) : initial(name)
 	name = "[name_string] ([lang_reverse_text(fake.assignment)])"

@@ -176,6 +176,25 @@ describe('localizeProps', () => {
     expect(props.children).toBe(children);
   });
 
+  // 照抄 APC 的编译产物：`[{' '}{text}{' '}]`。方括号与空格不含字母数字，不该否决整条；
+  // 从前它们被当成「标点开头的碎片」，把本来能独立命中的整句一起焊成英文。
+  test('纯装饰段（方括号、空格）不否决逐段翻', () => {
+    const zh = zhHans as Record<string, string>;
+    expect(zh['Not Charging']).toBeTruthy();
+    const children = ['[', ' ', 'Not Charging', ' ', ']'];
+    const props = localizeProps({ children }) as Record<string, unknown>;
+    expect(props.children).toEqual(['[', ' ', zh['Not Charging'], ' ', ']']);
+  });
+
+  // 反面：装饰段放行后，含字母的碎片仍然拦住整条。
+  test('装饰段放行不放过含字母的碎片', () => {
+    const zh = zhHans as Record<string, string>;
+    expect(zh.unlock).toBeTruthy();
+    const children = ['[', ' ', 'unlock', ' zzqv fragment.', ']'];
+    const props = localizeProps({ children }) as Record<string, unknown>;
+    expect(props.children).toBe(children);
+  });
+
   // prop 里 JS 拼出来的整串（`` title={`Reading: ${x}`} ``）永远不是目录键 → 精确查表必 miss。
   // 抽取器按 `Reading: {0}` 收进目录 + sidecar，这里按字面段逆匹配还原、填回捕获值。
   test('prop 模板逆匹配：框架词翻译、捕获值原样保留', () => {

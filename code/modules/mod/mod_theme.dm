@@ -129,10 +129,13 @@
 		parts += mod_part
 
 	for(var/obj/item/part as anything in parts)
-		// ZH EDIT - I18N: reverse the theme adjective ("administrative"→行政) so the composed part name
-		// ("administrative MOD helmet") isn't half-english; base part.name reversed at atom Initialize.
+		// ZH EDIT - I18N: the composed part name ("administrative MOD helmet") is neither a catalog key nor the
+		// type's initial name, so the display boundary cannot translate it later. Translate both halves here;
+		// the base name goes through the display boundary since instance names stay canonical English.
 		// ORIGINAL: part.name = "[name] [part.name]"
-		part.name = "[lang_reverse_text(name)] [part.name]"
+		var/theme_name = lang_reverse_text(name)
+		var/base_name = lang_atom_text(part, part.name)
+		part.name = (lang_contains_cjk(theme_name) && lang_contains_cjk(base_name)) ? "[theme_name][base_name]" : "[theme_name] [base_name]"
 		part.desc = "[part.desc] [lang_reverse_text(desc)]" // ZH EDIT CHANGE - I18N - ORIGINAL: part.desc = "[part.desc] [desc]"
 		part.set_armor(armor_type)
 		part.resistance_flags = resistance_flags

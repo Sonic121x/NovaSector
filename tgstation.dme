@@ -10150,6 +10150,7 @@
 #include "modular_zh\master_files\code\modules\asset_cache\assets\techweb_catalogue.dm"
 #include "modular_zh\master_files\code\modules\deathmatch\deathmatch_controller.dm"
 #include "modular_zh\master_files\code\modules\modular_computers\computers\item\computer.dm"
+#include "modular_zh\master_files\modular_nova\modules\conflict_opt_in\code\conflict_optin_preferences.dm"
 #include "modular_zh\modules\deferred_offstation\code\deferred_offstation.dm"
 #include "modular_zh\modules\i18n\code\changelog.dm"
 #include "modular_zh\modules\i18n\code\fallback.dm"

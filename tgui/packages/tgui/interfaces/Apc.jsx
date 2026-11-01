@@ -133,8 +133,14 @@ const ApcContent = (props) => {
             }
           >
             [{' '}
-            {chargingStatus.chargingText +
-              (data.chargingStatus === 1 ? data.chargingPowerDisplay : '')}{' '}
+            {/* ZH EDIT CHANGE START - I18N - 「Charging: 功率」拼成一整串查不到目录，改写成 children 模板 */}
+            {data.chargingStatus === 1 ? (
+              <>Charging: {data.chargingPowerDisplay}</>
+            ) : (
+              chargingStatus.chargingText
+            )}{' '}
+            {/* ORIGINAL: {chargingStatus.chargingText + (data.chargingStatus === 1 ? data.chargingPowerDisplay : '')}{' '} */}
+            {/* ZH EDIT CHANGE END */}
             ]
           </LabeledList.Item>
         </LabeledList>

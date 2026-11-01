@@ -15,7 +15,7 @@
 /datum/action/item_action/organ_action/toggle/New(Target)
 	..()
 	var/obj/item/organ/organ_target = target
-	name = "Toggle [organ_target.name]"
+	name = LANG("datum.fd7e830fbe13ac8c", list(organ_target)) // ZH EDIT CHANGE - I18N - 父类 New() 的整串反查在此之前，拼出的名字不是目录键 - ORIGINAL: name = "Toggle [organ_target.name]"
 
 /datum/action/item_action/organ_action/use
 	name = "Use Organ"

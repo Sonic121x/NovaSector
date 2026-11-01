@@ -97,5 +97,9 @@
 	"bloody": "bloody",
 	"baked": "baked",
 	"grilled": "grilled",
-	"microwaved": "microwaved"
+	"microwaved": "microwaved",
+	"Passive": "Passive",
+	"Involved": "Involved",
+	"Vulnerable": "Vulnerable",
+	"Expendable": "Expendable"
 }

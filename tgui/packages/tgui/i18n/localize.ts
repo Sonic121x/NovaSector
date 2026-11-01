@@ -337,6 +337,11 @@ function isSelfContainedText(text: string): boolean {
   if (!body) {
     return true; // 纯空白（prettier 换行插的 `{' '}` 等）不参与判定，原样保留。
   }
+  // 纯装饰（`[ {text} ]` 的方括号、` - ` 这类不含字母数字的段）同样不参与：它们没有可翻的词，
+  // 也不可能是拼句碎片；拿它们否决整条，会把旁边本来能独立命中的整句一起焊成英文。
+  if (!/[\p{L}\p{N}]/u.test(body)) {
+    return true;
+  }
   // 续接碎片形态：", and "、"% when infected." —— 首字符是小写字母或标点。
   return !/^[\p{Ll}\p{P}\p{S}]/u.test(body);
 }
