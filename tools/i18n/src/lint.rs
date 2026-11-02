@@ -60,6 +60,8 @@ const NAME_LANG_ASSIGN_ALLOWLIST: &[&str] = &[
     // 唯一的比较是 `SetId` 里同一个 mob 上的两个动作名之间）。
     "code/datums/actions/items/toggles.dm",
     "code/datums/actions/items/organ_action.dm",
+    // 物品调整动作名 `"Adjust [物品名]"` 三兄弟：与 toggles.dm 同形同理。
+    "code/datums/actions/items/adjust.dm",
 ];
 
 /// 表达式的**值**是否就是 LANG 的产物（译文串）。
@@ -1132,10 +1134,20 @@ fn lint_identifier_collisions(
         }
     }
 
+    // lang_normalize_lookup 对**多词**串整串小写，所以多词标识符的任何大小写变体都会被反查命中 ——
+    // 碰撞面按小写比。单词不受影响（归一化不动单 token）。
+    let translatable_lower: BTreeSet<String> = translatable_values
+        .iter()
+        .filter(|v| v.contains(' '))
+        .map(|v| v.to_lowercase())
+        .collect();
+
     // 碰撞 = 标识符位置字符串 ∩ 可翻译目录值。
     let mut collisions: BTreeMap<String, String> = BTreeMap::new();
     for (ident, loc) in &collector.idents {
-        if translatable_values.contains(ident) {
+        if translatable_values.contains(ident)
+            || (ident.contains(' ') && translatable_lower.contains(&ident.to_lowercase()))
+        {
             collisions.insert(ident.clone(), loc.clone());
         }
     }

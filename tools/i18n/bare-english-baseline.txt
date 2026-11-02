@@ -172,6 +172,27 @@
  You valiantly fight off the changeling{0}!
  You're not sure if making this out of a carton was the brightest idea.
  Your bible will heal the loser for awhile.
+ confirmed {0} at {1}.
+ did not get enough candidates ({0}) to spawn.
+ disabled airlock engineering override at {0}.
+ disabled emergency maintenance access at {0}.
+ enabled airlock engineering override at {0}.
+ enabled emergency maintenance access at {0}.
+ has been brought online at <b>{0}</b>.
+ has called the shuttle at {0}.
+ has changed the security level to {0} with {1} at {2}.
+ has dialed for a pizza order from Dogginos using an emagged communications console.
+ has died at <b>{0}</b>.
+ has disconnected.
+ has just been{0} triggered{1}!
+ has messaged {0}, \"{1}\" at {2}.
+ has observed.
+ has recalled the shuttle from {0}.
+ has reconnected.
+ made a fake priority announcement from {0}.
+ made a priority announcement from {0}.
+ made a station announcement from {0}.
+ triggered {0} at {1}.
  {0} and {1}'s arms twist and contort into grotesque blades!
  {0} injection of {1}u per bite.
  {0} {1} shedding {2} mortal shell!
@@ -555,7 +576,7 @@ Base parts are available for shipping via cargo.
 Base vault parts are available for shipping via cargo.
 Based on {0}, we believe that {1} of the station's {2} has developed {3} level intelligence, and the ability to communicate.
 Be a good wingman for your master AI. Assist them in protecting {0} date, {1}.
-Be sure to read <a href=\"{0}/Revenant\">the wiki page</a> to learn more.
+Be sure to read <a href=\"{0}\">the wiki page</a> to learn more.
 Because this item is worn on the head and is covering the mouth, it will block facehugger proboscides, killing facehuggers.
 Become... video deliveryman!
 Began downloading file **ENCRYPTED**.{0} from unspecified server.
@@ -2391,6 +2412,8 @@ The decomposition rate scales with the product of the distances between temperat
 The dog of Nar'sie, {0} has had their vitality drained, rejoice!
 The dogtag is all scratched up.
 The domain is rebooting. Find an exit.
+The door bolts have disengaged.
+The door bolts have engaged!
 The emergency light is {0}.
 The emergency shuttle has been disabled by CentCom.
 The emergency shuttle is already here.
@@ -3756,6 +3779,7 @@ stammers softly for a moment before choking on something!
 stumbles slightly, turning a bright red!
 sweeps its tail!
 we must sadly announce that the would-be winner has also been disqualified. Such bad showmanship!
+you hear something you weren't expecting!
 you were a doctor on one of Nanotrasen's space stations, but you left behind that damn corporation's tyranny and everything it stood for. From a metaphorical hell to a literal one, you find yourself nonetheless missing the recycled air and warm floors of what you left behind... but you'd still rather be here than there.
 you were a {0}'s assistant on a small trading station several sectors from here. Raiders attacked, and there was only one pod left when you got to the escape bay. You took it and launched it alone, and the crowd of terrified faces crowding at the airlock door as your pod's engines burst to life and sent you to this hell are forever branded into your memory.
 you were always joked about by your friends for \"not playing with a full deck\", as they so kindly put it. It seems that they were right when you, on a tour at one of Nanotrasen's state-of-the-art research facilities, were in one of the escape pods alone and saw the red button. It was big and shiny, and it caught your eye. You pressed it, and after a terrifying and fast ride for days, you landed here. You've had time to wisen up since then, and you think that your old friends wouldn't be laughing now.

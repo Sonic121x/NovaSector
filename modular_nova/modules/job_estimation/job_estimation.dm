@@ -87,6 +87,14 @@
 
 	/// The string as it appears in the stat panel
 	var/job_estimation_text = "* [display] [player.client?.prefs.alt_job_titles?[title] || title]"
+	// ZH EDIT ADDITION START - I18N: 框架走手工模板、职业名本地化；玩家名原样插入（绝不拿去反查，角色名 `Not` 会变成「不是」）
+	if(GLOB.i18n_server_locale != DEFAULT_UI_LOCALE)
+		var/shown_title = lang_localize_arg(player.client?.prefs.alt_job_titles?[title] || title)
+		if(display == "a mysterious")
+			job_estimation_text = lang_template_text("_root.job_estimation_mysterious", list(shown_title), GLOB.i18n_server_locale) || job_estimation_text
+		else
+			job_estimation_text = lang_template_text("_root.job_estimation_named", list(copytext(display, 1, -3), shown_title), GLOB.i18n_server_locale) || job_estimation_text
+	// ZH EDIT ADDITION END
 	// If our player is a member of Command or a Silicon, we want to sort them to the top of the list. Otherwise, just add them to the end of the list.
 	// Assistants show up after everyone else.
 	if(player_job.departments_bitflags & (DEPARTMENT_BITFLAG_COMMAND | DEPARTMENT_BITFLAG_SILICON))

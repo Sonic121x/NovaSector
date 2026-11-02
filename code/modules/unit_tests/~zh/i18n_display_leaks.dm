@@ -114,6 +114,16 @@
 		area_table[test_area.type] = "unittest.leak_area"
 		subject.name = "Zxqv Sector Zxqv Thranok Unit tag9"
 		TEST_ASSERT_EQUAL(subject.lang_localize_name_for_display(subject.name), "兹克夫星区 兹克夫单元 tag9", "「区域名 + 类型名 + id」合成名没有被分段本地化")
+		// ④a 真实区域名带 `\improper` 标记字节，而 `"[区域名] …"` 插值会把标记吃掉 —— 名字里的区域名比
+		// area.name 短两个字节，按原值比前缀永远失败（生产服上防火门/火警器/空气警报整类英文即此）。
+		// 名字必须照抄真实形态：用插值拼，别手写一个不带标记的等价串。
+		test_area.name = "\improper Zxqv Sector"
+		subject.name = "[test_area.name] Zxqv Thranok Unit tag7"
+		TEST_ASSERT_EQUAL(subject.lang_localize_name_for_display(subject.name), "兹克夫星区 兹克夫单元 tag7", "区域名带 \\improper 时合成名没有被分段本地化（插值吃掉了标记）")
+		// APC 形态：名字自己也以 `\improper` 开头。
+		subject.name = "\improper [test_area.name] Zxqv Thranok Unit tag8"
+		TEST_ASSERT_EQUAL(subject.lang_localize_name_for_display(subject.name), "兹克夫星区 兹克夫单元 tag8", "名字自带 \\improper 前缀时合成名没有被分段本地化")
+		test_area.name = "Zxqv Sector"
 		// ④b 名字里拼的区域不是 get_area(src)（空气警报用 my_area；墙挂设备坐在墙格上、名字拼房间那侧）。
 		var/area/other_area
 		for(var/area/candidate as anything in GLOB.areas)

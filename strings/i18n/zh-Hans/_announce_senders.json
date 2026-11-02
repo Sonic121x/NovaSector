@@ -5,5 +5,11 @@
   "sender_centcom_security": "中央指挥部安保部",
   "sender_centcom_spacepizza": "中央指挥部太空披萨部",
   "sender_centcom_supply": "中央指挥部补给部",
-  "sender_nanotrasen_meteorology": "纳米传讯气象部"
+  "sender_nanotrasen_meteorology": "纳米传讯气象部",
+  "sender_emergency_shuttle_uplink": "紧急穿梭机上行链路警报",
+  "sender_lighting_system": "自动照明系统公告",
+  "sender_crab17": "CRAB-17 协议",
+  "sender_nukie_outpost": "核特工前哨站",
+  "sender_rumble_royale": "大乱斗海盗广播站",
+  "sender_server_admin": "服务器管理员公告"
 }

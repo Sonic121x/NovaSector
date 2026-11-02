@@ -3,5 +3,16 @@
   "_machine.part_replaced": "{0} 已替换为 {1}。",
   "_machine.fab_offgrid_protolathe": "离网原型机",
   "_machine.fab_offgrid_imprinter": "离网电路压印机",
-  "_machine.fab_component_printer": "部件打印机"
+  "_machine.fab_component_printer": "部件打印机",
+  "_machine.pipe_dir_west_to_north": "西至北",
+  "_machine.pipe_dir_north_to_east": "北至东",
+  "_machine.pipe_dir_south_to_west": "南至西",
+  "_machine.pipe_dir_east_to_south": "东至南",
+  "_machine.pipe_dir_west_south_east": "西-南-东",
+  "_machine.pipe_dir_east_north_west": "东-北-西",
+  "_machine.pipe_dir_north_west_south": "北-西-南",
+  "_machine.pipe_dir_south_east_north": "南-东-北",
+  "_machine.pipe_dir_north_east_south": "北-东-南",
+  "_machine.pipe_dir_south_west_north": "南-西-北",
+  "_machine.pipe_dir_west_north_east": "西-北-东"
 }

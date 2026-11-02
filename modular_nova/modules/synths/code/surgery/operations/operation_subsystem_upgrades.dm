@@ -28,7 +28,7 @@
 			continue
 		incompatible_surgeries += (other_subsystem_upgrade.rnd_name || other_subsystem_upgrade.name)
 
-	return ..() + list("the patient must not have undergone [english_list(incompatible_surgeries, and_text = " OR ")] prior")
+	return ..() + list(LANG("_root.surgery_incompatible", list(lang_english_list(incompatible_surgeries, and_text = " OR ")))) // ZH EDIT CHANGE - I18N - ORIGINAL: return ..() + list("the patient must not have undergone [english_list(incompatible_surgeries, and_text = " OR ")] prior")
 
 /datum/surgery_operation/limb/subsystem_upgrade/state_check(obj/item/bodypart/limb)
 	if(limb.body_zone != required_zone)

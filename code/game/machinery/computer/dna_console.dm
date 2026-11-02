@@ -853,7 +853,7 @@
 			// Activators are also called "research" injectors and are used to create
 			//  chromosomes by recycling at the DNA Console
 			if(is_activator)
-				injector.name = "[mutation.name] [lang_reverse_text("activator")]" // ZH EDIT CHANGE - i18n: name 在 Initialize 之后赋值 → 绕过 atom 反查层，后缀单独反查（词进 _state_words）。ORIGINAL: injector.name = "[mutation.name] activator"
+				injector.name = GLOB.i18n_server_locale == DEFAULT_UI_LOCALE ? "[mutation.name] activator" : "[lang_localize_arg(mutation.name)][lang_localize_arg("activator")]" // ZH EDIT CHANGE - i18n: 两段各自本地化（_state_words 是 LANG 实参域，lang_reverse_text 查不到）。ORIGINAL: injector.name = "[mutation.name] activator"
 				injector.research = TRUE
 				// If there's an operational connected scanner, we can use its upgrades
 				//  to improve our injector's genetic damage generation
@@ -869,7 +869,7 @@
 
 				injector_ready = world.time + (base_cd_time * cd_reduction_mult)
 			else
-				injector.name = "[mutation.name] [lang_reverse_text("mutator")]" // ZH EDIT CHANGE - i18n: 同上，后缀单独反查。ORIGINAL: injector.name = "[mutation.name] mutator"
+				injector.name = GLOB.i18n_server_locale == DEFAULT_UI_LOCALE ? "[mutation.name] mutator" : "[lang_localize_arg(mutation.name)][lang_localize_arg("mutator")]" // ZH EDIT CHANGE - i18n: 同上。ORIGINAL: injector.name = "[mutation.name] mutator"
 				injector.force_mutate = TRUE
 				// If there's an operational connected scanner, we can use its upgrades
 				//  to improve our injector's genetic damage generation
@@ -1986,7 +1986,7 @@
 				mutation_data["ByondRef"] = REF(stored)
 				mutation_data["Type"] = stored.type
 				if(stored.can_chromosome)
-					mutation_data["ValidChromos"] = jointext(stored.valid_chrom_list, ", ")
+					mutation_data["ValidChromos"] = lang_english_list(stored.valid_chrom_list, and_text = ", ") // ZH EDIT CHANGE - I18N: 染色体名逐个本地化 - ORIGINAL: mutation_data["ValidChromos"] = jointext(stored.valid_chrom_list, ", ")
 					mutation_data["AppliedChromo"] = stored.chromosome_name
 					mutation_data["ValidStoredChromos"] = build_chrom_list(stored)
 			else
@@ -2043,7 +2043,7 @@
 			mutation_data["Type"] = mutation.type
 
 			if(mutation.can_chromosome)
-				mutation_data["ValidChromos"] = jointext(mutation.valid_chrom_list, ", ")
+				mutation_data["ValidChromos"] = lang_english_list(mutation.valid_chrom_list, and_text = ", ") // ZH EDIT CHANGE - I18N: 染色体名逐个本地化 - ORIGINAL: mutation_data["ValidChromos"] = jointext(mutation.valid_chrom_list, ", ")
 				mutation_data["AppliedChromo"] = mutation.chromosome_name
 				mutation_data["ValidStoredChromos"] = build_chrom_list(mutation)
 
@@ -2074,7 +2074,7 @@
 
 		mutation_data["CanChromo"] = mutation.can_chromosome
 		if(mutation.can_chromosome)
-			mutation_data["ValidChromos"] = jointext(mutation.valid_chrom_list, ", ")
+			mutation_data["ValidChromos"] = lang_english_list(mutation.valid_chrom_list, and_text = ", ") // ZH EDIT CHANGE - I18N: 染色体名逐个本地化 - ORIGINAL: mutation_data["ValidChromos"] = jointext(mutation.valid_chrom_list, ", ")
 			mutation_data["AppliedChromo"] = mutation.chromosome_name
 			mutation_data["ValidStoredChromos"] = build_chrom_list(mutation)
 
@@ -2113,7 +2113,7 @@
 
 			mutation_data["CanChromo"] = HM.can_chromosome
 			if(HM.can_chromosome)
-				mutation_data["ValidChromos"] = jointext(HM.valid_chrom_list, ", ")
+				mutation_data["ValidChromos"] = lang_english_list(HM.valid_chrom_list, and_text = ", ") // ZH EDIT CHANGE - I18N: 染色体名逐个本地化 - ORIGINAL: mutation_data["ValidChromos"] = jointext(HM.valid_chrom_list, ", ")
 				mutation_data["AppliedChromo"] = HM.chromosome_name
 				mutation_data["ValidStoredChromos"] = build_chrom_list(HM)
 

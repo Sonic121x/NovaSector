@@ -99,7 +99,7 @@
 	. = ..()
 	var/datum/mod_theme/used_theme = GLOB.mod_themes[theme]
 	name = "\improper MOD [lang_reverse_text(used_theme.name)] external plating" // ZH EDIT CHANGE - I18N - ORIGINAL: name = "\improper MOD [used_theme.name] external plating"
-	desc = "[desc] [lang_reverse_text(used_theme.desc)]" // ZH EDIT CHANGE - I18N - ORIGINAL: desc = "[desc] [used_theme.desc]"
+	desc = "[lang_reverse_text(desc)] [lang_reverse_text(used_theme.desc)]" // ZH EDIT CHANGE - I18N: 两半都要翻 - ORIGINAL: desc = "[desc] [used_theme.desc]"
 	icon_state = "[used_theme.default_skin]-plating"
 
 /obj/item/mod/construction/plating/civilian

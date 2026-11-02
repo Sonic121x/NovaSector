@@ -9,6 +9,7 @@ AI Law Synchronization
 Activate
 Active
 Add
+Additional Notes
 Admin
 Adminhelps are also sent through TGS to services like IRC and Discord. If no admins are available in game, sending an adminhelp might still be noticed and responded to.
 Age Limit
@@ -48,6 +49,8 @@ Boom Wire
 Bounty Fugitive Hunters
 Bowl
 Bra
+Brass Bow
+Brass Spear
 Bunny
 C
 Camera
@@ -78,11 +81,13 @@ Controller
 Cook
 Counterattack
 Crew Manifest
+Crimson Medallion
 Crowbar
 Crystallizer
 Cultist
 Custom
 Cyborg
+DISCO INFERNO
 DONE - Finish selection
 Damages reported by the internal diagnostics system suggest a digital attack by a wireless hacking implant.
 Death
@@ -157,6 +162,7 @@ High Voltage Circuit
 High Voltage Circuit 1
 High Voltage Circuit 2
 High Voltage Ground
+Honey Frame
 Hypersensitive
 I need the power!
 ID Scan
@@ -164,6 +170,7 @@ Icon
 Implants
 Incarcerated
 Infinite Transit
+Inflict Damage
 Insane
 Interface
 Internal GPS
@@ -179,9 +186,12 @@ Kortara
 L
 LOOC
 Launch
+Leather Satchel
+Light Fixture
 Lights
 Limiter
 Link
+Link Account
 Load Check
 Lockdown
 Loop mode
@@ -207,6 +217,7 @@ Mop
 Motor 1
 Motor 2
 Move job to backpack
+Multi Z layer cable hub
 Multitool
 N/A
 Naked
@@ -216,9 +227,11 @@ NetGuardian Prime
 Nightmare
 No
 NoRank
+Nominal
 None
 Normal
 North
+Not Ready
 Not submitted
 Nothing
 Nude
@@ -289,6 +302,9 @@ Self
 Sensitive
 Server Restart (Kill and restart DD)
 Service
+Set Life
+Set Mana
+Set Mana Slots
 Settler
 Shark
 Shark (No Fin)
@@ -299,6 +315,7 @@ Shuttle
 Signal
 Simple
 Skills
+Skin Contact
 Skinhead
 Sleep
 South
@@ -317,6 +334,7 @@ Stasis
 Station
 Station Engineer
 Station Member
+Stock Part
 Stop
 Sun
 Supply
@@ -331,6 +349,7 @@ Teleport
 Teleporter
 Test
 Text
+The Syndicate
 The Wizard
 Their sprites
 Throw
@@ -492,6 +511,7 @@ engineering
 error
 escape
 exotic
+external airlocks
 eyes
 fire
 fire alarm
@@ -594,6 +614,7 @@ memo
 memorizer
 meson
 metal
+mind reader
 mining
 mob
 module
@@ -605,6 +626,7 @@ namecheck
 neck
 neutral
 ninja
+none
 normal
 note
 nothing
@@ -659,6 +681,7 @@ rigged
 right
 right hand
 rolling pin
+rope bunny
 sad
 safe
 sales tagger
@@ -678,6 +701,7 @@ shadow
 shock
 shoes
 shovel
+shred
 shuttle
 sign
 silver
@@ -700,6 +724,7 @@ stamina
 stamps
 start
 states
+station integrity
 status
 steps
 sterile

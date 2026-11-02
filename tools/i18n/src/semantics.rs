@@ -24,6 +24,9 @@ pub fn sink_message_args(name: &str) -> Option<&'static [usize]> {
         "priority_announce" | "minor_announce" | "print_command_report" => Some(&[0, 1]),
         "bank_card_talk" | "notify_ghosts" | "add_raw_text" | "speak" => Some(&[0]),
         "talk_into" => Some(&[1]),
+        // 幽灵频道播报（「<b>某人</b> has reconnected.」「… has died at …」）：消息与说话人名是两个实参，
+        // 名字由调用方单独包在 source 里，消息本身是完整的句子模板。**只抽取、不改写**（见 is_rewrite_sink）。
+        "deadchat_broadcast" => Some(&[0]),
         "display_results" => Some(&[2, 3, 4]),
         "display_pain" => Some(&[1]),
         _ => None,
@@ -61,7 +64,11 @@ fn proc_ref_name(expr: &Expression) -> Option<&str> {
 
 /// Whether a shared sink is safe for source rewriting rather than extraction only.
 pub fn is_rewrite_sink(name: &str) -> bool {
-    sink_message_args(name).is_some() && !matches!(name, "display_results" | "display_pain")
+    // deadchat_broadcast：有几处把**玩家写的字**（幽灵说话、请求控制台留言、911 呼叫内容）直接插进消息，
+    // 改写成 LANG 会让这些文本实参走 lang_localize_arg 被整串反查（玩家说 "Yes" 变成「是」）。
+    // 只抽取，交给聊天落地层，与其它聊天行同等对待。
+    sink_message_args(name).is_some()
+        && !matches!(name, "display_results" | "display_pain" | "deadchat_broadcast")
 }
 
 /// Parameter names corresponding to message indices, used to resolve named DM arguments.
@@ -209,6 +216,7 @@ mod tests {
         assert_eq!(sink_message_args("talk_into").unwrap(), &[1]);
         assert!(is_rewrite_sink("visible_message"));
         assert!(!is_rewrite_sink("display_results"));
+        assert!(!is_rewrite_sink("deadchat_broadcast"));
         assert!(is_wordy_sink("speak"));
         assert!(is_wordy_sink("talk_into"));
         assert!(is_announce_sink("priority_announce"));

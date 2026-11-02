@@ -6,5 +6,11 @@
 	"{0} (Machine Board)": "{0}（机器电路板）",
 	"{0} (Computer Board)": "{0}（电脑电路板）",
 	"{0} (Abductor Machine Board)": "{0}（绑架者机器电路板）",
-	"Crystalline hyperstructure returning to safe operating parameters. Integrity: {0}%": "晶体超结构正在恢复安全运行参数。完整性：{0}%"
+	"Crystalline hyperstructure returning to safe operating parameters. Integrity: {0}%": "晶体超结构正在恢复安全运行参数。完整性：{0}%",
+	"{0} is offering {1}": "{0}正在递出{1}",
+	"Store Bought {0}": "市售{0}",
+	"{0} Higher Dimensional Affairs": "{0}高维事务部",
+	"Material from a pair of {0}.": "来自一副{0}的材料。",
+	"Material from {0}.": "来自{0}的材料。",
+	"Fibers from {0}.": "来自{0}的纤维。"
 }

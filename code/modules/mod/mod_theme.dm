@@ -136,7 +136,7 @@
 		var/theme_name = lang_reverse_text(name)
 		var/base_name = lang_atom_text(part, part.name)
 		part.name = (lang_contains_cjk(theme_name) && lang_contains_cjk(base_name)) ? "[theme_name][base_name]" : "[theme_name] [base_name]"
-		part.desc = "[part.desc] [lang_reverse_text(desc)]" // ZH EDIT CHANGE - I18N - ORIGINAL: part.desc = "[part.desc] [desc]"
+		part.desc = "[lang_reverse_text(part.desc)] [lang_reverse_text(desc)]" // ZH EDIT CHANGE - I18N: 两半都要翻（拼接后谁也不是目录键，显示边界再也拆不开）- ORIGINAL: part.desc = "[part.desc] [desc]"
 		part.set_armor(armor_type)
 		part.resistance_flags = resistance_flags
 		part.flags_1 |= atom_flags //flags like initialization or admin spawning are here, so we cant set, have to add

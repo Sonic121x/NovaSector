@@ -195,7 +195,7 @@
 
 	enemy_icon_id = rand(1,6)
 	enemy_name = make_boss_name(boss_adjective = (boss ? "Big Boss" : null))
-	feedback_message = "New game started against [enemy_name]"
+	feedback_message = LANG("_root.arcade_new_game", list(enemy_name)) // ZH EDIT CHANGE - I18N: 纯显示反馈 - ORIGINAL: feedback_message = "New game started against [enemy_name]"
 
 	if(obj_flags & EMAGGED)
 		enemy_name = "Cuban Pete"

@@ -101,5 +101,21 @@
 	"Passive": "Passive",
 	"Involved": "Involved",
 	"Vulnerable": "Vulnerable",
-	"Expendable": "Expendable"
+	"Expendable": "Expendable",
+	"Stabilizer": "Stabilizer",
+	"Synchronizer": "Synchronizer",
+	"Power": "Power",
+	"Energetic": "Energetic",
+	"Reinforcement": "Reinforcement",
+	"none": "none",
+	"Nominal": "Nominal",
+	"AI SHELL": "AI SHELL",
+	"OFFLINE": "OFFLINE",
+	"DEPOWERED": "DEPOWERED",
+	"Empty": "Empty",
+	"ineffectively": "ineffectively",
+	"pulverise": "pulverise",
+	"pulverises": "pulverises",
+	"shred": "shred",
+	"shreds": "shreds"
 }

@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(dreams, populate_dream_list())
 
 	//Subject
 	if(custom_dream_nouns.len && prob(90))
-		fragment += pick(custom_dream_nouns)
+		fragment += lang_dream_noun(pick(custom_dream_nouns)) // ZH EDIT CHANGE - I18N: 床单名词池走域内表（颜色词不能进全局反查）- ORIGINAL: fragment += pick(custom_dream_nouns)
 	else
 		fragment += pick(dream_strings)
 

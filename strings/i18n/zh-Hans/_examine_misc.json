@@ -4,5 +4,10 @@
   "papers_word": "张纸",
   "one_paper": "一张纸",
   "gene_immutable": "不可变",
-  "gene_essential": "必需"
+  "gene_essential": "必需",
+  "_dream.hear_toy": "你给一个玩具上了发条",
+  "_dream.hear_strange": "你听到了奇怪的声音",
+  "_dream.hear_record": "你挑了一张唱片来放",
+  "_dream.hear_shuffle": "你按下了音乐播放器的随机播放",
+  "_dream.hear_unexpected": "你听到了意料之外的声音！"
 }

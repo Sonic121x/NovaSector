@@ -22,12 +22,12 @@
 	data["sustain_mode"] = sustain_mode
 	switch(sustain_mode)
 		if(SUSTAIN_LINEAR)
-			data["sustain_mode_button"] = "Linear Sustain Duration (in seconds)"
+			data["sustain_mode_button"] = LANG("_root.instrument_sustain_linear", null) // ZH EDIT CHANGE - I18N: 纯按钮标签 - ORIGINAL: data["sustain_mode_button"] = "Linear Sustain Duration (in seconds)"
 			data["sustain_mode_duration"] = sustain_linear_duration / 10
 			data["sustain_mode_min"] = INSTRUMENT_MIN_TOTAL_SUSTAIN
 			data["sustain_mode_max"] = INSTRUMENT_MAX_TOTAL_SUSTAIN
 		if(SUSTAIN_EXPONENTIAL)
-			data["sustain_mode_button"] = "Exponential Falloff Factor (% per decisecond)"
+			data["sustain_mode_button"] = LANG("_root.instrument_sustain_exponential", null) // ZH EDIT CHANGE - I18N: 纯按钮标签 - ORIGINAL: data["sustain_mode_button"] = "Exponential Falloff Factor (% per decisecond)"
 			data["sustain_mode_duration"] = sustain_exponential_dropoff
 			data["sustain_mode_min"] = INSTRUMENT_EXP_FALLOFF_MIN
 			data["sustain_mode_max"] = INSTRUMENT_EXP_FALLOFF_MAX

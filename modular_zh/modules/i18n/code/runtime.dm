@@ -525,7 +525,10 @@ GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 		var/arg = args[index]
 		if(localize && !in_tag)
 			if(istext(arg))
-				arg = lang_localize_arg(arg, origin)
+				// 被引号直接包住的占位符（`says, \"{2}\"`）是引述的原话、多半是玩家打的字：原样插入。
+				// 与模板逆匹配那边的 lang_tpl_quoted_slot 同一条线。
+				if(!lang_placeholder_is_quoted(template, brace, close))
+					arg = lang_localize_arg(arg, origin)
 			else if(isatom(arg))
 				// **非文本实参从前完全没被本地化**：rewrite 把 `[src]` 抬成 LANG 实参时给的是 atom
 				// 本身（`list(src)` 一种形状全仓 3000+ 处），而这里只对 istext 分支调 lang_localize_arg
@@ -539,6 +542,17 @@ GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 		cursor = close + 1
 	output += copytext(template, cursor)
 	return output.Join()
+
+/// 模板里 `{N}`（位于 brace..close）是否被引号直接包住。目录存的是源码形态，引号可能带反斜杠（`\"`）。
+/proc/lang_placeholder_is_quoted(template, brace, close)
+	if(brace <= 1)
+		return FALSE
+	var/before = text2ascii(template, brace - 1)
+	var/after = text2ascii(template, close + 1)
+	if(after == 92) // 反斜杠转义的引号：看它后面那个字符
+		after = text2ascii(template, close + 2)
+	// 只认双引号：引述原话几乎都用它；单引号在这个仓库里多是标签名/模式名（`Mode: '{0}'`），那些照常翻。
+	return before == 34 && after == 34
 
 /// LANG 实参/引擎捕获的统一本地化链：状态词 → 代词/系动词 → 整串反查 → 冠词剥离反查。
 /// 解决「模板译了、运行期填进来的实参却是英文」的四类：
@@ -720,6 +734,10 @@ GLOBAL_LIST_EMPTY(i18n_arg_cache)
 	// 「类型名 + 编号」的字符串形态（见 lang_localize_chain 同名一段）：名字先被拼成字符串再进实参时，
 	// 类型信息已经丢了，只能按形状拆。
 	translated = lang_reverse_serial_suffixed(stripped || arg, GLOB.i18n_server_locale)
+	if(translated)
+		return translated
+	// 组合名（`X (Y)` / `X - Y` / `X's Y` / `broken X`）同理，见 lang_reverse_composed_name。
+	translated = lang_reverse_composed_name(stripped || arg, GLOB.i18n_server_locale)
 	if(translated)
 		return translated
 	// 小写形实参（"The [special_role_text] has failed!" 的 LOWER_TEXT 角色名等）：目录按原始
@@ -935,6 +953,14 @@ GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 /// `heat` / `holy` / `life` / `soup` / `foam` 这类通用单词，塞进全局反查表当场把
 /// `nova-i18n lint` 的碰撞告警顶上去（实测 54 → 61）。顶层表只由这一个显示点查。
 /// 表由 `node tools/i18n/reaction-names.mjs` 生成骨架，未填译文的保持英文。
+/// 床单梦境名词（`dream_messages`）的显示译名。池里大量是单个颜色词，同时是图标态/标识符，
+/// 不能进全局反查表 —— 走顶层域内表，只在梦境生成时查。查不到原样返回。
+/proc/lang_dream_noun(noun)
+	if(!istext(noun) || GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
+		return noun
+	var/list/table = lang_scoped_table("dream_nouns.json")
+	return table[noun] || noun
+
 /proc/lang_reaction_name(reaction_name)
 	if(!istext(reaction_name))
 		return reaction_name
@@ -1108,15 +1134,23 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 		text = lang_strip_grammar_macros(text)
 	if(findtext(text, "\\"))
 		text = lang_unescape_source(text)
+	// HTML 实体：`say()` 先 `sanitize()`（= html_encode），撇号到这里已是 `&#39;`，带撇号的台词
+	// （售货机广告词、NPC 喊话）整串查表必然对不上。键侧同样解码，两边对称。
+	if(findtext(text, "&") && findtext(text, ";"))
+		text = html_decode(text)
 	if(findtext(text, "\t") || findtext(text, "  "))
 		text = lang_collapse_ws(text)
 	text = trim(text)
 	var/length_of_text = length(text)
 	if(length_of_text > 2 && text2ascii(text, 1) == 39 && text2ascii(text, length_of_text) == 39)
 		text = copytext(text, 2, length_of_text)
-	var/first_char = copytext(text, 1, 2)
-	if(findtext(text, " ") && findtextEx("ABCDEFGHIJKLMNOPQRSTUVWXYZ", first_char))
-		text = LOWER_TEXT(first_char) + copytext(text, 2)
+	// 多词串**整串小写**（从前只把首字母小写）。运行期改写大小写的不止 capitalize()：订购台把名字整串
+	// LOWER_TEXT（`egg carton` ← `Egg Carton`），`full_capitalize` / TS 的 capitalizeAll 又反过来逐词大写
+	// （`Raw Weather Core` ← `raw weather core`）。生产服三局漏翻里这类大小写变体 86 种。
+	// 归一表只在精确查表 miss 之后才用，精确命中的路径不受影响；大小写不同、译文也不同的条目在建表时
+	// 判歧义剔除。单词不动：单 token 是标识符浓度最高的区间（与其它变体规则同一条线）。
+	if(findtext(text, " "))
+		text = LOWER_TEXT(text)
 	return text
 
 /proc/lang_add_normalized_reverse(list/reverse_norm, list/origins, list/ambiguous, normalized, translated, origin)
@@ -1522,25 +1556,30 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 ///   · 类型名 —— 优先按**本类型**取键（`APC` 这种单词只有类型表够得着），miss 再整串反查；
 ///   · 尾巴（`id_tag` 之类）—— 原样保留，它本来就不是文案。
 /atom/proc/lang_localize_area_prefixed_name(atom/source, display_name)
+	// 名字自己也可能带标记（APC 是 `"\improper [区域名] APC"`），两边同样去掉再比。
+	display_name = format_text(display_name)
 	var/area/source_area = get_area(source)
-	var/area_name = source_area?.name
+	// 区域名带 `\improper` 标记字节，而 `"[区域名] …"` 插值时 BYOND 会把标记去掉 —— 合成名里的区域名
+	// 比 area.name 短两个字节，按原值比前缀永远失败（实测：防火门/火警器/空气警报整类英文）。一律比去标记的形态。
+	var/area_name = source_area ? format_text(source_area.name) : null
 	// 名字里拼的区域不一定是 get_area(src)：空气警报用的是 my_area（可以是连接的传感器所在区域），
 	// 墙挂设备也可能坐在墙那一格、而名字拼的是房间那一侧。按名字前缀在全站区域里找最长匹配 ——
 	// **自己所在区域的名字也是前缀时同样要比**：APC 挂在「Brig」的墙上、名字是「Brig Control APC」，
 	// 只认 get_area 就会切成「拘留区 Control APC」。
 	var/area/longest = lang_area_by_name_prefix(display_name)
 	// 只认前缀形态；出现在中间的多半是巧合。
-	if(!length(area_name) || findtext(display_name, area_name) != 1 || (longest && length(longest.name) > length(area_name)))
+	if(!length(area_name) || findtext(display_name, area_name) != 1 || (longest && length(format_text(longest.name)) > length(area_name)))
 		source_area = longest
 		if(isnull(source_area))
 			return null
-		area_name = source_area.name
+		area_name = format_text(source_area.name)
 	var/rest = copytext(display_name, length(area_name) + 1)
 	if(!length(rest))
 		return null
-	var/localized_area = source_area.lang_localize_name_for_display(area_name)
+	// 传 area 自己的 name（带标记、等于 initial(name)）才走按类型取键那条快路。
+	var/localized_area = source_area.lang_localize_name_for_display(source_area.name)
 	// 其余部分：先看是不是「类型名 + 尾巴」（火警器 `[区域] [类型名] [id]`）。
-	var/base = initial(name)
+	var/base = format_text(initial(name))
 	var/trimmed_rest = trim(rest)
 	if(length(base) && findtext(trimmed_rest, base) == 1)
 		var/tail = copytext(trimmed_rest, length(base) + 1)
@@ -1562,7 +1601,7 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 	var/best_length = 0
 	var/display_length = length(display_name)
 	for(var/area/candidate as anything in GLOB.areas)
-		var/candidate_name = candidate.name
+		var/candidate_name = format_text(candidate.name)
 		var/candidate_length = length(candidate_name)
 		if(candidate_length <= best_length || candidate_length >= display_length)
 			continue

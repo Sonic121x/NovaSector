@@ -242,5 +242,21 @@
 	"Passive": "不参与",
 	"Involved": "参与",
 	"Vulnerable": "可被击杀",
-	"Expendable": "可被永久移除"
+	"Expendable": "可被永久移除",
+	"Stabilizer": "稳定剂",
+	"Synchronizer": "同步器",
+	"Power": "力量",
+	"Energetic": "高能",
+	"Reinforcement": "强化",
+	"none": "无",
+	"Nominal": "正常",
+	"AI SHELL": "AI 外壳",
+	"OFFLINE": "离线",
+	"DEPOWERED": "断电",
+	"Empty": "空",
+	"ineffectively": "徒劳地",
+	"pulverise": "粉碎",
+	"pulverises": "粉碎了",
+	"shred": "撕碎",
+	"shreds": "撕碎了"
 }

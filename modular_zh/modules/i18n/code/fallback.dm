@@ -87,13 +87,27 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 	var/serial = lang_reverse_serial_suffixed(stripped || text, locale)
 	if(serial)
 		return serial
+	var/decorated = lang_reverse_edge_decorated(stripped || text, locale)
+	if(decorated)
+		return decorated
 	var/templated = FALSE
 	if(allow_template)
 		var/after_template = lang_template_apply(text, locale)
 		if(after_template != text)
 			text = after_template
 			templated = TRUE
+	// 多句拼接（「模板句 + 另一句纯串」、医疗记录里一串怪癖说明）：整串既不是键，模板也只吃得下其中
+	// 一句——订购台的「Thank you for your purchase! 请注意：…」就是模板翻了后缀、提前返回，基础句永远英文。
+	// 按句切开，**逐句只做整串精确反查**（不递归进整条链，所以不会自己调自己），没命中的句子原样保留。
+	var/by_sentence = lang_reverse_sentences_exact(text, locale)
+	if(by_sentence)
+		return by_sentence
+	// 组合名拆段排在模板**之后**：整条骨架（`{0} (Machine Board)`）是更具体的证据。反过来的话
+	// `Thermomachine (Machine Board)` 会被拆成「温控机 (Machine Board)」—— 后半段像专名、原样留下。
 	if(!templated)
+		var/composed = lang_reverse_composed_name(stripped || text, locale, template_checked = allow_template)
+		if(composed)
+			return composed
 		lang_count_layer_hit(I18N_LAYER_MISS)
 	return text
 
@@ -107,6 +121,138 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 	if(localized == base)
 		return null
 	return "[localized] [serial_tail.group[2]]"
+
+/// 运行期在名字两侧拼缀的组合名（显示边界、LANG 实参、TGUI 负载里都很常见）：
+///   · `A (B)`  —— `tray (Watermelon Vines)`、`Thermomachine (Machine Board)`、`departmental card (Service Budget)`、
+///                 `Lin Muchen (Supply Foreman)`；
+///   · `A - B`  —— `poster - Ion Rifle`、`painting - Helldiver`、`Departmental Techfab - Service`；
+///   · `A's B`  —— `Lin Muchen's travel suitcase`、`Karl's lunchbox`；
+///   · `broken B` —— `broken Badminka vodka`（前缀骨架在 manual.json）。
+/// 整串永远不是目录键，而每一段本身早就在目录里（或是人名/玩家自起的标题，本就不该翻）。
+/// 安全线：每段只做**整串精确反查**（可递归拆）；至少一段命中；没命中的那段必须**长得像专名**
+/// （没有小写开头的词）—— `Warning - the reactor is overheating` 这种散文不会被劈成「警告 - the reactor…」。
+/// 带句末标点、过长或含标签的一律不拆。不是这个形状、或没有任何一段命中时返回 null。
+/proc/lang_reverse_composed_name(text, locale, depth = 0, template_checked = FALSE)
+	if(!istext(text) || depth > 2 || length(text) > 80 || findtext(text, "<"))
+		return null
+	var/static/regex/terminal_punct = regex(@"[.!?:;,]$")
+	if(terminal_punct.Find(text))
+		return null
+	var/static/regex/paren_suffix = regex(@"^(.+?) \(([^()]+)\)$")
+	var/static/regex/possessive = regex(@"^(.+?)'s (.+)$")
+	var/paren_shape = paren_suffix.Find(text)
+	var/dash = findtext(text, " - ")
+	if(!paren_shape && dash <= 1 && !possessive.Find(text) && findtext(text, "broken ") != 1)
+		return null
+	// 整条骨架（`{0} (Machine Board)`）比按段拆更具体：调用方没试过模板的（LANG 实参）先试一次。
+	// 捕获值会回到 lang_localize_arg，但它严格更短，必然收敛。
+	if(!template_checked && depth == 0)
+		var/templated = lang_template_apply(text, locale)
+		if(templated != text)
+			return templated
+	if(paren_shape && paren_suffix.Find(text))
+		var/list/parts = lang_composed_pieces(list(paren_suffix.group[1], paren_suffix.group[2]), locale, depth)
+		return parts && "[parts[1]] ([parts[2]])"
+	if(dash > 1)
+		var/list/parts = lang_composed_pieces(list(copytext(text, 1, dash), copytext(text, dash + 3)), locale, depth)
+		return parts && "[parts[1]] - [parts[2]]"
+	if(possessive.Find(text))
+		var/owner = possessive.group[1]
+		var/thing = possessive.group[2]
+		// 个人物品的名字是小写类型名（`travel suitcase`、`lunchbox`）；Title Case 的「X's Y」多半是整个专名
+		// （区域 `Dentist's Office`、`Mind's Garden`），拆开只会得到「Dentist的办公室」这种半截译文。
+		var/thing_first = text2ascii(thing, 1)
+		if(thing_first < 97 || thing_first > 122)
+			return null
+		var/localized_thing = lang_composed_piece(thing, locale, depth)
+		if(!localized_thing || !lang_composed_name_like(owner))
+			return null
+		// 主人几乎总是玩家角色名：原样保留，绝不拿去查表（角色名 `Not` 会撞上电路「非门」的 `不是`）。
+		return lang_template_text("_root.name_possessive", list(owner, localized_thing), locale)
+	if(findtext(text, "broken ") == 1)
+		var/localized_rest = lang_composed_piece(copytext(text, 8), locale, depth)
+		if(localized_rest)
+			return lang_template_text("_root.name_broken", list(localized_rest), locale)
+	return null
+
+/// 切块器在标签边界切开后，块的两端常挂着半截装饰：`Third Degree Burns (`（后面是 `<span>中等</span>)`）、
+/// `Marker Beacon Storage:`（后面是数量）。整串不是目录键，剥掉两端的括号/冒号/空白之后正是。
+/// 只在内层**整串精确命中**时才动，装饰原样接回。
+/proc/lang_reverse_edge_decorated(text, locale)
+	var/static/regex/edges = regex(@"^([\s()]*)(.*?[A-Za-z].*?)([\s(:]*)$")
+	// 热路径（每次整串 miss 都会到这里）：只有首尾确实挂着括号/冒号才跑正则。
+	var/text_length = length(text)
+	if(!istext(text) || !text_length || text_length > 120)
+		return null
+	var/first = text2ascii(text, 1)
+	var/last = text2ascii(text, text_length)
+	if(first != 40 && first != 41 && last != 40 && last != 58) // ( ) … ( :
+		return null
+	if(!edges.Find(text))
+		return null
+	var/lead = edges.group[1]
+	var/inner = edges.group[2]
+	var/tail = edges.group[3]
+	if(!length(lead) && !length(tail))
+		return null
+	var/hit = lang_reverse_text_in(inner, locale)
+	if(hit == inner)
+		return null
+	return "[lead][hit][tail]"
+
+/// 组合名的一段：整串精确反查，miss 再按同样的形状递归拆；都不行返回 null。
+/proc/lang_composed_piece(piece, locale, depth)
+	piece = trim(piece)
+	if(!length(piece) || GLOB.i18n_identity_names[piece])
+		return null // 本局登记过的玩家角色名：保持原样（见 identity_names.dm）
+	var/hit = lang_reverse_text_in(piece, locale)
+	if(hit != piece)
+		return hit
+	return lang_reverse_composed_name(piece, locale, depth + 1)
+
+/// 两段都翻（没命中的那段要像专名，原样保留）；一段都没命中返回 null。
+/proc/lang_composed_pieces(list/pieces, locale, depth)
+	var/list/result = list()
+	var/hit_any = FALSE
+	for(var/piece in pieces)
+		var/localized = lang_composed_piece(piece, locale, depth)
+		if(localized)
+			hit_any = TRUE
+			result += localized
+		else if(lang_composed_name_like(piece))
+			result += piece
+		else
+			return null
+	return hit_any ? result : null
+
+/// 「像专名」：每个词都不以小写字母开头（人名、型号、玩家起的画名）。散文必然带小写虚词/动词。
+/proc/lang_composed_name_like(text)
+	var/static/regex/lowercase_word = regex(@"(^|\s)[a-z]")
+	return istext(text) && length(trim(text)) && !lowercase_word.Find(text)
+
+/// 取一条 manual 模板键并按 locale 填参（参数已是显示形态，不再本地化）。目录缺键时退回英文骨架。
+/proc/lang_template_text(key, list/fill, locale)
+	var/template = lang_template(key, locale)
+	if(!istext(template))
+		return null
+	// 单趟扫描：实参写进输出后不再参与匹配（玩家起的名字里可能恰好有 `{1}`，见 lang_interpolate）。
+	var/list/out = list()
+	var/pos = 1
+	var/static/regex/placeholder = regex(@"\{(\d+)\}")
+	// 形参不能叫 `args`：那是 DM 内置的「本 proc 实参列表」。三元也不能直接接在 `+=` 后面
+	// （`out += cond ? a : b` 先算 `+=`），单独算出 piece 再追加。
+	while(placeholder.Find(template, pos))
+		out += copytext(template, pos, placeholder.index)
+		var/arg_index = text2num(placeholder.group[1]) + 1
+		var/piece = placeholder.match
+		if(arg_index >= 1 && arg_index <= length(fill))
+			piece = "[fill[arg_index]]"
+		out += piece
+		// **不能用 `placeholder.next`**：不带 "g" 标志的正则不设置它，pos 原地不动 → 死循环、列表撑爆
+		// （32 位 DreamDaemon 直接 OOM）。
+		pos = placeholder.index + length(placeholder.match)
+	out += copytext(template, pos)
+	return jointext(out, "")
 
 /// 可见文本（剥掉 HTML 标签之后）是否含拉丁字母。标签里的 `span`/`class` 不算——
 /// 否则带样式的已译中文行永远付切块税。
@@ -211,6 +357,42 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 			continue
 		earliest = found
 		. = found + length(ender) - 1
+
+/// 见 lang_localize_chain 的「多句拼接」一段。至少两句、且至少一句命中才返回，否则 null。
+/// 只认含拉丁字母的句子；已经是中文的句子（模板刚翻好的那句）原样跳过。
+/proc/lang_reverse_sentences_exact(text, locale)
+	if(!istext(text) || length(text) > 4096)
+		return null
+	if(!findtext(text, ". ") && !findtext(text, "! ") && !findtext(text, "? ") && !findtext(text, "。 ") && !findtext(text, "！ ") && !findtext(text, "？ "))
+		return null
+	var/regex/ascii_letter_regex = GLOB.i18n_ascii_letter_regex
+	var/list/pieces = list()
+	var/start = 1
+	var/cursor = 1
+	var/text_length = length(text)
+	while(cursor <= text_length)
+		var/split = lang_next_sentence_break(text, cursor)
+		if(!split)
+			pieces += copytext(text, start)
+			break
+		pieces += copytext(text, start, split)
+		start = split
+		cursor = split + 1
+	if(length(pieces) < 2)
+		return null
+	var/hit_any = FALSE
+	for(var/i in 1 to length(pieces))
+		var/piece = pieces[i]
+		if(!ascii_letter_regex.Find(piece, 1))
+			continue
+		var/hit = lang_reverse_text_in(piece, locale)
+		if(hit == piece)
+			continue
+		// 切点把空格留给了下一句：命中的那句要把前导空白接回去。
+		var/lead_length = spantext(piece, " \t\n")
+		pieces[i] = (lead_length ? copytext(piece, 1, lead_length + 1) : "") + hit
+		hit_any = TRUE
+	return hit_any ? jointext(pieces, "") : null
 
 /// 把「基础句 + 若干整句后缀」里的后缀**逐句**落地。
 ///

@@ -835,7 +835,7 @@
 		header = "A Heretic is Ascending!",
 	)
 	priority_announce(
-		text = replacetext(replacetext(announcement_text, "%NAME%", user.real_name), "%SPOOKY%", GLOBAL_PROC_REF(generate_heretic_text)),
+		text = replacetext(replacetext(lang_reverse_text(announcement_text), "%NAME%", user.real_name), "%SPOOKY%", GLOBAL_PROC_REF(generate_heretic_text)), // ZH EDIT CHANGE - I18N: %VAR% 替换之后整串不再是目录键，先反查模板再替换 - ORIGINAL: text = replacetext(replacetext(announcement_text, "%NAME%", user.real_name), "%SPOOKY%", GLOBAL_PROC_REF(generate_heretic_text)),
 		title = generate_heretic_text(),
 		sound = announcement_sound,
 		color_override = "pink",
