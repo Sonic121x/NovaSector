@@ -525,7 +525,10 @@ GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 		var/arg = args[index]
 		if(localize && !in_tag)
 			if(istext(arg))
-				arg = lang_localize_arg(arg, origin)
+				// 被引号直接包住的占位符（`says, \"{2}\"`）是引述的原话、多半是玩家打的字：原样插入。
+				// 与模板逆匹配那边的 lang_tpl_quoted_slot 同一条线。
+				if(!lang_placeholder_is_quoted(template, brace, close))
+					arg = lang_localize_arg(arg, origin)
 			else if(isatom(arg))
 				// **非文本实参从前完全没被本地化**：rewrite 把 `[src]` 抬成 LANG 实参时给的是 atom
 				// 本身（`list(src)` 一种形状全仓 3000+ 处），而这里只对 istext 分支调 lang_localize_arg
@@ -539,6 +542,17 @@ GLOBAL_LIST_EMPTY(i18n_reverse_supplements)
 		cursor = close + 1
 	output += copytext(template, cursor)
 	return output.Join()
+
+/// 模板里 `{N}`（位于 brace..close）是否被引号直接包住。目录存的是源码形态，引号可能带反斜杠（`\"`）。
+/proc/lang_placeholder_is_quoted(template, brace, close)
+	if(brace <= 1)
+		return FALSE
+	var/before = text2ascii(template, brace - 1)
+	var/after = text2ascii(template, close + 1)
+	if(after == 92) // 反斜杠转义的引号：看它后面那个字符
+		after = text2ascii(template, close + 2)
+	// 只认双引号：引述原话几乎都用它；单引号在这个仓库里多是标签名/模式名（`Mode: '{0}'`），那些照常翻。
+	return before == 34 && after == 34
 
 /// LANG 实参/引擎捕获的统一本地化链：状态词 → 代词/系动词 → 整串反查 → 冠词剥离反查。
 /// 解决「模板译了、运行期填进来的实参却是英文」的四类：

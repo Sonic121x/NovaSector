@@ -86,7 +86,7 @@
 /datum/wires/airlock/get_status()
 	var/obj/machinery/door/airlock/A = holder
 	var/list/status = list()
-	status += "The door bolts [A.locked ? "have engaged!" : "have disengaged."]"
+	status += A.locked ? "The door bolts have engaged!" : "The door bolts have disengaged." // ZH EDIT CHANGE - I18N: 半句拼接抽不成模板（无句末标点的骨架），拆成两句整句 - ORIGINAL: status += "The door bolts [A.locked ? "have engaged!" : "have disengaged."]"
 	status += "The test light is [A.hasPower() ? "on" : "off"]."
 	status += "The AI connection light is [A.aiControlDisabled || (A.obj_flags & EMAGGED) ? "off" : "on"]."
 	status += "The check wiring light is [A.safe ? "off" : "on"]."

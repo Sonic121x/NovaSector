@@ -239,6 +239,8 @@ const SINK_VARS: &[&str] = &[
     // 异教徒飞升公告（/datum/heretic_knowledge/ultimate）：含 %NAME%/%SPOOKY% 占位，运行时在
     // heretic_knowledge.dm 先整条反查、再替换占位符（替换之后整串不再是目录键）。
     "announcement_text",
+    // 货运出口单位名（/datum/export）：出口报告「已接收 N 个 X」里的 X，运行时在 exports.dm 反查。
+    "unit_name",
     // 幽灵生成器（/obj/effect/mob_spawn/ghost_role）的入场介绍三件套：mob_spawn.dm 把它们拼进
     // 一条 to_chat（「你是一名维修无人机」/背景/「你**必须**仔细阅读法则」）。注意 flavour_text
     // 是英式拼写——列表里原有的 flavor_text 是另一个字段，看着像已覆盖，实则整类幽灵角色的入场
@@ -3158,6 +3160,10 @@ const DISPLAY_SLOT_BLOCKLIST: &[&str] = &["Other Stuff"];
 const CATALOG_VALUE_BLOCKLIST: &[&str] = &[
     // `/datum/wires/proper_name` 的设备缩写，同时是 polycircuit.dm 的 switch 键。
     "APC",
+    // 货运出口单位名（`unit_name`）里与 DM 标识符同形的单词：`analyzer` 是 names.dm 的 switch 键，
+    // `pair` 是榨乳机的模式键。出口报告里少译这两个词，换反查表里不多两个单词词对。
+    "analyzer",
+    "pair",
     // `antagpanel_category` 的分组名，同时是 `ROLE_MALF` 这个 define 的值（`antag_flag ==` 比较）。
     "Malf AI",
     // `response_*` 交互动词里与 DM 标识符同形的三个（`stamp` 是纸张印章类型与 icon_state、

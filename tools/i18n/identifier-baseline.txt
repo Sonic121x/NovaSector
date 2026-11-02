@@ -332,6 +332,7 @@ Teleport
 Teleporter
 Test
 Text
+The Syndicate
 The Wizard
 Their sprites
 Throw

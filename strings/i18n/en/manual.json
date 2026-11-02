@@ -63,5 +63,8 @@
 	"_root.name_broken": "broken {0}",
 	"_root.action_adjust": "Adjust {0}",
 	"_root.action_adjust_style": "Adjust {0}'s Style",
-	"_root.action_adjust_visor": "Adjust {0} Visor"
+	"_root.action_adjust_visor": "Adjust {0} Visor",
+	"_root.instrument_sustain_linear": "Linear Sustain Duration (in seconds)",
+	"_root.instrument_sustain_exponential": "Exponential Falloff Factor (% per decisecond)",
+	"_root.arcade_new_game": "New game started against {0}"
 }

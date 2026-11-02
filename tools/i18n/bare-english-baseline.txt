@@ -172,6 +172,27 @@
  You valiantly fight off the changeling{0}!
  You're not sure if making this out of a carton was the brightest idea.
  Your bible will heal the loser for awhile.
+ confirmed {0} at {1}.
+ did not get enough candidates ({0}) to spawn.
+ disabled airlock engineering override at {0}.
+ disabled emergency maintenance access at {0}.
+ enabled airlock engineering override at {0}.
+ enabled emergency maintenance access at {0}.
+ has been brought online at <b>{0}</b>.
+ has called the shuttle at {0}.
+ has changed the security level to {0} with {1} at {2}.
+ has dialed for a pizza order from Dogginos using an emagged communications console.
+ has died at <b>{0}</b>.
+ has disconnected.
+ has just been{0} triggered{1}!
+ has messaged {0}, \"{1}\" at {2}.
+ has observed.
+ has recalled the shuttle from {0}.
+ has reconnected.
+ made a fake priority announcement from {0}.
+ made a priority announcement from {0}.
+ made a station announcement from {0}.
+ triggered {0} at {1}.
  {0} and {1}'s arms twist and contort into grotesque blades!
  {0} injection of {1}u per bite.
  {0} {1} shedding {2} mortal shell!
@@ -2391,6 +2412,8 @@ The decomposition rate scales with the product of the distances between temperat
 The dog of Nar'sie, {0} has had their vitality drained, rejoice!
 The dogtag is all scratched up.
 The domain is rebooting. Find an exit.
+The door bolts have disengaged.
+The door bolts have engaged!
 The emergency light is {0}.
 The emergency shuttle has been disabled by CentCom.
 The emergency shuttle is already here.

@@ -96,6 +96,12 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 		if(after_template != text)
 			text = after_template
 			templated = TRUE
+	// 多句拼接（「模板句 + 另一句纯串」、医疗记录里一串怪癖说明）：整串既不是键，模板也只吃得下其中
+	// 一句——订购台的「Thank you for your purchase! 请注意：…」就是模板翻了后缀、提前返回，基础句永远英文。
+	// 按句切开，**逐句只做整串精确反查**（不递归进整条链，所以不会自己调自己），没命中的句子原样保留。
+	var/by_sentence = lang_reverse_sentences_exact(text, locale)
+	if(by_sentence)
+		return by_sentence
 	// 组合名拆段排在模板**之后**：整条骨架（`{0} (Machine Board)`）是更具体的证据。反过来的话
 	// `Thermomachine (Machine Board)` 会被拆成「温控机 (Machine Board)」—— 后半段像专名、原样留下。
 	if(!templated)
@@ -351,6 +357,42 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 			continue
 		earliest = found
 		. = found + length(ender) - 1
+
+/// 见 lang_localize_chain 的「多句拼接」一段。至少两句、且至少一句命中才返回，否则 null。
+/// 只认含拉丁字母的句子；已经是中文的句子（模板刚翻好的那句）原样跳过。
+/proc/lang_reverse_sentences_exact(text, locale)
+	if(!istext(text) || length(text) > 4096)
+		return null
+	if(!findtext(text, ". ") && !findtext(text, "! ") && !findtext(text, "? ") && !findtext(text, "。 ") && !findtext(text, "！ ") && !findtext(text, "？ "))
+		return null
+	var/regex/ascii_letter_regex = GLOB.i18n_ascii_letter_regex
+	var/list/pieces = list()
+	var/start = 1
+	var/cursor = 1
+	var/text_length = length(text)
+	while(cursor <= text_length)
+		var/split = lang_next_sentence_break(text, cursor)
+		if(!split)
+			pieces += copytext(text, start)
+			break
+		pieces += copytext(text, start, split)
+		start = split
+		cursor = split + 1
+	if(length(pieces) < 2)
+		return null
+	var/hit_any = FALSE
+	for(var/i in 1 to length(pieces))
+		var/piece = pieces[i]
+		if(!ascii_letter_regex.Find(piece, 1))
+			continue
+		var/hit = lang_reverse_text_in(piece, locale)
+		if(hit == piece)
+			continue
+		// 切点把空格留给了下一句：命中的那句要把前导空白接回去。
+		var/lead_length = spantext(piece, " \t\n")
+		pieces[i] = (lead_length ? copytext(piece, 1, lead_length + 1) : "") + hit
+		hit_any = TRUE
+	return hit_any ? jointext(pieces, "") : null
 
 /// 把「基础句 + 若干整句后缀」里的后缀**逐句**落地。
 ///

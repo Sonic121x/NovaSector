@@ -122,23 +122,39 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 	var/nsegs = length(segs)
 	var/lit_len = 0
 	var/anchor = ""
+	var/second = "" // 次长的合格字面段，见下面「第二锚」
 	for(var/i in 1 to nsegs)
 		var/seg = segs[i]
 		var/seg_len = length(seg)
 		lit_len += seg_len
 		if(!seg_len && i != 1 && i != nsegs) // 相邻占位符：捕获边界不可定
 			return
-		if(seg_len > length(anchor) && findtext(seg, " "))
+		if(!findtext(seg, " "))
+			continue
+		if(seg_len > length(anchor))
+			second = anchor
 			anchor = seg
+		else if(seg_len > length(second) && seg != anchor)
+			second = seg
 	if(length(anchor) < I18N_TPL_MIN_ANCHOR)
 		return
 	if(findtext(zh_runtime, anchor)) // 半翻译（zh 仍含英文锚段，bad-MT 类）：替换无意义且会自匹配
 		return
 	records += list(list(segs, order, zh_runtime, lit_len))
 	var/id = length(records)
+	lang_tpl_add_anchor(anchors, anchor, id)
+	// **第二锚**：AC 自动机只给不重叠的匹配，别的模板的锚只要压住这条唯一锚的一个字符，这条就永远
+	// 进不了候选。实测售货机线路面板「The speaker light is on. The language is set to …」：另一条模板的锚
+	// ` light is on.` 吃掉了句号，而本模板唯一的锚 `. The language is set to ` 正从那个句号开始 ——
+	// 整条模板目录里有、译文也在，就是匹配不上。再登记次长的合格字面段，两个锚同时被压住的概率小得多；
+	// 候选最终仍由 lang_tpl_match 逐段验证，多一个锚只多一点候选开销、不改变正确性。
+	if(length(second) >= I18N_TPL_MIN_ANCHOR && !findtext(zh_runtime, second))
+		lang_tpl_add_anchor(anchors, second, id)
+
+/proc/lang_tpl_add_anchor(list/anchors, anchor, id)
 	var/list/ids = anchors[anchor]
 	if(ids)
-		ids += id
+		ids += id // 同一条模板的两个锚必然不同，不会重复登记；`|=` 是线性扫描，启动期十几万次就是秒级
 	else
 		anchors[anchor] = list(id)
 
@@ -359,7 +375,12 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 	// 填充 zh 模板：captures 按 en 占位符出现顺序，对应 order[i] 号。
 	var/result = zh_template
 	for(var/i in 1 to length(order))
-		result = replacetext(result, "{[order[i]]}", lang_tpl_localize_arg(captures[i], locale))
+		// 被引号直接包住的占位符（`says, "{2}"`、`has messaged {0}, "{1}"`）按惯例是**引述的原话**——
+		// 多半是玩家自己打的字。原样填回，绝不拿去反查（玩家说 "Yes" 不能变成「是」）。
+		var/capture_value = captures[i]
+		if(!lang_tpl_quoted_slot(segs, i))
+			capture_value = lang_tpl_localize_arg(capture_value, locale)
+		result = replacetext(result, "{[order[i]]}", capture_value)
 	if(findtext(result, "\\"))
 		result = lang_process_text_escapes(result)
 	return list(match_start, match_end, result)
@@ -417,6 +438,21 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 /// 捕获实参本地化：统一链（状态词→代词→整串反查→冠词剥离，见 runtime.dm 的 lang_localize_arg）。
 /// 查不到原样保留（数字/已中文/玩家名）。这里曾经还有一层「多词捕获退字面 AC」，随 AC 整层删除
 /// —— 子串替换在一个捕获值上只会产出「中文碎片嵌在英文里」，而那正是漏翻采集要记下来的形态。
+/// 第 i 个捕获（位于字面段 segs[i] 与 segs[i + 1] 之间）是否被引号直接包住。
+/proc/lang_tpl_quoted_slot(list/segs, i)
+	if(i < 1 || i + 1 > length(segs))
+		return FALSE
+	var/before = segs[i]
+	var/after = segs[i + 1]
+	if(!length(before) || !length(after))
+		return FALSE
+	// 只认双引号类：单引号在这个仓库里多是标签名/模式名（`Mode: '{0}'`），那些照常翻。
+	var/static/list/quote_pairs = list("\"" = "\"", "“" = "”", "「" = "」")
+	for(var/open in quote_pairs)
+		if(copytext(before, -length(open)) == open && findtext(after, quote_pairs[open]) == 1)
+			return TRUE
+	return FALSE
+
 /proc/lang_tpl_localize_arg(capture, locale)
 	if(!istext(capture) || !length(capture))
 		return capture

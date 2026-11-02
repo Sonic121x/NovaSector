@@ -262,6 +262,32 @@
 	TEST_ASSERT_NOTEQUAL(heretic_out, heretic_line, "异教徒飞升公告应在替换占位符之前整条反查命中")
 	TEST_ASSERT(findtext(heretic_out, "%NAME%") && findtext(heretic_out, "%SPOOKY%"), "译文必须保留占位符：[heretic_out]")
 
+	// ⑧ 引号里的原话（多半是玩家打的字）绝不反查：模板逆匹配与 LANG 插值两条路都要守。
+	// 前提：Yes 本身在全局反查表里，否则这条测不出东西。
+	TEST_ASSERT_NOTEQUAL(lang_reverse_text("Yes"), "Yes", "前提：Yes 应能反查")
+	// 模板逆匹配侧：拿目录里幽灵说话那条真模板，判定第 3 个占位符（玩家原话）是被引号包住的。
+	var/dead_template = en_cache["datum.39a5586e100082b6"]
+	TEST_ASSERT(findtext(dead_template, "says,"), "目录里的幽灵说话模板应仍是这条（键换了就更新本测试）：[dead_template]")
+	var/list/dead_parsed = lang_tpl_parse(lang_tpl_normalize(dead_template))
+	TEST_ASSERT(lang_tpl_quoted_slot(dead_parsed[1], 3), "引号包住的原话占位符应被识别：[dead_template]")
+	TEST_ASSERT(!lang_tpl_quoted_slot(dead_parsed[1], 1), "引号以外的占位符不应被当成原话：[dead_template]")
+	var/quoted_out = lang_interpolate("Zxqv \\\"{0}\\\" Qwrp {1}", list("Yes", "Yes"))
+	TEST_ASSERT(findtext(quoted_out, "\\\"Yes\\\""), "LANG 插值里被引号包住的实参必须原样插入：[quoted_out]")
+	TEST_ASSERT(!findtext(quoted_out, "Qwrp Yes"), "引号以外的实参照常本地化：[quoted_out]")
+	// ⑨ 多句拼接：模板只吃得下其中一句时，其余句子逐句整串反查。
+	var/order_line = "Thank you for your purchase! Please note: The charge of this purchase and machine cooldown has been multiplied by 2!"
+	var/purchase_out = lang_fallback_apply(order_line, LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(purchase_out, "Thank you") && !findtext(purchase_out, "Please note"), "多句拼接的每一句都应落地：[purchase_out]")
+	// ⑩ 线路面板状态行（TGUI 负载）、幽灵频道播报块、出口单位名。
+	var/bolts_out = lang_reverse_phrase_tgui("The door bolts have engaged!")
+	TEST_ASSERT_NOTEQUAL(bolts_out, "The door bolts have engaged!", "门闩状态行应能翻译")
+	var/speaker_line = "The speaker light is on. The language is set to Sol Common."
+	var/speaker_out = lang_reverse_phrase_tgui(speaker_line)
+	TEST_ASSERT(!findtext(speaker_out, "speaker light"), "售货机扬声器状态行应被模板翻译：[speaker_out]")
+	var/deadchat_out = lang_fallback_apply_html("<span class='deadsay'><b>Zxqv Qwrp</b> has reconnected.</span>", LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(deadchat_out, "reconnected") && findtext(deadchat_out, "Zxqv Qwrp"), "幽灵频道播报应翻译、名字原样：[deadchat_out]")
+	TEST_ASSERT_NOTEQUAL(lang_reverse_text("approved manifest"), "approved manifest", "出口单位名应已进目录并能反查")
+
 	GLOB.i18n_server_locale = saved_locale
 
 /datum/unit_test/i18n_reverse_ambiguity

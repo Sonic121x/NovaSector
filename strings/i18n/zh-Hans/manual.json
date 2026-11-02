@@ -63,5 +63,8 @@
 	"_root.name_broken": "破碎的{0}",
 	"_root.action_adjust": "调整{0}",
 	"_root.action_adjust_style": "调整{0}的样式",
-	"_root.action_adjust_visor": "调整{0}的面罩"
+	"_root.action_adjust_visor": "调整{0}的面罩",
+	"_root.instrument_sustain_linear": "线性延音时长（秒）",
+	"_root.instrument_sustain_exponential": "指数衰减系数（每 0.1 秒 %）",
+	"_root.arcade_new_game": "新游戏开始，对手：{0}"
 }
