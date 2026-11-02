@@ -722,6 +722,10 @@ GLOBAL_LIST_EMPTY(i18n_arg_cache)
 	translated = lang_reverse_serial_suffixed(stripped || arg, GLOB.i18n_server_locale)
 	if(translated)
 		return translated
+	// 组合名（`X (Y)` / `X - Y` / `X's Y` / `broken X`）同理，见 lang_reverse_composed_name。
+	translated = lang_reverse_composed_name(stripped || arg, GLOB.i18n_server_locale)
+	if(translated)
+		return translated
 	// 小写形实参（"The [special_role_text] has failed!" 的 LOWER_TEXT 角色名等）：目录按原始
 	// 大写形收录（"Traitor"）→ 首字母大写后再试一次。
 	var/capped = capitalize(arg)
@@ -1108,6 +1112,10 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 		text = lang_strip_grammar_macros(text)
 	if(findtext(text, "\\"))
 		text = lang_unescape_source(text)
+	// HTML 实体：`say()` 先 `sanitize()`（= html_encode），撇号到这里已是 `&#39;`，带撇号的台词
+	// （售货机广告词、NPC 喊话）整串查表必然对不上。键侧同样解码，两边对称。
+	if(findtext(text, "&") && findtext(text, ";"))
+		text = html_decode(text)
 	if(findtext(text, "\t") || findtext(text, "  "))
 		text = lang_collapse_ws(text)
 	text = trim(text)
@@ -1522,25 +1530,30 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 ///   · 类型名 —— 优先按**本类型**取键（`APC` 这种单词只有类型表够得着），miss 再整串反查；
 ///   · 尾巴（`id_tag` 之类）—— 原样保留，它本来就不是文案。
 /atom/proc/lang_localize_area_prefixed_name(atom/source, display_name)
+	// 名字自己也可能带标记（APC 是 `"\improper [区域名] APC"`），两边同样去掉再比。
+	display_name = format_text(display_name)
 	var/area/source_area = get_area(source)
-	var/area_name = source_area?.name
+	// 区域名带 `\improper` 标记字节，而 `"[区域名] …"` 插值时 BYOND 会把标记去掉 —— 合成名里的区域名
+	// 比 area.name 短两个字节，按原值比前缀永远失败（实测：防火门/火警器/空气警报整类英文）。一律比去标记的形态。
+	var/area_name = source_area ? format_text(source_area.name) : null
 	// 名字里拼的区域不一定是 get_area(src)：空气警报用的是 my_area（可以是连接的传感器所在区域），
 	// 墙挂设备也可能坐在墙那一格、而名字拼的是房间那一侧。按名字前缀在全站区域里找最长匹配 ——
 	// **自己所在区域的名字也是前缀时同样要比**：APC 挂在「Brig」的墙上、名字是「Brig Control APC」，
 	// 只认 get_area 就会切成「拘留区 Control APC」。
 	var/area/longest = lang_area_by_name_prefix(display_name)
 	// 只认前缀形态；出现在中间的多半是巧合。
-	if(!length(area_name) || findtext(display_name, area_name) != 1 || (longest && length(longest.name) > length(area_name)))
+	if(!length(area_name) || findtext(display_name, area_name) != 1 || (longest && length(format_text(longest.name)) > length(area_name)))
 		source_area = longest
 		if(isnull(source_area))
 			return null
-		area_name = source_area.name
+		area_name = format_text(source_area.name)
 	var/rest = copytext(display_name, length(area_name) + 1)
 	if(!length(rest))
 		return null
-	var/localized_area = source_area.lang_localize_name_for_display(area_name)
+	// 传 area 自己的 name（带标记、等于 initial(name)）才走按类型取键那条快路。
+	var/localized_area = source_area.lang_localize_name_for_display(source_area.name)
 	// 其余部分：先看是不是「类型名 + 尾巴」（火警器 `[区域] [类型名] [id]`）。
-	var/base = initial(name)
+	var/base = format_text(initial(name))
 	var/trimmed_rest = trim(rest)
 	if(length(base) && findtext(trimmed_rest, base) == 1)
 		var/tail = copytext(trimmed_rest, length(base) + 1)
@@ -1562,7 +1575,7 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 	var/best_length = 0
 	var/display_length = length(display_name)
 	for(var/area/candidate as anything in GLOB.areas)
-		var/candidate_name = candidate.name
+		var/candidate_name = format_text(candidate.name)
 		var/candidate_length = length(candidate_name)
 		if(candidate_length <= best_length || candidate_length >= display_length)
 			continue

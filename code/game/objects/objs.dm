@@ -109,8 +109,17 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 				message_verb_continuous = "pulverises"
 
 		if(demo_mod < 1)
-			message_verb_simple = "ineffectively " + message_verb_simple
-			message_verb_continuous = "ineffectively " + message_verb_continuous
+			// ZH EDIT CHANGE START - I18N: 「副词 + 动词」拼成一个 LANG 实参后整串不是目录键，动词本身也就跟着落不了地。
+			// 非英文 locale 下两半各自本地化后再拼（副词进 _state_words）。
+			// ORIGINAL: message_verb_simple = "ineffectively " + message_verb_simple
+			// ORIGINAL: message_verb_continuous = "ineffectively " + message_verb_continuous
+			if(GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
+				message_verb_simple = "ineffectively " + message_verb_simple
+				message_verb_continuous = "ineffectively " + message_verb_continuous
+			else
+				message_verb_simple = "[lang_localize_arg("ineffectively")][lang_localize_arg(message_verb_simple)]"
+				message_verb_continuous = "[lang_localize_arg("ineffectively")][lang_localize_arg(message_verb_continuous)]"
+			// ZH EDIT CHANGE END
 
 		user.visible_message(
 			span_danger(LANG("obj.deff8f6f48be9174", list(user, message_verb_continuous, src, attacking_item, damage ? "." : ", [no_damage_feedback]!"))),

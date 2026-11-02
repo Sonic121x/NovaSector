@@ -14,6 +14,7 @@
 		"strings.json": { "domain": "forward", "owner": "extract" },
 		"turf.json": { "domain": "forward", "owner": "extract" },
 		"world.json": { "domain": "forward", "owner": "extract" },
+		"_accounts.json": { "domain": "global_reverse", "owner": "manual" },
 		"_announce_lines.json": { "domain": "global_reverse", "owner": "manual" },
 		"_announce_senders.json": { "domain": "global_reverse", "owner": "manual" },
 		"_bodyfeel.json": { "domain": "global_reverse", "owner": "manual" },

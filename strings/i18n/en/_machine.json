@@ -3,5 +3,16 @@
   "_machine.part_replaced": "{0} replaced with {1}.",
   "_machine.fab_offgrid_protolathe": "Off-Grid Protolathe",
   "_machine.fab_offgrid_imprinter": "Off-Grid Circuit Imprinter",
-  "_machine.fab_component_printer": "Component Printer"
+  "_machine.fab_component_printer": "Component Printer",
+  "_machine.pipe_dir_west_to_north": "West to North",
+  "_machine.pipe_dir_north_to_east": "North to East",
+  "_machine.pipe_dir_south_to_west": "South to West",
+  "_machine.pipe_dir_east_to_south": "East to South",
+  "_machine.pipe_dir_west_south_east": "West South East",
+  "_machine.pipe_dir_east_north_west": "East North West",
+  "_machine.pipe_dir_north_west_south": "North West South",
+  "_machine.pipe_dir_south_east_north": "South East North",
+  "_machine.pipe_dir_north_east_south": "North East South",
+  "_machine.pipe_dir_south_west_north": "South West North",
+  "_machine.pipe_dir_west_north_east": "West North East"
 }

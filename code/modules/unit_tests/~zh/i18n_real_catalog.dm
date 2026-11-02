@@ -216,6 +216,52 @@
 	var/mixed_out = lang_localize_sentence_suffixes(mixed_line, LANGUAGE_LOCALE_ZH_HANS)
 	TEST_ASSERT(!findtext(mixed_out, "Targetable by"), "中英混排行里的英文后缀仍应被逐句反查：[mixed_out]")
 
+	// ⑦ 生产服漏翻探针（2026-11）逼出来的几类，全部照抄线上形态。
+	// ⑦a `say()` 先 sanitize（= html_encode）：撇号到落地层已是 `&#39;`，带撇号的台词整串查不到。
+	var/slogan = "Don&#39;t believe the reports - smoke today!"
+	var/slogan_out = lang_fallback_apply(slogan, LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(slogan_out, "believe"), "HTML 实体编码过的台词应解码后整串反查：[slogan_out]")
+	// ⑦b 手维护 global_reverse 目录里的模板必须进模板引擎（从前只扫 forward 桶，`_templates.json` 写了也没用）。
+	var/board_out = lang_localize_display_name("Thermomachine (Machine Board)")
+	TEST_ASSERT(!findtext(board_out, "Machine Board"), "_templates.json 的模板应被引擎命中：[board_out]")
+	var/order_out = lang_localize_display_name("Store Bought Flour")
+	TEST_ASSERT(!findtext(order_out, "Store Bought"), "市售食材名应经手维护模板翻译：[order_out]")
+	// ⑦c 运行期组合名：各段整串精确反查，专名原样保留；散文不拆。
+	TEST_ASSERT_EQUAL(lang_reverse_composed_name("painting - Zxqv Qwrp", LANGUAGE_LOCALE_ZH_HANS), "[lang_reverse_text("painting")] - Zxqv Qwrp", "「A - B」组合名应只翻能命中的那段")
+	TEST_ASSERT_EQUAL(lang_reverse_composed_name("tray (Zxqv Qwrp)", LANGUAGE_LOCALE_ZH_HANS), "[lang_reverse_text("tray")] (Zxqv Qwrp)", "「A (B)」组合名应只翻能命中的那段")
+	var/possessive_out = lang_reverse_composed_name("Zxqv Qwrp's photo album", LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(possessive_out && findtext(possessive_out, "Zxqv Qwrp") && !findtext(possessive_out, "photo album"), "「A's B」应保留人名、翻物品名：[possessive_out]")
+	var/broken_out = lang_reverse_composed_name("broken photo album", LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(broken_out && !findtext(broken_out, "broken"), "「broken X」前缀应经 manual 骨架翻译：[broken_out]")
+	TEST_ASSERT(isnull(lang_reverse_composed_name("Warning - the reactor is overheating", LANGUAGE_LOCALE_ZH_HANS)), "散文不得被劈成「中文 - 英文」")
+	TEST_ASSERT(isnull(lang_reverse_composed_name("Zxqv Qwrp (Zxqv Blorp)", LANGUAGE_LOCALE_ZH_HANS)), "一段都没命中时不得返回任何东西")
+	// 玩家角色名恰好是目录词（`Not` → 电路「非门」）时，组合名里的那一段必须原样保留。
+	// 下标用变量：字面量写进下标位置会被 lint 的标识符扫描当成「tray 是查表键」。
+	var/identity_word = "tray"
+	var/had_identity = GLOB.i18n_identity_names[identity_word]
+	GLOB.i18n_identity_names[identity_word] = TRUE
+	var/identity_out = lang_reverse_composed_name("[identity_word] (Zxqv Qwrp)", LANGUAGE_LOCALE_ZH_HANS)
+	if(!had_identity)
+		GLOB.i18n_identity_names -= identity_word
+	TEST_ASSERT(isnull(identity_out), "登记过的玩家角色名不得在组合名里被翻译：[identity_out]")
+	// 主人名是目录词（线上真撞过：角色名 `Not` → 电路「非门」的「不是」）也必须原样保留。
+	TEST_ASSERT_NOTEQUAL(lang_reverse_text("Not"), "Not", "前提：Not 应在全局反查表里（否则这条测不出东西）")
+	var/owner_out = lang_reverse_composed_name("Not's photo album", LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(owner_out && findtext(owner_out, "Not") && !findtext(owner_out, lang_reverse_text("Not")), "「A's B」的主人名必须原样保留：[owner_out]")
+	// ⑦d 切块器切出来的半截括号：`Third Degree Burns (` 后面接的是 `<span>…</span>)`。
+	var/wound_out = lang_localize_chain("Third Degree Burns (", LANGUAGE_LOCALE_ZH_HANS, allow_template = FALSE)
+	TEST_ASSERT(!findtext(wound_out, "Burns") && findtext(wound_out, " (") == length(wound_out) - 1, "块边缘的括号应剥掉再查、原样接回：[wound_out]")
+	// ⑦e 染色体名（_state_words 域内表）、预算名（从 manual_forward 挪进 global_reverse）、公告发送者。
+	var/chrom_out = lang_english_list(list("Stabilizer", "Synchronizer", "Power"), and_text = ", ")
+	TEST_ASSERT(!ascii_letters.Find(chrom_out), "染色体列表应逐项翻译：[chrom_out]")
+	TEST_ASSERT_NOTEQUAL(lang_reverse_text("Defense Budget"), "Defense Budget", "预算账户名应能反查（manual_forward 不进反查表，必须放在 global_reverse）")
+	TEST_ASSERT_NOTEQUAL(lang_reverse_text("Emergency Shuttle Uplink Alert"), "Emergency Shuttle Uplink Alert", "公告发送者应能反查")
+	// ⑦f %VAR% 占位公告：先反查整条、再替换占位符（替换之后整串不再是目录键）。
+	var/heretic_line = "%SPOOKY% Fear the blaze, for the Ashlord, %NAME% has ascended! The flames shall consume all! %SPOOKY%"
+	var/heretic_out = lang_reverse_text(heretic_line)
+	TEST_ASSERT_NOTEQUAL(heretic_out, heretic_line, "异教徒飞升公告应在替换占位符之前整条反查命中")
+	TEST_ASSERT(findtext(heretic_out, "%NAME%") && findtext(heretic_out, "%SPOOKY%"), "译文必须保留占位符：[heretic_out]")
+
 	GLOB.i18n_server_locale = saved_locale
 
 /datum/unit_test/i18n_reverse_ambiguity

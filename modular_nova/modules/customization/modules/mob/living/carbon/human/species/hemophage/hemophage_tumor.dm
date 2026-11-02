@@ -136,7 +136,7 @@
 /obj/item/organ/heart/hemophage/proc/get_status_tab_item(mob/living/source, list/items)
 	SIGNAL_HANDLER
 
-	items += "Current blood level: [owner.get_blood_volume()]/[BLOOD_VOLUME_MAXIMUM]"
+	items += LANG("_root.hemophage_blood_level", list(owner.get_blood_volume(), BLOOD_VOLUME_MAXIMUM)) // ZH EDIT CHANGE - I18N - ORIGINAL: items += "Current blood level: [owner.get_blood_volume()]/[BLOOD_VOLUME_MAXIMUM]"
 
 
 #undef MINIMUM_LIGHT_THRESHOLD_FOR_REGEN

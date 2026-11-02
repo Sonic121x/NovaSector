@@ -142,22 +142,10 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 	else
 		anchors[anchor] = list(id)
 
-/// Builds one locale's reverse-template index. Bootstrap calls return without recording state.
-/proc/lang_tpl_setup(locale)
-	if(locale == DEFAULT_UI_LOCALE)
-		return FALSE
-	var/state = GLOB.i18n_tpl_state[locale]
-	if(state)
-		return state == "ready"
-	if(!lang_runtime_can_build_indexes() || !lang_catalog_locale_is_loaded(locale))
-		return FALSE
-	var/list/forward_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET]
-	var/list/english = forward_by_locale[DEFAULT_UI_LOCALE]
-	var/list/localized = forward_by_locale[locale]
-	if(!islist(english) || !islist(localized) || !length(english))
-		return FALSE
-	var/list/records = list()
-	var/list/anchors = list() // 锚文本 -> 候选 id 列表
+/// 把一对 en/locale 目录里的插值模板登记进 records/anchors。
+/proc/lang_tpl_register_catalog(list/records, list/anchors, list/english, list/localized)
+	if(!islist(english) || !islist(localized))
+		return
 	for(var/key in english)
 		var/en_t = english[key]
 		if(!findtext(en_t, "{"))
@@ -190,6 +178,30 @@ GLOBAL_VAR_INIT(i18n_tpl_etx, "⟧")
 			for(var/seg in segs)
 				stripped_segs += lang_strip_html_tags_raw(seg)
 			lang_tpl_register(records, anchors, stripped_segs, order, lang_strip_html_tags_raw(zh_runtime))
+
+/// Builds one locale's reverse-template index. Bootstrap calls return without recording state.
+/proc/lang_tpl_setup(locale)
+	if(locale == DEFAULT_UI_LOCALE)
+		return FALSE
+	var/state = GLOB.i18n_tpl_state[locale]
+	if(state)
+		return state == "ready"
+	if(!lang_runtime_can_build_indexes() || !lang_catalog_locale_is_loaded(locale))
+		return FALSE
+	var/list/forward_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_FORWARD_BUCKET]
+	var/list/english = forward_by_locale[DEFAULT_UI_LOCALE]
+	var/list/localized = forward_by_locale[locale]
+	if(!islist(english) || !islist(localized) || !length(english))
+		return FALSE
+	var/list/records = list()
+	var/list/anchors = list() // 锚文本 -> 候选 id 列表
+	lang_tpl_register_catalog(records, anchors, english, localized)
+	// 手维护的 global_reverse 目录（`_templates.json` 等）里的模板同样要进引擎：运行期在类型名两侧
+	// 拼缀的实例名（`"[电路名] (Machine Board)"`、`"poster - [海报名]"`）源码里只有插值赋值，抽取器
+	// 按设计不收（收了是一大片运行期合成名噪音），这些骨架只能手写。它们从前只在 paired 桶里，
+	// 而模板引擎只扫 forward 桶 —— 写了也从来没生效。
+	var/list/paired_by_locale = GLOB.i18n_catalogs[I18N_CATALOG_PAIRED_BUCKET]
+	lang_tpl_register_catalog(records, anchors, paired_by_locale?[DEFAULT_UI_LOCALE]?[I18N_DOMAIN_GLOBAL_REVERSE], paired_by_locale?[locale]?[I18N_DOMAIN_GLOBAL_REVERSE])
 	if(!length(anchors))
 		GLOB.i18n_tpl_state[locale] = "none"
 		return FALSE

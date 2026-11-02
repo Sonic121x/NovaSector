@@ -236,6 +236,9 @@ const SINK_VARS: &[&str] = &[
     "circumstance",
     // 售货机出货答谢语（vend_reply，单句，say 出 → 聊天 AC 翻译）。
     "vend_reply",
+    // 异教徒飞升公告（/datum/heretic_knowledge/ultimate）：含 %NAME%/%SPOOKY% 占位，运行时在
+    // heretic_knowledge.dm 先整条反查、再替换占位符（替换之后整串不再是目录键）。
+    "announcement_text",
     // 幽灵生成器（/obj/effect/mob_spawn/ghost_role）的入场介绍三件套：mob_spawn.dm 把它们拼进
     // 一条 to_chat（「你是一名维修无人机」/背景/「你**必须**仔细阅读法则」）。注意 flavour_text
     // 是英式拼写——列表里原有的 flavor_text 是另一个字段，看着像已覆盖，实则整类幽灵角色的入场

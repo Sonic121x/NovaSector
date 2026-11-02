@@ -294,13 +294,13 @@ GAME_VERB_DESC(/mob/living/silicon/ai, pick_status_display, "设置 AI 状态显
 		else if(!connected_robot.cell || connected_robot.cell.charge <= 0)
 			robot_status = "DEPOWERED"
 		//Name, Health, Battery, Model, Area, and Status! Everything an AI wants to know about its borgies!
+		// ZH EDIT CHANGE START - I18N: 状态行整条在运行期拼出、源码用续行写成，不是目录键；各字段另作实参本地化（状态词进 _state_words）
+		// ORIGINAL: "S.Integrity: [connected_robot.health]% | Cell: [...] | Model: [connected_robot.designation] | Loc: [get_area_name(connected_robot, TRUE)] | Status: [robot_status]",
 		. += list(list("[connected_robot.name]: ",
-			"S.Integrity: [connected_robot.health]% | \
-			Cell: [connected_robot.cell ? "[display_energy(connected_robot.cell.charge)]/[display_energy(connected_robot.cell.maxcharge)]" : "Empty"] | \
-			Model: [connected_robot.designation] | Loc: [get_area_name(connected_robot, TRUE)] | \
-			Status: [robot_status]",
+			LANG("_root.ai_borg_status", list(connected_robot.health, connected_robot.cell ? "[display_energy(connected_robot.cell.charge)]/[display_energy(connected_robot.cell.maxcharge)]" : "Empty", connected_robot.designation, get_area_name(connected_robot, TRUE), robot_status)),
 			"src=[REF(src)];track_cyborg=[text_ref(connected_robot)]",
 		))
+		// ZH EDIT CHANGE END
 	. += LANG("mob.9db70d9fb2ed59a4", list(LAZYLEN(GLOB.available_ai_shells))) //Count of total AI shells
 
 /mob/living/silicon/ai/proc/ai_call_shuttle()

@@ -5,5 +5,11 @@
   "sender_centcom_spacepizza": "CentCom Spacepizza Division",
   "sender_centcom_supply": "CentCom Supply Department",
   "sender_nanotrasen_meteorology": "Nanotrasen Meteorology Division",
-  "sender_traffic_control": "Automated Traffic Control System"
+  "sender_traffic_control": "Automated Traffic Control System",
+  "sender_emergency_shuttle_uplink": "Emergency Shuttle Uplink Alert",
+  "sender_lighting_system": "Automated Lighting System Announcement",
+  "sender_crab17": "CRAB-17 Protocol",
+  "sender_nukie_outpost": "Nuclear Operative Outpost",
+  "sender_rumble_royale": "Rumble Royale Pirate Broadcast Station",
+  "sender_server_admin": "Server Admin Announcement"
 }

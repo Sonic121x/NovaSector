@@ -60,6 +60,8 @@ const NAME_LANG_ASSIGN_ALLOWLIST: &[&str] = &[
     // 唯一的比较是 `SetId` 里同一个 mob 上的两个动作名之间）。
     "code/datums/actions/items/toggles.dm",
     "code/datums/actions/items/organ_action.dm",
+    // 物品调整动作名 `"Adjust [物品名]"` 三兄弟：与 toggles.dm 同形同理。
+    "code/datums/actions/items/adjust.dm",
 ];
 
 /// 表达式的**值**是否就是 LANG 的产物（译文串）。

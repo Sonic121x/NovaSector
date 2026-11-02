@@ -216,6 +216,7 @@ NetGuardian Prime
 Nightmare
 No
 NoRank
+Nominal
 None
 Normal
 North
@@ -605,6 +606,7 @@ namecheck
 neck
 neutral
 ninja
+none
 normal
 note
 nothing
@@ -678,6 +680,7 @@ shadow
 shock
 shoes
 shovel
+shred
 shuttle
 sign
 silver

@@ -555,7 +555,7 @@ Base parts are available for shipping via cargo.
 Base vault parts are available for shipping via cargo.
 Based on {0}, we believe that {1} of the station's {2} has developed {3} level intelligence, and the ability to communicate.
 Be a good wingman for your master AI. Assist them in protecting {0} date, {1}.
-Be sure to read <a href=\"{0}/Revenant\">the wiki page</a> to learn more.
+Be sure to read <a href=\"{0}\">the wiki page</a> to learn more.
 Because this item is worn on the head and is covering the mouth, it will block facehugger proboscides, killing facehuggers.
 Become... video deliveryman!
 Began downloading file **ENCRYPTED**.{0} from unspecified server.
