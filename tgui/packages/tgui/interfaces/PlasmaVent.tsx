@@ -71,30 +71,30 @@ export function PlasmaVent() {
 
   const state = handshaking
     ? {
-        label: 'HANDSHAKE',
+        label: '握手中',
         color: 'blue',
         icon: 'satellite-dish',
-        hint: 'Negotiating the one-time bluespace link.',
+        hint: '正在协商一次性蓝空链接。',
       }
     : channel
       ? {
-          label: 'CHANNEL OPEN',
+          label: '通道开启',
           color: 'good',
           icon: 'broadcast-tower',
-          hint: 'Transport to Central Command is nominal.',
+          hint: '通往中央指挥部的传输正常。',
         }
       : linked
         ? {
-            label: 'STANDBY',
+            label: '待机',
             color: 'average',
             icon: 'plug',
-            hint: 'Vent linked. The channel is still closed.',
+            hint: '已连接气泵，但通道仍关闭。',
           }
         : {
-            label: 'OFFLINE',
+            label: '离线',
             color: 'bad',
             icon: 'unlink',
-            hint: 'No vent linked to this console.',
+            hint: '此控制台未连接气泵。',
           };
 
   return (
@@ -120,32 +120,32 @@ export function PlasmaVent() {
               <Tooltip
                 content={
                   linked
-                    ? 'A vent is linked to this console.'
-                    : 'No vent found within seven tiles.'
+                    ? '此控制台已连接气泵。'
+                    : '七格内未找到气泵。'
                 }
               >
                 <Box bold color={linked ? 'good' : 'bad'} fontSize="0.85em">
-                  {linked ? 'LINKED' : 'NOT LINKED'}
+                  {linked ? '已连接' : '未连接'}
                 </Box>
               </Tooltip>
             </Stack.Item>
           </Stack>
         </Section>
 
-        <Section title="Telemetry">
+        <Section title="遥测">
           <Stack>
             <Stack.Item grow basis={0}>
               <Metric
-                label="Calibration"
-                value={calibrated ? 'Nominal' : 'No telemetry'}
+                label="校准"
+                value={calibrated ? '正常' : '无遥测'}
                 color={calibrated ? 'good' : 'average'}
               />
             </Stack.Item>
             <Stack.Item grow basis={0}>
               <Metric
-                label="Channel"
+                label="通道"
                 value={
-                  handshaking ? 'Handshaking' : channel ? 'Open' : 'Closed'
+                  handshaking ? '握手中' : channel ? '开启' : '关闭'
                 }
                 color={channel ? 'good' : handshaking ? 'blue' : 'label'}
               />
@@ -154,21 +154,20 @@ export function PlasmaVent() {
         </Section>
 
         {!!handshaking && (
-          <Section title="Handshake">
+          <Section title="握手">
             <ProgressBar value={handshake_progress} color="blue">
-              {`Negotiating link… ${Math.round(handshake_progress * 100)}%`}
+              {`协商链接… ${Math.round(handshake_progress * 100)}%`}
             </ProgressBar>
             <Box mt={1} color="label">
-              One-time link setup. The channel cannot be re-opened once it is
-              established.
+              一次性链接建立后，通道无法再次开启。
             </Box>
           </Section>
         )}
 
         {!handshaking && !linked && (
-          <Section title="Deployment">
+          <Section title="部署">
             <Box mb={1} color="label">
-              Build the vent, then unfold the crate from here.
+              先建造气泵，然后在这里展开压缩箱。
             </Box>
             {pack ? (
               <Button.Confirm
@@ -177,29 +176,27 @@ export function PlasmaVent() {
                 icon="expand-arrows-alt"
                 confirmContent={
                   <Box bold fontSize="1.35em" py={1} textAlign="center">
-                    Unfold the compressed vent here?
+                    在此展开压缩态气泵？
                   </Box>
                 }
                 onClick={() => act('deploy')}
               >
                 <Box bold fontSize="1.35em" py={1} textAlign="center">
-                  Unfold vent
+                  展开气泵
                 </Box>
               </Button.Confirm>
             ) : (
               <NoticeBox danger>
-                No compressed vent within seven tiles. Build one on a machine
-                frame first.
+                七格内没有压缩态气泵。请先在机架上建造一个。
               </NoticeBox>
             )}
           </Section>
         )}
 
         {!handshaking && !!linked && !channel && (
-          <Section title="Objective">
+          <Section title="目标">
             <Box mb={1} color="label">
-              Opening the channel completes the station goal. The handshake is
-              one-time and cannot be repeated.
+              开启通道即可完成站点目标。握手只能进行一次，无法重复。
             </Box>
             <Button.Confirm
               fluid
@@ -207,23 +204,22 @@ export function PlasmaVent() {
               icon="satellite-dish"
               confirmContent={
                 <Box bold fontSize="1.35em" py={1} textAlign="center">
-                  Open the bluespace channel to CentCom?
+                  向中央指挥部开启蓝空通道？
                 </Box>
               }
               onClick={() => act('establish')}
             >
               <Box bold fontSize="1.35em" py={1} textAlign="center">
-                Establish bluespace channel
+                建立蓝空通道
               </Box>
             </Button.Confirm>
           </Section>
         )}
 
         {!handshaking && !!channel && (
-          <Section title="Condensate reward">
+          <Section title="凝结奖励">
             <Box mb={1} color="label">
-              Transport runs on its own. As a bonus, the vent condenses one
-              canister for the station every five minutes.
+              传输会自动进行。作为奖励，气泵每五分钟为空间站凝结一个压缩罐。
             </Box>
             <Stack align="center">
               <Stack.Item grow basis={0}>
@@ -232,8 +228,8 @@ export function PlasmaVent() {
                   color={canRelease ? 'good' : 'average'}
                 >
                   {canRelease
-                    ? 'Coils ready'
-                    : `Coils cycling — ${Math.ceil(cooldown)}s`}
+                    ? '线圈就绪'
+                    : `线圈循环中 — ${Math.ceil(cooldown)} 秒`}
                 </ProgressBar>
               </Stack.Item>
               <Stack.Item>
@@ -244,7 +240,7 @@ export function PlasmaVent() {
                   disabled={!canRelease}
                   onClick={() => act('dispense')}
                 >
-                  {canRelease ? 'Condense' : 'Charging'}
+                  {canRelease ? '凝结' : '充能中'}
                 </Button>
               </Stack.Item>
             </Stack>

@@ -27,8 +27,8 @@
 /// Deliberately has no tool_act overrides: the deployed vent is a goal structure, and machinery has
 /// no generic tool behaviour, so screwdriver/crowbar/wrench all do nothing to it.
 /obj/machinery/plasma_vent
-	name = "bluespace plasma vent"
-	desc = "A squat industrial frame wrapped around a containment ring. It reaches through bluespace to skim plasma off a planet's upper atmosphere and pipes it to Central Command, condensing a canister for the station on demand."
+	name = "蓝空等离子气泵"
+	desc = "包裹着一个防护环的矮胖的工业机器. 它能通过蓝空作用，从行星的高层大气中撇取等离子体，并将其输送到中央指挥部. 根据需要可以为空间站供应压缩罐."
 	icon = 'modular_z121/code/modules/plasma_vent/icons/plasma_vent.dmi'
 	icon_state = "plasma_vent"
 	density = TRUE
@@ -127,19 +127,19 @@
 /// Returns NULL on success, otherwise a reason string.
 /obj/machinery/plasma_vent/proc/dispense_canister()
 	if(!channel_active)
-		return "The bluespace channel is not open yet."
+		return "蓝空通道尚未开启。"
 	if(machine_stat & (BROKEN | NOPOWER))
-		return "The vent has no power."
+		return "气泵没有电力。"
 	if(world.time < next_canister)
-		return "The transfer coils are still cycling."
+		return "传输线圈仍在循环充能。"
 	if(!dispense_turf || !istype(dispense_turf, /turf/open) || dispense_turf.density)
-		return "The outlet is blocked."
+		return "出料口被堵住了。"
 	for(var/atom/movable/obstacle as anything in dispense_turf)
 		if(obstacle.density)
-			return "Something is standing in the outlet."
+			return "有东西挡在出料口。"
 	// Pay for the cycle before anything is created; a dead APC must not hand out a free canister.
 	if(!use_energy(active_power_usage, force = FALSE))
-		return "The vent has no power."
+		return "气泵没有电力。"
 	var/obj/machinery/portable_atmospherics/canister/fresh_canister = new /obj/machinery/portable_atmospherics/canister/plasma(dispense_turf)
 	fresh_canister.air_contents.adjust_gas(/datum/gas/plasma, PLASMA_VENT_PLASMA_MOLES)
 	fresh_canister.update_appearance()
@@ -158,9 +158,9 @@
 /obj/machinery/plasma_vent/examine(mob/user)
 	. = ..()
 	if(!channel_active)
-		. += span_notice("The bluespace channel is not established yet; a control console can open it.")
+		. += span_notice("蓝空通道尚未建立；控制台可以开启它。")
 		return
-	. += span_notice("The channel to Central Command is open. It can condense a canister on demand.")
+	. += span_notice("通往中央指挥部的通道已开启，可以按需凝结一个压缩罐。")
 
 /// Short-lived flare marking the bluespace arrival.
 /obj/effect/temp_visual/bluespace_dispense
@@ -173,8 +173,8 @@
 /// The finished build stage: a one-tile crate with the whole vent folded inside.
 /// A control console unfolds it into the 4x3 machine.
 /obj/machinery/plasma_vent_pack
-	name = "compressed plasma vent"
-	desc = "A single-tile crate of folded plating, containment ring segments and bluespace emitters. A control console can unfold it into a full vent."
+	name = "压缩态的等离子气泵"
+	desc = "一块标准地板格大小的箱子. 板材、容器环段和蓝空间发射器都压缩在内. 控制台可以把它展开成一个完整的气泵."
 	icon = 'modular_z121/code/modules/plasma_vent/icons/plasma_vent_pack.dmi'
 	icon_state = "pack"
 	density = TRUE
@@ -191,7 +191,7 @@
 
 /obj/machinery/plasma_vent_pack/examine(mob/user)
 	. = ..()
-	. += span_notice("It is still folded up. A plasma vent control console can unfold it.")
+	. += span_notice("它仍处于折叠状态。等离子气泵控制台可以将其展开。")
 
 /obj/machinery/plasma_vent_pack/screwdriver_act(mob/living/user, obj/item/tool)
 	return default_deconstruction_screwdriver(user, tool)
@@ -209,8 +209,8 @@
 /* ---------------------------------------------------------------- console */
 
 /obj/machinery/computer/plasma_vent
-	name = "plasma vent control"
-	desc = "Bluespace calibration, transport monitoring and the channel handshake for a plasma vent."
+	name = "等离子气泵控制台"
+	desc = "为气泵完成蓝空间校准、传输监控与通道协调."
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "control_boxp"
 	icon_keyboard = null
@@ -234,7 +234,7 @@
 
 /obj/machinery/computer/plasma_vent/examine(mob/user)
 	. = ..()
-	. += span_notice("It talks to a vent within seven tiles and opens its bluespace channel once.")
+	. += span_notice("它会与七格内的气泵通讯，并一次性开启其蓝空通道。")
 
 /obj/machinery/computer/plasma_vent/ui_state(mob/user)
 	return GLOB.physical_state
@@ -301,7 +301,7 @@
 /obj/machinery/computer/plasma_vent/proc/begin_handshake(obj/machinery/plasma_vent/vent)
 	handshaking = TRUE
 	handshake_ends = world.time + PLASMA_VENT_HANDSHAKE_TIME
-	set_notice("Negotiating bluespace link…", "info")
+	set_notice("正在协商蓝空链接…", "info")
 	vent.announce_establishing()
 	queue_ui_refresh(0.5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(finish_handshake), WEAKREF(vent)), PLASMA_VENT_HANDSHAKE_TIME)
@@ -313,29 +313,29 @@
 	handshake_ends = 0
 	var/obj/machinery/plasma_vent/vent = held_vent?.resolve()
 	if(!vent)
-		set_notice("The vent was lost during the handshake.", "danger")
+		set_notice("握手期间气泵丢失。", "danger")
 	else if(vent.machine_stat & (BROKEN | NOPOWER))
-		set_notice("The vent lost power during the handshake.", "danger")
+		set_notice("握手期间气泵断电。", "danger")
 	else if(!vent.establish_channel())
-		set_notice("The channel is already open.", "info")
+		set_notice("通道已经开启。", "info")
 	else
 		vent.announce_established()
-		set_notice("Handshake complete. Transport is nominal.", "success")
+		set_notice("握手完成，传输状态正常。", "success")
 	SStgui.update_uis(src)
 
 /// Unfolds the nearest compressed pack into the full vent. Returns a notice.
 /obj/machinery/computer/plasma_vent/proc/unfold_vent()
 	if(vent_ref?.resolve())
-		return "A vent is already linked to this console."
+		return "此控制台已连接一个气泵。"
 	// Raw lookup on purpose: another console's claimed vent still blocks a second footprint here.
 	if(locate(/obj/machinery/plasma_vent) in range(7, src))
-		return "A plasma vent is already within seven tiles."
+		return "七格内已存在一个等离子气泵。"
 	var/obj/machinery/plasma_vent_pack/pack = find_pack()
 	if(!pack)
-		return "No compressed vent within seven tiles."
+		return "七格内没有压缩态气泵。"
 	var/turf/base = get_turf(pack)
 	if(!space_is_clear(base, pack))
-		return "Not enough open floor for the vent."
+		return "没有足够空地展开气泵。"
 	do_smoke(4, get_turf(src), base)
 	var/obj/machinery/plasma_vent/vent = new(base)
 	vent_ref = WEAKREF(vent)
@@ -394,25 +394,25 @@
 			if(deploy_error)
 				set_notice(deploy_error, "danger")
 			else
-				set_notice("Vent unfolded and linked.", "success")
+				set_notice("气泵已展开并连接。", "success")
 			. = TRUE
 		if("establish")
 			if(handshaking)
-				set_notice("A handshake is already in progress.", "danger")
+				set_notice("握手已在进行中。", "danger")
 				return TRUE
 			var/obj/machinery/plasma_vent/vent = find_vent()
 			if(!vent)
-				set_notice("No plasma vent within seven tiles.", "danger")
+				set_notice("七格内没有等离子气泵。", "danger")
 				return TRUE
 			if(vent.channel_active)
-				set_notice("The channel is already open.", "info")
+				set_notice("通道已经开启。", "info")
 				return TRUE
 			if(vent.machine_stat & (BROKEN | NOPOWER))
-				set_notice("The vent has no power.", "danger")
+				set_notice("气泵没有电力。", "danger")
 				return TRUE
 			var/obj/machinery/computer/plasma_vent/owner = vent.console_ref?.resolve()
 			if(owner && owner != src && get_dist(owner, vent) <= 7 && can_see(owner, vent, 7))
-				set_notice("Another console is already linked to this vent.", "danger")
+				set_notice("另一个控制台已连接此气泵。", "danger")
 				return TRUE
 			vent_ref = WEAKREF(vent)
 			vent.console_ref = WEAKREF(src)
@@ -421,13 +421,13 @@
 		if("dispense")
 			var/obj/machinery/plasma_vent/vent = find_vent()
 			if(!vent)
-				set_notice("No plasma vent within seven tiles.", "danger")
+				set_notice("七格内没有等离子气泵。", "danger")
 				return TRUE
 			var/dispense_error = vent.dispense_canister()
 			if(dispense_error)
 				set_notice(dispense_error, "danger")
 			else
-				set_notice("Canister condensed at the vent outlet.", "success")
+				set_notice("已在出料口凝结一个压缩罐。", "success")
 				queue_ui_refresh(1 SECONDS)
 			. = TRUE
 
@@ -437,7 +437,7 @@
 /* ------------------------------------------------------------ construction */
 
 /obj/item/circuitboard/machine/plasma_vent
-	name = "Bluespace Plasma Vent"
+	name = "蓝空等离子气泵电路板"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/plasma_vent_pack
 	specific_parts = TRUE
@@ -452,13 +452,13 @@
 	)
 
 /obj/item/circuitboard/computer/plasma_vent
-	name = "Plasma Vent Control"
+	name = "等离子气泵控制台电路板"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/computer/plasma_vent
 
 /datum/supply_pack/engineering/plasma_vent
-	name = "Bluespace Plasma Vent Crate"
-	desc = "Boards for a plasma vent and its control console. Frames, stock parts and cable are on you."
+	name = "蓝空等离子气泵板条箱"
+	desc = "内含等离子气泵和终端的电路板. 框架，零件，电线需要用户自备."
 	cost = CARGO_CRATE_VALUE * 40
 	access_view = ACCESS_COMMAND
 	// Hidden from the order console until the station goal calls on_report() and unlocks it.
@@ -467,24 +467,24 @@
 		/obj/item/circuitboard/machine/plasma_vent,
 		/obj/item/circuitboard/computer/plasma_vent,
 	)
-	crate_name = "plasma vent crate"
+	crate_name = "等离子气泵板条箱"
 
 /* -------------------------------------------------------------------- goal */
 
 /datum/station_goal/plasma_vent
-	name = "Plasma Vent"
+	name = "等离子气泵"
 
 /datum/station_goal/plasma_vent/get_report()
 	return list(
-		"Central Command is short on plasma and the local gas giant is venting it into the dark.",
-		"Command has authorised a bluespace plasma vent for your station.",
+		"中央指挥部缺乏等离子体，而本地气态巨行星正把它排进黑暗中。",
+		"指挥部已批准为你的空间站配备一台蓝空等离子气泵。",
 		"",
-		"* Order the vent crate from cargo.",
-		"* Build the vent and its control console.",
-		"* Open the bluespace channel from the console.",
+		"* 从货运订购气泵板条箱。",
+		"* 建造气泵及其控制台。",
+		"* 从控制台开启蓝空通道。",
 		"",
-		"Once the channel is up the vent ships plasma to Central Command on its own. \
-		The console can also condense a canister for the station every five minutes.",
+		"通道开启后，气泵会自动向中央指挥部输送等离子体。 \
+		控制台还可以每五分钟为空间站凝结一个压缩罐。",
 	).Join("\n")
 
 /datum/station_goal/plasma_vent/on_report()
