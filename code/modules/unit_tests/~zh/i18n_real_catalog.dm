@@ -287,6 +287,18 @@
 	var/deadchat_out = lang_fallback_apply_html("<span class='deadsay'><b>Zxqv Qwrp</b> has reconnected.</span>", LANGUAGE_LOCALE_ZH_HANS)
 	TEST_ASSERT(!findtext(deadchat_out, "reconnected") && findtext(deadchat_out, "Zxqv Qwrp"), "幽灵频道播报应翻译、名字原样：[deadchat_out]")
 	TEST_ASSERT_NOTEQUAL(lang_reverse_text("approved manifest"), "approved manifest", "出口单位名应已进目录并能反查")
+	// ⑪ 大小写变体：订购台把名字整串转小写、full_capitalize 又逐词大写，归一化对多词串整串小写。
+	TEST_ASSERT_NOTEQUAL(lang_reverse_text("egg carton"), "egg carton", "整串小写的物品名应经归一表命中（目录里是 Egg Carton）")
+	TEST_ASSERT_NOTEQUAL(lang_reverse_text("Raw Weather Core"), "Raw Weather Core", "逐词大写的物品名应经归一表命中（目录里是 raw weather core）")
+	// ⑫ 梦境：床单名词池走域内表（颜色词不进全局反查），「听到声音」梦的写死文本走手维护目录。
+	TEST_ASSERT_NOTEQUAL(lang_dream_noun("blue"), "blue", "床单梦境名词应经域内表翻译")
+	TEST_ASSERT_NOTEQUAL(lang_dream_noun("a facehugger"), "a facehugger", "床单梦境名词应经域内表翻译")
+	TEST_ASSERT_NOTEQUAL(lang_localize_display_name("you hear something strange"), "you hear something strange", "「听到声音」梦的文本应能翻译")
+	// ⑬ 法医纤维（文本本身是 fibers 列表的键，只在显示层由模板翻）、电路端口名（多词才进目录）。
+	var/fiber_out = lang_template_apply("Material from a pair of Zxqv Qwrp.", LANGUAGE_LOCALE_ZH_HANS)
+	TEST_ASSERT(!findtext(fiber_out, "Material from"), "法医纤维文本应由显示层模板翻译：[fiber_out]")
+	TEST_ASSERT_NOTEQUAL(lang_reverse_text("Reset And Trigger"), "Reset And Trigger", "多词电路端口名应已进目录")
+	TEST_ASSERT_EQUAL(lang_reverse_text("Current Target"), "Current Target", "与 AI 黑板键同形的端口名不得进全局反查表")
 
 	GLOB.i18n_server_locale = saved_locale
 

@@ -72,6 +72,7 @@
 		"materials.json": { "domain": "scoped:materials", "owner": "manual" },
 		"phobia_labels.json": { "domain": "scoped:phobia_labels", "owner": "manual" },
 		"phobia_words.json": { "domain": "scoped:phobia_words", "owner": "manual" },
+		"dream_nouns.json": { "domain": "scoped:dream_nouns", "owner": "manual" },
 		"reaction_names.json": { "domain": "scoped:reaction_names", "owner": "manual" },
 		"say_picker_labels.json": { "domain": "scoped:say_picker_labels", "owner": "manual" },
 		"slime_colours.json": { "domain": "scoped:slime_colours", "owner": "manual" },

@@ -3164,6 +3164,8 @@ const CATALOG_VALUE_BLOCKLIST: &[&str] = &[
     // `pair` 是榨乳机的模式键。出口报告里少译这两个词，换反查表里不多两个单词词对。
     "analyzer",
     "pair",
+    // 电路端口名里与 AI 黑板键 `BB_CURRENT_TARGET` 同形的一个。
+    "Current Target",
     // `antagpanel_category` 的分组名，同时是 `ROLE_MALF` 这个 define 的值（`antag_flag ==` 比较）。
     "Malf AI",
     // `response_*` 交互动词里与 DM 标识符同形的三个（`stamp` 是纸张印章类型与 icon_state、
@@ -3445,6 +3447,24 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                                 }
                             } else if let Some(template) = build_sink_template(arg) {
                                 emit_sink_frame(catalog, ns, &template);
+                            }
+                        }
+                    }
+                }
+            }
+            // 电路组件的端口名（`add_input_port("Reset And Trigger", PORT_TYPE_SIGNAL, …)`）：电路界面里逐个
+            // 显示。名字同时是存档里的键，但 TGUI 负载不再就地改写数据、只下发译文 overlay，界面回传的是
+            // `port_id` 下标 —— 进目录只影响显示。**只收多词**：单词端口名（Input/Output/Trigger/Target）
+            // 是标识符浓度最高的区间，进全局反查表只会扩大误翻面。只抽取，不改写。
+            if let Term::Call(name, args) = &term.elem {
+                if matches!(name.as_str(), "add_input_port" | "add_output_port" | "add_option_port") {
+                    if let Some(Expression::Base { term: first, follow }) = args.first() {
+                        if follow.is_empty() {
+                            if let Term::String(text) = &first.elem {
+                                if text.trim().contains(' ') {
+                                    let _origin = OriginGuard::enter("sink");
+                                    emit(catalog, ns, text.trim());
+                                }
                             }
                         }
                     }

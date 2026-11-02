@@ -953,6 +953,14 @@ GLOBAL_LIST_EMPTY(i18n_scoped_tables)
 /// `heat` / `holy` / `life` / `soup` / `foam` 这类通用单词，塞进全局反查表当场把
 /// `nova-i18n lint` 的碰撞告警顶上去（实测 54 → 61）。顶层表只由这一个显示点查。
 /// 表由 `node tools/i18n/reaction-names.mjs` 生成骨架，未填译文的保持英文。
+/// 床单梦境名词（`dream_messages`）的显示译名。池里大量是单个颜色词，同时是图标态/标识符，
+/// 不能进全局反查表 —— 走顶层域内表，只在梦境生成时查。查不到原样返回。
+/proc/lang_dream_noun(noun)
+	if(!istext(noun) || GLOB.i18n_server_locale == DEFAULT_UI_LOCALE)
+		return noun
+	var/list/table = lang_scoped_table("dream_nouns.json")
+	return table[noun] || noun
+
 /proc/lang_reaction_name(reaction_name)
 	if(!istext(reaction_name))
 		return reaction_name
@@ -1136,9 +1144,13 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 	var/length_of_text = length(text)
 	if(length_of_text > 2 && text2ascii(text, 1) == 39 && text2ascii(text, length_of_text) == 39)
 		text = copytext(text, 2, length_of_text)
-	var/first_char = copytext(text, 1, 2)
-	if(findtext(text, " ") && findtextEx("ABCDEFGHIJKLMNOPQRSTUVWXYZ", first_char))
-		text = LOWER_TEXT(first_char) + copytext(text, 2)
+	// 多词串**整串小写**（从前只把首字母小写）。运行期改写大小写的不止 capitalize()：订购台把名字整串
+	// LOWER_TEXT（`egg carton` ← `Egg Carton`），`full_capitalize` / TS 的 capitalizeAll 又反过来逐词大写
+	// （`Raw Weather Core` ← `raw weather core`）。生产服三局漏翻里这类大小写变体 86 种。
+	// 归一表只在精确查表 miss 之后才用，精确命中的路径不受影响；大小写不同、译文也不同的条目在建表时
+	// 判歧义剔除。单词不动：单 token 是标识符浓度最高的区间（与其它变体规则同一条线）。
+	if(findtext(text, " "))
+		text = LOWER_TEXT(text)
 	return text
 
 /proc/lang_add_normalized_reverse(list/reverse_norm, list/origins, list/ambiguous, normalized, translated, origin)

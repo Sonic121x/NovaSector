@@ -5,7 +5,7 @@
 
 /obj/item/pinpointer/nuke/examine(mob/user)
 	. = ..()
-	var/msg = "Its tracking indicator reads "
+	var/msg = GLOB.i18n_server_locale == DEFAULT_UI_LOCALE ? "Its tracking indicator reads " : lang_reverse_text("Its tracking indicator reads") // ZH EDIT CHANGE - I18N: 半句前缀拼上后缀后谁也不是目录键；引号里的追踪代码是刻意的代码样式，保持原样 - ORIGINAL: var/msg = "Its tracking indicator reads "
 	switch(mode)
 		if(TRACK_NUKE_DISK)
 			msg += LANG("obj.154f86ea0d061b3d", null)

@@ -66,5 +66,7 @@
 	"_root.action_adjust_visor": "Adjust {0} Visor",
 	"_root.instrument_sustain_linear": "Linear Sustain Duration (in seconds)",
 	"_root.instrument_sustain_exponential": "Exponential Falloff Factor (% per decisecond)",
-	"_root.arcade_new_game": "New game started against {0}"
+	"_root.arcade_new_game": "New game started against {0}",
+	"_root.job_estimation_named": "* {0} as {1}",
+	"_root.job_estimation_mysterious": "* a mysterious {0}"
 }
