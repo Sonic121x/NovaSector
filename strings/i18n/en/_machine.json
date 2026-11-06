@@ -14,5 +14,10 @@
   "_machine.pipe_dir_south_east_north": "South East North",
   "_machine.pipe_dir_north_east_south": "North East South",
   "_machine.pipe_dir_south_west_north": "South West North",
-  "_machine.pipe_dir_west_north_east": "West North East"
+  "_machine.pipe_dir_west_north_east": "West North East",
+  "_machine.pipe_dir_east_south_west": "East South West",
+  "_machine.pipe_dir_north_flipped": "North Flipped",
+  "_machine.pipe_dir_east_flipped": "East Flipped",
+  "_machine.pipe_dir_south_flipped": "South Flipped",
+  "_machine.pipe_dir_west_flipped": "West Flipped"
 }

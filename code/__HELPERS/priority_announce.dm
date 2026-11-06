@@ -151,8 +151,9 @@
 
 	// ZH EDIT ADDITION START - I18N - 指挥报告（生成纸张/发到通讯台）正文是多段运行期拼接（威胁等级公告、
 	// 特别订单 station_goal.get_report()、station_trait.get_report() 报告、各 LANG 段），整串 reverse 够不着。
-	// 过边界模板引擎（插值段 {0} 模板整句命中）+ 字面 AC（多词短语兜底）；威胁公告整块已在 communications.dm
-	// 拼接前整串反查为中文，此处不再被 AC 蚕食。locale==en 时 lang_fallback_apply 原样返回（零开销）。
+	// 过聊天同款落地层：模板整句命中、`<i>特质名</i> - 报告` 的列表记号、站点目标的多行逐行（字面 AC 已整层
+	// 删除，不再有子串兜底）。威胁公告整块已在 communications.dm 拼接前整串反查为中文。
+	// locale==en 时 lang_fallback_apply 原样返回（零开销）。
 	text = lang_fallback_apply(text)
 	// ZH EDIT ADDITION END
 	var/datum/comm_message/message = new

@@ -134,6 +134,7 @@
 			var/saved_other_name = other_area.name
 			test_area.name = "Zxqv Unrelated"
 			other_area.name = "Zxqv Sector"
+			require_area_resort() // 直接写 .name 的改名路径要自己置脏（rename_area 会代为调用）
 			subject.name = "Zxqv Sector Zxqv Thranok Unit"
 			TEST_ASSERT_EQUAL(subject.lang_localize_name_for_display(subject.name), "兹克夫星区 兹克夫单元", "名字里的区域不是所在区域时，合成名没有按区域名前缀拆开")
 			other_area.name = saved_other_name

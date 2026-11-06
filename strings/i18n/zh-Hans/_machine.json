@@ -14,5 +14,10 @@
   "_machine.pipe_dir_south_east_north": "南-东-北",
   "_machine.pipe_dir_north_east_south": "北-东-南",
   "_machine.pipe_dir_south_west_north": "南-西-北",
-  "_machine.pipe_dir_west_north_east": "西-北-东"
+  "_machine.pipe_dir_west_north_east": "西-北-东",
+  "_machine.pipe_dir_east_south_west": "东-南-西",
+  "_machine.pipe_dir_north_flipped": "北（翻转）",
+  "_machine.pipe_dir_east_flipped": "东（翻转）",
+  "_machine.pipe_dir_south_flipped": "南（翻转）",
+  "_machine.pipe_dir_west_flipped": "西（翻转）"
 }

@@ -396,7 +396,7 @@
 		if(!shown_brute && !shown_burn)
 			status = "no damage"
 		else
-			status = "[shown_brute] brute damage and [shown_burn] burn damage"
+			status = LANG("obj.ff12a59166418928", list(shown_brute, shown_burn)) // ZH EDIT CHANGE - I18N - ORIGINAL: status = "[shown_brute] brute damage and [shown_burn] burn damage"
 
 	else
 		// ZH EDIT CHANGE START - I18N - 原逐段拼接成 brute+" and "+burn；整串非状态词键、lang_localize_arg miss（双重伤情残留英文）。

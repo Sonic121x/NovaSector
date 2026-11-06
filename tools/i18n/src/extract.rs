@@ -102,6 +102,11 @@ const SINK_VARS: &[&str] = &[
     "name",
     "desc",
     "message",
+    // GPS 信号名：Boss 的 `gps_name = "Echoing Signal"`、幽灵矿脉的 `gps_name = "[size] oxide chunk"`；
+    // 间歇泉被发现后的 `true_name = "plasma-oxide geyser"`（既是 GPS 标签、也赋给 name）。都只做显示，
+    // GPS 界面回传走 ref。生产服漏翻里矿脉/间歇泉的 GPS 标签一局数千次。
+    "gps_name",
+    "true_name",
     // 生物死亡消息（`death_message = "snarls its last and perishes."`，74 处）。它经
     // visible_message 广播、场上所有人可见，是**漏翻采集里出现频次最高的一类**（计数直接打满上限）。
     // 从前只靠激进 pass 的整句闸门捡漏：以小写动词开头的（"snarls its last…"）一条都过不了。
@@ -585,6 +590,13 @@ fn element_display_args(expr: &Expression) -> Option<&'static [usize]> {
     };
     // 按**末段**匹配：prefab.path 的前导 `/` 在 AST 里不产生空段，而 element 类型名本身足够独特。
     let path: Vec<&str> = prefab.path.iter().map(|(_, seg)| seg.as_str()).collect();
+    // GPS 信号名：`AddComponent(/datum/component/gps[/item], "Active Module Rack")`。GPS 界面把它当
+    // 信号列表的标签显示（负载 overlay 只翻显示、回传走 ref），AI 法则架、通讯台、矿脉/间歇泉一局上万次。
+    // 子类型（`/gps/item`、`/gps/kheiral_cuffs`）末段不是 gps，按路径段判。单 token 的标签（`NT_AUX`/
+    // `MOD0`/`HOLOSIGNAL`）是编号形态，由调用侧的多词闸门挡掉。
+    if path.windows(2).any(|w| w[0] == "component" && w[1] == "gps") {
+        return Some(&[1]);
+    }
     match path.last().copied().unwrap_or_default() {
         // 「植入器官」的检查描述：`AddElement(/datum/element/noticable_organ,
         // "%PRONOUN_Their eyes move with machine precision…", BODY_ZONE_PRECISE_EYES)`。
@@ -3384,6 +3396,9 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                         if let Some(indices) = inner.first().and_then(element_display_args) {
                             for &idx in indices {
                                 if let Some(template) = inner.get(idx).and_then(build_template) {
+                                    if !strip_placeholders(&template).trim().contains(' ') {
+                                        continue; // 单 token：编号/标识符形态（见 element_display_args）
+                                    }
                                     let _origin = OriginGuard::enter("element");
                                     emit(catalog, ns, &template);
                                 }
