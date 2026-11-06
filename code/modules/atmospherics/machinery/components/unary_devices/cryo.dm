@@ -521,7 +521,7 @@
 	user.visible_message(span_notice(LANG("obj.591d53545b6cf604", list(user, src))), \
 		span_notice(LANG("obj.907d1a299974ae72", list(src, DisplayTimeText(CRYO_BREAKOUT_TIME)))), \
 		span_hear(LANG("obj.a2fe6effec64bfb6", list(src))))
-	if(do_after(user, CRYO_BREAKOUT_TIME, target = src, cog_icon = null))
+	if(do_after(user, CRYO_BREAKOUT_TIME, target = src, timed_action_flags = HIDE_INTERACTION))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src )
 			return
 		user.visible_message(span_warning(LANG("obj.37696909131e91b5", list(user, src))), \

@@ -75,7 +75,7 @@
 		span_notice(LANG("obj.11477fc6d413dd27", null)),
 		span_hear(LANG("obj.8489ba564b7cea8e", null)))
 
-	if(!do_after(captive, 100 SECONDS, target = src, cog_icon = null))
+	if(!do_after(captive, 100 SECONDS, target = src, timed_action_flags = HIDE_INTERACTION))
 		if(captive.buckled)
 			to_chat(captive, span_warning(LANG("obj.bca97c0d59d379d9", null)))
 		return

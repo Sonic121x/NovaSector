@@ -37,7 +37,7 @@
 		span_notice(LANG("datum.57ba7274bf7e394f", null)),
 	)
 	var/datum/antagonist/changeling/changeling_data = cling.mind?.has_antag_datum(/datum/antagonist/changeling)
-	changeling_data?.chem_recharge_slowdown -= recharge_slowdown //Slows down chem regeneration
+	changeling_data?.chem_recharge_slowdown += recharge_slowdown //Slows down chem regeneration
 
 /datum/action/changeling/darkness_adaptation/proc/disable_ability(mob/living/carbon/human/cling)
 	if(!cling.remove_status_effect(/datum/status_effect/darkness_adapted))
@@ -48,7 +48,7 @@
 		span_notice(LANG("datum.fd3d229ec869e1e5", null)),
 	)
 	var/datum/antagonist/changeling/changeling_data = cling.mind?.has_antag_datum(/datum/antagonist/changeling)
-	changeling_data?.chem_recharge_slowdown += recharge_slowdown
+	changeling_data?.chem_recharge_slowdown -= recharge_slowdown
 
 /// Makes the user harder to see in the dark (and makes the user see in the dark easier)
 /datum/status_effect/darkness_adapted

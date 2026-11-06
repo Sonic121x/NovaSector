@@ -1,4 +1,22 @@
 // ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
+/datum/atom_skin/cowboy_boots
+	abstract_type = /datum/atom_skin/cowboy_boots
+
+/datum/atom_skin/cowboy_boots/brown
+	preview_name = "Brown"
+	new_name = "brown cowboy boots"
+	new_icon_state = "cowboy_brown"
+
+/datum/atom_skin/cowboy_boots/black
+	preview_name = "Black"
+	new_name = "black cowboy boots"
+	new_icon_state = "cowboy_black"
+
+/datum/atom_skin/cowboy_boots/white
+	preview_name = "White"
+	new_name = "white cowboy boots"
+	new_icon_state = "cowboy_white"
+
 /obj/item/clothing/shoes/cowboy
 	name = "cowboy boots"
 	desc = "A small sticker lets you know they've been inspected for snakes, It is unclear how long ago the inspection took place..."

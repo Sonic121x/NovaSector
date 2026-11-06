@@ -555,7 +555,7 @@ GAME_VERB_HIDDEN_INSTANT(/client, toggle_walk_run, "toggle-walk-run")
 	if(!can_z_move(UP, current_turf, null, ZMOVE_CAN_FLY_CHECKS|ZMOVE_FEEDBACK))
 		return
 	balloon_alert(src, LANG("mob.614fbd1f4388e81f", null))
-	if(!do_after(src, 1 SECONDS, cog_icon = null))
+	if(!do_after(src, 1 SECONDS, timed_action_flags = HIDE_INTERACTION))
 		return
 	if(zMove(UP, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK))
 		to_chat(src, span_notice(LANG("mob.424904218786fa94", null)))
@@ -579,7 +579,7 @@ GAME_VERB_HIDDEN_INSTANT(/client, toggle_walk_run, "toggle-walk-run")
 	if(!can_z_move(DOWN, current_turf, null, ZMOVE_CAN_FLY_CHECKS|ZMOVE_FEEDBACK))
 		return
 	balloon_alert(src, LANG("mob.8e342f148f4fccf7", null))
-	if(!do_after(src, 1 SECONDS, cog_icon = null))
+	if(!do_after(src, 1 SECONDS, timed_action_flags = HIDE_INTERACTION))
 		return
 	if(zMove(DOWN, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK))
 		to_chat(src, span_notice(LANG("mob.323655c6bc26fa03", null)))

@@ -251,7 +251,7 @@
 
 	hitting_projectile.set_angle((hitting_projectile.angle + 180) % 360 + rand(-3, 3))
 	hitting_projectile.visible_message(span_warning(LANG("datum.0b95cb4e537954b8", list(attacker, hitting_projectile, attacker.p_their()))))
-	hitting_projectile.firer = attacker
+	hitting_projectile.set_firer(attacker)
 	hitting_projectile.speed *= 1.25
 	hitting_projectile.damage *= 1.25
 	hitting_projectile.icon = 'icons/obj/weapons/guns/projectiles.dmi' //In case of modular projectiles.

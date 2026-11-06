@@ -3423,8 +3423,10 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                         }
                         collect_lang_arg_literals(a, &mut literals);
                     }
+                    // 单测里的 LANG 实参是测试数据（常用 Zxqv 系生造词，专门为了**不**命中目录）；
+                    // 收进目录再被 MT 译掉，断言就从「测填充逻辑」变成「测目录内容」。
                     for literal in literals {
-                        if is_lang_arg_text(&literal) {
+                        if !suppress && is_lang_arg_text(&literal) {
                             emit(catalog, ns, literal.trim());
                         }
                     }
@@ -3437,7 +3439,7 @@ fn visit_expr(expr: &Expression, ns: &str, catalog: &mut Catalog, suppress: bool
                         collect_lang_arg_templates(a, &mut templates);
                     }
                     for template in templates {
-                        if is_lang_arg_template(&template) {
+                        if !suppress && is_lang_arg_template(&template) {
                             emit(catalog, ns, template.trim());
                         }
                     }

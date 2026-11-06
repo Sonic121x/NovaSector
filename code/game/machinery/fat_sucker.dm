@@ -80,7 +80,7 @@
 		user.visible_message(span_notice(LANG("obj.485787b2b8d67ec7", list(user, src))), \
 			span_notice(LANG("obj.43ad33b141e25411", list(src, DisplayTimeText(breakout_time)))), \
 			span_hear(LANG("obj.a1d9c5733c600b1c", list(src))))
-		if(do_after(user, breakout_time, target = src, cog_icon = null))
+		if(do_after(user, breakout_time, target = src, timed_action_flags = HIDE_INTERACTION))
 			if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || state_open)
 				return
 			free_exit = TRUE

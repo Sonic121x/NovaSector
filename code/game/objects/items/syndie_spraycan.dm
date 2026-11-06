@@ -86,7 +86,7 @@
 	if(HAS_TRAIT(user, TRAIT_TAGGER))
 		wait_time *= 0.5
 
-	if(!do_after(user, wait_time, target, cog_icon = null, extra_checks = CALLBACK(src, PROC_REF(adjacency_check), user, target)))
+	if(!do_after(user, wait_time, target, timed_action_flags = HIDE_INTERACTION, extra_checks = CALLBACK(src, PROC_REF(adjacency_check), user, target)))
 		user.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 		drawing_rune = FALSE
 		return FALSE

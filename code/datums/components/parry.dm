@@ -113,7 +113,7 @@
 		user.visible_message(span_warning(LANG("datum.0b95cb4e537954b8", list(user, source, user.p_their()))), span_warning(LANG("datum.e9c310e14c1d21aa", list(source))))
 	else
 		user.visible_message(span_warning(LANG("datum.1a61a1289a5bf2a7", list(user, source, user.p_their()))), span_warning(LANG("datum.e78c713370337f8f", list(source))))
-	source.firer = user
+	source.set_firer(user)
 	source.speed *= boosting ? boost_speed_mult : parry_speed_mult
 	source.damage *= boosting ? boost_damage_mult : parry_damage_mult
 	source.add_atom_colour(COLOR_RED_LIGHT, TEMPORARY_COLOUR_PRIORITY)

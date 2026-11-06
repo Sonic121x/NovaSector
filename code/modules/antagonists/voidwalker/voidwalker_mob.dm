@@ -321,7 +321,7 @@
 	var/obj/particles = new /obj/effect/abstract/particle_holder (our_wall, /particles/void_wall)
 
 	balloon_alert(src, LANG("mob.d763db5f362d384f", null))
-	if(!do_after(src, 8 SECONDS, our_wall, cog_icon = null))
+	if(!do_after(src, 8 SECONDS, our_wall, timed_action_flags = HIDE_INTERACTION))
 		qdel(particles)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if(!conversions_remaining)

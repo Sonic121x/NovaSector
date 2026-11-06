@@ -40,6 +40,11 @@
 	var/apc_scanner = TRUE
 	COOLDOWN_DECLARE(next_apc_scan)
 
+/obj/item/multitool/Initialize(mapload)
+	. = ..()
+
+	register_context()
+
 /obj/item/multitool/Destroy()
 	if(buffer)
 		remove_buffer(buffer)
@@ -65,6 +70,13 @@
 
 	scan_apc(user)
 
+/obj/item/multitool/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+
+	if(held_item == src)
+		context[SCREENTIP_CONTEXT_LMB] = "Point to APC"
+		return CONTEXTUAL_SCREENTIP_SET
+
 /obj/item/multitool/proc/scan_apc(mob/user)
 	if(!COOLDOWN_FINISHED(src, next_apc_scan))
 		return
@@ -73,51 +85,20 @@
 
 	var/area/local_area = get_area(src)
 	var/obj/machinery/power/apc/power_controller = local_area.apc
+
 	if(!power_controller)
 		user.balloon_alert(user, LANG("obj.d6493799031c3c82", null))
 		return
 
-	var/dist = get_dist(src, power_controller)
-	var/dir = get_dir(user, power_controller)
-	var/balloon_message
-	var/arrow_color
+	var/datum/component/pinpointer/pinpointer = GetComponent(/datum/component/pinpointer)
 
-	switch(dist)
-		if (0)
-			user.balloon_alert(user, LANG("obj.9a452154ce93aa27", null))
-			return
-		if(1 to 5)
-			arrow_color = COLOR_GREEN
-		if(6 to 10)
-			arrow_color = COLOR_YELLOW
-		if(11 to 15)
-			arrow_color = COLOR_ORANGE
-		else
-			arrow_color = COLOR_RED
+	if(!pinpointer)
+		pinpointer = AddComponent(/datum/component/pinpointer)
 
-	user.balloon_alert(user, balloon_message)
+	var/distance = pinpointer.point_to(user, power_controller)
 
-	var/datum/hud/user_hud = user.hud_used
-	if(!user_hud)
-		return
-
-	var/atom/movable/screen/multitool_arrow/arrow = user_hud.add_screen_object(/atom/movable/screen/multitool_arrow, HUD_MULTITOOL_ARROW, HUD_GROUP_INFO, update_screen = TRUE)
-	arrow.color = arrow_color
-	arrow.transform = matrix(dir2angle(dir), MATRIX_ROTATE)
-	QDEL_IN(arrow, 1.5 SECONDS)
-
-/atom/movable/screen/multitool_arrow
-	icon = 'icons/effects/96x96.dmi'
-	icon_state = "multitool_arrow"
-	pixel_x = -32
-	pixel_y = -32
-	screen_loc = around_player
-
-/atom/movable/screen/multitool_arrow/Destroy()
-	var/datum/hud/our_hud = hud
-	. = ..()
-	if (!QDELETED(our_hud))
-		INVOKE_ASYNC(our_hud, TYPE_PROC_REF(/datum/hud, show_hud), our_hud.hud_version)
+	if(!distance)
+		user.balloon_alert(user, LANG("obj.9a452154ce93aa27", null))
 
 /obj/item/multitool/suicide_act(mob/living/user)
 	user.visible_message(span_suicide(LANG("obj.a409b30b0f3286e1", list(user, src, user.p_their(), user.p_theyre(), user.p_their()))))

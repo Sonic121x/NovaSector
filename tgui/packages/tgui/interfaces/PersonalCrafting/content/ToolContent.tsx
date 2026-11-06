@@ -19,7 +19,10 @@ export function ToolContent(props: Props) {
         className={classes(['crafting32x32', tool.replace(/ /g, '')])}
       />
       <Box inline verticalAlign="middle">
-        {TOOL_LABELS[tool] ?? tool /* ZH EDIT - i18n: localize display, keep value for icon class */}
+        {
+          TOOL_LABELS[tool] ??
+            tool /* ZH EDIT - i18n: localize display, keep value for icon class */
+        }
       </Box>
     </Box>
   );

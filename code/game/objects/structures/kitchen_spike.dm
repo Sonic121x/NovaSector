@@ -155,7 +155,7 @@
 		span_notice(LANG("obj.8fdd14846d3b4fbb", list(src))),\
 		span_hear(LANG("obj.9cde913ce941211e", null)))
 		buckled_mob.adjust_brute_loss(30)
-		if(!do_after(buckled_mob, 2 MINUTES, target = src, cog_icon = null))
+		if(!do_after(buckled_mob, 2 MINUTES, target = src, timed_action_flags = HIDE_INTERACTION))
 			if(buckled_mob?.buckled)
 				to_chat(buckled_mob, span_warning(LANG("obj.ccdcd476655640b5", null)))
 			return

@@ -329,7 +329,7 @@
 		else
 			to_chat(user, span_notice(LANG("datum.986e8d8acc957c7e", list(photo))))
 
-		if(do_after(user, study_length, holder, interaction_key = STUDY_INTERACTION_KEY, cog_icon = null))
+		if(do_after(user, study_length, holder, interaction_key = STUDY_INTERACTION_KEY, timed_action_flags = HIDE_INTERACTION))
 			LAZYSET(studied_photos, REF(user.mind), REF(photo))
 		return
 
