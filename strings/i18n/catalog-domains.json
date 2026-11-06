@@ -18,6 +18,7 @@
 		"_accounts.json": { "domain": "global_reverse", "owner": "manual" },
 		"_announce_lines.json": { "domain": "global_reverse", "owner": "manual" },
 		"_announce_senders.json": { "domain": "global_reverse", "owner": "manual" },
+		"_downstream_reverse.json": { "domain": "global_reverse", "owner": "manual", "optional": true },
 		"_bodyfeel.json": { "domain": "global_reverse", "owner": "manual" },
 		"_brain_traumas.json": { "domain": "global_reverse", "owner": "manual" },
 		"_cargo.json": { "domain": "global_reverse", "owner": "manual" },
