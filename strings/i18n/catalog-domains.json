@@ -13,6 +13,7 @@
 		"obj.json": { "domain": "forward", "owner": "extract" },
 		"strings.json": { "domain": "forward", "owner": "extract" },
 		"turf.json": { "domain": "forward", "owner": "extract" },
+		"_downstream.json": { "domain": "forward", "owner": "manual", "optional": true },
 		"world.json": { "domain": "forward", "owner": "extract" },
 		"_accounts.json": { "domain": "global_reverse", "owner": "manual" },
 		"_announce_lines.json": { "domain": "global_reverse", "owner": "manual" },
