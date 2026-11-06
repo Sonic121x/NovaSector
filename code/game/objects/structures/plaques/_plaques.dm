@@ -60,8 +60,8 @@
 	if(!I.use_tool(src, user, 4 SECONDS))
 		return TRUE
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-	user.visible_message(span_notice("[user] unfastens [src]."), \
-		span_notice("You unfasten [src]."))
+	user.visible_message(span_notice(LANG("obj.875275dcc9dcec88", list(user, src))), \
+		span_notice(LANG("obj.32b2f4c041f25d41", list(src))))
 	var/obj/item/plaque/unwrenched_plaque = new(get_turf(user))
 	if(engraved) //If it's still just a basic unengraved plaque, we can (and should) skip some of the below variable transfers.
 		unwrenched_plaque.name = name //Copy over the plaque structure variables to the plaque item we're creating when we unwrench it.
@@ -121,8 +121,8 @@
 	name = "\improper [namechoice]" //We want improper here so examine doesn't get weird if somebody capitalizes the plaque title.
 	desc = LANG("obj.c063b6b9f0a792b8", list(descriptionchoice))
 	engraved = TRUE //The plaque now has a name, description, and can't be altered again.
-	user.visible_message(span_notice("[user] engraves [src]."), \
-						span_notice("You engrave [src]."))
+	user.visible_message(span_notice(LANG("obj.17007a0bb4c2ad4d", list(user, src))), \
+						span_notice(LANG("obj.fb0654f409426853", list(src))))
 	update_appearance(UPDATE_ICON)
 	return ITEM_INTERACT_SUCCESS
 
@@ -225,8 +225,8 @@
 		return ITEM_INTERACT_BLOCKING
 
 	update_text(namechoice, descriptionchoice)
-	user.visible_message(span_notice("[user] engraves [src]."), \
-						span_notice("You engrave [src]."))
+	user.visible_message(span_notice(LANG("obj.17007a0bb4c2ad4d", list(user, src))), \
+						span_notice(LANG("obj.fb0654f409426853", list(src))))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/plaque/proc/update_text(new_name, new_desc)
@@ -235,7 +235,7 @@
 		name = "\improper [new_name]" //We want improper here so examine doesn't get weird if somebody capitalizes the plaque title.
 		newly_engraved = TRUE
 	if(new_desc)
-		desc = "The plaque reads: '[new_desc]'"
+		desc = LANG("obj.c063b6b9f0a792b8", list(new_desc))
 		newly_engraved = TRUE
 	if(newly_engraved && !engraved)
 		engraved = TRUE //The plaque now has a name, description, and can't be altered again.

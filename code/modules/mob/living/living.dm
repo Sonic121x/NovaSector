@@ -774,7 +774,7 @@ GAME_VERB_PROC(/mob/living, mob_sleep, "Sleep", null)
 			get_up_time *= GET_UP_SLOW
 	if(!instant)
 		if(get_up_time > GET_UP_MEDIUM SECONDS) //Slow getups are easily noticable
-			visible_message(span_notice("[src] weakly attempts to stand up."), span_notice("You weakly attempt to stand up."))
+			visible_message(span_notice(LANG("mob.34f3257e5ddca66b", list(src))), span_notice(LANG("mob.5b9043eef76d224b", null)))
 			if(!do_after(src, get_up_time, src, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM|HIDE_INTERACTION), extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob/living, rest_checks_callback)), interaction_key = DOAFTER_SOURCE_GETTING_UP))
 				if(!body_position == STANDING_UP)
 					visible_message(span_warning(LANG("mob.675cb5d3fcd3802c", list(src))), span_warning(LANG("mob.b83d5fb8eceecd1a", null)))

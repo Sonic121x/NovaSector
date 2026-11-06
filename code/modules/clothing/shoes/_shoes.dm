@@ -241,7 +241,7 @@
 		// NOVA EDIT ADDITION END
 
 		if(do_after(user, mod_time, target = our_guy, extra_checks = CALLBACK(src, PROC_REF(still_shoed), our_guy), timed_action_flags = HIDE_INTERACTION))
-			to_chat(user, span_notice("You [tied ? "un[fasten_verb()]" : "knot"] the [fastening_type] on [loc]'s [src.name]."))
+			to_chat(user, span_notice(LANG("obj.edb8a458251f7288", list(tied ? "un[fasten_verb()]" : "knot", fastening_type, loc, src.name))))
 			if(tied == SHOES_UNTIED)
 				adjust_laces(SHOES_KNOTTED, user)
 			else

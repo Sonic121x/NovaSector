@@ -92,7 +92,7 @@
 		target = air_alarm
 
 	if(!target)
-		user.balloon_alert(user, "no air alarm in this area!")
+		user.balloon_alert(user, LANG("obj.186ea1c0fec4561d", null))
 		return
 
 	var/datum/component/pinpointer/pinpointer = GetComponent(/datum/component/pinpointer)
@@ -103,7 +103,7 @@
 	var/distance = pinpointer.point_to(user, target)
 
 	if(!distance)
-		user.balloon_alert(user, "found air alarm!")
+		user.balloon_alert(user, LANG("obj.29ced867d8d021be", null))
 
 /obj/item/analyzer/grind_results()
 	return list(/datum/reagent/mercury = 5, /datum/reagent/iron = 5, /datum/reagent/silicon = 5)

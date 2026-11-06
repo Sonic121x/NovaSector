@@ -560,7 +560,7 @@
 
 //BOTS, overloads them and causes a explosion
 /mob/living/basic/bot/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
-	to_chat(src, span_boldwarning("Your circutry suddenly begins heating up!"))
+	to_chat(src, span_boldwarning(LANG("mob.2805861b74da515e", null)))
 	if(!do_after(ninja, 1.5 SECONDS, target = src, timed_action_flags = HIDE_INTERACTION))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 

@@ -1635,7 +1635,7 @@
 		interacting_with.balloon_alert(user, LANG("obj.99bff57dcd6f00d4", null))
 
 		if(!do_after(user, 2 SECONDS, interacting_with, timed_action_flags = HIDE_INTERACTION))
-			interacting_with.balloon_alert(user, "interrupted!")
+			interacting_with.balloon_alert(user, LANG("obj.c67b5d274d6e724b", null))
 			return ITEM_INTERACT_BLOCKING
 
 		var/mob/living/carbon/human/human_target = interacting_with

@@ -359,8 +359,8 @@
 	var/list/their_loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	var/desc_input = tgui_input_text(
 		user = user,
-		message = "What description do you want to give [name]? Leave blank to clear.",
-		title = "[name] description",
+		message = LANG("datum.47aa1f239c64d298", list(name)),
+		title = LANG("datum.613131a6f11f7938", list(name)),
 		default = their_loadout?[item_path]?[INFO_DESCRIPTION],
 		max_length = MAX_NAME_LEN,
 	)

@@ -3984,28 +3984,13 @@
   "Boom Bird Plushie": [
     "dm:labels"
   ],
-  "Boots (Cowboy, Black)": [
-    "dm:labels"
-  ],
-  "Boots (Cowboy, Brown)": [
-    "dm:labels"
-  ],
-  "Boots (Cowboy, White)": [
-    "dm:labels"
-  ],
   "Boots - Colonial Half-Boots": [
     "dm:labels"
   ],
   "Boots - Cowboy (Colorable)": [
     "dm:labels"
   ],
-  "Boots - Cowboy, Laced (Black)": [
-    "dm:labels"
-  ],
-  "Boots - Cowboy, Laced (Brown)": [
-    "dm:labels"
-  ],
-  "Boots - Cowboy, Laced (White)": [
+  "Boots - Cowboy, Laced": [
     "dm:labels"
   ],
   "Boots - Heavy Frontier": [
@@ -5466,15 +5451,10 @@
     "tgui:AlarmStatus"
   ],
   "Cap": [
+    "dm:labels",
     "tgui:Crayon",
     "tgui:Seed",
     "tgui:species_features"
-  ],
-  "Cap (Black)": [
-    "dm:labels"
-  ],
-  "Cap (Blue)": [
-    "dm:labels"
   ],
   "Cap (Delinquent)": [
     "dm:labels"
@@ -5482,37 +5462,13 @@
   "Cap (Flat)": [
     "dm:labels"
   ],
-  "Cap (Green)": [
-    "dm:labels"
-  ],
-  "Cap (Grey)": [
-    "dm:labels"
-  ],
   "Cap (Mail)": [
-    "dm:labels"
-  ],
-  "Cap (Orange)": [
     "dm:labels"
   ],
   "Cap (Plague Doctor)": [
     "dm:labels"
   ],
-  "Cap (Purple)": [
-    "dm:labels"
-  ],
-  "Cap (Rainbow)": [
-    "dm:labels"
-  ],
   "Cap (Rastafarian)": [
-    "dm:labels"
-  ],
-  "Cap (Red)": [
-    "dm:labels"
-  ],
-  "Cap (White)": [
-    "dm:labels"
-  ],
-  "Cap (Yellow)": [
     "dm:labels"
   ],
   "Cap - Baseball": [
@@ -7855,6 +7811,9 @@
   "Cowardly": [
     "dm:labels"
   ],
+  "Cowboy Boots": [
+    "dm:labels"
+  ],
   "Cowboy Hat (Legacy)": [
     "dm:labels"
   ],
@@ -9589,6 +9548,9 @@
     "dm:labels"
   ],
   "Diphenhydramine": [
+    "dm:labels"
+  ],
+  "Diploma": [
     "dm:labels"
   ],
   "Dipped": [
@@ -12055,19 +12017,13 @@
     "tgui:SpeciesPage",
     "tgui:index"
   ],
-  "Fedora (Beige)": [
-    "dm:labels"
-  ],
-  "Fedora (Black)": [
+  "Fedora": [
     "dm:labels"
   ],
   "Fedora (Brown)": [
     "dm:labels"
   ],
   "Fedora (Colorable)": [
-    "dm:labels"
-  ],
-  "Fedora (White)": [
     "dm:labels"
   ],
   "Feeding": [

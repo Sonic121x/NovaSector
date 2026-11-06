@@ -119,7 +119,7 @@ GAME_VERB(/obj/item/clothing/head/soft, flipcap, "翻转盖子", null)
 			to_chat(user, span_notice(LANG("obj.58789018409879ee", null)))
 		else
 			icon_state = "[soft_type][soft_suffix]"
-			to_chat(user, span_notice("You flip the hat back in normal position."))
+			to_chat(user, span_notice(LANG("obj.68c3bc8119f6983e", null)))
 		worn_icon_state = icon_state
 		update_icon()
 		user.update_worn_head()

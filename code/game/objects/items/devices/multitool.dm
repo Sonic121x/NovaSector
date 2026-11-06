@@ -98,7 +98,7 @@
 	var/distance = pinpointer.point_to(user, power_controller)
 
 	if(!distance)
-		user.balloon_alert(user, "found apc!")
+		user.balloon_alert(user, LANG("obj.9a452154ce93aa27", null))
 
 /obj/item/multitool/suicide_act(mob/living/user)
 	user.visible_message(span_suicide(LANG("obj.a409b30b0f3286e1", list(user, src, user.p_their(), user.p_theyre(), user.p_their()))))

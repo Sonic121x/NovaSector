@@ -170,7 +170,7 @@
 			return
 
 		if(!offered.can_hold_items(offered_item))
-			to_chat(src, span_warning("[offered.p_They()] can't hold anything you offer!"))
+			to_chat(src, span_warning(LANG("mob.4410cf3a8138d254", list(offered.p_They()))))
 			return
 	else if(!(locate(/mob/living) in orange(1, src)))
 		to_chat(src, span_warning(LANG("mob.8dd4bef355b9dbda", null)))

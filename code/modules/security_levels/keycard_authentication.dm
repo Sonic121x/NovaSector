@@ -63,7 +63,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	if(isanimal_or_basicmob(user))
 		var/mob/living/living_user = user
 		if(!(living_user.mobility_flags & MOBILITY_USE))
-			balloon_alert(user, "no hands!")
+			balloon_alert(user, LANG("obj.621b21675a9e2eb4", null))
 			return UI_CLOSE
 	return ..()
 

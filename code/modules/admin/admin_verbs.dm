@@ -783,13 +783,13 @@ ADMIN_VERB(new_blackmarket_item, R_BUILD, "创建黑市物品", "Add an item to 
 	VERB_ARG(object, VERB_ARG_TYPE_TYPEPATH, VERB_ARG_SOURCE_INPUT)
 	var/obj/chosen
 	if(isobj(user.holder?.marked_datum))
-		var/choice = tgui_alert(user, "Would you like to sell your marked object?", "Sale Selection", list("Marked Object", "New Typepath", "Cancel"))
+		var/choice = tgui_alert(user, LANG("datum.ede5a0f45341b42a", null), LANG("datum.e426afc81fe86d48", null), list("Marked Object", "New Typepath", "Cancel"))
 		switch(choice)
 			if("Cancel")
 				return
 			if("Marked Object")
 				if(!isobj(user.holder.marked_datum))
-					to_chat(user, span_boldwarning("Failed! Marked datum is not an object!"))
+					to_chat(user, span_boldwarning(LANG("datum.17d99a20c317a8a9", null)))
 					return
 				chosen = user.holder.marked_datum
 	//first: have admins select a typepath for the item they want to offer.
@@ -798,7 +798,7 @@ ADMIN_VERB(new_blackmarket_item, R_BUILD, "创建黑市物品", "Add an item to 
 	// second: poll admins for the name, description, price, and quantity.
 	if(!chosen) //Since we can still return null
 		return
-	var/name = tgui_input_text(user, "Name of the item to sell?", "Item listing name", "[chosen::name]", max_length = MAX_NAME_LEN)
+	var/name = tgui_input_text(user, LANG("datum.02e2ab584724a530", null), LANG("datum.dda67683487b5b02", null), "[chosen::name]", max_length = MAX_NAME_LEN)
 	if(isnull(name))
 		return
 	var/description = tgui_input_text(user, LANG("datum.4640c340b6a6dfdc", null), LANG("datum.f6dd515fc006e327", null), "[chosen::desc]", max_length = 200)
@@ -810,7 +810,7 @@ ADMIN_VERB(new_blackmarket_item, R_BUILD, "创建黑市物品", "Add an item to 
 
 	var/quantity = 1
 	if(ispath(chosen))
-		quantity = tgui_input_number(user, "Quantity of the item to sell?", "Item listing quantity", default = 1, max_value = 100, min_value = 1, round_value = TRUE)
+		quantity = tgui_input_number(user, LANG("datum.1940bff824399549", null), LANG("datum.c7876276b722ea68", null), default = 1, max_value = 100, min_value = 1, round_value = TRUE)
 	if(isnull(quantity))
 		return
 
