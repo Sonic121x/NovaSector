@@ -65,8 +65,8 @@
 		return
 
 	jaunter.Beam(nearby_reflection, icon_state = "light_beam", time = phase_out_time)
-	nearby_reflection.visible_message(span_warning(LANG("datum.61260e4c0400f191", list(nearby_reflection))))
-	if(!do_after(jaunter, phase_out_time, nearby_reflection, IGNORE_USER_LOC_CHANGE|IGNORE_INCAPACITATED, cog_icon = null))
+	nearby_reflection.visible_message(span_warning("[nearby_reflection] begins to shimmer and shake slightly!"))
+	if(!do_after(jaunter, phase_out_time, nearby_reflection, IGNORE_USER_LOC_CHANGE|IGNORE_INCAPACITATED|HIDE_INTERACTION))
 		return
 
 	playsound(jaunter, 'sound/effects/magic/ethereal_enter.ogg', 50, TRUE, -1)
@@ -97,8 +97,8 @@
 		return FALSE
 
 	nearby_reflection.Beam(phase_turf, icon_state = "light_beam", time = phase_in_time)
-	nearby_reflection.visible_message(span_warning(LANG("datum.61260e4c0400f191", list(nearby_reflection))))
-	if(!do_after(unjaunter, phase_in_time, nearby_reflection, cog_icon = null))
+	nearby_reflection.visible_message(span_warning("[nearby_reflection] begins to shimmer and shake slightly!"))
+	if(!do_after(unjaunter, phase_in_time, nearby_reflection, timed_action_flags = HIDE_INTERACTION))
 		return FALSE
 
 	// We can move around while phasing in, but we'll always end up where we started it.

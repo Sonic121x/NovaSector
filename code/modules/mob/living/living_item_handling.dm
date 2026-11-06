@@ -169,8 +169,8 @@
 			to_chat(src, span_warning(LANG("mob.1fa5537c6c0a0373", list(offered.p_them()))))
 			return
 
-		if(!HAS_TRAIT(offered, TRAIT_CAN_HOLD_ITEMS))
-			to_chat(src, span_warning(LANG("mob.4410cf3a8138d254", list(offered.p_They()))))
+		if(!offered.can_hold_items(offered_item))
+			to_chat(src, span_warning("[offered.p_They()] can't hold anything you offer!"))
 			return
 	else if(!(locate(/mob/living) in orange(1, src)))
 		to_chat(src, span_warning(LANG("mob.8dd4bef355b9dbda", null)))
@@ -222,6 +222,6 @@
 	put_in_hands(offered_item)
 
 /mob/living/click_ctrl_shift(mob/user)
-	if(HAS_TRAIT(src, TRAIT_CAN_HOLD_ITEMS))
+	if(can_hold_items())
 		var/mob/living/living_user = user
 		living_user.give(src)

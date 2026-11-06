@@ -236,7 +236,7 @@
 		victim.show_message(span_warning("[user] tries to bite you, but recoils in disgust!"))
 		to_chat(user, span_warning(LANG("datum.bd4a7b9283eb1fd2", list(victim))))
 		return FALSE
-	if(!do_after(user, 3 SECONDS, target = victim, cog_icon = null))
+	if(!do_after(user, 3 SECONDS, target = victim, timed_action_flags = HIDE_INTERACTION))
 		return FALSE
 
 	victim.show_message(span_danger("[user] is draining your blood!"))

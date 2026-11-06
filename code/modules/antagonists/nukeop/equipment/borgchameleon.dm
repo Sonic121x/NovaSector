@@ -67,7 +67,7 @@
 		to_chat(user, span_notice(LANG("obj.41ddd5031269c4e0", list(src))))
 		playsound(src, 'sound/effects/seedling_chargeup.ogg', 100, TRUE, -6)
 		apply_wibbly_filters(user)
-		if (do_after(user, 5 SECONDS, target = user, cog_icon = null) && user.cell.use(ACTIVATION_COST))
+		if (do_after(user, 5 SECONDS, target = user, timed_action_flags = HIDE_INTERACTION) && user.cell.use(ACTIVATION_COST))
 			playsound(src, 'sound/effects/bamf.ogg', 100, TRUE, -6)
 			to_chat(user, span_notice(LANG("obj.0e7b7c3e583f95e1", list(friendlyName))))
 			activate(user)

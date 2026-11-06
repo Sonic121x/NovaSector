@@ -59,13 +59,13 @@
 		on_removed_adaption(void_adapted, "Our cells relax in safer air.")
 		return
 	var/datum/antagonist/changeling/changeling_data = IS_CHANGELING(void_adapted)
-	to_chat(void_adapted, span_changeling(LANG("datum.b2c0f5bacb0e133f", list(pick(active_reasons)))))
-	changeling_data?.chem_recharge_slowdown -= recharge_slowdown
+	to_chat(void_adapted, span_changeling("Our cells harden themselves against the [pick(active_reasons)]."))
+	changeling_data?.chem_recharge_slowdown += recharge_slowdown
 	currently_active = TRUE
 
 /// Called when we stop being adapted
 /datum/action/changeling/void_adaption/proc/on_removed_adaption(mob/living/former, message)
 	var/datum/antagonist/changeling/changeling_data = IS_CHANGELING(former)
 	to_chat(former, span_changeling(message))
-	changeling_data?.chem_recharge_slowdown += recharge_slowdown
+	changeling_data?.chem_recharge_slowdown -= recharge_slowdown
 	currently_active = FALSE

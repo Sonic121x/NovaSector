@@ -37,8 +37,8 @@
 	show_indicator_overlay("eye_open")
 	stage_timer = addtimer(CALLBACK(src, PROC_REF(show_indicator_overlay), "eye_pulse"), animation_time, TIMER_STOPPABLE)
 	StartCooldown(360 SECONDS, 360 SECONDS)
-	owner.visible_message(span_warning(LANG("datum.74759e38c807cd2b", list(owner))))
-	if (do_after(owner, delay = wait_delay, target = owner, cog_icon = null))
+	owner.visible_message(span_warning("[owner]'s eye glows ominously!"))
+	if (do_after(owner, delay = wait_delay, target = owner, timed_action_flags = HIDE_INTERACTION))
 		trigger_effect()
 		proxmon_cleanup()
 	else

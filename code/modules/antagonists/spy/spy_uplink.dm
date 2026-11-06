@@ -139,7 +139,7 @@
 		span_notice(LANG("datum.be5f19a106b7767f", list(stealing))),
 	)
 
-	if(!do_after(spy, bounty.theft_time, stealing, interaction_key = REF(src), cog_icon = null))
+	if(!do_after(spy, bounty.theft_time, stealing, interaction_key = REF(src), timed_action_flags = HIDE_INTERACTION))
 		return FALSE
 	if(bounty.claimed)
 		to_chat(spy, span_warning(LANG("datum.86b2d04f9f4bb616", list(stealing))))

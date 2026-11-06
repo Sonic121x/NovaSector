@@ -8,8 +8,7 @@
 	register_context()
 
 	GLOB.carbon_list += src
-	ADD_TRAIT(src, TRAIT_CAN_HOLD_ITEMS, INNATE_TRAIT) // Carbons are assumed to be innately capable of having arms, we check their arms count instead
-	ADD_TRAIT(src, TRAIT_CAN_THROW_ITEMS, INNATE_TRAIT) // same here
+	add_traits(list(TRAIT_FENCE_CLIMBER, TRAIT_CAN_THROW_ITEMS), INNATE_TRAIT)
 	breathing_loop = new(src, _direct = TRUE)
 
 /mob/living/carbon/Destroy()
@@ -183,7 +182,7 @@
 	visible_message(span_warning(LANG("mob.fc9e041d4b717b74", list(src, p_them()))),
 				span_notice(LANG("mob.910569ff063da369", list(DisplayTimeText(buckle_cd)))))
 
-	if(!do_after(src, buckle_cd, target = src, timed_action_flags = IGNORE_HELD_ITEM, cog_icon = null))
+	if(!do_after(src, buckle_cd, target = src, timed_action_flags = IGNORE_HELD_ITEM|HIDE_INTERACTION))
 		if(buckled)
 			to_chat(src, span_warning(LANG("mob.bca97c0d59d379d9", null)))
 		return
@@ -233,9 +232,9 @@
 	if (isnull(breakouttime))
 		breakouttime = cuffs.breakouttime
 	if(!cuff_break)
-		visible_message(span_warning(LANG("mob.1c66998e85d25897", list(src, cuffs))))
-		to_chat(src, span_notice(LANG("mob.ace3833fdc7ebf48", list(cuffs, DisplayTimeText(breakouttime)))))
-		if(do_after(src, breakouttime, target = src, timed_action_flags = IGNORE_HELD_ITEM, cog_icon = null, interaction_key = REF(cuffs) ))
+		visible_message(span_warning("[src] attempts to remove [cuffs]!"))
+		to_chat(src, span_notice("You attempt to remove [cuffs]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)"))
+		if(do_after(src, breakouttime, target = src, timed_action_flags = IGNORE_HELD_ITEM|HIDE_INTERACTION, interaction_key = REF(cuffs) ))
 			. = clear_cuffs(cuffs, cuff_break)
 		else
 			to_chat(src, span_warning(LANG("mob.adacd83cbcde80fe", list(cuffs))))

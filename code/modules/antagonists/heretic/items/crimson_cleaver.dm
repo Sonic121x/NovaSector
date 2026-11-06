@@ -293,7 +293,7 @@
 			to_chat(owner, span_mansus(LANG("datum.d19e056060455b1b", null)))
 			owner.add_mood_event(id, /datum/mood_event/crimson_curse/severe)
 			for(var/obj/item/knife/butcher/heretic/cleaver in owner)
-				ADD_TRAIT(src, TRAIT_NODROP, TRAIT_STATUS_EFFECT(id))
+				ADD_TRAIT(cleaver, TRAIT_NODROP, TRAIT_STATUS_EFFECT(id))
 
 			owner.add_traits(list(
 				TRAIT_BATON_RESISTANCE,
@@ -333,7 +333,7 @@
 			to_chat(owner, span_mansus(LANG("datum.c07fe797a7ac7c02", null)))
 			owner.clear_mood_event(id)
 			for(var/obj/item/knife/butcher/heretic/cleaver in owner)
-				REMOVE_TRAIT(src, TRAIT_NODROP, TRAIT_STATUS_EFFECT(id))
+				REMOVE_TRAIT(cleaver, TRAIT_NODROP, TRAIT_STATUS_EFFECT(id))
 
 			owner.remove_status_effect(/datum/status_effect/eldritch_painting/desire)
 			owner.remove_traits(list(

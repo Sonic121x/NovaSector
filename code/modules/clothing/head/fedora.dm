@@ -1,4 +1,22 @@
 // ZH EDIT - I18N CODEMOD - 玩家可见字符串已改写为 LANG()；请勿手改 key，见 modular_zh/modules/i18n/readme.md
+/datum/atom_skin/fedora
+	abstract_type = /datum/atom_skin/fedora
+
+/datum/atom_skin/fedora/beige
+	preview_name = "Beige"
+	new_name = "beige fedora"
+	new_icon_state = "fedora_beige"
+
+/datum/atom_skin/fedora/black
+	preview_name = "Black"
+	new_name = "fedora"
+	new_icon_state = "fedora"
+
+/datum/atom_skin/fedora/white
+	preview_name = "White"
+	new_name = "white fedora"
+	new_icon_state = "fedora_white"
+
 /obj/item/clothing/head/fedora
 	name = "fedora"
 	desc = "A really cool hat if you're a mobster. A really lame hat if you're not."

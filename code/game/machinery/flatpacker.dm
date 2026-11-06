@@ -318,7 +318,8 @@
 		design = list(
 			"name" = initial(build.name),
 			"requiredMaterials" = cost_mats,
-			"icon" = icon2base64(icon(initial(build.icon), initial(build.icon_state), frame = 1)),
+			"icon" = initial(build.icon),
+			"icon_state" = initial(build.icon_state),
 			"disableReason" = disableReason
 		)
 	.["design"] = design

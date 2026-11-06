@@ -90,7 +90,7 @@
 		balloon_alert(scanner, LANG("obj.a462ee7cec0ddb47", null))
 		return
 	// Very short scan timer, keep you on your toes
-	if(!do_after(scanner, 0.5 SECONDS, scanned, cog_icon = null))
+	if(!do_after(scanner, 0.5 SECONDS, scanned, timed_action_flags = HIDE_INTERACTION))
 		return
 
 	var/list/all_scanned_items = list()

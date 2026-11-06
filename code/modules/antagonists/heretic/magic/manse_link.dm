@@ -56,9 +56,9 @@
 	to_chat(owner, span_notice(LANG("datum.d639c4003b83eac2", list(linkee))))
 	to_chat(linkee, span_warning(LANG("datum.1efea42c64214f8d", null)))
 
-	if(!do_after(owner, link_time, linkee, cog_icon = null))
-		to_chat(owner, span_warning(LANG("datum.d29451023fc5ede3", list(linkee))))
-		to_chat(linkee, span_warning(LANG("datum.8746681502462cac", null)))
+	if(!do_after(owner, link_time, linkee, timed_action_flags = HIDE_INTERACTION))
+		to_chat(owner, span_warning("You fail to link to [linkee]'s mind."))
+		to_chat(linkee, span_warning("The foreign presence leaves your mind."))
 		return FALSE
 
 	if(QDELETED(src) || QDELETED(owner) || QDELETED(linkee))

@@ -263,7 +263,7 @@
 		span_userdanger(LANG("datum.975cc8681b2236b4", list(hitting_projectile))),
 	)
 	playsound(carp_user, /datum/sound_effect/bullet_miss, 75, TRUE)
-	hitting_projectile.firer = carp_user
+	hitting_projectile.set_firer(carp_user)
 	hitting_projectile.set_angle(rand(0, 360))//SHING
 	return COMPONENT_BULLET_PIERCED
 
