@@ -84,7 +84,7 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 	// **字符串**（无线电说话人名、模板捕获值、LANG 的文本实参），类型信息就丢了，整串又不是目录键
 	// → 「The radio navigation gigabeacon 9-222 哔哔响」。这里只认最窄的形状：尾巴是**单个不含字母、
 	// 含数字**的 token，前半段**整串精确命中**目录。两条都满足才动，所以不会把普通句子劈开。
-	var/serial = lang_reverse_serial_suffixed(stripped || text, locale)
+	var/serial = lang_reverse_serial_suffixed(stripped || text, locale) || lang_reverse_serial_prefixed(stripped || text, locale)
 	if(serial)
 		return serial
 	var/decorated = lang_reverse_edge_decorated(stripped || text, locale)
@@ -99,6 +99,12 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 	// 多句拼接（「模板句 + 另一句纯串」、医疗记录里一串怪癖说明）：整串既不是键，模板也只吃得下其中
 	// 一句——订购台的「Thank you for your purchase! 请注意：…」就是模板翻了后缀、提前返回，基础句永远英文。
 	// 按句切开，**逐句只做整串精确反查**（不递归进整条链，所以不会自己调自己），没命中的句子原样保留。
+	// 多行拼接（站点目标报告是 `list(句, 句, "", 句).Join("\n")`，纸张/记录同理）：整串不是键、模板也没
+	// 吃下整段时，按行切开、逐行走整条链。每一行不再含换行，递归必然终止。
+	if(!templated)
+		var/by_line = lang_localize_lines(text, locale, allow_template)
+		if(by_line)
+			return by_line
 	var/by_sentence = lang_reverse_sentences_exact(text, locale)
 	if(by_sentence)
 		return by_sentence
@@ -108,6 +114,9 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 		var/composed = lang_reverse_composed_name(stripped || text, locale, template_checked = allow_template)
 		if(composed)
 			return composed
+		var/area_prefixed = lang_reverse_area_prefixed(stripped || text, locale)
+		if(area_prefixed)
+			return area_prefixed
 		lang_count_layer_hit(I18N_LAYER_MISS)
 	return text
 
@@ -121,6 +130,25 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 	if(localized == base)
 		return null
 	return "[localized] [serial_tail.group[2]]"
+
+/// 同一件事的另一个方向：**数量/增减在前**（`1 Suit Storage Unit` 订单清单、`+3 bluespace crystal` 材料增减、
+/// `500 credit holochip` 作字符串时、`10 shotgun shells`）。首 token 不含拉丁字母、且含数字或**已是中文**
+/// （`食盐 large hypovial`：试剂名在拼名时已译好、基础名没有），余下部分整串精确命中才动；首 token 原样保留。
+/proc/lang_reverse_serial_prefixed(text, locale)
+	var/static/regex/serial_head = regex(@"^([^A-Za-z\s]+) +(.*[A-Za-z].*)$")
+	var/static/regex/has_digit = regex(@"[0-9]")
+	if(!istext(text) || !serial_head.Find(text))
+		return null
+	var/head = serial_head.group[1]
+	if(!has_digit.Find(head) && !lang_contains_cjk(head))
+		return null
+	var/base = serial_head.group[2]
+	var/localized = lang_reverse_text_in(base, locale)
+	if(localized == base)
+		return null
+	if(lang_contains_cjk(head) && lang_contains_cjk(localized))
+		return "[head][localized]" // 中文名词之间不留空格（同 MOD 主题拼名）
+	return "[head] [localized]"
 
 /// 运行期在名字两侧拼缀的组合名（显示边界、LANG 实参、TGUI 负载里都很常见）：
 ///   · `A (B)`  —— `tray (Watermelon Vines)`、`Thermomachine (Machine Board)`、`departmental card (Service Budget)`、
@@ -138,6 +166,11 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 	var/static/regex/terminal_punct = regex(@"[.!?:;,]$")
 	if(terminal_punct.Find(text))
 		return null
+	// 空括号尾巴：身份卡没有职位时拼成 `silver identification card ()`。翻前半段、括号原样留下。
+	var/text_length = length(text)
+	if(text_length > 3 && copytext(text, text_length - 2) == " ()")
+		var/head_piece = lang_composed_piece(copytext(text, 1, text_length - 2), locale, depth)
+		return head_piece && "[head_piece] ()"
 	var/static/regex/paren_suffix = regex(@"^(.+?) \(([^()]+)\)$")
 	var/static/regex/possessive = regex(@"^(.+?)'s (.+)$")
 	var/paren_shape = paren_suffix.Find(text)
@@ -177,16 +210,22 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 
 /// 切块器在标签边界切开后，块的两端常挂着半截装饰：`Third Degree Burns (`（后面是 `<span>中等</span>)`）、
 /// `Marker Beacon Storage:`（后面是数量）。整串不是目录键，剥掉两端的括号/冒号/空白之后正是。
+/// 列表项的前导记号同理：`<i>特质名</i> - 报告正文`（指挥部状态摘要）切块后是 ` - Due to good performance…`，
+/// 站点目标的 `* 5 unique animal data`。记号后必须跟空白（`-18 bluespace crystal` 这种负数不算）。
 /// 只在内层**整串精确命中**时才动，装饰原样接回。
 /proc/lang_reverse_edge_decorated(text, locale)
-	var/static/regex/edges = regex(@"^([\s()]*)(.*?[A-Za-z].*?)([\s(:]*)$")
-	// 热路径（每次整串 miss 都会到这里）：只有首尾确实挂着括号/冒号才跑正则。
+	var/static/regex/edges = regex(@"^([\s()]*(?:[-*]\s+)?)(.*?[A-Za-z].*?)([\s(:]*)$")
+	// 热路径（每次整串 miss 都会到这里）：只有首尾确实挂着括号/冒号/列表记号才跑正则。
 	var/text_length = length(text)
-	if(!istext(text) || !text_length || text_length > 120)
+	if(!istext(text) || !text_length || text_length > 400)
 		return null
-	var/first = text2ascii(text, 1)
+	var/lead_spaces = spantext(text, " \t\n")
+	if(lead_spaces >= text_length)
+		return null
+	var/first = text2ascii(text, lead_spaces + 1)
 	var/last = text2ascii(text, text_length)
-	if(first != 40 && first != 41 && last != 40 && last != 58) // ( ) … ( :
+	var/bullet = (first == 45 || first == 42) && text2ascii(text, lead_spaces + 2) == 32 // "- " "* "
+	if(!bullet && first != 40 && first != 41 && last != 40 && last != 58) // ( ) … ( :
 		return null
 	if(!edges.Find(text))
 		return null
@@ -199,6 +238,55 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 	if(hit == inner)
 		return null
 	return "[lead][hit][tail]"
+
+/// 「区域名 + 其余」的合成名，只剩**字符串**时（TGUI 负载、LANG 文本实参、聊天块）。atom 本身走显示边界
+/// 有 lang_localize_area_prefixed_name 按 atom 拆，但空气警报把 `vent.name` 先 `sanitize()` 成字符串塞进负载
+/// （`P-T Atmospheric Center 全色空气通风口 KULB2`）、防火门/卷帘/APC 的名字作 LANG 实参（`against Bar
+/// emergency shutter jRulb`）之后，类型信息就没了 —— 生产服这一类单是空气警报的通风口列表就两千多次。
+/// 前缀按全站区域名最长匹配（区域名后必须跟空格），区域名走它自己的显示边界；**其余部分必须也落地**才动：
+/// 整串精确命中、本身已是中文（类型名在 update_name 时已译好）、或「整串命中的短语 + 单个 id token」。
+/// 三条都不满足就原样返回 null —— 以区域名开头的普通句子（`Space is cold`）不会被劈成半截。
+/proc/lang_reverse_area_prefixed(text, locale)
+	if(!istext(text) || length(text) > 120 || findtext(text, "<"))
+		return null
+	var/plain = format_text(text)
+	if(findtext(plain, "&") && findtext(plain, ";"))
+		plain = html_decode(plain)
+	var/area/prefix_area = lang_area_by_name_prefix(plain)
+	if(isnull(prefix_area))
+		return null
+	var/area_name = format_text(prefix_area.name)
+	var/rest = trim(copytext(plain, length(area_name) + 1))
+	if(!length(rest))
+		return null
+	var/localized_rest = lang_area_prefixed_rest(rest, locale)
+	if(isnull(localized_rest))
+		return null
+	var/localized_area = prefix_area.lang_localize_name_for_display(prefix_area.name)
+	if(localized_area == prefix_area.name)
+		localized_area = area_name
+	if(localized_area == area_name && localized_rest == rest)
+		return null
+	return "[localized_area] [localized_rest]"
+
+/// lang_reverse_area_prefixed 的「其余部分」：落得了地返回显示形态，否则 null。
+/proc/lang_area_prefixed_rest(rest, locale)
+	var/hit = lang_reverse_text_in(rest, locale)
+	if(hit != rest)
+		return hit
+	var/static/regex/latin_word = regex(@"[A-Za-z]{2,}")
+	var/last_space = findlasttext(rest, " ")
+	var/head = last_space ? copytext(rest, 1, last_space) : rest
+	var/tail = last_space ? copytext(rest, last_space) : ""
+	// 已是中文（通风口的类型名在 update_name 时就翻好了）：只容许尾巴那个 id token 还是拉丁字母。
+	if(lang_contains_cjk(head) && !latin_word.Find(head))
+		return rest
+	if(!last_space)
+		return null
+	hit = lang_reverse_text_in(head, locale)
+	if(hit != head)
+		return "[hit][tail]"
+	return null
 
 /// 组合名的一段：整串精确反查，miss 再按同样的形状递归拆；都不行返回 null。
 /proc/lang_composed_piece(piece, locale, depth)
@@ -357,6 +445,25 @@ GLOBAL_VAR_INIT(i18n_ascii_letter_regex, regex(@"[A-Za-z]"))
 			continue
 		earliest = found
 		. = found + length(ender) - 1
+
+/// 见 lang_localize_chain 的「多行拼接」一段。至少两行、且至少一行落地才返回，否则 null。
+/proc/lang_localize_lines(text, locale, allow_template)
+	if(!istext(text) || !findtext(text, "\n") || length(text) > 8192)
+		return null
+	var/list/lines = splittext(text, "\n")
+	if(length(lines) < 2)
+		return null
+	var/regex/ascii_letter_regex = GLOB.i18n_ascii_letter_regex
+	var/hit_any = FALSE
+	for(var/i in 1 to length(lines))
+		var/line = lines[i]
+		if(!length(line) || !ascii_letter_regex.Find(line, 1))
+			continue
+		var/localized = lang_localize_chain(line, locale, allow_template)
+		if(localized != line)
+			lines[i] = localized
+			hit_any = TRUE
+	return hit_any ? jointext(lines, "\n") : null
 
 /// 见 lang_localize_chain 的「多句拼接」一段。至少两句、且至少一句命中才返回，否则 null。
 /// 只认含拉丁字母的句子；已经是中文的句子（模板刚翻好的那句）原样跳过。

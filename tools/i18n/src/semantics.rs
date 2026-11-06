@@ -27,6 +27,9 @@ pub fn sink_message_args(name: &str) -> Option<&'static [usize]> {
         // 幽灵频道播报（「<b>某人</b> has reconnected.」「… has died at …」）：消息与说话人名是两个实参，
         // 名字由调用方单独包在 source 里，消息本身是完整的句子模板。**只抽取、不改写**（见 is_rewrite_sink）。
         "deadchat_broadcast" => Some(&[0]),
+        // 通讯台/上传台把 GPS 信号名写进电路板（`imprint_gps("Encrypted Communications Channel")`）。
+        // 信号名是 GPS 组件的数据，**只抽取、不改写**：显示由 GPS 界面的负载 overlay 负责。
+        "imprint_gps" => Some(&[0]),
         "display_results" => Some(&[2, 3, 4]),
         "display_pain" => Some(&[1]),
         _ => None,
@@ -68,7 +71,7 @@ pub fn is_rewrite_sink(name: &str) -> bool {
     // 改写成 LANG 会让这些文本实参走 lang_localize_arg 被整串反查（玩家说 "Yes" 变成「是」）。
     // 只抽取，交给聊天落地层，与其它聊天行同等对待。
     sink_message_args(name).is_some()
-        && !matches!(name, "display_results" | "display_pain" | "deadchat_broadcast")
+        && !matches!(name, "display_results" | "display_pain" | "deadchat_broadcast" | "imprint_gps")
 }
 
 /// Parameter names corresponding to message indices, used to resolve named DM arguments.

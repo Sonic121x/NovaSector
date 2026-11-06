@@ -211,6 +211,7 @@
 
 /proc/require_area_resort()
 	GLOB.sortedAreas = null
+	lang_area_name_index_invalidate() // ZH EDIT ADDITION - I18N - 区域增删/改名后，按区域名前缀拆合成名的索引随之失效
 
 /// Returns a sorted version of GLOB.areas, by name
 /proc/get_sorted_areas()

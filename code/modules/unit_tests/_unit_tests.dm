@@ -399,6 +399,7 @@
 #include "~zh\i18n_miss_log.dm"
 #include "~zh\i18n_payload_overlay.dm"
 #include "~zh\i18n_phobia.dm"
+#include "~zh\i18n_prod_misses.dm"
 #include "~zh\i18n_real_catalog.dm"
 #include "~zh\i18n_roleban.dm"
 #include "~zh\i18n_speech_effects.dm"

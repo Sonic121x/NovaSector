@@ -37,6 +37,9 @@ Away
 Babydoll
 Bald
 Balding Hair
+Base Heat Resistance
+Base Waste Multiplier
+Base Zap Transmission
 Beaker
 Blood
 Blood Cult
@@ -65,6 +68,7 @@ Change Hair
 Change Name
 Changeling
 Chaplain
+Charge Damage
 Chief Engineer
 Cigarettes
 Ckey
@@ -76,6 +80,7 @@ Command
 Confirm
 Connect me!
 Contents
+Continue Playing
 Contraband
 Controller
 Cook
@@ -127,6 +132,9 @@ Error: No message
 Error: Ticket could not be found
 Examine
 Exit
+External Damage
+External Power Gain
+External Power Trickle
 Eyes
 Failsafe
 Feedback
@@ -142,6 +150,11 @@ Fox
 Full accessories
 Galactic Materials Market
 Galactic Standard Sign Language
+Gas Heat Power Gain
+Gas Heat Resistance
+Gas Power Decay Negation
+Gas Waste Multiplier
+Gas Zap Transmission Modifier
 Gelled Back
 General
 Generic
@@ -155,6 +168,7 @@ Hardest Restart (No actions, just reboot)
 Harvester
 Heal
 Heart
+Heating Damage
 Hemostat
 Heretic
 High
@@ -171,9 +185,11 @@ Implants
 Incarcerated
 Infinite Transit
 Inflict Damage
+Initiate Crew Transfer
 Insane
 Interface
 Internal GPS
+Internal Power Decay
 Into The Sunset (delete & greentext 'escape')
 Janitor
 Job
@@ -195,6 +211,8 @@ Link Account
 Load Check
 Lockdown
 Loop mode
+Low Moles Heat Resistance
+Low Temperature Healing
 MI13 Fugitive Hunters
 Machines
 Main Power 1
@@ -213,6 +231,7 @@ Mining
 Mobs
 Mode Select
 Modify
+Molar Damage
 Mop
 Motor 1
 Motor 2
@@ -260,6 +279,9 @@ Pray
 Print Transcript
 Prisoner
 Proceed
+Psychologist Heat Resistance
+Psychologist Power Decay Negation
+Psychologist Waste Multiplier
 Psyker Fugitive Hunters
 Queen Bee
 Radiation
@@ -320,6 +342,7 @@ Skinhead
 Sleep
 South
 Space
+Space Exposure Damage
 Space Ninja
 Space Ruins
 SpaceBet

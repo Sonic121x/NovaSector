@@ -15,7 +15,9 @@ Module ID: I18N
 2. **运行时（DM + rust_g）** 本模块 `code/`：
    - `runtime.dm` —— 查表与占位符填充（`lang_format`/`lang_format_for`）、name/desc **反查表**
      （`lang_build_reverse`）、TGUI 负载本地化（P1，`lang_reverse_tree`/`lang_reverse_phrase_tgui`）。
-   - `fallback.dm` —— 输出边界的落地层：整串精确反查 → 剥冠词再精确 → 模板逆匹配。
+   - `fallback.dm` —— 输出边界的落地层：整串精确反查 → 剥冠词再精确 → 编号/数量前后缀与两端装饰
+     （括号、冒号、`- `/`* ` 列表记号）→ 模板逆匹配 → 多行逐行 / 多句逐句 → 组合名与「区域名 + 其余」按段拆。
+     除模板外每一步都要求被拆出的部分**整串精确命中**才动。
      （曾有第四层「字面 AC 子串替换」，已整层删除，理由见 `lang_localize_chain` 的注释。）
    - `template_match.dm` —— **模板逆匹配引擎**：目录里已译的插值模板在输出边界整句命中
      （锚检测 → 逐字面段验证 → 捕获实参递归本地化 → 按 zh 模板重排填充）。

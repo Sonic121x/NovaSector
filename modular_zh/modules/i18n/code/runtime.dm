@@ -1153,21 +1153,43 @@ GLOBAL_LIST_EMPTY(i18n_reverse_norm)
 		text = LOWER_TEXT(text)
 	return text
 
+/// 归一表的登记。冲突的两条来源在英文上只差大小写 / 文法宏 / 空白 / 实体 / 成对引号，**是同一句英文**；
+/// 区别只在 MT 把它们分两批各翻了一遍（`MOD control unit`→「MOD 控制单元」与 `\improper MOD control unit`
+/// →「MOD控制单元」）。从前一律判歧义、两条都删，于是运行期带 `\improper` 标记字节的名字（精确表按源码形态
+/// 存、永远对不上，只能落到这一层）整类回落英文 —— 生产服漏翻里 40 种，MOD 部件、带引号型号的枪、食物名。
+/// 现在按两条规则收口，都与登记顺序无关：
+/// · 译文只差空白（「MOD 控制单元」/「MOD控制单元」）不算冲突，保留先到的那条（两条显示上等价）。
+/// · 多词键的真冲突按**来源英文的文本序**取一个确定的赢家（sorttextEx 是全序，来源两两不同），并照旧记进
+///   ambiguous 供诊断。单词键仍旧整条剔除：单 token 是同形异义与标识符浓度最高的区间（`brush`/`Lizard`），
+///   与其它变体规则同一条安全线。forward 精确层的「同一源串、不同上下文」歧义不走这里，规则不变。
 /proc/lang_add_normalized_reverse(list/reverse_norm, list/origins, list/ambiguous, normalized, translated, origin)
+	var/multi_word = !!findtext(normalized, " ")
 	var/list/ambiguous_origins = ambiguous[normalized]
-	if(ambiguous_origins)
+	if(ambiguous_origins && !multi_word)
 		ambiguous_origins += origin
 		return
 	var/existing = reverse_norm[normalized]
 	if(!isnull(existing))
-		if(existing == translated)
+		if(existing == translated || lang_strip_all_whitespace(existing) == lang_strip_all_whitespace(translated))
 			return
-		ambiguous[normalized] = list(origins[normalized], origin)
-		reverse_norm -= normalized
-		origins -= normalized
+		if(ambiguous_origins)
+			ambiguous_origins += origin
+		else
+			ambiguous[normalized] = list(origins[normalized], origin)
+		if(!multi_word)
+			reverse_norm -= normalized
+			origins -= normalized
+			return
+		if(sorttextEx(origin, origins[normalized]) > 0) // origin 排在前面才接管（sorttextEx: a<b 时为正）
+			reverse_norm[normalized] = translated
+			origins[normalized] = origin
 		return
 	reverse_norm[normalized] = translated
 	origins[normalized] = origin
+
+/proc/lang_strip_all_whitespace(text)
+	var/static/regex/all_ws = regex(@"\s+", "g")
+	return all_ws.Replace(text, "")
 
 /proc/lang_build_reverse(locale)
 	if(locale in GLOB.i18n_reverse)
@@ -1543,9 +1565,16 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 	var/prefix = trim(copytext(stripped, 1, stripped_length - base_length + 1))
 	if(!length(prefix))
 		return null
-	var/localized_prefix = lang_material(prefix)
-	if(localized_prefix == prefix) // 不是登记过的材料 —— 这个形状不归本条管
-		return null
+	var/localized_prefix
+	// 纯数字前缀（全息芯片 `"\improper [credits] credit holochip"`）：不含字母就不可能是散文或身份名，
+	// 原样保留、留一个空格与中文名隔开。
+	var/regex/ascii_letter_regex = GLOB.i18n_ascii_letter_regex
+	if(!ascii_letter_regex.Find(prefix, 1))
+		localized_prefix = "[prefix] "
+	else
+		localized_prefix = lang_material(prefix)
+		if(localized_prefix == prefix) // 不是登记过的材料 —— 这个形状不归本条管
+			return null
 	var/localized_base = lang_type_display_text(src, lang_type_name_keys()) || lang_localize_display_name(base, "[type]")
 	return "[localized_prefix][localized_base]"
 
@@ -1589,30 +1618,50 @@ GLOBAL_VAR_INIT(i18n_type_var_tables_loaded, FALSE)
 	return "[localized_area] [localized_rest]"
 
 /// 名字以某个区域名开头（后面跟空格）时返回那个区域，取最长匹配；没有则 null。
-/// 结果按名字缓存（含「没有」），悬停提示每次 MouseEntered 都会走到这里。
+/// 按「去标记的区域名 → 区域」建索引，只在名字的各个空格处试探前缀：代价是 O(词数)，所以共用落地链
+/// （lang_reverse_area_prefixed，每条 miss 都会走到）也能用。
+/// 区域改名没有统一入口（rename_area 之外，公寓、建造模式、团块都直接写 `.name`），DM 也没有 setter 钩子，
+/// 所以索引按三条规则失效：区域数变化；require_area_resort（rename_area 与地图加载都调它）置脏；
+/// 建成超过 30 秒游戏时间。命中后再核对一次当前名字，对不上就当场重建。
+GLOBAL_VAR_INIT(i18n_area_index_dirty, TRUE)
+
+/proc/lang_area_name_index_invalidate()
+	GLOB.i18n_area_index_dirty = TRUE
+
 /proc/lang_area_by_name_prefix(display_name)
-	var/static/list/cache = list()
-	if(!istext(display_name))
+	if(!istext(display_name) || !findtext(display_name, " "))
 		return null
-	var/cached = cache[display_name]
-	if(!isnull(cached))
-		return cached || null
+	var/list/index = lang_area_name_index()
 	var/area/best
-	var/best_length = 0
-	var/display_length = length(display_name)
+	var/space = findlasttext(display_name, " ")
+	while(space > 1)
+		var/prefix = copytext(display_name, 1, space)
+		var/area/candidate = index[prefix]
+		if(candidate)
+			if(QDELETED(candidate) || format_text(candidate.name) != prefix)
+				index = lang_area_name_index(force = TRUE)
+				candidate = index[prefix]
+			if(candidate)
+				best = candidate
+				break
+		space = findlasttext(display_name, " ", space - 1)
+	return best
+
+/proc/lang_area_name_index(force = FALSE)
+	var/static/list/index
+	var/static/indexed_count = -1
+	var/static/indexed_time = -1
+	if(!force && !GLOB.i18n_area_index_dirty && islist(index) && indexed_count == length(GLOB.areas) && world.time - indexed_time < 30 SECONDS)
+		return index
+	index = list()
+	indexed_count = length(GLOB.areas)
+	indexed_time = world.time
+	GLOB.i18n_area_index_dirty = FALSE
 	for(var/area/candidate as anything in GLOB.areas)
 		var/candidate_name = format_text(candidate.name)
-		var/candidate_length = length(candidate_name)
-		if(candidate_length <= best_length || candidate_length >= display_length)
-			continue
-		if(text2ascii(display_name, candidate_length + 1) != 32) // 区域名之后必须是空格
-			continue
-		if(findtextEx(display_name, candidate_name, 1, candidate_length + 1))
-			best = candidate
-			best_length = candidate_length
-	if(length(cache) < 4096)
-		cache[display_name] = best || FALSE
-	return best
+		if(length(candidate_name) && isnull(index[candidate_name]))
+			index[candidate_name] = candidate
+	return index
 
 /// examine 的 desc 显示边界。与 name 同构：仍等于类型初值 → 按类型取键；其余（地图实例覆盖的
 /// desc、运行期 `desc = …` / `desc +=`）回落既有反查链，行为与从前一致。

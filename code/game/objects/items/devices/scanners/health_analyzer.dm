@@ -161,7 +161,7 @@
 	var/tox_loss = target.get_tox_loss()
 	var/fire_loss = target.get_fire_loss()
 	var/brute_loss = target.get_brute_loss()
-	var/mob_status = (IS_DEAD_OR_FAKING(target) ? span_alert("<b>Deceased</b>") : "<b>[round(target.health / target.maxHealth, 0.01) * 100]% healthy</b>")
+	var/mob_status = (IS_DEAD_OR_FAKING(target) ? span_alert("<b>Deceased</b>") : "<b>[LANG("_root.ec26651eeb9ab307", list(round(target.health / target.maxHealth, 0.01) * 100))]</b>") // ZH EDIT CHANGE - I18N - ORIGINAL: var/mob_status = (IS_DEAD_OR_FAKING(target) ? span_alert("<b>Deceased</b>") : "<b>[round(target.health / target.maxHealth, 0.01) * 100]% healthy</b>")
 
 	if(HAS_TRAIT(target, TRAIT_FAKEDEATH) && target.stat != DEAD)
 		// if we don't appear to actually be in a "dead state", add fake oxyloss

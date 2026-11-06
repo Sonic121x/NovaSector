@@ -79,7 +79,7 @@
 /obj/machinery/bouldertech/examine(mob/user)
 	. = ..()
 
-	. += span_suppradio(LANG("obj.72d0ba03d57cb3fa", list(EXAMINE_HINT("[points_held] mining points"))))
+	. += span_suppradio(LANG("obj.72d0ba03d57cb3fa", list(EXAMINE_HINT(LANG("obj.71bcb2134dca7b52", list(points_held)))))) // ZH EDIT CHANGE - I18N - ORIGINAL: EXAMINE_HINT("[points_held] mining points")
 
 	var/boulder_count = 0
 	for(var/obj/item/boulder/potential_boulder in contents)
